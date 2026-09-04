@@ -160,6 +160,8 @@ SECTIONS
         . = ALIGN(4); asm/vtables.o(.rodata.080E7824);
 
         . = ALIGN(4); asm/data/data_080E8610.o(.rodata);
+        data/text/common/sram_signature.o(.rodata.sram_signature);
+        asm/data/data_080E8610.o(.rodata.sram_signature_trailer);
         . = ALIGN(4); data/text/new_game_menu.o(.rodata.new_game_menu_labels);
         . = ALIGN(4); src/new_game_menu_data.o(.rodata.new_game_menu_label_pointers);
         . = ALIGN(4); data/text/new_game_status.o(.rodata.new_game_status_labels);
