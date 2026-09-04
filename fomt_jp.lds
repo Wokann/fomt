@@ -267,6 +267,10 @@ SECTIONS
         . = 0xEFD78; /* JP data after the calendar text arrays. */
         asm/data/data_080F0348.o(.rodata.calendar_trailer);
         FILL(0x00);
+        data/text/load_error.o(.rodata.load_error);
+        . = 0xEFDDC; /* JP data after the load-failure text. */
+        asm/data/data_080F0348.o(.rodata.load_error_trailer);
+        FILL(0x00);
         data/text/help_menu.o(.rodata.help_menu);
         . = 0xEFE2B; /* JP data after the four help-menu labels. */
         asm/data/data_080F0348.o(.rodata.help_menu_trailer);
