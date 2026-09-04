@@ -250,6 +250,9 @@ SECTIONS
         . = ALIGN(4); data/text/new_game_identity.o(.rodata.new_game_identity_labels);
         . = 0xE7E24; /* JP raw data after the regional identity labels. */
         asm/data/data_080E8610.o(.rodata.new_game_identity_labels_trailer);
+        data/text/new_game_name_entry.o(.rodata.new_game_name_entry_characters);
+        . = 0xE805C; /* JP data after the regional name-entry character grid. */
+        asm/data/data_080E8610.o(.rodata.new_game_name_entry_trailer);
         . = 0xE8A6C; /* JP ROM 0x080E8A6C, independently matched */
         src/shipping_bin.o(.rodata);
         src/record_player.o(.rodata);

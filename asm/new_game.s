@@ -6534,7 +6534,7 @@ func_08006B90: @ 0x08006B90
     sub sp, #4
     adds r5, r0, #0
     mov r4, sp
-    ldr r3, .L08006BDC @ =gUnk_080E89B6
+    ldr r3, .L08006BDC @ =gNewGameNameEntryCharacterRows
     ldr r1, .L08006BE0 @ =0x00004604
     adds r0, r5, r1
     movs r1, #0
@@ -6569,7 +6569,7 @@ func_08006B90: @ 0x08006B90
     adds r0, r4, #1
     b .L08006BF2
     .align 2, 0
-.L08006BDC: .4byte gUnk_080E89B6
+.L08006BDC: .4byte gNewGameNameEntryCharacterRows
 .L08006BE0: .4byte 0x00004604
 .L08006BE4: .4byte 0x00004605
 .L08006BE8: .4byte 0x00004610
