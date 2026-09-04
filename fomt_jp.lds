@@ -270,6 +270,10 @@ SECTIONS
         data/text/help_menu.o(.rodata.help_menu);
         . = 0xEFE2B; /* JP data after the four help-menu labels. */
         asm/data/data_080F0348.o(.rodata.help_menu_trailer);
+        FILL(0x00);
+        data/text/animal_memorial.o(.rodata.animal_memorial);
+        . = 0xEFF28; /* JP data after the animal memorial text pieces. */
+        asm/data/data_080F0348.o(.rodata.animal_memorial_trailer);
         FILL(0xFF);
         . = 0xF12DC; /* JP schedule table block. */
         src/data_schedules.o(.rodata);
