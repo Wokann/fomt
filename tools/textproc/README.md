@@ -45,6 +45,13 @@ fit the declared row width exactly:
         "Winter"
     };
 
+For one fixed zero-filled C string field, use a single array width. The
+encoded text plus its terminator must fit the width; `agbcp` supplies the
+remaining zero bytes exactly as a normal C++ array initializer would:
+
+    char const gText_NotAvailable[8] SECTION(".rodata.not_available") =
+        "N/A ";
+
 Adjacent quoted C++ literals follow Mary’s readable layout for displayed line
 breaks. The generated output declares each symbol as a normal escaped C++
 string, encodes text with the selected map, and appends the FOMT 00 terminator.

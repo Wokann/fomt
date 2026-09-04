@@ -13,7 +13,10 @@
     .incbin "baserom_jp.gba", 0xEFE2B, (0xEFEA4 - 0xEFE2B)
 
     .section .rodata.animal_memorial_trailer
-    .incbin "baserom_jp.gba", 0xEFF28, (0xF11FC - 0xEFF28)
+    .incbin "baserom_jp.gba", 0xEFF28, (0xF06E0 - 0xEFF28)
+
+    .section .rodata.not_available_trailer
+    .incbin "baserom_jp.gba", 0xF06E8, (0xF11FC - 0xF06E8)
 
     .section .rodata.ui_error_trailer
     .incbin "baserom_jp.gba", 0xF1202, (0xF1228 - 0xF1202)
@@ -98,9 +101,7 @@ gUnk_080F0C3C:
 gUnk_080F0E34:
 	.incbin "baserom_us.gba", 0xF0E34, 0x4C
 
-	.global gUnk_080F0E80
-gUnk_080F0E80:
-	.incbin "baserom_us.gba", 0xF0E80, 0x8
+	.section .rodata.not_available_trailer
 
 	.global gUnk_080F0E88
 gUnk_080F0E88:

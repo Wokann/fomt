@@ -10,6 +10,7 @@ Regional text belongs under this directory by its owning data structure:
     data/text/us/animal_memorial.cc
     data/text/us/load_error.cc
     data/text/us/menu.cc
+    data/text/us/not_available.cc
     data/text/jp/tool.cc
     data/text/jp/food.cc
     data/text/jp/article.cc
@@ -18,6 +19,7 @@ Regional text belongs under this directory by its owning data structure:
     data/text/jp/animal_memorial.cc
     data/text/jp/load_error.cc
     data/text/jp/menu.cc
+    data/text/jp/not_available.cc
     data/text/common/fallback.cc
     data/text/common/ui_error.cc
 
