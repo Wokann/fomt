@@ -166,6 +166,10 @@ SECTIONS
         . = ALIGN(4); data/text/new_game_help.o(.rodata.new_game_help_text);
         . = ALIGN(4); data/text/new_game_save.o(.rodata.new_game_save_text);
         . = ALIGN(4); asm/data/data_080E8610.o(.rodata.new_game_save_trailer);
+        . = ALIGN(4); data/text/new_game_identity.o(.rodata.new_game_identity_prefix);
+        . = ALIGN(4); asm/data/data_080E8610.o(.rodata.new_game_identity_prefix_trailer);
+        . = ALIGN(4); data/text/new_game_identity.o(.rodata.new_game_identity_labels);
+        . = ALIGN(4); asm/data/data_080E8610.o(.rodata.new_game_identity_labels_trailer);
         src/shipping_bin.o(.rodata);
         src/record_player.o(.rodata);
         . = ALIGN(4); src/item.o(.rodata);

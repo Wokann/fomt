@@ -2676,7 +2676,7 @@ func_08004C68: @ 0x08004C68
     add r7, sp, #0x40
 .L08004CB4:
     adds r0, r6, #0
-    ldr r1, .L08004EE8 @ =gUnk_080E8934
+    ldr r1, .L08004EE8 @ =gText_NewGameIdentity_PlayerPrefix
     mov r2, sl
     bl func_08007078
     adds r0, r7, #0
@@ -2733,7 +2733,7 @@ func_08004C68: @ 0x08004C68
     movs r1, #2
     bl func_0806EA00
     adds r0, r6, #0
-    ldr r1, .L08004EEC @ =gUnk_080E893C
+    ldr r1, .L08004EEC @ =gText_NewGameIdentity_FarmPrefix
     mov r2, sb
     bl func_08007078
     adds r0, r7, #0
@@ -2769,7 +2769,7 @@ func_08004C68: @ 0x08004C68
     movs r1, #2
     bl func_080070A4
     adds r0, r6, #0
-    ldr r1, .L08004EF0 @ =gUnk_080E8944
+    ldr r1, .L08004EF0 @ =gText_NewGameIdentity_DogPrefix
     add r2, sp, #0x28
     bl func_08007078
     adds r0, r7, #0
@@ -2930,9 +2930,9 @@ func_08004C68: @ 0x08004C68
     pop {r1}
     bx r1
     .align 2, 0
-.L08004EE8: .4byte gUnk_080E8934
-.L08004EEC: .4byte gUnk_080E893C
-.L08004EF0: .4byte gUnk_080E8944
+.L08004EE8: .4byte gText_NewGameIdentity_PlayerPrefix
+.L08004EEC: .4byte gText_NewGameIdentity_FarmPrefix
+.L08004EF0: .4byte gText_NewGameIdentity_DogPrefix
 .L08004EF4: .4byte __vt_13AUnk_0800080C
 .L08004EF8: .4byte vtable_unk_080E5A78
 
@@ -3526,7 +3526,7 @@ func_08005278: @ 0x08005278
     mov r2, r8
     cmp r2, #3
     bls .L080053A0
-    ldr r1, .L080054B8 @ =gUnk_080E8958
+    ldr r1, .L080054B8 @ =gText_NewGameIdentity_PlayerName
     movs r4, #0xe
     movs r5, #2
     add r0, sp, #0x2c
@@ -3539,7 +3539,7 @@ func_08005278: @ 0x08005278
     movs r2, #0
     movs r3, #0
     bl func_0804E8F0
-    ldr r1, .L080054BC @ =gUnk_080E8968
+    ldr r1, .L080054BC @ =gText_NewGameIdentity_PlayerBirthday
     add r0, sp, #0x30
     strh r4, [r0]
     ldr r7, [sp, #0x70]
@@ -3550,7 +3550,7 @@ func_08005278: @ 0x08005278
     movs r2, #0
     movs r3, #0
     bl func_0804E8F0
-    ldr r1, .L080054C0 @ =gUnk_080E8978
+    ldr r1, .L080054C0 @ =gText_NewGameIdentity_FarmName
     add r0, sp, #0x34
     strh r4, [r0]
     ldr r0, [sp, #0x74]
@@ -3561,7 +3561,7 @@ func_08005278: @ 0x08005278
     movs r2, #0
     movs r3, #0
     bl func_0804E8F0
-    ldr r1, .L080054C4 @ =gUnk_080E8988
+    ldr r1, .L080054C4 @ =gText_NewGameIdentity_DogName
     add r0, sp, #0x38
     strh r4, [r0]
     ldr r2, [sp, #0x78]
@@ -3626,10 +3626,10 @@ func_08005278: @ 0x08005278
 .L080054AC: .4byte 0x00001324
 .L080054B0: .4byte 0x000016A8
 .L080054B4: .4byte 0x00001A34
-.L080054B8: .4byte gUnk_080E8958
-.L080054BC: .4byte gUnk_080E8968
-.L080054C0: .4byte gUnk_080E8978
-.L080054C4: .4byte gUnk_080E8988
+.L080054B8: .4byte gText_NewGameIdentity_PlayerName
+.L080054BC: .4byte gText_NewGameIdentity_PlayerBirthday
+.L080054C0: .4byte gText_NewGameIdentity_FarmName
+.L080054C4: .4byte gText_NewGameIdentity_DogName
 .L080054C8:
     str r1, [sp, #0x8c]
     movs r0, #1
@@ -4169,9 +4169,9 @@ func_08005800: @ 0x08005800
     ldr r1, .L08005900 @ =0x00001A2C
     adds r0, r7, r1
     ldr r0, [r0]
-    ldr r1, .L08005904 @ =gUnk_080E8998
-    ldr r2, .L08005908 @ =gUnk_080E89A4
-    ldr r3, .L0800590C @ =gUnk_080E89A8
+    ldr r1, .L08005904 @ =gText_NewGameIdentity_Confirm
+    ldr r2, .L08005908 @ =gText_NewGameIdentity_Yes
+    ldr r3, .L0800590C @ =gText_NewGameIdentity_No
     movs r4, #0
     str r4, [sp]
     str r4, [sp, #4]
@@ -4180,9 +4180,9 @@ func_08005800: @ 0x08005800
     b .L08005974
     .align 2, 0
 .L08005900: .4byte 0x00001A2C
-.L08005904: .4byte gUnk_080E8998
-.L08005908: .4byte gUnk_080E89A4
-.L0800590C: .4byte gUnk_080E89A8
+.L08005904: .4byte gText_NewGameIdentity_Confirm
+.L08005908: .4byte gText_NewGameIdentity_Yes
+.L0800590C: .4byte gText_NewGameIdentity_No
 .L08005910:
     ldr r2, .L08005928 @ =0x00001A2C
     adds r0, r7, r2
@@ -5717,7 +5717,7 @@ func_080064E8: @ 0x080064E8
     movs r0, #0xba
     muls r0, r3, r0
     adds r2, r2, r0
-    ldr r0, .L080065D8 @ =gUnk_080E8997
+    ldr r0, .L080065D8 @ =gText_NewGameIdentity_DogName + 0xF
     adds r2, r2, r0
     add r0, sp, #0x18
     movs r3, #0x1e
@@ -5773,7 +5773,10 @@ func_080064E8: @ 0x080064E8
     .align 2, 0
 .L080065D0: .4byte 0x00004637
 .L080065D4: .4byte 0x000034A8
-.L080065D8: .4byte gUnk_080E8997
+@ The original code addresses the final reserved byte in the fixed DogName
+@ field directly.  Keep that byte in the C++ field rather than introducing an
+@ assembly alias for it.
+.L080065D8: .4byte gText_NewGameIdentity_DogName + 0xF
 .L080065DC:
     str r1, [sp, #0x54]
     movs r0, #1

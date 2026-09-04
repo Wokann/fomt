@@ -244,6 +244,12 @@ SECTIONS
         . = ALIGN(4); data/text/new_game_save.o(.rodata.new_game_save_text);
         . = 0xE7D64; /* JP raw data after the regional new-game save text. */
         asm/data/data_080E8610.o(.rodata.new_game_save_trailer);
+        . = ALIGN(4); data/text/new_game_identity.o(.rodata.new_game_identity_prefix);
+        . = 0xE7DAC; /* JP runtime data between identity text groups. */
+        asm/data/data_080E8610.o(.rodata.new_game_identity_prefix_trailer);
+        . = ALIGN(4); data/text/new_game_identity.o(.rodata.new_game_identity_labels);
+        . = 0xE7E24; /* JP raw data after the regional identity labels. */
+        asm/data/data_080E8610.o(.rodata.new_game_identity_labels_trailer);
         . = 0xE8A6C; /* JP ROM 0x080E8A6C, independently matched */
         src/shipping_bin.o(.rodata);
         src/record_player.o(.rodata);

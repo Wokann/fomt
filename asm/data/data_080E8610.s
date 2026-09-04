@@ -22,51 +22,13 @@ gUnk_080E8684:
 
 	.global gUnk_080E8934
 gUnk_080E8934:
-	.incbin "baserom_jp.gba", 0xE7D64, 0x8
+	.incbin "baserom_jp.gba", 0xE7D64, (0xE7D94 - 0xE7D64)
 
-	.global gUnk_080E893C
-gUnk_080E893C:
-	.incbin "baserom_jp.gba", 0xE7D6C, 0x8
+	.section .rodata.new_game_identity_prefix_trailer
+	.incbin "baserom_jp.gba", 0xE7DAC, (0xE7DB8 - 0xE7DAC)
 
-	.global gUnk_080E8944
-gUnk_080E8944:
-	.incbin "baserom_jp.gba", 0xE7D74, 0x14
-
-	.global gUnk_080E8958
-gUnk_080E8958:
-	.incbin "baserom_jp.gba", 0xE7D88, 0x10
-
-	.global gUnk_080E8968
-gUnk_080E8968:
-	.incbin "baserom_jp.gba", 0xE7D98, 0x10
-
-	.global gUnk_080E8978
-gUnk_080E8978:
-	.incbin "baserom_jp.gba", 0xE7DA8, 0x10
-
-	.global gUnk_080E8988
-gUnk_080E8988:
-	.incbin "baserom_jp.gba", 0xE7DB8, 0xF
-
-	.global gUnk_080E8997
-gUnk_080E8997:
-	.incbin "baserom_jp.gba", 0xE7DC7, 0x1
-
-	.global gUnk_080E8998
-gUnk_080E8998:
-	.incbin "baserom_jp.gba", 0xE7DC8, 0xC
-
-	.global gUnk_080E89A4
-gUnk_080E89A4:
-	.incbin "baserom_jp.gba", 0xE7DD4, 0x4
-
-	.global gUnk_080E89A8
-gUnk_080E89A8:
-	.incbin "baserom_jp.gba", 0xE7DD8, 0xE
-
-	.global gUnk_080E89B6
-gUnk_080E89B6:
-	.incbin "baserom_jp.gba", 0xE7DE6, 0x22E
+	.section .rodata.new_game_identity_labels_trailer
+	.incbin "baserom_jp.gba", 0xE7E24, (0xE8014 - 0xE7E24)
 
 	.global gUnk_080E8BE4
 gUnk_080E8BE4:
@@ -139,49 +101,11 @@ gUnk_080E8684:
 	.section .rodata.new_game_save_trailer
 	.incbin "baserom_us.gba", 0xE8920, (0xE8934 - 0xE8920)
 
-	.global gUnk_080E8934
-gUnk_080E8934:
-	.incbin "baserom_us.gba", 0xE8934, 0x8
+	.section .rodata.new_game_identity_prefix_trailer
+	.incbin "baserom_us.gba", 0xE894C, (0xE8958 - 0xE894C)
 
-	.global gUnk_080E893C
-gUnk_080E893C:
-	.incbin "baserom_us.gba", 0xE893C, 0x8
-
-	.global gUnk_080E8944
-gUnk_080E8944:
-	.incbin "baserom_us.gba", 0xE8944, 0x14
-
-	.global gUnk_080E8958
-gUnk_080E8958:
-	.incbin "baserom_us.gba", 0xE8958, 0x10
-
-	.global gUnk_080E8968
-gUnk_080E8968:
-	.incbin "baserom_us.gba", 0xE8968, 0x10
-
-	.global gUnk_080E8978
-gUnk_080E8978:
-	.incbin "baserom_us.gba", 0xE8978, 0x10
-
-	.global gUnk_080E8988
-gUnk_080E8988:
-	.incbin "baserom_us.gba", 0xE8988, 0xF
-
-	.global gUnk_080E8997
-gUnk_080E8997:
-	.incbin "baserom_us.gba", 0xE8997, 0x1
-
-	.global gUnk_080E8998
-gUnk_080E8998:
-	.incbin "baserom_us.gba", 0xE8998, 0xC
-
-	.global gUnk_080E89A4
-gUnk_080E89A4:
-	.incbin "baserom_us.gba", 0xE89A4, 0x4
-
-	.global gUnk_080E89A8
-gUnk_080E89A8:
-	.incbin "baserom_us.gba", 0xE89A8, 0xE
+	.section .rodata.new_game_identity_labels_trailer
+	.incbin "baserom_us.gba", 0xE89AC, (0xE89B6 - 0xE89AC)
 
 	.global gUnk_080E89B6
 gUnk_080E89B6:
