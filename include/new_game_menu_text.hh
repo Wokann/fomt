@@ -20,7 +20,13 @@ extern char const gText_NewGameMenu_No[];
 extern char const gText_NewGameMenu_FaceDisplay[];
 extern char const gText_NewGameMenu_NameDisplay[];
 
-#if !defined(REGION_JP)
+#if defined(REGION_JP)
+// The JP menu uses the same ROM strings for its data labels and control
+// choices.  These are source-level semantic names only: both macros resolve
+// directly to the one stored string, without an alias symbol or pointer.
+#define gText_NewGameMenu_ControlOption1 gText_NewGameMenu_Data1
+#define gText_NewGameMenu_ControlOption2 gText_NewGameMenu_Data2
+#else
 extern char const gText_NewGameMenu_ControlOption1[];
 extern char const gText_NewGameMenu_ControlOption2[];
 #endif
