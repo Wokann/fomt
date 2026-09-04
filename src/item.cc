@@ -36,6 +36,15 @@ struct ProductInfo
 
 extern ProductInfo const gProductInfo[];
 
+struct ToolInfo
+{
+    /* +00 */ char const * name;
+    /* +04 */ u16 icon_id;
+    /* +08 */ char const * desc;
+};
+
+extern ToolInfo const gToolInfo[];
+
 static inline bool IsValidFoodId(u8 id)
 {
     return id < NUM_FOODS;
@@ -49,6 +58,11 @@ static inline bool IsValidArticleId(u8 id)
 static inline bool IsValidProductId(u8 id)
 {
     return id < NUM_PRODUCTS;
+}
+
+static inline bool IsValidToolId(u8 id)
+{
+    return id < NUM_TOOLS;
 }
 
 Tool::Tool(u32 a_id)
@@ -92,28 +106,12 @@ asm(
     "    .endm\n"
     "\n"
     "    jp_item_func GetName__C4Tool, 0xDB14, 0xDB40\n"
-    "    jp_item_func GetIconId__C4Tool, 0xDB40, 0xDB6C\n"
-    "    jp_item_func GetDesc__C4Tool, 0xDB6C, 0xDBA8\n"
     "    @ Keep later shared C++ emission in agbcp's default syntax mode.\n"
     "    .syntax divided\n"
 );
 #else
 
 #include <algorithm>
-
-struct ToolInfo
-{
-    /* +00 */ char const * name;
-    /* +04 */ u16 icon_id;
-    /* +08 */ char const * desc;
-};
-
-extern ToolInfo const gToolInfo[];
-
-static inline bool IsValidToolId(u8 id)
-{
-    return id < NUM_TOOLS;
-}
 
 char const * Tool::GetName() const
 {
@@ -123,6 +121,8 @@ char const * Tool::GetName() const
     return "Broken Tool";
 }
 
+#endif // REGION_JP
+
 u16 Tool::GetIconId() const
 {
     if (IsValidToolId(id))
@@ -131,6 +131,16 @@ u16 Tool::GetIconId() const
     // TODO: icon id constants
     return 457; // Turnip
 }
+
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "    jp_item_func GetDesc__C4Tool, 0xDB6C, 0xDBA8\n"
+    "    .syntax divided\n"
+);
+#else
 
 static inline char const * GetToolDescById(u32 id)
 {
