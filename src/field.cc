@@ -1,5 +1,15 @@
 #include "field.hh"
 
+FieldPlot::FieldPlot()
+    : unk_00_00(0), unk_00_02(0), unk_00_08(0), unk_00_0C(0), unk_00_11(method_0800A014())
+{
+}
+
+FieldPlot::FieldPlot(u32 arg_1, u32 arg_2, u32 arg_3)
+    : unk_00_00(arg_1), unk_00_02(arg_2), unk_00_08(arg_3), unk_00_0C(0), unk_00_11(method_0800A014())
+{
+}
+
 #if defined(REGION_JP)
 /*
  * Byte-exact JP assembly stays in this module.  As matching functions are
@@ -17,16 +27,6 @@ asm(
     "    .section .text\n"
     "    .syntax unified\n"
     "    .thumb\n"
-    "\n"
-    "    .global __9FieldPlot\n"
-    "    .thumb_func\n"
-    "__9FieldPlot:\n"
-    "    .incbin \"baserom_jp.gba\", 0x9F94, 0x3C\n"
-    "\n"
-    "    .global __9FieldPlotUiUiUi\n"
-    "    .thumb_func\n"
-    "__9FieldPlotUiUiUi:\n"
-    "    .incbin \"baserom_jp.gba\", 0x9FD0, 0x4C\n"
     "\n"
     "    .global method_0800A014__C9FieldPlot\n"
     "    .thumb_func\n"
@@ -80,16 +80,6 @@ extern u8 SHOULD_BE(const) gUnk_086D6528[];
 
 extern Unk_Something SHOULD_BE(const) gUnk_086D6458;
 extern Unk_Something SHOULD_BE(const) gUnk_086D6608;
-
-FieldPlot::FieldPlot()
-    : unk_00_00(0), unk_00_02(0), unk_00_08(0), unk_00_0C(0), unk_00_11(method_0800A014())
-{
-}
-
-FieldPlot::FieldPlot(u32 arg_1, u32 arg_2, u32 arg_3)
-    : unk_00_00(arg_1), unk_00_02(arg_2), unk_00_08(arg_3), unk_00_0C(0), unk_00_11(method_0800A014())
-{
-}
 
 u32 FieldPlot::method_0800A014() const
 {
