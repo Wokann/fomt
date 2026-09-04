@@ -1,3 +1,5 @@
+#include "field.hh"
+
 #if defined(REGION_JP)
 /*
  * Byte-exact JP assembly stays in this module.  As matching functions are
@@ -96,37 +98,10 @@ asm(
     "method_0800A6F4__9FieldPlotRC7Article:\n"
     "    .incbin \"baserom_jp.gba\", 0xA6FC, 0x98\n"
     "\n"
-    "    .global method_0800A78C__C9FieldPlot\n"
-    "    .thumb_func\n"
-    "method_0800A78C__C9FieldPlot:\n"
-    "    .incbin \"baserom_jp.gba\", 0xA794, 0x24\n"
-    "\n"
-    "    .global DayUpdate__9FieldPlotiRC8GameDate\n"
-    "    .thumb_func\n"
-    "DayUpdate__9FieldPlotiRC8GameDate:\n"
-    "    .incbin \"baserom_jp.gba\", 0xA7B8, 0x34C\n"
-    "\n"
-    "    .global method_0800AB08__9FieldPlot6Season\n"
-    "    .thumb_func\n"
-    "method_0800AB08__9FieldPlot6Season:\n"
-    "    .incbin \"baserom_jp.gba\", 0xAB04, 0x3FC\n"
-    "\n"
-    "    .global method_0800AF20__C9FieldPlot\n"
-    "    .thumb_func\n"
-    "method_0800AF20__C9FieldPlot:\n"
-    "    .incbin \"baserom_jp.gba\", 0xAF00, 0x3C\n"
-    "\n"
-    "    .global method_0800AF5C__C9FieldPlotPC9FieldPlotT1\n"
-    "    .thumb_func\n"
-    "method_0800AF5C__C9FieldPlotPC9FieldPlotT1:\n"
-    "    .incbin \"baserom_jp.gba\", 0xAF3C, 0x180\n"
-    "\n"
     "    @ Keep later shared C++ emission in agbcp's default syntax mode.\n"
     "    .syntax divided\n"
 );
 #else
-
-#include "field.hh"
 
 #include "rucksack_item.hh"
 
@@ -688,6 +663,8 @@ void FieldPlot::method_0800A6F4(Article const & article)
     }
 }
 
+#endif // REGION_JP
+
 bool FieldPlot::method_0800A78C() const
 {
     if (GetUnk8() != 0)
@@ -715,6 +692,37 @@ bool FieldPlot::method_0800A78C() const
 
     return false;
 }
+
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "    .incbin \"baserom_jp.gba\", 0xA7B6, 0x2\n"
+    "\n"
+    "    .global DayUpdate__9FieldPlotiRC8GameDate\n"
+    "    .thumb_func\n"
+    "DayUpdate__9FieldPlotiRC8GameDate:\n"
+    "    .incbin \"baserom_jp.gba\", 0xA7B8, 0x34C\n"
+    "\n"
+    "    .global method_0800AB08__9FieldPlot6Season\n"
+    "    .thumb_func\n"
+    "method_0800AB08__9FieldPlot6Season:\n"
+    "    .incbin \"baserom_jp.gba\", 0xAB04, 0x3FC\n"
+    "\n"
+    "    .global method_0800AF20__C9FieldPlot\n"
+    "    .thumb_func\n"
+    "method_0800AF20__C9FieldPlot:\n"
+    "    .incbin \"baserom_jp.gba\", 0xAF00, 0x3C\n"
+    "\n"
+    "    .global method_0800AF5C__C9FieldPlotPC9FieldPlotT1\n"
+    "    .thumb_func\n"
+    "method_0800AF5C__C9FieldPlotPC9FieldPlotT1:\n"
+    "    .incbin \"baserom_jp.gba\", 0xAF3C, 0x180\n"
+    "\n"
+    "    .syntax divided\n"
+);
+#else
 
 void FieldPlot::DayUpdate(int weather, GameDate const & date)
 {
