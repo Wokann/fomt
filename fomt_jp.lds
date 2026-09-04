@@ -278,6 +278,14 @@ SECTIONS
         data/text/animal_memorial.o(.rodata.animal_memorial);
         . = 0xEFF28; /* JP data after the animal memorial text pieces. */
         asm/data/data_080F0348.o(.rodata.animal_memorial_trailer);
+        FILL(0x00);
+        . = ALIGN(4); src/menu_data.o(.rodata.menu_entry_ids);
+        FILL(0x00);
+        . = ALIGN(4); data/text/menu.o(.rodata.menu_labels);
+        FILL(0x00);
+        . = ALIGN(4); src/menu_data.o(.rodata.menu_label_pointers);
+        FILL(0xFF);
+        . = ALIGN(4); asm/data/data_080F0348.o(.rodata.menu_data_trailer);
         FILL(0xFF);
         . = 0xF12DC; /* JP schedule table block. */
         src/data_schedules.o(.rodata);
