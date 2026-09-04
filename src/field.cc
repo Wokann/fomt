@@ -10,36 +10,6 @@ FieldPlot::FieldPlot(u32 arg_1, u32 arg_2, u32 arg_3)
 {
 }
 
-#if defined(REGION_JP)
-/*
- * Byte-exact JP assembly stays in this module.  As matching functions are
- * recovered, keep shared definitions outside the regional guard and retain
- * only genuinely version-specific definitions inside it.
- */
-asm(
-    "    @ JP revision 0 counterpart of src/field.cc.\n"
-    "    @\n"
-    "    @ Each entry is bounded at the corresponding JP function start.  The US\n"
-    "    @ source module is 0x28 bytes longer, so it cannot be linked at the JP\n"
-    "    @ address without shifting every following object.  Keep this static\n"
-    "    @ source as the JP bridge until the C++ implementation is ported.\n"
-    "\n"
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "\n"
-    "    .global method_0800A014__C9FieldPlot\n"
-    "    .thumb_func\n"
-    "method_0800A014__C9FieldPlot:\n"
-    "    .incbin \"baserom_jp.gba\", 0xA01C, 0x68\n"
-    "\n"
-    "    @ Keep later shared C++ emission in agbcp's default syntax mode.\n"
-    "    .syntax divided\n"
-);
-#else
-
-#include "rucksack_item.hh"
-
 // TODO: move those around
 
 struct Unk_080E93F8
@@ -119,8 +89,6 @@ u32 FieldPlot::method_0800A014() const
     return result;
 }
 
-#endif // REGION_JP
-
 bool FieldPlot::method_0800A07C() const
 {
     int val = unk_00_08;
@@ -153,15 +121,9 @@ asm(
     "    .syntax unified\n"
     "    .thumb\n"
     "    .incbin \"baserom_jp.gba\", 0xA0AA, 0x2\n"
-    "\n"
-    "    .global method_0800A0A4__C9FieldPlot\n"
-    "    .thumb_func\n"
-    "method_0800A0A4__C9FieldPlot:\n"
-    "    .incbin \"baserom_jp.gba\", 0xA0AC, 0x7C\n"
-    "\n"
     "    .syntax divided\n"
 );
-#else
+#endif // REGION_JP
 
 u32 FieldPlot::method_0800A0A4() const
 {
@@ -207,8 +169,6 @@ u32 FieldPlot::method_0800A0A4() const
     return 0;
 }
 
-#endif // REGION_JP
-
 void FieldPlot::method_0800A120(int arg_1)
 {
     unk_00_00 = arg_1;
@@ -232,20 +192,9 @@ asm(
     "    .syntax unified\n"
     "    .thumb\n"
     "    .incbin \"baserom_jp.gba\", 0xA196, 0x2\n"
-    "\n"
-    "    .global method_0800A190__9FieldPlotb\n"
-    "    .thumb_func\n"
-    "method_0800A190__9FieldPlotb:\n"
-    "    .incbin \"baserom_jp.gba\", 0xA198, 0xA8\n"
-    "\n"
-    "    .global method_0800A238__9FieldPloti\n"
-    "    .thumb_func\n"
-    "method_0800A238__9FieldPloti:\n"
-    "    .incbin \"baserom_jp.gba\", 0xA240, 0x104\n"
-    "\n"
     "    .syntax divided\n"
 );
-#else
+#endif // REGION_JP
 
 u32 FieldPlot::method_0800A190(bool arg_1)
 {
@@ -384,8 +333,6 @@ u32 FieldPlot::method_0800A238(int arg_1)
     return 2;
 }
 
-#endif // REGION_JP
-
 u32 FieldPlot::method_0800A33C(int arg_1)
 {
     if (GetUnk8() == 0)
@@ -497,31 +444,6 @@ void FieldPlot::method_0800A460(int arg_1)
         }
     }
 }
-
-#if defined(REGION_JP)
-asm(
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "\n"
-    "    .global method_0800A4A4__9FieldPlot\n"
-    "    .thumb_func\n"
-    "method_0800A4A4__9FieldPlot:\n"
-    "    .incbin \"baserom_jp.gba\", 0xA4AC, 0x224\n"
-    "\n"
-    "    .global method_0800A6C8__C9FieldPlotRC7Article\n"
-    "    .thumb_func\n"
-    "method_0800A6C8__C9FieldPlotRC7Article:\n"
-    "    .incbin \"baserom_jp.gba\", 0xA6D0, 0x2C\n"
-    "\n"
-    "    .global method_0800A6F4__9FieldPlotRC7Article\n"
-    "    .thumb_func\n"
-    "method_0800A6F4__9FieldPlotRC7Article:\n"
-    "    .incbin \"baserom_jp.gba\", 0xA6FC, 0x98\n"
-    "\n"
-    "    .syntax divided\n"
-);
-#else
 
 RucksackItem FieldPlot::method_0800A4A4()
 {
@@ -655,8 +577,6 @@ void FieldPlot::method_0800A6F4(Article const & article)
         unk_00_11 = method_0800A014();
     }
 }
-
-#endif // REGION_JP
 
 bool FieldPlot::method_0800A78C() const
 {
