@@ -176,6 +176,10 @@ SECTIONS
         data/text/new_game_name_entry_ui.o(.rodata.new_game_name_entry_ui);
         asm/data/data_080E8610.o(.rodata.new_game_name_entry_trailer);
         asm/data/data_080E8610.o(.rodata.field_plot_prefix);
+        src/field_data.o(.rodata.field_plot_weather_ordinary);
+        src/field_data.o(.rodata.field_plot_weather_special_3);
+        src/field_data.o(.rodata.field_plot_weather_special_4);
+        src/field_data.o(.rodata.field_plot_growth_transitions);
         src/field_data.o(.rodata.field_plot_definitions);
         src/shipping_bin.o(.rodata);
         src/record_player.o(.rodata);

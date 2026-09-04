@@ -257,6 +257,10 @@ SECTIONS
         . = 0xE80EC; /* JP data after the regional name-entry UI fields. */
         asm/data/data_080E8610.o(.rodata.new_game_name_entry_trailer);
         asm/data/data_080E8610.o(.rodata.field_plot_prefix);
+        src/field_data.o(.rodata.field_plot_weather_ordinary);
+        src/field_data.o(.rodata.field_plot_weather_special_3);
+        src/field_data.o(.rodata.field_plot_weather_special_4);
+        src/field_data.o(.rodata.field_plot_growth_transitions);
         src/field_data.o(.rodata.field_plot_definitions);
         . = 0xE8A6C; /* JP ROM 0x080E8A6C, independently matched */
         src/shipping_bin.o(.rodata);
