@@ -82,12 +82,15 @@ static inline T const & FomtMin(T const & left, T const & right)
 }
 
 #if defined(REGION_JP)
-extern char const gJpBrokenToolName[];
-extern char const gJpNoExplanation[];
-extern char const gJpBrokenFoodName[];
-extern char const gJpBrokenArticleName[];
+extern char const gBrokenToolName[];
+extern char const gNoExplanation[];
+extern char const gBrokenFoodName[];
+extern char const gBrokenArticleName[];
+extern char const gBrokenShipmentName[];
 #else
 #include <algorithm>
+
+static char const gBrokenToolName[] = "Broken Tool";
 #endif
 
 char const * Tool::GetName() const
@@ -95,11 +98,7 @@ char const * Tool::GetName() const
     if (IsValidToolId(id))
         return gToolInfo[id].name;
 
-#if defined(REGION_JP)
-    return gJpBrokenToolName;
-#else
-    return "Broken Tool";
-#endif // REGION_JP
+    return gBrokenToolName;
 }
 
 u16 Tool::GetIconId() const
@@ -111,16 +110,16 @@ u16 Tool::GetIconId() const
     return 457; // Turnip
 }
 
+#if !defined(REGION_JP)
+static char const gNoExplanation[] = "No Explanation";
+#endif
+
 static inline char const * GetToolDescById(u32 id)
 {
     if (gToolInfo[id].desc != nullptr)
         return gToolInfo[id].desc;
 
-#if defined(REGION_JP)
-    return gJpNoExplanation;
-#else
-    return "No Explanation";
-#endif
+    return gNoExplanation;
 }
 
 char const * Tool::GetDesc() const
@@ -128,11 +127,7 @@ char const * Tool::GetDesc() const
     if (IsValidToolId(id))
         return GetToolDescById(id);
 
-#if defined(REGION_JP)
-    return gJpNoExplanation;
-#else
-    return "No Explanation";
-#endif
+    return gNoExplanation;
 }
 
 ToolStack::ToolStack()
@@ -207,16 +202,16 @@ int Food::GetId() const
     return id;
 }
 
+#if !defined(REGION_JP)
+static char const gBrokenFoodName[] = "Broken Food";
+#endif
+
 char const * Food::GetName() const
 {
     if (IsValidFoodId(id))
         return gFoodInfo[id].name;
 
-#if defined(REGION_JP)
-    return gJpBrokenFoodName;
-#else
-    return "Broken Food";
-#endif
+    return gBrokenFoodName;
 }
 
 u16 Food::GetIconId() const
@@ -275,11 +270,7 @@ static inline char const * GetFoodDescById(u32 id)
     if (gFoodInfo[id].desc != nullptr)
         return gFoodInfo[id].desc;
 
-#if defined(REGION_JP)
-    return gJpNoExplanation;
-#else
-    return "No Explanation";
-#endif
+    return gNoExplanation;
 }
 
 char const * Food::GetDesc() const
@@ -287,11 +278,7 @@ char const * Food::GetDesc() const
     if (IsValidFoodId(id))
         return GetFoodDescById(id);
 
-#if defined(REGION_JP)
-    return gJpNoExplanation;
-#else
-    return "No Explanation";
-#endif
+    return gNoExplanation;
 }
 
 void Food::AddBonuses(i8 stamina_amount, i8 fatigue_amount)
@@ -394,16 +381,16 @@ int Article::GetId() const
     return id;
 }
 
+#if !defined(REGION_JP)
+static char const gBrokenArticleName[] = "Broken Article";
+#endif
+
 char const * Article::GetName() const
 {
     if (IsValidArticleId(id))
         return gArticleInfo[id].name;
 
-#if defined(REGION_JP)
-    return gJpBrokenArticleName;
-#else
-    return "Broken Article";
-#endif
+    return gBrokenArticleName;
 }
 
 u16 Article::GetIconId() const
@@ -439,11 +426,7 @@ static inline char const * GetArticleDescById(u32 id)
     if (gArticleInfo[id].desc != nullptr)
         return gArticleInfo[id].desc;
 
-#if defined(REGION_JP)
-    return gJpNoExplanation;
-#else
-    return "No Explanation";
-#endif
+    return gNoExplanation;
 }
 
 char const * Article::GetDesc() const
@@ -451,11 +434,7 @@ char const * Article::GetDesc() const
     if (IsValidArticleId(id))
         return GetArticleDescById(id);
 
-#if defined(REGION_JP)
-    return gJpNoExplanation;
-#else
-    return "No Explanation";
-#endif
+    return gNoExplanation;
 }
 
 ArticleStack::ArticleStack()
@@ -577,23 +556,9 @@ u32 Product::GetPrice() const
     return 0;
 }
 
-#if defined(REGION_JP)
-asm(
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "\n"
-    "    .macro jp_item_func name, start, end\n"
-    "        .global \\name\n"
-    "        .thumb_func\n"
-    "\\name:\n"
-    "        .incbin \"baserom_jp.gba\", \\start, (\\end - \\start)\n"
-    "    .endm\n"
-    "\n"
-    "    jp_item_func GetName__C7Product, 0xE1A0, 0xE1F4\n"
-    "    .syntax divided\n"
-);
-#else
+#if !defined(REGION_JP)
+static char const gBrokenShipmentName[] = "Broken Shipment";
+#endif
 
 char const * Product::GetName() const
 {
@@ -611,10 +576,8 @@ char const * Product::GetName() const
         }
     }
 
-    return "Broken Shipment";
+    return gBrokenShipmentName;
 }
-
-#endif // REGION_JP
 
 u16 Product::GetIconId() const
 {
@@ -656,21 +619,25 @@ asm(
     "jp_item_data_start:\n"
     "    .incbin \"baserom_jp.gba\", 0xE8AB4, (0xE8AC0 - 0xE8AB4)\n"
     "\n"
-    "    .global gJpBrokenToolName\n"
-    "gJpBrokenToolName:\n"
+    "    .global gBrokenToolName\n"
+    "gBrokenToolName:\n"
     "    .incbin \"baserom_jp.gba\", 0xE8AC0, (0xE8ACC - 0xE8AC0)\n"
     "\n"
-    "    .global gJpNoExplanation\n"
-    "gJpNoExplanation:\n"
+    "    .global gNoExplanation\n"
+    "gNoExplanation:\n"
     "    .incbin \"baserom_jp.gba\", 0xE8ACC, (0xE8ADC - 0xE8ACC)\n"
     "\n"
-    "    .global gJpBrokenFoodName\n"
-    "gJpBrokenFoodName:\n"
+    "    .global gBrokenFoodName\n"
+    "gBrokenFoodName:\n"
     "    .incbin \"baserom_jp.gba\", 0xE8ADC, (0xE8AE8 - 0xE8ADC)\n"
     "\n"
-    "    .global gJpBrokenArticleName\n"
-    "gJpBrokenArticleName:\n"
-    "    .incbin \"baserom_jp.gba\", 0xE8AE8, (0xE9EEC - 0xE8AE8)\n"
+    "    .global gBrokenArticleName\n"
+    "gBrokenArticleName:\n"
+    "    .incbin \"baserom_jp.gba\", 0xE8AE8, (0xE8AF8 - 0xE8AE8)\n"
+    "\n"
+    "    .global gBrokenShipmentName\n"
+    "gBrokenShipmentName:\n"
+    "    .incbin \"baserom_jp.gba\", 0xE8AF8, (0xE9EEC - 0xE8AF8)\n"
     "\n"
     "    .global gToolInfo\n"
     "gToolInfo:\n"
