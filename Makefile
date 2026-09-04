@@ -96,20 +96,27 @@ compare: $(ROM)
 
 .PHONY: fomt_us fomt_jp compare
 
+TEXT_TOOL_DIR := tools/textproc
+TEXT_TOOL := $(TEXT_TOOL_DIR)/fomt-text
+
 ifeq ($(GAME_REGION),JP)
-TEXT_TOOL := tools/textproc/fomt-text
-ITEM_JP_TEXT_SOURCE := data/text/jp/item.inc
-ITEM_JP_TEXT_ASM := $(BUILD_DIR)/data/text/item.s
+ITEM_TEXT_REGION := jp
+ITEM_TEXT_SOURCES := data/text/jp/tool.cc data/text/jp/food.cc data/text/jp/article.cc
+else
+ITEM_TEXT_REGION := us
+ITEM_TEXT_SOURCES := data/text/us/tool.cc data/text/us/food.cc data/text/us/article.cc
+endif
 
-$(TEXT_TOOL):
-	@$(MAKE) -C tools/textproc all
+ITEM_TEXT_ASMS := $(patsubst data/text/$(ITEM_TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.s,$(ITEM_TEXT_SOURCES))
 
-$(ITEM_JP_TEXT_ASM): $(ITEM_JP_TEXT_SOURCE) $(TEXT_TOOL) charmap.txt
+$(TEXT_TOOL): $(TEXT_TOOL_DIR)/fomt_text.cpp $(TEXT_TOOL_DIR)/Makefile
+	@$(MAKE) -C $(TEXT_TOOL_DIR) $(notdir $@)
+
+$(BUILD_DIR)/data/text/%.s: data/text/$(ITEM_TEXT_REGION)/%.cc $(TEXT_TOOL) charmap.txt
 	@mkdir -p $(dir $@)
 	$(TEXT_TOOL) asm charmap.txt $< $@
 
-$(BUILD_DIR)/src/item.o: $(ITEM_JP_TEXT_ASM)
-endif
+$(BUILD_DIR)/src/item.o: $(ITEM_TEXT_ASMS)
 
 # ROM from ELF
 %.gba: %.elf
