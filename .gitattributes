@@ -1,0 +1,2 @@
+# A raw trailing space is the byte mapping for U+0020 in this table.
+charmap_jp.txt whitespace=-trailing-space

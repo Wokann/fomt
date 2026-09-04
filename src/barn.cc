@@ -1,3 +1,10 @@
+#include "barn.hh"
+
+#include "utility/popcnt.hh"
+
+#include <stdlib.h>
+#include <algorithm>
+
 #if defined(REGION_JP)
 /*
  * Byte-exact JP assembly stays in this module.  As matching functions are
@@ -15,94 +22,16 @@ asm(
     "    .syntax unified\n"
     "    .thumb\n"
     "jp_barn_text_start:\n"
-    "    .incbin \"baserom_jp.gba\", 0xCD9C, 0xD70\n"
+    "    .incbin \"baserom_jp.gba\", 0xCD9C, 0x9C\n"
     "\n"
     "    .global __4Barn\n"
     "    .thumb_set __4Barn, jp_barn_text_start + 0x000\n"
-    "    .global method_0800CE58__4Barn\n"
-    "    .thumb_set method_0800CE58__4Barn, jp_barn_text_start + 0x09C\n"
-    "    .global GetUpgradeLevel__C4Barn\n"
-    "    .thumb_set GetUpgradeLevel__C4Barn, jp_barn_text_start + 0x0A8\n"
-    "    .global GetStoredBushelCount__C4Barn\n"
-    "    .thumb_set GetStoredBushelCount__C4Barn, jp_barn_text_start + 0x0B0\n"
-    "    .global GetCapacity__C4Barn\n"
-    "    .thumb_set GetCapacity__C4Barn, jp_barn_text_start + 0x0B8\n"
-    "    .global GetPregnancyStallCapacity__C4Barn\n"
-    "    .thumb_set GetPregnancyStallCapacity__C4Barn, jp_barn_text_start + 0x0E0\n"
-    "    .global HasBushelForStall__C4BarnUi\n"
-    "    .thumb_set HasBushelForStall__C4BarnUi, jp_barn_text_start + 0x0EC\n"
-    "    .global HasBushelForPregnancyStall__C4BarnUi\n"
-    "    .thumb_set HasBushelForPregnancyStall__C4BarnUi, jp_barn_text_start + 0x118\n"
-    "    .global method_0800CF00__C4Barn\n"
-    "    .thumb_set method_0800CF00__C4Barn, jp_barn_text_start + 0x144\n"
-    "    .global method_0800CF08__C4Barn\n"
-    "    .thumb_set method_0800CF08__C4Barn, jp_barn_text_start + 0x14C\n"
-    "    .global GetCow__C4BarnUi\n"
-    "    .thumb_set GetCow__C4BarnUi, jp_barn_text_start + 0x154\n"
-    "    .global GetSheep__C4BarnUi\n"
-    "    .thumb_set GetSheep__C4BarnUi, jp_barn_text_start + 0x17C\n"
-    "    .global GetBarnAnimal__C4BarnUi\n"
-    "    .thumb_set GetBarnAnimal__C4BarnUi, jp_barn_text_start + 0x1A4\n"
-    "    .global GetNextFreeStall__C4BarnUi\n"
-    "    .thumb_set GetNextFreeStall__C4BarnUi, jp_barn_text_start + 0x1CC\n"
-    "    .global CountCows__C4Barn\n"
-    "    .thumb_set CountCows__C4Barn, jp_barn_text_start + 0x208\n"
-    "    .global CountSheeps__C4Barn\n"
-    "    .thumb_set CountSheeps__C4Barn, jp_barn_text_start + 0x238\n"
-    "    .global CountBarnAnimals__C4Barn\n"
-    "    .thumb_set CountBarnAnimals__C4Barn, jp_barn_text_start + 0x268\n"
-    "    .global method_0800D058__C4Barn\n"
-    "    .thumb_set method_0800D058__C4Barn, jp_barn_text_start + 0x29C\n"
     "    .global method_0800D074__C4BarnUi\n"
     "    .thumb_set method_0800D074__C4BarnUi, jp_barn_text_start + 0x2B8\n"
-    "    .global method_0800D0C0__C4BarnUi\n"
-    "    .thumb_set method_0800D0C0__C4BarnUi, jp_barn_text_start + 0x304\n"
     "    .global GetFreePregnancyStall__C4Barn\n"
     "    .thumb_set GetFreePregnancyStall__C4Barn, jp_barn_text_start + 0x314\n"
     "    .global IsReadyToGiveBirth__C4BarnUi\n"
     "    .thumb_set IsReadyToGiveBirth__C4BarnUi, jp_barn_text_start + 0x39C\n"
-    "    .global GetPregnancyStallLinkedStall__C4BarnUi\n"
-    "    .thumb_set GetPregnancyStallLinkedStall__C4BarnUi, jp_barn_text_start + 0x3F8\n"
-    "    .global method_0800D1D8__C4BarnUi\n"
-    "    .thumb_set method_0800D1D8__C4BarnUi, jp_barn_text_start + 0x41C\n"
-    "    .global GetUnkCowAge__C4Barn\n"
-    "    .thumb_set GetUnkCowAge__C4Barn, jp_barn_text_start + 0x440\n"
-    "    .global GetUnkCowName__C4Barn\n"
-    "    .thumb_set GetUnkCowName__C4Barn, jp_barn_text_start + 0x448\n"
-    "    .global GetUnkSheepAge__C4Barn\n"
-    "    .thumb_set GetUnkSheepAge__C4Barn, jp_barn_text_start + 0x44C\n"
-    "    .global GetUnkSheepName__C4Barn\n"
-    "    .thumb_set GetUnkSheepName__C4Barn, jp_barn_text_start + 0x454\n"
-    "    .global Upgrade__4Barn\n"
-    "    .thumb_set Upgrade__4Barn, jp_barn_text_start + 0x458\n"
-    "    .global AddStoredBushels__4BarnUi\n"
-    "    .thumb_set AddStoredBushels__4BarnUi, jp_barn_text_start + 0x480\n"
-    "    .global SubtractStoredBushels__4BarnUi\n"
-    "    .thumb_set SubtractStoredBushels__4BarnUi, jp_barn_text_start + 0x4C4\n"
-    "    .global SetBushelForStall__4BarnUi\n"
-    "    .thumb_set SetBushelForStall__4BarnUi, jp_barn_text_start + 0x500\n"
-    "    .global ClearBushelForStall__4BarnUi\n"
-    "    .thumb_set ClearBushelForStall__4BarnUi, jp_barn_text_start + 0x540\n"
-    "    .global SetBushelForPregnancyStall__4BarnUi\n"
-    "    .thumb_set SetBushelForPregnancyStall__4BarnUi, jp_barn_text_start + 0x578\n"
-    "    .global ClearBushelForPregnancyStall__4BarnUi\n"
-    "    .thumb_set ClearBushelForPregnancyStall__4BarnUi, jp_barn_text_start + 0x5B0\n"
-    "    .global method_0800D3A0__4Barn\n"
-    "    .thumb_set method_0800D3A0__4Barn, jp_barn_text_start + 0x5E4\n"
-    "    .global method_0800D3B8__4Barn\n"
-    "    .thumb_set method_0800D3B8__4Barn, jp_barn_text_start + 0x5FC\n"
-    "    .global GetCow__4BarnUi\n"
-    "    .thumb_set GetCow__4BarnUi, jp_barn_text_start + 0x614\n"
-    "    .global GetSheep__4BarnUi\n"
-    "    .thumb_set GetSheep__4BarnUi, jp_barn_text_start + 0x63C\n"
-    "    .global GetBarnAnimal__4BarnUi\n"
-    "    .thumb_set GetBarnAnimal__4BarnUi, jp_barn_text_start + 0x664\n"
-    "    .global InsertCow__4BarnRC3Cow\n"
-    "    .thumb_set InsertCow__4BarnRC3Cow, jp_barn_text_start + 0x68C\n"
-    "    .global InsertSheep__4BarnRC5Sheep\n"
-    "    .thumb_set InsertSheep__4BarnRC5Sheep, jp_barn_text_start + 0x6C8\n"
-    "    .global Remove__4BarnUi\n"
-    "    .thumb_set Remove__4BarnUi, jp_barn_text_start + 0x704\n"
     "    .global RemoveAndRememberUnk__4BarnUi\n"
     "    .thumb_set RemoveAndRememberUnk__4BarnUi, jp_barn_text_start + 0x718\n"
     "    .global DayUpdate__4Barn\n"
@@ -155,13 +84,6 @@ asm(
 );
 #else
 
-#include "barn.hh"
-
-#include "utility/popcnt.hh"
-
-#include <stdlib.h>
-#include <algorithm>
-
 Barn::Barn()
     : upgrade_level(0),
       stored_bushel_count(0),
@@ -175,6 +97,8 @@ Barn::Barn()
 {
     fill_n_inl(pregnancy_stall_ent_idx, static_cast<int>(MAX_PREGNANCY_STALL_CAPACITY), -1);
 }
+
+#endif // REGION_JP
 
 Vec2 Barn::method_0800CE58()
 {
@@ -316,6 +240,17 @@ int Barn::method_0800D058() const
     return -1;
 }
 
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "jp_barn_text_diff_pre_start:\n"
+    "    .incbin \"baserom_jp.gba\", 0xD054, 0x4C\n"
+    "    .syntax divided\n"
+);
+#else
+
 Vec2 Barn::method_0800D074(u32 ent_idx) const
 {
     u32 capacity = GetCapacity();
@@ -328,10 +263,23 @@ Vec2 Barn::method_0800D074(u32 ent_idx) const
     return Vec2((ent_idx < 8) ? 216 + x_off : 456 + x_off, (ent_idx % 8 < 4) ? 104 : 144);
 }
 
+#endif // REGION_JP
+
 Vec2 Barn::method_0800D0C0(u32 pregnancy_stall_idx) const
 {
     return Vec2(0x20, 0x70 + 96 * pregnancy_stall_idx);
 }
+
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "jp_barn_text_diff_mid_start:\n"
+    "    .incbin \"baserom_jp.gba\", 0xD0B0, 0xE4\n"
+    "    .syntax divided\n"
+);
+#else
 
 int Barn::GetFreePregnancyStall() const
 {
@@ -390,6 +338,8 @@ bool Barn::IsReadyToGiveBirth(u32 pregnancy_stall_idx) const
 
     return false;
 }
+
+#endif // REGION_JP
 
 int Barn::GetPregnancyStallLinkedStall(u32 pregnancy_stall_idx) const
 {
@@ -543,6 +493,17 @@ void Barn::Remove(u32 ent_idx)
 {
     ent[ent_idx].Remove();
 }
+
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "jp_barn_text_tail_start:\n"
+    "    .incbin \"baserom_jp.gba\", 0xD4B4, 0x658\n"
+    "    .syntax divided\n"
+);
+#else
 
 void Barn::RemoveAndRememberUnk(u32 ent_idx)
 {
