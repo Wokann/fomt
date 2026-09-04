@@ -13,14 +13,7 @@ Build and test it with a host C++ compiler:
 
     make -C tools/textproc test
 
-Import the reviewed Mary-compatible map once with the companion PowerShell
-script.  The copy is checksum-verified and becomes a normal project asset;
-the ROM build never needs the sibling Mary checkout afterward.
-
-    pwsh -NoProfile -File tools/textproc/scripts/import_mary_charmap.ps1 \
-      -MaryCharmap <path-to-reviewed-charmap>
-
-Validate an imported map before generating any game asset:
+Validate the versioned project map before generating any game asset:
 
     tools/textproc/build/fomt-text validate charmap.txt
 
