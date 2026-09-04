@@ -171,6 +171,7 @@ SECTIONS
         . = ALIGN(4); data/text/new_game_identity.o(.rodata.new_game_identity_labels);
         . = ALIGN(4); asm/data/data_080E8610.o(.rodata.new_game_identity_labels_trailer);
         data/text/new_game_name_entry.o(.rodata.new_game_name_entry_characters);
+        data/text/new_game_name_entry_ui.o(.rodata.new_game_name_entry_ui);
         asm/data/data_080E8610.o(.rodata.new_game_name_entry_trailer);
         src/shipping_bin.o(.rodata);
         src/record_player.o(.rodata);

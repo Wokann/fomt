@@ -4405,7 +4405,7 @@ func_08005A58: @ 0x08005A58
     ldr r3, .L08005B30 @ =0x0000461C
     adds r2, r5, r3
     adds r1, r2, #0
-    ldr r0, .L08005B34 @ =gUnk_080E8BE4
+    ldr r0, .L08005B34 @ =gText_NewGameNameEntry_Placeholder
     ldm r0!, {r3, r4, r6}
     stm r1!, {r3, r4, r6}
     ldrb r0, [r0]
@@ -4444,7 +4444,7 @@ func_08005A58: @ 0x08005A58
 .L08005B28: .4byte 0x000045F8
 .L08005B2C: .4byte 0x000045FC
 .L08005B30: .4byte 0x0000461C
-.L08005B34: .4byte gUnk_080E8BE4
+.L08005B34: .4byte gText_NewGameNameEntry_Placeholder
 
     thumb_func_start func_08005B38
 func_08005B38: @ 0x08005B38
@@ -4837,7 +4837,7 @@ func_08005CDC: @ 0x08005CDC
     adds r1, r7, #0
     movs r2, #0
     bl func_0804E7A0
-    ldr r1, .L08005F18 @ =gUnk_080E8BF4
+    ldr r1, .L08005F18 @ =gText_NewGameNameEntry_NameLabel
     add r0, sp, #0x24
     strh r4, [r0]
     mov r2, sb
@@ -4898,7 +4898,7 @@ func_08005CDC: @ 0x08005CDC
 .L08005F0C: .4byte 0x0600C082
 .L08005F10: .4byte 0x0600C042
 .L08005F14: .4byte 0x06FFC000
-.L08005F18: .4byte gUnk_080E8BF4
+.L08005F18: .4byte gText_NewGameNameEntry_NameLabel
 .L08005F1C:
     str r1, [sp, #0x4c]
     movs r0, #1
@@ -5927,16 +5927,16 @@ func_080064E8: @ 0x080064E8
     beq .L08006714
     b .L0800672A
 .L080066E8:
-    ldr r1, .L080066F4 @ =gUnk_080E8BFC
+    ldr r1, .L080066F4 @ =gText_NewGameNameEntry_EndLatin
     add r0, sp, #0x28
     strh r4, [r0]
     strh r5, [r0, #2]
     ldr r0, [sp, #0x28]
     b .L08006702
     .align 2, 0
-.L080066F4: .4byte gUnk_080E8BFC
+.L080066F4: .4byte gText_NewGameNameEntry_EndLatin
 .L080066F8:
-    ldr r1, .L08006710 @ =gUnk_080E8C14
+    ldr r1, .L08006710 @ =gText_NewGameNameEntry_EndFullWidth
     add r0, sp, #0x2c
     strh r4, [r0]
     strh r5, [r0, #2]
@@ -5949,9 +5949,9 @@ func_080064E8: @ 0x080064E8
     bl func_0804E8F0
     b .L0800672A
     .align 2, 0
-.L08006710: .4byte gUnk_080E8C14
+.L08006710: .4byte gText_NewGameNameEntry_EndFullWidth
 .L08006714:
-    ldr r1, .L08006770 @ =gUnk_080E8C14
+    ldr r1, .L08006770 @ =gText_NewGameNameEntry_EndFullWidth
     add r0, sp, #0x30
     strh r4, [r0]
     strh r2, [r0, #2]
@@ -5996,7 +5996,7 @@ func_080064E8: @ 0x080064E8
     str r0, [r5, #4]
     b .L0800683A
     .align 2, 0
-.L08006770: .4byte gUnk_080E8C14
+.L08006770: .4byte gText_NewGameNameEntry_EndFullWidth
 .L08006774:
     str r1, [sp, #0x54]
     movs r0, #1
@@ -7102,9 +7102,9 @@ func_08006ED8: @ 0x08006ED8
     ldr r2, .L08007024 @ =0x000045F8
     adds r0, r7, r2
     ldr r0, [r0]
-    ldr r1, .L08007028 @ =gUnk_080E8C2C
-    ldr r2, .L0800702C @ =gUnk_080E8C44
-    ldr r3, .L08007030 @ =gUnk_080E8C48
+    ldr r1, .L08007028 @ =gText_NewGameNameEntry_Confirm
+    ldr r2, .L0800702C @ =gText_NewGameNameEntry_Yes
+    ldr r3, .L08007030 @ =gText_NewGameNameEntry_No
     movs r4, #0
     str r4, [sp]
     str r4, [sp, #4]
@@ -7114,9 +7114,9 @@ func_08006ED8: @ 0x08006ED8
     .align 2, 0
 .L08007020: .4byte 0x0000463C
 .L08007024: .4byte 0x000045F8
-.L08007028: .4byte gUnk_080E8C2C
-.L0800702C: .4byte gUnk_080E8C44
-.L08007030: .4byte gUnk_080E8C48
+.L08007028: .4byte gText_NewGameNameEntry_Confirm
+.L0800702C: .4byte gText_NewGameNameEntry_Yes
+.L08007030: .4byte gText_NewGameNameEntry_No
 .L08007034:
     ldr r1, .L0800704C @ =0x000045F8
     adds r0, r7, r1
