@@ -1,0 +1,17 @@
+#ifndef NEW_GAME_NAME_ENTRY_TEXT_HH
+#define NEW_GAME_NAME_ENTRY_TEXT_HH
+
+#include "prelude.h"
+
+enum
+{
+    NEW_GAME_NAME_ENTRY_PAGE_COUNT = 3,
+    NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE = 6,
+    NEW_GAME_NAME_ENTRY_ROW_COUNT = NEW_GAME_NAME_ENTRY_PAGE_COUNT * NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE,
+    NEW_GAME_NAME_ENTRY_ROW_WIDTH = 31,
+};
+
+// Each row is a fixed-width, single-terminated ROM string.
+extern char const gNewGameNameEntryCharacterRows[NEW_GAME_NAME_ENTRY_ROW_COUNT][NEW_GAME_NAME_ENTRY_ROW_WIDTH];
+
+#endif // NEW_GAME_NAME_ENTRY_TEXT_HH
