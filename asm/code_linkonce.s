@@ -10073,10 +10073,10 @@ sub_080D8178: @ 0x080D8178
 	ldr r0, [r6]
 	bl func_08050D68
 	ldr r0, [r6]
-	ldr r1, .L080D8D8C @ =gUnk_080F05B8
-	ldr r2, .L080D8D90 @ =gUnk_080F05C0
-	ldr r3, .L080D8D94 @ =gUnk_080F05C8
-	ldr r5, .L080D8D98 @ =gUnk_080F05D4
+	ldr r1, .L080D8D8C @ =gText_HelpMenu_Crops
+	ldr r2, .L080D8D90 @ =gText_HelpMenu_Animals
+	ldr r3, .L080D8D94 @ =gText_HelpMenu_UsefulTips
+	ldr r5, .L080D8D98 @ =gText_HelpMenu_Exit
 	movs r4, #0
 	str r5, [sp]
 	str r4, [sp, #4]
@@ -10096,10 +10096,10 @@ sub_080D8178: @ 0x080D8178
 	b .L080D8FE8
 	.align 2, 0
 .L080D8D88: .4byte 0x0000043C
-.L080D8D8C: .4byte gUnk_080F05B8
-.L080D8D90: .4byte gUnk_080F05C0
-.L080D8D94: .4byte gUnk_080F05C8
-.L080D8D98: .4byte gUnk_080F05D4
+.L080D8D8C: .4byte gText_HelpMenu_Crops
+.L080D8D90: .4byte gText_HelpMenu_Animals
+.L080D8D94: .4byte gText_HelpMenu_UsefulTips
+.L080D8D98: .4byte gText_HelpMenu_Exit
 .L080D8D9C: .4byte 0x0000055C
 .L080D8DA0: .4byte 0x00000889
 .L080D8DA4:
@@ -11470,10 +11470,10 @@ sub_080D8178: @ 0x080D8178
 	bl .L080DAAE6
 .L080D9986:
 	ldr r0, [r4]
-	ldr r1, .L080D99A4 @ =gUnk_080F05B8
-	ldr r2, .L080D99A8 @ =gUnk_080F05C0
-	ldr r3, .L080D99AC @ =gUnk_080F05C8
-	ldr r5, .L080D99B0 @ =gUnk_080F05D4
+	ldr r1, .L080D99A4 @ =gText_HelpMenu_Crops
+	ldr r2, .L080D99A8 @ =gText_HelpMenu_Animals
+	ldr r3, .L080D99AC @ =gText_HelpMenu_UsefulTips
+	ldr r5, .L080D99B0 @ =gText_HelpMenu_Exit
 	movs r4, #0
 	str r5, [sp]
 	str r4, [sp, #4]
@@ -11483,10 +11483,10 @@ sub_080D8178: @ 0x080D8178
 	movs r0, #6
 	bl .L080DAABA
 	.align 2, 0
-.L080D99A4: .4byte gUnk_080F05B8
-.L080D99A8: .4byte gUnk_080F05C0
-.L080D99AC: .4byte gUnk_080F05C8
-.L080D99B0: .4byte gUnk_080F05D4
+.L080D99A4: .4byte gText_HelpMenu_Crops
+.L080D99A8: .4byte gText_HelpMenu_Animals
+.L080D99AC: .4byte gText_HelpMenu_UsefulTips
+.L080D99B0: .4byte gText_HelpMenu_Exit
 .L080D99B4:
 	ldr r2, .L080D99FC @ =0x0000055C
 	add r2, sp

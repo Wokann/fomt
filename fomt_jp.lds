@@ -266,6 +266,10 @@ SECTIONS
         data/text/calendar.o(.rodata.calendar.weekday);
         . = 0xEFD78; /* JP data after the calendar text arrays. */
         asm/data/data_080F0348.o(.rodata.calendar_trailer);
+        FILL(0x00);
+        data/text/help_menu.o(.rodata.help_menu);
+        . = 0xEFE2B; /* JP data after the four help-menu labels. */
+        asm/data/data_080F0348.o(.rodata.help_menu_trailer);
         FILL(0xFF);
         . = 0xF12DC; /* JP schedule table block. */
         src/data_schedules.o(.rodata);

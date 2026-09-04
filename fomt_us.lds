@@ -182,6 +182,9 @@ SECTIONS
         data/text/calendar.o(.rodata.calendar.none);
         data/text/calendar.o(.rodata.calendar.weekday);
         . = ALIGN(4); asm/data/data_080F0348.o(.rodata.calendar_trailer);
+        FILL(0x00);
+        data/text/help_menu.o(.rodata.help_menu);
+        asm/data/data_080F0348.o(.rodata.help_menu_trailer);
         FILL(0xFF);
         . = ALIGN(4); src/data_schedules.o(.rodata);
         . = ALIGN(4); asm/data/data_080F1A80.o(.rodata);
