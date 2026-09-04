@@ -25674,7 +25674,7 @@ func_080E0A94: @ 0x080E0A94
 	movs r0, #0x34
 	bl __builtin_new
 	adds r4, r0, #0
-	ldr r1, .L080E0C34 @ =gUnk_080F19CC
+	ldr r1, .L080E0C34 @ =gMenuEntryIds
 	mov r2, r8
 	lsls r0, r2, #2
 	adds r0, r0, r1
@@ -25740,7 +25740,7 @@ func_080E0A94: @ 0x080E0A94
 	.align 2, 0
 .L080E0C2C: .4byte gUnk_0871E7A8
 .L080E0C30: .4byte vtable_unk_080E77D0
-.L080E0C34: .4byte gUnk_080F19CC
+.L080E0C34: .4byte gMenuEntryIds
 
 	thumb_func_start func_080E0C38
 func_080E0C38: @ 0x080E0C38

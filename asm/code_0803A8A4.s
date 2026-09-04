@@ -3090,7 +3090,7 @@ func_0803C028: @ 0x0803C028
 	movs r1, #0xcb
 	bl func_08008B6C
 .L0803C0B2:
-	ldr r0, .L0803C0C4 @ =gUnk_080F1A34
+	ldr r0, .L0803C0C4 @ =gMenuEntryLabels
 	ldrb r1, [r7, #0xc]
 	lsls r1, r1, #2
 	adds r1, r1, r0
@@ -3100,7 +3100,7 @@ func_0803C028: @ 0x0803C028
 	strb r0, [r7, #0xe]
 	b .L0803C0DC
 	.align 2, 0
-.L0803C0C4: .4byte gUnk_080F1A34
+.L0803C0C4: .4byte gMenuEntryLabels
 .L0803C0C8:
 	movs r0, #1
 	ands r3, r0
@@ -3153,7 +3153,7 @@ func_0803C028: @ 0x0803C028
 	ldr r2, [r0, #0x10]
 	adds r0, r3, #0
 	bl _call_via_r2
-	ldr r1, .L0803C4D4 @ =gUnk_080F1A34
+	ldr r1, .L0803C4D4 @ =gMenuEntryLabels
 	ldrb r0, [r7, #0xc]
 	lsls r0, r0, #2
 	adds r0, r0, r1
@@ -3615,7 +3615,7 @@ func_0803C028: @ 0x0803C028
 	b .L0803C4F8
 	.align 2, 0
 .L0803C4D0: .4byte 0x05000200
-.L0803C4D4: .4byte gUnk_080F1A34
+.L0803C4D4: .4byte gMenuEntryLabels
 .L0803C4D8: .4byte 0x06010000
 .L0803C4DC: .4byte 0x000001FF
 .L0803C4E0: .4byte 0xFE00FFFF

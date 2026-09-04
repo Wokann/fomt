@@ -13,7 +13,10 @@
     .incbin "baserom_jp.gba", 0xEFE2B, (0xEFEA4 - 0xEFE2B)
 
     .section .rodata.animal_memorial_trailer
-    .incbin "baserom_jp.gba", 0xEFF28, (0xF12DC - 0xEFF28)
+    .incbin "baserom_jp.gba", 0xEFF28, (0xF1228 - 0xEFF28)
+
+    .section .rodata.menu_data_trailer
+    .incbin "baserom_jp.gba", 0xF12AC, (0xF12DC - 0xF12AC)
     .else
     .section .rodata
 
@@ -280,15 +283,10 @@ gUnk_080F19A0:
 gUnk_080F19AE:
 	.incbin "baserom_us.gba", 0xF19AE, 0x1E
 
-	.global gUnk_080F19CC
-gUnk_080F19CC:
-	.incbin "baserom_us.gba", 0xF19CC, 0x68
-
-	.global gUnk_080F1A34
-gUnk_080F1A34:
-	.incbin "baserom_us.gba", 0xF1A34, 0x32
+	.section .rodata.menu_data_trailer
+	.incbin "baserom_us.gba", 0xF1A50, (0xF1A66 - 0xF1A50)
 
 	.global gUnk_080F1A66
 gUnk_080F1A66:
-	.incbin "baserom_us.gba", 0xF1A66, 0x1A
+	.incbin "baserom_us.gba", 0xF1A66, (0xF1A80 - 0xF1A66)
     .endif
