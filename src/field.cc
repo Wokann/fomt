@@ -623,16 +623,6 @@ asm(
     "method_0800AB08__9FieldPlot6Season:\n"
     "    .incbin \"baserom_jp.gba\", 0xAB04, 0x3FC\n"
     "\n"
-    "    .global method_0800AF20__C9FieldPlot\n"
-    "    .thumb_func\n"
-    "method_0800AF20__C9FieldPlot:\n"
-    "    .incbin \"baserom_jp.gba\", 0xAF00, 0x3C\n"
-    "\n"
-    "    .global method_0800AF5C__C9FieldPlotPC9FieldPlotT1\n"
-    "    .thumb_func\n"
-    "method_0800AF5C__C9FieldPlotPC9FieldPlotT1:\n"
-    "    .incbin \"baserom_jp.gba\", 0xAF3C, 0x180\n"
-    "\n"
     "    .syntax divided\n"
 );
 #else
@@ -1118,6 +1108,8 @@ void FieldPlot::method_0800AB08(Season season)
     }
 }
 
+#endif // REGION_JP
+
 void const * FieldPlot::method_0800AF20() const
 {
     switch (GetUnk0_2())
@@ -1138,6 +1130,16 @@ void const * FieldPlot::method_0800AF20() const
             return nullptr;
     }
 }
+
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "    .incbin \"baserom_jp.gba\", 0xAF3A, 0x2\n"
+    "    .syntax divided\n"
+);
+#endif // REGION_JP
 
 Unk_Something const * FieldPlot::method_0800AF5C(FieldPlot const * arg_1, FieldPlot const * arg_2) const
 {
@@ -1226,5 +1228,3 @@ Unk_Something const * FieldPlot::method_0800AF5C(FieldPlot const * arg_1, FieldP
 
     return ip + r4;
 }
-
-#endif // REGION_JP
