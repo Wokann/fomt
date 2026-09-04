@@ -26,7 +26,7 @@ Barn::Barn()
  * only genuinely version-specific definitions inside it.
  */
 asm(
-    "    @ JP-only Barn entry points and generated assignment operators.\n"
+    "    @ JP-only Barn entry points.\n"
     "    .section .text\n"
     "    .syntax unified\n"
     "    .thumb\n"
@@ -34,18 +34,6 @@ asm(
     "\n"
     "    .global AttemptBirth__4BarnUi\n"
     "    .thumb_set AttemptBirth__4BarnUi, jp_barn_text_start + 0xAEC\n"
-    "    .section .gnu.linkonce.t.__as__5SheepRC5Sheep, \"ax\", %progbits\n"
-    "    .global __as__5SheepRC5Sheep\n"
-    "    .thumb_func\n"
-    "__as__5SheepRC5Sheep:\n"
-    "    .incbin \"baserom_jp.gba\", 0xD7308, 0x74\n"
-    "\n"
-    "    .section .gnu.linkonce.t.__as__3CowRC3Cow, \"ax\", %progbits\n"
-    "    .global __as__3CowRC3Cow\n"
-    "    .thumb_func\n"
-    "__as__3CowRC3Cow:\n"
-    "    .incbin \"baserom_jp.gba\", 0xD737C, 0x7C\n"
-    "\n"
     "    .section .text\n"
     "    @ Keep later shared C++ emission in agbcp's default syntax mode.\n"
     "    .syntax divided\n"
@@ -661,23 +649,6 @@ Sheep * Barn::Ent::AsSheep()
     return (occupied && kind == KIND_SHEEP) ? reinterpret_cast<Sheep *>(&placeholder) : nullptr;
 }
 
-#if defined(REGION_JP)
-asm(
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "    .global InsertCow__Q24Barn3EntRC3Cow\n"
-    "    .thumb_func\n"
-    "InsertCow__Q24Barn3EntRC3Cow:\n"
-    "    .incbin \"baserom_jp.gba\", 0xDA94, 0x30\n"
-    "    .global InsertSheep__Q24Barn3EntRC5Sheep\n"
-    "    .thumb_func\n"
-    "InsertSheep__Q24Barn3EntRC5Sheep:\n"
-    "    .incbin \"baserom_jp.gba\", 0xDAC4, 0x30\n"
-    "    .syntax divided\n"
-);
-#else
-
 bool Barn::Ent::InsertCow(Cow const & to_copy)
 {
     if (!occupied)
@@ -713,8 +684,6 @@ bool Barn::Ent::InsertSheep(Sheep const & to_copy)
 
     return false;
 }
-
-#endif // REGION_JP
 
 void Barn::Ent::Remove()
 {
