@@ -433,55 +433,9 @@ asm(
     "    .syntax unified\n"
     "    .thumb\n"
     "    .incbin \"baserom_jp.gba\", 0xDF2E, 0x2\n"
-    "\n"
-    "    jp_item_func __7ArticleUi, 0xDF30, 0xDF34\n"
-    "    jp_item_func GetId__C7Article, 0xDF34, 0xDF38\n"
-    "    jp_item_func GetName__C7Article, 0xDF38, 0xDF64\n"
-    "    jp_item_func GetIconId__C7Article, 0xDF64, 0xDF90\n"
-    "    jp_item_func CanBeDiscarded__C7Article, 0xDF90, 0xDFB4\n"
-    "    jp_item_func GetDesc__C7Article, 0xDFB4, 0xDFF0\n"
-    "    jp_item_func __12ArticleStack, 0xDFF0, 0xE008\n"
-    "    jp_item_func __12ArticleStackG7ArticleUi, 0xE008, 0xE038\n"
-    "    jp_item_func GetArticle__C12ArticleStack, 0xE038, 0xE05C\n"
-    "    jp_item_func IsEmpty__C12ArticleStack, 0xE05C, 0xE070\n"
-    "    jp_item_func GetAmount__C12ArticleStack, 0xE070, 0xE084\n"
-    "    jp_item_func AddAmount__12ArticleStackUi, 0xE084, 0xE0B4\n"
-    "    jp_item_func SubtractAmount__12ArticleStackUi, 0xE0B4, 0xE0D0\n"
-    "    jp_item_func __7Product, 0xE0D0, 0xE0D8\n"
-    "    jp_item_func __7ProductUi, 0xE0D8, 0xE0DC\n"
-    "    jp_item_func __7ProductG4Food, 0xE0DC, 0xE128\n"
-    "    jp_item_func __7ProductG7Article, 0xE128, 0xE174\n"
-    "    jp_item_func GetId__C7Product, 0xE174, 0xE178\n"
-    "    jp_item_func GetPrice__C7Product, 0xE178, 0xE1A0\n"
-    "    jp_item_func GetName__C7Product, 0xE1A0, 0xE1F4\n"
-    "    jp_item_func GetIconId__C7Product, 0xE1F4, 0xE248\n"
-    "    jp_item_func AsTool__C11ItemVariant, 0xE248, 0xE270\n"
-    "    jp_item_func AsFood__C11ItemVariant, 0xE270, 0xE298\n"
-    "    jp_item_func AsArticle__C11ItemVariant, 0xE298, 0xE2C4\n"
-    "\n"
-    "    .section .rodata\n"
-    "jp_item_data_start:\n"
-    "    .incbin \"baserom_jp.gba\", 0xE8AB4, (0xE9EEC - 0xE8AB4)\n"
-    "\n"
-    "    .global gToolInfo\n"
-    "gToolInfo:\n"
-    "    .incbin \"baserom_jp.gba\", 0xE9EEC, (0xED3D8 - 0xE9EEC)\n"
-    "\n"
-    "    .global gFoodInfo\n"
-    "gFoodInfo:\n"
-    "    .incbin \"baserom_jp.gba\", 0xED3D8, (0xEF738 - 0xED3D8)\n"
-    "\n"
-    "    .global gArticleInfo\n"
-    "gArticleInfo:\n"
-    "    .incbin \"baserom_jp.gba\", 0xEF738, (0xEFBAC - 0xEF738)\n"
-    "\n"
-    "    .global gProductInfo\n"
-    "gProductInfo:\n"
-    "    .incbin \"baserom_jp.gba\", 0xEFBAC, (0xEFD48 - 0xEFBAC)\n"
-    "\n"
     "    .syntax divided\n"
 );
-#else
+#endif // REGION_JP
 
 Article::Article(u32 a_id)
 {
@@ -492,6 +446,17 @@ int Article::GetId() const
 {
     return id;
 }
+
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "    jp_item_func GetName__C7Article, 0xDF38, 0xDF64\n"
+    "    jp_item_func GetIconId__C7Article, 0xDF64, 0xDF90\n"
+    "    .syntax divided\n"
+);
+#else
 
 char const * Article::GetName() const
 {
@@ -508,6 +473,8 @@ u16 Article::GetIconId() const
 
     return 457; // Turnip
 }
+
+#endif // REGION_JP
 
 bool Article::CanBeDiscarded() const
 {
@@ -529,6 +496,16 @@ bool Article::CanBeDiscarded() const
     }
 }
 
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "    jp_item_func GetDesc__C7Article, 0xDFB4, 0xDFF0\n"
+    "    .syntax divided\n"
+);
+#else
+
 static inline char const * GetArticleDescById(u32 id)
 {
     if (gArticleInfo[id].desc != nullptr)
@@ -545,6 +522,8 @@ char const * Article::GetDesc() const
     return "No Explanation";
 }
 
+#endif // REGION_JP
+
 ArticleStack::ArticleStack()
     : Article(ARTICLE_NONE)
 {
@@ -557,7 +536,7 @@ ArticleStack::ArticleStack(Article article, u32 a_amount)
     if (a_amount != 0)
     {
         // ugh
-        amount = *(u8 *)&std::min<u32>(MAX_AMOUNT, a_amount);
+        amount = *(u8 *)&FomtMin<u32>(MAX_AMOUNT, a_amount);
     }
     else
     {
@@ -590,7 +569,7 @@ void ArticleStack::AddAmount(u32 a_amount)
 {
     if (amount != 0)
     {
-        amount = std::min<u32>(MAX_AMOUNT, amount + a_amount);
+        amount = FomtMin<u32>(MAX_AMOUNT, amount + a_amount);
     }
 }
 
@@ -614,6 +593,17 @@ Product::Product(u32 a_id)
 {
     id = a_id;
 }
+
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "    jp_item_func __7ProductG4Food, 0xE0DC, 0xE128\n"
+    "    jp_item_func __7ProductG7Article, 0xE128, 0xE174\n"
+    "    .syntax divided\n"
+);
+#else
 
 Product::Product(Food food)
 {
@@ -651,10 +641,24 @@ Product::Product(Article article)
     }
 }
 
+#endif // REGION_JP
+
 int Product::GetId() const
 {
     return id;
 }
+
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "    jp_item_func GetPrice__C7Product, 0xE178, 0xE1A0\n"
+    "    jp_item_func GetName__C7Product, 0xE1A0, 0xE1F4\n"
+    "    jp_item_func GetIconId__C7Product, 0xE1F4, 0xE248\n"
+    "    .syntax divided\n"
+);
+#else
 
 u32 Product::GetPrice() const
 {
@@ -702,6 +706,8 @@ u16 Product::GetIconId() const
     return 0;
 }
 
+#endif // REGION_JP
+
 Tool ItemVariant::AsTool() const
 {
     return (kind == KIND_TOOL) ? Tool(id) : Tool(TOOL_NONE);
@@ -716,6 +722,32 @@ Article ItemVariant::AsArticle() const
 {
     return (kind == KIND_ARTICLE) ? Article(id) : Article(ARTICLE_NONE);
 }
+
+#if defined(REGION_JP)
+asm(
+    "    .section .rodata\n"
+    "jp_item_data_start:\n"
+    "    .incbin \"baserom_jp.gba\", 0xE8AB4, (0xE9EEC - 0xE8AB4)\n"
+    "\n"
+    "    .global gToolInfo\n"
+    "gToolInfo:\n"
+    "    .incbin \"baserom_jp.gba\", 0xE9EEC, (0xED3D8 - 0xE9EEC)\n"
+    "\n"
+    "    .global gFoodInfo\n"
+    "gFoodInfo:\n"
+    "    .incbin \"baserom_jp.gba\", 0xED3D8, (0xEF738 - 0xED3D8)\n"
+    "\n"
+    "    .global gArticleInfo\n"
+    "gArticleInfo:\n"
+    "    .incbin \"baserom_jp.gba\", 0xEF738, (0xEFBAC - 0xEF738)\n"
+    "\n"
+    "    .global gProductInfo\n"
+    "gProductInfo:\n"
+    "    .incbin \"baserom_jp.gba\", 0xEFBAC, (0xEFD48 - 0xEFBAC)\n"
+    "\n"
+    "    .syntax divided\n"
+);
+#else
 
 // Item Info tables
 
