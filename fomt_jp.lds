@@ -256,6 +256,8 @@ SECTIONS
         data/text/new_game_name_entry_ui.o(.rodata.new_game_name_entry_ui);
         . = 0xE80EC; /* JP data after the regional name-entry UI fields. */
         asm/data/data_080E8610.o(.rodata.new_game_name_entry_trailer);
+        asm/data/data_080E8610.o(.rodata.field_plot_prefix);
+        src/field_data.o(.rodata.field_plot_definitions);
         . = 0xE8A6C; /* JP ROM 0x080E8A6C, independently matched */
         src/shipping_bin.o(.rodata);
         src/record_player.o(.rodata);
