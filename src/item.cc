@@ -1,3 +1,10 @@
+#include "item.hh"
+
+static inline bool IsValidFoodId(u8 id)
+{
+    return id < NUM_FOODS;
+}
+
 #if defined(REGION_JP)
 /*
  * Byte-exact JP assembly stays in this module.  As matching functions are
@@ -44,65 +51,10 @@ asm(
     "    jp_item_func GetFatigueBonus__C4Food, 0xDD6C, 0xDD8C\n"
     "    jp_item_func IsDrink__C4Food, 0xDD8C, 0xDDB4\n"
     "    jp_item_func GetDesc__C4Food, 0xDDB4, 0xDDEC\n"
-    "    jp_item_func AddBonuses__4FoodScSc, 0xDDEC, 0xDE48\n"
-    "    jp_item_func __9FoodStack, 0xDE48, 0xDE60\n"
-    "    jp_item_func __9FoodStackG4FoodUi, 0xDE60, 0xDE98\n"
-    "    jp_item_func GetFood__C9FoodStack, 0xDE98, 0xDEBC\n"
-    "    jp_item_func IsEmpty__C9FoodStack, 0xDEBC, 0xDED0\n"
-    "    jp_item_func GetAmount__C9FoodStack, 0xDED0, 0xDEE4\n"
-    "    jp_item_func AddAmount__9FoodStackUi, 0xDEE4, 0xDF14\n"
-    "    jp_item_func SubtractAmount__9FoodStackUi, 0xDF14, 0xDF30\n"
-    "    jp_item_func __7ArticleUi, 0xDF30, 0xDF34\n"
-    "    jp_item_func GetId__C7Article, 0xDF34, 0xDF38\n"
-    "    jp_item_func GetName__C7Article, 0xDF38, 0xDF64\n"
-    "    jp_item_func GetIconId__C7Article, 0xDF64, 0xDF90\n"
-    "    jp_item_func CanBeDiscarded__C7Article, 0xDF90, 0xDFB4\n"
-    "    jp_item_func GetDesc__C7Article, 0xDFB4, 0xDFF0\n"
-    "    jp_item_func __12ArticleStack, 0xDFF0, 0xE008\n"
-    "    jp_item_func __12ArticleStackG7ArticleUi, 0xE008, 0xE038\n"
-    "    jp_item_func GetArticle__C12ArticleStack, 0xE038, 0xE05C\n"
-    "    jp_item_func IsEmpty__C12ArticleStack, 0xE05C, 0xE070\n"
-    "    jp_item_func GetAmount__C12ArticleStack, 0xE070, 0xE084\n"
-    "    jp_item_func AddAmount__12ArticleStackUi, 0xE084, 0xE0B4\n"
-    "    jp_item_func SubtractAmount__12ArticleStackUi, 0xE0B4, 0xE0D0\n"
-    "    jp_item_func __7Product, 0xE0D0, 0xE0D8\n"
-    "    jp_item_func __7ProductUi, 0xE0D8, 0xE0DC\n"
-    "    jp_item_func __7ProductG4Food, 0xE0DC, 0xE128\n"
-    "    jp_item_func __7ProductG7Article, 0xE128, 0xE174\n"
-    "    jp_item_func GetId__C7Product, 0xE174, 0xE178\n"
-    "    jp_item_func GetPrice__C7Product, 0xE178, 0xE1A0\n"
-    "    jp_item_func GetName__C7Product, 0xE1A0, 0xE1F4\n"
-    "    jp_item_func GetIconId__C7Product, 0xE1F4, 0xE248\n"
-    "    jp_item_func AsTool__C11ItemVariant, 0xE248, 0xE270\n"
-    "    jp_item_func AsFood__C11ItemVariant, 0xE270, 0xE298\n"
-    "    jp_item_func AsArticle__C11ItemVariant, 0xE298, 0xE2C4\n"
-    "\n"
-    "    .section .rodata\n"
-    "jp_item_data_start:\n"
-    "    .incbin \"baserom_jp.gba\", 0xE8AB4, (0xE9EEC - 0xE8AB4)\n"
-    "\n"
-    "    .global gToolInfo\n"
-    "gToolInfo:\n"
-    "    .incbin \"baserom_jp.gba\", 0xE9EEC, (0xED3D8 - 0xE9EEC)\n"
-    "\n"
-    "    .global gFoodInfo\n"
-    "gFoodInfo:\n"
-    "    .incbin \"baserom_jp.gba\", 0xED3D8, (0xEF738 - 0xED3D8)\n"
-    "\n"
-    "    .global gArticleInfo\n"
-    "gArticleInfo:\n"
-    "    .incbin \"baserom_jp.gba\", 0xEF738, (0xEFBAC - 0xEF738)\n"
-    "\n"
-    "    .global gProductInfo\n"
-    "gProductInfo:\n"
-    "    .incbin \"baserom_jp.gba\", 0xEFBAC, (0xEFD48 - 0xEFBAC)\n"
-    "\n"
     "    @ Keep later shared C++ emission in agbcp's default syntax mode.\n"
     "    .syntax divided\n"
 );
 #else
-
-#include "item.hh"
 
 #include <algorithm>
 
@@ -151,11 +103,6 @@ extern ProductInfo const gProductInfo[];
 static inline bool IsValidToolId(u8 id)
 {
     return id < NUM_TOOLS;
-}
-
-static inline bool IsValidFoodId(u8 id)
-{
-    return id < NUM_FOODS;
 }
 
 static inline bool IsValidArticleId(u8 id)
@@ -356,6 +303,8 @@ char const * Food::GetDesc() const
     return "No Explanation";
 }
 
+#endif // REGION_JP
+
 void Food::AddBonuses(i8 stamina_amount, i8 fatigue_amount)
 {
     int total;
@@ -388,6 +337,20 @@ FoodStack::FoodStack()
     amount = 0;
 }
 
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "    .incbin \"baserom_jp.gba\", 0xDE5E, 0x2\n"
+    "\n"
+    "    jp_item_func __9FoodStackG4FoodUi, 0xDE60, 0xDE98\n"
+    "    jp_item_func GetFood__C9FoodStack, 0xDE98, 0xDEBC\n"
+    "\n"
+    "    .syntax divided\n"
+);
+#else
+
 FoodStack::FoodStack(Food food, u32 a_amount)
     : Food(food)
 {
@@ -410,6 +373,8 @@ Food FoodStack::GetFood() const
     return Food(FOOD_NONE);
 }
 
+#endif // REGION_JP
+
 bool FoodStack::IsEmpty() const
 {
     return amount == 0;
@@ -423,6 +388,18 @@ u32 FoodStack::GetAmount() const
     return 0;
 }
 
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "\n"
+    "    jp_item_func AddAmount__9FoodStackUi, 0xDEE4, 0xDF14\n"
+    "\n"
+    "    .syntax divided\n"
+);
+#else
+
 void FoodStack::AddAmount(u32 a_amount)
 {
     if (amount != 0)
@@ -430,6 +407,8 @@ void FoodStack::AddAmount(u32 a_amount)
         amount = std::min<u32>(MAX_AMOUNT, amount + a_amount);
     }
 }
+
+#endif // REGION_JP
 
 void FoodStack::SubtractAmount(u32 a_amount)
 {
@@ -441,6 +420,62 @@ void FoodStack::SubtractAmount(u32 a_amount)
             amount -= a_amount;
     }
 }
+
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "    .incbin \"baserom_jp.gba\", 0xDF2E, 0x2\n"
+    "\n"
+    "    jp_item_func __7ArticleUi, 0xDF30, 0xDF34\n"
+    "    jp_item_func GetId__C7Article, 0xDF34, 0xDF38\n"
+    "    jp_item_func GetName__C7Article, 0xDF38, 0xDF64\n"
+    "    jp_item_func GetIconId__C7Article, 0xDF64, 0xDF90\n"
+    "    jp_item_func CanBeDiscarded__C7Article, 0xDF90, 0xDFB4\n"
+    "    jp_item_func GetDesc__C7Article, 0xDFB4, 0xDFF0\n"
+    "    jp_item_func __12ArticleStack, 0xDFF0, 0xE008\n"
+    "    jp_item_func __12ArticleStackG7ArticleUi, 0xE008, 0xE038\n"
+    "    jp_item_func GetArticle__C12ArticleStack, 0xE038, 0xE05C\n"
+    "    jp_item_func IsEmpty__C12ArticleStack, 0xE05C, 0xE070\n"
+    "    jp_item_func GetAmount__C12ArticleStack, 0xE070, 0xE084\n"
+    "    jp_item_func AddAmount__12ArticleStackUi, 0xE084, 0xE0B4\n"
+    "    jp_item_func SubtractAmount__12ArticleStackUi, 0xE0B4, 0xE0D0\n"
+    "    jp_item_func __7Product, 0xE0D0, 0xE0D8\n"
+    "    jp_item_func __7ProductUi, 0xE0D8, 0xE0DC\n"
+    "    jp_item_func __7ProductG4Food, 0xE0DC, 0xE128\n"
+    "    jp_item_func __7ProductG7Article, 0xE128, 0xE174\n"
+    "    jp_item_func GetId__C7Product, 0xE174, 0xE178\n"
+    "    jp_item_func GetPrice__C7Product, 0xE178, 0xE1A0\n"
+    "    jp_item_func GetName__C7Product, 0xE1A0, 0xE1F4\n"
+    "    jp_item_func GetIconId__C7Product, 0xE1F4, 0xE248\n"
+    "    jp_item_func AsTool__C11ItemVariant, 0xE248, 0xE270\n"
+    "    jp_item_func AsFood__C11ItemVariant, 0xE270, 0xE298\n"
+    "    jp_item_func AsArticle__C11ItemVariant, 0xE298, 0xE2C4\n"
+    "\n"
+    "    .section .rodata\n"
+    "jp_item_data_start:\n"
+    "    .incbin \"baserom_jp.gba\", 0xE8AB4, (0xE9EEC - 0xE8AB4)\n"
+    "\n"
+    "    .global gToolInfo\n"
+    "gToolInfo:\n"
+    "    .incbin \"baserom_jp.gba\", 0xE9EEC, (0xED3D8 - 0xE9EEC)\n"
+    "\n"
+    "    .global gFoodInfo\n"
+    "gFoodInfo:\n"
+    "    .incbin \"baserom_jp.gba\", 0xED3D8, (0xEF738 - 0xED3D8)\n"
+    "\n"
+    "    .global gArticleInfo\n"
+    "gArticleInfo:\n"
+    "    .incbin \"baserom_jp.gba\", 0xEF738, (0xEFBAC - 0xEF738)\n"
+    "\n"
+    "    .global gProductInfo\n"
+    "gProductInfo:\n"
+    "    .incbin \"baserom_jp.gba\", 0xEFBAC, (0xEFD48 - 0xEFBAC)\n"
+    "\n"
+    "    .syntax divided\n"
+);
+#else
 
 Article::Article(u32 a_id)
 {
