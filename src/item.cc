@@ -1,5 +1,17 @@
 #include "item.hh"
 
+struct FoodInfo
+{
+    /* +00 */ char const * name;
+    /* +04 */ bool is_drink : 1;
+    /* +05 */ i8 stamina;
+    /* +06 */ i8 fatigue;
+    /* +08 */ u16 icon_id;
+    /* +0C */ char const * desc;
+};
+
+extern FoodInfo const gFoodInfo[];
+
 static inline bool IsValidFoodId(u8 id)
 {
     return id < NUM_FOODS;
@@ -62,16 +74,6 @@ struct ToolInfo
     /* +08 */ char const * desc;
 };
 
-struct FoodInfo
-{
-    /* +00 */ char const * name;
-    /* +04 */ bool is_drink : 1;
-    /* +05 */ i8 stamina;
-    /* +06 */ i8 fatigue;
-    /* +08 */ u16 icon_id;
-    /* +0C */ char const * desc;
-};
-
 struct ArticleInfo
 {
     /* +00 */ char const * name;
@@ -93,7 +95,6 @@ struct ProductInfo
 };
 
 extern ToolInfo const gToolInfo[];
-extern FoodInfo const gFoodInfo[];
 extern ArticleInfo const gArticleInfo[];
 extern ProductInfo const gProductInfo[];
 
@@ -227,8 +228,6 @@ asm(
     "\n"
     "    jp_item_func GetName__C4Food, 0xDC98, 0xDCC0\n"
     "    jp_item_func GetIconId__C4Food, 0xDCC0, 0xDCE8\n"
-    "    jp_item_func GetStaminaGain__C4Food, 0xDCE8, 0xDD1C\n"
-    "    jp_item_func GetFatigueGain__C4Food, 0xDD1C, 0xDD4C\n"
     "\n"
     "    .syntax divided\n"
 );
@@ -251,6 +250,8 @@ u16 Food::GetIconId() const
     return 428; // Stones
 }
 
+#endif // REGION_JP
+
 int Food::GetStaminaGain() const
 {
     if (IsValidFoodId(id))
@@ -266,8 +267,6 @@ int Food::GetFatigueGain() const
 
     return +100;
 }
-
-#endif // REGION_JP
 
 int Food::GetStaminaBonus() const
 {
