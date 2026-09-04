@@ -434,30 +434,16 @@ bool Article::CanBeDiscarded() const
     }
 }
 
-#if defined(REGION_JP)
-asm(
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "\n"
-    "    .macro jp_item_func name, start, end\n"
-    "        .global \\name\n"
-    "        .thumb_func\n"
-    "\\name:\n"
-    "        .incbin \"baserom_jp.gba\", \\start, (\\end - \\start)\n"
-    "    .endm\n"
-    "\n"
-    "    jp_item_func GetDesc__C7Article, 0xDFB4, 0xDFF0\n"
-    "    .syntax divided\n"
-);
-#else
-
 static inline char const * GetArticleDescById(u32 id)
 {
     if (gArticleInfo[id].desc != nullptr)
         return gArticleInfo[id].desc;
 
+#if defined(REGION_JP)
+    return gJpNoExplanation;
+#else
     return "No Explanation";
+#endif
 }
 
 char const * Article::GetDesc() const
@@ -465,10 +451,12 @@ char const * Article::GetDesc() const
     if (IsValidArticleId(id))
         return GetArticleDescById(id);
 
+#if defined(REGION_JP)
+    return gJpNoExplanation;
+#else
     return "No Explanation";
+#endif
 }
-
-#endif // REGION_JP
 
 ArticleStack::ArticleStack()
     : Article(ARTICLE_NONE)
@@ -594,6 +582,14 @@ asm(
     "    .section .text\n"
     "    .syntax unified\n"
     "    .thumb\n"
+    "\n"
+    "    .macro jp_item_func name, start, end\n"
+    "        .global \\name\n"
+    "        .thumb_func\n"
+    "\\name:\n"
+    "        .incbin \"baserom_jp.gba\", \\start, (\\end - \\start)\n"
+    "    .endm\n"
+    "\n"
     "    jp_item_func GetName__C7Product, 0xE1A0, 0xE1F4\n"
     "    .syntax divided\n"
 );
