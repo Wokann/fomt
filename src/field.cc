@@ -33,16 +33,6 @@ asm(
     "method_0800A014__C9FieldPlot:\n"
     "    .incbin \"baserom_jp.gba\", 0xA01C, 0x68\n"
     "\n"
-    "    .global method_0800A07C__C9FieldPlot\n"
-    "    .thumb_func\n"
-    "method_0800A07C__C9FieldPlot:\n"
-    "    .incbin \"baserom_jp.gba\", 0xA084, 0x28\n"
-    "\n"
-    "    .global method_0800A0A4__C9FieldPlot\n"
-    "    .thumb_func\n"
-    "method_0800A0A4__C9FieldPlot:\n"
-    "    .incbin \"baserom_jp.gba\", 0xA0AC, 0x7C\n"
-    "\n"
     "    @ Keep later shared C++ emission in agbcp's default syntax mode.\n"
     "    .syntax divided\n"
 );
@@ -139,6 +129,8 @@ u32 FieldPlot::method_0800A014() const
     return result;
 }
 
+#endif // REGION_JP
+
 bool FieldPlot::method_0800A07C() const
 {
     int val = unk_00_08;
@@ -164,6 +156,22 @@ bool FieldPlot::method_0800A07C() const
 
     return false;
 }
+
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "    .incbin \"baserom_jp.gba\", 0xA0AA, 0x2\n"
+    "\n"
+    "    .global method_0800A0A4__C9FieldPlot\n"
+    "    .thumb_func\n"
+    "method_0800A0A4__C9FieldPlot:\n"
+    "    .incbin \"baserom_jp.gba\", 0xA0AC, 0x7C\n"
+    "\n"
+    "    .syntax divided\n"
+);
+#else
 
 u32 FieldPlot::method_0800A0A4() const
 {
