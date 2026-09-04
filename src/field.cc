@@ -63,41 +63,6 @@ asm(
     "method_0800A238__9FieldPloti:\n"
     "    .incbin \"baserom_jp.gba\", 0xA240, 0x104\n"
     "\n"
-    "    .global method_0800A33C__9FieldPloti\n"
-    "    .thumb_func\n"
-    "method_0800A33C__9FieldPloti:\n"
-    "    .incbin \"baserom_jp.gba\", 0xA344, 0x8C\n"
-    "\n"
-    "    .global method_0800A3C8__9FieldPlot\n"
-    "    .thumb_func\n"
-    "method_0800A3C8__9FieldPlot:\n"
-    "    .incbin \"baserom_jp.gba\", 0xA3D0, 0x70\n"
-    "\n"
-    "    .global method_0800A438__9FieldPlot\n"
-    "    .thumb_func\n"
-    "method_0800A438__9FieldPlot:\n"
-    "    .incbin \"baserom_jp.gba\", 0xA440, 0x28\n"
-    "\n"
-    "    .global method_0800A460__9FieldPloti\n"
-    "    .thumb_func\n"
-    "method_0800A460__9FieldPloti:\n"
-    "    .incbin \"baserom_jp.gba\", 0xA468, 0x44\n"
-    "\n"
-    "    .global method_0800A4A4__9FieldPlot\n"
-    "    .thumb_func\n"
-    "method_0800A4A4__9FieldPlot:\n"
-    "    .incbin \"baserom_jp.gba\", 0xA4AC, 0x224\n"
-    "\n"
-    "    .global method_0800A6C8__C9FieldPlotRC7Article\n"
-    "    .thumb_func\n"
-    "method_0800A6C8__C9FieldPlotRC7Article:\n"
-    "    .incbin \"baserom_jp.gba\", 0xA6D0, 0x2C\n"
-    "\n"
-    "    .global method_0800A6F4__9FieldPlotRC7Article\n"
-    "    .thumb_func\n"
-    "method_0800A6F4__9FieldPlotRC7Article:\n"
-    "    .incbin \"baserom_jp.gba\", 0xA6FC, 0x98\n"
-    "\n"
     "    @ Keep later shared C++ emission in agbcp's default syntax mode.\n"
     "    .syntax divided\n"
 );
@@ -418,6 +383,8 @@ u32 FieldPlot::method_0800A238(int arg_1)
     return 2;
 }
 
+#endif // REGION_JP
+
 u32 FieldPlot::method_0800A33C(int arg_1)
 {
     if (GetUnk8() == 0)
@@ -529,6 +496,31 @@ void FieldPlot::method_0800A460(int arg_1)
         }
     }
 }
+
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "\n"
+    "    .global method_0800A4A4__9FieldPlot\n"
+    "    .thumb_func\n"
+    "method_0800A4A4__9FieldPlot:\n"
+    "    .incbin \"baserom_jp.gba\", 0xA4AC, 0x224\n"
+    "\n"
+    "    .global method_0800A6C8__C9FieldPlotRC7Article\n"
+    "    .thumb_func\n"
+    "method_0800A6C8__C9FieldPlotRC7Article:\n"
+    "    .incbin \"baserom_jp.gba\", 0xA6D0, 0x2C\n"
+    "\n"
+    "    .global method_0800A6F4__9FieldPlotRC7Article\n"
+    "    .thumb_func\n"
+    "method_0800A6F4__9FieldPlotRC7Article:\n"
+    "    .incbin \"baserom_jp.gba\", 0xA6FC, 0x98\n"
+    "\n"
+    "    .syntax divided\n"
+);
+#else
 
 RucksackItem FieldPlot::method_0800A4A4()
 {
