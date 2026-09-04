@@ -286,7 +286,6 @@ int Food::GetFatigueBonus() const
     return +100;
 }
 
-#if defined(REGION_JP)
 asm(
     "    .section .text\n"
     "    .syntax unified\n"
@@ -294,7 +293,6 @@ asm(
     "    .align 2, 0\n"
     "    .syntax divided\n"
 );
-#endif // REGION_JP
 
 bool Food::IsDrink() const
 {
@@ -364,7 +362,6 @@ FoodStack::FoodStack()
     amount = 0;
 }
 
-#if defined(REGION_JP)
 asm(
     "    .section .text\n"
     "    .syntax unified\n"
@@ -372,7 +369,6 @@ asm(
     "    .align 2, 0\n"
     "    .syntax divided\n"
 );
-#endif // REGION_JP
 
 FoodStack::FoodStack(Food food, u32 a_amount)
     : Food(food)
@@ -428,7 +424,6 @@ void FoodStack::SubtractAmount(u32 a_amount)
     }
 }
 
-#if defined(REGION_JP)
 asm(
     "    .section .text\n"
     "    .syntax unified\n"
@@ -436,7 +431,6 @@ asm(
     "    .align 2, 0\n"
     "    .syntax divided\n"
 );
-#endif // REGION_JP
 
 Article::Article(u32 a_id)
 {
