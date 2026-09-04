@@ -101,7 +101,7 @@ func_08003788: @ 0x08003788
     mov r1, sp
     movs r2, #0
     bl func_0804EC84
-    ldr r2, .L08003B24 @ =gUnk_080E874C
+    ldr r2, .L08003B24 @ =gText_NewGameStatus_YearSuffix
     mov r8, r2
     adds r0, r6, #0
     bl strlen
@@ -148,7 +148,7 @@ func_08003788: @ 0x08003788
     movs r0, #0
     strb r0, [r1]
 .L08003832:
-    ldr r2, .L08003B28 @ =gUnk_080E8754
+    ldr r2, .L08003B28 @ =gText_NewGameStatus_SeasonSeparator
     mov sb, r2
     mov r0, r8
     bl strlen
@@ -210,7 +210,7 @@ func_08003788: @ 0x08003788
     mov r1, sp
     movs r2, #0
     bl func_0804EC84
-    ldr r2, .L08003B2C @ =gUnk_080E8758
+    ldr r2, .L08003B2C @ =gText_NewGameStatus_DaySuffix
     mov r8, r2
     adds r0, r6, #0
     bl strlen
@@ -256,7 +256,7 @@ func_08003788: @ 0x08003788
     movs r0, #0
     strb r0, [r1]
 .L08003916:
-    ldr r0, .L08003B30 @ =gUnk_080E8760
+    ldr r0, .L08003B30 @ =gText_NewGameStatus_OpenParen
     mov r8, r0
     adds r0, r6, #0
     bl strlen
@@ -334,7 +334,7 @@ func_08003788: @ 0x08003788
     movs r0, #0
     strb r0, [r1]
 .L080039B8:
-    ldr r2, .L08003B34 @ =gUnk_080E8764
+    ldr r2, .L08003B34 @ =gText_NewGameStatus_CloseParen
     mov r8, r2
     mov r0, sb
     bl strlen
@@ -417,7 +417,7 @@ func_08003788: @ 0x08003788
     movs r0, #0
     strb r0, [r1]
 .L08003A64:
-    ldr r2, .L08003B38 @ =gUnk_080E8768
+    ldr r2, .L08003B38 @ =gText_NewGameStatus_FarmSuffix
     mov r8, r2
     adds r0, r6, #0
     bl strlen
@@ -510,12 +510,12 @@ func_08003788: @ 0x08003788
     pop {r0}
     bx r0
     .align 2, 0
-.L08003B24: .4byte gUnk_080E874C
-.L08003B28: .4byte gUnk_080E8754
-.L08003B2C: .4byte gUnk_080E8758
-.L08003B30: .4byte gUnk_080E8760
-.L08003B34: .4byte gUnk_080E8764
-.L08003B38: .4byte gUnk_080E8768
+.L08003B24: .4byte gText_NewGameStatus_YearSuffix
+.L08003B28: .4byte gText_NewGameStatus_SeasonSeparator
+.L08003B2C: .4byte gText_NewGameStatus_DaySuffix
+.L08003B30: .4byte gText_NewGameStatus_OpenParen
+.L08003B34: .4byte gText_NewGameStatus_CloseParen
+.L08003B38: .4byte gText_NewGameStatus_FarmSuffix
 .L08003B3C: .4byte 0x00001BD8
 
     thumb_func_start func_08003B40
@@ -993,14 +993,14 @@ func_08003EEC: @ 0x08003EEC
     adds r0, r2, #0
     adds r0, #0x84
     ldrb r0, [r0]
-    ldr r1, .L08003F30 @ =gUnk_080E877C
+    ldr r1, .L08003F30 @ =gText_NewGameStatus_WriteDiary
     cmp r0, #0
     beq .L08003F7E
-    ldr r1, .L08003F34 @ =gUnk_080E8770
+    ldr r1, .L08003F34 @ =gText_NewGameStatus_ReadDiary
     b .L08003F7E
     .align 2, 0
-.L08003F30: .4byte gUnk_080E877C
-.L08003F34: .4byte gUnk_080E8770
+.L08003F30: .4byte gText_NewGameStatus_WriteDiary
+.L08003F34: .4byte gText_NewGameStatus_ReadDiary
 .L08003F38:
     adds r0, r2, #0
     adds r0, #0x85
@@ -1021,10 +1021,10 @@ func_08003EEC: @ 0x08003EEC
     adds r1, #0x98
     b .L08003F7E
 .L08003F5A:
-    ldr r1, .L08003F60 @ =gUnk_080E878C
+    ldr r1, .L08003F60 @ =gText_NewGameStatus_NoSavedData
     b .L08003F7E
     .align 2, 0
-.L08003F60: .4byte gUnk_080E878C
+.L08003F60: .4byte gText_NewGameStatus_NoSavedData
 .L08003F64:
     ldr r1, .L08003F68 @ =gUnk_080E87A4
     b .L08003F7E
@@ -2100,7 +2100,7 @@ func_08004570: @ 0x08004570
 .L08004840:
     adds r0, r6, #0
     adds r0, #0x10
-    ldr r1, .L08004860 @ =gUnk_080E878C
+    ldr r1, .L08004860 @ =gText_NewGameStatus_NoSavedData
     movs r2, #0
     movs r3, #0
     bl func_08050DC8
@@ -2113,7 +2113,7 @@ func_08004570: @ 0x08004570
     bl func_08008B6C
     b .L08004674
     .align 2, 0
-.L08004860: .4byte gUnk_080E878C
+.L08004860: .4byte gText_NewGameStatus_NoSavedData
 .L08004864:
     lsls r0, r1, #7
     adds r0, r0, r6
