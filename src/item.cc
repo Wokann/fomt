@@ -84,6 +84,7 @@ static inline T const & FomtMin(T const & left, T const & right)
 #if defined(REGION_JP)
 extern char const gJpBrokenToolName[];
 extern char const gJpNoExplanation[];
+extern char const gJpBrokenFoodName[];
 #else
 #include <algorithm>
 #endif
@@ -205,34 +206,17 @@ int Food::GetId() const
     return id;
 }
 
-#if defined(REGION_JP)
-asm(
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "\n"
-    "    .macro jp_item_func name, start, end\n"
-    "        .global \\name\n"
-    "        .thumb_func\n"
-    "\\name:\n"
-    "        .incbin \"baserom_jp.gba\", \\start, (\\end - \\start)\n"
-    "    .endm\n"
-    "\n"
-    "    jp_item_func GetName__C4Food, 0xDC98, 0xDCC0\n"
-    "\n"
-    "    .syntax divided\n"
-);
-#else
-
 char const * Food::GetName() const
 {
     if (IsValidFoodId(id))
         return gFoodInfo[id].name;
 
+#if defined(REGION_JP)
+    return gJpBrokenFoodName;
+#else
     return "Broken Food";
+#endif
 }
-
-#endif // REGION_JP
 
 u16 Food::GetIconId() const
 {
@@ -290,6 +274,14 @@ asm(
     "    .section .text\n"
     "    .syntax unified\n"
     "    .thumb\n"
+    "\n"
+    "    .macro jp_item_func name, start, end\n"
+    "        .global \\name\n"
+    "        .thumb_func\n"
+    "\\name:\n"
+    "        .incbin \"baserom_jp.gba\", \\start, (\\end - \\start)\n"
+    "    .endm\n"
+    "\n"
     "    jp_item_func GetDesc__C4Food, 0xDDB4, 0xDDEC\n"
     "    .syntax divided\n"
 );
@@ -685,7 +677,11 @@ asm(
     "\n"
     "    .global gJpNoExplanation\n"
     "gJpNoExplanation:\n"
-    "    .incbin \"baserom_jp.gba\", 0xE8ACC, (0xE9EEC - 0xE8ACC)\n"
+    "    .incbin \"baserom_jp.gba\", 0xE8ACC, (0xE8ADC - 0xE8ACC)\n"
+    "\n"
+    "    .global gJpBrokenFoodName\n"
+    "gJpBrokenFoodName:\n"
+    "    .incbin \"baserom_jp.gba\", 0xE8ADC, (0xE9EEC - 0xE8ADC)\n"
     "\n"
     "    .global gToolInfo\n"
     "gToolInfo:\n"
