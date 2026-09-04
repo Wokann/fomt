@@ -355,6 +355,15 @@ std::string CompileAsmText(const std::string &source, const Charmap &charmap)
         if (trimmed.empty() || trimmed.front() == '@' || trimmed.front() == '#')
             continue;
 
+        if (trimmed == ".align 2, 0") {
+            if (!has_current_label || !current_has_string) {
+                throw std::runtime_error("line " + std::to_string(line_number)
+                    + ": .align must follow a completed .string");
+            }
+            output << "\t.align 2, 0\n\n";
+            continue;
+        }
+
         if (trimmed.back() == ':') {
             if (has_current_label && !current_has_string) {
                 throw std::runtime_error("line " + std::to_string(line_number) + ": label '"
@@ -374,7 +383,7 @@ std::string CompileAsmText(const std::string &source, const Charmap &charmap)
         constexpr char kDirective[] = ".string";
         if (trimmed.rfind(kDirective, 0) != 0) {
             throw std::runtime_error("line " + std::to_string(line_number)
-                + ": expected a label or .string directive");
+                + ": expected a label, .string, or .align directive");
         }
         if (!has_current_label) {
             throw std::runtime_error("line " + std::to_string(line_number)
@@ -414,11 +423,14 @@ void SelfTest()
     Require(map.DecodeText(Bytes{0x41, 0x0A, 0xFE}) == "A\\n\\xFE",
         "unknown bytes do not round-trip as escapes");
 
-    const std::string assembly = CompileAsmText("gText_Test:\n    .string \"A\\nB\"\n", map);
+    const std::string assembly = CompileAsmText(
+        "gText_Test:\n    .string \"A\\nB\"\n    .align 2, 0\n", map);
     Require(assembly.find(".global gText_Test") != std::string::npos,
         "assembly text symbol is missing");
     Require(assembly.find(".byte 0x41, 0x0A, 0x42, 0x00") != std::string::npos,
         "assembly text bytes are wrong");
+    Require(assembly.find(".align 2, 0") != std::string::npos,
+        "assembly alignment is missing");
 
     bool rejected_unmapped = false;
     try {
