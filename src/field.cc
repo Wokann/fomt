@@ -590,13 +590,13 @@ bool FieldPlot::method_0800A78C() const
     return false;
 }
 
+asm(".align 2, 0");
+
 #if defined(REGION_JP)
 asm(
     "    .section .text\n"
     "    .syntax unified\n"
     "    .thumb\n"
-    "    .incbin \"baserom_jp.gba\", 0xA7B6, 0x2\n"
-    "\n"
     "    .global DayUpdate__9FieldPlotiRC8GameDate\n"
     "    .thumb_func\n"
     "DayUpdate__9FieldPlotiRC8GameDate:\n"
