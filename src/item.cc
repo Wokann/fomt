@@ -83,6 +83,7 @@ static inline T const & FomtMin(T const & left, T const & right)
 
 #if defined(REGION_JP)
 extern char const gJpBrokenToolName[];
+extern char const gJpNoExplanation[];
 #else
 #include <algorithm>
 #endif
@@ -108,30 +109,16 @@ u16 Tool::GetIconId() const
     return 457; // Turnip
 }
 
-#if defined(REGION_JP)
-asm(
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "\n"
-    "    .macro jp_item_func name, start, end\n"
-    "        .global \\name\n"
-    "        .thumb_func\n"
-    "\\name:\n"
-    "        .incbin \"baserom_jp.gba\", \\start, (\\end - \\start)\n"
-    "    .endm\n"
-    "\n"
-    "    jp_item_func GetDesc__C4Tool, 0xDB6C, 0xDBA8\n"
-    "    .syntax divided\n"
-);
-#else
-
 static inline char const * GetToolDescById(u32 id)
 {
     if (gToolInfo[id].desc != nullptr)
         return gToolInfo[id].desc;
 
+#if defined(REGION_JP)
+    return gJpNoExplanation;
+#else
     return "No Explanation";
+#endif
 }
 
 char const * Tool::GetDesc() const
@@ -139,10 +126,12 @@ char const * Tool::GetDesc() const
     if (IsValidToolId(id))
         return GetToolDescById(id);
 
+#if defined(REGION_JP)
+    return gJpNoExplanation;
+#else
     return "No Explanation";
+#endif
 }
-
-#endif // REGION_JP
 
 ToolStack::ToolStack()
     : Tool(TOOL_NONE)
@@ -221,6 +210,13 @@ asm(
     "    .section .text\n"
     "    .syntax unified\n"
     "    .thumb\n"
+    "\n"
+    "    .macro jp_item_func name, start, end\n"
+    "        .global \\name\n"
+    "        .thumb_func\n"
+    "\\name:\n"
+    "        .incbin \"baserom_jp.gba\", \\start, (\\end - \\start)\n"
+    "    .endm\n"
     "\n"
     "    jp_item_func GetName__C4Food, 0xDC98, 0xDCC0\n"
     "\n"
@@ -685,7 +681,11 @@ asm(
     "\n"
     "    .global gJpBrokenToolName\n"
     "gJpBrokenToolName:\n"
-    "    .incbin \"baserom_jp.gba\", 0xE8AC0, (0xE9EEC - 0xE8AC0)\n"
+    "    .incbin \"baserom_jp.gba\", 0xE8AC0, (0xE8ACC - 0xE8AC0)\n"
+    "\n"
+    "    .global gJpNoExplanation\n"
+    "gJpNoExplanation:\n"
+    "    .incbin \"baserom_jp.gba\", 0xE8ACC, (0xE9EEC - 0xE8ACC)\n"
     "\n"
     "    .global gToolInfo\n"
     "gToolInfo:\n"
