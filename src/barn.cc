@@ -548,7 +548,6 @@ void Barn::method_0800D858()
     unk_3_7 = false;
 }
 
-#if defined(REGION_JP)
 asm(
     "    .section .text\n"
     "    .syntax unified\n"
@@ -556,7 +555,6 @@ asm(
     "    .align 2, 0\n"
     "    .syntax divided\n"
 );
-#endif // REGION_JP
 
 void Barn::MoveToPregnancyStall(u32 pregnancy_stall_idx, u32 ent_idx)
 {
@@ -569,12 +567,19 @@ void Barn::MoveToPregnancyStall(u32 pregnancy_stall_idx, u32 ent_idx)
     }
 }
 
-#if defined(REGION_JP)
 asm(
     "    .section .text\n"
     "    .syntax unified\n"
     "    .thumb\n"
     "    .align 2, 0\n"
+    "    .syntax divided\n"
+);
+
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
     "    .incbin \"baserom_jp.gba\", 0xD888, 0x154\n"
     "    .syntax divided\n"
 );
