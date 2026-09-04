@@ -15,6 +15,12 @@ int Tool::GetId() const
     return id;
 }
 
+template <typename T>
+static inline T const & FomtMin(T const & left, T const & right)
+{
+    return right < left ? right : left;
+}
+
 #if defined(REGION_JP)
 /*
  * Byte-exact JP assembly stays in this module.  As matching functions are
@@ -42,8 +48,6 @@ asm(
     "    jp_item_func GetName__C4Tool, 0xDB14, 0xDB40\n"
     "    jp_item_func GetIconId__C4Tool, 0xDB40, 0xDB6C\n"
     "    jp_item_func GetDesc__C4Tool, 0xDB6C, 0xDBA8\n"
-    "    jp_item_func __9ToolStack, 0xDBA8, 0xDBC0\n"
-    "    jp_item_func __9ToolStackG4ToolUi, 0xDBC0, 0xDBF0\n"
     "    @ Keep later shared C++ emission in agbcp's default syntax mode.\n"
     "    .syntax divided\n"
 );
@@ -141,6 +145,8 @@ char const * Tool::GetDesc() const
     return "No Explanation";
 }
 
+#endif // REGION_JP
+
 ToolStack::ToolStack()
     : Tool(TOOL_NONE)
 {
@@ -153,15 +159,13 @@ ToolStack::ToolStack(Tool kind, u32 a_amount)
     if (a_amount != 0)
     {
         // ugh
-        amount = *(u8 *)&std::min<u32>(MAX_AMOUNT, a_amount);
+        amount = *(u8 *)&FomtMin<u32>(MAX_AMOUNT, a_amount);
     }
     else
     {
         amount = 1;
     }
 }
-
-#endif // REGION_JP
 
 Tool ToolStack::GetTool() const
 {
@@ -184,26 +188,13 @@ u32 ToolStack::GetAmount() const
     return 0;
 }
 
-#if defined(REGION_JP)
-asm(
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "    jp_item_func AddAmount__9ToolStackUi, 0xDC3C, 0xDC6C\n"
-    "    @ Keep later shared C++ emission in agbcp's default syntax mode.\n"
-    "    .syntax divided\n"
-);
-#else
-
 void ToolStack::AddAmount(u32 a_amount)
 {
     if (amount != 0)
     {
-        amount = std::min<u32>(MAX_AMOUNT, amount + a_amount);
+        amount = FomtMin<u32>(MAX_AMOUNT, amount + a_amount);
     }
 }
-
-#endif // REGION_JP
 
 void ToolStack::SubtractAmount(u32 a_amount)
 {
@@ -417,27 +408,13 @@ u32 FoodStack::GetAmount() const
     return 0;
 }
 
-#if defined(REGION_JP)
-asm(
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "\n"
-    "    jp_item_func AddAmount__9FoodStackUi, 0xDEE4, 0xDF14\n"
-    "\n"
-    "    .syntax divided\n"
-);
-#else
-
 void FoodStack::AddAmount(u32 a_amount)
 {
     if (amount != 0)
     {
-        amount = std::min<u32>(MAX_AMOUNT, amount + a_amount);
+        amount = FomtMin<u32>(MAX_AMOUNT, amount + a_amount);
     }
 }
-
-#endif // REGION_JP
 
 void FoodStack::SubtractAmount(u32 a_amount)
 {
