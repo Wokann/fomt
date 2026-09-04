@@ -290,13 +290,9 @@ asm(
     "    .syntax unified\n"
     "    .thumb\n"
     "    .incbin \"baserom_jp.gba\", 0xDD8A, 0x2\n"
-    "\n"
-    "    jp_item_func IsDrink__C4Food, 0xDD8C, 0xDDB4\n"
-    "    jp_item_func GetDesc__C4Food, 0xDDB4, 0xDDEC\n"
-    "\n"
     "    .syntax divided\n"
 );
-#else
+#endif // REGION_JP
 
 bool Food::IsDrink() const
 {
@@ -305,6 +301,16 @@ bool Food::IsDrink() const
 
     return false;
 }
+
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "    jp_item_func GetDesc__C4Food, 0xDDB4, 0xDDEC\n"
+    "    .syntax divided\n"
+);
+#else
 
 static inline char const * GetFoodDescById(u32 id)
 {
