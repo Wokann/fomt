@@ -289,7 +289,7 @@ asm(
     "    .section .text\n"
     "    .syntax unified\n"
     "    .thumb\n"
-    "    .incbin \"baserom_jp.gba\", 0xDD8A, 0x2\n"
+    "    .align 2, 0\n"
     "    .syntax divided\n"
 );
 #endif // REGION_JP
@@ -367,14 +367,10 @@ asm(
     "    .section .text\n"
     "    .syntax unified\n"
     "    .thumb\n"
-    "    .incbin \"baserom_jp.gba\", 0xDE5E, 0x2\n"
-    "\n"
-    "    jp_item_func __9FoodStackG4FoodUi, 0xDE60, 0xDE98\n"
-    "    jp_item_func GetFood__C9FoodStack, 0xDE98, 0xDEBC\n"
-    "\n"
+    "    .align 2, 0\n"
     "    .syntax divided\n"
 );
-#else
+#endif // REGION_JP
 
 FoodStack::FoodStack(Food food, u32 a_amount)
     : Food(food)
@@ -382,7 +378,7 @@ FoodStack::FoodStack(Food food, u32 a_amount)
     if (a_amount != 0)
     {
         // ugh
-        amount = *(u8 *)&std::min<u32>(MAX_AMOUNT, a_amount);
+        amount = *(u8 *)&FomtMin<u32>(MAX_AMOUNT, a_amount);
     }
     else
     {
@@ -397,8 +393,6 @@ Food FoodStack::GetFood() const
 
     return Food(FOOD_NONE);
 }
-
-#endif // REGION_JP
 
 bool FoodStack::IsEmpty() const
 {
@@ -437,7 +431,7 @@ asm(
     "    .section .text\n"
     "    .syntax unified\n"
     "    .thumb\n"
-    "    .incbin \"baserom_jp.gba\", 0xDF2E, 0x2\n"
+    "    .align 2, 0\n"
     "    .syntax divided\n"
 );
 #endif // REGION_JP

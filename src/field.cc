@@ -120,7 +120,7 @@ asm(
     "    .section .text\n"
     "    .syntax unified\n"
     "    .thumb\n"
-    "    .incbin \"baserom_jp.gba\", 0xA0AA, 0x2\n"
+    "    .align 2, 0\n"
     "    .syntax divided\n"
 );
 #endif // REGION_JP
@@ -191,7 +191,7 @@ asm(
     "    .section .text\n"
     "    .syntax unified\n"
     "    .thumb\n"
-    "    .incbin \"baserom_jp.gba\", 0xA196, 0x2\n"
+    "    .align 2, 0\n"
     "    .syntax divided\n"
 );
 #endif // REGION_JP
@@ -1136,7 +1136,7 @@ asm(
     "    .section .text\n"
     "    .syntax unified\n"
     "    .thumb\n"
-    "    .incbin \"baserom_jp.gba\", 0xAF3A, 0x2\n"
+    "    .align 2, 0\n"
     "    .syntax divided\n"
 );
 #endif // REGION_JP
