@@ -373,6 +373,8 @@ std::size_t ParsePositiveDecimal(const std::string &source, std::size_t line_num
 struct TextDeclarator {
     std::string label;
     std::string emitted;
+    bool is_fixed_width = false;
+    std::size_t fixed_width = 0;
     bool is_fixed_rows = false;
     std::size_t row_count = 0;
     std::size_t row_width = 0;
@@ -407,10 +409,14 @@ TextDeclarator ParseTextDeclarator(const std::string &source, std::size_t line_n
         return result;
     }
 
-    result.row_count = ParsePositiveDecimal(first_dimension, line_number, "fixed-row count");
+    const std::size_t first_width = ParsePositiveDecimal(first_dimension, line_number, "fixed text width");
     if (after_dimensions >= source.size() || source[after_dimensions] != '[') {
-        throw std::runtime_error("line " + std::to_string(line_number)
-            + ": fixed text rows must use [rows][width]");
+        result.is_fixed_width = true;
+        result.fixed_width = first_width;
+        const std::string attributes = Trim(source.substr(after_dimensions));
+        result.emitted = result.label + "[" + std::to_string(result.fixed_width) + "]"
+            + (attributes.empty() ? "" : " " + attributes);
+        return result;
     }
     const std::size_t second_close = source.find(']', after_dimensions + 1);
     if (second_close == std::string::npos) {
@@ -418,6 +424,7 @@ TextDeclarator ParseTextDeclarator(const std::string &source, std::size_t line_n
             + ": unterminated fixed-row width");
     }
 
+    result.row_count = first_width;
     result.row_width = ParsePositiveDecimal(
         Trim(source.substr(after_dimensions + 1, second_close - after_dimensions - 1)),
         line_number, "fixed-row width");
@@ -472,6 +479,12 @@ std::string CompileCppTextInclude(const std::string &source, const Charmap &char
             bytes = charmap.EncodeText(current_text);
         } catch (const std::runtime_error &error) {
             throw std::runtime_error("text label '" + current_declarator.label + "': " + error.what());
+        }
+        if (current_declarator.is_fixed_width
+            && bytes.size() + 1 > current_declarator.fixed_width) {
+            throw std::runtime_error("text label '" + current_declarator.label + "' encodes to "
+                + std::to_string(bytes.size() + 1) + " bytes including its terminator; maximum is "
+                + std::to_string(current_declarator.fixed_width));
         }
         EmitCppString(output, current_declarator.emitted, bytes);
         current_string_emitted = true;
@@ -640,6 +653,22 @@ void SelfTest()
     Require(generated_rows.find("\\x41") != std::string::npos
             && generated_rows.find("\\x42") != std::string::npos,
         "generated fixed-row C++ text bytes are wrong");
+
+    const std::string generated_fixed_width = CompileCppTextInclude(
+        "char const gText_TestFixed[4] =\n"
+        "    \"A\";\n", map);
+    Require(generated_fixed_width.find("char const gText_TestFixed[4]") != std::string::npos,
+        "generated fixed-width C++ text declaration is missing");
+
+    bool rejected_overflow = false;
+    try {
+        static_cast<void>(CompileCppTextInclude(
+            "char const gText_TestOverflow[2] =\n"
+            "    \"AB\";\n", map));
+    } catch (const std::runtime_error &) {
+        rejected_overflow = true;
+    }
+    Require(rejected_overflow, "fixed-width text overflow was accepted");
 
     bool rejected_unmapped = false;
     try {
