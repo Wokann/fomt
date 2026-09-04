@@ -49,16 +49,6 @@ asm(
     "    jp_item_func GetAmount__C9ToolStack, 0xDC28, 0xDC3C\n"
     "    jp_item_func AddAmount__9ToolStackUi, 0xDC3C, 0xDC6C\n"
     "    jp_item_func SubtractAmount__9ToolStackUi, 0xDC6C, 0xDC88\n"
-    "    jp_item_func __4FoodUi, 0xDC88, 0xDC94\n"
-    "    jp_item_func GetId__C4Food, 0xDC94, 0xDC98\n"
-    "    jp_item_func GetName__C4Food, 0xDC98, 0xDCC0\n"
-    "    jp_item_func GetIconId__C4Food, 0xDCC0, 0xDCE8\n"
-    "    jp_item_func GetStaminaGain__C4Food, 0xDCE8, 0xDD1C\n"
-    "    jp_item_func GetFatigueGain__C4Food, 0xDD1C, 0xDD4C\n"
-    "    jp_item_func GetStaminaBonus__C4Food, 0xDD4C, 0xDD6C\n"
-    "    jp_item_func GetFatigueBonus__C4Food, 0xDD6C, 0xDD8C\n"
-    "    jp_item_func IsDrink__C4Food, 0xDD8C, 0xDDB4\n"
-    "    jp_item_func GetDesc__C4Food, 0xDDB4, 0xDDEC\n"
     "    @ Keep later shared C++ emission in agbcp's default syntax mode.\n"
     "    .syntax divided\n"
 );
@@ -216,6 +206,8 @@ void ToolStack::SubtractAmount(u32 a_amount)
     }
 }
 
+#endif // REGION_JP
+
 Food::Food(u32 a_id)
 {
     id = a_id;
@@ -227,6 +219,25 @@ int Food::GetId() const
 {
     return id;
 }
+
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "\n"
+    "    jp_item_func GetName__C4Food, 0xDC98, 0xDCC0\n"
+    "    jp_item_func GetIconId__C4Food, 0xDCC0, 0xDCE8\n"
+    "    jp_item_func GetStaminaGain__C4Food, 0xDCE8, 0xDD1C\n"
+    "    jp_item_func GetFatigueGain__C4Food, 0xDD1C, 0xDD4C\n"
+    "    jp_item_func GetStaminaBonus__C4Food, 0xDD4C, 0xDD6C\n"
+    "    jp_item_func GetFatigueBonus__C4Food, 0xDD6C, 0xDD8C\n"
+    "    jp_item_func IsDrink__C4Food, 0xDD8C, 0xDDB4\n"
+    "    jp_item_func GetDesc__C4Food, 0xDDB4, 0xDDEC\n"
+    "\n"
+    "    .syntax divided\n"
+);
+#else
 
 char const * Food::GetName() const
 {
