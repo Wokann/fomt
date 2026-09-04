@@ -82,46 +82,22 @@ static inline T const & FomtMin(T const & left, T const & right)
 }
 
 #if defined(REGION_JP)
-/*
- * Byte-exact JP assembly stays in this module.  As matching functions are
- * recovered, keep shared definitions outside the regional guard and retain
- * only genuinely version-specific definitions inside it.
- */
-asm(
-    "    @ JP revision 0 counterpart of src/item.cc.\n"
-    "    @\n"
-    "    @ The item method bodies retain their US boundaries, while the localized\n"
-    "    @ item descriptions and names form one JP-only data block.  Both ranges\n"
-    "    @ were matched directly against baserom_jp.gba.\n"
-    "\n"
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "\n"
-    "    .macro jp_item_func name, start, end\n"
-    "        .global \\name\n"
-    "        .thumb_func\n"
-    "\\name:\n"
-    "        .incbin \"baserom_jp.gba\", \\start, (\\end - \\start)\n"
-    "    .endm\n"
-    "\n"
-    "    jp_item_func GetName__C4Tool, 0xDB14, 0xDB40\n"
-    "    @ Keep later shared C++ emission in agbcp's default syntax mode.\n"
-    "    .syntax divided\n"
-);
+extern char const gJpBrokenToolName[];
 #else
-
 #include <algorithm>
+#endif
 
 char const * Tool::GetName() const
 {
     if (IsValidToolId(id))
         return gToolInfo[id].name;
 
+#if defined(REGION_JP)
+    return gJpBrokenToolName;
+#else
     return "Broken Tool";
-}
-
 #endif // REGION_JP
+}
 
 u16 Tool::GetIconId() const
 {
@@ -137,6 +113,14 @@ asm(
     "    .section .text\n"
     "    .syntax unified\n"
     "    .thumb\n"
+    "\n"
+    "    .macro jp_item_func name, start, end\n"
+    "        .global \\name\n"
+    "        .thumb_func\n"
+    "\\name:\n"
+    "        .incbin \"baserom_jp.gba\", \\start, (\\end - \\start)\n"
+    "    .endm\n"
+    "\n"
     "    jp_item_func GetDesc__C4Tool, 0xDB6C, 0xDBA8\n"
     "    .syntax divided\n"
 );
@@ -697,7 +681,11 @@ Article ItemVariant::AsArticle() const
 asm(
     "    .section .rodata\n"
     "jp_item_data_start:\n"
-    "    .incbin \"baserom_jp.gba\", 0xE8AB4, (0xE9EEC - 0xE8AB4)\n"
+    "    .incbin \"baserom_jp.gba\", 0xE8AB4, (0xE8AC0 - 0xE8AB4)\n"
+    "\n"
+    "    .global gJpBrokenToolName\n"
+    "gJpBrokenToolName:\n"
+    "    .incbin \"baserom_jp.gba\", 0xE8AC0, (0xE9EEC - 0xE8AC0)\n"
     "\n"
     "    .global gToolInfo\n"
     "gToolInfo:\n"
