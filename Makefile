@@ -97,7 +97,7 @@ compare: $(ROM)
 .PHONY: fomt_us fomt_jp compare
 
 ifeq ($(GAME_REGION),JP)
-TEXT_TOOL := tools/textproc/build/fomt-text
+TEXT_TOOL := tools/textproc/fomt-text
 ITEM_JP_TEXT_SOURCE := data/text/jp/item.inc
 ITEM_JP_TEXT_ASM := $(BUILD_DIR)/data/text/item.s
 

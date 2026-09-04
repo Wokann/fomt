@@ -640,7 +640,7 @@ asm(
     "    .incbin \"baserom_jp.gba\", 0xE8AF8, (0xE8B08 - 0xE8AF8)\n"
     "\n"
     "    .include \"build/jp/data/text/item.s\"\n"
-    "    .incbin \"baserom_jp.gba\", 0xE8B54, (0xE9EEC - 0xE8B54)\n"
+    "    .incbin \"baserom_jp.gba\", 0xE8D74, (0xE9EEC - 0xE8D74)\n"
     "\n"
     "    .global gToolInfo\n"
     "gToolInfo:\n"
