@@ -1,22 +1,33 @@
 # Text source layout
 
-Regional text belongs under this directory by domain:
+Regional text belongs under this directory by its owning data structure:
 
-    data/text/us/<domain>.text
-    data/text/jp/<domain>.text
+    data/text/us/tool.cc
+    data/text/us/food.cc
+    data/text/us/article.cc
+    data/text/jp/tool.cc
+    data/text/jp/food.cc
+    data/text/jp/article.cc
 
-The project-root `charmap.txt` is shared by every regional text domain.  Its
+Keep categories separate even when their entries are linked beside one another:
+each source corresponds to the C/C++ structure that owns its text pointers.
+
+The project-root `charmap.txt` is shared by every regional text category.  Its
 Shift-JIS entries include ASCII, so regional text does not need separate
 character maps. It is intentionally outside `data/text` so script and
 non-script preprocessing use one explicit project-level encoding contract.
 
-Each source file uses the text-preprocessor .string form documented in
-tools/textproc.  Generated assembly keeps stable gText_* symbols.  C/C++
-tables then reference those symbols.
+Each source file includes `item_text.hh` and uses ordinary C++ `char const`
+definitions. The host-side text preprocessor converts their UTF-8 string
+literals with `charmap.txt`; generated assembly keeps stable `gText_*`
+symbols and a trailing `.align 2, 0` after every text object. C/C++ tables
+then reference those symbols directly. When two table entries intentionally
+share one ROM string, both table fields point to the same canonical symbol;
+do not create a second text object or an assembler alias.
 
 Game scripts are deliberately outside this directory and remain independently
 managed by Mary.  Do not add a script build or link step here.
 
-Do not embed translated text directly in item .def rows.  A .def row describes
-structure and IDs; its name and description fields must become gText_* symbol
-references during migration.
+Do not embed item-text literals in C/C++ info-table initializers.  Every
+name/description pointer field must reference a gText_* symbol defined by the
+appropriate regional text source.

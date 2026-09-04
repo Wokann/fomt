@@ -335,7 +335,7 @@ void EmitBytes(std::ostringstream &output, const Bytes &bytes)
     }
 }
 
-std::string CompileAsmText(const std::string &source, const Charmap &charmap)
+std::string CompileCppText(const std::string &source, const Charmap &charmap)
 {
     std::ostringstream output;
     output << "\t.section .rodata\n\n";
@@ -343,68 +343,114 @@ std::string CompileAsmText(const std::string &source, const Charmap &charmap)
     std::istringstream lines(source);
     std::string line;
     std::string current_label;
+    std::string current_text;
     bool has_current_label = false;
     bool current_has_string = false;
+    bool current_string_emitted = false;
     std::size_t line_number = 0;
+
+    const auto EmitCurrentString = [&]() {
+        if (!has_current_label || !current_has_string || current_string_emitted)
+            return;
+
+        Bytes bytes;
+        try {
+            bytes = charmap.EncodeText(current_text);
+        } catch (const std::runtime_error &error) {
+            throw std::runtime_error("text label '" + current_label + "': " + error.what());
+        }
+        bytes.push_back(0);
+        output << "\t.global " << current_label << '\n' << current_label << ":\n";
+        EmitBytes(output, bytes);
+        output << "\t.align 2, 0\n\n";
+        current_string_emitted = true;
+    };
 
     while (std::getline(lines, line)) {
         ++line_number;
         if (!line.empty() && line.back() == '\r')
             line.pop_back();
         const std::string trimmed = Trim(line);
-        if (trimmed.empty() || trimmed.front() == '@' || trimmed.front() == '#')
+        if (trimmed.empty() || trimmed.rfind("//", 0) == 0 || trimmed.front() == '#')
             continue;
 
-        if (trimmed == ".align 2, 0") {
-            if (!has_current_label || !current_has_string) {
+        constexpr char kDeclaration[] = "char const ";
+        std::string declaration_line = trimmed;
+        if (declaration_line.rfind("extern ", 0) == 0)
+            declaration_line = Trim(declaration_line.substr(sizeof("extern ") - 1));
+        if (declaration_line.rfind(kDeclaration, 0) == 0) {
+            if (has_current_label && !current_string_emitted) {
+                throw std::runtime_error("line " + std::to_string(line_number) + ": text label '"
+                    + current_label + "' has no terminating semicolon");
+            }
+
+            const std::string declaration = Trim(declaration_line.substr(sizeof(kDeclaration) - 1));
+            const std::size_t equals = declaration.find('=');
+            if (equals == std::string::npos) {
                 throw std::runtime_error("line " + std::to_string(line_number)
-                    + ": .align must follow a completed .string");
+                    + ": expected '=' in text declaration");
             }
-            output << "\t.align 2, 0\n\n";
-            continue;
-        }
-
-        if (trimmed.back() == ':') {
-            if (has_current_label && !current_has_string) {
-                throw std::runtime_error("line " + std::to_string(line_number) + ": label '"
-                    + current_label + "' has no .string");
+            const std::string array = Trim(declaration.substr(0, equals));
+            if (array.size() < 3 || array.substr(array.size() - 2) != "[]") {
+                throw std::runtime_error("line " + std::to_string(line_number)
+                    + ": text declaration must use an unsized char array");
             }
-            const std::string label = Trim(trimmed.substr(0, trimmed.size() - 1));
+            const std::string label = Trim(array.substr(0, array.size() - 2));
             if (!IsValidLabel(label)) {
                 throw std::runtime_error("line " + std::to_string(line_number)
                     + ": invalid text label '" + label + "'");
             }
+
             current_label = label;
             has_current_label = true;
             current_has_string = false;
+            current_string_emitted = false;
+            current_text.clear();
+
+            const std::string initial_literal = Trim(declaration.substr(equals + 1));
+            if (!initial_literal.empty()) {
+                bool terminated = false;
+                std::string literal = initial_literal;
+                if (literal.back() == ';') {
+                    terminated = true;
+                    literal = Trim(literal.substr(0, literal.size() - 1));
+                }
+                current_text = ParseStringLiteral(literal, line_number);
+                current_has_string = true;
+                if (terminated)
+                    EmitCurrentString();
+            }
             continue;
         }
 
-        constexpr char kDirective[] = ".string";
-        if (trimmed.rfind(kDirective, 0) != 0) {
-            throw std::runtime_error("line " + std::to_string(line_number)
-                + ": expected a label, .string, or .align directive");
-        }
-        if (!has_current_label) {
-            throw std::runtime_error("line " + std::to_string(line_number)
-                + ": .string has no preceding label");
-        }
-        if (current_has_string) {
-            throw std::runtime_error("line " + std::to_string(line_number)
-                + ": label '" + current_label + "' has more than one .string");
+        if (!trimmed.empty() && trimmed.front() == '"') {
+            if (!has_current_label || current_string_emitted) {
+                throw std::runtime_error("line " + std::to_string(line_number)
+                    + ": string literal must follow an unfinished text declaration");
+            }
+            bool terminated = false;
+            std::string literal = trimmed;
+            if (literal.back() == ';') {
+                terminated = true;
+                literal = Trim(literal.substr(0, literal.size() - 1));
+            }
+            current_text += ParseStringLiteral(literal, line_number);
+            current_has_string = true;
+            if (terminated)
+                EmitCurrentString();
+            continue;
         }
 
-        std::string parsed = ParseStringLiteral(trimmed.substr(sizeof(kDirective) - 1), line_number);
-        Bytes bytes = charmap.EncodeText(parsed);
-        bytes.push_back(0);
-        output << "\t.global " << current_label << '\n' << current_label << ":\n";
-        EmitBytes(output, bytes);
-        output << '\n';
-        current_has_string = true;
+        throw std::runtime_error("line " + std::to_string(line_number)
+            + ": expected a char const text declaration or quoted string continuation");
     }
 
-    if (has_current_label && !current_has_string)
-        throw std::runtime_error("label '" + current_label + "' has no .string");
+    if (has_current_label && !current_string_emitted) {
+        if (!current_has_string)
+            throw std::runtime_error("label '" + current_label + "' has no text string");
+        throw std::runtime_error("label '" + current_label + "' has no terminating semicolon");
+    }
+    EmitCurrentString();
     return output.str();
 }
 
@@ -423,8 +469,10 @@ void SelfTest()
     Require(map.DecodeText(Bytes{0x41, 0x0A, 0xFE}) == "A\\n\\xFE",
         "unknown bytes do not round-trip as escapes");
 
-    const std::string assembly = CompileAsmText(
-        "gText_Test:\n    .string \"A\\nB\"\n    .align 2, 0\n", map);
+    const std::string assembly = CompileCppText(
+        "char const gText_Test[] =\n"
+        "    \"A\\n\"\n"
+        "    \"B\";\n", map);
     Require(assembly.find(".global gText_Test") != std::string::npos,
         "assembly text symbol is missing");
     Require(assembly.find(".byte 0x41, 0x0A, 0x42, 0x00") != std::string::npos,
@@ -483,7 +531,7 @@ int Run(int argc, char **argv)
         return 0;
     }
     if (command == "asm") {
-        WriteTextFile(output, CompileAsmText(ReadTextFile(input), charmap));
+        WriteTextFile(output, CompileCppText(ReadTextFile(input), charmap));
         return 0;
     }
     throw std::runtime_error(Usage());

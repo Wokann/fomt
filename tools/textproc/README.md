@@ -23,27 +23,32 @@ Encode one text payload, decode an existing byte range, or generate assembly:
     tools/textproc/fomt-text decode CHARMAP INPUT OUTPUT
     tools/textproc/fomt-text asm CHARMAP INPUT OUTPUT
 
-The asm input uses an intentionally small, conventional assembly-shaped
-format:
+The asm command consumes a constrained, ordinary C++ text-definition form:
 
-    gText_Item_IronSickle_Name:
-        .string "Iron Sickle"
+    #include "item_text.hh"
 
-    gText_Item_IronSickle_Description:
-        .string "Iron Sickle\r\nGood for cutting grass."
+    char const gText_Item_Tool_IronSickle_Name[] =
+        "Iron Sickle";
 
-The generated output declares each symbol, encodes text with the selected
-map, and appends the FOMT 00 terminator.  Named controls such as \n, \r, \p,
+    char const gText_Item_Tool_IronSickle_Description[] =
+        "Iron Sickle\r\n"
+        "Good for cutting grass.";
+
+Adjacent quoted C++ literals follow Mary’s readable layout for displayed line
+breaks. The generated output declares each symbol, encodes text with the
+selected map, appends the FOMT 00 terminator, and always emits `.align 2, 0`
+after the object. Named controls such as \n, \r, \p,
 and {Player} are data-driven: their spelling and bytes come only from the
 selected charmap.  Use \xNN for an intentional unmapped raw byte.
-Use `.align 2, 0` after a completed `.string` when the original ROM range has
-four-byte data alignment between text entries.
 
 Migration target:
 
-1. Put text bodies under data/text/us and data/text/jp by domain.
+1. Put text bodies under data/text/us and data/text/jp by owning C/C++ data
+   category.
 2. Keep item, menu, and other C/C++ data tables structural: they point to
-   gText_* symbols instead of embedding text literals in .def rows.
+   gText_* symbols instead of embedding text literals in their initializers.
+   If source entries share an identical original pointer, point both fields at
+   the same text symbol rather than emitting a duplicate string or alias.
 3. Do not use this tool for game scripts.  Mary independently owns script
    decoding and encoding; this tool only supports non-script text consumed by
    normal C/C++ data structures.
