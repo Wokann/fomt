@@ -1026,22 +1026,22 @@ func_08003EEC: @ 0x08003EEC
     .align 2, 0
 .L08003F60: .4byte gText_NewGameStatus_NoSavedData
 .L08003F64:
-    ldr r1, .L08003F68 @ =gUnk_080E87A4
+    ldr r1, .L08003F68 @ =gText_NewGameHelp_Controls
     b .L08003F7E
     .align 2, 0
-.L08003F68: .4byte gUnk_080E87A4
+.L08003F68: .4byte gText_NewGameHelp_Controls
 .L08003F6C:
-    ldr r1, .L08003F70 @ =gUnk_080E87FC
+    ldr r1, .L08003F70 @ =gText_NewGameHelp_ClockDisplay
     b .L08003F7E
     .align 2, 0
-.L08003F70: .4byte gUnk_080E87FC
+.L08003F70: .4byte gText_NewGameHelp_ClockDisplay
 .L08003F74:
-    ldr r1, .L08003F78 @ =gUnk_080E8828
+    ldr r1, .L08003F78 @ =gText_NewGameHelp_FaceDisplay
     b .L08003F7E
     .align 2, 0
-.L08003F78: .4byte gUnk_080E8828
+.L08003F78: .4byte gText_NewGameHelp_FaceDisplay
 .L08003F7C:
-    ldr r1, .L08003F94 @ =gUnk_080E8878
+    ldr r1, .L08003F94 @ =gText_NewGameHelp_NameDisplay
 .L08003F7E:
     adds r0, r2, #0
     adds r0, #0x10
@@ -1055,7 +1055,7 @@ func_08003EEC: @ 0x08003EEC
     pop {r0}
     bx r0
     .align 2, 0
-.L08003F94: .4byte gUnk_080E8878
+.L08003F94: .4byte gText_NewGameHelp_NameDisplay
 .L08003F98: .4byte gText_NewGameMenu_Blank
 
     thumb_func_start func_08003F9C

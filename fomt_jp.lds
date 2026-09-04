@@ -240,8 +240,9 @@ SECTIONS
         . = ALIGN(4); data/text/new_game_menu.o(.rodata.new_game_menu_labels);
         . = ALIGN(4); src/new_game_menu_data.o(.rodata.new_game_menu_label_pointers);
         . = ALIGN(4); data/text/new_game_status.o(.rodata.new_game_status_labels);
-        . = 0xE7BD8; /* JP raw data after the regional new-game status text. */
-        asm/data/data_080E8610.o(.rodata.new_game_status_trailer);
+        . = ALIGN(4); data/text/new_game_help.o(.rodata.new_game_help_text);
+        . = 0xE7CFC; /* JP raw data after the regional new-game help text. */
+        asm/data/data_080E8610.o(.rodata.new_game_help_trailer);
         . = 0xE8A6C; /* JP ROM 0x080E8A6C, independently matched */
         src/shipping_bin.o(.rodata);
         src/record_player.o(.rodata);
