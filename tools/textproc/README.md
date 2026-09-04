@@ -15,13 +15,13 @@ Build and test it with a host C++ compiler:
 
 Validate the versioned project map before generating any game asset:
 
-    tools/textproc/build/fomt-text validate charmap.txt
+    tools/textproc/fomt-text validate charmap.txt
 
 Encode one text payload, decode an existing byte range, or generate assembly:
 
-    tools/textproc/build/fomt-text encode CHARMAP INPUT OUTPUT
-    tools/textproc/build/fomt-text decode CHARMAP INPUT OUTPUT
-    tools/textproc/build/fomt-text asm CHARMAP INPUT OUTPUT
+    tools/textproc/fomt-text encode CHARMAP INPUT OUTPUT
+    tools/textproc/fomt-text decode CHARMAP INPUT OUTPUT
+    tools/textproc/fomt-text asm CHARMAP INPUT OUTPUT
 
 The asm input uses an intentionally small, conventional assembly-shaped
 format:
