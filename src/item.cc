@@ -594,17 +594,6 @@ Product::Product(u32 a_id)
     id = a_id;
 }
 
-#if defined(REGION_JP)
-asm(
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "    jp_item_func __7ProductG4Food, 0xE0DC, 0xE128\n"
-    "    jp_item_func __7ProductG7Article, 0xE128, 0xE174\n"
-    "    .syntax divided\n"
-);
-#else
-
 Product::Product(Food food)
 {
     id = PRODUCT_NONE;
@@ -640,8 +629,6 @@ Product::Product(Article article)
         }
     }
 }
-
-#endif // REGION_JP
 
 int Product::GetId() const
 {
