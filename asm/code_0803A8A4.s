@@ -1,3 +1,140 @@
+    .ifdef REGION_JP
+    @ JP revision 0 counterpart of asm/code_0803A8A4.s.
+    @
+    @ This object contains a closely coupled gameplay-control region.  Its
+    @ JP bytes are kept together; exported entries below are only aliases to
+    @ independently matched JP instruction prefixes, so they add no output.
+
+    .section .text
+    .syntax unified
+    .thumb
+    .global func_0803A8A4
+    .thumb_func
+func_0803A8A4:
+    .incbin "baserom_jp.gba", 0x3A518, 0x45F0
+
+    .global func_0803AB30
+    .thumb_set func_0803AB30, func_0803A8A4 + 0x3AC
+    .global func_0803AC78
+    .thumb_set func_0803AC78, func_0803A8A4 + 0x4F4
+    .global func_0803AE58
+    .thumb_set func_0803AE58, func_0803A8A4 + 0x6D4
+    .global func_0803AEA0
+    .thumb_set func_0803AEA0, func_0803A8A4 + 0x71C
+    .global func_0803B0A8
+    .thumb_set func_0803B0A8, func_0803A8A4 + 0x924
+    .global func_0803B454
+    .thumb_set func_0803B454, func_0803A8A4 + 0xCD0
+    .global func_0803B4B0
+    .thumb_set func_0803B4B0, func_0803A8A4 + 0xD2C
+    .global func_0803B6B8
+    .thumb_set func_0803B6B8, func_0803A8A4 + 0xF34
+    .global func_0803B6FC
+    .thumb_set func_0803B6FC, func_0803A8A4 + 0xF78
+    .global func_0803B718
+    .thumb_set func_0803B718, func_0803A8A4 + 0xF94
+    .global func_0803B840
+    .thumb_set func_0803B840, func_0803A8A4 + 0x10BC
+    .global func_0803BAAC
+    .thumb_set func_0803BAAC, func_0803A8A4 + 0x1328
+    .global func_0803BCF8
+    .thumb_set func_0803BCF8, func_0803A8A4 + 0x1574
+    .global func_0803BD60
+    .thumb_set func_0803BD60, func_0803A8A4 + 0x15DC
+    .global func_0803BDE4
+    .thumb_set func_0803BDE4, func_0803A8A4 + 0x1660
+    .global func_0803BDEC
+    .thumb_set func_0803BDEC, func_0803A8A4 + 0x1668
+    .global func_0803BDFC
+    .thumb_set func_0803BDFC, func_0803A8A4 + 0x1678
+    .global func_0803BE50
+    .thumb_set func_0803BE50, func_0803A8A4 + 0x16CC
+    .global func_0803BE9C
+    .thumb_set func_0803BE9C, func_0803A8A4 + 0x1718
+    .global func_0803BEB0
+    .thumb_set func_0803BEB0, func_0803A8A4 + 0x172C
+    .global func_0803BEBC
+    .thumb_set func_0803BEBC, func_0803A8A4 + 0x1738
+    .global func_0803BEC8
+    .thumb_set func_0803BEC8, func_0803A8A4 + 0x1744
+    .global func_0803BED4
+    .thumb_set func_0803BED4, func_0803A8A4 + 0x1750
+    .global func_0803BEE0
+    .thumb_set func_0803BEE0, func_0803A8A4 + 0x175C
+    .global func_0803BEEC
+    .thumb_set func_0803BEEC, func_0803A8A4 + 0x1768
+    .global func_0803BEF4
+    .thumb_set func_0803BEF4, func_0803A8A4 + 0x1770
+    .global func_0803BEFC
+    .thumb_set func_0803BEFC, func_0803A8A4 + 0x1778
+    .global func_0803BF08
+    .thumb_set func_0803BF08, func_0803A8A4 + 0x1784
+    .global func_0803BF78
+    .thumb_set func_0803BF78, func_0803A8A4 + 0x17F4
+    .global func_0803BFC8
+    .thumb_set func_0803BFC8, func_0803A8A4 + 0x1844
+    .global func_0803C00C
+    .thumb_set func_0803C00C, func_0803A8A4 + 0x1888
+    .global func_0803C028
+    .thumb_set func_0803C028, func_0803A8A4 + 0x18A4
+    .global func_0803C518
+    .thumb_set func_0803C518, func_0803A8A4 + 0x1D94
+    .global func_0803C52C
+    .thumb_set func_0803C52C, func_0803A8A4 + 0x1DA8
+    .global func_0803C540
+    .thumb_set func_0803C540, func_0803A8A4 + 0x1DBC
+    .global func_0803C544
+    .thumb_set func_0803C544, func_0803A8A4 + 0x1DC0
+    .global func_0803C54C
+    .thumb_set func_0803C54C, func_0803A8A4 + 0x1DC8
+    .global func_0803C588
+    .thumb_set func_0803C588, func_0803A8A4 + 0x1E04
+    .global func_0803C7A0
+    .thumb_set func_0803C7A0, func_0803A8A4 + 0x204C
+    .global func_0803C7C8
+    .thumb_set func_0803C7C8, func_0803A8A4 + 0x2074
+    .global func_0803CD4C
+    .thumb_set func_0803CD4C, func_0803A8A4 + 0x3AC
+    .global func_0803D080
+    .thumb_set func_0803D080, func_0803A8A4 + 0x2878
+    .global func_0803D2E8
+    .thumb_set func_0803D2E8, func_0803A8A4 + 0x2A44
+    .global func_0803D340
+    .thumb_set func_0803D340, func_0803A8A4 + 0x2A9C
+    .global func_0803D3A0
+    .thumb_set func_0803D3A0, func_0803A8A4 + 0x2AFC
+    .global func_0803D404
+    .thumb_set func_0803D404, func_0803A8A4 + 0x2B60
+    .global func_0803D440
+    .thumb_set func_0803D440, func_0803A8A4 + 0x2B9C
+    .global func_0803D4D8
+    .thumb_set func_0803D4D8, func_0803A8A4 + 0x2C34
+    .global func_0803D644
+    .thumb_set func_0803D644, func_0803A8A4 + 0x2DA0
+    .global func_0803D688
+    .thumb_set func_0803D688, func_0803A8A4 + 0x2DE4
+    .global func_0803D7E4
+    .thumb_set func_0803D7E4, func_0803A8A4 + 0x2F40
+    .global func_0803DC64
+    .thumb_set func_0803DC64, func_0803A8A4 + 0x33C0
+    .global func_0803DDE8
+    .thumb_set func_0803DDE8, func_0803A8A4 + 0x3544
+    .global func_0803DECC
+    .thumb_set func_0803DECC, func_0803A8A4 + 0x3628
+    .global func_0803E684
+    .thumb_set func_0803E684, func_0803A8A4 + 0x3DE0
+    .global func_0803E8E8
+    .thumb_set func_0803E8E8, func_0803A8A4 + 0x4044
+    .global func_0803E970
+    .thumb_set func_0803E970, func_0803A8A4 + 0x40CC
+    .global func_0803EB40
+    .thumb_set func_0803EB40, func_0803A8A4 + 0x429C
+    .global func_0803EB9C
+    .thumb_set func_0803EB9C, func_0803A8A4 + 0x42F8
+    @ The schedule table's JP callback pointer resolves to 0x0803D699.
+    .global func_0803DA24
+    .thumb_set func_0803DA24, func_0803A8A4 + 0x3180
+    .else
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
 
@@ -8755,3 +8892,4 @@ func_0803EE50: @ 0x0803EE50
 	pop {r1}
 	bx r1
 	.align 2, 0
+    .endif

@@ -1,3 +1,121 @@
+    .ifdef REGION_JP
+    @ JP revision 0 counterpart of asm/code_actor_0809BFE8.s.
+    @ Actor behavior uses region-specific tables and branch targets.  The JP
+    @ object stays byte-exact, with aliases only for unique matched entries.
+
+    .section .text
+    .syntax unified
+    .thumb
+    .global func_0809C0A0
+    .thumb_func
+func_0809C0A0:
+    .incbin "baserom_jp.gba", 0x9BAD8, 0x2234
+
+    .global func_0809C0AC
+    .thumb_set func_0809C0AC, func_0809C0A0 + 0xC
+    .global func_0809C0BC
+    .thumb_set func_0809C0BC, func_0809C0A0 + 0x1C
+    .global func_0809C0C8
+    .thumb_set func_0809C0C8, func_0809C0A0 + 0x28
+    .global func_0809C0D4
+    .thumb_set func_0809C0D4, func_0809C0A0 + 0x34
+    .global func_0809C144
+    .thumb_set func_0809C144, func_0809C0A0 + 0xA4
+    .global func_0809C22C
+    .thumb_set func_0809C22C, func_0809C0A0 + 0x18C
+    .global func_0809C304
+    .thumb_set func_0809C304, func_0809C0A0 + 0x264
+    .global func_0809C32C
+    .thumb_set func_0809C32C, func_0809C0A0 + 0x28C
+    .global func_0809C38C
+    .thumb_set func_0809C38C, func_0809C0A0 + 0x2EC
+    .global func_0809C3BC
+    .thumb_set func_0809C3BC, func_0809C0A0 + 0x31C
+    .global func_0809C3E0
+    .thumb_set func_0809C3E0, func_0809C0A0 + 0x340
+    .global func_0809C420
+    .thumb_set func_0809C420, func_0809C0A0 + 0x380
+    .global func_0809C444
+    .thumb_set func_0809C444, func_0809C0A0 + 0x3A4
+    .global func_0809C474
+    .thumb_set func_0809C474, func_0809C0A0 + 0x3D4
+    .global func_0809C4B4
+    .thumb_set func_0809C4B4, func_0809C0A0 + 0x414
+    .global func_0809C4E4
+    .thumb_set func_0809C4E4, func_0809C0A0 + 0x444
+    .global func_0809C510
+    .thumb_set func_0809C510, func_0809C0A0 + 0x470
+    .global func_0809C5EC
+    .thumb_set func_0809C5EC, func_0809C0A0 + 0x54C
+    .global func_0809C5F4
+    .thumb_set func_0809C5F4, func_0809C0A0 + 0x554
+    .global func_0809C694
+    .thumb_set func_0809C694, func_0809C0A0 + 0x5F4
+    .global func_0809C6AC
+    .thumb_set func_0809C6AC, func_0809C0A0 + 0x60C
+    .global func_0809C6B0
+    .thumb_set func_0809C6B0, func_0809C0A0 + 0x610
+    .global func_0809C6BC
+    .thumb_set func_0809C6BC, func_0809C0A0 + 0x61C
+    .global func_0809CD78
+    .thumb_set func_0809CD78, func_0809C0A0 + 0xCD8
+    .global func_0809CD98
+    .thumb_set func_0809CD98, func_0809C0A0 + 0xCF8
+    .global func_0809CDCC
+    .thumb_set func_0809CDCC, func_0809C0A0 + 0xD2C
+    .global func_0809CDEC
+    .thumb_set func_0809CDEC, func_0809C0A0 + 0xD4C
+    .global func_0809CE1C
+    .thumb_set func_0809CE1C, func_0809C0A0 + 0xD7C
+    .global func_0809CE24
+    .thumb_set func_0809CE24, func_0809C0A0 + 0xD84
+    .global func_0809CE30
+    .thumb_set func_0809CE30, func_0809C0A0 + 0xD90
+    .global func_0809CE7C
+    .thumb_set func_0809CE7C, func_0809C0A0 + 0xDDC
+    .global func_0809CE8C
+    .thumb_set func_0809CE8C, func_0809C0A0 + 0xDEC
+    .global func_0809CF34
+    .thumb_set func_0809CF34, func_0809C0A0 + 0xE94
+    .global func_0809D418
+    .thumb_set func_0809D418, func_0809C0A0 + 0x1378
+    .global func_0809D470
+    .thumb_set func_0809D470, func_0809C0A0 + 0x13D0
+    .global func_0809D79C
+    .thumb_set func_0809D79C, func_0809C0A0 + 0x16FC
+    .global func_0809D7D8
+    .thumb_set func_0809D7D8, func_0809C0A0 + 0x1738
+    .global func_0809D8A0
+    .thumb_set func_0809D8A0, func_0809C0A0 + 0x1800
+    .global func_0809D8A4
+    .thumb_set func_0809D8A4, func_0809C0A0 + 0x1804
+    .global func_0809D8B8
+    .thumb_set func_0809D8B8, func_0809C0A0 + 0x1818
+    .global func_0809D8D4
+    .thumb_set func_0809D8D4, func_0809C0A0 + 0x1834
+    .global func_0809D8E8
+    .thumb_set func_0809D8E8, func_0809C0A0 + 0x1848
+    .global func_0809D9B4
+    .thumb_set func_0809D9B4, func_0809C0A0 + 0x1914
+    .global func_0809DA00
+    .thumb_set func_0809DA00, func_0809C0A0 + 0x1960
+    .global func_0809DF2C
+    .thumb_set func_0809DF2C, func_0809C0A0 + 0x1E8C
+    .global func_0809DFAC
+    .thumb_set func_0809DFAC, func_0809C0A0 + 0x1F0C
+    .global func_0809E02C
+    .thumb_set func_0809E02C, func_0809C0A0 + 0x1F8C
+    .global func_0809E0AC
+    .thumb_set func_0809E0AC, func_0809C0A0 + 0x200C
+    .global func_0809E174
+    .thumb_set func_0809E174, func_0809C0A0 + 0x20D4
+    .global func_0809E184
+    .thumb_set func_0809E184, func_0809C0A0 + 0x20E4
+    .global func_0809E194
+    .thumb_set func_0809E194, func_0809C0A0 + 0x20F4
+    .global func_0809E1A4
+    .thumb_set func_0809E1A4, func_0809C0A0 + 0x2104
+    .else
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
 
@@ -4335,3 +4453,4 @@ func_0809E1A4: @ 0x0809E1A4
     .byte 0x01, 0x70, 0x01, 0x32, 0x01, 0x3B, 0x00, 0x2B, 0xF7, 0xDA, 0x04, 0xB0, 0xF0, 0xBC, 0x01, 0xBC
     .byte 0x00, 0x47, 0x00, 0x00, 0x98, 0x3F, 0x10, 0x08, 0x84, 0x3F, 0x10, 0x08, 0x0C, 0x40, 0x10, 0x08
     .byte 0xE4, 0x3F, 0x10, 0x08
+    .endif

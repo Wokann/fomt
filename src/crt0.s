@@ -1,3 +1,13 @@
+    .ifdef REGION_JP
+    @ JP revision 0 ROM header and startup path.
+    .section .rom_header, "ax", %progbits
+    .align 2, 0
+    .arm
+    .global _start
+    .type _start, %function
+_start:
+    .incbin "baserom_jp.gba", 0x0, 0x18C
+    .else
     .include "six/asm/prelude.s"
     .include "six/asm/hw/dma.s"
 
@@ -121,3 +131,4 @@ exit:
     bx     lr
 
     .align 2, 0
+    .endif

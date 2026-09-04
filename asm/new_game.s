@@ -1,3 +1,65 @@
+    .ifdef REGION_JP
+    @ JP revision 0 counterpart of asm/new_game.s.
+    @
+    @ The surrounding object is 0x10 bytes shorter than US.  These are static
+    @ ROM ranges at verified JP function boundaries; they are deliberately not
+    @ generated during the build.  Public labels are retained where another
+    @ source object calls into this still-unmatched module.
+
+    .section .text
+    .syntax unified
+    .thumb
+
+    .global func_08003788
+    .thumb_func
+func_08003788:
+    .incbin "baserom_jp.gba", 0x37A0, 0x13D0
+
+    .global func_08004B58
+    .thumb_func
+func_08004B58:
+    .incbin "baserom_jp.gba", 0x4B70, 0x3C
+
+    .global func_08004B94
+    .thumb_func
+func_08004B94:
+    .incbin "baserom_jp.gba", 0x4BAC, 0xB4
+
+    .global func_08004C48
+    .thumb_func
+func_08004C48:
+    .incbin "baserom_jp.gba", 0x4C60, 0xC
+
+    .global func_08004C54
+    .thumb_func
+func_08004C54:
+    .incbin "baserom_jp.gba", 0x4C6C, 0x14
+
+    .global func_08004C68
+    .thumb_func
+func_08004C68:
+    .incbin "baserom_jp.gba", 0x4C80, 0x2400
+
+    .global func_08007078
+    .thumb_func
+func_08007078:
+    .incbin "baserom_jp.gba", 0x7080, 0x2C
+
+    .global func_080070A4
+    .thumb_func
+func_080070A4:
+    .incbin "baserom_jp.gba", 0x70AC, 0x30
+
+    .global func_080070D4
+    .thumb_func
+func_080070D4:
+    .incbin "baserom_jp.gba", 0x70DC, 0x3C
+
+    .global func_08007110
+    .thumb_func
+func_08007110:
+    .incbin "baserom_jp.gba", 0x7118, 0x18
+    .else
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
 
@@ -7179,3 +7241,4 @@ func_08007110: @ 0x08007110
 .L0800711C:
     .byte 0x01, 0x49, 0x40, 0x18
     .byte 0x70, 0x47, 0x00, 0x00, 0x1C, 0x46, 0x00, 0x00
+    .endif

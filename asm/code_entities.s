@@ -1,3 +1,22 @@
+    .ifdef REGION_JP
+    @ JP revision 0 counterpart of asm/code_entities.s.
+    @
+    @ This is the region's complete entity dispatch block.  It is a static
+    @ source counterpart, deliberately bounded to the existing object rather
+    @ than a ROM-wide layout; additional public aliases are added only after
+    @ their JP target entry is independently matched.
+
+    .section .text
+    .syntax unified
+    .thumb
+    .global func_08020060
+    .thumb_func
+func_08020060:
+    .incbin "baserom_jp.gba", 0x1FDF4, 0x1207C
+
+    .global func_08032090
+    .thumb_set func_08032090, func_08020060 + 0x12030
+    .else
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
 
@@ -31804,9 +31823,10 @@ func_08032090: @ 0x08032090
     cmp r3, r2
     blo .L080320C4
 .L080320D0:
-    adds r0, r4, #0
-    add sp, #0x10
-    pop {r4}
-    pop {r1}
-    bx r1
-    .align 2, 0
+	adds r0, r4, #0
+	add sp, #0x10
+	pop {r4}
+	pop {r1}
+	bx r1
+	.align 2, 0
+    .endif

@@ -1,3 +1,20 @@
+    .ifdef REGION_JP
+    @ JP revision 0 counterpart of the localized data after gProductInfo.
+    .section .rodata
+    .incbin "baserom_jp.gba", 0xEFD48, (0xEFD52 - 0xEFD48)
+
+    .global gUnk_080F04EE
+gUnk_080F04EE:
+    .incbin "baserom_jp.gba", 0xEFD52, (0xEFD60 - 0xEFD52)
+
+    .global gUnk_080F050C
+gUnk_080F050C:
+    .incbin "baserom_jp.gba", 0xEFD60, (0xEFD63 - 0xEFD60)
+
+    .global gUnk_080F050F
+gUnk_080F050F:
+    .incbin "baserom_jp.gba", 0xEFD63, (0xF12DC - 0xEFD63)
+    .else
     .section .rodata
 
 	.global gUnk_080F04E4
@@ -337,3 +354,4 @@ gUnk_080F1A34:
 	.global gUnk_080F1A66
 gUnk_080F1A66:
 	.incbin "baserom.gba", 0xF1A66, 0x1A
+    .endif

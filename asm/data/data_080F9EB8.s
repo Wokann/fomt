@@ -1,4 +1,25 @@
-	.section .rodata
+    .ifdef REGION_JP
+    @ JP revision 0 localized scripts, strings, and tables.
+    .section .rodata
+    .incbin "baserom_jp.gba", 0xF9708, (0x103194 - 0xF9708)
+
+    .global gUnk_08103658
+gUnk_08103658:
+    .incbin "baserom_jp.gba", 0x103194, (0x10319C - 0x103194)
+
+    .global gUnk_08103660
+gUnk_08103660:
+    .incbin "baserom_jp.gba", 0x10319C, (0x1031BC - 0x10319C)
+
+    .global gUnk_08103680
+gUnk_08103680:
+    .incbin "baserom_jp.gba", 0x1031BC, (0x1031DC - 0x1031BC)
+
+    .global gUnk_081036A0
+gUnk_081036A0:
+    .incbin "baserom_jp.gba", 0x1031DC, (0x13BCF8 - 0x1031DC)
+    .else
+    .section .rodata
 
 	.incbin "baserom.gba", 0xF9EAC, 0x19
 
@@ -3405,3 +3426,4 @@ gUnk_08139CFC:
 	.global gUnk_08139D30
 gUnk_08139D30:
 	.incbin "baserom.gba", 0x139D30, 0xE84
+    .endif

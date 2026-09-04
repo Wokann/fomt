@@ -89,6 +89,8 @@ struct ScriptEngine : public AScriptEngine
     void SetUnk(void * unk);
     void ClearUnk();
     void Push(i32 value);
+    int VarGet(u32 variable_id);
+    void VarSet(u32 variable_id, int value);
 
     /* +350 */ void * unk_350;
     /* +354 */ void * unk_354;

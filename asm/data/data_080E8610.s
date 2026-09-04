@@ -1,3 +1,204 @@
+    .ifdef REGION_JP
+    @ JP revision 0 counterpart of data_080E8610.s.
+    @
+    @ The source module is already data-only incbin content.  This static JP
+    @ range retains its exported data names and covers the verified JP span.
+
+	.section .rodata
+
+	.global init_array
+init_array:
+	.incbin "baserom_jp.gba", 0xE7A40, 0x1C
+
+	.global gUnk_080E862C
+gUnk_080E862C:
+	.incbin "baserom_jp.gba", 0xE7A5C, 0x58
+
+	.global gUnk_080E8684
+gUnk_080E8684:
+	.incbin "baserom_jp.gba", 0xE7AB4, 0x3C
+
+	.global gUnk_080E86C0
+gUnk_080E86C0:
+	.incbin "baserom_jp.gba", 0xE7AF0, 0x2C
+
+	.global gUnk_080E86EC
+gUnk_080E86EC:
+	.incbin "baserom_jp.gba", 0xE7B1C, 0x4
+
+	.global gUnk_080E86F0
+gUnk_080E86F0:
+	.incbin "baserom_jp.gba", 0xE7B20, 0x14
+
+	.global gUnk_080E8704
+gUnk_080E8704:
+	.incbin "baserom_jp.gba", 0xE7B34, 0x48
+
+	.global gUnk_080E874C
+gUnk_080E874C:
+	.incbin "baserom_jp.gba", 0xE7B7C, 0x8
+
+	.global gUnk_080E8754
+gUnk_080E8754:
+	.incbin "baserom_jp.gba", 0xE7B84, 0x4
+
+	.global gUnk_080E8758
+gUnk_080E8758:
+	.incbin "baserom_jp.gba", 0xE7B88, 0x8
+
+	.global gUnk_080E8760
+gUnk_080E8760:
+	.incbin "baserom_jp.gba", 0xE7B90, 0x4
+
+	.global gUnk_080E8764
+gUnk_080E8764:
+	.incbin "baserom_jp.gba", 0xE7B94, 0x4
+
+	.global gUnk_080E8768
+gUnk_080E8768:
+	.incbin "baserom_jp.gba", 0xE7B98, 0x8
+
+	.global gUnk_080E8770
+gUnk_080E8770:
+	.incbin "baserom_jp.gba", 0xE7BA0, 0xC
+
+	.global gUnk_080E877C
+gUnk_080E877C:
+	.incbin "baserom_jp.gba", 0xE7BAC, 0x10
+
+	.global gUnk_080E878C
+gUnk_080E878C:
+	.incbin "baserom_jp.gba", 0xE7BBC, 0x18
+
+	.global gUnk_080E87A4
+gUnk_080E87A4:
+	.incbin "baserom_jp.gba", 0xE7BD4, 0x58
+
+	.global gUnk_080E87FC
+gUnk_080E87FC:
+	.incbin "baserom_jp.gba", 0xE7C2C, 0x2C
+
+	.global gUnk_080E8828
+gUnk_080E8828:
+	.incbin "baserom_jp.gba", 0xE7C58, 0x50
+
+	.global gUnk_080E8878
+gUnk_080E8878:
+	.incbin "baserom_jp.gba", 0xE7CA8, 0x50
+
+	.global gUnk_080E88C8
+gUnk_080E88C8:
+	.incbin "baserom_jp.gba", 0xE7CF8, 0x10
+
+	.global gUnk_080E88D8
+gUnk_080E88D8:
+	.incbin "baserom_jp.gba", 0xE7D08, 0x34
+
+	.global gUnk_080E890C
+gUnk_080E890C:
+	.incbin "baserom_jp.gba", 0xE7D3C, 0x8
+
+	.global gUnk_080E8914
+gUnk_080E8914:
+	.incbin "baserom_jp.gba", 0xE7D44, 0x20
+
+	.global gUnk_080E8934
+gUnk_080E8934:
+	.incbin "baserom_jp.gba", 0xE7D64, 0x8
+
+	.global gUnk_080E893C
+gUnk_080E893C:
+	.incbin "baserom_jp.gba", 0xE7D6C, 0x8
+
+	.global gUnk_080E8944
+gUnk_080E8944:
+	.incbin "baserom_jp.gba", 0xE7D74, 0x14
+
+	.global gUnk_080E8958
+gUnk_080E8958:
+	.incbin "baserom_jp.gba", 0xE7D88, 0x10
+
+	.global gUnk_080E8968
+gUnk_080E8968:
+	.incbin "baserom_jp.gba", 0xE7D98, 0x10
+
+	.global gUnk_080E8978
+gUnk_080E8978:
+	.incbin "baserom_jp.gba", 0xE7DA8, 0x10
+
+	.global gUnk_080E8988
+gUnk_080E8988:
+	.incbin "baserom_jp.gba", 0xE7DB8, 0xF
+
+	.global gUnk_080E8997
+gUnk_080E8997:
+	.incbin "baserom_jp.gba", 0xE7DC7, 0x1
+
+	.global gUnk_080E8998
+gUnk_080E8998:
+	.incbin "baserom_jp.gba", 0xE7DC8, 0xC
+
+	.global gUnk_080E89A4
+gUnk_080E89A4:
+	.incbin "baserom_jp.gba", 0xE7DD4, 0x4
+
+	.global gUnk_080E89A8
+gUnk_080E89A8:
+	.incbin "baserom_jp.gba", 0xE7DD8, 0xE
+
+	.global gUnk_080E89B6
+gUnk_080E89B6:
+	.incbin "baserom_jp.gba", 0xE7DE6, 0x22E
+
+	.global gUnk_080E8BE4
+gUnk_080E8BE4:
+	.incbin "baserom_jp.gba", 0xE8014, 0x10
+
+	.global gUnk_080E8BF4
+gUnk_080E8BF4:
+	.incbin "baserom_jp.gba", 0xE8024, 0x8
+
+	.global gUnk_080E8BFC
+gUnk_080E8BFC:
+	.incbin "baserom_jp.gba", 0xE802C, 0x18
+
+	.global gUnk_080E8C14
+gUnk_080E8C14:
+	.incbin "baserom_jp.gba", 0xE8044, 0x18
+
+	.global gUnk_080E8C2C
+gUnk_080E8C2C:
+	.incbin "baserom_jp.gba", 0xE805C, 0x18
+
+	.global gUnk_080E8C44
+gUnk_080E8C44:
+	.incbin "baserom_jp.gba", 0xE8074, 0x4
+
+	.global gUnk_080E8C48
+gUnk_080E8C48:
+	.incbin "baserom_jp.gba", 0xE8078, 0x7C
+
+	.global gUnk_080E8CC4
+gUnk_080E8CC4:
+	.incbin "baserom_jp.gba", 0xE80F4, 0x40
+
+	.global gUnk_080E8D04
+gUnk_080E8D04:
+	.incbin "baserom_jp.gba", 0xE8134, 0x8
+
+	.global gUnk_080E8D0C
+gUnk_080E8D0C:
+	.incbin "baserom_jp.gba", 0xE813C, 0x8
+
+	.global gUnk_080E8D14
+gUnk_080E8D14:
+	.incbin "baserom_jp.gba", 0xE8144, 0x6E4
+
+	.global gUnk_080E93F8
+gUnk_080E93F8:
+	.incbin "baserom_jp.gba", 0xE8828, 0x244
+    .else
+
     .section .rodata
 
 	.global init_array
@@ -194,3 +395,5 @@ gUnk_080E8D14:
 	.global gUnk_080E93F8
 gUnk_080E93F8:
 	.incbin "baserom.gba", 0xE93F8, 0x1D4
+
+    .endif

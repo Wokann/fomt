@@ -1,3 +1,73 @@
+    .ifdef REGION_JP
+    @ JP revision 0 counterpart of asm/code_entities_080320DC.s.
+    @ Entity code has a small number of region-dependent dispatch paths; this
+    @ static JP object preserves every uniquely matched public entry.
+
+    .section .text
+    .syntax unified
+    .thumb
+    .global func_0803242C
+    .thumb_func
+func_0803242C:
+    .incbin "baserom_jp.gba", 0x321C0, 0x28C0
+
+    .global func_080324B8
+    .thumb_set func_080324B8, func_0803242C + 0x8C
+    .global func_080324BC
+    .thumb_set func_080324BC, func_0803242C + 0x90
+    .global func_08032560
+    .thumb_set func_08032560, func_0803242C + 0x134
+    .global func_0803260C
+    .thumb_set func_0803260C, func_0803242C + 0x1E0
+    .global func_08032690
+    .thumb_set func_08032690, func_0803242C + 0x264
+    .global func_08032900
+    .thumb_set func_08032900, func_0803242C + 0x4D4
+    .global func_08032934
+    .thumb_set func_08032934, func_0803242C + 0x508
+    .global func_08032A00
+    .thumb_set func_08032A00, func_0803242C + 0x5D4
+    .global func_08032A30
+    .thumb_set func_08032A30, func_0803242C + 0x604
+    .global func_08032BB4
+    .thumb_set func_08032BB4, func_0803242C + 0x788
+    .global func_080330F4
+    .thumb_set func_080330F4, func_0803242C + 0xCC8
+    .global func_08033584
+    .thumb_set func_08033584, func_0803242C + 0x1158
+    .global func_08033784
+    .thumb_set func_08033784, func_0803242C + 0x1358
+    .global func_08033800
+    .thumb_set func_08033800, func_0803242C + 0x13D4
+    .global func_08033830
+    .thumb_set func_08033830, func_0803242C + 0x1404
+    .global func_08033914
+    .thumb_set func_08033914, func_0803242C + 0x14E8
+    .global func_08033928
+    .thumb_set func_08033928, func_0803242C + 0x14FC
+    .global func_08033B24
+    .thumb_set func_08033B24, func_0803242C + 0x16F8
+    .global func_08033B7C
+    .thumb_set func_08033B7C, func_0803242C + 0x1750
+    .global func_08033B84
+    .thumb_set func_08033B84, func_0803242C + 0x1758
+    .global func_08034180
+    .thumb_set func_08034180, func_0803242C + 0x1D54
+    .global func_08034248
+    .thumb_set func_08034248, func_0803242C + 0x1E1C
+    .global func_08034260
+    .thumb_set func_08034260, func_0803242C + 0x1E34
+    .global func_0803436C
+    .thumb_set func_0803436C, func_0803242C + 0x1F40
+    .global func_08034940
+    .thumb_set func_08034940, func_0803242C + 0x2514
+    .global func_08034A14
+    .thumb_set func_08034A14, func_0803242C + 0x25E8
+    .global func_08034BFC
+    .thumb_set func_08034BFC, func_0803242C + 0x27D0
+    .global func_08034C64
+    .thumb_set func_08034C64, func_0803242C + 0x2838
+    .else
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
 
@@ -4430,8 +4500,9 @@ func_08034C64: @ 0x08034C64
 .L08034CE0:
     movs r0, #0
 .L08034CE2:
-    add sp, #8
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .align 2, 0
+	add sp, #8
+	pop {r4, r5, r6}
+	pop {r1}
+	bx r1
+	.align 2, 0
+    .endif
