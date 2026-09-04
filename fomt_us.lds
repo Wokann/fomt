@@ -185,6 +185,9 @@ SECTIONS
         FILL(0x00);
         data/text/help_menu.o(.rodata.help_menu);
         asm/data/data_080F0348.o(.rodata.help_menu_trailer);
+        FILL(0x00);
+        data/text/animal_memorial.o(.rodata.animal_memorial);
+        . = ALIGN(4); asm/data/data_080F0348.o(.rodata.animal_memorial_trailer);
         FILL(0xFF);
         . = ALIGN(4); src/data_schedules.o(.rodata);
         . = ALIGN(4); asm/data/data_080F1A80.o(.rodata);

@@ -3019,12 +3019,12 @@ func_08011934: @ 0x08011934
     str r0, [sp, #8]
     str r1, [sp, #0xc]
     mov sb, r2
-    ldr r1, .L080119AC @ =gUnk_080F0654
+    ldr r1, .L080119AC @ =gText_AnimalMemorial_LineBreak
     mov r0, sp
     movs r2, #3
     bl memcpy
     add r0, sp, #4
-    ldr r1, .L080119B0 @ =gUnk_080F0658
+    ldr r1, .L080119B0 @ =gText_AnimalMemorial_Continue
     movs r2, #2
     bl memcpy
     movs r0, #1
@@ -3067,10 +3067,10 @@ func_08011934: @ 0x08011934
     str r0, [sp, #0x10]
     b .L080119EA
     .align 2, 0
-.L080119AC: .4byte gUnk_080F0654
-.L080119B0: .4byte gUnk_080F0658
+.L080119AC: .4byte gText_AnimalMemorial_LineBreak
+.L080119B0: .4byte gText_AnimalMemorial_Continue
 .L080119B4:
-    ldr r1, .L08011ABC @ =gUnk_080F0654
+    ldr r1, .L08011ABC @ =gText_AnimalMemorial_LineBreak
     mov r8, r1
     mov r0, sb
     bl strlen
@@ -3128,7 +3128,7 @@ func_08011934: @ 0x08011934
     mov r1, sl
     cmp r1, #2
     bls .L08011A64
-    ldr r7, .L08011AC4 @ =gUnk_080F0658
+    ldr r7, .L08011AC4 @ =gText_AnimalMemorial_Continue
     mov r0, sb
     bl strlen
     mov r2, sb
@@ -3198,11 +3198,11 @@ func_08011934: @ 0x08011934
     str r1, [sp, #0x10]
     b .L08011AFE
     .align 2, 0
-.L08011ABC: .4byte gUnk_080F0654
+.L08011ABC: .4byte gText_AnimalMemorial_LineBreak
 .L08011AC0: .4byte 0x00000383
-.L08011AC4: .4byte gUnk_080F0658
+.L08011AC4: .4byte gText_AnimalMemorial_Continue
 .L08011AC8:
-    ldr r2, .L08011BBC @ =gUnk_080F0654
+    ldr r2, .L08011BBC @ =gText_AnimalMemorial_LineBreak
     mov r8, r2
     mov r0, sb
     bl strlen
@@ -3260,7 +3260,7 @@ func_08011934: @ 0x08011934
     mov r0, sl
     cmp r0, #2
     bls .L08011B78
-    ldr r7, .L08011BC4 @ =gUnk_080F0658
+    ldr r7, .L08011BC4 @ =gText_AnimalMemorial_Continue
     mov r0, sb
     bl strlen
     mov r1, sb
@@ -3321,11 +3321,11 @@ func_08011934: @ 0x08011934
     str r1, [sp, #0x10]
     b .L08011BFE
     .align 2, 0
-.L08011BBC: .4byte gUnk_080F0654
+.L08011BBC: .4byte gText_AnimalMemorial_LineBreak
 .L08011BC0: .4byte 0x00000383
-.L08011BC4: .4byte gUnk_080F0658
+.L08011BC4: .4byte gText_AnimalMemorial_Continue
 .L08011BC8:
-    ldr r2, .L08011CCC @ =gUnk_080F0654
+    ldr r2, .L08011CCC @ =gText_AnimalMemorial_LineBreak
     mov r8, r2
     mov r0, sb
     bl strlen
@@ -3383,7 +3383,7 @@ func_08011934: @ 0x08011934
     mov r0, sl
     cmp r0, #2
     bls .L08011C78
-    ldr r7, .L08011CD4 @ =gUnk_080F0658
+    ldr r7, .L08011CD4 @ =gText_AnimalMemorial_Continue
     mov r0, sb
     bl strlen
     mov r1, sb
@@ -3420,7 +3420,7 @@ func_08011934: @ 0x08011934
     mov r0, sl
     cmp r0, #0
     beq .L08011CBC
-    ldr r7, .L08011CD4 @ =gUnk_080F0658
+    ldr r7, .L08011CD4 @ =gText_AnimalMemorial_Continue
     mov r0, sb
     bl strlen
     mov r1, sb
@@ -3453,9 +3453,9 @@ func_08011934: @ 0x08011934
     pop {r0}
     bx r0
     .align 2, 0
-.L08011CCC: .4byte gUnk_080F0654
+.L08011CCC: .4byte gText_AnimalMemorial_LineBreak
 .L08011CD0: .4byte 0x00000383
-.L08011CD4: .4byte gUnk_080F0658
+.L08011CD4: .4byte gText_AnimalMemorial_Continue
 
     thumb_func_start func_08011CD8
 func_08011CD8: @ 0x08011CD8
@@ -9780,20 +9780,20 @@ func_08014D9C: @ 0x08014D9C
     str r7, [r4]
     mov r0, sp
     strb r7, [r0]
-    ldr r1, .L08015110 @ =gUnk_080F0654
+    ldr r1, .L08015110 @ =gText_AnimalMemorial_LineBreak
     add r0, sp, #0x384
     movs r2, #3
     bl memcpy
-    ldr r1, .L08015114 @ =gUnk_080F0658
+    ldr r1, .L08015114 @ =gText_AnimalMemorial_Continue
     add r0, sp, #0x388
     movs r2, #2
     bl memcpy
-    ldr r1, .L08015118 @ =gUnk_080F065C
+    ldr r1, .L08015118 @ =gText_AnimalMemorial_PageBreak
     add r0, sp, #0x38c
     movs r2, #2
     bl memcpy
     mov sb, sp
-    ldr r0, .L0801511C @ =gUnk_080F0660
+    ldr r0, .L0801511C @ =gText_AnimalMemorial_Header
     mov r8, r0
     mov r0, sp
     bl strlen
@@ -9818,7 +9818,7 @@ func_08014D9C: @ 0x08014D9C
     strb r7, [r0]
 .L08014E16:
     mov r6, sb
-    ldr r0, .L08015110 @ =gUnk_080F0654
+    ldr r0, .L08015110 @ =gText_AnimalMemorial_LineBreak
     mov r8, r0
     adds r0, r6, #0
     bl strlen
@@ -9842,7 +9842,7 @@ func_08014D9C: @ 0x08014D9C
     movs r0, #0
     strb r0, [r1]
 .L08014E4A:
-    ldr r1, .L08015124 @ =gUnk_080F067C
+    ldr r1, .L08015124 @ =gText_AnimalMemorial_FarmPrefix
     mov r8, r1
     adds r0, r6, #0
     bl strlen
@@ -9895,7 +9895,7 @@ func_08014D9C: @ 0x08014D9C
     movs r0, #0
     strb r0, [r1]
 .L08014EBA:
-    ldr r0, .L08015128 @ =gUnk_080F0684
+    ldr r0, .L08015128 @ =gText_AnimalMemorial_FarmSuffix
     mov r8, r0
     adds r0, r6, #0
     bl strlen
@@ -9919,7 +9919,7 @@ func_08014D9C: @ 0x08014D9C
     movs r0, #0
     strb r0, [r1]
 .L08014EEC:
-    ldr r1, .L08015110 @ =gUnk_080F0654
+    ldr r1, .L08015110 @ =gText_AnimalMemorial_LineBreak
     mov r8, r1
     adds r0, r6, #0
     bl strlen
@@ -9943,7 +9943,7 @@ func_08014D9C: @ 0x08014D9C
     movs r0, #0
     strb r0, [r1]
 .L08014F1E:
-    ldr r0, .L0801512C @ =gUnk_080F068C
+    ldr r0, .L0801512C @ =gText_AnimalMemorial_PassedAway
     mov r8, r0
     adds r0, r6, #0
     bl strlen
@@ -9967,7 +9967,7 @@ func_08014D9C: @ 0x08014D9C
     movs r0, #0
     strb r0, [r1]
 .L08014F50:
-    ldr r1, .L08015114 @ =gUnk_080F0658
+    ldr r1, .L08015114 @ =gText_AnimalMemorial_Continue
     mov r8, r1
     adds r0, r6, #0
     bl strlen
@@ -9991,7 +9991,7 @@ func_08014D9C: @ 0x08014D9C
     movs r0, #0
     strb r0, [r1]
 .L08014F82:
-    ldr r0, .L08015110 @ =gUnk_080F0654
+    ldr r0, .L08015110 @ =gText_AnimalMemorial_LineBreak
     mov r8, r0
     adds r0, r6, #0
     bl strlen
@@ -10015,7 +10015,7 @@ func_08014D9C: @ 0x08014D9C
     movs r0, #0
     strb r0, [r1]
 .L08014FB4:
-    ldr r1, .L08015130 @ =gUnk_080F069C
+    ldr r1, .L08015130 @ =gText_AnimalMemorial_NamesIntro
     mov r8, r1
     adds r0, r6, #0
     bl strlen
@@ -10039,7 +10039,7 @@ func_08014D9C: @ 0x08014D9C
     movs r0, #0
     strb r0, [r1]
 .L08014FE6:
-    ldr r0, .L08015114 @ =gUnk_080F0658
+    ldr r0, .L08015114 @ =gText_AnimalMemorial_Continue
     mov r8, r0
     adds r0, r6, #0
     bl strlen
@@ -10063,7 +10063,7 @@ func_08014D9C: @ 0x08014D9C
     movs r0, #0
     strb r0, [r1]
 .L08015018:
-    ldr r1, .L08015110 @ =gUnk_080F0654
+    ldr r1, .L08015110 @ =gText_AnimalMemorial_LineBreak
     mov r8, r1
     adds r0, r6, #0
     bl strlen
@@ -10087,7 +10087,7 @@ func_08014D9C: @ 0x08014D9C
     movs r0, #0
     strb r0, [r1]
 .L0801504A:
-    ldr r7, .L08015118 @ =gUnk_080F065C
+    ldr r7, .L08015118 @ =gText_AnimalMemorial_PageBreak
     adds r0, r6, #0
     bl strlen
     adds r6, r6, r0
@@ -10115,7 +10115,7 @@ func_08014D9C: @ 0x08014D9C
     mov r2, sp
     bl func_08011934
     mov r8, sp
-    ldr r7, .L08015118 @ =gUnk_080F065C
+    ldr r7, .L08015118 @ =gText_AnimalMemorial_PageBreak
     mov r0, sp
     bl strlen
     mov r1, sp
@@ -10140,7 +10140,7 @@ func_08014D9C: @ 0x08014D9C
     strb r0, [r1]
 .L080150B8:
     mov r6, r8
-    ldr r0, .L08015134 @ =gUnk_080F06B4
+    ldr r0, .L08015134 @ =gText_AnimalMemorial_PrayerIntro
     mov r8, r0
     adds r0, r6, #0
     bl strlen
@@ -10164,7 +10164,7 @@ func_08014D9C: @ 0x08014D9C
     movs r0, #0
     strb r0, [r1]
 .L080150EC:
-    ldr r1, .L08015110 @ =gUnk_080F0654
+    ldr r1, .L08015110 @ =gText_AnimalMemorial_LineBreak
     mov r8, r1
     adds r0, r6, #0
     bl strlen
@@ -10180,16 +10180,16 @@ func_08014D9C: @ 0x08014D9C
     b .L08015138
     .align 2, 0
 .L0801510C: .4byte 0xFFFFFC70
-.L08015110: .4byte gUnk_080F0654
-.L08015114: .4byte gUnk_080F0658
-.L08015118: .4byte gUnk_080F065C
-.L0801511C: .4byte gUnk_080F0660
+.L08015110: .4byte gText_AnimalMemorial_LineBreak
+.L08015114: .4byte gText_AnimalMemorial_Continue
+.L08015118: .4byte gText_AnimalMemorial_PageBreak
+.L0801511C: .4byte gText_AnimalMemorial_Header
 .L08015120: .4byte 0x00000383
-.L08015124: .4byte gUnk_080F067C
-.L08015128: .4byte gUnk_080F0684
-.L0801512C: .4byte gUnk_080F068C
-.L08015130: .4byte gUnk_080F069C
-.L08015134: .4byte gUnk_080F06B4
+.L08015124: .4byte gText_AnimalMemorial_FarmPrefix
+.L08015128: .4byte gText_AnimalMemorial_FarmSuffix
+.L0801512C: .4byte gText_AnimalMemorial_PassedAway
+.L08015130: .4byte gText_AnimalMemorial_NamesIntro
+.L08015134: .4byte gText_AnimalMemorial_PrayerIntro
 .L08015138:
     bls .L0801513C
     adds r4, r5, #0
@@ -10202,7 +10202,7 @@ func_08014D9C: @ 0x08014D9C
     movs r0, #0
     strb r0, [r1]
 .L0801514C:
-    ldr r0, .L08015204 @ =gUnk_080F06D0
+    ldr r0, .L08015204 @ =gText_AnimalMemorial_PrayerEnding
     mov r8, r0
     adds r0, r6, #0
     bl strlen
@@ -10226,7 +10226,7 @@ func_08014D9C: @ 0x08014D9C
     movs r0, #0
     strb r0, [r1]
 .L0801517E:
-    ldr r7, .L0801520C @ =gUnk_080F0658
+    ldr r7, .L0801520C @ =gText_AnimalMemorial_Continue
     adds r0, r6, #0
     bl strlen
     adds r6, r6, r0
@@ -10291,9 +10291,9 @@ func_08014D9C: @ 0x08014D9C
     pop {r0}
     bx r0
     .align 2, 0
-.L08015204: .4byte gUnk_080F06D0
+.L08015204: .4byte gText_AnimalMemorial_PrayerEnding
 .L08015208: .4byte 0x00000383
-.L0801520C: .4byte gUnk_080F0658
+.L0801520C: .4byte gText_AnimalMemorial_Continue
 
     thumb_func_start func_08015210
 func_08015210: @ 0x08015210
@@ -10446,20 +10446,20 @@ func_0801531C: @ 0x0801531C
     str r7, [r4]
     mov r0, sp
     strb r7, [r0]
-    ldr r1, .L08015690 @ =gUnk_080F0654
+    ldr r1, .L08015690 @ =gText_AnimalMemorial_LineBreak
     add r0, sp, #0x384
     movs r2, #3
     bl memcpy
-    ldr r1, .L08015694 @ =gUnk_080F0658
+    ldr r1, .L08015694 @ =gText_AnimalMemorial_Continue
     add r0, sp, #0x388
     movs r2, #2
     bl memcpy
-    ldr r1, .L08015698 @ =gUnk_080F065C
+    ldr r1, .L08015698 @ =gText_AnimalMemorial_PageBreak
     add r0, sp, #0x38c
     movs r2, #2
     bl memcpy
     mov sb, sp
-    ldr r0, .L0801569C @ =gUnk_080F0660
+    ldr r0, .L0801569C @ =gText_AnimalMemorial_Header
     mov r8, r0
     mov r0, sp
     bl strlen
@@ -10484,7 +10484,7 @@ func_0801531C: @ 0x0801531C
     strb r7, [r0]
 .L08015396:
     mov r6, sb
-    ldr r0, .L08015690 @ =gUnk_080F0654
+    ldr r0, .L08015690 @ =gText_AnimalMemorial_LineBreak
     mov r8, r0
     adds r0, r6, #0
     bl strlen
@@ -10508,7 +10508,7 @@ func_0801531C: @ 0x0801531C
     movs r0, #0
     strb r0, [r1]
 .L080153CA:
-    ldr r1, .L080156A4 @ =gUnk_080F067C
+    ldr r1, .L080156A4 @ =gText_AnimalMemorial_FarmPrefix
     mov r8, r1
     adds r0, r6, #0
     bl strlen
@@ -10561,7 +10561,7 @@ func_0801531C: @ 0x0801531C
     movs r0, #0
     strb r0, [r1]
 .L0801543A:
-    ldr r0, .L080156A8 @ =gUnk_080F0684
+    ldr r0, .L080156A8 @ =gText_AnimalMemorial_FarmSuffix
     mov r8, r0
     adds r0, r6, #0
     bl strlen
@@ -10585,7 +10585,7 @@ func_0801531C: @ 0x0801531C
     movs r0, #0
     strb r0, [r1]
 .L0801546C:
-    ldr r1, .L08015690 @ =gUnk_080F0654
+    ldr r1, .L08015690 @ =gText_AnimalMemorial_LineBreak
     mov r8, r1
     adds r0, r6, #0
     bl strlen
@@ -10609,7 +10609,7 @@ func_0801531C: @ 0x0801531C
     movs r0, #0
     strb r0, [r1]
 .L0801549E:
-    ldr r0, .L080156AC @ =gUnk_080F068C
+    ldr r0, .L080156AC @ =gText_AnimalMemorial_PassedAway
     mov r8, r0
     adds r0, r6, #0
     bl strlen
@@ -10633,7 +10633,7 @@ func_0801531C: @ 0x0801531C
     movs r0, #0
     strb r0, [r1]
 .L080154D0:
-    ldr r1, .L08015694 @ =gUnk_080F0658
+    ldr r1, .L08015694 @ =gText_AnimalMemorial_Continue
     mov r8, r1
     adds r0, r6, #0
     bl strlen
@@ -10657,7 +10657,7 @@ func_0801531C: @ 0x0801531C
     movs r0, #0
     strb r0, [r1]
 .L08015502:
-    ldr r0, .L08015690 @ =gUnk_080F0654
+    ldr r0, .L08015690 @ =gText_AnimalMemorial_LineBreak
     mov r8, r0
     adds r0, r6, #0
     bl strlen
@@ -10681,7 +10681,7 @@ func_0801531C: @ 0x0801531C
     movs r0, #0
     strb r0, [r1]
 .L08015534:
-    ldr r1, .L080156B0 @ =gUnk_080F069C
+    ldr r1, .L080156B0 @ =gText_AnimalMemorial_NamesIntro
     mov r8, r1
     adds r0, r6, #0
     bl strlen
@@ -10705,7 +10705,7 @@ func_0801531C: @ 0x0801531C
     movs r0, #0
     strb r0, [r1]
 .L08015566:
-    ldr r0, .L08015694 @ =gUnk_080F0658
+    ldr r0, .L08015694 @ =gText_AnimalMemorial_Continue
     mov r8, r0
     adds r0, r6, #0
     bl strlen
@@ -10729,7 +10729,7 @@ func_0801531C: @ 0x0801531C
     movs r0, #0
     strb r0, [r1]
 .L08015598:
-    ldr r1, .L08015690 @ =gUnk_080F0654
+    ldr r1, .L08015690 @ =gText_AnimalMemorial_LineBreak
     mov r8, r1
     adds r0, r6, #0
     bl strlen
@@ -10753,7 +10753,7 @@ func_0801531C: @ 0x0801531C
     movs r0, #0
     strb r0, [r1]
 .L080155CA:
-    ldr r7, .L08015698 @ =gUnk_080F065C
+    ldr r7, .L08015698 @ =gText_AnimalMemorial_PageBreak
     adds r0, r6, #0
     bl strlen
     adds r6, r6, r0
@@ -10781,7 +10781,7 @@ func_0801531C: @ 0x0801531C
     mov r2, sp
     bl func_08011934
     mov r8, sp
-    ldr r7, .L08015698 @ =gUnk_080F065C
+    ldr r7, .L08015698 @ =gText_AnimalMemorial_PageBreak
     mov r0, sp
     bl strlen
     mov r1, sp
@@ -10806,7 +10806,7 @@ func_0801531C: @ 0x0801531C
     strb r0, [r1]
 .L08015638:
     mov r6, r8
-    ldr r0, .L080156B4 @ =gUnk_080F06B4
+    ldr r0, .L080156B4 @ =gText_AnimalMemorial_PrayerIntro
     mov r8, r0
     adds r0, r6, #0
     bl strlen
@@ -10830,7 +10830,7 @@ func_0801531C: @ 0x0801531C
     movs r0, #0
     strb r0, [r1]
 .L0801566C:
-    ldr r1, .L08015690 @ =gUnk_080F0654
+    ldr r1, .L08015690 @ =gText_AnimalMemorial_LineBreak
     mov r8, r1
     adds r0, r6, #0
     bl strlen
@@ -10846,16 +10846,16 @@ func_0801531C: @ 0x0801531C
     b .L080156B8
     .align 2, 0
 .L0801568C: .4byte 0xFFFFFC70
-.L08015690: .4byte gUnk_080F0654
-.L08015694: .4byte gUnk_080F0658
-.L08015698: .4byte gUnk_080F065C
-.L0801569C: .4byte gUnk_080F0660
+.L08015690: .4byte gText_AnimalMemorial_LineBreak
+.L08015694: .4byte gText_AnimalMemorial_Continue
+.L08015698: .4byte gText_AnimalMemorial_PageBreak
+.L0801569C: .4byte gText_AnimalMemorial_Header
 .L080156A0: .4byte 0x00000383
-.L080156A4: .4byte gUnk_080F067C
-.L080156A8: .4byte gUnk_080F0684
-.L080156AC: .4byte gUnk_080F068C
-.L080156B0: .4byte gUnk_080F069C
-.L080156B4: .4byte gUnk_080F06B4
+.L080156A4: .4byte gText_AnimalMemorial_FarmPrefix
+.L080156A8: .4byte gText_AnimalMemorial_FarmSuffix
+.L080156AC: .4byte gText_AnimalMemorial_PassedAway
+.L080156B0: .4byte gText_AnimalMemorial_NamesIntro
+.L080156B4: .4byte gText_AnimalMemorial_PrayerIntro
 .L080156B8:
     bls .L080156BC
     adds r4, r5, #0
@@ -10868,7 +10868,7 @@ func_0801531C: @ 0x0801531C
     movs r0, #0
     strb r0, [r1]
 .L080156CC:
-    ldr r0, .L08015784 @ =gUnk_080F06D0
+    ldr r0, .L08015784 @ =gText_AnimalMemorial_PrayerEnding
     mov r8, r0
     adds r0, r6, #0
     bl strlen
@@ -10892,7 +10892,7 @@ func_0801531C: @ 0x0801531C
     movs r0, #0
     strb r0, [r1]
 .L080156FE:
-    ldr r7, .L0801578C @ =gUnk_080F0658
+    ldr r7, .L0801578C @ =gText_AnimalMemorial_Continue
     adds r0, r6, #0
     bl strlen
     adds r6, r6, r0
@@ -10957,9 +10957,9 @@ func_0801531C: @ 0x0801531C
     pop {r0}
     bx r0
     .align 2, 0
-.L08015784: .4byte gUnk_080F06D0
+.L08015784: .4byte gText_AnimalMemorial_PrayerEnding
 .L08015788: .4byte 0x00000383
-.L0801578C: .4byte gUnk_080F0658
+.L0801578C: .4byte gText_AnimalMemorial_Continue
 
     thumb_func_start func_08015790
 func_08015790: @ 0x08015790
