@@ -21,13 +21,8 @@ char const * const gNewGameMenuLabels[18] = {
     gText_NewGameMenu_Data1,
     gText_NewGameMenu_Data2,
     gText_NewGameMenu_ControlSettings,
-#if defined(REGION_JP)
-    gText_NewGameMenu_Data1,
-    gText_NewGameMenu_Data2,
-#else
     gText_NewGameMenu_ControlOption1,
     gText_NewGameMenu_ControlOption2,
-#endif
     gText_NewGameMenu_ClockDisplay,
     gText_NewGameMenu_Yes,
     gText_NewGameMenu_No,
