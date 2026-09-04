@@ -195,6 +195,9 @@ SECTIONS
         . = ALIGN(4); data/text/not_available.o(.rodata.not_available);
         asm/data/data_080F0348.o(.rodata.not_available_trailer);
         FILL(0x00);
+        . = ALIGN(4); data/text/fixed_labels.o(.rodata.fixed_labels);
+        asm/data/data_080F0348.o(.rodata.fixed_labels_trailer);
+        FILL(0x00);
         . = ALIGN(4); data/text/common/ui_error.o(.rodata.ui_error);
         asm/data/data_080F0348.o(.rodata.ui_error_trailer);
         FILL(0x00);
