@@ -6,7 +6,33 @@
 
     .section .rodata
 jp_data_0813b288_start:
-    .incbin "baserom_jp.gba", 0x13C3CC, 0x643244
+    .incbin "baserom_jp.gba", 0x13C3CC, (0x45C5B4 - 0x13C3CC)
+
+    .global gUnk_086D6458
+gUnk_086D6458:
+    .incbin "baserom_jp.gba", 0x45C5B4, 0xC0
+
+    .global gUnk_086D6518
+gUnk_086D6518:
+    .incbin "baserom_jp.gba", 0x45C674, 0x8
+
+    .global gUnk_086D6520
+gUnk_086D6520:
+    .incbin "baserom_jp.gba", 0x45C67C, 0x8
+
+    .global gUnk_086D6528
+gUnk_086D6528:
+    .incbin "baserom_jp.gba", 0x45C684, 0x20
+
+    .global gUnk_086D6548
+gUnk_086D6548:
+    .incbin "baserom_jp.gba", 0x45C6A4, 0xC0
+
+    .global gUnk_086D6608
+gUnk_086D6608:
+    .incbin "baserom_jp.gba", 0x45C764, 0x90
+
+    .incbin "baserom_jp.gba", 0x45C7F4, (0x77F610 - 0x45C7F4)
     .else
     .section .rodata
 
