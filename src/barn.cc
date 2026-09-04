@@ -5,6 +5,20 @@
 #include <stdlib.h>
 #include <algorithm>
 
+Barn::Barn()
+    : upgrade_level(0),
+      stored_bushel_count(0),
+      unk_1_3(false),
+      unk_1_4(false),
+      stall_bushels(0),
+      pregnancy_stall_bushels(0),
+      unk_3_7(false),
+      unk_cow_age(0),
+      unk_sheep_age(0)
+{
+    fill_n_inl(pregnancy_stall_ent_idx, static_cast<int>(MAX_PREGNANCY_STALL_CAPACITY), -1);
+}
+
 #if defined(REGION_JP)
 /*
  * Byte-exact JP assembly stays in this module.  As matching functions are
@@ -12,20 +26,12 @@
  * only genuinely version-specific definitions inside it.
  */
 asm(
-    "    @ JP revision 0 counterpart of src/barn.cc.\n"
-    "    @\n"
-    "    @ Pregnancy and birth code differs between releases.  Preserve the\n"
-    "    @ independently matched JP implementation while retaining its public C++\n"
-    "    @ entry points for the rest of the object tree.\n"
-    "\n"
+    "    @ JP-only Barn entry points and generated assignment operators.\n"
     "    .section .text\n"
     "    .syntax unified\n"
     "    .thumb\n"
-    "jp_barn_text_start:\n"
-    "    .incbin \"baserom_jp.gba\", 0xCD9C, 0x9C\n"
+    "    .thumb_set jp_barn_text_start, __4Barn\n"
     "\n"
-    "    .global __4Barn\n"
-    "    .thumb_set __4Barn, jp_barn_text_start + 0x000\n"
     "    .global method_0800D074__C4BarnUi\n"
     "    .thumb_set method_0800D074__C4BarnUi, jp_barn_text_start + 0x2B8\n"
     "    .global GetFreePregnancyStall__C4Barn\n"
@@ -77,25 +83,10 @@ asm(
     "__as__3CowRC3Cow:\n"
     "    .incbin \"baserom_jp.gba\", 0xD737C, 0x7C\n"
     "\n"
+    "    .section .text\n"
     "    @ Keep later shared C++ emission in agbcp's default syntax mode.\n"
     "    .syntax divided\n"
 );
-#else
-
-Barn::Barn()
-    : upgrade_level(0),
-      stored_bushel_count(0),
-      unk_1_3(false),
-      unk_1_4(false),
-      stall_bushels(0),
-      pregnancy_stall_bushels(0),
-      unk_3_7(false),
-      unk_cow_age(0),
-      unk_sheep_age(0)
-{
-    fill_n_inl(pregnancy_stall_ent_idx, static_cast<int>(MAX_PREGNANCY_STALL_CAPACITY), -1);
-}
-
 #endif // REGION_JP
 
 Vec2 Barn::method_0800CE58()
