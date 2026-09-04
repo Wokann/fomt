@@ -5604,6 +5604,118 @@ func_080D67C8: @ 0x080D67C8
 .L080D6848: .4byte 0xFFE01FFF
 
 	.section ".text.code_080D68C0"
+    .ifdef REGION_JP
+    @ JP revision 0 C++ helper block.  The JP implementations are matched as
+    @ one original linker section so their intra-section calls stay intact.
+    .section .text.code_080D68C0
+    .syntax unified
+    .thumb
+jp_code_linkonce_080d68c0_start:
+    .incbin "baserom_jp.gba", 0xD6078, 0x1290
+
+    .global func_080D68C0
+    .thumb_set func_080D68C0, jp_code_linkonce_080d68c0_start + 0x000
+    .global func_080D6A80
+    .thumb_set func_080D6A80, jp_code_linkonce_080d68c0_start + 0x1C0
+    .global func_080D6B00
+    .thumb_set func_080D6B00, jp_code_linkonce_080d68c0_start + 0x240
+    .global func_080D6B40
+    .thumb_set func_080D6B40, jp_code_linkonce_080d68c0_start + 0x280
+    .global func_080D6C08
+    .thumb_set func_080D6C08, jp_code_linkonce_080d68c0_start + 0x348
+    .global func_080D6C58
+    .thumb_set func_080D6C58, jp_code_linkonce_080d68c0_start + 0x398
+    .global func_080D6D8C
+    .thumb_set func_080D6D8C, jp_code_linkonce_080d68c0_start + 0x4CC
+    .global func_080D6D98
+    .thumb_set func_080D6D98, jp_code_linkonce_080d68c0_start + 0x4D8
+    .global func_080D6DB8
+    .thumb_set func_080D6DB8, jp_code_linkonce_080d68c0_start + 0x4F8
+    .global func_080D6E98
+    .thumb_set func_080D6E98, jp_code_linkonce_080d68c0_start + 0x5D8
+    .global func_080D6EAC
+    .thumb_set func_080D6EAC, jp_code_linkonce_080d68c0_start + 0x5EC
+    .global func_080D6ECC
+    .thumb_set func_080D6ECC, jp_code_linkonce_080d68c0_start + 0x60C
+    .global func_080D6EEC
+    .thumb_set func_080D6EEC, jp_code_linkonce_080d68c0_start + 0x62C
+    .global func_080D6F0C
+    .thumb_set func_080D6F0C, jp_code_linkonce_080d68c0_start + 0x64C
+    .global func_080D6F1C
+    .thumb_set func_080D6F1C, jp_code_linkonce_080d68c0_start + 0x65C
+    .global func_080D6F3C
+    .thumb_set func_080D6F3C, jp_code_linkonce_080d68c0_start + 0x67C
+    .global func_080D6F5C
+    .thumb_set func_080D6F5C, jp_code_linkonce_080d68c0_start + 0x69C
+    .global func_080D6F7C
+    .thumb_set func_080D6F7C, jp_code_linkonce_080d68c0_start + 0x6BC
+    .global func_080D7014
+    .thumb_set func_080D7014, jp_code_linkonce_080d68c0_start + 0x754
+    .global func_080D7094
+    .thumb_set func_080D7094, jp_code_linkonce_080d68c0_start + 0x7D4
+    .global func_080D7118
+    .thumb_set func_080D7118, jp_code_linkonce_080d68c0_start + 0x858
+    .global func_080D71AC
+    .thumb_set func_080D71AC, jp_code_linkonce_080d68c0_start + 0x8EC
+    .global func_080D7240
+    .thumb_set func_080D7240, jp_code_linkonce_080d68c0_start + 0x980
+    .global func_080D72C4
+    .thumb_set func_080D72C4, jp_code_linkonce_080d68c0_start + 0xA04
+    .global func_080D734C
+    .thumb_set func_080D734C, jp_code_linkonce_080d68c0_start + 0xA8C
+    .global func_080D73E4
+    .thumb_set func_080D73E4, jp_code_linkonce_080d68c0_start + 0xB24
+    .global func_080D7480
+    .thumb_set func_080D7480, jp_code_linkonce_080d68c0_start + 0xBC0
+    .global func_080D74F0
+    .thumb_set func_080D74F0, jp_code_linkonce_080d68c0_start + 0xC30
+    .global func_080D7568
+    .thumb_set func_080D7568, jp_code_linkonce_080d68c0_start + 0xCA8
+    .global func_080D75E0
+    .thumb_set func_080D75E0, jp_code_linkonce_080d68c0_start + 0xD20
+    .global func_080D7634
+    .thumb_set func_080D7634, jp_code_linkonce_080d68c0_start + 0xD74
+    .global func_080D7678
+    .thumb_set func_080D7678, jp_code_linkonce_080d68c0_start + 0xDB8
+    .global func_080D76C0
+    .thumb_set func_080D76C0, jp_code_linkonce_080d68c0_start + 0xE00
+    .global func_080D770C
+    .thumb_set func_080D770C, jp_code_linkonce_080d68c0_start + 0xE4C
+    .global func_080D772C
+    .thumb_set func_080D772C, jp_code_linkonce_080d68c0_start + 0xE6C
+    .global func_080D780C
+    .thumb_set func_080D780C, jp_code_linkonce_080d68c0_start + 0xF4C
+    .global func_080D781C
+    .thumb_set func_080D781C, jp_code_linkonce_080d68c0_start + 0xF5C
+    .global func_080D782C
+    .thumb_set func_080D782C, jp_code_linkonce_080d68c0_start + 0xF6C
+    .global func_080D7868
+    .thumb_set func_080D7868, jp_code_linkonce_080d68c0_start + 0xFA8
+    .global func_080D7874
+    .thumb_set func_080D7874, jp_code_linkonce_080d68c0_start + 0xFB4
+    .global func_080D7880
+    .thumb_set func_080D7880, jp_code_linkonce_080d68c0_start + 0xFC0
+    .global func_080D78E0
+    .thumb_set func_080D78E0, jp_code_linkonce_080d68c0_start + 0x1020
+    .global func_080D78F8
+    .thumb_set func_080D78F8, jp_code_linkonce_080d68c0_start + 0x1038
+    .global func_080D7944
+    .thumb_set func_080D7944, jp_code_linkonce_080d68c0_start + 0x1084
+    .global func_080D79CC
+    .thumb_set func_080D79CC, jp_code_linkonce_080d68c0_start + 0x110C
+    .global func_080D7AAC
+    .thumb_set func_080D7AAC, jp_code_linkonce_080d68c0_start + 0x11EC
+    .global func_080D7AD4
+    .thumb_set func_080D7AD4, jp_code_linkonce_080d68c0_start + 0x1214
+    .global func_080D7B04
+    .thumb_set func_080D7B04, jp_code_linkonce_080d68c0_start + 0x1244
+    .global func_080D7B2C
+    .thumb_set func_080D7B2C, jp_code_linkonce_080d68c0_start + 0x126C
+    .global func_080D7B38
+    .thumb_set func_080D7B38, jp_code_linkonce_080d68c0_start + 0x1278
+    .global func_080D7B44
+    .thumb_set func_080D7B44, jp_code_linkonce_080d68c0_start + 0x1284
+    .else
 
 	thumb_func_start func_080D68C0
 func_080D68C0: @ 0x080D68C0
@@ -8040,7 +8152,84 @@ func_080D7B44: @ 0x080D7B44
 	bx r0
 	.align 2, 0
 
+    .endif
 	.section ".text.code_080D7CFC"
+
+    .ifdef REGION_JP
+    @ JP revision 0 counterpart of .text.code_080D7CFC.
+    @
+    @ Each range ends at a statically verified JP function entry.  The
+    @ anchors preserve original public names where their US prefix has a
+    @ unique, ordered match in the JP ROM.  This is checked source data, not
+    @ a build-time ROM splitter.
+
+    .syntax unified
+    .thumb
+
+    .macro jp_linkonce_d7_func name, start, end
+        .global \name
+        .thumb_func
+\name:
+        .incbin "baserom_jp.gba", \start, (\end - \start)
+    .endm
+
+    jp_linkonce_d7_func func_080D7E64, 0xD761C, 0xD76C0
+    jp_linkonce_d7_func func_080D7F08, 0xD76C0, 0xD76F4
+    jp_linkonce_d7_func func_080D7F3C, 0xD76F4, 0xD7754
+    jp_linkonce_d7_func func_080D7F9C, 0xD7754, 0xDA8A0
+    jp_linkonce_d7_func func_080DB0EC, 0xDA8A0, 0xDA998
+    jp_linkonce_d7_func func_080DB1E4, 0xDA998, 0xDB3C0
+    jp_linkonce_d7_func func_080DBC0C, 0xDB3C0, 0xDB81C
+    jp_linkonce_d7_func func_080DC068, 0xDB81C, 0xDBA68
+    jp_linkonce_d7_func func_080DC2B4, 0xDBA68, 0xDBB14
+    jp_linkonce_d7_func func_080DC360, 0xDBB14, 0xDBB54
+    jp_linkonce_d7_func func_080DC3A0, 0xDBB54, 0xDBE30
+    jp_linkonce_d7_func func_080DC67C, 0xDBE30, 0xDBF18
+    jp_linkonce_d7_func func_080DC764, 0xDBF18, 0xDBFF4
+    jp_linkonce_d7_func func_080DC840, 0xDBFF4, 0xDC330
+    jp_linkonce_d7_func func_080DCB7C, 0xDC330, 0xDC4E0
+    jp_linkonce_d7_func func_080DCD2C, 0xDC4E0, 0xDC564
+    jp_linkonce_d7_func func_080DCDB0, 0xDC564, 0xDC700
+    jp_linkonce_d7_func func_080DCF4C, 0xDC700, 0xDC794
+    jp_linkonce_d7_func func_080DCFE0, 0xDC794, 0xDCBC4
+    jp_linkonce_d7_func func_080DD410, 0xDCBC4, 0xDCC14
+    jp_linkonce_d7_func func_080DD460, 0xDCC14, 0xDCCA4
+    jp_linkonce_d7_func func_080DD4F0, 0xDCCA4, 0xDCD48
+    jp_linkonce_d7_func func_080DD594, 0xDCD48, 0xDCD98
+    jp_linkonce_d7_func func_080DD5E4, 0xDCD98, 0xDCF48
+    jp_linkonce_d7_func func_080DD794, 0xDCF48, 0xDD020
+    jp_linkonce_d7_func func_080DD86C, 0xDD020, 0xDD0F8
+    jp_linkonce_d7_func func_080DD944, 0xDD0F8, 0xDD148
+    jp_linkonce_d7_func func_080DD994, 0xDD148, 0xDD180
+    jp_linkonce_d7_func func_080DD9CC, 0xDD180, 0xDD3D8
+    jp_linkonce_d7_func func_080DDC24, 0xDD3D8, 0xDD42C
+    jp_linkonce_d7_func func_080DDC78, 0xDD42C, 0xDD628
+    jp_linkonce_d7_func func_080DDE74, 0xDD628, 0xDD6CC
+    jp_linkonce_d7_func func_080DDF18, 0xDD6CC, 0xDD770
+    jp_linkonce_d7_func func_080DDFBC, 0xDD770, 0xDD810
+    jp_linkonce_d7_func func_080DE05C, 0xDD810, 0xDD8E8
+    jp_linkonce_d7_func func_080DE134, 0xDD8E8, 0xDD938
+    jp_linkonce_d7_func func_080DE184, 0xDD938, 0xDD968
+    jp_linkonce_d7_func func_080DE1B4, 0xDD968, 0xDDA4C
+    jp_linkonce_d7_func func_080DE298, 0xDDA4C, 0xDF848
+    jp_linkonce_d7_func func_080E0094, 0xDF848, 0xE00A8
+    jp_linkonce_d7_func func_080E0908, 0xE00A8, 0xE0184
+    jp_linkonce_d7_func func_080E09E4, 0xE0184, 0xE01A8
+    jp_linkonce_d7_func func_080E0A08, 0xE01A8, 0xE0620
+    jp_linkonce_d7_func func_080E0E80, 0xE0620, 0xE0654
+
+    @ Static JP aliases for calls from unchanged objects.
+    .global func_080D7ECC
+    .thumb_set func_080D7ECC, func_080D7E64 + 0x68
+    .global func_080DC96C
+    .thumb_set func_080DC96C, func_080D7E64 + 0x4B04
+    .global func_080E0C38
+    .thumb_set func_080E0C38, func_080D7E64 + 0x8DBC
+    .global func_080E0A94
+    .thumb_set func_080E0A94, func_080D7E64 + 0x8C18
+    .global func_080E0D70
+    .thumb_set func_080E0D70, func_080D7E64 + 0x8EF4
+    .else
 
 	thumb_func_start func_080D7E64
 func_080D7E64: @ 0x080D7E64
@@ -25858,7 +26047,90 @@ func_080E0E80: @ 0x080E0E80
 	pop {r1}
 	bx r1
 
+    .endif
 	.section ".text.code_080E0EF0"
+
+    .ifdef REGION_JP
+    @ JP revision 0 counterpart of .text.code_080E0EF0.
+    @
+    @ Ranges are bounded by statically verified JP function entries.  The
+    @ trailing boundary is the independently matched start of the JP vtable
+    @ region.  No build-time splitter generates this source.
+
+    .syntax unified
+    .thumb
+
+    .macro jp_linkonce_e0_func name, start, end
+        .global \name
+        .thumb_func
+\name:
+        .incbin "baserom_jp.gba", \start, (\end - \start)
+    .endm
+
+    jp_linkonce_e0_func func_080E0EF0, 0xE0690, 0xE06E8
+    jp_linkonce_e0_func func_080E0F48, 0xE06E8, 0xE0730
+    jp_linkonce_e0_func func_080E0F90, 0xE0730, 0xE07FC
+    jp_linkonce_e0_func func_080E105C, 0xE07FC, 0xE088C
+    jp_linkonce_e0_func func_080E10EC, 0xE088C, 0xE08E8
+    jp_linkonce_e0_func func_080E1148, 0xE08E8, 0xE092C
+    jp_linkonce_e0_func func_080E118C, 0xE092C, 0xE098C
+    jp_linkonce_e0_func func_080E11EC, 0xE098C, 0xE0C58
+    jp_linkonce_e0_func func_080E14B8, 0xE0C58, 0xE0FE4
+    jp_linkonce_e0_func func_080E1844, 0xE0FE4, 0xE1044
+    jp_linkonce_e0_func func_080E18A4, 0xE1044, 0xE1144
+    jp_linkonce_e0_func func_080E19A4, 0xE1144, 0xE1198
+    jp_linkonce_e0_func func_080E19F8, 0xE1198, 0xE1210
+    jp_linkonce_e0_func func_080E1A70, 0xE1210, 0xE1410
+    jp_linkonce_e0_func func_080E1C70, 0xE1410, 0xE14F4
+    jp_linkonce_e0_func func_080E1D54, 0xE14F4, 0xE174C
+    jp_linkonce_e0_func func_080E1FAC, 0xE174C, 0xE17B8
+    jp_linkonce_e0_func func_080E2018, 0xE17B8, 0xE1834
+    jp_linkonce_e0_func func_080E2094, 0xE1834, 0xE1910
+    jp_linkonce_e0_func func_080E2170, 0xE1910, 0xE1948
+    jp_linkonce_e0_func func_080E21A8, 0xE1948, 0xE1980
+    jp_linkonce_e0_func func_080E21E0, 0xE1980, 0xE1AF4
+    jp_linkonce_e0_func func_080E2354, 0xE1AF4, 0xE1D9C
+    jp_linkonce_e0_func func_080E25FC, 0xE1D9C, 0xE22C8
+    jp_linkonce_e0_func func_080E2B28, 0xE22C8, 0xE2354
+    jp_linkonce_e0_func func_080E2BB4, 0xE2354, 0xE2644
+    jp_linkonce_e0_func func_080E2EA4, 0xE2644, 0xE2714
+    jp_linkonce_e0_func func_080E2F74, 0xE2714, 0xE27F4
+    jp_linkonce_e0_func func_080E3054, 0xE27F4, 0xE2B38
+    jp_linkonce_e0_func func_080E3398, 0xE2B38, 0xE2CA4
+    jp_linkonce_e0_func func_080E3504, 0xE2CA4, 0xE2E54
+    jp_linkonce_e0_func func_080E36B4, 0xE2E54, 0xE2ED0
+    jp_linkonce_e0_func func_080E3730, 0xE2ED0, 0xE2F14
+    jp_linkonce_e0_func func_080E3774, 0xE2F14, 0xE2F74
+    jp_linkonce_e0_func func_080E37DC, 0xE2F74, 0xE300C
+    jp_linkonce_e0_func func_080E3874, 0xE300C, 0xE3048
+    jp_linkonce_e0_func func_080E38B0, 0xE3048, 0xE3078
+    jp_linkonce_e0_func func_080E38E0, 0xE3078, 0xE3184
+    jp_linkonce_e0_func func_080E39EC, 0xE3184, 0xE3234
+    jp_linkonce_e0_func func_080E3A9C, 0xE3234, 0xE3318
+    jp_linkonce_e0_func func_080E3B80, 0xE3318, 0xE33D4
+    jp_linkonce_e0_func func_080E3C3C, 0xE33D4, 0xE3634
+    jp_linkonce_e0_func func_080E3E9C, 0xE3634, 0xE36D8
+    jp_linkonce_e0_func func_080E3F40, 0xE36D8, 0xE3838
+    jp_linkonce_e0_func func_080E40A0, 0xE3838, 0xE3B50
+    jp_linkonce_e0_func func_080E43B8, 0xE3B50, 0xE3B94
+    jp_linkonce_e0_func func_080E43FC, 0xE3B94, 0xE3BD0
+    jp_linkonce_e0_func func_080E4438, 0xE3BD0, 0xE3CFC
+    jp_linkonce_e0_func func_080E4564, 0xE3CFC, 0xE3FF8
+    jp_linkonce_e0_func func_080E4860, 0xE3FF8, 0xE40D8
+    jp_linkonce_e0_func func_080E4940, 0xE40D8, 0xE44E8
+    jp_linkonce_e0_func func_080E4D50, 0xE44E8, 0xE4788
+    jp_linkonce_e0_func func_080E4FF0, 0xE4788, 0xE4BC4
+    jp_linkonce_e0_func func_080E542C, 0xE4BC4, 0xE4CAC
+    jp_linkonce_e0_func func_080E586C, 0xE4CAC, 0xE4CD8
+    jp_linkonce_e0_func func_080E5898, 0xE4CD8, 0xE4E0C
+
+    @ Paired target entries preserve the original order after matching JP
+    @ prefixes; aliases keep the raw counterpart's byte layout intact.
+    .global func_080E3DB4
+    .thumb_set func_080E3DB4, func_080E0EF0 + 0x2EBC
+    .global func_080E3E28
+    .thumb_set func_080E3E28, func_080E0EF0 + 0x2F30
+    .else
 
 	thumb_func_start func_080E0EF0
 func_080E0EF0: @ 0x080E0EF0
@@ -35466,3 +35738,5 @@ func_080E59C0: @ 0x080E59C0
 	pop {r0}
 	bx r0
 .align 2, 0
+
+    .endif

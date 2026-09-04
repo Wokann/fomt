@@ -1,3 +1,84 @@
+    .ifdef REGION_JP
+    @ JP revision 0 M4A driver core.
+    .section .text
+    .syntax unified
+    .thumb
+jp_m4a_1_start:
+    .incbin "baserom_jp.gba", 0xD0D4C, 0xC1C
+
+    .global MultByQ32
+    .thumb_set MultByQ32, jp_m4a_1_start
+    .global SoundMain
+    .thumb_set SoundMain, jp_m4a_1_start + 0x010
+    .global SoundMainRam_load
+    .thumb_set SoundMainRam_load, jp_m4a_1_start + 0x094
+    .global RealClear64byte
+    .thumb_set RealClear64byte, jp_m4a_1_start + 0x438
+    .global RealClearChain
+    .thumb_set RealClearChain, jp_m4a_1_start + 0x450
+    .global ply_fine
+    .thumb_set ply_fine, jp_m4a_1_start + 0x470
+    .global MPlayJumpTableCopy
+    .thumb_set MPlayJumpTableCopy, jp_m4a_1_start + 0x4A0
+    .global ld_r3_tp_adr_i
+    .thumb_set ld_r3_tp_adr_i, jp_m4a_1_start + 0x4D4
+    .global st_r2_inc_pt_cmd_ptr
+    .thumb_set st_r2_inc_pt_cmd_ptr, jp_m4a_1_start + 0x4D6
+    .global ply_goto
+    .thumb_set ply_goto, jp_m4a_1_start + 0x4E0
+    .global ply_goto_inner
+    .thumb_set ply_goto_inner, jp_m4a_1_start + 0x4E2
+    .global ply_patt
+    .thumb_set ply_patt, jp_m4a_1_start + 0x500
+    .global ply_pend
+    .thumb_set ply_pend, jp_m4a_1_start + 0x51C
+    .global ply_rept
+    .thumb_set ply_rept, jp_m4a_1_start + 0x530
+    .global ply_prio
+    .thumb_set ply_prio, jp_m4a_1_start + 0x560
+    .global ply_tempo
+    .thumb_set ply_tempo, jp_m4a_1_start + 0x56C
+    .global ply_keysh
+    .thumb_set ply_keysh, jp_m4a_1_start + 0x580
+    .global ply_voice
+    .thumb_set ply_voice, jp_m4a_1_start + 0x594
+    .global ply_vol
+    .thumb_set ply_vol, jp_m4a_1_start + 0x5C4
+    .global ply_pan
+    .thumb_set ply_pan, jp_m4a_1_start + 0x5D8
+    .global ply_bend
+    .thumb_set ply_bend, jp_m4a_1_start + 0x5EC
+    .global ply_bendr
+    .thumb_set ply_bendr, jp_m4a_1_start + 0x600
+    .global ply_lfodl
+    .thumb_set ply_lfodl, jp_m4a_1_start + 0x614
+    .global ply_modt
+    .thumb_set ply_modt, jp_m4a_1_start + 0x620
+    .global ply_tune
+    .thumb_set ply_tune, jp_m4a_1_start + 0x638
+    .global ply_port
+    .thumb_set ply_port, jp_m4a_1_start + 0x64C
+    .global m4aSoundVSync
+    .thumb_set m4aSoundVSync, jp_m4a_1_start + 0x664
+    .global MPlayMain
+    .thumb_set MPlayMain, jp_m4a_1_start + 0x6B0
+    .global TrackStop
+    .thumb_set TrackStop, jp_m4a_1_start + 0x918
+    .global ChnVolSetAsm
+    .thumb_set ChnVolSetAsm, jp_m4a_1_start + 0x95C
+    .global ply_note
+    .thumb_set ply_note, jp_m4a_1_start + 0x98C
+    .global ply_endtie
+    .thumb_set ply_endtie, jp_m4a_1_start + 0xB8C
+    .global clear_mod_m
+    .thumb_set clear_mod_m, jp_m4a_1_start + 0xBCC
+    .global ld_r3_tp_adr_i_unchecked
+    .thumb_set ld_r3_tp_adr_i_unchecked, jp_m4a_1_start + 0xBE8
+    .global ply_lfos
+    .thumb_set ply_lfos, jp_m4a_1_start + 0xBF4
+    .global ply_mod
+    .thumb_set ply_mod, jp_m4a_1_start + 0xC08
+    .else
     .include "six/asm/prelude.s"
     .include "six/asm/hw/sound.s"
     .include "six/asm/hw/video.s"
@@ -1978,3 +2059,4 @@ _081DDAFC:
     endfn @ ply_mod
 
     .align 2, 0
+    .endif

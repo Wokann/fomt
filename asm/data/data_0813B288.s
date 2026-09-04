@@ -1,3 +1,13 @@
+    .ifdef REGION_JP
+    @ JP revision 0 counterpart of data_0813B288.s.
+    @
+    @ The original object is an asset-only incbin container.  JP retains that
+    @ object boundary while using its independently matched JP asset range.
+
+    .section .rodata
+jp_data_0813b288_start:
+    .incbin "baserom_jp.gba", 0x13C3CC, 0x643244
+    .else
     .section .rodata
 
     .LDATA_BEG = 0x13B288
@@ -1139,3 +1149,4 @@ gUnk_0875A440:
 	.global gUnk_0875B444
 gUnk_0875B444:
 	.incbin "baserom.gba", 0x75B444, 0x5B4
+    .endif

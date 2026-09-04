@@ -1,3 +1,38 @@
+    .ifdef REGION_JP
+    @ JP revision 0 counterpart of asm/intro_scene.s.
+    @ The title/intro flow contains localized presentation data and is kept as
+    @ one verified JP block, while matched public entries retain their names.
+
+    .section .text
+    .syntax unified
+    .thumb
+    .global func_08000914
+    .thumb_func
+func_08000914:
+    .incbin "baserom_jp.gba", 0x914, 0x2E74
+
+    .global func_08000D64
+    .thumb_set func_08000D64, func_08000914 + 0x450
+    .global func_08000F5C
+    .thumb_set func_08000F5C, func_08000914 + 0x648
+    .global func_08000FF8
+    .thumb_set func_08000FF8, func_08000914 + 0x6E4
+    .global func_080019D8
+    .thumb_set func_080019D8, func_08000914 + 0x10C4
+    .global func_080024E0
+    .thumb_set func_080024E0, func_08000914 + 0x1BCC
+    .global func_080035C0
+    .thumb_set func_080035C0, func_08000914 + 0x2CCC
+    .global func_080036F8
+    .thumb_set func_080036F8, func_08000914 + 0x2E04
+    .global func_0800371C
+    .thumb_set func_0800371C, func_08000914 + 0x2E28
+    .global func_0800374C
+    .thumb_set func_0800374C, func_08000914 + 0x2E58
+
+    @ JP has an additional aligned tail before the next source object.
+    .incbin "baserom_jp.gba", 0x3788, 0x18
+    .else
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
 
@@ -5479,9 +5514,10 @@ func_0800374C: @ 0x0800374C
     movs r1, #3
     bl _call_via_r2
 .L0800377C:
-    adds r0, r4, #0
-    add sp, #0xc
-    pop {r4}
-    pop {r1}
-    bx r1
-    .align 2, 0
+	adds r0, r4, #0
+	add sp, #0xc
+	pop {r4}
+	pop {r1}
+	bx r1
+	.align 2, 0
+    .endif

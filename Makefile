@@ -4,7 +4,7 @@
 # = PROJECT CONFIG =
 # ==================
 
-BUILD_NAME := fomt
+include config.mk
 
 INCLUDE_DIRS := \
   tools/agbcc/include \
@@ -14,7 +14,7 @@ INCLUDE_DIRS := \
 SRC_DIR = src
 ASM_DIR = asm
 DATA_ASM_DIR = asm/data
-BUILD_DIR = build
+BUILD_DIR = build/$(REGION_DIR)
 
 # ====================
 # = TOOL DEFINITIONS =
@@ -51,21 +51,21 @@ OLD_CC1  := tools/agbcc/bin/old_agbcc$(EXE)
 
 INCFLAGS     := $(foreach dir, $(INCLUDE_DIRS), -I "$(dir)")
 
-CPPFLAGS := $(INCFLAGS) -iquote . -iquote include -Wno-trigraphs -fno-exceptions
+CPPFLAGS := $(INCFLAGS) -iquote . -iquote include -Wno-trigraphs -fno-exceptions -D$(REGION_DEFINE)=1
 CFLAGS   := -g -mthumb-interwork -Wimplicit -Wparentheses -Werror -O2 -fhex-asm
 CXXFLAGS := -quiet -fno-exceptions -fno-rtti -fvtable-thunks $(CFLAGS)
-ASFLAGS  := $(INCFLAGS) -I . -I include -mcpu=arm7tdmi
+ASFLAGS  := $(INCFLAGS) -I . -I include -mcpu=arm7tdmi --defsym $(REGION_DEFINE)=1
 
 ROM := $(BUILD_NAME).gba
 ELF := $(ROM:.gba=.elf)
 MAP := $(ROM:.gba=.map)
-LDS := $(BUILD_NAME).lds
 
 C_SRCS := $(wildcard $(SRC_DIR)/*.c $(SRC_DIR)/rt/*.c)
 C_OBJS := $(C_SRCS:%.c=$(BUILD_DIR)/%.o)
 
 CXX_SRCS := $(wildcard $(SRC_DIR)/*.cc $(SRC_DIR)/rt/*.cc)
 CXX_OBJS := $(CXX_SRCS:%.cc=$(BUILD_DIR)/%.o)
+
 
 ASM_SRCS := $(wildcard $(SRC_DIR)/*.s $(ASM_DIR)/*.s)
 ASM_OBJS := $(ASM_SRCS:%.s=$(BUILD_DIR)/%.o)
@@ -83,10 +83,18 @@ $(shell mkdir -p $(SUBDIRS))
 # = RECIPES =
 # ===========
 
+fomt_us:
+	@$(MAKE) GAME_REGION=US GAME_REVISION=0 compare
+
+fomt_jp:
+	@$(MAKE) GAME_REGION=JP GAME_REVISION=0 compare
+
+# Both regional targets build and verify their corresponding base ROM.
+
 compare: $(ROM)
 	sha1sum -c $(BUILD_NAME).sha1
 
-.PHONY: compare
+.PHONY: fomt_us fomt_jp compare
 
 # ROM from ELF
 %.gba: %.elf
@@ -95,7 +103,7 @@ compare: $(ROM)
 # ELF
 $(ELF): $(ALL_OBJS) $(LDS)
 	@echo "LD $(LDS) $(ALL_OBJS:$(BUILD_DIR)/%=%)"
-	@cd $(BUILD_DIR) && $(LD) -T ../$(LDS) -Map ../$(MAP) -L../tools/agbcc/lib -lgcc -lc $(ALL_OBJS:$(BUILD_DIR)/%=%) -o ../$@
+	@cd $(BUILD_DIR) && $(LD) -T $(LDS_LINK_PATH) -Map ../../$(MAP) -L../../tools/agbcc/lib -lgcc -lc $(ALL_OBJS:$(BUILD_DIR)/%=%) -o ../../$@
 	@$(STRIP) -N .gcc2_compiled. $(ELF)
 
 # C dependency file
@@ -106,7 +114,7 @@ $(BUILD_DIR)/%.d: %.c
 $(BUILD_DIR)/%.o: %.c $(BUILD_DIR)/%.d
 	@echo "CC $<"
 	@$(CPP) $(CPPFLAGS) $< | $(CC1) $(CFLAGS) -o $(BUILD_DIR)/$*.s
-	@tools/scripts/align_sections.sh $(BUILD_DIR)/$*.s
+	@sed 's/\r$$//' tools/scripts/align_sections.sh | bash -s -- $(BUILD_DIR)/$*.s
 	@$(AS) $(ASFLAGS) $(BUILD_DIR)/$*.s -o $@ 
 
 # C++ dependency file
@@ -117,7 +125,7 @@ $(BUILD_DIR)/%.d: %.cc
 $(BUILD_DIR)/%.o: %.cc $(BUILD_DIR)/%.d
 	@echo "CP $<"
 	@$(CPP) $(CPPFLAGS) $< | ($(CC1PLUS) $(CXXFLAGS) -o $(BUILD_DIR)/$*.s || false)
-	@tools/scripts/align_sections.sh $(BUILD_DIR)/$*.s
+	@sed 's/\r$$//' tools/scripts/align_sections.sh | bash -s -- $(BUILD_DIR)/$*.s
 	@$(AS) $(ASFLAGS) $(BUILD_DIR)/$*.s -o $@
 
 # ASM dependency file (dummy, generated with the object)
@@ -135,7 +143,7 @@ $(BUILD_DIR)/src/m4a.o: CC1 := $(OLD_CC1)
 clean:
 	@echo "RM $(ROM) $(ELF) $(MAP) $(BUILD_DIR)"
 	@rm -f $(ROM) $(ELF) $(MAP) 
-	@rm -r $(BUILD_DIR)/
+	@rm -rf $(BUILD_DIR)/
 
 .PHONY: clean
 

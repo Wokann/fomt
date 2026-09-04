@@ -1,3 +1,256 @@
+    .ifdef REGION_JP
+    @ JP revision 0 counterpart of asm/code_0803EE94.s.
+    @
+    @ Each range ends at a statically matched JP function boundary.  The
+    @ public initial entry uses the linked JP object start; following entries
+    @ use a unique 12-byte US/JP prefix match and retain the original symbol.
+    @ This source is static: the build does not generate or run a splitter.
+
+    .section .text
+    .syntax unified
+    .thumb
+
+    .macro jp_code_0803ee_func name, start, end
+        .global \name
+        .thumb_func
+\name:
+        .incbin "baserom_jp.gba", \start, (\end - \start)
+    .endm
+    jp_code_0803ee_func func_0803F8DC, 0x3F704, 0x451F8
+    jp_code_0803ee_func func_08045584, 0x451F8, 0x4524C
+    jp_code_0803ee_func func_080455D8, 0x4524C, 0x45734
+    jp_code_0803ee_func VarGet__12ScriptEngineUi, 0x45734, 0x48E14
+    jp_code_0803ee_func sub_08048FEC, 0x48E14, 0x48E24
+    jp_code_0803ee_func VarSet__12ScriptEngineUii, 0x48E24, 0x4DF20
+    jp_code_0803ee_func func_0804E0F8, 0x4DF20, 0x4E200
+    jp_code_0803ee_func func_0804E3D8, 0x4E200, 0x4E2D4
+    jp_code_0803ee_func func_0804E4AC, 0x4E2D4, 0x4E5C8
+    jp_code_0803ee_func func_0804E7A0, 0x4E5C8, 0x4E604
+    jp_code_0803ee_func func_0804E7DC, 0x4E604, 0x4E7F4
+    jp_code_0803ee_func func_0804E9CC, 0x4E7F4, 0x4E81C
+    jp_code_0803ee_func func_0804E9F4, 0x4E81C, 0x4E880
+    jp_code_0803ee_func func_0804EA58, 0x4E880, 0x4E8BC
+    jp_code_0803ee_func func_0804EA94, 0x4E8BC, 0x4EAAC
+    jp_code_0803ee_func func_0804EC84, 0x4EAAC, 0x4EC88
+    jp_code_0803ee_func func_0804EEFC, 0x4EC88, 0x4ECAC
+    jp_code_0803ee_func func_0804EF20, 0x4ECAC, 0x4EDEC
+    jp_code_0803ee_func func_0804F060, 0x4EDEC, 0x4EEE8
+    jp_code_0803ee_func func_0804F15C, 0x4EEE8, 0x4EF00
+    jp_code_0803ee_func func_0804F174, 0x4EF00, 0x4EF04
+    jp_code_0803ee_func func_0804F178, 0x4EF04, 0x4EF28
+    jp_code_0803ee_func func_0804F19C, 0x4EF28, 0x4F428
+    jp_code_0803ee_func func_0804F69C, 0x4F428, 0x4F530
+    jp_code_0803ee_func func_0804F7A4, 0x4F530, 0x50128
+    jp_code_0803ee_func func_0805039C, 0x50128, 0x50170
+    jp_code_0803ee_func func_080503E4, 0x50170, 0x50188
+    jp_code_0803ee_func func_080503FC, 0x50188, 0x5019C
+    jp_code_0803ee_func func_08050410, 0x5019C, 0x501B0
+    jp_code_0803ee_func func_08050424, 0x501B0, 0x5055C
+    jp_code_0803ee_func func_080507D0, 0x5055C, 0x50584
+    jp_code_0803ee_func func_080507F8, 0x50584, 0x505F4
+    jp_code_0803ee_func func_08050868, 0x505F4, 0x508C8
+    jp_code_0803ee_func func_08050B3C, 0x508C8, 0x509A4
+    jp_code_0803ee_func func_08050C18, 0x509A4, 0x509B8
+    jp_code_0803ee_func func_08050C2C, 0x509B8, 0x509F0
+    jp_code_0803ee_func func_08050C64, 0x509F0, 0x50A98
+    jp_code_0803ee_func func_08050D0C, 0x50A98, 0x50AC0
+    jp_code_0803ee_func func_08050D34, 0x50AC0, 0x50AE8
+    jp_code_0803ee_func func_08050D5C, 0x50AE8, 0x50AF4
+    jp_code_0803ee_func func_08050D68, 0x50AF4, 0x50B00
+    jp_code_0803ee_func func_08050D74, 0x50B00, 0x50B0C
+    jp_code_0803ee_func func_08050D80, 0x50B0C, 0x50B18
+    jp_code_0803ee_func func_08050D8C, 0x50B18, 0x50B2C
+    jp_code_0803ee_func func_08050DA0, 0x50B2C, 0x50B40
+    jp_code_0803ee_func func_08050DB4, 0x50B40, 0x50B54
+    jp_code_0803ee_func func_08050DC8, 0x50B54, 0x50B64
+    jp_code_0803ee_func func_08050DD8, 0x50B64, 0x50B70
+    jp_code_0803ee_func func_08050DE4, 0x50B70, 0x50B7C
+    jp_code_0803ee_func func_08050DF0, 0x50B7C, 0x50B98
+    jp_code_0803ee_func func_08050E0C, 0x50B98, 0x50BDC
+    jp_code_0803ee_func func_08050E50, 0x50BDC, 0x50BE8
+    jp_code_0803ee_func func_08050E5C, 0x50BE8, 0x50BF4
+    jp_code_0803ee_func func_08050E68, 0x50BF4, 0x50C00
+    jp_code_0803ee_func func_08050E74, 0x50C00, 0x50C0C
+    jp_code_0803ee_func func_08050E80, 0x50C0C, 0x50C18
+    jp_code_0803ee_func func_08050E8C, 0x50C18, 0x511C8
+    jp_code_0803ee_func func_0805143C, 0x511C8, 0x52068
+    jp_code_0803ee_func func_080522D8, 0x52068, 0x52078
+    jp_code_0803ee_func func_080522E8, 0x52078, 0x536F0
+    jp_code_0803ee_func func_08053960, 0x536F0, 0x54AC4
+    jp_code_0803ee_func func_08054D34, 0x54AC4, 0x55654
+    jp_code_0803ee_func func_080558C4, 0x55654, 0x57914
+    jp_code_0803ee_func func_08057B84, 0x57914, 0x57AC4
+    jp_code_0803ee_func func_08057D34, 0x57AC4, 0x57C20
+    jp_code_0803ee_func func_08057E90, 0x57C20, 0x57CB4
+    jp_code_0803ee_func func_08057F24, 0x57CB4, 0x57CDC
+    jp_code_0803ee_func func_08057F4C, 0x57CDC, 0x59D6C
+    jp_code_0803ee_func func_08059FE0, 0x59D6C, 0x5A17C
+    jp_code_0803ee_func func_0805A3F0, 0x5A17C, 0x5A458
+    jp_code_0803ee_func func_0805A6E4, 0x5A458, 0x5CCB8
+    jp_code_0803ee_func func_0805CF70, 0x5CCB8, 0x5D968
+    jp_code_0803ee_func func_0805DC24, 0x5D968, 0x5DB68
+    jp_code_0803ee_func func_0805DE24, 0x5DB68, 0x5DCAC
+    jp_code_0803ee_func func_0805DF68, 0x5DCAC, 0x5E410
+    jp_code_0803ee_func func_0805E6CC, 0x5E410, 0x5E4A4
+    jp_code_0803ee_func func_0805E760, 0x5E4A4, 0x5E4D4
+    jp_code_0803ee_func func_0805E790, 0x5E4D4, 0x5E568
+    jp_code_0803ee_func func_0805E824, 0x5E568, 0x5E594
+    jp_code_0803ee_func func_0805E850, 0x5E594, 0x5E5A4
+    jp_code_0803ee_func func_0805E860, 0x5E5A4, 0x5E5D8
+    jp_code_0803ee_func func_0805E894, 0x5E5D8, 0x5E634
+    jp_code_0803ee_func func_0805E8F0, 0x5E634, 0x5E968
+    jp_code_0803ee_func func_0805EC24, 0x5E968, 0x5EA90
+    jp_code_0803ee_func func_0805ED4C, 0x5EA90, 0x5EB88
+    jp_code_0803ee_func func_0805EE44, 0x5EB88, 0x5F8FC
+    jp_code_0803ee_func func_0805FBB8, 0x5F8FC, 0x5FABC
+    jp_code_0803ee_func func_0805FD78, 0x5FABC, 0x5FC58
+    jp_code_0803ee_func func_0805FF14, 0x5FC58, 0x61B44
+    jp_code_0803ee_func sub_08061E00, 0x61B44, 0x63B3C
+    jp_code_0803ee_func func_08063E04, 0x63B3C, 0x64050
+    jp_code_0803ee_func func_08064320, 0x64050, 0x64320
+    jp_code_0803ee_func func_080645F0, 0x64320, 0x65844
+    jp_code_0803ee_func sub_08065B14, 0x65844, 0x69AC8
+    jp_code_0803ee_func func_08069C34, 0x69AC8, 0x6D6C0
+    jp_code_0803ee_func func_0806D8C8, 0x6D6C0, 0x6D740
+    jp_code_0803ee_func func_0806D948, 0x6D740, 0x6D788
+    jp_code_0803ee_func func_0806D990, 0x6D788, 0x6E474
+    jp_code_0803ee_func func_0806E78C, 0x6E474, 0x6E7CC
+    jp_code_0803ee_func func_0806EB70, 0x6E7CC, 0x6E884
+    jp_code_0803ee_func func_0806EC28, 0x6E884, 0x6EDC4
+    jp_code_0803ee_func func_0806F168, 0x6EDC4, 0x6FD9C
+    jp_code_0803ee_func func_08070140, 0x6FD9C, 0x707CC
+    jp_code_0803ee_func func_08070B70, 0x707CC, 0x70880
+    jp_code_0803ee_func func_08070C24, 0x70880, 0x708E4
+    jp_code_0803ee_func func_08070C88, 0x708E4, 0x70A40
+    jp_code_0803ee_func func_08070DE4, 0x70A40, 0x71008
+    jp_code_0803ee_func func_080713AC, 0x71008, 0x71014
+    jp_code_0803ee_func func_080713B8, 0x71014, 0x71F34
+    jp_code_0803ee_func func_080722DC, 0x71F34, 0x74F84
+    jp_code_0803ee_func func_08075328, 0x74F84, 0x750AC
+    jp_code_0803ee_func func_08075450, 0x750AC, 0x750F8
+    jp_code_0803ee_func func_0807549C, 0x750F8, 0x75824
+    jp_code_0803ee_func func_08075BC8, 0x75824, 0x758E4
+    jp_code_0803ee_func func_08075C88, 0x758E4, 0x75A14
+    jp_code_0803ee_func func_08075DB8, 0x75A14, 0x75A30
+    jp_code_0803ee_func func_08075DD4, 0x75A30, 0x75A80
+    jp_code_0803ee_func func_08075E24, 0x75A80, 0x76600
+    jp_code_0803ee_func func_080769A0, 0x76600, 0x767C4
+    jp_code_0803ee_func func_08076B64, 0x767C4, 0x767F4
+    jp_code_0803ee_func func_08076B94, 0x767F4, 0x76840
+    jp_code_0803ee_func func_08076BE0, 0x76840, 0x7684C
+    jp_code_0803ee_func func_08076BEC, 0x7684C, 0x76A44
+    jp_code_0803ee_func func_08076E0C, 0x76A44, 0x77020
+    jp_code_0803ee_func func_080773E8, 0x77020, 0x7753C
+    jp_code_0803ee_func func_080779B4, 0x7753C, 0x775A4
+    jp_code_0803ee_func func_08077A1C, 0x775A4, 0x777C8
+    jp_code_0803ee_func func_08077C40, 0x777C8, 0x77960
+    jp_code_0803ee_func func_08077DD8, 0x77960, 0x779BC
+    jp_code_0803ee_func func_08077E34, 0x779BC, 0x779EC
+    jp_code_0803ee_func func_08077E64, 0x779EC, 0x77A48
+    jp_code_0803ee_func func_08077EC0, 0x77A48, 0x77E4C
+    jp_code_0803ee_func func_080782C4, 0x77E4C, 0x77E74
+    jp_code_0803ee_func func_080782EC, 0x77E74, 0x78150
+    jp_code_0803ee_func func_080785C8, 0x78150, 0x793E8
+    jp_code_0803ee_func func_08079860, 0x793E8, 0x79E54
+    jp_code_0803ee_func func_0807A2AC, 0x79E54, 0x7A2B0
+    jp_code_0803ee_func func_0807A708, 0x7A2B0, 0x7A420
+    jp_code_0803ee_func func_0807A878, 0x7A420, 0x7AB1C
+    jp_code_0803ee_func func_0807AF78, 0x7AB1C, 0x7AB98
+    jp_code_0803ee_func func_0807AFF4, 0x7AB98, 0x7B498
+    jp_code_0803ee_func func_0807B8F4, 0x7B498, 0x7BA18
+    jp_code_0803ee_func func_0807BE74, 0x7BA18, 0x7D910
+    jp_code_0803ee_func func_0807DDA8, 0x7D910, 0x7D9A4
+    jp_code_0803ee_func func_0807DE3C, 0x7D9A4, 0x7E020
+    jp_code_0803ee_func func_0807E4B8, 0x7E020, 0x7E9EC
+    jp_code_0803ee_func func_0807EE84, 0x7E9EC, 0x7F158
+    jp_code_0803ee_func func_0807F5F0, 0x7F158, 0x7F1EC
+    jp_code_0803ee_func func_0807F684, 0x7F1EC, 0x7F250
+    jp_code_0803ee_func func_0807F6E8, 0x7F250, 0x80034
+    jp_code_0803ee_func func_080804CC, 0x80034, 0x809E0
+    jp_code_0803ee_func func_08080E68, 0x809E0, 0x80C80
+    jp_code_0803ee_func func_08081108, 0x80C80, 0x81628
+    jp_code_0803ee_func func_08081AB0, 0x81628, 0x81CFC
+    jp_code_0803ee_func func_08082184, 0x81CFC, 0x81D48
+    jp_code_0803ee_func func_080821D0, 0x81D48, 0x81DDC
+    jp_code_0803ee_func func_08082264, 0x81DDC, 0x82614
+    jp_code_0803ee_func func_08082A9C, 0x82614, 0x8278C
+    jp_code_0803ee_func func_08082C14, 0x8278C, 0x827EC
+    jp_code_0803ee_func func_08082C74, 0x827EC, 0x82864
+    jp_code_0803ee_func func_08082CEC, 0x82864, 0x835F4
+    jp_code_0803ee_func func_08083A7C, 0x835F4, 0x836A4
+    jp_code_0803ee_func func_08083B2C, 0x836A4, 0x83BC8
+    jp_code_0803ee_func func_08084050, 0x83BC8, 0x83C6C
+    jp_code_0803ee_func func_080840F4, 0x83C6C, 0x850E0
+    jp_code_0803ee_func func_08085568, 0x850E0, 0x853E4
+    jp_code_0803ee_func func_0808586C, 0x853E4, 0x85A3C
+    jp_code_0803ee_func func_08085EC4, 0x85A3C, 0x85A64
+    jp_code_0803ee_func func_08085EEC, 0x85A64, 0x86420
+    jp_code_0803ee_func sub_080868A8, 0x86420, 0x8645C
+    jp_code_0803ee_func func_080868E4, 0x8645C, 0x86518
+    jp_code_0803ee_func func_080869A0, 0x86518, 0x86580
+    jp_code_0803ee_func func_08086A08, 0x86580, 0x880EC
+    jp_code_0803ee_func func_080885AC, 0x880EC, 0x886E0
+    jp_code_0803ee_func func_08088BA0, 0x886E0, 0x8A768
+    jp_code_0803ee_func func_0808AC28, 0x8A768, 0x8B5A0
+    jp_code_0803ee_func func_0808BA60, 0x8B5A0, 0x8B754
+    jp_code_0803ee_func func_0808BC14, 0x8B754, 0x8C11C
+    jp_code_0803ee_func func_0808C5DC, 0x8C11C, 0x8C380
+    jp_code_0803ee_func func_0808C840, 0x8C380, 0x8C434
+    jp_code_0803ee_func func_0808C8F4, 0x8C434, 0x8EAA8
+    jp_code_0803ee_func func_0808EF68, 0x8EAA8, 0x9040C
+    jp_code_0803ee_func func_080908CC, 0x9040C, 0x90A04
+    jp_code_0803ee_func func_08090EC4, 0x90A04, 0x90A20
+    jp_code_0803ee_func func_08090EE0, 0x90A20, 0x90A98
+    jp_code_0803ee_func func_08090F58, 0x90A98, 0x90B0C
+    jp_code_0803ee_func func_08090FCC, 0x90B0C, 0x90F60
+    jp_code_0803ee_func func_08091420, 0x90F60, 0x90FE0
+    jp_code_0803ee_func func_080914A0, 0x90FE0, 0x920D0
+    jp_code_0803ee_func func_08092604, 0x920D0, 0x92170
+    jp_code_0803ee_func func_080926A4, 0x92170, 0x9253C
+    jp_code_0803ee_func func_08092A70, 0x9253C, 0x9279C
+    jp_code_0803ee_func func_08092CD0, 0x9279C, 0x92CEC
+    jp_code_0803ee_func func_08093220, 0x92CEC, 0x92DD4
+    jp_code_0803ee_func func_08093308, 0x92DD4, 0x93594
+    jp_code_0803ee_func func_08093AC8, 0x93594, 0x935A0
+    jp_code_0803ee_func func_08093AD4, 0x935A0, 0x93700
+    jp_code_0803ee_func func_08093C3C, 0x93700, 0x93A74
+    jp_code_0803ee_func func_08093FB0, 0x93A74, 0x93AC4
+    jp_code_0803ee_func func_08094000, 0x93AC4, 0x93C6C
+    jp_code_0803ee_func func_080941A8, 0x93C6C, 0x93F10
+    jp_code_0803ee_func func_0809444C, 0x93F10, 0x93F6C
+    jp_code_0803ee_func func_080944A8, 0x93F6C, 0x9410C
+    jp_code_0803ee_func func_08094648, 0x9410C, 0x942D8
+    jp_code_0803ee_func func_08094814, 0x942D8, 0x94438
+    jp_code_0803ee_func func_08094974, 0x94438, 0x94510
+    jp_code_0803ee_func func_08094A3C, 0x94510, 0x94A40
+    jp_code_0803ee_func func_08094F6C, 0x94A40, 0x969A4
+    jp_code_0803ee_func func_08096EE8, 0x969A4, 0x977F4
+    jp_code_0803ee_func func_08097D38, 0x977F4, 0x984A4
+    jp_code_0803ee_func func_080989DC, 0x984A4, 0x99E18
+    jp_code_0803ee_func func_0809A3E0, 0x99E18, 0x9A2E4
+    jp_code_0803ee_func func_0809A8AC, 0x9A2E4, 0x9A3A8
+    jp_code_0803ee_func func_0809A970, 0x9A3A8, 0x9A3F8
+    jp_code_0803ee_func func_0809A9C0, 0x9A3F8, 0x9A460
+    jp_code_0803ee_func func_0809AA28, 0x9A460, 0x9A490
+    jp_code_0803ee_func func_0809AA58, 0x9A490, 0x9A50C
+    jp_code_0803ee_func func_0809AAD4, 0x9A50C, 0x9A540
+    jp_code_0803ee_func func_0809AB08, 0x9A540, 0x9A5C4
+    jp_code_0803ee_func func_0809AB8C, 0x9A5C4, 0x9A610
+    jp_code_0803ee_func func_0809ABD8, 0x9A610, 0x9A6F8
+    jp_code_0803ee_func func_0809ACC0, 0x9A6F8, 0x9A7E0
+    jp_code_0803ee_func func_0809ADA8, 0x9A7E0, 0x9AA50
+    jp_code_0803ee_func func_0809B018, 0x9AA50, 0x9AA70
+    jp_code_0803ee_func func_0809B038, 0x9AA70, 0x9AB3C
+
+    @ JP entries referenced by static US callers.
+    .global func_0805E99C
+    .thumb_set func_0805E99C, func_0803F8DC + 0x1EFDC
+    .global func_08051320
+    .thumb_set func_08051320, func_0803F8DC + 0x119A8
+    .global func_0804E8F0
+    .thumb_set func_0804E8F0, func_0803F8DC + 0xF014
+    .else
+
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
 
@@ -2936,7 +3189,7 @@ func_0803F8DC: @ 0x0803F8DC
 	str r0, [r4]
 .L08041180:
 	adds r0, r5, #0
-	bl func_0804590C
+	bl VarGet__12ScriptEngineUi
 	adds r2, r0, #0
 	bl .L08045166
 .L0804118C:
@@ -2966,7 +3219,7 @@ func_0803F8DC: @ 0x0803F8DC
 	str r0, [r4]
 .L080411BA:
 	adds r0, r5, #0
-	bl func_08048FFC
+	bl VarSet__12ScriptEngineUii
 	bl .L08045572
 .L080411C4:
 	adds r2, r5, #0
@@ -11840,8 +12093,8 @@ func_08045638: @ 0x08045638
 	.align 2, 0
 .L08045908: .4byte 0x00001CD4
 
-	thumb_func_start func_0804590C
-func_0804590C: @ 0x0804590C
+	thumb_func_start VarGet__12ScriptEngineUi
+VarGet__12ScriptEngineUi: @ 0x0804590C
 	push {r4, r5, lr}
 	mov r5, r8
 	push {r5}
@@ -12136,7 +12389,7 @@ func_0804590C: @ 0x0804590C
 	.4byte .L080477AC @ case 272
 	.4byte .L080477C0 @ case 273
 	.4byte .L080477D4 @ case 274
-	.4byte .L080477E8 @ case 275
+	.4byte .L080477E8 @ case 275: unknown boolean prerequisite
 	.4byte .L080477FC @ case 276
 	.4byte .L08047810 @ case 277
 	.4byte .L08047824 @ case 278
@@ -12284,7 +12537,7 @@ func_0804590C: @ 0x0804590C
 	.4byte .L08048344 @ case 420
 	.4byte .L08048358 @ case 421
 	.4byte .L0804836C @ case 422
-	.4byte .L08048380 @ case 423
+	.4byte .L08048380 @ case 423: unknown daily-reset boolean
 	.4byte .L08048394 @ case 424
 	.4byte .L080483A4 @ case 425
 	.4byte .L080483C0 @ case 426
@@ -15102,6 +15355,8 @@ sub_08047766: @ 0x08047766
 	.align 2, 0
 .L080477E4: .4byte 0x0000217C
 .L080477E8:
+	@ Variable 275: farm save +0x217C bit 7.  Ellen's yarn-gift script
+	@ requires it to be clear, but no vanilla script identifies its owner.
 	movs r1, #0xd4
 	lsls r1, r1, #2
 	adds r0, r2, r1
@@ -16460,6 +16715,8 @@ sub_08047766: @ 0x08047766
 	.align 2, 0
 .L0804837C: .4byte 0x000021A0
 .L08048380:
+	@ Variable 423: farm save +0x21A0 bit 4.  The daily world-state reset
+	@ clears it; adjacency does not establish a Harvest Festival meaning.
 	movs r1, #0xd4
 	lsls r1, r1, #2
 	adds r0, r2, r1
@@ -18143,8 +18400,8 @@ sub_08048FEC: @ 0x08048FEC
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_08048FFC
-func_08048FFC: @ 0x08048FFC
+	thumb_func_start VarSet__12ScriptEngineUii
+VarSet__12ScriptEngineUii: @ 0x08048FFC
 	push {r4, r5, r6, r7, lr}
 	mov r7, sb
 	mov r6, r8
@@ -18153,7 +18410,7 @@ func_08048FFC: @ 0x08048FFC
 	adds r7, r0, #0
 	mov r8, r1
 	adds r6, r2, #0
-	bl func_0804590C
+	bl VarGet__12ScriptEngineUi
 	mov sb, r0
 	mov r1, r8
 	subs r1, #0x1c
@@ -18418,7 +18675,7 @@ func_08048FFC: @ 0x08048FFC
 	.4byte .L0804B43C @ case 244
 	.4byte .L0804B45C @ case 245
 	.4byte .L0804B47C @ case 246
-	.4byte .L0804B49C @ case 247
+	.4byte .L0804B49C @ case 247: variable 275 (id - 0x1C)
 	.4byte .L0804B4B8 @ case 248
 	.4byte .L0804B4DC @ case 249
 	.4byte .L0804B4FC @ case 250
@@ -18566,7 +18823,7 @@ func_08048FFC: @ 0x08048FFC
 	.4byte .L0804C5D8 @ case 392
 	.4byte .L0804C5FC @ case 393
 	.4byte .L0804C61C @ case 394
-	.4byte .L0804C63C @ case 395
+	.4byte .L0804C63C @ case 395: variable 423 (id - 0x1C)
 	.4byte .L0804C65C @ case 396
 	.4byte .L0804C67C @ case 397
 	.4byte .L0804C6A0 @ case 398
@@ -22240,6 +22497,7 @@ func_08048FFC: @ 0x08048FFC
 	.align 2, 0
 .L0804B498: .4byte 0x0000217C
 .L0804B49C:
+	@ Variable 275: preserve bits 0-6 and replace bit 7.
 	movs r1, #0xd4
 	lsls r1, r1, #2
 	adds r0, r7, r1
@@ -24428,6 +24686,7 @@ func_08048FFC: @ 0x08048FFC
 	.align 2, 0
 .L0804C638: .4byte 0x000021A0
 .L0804C63C:
+	@ Variable 423: preserve all other bits and replace bit 4 with one-bit input.
 	movs r1, #0xd4
 	lsls r1, r1, #2
 	adds r0, r7, r1
@@ -26985,7 +27244,7 @@ func_08048FFC: @ 0x08048FFC
 .L0804DA2E:
 	adds r0, r7, #0
 	mov r1, r8
-	bl func_0804590C
+	bl VarGet__12ScriptEngineUi
 	adds r2, r0, #0
 	mov r1, r8
 	subs r1, #0x46
@@ -27209,7 +27468,7 @@ func_08048FFC: @ 0x08048FFC
 	.4byte .L0804E08C @ case 202
 	.4byte .L0804E08C @ case 203
 	.4byte .L0804E08C @ case 204
-	.4byte .L0804E0E6 @ case 205
+	.4byte .L0804E0E6 @ case 205: variable 275 has no post-write side effect
 	.4byte .L0804E08C @ case 206
 	.4byte .L0804E08C @ case 207
 	.4byte .L0804E08C @ case 208
@@ -27357,7 +27616,7 @@ func_08048FFC: @ 0x08048FFC
 	.4byte .L0804E08C @ case 350
 	.4byte .L0804E0E6 @ case 351
 	.4byte .L0804E0E6 @ case 352
-	.4byte .L0804E0E6 @ case 353
+	.4byte .L0804E0E6 @ case 353: variable 423 has no post-write side effect
 	.4byte .L0804E08C @ case 354
 	.4byte .L0804E0E6 @ case 355
 	.4byte .L0804E08C @ case 356
@@ -179481,3 +179740,5 @@ func_0809B0D8: @ 0x0809B0D8
 	pop {r1}
 	bx r1
 	.align 2, 0
+
+    .endif

@@ -8,6 +8,49 @@ It builds the following ROM:
 
 [fomt.gba]: https://datomatic.no-intro.org/index.php?page=show_record&s=23&n=1249
 
+## Region selection
+
+The build configuration follows the `pokeruby` multi-version model. Select a
+target with `GAME_REGION=US` or `GAME_REGION=JP`; `GAME_REVISION=0` is currently
+the only verified revision. The default remains US, and each region uses a
+separate object directory (`build/us` or `build/jp`). The older lowercase
+`REGION=us/jp` spelling remains available as a compatibility alias.
+
+```sh
+make REGION=us compare
+make fomt_us
+make fomt_jp
+```
+
+The build defines exactly one of `REGION_US` and `REGION_JP`.  A recovered
+function belongs in one owning C/C++ or assembly module: shared code is kept
+outside the conditional, and only a real difference is placed under
+`#if defined(REGION_JP)` / `#else` (or assembler `.ifdef REGION_JP`).  Do not
+create a separate region-specific executable object tree.
+
+Some JP functions are not semantic source yet.  Their bounded, byte-exact
+assembly is kept directly in the owning `.cc` file's `REGION_JP` branch with
+file-scope `asm()`.  It is not a second source file or compilation unit.  As
+functions are recovered, move common definitions out of the guard and leave
+only the verified regional body inside it.
+
+Large content blocks use the opposite hierarchy: domain first, then version.
+For example, scripts live in `data/scripts/us` and `data/scripts/jp`, while
+layout fragments live in `data/layout/us` and `data/layout/jp` behind their
+small selectors (`data/scripts.inc` and `data/layout.inc`).  Add text,
+graphics, and other future regional assets in the same `data/<domain>/<us|jp>`
+form; do not split executable code that way.
+
+Script bytecode and its referenced text are treated as one region-specific
+block when the text differs substantially.  `data/scripts.inc` is the shared
+selector for the complete blocks under `data/scripts/us` and
+`data/scripts/jp`; matching opcodes alone are not enough to share a
+script block.
+
+JP revision 0 has a verified linker layout and an exact build target.  The JP
+ROM remains an ignored local comparison baseline: use only bounded,
+documented source fragments where necessary, never a whole-ROM `incbin`.
+
 ## Setting up
 
 See [INSTALL.md](./INSTALL.md).

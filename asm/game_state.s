@@ -1,3 +1,240 @@
+    .ifdef REGION_JP
+    @ JP revision 0 counterpart of asm/game_state.s.
+    @
+    @ The US module is 0x274 bytes longer.  This file keeps the existing
+    @ object path while selecting static JP ROM ranges at matched boundaries.
+    @ Exported entry points are additionally checked from JP call targets.
+    @ Nothing here is generated during the build.
+
+    .section .text
+    .syntax unified
+    .thumb
+
+    .macro jp_game_state_chunk start, end
+        .incbin "baserom_jp.gba", \start, (\end - \start)
+    .endm
+
+    .global func_08010348
+    .thumb_func
+func_08010348:
+    jp_game_state_chunk 0x10328, 0x10338
+
+    .global func_08010358
+    .thumb_func
+func_08010358:
+    jp_game_state_chunk 0x10338, 0x10E28
+
+    .global func_08010E48
+    .thumb_func
+func_08010E48:
+    jp_game_state_chunk 0x10E28, 0x10E30
+
+    .global func_08010E50
+    .thumb_func
+func_08010E50:
+    jp_game_state_chunk 0x10E30, 0x10E38
+
+    .global func_08010E58
+    .thumb_func
+func_08010E58:
+    jp_game_state_chunk 0x10E38, 0x10E40
+
+    .global func_08010E60
+    .thumb_func
+func_08010E60:
+    jp_game_state_chunk 0x10E40, 0x10E48
+
+    .global func_08010E68
+    .thumb_func
+func_08010E68:
+    jp_game_state_chunk 0x10E48, 0x10EE4
+
+    .global func_08010F04
+    .thumb_func
+func_08010F04:
+    jp_game_state_chunk 0x10EE4, 0x10EEC
+    jp_game_state_chunk 0x10EEC, 0x10EFC
+    jp_game_state_chunk 0x10EFC, 0x10F04
+    jp_game_state_chunk 0x10F04, 0x10F10
+    jp_game_state_chunk 0x10F10, 0x10F1C
+    jp_game_state_chunk 0x10F1C, 0x10F28
+    jp_game_state_chunk 0x10F28, 0x10F34
+    jp_game_state_chunk 0x10F34, 0x113EC
+    jp_game_state_chunk 0x113EC, 0x11438
+    jp_game_state_chunk 0x11438, 0x11444
+
+    .global func_08011464
+    .thumb_func
+func_08011464:
+    jp_game_state_chunk 0x11444, 0x11478
+
+    .global func_08011498
+    .thumb_func
+func_08011498:
+    jp_game_state_chunk 0x11478, 0x114A8
+
+    .global func_080114C8
+    .thumb_func
+func_080114C8:
+    jp_game_state_chunk 0x114A8, 0x114D8
+    jp_game_state_chunk 0x114D8, 0x114F0
+    jp_game_state_chunk 0x114F0, 0x11504
+    jp_game_state_chunk 0x11504, 0x11524
+    jp_game_state_chunk 0x11524, 0x11530
+    jp_game_state_chunk 0x11530, 0x11548
+    jp_game_state_chunk 0x11548, 0x11568
+    jp_game_state_chunk 0x11568, 0x11590
+    jp_game_state_chunk 0x11590, 0x11914
+
+    jp_game_state_chunk 0x11914, 0x11CB8
+
+    .global func_08011CD8
+    .thumb_func
+func_08011CD8:
+    jp_game_state_chunk 0x11CB8, 0x11DA4
+
+    .global func_08011DC4
+    .thumb_func
+func_08011DC4:
+    jp_game_state_chunk 0x11DA4, 0x11EB8
+    jp_game_state_chunk 0x11EB8, 0x11F34
+    jp_game_state_chunk 0x11F34, 0x12094
+    jp_game_state_chunk 0x12094, 0x1210C
+    jp_game_state_chunk 0x1210C, 0x12144
+    jp_game_state_chunk 0x12144, 0x1225C
+    jp_game_state_chunk 0x1225C, 0x1229C
+    jp_game_state_chunk 0x1229C, 0x12334
+    jp_game_state_chunk 0x12334, 0x123A0
+    jp_game_state_chunk 0x123A0, 0x124BC
+    jp_game_state_chunk 0x124BC, 0x1255C
+    jp_game_state_chunk 0x1255C, 0x1258C
+    jp_game_state_chunk 0x1258C, 0x125B4
+    jp_game_state_chunk 0x125B4, 0x12730
+    jp_game_state_chunk 0x12730, 0x127A0
+    jp_game_state_chunk 0x127A0, 0x1284C
+    jp_game_state_chunk 0x1284C, 0x129D4
+    jp_game_state_chunk 0x129D4, 0x129F4
+    jp_game_state_chunk 0x129F4, 0x12A7C
+    jp_game_state_chunk 0x12A7C, 0x12C58
+    jp_game_state_chunk 0x12C58, 0x12CEC
+    jp_game_state_chunk 0x12CEC, 0x12D90
+    jp_game_state_chunk 0x12D90, 0x12E24
+    jp_game_state_chunk 0x12E24, 0x12EB8
+    jp_game_state_chunk 0x12EB8, 0x12F50
+    jp_game_state_chunk 0x12F50, 0x12FE4
+    jp_game_state_chunk 0x12FE4, 0x13078
+    jp_game_state_chunk 0x13078, 0x131A4
+    jp_game_state_chunk 0x131A4, 0x13418
+    jp_game_state_chunk 0x13418, 0x134AC
+    jp_game_state_chunk 0x134AC, 0x13540
+    jp_game_state_chunk 0x13540, 0x135D4
+    jp_game_state_chunk 0x135D4, 0x13668
+    jp_game_state_chunk 0x13668, 0x136FC
+    jp_game_state_chunk 0x136FC, 0x13794
+    jp_game_state_chunk 0x13794, 0x13830
+    jp_game_state_chunk 0x13830, 0x13BD8
+    jp_game_state_chunk 0x13BD8, 0x13DCC
+    jp_game_state_chunk 0x13DCC, 0x13E5C
+    jp_game_state_chunk 0x13E5C, 0x13F08
+    jp_game_state_chunk 0x13F08, 0x13F20
+    jp_game_state_chunk 0x13F20, 0x13F38
+    jp_game_state_chunk 0x13F38, 0x13F50
+    jp_game_state_chunk 0x13F50, 0x13F68
+    jp_game_state_chunk 0x13F68, 0x13F80
+    jp_game_state_chunk 0x13F80, 0x13F98
+    jp_game_state_chunk 0x13F98, 0x13FB0
+    jp_game_state_chunk 0x13FB0, 0x13FC8
+    jp_game_state_chunk 0x13FC8, 0x14038
+    jp_game_state_chunk 0x14038, 0x14108
+    jp_game_state_chunk 0x14108, 0x14120
+    jp_game_state_chunk 0x14120, 0x1418C
+    jp_game_state_chunk 0x1418C, 0x141A8
+    jp_game_state_chunk 0x141A8, 0x141C4
+    jp_game_state_chunk 0x141C4, 0x141D8
+    jp_game_state_chunk 0x141D8, 0x141EC
+    jp_game_state_chunk 0x141EC, 0x14424
+    jp_game_state_chunk 0x14424, 0x14560
+    jp_game_state_chunk 0x14560, 0x14568
+    jp_game_state_chunk 0x14568, 0x14584
+    jp_game_state_chunk 0x14584, 0x145A0
+    jp_game_state_chunk 0x145A0, 0x145D0
+    jp_game_state_chunk 0x145D0, 0x149CC
+    jp_game_state_chunk 0x149CC, 0x14AAC
+    jp_game_state_chunk 0x14AAC, 0x14AE0
+    jp_game_state_chunk 0x14AE0, 0x14B08
+    jp_game_state_chunk 0x14B08, 0x14C04
+    jp_game_state_chunk 0x14C04, 0x15630
+    jp_game_state_chunk 0x15630, 0x156B4
+    jp_game_state_chunk 0x156B4, 0x15744
+    jp_game_state_chunk 0x15744, 0x15BC4
+    jp_game_state_chunk 0x15BC4, 0x16518
+    jp_game_state_chunk 0x16518, 0x16570
+    jp_game_state_chunk 0x16570, 0x165C8
+    jp_game_state_chunk 0x165C8, 0x16668
+    jp_game_state_chunk 0x16668, 0x16890
+    jp_game_state_chunk 0x16890, 0x16938
+    jp_game_state_chunk 0x16938, 0x16954
+    jp_game_state_chunk 0x16954, 0x16970
+    jp_game_state_chunk 0x16970, 0x16988
+    jp_game_state_chunk 0x16988, 0x169A4
+    jp_game_state_chunk 0x169A4, 0x16A80
+    jp_game_state_chunk 0x16A80, 0x16B14
+    jp_game_state_chunk 0x16B14, 0x16B30
+    jp_game_state_chunk 0x16B30, 0x16B44
+    jp_game_state_chunk 0x16B44, 0x16C58
+    jp_game_state_chunk 0x16C58, 0x16C84
+    jp_game_state_chunk 0x16C84, 0x16CA0
+    jp_game_state_chunk 0x16CA0, 0x16CC8
+    jp_game_state_chunk 0x16CC8, 0x16CF4
+    jp_game_state_chunk 0x16CF4, 0x16F14
+    jp_game_state_chunk 0x16F14, 0x1725C
+    jp_game_state_chunk 0x1725C, 0x17994
+    jp_game_state_chunk 0x17994, 0x1805C
+    jp_game_state_chunk 0x1805C, 0x19924
+    jp_game_state_chunk 0x19924, 0x19980
+    jp_game_state_chunk 0x19980, 0x19CCC
+
+    jp_game_state_chunk 0x19CCC, 0x19DE8
+
+    .global func_0801A054
+    .thumb_func
+func_0801A054:
+    jp_game_state_chunk 0x19DE8, 0x19ED0
+    jp_game_state_chunk 0x19ED0, 0x1A654
+    jp_game_state_chunk 0x1A654, 0x1B1F8
+    jp_game_state_chunk 0x1B1F8, 0x1BE8C
+    jp_game_state_chunk 0x1BE8C, 0x1BF2C
+    jp_game_state_chunk 0x1BF2C, 0x1C030
+    jp_game_state_chunk 0x1C030, 0x1C608
+    jp_game_state_chunk 0x1C608, 0x1CB50
+    jp_game_state_chunk 0x1CB50, 0x1D660
+    jp_game_state_chunk 0x1D660, 0x1D6DC
+
+    jp_game_state_chunk 0x1D6DC, 0x1D73C
+
+    .global func_0801D9A8
+    .thumb_func
+func_0801D9A8:
+    jp_game_state_chunk 0x1D73C, 0x1D8EC
+    jp_game_state_chunk 0x1D8EC, 0x1D9B8
+    jp_game_state_chunk 0x1D9B8, 0x1DA3C
+    jp_game_state_chunk 0x1DA3C, 0x1DA68
+    jp_game_state_chunk 0x1DA68, 0x1DC48
+    jp_game_state_chunk 0x1DC48, 0x1E6A0
+    jp_game_state_chunk 0x1E6A0, 0x1E834
+    jp_game_state_chunk 0x1E834, 0x1EEE0
+    jp_game_state_chunk 0x1EEE0, 0x1F070
+    jp_game_state_chunk 0x1F070, 0x1F178
+    jp_game_state_chunk 0x1F178, 0x1F384
+    jp_game_state_chunk 0x1F384, 0x1F3A8
+    jp_game_state_chunk 0x1F3A8, 0x1F510
+    jp_game_state_chunk 0x1F510, 0x1F6B8
+    jp_game_state_chunk 0x1F6B8, 0x1F85C
+    jp_game_state_chunk 0x1F85C, 0x1F910
+    jp_game_state_chunk 0x1F910, 0x1FAA0
+    jp_game_state_chunk 0x1FAA0, 0x1FB0C
+    .else
+
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
 
@@ -26551,3 +26788,5 @@ func_0801FD6C: @ 0x0801FD6C
     bl func_080A5960
     pop {r0}
     bx r0
+
+    .endif

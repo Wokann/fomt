@@ -1,3 +1,65 @@
+#if defined(REGION_JP)
+/*
+ * Byte-exact JP assembly stays in this module.  As matching functions are
+ * recovered, keep shared definitions outside the regional guard and retain
+ * only genuinely version-specific definitions inside it.
+ */
+asm(
+    "    @ JP revision 0 counterpart of src/script_engine.cc.\n"
+    "    @\n"
+    "    @ Script instructions and their text-dependent control flow are kept as\n"
+    "    @ one static JP implementation.  Each public function boundary below was\n"
+    "    @ matched against the JP ROM; no generator participates in the build.\n"
+    "\n"
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "\n"
+    "    .macro jp_script_func name, start, end\n"
+    "        .global \\name\n"
+    "        .thumb_func\n"
+    "\\name:\n"
+    "        .incbin \"baserom_jp.gba\", \\start, (\\end - \\start)\n"
+    "    .endm\n"
+    "\n"
+    "    jp_script_func __13AScriptEngine, 0x3EB08, 0x3EB3C\n"
+    "    jp_script_func _._13AScriptEngine, 0x3EB3C, 0x3EB60\n"
+    "    jp_script_func Load__13AScriptEnginePCv, 0x3EB60, 0x3EC4C\n"
+    "    jp_script_func method_0803EFD8__13AScriptEngine, 0x3EC4C, 0x3ECA0\n"
+    "    jp_script_func method_0803F02C__C13AScriptEngine, 0x3ECA0, 0x3ECA4\n"
+    "    jp_script_func Opcode__C13AScriptEnginei, 0x3ECA4, 0x3ECB0\n"
+    "    jp_script_func OpcodeFlag__C13AScriptEnginei, 0x3ECB0, 0x3ECBC\n"
+    "    jp_script_func Operand32__C13AScriptEnginei, 0x3ECBC, 0x3ECF8\n"
+    "    jp_script_func Operand16__C13AScriptEnginei, 0x3ECF8, 0x3ED28\n"
+    "    jp_script_func Operand8__C13AScriptEnginei, 0x3ED28, 0x3ED50\n"
+    "    jp_script_func method_0803F0DC__C13AScriptEngine, 0x3ED50, 0x3ED54\n"
+    "    jp_script_func NextInstruction__13AScriptEngine, 0x3ED54, 0x3F454\n"
+    "    jp_script_func GetString__C13AScriptEngineUi, 0x3F454, 0x3F478\n"
+    "    jp_script_func __12ScriptEnginePv, 0x3F478, 0x3F4B0\n"
+    "    jp_script_func __12ScriptEnginePvT1, 0x3F4B0, 0x3F4EC\n"
+    "    jp_script_func LoadById__12ScriptEngineii, 0x3F4EC, 0x3F514\n"
+    "    jp_script_func SetUnk__12ScriptEnginePv, 0x3F514, 0x3F520\n"
+    "    jp_script_func ClearUnk__12ScriptEngine, 0x3F520, 0x3F52C\n"
+    "    jp_script_func Push__12ScriptEnginei, 0x3F52C, 0x3F704\n"
+    "\n"
+    "    @ The template helper is emitted in the same dedicated linkonce section\n"
+    "    @ as the US object so fomt_jp.lds can retain the original object layout.\n"
+    "    .section .gnu.linkonce.t.__lower_bound__H4ZPC12JumpTableEntZiZ28ScriptJumpTableSearchCompareZl_X01T0RCX11X21PX31_X01, \"ax\", %progbits\n"
+    "    .global __lower_bound__H4ZPC12JumpTableEntZiZ28ScriptJumpTableSearchCompareZl_X01T0RCX11X21PX31_X01\n"
+    "    .thumb_func\n"
+    "__lower_bound__H4ZPC12JumpTableEntZiZ28ScriptJumpTableSearchCompareZl_X01T0RCX11X21PX31_X01:\n"
+    "    .incbin \"baserom_jp.gba\", 0xE0654, 0x3C\n"
+    "\n"
+    "    @ This ordinary C++ string object follows the JP data layout.  The\n"
+    "    @ adjacent JP data signature fixes this copy at ROM offset 0xF96F4.\n"
+    "    .section .rodata\n"
+    "    .incbin \"baserom_jp.gba\", 0xF96F4, 0x14\n"
+    "\n"
+    "    @ Keep later shared C++ emission in agbcp's default syntax mode.\n"
+    "    .syntax divided\n"
+);
+#else
+
 #include "script_engine.hh"
 
 #include <string.h> // memset, memcpy
@@ -651,3 +713,5 @@ void ScriptEngine::Push(i32 value)
 }
 
 // next up: int OnCall(int id);
+
+#endif // REGION_JP

@@ -1,3 +1,53 @@
+    .ifdef REGION_JP
+    @ JP revision 0 counterpart of asm/hardware.s.
+    @
+    @ This bounded hardware-support object has JP literals in a small subset
+    @ of its routines.  The whole existing object range is retained exactly;
+    @ public aliases are added only when a remaining native caller needs one.
+
+    .section .text
+    .syntax unified
+    .thumb
+    .global func_0800736C
+    .thumb_func
+func_0800736C:
+    .incbin "baserom_jp.gba", 0x7374, 0x26DC
+
+    .global func_080073E0
+    .thumb_set func_080073E0, func_0800736C + 0x74
+    .global func_0800745C
+    .thumb_set func_0800745C, func_0800736C + 0xF0
+    .global func_080077DC
+    .thumb_set func_080077DC, func_0800736C + 0x470
+    .global func_08007844
+    .thumb_set func_08007844, func_0800736C + 0x4D8
+    .global func_08007874
+    .thumb_set func_08007874, func_0800736C + 0x508
+    .global func_080079E8
+    .thumb_set func_080079E8, func_0800736C + 0x67C
+    .global func_08007C28
+    .thumb_set func_08007C28, func_0800736C + 0x8BC
+    .global func_08007CD8
+    .thumb_set func_08007CD8, func_0800736C + 0x96C
+    .global func_080086BC
+    .thumb_set func_080086BC, func_0800736C + 0x1350
+    .global func_08008980
+    .thumb_set func_08008980, func_0800736C + 0x1614
+    .global func_08008A68
+    .thumb_set func_08008A68, func_0800736C + 0x16FC
+    .global func_08008AFC
+    .thumb_set func_08008AFC, func_0800736C + 0x1790
+    .global func_08008FE4
+    .thumb_set func_08008FE4, func_0800736C + 0x1C78
+    .global func_0800959C
+    .thumb_set func_0800959C, func_0800736C + 0x2230
+    .global func_080096F0
+    .thumb_set func_080096F0, func_0800736C + 0x2384
+    .global func_08009864
+    .thumb_set func_08009864, func_0800736C + 0x24F8
+    .global func_080098AC
+    .thumb_set func_080098AC, func_0800736C + 0x2540
+    .else
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
 
@@ -4323,3 +4373,4 @@ func_080099D4: @ 0x080099D4
     .byte 0x42, 0x61, 0x70, 0x47, 0xB4, 0x5B, 0x0E, 0x08, 0xD8, 0x5B, 0x0E, 0x08, 0x01, 0x68, 0x48, 0x42
     .byte 0x08, 0x43, 0xC0, 0x0F, 0x70, 0x47, 0x00, 0x00, 0x02, 0x49, 0x81, 0x60, 0x00, 0x21, 0x01, 0x60
     .byte 0x41, 0x60, 0x70, 0x47, 0xE8, 0x5B, 0x0E, 0x08
+    .endif
