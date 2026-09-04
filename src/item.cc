@@ -269,30 +269,16 @@ bool Food::IsDrink() const
     return false;
 }
 
-#if defined(REGION_JP)
-asm(
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "\n"
-    "    .macro jp_item_func name, start, end\n"
-    "        .global \\name\n"
-    "        .thumb_func\n"
-    "\\name:\n"
-    "        .incbin \"baserom_jp.gba\", \\start, (\\end - \\start)\n"
-    "    .endm\n"
-    "\n"
-    "    jp_item_func GetDesc__C4Food, 0xDDB4, 0xDDEC\n"
-    "    .syntax divided\n"
-);
-#else
-
 static inline char const * GetFoodDescById(u32 id)
 {
     if (gFoodInfo[id].desc != nullptr)
         return gFoodInfo[id].desc;
 
+#if defined(REGION_JP)
+    return gJpNoExplanation;
+#else
     return "No Explanation";
+#endif
 }
 
 char const * Food::GetDesc() const
@@ -300,10 +286,12 @@ char const * Food::GetDesc() const
     if (IsValidFoodId(id))
         return GetFoodDescById(id);
 
+#if defined(REGION_JP)
+    return gJpNoExplanation;
+#else
     return "No Explanation";
+#endif
 }
-
-#endif // REGION_JP
 
 void Food::AddBonuses(i8 stamina_amount, i8 fatigue_amount)
 {
@@ -410,6 +398,14 @@ asm(
     "    .section .text\n"
     "    .syntax unified\n"
     "    .thumb\n"
+    "\n"
+    "    .macro jp_item_func name, start, end\n"
+    "        .global \\name\n"
+    "        .thumb_func\n"
+    "\\name:\n"
+    "        .incbin \"baserom_jp.gba\", \\start, (\\end - \\start)\n"
+    "    .endm\n"
+    "\n"
     "    jp_item_func GetName__C7Article, 0xDF38, 0xDF64\n"
     "    .syntax divided\n"
 );
