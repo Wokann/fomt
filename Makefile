@@ -98,6 +98,7 @@ compare: $(ROM)
 
 TEXT_TOOL_DIR := tools/textproc
 TEXT_TOOL := $(TEXT_TOOL_DIR)/fomt-text
+TEXT_COMMON_SOURCES := data/text/common/ui_error.cc
 
 ifeq ($(GAME_REGION),JP)
 TEXT_REGION := jp
@@ -110,16 +111,23 @@ endif
 TEXT_GENERATED_SOURCES := $(patsubst data/text/$(TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.cc,$(TEXT_SOURCES))
 TEXT_OBJS := $(TEXT_GENERATED_SOURCES:.cc=.o)
 TEXT_DEPS := $(TEXT_GENERATED_SOURCES:.cc=.d)
+TEXT_COMMON_GENERATED_SOURCES := $(patsubst data/text/common/%.cc,$(BUILD_DIR)/data/text/common/%.cc,$(TEXT_COMMON_SOURCES))
+TEXT_COMMON_OBJS := $(TEXT_COMMON_GENERATED_SOURCES:.cc=.o)
+TEXT_COMMON_DEPS := $(TEXT_COMMON_GENERATED_SOURCES:.cc=.d)
 
-ALL_OBJS += $(TEXT_OBJS)
-ALL_DEPS += $(TEXT_DEPS)
+ALL_OBJS += $(TEXT_OBJS) $(TEXT_COMMON_OBJS)
+ALL_DEPS += $(TEXT_DEPS) $(TEXT_COMMON_DEPS)
 
-.SECONDARY: $(TEXT_GENERATED_SOURCES)
+.SECONDARY: $(TEXT_GENERATED_SOURCES) $(TEXT_COMMON_GENERATED_SOURCES)
 
 $(TEXT_TOOL): $(TEXT_TOOL_DIR)/fomt_text.cpp $(TEXT_TOOL_DIR)/Makefile
 	@$(MAKE) -C $(TEXT_TOOL_DIR) $(notdir $@)
 
 $(BUILD_DIR)/data/text/%.cc: data/text/$(TEXT_REGION)/%.cc $(TEXT_TOOL) charmap.txt
+	@mkdir -p $(dir $@)
+	$(TEXT_TOOL) cpp charmap.txt $< $@
+
+$(BUILD_DIR)/data/text/common/%.cc: data/text/common/%.cc $(TEXT_TOOL) charmap.txt
 	@mkdir -p $(dir $@)
 	$(TEXT_TOOL) cpp charmap.txt $< $@
 

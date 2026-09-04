@@ -21063,7 +21063,7 @@ func_080DE298: @ 0x080DE298
 	adds r1, r1, r0
 	b .L080DE8FE
 .L080DE8FC:
-	ldr r1, .L080DE920 @ =gUnk_080F19A0
+	ldr r1, .L080DE920 @ =gText_Fallback_Error
 .L080DE8FE:
 	movs r0, #0xdb
 	lsls r0, r0, #2
@@ -21081,7 +21081,7 @@ func_080DE298: @ 0x080DE298
 	movs r0, #4
 	bl .L080E007A
 	.align 2, 0
-.L080DE920: .4byte gUnk_080F19A0
+.L080DE920: .4byte gText_Fallback_Error
 .L080DE924:
 	movs r2, #0xe0
 	lsls r2, r2, #1
@@ -21108,7 +21108,7 @@ func_080DE298: @ 0x080DE298
 	adds r1, r1, r0
 	b .L080DE954
 .L080DE952:
-	ldr r1, .L080DE978 @ =gUnk_080F19A0
+	ldr r1, .L080DE978 @ =gText_Fallback_Error
 .L080DE954:
 	movs r0, #0xdb
 	lsls r0, r0, #2
@@ -21126,7 +21126,7 @@ func_080DE298: @ 0x080DE298
 	movs r0, #4
 	bl .L080E007A
 	.align 2, 0
-.L080DE978: .4byte gUnk_080F19A0
+.L080DE978: .4byte gText_Fallback_Error
 .L080DE97C:
 	movs r2, #0xe0
 	lsls r2, r2, #1
@@ -21153,7 +21153,7 @@ func_080DE298: @ 0x080DE298
 	adds r1, r1, r0
 	b .L080DE9AC
 .L080DE9AA:
-	ldr r1, .L080DE9D0 @ =gUnk_080F19A0
+	ldr r1, .L080DE9D0 @ =gText_Fallback_Error
 .L080DE9AC:
 	movs r0, #0xdb
 	lsls r0, r0, #2
@@ -21172,7 +21172,7 @@ func_080DE298: @ 0x080DE298
 	movs r0, #4
 	bl .L080E007A
 	.align 2, 0
-.L080DE9D0: .4byte gUnk_080F19A0
+.L080DE9D0: .4byte gText_Fallback_Error
 .L080DE9D4:
 	mov r3, r8
 	adds r3, #0x30
@@ -21223,7 +21223,7 @@ func_080DE298: @ 0x080DE298
 	adds r6, r1, r0
 	b .L080DEA30
 .L080DEA2E:
-	ldr r6, .L080DEA44 @ =gUnk_080F19A0
+	ldr r6, .L080DEA44 @ =gText_Fallback_Error
 .L080DEA30:
 	ldr r0, [r4, #0x10]
 	cmp r5, r0
@@ -21236,9 +21236,9 @@ func_080DE298: @ 0x080DE298
 	adds r2, r1, r0
 	b .L080DEA4A
 	.align 2, 0
-.L080DEA44: .4byte gUnk_080F19A0
+.L080DEA44: .4byte gText_Fallback_Error
 .L080DEA48:
-	ldr r2, .L080DEA60 @ =gUnk_080F19A0
+	ldr r2, .L080DEA60 @ =gText_Fallback_Error
 .L080DEA4A:
 	ldr r0, [r4, #0x10]
 	cmp r7, r0
@@ -21251,9 +21251,9 @@ func_080DE298: @ 0x080DE298
 	adds r3, r1, r0
 	b .L080DEA66
 	.align 2, 0
-.L080DEA60: .4byte gUnk_080F19A0
+.L080DEA60: .4byte gText_Fallback_Error
 .L080DEA64:
-	ldr r3, .L080DEAA0 @ =gUnk_080F19A0
+	ldr r3, .L080DEAA0 @ =gText_Fallback_Error
 .L080DEA66:
 	movs r1, #0
 	movs r0, #0xdb
@@ -21283,7 +21283,7 @@ func_080DE298: @ 0x080DE298
 	movs r0, #7
 	bl .L080E007A
 	.align 2, 0
-.L080DEAA0: .4byte gUnk_080F19A0
+.L080DEAA0: .4byte gText_Fallback_Error
 .L080DEAA4:
 	mov r3, r8
 	adds r3, #0x30
@@ -21345,7 +21345,7 @@ func_080DE298: @ 0x080DE298
 	adds r5, r1, r0
 	b .L080DEB14
 .L080DEB12:
-	ldr r5, .L080DEB28 @ =gUnk_080F19A0
+	ldr r5, .L080DEB28 @ =gText_Fallback_Error
 .L080DEB14:
 	ldr r0, [r4, #0x10]
 	cmp r6, r0
@@ -21358,9 +21358,9 @@ func_080DE298: @ 0x080DE298
 	adds r2, r1, r0
 	b .L080DEB2E
 	.align 2, 0
-.L080DEB28: .4byte gUnk_080F19A0
+.L080DEB28: .4byte gText_Fallback_Error
 .L080DEB2C:
-	ldr r2, .L080DEB44 @ =gUnk_080F19A0
+	ldr r2, .L080DEB44 @ =gText_Fallback_Error
 .L080DEB2E:
 	ldr r0, [r4, #0x10]
 	cmp r7, r0
@@ -21373,9 +21373,9 @@ func_080DE298: @ 0x080DE298
 	adds r3, r1, r0
 	b .L080DEB4A
 	.align 2, 0
-.L080DEB44: .4byte gUnk_080F19A0
+.L080DEB44: .4byte gText_Fallback_Error
 .L080DEB48:
-	ldr r3, .L080DEB60 @ =gUnk_080F19A0
+	ldr r3, .L080DEB60 @ =gText_Fallback_Error
 .L080DEB4A:
 	ldr r0, [r4, #0x10]
 	cmp sb, r0
@@ -21389,9 +21389,9 @@ func_080DE298: @ 0x080DE298
 	adds r1, r1, r0
 	b .L080DEB66
 	.align 2, 0
-.L080DEB60: .4byte gUnk_080F19A0
+.L080DEB60: .4byte gText_Fallback_Error
 .L080DEB64:
-	ldr r1, .L080DEB9C @ =gUnk_080F19A0
+	ldr r1, .L080DEB9C @ =gText_Fallback_Error
 .L080DEB66:
 	movs r4, #0
 	movs r0, #0xdb
@@ -21419,7 +21419,7 @@ func_080DE298: @ 0x080DE298
 	bl func_08050E30
 	b .L080DEBAC
 	.align 2, 0
-.L080DEB9C: .4byte gUnk_080F19A0
+.L080DEB9C: .4byte gText_Fallback_Error
 .L080DEBA0:
 	str r1, [sp]
 	str r4, [sp, #4]
@@ -21504,7 +21504,7 @@ func_080DE298: @ 0x080DE298
 	adds r6, r1, r0
 	b .L080DEC3C
 .L080DEC3A:
-	ldr r6, .L080DEC50 @ =gUnk_080F19A0
+	ldr r6, .L080DEC50 @ =gText_Fallback_Error
 .L080DEC3C:
 	ldr r0, [r4, #0x10]
 	cmp r5, r0
@@ -21517,9 +21517,9 @@ func_080DE298: @ 0x080DE298
 	adds r2, r1, r0
 	b .L080DEC56
 	.align 2, 0
-.L080DEC50: .4byte gUnk_080F19A0
+.L080DEC50: .4byte gText_Fallback_Error
 .L080DEC54:
-	ldr r2, .L080DEC6C @ =gUnk_080F19A0
+	ldr r2, .L080DEC6C @ =gText_Fallback_Error
 .L080DEC56:
 	ldr r0, [r4, #0x10]
 	cmp r7, r0
@@ -21532,9 +21532,9 @@ func_080DE298: @ 0x080DE298
 	adds r3, r1, r0
 	b .L080DEC72
 	.align 2, 0
-.L080DEC6C: .4byte gUnk_080F19A0
+.L080DEC6C: .4byte gText_Fallback_Error
 .L080DEC70:
-	ldr r3, .L080DEC88 @ =gUnk_080F19A0
+	ldr r3, .L080DEC88 @ =gText_Fallback_Error
 .L080DEC72:
 	ldr r0, [r4, #0x10]
 	cmp sb, r0
@@ -21548,9 +21548,9 @@ func_080DE298: @ 0x080DE298
 	adds r5, r1, r0
 	b .L080DEC8E
 	.align 2, 0
-.L080DEC88: .4byte gUnk_080F19A0
+.L080DEC88: .4byte gText_Fallback_Error
 .L080DEC8C:
-	ldr r5, .L080DECA4 @ =gUnk_080F19A0
+	ldr r5, .L080DECA4 @ =gText_Fallback_Error
 .L080DEC8E:
 	ldr r0, [r4, #0x10]
 	cmp sl, r0
@@ -21564,9 +21564,9 @@ func_080DE298: @ 0x080DE298
 	adds r1, r1, r0
 	b .L080DECAA
 	.align 2, 0
-.L080DECA4: .4byte gUnk_080F19A0
+.L080DECA4: .4byte gText_Fallback_Error
 .L080DECA8:
-	ldr r1, .L080DECD8 @ =gUnk_080F19A0
+	ldr r1, .L080DECD8 @ =gText_Fallback_Error
 .L080DECAA:
 	movs r0, #0xdb
 	lsls r0, r0, #2
@@ -21591,7 +21591,7 @@ func_080DE298: @ 0x080DE298
 	str r5, [sp, #8]
 	b .L080DECE6
 	.align 2, 0
-.L080DECD8: .4byte gUnk_080F19A0
+.L080DECD8: .4byte gText_Fallback_Error
 .L080DECDC:
 	cmp r1, #0
 	bne .L080DECF0
@@ -21657,7 +21657,7 @@ func_080DE298: @ 0x080DE298
 	adds r3, r1, r0
 	b .L080DED56
 .L080DED54:
-	ldr r3, .L080DED6C @ =gUnk_080F19A0
+	ldr r3, .L080DED6C @ =gText_Fallback_Error
 .L080DED56:
 	ldr r0, [r4, #0x10]
 	cmp r5, r0
@@ -21670,9 +21670,9 @@ func_080DE298: @ 0x080DE298
 	adds r2, r1, r0
 	b .L080DED72
 	.align 2, 0
-.L080DED6C: .4byte gUnk_080F19A0
+.L080DED6C: .4byte gText_Fallback_Error
 .L080DED70:
-	ldr r2, .L080DEDB0 @ =gUnk_080F19A0
+	ldr r2, .L080DEDB0 @ =gText_Fallback_Error
 .L080DED72:
 	movs r1, #0
 	movs r0, #0xdb
@@ -21704,7 +21704,7 @@ func_080DE298: @ 0x080DE298
 	movs r0, #7
 	bl .L080E007A
 	.align 2, 0
-.L080DEDB0: .4byte gUnk_080F19A0
+.L080DEDB0: .4byte gText_Fallback_Error
 .L080DEDB4:
 	mov r3, r8
 	adds r3, #0x30
@@ -21755,7 +21755,7 @@ func_080DE298: @ 0x080DE298
 	adds r5, r1, r0
 	b .L080DEE10
 .L080DEE0E:
-	ldr r5, .L080DEE24 @ =gUnk_080F19A0
+	ldr r5, .L080DEE24 @ =gText_Fallback_Error
 .L080DEE10:
 	ldr r0, [r4, #0x10]
 	cmp r6, r0
@@ -21768,9 +21768,9 @@ func_080DE298: @ 0x080DE298
 	adds r2, r1, r0
 	b .L080DEE2A
 	.align 2, 0
-.L080DEE24: .4byte gUnk_080F19A0
+.L080DEE24: .4byte gText_Fallback_Error
 .L080DEE28:
-	ldr r2, .L080DEE40 @ =gUnk_080F19A0
+	ldr r2, .L080DEE40 @ =gText_Fallback_Error
 .L080DEE2A:
 	ldr r0, [r4, #0x10]
 	cmp r7, r0
@@ -21783,9 +21783,9 @@ func_080DE298: @ 0x080DE298
 	adds r3, r1, r0
 	b .L080DEE46
 	.align 2, 0
-.L080DEE40: .4byte gUnk_080F19A0
+.L080DEE40: .4byte gText_Fallback_Error
 .L080DEE44:
-	ldr r3, .L080DEE80 @ =gUnk_080F19A0
+	ldr r3, .L080DEE80 @ =gText_Fallback_Error
 .L080DEE46:
 	movs r1, #0
 	movs r0, #0xdb
@@ -21815,7 +21815,7 @@ func_080DE298: @ 0x080DE298
 	bl func_08050E0C
 	b .L080DEE92
 	.align 2, 0
-.L080DEE80: .4byte gUnk_080F19A0
+.L080DEE80: .4byte gText_Fallback_Error
 .L080DEE84:
 	str r1, [sp]
 	str r1, [sp, #4]
@@ -21890,7 +21890,7 @@ func_080DE298: @ 0x080DE298
 	adds r5, r1, r0
 	b .L080DEF0E
 .L080DEF0C:
-	ldr r5, .L080DEF24 @ =gUnk_080F19A0
+	ldr r5, .L080DEF24 @ =gText_Fallback_Error
 .L080DEF0E:
 	ldr r0, [r4, #0x10]
 	cmp r6, r0
@@ -21903,9 +21903,9 @@ func_080DE298: @ 0x080DE298
 	adds r2, r1, r0
 	b .L080DEF2A
 	.align 2, 0
-.L080DEF24: .4byte gUnk_080F19A0
+.L080DEF24: .4byte gText_Fallback_Error
 .L080DEF28:
-	ldr r2, .L080DEF40 @ =gUnk_080F19A0
+	ldr r2, .L080DEF40 @ =gText_Fallback_Error
 .L080DEF2A:
 	ldr r0, [r4, #0x10]
 	cmp r7, r0
@@ -21918,9 +21918,9 @@ func_080DE298: @ 0x080DE298
 	adds r3, r1, r0
 	b .L080DEF46
 	.align 2, 0
-.L080DEF40: .4byte gUnk_080F19A0
+.L080DEF40: .4byte gText_Fallback_Error
 .L080DEF44:
-	ldr r3, .L080DEF5C @ =gUnk_080F19A0
+	ldr r3, .L080DEF5C @ =gText_Fallback_Error
 .L080DEF46:
 	ldr r0, [r4, #0x10]
 	cmp sb, r0
@@ -21934,9 +21934,9 @@ func_080DE298: @ 0x080DE298
 	adds r1, r1, r0
 	b .L080DEF62
 	.align 2, 0
-.L080DEF5C: .4byte gUnk_080F19A0
+.L080DEF5C: .4byte gText_Fallback_Error
 .L080DEF60:
-	ldr r1, .L080DEF9C @ =gUnk_080F19A0
+	ldr r1, .L080DEF9C @ =gText_Fallback_Error
 .L080DEF62:
 	movs r4, #0
 	movs r0, #0xdb
@@ -21966,7 +21966,7 @@ func_080DE298: @ 0x080DE298
 	bl func_08050E0C
 	b .L080DEFC2
 	.align 2, 0
-.L080DEF9C: .4byte gUnk_080F19A0
+.L080DEF9C: .4byte gText_Fallback_Error
 .L080DEFA0:
 	cmp r1, #0
 	bne .L080DEFB4
@@ -22062,7 +22062,7 @@ func_080DE298: @ 0x080DE298
 	adds r6, r1, r0
 	b .L080DF052
 .L080DF050:
-	ldr r6, .L080DF068 @ =gUnk_080F19A0
+	ldr r6, .L080DF068 @ =gText_Fallback_Error
 .L080DF052:
 	ldr r0, [r4, #0x10]
 	cmp r5, r0
@@ -22075,9 +22075,9 @@ func_080DE298: @ 0x080DE298
 	adds r2, r1, r0
 	b .L080DF06E
 	.align 2, 0
-.L080DF068: .4byte gUnk_080F19A0
+.L080DF068: .4byte gText_Fallback_Error
 .L080DF06C:
-	ldr r2, .L080DF084 @ =gUnk_080F19A0
+	ldr r2, .L080DF084 @ =gText_Fallback_Error
 .L080DF06E:
 	ldr r0, [r4, #0x10]
 	cmp r7, r0
@@ -22090,9 +22090,9 @@ func_080DE298: @ 0x080DE298
 	adds r3, r1, r0
 	b .L080DF08A
 	.align 2, 0
-.L080DF084: .4byte gUnk_080F19A0
+.L080DF084: .4byte gText_Fallback_Error
 .L080DF088:
-	ldr r3, .L080DF0A0 @ =gUnk_080F19A0
+	ldr r3, .L080DF0A0 @ =gText_Fallback_Error
 .L080DF08A:
 	ldr r0, [r4, #0x10]
 	cmp sb, r0
@@ -22106,9 +22106,9 @@ func_080DE298: @ 0x080DE298
 	adds r5, r1, r0
 	b .L080DF0A6
 	.align 2, 0
-.L080DF0A0: .4byte gUnk_080F19A0
+.L080DF0A0: .4byte gText_Fallback_Error
 .L080DF0A4:
-	ldr r5, .L080DF0BC @ =gUnk_080F19A0
+	ldr r5, .L080DF0BC @ =gText_Fallback_Error
 .L080DF0A6:
 	ldr r0, [r4, #0x10]
 	cmp sl, r0
@@ -22122,9 +22122,9 @@ func_080DE298: @ 0x080DE298
 	adds r1, r1, r0
 	b .L080DF0C2
 	.align 2, 0
-.L080DF0BC: .4byte gUnk_080F19A0
+.L080DF0BC: .4byte gText_Fallback_Error
 .L080DF0C0:
-	ldr r1, .L080DF0FC @ =gUnk_080F19A0
+	ldr r1, .L080DF0FC @ =gText_Fallback_Error
 .L080DF0C2:
 	movs r4, #0
 	movs r0, #0xdb
@@ -22154,7 +22154,7 @@ func_080DE298: @ 0x080DE298
 	bl func_08050E0C
 	b .L080DF12A
 	.align 2, 0
-.L080DF0FC: .4byte gUnk_080F19A0
+.L080DF0FC: .4byte gText_Fallback_Error
 .L080DF100:
 	cmp r5, #0
 	bne .L080DF108
@@ -22267,7 +22267,7 @@ func_080DE298: @ 0x080DE298
 	adds r7, r1, r0
 	b .L080DF1CE
 .L080DF1CC:
-	ldr r7, .L080DF1E4 @ =gUnk_080F19A0
+	ldr r7, .L080DF1E4 @ =gText_Fallback_Error
 .L080DF1CE:
 	ldr r0, [r4, #0x10]
 	cmp r5, r0
@@ -22280,9 +22280,9 @@ func_080DE298: @ 0x080DE298
 	adds r2, r1, r0
 	b .L080DF1EA
 	.align 2, 0
-.L080DF1E4: .4byte gUnk_080F19A0
+.L080DF1E4: .4byte gText_Fallback_Error
 .L080DF1E8:
-	ldr r2, .L080DF200 @ =gUnk_080F19A0
+	ldr r2, .L080DF200 @ =gText_Fallback_Error
 .L080DF1EA:
 	ldr r0, [r4, #0x10]
 	cmp r6, r0
@@ -22295,9 +22295,9 @@ func_080DE298: @ 0x080DE298
 	adds r3, r1, r0
 	b .L080DF206
 	.align 2, 0
-.L080DF200: .4byte gUnk_080F19A0
+.L080DF200: .4byte gText_Fallback_Error
 .L080DF204:
-	ldr r3, .L080DF21C @ =gUnk_080F19A0
+	ldr r3, .L080DF21C @ =gText_Fallback_Error
 .L080DF206:
 	ldr r0, [r4, #0x10]
 	cmp sb, r0
@@ -22311,9 +22311,9 @@ func_080DE298: @ 0x080DE298
 	adds r6, r1, r0
 	b .L080DF222
 	.align 2, 0
-.L080DF21C: .4byte gUnk_080F19A0
+.L080DF21C: .4byte gText_Fallback_Error
 .L080DF220:
-	ldr r6, .L080DF238 @ =gUnk_080F19A0
+	ldr r6, .L080DF238 @ =gText_Fallback_Error
 .L080DF222:
 	ldr r0, [r4, #0x10]
 	cmp sl, r0
@@ -22327,9 +22327,9 @@ func_080DE298: @ 0x080DE298
 	adds r5, r1, r0
 	b .L080DF23E
 	.align 2, 0
-.L080DF238: .4byte gUnk_080F19A0
+.L080DF238: .4byte gText_Fallback_Error
 .L080DF23C:
-	ldr r5, .L080DF258 @ =gUnk_080F19A0
+	ldr r5, .L080DF258 @ =gText_Fallback_Error
 .L080DF23E:
 	ldr r0, [r4, #0x10]
 	cmp ip, r0
@@ -22344,9 +22344,9 @@ func_080DE298: @ 0x080DE298
 	adds r1, r1, r0
 	b .L080DF25E
 	.align 2, 0
-.L080DF258: .4byte gUnk_080F19A0
+.L080DF258: .4byte gText_Fallback_Error
 .L080DF25C:
-	ldr r1, .L080DF298 @ =gUnk_080F19A0
+	ldr r1, .L080DF298 @ =gText_Fallback_Error
 .L080DF25E:
 	movs r0, #0xdb
 	lsls r0, r0, #2
@@ -22376,7 +22376,7 @@ func_080DE298: @ 0x080DE298
 	bl func_08050E0C
 	b .L080DF2E0
 	.align 2, 0
-.L080DF298: .4byte gUnk_080F19A0
+.L080DF298: .4byte gText_Fallback_Error
 .L080DF29C:
 	cmp r6, #0
 	bne .L080DF2AA

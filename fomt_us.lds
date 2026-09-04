@@ -192,6 +192,9 @@ SECTIONS
         data/text/animal_memorial.o(.rodata.animal_memorial);
         . = ALIGN(4); asm/data/data_080F0348.o(.rodata.animal_memorial_trailer);
         FILL(0x00);
+        . = ALIGN(4); data/text/common/ui_error.o(.rodata.ui_error);
+        asm/data/data_080F0348.o(.rodata.ui_error_trailer);
+        FILL(0x00);
         . = ALIGN(4); src/menu_data.o(.rodata.menu_entry_ids);
         FILL(0x00);
         . = ALIGN(4); data/text/menu.o(.rodata.menu_labels);

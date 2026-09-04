@@ -19,6 +19,7 @@ Regional text belongs under this directory by its owning data structure:
     data/text/jp/load_error.cc
     data/text/jp/menu.cc
     data/text/common/fallback.cc
+    data/text/common/ui_error.cc
 
 Keep categories separate even when their entries are linked beside one another:
 each source corresponds to the C/C++ structure that owns its text pointers.
@@ -43,8 +44,9 @@ section attributes only preserve the pre-existing ROM placement; the source
 still contains ordinary UTF-8 C++ strings and no handwritten assembler.
 
 `common/fallback.cc` is included directly by `src/item.cc` because its small
-fallback strings are byte-identical in both regions. It does not need regional
-selection or generated source files.
+item fallback strings are byte-identical in both regions. `common/ui_error.cc`
+is generated through the text preprocessor and linked into both regional ROMs;
+it holds the independently addressed common UI fallback string.
 
 Game scripts are deliberately outside this directory and remain independently
 managed by Mary.  Do not add a script build or link step here.

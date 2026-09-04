@@ -279,6 +279,9 @@ SECTIONS
         . = 0xEFF28; /* JP data after the animal memorial text pieces. */
         asm/data/data_080F0348.o(.rodata.animal_memorial_trailer);
         FILL(0x00);
+        . = ALIGN(4); data/text/common/ui_error.o(.rodata.ui_error);
+        asm/data/data_080F0348.o(.rodata.ui_error_trailer);
+        FILL(0x00);
         . = ALIGN(4); src/menu_data.o(.rodata.menu_entry_ids);
         FILL(0x00);
         . = ALIGN(4); data/text/menu.o(.rodata.menu_labels);
