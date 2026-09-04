@@ -1160,7 +1160,7 @@ func_08003F9C: @ 0x08003F9C
 .L0800406A:
     adds r0, r5, #0
     adds r0, #0x10
-    ldr r1, .L0800409C @ =gUnk_080E88C8
+    ldr r1, .L0800409C @ =gText_NewGameSave_SaveFailed
     movs r2, #0
     movs r3, #0
     bl func_08050DC8
@@ -1183,7 +1183,7 @@ func_08003F9C: @ 0x08003F9C
     pop {r1}
     bx r1
     .align 2, 0
-.L0800409C: .4byte gUnk_080E88C8
+.L0800409C: .4byte gText_NewGameSave_SaveFailed
 
     thumb_func_start func_080040A0
 func_080040A0: @ 0x080040A0
@@ -1312,7 +1312,7 @@ func_080040A0: @ 0x080040A0
     bne .L080040CE
     adds r0, r6, #0
     adds r0, #0x10
-    ldr r1, .L080041D8 @ =gUnk_080E88D8
+    ldr r1, .L080041D8 @ =gText_NewGameSave_LoadFailed
     movs r2, #0
     movs r3, #0
     bl func_08050DC8
@@ -1335,7 +1335,7 @@ func_080040A0: @ 0x080040A0
     pop {r1}
     bx r1
     .align 2, 0
-.L080041D8: .4byte gUnk_080E88D8
+.L080041D8: .4byte gText_NewGameSave_LoadFailed
 
     thumb_func_start func_080041DC
 func_080041DC: @ 0x080041DC
@@ -2084,7 +2084,7 @@ func_08004570: @ 0x08004570
     beq .L08004840
     adds r0, r6, #0
     adds r0, #0x10
-    ldr r1, .L08004834 @ =gUnk_080E890C
+    ldr r1, .L08004834 @ =gText_NewGameSave_LoadPrompt
     ldr r2, .L08004838 @ =gText_NewGameMenu_Yes
     ldr r3, .L0800483C @ =gText_NewGameMenu_No
     str r5, [sp]
@@ -2094,7 +2094,7 @@ func_08004570: @ 0x08004570
     mov r0, sb
     b .L08004B30
     .align 2, 0
-.L08004834: .4byte gUnk_080E890C
+.L08004834: .4byte gText_NewGameSave_LoadPrompt
 .L08004838: .4byte gText_NewGameMenu_Yes
 .L0800483C: .4byte gText_NewGameMenu_No
 .L08004840:
@@ -2130,7 +2130,7 @@ func_08004570: @ 0x08004570
 .L0800487A:
     adds r0, r6, #0
     adds r0, #0x10
-    ldr r1, .L08004894 @ =gUnk_080E8914
+    ldr r1, .L08004894 @ =gText_NewGameSave_OverwritePrompt
     ldr r2, .L08004898 @ =gText_NewGameMenu_Yes
     ldr r3, .L0800489C @ =gText_NewGameMenu_No
     str r4, [sp]
@@ -2141,7 +2141,7 @@ func_08004570: @ 0x08004570
     str r7, [r0]
     b .L08004674
     .align 2, 0
-.L08004894: .4byte gUnk_080E8914
+.L08004894: .4byte gText_NewGameSave_OverwritePrompt
 .L08004898: .4byte gText_NewGameMenu_Yes
 .L0800489C: .4byte gText_NewGameMenu_No
 .L080048A0:
