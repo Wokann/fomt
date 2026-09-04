@@ -230,10 +230,6 @@ asm(
     "    jp_item_func GetIconId__C4Food, 0xDCC0, 0xDCE8\n"
     "    jp_item_func GetStaminaGain__C4Food, 0xDCE8, 0xDD1C\n"
     "    jp_item_func GetFatigueGain__C4Food, 0xDD1C, 0xDD4C\n"
-    "    jp_item_func GetStaminaBonus__C4Food, 0xDD4C, 0xDD6C\n"
-    "    jp_item_func GetFatigueBonus__C4Food, 0xDD6C, 0xDD8C\n"
-    "    jp_item_func IsDrink__C4Food, 0xDD8C, 0xDDB4\n"
-    "    jp_item_func GetDesc__C4Food, 0xDDB4, 0xDDEC\n"
     "\n"
     "    .syntax divided\n"
 );
@@ -272,6 +268,8 @@ int Food::GetFatigueGain() const
     return +100;
 }
 
+#endif // REGION_JP
+
 int Food::GetStaminaBonus() const
 {
     if (IsValidFoodId(id))
@@ -287,6 +285,20 @@ int Food::GetFatigueBonus() const
 
     return +100;
 }
+
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "    .incbin \"baserom_jp.gba\", 0xDD8A, 0x2\n"
+    "\n"
+    "    jp_item_func IsDrink__C4Food, 0xDD8C, 0xDDB4\n"
+    "    jp_item_func GetDesc__C4Food, 0xDDB4, 0xDDEC\n"
+    "\n"
+    "    .syntax divided\n"
+);
+#else
 
 bool Food::IsDrink() const
 {
