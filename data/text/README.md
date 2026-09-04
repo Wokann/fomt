@@ -6,10 +6,12 @@ Regional text belongs under this directory by its owning data structure:
     data/text/us/food.cc
     data/text/us/article.cc
     data/text/us/calendar.cc
+    data/text/us/help_menu.cc
     data/text/jp/tool.cc
     data/text/jp/food.cc
     data/text/jp/article.cc
     data/text/jp/calendar.cc
+    data/text/jp/help_menu.cc
     data/text/common/fallback.cc
 
 Keep categories separate even when their entries are linked beside one another:

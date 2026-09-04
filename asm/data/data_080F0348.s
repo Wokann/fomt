@@ -4,7 +4,10 @@
     .incbin "baserom_jp.gba", 0xEFD48, (0xEFD52 - 0xEFD48)
 
     .section .rodata.calendar_trailer
-    .incbin "baserom_jp.gba", 0xEFD78, (0xF12DC - 0xEFD78)
+    .incbin "baserom_jp.gba", 0xEFD78, (0xEFDF8 - 0xEFD78)
+
+    .section .rodata.help_menu_trailer
+    .incbin "baserom_jp.gba", 0xEFE2B, (0xF12DC - 0xEFE2B)
     .else
     .section .rodata
 
@@ -21,23 +24,9 @@ gUnk_080F0566:
 
 	.global gUnk_080F058C
 gUnk_080F058C:
-	.incbin "baserom_us.gba", 0xF058C, 0x2C
+	.incbin "baserom_us.gba", 0xF058C, (0xF05B8 - 0xF058C)
 
-	.global gUnk_080F05B8
-gUnk_080F05B8:
-	.incbin "baserom_us.gba", 0xF05B8, 0x8
-
-	.global gUnk_080F05C0
-gUnk_080F05C0:
-	.incbin "baserom_us.gba", 0xF05C0, 0x8
-
-	.global gUnk_080F05C8
-gUnk_080F05C8:
-	.incbin "baserom_us.gba", 0xF05C8, 0xC
-
-	.global gUnk_080F05D4
-gUnk_080F05D4:
-	.incbin "baserom_us.gba", 0xF05D4, 0x5
+	.section .rodata.help_menu_trailer
 
 	.global gUnk_080F05D9
 gUnk_080F05D9:
