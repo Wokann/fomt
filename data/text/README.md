@@ -5,8 +5,9 @@ Regional text belongs under this directory by domain:
     data/text/us/<domain>.text
     data/text/jp/<domain>.text
 
-The active JP charmap is the project-root `charmap_jp.txt`, shared by every
-regional text domain.  It is intentionally outside `data/text` so script and
+The project-root `charmap.txt` is shared by every regional text domain.  Its
+Shift-JIS entries include ASCII, so regional text does not need separate
+character maps. It is intentionally outside `data/text` so script and
 non-script preprocessing use one explicit project-level encoding contract.
 
 Each source file uses the text-preprocessor .string form documented in

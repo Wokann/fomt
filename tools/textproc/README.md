@@ -13,16 +13,16 @@ Build and test it with a host C++ compiler:
 
     make -C tools/textproc test
 
-Import the reviewed Mary-compatible JP map once with the companion PowerShell
+Import the reviewed Mary-compatible map once with the companion PowerShell
 script.  The copy is checksum-verified and becomes a normal project asset;
 the ROM build never needs the sibling Mary checkout afterward.
 
-    powershell -ExecutionPolicy Bypass -File tools/textproc/scripts/import_mary_charmap.ps1 \
-      -MaryCharmap ../mary/charmap_jp.txt
+    pwsh -NoProfile -File tools/textproc/scripts/import_mary_charmap.ps1 \
+      -MaryCharmap <path-to-reviewed-charmap>
 
 Validate an imported map before generating any game asset:
 
-    tools/textproc/build/fomt-text validate charmap_jp.txt
+    tools/textproc/build/fomt-text validate charmap.txt
 
 Encode one text payload, decode an existing byte range, or generate assembly:
 
@@ -43,6 +43,8 @@ The generated output declares each symbol, encodes text with the selected
 map, and appends the FOMT 00 terminator.  Named controls such as \n, \r, \p,
 and {Player} are data-driven: their spelling and bytes come only from the
 selected charmap.  Use \xNN for an intentional unmapped raw byte.
+Use `.align 2, 0` after a completed `.string` when the original ROM range has
+four-byte data alignment between text entries.
 
 Migration target:
 
