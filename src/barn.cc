@@ -32,20 +32,10 @@ asm(
     "    .thumb\n"
     "    .thumb_set jp_barn_text_start, __4Barn\n"
     "\n"
-    "    .global method_0800D074__C4BarnUi\n"
-    "    .thumb_set method_0800D074__C4BarnUi, jp_barn_text_start + 0x2B8\n"
-    "    .global GetFreePregnancyStall__C4Barn\n"
-    "    .thumb_set GetFreePregnancyStall__C4Barn, jp_barn_text_start + 0x314\n"
-    "    .global IsReadyToGiveBirth__C4BarnUi\n"
-    "    .thumb_set IsReadyToGiveBirth__C4BarnUi, jp_barn_text_start + 0x39C\n"
     "    .global RemoveAndRememberUnk__4BarnUi\n"
     "    .thumb_set RemoveAndRememberUnk__4BarnUi, jp_barn_text_start + 0x718\n"
     "    .global DayUpdate__4Barn\n"
     "    .thumb_set DayUpdate__4Barn, jp_barn_text_start + 0x7F4\n"
-    "    .global method_0800D80C__4BarnUi\n"
-    "    .thumb_set method_0800D80C__4BarnUi, jp_barn_text_start + 0xA50\n"
-    "    .global MoveToPregnancyStall__4BarnUiUi\n"
-    "    .thumb_set MoveToPregnancyStall__4BarnUiUi, jp_barn_text_start + 0xAA8\n"
     "    .global AttemptBirth__4BarnUi\n"
     "    .thumb_set AttemptBirth__4BarnUi, jp_barn_text_start + 0xAEC\n"
     "    .global __Q24Barn3Ent\n"
@@ -229,17 +219,6 @@ int Barn::method_0800D058() const
     return -1;
 }
 
-#if defined(REGION_JP)
-asm(
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "jp_barn_text_diff_pre_start:\n"
-    "    .incbin \"baserom_jp.gba\", 0xD054, 0x4C\n"
-    "    .syntax divided\n"
-);
-#else
-
 Vec2 Barn::method_0800D074(u32 ent_idx) const
 {
     u32 capacity = GetCapacity();
@@ -252,23 +231,10 @@ Vec2 Barn::method_0800D074(u32 ent_idx) const
     return Vec2((ent_idx < 8) ? 216 + x_off : 456 + x_off, (ent_idx % 8 < 4) ? 104 : 144);
 }
 
-#endif // REGION_JP
-
 Vec2 Barn::method_0800D0C0(u32 pregnancy_stall_idx) const
 {
     return Vec2(0x20, 0x70 + 96 * pregnancy_stall_idx);
 }
-
-#if defined(REGION_JP)
-asm(
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "jp_barn_text_diff_mid_start:\n"
-    "    .incbin \"baserom_jp.gba\", 0xD0B0, 0xE4\n"
-    "    .syntax divided\n"
-);
-#else
 
 int Barn::GetFreePregnancyStall() const
 {
@@ -327,8 +293,6 @@ bool Barn::IsReadyToGiveBirth(u32 pregnancy_stall_idx) const
 
     return false;
 }
-
-#endif // REGION_JP
 
 int Barn::GetPregnancyStallLinkedStall(u32 pregnancy_stall_idx) const
 {
@@ -489,7 +453,7 @@ asm(
     "    .syntax unified\n"
     "    .thumb\n"
     "jp_barn_text_tail_start:\n"
-    "    .incbin \"baserom_jp.gba\", 0xD4B4, 0x384\n"
+    "    .incbin \"baserom_jp.gba\", 0xD4B4, 0x338\n"
     "    .syntax divided\n"
 );
 #else
@@ -603,6 +567,8 @@ void Barn::DayUpdate()
     }
 }
 
+#endif // REGION_JP
+
 void Barn::method_0800D80C(u32 ent_idx)
 {
     u32 capacity = GetCapacity();
@@ -617,8 +583,6 @@ void Barn::method_0800D80C(u32 ent_idx)
     }
 }
 
-#endif // REGION_JP
-
 void Barn::method_0800D858()
 {
     unk_3_7 = false;
@@ -630,11 +594,9 @@ asm(
     "    .syntax unified\n"
     "    .thumb\n"
     "    .incbin \"baserom_jp.gba\", 0xD842, 0x2\n"
-    "jp_barn_text_tail_rest_start:\n"
-    "    .incbin \"baserom_jp.gba\", 0xD844, 0x2C8\n"
     "    .syntax divided\n"
 );
-#else
+#endif // REGION_JP
 
 void Barn::MoveToPregnancyStall(u32 pregnancy_stall_idx, u32 ent_idx)
 {
@@ -646,6 +608,17 @@ void Barn::MoveToPregnancyStall(u32 pregnancy_stall_idx, u32 ent_idx)
             pregnancy_stall_ent_idx[pregnancy_stall_idx] = ent_idx;
     }
 }
+
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "    .incbin \"baserom_jp.gba\", 0xD886, 0x2\n"
+    "    .incbin \"baserom_jp.gba\", 0xD888, 0x284\n"
+    "    .syntax divided\n"
+);
+#else
 
 int Barn::AttemptBirth(u32 pregnancy_stall_idx)
 {
