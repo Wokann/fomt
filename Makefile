@@ -101,10 +101,10 @@ TEXT_TOOL := $(TEXT_TOOL_DIR)/fomt-text
 
 ifeq ($(GAME_REGION),JP)
 TEXT_REGION := jp
-TEXT_SOURCES := data/text/jp/tool.cc data/text/jp/food.cc data/text/jp/article.cc data/text/jp/calendar.cc data/text/jp/help_menu.cc data/text/jp/animal_memorial.cc
+TEXT_SOURCES := data/text/jp/tool.cc data/text/jp/food.cc data/text/jp/article.cc data/text/jp/calendar.cc data/text/jp/help_menu.cc data/text/jp/animal_memorial.cc data/text/jp/load_error.cc
 else
 TEXT_REGION := us
-TEXT_SOURCES := data/text/us/tool.cc data/text/us/food.cc data/text/us/article.cc data/text/us/calendar.cc data/text/us/help_menu.cc data/text/us/animal_memorial.cc
+TEXT_SOURCES := data/text/us/tool.cc data/text/us/food.cc data/text/us/article.cc data/text/us/calendar.cc data/text/us/help_menu.cc data/text/us/animal_memorial.cc data/text/us/load_error.cc
 endif
 
 TEXT_GENERATED_SOURCES := $(patsubst data/text/$(TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.cc,$(TEXT_SOURCES))

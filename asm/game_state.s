@@ -2713,7 +2713,7 @@ func_08011650: @ 0x08011650
     strh r0, [r1, #0xa]
     adds r0, r7, #0
     adds r0, #0x14
-    ldr r5, .L08011874 @ =gUnk_080F058C
+    ldr r5, .L08011874 @ =gText_LoadError
     adds r1, r5, #0
     bl __4FarmPCc
     ldr r1, .L08011878 @ =0x00001AA8
@@ -2934,7 +2934,7 @@ func_08011650: @ 0x08011650
     b .L08011916
     .align 2, 0
 .L08011870: .4byte 0xFFFFF81F
-.L08011874: .4byte gUnk_080F058C
+.L08011874: .4byte gText_LoadError
 .L08011878: .4byte 0x00001AA8
 .L0801187C: .4byte 0x00001BD8
 .L08011880: .4byte 0x00001C70
