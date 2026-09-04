@@ -32,27 +32,8 @@ gUnk_080E8934:
 	.section .rodata.new_game_name_entry_trailer
 	.incbin "baserom_jp.gba", 0xE80EC, (0xE80F4 - 0xE80EC)
 
-	.global gUnk_080E8CC4
-gUnk_080E8CC4:
-	.incbin "baserom_jp.gba", 0xE80F4, 0x40
-
-	.global gUnk_080E8D04
-gUnk_080E8D04:
-	.incbin "baserom_jp.gba", 0xE8134, 0x8
-
-	.global gUnk_080E8D0C
-gUnk_080E8D0C:
-	.incbin "baserom_jp.gba", 0xE813C, 0x8
-
-	.global gUnk_080E8D14
-gUnk_080E8D14:
-	.incbin "baserom_jp.gba", 0xE8144, 0x6E4
-
-	.incbin "baserom_jp.gba", 0xE8828, 0x70
-
-	.global gUnk_080E93F8
-gUnk_080E93F8:
-	.incbin "baserom_jp.gba", 0xE8898, 0x1D4
+	.section .rodata.field_plot_prefix
+	.incbin "baserom_jp.gba", 0xE80F4, (0xE8898 - 0xE80F4)
     .else
 
     .section .rodata
@@ -83,6 +64,8 @@ gUnk_080E8684:
 	.section .rodata.new_game_name_entry_trailer
 	.incbin "baserom_us.gba", 0xE8C4C, (0xE8CC4 - 0xE8C4C)
 
+	.section .rodata.field_plot_prefix
+
 	.global gUnk_080E8CC4
 gUnk_080E8CC4:
 	.incbin "baserom_us.gba", 0xE8CC4, 0x40
@@ -98,9 +81,5 @@ gUnk_080E8D0C:
 	.global gUnk_080E8D14
 gUnk_080E8D14:
 	.incbin "baserom_us.gba", 0xE8D14, 0x6E4
-
-	.global gUnk_080E93F8
-gUnk_080E93F8:
-	.incbin "baserom_us.gba", 0xE93F8, 0x1D4
 
     .endif

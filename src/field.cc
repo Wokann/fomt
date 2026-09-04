@@ -1,4 +1,5 @@
 #include "field.hh"
+#include "field_data.hh"
 
 FieldPlot::FieldPlot()
     : unk_00_00(0), unk_00_02(0), unk_00_08(0), unk_00_0C(0), unk_00_11(method_0800A014())
@@ -11,20 +12,6 @@ FieldPlot::FieldPlot(u32 arg_1, u32 arg_2, u32 arg_3)
 }
 
 // TODO: move those around
-
-struct Unk_080E93F8
-{
-    /* +00 */ Unk_Something const * unk_00;
-    /* +04 */ u8 unk_04;
-    /* +05 */ u8 unk_05;
-    /* +06 */ u8 unk_06;
-    /* +07 */ u8 unk_07;
-    /* +08 */ u8 unk_08;
-    /* +09 */ u8 unk_09;
-    /* +0A */ u16 unk_0A;
-};
-
-extern Unk_080E93F8 const gUnk_080E93F8[];
 
 extern u32 const gUnk_080E8D14[][21];
 
@@ -488,7 +475,7 @@ RucksackItem FieldPlot::method_0800A4A4()
             break;
 
         case 8:
-            if (gUnk_080E93F8[unk_00_02].unk_0A != 0xFF)
+            if (gFieldPlotTypeDefinitions[unk_00_02].result_item_id != 0xFF)
             {
                 unk_00_08 = 0;
             }
@@ -499,7 +486,7 @@ RucksackItem FieldPlot::method_0800A4A4()
             return RucksackItem();
     }
 
-    fu16 id = gUnk_080E93F8[GetUnk2()].unk_0A;
+    fu16 id = gFieldPlotTypeDefinitions[GetUnk2()].result_item_id;
 
     if (id == 0xFF)
         return RucksackItem();
@@ -1119,7 +1106,7 @@ asm(".align 2, 0");
 
 Unk_Something const * FieldPlot::method_0800AF5C(FieldPlot const * arg_1, FieldPlot const * arg_2) const
 {
-    Unk_Something const * ip = gUnk_080E93F8[GetUnk2()].unk_00;
+    Unk_Something const * ip = gFieldPlotTypeDefinitions[GetUnk2()].render_variants;
     fu8 r4 = UINT8_MAX;
 
     if (GetUnk8() == 0)
@@ -1133,23 +1120,23 @@ Unk_Something const * FieldPlot::method_0800AF5C(FieldPlot const * arg_1, FieldP
         switch (GetUnk8())
         {
             case 2:
-                r4 = gUnk_080E93F8[GetUnk2()].unk_04;
+                r4 = gFieldPlotTypeDefinitions[GetUnk2()].state_2_variant_index;
                 break;
 
             case 3:
-                r4 = gUnk_080E93F8[GetUnk2()].unk_05;
+                r4 = gFieldPlotTypeDefinitions[GetUnk2()].state_3_variant_index;
                 break;
 
             case 4:
-                r4 = gUnk_080E93F8[GetUnk2()].unk_06;
+                r4 = gFieldPlotTypeDefinitions[GetUnk2()].state_4_variant_index;
                 break;
 
             case 5:
-                r4 = gUnk_080E93F8[GetUnk2()].unk_07;
+                r4 = gFieldPlotTypeDefinitions[GetUnk2()].state_5_variant_index;
                 break;
 
             case 6:
-                r4 = gUnk_080E93F8[GetUnk2()].unk_08;
+                r4 = gFieldPlotTypeDefinitions[GetUnk2()].state_6_variant_index;
                 break;
 
             case 8:
