@@ -38,29 +38,6 @@ asm(
     "    .thumb_set DayUpdate__4Barn, jp_barn_text_start + 0x7F4\n"
     "    .global AttemptBirth__4BarnUi\n"
     "    .thumb_set AttemptBirth__4BarnUi, jp_barn_text_start + 0xAEC\n"
-    "    .global __Q24Barn3Ent\n"
-    "    .thumb_set __Q24Barn3Ent, jp_barn_text_start + 0xC40\n"
-    "    .global IsEmpty__CQ24Barn3Ent\n"
-    "    .thumb_set IsEmpty__CQ24Barn3Ent, jp_barn_text_start + 0xC4C\n"
-    "    .global AsBarnAnimal__CQ24Barn3Ent\n"
-    "    .thumb_set AsBarnAnimal__CQ24Barn3Ent, jp_barn_text_start + 0xC58\n"
-    "    .global AsCow__CQ24Barn3Ent\n"
-    "    .thumb_set AsCow__CQ24Barn3Ent, jp_barn_text_start + 0xC70\n"
-    "    .global AsSheep__CQ24Barn3Ent\n"
-    "    .thumb_set AsSheep__CQ24Barn3Ent, jp_barn_text_start + 0xC8C\n"
-    "    .global AsBarnAnimal__Q24Barn3Ent\n"
-    "    .thumb_set AsBarnAnimal__Q24Barn3Ent, jp_barn_text_start + 0xCA8\n"
-    "    .global AsCow__Q24Barn3Ent\n"
-    "    .thumb_set AsCow__Q24Barn3Ent, jp_barn_text_start + 0xCC0\n"
-    "    .global AsSheep__Q24Barn3Ent\n"
-    "    .thumb_set AsSheep__Q24Barn3Ent, jp_barn_text_start + 0xCDC\n"
-    "    .global InsertCow__Q24Barn3EntRC3Cow\n"
-    "    .thumb_set InsertCow__Q24Barn3EntRC3Cow, jp_barn_text_start + 0xCF8\n"
-    "    .global InsertSheep__Q24Barn3EntRC5Sheep\n"
-    "    .thumb_set InsertSheep__Q24Barn3EntRC5Sheep, jp_barn_text_start + 0xD28\n"
-    "    .global Remove__Q24Barn3Ent\n"
-    "    .thumb_set Remove__Q24Barn3Ent, jp_barn_text_start + 0xD58\n"
-    "\n"
     "    .section .gnu.linkonce.t.__as__5SheepRC5Sheep, \"ax\", %progbits\n"
     "    .global __as__5SheepRC5Sheep\n"
     "    .thumb_func\n"
@@ -615,7 +592,7 @@ asm(
     "    .syntax unified\n"
     "    .thumb\n"
     "    .incbin \"baserom_jp.gba\", 0xD886, 0x2\n"
-    "    .incbin \"baserom_jp.gba\", 0xD888, 0x284\n"
+    "    .incbin \"baserom_jp.gba\", 0xD888, 0x154\n"
     "    .syntax divided\n"
 );
 #else
@@ -666,6 +643,8 @@ int Barn::AttemptBirth(u32 pregnancy_stall_idx)
     return -1;
 }
 
+#endif // REGION_JP
+
 Barn::Ent::Ent()
     : occupied(false)
 {
@@ -706,6 +685,23 @@ Sheep * Barn::Ent::AsSheep()
     return (occupied && kind == KIND_SHEEP) ? reinterpret_cast<Sheep *>(&placeholder) : nullptr;
 }
 
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "    .global InsertCow__Q24Barn3EntRC3Cow\n"
+    "    .thumb_func\n"
+    "InsertCow__Q24Barn3EntRC3Cow:\n"
+    "    .incbin \"baserom_jp.gba\", 0xDA94, 0x30\n"
+    "    .global InsertSheep__Q24Barn3EntRC5Sheep\n"
+    "    .thumb_func\n"
+    "InsertSheep__Q24Barn3EntRC5Sheep:\n"
+    "    .incbin \"baserom_jp.gba\", 0xDAC4, 0x30\n"
+    "    .syntax divided\n"
+);
+#else
+
 bool Barn::Ent::InsertCow(Cow const & to_copy)
 {
     if (!occupied)
@@ -742,10 +738,10 @@ bool Barn::Ent::InsertSheep(Sheep const & to_copy)
     return false;
 }
 
+#endif // REGION_JP
+
 void Barn::Ent::Remove()
 {
     if (occupied)
         occupied = false;
 }
-
-#endif // REGION_JP
