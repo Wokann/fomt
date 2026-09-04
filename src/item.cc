@@ -21,6 +21,21 @@ struct ArticleInfo
 
 extern ArticleInfo const gArticleInfo[];
 
+struct ProductInfo
+{
+    enum Kind
+    {
+        KIND_FOOD,
+        KIND_ARTICLE,
+    };
+
+    /* +00 */ u32 price : 15;
+    /* +01 */ u32 kind : 1;
+    /* +02 */ u32 item : 8;
+};
+
+extern ProductInfo const gProductInfo[];
+
 static inline bool IsValidFoodId(u8 id)
 {
     return id < NUM_FOODS;
@@ -29,6 +44,11 @@ static inline bool IsValidFoodId(u8 id)
 static inline bool IsValidArticleId(u8 id)
 {
     return id < NUM_ARTICLES;
+}
+
+static inline bool IsValidProductId(u8 id)
+{
+    return id < NUM_PRODUCTS;
 }
 
 Tool::Tool(u32 a_id)
@@ -88,30 +108,11 @@ struct ToolInfo
     /* +08 */ char const * desc;
 };
 
-struct ProductInfo
-{
-    enum Kind
-    {
-        KIND_FOOD,
-        KIND_ARTICLE,
-    };
-
-    /* +00 */ u32 price : 15;
-    /* +01 */ u32 kind : 1;
-    /* +02 */ u32 item : 8;
-};
-
 extern ToolInfo const gToolInfo[];
-extern ProductInfo const gProductInfo[];
 
 static inline bool IsValidToolId(u8 id)
 {
     return id < NUM_TOOLS;
-}
-
-static inline bool IsValidProductId(u8 id)
-{
-    return id < NUM_PRODUCTS;
 }
 
 char const * Tool::GetName() const
@@ -647,18 +648,6 @@ int Product::GetId() const
     return id;
 }
 
-#if defined(REGION_JP)
-asm(
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "    jp_item_func GetPrice__C7Product, 0xE178, 0xE1A0\n"
-    "    jp_item_func GetName__C7Product, 0xE1A0, 0xE1F4\n"
-    "    jp_item_func GetIconId__C7Product, 0xE1F4, 0xE248\n"
-    "    .syntax divided\n"
-);
-#else
-
 u32 Product::GetPrice() const
 {
     if (IsValidProductId(id))
@@ -666,6 +655,17 @@ u32 Product::GetPrice() const
 
     return 0;
 }
+
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "    jp_item_func GetName__C7Product, 0xE1A0, 0xE1F4\n"
+    "    jp_item_func GetIconId__C7Product, 0xE1F4, 0xE248\n"
+    "    .syntax divided\n"
+);
+#else
 
 char const * Product::GetName() const
 {
