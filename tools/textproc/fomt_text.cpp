@@ -294,7 +294,7 @@ std::string ParseStringLiteral(const std::string &source, std::size_t line_numbe
 {
     const std::string literal = Trim(source);
     if (literal.size() < 2 || literal.front() != '"' || literal.back() != '"') {
-        throw std::runtime_error("line " + std::to_string(line_number) + ": expected one quoted .string literal");
+        throw std::runtime_error("line " + std::to_string(line_number) + ": expected one quoted C++ string literal");
     }
 
     std::string output;
@@ -306,7 +306,7 @@ std::string ParseStringLiteral(const std::string &source, std::size_t line_numbe
         }
 
         if (++at + 1 >= literal.size()) {
-            throw std::runtime_error("line " + std::to_string(line_number) + ": trailing backslash in .string literal");
+            throw std::runtime_error("line " + std::to_string(line_number) + ": trailing backslash in C++ string literal");
         }
         const char escaped = literal[at];
         if (escaped == '"' || escaped == '\\')
@@ -321,9 +321,9 @@ std::string ParseStringLiteral(const std::string &source, std::size_t line_numbe
     return output;
 }
 
-void EmitCppString(std::ostringstream &output, const std::string &label, const Bytes &bytes)
+void EmitCppString(std::ostringstream &output, const std::string &declarator, const Bytes &bytes)
 {
-    output << "char const " << label << "[] =\n";
+    output << "char const " << declarator << " =\n";
     if (bytes.empty()) {
         output << "    \"\";\n\n";
         return;
@@ -337,6 +337,95 @@ void EmitCppString(std::ostringstream &output, const std::string &label, const B
         output << '"';
         output << (end == bytes.size() ? ";\n\n" : "\n");
     }
+}
+
+void EmitCppStringRows(std::ostringstream &output, const std::string &declarator,
+    const std::vector<Bytes> &rows)
+{
+    output << "char const " << declarator << " =\n{\n";
+    for (std::size_t row = 0; row < rows.size(); ++row) {
+        output << "    \"";
+        for (const std::uint8_t byte : rows[row])
+            output << "\\x" << HexByte(byte);
+        output << '"' << (row + 1 == rows.size() ? "\n" : ",\n");
+    }
+    output << "};\n\n";
+}
+
+std::size_t ParsePositiveDecimal(const std::string &source, std::size_t line_number,
+    const std::string &description)
+{
+    if (source.empty() || !std::all_of(source.begin(), source.end(), [](char value) {
+            return std::isdigit(static_cast<unsigned char>(value)) != 0;
+        })) {
+        throw std::runtime_error("line " + std::to_string(line_number)
+            + ": " + description + " must be a positive decimal integer");
+    }
+
+    const std::size_t value = static_cast<std::size_t>(std::stoul(source));
+    if (value == 0) {
+        throw std::runtime_error("line " + std::to_string(line_number)
+            + ": " + description + " must be greater than zero");
+    }
+    return value;
+}
+
+struct TextDeclarator {
+    std::string label;
+    std::string emitted;
+    bool is_fixed_rows = false;
+    std::size_t row_count = 0;
+    std::size_t row_width = 0;
+};
+
+TextDeclarator ParseTextDeclarator(const std::string &source, std::size_t line_number)
+{
+    const std::size_t first_open = source.find('[');
+    if (first_open == std::string::npos) {
+        throw std::runtime_error("line " + std::to_string(line_number)
+            + ": text declaration must use a char array");
+    }
+
+    TextDeclarator result;
+    result.label = Trim(source.substr(0, first_open));
+    if (!IsValidLabel(result.label)) {
+        throw std::runtime_error("line " + std::to_string(line_number)
+            + ": invalid text label '" + result.label + "'");
+    }
+
+    const std::size_t first_close = source.find(']', first_open + 1);
+    if (first_close == std::string::npos) {
+        throw std::runtime_error("line " + std::to_string(line_number)
+            + ": unterminated first array dimension");
+    }
+
+    const std::string first_dimension = Trim(source.substr(first_open + 1, first_close - first_open - 1));
+    std::size_t after_dimensions = first_close + 1;
+    if (first_dimension.empty()) {
+        const std::string attributes = Trim(source.substr(after_dimensions));
+        result.emitted = result.label + "[]" + (attributes.empty() ? "" : " " + attributes);
+        return result;
+    }
+
+    result.row_count = ParsePositiveDecimal(first_dimension, line_number, "fixed-row count");
+    if (after_dimensions >= source.size() || source[after_dimensions] != '[') {
+        throw std::runtime_error("line " + std::to_string(line_number)
+            + ": fixed text rows must use [rows][width]");
+    }
+    const std::size_t second_close = source.find(']', after_dimensions + 1);
+    if (second_close == std::string::npos) {
+        throw std::runtime_error("line " + std::to_string(line_number)
+            + ": unterminated fixed-row width");
+    }
+
+    result.row_width = ParsePositiveDecimal(
+        Trim(source.substr(after_dimensions + 1, second_close - after_dimensions - 1)),
+        line_number, "fixed-row width");
+    result.is_fixed_rows = true;
+    const std::string attributes = Trim(source.substr(second_close + 1));
+    result.emitted = result.label + "[" + std::to_string(result.row_count) + "]["
+        + std::to_string(result.row_width) + "]" + (attributes.empty() ? "" : " " + attributes);
+    return result;
 }
 
 std::vector<std::string> ExtractIncludeDirectives(const std::string &source)
@@ -366,24 +455,25 @@ std::string CompileCppTextInclude(const std::string &source, const Charmap &char
 
     std::istringstream lines(source);
     std::string line;
-    std::string current_label;
+    TextDeclarator current_declarator;
     std::string current_text;
-    bool has_current_label = false;
+    std::vector<Bytes> current_rows;
+    bool has_current_declaration = false;
     bool current_has_string = false;
     bool current_string_emitted = false;
     std::size_t line_number = 0;
 
     const auto EmitCurrentString = [&]() {
-        if (!has_current_label || !current_has_string || current_string_emitted)
+        if (!has_current_declaration || !current_has_string || current_string_emitted)
             return;
 
         Bytes bytes;
         try {
             bytes = charmap.EncodeText(current_text);
         } catch (const std::runtime_error &error) {
-            throw std::runtime_error("text label '" + current_label + "': " + error.what());
+            throw std::runtime_error("text label '" + current_declarator.label + "': " + error.what());
         }
-        EmitCppString(output, current_label, bytes);
+        EmitCppString(output, current_declarator.emitted, bytes);
         current_string_emitted = true;
     };
 
@@ -395,14 +485,52 @@ std::string CompileCppTextInclude(const std::string &source, const Charmap &char
         if (trimmed.empty() || trimmed.rfind("//", 0) == 0 || trimmed.front() == '#')
             continue;
 
+        if (has_current_declaration && current_declarator.is_fixed_rows) {
+            if (trimmed == "};") {
+                if (current_rows.size() != current_declarator.row_count) {
+                    throw std::runtime_error("line " + std::to_string(line_number) + ": text label '"
+                        + current_declarator.label + "' has " + std::to_string(current_rows.size())
+                        + " rows; expected " + std::to_string(current_declarator.row_count));
+                }
+                EmitCppStringRows(output, current_declarator.emitted, current_rows);
+                has_current_declaration = false;
+                current_rows.clear();
+                continue;
+            }
+
+            std::string literal = trimmed;
+            if (!literal.empty() && literal.back() == ',')
+                literal = Trim(literal.substr(0, literal.size() - 1));
+            const std::string text = ParseStringLiteral(literal, line_number);
+            Bytes bytes;
+            try {
+                bytes = charmap.EncodeText(text);
+            } catch (const std::runtime_error &error) {
+                throw std::runtime_error("text label '" + current_declarator.label + "': " + error.what());
+            }
+            if (bytes.size() + 1 != current_declarator.row_width) {
+                throw std::runtime_error("line " + std::to_string(line_number) + ": text label '"
+                    + current_declarator.label + "' row encodes to " + std::to_string(bytes.size() + 1)
+                    + " bytes including its terminator; expected "
+                    + std::to_string(current_declarator.row_width));
+            }
+            if (current_rows.size() == current_declarator.row_count) {
+                throw std::runtime_error("line " + std::to_string(line_number) + ": text label '"
+                    + current_declarator.label + "' has more than "
+                    + std::to_string(current_declarator.row_count) + " rows");
+            }
+            current_rows.push_back(std::move(bytes));
+            continue;
+        }
+
         constexpr char kDeclaration[] = "char const ";
         std::string declaration_line = trimmed;
         if (declaration_line.rfind("extern ", 0) == 0)
             declaration_line = Trim(declaration_line.substr(sizeof("extern ") - 1));
         if (declaration_line.rfind(kDeclaration, 0) == 0) {
-            if (has_current_label && !current_string_emitted) {
+            if (has_current_declaration && !current_string_emitted) {
                 throw std::runtime_error("line " + std::to_string(line_number) + ": text label '"
-                    + current_label + "' has no terminating semicolon");
+                    + current_declarator.label + "' has no terminating semicolon");
             }
 
             const std::string declaration = Trim(declaration_line.substr(sizeof(kDeclaration) - 1));
@@ -411,24 +539,21 @@ std::string CompileCppTextInclude(const std::string &source, const Charmap &char
                 throw std::runtime_error("line " + std::to_string(line_number)
                     + ": expected '=' in text declaration");
             }
-            const std::string array = Trim(declaration.substr(0, equals));
-            if (array.size() < 3 || array.substr(array.size() - 2) != "[]") {
-                throw std::runtime_error("line " + std::to_string(line_number)
-                    + ": text declaration must use an unsized char array");
-            }
-            const std::string label = Trim(array.substr(0, array.size() - 2));
-            if (!IsValidLabel(label)) {
-                throw std::runtime_error("line " + std::to_string(line_number)
-                    + ": invalid text label '" + label + "'");
-            }
-
-            current_label = label;
-            has_current_label = true;
+            current_declarator = ParseTextDeclarator(Trim(declaration.substr(0, equals)), line_number);
+            has_current_declaration = true;
             current_has_string = false;
             current_string_emitted = false;
             current_text.clear();
+            current_rows.clear();
 
             const std::string initial_literal = Trim(declaration.substr(equals + 1));
+            if (current_declarator.is_fixed_rows) {
+                if (initial_literal != "{") {
+                    throw std::runtime_error("line " + std::to_string(line_number) + ": fixed-row text label '"
+                        + current_declarator.label + "' must begin with '{'");
+                }
+                continue;
+            }
             if (!initial_literal.empty()) {
                 bool terminated = false;
                 std::string literal = initial_literal;
@@ -445,7 +570,7 @@ std::string CompileCppTextInclude(const std::string &source, const Charmap &char
         }
 
         if (!trimmed.empty() && trimmed.front() == '"') {
-            if (!has_current_label || current_string_emitted) {
+            if (!has_current_declaration || current_string_emitted) {
                 throw std::runtime_error("line " + std::to_string(line_number)
                     + ": string literal must follow an unfinished text declaration");
             }
@@ -466,10 +591,14 @@ std::string CompileCppTextInclude(const std::string &source, const Charmap &char
             + ": expected a char const text declaration or quoted string continuation");
     }
 
-    if (has_current_label && !current_string_emitted) {
+    if (has_current_declaration && current_declarator.is_fixed_rows) {
+        throw std::runtime_error("text label '" + current_declarator.label
+            + "' has no closing '};'");
+    }
+    if (has_current_declaration && !current_string_emitted) {
         if (!current_has_string)
-            throw std::runtime_error("label '" + current_label + "' has no text string");
-        throw std::runtime_error("label '" + current_label + "' has no terminating semicolon");
+            throw std::runtime_error("label '" + current_declarator.label + "' has no text string");
+        throw std::runtime_error("label '" + current_declarator.label + "' has no terminating semicolon");
     }
     EmitCurrentString();
     return output.str();
@@ -500,6 +629,17 @@ void SelfTest()
         "generated C++ text bytes are wrong");
     Require(generated.find(".align") == std::string::npos,
         "generated C++ text must not emit assembler alignment");
+
+    const std::string generated_rows = CompileCppTextInclude(
+        "char const gText_TestRows[2][2] = {\n"
+        "    \"A\",\n"
+        "    \"B\"\n"
+        "};\n", map);
+    Require(generated_rows.find("char const gText_TestRows[2][2]") != std::string::npos,
+        "generated fixed-row C++ text symbol is missing");
+    Require(generated_rows.find("\\x41") != std::string::npos
+            && generated_rows.find("\\x42") != std::string::npos,
+        "generated fixed-row C++ text bytes are wrong");
 
     bool rejected_unmapped = false;
     try {

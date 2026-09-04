@@ -176,8 +176,13 @@ SECTIONS
         . = ALIGN(4); src/item.o(.rodata.item_article);
         FILL(0xFF);
         . = ALIGN(4); src/item.o(.rodata.item_product);
-        /* . = ALIGN(4); src/code_0800E2E4.o(.rodata); */
         . = ALIGN(4); asm/data/data_080F0348.o(.rodata);
+        FILL(0x00);
+        data/text/calendar.o(.rodata.calendar.season);
+        data/text/calendar.o(.rodata.calendar.none);
+        data/text/calendar.o(.rodata.calendar.weekday);
+        . = ALIGN(4); asm/data/data_080F0348.o(.rodata.calendar_trailer);
+        FILL(0xFF);
         . = ALIGN(4); src/data_schedules.o(.rodata);
         . = ALIGN(4); asm/data/data_080F1A80.o(.rodata);
         . = ALIGN(4); src/script_engine.o(.rodata);

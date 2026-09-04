@@ -34,6 +34,17 @@ The `cpp` command consumes a constrained, ordinary C++ text-definition form:
         "Iron Sickle\r\n"
         "Good for cutting grass.";
 
+For a fixed-stride table that callers index directly, use ordinary C++ array
+dimensions and one string per row. The encoded text plus its terminator must
+fit the declared row width exactly:
+
+    char const gText_Calendar_SeasonNames[4][7] SECTION(".rodata.calendar.season") ALIGN(1) = {
+        "Spring",
+        "Summer",
+        "Fall  ",
+        "Winter"
+    };
+
 Adjacent quoted C++ literals follow Mary’s readable layout for displayed line
 breaks. The generated output declares each symbol as a normal escaped C++
 string, encodes text with the selected map, and appends the FOMT 00 terminator.

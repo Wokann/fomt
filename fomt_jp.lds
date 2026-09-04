@@ -258,9 +258,15 @@ SECTIONS
         asm/data/item_tables.o(.rodata.item_article);
         FILL(0xFF);
         asm/data/item_tables.o(.rodata.item_product);
-        /* . = ALIGN(4); src/code_0800E2E4.o(.rodata); */
         . = 0xEFD48; /* JP counterpart of data_080F0348. */
         asm/data/data_080F0348.o(.rodata);
+        FILL(0x00);
+        data/text/calendar.o(.rodata.calendar.season);
+        data/text/calendar.o(.rodata.calendar.none);
+        data/text/calendar.o(.rodata.calendar.weekday);
+        . = 0xEFD78; /* JP data after the calendar text arrays. */
+        asm/data/data_080F0348.o(.rodata.calendar_trailer);
+        FILL(0xFF);
         . = 0xF12DC; /* JP schedule table block. */
         src/data_schedules.o(.rodata);
         . = 0xF1810; /* JP counterpart of data_080F1A80. */

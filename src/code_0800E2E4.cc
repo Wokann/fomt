@@ -1,45 +1,26 @@
 #include "prelude.h"
 
+#include "calendar_text.hh"
 #include "unknown_types.hh" // for GameDate and Time
-
-#if 0
-
-char const gUnk_080F04EE[4][7] = { "Spring", "Summer", "Fall  ", "Winter" };
-char const gUnk_080F050C[] = "\x96\xB3";
-char const gUnk_080F050F[7][5] = { "Sun.", "Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat." };
-
-#else
-
-#if defined(REGION_JP)
-extern char const gUnk_080F04EE[][3];
-extern char const gUnk_080F050C[];
-extern char const gUnk_080F050F[][3];
-#else
-extern char const gUnk_080F04EE[][7];
-extern char const gUnk_080F050C[];
-extern char const gUnk_080F050F[][5];
-#endif // REGION_JP
-
-#endif
 
 EC char const * func_0800E2E4(Season season)
 {
     if (season < NUM_SEASONS)
     {
-        return gUnk_080F04EE[season];
+        return gText_Calendar_SeasonNames[season];
     }
 
-    return gUnk_080F050C;
+    return gText_Calendar_None;
 }
 
 EC char const * func_0800E304(unsigned int week_day)
 {
     if (week_day < 7)
     {
-        return gUnk_080F050F[week_day];
+        return gText_Calendar_WeekdayNames[week_day];
     }
 
-    return gUnk_080F050C;
+    return gText_Calendar_None;
 }
 
 struct Unk_0800E324

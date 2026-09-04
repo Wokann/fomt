@@ -100,26 +100,26 @@ TEXT_TOOL_DIR := tools/textproc
 TEXT_TOOL := $(TEXT_TOOL_DIR)/fomt-text
 
 ifeq ($(GAME_REGION),JP)
-ITEM_TEXT_REGION := jp
-ITEM_TEXT_SOURCES := data/text/jp/tool.cc data/text/jp/food.cc data/text/jp/article.cc
+TEXT_REGION := jp
+TEXT_SOURCES := data/text/jp/tool.cc data/text/jp/food.cc data/text/jp/article.cc data/text/jp/calendar.cc
 else
-ITEM_TEXT_REGION := us
-ITEM_TEXT_SOURCES := data/text/us/tool.cc data/text/us/food.cc data/text/us/article.cc
+TEXT_REGION := us
+TEXT_SOURCES := data/text/us/tool.cc data/text/us/food.cc data/text/us/article.cc data/text/us/calendar.cc
 endif
 
-ITEM_TEXT_GENERATED_SOURCES := $(patsubst data/text/$(ITEM_TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.cc,$(ITEM_TEXT_SOURCES))
-ITEM_TEXT_OBJS := $(ITEM_TEXT_GENERATED_SOURCES:.cc=.o)
-ITEM_TEXT_DEPS := $(ITEM_TEXT_GENERATED_SOURCES:.cc=.d)
+TEXT_GENERATED_SOURCES := $(patsubst data/text/$(TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.cc,$(TEXT_SOURCES))
+TEXT_OBJS := $(TEXT_GENERATED_SOURCES:.cc=.o)
+TEXT_DEPS := $(TEXT_GENERATED_SOURCES:.cc=.d)
 
-ALL_OBJS += $(ITEM_TEXT_OBJS)
-ALL_DEPS += $(ITEM_TEXT_DEPS)
+ALL_OBJS += $(TEXT_OBJS)
+ALL_DEPS += $(TEXT_DEPS)
 
-.SECONDARY: $(ITEM_TEXT_GENERATED_SOURCES)
+.SECONDARY: $(TEXT_GENERATED_SOURCES)
 
 $(TEXT_TOOL): $(TEXT_TOOL_DIR)/fomt_text.cpp $(TEXT_TOOL_DIR)/Makefile
 	@$(MAKE) -C $(TEXT_TOOL_DIR) $(notdir $@)
 
-$(BUILD_DIR)/data/text/%.cc: data/text/$(ITEM_TEXT_REGION)/%.cc $(TEXT_TOOL) charmap.txt
+$(BUILD_DIR)/data/text/%.cc: data/text/$(TEXT_REGION)/%.cc $(TEXT_TOOL) charmap.txt
 	@mkdir -p $(dir $@)
 	$(TEXT_TOOL) cpp charmap.txt $< $@
 

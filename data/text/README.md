@@ -5,9 +5,11 @@ Regional text belongs under this directory by its owning data structure:
     data/text/us/tool.cc
     data/text/us/food.cc
     data/text/us/article.cc
+    data/text/us/calendar.cc
     data/text/jp/tool.cc
     data/text/jp/food.cc
     data/text/jp/article.cc
+    data/text/jp/calendar.cc
     data/text/common/fallback.cc
 
 Keep categories separate even when their entries are linked beside one another:
@@ -25,6 +27,12 @@ string literals with `charmap.txt` into generated escaped C++ source, which
 those symbols directly. When two table entries intentionally share one ROM
 string, both table fields point to the same canonical symbol; do not create a
 second text object or an assembler alias.
+
+`calendar.cc` demonstrates fixed-row text arrays: the C++ dimensions are the
+actual ROM row strides used by the callers. The text preprocessor verifies
+every encoded row, including its terminator, has exactly that width. Its
+section attributes only preserve the pre-existing ROM placement; the source
+still contains ordinary UTF-8 C++ strings and no handwritten assembler.
 
 `common/fallback.cc` is included directly by `src/item.cc` because its small
 fallback strings are byte-identical in both regions. It does not need regional
