@@ -662,7 +662,6 @@ asm(
     "    .syntax unified\n"
     "    .thumb\n"
     "    jp_item_func GetName__C7Product, 0xE1A0, 0xE1F4\n"
-    "    jp_item_func GetIconId__C7Product, 0xE1F4, 0xE248\n"
     "    .syntax divided\n"
 );
 #else
@@ -686,6 +685,8 @@ char const * Product::GetName() const
     return "Broken Shipment";
 }
 
+#endif // REGION_JP
+
 u16 Product::GetIconId() const
 {
     if (IsValidProductId(id))
@@ -704,8 +705,6 @@ u16 Product::GetIconId() const
 
     return 0;
 }
-
-#endif // REGION_JP
 
 Tool ItemVariant::AsTool() const
 {
