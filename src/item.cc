@@ -239,7 +239,6 @@ asm(
     "    .thumb\n"
     "\n"
     "    jp_item_func GetName__C4Food, 0xDC98, 0xDCC0\n"
-    "    jp_item_func GetIconId__C4Food, 0xDCC0, 0xDCE8\n"
     "\n"
     "    .syntax divided\n"
 );
@@ -253,6 +252,8 @@ char const * Food::GetName() const
     return "Broken Food";
 }
 
+#endif // REGION_JP
+
 u16 Food::GetIconId() const
 {
     if (IsValidFoodId(id))
@@ -261,8 +262,6 @@ u16 Food::GetIconId() const
     // TODO: icon id constants
     return 428; // Stones
 }
-
-#endif // REGION_JP
 
 int Food::GetStaminaGain() const
 {
