@@ -43,26 +43,6 @@ asm(
     "method_0800A0A4__C9FieldPlot:\n"
     "    .incbin \"baserom_jp.gba\", 0xA0AC, 0x7C\n"
     "\n"
-    "    .global method_0800A120__9FieldPloti\n"
-    "    .thumb_func\n"
-    "method_0800A120__9FieldPloti:\n"
-    "    .incbin \"baserom_jp.gba\", 0xA128, 0x14\n"
-    "\n"
-    "    .global method_0800A134__9FieldPlotii\n"
-    "    .thumb_func\n"
-    "method_0800A134__9FieldPlotii:\n"
-    "    .incbin \"baserom_jp.gba\", 0xA13C, 0x5C\n"
-    "\n"
-    "    .global method_0800A190__9FieldPlotb\n"
-    "    .thumb_func\n"
-    "method_0800A190__9FieldPlotb:\n"
-    "    .incbin \"baserom_jp.gba\", 0xA198, 0xA8\n"
-    "\n"
-    "    .global method_0800A238__9FieldPloti\n"
-    "    .thumb_func\n"
-    "method_0800A238__9FieldPloti:\n"
-    "    .incbin \"baserom_jp.gba\", 0xA240, 0x104\n"
-    "\n"
     "    @ Keep later shared C++ emission in agbcp's default syntax mode.\n"
     "    .syntax divided\n"
 );
@@ -229,6 +209,8 @@ u32 FieldPlot::method_0800A0A4() const
     return 0;
 }
 
+#endif // REGION_JP
+
 void FieldPlot::method_0800A120(int arg_1)
 {
     unk_00_00 = arg_1;
@@ -245,6 +227,27 @@ void FieldPlot::method_0800A134(int id, int arg_2)
         unk_00_00 = 0;
     }
 }
+
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "    .incbin \"baserom_jp.gba\", 0xA196, 0x2\n"
+    "\n"
+    "    .global method_0800A190__9FieldPlotb\n"
+    "    .thumb_func\n"
+    "method_0800A190__9FieldPlotb:\n"
+    "    .incbin \"baserom_jp.gba\", 0xA198, 0xA8\n"
+    "\n"
+    "    .global method_0800A238__9FieldPloti\n"
+    "    .thumb_func\n"
+    "method_0800A238__9FieldPloti:\n"
+    "    .incbin \"baserom_jp.gba\", 0xA240, 0x104\n"
+    "\n"
+    "    .syntax divided\n"
+);
+#else
 
 u32 FieldPlot::method_0800A190(bool arg_1)
 {
