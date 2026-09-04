@@ -85,6 +85,7 @@ static inline T const & FomtMin(T const & left, T const & right)
 extern char const gJpBrokenToolName[];
 extern char const gJpNoExplanation[];
 extern char const gJpBrokenFoodName[];
+extern char const gJpBrokenArticleName[];
 #else
 #include <algorithm>
 #endif
@@ -393,33 +394,17 @@ int Article::GetId() const
     return id;
 }
 
-#if defined(REGION_JP)
-asm(
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "\n"
-    "    .macro jp_item_func name, start, end\n"
-    "        .global \\name\n"
-    "        .thumb_func\n"
-    "\\name:\n"
-    "        .incbin \"baserom_jp.gba\", \\start, (\\end - \\start)\n"
-    "    .endm\n"
-    "\n"
-    "    jp_item_func GetName__C7Article, 0xDF38, 0xDF64\n"
-    "    .syntax divided\n"
-);
-#else
-
 char const * Article::GetName() const
 {
     if (IsValidArticleId(id))
         return gArticleInfo[id].name;
 
+#if defined(REGION_JP)
+    return gJpBrokenArticleName;
+#else
     return "Broken Article";
+#endif
 }
-
-#endif // REGION_JP
 
 u16 Article::GetIconId() const
 {
@@ -454,6 +439,14 @@ asm(
     "    .section .text\n"
     "    .syntax unified\n"
     "    .thumb\n"
+    "\n"
+    "    .macro jp_item_func name, start, end\n"
+    "        .global \\name\n"
+    "        .thumb_func\n"
+    "\\name:\n"
+    "        .incbin \"baserom_jp.gba\", \\start, (\\end - \\start)\n"
+    "    .endm\n"
+    "\n"
     "    jp_item_func GetDesc__C7Article, 0xDFB4, 0xDFF0\n"
     "    .syntax divided\n"
 );
@@ -677,7 +670,11 @@ asm(
     "\n"
     "    .global gJpBrokenFoodName\n"
     "gJpBrokenFoodName:\n"
-    "    .incbin \"baserom_jp.gba\", 0xE8ADC, (0xE9EEC - 0xE8ADC)\n"
+    "    .incbin \"baserom_jp.gba\", 0xE8ADC, (0xE8AE8 - 0xE8ADC)\n"
+    "\n"
+    "    .global gJpBrokenArticleName\n"
+    "gJpBrokenArticleName:\n"
+    "    .incbin \"baserom_jp.gba\", 0xE8AE8, (0xE9EEC - 0xE8AE8)\n"
     "\n"
     "    .global gToolInfo\n"
     "gToolInfo:\n"
