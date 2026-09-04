@@ -32,8 +32,6 @@ asm(
     "    .thumb\n"
     "    .thumb_set jp_barn_text_start, __4Barn\n"
     "\n"
-    "    .global RemoveAndRememberUnk__4BarnUi\n"
-    "    .thumb_set RemoveAndRememberUnk__4BarnUi, jp_barn_text_start + 0x718\n"
     "    .global DayUpdate__4Barn\n"
     "    .thumb_set DayUpdate__4Barn, jp_barn_text_start + 0x7F4\n"
     "    .global AttemptBirth__4BarnUi\n"
@@ -424,17 +422,6 @@ void Barn::Remove(u32 ent_idx)
     ent[ent_idx].Remove();
 }
 
-#if defined(REGION_JP)
-asm(
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "jp_barn_text_tail_start:\n"
-    "    .incbin \"baserom_jp.gba\", 0xD4B4, 0x338\n"
-    "    .syntax divided\n"
-);
-#else
-
 void Barn::RemoveAndRememberUnk(u32 ent_idx)
 {
     // for some reason variables here a duplicated
@@ -467,6 +454,16 @@ void Barn::RemoveAndRememberUnk(u32 ent_idx)
         Remove(ent_idx);
     }
 }
+
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "    .incbin \"baserom_jp.gba\", 0xD590, 0x25C\n"
+    "    .syntax divided\n"
+);
+#else
 
 static inline void SetAnimalPositionWithinBarn(BarnAnimal * barn_animal, Vec2 const & vec)
 {
