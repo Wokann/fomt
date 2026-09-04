@@ -4,9 +4,9 @@ This is a decompilation of the 2003 GBA game "Harvest Moon: Friends of Mineral T
 
 It builds the following ROM:
 
-* **[fomt.gba]** `sha1: a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`
+* **[fomt_us.gba]** `sha1: a2fc3574f0a65a4fcf7682fb274b9d7eebdef963`
 
-[fomt.gba]: https://datomatic.no-intro.org/index.php?page=show_record&s=23&n=1249
+[fomt_us.gba]: https://datomatic.no-intro.org/index.php?page=show_record&s=23&n=1249
 
 ## Region selection
 

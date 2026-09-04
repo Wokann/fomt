@@ -8,6 +8,7 @@ Regional text belongs under this directory by its owning data structure:
     data/text/jp/tool.cc
     data/text/jp/food.cc
     data/text/jp/article.cc
+    data/text/common/fallback.cc
 
 Keep categories separate even when their entries are linked beside one another:
 each source corresponds to the C/C++ structure that owns its text pointers.
@@ -17,13 +18,17 @@ Shift-JIS entries include ASCII, so regional text does not need separate
 character maps. It is intentionally outside `data/text` so script and
 non-script preprocessing use one explicit project-level encoding contract.
 
-Each source file includes `item_text.hh` and uses ordinary C++ `char const`
-definitions. The host-side text preprocessor converts their UTF-8 string
-literals with `charmap.txt`; generated assembly keeps stable `gText_*`
-symbols and a trailing `.align 2, 0` after every text object. C/C++ tables
-then reference those symbols directly. When two table entries intentionally
-share one ROM string, both table fields point to the same canonical symbol;
-do not create a second text object or an assembler alias.
+Each regional source file includes `item_text.hh` and uses ordinary C++
+`char const` definitions. The host-side text preprocessor converts their UTF-8
+string literals with `charmap.txt` into generated escaped C++ source, which
+`agbcp` compiles into the stable `gText_*` symbols. C/C++ tables then reference
+those symbols directly. When two table entries intentionally share one ROM
+string, both table fields point to the same canonical symbol; do not create a
+second text object or an assembler alias.
+
+`common/fallback.cc` is included directly by `src/item.cc` because its small
+fallback strings are byte-identical in both regions. It does not need regional
+selection or generated source files.
 
 Game scripts are deliberately outside this directory and remain independently
 managed by Mary.  Do not add a script build or link step here.

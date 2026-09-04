@@ -1,7 +1,7 @@
     .section .iwram, "awx"
 
     .macro inc from, to
-    .incbin "baserom.gba", 0x75B9F8 + \from - 0x03000490, \to - \from
+    .incbin "baserom_us.gba", 0x75B9F8 + \from - 0x03000490, \to - \from
     .endm
 
     .global func_03000490

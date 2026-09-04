@@ -6,8 +6,8 @@ Better instructions will come eventually.
 
 - get a `arm-none-eabi` toolchain (devkitARM probably works)
 - get [notyourav/agbcc] (or another fork of agbcc that includes agbcp) and install it into this repository. You can use the install_agbcp.sh script in the tools folder to achieve that.
-- get the base rom, put it in root directory as `baserom.gba`
-- `make compare`
+- get the base rom, put it in root directory as `baserom_us.gba`
+- `make fomt_us`
 
 [notyourav/agbcc]: https://github.com/notyourav/agbcc
 
@@ -30,10 +30,10 @@ To set up the repository:
 
 	cd ../hmfomt
 
-Place a .gba ROM of Harvest Moon: Friends of Mineral Town (USA) in your hmfomt folder and rename it to "baserom".
+Place a .gba ROM of Harvest Moon: Friends of Mineral Town (USA) in your hmfomt folder and name it `baserom_us.gba`.
 
-To build **hmfomt.gba** and confirm it matches the official ROM image:
+To build **hmfomt_us.gba** and confirm it matches the official ROM image:
 
-	make compare
+	make fomt_us
 
 If an OK is returned, then the installation went smoothly.

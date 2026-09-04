@@ -242,6 +242,22 @@ SECTIONS
         src/record_player.o(.rodata);
         . = 0xE8AB4; /* JP item tables begin here. */
         src/item.o(.rodata);
+        data/text/tool.o(.rodata);
+        FILL(0x00);
+        . = ALIGN(4);
+        asm/data/item_tables.o(.rodata.item_tool);
+        FILL(0xFF);
+        data/text/food.o(.rodata);
+        FILL(0x00);
+        . = ALIGN(4);
+        asm/data/item_tables.o(.rodata.item_food);
+        FILL(0xFF);
+        data/text/article.o(.rodata);
+        FILL(0x00);
+        . = ALIGN(4);
+        asm/data/item_tables.o(.rodata.item_article);
+        FILL(0xFF);
+        asm/data/item_tables.o(.rodata.item_product);
         /* . = ALIGN(4); src/code_0800E2E4.o(.rodata); */
         . = 0xEFD48; /* JP counterpart of data_080F0348. */
         asm/data/data_080F0348.o(.rodata);
