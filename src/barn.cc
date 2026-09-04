@@ -38,8 +38,6 @@ asm(
     "    .thumb_set DayUpdate__4Barn, jp_barn_text_start + 0x7F4\n"
     "    .global method_0800D80C__4BarnUi\n"
     "    .thumb_set method_0800D80C__4BarnUi, jp_barn_text_start + 0xA50\n"
-    "    .global method_0800D858__4Barn\n"
-    "    .thumb_set method_0800D858__4Barn, jp_barn_text_start + 0xA9C\n"
     "    .global MoveToPregnancyStall__4BarnUiUi\n"
     "    .thumb_set MoveToPregnancyStall__4BarnUiUi, jp_barn_text_start + 0xAA8\n"
     "    .global AttemptBirth__4BarnUi\n"
@@ -500,7 +498,7 @@ asm(
     "    .syntax unified\n"
     "    .thumb\n"
     "jp_barn_text_tail_start:\n"
-    "    .incbin \"baserom_jp.gba\", 0xD4B4, 0x658\n"
+    "    .incbin \"baserom_jp.gba\", 0xD4B4, 0x384\n"
     "    .syntax divided\n"
 );
 #else
@@ -628,10 +626,24 @@ void Barn::method_0800D80C(u32 ent_idx)
     }
 }
 
+#endif // REGION_JP
+
 void Barn::method_0800D858()
 {
     unk_3_7 = false;
 }
+
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "    .incbin \"baserom_jp.gba\", 0xD842, 0x2\n"
+    "jp_barn_text_tail_rest_start:\n"
+    "    .incbin \"baserom_jp.gba\", 0xD844, 0x2C8\n"
+    "    .syntax divided\n"
+);
+#else
 
 void Barn::MoveToPregnancyStall(u32 pregnancy_stall_idx, u32 ent_idx)
 {
