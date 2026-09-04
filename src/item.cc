@@ -12,9 +12,23 @@ struct FoodInfo
 
 extern FoodInfo const gFoodInfo[];
 
+struct ArticleInfo
+{
+    /* +00 */ char const * name;
+    /* +04 */ u16 icon_id;
+    /* +08 */ char const * desc;
+};
+
+extern ArticleInfo const gArticleInfo[];
+
 static inline bool IsValidFoodId(u8 id)
 {
     return id < NUM_FOODS;
+}
+
+static inline bool IsValidArticleId(u8 id)
+{
+    return id < NUM_ARTICLES;
 }
 
 Tool::Tool(u32 a_id)
@@ -74,13 +88,6 @@ struct ToolInfo
     /* +08 */ char const * desc;
 };
 
-struct ArticleInfo
-{
-    /* +00 */ char const * name;
-    /* +04 */ u16 icon_id;
-    /* +08 */ char const * desc;
-};
-
 struct ProductInfo
 {
     enum Kind
@@ -95,17 +102,11 @@ struct ProductInfo
 };
 
 extern ToolInfo const gToolInfo[];
-extern ArticleInfo const gArticleInfo[];
 extern ProductInfo const gProductInfo[];
 
 static inline bool IsValidToolId(u8 id)
 {
     return id < NUM_TOOLS;
-}
-
-static inline bool IsValidArticleId(u8 id)
-{
-    return id < NUM_ARTICLES;
 }
 
 static inline bool IsValidProductId(u8 id)
@@ -452,7 +453,6 @@ asm(
     "    .syntax unified\n"
     "    .thumb\n"
     "    jp_item_func GetName__C7Article, 0xDF38, 0xDF64\n"
-    "    jp_item_func GetIconId__C7Article, 0xDF64, 0xDF90\n"
     "    .syntax divided\n"
 );
 #else
@@ -465,6 +465,8 @@ char const * Article::GetName() const
     return "Broken Article";
 }
 
+#endif // REGION_JP
+
 u16 Article::GetIconId() const
 {
     if (IsValidArticleId(id))
@@ -472,8 +474,6 @@ u16 Article::GetIconId() const
 
     return 457; // Turnip
 }
-
-#endif // REGION_JP
 
 bool Article::CanBeDiscarded() const
 {
