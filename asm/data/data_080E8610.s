@@ -18,47 +18,11 @@ gUnk_080E862C:
 gUnk_080E8684:
 	.incbin "baserom_jp.gba", 0xE7AB4, (0xE7AC8 - 0xE7AB4)
 
-	.section .rodata.new_game_menu_trailer
-
-	.global gUnk_080E874C
-gUnk_080E874C:
-	.incbin "baserom_jp.gba", 0xE7B7C, 0x8
-
-	.global gUnk_080E8754
-gUnk_080E8754:
-	.incbin "baserom_jp.gba", 0xE7B84, 0x4
-
-	.global gUnk_080E8758
-gUnk_080E8758:
-	.incbin "baserom_jp.gba", 0xE7B88, 0x8
-
-	.global gUnk_080E8760
-gUnk_080E8760:
-	.incbin "baserom_jp.gba", 0xE7B90, 0x4
-
-	.global gUnk_080E8764
-gUnk_080E8764:
-	.incbin "baserom_jp.gba", 0xE7B94, 0x4
-
-	.global gUnk_080E8768
-gUnk_080E8768:
-	.incbin "baserom_jp.gba", 0xE7B98, 0x8
-
-	.global gUnk_080E8770
-gUnk_080E8770:
-	.incbin "baserom_jp.gba", 0xE7BA0, 0xC
-
-	.global gUnk_080E877C
-gUnk_080E877C:
-	.incbin "baserom_jp.gba", 0xE7BAC, 0x10
-
-	.global gUnk_080E878C
-gUnk_080E878C:
-	.incbin "baserom_jp.gba", 0xE7BBC, 0x18
+	.section .rodata.new_game_status_trailer
 
 	.global gUnk_080E87A4
 gUnk_080E87A4:
-	.incbin "baserom_jp.gba", 0xE7BD4, 0x58
+	.incbin "baserom_jp.gba", 0xE7BD8, (0xE7C2C - 0xE7BD8)
 
 	.global gUnk_080E87FC
 gUnk_080E87FC:
@@ -204,43 +168,7 @@ gUnk_080E862C:
 gUnk_080E8684:
 	.incbin "baserom_us.gba", 0xE8684, (0xE86A8 - 0xE8684)
 
-	.section .rodata.new_game_menu_trailer
-
-	.global gUnk_080E874C
-gUnk_080E874C:
-	.incbin "baserom_us.gba", 0xE874C, 0x8
-
-	.global gUnk_080E8754
-gUnk_080E8754:
-	.incbin "baserom_us.gba", 0xE8754, 0x4
-
-	.global gUnk_080E8758
-gUnk_080E8758:
-	.incbin "baserom_us.gba", 0xE8758, 0x8
-
-	.global gUnk_080E8760
-gUnk_080E8760:
-	.incbin "baserom_us.gba", 0xE8760, 0x4
-
-	.global gUnk_080E8764
-gUnk_080E8764:
-	.incbin "baserom_us.gba", 0xE8764, 0x4
-
-	.global gUnk_080E8768
-gUnk_080E8768:
-	.incbin "baserom_us.gba", 0xE8768, 0x8
-
-	.global gUnk_080E8770
-gUnk_080E8770:
-	.incbin "baserom_us.gba", 0xE8770, 0xC
-
-	.global gUnk_080E877C
-gUnk_080E877C:
-	.incbin "baserom_us.gba", 0xE877C, 0x10
-
-	.global gUnk_080E878C
-gUnk_080E878C:
-	.incbin "baserom_us.gba", 0xE878C, 0x18
+	.section .rodata.new_game_status_trailer
 
 	.global gUnk_080E87A4
 gUnk_080E87A4:
