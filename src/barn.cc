@@ -32,8 +32,6 @@ asm(
     "    .thumb\n"
     "    .thumb_set jp_barn_text_start, __4Barn\n"
     "\n"
-    "    .global DayUpdate__4Barn\n"
-    "    .thumb_set DayUpdate__4Barn, jp_barn_text_start + 0x7F4\n"
     "    .global AttemptBirth__4BarnUi\n"
     "    .thumb_set AttemptBirth__4BarnUi, jp_barn_text_start + 0xAEC\n"
     "    .section .gnu.linkonce.t.__as__5SheepRC5Sheep, \"ax\", %progbits\n"
@@ -455,16 +453,6 @@ void Barn::RemoveAndRememberUnk(u32 ent_idx)
     }
 }
 
-#if defined(REGION_JP)
-asm(
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "    .incbin \"baserom_jp.gba\", 0xD590, 0x25C\n"
-    "    .syntax divided\n"
-);
-#else
-
 static inline void SetAnimalPositionWithinBarn(BarnAnimal * barn_animal, Vec2 const & vec)
 {
     barn_animal->SetLocation(ActorLocation(Location(0x25, vec.x, vec.y), 3));
@@ -540,8 +528,6 @@ void Barn::DayUpdate()
             sheep->DayUpdate();
     }
 }
-
-#endif // REGION_JP
 
 void Barn::method_0800D80C(u32 ent_idx)
 {
