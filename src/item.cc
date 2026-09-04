@@ -44,11 +44,6 @@ asm(
     "    jp_item_func GetDesc__C4Tool, 0xDB6C, 0xDBA8\n"
     "    jp_item_func __9ToolStack, 0xDBA8, 0xDBC0\n"
     "    jp_item_func __9ToolStackG4ToolUi, 0xDBC0, 0xDBF0\n"
-    "    jp_item_func GetTool__C9ToolStack, 0xDBF0, 0xDC14\n"
-    "    jp_item_func IsEmpty__C9ToolStack, 0xDC14, 0xDC28\n"
-    "    jp_item_func GetAmount__C9ToolStack, 0xDC28, 0xDC3C\n"
-    "    jp_item_func AddAmount__9ToolStackUi, 0xDC3C, 0xDC6C\n"
-    "    jp_item_func SubtractAmount__9ToolStackUi, 0xDC6C, 0xDC88\n"
     "    @ Keep later shared C++ emission in agbcp's default syntax mode.\n"
     "    .syntax divided\n"
 );
@@ -166,6 +161,8 @@ ToolStack::ToolStack(Tool kind, u32 a_amount)
     }
 }
 
+#endif // REGION_JP
+
 Tool ToolStack::GetTool() const
 {
     if (amount != 0)
@@ -187,6 +184,17 @@ u32 ToolStack::GetAmount() const
     return 0;
 }
 
+#if defined(REGION_JP)
+asm(
+    "    .section .text\n"
+    "    .syntax unified\n"
+    "    .thumb\n"
+    "    jp_item_func AddAmount__9ToolStackUi, 0xDC3C, 0xDC6C\n"
+    "    @ Keep later shared C++ emission in agbcp's default syntax mode.\n"
+    "    .syntax divided\n"
+);
+#else
+
 void ToolStack::AddAmount(u32 a_amount)
 {
     if (amount != 0)
@@ -194,6 +202,8 @@ void ToolStack::AddAmount(u32 a_amount)
         amount = std::min<u32>(MAX_AMOUNT, amount + a_amount);
     }
 }
+
+#endif // REGION_JP
 
 void ToolStack::SubtractAmount(u32 a_amount)
 {
@@ -205,8 +215,6 @@ void ToolStack::SubtractAmount(u32 a_amount)
             amount -= a_amount;
     }
 }
-
-#endif // REGION_JP
 
 Food::Food(u32 a_id)
 {
