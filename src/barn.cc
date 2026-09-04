@@ -548,13 +548,7 @@ void Barn::method_0800D858()
     unk_3_7 = false;
 }
 
-asm(
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "    .align 2, 0\n"
-    "    .syntax divided\n"
-);
+asm(".align 2, 0");
 
 void Barn::MoveToPregnancyStall(u32 pregnancy_stall_idx, u32 ent_idx)
 {
@@ -567,13 +561,7 @@ void Barn::MoveToPregnancyStall(u32 pregnancy_stall_idx, u32 ent_idx)
     }
 }
 
-asm(
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "    .align 2, 0\n"
-    "    .syntax divided\n"
-);
+asm(".align 2, 0");
 
 #if defined(REGION_JP)
 asm(

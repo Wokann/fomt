@@ -115,13 +115,7 @@ bool FieldPlot::method_0800A07C() const
     return false;
 }
 
-asm(
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "    .align 2, 0\n"
-    "    .syntax divided\n"
-);
+asm(".align 2, 0");
 
 u32 FieldPlot::method_0800A0A4() const
 {
@@ -184,13 +178,7 @@ void FieldPlot::method_0800A134(int id, int arg_2)
     }
 }
 
-asm(
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "    .align 2, 0\n"
-    "    .syntax divided\n"
-);
+asm(".align 2, 0");
 
 u32 FieldPlot::method_0800A190(bool arg_1)
 {
@@ -1127,13 +1115,7 @@ void const * FieldPlot::method_0800AF20() const
     }
 }
 
-asm(
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "    .align 2, 0\n"
-    "    .syntax divided\n"
-);
+asm(".align 2, 0");
 
 Unk_Something const * FieldPlot::method_0800AF5C(FieldPlot const * arg_1, FieldPlot const * arg_2) const
 {
