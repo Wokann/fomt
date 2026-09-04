@@ -82,17 +82,11 @@ static inline T const & FomtMin(T const & left, T const & right)
     return right < left ? right : left;
 }
 
-#if defined(REGION_JP)
-extern char const gBrokenToolName[];
-extern char const gNoExplanation[];
-extern char const gBrokenFoodName[];
-extern char const gBrokenArticleName[];
-extern char const gBrokenShipmentName[];
-#else
 #include <algorithm>
 
-static char const gBrokenToolName[] = "Broken Tool";
-#endif
+// This source is common to both revisions.  As ordinary C++ arrays, its
+// storage and alignment are emitted by agbcp with the rest of this module.
+#include "data/text/common/fallback.cc"
 
 char const * Tool::GetName() const
 {
@@ -110,10 +104,6 @@ u16 Tool::GetIconId() const
     // TODO: icon id constants
     return 457; // Turnip
 }
-
-#if !defined(REGION_JP)
-static char const gNoExplanation[] = "No Explanation";
-#endif
 
 static inline char const * GetToolDescById(u32 id)
 {
@@ -202,10 +192,6 @@ int Food::GetId() const
 {
     return id;
 }
-
-#if !defined(REGION_JP)
-static char const gBrokenFoodName[] = "Broken Food";
-#endif
 
 char const * Food::GetName() const
 {
@@ -382,10 +368,6 @@ int Article::GetId() const
     return id;
 }
 
-#if !defined(REGION_JP)
-static char const gBrokenArticleName[] = "Broken Article";
-#endif
-
 char const * Article::GetName() const
 {
     if (IsValidArticleId(id))
@@ -557,10 +539,6 @@ u32 Product::GetPrice() const
     return 0;
 }
 
-#if !defined(REGION_JP)
-static char const gBrokenShipmentName[] = "Broken Shipment";
-#endif
-
 char const * Product::GetName() const
 {
     if (IsValidProductId(id))
@@ -614,66 +592,11 @@ Article ItemVariant::AsArticle() const
     return (kind == KIND_ARTICLE) ? Article(id) : Article(ARTICLE_NONE);
 }
 
-#if defined(REGION_JP)
-asm(
-    "    .section .rodata\n"
-    "jp_item_data_start:\n"
-    "    .incbin \"baserom_jp.gba\", 0xE8AB4, (0xE8AC0 - 0xE8AB4)\n"
-    "\n"
-    "    .global gBrokenToolName\n"
-    "gBrokenToolName:\n"
-    "    .incbin \"baserom_jp.gba\", 0xE8AC0, (0xE8ACC - 0xE8AC0)\n"
-    "\n"
-    "    .global gNoExplanation\n"
-    "gNoExplanation:\n"
-    "    .incbin \"baserom_jp.gba\", 0xE8ACC, (0xE8ADC - 0xE8ACC)\n"
-    "\n"
-    "    .global gBrokenFoodName\n"
-    "gBrokenFoodName:\n"
-    "    .incbin \"baserom_jp.gba\", 0xE8ADC, (0xE8AE8 - 0xE8ADC)\n"
-    "\n"
-    "    .global gBrokenArticleName\n"
-    "gBrokenArticleName:\n"
-    "    .incbin \"baserom_jp.gba\", 0xE8AE8, (0xE8AF8 - 0xE8AE8)\n"
-    "\n"
-    "    .global gBrokenShipmentName\n"
-    "gBrokenShipmentName:\n"
-    "    .incbin \"baserom_jp.gba\", 0xE8AF8, (0xE8B08 - 0xE8AF8)\n"
-    "\n"
-    "    .include \"build/jp/data/text/tool.s\"\n"
-    "\n"
-    "    .global gToolInfo\n"
-    "gToolInfo:\n"
-    "    .incbin \"baserom_jp.gba\", 0xE9EEC, (0xEA2B8 - 0xE9EEC)\n"
-    "\n"
-    "    .include \"build/jp/data/text/food.s\"\n"
-    "\n"
-    "    .global gFoodInfo\n"
-    "gFoodInfo:\n"
-    "    .incbin \"baserom_jp.gba\", 0xED3D8, (0xEDE88 - 0xED3D8)\n"
-    "\n"
-    "    .include \"build/jp/data/text/article.s\"\n"
-    "\n"
-    "    .global gArticleInfo\n"
-    "gArticleInfo:\n"
-    "    .incbin \"baserom_jp.gba\", 0xEF738, (0xEFBAC - 0xEF738)\n"
-    "\n"
-    "    .global gProductInfo\n"
-    "gProductInfo:\n"
-    "    .incbin \"baserom_jp.gba\", 0xEFBAC, (0xEFD48 - 0xEFBAC)\n"
-    "\n"
-    "    .syntax divided\n"
-);
-#else
-
-asm(
-    "    .section .rodata\n"
-    "    .include \"build/us/data/text/tool.s\"\n"
-);
+#if !defined(REGION_JP)
 
 // Item Info tables
 
-ToolInfo const gToolInfo[] = {
+ToolInfo const gToolInfo[] __attribute__((section(".rodata.item_tool"))) = {
     /* 0x00 */ { gText_Item_Tool_IronSickle_Name, 403, gText_Item_Tool_IronSickle_Description },
     /* 0x01 */ { gText_Item_Tool_CopperSickle_Name, 404, gText_Item_Tool_CopperSickle_Description },
     /* 0x02 */ { gText_Item_Tool_SilverSickle_Name, 405, gText_Item_Tool_SilverSickle_Description },
@@ -757,12 +680,7 @@ ToolInfo const gToolInfo[] = {
     /* 0x50 */ { gText_Item_Tool_GemOfTruth_Name, 456, gText_Item_Tool_GemOfTruth_Description },
 };
 
-asm(
-    "    .section .rodata\n"
-    "    .include \"build/us/data/text/food.s\"\n"
-);
-
-FoodInfo const gFoodInfo[] = {
+FoodInfo const gFoodInfo[] __attribute__((section(".rodata.item_food"))) = {
     /* 0x00 */ { gText_Item_Food_Turnip_Name, false, 3, -1, 457, gText_Item_Food_Turnip_Description },
     /* 0x01 */ { gText_Item_Food_Potato_Name, false, 3, -1, 347, gText_Item_Food_Potato_Description },
     /* 0x02 */ { gText_Item_Food_Cucumber_Name, false, 4, -1, 113, gText_Item_Food_Cucumber_Description },
@@ -936,12 +854,7 @@ FoodInfo const gFoodInfo[] = {
     /* 0xAA */ { gText_Item_Food_PotatoPancakes_Name, false, 20, -2, 112, gText_Item_Food_PotatoPancakes_Description },
 };
 
-asm(
-    "    .section .rodata\n"
-    "    .include \"build/us/data/text/article.s\"\n"
-);
-
-ArticleInfo const gArticleInfo[] = {
+ArticleInfo const gArticleInfo[] __attribute__((section(".rodata.item_article"))) = {
     /* 0x00 */ { gText_Item_Article_MoonDropGrass_Name, 303, gText_Item_Article_MoonDropGrass_Description },
     /* 0x01 */ { gText_Item_Article_PinkCatGrass_Name, 337, gText_Item_Article_PinkCatGrass_Description },
     /* 0x02 */ { gText_Item_Article_BlueMagicGrass_Name, 272, gText_Item_Article_BlueMagicGrass_Description },
@@ -1039,7 +952,7 @@ ArticleInfo const gArticleInfo[] = {
     /* 0x5E */ { gText_Item_Article_Frisbee_Name, 201, gText_Item_Article_Frisbee_Description },
 };
 
-ProductInfo const gProductInfo[] = {
+ProductInfo const gProductInfo[] __attribute__((section(".rodata.item_product"))) = {
     /* 0x00 */ { 60, ProductInfo::KIND_FOOD, FOOD_TURNIP },
     /* 0x01 */ { 80, ProductInfo::KIND_FOOD, FOOD_POTATO },
     /* 0x02 */ { 60, ProductInfo::KIND_FOOD, FOOD_CUCUMBER },

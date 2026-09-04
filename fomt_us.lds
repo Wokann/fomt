@@ -163,6 +163,19 @@ SECTIONS
         src/shipping_bin.o(.rodata);
         src/record_player.o(.rodata);
         . = ALIGN(4); src/item.o(.rodata);
+        . = ALIGN(4); data/text/tool.o(.rodata);
+        FILL(0x00);
+        . = ALIGN(4); src/item.o(.rodata.item_tool);
+        FILL(0xFF);
+        . = ALIGN(4); data/text/food.o(.rodata);
+        FILL(0x00);
+        . = ALIGN(4); src/item.o(.rodata.item_food);
+        FILL(0xFF);
+        . = ALIGN(4); data/text/article.o(.rodata);
+        FILL(0x00);
+        . = ALIGN(4); src/item.o(.rodata.item_article);
+        FILL(0xFF);
+        . = ALIGN(4); src/item.o(.rodata.item_product);
         /* . = ALIGN(4); src/code_0800E2E4.o(.rodata); */
         . = ALIGN(4); asm/data/data_080F0348.o(.rodata);
         . = ALIGN(4); src/data_schedules.o(.rodata);

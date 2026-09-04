@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ROM=${ROM-baserom.gba}
+ROM=${ROM-baserom_us.gba}
 BEG=$1
 LEN=${2-0x100}
 

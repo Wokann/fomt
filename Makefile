@@ -107,16 +107,30 @@ ITEM_TEXT_REGION := us
 ITEM_TEXT_SOURCES := data/text/us/tool.cc data/text/us/food.cc data/text/us/article.cc
 endif
 
-ITEM_TEXT_ASMS := $(patsubst data/text/$(ITEM_TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.s,$(ITEM_TEXT_SOURCES))
+ITEM_TEXT_GENERATED_SOURCES := $(patsubst data/text/$(ITEM_TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.cc,$(ITEM_TEXT_SOURCES))
+ITEM_TEXT_OBJS := $(ITEM_TEXT_GENERATED_SOURCES:.cc=.o)
+ITEM_TEXT_DEPS := $(ITEM_TEXT_GENERATED_SOURCES:.cc=.d)
+
+ALL_OBJS += $(ITEM_TEXT_OBJS)
+ALL_DEPS += $(ITEM_TEXT_DEPS)
+
+.SECONDARY: $(ITEM_TEXT_GENERATED_SOURCES)
 
 $(TEXT_TOOL): $(TEXT_TOOL_DIR)/fomt_text.cpp $(TEXT_TOOL_DIR)/Makefile
 	@$(MAKE) -C $(TEXT_TOOL_DIR) $(notdir $@)
 
-$(BUILD_DIR)/data/text/%.s: data/text/$(ITEM_TEXT_REGION)/%.cc $(TEXT_TOOL) charmap.txt
+$(BUILD_DIR)/data/text/%.cc: data/text/$(ITEM_TEXT_REGION)/%.cc $(TEXT_TOOL) charmap.txt
 	@mkdir -p $(dir $@)
-	$(TEXT_TOOL) asm charmap.txt $< $@
+	$(TEXT_TOOL) cpp charmap.txt $< $@
 
-$(BUILD_DIR)/src/item.o: $(ITEM_TEXT_ASMS)
+$(BUILD_DIR)/data/text/%.d: $(BUILD_DIR)/data/text/%.cc
+	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MT $(BUILD_DIR)/data/text/$*.o
+
+$(BUILD_DIR)/data/text/%.o: $(BUILD_DIR)/data/text/%.cc $(BUILD_DIR)/data/text/%.d
+	@echo "CP $<"
+	@$(CPP) $(CPPFLAGS) $< | ($(CC1PLUS) $(CXXFLAGS) -o $(BUILD_DIR)/data/text/$*.s || false)
+	@sed 's/\r$$//' tools/scripts/align_sections.sh | bash -s -- $(BUILD_DIR)/data/text/$*.s
+	@$(AS) $(ASFLAGS) $(BUILD_DIR)/data/text/$*.s -o $@
 
 # ROM from ELF
 %.gba: %.elf

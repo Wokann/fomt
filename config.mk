@@ -19,12 +19,12 @@ ifneq ($(GAME_REVISION),0)
 endif
 
 ifeq ($(GAME_REGION),US)
-  BUILD_NAME := fomt
-  BASE_ROM := baserom.gba
+  BUILD_NAME := fomt_us
+  BASE_ROM := baserom_us.gba
   REGION_DIR := us
   REGION_DEFINE := REGION_US
-  LDS := fomt.lds
-  LDS_LINK_PATH := ../../fomt.lds
+  LDS := fomt_us.lds
+  LDS_LINK_PATH := ../../fomt_us.lds
 else ifeq ($(GAME_REGION),JP)
   BUILD_NAME := fomt_jp
   BASE_ROM := baserom_jp.gba
