@@ -237,6 +237,10 @@ SECTIONS
 
         . = 0xE7A40; /* JP data_080E8610 begins after the C++ table region. */
         asm/data/data_080E8610.o(.rodata);
+        . = ALIGN(4); data/text/new_game_menu.o(.rodata.new_game_menu_labels);
+        . = ALIGN(4); src/new_game_menu_data.o(.rodata.new_game_menu_label_pointers);
+        . = 0xE7B7C; /* JP raw data after the regional new-game menu. */
+        asm/data/data_080E8610.o(.rodata.new_game_menu_trailer);
         . = 0xE8A6C; /* JP ROM 0x080E8A6C, independently matched */
         src/shipping_bin.o(.rodata);
         src/record_player.o(.rodata);

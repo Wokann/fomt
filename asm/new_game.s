@@ -750,7 +750,7 @@ func_08003C80: @ 0x08003C80
     add r2, sp
     mov r8, r2
 .L08003D22:
-    ldr r4, .L08003DE8 @ =gUnk_080E8704
+    ldr r4, .L08003DE8 @ =gNewGameMenuLabels
     add r4, sb
     lsls r5, r7, #4
     ldr r1, [r4]
@@ -835,7 +835,7 @@ func_08003C80: @ 0x08003C80
 .L08003DDC: .4byte 0x00002D1C
 .L08003DE0: .4byte 0x00002D14
 .L08003DE4: .4byte 0x00002D20
-.L08003DE8: .4byte gUnk_080E8704
+.L08003DE8: .4byte gNewGameMenuLabels
 .L08003DEC: .4byte 0x00002D28
 
     thumb_func_start func_08003DF0
@@ -1047,7 +1047,7 @@ func_08003EEC: @ 0x08003EEC
     adds r0, #0x10
     cmp r1, #0
     bne .L08003F88
-    ldr r1, .L08003F98 @ =gUnk_080E86C0
+    ldr r1, .L08003F98 @ =gText_NewGameMenu_Blank
 .L08003F88:
     movs r2, #0
     movs r3, #0
@@ -1056,7 +1056,7 @@ func_08003EEC: @ 0x08003EEC
     bx r0
     .align 2, 0
 .L08003F94: .4byte gUnk_080E8878
-.L08003F98: .4byte gUnk_080E86C0
+.L08003F98: .4byte gText_NewGameMenu_Blank
 
     thumb_func_start func_08003F9C
 func_08003F9C: @ 0x08003F9C
@@ -2085,8 +2085,8 @@ func_08004570: @ 0x08004570
     adds r0, r6, #0
     adds r0, #0x10
     ldr r1, .L08004834 @ =gUnk_080E890C
-    ldr r2, .L08004838 @ =gUnk_080E86EC
-    ldr r3, .L0800483C @ =gUnk_080E86F0
+    ldr r2, .L08004838 @ =gText_NewGameMenu_Yes
+    ldr r3, .L0800483C @ =gText_NewGameMenu_No
     str r5, [sp]
     str r5, [sp, #4]
     str r5, [sp, #8]
@@ -2095,8 +2095,8 @@ func_08004570: @ 0x08004570
     b .L08004B30
     .align 2, 0
 .L08004834: .4byte gUnk_080E890C
-.L08004838: .4byte gUnk_080E86EC
-.L0800483C: .4byte gUnk_080E86F0
+.L08004838: .4byte gText_NewGameMenu_Yes
+.L0800483C: .4byte gText_NewGameMenu_No
 .L08004840:
     adds r0, r6, #0
     adds r0, #0x10
@@ -2131,8 +2131,8 @@ func_08004570: @ 0x08004570
     adds r0, r6, #0
     adds r0, #0x10
     ldr r1, .L08004894 @ =gUnk_080E8914
-    ldr r2, .L08004898 @ =gUnk_080E86EC
-    ldr r3, .L0800489C @ =gUnk_080E86F0
+    ldr r2, .L08004898 @ =gText_NewGameMenu_Yes
+    ldr r3, .L0800489C @ =gText_NewGameMenu_No
     str r4, [sp]
     str r4, [sp, #4]
     str r4, [sp, #8]
@@ -2142,8 +2142,8 @@ func_08004570: @ 0x08004570
     b .L08004674
     .align 2, 0
 .L08004894: .4byte gUnk_080E8914
-.L08004898: .4byte gUnk_080E86EC
-.L0800489C: .4byte gUnk_080E86F0
+.L08004898: .4byte gText_NewGameMenu_Yes
+.L0800489C: .4byte gText_NewGameMenu_No
 .L080048A0:
     adds r0, r7, #0
     lsls r1, r0, #0x1b
