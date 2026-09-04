@@ -5,6 +5,16 @@ static inline bool IsValidFoodId(u8 id)
     return id < NUM_FOODS;
 }
 
+Tool::Tool(u32 a_id)
+{
+    id = a_id;
+}
+
+int Tool::GetId() const
+{
+    return id;
+}
+
 #if defined(REGION_JP)
 /*
  * Byte-exact JP assembly stays in this module.  As matching functions are
@@ -29,8 +39,6 @@ asm(
     "        .incbin \"baserom_jp.gba\", \\start, (\\end - \\start)\n"
     "    .endm\n"
     "\n"
-    "    jp_item_func __4ToolUi, 0xDB0C, 0xDB10\n"
-    "    jp_item_func GetId__C4Tool, 0xDB10, 0xDB14\n"
     "    jp_item_func GetName__C4Tool, 0xDB14, 0xDB40\n"
     "    jp_item_func GetIconId__C4Tool, 0xDB40, 0xDB6C\n"
     "    jp_item_func GetDesc__C4Tool, 0xDB6C, 0xDBA8\n"
@@ -113,16 +121,6 @@ static inline bool IsValidArticleId(u8 id)
 static inline bool IsValidProductId(u8 id)
 {
     return id < NUM_PRODUCTS;
-}
-
-Tool::Tool(u32 a_id)
-{
-    id = a_id;
-}
-
-int Tool::GetId() const
-{
-    return id;
 }
 
 char const * Tool::GetName() const
