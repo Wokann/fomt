@@ -13,24 +13,6 @@ FieldPlot::FieldPlot(u32 arg_1, u32 arg_2, u32 arg_3)
 
 // TODO: move those around
 
-extern u32 const gUnk_080E8D14[][21];
-
-struct Unk_080E8CC4
-{
-    /* +00 */ u8 unk_00;
-    /* +01 */ u8 unk_01;
-    /* +02 */ u8 unk_02;
-    /* +03 */ u8 unk_03;
-    /* +04 */ u8 unk_04;
-    /* +05 */ u8 unk_05;
-    /* +06 */ u8 unk_06;
-    /* +07 */ u8 unk_07;
-};
-
-extern Unk_080E8CC4 const gUnk_080E8CC4[4][2];
-extern Unk_080E8CC4 const gUnk_080E8D04;
-extern Unk_080E8CC4 const gUnk_080E8D0C;
-
 extern u8 SHOULD_BE(const) gUnk_086D6518[];
 extern u8 SHOULD_BE(const) gUnk_086D6520[];
 extern u8 SHOULD_BE(const) gUnk_086D6528[];
@@ -677,9 +659,9 @@ void FieldPlot::DayUpdate(int weather, GameDate const & date)
 
                             int r3 = GetUnk8();
 
-                            if (r3 != gUnk_080E8D14[unk_00_02][unk_00_0C])
+                            if (r3 != gFieldPlotGrowthStageTransitions[unk_00_02][unk_00_0C])
                             {
-                                unk_00_08 = gUnk_080E8D14[unk_00_02][unk_00_0C];
+                                unk_00_08 = gFieldPlotGrowthStageTransitions[unk_00_02][unk_00_0C];
                             }
                         }
 
@@ -701,9 +683,9 @@ void FieldPlot::DayUpdate(int weather, GameDate const & date)
                     if (r3 == 7)
                         r3 = 1;
 
-                    if (r3 != gUnk_080E8D14[unk_00_02][unk_00_0C])
+                    if (r3 != gFieldPlotGrowthStageTransitions[unk_00_02][unk_00_0C])
                     {
-                        unk_00_08 = gUnk_080E8D14[unk_00_02][unk_00_0C];
+                        unk_00_08 = gFieldPlotGrowthStageTransitions[unk_00_02][unk_00_0C];
                     }
                 }
 
@@ -736,7 +718,7 @@ void FieldPlot::DayUpdate(int weather, GameDate const & date)
         unk_00_00 = 1;
     }
 
-    Unk_080E8CC4 const * unk;
+    FieldPlotWeatherRule const * weather_rule;
 
     switch (weather)
     {
@@ -744,15 +726,15 @@ void FieldPlot::DayUpdate(int weather, GameDate const & date)
         case 1:
         case 2:
         default:
-            unk = &gUnk_080E8CC4[date.season][weather == 0];
+            weather_rule = &gFieldPlotOrdinaryWeatherRules[date.season][weather == 0];
             break;
 
         case 3:
-            unk = &gUnk_080E8D04;
+            weather_rule = &gFieldPlotSpecialWeatherRule3;
             break;
 
         case 4:
-            unk = &gUnk_080E8D0C;
+            weather_rule = &gFieldPlotSpecialWeatherRule4;
             break;
     }
 
@@ -762,14 +744,14 @@ void FieldPlot::DayUpdate(int weather, GameDate const & date)
         {
             u32 r1 = (rand() >> 3) & 0xFF;
 
-            if (r1 < unk->unk_07)
+            if (r1 < weather_rule->bytes[7])
                 unk_00_08 = 0;
         }
         else if (GetUnk2() == 0x18)
         {
             u32 r1 = (rand() >> 3) & 0xFF;
 
-            if (r1 < unk->unk_00)
+            if (r1 < weather_rule->bytes[0])
                 method_0800A134(0x19, 8);
         }
     }
@@ -777,22 +759,22 @@ void FieldPlot::DayUpdate(int weather, GameDate const & date)
     {
         int r1 = (rand() >> 3) & 0xFF;
 
-        if (r1 < unk->unk_04)
+        if (r1 < weather_rule->bytes[4])
             method_0800A134(0x15, 8);
-        else if (r1 < unk->unk_05 + unk->unk_04)
+        else if (r1 < weather_rule->bytes[5] + weather_rule->bytes[4])
             method_0800A134(0x16, 8);
-        else if (r1 < unk->unk_06 + unk->unk_05 + unk->unk_04)
+        else if (r1 < weather_rule->bytes[6] + weather_rule->bytes[5] + weather_rule->bytes[4])
             method_0800A134(0x17, 8);
     }
     else if (GetUnk0() == 1)
     {
         int r1 = (rand() >> 3) & 0xFF;
 
-        if (r1 < unk->unk_01)
+        if (r1 < weather_rule->bytes[1])
             method_0800A120(0);
-        else if (r1 < unk->unk_02 + unk->unk_01)
+        else if (r1 < weather_rule->bytes[2] + weather_rule->bytes[1])
             method_0800A134(0x15, 8);
-        else if (r1 < unk->unk_03 + unk->unk_02 + unk->unk_01)
+        else if (r1 < weather_rule->bytes[3] + weather_rule->bytes[2] + weather_rule->bytes[1])
             method_0800A134(0x16, 8);
     }
 

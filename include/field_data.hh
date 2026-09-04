@@ -17,6 +17,15 @@ struct FieldPlotTypeDefinition
     /* +0A */ u16 result_item_id;
 };
 
+struct FieldPlotWeatherRule
+{
+    u8 bytes[8];
+};
+
+extern FieldPlotWeatherRule const gFieldPlotOrdinaryWeatherRules[4][2];
+extern FieldPlotWeatherRule const gFieldPlotSpecialWeatherRule3;
+extern FieldPlotWeatherRule const gFieldPlotSpecialWeatherRule4;
+extern u32 const gFieldPlotGrowthStageTransitions[21][21];
 extern FieldPlotTypeDefinition const gFieldPlotTypeDefinitions[39];
 
 #endif // FIELD_DATA_HH
