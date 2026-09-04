@@ -194,9 +194,11 @@ gUnk_080E8D0C:
 gUnk_080E8D14:
 	.incbin "baserom_jp.gba", 0xE8144, 0x6E4
 
+	.incbin "baserom_jp.gba", 0xE8828, 0x70
+
 	.global gUnk_080E93F8
 gUnk_080E93F8:
-	.incbin "baserom_jp.gba", 0xE8828, 0x244
+	.incbin "baserom_jp.gba", 0xE8898, 0x1D4
     .else
 
     .section .rodata
