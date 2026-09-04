@@ -98,7 +98,7 @@ compare: $(ROM)
 
 TEXT_TOOL_DIR := tools/textproc
 TEXT_TOOL := $(TEXT_TOOL_DIR)/fomt-text
-TEXT_COMMON_SOURCES := data/text/common/ui_error.cc
+TEXT_COMMON_SOURCES := data/text/common/ui_error.cc data/text/common/sram_signature.cc
 
 ifeq ($(GAME_REGION),JP)
 TEXT_REGION := jp

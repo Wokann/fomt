@@ -10,9 +10,8 @@
 init_array:
 	.incbin "baserom_jp.gba", 0xE7A40, 0x1C
 
-	.global gUnk_080E862C
-gUnk_080E862C:
-	.incbin "baserom_jp.gba", 0xE7A5C, 0x58
+	.section .rodata.sram_signature_trailer
+	.incbin "baserom_jp.gba", 0xE7A7C, (0xE7AB4 - 0xE7A7C)
 
 	.global gUnk_080E8684
 gUnk_080E8684:
@@ -65,9 +64,8 @@ init_array:
 	@ "bad_alloc"
 	.incbin "baserom_us.gba", 0xE8620, 0x0C
 
-	.global gUnk_080E862C
-gUnk_080E862C:
-	.incbin "baserom_us.gba", 0xE862C, 0x58
+	.section .rodata.sram_signature_trailer
+	.incbin "baserom_us.gba", 0xE864C, (0xE8684 - 0xE864C)
 
 	.global gUnk_080E8684
 gUnk_080E8684:
