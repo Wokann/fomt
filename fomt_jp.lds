@@ -367,7 +367,9 @@ SECTIONS
         . = 0x10A584; src/reference_guide.o(.rodata.reference_guide_crops_page09_lines);
         . = 0x10A678; data/text/reference_guide/crops.o(.rodata.reference_guide_crops_page10_text);
         . = 0x10AA64; src/reference_guide.o(.rodata.reference_guide_crops_page10_lines);
-        . = 0x10ABFC; asm/data/data_080F9EB8.o(.rodata.reference_guide_crops_trailer);
+        . = 0x10ABFC; data/text/reference_guide/mines.o(.rodata.reference_guide_mines_text);
+        . = 0x10AFB8; src/reference_guide.o(.rodata.reference_guide_mines_lines);
+        . = 0x10B0A4; asm/data/data_080F9EB8.o(.rodata.reference_guide_mines_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */
