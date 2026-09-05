@@ -54,7 +54,7 @@ documented source fragments where necessary, never a whole-ROM `incbin`.
 Reference Guide text is organized by content category under
 `data/text/<region>/reference_guide/`; its small native pointer tables and
 declarations stay centralized in `src/reference_guide.cc` and
-`include/reference_guide.hh`. Pages 0-29 currently use this layout.
+`include/reference_guide.hh`. Pages 0-30 currently use this layout.
 
 ## Setting up
 
