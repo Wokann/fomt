@@ -111,8 +111,11 @@ extern char const * const gReferenceGuideAwlPlayerLines[];
 extern char const * const gReferenceGuideCookbook1Lines[];
 // Reference Guide page 56: Cookbook II.
 extern char const * const gReferenceGuideCookbook2Lines[];
+// Reference Guide page 57: Cookbook III.
+extern char const * const gReferenceGuideCookbook3Lines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
+extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
 #endif
 
 // Localized Cookbook II text (page 56). Both regional sources export these labels.
@@ -131,6 +134,18 @@ extern char const gText_ReferenceGuide_Cookbook2_ButterRole_Ingredient_Bread[];
 extern char const gText_ReferenceGuide_Cookbook2_ButterRole_Ingredient_Butter[];
 extern char const gText_ReferenceGuide_Cookbook2_TempuraRice_Title[];
 extern char const gText_ReferenceGuide_Cookbook2_TempuraRice_Ingredient_Tempura[];
+
+// Localized Cookbook III text (page 57). Both regional sources export these labels.
+extern char const gText_ReferenceGuide_Cookbook3_Title[];
+extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Title[];
+extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Utensil_Oven[];
+extern char const gText_ReferenceGuide_Cookbook3_FishSticks_Title[];
+extern char const gText_ReferenceGuide_Cookbook3_FishSticks_Ingredient_MediumOrLargeFish[];
+extern char const gText_ReferenceGuide_Cookbook3_RiceGruel_Title[];
+extern char const gText_ReferenceGuide_Cookbook3_RiceGruel_Ingredient_AnyGrasses[];
+extern char const gText_ReferenceGuide_Cookbook3_Bodigizer_Title[];
+extern char const gText_ReferenceGuide_Cookbook3_Bodigizer_Ingredient_OrangeGrass[];
+extern char const gText_ReferenceGuide_Cookbook3_Bodigizer_Ingredient_RedMagicGrass[];
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Line01[];

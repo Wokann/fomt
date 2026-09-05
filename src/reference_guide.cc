@@ -4384,3 +4384,169 @@ char const * const gReferenceGuideCookbook2Lines[] SECTION(".rodata.reference_gu
 #endif
     nullptr,
 };
+
+// Reference Guide page 57: Cookbook III. The renderer consumes one flat
+// pointer sequence and stops at nullptr; recipe boundaries are visual groups.
+char const * const gReferenceGuideCookbook3Lines[] SECTION(".rodata.reference_guide_cookbook_3_lines") = {
+    gText_ReferenceGuide_Cookbook3_Title,
+
+    // Toasted Rice Ball. Generic recipe fields are direct physical pointers
+    // reused from Cookbook I, rather than duplicate localized strings.
+    gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_NecessaryIngredients_Heading,
+    gText_ReferenceGuide_Cookbook1_CurryRice_Ingredient_RiceBall,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_NecessaryUtensils_Heading,
+    gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Utensil_Oven,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalIngredients_Heading,
+    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalUtensils_Heading,
+    gText_ReferenceGuide_Cookbook1_Seasoning_Salt,
+    gText_ReferenceGuide_Cookbook1_Seasoning_SoySauce,
+#if defined(REGION_JP)
+    // Shared physical miso-seasoning field from Cookbook I.
+    gText_ReferenceGuide_Cookbook1_MisoSoup_Seasoning_Miso,
+    gText_ReferenceGuide_FullWidthSpace,
+    gText_ReferenceGuide_SectionDivider,
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_SectionDivider,
+#endif
+
+    // Fish Sticks.
+    gText_ReferenceGuide_Cookbook3_FishSticks_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_NecessaryIngredients_Heading,
+    gText_ReferenceGuide_Cookbook3_FishSticks_Ingredient_MediumOrLargeFish,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_NecessaryUtensils_Heading,
+    gText_ReferenceGuide_Cookbook1_Utensil_Mixer,
+    gText_ReferenceGuide_Cookbook1_Seasoning_Salt,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalIngredients_Heading,
+    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalUtensils_Heading,
+    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+    gText_ReferenceGuide_SectionDivider,
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_SectionDivider,
+#endif
+
+    // Rice Gruel.
+    gText_ReferenceGuide_Cookbook3_RiceGruel_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_NecessaryIngredients_Heading,
+    gText_ReferenceGuide_Cookbook1_CurryRice_Ingredient_RiceBall,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_NecessaryUtensils_Heading,
+    gText_ReferenceGuide_Cookbook1_Utensil_Pot,
+    gText_ReferenceGuide_Cookbook1_Seasoning_Salt,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalIngredients_Heading,
+    gText_ReferenceGuide_Cookbook3_RiceGruel_Ingredient_AnyGrasses,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalUtensils_Heading,
+    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+    gText_ReferenceGuide_SectionDivider,
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_SectionDivider,
+#endif
+
+    // Bodigizer. Black Grass is a direct physical pointer from the Mines
+    // guide page, so it remains a direct cross-page reference.
+    gText_ReferenceGuide_Cookbook3_Bodigizer_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_NecessaryIngredients_Heading,
+    gText_ReferenceGuide_Cookbook1_StrawberryJam_Ingredient_Honey,
+    gText_ReferenceGuide_Cookbook3_Bodigizer_Ingredient_OrangeGrass,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_Mines_Line06,
+#else
+    gText_ReferenceGuide_Mines_Line07,
+#endif
+    gText_ReferenceGuide_Cookbook3_Bodigizer_Ingredient_RedMagicGrass,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_NecessaryUtensils_Heading,
+    gText_ReferenceGuide_Cookbook1_Utensil_Pot,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalIngredients_Heading,
+    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalUtensils_Heading,
+    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+#if defined(REGION_US)
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_SectionDivider,
+#endif
+    nullptr,
+};
