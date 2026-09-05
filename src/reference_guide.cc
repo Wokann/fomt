@@ -6285,3 +6285,27 @@ char const * const gReferenceGuidePoultryFarmLilliaAndRickNewYearCardLines[] SEC
 #endif
     nullptr,
 };
+
+// Reference Guide page 87: Poultry Farm New Year Card for the player and
+// Popuri. Its original tables reuse the Poultry Farm title and its Lillia/Rick
+// signatures; JP also reuses the first Cliff card's kana New Year greeting.
+char const * const gReferenceGuidePoultryFarmPlayerAndPopuriNewYearCardLines[] SECTION(".rodata.reference_guide_poultry_farm_player_and_popuri_new_year_card_lines") = {
+    gText_ReferenceGuide_PoultryFarmNewYearCard_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_PoultryFarmPlayerAndPopuriNewYearCard_Salutation_Line01,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_CliffNewYearCards_FirstCard_Greeting_Line01,
+#else
+    gText_ReferenceGuide_PoultryFarmPlayerAndPopuriNewYearCard_Salutation_Line02,
+#endif
+    gText_ReferenceGuide_PoultryFarmPlayerAndPopuriNewYearCard_Visit_Line01,
+    gText_ReferenceGuide_PoultryFarmPlayerAndPopuriNewYearCard_Visit_Line02,
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_PoultryFarmLilliaAndRickNewYearCard_Signature_Farm,
+    gText_ReferenceGuide_PoultryFarmLilliaAndRickNewYearCard_Signature_Names,
+#else
+    gText_ReferenceGuide_PoultryFarmLilliaAndRickNewYearCard_Signature,
+#endif
+    nullptr,
+};
