@@ -510,7 +510,9 @@ SECTIONS
         . = 0x116830; src/reference_guide.o(.rodata.reference_guide_cliff_and_ann_new_year_card_lines);
         . = 0x116854; data/text/reference_guide/doctor_new_year_card.o(.rodata.reference_guide_doctor_new_year_card_text);
         . = 0x11690C; src/reference_guide.o(.rodata.reference_guide_doctor_new_year_card_lines);
-        . = 0x116934; asm/data/data_080F9EB8.o(.rodata.reference_guide_doctor_new_year_card_trailer);
+        . = 0x116934; data/text/reference_guide/doctor_and_elli_new_year_card.o(.rodata.reference_guide_doctor_and_elli_new_year_card_text);
+        . = 0x1169D4; src/reference_guide.o(.rodata.reference_guide_doctor_and_elli_new_year_card_lines);
+        . = 0x116A04; asm/data/data_080F9EB8.o(.rodata.reference_guide_doctor_and_elli_new_year_card_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */
