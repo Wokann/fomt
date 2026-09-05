@@ -474,7 +474,9 @@ SECTIONS
         . = 0x114824; src/reference_guide.o(.rodata.reference_guide_woodcutters_house_lines);
         . = 0x11492C; data/text/reference_guide/clinic.o(.rodata.reference_guide_clinic_text);
         . = 0x114B08; src/reference_guide.o(.rodata.reference_guide_clinic_lines);
-        . = 0x114B94; asm/data/data_080F9EB8.o(.rodata.reference_guide_clinic_trailer);
+        . = 0x114B94; data/text/reference_guide/aja_winery.o(.rodata.reference_guide_aja_winery_text);
+        . = 0x114C88; src/reference_guide.o(.rodata.reference_guide_aja_winery_lines);
+        . = 0x114CE4; asm/data/data_080F9EB8.o(.rodata.reference_guide_aja_winery_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */

@@ -372,7 +372,9 @@ SECTIONS
         . = 0x113B58; src/reference_guide.o(.rodata.reference_guide_woodcutters_house_lines);
         . = 0x113C84; data/text/reference_guide/clinic.o(.rodata.reference_guide_clinic_text);
         . = 0x113E58; src/reference_guide.o(.rodata.reference_guide_clinic_lines);
-        . = 0x113EE4; asm/data/data_080F9EB8.o(.rodata.reference_guide_clinic_trailer);
+        . = 0x113EE4; data/text/reference_guide/aja_winery.o(.rodata.reference_guide_aja_winery_text);
+        . = 0x113FF0; src/reference_guide.o(.rodata.reference_guide_aja_winery_lines);
+        . = 0x114040; asm/data/data_080F9EB8.o(.rodata.reference_guide_aja_winery_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);

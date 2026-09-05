@@ -5422,3 +5422,50 @@ char const * const gReferenceGuideClinicLines[] SECTION(".rodata.reference_guide
     gText_ReferenceGuide_Clinic_Examination_Description_Line02,
     nullptr,
 };
+
+// Reference Guide page 65: Aja Winery. The JP page directly reuses existing
+// generic strings where the original pointer table does; US stores distinct text.
+char const * const gReferenceGuideAjaWineryLines[] SECTION(".rodata.reference_guide_aja_winery_lines") = {
+    gText_ReferenceGuide_AjaWinery_Title,
+    gText_ReferenceGuide_AjaWinery_Overview_Line01,
+    gText_ReferenceGuide_AjaWinery_Overview_Line02,
+    gText_ReferenceGuide_AjaWinery_Overview_Line03,
+    gText_ReferenceGuide_AjaWinery_Overview_Line04,
+    gText_ReferenceGuide_EmptyLine,
+    // Physical reuse: both ROMs point at the generic store-hours label.
+    gText_ReferenceGuide_StoreHours_Heading,
+    gText_ReferenceGuide_AjaWinery_StoreHours_Value,
+    gText_ReferenceGuide_EmptyLine,
+    // Physical reuse: both ROMs point at the generic closed-day label.
+    gText_ReferenceGuide_ClosedDay_Heading,
+#if defined(REGION_JP)
+    // Physical reuse: JP points at the generic Saturday value.
+    gText_ReferenceGuide_Saturdays_Value,
+#else
+    gText_ReferenceGuide_AjaWinery_ClosedDay_Value,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AjaWinery_Products_GrapeJuice_Title,
+    gText_ReferenceGuide_AjaWinery_Products_Wine_Title,
+    // Physical reuse: JP points at the generic cooking-use text.
+    gText_ReferenceGuide_UseInCooking_Line01,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AjaWinery_Products_DrinkDirectly_Line01,
+    gText_ReferenceGuide_AjaWinery_Products_DrinkDirectly_Line02,
+    gText_ReferenceGuide_EmptyLine,
+    // Physical reuse: JP points at the generic refrigerator purchase text.
+    gText_ReferenceGuide_RefrigeratorPurchases_Line01,
+    gText_ReferenceGuide_RefrigeratorPurchases_Line02,
+#else
+    gText_ReferenceGuide_AjaWinery_Products_GrapeJuiceAndWine_Title,
+    gText_ReferenceGuide_AjaWinery_Products_UseInCooking_Line01,
+    gText_ReferenceGuide_AjaWinery_Products_UseInCooking_Line02,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AjaWinery_RefrigeratorStorage_Line01,
+    gText_ReferenceGuide_AjaWinery_RefrigeratorStorage_Line02,
+#endif
+    nullptr,
+};

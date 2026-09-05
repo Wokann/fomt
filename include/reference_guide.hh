@@ -127,6 +127,8 @@ extern char const * const gReferenceGuideSupermarketLines[];
 extern char const * const gReferenceGuideWoodcuttersHouseLines[];
 // Reference Guide page 64: Mineral Town Clinic.
 extern char const * const gReferenceGuideClinicLines[];
+// Reference Guide page 65: Aja Winery.
+extern char const * const gReferenceGuideAjaWineryLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -563,6 +565,28 @@ extern char const gText_ReferenceGuide_Clinic_StaminaMedicine_Title[];
 extern char const gText_ReferenceGuide_Clinic_RefrigeratorPurchases_Line01[];
 extern char const gText_ReferenceGuide_Clinic_RefrigeratorPurchases_Line02[];
 #endif
+
+// Localized Aja Winery text (page 65).
+extern char const gText_ReferenceGuide_AjaWinery_Title[];
+extern char const gText_ReferenceGuide_AjaWinery_Overview_Line01[];
+extern char const gText_ReferenceGuide_AjaWinery_Overview_Line02[];
+extern char const gText_ReferenceGuide_AjaWinery_Overview_Line03[];
+extern char const gText_ReferenceGuide_AjaWinery_Overview_Line04[];
+extern char const gText_ReferenceGuide_AjaWinery_StoreHours_Value[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_AjaWinery_Products_GrapeJuice_Title[];
+extern char const gText_ReferenceGuide_AjaWinery_Products_Wine_Title[];
+extern char const gText_ReferenceGuide_AjaWinery_Products_DrinkDirectly_Line01[];
+extern char const gText_ReferenceGuide_AjaWinery_Products_DrinkDirectly_Line02[];
+#else
+extern char const gText_ReferenceGuide_AjaWinery_ClosedDay_Value[];
+extern char const gText_ReferenceGuide_AjaWinery_Products_GrapeJuiceAndWine_Title[];
+extern char const gText_ReferenceGuide_AjaWinery_Products_UseInCooking_Line01[];
+extern char const gText_ReferenceGuide_AjaWinery_Products_UseInCooking_Line02[];
+extern char const gText_ReferenceGuide_AjaWinery_RefrigeratorStorage_Line01[];
+extern char const gText_ReferenceGuide_AjaWinery_RefrigeratorStorage_Line02[];
+#endif
+
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Line01[];
