@@ -3483,3 +3483,50 @@ char const * const gReferenceGuideAwlMuffyLines[] SECTION(".rodata.reference_gui
     nullptr,
 #endif
 };
+
+// Reference Guide page 42: AWL character profile for Carter.
+char const * const gReferenceGuideAwlCarterLines[] SECTION(".rodata.reference_guide_awl_carter_lines") = {
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AwlCarter_Title,
+    gText_ReferenceGuide_AwlCarter_Introduction_Line01,
+    gText_ReferenceGuide_AwlCarter_Introduction_Line02,
+    gText_ReferenceGuide_AwlCarter_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlCarter_Profile01_Line01,
+    gText_ReferenceGuide_AwlCarter_Profile01_Line02,
+    // Shared physical field; it completes this sentence.
+    gText_ReferenceGuide_AwlProfile_DoesSuffix,
+    gText_ReferenceGuide_AwlCarter_Profile01_Line04,
+    gText_ReferenceGuide_AwlCarter_Profile01_Line05,
+    gText_ReferenceGuide_AwlCarter_Profile01_Line06,
+    gText_ReferenceGuide_AwlCarter_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlCarter_Profile02_Line01,
+    gText_ReferenceGuide_AwlCarter_Profile02_Line02,
+    gText_ReferenceGuide_AwlCarter_Profile02_Line03,
+    gText_ReferenceGuide_AwlCarter_Profile02_Line04,
+    gText_ReferenceGuide_AwlCarter_Profile02_Line05,
+    nullptr,
+#else
+    gText_ReferenceGuide_AwlCarter_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlCarter_Introduction_Line01,
+    gText_ReferenceGuide_AwlCarter_Introduction_Line02,
+    gText_ReferenceGuide_AwlCarter_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlCarter_Profile01_Line01,
+    gText_ReferenceGuide_AwlCarter_Profile01_Line02,
+    gText_ReferenceGuide_AwlCarter_Profile01_Line03,
+    gText_ReferenceGuide_AwlCarter_Profile01_Line04,
+    gText_ReferenceGuide_AwlCarter_Profile01_Line05,
+    gText_ReferenceGuide_AwlCarter_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlCarter_Profile02_Line01,
+    gText_ReferenceGuide_AwlCarter_Profile02_Line02,
+    gText_ReferenceGuide_AwlCarter_Profile02_Line03,
+    gText_ReferenceGuide_AwlCarter_Profile02_Line04,
+    gText_ReferenceGuide_AwlCarter_Profile02_Line05,
+    gText_ReferenceGuide_AwlCarter_Profile02_Line06,
+    nullptr,
+#endif
+};
