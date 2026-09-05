@@ -177,6 +177,8 @@ extern char const * const gReferenceGuidePoultryFarmPlayerAndPopuriNewYearCardLi
 extern char const * const gReferenceGuidePoultryFarmLilliaRickAndKarenNewYearCardLines[];
 // Reference Guide page 89: Gray's New Year Card.
 extern char const * const gReferenceGuideGrayNewYearCardLines[];
+// Reference Guide page 90: Gray's New Year well-wishes card.
+extern char const * const gReferenceGuideGrayWellWishesNewYearCardLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -1049,6 +1051,12 @@ extern char const gText_ReferenceGuide_GrayNewYearCard_Signature[];
 #if defined(REGION_JP)
 extern char const gText_ReferenceGuide_GrayNewYearCard_Message_Line03[];
 extern char const gText_ReferenceGuide_GrayNewYearCard_Message_Line04[];
+#endif
+
+// Localized Gray New Year well-wishes card text (page 90).
+extern char const gText_ReferenceGuide_GrayWellWishesNewYearCard_WellWish_Line01[];
+#if defined(REGION_US)
+extern char const gText_ReferenceGuide_GrayWellWishesNewYearCard_WellWish_Line02[];
 #endif
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];

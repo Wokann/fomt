@@ -524,7 +524,9 @@ SECTIONS
         . = 0x116CA4; src/reference_guide.o(.rodata.reference_guide_poultry_farm_lillia_rick_and_karen_new_year_card_lines);
         . = 0x116CCC; data/text/reference_guide/gray_new_year_card.o(.rodata.reference_guide_gray_new_year_card_text);
         . = 0x116D54; src/reference_guide.o(.rodata.reference_guide_gray_new_year_card_lines);
-        . = 0x116D7C; asm/data/data_080F9EB8.o(.rodata.reference_guide_gray_new_year_card_trailer);
+        . = 0x116D7C; data/text/reference_guide/gray_well_wishes_new_year_card.o(.rodata.reference_guide_gray_well_wishes_new_year_card_text);
+        . = 0x116D9C; src/reference_guide.o(.rodata.reference_guide_gray_well_wishes_new_year_card_lines);
+        . = 0x116DB8; asm/data/data_080F9EB8.o(.rodata.reference_guide_gray_well_wishes_new_year_card_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */

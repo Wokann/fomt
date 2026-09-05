@@ -6356,3 +6356,19 @@ char const * const gReferenceGuideGrayNewYearCardLines[] SECTION(".rodata.refere
     gText_ReferenceGuide_GrayNewYearCard_Signature,
     nullptr,
 };
+
+// Reference Guide page 90: Gray's New Year well-wishes card. The original
+// tables directly reuse Gray's prior-card title and signature, plus the
+// Doctor card's regional New Year greeting.
+char const * const gReferenceGuideGrayWellWishesNewYearCardLines[] SECTION(".rodata.reference_guide_gray_well_wishes_new_year_card_lines") = {
+    gText_ReferenceGuide_GrayNewYearCard_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_DoctorNewYearCard_Greeting_Line01,
+    gText_ReferenceGuide_GrayWellWishesNewYearCard_WellWish_Line01,
+#if defined(REGION_US)
+    gText_ReferenceGuide_GrayWellWishesNewYearCard_WellWish_Line02,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_GrayNewYearCard_Signature,
+    nullptr,
+};
