@@ -2613,3 +2613,39 @@ char const * const gReferenceGuideAwlRomanaLines[] SECTION(".rodata.reference_gu
     nullptr,
 #endif
 };
+
+// Reference Guide page 20: AWL character profile for Lumina.
+char const * const gReferenceGuideAwlLuminaLines[] SECTION(".rodata.reference_guide_awl_lumina_lines") = {
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AwlLumina_Title,
+    gText_ReferenceGuide_AwlLumina_Introduction_Line01,
+    gText_ReferenceGuide_AwlLumina_Introduction_Line02,
+    gText_ReferenceGuide_AwlLumina_Introduction_Line03,
+    gText_ReferenceGuide_AwlLumina_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlLumina_Profile01_Line01,
+    gText_ReferenceGuide_AwlLumina_Profile01_Line02,
+    gText_ReferenceGuide_AwlLumina_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlLumina_Profile02_Line01,
+    gText_ReferenceGuide_AwlLumina_Profile02_Line02,
+    gText_ReferenceGuide_AwlLumina_Profile02_Line03,
+    gText_ReferenceGuide_AwlLumina_Profile02_Line04,
+    nullptr,
+#else
+    gText_ReferenceGuide_AwlLumina_Title,
+    gText_ReferenceGuide_AwlLumina_Introduction_Line01,
+    gText_ReferenceGuide_AwlLumina_Introduction_Line02,
+    gText_ReferenceGuide_AwlLumina_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlLumina_Profile01_Line01,
+    gText_ReferenceGuide_AwlLumina_Profile01_Line02,
+    gText_ReferenceGuide_AwlLumina_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlLumina_Profile02_Line01,
+    gText_ReferenceGuide_AwlLumina_Profile02_Line02,
+    gText_ReferenceGuide_AwlLumina_Profile02_Line03,
+    gText_ReferenceGuide_AwlLumina_Profile02_Line04,
+    nullptr,
+#endif
+};
