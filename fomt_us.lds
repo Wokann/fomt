@@ -410,7 +410,9 @@ SECTIONS
         . = 0x115A9C; src/reference_guide.o(.rodata.reference_guide_doctor_new_year_card_lines);
         . = 0x115AC0; data/text/reference_guide/doctor_and_elli_new_year_card.o(.rodata.reference_guide_doctor_and_elli_new_year_card_text);
         . = 0x115B60; src/reference_guide.o(.rodata.reference_guide_doctor_and_elli_new_year_card_lines);
-        . = 0x115B8C; asm/data/data_080F9EB8.o(.rodata.reference_guide_doctor_and_elli_new_year_card_trailer);
+        . = 0x115B8C; data/text/reference_guide/mineral_clinic_new_year_card.o(.rodata.reference_guide_mineral_clinic_new_year_card_text);
+        . = 0x115BC0; src/reference_guide.o(.rodata.reference_guide_mineral_clinic_new_year_card_lines);
+        . = 0x115BEC; asm/data/data_080F9EB8.o(.rodata.reference_guide_mineral_clinic_new_year_card_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);

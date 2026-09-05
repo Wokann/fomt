@@ -165,6 +165,8 @@ extern char const * const gReferenceGuideCliffAndAnnNewYearCardLines[];
 extern char const * const gReferenceGuideDoctorNewYearCardLines[];
 // Reference Guide page 83: Doctor and Elli's New Year Card.
 extern char const * const gReferenceGuideDoctorAndElliNewYearCardLines[];
+// Reference Guide page 84: Mineral Clinic New Year Card.
+extern char const * const gReferenceGuideMineralClinicNewYearCardLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -981,6 +983,10 @@ extern char const gText_ReferenceGuide_DoctorAndElliNewYearCard_Title_Line02[];
 extern char const gText_ReferenceGuide_DoctorAndElliNewYearCard_HolidayClinic_Line02[];
 extern char const gText_ReferenceGuide_DoctorAndElliNewYearCard_Signature[];
 #endif
+
+// Localized Mineral Clinic New Year Card text (page 84).
+extern char const gText_ReferenceGuide_MineralClinicNewYearCard_Title[];
+extern char const gText_ReferenceGuide_MineralClinicNewYearCard_Signature[];
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];

@@ -6217,3 +6217,25 @@ char const * const gReferenceGuideDoctorAndElliNewYearCardLines[] SECTION(".roda
 #endif
     nullptr,
 };
+
+// Reference Guide page 84: Mineral Clinic New Year Card. Both ROMs directly
+// reuse the Doctor and Elli card's greeting, health wish, and holiday-clinic
+// text; JP additionally reuses its generic "By the way" text.
+char const * const gReferenceGuideMineralClinicNewYearCardLines[] SECTION(".rodata.reference_guide_mineral_clinic_new_year_card_lines") = {
+    gText_ReferenceGuide_MineralClinicNewYearCard_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_DoctorNewYearCard_Greeting_Line01,
+    gText_ReferenceGuide_DoctorAndElliNewYearCard_HealthWish_Line01,
+    gText_ReferenceGuide_DoctorAndElliNewYearCard_HealthWish_Line02,
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_StaminaAndFatigue_Line17,
+#endif
+    gText_ReferenceGuide_DoctorAndElliNewYearCard_HolidayClinic_Line01,
+#if defined(REGION_US)
+    gText_ReferenceGuide_DoctorAndElliNewYearCard_HolidayClinic_Line02,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_MineralClinicNewYearCard_Signature,
+    nullptr,
+};
