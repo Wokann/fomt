@@ -147,6 +147,8 @@ extern char const * const gReferenceGuideRecordPlayerInstructionsLines[];
 extern char const * const gReferenceGuideBathInstructionsLines[];
 // Reference Guide page 74: Using the Vase.
 extern char const * const gReferenceGuideVaseInstructionsLines[];
+// Reference Guide page 75: Refrigerator.
+extern char const * const gReferenceGuideRefrigeratorLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -778,6 +780,19 @@ extern char const gText_ReferenceGuide_VaseInstructions_CannotRetrieve_Line03[];
 extern char const gText_ReferenceGuide_VaseInstructions_ExistingFlowers_Line04[];
 extern char const gText_ReferenceGuide_VaseInstructions_CannotRetrieve_Line04[];
 #endif
+
+// Localized Refrigerator text (page 75).
+extern char const gText_ReferenceGuide_Refrigerator_Title[];
+extern char const gText_ReferenceGuide_Refrigerator_Storage_Line01[];
+extern char const gText_ReferenceGuide_Refrigerator_Storage_Line02[];
+extern char const gText_ReferenceGuide_Refrigerator_Capacity_Line01[];
+extern char const gText_ReferenceGuide_Refrigerator_Capacity_Line02[];
+extern char const gText_ReferenceGuide_Refrigerator_Capacity_Line03[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_Refrigerator_Capacity_Line04[];
+#endif
+extern char const gText_ReferenceGuide_Refrigerator_CookingSelection_Line01[];
+extern char const gText_ReferenceGuide_Refrigerator_CookingSelection_Line02[];
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];

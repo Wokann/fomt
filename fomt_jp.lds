@@ -494,7 +494,9 @@ SECTIONS
         . = 0x115A50; src/reference_guide.o(.rodata.reference_guide_taking_a_bath_lines);
         . = 0x115A78; data/text/reference_guide/vase_instructions.o(.rodata.reference_guide_vase_instructions_text);
         . = 0x115B7C; src/reference_guide.o(.rodata.reference_guide_vase_instructions_lines);
-        . = 0x115BA8; asm/data/data_080F9EB8.o(.rodata.reference_guide_vase_instructions_trailer);
+        . = 0x115BA8; data/text/reference_guide/refrigerator.o(.rodata.reference_guide_refrigerator_text);
+        . = 0x115CA0; src/reference_guide.o(.rodata.reference_guide_refrigerator_lines);
+        . = 0x115CC8; asm/data/data_080F9EB8.o(.rodata.reference_guide_refrigerator_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */

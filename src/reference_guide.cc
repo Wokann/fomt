@@ -5818,3 +5818,19 @@ char const * const gReferenceGuideVaseInstructionsLines[] SECTION(".rodata.refer
 #endif
     nullptr,
 };
+
+// Reference Guide page 75: Refrigerator.
+char const * const gReferenceGuideRefrigeratorLines[] SECTION(".rodata.reference_guide_refrigerator_lines") = {
+    gText_ReferenceGuide_Refrigerator_Title,
+    gText_ReferenceGuide_Refrigerator_Storage_Line01,
+    gText_ReferenceGuide_Refrigerator_Storage_Line02,
+    gText_ReferenceGuide_Refrigerator_Capacity_Line01,
+    gText_ReferenceGuide_Refrigerator_Capacity_Line02,
+    gText_ReferenceGuide_Refrigerator_Capacity_Line03,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_Refrigerator_Capacity_Line04,
+#endif
+    gText_ReferenceGuide_Refrigerator_CookingSelection_Line01,
+    gText_ReferenceGuide_Refrigerator_CookingSelection_Line02,
+    nullptr,
+};

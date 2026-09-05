@@ -392,7 +392,9 @@ SECTIONS
         . = 0x114D3C; src/reference_guide.o(.rodata.reference_guide_taking_a_bath_lines);
         . = 0x114D58; data/text/reference_guide/vase_instructions.o(.rodata.reference_guide_vase_instructions_text);
         . = 0x114E68; src/reference_guide.o(.rodata.reference_guide_vase_instructions_lines);
-        . = 0x114E9C; asm/data/data_080F9EB8.o(.rodata.reference_guide_vase_instructions_trailer);
+        . = 0x114E9C; data/text/reference_guide/refrigerator.o(.rodata.reference_guide_refrigerator_text);
+        . = 0x114F58; src/reference_guide.o(.rodata.reference_guide_refrigerator_lines);
+        . = 0x114F7C; asm/data/data_080F9EB8.o(.rodata.reference_guide_refrigerator_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
