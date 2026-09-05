@@ -4846,10 +4846,10 @@ char const * const gReferenceGuideSaibaraBlacksmithLines[] SECTION(".rodata.refe
     gText_ReferenceGuide_SaibaraBlacksmith_Overview_Line05,
 #endif
     gText_ReferenceGuide_EmptyLine,
-    gText_ReferenceGuide_SaibaraBlacksmith_StoreHours_Heading,
+    gText_ReferenceGuide_StoreHours_Heading,
     gText_ReferenceGuide_SaibaraBlacksmith_StoreHours_Value,
     gText_ReferenceGuide_EmptyLine,
-    gText_ReferenceGuide_SaibaraBlacksmith_ClosedDay_Heading,
+    gText_ReferenceGuide_ClosedDay_Heading,
     gText_ReferenceGuide_SaibaraBlacksmith_ClosedDay_Value,
     gText_ReferenceGuide_EmptyLine,
     gText_ReferenceGuide_EmptyLine,
@@ -5076,11 +5076,11 @@ char const * const gReferenceGuideSupermarketLines[] SECTION(".rodata.reference_
 #endif
     gText_ReferenceGuide_EmptyLine,
     // Physical reuse: both ROMs point at the existing store-hours label.
-    gText_ReferenceGuide_SaibaraBlacksmith_StoreHours_Heading,
+    gText_ReferenceGuide_StoreHours_Heading,
     gText_ReferenceGuide_Supermarket_StoreHours_Value,
     gText_ReferenceGuide_EmptyLine,
     // Physical reuse: both ROMs point at the existing closed-day label.
-    gText_ReferenceGuide_SaibaraBlacksmith_ClosedDay_Heading,
+    gText_ReferenceGuide_ClosedDay_Heading,
     gText_ReferenceGuide_Supermarket_ClosedDay_Value,
     gText_ReferenceGuide_EmptyLine,
     gText_ReferenceGuide_EmptyLine,
@@ -5250,11 +5250,11 @@ char const * const gReferenceGuideWoodcuttersHouseLines[] SECTION(".rodata.refer
     gText_ReferenceGuide_EmptyLine,
 #endif
     // Physical reuse: both ROMs point at the existing store-hours label.
-    gText_ReferenceGuide_SaibaraBlacksmith_StoreHours_Heading,
+    gText_ReferenceGuide_StoreHours_Heading,
     gText_ReferenceGuide_WoodcuttersHouse_StoreHours_Value,
     gText_ReferenceGuide_EmptyLine,
     // Physical reuse: both ROMs point at the existing closed-day label.
-    gText_ReferenceGuide_SaibaraBlacksmith_ClosedDay_Heading,
+    gText_ReferenceGuide_ClosedDay_Heading,
     gText_ReferenceGuide_WoodcuttersHouse_ClosedDay_Value,
     gText_ReferenceGuide_EmptyLine,
     gText_ReferenceGuide_EmptyLine,
@@ -5381,11 +5381,11 @@ char const * const gReferenceGuideClinicLines[] SECTION(".rodata.reference_guide
     gText_ReferenceGuide_Clinic_Overview_Collapse_Line03,
     gText_ReferenceGuide_EmptyLine,
     // Physical reuse: both ROMs point at the existing store-hours label.
-    gText_ReferenceGuide_SaibaraBlacksmith_StoreHours_Heading,
+    gText_ReferenceGuide_StoreHours_Heading,
     gText_ReferenceGuide_Clinic_StoreHours_Value,
     gText_ReferenceGuide_EmptyLine,
     // Physical reuse: both ROMs point at the existing closed-day label.
-    gText_ReferenceGuide_SaibaraBlacksmith_ClosedDay_Heading,
+    gText_ReferenceGuide_ClosedDay_Heading,
     gText_ReferenceGuide_Clinic_ClosedDay_Value,
     gText_ReferenceGuide_EmptyLine,
     gText_ReferenceGuide_EmptyLine,

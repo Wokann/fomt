@@ -15,11 +15,11 @@ char const gText_ReferenceGuide_SaibaraBlacksmith_Overview_Line03[28] SECTION(".
 char const gText_ReferenceGuide_SaibaraBlacksmith_Overview_Line04[20] SECTION(".rodata.reference_guide_saibara_blacksmith_text") =
     " various Makers. ";
 
-char const gText_ReferenceGuide_SaibaraBlacksmith_StoreHours_Heading[16] SECTION(".rodata.reference_guide_saibara_blacksmith_text") =
+char const gText_ReferenceGuide_StoreHours_Heading[16] SECTION(".rodata.reference_guide_saibara_blacksmith_text") =
     "·Store Hours:";
 char const gText_ReferenceGuide_SaibaraBlacksmith_StoreHours_Value[12] SECTION(".rodata.reference_guide_saibara_blacksmith_text") =
     " 10AM-4PM";
-char const gText_ReferenceGuide_SaibaraBlacksmith_ClosedDay_Heading[12] SECTION(".rodata.reference_guide_saibara_blacksmith_text") =
+char const gText_ReferenceGuide_ClosedDay_Heading[12] SECTION(".rodata.reference_guide_saibara_blacksmith_text") =
     "·Closed:";
 char const gText_ReferenceGuide_SaibaraBlacksmith_ClosedDay_Value[12] SECTION(".rodata.reference_guide_saibara_blacksmith_text") =
     " Thursdays";

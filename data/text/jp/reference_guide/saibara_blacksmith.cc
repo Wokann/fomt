@@ -17,11 +17,11 @@ char const gText_ReferenceGuide_SaibaraBlacksmith_Overview_Line04[32] SECTION(".
 char const gText_ReferenceGuide_SaibaraBlacksmith_Overview_Line05[24] SECTION(".rodata.reference_guide_saibara_blacksmith_text") =
     "　ってもらえるお店。";
 
-char const gText_ReferenceGuide_SaibaraBlacksmith_StoreHours_Heading[12] SECTION(".rodata.reference_guide_saibara_blacksmith_text") =
+char const gText_ReferenceGuide_StoreHours_Heading[12] SECTION(".rodata.reference_guide_saibara_blacksmith_text") =
     "·開店時間";
 char const gText_ReferenceGuide_SaibaraBlacksmith_StoreHours_Value[24] SECTION(".rodata.reference_guide_saibara_blacksmith_text") =
     "　午前１０時～午後４時";
-char const gText_ReferenceGuide_SaibaraBlacksmith_ClosedDay_Heading[12] SECTION(".rodata.reference_guide_saibara_blacksmith_text") =
+char const gText_ReferenceGuide_ClosedDay_Heading[12] SECTION(".rodata.reference_guide_saibara_blacksmith_text") =
     "·定休日";
 char const gText_ReferenceGuide_SaibaraBlacksmith_ClosedDay_Value[12] SECTION(".rodata.reference_guide_saibara_blacksmith_text") =
     "　木曜日";
