@@ -6335,3 +6335,24 @@ char const * const gReferenceGuidePoultryFarmLilliaRickAndKarenNewYearCardLines[
 #endif
     nullptr,
 };
+
+// Reference Guide page 89: Gray's New Year Card. The Japanese ROM reuses the
+// first Cliff card's kana greeting; the US ROM reuses the Doctor card greeting.
+char const * const gReferenceGuideGrayNewYearCardLines[] SECTION(".rodata.reference_guide_gray_new_year_card_lines") = {
+    gText_ReferenceGuide_GrayNewYearCard_Title,
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_CliffNewYearCards_FirstCard_Greeting_Line01,
+#else
+    gText_ReferenceGuide_DoctorNewYearCard_Greeting_Line01,
+#endif
+    gText_ReferenceGuide_GrayNewYearCard_Message_Line01,
+    gText_ReferenceGuide_GrayNewYearCard_Message_Line02,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_GrayNewYearCard_Message_Line03,
+    gText_ReferenceGuide_GrayNewYearCard_Message_Line04,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_GrayNewYearCard_Signature,
+    nullptr,
+};

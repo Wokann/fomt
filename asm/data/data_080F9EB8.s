@@ -48,8 +48,8 @@ gText_CharacterName_Empty:
 gReferenceGuidePageLineTables:
     .incbin "baserom_jp.gba", 0x107DAC, (0x107FD0 - 0x107DAC)
 
-    .section .rodata.reference_guide_poultry_farm_lillia_rick_and_karen_new_year_card_trailer
-    .incbin "baserom_jp.gba", 0x116CCC, (0x13BCF8 - 0x116CCC)
+    .section .rodata.reference_guide_gray_new_year_card_trailer
+    .incbin "baserom_jp.gba", 0x116D7C, (0x13BCF8 - 0x116D7C)
     .else
     .section .rodata.reference_guide_harvest_sprite_minigames_prefix
 
@@ -3221,8 +3221,8 @@ gUnk_0810827C:
 gReferenceGuidePageLineTables:
 	.incbin "baserom_us.gba", 0x10828C, (0x1084B0 - 0x10828C)
 
-	.section .rodata.reference_guide_poultry_farm_lillia_rick_and_karen_new_year_card_trailer
-	.incbin "baserom_us.gba", 0x115DA4, (0x1177F6 - 0x115DA4)
+	.section .rodata.reference_guide_gray_new_year_card_trailer
+	.incbin "baserom_us.gba", 0x115E1C, (0x1177F6 - 0x115E1C)
 
 	.section .rodata
 
