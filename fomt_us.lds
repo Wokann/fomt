@@ -352,7 +352,9 @@ SECTIONS
         . = 0x111390; src/reference_guide.o(.rodata.reference_guide_awl_flak_lines);
         . = 0x1113C4; data/text/reference_guide/awl_profiles/player.o(.rodata.reference_guide_awl_player_text);
         . = 0x111478; src/reference_guide.o(.rodata.reference_guide_awl_player_lines);
-        . = 0x1114AC; asm/data/data_080F9EB8.o(.rodata.reference_guide_awl_player_trailer);
+        . = 0x1114AC; data/text/reference_guide/cookbook_1.o(.rodata.reference_guide_cookbook_1_text);
+        . = 0x111634; src/reference_guide.o(.rodata.reference_guide_cookbook_1_lines);
+        . = 0x1117B0; asm/data/data_080F9EB8.o(.rodata.reference_guide_cookbook_1_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);

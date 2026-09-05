@@ -107,6 +107,8 @@ extern char const * const gReferenceGuideAwlNicLines[];
 extern char const * const gReferenceGuideAwlFlakLines[];
 // Reference Guide page 54: AWL character profile for the player.
 extern char const * const gReferenceGuideAwlPlayerLines[];
+// Reference Guide page 55: Cookbook I.
+extern char const * const gReferenceGuideCookbook1Lines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 #endif
@@ -1485,6 +1487,34 @@ extern char const gText_ReferenceGuide_AwlPlayer_Profile01_Line01[];
 extern char const gText_ReferenceGuide_AwlPlayer_Profile02_Marker[];
 extern char const gText_ReferenceGuide_AwlPlayer_Profile02_Line01[];
 extern char const gText_ReferenceGuide_AwlPlayer_Profile02_Line02[];
+// Localized Cookbook I text (page 55).
+extern char const gText_ReferenceGuide_Cookbook1_Title[];
+extern char const gText_ReferenceGuide_Cookbook1_CurryRice_Title[];
+extern char const gText_ReferenceGuide_Cookbook1_NecessaryIngredients_Heading[];
+extern char const gText_ReferenceGuide_Cookbook1_CurryRice_Ingredient_CurryPowder[];
+extern char const gText_ReferenceGuide_Cookbook1_CurryRice_Ingredient_RiceBall[];
+extern char const gText_ReferenceGuide_Cookbook1_NecessaryUtensils_Heading[];
+extern char const gText_ReferenceGuide_Cookbook1_Utensil_Pot[];
+extern char const gText_ReferenceGuide_Cookbook1_OptionalIngredients_Heading[];
+extern char const gText_ReferenceGuide_Cookbook1_OptionalIngredient_AnythingYouLike[];
+extern char const gText_ReferenceGuide_Cookbook1_OptionalUtensils_Heading[];
+extern char const gText_ReferenceGuide_Cookbook1_Utensil_Knife[];
+extern char const gText_ReferenceGuide_Cookbook1_Seasoning_Sugar[];
+extern char const gText_ReferenceGuide_Cookbook1_Seasoning_Salt[];
+extern char const gText_ReferenceGuide_Cookbook1_Seasoning_SoySauce[];
+extern char const gText_ReferenceGuide_Cookbook1_MisoSoup_Title[];
+extern char const gText_ReferenceGuide_Cookbook1_Ingredient_None[];
+extern char const gText_ReferenceGuide_Cookbook1_MisoSoup_Utensil_Pot[];
+extern char const gText_ReferenceGuide_Cookbook1_MisoSoup_Seasoning_Miso[];
+extern char const gText_ReferenceGuide_Cookbook1_StrawberryJam_Title[];
+extern char const gText_ReferenceGuide_Cookbook1_StrawberryJam_Ingredient_Strawberry[];
+extern char const gText_ReferenceGuide_Cookbook1_StrawberryJam_Ingredient_Honey[];
+extern char const gText_ReferenceGuide_Cookbook1_StrawberryJam_Ingredient_Wine[];
+extern char const gText_ReferenceGuide_Cookbook1_TomatoJuice_Title[];
+extern char const gText_ReferenceGuide_Cookbook1_TomatoJuice_Ingredient_Tomato[];
+extern char const gText_ReferenceGuide_Cookbook1_Utensil_Mixer[];
+extern char const gText_ReferenceGuide_Cookbook1_PineappleJuice_Title[];
+extern char const gText_ReferenceGuide_Cookbook1_PineappleJuice_Ingredient_Pineapple[];
 #else
 extern char const gText_ReferenceGuide_HarvestSpriteMinigames_Title[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Title[];
@@ -2823,6 +2853,31 @@ extern char const gText_ReferenceGuide_AwlPlayer_Profile01_Line02[];
 extern char const gText_ReferenceGuide_AwlPlayer_Profile02_Marker[];
 extern char const gText_ReferenceGuide_AwlPlayer_Profile02_Line01[];
 extern char const gText_ReferenceGuide_AwlPlayer_Profile02_Line02[];
+// Localized Cookbook I text (page 55).
+extern char const gText_ReferenceGuide_Cookbook1_Title[];
+extern char const gText_ReferenceGuide_Cookbook1_CurryRice_Title[];
+extern char const gText_ReferenceGuide_Cookbook1_NecessaryIngredients_Heading[];
+extern char const gText_ReferenceGuide_Cookbook1_CurryRice_Ingredient_CurryPowder[];
+extern char const gText_ReferenceGuide_Cookbook1_CurryRice_Ingredient_RiceBall[];
+extern char const gText_ReferenceGuide_Cookbook1_NecessaryUtensils_Heading[];
+extern char const gText_ReferenceGuide_Cookbook1_Utensil_Pot[];
+extern char const gText_ReferenceGuide_Cookbook1_OptionalIngredients_Heading[];
+extern char const gText_ReferenceGuide_Cookbook1_OptionalIngredient_AnythingYouLike[];
+extern char const gText_ReferenceGuide_Cookbook1_OptionalUtensils_Heading[];
+extern char const gText_ReferenceGuide_Cookbook1_Utensil_Knife[];
+extern char const gText_ReferenceGuide_Cookbook1_Seasoning_Sugar[];
+extern char const gText_ReferenceGuide_Cookbook1_Seasoning_Salt[];
+extern char const gText_ReferenceGuide_Cookbook1_Seasoning_SoySauce[];
+extern char const gText_ReferenceGuide_Cookbook1_SectionDivider[];
+extern char const gText_ReferenceGuide_Cookbook1_MisoSoup_Title[];
+extern char const gText_ReferenceGuide_Cookbook1_Ingredient_None[];
+extern char const gText_ReferenceGuide_Cookbook1_MisoSoup_Seasoning_Miso[];
+extern char const gText_ReferenceGuide_Cookbook1_StrawberryJam_Title[];
+extern char const gText_ReferenceGuide_Cookbook1_StrawberryJam_Ingredient_Honey[];
+extern char const gText_ReferenceGuide_Cookbook1_StrawberryJam_Ingredient_Wine[];
+extern char const gText_ReferenceGuide_Cookbook1_TomatoJuice_Title[];
+extern char const gText_ReferenceGuide_Cookbook1_Utensil_Mixer[];
+extern char const gText_ReferenceGuide_Cookbook1_PineappleJuice_Title[];
 #endif
 
 #endif // REFERENCE_GUIDE_HH

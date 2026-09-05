@@ -454,7 +454,9 @@ SECTIONS
         . = 0x111B40; src/reference_guide.o(.rodata.reference_guide_awl_flak_lines);
         . = 0x111B74; data/text/reference_guide/awl_profiles/player.o(.rodata.reference_guide_awl_player_text);
         . = 0x111C34; src/reference_guide.o(.rodata.reference_guide_awl_player_lines);
-        . = 0x111C64; asm/data/data_080F9EB8.o(.rodata.reference_guide_awl_player_trailer);
+        . = 0x111C64; data/text/reference_guide/cookbook_1.o(.rodata.reference_guide_cookbook_1_text);
+        . = 0x111E20; src/reference_guide.o(.rodata.reference_guide_cookbook_1_lines);
+        . = 0x111FA4; asm/data/data_080F9EB8.o(.rodata.reference_guide_cookbook_1_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */
