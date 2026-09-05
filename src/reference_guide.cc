@@ -3355,3 +3355,42 @@ char const * const gReferenceGuideAwlNamiLines[] SECTION(".rodata.reference_guid
     nullptr,
 #endif
 };
+
+// Reference Guide page 39: AWL character profile for Rock.
+char const * const gReferenceGuideAwlRockLines[] SECTION(".rodata.reference_guide_awl_rock_lines") = {
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AwlRock_Title,
+    gText_ReferenceGuide_AwlRock_Introduction_Line01,
+    gText_ReferenceGuide_AwlRock_Introduction_Line02,
+    gText_ReferenceGuide_AwlRock_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlRock_Profile01_Line01,
+    gText_ReferenceGuide_AwlRock_Profile01_Line02,
+    gText_ReferenceGuide_AwlRock_Profile01_Line03,
+    gText_ReferenceGuide_AwlRock_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlRock_Profile02_Line01,
+    gText_ReferenceGuide_AwlRock_Profile02_Line02,
+    gText_ReferenceGuide_AwlRock_Profile02_Line03,
+    gText_ReferenceGuide_AwlRock_Profile02_Line04,
+    gText_ReferenceGuide_AwlRock_Profile02_Line05,
+    nullptr,
+#else
+    gText_ReferenceGuide_AwlRock_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlRock_Introduction_Line01,
+    gText_ReferenceGuide_AwlRock_Introduction_Line02,
+    gText_ReferenceGuide_AwlRock_Introduction_Line03,
+    gText_ReferenceGuide_AwlRock_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlRock_Profile01_Line01,
+    gText_ReferenceGuide_AwlRock_Profile01_Line02,
+    gText_ReferenceGuide_AwlRock_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlRock_Profile02_Line01,
+    gText_ReferenceGuide_AwlRock_Profile02_Line02,
+    gText_ReferenceGuide_AwlRock_Profile02_Line03,
+    gText_ReferenceGuide_AwlRock_Profile02_Line04,
+    nullptr,
+#endif
+};

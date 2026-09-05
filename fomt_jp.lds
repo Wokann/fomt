@@ -422,7 +422,9 @@ SECTIONS
         . = 0x11077C; src/reference_guide.o(.rodata.reference_guide_awl_ruby_lines);
         . = 0x1107C4; data/text/reference_guide/awl_profiles/nami.o(.rodata.reference_guide_awl_nami_text);
         . = 0x110908; src/reference_guide.o(.rodata.reference_guide_awl_nami_lines);
-        . = 0x11094C; asm/data/data_080F9EB8.o(.rodata.reference_guide_awl_nami_trailer);
+        . = 0x11094C; data/text/reference_guide/awl_profiles/rock.o(.rodata.reference_guide_awl_rock_text);
+        . = 0x110A74; src/reference_guide.o(.rodata.reference_guide_awl_rock_lines);
+        . = 0x110AB4; asm/data/data_080F9EB8.o(.rodata.reference_guide_awl_rock_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */
