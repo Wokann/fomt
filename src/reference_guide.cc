@@ -6547,3 +6547,29 @@ char const * const gReferenceGuideMayAndBarleyNewYearCardsLines[] SECTION(".roda
     gText_ReferenceGuide_MayAndBarleyNewYearCards_BarleySignature,
     nullptr,
 };
+
+// Reference Guide page 100: Thomas and Harris's New Year Card. The greetings
+// and Japanese farm-wish ending physically reuse earlier card text.
+char const * const gReferenceGuideThomasAndHarrisNewYearCardLines[] SECTION(".rodata.reference_guide_thomas_and_harris_new_year_card_lines") = {
+    gText_ReferenceGuide_ThomasAndHarrisNewYearCard_Title,
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    // Reused physical text from Cliff and Ann's New Year card (page 81).
+    gText_ReferenceGuide_CliffAndAnnNewYearCard_Greeting_Line01,
+#else
+    // Reused physical text from the Doctor's New Year card (page 82).
+    gText_ReferenceGuide_DoctorNewYearCard_Greeting_Line01,
+#endif
+    gText_ReferenceGuide_ThomasAndHarrisNewYearCard_FarmWish_Line01,
+#if defined(REGION_JP)
+    // Reused physical text from Barley's New Year card (page 99).
+    gText_ReferenceGuide_MayAndBarleyNewYearCards_BarleyRequest_Line02,
+#else
+    gText_ReferenceGuide_ThomasAndHarrisNewYearCard_FarmWish_Line02,
+#endif
+    gText_ReferenceGuide_ThomasAndHarrisNewYearCard_CommunityWish_Line01,
+    gText_ReferenceGuide_ThomasAndHarrisNewYearCard_CommunityWish_Line02,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_ThomasAndHarrisNewYearCard_Signature,
+    nullptr,
+};

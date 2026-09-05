@@ -48,8 +48,8 @@ gText_CharacterName_Empty:
 gReferenceGuidePageLineTables:
     .incbin "baserom_jp.gba", 0x107DAC, (0x107FD0 - 0x107DAC)
 
-    .section .rodata.reference_guide_may_and_barley_new_year_cards_trailer
-    .incbin "baserom_jp.gba", 0x117494, (0x13BCF8 - 0x117494)
+    .section .rodata.reference_guide_thomas_and_harris_new_year_card_trailer
+    .incbin "baserom_jp.gba", 0x117544, (0x13BCF8 - 0x117544)
     .else
     .section .rodata.reference_guide_harvest_sprite_minigames_prefix
 
@@ -3221,8 +3221,8 @@ gUnk_0810827C:
 gReferenceGuidePageLineTables:
 	.incbin "baserom_us.gba", 0x10828C, (0x1084B0 - 0x10828C)
 
-	.section .rodata.reference_guide_may_and_barley_new_year_cards_trailer
-	.incbin "baserom_us.gba", 0x1163D0, (0x1177F6 - 0x1163D0)
+	.section .rodata.reference_guide_thomas_and_harris_new_year_card_trailer
+	.incbin "baserom_us.gba", 0x116490, (0x1177F6 - 0x116490)
 
 	.section .rodata
 
