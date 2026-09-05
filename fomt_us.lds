@@ -340,7 +340,9 @@ SECTIONS
         . = 0x110DE0; src/reference_guide.o(.rodata.reference_guide_awl_hardy_lines);
         . = 0x110E18; data/text/reference_guide/awl_profiles/van.o(.rodata.reference_guide_awl_van_text);
         . = 0x110F30; src/reference_guide.o(.rodata.reference_guide_awl_van_lines);
-        . = 0x110F6C; asm/data/data_080F9EB8.o(.rodata.reference_guide_awl_van_trailer);
+        . = 0x110F6C; data/text/reference_guide/awl_profiles/mooky.o(.rodata.reference_guide_awl_mooky_text);
+        . = 0x111060; src/reference_guide.o(.rodata.reference_guide_awl_mooky_lines);
+        . = 0x111098; asm/data/data_080F9EB8.o(.rodata.reference_guide_awl_mooky_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);

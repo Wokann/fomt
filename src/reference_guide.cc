@@ -3760,3 +3760,38 @@ char const * const gReferenceGuideAwlVanLines[] SECTION(".rodata.reference_guide
     nullptr,
 #endif
 };
+
+// Reference Guide page 49: AWL character profile for Mooky.
+char const * const gReferenceGuideAwlMookyLines[] SECTION(".rodata.reference_guide_awl_mooky_lines") = {
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AwlMooky_Title,
+    gText_ReferenceGuide_AwlMooky_Introduction_Line01,
+    gText_ReferenceGuide_AwlMooky_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlMooky_Profile01_Line01,
+    gText_ReferenceGuide_AwlMooky_Profile01_Line02,
+    gText_ReferenceGuide_AwlMooky_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlMooky_Profile02_Line01,
+    gText_ReferenceGuide_AwlMooky_Profile02_Line02,
+    gText_ReferenceGuide_AwlMooky_Profile02_Line03,
+    // Shared physical suffix from Gustafa's profile; it completes this sentence.
+    gText_ReferenceGuide_AwlGustafa_Profile02_Line03,
+    nullptr,
+#else
+    gText_ReferenceGuide_AwlMooky_Title,
+    gText_ReferenceGuide_AwlMooky_Introduction_Line01,
+    gText_ReferenceGuide_AwlMooky_Introduction_Line02,
+    gText_ReferenceGuide_AwlMooky_Introduction_Line03,
+    gText_ReferenceGuide_AwlMooky_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlMooky_Profile01_Line01,
+    gText_ReferenceGuide_AwlMooky_Profile01_Line02,
+    gText_ReferenceGuide_AwlMooky_Profile01_Line03,
+    gText_ReferenceGuide_AwlMooky_Profile02_Marker,
+    gText_ReferenceGuide_AwlMooky_Profile02_Line01,
+    gText_ReferenceGuide_AwlMooky_Profile02_Line02,
+    gText_ReferenceGuide_AwlMooky_Profile02_Line03,
+    nullptr,
+#endif
+};
