@@ -34,9 +34,15 @@ text object or an assembler alias.
 
 `calendar.cc` demonstrates fixed-row text arrays: the C++ dimensions are the
 actual ROM row strides used by the callers. The text preprocessor verifies
-every encoded row, including its terminator, has exactly that width. Its
-section attributes only preserve the pre-existing ROM placement; the source
-still contains ordinary UTF-8 C++ strings and no handwritten assembler.
+every encoded row, including its terminator, fits that width; ordinary C++
+zero-initializes any remaining bytes in the fixed row. Its section attributes
+only preserve the pre-existing ROM placement; the source still contains
+ordinary UTF-8 C++ strings and no handwritten assembler.
+
+When a verified fixed field contains nonzero bytes after an embedded FOMT
+terminator, express that boundary as `\x00` followed by ordinary mapped text
+or raw `\xNN` bytes. `textproc` retains the explicit terminator while C++ still
+zero-initializes any remaining field capacity.
 
 `common/fallback.cc` is included directly by `src/item.cc` because its small
 item fallback strings are byte-identical in both regions. `common/ui_error.cc`

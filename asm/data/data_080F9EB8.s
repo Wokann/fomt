@@ -1,7 +1,19 @@
     .ifdef REGION_JP
-    @ JP revision 0 localized scripts, strings, and tables.
+    @ JP revision 0 localized data.  Event RIFF containers begin later at
+    @ ROM offset 0x4E0CE0; the early portions below are ordinary static data.
+    .section .rodata.localized_data_prefix
+    .incbin "baserom_jp.gba", 0xF9708, (0xF97E6 - 0xF9708)
+
+    .section .rodata.festival_contestants_set0_trailer
+    .incbin "baserom_jp.gba", 0xF996C, (0xF9FD6 - 0xF996C)
+
+    .section .rodata.festival_contestants_set1_trailer_prefix
+    .incbin "baserom_jp.gba", 0xFA1DE, (0xFB938 - 0xFA1DE)
+
+    .section .rodata.staff_credits_trailer
+    .incbin "baserom_jp.gba", 0xFBC88, (0x103194 - 0xFBC88)
+
     .section .rodata
-    .incbin "baserom_jp.gba", 0xF9708, (0x103194 - 0xF9708)
 
     .global gUnk_08103658
 gUnk_08103658:
@@ -17,7 +29,16 @@ gUnk_08103680:
 
     .global gUnk_081036A0
 gUnk_081036A0:
-    .incbin "baserom_jp.gba", 0x1031DC, (0x13BCF8 - 0x1031DC)
+    .incbin "baserom_jp.gba", 0x1031DC, (0x1032C4 - 0x1031DC)
+
+    .section .rodata.fishing_results_trailer
+    .incbin "baserom_jp.gba", 0x10350C, (0x103C1C - 0x10350C)
+
+    .section .rodata.character_names_trailer
+    .incbin "baserom_jp.gba", 0x103D9C, (0x1073B9 - 0x103D9C)
+
+    .section .rodata.festival_contestants_set2_trailer
+    .incbin "baserom_jp.gba", 0x1074BD, (0x13BCF8 - 0x1074BD)
     .else
     .section .rodata
 
