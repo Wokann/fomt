@@ -349,7 +349,21 @@ SECTIONS
         . = 0x108AFC; src/reference_guide.o(.rodata.reference_guide_harvest_sprite_minigames_lines);
         . = 0x108CBC; data/text/reference_guide/festival_hints.o(.rodata.reference_guide_festival_hints_text);
         . = 0x1092EC; src/reference_guide.o(.rodata.reference_guide_festival_hints_lines);
-        . = 0x1093DC; asm/data/data_080F9EB8.o(.rodata.reference_guide_festival_hints_trailer);
+        . = 0x1093DC; data/text/reference_guide/controls.o(.rodata.reference_guide_controls_page02_text);
+        . = 0x1096E8; src/reference_guide.o(.rodata.reference_guide_controls_page02_lines);
+        . = 0x10979C; data/text/reference_guide/controls.o(.rodata.reference_guide_controls_page03_text);
+        . = 0x109990; src/reference_guide.o(.rodata.reference_guide_controls_page03_lines);
+        . = 0x1099FC; data/text/reference_guide/controls.o(.rodata.reference_guide_controls_page04_text);
+        . = 0x109A50; src/reference_guide.o(.rodata.reference_guide_controls_page04_lines);
+        . = 0x109A8C; data/text/reference_guide/controls.o(.rodata.reference_guide_controls_page05_text);
+        . = 0x109BAC; src/reference_guide.o(.rodata.reference_guide_controls_page05_lines);
+        . = 0x109BFC; data/text/reference_guide/controls.o(.rodata.reference_guide_controls_page06_text);
+        . = 0x109D28; src/reference_guide.o(.rodata.reference_guide_controls_page06_lines);
+        . = 0x109D9C; data/text/reference_guide/controls.o(.rodata.reference_guide_controls_page07_text);
+        . = 0x109DF0; src/reference_guide.o(.rodata.reference_guide_controls_page07_lines);
+        . = 0x109E44; data/text/reference_guide/controls.o(.rodata.reference_guide_controls_page08_text);
+        . = 0x10A054; src/reference_guide.o(.rodata.reference_guide_controls_page08_lines);
+        . = 0x10A0E0; asm/data/data_080F9EB8.o(.rodata.reference_guide_controls_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */
