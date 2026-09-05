@@ -9,7 +9,7 @@ char const gText_ReferenceGuide_WoodcuttersHouse_Overview_Line01[28] SECTION(".r
     "·Here you can buy Lumber";
 char const gText_ReferenceGuide_WoodcuttersHouse_Overview_Line02[24] SECTION(".rodata.reference_guide_woodcutters_house_text") =
     " or ask for expansions.";
-char const gText_ReferenceGuide_WoodcuttersHouse_StoreHours_Value[12] SECTION(".rodata.reference_guide_woodcutters_house_text") =
+char const gText_ReferenceGuide_StoreHours_11AMTo4PM_Value[12] SECTION(".rodata.reference_guide_woodcutters_house_text") =
     " 11AM-4PM";
 char const gText_ReferenceGuide_Saturdays_Value[12] SECTION(".rodata.reference_guide_woodcutters_house_text") =
     " Saturdays";

@@ -15,5 +15,5 @@ char const gText_ReferenceGuide_KaiSeasideLodge_StoreHours_Open_Value[20] SECTIO
     " Morning: 11AM-1PM";
 char const gText_ReferenceGuide_KaiSeasideLodge_StoreHours_Close_Value[16] SECTION(".rodata.reference_guide_kai_seaside_lodge_text") =
     " Night: 5PM-7PM";
-char const gText_ReferenceGuide_KaiSeasideLodge_ClosedDay_Value[12] SECTION(".rodata.reference_guide_kai_seaside_lodge_text") =
+char const gText_ReferenceGuide_Sundays_Value[12] SECTION(".rodata.reference_guide_kai_seaside_lodge_text") =
     " Sundays";

@@ -5251,7 +5251,7 @@ char const * const gReferenceGuideWoodcuttersHouseLines[] SECTION(".rodata.refer
 #endif
     // Physical reuse: both ROMs point at the existing store-hours label.
     gText_ReferenceGuide_StoreHours_Heading,
-    gText_ReferenceGuide_WoodcuttersHouse_StoreHours_Value,
+    gText_ReferenceGuide_StoreHours_11AMTo4PM_Value,
     gText_ReferenceGuide_EmptyLine,
     // Physical reuse: both ROMs point at the existing closed-day label.
     gText_ReferenceGuide_ClosedDay_Heading,
@@ -5522,6 +5522,66 @@ char const * const gReferenceGuideKaiSeasideLodgeLines[] SECTION(".rodata.refere
     gText_ReferenceGuide_EmptyLine,
     // Physical reuse: both ROMs point at the generic closed-day label.
     gText_ReferenceGuide_ClosedDay_Heading,
-    gText_ReferenceGuide_KaiSeasideLodge_ClosedDay_Value,
+    gText_ReferenceGuide_Sundays_Value,
+    nullptr,
+};
+
+// Reference Guide page 68: Poultry Farm. The shared table retains each
+// original direct pointer reuse and limits regional line-count differences.
+char const * const gReferenceGuidePoultryFarmLines[] SECTION(".rodata.reference_guide_poultry_farm_lines") = {
+    gText_ReferenceGuide_PoultryFarm_Title,
+    gText_ReferenceGuide_PoultryFarm_Overview_Line01,
+    gText_ReferenceGuide_PoultryFarm_Overview_Line02,
+#if defined(REGION_US)
+    gText_ReferenceGuide_PoultryFarm_Overview_Line03,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    // Physical reuse: both ROMs point at the generic store-hours label/value.
+    gText_ReferenceGuide_StoreHours_Heading,
+    gText_ReferenceGuide_StoreHours_11AMTo4PM_Value,
+    gText_ReferenceGuide_EmptyLine,
+    // Physical reuse: both ROMs point at the generic closed-day label/value.
+    gText_ReferenceGuide_ClosedDay_Heading,
+    gText_ReferenceGuide_Sundays_Value,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    gText_ReferenceGuide_PoultryFarm_ChickenFeed_Title,
+    gText_ReferenceGuide_PoultryFarm_ChickenFeed_Description_Line01,
+    gText_ReferenceGuide_PoultryFarm_ChickenFeed_Description_Line02,
+#if defined(REGION_US)
+    gText_ReferenceGuide_PoultryFarm_ChickenFeed_Description_Line03,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_PoultryFarm_ChickenFeed_Alternative_Line01,
+    gText_ReferenceGuide_PoultryFarm_ChickenFeed_Alternative_Line02,
+    gText_ReferenceGuide_PoultryFarm_ChickenFeed_Alternative_Line03,
+#if defined(REGION_JP)
+    // Physical reuse: JP points at a preexisting grammatical ending fragment.
+    gText_ReferenceGuide_UsingTools_Hoe_Line09,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+
+    gText_ReferenceGuide_PoultryFarm_ChickenBuy_Title,
+    gText_ReferenceGuide_PoultryFarm_ChickenBuy_Description_Line01,
+#if defined(REGION_JP)
+    // Physical reuse: JP points at a preexisting passive-ending fragment.
+    gText_ReferenceGuide_Clinic_Overview_Collapse_Line03,
+#else
+    gText_ReferenceGuide_PoultryFarm_ChickenBuy_Description_Line02,
+    gText_ReferenceGuide_PoultryFarm_ChickenBuy_Description_Line03,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+
+    gText_ReferenceGuide_PoultryFarm_ChickenSell_Title,
+    gText_ReferenceGuide_PoultryFarm_ChickenSell_Description_Line01,
+    gText_ReferenceGuide_PoultryFarm_ChickenSell_Description_Line02,
+    gText_ReferenceGuide_PoultryFarm_ChickenSell_Description_Line03,
+    gText_ReferenceGuide_PoultryFarm_ChickenSell_Description_Line04,
+    gText_ReferenceGuide_EmptyLine,
+
+    gText_ReferenceGuide_PoultryFarm_AnimalMedicine_Title,
+    gText_ReferenceGuide_PoultryFarm_AnimalMedicine_Description_Line01,
+    gText_ReferenceGuide_PoultryFarm_AnimalMedicine_Description_Line02,
     nullptr,
 };

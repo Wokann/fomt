@@ -133,6 +133,8 @@ extern char const * const gReferenceGuideAjaWineryLines[];
 extern char const * const gReferenceGuideDougsInnLines[];
 // Reference Guide page 67: Kai's Seaside Lodge.
 extern char const * const gReferenceGuideKaiSeasideLodgeLines[];
+// Reference Guide page 68: Poultry Farm.
+extern char const * const gReferenceGuidePoultryFarmLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -488,7 +490,7 @@ extern char const gText_ReferenceGuide_Supermarket_GiftWrapping_Removal_Line04[]
 extern char const gText_ReferenceGuide_WoodcuttersHouse_Title[];
 extern char const gText_ReferenceGuide_WoodcuttersHouse_Overview_Line01[];
 extern char const gText_ReferenceGuide_WoodcuttersHouse_Overview_Line02[];
-extern char const gText_ReferenceGuide_WoodcuttersHouse_StoreHours_Value[];
+extern char const gText_ReferenceGuide_StoreHours_11AMTo4PM_Value[];
 extern char const gText_ReferenceGuide_Saturdays_Value[];
 extern char const gText_ReferenceGuide_WoodcuttersHouse_Lumber_Title[];
 extern char const gText_ReferenceGuide_WoodcuttersHouse_Lumber_Requirements_Line01[];
@@ -610,9 +612,36 @@ extern char const gText_ReferenceGuide_KaiSeasideLodge_Takeout_Line02[];
 extern char const gText_ReferenceGuide_KaiSeasideLodge_SeasonalAvailability_Line01[];
 extern char const gText_ReferenceGuide_KaiSeasideLodge_StoreHours_Open_Value[];
 extern char const gText_ReferenceGuide_KaiSeasideLodge_StoreHours_Close_Value[];
-extern char const gText_ReferenceGuide_KaiSeasideLodge_ClosedDay_Value[];
+extern char const gText_ReferenceGuide_Sundays_Value[];
 #if defined(REGION_JP)
 extern char const gText_ReferenceGuide_KaiSeasideLodge_Takeout_Line03[];
+#endif
+
+// Localized Poultry Farm text (page 68).
+extern char const gText_ReferenceGuide_PoultryFarm_Title[];
+extern char const gText_ReferenceGuide_PoultryFarm_Overview_Line01[];
+extern char const gText_ReferenceGuide_PoultryFarm_Overview_Line02[];
+extern char const gText_ReferenceGuide_PoultryFarm_ChickenFeed_Title[];
+extern char const gText_ReferenceGuide_PoultryFarm_ChickenFeed_Description_Line01[];
+extern char const gText_ReferenceGuide_PoultryFarm_ChickenFeed_Description_Line02[];
+extern char const gText_ReferenceGuide_PoultryFarm_ChickenFeed_Alternative_Line01[];
+extern char const gText_ReferenceGuide_PoultryFarm_ChickenFeed_Alternative_Line02[];
+extern char const gText_ReferenceGuide_PoultryFarm_ChickenFeed_Alternative_Line03[];
+extern char const gText_ReferenceGuide_PoultryFarm_ChickenBuy_Title[];
+extern char const gText_ReferenceGuide_PoultryFarm_ChickenBuy_Description_Line01[];
+extern char const gText_ReferenceGuide_PoultryFarm_ChickenSell_Title[];
+extern char const gText_ReferenceGuide_PoultryFarm_ChickenSell_Description_Line01[];
+extern char const gText_ReferenceGuide_PoultryFarm_ChickenSell_Description_Line02[];
+extern char const gText_ReferenceGuide_PoultryFarm_ChickenSell_Description_Line03[];
+extern char const gText_ReferenceGuide_PoultryFarm_ChickenSell_Description_Line04[];
+extern char const gText_ReferenceGuide_PoultryFarm_AnimalMedicine_Title[];
+extern char const gText_ReferenceGuide_PoultryFarm_AnimalMedicine_Description_Line01[];
+extern char const gText_ReferenceGuide_PoultryFarm_AnimalMedicine_Description_Line02[];
+#if defined(REGION_US)
+extern char const gText_ReferenceGuide_PoultryFarm_Overview_Line03[];
+extern char const gText_ReferenceGuide_PoultryFarm_ChickenFeed_Description_Line03[];
+extern char const gText_ReferenceGuide_PoultryFarm_ChickenBuy_Description_Line02[];
+extern char const gText_ReferenceGuide_PoultryFarm_ChickenBuy_Description_Line03[];
 #endif
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];

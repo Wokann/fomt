@@ -378,7 +378,9 @@ SECTIONS
         . = 0x1140E0; src/reference_guide.o(.rodata.reference_guide_dougs_inn_lines);
         . = 0x114118; data/text/reference_guide/kai_seaside_lodge.o(.rodata.reference_guide_kai_seaside_lodge_text);
         . = 0x1141A4; src/reference_guide.o(.rodata.reference_guide_kai_seaside_lodge_lines);
-        . = 0x1141D8; asm/data/data_080F9EB8.o(.rodata.reference_guide_kai_seaside_lodge_trailer);
+        . = 0x1141D8; data/text/reference_guide/poultry_farm.o(.rodata.reference_guide_poultry_farm_text);
+        . = 0x1143D8; src/reference_guide.o(.rodata.reference_guide_poultry_farm_lines);
+        . = 0x114468; asm/data/data_080F9EB8.o(.rodata.reference_guide_poultry_farm_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);

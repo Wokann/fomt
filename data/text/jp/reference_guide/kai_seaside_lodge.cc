@@ -17,5 +17,5 @@ char const gText_ReferenceGuide_KaiSeasideLodge_StoreHours_Open_Value[24] SECTIO
     "　午前１１時～午後１時";
 char const gText_ReferenceGuide_KaiSeasideLodge_StoreHours_Close_Value[24] SECTION(".rodata.reference_guide_kai_seaside_lodge_text") =
     "　午後　５時～午後７時";
-char const gText_ReferenceGuide_KaiSeasideLodge_ClosedDay_Value[12] SECTION(".rodata.reference_guide_kai_seaside_lodge_text") =
+char const gText_ReferenceGuide_Sundays_Value[12] SECTION(".rodata.reference_guide_kai_seaside_lodge_text") =
     "　日曜日";

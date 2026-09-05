@@ -163,6 +163,7 @@ TEXT_SOURCES += data/text/jp/reference_guide/clinic.cc
 TEXT_SOURCES += data/text/jp/reference_guide/aja_winery.cc
 TEXT_SOURCES += data/text/jp/reference_guide/dougs_inn.cc
 TEXT_SOURCES += data/text/jp/reference_guide/kai_seaside_lodge.cc
+TEXT_SOURCES += data/text/jp/reference_guide/poultry_farm.cc
 else
 TEXT_REGION := us
 TEXT_SOURCES := data/text/us/tool.cc data/text/us/food.cc data/text/us/article.cc data/text/us/calendar.cc data/text/us/help_menu.cc data/text/us/animal_memorial.cc data/text/us/load_error.cc data/text/us/menu.cc data/text/us/not_available.cc data/text/us/fixed_labels.cc data/text/us/new_game_menu.cc data/text/us/new_game_status.cc data/text/us/new_game_help.cc data/text/us/new_game_save.cc data/text/us/new_game_identity.cc data/text/us/new_game_name_entry.cc data/text/us/new_game_name_entry_ui.cc data/text/us/fishing_results.cc data/text/us/character_names.cc data/text/us/reference_guide/harvest_sprite_minigames.cc
@@ -226,6 +227,7 @@ TEXT_SOURCES += data/text/us/reference_guide/clinic.cc
 TEXT_SOURCES += data/text/us/reference_guide/aja_winery.cc
 TEXT_SOURCES += data/text/us/reference_guide/dougs_inn.cc
 TEXT_SOURCES += data/text/us/reference_guide/kai_seaside_lodge.cc
+TEXT_SOURCES += data/text/us/reference_guide/poultry_farm.cc
 endif
 
 TEXT_GENERATED_SOURCES := $(patsubst data/text/$(TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.cc,$(TEXT_SOURCES))
