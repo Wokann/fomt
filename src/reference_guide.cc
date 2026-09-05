@@ -5235,3 +5235,132 @@ char const * const gReferenceGuideSupermarketLines[] SECTION(".rodata.reference_
 #endif
     nullptr,
 };
+
+// Reference Guide page 63: Woodcutter's House. The page order is shared;
+// only regional line wrapping and the two original cross-page text pointers
+// require conditional entries.
+char const * const gReferenceGuideWoodcuttersHouseLines[] SECTION(".rodata.reference_guide_woodcutters_house_lines") = {
+    gText_ReferenceGuide_WoodcuttersHouse_Title,
+
+    // Store overview and hours.
+    gText_ReferenceGuide_WoodcuttersHouse_Overview_Line01,
+    gText_ReferenceGuide_WoodcuttersHouse_Overview_Line02,
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_US)
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    // Physical reuse: both ROMs point at the existing store-hours label.
+    gText_ReferenceGuide_SaibaraBlacksmith_StoreHours_Heading,
+    gText_ReferenceGuide_WoodcuttersHouse_StoreHours_Value,
+    gText_ReferenceGuide_EmptyLine,
+    // Physical reuse: both ROMs point at the existing closed-day label.
+    gText_ReferenceGuide_SaibaraBlacksmith_ClosedDay_Heading,
+    gText_ReferenceGuide_WoodcuttersHouse_ClosedDay_Value,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    // Lumber.
+    gText_ReferenceGuide_WoodcuttersHouse_Lumber_Title,
+    gText_ReferenceGuide_WoodcuttersHouse_Lumber_Requirements_Line01,
+    gText_ReferenceGuide_WoodcuttersHouse_Lumber_Requirements_Line02,
+    gText_ReferenceGuide_WoodcuttersHouse_Lumber_Requirements_Line03,
+    gText_ReferenceGuide_WoodcuttersHouse_Lumber_Requirements_Line04,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_WoodcuttersHouse_Lumber_Delivery_Line01,
+    gText_ReferenceGuide_WoodcuttersHouse_Lumber_Delivery_Line02,
+#if defined(REGION_US)
+    gText_ReferenceGuide_WoodcuttersHouse_Lumber_Delivery_Line03,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_WoodcuttersHouse_Lumber_Acquisition_Line01,
+    gText_ReferenceGuide_WoodcuttersHouse_Lumber_Acquisition_Line02,
+    gText_ReferenceGuide_WoodcuttersHouse_Lumber_Acquisition_Line03,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    // General expansion behavior.
+    gText_ReferenceGuide_WoodcuttersHouse_Expansions_Title,
+    gText_ReferenceGuide_WoodcuttersHouse_Expansions_Description_Line01,
+    gText_ReferenceGuide_WoodcuttersHouse_Expansions_Description_Line02,
+    gText_ReferenceGuide_WoodcuttersHouse_Expansions_Description_Line03,
+    gText_ReferenceGuide_WoodcuttersHouse_Expansions_Description_Line04,
+    gText_ReferenceGuide_WoodcuttersHouse_Expansions_Description_Line05,
+#if defined(REGION_US)
+    gText_ReferenceGuide_WoodcuttersHouse_Expansions_Description_Line06,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+
+    // Home expansion.
+    gText_ReferenceGuide_WoodcuttersHouse_HomeExpansion_Title,
+    gText_ReferenceGuide_WoodcuttersHouse_HomeExpansion_Description_Line01,
+    gText_ReferenceGuide_WoodcuttersHouse_HomeExpansion_Description_Line02,
+#if defined(REGION_US)
+    gText_ReferenceGuide_WoodcuttersHouse_HomeExpansion_Description_Line03,
+    gText_ReferenceGuide_WoodcuttersHouse_HomeExpansion_Description_Line04,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_WoodcuttersHouse_HomeExpansion_SecondFloor_Line01,
+#if defined(REGION_US)
+    gText_ReferenceGuide_WoodcuttersHouse_HomeExpansion_SecondFloor_Line02,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_WoodcuttersHouse_HomeExpansion_Rebuild_Line01,
+    gText_ReferenceGuide_WoodcuttersHouse_HomeExpansion_Rebuild_Line02,
+    gText_ReferenceGuide_WoodcuttersHouse_HomeExpansion_Rebuild_Line03,
+    gText_ReferenceGuide_WoodcuttersHouse_HomeExpansion_Rebuild_Line04,
+#if defined(REGION_US)
+    gText_ReferenceGuide_WoodcuttersHouse_HomeExpansion_Rebuild_Line05,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+
+    // Chicken coop expansion.
+    gText_ReferenceGuide_WoodcuttersHouse_ChickenCoopExpansion_Title,
+    gText_ReferenceGuide_WoodcuttersHouse_ChickenCoopExpansion_Capacity_Line01,
+    gText_ReferenceGuide_WoodcuttersHouse_ChickenCoopExpansion_Capacity_Line02,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_WoodcuttersHouse_ChickenCoopExpansion_Incubators_Line01,
+#if defined(REGION_US)
+    gText_ReferenceGuide_WoodcuttersHouse_ChickenCoopExpansion_Incubators_Line02,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_WoodcuttersHouse_ChickenCoopExpansion_MayonnaiseMaker_Line01,
+    gText_ReferenceGuide_WoodcuttersHouse_ChickenCoopExpansion_MayonnaiseMaker_Line02,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_EmptyLine,
+#endif
+
+    // Barn expansion.
+    gText_ReferenceGuide_WoodcuttersHouse_BarnExpansion_Title,
+    gText_ReferenceGuide_WoodcuttersHouse_BarnExpansion_Capacity_Line01,
+    gText_ReferenceGuide_WoodcuttersHouse_BarnExpansion_Capacity_Line02,
+#if defined(REGION_US)
+    gText_ReferenceGuide_WoodcuttersHouse_BarnExpansion_Capacity_Line03,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_WoodcuttersHouse_BarnExpansion_PregnancySpace_Line01,
+#if defined(REGION_JP)
+    // Physical reuse: the original JP pointer uses this existing suffix.
+    gText_ReferenceGuide_ToolAndItemControls_Line12,
+#else
+    gText_ReferenceGuide_WoodcuttersHouse_BarnExpansion_PregnancySpace_Line02,
+    gText_ReferenceGuide_WoodcuttersHouse_BarnExpansion_PregnancySpace_Line03,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_WoodcuttersHouse_BarnExpansion_Makers_Line01,
+    gText_ReferenceGuide_WoodcuttersHouse_BarnExpansion_Makers_Line02,
+    gText_ReferenceGuide_WoodcuttersHouse_BarnExpansion_Makers_Line03,
+#else
+    // Physical reuse: the Barn entry starts with the Chicken Coop prefix.
+    gText_ReferenceGuide_WoodcuttersHouse_ChickenCoopExpansion_MayonnaiseMaker_Line01,
+    gText_ReferenceGuide_WoodcuttersHouse_BarnExpansion_Makers_Line02,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+
+    gText_ReferenceGuide_WoodcuttersHouse_Cottage_Title,
+    gText_ReferenceGuide_WoodcuttersHouse_Cottage_Description_Line01,
+#if defined(REGION_US)
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    nullptr,
+};

@@ -470,7 +470,9 @@ SECTIONS
         . = 0x113938; src/reference_guide.o(.rodata.reference_guide_saibara_blacksmith_lines);
         . = 0x113BA8; data/text/reference_guide/supermarket.o(.rodata.reference_guide_supermarket_text);
         . = 0x114234; src/reference_guide.o(.rodata.reference_guide_supermarket_lines);
-        . = 0x1143C0; asm/data/data_080F9EB8.o(.rodata.reference_guide_supermarket_trailer);
+        . = 0x1143C0; data/text/reference_guide/woodcutters_house.o(.rodata.reference_guide_woodcutters_house_text);
+        . = 0x114824; src/reference_guide.o(.rodata.reference_guide_woodcutters_house_lines);
+        . = 0x11492C; asm/data/data_080F9EB8.o(.rodata.reference_guide_woodcutters_house_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */

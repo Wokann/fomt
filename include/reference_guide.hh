@@ -123,6 +123,8 @@ extern char const * const gReferenceGuideHarvestSpriteHelpLines[];
 extern char const * const gReferenceGuideSaibaraBlacksmithLines[];
 // Reference Guide page 62: Supermarket.
 extern char const * const gReferenceGuideSupermarketLines[];
+// Reference Guide page 63: Woodcutter's House.
+extern char const * const gReferenceGuideWoodcuttersHouseLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -472,6 +474,65 @@ extern char const gText_ReferenceGuide_Supermarket_BlueFeather_Availability_Line
 extern char const gText_ReferenceGuide_Supermarket_GiftWrapping_Description_Line06[];
 extern char const gText_ReferenceGuide_Supermarket_GiftWrapping_Description_Line07[];
 extern char const gText_ReferenceGuide_Supermarket_GiftWrapping_Removal_Line04[];
+#endif
+
+// Localized Woodcutter's House text (page 63).
+extern char const gText_ReferenceGuide_WoodcuttersHouse_Title[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_Overview_Line01[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_Overview_Line02[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_StoreHours_Value[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_ClosedDay_Value[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_Lumber_Title[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_Lumber_Requirements_Line01[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_Lumber_Requirements_Line02[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_Lumber_Requirements_Line03[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_Lumber_Requirements_Line04[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_Lumber_Delivery_Line01[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_Lumber_Delivery_Line02[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_Lumber_Acquisition_Line01[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_Lumber_Acquisition_Line02[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_Lumber_Acquisition_Line03[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_Expansions_Title[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_Expansions_Description_Line01[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_Expansions_Description_Line02[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_Expansions_Description_Line03[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_Expansions_Description_Line04[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_Expansions_Description_Line05[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_HomeExpansion_Title[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_HomeExpansion_Description_Line01[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_HomeExpansion_Description_Line02[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_HomeExpansion_SecondFloor_Line01[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_HomeExpansion_Rebuild_Line01[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_HomeExpansion_Rebuild_Line02[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_HomeExpansion_Rebuild_Line03[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_HomeExpansion_Rebuild_Line04[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_ChickenCoopExpansion_Title[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_ChickenCoopExpansion_Capacity_Line01[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_ChickenCoopExpansion_Capacity_Line02[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_ChickenCoopExpansion_Incubators_Line01[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_ChickenCoopExpansion_MayonnaiseMaker_Line01[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_ChickenCoopExpansion_MayonnaiseMaker_Line02[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_BarnExpansion_Title[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_BarnExpansion_Capacity_Line01[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_BarnExpansion_Capacity_Line02[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_BarnExpansion_PregnancySpace_Line01[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_BarnExpansion_Makers_Line02[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_Cottage_Title[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_Cottage_Description_Line01[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_WoodcuttersHouse_BarnExpansion_Makers_Line01[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_BarnExpansion_Makers_Line03[];
+#else
+extern char const gText_ReferenceGuide_WoodcuttersHouse_Lumber_Delivery_Line03[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_Expansions_Description_Line06[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_HomeExpansion_Description_Line03[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_HomeExpansion_Description_Line04[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_HomeExpansion_SecondFloor_Line02[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_HomeExpansion_Rebuild_Line05[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_ChickenCoopExpansion_Incubators_Line02[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_BarnExpansion_Capacity_Line03[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_BarnExpansion_PregnancySpace_Line02[];
+extern char const gText_ReferenceGuide_WoodcuttersHouse_BarnExpansion_PregnancySpace_Line03[];
 #endif
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];
