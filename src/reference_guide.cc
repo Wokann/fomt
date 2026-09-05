@@ -2525,3 +2525,45 @@ char const * const gReferenceGuideAnimalCareLines[] SECTION(".rodata.reference_g
     nullptr,
 #endif
 };
+
+// Reference Guide page 18: AWL character profile for Takakura.
+char const * const gReferenceGuideAwlTakakuraLines[] SECTION(".rodata.reference_guide_awl_takakura_lines") = {
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AwlTakakura_Title,
+    gText_ReferenceGuide_AwlTakakura_Introduction_Line01,
+    gText_ReferenceGuide_AwlTakakura_Introduction_Line02,
+    gText_ReferenceGuide_AwlTakakura_Introduction_Line03,
+    gText_ReferenceGuide_AwlTakakura_Introduction_Line04,
+    gText_ReferenceGuide_AwlTakakura_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlTakakura_Profile01_Line01,
+    gText_ReferenceGuide_AwlTakakura_Profile01_Line02,
+    gText_ReferenceGuide_AwlTakakura_Profile01_Line03,
+    gText_ReferenceGuide_AwlTakakura_Profile01_Line04,
+    gText_ReferenceGuide_AwlTakakura_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlTakakura_Profile02_Line01,
+    gText_ReferenceGuide_AwlTakakura_Profile02_Line02,
+    nullptr,
+#else
+    gText_ReferenceGuide_AwlTakakura_Title,
+    gText_ReferenceGuide_AwlTakakura_Introduction_Line01,
+    gText_ReferenceGuide_AwlTakakura_Introduction_Line02,
+    gText_ReferenceGuide_AwlTakakura_Introduction_Line03,
+    gText_ReferenceGuide_AwlTakakura_Introduction_Line04,
+    gText_ReferenceGuide_AwlTakakura_Introduction_Line05,
+    gText_ReferenceGuide_AwlTakakura_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlTakakura_Profile01_Line01,
+    gText_ReferenceGuide_AwlTakakura_Profile01_Line02,
+    gText_ReferenceGuide_AwlTakakura_Profile01_Line03,
+    gText_ReferenceGuide_AwlTakakura_Profile01_Line04,
+    gText_ReferenceGuide_AwlTakakura_Profile01_Line05,
+    gText_ReferenceGuide_AwlTakakura_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlTakakura_Profile02_Line01,
+    gText_ReferenceGuide_AwlTakakura_Profile02_Line02,
+    gText_ReferenceGuide_AwlTakakura_Profile02_Line03,
+    nullptr,
+#endif
+};
