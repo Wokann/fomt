@@ -13,6 +13,7 @@ Regional text belongs under this directory by its owning data structure:
         character_names.cc
         reference_guide/
             harvest_sprite_minigames.cc
+            festival_hints.cc
 
     data/text/common/
         fallback.cc       item fallbacks compiled with src/item.cc
