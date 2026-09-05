@@ -2567,3 +2567,49 @@ char const * const gReferenceGuideAwlTakakuraLines[] SECTION(".rodata.reference_
     nullptr,
 #endif
 };
+
+// Reference Guide page 19: AWL character profile for Romana.
+char const * const gReferenceGuideAwlRomanaLines[] SECTION(".rodata.reference_guide_awl_romana_lines") = {
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AwlRomana_Title,
+    gText_ReferenceGuide_AwlRomana_Introduction_Line01,
+    gText_ReferenceGuide_AwlRomana_Introduction_Line02,
+    gText_ReferenceGuide_AwlRomana_Introduction_Line03,
+    gText_ReferenceGuide_AwlRomana_Introduction_Line04,
+    gText_ReferenceGuide_AwlRomana_Introduction_Line05,
+    gText_ReferenceGuide_AwlRomana_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlRomana_Profile01_Line01,
+    gText_ReferenceGuide_AwlRomana_Profile01_Line02,
+    gText_ReferenceGuide_AwlRomana_Profile01_Line03,
+    gText_ReferenceGuide_AwlRomana_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlRomana_Profile02_Line01,
+    gText_ReferenceGuide_AwlRomana_Profile02_Line02,
+    gText_ReferenceGuide_AwlRomana_Profile02_Line03,
+    nullptr,
+#else
+    gText_ReferenceGuide_AwlRomana_Title,
+    gText_ReferenceGuide_AwlRomana_Introduction_Line01,
+    gText_ReferenceGuide_AwlRomana_Introduction_Line02,
+    gText_ReferenceGuide_AwlRomana_Introduction_Line03,
+    gText_ReferenceGuide_AwlRomana_Introduction_Line04,
+    gText_ReferenceGuide_AwlRomana_Introduction_Line05,
+    gText_ReferenceGuide_AwlRomana_Introduction_Line06,
+    gText_ReferenceGuide_AwlRomana_Introduction_Line07,
+    gText_ReferenceGuide_AwlRomana_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlRomana_Profile01_Line01,
+    gText_ReferenceGuide_AwlRomana_Profile01_Line02,
+    gText_ReferenceGuide_AwlRomana_Profile01_Line03,
+    gText_ReferenceGuide_AwlRomana_Profile01_Line04,
+    gText_ReferenceGuide_AwlRomana_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlRomana_Profile02_Line01,
+    gText_ReferenceGuide_AwlRomana_Profile02_Line02,
+    gText_ReferenceGuide_AwlRomana_Profile02_Line03,
+    gText_ReferenceGuide_AwlRomana_Profile02_Line04,
+    gText_ReferenceGuide_AwlRomana_Profile02_Line05,
+    nullptr,
+#endif
+};
