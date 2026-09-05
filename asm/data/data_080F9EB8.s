@@ -48,8 +48,8 @@ gText_CharacterName_Empty:
 gReferenceGuidePageLineTables:
     .incbin "baserom_jp.gba", 0x107DAC, (0x107FD0 - 0x107DAC)
 
-    .section .rodata.reference_guide_harvest_sprite_minigames_trailer
-    .incbin "baserom_jp.gba", 0x108CBC, (0x13BCF8 - 0x108CBC)
+    .section .rodata.reference_guide_festival_hints_trailer
+    .incbin "baserom_jp.gba", 0x1093DC, (0x13BCF8 - 0x1093DC)
     .else
     .section .rodata.reference_guide_harvest_sprite_minigames_prefix
 
@@ -3221,8 +3221,8 @@ gUnk_0810827C:
 gReferenceGuidePageLineTables:
 	.incbin "baserom_us.gba", 0x10828C, (0x1084B0 - 0x10828C)
 
-	.section .rodata.reference_guide_harvest_sprite_minigames_trailer
-	.incbin "baserom_us.gba", 0x109124, (0x1177F6 - 0x109124)
+	.section .rodata.reference_guide_festival_hints_trailer
+	.incbin "baserom_us.gba", 0x109734, (0x1177F6 - 0x109734)
 
 	.section .rodata
 
