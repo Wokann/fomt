@@ -2796,3 +2796,49 @@ char const * const gReferenceGuideAwlHughLines[] SECTION(".rodata.reference_guid
     nullptr,
 #endif
 };
+
+// Reference Guide page 25: AWL character profile for Grant.
+char const * const gReferenceGuideAwlGrantLines[] SECTION(".rodata.reference_guide_awl_grant_lines") = {
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AwlGrant_Title,
+    gText_ReferenceGuide_AwlGrant_Introduction_Line01,
+    gText_ReferenceGuide_AwlGrant_Introduction_Line02,
+    gText_ReferenceGuide_AwlGrant_Introduction_Line03,
+    gText_ReferenceGuide_AwlGrant_Introduction_Line04,
+    gText_ReferenceGuide_AwlGrant_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlGrant_Profile01_Line01,
+    gText_ReferenceGuide_AwlGrant_Profile01_Line02,
+    gText_ReferenceGuide_AwlGrant_Profile01_Line03,
+    gText_ReferenceGuide_AwlGrant_Profile01_Line04,
+    gText_ReferenceGuide_AwlGrant_Profile01_Line05,
+    gText_ReferenceGuide_AwlGrant_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlGrant_Profile02_Line01,
+    gText_ReferenceGuide_AwlGrant_Profile02_Line02,
+    gText_ReferenceGuide_AwlGrant_Profile02_Line03,
+    gText_ReferenceGuide_AwlGrant_Profile02_Line04,
+    nullptr,
+#else
+    gText_ReferenceGuide_AwlGrant_Title,
+    gText_ReferenceGuide_AwlGrant_Introduction_Line01,
+    gText_ReferenceGuide_AwlGrant_Introduction_Line02,
+    gText_ReferenceGuide_AwlGrant_Introduction_Line03,
+    gText_ReferenceGuide_AwlGrant_Introduction_Line04,
+    gText_ReferenceGuide_AwlGrant_Introduction_Line05,
+    gText_ReferenceGuide_AwlGrant_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlGrant_Profile01_Line01,
+    gText_ReferenceGuide_AwlGrant_Profile01_Line02,
+    gText_ReferenceGuide_AwlGrant_Profile01_Line03,
+    gText_ReferenceGuide_AwlGrant_Profile01_Line04,
+    gText_ReferenceGuide_AwlGrant_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlGrant_Profile02_Line01,
+    gText_ReferenceGuide_AwlGrant_Profile02_Line02,
+    gText_ReferenceGuide_AwlGrant_Profile02_Line03,
+    gText_ReferenceGuide_AwlGrant_Profile02_Line04,
+    gText_ReferenceGuide_AwlGrant_Profile02_Line05,
+    nullptr,
+#endif
+};
