@@ -142,6 +142,7 @@ TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/flora.cc
 TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/vesta.cc
 TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/marlin.cc
 TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/celia.cc
+TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/hardy.cc
 else
 TEXT_REGION := us
 TEXT_SOURCES := data/text/us/tool.cc data/text/us/food.cc data/text/us/article.cc data/text/us/calendar.cc data/text/us/help_menu.cc data/text/us/animal_memorial.cc data/text/us/load_error.cc data/text/us/menu.cc data/text/us/not_available.cc data/text/us/fixed_labels.cc data/text/us/new_game_menu.cc data/text/us/new_game_status.cc data/text/us/new_game_help.cc data/text/us/new_game_save.cc data/text/us/new_game_identity.cc data/text/us/new_game_name_entry.cc data/text/us/new_game_name_entry_ui.cc data/text/us/fishing_results.cc data/text/us/character_names.cc data/text/us/reference_guide/harvest_sprite_minigames.cc
@@ -184,6 +185,7 @@ TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/flora.cc
 TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/vesta.cc
 TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/marlin.cc
 TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/celia.cc
+TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/hardy.cc
 endif
 
 TEXT_GENERATED_SOURCES := $(patsubst data/text/$(TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.cc,$(TEXT_SOURCES))

@@ -91,6 +91,8 @@ extern char const * const gReferenceGuideAwlVestaLines[];
 extern char const * const gReferenceGuideAwlMarlinLines[];
 // Reference Guide page 46: AWL character profile for Celia.
 extern char const * const gReferenceGuideAwlCeliaLines[];
+// Reference Guide page 47: AWL character profile for Hardy.
+extern char const * const gReferenceGuideAwlHardyLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 #endif
@@ -1395,6 +1397,16 @@ extern char const gText_ReferenceGuide_AwlCelia_Profile02_Line01[];
 extern char const gText_ReferenceGuide_AwlCelia_Profile02_Line02[];
 extern char const gText_ReferenceGuide_AwlCelia_Profile02_Line03[];
 extern char const gText_ReferenceGuide_AwlCelia_Profile02_Line04[];
+// Localized AWL character-profile text (page 47).
+extern char const gText_ReferenceGuide_AwlHardy_Title[];
+extern char const gText_ReferenceGuide_AwlHardy_Introduction_Line01[];
+extern char const gText_ReferenceGuide_AwlHardy_Introduction_Line02[];
+extern char const gText_ReferenceGuide_AwlHardy_Profile01_Marker[];
+extern char const gText_ReferenceGuide_AwlHardy_Profile01_Line01[];
+extern char const gText_ReferenceGuide_AwlHardy_Profile01_Line02[];
+extern char const gText_ReferenceGuide_AwlHardy_Profile02_Marker[];
+extern char const gText_ReferenceGuide_AwlHardy_Profile02_Line01[];
+extern char const gText_ReferenceGuide_AwlHardy_Profile02_Line02[];
 #else
 extern char const gText_ReferenceGuide_HarvestSpriteMinigames_Title[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Title[];
@@ -2648,6 +2660,18 @@ extern char const gText_ReferenceGuide_AwlCelia_Profile02_Line01[];
 extern char const gText_ReferenceGuide_AwlCelia_Profile02_Line02[];
 extern char const gText_ReferenceGuide_AwlCelia_Profile02_Line03[];
 extern char const gText_ReferenceGuide_AwlCelia_Profile02_Line04[];
+// Localized AWL character-profile text (page 47).
+extern char const gText_ReferenceGuide_AwlHardy_Title[];
+extern char const gText_ReferenceGuide_AwlHardy_Introduction_Line01[];
+extern char const gText_ReferenceGuide_AwlHardy_Introduction_Line02[];
+extern char const gText_ReferenceGuide_AwlHardy_Profile01_Marker[];
+extern char const gText_ReferenceGuide_AwlHardy_Profile01_Line01[];
+extern char const gText_ReferenceGuide_AwlHardy_Profile01_Line02[];
+extern char const gText_ReferenceGuide_AwlHardy_Profile01_Line03[];
+extern char const gText_ReferenceGuide_AwlHardy_Profile02_Marker[];
+extern char const gText_ReferenceGuide_AwlHardy_Profile02_Line01[];
+extern char const gText_ReferenceGuide_AwlHardy_Profile02_Line02[];
+extern char const gText_ReferenceGuide_AwlHardy_Profile02_Line03[];
 #endif
 
 #endif // REFERENCE_GUIDE_HH

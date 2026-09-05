@@ -336,7 +336,9 @@ SECTIONS
         . = 0x110B9C; src/reference_guide.o(.rodata.reference_guide_awl_marlin_lines);
         . = 0x110BD4; data/text/reference_guide/awl_profiles/celia.o(.rodata.reference_guide_awl_celia_text);
         . = 0x110CC4; src/reference_guide.o(.rodata.reference_guide_awl_celia_lines);
-        . = 0x110D00; asm/data/data_080F9EB8.o(.rodata.reference_guide_awl_celia_trailer);
+        . = 0x110D00; data/text/reference_guide/awl_profiles/hardy.o(.rodata.reference_guide_awl_hardy_text);
+        . = 0x110DE0; src/reference_guide.o(.rodata.reference_guide_awl_hardy_lines);
+        . = 0x110E18; asm/data/data_080F9EB8.o(.rodata.reference_guide_awl_hardy_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
