@@ -99,6 +99,8 @@ extern char const * const gReferenceGuideAwlVanLines[];
 extern char const * const gReferenceGuideAwlMookyLines[];
 // Reference Guide page 50: AWL character profile for the player's child.
 extern char const * const gReferenceGuideAwlChildLines[];
+// Reference Guide page 51: AWL character profile for Nak.
+extern char const * const gReferenceGuideAwlNakLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 #endif
@@ -1444,6 +1446,17 @@ extern char const gText_ReferenceGuide_AwlChild_Profile01_Line01[];
 extern char const gText_ReferenceGuide_AwlChild_Profile02_Marker[];
 extern char const gText_ReferenceGuide_AwlChild_Profile02_Line01[];
 extern char const gText_ReferenceGuide_AwlChild_Profile02_Line02[];
+// Localized AWL character-profile text (page 51).
+extern char const gText_ReferenceGuide_AwlNak_Title[];
+extern char const gText_ReferenceGuide_AwlNak_Introduction_Line01[];
+extern char const gText_ReferenceGuide_AwlNak_Introduction_Line02[];
+extern char const gText_ReferenceGuide_AwlNak_Profile01_Marker[];
+extern char const gText_ReferenceGuide_AwlNak_Profile01_Line01[];
+extern char const gText_ReferenceGuide_AwlNak_Profile01_Line02[];
+extern char const gText_ReferenceGuide_AwlNak_Profile02_Marker[];
+extern char const gText_ReferenceGuide_AwlNak_Profile02_Line01[];
+extern char const gText_ReferenceGuide_AwlNak_Profile02_Line02[];
+extern char const gText_ReferenceGuide_AwlNak_Profile02_Line03[];
 #else
 extern char const gText_ReferenceGuide_HarvestSpriteMinigames_Title[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Title[];
@@ -2744,6 +2757,17 @@ extern char const gText_ReferenceGuide_AwlChild_Profile01_Line01[];
 extern char const gText_ReferenceGuide_AwlChild_Profile02_Marker[];
 extern char const gText_ReferenceGuide_AwlChild_Profile02_Line01[];
 extern char const gText_ReferenceGuide_AwlChild_Profile02_Line02[];
+// Localized AWL character-profile text (page 51).
+extern char const gText_ReferenceGuide_AwlNak_Title[];
+extern char const gText_ReferenceGuide_AwlNak_Introduction_Line01[];
+extern char const gText_ReferenceGuide_AwlNak_Profile01_Marker[];
+extern char const gText_ReferenceGuide_AwlNak_Profile01_Line01[];
+extern char const gText_ReferenceGuide_AwlNak_Profile01_Line02[];
+extern char const gText_ReferenceGuide_AwlNak_Profile01_Line03[];
+extern char const gText_ReferenceGuide_AwlNak_Profile02_Line01[];
+extern char const gText_ReferenceGuide_AwlNak_Profile02_Line02[];
+extern char const gText_ReferenceGuide_AwlNak_Profile02_Line03[];
+extern char const gText_ReferenceGuide_AwlNak_Profile02_Line04[];
 #endif
 
 #endif // REFERENCE_GUIDE_HH

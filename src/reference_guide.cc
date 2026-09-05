@@ -3822,3 +3822,36 @@ char const * const gReferenceGuideAwlChildLines[] SECTION(".rodata.reference_gui
     nullptr,
 #endif
 };
+
+// Reference Guide page 51: AWL character profile for Nak.
+char const * const gReferenceGuideAwlNakLines[] SECTION(".rodata.reference_guide_awl_nak_lines") = {
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AwlNak_Title,
+    gText_ReferenceGuide_AwlNak_Introduction_Line01,
+    gText_ReferenceGuide_AwlNak_Introduction_Line02,
+    gText_ReferenceGuide_AwlNak_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlNak_Profile01_Line01,
+    gText_ReferenceGuide_AwlNak_Profile01_Line02,
+    gText_ReferenceGuide_AwlNak_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlNak_Profile02_Line01,
+    gText_ReferenceGuide_AwlNak_Profile02_Line02,
+    gText_ReferenceGuide_AwlNak_Profile02_Line03,
+    nullptr,
+#else
+    gText_ReferenceGuide_AwlNak_Title,
+    gText_ReferenceGuide_AwlNak_Introduction_Line01,
+    gText_ReferenceGuide_AwlNak_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlNak_Profile01_Line01,
+    gText_ReferenceGuide_AwlNak_Profile01_Line02,
+    gText_ReferenceGuide_AwlNak_Profile01_Line03,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlNak_Profile02_Line01,
+    gText_ReferenceGuide_AwlNak_Profile02_Line02,
+    gText_ReferenceGuide_AwlNak_Profile02_Line03,
+    gText_ReferenceGuide_AwlNak_Profile02_Line04,
+    nullptr,
+#endif
+};
