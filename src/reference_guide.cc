@@ -6115,3 +6115,38 @@ char const * const gReferenceGuideUsefulControlsLines[] SECTION(".rodata.referen
     gText_ReferenceGuide_UsefulControls_CallOutToPerson_Line02,
     nullptr,
 };
+
+// Reference Guide page 79: Cliff's first New Year Card.
+char const * const gReferenceGuideCliffNewYearCardFirstLines[] SECTION(".rodata.reference_guide_cliff_new_year_card_first_lines") = {
+    gText_ReferenceGuide_CliffNewYearCards_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_CliffNewYearCards_FirstCard_Greeting_Line01,
+    gText_ReferenceGuide_CliffNewYearCards_FirstCard_Message_Line01,
+    gText_ReferenceGuide_CliffNewYearCards_FirstCard_Message_Line02,
+    gText_ReferenceGuide_CliffNewYearCards_FirstCard_Message_Line03,
+    gText_ReferenceGuide_CliffNewYearCards_FirstCard_Message_Line04,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_CliffNewYearCards_Signature,
+    nullptr,
+};
+
+// Reference Guide page 80: Cliff's second New Year Card. The original table
+// directly reuses the first card's title and signature.
+char const * const gReferenceGuideCliffNewYearCardSecondLines[] SECTION(".rodata.reference_guide_cliff_new_year_card_second_lines") = {
+    gText_ReferenceGuide_CliffNewYearCards_Title,
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_CliffNewYearCards_SecondCard_Greeting_Line01,
+#endif
+    gText_ReferenceGuide_CliffNewYearCards_SecondCard_Message_Line01,
+    gText_ReferenceGuide_CliffNewYearCards_SecondCard_Message_Line02,
+    gText_ReferenceGuide_CliffNewYearCards_SecondCard_Message_Line03,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_CliffNewYearCards_SecondCard_Message_Line04,
+    gText_ReferenceGuide_CliffNewYearCards_SecondCard_Message_Line05,
+    gText_ReferenceGuide_CliffNewYearCards_SecondCard_Message_Line06,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_CliffNewYearCards_Signature,
+    nullptr,
+};

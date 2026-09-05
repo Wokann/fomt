@@ -155,6 +155,10 @@ extern char const * const gReferenceGuideShelfLines[];
 extern char const * const gReferenceGuideStaffCreditsLines[];
 // Reference Guide page 78: Useful Controls.
 extern char const * const gReferenceGuideUsefulControlsLines[];
+// Reference Guide page 79: Cliff's first New Year Card.
+extern char const * const gReferenceGuideCliffNewYearCardFirstLines[];
+// Reference Guide page 80: Cliff's second New Year Card.
+extern char const * const gReferenceGuideCliffNewYearCardSecondLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -920,6 +924,24 @@ extern char const gText_ReferenceGuide_UsefulControls_SwitchHeldItem_Line02[];
 extern char const gText_ReferenceGuide_UsefulControls_CallOutToPerson_Title[];
 extern char const gText_ReferenceGuide_UsefulControls_CallOutToPerson_Line01[];
 extern char const gText_ReferenceGuide_UsefulControls_CallOutToPerson_Line02[];
+
+// Localized Cliff New Year Card text (pages 79-80).
+extern char const gText_ReferenceGuide_CliffNewYearCards_Title[];
+extern char const gText_ReferenceGuide_CliffNewYearCards_FirstCard_Greeting_Line01[];
+extern char const gText_ReferenceGuide_CliffNewYearCards_FirstCard_Message_Line01[];
+extern char const gText_ReferenceGuide_CliffNewYearCards_FirstCard_Message_Line02[];
+extern char const gText_ReferenceGuide_CliffNewYearCards_FirstCard_Message_Line03[];
+extern char const gText_ReferenceGuide_CliffNewYearCards_FirstCard_Message_Line04[];
+extern char const gText_ReferenceGuide_CliffNewYearCards_Signature[];
+extern char const gText_ReferenceGuide_CliffNewYearCards_SecondCard_Message_Line01[];
+extern char const gText_ReferenceGuide_CliffNewYearCards_SecondCard_Message_Line02[];
+extern char const gText_ReferenceGuide_CliffNewYearCards_SecondCard_Message_Line03[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_CliffNewYearCards_SecondCard_Greeting_Line01[];
+extern char const gText_ReferenceGuide_CliffNewYearCards_SecondCard_Message_Line04[];
+extern char const gText_ReferenceGuide_CliffNewYearCards_SecondCard_Message_Line05[];
+extern char const gText_ReferenceGuide_CliffNewYearCards_SecondCard_Message_Line06[];
+#endif
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];

@@ -400,7 +400,11 @@ SECTIONS
         . = 0x115418; src/reference_guide.o(.rodata.reference_guide_staff_credits_lines);
         . = 0x11561C; data/text/reference_guide/useful_controls.o(.rodata.reference_guide_useful_controls_text);
         . = 0x1157D0; src/reference_guide.o(.rodata.reference_guide_useful_controls_lines);
-        . = 0x115840; asm/data/data_080F9EB8.o(.rodata.reference_guide_useful_controls_trailer);
+        . = 0x115840; data/text/reference_guide/cliff_new_year_cards.o(.rodata.reference_guide_cliff_new_year_card_first_text);
+        . = 0x1158F0; src/reference_guide.o(.rodata.reference_guide_cliff_new_year_card_first_lines);
+        . = 0x115918; data/text/reference_guide/cliff_new_year_cards.o(.rodata.reference_guide_cliff_new_year_card_second_text);
+        . = 0x115960; src/reference_guide.o(.rodata.reference_guide_cliff_new_year_card_second_lines);
+        . = 0x115980; asm/data/data_080F9EB8.o(.rodata.reference_guide_cliff_new_year_cards_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
