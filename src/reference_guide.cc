@@ -5746,3 +5746,35 @@ char const * const gReferenceGuideVansShopLines[] SECTION(".rodata.reference_gui
     gText_ReferenceGuide_EmptyLine,
     nullptr,
 };
+
+// Reference Guide page 72: Record Player Instructions. The regional layouts
+// differ only where their original text fields differ.
+char const * const gReferenceGuideRecordPlayerInstructionsLines[] SECTION(".rodata.reference_guide_record_player_instructions_lines") = {
+    gText_ReferenceGuide_RecordPlayerInstructions_Title,
+    gText_ReferenceGuide_RecordPlayerInstructions_Start_Line01,
+    gText_ReferenceGuide_RecordPlayerInstructions_Start_Line02,
+    gText_ReferenceGuide_RecordPlayerInstructions_Start_Line03,
+    gText_ReferenceGuide_RecordPlayerInstructions_Start_Line04,
+#if defined(REGION_JP)
+    // Physical reuse: the sentence ends with the existing grammatical fragment.
+    gText_ReferenceGuide_ChickenFestivalHints_Line13,
+#endif
+    gText_ReferenceGuide_RecordPlayerInstructions_ReplaceExisting_Line01,
+    gText_ReferenceGuide_RecordPlayerInstructions_ReplaceExisting_Line02,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_RecordPlayerInstructions_StopPlayback_Line01,
+    gText_ReferenceGuide_RecordPlayerInstructions_StopPlayback_Line02,
+    gText_ReferenceGuide_RecordPlayerInstructions_StopPlayback_Line03,
+    gText_ReferenceGuide_RecordPlayerInstructions_StopPlayback_Line04,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_RecordPlayerInstructions_AdditionalNotes_Line01,
+    gText_ReferenceGuide_RecordPlayerInstructions_AdditionalNotes_Line02,
+    gText_ReferenceGuide_RecordPlayerInstructions_AdditionalNotes_Line03,
+    gText_ReferenceGuide_RecordPlayerInstructions_AdditionalNotes_Line04,
+#if defined(REGION_US)
+    gText_ReferenceGuide_RecordPlayerInstructions_AdditionalNotes_Line05,
+    gText_ReferenceGuide_RecordPlayerInstructions_AdditionalNotes_Line06,
+#endif
+    nullptr,
+};

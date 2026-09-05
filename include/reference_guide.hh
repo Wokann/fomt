@@ -141,6 +141,8 @@ extern char const * const gReferenceGuideYodelFarmLines[];
 extern char const * const gReferenceGuideWonsShopLines[];
 // Reference Guide page 71: Van's Shop.
 extern char const * const gReferenceGuideVansShopLines[];
+// Reference Guide page 72: Record Player Instructions.
+extern char const * const gReferenceGuideRecordPlayerInstructionsLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -724,6 +726,27 @@ extern char const gText_ReferenceGuide_WonsShop_DogTraining_Availability_Line03[
 
 // Localized Van's Shop text (page 71).
 extern char const gText_ReferenceGuide_VansShop_Title[];
+
+// Localized Record Player Instructions text (page 72).
+extern char const gText_ReferenceGuide_RecordPlayerInstructions_Title[];
+extern char const gText_ReferenceGuide_RecordPlayerInstructions_Start_Line01[];
+extern char const gText_ReferenceGuide_RecordPlayerInstructions_Start_Line02[];
+extern char const gText_ReferenceGuide_RecordPlayerInstructions_Start_Line03[];
+extern char const gText_ReferenceGuide_RecordPlayerInstructions_Start_Line04[];
+extern char const gText_ReferenceGuide_RecordPlayerInstructions_ReplaceExisting_Line01[];
+extern char const gText_ReferenceGuide_RecordPlayerInstructions_ReplaceExisting_Line02[];
+extern char const gText_ReferenceGuide_RecordPlayerInstructions_StopPlayback_Line01[];
+extern char const gText_ReferenceGuide_RecordPlayerInstructions_StopPlayback_Line02[];
+extern char const gText_ReferenceGuide_RecordPlayerInstructions_StopPlayback_Line03[];
+extern char const gText_ReferenceGuide_RecordPlayerInstructions_StopPlayback_Line04[];
+extern char const gText_ReferenceGuide_RecordPlayerInstructions_AdditionalNotes_Line01[];
+extern char const gText_ReferenceGuide_RecordPlayerInstructions_AdditionalNotes_Line02[];
+extern char const gText_ReferenceGuide_RecordPlayerInstructions_AdditionalNotes_Line03[];
+extern char const gText_ReferenceGuide_RecordPlayerInstructions_AdditionalNotes_Line04[];
+#if defined(REGION_US)
+extern char const gText_ReferenceGuide_RecordPlayerInstructions_AdditionalNotes_Line05[];
+extern char const gText_ReferenceGuide_RecordPlayerInstructions_AdditionalNotes_Line06[];
+#endif
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];

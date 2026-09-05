@@ -488,7 +488,9 @@ SECTIONS
         . = 0x1156C0; src/reference_guide.o(.rodata.reference_guide_wons_shop_lines);
         . = 0x11575C; data/text/reference_guide/vans_shop.o(.rodata.reference_guide_vans_shop_text);
         . = 0x11577C; src/reference_guide.o(.rodata.reference_guide_vans_shop_lines);
-        . = 0x115788; asm/data/data_080F9EB8.o(.rodata.reference_guide_vans_shop_trailer);
+        . = 0x115788; data/text/reference_guide/record_player_instructions.o(.rodata.reference_guide_record_player_instructions_text);
+        . = 0x115930; src/reference_guide.o(.rodata.reference_guide_record_player_instructions_lines);
+        . = 0x115980; asm/data/data_080F9EB8.o(.rodata.reference_guide_record_player_instructions_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */
