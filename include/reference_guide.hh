@@ -153,6 +153,8 @@ extern char const * const gReferenceGuideRefrigeratorLines[];
 extern char const * const gReferenceGuideShelfLines[];
 // Reference Guide page 77: Staff.
 extern char const * const gReferenceGuideStaffCreditsLines[];
+// Reference Guide page 78: Useful Controls.
+extern char const * const gReferenceGuideUsefulControlsLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -887,6 +889,37 @@ extern char const gText_ReferenceGuide_StaffCredits_GrahamMarkay[];
 extern char const gText_ReferenceGuide_StaffCredits_LocalizationManager_Title[];
 extern char const gText_ReferenceGuide_StaffCredits_SachikoYamauchi[];
 #endif
+
+// Localized Useful Controls text (page 78).
+extern char const gText_ReferenceGuide_UsefulControls_Title[];
+extern char const gText_ReferenceGuide_UsefulControls_OpenTownMap_Title[];
+extern char const gText_ReferenceGuide_UsefulControls_OpenTownMap_Line01[];
+extern char const gText_ReferenceGuide_UsefulControls_HoldLButton[];
+extern char const gText_ReferenceGuide_UsefulControls_OpenFarmMap_Title[];
+extern char const gText_ReferenceGuide_UsefulControls_OpenFarmMap_Line01[];
+extern char const gText_ReferenceGuide_UsefulControls_SwitchEquipment_Title[];
+extern char const gText_ReferenceGuide_UsefulControls_SwitchEquipment_Line01[];
+extern char const gText_ReferenceGuide_UsefulControls_SwitchEquipment_Line02[];
+extern char const gText_ReferenceGuide_UsefulControls_OpenToolsAndItems_Title[];
+extern char const gText_ReferenceGuide_UsefulControls_OpenToolsAndItems_Line01[];
+#if defined(REGION_US)
+extern char const gText_ReferenceGuide_UsefulControls_OpenToolsAndItems_Line02[];
+#endif
+extern char const gText_ReferenceGuide_UsefulControls_PutItemAway_Title[];
+extern char const gText_ReferenceGuide_UsefulControls_PutItemAway_Line01[];
+#if defined(REGION_US)
+extern char const gText_ReferenceGuide_UsefulControls_PutItemAway_Line02[];
+#endif
+extern char const gText_ReferenceGuide_UsefulControls_PutItemAway_Warning_Line01[];
+extern char const gText_ReferenceGuide_UsefulControls_PutItemAway_Warning_Line02[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_UsefulControls_SwitchHeldItem_Title[];
+extern char const gText_ReferenceGuide_UsefulControls_SwitchHeldItem_Line01[];
+extern char const gText_ReferenceGuide_UsefulControls_SwitchHeldItem_Line02[];
+#endif
+extern char const gText_ReferenceGuide_UsefulControls_CallOutToPerson_Title[];
+extern char const gText_ReferenceGuide_UsefulControls_CallOutToPerson_Line01[];
+extern char const gText_ReferenceGuide_UsefulControls_CallOutToPerson_Line02[];
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];

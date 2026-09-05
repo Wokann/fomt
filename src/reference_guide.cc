@@ -6058,3 +6058,60 @@ char const * const gReferenceGuideStaffCreditsLines[] SECTION(".rodata.reference
 #endif
     nullptr,
 };
+
+// Reference Guide page 78: Useful Controls.
+char const * const gReferenceGuideUsefulControlsLines[] SECTION(".rodata.reference_guide_useful_controls_lines") = {
+    gText_ReferenceGuide_UsefulControls_Title,
+    gText_ReferenceGuide_UsefulControls_OpenTownMap_Title,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_UsefulControls_HoldLButton,
+    gText_ReferenceGuide_UsefulControls_OpenTownMap_Line01,
+#else
+    gText_ReferenceGuide_UsefulControls_OpenTownMap_Line01,
+    gText_ReferenceGuide_UsefulControls_HoldLButton,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_UsefulControls_OpenFarmMap_Title,
+#if defined(REGION_JP)
+    // Physical reuse: both map controls use the same L-button prompt.
+    gText_ReferenceGuide_UsefulControls_HoldLButton,
+    gText_ReferenceGuide_UsefulControls_OpenFarmMap_Line01,
+#else
+    gText_ReferenceGuide_UsefulControls_OpenFarmMap_Line01,
+    // Physical reuse: both map controls end with the same L-button prompt.
+    gText_ReferenceGuide_UsefulControls_HoldLButton,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_UsefulControls_SwitchEquipment_Title,
+    gText_ReferenceGuide_UsefulControls_SwitchEquipment_Line01,
+    gText_ReferenceGuide_UsefulControls_SwitchEquipment_Line02,
+#if defined(REGION_US)
+    // Physical reuse: US continues this sentence with an existing Controls field.
+    gText_ReferenceGuide_Controls_Line15,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_UsefulControls_OpenToolsAndItems_Title,
+    gText_ReferenceGuide_UsefulControls_OpenToolsAndItems_Line01,
+#if defined(REGION_US)
+    gText_ReferenceGuide_UsefulControls_OpenToolsAndItems_Line02,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_UsefulControls_PutItemAway_Title,
+    gText_ReferenceGuide_UsefulControls_PutItemAway_Line01,
+#if defined(REGION_US)
+    gText_ReferenceGuide_UsefulControls_PutItemAway_Line02,
+#endif
+    gText_ReferenceGuide_UsefulControls_PutItemAway_Warning_Line01,
+    gText_ReferenceGuide_UsefulControls_PutItemAway_Warning_Line02,
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_UsefulControls_SwitchHeldItem_Title,
+    gText_ReferenceGuide_UsefulControls_SwitchHeldItem_Line01,
+    gText_ReferenceGuide_UsefulControls_SwitchHeldItem_Line02,
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_UsefulControls_CallOutToPerson_Title,
+    gText_ReferenceGuide_UsefulControls_CallOutToPerson_Line01,
+    gText_ReferenceGuide_UsefulControls_CallOutToPerson_Line02,
+    nullptr,
+};

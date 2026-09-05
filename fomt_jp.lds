@@ -500,7 +500,9 @@ SECTIONS
         . = 0x115DA0; src/reference_guide.o(.rodata.reference_guide_shelf_lines);
         . = 0x115DD4; data/text/reference_guide/staff_credits.o(.rodata.reference_guide_staff_credits_text);
         . = 0x1161D8; src/reference_guide.o(.rodata.reference_guide_staff_credits_lines);
-        . = 0x11637C; asm/data/data_080F9EB8.o(.rodata.reference_guide_staff_credits_trailer);
+        . = 0x11637C; data/text/reference_guide/useful_controls.o(.rodata.reference_guide_useful_controls_text);
+        . = 0x116590; src/reference_guide.o(.rodata.reference_guide_useful_controls_lines);
+        . = 0x116604; asm/data/data_080F9EB8.o(.rodata.reference_guide_useful_controls_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */
