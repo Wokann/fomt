@@ -128,7 +128,7 @@ char const gText_ReferenceGuide_Mines_Line40[32] SECTION(".rodata.reference_guid
 char const gText_ReferenceGuide_Mines_Line41[32] SECTION(".rodata.reference_guide_mines_text") =
     "　なり鉱石場を出て地上に戻る";
 
-char const gText_ReferenceGuide_Mines_Line42[16] SECTION(".rodata.reference_guide_mines_text") =
+char const gText_ReferenceGuide_CautionSuffix[16] SECTION(".rodata.reference_guide_mines_text") =
     "　ので注意。";
 
 char const gText_ReferenceGuide_Mines_Line43[32] SECTION(".rodata.reference_guide_mines_text") =

@@ -371,7 +371,9 @@ SECTIONS
         . = 0x10AFB8; src/reference_guide.o(.rodata.reference_guide_mines_lines);
         . = 0x10B0A4; data/text/reference_guide/cooking.o(.rodata.reference_guide_how_to_cook_text);
         . = 0x10B588; src/reference_guide.o(.rodata.reference_guide_how_to_cook_lines);
-        . = 0x10B6F0; asm/data/data_080F9EB8.o(.rodata.reference_guide_cooking_trailer);
+        . = 0x10B6F0; data/text/reference_guide/stamina.o(.rodata.reference_guide_stamina_and_fatigue_text);
+        . = 0x10BA68; src/reference_guide.o(.rodata.reference_guide_stamina_and_fatigue_lines);
+        . = 0x10BB30; asm/data/data_080F9EB8.o(.rodata.reference_guide_stamina_and_fatigue_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */

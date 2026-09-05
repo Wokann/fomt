@@ -23,6 +23,8 @@ extern char const * const gReferenceGuideSeasonalCropsLines[];
 extern char const * const gReferenceGuideMinesLines[];
 // Reference Guide cooking page 12.
 extern char const * const gReferenceGuideHowToCookLines[];
+// Reference Guide stamina and fatigue page 13.
+extern char const * const gReferenceGuideStaminaAndFatigueLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 #endif
@@ -434,7 +436,7 @@ extern char const gText_ReferenceGuide_Mines_Line38[];
 extern char const gText_ReferenceGuide_Mines_Line39[];
 extern char const gText_ReferenceGuide_Mines_Line40[];
 extern char const gText_ReferenceGuide_Mines_Line41[];
-extern char const gText_ReferenceGuide_Mines_Line42[];
+extern char const gText_ReferenceGuide_CautionSuffix[];
 extern char const gText_ReferenceGuide_Mines_Line43[];
 extern char const gText_ReferenceGuide_Mines_Line44[];
 // Localized Reference Guide cooking text (page 12).
@@ -490,6 +492,40 @@ extern char const gText_ReferenceGuide_HowToCook_Line48[];
 extern char const gText_ReferenceGuide_HowToCook_Line49[];
 extern char const gText_ReferenceGuide_HowToCook_Line50[];
 extern char const gText_ReferenceGuide_HowToCook_Line51[];
+// Localized Reference Guide stamina and fatigue text (page 13).
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Title[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line01[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line02[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line03[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line04[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line05[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line06[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line07[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line08[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line09[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line10[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line11[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line12[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line13[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line14[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line15[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line16[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line17[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line18[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line19[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line20[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line21[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line22[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line23[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line24[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line25[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line26[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line27[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line28[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line29[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line30[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line31[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line32[];
 #else
 extern char const gText_ReferenceGuide_HarvestSpriteMinigames_Title[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Title[];
@@ -916,6 +952,46 @@ extern char const gText_ReferenceGuide_HowToCook_Line43[];
 extern char const gText_ReferenceGuide_HowToCook_Line44[];
 extern char const gText_ReferenceGuide_HowToCook_Line45[];
 extern char const gText_ReferenceGuide_HowToCook_Line46[];
+// Localized Reference Guide stamina and fatigue text (page 13).
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Title[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line01[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line02[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line03[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line04[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line05[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line06[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line07[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line08[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line09[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line10[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line11[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line12[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line13[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line14[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line15[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line16[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line17[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line18[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line19[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line20[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line21[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line22[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line23[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line24[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line25[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line26[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line27[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line28[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line29[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line30[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line31[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line32[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line33[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line34[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line35[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line36[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line37[];
+extern char const gText_ReferenceGuide_StaminaAndFatigue_Line38[];
 #endif
 
 #endif // REFERENCE_GUIDE_HH
