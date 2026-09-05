@@ -6,9 +6,9 @@
 char const * const gReferenceGuideHarvestSpriteMinigamesLines[] SECTION(".rodata.reference_guide_harvest_sprite_minigames_lines") = {
     gText_ReferenceGuide_HarvestSpriteMinigames_Title,
     gText_ReferenceGuide_HarvestSpriteHarvesting_Title,
-    gText_ReferenceGuide_Layout_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
     gText_ReferenceGuide_HarvestSpriteHarvesting_Subtitle,
-    gText_ReferenceGuide_Layout_PaddedEmptyLine,
+    gText_ReferenceGuide_HarvestSpriteMinigames_PaddedEmptyLine,
     gText_ReferenceGuide_HarvestSpriteHarvesting_Friendship_Line01,
     gText_ReferenceGuide_HarvestSpriteHarvesting_Friendship_Line02,
     gText_ReferenceGuide_HarvestSpriteHarvesting_Friendship_Line03,
@@ -38,13 +38,13 @@ char const * const gReferenceGuideHarvestSpriteMinigamesLines[] SECTION(".rodata
     gText_ReferenceGuide_HarvestSpriteHarvesting_SlowDown_Line03,
     gText_ReferenceGuide_HarvestSpriteHarvesting_Practice_Line01,
     gText_ReferenceGuide_HarvestSpriteHarvesting_Practice_Line02,
-    gText_ReferenceGuide_Layout_EmptyLine,
-    gText_ReferenceGuide_Layout_SectionDivider,
-    gText_ReferenceGuide_Layout_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_SectionDivider,
+    gText_ReferenceGuide_EmptyLine,
     gText_ReferenceGuide_HarvestSpriteAnimalCare_Title,
-    gText_ReferenceGuide_Layout_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
     gText_ReferenceGuide_HarvestSpriteAnimalCare_Subtitle,
-    gText_ReferenceGuide_Layout_PaddedEmptyLine,
+    gText_ReferenceGuide_HarvestSpriteMinigames_PaddedEmptyLine,
     gText_ReferenceGuide_HarvestSpriteAnimalCare_Friendship_Line01,
     gText_ReferenceGuide_HarvestSpriteAnimalCare_Friendship_Line02,
     gText_ReferenceGuide_HarvestSpriteAnimalCare_Friendship_Line03,
@@ -58,7 +58,7 @@ char const * const gReferenceGuideHarvestSpriteMinigamesLines[] SECTION(".rodata
     gText_ReferenceGuide_HarvestSpriteAnimalCare_Gameplay_Line03,
     gText_ReferenceGuide_HarvestSpriteAnimalCare_KeyObservation_Line01,
     gText_ReferenceGuide_HarvestSpriteAnimalCare_KeyObservation_Line02,
-    gText_ReferenceGuide_Layout_PaddedEmptyLine,
+    gText_ReferenceGuide_HarvestSpriteMinigames_PaddedEmptyLine,
     gText_ReferenceGuide_HarvestSpriteAnimalCare_EscapeWarning_Line01,
     gText_ReferenceGuide_HarvestSpriteAnimalCare_EscapeWarning_Line02,
     gText_ReferenceGuide_HarvestSpriteAnimalCare_FeedWarning_Line01,
@@ -76,13 +76,13 @@ char const * const gReferenceGuideHarvestSpriteMinigamesLines[] SECTION(".rodata
     gText_ReferenceGuide_HarvestSpriteAnimalCare_Strategy_Line01,
     gText_ReferenceGuide_HarvestSpriteAnimalCare_Strategy_Line02,
     gText_ReferenceGuide_HarvestSpriteAnimalCare_Strategy_Line03,
-    gText_ReferenceGuide_Layout_EmptyLine,
-    gText_ReferenceGuide_Layout_SectionDivider,
-    gText_ReferenceGuide_Layout_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_SectionDivider,
+    gText_ReferenceGuide_EmptyLine,
     gText_ReferenceGuide_HarvestSpriteWatering_Title,
-    gText_ReferenceGuide_Layout_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
     gText_ReferenceGuide_HarvestSpriteWatering_Subtitle,
-    gText_ReferenceGuide_Layout_PaddedEmptyLine,
+    gText_ReferenceGuide_HarvestSpriteMinigames_PaddedEmptyLine,
     gText_ReferenceGuide_HarvestSpriteWatering_Friendship_Line01,
     gText_ReferenceGuide_HarvestSpriteWatering_Friendship_Line02,
     gText_ReferenceGuide_HarvestSpriteWatering_Friendship_Line03,
@@ -123,7 +123,7 @@ char const * const gReferenceGuideHarvestSpriteMinigamesLines[] SECTION(".rodata
     gText_ReferenceGuide_HarvestSpriteHarvesting_Title,
     gText_ReferenceGuide_HarvestSpriteHarvesting_Subtitle,
     gText_ReferenceGuide_HarvestSpriteHarvesting_SubtitleNumber,
-    gText_ReferenceGuide_Layout_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
     gText_ReferenceGuide_HarvestSpriteHarvesting_Friendship_Line01,
     gText_ReferenceGuide_HarvestSpriteHarvesting_Friendship_Line02,
     gText_ReferenceGuide_HarvestSpriteHarvesting_Friendship_Line03,
@@ -154,10 +154,10 @@ char const * const gReferenceGuideHarvestSpriteMinigamesLines[] SECTION(".rodata
     gText_ReferenceGuide_HarvestSpriteHarvesting_Practice_Line01,
     gText_ReferenceGuide_HarvestSpriteHarvesting_Practice_Line02,
     gText_ReferenceGuide_HarvestSpriteHarvesting_Practice_Line03,
-    gText_ReferenceGuide_Layout_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
     gText_ReferenceGuide_HarvestSpriteAnimalCare_Title,
     gText_ReferenceGuide_HarvestSpriteAnimalCare_Subtitle,
-    gText_ReferenceGuide_Layout_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
     gText_ReferenceGuide_HarvestSpriteAnimalCare_Friendship_Line01,
     gText_ReferenceGuide_HarvestSpriteAnimalCare_Friendship_Line02,
     gText_ReferenceGuide_HarvestSpriteAnimalCare_Friendship_Line03,
@@ -193,8 +193,8 @@ char const * const gReferenceGuideHarvestSpriteMinigamesLines[] SECTION(".rodata
     gText_ReferenceGuide_HarvestSpriteAnimalCare_NotAllFeedBoxes_Line02,
     gText_ReferenceGuide_HarvestSpriteAnimalCare_NotAllFeedBoxes_Line03,
     gText_ReferenceGuide_HarvestSpriteAnimalCare_NotAllFeedBoxes_Line04,
-    gText_ReferenceGuide_Layout_EmptyLine,
-    gText_ReferenceGuide_Layout_SectionDivider,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_SectionDivider,
     gText_ReferenceGuide_HarvestSpriteWatering_Title,
     gText_ReferenceGuide_HarvestSpriteWatering_Subtitle,
     gText_ReferenceGuide_HarvestSpriteWatering_Friendship_Line01,
@@ -233,21 +233,12 @@ char const * const gReferenceGuideHarvestSpriteMinigamesLines[] SECTION(".rodata
 };
 #endif
 
-// Source-level aliases keep the current page's semantic label while preserving
-// the exact existing text address.  They emit no additional ROM data.
-#define gText_ReferenceGuide_FestivalHints_EmptyLine gText_ReferenceGuide_Layout_EmptyLine
-#define gText_ReferenceGuide_FestivalHints_SectionDivider gText_ReferenceGuide_Layout_SectionDivider
-#if defined(REGION_JP)
-#define gText_ReferenceGuide_HorseRaceHints_Closing_Line01 gText_ReferenceGuide_FestivalHints_Closing_Line01
-#define gText_ReferenceGuide_ChickenFestivalHints_Closing_Line01 gText_ReferenceGuide_FestivalHints_Closing_Line01
-#endif
-
 // Reference Guide page 1.  Its physical table differs only at the entries
 // guarded below; common entries remain in one shared source-order definition.
 char const * const gReferenceGuideFestivalHintsLines[] SECTION(".rodata.reference_guide_festival_hints_lines") = {
     gText_ReferenceGuide_FestivalHints_Title,
     gText_ReferenceGuide_HorseRaceHints_Title,
-    gText_ReferenceGuide_FestivalHints_EmptyLine, // Reuses gText_ReferenceGuide_Layout_EmptyLine.
+    gText_ReferenceGuide_EmptyLine,
     gText_ReferenceGuide_HorseRaceHints_Line01,
     gText_ReferenceGuide_HorseRaceHints_Line02,
     gText_ReferenceGuide_HorseRaceHints_Line03,
@@ -272,18 +263,18 @@ char const * const gReferenceGuideFestivalHintsLines[] SECTION(".rodata.referenc
     gText_ReferenceGuide_HorseRaceHints_Line22,
     gText_ReferenceGuide_HorseRaceHints_Line23,
 #if defined(REGION_JP)
-    gText_ReferenceGuide_HorseRaceHints_Closing_Line01, // Reuses gText_ReferenceGuide_FestivalHints_Closing_Line01.
+    gText_ReferenceGuide_FestivalHints_Closing_Line01,
     gText_ReferenceGuide_HorseRaceHints_Closing_Line02Padded,
 #else
     gText_ReferenceGuide_HorseRaceHints_Line24,
 #endif
-    gText_ReferenceGuide_FestivalHints_EmptyLine, // Reuses gText_ReferenceGuide_Layout_EmptyLine.
-    gText_ReferenceGuide_FestivalHints_SectionDivider, // Reuses gText_ReferenceGuide_Layout_SectionDivider.
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_SectionDivider,
 #if defined(REGION_JP)
-    gText_ReferenceGuide_FestivalHints_EmptyLine, // Reuses gText_ReferenceGuide_Layout_EmptyLine.
+    gText_ReferenceGuide_EmptyLine,
 #endif
     gText_ReferenceGuide_ChickenFestivalHints_Title,
-    gText_ReferenceGuide_FestivalHints_EmptyLine, // Reuses gText_ReferenceGuide_Layout_EmptyLine.
+    gText_ReferenceGuide_EmptyLine,
     gText_ReferenceGuide_ChickenFestivalHints_Line01,
     gText_ReferenceGuide_ChickenFestivalHints_Line02,
     gText_ReferenceGuide_ChickenFestivalHints_Line03,
@@ -309,17 +300,10 @@ char const * const gReferenceGuideFestivalHintsLines[] SECTION(".rodata.referenc
     gText_ReferenceGuide_ChickenFestivalHints_Line23,
     gText_ReferenceGuide_ChickenFestivalHints_Line24,
 #if defined(REGION_JP)
-    gText_ReferenceGuide_ChickenFestivalHints_Closing_Line01, // Reuses gText_ReferenceGuide_FestivalHints_Closing_Line01.
+    gText_ReferenceGuide_FestivalHints_Closing_Line01,
     gText_ReferenceGuide_ChickenFestivalHints_Closing_Line02,
 #else
     gText_ReferenceGuide_ChickenFestivalHints_Line25,
 #endif
     nullptr,
 };
-
-#undef gText_ReferenceGuide_FestivalHints_EmptyLine
-#undef gText_ReferenceGuide_FestivalHints_SectionDivider
-#if defined(REGION_JP)
-#undef gText_ReferenceGuide_HorseRaceHints_Closing_Line01
-#undef gText_ReferenceGuide_ChickenFestivalHints_Closing_Line01
-#endif

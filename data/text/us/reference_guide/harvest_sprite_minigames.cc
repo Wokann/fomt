@@ -15,7 +15,7 @@ char const gText_ReferenceGuide_HarvestSpriteHarvesting_Subtitle[32] SECTION(".r
 char const gText_ReferenceGuide_HarvestSpriteHarvesting_SubtitleNumber[4] SECTION(".rodata.reference_guide_harvest_sprite_minigames_text") =
     " 1";
 
-char const gText_ReferenceGuide_Layout_EmptyLine[4] SECTION(".rodata.reference_guide_harvest_sprite_minigames_text") =
+char const gText_ReferenceGuide_EmptyLine[4] SECTION(".rodata.reference_guide_harvest_sprite_minigames_text") =
     "";
 
 char const gText_ReferenceGuide_HarvestSpriteHarvesting_Friendship_Line01[28] SECTION(".rodata.reference_guide_harvest_sprite_minigames_text") =
@@ -219,7 +219,7 @@ char const gText_ReferenceGuide_HarvestSpriteAnimalCare_NotAllFeedBoxes_Line03[2
 char const gText_ReferenceGuide_HarvestSpriteAnimalCare_NotAllFeedBoxes_Line04[24] SECTION(".rodata.reference_guide_harvest_sprite_minigames_text") =
     "strategies, instead.";
 
-char const gText_ReferenceGuide_Layout_SectionDivider[32] SECTION(".rodata.reference_guide_harvest_sprite_minigames_text") =
+char const gText_ReferenceGuide_SectionDivider[32] SECTION(".rodata.reference_guide_harvest_sprite_minigames_text") =
     "－－－－－－－－－－－－－－";
 
 char const gText_ReferenceGuide_HarvestSpriteWatering_Title[12] SECTION(".rodata.reference_guide_harvest_sprite_minigames_text") =
