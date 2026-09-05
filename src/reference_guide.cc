@@ -4723,3 +4723,46 @@ char const * const gReferenceGuideCookbook4Lines[] SECTION(".rodata.reference_gu
 #endif
     nullptr,
 };
+
+// Reference Guide page 59: Acquiring a Kitchen. The renderer consumes one
+// flat pointer sequence and stops at nullptr; paragraph boundaries are visual.
+char const * const gReferenceGuideAcquiringKitchenLines[] SECTION(".rodata.reference_guide_acquiring_kitchen_lines") = {
+    gText_ReferenceGuide_AcquiringKitchen_Title,
+
+    // Introduction.
+    gText_ReferenceGuide_AcquiringKitchen_Introduction_Line01,
+    gText_ReferenceGuide_AcquiringKitchen_Introduction_Line02,
+
+    // House-expansion, refrigerator, and shelves prerequisites.
+    gText_ReferenceGuide_AcquiringKitchen_Prerequisites_Line01,
+    gText_ReferenceGuide_AcquiringKitchen_Prerequisites_Line02,
+    gText_ReferenceGuide_AcquiringKitchen_Prerequisites_Line03,
+    gText_ReferenceGuide_AcquiringKitchen_Prerequisites_Line04,
+    gText_ReferenceGuide_AcquiringKitchen_Prerequisites_Line05,
+    gText_ReferenceGuide_AcquiringKitchen_Prerequisites_Line06,
+    gText_ReferenceGuide_AcquiringKitchen_Prerequisites_Line07,
+    gText_ReferenceGuide_AcquiringKitchen_Prerequisites_Line08,
+    gText_ReferenceGuide_AcquiringKitchen_Prerequisites_Line09,
+    gText_ReferenceGuide_AcquiringKitchen_Prerequisites_Line10,
+
+    // Kitchen purchase through the TV Shopping Network.
+    gText_ReferenceGuide_AcquiringKitchen_KitchenPurchase_Line01,
+    gText_ReferenceGuide_AcquiringKitchen_KitchenPurchase_Line02,
+#if defined(REGION_US)
+    gText_ReferenceGuide_AcquiringKitchen_KitchenPurchase_Line03,
+    gText_ReferenceGuide_AcquiringKitchen_KitchenPurchase_Line04,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+
+    // Utensil purchase and the resulting recipe variety.
+    gText_ReferenceGuide_AcquiringKitchen_UtensilPurchase_Line01,
+    gText_ReferenceGuide_AcquiringKitchen_UtensilPurchase_Line02,
+    gText_ReferenceGuide_AcquiringKitchen_UtensilPurchase_Line03,
+    gText_ReferenceGuide_AcquiringKitchen_CookingVariety_Line01,
+    gText_ReferenceGuide_AcquiringKitchen_CookingVariety_Line02,
+    gText_ReferenceGuide_AcquiringKitchen_CookingVariety_Line03,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AcquiringKitchen_CookingVariety_Line04,
+#endif
+    nullptr,
+};

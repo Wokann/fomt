@@ -115,6 +115,8 @@ extern char const * const gReferenceGuideCookbook2Lines[];
 extern char const * const gReferenceGuideCookbook3Lines[];
 // Reference Guide page 58: Cookbook IV.
 extern char const * const gReferenceGuideCookbook4Lines[];
+// Reference Guide page 59: Acquiring a Kitchen.
+extern char const * const gReferenceGuideAcquiringKitchenLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -173,6 +175,36 @@ extern char const gText_ReferenceGuide_Cookbook4_ElliGrass_UnknownQuestionMark[]
 extern char const gText_ReferenceGuide_Cookbook4_RelaxationTea_OptionalIngredients_FruitMilkGrasses[];
 #else
 extern char const gText_ReferenceGuide_Cookbook4_RelaxationTea_OptionalIngredients_FruitMilGrasses[];
+#endif
+
+// Localized Acquiring a Kitchen text (page 59). Both regional sources export
+// the matching structural lines; only line wrapping differs in two places.
+extern char const gText_ReferenceGuide_AcquiringKitchen_Title[];
+extern char const gText_ReferenceGuide_AcquiringKitchen_Introduction_Line01[];
+extern char const gText_ReferenceGuide_AcquiringKitchen_Introduction_Line02[];
+extern char const gText_ReferenceGuide_AcquiringKitchen_Prerequisites_Line01[];
+extern char const gText_ReferenceGuide_AcquiringKitchen_Prerequisites_Line02[];
+extern char const gText_ReferenceGuide_AcquiringKitchen_Prerequisites_Line03[];
+extern char const gText_ReferenceGuide_AcquiringKitchen_Prerequisites_Line04[];
+extern char const gText_ReferenceGuide_AcquiringKitchen_Prerequisites_Line05[];
+extern char const gText_ReferenceGuide_AcquiringKitchen_Prerequisites_Line06[];
+extern char const gText_ReferenceGuide_AcquiringKitchen_Prerequisites_Line07[];
+extern char const gText_ReferenceGuide_AcquiringKitchen_Prerequisites_Line08[];
+extern char const gText_ReferenceGuide_AcquiringKitchen_Prerequisites_Line09[];
+extern char const gText_ReferenceGuide_AcquiringKitchen_Prerequisites_Line10[];
+extern char const gText_ReferenceGuide_AcquiringKitchen_KitchenPurchase_Line01[];
+extern char const gText_ReferenceGuide_AcquiringKitchen_KitchenPurchase_Line02[];
+extern char const gText_ReferenceGuide_AcquiringKitchen_UtensilPurchase_Line01[];
+extern char const gText_ReferenceGuide_AcquiringKitchen_UtensilPurchase_Line02[];
+extern char const gText_ReferenceGuide_AcquiringKitchen_UtensilPurchase_Line03[];
+extern char const gText_ReferenceGuide_AcquiringKitchen_CookingVariety_Line01[];
+extern char const gText_ReferenceGuide_AcquiringKitchen_CookingVariety_Line02[];
+extern char const gText_ReferenceGuide_AcquiringKitchen_CookingVariety_Line03[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_AcquiringKitchen_CookingVariety_Line04[];
+#else
+extern char const gText_ReferenceGuide_AcquiringKitchen_KitchenPurchase_Line03[];
+extern char const gText_ReferenceGuide_AcquiringKitchen_KitchenPurchase_Line04[];
 #endif
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];
