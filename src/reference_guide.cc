@@ -6449,3 +6449,23 @@ char const * const gReferenceGuideSaibaraNewYearCardLines[] SECTION(".rodata.ref
     gText_ReferenceGuide_SaibaraNewYearCard_Signature,
     nullptr,
 };
+
+// Reference Guide page 95: Doug's New Year Card. Both ROMs reuse an earlier
+// greeting, but the physical source differs by region.
+char const * const gReferenceGuideDougNewYearCardLines[] SECTION(".rodata.reference_guide_doug_new_year_card_lines") = {
+    gText_ReferenceGuide_DougNewYearCard_Title,
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    // Reused physical text from Cliff's second New Year card (page 80).
+    gText_ReferenceGuide_CliffNewYearCards_SecondCard_Greeting_Line01,
+#else
+    // Reused physical text from the Doctor's New Year card (page 82).
+    gText_ReferenceGuide_DoctorNewYearCard_Greeting_Line01,
+#endif
+    gText_ReferenceGuide_DougNewYearCard_InnOpen_Line01,
+    gText_ReferenceGuide_DougNewYearCard_InnOpen_Line02,
+    gText_ReferenceGuide_DougNewYearCard_InnOpen_Line03,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_DougNewYearCard_Signature,
+    nullptr,
+};

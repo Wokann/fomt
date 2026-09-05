@@ -187,6 +187,8 @@ extern char const * const gReferenceGuideKaiAndPopuriNewYearCardLines[];
 extern char const * const gReferenceGuideJeffNewYearCardLines[];
 // Reference Guide page 94: Saibara's New Year Card.
 extern char const * const gReferenceGuideSaibaraNewYearCardLines[];
+// Reference Guide page 95: Doug's New Year Card.
+extern char const * const gReferenceGuideDougNewYearCardLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -1111,6 +1113,13 @@ extern char const gText_ReferenceGuide_SaibaraNewYearCard_Resolution_Line03[];
 extern char const gText_ReferenceGuide_SaibaraNewYearCard_Resolution_Line04[];
 #endif
 extern char const gText_ReferenceGuide_SaibaraNewYearCard_Signature[];
+
+// Localized Doug New Year Card text (page 95).
+extern char const gText_ReferenceGuide_DougNewYearCard_Title[];
+extern char const gText_ReferenceGuide_DougNewYearCard_InnOpen_Line01[];
+extern char const gText_ReferenceGuide_DougNewYearCard_InnOpen_Line02[];
+extern char const gText_ReferenceGuide_DougNewYearCard_InnOpen_Line03[];
+extern char const gText_ReferenceGuide_DougNewYearCard_Signature[];
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];
