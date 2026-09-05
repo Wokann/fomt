@@ -434,7 +434,9 @@ SECTIONS
         . = 0x111128; src/reference_guide.o(.rodata.reference_guide_awl_flora_lines);
         . = 0x111174; data/text/reference_guide/awl_profiles/vesta.o(.rodata.reference_guide_awl_vesta_text);
         . = 0x11128C; src/reference_guide.o(.rodata.reference_guide_awl_vesta_lines);
-        . = 0x1112C8; asm/data/data_080F9EB8.o(.rodata.reference_guide_awl_vesta_trailer);
+        . = 0x1112C8; data/text/reference_guide/awl_profiles/marlin.o(.rodata.reference_guide_awl_marlin_text);
+        . = 0x1113D4; src/reference_guide.o(.rodata.reference_guide_awl_marlin_lines);
+        . = 0x111414; asm/data/data_080F9EB8.o(.rodata.reference_guide_awl_marlin_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */
