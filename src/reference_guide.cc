@@ -2726,3 +2726,42 @@ char const * const gReferenceGuideAwlWallyLines[] SECTION(".rodata.reference_gui
     nullptr,
 #endif
 };
+
+// Reference Guide page 23: AWL character profile for Chris.
+char const * const gReferenceGuideAwlChrisLines[] SECTION(".rodata.reference_guide_awl_chris_lines") = {
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AwlChris_Title,
+    gText_ReferenceGuide_AwlChris_Introduction_Line01,
+    gText_ReferenceGuide_AwlChris_Introduction_Line02,
+    gText_ReferenceGuide_AwlChris_Introduction_Line03,
+    gText_ReferenceGuide_AwlChris_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlChris_Profile01_Line01,
+    gText_ReferenceGuide_AwlChris_Profile01_Line02,
+    gText_ReferenceGuide_AwlChris_Profile01_Line03,
+    gText_ReferenceGuide_AwlChris_Profile01_Line04,
+    gText_ReferenceGuide_AwlChris_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlChris_Profile02_Line01,
+    gText_ReferenceGuide_AwlChris_Profile02_Line02,
+    gText_ReferenceGuide_AwlChris_Profile02_Line03,
+    gText_ReferenceGuide_AwlChris_Profile02_Line04,
+    nullptr,
+#else
+    gText_ReferenceGuide_AwlChris_Title,
+    gText_ReferenceGuide_AwlChris_Introduction_Line01,
+    gText_ReferenceGuide_AwlChris_Introduction_Line02,
+    gText_ReferenceGuide_AwlChris_Introduction_Line03,
+    gText_ReferenceGuide_AwlChris_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlChris_Profile01_Line01,
+    gText_ReferenceGuide_AwlChris_Profile01_Line02,
+    gText_ReferenceGuide_AwlChris_Profile01_Line03,
+    gText_ReferenceGuide_AwlChris_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlChris_Profile02_Line01,
+    gText_ReferenceGuide_AwlChris_Profile02_Line02,
+    gText_ReferenceGuide_AwlChris_Profile02_Line03,
+    nullptr,
+#endif
+};
