@@ -6469,3 +6469,26 @@ char const * const gReferenceGuideDougNewYearCardLines[] SECTION(".rodata.refere
     gText_ReferenceGuide_DougNewYearCard_Signature,
     nullptr,
 };
+
+// Reference Guide page 96: Doug's New Year Card to the player and Ann. The
+// title and signature physically reuse page 95's Doug card.
+char const * const gReferenceGuideDougNewYearCardToPlayerAndAnnLines[] SECTION(".rodata.reference_guide_doug_new_year_card_to_player_and_ann_lines") = {
+    gText_ReferenceGuide_DougNewYearCard_Title,
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_DougNewYearCardToPlayerAndAnn_Greeting_Line01,
+#else
+    // Reused physical text from the Doctor's New Year card (page 82).
+    gText_ReferenceGuide_DoctorNewYearCard_Greeting_Line01,
+#endif
+    gText_ReferenceGuide_DougNewYearCardToPlayerAndAnn_AnnRequest_Line01,
+    gText_ReferenceGuide_DougNewYearCardToPlayerAndAnn_AnnRequest_Line02,
+    gText_ReferenceGuide_DougNewYearCardToPlayerAndAnn_PlayerRequest_Line01,
+    gText_ReferenceGuide_DougNewYearCardToPlayerAndAnn_PlayerRequest_Line02,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_DougNewYearCardToPlayerAndAnn_PlayerRequest_Line03,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_DougNewYearCard_Signature,
+    nullptr,
+};

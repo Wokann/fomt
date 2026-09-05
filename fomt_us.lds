@@ -434,7 +434,9 @@ SECTIONS
         . = 0x1160BC; src/reference_guide.o(.rodata.reference_guide_saibara_new_year_card_lines);
         . = 0x1160E4; data/text/reference_guide/doug_new_year_card.o(.rodata.reference_guide_doug_new_year_card_text);
         . = 0x11615C; src/reference_guide.o(.rodata.reference_guide_doug_new_year_card_lines);
-        . = 0x116180; asm/data/data_080F9EB8.o(.rodata.reference_guide_doug_new_year_card_trailer);
+        . = 0x116180; data/text/reference_guide/doug_new_year_card_to_player_and_ann.o(.rodata.reference_guide_doug_new_year_card_to_player_and_ann_text);
+        . = 0x1161C0; src/reference_guide.o(.rodata.reference_guide_doug_new_year_card_to_player_and_ann_lines);
+        . = 0x1161E8; asm/data/data_080F9EB8.o(.rodata.reference_guide_doug_new_year_card_to_player_and_ann_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);

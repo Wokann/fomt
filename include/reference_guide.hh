@@ -189,6 +189,8 @@ extern char const * const gReferenceGuideJeffNewYearCardLines[];
 extern char const * const gReferenceGuideSaibaraNewYearCardLines[];
 // Reference Guide page 95: Doug's New Year Card.
 extern char const * const gReferenceGuideDougNewYearCardLines[];
+// Reference Guide page 96: Doug's New Year Card to the player and Ann.
+extern char const * const gReferenceGuideDougNewYearCardToPlayerAndAnnLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -1120,6 +1122,16 @@ extern char const gText_ReferenceGuide_DougNewYearCard_InnOpen_Line01[];
 extern char const gText_ReferenceGuide_DougNewYearCard_InnOpen_Line02[];
 extern char const gText_ReferenceGuide_DougNewYearCard_InnOpen_Line03[];
 extern char const gText_ReferenceGuide_DougNewYearCard_Signature[];
+
+// Localized Doug New Year Card to the player and Ann text (page 96).
+extern char const gText_ReferenceGuide_DougNewYearCardToPlayerAndAnn_AnnRequest_Line01[];
+extern char const gText_ReferenceGuide_DougNewYearCardToPlayerAndAnn_AnnRequest_Line02[];
+extern char const gText_ReferenceGuide_DougNewYearCardToPlayerAndAnn_PlayerRequest_Line01[];
+extern char const gText_ReferenceGuide_DougNewYearCardToPlayerAndAnn_PlayerRequest_Line02[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_DougNewYearCardToPlayerAndAnn_Greeting_Line01[];
+extern char const gText_ReferenceGuide_DougNewYearCardToPlayerAndAnn_PlayerRequest_Line03[];
+#endif
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];
