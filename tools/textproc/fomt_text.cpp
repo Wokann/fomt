@@ -171,8 +171,6 @@ public:
                     throw std::runtime_error("malformed raw byte escape at byte " + std::to_string(at) + ": expected \\xNN");
                 }
                 const std::uint8_t byte = ParseHexByte(source[at + 2], source[at + 3]);
-                if (byte == 0)
-                    throw std::runtime_error("source text cannot embed the reserved 00 terminator");
                 output.push_back(byte);
                 at += 4;
                 continue;
@@ -521,10 +519,12 @@ std::string CompileCppTextInclude(const std::string &source, const Charmap &char
             } catch (const std::runtime_error &error) {
                 throw std::runtime_error("text label '" + current_declarator.label + "': " + error.what());
             }
-            if (bytes.size() + 1 != current_declarator.row_width) {
+            const bool has_explicit_terminator = std::find(bytes.begin(), bytes.end(), 0) != bytes.end();
+            const std::size_t initialized_width = bytes.size() + (has_explicit_terminator ? 0 : 1);
+            if (initialized_width > current_declarator.row_width) {
                 throw std::runtime_error("line " + std::to_string(line_number) + ": text label '"
                     + current_declarator.label + "' row encodes to " + std::to_string(bytes.size() + 1)
-                    + " bytes including its terminator; expected "
+                    + " bytes including its implicit terminator; maximum is "
                     + std::to_string(current_declarator.row_width));
             }
             if (current_rows.size() == current_declarator.row_count) {
@@ -653,6 +653,22 @@ void SelfTest()
     Require(generated_rows.find("\\x41") != std::string::npos
             && generated_rows.find("\\x42") != std::string::npos,
         "generated fixed-row C++ text bytes are wrong");
+
+    const std::string generated_padded_rows = CompileCppTextInclude(
+        "char const gText_TestPaddedRows[2][4] = {\n"
+        "    \"A\",\n"
+        "    \"B\"\n"
+        "};\n", map);
+    Require(generated_padded_rows.find("char const gText_TestPaddedRows[2][4]")
+            != std::string::npos,
+        "generated zero-padded fixed-row C++ text symbol is missing");
+
+    const std::string generated_embedded_terminator = CompileCppTextInclude(
+        "char const gText_TestEmbeddedTerminator[1][3] = {\n"
+        "    \"A\\x00B\"\n"
+        "};\n", map);
+    Require(generated_embedded_terminator.find("\\x41\\x00\\x42") != std::string::npos,
+        "generated fixed-row C++ text lost its explicit terminator");
 
     const std::string generated_fixed_width = CompileCppTextInclude(
         "char const gText_TestFixed[4] =\n"

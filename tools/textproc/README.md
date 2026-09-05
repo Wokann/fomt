@@ -36,7 +36,8 @@ The `cpp` command consumes a constrained, ordinary C++ text-definition form:
 
 For a fixed-stride table that callers index directly, use ordinary C++ array
 dimensions and one string per row. The encoded text plus its terminator must
-fit the declared row width exactly:
+fit the declared row width. When it is shorter, normal C++ array initialization
+supplies the remaining zero bytes:
 
     char const gText_Calendar_SeasonNames[4][7] SECTION(".rodata.calendar.season") ALIGN(1) = {
         "Spring",
@@ -44,6 +45,13 @@ fit the declared row width exactly:
         "Fall  ",
         "Winter"
     };
+
+Most fixed rows should contain only their displayed text. If an original row
+has meaningful bytes after its FOMT `00` terminator, write that terminator as
+`\x00` and then write the following mapped text or raw bytes. The preprocessor
+preserves that explicit zero; the fixed C++ array dimension still supplies any
+remaining trailing zero-fill. This is for verified field contents, not normal
+line/page controls.
 
 For one fixed zero-filled C string field, use a single array width. The
 encoded text plus its terminator must fit the width; `agbcp` supplies the

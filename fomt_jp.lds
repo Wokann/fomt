@@ -328,8 +328,21 @@ SECTIONS
         asm/data/data_080F1A80.o(.rodata);
         . = 0xF96F4; /* JP ScriptEngine string object. */
         src/script_engine.o(.rodata);
-        . = 0xF9708; /* JP localized script/text block. */
-        asm/data/data_080F9EB8.o(.rodata);
+        . = 0xF9708; /* JP localized non-script data before event RIFFs. */
+        asm/data/data_080F9EB8.o(.rodata.localized_data_prefix);
+        . = 0xF97E6; data/text/festival_contestants.o(.rodata.festival_contestants_set0);
+        . = 0xF996C; asm/data/data_080F9EB8.o(.rodata.festival_contestants_set0_trailer);
+        . = 0xF9FD6; data/text/festival_contestants.o(.rodata.festival_contestants_set1);
+        . = 0xFA1DE; asm/data/data_080F9EB8.o(.rodata.festival_contestants_set1_trailer_prefix);
+        . = 0xFB938; data/text/staff_credits.o(.rodata.staff_credits);
+        . = 0xFBC88; asm/data/data_080F9EB8.o(.rodata.staff_credits_trailer);
+        . = 0x103194; asm/data/data_080F9EB8.o(.rodata);
+        . = 0x1032C4; data/text/fishing_results.o(.rodata.fishing_results);
+        . = 0x10350C; asm/data/data_080F9EB8.o(.rodata.fishing_results_trailer);
+        . = 0x103C1C; data/text/character_names.o(.rodata.character_names);
+        . = 0x103D9C; asm/data/data_080F9EB8.o(.rodata.character_names_trailer);
+        . = 0x1073B9; data/text/festival_contestants.o(.rodata.festival_contestants_set2);
+        . = 0x1074BD; asm/data/data_080F9EB8.o(.rodata.festival_contestants_set2_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */
