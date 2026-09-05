@@ -4550,3 +4550,176 @@ char const * const gReferenceGuideCookbook3Lines[] SECTION(".rodata.reference_gu
 #endif
     nullptr,
 };
+
+// Reference Guide page 58: Cookbook IV. The renderer consumes one flat
+// pointer sequence and stops at nullptr; recipe boundaries are visual groups.
+char const * const gReferenceGuideCookbook4Lines[] SECTION(".rodata.reference_guide_cookbook_4_lines") = {
+    gText_ReferenceGuide_Cookbook4_Title,
+
+    // Relaxation Tea. Generic recipe fields are direct physical pointers
+    // reused from earlier Cookbook pages, not duplicate localized strings.
+    gText_ReferenceGuide_Cookbook4_RelaxationTea_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_NecessaryIngredients_Heading,
+    gText_ReferenceGuide_Cookbook4_RelaxationTea_Ingredient_Leaves,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_NecessaryUtensils_Heading,
+    gText_ReferenceGuide_Cookbook1_Utensil_Pot,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalIngredients_Heading,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_Cookbook4_RelaxationTea_OptionalIngredients_FruitMilkGrasses,
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_Cookbook4_RelaxationTea_OptionalIngredients_FruitMilGrasses,
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalUtensils_Heading,
+    gText_ReferenceGuide_Cookbook1_Utensil_Knife,
+    gText_ReferenceGuide_Cookbook1_Seasoning_Sugar,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+    gText_ReferenceGuide_SectionDivider,
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_SectionDivider,
+#endif
+
+    // X Eggs.
+    gText_ReferenceGuide_Cookbook4_XEggs_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_NecessaryIngredients_Heading,
+    gText_ReferenceGuide_Cookbook4_XEggs_Ingredient_RegularQualityEgg,
+    gText_ReferenceGuide_Cookbook4_XEggs_Ingredient_GoodQualityEgg,
+    gText_ReferenceGuide_Cookbook4_XEggs_Ingredient_HighQualityEgg,
+    gText_ReferenceGuide_Cookbook4_XEggs_Ingredient_GoldenEgg,
+    gText_ReferenceGuide_Cookbook4_XEggs_Ingredient_PEgg,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_NecessaryUtensils_Heading,
+    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalIngredients_Heading,
+    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalUtensils_Heading,
+    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+    gText_ReferenceGuide_SectionDivider,
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_SectionDivider,
+#endif
+
+    // SUGDW Apples.
+    gText_ReferenceGuide_Cookbook4_SUGDWApples_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_NecessaryIngredients_Heading,
+    gText_ReferenceGuide_Cookbook4_SUGDWApples_Ingredient_Apple,
+    gText_ReferenceGuide_Cookbook4_SUGDWApples_Ingredient_HMSGBApple,
+    gText_ReferenceGuide_Cookbook4_SUGDWApples_Ingredient_AEPFEApple,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_NecessaryUtensils_Heading,
+    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalIngredients_Heading,
+    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalUtensils_Heading,
+    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+    gText_ReferenceGuide_SectionDivider,
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_SectionDivider,
+#endif
+
+    // Elli Grass. The Frying Pan and Oven retain their existing direct
+    // physical pointers. The question-mark field is intentionally reused
+    // for both optional slots below.
+    gText_ReferenceGuide_Cookbook4_ElliGrass_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_NecessaryIngredients_Heading,
+    gText_ReferenceGuide_Cookbook4_ElliGrass_Ingredient_SixKindsOfFailures,
+    gText_ReferenceGuide_Cookbook4_ElliGrass_Ingredient_BodigizerXL,
+    gText_ReferenceGuide_Cookbook4_ElliGrass_Ingredient_TurbojoltXL,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_NecessaryUtensils_Heading,
+    gText_ReferenceGuide_Cookbook1_Utensil_Knife,
+    gText_ReferenceGuide_Cookbook2_Omelet_Utensil_FryingPan,
+    gText_ReferenceGuide_Cookbook1_Utensil_Pot,
+    gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Utensil_Oven,
+    gText_ReferenceGuide_Cookbook1_Seasoning_Sugar,
+    gText_ReferenceGuide_Cookbook1_Seasoning_Salt,
+    gText_ReferenceGuide_Cookbook4_ElliGrass_Seasoning_Vinegar,
+    gText_ReferenceGuide_Cookbook1_Seasoning_SoySauce,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_Cookbook1_MisoSoup_Seasoning_Miso,
+    gText_ReferenceGuide_FullWidthSpace,
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalIngredients_Heading,
+    gText_ReferenceGuide_Cookbook4_ElliGrass_UnknownQuestionMark,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalUtensils_Heading,
+    gText_ReferenceGuide_Cookbook4_ElliGrass_UnknownQuestionMark,
+#if defined(REGION_US)
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_SectionDivider,
+#endif
+    nullptr,
+};

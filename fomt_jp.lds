@@ -460,7 +460,9 @@ SECTIONS
         . = 0x112088; src/reference_guide.o(.rodata.reference_guide_cookbook_2_lines);
         . = 0x112204; data/text/reference_guide/cookbook_3.o(.rodata.reference_guide_cookbook_3_text);
         . = 0x1122D4; src/reference_guide.o(.rodata.reference_guide_cookbook_3_lines);
-        . = 0x1123FC; asm/data/data_080F9EB8.o(.rodata.reference_guide_cookbook_3_trailer);
+        . = 0x1123FC; data/text/reference_guide/cookbook_4.o(.rodata.reference_guide_cookbook_4_text);
+        . = 0x112588; src/reference_guide.o(.rodata.reference_guide_cookbook_4_lines);
+        . = 0x1126D8; asm/data/data_080F9EB8.o(.rodata.reference_guide_cookbook_4_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */

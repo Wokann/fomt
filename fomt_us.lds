@@ -358,7 +358,9 @@ SECTIONS
         . = 0x111864; src/reference_guide.o(.rodata.reference_guide_cookbook_2_lines);
         . = 0x1119D4; data/text/reference_guide/cookbook_3.o(.rodata.reference_guide_cookbook_3_text);
         . = 0x111A8C; src/reference_guide.o(.rodata.reference_guide_cookbook_3_lines);
-        . = 0x111BB0; asm/data/data_080F9EB8.o(.rodata.reference_guide_cookbook_3_trailer);
+        . = 0x111BB0; data/text/reference_guide/cookbook_4.o(.rodata.reference_guide_cookbook_4_text);
+        . = 0x111D04; src/reference_guide.o(.rodata.reference_guide_cookbook_4_lines);
+        . = 0x111E50; asm/data/data_080F9EB8.o(.rodata.reference_guide_cookbook_4_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);

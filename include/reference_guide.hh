@@ -113,6 +113,8 @@ extern char const * const gReferenceGuideCookbook1Lines[];
 extern char const * const gReferenceGuideCookbook2Lines[];
 // Reference Guide page 57: Cookbook III.
 extern char const * const gReferenceGuideCookbook3Lines[];
+// Reference Guide page 58: Cookbook IV.
+extern char const * const gReferenceGuideCookbook4Lines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -146,6 +148,32 @@ extern char const gText_ReferenceGuide_Cookbook3_RiceGruel_Ingredient_AnyGrasses
 extern char const gText_ReferenceGuide_Cookbook3_Bodigizer_Title[];
 extern char const gText_ReferenceGuide_Cookbook3_Bodigizer_Ingredient_OrangeGrass[];
 extern char const gText_ReferenceGuide_Cookbook3_Bodigizer_Ingredient_RedMagicGrass[];
+
+// Localized Cookbook IV text (page 58). Both regional sources export these labels.
+extern char const gText_ReferenceGuide_Cookbook4_Title[];
+extern char const gText_ReferenceGuide_Cookbook4_RelaxationTea_Title[];
+extern char const gText_ReferenceGuide_Cookbook4_RelaxationTea_Ingredient_Leaves[];
+extern char const gText_ReferenceGuide_Cookbook4_XEggs_Title[];
+extern char const gText_ReferenceGuide_Cookbook4_XEggs_Ingredient_RegularQualityEgg[];
+extern char const gText_ReferenceGuide_Cookbook4_XEggs_Ingredient_GoodQualityEgg[];
+extern char const gText_ReferenceGuide_Cookbook4_XEggs_Ingredient_HighQualityEgg[];
+extern char const gText_ReferenceGuide_Cookbook4_XEggs_Ingredient_GoldenEgg[];
+extern char const gText_ReferenceGuide_Cookbook4_XEggs_Ingredient_PEgg[];
+extern char const gText_ReferenceGuide_Cookbook4_SUGDWApples_Title[];
+extern char const gText_ReferenceGuide_Cookbook4_SUGDWApples_Ingredient_Apple[];
+extern char const gText_ReferenceGuide_Cookbook4_SUGDWApples_Ingredient_HMSGBApple[];
+extern char const gText_ReferenceGuide_Cookbook4_SUGDWApples_Ingredient_AEPFEApple[];
+extern char const gText_ReferenceGuide_Cookbook4_ElliGrass_Title[];
+extern char const gText_ReferenceGuide_Cookbook4_ElliGrass_Ingredient_SixKindsOfFailures[];
+extern char const gText_ReferenceGuide_Cookbook4_ElliGrass_Ingredient_BodigizerXL[];
+extern char const gText_ReferenceGuide_Cookbook4_ElliGrass_Ingredient_TurbojoltXL[];
+extern char const gText_ReferenceGuide_Cookbook4_ElliGrass_Seasoning_Vinegar[];
+extern char const gText_ReferenceGuide_Cookbook4_ElliGrass_UnknownQuestionMark[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_Cookbook4_RelaxationTea_OptionalIngredients_FruitMilkGrasses[];
+#else
+extern char const gText_ReferenceGuide_Cookbook4_RelaxationTea_OptionalIngredients_FruitMilGrasses[];
+#endif
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Line01[];
