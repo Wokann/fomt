@@ -261,7 +261,11 @@ SECTIONS
         . = 0x10A1FC; data/text/reference_guide/controls.o(.rodata.reference_guide_controls_page08_text);
         . = 0x10A344; src/reference_guide.o(.rodata.reference_guide_controls_page08_lines);
         . = 0x10A370; src/reference_guide.o(.rodata.reference_guide_tool_and_item_controls_additional_lines);
-        . = 0x10A3B0; asm/data/data_080F9EB8.o(.rodata.reference_guide_controls_trailer);
+        . = 0x10A3B0; data/text/reference_guide/crops.o(.rodata.reference_guide_crops_page09_text);
+        . = 0x10A7CC; src/reference_guide.o(.rodata.reference_guide_crops_page09_lines);
+        . = 0x10A8D0; data/text/reference_guide/crops.o(.rodata.reference_guide_crops_page10_text);
+        . = 0x10AC60; src/reference_guide.o(.rodata.reference_guide_crops_page10_lines);
+        . = 0x10ADF8; asm/data/data_080F9EB8.o(.rodata.reference_guide_crops_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);

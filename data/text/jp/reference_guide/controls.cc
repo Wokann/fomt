@@ -251,7 +251,7 @@ char const gText_ReferenceGuide_TownMapControls_Line08[16] SECTION(".rodata.refe
 char const gText_ReferenceGuide_TownMapControls_Line09[28] SECTION(".rodata.reference_guide_controls_page06_text") =
     "　説明メッセージが変わる。";
 
-char const gText_ReferenceGuide_TownMapControls_Line10[4] SECTION(".rodata.reference_guide_controls_page06_text") =
+char const gText_ReferenceGuide_FullWidthSpace[4] SECTION(".rodata.reference_guide_controls_page06_text") =
     "　";
 
 char const gText_ReferenceGuide_TownMapControls_Line11[16] SECTION(".rodata.reference_guide_controls_page06_text") =
