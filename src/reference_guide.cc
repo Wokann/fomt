@@ -6372,3 +6372,26 @@ char const * const gReferenceGuideGrayWellWishesNewYearCardLines[] SECTION(".rod
     gText_ReferenceGuide_GrayNewYearCard_Signature,
     nullptr,
 };
+
+// Reference Guide page 91: Kai's New Year Card.
+char const * const gReferenceGuideKaiNewYearCardLines[] SECTION(".rodata.reference_guide_kai_new_year_card_lines") = {
+    gText_ReferenceGuide_KaiNewYearCard_Title,
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_KaiNewYearCard_ThereClimate_Line01,
+    gText_ReferenceGuide_KaiNewYearCard_ThereClimate_Line02,
+    gText_ReferenceGuide_KaiNewYearCard_HereClimate_Line01,
+    gText_ReferenceGuide_KaiNewYearCard_HereClimate_Line02,
+#else
+    gText_ReferenceGuide_KaiNewYearCard_MineralTown_Line01,
+    gText_ReferenceGuide_KaiNewYearCard_MineralTown_Line02,
+    gText_ReferenceGuide_KaiNewYearCard_SeeYouSoon_Line01,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_KaiNewYearCard_Arrival_Line01,
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_KaiNewYearCard_Signature,
+    nullptr,
+};

@@ -179,6 +179,8 @@ extern char const * const gReferenceGuidePoultryFarmLilliaRickAndKarenNewYearCar
 extern char const * const gReferenceGuideGrayNewYearCardLines[];
 // Reference Guide page 90: Gray's New Year well-wishes card.
 extern char const * const gReferenceGuideGrayWellWishesNewYearCardLines[];
+// Reference Guide page 91: Kai's New Year Card.
+extern char const * const gReferenceGuideKaiNewYearCardLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -1057,6 +1059,21 @@ extern char const gText_ReferenceGuide_GrayNewYearCard_Message_Line04[];
 extern char const gText_ReferenceGuide_GrayWellWishesNewYearCard_WellWish_Line01[];
 #if defined(REGION_US)
 extern char const gText_ReferenceGuide_GrayWellWishesNewYearCard_WellWish_Line02[];
+#endif
+
+// Localized Kai New Year Card text (page 91).
+extern char const gText_ReferenceGuide_KaiNewYearCard_Title[];
+extern char const gText_ReferenceGuide_KaiNewYearCard_Signature[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_KaiNewYearCard_ThereClimate_Line01[];
+extern char const gText_ReferenceGuide_KaiNewYearCard_ThereClimate_Line02[];
+extern char const gText_ReferenceGuide_KaiNewYearCard_HereClimate_Line01[];
+extern char const gText_ReferenceGuide_KaiNewYearCard_HereClimate_Line02[];
+extern char const gText_ReferenceGuide_KaiNewYearCard_Arrival_Line01[];
+#else
+extern char const gText_ReferenceGuide_KaiNewYearCard_MineralTown_Line01[];
+extern char const gText_ReferenceGuide_KaiNewYearCard_MineralTown_Line02[];
+extern char const gText_ReferenceGuide_KaiNewYearCard_SeeYouSoon_Line01[];
 #endif
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
