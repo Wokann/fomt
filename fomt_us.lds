@@ -390,7 +390,9 @@ SECTIONS
         . = 0x114C7C; src/reference_guide.o(.rodata.reference_guide_record_player_instructions_lines);
         . = 0x114CD0; data/text/reference_guide/taking_a_bath.o(.rodata.reference_guide_taking_a_bath_text);
         . = 0x114D3C; src/reference_guide.o(.rodata.reference_guide_taking_a_bath_lines);
-        . = 0x114D58; asm/data/data_080F9EB8.o(.rodata.reference_guide_taking_a_bath_trailer);
+        . = 0x114D58; data/text/reference_guide/vase_instructions.o(.rodata.reference_guide_vase_instructions_text);
+        . = 0x114E68; src/reference_guide.o(.rodata.reference_guide_vase_instructions_lines);
+        . = 0x114E9C; asm/data/data_080F9EB8.o(.rodata.reference_guide_vase_instructions_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);

@@ -145,6 +145,8 @@ extern char const * const gReferenceGuideVansShopLines[];
 extern char const * const gReferenceGuideRecordPlayerInstructionsLines[];
 // Reference Guide page 73: Taking a Bath.
 extern char const * const gReferenceGuideBathInstructionsLines[];
+// Reference Guide page 74: Using the Vase.
+extern char const * const gReferenceGuideVaseInstructionsLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -759,6 +761,22 @@ extern char const gText_ReferenceGuide_BathInstructions_Description_Line04[];
 #if defined(REGION_JP)
 extern char const gText_ReferenceGuide_BathInstructions_TimeAdvancement_Line01[];
 extern char const gText_ReferenceGuide_BathInstructions_TimeAdvancement_Line02[];
+#endif
+
+// Localized Using the Vase text (page 74).
+extern char const gText_ReferenceGuide_VaseInstructions_Title[];
+extern char const gText_ReferenceGuide_VaseInstructions_PlaceFlowers_Line01[];
+extern char const gText_ReferenceGuide_VaseInstructions_PlaceFlowers_Line02[];
+extern char const gText_ReferenceGuide_VaseInstructions_PlaceFlowers_Line03[];
+extern char const gText_ReferenceGuide_VaseInstructions_ExistingFlowers_Line01[];
+extern char const gText_ReferenceGuide_VaseInstructions_ExistingFlowers_Line02[];
+extern char const gText_ReferenceGuide_VaseInstructions_ExistingFlowers_Line03[];
+extern char const gText_ReferenceGuide_VaseInstructions_CannotRetrieve_Line01[];
+extern char const gText_ReferenceGuide_VaseInstructions_CannotRetrieve_Line02[];
+extern char const gText_ReferenceGuide_VaseInstructions_CannotRetrieve_Line03[];
+#if defined(REGION_US)
+extern char const gText_ReferenceGuide_VaseInstructions_ExistingFlowers_Line04[];
+extern char const gText_ReferenceGuide_VaseInstructions_CannotRetrieve_Line04[];
 #endif
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];

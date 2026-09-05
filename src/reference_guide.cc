@@ -5797,3 +5797,24 @@ char const * const gReferenceGuideBathInstructionsLines[] SECTION(".rodata.refer
 #endif
     nullptr,
 };
+
+// Reference Guide page 74: Using the Vase.
+char const * const gReferenceGuideVaseInstructionsLines[] SECTION(".rodata.reference_guide_vase_instructions_lines") = {
+    gText_ReferenceGuide_VaseInstructions_Title,
+    gText_ReferenceGuide_VaseInstructions_PlaceFlowers_Line01,
+    gText_ReferenceGuide_VaseInstructions_PlaceFlowers_Line02,
+    gText_ReferenceGuide_VaseInstructions_PlaceFlowers_Line03,
+    gText_ReferenceGuide_VaseInstructions_ExistingFlowers_Line01,
+    gText_ReferenceGuide_VaseInstructions_ExistingFlowers_Line02,
+    gText_ReferenceGuide_VaseInstructions_ExistingFlowers_Line03,
+#if defined(REGION_US)
+    gText_ReferenceGuide_VaseInstructions_ExistingFlowers_Line04,
+#endif
+    gText_ReferenceGuide_VaseInstructions_CannotRetrieve_Line01,
+    gText_ReferenceGuide_VaseInstructions_CannotRetrieve_Line02,
+    gText_ReferenceGuide_VaseInstructions_CannotRetrieve_Line03,
+#if defined(REGION_US)
+    gText_ReferenceGuide_VaseInstructions_CannotRetrieve_Line04,
+#endif
+    nullptr,
+};
