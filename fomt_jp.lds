@@ -413,7 +413,9 @@ SECTIONS
         . = 0x10FEF8; src/reference_guide.o(.rodata.reference_guide_awl_cody_lines);
         . = 0x10FF38; data/text/reference_guide/awl_profiles/kassey.o(.rodata.reference_guide_awl_kassey_text);
         . = 0x110118; src/reference_guide.o(.rodata.reference_guide_awl_kassey_lines);
-        . = 0x110174; asm/data/data_080F9EB8.o(.rodata.reference_guide_awl_kassey_trailer);
+        . = 0x110174; data/text/reference_guide/awl_profiles/patrick.o(.rodata.reference_guide_awl_patrick_text);
+        . = 0x1102D4; src/reference_guide.o(.rodata.reference_guide_awl_patrick_lines);
+        . = 0x11031C; asm/data/data_080F9EB8.o(.rodata.reference_guide_awl_patrick_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */

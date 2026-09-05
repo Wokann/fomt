@@ -3149,3 +3149,45 @@ char const * const gReferenceGuideAwlKasseyLines[] SECTION(".rodata.reference_gu
     nullptr,
 #endif
 };
+
+// Reference Guide page 34: AWL character profile for Patrick.
+char const * const gReferenceGuideAwlPatrickLines[] SECTION(".rodata.reference_guide_awl_patrick_lines") = {
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AwlPatrick_Title,
+    gText_ReferenceGuide_AwlPatrick_Introduction_Line01,
+    gText_ReferenceGuide_AwlPatrick_Introduction_Line02,
+    gText_ReferenceGuide_AwlPatrick_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlPatrick_Profile01_Line01,
+    gText_ReferenceGuide_AwlPatrick_Profile01_Line02,
+    gText_ReferenceGuide_AwlPatrick_Profile01_Line03,
+    gText_ReferenceGuide_AwlPatrick_Profile01_Line04,
+    gText_ReferenceGuide_AwlPatrick_Profile01_Line05,
+    gText_ReferenceGuide_AwlPatrick_Profile01_Line06,
+    gText_ReferenceGuide_AwlPatrick_Profile01_Line07,
+    gText_ReferenceGuide_AwlPatrick_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlPatrick_Profile02_Line01,
+    gText_ReferenceGuide_AwlPatrick_Profile02_Line02,
+    gText_ReferenceGuide_AwlPatrick_Profile02_Line03,
+    nullptr,
+#else
+    gText_ReferenceGuide_AwlPatrick_Title,
+    gText_ReferenceGuide_AwlPatrick_Introduction_Line01,
+    gText_ReferenceGuide_AwlPatrick_Introduction_Line02,
+    gText_ReferenceGuide_AwlPatrick_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlPatrick_Profile01_Line01,
+    gText_ReferenceGuide_AwlPatrick_Profile01_Line02,
+    gText_ReferenceGuide_AwlPatrick_Profile01_Line03,
+    gText_ReferenceGuide_AwlPatrick_Profile01_Line04,
+    gText_ReferenceGuide_AwlPatrick_Profile01_Line05,
+    gText_ReferenceGuide_AwlPatrick_Profile01_Line06,
+    gText_ReferenceGuide_AwlPatrick_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlPatrick_Profile02_Line01,
+    gText_ReferenceGuide_AwlPatrick_Profile02_Line02,
+    gText_ReferenceGuide_AwlPatrick_Profile02_Line03,
+    nullptr,
+#endif
+};
