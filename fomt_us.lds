@@ -275,7 +275,9 @@ SECTIONS
         . = 0x10C11C; src/reference_guide.o(.rodata.reference_guide_sell_price_lines);
         . = 0x10C25C; data/text/reference_guide/using_tools.o(.rodata.reference_guide_using_tools_text);
         . = 0x10D14C; src/reference_guide.o(.rodata.reference_guide_using_tools_lines);
-        . = 0x10D550; asm/data/data_080F9EB8.o(.rodata.reference_guide_using_tools_trailer);
+        . = 0x10D550; data/text/reference_guide/fishing.o(.rodata.reference_guide_fishing_text);
+        . = 0x10DA4C; src/reference_guide.o(.rodata.reference_guide_fishing_lines);
+        . = 0x10DB50; asm/data/data_080F9EB8.o(.rodata.reference_guide_fishing_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
