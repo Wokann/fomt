@@ -6527,3 +6527,23 @@ char const * const gReferenceGuideBasilAndAnnaNewYearCardLines[] SECTION(".rodat
     gText_ReferenceGuide_BasilAndAnnaNewYearCard_Signature,
     nullptr,
 };
+
+// Reference Guide page 99: May and Barley's New Year Cards. Both regional
+// Barley cards physically reuse the Doctor card's New Year greeting.
+char const * const gReferenceGuideMayAndBarleyNewYearCardsLines[] SECTION(".rodata.reference_guide_may_and_barley_new_year_cards_lines") = {
+    gText_ReferenceGuide_MayAndBarleyNewYearCards_Title,
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_MayAndBarleyNewYearCards_MayGreeting_Line01,
+#endif
+    gText_ReferenceGuide_MayAndBarleyNewYearCards_MayRequest_Line01,
+    gText_ReferenceGuide_MayAndBarleyNewYearCards_MayRequest_Line02,
+    gText_ReferenceGuide_MayAndBarleyNewYearCards_MaySignature,
+    gText_ReferenceGuide_EmptyLine,
+    // Reused physical text from the Doctor's New Year card (page 82).
+    gText_ReferenceGuide_DoctorNewYearCard_Greeting_Line01,
+    gText_ReferenceGuide_MayAndBarleyNewYearCards_BarleyRequest_Line01,
+    gText_ReferenceGuide_MayAndBarleyNewYearCards_BarleyRequest_Line02,
+    gText_ReferenceGuide_MayAndBarleyNewYearCards_BarleySignature,
+    nullptr,
+};
