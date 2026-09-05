@@ -4830,3 +4830,232 @@ char const * const gReferenceGuideHarvestSpriteHelpLines[] SECTION(".rodata.refe
 #endif
     nullptr,
 };
+
+// Reference Guide page 61: Saibara the blacksmith. The Japanese page also
+// contains the Maker documentation; the US version begins that topic on its
+// following page, so only those real structural differences are conditional.
+char const * const gReferenceGuideSaibaraBlacksmithLines[] SECTION(".rodata.reference_guide_saibara_blacksmith_lines") = {
+    gText_ReferenceGuide_SaibaraBlacksmith_Title,
+
+    // Store overview and hours.
+    gText_ReferenceGuide_SaibaraBlacksmith_Overview_Line01,
+    gText_ReferenceGuide_SaibaraBlacksmith_Overview_Line02,
+    gText_ReferenceGuide_SaibaraBlacksmith_Overview_Line03,
+    gText_ReferenceGuide_SaibaraBlacksmith_Overview_Line04,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_SaibaraBlacksmith_Overview_Line05,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_SaibaraBlacksmith_StoreHours_Heading,
+    gText_ReferenceGuide_SaibaraBlacksmith_StoreHours_Value,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_SaibaraBlacksmith_ClosedDay_Heading,
+    gText_ReferenceGuide_SaibaraBlacksmith_ClosedDay_Value,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    // Tool upgrades.
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Title,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Benefits_Line01,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Benefits_Line02,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Benefits_Line03,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Benefits_Line04,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Benefits_Line05,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Benefits_Line06,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Benefits_Line07,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Heading,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line01,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line02,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line03,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line04,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line05,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line06,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line07,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line08,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line09,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line10,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line11,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line12,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line13,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line14,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line15,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line16,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line17,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line18,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line19,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line20,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line21,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line22,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line23,
+#if defined(REGION_US)
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line24,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_EligibleTools_Heading,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_EligibleTools_Hoe,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_EligibleTools_Scythe,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_EligibleTools_Axe,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_EligibleTools_Hammer,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_EligibleTools_WateringCan,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_EligibleTools_FishingRod,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Duration_Line01,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Duration_Line02,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Duration_Line03,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Duration_Line04,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Duration_Line05,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Duration_Line06,
+#if defined(REGION_US)
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Duration_Line07,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Duration_Line08,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Cost_Line01,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Cost_Line02,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Cost_Line03,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Cost_Line04,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Experience_Line01,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Experience_Line02,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Experience_Line03,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Experience_Line04,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Experience_Line05,
+#if defined(REGION_US)
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Experience_Line06,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Experience_Line07,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_EmptyLine,
+#endif
+
+    // Animal-care tools. The Japanese pointers reuse their original entries
+    // from the Using Tools page instead of storing duplicate literals here.
+    gText_ReferenceGuide_SaibaraBlacksmith_Brush_Title,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_UsingTools_Brush_Line01,
+#else
+    gText_ReferenceGuide_SaibaraBlacksmith_Brush_Description_Line01,
+    gText_ReferenceGuide_SaibaraBlacksmith_Brush_Description_Line02,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_SaibaraBlacksmith_Milker_Title,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_UsingTools_Milker_Line01,
+    gText_ReferenceGuide_UsingTools_Milker_Line02,
+#else
+    gText_ReferenceGuide_SaibaraBlacksmith_Milker_Description_Line01,
+    gText_ReferenceGuide_SaibaraBlacksmith_Milker_Description_Line02,
+#endif
+#if defined(REGION_JP)
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_SaibaraBlacksmith_Clippers_Title,
+    // Physical reuse: both ROMs point at this existing Clippers line.
+    gText_ReferenceGuide_UsingTools_Clippers_Line01,
+#if defined(REGION_US)
+    gText_ReferenceGuide_SaibaraBlacksmith_Clippers_Description_Line02,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_SaibaraBlacksmith_AnimalTools_PurchaseLimit_Line01,
+    gText_ReferenceGuide_SaibaraBlacksmith_AnimalTools_PurchaseLimit_Line02,
+#if defined(REGION_US)
+    gText_ReferenceGuide_SaibaraBlacksmith_AnimalTools_PurchaseLimit_Line03,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    // Jewelry.
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_Bracelet_Title,
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_Necklace_Title,
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_Earrings_Title,
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_Broach_Title,
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_Gift_Line01,
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_Gift_Line02,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_Requirements_Line01,
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_Requirements_Line02,
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_Requirements_Line03,
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_Requirements_Line04,
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_Requirements_Line05,
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_Requirements_Line06,
+#if defined(REGION_US)
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_Requirements_Line07,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_CompletionTime_Line01,
+#if defined(REGION_JP)
+    // Physical reuse: this short suffix is the existing crop-guide text.
+    gText_ReferenceGuide_RaisingCrops_Line49,
+#else
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_CompletionTime_Line02,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_Pickup_Line01,
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_Pickup_Line02,
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_Pickup_Line03,
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_Pickup_Line04,
+
+#if defined(REGION_JP)
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_Pickup_Line05,
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_Pickup_Line06,
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_Pickup_Line07,
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_Pickup_Line08,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    // Makers (JP page 61 only).
+    gText_ReferenceGuide_SaibaraBlacksmith_MayonnaiseMaker_Title,
+    gText_ReferenceGuide_SaibaraBlacksmith_MayonnaiseMaker_Description_Line01,
+    gText_ReferenceGuide_SaibaraBlacksmith_MayonnaiseMaker_Description_Line02,
+    gText_ReferenceGuide_SaibaraBlacksmith_MayonnaiseMaker_Description_Line03,
+    gText_ReferenceGuide_SaibaraBlacksmith_MayonnaiseMaker_Description_Line04,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_SaibaraBlacksmith_CheeseMaker_Title,
+    gText_ReferenceGuide_SaibaraBlacksmith_CheeseMaker_Description_Line01,
+    gText_ReferenceGuide_SaibaraBlacksmith_CheeseMaker_Description_Line02,
+    gText_ReferenceGuide_SaibaraBlacksmith_CheeseMaker_Description_Line03,
+    gText_ReferenceGuide_SaibaraBlacksmith_CheeseMaker_Description_Line04,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_SaibaraBlacksmith_YarnMaker_Title,
+    gText_ReferenceGuide_SaibaraBlacksmith_YarnMaker_Description_Line01,
+    // Physical reuse: the two endings match the Cheese Maker fields above.
+    gText_ReferenceGuide_SaibaraBlacksmith_CheeseMaker_Description_Line02,
+    gText_ReferenceGuide_SaibaraBlacksmith_YarnMaker_Description_Line03,
+    gText_ReferenceGuide_SaibaraBlacksmith_CheeseMaker_Description_Line04,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_SaibaraBlacksmith_Makers_Requirements_Line01,
+    gText_ReferenceGuide_SaibaraBlacksmith_Makers_Requirements_Line02,
+    gText_ReferenceGuide_SaibaraBlacksmith_Makers_Requirements_Line03,
+    gText_ReferenceGuide_SaibaraBlacksmith_Makers_Requirements_Line04,
+    gText_ReferenceGuide_SaibaraBlacksmith_Makers_Requirements_Line05,
+    gText_ReferenceGuide_SaibaraBlacksmith_Makers_Requirements_Line06,
+    gText_ReferenceGuide_SaibaraBlacksmith_Makers_Requirements_Line07,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_SaibaraBlacksmith_Makers_CompletionTime_Line01,
+    // Physical reuse: this is the same completion suffix used above.
+    gText_ReferenceGuide_RaisingCrops_Line49,
+    gText_ReferenceGuide_EmptyLine,
+    // Physical reuse: the Makers pickup begins with the Jewelry pickup text.
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_Pickup_Line01,
+    gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_Pickup_Line02,
+    gText_ReferenceGuide_SaibaraBlacksmith_Makers_Placement_Line01,
+    gText_ReferenceGuide_SaibaraBlacksmith_Makers_Placement_Line02,
+    gText_ReferenceGuide_SaibaraBlacksmith_Makers_Placement_Line03,
+    gText_ReferenceGuide_SaibaraBlacksmith_Makers_Placement_Line04,
+    gText_ReferenceGuide_SaibaraBlacksmith_Makers_Placement_Line05,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_SaibaraBlacksmith_Makers_AfterExpansion_Line01,
+    gText_ReferenceGuide_SaibaraBlacksmith_Makers_AfterExpansion_Line02,
+#else
+    // Physical reuse: the US page ends with the Tool-upgrade pickup lines.
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line23,
+    gText_ReferenceGuide_SaibaraBlacksmith_ToolUpgrade_Procedure_Line24,
+#endif
+    nullptr,
+};

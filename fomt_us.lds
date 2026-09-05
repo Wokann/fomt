@@ -364,7 +364,9 @@ SECTIONS
         . = 0x112084; src/reference_guide.o(.rodata.reference_guide_acquiring_kitchen_lines);
         . = 0x1120E8; data/text/reference_guide/harvest_sprite_help.o(.rodata.reference_guide_harvest_sprite_help_text);
         . = 0x112388; src/reference_guide.o(.rodata.reference_guide_harvest_sprite_help_lines);
-        . = 0x112410; asm/data/data_080F9EB8.o(.rodata.reference_guide_harvest_sprite_help_trailer);
+        . = 0x112410; data/text/reference_guide/saibara_blacksmith.o(.rodata.reference_guide_saibara_blacksmith_text);
+        . = 0x112C7C; src/reference_guide.o(.rodata.reference_guide_saibara_blacksmith_lines);
+        . = 0x112E50; asm/data/data_080F9EB8.o(.rodata.reference_guide_saibara_blacksmith_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
