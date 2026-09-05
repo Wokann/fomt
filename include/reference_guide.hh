@@ -33,9 +33,11 @@ extern char const gText_ReferenceGuide_HorseRaceHints_Line20[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Line21[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Line22[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Line23[];
-extern char const gText_ReferenceGuide_HorseRaceHints_Line24[];
 #if defined(REGION_JP)
-extern char const gText_ReferenceGuide_HorseRaceHints_Line25[];
+extern char const gText_ReferenceGuide_FestivalHints_Closing_Line01[];
+extern char const gText_ReferenceGuide_HorseRaceHints_Closing_Line02Padded[];
+#else
+extern char const gText_ReferenceGuide_HorseRaceHints_Line24[];
 #endif
 extern char const gText_ReferenceGuide_ChickenFestivalHints_Title[];
 extern char const gText_ReferenceGuide_ChickenFestivalHints_Line01[];
@@ -62,14 +64,18 @@ extern char const gText_ReferenceGuide_ChickenFestivalHints_Line21[];
 extern char const gText_ReferenceGuide_ChickenFestivalHints_Line22[];
 extern char const gText_ReferenceGuide_ChickenFestivalHints_Line23[];
 extern char const gText_ReferenceGuide_ChickenFestivalHints_Line24[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_ChickenFestivalHints_Closing_Line02[];
+#else
 extern char const gText_ReferenceGuide_ChickenFestivalHints_Line25[];
+#endif
 
 #if defined(REGION_JP)
 extern char const gText_ReferenceGuide_HarvestSpriteMinigames_Title[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Title[];
-extern char const gText_ReferenceGuide_HarvestSpriteMinigames_EmptyLine[];
+extern char const gText_ReferenceGuide_Layout_EmptyLine[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Subtitle[];
-extern char const gText_ReferenceGuide_HarvestSpriteMinigames_PaddedEmptyLine[];
+extern char const gText_ReferenceGuide_Layout_PaddedEmptyLine[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Friendship_Line01[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Friendship_Line02[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Friendship_Line03[];
@@ -99,7 +105,7 @@ extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_SlowDown_Line02[]
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_SlowDown_Line03[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Practice_Line01[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Practice_Line02[];
-extern char const gText_ReferenceGuide_HarvestSpriteMinigames_SectionDivider[];
+extern char const gText_ReferenceGuide_Layout_SectionDivider[];
 extern char const gText_ReferenceGuide_HarvestSpriteAnimalCare_Title[];
 extern char const gText_ReferenceGuide_HarvestSpriteAnimalCare_Subtitle[];
 extern char const gText_ReferenceGuide_HarvestSpriteAnimalCare_Friendship_Line01[];
@@ -163,7 +169,7 @@ extern char const gText_ReferenceGuide_HarvestSpriteMinigames_Title[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Title[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Subtitle[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_SubtitleNumber[];
-extern char const gText_ReferenceGuide_HarvestSpriteMinigames_EmptyLine[];
+extern char const gText_ReferenceGuide_Layout_EmptyLine[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Friendship_Line01[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Friendship_Line02[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Friendship_Line03[];
@@ -231,7 +237,7 @@ extern char const gText_ReferenceGuide_HarvestSpriteAnimalCare_NotAllFeedBoxes_L
 extern char const gText_ReferenceGuide_HarvestSpriteAnimalCare_NotAllFeedBoxes_Line02[];
 extern char const gText_ReferenceGuide_HarvestSpriteAnimalCare_NotAllFeedBoxes_Line03[];
 extern char const gText_ReferenceGuide_HarvestSpriteAnimalCare_NotAllFeedBoxes_Line04[];
-extern char const gText_ReferenceGuide_HarvestSpriteMinigames_SectionDivider[];
+extern char const gText_ReferenceGuide_Layout_SectionDivider[];
 extern char const gText_ReferenceGuide_HarvestSpriteWatering_Title[];
 extern char const gText_ReferenceGuide_HarvestSpriteWatering_Subtitle[];
 extern char const gText_ReferenceGuide_HarvestSpriteWatering_Friendship_Line01[];

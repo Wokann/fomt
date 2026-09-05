@@ -78,10 +78,10 @@ char const gText_ReferenceGuide_HorseRaceHints_Line22[28] SECTION(".rodata.refer
 char const gText_ReferenceGuide_HorseRaceHints_Line23[32] SECTION(".rodata.reference_guide_festival_hints_text") =
     "ように練習を心がけて下さい。";
 
-char const gText_ReferenceGuide_HorseRaceHints_Line24[32] SECTION(".rodata.reference_guide_festival_hints_text") =
+char const gText_ReferenceGuide_FestivalHints_Closing_Line01[32] SECTION(".rodata.reference_guide_festival_hints_text") =
     "これを読んでいるあなたが優勝";
 
-char const gText_ReferenceGuide_HorseRaceHints_Line25[32] SECTION(".rodata.reference_guide_festival_hints_text") =
+char const gText_ReferenceGuide_HorseRaceHints_Closing_Line02Padded[32] SECTION(".rodata.reference_guide_festival_hints_text") =
     "出来る事を期待しています。　";
 
 char const gText_ReferenceGuide_ChickenFestivalHints_Title[20] SECTION(".rodata.reference_guide_festival_hints_text") =
@@ -159,5 +159,5 @@ char const gText_ReferenceGuide_ChickenFestivalHints_Line23[32] SECTION(".rodata
 char const gText_ReferenceGuide_ChickenFestivalHints_Line24[20] SECTION(".rodata.reference_guide_festival_hints_text") =
     "を選びましょう。";
 
-char const gText_ReferenceGuide_ChickenFestivalHints_Line25[28] SECTION(".rodata.reference_guide_festival_hints_text") =
+char const gText_ReferenceGuide_ChickenFestivalHints_Closing_Line02[28] SECTION(".rodata.reference_guide_festival_hints_text") =
     "出来る事を期待しています。";
