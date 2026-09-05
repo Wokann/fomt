@@ -233,7 +233,11 @@ SECTIONS
         . = ALIGN(4); src/data_schedules.o(.rodata);
         . = ALIGN(4); asm/data/data_080F1A80.o(.rodata);
         . = ALIGN(4); src/script_engine.o(.rodata);
-        . = ALIGN(4); asm/data/data_080F9EB8.o(.rodata);
+        . = ALIGN(4); asm/data/data_080F9EB8.o(.rodata.reference_guide_harvest_sprite_minigames_prefix);
+        . = 0x1084B0; data/text/reference_guide_harvest_sprite_minigames.o(.rodata.reference_guide_harvest_sprite_minigames_text);
+        . = 0x108F68; src/reference_guide_harvest_sprite_minigames_data.o(.rodata.reference_guide_harvest_sprite_minigames_lines);
+        . = 0x109124; asm/data/data_080F9EB8.o(.rodata.reference_guide_harvest_sprite_minigames_trailer);
+        . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
     } > ROM = 0xFF

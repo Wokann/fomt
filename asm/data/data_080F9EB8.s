@@ -38,9 +38,16 @@ gUnk_081036A0:
     .incbin "baserom_jp.gba", 0x103D9C, (0x1073B9 - 0x103D9C)
 
     .section .rodata.festival_contestants_set2_trailer
-    .incbin "baserom_jp.gba", 0x1074BD, (0x13BCF8 - 0x1074BD)
+    .incbin "baserom_jp.gba", 0x1074BD, (0x107DAC - 0x1074BD)
+
+    .global gReferenceGuidePageLineTables
+gReferenceGuidePageLineTables:
+    .incbin "baserom_jp.gba", 0x107DAC, (0x107FD0 - 0x107DAC)
+
+    .section .rodata.reference_guide_harvest_sprite_minigames_trailer
+    .incbin "baserom_jp.gba", 0x108CBC, (0x13BCF8 - 0x108CBC)
     .else
-    .section .rodata
+    .section .rodata.reference_guide_harvest_sprite_minigames_prefix
 
 	.incbin "baserom_us.gba", 0xF9EAC, 0x19
 
@@ -3204,9 +3211,14 @@ gUnk_08108268:
 gUnk_0810827C:
 	.incbin "baserom_us.gba", 0x10827C, 0x10
 
-	.global gUnk_0810828C
-gUnk_0810828C:
-	.incbin "baserom_us.gba", 0x10828C, 0xF56A
+	.global gReferenceGuidePageLineTables
+gReferenceGuidePageLineTables:
+	.incbin "baserom_us.gba", 0x10828C, (0x1084B0 - 0x10828C)
+
+	.section .rodata.reference_guide_harvest_sprite_minigames_trailer
+	.incbin "baserom_us.gba", 0x109124, (0x1177F6 - 0x109124)
+
+	.section .rodata
 
 	.global gUnk_081177F6
 gUnk_081177F6:
