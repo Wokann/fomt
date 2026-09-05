@@ -17,5 +17,8 @@ extern char const gText_AnimalMemorial_PassedAway[];
 extern char const gText_AnimalMemorial_NamesIntro[];
 extern char const gText_AnimalMemorial_PrayerIntro[];
 extern char const gText_AnimalMemorial_PrayerEnding[];
+#if defined(REGION_JP)
+extern char const gText_AnimalMemorial_PassedNaturalLife[];
+#endif
 
 #endif // ANIMAL_MEMORIAL_TEXT_HH

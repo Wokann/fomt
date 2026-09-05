@@ -244,7 +244,7 @@ SECTIONS
         . = ALIGN(4); data/text/new_game_status.o(.rodata.new_game_status_labels);
         . = ALIGN(4); data/text/new_game_help.o(.rodata.new_game_help_text);
         . = ALIGN(4); data/text/new_game_save.o(.rodata.new_game_save_text);
-        . = 0xE7D64; /* JP raw data after the regional new-game save text. */
+        . = 0xE7D80; /* JP raw data after the regional new-game save text. */
         asm/data/data_080E8610.o(.rodata.new_game_save_trailer);
         . = ALIGN(4); data/text/new_game_identity.o(.rodata.new_game_identity_prefix);
         . = 0xE7DAC; /* JP runtime data between identity text groups. */
@@ -301,7 +301,7 @@ SECTIONS
         asm/data/data_080F0348.o(.rodata.help_menu_trailer);
         FILL(0x00);
         data/text/animal_memorial.o(.rodata.animal_memorial);
-        . = 0xEFF28; /* JP data after the animal memorial text pieces. */
+        . = 0xEFF44; /* JP data after the animal memorial text pieces. */
         asm/data/data_080F0348.o(.rodata.animal_memorial_trailer);
         FILL(0x00);
         . = ALIGN(4); data/text/not_available.o(.rodata.not_available);

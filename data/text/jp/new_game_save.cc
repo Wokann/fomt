@@ -12,3 +12,9 @@ char const gText_NewGameSave_LoadPrompt[20] SECTION(".rodata.new_game_save_text"
 
 char const gText_NewGameSave_Affirmative[8] SECTION(".rodata.new_game_save_text") =
     "はい";
+
+char const gText_NewGameSave_Negative[8] SECTION(".rodata.new_game_save_text") =
+    "いいえ";
+
+char const gText_NewGameSave_OverwritePrompt[20] SECTION(".rodata.new_game_save_text") =
+    "上書きしていい？";
