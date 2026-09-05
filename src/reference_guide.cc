@@ -3573,3 +3573,41 @@ char const * const gReferenceGuideAwlFloraLines[] SECTION(".rodata.reference_gui
     nullptr,
 #endif
 };
+
+// Reference Guide page 44: AWL character profile for Vesta.
+char const * const gReferenceGuideAwlVestaLines[] SECTION(".rodata.reference_guide_awl_vesta_lines") = {
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AwlVesta_Title,
+    gText_ReferenceGuide_AwlVesta_Introduction_Line01,
+    gText_ReferenceGuide_AwlVesta_Introduction_Line02,
+    gText_ReferenceGuide_AwlVesta_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlVesta_Profile01_Line01,
+    gText_ReferenceGuide_AwlVesta_Profile01_Line02,
+    gText_ReferenceGuide_AwlVesta_Profile01_Line03,
+    gText_ReferenceGuide_AwlVesta_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlVesta_Profile02_Line01,
+    gText_ReferenceGuide_AwlVesta_Profile02_Line02,
+    gText_ReferenceGuide_AwlVesta_Profile02_Line03,
+    gText_ReferenceGuide_AwlVesta_Profile02_Line04,
+    nullptr,
+#else
+    gText_ReferenceGuide_AwlVesta_Title,
+    gText_ReferenceGuide_AwlVesta_Introduction_Line01,
+    gText_ReferenceGuide_AwlVesta_Introduction_Line02,
+    gText_ReferenceGuide_AwlVesta_Introduction_Line03,
+    gText_ReferenceGuide_AwlVesta_Profile01_Marker,
+    gText_ReferenceGuide_AwlVesta_Profile01_Line01,
+    gText_ReferenceGuide_AwlVesta_Profile01_Line02,
+    gText_ReferenceGuide_AwlVesta_Profile01_Line03,
+    gText_ReferenceGuide_AwlVesta_Profile01_Line04,
+    gText_ReferenceGuide_AwlVesta_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlVesta_Profile02_Line01,
+    gText_ReferenceGuide_AwlVesta_Profile02_Line02,
+    gText_ReferenceGuide_AwlVesta_Profile02_Line03,
+    gText_ReferenceGuide_AwlVesta_Profile02_Line04,
+    nullptr,
+#endif
+};
