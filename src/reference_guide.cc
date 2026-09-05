@@ -5059,3 +5059,179 @@ char const * const gReferenceGuideSaibaraBlacksmithLines[] SECTION(".rodata.refe
 #endif
     nullptr,
 };
+
+// Reference Guide page 62: Supermarket. The overall page is shared; its
+// conditional entries account for regional item lists and line wrapping.
+char const * const gReferenceGuideSupermarketLines[] SECTION(".rodata.reference_guide_supermarket_lines") = {
+    gText_ReferenceGuide_Supermarket_Title,
+
+    // Store overview and hours.
+    gText_ReferenceGuide_Supermarket_Overview_Line01,
+    gText_ReferenceGuide_Supermarket_Overview_Line02,
+    gText_ReferenceGuide_Supermarket_Overview_Line03,
+    gText_ReferenceGuide_Supermarket_Overview_Line04,
+    gText_ReferenceGuide_Supermarket_Overview_Line05,
+#if defined(REGION_US)
+    gText_ReferenceGuide_Supermarket_Overview_Line06,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    // Physical reuse: both ROMs point at the existing store-hours label.
+    gText_ReferenceGuide_SaibaraBlacksmith_StoreHours_Heading,
+    gText_ReferenceGuide_Supermarket_StoreHours_Value,
+    gText_ReferenceGuide_EmptyLine,
+    // Physical reuse: both ROMs point at the existing closed-day label.
+    gText_ReferenceGuide_SaibaraBlacksmith_ClosedDay_Heading,
+    gText_ReferenceGuide_Supermarket_ClosedDay_Value,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    // Seeds.
+    gText_ReferenceGuide_Supermarket_Seeds_Title,
+    gText_ReferenceGuide_Supermarket_Seeds_Description_Line01,
+    gText_ReferenceGuide_Supermarket_Seeds_Description_Line02,
+    gText_ReferenceGuide_Supermarket_Seeds_Description_Line03,
+    gText_ReferenceGuide_Supermarket_Seeds_Description_Line04,
+#if defined(REGION_US)
+    gText_ReferenceGuide_Supermarket_Seeds_Description_Line05,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Supermarket_Seeds_SeasonalAvailability_Line01,
+    gText_ReferenceGuide_Supermarket_Seeds_SeasonalAvailability_Line02,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    // Ingredients.
+#if defined(REGION_US)
+    gText_ReferenceGuide_Supermarket_Ingredients_Heading,
+#endif
+    gText_ReferenceGuide_Supermarket_Ingredients_RiceBall_Title,
+    gText_ReferenceGuide_Supermarket_Ingredients_Bread_Title,
+    gText_ReferenceGuide_Supermarket_Ingredients_Oil_Title,
+    gText_ReferenceGuide_Supermarket_Ingredients_Flour_Title,
+    gText_ReferenceGuide_Supermarket_Ingredients_CurryPowder_Title,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_Supermarket_Ingredients_DumplingFlour_Title,
+#endif
+    gText_ReferenceGuide_Supermarket_Ingredients_Chocolate_Title,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_Supermarket_Ingredients_UseInCooking_Line01,
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Supermarket_Ingredients_EatDirectly_Line01,
+    gText_ReferenceGuide_Supermarket_Ingredients_EatDirectly_Line02,
+#if defined(REGION_US)
+    gText_ReferenceGuide_Supermarket_Ingredients_EatDirectly_Line03,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Supermarket_Ingredients_Refrigerator_Line01,
+    gText_ReferenceGuide_Supermarket_Ingredients_Refrigerator_Line02,
+#if defined(REGION_US)
+    gText_ReferenceGuide_Supermarket_Ingredients_Refrigerator_Line03,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Supermarket_Ingredients_SeasonalAvailability_Line01,
+    gText_ReferenceGuide_Supermarket_Ingredients_SeasonalAvailability_Line02,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    // Basket.
+    gText_ReferenceGuide_Supermarket_Basket_Title,
+    gText_ReferenceGuide_Supermarket_Basket_Description_Line01,
+    gText_ReferenceGuide_Supermarket_Basket_Description_Line02,
+    gText_ReferenceGuide_Supermarket_Basket_Description_Line03,
+    gText_ReferenceGuide_Supermarket_Basket_Description_Line04,
+#if defined(REGION_US)
+    gText_ReferenceGuide_Supermarket_Basket_Description_Line05,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Supermarket_Basket_Purchase_Line01,
+    gText_ReferenceGuide_Supermarket_Basket_Purchase_Line02,
+    gText_ReferenceGuide_Supermarket_Basket_Purchase_Line03,
+#if defined(REGION_US)
+    gText_ReferenceGuide_Supermarket_Basket_Purchase_Line04,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    // Rucksacks.
+    gText_ReferenceGuide_Supermarket_Rucksack_Title,
+    gText_ReferenceGuide_Supermarket_Rucksack_Description_Line01,
+    gText_ReferenceGuide_Supermarket_Rucksack_Description_Line02,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_Supermarket_Rucksack_Description_Line03,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Supermarket_LargeRucksack_Title,
+    // Physical reuse: both large-rucksack entries point to this first line.
+    gText_ReferenceGuide_Supermarket_Rucksack_Description_Line01,
+    gText_ReferenceGuide_Supermarket_LargeRucksack_Description_Line02,
+#if defined(REGION_JP)
+    // Physical reuse: the Japanese ROM also reuses this Rucksack ending.
+    gText_ReferenceGuide_Supermarket_Rucksack_Description_Line03,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Supermarket_LargeRucksack_Requirements_Line01,
+    gText_ReferenceGuide_Supermarket_LargeRucksack_Requirements_Line02,
+#if defined(REGION_US)
+    gText_ReferenceGuide_Supermarket_LargeRucksack_Requirements_Line03,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Supermarket_LargeRucksack_ImmediateUse_Line01,
+    gText_ReferenceGuide_Supermarket_LargeRucksack_ImmediateUse_Line02,
+#if defined(REGION_US)
+    gText_ReferenceGuide_Supermarket_LargeRucksack_ImmediateUse_Line03,
+    gText_ReferenceGuide_Supermarket_LargeRucksack_ImmediateUse_Line04,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    // Blue Feather.
+    gText_ReferenceGuide_Supermarket_BlueFeather_Title,
+    gText_ReferenceGuide_Supermarket_BlueFeather_Description_Line01,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_Supermarket_BlueFeather_Description_Line02,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Supermarket_BlueFeather_Availability_Line01,
+    gText_ReferenceGuide_Supermarket_BlueFeather_Availability_Line02,
+#if defined(REGION_US)
+    gText_ReferenceGuide_Supermarket_BlueFeather_Availability_Line03,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Supermarket_BlueFeather_Classification_Line01,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_Supermarket_BlueFeather_Classification_Line02,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    // Gift wrapping.
+    gText_ReferenceGuide_Supermarket_GiftWrapping_Title,
+    gText_ReferenceGuide_Supermarket_GiftWrapping_Description_Line01,
+    gText_ReferenceGuide_Supermarket_GiftWrapping_Description_Line02,
+    gText_ReferenceGuide_Supermarket_GiftWrapping_Description_Line03,
+    gText_ReferenceGuide_Supermarket_GiftWrapping_Description_Line04,
+    gText_ReferenceGuide_Supermarket_GiftWrapping_Description_Line05,
+#if defined(REGION_US)
+    gText_ReferenceGuide_Supermarket_GiftWrapping_Description_Line06,
+    gText_ReferenceGuide_Supermarket_GiftWrapping_Description_Line07,
+#else
+    // Physical reuse: the original Japanese pointer uses this generic suffix.
+    gText_ReferenceGuide_CautionSuffix,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Supermarket_GiftWrapping_EligibleItems_Line01,
+    gText_ReferenceGuide_Supermarket_GiftWrapping_EligibleItems_Line02,
+    gText_ReferenceGuide_Supermarket_GiftWrapping_EligibleItems_Line03,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_Supermarket_GiftWrapping_EligibleItems_Line04,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Supermarket_GiftWrapping_Removal_Line01,
+    gText_ReferenceGuide_Supermarket_GiftWrapping_Removal_Line02,
+    gText_ReferenceGuide_Supermarket_GiftWrapping_Removal_Line03,
+#if defined(REGION_US)
+    gText_ReferenceGuide_Supermarket_GiftWrapping_Removal_Line04,
+#endif
+    nullptr,
+};

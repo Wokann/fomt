@@ -468,7 +468,9 @@ SECTIONS
         . = 0x112C4C; src/reference_guide.o(.rodata.reference_guide_harvest_sprite_help_lines);
         . = 0x112CD8; data/text/reference_guide/saibara_blacksmith.o(.rodata.reference_guide_saibara_blacksmith_text);
         . = 0x113938; src/reference_guide.o(.rodata.reference_guide_saibara_blacksmith_lines);
-        . = 0x113BA8; asm/data/data_080F9EB8.o(.rodata.reference_guide_saibara_blacksmith_trailer);
+        . = 0x113BA8; data/text/reference_guide/supermarket.o(.rodata.reference_guide_supermarket_text);
+        . = 0x114234; src/reference_guide.o(.rodata.reference_guide_supermarket_lines);
+        . = 0x1143C0; asm/data/data_080F9EB8.o(.rodata.reference_guide_supermarket_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */

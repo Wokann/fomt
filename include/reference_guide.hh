@@ -121,6 +121,8 @@ extern char const * const gReferenceGuideAcquiringKitchenLines[];
 extern char const * const gReferenceGuideHarvestSpriteHelpLines[];
 // Reference Guide page 61: Saibara the blacksmith.
 extern char const * const gReferenceGuideSaibaraBlacksmithLines[];
+// Reference Guide page 62: Supermarket.
+extern char const * const gReferenceGuideSupermarketLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -383,6 +385,93 @@ extern char const gText_ReferenceGuide_SaibaraBlacksmith_Clippers_Description_Li
 extern char const gText_ReferenceGuide_SaibaraBlacksmith_AnimalTools_PurchaseLimit_Line03[];
 extern char const gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_Requirements_Line07[];
 extern char const gText_ReferenceGuide_SaibaraBlacksmith_Jewelry_CompletionTime_Line02[];
+#endif
+
+// Localized Supermarket text (page 62). Shared names describe matching page
+// concepts, while regional declarations represent only differing line layouts.
+extern char const gText_ReferenceGuide_Supermarket_Title[];
+extern char const gText_ReferenceGuide_Supermarket_Overview_Line01[];
+extern char const gText_ReferenceGuide_Supermarket_Overview_Line02[];
+extern char const gText_ReferenceGuide_Supermarket_Overview_Line03[];
+extern char const gText_ReferenceGuide_Supermarket_Overview_Line04[];
+extern char const gText_ReferenceGuide_Supermarket_Overview_Line05[];
+extern char const gText_ReferenceGuide_Supermarket_StoreHours_Value[];
+extern char const gText_ReferenceGuide_Supermarket_ClosedDay_Value[];
+extern char const gText_ReferenceGuide_Supermarket_Seeds_Title[];
+extern char const gText_ReferenceGuide_Supermarket_Seeds_Description_Line01[];
+extern char const gText_ReferenceGuide_Supermarket_Seeds_Description_Line02[];
+extern char const gText_ReferenceGuide_Supermarket_Seeds_Description_Line03[];
+extern char const gText_ReferenceGuide_Supermarket_Seeds_Description_Line04[];
+extern char const gText_ReferenceGuide_Supermarket_Seeds_SeasonalAvailability_Line01[];
+extern char const gText_ReferenceGuide_Supermarket_Seeds_SeasonalAvailability_Line02[];
+extern char const gText_ReferenceGuide_Supermarket_Ingredients_RiceBall_Title[];
+extern char const gText_ReferenceGuide_Supermarket_Ingredients_Bread_Title[];
+extern char const gText_ReferenceGuide_Supermarket_Ingredients_Oil_Title[];
+extern char const gText_ReferenceGuide_Supermarket_Ingredients_Flour_Title[];
+extern char const gText_ReferenceGuide_Supermarket_Ingredients_CurryPowder_Title[];
+extern char const gText_ReferenceGuide_Supermarket_Ingredients_Chocolate_Title[];
+extern char const gText_ReferenceGuide_Supermarket_Ingredients_EatDirectly_Line01[];
+extern char const gText_ReferenceGuide_Supermarket_Ingredients_EatDirectly_Line02[];
+extern char const gText_ReferenceGuide_Supermarket_Ingredients_Refrigerator_Line01[];
+extern char const gText_ReferenceGuide_Supermarket_Ingredients_Refrigerator_Line02[];
+extern char const gText_ReferenceGuide_Supermarket_Ingredients_SeasonalAvailability_Line01[];
+extern char const gText_ReferenceGuide_Supermarket_Ingredients_SeasonalAvailability_Line02[];
+extern char const gText_ReferenceGuide_Supermarket_Basket_Title[];
+extern char const gText_ReferenceGuide_Supermarket_Basket_Description_Line01[];
+extern char const gText_ReferenceGuide_Supermarket_Basket_Description_Line02[];
+extern char const gText_ReferenceGuide_Supermarket_Basket_Description_Line03[];
+extern char const gText_ReferenceGuide_Supermarket_Basket_Description_Line04[];
+extern char const gText_ReferenceGuide_Supermarket_Basket_Purchase_Line01[];
+extern char const gText_ReferenceGuide_Supermarket_Basket_Purchase_Line02[];
+extern char const gText_ReferenceGuide_Supermarket_Basket_Purchase_Line03[];
+extern char const gText_ReferenceGuide_Supermarket_Rucksack_Title[];
+extern char const gText_ReferenceGuide_Supermarket_Rucksack_Description_Line01[];
+extern char const gText_ReferenceGuide_Supermarket_Rucksack_Description_Line02[];
+extern char const gText_ReferenceGuide_Supermarket_LargeRucksack_Title[];
+extern char const gText_ReferenceGuide_Supermarket_LargeRucksack_Description_Line02[];
+extern char const gText_ReferenceGuide_Supermarket_LargeRucksack_Requirements_Line01[];
+extern char const gText_ReferenceGuide_Supermarket_LargeRucksack_Requirements_Line02[];
+extern char const gText_ReferenceGuide_Supermarket_LargeRucksack_ImmediateUse_Line01[];
+extern char const gText_ReferenceGuide_Supermarket_LargeRucksack_ImmediateUse_Line02[];
+extern char const gText_ReferenceGuide_Supermarket_BlueFeather_Title[];
+extern char const gText_ReferenceGuide_Supermarket_BlueFeather_Description_Line01[];
+extern char const gText_ReferenceGuide_Supermarket_BlueFeather_Availability_Line01[];
+extern char const gText_ReferenceGuide_Supermarket_BlueFeather_Availability_Line02[];
+extern char const gText_ReferenceGuide_Supermarket_BlueFeather_Classification_Line01[];
+extern char const gText_ReferenceGuide_Supermarket_GiftWrapping_Title[];
+extern char const gText_ReferenceGuide_Supermarket_GiftWrapping_Description_Line01[];
+extern char const gText_ReferenceGuide_Supermarket_GiftWrapping_Description_Line02[];
+extern char const gText_ReferenceGuide_Supermarket_GiftWrapping_Description_Line03[];
+extern char const gText_ReferenceGuide_Supermarket_GiftWrapping_Description_Line04[];
+extern char const gText_ReferenceGuide_Supermarket_GiftWrapping_Description_Line05[];
+extern char const gText_ReferenceGuide_Supermarket_GiftWrapping_EligibleItems_Line01[];
+extern char const gText_ReferenceGuide_Supermarket_GiftWrapping_EligibleItems_Line02[];
+extern char const gText_ReferenceGuide_Supermarket_GiftWrapping_EligibleItems_Line03[];
+extern char const gText_ReferenceGuide_Supermarket_GiftWrapping_Removal_Line01[];
+extern char const gText_ReferenceGuide_Supermarket_GiftWrapping_Removal_Line02[];
+extern char const gText_ReferenceGuide_Supermarket_GiftWrapping_Removal_Line03[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_Supermarket_Ingredients_DumplingFlour_Title[];
+extern char const gText_ReferenceGuide_Supermarket_Ingredients_UseInCooking_Line01[];
+extern char const gText_ReferenceGuide_Supermarket_Rucksack_Description_Line03[];
+extern char const gText_ReferenceGuide_Supermarket_BlueFeather_Description_Line02[];
+extern char const gText_ReferenceGuide_Supermarket_BlueFeather_Classification_Line02[];
+extern char const gText_ReferenceGuide_Supermarket_GiftWrapping_EligibleItems_Line04[];
+#else
+extern char const gText_ReferenceGuide_Supermarket_Overview_Line06[];
+extern char const gText_ReferenceGuide_Supermarket_Seeds_Description_Line05[];
+extern char const gText_ReferenceGuide_Supermarket_Ingredients_Heading[];
+extern char const gText_ReferenceGuide_Supermarket_Ingredients_EatDirectly_Line03[];
+extern char const gText_ReferenceGuide_Supermarket_Ingredients_Refrigerator_Line03[];
+extern char const gText_ReferenceGuide_Supermarket_Basket_Description_Line05[];
+extern char const gText_ReferenceGuide_Supermarket_Basket_Purchase_Line04[];
+extern char const gText_ReferenceGuide_Supermarket_LargeRucksack_Requirements_Line03[];
+extern char const gText_ReferenceGuide_Supermarket_LargeRucksack_ImmediateUse_Line03[];
+extern char const gText_ReferenceGuide_Supermarket_LargeRucksack_ImmediateUse_Line04[];
+extern char const gText_ReferenceGuide_Supermarket_BlueFeather_Availability_Line03[];
+extern char const gText_ReferenceGuide_Supermarket_GiftWrapping_Description_Line06[];
+extern char const gText_ReferenceGuide_Supermarket_GiftWrapping_Description_Line07[];
+extern char const gText_ReferenceGuide_Supermarket_GiftWrapping_Removal_Line04[];
 #endif
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];
