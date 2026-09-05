@@ -6626,3 +6626,23 @@ char const * const gReferenceGuideMannaAndDukeNewYearCardsLines[] SECTION(".roda
     gText_ReferenceGuide_MannaAndDukeNewYearCards_DukeSignature,
     nullptr,
 };
+
+// Reference Guide page 103: Ellen's New Year Card. The US ROM physically
+// reuses the Doctor card's New Year greeting.
+char const * const gReferenceGuideEllenNewYearCardLines[] SECTION(".rodata.reference_guide_ellen_new_year_card_lines") = {
+    gText_ReferenceGuide_EllenNewYearCard_Title,
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_EllenNewYearCard_Greeting_Line01,
+    gText_ReferenceGuide_EllenNewYearCard_Greeting_Line02,
+#else
+    // Reused physical text from the Doctor's New Year card (page 82).
+    gText_ReferenceGuide_DoctorNewYearCard_Greeting_Line01,
+#endif
+    gText_ReferenceGuide_EllenNewYearCard_Wish_Line01,
+    gText_ReferenceGuide_EllenNewYearCard_Wish_Line02,
+    gText_ReferenceGuide_EllenNewYearCard_Wish_Line03,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EllenNewYearCard_Signature,
+    nullptr,
+};

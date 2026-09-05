@@ -203,6 +203,8 @@ extern char const * const gReferenceGuideThomasAndHarrisNewYearCardLines[];
 extern char const * const gReferenceGuideThomasAndHarrisTownSafetyNewYearCardLines[];
 // Reference Guide page 102: Manna and Duke's New Year Cards.
 extern char const * const gReferenceGuideMannaAndDukeNewYearCardsLines[];
+// Reference Guide page 103: Ellen's New Year Card.
+extern char const * const gReferenceGuideEllenNewYearCardLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -1203,6 +1205,17 @@ extern char const gText_ReferenceGuide_MannaAndDukeNewYearCards_DukeSignature[];
 #if defined(REGION_JP)
 extern char const gText_ReferenceGuide_MannaAndDukeNewYearCards_MannaGreeting_Line01[];
 extern char const gText_ReferenceGuide_MannaAndDukeNewYearCards_AjaWinerySignature[];
+#endif
+
+// Localized Ellen New Year Card text (page 103).
+extern char const gText_ReferenceGuide_EllenNewYearCard_Title[];
+extern char const gText_ReferenceGuide_EllenNewYearCard_Wish_Line01[];
+extern char const gText_ReferenceGuide_EllenNewYearCard_Wish_Line02[];
+extern char const gText_ReferenceGuide_EllenNewYearCard_Wish_Line03[];
+extern char const gText_ReferenceGuide_EllenNewYearCard_Signature[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_EllenNewYearCard_Greeting_Line01[];
+extern char const gText_ReferenceGuide_EllenNewYearCard_Greeting_Line02[];
 #endif
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
