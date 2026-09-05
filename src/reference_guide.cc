@@ -6309,3 +6309,29 @@ char const * const gReferenceGuidePoultryFarmPlayerAndPopuriNewYearCardLines[] S
 #endif
     nullptr,
 };
+
+// Reference Guide page 88: Poultry Farm New Year Card from Lillia, Rick, and
+// Karen. The original tables directly reuse the Poultry Farm title; JP also
+// reuses the card's farm name and invitation line.
+char const * const gReferenceGuidePoultryFarmLilliaRickAndKarenNewYearCardLines[] SECTION(".rodata.reference_guide_poultry_farm_lillia_rick_and_karen_new_year_card_lines") = {
+    gText_ReferenceGuide_PoultryFarmNewYearCard_Title,
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_PoultryFarmLilliaRickAndKarenNewYearCard_Greeting_Line01,
+    gText_ReferenceGuide_PoultryFarmLilliaRickAndKarenNewYearCard_Invitation_Line01,
+    gText_ReferenceGuide_PoultryFarmNewYearCard_Message_Line02,
+    gText_ReferenceGuide_PoultryFarmLilliaRickAndKarenNewYearCard_Invitation_Line02,
+#else
+    gText_ReferenceGuide_PoultryFarmLilliaRickAndKarenNewYearCard_Reminder_Line01,
+    gText_ReferenceGuide_PoultryFarmLilliaRickAndKarenNewYearCard_Reminder_Line02,
+    gText_ReferenceGuide_PoultryFarmLilliaRickAndKarenNewYearCard_Reminder_Line03,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_PoultryFarmNewYearCard_Signature_Farm,
+    gText_ReferenceGuide_PoultryFarmLilliaRickAndKarenNewYearCard_Signature_Names,
+#else
+    gText_ReferenceGuide_PoultryFarmLilliaRickAndKarenNewYearCard_Signature,
+#endif
+    nullptr,
+};

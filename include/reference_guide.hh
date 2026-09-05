@@ -173,6 +173,8 @@ extern char const * const gReferenceGuidePoultryFarmNewYearCardLines[];
 extern char const * const gReferenceGuidePoultryFarmLilliaAndRickNewYearCardLines[];
 // Reference Guide page 87: Poultry Farm New Year Card for the player and Popuri.
 extern char const * const gReferenceGuidePoultryFarmPlayerAndPopuriNewYearCardLines[];
+// Reference Guide page 88: Poultry Farm New Year Card from Lillia, Rick, and Karen.
+extern char const * const gReferenceGuidePoultryFarmLilliaRickAndKarenNewYearCardLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -1022,6 +1024,19 @@ extern char const gText_ReferenceGuide_PoultryFarmPlayerAndPopuriNewYearCard_Vis
 extern char const gText_ReferenceGuide_PoultryFarmPlayerAndPopuriNewYearCard_Visit_Line02[];
 #if defined(REGION_US)
 extern char const gText_ReferenceGuide_PoultryFarmPlayerAndPopuriNewYearCard_Salutation_Line02[];
+#endif
+
+// Localized Poultry Farm Lillia, Rick, and Karen New Year Card text (page 88).
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_PoultryFarmLilliaRickAndKarenNewYearCard_Greeting_Line01[];
+extern char const gText_ReferenceGuide_PoultryFarmLilliaRickAndKarenNewYearCard_Invitation_Line01[];
+extern char const gText_ReferenceGuide_PoultryFarmLilliaRickAndKarenNewYearCard_Invitation_Line02[];
+extern char const gText_ReferenceGuide_PoultryFarmLilliaRickAndKarenNewYearCard_Signature_Names[];
+#else
+extern char const gText_ReferenceGuide_PoultryFarmLilliaRickAndKarenNewYearCard_Reminder_Line01[];
+extern char const gText_ReferenceGuide_PoultryFarmLilliaRickAndKarenNewYearCard_Reminder_Line02[];
+extern char const gText_ReferenceGuide_PoultryFarmLilliaRickAndKarenNewYearCard_Reminder_Line03[];
+extern char const gText_ReferenceGuide_PoultryFarmLilliaRickAndKarenNewYearCard_Signature[];
 #endif
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
