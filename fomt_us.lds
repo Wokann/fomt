@@ -267,7 +267,9 @@ SECTIONS
         . = 0x10AC60; src/reference_guide.o(.rodata.reference_guide_crops_page10_lines);
         . = 0x10ADF8; data/text/reference_guide/mines.o(.rodata.reference_guide_mines_text);
         . = 0x10B1B0; src/reference_guide.o(.rodata.reference_guide_mines_lines);
-        . = 0x10B2A0; asm/data/data_080F9EB8.o(.rodata.reference_guide_mines_trailer);
+        . = 0x10B2A0; data/text/reference_guide/cooking.o(.rodata.reference_guide_how_to_cook_text);
+        . = 0x10B6C8; src/reference_guide.o(.rodata.reference_guide_how_to_cook_lines);
+        . = 0x10B824; asm/data/data_080F9EB8.o(.rodata.reference_guide_cooking_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
