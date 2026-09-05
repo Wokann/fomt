@@ -93,6 +93,8 @@ extern char const * const gReferenceGuideAwlMarlinLines[];
 extern char const * const gReferenceGuideAwlCeliaLines[];
 // Reference Guide page 47: AWL character profile for Hardy.
 extern char const * const gReferenceGuideAwlHardyLines[];
+// Reference Guide page 48: AWL character profile for Van.
+extern char const * const gReferenceGuideAwlVanLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 #endif
@@ -1407,6 +1409,19 @@ extern char const gText_ReferenceGuide_AwlHardy_Profile01_Line02[];
 extern char const gText_ReferenceGuide_AwlHardy_Profile02_Marker[];
 extern char const gText_ReferenceGuide_AwlHardy_Profile02_Line01[];
 extern char const gText_ReferenceGuide_AwlHardy_Profile02_Line02[];
+// Localized AWL character-profile text (page 48).
+extern char const gText_ReferenceGuide_AwlVan_Title[];
+extern char const gText_ReferenceGuide_AwlVan_Introduction_Line01[];
+extern char const gText_ReferenceGuide_AwlVan_Introduction_Line02[];
+extern char const gText_ReferenceGuide_AwlVan_Profile01_Marker[];
+extern char const gText_ReferenceGuide_AwlVan_Profile01_Line01[];
+extern char const gText_ReferenceGuide_AwlVan_Profile01_Line02[];
+extern char const gText_ReferenceGuide_AwlVan_Profile01_Line03[];
+extern char const gText_ReferenceGuide_AwlVan_Profile01_Line04[];
+extern char const gText_ReferenceGuide_AwlVan_Profile02_Marker[];
+extern char const gText_ReferenceGuide_AwlVan_Profile02_Line01[];
+extern char const gText_ReferenceGuide_AwlVan_Profile02_Line02[];
+extern char const gText_ReferenceGuide_AwlVan_Profile02_Line03[];
 #else
 extern char const gText_ReferenceGuide_HarvestSpriteMinigames_Title[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Title[];
@@ -2672,6 +2687,20 @@ extern char const gText_ReferenceGuide_AwlHardy_Profile02_Marker[];
 extern char const gText_ReferenceGuide_AwlHardy_Profile02_Line01[];
 extern char const gText_ReferenceGuide_AwlHardy_Profile02_Line02[];
 extern char const gText_ReferenceGuide_AwlHardy_Profile02_Line03[];
+// Localized AWL character-profile text (page 48).
+extern char const gText_ReferenceGuide_AwlVan_Title[];
+extern char const gText_ReferenceGuide_AwlVan_Introduction_Line01[];
+extern char const gText_ReferenceGuide_AwlVan_Introduction_Line02[];
+extern char const gText_ReferenceGuide_AwlVan_Introduction_Line03[];
+extern char const gText_ReferenceGuide_AwlVan_Profile01_Marker[];
+extern char const gText_ReferenceGuide_AwlVan_Profile01_Line01[];
+extern char const gText_ReferenceGuide_AwlVan_Profile01_Line02[];
+extern char const gText_ReferenceGuide_AwlVan_Profile01_Line03[];
+extern char const gText_ReferenceGuide_AwlVan_Profile02_Marker[];
+extern char const gText_ReferenceGuide_AwlVan_Profile02_Line01[];
+extern char const gText_ReferenceGuide_AwlVan_Profile02_Line02[];
+extern char const gText_ReferenceGuide_AwlVan_Profile02_Line03[];
+extern char const gText_ReferenceGuide_AwlVan_Profile02_Line04[];
 #endif
 
 #endif // REFERENCE_GUIDE_HH
