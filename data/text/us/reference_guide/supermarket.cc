@@ -61,9 +61,9 @@ char const gText_ReferenceGuide_Supermarket_Ingredients_EatDirectly_Line02[28] S
     " straight, without cooking";
 char const gText_ReferenceGuide_Supermarket_Ingredients_EatDirectly_Line03[8] SECTION(".rodata.reference_guide_supermarket_text") =
     " them. ";
-char const gText_ReferenceGuide_Supermarket_Ingredients_Refrigerator_Line01[28] SECTION(".rodata.reference_guide_supermarket_text") =
+char const gText_ReferenceGuide_RefrigeratorPurchases_Line01[28] SECTION(".rodata.reference_guide_supermarket_text") =
     "·You can buy more at one";
-char const gText_ReferenceGuide_Supermarket_Ingredients_Refrigerator_Line02[24] SECTION(".rodata.reference_guide_supermarket_text") =
+char const gText_ReferenceGuide_RefrigeratorPurchases_Line02[24] SECTION(".rodata.reference_guide_supermarket_text") =
     " time if you have a ";
 char const gText_ReferenceGuide_Supermarket_Ingredients_Refrigerator_Line03[16] SECTION(".rodata.reference_guide_supermarket_text") =
     " Refrigerator. ";

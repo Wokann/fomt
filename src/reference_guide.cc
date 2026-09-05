@@ -5114,7 +5114,7 @@ char const * const gReferenceGuideSupermarketLines[] SECTION(".rodata.reference_
 #endif
     gText_ReferenceGuide_Supermarket_Ingredients_Chocolate_Title,
 #if defined(REGION_JP)
-    gText_ReferenceGuide_Supermarket_Ingredients_UseInCooking_Line01,
+    gText_ReferenceGuide_UseInCooking_Line01,
     gText_ReferenceGuide_EmptyLine,
 #endif
     gText_ReferenceGuide_Supermarket_Ingredients_EatDirectly_Line01,
@@ -5123,8 +5123,8 @@ char const * const gReferenceGuideSupermarketLines[] SECTION(".rodata.reference_
     gText_ReferenceGuide_Supermarket_Ingredients_EatDirectly_Line03,
 #endif
     gText_ReferenceGuide_EmptyLine,
-    gText_ReferenceGuide_Supermarket_Ingredients_Refrigerator_Line01,
-    gText_ReferenceGuide_Supermarket_Ingredients_Refrigerator_Line02,
+    gText_ReferenceGuide_RefrigeratorPurchases_Line01,
+    gText_ReferenceGuide_RefrigeratorPurchases_Line02,
 #if defined(REGION_US)
     gText_ReferenceGuide_Supermarket_Ingredients_Refrigerator_Line03,
 #endif
@@ -5255,7 +5255,7 @@ char const * const gReferenceGuideWoodcuttersHouseLines[] SECTION(".rodata.refer
     gText_ReferenceGuide_EmptyLine,
     // Physical reuse: both ROMs point at the existing closed-day label.
     gText_ReferenceGuide_ClosedDay_Heading,
-    gText_ReferenceGuide_WoodcuttersHouse_ClosedDay_Value,
+    gText_ReferenceGuide_Saturdays_Value,
     gText_ReferenceGuide_EmptyLine,
     gText_ReferenceGuide_EmptyLine,
 
@@ -5407,9 +5407,9 @@ char const * const gReferenceGuideClinicLines[] SECTION(".rodata.reference_guide
     gText_ReferenceGuide_Clinic_StrongerMedicine_Line03,
     gText_ReferenceGuide_EmptyLine,
 #if defined(REGION_JP)
-    // Physical reuse: JP reuses the Supermarket refrigerator purchase text.
-    gText_ReferenceGuide_Supermarket_Ingredients_Refrigerator_Line01,
-    gText_ReferenceGuide_Supermarket_Ingredients_Refrigerator_Line02,
+    // Physical reuse: JP reuses the generic refrigerator purchase text.
+    gText_ReferenceGuide_RefrigeratorPurchases_Line01,
+    gText_ReferenceGuide_RefrigeratorPurchases_Line02,
 #else
     gText_ReferenceGuide_Clinic_RefrigeratorPurchases_Line01,
     gText_ReferenceGuide_Clinic_RefrigeratorPurchases_Line02,

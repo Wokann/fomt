@@ -11,7 +11,7 @@ char const gText_ReferenceGuide_WoodcuttersHouse_Overview_Line02[24] SECTION(".r
     " or ask for expansions.";
 char const gText_ReferenceGuide_WoodcuttersHouse_StoreHours_Value[12] SECTION(".rodata.reference_guide_woodcutters_house_text") =
     " 11AM-4PM";
-char const gText_ReferenceGuide_WoodcuttersHouse_ClosedDay_Value[12] SECTION(".rodata.reference_guide_woodcutters_house_text") =
+char const gText_ReferenceGuide_Saturdays_Value[12] SECTION(".rodata.reference_guide_woodcutters_house_text") =
     " Saturdays";
 
 char const gText_ReferenceGuide_WoodcuttersHouse_Lumber_Title[12] SECTION(".rodata.reference_guide_woodcutters_house_text") =

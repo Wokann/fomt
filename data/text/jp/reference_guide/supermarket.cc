@@ -51,15 +51,15 @@ char const gText_ReferenceGuide_Supermarket_Ingredients_DumplingFlour_Title[12] 
     "☆だんご粉";
 char const gText_ReferenceGuide_Supermarket_Ingredients_Chocolate_Title[16] SECTION(".rodata.reference_guide_supermarket_text") =
     "☆チョコレート";
-char const gText_ReferenceGuide_Supermarket_Ingredients_UseInCooking_Line01[32] SECTION(".rodata.reference_guide_supermarket_text") =
+char const gText_ReferenceGuide_UseInCooking_Line01[32] SECTION(".rodata.reference_guide_supermarket_text") =
     "·これらはお料理に使う材料。";
 char const gText_ReferenceGuide_Supermarket_Ingredients_EatDirectly_Line01[32] SECTION(".rodata.reference_guide_supermarket_text") =
     "·お料理に使わずにそのまま食";
 char const gText_ReferenceGuide_Supermarket_Ingredients_EatDirectly_Line02[24] SECTION(".rodata.reference_guide_supermarket_text") =
     "　べることもできる。";
-char const gText_ReferenceGuide_Supermarket_Ingredients_Refrigerator_Line01[32] SECTION(".rodata.reference_guide_supermarket_text") =
+char const gText_ReferenceGuide_RefrigeratorPurchases_Line01[32] SECTION(".rodata.reference_guide_supermarket_text") =
     "·『冷蔵庫』があれば、一度に";
-char const gText_ReferenceGuide_Supermarket_Ingredients_Refrigerator_Line02[20] SECTION(".rodata.reference_guide_supermarket_text") =
+char const gText_ReferenceGuide_RefrigeratorPurchases_Line02[20] SECTION(".rodata.reference_guide_supermarket_text") =
     "　たくさん買える。";
 char const gText_ReferenceGuide_Supermarket_Ingredients_SeasonalAvailability_Line01[32] SECTION(".rodata.reference_guide_supermarket_text") =
     "·時期によって売ってない場合";

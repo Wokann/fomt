@@ -11,7 +11,7 @@ char const gText_ReferenceGuide_WoodcuttersHouse_Overview_Line02[20] SECTION(".r
     "　てもらえるお店。";
 char const gText_ReferenceGuide_WoodcuttersHouse_StoreHours_Value[24] SECTION(".rodata.reference_guide_woodcutters_house_text") =
     "　午前１１時～午後４時";
-char const gText_ReferenceGuide_WoodcuttersHouse_ClosedDay_Value[12] SECTION(".rodata.reference_guide_woodcutters_house_text") =
+char const gText_ReferenceGuide_Saturdays_Value[12] SECTION(".rodata.reference_guide_woodcutters_house_text") =
     "　土曜日";
 
 char const gText_ReferenceGuide_WoodcuttersHouse_Lumber_Title[8] SECTION(".rodata.reference_guide_woodcutters_house_text") =

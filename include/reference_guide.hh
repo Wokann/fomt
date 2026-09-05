@@ -416,8 +416,8 @@ extern char const gText_ReferenceGuide_Supermarket_Ingredients_CurryPowder_Title
 extern char const gText_ReferenceGuide_Supermarket_Ingredients_Chocolate_Title[];
 extern char const gText_ReferenceGuide_Supermarket_Ingredients_EatDirectly_Line01[];
 extern char const gText_ReferenceGuide_Supermarket_Ingredients_EatDirectly_Line02[];
-extern char const gText_ReferenceGuide_Supermarket_Ingredients_Refrigerator_Line01[];
-extern char const gText_ReferenceGuide_Supermarket_Ingredients_Refrigerator_Line02[];
+extern char const gText_ReferenceGuide_RefrigeratorPurchases_Line01[];
+extern char const gText_ReferenceGuide_RefrigeratorPurchases_Line02[];
 extern char const gText_ReferenceGuide_Supermarket_Ingredients_SeasonalAvailability_Line01[];
 extern char const gText_ReferenceGuide_Supermarket_Ingredients_SeasonalAvailability_Line02[];
 extern char const gText_ReferenceGuide_Supermarket_Basket_Title[];
@@ -456,7 +456,7 @@ extern char const gText_ReferenceGuide_Supermarket_GiftWrapping_Removal_Line02[]
 extern char const gText_ReferenceGuide_Supermarket_GiftWrapping_Removal_Line03[];
 #if defined(REGION_JP)
 extern char const gText_ReferenceGuide_Supermarket_Ingredients_DumplingFlour_Title[];
-extern char const gText_ReferenceGuide_Supermarket_Ingredients_UseInCooking_Line01[];
+extern char const gText_ReferenceGuide_UseInCooking_Line01[];
 extern char const gText_ReferenceGuide_Supermarket_Rucksack_Description_Line03[];
 extern char const gText_ReferenceGuide_Supermarket_BlueFeather_Description_Line02[];
 extern char const gText_ReferenceGuide_Supermarket_BlueFeather_Classification_Line02[];
@@ -483,7 +483,7 @@ extern char const gText_ReferenceGuide_WoodcuttersHouse_Title[];
 extern char const gText_ReferenceGuide_WoodcuttersHouse_Overview_Line01[];
 extern char const gText_ReferenceGuide_WoodcuttersHouse_Overview_Line02[];
 extern char const gText_ReferenceGuide_WoodcuttersHouse_StoreHours_Value[];
-extern char const gText_ReferenceGuide_WoodcuttersHouse_ClosedDay_Value[];
+extern char const gText_ReferenceGuide_Saturdays_Value[];
 extern char const gText_ReferenceGuide_WoodcuttersHouse_Lumber_Title[];
 extern char const gText_ReferenceGuide_WoodcuttersHouse_Lumber_Requirements_Line01[];
 extern char const gText_ReferenceGuide_WoodcuttersHouse_Lumber_Requirements_Line02[];
