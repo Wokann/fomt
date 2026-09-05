@@ -6504,3 +6504,26 @@ char const * const gReferenceGuideCarterNewYearCardLines[] SECTION(".rodata.refe
     gText_ReferenceGuide_CarterNewYearCard_Signature,
     nullptr,
 };
+
+// Reference Guide page 98: Basil and Anna's New Year Card. Both ROMs reuse a
+// greeting from an earlier card, with the US card omitting the title spacer.
+char const * const gReferenceGuideBasilAndAnnaNewYearCardLines[] SECTION(".rodata.reference_guide_basil_and_anna_new_year_card_lines") = {
+    gText_ReferenceGuide_BasilAndAnnaNewYearCard_Title,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_EmptyLine,
+    // Reused physical text from Cliff's second New Year card (page 80).
+    gText_ReferenceGuide_CliffNewYearCards_SecondCard_Greeting_Line01,
+#else
+    // Reused physical text from the Doctor's New Year card (page 82).
+    gText_ReferenceGuide_DoctorNewYearCard_Greeting_Line01,
+#endif
+    gText_ReferenceGuide_BasilAndAnnaNewYearCard_Spring_Line01,
+    gText_ReferenceGuide_BasilAndAnnaNewYearCard_Spring_Line02,
+    gText_ReferenceGuide_BasilAndAnnaNewYearCard_VisitInvitation_Line01,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_BasilAndAnnaNewYearCard_VisitInvitation_Line02,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_BasilAndAnnaNewYearCard_Signature,
+    nullptr,
+};

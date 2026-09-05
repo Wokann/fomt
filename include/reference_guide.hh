@@ -193,6 +193,8 @@ extern char const * const gReferenceGuideDougNewYearCardLines[];
 extern char const * const gReferenceGuideDougNewYearCardToPlayerAndAnnLines[];
 // Reference Guide page 97: Carter's New Year Card.
 extern char const * const gReferenceGuideCarterNewYearCardLines[];
+// Reference Guide page 98: Basil and Anna's New Year Card.
+extern char const * const gReferenceGuideBasilAndAnnaNewYearCardLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -1141,6 +1143,16 @@ extern char const gText_ReferenceGuide_CarterNewYearCard_Blessing_Line01[];
 extern char const gText_ReferenceGuide_CarterNewYearCard_Blessing_Line02[];
 extern char const gText_ReferenceGuide_CarterNewYearCard_Blessing_Line03[];
 extern char const gText_ReferenceGuide_CarterNewYearCard_Signature[];
+
+// Localized Basil and Anna New Year Card text (page 98).
+extern char const gText_ReferenceGuide_BasilAndAnnaNewYearCard_Title[];
+extern char const gText_ReferenceGuide_BasilAndAnnaNewYearCard_Spring_Line01[];
+extern char const gText_ReferenceGuide_BasilAndAnnaNewYearCard_Spring_Line02[];
+extern char const gText_ReferenceGuide_BasilAndAnnaNewYearCard_VisitInvitation_Line01[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_BasilAndAnnaNewYearCard_VisitInvitation_Line02[];
+#endif
+extern char const gText_ReferenceGuide_BasilAndAnnaNewYearCard_Signature[];
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];
