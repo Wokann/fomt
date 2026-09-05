@@ -77,6 +77,8 @@ extern char const * const gReferenceGuideAwlRubyLines[];
 extern char const * const gReferenceGuideAwlNamiLines[];
 // Reference Guide page 39: AWL character profile for Rock.
 extern char const * const gReferenceGuideAwlRockLines[];
+// Reference Guide page 40: AWL character profile for Griffin.
+extern char const * const gReferenceGuideAwlGriffinLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 #endif
@@ -1281,6 +1283,21 @@ extern char const gText_ReferenceGuide_AwlRock_Profile02_Line02[];
 extern char const gText_ReferenceGuide_AwlRock_Profile02_Line03[];
 extern char const gText_ReferenceGuide_AwlRock_Profile02_Line04[];
 extern char const gText_ReferenceGuide_AwlRock_Profile02_Line05[];
+// Localized AWL character-profile text (page 40).
+extern char const gText_ReferenceGuide_AwlGriffin_Title[];
+extern char const gText_ReferenceGuide_AwlGriffin_Introduction_Line01[];
+extern char const gText_ReferenceGuide_AwlGriffin_Introduction_Line02[];
+extern char const gText_ReferenceGuide_AwlGriffin_Introduction_Line03[];
+extern char const gText_ReferenceGuide_AwlGriffin_Profile01_Marker[];
+extern char const gText_ReferenceGuide_AwlGriffin_Profile01_Line01[];
+extern char const gText_ReferenceGuide_AwlGriffin_Profile01_Line02[];
+extern char const gText_ReferenceGuide_AwlGriffin_Profile01_Line03[];
+extern char const gText_ReferenceGuide_AwlGriffin_Profile01_Line04[];
+extern char const gText_ReferenceGuide_AwlGriffin_Profile02_Marker[];
+extern char const gText_ReferenceGuide_AwlGriffin_Profile02_Line01[];
+extern char const gText_ReferenceGuide_AwlGriffin_Profile02_Line02[];
+extern char const gText_ReferenceGuide_AwlGriffin_Profile02_Line03[];
+extern char const gText_ReferenceGuide_AwlGriffin_Profile02_Line04[];
 #else
 extern char const gText_ReferenceGuide_HarvestSpriteMinigames_Title[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Title[];
@@ -2430,6 +2447,21 @@ extern char const gText_ReferenceGuide_AwlRock_Profile02_Line01[];
 extern char const gText_ReferenceGuide_AwlRock_Profile02_Line02[];
 extern char const gText_ReferenceGuide_AwlRock_Profile02_Line03[];
 extern char const gText_ReferenceGuide_AwlRock_Profile02_Line04[];
+// Localized AWL character-profile text (page 40).
+extern char const gText_ReferenceGuide_AwlGriffin_Title[];
+extern char const gText_ReferenceGuide_AwlGriffin_Introduction_Line01[];
+extern char const gText_ReferenceGuide_AwlGriffin_Introduction_Line02[];
+extern char const gText_ReferenceGuide_AwlGriffin_Introduction_Line03[];
+extern char const gText_ReferenceGuide_AwlGriffin_Introduction_Line04[];
+extern char const gText_ReferenceGuide_AwlGriffin_Profile01_Marker[];
+extern char const gText_ReferenceGuide_AwlGriffin_Profile01_Line01[];
+extern char const gText_ReferenceGuide_AwlGriffin_Profile01_Line02[];
+extern char const gText_ReferenceGuide_AwlGriffin_Profile01_Line03[];
+extern char const gText_ReferenceGuide_AwlGriffin_Profile01_Line04[];
+extern char const gText_ReferenceGuide_AwlGriffin_Profile02_Line01[];
+extern char const gText_ReferenceGuide_AwlGriffin_Profile02_Line02[];
+extern char const gText_ReferenceGuide_AwlGriffin_Profile02_Line03[];
+extern char const gText_ReferenceGuide_AwlGriffin_Profile02_Line04[];
 #endif
 
 #endif // REFERENCE_GUIDE_HH
