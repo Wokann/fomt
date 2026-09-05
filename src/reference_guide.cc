@@ -3061,3 +3061,43 @@ char const * const gReferenceGuideAwlGustafaLines[] SECTION(".rodata.reference_g
     nullptr,
 #endif
 };
+
+// Reference Guide page 32: AWL character profile for Cody.
+char const * const gReferenceGuideAwlCodyLines[] SECTION(".rodata.reference_guide_awl_cody_lines") = {
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AwlCody_Title,
+    gText_ReferenceGuide_AwlCody_Introduction_Line01,
+    gText_ReferenceGuide_AwlCody_Introduction_Line02,
+    gText_ReferenceGuide_AwlCody_Introduction_Line03,
+    gText_ReferenceGuide_AwlCody_Introduction_Line04,
+    gText_ReferenceGuide_AwlCody_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlCody_Profile01_Line01,
+    gText_ReferenceGuide_AwlCody_Profile01_Line02,
+    gText_ReferenceGuide_AwlCody_Profile01_Line03,
+    gText_ReferenceGuide_AwlCody_Profile01_Line04,
+    gText_ReferenceGuide_AwlCody_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlCody_Profile02_Line01,
+    gText_ReferenceGuide_AwlCody_Profile02_Line02,
+    nullptr,
+#else
+    gText_ReferenceGuide_AwlCody_Title,
+    gText_ReferenceGuide_AwlCody_Introduction_Line01,
+    gText_ReferenceGuide_AwlCody_Introduction_Line02,
+    gText_ReferenceGuide_AwlCody_Introduction_Line03,
+    gText_ReferenceGuide_AwlCody_Introduction_Line04,
+    gText_ReferenceGuide_AwlCody_Introduction_Line05,
+    gText_ReferenceGuide_AwlCody_Introduction_Line06,
+    gText_ReferenceGuide_AwlCody_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlCody_Profile01_Line01,
+    gText_ReferenceGuide_AwlCody_Profile01_Line02,
+    gText_ReferenceGuide_AwlCody_Profile01_Line03,
+    gText_ReferenceGuide_AwlCody_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlCody_Profile02_Line01,
+    gText_ReferenceGuide_AwlCody_Profile02_Line02,
+    nullptr,
+#endif
+};
