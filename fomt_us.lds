@@ -273,7 +273,9 @@ SECTIONS
         . = 0x10BBB0; src/reference_guide.o(.rodata.reference_guide_stamina_and_fatigue_lines);
         . = 0x10BC94; data/text/reference_guide/sell_price.o(.rodata.reference_guide_sell_price_text);
         . = 0x10C11C; src/reference_guide.o(.rodata.reference_guide_sell_price_lines);
-        . = 0x10C25C; asm/data/data_080F9EB8.o(.rodata.reference_guide_sell_price_trailer);
+        . = 0x10C25C; data/text/reference_guide/using_tools.o(.rodata.reference_guide_using_tools_text);
+        . = 0x10D14C; src/reference_guide.o(.rodata.reference_guide_using_tools_lines);
+        . = 0x10D550; asm/data/data_080F9EB8.o(.rodata.reference_guide_using_tools_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
