@@ -1,4 +1,4 @@
-#include "reference_guide_harvest_sprite_minigames_text.hh"
+#include "reference_guide.hh"
 
 // func_08079A64 selects a page from gReferenceGuidePageLineTables,
 // indexes this table, and stops rendering when it reaches nullptr.
@@ -232,3 +232,74 @@ char const * const gReferenceGuideHarvestSpriteMinigamesLines[] SECTION(".rodata
     nullptr,
 };
 #endif
+
+// Reference Guide page 1.  Its physical table differs only at the entries
+// guarded below; common entries remain in one shared source-order definition.
+char const * const gReferenceGuideFestivalHintsLines[] SECTION(".rodata.reference_guide_festival_hints_lines") = {
+    gText_ReferenceGuide_FestivalHints_Title,
+    gText_ReferenceGuide_HorseRaceHints_Title,
+    gText_ReferenceGuide_HarvestSpriteMinigames_EmptyLine,
+    gText_ReferenceGuide_HorseRaceHints_Line01,
+    gText_ReferenceGuide_HorseRaceHints_Line02,
+    gText_ReferenceGuide_HorseRaceHints_Line03,
+    gText_ReferenceGuide_HorseRaceHints_Line04,
+    gText_ReferenceGuide_HorseRaceHints_Line05,
+    gText_ReferenceGuide_HorseRaceHints_Line06,
+    gText_ReferenceGuide_HorseRaceHints_Line07,
+    gText_ReferenceGuide_HorseRaceHints_Line08,
+    gText_ReferenceGuide_HorseRaceHints_Line09,
+    gText_ReferenceGuide_HorseRaceHints_Line10,
+    gText_ReferenceGuide_HorseRaceHints_Line11,
+    gText_ReferenceGuide_HorseRaceHints_Line12,
+    gText_ReferenceGuide_HorseRaceHints_Line13,
+    gText_ReferenceGuide_HorseRaceHints_Line14,
+    gText_ReferenceGuide_HorseRaceHints_Line15,
+    gText_ReferenceGuide_HorseRaceHints_Line16,
+    gText_ReferenceGuide_HorseRaceHints_Line17,
+    gText_ReferenceGuide_HorseRaceHints_Line18,
+    gText_ReferenceGuide_HorseRaceHints_Line19,
+    gText_ReferenceGuide_HorseRaceHints_Line20,
+    gText_ReferenceGuide_HorseRaceHints_Line21,
+    gText_ReferenceGuide_HorseRaceHints_Line22,
+    gText_ReferenceGuide_HorseRaceHints_Line23,
+    gText_ReferenceGuide_HorseRaceHints_Line24,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_HorseRaceHints_Line25,
+#endif
+    gText_ReferenceGuide_HarvestSpriteMinigames_EmptyLine,
+    gText_ReferenceGuide_HarvestSpriteMinigames_SectionDivider,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_HarvestSpriteMinigames_EmptyLine,
+#endif
+    gText_ReferenceGuide_ChickenFestivalHints_Title,
+    gText_ReferenceGuide_HarvestSpriteMinigames_EmptyLine,
+    gText_ReferenceGuide_ChickenFestivalHints_Line01,
+    gText_ReferenceGuide_ChickenFestivalHints_Line02,
+    gText_ReferenceGuide_ChickenFestivalHints_Line03,
+    gText_ReferenceGuide_ChickenFestivalHints_Line04,
+    gText_ReferenceGuide_ChickenFestivalHints_Line05,
+    gText_ReferenceGuide_ChickenFestivalHints_Line06,
+    gText_ReferenceGuide_ChickenFestivalHints_Line07,
+    gText_ReferenceGuide_ChickenFestivalHints_Line08,
+    gText_ReferenceGuide_ChickenFestivalHints_Line09,
+    gText_ReferenceGuide_ChickenFestivalHints_Line10,
+    gText_ReferenceGuide_ChickenFestivalHints_Line11,
+    gText_ReferenceGuide_ChickenFestivalHints_Line12,
+    gText_ReferenceGuide_ChickenFestivalHints_Line13,
+    gText_ReferenceGuide_ChickenFestivalHints_Line14,
+    gText_ReferenceGuide_ChickenFestivalHints_Line15,
+    gText_ReferenceGuide_ChickenFestivalHints_Line16,
+    gText_ReferenceGuide_ChickenFestivalHints_Line17,
+    gText_ReferenceGuide_ChickenFestivalHints_Line18,
+    gText_ReferenceGuide_ChickenFestivalHints_Line19,
+    gText_ReferenceGuide_ChickenFestivalHints_Line20,
+    gText_ReferenceGuide_ChickenFestivalHints_Line21,
+    gText_ReferenceGuide_ChickenFestivalHints_Line22,
+    gText_ReferenceGuide_ChickenFestivalHints_Line23,
+    gText_ReferenceGuide_ChickenFestivalHints_Line24,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_HorseRaceHints_Line24,
+#endif
+    gText_ReferenceGuide_ChickenFestivalHints_Line25,
+    nullptr,
+};

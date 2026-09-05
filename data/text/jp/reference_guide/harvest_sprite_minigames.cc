@@ -1,4 +1,4 @@
-#include "reference_guide_harvest_sprite_minigames_text.hh"
+#include "reference_guide.hh"
 
 // Text fields selected by the native Reference Guide page-line table.
 // Storage order and fixed capacities reproduce the corresponding ROM range.
