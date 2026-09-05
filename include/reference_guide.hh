@@ -103,6 +103,8 @@ extern char const * const gReferenceGuideAwlChildLines[];
 extern char const * const gReferenceGuideAwlNakLines[];
 // Reference Guide page 52: AWL character profile for Nic.
 extern char const * const gReferenceGuideAwlNicLines[];
+// Reference Guide page 53: AWL character profile for Flak.
+extern char const * const gReferenceGuideAwlFlakLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 #endif
@@ -1465,6 +1467,13 @@ extern char const gText_ReferenceGuide_AwlNic_Profile01_Marker[];
 extern char const gText_ReferenceGuide_AwlNic_Profile02_Marker[];
 extern char const gText_ReferenceGuide_AwlNic_Profile02_Line01[];
 extern char const gText_ReferenceGuide_AwlNic_Profile02_Line02[];
+// Localized AWL character-profile text (page 53).
+extern char const gText_ReferenceGuide_AwlFlak_Title[];
+extern char const gText_ReferenceGuide_AwlFlak_Profile01_Marker[];
+extern char const gText_ReferenceGuide_AwlFlak_Profile02_Marker[];
+extern char const gText_ReferenceGuide_AwlFlak_Profile02_Line01[];
+extern char const gText_ReferenceGuide_AwlFlak_Profile02_Line02[];
+extern char const gText_ReferenceGuide_AwlFlak_Profile02_Line03[];
 #else
 extern char const gText_ReferenceGuide_HarvestSpriteMinigames_Title[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Title[];
@@ -2785,6 +2794,13 @@ extern char const gText_ReferenceGuide_AwlNic_Profile02_Marker[];
 extern char const gText_ReferenceGuide_AwlNic_Profile02_Line01[];
 extern char const gText_ReferenceGuide_AwlNic_Profile02_Line02[];
 extern char const gText_ReferenceGuide_AwlNic_Profile02_Line03[];
+// Localized AWL character-profile text (page 53).
+extern char const gText_ReferenceGuide_AwlFlak_Title[];
+extern char const gText_ReferenceGuide_AwlFlak_Profile01_Marker[];
+extern char const gText_ReferenceGuide_AwlFlak_Profile02_Marker[];
+extern char const gText_ReferenceGuide_AwlFlak_Profile02_Line01[];
+extern char const gText_ReferenceGuide_AwlFlak_Profile02_Line02[];
+extern char const gText_ReferenceGuide_AwlFlak_Profile02_Line03[];
 #endif
 
 #endif // REFERENCE_GUIDE_HH
