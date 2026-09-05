@@ -277,7 +277,9 @@ SECTIONS
         . = 0x10D14C; src/reference_guide.o(.rodata.reference_guide_using_tools_lines);
         . = 0x10D550; data/text/reference_guide/fishing.o(.rodata.reference_guide_fishing_text);
         . = 0x10DA4C; src/reference_guide.o(.rodata.reference_guide_fishing_lines);
-        . = 0x10DB50; asm/data/data_080F9EB8.o(.rodata.reference_guide_fishing_trailer);
+        . = 0x10DB50; data/text/reference_guide/animal_care.o(.rodata.reference_guide_animal_care_text);
+        . = 0x10E414; src/reference_guide.o(.rodata.reference_guide_animal_care_lines);
+        . = 0x10E5B0; asm/data/data_080F9EB8.o(.rodata.reference_guide_animal_care_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
