@@ -3650,3 +3650,41 @@ char const * const gReferenceGuideAwlMarlinLines[] SECTION(".rodata.reference_gu
     nullptr,
 #endif
 };
+
+// Reference Guide page 46: AWL character profile for Celia.
+char const * const gReferenceGuideAwlCeliaLines[] SECTION(".rodata.reference_guide_awl_celia_lines") = {
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AwlCelia_Title,
+    gText_ReferenceGuide_AwlCelia_Introduction_Line01,
+    gText_ReferenceGuide_AwlCelia_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlCelia_Profile01_Line01,
+    gText_ReferenceGuide_AwlCelia_Profile01_Line02,
+    gText_ReferenceGuide_AwlCelia_Profile01_Line03,
+    // Shared physical suffix; it completes this sentence.
+    gText_ReferenceGuide_AwlProfile_IsSuffix,
+    gText_ReferenceGuide_AwlCelia_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlCelia_Profile02_Line01,
+    gText_ReferenceGuide_AwlCelia_Profile02_Line02,
+    gText_ReferenceGuide_AwlCelia_Profile02_Line03,
+    gText_ReferenceGuide_AwlCelia_Profile02_Line04,
+    nullptr,
+#else
+    gText_ReferenceGuide_AwlCelia_Title,
+    gText_ReferenceGuide_AwlCelia_Introduction_Line01,
+    gText_ReferenceGuide_AwlCelia_Introduction_Line02,
+    gText_ReferenceGuide_AwlCelia_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlCelia_Profile01_Line01,
+    gText_ReferenceGuide_AwlCelia_Profile01_Line02,
+    gText_ReferenceGuide_AwlCelia_Profile01_Line03,
+    gText_ReferenceGuide_AwlCelia_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlCelia_Profile02_Line01,
+    gText_ReferenceGuide_AwlCelia_Profile02_Line02,
+    gText_ReferenceGuide_AwlCelia_Profile02_Line03,
+    gText_ReferenceGuide_AwlCelia_Profile02_Line04,
+    nullptr,
+#endif
+};

@@ -89,6 +89,8 @@ extern char const * const gReferenceGuideAwlFloraLines[];
 extern char const * const gReferenceGuideAwlVestaLines[];
 // Reference Guide page 45: AWL character profile for Marlin.
 extern char const * const gReferenceGuideAwlMarlinLines[];
+// Reference Guide page 46: AWL character profile for Celia.
+extern char const * const gReferenceGuideAwlCeliaLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 #endif
@@ -1381,6 +1383,18 @@ extern char const gText_ReferenceGuide_AwlMarlin_Profile01_Line05[];
 extern char const gText_ReferenceGuide_AwlMarlin_Profile02_Marker[];
 extern char const gText_ReferenceGuide_AwlMarlin_Profile02_Line01[];
 extern char const gText_ReferenceGuide_AwlMarlin_Profile02_Line02[];
+// Localized AWL character-profile text (page 46).
+extern char const gText_ReferenceGuide_AwlCelia_Title[];
+extern char const gText_ReferenceGuide_AwlCelia_Introduction_Line01[];
+extern char const gText_ReferenceGuide_AwlCelia_Profile01_Marker[];
+extern char const gText_ReferenceGuide_AwlCelia_Profile01_Line01[];
+extern char const gText_ReferenceGuide_AwlCelia_Profile01_Line02[];
+extern char const gText_ReferenceGuide_AwlCelia_Profile01_Line03[];
+extern char const gText_ReferenceGuide_AwlCelia_Profile02_Marker[];
+extern char const gText_ReferenceGuide_AwlCelia_Profile02_Line01[];
+extern char const gText_ReferenceGuide_AwlCelia_Profile02_Line02[];
+extern char const gText_ReferenceGuide_AwlCelia_Profile02_Line03[];
+extern char const gText_ReferenceGuide_AwlCelia_Profile02_Line04[];
 #else
 extern char const gText_ReferenceGuide_HarvestSpriteMinigames_Title[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Title[];
@@ -2621,6 +2635,19 @@ extern char const gText_ReferenceGuide_AwlMarlin_Profile02_Marker[];
 extern char const gText_ReferenceGuide_AwlMarlin_Profile02_Line01[];
 extern char const gText_ReferenceGuide_AwlMarlin_Profile02_Line02[];
 extern char const gText_ReferenceGuide_AwlMarlin_Profile02_Line03[];
+// Localized AWL character-profile text (page 46).
+extern char const gText_ReferenceGuide_AwlCelia_Title[];
+extern char const gText_ReferenceGuide_AwlCelia_Introduction_Line01[];
+extern char const gText_ReferenceGuide_AwlCelia_Introduction_Line02[];
+extern char const gText_ReferenceGuide_AwlCelia_Profile01_Marker[];
+extern char const gText_ReferenceGuide_AwlCelia_Profile01_Line01[];
+extern char const gText_ReferenceGuide_AwlCelia_Profile01_Line02[];
+extern char const gText_ReferenceGuide_AwlCelia_Profile01_Line03[];
+extern char const gText_ReferenceGuide_AwlCelia_Profile02_Marker[];
+extern char const gText_ReferenceGuide_AwlCelia_Profile02_Line01[];
+extern char const gText_ReferenceGuide_AwlCelia_Profile02_Line02[];
+extern char const gText_ReferenceGuide_AwlCelia_Profile02_Line03[];
+extern char const gText_ReferenceGuide_AwlCelia_Profile02_Line04[];
 #endif
 
 #endif // REFERENCE_GUIDE_HH
