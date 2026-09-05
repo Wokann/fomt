@@ -450,7 +450,9 @@ SECTIONS
         . = 0x11659C; src/reference_guide.o(.rodata.reference_guide_manna_and_duke_new_year_cards_lines);
         . = 0x1165C8; data/text/reference_guide/ellen_new_year_card.o(.rodata.reference_guide_ellen_new_year_card_text);
         . = 0x11662C; src/reference_guide.o(.rodata.reference_guide_ellen_new_year_card_lines);
-        . = 0x116650; asm/data/data_080F9EB8.o(.rodata.reference_guide_ellen_new_year_card_trailer);
+        . = 0x116650; data/text/reference_guide/harvest_sprites_new_year_card.o(.rodata.reference_guide_harvest_sprites_new_year_card_text);
+        . = 0x1166C8; src/reference_guide.o(.rodata.reference_guide_harvest_sprites_new_year_card_lines);
+        . = 0x1166E8; asm/data/data_080F9EB8.o(.rodata.reference_guide_harvest_sprites_new_year_card_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);

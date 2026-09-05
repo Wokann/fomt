@@ -552,7 +552,9 @@ SECTIONS
         . = 0x117684; src/reference_guide.o(.rodata.reference_guide_manna_and_duke_new_year_cards_lines);
         . = 0x1176B8; data/text/reference_guide/ellen_new_year_card.o(.rodata.reference_guide_ellen_new_year_card_text);
         . = 0x117750; src/reference_guide.o(.rodata.reference_guide_ellen_new_year_card_lines);
-        . = 0x117778; asm/data/data_080F9EB8.o(.rodata.reference_guide_ellen_new_year_card_trailer);
+        . = 0x117778; data/text/reference_guide/harvest_sprites_new_year_card.o(.rodata.reference_guide_harvest_sprites_new_year_card_text);
+        . = 0x1177EC; src/reference_guide.o(.rodata.reference_guide_harvest_sprites_new_year_card_lines);
+        . = 0x117808; asm/data/data_080F9EB8.o(.rodata.reference_guide_harvest_sprites_new_year_card_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */

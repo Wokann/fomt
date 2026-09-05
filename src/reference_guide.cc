@@ -6646,3 +6646,17 @@ char const * const gReferenceGuideEllenNewYearCardLines[] SECTION(".rodata.refer
     gText_ReferenceGuide_EllenNewYearCard_Signature,
     nullptr,
 };
+
+// Reference Guide page 104: Harvest Sprites' New Year Card.
+char const * const gReferenceGuideHarvestSpritesNewYearCardLines[] SECTION(".rodata.reference_guide_harvest_sprites_new_year_card_lines") = {
+    gText_ReferenceGuide_HarvestSpritesNewYearCard_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_HarvestSpritesNewYearCard_Greeting_Line01,
+    gText_ReferenceGuide_HarvestSpritesNewYearCard_Wish_Line01,
+#if defined(REGION_US)
+    gText_ReferenceGuide_HarvestSpritesNewYearCard_Wish_Line02,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_HarvestSpritesNewYearCard_Signature,
+    nullptr,
+};

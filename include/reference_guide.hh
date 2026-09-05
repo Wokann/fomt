@@ -205,6 +205,8 @@ extern char const * const gReferenceGuideThomasAndHarrisTownSafetyNewYearCardLin
 extern char const * const gReferenceGuideMannaAndDukeNewYearCardsLines[];
 // Reference Guide page 103: Ellen's New Year Card.
 extern char const * const gReferenceGuideEllenNewYearCardLines[];
+// Reference Guide page 104: Harvest Sprites' New Year Card.
+extern char const * const gReferenceGuideHarvestSpritesNewYearCardLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -1216,6 +1218,15 @@ extern char const gText_ReferenceGuide_EllenNewYearCard_Signature[];
 #if defined(REGION_JP)
 extern char const gText_ReferenceGuide_EllenNewYearCard_Greeting_Line01[];
 extern char const gText_ReferenceGuide_EllenNewYearCard_Greeting_Line02[];
+#endif
+
+// Localized Harvest Sprites New Year Card text (page 104).
+extern char const gText_ReferenceGuide_HarvestSpritesNewYearCard_Title[];
+extern char const gText_ReferenceGuide_HarvestSpritesNewYearCard_Greeting_Line01[];
+extern char const gText_ReferenceGuide_HarvestSpritesNewYearCard_Wish_Line01[];
+extern char const gText_ReferenceGuide_HarvestSpritesNewYearCard_Signature[];
+#if defined(REGION_US)
+extern char const gText_ReferenceGuide_HarvestSpritesNewYearCard_Wish_Line02[];
 #endif
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
