@@ -39,6 +39,8 @@ extern char const * const gReferenceGuideAwlTakakuraLines[];
 extern char const * const gReferenceGuideAwlRomanaLines[];
 // Reference Guide page 20: AWL character profile for Lumina.
 extern char const * const gReferenceGuideAwlLuminaLines[];
+// Reference Guide page 21: AWL character profile for Sebastian.
+extern char const * const gReferenceGuideAwlSebastianLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 #endif
@@ -953,6 +955,20 @@ extern char const gText_ReferenceGuide_AwlLumina_Profile02_Line01[];
 extern char const gText_ReferenceGuide_AwlLumina_Profile02_Line02[];
 extern char const gText_ReferenceGuide_AwlLumina_Profile02_Line03[];
 extern char const gText_ReferenceGuide_AwlLumina_Profile02_Line04[];
+// Localized AWL character-profile text (page 21).
+extern char const gText_ReferenceGuide_AwlSebastian_Title[];
+extern char const gText_ReferenceGuide_AwlSebastian_Introduction_Line01[];
+extern char const gText_ReferenceGuide_AwlSebastian_Introduction_Line02[];
+extern char const gText_ReferenceGuide_AwlSebastian_Introduction_Line03[];
+extern char const gText_ReferenceGuide_AwlSebastian_Profile01_Marker[];
+extern char const gText_ReferenceGuide_AwlSebastian_Profile01_Line01[];
+extern char const gText_ReferenceGuide_AwlSebastian_Profile01_Line02[];
+extern char const gText_ReferenceGuide_AwlSebastian_Profile01_Line03[];
+extern char const gText_ReferenceGuide_AwlSebastian_Profile02_Marker[];
+extern char const gText_ReferenceGuide_AwlSebastian_Profile02_Line01[];
+extern char const gText_ReferenceGuide_AwlSebastian_Profile02_Line02[];
+extern char const gText_ReferenceGuide_AwlSebastian_Profile02_Line03[];
+extern char const gText_ReferenceGuide_AwlSebastian_Profile02_Line04[];
 #else
 extern char const gText_ReferenceGuide_HarvestSpriteMinigames_Title[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Title[];
@@ -1854,6 +1870,22 @@ extern char const gText_ReferenceGuide_AwlLumina_Profile02_Line01[];
 extern char const gText_ReferenceGuide_AwlLumina_Profile02_Line02[];
 extern char const gText_ReferenceGuide_AwlLumina_Profile02_Line03[];
 extern char const gText_ReferenceGuide_AwlLumina_Profile02_Line04[];
+// Localized AWL character-profile text (page 21).
+extern char const gText_ReferenceGuide_AwlSebastian_Title[];
+extern char const gText_ReferenceGuide_AwlSebastian_Introduction_Line01[];
+extern char const gText_ReferenceGuide_AwlSebastian_Introduction_Line02[];
+extern char const gText_ReferenceGuide_AwlSebastian_Introduction_Line03[];
+extern char const gText_ReferenceGuide_AwlSebastian_Profile01_Marker[];
+extern char const gText_ReferenceGuide_AwlSebastian_Profile01_Line01[];
+extern char const gText_ReferenceGuide_AwlSebastian_Profile01_Line02[];
+extern char const gText_ReferenceGuide_AwlSebastian_Profile01_Line03[];
+extern char const gText_ReferenceGuide_AwlSebastian_Profile01_Line04[];
+extern char const gText_ReferenceGuide_AwlSebastian_Profile02_Marker[];
+extern char const gText_ReferenceGuide_AwlSebastian_Profile02_Line01[];
+extern char const gText_ReferenceGuide_AwlSebastian_Profile02_Line02[];
+extern char const gText_ReferenceGuide_AwlSebastian_Profile02_Line03[];
+extern char const gText_ReferenceGuide_AwlSebastian_Profile02_Line04[];
+extern char const gText_ReferenceGuide_AwlSebastian_Profile02_Line05[];
 #endif
 
 #endif // REFERENCE_GUIDE_HH
