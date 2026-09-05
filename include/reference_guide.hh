@@ -83,6 +83,8 @@ extern char const * const gReferenceGuideAwlGriffinLines[];
 extern char const * const gReferenceGuideAwlMuffyLines[];
 // Reference Guide page 42: AWL character profile for Carter.
 extern char const * const gReferenceGuideAwlCarterLines[];
+// Reference Guide page 43: AWL character profile for Flora.
+extern char const * const gReferenceGuideAwlFloraLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 #endif
@@ -1333,6 +1335,23 @@ extern char const gText_ReferenceGuide_AwlCarter_Profile02_Line02[];
 extern char const gText_ReferenceGuide_AwlCarter_Profile02_Line03[];
 extern char const gText_ReferenceGuide_AwlCarter_Profile02_Line04[];
 extern char const gText_ReferenceGuide_AwlCarter_Profile02_Line05[];
+// Localized AWL character-profile text (page 43).
+extern char const gText_ReferenceGuide_AwlFlora_Title[];
+extern char const gText_ReferenceGuide_AwlFlora_Introduction_Line01[];
+extern char const gText_ReferenceGuide_AwlFlora_Introduction_Line02[];
+extern char const gText_ReferenceGuide_AwlFlora_Profile01_Marker[];
+extern char const gText_ReferenceGuide_AwlFlora_Profile01_Line01[];
+extern char const gText_ReferenceGuide_AwlFlora_Profile01_Line02[];
+extern char const gText_ReferenceGuide_AwlFlora_Profile01_Line03[];
+extern char const gText_ReferenceGuide_AwlFlora_Profile01_Line04[];
+extern char const gText_ReferenceGuide_AwlFlora_Profile02_Marker[];
+extern char const gText_ReferenceGuide_AwlFlora_Profile02_Line01[];
+extern char const gText_ReferenceGuide_AwlFlora_Profile02_Line02[];
+extern char const gText_ReferenceGuide_AwlFlora_Profile02_Line03[];
+extern char const gText_ReferenceGuide_AwlFlora_Profile02_Line04[];
+extern char const gText_ReferenceGuide_AwlFlora_Profile02_Line05[];
+extern char const gText_ReferenceGuide_AwlFlora_Profile02_Line06[];
+extern char const gText_ReferenceGuide_AwlFlora_Profile02_Line07[];
 #else
 extern char const gText_ReferenceGuide_HarvestSpriteMinigames_Title[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Title[];
@@ -2530,6 +2549,21 @@ extern char const gText_ReferenceGuide_AwlCarter_Profile02_Line03[];
 extern char const gText_ReferenceGuide_AwlCarter_Profile02_Line04[];
 extern char const gText_ReferenceGuide_AwlCarter_Profile02_Line05[];
 extern char const gText_ReferenceGuide_AwlCarter_Profile02_Line06[];
+// Localized AWL character-profile text (page 43).
+extern char const gText_ReferenceGuide_AwlFlora_Title[];
+extern char const gText_ReferenceGuide_AwlFlora_Introduction_Line01[];
+extern char const gText_ReferenceGuide_AwlFlora_Introduction_Line02[];
+extern char const gText_ReferenceGuide_AwlFlora_Introduction_Line03[];
+extern char const gText_ReferenceGuide_AwlFlora_Profile01_Marker[];
+extern char const gText_ReferenceGuide_AwlFlora_Profile01_Line01[];
+extern char const gText_ReferenceGuide_AwlFlora_Profile01_Line02[];
+extern char const gText_ReferenceGuide_AwlFlora_Profile01_Line03[];
+extern char const gText_ReferenceGuide_AwlFlora_Profile02_Marker[];
+extern char const gText_ReferenceGuide_AwlFlora_Profile02_Line01[];
+extern char const gText_ReferenceGuide_AwlFlora_Profile02_Line02[];
+extern char const gText_ReferenceGuide_AwlFlora_Profile02_Line03[];
+extern char const gText_ReferenceGuide_AwlFlora_Profile02_Line04[];
+extern char const gText_ReferenceGuide_AwlFlora_Profile02_Line05[];
 #endif
 
 #endif // REFERENCE_GUIDE_HH
