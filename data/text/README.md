@@ -11,7 +11,8 @@ Regional text belongs under this directory by its owning data structure:
         new_game_name_entry.cc, new_game_name_entry_ui.cc
         fishing_results.cc
         character_names.cc
-        reference_guide_harvest_sprite_minigames.cc
+        reference_guide/
+            harvest_sprite_minigames.cc
 
     data/text/common/
         fallback.cc       item fallbacks compiled with src/item.cc
@@ -20,6 +21,8 @@ Regional text belongs under this directory by its owning data structure:
 
 Keep categories separate even when their entries are linked beside one another:
 each source corresponds to the C/C++ structure that owns its text pointers.
+Reference Guide sources are grouped under each region's `reference_guide/`
+directory, with one source per verified guide category.
 
 The project-root `charmap.txt` is shared by every regional text category.  Its
 Shift-JIS entries include ASCII, so regional text does not need separate

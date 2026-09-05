@@ -242,7 +242,7 @@ SECTIONS
         . = 0x104258; src/character_names_data.o(.rodata.character_name_entries);
         . = 0x1043B0; asm/data/data_080F9EB8.o(.rodata.character_names_table_trailer);
         . = 0x1043BC; asm/data/data_080F9EB8.o(.rodata.reference_guide_harvest_sprite_minigames_after_character_names);
-        . = 0x1084B0; data/text/reference_guide_harvest_sprite_minigames.o(.rodata.reference_guide_harvest_sprite_minigames_text);
+        . = 0x1084B0; data/text/reference_guide/harvest_sprite_minigames.o(.rodata.reference_guide_harvest_sprite_minigames_text);
         . = 0x108F68; src/reference_guide_harvest_sprite_minigames_data.o(.rodata.reference_guide_harvest_sprite_minigames_lines);
         . = 0x109124; asm/data/data_080F9EB8.o(.rodata.reference_guide_harvest_sprite_minigames_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
