@@ -2765,3 +2765,34 @@ char const * const gReferenceGuideAwlChrisLines[] SECTION(".rodata.reference_gui
     nullptr,
 #endif
 };
+
+// Reference Guide page 24: AWL character profile for Hugh.
+char const * const gReferenceGuideAwlHughLines[] SECTION(".rodata.reference_guide_awl_hugh_lines") = {
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AwlHugh_Title,
+    gText_ReferenceGuide_AwlHugh_Introduction_Line01,
+    gText_ReferenceGuide_AwlHugh_Introduction_Line02,
+    gText_ReferenceGuide_AwlHugh_Introduction_Line03,
+    gText_ReferenceGuide_AwlHugh_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlHugh_Profile01_Line01,
+    gText_ReferenceGuide_AwlHugh_Profile01_Line02,
+    gText_ReferenceGuide_AwlHugh_Profile01_Line03,
+    gText_ReferenceGuide_AwlHugh_Profile01_Line04,
+    gText_ReferenceGuide_AwlHugh_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlHugh_Profile02_Line01,
+    gText_ReferenceGuide_AwlHugh_Profile02_Line02,
+    gText_ReferenceGuide_AwlHugh_Profile02_Line03,
+    gText_ReferenceGuide_AwlHugh_Profile02_Line04,
+    nullptr,
+#else
+    gText_ReferenceGuide_AwlHugh_Title,
+    gText_ReferenceGuide_AwlHugh_Introduction_Line01,
+    gText_ReferenceGuide_AwlHugh_Introduction_Line02,
+    gText_ReferenceGuide_AwlHugh_Introduction_Line03,
+    gText_ReferenceGuide_AwlHugh_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    nullptr,
+#endif
+};
