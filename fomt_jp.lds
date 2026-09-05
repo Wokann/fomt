@@ -340,7 +340,8 @@ SECTIONS
         . = 0x1032C4; data/text/fishing_results.o(.rodata.fishing_results);
         . = 0x10350C; asm/data/data_080F9EB8.o(.rodata.fishing_results_trailer);
         . = 0x103C1C; data/text/character_names.o(.rodata.character_names);
-        . = 0x103D9C; asm/data/data_080F9EB8.o(.rodata.character_names_trailer);
+        . = 0x103D9C; src/character_names_data.o(.rodata.character_name_entries);
+        . = 0x103EF4; asm/data/data_080F9EB8.o(.rodata.character_names_table_trailer);
         . = 0x1073B9; data/text/festival_contestants.o(.rodata.festival_contestants_set2);
         . = 0x1074BD; asm/data/data_080F9EB8.o(.rodata.festival_contestants_set2_trailer);
         . = 0x107FD0; data/text/reference_guide_harvest_sprite_minigames.o(.rodata.reference_guide_harvest_sprite_minigames_text);
