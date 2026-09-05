@@ -169,6 +169,8 @@ extern char const * const gReferenceGuideDoctorAndElliNewYearCardLines[];
 extern char const * const gReferenceGuideMineralClinicNewYearCardLines[];
 // Reference Guide page 85: Poultry Farm New Year Card.
 extern char const * const gReferenceGuidePoultryFarmNewYearCardLines[];
+// Reference Guide page 86: Poultry Farm New Year Card from Lillia and Rick.
+extern char const * const gReferenceGuidePoultryFarmLilliaAndRickNewYearCardLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -1001,6 +1003,15 @@ extern char const gText_ReferenceGuide_PoultryFarmNewYearCard_Signature_Farm[];
 extern char const gText_ReferenceGuide_PoultryFarmNewYearCard_Signature_Names[];
 #else
 extern char const gText_ReferenceGuide_PoultryFarmNewYearCard_Signature[];
+#endif
+
+// Localized Poultry Farm Lillia and Rick New Year Card text (page 86).
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_PoultryFarmLilliaAndRickNewYearCard_Message_Line01[];
+extern char const gText_ReferenceGuide_PoultryFarmLilliaAndRickNewYearCard_Signature_Farm[];
+extern char const gText_ReferenceGuide_PoultryFarmLilliaAndRickNewYearCard_Signature_Names[];
+#else
+extern char const gText_ReferenceGuide_PoultryFarmLilliaAndRickNewYearCard_Signature[];
 #endif
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
