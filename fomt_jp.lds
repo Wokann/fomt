@@ -385,7 +385,9 @@ SECTIONS
         . = 0x10E970; src/reference_guide.o(.rodata.reference_guide_awl_takakura_lines);
         . = 0x10E9B0; data/text/reference_guide/awl_profiles/romana.o(.rodata.reference_guide_awl_romana_text);
         . = 0x10EB10; src/reference_guide.o(.rodata.reference_guide_awl_romana_lines);
-        . = 0x10EB54; asm/data/data_080F9EB8.o(.rodata.reference_guide_awl_romana_trailer);
+        . = 0x10EB54; data/text/reference_guide/awl_profiles/lumina.o(.rodata.reference_guide_awl_lumina_text);
+        . = 0x10EC54; src/reference_guide.o(.rodata.reference_guide_awl_lumina_lines);
+        . = 0x10EC90; asm/data/data_080F9EB8.o(.rodata.reference_guide_awl_lumina_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */

@@ -283,7 +283,9 @@ SECTIONS
         . = 0x10E6E8; src/reference_guide.o(.rodata.reference_guide_awl_takakura_lines);
         . = 0x10E734; data/text/reference_guide/awl_profiles/romana.o(.rodata.reference_guide_awl_romana_text);
         . = 0x10E904; src/reference_guide.o(.rodata.reference_guide_awl_romana_lines);
-        . = 0x10E95C; asm/data/data_080F9EB8.o(.rodata.reference_guide_awl_romana_trailer);
+        . = 0x10E95C; data/text/reference_guide/awl_profiles/lumina.o(.rodata.reference_guide_awl_lumina_text);
+        . = 0x10EA48; src/reference_guide.o(.rodata.reference_guide_awl_lumina_lines);
+        . = 0x10EA80; asm/data/data_080F9EB8.o(.rodata.reference_guide_awl_lumina_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
