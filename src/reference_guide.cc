@@ -6414,3 +6414,18 @@ char const * const gReferenceGuideKaiAndPopuriNewYearCardLines[] SECTION(".rodat
     gText_ReferenceGuide_KaiAndPopuriNewYearCard_Signature,
     nullptr,
 };
+
+// Reference Guide page 93: Jeff's New Year Card.
+char const * const gReferenceGuideJeffNewYearCardLines[] SECTION(".rodata.reference_guide_jeff_new_year_card_lines") = {
+    gText_ReferenceGuide_JeffNewYearCard_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_JeffNewYearCard_Greeting_Line01,
+    gText_ReferenceGuide_JeffNewYearCard_Greeting_Line02,
+    gText_ReferenceGuide_JeffNewYearCard_Greeting_Line03,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_JeffNewYearCard_Supermarket_Line01,
+    gText_ReferenceGuide_JeffNewYearCard_Supermarket_Line02,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_JeffNewYearCard_Signature,
+    nullptr,
+};

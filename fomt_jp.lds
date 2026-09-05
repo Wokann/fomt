@@ -530,7 +530,9 @@ SECTIONS
         . = 0x116E68; src/reference_guide.o(.rodata.reference_guide_kai_new_year_card_lines);
         . = 0x116E94; data/text/reference_guide/kai_and_popuri_new_year_card.o(.rodata.reference_guide_kai_and_popuri_new_year_card_text);
         . = 0x116F0C; src/reference_guide.o(.rodata.reference_guide_kai_and_popuri_new_year_card_lines);
-        . = 0x116F28; asm/data/data_080F9EB8.o(.rodata.reference_guide_kai_and_popuri_new_year_card_trailer);
+        . = 0x116F28; data/text/reference_guide/jeff_new_year_card.o(.rodata.reference_guide_jeff_new_year_card_text);
+        . = 0x116FDC; src/reference_guide.o(.rodata.reference_guide_jeff_new_year_card_lines);
+        . = 0x117008; asm/data/data_080F9EB8.o(.rodata.reference_guide_jeff_new_year_card_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */

@@ -428,7 +428,9 @@ SECTIONS
         . = 0x115ED4; src/reference_guide.o(.rodata.reference_guide_kai_new_year_card_lines);
         . = 0x115EF4; data/text/reference_guide/kai_and_popuri_new_year_card.o(.rodata.reference_guide_kai_and_popuri_new_year_card_text);
         . = 0x115F4C; src/reference_guide.o(.rodata.reference_guide_kai_and_popuri_new_year_card_lines);
-        . = 0x115F6C; asm/data/data_080F9EB8.o(.rodata.reference_guide_kai_and_popuri_new_year_card_trailer);
+        . = 0x115F6C; data/text/reference_guide/jeff_new_year_card.o(.rodata.reference_guide_jeff_new_year_card_text);
+        . = 0x116000; src/reference_guide.o(.rodata.reference_guide_jeff_new_year_card_lines);
+        . = 0x11602C; asm/data/data_080F9EB8.o(.rodata.reference_guide_jeff_new_year_card_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);

@@ -183,6 +183,8 @@ extern char const * const gReferenceGuideGrayWellWishesNewYearCardLines[];
 extern char const * const gReferenceGuideKaiNewYearCardLines[];
 // Reference Guide page 92: Kai and Popuri's New Year Card.
 extern char const * const gReferenceGuideKaiAndPopuriNewYearCardLines[];
+// Reference Guide page 93: Jeff's New Year Card.
+extern char const * const gReferenceGuideJeffNewYearCardLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -1087,6 +1089,15 @@ extern char const gText_ReferenceGuide_KaiAndPopuriNewYearCard_Greeting_Line01[]
 #else
 extern char const gText_ReferenceGuide_KaiAndPopuriNewYearCard_HowAboutYou_Line01[];
 #endif
+
+// Localized Jeff New Year Card text (page 93).
+extern char const gText_ReferenceGuide_JeffNewYearCard_Title[];
+extern char const gText_ReferenceGuide_JeffNewYearCard_Greeting_Line01[];
+extern char const gText_ReferenceGuide_JeffNewYearCard_Greeting_Line02[];
+extern char const gText_ReferenceGuide_JeffNewYearCard_Greeting_Line03[];
+extern char const gText_ReferenceGuide_JeffNewYearCard_Supermarket_Line01[];
+extern char const gText_ReferenceGuide_JeffNewYearCard_Supermarket_Line02[];
+extern char const gText_ReferenceGuide_JeffNewYearCard_Signature[];
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];
