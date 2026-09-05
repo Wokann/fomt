@@ -105,6 +105,8 @@ extern char const * const gReferenceGuideAwlNakLines[];
 extern char const * const gReferenceGuideAwlNicLines[];
 // Reference Guide page 53: AWL character profile for Flak.
 extern char const * const gReferenceGuideAwlFlakLines[];
+// Reference Guide page 54: AWL character profile for the player.
+extern char const * const gReferenceGuideAwlPlayerLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 #endif
@@ -1474,6 +1476,15 @@ extern char const gText_ReferenceGuide_AwlFlak_Profile02_Marker[];
 extern char const gText_ReferenceGuide_AwlFlak_Profile02_Line01[];
 extern char const gText_ReferenceGuide_AwlFlak_Profile02_Line02[];
 extern char const gText_ReferenceGuide_AwlFlak_Profile02_Line03[];
+// Localized AWL character-profile text (page 54).
+extern char const gText_ReferenceGuide_AwlPlayer_Title[];
+extern char const gText_ReferenceGuide_AwlPlayer_Introduction_Line01[];
+extern char const gText_ReferenceGuide_AwlPlayer_Introduction_Line02[];
+extern char const gText_ReferenceGuide_AwlPlayer_Profile01_Marker[];
+extern char const gText_ReferenceGuide_AwlPlayer_Profile01_Line01[];
+extern char const gText_ReferenceGuide_AwlPlayer_Profile02_Marker[];
+extern char const gText_ReferenceGuide_AwlPlayer_Profile02_Line01[];
+extern char const gText_ReferenceGuide_AwlPlayer_Profile02_Line02[];
 #else
 extern char const gText_ReferenceGuide_HarvestSpriteMinigames_Title[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Title[];
@@ -2801,6 +2812,17 @@ extern char const gText_ReferenceGuide_AwlFlak_Profile02_Marker[];
 extern char const gText_ReferenceGuide_AwlFlak_Profile02_Line01[];
 extern char const gText_ReferenceGuide_AwlFlak_Profile02_Line02[];
 extern char const gText_ReferenceGuide_AwlFlak_Profile02_Line03[];
+// Localized AWL character-profile text (page 54).
+extern char const gText_ReferenceGuide_AwlPlayer_Title[];
+extern char const gText_ReferenceGuide_AwlPlayer_Introduction_Line01[];
+extern char const gText_ReferenceGuide_AwlPlayer_Introduction_Line02[];
+extern char const gText_ReferenceGuide_AwlPlayer_Introduction_Line03[];
+extern char const gText_ReferenceGuide_AwlPlayer_Profile01_Marker[];
+extern char const gText_ReferenceGuide_AwlPlayer_Profile01_Line01[];
+extern char const gText_ReferenceGuide_AwlPlayer_Profile01_Line02[];
+extern char const gText_ReferenceGuide_AwlPlayer_Profile02_Marker[];
+extern char const gText_ReferenceGuide_AwlPlayer_Profile02_Line01[];
+extern char const gText_ReferenceGuide_AwlPlayer_Profile02_Line02[];
 #endif
 
 #endif // REFERENCE_GUIDE_HH

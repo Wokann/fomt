@@ -350,7 +350,9 @@ SECTIONS
         . = 0x1112F4; src/reference_guide.o(.rodata.reference_guide_awl_nic_lines);
         . = 0x111328; data/text/reference_guide/awl_profiles/flak.o(.rodata.reference_guide_awl_flak_text);
         . = 0x111390; src/reference_guide.o(.rodata.reference_guide_awl_flak_lines);
-        . = 0x1113C4; asm/data/data_080F9EB8.o(.rodata.reference_guide_awl_flak_trailer);
+        . = 0x1113C4; data/text/reference_guide/awl_profiles/player.o(.rodata.reference_guide_awl_player_text);
+        . = 0x111478; src/reference_guide.o(.rodata.reference_guide_awl_player_lines);
+        . = 0x1114AC; asm/data/data_080F9EB8.o(.rodata.reference_guide_awl_player_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);

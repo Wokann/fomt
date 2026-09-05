@@ -3928,3 +3928,36 @@ char const * const gReferenceGuideAwlFlakLines[] SECTION(".rodata.reference_guid
     nullptr,
 #endif
 };
+
+// Reference Guide page 54: AWL character profile for the player.
+char const * const gReferenceGuideAwlPlayerLines[] SECTION(".rodata.reference_guide_awl_player_lines") = {
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AwlPlayer_Title,
+    gText_ReferenceGuide_AwlPlayer_Introduction_Line01,
+    gText_ReferenceGuide_AwlPlayer_Introduction_Line02,
+    gText_ReferenceGuide_AwlPlayer_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlPlayer_Profile01_Line01,
+    // Shared physical suffix; it completes this sentence.
+    gText_ReferenceGuide_AwlProfile_IsSuffix,
+    gText_ReferenceGuide_AwlPlayer_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlPlayer_Profile02_Line01,
+    gText_ReferenceGuide_AwlPlayer_Profile02_Line02,
+    nullptr,
+#else
+    gText_ReferenceGuide_AwlPlayer_Title,
+    gText_ReferenceGuide_AwlPlayer_Introduction_Line01,
+    gText_ReferenceGuide_AwlPlayer_Introduction_Line02,
+    gText_ReferenceGuide_AwlPlayer_Introduction_Line03,
+    gText_ReferenceGuide_AwlPlayer_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlPlayer_Profile01_Line01,
+    gText_ReferenceGuide_AwlPlayer_Profile01_Line02,
+    gText_ReferenceGuide_AwlPlayer_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlPlayer_Profile02_Line01,
+    gText_ReferenceGuide_AwlPlayer_Profile02_Line02,
+    nullptr,
+#endif
+};
