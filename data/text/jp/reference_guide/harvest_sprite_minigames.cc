@@ -9,13 +9,13 @@ char const gText_ReferenceGuide_HarvestSpriteMinigames_Title[32] SECTION(".rodat
 char const gText_ReferenceGuide_HarvestSpriteHarvesting_Title[8] SECTION(".rodata.reference_guide_harvest_sprite_minigames_text") =
     "★収穫";
 
-char const gText_ReferenceGuide_HarvestSpriteMinigames_EmptyLine[4] SECTION(".rodata.reference_guide_harvest_sprite_minigames_text") =
+char const gText_ReferenceGuide_Layout_EmptyLine[4] SECTION(".rodata.reference_guide_harvest_sprite_minigames_text") =
     "";
 
 char const gText_ReferenceGuide_HarvestSpriteHarvesting_Subtitle[28] SECTION(".rodata.reference_guide_harvest_sprite_minigames_text") =
     "「コロボックルと遊ぼう１」";
 
-char const gText_ReferenceGuide_HarvestSpriteMinigames_PaddedEmptyLine[32] SECTION(".rodata.reference_guide_harvest_sprite_minigames_text") =
+char const gText_ReferenceGuide_Layout_PaddedEmptyLine[32] SECTION(".rodata.reference_guide_harvest_sprite_minigames_text") =
     "　　　　　　　　　　　　　　";
 
 char const gText_ReferenceGuide_HarvestSpriteHarvesting_Friendship_Line01[32] SECTION(".rodata.reference_guide_harvest_sprite_minigames_text") =
@@ -105,7 +105,7 @@ char const gText_ReferenceGuide_HarvestSpriteHarvesting_Practice_Line01[32] SECT
 char const gText_ReferenceGuide_HarvestSpriteHarvesting_Practice_Line02[32] SECTION(".rodata.reference_guide_harvest_sprite_minigames_text") =
     "めるように頑張って下さい。　";
 
-char const gText_ReferenceGuide_HarvestSpriteMinigames_SectionDivider[32] SECTION(".rodata.reference_guide_harvest_sprite_minigames_text") =
+char const gText_ReferenceGuide_Layout_SectionDivider[32] SECTION(".rodata.reference_guide_harvest_sprite_minigames_text") =
     "－－－－－－－－－－－－－－";
 
 char const gText_ReferenceGuide_HarvestSpriteAnimalCare_Title[16] SECTION(".rodata.reference_guide_harvest_sprite_minigames_text") =
