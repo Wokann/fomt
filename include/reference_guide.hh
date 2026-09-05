@@ -73,6 +73,8 @@ extern char const * const gReferenceGuideAwlMurrayLines[];
 extern char const * const gReferenceGuideAwlTimLines[];
 // Reference Guide page 37: AWL character profile for Ruby.
 extern char const * const gReferenceGuideAwlRubyLines[];
+// Reference Guide page 38: AWL character profile for Nami.
+extern char const * const gReferenceGuideAwlNamiLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 #endif
@@ -1248,6 +1250,21 @@ extern char const gText_ReferenceGuide_AwlRuby_Profile02_Line02[];
 extern char const gText_ReferenceGuide_AwlRuby_Profile02_Line03[];
 extern char const gText_ReferenceGuide_AwlRuby_Profile02_Line04[];
 extern char const gText_ReferenceGuide_AwlRuby_Profile02_Line05[];
+// Localized AWL character-profile text (page 38).
+extern char const gText_ReferenceGuide_AwlNami_Title[];
+extern char const gText_ReferenceGuide_AwlNami_Introduction_Line01[];
+extern char const gText_ReferenceGuide_AwlNami_Introduction_Line02[];
+extern char const gText_ReferenceGuide_AwlNami_Profile01_Marker[];
+extern char const gText_ReferenceGuide_AwlNami_Profile01_Line01[];
+extern char const gText_ReferenceGuide_AwlNami_Profile01_Line02[];
+extern char const gText_ReferenceGuide_AwlNami_Profile01_Line03[];
+extern char const gText_ReferenceGuide_AwlNami_Profile01_Line04[];
+extern char const gText_ReferenceGuide_AwlNami_Profile01_Line05[];
+extern char const gText_ReferenceGuide_AwlNami_Profile02_Marker[];
+extern char const gText_ReferenceGuide_AwlNami_Profile02_Line01[];
+extern char const gText_ReferenceGuide_AwlNami_Profile02_Line02[];
+extern char const gText_ReferenceGuide_AwlNami_Profile02_Line03[];
+extern char const gText_ReferenceGuide_AwlNami_Profile02_Line04[];
 #else
 extern char const gText_ReferenceGuide_HarvestSpriteMinigames_Title[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Title[];
@@ -2369,6 +2386,21 @@ extern char const gText_ReferenceGuide_AwlRuby_Profile02_Line01[];
 extern char const gText_ReferenceGuide_AwlRuby_Profile02_Line02[];
 extern char const gText_ReferenceGuide_AwlRuby_Profile02_Line03[];
 extern char const gText_ReferenceGuide_AwlRuby_Profile02_Line04[];
+// Localized AWL character-profile text (page 38).
+extern char const gText_ReferenceGuide_AwlNami_Title[];
+extern char const gText_ReferenceGuide_AwlNami_Introduction_Line01[];
+extern char const gText_ReferenceGuide_AwlNami_Introduction_Line02[];
+extern char const gText_ReferenceGuide_AwlNami_Profile01_Marker[];
+extern char const gText_ReferenceGuide_AwlNami_Profile01_Line01[];
+extern char const gText_ReferenceGuide_AwlNami_Profile01_Line02[];
+extern char const gText_ReferenceGuide_AwlNami_Profile01_Line03[];
+extern char const gText_ReferenceGuide_AwlNami_Profile01_Line04[];
+extern char const gText_ReferenceGuide_AwlNami_Profile01_Line05[];
+extern char const gText_ReferenceGuide_AwlNami_Profile02_Marker[];
+extern char const gText_ReferenceGuide_AwlNami_Profile02_Line01[];
+extern char const gText_ReferenceGuide_AwlNami_Profile02_Line02[];
+extern char const gText_ReferenceGuide_AwlNami_Profile02_Line03[];
+extern char const gText_ReferenceGuide_AwlNami_Profile02_Line04[];
 #endif
 
 #endif // REFERENCE_GUIDE_HH

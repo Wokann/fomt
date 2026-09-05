@@ -318,7 +318,9 @@ SECTIONS
         . = 0x10FEA4; src/reference_guide.o(.rodata.reference_guide_awl_tim_lines);
         . = 0x10FEE4; data/text/reference_guide/awl_profiles/ruby.o(.rodata.reference_guide_awl_ruby_text);
         . = 0x10FFE4; src/reference_guide.o(.rodata.reference_guide_awl_ruby_lines);
-        . = 0x110020; asm/data/data_080F9EB8.o(.rodata.reference_guide_awl_ruby_trailer);
+        . = 0x110020; data/text/reference_guide/awl_profiles/nami.o(.rodata.reference_guide_awl_nami_text);
+        . = 0x110158; src/reference_guide.o(.rodata.reference_guide_awl_nami_lines);
+        . = 0x11019C; asm/data/data_080F9EB8.o(.rodata.reference_guide_awl_nami_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
