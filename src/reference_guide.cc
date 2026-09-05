@@ -4766,3 +4766,67 @@ char const * const gReferenceGuideAcquiringKitchenLines[] SECTION(".rodata.refer
 #endif
     nullptr,
 };
+
+// Reference Guide page 60: Help from the Harvest Sprites. The renderer
+// consumes one flat pointer sequence and stops at nullptr; sections are visual.
+char const * const gReferenceGuideHarvestSpriteHelpLines[] SECTION(".rodata.reference_guide_harvest_sprite_help_lines") = {
+    gText_ReferenceGuide_HarvestSpriteHelp_Title,
+
+    // Introduction.
+    gText_ReferenceGuide_HarvestSpriteHelp_Introduction_Line01,
+    gText_ReferenceGuide_HarvestSpriteHelp_Introduction_Line02,
+    gText_ReferenceGuide_HarvestSpriteHelp_Introduction_Line03,
+    gText_ReferenceGuide_HarvestSpriteHelp_Introduction_Line04,
+    gText_ReferenceGuide_HarvestSpriteHelp_Introduction_Line05,
+#if defined(REGION_US)
+    gText_ReferenceGuide_HarvestSpriteHelp_Introduction_Line06,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+
+    // Available jobs.
+    gText_ReferenceGuide_HarvestSpriteHelp_AvailableJobs_Line01,
+    gText_ReferenceGuide_HarvestSpriteHelp_AvailableJobs_Line02,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_EmptyLine,
+#endif
+
+    // Watering.
+    gText_ReferenceGuide_HarvestSpriteHelp_Watering_Title,
+    gText_ReferenceGuide_HarvestSpriteHelp_Watering_Description_Line01,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_HarvestSpriteHelp_Watering_Description_Line02,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+
+    // Harvest.
+    gText_ReferenceGuide_HarvestSpriteHelp_Harvest_Title,
+    gText_ReferenceGuide_HarvestSpriteHelp_Harvest_Description_Line01,
+    gText_ReferenceGuide_HarvestSpriteHelp_Harvest_Description_Line02,
+    gText_ReferenceGuide_EmptyLine,
+
+    // Animal Husbandry.
+    gText_ReferenceGuide_HarvestSpriteHelp_AnimalCare_Title,
+    gText_ReferenceGuide_HarvestSpriteHelp_AnimalCare_Description_Line01,
+    gText_ReferenceGuide_HarvestSpriteHelp_AnimalCare_Description_Line02,
+    gText_ReferenceGuide_HarvestSpriteHelp_AnimalCare_Description_Line03,
+#if defined(REGION_US)
+    gText_ReferenceGuide_HarvestSpriteHelp_AnimalCare_Description_Line04,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+
+    // Work proficiency and friendship warning.
+    gText_ReferenceGuide_HarvestSpriteHelp_WorkProficiency_Line01,
+    gText_ReferenceGuide_HarvestSpriteHelp_WorkProficiency_Line02,
+    gText_ReferenceGuide_HarvestSpriteHelp_WorkProficiency_Line03,
+    gText_ReferenceGuide_HarvestSpriteHelp_WorkProficiency_Line04,
+    gText_ReferenceGuide_HarvestSpriteHelp_WorkProficiency_Line05,
+    gText_ReferenceGuide_HarvestSpriteHelp_FriendshipWarning_Line01,
+    gText_ReferenceGuide_HarvestSpriteHelp_FriendshipWarning_Line02,
+    gText_ReferenceGuide_HarvestSpriteHelp_FriendshipWarning_Line03,
+    gText_ReferenceGuide_HarvestSpriteHelp_FriendshipWarning_Line04,
+    gText_ReferenceGuide_HarvestSpriteHelp_FriendshipWarning_Line05,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_HarvestSpriteHelp_FriendshipWarning_Line06,
+#endif
+    nullptr,
+};

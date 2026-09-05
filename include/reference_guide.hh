@@ -117,6 +117,8 @@ extern char const * const gReferenceGuideCookbook3Lines[];
 extern char const * const gReferenceGuideCookbook4Lines[];
 // Reference Guide page 59: Acquiring a Kitchen.
 extern char const * const gReferenceGuideAcquiringKitchenLines[];
+// Reference Guide page 60: Help from the Harvest Sprites.
+extern char const * const gReferenceGuideHarvestSpriteHelpLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -205,6 +207,42 @@ extern char const gText_ReferenceGuide_AcquiringKitchen_CookingVariety_Line04[];
 #else
 extern char const gText_ReferenceGuide_AcquiringKitchen_KitchenPurchase_Line03[];
 extern char const gText_ReferenceGuide_AcquiringKitchen_KitchenPurchase_Line04[];
+#endif
+
+// Localized Harvest Sprite help text (page 60).
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_Title[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_Introduction_Line01[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_Introduction_Line02[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_Introduction_Line03[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_Introduction_Line04[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_Introduction_Line05[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_AvailableJobs_Line01[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_AvailableJobs_Line02[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_Watering_Title[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_Watering_Description_Line01[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_Harvest_Title[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_Harvest_Description_Line01[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_Harvest_Description_Line02[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_AnimalCare_Title[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_AnimalCare_Description_Line01[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_AnimalCare_Description_Line02[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_AnimalCare_Description_Line03[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_WorkProficiency_Line01[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_WorkProficiency_Line02[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_WorkProficiency_Line03[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_WorkProficiency_Line04[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_WorkProficiency_Line05[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_FriendshipWarning_Line01[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_FriendshipWarning_Line02[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_FriendshipWarning_Line03[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_FriendshipWarning_Line04[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_FriendshipWarning_Line05[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_Watering_Description_Line02[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_FriendshipWarning_Line06[];
+#else
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_Introduction_Line06[];
+extern char const gText_ReferenceGuide_HarvestSpriteHelp_AnimalCare_Description_Line04[];
 #endif
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];
