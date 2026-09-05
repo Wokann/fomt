@@ -139,6 +139,8 @@ extern char const * const gReferenceGuidePoultryFarmLines[];
 extern char const * const gReferenceGuideYodelFarmLines[];
 // Reference Guide page 70: Won's Shop.
 extern char const * const gReferenceGuideWonsShopLines[];
+// Reference Guide page 71: Van's Shop.
+extern char const * const gReferenceGuideVansShopLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -719,6 +721,9 @@ extern char const gText_ReferenceGuide_WonsShop_Seeds_SeasonalAvailability_Line0
 extern char const gText_ReferenceGuide_WonsShop_Seeds_SeasonalAvailability_Line02[];
 extern char const gText_ReferenceGuide_WonsShop_DogTraining_Availability_Line03[];
 #endif
+
+// Localized Van's Shop text (page 71).
+extern char const gText_ReferenceGuide_VansShop_Title[];
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];

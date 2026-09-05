@@ -5739,3 +5739,10 @@ char const * const gReferenceGuideWonsShopLines[] SECTION(".rodata.reference_gui
     gText_ReferenceGuide_WonsShop_JewelsOfTruth_Description_Line03,
     nullptr,
 };
+
+// Reference Guide page 71: Van's Shop.
+char const * const gReferenceGuideVansShopLines[] SECTION(".rodata.reference_guide_vans_shop_lines") = {
+    gText_ReferenceGuide_VansShop_Title,
+    gText_ReferenceGuide_EmptyLine,
+    nullptr,
+};
