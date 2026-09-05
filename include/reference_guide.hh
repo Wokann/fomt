@@ -181,6 +181,8 @@ extern char const * const gReferenceGuideGrayNewYearCardLines[];
 extern char const * const gReferenceGuideGrayWellWishesNewYearCardLines[];
 // Reference Guide page 91: Kai's New Year Card.
 extern char const * const gReferenceGuideKaiNewYearCardLines[];
+// Reference Guide page 92: Kai and Popuri's New Year Card.
+extern char const * const gReferenceGuideKaiAndPopuriNewYearCardLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -1074,6 +1076,16 @@ extern char const gText_ReferenceGuide_KaiNewYearCard_Arrival_Line01[];
 extern char const gText_ReferenceGuide_KaiNewYearCard_MineralTown_Line01[];
 extern char const gText_ReferenceGuide_KaiNewYearCard_MineralTown_Line02[];
 extern char const gText_ReferenceGuide_KaiNewYearCard_SeeYouSoon_Line01[];
+#endif
+
+// Localized Kai and Popuri New Year Card text (page 92).
+extern char const gText_ReferenceGuide_KaiAndPopuriNewYearCard_Title[];
+extern char const gText_ReferenceGuide_KaiAndPopuriNewYearCard_Wellbeing_Line01[];
+extern char const gText_ReferenceGuide_KaiAndPopuriNewYearCard_Signature[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_KaiAndPopuriNewYearCard_Greeting_Line01[];
+#else
+extern char const gText_ReferenceGuide_KaiAndPopuriNewYearCard_HowAboutYou_Line01[];
 #endif
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];

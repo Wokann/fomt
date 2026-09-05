@@ -6395,3 +6395,22 @@ char const * const gReferenceGuideKaiNewYearCardLines[] SECTION(".rodata.referen
     gText_ReferenceGuide_KaiNewYearCard_Signature,
     nullptr,
 };
+
+// Reference Guide page 92: Kai and Popuri's New Year Card. The US ROM
+// physically reuses the Doctor card's New Year greeting.
+char const * const gReferenceGuideKaiAndPopuriNewYearCardLines[] SECTION(".rodata.reference_guide_kai_and_popuri_new_year_card_lines") = {
+    gText_ReferenceGuide_KaiAndPopuriNewYearCard_Title,
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_KaiAndPopuriNewYearCard_Greeting_Line01,
+#else
+    gText_ReferenceGuide_DoctorNewYearCard_Greeting_Line01,
+#endif
+    gText_ReferenceGuide_KaiAndPopuriNewYearCard_Wellbeing_Line01,
+#if defined(REGION_US)
+    gText_ReferenceGuide_KaiAndPopuriNewYearCard_HowAboutYou_Line01,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_KaiAndPopuriNewYearCard_Signature,
+    nullptr,
+};
