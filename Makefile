@@ -104,10 +104,12 @@ ifeq ($(GAME_REGION),JP)
 TEXT_REGION := jp
 TEXT_SOURCES := data/text/jp/tool.cc data/text/jp/food.cc data/text/jp/article.cc data/text/jp/calendar.cc data/text/jp/help_menu.cc data/text/jp/animal_memorial.cc data/text/jp/load_error.cc data/text/jp/menu.cc data/text/jp/not_available.cc data/text/jp/fixed_labels.cc data/text/jp/new_game_menu.cc data/text/jp/new_game_status.cc data/text/jp/new_game_help.cc data/text/jp/new_game_save.cc data/text/jp/new_game_identity.cc data/text/jp/new_game_name_entry.cc data/text/jp/new_game_name_entry_ui.cc data/text/jp/festival_contestants.cc data/text/jp/staff_credits.cc data/text/jp/fishing_results.cc data/text/jp/character_names.cc data/text/jp/reference_guide/harvest_sprite_minigames.cc
 TEXT_SOURCES += data/text/jp/reference_guide/festival_hints.cc
+TEXT_SOURCES += data/text/jp/reference_guide/controls.cc
 else
 TEXT_REGION := us
 TEXT_SOURCES := data/text/us/tool.cc data/text/us/food.cc data/text/us/article.cc data/text/us/calendar.cc data/text/us/help_menu.cc data/text/us/animal_memorial.cc data/text/us/load_error.cc data/text/us/menu.cc data/text/us/not_available.cc data/text/us/fixed_labels.cc data/text/us/new_game_menu.cc data/text/us/new_game_status.cc data/text/us/new_game_help.cc data/text/us/new_game_save.cc data/text/us/new_game_identity.cc data/text/us/new_game_name_entry.cc data/text/us/new_game_name_entry_ui.cc data/text/us/fishing_results.cc data/text/us/character_names.cc data/text/us/reference_guide/harvest_sprite_minigames.cc
 TEXT_SOURCES += data/text/us/reference_guide/festival_hints.cc
+TEXT_SOURCES += data/text/us/reference_guide/controls.cc
 endif
 
 TEXT_GENERATED_SOURCES := $(patsubst data/text/$(TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.cc,$(TEXT_SOURCES))

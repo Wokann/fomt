@@ -51,6 +51,11 @@ JP revision 0 has a verified linker layout and an exact build target.  The JP
 ROM remains an ignored local comparison baseline: use only bounded,
 documented source fragments where necessary, never a whole-ROM `incbin`.
 
+Reference Guide text is organized by content category under
+`data/text/<region>/reference_guide/`; its small native pointer tables and
+declarations stay centralized in `src/reference_guide.cc` and
+`include/reference_guide.hh`. Pages 0-8 currently use this layout.
+
 ## Setting up
 
 See [INSTALL.md](./INSTALL.md).
