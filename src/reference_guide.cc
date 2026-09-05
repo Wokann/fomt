@@ -5872,3 +5872,189 @@ char const * const gReferenceGuideShelfLines[] SECTION(".rodata.reference_guide_
 #endif
     nullptr,
 };
+
+// Reference Guide page 77: Staff. The shared table keeps common credit groups
+// together, with only their original regional layout differences conditional.
+char const * const gReferenceGuideStaffCreditsLines[] SECTION(".rodata.reference_guide_staff_credits_lines") = {
+    gText_ReferenceGuide_StaffCredits_Staff_Title,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_StaffCredits_Coordinator_Title,
+    gText_ReferenceGuide_EmptyLine,
+#else
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_StaffCredits_Coordinator_Title,
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_StaffCredits_TatsuyaSako,
+    gText_ReferenceGuide_StaffCredits_RyoFukutoyo,
+    gText_ReferenceGuide_StaffCredits_DaisukeKondoh,
+    gText_ReferenceGuide_StaffCredits_DaisukeKawabe,
+    gText_ReferenceGuide_StaffCredits_HitoyaYamasaki,
+    gText_ReferenceGuide_StaffCredits_ShosakuTakeda,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    gText_ReferenceGuide_StaffCredits_Designer_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_StaffCredits_TsuyoshiYamaue,
+    gText_ReferenceGuide_StaffCredits_MasanobuFuchie,
+    gText_ReferenceGuide_StaffCredits_PochiYanai,
+    gText_ReferenceGuide_StaffCredits_YoshikoTakeyama,
+    gText_ReferenceGuide_StaffCredits_MarimoKawabata,
+    gText_ReferenceGuide_StaffCredits_KayokoIsozaki,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    gText_ReferenceGuide_StaffCredits_Sound_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_StaffCredits_AiYamashita,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    gText_ReferenceGuide_StaffCredits_Programmer_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_StaffCredits_KazutoshiSatoda,
+    gText_ReferenceGuide_StaffCredits_KazumasaHirata,
+    gText_ReferenceGuide_StaffCredits_KoichiOhashi,
+    gText_ReferenceGuide_StaffCredits_ItokiTou,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_StaffCredits_HuangXing,
+    gText_ReferenceGuide_StaffCredits_SunRijin,
+#else
+    gText_ReferenceGuide_StaffCredits_Kosei,
+    gText_ReferenceGuide_StaffCredits_NisekiSon,
+    gText_ReferenceGuide_StaffCredits_MinkunJyo,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    gText_ReferenceGuide_StaffCredits_Debugger_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_StaffCredits_RieMurao,
+    gText_ReferenceGuide_StaffCredits_AnkoKitamura,
+    gText_ReferenceGuide_StaffCredits_MasakiGamou,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    gText_ReferenceGuide_StaffCredits_SpecialThanks_Title,
+#if defined(REGION_US)
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_StaffCredits_YasuoOhno,
+    gText_ReferenceGuide_StaffCredits_HideyukiMizutani,
+    gText_ReferenceGuide_StaffCredits_JunichiKutsuzawa,
+    gText_ReferenceGuide_StaffCredits_TomioKanazawa,
+    gText_ReferenceGuide_StaffCredits_MasatoMizushima,
+    gText_ReferenceGuide_StaffCredits_MakotoTaniguchi,
+    gText_ReferenceGuide_StaffCredits_HisashiUrano,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    gText_ReferenceGuide_StaffCredits_Promotion_Title,
+#if defined(REGION_US)
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_StaffCredits_TakuhiroGotoh,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    gText_ReferenceGuide_StaffCredits_DesignProgress_Title,
+#if defined(REGION_US)
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_StaffCredits_MikiMiyagi,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    gText_ReferenceGuide_StaffCredits_Assistant_Title,
+#if defined(REGION_US)
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_StaffCredits_MarikoIshikawa,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+#if defined(REGION_JP)
+    gText_ReferenceGuide_StaffCredits_PublicRelationsAndTestPlayDirector_Title_Line01,
+    gText_ReferenceGuide_StaffCredits_PublicRelationsAndTestPlayDirector_Title_Line02,
+#else
+    gText_ReferenceGuide_StaffCredits_AssistantProducer_Title,
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_StaffCredits_TakeshiOgura,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    gText_ReferenceGuide_StaffCredits_TestPlay_Title,
+#if defined(REGION_US)
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_StaffCredits_DigitalHearts,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    gText_ReferenceGuide_StaffCredits_OriginalGameDesign_Title,
+#if defined(REGION_US)
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_StaffCredits_SetsukoMiyakoshi,
+    gText_ReferenceGuide_StaffCredits_TomomiYamatate,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    gText_ReferenceGuide_StaffCredits_OriginalGraphic_Title,
+#if defined(REGION_US)
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_StaffCredits_ShinichiHayakawa,
+    gText_ReferenceGuide_StaffCredits_ShunosukeOzaki,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    gText_ReferenceGuide_StaffCredits_CharacterDesign_Title,
+#if defined(REGION_US)
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_StaffCredits_IgusaMatsuyama,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    gText_ReferenceGuide_StaffCredits_OriginalPlanningAndProduction_Title,
+#if defined(REGION_US)
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_StaffCredits_YasuhiroWada,
+#if defined(REGION_US)
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_StaffCredits_UsExecutiveProducer_Title,
+    gText_ReferenceGuide_StaffCredits_HiroMaekawa,
+    gText_ReferenceGuide_StaffCredits_NatsumeInc,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_StaffCredits_UsProductManager_Title,
+    gText_ReferenceGuide_StaffCredits_GrahamMarkay,
+    gText_ReferenceGuide_StaffCredits_NatsumeInc,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_StaffCredits_LocalizationManager_Title,
+    gText_ReferenceGuide_StaffCredits_SachikoYamauchi,
+    gText_ReferenceGuide_StaffCredits_NatsumeInc,
+#endif
+    nullptr,
+};

@@ -396,7 +396,9 @@ SECTIONS
         . = 0x114F58; src/reference_guide.o(.rodata.reference_guide_refrigerator_lines);
         . = 0x114F7C; data/text/reference_guide/shelf.o(.rodata.reference_guide_shelf_text);
         . = 0x114FE4; src/reference_guide.o(.rodata.reference_guide_shelf_lines);
-        . = 0x11500C; asm/data/data_080F9EB8.o(.rodata.reference_guide_shelf_trailer);
+        . = 0x11500C; data/text/reference_guide/staff_credits.o(.rodata.reference_guide_staff_credits_text);
+        . = 0x115418; src/reference_guide.o(.rodata.reference_guide_staff_credits_lines);
+        . = 0x11561C; asm/data/data_080F9EB8.o(.rodata.reference_guide_staff_credits_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);

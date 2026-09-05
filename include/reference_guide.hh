@@ -151,6 +151,8 @@ extern char const * const gReferenceGuideVaseInstructionsLines[];
 extern char const * const gReferenceGuideRefrigeratorLines[];
 // Reference Guide page 76: Shelf.
 extern char const * const gReferenceGuideShelfLines[];
+// Reference Guide page 77: Staff.
+extern char const * const gReferenceGuideStaffCreditsLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -811,6 +813,79 @@ extern char const gText_ReferenceGuide_Shelf_Capacity_Line02[];
 #else
 extern char const gText_ReferenceGuide_Shelf_CookingSelectionRestriction_Line02[];
 extern char const gText_ReferenceGuide_Shelf_CookingSelectionRestriction_Line03[];
+#endif
+
+// Localized Staff text (page 77).
+extern char const gText_ReferenceGuide_StaffCredits_Staff_Title[];
+extern char const gText_ReferenceGuide_StaffCredits_Coordinator_Title[];
+extern char const gText_ReferenceGuide_StaffCredits_TatsuyaSako[];
+extern char const gText_ReferenceGuide_StaffCredits_RyoFukutoyo[];
+extern char const gText_ReferenceGuide_StaffCredits_DaisukeKondoh[];
+extern char const gText_ReferenceGuide_StaffCredits_DaisukeKawabe[];
+extern char const gText_ReferenceGuide_StaffCredits_HitoyaYamasaki[];
+extern char const gText_ReferenceGuide_StaffCredits_ShosakuTakeda[];
+extern char const gText_ReferenceGuide_StaffCredits_Designer_Title[];
+extern char const gText_ReferenceGuide_StaffCredits_TsuyoshiYamaue[];
+extern char const gText_ReferenceGuide_StaffCredits_MasanobuFuchie[];
+extern char const gText_ReferenceGuide_StaffCredits_PochiYanai[];
+extern char const gText_ReferenceGuide_StaffCredits_YoshikoTakeyama[];
+extern char const gText_ReferenceGuide_StaffCredits_MarimoKawabata[];
+extern char const gText_ReferenceGuide_StaffCredits_KayokoIsozaki[];
+extern char const gText_ReferenceGuide_StaffCredits_Sound_Title[];
+extern char const gText_ReferenceGuide_StaffCredits_AiYamashita[];
+extern char const gText_ReferenceGuide_StaffCredits_Programmer_Title[];
+extern char const gText_ReferenceGuide_StaffCredits_KazutoshiSatoda[];
+extern char const gText_ReferenceGuide_StaffCredits_KazumasaHirata[];
+extern char const gText_ReferenceGuide_StaffCredits_KoichiOhashi[];
+extern char const gText_ReferenceGuide_StaffCredits_ItokiTou[];
+extern char const gText_ReferenceGuide_StaffCredits_Debugger_Title[];
+extern char const gText_ReferenceGuide_StaffCredits_RieMurao[];
+extern char const gText_ReferenceGuide_StaffCredits_AnkoKitamura[];
+extern char const gText_ReferenceGuide_StaffCredits_MasakiGamou[];
+extern char const gText_ReferenceGuide_StaffCredits_SpecialThanks_Title[];
+extern char const gText_ReferenceGuide_StaffCredits_YasuoOhno[];
+extern char const gText_ReferenceGuide_StaffCredits_HideyukiMizutani[];
+extern char const gText_ReferenceGuide_StaffCredits_JunichiKutsuzawa[];
+extern char const gText_ReferenceGuide_StaffCredits_TomioKanazawa[];
+extern char const gText_ReferenceGuide_StaffCredits_MasatoMizushima[];
+extern char const gText_ReferenceGuide_StaffCredits_MakotoTaniguchi[];
+extern char const gText_ReferenceGuide_StaffCredits_HisashiUrano[];
+extern char const gText_ReferenceGuide_StaffCredits_Promotion_Title[];
+extern char const gText_ReferenceGuide_StaffCredits_TakuhiroGotoh[];
+extern char const gText_ReferenceGuide_StaffCredits_DesignProgress_Title[];
+extern char const gText_ReferenceGuide_StaffCredits_MikiMiyagi[];
+extern char const gText_ReferenceGuide_StaffCredits_Assistant_Title[];
+extern char const gText_ReferenceGuide_StaffCredits_MarikoIshikawa[];
+extern char const gText_ReferenceGuide_StaffCredits_TakeshiOgura[];
+extern char const gText_ReferenceGuide_StaffCredits_TestPlay_Title[];
+extern char const gText_ReferenceGuide_StaffCredits_DigitalHearts[];
+extern char const gText_ReferenceGuide_StaffCredits_OriginalGameDesign_Title[];
+extern char const gText_ReferenceGuide_StaffCredits_SetsukoMiyakoshi[];
+extern char const gText_ReferenceGuide_StaffCredits_TomomiYamatate[];
+extern char const gText_ReferenceGuide_StaffCredits_OriginalGraphic_Title[];
+extern char const gText_ReferenceGuide_StaffCredits_ShinichiHayakawa[];
+extern char const gText_ReferenceGuide_StaffCredits_ShunosukeOzaki[];
+extern char const gText_ReferenceGuide_StaffCredits_CharacterDesign_Title[];
+extern char const gText_ReferenceGuide_StaffCredits_IgusaMatsuyama[];
+extern char const gText_ReferenceGuide_StaffCredits_OriginalPlanningAndProduction_Title[];
+extern char const gText_ReferenceGuide_StaffCredits_YasuhiroWada[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_StaffCredits_HuangXing[];
+extern char const gText_ReferenceGuide_StaffCredits_SunRijin[];
+extern char const gText_ReferenceGuide_StaffCredits_PublicRelationsAndTestPlayDirector_Title_Line01[];
+extern char const gText_ReferenceGuide_StaffCredits_PublicRelationsAndTestPlayDirector_Title_Line02[];
+#else
+extern char const gText_ReferenceGuide_StaffCredits_Kosei[];
+extern char const gText_ReferenceGuide_StaffCredits_NisekiSon[];
+extern char const gText_ReferenceGuide_StaffCredits_MinkunJyo[];
+extern char const gText_ReferenceGuide_StaffCredits_AssistantProducer_Title[];
+extern char const gText_ReferenceGuide_StaffCredits_UsExecutiveProducer_Title[];
+extern char const gText_ReferenceGuide_StaffCredits_HiroMaekawa[];
+extern char const gText_ReferenceGuide_StaffCredits_NatsumeInc[];
+extern char const gText_ReferenceGuide_StaffCredits_UsProductManager_Title[];
+extern char const gText_ReferenceGuide_StaffCredits_GrahamMarkay[];
+extern char const gText_ReferenceGuide_StaffCredits_LocalizationManager_Title[];
+extern char const gText_ReferenceGuide_StaffCredits_SachikoYamauchi[];
 #endif
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
