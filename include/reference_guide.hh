@@ -143,6 +143,8 @@ extern char const * const gReferenceGuideWonsShopLines[];
 extern char const * const gReferenceGuideVansShopLines[];
 // Reference Guide page 72: Record Player Instructions.
 extern char const * const gReferenceGuideRecordPlayerInstructionsLines[];
+// Reference Guide page 73: Taking a Bath.
+extern char const * const gReferenceGuideBathInstructionsLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -746,6 +748,17 @@ extern char const gText_ReferenceGuide_RecordPlayerInstructions_AdditionalNotes_
 #if defined(REGION_US)
 extern char const gText_ReferenceGuide_RecordPlayerInstructions_AdditionalNotes_Line05[];
 extern char const gText_ReferenceGuide_RecordPlayerInstructions_AdditionalNotes_Line06[];
+#endif
+
+// Localized Taking a Bath text (page 73).
+extern char const gText_ReferenceGuide_BathInstructions_Title[];
+extern char const gText_ReferenceGuide_BathInstructions_Description_Line01[];
+extern char const gText_ReferenceGuide_BathInstructions_Description_Line02[];
+extern char const gText_ReferenceGuide_BathInstructions_Description_Line03[];
+extern char const gText_ReferenceGuide_BathInstructions_Description_Line04[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_BathInstructions_TimeAdvancement_Line01[];
+extern char const gText_ReferenceGuide_BathInstructions_TimeAdvancement_Line02[];
 #endif
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];

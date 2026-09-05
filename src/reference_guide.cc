@@ -5778,3 +5778,22 @@ char const * const gReferenceGuideRecordPlayerInstructionsLines[] SECTION(".roda
 #endif
     nullptr,
 };
+
+// Reference Guide page 73: Taking a Bath.
+char const * const gReferenceGuideBathInstructionsLines[] SECTION(".rodata.reference_guide_taking_a_bath_lines") = {
+    gText_ReferenceGuide_BathInstructions_Title,
+    gText_ReferenceGuide_BathInstructions_Description_Line01,
+    gText_ReferenceGuide_BathInstructions_Description_Line02,
+    gText_ReferenceGuide_BathInstructions_Description_Line03,
+    gText_ReferenceGuide_BathInstructions_Description_Line04,
+#if defined(REGION_JP)
+    // Physical reuse: the preceding sentence uses this existing ending.
+    gText_ReferenceGuide_Fishing_HowToFish_Line21,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_BathInstructions_TimeAdvancement_Line01,
+    gText_ReferenceGuide_BathInstructions_TimeAdvancement_Line02,
+#endif
+    nullptr,
+};

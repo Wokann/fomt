@@ -168,6 +168,7 @@ TEXT_SOURCES += data/text/jp/reference_guide/yodel_farm.cc
 TEXT_SOURCES += data/text/jp/reference_guide/wons_shop.cc
 TEXT_SOURCES += data/text/jp/reference_guide/vans_shop.cc
 TEXT_SOURCES += data/text/jp/reference_guide/record_player_instructions.cc
+TEXT_SOURCES += data/text/jp/reference_guide/taking_a_bath.cc
 else
 TEXT_REGION := us
 TEXT_SOURCES := data/text/us/tool.cc data/text/us/food.cc data/text/us/article.cc data/text/us/calendar.cc data/text/us/help_menu.cc data/text/us/animal_memorial.cc data/text/us/load_error.cc data/text/us/menu.cc data/text/us/not_available.cc data/text/us/fixed_labels.cc data/text/us/new_game_menu.cc data/text/us/new_game_status.cc data/text/us/new_game_help.cc data/text/us/new_game_save.cc data/text/us/new_game_identity.cc data/text/us/new_game_name_entry.cc data/text/us/new_game_name_entry_ui.cc data/text/us/fishing_results.cc data/text/us/character_names.cc data/text/us/reference_guide/harvest_sprite_minigames.cc
@@ -236,6 +237,7 @@ TEXT_SOURCES += data/text/us/reference_guide/yodel_farm.cc
 TEXT_SOURCES += data/text/us/reference_guide/wons_shop.cc
 TEXT_SOURCES += data/text/us/reference_guide/vans_shop.cc
 TEXT_SOURCES += data/text/us/reference_guide/record_player_instructions.cc
+TEXT_SOURCES += data/text/us/reference_guide/taking_a_bath.cc
 endif
 
 TEXT_GENERATED_SOURCES := $(patsubst data/text/$(TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.cc,$(TEXT_SOURCES))
