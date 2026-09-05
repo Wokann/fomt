@@ -5086,17 +5086,17 @@ char const * const gReferenceGuideSupermarketLines[] SECTION(".rodata.reference_
     gText_ReferenceGuide_EmptyLine,
 
     // Seeds.
-    gText_ReferenceGuide_Supermarket_Seeds_Title,
-    gText_ReferenceGuide_Supermarket_Seeds_Description_Line01,
-    gText_ReferenceGuide_Supermarket_Seeds_Description_Line02,
-    gText_ReferenceGuide_Supermarket_Seeds_Description_Line03,
-    gText_ReferenceGuide_Supermarket_Seeds_Description_Line04,
+    gText_ReferenceGuide_Seeds_Title,
+    gText_ReferenceGuide_SeedPlantingInstructions_Line01,
+    gText_ReferenceGuide_SeedPlantingInstructions_Line02,
+    gText_ReferenceGuide_SeedPlantingInstructions_Line03,
+    gText_ReferenceGuide_SeedPlantingInstructions_Line04,
 #if defined(REGION_US)
-    gText_ReferenceGuide_Supermarket_Seeds_Description_Line05,
+    gText_ReferenceGuide_SeedPlantingInstructions_Line05,
 #endif
     gText_ReferenceGuide_EmptyLine,
-    gText_ReferenceGuide_Supermarket_Seeds_SeasonalAvailability_Line01,
-    gText_ReferenceGuide_Supermarket_Seeds_SeasonalAvailability_Line02,
+    gText_ReferenceGuide_SeedSalesSeasonalAvailability_Line01,
+    gText_ReferenceGuide_SeedSalesSeasonalAvailability_Line02,
     gText_ReferenceGuide_EmptyLine,
     gText_ReferenceGuide_EmptyLine,
 
@@ -5671,5 +5671,71 @@ char const * const gReferenceGuideYodelFarmLines[] SECTION(".rodata.reference_gu
     gText_ReferenceGuide_YodelFarm_LivestockSell_Description_Line01,
     gText_ReferenceGuide_YodelFarm_LivestockSell_Description_Line02,
     gText_ReferenceGuide_YodelFarm_LivestockSell_Description_Line03,
+    nullptr,
+};
+
+// Reference Guide page 70: Won's Shop. Shared Seed text remains at its
+// original physical addresses, while the localized table differs only by layout.
+char const * const gReferenceGuideWonsShopLines[] SECTION(".rodata.reference_guide_wons_shop_lines") = {
+    gText_ReferenceGuide_WonsShop_Title,
+    gText_ReferenceGuide_WonsShop_Overview_Line01,
+    gText_ReferenceGuide_WonsShop_Overview_Line02,
+    gText_ReferenceGuide_WonsShop_Overview_Line03,
+    gText_ReferenceGuide_WonsShop_Overview_Line04,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_WonsShop_Location_Title,
+    gText_ReferenceGuide_WonsShop_Location_Line01,
+    gText_ReferenceGuide_WonsShop_Location_Line02,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    // Physical reuse: both ROMs point at the generic Seeds title.
+    gText_ReferenceGuide_Seeds_Title,
+#if defined(REGION_JP)
+    // Physical reuse: JP points at the generic planting instructions.
+    gText_ReferenceGuide_SeedPlantingInstructions_Line01,
+    gText_ReferenceGuide_SeedPlantingInstructions_Line02,
+    gText_ReferenceGuide_SeedPlantingInstructions_Line03,
+    gText_ReferenceGuide_SeedPlantingInstructions_Line04,
+#else
+    gText_ReferenceGuide_WonsShop_Seeds_Planting_Line01,
+    // Physical reuse: US points at the generic planting completion text.
+    gText_ReferenceGuide_SeedPlantingInstructions_Line03,
+    gText_ReferenceGuide_WonsShop_Seeds_Planting_SeasonalRestriction_Line02,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    // Physical reuse: JP points at the generic seasonal-sales opening text.
+    gText_ReferenceGuide_SeedSalesSeasonalAvailability_Line01,
+    gText_ReferenceGuide_WonsShop_Seeds_SeasonalAvailability_Completion_Line01,
+#else
+    gText_ReferenceGuide_WonsShop_Seeds_SeasonalAvailability_Line01,
+    gText_ReferenceGuide_WonsShop_Seeds_SeasonalAvailability_Line02,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    gText_ReferenceGuide_WonsShop_DogBall_Title,
+    gText_ReferenceGuide_WonsShop_Frisbee_Title,
+    gText_ReferenceGuide_WonsShop_DogTraining_Description_Line01,
+    gText_ReferenceGuide_WonsShop_DogTraining_Description_Line02,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_WonsShop_DogTraining_SinglePurchase_Line01,
+    gText_ReferenceGuide_WonsShop_DogTraining_SinglePurchase_Line02,
+    gText_ReferenceGuide_WonsShop_DogTraining_SinglePurchase_Line03,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_WonsShop_DogTraining_Availability_Line01,
+    gText_ReferenceGuide_WonsShop_DogTraining_Availability_Line02,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+#else
+    gText_ReferenceGuide_WonsShop_DogTraining_Availability_Line03,
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_WonsShop_JewelsOfTruth_Title,
+    gText_ReferenceGuide_WonsShop_JewelsOfTruth_Description_Line01,
+    gText_ReferenceGuide_WonsShop_JewelsOfTruth_Description_Line02,
+    gText_ReferenceGuide_WonsShop_JewelsOfTruth_Description_Line03,
     nullptr,
 };

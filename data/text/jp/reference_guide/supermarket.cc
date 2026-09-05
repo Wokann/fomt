@@ -22,19 +22,19 @@ char const gText_ReferenceGuide_Supermarket_StoreHours_Value[24] SECTION(".rodat
 char const gText_ReferenceGuide_Supermarket_ClosedDay_Value[20] SECTION(".rodata.reference_guide_supermarket_text") =
     "　火曜日　日曜日";
 
-char const gText_ReferenceGuide_Supermarket_Seeds_Title[8] SECTION(".rodata.reference_guide_supermarket_text") =
+char const gText_ReferenceGuide_Seeds_Title[8] SECTION(".rodata.reference_guide_supermarket_text") =
     "☆種";
-char const gText_ReferenceGuide_Supermarket_Seeds_Description_Line01[32] SECTION(".rodata.reference_guide_supermarket_text") =
+char const gText_ReferenceGuide_SeedPlantingInstructions_Line01[32] SECTION(".rodata.reference_guide_supermarket_text") =
     "·耕した土地にこれをまいて、";
-char const gText_ReferenceGuide_Supermarket_Seeds_Description_Line02[32] SECTION(".rodata.reference_guide_supermarket_text") =
+char const gText_ReferenceGuide_SeedPlantingInstructions_Line02[32] SECTION(".rodata.reference_guide_supermarket_text") =
     "　水を毎日あげれば成長する。";
-char const gText_ReferenceGuide_Supermarket_Seeds_Description_Line03[32] SECTION(".rodata.reference_guide_supermarket_text") =
+char const gText_ReferenceGuide_SeedPlantingInstructions_Line03[32] SECTION(".rodata.reference_guide_supermarket_text") =
     "　※種によって育つ季節と育た";
-char const gText_ReferenceGuide_Supermarket_Seeds_Description_Line04[32] SECTION(".rodata.reference_guide_supermarket_text") =
+char const gText_ReferenceGuide_SeedPlantingInstructions_Line04[32] SECTION(".rodata.reference_guide_supermarket_text") =
     "　　ない季節があるので注意。";
-char const gText_ReferenceGuide_Supermarket_Seeds_SeasonalAvailability_Line01[32] SECTION(".rodata.reference_guide_supermarket_text") =
+char const gText_ReferenceGuide_SeedSalesSeasonalAvailability_Line01[32] SECTION(".rodata.reference_guide_supermarket_text") =
     "·季節によって売っている種の";
-char const gText_ReferenceGuide_Supermarket_Seeds_SeasonalAvailability_Line02[20] SECTION(".rodata.reference_guide_supermarket_text") =
+char const gText_ReferenceGuide_SeedSalesSeasonalAvailability_Line02[20] SECTION(".rodata.reference_guide_supermarket_text") =
     "　種類が変わる。";
 
 char const gText_ReferenceGuide_Supermarket_Ingredients_RiceBall_Title[12] SECTION(".rodata.reference_guide_supermarket_text") =

@@ -24,21 +24,21 @@ char const gText_ReferenceGuide_Supermarket_StoreHours_Value[12] SECTION(".rodat
 char const gText_ReferenceGuide_Supermarket_ClosedDay_Value[20] SECTION(".rodata.reference_guide_supermarket_text") =
     " Tuesdays & Sundays";
 
-char const gText_ReferenceGuide_Supermarket_Seeds_Title[8] SECTION(".rodata.reference_guide_supermarket_text") =
+char const gText_ReferenceGuide_Seeds_Title[8] SECTION(".rodata.reference_guide_supermarket_text") =
     "☆Seeds";
-char const gText_ReferenceGuide_Supermarket_Seeds_Description_Line01[28] SECTION(".rodata.reference_guide_supermarket_text") =
+char const gText_ReferenceGuide_SeedPlantingInstructions_Line01[28] SECTION(".rodata.reference_guide_supermarket_text") =
     "·Plant Seeds on tilled ";
-char const gText_ReferenceGuide_Supermarket_Seeds_Description_Line02[28] SECTION(".rodata.reference_guide_supermarket_text") =
+char const gText_ReferenceGuide_SeedPlantingInstructions_Line02[28] SECTION(".rodata.reference_guide_supermarket_text") =
     " earth, then water them ";
-char const gText_ReferenceGuide_Supermarket_Seeds_Description_Line03[28] SECTION(".rodata.reference_guide_supermarket_text") =
+char const gText_ReferenceGuide_SeedPlantingInstructions_Line03[28] SECTION(".rodata.reference_guide_supermarket_text") =
     " every day to grow crops.";
-char const gText_ReferenceGuide_Supermarket_Seeds_Description_Line04[28] SECTION(".rodata.reference_guide_supermarket_text") =
+char const gText_ReferenceGuide_SeedPlantingInstructions_Line04[28] SECTION(".rodata.reference_guide_supermarket_text") =
     " Be careful, some crops ";
-char const gText_ReferenceGuide_Supermarket_Seeds_Description_Line05[28] SECTION(".rodata.reference_guide_supermarket_text") =
+char const gText_ReferenceGuide_SeedPlantingInstructions_Line05[28] SECTION(".rodata.reference_guide_supermarket_text") =
     " only grow in some seasons.";
-char const gText_ReferenceGuide_Supermarket_Seeds_SeasonalAvailability_Line01[28] SECTION(".rodata.reference_guide_supermarket_text") =
+char const gText_ReferenceGuide_SeedSalesSeasonalAvailability_Line01[28] SECTION(".rodata.reference_guide_supermarket_text") =
     "·Some Seeds are only sold";
-char const gText_ReferenceGuide_Supermarket_Seeds_SeasonalAvailability_Line02[16] SECTION(".rodata.reference_guide_supermarket_text") =
+char const gText_ReferenceGuide_SeedSalesSeasonalAvailability_Line02[16] SECTION(".rodata.reference_guide_supermarket_text") =
     " seasonally. ";
 
 char const gText_ReferenceGuide_Supermarket_Ingredients_Heading[32] SECTION(".rodata.reference_guide_supermarket_text") =

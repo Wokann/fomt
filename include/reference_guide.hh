@@ -137,6 +137,8 @@ extern char const * const gReferenceGuideKaiSeasideLodgeLines[];
 extern char const * const gReferenceGuidePoultryFarmLines[];
 // Reference Guide page 69: Yodel Farm.
 extern char const * const gReferenceGuideYodelFarmLines[];
+// Reference Guide page 70: Won's Shop.
+extern char const * const gReferenceGuideWonsShopLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -411,13 +413,13 @@ extern char const gText_ReferenceGuide_Supermarket_Overview_Line04[];
 extern char const gText_ReferenceGuide_Supermarket_Overview_Line05[];
 extern char const gText_ReferenceGuide_Supermarket_StoreHours_Value[];
 extern char const gText_ReferenceGuide_Supermarket_ClosedDay_Value[];
-extern char const gText_ReferenceGuide_Supermarket_Seeds_Title[];
-extern char const gText_ReferenceGuide_Supermarket_Seeds_Description_Line01[];
-extern char const gText_ReferenceGuide_Supermarket_Seeds_Description_Line02[];
-extern char const gText_ReferenceGuide_Supermarket_Seeds_Description_Line03[];
-extern char const gText_ReferenceGuide_Supermarket_Seeds_Description_Line04[];
-extern char const gText_ReferenceGuide_Supermarket_Seeds_SeasonalAvailability_Line01[];
-extern char const gText_ReferenceGuide_Supermarket_Seeds_SeasonalAvailability_Line02[];
+extern char const gText_ReferenceGuide_Seeds_Title[];
+extern char const gText_ReferenceGuide_SeedPlantingInstructions_Line01[];
+extern char const gText_ReferenceGuide_SeedPlantingInstructions_Line02[];
+extern char const gText_ReferenceGuide_SeedPlantingInstructions_Line03[];
+extern char const gText_ReferenceGuide_SeedPlantingInstructions_Line04[];
+extern char const gText_ReferenceGuide_SeedSalesSeasonalAvailability_Line01[];
+extern char const gText_ReferenceGuide_SeedSalesSeasonalAvailability_Line02[];
 extern char const gText_ReferenceGuide_Supermarket_Ingredients_RiceBall_Title[];
 extern char const gText_ReferenceGuide_Supermarket_Ingredients_Bread_Title[];
 extern char const gText_ReferenceGuide_Supermarket_Ingredients_Oil_Title[];
@@ -473,7 +475,7 @@ extern char const gText_ReferenceGuide_Supermarket_BlueFeather_Classification_Li
 extern char const gText_ReferenceGuide_Supermarket_GiftWrapping_EligibleItems_Line04[];
 #else
 extern char const gText_ReferenceGuide_Supermarket_Overview_Line06[];
-extern char const gText_ReferenceGuide_Supermarket_Seeds_Description_Line05[];
+extern char const gText_ReferenceGuide_SeedPlantingInstructions_Line05[];
 extern char const gText_ReferenceGuide_Supermarket_Ingredients_Heading[];
 extern char const gText_ReferenceGuide_Supermarket_Ingredients_EatDirectly_Line03[];
 extern char const gText_ReferenceGuide_Supermarket_Ingredients_Refrigerator_Line03[];
@@ -684,6 +686,38 @@ extern char const gText_ReferenceGuide_YodelFarm_Fodder_Description_Line02[];
 extern char const gText_ReferenceGuide_YodelFarm_LivestockPurchases_Spacer[];
 extern char const gText_ReferenceGuide_YodelFarm_AnimalMedicine_Description_Line01[];
 extern char const gText_ReferenceGuide_YodelFarm_Bell_Description_Line01[];
+#endif
+
+// Localized Won's Shop text (page 70).
+extern char const gText_ReferenceGuide_WonsShop_Title[];
+extern char const gText_ReferenceGuide_WonsShop_Overview_Line01[];
+extern char const gText_ReferenceGuide_WonsShop_Overview_Line02[];
+extern char const gText_ReferenceGuide_WonsShop_Overview_Line03[];
+extern char const gText_ReferenceGuide_WonsShop_Overview_Line04[];
+extern char const gText_ReferenceGuide_WonsShop_Location_Title[];
+extern char const gText_ReferenceGuide_WonsShop_Location_Line01[];
+extern char const gText_ReferenceGuide_WonsShop_Location_Line02[];
+extern char const gText_ReferenceGuide_WonsShop_DogBall_Title[];
+extern char const gText_ReferenceGuide_WonsShop_Frisbee_Title[];
+extern char const gText_ReferenceGuide_WonsShop_DogTraining_Description_Line01[];
+extern char const gText_ReferenceGuide_WonsShop_DogTraining_Description_Line02[];
+extern char const gText_ReferenceGuide_WonsShop_DogTraining_SinglePurchase_Line01[];
+extern char const gText_ReferenceGuide_WonsShop_DogTraining_SinglePurchase_Line02[];
+extern char const gText_ReferenceGuide_WonsShop_DogTraining_SinglePurchase_Line03[];
+extern char const gText_ReferenceGuide_WonsShop_DogTraining_Availability_Line01[];
+extern char const gText_ReferenceGuide_WonsShop_DogTraining_Availability_Line02[];
+extern char const gText_ReferenceGuide_WonsShop_JewelsOfTruth_Title[];
+extern char const gText_ReferenceGuide_WonsShop_JewelsOfTruth_Description_Line01[];
+extern char const gText_ReferenceGuide_WonsShop_JewelsOfTruth_Description_Line02[];
+extern char const gText_ReferenceGuide_WonsShop_JewelsOfTruth_Description_Line03[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_WonsShop_Seeds_SeasonalAvailability_Completion_Line01[];
+#else
+extern char const gText_ReferenceGuide_WonsShop_Seeds_Planting_Line01[];
+extern char const gText_ReferenceGuide_WonsShop_Seeds_Planting_SeasonalRestriction_Line02[];
+extern char const gText_ReferenceGuide_WonsShop_Seeds_SeasonalAvailability_Line01[];
+extern char const gText_ReferenceGuide_WonsShop_Seeds_SeasonalAvailability_Line02[];
+extern char const gText_ReferenceGuide_WonsShop_DogTraining_Availability_Line03[];
 #endif
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
