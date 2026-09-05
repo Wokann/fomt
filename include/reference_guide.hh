@@ -185,6 +185,8 @@ extern char const * const gReferenceGuideKaiNewYearCardLines[];
 extern char const * const gReferenceGuideKaiAndPopuriNewYearCardLines[];
 // Reference Guide page 93: Jeff's New Year Card.
 extern char const * const gReferenceGuideJeffNewYearCardLines[];
+// Reference Guide page 94: Saibara's New Year Card.
+extern char const * const gReferenceGuideSaibaraNewYearCardLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -1098,6 +1100,17 @@ extern char const gText_ReferenceGuide_JeffNewYearCard_Greeting_Line03[];
 extern char const gText_ReferenceGuide_JeffNewYearCard_Supermarket_Line01[];
 extern char const gText_ReferenceGuide_JeffNewYearCard_Supermarket_Line02[];
 extern char const gText_ReferenceGuide_JeffNewYearCard_Signature[];
+
+// Localized Saibara New Year Card text (page 94).
+extern char const gText_ReferenceGuide_SaibaraNewYearCard_Title[];
+extern char const gText_ReferenceGuide_SaibaraNewYearCard_Greeting_Line01[];
+extern char const gText_ReferenceGuide_SaibaraNewYearCard_Resolution_Line01[];
+extern char const gText_ReferenceGuide_SaibaraNewYearCard_Resolution_Line02[];
+extern char const gText_ReferenceGuide_SaibaraNewYearCard_Resolution_Line03[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_SaibaraNewYearCard_Resolution_Line04[];
+#endif
+extern char const gText_ReferenceGuide_SaibaraNewYearCard_Signature[];
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];

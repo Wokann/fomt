@@ -6429,3 +6429,23 @@ char const * const gReferenceGuideJeffNewYearCardLines[] SECTION(".rodata.refere
     gText_ReferenceGuide_JeffNewYearCard_Signature,
     nullptr,
 };
+
+// Reference Guide page 94: Saibara's New Year Card. The US ROM physically
+// reuses Kai and Popuri's "How about you?" line.
+char const * const gReferenceGuideSaibaraNewYearCardLines[] SECTION(".rodata.reference_guide_saibara_new_year_card_lines") = {
+    gText_ReferenceGuide_SaibaraNewYearCard_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_SaibaraNewYearCard_Greeting_Line01,
+    gText_ReferenceGuide_SaibaraNewYearCard_Resolution_Line01,
+    gText_ReferenceGuide_SaibaraNewYearCard_Resolution_Line02,
+    gText_ReferenceGuide_SaibaraNewYearCard_Resolution_Line03,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_SaibaraNewYearCard_Resolution_Line04,
+#else
+    // Reused physical text from Reference Guide page 92.
+    gText_ReferenceGuide_KaiAndPopuriNewYearCard_HowAboutYou_Line01,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_SaibaraNewYearCard_Signature,
+    nullptr,
+};
