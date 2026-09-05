@@ -129,6 +129,8 @@ extern char const * const gReferenceGuideWoodcuttersHouseLines[];
 extern char const * const gReferenceGuideClinicLines[];
 // Reference Guide page 65: Aja Winery.
 extern char const * const gReferenceGuideAjaWineryLines[];
+// Reference Guide page 66: Doug's Inn.
+extern char const * const gReferenceGuideDougsInnLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -585,6 +587,18 @@ extern char const gText_ReferenceGuide_AjaWinery_Products_UseInCooking_Line01[];
 extern char const gText_ReferenceGuide_AjaWinery_Products_UseInCooking_Line02[];
 extern char const gText_ReferenceGuide_AjaWinery_RefrigeratorStorage_Line01[];
 extern char const gText_ReferenceGuide_AjaWinery_RefrigeratorStorage_Line02[];
+#endif
+
+// Localized Doug's Inn text (page 66).
+extern char const gText_ReferenceGuide_DougsInn_Title[];
+extern char const gText_ReferenceGuide_DougsInn_Takeout_Line01[];
+extern char const gText_ReferenceGuide_DougsInn_Takeout_Line02[];
+extern char const gText_ReferenceGuide_DougsInn_MenuTimes_Line01[];
+extern char const gText_ReferenceGuide_DougsInn_StoreHours_Value[];
+#if defined(REGION_US)
+extern char const gText_ReferenceGuide_DougsInn_Takeout_Line03[];
+extern char const gText_ReferenceGuide_DougsInn_MenuTimes_Line02[];
+extern char const gText_ReferenceGuide_DougsInn_ClosedDay_Value[];
 #endif
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
@@ -1978,7 +1992,7 @@ extern char const gText_ReferenceGuide_Cookbook1_Seasoning_Sugar[];
 extern char const gText_ReferenceGuide_Cookbook1_Seasoning_Salt[];
 extern char const gText_ReferenceGuide_Cookbook1_Seasoning_SoySauce[];
 extern char const gText_ReferenceGuide_Cookbook1_MisoSoup_Title[];
-extern char const gText_ReferenceGuide_Cookbook1_Ingredient_None[];
+extern char const gText_ReferenceGuide_None_Value[];
 extern char const gText_ReferenceGuide_Cookbook1_MisoSoup_Utensil_Pot[];
 extern char const gText_ReferenceGuide_Cookbook1_MisoSoup_Seasoning_Miso[];
 extern char const gText_ReferenceGuide_Cookbook1_StrawberryJam_Title[];
@@ -3345,7 +3359,7 @@ extern char const gText_ReferenceGuide_Cookbook1_Seasoning_Salt[];
 extern char const gText_ReferenceGuide_Cookbook1_Seasoning_SoySauce[];
 extern char const gText_ReferenceGuide_Cookbook1_SectionDivider[];
 extern char const gText_ReferenceGuide_Cookbook1_MisoSoup_Title[];
-extern char const gText_ReferenceGuide_Cookbook1_Ingredient_None[];
+extern char const gText_ReferenceGuide_None_Value[];
 extern char const gText_ReferenceGuide_Cookbook1_MisoSoup_Seasoning_Miso[];
 extern char const gText_ReferenceGuide_Cookbook1_StrawberryJam_Title[];
 extern char const gText_ReferenceGuide_Cookbook1_StrawberryJam_Ingredient_Honey[];

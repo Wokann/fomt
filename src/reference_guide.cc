@@ -3995,7 +3995,7 @@ char const * const gReferenceGuideCookbook1Lines[] SECTION(".rodata.reference_gu
     gText_ReferenceGuide_Cookbook1_MisoSoup_Title,
     gText_ReferenceGuide_EmptyLine,
     gText_ReferenceGuide_Cookbook1_NecessaryIngredients_Heading,
-    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+    gText_ReferenceGuide_None_Value,
     gText_ReferenceGuide_FullWidthSpace,
     gText_ReferenceGuide_Cookbook1_NecessaryUtensils_Heading,
     gText_ReferenceGuide_Cookbook1_MisoSoup_Utensil_Pot,
@@ -4046,7 +4046,7 @@ char const * const gReferenceGuideCookbook1Lines[] SECTION(".rodata.reference_gu
     gText_ReferenceGuide_FullWidthSpace,
     gText_ReferenceGuide_FullWidthSpace,
     gText_ReferenceGuide_Cookbook1_OptionalIngredients_Heading,
-    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+    gText_ReferenceGuide_None_Value,
     gText_ReferenceGuide_FullWidthSpace,
     gText_ReferenceGuide_Cookbook1_OptionalUtensils_Heading,
     gText_ReferenceGuide_Cookbook1_Utensil_Knife,
@@ -4102,7 +4102,7 @@ char const * const gReferenceGuideCookbook1Lines[] SECTION(".rodata.reference_gu
     gText_ReferenceGuide_Cookbook1_MisoSoup_Title,
     gText_ReferenceGuide_EmptyLine,
     gText_ReferenceGuide_Cookbook1_NecessaryIngredients_Heading,
-    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+    gText_ReferenceGuide_None_Value,
     gText_ReferenceGuide_EmptyLine,
     gText_ReferenceGuide_Cookbook1_NecessaryUtensils_Heading,
     gText_ReferenceGuide_Cookbook1_Utensil_Pot,
@@ -4153,7 +4153,7 @@ char const * const gReferenceGuideCookbook1Lines[] SECTION(".rodata.reference_gu
     gText_ReferenceGuide_EmptyLine,
     gText_ReferenceGuide_EmptyLine,
     gText_ReferenceGuide_Cookbook1_OptionalIngredients_Heading,
-    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+    gText_ReferenceGuide_None_Value,
     gText_ReferenceGuide_EmptyLine,
     gText_ReferenceGuide_Cookbook1_OptionalUtensils_Heading,
     gText_ReferenceGuide_Cookbook1_Utensil_Knife,
@@ -4292,7 +4292,7 @@ char const * const gReferenceGuideCookbook2Lines[] SECTION(".rodata.reference_gu
     gText_ReferenceGuide_EmptyLine,
 #endif
     gText_ReferenceGuide_Cookbook1_OptionalIngredients_Heading,
-    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+    gText_ReferenceGuide_None_Value,
 #if defined(REGION_JP)
     gText_ReferenceGuide_FullWidthSpace,
 #else
@@ -4322,7 +4322,7 @@ char const * const gReferenceGuideCookbook2Lines[] SECTION(".rodata.reference_gu
     gText_ReferenceGuide_EmptyLine,
 #endif
     gText_ReferenceGuide_Cookbook1_NecessaryUtensils_Heading,
-    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+    gText_ReferenceGuide_None_Value,
 #if defined(REGION_JP)
     gText_ReferenceGuide_FullWidthSpace,
     gText_ReferenceGuide_FullWidthSpace,
@@ -4338,7 +4338,7 @@ char const * const gReferenceGuideCookbook2Lines[] SECTION(".rodata.reference_gu
     gText_ReferenceGuide_EmptyLine,
 #endif
     gText_ReferenceGuide_Cookbook1_OptionalUtensils_Heading,
-    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+    gText_ReferenceGuide_None_Value,
 #if defined(REGION_JP)
     gText_ReferenceGuide_FullWidthSpace,
     gText_ReferenceGuide_SectionDivider,
@@ -4359,7 +4359,7 @@ char const * const gReferenceGuideCookbook2Lines[] SECTION(".rodata.reference_gu
     gText_ReferenceGuide_FullWidthSpace,
 #endif
     gText_ReferenceGuide_Cookbook1_NecessaryUtensils_Heading,
-    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+    gText_ReferenceGuide_None_Value,
 #if defined(REGION_JP)
     gText_ReferenceGuide_FullWidthSpace,
     gText_ReferenceGuide_FullWidthSpace,
@@ -4368,7 +4368,7 @@ char const * const gReferenceGuideCookbook2Lines[] SECTION(".rodata.reference_gu
     gText_ReferenceGuide_EmptyLine,
 #endif
     gText_ReferenceGuide_Cookbook1_OptionalIngredients_Heading,
-    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+    gText_ReferenceGuide_None_Value,
 #if defined(REGION_JP)
     gText_ReferenceGuide_FullWidthSpace,
 #else
@@ -4411,7 +4411,7 @@ char const * const gReferenceGuideCookbook3Lines[] SECTION(".rodata.reference_gu
     gText_ReferenceGuide_EmptyLine,
 #endif
     gText_ReferenceGuide_Cookbook1_OptionalIngredients_Heading,
-    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+    gText_ReferenceGuide_None_Value,
 #if defined(REGION_JP)
     gText_ReferenceGuide_FullWidthSpace,
 #else
@@ -4453,14 +4453,14 @@ char const * const gReferenceGuideCookbook3Lines[] SECTION(".rodata.reference_gu
     gText_ReferenceGuide_EmptyLine,
 #endif
     gText_ReferenceGuide_Cookbook1_OptionalIngredients_Heading,
-    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+    gText_ReferenceGuide_None_Value,
 #if defined(REGION_JP)
     gText_ReferenceGuide_FullWidthSpace,
 #else
     gText_ReferenceGuide_EmptyLine,
 #endif
     gText_ReferenceGuide_Cookbook1_OptionalUtensils_Heading,
-    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+    gText_ReferenceGuide_None_Value,
 #if defined(REGION_JP)
     gText_ReferenceGuide_FullWidthSpace,
     gText_ReferenceGuide_SectionDivider,
@@ -4498,7 +4498,7 @@ char const * const gReferenceGuideCookbook3Lines[] SECTION(".rodata.reference_gu
     gText_ReferenceGuide_EmptyLine,
 #endif
     gText_ReferenceGuide_Cookbook1_OptionalUtensils_Heading,
-    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+    gText_ReferenceGuide_None_Value,
 #if defined(REGION_JP)
     gText_ReferenceGuide_FullWidthSpace,
     gText_ReferenceGuide_SectionDivider,
@@ -4536,14 +4536,14 @@ char const * const gReferenceGuideCookbook3Lines[] SECTION(".rodata.reference_gu
     gText_ReferenceGuide_EmptyLine,
 #endif
     gText_ReferenceGuide_Cookbook1_OptionalIngredients_Heading,
-    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+    gText_ReferenceGuide_None_Value,
 #if defined(REGION_JP)
     gText_ReferenceGuide_FullWidthSpace,
 #else
     gText_ReferenceGuide_EmptyLine,
 #endif
     gText_ReferenceGuide_Cookbook1_OptionalUtensils_Heading,
-    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+    gText_ReferenceGuide_None_Value,
 #if defined(REGION_US)
     gText_ReferenceGuide_EmptyLine,
     gText_ReferenceGuide_Cookbook1_SectionDivider,
@@ -4611,7 +4611,7 @@ char const * const gReferenceGuideCookbook4Lines[] SECTION(".rodata.reference_gu
     gText_ReferenceGuide_EmptyLine,
 #endif
     gText_ReferenceGuide_Cookbook1_NecessaryUtensils_Heading,
-    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+    gText_ReferenceGuide_None_Value,
 #if defined(REGION_JP)
     gText_ReferenceGuide_FullWidthSpace,
     gText_ReferenceGuide_FullWidthSpace,
@@ -4620,14 +4620,14 @@ char const * const gReferenceGuideCookbook4Lines[] SECTION(".rodata.reference_gu
     gText_ReferenceGuide_EmptyLine,
 #endif
     gText_ReferenceGuide_Cookbook1_OptionalIngredients_Heading,
-    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+    gText_ReferenceGuide_None_Value,
 #if defined(REGION_JP)
     gText_ReferenceGuide_FullWidthSpace,
 #else
     gText_ReferenceGuide_EmptyLine,
 #endif
     gText_ReferenceGuide_Cookbook1_OptionalUtensils_Heading,
-    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+    gText_ReferenceGuide_None_Value,
 #if defined(REGION_JP)
     gText_ReferenceGuide_FullWidthSpace,
     gText_ReferenceGuide_SectionDivider,
@@ -4650,7 +4650,7 @@ char const * const gReferenceGuideCookbook4Lines[] SECTION(".rodata.reference_gu
     gText_ReferenceGuide_EmptyLine,
 #endif
     gText_ReferenceGuide_Cookbook1_NecessaryUtensils_Heading,
-    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+    gText_ReferenceGuide_None_Value,
 #if defined(REGION_JP)
     gText_ReferenceGuide_FullWidthSpace,
     gText_ReferenceGuide_FullWidthSpace,
@@ -4659,14 +4659,14 @@ char const * const gReferenceGuideCookbook4Lines[] SECTION(".rodata.reference_gu
     gText_ReferenceGuide_EmptyLine,
 #endif
     gText_ReferenceGuide_Cookbook1_OptionalIngredients_Heading,
-    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+    gText_ReferenceGuide_None_Value,
 #if defined(REGION_JP)
     gText_ReferenceGuide_FullWidthSpace,
 #else
     gText_ReferenceGuide_EmptyLine,
 #endif
     gText_ReferenceGuide_Cookbook1_OptionalUtensils_Heading,
-    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+    gText_ReferenceGuide_None_Value,
 #if defined(REGION_JP)
     gText_ReferenceGuide_FullWidthSpace,
     gText_ReferenceGuide_SectionDivider,
@@ -5466,6 +5466,39 @@ char const * const gReferenceGuideAjaWineryLines[] SECTION(".rodata.reference_gu
     gText_ReferenceGuide_EmptyLine,
     gText_ReferenceGuide_AjaWinery_RefrigeratorStorage_Line01,
     gText_ReferenceGuide_AjaWinery_RefrigeratorStorage_Line02,
+#endif
+    nullptr,
+};
+
+// Reference Guide page 66: Doug's Inn. Both versions retain the original
+// pointer layout while JP directly reuses two generic text fields.
+char const * const gReferenceGuideDougsInnLines[] SECTION(".rodata.reference_guide_dougs_inn_lines") = {
+    gText_ReferenceGuide_DougsInn_Title,
+    gText_ReferenceGuide_DougsInn_Takeout_Line01,
+    gText_ReferenceGuide_DougsInn_Takeout_Line02,
+#if defined(REGION_JP)
+    // Physical reuse: JP points at the generic caution suffix.
+    gText_ReferenceGuide_CautionSuffix,
+#else
+    gText_ReferenceGuide_DougsInn_Takeout_Line03,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_DougsInn_MenuTimes_Line01,
+#if defined(REGION_US)
+    gText_ReferenceGuide_DougsInn_MenuTimes_Line02,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    // Physical reuse: both ROMs point at the generic store-hours label.
+    gText_ReferenceGuide_StoreHours_Heading,
+    gText_ReferenceGuide_DougsInn_StoreHours_Value,
+    gText_ReferenceGuide_EmptyLine,
+    // Physical reuse: both ROMs point at the generic closed-day label.
+    gText_ReferenceGuide_ClosedDay_Heading,
+#if defined(REGION_JP)
+    // Physical reuse: JP points at the generic None value.
+    gText_ReferenceGuide_None_Value,
+#else
+    gText_ReferenceGuide_DougsInn_ClosedDay_Value,
 #endif
     nullptr,
 };

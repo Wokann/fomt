@@ -50,7 +50,7 @@ char const gText_ReferenceGuide_Cookbook1_SectionDivider[32] SECTION(".rodata.re
 char const gText_ReferenceGuide_Cookbook1_MisoSoup_Title[16] SECTION(".rodata.reference_guide_cookbook_1_text") =
     "☆Miso Soup ";
 
-char const gText_ReferenceGuide_Cookbook1_Ingredient_None[8] SECTION(".rodata.reference_guide_cookbook_1_text") =
+char const gText_ReferenceGuide_None_Value[8] SECTION(".rodata.reference_guide_cookbook_1_text") =
     "  None";
 
 char const gText_ReferenceGuide_Cookbook1_MisoSoup_Seasoning_Miso[8] SECTION(".rodata.reference_guide_cookbook_1_text") =

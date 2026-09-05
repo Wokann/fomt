@@ -47,7 +47,7 @@ char const gText_ReferenceGuide_Cookbook1_Seasoning_SoySauce[20] SECTION(".rodat
 char const gText_ReferenceGuide_Cookbook1_MisoSoup_Title[20] SECTION(".rodata.reference_guide_cookbook_1_text") =
     "☆みそ汁の作り方";
 
-char const gText_ReferenceGuide_Cookbook1_Ingredient_None[8] SECTION(".rodata.reference_guide_cookbook_1_text") =
+char const gText_ReferenceGuide_None_Value[8] SECTION(".rodata.reference_guide_cookbook_1_text") =
     "　なし";
 
 char const gText_ReferenceGuide_Cookbook1_MisoSoup_Utensil_Pot[8] SECTION(".rodata.reference_guide_cookbook_1_text") =

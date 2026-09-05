@@ -374,7 +374,9 @@ SECTIONS
         . = 0x113E58; src/reference_guide.o(.rodata.reference_guide_clinic_lines);
         . = 0x113EE4; data/text/reference_guide/aja_winery.o(.rodata.reference_guide_aja_winery_text);
         . = 0x113FF0; src/reference_guide.o(.rodata.reference_guide_aja_winery_lines);
-        . = 0x114040; asm/data/data_080F9EB8.o(.rodata.reference_guide_aja_winery_trailer);
+        . = 0x114040; data/text/reference_guide/dougs_inn.o(.rodata.reference_guide_dougs_inn_text);
+        . = 0x1140E0; src/reference_guide.o(.rodata.reference_guide_dougs_inn_lines);
+        . = 0x114118; asm/data/data_080F9EB8.o(.rodata.reference_guide_dougs_inn_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
