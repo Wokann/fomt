@@ -5364,3 +5364,61 @@ char const * const gReferenceGuideWoodcuttersHouseLines[] SECTION(".rodata.refer
 #endif
     nullptr,
 };
+
+// Reference Guide page 64: Mineral Town Clinic. The US and JP entries share
+// page structure; each original ROM retains one direct title/text reuse.
+char const * const gReferenceGuideClinicLines[] SECTION(".rodata.reference_guide_clinic_lines") = {
+    gText_ReferenceGuide_Clinic_Title,
+    gText_ReferenceGuide_EmptyLine,
+
+    // Clinic services.
+    gText_ReferenceGuide_Clinic_Overview_Medicine_Line01,
+    gText_ReferenceGuide_Clinic_Overview_Medicine_Line02,
+    gText_ReferenceGuide_Clinic_Overview_Examination_Line01,
+    gText_ReferenceGuide_Clinic_Overview_Examination_Line02,
+    gText_ReferenceGuide_Clinic_Overview_Collapse_Line01,
+    gText_ReferenceGuide_Clinic_Overview_Collapse_Line02,
+    gText_ReferenceGuide_Clinic_Overview_Collapse_Line03,
+    gText_ReferenceGuide_EmptyLine,
+    // Physical reuse: both ROMs point at the existing store-hours label.
+    gText_ReferenceGuide_SaibaraBlacksmith_StoreHours_Heading,
+    gText_ReferenceGuide_Clinic_StoreHours_Value,
+    gText_ReferenceGuide_EmptyLine,
+    // Physical reuse: both ROMs point at the existing closed-day label.
+    gText_ReferenceGuide_SaibaraBlacksmith_ClosedDay_Heading,
+    gText_ReferenceGuide_Clinic_ClosedDay_Value,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    // Medicine.
+#if defined(REGION_JP)
+    gText_ReferenceGuide_Clinic_StaminaMedicine_Title,
+#else
+    // Physical reuse: the US page points at the Cookbook III Bodigizer title.
+    gText_ReferenceGuide_Cookbook3_Bodigizer_Title,
+#endif
+    gText_ReferenceGuide_Clinic_StaminaMedicine_Description_Line01,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Clinic_FatigueMedicine_Title,
+    gText_ReferenceGuide_Clinic_FatigueMedicine_Description_Line01,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Clinic_StrongerMedicine_Line01,
+    gText_ReferenceGuide_Clinic_StrongerMedicine_Line02,
+    gText_ReferenceGuide_Clinic_StrongerMedicine_Line03,
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    // Physical reuse: JP reuses the Supermarket refrigerator purchase text.
+    gText_ReferenceGuide_Supermarket_Ingredients_Refrigerator_Line01,
+    gText_ReferenceGuide_Supermarket_Ingredients_Refrigerator_Line02,
+#else
+    gText_ReferenceGuide_Clinic_RefrigeratorPurchases_Line01,
+    gText_ReferenceGuide_Clinic_RefrigeratorPurchases_Line02,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    gText_ReferenceGuide_Clinic_Examination_Title,
+    gText_ReferenceGuide_Clinic_Examination_Description_Line01,
+    gText_ReferenceGuide_Clinic_Examination_Description_Line02,
+    nullptr,
+};

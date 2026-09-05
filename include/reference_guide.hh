@@ -125,6 +125,8 @@ extern char const * const gReferenceGuideSaibaraBlacksmithLines[];
 extern char const * const gReferenceGuideSupermarketLines[];
 // Reference Guide page 63: Woodcutter's House.
 extern char const * const gReferenceGuideWoodcuttersHouseLines[];
+// Reference Guide page 64: Mineral Town Clinic.
+extern char const * const gReferenceGuideClinicLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -533,6 +535,33 @@ extern char const gText_ReferenceGuide_WoodcuttersHouse_ChickenCoopExpansion_Inc
 extern char const gText_ReferenceGuide_WoodcuttersHouse_BarnExpansion_Capacity_Line03[];
 extern char const gText_ReferenceGuide_WoodcuttersHouse_BarnExpansion_PregnancySpace_Line02[];
 extern char const gText_ReferenceGuide_WoodcuttersHouse_BarnExpansion_PregnancySpace_Line03[];
+#endif
+
+// Localized Mineral Town Clinic text (page 64).
+extern char const gText_ReferenceGuide_Clinic_Title[];
+extern char const gText_ReferenceGuide_Clinic_Overview_Medicine_Line01[];
+extern char const gText_ReferenceGuide_Clinic_Overview_Medicine_Line02[];
+extern char const gText_ReferenceGuide_Clinic_Overview_Examination_Line01[];
+extern char const gText_ReferenceGuide_Clinic_Overview_Examination_Line02[];
+extern char const gText_ReferenceGuide_Clinic_Overview_Collapse_Line01[];
+extern char const gText_ReferenceGuide_Clinic_Overview_Collapse_Line02[];
+extern char const gText_ReferenceGuide_Clinic_Overview_Collapse_Line03[];
+extern char const gText_ReferenceGuide_Clinic_StoreHours_Value[];
+extern char const gText_ReferenceGuide_Clinic_ClosedDay_Value[];
+extern char const gText_ReferenceGuide_Clinic_StaminaMedicine_Description_Line01[];
+extern char const gText_ReferenceGuide_Clinic_FatigueMedicine_Title[];
+extern char const gText_ReferenceGuide_Clinic_FatigueMedicine_Description_Line01[];
+extern char const gText_ReferenceGuide_Clinic_StrongerMedicine_Line01[];
+extern char const gText_ReferenceGuide_Clinic_StrongerMedicine_Line02[];
+extern char const gText_ReferenceGuide_Clinic_StrongerMedicine_Line03[];
+extern char const gText_ReferenceGuide_Clinic_Examination_Title[];
+extern char const gText_ReferenceGuide_Clinic_Examination_Description_Line01[];
+extern char const gText_ReferenceGuide_Clinic_Examination_Description_Line02[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_Clinic_StaminaMedicine_Title[];
+#else
+extern char const gText_ReferenceGuide_Clinic_RefrigeratorPurchases_Line01[];
+extern char const gText_ReferenceGuide_Clinic_RefrigeratorPurchases_Line02[];
 #endif
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];

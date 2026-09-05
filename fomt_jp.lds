@@ -472,7 +472,9 @@ SECTIONS
         . = 0x114234; src/reference_guide.o(.rodata.reference_guide_supermarket_lines);
         . = 0x1143C0; data/text/reference_guide/woodcutters_house.o(.rodata.reference_guide_woodcutters_house_text);
         . = 0x114824; src/reference_guide.o(.rodata.reference_guide_woodcutters_house_lines);
-        . = 0x11492C; asm/data/data_080F9EB8.o(.rodata.reference_guide_woodcutters_house_trailer);
+        . = 0x11492C; data/text/reference_guide/clinic.o(.rodata.reference_guide_clinic_text);
+        . = 0x114B08; src/reference_guide.o(.rodata.reference_guide_clinic_lines);
+        . = 0x114B94; asm/data/data_080F9EB8.o(.rodata.reference_guide_clinic_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */
