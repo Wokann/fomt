@@ -2630,7 +2630,7 @@ char const * const gReferenceGuideAwlLuminaLines[] SECTION(".rodata.reference_gu
     gText_ReferenceGuide_AwlLumina_Profile02_Line01,
     gText_ReferenceGuide_AwlLumina_Profile02_Line02,
     gText_ReferenceGuide_AwlLumina_Profile02_Line03,
-    gText_ReferenceGuide_AwlLumina_Profile02_Line04,
+    gText_ReferenceGuide_AwlProfile_IsSuffix,
     nullptr,
 #else
     gText_ReferenceGuide_AwlLumina_Title,
@@ -2912,7 +2912,7 @@ char const * const gReferenceGuideAwlKateLines[] SECTION(".rodata.reference_guid
     gText_ReferenceGuide_AwlKate_Profile02_Line03,
     gText_ReferenceGuide_AwlKate_Profile02_Line04,
     gText_ReferenceGuide_AwlKate_Profile02_Line05,
-    gText_ReferenceGuide_AwlKate_Profile02_Line06,
+    gText_ReferenceGuide_AwlProfile_ForgetMeNotValleyLine,
     nullptr,
 #endif
 };
@@ -3188,6 +3188,48 @@ char const * const gReferenceGuideAwlPatrickLines[] SECTION(".rodata.reference_g
     gText_ReferenceGuide_AwlPatrick_Profile02_Line01,
     gText_ReferenceGuide_AwlPatrick_Profile02_Line02,
     gText_ReferenceGuide_AwlPatrick_Profile02_Line03,
+    nullptr,
+#endif
+};
+
+// Reference Guide page 35: AWL character profile for Murray.
+char const * const gReferenceGuideAwlMurrayLines[] SECTION(".rodata.reference_guide_awl_murray_lines") = {
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AwlMurray_Title,
+    gText_ReferenceGuide_AwlMurray_Introduction_Line01,
+    gText_ReferenceGuide_AwlMurray_Introduction_Line02,
+    gText_ReferenceGuide_AwlMurray_Introduction_Line03,
+    gText_ReferenceGuide_AwlMurray_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlMurray_Profile01_Line01,
+    gText_ReferenceGuide_AwlMurray_Profile01_Line02,
+    gText_ReferenceGuide_AwlMurray_Profile01_Line03,
+    gText_ReferenceGuide_AwlMurray_Profile01_Line04,
+    gText_ReferenceGuide_AwlMurray_Profile01_Line05,
+    gText_ReferenceGuide_AwlMurray_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlMurray_Profile02_Line01,
+    gText_ReferenceGuide_AwlMurray_Profile02_Line02,
+    // Shared physical field from Lumina's profile; it completes this sentence.
+    gText_ReferenceGuide_AwlProfile_IsSuffix,
+    nullptr,
+#else
+    gText_ReferenceGuide_AwlMurray_Title,
+    gText_ReferenceGuide_AwlMurray_Introduction_Line01,
+    gText_ReferenceGuide_AwlMurray_Introduction_Line02,
+    gText_ReferenceGuide_AwlMurray_Introduction_Line03,
+    gText_ReferenceGuide_AwlMurray_Introduction_Line04,
+    gText_ReferenceGuide_AwlMurray_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlMurray_Profile01_Line01,
+    gText_ReferenceGuide_AwlMurray_Profile01_Line02,
+    gText_ReferenceGuide_AwlMurray_Profile01_Line03,
+    // Shared physical field from Kate's profile; it completes this sentence.
+    gText_ReferenceGuide_AwlProfile_ForgetMeNotValleyLine,
+    gText_ReferenceGuide_AwlMurray_Profile02_Marker,
+    gText_ReferenceGuide_AwlMurray_Profile02_Line01,
+    gText_ReferenceGuide_AwlMurray_Profile02_Line02,
+    gText_ReferenceGuide_AwlMurray_Profile02_Line03,
     nullptr,
 #endif
 };

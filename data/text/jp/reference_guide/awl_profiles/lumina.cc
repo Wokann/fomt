@@ -35,5 +35,5 @@ char const gText_ReferenceGuide_AwlLumina_Profile02_Line02[20] SECTION(".rodata.
 char const gText_ReferenceGuide_AwlLumina_Profile02_Line03[32] SECTION(".rodata.reference_guide_awl_lumina_text") =
     "それ以来、ロマナが面倒を見て";
 
-char const gText_ReferenceGuide_AwlLumina_Profile02_Line04[8] SECTION(".rodata.reference_guide_awl_lumina_text") =
+char const gText_ReferenceGuide_AwlProfile_IsSuffix[8] SECTION(".rodata.reference_guide_awl_lumina_text") =
     "いる。";

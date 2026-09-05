@@ -50,5 +50,5 @@ char const gText_ReferenceGuide_AwlKate_Profile02_Line04[28] SECTION(".rodata.re
 char const gText_ReferenceGuide_AwlKate_Profile02_Line05[24] SECTION(".rodata.reference_guide_awl_kate_text") =
     "she does enjoy life in ";
 
-char const gText_ReferenceGuide_AwlKate_Profile02_Line06[24] SECTION(".rodata.reference_guide_awl_kate_text") =
+char const gText_ReferenceGuide_AwlProfile_ForgetMeNotValleyLine[24] SECTION(".rodata.reference_guide_awl_kate_text") =
     "Forget-me-not Valley.";
