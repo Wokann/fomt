@@ -201,6 +201,8 @@ extern char const * const gReferenceGuideMayAndBarleyNewYearCardsLines[];
 extern char const * const gReferenceGuideThomasAndHarrisNewYearCardLines[];
 // Reference Guide page 101: Thomas and Harris's town-safety New Year Card.
 extern char const * const gReferenceGuideThomasAndHarrisTownSafetyNewYearCardLines[];
+// Reference Guide page 102: Manna and Duke's New Year Cards.
+extern char const * const gReferenceGuideMannaAndDukeNewYearCardsLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -1189,6 +1191,18 @@ extern char const gText_ReferenceGuide_ThomasAndHarrisTownSafetyNewYearCard_Town
 extern char const gText_ReferenceGuide_ThomasAndHarrisTownSafetyNewYearCard_FarmWork_Line01[];
 #else
 extern char const gText_ReferenceGuide_ThomasAndHarrisTownSafetyNewYearCard_TownSafety_Line03[];
+#endif
+
+// Localized Manna and Duke New Year Cards text (page 102).
+extern char const gText_ReferenceGuide_MannaAndDukeNewYearCards_Title[];
+extern char const gText_ReferenceGuide_MannaAndDukeNewYearCards_MannaWish_Line01[];
+extern char const gText_ReferenceGuide_MannaAndDukeNewYearCards_MannaSignature[];
+extern char const gText_ReferenceGuide_MannaAndDukeNewYearCards_DukeInvitation_Line01[];
+extern char const gText_ReferenceGuide_MannaAndDukeNewYearCards_DukeInvitation_Line02[];
+extern char const gText_ReferenceGuide_MannaAndDukeNewYearCards_DukeSignature[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_MannaAndDukeNewYearCards_MannaGreeting_Line01[];
+extern char const gText_ReferenceGuide_MannaAndDukeNewYearCards_AjaWinerySignature[];
 #endif
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];

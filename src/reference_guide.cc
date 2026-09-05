@@ -6599,3 +6599,30 @@ char const * const gReferenceGuideThomasAndHarrisTownSafetyNewYearCardLines[] SE
     gText_ReferenceGuide_ThomasAndHarrisNewYearCard_Signature,
     nullptr,
 };
+
+// Reference Guide page 102: Manna and Duke's New Year Cards. The US Manna
+// card physically reuses the Doctor card's New Year greeting.
+char const * const gReferenceGuideMannaAndDukeNewYearCardsLines[] SECTION(".rodata.reference_guide_manna_and_duke_new_year_cards_lines") = {
+    gText_ReferenceGuide_MannaAndDukeNewYearCards_Title,
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_MannaAndDukeNewYearCards_MannaGreeting_Line01,
+#else
+    // Reused physical text from the Doctor's New Year card (page 82).
+    gText_ReferenceGuide_DoctorNewYearCard_Greeting_Line01,
+#endif
+    gText_ReferenceGuide_MannaAndDukeNewYearCards_MannaWish_Line01,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_MannaAndDukeNewYearCards_MannaSignature,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_MannaAndDukeNewYearCards_DukeInvitation_Line01,
+    gText_ReferenceGuide_MannaAndDukeNewYearCards_DukeInvitation_Line02,
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_MannaAndDukeNewYearCards_AjaWinerySignature,
+#endif
+    gText_ReferenceGuide_MannaAndDukeNewYearCards_DukeSignature,
+    nullptr,
+};

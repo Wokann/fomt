@@ -446,7 +446,9 @@ SECTIONS
         . = 0x116468; src/reference_guide.o(.rodata.reference_guide_thomas_and_harris_new_year_card_lines);
         . = 0x116490; data/text/reference_guide/thomas_and_harris_town_safety_new_year_card.o(.rodata.reference_guide_thomas_and_harris_town_safety_new_year_card_text);
         . = 0x1164E0; src/reference_guide.o(.rodata.reference_guide_thomas_and_harris_town_safety_new_year_card_lines);
-        . = 0x116504; asm/data/data_080F9EB8.o(.rodata.reference_guide_thomas_and_harris_town_safety_new_year_card_trailer);
+        . = 0x116504; data/text/reference_guide/manna_and_duke_new_year_cards.o(.rodata.reference_guide_manna_and_duke_new_year_cards_text);
+        . = 0x11659C; src/reference_guide.o(.rodata.reference_guide_manna_and_duke_new_year_cards_lines);
+        . = 0x1165C8; asm/data/data_080F9EB8.o(.rodata.reference_guide_manna_and_duke_new_year_cards_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
