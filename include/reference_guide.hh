@@ -131,6 +131,8 @@ extern char const * const gReferenceGuideClinicLines[];
 extern char const * const gReferenceGuideAjaWineryLines[];
 // Reference Guide page 66: Doug's Inn.
 extern char const * const gReferenceGuideDougsInnLines[];
+// Reference Guide page 67: Kai's Seaside Lodge.
+extern char const * const gReferenceGuideKaiSeasideLodgeLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -599,6 +601,18 @@ extern char const gText_ReferenceGuide_DougsInn_StoreHours_Value[];
 extern char const gText_ReferenceGuide_DougsInn_Takeout_Line03[];
 extern char const gText_ReferenceGuide_DougsInn_MenuTimes_Line02[];
 extern char const gText_ReferenceGuide_DougsInn_ClosedDay_Value[];
+#endif
+
+// Localized Kai's Seaside Lodge text (page 67).
+extern char const gText_ReferenceGuide_KaiSeasideLodge_Title[];
+extern char const gText_ReferenceGuide_KaiSeasideLodge_Takeout_Line01[];
+extern char const gText_ReferenceGuide_KaiSeasideLodge_Takeout_Line02[];
+extern char const gText_ReferenceGuide_KaiSeasideLodge_SeasonalAvailability_Line01[];
+extern char const gText_ReferenceGuide_KaiSeasideLodge_StoreHours_Open_Value[];
+extern char const gText_ReferenceGuide_KaiSeasideLodge_StoreHours_Close_Value[];
+extern char const gText_ReferenceGuide_KaiSeasideLodge_ClosedDay_Value[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_KaiSeasideLodge_Takeout_Line03[];
 #endif
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];

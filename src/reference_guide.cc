@@ -5502,3 +5502,26 @@ char const * const gReferenceGuideDougsInnLines[] SECTION(".rodata.reference_gui
 #endif
     nullptr,
 };
+
+// Reference Guide page 67: Kai's Seaside Lodge. Both ROMs use the same
+// page structure except that the Japanese takeout description has one extra line.
+char const * const gReferenceGuideKaiSeasideLodgeLines[] SECTION(".rodata.reference_guide_kai_seaside_lodge_lines") = {
+    gText_ReferenceGuide_KaiSeasideLodge_Title,
+    gText_ReferenceGuide_KaiSeasideLodge_Takeout_Line01,
+    gText_ReferenceGuide_KaiSeasideLodge_Takeout_Line02,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_KaiSeasideLodge_Takeout_Line03,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_KaiSeasideLodge_SeasonalAvailability_Line01,
+    gText_ReferenceGuide_EmptyLine,
+    // Physical reuse: both ROMs point at the generic store-hours label.
+    gText_ReferenceGuide_StoreHours_Heading,
+    gText_ReferenceGuide_KaiSeasideLodge_StoreHours_Open_Value,
+    gText_ReferenceGuide_KaiSeasideLodge_StoreHours_Close_Value,
+    gText_ReferenceGuide_EmptyLine,
+    // Physical reuse: both ROMs point at the generic closed-day label.
+    gText_ReferenceGuide_ClosedDay_Heading,
+    gText_ReferenceGuide_KaiSeasideLodge_ClosedDay_Value,
+    nullptr,
+};

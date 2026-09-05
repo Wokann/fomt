@@ -478,7 +478,9 @@ SECTIONS
         . = 0x114C88; src/reference_guide.o(.rodata.reference_guide_aja_winery_lines);
         . = 0x114CE4; data/text/reference_guide/dougs_inn.o(.rodata.reference_guide_dougs_inn_text);
         . = 0x114D7C; src/reference_guide.o(.rodata.reference_guide_dougs_inn_lines);
-        . = 0x114DB0; asm/data/data_080F9EB8.o(.rodata.reference_guide_dougs_inn_trailer);
+        . = 0x114DB0; data/text/reference_guide/kai_seaside_lodge.o(.rodata.reference_guide_kai_seaside_lodge_text);
+        . = 0x114E88; src/reference_guide.o(.rodata.reference_guide_kai_seaside_lodge_lines);
+        . = 0x114EC0; asm/data/data_080F9EB8.o(.rodata.reference_guide_kai_seaside_lodge_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */
