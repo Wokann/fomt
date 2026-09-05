@@ -3436,3 +3436,50 @@ char const * const gReferenceGuideAwlGriffinLines[] SECTION(".rodata.reference_g
     nullptr,
 #endif
 };
+
+// Reference Guide page 41: AWL character profile for Muffy.
+char const * const gReferenceGuideAwlMuffyLines[] SECTION(".rodata.reference_guide_awl_muffy_lines") = {
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AwlMuffy_Title,
+    gText_ReferenceGuide_AwlMuffy_Introduction_Line01,
+    gText_ReferenceGuide_AwlMuffy_Introduction_Line02,
+    gText_ReferenceGuide_AwlMuffy_Introduction_Line03,
+    gText_ReferenceGuide_AwlMuffy_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlMuffy_Profile01_Line01,
+    gText_ReferenceGuide_AwlMuffy_Profile01_Line02,
+    gText_ReferenceGuide_AwlMuffy_Profile01_Line03,
+    gText_ReferenceGuide_AwlMuffy_Profile01_Line04,
+    gText_ReferenceGuide_AwlMuffy_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlMuffy_Profile02_Line01,
+    gText_ReferenceGuide_AwlMuffy_Profile02_Line02,
+    gText_ReferenceGuide_AwlMuffy_Profile02_Line03,
+    gText_ReferenceGuide_AwlMuffy_Profile02_Line04,
+    // Shared physical field from Griffin's profile; it completes this sentence.
+    gText_ReferenceGuide_AwlGriffin_Profile02_Line04,
+    nullptr,
+#else
+    gText_ReferenceGuide_AwlMuffy_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlMuffy_Introduction_Line01,
+    gText_ReferenceGuide_AwlMuffy_Introduction_Line02,
+    gText_ReferenceGuide_AwlMuffy_Introduction_Line03,
+    gText_ReferenceGuide_AwlMuffy_Introduction_Line04,
+    gText_ReferenceGuide_AwlMuffy_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlMuffy_Profile01_Line01,
+    gText_ReferenceGuide_AwlMuffy_Profile01_Line02,
+    gText_ReferenceGuide_AwlMuffy_Profile01_Line03,
+    gText_ReferenceGuide_AwlMuffy_Profile01_Line04,
+    gText_ReferenceGuide_AwlMuffy_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlMuffy_Profile02_Line01,
+    gText_ReferenceGuide_AwlMuffy_Profile02_Line02,
+    gText_ReferenceGuide_AwlMuffy_Profile02_Line03,
+    gText_ReferenceGuide_AwlMuffy_Profile02_Line04,
+    // Shared physical field from Gustafa's introduction; it completes this sentence.
+    gText_ReferenceGuide_AwlGustafa_Introduction_Line06,
+    nullptr,
+#endif
+};
