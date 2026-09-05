@@ -16,6 +16,9 @@ extern char const * const gReferenceGuideDiaryWindowControlsLines[];
 extern char const * const gReferenceGuideTownMapControlsLines[];
 extern char const * const gReferenceGuideFarmMapControlsLines[];
 extern char const * const gReferenceGuideToolAndItemControlsLines[];
+#if defined(REGION_US)
+extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
+#endif
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Line01[];

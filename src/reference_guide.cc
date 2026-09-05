@@ -720,3 +720,25 @@ char const * const gReferenceGuideToolAndItemControlsLines[] SECTION(".rodata.re
     nullptr,
 #endif
 };
+
+#if defined(REGION_US)
+// The US ROM stores this additional native line table immediately after page 8.
+char const * const gReferenceGuideToolAndItemControlsAdditionalLines[] SECTION(".rodata.reference_guide_tool_and_item_controls_additional_lines") = {
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_TelevisionControls_Line15,
+    gText_ReferenceGuide_ToolAndItemControls_Line05,
+    gText_ReferenceGuide_ToolAndItemControls_Line06,
+    gText_ReferenceGuide_ToolAndItemControls_Line07,
+    gText_ReferenceGuide_ToolAndItemControls_Line08,
+    gText_ReferenceGuide_ToolAndItemControls_Line09,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_ToolAndItemControls_Line10,
+    gText_ReferenceGuide_ToolAndItemControls_Line11,
+    gText_ReferenceGuide_ToolAndItemControls_Line12,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_TelevisionControls_Line18,
+    gText_ReferenceGuide_ToolAndItemControls_Line13,
+    gText_ReferenceGuide_ToolAndItemControls_Line14,
+    nullptr,
+};
+#endif

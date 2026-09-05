@@ -3222,7 +3222,7 @@ gReferenceGuidePageLineTables:
 	.incbin "baserom_us.gba", 0x10828C, (0x1084B0 - 0x10828C)
 
 	.section .rodata.reference_guide_controls_trailer
-	.incbin "baserom_us.gba", 0x10A370, (0x1177F6 - 0x10A370)
+	.incbin "baserom_us.gba", 0x10A3B0, (0x1177F6 - 0x10A3B0)
 
 	.section .rodata
 
