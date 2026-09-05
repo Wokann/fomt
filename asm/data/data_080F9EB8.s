@@ -48,8 +48,8 @@ gText_CharacterName_Empty:
 gReferenceGuidePageLineTables:
     .incbin "baserom_jp.gba", 0x107DAC, (0x107FD0 - 0x107DAC)
 
-    .section .rodata.reference_guide_awl_chris_trailer
-    .incbin "baserom_jp.gba", 0x10F140, (0x13BCF8 - 0x10F140)
+    .section .rodata.reference_guide_awl_hugh_trailer
+    .incbin "baserom_jp.gba", 0x10F2C4, (0x13BCF8 - 0x10F2C4)
     .else
     .section .rodata.reference_guide_harvest_sprite_minigames_prefix
 
@@ -3221,8 +3221,8 @@ gUnk_0810827C:
 gReferenceGuidePageLineTables:
 	.incbin "baserom_us.gba", 0x10828C, (0x1084B0 - 0x10828C)
 
-	.section .rodata.reference_guide_awl_chris_trailer
-	.incbin "baserom_us.gba", 0x10EE34, (0x1177F6 - 0x10EE34)
+	.section .rodata.reference_guide_awl_hugh_trailer
+	.incbin "baserom_us.gba", 0x10EEB8, (0x1177F6 - 0x10EEB8)
 
 	.section .rodata
 
