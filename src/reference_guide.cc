@@ -2870,3 +2870,49 @@ char const * const gReferenceGuideAwlSamanthaLines[] SECTION(".rodata.reference_
     nullptr,
 #endif
 };
+
+// Reference Guide page 27: AWL character profile for Kate.
+char const * const gReferenceGuideAwlKateLines[] SECTION(".rodata.reference_guide_awl_kate_lines") = {
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AwlKate_Title,
+    gText_ReferenceGuide_AwlKate_Introduction_Line01,
+    gText_ReferenceGuide_AwlKate_Introduction_Line02,
+    gText_ReferenceGuide_AwlKate_Introduction_Line03,
+    gText_ReferenceGuide_AwlKate_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlKate_Profile01_Line01,
+    gText_ReferenceGuide_AwlKate_Profile01_Line02,
+    gText_ReferenceGuide_AwlKate_Profile01_Line03,
+    gText_ReferenceGuide_AwlKate_Profile01_Line04,
+    gText_ReferenceGuide_AwlKate_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlKate_Profile02_Line01,
+    gText_ReferenceGuide_AwlKate_Profile02_Line02,
+    gText_ReferenceGuide_AwlKate_Profile02_Line03,
+    gText_ReferenceGuide_AwlKate_Profile02_Line04,
+    gText_ReferenceGuide_AwlKate_Profile02_Line05,
+    gText_ReferenceGuide_AwlKate_Profile02_Line06,
+    nullptr,
+#else
+    gText_ReferenceGuide_AwlKate_Title,
+    gText_ReferenceGuide_AwlKate_Introduction_Line01,
+    gText_ReferenceGuide_AwlKate_Introduction_Line02,
+    gText_ReferenceGuide_AwlKate_Introduction_Line03,
+    gText_ReferenceGuide_AwlKate_Introduction_Line04,
+    gText_ReferenceGuide_AwlKate_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlKate_Profile01_Line01,
+    gText_ReferenceGuide_AwlKate_Profile01_Line02,
+    gText_ReferenceGuide_AwlKate_Profile01_Line03,
+    gText_ReferenceGuide_AwlKate_Profile01_Line04,
+    gText_ReferenceGuide_AwlKate_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlKate_Profile02_Line01,
+    gText_ReferenceGuide_AwlKate_Profile02_Line02,
+    gText_ReferenceGuide_AwlKate_Profile02_Line03,
+    gText_ReferenceGuide_AwlKate_Profile02_Line04,
+    gText_ReferenceGuide_AwlKate_Profile02_Line05,
+    gText_ReferenceGuide_AwlKate_Profile02_Line06,
+    nullptr,
+#endif
+};
