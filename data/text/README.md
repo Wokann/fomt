@@ -23,7 +23,9 @@ Regional text belongs under this directory by its owning data structure:
 Keep categories separate even when their entries are linked beside one another:
 each source corresponds to the C/C++ structure that owns its text pointers.
 Reference Guide sources are grouped under each region's `reference_guide/`
-directory, with one source per verified guide category.
+directory, with one source per verified guide category.  Their small pointer
+tables and declarations are centralized in `src/reference_guide.cc` and
+`include/reference_guide.hh`.
 
 The project-root `charmap.txt` is shared by every regional text category.  Its
 Shift-JIS entries include ASCII, so regional text does not need separate

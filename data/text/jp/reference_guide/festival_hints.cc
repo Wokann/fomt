@@ -1,4 +1,4 @@
-#include "reference_guide_festival_hints_text.hh"
+#include "reference_guide.hh"
 
 // Localized text fields selected by gReferenceGuideFestivalHintsLines.
 // Each field preserves its original ROM capacity and physical order.

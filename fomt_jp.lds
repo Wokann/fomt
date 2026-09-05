@@ -346,9 +346,9 @@ SECTIONS
         . = 0x1073B9; data/text/festival_contestants.o(.rodata.festival_contestants_set2);
         . = 0x1074BD; asm/data/data_080F9EB8.o(.rodata.festival_contestants_set2_trailer);
         . = 0x107FD0; data/text/reference_guide/harvest_sprite_minigames.o(.rodata.reference_guide_harvest_sprite_minigames_text);
-        . = 0x108AFC; src/reference_guide_harvest_sprite_minigames_data.o(.rodata.reference_guide_harvest_sprite_minigames_lines);
+        . = 0x108AFC; src/reference_guide.o(.rodata.reference_guide_harvest_sprite_minigames_lines);
         . = 0x108CBC; data/text/reference_guide/festival_hints.o(.rodata.reference_guide_festival_hints_text);
-        . = 0x1092EC; src/reference_guide_festival_hints_data.o(.rodata.reference_guide_festival_hints_lines);
+        . = 0x1092EC; src/reference_guide.o(.rodata.reference_guide_festival_hints_lines);
         . = 0x1093DC; asm/data/data_080F9EB8.o(.rodata.reference_guide_festival_hints_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
