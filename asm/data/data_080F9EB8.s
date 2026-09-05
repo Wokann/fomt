@@ -32,10 +32,14 @@ gUnk_081036A0:
     .incbin "baserom_jp.gba", 0x1031DC, (0x1032C4 - 0x1031DC)
 
     .section .rodata.fishing_results_trailer
-    .incbin "baserom_jp.gba", 0x10350C, (0x103C1C - 0x10350C)
+    .incbin "baserom_jp.gba", 0x10350C, (0x103BFC - 0x10350C)
 
-    .section .rodata.character_names_trailer
-    .incbin "baserom_jp.gba", 0x103D9C, (0x1073B9 - 0x103D9C)
+    .global gText_CharacterName_Empty
+gText_CharacterName_Empty:
+    .incbin "baserom_jp.gba", 0x103BFC, (0x103C1C - 0x103BFC)
+
+    .section .rodata.character_names_table_trailer
+    .incbin "baserom_jp.gba", 0x103EF4, (0x1073B9 - 0x103EF4)
 
     .section .rodata.festival_contestants_set2_trailer
     .incbin "baserom_jp.gba", 0x1074BD, (0x107DAC - 0x1074BD)
@@ -2191,8 +2195,8 @@ gUnk_0810400C:
 gUnk_081040EC:
 	.incbin "baserom_us.gba", 0x1040EC, 0x1C
 
-	.global gUnk_08104108
-gUnk_08104108:
+	.global gText_CharacterName_Empty
+gText_CharacterName_Empty:
 	.incbin "baserom_us.gba", 0x104108, 0x1
 
 	.global gUnk_08104109
@@ -2215,13 +2219,14 @@ gUnk_08104118:
 gUnk_0810411D:
 	.incbin "baserom_us.gba", 0x10411D, 0x5
 
-	.global gUnk_08104122 @CharacterNames
+	.global gUnk_08104122
 gUnk_08104122:
-	.incbin "baserom_us.gba", 0x104122, 0x136
+	.incbin "baserom_us.gba", 0x104122, (0x104128 - 0x104122)
 
-	.global gUnk_08104258 @CharacterNamePointers
-gUnk_08104258:
-	.incbin "baserom_us.gba", 0x104258, 0x164
+	.section .rodata.character_names_table_trailer
+	.incbin "baserom_us.gba", 0x1043B0, (0x1043BC - 0x1043B0)
+
+	.section .rodata.reference_guide_harvest_sprite_minigames_after_character_names
 
 	.global gUnk_081043BC
 gUnk_081043BC:

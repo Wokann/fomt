@@ -642,7 +642,7 @@ func_0809E9B8: @ 0x0809E9B8
 	bl __3NpcRC13ActorLocation
 	adds r5, r7, #0
 	adds r5, #0x14
-	ldr r6, .L0809EA68 @ =gUnk_08104108
+	ldr r6, .L0809EA68 @ =gText_CharacterName_Empty
 	adds r0, r6, #0
 	bl strlen
 	adds r4, r0, #0
@@ -680,7 +680,7 @@ func_0809E9B8: @ 0x0809E9B8
 	bx r1
 	.align 2, 0
 .L0809EA64: .4byte 0xFFFFFC00
-.L0809EA68: .4byte gUnk_08104108
+.L0809EA68: .4byte gText_CharacterName_Empty
 
 	thumb_func_start func_0809EA6C
 func_0809EA6C: @ 0x0809EA6C
@@ -693,7 +693,7 @@ func_0809EA6C: @ 0x0809EA6C
 	bl __3NpcRC13ActorLocation
 	adds r6, r5, #0
 	adds r6, #0x14
-	ldr r7, .L0809EAC8 @ =gUnk_08104108
+	ldr r7, .L0809EAC8 @ =gText_CharacterName_Empty
 	adds r0, r7, #0
 	bl strlen
 	adds r4, r0, #0
@@ -729,7 +729,7 @@ func_0809EA6C: @ 0x0809EA6C
 	pop {r1}
 	bx r1
 	.align 2, 0
-.L0809EAC8: .4byte gUnk_08104108
+.L0809EAC8: .4byte gText_CharacterName_Empty
 
 	thumb_func_start func_0809EACC
 func_0809EACC: @ 0x0809EACC
@@ -3156,10 +3156,10 @@ func_0809FE3C: @ 0x0809FE3C
 .L0809FE46:
 	cmp r2, #0
 	bne .L0809FE54
-	ldr r0, .L0809FE50 @ =gUnk_08104108
+	ldr r0, .L0809FE50 @ =gText_CharacterName_Empty
 	b .L0809FE6C
 	.align 2, 0
-.L0809FE50: .4byte gUnk_08104108
+.L0809FE50: .4byte gText_CharacterName_Empty
 .L0809FE54:
 	cmp r1, #0
 	beq .L0809FE64
@@ -3169,7 +3169,7 @@ func_0809FE3C: @ 0x0809FE3C
 	bl func_0809EACC
 	b .L0809FE6C
 .L0809FE64:
-	ldr r0, .L0809FE70 @ =gUnk_08104258
+	ldr r0, .L0809FE70 @ =gCharacterNameEntries
 	lsls r1, r1, #3
 	adds r1, r1, r0
 	ldr r0, [r1]
@@ -3177,7 +3177,7 @@ func_0809FE3C: @ 0x0809FE3C
 	pop {r1}
 	bx r1
 	.align 2, 0
-.L0809FE70: .4byte gUnk_08104258
+.L0809FE70: .4byte gCharacterNameEntries
 
 	thumb_func_start func_0809FE74
 func_0809FE74: @ 0x0809FE74
@@ -3257,7 +3257,7 @@ func_0809FE74: @ 0x0809FE74
 	.4byte .L0809FFDC @ case 35
 .L0809FF48:
 	lsls r0, r3, #3
-	ldr r1, .L0809FFD8 @ =gUnk_08104258
+	ldr r1, .L0809FFD8 @ =gCharacterNameEntries
 	adds r0, r0, r1
 	adds r6, r0, #0
 	ldrb r0, [r6, #4]
@@ -3330,14 +3330,14 @@ func_0809FE74: @ 0x0809FE74
 	adds r0, r5, #0
 	b .L080A001C
 	.align 2, 0
-.L0809FFD8: .4byte gUnk_08104258
+.L0809FFD8: .4byte gCharacterNameEntries
 .L0809FFDC:
 	adds r0, r4, #4
 	bl func_0809EAD0
 	b .L080A001C
 .L0809FFE4:
 	lsls r0, r3, #3
-	ldr r1, .L080A002C @ =gUnk_08104258
+	ldr r1, .L080A002C @ =gCharacterNameEntries
 	adds r0, r0, r1
 	ldrb r0, [r0, #4]
 	lsls r1, r0, #0x1e
@@ -3374,7 +3374,7 @@ func_0809FE74: @ 0x0809FE74
 	pop {r1}
 	bx r1
 	.align 2, 0
-.L080A002C: .4byte gUnk_08104258
+.L080A002C: .4byte gCharacterNameEntries
 
 	thumb_func_start func_080A0030
 func_080A0030: @ 0x080A0030
