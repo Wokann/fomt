@@ -346,7 +346,9 @@ SECTIONS
         . = 0x111110; src/reference_guide.o(.rodata.reference_guide_awl_child_lines);
         . = 0x111138; data/text/reference_guide/awl_profiles/nak.o(.rodata.reference_guide_awl_nak_text);
         . = 0x111220; src/reference_guide.o(.rodata.reference_guide_awl_nak_lines);
-        . = 0x111254; asm/data/data_080F9EB8.o(.rodata.reference_guide_awl_nak_trailer);
+        . = 0x111254; data/text/reference_guide/awl_profiles/nic.o(.rodata.reference_guide_awl_nic_text);
+        . = 0x1112F4; src/reference_guide.o(.rodata.reference_guide_awl_nic_lines);
+        . = 0x111328; asm/data/data_080F9EB8.o(.rodata.reference_guide_awl_nic_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);

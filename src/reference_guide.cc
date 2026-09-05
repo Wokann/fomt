@@ -3855,3 +3855,39 @@ char const * const gReferenceGuideAwlNakLines[] SECTION(".rodata.reference_guide
     nullptr,
 #endif
 };
+
+// Reference Guide page 52: AWL character profile for Nic.
+char const * const gReferenceGuideAwlNicLines[] SECTION(".rodata.reference_guide_awl_nic_lines") = {
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AwlNic_Title,
+    // Shared physical introduction from Nak's profile.
+    gText_ReferenceGuide_AwlNak_Introduction_Line01,
+    gText_ReferenceGuide_AwlNak_Introduction_Line02,
+    gText_ReferenceGuide_AwlNic_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    // Shared physical first-profile sentence from Nak's profile.
+    gText_ReferenceGuide_AwlNak_Profile01_Line01,
+    gText_ReferenceGuide_AwlNak_Profile01_Line02,
+    gText_ReferenceGuide_AwlNic_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlNic_Profile02_Line01,
+    gText_ReferenceGuide_AwlNic_Profile02_Line02,
+    nullptr,
+#else
+    gText_ReferenceGuide_AwlNic_Title,
+    gText_ReferenceGuide_AwlNic_Introduction_Line01,
+    gText_ReferenceGuide_AwlNic_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    // Shared physical opening line from Nak's profile.
+    gText_ReferenceGuide_AwlNak_Profile01_Line01,
+    gText_ReferenceGuide_AwlNic_Profile01_Line02,
+    // Shared physical final line from Nak's profile.
+    gText_ReferenceGuide_AwlNak_Profile01_Line03,
+    gText_ReferenceGuide_AwlNic_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlNic_Profile02_Line01,
+    gText_ReferenceGuide_AwlNic_Profile02_Line02,
+    gText_ReferenceGuide_AwlNic_Profile02_Line03,
+    nullptr,
+#endif
+};
