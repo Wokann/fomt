@@ -1862,13 +1862,13 @@ func_0809CE30: @ 0x0809CE30
 
     thumb_func_start func_0809CE7C
 func_0809CE7C: @ 0x0809CE7C
-    ldr r0, .L0809CE88 @ =gUnk_08103A18
+    ldr r0, .L0809CE88 @ =gFishingRecordNames
     lsls r1, r1, #2
     adds r1, r1, r0
     ldr r0, [r1]
     bx lr
     .align 2, 0
-.L0809CE88: .4byte gUnk_08103A18
+.L0809CE88: .4byte gFishingRecordNames
 
     thumb_func_start func_0809CE8C
 func_0809CE8C: @ 0x0809CE8C

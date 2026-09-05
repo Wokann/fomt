@@ -9,6 +9,7 @@ Regional text belongs under this directory by its owning data structure:
         new_game_menu.cc, new_game_status.cc, new_game_help.cc
         new_game_save.cc, new_game_identity.cc
         new_game_name_entry.cc, new_game_name_entry_ui.cc
+        fishing_results.cc
         character_names.cc
         reference_guide_harvest_sprite_minigames.cc
 
