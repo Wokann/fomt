@@ -3233,3 +3233,43 @@ char const * const gReferenceGuideAwlMurrayLines[] SECTION(".rodata.reference_gu
     nullptr,
 #endif
 };
+
+// Reference Guide page 36: AWL character profile for Tim.
+char const * const gReferenceGuideAwlTimLines[] SECTION(".rodata.reference_guide_awl_tim_lines") = {
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AwlTim_Title,
+    gText_ReferenceGuide_AwlTim_Introduction_Line01,
+    gText_ReferenceGuide_AwlTim_Introduction_Line02,
+    gText_ReferenceGuide_AwlTim_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlTim_Profile01_Line01,
+    gText_ReferenceGuide_AwlTim_Profile01_Line02,
+    gText_ReferenceGuide_AwlTim_Profile01_Line03,
+    gText_ReferenceGuide_AwlTim_Profile01_Line04,
+    gText_ReferenceGuide_AwlTim_Profile01_Line05,
+    gText_ReferenceGuide_AwlTim_Profile01_Line06,
+    gText_ReferenceGuide_AwlTim_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlTim_Profile02_Line01,
+    gText_ReferenceGuide_AwlTim_Profile02_Line02,
+    gText_ReferenceGuide_AwlTim_Profile02_Line03,
+    nullptr,
+#else
+    gText_ReferenceGuide_AwlTim_Title,
+    gText_ReferenceGuide_AwlTim_Introduction_Line01,
+    gText_ReferenceGuide_AwlTim_Introduction_Line02,
+    gText_ReferenceGuide_AwlTim_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlTim_Profile01_Line01,
+    gText_ReferenceGuide_AwlTim_Profile01_Line02,
+    gText_ReferenceGuide_AwlTim_Profile01_Line03,
+    gText_ReferenceGuide_AwlTim_Profile01_Line04,
+    gText_ReferenceGuide_AwlTim_Profile01_Line05,
+    gText_ReferenceGuide_AwlTim_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlTim_Profile02_Line01,
+    gText_ReferenceGuide_AwlTim_Profile02_Line02,
+    gText_ReferenceGuide_AwlTim_Profile02_Line03,
+    nullptr,
+#endif
+};
