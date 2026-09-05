@@ -109,9 +109,28 @@ extern char const * const gReferenceGuideAwlFlakLines[];
 extern char const * const gReferenceGuideAwlPlayerLines[];
 // Reference Guide page 55: Cookbook I.
 extern char const * const gReferenceGuideCookbook1Lines[];
+// Reference Guide page 56: Cookbook II.
+extern char const * const gReferenceGuideCookbook2Lines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 #endif
+
+// Localized Cookbook II text (page 56). Both regional sources export these labels.
+extern char const gText_ReferenceGuide_Cookbook2_Title[];
+extern char const gText_ReferenceGuide_Cookbook2_Omelet_Title[];
+extern char const gText_ReferenceGuide_Cookbook2_Omelet_Ingredient_Egg[];
+extern char const gText_ReferenceGuide_Cookbook2_Omelet_Ingredient_Milk[];
+extern char const gText_ReferenceGuide_Cookbook2_Omelet_Ingredient_Oil[];
+extern char const gText_ReferenceGuide_Cookbook2_Omelet_Utensil_FryingPan[];
+extern char const gText_ReferenceGuide_Cookbook2_Omelet_Utensil_Whisk[];
+extern char const gText_ReferenceGuide_Cookbook2_GrilledFish_Title[];
+extern char const gText_ReferenceGuide_Cookbook2_GrilledFish_Ingredient_MediumFish[];
+extern char const gText_ReferenceGuide_Cookbook2_Butter_Title[];
+extern char const gText_ReferenceGuide_Cookbook2_ButterRole_Title[];
+extern char const gText_ReferenceGuide_Cookbook2_ButterRole_Ingredient_Bread[];
+extern char const gText_ReferenceGuide_Cookbook2_ButterRole_Ingredient_Butter[];
+extern char const gText_ReferenceGuide_Cookbook2_TempuraRice_Title[];
+extern char const gText_ReferenceGuide_Cookbook2_TempuraRice_Ingredient_Tempura[];
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Line01[];

@@ -4184,3 +4184,203 @@ char const * const gReferenceGuideCookbook1Lines[] SECTION(".rodata.reference_gu
     nullptr,
 #endif
 };
+
+// Reference Guide page 56: Cookbook II. The renderer consumes one flat
+// pointer sequence and stops at nullptr; recipe boundaries are visual groups.
+char const * const gReferenceGuideCookbook2Lines[] SECTION(".rodata.reference_guide_cookbook_2_lines") = {
+    gText_ReferenceGuide_Cookbook2_Title,
+
+    // Omelet. The generic recipe fields below are direct physical pointers
+    // reused from Cookbook I, not duplicate localized strings.
+    gText_ReferenceGuide_Cookbook2_Omelet_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_NecessaryIngredients_Heading,
+    gText_ReferenceGuide_Cookbook2_Omelet_Ingredient_Egg,
+    gText_ReferenceGuide_Cookbook2_Omelet_Ingredient_Milk,
+    gText_ReferenceGuide_Cookbook2_Omelet_Ingredient_Oil,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_NecessaryUtensils_Heading,
+    gText_ReferenceGuide_Cookbook2_Omelet_Utensil_FryingPan,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalIngredients_Heading,
+    gText_ReferenceGuide_Cookbook1_OptionalIngredient_AnythingYouLike,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalUtensils_Heading,
+    gText_ReferenceGuide_Cookbook1_Utensil_Knife,
+    gText_ReferenceGuide_Cookbook2_Omelet_Utensil_Whisk,
+    gText_ReferenceGuide_Cookbook1_Seasoning_Sugar,
+    gText_ReferenceGuide_Cookbook1_Seasoning_Salt,
+    gText_ReferenceGuide_Cookbook1_Seasoning_SoySauce,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+    gText_ReferenceGuide_SectionDivider,
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_SectionDivider,
+#endif
+
+    // Grilled Fish.
+    gText_ReferenceGuide_Cookbook2_GrilledFish_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_NecessaryIngredients_Heading,
+    gText_ReferenceGuide_Cookbook2_GrilledFish_Ingredient_MediumFish,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_NecessaryUtensils_Heading,
+    gText_ReferenceGuide_Cookbook2_Omelet_Utensil_FryingPan,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalIngredients_Heading,
+    gText_ReferenceGuide_Cookbook2_Omelet_Ingredient_Oil,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalUtensils_Heading,
+    gText_ReferenceGuide_Cookbook1_Seasoning_Salt,
+    gText_ReferenceGuide_Cookbook1_Seasoning_SoySauce,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+    gText_ReferenceGuide_SectionDivider,
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_SectionDivider,
+#endif
+
+    // Butter. The mixer is the existing physical Cookbook I field.
+    gText_ReferenceGuide_Cookbook2_Butter_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_NecessaryIngredients_Heading,
+    gText_ReferenceGuide_Cookbook2_Omelet_Ingredient_Milk,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_NecessaryUtensils_Heading,
+    gText_ReferenceGuide_Cookbook1_Utensil_Mixer,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalIngredients_Heading,
+    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalUtensils_Heading,
+    gText_ReferenceGuide_Cookbook1_Seasoning_Salt,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+    gText_ReferenceGuide_SectionDivider,
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_SectionDivider,
+#endif
+
+    // Butter Role. This spelling follows the original US ROM; the honey
+    // field is the existing physical field first used by Strawberry Jam.
+    gText_ReferenceGuide_Cookbook2_ButterRole_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_NecessaryIngredients_Heading,
+    gText_ReferenceGuide_Cookbook2_ButterRole_Ingredient_Bread,
+    gText_ReferenceGuide_Cookbook2_ButterRole_Ingredient_Butter,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_NecessaryUtensils_Heading,
+    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalIngredients_Heading,
+    gText_ReferenceGuide_Cookbook1_StrawberryJam_Ingredient_Honey,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalUtensils_Heading,
+    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+    gText_ReferenceGuide_SectionDivider,
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_SectionDivider,
+#endif
+
+    // Tempura Rice. The Rice Ball pointer is the physical field first used
+    // by Curry Rice; it is intentionally not duplicated here.
+    gText_ReferenceGuide_Cookbook2_TempuraRice_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_NecessaryIngredients_Heading,
+    gText_ReferenceGuide_Cookbook1_CurryRice_Ingredient_RiceBall,
+    gText_ReferenceGuide_Cookbook2_TempuraRice_Ingredient_Tempura,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#endif
+    gText_ReferenceGuide_Cookbook1_NecessaryUtensils_Heading,
+    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalIngredients_Heading,
+    gText_ReferenceGuide_Cookbook1_Ingredient_None,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_FullWidthSpace,
+#else
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_Cookbook1_OptionalUtensils_Heading,
+    gText_ReferenceGuide_Cookbook1_Seasoning_Sugar,
+    gText_ReferenceGuide_Cookbook1_Seasoning_Salt,
+    gText_ReferenceGuide_Cookbook1_Seasoning_SoySauce,
+#if defined(REGION_US)
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_Cookbook1_SectionDivider,
+#endif
+    nullptr,
+};
