@@ -6170,3 +6170,19 @@ char const * const gReferenceGuideCliffAndAnnNewYearCardLines[] SECTION(".rodata
     gText_ReferenceGuide_CliffAndAnnNewYearCard_Signature,
     nullptr,
 };
+
+// Reference Guide page 82: Doctor's New Year Card.
+char const * const gReferenceGuideDoctorNewYearCardLines[] SECTION(".rodata.reference_guide_doctor_new_year_card_lines") = {
+    gText_ReferenceGuide_DoctorNewYearCard_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_DoctorNewYearCard_Greeting_Line01,
+    gText_ReferenceGuide_DoctorNewYearCard_Message_Line01,
+    gText_ReferenceGuide_DoctorNewYearCard_Message_Line02,
+    gText_ReferenceGuide_DoctorNewYearCard_Message_Line03,
+    gText_ReferenceGuide_DoctorNewYearCard_Message_Line04,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_EmptyLine,
+#endif
+    gText_ReferenceGuide_DoctorNewYearCard_Signature,
+    nullptr,
+};

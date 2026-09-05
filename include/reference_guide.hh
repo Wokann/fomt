@@ -161,6 +161,8 @@ extern char const * const gReferenceGuideCliffNewYearCardFirstLines[];
 extern char const * const gReferenceGuideCliffNewYearCardSecondLines[];
 // Reference Guide page 81: Cliff and Ann's New Year Card.
 extern char const * const gReferenceGuideCliffAndAnnNewYearCardLines[];
+// Reference Guide page 82: Doctor's New Year Card.
+extern char const * const gReferenceGuideDoctorNewYearCardLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -954,6 +956,15 @@ extern char const gText_ReferenceGuide_CliffAndAnnNewYearCard_Signature[];
 extern char const gText_ReferenceGuide_CliffAndAnnNewYearCard_Greeting_Line01[];
 extern char const gText_ReferenceGuide_CliffAndAnnNewYearCard_Message_Line03[];
 #endif
+
+// Localized Doctor New Year Card text (page 82).
+extern char const gText_ReferenceGuide_DoctorNewYearCard_Title[];
+extern char const gText_ReferenceGuide_DoctorNewYearCard_Greeting_Line01[];
+extern char const gText_ReferenceGuide_DoctorNewYearCard_Message_Line01[];
+extern char const gText_ReferenceGuide_DoctorNewYearCard_Message_Line02[];
+extern char const gText_ReferenceGuide_DoctorNewYearCard_Message_Line03[];
+extern char const gText_ReferenceGuide_DoctorNewYearCard_Message_Line04[];
+extern char const gText_ReferenceGuide_DoctorNewYearCard_Signature[];
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];
