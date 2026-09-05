@@ -6150,3 +6150,23 @@ char const * const gReferenceGuideCliffNewYearCardSecondLines[] SECTION(".rodata
     gText_ReferenceGuide_CliffNewYearCards_Signature,
     nullptr,
 };
+
+// Reference Guide page 81: Cliff and Ann's New Year Card. The US ROM
+// physically reuses the first Cliff card's New Year greeting.
+char const * const gReferenceGuideCliffAndAnnNewYearCardLines[] SECTION(".rodata.reference_guide_cliff_and_ann_new_year_card_lines") = {
+    gText_ReferenceGuide_CliffAndAnnNewYearCard_Title,
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_CliffAndAnnNewYearCard_Greeting_Line01,
+#else
+    gText_ReferenceGuide_CliffNewYearCards_FirstCard_Greeting_Line01,
+#endif
+    gText_ReferenceGuide_CliffAndAnnNewYearCard_Message_Line01,
+    gText_ReferenceGuide_CliffAndAnnNewYearCard_Message_Line02,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_CliffAndAnnNewYearCard_Message_Line03,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_CliffAndAnnNewYearCard_Signature,
+    nullptr,
+};

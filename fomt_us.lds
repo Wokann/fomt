@@ -404,7 +404,9 @@ SECTIONS
         . = 0x1158F0; src/reference_guide.o(.rodata.reference_guide_cliff_new_year_card_first_lines);
         . = 0x115918; data/text/reference_guide/cliff_new_year_cards.o(.rodata.reference_guide_cliff_new_year_card_second_text);
         . = 0x115960; src/reference_guide.o(.rodata.reference_guide_cliff_new_year_card_second_lines);
-        . = 0x115980; asm/data/data_080F9EB8.o(.rodata.reference_guide_cliff_new_year_cards_trailer);
+        . = 0x115980; data/text/reference_guide/cliff_and_ann_new_year_card.o(.rodata.reference_guide_cliff_and_ann_new_year_card_text);
+        . = 0x1159E0; src/reference_guide.o(.rodata.reference_guide_cliff_and_ann_new_year_card_lines);
+        . = 0x115A00; asm/data/data_080F9EB8.o(.rodata.reference_guide_cliff_and_ann_new_year_card_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);

@@ -506,7 +506,9 @@ SECTIONS
         . = 0x1166B4; src/reference_guide.o(.rodata.reference_guide_cliff_new_year_card_first_lines);
         . = 0x1166DC; data/text/reference_guide/cliff_new_year_cards.o(.rodata.reference_guide_cliff_new_year_card_second_text);
         . = 0x11676C; src/reference_guide.o(.rodata.reference_guide_cliff_new_year_card_second_lines);
-        . = 0x11679C; asm/data/data_080F9EB8.o(.rodata.reference_guide_cliff_new_year_cards_trailer);
+        . = 0x11679C; data/text/reference_guide/cliff_and_ann_new_year_card.o(.rodata.reference_guide_cliff_and_ann_new_year_card_text);
+        . = 0x116830; src/reference_guide.o(.rodata.reference_guide_cliff_and_ann_new_year_card_lines);
+        . = 0x116854; asm/data/data_080F9EB8.o(.rodata.reference_guide_cliff_and_ann_new_year_card_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */
