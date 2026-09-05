@@ -6239,3 +6239,23 @@ char const * const gReferenceGuideMineralClinicNewYearCardLines[] SECTION(".roda
     gText_ReferenceGuide_MineralClinicNewYearCard_Signature,
     nullptr,
 };
+
+// Reference Guide page 85: Poultry Farm New Year Card.
+char const * const gReferenceGuidePoultryFarmNewYearCardLines[] SECTION(".rodata.reference_guide_poultry_farm_new_year_card_lines") = {
+    gText_ReferenceGuide_PoultryFarmNewYearCard_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_PoultryFarmNewYearCard_Message_Line01,
+    gText_ReferenceGuide_PoultryFarmNewYearCard_Message_Line02,
+    gText_ReferenceGuide_PoultryFarmNewYearCard_Message_Line03,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_PoultryFarmNewYearCard_Message_Line04,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_PoultryFarmNewYearCard_Signature_Farm,
+    gText_ReferenceGuide_PoultryFarmNewYearCard_Signature_Names,
+#else
+    gText_ReferenceGuide_PoultryFarmNewYearCard_Signature,
+#endif
+    nullptr,
+};

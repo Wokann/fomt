@@ -167,6 +167,8 @@ extern char const * const gReferenceGuideDoctorNewYearCardLines[];
 extern char const * const gReferenceGuideDoctorAndElliNewYearCardLines[];
 // Reference Guide page 84: Mineral Clinic New Year Card.
 extern char const * const gReferenceGuideMineralClinicNewYearCardLines[];
+// Reference Guide page 85: Poultry Farm New Year Card.
+extern char const * const gReferenceGuidePoultryFarmNewYearCardLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -987,6 +989,19 @@ extern char const gText_ReferenceGuide_DoctorAndElliNewYearCard_Signature[];
 // Localized Mineral Clinic New Year Card text (page 84).
 extern char const gText_ReferenceGuide_MineralClinicNewYearCard_Title[];
 extern char const gText_ReferenceGuide_MineralClinicNewYearCard_Signature[];
+
+// Localized Poultry Farm New Year Card text (page 85).
+extern char const gText_ReferenceGuide_PoultryFarmNewYearCard_Title[];
+extern char const gText_ReferenceGuide_PoultryFarmNewYearCard_Message_Line01[];
+extern char const gText_ReferenceGuide_PoultryFarmNewYearCard_Message_Line02[];
+extern char const gText_ReferenceGuide_PoultryFarmNewYearCard_Message_Line03[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_PoultryFarmNewYearCard_Message_Line04[];
+extern char const gText_ReferenceGuide_PoultryFarmNewYearCard_Signature_Farm[];
+extern char const gText_ReferenceGuide_PoultryFarmNewYearCard_Signature_Names[];
+#else
+extern char const gText_ReferenceGuide_PoultryFarmNewYearCard_Signature[];
+#endif
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];
