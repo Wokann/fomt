@@ -3101,3 +3101,51 @@ char const * const gReferenceGuideAwlCodyLines[] SECTION(".rodata.reference_guid
     nullptr,
 #endif
 };
+
+// Reference Guide page 33: AWL character profile for Kassey.
+char const * const gReferenceGuideAwlKasseyLines[] SECTION(".rodata.reference_guide_awl_kassey_lines") = {
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AwlKassey_Title,
+    gText_ReferenceGuide_AwlKassey_Introduction_Line01,
+    gText_ReferenceGuide_AwlKassey_Introduction_Line02,
+    gText_ReferenceGuide_AwlKassey_Introduction_Line03,
+    gText_ReferenceGuide_AwlKassey_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlKassey_Profile01_Line01,
+    gText_ReferenceGuide_AwlKassey_Profile01_Line02,
+    gText_ReferenceGuide_AwlKassey_Profile01_Line03,
+    gText_ReferenceGuide_AwlKassey_Profile01_Line04,
+    gText_ReferenceGuide_AwlKassey_Profile01_Line05,
+    gText_ReferenceGuide_AwlKassey_Profile01_Line06,
+    gText_ReferenceGuide_AwlKassey_Profile01_Line07,
+    gText_ReferenceGuide_AwlKassey_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlKassey_Profile02_Line01,
+    gText_ReferenceGuide_AwlKassey_Profile02_Line02,
+    gText_ReferenceGuide_AwlKassey_Profile02_Line03,
+    gText_ReferenceGuide_AwlKassey_Profile02_Line04,
+    gText_ReferenceGuide_AwlKassey_Profile02_Line05,
+    gText_ReferenceGuide_AwlKassey_Profile02_Line06,
+    gText_ReferenceGuide_AwlKassey_Profile02_Line07,
+    nullptr,
+#else
+    gText_ReferenceGuide_AwlKassey_Title,
+    gText_ReferenceGuide_AwlKassey_Introduction_Line01,
+    gText_ReferenceGuide_AwlKassey_Introduction_Line02,
+    gText_ReferenceGuide_AwlKassey_Introduction_Line03,
+    gText_ReferenceGuide_AwlKassey_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlKassey_Profile01_Line01,
+    gText_ReferenceGuide_AwlKassey_Profile01_Line02,
+    gText_ReferenceGuide_AwlKassey_Profile01_Line03,
+    gText_ReferenceGuide_AwlKassey_Profile01_Line04,
+    gText_ReferenceGuide_AwlKassey_Profile01_Line05,
+    gText_ReferenceGuide_AwlKassey_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlKassey_Profile02_Line01,
+    gText_ReferenceGuide_AwlKassey_Profile02_Line02,
+    gText_ReferenceGuide_AwlKassey_Profile02_Line03,
+    gText_ReferenceGuide_AwlKassey_Profile02_Line04,
+    nullptr,
+#endif
+};
