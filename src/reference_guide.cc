@@ -2667,7 +2667,7 @@ char const * const gReferenceGuideAwlSebastianLines[] SECTION(".rodata.reference
     gText_ReferenceGuide_AwlSebastian_Profile02_Line01,
     gText_ReferenceGuide_AwlSebastian_Profile02_Line02,
     gText_ReferenceGuide_AwlSebastian_Profile02_Line03,
-    gText_ReferenceGuide_AwlSebastian_Profile02_Line04,
+    gText_ReferenceGuide_AwlProfile_DoesSuffix,
     nullptr,
 #else
     gText_ReferenceGuide_AwlSebastian_Title,
@@ -2687,6 +2687,42 @@ char const * const gReferenceGuideAwlSebastianLines[] SECTION(".rodata.reference
     gText_ReferenceGuide_AwlSebastian_Profile02_Line03,
     gText_ReferenceGuide_AwlSebastian_Profile02_Line04,
     gText_ReferenceGuide_AwlSebastian_Profile02_Line05,
+    nullptr,
+#endif
+};
+
+// Reference Guide page 22: AWL character profile for Wally.
+char const * const gReferenceGuideAwlWallyLines[] SECTION(".rodata.reference_guide_awl_wally_lines") = {
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AwlWally_Title,
+    gText_ReferenceGuide_AwlWally_Introduction_Line01,
+    gText_ReferenceGuide_AwlProfile_DoesSuffix,
+    gText_ReferenceGuide_AwlWally_Introduction_Line02,
+    gText_ReferenceGuide_AwlWally_Introduction_Line03,
+    gText_ReferenceGuide_AwlWally_Introduction_Line04,
+    gText_ReferenceGuide_AwlWally_Introduction_Line05,
+    gText_ReferenceGuide_AwlWally_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlWally_Profile01_Line01,
+    gText_ReferenceGuide_AwlWally_Profile01_Line02,
+    gText_ReferenceGuide_AwlWally_Profile01_Line03,
+    gText_ReferenceGuide_AwlWally_Profile01_Line04,
+    gText_ReferenceGuide_AwlWally_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlWally_Profile02_Line01,
+    gText_ReferenceGuide_AwlWally_Profile02_Line02,
+    gText_ReferenceGuide_AwlWally_Profile02_Line03,
+    nullptr,
+#else
+    gText_ReferenceGuide_AwlWally_Title,
+    gText_ReferenceGuide_AwlWally_Introduction_Line01,
+    gText_ReferenceGuide_AwlWally_Introduction_Line02,
+    gText_ReferenceGuide_AwlWally_Introduction_Line03,
+    gText_ReferenceGuide_AwlWally_Introduction_Line04,
+    gText_ReferenceGuide_AwlWally_Introduction_Line05,
+    gText_ReferenceGuide_AwlWally_Introduction_Line06,
+    gText_ReferenceGuide_AwlWally_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
     nullptr,
 #endif
 };

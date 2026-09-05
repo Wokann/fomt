@@ -38,5 +38,5 @@ char const gText_ReferenceGuide_AwlSebastian_Profile02_Line02[28] SECTION(".roda
 char const gText_ReferenceGuide_AwlSebastian_Profile02_Line03[28] SECTION(".rodata.reference_guide_awl_sebastian_text") =
     "ときどき屋敷の周りを散歩";
 
-char const gText_ReferenceGuide_AwlSebastian_Profile02_Line04[12] SECTION(".rodata.reference_guide_awl_sebastian_text") =
+char const gText_ReferenceGuide_AwlProfile_DoesSuffix[12] SECTION(".rodata.reference_guide_awl_sebastian_text") =
     "している。";
