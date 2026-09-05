@@ -2916,3 +2916,42 @@ char const * const gReferenceGuideAwlKateLines[] SECTION(".rodata.reference_guid
     nullptr,
 #endif
 };
+
+// Reference Guide page 28: AWL character profile for Galen.
+char const * const gReferenceGuideAwlGalenLines[] SECTION(".rodata.reference_guide_awl_galen_lines") = {
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AwlGalen_Title,
+    gText_ReferenceGuide_AwlGalen_Introduction_Line01,
+    gText_ReferenceGuide_AwlGalen_Introduction_Line02,
+    gText_ReferenceGuide_AwlGalen_Introduction_Line03,
+    gText_ReferenceGuide_AwlGalen_Introduction_Line04,
+    gText_ReferenceGuide_AwlGalen_Introduction_Line05,
+    gText_ReferenceGuide_AwlGalen_Introduction_Line06,
+    gText_ReferenceGuide_AwlGalen_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlGalen_Profile01_Line01,
+    gText_ReferenceGuide_AwlGalen_Profile01_Line02,
+    gText_ReferenceGuide_AwlGalen_Profile01_Line03,
+    gText_ReferenceGuide_AwlGalen_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlGalen_Profile02_Line01,
+    gText_ReferenceGuide_AwlGalen_Profile02_Line02,
+    gText_ReferenceGuide_AwlGalen_Profile02_Line03,
+    nullptr,
+#else
+    gText_ReferenceGuide_AwlGalen_Title,
+    gText_ReferenceGuide_AwlGalen_Introduction_Line01,
+    gText_ReferenceGuide_AwlGalen_Introduction_Line02,
+    gText_ReferenceGuide_AwlGalen_Introduction_Line03,
+    gText_ReferenceGuide_AwlGalen_Introduction_Line04,
+    gText_ReferenceGuide_AwlGalen_Introduction_Line05,
+    gText_ReferenceGuide_AwlGalen_Introduction_Line06,
+    gText_ReferenceGuide_AwlGalen_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlGalen_Profile01_Line01,
+    gText_ReferenceGuide_AwlGalen_Profile01_Line02,
+    gText_ReferenceGuide_AwlGalen_Profile01_Line03,
+    gText_ReferenceGuide_AwlGalen_Profile01_Line04,
+    nullptr,
+#endif
+};
