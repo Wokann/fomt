@@ -538,7 +538,9 @@ SECTIONS
         . = 0x117170; src/reference_guide.o(.rodata.reference_guide_doug_new_year_card_lines);
         . = 0x117194; data/text/reference_guide/doug_new_year_card_to_player_and_ann.o(.rodata.reference_guide_doug_new_year_card_to_player_and_ann_text);
         . = 0x117200; src/reference_guide.o(.rodata.reference_guide_doug_new_year_card_to_player_and_ann_lines);
-        . = 0x11722C; asm/data/data_080F9EB8.o(.rodata.reference_guide_doug_new_year_card_to_player_and_ann_trailer);
+        . = 0x11722C; data/text/reference_guide/carter_new_year_card.o(.rodata.reference_guide_carter_new_year_card_text);
+        . = 0x1172C0; src/reference_guide.o(.rodata.reference_guide_carter_new_year_card_lines);
+        . = 0x1172E0; asm/data/data_080F9EB8.o(.rodata.reference_guide_carter_new_year_card_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */

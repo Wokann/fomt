@@ -191,6 +191,8 @@ extern char const * const gReferenceGuideSaibaraNewYearCardLines[];
 extern char const * const gReferenceGuideDougNewYearCardLines[];
 // Reference Guide page 96: Doug's New Year Card to the player and Ann.
 extern char const * const gReferenceGuideDougNewYearCardToPlayerAndAnnLines[];
+// Reference Guide page 97: Carter's New Year Card.
+extern char const * const gReferenceGuideCarterNewYearCardLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -1132,6 +1134,13 @@ extern char const gText_ReferenceGuide_DougNewYearCardToPlayerAndAnn_PlayerReque
 extern char const gText_ReferenceGuide_DougNewYearCardToPlayerAndAnn_Greeting_Line01[];
 extern char const gText_ReferenceGuide_DougNewYearCardToPlayerAndAnn_PlayerRequest_Line03[];
 #endif
+
+// Localized Carter New Year Card text (page 97).
+extern char const gText_ReferenceGuide_CarterNewYearCard_Title[];
+extern char const gText_ReferenceGuide_CarterNewYearCard_Blessing_Line01[];
+extern char const gText_ReferenceGuide_CarterNewYearCard_Blessing_Line02[];
+extern char const gText_ReferenceGuide_CarterNewYearCard_Blessing_Line03[];
+extern char const gText_ReferenceGuide_CarterNewYearCard_Signature[];
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];

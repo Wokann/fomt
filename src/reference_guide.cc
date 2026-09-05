@@ -6492,3 +6492,15 @@ char const * const gReferenceGuideDougNewYearCardToPlayerAndAnnLines[] SECTION("
     gText_ReferenceGuide_DougNewYearCard_Signature,
     nullptr,
 };
+
+// Reference Guide page 97: Carter's New Year Card.
+char const * const gReferenceGuideCarterNewYearCardLines[] SECTION(".rodata.reference_guide_carter_new_year_card_lines") = {
+    gText_ReferenceGuide_CarterNewYearCard_Title,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_CarterNewYearCard_Blessing_Line01,
+    gText_ReferenceGuide_CarterNewYearCard_Blessing_Line02,
+    gText_ReferenceGuide_CarterNewYearCard_Blessing_Line03,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_CarterNewYearCard_Signature,
+    nullptr,
+};
