@@ -21,5 +21,5 @@ char const gText_ReferenceGuide_VaseInstructions_CannotRetrieve_Line01[32] SECTI
     "ということなので、一旦花瓶に";
 char const gText_ReferenceGuide_VaseInstructions_CannotRetrieve_Line02[32] SECTION(".rodata.reference_guide_vase_instructions_text") =
     "花を飾ると、持ち物に戻すこと";
-char const gText_ReferenceGuide_VaseInstructions_CannotRetrieve_Line03[16] SECTION(".rodata.reference_guide_vase_instructions_text") =
+char const gText_ReferenceGuide_CannotDo_GrammaticalEnding[16] SECTION(".rodata.reference_guide_vase_instructions_text") =
     "ができません。";

@@ -5812,8 +5812,10 @@ char const * const gReferenceGuideVaseInstructionsLines[] SECTION(".rodata.refer
 #endif
     gText_ReferenceGuide_VaseInstructions_CannotRetrieve_Line01,
     gText_ReferenceGuide_VaseInstructions_CannotRetrieve_Line02,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_CannotDo_GrammaticalEnding,
+#else
     gText_ReferenceGuide_VaseInstructions_CannotRetrieve_Line03,
-#if defined(REGION_US)
     gText_ReferenceGuide_VaseInstructions_CannotRetrieve_Line04,
 #endif
     nullptr,
@@ -5832,5 +5834,41 @@ char const * const gReferenceGuideRefrigeratorLines[] SECTION(".rodata.reference
 #endif
     gText_ReferenceGuide_Refrigerator_CookingSelection_Line01,
     gText_ReferenceGuide_Refrigerator_CookingSelection_Line02,
+    nullptr,
+};
+
+// Reference Guide page 76: Shelf. The two regional table layouts preserve the
+// original direct reuse of refrigerator fields.
+char const * const gReferenceGuideShelfLines[] SECTION(".rodata.reference_guide_shelf_lines") = {
+    gText_ReferenceGuide_Shelf_Title,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_Shelf_Storage_Line01,
+#else
+    // Physical reuse: US Shelf shares the refrigerator's storage opening.
+    gText_ReferenceGuide_Refrigerator_Storage_Line01,
+#endif
+    gText_ReferenceGuide_Shelf_Storage_Line02,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_Shelf_AnimalAndBasketRestriction_Line01,
+    gText_ReferenceGuide_Shelf_AnimalAndBasketRestriction_Line02,
+    // Physical reuse: this generic grammatical ending completes the restriction.
+    gText_ReferenceGuide_CannotDo_GrammaticalEnding,
+    // Physical reuse: JP Shelf reuses the refrigerator capacity introduction.
+    gText_ReferenceGuide_Refrigerator_Capacity_Line01,
+    gText_ReferenceGuide_Refrigerator_Capacity_Line02,
+    gText_ReferenceGuide_Shelf_Capacity_Line01,
+    gText_ReferenceGuide_Shelf_Capacity_Line02,
+    // Physical reuse: JP Shelf retains the refrigerator cooking-selection text.
+    gText_ReferenceGuide_Refrigerator_CookingSelection_Line01,
+    gText_ReferenceGuide_Shelf_CookingSelectionRestriction_Line01,
+#else
+    // Physical reuse: US Shelf reuses the refrigerator capacity introduction.
+    gText_ReferenceGuide_Refrigerator_Capacity_Line01,
+    gText_ReferenceGuide_Shelf_Capacity_Line01,
+    gText_ReferenceGuide_Refrigerator_Capacity_Line03,
+    gText_ReferenceGuide_Shelf_CookingSelectionRestriction_Line01,
+    gText_ReferenceGuide_Shelf_CookingSelectionRestriction_Line02,
+    gText_ReferenceGuide_Shelf_CookingSelectionRestriction_Line03,
+#endif
     nullptr,
 };

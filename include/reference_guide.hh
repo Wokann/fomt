@@ -149,6 +149,8 @@ extern char const * const gReferenceGuideBathInstructionsLines[];
 extern char const * const gReferenceGuideVaseInstructionsLines[];
 // Reference Guide page 75: Refrigerator.
 extern char const * const gReferenceGuideRefrigeratorLines[];
+// Reference Guide page 76: Shelf.
+extern char const * const gReferenceGuideShelfLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -775,8 +777,10 @@ extern char const gText_ReferenceGuide_VaseInstructions_ExistingFlowers_Line02[]
 extern char const gText_ReferenceGuide_VaseInstructions_ExistingFlowers_Line03[];
 extern char const gText_ReferenceGuide_VaseInstructions_CannotRetrieve_Line01[];
 extern char const gText_ReferenceGuide_VaseInstructions_CannotRetrieve_Line02[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_CannotDo_GrammaticalEnding[];
+#else
 extern char const gText_ReferenceGuide_VaseInstructions_CannotRetrieve_Line03[];
-#if defined(REGION_US)
 extern char const gText_ReferenceGuide_VaseInstructions_ExistingFlowers_Line04[];
 extern char const gText_ReferenceGuide_VaseInstructions_CannotRetrieve_Line04[];
 #endif
@@ -793,6 +797,21 @@ extern char const gText_ReferenceGuide_Refrigerator_Capacity_Line04[];
 #endif
 extern char const gText_ReferenceGuide_Refrigerator_CookingSelection_Line01[];
 extern char const gText_ReferenceGuide_Refrigerator_CookingSelection_Line02[];
+
+// Localized Shelf text (page 76).
+extern char const gText_ReferenceGuide_Shelf_Title[];
+extern char const gText_ReferenceGuide_Shelf_Storage_Line02[];
+extern char const gText_ReferenceGuide_Shelf_Capacity_Line01[];
+extern char const gText_ReferenceGuide_Shelf_CookingSelectionRestriction_Line01[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_Shelf_Storage_Line01[];
+extern char const gText_ReferenceGuide_Shelf_AnimalAndBasketRestriction_Line01[];
+extern char const gText_ReferenceGuide_Shelf_AnimalAndBasketRestriction_Line02[];
+extern char const gText_ReferenceGuide_Shelf_Capacity_Line02[];
+#else
+extern char const gText_ReferenceGuide_Shelf_CookingSelectionRestriction_Line02[];
+extern char const gText_ReferenceGuide_Shelf_CookingSelectionRestriction_Line03[];
+#endif
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
 extern char const gText_ReferenceGuide_HorseRaceHints_Title[];
