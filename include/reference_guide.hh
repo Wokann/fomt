@@ -33,6 +33,8 @@ extern char const * const gReferenceGuideUsingToolsLines[];
 extern char const * const gReferenceGuideFishingLines[];
 // Reference Guide page 17: Caring for Animals.
 extern char const * const gReferenceGuideAnimalCareLines[];
+// Reference Guide page 18: AWL character profile for Takakura.
+extern char const * const gReferenceGuideAwlTakakuraLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 #endif
@@ -905,6 +907,20 @@ extern char const gText_ReferenceGuide_AnimalCare_Grazing_Line14[];
 extern char const gText_ReferenceGuide_AnimalCare_Grazing_Line15[];
 extern char const gText_ReferenceGuide_AnimalCare_Grazing_Line16[];
 extern char const gText_ReferenceGuide_AnimalCare_Grazing_Line17[];
+// Localized AWL character-profile text (page 18).
+extern char const gText_ReferenceGuide_AwlTakakura_Title[];
+extern char const gText_ReferenceGuide_AwlTakakura_Introduction_Line01[];
+extern char const gText_ReferenceGuide_AwlTakakura_Introduction_Line02[];
+extern char const gText_ReferenceGuide_AwlTakakura_Introduction_Line03[];
+extern char const gText_ReferenceGuide_AwlTakakura_Introduction_Line04[];
+extern char const gText_ReferenceGuide_AwlTakakura_Profile01_Marker[];
+extern char const gText_ReferenceGuide_AwlTakakura_Profile01_Line01[];
+extern char const gText_ReferenceGuide_AwlTakakura_Profile01_Line02[];
+extern char const gText_ReferenceGuide_AwlTakakura_Profile01_Line03[];
+extern char const gText_ReferenceGuide_AwlTakakura_Profile01_Line04[];
+extern char const gText_ReferenceGuide_AwlTakakura_Profile02_Marker[];
+extern char const gText_ReferenceGuide_AwlTakakura_Profile02_Line01[];
+extern char const gText_ReferenceGuide_AwlTakakura_Profile02_Line02[];
 #else
 extern char const gText_ReferenceGuide_HarvestSpriteMinigames_Title[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Title[];
@@ -1757,6 +1773,23 @@ extern char const gText_ReferenceGuide_AnimalCare_Grazing_Line14[];
 extern char const gText_ReferenceGuide_AnimalCare_Grazing_Line15[];
 extern char const gText_ReferenceGuide_AnimalCare_Grazing_Line16[];
 extern char const gText_ReferenceGuide_AnimalCare_Grazing_Line17[];
+// Localized AWL character-profile text (page 18).
+extern char const gText_ReferenceGuide_AwlTakakura_Title[];
+extern char const gText_ReferenceGuide_AwlTakakura_Introduction_Line01[];
+extern char const gText_ReferenceGuide_AwlTakakura_Introduction_Line02[];
+extern char const gText_ReferenceGuide_AwlTakakura_Introduction_Line03[];
+extern char const gText_ReferenceGuide_AwlTakakura_Introduction_Line04[];
+extern char const gText_ReferenceGuide_AwlTakakura_Introduction_Line05[];
+extern char const gText_ReferenceGuide_AwlTakakura_Profile01_Marker[];
+extern char const gText_ReferenceGuide_AwlTakakura_Profile01_Line01[];
+extern char const gText_ReferenceGuide_AwlTakakura_Profile01_Line02[];
+extern char const gText_ReferenceGuide_AwlTakakura_Profile01_Line03[];
+extern char const gText_ReferenceGuide_AwlTakakura_Profile01_Line04[];
+extern char const gText_ReferenceGuide_AwlTakakura_Profile01_Line05[];
+extern char const gText_ReferenceGuide_AwlTakakura_Profile02_Marker[];
+extern char const gText_ReferenceGuide_AwlTakakura_Profile02_Line01[];
+extern char const gText_ReferenceGuide_AwlTakakura_Profile02_Line02[];
+extern char const gText_ReferenceGuide_AwlTakakura_Profile02_Line03[];
 #endif
 
 #endif // REFERENCE_GUIDE_HH
