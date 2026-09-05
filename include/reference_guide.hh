@@ -199,6 +199,8 @@ extern char const * const gReferenceGuideBasilAndAnnaNewYearCardLines[];
 extern char const * const gReferenceGuideMayAndBarleyNewYearCardsLines[];
 // Reference Guide page 100: Thomas and Harris's New Year Card.
 extern char const * const gReferenceGuideThomasAndHarrisNewYearCardLines[];
+// Reference Guide page 101: Thomas and Harris's town-safety New Year Card.
+extern char const * const gReferenceGuideThomasAndHarrisTownSafetyNewYearCardLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -1178,6 +1180,15 @@ extern char const gText_ReferenceGuide_ThomasAndHarrisNewYearCard_CommunityWish_
 extern char const gText_ReferenceGuide_ThomasAndHarrisNewYearCard_Signature[];
 #if defined(REGION_US)
 extern char const gText_ReferenceGuide_ThomasAndHarrisNewYearCard_FarmWish_Line02[];
+#endif
+
+// Localized Thomas and Harris town-safety New Year Card text (page 101).
+extern char const gText_ReferenceGuide_ThomasAndHarrisTownSafetyNewYearCard_TownSafety_Line01[];
+extern char const gText_ReferenceGuide_ThomasAndHarrisTownSafetyNewYearCard_TownSafety_Line02[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_ThomasAndHarrisTownSafetyNewYearCard_FarmWork_Line01[];
+#else
+extern char const gText_ReferenceGuide_ThomasAndHarrisTownSafetyNewYearCard_TownSafety_Line03[];
 #endif
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];

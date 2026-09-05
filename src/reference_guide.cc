@@ -6573,3 +6573,29 @@ char const * const gReferenceGuideThomasAndHarrisNewYearCardLines[] SECTION(".ro
     gText_ReferenceGuide_ThomasAndHarrisNewYearCard_Signature,
     nullptr,
 };
+
+// Reference Guide page 101: Thomas and Harris's town-safety New Year Card.
+// The title and signature reuse page 100, while its greetings reuse prior cards.
+char const * const gReferenceGuideThomasAndHarrisTownSafetyNewYearCardLines[] SECTION(".rodata.reference_guide_thomas_and_harris_town_safety_new_year_card_lines") = {
+    gText_ReferenceGuide_ThomasAndHarrisNewYearCard_Title,
+    gText_ReferenceGuide_EmptyLine,
+#if defined(REGION_JP)
+    // Reused physical text from Cliff and Ann's New Year card (page 81).
+    gText_ReferenceGuide_CliffAndAnnNewYearCard_Greeting_Line01,
+#else
+    // Reused physical text from the Doctor's New Year card (page 82).
+    gText_ReferenceGuide_DoctorNewYearCard_Greeting_Line01,
+#endif
+    gText_ReferenceGuide_ThomasAndHarrisTownSafetyNewYearCard_TownSafety_Line01,
+    gText_ReferenceGuide_ThomasAndHarrisTownSafetyNewYearCard_TownSafety_Line02,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_ThomasAndHarrisTownSafetyNewYearCard_FarmWork_Line01,
+    // Reused physical text from Cliff's first New Year card (page 79).
+    gText_ReferenceGuide_CliffNewYearCards_FirstCard_Message_Line04,
+#else
+    gText_ReferenceGuide_ThomasAndHarrisTownSafetyNewYearCard_TownSafety_Line03,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_ThomasAndHarrisNewYearCard_Signature,
+    nullptr,
+};

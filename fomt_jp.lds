@@ -546,7 +546,9 @@ SECTIONS
         . = 0x117464; src/reference_guide.o(.rodata.reference_guide_may_and_barley_new_year_cards_lines);
         . = 0x117494; data/text/reference_guide/thomas_and_harris_new_year_card.o(.rodata.reference_guide_thomas_and_harris_new_year_card_text);
         . = 0x11751C; src/reference_guide.o(.rodata.reference_guide_thomas_and_harris_new_year_card_lines);
-        . = 0x117544; asm/data/data_080F9EB8.o(.rodata.reference_guide_thomas_and_harris_new_year_card_trailer);
+        . = 0x117544; data/text/reference_guide/thomas_and_harris_town_safety_new_year_card.o(.rodata.reference_guide_thomas_and_harris_town_safety_new_year_card_text);
+        . = 0x117590; src/reference_guide.o(.rodata.reference_guide_thomas_and_harris_town_safety_new_year_card_lines);
+        . = 0x1175B8; asm/data/data_080F9EB8.o(.rodata.reference_guide_thomas_and_harris_town_safety_new_year_card_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */
