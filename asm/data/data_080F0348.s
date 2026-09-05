@@ -13,7 +13,7 @@
     .incbin "baserom_jp.gba", 0xEFE2B, (0xEFEA4 - 0xEFE2B)
 
     .section .rodata.animal_memorial_trailer
-    .incbin "baserom_jp.gba", 0xEFF28, (0xF06E0 - 0xEFF28)
+    .incbin "baserom_jp.gba", 0xEFF44, (0xF06E0 - 0xEFF44)
 
     .section .rodata.not_available_trailer
     .incbin "baserom_jp.gba", 0xF06E8, (0xF11D4 - 0xF06E8)

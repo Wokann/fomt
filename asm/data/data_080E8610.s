@@ -18,10 +18,7 @@ gUnk_080E8684:
 	.incbin "baserom_jp.gba", 0xE7AB4, (0xE7AC8 - 0xE7AB4)
 
 	.section .rodata.new_game_save_trailer
-
-	.global gUnk_080E8934
-gUnk_080E8934:
-	.incbin "baserom_jp.gba", 0xE7D64, (0xE7D94 - 0xE7D64)
+	.incbin "baserom_jp.gba", 0xE7D80, (0xE7D94 - 0xE7D80)
 
 	.section .rodata.new_game_identity_prefix_trailer
 	.incbin "baserom_jp.gba", 0xE7DAC, (0xE7DB8 - 0xE7DAC)

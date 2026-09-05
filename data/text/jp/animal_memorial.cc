@@ -27,3 +27,6 @@ char const gText_AnimalMemorial_PrayerIntro[] SECTION(".rodata.animal_memorial")
 
 char const gText_AnimalMemorial_PrayerEnding[] SECTION(".rodata.animal_memorial") =
     "めいふくをいのりましょう。";
+
+char const gText_AnimalMemorial_PassedNaturalLife[28] SECTION(".rodata.animal_memorial") =
+    "天寿をまっとうしました。";
