@@ -3795,3 +3795,30 @@ char const * const gReferenceGuideAwlMookyLines[] SECTION(".rodata.reference_gui
     nullptr,
 #endif
 };
+
+// Reference Guide page 50: AWL character profile for the player's child.
+char const * const gReferenceGuideAwlChildLines[] SECTION(".rodata.reference_guide_awl_child_lines") = {
+#if defined(REGION_JP)
+    gText_ReferenceGuide_AwlChild_Title,
+    gText_ReferenceGuide_AwlChild_Introduction_Line01,
+    gText_ReferenceGuide_AwlChild_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlChild_Profile01_Line01,
+    gText_ReferenceGuide_AwlChild_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlChild_Profile02_Line01,
+    gText_ReferenceGuide_AwlChild_Profile02_Line02,
+    nullptr,
+#else
+    gText_ReferenceGuide_AwlChild_Title,
+    gText_ReferenceGuide_AwlChild_Introduction_Line01,
+    gText_ReferenceGuide_AwlChild_Profile01_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlChild_Profile01_Line01,
+    gText_ReferenceGuide_AwlChild_Profile02_Marker,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_AwlChild_Profile02_Line01,
+    gText_ReferenceGuide_AwlChild_Profile02_Line02,
+    nullptr,
+#endif
+};

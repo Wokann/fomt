@@ -97,6 +97,8 @@ extern char const * const gReferenceGuideAwlHardyLines[];
 extern char const * const gReferenceGuideAwlVanLines[];
 // Reference Guide page 49: AWL character profile for Mooky.
 extern char const * const gReferenceGuideAwlMookyLines[];
+// Reference Guide page 50: AWL character profile for the player's child.
+extern char const * const gReferenceGuideAwlChildLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 #endif
@@ -1434,6 +1436,14 @@ extern char const gText_ReferenceGuide_AwlMooky_Profile02_Marker[];
 extern char const gText_ReferenceGuide_AwlMooky_Profile02_Line01[];
 extern char const gText_ReferenceGuide_AwlMooky_Profile02_Line02[];
 extern char const gText_ReferenceGuide_AwlMooky_Profile02_Line03[];
+// Localized AWL character-profile text (page 50).
+extern char const gText_ReferenceGuide_AwlChild_Title[];
+extern char const gText_ReferenceGuide_AwlChild_Introduction_Line01[];
+extern char const gText_ReferenceGuide_AwlChild_Profile01_Marker[];
+extern char const gText_ReferenceGuide_AwlChild_Profile01_Line01[];
+extern char const gText_ReferenceGuide_AwlChild_Profile02_Marker[];
+extern char const gText_ReferenceGuide_AwlChild_Profile02_Line01[];
+extern char const gText_ReferenceGuide_AwlChild_Profile02_Line02[];
 #else
 extern char const gText_ReferenceGuide_HarvestSpriteMinigames_Title[];
 extern char const gText_ReferenceGuide_HarvestSpriteHarvesting_Title[];
@@ -2726,6 +2736,14 @@ extern char const gText_ReferenceGuide_AwlMooky_Profile02_Marker[];
 extern char const gText_ReferenceGuide_AwlMooky_Profile02_Line01[];
 extern char const gText_ReferenceGuide_AwlMooky_Profile02_Line02[];
 extern char const gText_ReferenceGuide_AwlMooky_Profile02_Line03[];
+// Localized AWL character-profile text (page 50).
+extern char const gText_ReferenceGuide_AwlChild_Title[];
+extern char const gText_ReferenceGuide_AwlChild_Introduction_Line01[];
+extern char const gText_ReferenceGuide_AwlChild_Profile01_Marker[];
+extern char const gText_ReferenceGuide_AwlChild_Profile01_Line01[];
+extern char const gText_ReferenceGuide_AwlChild_Profile02_Marker[];
+extern char const gText_ReferenceGuide_AwlChild_Profile02_Line01[];
+extern char const gText_ReferenceGuide_AwlChild_Profile02_Line02[];
 #endif
 
 #endif // REFERENCE_GUIDE_HH
