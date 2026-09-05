@@ -482,7 +482,9 @@ SECTIONS
         . = 0x114E88; src/reference_guide.o(.rodata.reference_guide_kai_seaside_lodge_lines);
         . = 0x114EC0; data/text/reference_guide/poultry_farm.o(.rodata.reference_guide_poultry_farm_text);
         . = 0x1150B0; src/reference_guide.o(.rodata.reference_guide_poultry_farm_lines);
-        . = 0x115138; asm/data/data_080F9EB8.o(.rodata.reference_guide_poultry_farm_trailer);
+        . = 0x115138; data/text/reference_guide/yodel_farm.o(.rodata.reference_guide_yodel_farm_text);
+        . = 0x1153F4; src/reference_guide.o(.rodata.reference_guide_yodel_farm_lines);
+        . = 0x1154C0; asm/data/data_080F9EB8.o(.rodata.reference_guide_yodel_farm_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */

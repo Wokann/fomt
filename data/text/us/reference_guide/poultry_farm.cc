@@ -47,9 +47,9 @@ char const gText_ReferenceGuide_PoultryFarm_ChickenSell_Description_Line03[24] S
 char const gText_ReferenceGuide_PoultryFarm_ChickenSell_Description_Line04[16] SECTION(".rodata.reference_guide_poultry_farm_text") =
     " better Eggs.";
 
-char const gText_ReferenceGuide_PoultryFarm_AnimalMedicine_Title[20] SECTION(".rodata.reference_guide_poultry_farm_text") =
+char const gText_ReferenceGuide_AnimalMedicine_Title[20] SECTION(".rodata.reference_guide_poultry_farm_text") =
     "☆Animal Medicine";
-char const gText_ReferenceGuide_PoultryFarm_AnimalMedicine_Description_Line01[28] SECTION(".rodata.reference_guide_poultry_farm_text") =
+char const gText_ReferenceGuide_AnimalMedicine_UseOnSickAnimals_Line01[28] SECTION(".rodata.reference_guide_poultry_farm_text") =
     "·Use on sick animals to ";
 char const gText_ReferenceGuide_PoultryFarm_AnimalMedicine_Description_Line02[16] SECTION(".rodata.reference_guide_poultry_farm_text") =
     " cure them. ";

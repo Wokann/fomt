@@ -39,9 +39,9 @@ char const gText_ReferenceGuide_PoultryFarm_ChickenSell_Description_Line03[32] S
 char const gText_ReferenceGuide_PoultryFarm_ChickenSell_Description_Line04[20] SECTION(".rodata.reference_guide_poultry_farm_text") =
     "　ることができる。";
 
-char const gText_ReferenceGuide_PoultryFarm_AnimalMedicine_Title[12] SECTION(".rodata.reference_guide_poultry_farm_text") =
+char const gText_ReferenceGuide_AnimalMedicine_Title[12] SECTION(".rodata.reference_guide_poultry_farm_text") =
     "☆動物の薬";
-char const gText_ReferenceGuide_PoultryFarm_AnimalMedicine_Description_Line01[32] SECTION(".rodata.reference_guide_poultry_farm_text") =
+char const gText_ReferenceGuide_AnimalMedicine_UseOnSickAnimals_Line01[32] SECTION(".rodata.reference_guide_poultry_farm_text") =
     "·病気の動物に使うと、健康に";
 char const gText_ReferenceGuide_PoultryFarm_AnimalMedicine_Description_Line02[32] SECTION(".rodata.reference_guide_poultry_farm_text") =
     "　戻せる。牛、羊にも使える。";

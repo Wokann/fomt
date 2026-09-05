@@ -5580,8 +5580,96 @@ char const * const gReferenceGuidePoultryFarmLines[] SECTION(".rodata.reference_
     gText_ReferenceGuide_PoultryFarm_ChickenSell_Description_Line04,
     gText_ReferenceGuide_EmptyLine,
 
-    gText_ReferenceGuide_PoultryFarm_AnimalMedicine_Title,
-    gText_ReferenceGuide_PoultryFarm_AnimalMedicine_Description_Line01,
+    gText_ReferenceGuide_AnimalMedicine_Title,
+    gText_ReferenceGuide_AnimalMedicine_UseOnSickAnimals_Line01,
     gText_ReferenceGuide_PoultryFarm_AnimalMedicine_Description_Line02,
+    nullptr,
+};
+
+// Reference Guide page 69: Yodel Farm. Regional differences stay within the
+// shared pointer table; physical cross-page text reuse remains direct.
+char const * const gReferenceGuideYodelFarmLines[] SECTION(".rodata.reference_guide_yodel_farm_lines") = {
+    gText_ReferenceGuide_YodelFarm_Title,
+    gText_ReferenceGuide_YodelFarm_Overview_Line01,
+    gText_ReferenceGuide_YodelFarm_Overview_Line02,
+#if defined(REGION_JP)
+    // Physical reuse: JP points at the existing sentence-completion fragment.
+    gText_ReferenceGuide_RaisingCrops_Line49,
+#else
+    gText_ReferenceGuide_YodelFarm_Overview_Line03,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_StoreHours_Heading,
+    gText_ReferenceGuide_YodelFarm_StoreHours_Value,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_ClosedDay_Heading,
+    gText_ReferenceGuide_YodelFarm_ClosedDay_Value,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_EmptyLine,
+
+    gText_ReferenceGuide_YodelFarm_Fodder_Title,
+    gText_ReferenceGuide_YodelFarm_Fodder_Description_Line01,
+#if defined(REGION_JP)
+    // Physical reuse: JP points at the existing passive-ending fragment.
+    gText_ReferenceGuide_Clinic_Overview_Collapse_Line03,
+#else
+    gText_ReferenceGuide_YodelFarm_Fodder_Description_Line02,
+    // Physical reuse: US points at the existing delivery completion text.
+    gText_ReferenceGuide_WoodcuttersHouse_Lumber_Delivery_Line03,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_YodelFarm_Fodder_Alternative_Line01,
+    gText_ReferenceGuide_YodelFarm_Fodder_Alternative_Line02,
+#if defined(REGION_JP)
+    gText_ReferenceGuide_YodelFarm_Fodder_Alternative_Line03,
+    gText_ReferenceGuide_EmptyLine,
+#else
+    gText_ReferenceGuide_YodelFarm_LivestockPurchases_Spacer,
+#endif
+    gText_ReferenceGuide_YodelFarm_LivestockPurchases_Cow_Title,
+    gText_ReferenceGuide_YodelFarm_LivestockPurchases_Sheep_Title,
+    gText_ReferenceGuide_YodelFarm_LivestockPurchases_Delivery_Line01,
+    gText_ReferenceGuide_YodelFarm_LivestockPurchases_Delivery_Line02,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_YodelFarm_LivestockPurchases_Quantity_Line01,
+    gText_ReferenceGuide_YodelFarm_LivestockPurchases_Quantity_Line02,
+    gText_ReferenceGuide_EmptyLine,
+
+    gText_ReferenceGuide_YodelFarm_CowMiraclePotion_Title,
+    gText_ReferenceGuide_YodelFarm_CowMiraclePotion_Description_Line01,
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_YodelFarm_SheepMiraclePotion_Title,
+    gText_ReferenceGuide_YodelFarm_SheepMiraclePotion_Description_Line01,
+    gText_ReferenceGuide_EmptyLine,
+
+    // Physical reuse: the Animal Medicine title is shared with Poultry Farm.
+    gText_ReferenceGuide_AnimalMedicine_Title,
+#if defined(REGION_JP)
+    // Physical reuse: JP shares the existing recovery prefix.
+    gText_ReferenceGuide_AnimalMedicine_UseOnSickAnimals_Line01,
+#else
+    gText_ReferenceGuide_YodelFarm_AnimalMedicine_Description_Line01,
+#endif
+    gText_ReferenceGuide_YodelFarm_AnimalMedicine_Description_Line02,
+    gText_ReferenceGuide_EmptyLine,
+
+    gText_ReferenceGuide_YodelFarm_Bell_Title,
+#if defined(REGION_JP)
+    // Physical reuse: JP points at the existing Bell description.
+    gText_ReferenceGuide_UsingTools_Bell_Line01,
+#else
+    gText_ReferenceGuide_YodelFarm_Bell_Description_Line01,
+#endif
+    gText_ReferenceGuide_EmptyLine,
+    gText_ReferenceGuide_YodelFarm_ToolClassification_Line01,
+    gText_ReferenceGuide_YodelFarm_ToolClassification_Line02,
+    gText_ReferenceGuide_YodelFarm_ToolClassification_Line03,
+    gText_ReferenceGuide_EmptyLine,
+
+    gText_ReferenceGuide_YodelFarm_CowSell_Title,
+    gText_ReferenceGuide_YodelFarm_SheepSell_Title,
+    gText_ReferenceGuide_YodelFarm_LivestockSell_Description_Line01,
+    gText_ReferenceGuide_YodelFarm_LivestockSell_Description_Line02,
+    gText_ReferenceGuide_YodelFarm_LivestockSell_Description_Line03,
     nullptr,
 };

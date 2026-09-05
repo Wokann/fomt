@@ -135,6 +135,8 @@ extern char const * const gReferenceGuideDougsInnLines[];
 extern char const * const gReferenceGuideKaiSeasideLodgeLines[];
 // Reference Guide page 68: Poultry Farm.
 extern char const * const gReferenceGuidePoultryFarmLines[];
+// Reference Guide page 69: Yodel Farm.
+extern char const * const gReferenceGuideYodelFarmLines[];
 #if defined(REGION_US)
 extern char const * const gReferenceGuideToolAndItemControlsAdditionalLines[];
 extern char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Seasoning_Miso[];
@@ -634,14 +636,54 @@ extern char const gText_ReferenceGuide_PoultryFarm_ChickenSell_Description_Line0
 extern char const gText_ReferenceGuide_PoultryFarm_ChickenSell_Description_Line02[];
 extern char const gText_ReferenceGuide_PoultryFarm_ChickenSell_Description_Line03[];
 extern char const gText_ReferenceGuide_PoultryFarm_ChickenSell_Description_Line04[];
-extern char const gText_ReferenceGuide_PoultryFarm_AnimalMedicine_Title[];
-extern char const gText_ReferenceGuide_PoultryFarm_AnimalMedicine_Description_Line01[];
+extern char const gText_ReferenceGuide_AnimalMedicine_Title[];
+extern char const gText_ReferenceGuide_AnimalMedicine_UseOnSickAnimals_Line01[];
 extern char const gText_ReferenceGuide_PoultryFarm_AnimalMedicine_Description_Line02[];
 #if defined(REGION_US)
 extern char const gText_ReferenceGuide_PoultryFarm_Overview_Line03[];
 extern char const gText_ReferenceGuide_PoultryFarm_ChickenFeed_Description_Line03[];
 extern char const gText_ReferenceGuide_PoultryFarm_ChickenBuy_Description_Line02[];
 extern char const gText_ReferenceGuide_PoultryFarm_ChickenBuy_Description_Line03[];
+#endif
+
+// Localized Yodel Farm text (page 69).
+extern char const gText_ReferenceGuide_YodelFarm_Title[];
+extern char const gText_ReferenceGuide_YodelFarm_Overview_Line01[];
+extern char const gText_ReferenceGuide_YodelFarm_Overview_Line02[];
+extern char const gText_ReferenceGuide_YodelFarm_StoreHours_Value[];
+extern char const gText_ReferenceGuide_YodelFarm_ClosedDay_Value[];
+extern char const gText_ReferenceGuide_YodelFarm_Fodder_Title[];
+extern char const gText_ReferenceGuide_YodelFarm_Fodder_Description_Line01[];
+extern char const gText_ReferenceGuide_YodelFarm_Fodder_Alternative_Line01[];
+extern char const gText_ReferenceGuide_YodelFarm_Fodder_Alternative_Line02[];
+extern char const gText_ReferenceGuide_YodelFarm_LivestockPurchases_Cow_Title[];
+extern char const gText_ReferenceGuide_YodelFarm_LivestockPurchases_Sheep_Title[];
+extern char const gText_ReferenceGuide_YodelFarm_LivestockPurchases_Delivery_Line01[];
+extern char const gText_ReferenceGuide_YodelFarm_LivestockPurchases_Delivery_Line02[];
+extern char const gText_ReferenceGuide_YodelFarm_LivestockPurchases_Quantity_Line01[];
+extern char const gText_ReferenceGuide_YodelFarm_LivestockPurchases_Quantity_Line02[];
+extern char const gText_ReferenceGuide_YodelFarm_CowMiraclePotion_Title[];
+extern char const gText_ReferenceGuide_YodelFarm_CowMiraclePotion_Description_Line01[];
+extern char const gText_ReferenceGuide_YodelFarm_SheepMiraclePotion_Title[];
+extern char const gText_ReferenceGuide_YodelFarm_SheepMiraclePotion_Description_Line01[];
+extern char const gText_ReferenceGuide_YodelFarm_AnimalMedicine_Description_Line02[];
+extern char const gText_ReferenceGuide_YodelFarm_Bell_Title[];
+extern char const gText_ReferenceGuide_YodelFarm_ToolClassification_Line01[];
+extern char const gText_ReferenceGuide_YodelFarm_ToolClassification_Line02[];
+extern char const gText_ReferenceGuide_YodelFarm_ToolClassification_Line03[];
+extern char const gText_ReferenceGuide_YodelFarm_CowSell_Title[];
+extern char const gText_ReferenceGuide_YodelFarm_SheepSell_Title[];
+extern char const gText_ReferenceGuide_YodelFarm_LivestockSell_Description_Line01[];
+extern char const gText_ReferenceGuide_YodelFarm_LivestockSell_Description_Line02[];
+extern char const gText_ReferenceGuide_YodelFarm_LivestockSell_Description_Line03[];
+#if defined(REGION_JP)
+extern char const gText_ReferenceGuide_YodelFarm_Fodder_Alternative_Line03[];
+#else
+extern char const gText_ReferenceGuide_YodelFarm_Overview_Line03[];
+extern char const gText_ReferenceGuide_YodelFarm_Fodder_Description_Line02[];
+extern char const gText_ReferenceGuide_YodelFarm_LivestockPurchases_Spacer[];
+extern char const gText_ReferenceGuide_YodelFarm_AnimalMedicine_Description_Line01[];
+extern char const gText_ReferenceGuide_YodelFarm_Bell_Description_Line01[];
 #endif
 
 extern char const gText_ReferenceGuide_FestivalHints_Title[];
