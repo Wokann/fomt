@@ -175,11 +175,7 @@
     .section .rodata.cooking_recipe_inventory_trailer
     .incbin "baserom_jp.gba", 0x100C24, (0x103194 - 0x100C24)
 
-    .section .rodata
-
-    .global gUnk_08103658
-gUnk_08103658:
-    .incbin "baserom_jp.gba", 0x103194, (0x10319C - 0x103194)
+    .section .rodata.animal_unnamed_trailer
 
     .global gUnk_08103660
 gUnk_08103660:
@@ -839,9 +835,7 @@ gUnk_081010E8:
 gUnk_0810110C:
 	.incbin "baserom_us.gba", 0x10110C, 0x254C
 
-	.global gUnk_08103658
-gUnk_08103658:
-	.incbin "baserom_us.gba", 0x103658, 0x8
+	.section .rodata.animal_unnamed_trailer
 
 	.global gUnk_08103660
 gUnk_08103660:

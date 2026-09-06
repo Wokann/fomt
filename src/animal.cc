@@ -1,10 +1,5 @@
 #include "animal.hh"
-
-extern "C"
-{
-    // TODO: sjis string
-    extern char const gUnk_08103658[];
-}
+#include "animal_text.hh"
 
 Animal::Animal(char const * a_name, ActorLocation const & location, u32 a_age)
     : Actor(location), name(a_name)
@@ -31,7 +26,7 @@ char const * Animal::GetName() const
     if (!name.IsEmpty())
         return name;
 
-    return gUnk_08103658;
+    return gText_Animal_Unnamed;
 }
 
 bool Animal::IsFestivalWinner() const
