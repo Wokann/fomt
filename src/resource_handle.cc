@@ -10,6 +10,11 @@ struct IndexedResourceEntry
 
 struct IndexedResourceResult
 {
+    IndexedResourceResult(IndexedResourceEntry * a_entries, u16 a_entry_count)
+        : entries(a_entries), entry_count(a_entry_count)
+    {
+    }
+
     IndexedResourceEntry * entries;
     u16 entry_count;
     u16 unknown_06;
@@ -29,6 +34,40 @@ struct IndexedResourceProvider
 {
     IndexedResourceProviderVTable * vtable;
 };
+
+struct IndexedResourceArchiveEntry
+{
+    u16 entry_count;
+    u16 first_entry_index;
+};
+
+struct IndexedResourceArchive
+{
+    IndexedResourceProviderVTable * vtable;
+    IndexedResourceArchiveEntry * entry_descriptors;
+    u8 unknown_08[0x14];
+    IndexedResourceEntry * entries;
+    u16 entry_descriptor_count;
+
+    IndexedResourceResult Resolve(u32 index) const
+        SECTION(".text.indexed_resource_archive_resolve");
+};
+
+IndexedResourceResult IndexedResourceArchive::Resolve(u32 index) const
+{
+    if (index < entry_descriptor_count)
+    {
+        IndexedResourceArchiveEntry const * descriptor = entry_descriptors + index;
+        u16 first_entry_index = descriptor->first_entry_index;
+        u16 entry_count = descriptor->entry_count;
+        u32 entry_address = first_entry_index << 2;
+
+        entry_address += (u32)entries;
+        return IndexedResourceResult((IndexedResourceEntry *)entry_address, entry_count);
+    }
+
+    return IndexedResourceResult(0, 0);
+}
 
 struct IndexedResourceHandle
 {

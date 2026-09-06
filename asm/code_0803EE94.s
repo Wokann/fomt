@@ -78,7 +78,7 @@
     jp_code_0803ee_func func_0805DE24, 0x5DB68, 0x5DCAC
     jp_code_0803ee_func func_0805DF68, 0x5DCAC, 0x5E410
     jp_code_0803ee_func func_0805E6CC, 0x5E410, 0x5E4A4
-    jp_code_0803ee_func func_0805E760, 0x5E4A4, 0x5E4D4
+    .section .text.indexed_resource_archive_resolve_after
     jp_code_0803ee_func func_0805E790, 0x5E4D4, 0x5E568
     .section .text.indexed_resource_handle_constructor_after
     jp_code_0803ee_func func_0805E894, 0x5E5D8, 0x5E634
@@ -59535,34 +59535,7 @@ func_0805E6CC: @ 0x0805E6CC
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_0805E760
-func_0805E760: @ 0x0805E760
-	push {r4, lr}
-	adds r4, r0, #0
-	adds r3, r1, #0
-	ldrh r0, [r3, #0x20]
-	cmp r2, r0
-	bhs .L0805E782
-	lsls r1, r2, #2
-	ldr r0, [r3, #4]
-	adds r0, r0, r1
-	ldrh r1, [r0, #2]
-	ldrh r2, [r0]
-	lsls r1, r1, #2
-	ldr r0, [r3, #0x1c]
-	adds r1, r1, r0
-	str r1, [r4]
-	strh r2, [r4, #4]
-	b .L0805E788
-.L0805E782:
-	movs r0, #0
-	str r0, [r4]
-	strh r0, [r4, #4]
-.L0805E788:
-	adds r0, r4, #0
-	pop {r4}
-	pop {r2}
-	bx r2
+	.section .text.indexed_resource_archive_resolve_after
 
 	thumb_func_start func_0805E790
 func_0805E790: @ 0x0805E790
@@ -113686,7 +113659,7 @@ func_0807865C: @ 0x0807865C
 	ldrh r2, [r0]
 	ldr r0, [sp, #0x88]
 	mov r1, sb
-	bl func_0805E760
+	bl Resolve__C22IndexedResourceArchiveUi
 	ldr r0, [sp, #0x64]
 	ldr r1, [sp, #0x68]
 	str r0, [sp, #0x6c]

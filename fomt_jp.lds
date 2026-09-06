@@ -202,6 +202,9 @@ SECTIONS
         . = 0x52078; /* JP/US-shared animal-festival ranking entry setter. */
         src/animal_festival_ranking.o(.text.set_animal_festival_ranking_entry);
         . = 0x52088; asm/code_0803EE94.o(.text.animal_festival_ranking_after);
+        . = 0x5E4A4; /* JP/US-shared indexed resource-archive resolver. */
+        src/resource_handle.o(.text.indexed_resource_archive_resolve);
+        . = 0x5E4D4; asm/code_0803EE94.o(.text.indexed_resource_archive_resolve_after);
         . = 0x5E568; /* JP/US-shared indexed resource-handle constructor. */
         src/resource_handle.o(.text.indexed_resource_handle_constructor);
         . = 0x5E594; /* JP/US-shared indexed resource-handle initializer. */
