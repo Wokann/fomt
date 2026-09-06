@@ -97,6 +97,14 @@ SECTIONS
         asm/code_entities.o(.text);
         src/entity_actor.o(.text);
         asm/code_entities_080320DC.o(.text);
+        . = 0x324B8; /* JP/US-shared default entity-UI false handler. */
+        src/entity_ui.o(.text.entity_ui_default_no_action);
+        . = 0x324BC; /* Continue the surrounding entity-UI ROM block. */
+        asm/code_entities_080320DC.o(.text.entity_ui_default_no_action_after);
+        . = 0x33B7C; /* JP/US-shared entity-UI byte-0x41 clearer. */
+        src/entity_ui.o(.text.entity_ui_unknown_flag);
+        . = 0x33B84; /* Continue the surrounding entity-UI ROM block. */
+        asm/code_entities_080320DC.o(.text.entity_ui_unknown_flag_after);
         src/npc_entity.o(.text);
         asm/code_entities_08034CEC.o(.text);
 

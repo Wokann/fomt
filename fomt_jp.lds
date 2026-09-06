@@ -143,6 +143,14 @@ SECTIONS
         src/entity_actor.o(.text);
         . = 0x321C0; /* JP ROM 0x080321C0, independently matched */
         asm/code_entities_080320DC.o(.text);
+        . = 0x3224C; /* JP counterpart of default entity-UI false handler. */
+        src/entity_ui.o(.text.entity_ui_default_no_action);
+        . = 0x32250; /* Continue the surrounding entity-UI ROM block. */
+        asm/code_entities_080320DC.o(.text.entity_ui_default_no_action_after);
+        . = 0x33910; /* JP counterpart of entity-UI byte-0x41 clearer. */
+        src/entity_ui.o(.text.entity_ui_unknown_flag);
+        . = 0x33918; /* Continue the surrounding entity-UI ROM block. */
+        asm/code_entities_080320DC.o(.text.entity_ui_unknown_flag_after);
         . = 0x34A80; /* JP ROM 0x08034A80, independently matched */
         src/npc_entity.o(.text);
         . = 0x35114; /* JP ROM 0x08035114, independently matched */
