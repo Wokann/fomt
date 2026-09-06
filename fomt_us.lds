@@ -475,7 +475,9 @@ SECTIONS
         . = 0x1003E4; asm/data/data_080F9EB8.o(.rodata.gift_wrap_prefix);
         . = 0x1003F4; data/text/gift_wrap.o(.rodata.gift_wrap);
         . = 0x1004D4; asm/data/data_080F9EB8.o(.rodata.gift_wrap_trailer);
-        . = 0x1004E0; asm/data/data_080F9EB8.o(.rodata.link_communication);
+        FILL(0x00);
+        . = 0x1004E0; data/text/link_communication.o(.rodata.link_communication);
+        . = 0x1007AC; asm/data/data_080F9EB8.o(.rodata.link_communication_trailer);
         . = 0x100AD2; data/text/recovery_status.o(.rodata);
         . = 0x100DE1; asm/data/data_080F9EB8.o(.rodata.recovery_status_padding);
         . = 0x100DE4; data/text/cooking_menu.o(.rodata);

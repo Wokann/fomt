@@ -164175,7 +164175,7 @@ func_08093364: @ 0x08093364
 	movs r0, #0xe8
 	lsls r0, r0, #1
 	adds r4, r7, r0
-	ldr r1, .L080935F0 @ =gUnk_08100610
+	ldr r1, .L080935F0 @ =gText_LinkCommunication_QuitCommunication
 	adds r0, r4, #0
 	bl func_08050D8C
 	adds r0, r4, #0
@@ -164183,12 +164183,12 @@ func_08093364: @ 0x08093364
 	bl func_08050E50
 	b .L08093626
 	.align 2, 0
-.L080935F0: .4byte gUnk_08100610
+.L080935F0: .4byte gText_LinkCommunication_QuitCommunication
 .L080935F4:
 	movs r1, #0xe8
 	lsls r1, r1, #1
 	adds r4, r7, r1
-	ldr r1, .L0809360C @ =gUnk_08100638
+	ldr r1, .L0809360C @ =gText_LinkCommunication_OtherPlayerCanceled
 	adds r0, r4, #0
 	bl func_08050D8C
 	adds r0, r4, #0
@@ -164196,12 +164196,12 @@ func_08093364: @ 0x08093364
 	bl func_08050E50
 	b .L08093626
 	.align 2, 0
-.L0809360C: .4byte gUnk_08100638
+.L0809360C: .4byte gText_LinkCommunication_OtherPlayerCanceled
 .L08093610:
 	movs r2, #0xe8
 	lsls r2, r2, #1
 	adds r4, r7, r2
-	ldr r1, .L08093640 @ =gUnk_08100678
+	ldr r1, .L08093640 @ =gText_LinkCommunication_IncompatibleGameData
 	adds r0, r4, #0
 	bl func_08050D8C
 	adds r0, r4, #0
@@ -164222,7 +164222,7 @@ func_08093364: @ 0x08093364
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-.L08093640: .4byte gUnk_08100678
+.L08093640: .4byte gText_LinkCommunication_IncompatibleGameData
 .L08093644: .4byte .L08093648
 .L08093648: @ jump table
 	.4byte .L0809366C @ case 0
@@ -164238,7 +164238,7 @@ func_08093364: @ 0x08093364
 	movs r0, #0xe8
 	lsls r0, r0, #1
 	adds r4, r7, r0
-	ldr r1, .L08093694 @ =gUnk_081006C4
+	ldr r1, .L08093694 @ =gText_LinkCommunication_ExchangeRestriction
 	adds r0, r4, #0
 	bl func_08050D8C
 	adds r0, r4, #0
@@ -164254,7 +164254,7 @@ func_08093364: @ 0x08093364
 	adds r0, r7, r3
 	b .L08093A12
 	.align 2, 0
-.L08093694: .4byte gUnk_081006C4
+.L08093694: .4byte gText_LinkCommunication_ExchangeRestriction
 .L08093698:
 	movs r1, #0xee
 	lsls r1, r1, #1
@@ -164277,9 +164277,9 @@ func_08093364: @ 0x08093364
 	movs r0, #0xe8
 	lsls r0, r0, #1
 	adds r4, r7, r0
-	ldr r1, .L080936EC @ =gUnk_0810073C
-	ldr r2, .L080936F0 @ =gUnk_0810058C
-	ldr r3, .L080936F4 @ =gUnk_08100590
+	ldr r1, .L080936EC @ =gText_LinkCommunication_ActionQuestion
+	ldr r2, .L080936F0 @ =gText_LinkCommunication_Yes
+	ldr r3, .L080936F4 @ =gText_LinkCommunication_No
 	movs r0, #0
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -164299,9 +164299,9 @@ func_08093364: @ 0x08093364
 	adds r1, r7, r3
 	b .L080937C4
 	.align 2, 0
-.L080936EC: .4byte gUnk_0810073C
-.L080936F0: .4byte gUnk_0810058C
-.L080936F4: .4byte gUnk_08100590
+.L080936EC: .4byte gText_LinkCommunication_ActionQuestion
+.L080936F0: .4byte gText_LinkCommunication_Yes
+.L080936F4: .4byte gText_LinkCommunication_No
 .L080936F8:
 	movs r1, #0xee
 	lsls r1, r1, #1
@@ -164334,7 +164334,7 @@ func_08093364: @ 0x08093364
 	strb r2, [r0]
 	b .L08093A14
 .L08093732:
-	ldr r1, .L08093754 @ =gUnk_08100758
+	ldr r1, .L08093754 @ =gText_LinkCommunication_Declined
 	adds r0, r4, #0
 	bl func_08050D8C
 	adds r0, r4, #0
@@ -164350,7 +164350,7 @@ func_08093364: @ 0x08093364
 	adds r0, r7, r3
 	b .L080939B8
 	.align 2, 0
-.L08093754: .4byte gUnk_08100758
+.L08093754: .4byte gText_LinkCommunication_Declined
 .L08093758:
 	movs r3, #0xe4
 	lsls r3, r3, #1
@@ -164428,7 +164428,7 @@ func_08093364: @ 0x08093364
 	movs r2, #0xe8
 	lsls r2, r2, #1
 	adds r4, r7, r2
-	ldr r1, .L08093918 @ =gUnk_08100790
+	ldr r1, .L08093918 @ =gText_LinkCommunication_Complete
 	adds r0, r4, #0
 	bl func_08050D8C
 	adds r0, r4, #0
@@ -164559,7 +164559,7 @@ func_08093364: @ 0x08093364
 	strb r2, [r0]
 	b .L08093A14
 	.align 2, 0
-.L08093918: .4byte gUnk_08100790
+.L08093918: .4byte gText_LinkCommunication_Complete
 .L0809391C: .4byte 0x000021CC
 .L08093920: .4byte 0x000021D4
 .L08093924: .4byte 0x000021E0
@@ -164591,7 +164591,7 @@ func_08093364: @ 0x08093364
 	beq .L08093998
 	cmp r0, #3
 	bne .L080939A8
-	ldr r1, .L08093994 @ =gUnk_08100610
+	ldr r1, .L08093994 @ =gText_LinkCommunication_QuitCommunication
 	adds r0, r4, #0
 	bl func_08050D8C
 	adds r0, r4, #0
@@ -164614,9 +164614,9 @@ func_08093364: @ 0x08093364
 	str r0, [r1]
 	b .L08093A14
 	.align 2, 0
-.L08093994: .4byte gUnk_08100610
+.L08093994: .4byte gText_LinkCommunication_QuitCommunication
 .L08093998:
-	ldr r1, .L080939C8 @ =gUnk_08100610
+	ldr r1, .L080939C8 @ =gText_LinkCommunication_QuitCommunication
 	adds r0, r4, #0
 	bl func_08050D8C
 	adds r0, r4, #0
@@ -164640,7 +164640,7 @@ func_08093364: @ 0x08093364
 	str r1, [r0]
 	b .L08093A14
 	.align 2, 0
-.L080939C8: .4byte gUnk_08100610
+.L080939C8: .4byte gText_LinkCommunication_QuitCommunication
 .L080939CC:
 	movs r3, #0xee
 	lsls r3, r3, #1

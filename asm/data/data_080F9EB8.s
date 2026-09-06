@@ -130,8 +130,8 @@
     .section .rodata.gift_wrap_trailer
     .incbin "baserom_jp.gba", 0xFFE64, (0xFFE70 - 0xFFE64)
 
-    .section .rodata.link_communication
-    .incbin "baserom_jp.gba", 0xFFE70, (0x1005EA - 0xFFE70)
+    .section .rodata.link_communication_trailer
+    .incbin "baserom_jp.gba", 0x100130, (0x1005EA - 0x100130)
 
     .section .rodata.recovery_status_trailer_prefix
     .incbin "baserom_jp.gba", 0x1008F9, (0x1008FC - 0x1008F9)
@@ -891,75 +891,7 @@ gUnk_081003F0:
 	.section .rodata.gift_wrap_trailer
 	.incbin "baserom_us.gba", 0x1004D4, (0x1004E0 - 0x1004D4)
 
-	.section .rodata.link_communication
-
-	.global gUnk_081004E0
-gUnk_081004E0:
-	.incbin "baserom_us.gba", 0x1004E0, 0x44
-
-	.global gUnk_08100524
-gUnk_08100524:
-	.incbin "baserom_us.gba", 0x100524, 0x1C
-
-	.global gUnk_08100540
-gUnk_08100540:
-	.incbin "baserom_us.gba", 0x100540, 0x18
-
-	.global gUnk_08100558
-gUnk_08100558:
-	.incbin "baserom_us.gba", 0x100558, 0x30
-
-	.global gUnk_08100588
-gUnk_08100588:
-	.incbin "baserom_us.gba", 0x100588, 0x4
-
-	.global gUnk_0810058C
-gUnk_0810058C:
-	.incbin "baserom_us.gba", 0x10058C, 0x4
-
-	.global gUnk_08100590
-gUnk_08100590:
-	.incbin "baserom_us.gba", 0x100590, 0x4
-
-	.global gUnk_08100594
-gUnk_08100594:
-	.incbin "baserom_us.gba", 0x100594, 0x44
-
-	.global gUnk_081005D8
-gUnk_081005D8:
-	.incbin "baserom_us.gba", 0x1005D8, 0x14
-
-	.global gUnk_081005EC
-gUnk_081005EC:
-	.incbin "baserom_us.gba", 0x1005EC, 0x24
-
-	.global gUnk_08100610
-gUnk_08100610:
-	.incbin "baserom_us.gba", 0x100610, 0x28
-
-	.global gUnk_08100638
-gUnk_08100638:
-	.incbin "baserom_us.gba", 0x100638, 0x40
-
-	.global gUnk_08100678
-gUnk_08100678:
-	.incbin "baserom_us.gba", 0x100678, 0x4C
-
-	.global gUnk_081006C4
-gUnk_081006C4:
-	.incbin "baserom_us.gba", 0x1006C4, 0x78
-
-	.global gUnk_0810073C
-gUnk_0810073C:
-	.incbin "baserom_us.gba", 0x10073C, 0x1C
-
-	.global gUnk_08100758
-gUnk_08100758:
-	.incbin "baserom_us.gba", 0x100758, 0x38
-
-	.global gUnk_08100790
-gUnk_08100790:
-	.incbin "baserom_us.gba", 0x100790, 0x1C
+	.section .rodata.link_communication_trailer
 
 	.global gUnk_081007AC
 gUnk_081007AC:

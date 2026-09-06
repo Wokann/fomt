@@ -31170,7 +31170,7 @@ func_080E35E8: @ 0x080E35E8
 	movs r0, #0xe4
 	lsls r0, r0, #1
 	adds r4, r4, r0
-	ldr r1, .L080E360C @ =gUnk_081004E0
+	ldr r1, .L080E360C @ =gText_LinkCommunication_Waiting
 	adds r0, r4, #0
 	movs r2, #0
 	movs r3, #0
@@ -31182,7 +31182,7 @@ func_080E35E8: @ 0x080E35E8
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080E360C: .4byte gUnk_081004E0
+.L080E360C: .4byte gText_LinkCommunication_Waiting
 
 	thumb_func_start func_080E3610
 func_080E3610: @ 0x080E3610
@@ -31205,7 +31205,7 @@ func_080E3628: @ 0x080E3628
 	movs r0, #0xe4
 	lsls r0, r0, #1
 	adds r4, r4, r0
-	ldr r1, .L080E364C @ =gUnk_08100524
+	ldr r1, .L080E364C @ =gText_LinkCommunication_SendingGameData
 	adds r0, r4, #0
 	movs r2, #0
 	movs r3, #0
@@ -31217,7 +31217,7 @@ func_080E3628: @ 0x080E3628
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080E364C: .4byte gUnk_08100524
+.L080E364C: .4byte gText_LinkCommunication_SendingGameData
 
 	thumb_func_start func_080E3650
 func_080E3650: @ 0x080E3650
@@ -31226,7 +31226,7 @@ func_080E3650: @ 0x080E3650
 	movs r0, #0xe4
 	lsls r0, r0, #1
 	adds r4, r4, r0
-	ldr r1, .L080E3674 @ =gUnk_08100540
+	ldr r1, .L080E3674 @ =gText_LinkCommunication_TestingConnection
 	adds r0, r4, #0
 	movs r2, #0
 	movs r3, #0
@@ -31238,7 +31238,7 @@ func_080E3650: @ 0x080E3650
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080E3674: .4byte gUnk_08100540
+.L080E3674: .4byte gText_LinkCommunication_TestingConnection
 
 	thumb_func_start func_080E3678
 func_080E3678: @ 0x080E3678
@@ -31256,7 +31256,7 @@ func_080E3678: @ 0x080E3678
 	movs r0, #0xe4
 	lsls r0, r0, #1
 	adds r4, r2, r0
-	ldr r1, .L080E36B0 @ =gUnk_08100558
+	ldr r1, .L080E36B0 @ =gText_LinkCommunication_CannotResendPreviousData
 	adds r0, r4, #0
 	movs r2, #0
 	movs r3, #0
@@ -31268,7 +31268,7 @@ func_080E3678: @ 0x080E3678
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080E36B0: .4byte gUnk_08100558
+.L080E36B0: .4byte gText_LinkCommunication_CannotResendPreviousData
 
 	thumb_func_start func_080E36B4
 func_080E36B4: @ 0x080E36B4
@@ -31294,9 +31294,9 @@ func_080E36B4: @ 0x080E36B4
 	bne .L080E3726
 	movs r0, #1
 	str r0, [r4]
-	ldr r1, .L080E36F4 @ =gUnk_08100588
-	ldr r2, .L080E36F8 @ =gUnk_0810058C
-	ldr r3, .L080E36FC @ =gUnk_08100590
+	ldr r1, .L080E36F4 @ =gText_LinkCommunication_ProceedQuestion
+	ldr r2, .L080E36F8 @ =gText_LinkCommunication_Yes
+	ldr r3, .L080E36FC @ =gText_LinkCommunication_No
 	str r6, [sp]
 	str r6, [sp, #4]
 	str r6, [sp, #8]
@@ -31304,9 +31304,9 @@ func_080E36B4: @ 0x080E36B4
 	bl func_08050E30
 	b .L080E3726
 	.align 2, 0
-.L080E36F4: .4byte gUnk_08100588
-.L080E36F8: .4byte gUnk_0810058C
-.L080E36FC: .4byte gUnk_08100590
+.L080E36F4: .4byte gText_LinkCommunication_ProceedQuestion
+.L080E36F8: .4byte gText_LinkCommunication_Yes
+.L080E36FC: .4byte gText_LinkCommunication_No
 .L080E3700:
 	movs r1, #0xe4
 	lsls r1, r1, #1
@@ -31346,7 +31346,7 @@ func_080E3734: @ 0x080E3734
 	movs r0, #0xe4
 	lsls r0, r0, #1
 	adds r4, r4, r0
-	ldr r1, .L080E3758 @ =gUnk_08100594
+	ldr r1, .L080E3758 @ =gText_LinkCommunication_WaitingForOtherPlayer
 	adds r0, r4, #0
 	movs r2, #0
 	movs r3, #0
@@ -31358,7 +31358,7 @@ func_080E3734: @ 0x080E3734
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080E3758: .4byte gUnk_08100594
+.L080E3758: .4byte gText_LinkCommunication_WaitingForOtherPlayer
 
 	thumb_func_start func_080E375C
 func_080E375C: @ 0x080E375C
@@ -31381,7 +31381,7 @@ func_080E3774: @ 0x080E3774
 	movs r0, #0xe4
 	lsls r0, r0, #1
 	adds r4, r4, r0
-	ldr r1, .L080E3794 @ =gUnk_081005D8
+	ldr r1, .L080E3794 @ =gText_LinkCommunication_NowSendingData
 	adds r0, r4, #0
 	bl func_08050D8C
 	adds r0, r4, #0
@@ -31391,7 +31391,7 @@ func_080E3774: @ 0x080E3774
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080E3794: .4byte gUnk_081005D8
+.L080E3794: .4byte gText_LinkCommunication_NowSendingData
 .L080E3798:
 	.byte 0x70, 0x47, 0x00, 0x00
 
@@ -31411,7 +31411,7 @@ func_080E379C: @ 0x080E379C
 	movs r0, #0xe4
 	lsls r0, r0, #1
 	adds r4, r5, r0
-	ldr r1, .L080E37D8 @ =gUnk_081005EC
+	ldr r1, .L080E37D8 @ =gText_LinkCommunication_DataExchangeFailed
 	adds r0, r4, #0
 	bl func_08050D8C
 	adds r0, r4, #0
@@ -31426,7 +31426,7 @@ func_080E379C: @ 0x080E379C
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080E37D8: .4byte gUnk_081005EC
+.L080E37D8: .4byte gText_LinkCommunication_DataExchangeFailed
 
 	thumb_func_start func_080E37DC
 func_080E37DC: @ 0x080E37DC
@@ -31455,8 +31455,8 @@ func_080E37DC: @ 0x080E37DC
 	movs r2, #0xe4
 	lsls r2, r2, #1
 	adds r0, r1, r2
-	ldr r1, .L080E3820 @ =gUnk_0810058C
-	ldr r2, .L080E3824 @ =gUnk_08100590
+	ldr r1, .L080E3820 @ =gText_LinkCommunication_Yes
+	ldr r2, .L080E3824 @ =gText_LinkCommunication_No
 	str r4, [sp]
 	str r4, [sp, #4]
 	str r4, [sp, #8]
@@ -31465,8 +31465,8 @@ func_080E37DC: @ 0x080E37DC
 	bl func_08050E0C
 	b .L080E384E
 	.align 2, 0
-.L080E3820: .4byte gUnk_0810058C
-.L080E3824: .4byte gUnk_08100590
+.L080E3820: .4byte gText_LinkCommunication_Yes
+.L080E3824: .4byte gText_LinkCommunication_No
 .L080E3828:
 	movs r3, #0xea
 	lsls r3, r3, #1
