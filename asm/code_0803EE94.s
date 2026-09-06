@@ -147152,7 +147152,7 @@ func_0808A2F4: @ 0x0808A2F4
 .L0808A322:
 	adds r0, r5, #0
 	adds r0, #0x80
-	ldr r1, .L0808A338 @ =gUnk_08117ABC
+	ldr r1, .L0808A338 @ =gItemDiscardConfirmTextRef
 	ldr r1, [r1]
 	ldr r2, .L0808A33C @ =gText_Fridge_Yes
 	ldr r3, .L0808A340 @ =gText_Fridge_No
@@ -147161,7 +147161,7 @@ func_0808A2F4: @ 0x0808A2F4
 	str r7, [sp, #8]
 	b .L0808A49E
 	.align 2, 0
-.L0808A338: .4byte gUnk_08117ABC
+.L0808A338: .4byte gItemDiscardConfirmTextRef
 .L0808A33C: .4byte gText_Fridge_Yes
 .L0808A340: .4byte gText_Fridge_No
 .L0808A344:
@@ -147178,7 +147178,7 @@ func_0808A2F4: @ 0x0808A2F4
 	bne .L0808A3F6
 	adds r0, r5, #0
 	adds r0, #0x80
-	ldr r1, .L0808A374 @ =gUnk_08117ABC
+	ldr r1, .L0808A374 @ =gItemDiscardConfirmTextRef
 	ldr r1, [r1]
 	ldr r2, .L0808A378 @ =gText_Fridge_Yes
 	ldr r3, .L0808A37C @ =gText_Fridge_No
@@ -147187,7 +147187,7 @@ func_0808A2F4: @ 0x0808A2F4
 	str r7, [sp, #8]
 	b .L0808A49E
 	.align 2, 0
-.L0808A374: .4byte gUnk_08117ABC
+.L0808A374: .4byte gItemDiscardConfirmTextRef
 .L0808A378: .4byte gText_Fridge_Yes
 .L0808A37C: .4byte gText_Fridge_No
 .L0808A380:
@@ -147249,7 +147249,7 @@ func_0808A2F4: @ 0x0808A2F4
 .L0808A3F6:
 	adds r0, r5, #0
 	adds r0, #0x80
-	ldr r1, .L0808A41C @ =gUnk_08117ADC
+	ldr r1, .L0808A41C @ =gItemDiscardCannotDiscardTextRef
 	ldr r1, [r1]
 	movs r2, #0
 	movs r3, #0
@@ -147265,11 +147265,11 @@ func_0808A2F4: @ 0x0808A2F4
 	bl func_08008B6C
 	b .L0808A4AC
 	.align 2, 0
-.L0808A41C: .4byte gUnk_08117ADC
+.L0808A41C: .4byte gItemDiscardCannotDiscardTextRef
 .L0808A420:
 	adds r0, r5, #0
 	adds r0, #0x80
-	ldr r1, .L0808A434 @ =gUnk_08117ABC
+	ldr r1, .L0808A434 @ =gItemDiscardConfirmTextRef
 	ldr r1, [r1]
 	ldr r2, .L0808A438 @ =gText_Fridge_Yes
 	ldr r3, .L0808A43C @ =gText_Fridge_No
@@ -147278,13 +147278,13 @@ func_0808A2F4: @ 0x0808A2F4
 	str r6, [sp, #8]
 	b .L0808A49E
 	.align 2, 0
-.L0808A434: .4byte gUnk_08117ABC
+.L0808A434: .4byte gItemDiscardConfirmTextRef
 .L0808A438: .4byte gText_Fridge_Yes
 .L0808A43C: .4byte gText_Fridge_No
 .L0808A440:
 	adds r0, r5, #0
 	adds r0, #0x80
-	ldr r1, .L0808A454 @ =gUnk_08117ABC
+	ldr r1, .L0808A454 @ =gItemDiscardConfirmTextRef
 	ldr r1, [r1]
 	ldr r2, .L0808A458 @ =gText_Fridge_Yes
 	ldr r3, .L0808A45C @ =gText_Fridge_No
@@ -147293,7 +147293,7 @@ func_0808A2F4: @ 0x0808A2F4
 	str r6, [sp, #8]
 	b .L0808A49E
 	.align 2, 0
-.L0808A454: .4byte gUnk_08117ABC
+.L0808A454: .4byte gItemDiscardConfirmTextRef
 .L0808A458: .4byte gText_Fridge_Yes
 .L0808A45C: .4byte gText_Fridge_No
 .L0808A460:
@@ -147321,7 +147321,7 @@ func_0808A2F4: @ 0x0808A2F4
 	bne .L0808A4AC
 	adds r0, r5, #0
 	adds r0, #0x80
-	ldr r1, .L0808A4B4 @ =gUnk_08117ABC
+	ldr r1, .L0808A4B4 @ =gItemDiscardConfirmTextRef
 	ldr r1, [r1]
 	ldr r2, .L0808A4B8 @ =gText_Fridge_Yes
 	ldr r3, .L0808A4BC @ =gText_Fridge_No
@@ -147341,7 +147341,7 @@ func_0808A2F4: @ 0x0808A2F4
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L0808A4B4: .4byte gUnk_08117ABC
+.L0808A4B4: .4byte gItemDiscardConfirmTextRef
 .L0808A4B8: .4byte gText_Fridge_Yes
 .L0808A4BC: .4byte gText_Fridge_No
 
@@ -148360,7 +148360,7 @@ func_0808AC28: @ 0x0808AC28
 	beq .L0808AD54
 	adds r0, r7, #0
 	adds r0, #0x80
-	ldr r1, .L0808AD50 @ =gUnk_08117B10
+	ldr r1, .L0808AD50 @ =gItemDiscardCursedTextRef
 	ldr r1, [r1]
 	movs r2, #0
 	movs r3, #0
@@ -148374,7 +148374,7 @@ func_0808AC28: @ 0x0808AC28
 	str r0, [sp, #0x34]
 	b .L0808B158
 	.align 2, 0
-.L0808AD50: .4byte gUnk_08117B10
+.L0808AD50: .4byte gItemDiscardCursedTextRef
 .L0808AD54:
 	movs r1, #0
 	ldr r0, [sp, #0x18]
@@ -148969,7 +148969,7 @@ func_0808B16C: @ 0x0808B16C
 	beq .L0808B2A0
 	adds r0, r7, #0
 	adds r0, #0x80
-	ldr r1, .L0808B29C @ =gUnk_08117B10
+	ldr r1, .L0808B29C @ =gItemDiscardCursedTextRef
 	ldr r1, [r1]
 	movs r2, #0
 	movs r3, #0
@@ -148983,7 +148983,7 @@ func_0808B16C: @ 0x0808B16C
 	str r0, [sp, #0x38]
 	b .L0808BA4A
 	.align 2, 0
-.L0808B29C: .4byte gUnk_08117B10
+.L0808B29C: .4byte gItemDiscardCursedTextRef
 .L0808B2A0:
 	movs r1, #0
 	ldr r0, [sp, #0x18]
@@ -149918,7 +149918,7 @@ func_0808BA60: @ 0x0808BA60
 	bne .L0808BB8A
 	adds r0, r5, #0
 	adds r0, #0x80
-	ldr r1, .L0808BB0C @ =gUnk_08117ABC
+	ldr r1, .L0808BB0C @ =gItemDiscardConfirmTextRef
 	ldr r1, [r1]
 	ldr r2, .L0808BB10 @ =gText_HomeStorage_ConfirmationYes
 	ldr r3, .L0808BB14 @ =gText_HomeStorage_ConfirmationNo
@@ -149932,7 +149932,7 @@ func_0808BA60: @ 0x0808BA60
 	str r6, [r0]
 	b .L0808BC00
 	.align 2, 0
-.L0808BB0C: .4byte gUnk_08117ABC
+.L0808BB0C: .4byte gItemDiscardConfirmTextRef
 .L0808BB10: .4byte gText_HomeStorage_ConfirmationYes
 .L0808BB14: .4byte gText_HomeStorage_ConfirmationNo
 .L0808BB18:
@@ -149991,7 +149991,7 @@ func_0808BA60: @ 0x0808BA60
 .L0808BB8A:
 	adds r0, r5, #0
 	adds r0, #0x80
-	ldr r1, .L0808BBB0 @ =gUnk_08117ADC
+	ldr r1, .L0808BBB0 @ =gItemDiscardCannotDiscardTextRef
 	ldr r1, [r1]
 	movs r2, #0
 	movs r3, #0
@@ -150007,11 +150007,11 @@ func_0808BA60: @ 0x0808BA60
 	bl func_08008B6C
 	b .L0808BC00
 	.align 2, 0
-.L0808BBB0: .4byte gUnk_08117ADC
+.L0808BBB0: .4byte gItemDiscardCannotDiscardTextRef
 .L0808BBB4:
 	adds r0, r5, #0
 	adds r0, #0x80
-	ldr r1, .L0808BBD4 @ =gUnk_08117ABC
+	ldr r1, .L0808BBD4 @ =gItemDiscardConfirmTextRef
 	ldr r1, [r1]
 	ldr r2, .L0808BBD8 @ =gText_HomeStorage_ConfirmationYes
 	ldr r3, .L0808BBDC @ =gText_HomeStorage_ConfirmationNo
@@ -150025,13 +150025,13 @@ func_0808BA60: @ 0x0808BA60
 	str r4, [r0]
 	b .L0808BC00
 	.align 2, 0
-.L0808BBD4: .4byte gUnk_08117ABC
+.L0808BBD4: .4byte gItemDiscardConfirmTextRef
 .L0808BBD8: .4byte gText_HomeStorage_ConfirmationYes
 .L0808BBDC: .4byte gText_HomeStorage_ConfirmationNo
 .L0808BBE0:
 	adds r0, r5, #0
 	adds r0, #0x80
-	ldr r1, .L0808BC08 @ =gUnk_08117ABC
+	ldr r1, .L0808BC08 @ =gItemDiscardConfirmTextRef
 	ldr r1, [r1]
 	ldr r2, .L0808BC0C @ =gText_HomeStorage_ConfirmationYes
 	ldr r3, .L0808BC10 @ =gText_HomeStorage_ConfirmationNo
@@ -150050,7 +150050,7 @@ func_0808BA60: @ 0x0808BA60
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L0808BC08: .4byte gUnk_08117ABC
+.L0808BC08: .4byte gItemDiscardConfirmTextRef
 .L0808BC0C: .4byte gText_HomeStorage_ConfirmationYes
 .L0808BC10: .4byte gText_HomeStorage_ConfirmationNo
 
@@ -154703,7 +154703,7 @@ func_0808E444: @ 0x0808E444
 .L0808E472:
 	adds r0, r5, #0
 	adds r0, #0x80
-	ldr r1, .L0808E488 @ =gUnk_08117ABC
+	ldr r1, .L0808E488 @ =gItemDiscardConfirmTextRef
 	ldr r1, [r1]
 	ldr r2, .L0808E48C @ =gText_Shelf_Yes
 	ldr r3, .L0808E490 @ =gText_Shelf_No
@@ -154712,7 +154712,7 @@ func_0808E444: @ 0x0808E444
 	str r7, [sp, #8]
 	b .L0808E63A
 	.align 2, 0
-.L0808E488: .4byte gUnk_08117ABC
+.L0808E488: .4byte gItemDiscardConfirmTextRef
 .L0808E48C: .4byte gText_Shelf_Yes
 .L0808E490: .4byte gText_Shelf_No
 .L0808E494:
@@ -154731,7 +154731,7 @@ func_0808E444: @ 0x0808E444
 .L0808E4B0:
 	adds r0, r5, #0
 	adds r0, #0x80
-	ldr r1, .L0808E4C4 @ =gUnk_08117ABC
+	ldr r1, .L0808E4C4 @ =gItemDiscardConfirmTextRef
 	ldr r1, [r1]
 	ldr r2, .L0808E4C8 @ =gText_Shelf_Yes
 	ldr r3, .L0808E4CC @ =gText_Shelf_No
@@ -154740,7 +154740,7 @@ func_0808E444: @ 0x0808E444
 	str r7, [sp, #8]
 	b .L0808E63A
 	.align 2, 0
-.L0808E4C4: .4byte gUnk_08117ABC
+.L0808E4C4: .4byte gItemDiscardConfirmTextRef
 .L0808E4C8: .4byte gText_Shelf_Yes
 .L0808E4CC: .4byte gText_Shelf_No
 .L0808E4D0:
@@ -154801,7 +154801,7 @@ func_0808E444: @ 0x0808E444
 	bne .L0808E5FC
 	adds r0, r5, #0
 	adds r0, #0x80
-	ldr r1, .L0808E55C @ =gUnk_08117ABC
+	ldr r1, .L0808E55C @ =gItemDiscardConfirmTextRef
 	ldr r1, [r1]
 	ldr r2, .L0808E560 @ =gText_Shelf_Yes
 	ldr r3, .L0808E564 @ =gText_Shelf_No
@@ -154810,13 +154810,13 @@ func_0808E444: @ 0x0808E444
 	str r6, [sp, #8]
 	b .L0808E63A
 	.align 2, 0
-.L0808E55C: .4byte gUnk_08117ABC
+.L0808E55C: .4byte gItemDiscardConfirmTextRef
 .L0808E560: .4byte gText_Shelf_Yes
 .L0808E564: .4byte gText_Shelf_No
 .L0808E568:
 	adds r0, r5, #0
 	adds r0, #0x80
-	ldr r1, .L0808E57C @ =gUnk_08117ABC
+	ldr r1, .L0808E57C @ =gItemDiscardConfirmTextRef
 	ldr r1, [r1]
 	ldr r2, .L0808E580 @ =gText_Shelf_Yes
 	ldr r3, .L0808E584 @ =gText_Shelf_No
@@ -154825,7 +154825,7 @@ func_0808E444: @ 0x0808E444
 	str r6, [sp, #8]
 	b .L0808E63A
 	.align 2, 0
-.L0808E57C: .4byte gUnk_08117ABC
+.L0808E57C: .4byte gItemDiscardConfirmTextRef
 .L0808E580: .4byte gText_Shelf_Yes
 .L0808E584: .4byte gText_Shelf_No
 .L0808E588:
@@ -154885,7 +154885,7 @@ func_0808E444: @ 0x0808E444
 .L0808E5FC:
 	adds r0, r5, #0
 	adds r0, #0x80
-	ldr r1, .L0808E624 @ =gUnk_08117ADC
+	ldr r1, .L0808E624 @ =gItemDiscardCannotDiscardTextRef
 	ldr r1, [r1]
 	movs r2, #0
 	movs r3, #0
@@ -154901,11 +154901,11 @@ func_0808E444: @ 0x0808E444
 	bl func_08008B6C
 	b .L0808E648
 	.align 2, 0
-.L0808E624: .4byte gUnk_08117ADC
+.L0808E624: .4byte gItemDiscardCannotDiscardTextRef
 .L0808E628:
 	adds r0, r5, #0
 	adds r0, #0x80
-	ldr r1, .L0808E650 @ =gUnk_08117ABC
+	ldr r1, .L0808E650 @ =gItemDiscardConfirmTextRef
 	ldr r1, [r1]
 	ldr r2, .L0808E654 @ =gText_Shelf_Yes
 	ldr r3, .L0808E658 @ =gText_Shelf_No
@@ -154925,7 +154925,7 @@ func_0808E444: @ 0x0808E444
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L0808E650: .4byte gUnk_08117ABC
+.L0808E650: .4byte gItemDiscardConfirmTextRef
 .L0808E654: .4byte gText_Shelf_Yes
 .L0808E658: .4byte gText_Shelf_No
 
@@ -156272,7 +156272,7 @@ func_0808F080: @ 0x0808F080
 	beq .L0808F1A8
 	adds r0, r7, #0
 	adds r0, #0x80
-	ldr r1, .L0808F1A4 @ =gUnk_08117B10
+	ldr r1, .L0808F1A4 @ =gItemDiscardCursedTextRef
 	ldr r1, [r1]
 	movs r2, #0
 	movs r3, #0
@@ -156286,7 +156286,7 @@ func_0808F080: @ 0x0808F080
 	str r2, [sp, #0x38]
 	b .L0808F766
 	.align 2, 0
-.L0808F1A4: .4byte gUnk_08117B10
+.L0808F1A4: .4byte gItemDiscardCursedTextRef
 .L0808F1A8:
 	movs r1, #0
 	ldr r0, [sp, #0x18]
@@ -156624,7 +156624,7 @@ func_0808F080: @ 0x0808F080
 	beq .L0808F4D4
 	adds r0, r7, #0
 	adds r0, #0x80
-	ldr r1, .L0808F4D0 @ =gUnk_08117B10
+	ldr r1, .L0808F4D0 @ =gItemDiscardCursedTextRef
 	ldr r1, [r1]
 	movs r2, #0
 	movs r3, #0
@@ -156638,7 +156638,7 @@ func_0808F080: @ 0x0808F080
 	str r0, [sp, #0x38]
 	b .L0808F766
 	.align 2, 0
-.L0808F4D0: .4byte gUnk_08117B10
+.L0808F4D0: .4byte gItemDiscardCursedTextRef
 .L0808F4D4:
 	add r0, sp, #4
 	bl IsEmpty__C9ToolStack
@@ -157051,7 +157051,7 @@ func_0808F784: @ 0x0808F784
 	beq .L0808F898
 	adds r0, r7, #0
 	adds r0, #0x80
-	ldr r1, .L0808F894 @ =gUnk_08117B10
+	ldr r1, .L0808F894 @ =gItemDiscardCursedTextRef
 	ldr r1, [r1]
 	movs r2, #0
 	movs r3, #0
@@ -157065,7 +157065,7 @@ func_0808F784: @ 0x0808F784
 	str r0, [sp, #0x4c]
 	bl .L080908B0
 	.align 2, 0
-.L0808F894: .4byte gUnk_08117B10
+.L0808F894: .4byte gItemDiscardCursedTextRef
 .L0808F898:
 	movs r1, #0
 	ldr r0, [sp, #0x14]
@@ -158891,7 +158891,7 @@ func_080908CC: @ 0x080908CC
 	bne .L08090952
 	adds r0, r6, #0
 	adds r0, #0x80
-	ldr r1, .L0809095C @ =gUnk_08117ADC
+	ldr r1, .L0809095C @ =gItemDiscardCannotDiscardTextRef
 	ldr r1, [r1]
 	movs r2, #0
 	movs r3, #0
@@ -158911,7 +158911,7 @@ func_080908CC: @ 0x080908CC
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L0809095C: .4byte gUnk_08117ADC
+.L0809095C: .4byte gItemDiscardCannotDiscardTextRef
 
 	thumb_func_start func_08090960
 func_08090960: @ 0x08090960

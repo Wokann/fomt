@@ -100532,7 +100532,7 @@ func_080CF67C: @ 0x080CF67C
 	movs r1, #0
 	mov sb, r1
 	strb r1, [r0]
-	ldr r0, .L080CF768 @ =gUnk_08117AA4
+	ldr r0, .L080CF768 @ =gItemStatusWrappedAsPresentTextRef
 	ldr r0, [r0]
 	mov r8, r0
 	adds r0, r6, #0
@@ -100561,7 +100561,7 @@ func_080CF67C: @ 0x080CF67C
 	strb r1, [r0]
 	b .L080CFA12
 	.align 2, 0
-.L080CF768: .4byte gUnk_08117AA4
+.L080CF768: .4byte gItemStatusWrappedAsPresentTextRef
 .L080CF76C:
 	adds r0, r5, #0
 	bl func_0800F258
@@ -100971,7 +100971,7 @@ func_080CFA38: @ 0x080CFA38
 	adds r0, r6, r4
 	mov r1, sb
 	strb r1, [r0]
-	ldr r0, .L080CFB00 @ =gUnk_08117AA4
+	ldr r0, .L080CFB00 @ =gItemStatusWrappedAsPresentTextRef
 	ldr r0, [r0]
 	mov r8, r0
 	adds r0, r6, #0
@@ -100999,7 +100999,7 @@ func_080CFA38: @ 0x080CFA38
 	mov sb, r6
 	b .L080CFB18
 	.align 2, 0
-.L080CFB00: .4byte gUnk_08117AA4
+.L080CFB00: .4byte gItemStatusWrappedAsPresentTextRef
 .L080CFB04:
 	mov r0, sp
 	bl GetArticle__C12RucksackItem

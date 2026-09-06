@@ -34,6 +34,17 @@ The `cpp` command consumes a constrained, ordinary C++ text-definition form:
         "Iron Sickle\r\n"
         "Good for cutting grass.";
 
+A text-related module may define a `char const * const` ROM pointer that refers
+to one of the text arrays.  `fomt-text` copies that ordinary C++ declaration
+unchanged; it only encodes the text array literals.  With agbcp, put a pointer
+that must relocate to a text array in a separate `*_refs.cc` translation unit,
+then place both named sections adjacently in the linker script.
+
+Keep a page-break control in the literal that owns it.  For example, write
+`"...{Press}\p"` and start the following text literal on the next source line.
+Use a standalone `"\p"` only when the original byte sequence itself begins
+with a page break.
+
 For a fixed-stride table that callers index directly, use ordinary C++ array
 dimensions and one string per row. The encoded text plus its terminator must
 fit the declared row width. When it is shorter, normal C++ array initialization

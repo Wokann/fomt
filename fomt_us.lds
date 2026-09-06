@@ -553,6 +553,15 @@ SECTIONS
         . = 0x10828C; src/reference_guide.o(.rodata.reference_guide);
         . = 0x1177EC; asm/data/data_080F9EB8.o(.rodata.reference_guide_unextracted_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);
+        . = 0x117A8C; data/text/item_status.o(.rodata.item_status_wrapped_as_present);
+        . = 0x117AA4; data/text/item_status_refs.o(.rodata.item_status_wrapped_as_present_text_ref);
+        . = 0x117AA8; data/text/item_discard.o(.rodata.item_discard_confirm);
+        . = 0x117ABC; data/text/item_discard_refs.o(.rodata.item_discard_confirm_text_ref);
+        . = 0x117AC0; data/text/item_discard.o(.rodata.item_discard_cannot_discard);
+        . = 0x117ADC; data/text/item_discard_refs.o(.rodata.item_discard_cannot_discard_text_ref);
+        . = 0x117AE0; data/text/item_discard.o(.rodata.item_discard_cursed);
+        . = 0x117B10; data/text/item_discard_refs.o(.rodata.item_discard_cursed_text_ref);
+        . = 0x117B14; asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
     } > ROM = 0xFF

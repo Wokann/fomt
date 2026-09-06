@@ -649,6 +649,15 @@ SECTIONS
         . = 0x107D89; asm/data/data_080F9EB8.o(.rodata.harvest_sprite_minigames_watering_results_trailer);
         . = 0x107DAC; src/reference_guide.o(.rodata.reference_guide);
         . = 0x1189D4; asm/data/data_080F9EB8.o(.rodata.reference_guide_unextracted_trailer);
+        . = 0x118C68; data/text/item_status.o(.rodata.item_status_wrapped_as_present);
+        . = 0x118C94; data/text/item_status_refs.o(.rodata.item_status_wrapped_as_present_text_ref);
+        . = 0x118C98; data/text/item_discard.o(.rodata.item_discard_confirm);
+        . = 0x118CB0; data/text/item_discard_refs.o(.rodata.item_discard_confirm_text_ref);
+        . = 0x118CB4; data/text/item_discard.o(.rodata.item_discard_cannot_discard);
+        . = 0x118CCC; data/text/item_discard_refs.o(.rodata.item_discard_cannot_discard_text_ref);
+        . = 0x118CD0; data/text/item_discard.o(.rodata.item_discard_cursed);
+        . = 0x118CF0; data/text/item_discard_refs.o(.rodata.item_discard_cursed_text_ref);
+        . = 0x118CF4; asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */

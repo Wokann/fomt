@@ -1745,6 +1745,7 @@ std::string CompileCppTextInclude(const std::string &source, const Charmap &char
     bool has_current_declaration = false;
     bool current_has_string = false;
     bool current_string_emitted = false;
+    bool copying_passthrough_declaration = false;
     std::size_t line_number = 0;
 
     const auto EmitCurrentString = [&]() {
@@ -1772,6 +1773,16 @@ std::string CompileCppTextInclude(const std::string &source, const Charmap &char
         if (!line.empty() && line.back() == '\r')
             line.pop_back();
         const std::string trimmed = Trim(line);
+
+        // Text modules may keep a ROM pointer word directly beside the text it
+        // references.  It is ordinary C++, not text for the charmap to encode;
+        // preserve the complete declaration so the compiler emits its relocation.
+        if (copying_passthrough_declaration) {
+            output << line << '\n';
+            if (line.find(';') != std::string::npos)
+                copying_passthrough_declaration = false;
+            continue;
+        }
         if (trimmed.empty() || trimmed.rfind("//", 0) == 0 || trimmed.front() == '#')
             continue;
 
@@ -1827,11 +1838,18 @@ std::string CompileCppTextInclude(const std::string &source, const Charmap &char
 
             const std::string declaration = Trim(declaration_line.substr(sizeof(kDeclaration) - 1));
             const std::size_t equals = declaration.find('=');
+            const std::string declarator = Trim(declaration.substr(0, equals));
+            if (declarator.find('*') != std::string::npos) {
+                output << line << '\n';
+                if (line.find(';') == std::string::npos)
+                    copying_passthrough_declaration = true;
+                continue;
+            }
             if (equals == std::string::npos) {
                 throw std::runtime_error("line " + std::to_string(line_number)
                     + ": expected '=' in text declaration");
             }
-            current_declarator = ParseTextDeclarator(Trim(declaration.substr(0, equals)), line_number);
+            current_declarator = ParseTextDeclarator(declarator, line_number);
             has_current_declaration = true;
             current_has_string = false;
             current_string_emitted = false;
@@ -1904,7 +1922,7 @@ void Require(bool condition, const std::string &message)
 
 void SelfTest()
 {
-    const std::string map_source = "0A=\\n\n0C=\\p\n0D=\\r\n20= \n41=A\n42=B\n43=C\n";
+    const std::string map_source = "05={Press}\n0A=\\n\n0C=\\p\n0D=\\r\n20= \n41=A\n42=B\n43=C\n";
     const Charmap map = Charmap::Parse(map_source);
     Require(map.EncodeText("A\\nB\\xFE") == Bytes{0x41, 0x0A, 0x42, 0xFE},
         "named controls and explicit bytes do not encode");
@@ -1938,10 +1956,19 @@ void SelfTest()
 
     const std::string generated_page_break = CompileCppTextInclude(
         "char const gText_PageBreak[] =\r\n"
-        "    \"A\\p\"\r\n"
+        "    \"A{Press}\\p\"\r\n"
         "    \"B\";\r\n", map);
-    Require(generated_page_break.find("\\x41\\x0C\\x42") != std::string::npos,
-        "line-ending page-break text did not encode");
+    Require(generated_page_break.find("\\x41\\x05\\x0C\\x42") != std::string::npos,
+        "trailing page-break text did not encode");
+
+    const std::string generated_text_reference = CompileCppTextInclude(
+        "#include \"test.hh\"\n"
+        "char const gText_TestReference[] = \"A\";\n"
+        "char const * const gTestTextReference =\n"
+        "    gText_TestReference;\n", map);
+    Require(generated_text_reference.find("char const * const gTestTextReference =\n"
+                                         "    gText_TestReference;") != std::string::npos,
+        "text-reference pointer declaration was not preserved");
 
     bool rejected_inline_page_break = false;
     try {
