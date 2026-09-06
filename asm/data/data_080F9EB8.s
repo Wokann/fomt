@@ -127,8 +127,20 @@ gText_CharacterName_Empty:
     .section .rodata.harvest_sprite_minigames_animal_husbandry_trailer
     .incbin "baserom_jp.gba", 0x10737B, (0x1073B9 - 0x10737B)
 
-    .section .rodata.festival_contestants_set2_trailer
-    .incbin "baserom_jp.gba", 0x1074BD, (0x107DAC - 0x1074BD)
+.section .rodata.festival_contestants_set2_trailer
+.incbin "baserom_jp.gba", 0x1074BD, (0x1074C0 - 0x1074BD)
+
+.section .rodata.harvest_sprite_minigames_chicken_festival_opening_trailer
+.incbin "baserom_jp.gba", 0x1075EA, (0x1075EC - 0x1075EA)
+
+.section .rodata.harvest_sprite_minigames_chicken_festival_mid
+.incbin "baserom_jp.gba", 0x1075EC, (0x107620 - 0x1075EC)
+
+.section .rodata.harvest_sprite_minigames_chicken_festival_trailer
+.incbin "baserom_jp.gba", 0x107801, (0x1078E0 - 0x107801)
+
+    .section .rodata.harvest_sprite_minigames_after_chicken_festival
+    .incbin "baserom_jp.gba", 0x1078E0, (0x107DAC - 0x1078E0)
 
     .section .rodata.reference_guide_unextracted_trailer
     .incbin "baserom_jp.gba", 0x1189D4, (0x13BCF8 - 0x1189D4)
@@ -2238,49 +2250,7 @@ gUnk_081078BC:
 gUnk_081079C1:
 	.incbin "baserom_us.gba", 0x1079C1, 0x3
 
-	.global gUnk_081079C4
-gUnk_081079C4:
-	.incbin "baserom_us.gba", 0x1079C4, 0x1C
-
-	.global gUnk_081079E0
-gUnk_081079E0:
-	.incbin "baserom_us.gba", 0x1079E0, 0x50
-
-	.global gUnk_08107A30
-gUnk_08107A30:
-	.incbin "baserom_us.gba", 0x107A30, 0x1C
-
-	.global gUnk_08107A4C
-gUnk_08107A4C:
-	.incbin "baserom_us.gba", 0x107A4C, 0xC
-
-	.global gUnk_08107A58
-gUnk_08107A58:
-	.incbin "baserom_us.gba", 0x107A58, 0x10
-
-	.global gUnk_08107A68
-gUnk_08107A68:
-	.incbin "baserom_us.gba", 0x107A68, 0x18
-
-	.global gUnk_08107A80
-gUnk_08107A80:
-	.incbin "baserom_us.gba", 0x107A80, 0x1C
-
-	.global gUnk_08107A9C
-gUnk_08107A9C:
-	.incbin "baserom_us.gba", 0x107A9C, 0x18
-
-	.global gUnk_08107AB4
-gUnk_08107AB4:
-	.incbin "baserom_us.gba", 0x107AB4, 0x8
-
-	.global gUnk_08107ABC
-gUnk_08107ABC:
-	.incbin "baserom_us.gba", 0x107ABC, 0x8
-
-	.global gUnk_08107AC4
-gUnk_08107AC4:
-	.incbin "baserom_us.gba", 0x107AC4, 0x8
+	.section .rodata.harvest_sprite_minigames_chicken_festival_mid
 
 	.global gUnk_08107ACC
 gUnk_08107ACC:
@@ -2290,37 +2260,10 @@ gUnk_08107ACC:
 gUnk_08107AFC:
 	.incbin "baserom_us.gba", 0x107AFC, 0x4
 
-	.global gUnk_08107B00
-gUnk_08107B00:
-	.incbin "baserom_us.gba", 0x107B00, 0x14
+	.section .rodata.harvest_sprite_minigames_chicken_festival_instructions_trailer
+	.incbin "baserom_us.gba", 0x107CFB, 0x1
 
-	.global gUnk_08107B14
-gUnk_08107B14:
-	.incbin "baserom_us.gba", 0x107B14, 0x8
-
-	.global gUnk_08107B1C
-gUnk_08107B1C:
-	.incbin "baserom_us.gba", 0x107B1C, 0xC
-
-	.global gUnk_08107B28
-gUnk_08107B28:
-	.incbin "baserom_us.gba", 0x107B28, 0x34
-
-	.global gUnk_08107B5C
-gUnk_08107B5C:
-	.incbin "baserom_us.gba", 0x107B5C, 0xBC
-
-	.global gUnk_08107C18
-gUnk_08107C18:
-	.incbin "baserom_us.gba", 0x107C18, 0x98
-
-	.global gUnk_08107CB0
-gUnk_08107CB0:
-	.incbin "baserom_us.gba", 0x107CB0, 0x30
-
-	.global gUnk_08107CE0
-gUnk_08107CE0:
-	.incbin "baserom_us.gba", 0x107CE0, 0x1C
+	.section .rodata.harvest_sprite_minigames_chicken_festival_trailer
 
 	.global gUnk_08107CFC
 gUnk_08107CFC:
@@ -2349,6 +2292,8 @@ gUnk_08107DB8:
 	.global gUnk_08107DBC
 gUnk_08107DBC:
 	.incbin "baserom_us.gba", 0x107DBC, 0x1C
+
+	.section .rodata.harvest_sprite_minigames_after_chicken_festival
 
 	.global gUnk_08107DD8
 gUnk_08107DD8:

@@ -533,7 +533,13 @@ SECTIONS
         . = 0x1070F4; data/text/harvest_sprite_minigames.o(.rodata.harvest_sprite_minigames_animal_husbandry);
         . = 0x10737B; asm/data/data_080F9EB8.o(.rodata.harvest_sprite_minigames_animal_husbandry_trailer);
         . = 0x1073B9; data/text/festival_contestants.o(.rodata.festival_contestants_set2);
-        . = 0x1074BD; asm/data/data_080F9EB8.o(.rodata.festival_contestants_set2_trailer);
+. = 0x1074BD; asm/data/data_080F9EB8.o(.rodata.festival_contestants_set2_trailer);
+. = 0x1074C0; data/text/harvest_sprite_minigames.o(.rodata.harvest_sprite_minigames_chicken_festival_opening);
+. = 0x1075EA; asm/data/data_080F9EB8.o(.rodata.harvest_sprite_minigames_chicken_festival_opening_trailer);
+. = 0x1075EC; asm/data/data_080F9EB8.o(.rodata.harvest_sprite_minigames_chicken_festival_mid);
+        . = 0x107620; data/text/harvest_sprite_minigames.o(.rodata.harvest_sprite_minigames_chicken_festival_instructions);
+. = 0x107801; asm/data/data_080F9EB8.o(.rodata.harvest_sprite_minigames_chicken_festival_trailer);
+        . = 0x1078E0; asm/data/data_080F9EB8.o(.rodata.harvest_sprite_minigames_after_chicken_festival);
         . = 0x107DAC; src/reference_guide.o(.rodata.reference_guide);
         . = 0x1189D4; asm/data/data_080F9EB8.o(.rodata.reference_guide_unextracted_trailer);
         . = 0x13BCF8; /* JP m4a player and song tables. */

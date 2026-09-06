@@ -5,6 +5,10 @@
 
 #define HARVEST_SPRITE_MINIGAMES_ANIMAL_HUSBANDRY_TEXT \
     SECTION(".rodata.harvest_sprite_minigames_animal_husbandry")
+#define HARVEST_SPRITE_MINIGAMES_CHICKEN_FESTIVAL_OPENING_TEXT \
+    SECTION(".rodata.harvest_sprite_minigames_chicken_festival_opening")
+#define HARVEST_SPRITE_MINIGAMES_CHICKEN_FESTIVAL_INSTRUCTIONS_TEXT \
+    SECTION(".rodata.harvest_sprite_minigames_chicken_festival_instructions")
 
 extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ExplanationQuestion[];
 extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_Yes[];
@@ -23,6 +27,29 @@ extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreSummary[];
 
 #if defined(REGION_US)
 extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultPrefix[];
+#endif
+
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsAnnouncement[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_FinalRoundAnnouncement[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationQuestion[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationNo[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationYes[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_RoundOneStart[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsStart[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_FinalsStart[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_Start[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_Stop[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_WinnerSuffix[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandQuestion[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandYes[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_Introduction[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_Rules[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_Encouragement[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_CautionAtRingEdge[];
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_CautionLeavingRing[];
+
+#if defined(REGION_US)
+extern char const gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandAgain[];
 #endif
 
 #endif // HARVEST_SPRITE_MINIGAMES_TEXT_HH

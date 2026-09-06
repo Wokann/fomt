@@ -45637,12 +45637,12 @@ func_080B469C: @ 0x080B469C
 	lsls r4, r4, #3
 	adds r0, r7, r4
 	ldr r0, [r0]
-	ldr r1, .L080B4D08 @ =gUnk_081079C4
+	ldr r1, .L080B4D08 @ =gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsAnnouncement
 	bl func_08050D8C
 	b .L080B4DD4
 	.align 2, 0
 .L080B4D04: .4byte 0x00000B18
-.L080B4D08: .4byte gUnk_081079C4
+.L080B4D08: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsAnnouncement
 .L080B4D0C:
 	cmp r0, #2
 	bne .L080B4DD4
@@ -45650,11 +45650,11 @@ func_080B469C: @ 0x080B469C
 	lsls r5, r5, #3
 	adds r0, r7, r5
 	ldr r0, [r0]
-	ldr r1, .L080B4D20 @ =gUnk_081079E0
+	ldr r1, .L080B4D20 @ =gText_HarvestSpriteMiniGame_ChickenFestival_FinalRoundAnnouncement
 	bl func_08050D8C
 	b .L080B4DD4
 	.align 2, 0
-.L080B4D20: .4byte gUnk_081079E0
+.L080B4D20: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_FinalRoundAnnouncement
 .L080B4D24:
 	ldr r1, .L080B4D48 @ =0x00000B34
 	adds r0, r7, r1
@@ -45665,9 +45665,9 @@ func_080B469C: @ 0x080B469C
 	lsls r2, r2, #3
 	adds r0, r7, r2
 	ldr r0, [r0]
-	ldr r1, .L080B4D4C @ =gUnk_08107A30
-	ldr r2, .L080B4D50 @ =gUnk_08107A4C
-	ldr r3, .L080B4D54 @ =gUnk_08107A58
+	ldr r1, .L080B4D4C @ =gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationQuestion
+	ldr r2, .L080B4D50 @ =gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationNo
+	ldr r3, .L080B4D54 @ =gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationYes
 	str r4, [sp]
 	str r4, [sp, #4]
 	str r4, [sp, #8]
@@ -45675,9 +45675,9 @@ func_080B469C: @ 0x080B469C
 	b .L080B4DD4
 	.align 2, 0
 .L080B4D48: .4byte 0x00000B34
-.L080B4D4C: .4byte gUnk_08107A30
-.L080B4D50: .4byte gUnk_08107A4C
-.L080B4D54: .4byte gUnk_08107A58
+.L080B4D4C: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationQuestion
+.L080B4D50: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationNo
+.L080B4D54: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationYes
 .L080B4D58:
 	movs r3, #0xe3
 	lsls r3, r3, #3
@@ -45708,21 +45708,21 @@ func_080B469C: @ 0x080B469C
 	b .L080B4DB4
 .L080B4D8E:
 	ldr r0, [r4]
-	ldr r1, .L080B4D98 @ =gUnk_08107A68
+	ldr r1, .L080B4D98 @ =gText_HarvestSpriteMiniGame_ChickenFestival_RoundOneStart
 	bl func_08050D8C
 	b .L080B4DB4
 	.align 2, 0
-.L080B4D98: .4byte gUnk_08107A68
+.L080B4D98: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_RoundOneStart
 .L080B4D9C:
 	ldr r0, [r4]
-	ldr r1, .L080B4DA8 @ =gUnk_08107A80
+	ldr r1, .L080B4DA8 @ =gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsStart
 	bl func_08050D8C
 	b .L080B4DB4
 	.align 2, 0
-.L080B4DA8: .4byte gUnk_08107A80
+.L080B4DA8: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsStart
 .L080B4DAC:
 	ldr r0, [r4]
-	ldr r1, .L080B4DC8 @ =gUnk_08107A9C
+	ldr r1, .L080B4DC8 @ =gText_HarvestSpriteMiniGame_ChickenFestival_FinalsStart
 	bl func_08050D8C
 .L080B4DB4:
 	movs r1, #0xe3
@@ -45734,7 +45734,7 @@ func_080B469C: @ 0x080B469C
 	str r2, [sp, #0x90]
 	b .L080B4DD4
 	.align 2, 0
-.L080B4DC8: .4byte gUnk_08107A9C
+.L080B4DC8: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_FinalsStart
 .L080B4DCC:
 	ldr r3, .L080B4F54 @ =0x00000B33
 	adds r1, r7, r3
@@ -45763,7 +45763,7 @@ func_080B469C: @ 0x080B469C
 	ldr r0, [r4]
 	bl func_08050DE4
 	ldr r0, [r4]
-	ldr r1, .L080B4F58 @ =gUnk_08107AB4
+	ldr r1, .L080B4F58 @ =gText_HarvestSpriteMiniGame_ChickenFestival_Start
 	bl func_08050D8C
 	ldr r0, [r4]
 	bl func_08050DD8
@@ -45930,7 +45930,7 @@ func_080B469C: @ 0x080B469C
 	b .L080B5044
 	.align 2, 0
 .L080B4F54: .4byte 0x00000B33
-.L080B4F58: .4byte gUnk_08107AB4
+.L080B4F58: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_Start
 .L080B4F5C: .4byte 0x00000B34
 .L080B4F60: .4byte 0x00000924
 .L080B4F64: .4byte 0x0000091C
@@ -53639,13 +53639,13 @@ func_080B888C: @ 0x080B888C
 .L080B8B9A:
 	mov r3, sl
 	ldr r0, [r3]
-	ldr r1, .L080B8BAC @ =gUnk_08107ABC
+	ldr r1, .L080B8BAC @ =gText_HarvestSpriteMiniGame_ChickenFestival_Stop
 	bl func_08050D8C
 	movs r0, #1
 	str r0, [sp, #0x50]
 	b .L080B8C28
 	.align 2, 0
-.L080B8BAC: .4byte gUnk_08107ABC
+.L080B8BAC: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_Stop
 .L080B8BB0:
 	movs r1, #0xe2
 	lsls r1, r1, #3
@@ -53665,7 +53665,7 @@ func_080B888C: @ 0x080B888C
 	adds r0, r7, r3
 	ldr r1, [sp, #0x54]
 	str r1, [r0]
-	ldr r2, .L080B8C64 @ =gUnk_08107AC4
+	ldr r2, .L080B8C64 @ =gText_HarvestSpriteMiniGame_ChickenFestival_WinnerSuffix
 	mov r8, r2
 	ldr r0, [sp, #0x64]
 	bl strlen
@@ -53734,7 +53734,7 @@ func_080B888C: @ 0x080B888C
 	b .L080B8C74
 	.align 2, 0
 .L080B8C60: .4byte 0x00000B44
-.L080B8C64: .4byte gUnk_08107AC4
+.L080B8C64: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_WinnerSuffix
 .L080B8C68:
 	lsls r1, r4, #0x18
 	lsrs r1, r1, #0x18
@@ -56909,9 +56909,9 @@ func_080BA2C4: @ 0x080BA2C4
 	lsls r1, r1, #3
 	adds r0, r7, r1
 	ldr r0, [r0]
-	ldr r1, .L080BA444 @ =gUnk_08107B00
-	ldr r2, .L080BA448 @ =gUnk_08107B14
-	ldr r3, .L080BA44C @ =gUnk_08107B1C
+	ldr r1, .L080BA444 @ =gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandQuestion
+	ldr r2, .L080BA448 @ =gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandYes
+	ldr r3, .L080BA44C @ =gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandAgain
 	str r4, [sp]
 	str r4, [sp, #4]
 	str r4, [sp, #8]
@@ -56919,9 +56919,9 @@ func_080BA2C4: @ 0x080BA2C4
 	b .L080BA4D2
 	.align 2, 0
 .L080BA440: .4byte 0x00000B3C
-.L080BA444: .4byte gUnk_08107B00
-.L080BA448: .4byte gUnk_08107B14
-.L080BA44C: .4byte gUnk_08107B1C
+.L080BA444: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandQuestion
+.L080BA448: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandYes
+.L080BA44C: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandAgain
 .L080BA450:
 	movs r2, #0xe3
 	lsls r2, r2, #3
@@ -56952,21 +56952,21 @@ func_080BA2C4: @ 0x080BA2C4
 	b .L080BA4AC
 .L080BA486:
 	ldr r0, [r4]
-	ldr r1, .L080BA490 @ =gUnk_08107A68
+	ldr r1, .L080BA490 @ =gText_HarvestSpriteMiniGame_ChickenFestival_RoundOneStart
 	bl func_08050D8C
 	b .L080BA4AC
 	.align 2, 0
-.L080BA490: .4byte gUnk_08107A68
+.L080BA490: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_RoundOneStart
 .L080BA494:
 	ldr r0, [r4]
-	ldr r1, .L080BA4A0 @ =gUnk_08107A80
+	ldr r1, .L080BA4A0 @ =gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsStart
 	bl func_08050D8C
 	b .L080BA4AC
 	.align 2, 0
-.L080BA4A0: .4byte gUnk_08107A80
+.L080BA4A0: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsStart
 .L080BA4A4:
 	ldr r0, [r4]
-	ldr r1, .L080BA4C0 @ =gUnk_08107A9C
+	ldr r1, .L080BA4C0 @ =gText_HarvestSpriteMiniGame_ChickenFestival_FinalsStart
 	bl func_08050D8C
 .L080BA4AC:
 	movs r2, #0xe3
@@ -56978,7 +56978,7 @@ func_080BA2C4: @ 0x080BA2C4
 	mov sl, r0
 	b .L080BA4D2
 	.align 2, 0
-.L080BA4C0: .4byte gUnk_08107A9C
+.L080BA4C0: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_FinalsStart
 .L080BA4C4:
 	ldr r1, .L080BA564 @ =0x00000B3C
 	adds r0, r7, r1
@@ -57010,7 +57010,7 @@ func_080BA2C4: @ 0x080BA2C4
 	ldr r0, [r4]
 	bl func_08050DE4
 	ldr r0, [r4]
-	ldr r1, .L080BA56C @ =gUnk_08107AB4
+	ldr r1, .L080BA56C @ =gText_HarvestSpriteMiniGame_ChickenFestival_Start
 	bl func_08050D8C
 	ldr r0, [r4]
 	bl func_08050DD8
@@ -57061,7 +57061,7 @@ func_080BA2C4: @ 0x080BA2C4
 	.align 2, 0
 .L080BA564: .4byte 0x00000B3C
 .L080BA568: .4byte 0x00000B33
-.L080BA56C: .4byte gUnk_08107AB4
+.L080BA56C: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_Start
 .L080BA570: .4byte 0x00000B34
 
 	thumb_func_start func_080BA574
@@ -57089,53 +57089,53 @@ func_080BA574: @ 0x080BA574
 	lsls r1, r1, #3
 	adds r0, r2, r1
 	ldr r0, [r0]
-	ldr r1, .L080BA5B0 @ =gUnk_08107B28
+	ldr r1, .L080BA5B0 @ =gText_HarvestSpriteMiniGame_ChickenFestival_Introduction
 	bl func_08050D8C
 	b .L080BA5FE
 	.align 2, 0
-.L080BA5B0: .4byte gUnk_08107B28
+.L080BA5B0: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_Introduction
 .L080BA5B4:
 	movs r1, #0xe3
 	lsls r1, r1, #3
 	adds r0, r2, r1
 	ldr r0, [r0]
-	ldr r1, .L080BA5C4 @ =gUnk_08107B5C
+	ldr r1, .L080BA5C4 @ =gText_HarvestSpriteMiniGame_ChickenFestival_Rules
 	bl func_08050D8C
 	b .L080BA5FE
 	.align 2, 0
-.L080BA5C4: .4byte gUnk_08107B5C
+.L080BA5C4: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_Rules
 .L080BA5C8:
 	movs r1, #0xe3
 	lsls r1, r1, #3
 	adds r0, r2, r1
 	ldr r0, [r0]
-	ldr r1, .L080BA5D8 @ =gUnk_08107C18
+	ldr r1, .L080BA5D8 @ =gText_HarvestSpriteMiniGame_ChickenFestival_Encouragement
 	bl func_08050D8C
 	b .L080BA5FE
 	.align 2, 0
-.L080BA5D8: .4byte gUnk_08107C18
+.L080BA5D8: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_Encouragement
 .L080BA5DC:
 	movs r1, #0xe3
 	lsls r1, r1, #3
 	adds r0, r2, r1
 	ldr r0, [r0]
-	ldr r1, .L080BA5EC @ =gUnk_08107CB0
+	ldr r1, .L080BA5EC @ =gText_HarvestSpriteMiniGame_ChickenFestival_CautionAtRingEdge
 	bl func_08050D8C
 	b .L080BA5FE
 	.align 2, 0
-.L080BA5EC: .4byte gUnk_08107CB0
+.L080BA5EC: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_CautionAtRingEdge
 .L080BA5F0:
 	movs r1, #0xe3
 	lsls r1, r1, #3
 	adds r0, r2, r1
 	ldr r0, [r0]
-	ldr r1, .L080BA604 @ =gUnk_08107CE0
+	ldr r1, .L080BA604 @ =gText_HarvestSpriteMiniGame_ChickenFestival_CautionLeavingRing
 	bl func_08050D8C
 .L080BA5FE:
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080BA604: .4byte gUnk_08107CE0
+.L080BA604: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_CautionLeavingRing
 
 	thumb_func_start func_080BA608
 func_080BA608: @ 0x080BA608
