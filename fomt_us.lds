@@ -384,7 +384,7 @@ SECTIONS
         . = 0xFAFC8; src/horse_race_data.o(.rodata.horse_race_ticket_controls);
         . = 0xFAFF4; asm/data/data_080F9EB8.o(.rodata.horse_race_ticket_controls_trailer);
         . = 0xFC0A4; data/text/staff_credits.o(.rodata.staff_credits);
-        . = 0xFC4B4; asm/data/data_080F9EB8.o(.rodata.staff_credits_trailer);
+        . = 0xFC6B8; asm/data/data_080F9EB8.o(.rodata.staff_credits_trailer);
         . = 0x103788; data/text/fishing_results.o(.rodata);
         . = 0x103A16; asm/data/data_080F9EB8.o(.rodata.fishing_results_text_padding);
         . = 0x103A18; src/fishing_results_data.o(.rodata.fishing_record_names);

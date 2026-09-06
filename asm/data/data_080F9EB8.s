@@ -20,7 +20,7 @@
     .incbin "baserom_jp.gba", 0xFA88C, (0xFB938 - 0xFA88C)
 
     .section .rodata.staff_credits_trailer
-    .incbin "baserom_jp.gba", 0xFBC88, (0x103194 - 0xFBC88)
+    .incbin "baserom_jp.gba", 0xFBE88, (0x103194 - 0xFBE88)
 
     .section .rodata
 
@@ -765,9 +765,9 @@ gUnk_080FC082:
 
 	.section .rodata.staff_credits_trailer
 
-	.global gUnk_080FC4B4
-gUnk_080FC4B4:
-	.incbin "baserom_us.gba", 0xFC4B4, 0x20E
+	.global gUnk_080FC6B8
+gUnk_080FC6B8:
+	.incbin "baserom_us.gba", 0xFC6B8, (0xFC6C2 - 0xFC6B8)
 
 	.global gUnk_080FC6C2
 gUnk_080FC6C2:

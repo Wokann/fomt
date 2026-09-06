@@ -361,6 +361,33 @@ void EmitGuideCppString(std::ostringstream &output, const std::string &label,
     }
 }
 
+void EmitStaffCreditsCppString(std::ostringstream &output, const std::string &label,
+    std::size_t storage_size, const Bytes &bytes)
+{
+    if (bytes.size() + 1 > storage_size) {
+        throw std::runtime_error("staff-credit text '" + label
+            + "' exceeds its original storage field");
+    }
+
+    // The maintained source intentionally has no byte capacities.  The
+    // original field size is recovered from the baseline pointer table, then
+    // emitted here so shorter edited strings retain the original zero-fill.
+    output << "extern StaffCreditsTextStorage<" << storage_size << "> const " << label
+           << " SECTION(\".rodata.staff_credits\") ALIGN(1) =\n{\n";
+    if (bytes.empty()) {
+        output << "    \"\"\n};\n\n";
+        return;
+    }
+
+    for (std::size_t at = 0; at < bytes.size(); at += 16) {
+        output << "    \"";
+        const std::size_t end = std::min(at + 16, bytes.size());
+        for (std::size_t index = at; index < end; ++index)
+            output << "\\x" << HexByte(bytes[index]);
+        output << '"' << (end == bytes.size() ? "\n};\n\n" : "\n");
+    }
+}
+
 void EmitCppStringRows(std::ostringstream &output, const std::string &declarator,
     const std::vector<Bytes> &rows)
 {
@@ -678,6 +705,222 @@ GuidePageSource ParseGuidePageSource(const std::string &source, const std::strin
         throw std::runtime_error("guide page '" + result.page
             + "' must contain one TITLE text and at least one MAIN text row");
     return result;
+}
+
+// Staff credits are maintained as one visible scrolling sequence rather than
+// as separately named storage fields.  The original pointer table supplies
+// the physical field order, widths, and repeated-pointer relationships.
+struct StaffCreditsSource {
+    std::vector<std::string> lines;
+};
+
+bool IsStaffCreditsSource(const std::string &source)
+{
+    return source.find("END_FOMT_STAFF_CREDITS") != std::string::npos;
+}
+
+StaffCreditsSource ParseStaffCreditsSource(const std::string &source)
+{
+    StaffCreditsSource result;
+    bool started = false;
+    bool closed = false;
+    std::istringstream lines(source);
+    std::string line;
+    std::size_t line_number = 0;
+
+    while (std::getline(lines, line)) {
+        ++line_number;
+        if (!line.empty() && line.back() == '\r')
+            line.pop_back();
+        const std::string trimmed = Trim(StripLineComment(line));
+        if (trimmed.empty())
+            continue;
+
+        if (!started) {
+            if (trimmed != "FOMT_STAFF_CREDITS") {
+                throw std::runtime_error("line " + std::to_string(line_number)
+                    + ": expected FOMT_STAFF_CREDITS at the start of the staff credits");
+            }
+            started = true;
+            continue;
+        }
+
+        if (closed) {
+            throw std::runtime_error("line " + std::to_string(line_number)
+                + ": text after END_FOMT_STAFF_CREDITS");
+        }
+        if (trimmed == "END_FOMT_STAFF_CREDITS") {
+            closed = true;
+            continue;
+        }
+        result.lines.push_back(ParseStringLiteral(trimmed, line_number));
+    }
+
+    if (!started)
+        throw std::runtime_error("staff-credit source has no FOMT_STAFF_CREDITS marker");
+    if (!closed)
+        throw std::runtime_error("staff-credit source has no END_FOMT_STAFF_CREDITS marker");
+    if (result.lines.empty())
+        throw std::runtime_error("staff-credit source has no visible rows");
+    return result;
+}
+
+struct StaffCreditsRomLayout {
+    std::uint32_t text_start;
+    std::uint32_t table_start;
+};
+
+StaffCreditsRomLayout StaffCreditsLayoutForRegion(const std::string &region)
+{
+    if (region == "JP")
+        return {0x000FB938, 0x000FBC88};
+    if (region == "US")
+        return {0x000FC0A4, 0x000FC4B4};
+    throw std::runtime_error("staff-credit compilation requires region JP or US");
+}
+
+std::uint32_t ReadLittleEndian32(const Bytes &source, std::size_t offset,
+    const std::string &description)
+{
+    if (offset > source.size() || source.size() - offset < 4)
+        throw std::runtime_error(description + " extends past the baseline ROM");
+    return static_cast<std::uint32_t>(source[offset])
+        | (static_cast<std::uint32_t>(source[offset + 1]) << 8)
+        | (static_cast<std::uint32_t>(source[offset + 2]) << 16)
+        | (static_cast<std::uint32_t>(source[offset + 3]) << 24);
+}
+
+struct StaffCreditsTextField {
+    std::uint32_t address;
+    std::size_t storage_size;
+};
+
+struct StaffCreditsBaseline {
+    std::vector<std::uint32_t> row_addresses;
+    std::vector<StaffCreditsTextField> fields;
+    std::uint32_t table_end;
+};
+
+StaffCreditsBaseline ReadStaffCreditsBaseline(const Bytes &rom,
+    const StaffCreditsRomLayout &layout)
+{
+    constexpr std::uint32_t kGbaRomBase = 0x08000000;
+    if (layout.text_start >= layout.table_start || layout.table_start >= rom.size())
+        throw std::runtime_error("invalid staff-credit baseline layout");
+
+    StaffCreditsBaseline result;
+    for (std::uint32_t offset = layout.table_start;; offset += 4) {
+        const std::uint32_t pointer = ReadLittleEndian32(rom, offset,
+            "staff-credit pointer table");
+        if (pointer == 0) {
+            result.table_end = offset + 4;
+            break;
+        }
+        const std::uint32_t first = kGbaRomBase + layout.text_start;
+        const std::uint32_t last = kGbaRomBase + layout.table_start;
+        if (pointer < first || pointer >= last) {
+            throw std::runtime_error("staff-credit pointer table references data outside its text pool");
+        }
+        result.row_addresses.push_back(pointer - kGbaRomBase);
+    }
+    if (result.row_addresses.empty())
+        throw std::runtime_error("staff-credit pointer table has no rows");
+
+    std::set<std::uint32_t> distinct_addresses(result.row_addresses.begin(),
+        result.row_addresses.end());
+    for (const std::uint32_t address : distinct_addresses) {
+        const auto next = distinct_addresses.upper_bound(address);
+        const std::uint32_t end = next == distinct_addresses.end()
+            ? layout.table_start : *next;
+        if (address >= end) {
+            throw std::runtime_error("staff-credit text fields are not in ascending physical order");
+        }
+        const std::size_t storage_size = end - address;
+        const auto first = rom.begin() + address;
+        if (std::find(first, first + storage_size, 0) == first + storage_size) {
+            throw std::runtime_error("staff-credit text field has no terminating zero");
+        }
+        result.fields.push_back({address, storage_size});
+    }
+    return result;
+}
+
+std::string StaffCreditsLineLabel(std::size_t source_line)
+{
+    std::string number = std::to_string(source_line);
+    while (number.size() < 3)
+        number.insert(number.begin(), '0');
+    return "gText_StaffCredits_Line" + number;
+}
+
+std::string CompileStaffCredits(const std::string &source, const std::string &region,
+    const Bytes &rom, const Charmap &charmap)
+{
+    const StaffCreditsSource credits = ParseStaffCreditsSource(source);
+    const StaffCreditsBaseline baseline = ReadStaffCreditsBaseline(rom,
+        StaffCreditsLayoutForRegion(region));
+    if (credits.lines.size() != baseline.row_addresses.size()) {
+        throw std::runtime_error("staff-credit source has "
+            + std::to_string(credits.lines.size()) + " visible rows, but the " + region
+            + " baseline pointer table has " + std::to_string(baseline.row_addresses.size()));
+    }
+
+    std::map<std::uint32_t, Bytes> text_by_address;
+    std::map<std::uint32_t, std::size_t> first_row_by_address;
+    for (std::size_t row = 0; row < credits.lines.size(); ++row) {
+        Bytes bytes;
+        try {
+            bytes = charmap.EncodeText(credits.lines[row]);
+        } catch (const std::runtime_error &error) {
+            throw std::runtime_error("staff-credit row " + std::to_string(row)
+                + ": " + error.what());
+        }
+
+        const std::uint32_t address = baseline.row_addresses[row];
+        const auto inserted = text_by_address.emplace(address, bytes);
+        if (inserted.second) {
+            first_row_by_address.emplace(address, row);
+            continue;
+        }
+        if (inserted.first->second != bytes) {
+            throw std::runtime_error("staff-credit row " + std::to_string(row)
+                + " shares its original pointer with row "
+                + std::to_string(first_row_by_address.at(address))
+                + ", so both visible rows must contain the same text");
+        }
+    }
+
+    std::map<std::uint32_t, std::string> label_by_address;
+    std::size_t empty_field_count = 0;
+    for (const StaffCreditsTextField &field : baseline.fields) {
+        const Bytes &bytes = text_by_address.at(field.address);
+        if (bytes.empty() && empty_field_count++ == 0) {
+            label_by_address.emplace(field.address, "gText_StaffCredits_EmptyLine");
+        } else {
+            label_by_address.emplace(field.address,
+                StaffCreditsLineLabel(first_row_by_address.at(field.address)));
+        }
+    }
+
+    std::ostringstream output;
+    output << "// Generated by fomt-text.  Do not edit.\n"
+              "#include \"staff_credits_text.hh\"\n\n"
+              "template <unsigned int Size>\n"
+              "struct StaffCreditsTextStorage\n"
+              "{\n"
+              "    char bytes[Size];\n"
+              "};\n\n";
+    for (const StaffCreditsTextField &field : baseline.fields) {
+        EmitStaffCreditsCppString(output, label_by_address.at(field.address),
+            field.storage_size, text_by_address.at(field.address));
+    }
+
+    output << "extern char const * const gStaffCreditsLines[]"
+              " SECTION(\".rodata.staff_credits\") = {\n";
+    for (const std::uint32_t address : baseline.row_addresses)
+        output << "    " << label_by_address.at(address) << ".bytes,\n";
+    output << "    nullptr,\n};\n";
+    return output.str();
 }
 
 bool TryParseGuideManifestRow(const std::string &source, std::vector<std::string> &arguments,
@@ -1247,6 +1490,8 @@ std::string CompileCppTextInclude(const std::string &source, const Charmap &char
 {
     if (IsGuidePageSource(source))
         throw std::runtime_error("guide-page source must be processed with the guide command");
+    if (IsStaffCreditsSource(source))
+        throw std::runtime_error("staff-credit source must be processed with the staff-credits command");
 
     std::ostringstream output;
     output << "// Generated by fomt-text.  Do not edit.\n\n";
@@ -1579,7 +1824,8 @@ const char *Usage()
            "  fomt-text decode CHARMAP INPUT OUTPUT\n"
            "  fomt-text cpp CHARMAP INPUT OUTPUT\n"
            "  fomt-text guide CHARMAP INPUT TEXT_OUTPUT TABLE_OUTPUT [CATALOG_SOURCE ...]\n"
-           "  fomt-text guide-collection CHARMAP REGION MANIFEST OUTPUT\n";
+           "  fomt-text guide-collection CHARMAP REGION MANIFEST OUTPUT\n"
+           "  fomt-text staff-credits CHARMAP REGION BASEROM INPUT OUTPUT\n";
 }
 
 int Run(int argc, char **argv)
@@ -1602,6 +1848,16 @@ int Run(int argc, char **argv)
         const GuideCollectionOutput generated = CompileGuideCollection(
             ReadGuideCollectionPages(manifest, region), charmap);
         WriteTextFile(output, generated.source);
+        return 0;
+    }
+    if (argc == 7 && std::string(argv[1]) == "staff-credits") {
+        const Charmap charmap = Charmap::Parse(ReadTextFile(argv[2]));
+        const std::string region = argv[3];
+        const std::filesystem::path baserom = argv[4];
+        const std::filesystem::path input = argv[5];
+        const std::filesystem::path output = argv[6];
+        WriteTextFile(output, CompileStaffCredits(ReadTextFile(input), region,
+            ReadBinaryFile(baserom), charmap));
         return 0;
     }
     if (argc >= 6 && std::string(argv[1]) == "guide") {

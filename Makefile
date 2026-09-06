@@ -115,9 +115,11 @@ TEXT_SOURCES += $(wildcard data/text/$(TEXT_REGION)/reference_guide/*.cc)
 # an auxiliary page participates in the master directory.
 GUIDE_COLLECTION_MANIFEST := src/reference_guide.cc
 GUIDE_PAGE_SOURCES := $(wildcard data/text/$(TEXT_REGION)/reference_guide/*.cc)
-NORMAL_TEXT_SOURCES := $(filter-out $(GUIDE_PAGE_SOURCES),$(TEXT_SOURCES))
+STAFF_CREDITS_SOURCE := data/text/$(TEXT_REGION)/staff_credits.cc
+NORMAL_TEXT_SOURCES := $(filter-out $(GUIDE_PAGE_SOURCES) $(STAFF_CREDITS_SOURCE),$(TEXT_SOURCES))
 
-TEXT_GENERATED_SOURCES := $(patsubst data/text/$(TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.cc,$(NORMAL_TEXT_SOURCES))
+STAFF_CREDITS_GENERATED_SOURCE := $(BUILD_DIR)/data/text/staff_credits.cc
+TEXT_GENERATED_SOURCES := $(patsubst data/text/$(TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.cc,$(NORMAL_TEXT_SOURCES)) $(STAFF_CREDITS_GENERATED_SOURCE)
 TEXT_OBJS := $(TEXT_GENERATED_SOURCES:.cc=.o)
 TEXT_DEPS := $(TEXT_GENERATED_SOURCES:.cc=.d)
 TEXT_COMMON_GENERATED_SOURCES := $(patsubst data/text/common/%.cc,$(BUILD_DIR)/data/text/common/%.cc,$(TEXT_COMMON_SOURCES))
@@ -152,6 +154,14 @@ $(BUILD_DIR)/src/reference_guide.o: $(GUIDE_GENERATED_SOURCE) $(BUILD_DIR)/src/r
 	@$(CPP) $(CPPFLAGS) $< | ($(CC1PLUS) $(CXXFLAGS) -o $(BUILD_DIR)/src/reference_guide.s || false)
 	@sed 's/\r$$//' tools/scripts/align_sections.sh | bash -s -- $(BUILD_DIR)/src/reference_guide.s
 	@$(AS) $(ASFLAGS) $(BUILD_DIR)/src/reference_guide.s -o $@
+
+# Staff credits are one visible scrolling sequence.  fomt-text recovers the
+# original text-field layout and row-pointer sharing from the selected ROM,
+# then emits the one physical text-and-table object used by the game.
+$(STAFF_CREDITS_GENERATED_SOURCE): $(STAFF_CREDITS_SOURCE) $(TEXT_TOOL) charmap.txt baserom_$(TEXT_REGION).gba
+	@mkdir -p $(dir $@)
+	$(TEXT_TOOL) staff-credits charmap.txt $(GAME_REGION) baserom_$(TEXT_REGION).gba $< $@
+
 $(BUILD_DIR)/data/text/%.cc: data/text/$(TEXT_REGION)/%.cc $(TEXT_TOOL) charmap.txt
 	@mkdir -p $(dir $@)
 	$(TEXT_TOOL) cpp charmap.txt $< $@

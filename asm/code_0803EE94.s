@@ -111591,7 +111591,7 @@ func_080773E8: @ 0x080773E8
 	strh r5, [r0]
 	ldr r0, .L08077488 @ =0x0000072C
 	adds r1, r4, r0
-	ldr r0, .L0807748C @ =gUnk_080FC4B4
+	ldr r0, .L0807748C @ =gStaffCreditsLines
 	str r0, [r1]
 	adds r0, r4, #0
 	add sp, #8
@@ -111603,7 +111603,7 @@ func_080773E8: @ 0x080773E8
 .L08077480: .4byte 0x00000714
 .L08077484: .4byte 0x00000716
 .L08077488: .4byte 0x0000072C
-.L0807748C: .4byte gUnk_080FC4B4
+.L0807748C: .4byte gStaffCreditsLines
 
 	thumb_func_start func_08077490
 func_08077490: @ 0x08077490
