@@ -137825,7 +137825,7 @@ func_08085584: @ 0x08085584
 	adds r0, r5, r2
 	str r1, [r0]
 	movs r0, #0x10
-	ldr r7, .L0808561C @ =gUnk_080FFC6C
+	ldr r7, .L0808561C @ =gText_LivestockShop_PageBreak
 	subs r1, #1
 .L080855CA:
 	subs r0, #1
@@ -137869,7 +137869,7 @@ func_08085584: @ 0x08085584
 	bx r1
 	.align 2, 0
 .L08085618: .4byte 0x0000072C
-.L0808561C: .4byte gUnk_080FFC6C
+.L0808561C: .4byte gText_LivestockShop_PageBreak
 .L08085620: .4byte 0x00003AB4
 .L08085624: .4byte 0x00003B34
 .L08085628: .4byte 0x00003B98
@@ -137944,7 +137944,7 @@ func_08085640: @ 0x08085640
 	lsls r1, r3, #2
 	adds r1, r1, r3
 	lsls r1, r1, #2
-	ldr r2, .L0808574C @ =gUnk_080FFB90
+	ldr r2, .L0808574C @ =gLivestockShopCatalog
 	add r0, sp, #8
 	adds r1, r1, r2
 	ldm r1!, {r2, r4, r7}
@@ -138023,7 +138023,7 @@ func_08085640: @ 0x08085640
 	bl GetIconId__C7Article
 	b .L08085766
 	.align 2, 0
-.L0808574C: .4byte gUnk_080FFB90
+.L0808574C: .4byte gLivestockShopCatalog
 .L08085750: .4byte gUnk_086678A0
 .L08085754:
 	mov r4, sp
@@ -139066,7 +139066,7 @@ func_08085F08: @ 0x08085F08
 	lsls r0, r1, #2
 	adds r0, r0, r1
 	lsls r0, r0, #2
-	ldr r2, .L08085F40 @ =gUnk_080FFB90
+	ldr r2, .L08085F40 @ =gLivestockShopCatalog
 	mov r1, sp
 	adds r0, r0, r2
 	ldm r0!, {r2, r3, r4}
@@ -139084,7 +139084,7 @@ func_08085F08: @ 0x08085F08
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-.L08085F40: .4byte gUnk_080FFB90
+.L08085F40: .4byte gLivestockShopCatalog
 .L08085F44: .4byte .L08085F48
 .L08085F48: @ jump table
 	.4byte .L08085F5C @ case 0
@@ -139140,7 +139140,7 @@ func_08085F08: @ 0x08085F08
 .L08085FBA:
 	ldr r3, .L08086054 @ =0x00003B9C
 	adds r5, r1, r3
-	ldr r6, .L08086058 @ =gUnk_080FFB60
+	ldr r6, .L08086058 @ =gText_LivestockShop_Empty
 	adds r0, r6, #0
 	bl strlen
 	adds r4, r0, #0
@@ -139182,7 +139182,7 @@ func_08085F08: @ 0x08085F08
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L08086060
-	ldr r7, .L0808605C @ =gUnk_080FFC70
+	ldr r7, .L0808605C @ =gText_LivestockShop_StatusSick
 	adds r0, r5, #0
 	bl strlen
 	adds r6, r5, r0
@@ -139210,15 +139210,15 @@ func_08085F08: @ 0x08085F08
 .L0808604C: .4byte 0x000006AC
 .L08086050: .4byte 0x00003B98
 .L08086054: .4byte 0x00003B9C
-.L08086058: .4byte gUnk_080FFB60
-.L0808605C: .4byte gUnk_080FFC70
+.L08086058: .4byte gText_LivestockShop_Empty
+.L0808605C: .4byte gText_LivestockShop_StatusSick
 .L08086060:
 	ldr r0, [sp, #0x30]
 	bl IsUnhappy__C9Livestock
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080860A4
-	ldr r7, .L080860A0 @ =gUnk_080FFC80
+	ldr r7, .L080860A0 @ =gText_LivestockShop_StatusUnhappy
 	adds r0, r5, #0
 	bl strlen
 	adds r6, r5, r0
@@ -139243,9 +139243,9 @@ func_08085F08: @ 0x08085F08
 	strb r2, [r0]
 	b .L080860D6
 	.align 2, 0
-.L080860A0: .4byte gUnk_080FFC80
+.L080860A0: .4byte gText_LivestockShop_StatusUnhappy
 .L080860A4:
-	ldr r7, .L080861C0 @ =gUnk_080FFC90
+	ldr r7, .L080861C0 @ =gText_LivestockShop_StatusHealthy
 	adds r0, r5, #0
 	bl strlen
 	adds r6, r5, r0
@@ -139291,7 +139291,7 @@ func_08085F08: @ 0x08085F08
 	subs r5, r1, r0
 	cmp r5, #0
 	beq .L08086126
-	ldr r0, .L080861C8 @ =gUnk_080FFCA0
+	ldr r0, .L080861C8 @ =gText_LivestockShop_StatusSpacer
 	bl strlen
 	adds r4, r0, #0
 	cmp r4, r5
@@ -139299,7 +139299,7 @@ func_08085F08: @ 0x08085F08
 	adds r4, r5, #0
 .L08086116:
 	adds r0, r7, #0
-	ldr r1, .L080861C8 @ =gUnk_080FFCA0
+	ldr r1, .L080861C8 @ =gText_LivestockShop_StatusSpacer
 	adds r2, r4, #0
 	bl memcpy
 	adds r1, r7, r4
@@ -139340,7 +139340,7 @@ func_08085F08: @ 0x08085F08
 	movs r0, #0
 	strb r0, [r1]
 .L0808616E:
-	ldr r7, .L080861CC @ =gUnk_080FFCA4
+	ldr r7, .L080861CC @ =gText_LivestockShop_Age
 	adds r0, r6, #0
 	bl strlen
 	adds r6, r6, r0
@@ -139379,10 +139379,10 @@ func_08085F08: @ 0x08085F08
 	movs r4, #0
 	b .L080861E4
 	.align 2, 0
-.L080861C0: .4byte gUnk_080FFC90
+.L080861C0: .4byte gText_LivestockShop_StatusHealthy
 .L080861C4: .4byte 0x00003B9C
-.L080861C8: .4byte gUnk_080FFCA0
-.L080861CC: .4byte gUnk_080FFCA4
+.L080861C8: .4byte gText_LivestockShop_StatusSpacer
+.L080861CC: .4byte gText_LivestockShop_Age
 .L080861D0:
 	adds r0, r4, #0
 	movs r1, #0x1e
@@ -139455,7 +139455,7 @@ func_08085F08: @ 0x08085F08
 	subs r5, r1, r0
 	cmp r5, #0
 	beq .L080862EC
-	ldr r0, .L0808627C @ =gUnk_080FFCC0
+	ldr r0, .L0808627C @ =gText_LivestockShop_Spring
 	bl strlen
 	adds r4, r0, #0
 	cmp r4, r5
@@ -139463,7 +139463,7 @@ func_08085F08: @ 0x08085F08
 	adds r4, r5, #0
 .L08086268:
 	adds r0, r7, #0
-	ldr r1, .L0808627C @ =gUnk_080FFCC0
+	ldr r1, .L0808627C @ =gText_LivestockShop_Spring
 	adds r2, r4, #0
 	bl memcpy
 	adds r0, r7, r4
@@ -139471,7 +139471,7 @@ func_08085F08: @ 0x08085F08
 	b .L080862EC
 	.align 2, 0
 .L08086278: .4byte 0x00003B9C
-.L0808627C: .4byte gUnk_080FFCC0
+.L0808627C: .4byte gText_LivestockShop_Spring
 .L08086280:
 	mov r4, sb
 	add r4, sl
@@ -139479,11 +139479,11 @@ func_08085F08: @ 0x08085F08
 	add r4, r8
 	ldr r1, .L08086290 @ =0x00003B9C
 	adds r4, r4, r1
-	ldr r7, .L08086294 @ =gUnk_080FFCC8
+	ldr r7, .L08086294 @ =gText_LivestockShop_Summer
 	b .L080862BE
 	.align 2, 0
 .L08086290: .4byte 0x00003B9C
-.L08086294: .4byte gUnk_080FFCC8
+.L08086294: .4byte gText_LivestockShop_Summer
 .L08086298:
 	mov r4, sb
 	add r4, sl
@@ -139491,11 +139491,11 @@ func_08085F08: @ 0x08085F08
 	add r4, r8
 	ldr r2, .L080862A8 @ =0x00003B9C
 	adds r4, r4, r2
-	ldr r7, .L080862AC @ =gUnk_080FFCD0
+	ldr r7, .L080862AC @ =gText_LivestockShop_Autumn
 	b .L080862BE
 	.align 2, 0
 .L080862A8: .4byte 0x00003B9C
-.L080862AC: .4byte gUnk_080FFCD0
+.L080862AC: .4byte gText_LivestockShop_Autumn
 .L080862B0:
 	mov r4, sb
 	add r4, sl
@@ -139503,7 +139503,7 @@ func_08085F08: @ 0x08085F08
 	add r4, r8
 	ldr r3, .L08086420 @ =0x00003B9C
 	adds r4, r4, r3
-	ldr r7, .L08086424 @ =gUnk_080FFCD8
+	ldr r7, .L08086424 @ =gText_LivestockShop_Winter
 .L080862BE:
 	adds r0, r4, #0
 	bl strlen
@@ -139540,7 +139540,7 @@ func_08085F08: @ 0x08085F08
 	add r4, r8
 	ldr r0, .L08086420 @ =0x00003B9C
 	adds r4, r4, r0
-	ldr r7, .L08086428 @ =gUnk_080FFCA0
+	ldr r7, .L08086428 @ =gText_LivestockShop_StatusSpacer
 	adds r0, r4, #0
 	bl strlen
 	adds r6, r4, r0
@@ -139585,7 +139585,7 @@ func_08085F08: @ 0x08085F08
 	subs r5, r1, r0
 	cmp r5, #0
 	beq .L08086384
-	ldr r0, .L08086428 @ =gUnk_080FFCA0
+	ldr r0, .L08086428 @ =gText_LivestockShop_StatusSpacer
 	bl strlen
 	adds r4, r0, #0
 	cmp r4, r5
@@ -139593,7 +139593,7 @@ func_08085F08: @ 0x08085F08
 	adds r4, r5, #0
 .L08086374:
 	adds r0, r7, #0
-	ldr r1, .L08086428 @ =gUnk_080FFCA0
+	ldr r1, .L08086428 @ =gText_LivestockShop_StatusSpacer
 	adds r2, r4, #0
 	bl memcpy
 	adds r1, r7, r4
@@ -139622,7 +139622,7 @@ func_08085F08: @ 0x08085F08
 	movs r0, #0
 	strb r0, [r1]
 .L080863B2:
-	ldr r7, .L0808642C @ =gUnk_080FFCE0
+	ldr r7, .L0808642C @ =gText_LivestockShop_DailySellingPrice
 	adds r0, r6, #0
 	bl strlen
 	adds r6, r6, r0
@@ -139676,9 +139676,9 @@ func_08085F08: @ 0x08085F08
 	b .L0808684A
 	.align 2, 0
 .L08086420: .4byte 0x00003B9C
-.L08086424: .4byte gUnk_080FFCD8
-.L08086428: .4byte gUnk_080FFCA0
-.L0808642C: .4byte gUnk_080FFCE0
+.L08086424: .4byte gText_LivestockShop_Winter
+.L08086428: .4byte gText_LivestockShop_StatusSpacer
+.L0808642C: .4byte gText_LivestockShop_DailySellingPrice
 .L08086430:
 	mov r2, r8
 	ldr r0, [r2, #8]
@@ -139696,7 +139696,7 @@ func_08085F08: @ 0x08085F08
 	mov sb, r0
 	cmp r0, #0
 	beq .L0808648C
-	ldr r7, .L08086488 @ =gUnk_080FFCF8
+	ldr r7, .L08086488 @ =gText_LivestockShop_SecondaryStatusSick
 	adds r0, r5, #0
 	bl strlen
 	adds r6, r5, r0
@@ -139721,7 +139721,7 @@ func_08085F08: @ 0x08085F08
 	strb r4, [r0]
 	b .L08086500
 	.align 2, 0
-.L08086488: .4byte gUnk_080FFCF8
+.L08086488: .4byte gText_LivestockShop_SecondaryStatusSick
 .L0808648C:
 	ldr r0, [sp, #0x3c]
 	bl IsUnhappy__C9Livestock
@@ -139729,7 +139729,7 @@ func_08085F08: @ 0x08085F08
 	lsrs r7, r0, #0x18
 	cmp r7, #0
 	beq .L080864D0
-	ldr r7, .L080864CC @ =gUnk_080FFC80
+	ldr r7, .L080864CC @ =gText_LivestockShop_StatusUnhappy
 	adds r0, r5, #0
 	bl strlen
 	adds r6, r5, r0
@@ -139753,9 +139753,9 @@ func_08085F08: @ 0x08085F08
 	strb r1, [r0]
 	b .L08086500
 	.align 2, 0
-.L080864CC: .4byte gUnk_080FFC80
+.L080864CC: .4byte gText_LivestockShop_StatusUnhappy
 .L080864D0:
-	ldr r2, .L080865EC @ =gUnk_080FFC90
+	ldr r2, .L080865EC @ =gText_LivestockShop_StatusHealthy
 	mov sb, r2
 	adds r0, r5, #0
 	bl strlen
@@ -139801,7 +139801,7 @@ func_08085F08: @ 0x08085F08
 	subs r5, r1, r0
 	cmp r5, #0
 	beq .L08086552
-	ldr r0, .L080865F4 @ =gUnk_080FFCA0
+	ldr r0, .L080865F4 @ =gText_LivestockShop_StatusSpacer
 	bl strlen
 	adds r4, r0, #0
 	cmp r4, r5
@@ -139809,7 +139809,7 @@ func_08085F08: @ 0x08085F08
 	adds r4, r5, #0
 .L08086542:
 	adds r0, r7, #0
-	ldr r1, .L080865F4 @ =gUnk_080FFCA0
+	ldr r1, .L080865F4 @ =gText_LivestockShop_StatusSpacer
 	adds r2, r4, #0
 	bl memcpy
 	adds r1, r7, r4
@@ -139850,7 +139850,7 @@ func_08085F08: @ 0x08085F08
 	movs r0, #0
 	strb r0, [r1]
 .L0808659A:
-	ldr r7, .L080865F8 @ =gUnk_080FFD08
+	ldr r7, .L080865F8 @ =gText_LivestockShop_SecondaryAge
 	adds r0, r6, #0
 	bl strlen
 	adds r6, r6, r0
@@ -139889,10 +139889,10 @@ func_08085F08: @ 0x08085F08
 	movs r4, #0
 	b .L08086610
 	.align 2, 0
-.L080865EC: .4byte gUnk_080FFC90
+.L080865EC: .4byte gText_LivestockShop_StatusHealthy
 .L080865F0: .4byte 0x00003B9C
-.L080865F4: .4byte gUnk_080FFCA0
-.L080865F8: .4byte gUnk_080FFD08
+.L080865F4: .4byte gText_LivestockShop_StatusSpacer
+.L080865F8: .4byte gText_LivestockShop_SecondaryAge
 .L080865FC:
 	adds r0, r4, #0
 	movs r1, #0x1e
@@ -139965,7 +139965,7 @@ func_08085F08: @ 0x08085F08
 	subs r5, r1, r0
 	cmp r5, #0
 	beq .L08086718
-	ldr r0, .L080866A8 @ =gUnk_080FFCC0
+	ldr r0, .L080866A8 @ =gText_LivestockShop_Spring
 	bl strlen
 	adds r4, r0, #0
 	cmp r4, r5
@@ -139973,7 +139973,7 @@ func_08085F08: @ 0x08085F08
 	adds r4, r5, #0
 .L08086694:
 	adds r0, r7, #0
-	ldr r1, .L080866A8 @ =gUnk_080FFCC0
+	ldr r1, .L080866A8 @ =gText_LivestockShop_Spring
 	adds r2, r4, #0
 	bl memcpy
 	adds r0, r7, r4
@@ -139981,7 +139981,7 @@ func_08085F08: @ 0x08085F08
 	b .L08086718
 	.align 2, 0
 .L080866A4: .4byte 0x00003B9C
-.L080866A8: .4byte gUnk_080FFCC0
+.L080866A8: .4byte gText_LivestockShop_Spring
 .L080866AC:
 	mov r4, sb
 	add r4, sl
@@ -139989,11 +139989,11 @@ func_08085F08: @ 0x08085F08
 	add r4, r8
 	ldr r1, .L080866BC @ =0x00003B9C
 	adds r4, r4, r1
-	ldr r7, .L080866C0 @ =gUnk_080FFCC8
+	ldr r7, .L080866C0 @ =gText_LivestockShop_Summer
 	b .L080866EA
 	.align 2, 0
 .L080866BC: .4byte 0x00003B9C
-.L080866C0: .4byte gUnk_080FFCC8
+.L080866C0: .4byte gText_LivestockShop_Summer
 .L080866C4:
 	mov r4, sb
 	add r4, sl
@@ -140001,11 +140001,11 @@ func_08085F08: @ 0x08085F08
 	add r4, r8
 	ldr r2, .L080866D4 @ =0x00003B9C
 	adds r4, r4, r2
-	ldr r7, .L080866D8 @ =gUnk_080FFCD0
+	ldr r7, .L080866D8 @ =gText_LivestockShop_Autumn
 	b .L080866EA
 	.align 2, 0
 .L080866D4: .4byte 0x00003B9C
-.L080866D8: .4byte gUnk_080FFCD0
+.L080866D8: .4byte gText_LivestockShop_Autumn
 .L080866DC:
 	mov r4, sb
 	add r4, sl
@@ -140013,7 +140013,7 @@ func_08085F08: @ 0x08085F08
 	add r4, r8
 	ldr r3, .L080868CC @ =0x00003B9C
 	adds r4, r4, r3
-	ldr r7, .L080868D0 @ =gUnk_080FFCD8
+	ldr r7, .L080868D0 @ =gText_LivestockShop_Winter
 .L080866EA:
 	adds r0, r4, #0
 	bl strlen
@@ -140050,7 +140050,7 @@ func_08085F08: @ 0x08085F08
 	add r4, r8
 	ldr r0, .L080868CC @ =0x00003B9C
 	adds r4, r4, r0
-	ldr r7, .L080868D4 @ =gUnk_080FFCA0
+	ldr r7, .L080868D4 @ =gText_LivestockShop_StatusSpacer
 	adds r0, r4, #0
 	bl strlen
 	adds r6, r4, r0
@@ -140095,7 +140095,7 @@ func_08085F08: @ 0x08085F08
 	subs r5, r1, r0
 	cmp r5, #0
 	beq .L080867B0
-	ldr r0, .L080868D4 @ =gUnk_080FFCA0
+	ldr r0, .L080868D4 @ =gText_LivestockShop_StatusSpacer
 	bl strlen
 	adds r4, r0, #0
 	cmp r4, r5
@@ -140103,7 +140103,7 @@ func_08085F08: @ 0x08085F08
 	adds r4, r5, #0
 .L080867A0:
 	adds r0, r7, #0
-	ldr r1, .L080868D4 @ =gUnk_080FFCA0
+	ldr r1, .L080868D4 @ =gText_LivestockShop_StatusSpacer
 	adds r2, r4, #0
 	bl memcpy
 	adds r1, r7, r4
@@ -140132,7 +140132,7 @@ func_08085F08: @ 0x08085F08
 	movs r0, #0
 	strb r0, [r1]
 .L080867DE:
-	ldr r7, .L080868D8 @ =gUnk_080FFD24
+	ldr r7, .L080868D8 @ =gText_LivestockShop_SecondaryDailySellingPrice
 	adds r0, r6, #0
 	bl strlen
 	adds r6, r6, r0
@@ -140198,7 +140198,7 @@ func_08085F08: @ 0x08085F08
 	movs r0, #0
 	strb r0, [r1]
 .L08086866:
-	ldr r7, .L080868DC @ =gUnk_080FFCF4
+	ldr r7, .L080868DC @ =gText_LivestockShop_Currency
 	adds r0, r6, #0
 	bl strlen
 	adds r6, r6, r0
@@ -140255,10 +140255,10 @@ sub_080868BC: @ 0x080868BC
 	bx r0
 	.align 2, 0
 .L080868CC: .4byte 0x00003B9C
-.L080868D0: .4byte gUnk_080FFCD8
-.L080868D4: .4byte gUnk_080FFCA0
-.L080868D8: .4byte gUnk_080FFD24
-.L080868DC: .4byte gUnk_080FFCF4
+.L080868D0: .4byte gText_LivestockShop_Winter
+.L080868D4: .4byte gText_LivestockShop_StatusSpacer
+.L080868D8: .4byte gText_LivestockShop_SecondaryDailySellingPrice
+.L080868DC: .4byte gText_LivestockShop_Currency
 .L080868E0: .4byte 0x00003B98
 
 	thumb_func_start func_080868E4
@@ -140634,7 +140634,7 @@ func_08086A08: @ 0x08086A08
 	lsls r1, r6, #2
 	add r1, sb
 	lsls r1, r1, #2
-	ldr r2, .L08086C80 @ =gUnk_080FFB90
+	ldr r2, .L08086C80 @ =gLivestockShopCatalog
 	add r0, sp, #0xc
 	adds r1, r1, r2
 	ldm r1!, {r2, r3, r4}
@@ -140733,7 +140733,7 @@ func_08086A08: @ 0x08086A08
 	.align 2, 0
 .L08086C78: .4byte 0x00001C38
 .L08086C7C: .4byte 0x00001C34
-.L08086C80: .4byte gUnk_080FFB90
+.L08086C80: .4byte gLivestockShopCatalog
 .L08086C84: .4byte 0x00000774
 .L08086C88:
 	mov r8, r1
@@ -141023,7 +141023,7 @@ sub_08086DFA: @ 0x08086DFA
 	lsls r1, r4, #2
 	adds r1, r1, r4
 	lsls r1, r1, #2
-	ldr r2, .L08086F04 @ =gUnk_080FFB90
+	ldr r2, .L08086F04 @ =gLivestockShopCatalog
 	adds r0, r3, #0
 	adds r1, r1, r2
 	ldm r1!, {r2, r5, r6}
@@ -141042,7 +141042,7 @@ sub_08086DFA: @ 0x08086DFA
 	bl .L0808814C
 	.align 2, 0
 .L08086F00: .4byte 0x000006A1
-.L08086F04: .4byte gUnk_080FFB90
+.L08086F04: .4byte gLivestockShopCatalog
 .L08086F08:
 	cmp r0, #2
 	bne .L08086F0E
@@ -141067,7 +141067,7 @@ sub_08086DFA: @ 0x08086DFA
 	mov sl, r3
 	cmp r3, #0
 	beq .L08086F58
-	ldr r1, .L08086F50 @ =gUnk_080FFD3C
+	ldr r1, .L08086F50 @ =gText_LivestockShop_InsufficientGold
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r4, #0xd2
@@ -141080,7 +141080,7 @@ sub_08086DFA: @ 0x08086DFA
 	bl .L08087F4E
 	.align 2, 0
 .L08086F4C: .4byte 0x00001AA8
-.L08086F50: .4byte gUnk_080FFD3C
+.L08086F50: .4byte gText_LivestockShop_InsufficientGold
 .L08086F54: .4byte 0x000006A4
 .L08086F58:
 	movs r6, #0xbe
@@ -141090,7 +141090,7 @@ sub_08086DFA: @ 0x08086DFA
 	ldr r1, .L08086F78 @ =0x000003E6
 	cmp r0, r1
 	bls .L08086F84
-	ldr r1, .L08086F7C @ =gUnk_080FFD5C
+	ldr r1, .L08086F7C @ =gText_LivestockShop_FeedBinFull
 	adds r0, r7, #0
 	bl func_080CABA0
 	ldr r0, .L08086F80 @ =0x000006A4
@@ -141098,7 +141098,7 @@ sub_08086DFA: @ 0x08086DFA
 	bl .L08087F4E
 	.align 2, 0
 .L08086F78: .4byte 0x000003E6
-.L08086F7C: .4byte gUnk_080FFD5C
+.L08086F7C: .4byte gText_LivestockShop_FeedBinFull
 .L08086F80: .4byte 0x000006A4
 .L08086F84:
 	ldr r0, [r7, #8]
@@ -141153,7 +141153,7 @@ sub_08086DFA: @ 0x08086DFA
 	mov r3, sl
 	strb r3, [r0]
 .L08086FF8:
-	ldr r5, .L08087098 @ =gUnk_080FFD90
+	ldr r5, .L08087098 @ =gText_LivestockShop_BlankLinePair
 	mov sb, r5
 	adds r0, r4, #0
 	bl strlen
@@ -141229,7 +141229,7 @@ sub_08086DFA: @ 0x08086DFA
 	.align 2, 0
 .L08087090: .4byte 0x000003E7
 .L08087094: .4byte 0x00003B34
-.L08087098: .4byte gUnk_080FFD90
+.L08087098: .4byte gText_LivestockShop_BlankLinePair
 .L0808709C: .4byte gUnk_08117828
 .L080870A0:
 	ldr r3, [r7, #8]
@@ -141244,7 +141244,7 @@ sub_08086DFA: @ 0x08086DFA
 .L080870B2:
 	cmp r2, #0
 	beq .L080870E0
-	ldr r1, .L080870D8 @ =gUnk_080FFD3C
+	ldr r1, .L080870D8 @ =gText_LivestockShop_InsufficientGold
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r6, #0xd2
@@ -141257,7 +141257,7 @@ sub_08086DFA: @ 0x08086DFA
 	bl .L08087F4E
 	.align 2, 0
 .L080870D4: .4byte 0x00001AA8
-.L080870D8: .4byte gUnk_080FFD3C
+.L080870D8: .4byte gText_LivestockShop_InsufficientGold
 .L080870DC: .4byte 0x000006A4
 .L080870E0:
 	cmp r4, #3
@@ -141330,7 +141330,7 @@ sub_08086DFA: @ 0x08086DFA
 	str r1, [sp, #0xa4]
 	cmp r1, #0
 	bne .L0808719C
-	ldr r1, .L08087194 @ =gUnk_080FFD98
+	ldr r1, .L08087194 @ =gText_LivestockShop_InventoryFull
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r4, #0xd2
@@ -141343,7 +141343,7 @@ sub_08086DFA: @ 0x08086DFA
 	bl .L08087F4E
 	.align 2, 0
 .L08087190: .4byte 0x00001C34
-.L08087194: .4byte gUnk_080FFD98
+.L08087194: .4byte gText_LivestockShop_InventoryFull
 .L08087198: .4byte 0x000006A4
 .L0808719C:
 	ldr r0, [r7, #8]
@@ -141434,7 +141434,7 @@ sub_08086DFA: @ 0x08086DFA
 	mov r3, sl
 	strb r3, [r0]
 .L0808725C:
-	ldr r5, .L08087360 @ =gUnk_080FFD90
+	ldr r5, .L08087360 @ =gText_LivestockShop_BlankLinePair
 	mov sb, r5
 	adds r0, r4, #0
 	bl strlen
@@ -141556,7 +141556,7 @@ sub_08086DFA: @ 0x08086DFA
 .L08087354: .4byte 0x00001C38
 .L08087358: .4byte 0x00001C34
 .L0808735C: .4byte 0x00003B34
-.L08087360: .4byte gUnk_080FFD90
+.L08087360: .4byte gText_LivestockShop_BlankLinePair
 .L08087364: .4byte gUnk_08117828
 .L08087368: .4byte gUnk_08117814
 .L0808736C: .4byte 0x00000684
@@ -141582,7 +141582,7 @@ sub_08086DFA: @ 0x08086DFA
 .L08087396:
 	cmp r3, #0
 	beq .L080873C4
-	ldr r1, .L080873BC @ =gUnk_080FFD3C
+	ldr r1, .L080873BC @ =gText_LivestockShop_InsufficientGold
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r5, #0xd2
@@ -141595,7 +141595,7 @@ sub_08086DFA: @ 0x08086DFA
 	bl .L08087F4E
 	.align 2, 0
 .L080873B8: .4byte 0x00001AA8
-.L080873BC: .4byte gUnk_080FFD3C
+.L080873BC: .4byte gText_LivestockShop_InsufficientGold
 .L080873C0: .4byte 0x000006A4
 .L080873C4:
 	movs r5, #0xbe
@@ -141612,17 +141612,17 @@ sub_08086DFA: @ 0x08086DFA
 	subs r4, r4, r5
 	cmp r4, r0
 	bne .L08087400
-	ldr r1, .L080873F8 @ =gUnk_080FFDBC
+	ldr r1, .L080873F8 @ =gText_LivestockShop_BarnFull
 	adds r0, r7, #0
 	bl func_080CABA0
 	ldr r0, .L080873FC @ =0x000006A4
 	adds r1, r7, r0
 	bl .L08087F4E
 	.align 2, 0
-.L080873F8: .4byte gUnk_080FFDBC
+.L080873F8: .4byte gText_LivestockShop_BarnFull
 .L080873FC: .4byte 0x000006A4
 .L08087400:
-	ldr r1, .L08087420 @ =gUnk_080FFDD4
+	ldr r1, .L08087420 @ =gText_LivestockShop_NameAnimalPrompt
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r1, #0xd2
@@ -141636,7 +141636,7 @@ sub_08086DFA: @ 0x08086DFA
 	str r0, [r1]
 	bl .L0808814C
 	.align 2, 0
-.L08087420: .4byte gUnk_080FFDD4
+.L08087420: .4byte gText_LivestockShop_NameAnimalPrompt
 .L08087424: .4byte 0x000006A4
 .L08087428:
 	ldr r2, [sp, #0x10]
@@ -141704,14 +141704,14 @@ sub_08086DFA: @ 0x08086DFA
 	bl GetCapacity__C4Barn
 	cmp r6, r0
 	bne .L080874C4
-	ldr r1, .L080874BC @ =gUnk_080FFDF8
+	ldr r1, .L080874BC @ =gText_LivestockShop_NoCowsToSell
 	adds r0, r7, #0
 	bl func_080CABA0
 	ldr r5, .L080874C0 @ =0x000006A4
 	adds r1, r7, r5
 	bl .L08087F4E
 	.align 2, 0
-.L080874BC: .4byte gUnk_080FFDF8
+.L080874BC: .4byte gText_LivestockShop_NoCowsToSell
 .L080874C0: .4byte 0x000006A4
 .L080874C4:
 	ldr r6, .L080874EC @ =0x0000072C
@@ -141856,13 +141856,13 @@ sub_08086DFA: @ 0x08086DFA
 	bl GetCapacity__C4Barn
 	cmp r6, r0
 	bne .L080875F8
-	ldr r1, .L080875F4 @ =gUnk_080FFE24
+	ldr r1, .L080875F4 @ =gText_LivestockShop_NoSheepToSell
 	adds r0, r7, #0
 	bl func_080CABA0
 	adds r4, #0xb4
 	bl .L08087F4C
 	.align 2, 0
-.L080875F4: .4byte gUnk_080FFE24
+.L080875F4: .4byte gText_LivestockShop_NoSheepToSell
 .L080875F8:
 	ldr r5, .L08087620 @ =0x0000072C
 	adds r2, r7, r5
@@ -142012,14 +142012,14 @@ sub_08087710: @ 0x08087710
 	ldrb r0, [r0]
 	cmp r0, #0
 	beq .L0808773C
-	ldr r1, .L08087738 @ =gUnk_080FFE50
+	ldr r1, .L08087738 @ =gText_LivestockShop_ComeAgain
 	adds r0, r7, #0
 	bl func_080CABA0
 	b .L08087744
 	.align 2, 0
-.L08087738: .4byte gUnk_080FFE50
+.L08087738: .4byte gText_LivestockShop_ComeAgain
 .L0808773C:
-	ldr r1, .L0808775C @ =gUnk_080FFE88
+	ldr r1, .L0808775C @ =gText_LivestockShop_PurchaseConfirmation
 	adds r0, r7, #0
 	bl func_080CABA0
 .L08087744:
@@ -142034,7 +142034,7 @@ sub_08087710: @ 0x08087710
 	str r0, [r1]
 	bl .L0808814C
 	.align 2, 0
-.L0808775C: .4byte gUnk_080FFE88
+.L0808775C: .4byte gText_LivestockShop_PurchaseConfirmation
 .L08087760: .4byte 0x000006A4
 .L08087764:
 	ldr r0, [r7, #0x14]
@@ -142080,7 +142080,7 @@ sub_08087710: @ 0x08087710
 	add r1, sp, #0x24
 	movs r2, #0
 	bl func_0804EC84
-	ldr r3, .L08087894 @ =gUnk_080FFE9C
+	ldr r3, .L08087894 @ =gText_LivestockShop_PricePromptPrefix
 	mov sb, r3
 	adds r0, r4, #0
 	bl strlen
@@ -142130,7 +142130,7 @@ sub_08087710: @ 0x08087710
 	movs r0, #0
 	strb r0, [r1]
 .L08087824:
-	ldr r5, .L08087898 @ =gUnk_080FFEA8
+	ldr r5, .L08087898 @ =gText_LivestockShop_PricePromptSuffix
 	mov r8, r5
 	adds r0, r4, #0
 	bl strlen
@@ -142159,8 +142159,8 @@ sub_08087710: @ 0x08087710
 	movs r0, #0xd2
 	lsls r0, r0, #2
 	adds r4, r7, r0
-	ldr r2, .L0808789C @ =gUnk_080FFEAC
-	ldr r3, .L080878A0 @ =gUnk_080FFEB0
+	ldr r2, .L0808789C @ =gText_LivestockShop_Yes
+	ldr r3, .L080878A0 @ =gText_LivestockShop_No
 	movs r0, #0
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -142179,10 +142179,10 @@ sub_08087710: @ 0x08087710
 .L08087888: .4byte 0x0000072C
 .L0808788C: .4byte 0x000006A1
 .L08087890: .4byte 0x00003AB4
-.L08087894: .4byte gUnk_080FFE9C
-.L08087898: .4byte gUnk_080FFEA8
-.L0808789C: .4byte gUnk_080FFEAC
-.L080878A0: .4byte gUnk_080FFEB0
+.L08087894: .4byte gText_LivestockShop_PricePromptPrefix
+.L08087898: .4byte gText_LivestockShop_PricePromptSuffix
+.L0808789C: .4byte gText_LivestockShop_Yes
+.L080878A0: .4byte gText_LivestockShop_No
 .L080878A4: .4byte 0x000006A4
 .L080878A8:
 	ldr r3, .L080878F4 @ =0x000006A3
@@ -142248,7 +142248,7 @@ sub_08087710: @ 0x08087710
 	lsls r1, r0, #2
 	adds r1, r1, r0
 	lsls r1, r1, #2
-	ldr r2, .L08087984 @ =gUnk_080FFB90
+	ldr r2, .L08087984 @ =gLivestockShopCatalog
 	adds r0, r3, #0
 	adds r1, r1, r2
 	ldm r1!, {r2, r5, r6}
@@ -142282,14 +142282,14 @@ sub_08087710: @ 0x08087710
 	adds r0, r0, r4
 	mov r1, r8
 	bl AddStoredBushels__4BarnUi
-	ldr r1, .L08087990 @ =gUnk_080FFEB4
+	ldr r1, .L08087990 @ =gText_LivestockShop_FeedPurchaseComplete
 	b .L08087A86
 	.align 2, 0
 .L08087980: .4byte 0x00000684
-.L08087984: .4byte gUnk_080FFB90
+.L08087984: .4byte gLivestockShopCatalog
 .L08087988: .4byte 0x00001AA8
 .L0808798C: .4byte 0x000006A4
-.L08087990: .4byte gUnk_080FFEB4
+.L08087990: .4byte gText_LivestockShop_FeedPurchaseComplete
 .L08087994:
 	cmp r4, #5
 	bls .L0808799A
@@ -142399,22 +142399,22 @@ sub_08087710: @ 0x08087710
 	bl AddAmountOf__9ToolChestUiUi
 	cmp r4, #0
 	beq .L08087A84
-	ldr r1, .L08087A80 @ =gUnk_080FFEEC
+	ldr r1, .L08087A80 @ =gText_LivestockShop_PurchaseDeliveryPartial
 	b .L08087A86
 	.align 2, 0
 .L08087A78: .4byte 0x00001C34
 .L08087A7C: .4byte 0x00001C38
-.L08087A80: .4byte gUnk_080FFEEC
+.L08087A80: .4byte gText_LivestockShop_PurchaseDeliveryPartial
 .L08087A84:
-	ldr r1, .L08087A90 @ =gUnk_080FFF38
+	ldr r1, .L08087A90 @ =gText_LivestockShop_PurchaseDeliveryAll
 .L08087A86:
 	adds r0, r7, #0
 	bl func_080CABA0
 	b .L08087A9C
 	.align 2, 0
-.L08087A90: .4byte gUnk_080FFF38
+.L08087A90: .4byte gText_LivestockShop_PurchaseDeliveryAll
 .L08087A94:
-	ldr r1, .L08087AB4 @ =gUnk_080FFF84
+	ldr r1, .L08087AB4 @ =gText_LivestockShop_PurchaseComplete
 	adds r0, r7, #0
 	bl func_080CABA0
 .L08087A9C:
@@ -142430,7 +142430,7 @@ sub_08087710: @ 0x08087710
 	bl func_08050E50
 	b .L0808814C
 	.align 2, 0
-.L08087AB4: .4byte gUnk_080FFF84
+.L08087AB4: .4byte gText_LivestockShop_PurchaseComplete
 .L08087AB8:
 	adds r0, r7, #0
 	bl func_080088CC
@@ -142473,7 +142473,7 @@ sub_08087710: @ 0x08087710
 	lsls r1, r0, #2
 	adds r1, r1, r0
 	lsls r1, r1, #2
-	ldr r2, .L08087B58 @ =gUnk_080FFB90
+	ldr r2, .L08087B58 @ =gLivestockShopCatalog
 	adds r0, r4, #0
 	adds r1, r1, r2
 	ldm r1!, {r2, r3, r5}
@@ -142506,7 +142506,7 @@ sub_08087710: @ 0x08087710
 	bl memcpy
 	b .L08087B7C
 	.align 2, 0
-.L08087B58: .4byte gUnk_080FFB90
+.L08087B58: .4byte gLivestockShopCatalog
 .L08087B5C: .4byte 0x00001C34
 .L08087B60:
 	ldr r0, [r7, #8]
@@ -142522,13 +142522,13 @@ sub_08087710: @ 0x08087710
 	movs r2, #1
 	bl AddAmountOfTool__8RucksackUiUi
 .L08087B7C:
-	ldr r1, .L08087B8C @ =gUnk_080FFF84
+	ldr r1, .L08087B8C @ =gText_LivestockShop_PurchaseComplete
 	adds r0, r7, #0
 	bl func_080CABA0
 	b .L08087BDC
 	.align 2, 0
 .L08087B88: .4byte 0x00001C38
-.L08087B8C: .4byte gUnk_080FFF84
+.L08087B8C: .4byte gText_LivestockShop_PurchaseComplete
 .L08087B90:
 	ldr r0, [r7, #8]
 	movs r6, #0xe0
@@ -142538,7 +142538,7 @@ sub_08087710: @ 0x08087710
 	bl GetAvailableSpaceFor__C9ToolChestUi
 	cmp r0, #0
 	bne .L08087BC4
-	ldr r1, .L08087BBC @ =gUnk_080FFD98
+	ldr r1, .L08087BBC @ =gText_LivestockShop_InventoryFull
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r1, #0xd2
@@ -142550,7 +142550,7 @@ sub_08087710: @ 0x08087710
 	adds r1, r7, r2
 	b .L08087F4E
 	.align 2, 0
-.L08087BBC: .4byte gUnk_080FFD98
+.L08087BBC: .4byte gText_LivestockShop_InventoryFull
 .L08087BC0: .4byte 0x000006A4
 .L08087BC4:
 	ldr r0, [r7, #8]
@@ -142560,7 +142560,7 @@ sub_08087710: @ 0x08087710
 	movs r1, #0x49
 	movs r2, #1
 	bl AddAmountOf__9ToolChestUiUi
-	ldr r1, .L08087CA4 @ =gUnk_080FFF38
+	ldr r1, .L08087CA4 @ =gText_LivestockShop_PurchaseDeliveryAll
 	adds r0, r7, #0
 	bl func_080CABA0
 .L08087BDC:
@@ -142665,7 +142665,7 @@ sub_08087710: @ 0x08087710
 	str r0, [r7, #0x14]
 	b .L08087E82
 	.align 2, 0
-.L08087CA4: .4byte gUnk_080FFF38
+.L08087CA4: .4byte gText_LivestockShop_PurchaseDeliveryAll
 .L08087CA8: .4byte 0x00001AA8
 .L08087CAC: .4byte 0x000006A4
 .L08087CB0:
@@ -142688,7 +142688,7 @@ sub_08087710: @ 0x08087710
 	lsls r1, r0, #2
 	adds r1, r1, r0
 	lsls r1, r1, #2
-	ldr r2, .L08087D70 @ =gUnk_080FFB90
+	ldr r2, .L08087D70 @ =gLivestockShopCatalog
 	adds r0, r3, #0
 	adds r1, r1, r2
 	ldm r1!, {r2, r4, r5}
@@ -142740,7 +142740,7 @@ sub_08087710: @ 0x08087710
 	bl memcpy
 	strb r6, [r4, #6]
 	add r5, sp, #0x40
-	ldr r1, .L08087D7C @ =gUnk_080FFB60
+	ldr r1, .L08087D7C @ =gText_LivestockShop_Empty
 	movs r0, #0xe
 	str r0, [sp]
 	adds r0, r5, #0
@@ -142762,10 +142762,10 @@ sub_08087710: @ 0x08087710
 	adds r1, r7, r2
 	b .L08087E82
 	.align 2, 0
-.L08087D70: .4byte gUnk_080FFB90
+.L08087D70: .4byte gLivestockShopCatalog
 .L08087D74: .4byte 0x00001AA8
 .L08087D78: .4byte 0xFFFFFC00
-.L08087D7C: .4byte gUnk_080FFB60
+.L08087D7C: .4byte gText_LivestockShop_Empty
 .L08087D80: .4byte 0x000006A4
 .L08087D84:
 	ldr r3, .L08087D8C @ =0x000043D8
@@ -142814,7 +142814,7 @@ sub_08087710: @ 0x08087710
 	bl memcpy
 	strb r5, [r4, #6]
 	add r5, sp, #0x24
-	ldr r1, .L08087E10 @ =gUnk_080FFB60
+	ldr r1, .L08087E10 @ =gText_LivestockShop_Empty
 	movs r0, #0xe
 	str r0, [sp]
 	adds r0, r5, #0
@@ -142837,7 +142837,7 @@ sub_08087710: @ 0x08087710
 	b .L08087E82
 	.align 2, 0
 .L08087E0C: .4byte 0xFFFFFC00
-.L08087E10: .4byte gUnk_080FFB60
+.L08087E10: .4byte gText_LivestockShop_Empty
 .L08087E14: .4byte 0x000006A4
 .L08087E18:
 	ldr r3, .L08087E50 @ =0x000043D8
@@ -142871,7 +142871,7 @@ sub_08087710: @ 0x08087710
 .L08087E58: .4byte 0x000006A4
 .L08087E5C: .4byte 0x000043DC
 .L08087E60:
-	ldr r1, .L08087E88 @ =gUnk_080FFF94
+	ldr r1, .L08087E88 @ =gText_LivestockShop_AnimalPurchaseComplete
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r1, #0xd2
@@ -142891,7 +142891,7 @@ sub_08087710: @ 0x08087710
 	str r0, [r1]
 	b .L0808814C
 	.align 2, 0
-.L08087E88: .4byte gUnk_080FFF94
+.L08087E88: .4byte gText_LivestockShop_AnimalPurchaseComplete
 .L08087E8C: .4byte 0x000006A4
 .L08087E90:
 	movs r4, #0xd4
@@ -142902,7 +142902,7 @@ sub_08087710: @ 0x08087710
 	beq .L08087E9E
 	b .L0808814C
 .L08087E9E:
-	ldr r1, .L08087EB8 @ =gUnk_080FFFC4
+	ldr r1, .L08087EB8 @ =gText_LivestockShop_PurchaseMorePrompt
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r5, #0xd2
@@ -142914,7 +142914,7 @@ sub_08087710: @ 0x08087710
 	adds r1, r7, r6
 	b .L08087F4E
 	.align 2, 0
-.L08087EB8: .4byte gUnk_080FFFC4
+.L08087EB8: .4byte gText_LivestockShop_PurchaseMorePrompt
 .L08087EBC: .4byte 0x000006A4
 .L08087EC0:
 	movs r1, #0xd4
@@ -142974,7 +142974,7 @@ sub_08087710: @ 0x08087710
 	movs r0, #1
 	rsbs r0, r0, #0
 	str r0, [r7, #0x14]
-	ldr r1, .L08087F54 @ =gUnk_080FFFC4
+	ldr r1, .L08087F54 @ =gText_LivestockShop_PurchaseMorePrompt
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r3, #0xd2
@@ -142990,7 +142990,7 @@ sub_08087710: @ 0x08087710
 	str r0, [r1]
 	b .L0808814C
 	.align 2, 0
-.L08087F54: .4byte gUnk_080FFFC4
+.L08087F54: .4byte gText_LivestockShop_PurchaseMorePrompt
 .L08087F58: .4byte 0x000006A4
 .L08087F5C:
 	movs r5, #0xd4
@@ -143039,7 +143039,7 @@ sub_08087710: @ 0x08087710
 	bl Remove__4BarnUi
 	ldr r4, .L080880B4 @ =0x00003AB4
 	adds r5, r7, r4
-	ldr r6, .L080880B8 @ =gUnk_080FFB60
+	ldr r6, .L080880B8 @ =gText_LivestockShop_Empty
 	adds r0, r6, #0
 	bl strlen
 	adds r4, r0, #0
@@ -143055,7 +143055,7 @@ sub_08087710: @ 0x08087710
 	movs r6, #0
 	mov sb, r6
 	strb r6, [r0]
-	ldr r0, .L080880BC @ =gUnk_080FFFE8
+	ldr r0, .L080880BC @ =gText_LivestockShop_PurchaseDeclinedPrefix
 	mov r8, r0
 	adds r0, r5, #0
 	bl strlen
@@ -143110,7 +143110,7 @@ sub_08087710: @ 0x08087710
 .L0808804C:
 	ldr r3, .L080880B4 @ =0x00003AB4
 	adds r4, r7, r3
-	ldr r5, .L080880C0 @ =gUnk_080FFFFC
+	ldr r5, .L080880C0 @ =gText_LivestockShop_AnimalDelivery
 	mov r8, r5
 	adds r0, r4, #0
 	bl strlen
@@ -143157,9 +143157,9 @@ sub_08087710: @ 0x08087710
 .L080880AC: .4byte 0x000006AC
 .L080880B0: .4byte 0x00001AA8
 .L080880B4: .4byte 0x00003AB4
-.L080880B8: .4byte gUnk_080FFB60
-.L080880BC: .4byte gUnk_080FFFE8
-.L080880C0: .4byte gUnk_080FFFFC
+.L080880B8: .4byte gText_LivestockShop_Empty
+.L080880BC: .4byte gText_LivestockShop_PurchaseDeclinedPrefix
+.L080880C0: .4byte gText_LivestockShop_AnimalDelivery
 .L080880C4: .4byte 0x000006A4
 .L080880C8:
 	adds r0, r4, #0
