@@ -462,6 +462,11 @@ SECTIONS
         . = 0x104258; src/character_names_data.o(.rodata.character_name_entries);
         . = 0x1043B0; asm/data/data_080F9EB8.o(.rodata.character_names_table_trailer);
         . = 0x1043BC; asm/data/data_080F9EB8.o(.rodata.reference_guide_harvest_sprite_minigames_after_character_names);
+        . = 0x10497C; data/text/calendar.o(.rodata.calendar.festival_text);
+        . = 0x104D96; asm/data/data_080F9EB8.o(.rodata.calendar_festival_dynamic_text);
+        . = 0x104DDC; data/text/calendar.o(.rodata.calendar.no_plans_text);
+        . = 0x104DEA; asm/data/data_080F9EB8.o(.rodata.calendar_no_plans_trailer);
+        . = 0x104E0C; asm/data/data_080F9EB8.o(.rodata.reference_guide_harvest_sprite_minigames_after_calendar);
         . = 0x1075B0; data/text/harvest_sprite_minigames.o(.rodata.harvest_sprite_minigames_animal_husbandry);
         . = 0x10787C; asm/data/data_080F9EB8.o(.rodata.harvest_sprite_minigames_animal_husbandry_trailer);
         . = 0x1078BD; data/text/festival_contestants.o(.rodata.festival_contestants_set2);

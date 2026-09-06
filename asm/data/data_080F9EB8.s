@@ -143,7 +143,13 @@ gText_CharacterName_Empty:
     .incbin "baserom_jp.gba", 0x103D9B, (0x103D9C - 0x103D9B)
 
     .section .rodata.character_names_table_trailer
-    .incbin "baserom_jp.gba", 0x103EF4, (0x1070F4 - 0x103EF4)
+    .incbin "baserom_jp.gba", 0x103EF4, (0x1044B0 - 0x103EF4)
+
+    .section .rodata.calendar_festival_dynamic_trailer
+    .incbin "baserom_jp.gba", 0x1048DB, (0x10491C - 0x1048DB)
+
+    .section .rodata.calendar_no_plans_trailer
+    .incbin "baserom_jp.gba", 0x104935, (0x1070F4 - 0x104935)
 
     .section .rodata.harvest_sprite_minigames_animal_husbandry_trailer
     .incbin "baserom_jp.gba", 0x10737B, (0x1073B9 - 0x10737B)
@@ -1435,73 +1441,8 @@ gUnk_08104950:
 gUnk_08104957:
 	.incbin "baserom_us.gba", 0x104957, 0x25
 
-	.global gUnk_0810497C
-gUnk_0810497C:
-	.incbin "baserom_us.gba", 0x10497C, 0x48
-
-	.global gUnk_081049C4
-gUnk_081049C4:
-	.incbin "baserom_us.gba", 0x1049C4, 0x34
-
-	.global gUnk_081049F8
-gUnk_081049F8:
-	.incbin "baserom_us.gba", 0x1049F8, 0x48
-
-	.global gUnk_08104A40
-gUnk_08104A40:
-	.incbin "baserom_us.gba", 0x104A40, 0x44
-
-	.global gUnk_08104A84
-gUnk_08104A84:
-	.incbin "baserom_us.gba", 0x104A84, 0x40
-
-	.global gUnk_08104AC4
-gUnk_08104AC4:
-	.incbin "baserom_us.gba", 0x104AC4, 0x44
-
-	.global gUnk_08104B08
-gUnk_08104B08:
-	.incbin "baserom_us.gba", 0x104B08, 0x44
-
-	.global gUnk_08104B4C
-gUnk_08104B4C:
-	.incbin "baserom_us.gba", 0x104B4C, 0x48
-
-	.global gUnk_08104B94
-gUnk_08104B94:
-	.incbin "baserom_us.gba", 0x104B94, 0x40
-
-	.global gUnk_08104BD4
-gUnk_08104BD4:
-	.incbin "baserom_us.gba", 0x104BD4, 0x44
-
-	.global gUnk_08104C18
-gUnk_08104C18:
-	.incbin "baserom_us.gba", 0x104C18, 0x3C
-
-	.global gUnk_08104C54
-gUnk_08104C54:
-	.incbin "baserom_us.gba", 0x104C54, 0x44
-
-	.global gUnk_08104C98
-gUnk_08104C98:
-	.incbin "baserom_us.gba", 0x104C98, 0x44
-
-	.global gUnk_08104CDC
-gUnk_08104CDC:
-	.incbin "baserom_us.gba", 0x104CDC, 0x28
-
-	.global gUnk_08104D04
-gUnk_08104D04:
-	.incbin "baserom_us.gba", 0x104D04, 0x24
-
-	.global gUnk_08104D28
-gUnk_08104D28:
-	.incbin "baserom_us.gba", 0x104D28, 0x30
-
-	.global gUnk_08104D58
-gUnk_08104D58:
-	.incbin "baserom_us.gba", 0x104D58, 0x40
+	.section .rodata.calendar_festival_dynamic_text
+	.incbin "baserom_us.gba", 0x104D96, 0x2
 
 	.global gUnk_08104D98
 gUnk_08104D98:
@@ -1511,9 +1452,10 @@ gUnk_08104D98:
 gUnk_08104DB8:
 	.incbin "baserom_us.gba", 0x104DB8, 0x24
 
-	.global gUnk_08104DDC
-gUnk_08104DDC:
-	.incbin "baserom_us.gba", 0x104DDC, 0x30
+	.section .rodata.calendar_no_plans_trailer
+	.incbin "baserom_us.gba", 0x104DEA, (0x104E0C - 0x104DEA)
+
+	.section .rodata.reference_guide_harvest_sprite_minigames_after_calendar
 
 	.global gUnk_08104E0C
 gUnk_08104E0C:

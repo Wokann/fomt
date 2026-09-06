@@ -8543,106 +8543,106 @@ func_080A2940: @ 0x080A2940
 	.4byte .L080A2B68 @ case 18
 .L080A2A70:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L080A2A78 @ =gUnk_0810497C
+	ldr r1, .L080A2A78 @ =gText_Calendar_Festival_NewYearFestival
 	b .L080A2B6C
 	.align 2, 0
-.L080A2A78: .4byte gUnk_0810497C
+.L080A2A78: .4byte gText_Calendar_Festival_NewYearFestival
 .L080A2A7C:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L080A2A84 @ =gUnk_081049C4
+	ldr r1, .L080A2A84 @ =gText_Calendar_Festival_SpringThanksgiving
 	b .L080A2B6C
 	.align 2, 0
-.L080A2A84: .4byte gUnk_081049C4
+.L080A2A84: .4byte gText_Calendar_Festival_SpringThanksgiving
 .L080A2A88:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L080A2A90 @ =gUnk_081049F8
+	ldr r1, .L080A2A90 @ =gText_Calendar_Festival_SpringHorseRace
 	b .L080A2B6C
 	.align 2, 0
-.L080A2A90: .4byte gUnk_081049F8
+.L080A2A90: .4byte gText_Calendar_Festival_SpringHorseRace
 .L080A2A94:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L080A2A9C @ =gUnk_08104A40
+	ldr r1, .L080A2A9C @ =gText_Calendar_Festival_CookingFestival
 	b .L080A2B6C
 	.align 2, 0
-.L080A2A9C: .4byte gUnk_08104A40
+.L080A2A9C: .4byte gText_Calendar_Festival_CookingFestival
 .L080A2AA0:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L080A2AA8 @ =gUnk_08104A84
+	ldr r1, .L080A2AA8 @ =gText_Calendar_Festival_BeachDay
 	b .L080A2B6C
 	.align 2, 0
-.L080A2AA8: .4byte gUnk_08104A84
+.L080A2AA8: .4byte gText_Calendar_Festival_BeachDay
 .L080A2AAC:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L080A2AB4 @ =gUnk_08104AC4
+	ldr r1, .L080A2AB4 @ =gText_Calendar_Festival_ChickenFestival
 	b .L080A2B6C
 	.align 2, 0
-.L080A2AB4: .4byte gUnk_08104AC4
+.L080A2AB4: .4byte gText_Calendar_Festival_ChickenFestival
 .L080A2AB8:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L080A2AC0 @ =gUnk_08104B08
+	ldr r1, .L080A2AC0 @ =gText_Calendar_Festival_CowFestival
 	b .L080A2B6C
 	.align 2, 0
-.L080A2AC0: .4byte gUnk_08104B08
+.L080A2AC0: .4byte gText_Calendar_Festival_CowFestival
 .L080A2AC4:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L080A2ACC @ =gUnk_08104B4C
+	ldr r1, .L080A2ACC @ =gText_Calendar_Festival_FireworksFestival
 	b .L080A2B6C
 	.align 2, 0
-.L080A2ACC: .4byte gUnk_08104B4C
+.L080A2ACC: .4byte gText_Calendar_Festival_FireworksFestival
 .L080A2AD0:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L080A2AD8 @ =gUnk_08104B94
+	ldr r1, .L080A2AD8 @ =gText_Calendar_Festival_MusicFestival
 	b .L080A2B6C
 	.align 2, 0
-.L080A2AD8: .4byte gUnk_08104B94
+.L080A2AD8: .4byte gText_Calendar_Festival_MusicFestival
 .L080A2ADC:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L080A2AE4 @ =gUnk_08104BD4
+	ldr r1, .L080A2AE4 @ =gText_Calendar_Festival_HarvestFestival
 	b .L080A2B6C
 	.align 2, 0
-.L080A2AE4: .4byte gUnk_08104BD4
+.L080A2AE4: .4byte gText_Calendar_Festival_HarvestFestival
 .L080A2AE8:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L080A2AF0 @ =gUnk_08104C18
+	ldr r1, .L080A2AF0 @ =gText_Calendar_Festival_FullMoonFestival
 	b .L080A2B6C
 	.align 2, 0
-.L080A2AF0: .4byte gUnk_08104C18
+.L080A2AF0: .4byte gText_Calendar_Festival_FullMoonFestival
 .L080A2AF4:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L080A2AFC @ =gUnk_08104C54
+	ldr r1, .L080A2AFC @ =gText_Calendar_Festival_FallHorseRace
 	b .L080A2B6C
 	.align 2, 0
-.L080A2AFC: .4byte gUnk_08104C54
+.L080A2AFC: .4byte gText_Calendar_Festival_FallHorseRace
 .L080A2B00:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L080A2B08 @ =gUnk_08104C98
+	ldr r1, .L080A2B08 @ =gText_Calendar_Festival_SheepFestival
 	b .L080A2B6C
 	.align 2, 0
-.L080A2B08: .4byte gUnk_08104C98
+.L080A2B08: .4byte gText_Calendar_Festival_SheepFestival
 .L080A2B0C:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L080A2B14 @ =gUnk_08104CDC
+	ldr r1, .L080A2B14 @ =gText_Calendar_Festival_PumpkinFestival
 	b .L080A2B6C
 	.align 2, 0
-.L080A2B14: .4byte gUnk_08104CDC
+.L080A2B14: .4byte gText_Calendar_Festival_PumpkinFestival
 .L080A2B18:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L080A2B20 @ =gUnk_08104D04
+	ldr r1, .L080A2B20 @ =gText_Calendar_Festival_WinterThanksgiving
 	b .L080A2B6C
 	.align 2, 0
-.L080A2B20: .4byte gUnk_08104D04
+.L080A2B20: .4byte gText_Calendar_Festival_WinterThanksgiving
 .L080A2B24:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L080A2B2C @ =gUnk_08104D28
+	ldr r1, .L080A2B2C @ =gText_Calendar_Festival_StarryNightFestival
 	b .L080A2B6C
 	.align 2, 0
-.L080A2B2C: .4byte gUnk_08104D28
+.L080A2B2C: .4byte gText_Calendar_Festival_StarryNightFestival
 .L080A2B30:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L080A2B38 @ =gUnk_08104D58
+	ldr r1, .L080A2B38 @ =gText_Calendar_Festival_YearEndGathering
 	b .L080A2B6C
 	.align 2, 0
-.L080A2B38: .4byte gUnk_08104D58
+.L080A2B38: .4byte gText_Calendar_Festival_YearEndGathering
 .L080A2B3C:
 	ldr r4, [r7, #8]
 	ldr r0, .L080A2B60 @ =0x00001CD4
@@ -8678,7 +8678,7 @@ func_080A2940: @ 0x080A2940
 .L080A2B7C: .4byte gUnk_08104DB8
 .L080A2B80:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L080A2BA0 @ =gUnk_08104DDC
+	ldr r1, .L080A2BA0 @ =gText_Calendar_Festival_NoPlans
 	movs r2, #0x87
 	lsls r2, r2, #2
 	adds r3, r7, r2
@@ -8693,7 +8693,7 @@ func_080A2940: @ 0x080A2940
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080A2BA0: .4byte gUnk_08104DDC
+.L080A2BA0: .4byte gText_Calendar_Festival_NoPlans
 
 	thumb_func_start func_080A2BA4
 func_080A2BA4: @ 0x080A2BA4
