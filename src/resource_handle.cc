@@ -1,19 +1,65 @@
 #include "prelude.h"
 
-struct IndexedResourceHandle
+struct IndexedResourceProvider;
+
+struct IndexedResourceResult
 {
-    void * resource;
+    void * data;
+    void * auxiliary;
 };
 
-extern "C" void func_0805E860(IndexedResourceHandle * handle, u32 index);
+typedef IndexedResourceResult (*IndexedResourceResolver)(
+    IndexedResourceProvider * provider,
+    u32 index);
+
+struct IndexedResourceProviderVTable
+{
+    u8 unknown_00[0x0C];
+    IndexedResourceResolver resolve;
+};
+
+struct IndexedResourceProvider
+{
+    IndexedResourceProviderVTable * vtable;
+};
+
+struct IndexedResourceData
+{
+    u8 unknown_00[2];
+    u16 metric;
+};
+
+struct IndexedResourceHandle
+{
+    IndexedResourceProvider * resource;
+    IndexedResourceResult resolved_resource;
+    u16 unknown_0C;
+    u16 metric_scaled;
+    u8 unknown_10[2];
+    u8 initialized;
+};
+
+extern "C" void ResolveIndexedResourceHandle(IndexedResourceHandle * handle, u32 index)
+    SECTION(".text.resolve_indexed_resource_handle");
 
 extern "C" void InitializeIndexedResourceHandle(
-    IndexedResourceHandle * handle, void * resource, u32 index)
+    IndexedResourceHandle * handle, IndexedResourceProvider * resource, u32 index)
     SECTION(".text.initialize_indexed_resource_handle");
 
 extern "C" void InitializeIndexedResourceHandle(
-    IndexedResourceHandle * handle, void * resource, u32 index)
+    IndexedResourceHandle * handle, IndexedResourceProvider * resource, u32 index)
 {
     handle->resource = resource;
-    func_0805E860(handle, index);
+    ResolveIndexedResourceHandle(handle, index);
+}
+
+extern "C" void ResolveIndexedResourceHandle(IndexedResourceHandle * handle, u32 index)
+{
+    IndexedResourceResult resolved = handle->resource->vtable->resolve(handle->resource, index);
+
+    handle->resolved_resource = resolved;
+    handle->unknown_0C = 0;
+    handle->metric_scaled =
+        reinterpret_cast<IndexedResourceData *>(handle->resolved_resource.data)->metric << 8;
+    handle->initialized = 1;
 }

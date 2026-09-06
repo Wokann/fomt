@@ -997,7 +997,7 @@ func_08032A30: @ 0x08032A30
     @ 32ab8:       0614            lsls    r4, r2, #24
     @ 32aba:       0e24            lsrs    r4, r4, #24
     @ 32abc:       3070            adds    r0, #112        @ 0x70
-    @ 32abe:       f02b fecf       bl      func_0805E860
+    @ 32abe:       f02b fecf       bl      ResolveIndexedResourceHandle
     @ 32ac2:       1c28            adds    r0, r5, #0
     @ 32ac4:       3084            adds    r0, #132        @ 0x84
     @ 32ac6:       2200            movs    r2, #0
@@ -1037,7 +1037,7 @@ func_08032A30: @ 0x08032A30
     @ 32b04:       b510            push    {r4, lr}
     @ 32b06:       1c04            adds    r4, r0, #0
     @ 32b08:       3030            adds    r0, #48 @ 0x30
-    @ 32b0a:       f02b fea9       bl      func_0805E860
+    @ 32b0a:       f02b fea9       bl      ResolveIndexedResourceHandle
     @ 32b0e:       1c20            adds    r0, r4, #0
     @ 32b10:       3044            adds    r0, #68 @ 0x44
     @ 32b12:       2200            movs    r2, #0
@@ -4389,7 +4389,7 @@ func_08034BFC: @ 0x08034BFC
     ldrh r1, [r1]
     adds r0, r6, #0
     adds r0, #0xb4
-    bl func_0805E860
+    bl ResolveIndexedResourceHandle
     adds r0, r6, #0
     adds r0, #0xc8
     movs r2, #0

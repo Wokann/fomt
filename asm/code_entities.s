@@ -18884,7 +18884,7 @@ func_0802B46C: @ 0x0802B46C
 .L0802B4E0:
     adds r0, r4, #0
     adds r0, #0x2c
-    bl func_0805E860
+    bl ResolveIndexedResourceHandle
     adds r0, r4, #0
     adds r0, #0x40
     movs r2, #0

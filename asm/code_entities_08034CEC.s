@@ -6429,7 +6429,7 @@ func_08038398: @ 0x08038398
     beq .L080384F4
     adds r0, r4, #0
     adds r0, #0x30
-    bl func_0805E860
+    bl ResolveIndexedResourceHandle
     adds r0, r4, #0
     adds r0, #0x44
     movs r2, #0
@@ -6459,7 +6459,7 @@ func_080384FC: @ 0x080384FC
     adds r0, r4, #0
     adds r0, #0x30
     movs r1, #0x31
-    bl func_0805E860
+    bl ResolveIndexedResourceHandle
     adds r0, r4, #0
     adds r0, #0x44
     movs r2, #0
