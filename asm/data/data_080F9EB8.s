@@ -223,7 +223,10 @@ gText_CharacterName_Empty:
     .incbin "baserom_jp.gba", 0x104935, (0x104958 - 0x104935)
 
     .section .rodata.possessive_labels_trailer
-    .incbin "baserom_jp.gba", 0x104988, (0x1070F4 - 0x104988)
+    .incbin "baserom_jp.gba", 0x104988, (0x104994 - 0x104988)
+
+    .section .rodata.random_item_fallback_trailer
+    .incbin "baserom_jp.gba", 0x10499C, (0x1070F4 - 0x10499C)
 
     .section .rodata.harvest_sprite_minigames_animal_husbandry_trailer
     .incbin "baserom_jp.gba", 0x10737B, (0x1073B9 - 0x10737B)
@@ -962,9 +965,7 @@ gUnk_081043BC:
 	.section .rodata.static_data_after_possessive_labels
 	.incbin "baserom_us.gba", 0x104E40, (0x104E4C - 0x104E40)
 
-	.global gUnk_08104E4C
-gUnk_08104E4C:
-	.incbin "baserom_us.gba", 0x104E4C, 0x8
+	.section .rodata.random_item_fallback_trailer
 
 	.global gUnk_08104E54
 gUnk_08104E54:

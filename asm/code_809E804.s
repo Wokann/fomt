@@ -11122,7 +11122,7 @@ func_080A3F4C: @ 0x080A3F4C
 	str r2, [sp, #0x98]
 	movs r7, #0
 	mov r5, sp
-	ldr r0, .L080A3FD8 @ =gUnk_08104E4C
+	ldr r0, .L080A3FD8 @ =gText_RandomItem_NotAvailable
 	str r0, [sp]
 	movs r4, #0
 	strh r7, [r5, #4]
@@ -11179,7 +11179,7 @@ func_080A3F4C: @ 0x080A3F4C
 	beq .L080A3FF0
 	b .L080A4006
 	.align 2, 0
-.L080A3FD8: .4byte gUnk_08104E4C
+.L080A3FD8: .4byte gText_RandomItem_NotAvailable
 .L080A3FDC: .4byte gUnk_08104EAC
 .L080A3FE0:
 	lsls r0, r3, #0x18
