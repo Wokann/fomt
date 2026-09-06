@@ -25,7 +25,15 @@ func_080324BC:
     .global func_08032934
     .thumb_func
 func_08032934:
-    .incbin "baserom_jp.gba", 0x326C8, 0x1248
+    .incbin "baserom_jp.gba", 0x326C8, 0xFE0
+
+    .section .text.entity_ui_harvest_sprite_task_experience_after
+    .syntax unified
+    .thumb
+    .global func_08033928
+    .thumb_func
+func_08033928:
+    .incbin "baserom_jp.gba", 0x336BC, 0x254
 
     .section .text.entity_ui_unknown_flag_after
     .syntax unified
@@ -57,10 +65,6 @@ func_08033B84:
     .thumb_set func_08033800, func_0803242C + 0x13D4
     .global func_08033830
     .thumb_set func_08033830, func_0803242C + 0x1404
-    .global func_08033914
-    .thumb_set func_08033914, func_0803242C + 0x14E8
-    .global func_08033928
-    .thumb_set func_08033928, func_0803242C + 0x14FC
     .global func_08033B24
     .thumb_set func_08033B24, func_0803242C + 0x16F8
     .global func_08034180
@@ -2863,19 +2867,7 @@ func_080338F0: @ 0x080338F0
     bx r1
     .align 2, 0
 
-    thumb_func_start func_08033914
-func_08033914: @ 0x08033914
-    movs r1, #0xc0
-    lsls r1, r1, #9
-    adds r0, #1
-    muls r0, r1, r0
-    lsrs r0, r0, #8
-    movs r1, #0x80
-    lsls r1, r1, #8
-    adds r0, r0, r1
-    bx lr
-    .align 2, 0
-
+    .section .text.entity_ui_harvest_sprite_task_experience_after
     thumb_func_start func_08033928
 func_08033928: @ 0x08033928
     push {r4, r5, r6, r7, lr}

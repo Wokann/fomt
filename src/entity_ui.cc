@@ -21,6 +21,11 @@ extern "C" void func_08033B7C(void * entity)
 extern "C" u32 func_08032900(u32 kind, u32 x, i32 y)
     SECTION(".text.entity_ui_region_classification");
 
+// Converts Harvest Sprite task experience into the fixed-point value consumed
+// by the following entity-UI path.  The game-level meaning remains unmapped.
+extern "C" u32 func_08033914(u32 task_experience)
+    SECTION(".text.entity_ui_harvest_sprite_task_experience");
+
 extern "C" bool func_080324B8()
 {
     return false;
@@ -56,4 +61,18 @@ extern "C" u32 func_08032900(u32 kind, u32 x, i32 y)
     }
 
     return 0;
+}
+
+extern "C" u32 func_08033914(u32 task_experience)
+{
+    u32 scale = 0xC0;
+    scale <<= 9;
+
+    task_experience++;
+    task_experience *= scale;
+    task_experience >>= 8;
+
+    u32 base = 0x80;
+    base <<= 8;
+    return task_experience + base;
 }
