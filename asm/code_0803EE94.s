@@ -113038,7 +113038,7 @@ func_08078044: @ 0x08078044
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L08078164
-	ldr r3, .L08078160 @ =gUnk_080FD080
+	ldr r3, .L08078160 @ =gTownMapHotspots
 	adds r0, r7, #0
 	mov r1, sb
 	mov r2, r8
@@ -113049,14 +113049,14 @@ func_08078044: @ 0x08078044
 	movs r6, #0
 	b .L080781F2
 	.align 2, 0
-.L08078160: .4byte gUnk_080FD080
+.L08078160: .4byte gTownMapHotspots
 .L08078164:
 	ldr r0, [r7, #8]
 	bl func_08010E50
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L0807818C
-	ldr r3, .L08078188 @ =gUnk_080FD0A8
+	ldr r3, .L08078188 @ =gTownMapHotspots + 0x28
 	adds r0, r7, #0
 	mov r1, sb
 	mov r2, r8
@@ -113067,14 +113067,14 @@ func_08078044: @ 0x08078044
 	movs r6, #2
 	b .L080781F2
 	.align 2, 0
-.L08078188: .4byte gUnk_080FD0A8
+.L08078188: .4byte gTownMapHotspots + 0x28
 .L0807818C:
 	ldr r0, [r7, #8]
 	bl func_08010E58
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080781B4
-	ldr r3, .L080781B0 @ =gUnk_080FD094
+	ldr r3, .L080781B0 @ =gTownMapHotspots + 0x14
 	adds r0, r7, #0
 	mov r1, sb
 	mov r2, r8
@@ -113085,7 +113085,7 @@ func_08078044: @ 0x08078044
 	movs r6, #1
 	b .L080781F2
 	.align 2, 0
-.L080781B0: .4byte gUnk_080FD094
+.L080781B0: .4byte gTownMapHotspots + 0x14
 .L080781B4:
 	ldr r0, [r7, #8]
 	ldr r3, .L080781D0 @ =0x00002210
@@ -113110,7 +113110,7 @@ func_08078044: @ 0x08078044
 .L080781D8:
 	cmp r4, #0x27
 	bgt .L080781F2
-	ldr r3, .L08078204 @ =gUnk_080FD080
+	ldr r3, .L08078204 @ =gTownMapHotspots
 	adds r3, r5, r3
 	adds r0, r7, #0
 	mov r1, sb
@@ -113132,7 +113132,7 @@ func_08078044: @ 0x08078044
 	beq .L08078228
 	b .L08078264
 	.align 2, 0
-.L08078204: .4byte gUnk_080FD080
+.L08078204: .4byte gTownMapHotspots
 .L08078208:
 	cmp r6, #0x28
 	bne .L08078264
@@ -113171,31 +113171,31 @@ func_08078044: @ 0x08078044
 	ldrb r0, [r7, #0x14]
 	cmp r0, #0
 	beq .L08078258
-	ldr r0, .L08078254 @ =gUnk_080FD080
+	ldr r0, .L08078254 @ =gTownMapHotspots
 	adds r0, #0xcc
 	b .L08078286
 	.align 2, 0
-.L08078254: .4byte gUnk_080FD080
+.L08078254: .4byte gTownMapHotspots
 .L08078258:
-	ldr r0, .L08078260 @ =gUnk_080FD080
+	ldr r0, .L08078260 @ =gTownMapHotspots
 	adds r0, #0xc8
 	b .L08078286
 	.align 2, 0
-.L08078260: .4byte gUnk_080FD080
+.L08078260: .4byte gTownMapHotspots
 .L08078264:
 	ldrb r0, [r7, #0x14]
 	cmp r0, #0
 	beq .L0807827C
-	ldr r1, .L08078278 @ =gUnk_080FD080
+	ldr r1, .L08078278 @ =gTownMapHotspots
 	lsls r0, r6, #2
 	adds r0, r0, r6
 	lsls r0, r0, #2
 	adds r1, #4
 	b .L08078284
 	.align 2, 0
-.L08078278: .4byte gUnk_080FD080
+.L08078278: .4byte gTownMapHotspots
 .L0807827C:
-	ldr r1, .L080782BC @ =gUnk_080FD080
+	ldr r1, .L080782BC @ =gTownMapHotspots
 	lsls r0, r6, #2
 	adds r0, r0, r6
 	lsls r0, r0, #2
@@ -113231,7 +113231,7 @@ func_08078044: @ 0x08078044
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080782BC: .4byte gUnk_080FD080
+.L080782BC: .4byte gTownMapHotspots
 .L080782C0: .4byte gText_TownMap_Empty
 
 	thumb_func_start func_080782C4

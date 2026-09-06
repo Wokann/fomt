@@ -56,7 +56,7 @@
     .incbin "baserom_jp.gba", 0xFC7E5, (0xFC7E8 - 0xFC7E5)
 
     .section .rodata.town_map_trailer
-    .incbin "baserom_jp.gba", 0xFC7E8, (0xFCCB8 - 0xFC7E8)
+    .incbin "baserom_jp.gba", 0xFCB08, (0xFCCB8 - 0xFCB08)
 
     .section .rodata.library_info_trailer
     .incbin "baserom_jp.gba", 0xFCCF3, (0xFD0B0 - 0xFCCF3)
@@ -582,18 +582,6 @@ gUnk_080FC6C2:
 	.incbin "baserom_us.gba", 0xFD07E, (0xFD080 - 0xFD07E)
 
 	.section .rodata.town_map_trailer
-
-	.global gUnk_080FD080
-gUnk_080FD080:
-	.incbin "baserom_us.gba", 0xFD080, 0x14
-
-	.global gUnk_080FD094
-gUnk_080FD094:
-	.incbin "baserom_us.gba", 0xFD094, 0x14
-
-	.global gUnk_080FD0A8
-gUnk_080FD0A8:
-	.incbin "baserom_us.gba", 0xFD0A8, 0x2F8
 
 	.global gUnk_080FD3A0
 gUnk_080FD3A0:
