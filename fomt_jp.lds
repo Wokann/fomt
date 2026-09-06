@@ -197,6 +197,9 @@ SECTIONS
         src/code_08050E98.o(.text);
         . = 0x50C70; /* JP ROM 0x08050C70, remaining raw UI-adjacent code. */
         asm/code_0803EE94.o(.text.code_08050E50);
+        . = 0x779BC; /* JP/US-shared 30x13 BG map copier. */
+        src/town_map_data.o(.text.copy_bg_map_30x13);
+        . = 0x779EC; asm/code_0803EE94.o(.text.copy_bg_map_30x13_after);
         . = 0x77E4C; /* JP/US-shared town-map cursor hit test. */
         src/town_map_data.o(.text.town_map_hotspot_contains);
         . = 0x77E74; asm/code_0803EE94.o(.text.town_map_hotspot_contains_after);

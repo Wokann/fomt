@@ -131,7 +131,7 @@
     jp_code_0803ee_func func_08077A1C, 0x775A4, 0x777C8
     jp_code_0803ee_func func_08077C40, 0x777C8, 0x77960
     jp_code_0803ee_func func_08077DD8, 0x77960, 0x779BC
-    jp_code_0803ee_func func_08077E34, 0x779BC, 0x779EC
+	.section .text.copy_bg_map_30x13_after
     jp_code_0803ee_func func_08077E64, 0x779EC, 0x77A48
     jp_code_0803ee_func func_08077EC0, 0x77A48, 0x77E4C
     .section .text.town_map_hotspot_contains_after
@@ -112638,34 +112638,7 @@ func_08077DD8: @ 0x08077DD8
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_08077E34
-func_08077E34: @ 0x08077E34
-	push {r4, r5, r6, lr}
-	movs r3, #0
-	lsls r5, r1, #0xb
-	movs r6, #0xc0
-	lsls r6, r6, #0x13
-.L08077E3E:
-	movs r1, #0
-	lsls r0, r3, #6
-	adds r4, r3, #1
-	adds r0, r0, r6
-	adds r3, r5, r0
-.L08077E48:
-	ldrh r0, [r2]
-	strh r0, [r3]
-	adds r2, #2
-	adds r3, #2
-	adds r1, #1
-	cmp r1, #0x1d
-	bls .L08077E48
-	adds r3, r4, #0
-	cmp r3, #0xc
-	bls .L08077E3E
-	pop {r4, r5, r6}
-	pop {r0}
-	bx r0
-	.align 2, 0
+	.section .text.copy_bg_map_30x13_after
 
 	thumb_func_start func_08077E64
 func_08077E64: @ 0x08077E64
@@ -112758,7 +112731,7 @@ func_08077EC0: @ 0x08077EC0
 .L08077F02:
 	adds r0, r4, #0
 	movs r1, #0x1e
-	bl func_08077E34
+	bl CopyBgMap30x13
 	ldr r2, .L08077F54 @ =gUnk_0875553C
 	cmp r5, #0
 	beq .L08077F12
@@ -112766,7 +112739,7 @@ func_08077EC0: @ 0x08077EC0
 .L08077F12:
 	adds r0, r4, #0
 	movs r1, #0x1d
-	bl func_08077E34
+	bl CopyBgMap30x13
 	cmp r6, #0
 	bne .L08077F60
 	movs r0, #5

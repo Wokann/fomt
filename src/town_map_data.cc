@@ -2,6 +2,28 @@
 
 #include "town_map_text.hh"
 
+extern "C" void CopyBgMap30x13(void const *, u32 map_block, u16 const * source)
+    SECTION(".text.copy_bg_map_30x13");
+
+extern "C" void CopyBgMap30x13(void const *, u32 map_block, u16 const * source)
+{
+    u32 next_row;
+
+    for (u32 row = 0; row <= 12; row = next_row)
+    {
+        u32 column = 0;
+        u32 row_offset = row << 6;
+
+        next_row = row + 1;
+
+        volatile u16 * destination = reinterpret_cast<volatile u16 *>(
+            0x06000000 + (map_block << 11) + row_offset);
+
+        for (; column <= 29; column++)
+            destination[column] = *source++;
+    }
+}
+
 extern "C" bool TownMapHotspotContains(
     void const *, u32 cursor_x, u32 cursor_y, TownMapHotspot const * hotspot)
     SECTION(".text.town_map_hotspot_contains");
