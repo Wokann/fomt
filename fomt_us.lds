@@ -145,6 +145,9 @@ SECTIONS
         src/code_08050E98.o(.text);
         . = 0x50EE4; /* US ROM 0x08050EE4, remaining raw UI-adjacent code. */
         asm/code_0803EE94.o(.text.code_08050E50);
+        . = 0x782C4; /* JP/US-shared town-map cursor hit test. */
+        src/town_map_data.o(.text.town_map_hotspot_contains);
+        . = 0x782EC; asm/code_0803EE94.o(.text.town_map_hotspot_contains_after);
 
         src/actor.o(.text);
         src/animal.o(.text);

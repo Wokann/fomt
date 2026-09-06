@@ -134,7 +134,7 @@
     jp_code_0803ee_func func_08077E34, 0x779BC, 0x779EC
     jp_code_0803ee_func func_08077E64, 0x779EC, 0x77A48
     jp_code_0803ee_func func_08077EC0, 0x77A48, 0x77E4C
-    jp_code_0803ee_func func_080782C4, 0x77E4C, 0x77E74
+    .section .text.town_map_hotspot_contains_after
     jp_code_0803ee_func func_080782EC, 0x77E74, 0x78150
     jp_code_0803ee_func func_080785C8, 0x78150, 0x793E8
     jp_code_0803ee_func func_08079860, 0x793E8, 0x79E54
@@ -113042,7 +113042,7 @@ func_08078044: @ 0x08078044
 	adds r0, r7, #0
 	mov r1, sb
 	mov r2, r8
-	bl func_080782C4
+	bl TownMapHotspotContains
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L08078164
@@ -113060,7 +113060,7 @@ func_08078044: @ 0x08078044
 	adds r0, r7, #0
 	mov r1, sb
 	mov r2, r8
-	bl func_080782C4
+	bl TownMapHotspotContains
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L0807818C
@@ -113078,7 +113078,7 @@ func_08078044: @ 0x08078044
 	adds r0, r7, #0
 	mov r1, sb
 	mov r2, r8
-	bl func_080782C4
+	bl TownMapHotspotContains
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080781B4
@@ -113115,7 +113115,7 @@ func_08078044: @ 0x08078044
 	adds r0, r7, #0
 	mov r1, sb
 	mov r2, r8
-	bl func_080782C4
+	bl TownMapHotspotContains
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080781D4
@@ -113234,29 +113234,7 @@ func_08078044: @ 0x08078044
 .L080782BC: .4byte gTownMapHotspots
 .L080782C0: .4byte gText_TownMap_Empty
 
-	thumb_func_start func_080782C4
-func_080782C4: @ 0x080782C4
-	push {r4, lr}
-	movs r4, #0
-	ldrb r0, [r3, #0x10]
-	cmp r0, r1
-	bhi .L080782E2
-	ldrb r0, [r3, #0x12]
-	cmp r1, r0
-	bhi .L080782E2
-	ldrb r0, [r3, #0x11]
-	cmp r0, r2
-	bhi .L080782E2
-	ldrb r3, [r3, #0x13]
-	cmp r2, r3
-	bhi .L080782E2
-	movs r4, #1
-.L080782E2:
-	adds r0, r4, #0
-	pop {r4}
-	pop {r1}
-	bx r1
-	.align 2, 0
+	.section .text.town_map_hotspot_contains_after
 
 	thumb_func_start func_080782EC
 func_080782EC: @ 0x080782EC

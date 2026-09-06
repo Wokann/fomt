@@ -2,6 +2,24 @@
 
 #include "town_map_text.hh"
 
+extern "C" bool TownMapHotspotContains(
+    void const *, u32 cursor_x, u32 cursor_y, TownMapHotspot const * hotspot)
+    SECTION(".text.town_map_hotspot_contains");
+
+extern "C" bool TownMapHotspotContains(
+    void const *, u32 cursor_x, u32 cursor_y, TownMapHotspot const * hotspot)
+{
+    bool result = false;
+
+    if (hotspot->min_cursor_x <= cursor_x &&
+        cursor_x <= hotspot->max_cursor_x &&
+        hotspot->min_cursor_y <= cursor_y &&
+        cursor_y <= hotspot->max_cursor_y)
+        result = true;
+
+    return result;
+}
+
 TownMapHotspot const gTownMapHotspots[TOWN_MAP_HOTSPOT_COUNT] SECTION(".rodata.town_map_hotspots") = {
     { gText_TownMap_MountainCottageLabel, gText_TownMap_MountainCottageLabel, 0x00000000, 0x0168, 0x0090, 0x02, 0x29, 0x14, 0x37 },
     { gText_TownMap_SeasideCottageLabel, gText_TownMap_SeasideCottageLabel, 0x00000001, 0x0104, 0x01F8, 0xDB, 0x31, 0xEC, 0x42 },

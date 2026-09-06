@@ -25,6 +25,9 @@ enum
 
 extern TownMapHotspot const gTownMapHotspots[TOWN_MAP_HOTSPOT_COUNT];
 
+bool TownMapHotspotContains(
+    void const *, u32 cursor_x, u32 cursor_y, TownMapHotspot const * hotspot);
+
 EXTERN_C_END
 
 #endif // TOWN_MAP_HH
