@@ -89349,21 +89349,21 @@ sub_0806C492: @ 0x0806C492
 	movs r3, #0x9a
 	lsls r3, r3, #1
 	adds r0, r7, r3
-	ldr r1, .L0806C910 @ =gUnk_080FB9C8
-	ldr r2, .L0806C914 @ =gUnk_080FB9DC
-	ldr r3, .L0806C918 @ =gUnk_080FB9E0
+	ldr r1, .L0806C910 @ =gText_AnimalContest_ChickenConfirmation
+	ldr r2, .L0806C914 @ =gText_AnimalContest_Yes
+	ldr r3, .L0806C918 @ =gText_AnimalContest_No
 	b .L0806C92A
 	.align 2, 0
-.L0806C910: .4byte gUnk_080FB9C8
-.L0806C914: .4byte gUnk_080FB9DC
-.L0806C918: .4byte gUnk_080FB9E0
+.L0806C910: .4byte gText_AnimalContest_ChickenConfirmation
+.L0806C914: .4byte gText_AnimalContest_Yes
+.L0806C918: .4byte gText_AnimalContest_No
 .L0806C91C:
 	movs r4, #0x9a
 	lsls r4, r4, #1
 	adds r0, r7, r4
-	ldr r1, .L0806C938 @ =gUnk_080FB9E4
-	ldr r2, .L0806C93C @ =gUnk_080FB9DC
-	ldr r3, .L0806C940 @ =gUnk_080FB9E0
+	ldr r1, .L0806C938 @ =gText_AnimalContest_CowConfirmation
+	ldr r2, .L0806C93C @ =gText_AnimalContest_Yes
+	ldr r3, .L0806C940 @ =gText_AnimalContest_No
 	movs r4, #0
 .L0806C92A:
 	str r4, [sp]
@@ -89372,16 +89372,16 @@ sub_0806C492: @ 0x0806C492
 	bl func_08050E30
 	b .L0806C95C
 	.align 2, 0
-.L0806C938: .4byte gUnk_080FB9E4
-.L0806C93C: .4byte gUnk_080FB9DC
-.L0806C940: .4byte gUnk_080FB9E0
+.L0806C938: .4byte gText_AnimalContest_CowConfirmation
+.L0806C93C: .4byte gText_AnimalContest_Yes
+.L0806C940: .4byte gText_AnimalContest_No
 .L0806C944:
 	movs r5, #0x9a
 	lsls r5, r5, #1
 	adds r0, r7, r5
-	ldr r1, .L0806C964 @ =gUnk_080FB9F4
-	ldr r2, .L0806C968 @ =gUnk_080FB9DC
-	ldr r3, .L0806C96C @ =gUnk_080FB9E0
+	ldr r1, .L0806C964 @ =gText_AnimalContest_SheepConfirmation
+	ldr r2, .L0806C968 @ =gText_AnimalContest_Yes
+	ldr r3, .L0806C96C @ =gText_AnimalContest_No
 	movs r4, #0
 	str r4, [sp]
 	str r4, [sp, #4]
@@ -89393,9 +89393,9 @@ sub_0806C492: @ 0x0806C492
 	movs r0, #3
 	b .L0806CDE8
 	.align 2, 0
-.L0806C964: .4byte gUnk_080FB9F4
-.L0806C968: .4byte gUnk_080FB9DC
-.L0806C96C: .4byte gUnk_080FB9E0
+.L0806C964: .4byte gText_AnimalContest_SheepConfirmation
+.L0806C968: .4byte gText_AnimalContest_Yes
+.L0806C96C: .4byte gText_AnimalContest_No
 .L0806C970: .4byte 0x00004174
 .L0806C974:
 	ldr r0, [r7, #0x10]
@@ -89414,25 +89414,25 @@ sub_0806C492: @ 0x0806C492
 	movs r1, #0x9a
 	lsls r1, r1, #1
 	adds r0, r7, r1
-	ldr r1, .L0806C998 @ =gUnk_080FBA08
+	ldr r1, .L0806C998 @ =gText_AnimalContest_BabyChickIneligible
 	bl func_08050D8C
 	b .L0806C9BC
 	.align 2, 0
-.L0806C998: .4byte gUnk_080FBA08
+.L0806C998: .4byte gText_AnimalContest_BabyChickIneligible
 .L0806C99C:
 	movs r2, #0x9a
 	lsls r2, r2, #1
 	adds r0, r7, r2
-	ldr r1, .L0806C9AC @ =gUnk_080FBA3C
+	ldr r1, .L0806C9AC @ =gText_AnimalContest_AdultCowIneligible
 	bl func_08050D8C
 	b .L0806C9BC
 	.align 2, 0
-.L0806C9AC: .4byte gUnk_080FBA3C
+.L0806C9AC: .4byte gText_AnimalContest_AdultCowIneligible
 .L0806C9B0:
 	movs r3, #0x9a
 	lsls r3, r3, #1
 	adds r0, r7, r3
-	ldr r1, .L0806C9C4 @ =gUnk_080FBA70
+	ldr r1, .L0806C9C4 @ =gText_AnimalContest_AdultSheepIneligible
 	bl func_08050D8C
 .L0806C9BC:
 	ldr r4, .L0806C9C8 @ =0x00004174
@@ -89440,7 +89440,7 @@ sub_0806C492: @ 0x0806C492
 	movs r0, #2
 	b .L0806CDE8
 	.align 2, 0
-.L0806C9C4: .4byte gUnk_080FBA70
+.L0806C9C4: .4byte gText_AnimalContest_AdultSheepIneligible
 .L0806C9C8: .4byte 0x00004174
 .L0806C9CC:
 	ldr r0, [r7, #0x10]
@@ -89459,25 +89459,25 @@ sub_0806C492: @ 0x0806C492
 	movs r5, #0x9a
 	lsls r5, r5, #1
 	adds r0, r7, r5
-	ldr r1, .L0806C9F0 @ =gUnk_080FBAA8
+	ldr r1, .L0806C9F0 @ =gText_AnimalContest_SickChickenIneligible
 	bl func_08050D8C
 	b .L0806CA14
 	.align 2, 0
-.L0806C9F0: .4byte gUnk_080FBAA8
+.L0806C9F0: .4byte gText_AnimalContest_SickChickenIneligible
 .L0806C9F4:
 	movs r6, #0x9a
 	lsls r6, r6, #1
 	adds r0, r7, r6
-	ldr r1, .L0806CA04 @ =gUnk_080FBAE0
+	ldr r1, .L0806CA04 @ =gText_AnimalContest_SickCowIneligible
 	bl func_08050D8C
 	b .L0806CA14
 	.align 2, 0
-.L0806CA04: .4byte gUnk_080FBAE0
+.L0806CA04: .4byte gText_AnimalContest_SickCowIneligible
 .L0806CA08:
 	movs r1, #0x9a
 	lsls r1, r1, #1
 	adds r0, r7, r1
-	ldr r1, .L0806CA1C @ =gUnk_080FBB14
+	ldr r1, .L0806CA1C @ =gText_AnimalContest_SickSheepIneligible
 	bl func_08050D8C
 .L0806CA14:
 	ldr r2, .L0806CA20 @ =0x00004174
@@ -89485,7 +89485,7 @@ sub_0806C492: @ 0x0806C492
 	movs r0, #2
 	b .L0806CDE8
 	.align 2, 0
-.L0806CA1C: .4byte gUnk_080FBB14
+.L0806CA1C: .4byte gText_AnimalContest_SickSheepIneligible
 .L0806CA20: .4byte 0x00004174
 .L0806CA24:
 	ldr r0, [r7, #0x10]
@@ -89498,16 +89498,16 @@ sub_0806C492: @ 0x0806C492
 	movs r3, #0x9a
 	lsls r3, r3, #1
 	adds r0, r7, r3
-	ldr r1, .L0806CA40 @ =gUnk_080FBB4C
+	ldr r1, .L0806CA40 @ =gText_AnimalContest_PregnantCowIneligible
 	bl func_08050D8C
 	b .L0806CA50
 	.align 2, 0
-.L0806CA40: .4byte gUnk_080FBB4C
+.L0806CA40: .4byte gText_AnimalContest_PregnantCowIneligible
 .L0806CA44:
 	movs r4, #0x9a
 	lsls r4, r4, #1
 	adds r0, r7, r4
-	ldr r1, .L0806CA58 @ =gUnk_080FBB80
+	ldr r1, .L0806CA58 @ =gText_AnimalContest_PregnantSheepIneligible
 	bl func_08050D8C
 .L0806CA50:
 	ldr r5, .L0806CA5C @ =0x00004174
@@ -89515,20 +89515,20 @@ sub_0806C492: @ 0x0806C492
 	movs r0, #2
 	b .L0806CDE8
 	.align 2, 0
-.L0806CA58: .4byte gUnk_080FBB80
+.L0806CA58: .4byte gText_AnimalContest_PregnantSheepIneligible
 .L0806CA5C: .4byte 0x00004174
 .L0806CA60:
 	movs r6, #0x9a
 	lsls r6, r6, #1
 	adds r0, r7, r6
-	ldr r1, .L0806CA74 @ =gUnk_080FBBB8
+	ldr r1, .L0806CA74 @ =gText_AnimalContest_ShornSheepIneligible
 	bl func_08050D8C
 	ldr r0, .L0806CA78 @ =0x00004174
 	adds r1, r7, r0
 	movs r0, #2
 	b .L0806CDE8
 	.align 2, 0
-.L0806CA74: .4byte gUnk_080FBBB8
+.L0806CA74: .4byte gText_AnimalContest_ShornSheepIneligible
 .L0806CA78: .4byte 0x00004174
 .L0806CA7C:
 	mov r1, r8
@@ -89581,7 +89581,7 @@ sub_0806C492: @ 0x0806C492
 	beq .L0806CAF0
 	b .L0806CDEA
 .L0806CAD8:
-	ldr r1, .L0806CAE8 @ =gUnk_080FBBEC
+	ldr r1, .L0806CAE8 @ =gText_AnimalContest_EntryAccepted
 	adds r0, r4, #0
 	bl func_08050D8C
 	ldr r0, .L0806CAEC @ =0x00004174
@@ -89589,10 +89589,10 @@ sub_0806C492: @ 0x0806C492
 	movs r0, #8
 	b .L0806CDE8
 	.align 2, 0
-.L0806CAE8: .4byte gUnk_080FBBEC
+.L0806CAE8: .4byte gText_AnimalContest_EntryAccepted
 .L0806CAEC: .4byte 0x00004174
 .L0806CAF0:
-	ldr r1, .L0806CB00 @ =gUnk_080FBC18
+	ldr r1, .L0806CB00 @ =gText_AnimalContest_ChickenSelectionPrompt
 	adds r0, r4, #0
 	bl func_08050D8C
 	ldr r2, .L0806CB04 @ =0x00004174
@@ -89600,7 +89600,7 @@ sub_0806C492: @ 0x0806C492
 	movs r0, #6
 	b .L0806CDE8
 	.align 2, 0
-.L0806CB00: .4byte gUnk_080FBC18
+.L0806CB00: .4byte gText_AnimalContest_ChickenSelectionPrompt
 .L0806CB04: .4byte 0x00004174
 .L0806CB08:
 	movs r3, #0x9a
@@ -89614,7 +89614,7 @@ sub_0806C492: @ 0x0806C492
 	beq .L0806CB38
 	b .L0806CDEA
 .L0806CB1E:
-	ldr r1, .L0806CB30 @ =gUnk_080FBBEC
+	ldr r1, .L0806CB30 @ =gText_AnimalContest_EntryAccepted
 	adds r0, r4, #0
 	bl func_08050D8C
 	ldr r4, .L0806CB34 @ =0x00004174
@@ -89622,10 +89622,10 @@ sub_0806C492: @ 0x0806C492
 	movs r0, #8
 	b .L0806CDE8
 	.align 2, 0
-.L0806CB30: .4byte gUnk_080FBBEC
+.L0806CB30: .4byte gText_AnimalContest_EntryAccepted
 .L0806CB34: .4byte 0x00004174
 .L0806CB38:
-	ldr r1, .L0806CB48 @ =gUnk_080FBC48
+	ldr r1, .L0806CB48 @ =gText_AnimalContest_CowSelectionPrompt
 	adds r0, r4, #0
 	bl func_08050D8C
 	ldr r5, .L0806CB4C @ =0x00004174
@@ -89633,7 +89633,7 @@ sub_0806C492: @ 0x0806C492
 	movs r0, #6
 	b .L0806CDE8
 	.align 2, 0
-.L0806CB48: .4byte gUnk_080FBC48
+.L0806CB48: .4byte gText_AnimalContest_CowSelectionPrompt
 .L0806CB4C: .4byte 0x00004174
 .L0806CB50:
 	movs r6, #0x9a
@@ -89647,7 +89647,7 @@ sub_0806C492: @ 0x0806C492
 	beq .L0806CB80
 	b .L0806CDEA
 .L0806CB66:
-	ldr r1, .L0806CB78 @ =gUnk_080FBBEC
+	ldr r1, .L0806CB78 @ =gText_AnimalContest_EntryAccepted
 	adds r0, r4, #0
 	bl func_08050D8C
 	ldr r0, .L0806CB7C @ =0x00004174
@@ -89655,10 +89655,10 @@ sub_0806C492: @ 0x0806C492
 	movs r0, #8
 	b .L0806CDE8
 	.align 2, 0
-.L0806CB78: .4byte gUnk_080FBBEC
+.L0806CB78: .4byte gText_AnimalContest_EntryAccepted
 .L0806CB7C: .4byte 0x00004174
 .L0806CB80:
-	ldr r1, .L0806CB90 @ =gUnk_080FBC70
+	ldr r1, .L0806CB90 @ =gText_AnimalContest_SheepSelectionPrompt
 	adds r0, r4, #0
 	bl func_08050D8C
 	ldr r2, .L0806CB94 @ =0x00004174
@@ -89666,7 +89666,7 @@ sub_0806C492: @ 0x0806C492
 	movs r0, #6
 	b .L0806CDE8
 	.align 2, 0
-.L0806CB90: .4byte gUnk_080FBC70
+.L0806CB90: .4byte gText_AnimalContest_SheepSelectionPrompt
 .L0806CB94: .4byte 0x00004174
 .L0806CB98:
 	mov r3, r8
@@ -89690,9 +89690,9 @@ sub_0806C492: @ 0x0806C492
 	movs r5, #0x9a
 	lsls r5, r5, #1
 	adds r0, r7, r5
-	ldr r1, .L0806CBD4 @ =gUnk_080FBC9C
-	ldr r2, .L0806CBD8 @ =gUnk_080FB9DC
-	ldr r3, .L0806CBDC @ =gUnk_080FB9E0
+	ldr r1, .L0806CBD4 @ =gText_AnimalContest_EntryDeclinedQuestion
+	ldr r2, .L0806CBD8 @ =gText_AnimalContest_Yes
+	ldr r3, .L0806CBDC @ =gText_AnimalContest_No
 	str r4, [sp]
 	str r4, [sp, #4]
 	str r4, [sp, #8]
@@ -89702,17 +89702,17 @@ sub_0806C492: @ 0x0806C492
 	movs r0, #5
 	b .L0806CDE8
 	.align 2, 0
-.L0806CBD4: .4byte gUnk_080FBC9C
-.L0806CBD8: .4byte gUnk_080FB9DC
-.L0806CBDC: .4byte gUnk_080FB9E0
+.L0806CBD4: .4byte gText_AnimalContest_EntryDeclinedQuestion
+.L0806CBD8: .4byte gText_AnimalContest_Yes
+.L0806CBDC: .4byte gText_AnimalContest_No
 .L0806CBE0: .4byte 0x00004174
 .L0806CBE4:
 	movs r1, #0x9a
 	lsls r1, r1, #1
 	adds r0, r7, r1
-	ldr r1, .L0806CC04 @ =gUnk_080FBC9C
-	ldr r2, .L0806CC08 @ =gUnk_080FB9DC
-	ldr r3, .L0806CC0C @ =gUnk_080FB9E0
+	ldr r1, .L0806CC04 @ =gText_AnimalContest_EntryDeclinedQuestion
+	ldr r2, .L0806CC08 @ =gText_AnimalContest_Yes
+	ldr r3, .L0806CC0C @ =gText_AnimalContest_No
 	movs r4, #0
 	str r4, [sp]
 	str r4, [sp, #4]
@@ -89723,17 +89723,17 @@ sub_0806C492: @ 0x0806C492
 	movs r0, #5
 	b .L0806CDE8
 	.align 2, 0
-.L0806CC04: .4byte gUnk_080FBC9C
-.L0806CC08: .4byte gUnk_080FB9DC
-.L0806CC0C: .4byte gUnk_080FB9E0
+.L0806CC04: .4byte gText_AnimalContest_EntryDeclinedQuestion
+.L0806CC08: .4byte gText_AnimalContest_Yes
+.L0806CC0C: .4byte gText_AnimalContest_No
 .L0806CC10: .4byte 0x00004174
 .L0806CC14:
 	movs r3, #0x9a
 	lsls r3, r3, #1
 	adds r0, r7, r3
-	ldr r1, .L0806CC34 @ =gUnk_080FBC9C
-	ldr r2, .L0806CC38 @ =gUnk_080FB9DC
-	ldr r3, .L0806CC3C @ =gUnk_080FB9E0
+	ldr r1, .L0806CC34 @ =gText_AnimalContest_EntryDeclinedQuestion
+	ldr r2, .L0806CC38 @ =gText_AnimalContest_Yes
+	ldr r3, .L0806CC3C @ =gText_AnimalContest_No
 	movs r4, #0
 	str r4, [sp]
 	str r4, [sp, #4]
@@ -89744,9 +89744,9 @@ sub_0806C492: @ 0x0806C492
 	movs r0, #5
 	b .L0806CDE8
 	.align 2, 0
-.L0806CC34: .4byte gUnk_080FBC9C
-.L0806CC38: .4byte gUnk_080FB9DC
-.L0806CC3C: .4byte gUnk_080FB9E0
+.L0806CC34: .4byte gText_AnimalContest_EntryDeclinedQuestion
+.L0806CC38: .4byte gText_AnimalContest_Yes
+.L0806CC3C: .4byte gText_AnimalContest_No
 .L0806CC40: .4byte 0x00004174
 .L0806CC44:
 	mov r5, r8
@@ -89778,7 +89778,7 @@ sub_0806C492: @ 0x0806C492
 	beq .L0806CC90
 	b .L0806CDEA
 .L0806CC78:
-	ldr r1, .L0806CC88 @ =gUnk_080FBCB8
+	ldr r1, .L0806CC88 @ =gText_AnimalContest_ChickenEntryDeclinedResponse
 	adds r0, r4, #0
 	bl func_08050D8C
 	ldr r0, .L0806CC8C @ =0x00004174
@@ -89786,10 +89786,10 @@ sub_0806C492: @ 0x0806C492
 	movs r0, #7
 	b .L0806CDE8
 	.align 2, 0
-.L0806CC88: .4byte gUnk_080FBCB8
+.L0806CC88: .4byte gText_AnimalContest_ChickenEntryDeclinedResponse
 .L0806CC8C: .4byte 0x00004174
 .L0806CC90:
-	ldr r1, .L0806CCA0 @ =gUnk_080FBC18
+	ldr r1, .L0806CCA0 @ =gText_AnimalContest_ChickenSelectionPrompt
 	adds r0, r4, #0
 	bl func_08050D8C
 	ldr r2, .L0806CCA4 @ =0x00004174
@@ -89797,7 +89797,7 @@ sub_0806C492: @ 0x0806C492
 	movs r0, #6
 	b .L0806CDE8
 	.align 2, 0
-.L0806CCA0: .4byte gUnk_080FBC18
+.L0806CCA0: .4byte gText_AnimalContest_ChickenSelectionPrompt
 .L0806CCA4: .4byte 0x00004174
 .L0806CCA8:
 	movs r3, #0x9a
@@ -89811,7 +89811,7 @@ sub_0806C492: @ 0x0806C492
 	beq .L0806CCD8
 	b .L0806CDEA
 .L0806CCBE:
-	ldr r1, .L0806CCD0 @ =gUnk_080FBCE0
+	ldr r1, .L0806CCD0 @ =gText_AnimalContest_LivestockEntryDeclinedResponse
 	adds r0, r4, #0
 	bl func_08050D8C
 	ldr r4, .L0806CCD4 @ =0x00004174
@@ -89819,10 +89819,10 @@ sub_0806C492: @ 0x0806C492
 	movs r0, #7
 	b .L0806CDE8
 	.align 2, 0
-.L0806CCD0: .4byte gUnk_080FBCE0
+.L0806CCD0: .4byte gText_AnimalContest_LivestockEntryDeclinedResponse
 .L0806CCD4: .4byte 0x00004174
 .L0806CCD8:
-	ldr r1, .L0806CCE8 @ =gUnk_080FBC48
+	ldr r1, .L0806CCE8 @ =gText_AnimalContest_CowSelectionPrompt
 	adds r0, r4, #0
 	bl func_08050D8C
 	ldr r5, .L0806CCEC @ =0x00004174
@@ -89830,7 +89830,7 @@ sub_0806C492: @ 0x0806C492
 	movs r0, #6
 	b .L0806CDE8
 	.align 2, 0
-.L0806CCE8: .4byte gUnk_080FBC48
+.L0806CCE8: .4byte gText_AnimalContest_CowSelectionPrompt
 .L0806CCEC: .4byte 0x00004174
 .L0806CCF0:
 	movs r6, #0x9a
@@ -89844,7 +89844,7 @@ sub_0806C492: @ 0x0806C492
 	beq .L0806CD20
 	b .L0806CDEA
 .L0806CD06:
-	ldr r1, .L0806CD18 @ =gUnk_080FBCE0
+	ldr r1, .L0806CD18 @ =gText_AnimalContest_LivestockEntryDeclinedResponse
 	adds r0, r4, #0
 	bl func_08050D8C
 	ldr r0, .L0806CD1C @ =0x00004174
@@ -89852,10 +89852,10 @@ sub_0806C492: @ 0x0806C492
 	movs r0, #7
 	b .L0806CDE8
 	.align 2, 0
-.L0806CD18: .4byte gUnk_080FBCE0
+.L0806CD18: .4byte gText_AnimalContest_LivestockEntryDeclinedResponse
 .L0806CD1C: .4byte 0x00004174
 .L0806CD20:
-	ldr r1, .L0806CD30 @ =gUnk_080FBC70
+	ldr r1, .L0806CD30 @ =gText_AnimalContest_SheepSelectionPrompt
 	adds r0, r4, #0
 	bl func_08050D8C
 	ldr r2, .L0806CD34 @ =0x00004174
@@ -89863,7 +89863,7 @@ sub_0806C492: @ 0x0806C492
 	movs r0, #6
 	b .L0806CDE8
 	.align 2, 0
-.L0806CD30: .4byte gUnk_080FBC70
+.L0806CD30: .4byte gText_AnimalContest_SheepSelectionPrompt
 .L0806CD34: .4byte 0x00004174
 .L0806CD38:
 	mov r3, r8
@@ -92112,9 +92112,9 @@ func_0806DD9C: @ 0x0806DD9C
 	movs r0, #5
 	strh r0, [r5]
 	ldr r0, [r7, #0xc]
-	ldr r1, .L0806DEB4 @ =gUnk_080FBD18
-	ldr r2, .L0806DEB8 @ =gUnk_080FBD28
-	ldr r3, .L0806DEBC @ =gUnk_080FBD2C
+	ldr r1, .L0806DEB4 @ =gText_AnimalContest_FinalConfirmation
+	ldr r2, .L0806DEB8 @ =gText_AnimalContest_FinalYes
+	ldr r3, .L0806DEBC @ =gText_AnimalContest_FinalNo
 	str r4, [sp]
 	str r4, [sp, #4]
 	str r4, [sp, #8]
@@ -92131,9 +92131,9 @@ func_0806DD9C: @ 0x0806DD9C
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L0806DEB4: .4byte gUnk_080FBD18
-.L0806DEB8: .4byte gUnk_080FBD28
-.L0806DEBC: .4byte gUnk_080FBD2C
+.L0806DEB4: .4byte gText_AnimalContest_FinalConfirmation
+.L0806DEB8: .4byte gText_AnimalContest_FinalYes
+.L0806DEBC: .4byte gText_AnimalContest_FinalNo
 
 	thumb_func_start func_0806DEC0
 func_0806DEC0: @ 0x0806DEC0
