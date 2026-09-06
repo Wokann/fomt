@@ -84401,7 +84401,7 @@ func_0806A1F4: @ 0x0806A1F4
 	mov r8, r0
 	ldr r5, .L0806A480 @ =0x06001400
 	mov r6, sb
-	ldr r4, .L0806A484 @ =gUnk_080FB966
+	ldr r4, .L0806A484 @ =gAnimalContestStatusPrefixText + 6
 .L0806A31C:
 	ldrh r1, [r4]
 	mov r2, r8
@@ -84452,7 +84452,7 @@ func_0806A1F4: @ 0x0806A1F4
 	adds r1, r4, #0
 	movs r2, #0
 	bl func_0804E7A0
-	ldr r1, .L0806A488 @ =gUnk_080FB97C
+	ldr r1, .L0806A488 @ =gAnimalContestStatusText
 	movs r2, #1
 	mov sb, r2
 	add r0, sp, #0x100
@@ -84568,8 +84568,8 @@ func_0806A1F4: @ 0x0806A1F4
 .L0806A478: .4byte 0x00030003
 .L0806A47C: .4byte 0x0600F800
 .L0806A480: .4byte 0x06001400
-.L0806A484: .4byte gUnk_080FB966
-.L0806A488: .4byte gUnk_080FB97C
+.L0806A484: .4byte gAnimalContestStatusPrefixText + 6
+.L0806A488: .4byte gAnimalContestStatusText
 .L0806A48C: .4byte 0x00000854
 .L0806A490: .4byte 0x000009D8
 .L0806A494: .4byte 0x00000B5C
@@ -84757,7 +84757,7 @@ func_0806A1F4: @ 0x0806A1F4
 	movs r4, #0
 	ldr r5, [sp, #0x2b8]
 	strh r0, [r5, #2]
-	ldr r3, .L0806A660 @ =gUnk_080FB988
+	ldr r3, .L0806A660 @ =gAnimalContestStatusText + 0xC
 	movs r5, #1
 	movs r1, #8
 	movs r2, #2
@@ -84809,7 +84809,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r0, [r1, #4]
 	b .L0806A73A
 	.align 2, 0
-.L0806A660: .4byte gUnk_080FB988
+.L0806A660: .4byte gAnimalContestStatusText + 0xC
 .L0806A664:
 	mov r8, r1
 	add r1, sp, #0x114
@@ -84948,7 +84948,7 @@ func_0806A1F4: @ 0x0806A1F4
 	ldr r1, [sp, #0x36c]
 	movs r2, #0
 	bl func_0804E7A0
-	ldr r1, .L0806A7CC @ =gUnk_080FB994
+	ldr r1, .L0806A7CC @ =gAnimalContestStatusText + 0x18
 	movs r3, #1
 	mov sb, r3
 	add r0, sp, #0x11c
@@ -85002,7 +85002,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r6, [sp, #0x2f0]
 	b .L0806A8AE
 	.align 2, 0
-.L0806A7CC: .4byte gUnk_080FB994
+.L0806A7CC: .4byte gAnimalContestStatusText + 0x18
 .L0806A7D0:
 	mov r8, r1
 	add r1, sp, #0x124
@@ -85133,7 +85133,7 @@ func_0806A1F4: @ 0x0806A1F4
 	adds r1, r0, #0
 	adds r1, #0x20
 	str r1, [sp, #0x214]
-	ldr r3, .L0806A924 @ =gUnk_080FB9A0
+	ldr r3, .L0806A924 @ =gAnimalContestStatusText + 0x24
 	movs r4, #0
 	movs r5, #1
 	movs r1, #6
@@ -85185,7 +85185,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r0, [r1, #4]
 	b .L0806A9FE
 	.align 2, 0
-.L0806A924: .4byte gUnk_080FB9A0
+.L0806A924: .4byte gAnimalContestStatusText + 0x24
 .L0806A928:
 	mov r8, r1
 	add r1, sp, #0x130
@@ -85312,7 +85312,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r0, [sp, #0x210]
 	adds r4, r0, #0
 	adds r4, #0x20
-	ldr r3, .L0806AA78 @ =gUnk_080FB9A8
+	ldr r3, .L0806AA78 @ =gAnimalContestStatusText + 0x2C
 	movs r5, #0
 	movs r1, #1
 	mov sb, r1
@@ -85366,7 +85366,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r0, [r3, #4]
 	b .L0806AB54
 	.align 2, 0
-.L0806AA78: .4byte gUnk_080FB9A8
+.L0806AA78: .4byte gAnimalContestStatusText + 0x2C
 .L0806AA7C:
 	mov r8, r1
 	add r1, sp, #0x13c
@@ -85494,7 +85494,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r3, [sp, #0x210]
 	adds r4, r3, #0
 	adds r4, #0x20
-	ldr r3, .L0806ABCC @ =gUnk_080FB9B0
+	ldr r3, .L0806ABCC @ =gAnimalContestStatusText + 0x34
 	movs r5, #0
 	movs r6, #1
 	mov sb, r6
@@ -85547,7 +85547,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r0, [r3, #4]
 	b .L0806ACA8
 	.align 2, 0
-.L0806ABCC: .4byte gUnk_080FB9B0
+.L0806ABCC: .4byte gAnimalContestStatusText + 0x34
 .L0806ABD0:
 	mov r8, r1
 	add r1, sp, #0x148
@@ -85675,7 +85675,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r3, [sp, #0x210]
 	adds r4, r3, #0
 	adds r4, #0x20
-	ldr r3, .L0806AD24 @ =gUnk_080FB9B8
+	ldr r3, .L0806AD24 @ =gAnimalContestStatusText + 0x3C
 	movs r5, #0
 	movs r6, #1
 	mov sb, r6
@@ -85731,7 +85731,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r4, [sp, #0x2ec]
 	b .L0806AE06
 	.align 2, 0
-.L0806AD24: .4byte gUnk_080FB9B8
+.L0806AD24: .4byte gAnimalContestStatusText + 0x3C
 .L0806AD28:
 	mov r8, r1
 	add r1, sp, #0x154
@@ -85862,7 +85862,7 @@ func_0806A1F4: @ 0x0806A1F4
 	adds r1, r0, #0
 	adds r1, #0x20
 	str r1, [sp, #0x218]
-	ldr r2, .L0806AE74 @ =gUnk_080FB9C0
+	ldr r2, .L0806AE74 @ =gAnimalContestStatusText + 0x44
 	movs r3, #0
 	movs r4, #1
 	movs r0, #2
@@ -85911,7 +85911,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r0, [r6, #4]
 	b .L0806AF4E
 	.align 2, 0
-.L0806AE74: .4byte gUnk_080FB9C0
+.L0806AE74: .4byte gAnimalContestStatusText + 0x44
 .L0806AE78:
 	mov r8, r1
 	add r1, sp, #0x160
@@ -86038,7 +86038,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r0, [sp, #0x210]
 	adds r0, #0x20
 	str r0, [sp, #0x21c]
-	ldr r2, .L0806AFBC @ =gUnk_080FB9C4
+	ldr r2, .L0806AFBC @ =gAnimalContestStatusText + 0x48
 	movs r3, #0
 	movs r4, #1
 	movs r0, #2
@@ -86087,7 +86087,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r0, [r6, #4]
 	b .L0806B096
 	.align 2, 0
-.L0806AFBC: .4byte gUnk_080FB9C4
+.L0806AFBC: .4byte gAnimalContestStatusText + 0x48
 .L0806AFC0:
 	mov r8, r1
 	add r1, sp, #0x16c

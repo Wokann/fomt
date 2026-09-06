@@ -101,5 +101,24 @@ char const gText_AnimalContest_FinalYes[] ANIMAL_CONTEST_CONFIRMATION_TEXT =
 char const gText_AnimalContest_FinalNo[] ANIMAL_CONTEST_CONFIRMATION_TEXT =
     "いいえ";
 
+extern AnimalContestStatusPrefixText const gAnimalContestStatusPrefixText
+    ANIMAL_CONTEST_STATUS_PREFIX_TEXT = {
+        "なし",
+        "O１２３４５６７８９\x82",
+    };
+
+extern AnimalContestStatusText const gAnimalContestStatusText
+    ANIMAL_CONTEST_STATUS_TEXT = {
+        "健康",
+        "不機嫌",
+        "病気",
+        "春",
+        "夏",
+        "秋",
+        "冬",
+        "才",
+        "日",
+    };
+
 #undef ANIMAL_CONTEST_CONFIRMATION_TEXT
 #undef ANIMAL_CONTEST_TEXT

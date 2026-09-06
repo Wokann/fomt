@@ -90,5 +90,35 @@ char const gText_AnimalContest_FinalYes[] ANIMAL_CONTEST_CONFIRMATION_TEXT =
 char const gText_AnimalContest_FinalNo[] ANIMAL_CONTEST_CONFIRMATION_TEXT =
     "No";
 
+extern AnimalContestStatusPrefixText const gAnimalContestStatusPrefixText
+    ANIMAL_CONTEST_STATUS_PREFIX_TEXT = {
+        "N/A ",
+        {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+        },
+    };
+
+extern AnimalContestStatusText const gAnimalContestStatusText
+    ANIMAL_CONTEST_STATUS_TEXT = {
+        "Healthy ",
+        "Unhappy ",
+        "Sick    ",
+        "Spring",
+        "Summer",
+        "Fall  ",
+        "Winter",
+        "Y ",
+        "D ",
+    };
+
 #undef ANIMAL_CONTEST_CONFIRMATION_TEXT
 #undef ANIMAL_CONTEST_TEXT
