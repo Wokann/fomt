@@ -120979,7 +120979,7 @@ sub_0807C194: @ 0x0807C194
 	movs r0, #0
 	strb r0, [r1]
 .L0807C3C0:
-	ldr r0, .L0807C47C @ =gUnk_08117828
+	ldr r0, .L0807C47C @ =gShopCommonOwnedQuantityLabelTextRef
 	ldr r0, [r0]
 	mov sb, r0
 	adds r0, r4, #0
@@ -121030,7 +121030,7 @@ sub_0807C194: @ 0x0807C194
 	movs r0, #0
 	strb r0, [r1]
 .L0807C42A:
-	ldr r0, .L0807C480 @ =gUnk_08117814
+	ldr r0, .L0807C480 @ =gShopCommonQuantitySuffixTextRef
 	ldr r0, [r0]
 	mov r8, r0
 	adds r0, r4, #0
@@ -121065,8 +121065,8 @@ sub_0807C194: @ 0x0807C194
 .L0807C470: .4byte 0x00000684
 .L0807C474: .4byte 0x000022B4
 .L0807C478: .4byte gText_PoultryShop_BlankLinePair
-.L0807C47C: .4byte gUnk_08117828
-.L0807C480: .4byte gUnk_08117814
+.L0807C47C: .4byte gShopCommonOwnedQuantityLabelTextRef
+.L0807C480: .4byte gShopCommonQuantitySuffixTextRef
 .L0807C484:
 	ldr r3, [r7, #8]
 	ldr r4, .L0807C4B8 @ =0x00001AA8
@@ -121278,7 +121278,7 @@ sub_0807C194: @ 0x0807C194
 	movs r0, #0
 	strb r0, [r1]
 .L0807C65A:
-	ldr r0, .L0807C72C @ =gUnk_08117828
+	ldr r0, .L0807C72C @ =gShopCommonOwnedQuantityLabelTextRef
 	ldr r0, [r0]
 	mov sb, r0
 	adds r0, r4, #0
@@ -121329,7 +121329,7 @@ sub_0807C194: @ 0x0807C194
 	movs r0, #0
 	strb r0, [r1]
 .L0807C6C4:
-	ldr r0, .L0807C730 @ =gUnk_08117814
+	ldr r0, .L0807C730 @ =gShopCommonQuantitySuffixTextRef
 	ldr r0, [r0]
 	mov r8, r0
 	adds r0, r4, #0
@@ -121375,8 +121375,8 @@ sub_0807C194: @ 0x0807C194
 .L0807C720: .4byte 0x00001C34
 .L0807C724: .4byte 0x000022B4
 .L0807C728: .4byte gText_PoultryShop_BlankLinePair
-.L0807C72C: .4byte gUnk_08117828
-.L0807C730: .4byte gUnk_08117814
+.L0807C72C: .4byte gShopCommonOwnedQuantityLabelTextRef
+.L0807C730: .4byte gShopCommonQuantitySuffixTextRef
 .L0807C734: .4byte 0x00000684
 .L0807C738: .4byte 0x000006A4
 .L0807C73C:
@@ -123496,7 +123496,7 @@ func_0807D218: @ 0x0807D218
 	movs r0, #0
 	strb r0, [r1]
 .L0807D94C:
-	ldr r0, .L0807DA04 @ =gUnk_08117828
+	ldr r0, .L0807DA04 @ =gShopCommonOwnedQuantityLabelTextRef
 	ldr r0, [r0]
 	mov sb, r0
 	adds r0, r4, #0
@@ -123547,7 +123547,7 @@ func_0807D218: @ 0x0807D218
 	movs r0, #0
 	strb r0, [r1]
 .L0807D9B6:
-	ldr r0, .L0807DA08 @ =gUnk_08117814
+	ldr r0, .L0807DA08 @ =gShopCommonQuantitySuffixTextRef
 	ldr r0, [r0]
 	mov r8, r0
 	adds r0, r4, #0
@@ -123581,8 +123581,8 @@ func_0807D218: @ 0x0807D218
 .L0807D9F8: .4byte 0x00000684
 .L0807D9FC: .4byte 0x000006A4
 .L0807DA00: .4byte gText_Supermarket_BlankLinePair
-.L0807DA04: .4byte gUnk_08117828
-.L0807DA08: .4byte gUnk_08117814
+.L0807DA04: .4byte gShopCommonOwnedQuantityLabelTextRef
+.L0807DA08: .4byte gShopCommonQuantitySuffixTextRef
 .L0807DA0C:
 	ldr r1, .L0807DA2C @ =gText_Supermarket_InsufficientGold
 	adds r0, r7, #0
@@ -124440,7 +124440,7 @@ func_0807DE3C: @ 0x0807DE3C
 	movs r0, #0
 	strb r0, [r1]
 .L0807E156:
-	ldr r0, .L0807E214 @ =gUnk_08117828
+	ldr r0, .L0807E214 @ =gShopCommonOwnedQuantityLabelTextRef
 	ldr r0, [r0]
 	mov sb, r0
 	adds r0, r4, #0
@@ -124491,7 +124491,7 @@ func_0807DE3C: @ 0x0807DE3C
 	movs r0, #0
 	strb r0, [r1]
 .L0807E1C0:
-	ldr r0, .L0807E218 @ =gUnk_08117814
+	ldr r0, .L0807E218 @ =gShopCommonQuantitySuffixTextRef
 	ldr r0, [r0]
 	mov r8, r0
 	adds r0, r4, #0
@@ -124523,8 +124523,8 @@ func_0807DE3C: @ 0x0807DE3C
 .L0807E208: .4byte 0x00001C2C
 .L0807E20C: .4byte 0x00000684
 .L0807E210: .4byte gText_Supermarket_BlankLinePair
-.L0807E214: .4byte gUnk_08117828
-.L0807E218: .4byte gUnk_08117814
+.L0807E214: .4byte gShopCommonOwnedQuantityLabelTextRef
+.L0807E218: .4byte gShopCommonQuantitySuffixTextRef
 .L0807E21C:
 	adds r1, r6, r4
 	movs r0, #0
@@ -125523,7 +125523,7 @@ func_0807E558: @ 0x0807E558
 	movs r0, #0
 	strb r0, [r1]
 .L0807EA7A:
-	ldr r0, .L0807EB30 @ =gUnk_08117828
+	ldr r0, .L0807EB30 @ =gShopCommonOwnedQuantityLabelTextRef
 	ldr r0, [r0]
 	mov sb, r0
 	adds r0, r4, #0
@@ -125574,7 +125574,7 @@ func_0807E558: @ 0x0807E558
 	movs r0, #0
 	strb r0, [r1]
 .L0807EAE4:
-	ldr r0, .L0807EB34 @ =gUnk_08117814
+	ldr r0, .L0807EB34 @ =gShopCommonQuantitySuffixTextRef
 	ldr r0, [r0]
 	mov r8, r0
 	adds r0, r4, #0
@@ -125608,8 +125608,8 @@ func_0807E558: @ 0x0807E558
 .L0807EB24: .4byte 0x00000684
 .L0807EB28: .4byte 0x000006A4
 .L0807EB2C: .4byte gText_Clinic_BlankLinePair
-.L0807EB30: .4byte gUnk_08117828
-.L0807EB34: .4byte gUnk_08117814
+.L0807EB30: .4byte gShopCommonOwnedQuantityLabelTextRef
+.L0807EB34: .4byte gShopCommonQuantitySuffixTextRef
 .L0807EB38:
 	ldr r1, .L0807EB58 @ =gText_Clinic_InsufficientGold
 	adds r0, r7, #0
@@ -128062,7 +128062,7 @@ func_0807F8C8: @ 0x0807F8C8
 	movs r0, #0
 	strb r0, [r1]
 .L0807FEDC:
-	ldr r0, .L0807FFA0 @ =gUnk_08117828
+	ldr r0, .L0807FFA0 @ =gShopCommonOwnedQuantityLabelTextRef
 	ldr r0, [r0]
 	mov sb, r0
 	adds r0, r7, #0
@@ -128113,7 +128113,7 @@ func_0807F8C8: @ 0x0807F8C8
 	movs r0, #0
 	strb r0, [r1]
 .L0807FF46:
-	ldr r0, .L0807FFA4 @ =gUnk_08117814
+	ldr r0, .L0807FFA4 @ =gShopCommonQuantitySuffixTextRef
 	ldr r0, [r0]
 	mov r8, r0
 	adds r0, r7, #0
@@ -128150,8 +128150,8 @@ func_0807F8C8: @ 0x0807F8C8
 .L0807FF94: .4byte 0x00000684
 .L0807FF98: .4byte 0x000006A4
 .L0807FF9C: .4byte gText_WonShop_BlankLinePair
-.L0807FFA0: .4byte gUnk_08117828
-.L0807FFA4: .4byte gUnk_08117814
+.L0807FFA0: .4byte gShopCommonOwnedQuantityLabelTextRef
+.L0807FFA4: .4byte gShopCommonQuantitySuffixTextRef
 .L0807FFA8:
 	movs r7, #1
 	movs r5, #1
@@ -129408,7 +129408,7 @@ func_08080540: @ 0x08080540
 	movs r0, #0
 	strb r0, [r1]
 .L08080A12:
-	ldr r0, .L08080ADC @ =gUnk_08117828
+	ldr r0, .L08080ADC @ =gShopCommonOwnedQuantityLabelTextRef
 	ldr r0, [r0]
 	mov sb, r0
 	adds r0, r4, #0
@@ -129459,7 +129459,7 @@ func_08080540: @ 0x08080540
 	movs r0, #0
 	strb r0, [r1]
 .L08080A7C:
-	ldr r0, .L08080AE0 @ =gUnk_08117814
+	ldr r0, .L08080AE0 @ =gShopCommonQuantitySuffixTextRef
 	ldr r0, [r0]
 	mov r8, r0
 	adds r0, r4, #0
@@ -129502,8 +129502,8 @@ func_08080540: @ 0x08080540
 .L08080AD0: .4byte 0x00001C38
 .L08080AD4: .4byte 0x000006AC
 .L08080AD8: .4byte gText_WineryShop_BlankLinePair
-.L08080ADC: .4byte gUnk_08117828
-.L08080AE0: .4byte gUnk_08117814
+.L08080ADC: .4byte gShopCommonOwnedQuantityLabelTextRef
+.L08080AE0: .4byte gShopCommonQuantitySuffixTextRef
 .L08080AE4: .4byte 0x00000684
 .L08080AE8: .4byte 0x000006A4
 .L08080AEC:
@@ -130791,7 +130791,7 @@ func_0808114C: @ 0x0808114C
 	movs r0, #0
 	strb r0, [r1]
 .L08081552:
-	ldr r0, .L08081618 @ =gUnk_08117828
+	ldr r0, .L08081618 @ =gShopCommonOwnedQuantityLabelTextRef
 	ldr r0, [r0]
 	mov sb, r0
 	adds r0, r7, #0
@@ -130842,7 +130842,7 @@ func_0808114C: @ 0x0808114C
 	movs r0, #0
 	strb r0, [r1]
 .L080815BC:
-	ldr r0, .L0808161C @ =gUnk_08117814
+	ldr r0, .L0808161C @ =gShopCommonQuantitySuffixTextRef
 	ldr r0, [r0]
 	mov r8, r0
 	adds r0, r7, #0
@@ -130884,8 +130884,8 @@ func_0808114C: @ 0x0808114C
 	.align 2, 0
 .L08081610: .4byte 0x000006AC
 .L08081614: .4byte gText_SpecialMerchantShop_BlankLinePair
-.L08081618: .4byte gUnk_08117828
-.L0808161C: .4byte gUnk_08117814
+.L08081618: .4byte gShopCommonOwnedQuantityLabelTextRef
+.L0808161C: .4byte gShopCommonQuantitySuffixTextRef
 .L08081620: .4byte 0x00000684
 .L08081624: .4byte 0x000006A4
 .L08081628:
@@ -141179,7 +141179,7 @@ sub_08086DFA: @ 0x08086DFA
 	movs r0, #0
 	strb r0, [r1]
 .L0808702E:
-	ldr r0, .L0808709C @ =gUnk_08117828
+	ldr r0, .L0808709C @ =gShopCommonOwnedQuantityLabelTextRef
 	ldr r0, [r0]
 	mov sb, r0
 	adds r0, r4, #0
@@ -141230,7 +141230,7 @@ sub_08086DFA: @ 0x08086DFA
 .L08087090: .4byte 0x000003E7
 .L08087094: .4byte 0x00003B34
 .L08087098: .4byte gText_LivestockShop_BlankLinePair
-.L0808709C: .4byte gUnk_08117828
+.L0808709C: .4byte gShopCommonOwnedQuantityLabelTextRef
 .L080870A0:
 	ldr r3, [r7, #8]
 	ldr r5, .L080870D4 @ =0x00001AA8
@@ -141460,7 +141460,7 @@ sub_08086DFA: @ 0x08086DFA
 	movs r0, #0
 	strb r0, [r1]
 .L08087292:
-	ldr r0, .L08087364 @ =gUnk_08117828
+	ldr r0, .L08087364 @ =gShopCommonOwnedQuantityLabelTextRef
 	ldr r0, [r0]
 	mov sb, r0
 	adds r0, r4, #0
@@ -141512,7 +141512,7 @@ sub_08086DFA: @ 0x08086DFA
 	movs r0, #0
 	strb r0, [r1]
 .L080872FC:
-	ldr r0, .L08087368 @ =gUnk_08117814
+	ldr r0, .L08087368 @ =gShopCommonQuantitySuffixTextRef
 	ldr r0, [r0]
 	mov r8, r0
 	adds r0, r4, #0
@@ -141557,8 +141557,8 @@ sub_08086DFA: @ 0x08086DFA
 .L08087358: .4byte 0x00001C34
 .L0808735C: .4byte 0x00003B34
 .L08087360: .4byte gText_LivestockShop_BlankLinePair
-.L08087364: .4byte gUnk_08117828
-.L08087368: .4byte gUnk_08117814
+.L08087364: .4byte gShopCommonOwnedQuantityLabelTextRef
+.L08087368: .4byte gShopCommonQuantitySuffixTextRef
 .L0808736C: .4byte 0x00000684
 .L08087370: .4byte 0x000006A4
 .L08087374:

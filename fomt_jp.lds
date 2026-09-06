@@ -648,7 +648,12 @@ SECTIONS
         . = 0x107D38; data/text/harvest_sprite_minigames.o(.rodata.harvest_sprite_minigames_watering_results);
         . = 0x107D89; asm/data/data_080F9EB8.o(.rodata.harvest_sprite_minigames_watering_results_trailer);
         . = 0x107DAC; src/reference_guide.o(.rodata.reference_guide);
-        . = 0x1189D4; asm/data/data_080F9EB8.o(.rodata.reference_guide_unextracted_trailer);
+        . = 0x1189D4; asm/data/data_080F9EB8.o(.rodata.shop_common_unextracted_prefix);
+        . = 0x1189F4; data/text/shop_common.o(.rodata.shop_common_prefix);
+        . = 0x1189FC; data/text/shop_common_refs.o(.rodata.shop_common_quantity_suffix_text_ref);
+        . = 0x118A00; data/text/shop_common.o(.rodata.shop_common_owned_quantity_label);
+        . = 0x118A10; data/text/shop_common_refs.o(.rodata.shop_common_owned_quantity_label_text_ref);
+        . = 0x118A14; asm/data/data_080F9EB8.o(.rodata.shop_common_unextracted_trailer);
         . = 0x118B94; data/text/tool_status.o(.rodata.tool_status);
         . = 0x118BF4; data/text/animal_status.o(.rodata.animal_status);
         . = 0x118C34; data/text/item_status.o(.rodata.item_status_basket);

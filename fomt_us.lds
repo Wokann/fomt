@@ -553,6 +553,12 @@ SECTIONS
         . = 0x10828C; src/reference_guide.o(.rodata.reference_guide);
         . = 0x1177EC; asm/data/data_080F9EB8.o(.rodata.reference_guide_unextracted_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata.tool_status_prefix);
+        . = 0x11780C; data/text/shop_common.o(.rodata.shop_common_prefix);
+        . = 0x117814; data/text/shop_common_refs.o(.rodata.shop_common_quantity_suffix_text_ref);
+        . = 0x117818; data/text/shop_common.o(.rodata.shop_common_owned_quantity_label);
+        . = 0x117828; data/text/shop_common_refs.o(.rodata.shop_common_owned_quantity_label_text_ref);
+        . = 0x11782C; asm/data/data_080F9EB8.o(.rodata.shop_common_unextracted_trailer);
+        . = 0x117838; asm/data/data_080F9EB8.o(.rodata.tool_status_prefix_trailer);
         . = 0x1179AC; data/text/tool_status.o(.rodata.tool_status);
         . = 0x117A0C; data/text/animal_status.o(.rodata.animal_status);
         . = 0x117A50; data/text/item_status.o(.rodata.item_status_basket);

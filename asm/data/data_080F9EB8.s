@@ -250,8 +250,11 @@ gText_CharacterName_Empty:
     .section .rodata.harvest_sprite_minigames_watering_results_trailer
     .incbin "baserom_jp.gba", 0x107D89, (0x107DAC - 0x107D89)
 
-	.section .rodata.reference_guide_unextracted_trailer
-	.incbin "baserom_jp.gba", 0x1189D4, (0x118B94 - 0x1189D4)
+	.section .rodata.shop_common_unextracted_prefix
+	.incbin "baserom_jp.gba", 0x1189D4, (0x1189F4 - 0x1189D4)
+
+	.section .rodata.shop_common_unextracted_trailer
+	.incbin "baserom_jp.gba", 0x118A14, (0x118B94 - 0x118A14)
 
     .section .rodata.static_data_after_item_discard
     .incbin "baserom_jp.gba", 0x118CF4, (0x13BCF8 - 0x118CF4)
@@ -1605,17 +1608,10 @@ gUnk_0810827C:
 gUnk_081177F6:
 	.incbin "baserom_us.gba", 0x1177F6, 0x16
 
-	.global gUnk_0811780C
-gUnk_0811780C:
-	.incbin "baserom_us.gba", 0x11780C, 0x8
+	.section .rodata.shop_common_unextracted_trailer
+	.incbin "baserom_us.gba", 0x11782C, (0x117838 - 0x11782C)
 
-	.global gUnk_08117814
-gUnk_08117814:
-	.incbin "baserom_us.gba", 0x117814, 0x14
-
-	.global gUnk_08117828
-gUnk_08117828:
-	.incbin "baserom_us.gba", 0x117828, 0x10
+	.section .rodata.tool_status_prefix_trailer
 
 	.global gUnk_08117838
 gUnk_08117838:

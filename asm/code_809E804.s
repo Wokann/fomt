@@ -85832,7 +85832,7 @@ func_080C85A0: @ 0x080C85A0
 	adds r1, r5, #0
 	movs r2, #0
 	bl func_0804E7A0
-	ldr r1, .L080C87E8 @ =gUnk_0811780C
+	ldr r1, .L080C87E8 @ =gText_ShopCommon_GoldUnit
 	movs r0, #1
 	mov sb, r0
 	add r0, sp, #0xcc
@@ -85905,7 +85905,7 @@ func_080C85A0: @ 0x080C85A0
 .L080C87DC: .4byte 0x06001400
 .L080C87E0: .4byte gUnk_081177F6
 .L080C87E4: .4byte 0x00000454
-.L080C87E8: .4byte gUnk_0811780C
+.L080C87E8: .4byte gText_ShopCommon_GoldUnit
 .L080C87EC: .4byte 0x06000400
 .L080C87F0: .4byte 0x0000056C
 .L080C87F4: .4byte 0x000005DC
