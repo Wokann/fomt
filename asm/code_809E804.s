@@ -9354,7 +9354,7 @@ func_080A303C: @ 0x080A303C
 	adds r4, r3, #0
 	ands r4, r0
 	str r4, [sp, #0x2c]
-	ldr r4, .L080A3208 @ =gUnk_08104957
+	ldr r4, .L080A3208 @ =gText_Calendar_DynamicSeasonNames + 0x1F
 	ldr r7, [sp, #4]
 	lsls r0, r7, #2
 	add r0, r8
@@ -9374,7 +9374,7 @@ func_080A303C: @ 0x080A303C
 	ldrsh r0, [r3, r7]
 	cmp r1, r0
 	bne .L080A31A2
-	ldr r0, .L080A3208 @ =gUnk_08104957
+	ldr r0, .L080A3208 @ =gText_Calendar_DynamicSeasonNames + 0x1F
 	adds r0, #1
 	ldr r1, [sp, #0x28]
 	adds r0, r1, r0
@@ -9468,7 +9468,7 @@ func_080A303C: @ 0x080A303C
 	b .L080A3226
 	.align 2, 0
 .L080A3204: .4byte 0x000001E5
-.L080A3208: .4byte gUnk_08104957
+.L080A3208: .4byte gText_Calendar_DynamicSeasonNames + 0x1F
 .L080A320C: .4byte 0x000001ED
 .L080A3210: .4byte 0x000001EF
 .L080A3214:

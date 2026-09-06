@@ -9,6 +9,15 @@ char const gText_Calendar_SeasonNames[4][3] SECTION(".rodata.calendar.season") A
     "冬"
 };
 
+// This is the separate fixed-width season-name copy expanded by the calendar
+// dynamic-field handler, not the normal calendar menu's season array above.
+char const gText_Calendar_DynamicSeasonNames[4][4] CALENDAR_DYNAMIC_SEASON_TEXT ALIGN(1) = {
+    "春",
+    "夏",
+    "秋",
+    "冬",
+};
+
 char const gText_Calendar_None[] SECTION(".rodata.calendar.none") =
     "無";
 

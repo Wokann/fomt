@@ -212,7 +212,10 @@ gText_CharacterName_Empty:
     .incbin "baserom_jp.gba", 0x103D9B, (0x103D9C - 0x103D9B)
 
     .section .rodata.character_names_table_trailer
-    .incbin "baserom_jp.gba", 0x103EF4, (0x1044B0 - 0x103EF4)
+    .incbin "baserom_jp.gba", 0x103EF4, (0x10447C - 0x103EF4)
+
+    .section .rodata.calendar_dynamic_season_names_trailer
+    .incbin "baserom_jp.gba", 0x10448C, (0x1044B0 - 0x10448C)
 
     .section .rodata.calendar_festival_dynamic_padding
     .incbin "baserom_jp.gba", 0x1048DB, (0x1048DC - 0x1048DB)
@@ -945,25 +948,8 @@ gUnk_08104122:
 gUnk_081043BC:
 	.incbin "baserom_us.gba", 0x1043BC, 0x57C
 
-	.global gUnk_08104938
-gUnk_08104938:
-	.incbin "baserom_us.gba", 0x104938, 0x8
-
-	.global gUnk_08104940
-gUnk_08104940:
-	.incbin "baserom_us.gba", 0x104940, 0x8
-
-	.global gUnk_08104948
-gUnk_08104948:
-	.incbin "baserom_us.gba", 0x104948, 0x8
-
-	.global gUnk_08104950
-gUnk_08104950:
-	.incbin "baserom_us.gba", 0x104950, 0x7
-
-	.global gUnk_08104957
-gUnk_08104957:
-	.incbin "baserom_us.gba", 0x104957, 0x25
+	.section .rodata.calendar_dynamic_season_names_trailer
+	.incbin "baserom_us.gba", 0x104958, (0x10497C - 0x104958)
 
 	.section .rodata.calendar_festival_dynamic_padding
 	.incbin "baserom_us.gba", 0x104D96, 0x2

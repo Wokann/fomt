@@ -32482,7 +32482,7 @@ func_080E3F40: @ 0x080E3F40
 	beq .L080E3FE0
 	b .L080E4086
 .L080E3F7A:
-	ldr r7, .L080E3FA8 @ =gUnk_08104938
+	ldr r7, .L080E3FA8 @ =gText_Calendar_DynamicSeasonNames
 	adds r0, r7, #0
 	bl strlen
 	adds r4, r0, #0
@@ -32503,9 +32503,9 @@ func_080E3F40: @ 0x080E3F40
 	bl strcpy
 	b .L080E4094
 	.align 2, 0
-.L080E3FA8: .4byte gUnk_08104938
+.L080E3FA8: .4byte gText_Calendar_DynamicSeasonNames
 .L080E3FAC:
-	ldr r7, .L080E3FD4 @ =gUnk_08104940
+	ldr r7, .L080E3FD4 @ =gText_Calendar_DynamicSeasonNames + 8
 	adds r0, r7, #0
 	bl strlen
 	adds r4, r0, #0
@@ -32524,14 +32524,14 @@ func_080E3F40: @ 0x080E3F40
 	strb r5, [r6]
 	b .L080E4006
 	.align 2, 0
-.L080E3FD4: .4byte gUnk_08104940
+.L080E3FD4: .4byte gText_Calendar_DynamicSeasonNames + 8
 .L080E3FD8:
-	ldr r5, .L080E3FDC @ =gUnk_08104948
+	ldr r5, .L080E3FDC @ =gText_Calendar_DynamicSeasonNames + 0x10
 	b .L080E3FE2
 	.align 2, 0
-.L080E3FDC: .4byte gUnk_08104948
+.L080E3FDC: .4byte gText_Calendar_DynamicSeasonNames + 0x10
 .L080E3FE0:
-	ldr r5, .L080E4010 @ =gUnk_08104950
+	ldr r5, .L080E4010 @ =gText_Calendar_DynamicSeasonNames + 0x18
 .L080E3FE2:
 	adds r0, r5, #0
 	bl strlen
@@ -32556,7 +32556,7 @@ func_080E3F40: @ 0x080E3F40
 	bl strcpy
 	b .L080E4094
 	.align 2, 0
-.L080E4010: .4byte gUnk_08104950
+.L080E4010: .4byte gText_Calendar_DynamicSeasonNames + 0x18
 .L080E4014:
 	movs r0, #4
 	ldrsb r0, [r3, r0]

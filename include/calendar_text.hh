@@ -5,16 +5,19 @@
 
 #define CALENDAR_FESTIVAL_TEXT SECTION(".rodata.calendar.festival_text")
 #define CALENDAR_FESTIVAL_DYNAMIC_TEXT SECTION(".rodata.calendar.festival_dynamic_text")
+#define CALENDAR_DYNAMIC_SEASON_TEXT SECTION(".rodata.calendar.dynamic_season_names")
 #define CALENDAR_NO_PLANS_TEXT SECTION(".rodata.calendar.no_plans_text")
 
 // The fixed row widths are part of the original menu ABI: callers index these
 // arrays directly rather than through a pointer table.
 #if defined(REGION_JP)
 extern char const gText_Calendar_SeasonNames[4][3];
+extern char const gText_Calendar_DynamicSeasonNames[4][4];
 extern char const gText_Calendar_None[];
 extern char const gText_Calendar_WeekdayNames[7][3];
 #else
 extern char const gText_Calendar_SeasonNames[4][7];
+extern char const gText_Calendar_DynamicSeasonNames[4][8];
 extern char const gText_Calendar_None[];
 extern char const gText_Calendar_WeekdayNames[7][5];
 #endif
