@@ -49,9 +49,9 @@
     jp_code_0803ee_func func_080507F8, 0x50584, 0x505F4
     jp_code_0803ee_func func_08050868, 0x505F4, 0x50864
     jp_code_0803ee_func func_08050AD8, 0x50864, 0x508C8
-    jp_code_0803ee_func func_08050B3C, 0x508C8, 0x508DC
+    .section .text.clear_ui_action_state_flag_01dc_after
     jp_code_0803ee_func func_08050B50, 0x508DC, 0x509A4
-    jp_code_0803ee_func func_08050C18, 0x509A4, 0x509B8
+    .section .text.clear_ui_action_state_flag_01f0_after
     jp_code_0803ee_func func_08050C2C, 0x509B8, 0x509F0
     jp_code_0803ee_func func_08050C64, 0x509F0, 0x50A98
     jp_code_0803ee_func func_08050D0C, 0x50A98, 0x50AC0
@@ -32992,7 +32992,7 @@ func_08050AD8: @ 0x08050AD8
 	blo .L08050AF2
 .L08050AEA:
 	adds r0, r4, #0
-	bl func_08050B3C
+	bl ClearUiActionStateFlag01DC
 	b .L08050B36
 .L08050AF2:
 	movs r0, #0xee
@@ -33035,18 +33035,7 @@ func_08050AD8: @ 0x08050AD8
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_08050B3C
-func_08050B3C: @ 0x08050B3C
-	movs r1, #0xee
-	lsls r1, r1, #1
-	adds r0, r0, r1
-	ldrb r2, [r0]
-	movs r1, #2
-	rsbs r1, r1, #0
-	ands r1, r2
-	strb r1, [r0]
-	bx lr
-	.align 2, 0
+	.section .text.clear_ui_action_state_flag_01dc_after
 
 	thumb_func_start func_08050B50
 func_08050B50: @ 0x08050B50
@@ -33071,7 +33060,7 @@ func_08050B50: @ 0x08050B50
 	cmp r0, #0xb
 	bls .L08050B7E
 	mov r0, r8
-	bl func_08050C18
+	bl ClearUiActionStateFlag01F0
 	b .L08050C06
 .L08050B7E:
 	adds r7, r4, #0
@@ -33155,18 +33144,7 @@ func_08050B50: @ 0x08050B50
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_08050C18
-func_08050C18: @ 0x08050C18
-	movs r1, #0xf8
-	lsls r1, r1, #1
-	adds r0, r0, r1
-	ldrb r2, [r0]
-	movs r1, #2
-	rsbs r1, r1, #0
-	ands r1, r2
-	strb r1, [r0]
-	bx lr
-	.align 2, 0
+	.section .text.clear_ui_action_state_flag_01f0_after
 
 	thumb_func_start func_08050C2C
 func_08050C2C: @ 0x08050C2C
