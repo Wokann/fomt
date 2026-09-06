@@ -97,8 +97,8 @@
     .section .rodata.special_merchant_shop_trailer
     .incbin "baserom_jp.gba", 0xFE394, (0xFE3A0 - 0xFE394)
 
-    .section .rodata.unextracted_shop_data
-    .incbin "baserom_jp.gba", 0xFE3A0, (0xFE53C - 0xFE3A0)
+    .section .rodata.beach_cafe_shop_trailer
+    .incbin "baserom_jp.gba", 0xFE530, (0xFE53C - 0xFE530)
 
     .section .rodata.blacksmith_menu_padding
     .incbin "baserom_jp.gba", 0xFE6A0, (0xFE6A4 - 0xFE6A0)
@@ -639,25 +639,8 @@ gUnk_080FD920:
 	.section .rodata.special_merchant_shop_trailer
 	.incbin "baserom_us.gba", 0xFEAE8, (0xFEAF4 - 0xFEAE8)
 
-	.section .rodata.unextracted_shop_data
-	.incbin "baserom_us.gba", 0xFEAF4, (0xFEB60 - 0xFEAF4)
-
-	.global gUnk_080FEB60
-gUnk_080FEB60:
-	.incbin "baserom_us.gba", 0xFEB60, 0x8C
-
-	.global gUnk_080FEBEC
-gUnk_080FEBEC:
-	.incbin "baserom_us.gba", 0xFEBEC, 0x28
-
-	.global gUnk_080FEC14
-gUnk_080FEC14:
-	.incbin "baserom_us.gba", 0xFEC14, 0x30
-
-	.section .rodata.blacksmith_menu_prefix
-	.global gUnk_080FEC44
-gUnk_080FEC44:
-	.incbin "baserom_us.gba", 0xFEC44, (0xFEC7C - 0xFEC44)
+	.section .rodata.beach_cafe_shop_trailer
+	.incbin "baserom_us.gba", 0xFEC70, (0xFEC7C - 0xFEC70)
 
     .section .rodata.carpenter_menu_prefix
     .incbin "baserom_us.gba", 0xFF350, (0xFF35C - 0xFF350)

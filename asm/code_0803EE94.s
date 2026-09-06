@@ -131508,7 +131508,7 @@ func_08081B40: @ 0x08081B40
 	sub sp, #4
 	adds r4, r0, #0
 	adds r3, r1, #0
-	ldr r5, .L08081B94 @ =gUnk_080FEB60
+	ldr r5, .L08081B94 @ =gBeachCafeShopMenu
 	movs r0, #0xa9
 	lsls r0, r0, #2
 	adds r2, r4, r0
@@ -131544,7 +131544,7 @@ func_08081B40: @ 0x08081B40
 	bl func_080CABEC
 	b .L08081BB4
 	.align 2, 0
-.L08081B94: .4byte gUnk_080FEB60
+.L08081B94: .4byte gBeachCafeShopMenu
 .L08081B98:
 	lsls r0, r3, #2
 	adds r0, #4
@@ -131742,7 +131742,7 @@ func_08081BBC: @ 0x08081BBC
 	lsls r0, r1, #3
 	subs r0, r0, r1
 	lsls r0, r0, #2
-	ldr r2, .L08081D3C @ =gUnk_080FEB60
+	ldr r2, .L08081D3C @ =gBeachCafeShopMenu
 	mov r1, r8
 	adds r0, r0, r2
 	ldm r0!, {r2, r3, r4}
@@ -131765,7 +131765,7 @@ func_08081BBC: @ 0x08081BBC
 	b .L08081D42
 	.align 2, 0
 .L08081D38: .4byte gUnk_086678A0
-.L08081D3C: .4byte gUnk_080FEB60
+.L08081D3C: .4byte gBeachCafeShopMenu
 .L08081D40:
 	ldr r1, [sp, #0x18]
 .L08081D42:
@@ -131981,7 +131981,7 @@ func_08081BBC: @ 0x08081BBC
 	lsls r0, r1, #3
 	subs r0, r0, r1
 	lsls r0, r0, #2
-	ldr r2, .L08081F68 @ =gUnk_080FEB60
+	ldr r2, .L08081F68 @ =gBeachCafeShopMenu
 	adds r1, r3, #0
 	adds r0, r0, r2
 	ldm r0!, {r2, r5, r6}
@@ -132031,7 +132031,7 @@ func_08081BBC: @ 0x08081BBC
 	b .L08081F76
 	.align 2, 0
 .L08081F64: .4byte 0x000006A1
-.L08081F68: .4byte gUnk_080FEB60
+.L08081F68: .4byte gBeachCafeShopMenu
 .L08081F6C: .4byte 0x00001AA8
 .L08081F70: .4byte 0x000006AC
 .L08081F74:
@@ -132069,7 +132069,7 @@ func_08081BBC: @ 0x08081BBC
 .L08081FB8: .4byte 0x00001BD8
 .L08081FBC:
 	adds r0, r7, #0
-	ldr r1, .L08081FD8 @ =gUnk_080FEBEC
+	ldr r1, .L08081FD8 @ =gText_BeachCafeShop_InsufficientGold
 	bl func_080CABA0
 	movs r1, #0xd2
 	lsls r1, r1, #2
@@ -132080,7 +132080,7 @@ func_08081BBC: @ 0x08081BBC
 	str r2, [r4]
 	b .L08082002
 	.align 2, 0
-.L08081FD8: .4byte gUnk_080FEBEC
+.L08081FD8: .4byte gText_BeachCafeShop_InsufficientGold
 .L08081FDC:
 	adds r0, r7, #0
 	bl func_080088CC
@@ -132089,7 +132089,7 @@ func_08081BBC: @ 0x08081BBC
 	cmp r0, #0
 	beq .L08082002
 	adds r0, r7, #0
-	ldr r1, .L08082014 @ =gUnk_080FEC14
+	ldr r1, .L08082014 @ =gText_BeachCafeShop_NoOrder
 	bl func_080CABA0
 	movs r3, #0xd2
 	lsls r3, r3, #2
@@ -132107,7 +132107,7 @@ func_08081BBC: @ 0x08081BBC
 	bl func_080C9020
 	b .L080820E2
 	.align 2, 0
-.L08082014: .4byte gUnk_080FEC14
+.L08082014: .4byte gText_BeachCafeShop_NoOrder
 .L08082018:
 	movs r5, #0xd4
 	lsls r5, r5, #2
@@ -132144,7 +132144,7 @@ func_08081BBC: @ 0x08081BBC
 	lsls r0, r1, #3
 	subs r0, r0, r1
 	lsls r0, r0, #2
-	ldr r2, .L080820A8 @ =gUnk_080FEB60
+	ldr r2, .L080820A8 @ =gBeachCafeShopMenu
 	mov r1, r8
 	adds r0, r0, r2
 	ldm r0!, {r2, r5, r6}
@@ -132167,7 +132167,7 @@ func_08081BBC: @ 0x08081BBC
 	adds r0, r7, #0
 	bl func_080C8550
 	adds r0, r7, #0
-	ldr r1, .L080820B0 @ =gUnk_080FEC44
+	ldr r1, .L080820B0 @ =gText_BeachCafeShop_OrderComplete
 	bl func_080CABA0
 	movs r6, #0xd2
 	lsls r6, r6, #2
@@ -132178,9 +132178,9 @@ func_08081BBC: @ 0x08081BBC
 	str r0, [r4]
 	b .L080820E2
 	.align 2, 0
-.L080820A8: .4byte gUnk_080FEB60
+.L080820A8: .4byte gBeachCafeShopMenu
 .L080820AC: .4byte 0x00001AA8
-.L080820B0: .4byte gUnk_080FEC44
+.L080820B0: .4byte gText_BeachCafeShop_OrderComplete
 .L080820B4:
 	movs r1, #0xd4
 	lsls r1, r1, #2
