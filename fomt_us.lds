@@ -137,8 +137,10 @@ SECTIONS
         src/code_08050DD8.o(.text);
         . = 0x50DF0; /* US ROM shared first-field query adapter. */
         src/code_08050DF0.o(.text);
-        . = 0x50E0C; /* US ROM 0x08050E0C, remaining raw UI-adjacent code. */
-        asm/code_0803EE94.o(.text.code_08050E0C);
+        . = 0x50E0C; /* US ROM shared long-argument forwarding adapters. */
+        src/code_08050E0C.o(.text);
+        . = 0x50E50; /* US ROM 0x08050E50, remaining raw UI-adjacent code. */
+        asm/code_0803EE94.o(.text.code_08050E50);
 
         src/actor.o(.text);
         src/animal.o(.text);
