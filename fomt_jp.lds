@@ -183,8 +183,10 @@ SECTIONS
         asm/code_0803EE94.o(.text);
         . = 0x50AE8; /* JP counterpart of shared first-field forwarding adapters. */
         src/code_08050D5C.o(.text);
-        . = 0x50B18; /* JP ROM 0x08050B18, remaining raw UI-adjacent code. */
-        asm/code_0803EE94.o(.text.code_08050D8C);
+        . = 0x50B18; /* JP counterpart of shared argument-normalizing forwarding adapters. */
+        src/code_08050D8C.o(.text);
+        . = 0x50B64; /* JP ROM 0x08050B64, remaining raw UI-adjacent code. */
+        asm/code_0803EE94.o(.text.code_08050DD8);
 
         . = 0x9AB3C; /* JP ROM 0x0809AB3C, independently matched */
 
