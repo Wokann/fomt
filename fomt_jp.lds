@@ -514,6 +514,11 @@ SECTIONS
         . = 0xFD1E3; asm/data/data_080F9EB8.o(.rodata.poultry_shop_status_padding);
         . = 0xFD1E4; data/text/poultry_shop.o(.rodata.poultry_shop_dialogue);
         . = 0xFD552; asm/data/data_080F9EB8.o(.rodata.poultry_shop_trailer);
+        . = 0xFD560; src/supermarket_data.o(.rodata.supermarket_crop_catalog);
+        . = 0xFD5C8; data/text/supermarket.o(.rodata.supermarket_primary_text);
+        . = 0xFD708; src/supermarket_data.o(.rodata.supermarket_additional_seed_catalog);
+        . = 0xFD748; data/text/supermarket.o(.rodata.supermarket_secondary_text);
+        . = 0xFD804; asm/data/data_080F9EB8.o(.rodata.supermarket_trailer);
         . = 0xFF508; data/text/livestock_shop.o(.rodata.livestock_shop_menu);
         . = 0xFF539; asm/data/data_080F9EB8.o(.rodata.livestock_shop_menu_padding);
         . = 0xFF53C; src/livestock_shop_data.o(.rodata.livestock_shop_catalog);

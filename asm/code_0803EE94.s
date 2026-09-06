@@ -122562,7 +122562,7 @@ func_0807D1DC: @ 0x0807D1DC
 	push {r4, lr}
 	sub sp, #4
 	adds r4, r0, #0
-	ldr r2, .L0807D214 @ =gUnk_080FDDD8
+	ldr r2, .L0807D214 @ =gSupermarketCropSeedCatalog
 	lsls r1, r1, #2
 	adds r1, r1, r4
 	movs r0, #0xaa
@@ -122584,7 +122584,7 @@ func_0807D1DC: @ 0x0807D1DC
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L0807D214: .4byte gUnk_080FDDD8
+.L0807D214: .4byte gSupermarketCropSeedCatalog
 
 	thumb_func_start func_0807D218
 func_0807D218: @ 0x0807D218
@@ -123058,7 +123058,7 @@ func_0807D218: @ 0x0807D218
 	strh r0, [r1]
 	ldr r0, [r5]
 	lsls r0, r0, #3
-	ldr r1, .L0807D720 @ =gUnk_080FDDD8
+	ldr r1, .L0807D720 @ =gSupermarketCropSeedCatalog
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
 	ldr r0, [r0]
@@ -123241,7 +123241,7 @@ func_0807D218: @ 0x0807D218
 	mov pc, r0
 	.align 2, 0
 .L0807D71C: .4byte gUnk_086678A0
-.L0807D720: .4byte gUnk_080FDDD8
+.L0807D720: .4byte gSupermarketCropSeedCatalog
 .L0807D724: .4byte vtable_unk_080E5B80
 .L0807D728: .4byte 0x00000889
 .L0807D72C: .4byte .L0807D730
@@ -123274,7 +123274,7 @@ func_0807D218: @ 0x0807D218
 	adds r0, r0, r4
 	ldr r0, [r0]
 	lsls r0, r0, #3
-	ldr r1, .L0807D7B8 @ =gUnk_080FDDD8
+	ldr r1, .L0807D7B8 @ =gSupermarketCropSeedCatalog
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
 	ldr r0, [r0]
@@ -123308,7 +123308,7 @@ func_0807D218: @ 0x0807D218
 	b .L0807D7F6
 	.align 2, 0
 .L0807D7B4: .4byte 0x000006A1
-.L0807D7B8: .4byte gUnk_080FDDD8
+.L0807D7B8: .4byte gSupermarketCropSeedCatalog
 .L0807D7BC: .4byte 0x00001C38
 .L0807D7C0: .4byte 0x00001C34
 .L0807D7C4:
@@ -123405,7 +123405,7 @@ func_0807D218: @ 0x0807D218
 .L0807D882:
 	cmp r5, #0
 	bne .L0807D8A8
-	ldr r1, .L0807D8A4 @ =gUnk_080FDE40
+	ldr r1, .L0807D8A4 @ =gText_Supermarket_EquipmentCapacityFull
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r4, #0xe1
@@ -123417,7 +123417,7 @@ func_0807D218: @ 0x0807D218
 .L0807D898: .4byte 0x00001C34
 .L0807D89C: .4byte 0x00001C38
 .L0807D8A0: .4byte 0x00001AA8
-.L0807D8A4: .4byte gUnk_080FDE40
+.L0807D8A4: .4byte gText_Supermarket_EquipmentCapacityFull
 .L0807D8A8:
 	ldr r1, .L0807D9F8 @ =0x00000684
 	adds r0, r7, r1
@@ -123470,7 +123470,7 @@ func_0807D218: @ 0x0807D218
 	mov r2, sl
 	strb r2, [r0]
 .L0807D916:
-	ldr r3, .L0807DA00 @ =gUnk_080FDE70
+	ldr r3, .L0807DA00 @ =gText_Supermarket_BlankLinePair
 	mov sb, r3
 	adds r0, r4, #0
 	bl strlen
@@ -123580,11 +123580,11 @@ func_0807D218: @ 0x0807D218
 	.align 2, 0
 .L0807D9F8: .4byte 0x00000684
 .L0807D9FC: .4byte 0x000006A4
-.L0807DA00: .4byte gUnk_080FDE70
+.L0807DA00: .4byte gText_Supermarket_BlankLinePair
 .L0807DA04: .4byte gUnk_08117828
 .L0807DA08: .4byte gUnk_08117814
 .L0807DA0C:
-	ldr r1, .L0807DA2C @ =gUnk_080FDE78
+	ldr r1, .L0807DA2C @ =gText_Supermarket_InsufficientGold
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r4, #0xd2
@@ -123598,7 +123598,7 @@ func_0807D218: @ 0x0807D218
 	movs r0, #2
 	b .L0807DA84
 	.align 2, 0
-.L0807DA2C: .4byte gUnk_080FDE78
+.L0807DA2C: .4byte gText_Supermarket_InsufficientGold
 .L0807DA30:
 	adds r0, r7, #0
 	bl func_080088CC
@@ -123611,7 +123611,7 @@ func_0807D218: @ 0x0807D218
 	ldrb r0, [r0]
 	cmp r0, #0
 	beq .L0807DA68
-	ldr r1, .L0807DA64 @ =gUnk_080FDEAC
+	ldr r1, .L0807DA64 @ =gText_Supermarket_ThankYou
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r2, #0xd2
@@ -123622,9 +123622,9 @@ func_0807D218: @ 0x0807D218
 	b .L0807DA7C
 	.align 2, 0
 .L0807DA60: .4byte 0x0000070C
-.L0807DA64: .4byte gUnk_080FDEAC
+.L0807DA64: .4byte gText_Supermarket_ThankYou
 .L0807DA68:
-	ldr r1, .L0807DA9C @ =gUnk_080FDEC4
+	ldr r1, .L0807DA9C @ =gText_Supermarket_PurchaseConfirmation
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r3, #0xd2
@@ -123650,7 +123650,7 @@ func_0807D218: @ 0x0807D218
 	bl func_080C9020
 	b .L0807DD08
 	.align 2, 0
-.L0807DA9C: .4byte gUnk_080FDEC4
+.L0807DA9C: .4byte gText_Supermarket_PurchaseConfirmation
 .L0807DAA0:
 	movs r2, #0xd4
 	lsls r2, r2, #2
@@ -123660,7 +123660,7 @@ func_0807D218: @ 0x0807D218
 	beq .L0807DAAE
 	b .L0807DD08
 .L0807DAAE:
-	ldr r1, .L0807DAD0 @ =gUnk_080FDEDC
+	ldr r1, .L0807DAD0 @ =gText_Supermarket_PurchaseMorePrompt
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r3, #0xd2
@@ -123675,7 +123675,7 @@ func_0807D218: @ 0x0807D218
 	str r0, [r1]
 	b .L0807DD08
 	.align 2, 0
-.L0807DAD0: .4byte gUnk_080FDEDC
+.L0807DAD0: .4byte gText_Supermarket_PurchaseMorePrompt
 .L0807DAD4:
 	movs r1, #0xd4
 	lsls r1, r1, #2
@@ -123724,7 +123724,7 @@ func_0807D218: @ 0x0807D218
 	adds r0, r0, r2
 	ldr r0, [r0]
 	lsls r0, r0, #3
-	ldr r1, .L0807DB9C @ =gUnk_080FDDD8
+	ldr r1, .L0807DB9C @ =gSupermarketCropSeedCatalog
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
 	ldr r0, [r0]
@@ -123770,7 +123770,7 @@ func_0807D218: @ 0x0807D218
 	b .L0807DC58
 	.align 2, 0
 .L0807DB98: .4byte 0x00000684
-.L0807DB9C: .4byte gUnk_080FDDD8
+.L0807DB9C: .4byte gSupermarketCropSeedCatalog
 .L0807DBA0: .4byte 0x00001AA8
 .L0807DBA4: .4byte 0x00001C34
 .L0807DBA8:
@@ -123844,21 +123844,21 @@ func_0807D218: @ 0x0807D218
 	bl AddAmountOf__9ToolChestUiUi
 	cmp r6, #0
 	beq .L0807DC48
-	ldr r1, .L0807DC44 @ =gUnk_080FDEF8
+	ldr r1, .L0807DC44 @ =gText_Supermarket_EquipmentDelivery
 	b .L0807DC4A
 	.align 2, 0
 .L0807DC40: .4byte 0x00001C38
-.L0807DC44: .4byte gUnk_080FDEF8
+.L0807DC44: .4byte gText_Supermarket_EquipmentDelivery
 .L0807DC48:
-	ldr r1, .L0807DC54 @ =gUnk_080FDF50
+	ldr r1, .L0807DC54 @ =gText_Supermarket_DeliveryPartial
 .L0807DC4A:
 	adds r0, r7, #0
 	bl func_080CABA0
 	b .L0807DC60
 	.align 2, 0
-.L0807DC54: .4byte gUnk_080FDF50
+.L0807DC54: .4byte gText_Supermarket_DeliveryPartial
 .L0807DC58:
-	ldr r1, .L0807DC80 @ =gUnk_080FDEAC
+	ldr r1, .L0807DC80 @ =gText_Supermarket_ThankYou
 	adds r0, r7, #0
 	bl func_080CABA0
 .L0807DC60:
@@ -123877,7 +123877,7 @@ func_0807D218: @ 0x0807D218
 	strb r1, [r0]
 	b .L0807DD08
 	.align 2, 0
-.L0807DC80: .4byte gUnk_080FDEAC
+.L0807DC80: .4byte gText_Supermarket_ThankYou
 .L0807DC84: .4byte 0x0000070C
 .L0807DC88:
 	adds r0, r7, #0
@@ -124134,7 +124134,7 @@ func_0807DE3C: @ 0x0807DE3C
 	adds r0, r7, r2
 	ldr r0, [r0]
 	lsls r0, r0, #3
-	ldr r1, .L0807E1F8 @ =gUnk_080FDFA4
+	ldr r1, .L0807E1F8 @ =gSupermarketAdditionalSeedCatalog
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
 	ldr r0, [r0]
@@ -124267,7 +124267,7 @@ func_0807DE3C: @ 0x0807DE3C
 	adds r0, r7, r1
 	ldr r0, [r0]
 	lsls r0, r0, #3
-	ldr r1, .L0807E1F8 @ =gUnk_080FDFA4
+	ldr r1, .L0807E1F8 @ =gSupermarketAdditionalSeedCatalog
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
 	ldr r0, [r0]
@@ -124414,7 +124414,7 @@ func_0807DE3C: @ 0x0807DE3C
 	movs r3, #0
 	strb r3, [r0]
 .L0807E120:
-	ldr r0, .L0807E210 @ =gUnk_080FDE70
+	ldr r0, .L0807E210 @ =gText_Supermarket_BlankLinePair
 	mov sb, r0
 	adds r0, r4, #0
 	bl strlen
@@ -124516,13 +124516,13 @@ func_0807DE3C: @ 0x0807DE3C
 	.align 2, 0
 .L0807E1F0: .4byte gUnk_086678A0
 .L0807E1F4: .4byte 0x000006A4
-.L0807E1F8: .4byte gUnk_080FDFA4
+.L0807E1F8: .4byte gSupermarketAdditionalSeedCatalog
 .L0807E1FC: .4byte vtable_unk_080E5B80
 .L0807E200: .4byte 0x00000889
 .L0807E204: .4byte 0x00001C38
 .L0807E208: .4byte 0x00001C2C
 .L0807E20C: .4byte 0x00000684
-.L0807E210: .4byte gUnk_080FDE70
+.L0807E210: .4byte gText_Supermarket_BlankLinePair
 .L0807E214: .4byte gUnk_08117828
 .L0807E218: .4byte gUnk_08117814
 .L0807E21C:
@@ -124642,7 +124642,7 @@ func_0807DE3C: @ 0x0807DE3C
 	bne .L0807E338
 .L0807E300:
 	adds r0, r7, #0
-	ldr r1, .L0807E334 @ =gUnk_080FDEAC
+	ldr r1, .L0807E334 @ =gText_Supermarket_ThankYou
 	bl func_080CABA0
 	movs r3, #0xd2
 	lsls r3, r3, #2
@@ -124660,7 +124660,7 @@ func_0807DE3C: @ 0x0807DE3C
 .L0807E328: .4byte 0x00001AA8
 .L0807E32C: .4byte 0x00001C2C
 .L0807E330: .4byte 0x00001C38
-.L0807E334: .4byte gUnk_080FDEAC
+.L0807E334: .4byte gText_Supermarket_ThankYou
 .L0807E338:
 	ldr r0, [r7, #8]
 	movs r1, #0xfa
@@ -124674,14 +124674,14 @@ func_0807DE3C: @ 0x0807DE3C
 	cmp r5, #0
 	beq .L0807E360
 	adds r0, r7, #0
-	ldr r1, .L0807E35C @ =gUnk_080FDF50
+	ldr r1, .L0807E35C @ =gText_Supermarket_DeliveryPartial
 	bl func_080CABA0
 	b .L0807E368
 	.align 2, 0
-.L0807E35C: .4byte gUnk_080FDF50
+.L0807E35C: .4byte gText_Supermarket_DeliveryPartial
 .L0807E360:
 	adds r0, r7, #0
-	ldr r1, .L0807E380 @ =gUnk_080FDFE4
+	ldr r1, .L0807E380 @ =gText_Supermarket_SeedDelivery
 	bl func_080CABA0
 .L0807E368:
 	movs r3, #0xd2
@@ -124695,7 +124695,7 @@ func_0807DE3C: @ 0x0807DE3C
 	str r1, [r0]
 	b .L0807E406
 	.align 2, 0
-.L0807E380: .4byte gUnk_080FDFE4
+.L0807E380: .4byte gText_Supermarket_SeedDelivery
 .L0807E384: .4byte 0x0000070C
 .L0807E388:
 	adds r0, r7, #0
@@ -124705,7 +124705,7 @@ func_0807DE3C: @ 0x0807DE3C
 	cmp r0, #0
 	beq .L0807E3B8
 	adds r0, r7, #0
-	ldr r1, .L0807E3B4 @ =gUnk_080FE034
+	ldr r1, .L0807E3B4 @ =gText_Supermarket_SeedPurchaseConfirmation
 	bl func_080CABA0
 	movs r2, #0xd2
 	lsls r2, r2, #2
@@ -124717,7 +124717,7 @@ func_0807DE3C: @ 0x0807DE3C
 	str r3, [r4]
 	b .L0807E406
 	.align 2, 0
-.L0807E3B4: .4byte gUnk_080FE034
+.L0807E3B4: .4byte gText_Supermarket_SeedPurchaseConfirmation
 .L0807E3B8:
 	ldr r0, .L0807E3CC @ =0x00000684
 	adds r1, r7, r0

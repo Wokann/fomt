@@ -62,7 +62,10 @@
     .incbin "baserom_jp.gba", 0xFD1E3, (0xFD1E4 - 0xFD1E3)
 
     .section .rodata.poultry_shop_trailer
-    .incbin "baserom_jp.gba", 0xFD552, (0xFF508 - 0xFD552)
+    .incbin "baserom_jp.gba", 0xFD552, (0xFD560 - 0xFD552)
+
+    .section .rodata.supermarket_trailer
+    .incbin "baserom_jp.gba", 0xFD804, (0xFF508 - 0xFD804)
 
     .section .rodata.livestock_shop_menu_padding
     .incbin "baserom_jp.gba", 0xFF539, (0xFF53C - 0xFF539)
@@ -565,53 +568,14 @@ gUnk_080FD940:
 	.section .rodata.poultry_shop_trailer
 	.incbin "baserom_us.gba", 0xFDDCC, (0xFDDD8 - 0xFDDCC)
 
-	.global gUnk_080FDDD8
-gUnk_080FDDD8:
-	.incbin "baserom_us.gba", 0xFDDD8, 0x68
+	.section .rodata.supermarket_primary_text_padding
+	.incbin "baserom_us.gba", 0xFDFA1, (0xFDFA4 - 0xFDFA1)
 
-	.global gUnk_080FDE40
-gUnk_080FDE40:
-	.incbin "baserom_us.gba", 0xFDE40, 0x30
+	.section .rodata.supermarket_secondary_text_padding
+	.incbin "baserom_us.gba", 0xFE043, (0xFE044 - 0xFE043)
 
-	.global gUnk_080FDE70
-gUnk_080FDE70:
-	.incbin "baserom_us.gba", 0xFDE70, 0x8
-
-	.global gUnk_080FDE78
-gUnk_080FDE78:
-	.incbin "baserom_us.gba", 0xFDE78, 0x34
-
-	.global gUnk_080FDEAC
-gUnk_080FDEAC:
-	.incbin "baserom_us.gba", 0xFDEAC, 0x18
-
-	.global gUnk_080FDEC4
-gUnk_080FDEC4:
-	.incbin "baserom_us.gba", 0xFDEC4, 0x18
-
-	.global gUnk_080FDEDC
-gUnk_080FDEDC:
-	.incbin "baserom_us.gba", 0xFDEDC, 0x1C
-
-	.global gUnk_080FDEF8
-gUnk_080FDEF8:
-	.incbin "baserom_us.gba", 0xFDEF8, 0x58
-
-	.global gUnk_080FDF50
-gUnk_080FDF50:
-	.incbin "baserom_us.gba", 0xFDF50, 0x54
-
-	.global gUnk_080FDFA4
-gUnk_080FDFA4:
-	.incbin "baserom_us.gba", 0xFDFA4, 0x40
-
-	.global gUnk_080FDFE4
-gUnk_080FDFE4:
-	.incbin "baserom_us.gba", 0xFDFE4, 0x50
-
-	.global gUnk_080FE034
-gUnk_080FE034:
-	.incbin "baserom_us.gba", 0xFE034, 0x1C
+	.section .rodata.supermarket_trailer
+	.incbin "baserom_us.gba", 0xFE044, (0xFE050 - 0xFE044)
 
 	.global gUnk_080FE050
 gUnk_080FE050:
