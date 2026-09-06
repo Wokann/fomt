@@ -41,5 +41,6 @@ extern char const gText_HorseRace_TicketControls_ChangeQuantityByTenContinuation
 extern char const gText_HorseRace_TicketControls_MoveCursorToConfirm[];
 extern char const gText_HorseRace_TicketControls_Buy[];
 extern char const gText_HorseRace_TicketControls_Cancel[];
+extern char const * const gHorseRaceTicketControls[];
 
 #endif

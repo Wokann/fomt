@@ -16,8 +16,8 @@
     .section .rodata.horse_race_dialogue_trailer
     .incbin "baserom_jp.gba", 0xFA712, (0xFA73C - 0xFA712)
 
-    .section .rodata.horse_race_ticket_ui_trailer
-    .incbin "baserom_jp.gba", 0xFA860, (0xFB938 - 0xFA860)
+    .section .rodata.horse_race_ticket_controls_trailer
+    .incbin "baserom_jp.gba", 0xFA88C, (0xFB938 - 0xFA88C)
 
     .section .rodata.staff_credits_trailer
     .incbin "baserom_jp.gba", 0xFBC88, (0x103194 - 0xFBC88)
@@ -51,6 +51,9 @@ gActorStateMaxValues:
     .global gText_CharacterName_Empty
 gText_CharacterName_Empty:
     .incbin "baserom_jp.gba", 0x103BFC, (0x103C1C - 0x103BFC)
+
+    .section .rodata.character_names_text_padding
+    .incbin "baserom_jp.gba", 0x103D9B, (0x103D9C - 0x103D9B)
 
     .section .rodata.character_names_table_trailer
     .incbin "baserom_jp.gba", 0x103EF4, (0x1073B9 - 0x103EF4)
@@ -163,11 +166,11 @@ gUnk_080FAE6A:
 	.section .rodata.horse_race_ticket_ui_padding
 	.incbin "baserom_us.gba", 0xFAFC6, (0xFAFC8 - 0xFAFC6)
 
-	.section .rodata.horse_race_ticket_ui_trailer
+	.section .rodata.horse_race_ticket_controls_trailer
 
-	.global gUnk_080FAFC8
-gUnk_080FAFC8:
-	.incbin "baserom_us.gba", 0xFAFC8, 0x38
+	.global gUnk_080FAFF4
+gUnk_080FAFF4:
+	.incbin "baserom_us.gba", 0xFAFF4, 0xC
 
 	.global gUnk_080FB000
 gUnk_080FB000:
@@ -2084,6 +2087,9 @@ gUnk_0810411D:
 	.global gUnk_08104122
 gUnk_08104122:
 	.incbin "baserom_us.gba", 0x104122, (0x104128 - 0x104122)
+
+	.section .rodata.character_names_text_padding
+	.incbin "baserom_us.gba", 0x104256, (0x104258 - 0x104256)
 
 	.section .rodata.character_names_table_trailer
 	.incbin "baserom_us.gba", 0x1043B0, (0x1043BC - 0x1043B0)

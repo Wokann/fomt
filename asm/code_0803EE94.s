@@ -51230,7 +51230,7 @@ func_0805A3F0: @ 0x0805A3F0
 	adds r1, r4, #0
 	bl func_08008EB8
 	movs r2, #0
-	ldr r0, .L0805A4D0 @ =gUnk_080FAFC8
+	ldr r0, .L0805A4D0 @ =gHorseRaceTicketControls
 	mov r8, r0
 	movs r1, #0x80
 	lsls r1, r1, #6
@@ -51320,7 +51320,7 @@ func_0805A3F0: @ 0x0805A3F0
 .L0805A4C4: .4byte 0xFFFFF7E8
 .L0805A4C8: .4byte 0x06008000
 .L0805A4CC: .4byte 0x0600F800
-.L0805A4D0: .4byte gUnk_080FAFC8
+.L0805A4D0: .4byte gHorseRaceTicketControls
 .L0805A4D4: .4byte 0x00000814
 .L0805A4D8: .4byte 0x00000818
 
