@@ -141,7 +141,9 @@ SECTIONS
         src/code_08050E0C.o(.text);
         . = 0x50E50; /* US ROM shared first-field UI-adjacent adapters. */
         src/code_08050E50.o(.text);
-        . = 0x50E98; /* US ROM 0x08050E98, remaining raw UI-adjacent code. */
+        . = 0x50E98; /* US ROM shared first-field UI-flag adapters. */
+        src/code_08050E98.o(.text);
+        . = 0x50EE4; /* US ROM 0x08050EE4, remaining raw UI-adjacent code. */
         asm/code_0803EE94.o(.text.code_08050E50);
 
         src/actor.o(.text);
