@@ -146,3 +146,129 @@ char const gText_HarvestSpriteMiniGame_ChickenFestival_CautionLeavingRing[] HARV
     "\p"
     "土俵から出てしまうことがある\r\n"
     "ので気をつけて。{Press}";
+
+char const gText_HarvestSpriteMiniGame_Harvest_ExplanationQuestion[] HARVEST_SPRITE_MINIGAMES_HARVEST_INSTRUCTIONS_TEXT =
+    "操作説明を聞くの？";
+
+char const gText_HarvestSpriteMiniGame_Harvest_Yes[] HARVEST_SPRITE_MINIGAMES_HARVEST_INSTRUCTIONS_TEXT =
+    "はい";
+
+char const gText_HarvestSpriteMiniGame_Harvest_No[] HARVEST_SPRITE_MINIGAMES_HARVEST_INSTRUCTIONS_TEXT =
+    "いいえ";
+
+char const gText_HarvestSpriteMiniGame_Harvest_Introduction[] HARVEST_SPRITE_MINIGAMES_HARVEST_INSTRUCTIONS_TEXT =
+    "\p"
+    "今から収穫ゲームの説明を始め\r\n"
+    "るの。{Press}";
+
+char const gText_HarvestSpriteMiniGame_Harvest_Instructions[] HARVEST_SPRITE_MINIGAMES_HARVEST_INSTRUCTIONS_TEXT =
+    "\p"
+    "Ａボタンを連打する事で、僕ら\r\n"
+    "が作物を収穫していくの。{Press}";
+
+char const gText_HarvestSpriteMiniGame_Harvest_FatigueWarning[] HARVEST_SPRITE_MINIGAMES_HARVEST_INSTRUCTIONS_TEXT =
+    "\p"
+    "速い連打を続けていると力みす\r\n"
+    "ぎで顔が赤くなっちゃうの。{Press}\r\n"
+    "そのまま続けていると失敗しち\r\n"
+    "ゃうの。{Press}";
+
+char const gText_HarvestSpriteMiniGame_Harvest_RestInstructions[] HARVEST_SPRITE_MINIGAMES_HARVEST_INSTRUCTIONS_TEXT =
+    "\p"
+    "だから顔が赤くなりだしたらＡ\r\n"
+    "ボタンを遅く連打して休ませて\r\n"
+    "ほしいの。{Press}";
+
+char const gText_HarvestSpriteMiniGame_Harvest_UnderstandQuestion[] HARVEST_SPRITE_MINIGAMES_HARVEST_INSTRUCTIONS_TEXT =
+    "わかったの？";
+
+char const gText_HarvestSpriteMiniGame_Harvest_UnderstandYes[] HARVEST_SPRITE_MINIGAMES_HARVEST_INSTRUCTIONS_TEXT =
+    "わかった";
+
+char const gText_HarvestSpriteMiniGame_Harvest_UnderstandAgain[] HARVEST_SPRITE_MINIGAMES_HARVEST_INSTRUCTIONS_TEXT =
+    "もう一度";
+
+char const gText_HarvestSpriteMiniGame_Harvest_Start[] HARVEST_SPRITE_MINIGAMES_HARVEST_INSTRUCTIONS_TEXT =
+    "\p"
+    "じゃあ、\r\n"
+    "はじめるのー！{Press}";
+
+char const gText_HarvestSpriteMiniGame_Harvest_ScorePrefix[] HARVEST_SPRITE_MINIGAMES_HARVEST_RESULTS_TEXT =
+    "\p"
+    "\r\n"
+    "　　　";
+
+char const gText_HarvestSpriteMiniGame_Harvest_ScoreResultSuffix[] HARVEST_SPRITE_MINIGAMES_HARVEST_RESULTS_TEXT =
+    "点でクリア！　　{Press}";
+
+char const gText_HarvestSpriteMiniGame_Harvest_ScoreSummary[] HARVEST_SPRITE_MINIGAMES_HARVEST_RESULTS_TEXT =
+    "\p"
+    "収穫回数\r\n"
+    "失敗回数\r\n"
+    "　　　　　　　　　合計{Press}";
+
+char const gText_HarvestSpriteMiniGame_Watering_ExplanationQuestion[] HARVEST_SPRITE_MINIGAMES_WATERING_INSTRUCTIONS_TEXT =
+    "操作説明を聞くの？";
+
+char const gText_HarvestSpriteMiniGame_Watering_Yes[] HARVEST_SPRITE_MINIGAMES_WATERING_INSTRUCTIONS_TEXT =
+    "はい";
+
+char const gText_HarvestSpriteMiniGame_Watering_No[] HARVEST_SPRITE_MINIGAMES_WATERING_INSTRUCTIONS_TEXT =
+    "いいえ";
+
+char const gText_HarvestSpriteMiniGame_Watering_Introduction[] HARVEST_SPRITE_MINIGAMES_WATERING_INSTRUCTIONS_TEXT =
+    "\p"
+    "今から水やりゲームの説明を始\r\n"
+    "めるの。{Press}";
+
+char const gText_HarvestSpriteMiniGame_Watering_Instructions[] HARVEST_SPRITE_MINIGAMES_WATERING_INSTRUCTIONS_TEXT =
+    "\p"
+    "提示される例にそって僕らが水\r\n"
+    "をまいていくの。{Press}\r\n"
+    "これを十字ボタンとＡボタンを\r\n"
+    "使用して３回繰り返すの。{Press}";
+
+char const gText_HarvestSpriteMiniGame_Watering_SuccessInstructions[] HARVEST_SPRITE_MINIGAMES_WATERING_INSTRUCTIONS_TEXT =
+    "\p"
+    "例の順番通りに水をまくとさら\r\n"
+    "に良い事があるの。{Press}\r\n"
+    "順番通りだと芽が出てお知らせ\r\n"
+    "してくれるの。{Press}\r\n"
+    "但し１度でも失敗すると芽は出\r\n"
+    "なくなっちゃうの。{Press}";
+
+char const gText_HarvestSpriteMiniGame_Watering_MistakeWarning[] HARVEST_SPRITE_MINIGAMES_WATERING_INSTRUCTIONS_TEXT =
+    "\p"
+    "例以外の場所にまいたり、一度\r\n"
+    "まいた所に水をまかないように\r\n"
+    "気をつけるの。{Press}\r\n"
+    "間違った場所に水をまくと、僕\r\n"
+    "らは悩んでしまうの。{Press}";
+
+char const gText_HarvestSpriteMiniGame_Watering_UnderstandQuestion[] HARVEST_SPRITE_MINIGAMES_WATERING_INSTRUCTIONS_TEXT =
+    "わかったの？";
+
+char const gText_HarvestSpriteMiniGame_Watering_UnderstandYes[] HARVEST_SPRITE_MINIGAMES_WATERING_INSTRUCTIONS_TEXT =
+    "わかった";
+
+char const gText_HarvestSpriteMiniGame_Watering_UnderstandAgain[] HARVEST_SPRITE_MINIGAMES_WATERING_INSTRUCTIONS_TEXT =
+    "もう一度";
+
+char const gText_HarvestSpriteMiniGame_Watering_Start[] HARVEST_SPRITE_MINIGAMES_WATERING_INSTRUCTIONS_TEXT =
+    "\p"
+    "じゃあ、\r\n"
+    "はじめるのー！{Press}";
+
+char const gText_HarvestSpriteMiniGame_Watering_ScorePrefix[] HARVEST_SPRITE_MINIGAMES_WATERING_RESULTS_TEXT =
+    "\p"
+    "\r\n"
+    "　　　";
+
+char const gText_HarvestSpriteMiniGame_Watering_ScoreResultSuffix[] HARVEST_SPRITE_MINIGAMES_WATERING_RESULTS_TEXT =
+    "点でクリア！　　{Press}";
+
+char const gText_HarvestSpriteMiniGame_Watering_ScoreSummary[] HARVEST_SPRITE_MINIGAMES_WATERING_RESULTS_TEXT =
+    "\p"
+    "水やり回数\r\n"
+    "順番回数\r\n"
+    "失敗回数　　　　　　合計{Press}";

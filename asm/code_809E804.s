@@ -66358,9 +66358,9 @@ func_080BEAD4: @ 0x080BEAD4
 	lsls r3, r3, #3
 	adds r0, r7, r3
 	ldr r0, [r0]
-	ldr r1, .L080BED34 @ =gUnk_08107DD8
-	ldr r2, .L080BED38 @ =gUnk_08107DF4
-	ldr r3, .L080BED3C @ =gUnk_08107DF8
+	ldr r1, .L080BED34 @ =gText_HarvestSpriteMiniGame_Harvest_ExplanationQuestion
+	ldr r2, .L080BED38 @ =gText_HarvestSpriteMiniGame_Harvest_Yes
+	ldr r3, .L080BED3C @ =gText_HarvestSpriteMiniGame_Harvest_No
 	movs r4, #0
 	str r4, [sp]
 	str r4, [sp, #4]
@@ -66368,41 +66368,41 @@ func_080BEAD4: @ 0x080BEAD4
 	bl func_08050E30
 	b .L080BEEA6
 	.align 2, 0
-.L080BED34: .4byte gUnk_08107DD8
-.L080BED38: .4byte gUnk_08107DF4
-.L080BED3C: .4byte gUnk_08107DF8
+.L080BED34: .4byte gText_HarvestSpriteMiniGame_Harvest_ExplanationQuestion
+.L080BED38: .4byte gText_HarvestSpriteMiniGame_Harvest_Yes
+.L080BED3C: .4byte gText_HarvestSpriteMiniGame_Harvest_No
 .L080BED40:
 	movs r1, #0x83
 	lsls r1, r1, #3
 	adds r0, r7, r1
 	ldr r0, [r0]
-	ldr r1, .L080BED58 @ =gUnk_08107DFC
+	ldr r1, .L080BED58 @ =gText_HarvestSpriteMiniGame_Harvest_Introduction
 	bl func_08050D8C
 	ldr r2, [sp, #0x10]
 	adds r2, #1
 	str r2, [sp, #0x10]
 	b .L080BEEA6
 	.align 2, 0
-.L080BED58: .4byte gUnk_08107DFC
+.L080BED58: .4byte gText_HarvestSpriteMiniGame_Harvest_Introduction
 .L080BED5C:
 	movs r3, #0x83
 	lsls r3, r3, #3
 	adds r0, r7, r3
 	ldr r0, [r0]
-	ldr r1, .L080BED74 @ =gUnk_08107E24
+	ldr r1, .L080BED74 @ =gText_HarvestSpriteMiniGame_Harvest_Instructions
 	bl func_08050D8C
 	ldr r0, [sp, #0x10]
 	adds r0, #1
 	str r0, [sp, #0x10]
 	b .L080BEEA6
 	.align 2, 0
-.L080BED74: .4byte gUnk_08107E24
+.L080BED74: .4byte gText_HarvestSpriteMiniGame_Harvest_Instructions
 .L080BED78:
 	movs r1, #0x83
 	lsls r1, r1, #3
 	adds r0, r7, r1
 	ldr r0, [r0]
-	ldr r1, .L080BED94 @ =gUnk_08107E58
+	ldr r1, .L080BED94 @ =gText_HarvestSpriteMiniGame_Harvest_FatigueWarning
 	bl func_08050D8C
 	movs r2, #0
 	str r2, [sp, #0x14]
@@ -66411,13 +66411,13 @@ func_080BEAD4: @ 0x080BEAD4
 	str r3, [sp, #0x10]
 	b .L080BEEA6
 	.align 2, 0
-.L080BED94: .4byte gUnk_08107E58
+.L080BED94: .4byte gText_HarvestSpriteMiniGame_Harvest_FatigueWarning
 .L080BED98:
 	movs r0, #0x83
 	lsls r0, r0, #3
 	adds r4, r7, r0
 	ldr r0, [r4]
-	ldr r1, .L080BEDC0 @ =gUnk_08107EC8
+	ldr r1, .L080BEDC0 @ =gText_HarvestSpriteMiniGame_Harvest_RestInstructions
 	bl func_08050D8C
 	ldr r0, [r4]
 	bl func_08050DD8
@@ -66431,16 +66431,16 @@ func_080BEAD4: @ 0x080BEAD4
 	strb r1, [r0]
 	b .L080BEEA6
 	.align 2, 0
-.L080BEDC0: .4byte gUnk_08107EC8
+.L080BEDC0: .4byte gText_HarvestSpriteMiniGame_Harvest_RestInstructions
 .L080BEDC4: .4byte 0x00000611
 .L080BEDC8:
 	movs r2, #0x83
 	lsls r2, r2, #3
 	adds r0, r7, r2
 	ldr r0, [r0]
-	ldr r1, .L080BEE08 @ =gUnk_08107F18
-	ldr r2, .L080BEE0C @ =gUnk_08107F2C
-	ldr r3, .L080BEE10 @ =gUnk_08107F3C
+	ldr r1, .L080BEE08 @ =gText_HarvestSpriteMiniGame_Harvest_UnderstandQuestion
+	ldr r2, .L080BEE0C @ =gText_HarvestSpriteMiniGame_Harvest_UnderstandYes
+	ldr r3, .L080BEE10 @ =gText_HarvestSpriteMiniGame_Harvest_UnderstandAgain
 	movs r4, #0
 	str r4, [sp]
 	str r4, [sp, #4]
@@ -66466,9 +66466,9 @@ func_080BEAD4: @ 0x080BEAD4
 	str r1, [sp, #0x14]
 	b .L080BEEA6
 	.align 2, 0
-.L080BEE08: .4byte gUnk_08107F18
-.L080BEE0C: .4byte gUnk_08107F2C
-.L080BEE10: .4byte gUnk_08107F3C
+.L080BEE08: .4byte gText_HarvestSpriteMiniGame_Harvest_UnderstandQuestion
+.L080BEE0C: .4byte gText_HarvestSpriteMiniGame_Harvest_UnderstandYes
+.L080BEE10: .4byte gText_HarvestSpriteMiniGame_Harvest_UnderstandAgain
 .L080BEE14: .4byte 0x00000612
 .L080BEE18: .4byte 0x000005AC
 .L080BEE1C: .4byte 0x00000609
@@ -66477,7 +66477,7 @@ func_080BEAD4: @ 0x080BEAD4
 	lsls r2, r2, #3
 	adds r0, r7, r2
 	ldr r0, [r0]
-	ldr r1, .L080BEE3C @ =gUnk_08107F4C
+	ldr r1, .L080BEE3C @ =gText_HarvestSpriteMiniGame_Harvest_Start
 	bl func_08050D8C
 	ldr r3, [sp, #0x10]
 	adds r3, #1
@@ -66486,7 +66486,7 @@ func_080BEAD4: @ 0x080BEAD4
 	str r0, [sp, #0x14]
 	b .L080BEEA6
 	.align 2, 0
-.L080BEE3C: .4byte gUnk_08107F4C
+.L080BEE3C: .4byte gText_HarvestSpriteMiniGame_Harvest_Start
 .L080BEE40:
 	movs r1, #0x83
 	lsls r1, r1, #3
@@ -66856,17 +66856,17 @@ func_080BF0EC: @ 0x080BF0EC
 	movs r2, #0
 	bl func_0804EC84
 	add r0, sp, #0x10
-	ldr r4, .L080BF1CC @ =gUnk_08107F60
+	ldr r4, .L080BF1CC @ =gText_HarvestSpriteMiniGame_Harvest_ScorePrefix
 	adds r1, r4, #0
 	movs r2, #6
 	bl memcpy
 	add r0, sp, #0x18
-	ldr r6, .L080BF1D0 @ =gUnk_08107F68
+	ldr r6, .L080BF1D0 @ =gText_HarvestSpriteMiniGame_Harvest_ScoreResultPrefix
 	adds r1, r6, #0
 	movs r2, #0xf
 	bl memcpy
 	add r0, sp, #0x28
-	ldr r2, .L080BF1D4 @ =gUnk_08107F78
+	ldr r2, .L080BF1D4 @ =gText_HarvestSpriteMiniGame_Harvest_ScoreResultSuffix
 	mov r8, r2
 	mov r1, r8
 	movs r2, #0xa
@@ -66937,9 +66937,9 @@ func_080BF0EC: @ 0x080BF0EC
 	adds r0, r7, r3
 	b .L080BF2D4
 	.align 2, 0
-.L080BF1CC: .4byte gUnk_08107F60
-.L080BF1D0: .4byte gUnk_08107F68
-.L080BF1D4: .4byte gUnk_08107F78
+.L080BF1CC: .4byte gText_HarvestSpriteMiniGame_Harvest_ScorePrefix
+.L080BF1D0: .4byte gText_HarvestSpriteMiniGame_Harvest_ScoreResultPrefix
+.L080BF1D4: .4byte gText_HarvestSpriteMiniGame_Harvest_ScoreResultSuffix
 .L080BF1D8: .4byte 0x0000057C
 .L080BF1DC:
 	adds r0, r7, #0
@@ -69281,7 +69281,7 @@ func_080BF764: @ 0x080BF764
 	lsls r4, r4, #3
 	add r4, sl
 	ldr r0, [r4]
-	ldr r1, .L080C0424 @ =gUnk_08107F84
+	ldr r1, .L080C0424 @ =gText_HarvestSpriteMiniGame_Harvest_ScoreSummary
 	bl func_08050D8C
 	ldr r0, [r4]
 	bl func_08050DD8
@@ -69303,7 +69303,7 @@ func_080BF764: @ 0x080BF764
 	beq .L080C0434
 	b .L080C08EA
 	.align 2, 0
-.L080C0424: .4byte gUnk_08107F84
+.L080C0424: .4byte gText_HarvestSpriteMiniGame_Harvest_ScoreSummary
 .L080C0428: .4byte 0x0000060B
 .L080C042C:
 	cmp r0, #3
@@ -76964,62 +76964,62 @@ sub_080C3DC4: @ 0x080C3DC4
 	ldr r3, .L080C4014 @ =0x0000051C
 	adds r0, r7, r3
 	ldr r0, [r0]
-	ldr r1, .L080C4018 @ =gUnk_08108020
-	ldr r2, .L080C401C @ =gUnk_0810803C
-	ldr r3, .L080C4020 @ =gUnk_08108040
+	ldr r1, .L080C4018 @ =gText_HarvestSpriteMiniGame_Watering_ExplanationQuestion
+	ldr r2, .L080C401C @ =gText_HarvestSpriteMiniGame_Watering_Yes
+	ldr r3, .L080C4020 @ =gText_HarvestSpriteMiniGame_Watering_No
 	b .L080C4090
 	.align 2, 0
 .L080C4014: .4byte 0x0000051C
-.L080C4018: .4byte gUnk_08108020
-.L080C401C: .4byte gUnk_0810803C
-.L080C4020: .4byte gUnk_08108040
+.L080C4018: .4byte gText_HarvestSpriteMiniGame_Watering_ExplanationQuestion
+.L080C401C: .4byte gText_HarvestSpriteMiniGame_Watering_Yes
+.L080C4020: .4byte gText_HarvestSpriteMiniGame_Watering_No
 .L080C4024:
 	ldr r4, .L080C4034 @ =0x0000051C
 	adds r0, r7, r4
 	ldr r0, [r0]
-	ldr r1, .L080C4038 @ =gUnk_08108044
+	ldr r1, .L080C4038 @ =gText_HarvestSpriteMiniGame_Watering_Introduction
 	bl func_08050D8C
 	b .L080C4128
 	.align 2, 0
 .L080C4034: .4byte 0x0000051C
-.L080C4038: .4byte gUnk_08108044
+.L080C4038: .4byte gText_HarvestSpriteMiniGame_Watering_Introduction
 .L080C403C:
 	ldr r6, .L080C404C @ =0x0000051C
 	adds r0, r7, r6
 	ldr r0, [r0]
-	ldr r1, .L080C4050 @ =gUnk_08108070
+	ldr r1, .L080C4050 @ =gText_HarvestSpriteMiniGame_Watering_Instructions
 	bl func_08050D8C
 	b .L080C4128
 	.align 2, 0
 .L080C404C: .4byte 0x0000051C
-.L080C4050: .4byte gUnk_08108070
+.L080C4050: .4byte gText_HarvestSpriteMiniGame_Watering_Instructions
 .L080C4054:
 	ldr r1, .L080C4064 @ =0x0000051C
 	adds r0, r7, r1
 	ldr r0, [r0]
-	ldr r1, .L080C4068 @ =gUnk_081080EC
+	ldr r1, .L080C4068 @ =gText_HarvestSpriteMiniGame_Watering_SuccessInstructions
 	bl func_08050D8C
 	b .L080C4128
 	.align 2, 0
 .L080C4064: .4byte 0x0000051C
-.L080C4068: .4byte gUnk_081080EC
+.L080C4068: .4byte gText_HarvestSpriteMiniGame_Watering_SuccessInstructions
 .L080C406C:
 	ldr r2, .L080C407C @ =0x0000051C
 	adds r0, r7, r2
 	ldr r0, [r0]
-	ldr r1, .L080C4080 @ =gUnk_08108168
+	ldr r1, .L080C4080 @ =gText_HarvestSpriteMiniGame_Watering_MistakeWarning
 	bl func_08050D8C
 	b .L080C4128
 	.align 2, 0
 .L080C407C: .4byte 0x0000051C
-.L080C4080: .4byte gUnk_08108168
+.L080C4080: .4byte gText_HarvestSpriteMiniGame_Watering_MistakeWarning
 .L080C4084:
 	ldr r3, .L080C40A0 @ =0x0000051C
 	adds r0, r7, r3
 	ldr r0, [r0]
-	ldr r1, .L080C40A4 @ =gUnk_081081D8
-	ldr r2, .L080C40A8 @ =gUnk_081081E4
-	ldr r3, .L080C40AC @ =gUnk_081081F4
+	ldr r1, .L080C40A4 @ =gText_HarvestSpriteMiniGame_Watering_UnderstandQuestion
+	ldr r2, .L080C40A8 @ =gText_HarvestSpriteMiniGame_Watering_UnderstandYes
+	ldr r3, .L080C40AC @ =gText_HarvestSpriteMiniGame_Watering_UnderstandAgain
 .L080C4090:
 	movs r4, #0
 	str r4, [sp]
@@ -77029,19 +77029,19 @@ sub_080C3DC4: @ 0x080C3DC4
 	b .L080C4128
 	.align 2, 0
 .L080C40A0: .4byte 0x0000051C
-.L080C40A4: .4byte gUnk_081081D8
-.L080C40A8: .4byte gUnk_081081E4
-.L080C40AC: .4byte gUnk_081081F4
+.L080C40A4: .4byte gText_HarvestSpriteMiniGame_Watering_UnderstandQuestion
+.L080C40A8: .4byte gText_HarvestSpriteMiniGame_Watering_UnderstandYes
+.L080C40AC: .4byte gText_HarvestSpriteMiniGame_Watering_UnderstandAgain
 .L080C40B0:
 	ldr r4, .L080C40C0 @ =0x0000051C
 	adds r0, r7, r4
 	ldr r0, [r0]
-	ldr r1, .L080C40C4 @ =gUnk_08108204
+	ldr r1, .L080C40C4 @ =gText_HarvestSpriteMiniGame_Watering_Start
 	bl func_08050D8C
 	b .L080C4128
 	.align 2, 0
 .L080C40C0: .4byte 0x0000051C
-.L080C40C4: .4byte gUnk_08108204
+.L080C40C4: .4byte gText_HarvestSpriteMiniGame_Watering_Start
 .L080C40C8:
 	ldr r6, .L080C40DC @ =0x0000051C
 	adds r0, r7, r6
@@ -79040,17 +79040,17 @@ func_080C516C: @ 0x080C516C
 	movs r2, #0
 	bl func_0804EC84
 	add r0, sp, #0x10
-	ldr r5, .L080C5254 @ =gUnk_08108218
+	ldr r5, .L080C5254 @ =gText_HarvestSpriteMiniGame_Watering_ScorePrefix
 	adds r1, r5, #0
 	movs r2, #6
 	bl memcpy
 	add r0, sp, #0x18
-	ldr r6, .L080C5258 @ =gUnk_08108220
+	ldr r6, .L080C5258 @ =gText_HarvestSpriteMiniGame_Watering_ScoreResultPrefix
 	adds r1, r6, #0
 	movs r2, #0xf
 	bl memcpy
 	add r0, sp, #0x28
-	ldr r2, .L080C525C @ =gUnk_08108230
+	ldr r2, .L080C525C @ =gText_HarvestSpriteMiniGame_Watering_ScoreResultSuffix
 	mov r8, r2
 	mov r1, r8
 	movs r2, #0xa
@@ -79127,9 +79127,9 @@ func_080C516C: @ 0x080C516C
 	b .L080C534E
 	.align 2, 0
 .L080C5250: .4byte 0x0000097C
-.L080C5254: .4byte gUnk_08108218
-.L080C5258: .4byte gUnk_08108220
-.L080C525C: .4byte gUnk_08108230
+.L080C5254: .4byte gText_HarvestSpriteMiniGame_Watering_ScorePrefix
+.L080C5258: .4byte gText_HarvestSpriteMiniGame_Watering_ScoreResultPrefix
+.L080C525C: .4byte gText_HarvestSpriteMiniGame_Watering_ScoreResultSuffix
 .L080C5260: .4byte 0x00000904
 .L080C5264: .4byte 0x0000051C
 .L080C5268: .4byte 0x00000814
@@ -83159,7 +83159,7 @@ func_080C608C: @ 0x080C608C
 	ldr r4, .L080C71A8 @ =0x0000051C
 	add r4, sl
 	ldr r0, [r4]
-	ldr r1, .L080C71AC @ =gUnk_0810823C
+	ldr r1, .L080C71AC @ =gText_HarvestSpriteMiniGame_Watering_ScoreSummary
 	bl func_08050D8C
 	ldr r0, [r4]
 	bl func_08050DD8
@@ -83181,7 +83181,7 @@ func_080C608C: @ 0x080C608C
 	b .L080C76AC
 	.align 2, 0
 .L080C71A8: .4byte 0x0000051C
-.L080C71AC: .4byte gUnk_0810823C
+.L080C71AC: .4byte gText_HarvestSpriteMiniGame_Watering_ScoreSummary
 .L080C71B0: .4byte 0x0000096B
 .L080C71B4: .4byte 0x000008A8
 .L080C71B8:

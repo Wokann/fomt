@@ -156,3 +156,133 @@ char const gText_HarvestSpriteMiniGame_ChickenFestival_CautionAtRingEdge[] HARVE
 char const gText_HarvestSpriteMiniGame_ChickenFestival_CautionLeavingRing[] HARVEST_SPRITE_MINIGAMES_CHICKEN_FESTIVAL_INSTRUCTIONS_TEXT =
     "\p"
     "Chicken out of the ring!{Press}";
+
+char const gText_HarvestSpriteMiniGame_Harvest_ExplanationQuestion[] HARVEST_SPRITE_MINIGAMES_HARVEST_INSTRUCTIONS_TEXT =
+    "Wanna hear how to do it?";
+
+char const gText_HarvestSpriteMiniGame_Harvest_Yes[] HARVEST_SPRITE_MINIGAMES_HARVEST_INSTRUCTIONS_TEXT =
+    "Yes";
+
+char const gText_HarvestSpriteMiniGame_Harvest_No[] HARVEST_SPRITE_MINIGAMES_HARVEST_INSTRUCTIONS_TEXT =
+    "No";
+
+char const gText_HarvestSpriteMiniGame_Harvest_Introduction[] HARVEST_SPRITE_MINIGAMES_HARVEST_INSTRUCTIONS_TEXT =
+    "\p"
+    "Now I will explain the\r\n"
+    "Harvest game.{Press}";
+
+char const gText_HarvestSpriteMiniGame_Harvest_Instructions[] HARVEST_SPRITE_MINIGAMES_HARVEST_INSTRUCTIONS_TEXT =
+    "\p"
+    "Hit the A Button repeatedly\r\n"
+    "to help us harvest.{Press}";
+
+char const gText_HarvestSpriteMiniGame_Harvest_FatigueWarning[] HARVEST_SPRITE_MINIGAMES_HARVEST_INSTRUCTIONS_TEXT =
+    "\p"
+    "If you make us work too \r\n"
+    "fast, our faces get red.{Press}\r\n"
+    "If you don't slow down,{Press}\r\n"
+    "we'll start making mistakes.{Press}";
+
+char const gText_HarvestSpriteMiniGame_Harvest_RestInstructions[] HARVEST_SPRITE_MINIGAMES_HARVEST_INSTRUCTIONS_TEXT =
+    "\p"
+    "So, if you see our faces\r\n"
+    "getting red, slow down the\r\n"
+    "pace to give us a rest.{Press}";
+
+char const gText_HarvestSpriteMiniGame_Harvest_UnderstandQuestion[] HARVEST_SPRITE_MINIGAMES_HARVEST_INSTRUCTIONS_TEXT =
+    "Do you understand?";
+
+char const gText_HarvestSpriteMiniGame_Harvest_UnderstandYes[] HARVEST_SPRITE_MINIGAMES_HARVEST_INSTRUCTIONS_TEXT =
+    "I understand.";
+
+char const gText_HarvestSpriteMiniGame_Harvest_UnderstandAgain[] HARVEST_SPRITE_MINIGAMES_HARVEST_INSTRUCTIONS_TEXT =
+    "Tell me again.";
+
+char const gText_HarvestSpriteMiniGame_Harvest_Start[] HARVEST_SPRITE_MINIGAMES_HARVEST_INSTRUCTIONS_TEXT =
+    "\p"
+    "OK, let's start!{Press}";
+
+char const gText_HarvestSpriteMiniGame_Harvest_ScorePrefix[] HARVEST_SPRITE_MINIGAMES_HARVEST_RESULTS_TEXT =
+    "\p"
+    "\r\n"
+    "　";
+
+char const gText_HarvestSpriteMiniGame_Harvest_ScoreResultPrefix[] HARVEST_SPRITE_MINIGAMES_HARVEST_RESULTS_TEXT =
+    " Cleared with ";
+
+char const gText_HarvestSpriteMiniGame_Harvest_ScoreResultSuffix[] HARVEST_SPRITE_MINIGAMES_HARVEST_RESULTS_TEXT =
+    " points.{Press}";
+
+char const gText_HarvestSpriteMiniGame_Harvest_ScoreSummary[] HARVEST_SPRITE_MINIGAMES_HARVEST_RESULTS_TEXT =
+    "\p"
+    "Harvests\r\n"
+    "Misses\r\n"
+    "　　　　　　　　　Total{Press}";
+
+char const gText_HarvestSpriteMiniGame_Watering_ExplanationQuestion[] HARVEST_SPRITE_MINIGAMES_WATERING_INSTRUCTIONS_TEXT =
+    "Do you need an explanation?";
+
+char const gText_HarvestSpriteMiniGame_Watering_Yes[] HARVEST_SPRITE_MINIGAMES_WATERING_INSTRUCTIONS_TEXT =
+    "Yes";
+
+char const gText_HarvestSpriteMiniGame_Watering_No[] HARVEST_SPRITE_MINIGAMES_WATERING_INSTRUCTIONS_TEXT =
+    "No";
+
+char const gText_HarvestSpriteMiniGame_Watering_Introduction[] HARVEST_SPRITE_MINIGAMES_WATERING_INSTRUCTIONS_TEXT =
+    "\p"
+    "Now I will explain the\r\n"
+    "Watering game.{Press}";
+
+char const gText_HarvestSpriteMiniGame_Watering_Instructions[] HARVEST_SPRITE_MINIGAMES_WATERING_INSTRUCTIONS_TEXT =
+    "\p"
+    "Help us water the plants\r\n"
+    "following the patterns shown{Press}\r\n"
+    "using the Control Pad and\r\n"
+    "the A Button.\r\n"
+    "There are three turns.{Press}";
+
+char const gText_HarvestSpriteMiniGame_Watering_SuccessInstructions[] HARVEST_SPRITE_MINIGAMES_WATERING_INSTRUCTIONS_TEXT =
+    "\p"
+    "If you follow the pattern,\r\n"
+    "we'll be happy and{Press}\r\n"
+    "sprouts will come up.{Press}\r\n"
+    "If you miss, though,\r\n"
+    "none will come up at all.{Press}";
+
+char const gText_HarvestSpriteMiniGame_Watering_MistakeWarning[] HARVEST_SPRITE_MINIGAMES_WATERING_INSTRUCTIONS_TEXT =
+    "\p"
+    "Do your best to follow the\r\n"
+    "pattern, and don't \r\n"
+    "repeat any places.{Press}\r\n"
+    "If you make mistakes,\r\n"
+    "we'll get upset.{Press}";
+
+char const gText_HarvestSpriteMiniGame_Watering_UnderstandQuestion[] HARVEST_SPRITE_MINIGAMES_WATERING_INSTRUCTIONS_TEXT =
+    "Understand?";
+
+char const gText_HarvestSpriteMiniGame_Watering_UnderstandYes[] HARVEST_SPRITE_MINIGAMES_WATERING_INSTRUCTIONS_TEXT =
+    "I understand.";
+
+char const gText_HarvestSpriteMiniGame_Watering_UnderstandAgain[] HARVEST_SPRITE_MINIGAMES_WATERING_INSTRUCTIONS_TEXT =
+    "One more time.";
+
+char const gText_HarvestSpriteMiniGame_Watering_Start[] HARVEST_SPRITE_MINIGAMES_WATERING_INSTRUCTIONS_TEXT =
+    "\p"
+    "OK, let's start!{Press}";
+
+char const gText_HarvestSpriteMiniGame_Watering_ScorePrefix[] HARVEST_SPRITE_MINIGAMES_WATERING_RESULTS_TEXT =
+    "\p"
+    "\r\n"
+    "　";
+
+char const gText_HarvestSpriteMiniGame_Watering_ScoreResultPrefix[] HARVEST_SPRITE_MINIGAMES_WATERING_RESULTS_TEXT =
+    " Cleared with ";
+
+char const gText_HarvestSpriteMiniGame_Watering_ScoreResultSuffix[] HARVEST_SPRITE_MINIGAMES_WATERING_RESULTS_TEXT =
+    " points.{Press}";
+
+char const gText_HarvestSpriteMiniGame_Watering_ScoreSummary[] HARVEST_SPRITE_MINIGAMES_WATERING_RESULTS_TEXT =
+    "\p"
+    "Watered\r\n"
+    "Turns\r\n"
+    "Misses  　　　　　 Total{Press}";
