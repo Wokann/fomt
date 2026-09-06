@@ -135851,7 +135851,7 @@ func_08083C64: @ 0x08083C64
 	lsls r0, r3, #2
 	adds r0, r0, r3
 	lsls r0, r0, #2
-	ldr r2, .L08083F70 @ =gUnk_080FF6A8
+	ldr r2, .L08083F70 @ =gCarpenterCatalog
 	mov r1, sl
 	adds r0, r0, r2
 	ldm r0!, {r2, r4, r6}
@@ -135893,7 +135893,7 @@ func_08083C64: @ 0x08083C64
 	b .L08083F7C
 	.align 2, 0
 .L08083F6C: .4byte gUnk_086678A0
-.L08083F70: .4byte gUnk_080FF6A8
+.L08083F70: .4byte gCarpenterCatalog
 .L08083F74:
 	mov r4, sp
 	adds r4, #0xd5
@@ -136107,7 +136107,7 @@ func_080840F4: @ 0x080840F4
 	adds r5, r1, #0
 	ldr r0, .L0808414C @ =0x00006170
 	adds r6, r7, r0
-	ldr r2, .L08084150 @ =gUnk_080FF83C
+	ldr r2, .L08084150 @ =gText_Carpenter_RebuildRequirements
 	mov r8, r2
 	mov r0, r8
 	bl strlen
@@ -136126,7 +136126,7 @@ func_080840F4: @ 0x080840F4
 	lsls r3, r5, #2
 	adds r1, r3, r5
 	lsls r1, r1, #2
-	ldr r2, .L08084154 @ =gUnk_080FF6A8
+	ldr r2, .L08084154 @ =gCarpenterCatalog
 	mov r0, sp
 	adds r1, r1, r2
 	ldm r1!, {r2, r4, r6}
@@ -136142,8 +136142,8 @@ func_080840F4: @ 0x080840F4
 	mov pc, r0
 	.align 2, 0
 .L0808414C: .4byte 0x00006170
-.L08084150: .4byte gUnk_080FF83C
-.L08084154: .4byte gUnk_080FF6A8
+.L08084150: .4byte gText_Carpenter_RebuildRequirements
+.L08084154: .4byte gCarpenterCatalog
 .L08084158: .4byte 0x0808415C
 .L0808415C:
 	.byte 0xAC, 0x41, 0x08, 0x08
@@ -136199,7 +136199,7 @@ func_08084228: @ 0x08084228
 	lsls r1, r4, #2
 	add r1, sl
 	lsls r1, r1, #2
-	ldr r2, .L08084314 @ =gUnk_080FF6A8
+	ldr r2, .L08084314 @ =gCarpenterCatalog
 	add r0, sp, #0x10
 	adds r1, r1, r2
 	ldm r1!, {r2, r5, r7}
@@ -136288,7 +136288,7 @@ func_08084228: @ 0x08084228
 	add sl, r0
 	b .L080843F0
 	.align 2, 0
-.L08084314: .4byte gUnk_080FF6A8
+.L08084314: .4byte gCarpenterCatalog
 .L08084318:
 	str r1, [sp, #0x6c]
 	movs r1, #1
@@ -136573,7 +136573,7 @@ func_08084228: @ 0x08084228
 	mov r8, r0
 	adds r1, r0, r3
 	lsls r1, r1, #2
-	ldr r2, .L0808458C @ =gUnk_080FF6A8
+	ldr r2, .L0808458C @ =gCarpenterCatalog
 	adds r0, r4, #0
 	adds r1, r1, r2
 	ldm r1!, {r2, r5, r7}
@@ -136591,7 +136591,7 @@ func_08084228: @ 0x08084228
 	mov pc, r0
 	.align 2, 0
 .L08084588: .4byte 0x000006A1
-.L0808458C: .4byte gUnk_080FF6A8
+.L0808458C: .4byte gCarpenterCatalog
 .L08084590: .4byte 0x08084594
 .L08084594:
 	.byte 0xC0, 0x45, 0x08, 0x08, 0xA8, 0x46, 0x08, 0x08, 0xDC, 0x48, 0x08, 0x08
@@ -136720,15 +136720,15 @@ func_08084228: @ 0x08084228
 	ldrb r0, [r0]
 	cmp r0, #0
 	beq .L08084CBC
-	ldr r1, .L08084CB8 @ =gUnk_080FF998
+	ldr r1, .L08084CB8 @ =gText_Carpenter_NeedAnythingElse
 	adds r0, r6, #0
 	bl func_080CABA0
 	b .L08084CC4
 	.align 2, 0
 .L08084CB4: .4byte 0x0000070C
-.L08084CB8: .4byte gUnk_080FF998
+.L08084CB8: .4byte gText_Carpenter_NeedAnythingElse
 .L08084CBC:
-	ldr r1, .L08084CE0 @ =gUnk_080FF9B8
+	ldr r1, .L08084CE0 @ =gText_Carpenter_AreYouSureNow
 	adds r0, r6, #0
 	bl func_080CABA0
 .L08084CC4:
@@ -136744,7 +136744,7 @@ func_08084228: @ 0x08084228
 	str r0, [r1]
 	bl .L080854C8
 	.align 2, 0
-.L08084CE0: .4byte gUnk_080FF9B8
+.L08084CE0: .4byte gText_Carpenter_AreYouSureNow
 .L08084CE4:
 	ldr r0, [r6, #0x14]
 	ldr r1, [r6, #0x10]
@@ -136879,7 +136879,7 @@ func_08084228: @ 0x08084228
 	cmp r4, #0
 	beq .L08084E1C
 .L08084DFA:
-	ldr r1, .L08084E18 @ =gUnk_080FF9CC
+	ldr r1, .L08084E18 @ =gText_Carpenter_SameCurrentShape
 	adds r0, r6, #0
 	bl func_080CABA0
 	movs r1, #0xd2
@@ -136892,7 +136892,7 @@ func_08084228: @ 0x08084228
 	adds r1, r6, r2
 	b .L08084EA8
 	.align 2, 0
-.L08084E18: .4byte gUnk_080FF9CC
+.L08084E18: .4byte gText_Carpenter_SameCurrentShape
 .L08084E1C:
 	add r4, sp, #0x14
 	ldr r0, [r6, #0x10]
@@ -136904,7 +136904,7 @@ func_08084228: @ 0x08084228
 	lsls r1, r0, #2
 	adds r1, r1, r0
 	lsls r1, r1, #2
-	ldr r2, .L08084E74 @ =gUnk_080FF6A8
+	ldr r2, .L08084E74 @ =gCarpenterCatalog
 	adds r0, r4, #0
 	adds r1, r1, r2
 	ldm r1!, {r2, r5, r7}
@@ -136923,7 +136923,7 @@ func_08084228: @ 0x08084228
 .L08084E50:
 	cmp r3, #0
 	beq .L08084E80
-	ldr r1, .L08084E7C @ =gUnk_080FF858
+	ldr r1, .L08084E7C @ =gText_Carpenter_InsufficientGold
 	adds r0, r6, #0
 	bl func_080CABA0
 	movs r1, #0xd2
@@ -136937,9 +136937,9 @@ func_08084228: @ 0x08084228
 	b .L08084EA8
 	.align 2, 0
 .L08084E70: .4byte 0x00000714
-.L08084E74: .4byte gUnk_080FF6A8
+.L08084E74: .4byte gCarpenterCatalog
 .L08084E78: .4byte 0x00001AA8
-.L08084E7C: .4byte gUnk_080FF858
+.L08084E7C: .4byte gText_Carpenter_InsufficientGold
 .L08084E80:
 	adds r0, r1, #0
 	adds r0, #0x14
@@ -136947,7 +136947,7 @@ func_08084228: @ 0x08084228
 	ldr r1, [r4, #8]
 	cmp r0, r1
 	bhs .L08084EB4
-	ldr r1, .L08084EB0 @ =gUnk_080FF944
+	ldr r1, .L08084EB0 @ =gText_Carpenter_InsufficientLumber
 	adds r0, r6, #0
 	bl func_080CABA0
 	movs r3, #0xd2
@@ -136963,9 +136963,9 @@ func_08084228: @ 0x08084228
 	str r0, [r1]
 	b .L080854C8
 	.align 2, 0
-.L08084EB0: .4byte gUnk_080FF944
+.L08084EB0: .4byte gText_Carpenter_InsufficientLumber
 .L08084EB4:
-	ldr r1, .L08084ED4 @ =gUnk_080FF968
+	ldr r1, .L08084ED4 @ =gText_Carpenter_ThreeDayConfirmation
 	adds r0, r6, #0
 	bl func_080CABA0
 	movs r5, #0xd2
@@ -136980,7 +136980,7 @@ func_08084228: @ 0x08084228
 	str r0, [r1]
 	b .L080854C8
 	.align 2, 0
-.L08084ED4: .4byte gUnk_080FF968
+.L08084ED4: .4byte gText_Carpenter_ThreeDayConfirmation
 .L08084ED8:
 	adds r0, r6, #0
 	bl func_080088CC
@@ -137045,7 +137045,7 @@ func_08084228: @ 0x08084228
 	lsls r1, r0, #2
 	adds r1, r1, r0
 	lsls r1, r1, #2
-	ldr r2, .L08084F9C @ =gUnk_080FF6A8
+	ldr r2, .L08084F9C @ =gCarpenterCatalog
 	mov r0, r8
 	adds r1, r1, r2
 	ldm r1!, {r2, r3, r4}
@@ -137074,17 +137074,17 @@ func_08084228: @ 0x08084228
 	b .L08085044
 	.align 2, 0
 .L08084F98: .4byte 0x00000684
-.L08084F9C: .4byte gUnk_080FF6A8
+.L08084F9C: .4byte gCarpenterCatalog
 .L08084FA0: .4byte 0x00001AA8
 .L08084FA4:
 	ldr r0, [r6, #8]
 	adds r0, #0x14
 	adds r1, r7, #0
 	bl method_08009B68__4FarmUi
-	ldr r1, .L08084FB4 @ =gUnk_080FF9F4
+	ldr r1, .L08084FB4 @ =gText_Carpenter_StoreLumber
 	b .L0808502E
 	.align 2, 0
-.L08084FB4: .4byte gUnk_080FF9F4
+.L08084FB4: .4byte gText_Carpenter_StoreLumber
 .L08084FB8:
 	ldr r0, [r6, #8]
 	ldr r4, .L08085020 @ =0x00001C2C
@@ -137132,22 +137132,22 @@ func_08084228: @ 0x08084228
 	bl AddAmountOf__5ShelfUiUi
 	cmp r5, #0
 	beq .L0808502C
-	ldr r1, .L08085028 @ =gUnk_080FFA24
+	ldr r1, .L08085028 @ =gText_Carpenter_DeliveryAll
 	b .L0808502E
 	.align 2, 0
 .L08085020: .4byte 0x00001C2C
 .L08085024: .4byte 0x00001C38
-.L08085028: .4byte gUnk_080FFA24
+.L08085028: .4byte gText_Carpenter_DeliveryAll
 .L0808502C:
-	ldr r1, .L08085038 @ =gUnk_080FFA70
+	ldr r1, .L08085038 @ =gText_Carpenter_DeliverySome
 .L0808502E:
 	adds r0, r6, #0
 	bl func_080CABA0
 	b .L08085044
 	.align 2, 0
-.L08085038: .4byte gUnk_080FFA70
+.L08085038: .4byte gText_Carpenter_DeliverySome
 .L0808503C:
-	ldr r1, .L08085088 @ =gUnk_080FFABC
+	ldr r1, .L08085088 @ =gText_Carpenter_PurchaseComplete
 	adds r0, r6, #0
 	bl func_080CABA0
 .L08085044:
@@ -137185,7 +137185,7 @@ func_08084228: @ 0x08084228
 	str r0, [r4]
 	b .L080854C8
 	.align 2, 0
-.L08085088: .4byte gUnk_080FFABC
+.L08085088: .4byte gText_Carpenter_PurchaseComplete
 .L0808508C: .4byte 0x0000070C
 .L08085090: .4byte 0x000003E7
 .L08085094: .4byte 0x000061F0
@@ -137338,8 +137338,8 @@ func_08084228: @ 0x08084228
 	ldr r0, [r0]
 	cmp r0, #7
 	bne .L080851E4
-	ldr r1, .L080851DC @ =gUnk_080FFACC
-	ldr r2, .L080851E0 @ =gUnk_080FFAD4
+	ldr r1, .L080851DC @ =gText_Carpenter_Build
+	ldr r2, .L080851E0 @ =gText_Carpenter_DontBuild
 	movs r0, #0
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -137350,11 +137350,11 @@ func_08084228: @ 0x08084228
 	bl func_08050E0C
 	b .L080851FA
 	.align 2, 0
-.L080851DC: .4byte gUnk_080FFACC
-.L080851E0: .4byte gUnk_080FFAD4
+.L080851DC: .4byte gText_Carpenter_Build
+.L080851E0: .4byte gText_Carpenter_DontBuild
 .L080851E4:
-	ldr r1, .L08085208 @ =gUnk_080FFAE0
-	ldr r2, .L0808520C @ =gUnk_080FFAE8
+	ldr r1, .L08085208 @ =gText_Carpenter_Upgrade
+	ldr r2, .L0808520C @ =gText_Carpenter_DontUpgrade
 	movs r0, #0
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -137371,8 +137371,8 @@ func_08084228: @ 0x08084228
 	str r0, [r1]
 	b .L080854C8
 	.align 2, 0
-.L08085208: .4byte gUnk_080FFAE0
-.L0808520C: .4byte gUnk_080FFAE8
+.L08085208: .4byte gText_Carpenter_Upgrade
+.L0808520C: .4byte gText_Carpenter_DontUpgrade
 .L08085210:
 	movs r1, #0xd4
 	lsls r1, r1, #2
@@ -137406,7 +137406,7 @@ func_08084228: @ 0x08084228
 	lsls r1, r0, #2
 	adds r1, r1, r0
 	lsls r1, r1, #2
-	ldr r2, .L080852F8 @ =gUnk_080FF6A8
+	ldr r2, .L080852F8 @ =gCarpenterCatalog
 	adds r0, r4, #0
 	adds r1, r1, r2
 	ldm r1!, {r2, r5, r7}
@@ -137465,7 +137465,7 @@ func_08084228: @ 0x08084228
 	mov r3, r8
 	strb r5, [r3]
 .L080852D2:
-	ldr r1, .L08085308 @ =gUnk_080FFAF8
+	ldr r1, .L08085308 @ =gText_Carpenter_StartUpgradeTomorrow
 	adds r0, r6, #0
 	bl func_080CABA0
 	mov r0, sb
@@ -137482,14 +137482,14 @@ func_08084228: @ 0x08084228
 	strb r7, [r0]
 	b .L080854C8
 	.align 2, 0
-.L080852F8: .4byte gUnk_080FF6A8
+.L080852F8: .4byte gCarpenterCatalog
 .L080852FC: .4byte 0x00001F64
 .L08085300: .4byte 0x00001AA8
 .L08085304: .4byte 0x000061F0
-.L08085308: .4byte gUnk_080FFAF8
+.L08085308: .4byte gText_Carpenter_StartUpgradeTomorrow
 .L0808530C: .4byte 0x0000070C
 .L08085310:
-	ldr r1, .L0808532C @ =gUnk_080FFB2C
+	ldr r1, .L0808532C @ =gText_Carpenter_ConfirmUpgrade
 	adds r0, r6, #0
 	bl func_080CABA0
 	mov r0, sb
@@ -137502,7 +137502,7 @@ func_08084228: @ 0x08084228
 	str r0, [r1]
 	b .L080854C8
 	.align 2, 0
-.L0808532C: .4byte gUnk_080FFB2C
+.L0808532C: .4byte gText_Carpenter_ConfirmUpgrade
 .L08085330:
 	movs r1, #0xd4
 	lsls r1, r1, #2
@@ -137517,8 +137517,8 @@ func_08084228: @ 0x08084228
 	adds r4, r6, r2
 	adds r0, r4, #0
 	bl func_08050E5C
-	ldr r1, .L0808536C @ =gUnk_080FFAE0
-	ldr r2, .L08085370 @ =gUnk_080FFAE8
+	ldr r1, .L0808536C @ =gText_Carpenter_Upgrade
+	ldr r2, .L08085370 @ =gText_Carpenter_DontUpgrade
 	movs r0, #0
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -137534,8 +137534,8 @@ func_08084228: @ 0x08084228
 	str r0, [r1]
 	b .L080854C8
 	.align 2, 0
-.L0808536C: .4byte gUnk_080FFAE0
-.L08085370: .4byte gUnk_080FFAE8
+.L0808536C: .4byte gText_Carpenter_Upgrade
+.L08085370: .4byte gText_Carpenter_DontUpgrade
 .L08085374:
 	movs r4, #0xd4
 	lsls r4, r4, #2
@@ -137567,7 +137567,7 @@ func_08084228: @ 0x08084228
 	lsls r1, r0, #2
 	adds r1, r1, r0
 	lsls r1, r1, #2
-	ldr r2, .L0808541C @ =gUnk_080FF6A8
+	ldr r2, .L0808541C @ =gCarpenterCatalog
 	adds r0, r4, #0
 	adds r1, r1, r2
 	ldm r1!, {r2, r3, r7}
@@ -137598,7 +137598,7 @@ func_08084228: @ 0x08084228
 	movs r0, #0
 	strb r0, [r1]
 .L080853F2:
-	ldr r1, .L0808542C @ =gUnk_080FFAF8
+	ldr r1, .L0808542C @ =gText_Carpenter_StartUpgradeTomorrow
 	adds r0, r6, #0
 	bl func_080CABA0
 	adds r0, r5, #0
@@ -137616,14 +137616,14 @@ func_08084228: @ 0x08084228
 	b .L080854C8
 	.align 2, 0
 .L08085418: .4byte 0x00000714
-.L0808541C: .4byte gUnk_080FF6A8
+.L0808541C: .4byte gCarpenterCatalog
 .L08085420: .4byte 0x00001F64
 .L08085424: .4byte 0x00001AA8
 .L08085428: .4byte 0x000061F0
-.L0808542C: .4byte gUnk_080FFAF8
+.L0808542C: .4byte gText_Carpenter_StartUpgradeTomorrow
 .L08085430: .4byte 0x0000070C
 .L08085434:
-	ldr r1, .L08085450 @ =gUnk_080FFB2C
+	ldr r1, .L08085450 @ =gText_Carpenter_ConfirmUpgrade
 	adds r0, r6, #0
 	bl func_080CABA0
 	adds r0, r5, #0
@@ -137636,7 +137636,7 @@ func_08084228: @ 0x08084228
 	str r0, [r1]
 	b .L080854C8
 	.align 2, 0
-.L08085450: .4byte gUnk_080FFB2C
+.L08085450: .4byte gText_Carpenter_ConfirmUpgrade
 .L08085454:
 	movs r1, #0xd4
 	lsls r1, r1, #2
@@ -137644,7 +137644,7 @@ func_08084228: @ 0x08084228
 	ldr r4, [r0]
 	cmp r4, #3
 	bne .L080854C8
-	ldr r1, .L08085480 @ =gUnk_080FFB3C
+	ldr r1, .L08085480 @ =gText_Carpenter_NeedAnythingMore
 	adds r0, r6, #0
 	bl func_080CABA0
 	movs r2, #0xd2
@@ -137658,7 +137658,7 @@ func_08084228: @ 0x08084228
 	str r4, [r0]
 	b .L080854C8
 	.align 2, 0
-.L08085480: .4byte gUnk_080FFB3C
+.L08085480: .4byte gText_Carpenter_NeedAnythingMore
 .L08085484:
 	movs r4, #0xd4
 	lsls r4, r4, #2
