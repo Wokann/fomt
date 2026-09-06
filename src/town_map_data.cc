@@ -24,6 +24,40 @@ extern "C" void CopyBgMap30x13(void const *, u32 map_block, u16 const * source)
     }
 }
 
+extern "C" void CopyBgMapRect(
+    void const *,
+    u32 map_block,
+    u32 x,
+    u32 y,
+    u32 width,
+    u32 height,
+    u16 const * source)
+    SECTION(".text.copy_bg_map_rect");
+
+extern "C" void CopyBgMapRect(
+    void const *,
+    u32 map_block,
+    u32 x,
+    u32 y,
+    u32 width,
+    u32 height,
+    u16 const * source)
+{
+    u32 max_x = x + width;
+    u32 max_y = y + height;
+
+    for (; y < max_y; y++)
+    {
+        for (u32 column = x; column < max_x; column++)
+        {
+            volatile u16 * destination = reinterpret_cast<volatile u16 *>(
+                0x06000000 + (map_block << 11) + (y << 6) + (column << 1));
+
+            *destination = *source++;
+        }
+    }
+}
+
 extern "C" bool TownMapHotspotContains(
     void const *, u32 cursor_x, u32 cursor_y, TownMapHotspot const * hotspot)
     SECTION(".text.town_map_hotspot_contains");

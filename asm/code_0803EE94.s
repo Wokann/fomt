@@ -131,9 +131,8 @@
     jp_code_0803ee_func func_08077A1C, 0x775A4, 0x777C8
     jp_code_0803ee_func func_08077C40, 0x777C8, 0x77960
     jp_code_0803ee_func func_08077DD8, 0x77960, 0x779BC
-	.section .text.copy_bg_map_30x13_after
-    jp_code_0803ee_func func_08077E64, 0x779EC, 0x77A48
-    jp_code_0803ee_func func_08077EC0, 0x77A48, 0x77E4C
+	.section .text.copy_bg_map_rect_after
+	jp_code_0803ee_func func_08077EC0, 0x77A48, 0x77E4C
     .section .text.town_map_hotspot_contains_after
     jp_code_0803ee_func func_080782EC, 0x77E74, 0x78150
     jp_code_0803ee_func func_080785C8, 0x78150, 0x793E8
@@ -112638,60 +112637,7 @@ func_08077DD8: @ 0x08077DD8
 	bx r0
 	.align 2, 0
 
-	.section .text.copy_bg_map_30x13_after
-
-	thumb_func_start func_08077E64
-func_08077E64: @ 0x08077E64
-	push {r4, r5, r6, r7, lr}
-	mov r7, sb
-	mov r6, r8
-	push {r6, r7}
-	adds r4, r1, #0
-	adds r6, r2, #0
-	ldr r0, [sp, #0x1c]
-	ldr r1, [sp, #0x20]
-	ldr r2, [sp, #0x24]
-	adds r5, r6, r0
-	adds r1, r1, r3
-	mov sb, r1
-	cmp r3, sb
-	bhs .L08077EB2
-	lsls r0, r6, #1
-	mov r8, r0
-	lsls r4, r4, #0xb
-	mov ip, r4
-.L08077E88:
-	adds r1, r6, #0
-	adds r4, r3, #1
-	cmp r1, r5
-	bhs .L08077EAC
-	lsls r0, r3, #6
-	movs r3, #0xc0
-	lsls r3, r3, #0x13
-	adds r0, r0, r3
-	add r0, ip
-	mov r7, r8
-	adds r3, r7, r0
-.L08077E9E:
-	ldrh r0, [r2]
-	strh r0, [r3]
-	adds r2, #2
-	adds r3, #2
-	adds r1, #1
-	cmp r1, r5
-	blo .L08077E9E
-.L08077EAC:
-	adds r3, r4, #0
-	cmp r3, sb
-	blo .L08077E88
-.L08077EB2:
-	pop {r3, r4}
-	mov r8, r3
-	mov sb, r4
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
+	.section .text.copy_bg_map_rect_after
 
 	thumb_func_start func_08077EC0
 func_08077EC0: @ 0x08077EC0
@@ -112752,7 +112698,7 @@ func_08077EC0: @ 0x08077EC0
 	movs r1, #0x1e
 	movs r2, #0xa
 	movs r3, #0xa
-	bl func_08077E64
+	bl CopyBgMapRect
 	b .L08077F7C
 	.align 2, 0
 .L08077F38: .4byte gUnk_08755848
@@ -112778,7 +112724,7 @@ func_08077EC0: @ 0x08077EC0
 	movs r1, #0x1e
 	movs r2, #0xa
 	movs r3, #0xa
-	bl func_08077E64
+	bl CopyBgMapRect
 .L08077F7C:
 	cmp r6, #1
 	bne .L08077F98
@@ -112792,7 +112738,7 @@ func_08077EC0: @ 0x08077EC0
 	movs r1, #0x1d
 	movs r2, #0x18
 	movs r3, #7
-	bl func_08077E64
+	bl CopyBgMapRect
 .L08077F98:
 	ldr r0, [r4, #8]
 	bl func_08010E48
@@ -112819,7 +112765,7 @@ func_08077EC0: @ 0x08077EC0
 	movs r1, #0x1d
 	movs r2, #0
 	movs r3, #5
-	bl func_08077E64
+	bl CopyBgMapRect
 .L08077FD0:
 	ldr r0, [r4, #8]
 	bl func_08010E50
@@ -112844,7 +112790,7 @@ func_08077EC0: @ 0x08077EC0
 	movs r1, #0x1d
 	movs r2, #0xe
 	movs r3, #5
-	bl func_08077E64
+	bl CopyBgMapRect
 .L08078004:
 	ldr r0, [r4, #8]
 	bl func_08010E58
@@ -112869,7 +112815,7 @@ func_08077EC0: @ 0x08077EC0
 	movs r1, #0x1d
 	movs r2, #0x1b
 	movs r3, #6
-	bl func_08077E64
+	bl CopyBgMapRect
 .L08078038:
 	add sp, #0xc
 	pop {r4, r5, r6}
