@@ -22,7 +22,13 @@
 gEntityUiAnimationLookupTable:
     .incbin "baserom_jp.gba", 0xF0CB0, 0x46
 
-    .incbin "baserom_jp.gba", 0xF0CF6, (0xF11D4 - 0xF0CF6)
+    .incbin "baserom_jp.gba", 0xF0CF6, (0xF0D50 - 0xF0CF6)
+
+    .global gEntityUiResourceIdTable
+gEntityUiResourceIdTable:
+    .incbin "baserom_jp.gba", 0xF0D50, 0x48
+
+    .incbin "baserom_jp.gba", 0xF0D98, (0xF11D4 - 0xF0D98)
 
     .section .rodata.fixed_labels_trailer
     .incbin "baserom_jp.gba", 0xF11F0, (0xF11FC - 0xF11F0)
@@ -214,6 +220,8 @@ gUnk_080F14B8:
 gUnk_080F14E2:
 	.incbin "baserom_us.gba", 0xF14E2, 0xE
 
+	.global gEntityUiResourceIdTable
+gEntityUiResourceIdTable:
 	.global gUnk_080F14F0
 gUnk_080F14F0:
 	.incbin "baserom_us.gba", 0xF14F0, 0x48

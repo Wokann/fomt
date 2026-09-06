@@ -119,6 +119,10 @@ SECTIONS
         src/entity_ui.o(.text.entity_ui_animation_lookup);
         . = 0x34260; /* Continue the surrounding entity-UI ROM block. */
         asm/code_entities_080320DC.o(.text.entity_ui_animation_lookup_after);
+        . = 0x34BFC; /* JP/US-shared entity-UI resource setup. */
+        src/entity_ui.o(.text.entity_ui_resource_setup);
+        . = 0x34C40; /* Continue the surrounding entity-UI ROM block. */
+        asm/code_entities_080320DC.o(.text.entity_ui_resource_setup_after);
         src/npc_entity.o(.text);
         asm/code_entities_08034CEC.o(.text);
 

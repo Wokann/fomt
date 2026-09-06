@@ -27,6 +27,19 @@ struct EntityUiAnimationState
     u8 entry_index;
 };
 
+struct EntityUiResourceSetupState
+{
+    u8 unknown_00[0xB4];
+    u8 resource_handle[0x14];
+    u8 enabled;
+    u8 unknown_C9;
+    u8 active;
+    u8 visible;
+    u16 first_value;
+    u16 second_value;
+    u16 duration;
+};
+
 struct EntityUiHarvestSpriteState : public AEntity
 {
     EntityUiHarvestSpriteState(GameObject * game_object, Location const & location)
@@ -49,6 +62,8 @@ extern "C" void func_080330F4(EntityUiHarvestSpriteResult * result,
                                EntityUiHarvestSpriteEntry const * entries);
 
 extern "C" u16 const gEntityUiAnimationLookupTable[];
+extern "C" u16 const gEntityUiResourceIdTable[];
+extern "C" void ResolveIndexedResourceHandle(void * handle, u32 index);
 
 // The ROM leaf unconditionally returns false.  Its caller-facing purpose is
 // not mapped yet.
@@ -79,6 +94,13 @@ extern "C" bool func_08033B24(EntityUiHarvestSpriteState * state)
 // state-byte categories have not been named yet.
 extern "C" u16 func_08034248(EntityUiAnimationState const * state, u32 value)
     SECTION(".text.entity_ui_animation_lookup");
+
+// Initializes the resource handle at +0xB4 and its following UI fields.  The
+// three control-byte meanings are not mapped yet.
+extern "C" void func_08034BFC(EntityUiResourceSetupState * state,
+                               u32 table_index, u32 first_value,
+                               u32 second_value)
+    SECTION(".text.entity_ui_resource_setup");
 
 extern "C" bool func_080324B8()
 {
@@ -169,4 +191,20 @@ extern "C" u16 func_08034248(EntityUiAnimationState const * state, u32 value)
     table_offset <<= 1;
 
     return *(u16 const *)((u8 const *)table + table_offset);
+}
+
+extern "C" void func_08034BFC(EntityUiResourceSetupState * state,
+                               u32 table_index, u32 first_value,
+                               u32 second_value)
+{
+    u16 const * table = gEntityUiResourceIdTable;
+    u16 resource_id = table[table_index];
+    ResolveIndexedResourceHandle(state->resource_handle, resource_id);
+
+    state->enabled = 1;
+    state->active = 0;
+    state->visible = 1;
+    state->first_value = first_value;
+    state->second_value = second_value;
+    state->duration = 0x3C;
 }

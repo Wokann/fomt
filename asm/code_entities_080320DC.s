@@ -49,7 +49,12 @@ func_08033B84:
     .global func_08034260
     .thumb_func
 func_08034260:
-    .incbin "baserom_jp.gba", 0x33FF4, 0xA8C
+    .incbin "baserom_jp.gba", 0x33FF4, 0x99C
+
+    .section .text.entity_ui_resource_setup_after
+    .syntax unified
+    .thumb
+    .incbin "baserom_jp.gba", 0x349D4, 0xAC
 
     .global func_08032560
     .thumb_set func_08032560, func_0803242C + 0x134
@@ -81,8 +86,6 @@ func_08034260:
     .thumb_set func_08034940, func_0803242C + 0x2514
     .global func_08034A14
     .thumb_set func_08034A14, func_0803242C + 0x25E8
-    .global func_08034BFC
-    .thumb_set func_08034BFC, func_0803242C + 0x27D0
     .global func_08034C64
     .thumb_set func_08034C64, func_0803242C + 0x2838
     .else
@@ -4283,41 +4286,7 @@ func_08034A14: @ 0x08034A14
     .byte 0xB1, 0xFE, 0x01, 0x20, 0x20, 0x70, 0x00, 0x20, 0x28, 0x70, 0x0F, 0xB0, 0x38, 0xBC, 0x98, 0x46
     .byte 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
 
-    thumb_func_start func_08034BFC
-func_08034BFC: @ 0x08034BFC
-    push {r4, r5, r6, lr}
-    adds r6, r0, #0
-    adds r4, r2, #0
-    adds r5, r3, #0
-    ldr r0, .L08034C3C @ =gUnk_080F14F0
-    lsls r1, r1, #1
-    adds r1, r1, r0
-    ldrh r1, [r1]
-    adds r0, r6, #0
-    adds r0, #0xb4
-    bl ResolveIndexedResourceHandle
-    adds r0, r6, #0
-    adds r0, #0xc8
-    movs r2, #0
-    movs r1, #1
-    strb r1, [r0]
-    adds r0, #2
-    strb r2, [r0]
-    adds r0, #1
-    strb r1, [r0]
-    adds r0, #1
-    strh r4, [r0]
-    adds r0, #2
-    strh r5, [r0]
-    adds r1, r6, #0
-    adds r1, #0xd0
-    movs r0, #0x3c
-    strh r0, [r1]
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08034C3C: .4byte gUnk_080F14F0
+    .section .text.entity_ui_resource_setup_after
 .L08034C40:
     .byte 0x30, 0x30, 0x00, 0x78, 0x70, 0x47, 0x00, 0x00, 0x00, 0x69, 0x70, 0x47, 0x10, 0xB5, 0x0C, 0x1C
     .byte 0x13, 0x1C, 0x01, 0x1C, 0x30, 0x31, 0x09, 0x78, 0x22, 0x1C, 0xFE, 0xF7, 0x93, 0xFF, 0x10, 0xBC
