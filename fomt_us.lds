@@ -133,8 +133,10 @@ SECTIONS
         src/code_08050D5C.o(.text);
         . = 0x50D8C; /* US ROM shared argument-normalizing forwarding adapters. */
         src/code_08050D8C.o(.text);
-        . = 0x50DD8; /* US ROM 0x08050DD8, remaining raw UI-adjacent code. */
-        asm/code_0803EE94.o(.text.code_08050DD8);
+        . = 0x50DD8; /* US ROM shared first-field status-byte adapters. */
+        src/code_08050DD8.o(.text);
+        . = 0x50DF0; /* US ROM 0x08050DF0, remaining raw UI-adjacent code. */
+        asm/code_0803EE94.o(.text.code_08050DF0);
 
         src/actor.o(.text);
         src/animal.o(.text);

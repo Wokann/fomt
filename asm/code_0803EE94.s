@@ -55,9 +55,7 @@
     jp_code_0803ee_func func_08050C64, 0x509F0, 0x50A98
     jp_code_0803ee_func func_08050D0C, 0x50A98, 0x50AC0
     jp_code_0803ee_func func_08050D34, 0x50AC0, 0x50AE8
-    .section .text.code_08050DD8
-    jp_code_0803ee_func func_08050DD8, 0x50B64, 0x50B70
-    jp_code_0803ee_func func_08050DE4, 0x50B70, 0x50B7C
+    .section .text.code_08050DF0
     jp_code_0803ee_func func_08050DF0, 0x50B7C, 0x50B98
     jp_code_0803ee_func func_08050E0C, 0x50B98, 0x50BDC
     jp_code_0803ee_func func_08050E50, 0x50BDC, 0x50BE8
@@ -33332,25 +33330,7 @@ func_08050D3C: @ 0x08050D3C
 	bx r1
 	.align 2, 0
 
-	.section .text.code_08050DD8
-	thumb_func_start func_08050DD8
-func_08050DD8: @ 0x08050DD8
-	ldr r2, [r0]
-	ldrb r0, [r2, #0xd]
-	movs r1, #0
-	strb r1, [r2, #0xd]
-	bx lr
-	.align 2, 0
-
-	thumb_func_start func_08050DE4
-func_08050DE4: @ 0x08050DE4
-	ldr r2, [r0]
-	ldrb r0, [r2, #0xd]
-	movs r1, #1
-	strb r1, [r2, #0xd]
-	bx lr
-	.align 2, 0
-
+	.section .text.code_08050DF0
 	thumb_func_start func_08050DF0
 func_08050DF0: @ 0x08050DF0
 	push {lr}

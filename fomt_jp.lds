@@ -185,8 +185,10 @@ SECTIONS
         src/code_08050D5C.o(.text);
         . = 0x50B18; /* JP counterpart of shared argument-normalizing forwarding adapters. */
         src/code_08050D8C.o(.text);
-        . = 0x50B64; /* JP ROM 0x08050B64, remaining raw UI-adjacent code. */
-        asm/code_0803EE94.o(.text.code_08050DD8);
+        . = 0x50B64; /* JP counterpart of shared first-field status-byte adapters. */
+        src/code_08050DD8.o(.text);
+        . = 0x50B7C; /* JP ROM 0x08050B7C, remaining raw UI-adjacent code. */
+        asm/code_0803EE94.o(.text.code_08050DF0);
 
         . = 0x9AB3C; /* JP ROM 0x0809AB3C, independently matched */
 
