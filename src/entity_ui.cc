@@ -16,6 +16,11 @@ extern "C" bool func_080324B8()
 extern "C" void func_08033B7C(void * entity)
     SECTION(".text.entity_ui_unknown_flag");
 
+// For kind 2, x=0x110..0x3BF and y=0xB0..0x24F return 1; other coordinates
+// return 2.  Every other kind returns 0.  The caller's domain remains unmapped.
+extern "C" u32 func_08032900(u32 kind, u32 x, i32 y)
+    SECTION(".text.entity_ui_region_classification");
+
 extern "C" bool func_080324B8()
 {
     return false;
@@ -26,4 +31,29 @@ extern "C" void func_08033B7C(void * entity)
     EntityUiUnknownState * state = (EntityUiUnknownState *)entity;
 
     state->unknown_41 = 0;
+}
+
+extern "C" u32 func_08032900(u32 kind, u32 x, i32 y)
+{
+    if (kind == 2)
+    {
+        x += (u32)-0x110;
+        i32 limit = 0x2AF;
+
+        if (x <= (u32)limit)
+        {
+            if (y > 0xAF)
+            {
+                limit -= 0x60;
+                if (y <= limit)
+                {
+                    return 1;
+                }
+            }
+        }
+
+        return 2;
+    }
+
+    return 0;
 }

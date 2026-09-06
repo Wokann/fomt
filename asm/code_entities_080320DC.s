@@ -17,7 +17,15 @@ func_0803242C:
     .global func_080324BC
     .thumb_func
 func_080324BC:
-    .incbin "baserom_jp.gba", 0x32250, 0x16C0
+    .incbin "baserom_jp.gba", 0x32250, 0x444
+
+    .section .text.entity_ui_region_classification_after
+    .syntax unified
+    .thumb
+    .global func_08032934
+    .thumb_func
+func_08032934:
+    .incbin "baserom_jp.gba", 0x326C8, 0x1248
 
     .section .text.entity_ui_unknown_flag_after
     .syntax unified
@@ -33,10 +41,6 @@ func_08033B84:
     .thumb_set func_0803260C, func_0803242C + 0x1E0
     .global func_08032690
     .thumb_set func_08032690, func_0803242C + 0x264
-    .global func_08032900
-    .thumb_set func_08032900, func_0803242C + 0x4D4
-    .global func_08032934
-    .thumb_set func_08032934, func_0803242C + 0x508
     .global func_08032A00
     .thumb_set func_08032A00, func_0803242C + 0x5D4
     .global func_08032A30
@@ -725,36 +729,7 @@ func_08032690: @ 0x08032690
     pop {r0}
     bx r0
 
-    thumb_func_start func_08032900
-func_08032900: @ 0x08032900
-    push {lr}
-    cmp r0, #2
-    bne .L0803292C
-    ldr r0, .L08032920 @ =0xFFFFFEF0
-    adds r1, r1, r0
-    ldr r0, .L08032924 @ =0x000002AF
-    cmp r1, r0
-    bhi .L08032928
-    cmp r2, #0xaf
-    ble .L08032928
-    subs r0, #0x60
-    cmp r2, r0
-    bgt .L08032928
-    movs r0, #1
-    b .L0803292E
-    .align 2, 0
-.L08032920: .4byte 0xFFFFFEF0
-.L08032924: .4byte 0x000002AF
-.L08032928:
-    movs r0, #2
-    b .L0803292E
-.L0803292C:
-    movs r0, #0
-.L0803292E:
-    pop {r1}
-    bx r1
-    .align 2, 0
-
+    .section .text.entity_ui_region_classification_after
     thumb_func_start func_08032934
 func_08032934: @ 0x08032934
     push {r4, r5, lr}

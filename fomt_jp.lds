@@ -147,6 +147,10 @@ SECTIONS
         src/entity_ui.o(.text.entity_ui_default_no_action);
         . = 0x32250; /* Continue the surrounding entity-UI ROM block. */
         asm/code_entities_080320DC.o(.text.entity_ui_default_no_action_after);
+        . = 0x32694; /* JP counterpart of entity-UI coordinate classifier. */
+        src/entity_ui.o(.text.entity_ui_region_classification);
+        . = 0x326C8; /* Continue the surrounding entity-UI ROM block. */
+        asm/code_entities_080320DC.o(.text.entity_ui_region_classification_after);
         . = 0x33910; /* JP counterpart of entity-UI byte-0x41 clearer. */
         src/entity_ui.o(.text.entity_ui_unknown_flag);
         . = 0x33918; /* Continue the surrounding entity-UI ROM block. */
