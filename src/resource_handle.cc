@@ -2,10 +2,17 @@
 
 struct IndexedResourceProvider;
 
+struct IndexedResourceEntry
+{
+    u16 unknown_00;
+    u16 metric;
+};
+
 struct IndexedResourceResult
 {
-    void * data;
-    void * auxiliary;
+    IndexedResourceEntry * entries;
+    u16 entry_count;
+    u16 unknown_06;
 };
 
 typedef IndexedResourceResult (*IndexedResourceResolver)(
@@ -21,12 +28,6 @@ struct IndexedResourceProviderVTable
 struct IndexedResourceProvider
 {
     IndexedResourceProviderVTable * vtable;
-};
-
-struct IndexedResourceData
-{
-    u8 unknown_00[2];
-    u16 metric;
 };
 
 struct IndexedResourceHandle
@@ -59,7 +60,6 @@ extern "C" void ResolveIndexedResourceHandle(IndexedResourceHandle * handle, u32
 
     handle->resolved_resource = resolved;
     handle->unknown_0C = 0;
-    handle->metric_scaled =
-        reinterpret_cast<IndexedResourceData *>(handle->resolved_resource.data)->metric << 8;
+    handle->metric_scaled = handle->resolved_resource.entries->metric << 8;
     handle->initialized = 1;
 }
