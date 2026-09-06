@@ -197,6 +197,11 @@ SECTIONS
         src/code_08050E98.o(.text);
         . = 0x50C70; /* JP ROM 0x08050C70, remaining raw UI-adjacent code. */
         asm/code_0803EE94.o(.text.code_08050E50);
+        . = 0x76840; /* JP/US-shared selection-index state setter. */
+        src/selection_state.o(.text.set_selection_index);
+        . = 0x7684C; /* JP/US-shared selection-index state getter. */
+        src/selection_state.o(.text.get_selection_index);
+        . = 0x7685C; asm/code_0803EE94.o(.text.get_selection_index_after);
         . = 0x779BC; /* JP/US-shared 30x13 BG map copier. */
         src/town_map_data.o(.text.copy_bg_map_30x13);
         . = 0x779EC; /* JP/US-shared rectangular BG map copier. */

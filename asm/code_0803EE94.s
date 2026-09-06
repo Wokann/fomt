@@ -123,8 +123,8 @@
     jp_code_0803ee_func func_080769A0, 0x76600, 0x767C4
     jp_code_0803ee_func func_08076B64, 0x767C4, 0x767F4
     jp_code_0803ee_func func_08076B94, 0x767F4, 0x76840
-    jp_code_0803ee_func func_08076BE0, 0x76840, 0x7684C
-    jp_code_0803ee_func func_08076BEC, 0x7684C, 0x76A44
+    .section .text.get_selection_index_after
+    jp_code_0803ee_func func_08076BFC, 0x7685C, 0x76A44
     jp_code_0803ee_func func_08076E0C, 0x76A44, 0x77020
     jp_code_0803ee_func func_080773E8, 0x77020, 0x7753C
     jp_code_0803ee_func func_080779B4, 0x7753C, 0x775A4
@@ -83773,7 +83773,7 @@ func_08069D84: @ 0x08069D84
 	adds r4, #4
 	add r4, r8
 	adds r0, r6, #0
-	bl func_08076BEC
+	bl GetSelectionIndex
 	strh r0, [r4, #4]
 	adds r0, r6, #0
 	bl func_08076B64
@@ -83822,7 +83822,7 @@ func_08069D84: @ 0x08069D84
 	movs r2, #4
 	ldrsh r1, [r4, r2]
 	adds r0, r6, #0
-	bl func_08076BE0
+	bl SetSelectionIndex
 	pop {r3}
 	mov r8, r3
 	pop {r4, r5, r6, r7}
@@ -107557,7 +107557,7 @@ func_0807555C: @ 0x0807555C
 	adds r4, #4
 	add r4, r8
 	adds r0, r6, #0
-	bl func_08076BEC
+	bl GetSelectionIndex
 	strh r0, [r4, #4]
 	adds r0, r6, #0
 	bl func_08076B64
@@ -107606,7 +107606,7 @@ func_0807555C: @ 0x0807555C
 	movs r2, #4
 	ldrsh r1, [r4, r2]
 	adds r0, r6, #0
-	bl func_08076BE0
+	bl SetSelectionIndex
 	pop {r3}
 	mov r8, r3
 	pop {r4, r5, r6, r7}
@@ -110106,7 +110106,7 @@ func_080769A0: @ 0x080769A0
 	movs r0, #0
 	mov r8, r0
 	adds r0, r6, #0
-	bl func_08076BEC
+	bl GetSelectionIndex
 	lsls r5, r0, #4
 	mov sb, r4
 .L080769FE:
@@ -110250,7 +110250,7 @@ func_080769A0: @ 0x080769A0
 .L08076B16:
 	asrs r1, r5, #4
 	adds r0, r6, #0
-	bl func_08076BE0
+	bl SetSelectionIndex
 	b .L08076B46
 .L08076B20:
 	lsls r1, r7, #0x1b
@@ -110268,7 +110268,7 @@ func_080769A0: @ 0x080769A0
 	adds r0, r6, #0
 	bl _call_via_r2
 	adds r0, r6, #0
-	bl func_08076BEC
+	bl GetSelectionIndex
 	lsls r5, r0, #4
 .L08076B46:
 	adds r0, r6, #0
@@ -110353,25 +110353,7 @@ func_08076B94: @ 0x08076B94
 	.align 2, 0
 .L08076BDC: .4byte 0x000005B4
 
-	thumb_func_start func_08076BE0
-func_08076BE0: @ 0x08076BE0
-	ldr r0, [r0, #8]
-	movs r2, #0xb2
-	lsls r2, r2, #3
-	adds r0, r0, r2
-	strh r1, [r0]
-	bx lr
-
-	thumb_func_start func_08076BEC
-func_08076BEC: @ 0x08076BEC
-	ldr r0, [r0, #8]
-	movs r1, #0xb2
-	lsls r1, r1, #3
-	adds r0, r0, r1
-	movs r1, #0
-	ldrsh r0, [r0, r1]
-	bx lr
-	.align 2, 0
+	.section .text.get_selection_index_after
 
 	thumb_func_start func_08076BFC
 func_08076BFC: @ 0x08076BFC
