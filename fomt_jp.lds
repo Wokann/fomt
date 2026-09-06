@@ -197,6 +197,9 @@ SECTIONS
         src/code_08050E98.o(.text);
         . = 0x50C70; /* JP ROM 0x08050C70, remaining raw UI-adjacent code. */
         asm/code_0803EE94.o(.text.code_08050E50);
+        . = 0x5E594; /* JP/US-shared indexed resource-handle initializer. */
+        src/resource_handle.o(.text.initialize_indexed_resource_handle);
+        . = 0x5E5A4; asm/code_0803EE94.o(.text.initialize_indexed_resource_handle_after);
         . = 0x75A14; /* JP/US-shared scroll-position reset. */
         src/scroll_state.o(.text.reset_scroll_position);
         . = 0x75A30; /* JP/US-shared scroll-buffer clear. */

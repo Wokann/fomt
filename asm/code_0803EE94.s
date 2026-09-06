@@ -81,7 +81,7 @@
     jp_code_0803ee_func func_0805E760, 0x5E4A4, 0x5E4D4
     jp_code_0803ee_func func_0805E790, 0x5E4D4, 0x5E568
     jp_code_0803ee_func func_0805E824, 0x5E568, 0x5E594
-    jp_code_0803ee_func func_0805E850, 0x5E594, 0x5E5A4
+    .section .text.initialize_indexed_resource_handle_after
     jp_code_0803ee_func func_0805E860, 0x5E5A4, 0x5E5D8
     jp_code_0803ee_func func_0805E894, 0x5E5D8, 0x5E634
     jp_code_0803ee_func func_0805E8F0, 0x5E634, 0x5E968
@@ -30676,7 +30676,7 @@ func_0804F7A4: @ 0x0804F7A4
 	lsls r5, r5, #1
 	adds r1, r7, r5
 	movs r2, #0
-	bl func_0805E850
+	bl InitializeIndexedResourceHandle
 	movs r0, #5
 .L0804F8D6:
 	str r0, [r7, #8]
@@ -32406,7 +32406,7 @@ func_08050478: @ 0x08050478
 	adds r2, #8
 	adds r1, r4, r2
 	movs r2, #0
-	bl func_0805E850
+	bl InitializeIndexedResourceHandle
 	add sp, #0x10
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -32595,7 +32595,7 @@ func_08050664: @ 0x08050664
 	adds r2, #8
 	adds r1, r5, r2
 	movs r2, #0
-	bl func_0805E850
+	bl InitializeIndexedResourceHandle
 	add sp, #0xc
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -59688,15 +59688,7 @@ func_0805E824: @ 0x0805E824
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_0805E850
-func_0805E850: @ 0x0805E850
-	push {lr}
-	str r1, [r0]
-	adds r1, r2, #0
-	bl func_0805E860
-	pop {r0}
-	bx r0
-	.align 2, 0
+	.section .text.initialize_indexed_resource_handle_after
 
 	thumb_func_start func_0805E860
 func_0805E860: @ 0x0805E860

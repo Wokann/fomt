@@ -8749,7 +8749,7 @@ func_0802634C: @ 0x0802634C
     adds r0, r4, #0
     adds r0, #0xb4
     ldr r2, .L080263D0 @ =0x000001DD
-    bl func_0805E850
+    bl InitializeIndexedResourceHandle
     adds r0, r4, #0
     adds r0, #0xc8
     strb r7, [r0]
@@ -9352,7 +9352,7 @@ func_08026830: @ 0x08026830
     adds r0, r4, #0
     adds r0, #0xb4
     ldr r2, .L080268B4 @ =0x0000015F
-    bl func_0805E850
+    bl InitializeIndexedResourceHandle
     adds r0, r4, #0
     adds r0, #0xc8
     strb r7, [r0]
@@ -10005,7 +10005,7 @@ func_08026D14: @ 0x08026D14
     adds r0, r4, #0
     adds r0, #0xb4
     adds r2, r5, #0
-    bl func_0805E850
+    bl InitializeIndexedResourceHandle
     adds r0, r4, #0
     adds r0, #0xc8
     movs r2, #0
@@ -10585,7 +10585,7 @@ func_0802720C: @ 0x0802720C
     adds r0, r5, #0
     adds r0, #0xb4
     adds r2, r4, #0
-    bl func_0805E850
+    bl InitializeIndexedResourceHandle
     adds r0, r5, #0
     adds r0, #0xc8
     mov r3, r8
@@ -11201,7 +11201,7 @@ func_0802771C: @ 0x0802771C
     adds r0, r4, #0
     adds r0, #0xb4
     movs r2, #0x6a
-    bl func_0805E850
+    bl InitializeIndexedResourceHandle
     adds r0, r4, #0
     adds r0, #0xc8
     strb r7, [r0]
@@ -11868,7 +11868,7 @@ func_08027BFC: @ 0x08027BFC
     adds r0, r5, #0
     adds r0, #0xb4
     adds r2, r4, #0
-    bl func_0805E850
+    bl InitializeIndexedResourceHandle
     adds r0, r5, #0
     adds r0, #0xc8
     movs r1, #1
@@ -16187,7 +16187,7 @@ func_08029F30: @ 0x08029F30
     adds r0, r5, #0
     adds r0, #0xb4
     adds r2, r4, #0
-    bl func_0805E850
+    bl InitializeIndexedResourceHandle
     adds r0, r5, #0
     adds r0, #0xc8
     strb r7, [r0]
@@ -16775,7 +16775,7 @@ func_0802A400: @ 0x0802A400
     adds r0, r5, #0
     adds r0, #0xb4
     adds r2, r4, #0
-    bl func_0805E850
+    bl InitializeIndexedResourceHandle
     adds r0, r5, #0
     adds r0, #0xc8
     mov r1, sb
@@ -16855,7 +16855,7 @@ func_0802A4C0: @ 0x0802A4C0
     adds r0, r4, #0
     adds r0, #0xb4
     adds r2, r5, #0
-    bl func_0805E850
+    bl InitializeIndexedResourceHandle
     adds r0, r4, #0
     adds r0, #0xc8
     movs r2, #0
@@ -16913,7 +16913,7 @@ func_0802A510: @ 0x0802A510
     adds r0, r5, #0
     adds r0, #0xb4
     adds r2, r4, #0
-    bl func_0805E850
+    bl InitializeIndexedResourceHandle
     adds r0, r5, #0
     adds r0, #0xc8
     strb r7, [r0]
@@ -16980,7 +16980,7 @@ func_0802A588: @ 0x0802A588
     adds r0, #0xb4
     movs r2, #0xb0
     lsls r2, r2, #1
-    bl func_0805E850
+    bl InitializeIndexedResourceHandle
     adds r0, r5, #0
     adds r0, #0xc8
     mov r1, r8
@@ -17054,7 +17054,7 @@ func_0802A588: @ 0x0802A588
     adds r0, r5, #0
     adds r0, #0xb4
     movs r2, #3
-    bl func_0805E850
+    bl InitializeIndexedResourceHandle
     adds r0, r5, #0
     adds r0, #0xc8
     movs r1, #1
@@ -17091,7 +17091,7 @@ func_0802A588: @ 0x0802A588
     adds r0, r5, #0
     adds r0, #0xb4
     ldr r2, .L0802A6F8 @ =0x000003DA
-    bl func_0805E850
+    bl InitializeIndexedResourceHandle
     adds r0, r5, #0
     adds r0, #0xc8
     movs r1, #1
@@ -17136,7 +17136,7 @@ func_0802A588: @ 0x0802A588
     adds r0, r5, #0
     adds r0, #0xb4
     ldr r2, .L0802A758 @ =0x0000073D
-    bl func_0805E850
+    bl InitializeIndexedResourceHandle
     adds r0, r5, #0
     adds r0, #0xc8
     movs r1, #1
@@ -17185,7 +17185,7 @@ func_0802A588: @ 0x0802A588
     adds r0, #0xb4
     adds r2, r4, #0
 .L0802A7AA:
-    bl func_0805E850
+    bl InitializeIndexedResourceHandle
     adds r0, r5, #0
     adds r0, #0xc8
     movs r2, #0
