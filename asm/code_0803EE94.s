@@ -130043,7 +130043,7 @@ func_08080E68: @ 0x08080E68
 	mov r3, r8
 	ldr r0, [r3]
 	lsls r0, r0, #3
-	ldr r1, .L08080FCC @ =gUnk_080FE8FC
+	ldr r1, .L08080FCC @ =gSpecialMerchantShopCatalog
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
 	ldr r0, [r0]
@@ -130112,7 +130112,7 @@ func_08080E68: @ 0x08080E68
 	b .L08081078
 	.align 2, 0
 .L08080FC8: .4byte gUnk_086678A0
-.L08080FCC: .4byte gUnk_080FE8FC
+.L08080FCC: .4byte gSpecialMerchantShopCatalog
 .L08080FD0:
 	mov r3, sp
 	adds r3, #0xc0
@@ -130273,7 +130273,7 @@ func_08081108: @ 0x08081108
 	adds r0, r1, #0
 	cmp r0, #0xa
 	beq .L08081138
-	ldr r1, .L08081134 @ =gUnk_080FE8FC
+	ldr r1, .L08081134 @ =gSpecialMerchantShopCatalog
 	lsls r0, r0, #3
 	adds r0, r0, r1
 	ldr r1, [r0]
@@ -130286,9 +130286,9 @@ func_08081108: @ 0x08081108
 	bl func_080CABEC
 	b .L08081140
 	.align 2, 0
-.L08081134: .4byte gUnk_080FE8FC
+.L08081134: .4byte gSpecialMerchantShopCatalog
 .L08081138:
-	ldr r1, .L08081148 @ =gUnk_080FE974
+	ldr r1, .L08081148 @ =gText_SpecialMerchantShop_RecordPlayerDescription
 	adds r0, r4, #0
 	bl func_080CABEC
 .L08081140:
@@ -130297,7 +130297,7 @@ func_08081108: @ 0x08081108
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L08081148: .4byte gUnk_080FE974
+.L08081148: .4byte gText_SpecialMerchantShop_RecordPlayerDescription
 
 	thumb_func_start func_0808114C
 func_0808114C: @ 0x0808114C
@@ -130558,7 +130558,7 @@ func_0808114C: @ 0x0808114C
 	adds r0, r0, r2
 	ldr r3, [r0]
 	lsls r0, r3, #3
-	ldr r1, .L080813A0 @ =gUnk_080FE8FC
+	ldr r1, .L080813A0 @ =gSpecialMerchantShopCatalog
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
 	ldr r0, [r0]
@@ -130577,7 +130577,7 @@ func_0808114C: @ 0x0808114C
 .L0808137A:
 	cmp r4, #0
 	beq .L080813B0
-	ldr r1, .L080813A8 @ =gUnk_080FE988
+	ldr r1, .L080813A8 @ =gText_SpecialMerchantShop_InsufficientGold
 	adds r0, r6, #0
 	bl func_080CABA0
 	movs r2, #0xd2
@@ -130591,9 +130591,9 @@ func_0808114C: @ 0x0808114C
 	b .L080816EE
 	.align 2, 0
 .L0808139C: .4byte 0x000006A1
-.L080813A0: .4byte gUnk_080FE8FC
+.L080813A0: .4byte gSpecialMerchantShopCatalog
 .L080813A4: .4byte 0x00001AA8
-.L080813A8: .4byte gUnk_080FE988
+.L080813A8: .4byte gText_SpecialMerchantShop_InsufficientGold
 .L080813AC: .4byte 0x000006A4
 .L080813B0:
 	cmp r3, #0xa
@@ -130652,7 +130652,7 @@ func_0808114C: @ 0x0808114C
 	str r0, [sp, #0x28]
 	cmp r0, #0
 	bne .L0808144C
-	ldr r1, .L08081444 @ =gUnk_080FE9A8
+	ldr r1, .L08081444 @ =gText_SpecialMerchantShop_InventoryFull
 	adds r0, r6, #0
 	bl func_080CABA0
 	movs r2, #0xd2
@@ -130667,7 +130667,7 @@ func_0808114C: @ 0x0808114C
 	.align 2, 0
 .L0808143C: .4byte 0x00001C38
 .L08081440: .4byte 0x00001C2C
-.L08081444: .4byte gUnk_080FE9A8
+.L08081444: .4byte gText_SpecialMerchantShop_InventoryFull
 .L08081448: .4byte 0x000006A4
 .L0808144C:
 	ldr r0, [r6, #8]
@@ -130765,7 +130765,7 @@ func_0808114C: @ 0x0808114C
 	mov r2, sl
 	strb r2, [r0]
 .L0808151C:
-	ldr r0, .L08081614 @ =gUnk_080FE9CC
+	ldr r0, .L08081614 @ =gText_SpecialMerchantShop_BlankLinePair
 	mov sb, r0
 	adds r0, r7, #0
 	bl strlen
@@ -130883,7 +130883,7 @@ func_0808114C: @ 0x0808114C
 	b .L080816EE
 	.align 2, 0
 .L08081610: .4byte 0x000006AC
-.L08081614: .4byte gUnk_080FE9CC
+.L08081614: .4byte gText_SpecialMerchantShop_BlankLinePair
 .L08081618: .4byte gUnk_08117828
 .L0808161C: .4byte gUnk_08117814
 .L08081620: .4byte 0x00000684
@@ -130924,7 +130924,7 @@ func_0808114C: @ 0x0808114C
 	adds r0, r4, r7
 	cmn r0, r5
 	bne .L080816A0
-	ldr r1, .L08081698 @ =gUnk_080FE9A8
+	ldr r1, .L08081698 @ =gText_SpecialMerchantShop_InventoryFull
 	adds r0, r6, #0
 	bl func_080CABA0
 	movs r1, #0xd2
@@ -130939,7 +130939,7 @@ func_0808114C: @ 0x0808114C
 	.align 2, 0
 .L08081690: .4byte 0x00001C38
 .L08081694: .4byte 0x00001C2C
-.L08081698: .4byte gUnk_080FE9A8
+.L08081698: .4byte gText_SpecialMerchantShop_InventoryFull
 .L0808169C: .4byte 0x000006A4
 .L080816A0:
 	ldr r0, .L080816A8 @ =0x000006A4
@@ -130961,14 +130961,14 @@ func_0808114C: @ 0x0808114C
 	ldrb r0, [r0]
 	cmp r0, #0
 	beq .L080816D4
-	ldr r1, .L080816D0 @ =gUnk_080FE9D4
+	ldr r1, .L080816D0 @ =gText_SpecialMerchantShop_PurchaseComplete
 	adds r0, r6, #0
 	bl func_080CABA0
 	b .L080816DC
 	.align 2, 0
-.L080816D0: .4byte gUnk_080FE9D4
+.L080816D0: .4byte gText_SpecialMerchantShop_PurchaseComplete
 .L080816D4:
-	ldr r1, .L08081704 @ =gUnk_080FE9D4
+	ldr r1, .L08081704 @ =gText_SpecialMerchantShop_PurchaseComplete
 	adds r0, r6, #0
 	bl func_080CABA0
 .L080816DC:
@@ -130993,7 +130993,7 @@ func_0808114C: @ 0x0808114C
 	bl func_080C9020
 	b .L08081A16
 	.align 2, 0
-.L08081704: .4byte gUnk_080FE9D4
+.L08081704: .4byte gText_SpecialMerchantShop_PurchaseComplete
 .L08081708: .4byte 0x000006A4
 .L0808170C:
 	movs r2, #0xa9
@@ -131005,7 +131005,7 @@ func_0808114C: @ 0x0808114C
 	adds r0, r4, r0
 	ldr r0, [r0]
 	lsls r0, r0, #3
-	ldr r1, .L08081794 @ =gUnk_080FE8FC
+	ldr r1, .L08081794 @ =gSpecialMerchantShopCatalog
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
 	ldr r0, [r0]
@@ -131026,7 +131026,7 @@ func_0808114C: @ 0x0808114C
 	lsls r2, r2, #1
 	adds r0, r0, r2
 	bl AddRecordPlayer__9FarmHouse
-	ldr r1, .L0808179C @ =gUnk_080FEA00
+	ldr r1, .L0808179C @ =gText_SpecialMerchantShop_RecordPlayerDelivery
 	adds r0, r6, #0
 	bl func_080CABA0
 	ldr r0, [r6, #0x10]
@@ -131060,9 +131060,9 @@ func_0808114C: @ 0x0808114C
 	str r0, [r6, #0x14]
 	b .L08081830
 	.align 2, 0
-.L08081794: .4byte gUnk_080FE8FC
+.L08081794: .4byte gSpecialMerchantShopCatalog
 .L08081798: .4byte 0x00001AA8
-.L0808179C: .4byte gUnk_080FEA00
+.L0808179C: .4byte gText_SpecialMerchantShop_RecordPlayerDelivery
 .L080817A0:
 	ldr r0, [r6, #8]
 	ldr r1, .L080817CC @ =0x00001C2C
@@ -131101,13 +131101,13 @@ func_0808114C: @ 0x0808114C
 	cmp r0, #0
 	bne .L08081830
 .L080817F0:
-	ldr r1, .L08081800 @ =gUnk_080FEA4C
+	ldr r1, .L08081800 @ =gText_SpecialMerchantShop_PurchaseCompleteShort
 	adds r0, r6, #0
 	bl func_080CABA0
 	b .L08081830
 	.align 2, 0
 .L080817FC: .4byte 0x00001C38
-.L08081800: .4byte gUnk_080FEA4C
+.L08081800: .4byte gText_SpecialMerchantShop_PurchaseCompleteShort
 .L08081804:
 	ldr r0, [r6, #8]
 	movs r1, #0xfa
@@ -131124,7 +131124,7 @@ func_0808114C: @ 0x0808114C
 	ldr r1, [sp, #0x18]
 	movs r2, #1
 	bl AddAmountOf__5ShelfUiUi
-	ldr r1, .L08081848 @ =gUnk_080FEA5C
+	ldr r1, .L08081848 @ =gText_SpecialMerchantShop_ArticleDelivery
 	adds r0, r6, #0
 	bl func_080CABA0
 .L08081830:
@@ -131139,7 +131139,7 @@ func_0808114C: @ 0x0808114C
 	str r0, [r1]
 	b .L08081A16
 	.align 2, 0
-.L08081848: .4byte gUnk_080FEA5C
+.L08081848: .4byte gText_SpecialMerchantShop_ArticleDelivery
 .L0808184C: .4byte 0x000006A4
 .L08081850:
 	movs r1, #0xd4
@@ -131150,7 +131150,7 @@ func_0808114C: @ 0x0808114C
 	beq .L0808185E
 	b .L08081A16
 .L0808185E:
-	ldr r1, .L08081870 @ =gUnk_080FEAC0
+	ldr r1, .L08081870 @ =gText_SpecialMerchantShop_PurchaseMorePrompt
 	adds r0, r6, #0
 	bl func_080CABA0
 	ldr r2, .L08081874 @ =0x000006A4
@@ -131158,7 +131158,7 @@ func_0808114C: @ 0x0808114C
 	str r4, [r0]
 	b .L08081A16
 	.align 2, 0
-.L08081870: .4byte gUnk_080FEAC0
+.L08081870: .4byte gText_SpecialMerchantShop_PurchaseMorePrompt
 .L08081874: .4byte 0x000006A4
 .L08081878:
 	movs r1, #0xd4
@@ -131202,7 +131202,7 @@ func_0808114C: @ 0x0808114C
 	adds r0, r0, r2
 	ldr r0, [r0]
 	lsls r0, r0, #3
-	ldr r1, .L08081954 @ =gUnk_080FE8FC
+	ldr r1, .L08081954 @ =gSpecialMerchantShopCatalog
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
 	ldr r0, [r0]
@@ -131255,19 +131255,19 @@ func_0808114C: @ 0x0808114C
 	ldr r1, [sp, #0x18]
 	adds r2, r7, #0
 	bl AddAmountOf__5ShelfUiUi
-	ldr r1, .L08081964 @ =gUnk_080FEA5C
+	ldr r1, .L08081964 @ =gText_SpecialMerchantShop_ArticleDelivery
 	adds r0, r6, #0
 	bl func_080CABA0
 	b .L08081970
 	.align 2, 0
 .L08081950: .4byte 0x00000684
-.L08081954: .4byte gUnk_080FE8FC
+.L08081954: .4byte gSpecialMerchantShopCatalog
 .L08081958: .4byte 0x00001AA8
 .L0808195C: .4byte 0x00001C2C
 .L08081960: .4byte 0x00001C38
-.L08081964: .4byte gUnk_080FEA5C
+.L08081964: .4byte gText_SpecialMerchantShop_ArticleDelivery
 .L08081968:
-	ldr r1, .L08081990 @ =gUnk_080FEA4C
+	ldr r1, .L08081990 @ =gText_SpecialMerchantShop_PurchaseCompleteShort
 	adds r0, r6, #0
 	bl func_080CABA0
 .L08081970:
@@ -131287,7 +131287,7 @@ func_0808114C: @ 0x0808114C
 	strb r0, [r1]
 	b .L08081A16
 	.align 2, 0
-.L08081990: .4byte gUnk_080FEA4C
+.L08081990: .4byte gText_SpecialMerchantShop_PurchaseCompleteShort
 .L08081994: .4byte 0x000006A4
 .L08081998:
 	adds r0, r6, #0
