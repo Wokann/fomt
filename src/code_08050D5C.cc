@@ -5,8 +5,8 @@
 // verified pointer-level interface rather than assigning an unsupported name.
 EC void func_0805039C(void * object);
 EC void func_080503E4(void * object);
-EC void func_080503FC(void * object);
-EC void func_08050410(void * object);
+EC void SetUiObjectStateTwoIfNonzero(void * object);
+EC void ClearUiObjectStateIfNonzero(void * object);
 
 EC void func_08050D5C(void * const * object)
 {
@@ -20,10 +20,10 @@ EC void func_08050D68(void * const * object)
 
 EC void func_08050D74(void * const * object)
 {
-    func_080503FC(*object);
+    SetUiObjectStateTwoIfNonzero(*object);
 }
 
 EC void func_08050D80(void * const * object)
 {
-    func_08050410(*object);
+    ClearUiObjectStateIfNonzero(*object);
 }

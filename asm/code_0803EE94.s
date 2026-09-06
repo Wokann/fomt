@@ -43,8 +43,7 @@
     jp_code_0803ee_func func_0804F7A4, 0x4F530, 0x50128
     jp_code_0803ee_func func_0805039C, 0x50128, 0x50170
     jp_code_0803ee_func func_080503E4, 0x50170, 0x50188
-    jp_code_0803ee_func func_080503FC, 0x50188, 0x5019C
-    jp_code_0803ee_func func_08050410, 0x5019C, 0x501B0
+    .section .text.ui_object_state_after
     jp_code_0803ee_func func_08050424, 0x501B0, 0x5055C
     jp_code_0803ee_func func_080507D0, 0x5055C, 0x50584
     jp_code_0803ee_func func_080507F8, 0x50584, 0x505F4
@@ -32102,33 +32101,7 @@ func_080503E4: @ 0x080503E4
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_080503FC
-func_080503FC: @ 0x080503FC
-	push {lr}
-	adds r1, r0, #0
-	ldr r0, [r1, #8]
-	cmp r0, #0
-	beq .L0805040A
-	movs r0, #2
-	str r0, [r1, #8]
-.L0805040A:
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_08050410
-func_08050410: @ 0x08050410
-	push {lr}
-	adds r1, r0, #0
-	ldr r0, [r1, #8]
-	cmp r0, #0
-	beq .L0805041E
-	movs r0, #0
-	str r0, [r1, #8]
-.L0805041E:
-	pop {r0}
-	bx r0
-	.align 2, 0
+	.section .text.ui_object_state_after
 
 	thumb_func_start func_08050424
 func_08050424: @ 0x08050424

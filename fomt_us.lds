@@ -129,6 +129,11 @@ SECTIONS
         asm/code_0803A8A4.o(.text.code_0803E448);
         src/script_engine.o(.text);
         asm/code_0803EE94.o(.text);
+        . = 0x503FC; /* JP/US-shared nonzero UI-state setter. */
+        src/ui_state.o(.text.set_ui_object_state_two_if_nonzero);
+        . = 0x50410; /* JP/US-shared nonzero UI-state clearer. */
+        src/ui_state.o(.text.clear_ui_object_state_if_nonzero);
+        . = 0x50424; asm/code_0803EE94.o(.text.ui_object_state_after);
         . = 0x50D5C; /* US ROM shared first-field forwarding adapters. */
         src/code_08050D5C.o(.text);
         . = 0x50D8C; /* US ROM shared argument-normalizing forwarding adapters. */
