@@ -1,7 +1,7 @@
-#include "reference_guide.hh"
-
-// Reference Guide page 71: Van's Shop. Fixed field capacity and physical
-// order match the US ROM.
-
-char const gText_ReferenceGuide_VansShop_Title[12] SECTION(".rodata.reference_guide_vans_shop_text") =
-    "Van's Shop";
+// fomt-text input, intentionally not a C++ translation unit.
+// TITLE is fixed at the top of the screen; MAIN rows scroll below it.
+TITLE
+    "Van's Shop"
+MAIN
+    ""
+END_FOMT_REFERENCE_GUIDE_PAGE

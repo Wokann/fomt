@@ -1,48 +1,99 @@
-#include "reference_guide.hh"
-
-// Reference Guide page 56: Cookbook II. Fixed field capacities and physical order match the ROM.
-
-char const gText_ReferenceGuide_Cookbook2_Title[32] SECTION(".rodata.reference_guide_cookbook_2_text") =
-    "お料理の本２　　　　　　　　";
-
-char const gText_ReferenceGuide_Cookbook2_Omelet_Title[20] SECTION(".rodata.reference_guide_cookbook_2_text") =
-    "☆オムレツの作り方";
-
-char const gText_ReferenceGuide_Cookbook2_Omelet_Ingredient_Egg[8] SECTION(".rodata.reference_guide_cookbook_2_text") =
-    "　卵";
-
-char const gText_ReferenceGuide_Cookbook2_Omelet_Ingredient_Milk[8] SECTION(".rodata.reference_guide_cookbook_2_text") =
-    "　牛乳";
-
-char const gText_ReferenceGuide_Cookbook2_Omelet_Ingredient_Oil[8] SECTION(".rodata.reference_guide_cookbook_2_text") =
-    "　油";
-
-char const gText_ReferenceGuide_Cookbook2_Omelet_Utensil_FryingPan[16] SECTION(".rodata.reference_guide_cookbook_2_text") =
-    "　フライパン";
-
-char const gText_ReferenceGuide_Cookbook2_Omelet_Utensil_Whisk[12] SECTION(".rodata.reference_guide_cookbook_2_text") =
-    "　泡立て器";
-
-char const gText_ReferenceGuide_Cookbook2_GrilledFish_Title[20] SECTION(".rodata.reference_guide_cookbook_2_text") =
-    "☆焼き魚の作り方";
-
-char const gText_ReferenceGuide_Cookbook2_GrilledFish_Ingredient_MediumFish[8] SECTION(".rodata.reference_guide_cookbook_2_text") =
-    "　中魚";
-
-char const gText_ReferenceGuide_Cookbook2_Butter_Title[20] SECTION(".rodata.reference_guide_cookbook_2_text") =
-    "☆バターの作り方";
-
-char const gText_ReferenceGuide_Cookbook2_ButterRole_Title[24] SECTION(".rodata.reference_guide_cookbook_2_text") =
-    "☆バターロールの作り方";
-
-char const gText_ReferenceGuide_Cookbook2_ButterRole_Ingredient_Bread[8] SECTION(".rodata.reference_guide_cookbook_2_text") =
-    "　パン";
-
-char const gText_ReferenceGuide_Cookbook2_ButterRole_Ingredient_Butter[12] SECTION(".rodata.reference_guide_cookbook_2_text") =
-    "　バター";
-
-char const gText_ReferenceGuide_Cookbook2_TempuraRice_Title[20] SECTION(".rodata.reference_guide_cookbook_2_text") =
-    "☆天ぷら丼の作り方";
-
-char const gText_ReferenceGuide_Cookbook2_TempuraRice_Ingredient_Tempura[12] SECTION(".rodata.reference_guide_cookbook_2_text") =
-    "　天ぷら";
+// fomt-text input, intentionally not a C++ translation unit.
+// TITLE is fixed at the top of the screen; MAIN rows scroll below it.
+TITLE
+    "お料理の本２　　　　　　　　"
+MAIN
+    "☆オムレツの作り方"
+    ""
+    "·必要材料"
+    "　卵"
+    "　牛乳"
+    "　油"
+    "　"
+    "·必要調理道具"
+    "　フライパン"
+    "　"
+    "　"
+    "·アレンジ材料"
+    "　何だかいろいろ"
+    "　"
+    "·アレンジ調理道具"
+    "　包丁"
+    "　泡立て器"
+    "　調味料　さとう"
+    "　調味料　しお"
+    "　調味料　しょうゆ"
+    "　"
+    "－－－－－－－－－－－－－－"
+    "　"
+    "☆焼き魚の作り方"
+    ""
+    "·必要材料"
+    "　中魚"
+    "　"
+    "·必要調理道具"
+    "　フライパン"
+    "　"
+    "　"
+    "·アレンジ材料"
+    "　油"
+    "　"
+    "·アレンジ調理道具"
+    "　調味料　しお"
+    "　調味料　しょうゆ"
+    "　"
+    "－－－－－－－－－－－－－－"
+    "　"
+    "☆バターの作り方"
+    ""
+    "·必要材料"
+    "　牛乳"
+    "　"
+    "·必要調理道具"
+    "　ミキサー"
+    "　"
+    "　"
+    "·アレンジ材料"
+    "　なし"
+    "　"
+    "·アレンジ調理道具"
+    "　調味料　しお"
+    "　"
+    "－－－－－－－－－－－－－－"
+    "　"
+    "☆バターロールの作り方"
+    ""
+    "·必要材料"
+    "　パン"
+    "　バター"
+    "　"
+    "·必要調理道具"
+    "　なし"
+    "　"
+    "　"
+    "·アレンジ材料"
+    "　はちみつ"
+    "　"
+    "·アレンジ調理道具"
+    "　なし"
+    "　"
+    "－－－－－－－－－－－－－－"
+    "　"
+    "☆天ぷら丼の作り方"
+    ""
+    "·必要材料"
+    "　おにぎり"
+    "　天ぷら"
+    "　"
+    "·必要調理道具"
+    "　なし"
+    "　"
+    "　"
+    "·アレンジ材料"
+    "　なし"
+    "　"
+    "·アレンジ調理道具"
+    "　調味料　さとう"
+    "　調味料　しお"
+    "　調味料　しょうゆ"
+END_FOMT_REFERENCE_GUIDE_PAGE

@@ -63,7 +63,7 @@ MAP := $(ROM:.gba=.map)
 C_SRCS := $(wildcard $(SRC_DIR)/*.c $(SRC_DIR)/rt/*.c)
 C_OBJS := $(C_SRCS:%.c=$(BUILD_DIR)/%.o)
 
-CXX_SRCS := $(wildcard $(SRC_DIR)/*.cc $(SRC_DIR)/rt/*.cc)
+CXX_SRCS := $(filter-out $(SRC_DIR)/reference_guide.cc,$(wildcard $(SRC_DIR)/*.cc $(SRC_DIR)/rt/*.cc))
 CXX_OBJS := $(CXX_SRCS:%.cc=$(BUILD_DIR)/%.o)
 
 
@@ -102,219 +102,55 @@ TEXT_COMMON_SOURCES := data/text/common/ui_error.cc data/text/common/sram_signat
 
 ifeq ($(GAME_REGION),JP)
 TEXT_REGION := jp
-TEXT_SOURCES := data/text/jp/tool.cc data/text/jp/food.cc data/text/jp/article.cc data/text/jp/calendar.cc data/text/jp/help_menu.cc data/text/jp/animal_memorial.cc data/text/jp/load_error.cc data/text/jp/menu.cc data/text/jp/not_available.cc data/text/jp/fixed_labels.cc data/text/jp/new_game_menu.cc data/text/jp/new_game_status.cc data/text/jp/new_game_help.cc data/text/jp/new_game_save.cc data/text/jp/new_game_identity.cc data/text/jp/new_game_name_entry.cc data/text/jp/new_game_name_entry_ui.cc data/text/jp/festival_contestants.cc data/text/jp/staff_credits.cc data/text/jp/fishing_results.cc data/text/jp/character_names.cc data/text/jp/reference_guide/harvest_sprite_minigames.cc
-TEXT_SOURCES += data/text/jp/reference_guide/festival_hints.cc
-TEXT_SOURCES += data/text/jp/reference_guide/controls.cc
-TEXT_SOURCES += data/text/jp/reference_guide/crops.cc
-TEXT_SOURCES += data/text/jp/reference_guide/mines.cc
-TEXT_SOURCES += data/text/jp/reference_guide/cooking.cc
-TEXT_SOURCES += data/text/jp/reference_guide/stamina.cc
-TEXT_SOURCES += data/text/jp/reference_guide/sell_price.cc
-TEXT_SOURCES += data/text/jp/reference_guide/using_tools.cc
-TEXT_SOURCES += data/text/jp/reference_guide/fishing.cc
-TEXT_SOURCES += data/text/jp/reference_guide/animal_care.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/takakura.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/romana.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/lumina.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/sebastian.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/wally.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/chris.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/hugh.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/grant.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/samantha.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/kate.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/galen.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/nina.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/daryl.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/gustafa.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/cody.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/kassey.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/patrick.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/murray.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/tim.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/ruby.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/nami.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/rock.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/griffin.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/muffy.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/carter.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/flora.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/vesta.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/marlin.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/celia.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/hardy.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/van.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/mooky.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/child.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/nak.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/nic.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/flak.cc
-TEXT_SOURCES += data/text/jp/reference_guide/awl_profiles/player.cc
-TEXT_SOURCES += data/text/jp/reference_guide/cookbook_1.cc
-TEXT_SOURCES += data/text/jp/reference_guide/cookbook_2.cc
-TEXT_SOURCES += data/text/jp/reference_guide/cookbook_3.cc
-TEXT_SOURCES += data/text/jp/reference_guide/cookbook_4.cc
-TEXT_SOURCES += data/text/jp/reference_guide/acquiring_kitchen.cc
-TEXT_SOURCES += data/text/jp/reference_guide/harvest_sprite_help.cc
-TEXT_SOURCES += data/text/jp/reference_guide/saibara_blacksmith.cc
-TEXT_SOURCES += data/text/jp/reference_guide/supermarket.cc
-TEXT_SOURCES += data/text/jp/reference_guide/woodcutters_house.cc
-TEXT_SOURCES += data/text/jp/reference_guide/clinic.cc
-TEXT_SOURCES += data/text/jp/reference_guide/aja_winery.cc
-TEXT_SOURCES += data/text/jp/reference_guide/dougs_inn.cc
-TEXT_SOURCES += data/text/jp/reference_guide/kai_seaside_lodge.cc
-TEXT_SOURCES += data/text/jp/reference_guide/poultry_farm.cc
-TEXT_SOURCES += data/text/jp/reference_guide/yodel_farm.cc
-TEXT_SOURCES += data/text/jp/reference_guide/wons_shop.cc
-TEXT_SOURCES += data/text/jp/reference_guide/vans_shop.cc
-TEXT_SOURCES += data/text/jp/reference_guide/record_player_instructions.cc
-TEXT_SOURCES += data/text/jp/reference_guide/taking_a_bath.cc
-TEXT_SOURCES += data/text/jp/reference_guide/vase_instructions.cc
-TEXT_SOURCES += data/text/jp/reference_guide/refrigerator.cc
-TEXT_SOURCES += data/text/jp/reference_guide/shelf.cc
-TEXT_SOURCES += data/text/jp/reference_guide/staff_credits.cc
-TEXT_SOURCES += data/text/jp/reference_guide/useful_controls.cc
-TEXT_SOURCES += data/text/jp/reference_guide/cliff_new_year_cards.cc
-TEXT_SOURCES += data/text/jp/reference_guide/cliff_and_ann_new_year_card.cc
-TEXT_SOURCES += data/text/jp/reference_guide/doctor_new_year_card.cc
-TEXT_SOURCES += data/text/jp/reference_guide/doctor_and_elli_new_year_card.cc
-TEXT_SOURCES += data/text/jp/reference_guide/mineral_clinic_new_year_card.cc
-TEXT_SOURCES += data/text/jp/reference_guide/poultry_farm_new_year_card.cc
-TEXT_SOURCES += data/text/jp/reference_guide/poultry_farm_lillia_and_rick_new_year_card.cc
-TEXT_SOURCES += data/text/jp/reference_guide/poultry_farm_player_and_popuri_new_year_card.cc
-TEXT_SOURCES += data/text/jp/reference_guide/poultry_farm_lillia_rick_and_karen_new_year_card.cc
-TEXT_SOURCES += data/text/jp/reference_guide/gray_new_year_card.cc
-TEXT_SOURCES += data/text/jp/reference_guide/gray_well_wishes_new_year_card.cc
-TEXT_SOURCES += data/text/jp/reference_guide/kai_new_year_card.cc
-TEXT_SOURCES += data/text/jp/reference_guide/kai_and_popuri_new_year_card.cc
-TEXT_SOURCES += data/text/jp/reference_guide/jeff_new_year_card.cc
-TEXT_SOURCES += data/text/jp/reference_guide/saibara_new_year_card.cc
-TEXT_SOURCES += data/text/jp/reference_guide/doug_new_year_card.cc
-TEXT_SOURCES += data/text/jp/reference_guide/doug_new_year_card_to_player_and_ann.cc
-TEXT_SOURCES += data/text/jp/reference_guide/carter_new_year_card.cc
-TEXT_SOURCES += data/text/jp/reference_guide/basil_and_anna_new_year_card.cc
-TEXT_SOURCES += data/text/jp/reference_guide/may_and_barley_new_year_cards.cc
-TEXT_SOURCES += data/text/jp/reference_guide/thomas_and_harris_new_year_card.cc
-TEXT_SOURCES += data/text/jp/reference_guide/thomas_and_harris_town_safety_new_year_card.cc
-TEXT_SOURCES += data/text/jp/reference_guide/manna_and_duke_new_year_cards.cc
-TEXT_SOURCES += data/text/jp/reference_guide/ellen_new_year_card.cc
-TEXT_SOURCES += data/text/jp/reference_guide/harvest_sprites_new_year_card.cc
+TEXT_SOURCES := data/text/jp/tool.cc data/text/jp/food.cc data/text/jp/article.cc data/text/jp/calendar.cc data/text/jp/help_menu.cc data/text/jp/animal_memorial.cc data/text/jp/load_error.cc data/text/jp/menu.cc data/text/jp/not_available.cc data/text/jp/fixed_labels.cc data/text/jp/new_game_menu.cc data/text/jp/new_game_status.cc data/text/jp/new_game_help.cc data/text/jp/new_game_save.cc data/text/jp/new_game_identity.cc data/text/jp/new_game_name_entry.cc data/text/jp/new_game_name_entry_ui.cc data/text/jp/festival_contestants.cc data/text/jp/staff_credits.cc data/text/jp/fishing_results.cc data/text/jp/character_names.cc
+TEXT_SOURCES += $(wildcard data/text/jp/reference_guide/*.cc)
 else
 TEXT_REGION := us
-TEXT_SOURCES := data/text/us/tool.cc data/text/us/food.cc data/text/us/article.cc data/text/us/calendar.cc data/text/us/help_menu.cc data/text/us/animal_memorial.cc data/text/us/load_error.cc data/text/us/menu.cc data/text/us/not_available.cc data/text/us/fixed_labels.cc data/text/us/new_game_menu.cc data/text/us/new_game_status.cc data/text/us/new_game_help.cc data/text/us/new_game_save.cc data/text/us/new_game_identity.cc data/text/us/new_game_name_entry.cc data/text/us/new_game_name_entry_ui.cc data/text/us/fishing_results.cc data/text/us/character_names.cc data/text/us/reference_guide/harvest_sprite_minigames.cc
-TEXT_SOURCES += data/text/us/reference_guide/festival_hints.cc
-TEXT_SOURCES += data/text/us/reference_guide/controls.cc
-TEXT_SOURCES += data/text/us/reference_guide/crops.cc
-TEXT_SOURCES += data/text/us/reference_guide/mines.cc
-TEXT_SOURCES += data/text/us/reference_guide/cooking.cc
-TEXT_SOURCES += data/text/us/reference_guide/stamina.cc
-TEXT_SOURCES += data/text/us/reference_guide/sell_price.cc
-TEXT_SOURCES += data/text/us/reference_guide/using_tools.cc
-TEXT_SOURCES += data/text/us/reference_guide/fishing.cc
-TEXT_SOURCES += data/text/us/reference_guide/animal_care.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/takakura.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/romana.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/lumina.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/sebastian.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/wally.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/chris.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/hugh.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/grant.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/samantha.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/kate.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/galen.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/nina.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/daryl.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/gustafa.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/cody.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/kassey.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/patrick.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/murray.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/tim.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/ruby.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/nami.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/rock.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/griffin.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/muffy.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/carter.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/flora.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/vesta.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/marlin.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/celia.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/hardy.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/van.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/mooky.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/child.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/nak.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/nic.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/flak.cc
-TEXT_SOURCES += data/text/us/reference_guide/awl_profiles/player.cc
-TEXT_SOURCES += data/text/us/reference_guide/cookbook_1.cc
-TEXT_SOURCES += data/text/us/reference_guide/cookbook_2.cc
-TEXT_SOURCES += data/text/us/reference_guide/cookbook_3.cc
-TEXT_SOURCES += data/text/us/reference_guide/cookbook_4.cc
-TEXT_SOURCES += data/text/us/reference_guide/acquiring_kitchen.cc
-TEXT_SOURCES += data/text/us/reference_guide/harvest_sprite_help.cc
-TEXT_SOURCES += data/text/us/reference_guide/saibara_blacksmith.cc
-TEXT_SOURCES += data/text/us/reference_guide/supermarket.cc
-TEXT_SOURCES += data/text/us/reference_guide/woodcutters_house.cc
-TEXT_SOURCES += data/text/us/reference_guide/clinic.cc
-TEXT_SOURCES += data/text/us/reference_guide/aja_winery.cc
-TEXT_SOURCES += data/text/us/reference_guide/dougs_inn.cc
-TEXT_SOURCES += data/text/us/reference_guide/kai_seaside_lodge.cc
-TEXT_SOURCES += data/text/us/reference_guide/poultry_farm.cc
-TEXT_SOURCES += data/text/us/reference_guide/yodel_farm.cc
-TEXT_SOURCES += data/text/us/reference_guide/wons_shop.cc
-TEXT_SOURCES += data/text/us/reference_guide/vans_shop.cc
-TEXT_SOURCES += data/text/us/reference_guide/record_player_instructions.cc
-TEXT_SOURCES += data/text/us/reference_guide/taking_a_bath.cc
-TEXT_SOURCES += data/text/us/reference_guide/vase_instructions.cc
-TEXT_SOURCES += data/text/us/reference_guide/refrigerator.cc
-TEXT_SOURCES += data/text/us/reference_guide/shelf.cc
-TEXT_SOURCES += data/text/us/reference_guide/staff_credits.cc
-TEXT_SOURCES += data/text/us/reference_guide/useful_controls.cc
-TEXT_SOURCES += data/text/us/reference_guide/cliff_new_year_cards.cc
-TEXT_SOURCES += data/text/us/reference_guide/cliff_and_ann_new_year_card.cc
-TEXT_SOURCES += data/text/us/reference_guide/doctor_new_year_card.cc
-TEXT_SOURCES += data/text/us/reference_guide/doctor_and_elli_new_year_card.cc
-TEXT_SOURCES += data/text/us/reference_guide/mineral_clinic_new_year_card.cc
-TEXT_SOURCES += data/text/us/reference_guide/poultry_farm_new_year_card.cc
-TEXT_SOURCES += data/text/us/reference_guide/poultry_farm_lillia_and_rick_new_year_card.cc
-TEXT_SOURCES += data/text/us/reference_guide/poultry_farm_player_and_popuri_new_year_card.cc
-TEXT_SOURCES += data/text/us/reference_guide/poultry_farm_lillia_rick_and_karen_new_year_card.cc
-TEXT_SOURCES += data/text/us/reference_guide/gray_new_year_card.cc
-TEXT_SOURCES += data/text/us/reference_guide/gray_well_wishes_new_year_card.cc
-TEXT_SOURCES += data/text/us/reference_guide/kai_new_year_card.cc
-TEXT_SOURCES += data/text/us/reference_guide/kai_and_popuri_new_year_card.cc
-TEXT_SOURCES += data/text/us/reference_guide/jeff_new_year_card.cc
-TEXT_SOURCES += data/text/us/reference_guide/saibara_new_year_card.cc
-TEXT_SOURCES += data/text/us/reference_guide/doug_new_year_card.cc
-TEXT_SOURCES += data/text/us/reference_guide/doug_new_year_card_to_player_and_ann.cc
-TEXT_SOURCES += data/text/us/reference_guide/carter_new_year_card.cc
-TEXT_SOURCES += data/text/us/reference_guide/basil_and_anna_new_year_card.cc
-TEXT_SOURCES += data/text/us/reference_guide/may_and_barley_new_year_cards.cc
-TEXT_SOURCES += data/text/us/reference_guide/thomas_and_harris_new_year_card.cc
-TEXT_SOURCES += data/text/us/reference_guide/thomas_and_harris_town_safety_new_year_card.cc
-TEXT_SOURCES += data/text/us/reference_guide/manna_and_duke_new_year_cards.cc
-TEXT_SOURCES += data/text/us/reference_guide/ellen_new_year_card.cc
-TEXT_SOURCES += data/text/us/reference_guide/harvest_sprites_new_year_card.cc
+TEXT_SOURCES := data/text/us/tool.cc data/text/us/food.cc data/text/us/article.cc data/text/us/calendar.cc data/text/us/help_menu.cc data/text/us/animal_memorial.cc data/text/us/load_error.cc data/text/us/menu.cc data/text/us/not_available.cc data/text/us/fixed_labels.cc data/text/us/new_game_menu.cc data/text/us/new_game_status.cc data/text/us/new_game_help.cc data/text/us/new_game_save.cc data/text/us/new_game_identity.cc data/text/us/new_game_name_entry.cc data/text/us/new_game_name_entry_ui.cc data/text/us/fishing_results.cc data/text/us/character_names.cc
+TEXT_SOURCES += $(wildcard data/text/us/reference_guide/*.cc)
 endif
 
-TEXT_GENERATED_SOURCES := $(patsubst data/text/$(TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.cc,$(TEXT_SOURCES))
+# The manifest records directory order, physical ROM-group order, and whether
+# an auxiliary page participates in the master directory.
+GUIDE_COLLECTION_MANIFEST := src/reference_guide.cc
+GUIDE_PAGE_SOURCES := $(wildcard data/text/$(TEXT_REGION)/reference_guide/*.cc)
+NORMAL_TEXT_SOURCES := $(filter-out $(GUIDE_PAGE_SOURCES),$(TEXT_SOURCES))
+
+TEXT_GENERATED_SOURCES := $(patsubst data/text/$(TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.cc,$(NORMAL_TEXT_SOURCES))
 TEXT_OBJS := $(TEXT_GENERATED_SOURCES:.cc=.o)
 TEXT_DEPS := $(TEXT_GENERATED_SOURCES:.cc=.d)
 TEXT_COMMON_GENERATED_SOURCES := $(patsubst data/text/common/%.cc,$(BUILD_DIR)/data/text/common/%.cc,$(TEXT_COMMON_SOURCES))
 TEXT_COMMON_OBJS := $(TEXT_COMMON_GENERATED_SOURCES:.cc=.o)
 TEXT_COMMON_DEPS := $(TEXT_COMMON_GENERATED_SOURCES:.cc=.d)
 
-ALL_OBJS += $(TEXT_OBJS) $(TEXT_COMMON_OBJS)
-ALL_DEPS += $(TEXT_DEPS) $(TEXT_COMMON_DEPS)
+GUIDE_GENERATED_SOURCE := $(BUILD_DIR)/src/reference_guide.cc
+GUIDE_GENERATED_SOURCES := $(GUIDE_GENERATED_SOURCE)
+GUIDE_GENERATED_OBJS := $(GUIDE_GENERATED_SOURCES:.cc=.o)
+GUIDE_GENERATED_DEPS := $(GUIDE_GENERATED_SOURCES:.cc=.d)
 
-.SECONDARY: $(TEXT_GENERATED_SOURCES) $(TEXT_COMMON_GENERATED_SOURCES)
+ALL_OBJS += $(TEXT_OBJS) $(TEXT_COMMON_OBJS) $(GUIDE_GENERATED_OBJS)
+ALL_DEPS += $(TEXT_DEPS) $(TEXT_COMMON_DEPS) $(GUIDE_GENERATED_DEPS)
+
+.SECONDARY: $(TEXT_GENERATED_SOURCES) $(TEXT_COMMON_GENERATED_SOURCES) $(GUIDE_GENERATED_SOURCES)
 
 $(TEXT_TOOL): $(TEXT_TOOL_DIR)/fomt_text.cpp $(TEXT_TOOL_DIR)/Makefile
 	@$(MAKE) -C $(TEXT_TOOL_DIR) $(notdir $@)
 
+# Every article remains a deliberately non-C++ text source.  One collection
+# invocation emits one physical C++ object: master directory, group text, and
+# the matching line-pointer tables in exact ROM order.
+$(GUIDE_GENERATED_SOURCE): $(GUIDE_COLLECTION_MANIFEST) $(GUIDE_PAGE_SOURCES) $(TEXT_TOOL) charmap.txt
+	@mkdir -p $(dir $@)
+	$(TEXT_TOOL) guide-collection charmap.txt $(GAME_REGION) $(GUIDE_COLLECTION_MANIFEST) $@
+
+$(BUILD_DIR)/src/reference_guide.d: $(GUIDE_GENERATED_SOURCE)
+	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MT $(BUILD_DIR)/src/reference_guide.o
+
+$(BUILD_DIR)/src/reference_guide.o: $(GUIDE_GENERATED_SOURCE) $(BUILD_DIR)/src/reference_guide.d
+	@echo "CP $<"
+	@$(CPP) $(CPPFLAGS) $< | ($(CC1PLUS) $(CXXFLAGS) -o $(BUILD_DIR)/src/reference_guide.s || false)
+	@sed 's/\r$$//' tools/scripts/align_sections.sh | bash -s -- $(BUILD_DIR)/src/reference_guide.s
+	@$(AS) $(ASFLAGS) $(BUILD_DIR)/src/reference_guide.s -o $@
 $(BUILD_DIR)/data/text/%.cc: data/text/$(TEXT_REGION)/%.cc $(TEXT_TOOL) charmap.txt
 	@mkdir -p $(dir $@)
 	$(TEXT_TOOL) cpp charmap.txt $< $@
@@ -384,6 +220,8 @@ clean:
 .PHONY: clean
 
 ifneq (clean,$(MAKECMDGOALS))
+ifeq (,$(filter fomt_us fomt_jp,$(MAKECMDGOALS)))
 -include $(ALL_DEPS)
+endif
 .PRECIOUS: $(BUILD_DIR)/%.d
 endif

@@ -1,0 +1,33 @@
+// fomt-text input, intentionally not a C++ translation unit.
+// TITLE is fixed at the top of the screen; MAIN rows scroll below it.
+TITLE
+    "全体マップの操作　　　　　　"
+MAIN
+    "·十字ボタン"
+    "　カーソルの移動。"
+    "　カーソルが合っている場所の"
+    "　説明がメッセージウインドウ"
+    "　の中に出る。"
+    ""
+    "·Ｌボタン"
+    "　十字ボタンを押しながら"
+    "　このボタンを押すと、"
+    "　カーソルの移動スピードが"
+    "　おそくなる。"
+    ""
+    "·Ｒボタン"
+    "　十字ボタンを押しながら"
+    "　このボタンを押すと、"
+    "　カーソルの移動スピードが"
+    "　はやくなる。"
+    ""
+    "·Ａボタン"
+    "　説明メッセージが変わる。"
+    "　"
+    "　お店の説明"
+    "　↓↑"
+    "　営業時間、定休日"
+    ""
+    "·Ｂボタン"
+    "　この画面からぬける。"
+END_FOMT_REFERENCE_GUIDE_PAGE

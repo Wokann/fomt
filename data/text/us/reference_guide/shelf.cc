@@ -1,17 +1,14 @@
-#include "reference_guide.hh"
-
-// Reference Guide page 76: Shelf. Fixed field capacities and physical order
-// match the US ROM.
-
-char const gText_ReferenceGuide_Shelf_Title[8] SECTION(".rodata.reference_guide_shelf_text") =
-    "Shelf";
-char const gText_ReferenceGuide_Shelf_Storage_Line02[16] SECTION(".rodata.reference_guide_shelf_text") =
-    "inedible Items.";
-char const gText_ReferenceGuide_Shelf_Capacity_Line01[16] SECTION(".rodata.reference_guide_shelf_text") =
-    "Shelf holds 99 ";
-char const gText_ReferenceGuide_Shelf_CookingSelectionRestriction_Line01[20] SECTION(".rodata.reference_guide_shelf_text") =
-    "You cannot select ";
-char const gText_ReferenceGuide_Shelf_CookingSelectionRestriction_Line02[24] SECTION(".rodata.reference_guide_shelf_text") =
-    "Ingredients from the";
-char const gText_ReferenceGuide_Shelf_CookingSelectionRestriction_Line03[20] SECTION(".rodata.reference_guide_shelf_text") =
-    "Shelf when cooking.";
+// fomt-text input, intentionally not a C++ translation unit.
+// TITLE is fixed at the top of the screen; MAIN rows scroll below it.
+TITLE
+    "Shelf"
+MAIN
+    "This is where you can store"
+    "inedible Items."
+    "Unlike the Rucksack, the"
+    "Shelf holds 99 "
+    "Items in each space."
+    "You cannot select "
+    "Ingredients from the"
+    "Shelf when cooking."
+END_FOMT_REFERENCE_GUIDE_PAGE

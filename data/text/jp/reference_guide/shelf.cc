@@ -1,21 +1,17 @@
-#include "reference_guide.hh"
-
-// Reference Guide page 76: Shelf. Fixed field capacities and physical order
-// match the Japanese ROM.
-
-char const gText_ReferenceGuide_Shelf_Title[32] SECTION(".rodata.reference_guide_shelf_text") =
-    "整理棚　　　　　　　　　　　";
-char const gText_ReferenceGuide_Shelf_Storage_Line01[32] SECTION(".rodata.reference_guide_shelf_text") =
-    "持ち物の中でも食べられない物";
-char const gText_ReferenceGuide_Shelf_Storage_Line02[20] SECTION(".rodata.reference_guide_shelf_text") =
-    "が入る場所です。";
-char const gText_ReferenceGuide_Shelf_AnimalAndBasketRestriction_Line01[32] SECTION(".rodata.reference_guide_shelf_text") =
-    "動物やかごなど、リュックの中";
-char const gText_ReferenceGuide_Shelf_AnimalAndBasketRestriction_Line02[32] SECTION(".rodata.reference_guide_shelf_text") =
-    "に入れられない物は入れること";
-char const gText_ReferenceGuide_Shelf_Capacity_Line01[32] SECTION(".rodata.reference_guide_shelf_text") =
-    "かなりたくさん物を入れること";
-char const gText_ReferenceGuide_Shelf_Capacity_Line02[16] SECTION(".rodata.reference_guide_shelf_text") =
-    "ができます。";
-char const gText_ReferenceGuide_Shelf_CookingSelectionRestriction_Line01[20] SECTION(".rodata.reference_guide_shelf_text") =
-    "からは選べません。";
+// fomt-text input, intentionally not a C++ translation unit.
+// TITLE is fixed at the top of the screen; MAIN rows scroll below it.
+TITLE
+    "整理棚　　　　　　　　　　　"
+MAIN
+    "持ち物の中でも食べられない物"
+    "が入る場所です。"
+    "動物やかごなど、リュックの中"
+    "に入れられない物は入れること"
+    "ができません。"
+    "リュックの中と違って、１マス"
+    "に９９コまで入れられるので、"
+    "かなりたくさん物を入れること"
+    "ができます。"
+    "お料理を作る時には材料をここ"
+    "からは選べません。"
+END_FOMT_REFERENCE_GUIDE_PAGE

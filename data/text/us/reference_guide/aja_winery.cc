@@ -1,30 +1,24 @@
-#include "reference_guide.hh"
-
-// Reference Guide page 65: Aja Winery. Fixed field capacities and physical
-// order match the US ROM.
-
-char const gText_ReferenceGuide_AjaWinery_Title[12] SECTION(".rodata.reference_guide_aja_winery_text") =
-    "Aja Winery";
-char const gText_ReferenceGuide_AjaWinery_Overview_Line01[28] SECTION(".rodata.reference_guide_aja_winery_text") =
-    "·The Winery sells Grape ";
-char const gText_ReferenceGuide_AjaWinery_Overview_Line02[28] SECTION(".rodata.reference_guide_aja_winery_text") =
-    " Juice and Wine. Both are";
-char const gText_ReferenceGuide_AjaWinery_Overview_Line03[28] SECTION(".rodata.reference_guide_aja_winery_text") =
-    " made from Grapes grown at";
-char const gText_ReferenceGuide_AjaWinery_Overview_Line04[16] SECTION(".rodata.reference_guide_aja_winery_text") =
-    " the Winery. ";
-char const gText_ReferenceGuide_AjaWinery_StoreHours_Value[12] SECTION(".rodata.reference_guide_aja_winery_text") =
-    " 10AM-Noon";
-char const gText_ReferenceGuide_AjaWinery_ClosedDay_Value[16] SECTION(".rodata.reference_guide_aja_winery_text") =
-    " ·Saturdays";
-
-char const gText_ReferenceGuide_AjaWinery_Products_GrapeJuiceAndWine_Title[24] SECTION(".rodata.reference_guide_aja_winery_text") =
-    "☆Grape Juice and Wine";
-char const gText_ReferenceGuide_AjaWinery_Products_UseInCooking_Line01[28] SECTION(".rodata.reference_guide_aja_winery_text") =
-    " can be used for cooking,";
-char const gText_ReferenceGuide_AjaWinery_Products_UseInCooking_Line02[24] SECTION(".rodata.reference_guide_aja_winery_text") =
-    " or for drinking as is.";
-char const gText_ReferenceGuide_AjaWinery_RefrigeratorStorage_Line01[28] SECTION(".rodata.reference_guide_aja_winery_text") =
-    "·You can keep more at once";
-char const gText_ReferenceGuide_AjaWinery_RefrigeratorStorage_Line02[24] SECTION(".rodata.reference_guide_aja_winery_text") =
-    " with a Refrigerator.";
+// fomt-text input, intentionally not a C++ translation unit.
+// TITLE is fixed at the top of the screen; MAIN rows scroll below it.
+TITLE
+    "Aja Winery"
+MAIN
+    "·The Winery sells Grape "
+    " Juice and Wine. Both are"
+    " made from Grapes grown at"
+    " the Winery. "
+    ""
+    "·Store Hours:"
+    " 10AM-Noon"
+    ""
+    "·Closed:"
+    " ·Saturdays"
+    ""
+    ""
+    "☆Grape Juice and Wine"
+    " can be used for cooking,"
+    " or for drinking as is."
+    ""
+    "·You can keep more at once"
+    " with a Refrigerator."
+END_FOMT_REFERENCE_GUIDE_PAGE

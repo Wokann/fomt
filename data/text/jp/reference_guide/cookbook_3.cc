@@ -1,33 +1,78 @@
-#include "reference_guide.hh"
-
-// Reference Guide page 57: Cookbook III. Fixed field capacities and physical order match the ROM.
-
-char const gText_ReferenceGuide_Cookbook3_Title[32] SECTION(".rodata.reference_guide_cookbook_3_text") =
-    "お料理の本３　　　　　　　　";
-
-char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Title[24] SECTION(".rodata.reference_guide_cookbook_3_text") =
-    "☆焼きおにぎりの作り方";
-
-char const gText_ReferenceGuide_Cookbook3_ToastedRiceBall_Utensil_Oven[12] SECTION(".rodata.reference_guide_cookbook_3_text") =
-    "　オーブン";
-
-char const gText_ReferenceGuide_Cookbook3_FishSticks_Title[20] SECTION(".rodata.reference_guide_cookbook_3_text") =
-    "☆かまぼこの作り方";
-
-char const gText_ReferenceGuide_Cookbook3_FishSticks_Ingredient_MediumOrLargeFish[24] SECTION(".rodata.reference_guide_cookbook_3_text") =
-    "　中魚か大魚のどちらか";
-
-char const gText_ReferenceGuide_Cookbook3_RiceGruel_Title[20] SECTION(".rodata.reference_guide_cookbook_3_text") =
-    "☆おかゆの作り方";
-
-char const gText_ReferenceGuide_Cookbook3_RiceGruel_Ingredient_AnyGrasses[16] SECTION(".rodata.reference_guide_cookbook_3_text") =
-    "　草いろいろ";
-
-char const gText_ReferenceGuide_Cookbook3_Bodigizer_Title[24] SECTION(".rodata.reference_guide_cookbook_3_text") =
-    "☆ちからでーるの作り方";
-
-char const gText_ReferenceGuide_Cookbook3_Bodigizer_Ingredient_OrangeGrass[12] SECTION(".rodata.reference_guide_cookbook_3_text") =
-    "　橙の草";
-
-char const gText_ReferenceGuide_Cookbook3_Bodigizer_Ingredient_RedMagicGrass[24] SECTION(".rodata.reference_guide_cookbook_3_text") =
-    "　赤いマジックレッド草";
+// fomt-text input, intentionally not a C++ translation unit.
+// TITLE is fixed at the top of the screen; MAIN rows scroll below it.
+TITLE
+    "お料理の本３　　　　　　　　"
+MAIN
+    "☆焼きおにぎりの作り方"
+    ""
+    "·必要材料"
+    "　おにぎり"
+    "　"
+    "·必要調理道具"
+    "　オーブン"
+    "　"
+    "　"
+    "·アレンジ材料"
+    "　なし"
+    "　"
+    "·アレンジ調理道具"
+    "　調味料　しお"
+    "　調味料　しょうゆ"
+    "　調味料　みそ"
+    "　"
+    "－－－－－－－－－－－－－－"
+    "　"
+    "☆かまぼこの作り方"
+    ""
+    "·必要材料"
+    "　中魚か大魚のどちらか"
+    "　"
+    "·必要調理道具"
+    "　ミキサー"
+    "　調味料　しお"
+    "　"
+    "　"
+    "·アレンジ材料"
+    "　なし"
+    "　"
+    "·アレンジ調理道具"
+    "　なし"
+    "　"
+    "－－－－－－－－－－－－－－"
+    "　"
+    "☆おかゆの作り方"
+    ""
+    "·必要材料"
+    "　おにぎり"
+    "　"
+    "·必要調理道具"
+    "　なべ"
+    "　調味料　しお"
+    "　"
+    "　"
+    "·アレンジ材料"
+    "　草いろいろ"
+    "　"
+    "·アレンジ調理道具"
+    "　なし"
+    "　"
+    "－－－－－－－－－－－－－－"
+    "　"
+    "☆ちからでーるの作り方"
+    ""
+    "·必要材料"
+    "　はちみつ"
+    "　橙の草"
+    "　黒い草"
+    "　赤いマジックレッド草"
+    "　"
+    "·必要調理道具"
+    "　なべ"
+    "　"
+    "　"
+    "·アレンジ材料"
+    "　なし"
+    "　"
+    "·アレンジ調理道具"
+    "　なし"
+END_FOMT_REFERENCE_GUIDE_PAGE

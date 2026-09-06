@@ -319,9 +319,10 @@ std::string ParseStringLiteral(const std::string &source, std::size_t line_numbe
     return output;
 }
 
-void EmitCppString(std::ostringstream &output, const std::string &declarator, const Bytes &bytes)
+void EmitCppString(std::ostringstream &output, const std::string &declarator, const Bytes &bytes,
+    const std::string &storage_class = "")
 {
-    output << "char const " << declarator << " =\n";
+    output << storage_class << "char const " << declarator << " =\n";
     if (bytes.empty()) {
         output << "    \"\";\n\n";
         return;
@@ -334,6 +335,29 @@ void EmitCppString(std::ostringstream &output, const std::string &declarator, co
             output << "\\x" << HexByte(bytes[index]);
         output << '"';
         output << (end == bytes.size() ? ";\n\n" : "\n");
+    }
+}
+
+void EmitGuideCppString(std::ostringstream &output, const std::string &label,
+    const std::string &section, const Bytes &bytes)
+{
+    // agbcp treats a const char array as its initializer literal when that
+    // array decays inside a later pointer table.  A first-member wrapper
+    // preserves the emitted symbol address while keeping pointer tables tied
+    // to the explicitly sectioned object rather than its default .rodata copy.
+    output << "extern ReferenceGuideTextStorage<" << (bytes.size() + 1) << "> const "
+           << label << " SECTION(\"" << section << "\") =\n{\n";
+    if (bytes.empty()) {
+        output << "    \"\"\n};\n\n";
+        return;
+    }
+
+    for (std::size_t at = 0; at < bytes.size(); at += 16) {
+        output << "    \"";
+        const std::size_t end = std::min(at + 16, bytes.size());
+        for (std::size_t index = at; index < end; ++index)
+            output << "\\x" << HexByte(bytes[index]);
+        output << '"' << (end == bytes.size() ? "\n};\n\n" : "\n");
     }
 }
 
@@ -448,8 +472,782 @@ std::vector<std::string> ExtractIncludeDirectives(const std::string &source)
     return includes;
 }
 
+struct GuidePageSource {
+    std::string page;
+    std::vector<std::string> lines;
+};
+
+// The collection manifest is an ordinary X-macro list.  Its source order is
+// the game-visible book directory; ROM order independently preserves the
+// physical data sequence.
+struct GuideManifestEntry {
+    std::string page;
+    std::size_t rom_order;
+    bool include_in_catalog;
+};
+
+struct GuideCollectionPage {
+    GuideManifestEntry manifest;
+    GuidePageSource source;
+};
+
+
+struct GuideCatalogEntry {
+    std::string label;
+    std::string text;
+};
+
+using GuideTextCatalog = std::map<Bytes, std::string>;
+
+Bytes PadGuideTextStorage(const Bytes &text)
+{
+    // A source string has one implicit terminator.  Keep its physical object
+    // four-byte aligned without exposing a capacity in the maintained source.
+    constexpr std::size_t kAlignment = 4;
+    Bytes storage = text;
+    const std::size_t size_with_terminator = storage.size() + 1;
+    const std::size_t padding = (kAlignment - (size_with_terminator % kAlignment)) % kAlignment;
+    storage.insert(storage.end(), padding, 0);
+    return storage;
+}
+
+std::string GuideSectionStem(const std::string &page);
+
+std::string RepeatGuideText(const std::string &unit, std::size_t count)
+{
+    std::string result;
+    result.reserve(unit.size() * count);
+    for (std::size_t index = 0; index < count; ++index)
+        result += unit;
+    return result;
+}
+
+std::string GuideLineLabel(const std::string &page, std::size_t index,
+    const std::string &text)
+{
+    // Slot zero is the fixed header row.  The remaining names retain their
+    // physical line-slot number even when a layout primitive occupies a slot.
+    if (index == 0)
+        return "gText_ReferenceGuide_" + GuideSectionStem(page) + "_Title";
+
+    if (text.empty())
+        return "gText_ReferenceGuide_EmptyLine";
+
+    // These are layout primitives rather than content belonging to a book.
+    // Keep their names global so every page directly points at one semantic
+    // object when the original ROM shares the same address.
+    const std::string ideographic_space = "\xE3\x80\x80";
+    const std::string fullwidth_hyphen = "\xEF\xBC\x8D";
+    if (text == ideographic_space)
+        return "gText_ReferenceGuide_IndentedEmptyLine";
+    if (text == RepeatGuideText(ideographic_space, 14))
+        return "gText_ReferenceGuide_PaddedEmptyLine";
+    if (text == RepeatGuideText(fullwidth_hyphen, 14))
+        return "gText_ReferenceGuide_SectionDivider";
+    if (text == RepeatGuideText(".", 28))
+        return "gText_ReferenceGuide_RecipeSectionDivider";
+
+    std::string number = std::to_string(index);
+    if (index < 10)
+        number.insert(number.begin(), '0');
+    return "gText_ReferenceGuide_" + GuideSectionStem(page) + "_Line" + number;
+}
+
+std::string GuideSectionStem(const std::string &page)
+{
+    std::string result;
+    for (std::size_t index = 0; index < page.size(); ++index) {
+        const unsigned char value = static_cast<unsigned char>(page[index]);
+        const bool begins_word = index != 0
+            && ((std::isupper(value) != 0
+                    && (std::islower(static_cast<unsigned char>(page[index - 1])) != 0
+                        || (index + 1 < page.size()
+                            && std::islower(static_cast<unsigned char>(page[index + 1])) != 0)))
+                 || (std::isdigit(value) != 0
+                    && std::isdigit(static_cast<unsigned char>(page[index - 1])) == 0
+                    && page[index - 1] != '_'));
+        if (begins_word)
+            result.push_back('_');
+        result.push_back(static_cast<char>(std::tolower(value)));
+    }
+    return result;
+}
+
+std::string StripLineComment(const std::string &source)
+{
+    bool in_string = false;
+    bool escaped = false;
+    for (std::size_t index = 0; index < source.size(); ++index) {
+        const char value = source[index];
+        if (in_string) {
+            if (escaped)
+                escaped = false;
+            else if (value == '\\')
+                escaped = true;
+            else if (value == '"')
+                in_string = false;
+            continue;
+        }
+        if (value == '"') {
+            in_string = true;
+            continue;
+        }
+        if (value == '/' && index + 1 < source.size() && source[index + 1] == '/')
+            return source.substr(0, index);
+    }
+    return source;
+}
+
+bool IsGuidePageSource(const std::string &source)
+{
+    return source.find("END_FOMT_REFERENCE_GUIDE_PAGE") != std::string::npos;
+}
+
+GuidePageSource ParseGuidePageSource(const std::string &source, const std::string &page)
+{
+    if (!IsValidLabel(page))
+        throw std::runtime_error("invalid generated guide-page name '" + page + "'");
+
+    GuidePageSource result{page, {}};
+    enum class ParseState {
+        TitleKeyword,
+        TitleText,
+        MainKeyword,
+        MainText,
+        Closed,
+    };
+    ParseState state = ParseState::TitleKeyword;
+    std::istringstream lines(source);
+    std::string line;
+    std::size_t line_number = 0;
+
+    while (std::getline(lines, line)) {
+        ++line_number;
+        if (!line.empty() && line.back() == '\r')
+            line.pop_back();
+        const std::string trimmed = Trim(StripLineComment(line));
+        if (trimmed.empty())
+            continue;
+
+        if (trimmed.rfind("FOMT_REFERENCE_GUIDE_PAGE(", 0) == 0) {
+            throw std::runtime_error("line " + std::to_string(line_number)
+                + ": guide-page name is generated from the manifest; remove the manual declaration");
+        }
+
+        if (state == ParseState::TitleKeyword) {
+            if (trimmed != "TITLE") {
+                throw std::runtime_error("line " + std::to_string(line_number)
+                    + ": expected TITLE at the start of the guide page");
+            }
+            state = ParseState::TitleText;
+            continue;
+        }
+
+        if (state == ParseState::TitleText) {
+            result.lines.push_back(ParseStringLiteral(trimmed, line_number));
+            state = ParseState::MainKeyword;
+            continue;
+        }
+
+        if (state == ParseState::MainKeyword) {
+            if (trimmed != "MAIN") {
+                throw std::runtime_error("line " + std::to_string(line_number)
+                    + ": expected MAIN after the title text");
+            }
+            state = ParseState::MainText;
+            continue;
+        }
+
+        if (state == ParseState::MainText) {
+            if (trimmed == "END_FOMT_REFERENCE_GUIDE_PAGE") {
+                state = ParseState::Closed;
+                continue;
+            }
+            result.lines.push_back(ParseStringLiteral(trimmed, line_number));
+            continue;
+        }
+
+        throw std::runtime_error("line " + std::to_string(line_number)
+            + ": text after END_FOMT_REFERENCE_GUIDE_PAGE");
+    }
+
+    if (state != ParseState::Closed)
+        throw std::runtime_error("guide page '" + result.page
+            + "' has no END_FOMT_REFERENCE_GUIDE_PAGE");
+    if (result.lines.size() < 2)
+        throw std::runtime_error("guide page '" + result.page
+            + "' must contain one TITLE text and at least one MAIN text row");
+    return result;
+}
+
+bool TryParseGuideManifestRow(const std::string &source, std::vector<std::string> &arguments,
+    std::size_t line_number)
+{
+    std::string row = source;
+    if (!row.empty() && row.back() == ',')
+        row.pop_back();
+    row = Trim(row);
+    if (row.size() < 2 || row.front() != '{' || row.back() != '}')
+        return false;
+
+    const std::string body = row.substr(1, row.size() - 2);
+    std::size_t start = 0;
+    bool in_string = false;
+    bool escaped = false;
+    while (start <= body.size()) {
+        std::size_t comma = std::string::npos;
+        for (std::size_t index = start; index < body.size(); ++index) {
+            const char value = body[index];
+            if (in_string) {
+                if (escaped)
+                    escaped = false;
+                else if (value == '\\')
+                    escaped = true;
+                else if (value == '"')
+                    in_string = false;
+            } else if (value == '"') {
+                in_string = true;
+            } else if (value == ',') {
+                comma = index;
+                break;
+            }
+        }
+        if (in_string) {
+            throw std::runtime_error("line " + std::to_string(line_number)
+                + ": unterminated string in Reference Guide manifest row");
+        }
+        const std::string argument = Trim(body.substr(start,
+            comma == std::string::npos ? std::string::npos : comma - start));
+        if (argument.empty()) {
+            throw std::runtime_error("line " + std::to_string(line_number)
+                + ": empty field in Reference Guide manifest row");
+        }
+        arguments.push_back(argument);
+        if (comma == std::string::npos)
+            break;
+        start = comma + 1;
+    }
+    return true;
+}
+
+bool IsGuideManifestStem(const std::string &stem)
+{
+    if (stem.empty() || !(std::islower(static_cast<unsigned char>(stem.front())) != 0))
+        return false;
+    return std::all_of(stem.begin() + 1, stem.end(), [](char value) {
+        const auto character = static_cast<unsigned char>(value);
+        return std::islower(character) != 0 || std::isdigit(character) != 0 || value == '_';
+    });
+}
+
+std::size_t ParseGuideRomOrder(const std::string &source, std::size_t line_number)
+{
+    if (source.empty() || !std::all_of(source.begin(), source.end(), [](char value) {
+            return std::isdigit(static_cast<unsigned char>(value)) != 0;
+        })) {
+        throw std::runtime_error("line " + std::to_string(line_number)
+            + ": Reference Guide ROM order must be a non-negative decimal integer");
+    }
+    return static_cast<std::size_t>(std::stoul(source));
+}
+
+bool ParseGuideCatalogFlag(const std::string &source, std::size_t line_number)
+{
+    if (source == "true")
+        return true;
+    if (source == "false")
+        return false;
+    throw std::runtime_error("line " + std::to_string(line_number)
+        + ": Reference Guide catalog flag must be true or false");
+}
+
+std::vector<GuideManifestEntry> ParseGuideManifest(const std::filesystem::path &path,
+    const std::string &region)
+{
+    if (region != "JP" && region != "US")
+        throw std::runtime_error("guide collection region must be JP or US");
+
+    std::vector<GuideManifestEntry> result;
+    std::set<std::string> pages;
+    std::set<std::size_t> rom_orders;
+    std::istringstream lines(ReadTextFile(path));
+    std::string line;
+    std::size_t line_number = 0;
+    bool in_region_us = false;
+    bool include_current_line = true;
+    bool in_manifest = false;
+    bool manifest_closed = false;
+    constexpr char kManifestStart[] = "FomtReferenceGuideBookManifest const gReferenceGuideBooks[] = {";
+    while (std::getline(lines, line)) {
+        ++line_number;
+        if (!line.empty() && line.back() == '\r')
+            line.pop_back();
+        const std::string trimmed = Trim(StripLineComment(line));
+        if (trimmed.empty())
+            continue;
+
+        if (!in_manifest) {
+            if (trimmed == kManifestStart) {
+                if (manifest_closed) {
+                    throw std::runtime_error("line " + std::to_string(line_number)
+                        + ": duplicate Reference Guide manifest array");
+                }
+                in_manifest = true;
+            }
+            continue;
+        }
+
+        if (trimmed == "};") {
+            if (in_region_us) {
+                throw std::runtime_error("line " + std::to_string(line_number)
+                    + ": Reference Guide manifest closes inside REGION_US conditional");
+            }
+            in_manifest = false;
+            manifest_closed = true;
+            continue;
+        }
+
+        if (trimmed == "#if defined(REGION_US)") {
+            if (in_region_us) {
+                throw std::runtime_error("line " + std::to_string(line_number)
+                    + ": nested REGION_US conditional in Reference Guide catalog");
+            }
+            in_region_us = true;
+            include_current_line = region == "US";
+            continue;
+        }
+        if (trimmed == "#endif") {
+            if (!in_region_us) {
+                throw std::runtime_error("line " + std::to_string(line_number)
+                    + ": unmatched #endif in Reference Guide catalog");
+            }
+            in_region_us = false;
+            include_current_line = true;
+            continue;
+        }
+        if (!include_current_line)
+            continue;
+
+        std::vector<std::string> arguments;
+        if (!TryParseGuideManifestRow(trimmed, arguments, line_number)) {
+            throw std::runtime_error("line " + std::to_string(line_number)
+                + ": expected a { \"book_name\", rom_order, catalog_flag } row");
+        }
+        if (arguments.size() != 3) {
+            throw std::runtime_error("line " + std::to_string(line_number)
+                + ": invalid Reference Guide manifest entry");
+        }
+        const std::string page = ParseStringLiteral(arguments[0], line_number);
+        if (!IsGuideManifestStem(page)) {
+            throw std::runtime_error("line " + std::to_string(line_number)
+                + ": invalid Reference Guide book name");
+        }
+        const std::size_t rom_order = ParseGuideRomOrder(arguments[1], line_number);
+        const bool include_in_catalog = ParseGuideCatalogFlag(arguments[2], line_number);
+        if (!pages.insert(page).second
+            || !rom_orders.insert(rom_order).second) {
+            throw std::runtime_error("line " + std::to_string(line_number)
+                + ": duplicate Reference Guide name or ROM order");
+        }
+        result.push_back({page, rom_order, include_in_catalog});
+    }
+
+    if (in_region_us)
+        throw std::runtime_error("Reference Guide catalog has an unterminated REGION_US conditional");
+    if (in_manifest || !manifest_closed)
+        throw std::runtime_error("guide collection manifest has no closed gReferenceGuideBooks array");
+    if (result.empty())
+        throw std::runtime_error("guide collection manifest has no selected entries");
+    return result;
+}
+
+std::filesystem::path GuideArticlePath(const std::filesystem::path &manifest_path,
+    const std::string &region, const std::string &page)
+{
+    const std::filesystem::path root = manifest_path.parent_path().parent_path();
+    std::string lower_region = region;
+    std::transform(lower_region.begin(), lower_region.end(), lower_region.begin(), [](char value) {
+        return static_cast<char>(std::tolower(static_cast<unsigned char>(value)));
+    });
+    return root / "data" / "text" / lower_region / "reference_guide"
+        / (GuideSectionStem(page) + ".cc");
+}
+
+std::vector<GuideCollectionPage> ReadGuideCollectionPages(
+    const std::filesystem::path &manifest_path, const std::string &region)
+{
+    std::vector<GuideCollectionPage> result;
+    for (const GuideManifestEntry &entry : ParseGuideManifest(manifest_path, region)) {
+        const std::filesystem::path article_path = GuideArticlePath(manifest_path, region, entry.page);
+        const GuidePageSource source = ParseGuidePageSource(ReadTextFile(article_path), entry.page);
+        result.push_back({entry, source});
+    }
+    return result;
+}
+
+std::vector<GuideCatalogEntry> ParseLegacyGuideCatalogEntries(const std::string &source)
+{
+    std::vector<GuideCatalogEntry> entries;
+    std::string current_label;
+    std::string current_text;
+    bool has_current = false;
+    std::istringstream lines(source);
+    std::string line;
+    std::size_t line_number = 0;
+
+    const auto FinishCurrent = [&]() {
+        entries.push_back({current_label, current_text});
+        current_label.clear();
+        current_text.clear();
+        has_current = false;
+    };
+
+    while (std::getline(lines, line)) {
+        ++line_number;
+        if (!line.empty() && line.back() == '\r')
+            line.pop_back();
+        const std::string trimmed = Trim(StripLineComment(line));
+        if (trimmed.empty() || trimmed.rfind("#include", 0) == 0)
+            continue;
+
+        if (has_current) {
+            std::string literal = trimmed;
+            const bool terminated = !literal.empty() && literal.back() == ';';
+            if (terminated)
+                literal = Trim(literal.substr(0, literal.size() - 1));
+            current_text += ParseStringLiteral(literal, line_number);
+            if (terminated)
+                FinishCurrent();
+            continue;
+        }
+
+        constexpr char kPrefix[] = "char const gText_ReferenceGuide_";
+        if (trimmed.rfind(kPrefix, 0) != 0)
+            continue;
+
+        const std::size_t equals = trimmed.find('=');
+        if (equals == std::string::npos) {
+            throw std::runtime_error("line " + std::to_string(line_number)
+                + ": guide text definition has no initializer");
+        }
+        const TextDeclarator declarator = ParseTextDeclarator(
+            Trim(trimmed.substr(sizeof("char const ") - 1, equals - (sizeof("char const ") - 1))),
+            line_number);
+        if (declarator.is_fixed_rows) {
+            throw std::runtime_error("line " + std::to_string(line_number)
+                + ": guide text catalog does not support fixed-row text objects");
+        }
+        current_label = declarator.label;
+        current_text.clear();
+        has_current = true;
+
+        std::string literal = Trim(trimmed.substr(equals + 1));
+        if (literal.empty())
+            continue;
+        const bool terminated = literal.back() == ';';
+        if (terminated)
+            literal = Trim(literal.substr(0, literal.size() - 1));
+        current_text = ParseStringLiteral(literal, line_number);
+        if (terminated)
+            FinishCurrent();
+    }
+
+    if (has_current) {
+        throw std::runtime_error("guide text label '" + current_label
+            + "' has no terminating semicolon");
+    }
+    return entries;
+}
+
+void AddGuideCatalogText(GuideTextCatalog &catalog, const Charmap &charmap,
+    const std::string &text, const std::string &label)
+{
+    Bytes bytes;
+    try {
+        bytes = charmap.EncodeText(text);
+    } catch (const std::runtime_error &error) {
+        throw std::runtime_error("guide text label '" + label + "': " + error.what());
+    }
+    if (catalog.count(bytes) == 0)
+        catalog.emplace(std::move(bytes), label);
+}
+
+void AddGuideCatalogSource(GuideTextCatalog &catalog, const std::string &source,
+    const Charmap &charmap, const std::string &page_name = "")
+{
+    if (IsGuidePageSource(source)) {
+        if (page_name.empty()) {
+            throw std::runtime_error("guide page source requires a generated page name");
+        }
+        const GuidePageSource page = ParseGuidePageSource(source, page_name);
+        for (std::size_t index = 0; index < page.lines.size(); ++index) {
+            AddGuideCatalogText(catalog, charmap, page.lines[index],
+                GuideLineLabel(page.page, index, page.lines[index]));
+        }
+        return;
+    }
+
+    for (const GuideCatalogEntry &entry : ParseLegacyGuideCatalogEntries(source))
+        AddGuideCatalogText(catalog, charmap, entry.text, entry.label);
+}
+
+std::vector<std::filesystem::path> ExtractGuideCollectionIncludes(
+    const std::filesystem::path &source_path)
+{
+    std::vector<std::filesystem::path> includes;
+    std::istringstream lines(ReadTextFile(source_path));
+    std::string line;
+    while (std::getline(lines, line)) {
+        if (!line.empty() && line.back() == '\r')
+            line.pop_back();
+        const std::string trimmed = Trim(StripLineComment(line));
+        constexpr char kPrefix[] = "#include \"";
+        if (trimmed.rfind(kPrefix, 0) != 0)
+            continue;
+        const std::size_t close = trimmed.find('"', sizeof(kPrefix) - 1);
+        if (close == std::string::npos || !Trim(trimmed.substr(close + 1)).empty()) {
+            throw std::runtime_error("invalid #include in guide collection '"
+                + source_path.string() + "'");
+        }
+        const std::filesystem::path include = trimmed.substr(sizeof(kPrefix) - 1,
+            close - (sizeof(kPrefix) - 1));
+        if (include.extension() == ".cc")
+            includes.push_back((source_path.parent_path() / include).lexically_normal());
+    }
+    return includes;
+}
+
+void AppendGuideCatalogSources(const std::filesystem::path &source_path,
+    std::vector<std::filesystem::path> &result, std::set<std::filesystem::path> &active,
+    std::set<std::filesystem::path> &leaves)
+{
+    const std::filesystem::path normalized = source_path.lexically_normal();
+    if (!active.insert(normalized).second) {
+        throw std::runtime_error("recursive guide collection include at '"
+            + normalized.string() + "'");
+    }
+    const std::vector<std::filesystem::path> includes = ExtractGuideCollectionIncludes(normalized);
+    if (includes.empty()) {
+        if (!leaves.insert(normalized).second) {
+            throw std::runtime_error("guide article appears more than once in its collection: '"
+                + normalized.string() + "'");
+        }
+        result.push_back(normalized);
+    } else {
+        for (const std::filesystem::path &include : includes)
+            AppendGuideCatalogSources(include, result, active, leaves);
+    }
+    active.erase(normalized);
+}
+
+std::vector<std::filesystem::path> ExpandGuideCatalogSources(
+    const std::vector<std::filesystem::path> &sources)
+{
+    std::vector<std::filesystem::path> result;
+    std::set<std::filesystem::path> active;
+    std::set<std::filesystem::path> leaves;
+    for (const std::filesystem::path &source : sources)
+        AppendGuideCatalogSources(source, result, active, leaves);
+    return result;
+}
+
+GuideTextCatalog BuildGuideTextCatalog(const Charmap &charmap,
+    const std::vector<std::filesystem::path> &sources)
+{
+    if (sources.empty())
+        throw std::runtime_error("guide compilation requires its guide-text catalog sources");
+
+    GuideTextCatalog catalog;
+    for (const std::filesystem::path &path : ExpandGuideCatalogSources(sources))
+        AddGuideCatalogSource(catalog, ReadTextFile(path), charmap, path.stem().string());
+    return catalog;
+}
+
+struct GuidePageOutput {
+    std::string text;
+    std::string table;
+};
+
+GuidePageOutput CompileGuidePage(const std::string &source, const std::string &page_name,
+    const Charmap &charmap, const GuideTextCatalog &catalog)
+{
+    const GuidePageSource page = ParseGuidePageSource(source, page_name);
+    std::ostringstream text_output;
+    std::ostringstream table_output;
+    // Guide article inputs are deliberately not C++ translation units.  The
+    // generated C++ owns its required declaration header instead.
+    text_output << "// Generated by fomt-text.  Do not edit.\n"
+                   "#include \"reference_guide.hh\"\n\n";
+    table_output << "// Generated by fomt-text.  Do not edit.\n"
+                    "#include \"reference_guide.hh\"\n\n";
+
+    std::vector<std::string> pointer_entries;
+    const std::string section_stem = GuideSectionStem(page.page);
+    const std::string guide_section = ".rodata.reference_guide";
+    std::set<std::string> emitted_labels;
+    for (std::size_t index = 0; index < page.lines.size(); ++index) {
+        Bytes bytes;
+        try {
+            bytes = charmap.EncodeText(page.lines[index]);
+        } catch (const std::runtime_error &error) {
+            throw std::runtime_error("guide page '" + page.page + "' line "
+                + std::to_string(index) + ": " + error.what());
+        }
+        const auto canonical = catalog.find(bytes);
+        if (canonical == catalog.end()) {
+            throw std::runtime_error("guide page '" + page.page
+                + "' is absent from the guide-text catalog");
+        }
+        const std::string local_label = GuideLineLabel(page.page, index, page.lines[index]);
+        pointer_entries.push_back(canonical->second);
+        if (canonical->second == local_label && emitted_labels.insert(local_label).second) {
+            EmitCppString(text_output, local_label + "[] SECTION(\"" + guide_section + "\")",
+                PadGuideTextStorage(bytes), "extern ");
+        }
+    }
+
+    std::set<std::string> table_labels(pointer_entries.begin(), pointer_entries.end());
+    for (const std::string &label : table_labels)
+        table_output << "extern char const " << label << "[];\n";
+    if (!table_labels.empty())
+        table_output << '\n';
+    table_output << "extern char const * const gReferenceGuide_" << section_stem
+                 << "[] SECTION(\"" << guide_section << "\") = {\n";
+    for (const std::string &entry : pointer_entries)
+        table_output << "    " << entry << ",\n";
+    table_output << "    nullptr,\n};\n";
+    return {text_output.str(), table_output.str()};
+}
+
+std::vector<std::string> ResolveGuidePointerEntries(const GuidePageSource &page,
+    const Charmap &charmap, const GuideTextCatalog &catalog)
+{
+    std::vector<std::string> result;
+    for (std::size_t index = 0; index < page.lines.size(); ++index) {
+        Bytes bytes;
+        try {
+            bytes = charmap.EncodeText(page.lines[index]);
+        } catch (const std::runtime_error &error) {
+            throw std::runtime_error("guide page '" + page.page + "' line "
+                + std::to_string(index) + ": " + error.what());
+        }
+        const auto canonical = catalog.find(bytes);
+        if (canonical == catalog.end()) {
+            throw std::runtime_error("guide page '" + page.page
+                + "' is absent from the guide-text catalog");
+        }
+        result.push_back(canonical->second);
+    }
+    return result;
+}
+
+struct GuideCollectionOutput {
+    std::string source;
+};
+
+GuideCollectionOutput CompileGuideCollection(const std::vector<GuideCollectionPage> &pages,
+    const Charmap &charmap)
+{
+    // The manifest source is the runtime-directory order.  Its ROM-order
+    // field determines physical order.  A false entry is an auxiliary page:
+    // it joins the immediately preceding ROM group, so all group text is
+    // emitted before that group's line-pointer tables.
+    std::vector<std::size_t> physical_indexes;
+    physical_indexes.reserve(pages.size());
+    for (std::size_t index = 0; index < pages.size(); ++index)
+        physical_indexes.push_back(index);
+    std::sort(physical_indexes.begin(), physical_indexes.end(),
+        [&pages](std::size_t left, std::size_t right) {
+            return pages[left].manifest.rom_order < pages[right].manifest.rom_order;
+        });
+
+    std::vector<std::vector<std::size_t>> physical_groups;
+    for (const std::size_t page_index : physical_indexes) {
+        if (pages[page_index].manifest.include_in_catalog) {
+            physical_groups.push_back({page_index});
+            continue;
+        }
+        if (physical_groups.empty()) {
+            throw std::runtime_error("Reference Guide auxiliary page '"
+                + pages[page_index].manifest.page
+                + "' has no preceding ROM group");
+        }
+        physical_groups.back().push_back(page_index);
+    }
+
+    GuideTextCatalog catalog;
+    for (const std::vector<std::size_t> &group : physical_groups) {
+        for (const std::size_t page_index : group) {
+            const GuideCollectionPage &page = pages[page_index];
+            for (std::size_t index = 0; index < page.source.lines.size(); ++index) {
+                AddGuideCatalogText(catalog, charmap, page.source.lines[index],
+                    GuideLineLabel(page.source.page, index, page.source.lines[index]));
+            }
+        }
+    }
+
+    std::vector<std::vector<std::string>> pointer_entries;
+    pointer_entries.reserve(pages.size());
+    for (const GuideCollectionPage &page : pages)
+        pointer_entries.push_back(ResolveGuidePointerEntries(page.source, charmap, catalog));
+
+    std::ostringstream output;
+    output << "// Generated by fomt-text.  Do not edit.\n"
+              "#include \"reference_guide.hh\"\n\n"
+              "template <unsigned int Size>\n"
+              "struct ReferenceGuideTextStorage\n"
+              "{\n"
+              "    char bytes[Size];\n"
+              "};\n\n";
+    for (const GuideCollectionPage &page : pages) {
+        output << "extern char const * const gReferenceGuide_" << page.manifest.page << "[];\n";
+    }
+    output << '\n';
+
+    constexpr char kGuideSection[] = ".rodata.reference_guide";
+    output << "extern char const * const * const gReferenceGuideTables[]"
+           << " SECTION(\"" << kGuideSection << "\") = {\n";
+    for (const GuideCollectionPage &page : pages) {
+        if (page.manifest.include_in_catalog)
+            output << "    gReferenceGuide_" << page.manifest.page << ",\n";
+    }
+    output << "};\n\n";
+
+    std::set<std::string> emitted_labels;
+    for (const std::vector<std::size_t> &group : physical_groups) {
+        for (const std::size_t page_index : group) {
+            const GuideCollectionPage &page = pages[page_index];
+            for (std::size_t line_index = 0; line_index < page.source.lines.size(); ++line_index) {
+                const Bytes bytes = charmap.EncodeText(page.source.lines[line_index]);
+                const std::string local_label = GuideLineLabel(page.source.page, line_index,
+                    page.source.lines[line_index]);
+                const std::string &canonical = catalog.at(bytes);
+                if (canonical == local_label && emitted_labels.insert(local_label).second) {
+                    EmitGuideCppString(output, local_label, kGuideSection,
+                        PadGuideTextStorage(bytes));
+                }
+            }
+        }
+
+        for (const std::size_t page_index : group) {
+            const GuideCollectionPage &page = pages[page_index];
+            output << "extern char const * const gReferenceGuide_" << page.manifest.page
+                   << "[] SECTION(\"" << kGuideSection << "\") = {\n";
+            for (const std::string &entry : pointer_entries[page_index])
+                output << "    " << entry << ".bytes,\n";
+            output << "    nullptr,\n};\n\n";
+        }
+    }
+    if (emitted_labels.size() != catalog.size())
+        throw std::runtime_error("guide collection did not emit every canonical text object");
+    return {output.str()};
+}
+
 std::string CompileCppTextInclude(const std::string &source, const Charmap &charmap)
 {
+    if (IsGuidePageSource(source))
+        throw std::runtime_error("guide-page source must be processed with the guide command");
+
     std::ostringstream output;
     output << "// Generated by fomt-text.  Do not edit.\n\n";
     const std::vector<std::string> includes = ExtractIncludeDirectives(source);
@@ -631,6 +1429,20 @@ void SelfTest()
         "named controls and explicit bytes do not encode");
     Require(map.DecodeText(Bytes{0x41, 0x0A, 0xFE}) == "A\\n\\xFE",
         "unknown bytes do not round-trip as escapes");
+    Require(GuideLineLabel("example", 1, "") == "gText_ReferenceGuide_EmptyLine",
+        "empty guide text did not use the global layout label");
+    Require(GuideLineLabel("example", 1, "\xE3\x80\x80")
+            == "gText_ReferenceGuide_IndentedEmptyLine",
+        "indented empty guide text did not use the global layout label");
+    Require(GuideLineLabel("example", 1, RepeatGuideText("\xEF\xBC\x8D", 14))
+            == "gText_ReferenceGuide_SectionDivider",
+        "guide divider did not use the global layout label");
+    Require(GuideLineLabel("example", 0, "A")
+            == "gText_ReferenceGuide_example_Title",
+        "guide title did not use the Title label");
+    Require(GuideLineLabel("example", 5, "C")
+            == "gText_ReferenceGuide_example_Line05",
+        "guide line labels did not retain their physical slot number");
 
     const std::string generated = CompileCppTextInclude(
         "char const gText_Test[] =\n"
@@ -642,6 +1454,69 @@ void SelfTest()
         "generated C++ text bytes are wrong");
     Require(generated.find(".align") == std::string::npos,
         "generated C++ text must not emit assembler alignment");
+
+    const std::string guide_source =
+        "TITLE\n"
+        "\"A\"\n"
+        "MAIN\n"
+        "\"B\"\n"
+        "\"A\"\n"
+        "\"\"\n"
+        "\"\"\n"
+        "\"C\"\n"
+        "END_FOMT_REFERENCE_GUIDE_PAGE\n";
+    GuideTextCatalog guide_catalog;
+    AddGuideCatalogSource(guide_catalog, guide_source, map, "example");
+    const GuidePageOutput generated_guide = CompileGuidePage(guide_source, "example", map,
+        guide_catalog);
+    Require(generated_guide.text.find("gText_ReferenceGuide_example_Title[]") != std::string::npos,
+        "generated guide title is missing");
+    Require(generated_guide.text.find("gText_ReferenceGuide_example_Line01[]") != std::string::npos,
+        "generated guide line is missing");
+    Require(generated_guide.text.find("gText_ReferenceGuide_example_Line02[]") == std::string::npos,
+        "duplicate guide text was not reused");
+    Require(generated_guide.text.find("gText_ReferenceGuide_example_Line05[]") != std::string::npos,
+        "layout primitives did not preserve the following guide line number");
+    Require(generated_guide.text.find("gText_ReferenceGuide_example_Title[4]") == std::string::npos,
+        "generated guide text still contains a source byte capacity");
+    Require(generated_guide.table.find("gReferenceGuide_example[]") != std::string::npos,
+        "generated guide pointer table is missing");
+    const std::size_t first_reference = generated_guide.table.find(
+        "    gText_ReferenceGuide_example_Title,");
+    Require(first_reference != std::string::npos
+            && generated_guide.table.find("    gText_ReferenceGuide_example_Title,",
+                   first_reference + 1) != std::string::npos,
+        "generated guide table did not reuse the first matching text object");
+
+    const std::vector<GuideCollectionPage> grouped_pages = {
+        {{"first", 0, true}, {"first", {"A", "B"}}},
+        {{"second", 1, false}, {"second", {"C", "A"}}},
+    };
+    const GuideCollectionOutput grouped = CompileGuideCollection(grouped_pages, map);
+    const std::size_t master_table = grouped.source.find("gReferenceGuideTables[]");
+    const std::size_t first_text = grouped.source.find("gText_ReferenceGuide_first_Title SECTION");
+    const std::size_t second_text = grouped.source.find("gText_ReferenceGuide_second_Title SECTION");
+    const std::size_t first_table = grouped.source.find("gReferenceGuide_first[] SECTION");
+    const std::size_t second_table = grouped.source.find("gReferenceGuide_second[] SECTION");
+    Require(master_table != std::string::npos && first_text != std::string::npos
+            && second_text != std::string::npos && first_table != std::string::npos
+            && second_table != std::string::npos
+            && master_table < first_text && first_text < second_text
+            && second_text < first_table && first_table < second_table,
+        "auxiliary Reference Guide page did not emit text before both pointer tables");
+    const std::size_t master_end = grouped.source.find("};", master_table);
+    Require(master_end != std::string::npos
+            && grouped.source.substr(master_table, master_end - master_table)
+                   .find("gReferenceGuide_second,") == std::string::npos,
+        "auxiliary Reference Guide page leaked into the master directory");
+
+    GuideTextCatalog legacy_guide_catalog;
+    AddGuideCatalogSource(legacy_guide_catalog,
+        "char const gText_ReferenceGuide_Existing[4] =\n"
+        "    \"A\";\n", map);
+    Require(legacy_guide_catalog.at(map.EncodeText("A"))
+            == "gText_ReferenceGuide_Existing",
+        "legacy guide text was not included in the guide catalog");
 
     const std::string generated_rows = CompileCppTextInclude(
         "char const gText_TestRows[2][2] = {\n"
@@ -702,7 +1577,9 @@ const char *Usage()
            "  fomt-text validate CHARMAP\n"
            "  fomt-text encode CHARMAP INPUT OUTPUT\n"
            "  fomt-text decode CHARMAP INPUT OUTPUT\n"
-           "  fomt-text cpp CHARMAP INPUT OUTPUT\n";
+           "  fomt-text cpp CHARMAP INPUT OUTPUT\n"
+           "  fomt-text guide CHARMAP INPUT TEXT_OUTPUT TABLE_OUTPUT [CATALOG_SOURCE ...]\n"
+           "  fomt-text guide-collection CHARMAP REGION MANIFEST OUTPUT\n";
 }
 
 int Run(int argc, char **argv)
@@ -715,6 +1592,34 @@ int Run(int argc, char **argv)
     if (argc == 3 && std::string(argv[1]) == "validate") {
         const Charmap charmap = Charmap::Parse(ReadTextFile(argv[2]));
         std::cout << "fomt-text: " << charmap.EntryCount() << " charmap entries validated\n";
+        return 0;
+    }
+    if (argc == 6 && std::string(argv[1]) == "guide-collection") {
+        const Charmap charmap = Charmap::Parse(ReadTextFile(argv[2]));
+        const std::string region = argv[3];
+        const std::filesystem::path manifest = argv[4];
+        const std::filesystem::path output = argv[5];
+        const GuideCollectionOutput generated = CompileGuideCollection(
+            ReadGuideCollectionPages(manifest, region), charmap);
+        WriteTextFile(output, generated.source);
+        return 0;
+    }
+    if (argc >= 6 && std::string(argv[1]) == "guide") {
+        const Charmap charmap = Charmap::Parse(ReadTextFile(argv[2]));
+        const std::filesystem::path input = argv[3];
+        const std::filesystem::path text_output = argv[4];
+        const std::filesystem::path table_output = argv[5];
+        std::vector<std::filesystem::path> catalog_sources;
+        for (int index = 6; index < argc; ++index)
+            catalog_sources.emplace_back(argv[index]);
+        if (catalog_sources.empty())
+            catalog_sources.push_back(input);
+
+        const GuideTextCatalog catalog = BuildGuideTextCatalog(charmap, catalog_sources);
+        const GuidePageOutput generated = CompileGuidePage(ReadTextFile(input), input.stem().string(),
+            charmap, catalog);
+        WriteTextFile(text_output, generated.text);
+        WriteTextFile(table_output, generated.table);
         return 0;
     }
     if (argc != 5)

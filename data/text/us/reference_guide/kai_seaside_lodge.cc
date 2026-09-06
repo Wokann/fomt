@@ -1,19 +1,17 @@
-#include "reference_guide.hh"
-
-// Reference Guide page 67: Kai's Seaside Lodge. Fixed field capacities and
-// physical order match the US ROM.
-
-char const gText_ReferenceGuide_KaiSeasideLodge_Title[20] SECTION(".rodata.reference_guide_kai_seaside_lodge_text") =
-    "Kai's Seaside Lodge";
-char const gText_ReferenceGuide_KaiSeasideLodge_Takeout_Line01[24] SECTION(".rodata.reference_guide_kai_seaside_lodge_text") =
-    "·Kai makes great food,";
-char const gText_ReferenceGuide_KaiSeasideLodge_Takeout_Line02[20] SECTION(".rodata.reference_guide_kai_seaside_lodge_text") =
-    " but no takeout.";
-char const gText_ReferenceGuide_KaiSeasideLodge_SeasonalAvailability_Line01[28] SECTION(".rodata.reference_guide_kai_seaside_lodge_text") =
-    "·Only open during Summer.";
-char const gText_ReferenceGuide_KaiSeasideLodge_StoreHours_Open_Value[20] SECTION(".rodata.reference_guide_kai_seaside_lodge_text") =
-    " Morning: 11AM-1PM";
-char const gText_ReferenceGuide_KaiSeasideLodge_StoreHours_Close_Value[16] SECTION(".rodata.reference_guide_kai_seaside_lodge_text") =
-    " Night: 5PM-7PM";
-char const gText_ReferenceGuide_Sundays_Value[12] SECTION(".rodata.reference_guide_kai_seaside_lodge_text") =
-    " Sundays";
+// fomt-text input, intentionally not a C++ translation unit.
+// TITLE is fixed at the top of the screen; MAIN rows scroll below it.
+TITLE
+    "Kai's Seaside Lodge"
+MAIN
+    "·Kai makes great food,"
+    " but no takeout."
+    ""
+    "·Only open during Summer."
+    ""
+    "·Store Hours:"
+    " Morning: 11AM-1PM"
+    " Night: 5PM-7PM"
+    ""
+    "·Closed:"
+    " Sundays"
+END_FOMT_REFERENCE_GUIDE_PAGE

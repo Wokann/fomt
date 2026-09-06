@@ -44,12 +44,8 @@ gText_CharacterName_Empty:
     .section .rodata.festival_contestants_set2_trailer
     .incbin "baserom_jp.gba", 0x1074BD, (0x107DAC - 0x1074BD)
 
-    .global gReferenceGuidePageLineTables
-gReferenceGuidePageLineTables:
-    .incbin "baserom_jp.gba", 0x107DAC, (0x107FD0 - 0x107DAC)
-
-    .section .rodata.reference_guide_harvest_sprites_new_year_card_trailer
-    .incbin "baserom_jp.gba", 0x117808, (0x13BCF8 - 0x117808)
+    .section .rodata.reference_guide_unextracted_trailer
+    .incbin "baserom_jp.gba", 0x1189D4, (0x13BCF8 - 0x1189D4)
     .else
     .section .rodata.reference_guide_harvest_sprite_minigames_prefix
 
@@ -3217,12 +3213,8 @@ gUnk_08108268:
 gUnk_0810827C:
 	.incbin "baserom_us.gba", 0x10827C, 0x10
 
-	.global gReferenceGuidePageLineTables
-gReferenceGuidePageLineTables:
-	.incbin "baserom_us.gba", 0x10828C, (0x1084B0 - 0x10828C)
-
-	.section .rodata.reference_guide_harvest_sprites_new_year_card_trailer
-	.incbin "baserom_us.gba", 0x1166E8, (0x1177F6 - 0x1166E8)
+	.section .rodata.reference_guide_unextracted_trailer
+	.incbin "baserom_us.gba", 0x1177EC, (0x1177F6 - 0x1177EC)
 
 	.section .rodata
 

@@ -1,60 +1,42 @@
-#include "reference_guide.hh"
-
-// Reference Guide page 70: Won's Shop. Fixed field capacities and physical
-// order match the US ROM.
-
-char const gText_ReferenceGuide_WonsShop_Title[12] SECTION(".rodata.reference_guide_wons_shop_text") =
-    "Won's Shop";
-char const gText_ReferenceGuide_WonsShop_Overview_Line01[24] SECTION(".rodata.reference_guide_wons_shop_text") =
-    "·Won sells Seeds not ";
-char const gText_ReferenceGuide_WonsShop_Overview_Line02[28] SECTION(".rodata.reference_guide_wons_shop_text") =
-    " available at the Super-";
-char const gText_ReferenceGuide_WonsShop_Overview_Line03[24] SECTION(".rodata.reference_guide_wons_shop_text") =
-    " market and some Dog";
-char const gText_ReferenceGuide_WonsShop_Overview_Line04[20] SECTION(".rodata.reference_guide_wons_shop_text") =
-    " training Tools.";
-
-char const gText_ReferenceGuide_WonsShop_Location_Title[12] SECTION(".rodata.reference_guide_wons_shop_text") =
-    "·Location:";
-char const gText_ReferenceGuide_WonsShop_Location_Line01[28] SECTION(".rodata.reference_guide_wons_shop_text") =
-    " Zack's house at Mineral ";
-char const gText_ReferenceGuide_WonsShop_Location_Line02[8] SECTION(".rodata.reference_guide_wons_shop_text") =
-    " Beach";
-char const gText_ReferenceGuide_WonsShop_Seeds_Planting_Line01[28] SECTION(".rodata.reference_guide_wons_shop_text") =
-    "·Plant Seeds and water ";
-char const gText_ReferenceGuide_WonsShop_Seeds_Planting_SeasonalRestriction_Line02[24] SECTION(".rodata.reference_guide_wons_shop_text") =
-    "  different seasons.";
-char const gText_ReferenceGuide_WonsShop_Seeds_SeasonalAvailability_Line01[28] SECTION(".rodata.reference_guide_wons_shop_text") =
-    "·Different Seeds are sold";
-char const gText_ReferenceGuide_WonsShop_Seeds_SeasonalAvailability_Line02[24] SECTION(".rodata.reference_guide_wons_shop_text") =
-    " in different seasons.";
-
-char const gText_ReferenceGuide_WonsShop_DogBall_Title[12] SECTION(".rodata.reference_guide_wons_shop_text") =
-    "☆Dog Ball";
-char const gText_ReferenceGuide_WonsShop_Frisbee_Title[12] SECTION(".rodata.reference_guide_wons_shop_text") =
-    "☆Frisbee";
-char const gText_ReferenceGuide_WonsShop_DogTraining_Description_Line01[20] SECTION(".rodata.reference_guide_wons_shop_text") =
-    "·Toys to train ";
-char const gText_ReferenceGuide_WonsShop_DogTraining_Description_Line02[20] SECTION(".rodata.reference_guide_wons_shop_text") =
-    " fully grown Dogs";
-char const gText_ReferenceGuide_WonsShop_DogTraining_SinglePurchase_Line01[24] SECTION(".rodata.reference_guide_wons_shop_text") =
-    " You can only buy one,";
-char const gText_ReferenceGuide_WonsShop_DogTraining_SinglePurchase_Line02[24] SECTION(".rodata.reference_guide_wons_shop_text") =
-    " but if you lose yours ";
-char const gText_ReferenceGuide_WonsShop_DogTraining_SinglePurchase_Line03[28] SECTION(".rodata.reference_guide_wons_shop_text") =
-    " Won will sell you another.";
-char const gText_ReferenceGuide_WonsShop_DogTraining_Availability_Line01[28] SECTION(".rodata.reference_guide_wons_shop_text") =
-    " Not sold at first, but ";
-char const gText_ReferenceGuide_WonsShop_DogTraining_Availability_Line02[24] SECTION(".rodata.reference_guide_wons_shop_text") =
-    " they go on sale after";
-char const gText_ReferenceGuide_WonsShop_DogTraining_Availability_Line03[12] SECTION(".rodata.reference_guide_wons_shop_text") =
-    " a while.";
-
-char const gText_ReferenceGuide_WonsShop_JewelsOfTruth_Title[20] SECTION(".rodata.reference_guide_wons_shop_text") =
-    "☆Jewels of Truth";
-char const gText_ReferenceGuide_WonsShop_JewelsOfTruth_Description_Line01[28] SECTION(".rodata.reference_guide_wons_shop_text") =
-    "·Collect 9 and something";
-char const gText_ReferenceGuide_WonsShop_JewelsOfTruth_Description_Line02[24] SECTION(".rodata.reference_guide_wons_shop_text") =
-    " good is rumored to ";
-char const gText_ReferenceGuide_WonsShop_JewelsOfTruth_Description_Line03[12] SECTION(".rodata.reference_guide_wons_shop_text") =
-    " happen. ";
+// fomt-text input, intentionally not a C++ translation unit.
+// TITLE is fixed at the top of the screen; MAIN rows scroll below it.
+TITLE
+    "Won's Shop"
+MAIN
+    "·Won sells Seeds not "
+    " available at the Super-"
+    " market and some Dog"
+    " training Tools."
+    ""
+    "·Location:"
+    " Zack's house at Mineral "
+    " Beach"
+    ""
+    ""
+    "☆Seeds"
+    "·Plant Seeds and water "
+    " every day to grow crops."
+    "  different seasons."
+    ""
+    "·Different Seeds are sold"
+    " in different seasons."
+    ""
+    ""
+    "☆Dog Ball"
+    "☆Frisbee"
+    "·Toys to train "
+    " fully grown Dogs"
+    ""
+    " You can only buy one,"
+    " but if you lose yours "
+    " Won will sell you another."
+    ""
+    " Not sold at first, but "
+    " they go on sale after"
+    " a while."
+    ""
+    "☆Jewels of Truth"
+    "·Collect 9 and something"
+    " good is rumored to "
+    " happen. "
+END_FOMT_REFERENCE_GUIDE_PAGE
