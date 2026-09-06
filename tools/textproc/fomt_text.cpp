@@ -454,6 +454,57 @@ std::size_t FindCppCharacterLiteralEnd(const std::string &source, std::size_t be
         + ": unterminated C++ character literal");
 }
 
+void ValidatePageBreakLayout(const std::string &source)
+{
+    bool previous_literal_was_page_break = false;
+    std::size_t previous_page_break_line = 0;
+    for (std::size_t at = 0; at < source.size();) {
+        if (source.compare(at, 2, "//") == 0) {
+            const std::size_t newline = source.find('\n', at + 2);
+            at = newline == std::string::npos ? source.size() : newline + 1;
+            continue;
+        }
+        if (source.compare(at, 2, "/*") == 0) {
+            const std::size_t close = source.find("*/", at + 2);
+            if (close == std::string::npos) {
+                throw std::runtime_error("line " + std::to_string(SourceLineNumber(source, at))
+                    + ": unterminated C++ block comment");
+            }
+            at = close + 2;
+            continue;
+        }
+        if (source[at] == '\'') {
+            at = FindCppCharacterLiteralEnd(source, at, SourceLineNumber(source, at));
+            continue;
+        }
+        if (source[at] != '"') {
+            ++at;
+            continue;
+        }
+
+        const std::size_t line_number = SourceLineNumber(source, at);
+        const std::size_t end = FindCppQuotedLiteralEnd(source, at, line_number);
+        const std::string text = ParseStringLiteral(source.substr(at, end - at), line_number);
+        const std::size_t page_break = text.find("\\p");
+
+        if (page_break != std::string::npos && page_break + 2 != text.size()) {
+            throw std::runtime_error("line " + std::to_string(line_number)
+                + ": \\p must end its quoted string literal");
+        }
+        if (previous_literal_was_page_break && text.empty()) {
+            throw std::runtime_error("line " + std::to_string(line_number)
+                + ": an empty string literal may not follow a \\p page break");
+        }
+        if (previous_literal_was_page_break && line_number == previous_page_break_line) {
+            throw std::runtime_error("line " + std::to_string(line_number)
+                + ": text after \\p must start on the next source line");
+        }
+        previous_literal_was_page_break = page_break != std::string::npos;
+        previous_page_break_line = line_number;
+        at = end;
+    }
+}
+
 std::string EmitInlineCppStringLiteral(const Bytes &bytes)
 {
     std::ostringstream output;
@@ -1674,6 +1725,7 @@ std::string CompileCppTextInclude(const std::string &source, const Charmap &char
         throw std::runtime_error("guide-page source must be processed with the guide command");
     if (IsStaffCreditsSource(source))
         throw std::runtime_error("staff-credit source must be processed with the staff-credits command");
+    ValidatePageBreakLayout(source);
     if (HasStructuredTextInitializer(source))
         return CompileCppStructuredTextSource(source, charmap);
 
@@ -1884,18 +1936,57 @@ void SelfTest()
     Require(generated.find(".align") == std::string::npos,
         "generated C++ text must not emit assembler alignment");
 
+    const std::string generated_page_break = CompileCppTextInclude(
+        "char const gText_PageBreak[] =\r\n"
+        "    \"A\\p\"\r\n"
+        "    \"B\";\r\n", map);
+    Require(generated_page_break.find("\\x41\\x0C\\x42") != std::string::npos,
+        "line-ending page-break text did not encode");
+
+    bool rejected_inline_page_break = false;
+    try {
+        static_cast<void>(CompileCppTextInclude(
+            "char const gText_InlinePageBreak[] =\n"
+            "    \"\\pA\";\n", map));
+    } catch (const std::runtime_error &) {
+        rejected_inline_page_break = true;
+    }
+    Require(rejected_inline_page_break, "inline page-break text was accepted");
+
+    bool rejected_empty_page_break_line = false;
+    try {
+        static_cast<void>(CompileCppTextInclude(
+            "char const gText_EmptyPageBreakLine[] =\n"
+            "    \"\\p\"\n"
+            "    \"\"\n"
+            "    \"A\";\n", map));
+    } catch (const std::runtime_error &) {
+        rejected_empty_page_break_line = true;
+    }
+    Require(rejected_empty_page_break_line, "empty text after a page break was accepted");
+
+    bool rejected_unsplit_page_break = false;
+    try {
+        static_cast<void>(CompileCppTextInclude(
+            "char const gText_UnsplitPageBreak[] =\n"
+            "    \"A\\p\" \"B\";\n", map));
+    } catch (const std::runtime_error &) {
+        rejected_unsplit_page_break = true;
+    }
+    Require(rejected_unsplit_page_break, "text after a page break stayed on the same source line");
+
     const std::string generated_inline = CompileCppTextInclude(
         "#include \"test.hh\"\n"
         "struct TestEntry { char name[8]; u32 value; };\n"
         "TestEntry const gTestEntries[] SECTION(\".rodata.test\") = {\n"
-        "    { \"A\\p\" \"B\", 3 },\n"
+        "    { \"A\\n\" \"B\", 3 },\n"
         "};\n"
         "char const gText_TestStandalone[] SECTION(\".rodata.test\") = \"C\";\n", map);
     Require(generated_inline.find("TestEntry const gTestEntries[]") != std::string::npos,
         "structured text source did not preserve its C++ table declaration");
     Require(generated_inline.find("SECTION(\".rodata.test\")") != std::string::npos,
         "structured text source did not preserve its section declaration");
-    Require(generated_inline.find("\\x41\\x0C") != std::string::npos
+    Require(generated_inline.find("\\x41\\x0A") != std::string::npos
             && generated_inline.find("\\x42") != std::string::npos,
         "structured C++ text bytes are wrong");
     Require(generated_inline.find("gText_TestStandalone") != std::string::npos
