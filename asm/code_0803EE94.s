@@ -113136,10 +113136,10 @@ func_08078044: @ 0x08078044
 .L08078208:
 	cmp r6, #0x28
 	bne .L08078264
-	ldr r4, .L08078210 @ =gUnk_080FCE14
+	ldr r4, .L08078210 @ =gText_TownMap_Empty
 	b .L08078288
 	.align 2, 0
-.L08078210: .4byte gUnk_080FCE14
+.L08078210: .4byte gText_TownMap_Empty
 .L08078214:
 	ldrb r0, [r7, #0x14]
 	cmp r0, #0
@@ -113206,7 +113206,7 @@ func_08078044: @ 0x08078044
 .L08078288:
 	cmp r4, #0
 	bne .L0807828E
-	ldr r4, .L080782C0 @ =gUnk_080FCE14
+	ldr r4, .L080782C0 @ =gText_TownMap_Empty
 .L0807828E:
 	movs r3, #0xcc
 	lsls r3, r3, #1
@@ -113232,7 +113232,7 @@ func_08078044: @ 0x08078044
 	bx r0
 	.align 2, 0
 .L080782BC: .4byte gUnk_080FD080
-.L080782C0: .4byte gUnk_080FCE14
+.L080782C0: .4byte gText_TownMap_Empty
 
 	thumb_func_start func_080782C4
 func_080782C4: @ 0x080782C4
@@ -113981,7 +113981,7 @@ func_0807865C: @ 0x0807865C
 	movs r0, #0
 	strb r0, [r1]
 .L08078872:
-	ldr r1, .L08078A0C @ =gUnk_080FC6CC
+	ldr r1, .L08078A0C @ =gText_TownMap_PlayerFarmNameSuffix
 	mov sb, r1
 	adds r0, r6, #0
 	bl strlen
@@ -114007,7 +114007,7 @@ func_0807865C: @ 0x0807865C
 	movs r0, #0
 	strb r0, [r1]
 .L080788A8:
-	ldr r0, .L08078A10 @ =gUnk_080FC6D4
+	ldr r0, .L08078A10 @ =gText_TownMap_PlayerFarmDescription
 	mov r8, r0
 	adds r0, r6, #0
 	bl strlen
@@ -114061,7 +114061,7 @@ func_0807865C: @ 0x0807865C
 	movs r0, #0
 	strb r0, [r1]
 .L0807891A:
-	ldr r3, .L08078A14 @ =gUnk_080FC6E8
+	ldr r3, .L08078A14 @ =gText_TownMap_PlayerFarmLabel
 	mov r8, r3
 	adds r0, r6, #0
 	bl strlen
@@ -114166,9 +114166,9 @@ func_0807865C: @ 0x0807865C
 .L08078A00: .4byte gUnk_08728208
 .L08078A04: .4byte gUnk_087537D0
 .L08078A08: .4byte gUnk_080FC6C2
-.L08078A0C: .4byte gUnk_080FC6CC
-.L08078A10: .4byte gUnk_080FC6D4
-.L08078A14: .4byte gUnk_080FC6E8
+.L08078A0C: .4byte gText_TownMap_PlayerFarmNameSuffix
+.L08078A10: .4byte gText_TownMap_PlayerFarmDescription
+.L08078A14: .4byte gText_TownMap_PlayerFarmLabel
 .L08078A18: .4byte 0x00001BD8
 .L08078A1C: .4byte 0x0000219C
 .L08078A20: .4byte 0x00001C70

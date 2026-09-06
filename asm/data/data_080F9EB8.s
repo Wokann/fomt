@@ -35,7 +35,13 @@
     .incbin "baserom_jp.gba", 0xFB8B8, (0xFB938 - 0xFB8B8)
 
     .section .rodata.staff_credits_trailer_prefix
-    .incbin "baserom_jp.gba", 0xFBE88, (0x1005EA - 0xFBE88)
+    .incbin "baserom_jp.gba", 0xFBE88, (0xFBE9C - 0xFBE88)
+
+    .section .rodata.town_map_padding
+    .incbin "baserom_jp.gba", 0xFC7E5, (0xFC7E8 - 0xFC7E5)
+
+    .section .rodata.town_map_trailer
+    .incbin "baserom_jp.gba", 0xFC7E8, (0x1005EA - 0xFC7E8)
 
     .section .rodata.recovery_status_trailer_prefix
     .incbin "baserom_jp.gba", 0x1008F9, (0x1008FC - 0x1008F9)
@@ -534,21 +540,10 @@ gUnk_080FC6B8:
 gUnk_080FC6C2:
 	.incbin "baserom_us.gba", 0xFC6C2, 0xA
 
-	.global gUnk_080FC6CC
-gUnk_080FC6CC:
-	.incbin "baserom_us.gba", 0xFC6CC, 0x8
+	.section .rodata.town_map_padding
+	.incbin "baserom_us.gba", 0xFD07E, (0xFD080 - 0xFD07E)
 
-	.global gUnk_080FC6D4
-gUnk_080FC6D4:
-	.incbin "baserom_us.gba", 0xFC6D4, 0x14
-
-	.global gUnk_080FC6E8
-gUnk_080FC6E8:
-	.incbin "baserom_us.gba", 0xFC6E8, 0x72C
-
-	.global gUnk_080FCE14
-gUnk_080FCE14:
-	.incbin "baserom_us.gba", 0xFCE14, 0x26C
+	.section .rodata.town_map_trailer
 
 	.global gUnk_080FD080
 gUnk_080FD080:

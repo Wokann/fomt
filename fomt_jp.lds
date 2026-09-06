@@ -493,6 +493,9 @@ SECTIONS
         . = 0xFB8B8; asm/data/data_080F9EB8.o(.rodata.records_trailer);
         . = 0xFB938; data/text/staff_credits.o(.rodata.staff_credits);
         . = 0xFBE88; asm/data/data_080F9EB8.o(.rodata.staff_credits_trailer_prefix);
+        . = 0xFBE9C; data/text/town_map.o(.rodata);
+        . = 0xFC7E5; asm/data/data_080F9EB8.o(.rodata.town_map_padding);
+        . = 0xFC7E8; asm/data/data_080F9EB8.o(.rodata.town_map_trailer);
         . = 0x1005EA; data/text/recovery_status.o(.rodata);
         . = 0x1008F9; asm/data/data_080F9EB8.o(.rodata.recovery_status_trailer_prefix);
         . = 0x1008FC; data/text/cooking_menu.o(.rodata);
