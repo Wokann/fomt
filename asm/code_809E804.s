@@ -23,11 +23,8 @@
     jp_code_809_func func_0809E994, 0x9E3CC, 0x9E3F0
     jp_code_809_func func_0809E9B8, 0x9E3F0, 0x9E4A4
     jp_code_809_func func_0809EA6C, 0x9E4A4, 0x9E504
-    jp_code_809_func func_0809EACC, 0x9E504, 0x9E508
-    jp_code_809_func func_0809EAD0, 0x9E508, 0x9E510
-    jp_code_809_func func_0809EAD8, 0x9E510, 0x9E518
-    jp_code_809_func func_0809EAE0, 0x9E518, 0x9E524
-    jp_code_809_func func_0809EAEC, 0x9E524, 0x9E584
+    .section .text.npc_runtime_data_after
+    .incbin "baserom_jp.gba", 0x9E530, (0x9E584 - 0x9E530)
     jp_code_809_func func_0809EB4C, 0x9E584, 0x9E5A0
     jp_code_809_func func_0809EB68, 0x9E5A0, 0x9E5E0
     jp_code_809_func func_0809EBA8, 0x9E5E0, 0x9E60C
@@ -731,42 +728,7 @@ func_0809EA6C: @ 0x0809EA6C
 	.align 2, 0
 .L0809EAC8: .4byte gText_CharacterName_Empty
 
-	thumb_func_start func_0809EACC
-func_0809EACC: @ 0x0809EACC
-	adds r0, #0x14
-	bx lr
-
-	thumb_func_start func_0809EAD0
-func_0809EAD0: @ 0x0809EAD0
-	adds r0, #0x24
-	ldrb r0, [r0]
-	bx lr
-	.align 2, 0
-
-	thumb_func_start func_0809EAD8
-func_0809EAD8: @ 0x0809EAD8
-	adds r0, #0x25
-	ldrb r0, [r0]
-	bx lr
-	.align 2, 0
-
-	thumb_func_start func_0809EAE0
-func_0809EAE0: @ 0x0809EAE0
-	adds r0, #0x26
-	ldrb r0, [r0]
-	lsls r0, r0, #0x1f
-	lsrs r0, r0, #0x1f
-	bx lr
-	.align 2, 0
-
-	thumb_func_start func_0809EAEC
-func_0809EAEC: @ 0x0809EAEC
-	adds r0, #0x26
-	ldrb r1, [r0]
-	movs r2, #1
-	orrs r1, r2
-	strb r1, [r0]
-	bx lr
+	.section .text.npc_runtime_data_after
 
 	thumb_func_start func_0809EAF8
 func_0809EAF8: @ 0x0809EAF8

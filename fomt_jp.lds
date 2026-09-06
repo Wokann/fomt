@@ -333,6 +333,10 @@ SECTIONS
         . = 0x9E23C; /* JP ROM 0x0809E23C, independently matched */
 
         asm/code_809E804.o(.text);
+        . = 0x9E504; /* JP counterpart of shared NPC runtime fields. */
+        src/npc_runtime_data.o(.text);
+        . = 0x9E530; /* JP ROM 0x0809E530, remaining raw NPC runtime code. */
+        asm/code_809E804.o(.text.npc_runtime_data_after);
 
         . = 0xD0D4C; /* JP ROM 0x080D0D4C, independently matched */
 

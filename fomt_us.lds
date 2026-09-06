@@ -265,6 +265,10 @@ SECTIONS
         src/harvest_sprite.o(.text);
 
         asm/code_809E804.o(.text);
+        . = 0x9EACC; /* US ROM 0x0809EACC, shared NPC runtime fields. */
+        src/npc_runtime_data.o(.text);
+        . = 0x9EAF8; /* US ROM 0x0809EAF8, remaining raw NPC runtime code. */
+        asm/code_809E804.o(.text.npc_runtime_data_after);
 
         src/m4a_1.o(.text);
         src/m4a.o(.text);
