@@ -145,6 +145,11 @@ SECTIONS
         src/code_08050E98.o(.text);
         . = 0x50EE4; /* US ROM 0x08050EE4, remaining raw UI-adjacent code. */
         asm/code_0803EE94.o(.text.code_08050E50);
+        . = 0x522D8; /* JP/US-shared animal-festival ranking entry copy. */
+        src/animal_festival_ranking.o(.text.copy_animal_festival_ranking_entry);
+        . = 0x522E8; /* JP/US-shared animal-festival ranking entry setter. */
+        src/animal_festival_ranking.o(.text.set_animal_festival_ranking_entry);
+        . = 0x522F8; asm/code_0803EE94.o(.text.animal_festival_ranking_after);
         . = 0x5E850; /* JP/US-shared indexed resource-handle initializer. */
         src/resource_handle.o(.text.initialize_indexed_resource_handle);
         . = 0x5E860; asm/code_0803EE94.o(.text.initialize_indexed_resource_handle_after);

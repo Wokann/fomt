@@ -60,8 +60,8 @@
     .section .text.code_08050E50
     jp_code_0803ee_func func_08050EE4, 0x50C70, 0x511C8
     jp_code_0803ee_func func_0805143C, 0x511C8, 0x52068
-    jp_code_0803ee_func func_080522D8, 0x52068, 0x52078
-    jp_code_0803ee_func func_080522E8, 0x52078, 0x536F0
+    .section .text.animal_festival_ranking_after
+    jp_code_0803ee_func func_080522F8, 0x52088, 0x536F0
     jp_code_0803ee_func func_08053960, 0x536F0, 0x54AC4
     jp_code_0803ee_func func_08054D34, 0x54AC4, 0x55654
     jp_code_0803ee_func func_080558C4, 0x55654, 0x57914
@@ -34171,7 +34171,7 @@ func_080516F0: @ 0x080516F0
 	add r3, sp
 	ldr r1, [r3]
 	mov r2, r8
-	bl func_080522D8
+	bl CopyAnimalFestivalRankingEntry
 	ldr r0, .L08051A04 @ =0x00000A24
 	add r0, sp
 	movs r4, #0xc
@@ -35344,27 +35344,7 @@ func_08052230: @ 0x08052230
 	.align 2, 0
 .L080522D4: .4byte gUnk_080FA174
 
-	thumb_func_start func_080522D8
-func_080522D8: @ 0x080522D8
-	lsls r2, r2, #2
-	adds r0, r0, r2
-	ldrb r2, [r0]
-	strb r2, [r1]
-	ldrh r0, [r0, #2]
-	strh r0, [r1, #2]
-	bx lr
-	.align 2, 0
-
-	thumb_func_start func_080522E8
-func_080522E8: @ 0x080522E8
-	lsls r2, r2, #2
-	adds r0, r0, r2
-	ldrb r2, [r1]
-	strb r2, [r0]
-	ldrh r1, [r1, #2]
-	strh r1, [r0, #2]
-	bx lr
-	.align 2, 0
+	.section .text.animal_festival_ranking_after
 
 	thumb_func_start func_080522F8
 func_080522F8: @ 0x080522F8
@@ -37330,7 +37310,7 @@ sub_08052A1E: @ 0x08052A1E
 	adds r0, r0, r1
 	adds r1, r6, #0
 	adds r2, r4, #0
-	bl func_080522D8
+	bl CopyAnimalFestivalRankingEntry
 	ldrh r0, [r6, #2]
 	lsls r0, r0, #0x10
 	asrs r0, r0, #0x10
@@ -37357,12 +37337,12 @@ sub_08052A1E: @ 0x08052A1E
 	subs r4, r6, #1
 	adds r1, r7, #0
 	adds r2, r4, #0
-	bl func_080522D8
+	bl CopyAnimalFestivalRankingEntry
 	ldr r0, [r5, #8]
 	add r0, r8
 	adds r1, r7, #0
 	adds r2, r6, #0
-	bl func_080522E8
+	bl SetAnimalFestivalRankingEntry
 	adds r6, r4, #0
 	cmp r6, sb
 	bgt .L08053412
@@ -37379,7 +37359,7 @@ sub_08052A1E: @ 0x08052A1E
 	ldr r2, .L08053490 @ =0x00002C4C
 	adds r0, r0, r2
 	mov r2, sb
-	bl func_080522E8
+	bl SetAnimalFestivalRankingEntry
 	mov r3, sb
 	cmp r3, #0
 	bne .L0805345E
