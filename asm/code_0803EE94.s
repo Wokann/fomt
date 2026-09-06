@@ -169099,7 +169099,7 @@ func_08095D80: @ 0x08095D80
 	movs r0, #0xb
 	adds r4, r7, #0
 	muls r4, r0, r4
-	ldr r0, .L08095F88 @ =gUnk_08101064
+	ldr r0, .L08095F88 @ =gText_Cooking_Recipe_SelectionNames + 0xB
 	adds r4, r4, r0
 	adds r5, r6, #0
 	adds r5, #0x80
@@ -169112,7 +169112,7 @@ func_08095D80: @ 0x08095D80
 	.align 2, 0
 .L08095F80: .4byte gUnk_08117838
 .L08095F84: .4byte 0x00000362
-.L08095F88: .4byte gUnk_08101064
+.L08095F88: .4byte gText_Cooking_Recipe_SelectionNames + 0xB
 .L08095F8C:
 	ldr r5, .L08095FA8 @ =gText_Cooking_SeasoningSet
 	adds r4, r6, #0
@@ -173110,9 +173110,9 @@ func_08097D38: @ 0x08097D38
 .L08097F80:
 	adds r0, r6, #0
 	adds r0, #0x80
-	ldr r1, .L08097FA0 @ =gUnk_08100F78
-	ldr r2, .L08097FA4 @ =gUnk_08100F90
-	ldr r3, .L08097FA8 @ =gUnk_08100FA4
+	ldr r1, .L08097FA0 @ =gText_Cooking_Recipe_MakeThis
+	ldr r2, .L08097FA4 @ =gText_Cooking_Recipe_LeaveAsIs
+	ldr r3, .L08097FA8 @ =gText_Cooking_Recipe_ViewCurrent
 	movs r4, #0
 	str r4, [sp]
 	str r4, [sp, #4]
@@ -173123,16 +173123,16 @@ func_08097D38: @ 0x08097D38
 	adds r1, r6, r2
 	b .L08097FCC
 	.align 2, 0
-.L08097FA0: .4byte gUnk_08100F78
-.L08097FA4: .4byte gUnk_08100F90
-.L08097FA8: .4byte gUnk_08100FA4
+.L08097FA0: .4byte gText_Cooking_Recipe_MakeThis
+.L08097FA4: .4byte gText_Cooking_Recipe_LeaveAsIs
+.L08097FA8: .4byte gText_Cooking_Recipe_ViewCurrent
 .L08097FAC: .4byte 0x000033D2
 .L08097FB0:
 	adds r0, r6, #0
 	adds r0, #0x80
-	ldr r1, .L08097FD4 @ =gUnk_08100FBC
-	ldr r2, .L08097FD8 @ =gUnk_08100F90
-	ldr r3, .L08097FDC @ =gUnk_08100FCC
+	ldr r1, .L08097FD4 @ =gText_Cooking_Recipe_Rewrite
+	ldr r2, .L08097FD8 @ =gText_Cooking_Recipe_LeaveAsIs
+	ldr r3, .L08097FDC @ =gText_Cooking_Recipe_ViewNew
 	movs r4, #0
 	str r4, [sp]
 	str r4, [sp, #4]
@@ -173147,9 +173147,9 @@ func_08097D38: @ 0x08097D38
 	strb r0, [r1]
 	b .L08097FFE
 	.align 2, 0
-.L08097FD4: .4byte gUnk_08100FBC
-.L08097FD8: .4byte gUnk_08100F90
-.L08097FDC: .4byte gUnk_08100FCC
+.L08097FD4: .4byte gText_Cooking_Recipe_Rewrite
+.L08097FD8: .4byte gText_Cooking_Recipe_LeaveAsIs
+.L08097FDC: .4byte gText_Cooking_Recipe_ViewNew
 .L08097FE0: .4byte 0x000033D2
 .L08097FE4:
 	ldr r5, .L08098008 @ =gUnk_08100FE0
@@ -173509,7 +173509,7 @@ func_0809800C: @ 0x0809800C
 	adds r3, #0x54
 	str r3, [sp, #0x9c]
 .L080982E2:
-	ldr r0, .L080983DC @ =gUnk_08101008
+	ldr r0, .L080983DC @ =gText_Cooking_Recipe_ListTitle
 	adds r0, r5, r0
 	ldrb r4, [r0]
 	cmp r4, #0
@@ -173611,7 +173611,7 @@ func_0809800C: @ 0x0809800C
 .L080983D0: .4byte gUnk_08750C8C
 .L080983D4: .4byte 0x06010000
 .L080983D8: .4byte 0x05000200
-.L080983DC: .4byte gUnk_08101008
+.L080983DC: .4byte gText_Cooking_Recipe_ListTitle
 .L080983E0: .4byte 0x05000202
 .L080983E4: .4byte 0x05000204
 
@@ -174416,7 +174416,7 @@ func_080989DC: @ 0x080989DC
 	adds r0, r7, #0
 	bl func_08008940
 	adds r2, r0, #0
-	ldr r0, .L08098BB0 @ =gUnk_08101020
+	ldr r0, .L08098BB0 @ =gText_Cooking_Recipe_Utensils
 	str r0, [sp]
 	add r4, sp, #4
 	movs r0, #0
@@ -174523,7 +174523,7 @@ func_080989DC: @ 0x080989DC
 	adds r0, r7, #0
 	bl func_08008940
 	adds r2, r0, #0
-	ldr r0, .L08098BBC @ =gUnk_0810102C
+	ldr r0, .L08098BBC @ =gText_Cooking_Recipe_Ingredients
 	str r0, [sp]
 	movs r0, #0
 	ldr r1, [sp, #0x68]
@@ -174599,10 +174599,10 @@ func_080989DC: @ 0x080989DC
 	bl GetIconId__C4Food
 	b .L08098BF4
 	.align 2, 0
-.L08098BB0: .4byte gUnk_08101020
+.L08098BB0: .4byte gText_Cooking_Recipe_Utensils
 .L08098BB4: .4byte gUnk_08100AC2
 .L08098BB8: .4byte gUnk_086678A0
-.L08098BBC: .4byte gUnk_0810102C
+.L08098BBC: .4byte gText_Cooking_Recipe_Ingredients
 .L08098BC0: .4byte 0x0000035D
 .L08098BC4: .4byte 0x00002BB0
 .L08098BC8:
@@ -174782,7 +174782,7 @@ func_08098CE8: @ 0x08098CE8
 	mov r0, r8
 	bl func_08008940
 	adds r2, r0, #0
-	ldr r0, .L08098FDC @ =gUnk_08101020
+	ldr r0, .L08098FDC @ =gText_Cooking_Recipe_Utensils
 	str r0, [sp]
 	add r1, sp, #4
 	movs r0, #0
@@ -175011,7 +175011,7 @@ func_08098CE8: @ 0x08098CE8
 	str r2, [sp, #0xc0]
 	movs r1, #0xb
 	muls r0, r1, r0
-	ldr r3, .L08098FF0 @ =gUnk_08101059
+	ldr r3, .L08098FF0 @ =gText_Cooking_Recipe_SelectionNames
 	adds r5, r0, r3
 .L08098F1A:
 	ldrb r4, [r5]
@@ -175105,12 +175105,12 @@ func_08098CE8: @ 0x08098CE8
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L08098FDC: .4byte gUnk_08101020
+.L08098FDC: .4byte gText_Cooking_Recipe_Utensils
 .L08098FE0: .4byte gUnk_08100AC2
 .L08098FE4: .4byte gUnk_086678A0
 .L08098FE8: .4byte 0x05000200
 .L08098FEC: .4byte 0x06010000
-.L08098FF0: .4byte gUnk_08101059
+.L08098FF0: .4byte gText_Cooking_Recipe_SelectionNames
 .L08098FF4: .4byte 0x05000202
 .L08098FF8: .4byte 0x05000204
 .L08098FFC: .4byte 0x00004218
@@ -175976,7 +175976,7 @@ func_0809964C: @ 0x0809964C
 	adds r0, r7, #0
 	bl func_08008940
 	adds r2, r0, #0
-	ldr r0, .L08099740 @ =gUnk_08101038
+	ldr r0, .L08099740 @ =gText_Cooking_Recipe_UseIngredients
 	str r0, [sp]
 	add r4, sp, #4
 	movs r0, #0
@@ -176053,7 +176053,7 @@ func_0809964C: @ 0x0809964C
 	bl GetIconId__C4Food
 	b .L08099758
 	.align 2, 0
-.L08099740: .4byte gUnk_08101038
+.L08099740: .4byte gText_Cooking_Recipe_UseIngredients
 .L08099744: .4byte 0x00002BB0
 .L08099748:
 	adds r0, r4, #0
@@ -176103,7 +176103,7 @@ func_0809964C: @ 0x0809964C
 	adds r0, r7, #0
 	bl func_08008940
 	adds r2, r0, #0
-	ldr r0, .L08099A98 @ =gUnk_08101044
+	ldr r0, .L08099A98 @ =gText_Cooking_Recipe_Empty
 	str r0, [sp]
 	movs r0, #0
 	mov r3, r8
@@ -176322,7 +176322,7 @@ func_0809964C: @ 0x0809964C
 	adds r4, #0x54
 	str r4, [sp, #0xa8]
 .L08099982:
-	ldr r0, .L08099AA8 @ =gUnk_08101048
+	ldr r0, .L08099AA8 @ =gText_Cooking_Recipe_StorageHeader
 	adds r0, r5, r0
 	ldrb r4, [r0]
 	cmp r4, #0
@@ -176456,11 +176456,11 @@ func_0809964C: @ 0x0809964C
 	bx r0
 	.align 2, 0
 .L08099A94: .4byte gUnk_086678A0
-.L08099A98: .4byte gUnk_08101044
+.L08099A98: .4byte gText_Cooking_Recipe_Empty
 .L08099A9C: .4byte gUnk_08750C8C
 .L08099AA0: .4byte 0x06010000
 .L08099AA4: .4byte 0x05000200
-.L08099AA8: .4byte gUnk_08101048
+.L08099AA8: .4byte gText_Cooking_Recipe_StorageHeader
 .L08099AAC: .4byte 0x05000202
 .L08099AB0: .4byte 0x05000204
 .L08099AB4: .4byte 0x00004218

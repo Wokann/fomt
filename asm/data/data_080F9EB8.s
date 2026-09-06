@@ -43,8 +43,17 @@
     .section .rodata.cooking_menu_padding
     .incbin "baserom_jp.gba", 0x100A0F, (0x100A10 - 0x100A0F)
 
-    .section .rodata.cooking_menu_trailer
-    .incbin "baserom_jp.gba", 0x100A10, (0x103194 - 0x100A10)
+    .section .rodata.cooking_menu_trailer_prefix
+    .incbin "baserom_jp.gba", 0x100A10, (0x100A84 - 0x100A10)
+
+    .section .rodata.cooking_recipe_actions_padding
+    .incbin "baserom_jp.gba", 0x100B21, (0x100B24 - 0x100B21)
+
+    .section .rodata.cooking_recipe_actions_trailer_prefix
+    .incbin "baserom_jp.gba", 0x100B24, (0x100B50 - 0x100B24)
+
+    .section .rodata.cooking_recipe_inventory_trailer
+    .incbin "baserom_jp.gba", 0x100C24, (0x103194 - 0x100C24)
 
     .section .rodata
 
@@ -1623,7 +1632,7 @@ gUnk_08100AC2:
 	.section .rodata.cooking_menu_padding
 	.incbin "baserom_us.gba", 0x100EEF, (0x100EF0 - 0x100EEF)
 
-	.section .rodata.cooking_menu_trailer
+	.section .rodata.cooking_menu_trailer_prefix
 
 	.global gUnk_08100EF0
 gUnk_08100EF0:
@@ -1641,61 +1650,16 @@ gUnk_08100F30:
 gUnk_08100F44:
 	.incbin "baserom_us.gba", 0x100F44, 0x34
 
-	.global gUnk_08100F78
-gUnk_08100F78:
-	.incbin "baserom_us.gba", 0x100F78, 0x18
+	.section .rodata.cooking_recipe_actions_padding
+	.incbin "baserom_us.gba", 0x100FDD, (0x100FE0 - 0x100FDD)
 
-	.global gUnk_08100F90
-gUnk_08100F90:
-	.incbin "baserom_us.gba", 0x100F90, 0x14
-
-	.global gUnk_08100FA4
-gUnk_08100FA4:
-	.incbin "baserom_us.gba", 0x100FA4, 0x18
-
-	.global gUnk_08100FBC
-gUnk_08100FBC:
-	.incbin "baserom_us.gba", 0x100FBC, 0x10
-
-	.global gUnk_08100FCC
-gUnk_08100FCC:
-	.incbin "baserom_us.gba", 0x100FCC, 0x14
+	.section .rodata.cooking_recipe_actions_trailer_prefix
 
 	.global gUnk_08100FE0
 gUnk_08100FE0:
 	.incbin "baserom_us.gba", 0x100FE0, 0x28
 
-	.global gUnk_08101008
-gUnk_08101008:
-	.incbin "baserom_us.gba", 0x101008, 0x18
-
-	.global gUnk_08101020
-gUnk_08101020:
-	.incbin "baserom_us.gba", 0x101020, 0xC
-
-	.global gUnk_0810102C
-gUnk_0810102C:
-	.incbin "baserom_us.gba", 0x10102C, 0xC
-
-	.global gUnk_08101038
-gUnk_08101038:
-	.incbin "baserom_us.gba", 0x101038, 0xC
-
-	.global gUnk_08101044
-gUnk_08101044:
-	.incbin "baserom_us.gba", 0x101044, 0x4
-
-	.global gUnk_08101048
-gUnk_08101048:
-	.incbin "baserom_us.gba", 0x101048, 0x11
-
-	.global gUnk_08101059
-gUnk_08101059:
-	.incbin "baserom_us.gba", 0x101059, 0xB
-
-	.global gUnk_08101064
-gUnk_08101064:
-	.incbin "baserom_us.gba", 0x101064, 0x84
+	.section .rodata.cooking_recipe_inventory_trailer
 
 	.global gUnk_081010E8
 gUnk_081010E8:

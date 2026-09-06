@@ -401,7 +401,12 @@ SECTIONS
         . = 0x100DE1; asm/data/data_080F9EB8.o(.rodata.recovery_status_padding);
         . = 0x100DE4; data/text/cooking_menu.o(.rodata);
         . = 0x100EEF; asm/data/data_080F9EB8.o(.rodata.cooking_menu_padding);
-        . = 0x100EF0; asm/data/data_080F9EB8.o(.rodata.cooking_menu_trailer);
+        . = 0x100EF0; asm/data/data_080F9EB8.o(.rodata.cooking_menu_trailer_prefix);
+        . = 0x100F78; data/text/cooking_recipe_actions.o(.rodata);
+        . = 0x100FDD; asm/data/data_080F9EB8.o(.rodata.cooking_recipe_actions_padding);
+        . = 0x100FE0; asm/data/data_080F9EB8.o(.rodata.cooking_recipe_actions_trailer_prefix);
+        . = 0x101008; data/text/cooking_recipe_inventory.o(.rodata);
+        . = 0x1010E8; asm/data/data_080F9EB8.o(.rodata.cooking_recipe_inventory_trailer);
         . = 0x103788; data/text/fishing_results.o(.rodata);
         . = 0x103A16; asm/data/data_080F9EB8.o(.rodata.fishing_results_text_padding);
         . = 0x103A18; src/fishing_results_data.o(.rodata.fishing_record_names);
