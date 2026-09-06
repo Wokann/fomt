@@ -80,8 +80,7 @@
     jp_code_0803ee_func func_0805E6CC, 0x5E410, 0x5E4A4
     jp_code_0803ee_func func_0805E760, 0x5E4A4, 0x5E4D4
     jp_code_0803ee_func func_0805E790, 0x5E4D4, 0x5E568
-    jp_code_0803ee_func func_0805E824, 0x5E568, 0x5E594
-    .section .text.resolve_indexed_resource_handle_after
+    .section .text.indexed_resource_handle_constructor_after
     jp_code_0803ee_func func_0805E894, 0x5E5D8, 0x5E634
     jp_code_0803ee_func func_0805E8F0, 0x5E634, 0x5E968
     jp_code_0803ee_func func_0805EC24, 0x5E968, 0x5EA90
@@ -30295,7 +30294,7 @@ func_0804F288: @ 0x0804F288
 	lsls r3, r3, #1
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r0, #0xea
 	lsls r0, r0, #1
 	add r0, r8
@@ -30353,7 +30352,7 @@ func_0804F288: @ 0x0804F288
 	lsls r3, r3, #1
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r0, #0xa9
 	lsls r0, r0, #3
 	add r0, r8
@@ -33586,7 +33585,7 @@ func_0805143C: @ 0x0805143C
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	adds r0, r7, #0
 	adds r0, #0x54
 	strh r5, [r0]
@@ -33604,7 +33603,7 @@ func_0805143C: @ 0x0805143C
 	movs r2, #1
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	adds r0, r7, #0
 	adds r0, #0x88
 	strh r5, [r0]
@@ -35470,7 +35469,7 @@ func_080522F8: @ 0x080522F8
 	movs r2, #0x8e
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r2, #0x85
 	lsls r2, r2, #2
 	adds r0, r7, r2
@@ -35494,7 +35493,7 @@ func_080522F8: @ 0x080522F8
 	ldr r2, .L0805273C @ =0x0000033B
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r1, #0x93
 	lsls r1, r1, #2
 	adds r0, r7, r1
@@ -35518,7 +35517,7 @@ func_080522F8: @ 0x080522F8
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r2, #0xa1
 	lsls r2, r2, #2
 	adds r0, r7, r2
@@ -35542,7 +35541,7 @@ func_080522F8: @ 0x080522F8
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r1, #0xaf
 	lsls r1, r1, #2
 	adds r0, r7, r1
@@ -35566,7 +35565,7 @@ func_080522F8: @ 0x080522F8
 	ldr r2, .L08052740 @ =0x0000091A
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r2, #0xbd
 	lsls r2, r2, #2
 	adds r0, r7, r2
@@ -35590,7 +35589,7 @@ func_080522F8: @ 0x080522F8
 	movs r2, #0xc9
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r1, #0xcb
 	lsls r1, r1, #2
 	adds r0, r7, r1
@@ -35614,7 +35613,7 @@ func_080522F8: @ 0x080522F8
 	movs r2, #1
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r2, #0xd9
 	lsls r2, r2, #2
 	adds r0, r7, r2
@@ -35638,7 +35637,7 @@ func_080522F8: @ 0x080522F8
 	movs r2, #2
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r1, #0xe7
 	lsls r1, r1, #2
 	adds r0, r7, r1
@@ -35662,7 +35661,7 @@ func_080522F8: @ 0x080522F8
 	ldr r2, .L08052744 @ =0x00000641
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r2, #0xf5
 	lsls r2, r2, #2
 	adds r0, r7, r2
@@ -35686,7 +35685,7 @@ func_080522F8: @ 0x080522F8
 	movs r2, #2
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	ldr r1, .L08052748 @ =0x0000040C
 	adds r0, r7, r1
 	strh r5, [r0]
@@ -35708,7 +35707,7 @@ func_080522F8: @ 0x080522F8
 	movs r2, #0xa7
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	ldr r2, .L08052750 @ =0x00000444
 	adds r0, r7, r2
 	strh r5, [r0]
@@ -47092,7 +47091,7 @@ func_0805806C: @ 0x0805806C
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r0, #0xf2
 	lsls r0, r0, #1
 	add r0, sl
@@ -47117,7 +47116,7 @@ func_0805806C: @ 0x0805806C
 	ldr r2, .L080584A8 @ =0x00000762
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r0, #0x87
 	lsls r0, r0, #2
 	add r0, sl
@@ -47142,7 +47141,7 @@ func_0805806C: @ 0x0805806C
 	ldr r2, .L080584AC @ =0x0000073E
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r0, #0x95
 	lsls r0, r0, #2
 	add r0, sl
@@ -47167,7 +47166,7 @@ func_0805806C: @ 0x0805806C
 	ldr r2, .L080584B0 @ =0x0000074A
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r0, #0xa3
 	lsls r0, r0, #2
 	add r0, sl
@@ -47192,7 +47191,7 @@ func_0805806C: @ 0x0805806C
 	ldr r2, .L080584B4 @ =0x00000756
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r0, #0xb1
 	lsls r0, r0, #2
 	add r0, sl
@@ -47217,7 +47216,7 @@ func_0805806C: @ 0x0805806C
 	ldr r2, .L080584B8 @ =0x0000076E
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r0, #0xbf
 	lsls r0, r0, #2
 	add r0, sl
@@ -47242,7 +47241,7 @@ func_0805806C: @ 0x0805806C
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r0, #0xcd
 	lsls r0, r0, #2
 	add r0, sl
@@ -47267,7 +47266,7 @@ func_0805806C: @ 0x0805806C
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r0, #0xdb
 	lsls r0, r0, #2
 	add r0, sl
@@ -47292,7 +47291,7 @@ func_0805806C: @ 0x0805806C
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r0, #0xe9
 	lsls r0, r0, #2
 	add r0, sl
@@ -47317,7 +47316,7 @@ func_0805806C: @ 0x0805806C
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r0, #0xf7
 	lsls r0, r0, #2
 	add r0, sl
@@ -47342,7 +47341,7 @@ func_0805806C: @ 0x0805806C
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	ldr r0, .L080584BC @ =0x00000414
 	add r0, sl
 	strh r4, [r0]
@@ -47365,7 +47364,7 @@ func_0805806C: @ 0x0805806C
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	ldr r0, .L080584C4 @ =0x0000044C
 	add r0, sl
 	strh r4, [r0]
@@ -47388,7 +47387,7 @@ func_0805806C: @ 0x0805806C
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	ldr r0, .L080584CC @ =0x00000484
 	add r0, sl
 	strh r4, [r0]
@@ -47412,7 +47411,7 @@ func_0805806C: @ 0x0805806C
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	ldr r0, .L080584D4 @ =0x000004BC
 	add r0, sl
 	strh r4, [r0]
@@ -47435,7 +47434,7 @@ func_0805806C: @ 0x0805806C
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	ldr r0, .L080584DC @ =0x000004F4
 	add r0, sl
 	strh r4, [r0]
@@ -47486,7 +47485,7 @@ func_0805806C: @ 0x0805806C
 .L080584DC: .4byte 0x000004F4
 .L080584E0: .4byte 0x00000514
 .L080584E4:
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	ldr r0, .L080587F8 @ =0x0000052C
 	add r0, sl
 	strh r4, [r0]
@@ -47509,7 +47508,7 @@ func_0805806C: @ 0x0805806C
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	ldr r0, .L08058800 @ =0x00000564
 	add r0, sl
 	strh r4, [r0]
@@ -47532,7 +47531,7 @@ func_0805806C: @ 0x0805806C
 	ldr r2, .L08058808 @ =0x0000091C
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	ldr r0, .L0805880C @ =0x0000059C
 	add r0, sl
 	strh r4, [r0]
@@ -56685,7 +56684,7 @@ func_0805CF70: @ 0x0805CF70
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	adds r0, r7, #0
 	adds r0, #0x94
 	strh r5, [r0]
@@ -56706,7 +56705,7 @@ func_0805CF70: @ 0x0805CF70
 	movs r2, #1
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	adds r0, r7, #0
 	adds r0, #0xc8
 	strh r5, [r0]
@@ -56727,7 +56726,7 @@ func_0805CF70: @ 0x0805CF70
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	adds r0, r7, #0
 	adds r0, #0xfc
 	strh r5, [r0]
@@ -59643,31 +59642,7 @@ func_0805E790: @ 0x0805E790
 	.byte 0x40, 0x8C, 0x70, 0x47
 	.byte 0x00, 0x8C, 0x70, 0x47
 
-	thumb_func_start func_0805E824
-func_0805E824: @ 0x0805E824
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r3, #0
-	stm r0!, {r1}
-	ldr r3, [r1]
-	ldr r3, [r3, #0xc]
-	bl _call_via_r3
-	movs r0, #0
-	strh r0, [r4, #0xc]
-	ldr r0, [r4, #4]
-	ldrh r0, [r0, #2]
-	lsls r0, r0, #8
-	strh r0, [r4, #0xe]
-	strh r5, [r4, #0x10]
-	movs r0, #1
-	strb r0, [r4, #0x12]
-	adds r0, r4, #0
-	pop {r4, r5}
-	pop {r1}
-	bx r1
-	.align 2, 0
-
-	.section .text.resolve_indexed_resource_handle_after
+	.section .text.indexed_resource_handle_constructor_after
 
 	thumb_func_start func_0805E894
 func_0805E894: @ 0x0805E894
@@ -83914,7 +83889,7 @@ func_08069F14: @ 0x08069F14
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	adds r0, r7, #0
 	adds r0, #0x9c
 	strh r4, [r0]
@@ -83937,7 +83912,7 @@ func_08069F14: @ 0x08069F14
 	movs r2, #1
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	adds r0, r7, #0
 	adds r0, #0xd4
 	strh r4, [r0]
@@ -83965,7 +83940,7 @@ func_08069F14: @ 0x08069F14
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r2, #0x88
 	lsls r2, r2, #1
 	adds r0, r7, r2
@@ -94519,7 +94494,7 @@ func_0806F168: @ 0x0806F168
 	movs r3, #0x80
 	lsls r3, r3, #1
 	adds r0, r4, #0
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	str r6, [sp]
 	str r5, [sp, #4]
 	add r0, sp, #8
@@ -95799,7 +95774,7 @@ func_0806FBA4: @ 0x0806FBA4
 	ldr r1, [sp, #0x90]
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	mov r5, sl
 	str r5, [sp]
 	ldr r7, [sp, #0x50]
@@ -96027,7 +96002,7 @@ func_0806FBA4: @ 0x0806FBA4
 	ldr r1, [sp, #0x90]
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	mov r5, sl
 	str r5, [sp]
 	ldr r7, [sp, #0x50]
@@ -96250,7 +96225,7 @@ func_0806FBA4: @ 0x0806FBA4
 	ldr r1, [sp, #0x90]
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	mov r4, sl
 	str r4, [sp]
 	ldr r5, [sp, #0x50]
@@ -96627,28 +96602,28 @@ func_080701BC: @ 0x080701BC
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	adds r0, r7, #0
 	adds r0, #0x64
 	adds r1, r4, #0
 	movs r2, #1
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	adds r0, r7, #0
 	adds r0, #0x78
 	adds r1, r4, #0
 	movs r2, #2
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	adds r0, r7, #0
 	adds r0, #0x8c
 	adds r1, r4, #0
 	movs r2, #3
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	adds r0, r7, #0
 	adds r0, #0xa0
 	ldr r1, .L080704F8 @ =gUnk_087537D0
@@ -108575,7 +108550,7 @@ func_08075E7C: @ 0x08075E7C
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	adds r0, r7, #0
 	adds r0, #0x54
 	strh r4, [r0]
@@ -108599,7 +108574,7 @@ func_08075E7C: @ 0x08075E7C
 	movs r2, #1
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	adds r0, r7, #0
 	adds r0, #0x8c
 	strh r4, [r0]
@@ -108625,7 +108600,7 @@ func_08075E7C: @ 0x08075E7C
 	movs r2, #2
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	adds r0, r7, #0
 	adds r0, #0xc4
 	strh r4, [r0]
@@ -108649,7 +108624,7 @@ func_08075E7C: @ 0x08075E7C
 	movs r2, #3
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	adds r0, r7, #0
 	adds r0, #0xfc
 	strh r4, [r0]
@@ -113275,7 +113250,7 @@ func_080782EC: @ 0x080782EC
 	lsls r3, r3, #1
 	add r0, sp, #0x1c
 	ldr r2, [sp, #0x40]
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	mov r7, sb
 	str r4, [r7]
 	str r5, [r7, #4]
@@ -113605,7 +113580,7 @@ func_0807865C: @ 0x0807865C
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	adds r0, r7, #0
 	adds r0, #0x8c
 	mov r3, r8
@@ -114174,7 +114149,7 @@ func_08078E40: @ 0x08078E40
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r3, #0xf1
 	lsls r3, r3, #3
 	adds r0, r6, r3
@@ -114199,7 +114174,7 @@ func_08078E40: @ 0x08078E40
 	movs r2, #1
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	ldr r3, .L08079024 @ =0x000007BC
 	adds r0, r6, r3
 	strh r7, [r0]
@@ -114222,7 +114197,7 @@ func_08078E40: @ 0x08078E40
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r3, #0xfe
 	lsls r3, r3, #3
 	adds r0, r6, r3
@@ -118545,7 +118520,7 @@ func_0807B188: @ 0x0807B188
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	add r0, sp, #0x74
 	strh r5, [r0]
 	strh r5, [r0, #2]
@@ -122799,7 +122774,7 @@ func_0807D218: @ 0x0807D218
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	add r0, sp, #0x60
 	strh r4, [r0]
 	strh r4, [r0, #2]
@@ -123895,7 +123870,7 @@ func_0807DE3C: @ 0x0807DE3C
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	add r0, sp, #0x60
 	strh r4, [r0]
 	strh r4, [r0, #2]
@@ -124824,7 +124799,7 @@ func_0807E558: @ 0x0807E558
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	add r0, sp, #0x60
 	strh r4, [r0]
 	strh r4, [r0, #2]
@@ -126139,7 +126114,7 @@ func_0807EF90: @ 0x0807EF90
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	add r0, sp, #0x7c
 	strh r4, [r0]
 	strh r4, [r0, #2]
@@ -126886,7 +126861,7 @@ func_0807F6E8: @ 0x0807F6E8
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	add r0, sp, #0x60
 	strh r4, [r0]
 	strh r4, [r0, #2]
@@ -128692,7 +128667,7 @@ func_08080540: @ 0x08080540
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	add r0, sp, #0x60
 	strh r4, [r0]
 	strh r4, [r0, #2]
@@ -129758,7 +129733,7 @@ func_08080E68: @ 0x08080E68
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	add r0, sp, #0x60
 	strh r4, [r0]
 	strh r4, [r0, #2]
@@ -129924,7 +129899,7 @@ func_08080E68: @ 0x08080E68
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	add r0, sp, #0x108
 	strh r5, [r0]
 	strh r5, [r0, #2]
@@ -131481,7 +131456,7 @@ func_08081BBC: @ 0x08081BBC
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	add r0, sp, #0x7c
 	strh r4, [r0]
 	strh r4, [r0, #2]
@@ -132204,7 +132179,7 @@ func_08082264: @ 0x08082264
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	add r0, sp, #0x58
 	strh r4, [r0]
 	strh r4, [r0, #2]
@@ -132318,7 +132293,7 @@ func_0808234C: @ 0x0808234C
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	add r0, sp, #0x50
 	strh r4, [r0]
 	strh r4, [r0, #2]
@@ -135567,7 +135542,7 @@ func_08083C64: @ 0x08083C64
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	add r0, sp, #0x60
 	strh r4, [r0]
 	strh r4, [r0, #2]
@@ -137774,7 +137749,7 @@ func_08085640: @ 0x08085640
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	add r0, sp, #0x74
 	strh r5, [r0]
 	strh r5, [r0, #2]
@@ -166386,7 +166361,7 @@ func_08094AC0: @ 0x08094AC0
 	adds r1, r6, #0
 	movs r2, #3
 	subs r3, #0x58
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r1, #0xb6
 	lsls r1, r1, #1
 	adds r0, r7, r1
@@ -166412,7 +166387,7 @@ func_08094AC0: @ 0x08094AC0
 	adds r1, r6, #0
 	movs r2, #2
 	subs r3, #0x90
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r1, #0xd2
 	lsls r1, r1, #1
 	adds r0, r7, r1
@@ -166436,7 +166411,7 @@ func_08094AC0: @ 0x08094AC0
 	adds r1, r6, #0
 	movs r2, #0
 	subs r3, #0xc8
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r1, #0xee
 	lsls r1, r1, #1
 	adds r0, r7, r1
@@ -166461,7 +166436,7 @@ func_08094AC0: @ 0x08094AC0
 	movs r2, #1
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r1, #0x85
 	lsls r1, r1, #2
 	adds r0, r7, r1
@@ -166486,7 +166461,7 @@ func_08094AC0: @ 0x08094AC0
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r1, #0x93
 	lsls r1, r1, #2
 	adds r0, r7, r1
@@ -166511,7 +166486,7 @@ func_08094AC0: @ 0x08094AC0
 	movs r2, #1
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r1, #0xa1
 	lsls r1, r1, #2
 	adds r0, r7, r1
@@ -166536,7 +166511,7 @@ func_08094AC0: @ 0x08094AC0
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	movs r1, #0xaf
 	lsls r1, r1, #2
 	adds r0, r7, r1

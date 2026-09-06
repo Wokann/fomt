@@ -150,11 +150,13 @@ SECTIONS
         . = 0x522E8; /* JP/US-shared animal-festival ranking entry setter. */
         src/animal_festival_ranking.o(.text.set_animal_festival_ranking_entry);
         . = 0x522F8; asm/code_0803EE94.o(.text.animal_festival_ranking_after);
+        . = 0x5E824; /* JP/US-shared indexed resource-handle constructor. */
+        src/resource_handle.o(.text.indexed_resource_handle_constructor);
         . = 0x5E850; /* JP/US-shared indexed resource-handle initializer. */
         src/resource_handle.o(.text.initialize_indexed_resource_handle);
         . = 0x5E860; /* JP/US-shared indexed resource-handle resolver. */
         src/resource_handle.o(.text.resolve_indexed_resource_handle);
-        . = 0x5E894; asm/code_0803EE94.o(.text.resolve_indexed_resource_handle_after);
+        . = 0x5E894; asm/code_0803EE94.o(.text.indexed_resource_handle_constructor_after);
         . = 0x75DB8; /* JP/US-shared scroll-position reset. */
         src/scroll_state.o(.text.reset_scroll_position);
         . = 0x75DD4; /* JP/US-shared scroll-buffer clear. */

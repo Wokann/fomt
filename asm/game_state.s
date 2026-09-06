@@ -25852,7 +25852,7 @@ func_0801F3E4: @ 0x0801F3E4
     adds r2, r7, #0
     movs r3, #0x80
     lsls r3, r3, #1
-    bl func_0805E824
+    bl __21IndexedResourceHandleP23IndexedResourceProviderUii
     add r0, sp, #0x20
     ldr r1, [sp, #0x20]
     ldr r3, [r1]

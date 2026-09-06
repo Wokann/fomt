@@ -1420,7 +1420,7 @@ func_080041DC: @ 0x080041DC
     lsls r3, r3, #1
     adds r1, r6, #0
     movs r2, #0
-    bl func_0805E824
+    bl __21IndexedResourceHandleP23IndexedResourceProviderUii
     adds r0, r7, #0
     adds r0, #0x80
     str r5, [r0]

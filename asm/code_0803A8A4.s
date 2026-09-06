@@ -1131,7 +1131,7 @@ func_0803AEA0: @ 0x0803AEA0
 	movs r2, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	mov r2, r8
 	cmp r2, #0
 	beq .L0803B03A

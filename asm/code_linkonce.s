@@ -25591,7 +25591,7 @@ func_080E0A94: @ 0x080E0A94
 	movs r2, #7
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	str r5, [r7, #0x50]
 	adds r1, r7, #0
 	adds r1, #0x54
@@ -25700,7 +25700,7 @@ func_080E0A94: @ 0x080E0A94
 	adds r2, r5, #0
 	movs r3, #0x80
 	lsls r3, r3, #1
-	bl func_0805E824
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
 	mov r0, sb
 	ldr r5, [r0]
 	cmp r4, r5
