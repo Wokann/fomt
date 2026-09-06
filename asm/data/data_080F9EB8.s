@@ -214,8 +214,8 @@ gText_CharacterName_Empty:
     .section .rodata.character_names_table_trailer
     .incbin "baserom_jp.gba", 0x103EF4, (0x1044B0 - 0x103EF4)
 
-    .section .rodata.calendar_festival_dynamic_trailer
-    .incbin "baserom_jp.gba", 0x1048DB, (0x10491C - 0x1048DB)
+    .section .rodata.calendar_festival_dynamic_padding
+    .incbin "baserom_jp.gba", 0x1048DB, (0x1048DC - 0x1048DB)
 
     .section .rodata.calendar_no_plans_trailer
     .incbin "baserom_jp.gba", 0x104935, (0x1070F4 - 0x104935)
@@ -955,16 +955,8 @@ gUnk_08104950:
 gUnk_08104957:
 	.incbin "baserom_us.gba", 0x104957, 0x25
 
-	.section .rodata.calendar_festival_dynamic_text
+	.section .rodata.calendar_festival_dynamic_padding
 	.incbin "baserom_us.gba", 0x104D96, 0x2
-
-	.global gUnk_08104D98
-gUnk_08104D98:
-	.incbin "baserom_us.gba", 0x104D98, 0x20
-
-	.global gUnk_08104DB8
-gUnk_08104DB8:
-	.incbin "baserom_us.gba", 0x104DB8, 0x24
 
 	.section .rodata.calendar_no_plans_trailer
 	.incbin "baserom_us.gba", 0x104DEA, (0x104E0C - 0x104DEA)

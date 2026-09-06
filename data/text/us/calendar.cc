@@ -120,6 +120,16 @@ char const gText_Calendar_Festival_YearEndGathering[] CALENDAR_FESTIVAL_TEXT =
     "Year End Gathering \r\n"
     "Year End Festival {Press}";
 
+char const gText_Calendar_Festival_Marriage[] CALENDAR_FESTIVAL_DYNAMIC_TEXT =
+    "\p"
+    "\xF1st day of \xF0\r\n"
+    "Marriage to \xF2{Press}";
+
+char const gText_Calendar_Festival_WeddingAnniversary[] CALENDAR_FESTIVAL_DYNAMIC_TEXT =
+    "\p"
+    "\xF1st day of \xF0\r\n"
+    "Wedding Anniversary{Press}";
+
 char const gText_Calendar_Festival_NoPlans[] CALENDAR_NO_PLANS_TEXT =
     "\p"
     "No plans...{Press}";

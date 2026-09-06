@@ -120,6 +120,16 @@ char const gText_Calendar_Festival_YearEndGathering[] CALENDAR_FESTIVAL_TEXT =
     "『年越しの集い』\r\n"
     "『年越しそば』{Press}";
 
+char const gText_Calendar_Festival_Marriage[] CALENDAR_FESTIVAL_DYNAMIC_TEXT =
+    "\p"
+    "\xF0の月　\xF1日\r\n"
+    "『\xF2との結婚式』{Press}";
+
+char const gText_Calendar_Festival_WeddingAnniversary[] CALENDAR_FESTIVAL_DYNAMIC_TEXT =
+    "\p"
+    "\xF0の月　\xF1日\r\n"
+    "『結婚記念日』{Press}";
+
 char const gText_Calendar_Festival_NoPlans[] CALENDAR_NO_PLANS_TEXT =
     "\p"
     "この日は特に何もない…{Press}";

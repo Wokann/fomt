@@ -8657,15 +8657,15 @@ func_080A2940: @ 0x080A2940
 	adds r1, r7, r2
 	str r0, [r1]
 	ldr r0, [r7, #0x10]
-	ldr r1, .L080A2B64 @ =gUnk_08104D98
+	ldr r1, .L080A2B64 @ =gText_Calendar_Festival_Marriage
 	subs r2, #8
 	b .L080A2B70
 	.align 2, 0
 .L080A2B60: .4byte 0x00001CD4
-.L080A2B64: .4byte gUnk_08104D98
+.L080A2B64: .4byte gText_Calendar_Festival_Marriage
 .L080A2B68:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L080A2B7C @ =gUnk_08104DB8
+	ldr r1, .L080A2B7C @ =gText_Calendar_Festival_WeddingAnniversary
 .L080A2B6C:
 	movs r2, #0x87
 	lsls r2, r2, #2
@@ -8675,7 +8675,7 @@ func_080A2940: @ 0x080A2940
 	bl func_08050DC8
 	b .L080A2B90
 	.align 2, 0
-.L080A2B7C: .4byte gUnk_08104DB8
+.L080A2B7C: .4byte gText_Calendar_Festival_WeddingAnniversary
 .L080A2B80:
 	ldr r0, [r7, #0x10]
 	ldr r1, .L080A2BA0 @ =gText_Calendar_Festival_NoPlans

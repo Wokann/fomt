@@ -4,6 +4,7 @@
 #include "prelude.h"
 
 #define CALENDAR_FESTIVAL_TEXT SECTION(".rodata.calendar.festival_text")
+#define CALENDAR_FESTIVAL_DYNAMIC_TEXT SECTION(".rodata.calendar.festival_dynamic_text")
 #define CALENDAR_NO_PLANS_TEXT SECTION(".rodata.calendar.no_plans_text")
 
 // The fixed row widths are part of the original menu ABI: callers index these
@@ -35,6 +36,8 @@ extern char const gText_Calendar_Festival_PumpkinFestival[];
 extern char const gText_Calendar_Festival_WinterThanksgiving[];
 extern char const gText_Calendar_Festival_StarryNightFestival[];
 extern char const gText_Calendar_Festival_YearEndGathering[];
+extern char const gText_Calendar_Festival_Marriage[];
+extern char const gText_Calendar_Festival_WeddingAnniversary[];
 extern char const gText_Calendar_Festival_NoPlans[];
 
 #endif // CALENDAR_TEXT_HH
