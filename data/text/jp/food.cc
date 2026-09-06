@@ -1098,10 +1098,10 @@ char const gText_Item_Food_NoodlesWTempura_Description[] =
     "そばを使ったお料理。\r\n"
     "食べられるけど出荷は無理。";
 
-char const gText_Item_Food_FriedNoodles2_Name[] =
+char const gText_Item_Food_FriedBuckwheatNoodles_Name[] =
     "焼きそば";
 
-char const gText_Item_Food_FriedNoodles2_Description[] =
+char const gText_Item_Food_FriedBuckwheatNoodles_Description[] =
     "焼きそば\r\n"
     "そばを使ったお料理。\r\n"
     "食べられるけど出荷は無理。";

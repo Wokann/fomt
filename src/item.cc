@@ -592,8 +592,6 @@ Article ItemVariant::AsArticle() const
     return (kind == KIND_ARTICLE) ? Article(id) : Article(ARTICLE_NONE);
 }
 
-#if !defined(REGION_JP)
-
 // Item Info tables
 
 ToolInfo const gToolInfo[] __attribute__((section(".rodata.item_tool"))) = {
@@ -818,7 +816,18 @@ FoodInfo const gFoodInfo[] __attribute__((section(".rodata.item_food"))) = {
     /* 0x86 */ { gText_Item_Food_FriedNoodles_Name, false, 60, -2, 386, gText_Item_Food_FriedNoodles_Description },
     /* 0x87 */ { gText_Item_Food_BuckwheatNoodles_Name, false, 40, -3, 492, gText_Item_Food_BuckwheatNoodles_Description },
     /* 0x88 */ { gText_Item_Food_NoodlesWTempura_Name, false, 60, -3, 446, gText_Item_Food_NoodlesWTempura_Description },
-    /* 0x89 */ { gText_Item_Food_FriedNoodles_Name, false, 60, -2, 391, gText_Item_Food_FriedNoodles_Description },
+    // Regional text-pointer difference -- BUG (US localization): JP's 0x89 is
+    // 焼きそば (fried buckwheat noodles), but the US ROM reuses 0x86's
+    // FriedNoodles name and description (displayed as "Fried Noodles")
+    // instead of keeping a distinct entry.  The US data has no standalone
+    // FriedBuckwheatNoodles name or description object.
+    /* 0x89 */ {
+#if defined(REGION_JP)
+        gText_Item_Food_FriedBuckwheatNoodles_Name, false, 60, -2, 391, gText_Item_Food_FriedBuckwheatNoodles_Description
+#else
+        gText_Item_Food_FriedNoodles_Name, false, 60, -2, 391, gText_Item_Food_FriedNoodles_Description
+#endif
+    },
     /* 0x8A */ { gText_Item_Food_BuckwheatChips_Name, false, 15, -2, 421, gText_Item_Food_BuckwheatChips_Description },
     /* 0x8B */ { gText_Item_Food_Cookies_Name, false, 15, -5, 107, gText_Item_Food_Cookies_Description },
     /* 0x8C */ { gText_Item_Food_ChocolateCookies_Name, false, 30, -5, 104, gText_Item_Food_ChocolateCookies_Description },
@@ -865,7 +874,17 @@ ArticleInfo const gArticleInfo[] __attribute__((section(".rodata.item_article"))
     /* 0x07 */ { gText_Item_Article_WoolL_Name, 485, gText_Item_Article_WoolL_Description },
     /* 0x08 */ { gText_Item_Article_WoolG_Name, 484, gText_Item_Article_WoolG_Description },
     /* 0x09 */ { gText_Item_Article_WoolP_Name, 487, gText_Item_Article_WoolP_Description },
-    /* 0x0A */ { gText_Item_Article_WoolP_Name, 489, gText_Item_Article_WoolP_Description },
+    // Regional text-pointer difference -- BUG (US localization, documented as
+    // "2 P wools"): Wool X (0x0A) is wired to the Wool P name and description,
+    // duplicating 0x09 and making the shipping list show P Wool for X Wool.
+    // Preserve the erroneous US pointer for byte-exact reconstruction.
+    /* 0x0A */ {
+#if defined(REGION_JP)
+        gText_Item_Article_WoolX_Name, 489, gText_Item_Article_WoolX_Description
+#else
+        gText_Item_Article_WoolP_Name, 489, gText_Item_Article_WoolP_Description
+#endif
+    },
     /* 0x0B */ { gText_Item_Article_YarnS_Name, 482, gText_Item_Article_YarnS_Description },
     /* 0x0C */ { gText_Item_Article_YarnM_Name, 480, gText_Item_Article_YarnM_Description },
     /* 0x0D */ { gText_Item_Article_YarnL_Name, 479, gText_Item_Article_YarnL_Description },
@@ -1014,9 +1033,25 @@ ProductInfo const gProductInfo[] __attribute__((section(".rodata.item_product"))
     /* 0x3A */ { 150, ProductInfo::KIND_FOOD, FOOD_WHITE_GRASS },
     /* 0x3B */ { 100, ProductInfo::KIND_FOOD, FOOD_CHOCOLATE },
     /* 0x3C */ { 1000, ProductInfo::KIND_FOOD, FOOD_RELAX_TEA_LEAVES },
-    /* 0x3D */ { 50, ProductInfo::KIND_FOOD, FOOD_SMALL_FISH },
+    // Regional product-price difference -- BUG (JP product-price data): the
+    // JP v0 baseline swaps the small- and large-fish prices (200/50); documented
+    // JP values and the US table use 50/200.  Preserve the erroneous JP values
+    // for byte-exact reconstruction.
+    /* 0x3D */ {
+#if defined(REGION_JP)
+        200, ProductInfo::KIND_FOOD, FOOD_SMALL_FISH
+#else
+        50, ProductInfo::KIND_FOOD, FOOD_SMALL_FISH
+#endif
+    },
     /* 0x3E */ { 120, ProductInfo::KIND_FOOD, FOOD_MEDIUM_FISH },
-    /* 0x3F */ { 200, ProductInfo::KIND_FOOD, FOOD_LARGE_FISH },
+    /* 0x3F */ {
+#if defined(REGION_JP)
+        50, ProductInfo::KIND_FOOD, FOOD_LARGE_FISH
+#else
+        200, ProductInfo::KIND_FOOD, FOOD_LARGE_FISH
+#endif
+    },
     /* 0x40 */ { 10000, ProductInfo::KIND_ARTICLE, ARTICLE_PIRATE_TREASURE },
     /* 0x41 */ { 5000, ProductInfo::KIND_ARTICLE, ARTICLE_FOSSIL_OF_FISH },
     /* 0x42 */ { 200, ProductInfo::KIND_ARTICLE, ARTICLE_RED_MAGIC_GRASS },
@@ -1057,5 +1092,3 @@ ProductInfo const gProductInfo[] __attribute__((section(".rodata.item_product"))
     /* 0x65 */ { 62, ProductInfo::KIND_ARTICLE, ARTICLE_AGATE },
     /* 0x66 */ { 60, ProductInfo::KIND_ARTICLE, ARTICLE_AMETHYST },
 };
-
-#endif // REGION_JP

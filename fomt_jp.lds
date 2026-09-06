@@ -407,19 +407,19 @@ SECTIONS
         data/text/tool.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        asm/data/item_tables.o(.rodata.item_tool);
+        src/item.o(.rodata.item_tool);
         FILL(0xFF);
         data/text/food.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        asm/data/item_tables.o(.rodata.item_food);
+        src/item.o(.rodata.item_food);
         FILL(0xFF);
         data/text/article.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        asm/data/item_tables.o(.rodata.item_article);
+        src/item.o(.rodata.item_article);
         FILL(0xFF);
-        asm/data/item_tables.o(.rodata.item_product);
+        src/item.o(.rodata.item_product);
         . = 0xEFD48; /* JP counterpart of data_080F0348. */
         asm/data/data_080F0348.o(.rodata);
         FILL(0x00);
