@@ -162926,7 +162926,7 @@ func_08092A70: @ 0x08092A70
 	beq .L08092B28
 	adds r4, r5, #0
 	adds r4, #0x80
-	ldr r1, .L08092B24 @ =gUnk_081003F4
+	ldr r1, .L08092B24 @ =gText_GiftWrap_CannotWrap
 	adds r0, r4, #0
 	movs r2, #0
 	movs r3, #0
@@ -162939,13 +162939,13 @@ func_08092A70: @ 0x08092A70
 	adds r1, r5, r2
 	b .L08092C80
 	.align 2, 0
-.L08092B24: .4byte gUnk_081003F4
+.L08092B24: .4byte gText_GiftWrap_CannotWrap
 .L08092B28:
 	adds r4, r5, #0
 	adds r4, #0x80
-	ldr r1, .L08092B50 @ =gUnk_08100420
-	ldr r2, .L08092B54 @ =gUnk_08100430
-	ldr r3, .L08092B58 @ =gUnk_08100434
+	ldr r1, .L08092B50 @ =gText_GiftWrap_Confirm
+	ldr r2, .L08092B54 @ =gText_GiftWrap_Yes
+	ldr r3, .L08092B58 @ =gText_GiftWrap_No
 	str r6, [sp]
 	str r6, [sp, #4]
 	str r6, [sp, #8]
@@ -162959,9 +162959,9 @@ func_08092A70: @ 0x08092A70
 	adds r1, r5, r0
 	b .L08092CB8
 	.align 2, 0
-.L08092B50: .4byte gUnk_08100420
-.L08092B54: .4byte gUnk_08100430
-.L08092B58: .4byte gUnk_08100434
+.L08092B50: .4byte gText_GiftWrap_Confirm
+.L08092B54: .4byte gText_GiftWrap_Yes
+.L08092B58: .4byte gText_GiftWrap_No
 .L08092B5C:
 	ldr r0, [r4]
 	bl func_0800F388
@@ -162970,7 +162970,7 @@ func_08092A70: @ 0x08092A70
 	beq .L08092B8C
 	adds r4, r5, #0
 	adds r4, #0x80
-	ldr r1, .L08092B88 @ =gUnk_081003F4
+	ldr r1, .L08092B88 @ =gText_GiftWrap_CannotWrap
 	adds r0, r4, #0
 	movs r2, #0
 	movs r3, #0
@@ -162983,7 +162983,7 @@ func_08092A70: @ 0x08092A70
 	adds r1, r5, r2
 	b .L08092C80
 	.align 2, 0
-.L08092B88: .4byte gUnk_081003F4
+.L08092B88: .4byte gText_GiftWrap_CannotWrap
 .L08092B8C:
 	ldr r0, [r4]
 	bl func_0800F258
@@ -162999,9 +162999,9 @@ func_08092A70: @ 0x08092A70
 	bne .L08092C62
 	adds r4, r5, #0
 	adds r4, #0x80
-	ldr r1, .L08092BD0 @ =gUnk_08100420
-	ldr r2, .L08092BD4 @ =gUnk_08100430
-	ldr r3, .L08092BD8 @ =gUnk_08100434
+	ldr r1, .L08092BD0 @ =gText_GiftWrap_Confirm
+	ldr r2, .L08092BD4 @ =gText_GiftWrap_Yes
+	ldr r3, .L08092BD8 @ =gText_GiftWrap_No
 	str r0, [sp]
 	str r0, [sp, #4]
 	str r0, [sp, #8]
@@ -163016,13 +163016,13 @@ func_08092A70: @ 0x08092A70
 	str r6, [r0]
 	b .L08092CBC
 	.align 2, 0
-.L08092BD0: .4byte gUnk_08100420
-.L08092BD4: .4byte gUnk_08100430
-.L08092BD8: .4byte gUnk_08100434
+.L08092BD0: .4byte gText_GiftWrap_Confirm
+.L08092BD4: .4byte gText_GiftWrap_Yes
+.L08092BD8: .4byte gText_GiftWrap_No
 .L08092BDC:
 	adds r4, r5, #0
 	adds r4, #0x80
-	ldr r1, .L08092C00 @ =gUnk_08100438
+	ldr r1, .L08092C00 @ =gText_GiftWrap_DogWarning
 	adds r0, r4, #0
 	movs r2, #0
 	movs r3, #0
@@ -163036,7 +163036,7 @@ func_08092A70: @ 0x08092A70
 	str r6, [r0]
 	b .L08092C84
 	.align 2, 0
-.L08092C00: .4byte gUnk_08100438
+.L08092C00: .4byte gText_GiftWrap_DogWarning
 .L08092C04:
 	add r6, sp, #0x10
 	movs r2, #0x82
@@ -163081,7 +163081,7 @@ func_08092A70: @ 0x08092A70
 .L08092C62:
 	adds r4, r5, #0
 	adds r4, #0x80
-	ldr r1, .L08092C90 @ =gUnk_081003F4
+	ldr r1, .L08092C90 @ =gText_GiftWrap_CannotWrap
 	adds r0, r4, #0
 	movs r2, #0
 	movs r3, #0
@@ -163102,13 +163102,13 @@ func_08092A70: @ 0x08092A70
 	bl func_08008B6C
 	b .L08092CBC
 	.align 2, 0
-.L08092C90: .4byte gUnk_081003F4
+.L08092C90: .4byte gText_GiftWrap_CannotWrap
 .L08092C94:
 	adds r4, r5, #0
 	adds r4, #0x80
-	ldr r1, .L08092CC4 @ =gUnk_08100420
-	ldr r2, .L08092CC8 @ =gUnk_08100430
-	ldr r3, .L08092CCC @ =gUnk_08100434
+	ldr r1, .L08092CC4 @ =gText_GiftWrap_Confirm
+	ldr r2, .L08092CC8 @ =gText_GiftWrap_Yes
+	ldr r3, .L08092CCC @ =gText_GiftWrap_No
 	str r0, [sp]
 	str r0, [sp, #4]
 	str r0, [sp, #8]
@@ -163129,9 +163129,9 @@ func_08092A70: @ 0x08092A70
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L08092CC4: .4byte gUnk_08100420
-.L08092CC8: .4byte gUnk_08100430
-.L08092CCC: .4byte gUnk_08100434
+.L08092CC4: .4byte gText_GiftWrap_Confirm
+.L08092CC8: .4byte gText_GiftWrap_Yes
+.L08092CCC: .4byte gText_GiftWrap_No
 
 	thumb_func_start func_08092CD0
 func_08092CD0: @ 0x08092CD0
@@ -163229,7 +163229,7 @@ func_08092D64: @ 0x08092D64
 	adds r0, r7, #0
 	bl func_08008940
 	adds r2, r0, #0
-	ldr r0, .L08092FA0 @ =gUnk_08100450
+	ldr r0, .L08092FA0 @ =gText_GiftWrap_Tools
 	str r0, [sp]
 	add r4, sp, #4
 	movs r0, #1
@@ -163272,7 +163272,7 @@ func_08092D64: @ 0x08092D64
 	adds r0, r7, #0
 	bl func_08008940
 	adds r2, r0, #0
-	ldr r0, .L08092FA4 @ =gUnk_08100458
+	ldr r0, .L08092FA4 @ =gText_GiftWrap_Items
 	str r0, [sp]
 	movs r0, #1
 	mov r1, sb
@@ -163454,8 +163454,8 @@ func_08092D64: @ 0x08092D64
 	beq .L08092FBC
 	b .L08092F56
 	.align 2, 0
-.L08092FA0: .4byte gUnk_08100450
-.L08092FA4: .4byte gUnk_08100458
+.L08092FA0: .4byte gText_GiftWrap_Tools
+.L08092FA4: .4byte gText_GiftWrap_Items
 .L08092FA8: .4byte vtable_unk_080E5A28
 .L08092FAC: .4byte vtable_unk_080E5B80
 .L08092FB0: .4byte 0x00000889
@@ -163558,7 +163558,7 @@ func_08092D64: @ 0x08092D64
 	adds r4, r7, #0
 	adds r4, #0x80
 	adds r0, r4, #0
-	ldr r1, .L080930B4 @ =gUnk_08100460
+	ldr r1, .L080930B4 @ =gText_GiftWrap_Recommendation
 	movs r2, #0
 	movs r3, #0
 	bl func_08050DC8
@@ -163584,7 +163584,7 @@ func_08092D64: @ 0x08092D64
 	bl func_08092940
 	b .L08092F56
 	.align 2, 0
-.L080930B4: .4byte gUnk_08100460
+.L080930B4: .4byte gText_GiftWrap_Recommendation
 .L080930B8:
 	adds r0, r7, #0
 	adds r0, #0x88
@@ -163605,7 +163605,7 @@ func_08092D64: @ 0x08092D64
 	b .L08092F56
 .L080930DA:
 	adds r0, r4, #0
-	ldr r1, .L08093104 @ =gUnk_08100490
+	ldr r1, .L08093104 @ =gText_GiftWrap_Complete
 	movs r2, #0
 	movs r3, #0
 	bl func_08050DC8
@@ -163623,10 +163623,10 @@ func_08092D64: @ 0x08092D64
 	str r0, [r1]
 	b .L08092F56
 	.align 2, 0
-.L08093104: .4byte gUnk_08100490
+.L08093104: .4byte gText_GiftWrap_Complete
 .L08093108:
 	adds r0, r4, #0
-	ldr r1, .L08093124 @ =gUnk_081004BC
+	ldr r1, .L08093124 @ =gText_GiftWrap_SelectItem
 	movs r2, #0
 	movs r3, #0
 	bl func_08050DC8
@@ -163637,7 +163637,7 @@ func_08092D64: @ 0x08092D64
 	str r5, [r2]
 	b .L08092F56
 	.align 2, 0
-.L08093124: .4byte gUnk_081004BC
+.L08093124: .4byte gText_GiftWrap_SelectItem
 .L08093128:
 	adds r0, r7, #0
 	adds r0, #0x88

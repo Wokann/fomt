@@ -119,7 +119,16 @@
     .incbin "baserom_jp.gba", 0xFFAE0, (0xFFAE4 - 0xFFAE0)
 
     .section .rodata.blacksmith_upgrade_dynamic
-    .incbin "baserom_jp.gba", 0xFFCCC, (0x1005EA - 0xFFCCC)
+    .incbin "baserom_jp.gba", 0xFFCCC, (0xFFD54 - 0xFFCCC)
+
+    .section .rodata.gift_wrap_prefix
+    .incbin "baserom_jp.gba", 0xFFD54, (0xFFD64 - 0xFFD54)
+
+    .section .rodata.gift_wrap_trailer
+    .incbin "baserom_jp.gba", 0xFFE64, (0xFFE70 - 0xFFE64)
+
+    .section .rodata.link_communication
+    .incbin "baserom_jp.gba", 0xFFE70, (0x1005EA - 0xFFE70)
 
     .section .rodata.recovery_status_trailer_prefix
     .incbin "baserom_jp.gba", 0x1008F9, (0x1008FC - 0x1008F9)
@@ -879,49 +888,16 @@ gUnk_081003DC:
 gUnk_081003E0:
 	.incbin "baserom_us.gba", 0x1003E0, 0x10
 
+	.section .rodata.gift_wrap_prefix
+
 	.global gUnk_081003F0
 gUnk_081003F0:
 	.incbin "baserom_us.gba", 0x1003F0, 0x4
 
-	.global gUnk_081003F4
-gUnk_081003F4:
-	.incbin "baserom_us.gba", 0x1003F4, 0x2C
+	.section .rodata.gift_wrap_trailer
+	.incbin "baserom_us.gba", 0x1004D4, (0x1004E0 - 0x1004D4)
 
-	.global gUnk_08100420
-gUnk_08100420:
-	.incbin "baserom_us.gba", 0x100420, 0x10
-
-	.global gUnk_08100430
-gUnk_08100430:
-	.incbin "baserom_us.gba", 0x100430, 0x4
-
-	.global gUnk_08100434
-gUnk_08100434:
-	.incbin "baserom_us.gba", 0x100434, 0x4
-
-	.global gUnk_08100438
-gUnk_08100438:
-	.incbin "baserom_us.gba", 0x100438, 0x18
-
-	.global gUnk_08100450
-gUnk_08100450:
-	.incbin "baserom_us.gba", 0x100450, 0x8
-
-	.global gUnk_08100458
-gUnk_08100458:
-	.incbin "baserom_us.gba", 0x100458, 0x8
-
-	.global gUnk_08100460
-gUnk_08100460:
-	.incbin "baserom_us.gba", 0x100460, 0x30
-
-	.global gUnk_08100490
-gUnk_08100490:
-	.incbin "baserom_us.gba", 0x100490, 0x2C
-
-	.global gUnk_081004BC
-gUnk_081004BC:
-	.incbin "baserom_us.gba", 0x1004BC, 0x24
+	.section .rodata.link_communication
 
 	.global gUnk_081004E0
 gUnk_081004E0:
