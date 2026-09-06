@@ -118619,7 +118619,7 @@ func_0807B0F0: @ 0x0807B0F0
 	adds r0, r5, r2
 	str r1, [r0]
 	movs r0, #8
-	ldr r7, .L0807B168 @ =gUnk_080FD9EC
+	ldr r7, .L0807B168 @ =gText_PoultryShop_PageBreak
 	subs r1, #1
 .L0807B12C:
 	subs r0, #1
@@ -118651,7 +118651,7 @@ func_0807B0F0: @ 0x0807B0F0
 	bx r1
 	.align 2, 0
 .L0807B164: .4byte 0x000006EC
-.L0807B168: .4byte gUnk_080FD9EC
+.L0807B168: .4byte gText_PoultryShop_PageBreak
 .L0807B16C: .4byte 0x00002234
 .L0807B170: .4byte 0x000022B4
 .L0807B174:
@@ -118717,7 +118717,7 @@ func_0807B188: @ 0x0807B188
 	lsls r1, r3, #2
 	adds r1, r1, r3
 	lsls r1, r1, #2
-	ldr r2, .L0807B290 @ =gUnk_080FD988
+	ldr r2, .L0807B290 @ =gPoultryShopCatalog
 	add r0, sp, #8
 	adds r1, r1, r2
 	ldm r1!, {r2, r4, r7}
@@ -118794,7 +118794,7 @@ func_0807B188: @ 0x0807B188
 	bl GetIconId__C7Article
 	b .L0807B2AA
 	.align 2, 0
-.L0807B290: .4byte gUnk_080FD988
+.L0807B290: .4byte gPoultryShopCatalog
 .L0807B294: .4byte gUnk_086678A0
 .L0807B298:
 	mov r4, sp
@@ -119684,7 +119684,7 @@ func_0807B920: @ 0x0807B920
 	lsls r0, r1, #2
 	adds r0, r0, r1
 	lsls r0, r0, #2
-	ldr r2, .L0807B978 @ =gUnk_080FD988
+	ldr r2, .L0807B978 @ =gPoultryShopCatalog
 	mov r1, sp
 	adds r0, r0, r2
 	ldm r0!, {r2, r3, r4}
@@ -119693,7 +119693,7 @@ func_0807B920: @ 0x0807B920
 	stm r1!, {r2, r3}
 	ldr r5, .L0807B97C @ =0x00002234
 	add r5, r8
-	ldr r6, .L0807B980 @ =gUnk_080FD964
+	ldr r6, .L0807B980 @ =gText_PoultryShop_Empty
 	adds r0, r6, #0
 	bl strlen
 	adds r4, r0, #0
@@ -119719,9 +119719,9 @@ func_0807B920: @ 0x0807B920
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-.L0807B978: .4byte gUnk_080FD988
+.L0807B978: .4byte gPoultryShopCatalog
 .L0807B97C: .4byte 0x00002234
-.L0807B980: .4byte gUnk_080FD964
+.L0807B980: .4byte gText_PoultryShop_Empty
 .L0807B984: .4byte .L0807B988
 .L0807B988: @ jump table
 	.4byte .L0807B99C @ case 0
@@ -119776,7 +119776,7 @@ func_0807B920: @ 0x0807B920
 	beq .L0807BA3C
 	ldr r4, .L0807BA34 @ =0x00002234
 	add r4, r8
-	ldr r7, .L0807BA38 @ =gUnk_080FD9F0
+	ldr r7, .L0807BA38 @ =gText_PoultryShop_StatusSick
 	adds r0, r4, #0
 	bl strlen
 	adds r6, r4, r0
@@ -119802,7 +119802,7 @@ func_0807B920: @ 0x0807B920
 	.align 2, 0
 .L0807BA30: .4byte 0x000006AC
 .L0807BA34: .4byte 0x00002234
-.L0807BA38: .4byte gUnk_080FD9F0
+.L0807BA38: .4byte gText_PoultryShop_StatusSick
 .L0807BA3C:
 	mov r0, sl
 	bl IsUnhappy__C9Livestock
@@ -119812,7 +119812,7 @@ func_0807B920: @ 0x0807B920
 	beq .L0807BA88
 	ldr r4, .L0807BA80 @ =0x00002234
 	add r4, r8
-	ldr r7, .L0807BA84 @ =gUnk_080FD9FC
+	ldr r7, .L0807BA84 @ =gText_PoultryShop_StatusUnhappy
 	adds r0, r4, #0
 	bl strlen
 	adds r6, r4, r0
@@ -119837,11 +119837,11 @@ func_0807B920: @ 0x0807B920
 	b .L0807BABC
 	.align 2, 0
 .L0807BA80: .4byte 0x00002234
-.L0807BA84: .4byte gUnk_080FD9FC
+.L0807BA84: .4byte gText_PoultryShop_StatusUnhappy
 .L0807BA88:
 	ldr r4, .L0807BB94 @ =0x00002234
 	add r4, r8
-	ldr r3, .L0807BB98 @ =gUnk_080FDA10
+	ldr r3, .L0807BB98 @ =gText_PoultryShop_StatusHealthy
 	mov sb, r3
 	adds r0, r4, #0
 	bl strlen
@@ -119873,7 +119873,7 @@ func_0807B920: @ 0x0807B920
 	bgt .L0807BB04
 	ldr r4, .L0807BB94 @ =0x00002234
 	add r4, r8
-	ldr r0, .L0807BB9C @ =gUnk_080FDA20
+	ldr r0, .L0807BB9C @ =gText_PoultryShop_StatusSpacer
 	mov sb, r0
 	adds r0, r4, #0
 	bl strlen
@@ -119926,7 +119926,7 @@ func_0807B920: @ 0x0807B920
 	movs r0, #0
 	strb r0, [r1]
 .L0807BB42:
-	ldr r7, .L0807BBA0 @ =gUnk_080FDA24
+	ldr r7, .L0807BBA0 @ =gText_PoultryShop_Age
 	adds r0, r6, #0
 	bl strlen
 	adds r6, r6, r0
@@ -119966,9 +119966,9 @@ func_0807B920: @ 0x0807B920
 	b .L0807BBB8
 	.align 2, 0
 .L0807BB94: .4byte 0x00002234
-.L0807BB98: .4byte gUnk_080FDA10
-.L0807BB9C: .4byte gUnk_080FDA20
-.L0807BBA0: .4byte gUnk_080FDA24
+.L0807BB98: .4byte gText_PoultryShop_StatusHealthy
+.L0807BB9C: .4byte gText_PoultryShop_StatusSpacer
+.L0807BBA0: .4byte gText_PoultryShop_Age
 .L0807BBA4:
 	adds r0, r4, #0
 	movs r1, #0x1e
@@ -120029,7 +120029,7 @@ func_0807B920: @ 0x0807B920
 .L0807BC10:
 	ldr r4, .L0807BC48 @ =0x00002234
 	add r4, r8
-	ldr r2, .L0807BC4C @ =gUnk_080FDA40
+	ldr r2, .L0807BC4C @ =gText_PoultryShop_Spring
 	mov sb, r2
 	adds r0, r4, #0
 	bl strlen
@@ -120054,27 +120054,27 @@ func_0807B920: @ 0x0807B920
 	b .L0807BCA4
 	.align 2, 0
 .L0807BC48: .4byte 0x00002234
-.L0807BC4C: .4byte gUnk_080FDA40
+.L0807BC4C: .4byte gText_PoultryShop_Spring
 .L0807BC50:
 	ldr r4, .L0807BC58 @ =0x00002234
 	add r4, r8
-	ldr r7, .L0807BC5C @ =gUnk_080FDA48
+	ldr r7, .L0807BC5C @ =gText_PoultryShop_Summer
 	b .L0807BC76
 	.align 2, 0
 .L0807BC58: .4byte 0x00002234
-.L0807BC5C: .4byte gUnk_080FDA48
+.L0807BC5C: .4byte gText_PoultryShop_Summer
 .L0807BC60:
 	ldr r4, .L0807BC68 @ =0x00002234
 	add r4, r8
-	ldr r7, .L0807BC6C @ =gUnk_080FDA50
+	ldr r7, .L0807BC6C @ =gText_PoultryShop_Autumn
 	b .L0807BC76
 	.align 2, 0
 .L0807BC68: .4byte 0x00002234
-.L0807BC6C: .4byte gUnk_080FDA50
+.L0807BC6C: .4byte gText_PoultryShop_Autumn
 .L0807BC70:
 	ldr r4, .L0807BE5C @ =0x00002234
 	add r4, r8
-	ldr r7, .L0807BE60 @ =gUnk_080FDA58
+	ldr r7, .L0807BE60 @ =gText_PoultryShop_Winter
 .L0807BC76:
 	adds r0, r4, #0
 	bl strlen
@@ -120106,7 +120106,7 @@ func_0807B920: @ 0x0807B920
 	bgt .L0807BCE4
 	ldr r4, .L0807BE5C @ =0x00002234
 	add r4, r8
-	ldr r7, .L0807BE64 @ =gUnk_080FDA20
+	ldr r7, .L0807BE64 @ =gText_PoultryShop_StatusSpacer
 	adds r0, r4, #0
 	bl strlen
 	adds r6, r4, r0
@@ -120138,7 +120138,7 @@ func_0807B920: @ 0x0807B920
 	bl func_0804EC84
 	ldr r6, .L0807BE5C @ =0x00002234
 	add r6, r8
-	ldr r0, .L0807BE64 @ =gUnk_080FDA20
+	ldr r0, .L0807BE64 @ =gText_PoultryShop_StatusSpacer
 	mov sb, r0
 	adds r0, r6, #0
 	bl strlen
@@ -120184,7 +120184,7 @@ func_0807B920: @ 0x0807B920
 	movs r0, #0
 	strb r0, [r1]
 .L0807BD58:
-	ldr r7, .L0807BE68 @ =gUnk_080FDA60
+	ldr r7, .L0807BE68 @ =gText_PoultryShop_DailySellingPrice
 	adds r0, r6, #0
 	bl strlen
 	adds r6, r6, r0
@@ -120220,7 +120220,7 @@ func_0807B920: @ 0x0807B920
 	bgt .L0807BDD4
 	ldr r4, .L0807BE5C @ =0x00002234
 	add r4, r8
-	ldr r2, .L0807BE64 @ =gUnk_080FDA20
+	ldr r2, .L0807BE64 @ =gText_PoultryShop_StatusSpacer
 	mov sb, r2
 	adds r0, r4, #0
 	bl strlen
@@ -120273,7 +120273,7 @@ func_0807B920: @ 0x0807B920
 	movs r0, #0
 	strb r0, [r1]
 .L0807BE12:
-	ldr r7, .L0807BE70 @ =gUnk_080FDA78
+	ldr r7, .L0807BE70 @ =gText_PoultryShop_Currency
 	adds r0, r6, #0
 	bl strlen
 	adds r6, r6, r0
@@ -120311,11 +120311,11 @@ func_0807B920: @ 0x0807B920
 	bx r0
 	.align 2, 0
 .L0807BE5C: .4byte 0x00002234
-.L0807BE60: .4byte gUnk_080FDA58
-.L0807BE64: .4byte gUnk_080FDA20
-.L0807BE68: .4byte gUnk_080FDA60
+.L0807BE60: .4byte gText_PoultryShop_Winter
+.L0807BE64: .4byte gText_PoultryShop_StatusSpacer
+.L0807BE68: .4byte gText_PoultryShop_DailySellingPrice
 .L0807BE6C: .4byte 0x000003E7
-.L0807BE70: .4byte gUnk_080FDA78
+.L0807BE70: .4byte gText_PoultryShop_Currency
 
 	thumb_func_start func_0807BE74
 func_0807BE74: @ 0x0807BE74
@@ -120457,7 +120457,7 @@ func_0807BEC8: @ 0x0807BEC8
 	lsls r1, r2, #2
 	add r1, sb
 	lsls r1, r1, #2
-	ldr r2, .L0807C02C @ =gUnk_080FD988
+	ldr r2, .L0807C02C @ =gPoultryShopCatalog
 	add r0, sp, #0xc
 	adds r1, r1, r2
 	ldm r1!, {r3, r4, r5}
@@ -120545,7 +120545,7 @@ func_0807BEC8: @ 0x0807BEC8
 	add sb, r5
 	b .L0807C102
 	.align 2, 0
-.L0807C02C: .4byte gUnk_080FD988
+.L0807C02C: .4byte gPoultryShopCatalog
 .L0807C030: .4byte 0x00000714
 .L0807C034:
 	mov r8, r1
@@ -120822,7 +120822,7 @@ sub_0807C194: @ 0x0807C194
 	lsls r1, r3, #2
 	adds r1, r1, r3
 	lsls r1, r1, #2
-	ldr r2, .L0807C298 @ =gUnk_080FD988
+	ldr r2, .L0807C298 @ =gPoultryShopCatalog
 	adds r0, r5, #0
 	adds r1, r1, r2
 	ldm r1!, {r2, r4, r6}
@@ -120846,7 +120846,7 @@ sub_0807C194: @ 0x0807C194
 	bl .L0807D054
 	.align 2, 0
 .L0807C294: .4byte 0x000006A1
-.L0807C298: .4byte gUnk_080FD988
+.L0807C298: .4byte gPoultryShopCatalog
 .L0807C29C:
 	ldr r3, [r7, #8]
 	ldr r4, .L0807C2D0 @ =0x00001AA8
@@ -120861,7 +120861,7 @@ sub_0807C194: @ 0x0807C194
 	mov sl, r2
 	cmp r2, #0
 	beq .L0807C2DC
-	ldr r1, .L0807C2D4 @ =gUnk_080FDA7C
+	ldr r1, .L0807C2D4 @ =gText_PoultryShop_InsufficientGold
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r5, #0xd2
@@ -120874,7 +120874,7 @@ sub_0807C194: @ 0x0807C194
 	bl .L0807CF36
 	.align 2, 0
 .L0807C2D0: .4byte 0x00001AA8
-.L0807C2D4: .4byte gUnk_080FDA7C
+.L0807C2D4: .4byte gText_PoultryShop_InsufficientGold
 .L0807C2D8: .4byte 0x000006A4
 .L0807C2DC:
 	movs r1, #0x82
@@ -120884,7 +120884,7 @@ sub_0807C194: @ 0x0807C194
 	ldr r1, .L0807C2FC @ =0x000003E6
 	cmp r0, r1
 	bls .L0807C308
-	ldr r1, .L0807C300 @ =gUnk_080FDAA8
+	ldr r1, .L0807C300 @ =gText_PoultryShop_FeedBinFull
 	adds r0, r7, #0
 	bl func_080CABA0
 	ldr r2, .L0807C304 @ =0x000006A4
@@ -120892,7 +120892,7 @@ sub_0807C194: @ 0x0807C194
 	bl .L0807CF36
 	.align 2, 0
 .L0807C2FC: .4byte 0x000003E6
-.L0807C300: .4byte gUnk_080FDAA8
+.L0807C300: .4byte gText_PoultryShop_FeedBinFull
 .L0807C304: .4byte 0x000006A4
 .L0807C308:
 	ldr r0, [r7, #8]
@@ -120953,7 +120953,7 @@ sub_0807C194: @ 0x0807C194
 	mov r3, sl
 	strb r3, [r0]
 .L0807C38A:
-	ldr r5, .L0807C478 @ =gUnk_080FDAD4
+	ldr r5, .L0807C478 @ =gText_PoultryShop_BlankLinePair
 	mov sb, r5
 	adds r0, r4, #0
 	bl strlen
@@ -121064,7 +121064,7 @@ sub_0807C194: @ 0x0807C194
 .L0807C46C: .4byte 0x000003E7
 .L0807C470: .4byte 0x00000684
 .L0807C474: .4byte 0x000022B4
-.L0807C478: .4byte gUnk_080FDAD4
+.L0807C478: .4byte gText_PoultryShop_BlankLinePair
 .L0807C47C: .4byte gUnk_08117828
 .L0807C480: .4byte gUnk_08117814
 .L0807C484:
@@ -121080,7 +121080,7 @@ sub_0807C194: @ 0x0807C194
 .L0807C496:
 	cmp r2, #0
 	beq .L0807C4C4
-	ldr r1, .L0807C4BC @ =gUnk_080FDA7C
+	ldr r1, .L0807C4BC @ =gText_PoultryShop_InsufficientGold
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r5, #0xd2
@@ -121093,7 +121093,7 @@ sub_0807C194: @ 0x0807C194
 	bl .L0807CF36
 	.align 2, 0
 .L0807C4B8: .4byte 0x00001AA8
-.L0807C4BC: .4byte gUnk_080FDA7C
+.L0807C4BC: .4byte gText_PoultryShop_InsufficientGold
 .L0807C4C0: .4byte 0x000006A4
 .L0807C4C4:
 	movs r5, #0
@@ -121148,7 +121148,7 @@ sub_0807C194: @ 0x0807C194
 	str r1, [sp, #0x94]
 	cmp r1, #0
 	bne .L0807C564
-	ldr r1, .L0807C55C @ =gUnk_080FDADC
+	ldr r1, .L0807C55C @ =gText_PoultryShop_InventoryFull
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r4, #0xd2
@@ -121161,7 +121161,7 @@ sub_0807C194: @ 0x0807C194
 	bl .L0807CF36
 	.align 2, 0
 .L0807C558: .4byte 0x00001C34
-.L0807C55C: .4byte gUnk_080FDADC
+.L0807C55C: .4byte gText_PoultryShop_InventoryFull
 .L0807C560: .4byte 0x000006A4
 .L0807C564:
 	ldr r0, [r7, #8]
@@ -121252,7 +121252,7 @@ sub_0807C194: @ 0x0807C194
 	mov r3, sl
 	strb r3, [r0]
 .L0807C624:
-	ldr r5, .L0807C728 @ =gUnk_080FDAD4
+	ldr r5, .L0807C728 @ =gText_PoultryShop_BlankLinePair
 	mov sb, r5
 	adds r0, r4, #0
 	bl strlen
@@ -121374,7 +121374,7 @@ sub_0807C194: @ 0x0807C194
 .L0807C71C: .4byte 0x00001C38
 .L0807C720: .4byte 0x00001C34
 .L0807C724: .4byte 0x000022B4
-.L0807C728: .4byte gUnk_080FDAD4
+.L0807C728: .4byte gText_PoultryShop_BlankLinePair
 .L0807C72C: .4byte gUnk_08117828
 .L0807C730: .4byte gUnk_08117814
 .L0807C734: .4byte 0x00000684
@@ -121392,7 +121392,7 @@ sub_0807C194: @ 0x0807C194
 .L0807C74E:
 	cmp r2, #0
 	beq .L0807C77C
-	ldr r1, .L0807C774 @ =gUnk_080FDA7C
+	ldr r1, .L0807C774 @ =gText_PoultryShop_InsufficientGold
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r5, #0xd2
@@ -121405,7 +121405,7 @@ sub_0807C194: @ 0x0807C194
 	bl .L0807CF36
 	.align 2, 0
 .L0807C770: .4byte 0x00001AA8
-.L0807C774: .4byte gUnk_080FDA7C
+.L0807C774: .4byte gText_PoultryShop_InsufficientGold
 .L0807C778: .4byte 0x000006A4
 .L0807C77C:
 	movs r4, #0x82
@@ -121445,14 +121445,14 @@ sub_0807C194: @ 0x0807C194
 	subs r0, r3, r6
 	cmp r0, r5
 	bne .L0807C7D8
-	ldr r1, .L0807C7D4 @ =gUnk_080FDB0C
+	ldr r1, .L0807C7D4 @ =gText_PoultryShop_CoopFull
 	adds r0, r7, #0
 	bl func_080CABA0
 	b .L0807CF32
 	.align 2, 0
-.L0807C7D4: .4byte gUnk_080FDB0C
+.L0807C7D4: .4byte gText_PoultryShop_CoopFull
 .L0807C7D8:
-	ldr r1, .L0807C7F8 @ =gUnk_080FDB38
+	ldr r1, .L0807C7F8 @ =gText_PoultryShop_NameChickenPrompt
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r5, #0xd2
@@ -121466,7 +121466,7 @@ sub_0807C194: @ 0x0807C194
 	str r0, [r1]
 	bl .L0807D054
 	.align 2, 0
-.L0807C7F8: .4byte gUnk_080FDB38
+.L0807C7F8: .4byte gText_PoultryShop_NameChickenPrompt
 .L0807C7FC: .4byte 0x000006A4
 .L0807C800:
 	ldr r0, [r7, #8]
@@ -121524,12 +121524,12 @@ sub_0807C194: @ 0x0807C194
 	bl GetCapacity__C4Coop
 	cmp r5, r0
 	bne .L0807C880
-	ldr r1, .L0807C87C @ =gUnk_080FDB6C
+	ldr r1, .L0807C87C @ =gText_PoultryShop_NoChickensToSell
 	adds r0, r7, #0
 	bl func_080CABA0
 	b .L0807CF32
 	.align 2, 0
-.L0807C87C: .4byte gUnk_080FDB6C
+.L0807C87C: .4byte gText_PoultryShop_NoChickensToSell
 .L0807C880:
 	ldr r5, .L0807C8A8 @ =0x000006EC
 	adds r2, r7, r5
@@ -121660,7 +121660,7 @@ sub_0807C194: @ 0x0807C194
 	ldrb r0, [r0]
 	cmp r0, #0
 	beq .L0807C9A8
-	ldr r1, .L0807C9A4 @ =gUnk_080FDB9C
+	ldr r1, .L0807C9A4 @ =gText_PoultryShop_NotInterested
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r5, #0xd2
@@ -121670,9 +121670,9 @@ sub_0807C194: @ 0x0807C194
 	bl func_08050E50
 	b .L0807C9BC
 	.align 2, 0
-.L0807C9A4: .4byte gUnk_080FDB9C
+.L0807C9A4: .4byte gText_PoultryShop_NotInterested
 .L0807C9A8:
-	ldr r1, .L0807C9C8 @ =gUnk_080FDBC4
+	ldr r1, .L0807C9C8 @ =gText_PoultryShop_PurchaseDeclined
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r6, #0xd2
@@ -121687,7 +121687,7 @@ sub_0807C194: @ 0x0807C194
 	str r0, [r1]
 	b .L0807D054
 	.align 2, 0
-.L0807C9C8: .4byte gUnk_080FDBC4
+.L0807C9C8: .4byte gText_PoultryShop_PurchaseDeclined
 .L0807C9CC: .4byte 0x000006A4
 .L0807C9D0:
 	ldr r0, [r7, #0x14]
@@ -121733,7 +121733,7 @@ sub_0807C194: @ 0x0807C194
 	add r1, sp, #0x24
 	movs r2, #0
 	bl func_0804EC84
-	ldr r3, .L0807CAFC @ =gUnk_080FDBE8
+	ldr r3, .L0807CAFC @ =gText_PoultryShop_PricePromptPrefix
 	mov sb, r3
 	adds r0, r4, #0
 	bl strlen
@@ -121783,7 +121783,7 @@ sub_0807C194: @ 0x0807C194
 	movs r0, #0
 	strb r0, [r1]
 .L0807CA90:
-	ldr r5, .L0807CB00 @ =gUnk_080FDA78
+	ldr r5, .L0807CB00 @ =gText_PoultryShop_Currency
 	mov r8, r5
 	adds r0, r4, #0
 	bl strlen
@@ -121812,8 +121812,8 @@ sub_0807C194: @ 0x0807C194
 	movs r0, #0xd2
 	lsls r0, r0, #2
 	adds r4, r7, r0
-	ldr r2, .L0807CB04 @ =gUnk_080FDBF8
-	ldr r3, .L0807CB08 @ =gUnk_080FDBFC
+	ldr r2, .L0807CB04 @ =gText_PoultryShop_Yes
+	ldr r3, .L0807CB08 @ =gText_PoultryShop_No
 	movs r0, #0
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -121832,10 +121832,10 @@ sub_0807C194: @ 0x0807C194
 .L0807CAF0: .4byte 0x000006EC
 .L0807CAF4: .4byte 0x000006A1
 .L0807CAF8: .4byte 0x00002234
-.L0807CAFC: .4byte gUnk_080FDBE8
-.L0807CB00: .4byte gUnk_080FDA78
-.L0807CB04: .4byte gUnk_080FDBF8
-.L0807CB08: .4byte gUnk_080FDBFC
+.L0807CAFC: .4byte gText_PoultryShop_PricePromptPrefix
+.L0807CB00: .4byte gText_PoultryShop_Currency
+.L0807CB04: .4byte gText_PoultryShop_Yes
+.L0807CB08: .4byte gText_PoultryShop_No
 .L0807CB0C: .4byte 0x000006A4
 .L0807CB10:
 	ldr r3, .L0807CB58 @ =0x000006A3
@@ -121901,7 +121901,7 @@ sub_0807C194: @ 0x0807C194
 	lsls r1, r0, #2
 	adds r1, r1, r0
 	lsls r1, r1, #2
-	ldr r2, .L0807CBD4 @ =gUnk_080FD988
+	ldr r2, .L0807CBD4 @ =gPoultryShopCatalog
 	adds r0, r3, #0
 	adds r1, r1, r2
 	ldm r1!, {r2, r5, r6}
@@ -121930,7 +121930,7 @@ sub_0807C194: @ 0x0807C194
 	b .L0807CCF8
 	.align 2, 0
 .L0807CBD0: .4byte 0x00000684
-.L0807CBD4: .4byte gUnk_080FD988
+.L0807CBD4: .4byte gPoultryShopCatalog
 .L0807CBD8: .4byte 0x00001AA8
 .L0807CBDC:
 	ldr r0, [r7, #8]
@@ -121939,7 +121939,7 @@ sub_0807C194: @ 0x0807C194
 	adds r0, r0, r3
 	mov r1, r8
 	bl AddStoredBushels__4CoopUi
-	ldr r1, .L0807CC00 @ =gUnk_080FDC00
+	ldr r1, .L0807CC00 @ =gText_PoultryShop_FeedPurchaseComplete
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r4, #0xd2
@@ -121949,7 +121949,7 @@ sub_0807C194: @ 0x0807C194
 	bl func_08050E50
 	b .L0807CCF8
 	.align 2, 0
-.L0807CC00: .4byte gUnk_080FDC00
+.L0807CC00: .4byte gText_PoultryShop_FeedPurchaseComplete
 .L0807CC04:
 	movs r4, #0
 	ldr r0, [r7, #8]
@@ -122040,22 +122040,22 @@ sub_0807C194: @ 0x0807C194
 	bl AddAmountOf__9ToolChestUiUi
 	cmp r4, #0
 	beq .L0807CCD4
-	ldr r1, .L0807CCD0 @ =gUnk_080FDC58
+	ldr r1, .L0807CCD0 @ =gText_PoultryShop_PurchaseDeliveryPartial
 	b .L0807CCD6
 	.align 2, 0
 .L0807CCC8: .4byte 0x00001C34
 .L0807CCCC: .4byte 0x00001C38
-.L0807CCD0: .4byte gUnk_080FDC58
+.L0807CCD0: .4byte gText_PoultryShop_PurchaseDeliveryPartial
 .L0807CCD4:
-	ldr r1, .L0807CCE0 @ =gUnk_080FDCBC
+	ldr r1, .L0807CCE0 @ =gText_PoultryShop_MedicinePurchaseComplete
 .L0807CCD6:
 	adds r0, r7, #0
 	bl func_080CABA0
 	b .L0807CCEC
 	.align 2, 0
-.L0807CCE0: .4byte gUnk_080FDCBC
+.L0807CCE0: .4byte gText_PoultryShop_MedicinePurchaseComplete
 .L0807CCE4:
-	ldr r1, .L0807CD08 @ =gUnk_080FDD04
+	ldr r1, .L0807CD08 @ =gText_PoultryShop_PurchaseComplete
 	adds r0, r7, #0
 	bl func_080CABA0
 .L0807CCEC:
@@ -122074,7 +122074,7 @@ sub_0807C194: @ 0x0807C194
 	adds r1, r7, r3
 	b .L0807CF36
 	.align 2, 0
-.L0807CD08: .4byte gUnk_080FDD04
+.L0807CD08: .4byte gText_PoultryShop_PurchaseComplete
 .L0807CD0C: .4byte 0x000006A4
 .L0807CD10:
 	adds r0, r7, #0
@@ -122126,7 +122126,7 @@ sub_0807C194: @ 0x0807C194
 	lsls r1, r0, #2
 	adds r1, r1, r0
 	lsls r1, r1, #2
-	ldr r2, .L0807CE2C @ =gUnk_080FD988
+	ldr r2, .L0807CE2C @ =gPoultryShopCatalog
 	adds r0, r3, #0
 	adds r1, r1, r2
 	ldm r1!, {r2, r4, r5}
@@ -122175,7 +122175,7 @@ sub_0807C194: @ 0x0807C194
 	bl memcpy
 	strb r5, [r4, #6]
 	add r5, sp, #0x40
-	ldr r1, .L0807CE38 @ =gUnk_080FD964
+	ldr r1, .L0807CE38 @ =gText_PoultryShop_Empty
 	movs r0, #7
 	str r0, [sp]
 	adds r0, r5, #0
@@ -122210,15 +122210,15 @@ sub_0807C194: @ 0x0807C194
 	str r4, [r0]
 	b .L0807D054
 	.align 2, 0
-.L0807CE2C: .4byte gUnk_080FD988
+.L0807CE2C: .4byte gPoultryShopCatalog
 .L0807CE30: .4byte 0x00001AA8
 .L0807CE34: .4byte 0xFFFFFC00
-.L0807CE38: .4byte gUnk_080FD964
+.L0807CE38: .4byte gText_PoultryShop_Empty
 .L0807CE3C: .4byte 0x00000889
 .L0807CE40: .4byte 0x000006A4
 .L0807CE44: .4byte 0x00002318
 .L0807CE48:
-	ldr r1, .L0807CE70 @ =gUnk_080FDD1C
+	ldr r1, .L0807CE70 @ =gText_PoultryShop_ChickenPurchaseComplete
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r6, #0xd2
@@ -122237,7 +122237,7 @@ sub_0807C194: @ 0x0807C194
 	str r0, [r1]
 	b .L0807D054
 	.align 2, 0
-.L0807CE70: .4byte gUnk_080FDD1C
+.L0807CE70: .4byte gText_PoultryShop_ChickenPurchaseComplete
 .L0807CE74: .4byte 0x000006A4
 .L0807CE78:
 	movs r3, #0xd4
@@ -122248,7 +122248,7 @@ sub_0807C194: @ 0x0807C194
 	beq .L0807CE86
 	b .L0807D054
 .L0807CE86:
-	ldr r1, .L0807CEA0 @ =gUnk_080FDD68
+	ldr r1, .L0807CEA0 @ =gText_PoultryShop_PurchaseMorePrompt
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r4, #0xd2
@@ -122260,7 +122260,7 @@ sub_0807C194: @ 0x0807C194
 	adds r1, r7, r5
 	b .L0807CF36
 	.align 2, 0
-.L0807CEA0: .4byte gUnk_080FDD68
+.L0807CEA0: .4byte gText_PoultryShop_PurchaseMorePrompt
 .L0807CEA4: .4byte 0x000006A4
 .L0807CEA8:
 	movs r6, #0xd4
@@ -122320,7 +122320,7 @@ sub_0807C194: @ 0x0807C194
 	movs r0, #1
 	rsbs r0, r0, #0
 	str r0, [r7, #0x14]
-	ldr r1, .L0807CF3C @ =gUnk_080FDD68
+	ldr r1, .L0807CF3C @ =gText_PoultryShop_PurchaseMorePrompt
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r3, #0xd2
@@ -122336,7 +122336,7 @@ sub_0807C194: @ 0x0807C194
 	str r0, [r1]
 	b .L0807D054
 	.align 2, 0
-.L0807CF3C: .4byte gUnk_080FDD68
+.L0807CF3C: .4byte gText_PoultryShop_PurchaseMorePrompt
 .L0807CF40: .4byte 0x000006A4
 .L0807CF44:
 	movs r5, #0xd4
@@ -122381,7 +122381,7 @@ sub_0807C194: @ 0x0807C194
 	adds r0, r0, r3
 	ldr r1, [sp, #0x84]
 	bl Remove__4CoopUi
-	ldr r1, .L0807CFC8 @ =gUnk_080FDD84
+	ldr r1, .L0807CFC8 @ =gText_PoultryShop_ChickenSold
 	adds r0, r7, #0
 	bl func_080CABA0
 	adds r0, r4, #0
@@ -122399,7 +122399,7 @@ sub_0807C194: @ 0x0807C194
 	.align 2, 0
 .L0807CFC0: .4byte 0x000006AC
 .L0807CFC4: .4byte 0x00001AA8
-.L0807CFC8: .4byte gUnk_080FDD84
+.L0807CFC8: .4byte gText_PoultryShop_ChickenSold
 .L0807CFCC: .4byte 0x000006A4
 .L0807CFD0:
 	adds r0, r4, #0

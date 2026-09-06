@@ -505,6 +505,15 @@ SECTIONS
         . = 0xFBE9C; data/text/town_map.o(.rodata);
         . = 0xFC7E5; asm/data/data_080F9EB8.o(.rodata.town_map_padding);
         . = 0xFC7E8; asm/data/data_080F9EB8.o(.rodata.town_map_trailer);
+        . = 0xFD0D0; data/text/poultry_shop.o(.rodata.poultry_shop_menu);
+        . = 0xFD0E9; asm/data/data_080F9EB8.o(.rodata.poultry_shop_menu_padding);
+        . = 0xFD0EC; src/poultry_shop_data.o(.rodata.poultry_shop_catalog);
+        . = 0xFD150; data/text/poultry_shop.o(.rodata.poultry_shop_status_prefix);
+        . = 0xFD152; asm/data/data_080F9EB8.o(.rodata.poultry_shop_status_prefix_padding);
+        . = 0xFD154; data/text/poultry_shop.o(.rodata.poultry_shop_status);
+        . = 0xFD1E3; asm/data/data_080F9EB8.o(.rodata.poultry_shop_status_padding);
+        . = 0xFD1E4; data/text/poultry_shop.o(.rodata.poultry_shop_dialogue);
+        . = 0xFD552; asm/data/data_080F9EB8.o(.rodata.poultry_shop_trailer);
         . = 0xFF508; data/text/livestock_shop.o(.rodata.livestock_shop_menu);
         . = 0xFF539; asm/data/data_080F9EB8.o(.rodata.livestock_shop_menu_padding);
         . = 0xFF53C; src/livestock_shop_data.o(.rodata.livestock_shop_catalog);

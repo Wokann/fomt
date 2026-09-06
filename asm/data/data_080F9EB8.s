@@ -50,7 +50,19 @@
     .incbin "baserom_jp.gba", 0xFC7E5, (0xFC7E8 - 0xFC7E5)
 
     .section .rodata.town_map_trailer
-    .incbin "baserom_jp.gba", 0xFC7E8, (0xFF508 - 0xFC7E8)
+    .incbin "baserom_jp.gba", 0xFC7E8, (0xFD0D0 - 0xFC7E8)
+
+    .section .rodata.poultry_shop_menu_padding
+    .incbin "baserom_jp.gba", 0xFD0E9, (0xFD0EC - 0xFD0E9)
+
+    .section .rodata.poultry_shop_status_prefix_padding
+    .incbin "baserom_jp.gba", 0xFD152, (0xFD154 - 0xFD152)
+
+    .section .rodata.poultry_shop_status_padding
+    .incbin "baserom_jp.gba", 0xFD1E3, (0xFD1E4 - 0xFD1E3)
+
+    .section .rodata.poultry_shop_trailer
+    .incbin "baserom_jp.gba", 0xFD552, (0xFF508 - 0xFD552)
 
     .section .rodata.livestock_shop_menu_padding
     .incbin "baserom_jp.gba", 0xFF539, (0xFF53C - 0xFF539)
@@ -541,137 +553,17 @@ gUnk_080FD920:
 gUnk_080FD940:
 	.incbin "baserom_us.gba", 0xFD940, 0x24
 
-	.global gUnk_080FD964
-gUnk_080FD964:
-	.incbin "baserom_us.gba", 0xFD964, 0x24
+	.section .rodata.poultry_shop_menu_padding
+	.incbin "baserom_us.gba", 0xFD985, (0xFD988 - 0xFD985)
 
-	.global gUnk_080FD988
-gUnk_080FD988:
-	.incbin "baserom_us.gba", 0xFD988, 0x64
+	.section .rodata.poultry_shop_status_prefix_padding
+	.incbin "baserom_us.gba", 0xFD9EE, (0xFD9F0 - 0xFD9EE)
 
-	.global gUnk_080FD9EC
-gUnk_080FD9EC:
-	.incbin "baserom_us.gba", 0xFD9EC, 0x4
+	.section .rodata.poultry_shop_status_padding
+	.incbin "baserom_us.gba", 0xFDA7A, (0xFDA7C - 0xFDA7A)
 
-	.global gUnk_080FD9F0
-gUnk_080FD9F0:
-	.incbin "baserom_us.gba", 0xFD9F0, 0xC
-
-	.global gUnk_080FD9FC
-gUnk_080FD9FC:
-	.incbin "baserom_us.gba", 0xFD9FC, 0x14
-
-	.global gUnk_080FDA10
-gUnk_080FDA10:
-	.incbin "baserom_us.gba", 0xFDA10, 0x10
-
-	.global gUnk_080FDA20
-gUnk_080FDA20:
-	.incbin "baserom_us.gba", 0xFDA20, 0x4
-
-	.global gUnk_080FDA24
-gUnk_080FDA24:
-	.incbin "baserom_us.gba", 0xFDA24, 0x1C
-
-	.global gUnk_080FDA40
-gUnk_080FDA40:
-	.incbin "baserom_us.gba", 0xFDA40, 0x8
-
-	.global gUnk_080FDA48
-gUnk_080FDA48:
-	.incbin "baserom_us.gba", 0xFDA48, 0x8
-
-	.global gUnk_080FDA50
-gUnk_080FDA50:
-	.incbin "baserom_us.gba", 0xFDA50, 0x8
-
-	.global gUnk_080FDA58
-gUnk_080FDA58:
-	.incbin "baserom_us.gba", 0xFDA58, 0x8
-
-	.global gUnk_080FDA60
-gUnk_080FDA60:
-	.incbin "baserom_us.gba", 0xFDA60, 0x18
-
-	.global gUnk_080FDA78
-gUnk_080FDA78:
-	.incbin "baserom_us.gba", 0xFDA78, 0x4
-
-	.global gUnk_080FDA7C
-gUnk_080FDA7C:
-	.incbin "baserom_us.gba", 0xFDA7C, 0x2C
-
-	.global gUnk_080FDAA8
-gUnk_080FDAA8:
-	.incbin "baserom_us.gba", 0xFDAA8, 0x2C
-
-	.global gUnk_080FDAD4
-gUnk_080FDAD4:
-	.incbin "baserom_us.gba", 0xFDAD4, 0x8
-
-	.global gUnk_080FDADC
-gUnk_080FDADC:
-	.incbin "baserom_us.gba", 0xFDADC, 0x30
-
-	.global gUnk_080FDB0C
-gUnk_080FDB0C:
-	.incbin "baserom_us.gba", 0xFDB0C, 0x2C
-
-	.global gUnk_080FDB38
-gUnk_080FDB38:
-	.incbin "baserom_us.gba", 0xFDB38, 0x34
-
-	.global gUnk_080FDB6C
-gUnk_080FDB6C:
-	.incbin "baserom_us.gba", 0xFDB6C, 0x30
-
-	.global gUnk_080FDB9C
-gUnk_080FDB9C:
-	.incbin "baserom_us.gba", 0xFDB9C, 0x28
-
-	.global gUnk_080FDBC4
-gUnk_080FDBC4:
-	.incbin "baserom_us.gba", 0xFDBC4, 0x24
-
-	.global gUnk_080FDBE8
-gUnk_080FDBE8:
-	.incbin "baserom_us.gba", 0xFDBE8, 0x10
-
-	.global gUnk_080FDBF8
-gUnk_080FDBF8:
-	.incbin "baserom_us.gba", 0xFDBF8, 0x4
-
-	.global gUnk_080FDBFC
-gUnk_080FDBFC:
-	.incbin "baserom_us.gba", 0xFDBFC, 0x4
-
-	.global gUnk_080FDC00
-gUnk_080FDC00:
-	.incbin "baserom_us.gba", 0xFDC00, 0x58
-
-	.global gUnk_080FDC58
-gUnk_080FDC58:
-	.incbin "baserom_us.gba", 0xFDC58, 0x64
-
-	.global gUnk_080FDCBC
-gUnk_080FDCBC:
-	.incbin "baserom_us.gba", 0xFDCBC, 0x48
-
-	.global gUnk_080FDD04
-gUnk_080FDD04:
-	.incbin "baserom_us.gba", 0xFDD04, 0x18
-
-	.global gUnk_080FDD1C
-gUnk_080FDD1C:
-	.incbin "baserom_us.gba", 0xFDD1C, 0x4C
-
-	.global gUnk_080FDD68
-gUnk_080FDD68:
-	.incbin "baserom_us.gba", 0xFDD68, 0x1C
-
-	.global gUnk_080FDD84
-gUnk_080FDD84:
-	.incbin "baserom_us.gba", 0xFDD84, 0x54
+	.section .rodata.poultry_shop_trailer
+	.incbin "baserom_us.gba", 0xFDDCC, (0xFDDD8 - 0xFDDCC)
 
 	.global gUnk_080FDDD8
 gUnk_080FDDD8:
