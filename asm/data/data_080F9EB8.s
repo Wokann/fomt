@@ -45,6 +45,9 @@ gActorStateMaxValues:
     .incbin "baserom_jp.gba", 0x1031FC, 0x6
     .incbin "baserom_jp.gba", 0x103202, (0x1032C4 - 0x103202)
 
+    .section .rodata.fishing_results_text_padding
+    .incbin "baserom_jp.gba", 0x103509, (0x10350C - 0x103509)
+
     .section .rodata.fishing_results_trailer
     .incbin "baserom_jp.gba", 0x1035F8, (0x103BFC - 0x1035F8)
 
@@ -2018,6 +2021,9 @@ gActorStateMaxValues:
 	.global gUnk_081036D4
 gUnk_081036D4:
 	.incbin "baserom_us.gba", 0x1036D4, (0x103788 - 0x1036D4)
+
+	.section .rodata.fishing_results_text_padding
+	.incbin "baserom_us.gba", 0x103A16, (0x103A18 - 0x103A16)
 
 	.section .rodata.fishing_results_trailer
 	.incbin "baserom_us.gba", 0x103B04, (0x103B10 - 0x103B04)

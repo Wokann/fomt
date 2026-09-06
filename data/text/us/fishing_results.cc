@@ -1,178 +1,178 @@
 #include "fishing_results_text.hh"
 
-// US localized text fields selected by gFishingRecordNames.  Each field keeps
-// its original ROM capacity, including any trailing zero-fill.
+// Text storage selected by gFishingRecordNames.  Each independent string is
+// compiler-aligned to four bytes; the linker places this object as one ROM region.
 
-char const gText_FishingRecord_PirateFortune[16] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_PirateFortune[] =
     "Pirate Fortune";
 
-char const gText_FishingRecord_FossilOfFish[16] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_FossilOfFish[] =
     "Fossil of Fish";
 
-char const gText_FishingRecord_PowerBerry[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_PowerBerry[] =
     "Power Berry";
 
-char const gText_FishingRecord_MessageBottle[16] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_MessageBottle[] =
     "Message Bottle";
 
-char const gText_FishingRecord_EmptyCan[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_EmptyCan[] =
     "Empty Can";
 
-char const gText_FishingRecord_Branch[8] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Branch[] =
     "Branch";
 
-char const gText_FishingRecord_FishBones[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_FishBones[] =
     "Fish Bones";
 
-char const gText_FishingRecord_Boots[8] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Boots[] =
     "Boots";
 
-char const gText_FishingRecord_RockTrout[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_RockTrout[] =
     "Rock Trout";
 
-char const gText_FishingRecord_Scad[8] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Scad[] =
     "Scad";
 
-char const gText_FishingRecord_Fatminnow[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Fatminnow[] =
     "Fatminnow";
 
-char const gText_FishingRecord_CherrySalmon[16] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_CherrySalmon[] =
     "Cherry Salmon";
 
-char const gText_FishingRecord_Pigfish[8] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Pigfish[] =
     "Pigfish";
 
-char const gText_FishingRecord_Sardine[8] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Sardine[] =
     "Sardine";
 
-char const gText_FishingRecord_MountainTrout[16] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_MountainTrout[] =
     "Mountain Trout";
 
-char const gText_FishingRecord_Whitefish[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Whitefish[] =
     "Whitefish";
 
-char const gText_FishingRecord_Eel[4] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Eel[] =
     "Eel";
 
-char const gText_FishingRecord_Bitterling[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Bitterling[] =
     "Bitterling";
 
-char const gText_FishingRecord_Bonito[8] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Bonito[] =
     "Bonito";
 
-char const gText_FishingRecord_Fluke[8] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Fluke[] =
     "Fluke";
 
-char const gText_FishingRecord_Filefish[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Filefish[] =
     "Filefish";
 
-char const gText_FishingRecord_GoldenCarp[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_GoldenCarp[] =
     "Golden Carp";
 
-char const gText_FishingRecord_SilverCarp22[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_SilverCarp22[] =
     "Silver Carp";
 
-char const gText_FishingRecord_KelpBass[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_KelpBass[] =
     "Kelp Bass";
 
-char const gText_FishingRecord_Bighead[8] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Bighead[] =
     "Bighead";
 
-char const gText_FishingRecord_Salmon[8] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Salmon[] =
     "Salmon";
 
-char const gText_FishingRecord_Mackerel[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Mackerel[] =
     "Mackerel";
 
-char const gText_FishingRecord_Needlefish[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Needlefish[] =
     "Needlefish";
 
-char const gText_FishingRecord_SpanishMackerel[16] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_SpanishMackerel[] =
     "Sp. Mackerel";
 
-char const gText_FishingRecord_SauryPike[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_SauryPike[] =
     "Saury Pike";
 
-char const gText_FishingRecord_Dorado[8] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Dorado[] =
     "Dorado";
 
-char const gText_FishingRecord_RedSnapper[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_RedSnapper[] =
     "Red Snapper";
 
-char const gText_FishingRecord_Cod[4] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Cod[] =
     "Cod";
 
-char const gText_FishingRecord_Roach[8] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Roach[] =
     "Roach";
 
-char const gText_FishingRecord_BrownHakeling[16] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_BrownHakeling[] =
     "Brown Hakeling";
 
-char const gText_FishingRecord_RainbowTrout[16] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_RainbowTrout[] =
     "Rainbow Trout";
 
-char const gText_FishingRecord_Herring[8] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Herring[] =
     "Herring";
 
-char const gText_FishingRecord_Sandfish[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Sandfish[] =
     "Sandfish";
 
-char const gText_FishingRecord_Flounder[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Flounder[] =
     "Flounder";
 
-char const gText_FishingRecord_Blowfish[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Blowfish[] =
     "Blowfish";
 
-char const gText_FishingRecord_BlackBass[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_BlackBass[] =
     "Black Bass";
 
-char const gText_FishingRecord_Yellowtail[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Yellowtail[] =
     "Yellowtail";
 
-char const gText_FishingRecord_Bluegill[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Bluegill[] =
     "Bluegill";
 
-char const gText_FishingRecord_CrucianCarp[16] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_CrucianCarp[] =
     "Crucian Carp";
 
-char const gText_FishingRecord_Greenling[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Greenling[] =
     "Greenling";
 
-char const gText_FishingRecord_Tuna[8] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Tuna[] =
     "Tuna";
 
-char const gText_FishingRecord_OceanSunfish[16] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_OceanSunfish[] =
     "Ocean Sunfish";
 
-char const gText_FishingRecord_Lionfish[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Lionfish[] =
     "Lionfish";
 
-char const gText_FishingRecord_Rockfish[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Rockfish[] =
     "Rockfish";
 
-char const gText_FishingRecord_LargeSalmon[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_LargeSalmon[] =
     "L. Salmon";
 
-char const gText_FishingRecord_Snakehead[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Snakehead[] =
     "Snakehead";
 
-char const gText_FishingRecord_LakeSmelt[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_LakeSmelt[] =
     "Lake smelt";
 
-char const gText_FishingRecord_JapaneseHuchen[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_JapaneseHuchen[] =
     "Jp. Huchen";
 
-char const gText_FishingRecord_Monkfish[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Monkfish[] =
     "Monkfish";
 
-char const gText_FishingRecord_Catfish[8] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Catfish[] =
     "Catfish";
 
-char const gText_FishingRecord_Carp[8] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Carp[] =
     "Carp";
 
-char const gText_FishingRecord_Coelacanth[12] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Coelacanth[] =
     "Coelacanth";
 
-char const gText_FishingRecord_Squid[8] SECTION(".rodata.fishing_results") =
+char const gText_FishingRecord_Squid[] =
     "Squid";
