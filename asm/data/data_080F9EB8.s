@@ -97,8 +97,23 @@
     .section .rodata.livestock_shop_dialogue_padding
     .incbin "baserom_jp.gba", 0xFF9A2, (0xFF9A4 - 0xFF9A2)
 
-    .section .rodata.livestock_shop_trailer
-    .incbin "baserom_jp.gba", 0xFF9A4, (0xFFAE0 - 0xFF9A4)
+    .section .rodata.home_storage_prefix
+    .incbin "baserom_jp.gba", 0xFF9A4, (0xFF9B4 - 0xFF9A4)
+
+    .section .rodata.home_storage_fridge_trailer
+    .incbin "baserom_jp.gba", 0xFFA14, (0xFFA20 - 0xFFA14)
+
+    .section .rodata.home_storage_confirmation_padding
+    .incbin "baserom_jp.gba", 0xFFA30, (0xFFA34 - 0xFFA30)
+
+    .section .rodata.home_storage_tool_chest_category_trailer
+    .incbin "baserom_jp.gba", 0xFFA44, (0xFFA54 - 0xFFA44)
+
+    .section .rodata.home_storage_shelf_trailer
+    .incbin "baserom_jp.gba", 0xFFAB4, (0xFFAC4 - 0xFFAB4)
+
+    .section .rodata.home_storage_trailer
+    .incbin "baserom_jp.gba", 0xFFAD4, (0xFFAE0 - 0xFFAD4)
 
     .section .rodata.blacksmith_upgrade_prefix
     .incbin "baserom_jp.gba", 0xFFAE0, (0xFFAE4 - 0xFFAE0)
@@ -789,87 +804,36 @@ gUnk_080FF838:
 	.section .rodata.livestock_shop_trailer_prefix
 	.incbin "baserom_us.gba", 0x100024, (0x100030 - 0x100024)
 
-	.section .rodata.livestock_shop_trailer
+	.section .rodata.home_storage_prefix
 
 	.global gUnk_08100030
 gUnk_08100030:
 	.incbin "baserom_us.gba", 0x100030, 0x4
 
-	.global gUnk_08100034
-gUnk_08100034:
-	.incbin "baserom_us.gba", 0x100034, 0x50
+	.section .rodata.home_storage_fridge_trailer
+	.incbin "baserom_us.gba", 0x10009C, (0x1000A8 - 0x10009C)
 
-	.global gUnk_08100084
-gUnk_08100084:
-	.incbin "baserom_us.gba", 0x100084, 0x4
-
-	.global gUnk_08100088
-gUnk_08100088:
-	.incbin "baserom_us.gba", 0x100088, 0x4
-
-	.global gUnk_0810008C
-gUnk_0810008C:
-	.incbin "baserom_us.gba", 0x10008C, 0x8
-
-	.global gUnk_08100094
-gUnk_08100094:
-	.incbin "baserom_us.gba", 0x100094, 0x14
-
-	.global gUnk_081000A8
-gUnk_081000A8:
-	.incbin "baserom_us.gba", 0x1000A8, 0x4
-
-	.global gUnk_081000AC
-gUnk_081000AC:
-	.incbin "baserom_us.gba", 0x1000AC, 0x4
-
+	.section .rodata.home_storage_tool_chest_category_padding
 	.global gUnk_081000B0
 gUnk_081000B0:
 	.incbin "baserom_us.gba", 0x1000B0, 0x4
 
-	.global gUnk_081000B4
-gUnk_081000B4:
-	.incbin "baserom_us.gba", 0x1000B4, 0x8
-
-	.global gUnk_081000BC
-gUnk_081000BC:
-	.incbin "baserom_us.gba", 0x1000BC, 0x14
+	.section .rodata.home_storage_tool_chest_category_trailer
+	.incbin "baserom_us.gba", 0x1000C4, (0x1000D0 - 0x1000C4)
 
 	.global gUnk_081000D0
 gUnk_081000D0:
 	.incbin "baserom_us.gba", 0x1000D0, 0x4
 
-	.global gUnk_081000D4
-gUnk_081000D4:
-	.incbin "baserom_us.gba", 0x1000D4, 0x4C
-
-	.global gUnk_08100120
-gUnk_08100120:
-	.incbin "baserom_us.gba", 0x100120, 0x4
-
-	.global gUnk_08100124
-gUnk_08100124:
-	.incbin "baserom_us.gba", 0x100124, 0x4
-
-	.global gUnk_08100128
-gUnk_08100128:
-	.incbin "baserom_us.gba", 0x100128, 0x8
-
-	.global gUnk_08100130
-gUnk_08100130:
-	.incbin "baserom_us.gba", 0x100130, 0x14
+	.section .rodata.home_storage_shelf_trailer
+	.incbin "baserom_us.gba", 0x100138, (0x100144 - 0x100138)
 
 	.global gUnk_08100144
 gUnk_08100144:
 	.incbin "baserom_us.gba", 0x100144, 0x4
 
-	.global gUnk_08100148
-gUnk_08100148:
-	.incbin "baserom_us.gba", 0x100148, 0x8
-
-	.global gUnk_08100150
-gUnk_08100150:
-	.incbin "baserom_us.gba", 0x100150, 0x18
+	.section .rodata.home_storage_trailer
+	.incbin "baserom_us.gba", 0x10015C, (0x100168 - 0x10015C)
 
 	.section .rodata.blacksmith_upgrade_prefix
 
