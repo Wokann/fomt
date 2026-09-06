@@ -523,6 +523,13 @@ SECTIONS
         . = 0xFD830; data/text/clinic.o(.rodata.clinic_text);
         . = 0xFD9D6; asm/data/data_080F9EB8.o(.rodata.clinic_text_padding);
         . = 0xFD9D8; asm/data/data_080F9EB8.o(.rodata.clinic_trailer);
+        FILL(0x00);
+        . = 0xFE53C; data/text/blacksmith.o(.rodata.blacksmith_menu);
+        . = 0xFE6A0; asm/data/data_080F9EB8.o(.rodata.blacksmith_menu_padding);
+        FILL(0xFF);
+        . = 0xFE6A4; src/blacksmith_data.o(.rodata.blacksmith_catalog);
+        . = 0xFE77C; data/text/blacksmith.o(.rodata.blacksmith_dialogue);
+        . = 0xFEC84; asm/data/data_080F9EB8.o(.rodata.unextracted_after_blacksmith);
         . = 0xFF508; data/text/livestock_shop.o(.rodata.livestock_shop_menu);
         . = 0xFF539; asm/data/data_080F9EB8.o(.rodata.livestock_shop_menu_padding);
         . = 0xFF53C; src/livestock_shop_data.o(.rodata.livestock_shop_catalog);

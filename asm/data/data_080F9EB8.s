@@ -71,7 +71,13 @@
     .incbin "baserom_jp.gba", 0xFD9D6, (0xFD9D8 - 0xFD9D6)
 
     .section .rodata.clinic_trailer
-    .incbin "baserom_jp.gba", 0xFD9D8, (0xFF508 - 0xFD9D8)
+    .incbin "baserom_jp.gba", 0xFD9D8, (0xFE53C - 0xFD9D8)
+
+    .section .rodata.blacksmith_menu_padding
+    .incbin "baserom_jp.gba", 0xFE6A0, (0xFE6A4 - 0xFE6A0)
+
+    .section .rodata.unextracted_after_blacksmith
+    .incbin "baserom_jp.gba", 0xFEC84, (0xFF508 - 0xFEC84)
 
     .section .rodata.livestock_shop_menu_padding
     .incbin "baserom_jp.gba", 0xFF539, (0xFF53C - 0xFF539)
@@ -743,81 +749,13 @@ gUnk_080FEBEC:
 gUnk_080FEC14:
 	.incbin "baserom_us.gba", 0xFEC14, 0x30
 
+	.section .rodata.blacksmith_menu_prefix
 	.global gUnk_080FEC44
 gUnk_080FEC44:
-	.incbin "baserom_us.gba", 0xFEC44, 0x148
+	.incbin "baserom_us.gba", 0xFEC44, (0xFEC7C - 0xFEC44)
 
-	.global gUnk_080FED8C
-gUnk_080FED8C:
-	.incbin "baserom_us.gba", 0xFED8C, 0xDC
-
-	.global gUnk_080FEE68
-gUnk_080FEE68:
-	.incbin "baserom_us.gba", 0xFEE68, 0x70
-
-	.global gUnk_080FEED8
-gUnk_080FEED8:
-	.incbin "baserom_us.gba", 0xFEED8, 0x6C
-
-	.global gUnk_080FEF44
-gUnk_080FEF44:
-	.incbin "baserom_us.gba", 0xFEF44, 0x34
-
-	.global gUnk_080FEF78
-gUnk_080FEF78:
-	.incbin "baserom_us.gba", 0xFEF78, 0x34
-
-	.global gUnk_080FEFAC
-gUnk_080FEFAC:
-	.incbin "baserom_us.gba", 0xFEFAC, 0x94
-
-	.global gUnk_080FF040
-gUnk_080FF040:
-	.incbin "baserom_us.gba", 0xFF040, 0x11C
-
-	.global gUnk_080FF15C
-gUnk_080FF15C:
-	.incbin "baserom_us.gba", 0xFF15C, 0x1C
-
-	.global gUnk_080FF178
-gUnk_080FF178:
-	.incbin "baserom_us.gba", 0xFF178, 0x28
-
-	.global gUnk_080FF1A0
-gUnk_080FF1A0:
-	.incbin "baserom_us.gba", 0xFF1A0, 0x10
-
-	.global gUnk_080FF1B0
-gUnk_080FF1B0:
-	.incbin "baserom_us.gba", 0xFF1B0, 0x50
-
-	.global gUnk_080FF200
-gUnk_080FF200:
-	.incbin "baserom_us.gba", 0xFF200, 0x28
-
-	.global gUnk_080FF228
-gUnk_080FF228:
-	.incbin "baserom_us.gba", 0xFF228, 0x8
-
-	.global gUnk_080FF230
-gUnk_080FF230:
-	.incbin "baserom_us.gba", 0xFF230, 0x10
-
-	.global gUnk_080FF240
-gUnk_080FF240:
-	.incbin "baserom_us.gba", 0xFF240, 0x30
-
-	.global gUnk_080FF270
-gUnk_080FF270:
-	.incbin "baserom_us.gba", 0xFF270, 0x2C
-
-	.global gUnk_080FF29C
-gUnk_080FF29C:
-	.incbin "baserom_us.gba", 0xFF29C, 0x50
-
-	.global gUnk_080FF2EC
-gUnk_080FF2EC:
-	.incbin "baserom_us.gba", 0xFF2EC, 0x3BC
+	.section .rodata.unextracted_after_blacksmith
+	.incbin "baserom_us.gba", 0xFF350, (0xFF6A8 - 0xFF350)
 
 	.global gUnk_080FF6A8
 gUnk_080FF6A8:

@@ -132988,7 +132988,7 @@ func_0808268C: @ 0x0808268C
 	lsls r1, r3, #2
 	adds r1, r1, r3
 	lsls r1, r1, #2
-	ldr r2, .L08082750 @ =gUnk_080FED8C
+	ldr r2, .L08082750 @ =gBlacksmithCatalog
 	add r0, sp, #0xc
 	adds r1, r1, r2
 	ldm r1!, {r2, r5, r7}
@@ -133034,7 +133034,7 @@ func_0808268C: @ 0x0808268C
 	str r1, [sp, #0x50]
 	b .L08082946
 	.align 2, 0
-.L08082750: .4byte gUnk_080FED8C
+.L08082750: .4byte gBlacksmithCatalog
 .L08082754:
 	lsls r1, r1, #7
 	adds r1, r1, r3
@@ -133525,7 +133525,7 @@ func_08082A9C: @ 0x08082A9C
 	beq .L08082B60
 	cmp r5, #0x17
 	bne .L08082B3C
-	ldr r1, .L08082B38 @ =gUnk_080FEE68
+	ldr r1, .L08082B38 @ =gText_Blacksmith_InsufficientGoldAdamantite
 	adds r0, r4, #0
 	bl func_080CABA0
 	b .L08082B44
@@ -133533,9 +133533,9 @@ func_08082A9C: @ 0x08082A9C
 .L08082B2C: .4byte 0x00001C38
 .L08082B30: .4byte 0x00001C2C
 .L08082B34: .4byte 0x00001AA8
-.L08082B38: .4byte gUnk_080FEE68
+.L08082B38: .4byte gText_Blacksmith_InsufficientGoldAdamantite
 .L08082B3C:
-	ldr r1, .L08082B58 @ =gUnk_080FEED8
+	ldr r1, .L08082B58 @ =gText_Blacksmith_InsufficientGoldOrichalc
 	adds r0, r4, #0
 	bl func_080CABA0
 .L08082B44:
@@ -133549,7 +133549,7 @@ func_08082A9C: @ 0x08082A9C
 	movs r0, #3
 	b .L08082BFE
 	.align 2, 0
-.L08082B58: .4byte gUnk_080FEED8
+.L08082B58: .4byte gText_Blacksmith_InsufficientGoldOrichalc
 .L08082B5C: .4byte 0x000006A4
 .L08082B60:
 	ldr r1, .L08082B84 @ =0x000048DC
@@ -133564,7 +133564,7 @@ func_08082A9C: @ 0x08082A9C
 	ldr r1, .L08082B8C @ =0x000048E0
 	adds r0, r4, r1
 	str r6, [r0]
-	ldr r1, .L08082B90 @ =gUnk_080FEF44
+	ldr r1, .L08082B90 @ =gText_Blacksmith_MakerFiveDays
 	adds r0, r4, #0
 	bl func_080CABA0
 	b .L08082BAA
@@ -133572,7 +133572,7 @@ func_08082A9C: @ 0x08082A9C
 .L08082B84: .4byte 0x000048DC
 .L08082B88: .4byte 0x000048E4
 .L08082B8C: .4byte 0x000048E0
-.L08082B90: .4byte gUnk_080FEF44
+.L08082B90: .4byte gText_Blacksmith_MakerFiveDays
 .L08082B94:
 	ldr r0, .L08082BC0 @ =0x000048E4
 	adds r1, r4, r0
@@ -133581,7 +133581,7 @@ func_08082A9C: @ 0x08082A9C
 	ldr r1, .L08082BC4 @ =0x000048E0
 	adds r0, r4, r1
 	str r6, [r0]
-	ldr r1, .L08082BC8 @ =gUnk_080FEF78
+	ldr r1, .L08082BC8 @ =gText_Blacksmith_MakerOneDay
 	adds r0, r4, #0
 	bl func_080CABA0
 .L08082BAA:
@@ -133597,19 +133597,19 @@ func_08082A9C: @ 0x08082A9C
 	.align 2, 0
 .L08082BC0: .4byte 0x000048E4
 .L08082BC4: .4byte 0x000048E0
-.L08082BC8: .4byte gUnk_080FEF78
+.L08082BC8: .4byte gText_Blacksmith_MakerOneDay
 .L08082BCC: .4byte 0x000006A4
 .L08082BD0:
 	cmp r5, #0x17
 	bne .L08082BE4
-	ldr r1, .L08082BE0 @ =gUnk_080FEFAC
+	ldr r1, .L08082BE0 @ =gText_Blacksmith_InsufficientOreAdamantite
 	adds r0, r4, #0
 	bl func_080CABA0
 	b .L08082BEC
 	.align 2, 0
-.L08082BE0: .4byte gUnk_080FEFAC
+.L08082BE0: .4byte gText_Blacksmith_InsufficientOreAdamantite
 .L08082BE4:
-	ldr r1, .L08082C0C @ =gUnk_080FF040
+	ldr r1, .L08082C0C @ =gText_Blacksmith_InsufficientOreOrichalc
 	adds r0, r4, #0
 	bl func_080CABA0
 .L08082BEC:
@@ -133630,7 +133630,7 @@ func_08082A9C: @ 0x08082A9C
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L08082C0C: .4byte gUnk_080FF040
+.L08082C0C: .4byte gText_Blacksmith_InsufficientOreOrichalc
 .L08082C10: .4byte 0x000006A4
 
 	thumb_func_start func_08082C14
@@ -133641,7 +133641,7 @@ func_08082C14: @ 0x08082C14
 	lsls r0, r1, #2
 	adds r0, r0, r1
 	lsls r0, r0, #2
-	ldr r1, .L08082C40 @ =gUnk_080FED8C
+	ldr r1, .L08082C40 @ =gBlacksmithCatalog
 	adds r2, r0, r1
 	mov r1, sp
 	adds r0, r2, #0
@@ -133658,7 +133658,7 @@ func_08082C14: @ 0x08082C14
 	beq .L08082C64
 	b .L08082C6C
 	.align 2, 0
-.L08082C40: .4byte gUnk_080FED8C
+.L08082C40: .4byte gBlacksmithCatalog
 .L08082C44:
 	cmp r0, #3
 	bgt .L08082C6C
@@ -134145,7 +134145,7 @@ sub_08082F50: @ 0x08082F50
 	lsls r4, r3, #2
 	adds r1, r4, r3
 	lsls r1, r1, #2
-	ldr r2, .L0808303C @ =gUnk_080FED8C
+	ldr r2, .L0808303C @ =gBlacksmithCatalog
 	add r0, sp, #0x10
 	adds r1, r1, r2
 	ldm r1!, {r2, r5, r6}
@@ -134162,7 +134162,7 @@ sub_08082F50: @ 0x08082F50
 	mov pc, r0
 	.align 2, 0
 .L08083038: .4byte 0x000006A1
-.L0808303C: .4byte gUnk_080FED8C
+.L0808303C: .4byte gBlacksmithCatalog
 .L08083040: .4byte 0x08083044
 .L08083044:
 	.byte 0x70, 0x30, 0x08, 0x08, 0x94, 0x30, 0x08, 0x08, 0x94, 0x30, 0x08, 0x08
@@ -134196,14 +134196,14 @@ sub_08082F50: @ 0x08082F50
 	ldrb r0, [r0]
 	cmp r0, #0
 	beq .L08083180
-	ldr r1, .L0808317C @ =gUnk_080FF15C
+	ldr r1, .L0808317C @ =gText_Blacksmith_NeedAnythingElse
 	adds r0, r7, #0
 	bl func_080CABA0
 	b .L08083188
 	.align 2, 0
-.L0808317C: .4byte gUnk_080FF15C
+.L0808317C: .4byte gText_Blacksmith_NeedAnythingElse
 .L08083180:
-	ldr r1, .L080831B4 @ =gUnk_080FF178
+	ldr r1, .L080831B4 @ =gText_Blacksmith_NothingElse
 	adds r0, r7, #0
 	bl func_080CABA0
 .L08083188:
@@ -134227,7 +134227,7 @@ sub_08082F50: @ 0x08082F50
 	bl func_080C9020
 	bl .L08083A64
 	.align 2, 0
-.L080831B4: .4byte gUnk_080FF178
+.L080831B4: .4byte gText_Blacksmith_NothingElse
 .L080831B8: .4byte 0x000006A4
 .L080831BC:
 	ldr r0, [r7, #0x10]
@@ -134240,7 +134240,7 @@ sub_08082F50: @ 0x08082F50
 	lsls r1, r0, #2
 	adds r1, r1, r0
 	lsls r1, r1, #2
-	ldr r2, .L08083228 @ =gUnk_080FED8C
+	ldr r2, .L08083228 @ =gBlacksmithCatalog
 	add r0, sp, #0x10
 	adds r1, r1, r2
 	ldm r1!, {r2, r3, r6}
@@ -134278,7 +134278,7 @@ sub_08082F50: @ 0x08082F50
 	bl memcpy
 	b .L08083252
 	.align 2, 0
-.L08083228: .4byte gUnk_080FED8C
+.L08083228: .4byte gBlacksmithCatalog
 .L0808322C: .4byte 0x00001AA8
 .L08083230: .4byte 0x00001C34
 .L08083234:
@@ -134296,13 +134296,13 @@ sub_08082F50: @ 0x08082F50
 	movs r2, #1
 	bl AddAmountOfTool__8RucksackUiUi
 .L08083252:
-	ldr r1, .L08083260 @ =gUnk_080FF1A0
+	ldr r1, .L08083260 @ =gText_Blacksmith_PurchaseComplete
 	adds r0, r7, #0
 	bl func_080CABA0
 	b .L0808327C
 	.align 2, 0
 .L0808325C: .4byte 0x00001C38
-.L08083260: .4byte gUnk_080FF1A0
+.L08083260: .4byte gText_Blacksmith_PurchaseComplete
 .L08083264:
 	ldr r0, [r7, #8]
 	movs r5, #0xe0
@@ -134311,7 +134311,7 @@ sub_08082F50: @ 0x08082F50
 	ldr r1, [sp, #0x10]
 	movs r2, #1
 	bl AddAmountOf__9ToolChestUiUi
-	ldr r1, .L080832E0 @ =gUnk_080FF1B0
+	ldr r1, .L080832E0 @ =gText_Blacksmith_Delivery
 	adds r0, r7, #0
 	bl func_080CABA0
 .L0808327C:
@@ -134364,7 +134364,7 @@ sub_08082F50: @ 0x08082F50
 	str r0, [r1]
 	b .L08083A64
 	.align 2, 0
-.L080832E0: .4byte gUnk_080FF1B0
+.L080832E0: .4byte gText_Blacksmith_Delivery
 .L080832E4: .4byte 0x000006A4
 .L080832E8:
 	movs r4, #0xd4
@@ -134375,7 +134375,7 @@ sub_08082F50: @ 0x08082F50
 	beq .L080832F6
 	b .L08083A64
 .L080832F6:
-	ldr r1, .L08083310 @ =gUnk_080FF200
+	ldr r1, .L08083310 @ =gText_Blacksmith_PurchaseMore
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r5, #0xd2
@@ -134387,7 +134387,7 @@ sub_08082F50: @ 0x08082F50
 	adds r1, r7, r6
 	b .L08083764
 	.align 2, 0
-.L08083310: .4byte gUnk_080FF200
+.L08083310: .4byte gText_Blacksmith_PurchaseMore
 .L08083314: .4byte 0x000006A4
 .L08083318:
 	movs r1, #0xd4
@@ -134398,14 +134398,14 @@ sub_08082F50: @ 0x08082F50
 	beq .L08083326
 	b .L08083A64
 .L08083326:
-	ldr r1, .L08083334 @ =gUnk_080FF200
+	ldr r1, .L08083334 @ =gText_Blacksmith_PurchaseMore
 	adds r0, r7, #0
 	bl func_080CABA0
 	ldr r2, .L08083338 @ =0x000006A4
 	adds r1, r7, r2
 	b .L08083764
 	.align 2, 0
-.L08083334: .4byte gUnk_080FF200
+.L08083334: .4byte gText_Blacksmith_PurchaseMore
 .L08083338: .4byte 0x000006A4
 .L0808333C:
 	movs r3, #0xd4
@@ -134441,8 +134441,8 @@ sub_08082F50: @ 0x08082F50
 	movs r0, #0xd2
 	lsls r0, r0, #2
 	adds r4, r7, r0
-	ldr r1, .L080833A4 @ =gUnk_080FF228
-	ldr r2, .L080833A8 @ =gUnk_080FF230
+	ldr r1, .L080833A4 @ =gText_Blacksmith_MakeIt
+	ldr r2, .L080833A8 @ =gText_Blacksmith_DontMakeIt
 	movs r0, #0
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -134459,8 +134459,8 @@ sub_08082F50: @ 0x08082F50
 	str r0, [r1]
 	b .L08083A64
 	.align 2, 0
-.L080833A4: .4byte gUnk_080FF228
-.L080833A8: .4byte gUnk_080FF230
+.L080833A4: .4byte gText_Blacksmith_MakeIt
+.L080833A8: .4byte gText_Blacksmith_DontMakeIt
 .L080833AC: .4byte 0x000006A4
 .L080833B0:
 	movs r3, #0xd4
@@ -134484,7 +134484,7 @@ sub_08082F50: @ 0x08082F50
 .L080833D4:
 	b .L08083A64
 .L080833D6:
-	ldr r1, .L08083408 @ =gUnk_080FF240
+	ldr r1, .L08083408 @ =gText_Blacksmith_StartWork
 	adds r0, r7, #0
 	bl func_080CABA0
 	adds r0, r4, #0
@@ -134508,7 +134508,7 @@ sub_08082F50: @ 0x08082F50
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-.L08083408: .4byte gUnk_080FF240
+.L08083408: .4byte gText_Blacksmith_StartWork
 .L0808340C: .4byte .L08083410
 .L08083410: @ jump table
 	.4byte .L0808342C @ case 0
@@ -134621,7 +134621,7 @@ sub_08082F50: @ 0x08082F50
 .L08083500: .4byte 0x000048E4
 .L08083504: .4byte 0x000006A4
 .L08083508:
-	ldr r1, .L08083520 @ =gUnk_080FF270
+	ldr r1, .L08083520 @ =gText_Blacksmith_CannotChangeMind
 	adds r0, r7, #0
 	bl func_080CABA0
 	adds r0, r4, #0
@@ -134632,7 +134632,7 @@ sub_08082F50: @ 0x08082F50
 	str r5, [r0]
 	b .L08083A64
 	.align 2, 0
-.L08083520: .4byte gUnk_080FF270
+.L08083520: .4byte gText_Blacksmith_CannotChangeMind
 .L08083524: .4byte 0x000006A4
 .L08083528:
 	movs r2, #0xd4
@@ -134705,7 +134705,7 @@ sub_08082F50: @ 0x08082F50
 	bl GetSize__C8Rucksack
 	cmp r4, r0
 	bne .L080835E8
-	ldr r1, .L080835E0 @ =gUnk_080FF29C
+	ldr r1, .L080835E0 @ =gText_Blacksmith_NoToolToUpgrade
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r2, #0xd2
@@ -134718,7 +134718,7 @@ sub_08082F50: @ 0x08082F50
 	b .L08083764
 	.align 2, 0
 .L080835DC: .4byte 0x00001C38
-.L080835E0: .4byte gUnk_080FF29C
+.L080835E0: .4byte gText_Blacksmith_NoToolToUpgrade
 .L080835E4: .4byte 0x000006A4
 .L080835E8:
 	ldr r0, [r7, #8]
@@ -134876,7 +134876,7 @@ sub_08082F50: @ 0x08082F50
 	bl GetSize__C8Rucksack
 	cmp r4, r0
 	bne .L08083778
-	ldr r1, .L08083770 @ =gUnk_080FF2EC
+	ldr r1, .L08083770 @ =gText_Blacksmith_NoOreToUpgrade
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r3, #0xd2
@@ -134892,7 +134892,7 @@ sub_08082F50: @ 0x08082F50
 	b .L08083A64
 	.align 2, 0
 .L0808376C: .4byte 0x00001C38
-.L08083770: .4byte gUnk_080FF2EC
+.L08083770: .4byte gText_Blacksmith_NoOreToUpgrade
 .L08083774: .4byte 0x000006A4
 .L08083778:
 	ldr r0, [sp, #0x28]
@@ -135153,7 +135153,7 @@ sub_08082F50: @ 0x08082F50
 	adds r0, r6, #0
 	adds r1, r4, #0
 	bl func_0800EB34
-	ldr r1, .L080839E4 @ =gUnk_080FF240
+	ldr r1, .L080839E4 @ =gText_Blacksmith_StartWork
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r4, #0xd2
@@ -135173,7 +135173,7 @@ sub_08082F50: @ 0x08082F50
 .L080839D8: .4byte 0x000048E0
 .L080839DC: .4byte 0x00001BD8
 .L080839E0: .4byte 0xFFFFFC00
-.L080839E4: .4byte gUnk_080FF240
+.L080839E4: .4byte gText_Blacksmith_StartWork
 .L080839E8: .4byte 0x000006A4
 .L080839EC:
 	movs r6, #0xd4
