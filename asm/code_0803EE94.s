@@ -1561,14 +1561,14 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r1, r1, r0
 	b .L0804057C
 .L0804057A:
-	ldr r1, .L08040588 @ =0x080F9EB8
+	ldr r1, .L08040588 @ =gText_ScriptEngineUi_Error
 .L0804057C:
 	adds r0, r2, #0
 	movs r2, #0x40
 	bl func_0801268C
 	bl .L0804168A
 	.align 2, 0
-.L08040588: .4byte 0x080F9EB8
+.L08040588: .4byte gText_ScriptEngineUi_Error
 .L0804058C:
 	movs r0, #0xda
 	lsls r0, r0, #1
@@ -1602,14 +1602,14 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r1, r1, r0
 	b .L080405CA
 .L080405C8:
-	ldr r1, .L080405D8 @ =0x080F9EB8
+	ldr r1, .L080405D8 @ =gText_ScriptEngineUi_Error
 .L080405CA:
 	adds r0, r2, #0
 	movs r2, #0
 	bl func_0801268C
 	bl .L0804168A
 	.align 2, 0
-.L080405D8: .4byte 0x080F9EB8
+.L080405D8: .4byte gText_ScriptEngineUi_Error
 .L080405DC:
 	movs r3, #0xda
 	lsls r3, r3, #1
@@ -1643,7 +1643,7 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r1, r1, r0
 	b .L0804061A
 .L08040618:
-	ldr r1, .L08040628 @ =0x080F9EB8
+	ldr r1, .L08040628 @ =gText_ScriptEngineUi_Error
 .L0804061A:
 	movs r2, #0x80
 	lsls r2, r2, #1
@@ -1651,7 +1651,7 @@ func_0803F8DC: @ 0x0803F8DC
 	bl func_0801268C
 	bl .L0804168A
 	.align 2, 0
-.L08040628: .4byte 0x080F9EB8
+.L08040628: .4byte gText_ScriptEngineUi_Error
 .L0804062C:
 	movs r6, #0xda
 	lsls r6, r6, #1
@@ -1708,13 +1708,13 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r1, r1, r0
 	b .L08040698
 .L08040696:
-	ldr r1, .L080406A4 @ =0x080F9EB8
+	ldr r1, .L080406A4 @ =gText_ScriptEngineUi_Error
 .L08040698:
 	adds r0, r2, #0
 	bl func_08012720
 	bl .L08045572
 	.align 2, 0
-.L080406A4: .4byte 0x080F9EB8
+.L080406A4: .4byte gText_ScriptEngineUi_Error
 .L080406A8:
 	movs r6, #0xd5
 	lsls r6, r6, #2
@@ -1782,7 +1782,7 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r6, r1, r0
 	b .L08040728
 .L08040726:
-	ldr r6, .L0804073C @ =0x080F9EB8
+	ldr r6, .L0804073C @ =gText_ScriptEngineUi_Error
 .L08040728:
 	cmp r7, r4
 	bhi .L08040740
@@ -1794,9 +1794,9 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r2, r1, r0
 	b .L08040742
 	.align 2, 0
-.L0804073C: .4byte 0x080F9EB8
+.L0804073C: .4byte gText_ScriptEngineUi_Error
 .L08040740:
-	ldr r2, .L08040758 @ =0x080F9EB8
+	ldr r2, .L08040758 @ =gText_ScriptEngineUi_Error
 .L08040742:
 	cmp r8, r4
 	bhi .L0804075C
@@ -1809,9 +1809,9 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r3, r1, r0
 	b .L0804075E
 	.align 2, 0
-.L08040758: .4byte 0x080F9EB8
+.L08040758: .4byte gText_ScriptEngineUi_Error
 .L0804075C:
-	ldr r3, .L08040778 @ =0x080F9EB8
+	ldr r3, .L08040778 @ =gText_ScriptEngineUi_Error
 .L0804075E:
 	movs r4, #0xd5
 	lsls r4, r4, #2
@@ -1824,7 +1824,7 @@ func_0803F8DC: @ 0x0803F8DC
 	bl func_08012860
 	bl .L0804168A
 	.align 2, 0
-.L08040778: .4byte 0x080F9EB8
+.L08040778: .4byte gText_ScriptEngineUi_Error
 .L0804077C:
 	adds r3, r5, #0
 	adds r3, #0x24
@@ -1892,7 +1892,7 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r7, r1, r0
 	b .L080407F8
 .L080407F6:
-	ldr r7, .L0804080C @ =0x080F9EB8
+	ldr r7, .L0804080C @ =gText_ScriptEngineUi_Error
 .L080407F8:
 	cmp r6, r4
 	bhi .L08040810
@@ -1904,9 +1904,9 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r2, r1, r0
 	b .L08040812
 	.align 2, 0
-.L0804080C: .4byte 0x080F9EB8
+.L0804080C: .4byte gText_ScriptEngineUi_Error
 .L08040810:
-	ldr r2, .L08040828 @ =0x080F9EB8
+	ldr r2, .L08040828 @ =gText_ScriptEngineUi_Error
 .L08040812:
 	cmp r8, r4
 	bhi .L0804082C
@@ -1919,9 +1919,9 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r3, r1, r0
 	b .L0804082E
 	.align 2, 0
-.L08040828: .4byte 0x080F9EB8
+.L08040828: .4byte gText_ScriptEngineUi_Error
 .L0804082C:
-	ldr r3, .L08040844 @ =0x080F9EB8
+	ldr r3, .L08040844 @ =gText_ScriptEngineUi_Error
 .L0804082E:
 	cmp sb, r4
 	bhi .L08040848
@@ -1934,9 +1934,9 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r1, r1, r0
 	b .L0804084A
 	.align 2, 0
-.L08040844: .4byte 0x080F9EB8
+.L08040844: .4byte gText_ScriptEngineUi_Error
 .L08040848:
-	ldr r1, .L08040864 @ =0x080F9EB8
+	ldr r1, .L08040864 @ =gText_ScriptEngineUi_Error
 .L0804084A:
 	movs r6, #0xd5
 	lsls r6, r6, #2
@@ -1949,7 +1949,7 @@ func_0803F8DC: @ 0x0803F8DC
 	bl func_08012860
 	bl .L0804168A
 	.align 2, 0
-.L08040864: .4byte 0x080F9EB8
+.L08040864: .4byte gText_ScriptEngineUi_Error
 .L08040868:
 	adds r3, r5, #0
 	adds r3, #0x24
@@ -2028,7 +2028,7 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r7, r1, r0
 	b .L080408F8
 .L080408F6:
-	ldr r7, .L0804090C @ =0x080F9EB8
+	ldr r7, .L0804090C @ =gText_ScriptEngineUi_Error
 .L080408F8:
 	cmp r6, r4
 	bhi .L08040910
@@ -2040,9 +2040,9 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r2, r1, r0
 	b .L08040912
 	.align 2, 0
-.L0804090C: .4byte 0x080F9EB8
+.L0804090C: .4byte gText_ScriptEngineUi_Error
 .L08040910:
-	ldr r2, .L08040928 @ =0x080F9EB8
+	ldr r2, .L08040928 @ =gText_ScriptEngineUi_Error
 .L08040912:
 	cmp r8, r4
 	bhi .L0804092C
@@ -2055,9 +2055,9 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r3, r1, r0
 	b .L0804092E
 	.align 2, 0
-.L08040928: .4byte 0x080F9EB8
+.L08040928: .4byte gText_ScriptEngineUi_Error
 .L0804092C:
-	ldr r3, .L08040944 @ =0x080F9EB8
+	ldr r3, .L08040944 @ =gText_ScriptEngineUi_Error
 .L0804092E:
 	cmp sb, r4
 	bhi .L08040948
@@ -2070,9 +2070,9 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r6, r1, r0
 	b .L0804094A
 	.align 2, 0
-.L08040944: .4byte 0x080F9EB8
+.L08040944: .4byte gText_ScriptEngineUi_Error
 .L08040948:
-	ldr r6, .L08040960 @ =0x080F9EB8
+	ldr r6, .L08040960 @ =gText_ScriptEngineUi_Error
 .L0804094A:
 	cmp sl, r4
 	bhi .L08040964
@@ -2085,9 +2085,9 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r1, r1, r0
 	b .L08040966
 	.align 2, 0
-.L08040960: .4byte 0x080F9EB8
+.L08040960: .4byte gText_ScriptEngineUi_Error
 .L08040964:
-	ldr r1, .L0804097C @ =0x080F9EB8
+	ldr r1, .L0804097C @ =gText_ScriptEngineUi_Error
 .L08040966:
 	movs r4, #0xd5
 	lsls r4, r4, #2
@@ -2099,7 +2099,7 @@ func_0803F8DC: @ 0x0803F8DC
 	bl func_08012860
 	bl .L0804168A
 	.align 2, 0
-.L0804097C: .4byte 0x080F9EB8
+.L0804097C: .4byte gText_ScriptEngineUi_Error
 .L08040980:
 	adds r3, r5, #0
 	adds r3, #0x24
@@ -2145,7 +2145,7 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r3, r1, r0
 	b .L080409D4
 .L080409D2:
-	ldr r3, .L080409E8 @ =0x080F9EB8
+	ldr r3, .L080409E8 @ =gText_ScriptEngineUi_Error
 .L080409D4:
 	cmp r6, r4
 	bhi .L080409EC
@@ -2157,9 +2157,9 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r2, r1, r0
 	b .L080409EE
 	.align 2, 0
-.L080409E8: .4byte 0x080F9EB8
+.L080409E8: .4byte gText_ScriptEngineUi_Error
 .L080409EC:
-	ldr r2, .L08040A0C @ =0x080F9EB8
+	ldr r2, .L08040A0C @ =gText_ScriptEngineUi_Error
 .L080409EE:
 	movs r4, #0xd5
 	lsls r4, r4, #2
@@ -2174,7 +2174,7 @@ func_0803F8DC: @ 0x0803F8DC
 	bl func_080128D0
 	bl .L0804168A
 	.align 2, 0
-.L08040A0C: .4byte 0x080F9EB8
+.L08040A0C: .4byte gText_ScriptEngineUi_Error
 .L08040A10:
 	adds r3, r5, #0
 	adds r3, #0x24
@@ -2231,7 +2231,7 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r6, r1, r0
 	b .L08040A78
 .L08040A76:
-	ldr r6, .L08040A8C @ =0x080F9EB8
+	ldr r6, .L08040A8C @ =gText_ScriptEngineUi_Error
 .L08040A78:
 	cmp r7, r4
 	bhi .L08040A90
@@ -2243,9 +2243,9 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r2, r1, r0
 	b .L08040A92
 	.align 2, 0
-.L08040A8C: .4byte 0x080F9EB8
+.L08040A8C: .4byte gText_ScriptEngineUi_Error
 .L08040A90:
-	ldr r2, .L08040AA8 @ =0x080F9EB8
+	ldr r2, .L08040AA8 @ =gText_ScriptEngineUi_Error
 .L08040A92:
 	cmp r8, r4
 	bhi .L08040AAC
@@ -2258,9 +2258,9 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r3, r1, r0
 	b .L08040AAE
 	.align 2, 0
-.L08040AA8: .4byte 0x080F9EB8
+.L08040AA8: .4byte gText_ScriptEngineUi_Error
 .L08040AAC:
-	ldr r3, .L08040AC8 @ =0x080F9EB8
+	ldr r3, .L08040AC8 @ =gText_ScriptEngineUi_Error
 .L08040AAE:
 	movs r4, #0xd5
 	lsls r4, r4, #2
@@ -2274,7 +2274,7 @@ func_0803F8DC: @ 0x0803F8DC
 	bl func_080128D0
 	bl .L0804168A
 	.align 2, 0
-.L08040AC8: .4byte 0x080F9EB8
+.L08040AC8: .4byte gText_ScriptEngineUi_Error
 .L08040ACC:
 	adds r3, r5, #0
 	adds r3, #0x24
@@ -2342,7 +2342,7 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r7, r1, r0
 	b .L08040B48
 .L08040B46:
-	ldr r7, .L08040B5C @ =0x080F9EB8
+	ldr r7, .L08040B5C @ =gText_ScriptEngineUi_Error
 .L08040B48:
 	cmp r6, r4
 	bhi .L08040B60
@@ -2354,9 +2354,9 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r2, r1, r0
 	b .L08040B62
 	.align 2, 0
-.L08040B5C: .4byte 0x080F9EB8
+.L08040B5C: .4byte gText_ScriptEngineUi_Error
 .L08040B60:
-	ldr r2, .L08040B78 @ =0x080F9EB8
+	ldr r2, .L08040B78 @ =gText_ScriptEngineUi_Error
 .L08040B62:
 	cmp r8, r4
 	bhi .L08040B7C
@@ -2369,9 +2369,9 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r3, r1, r0
 	b .L08040B7E
 	.align 2, 0
-.L08040B78: .4byte 0x080F9EB8
+.L08040B78: .4byte gText_ScriptEngineUi_Error
 .L08040B7C:
-	ldr r3, .L08040B94 @ =0x080F9EB8
+	ldr r3, .L08040B94 @ =gText_ScriptEngineUi_Error
 .L08040B7E:
 	cmp sb, r4
 	bhi .L08040B98
@@ -2384,9 +2384,9 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r1, r1, r0
 	b .L08040B9A
 	.align 2, 0
-.L08040B94: .4byte 0x080F9EB8
+.L08040B94: .4byte gText_ScriptEngineUi_Error
 .L08040B98:
-	ldr r1, .L08040BB4 @ =0x080F9EB8
+	ldr r1, .L08040BB4 @ =gText_ScriptEngineUi_Error
 .L08040B9A:
 	movs r6, #0xd5
 	lsls r6, r6, #2
@@ -2400,7 +2400,7 @@ func_0803F8DC: @ 0x0803F8DC
 	bl func_080128D0
 	bl .L0804168A
 	.align 2, 0
-.L08040BB4: .4byte 0x080F9EB8
+.L08040BB4: .4byte gText_ScriptEngineUi_Error
 .L08040BB8:
 	adds r3, r5, #0
 	adds r3, #0x24
@@ -2479,7 +2479,7 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r7, r1, r0
 	b .L08040C48
 .L08040C46:
-	ldr r7, .L08040C5C @ =0x080F9EB8
+	ldr r7, .L08040C5C @ =gText_ScriptEngineUi_Error
 .L08040C48:
 	cmp r6, r4
 	bhi .L08040C60
@@ -2491,9 +2491,9 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r2, r1, r0
 	b .L08040C62
 	.align 2, 0
-.L08040C5C: .4byte 0x080F9EB8
+.L08040C5C: .4byte gText_ScriptEngineUi_Error
 .L08040C60:
-	ldr r2, .L08040C78 @ =0x080F9EB8
+	ldr r2, .L08040C78 @ =gText_ScriptEngineUi_Error
 .L08040C62:
 	cmp r8, r4
 	bhi .L08040C7C
@@ -2506,9 +2506,9 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r3, r1, r0
 	b .L08040C7E
 	.align 2, 0
-.L08040C78: .4byte 0x080F9EB8
+.L08040C78: .4byte gText_ScriptEngineUi_Error
 .L08040C7C:
-	ldr r3, .L08040C94 @ =0x080F9EB8
+	ldr r3, .L08040C94 @ =gText_ScriptEngineUi_Error
 .L08040C7E:
 	cmp sb, r4
 	bhi .L08040C98
@@ -2521,9 +2521,9 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r6, r1, r0
 	b .L08040C9A
 	.align 2, 0
-.L08040C94: .4byte 0x080F9EB8
+.L08040C94: .4byte gText_ScriptEngineUi_Error
 .L08040C98:
-	ldr r6, .L08040CB0 @ =0x080F9EB8
+	ldr r6, .L08040CB0 @ =gText_ScriptEngineUi_Error
 .L08040C9A:
 	cmp sl, r4
 	bhi .L08040CB4
@@ -2536,9 +2536,9 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r1, r1, r0
 	b .L08040CB6
 	.align 2, 0
-.L08040CB0: .4byte 0x080F9EB8
+.L08040CB0: .4byte gText_ScriptEngineUi_Error
 .L08040CB4:
-	ldr r1, .L08040CD0 @ =0x080F9EB8
+	ldr r1, .L08040CD0 @ =gText_ScriptEngineUi_Error
 .L08040CB6:
 	movs r4, #0xd5
 	lsls r4, r4, #2
@@ -2552,7 +2552,7 @@ func_0803F8DC: @ 0x0803F8DC
 	bl func_080128D0
 	bl .L0804168A
 	.align 2, 0
-.L08040CD0: .4byte 0x080F9EB8
+.L08040CD0: .4byte gText_ScriptEngineUi_Error
 .L08040CD4:
 	adds r3, r5, #0
 	adds r3, #0x24
@@ -2642,7 +2642,7 @@ func_0803F8DC: @ 0x0803F8DC
 	mov r8, r1
 	b .L08040D7A
 .L08040D76:
-	ldr r2, .L08040D8C @ =0x080F9EB8
+	ldr r2, .L08040D8C @ =gText_ScriptEngineUi_Error
 	mov r8, r2
 .L08040D7A:
 	cmp r6, r4
@@ -2655,9 +2655,9 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r2, r1, r0
 	b .L08040D92
 	.align 2, 0
-.L08040D8C: .4byte 0x080F9EB8
+.L08040D8C: .4byte gText_ScriptEngineUi_Error
 .L08040D90:
-	ldr r2, .L08040DA4 @ =0x080F9EB8
+	ldr r2, .L08040DA4 @ =gText_ScriptEngineUi_Error
 .L08040D92:
 	cmp r7, r4
 	bhi .L08040DA8
@@ -2669,9 +2669,9 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r3, r1, r0
 	b .L08040DAA
 	.align 2, 0
-.L08040DA4: .4byte 0x080F9EB8
+.L08040DA4: .4byte gText_ScriptEngineUi_Error
 .L08040DA8:
-	ldr r3, .L08040DC0 @ =0x080F9EB8
+	ldr r3, .L08040DC0 @ =gText_ScriptEngineUi_Error
 .L08040DAA:
 	cmp sb, r4
 	bhi .L08040DC4
@@ -2684,9 +2684,9 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r7, r1, r0
 	b .L08040DC6
 	.align 2, 0
-.L08040DC0: .4byte 0x080F9EB8
+.L08040DC0: .4byte gText_ScriptEngineUi_Error
 .L08040DC4:
-	ldr r7, .L08040DDC @ =0x080F9EB8
+	ldr r7, .L08040DDC @ =gText_ScriptEngineUi_Error
 .L08040DC6:
 	cmp sl, r4
 	bhi .L08040DE0
@@ -2699,9 +2699,9 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r6, r1, r0
 	b .L08040DE2
 	.align 2, 0
-.L08040DDC: .4byte 0x080F9EB8
+.L08040DDC: .4byte gText_ScriptEngineUi_Error
 .L08040DE0:
-	ldr r6, .L08040DF8 @ =0x080F9EB8
+	ldr r6, .L08040DF8 @ =gText_ScriptEngineUi_Error
 .L08040DE2:
 	cmp ip, r4
 	bhi .L08040DFC
@@ -2714,9 +2714,9 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r1, r1, r0
 	b .L08040DFE
 	.align 2, 0
-.L08040DF8: .4byte 0x080F9EB8
+.L08040DF8: .4byte gText_ScriptEngineUi_Error
 .L08040DFC:
-	ldr r1, .L08040E18 @ =0x080F9EB8
+	ldr r1, .L08040E18 @ =gText_ScriptEngineUi_Error
 .L08040DFE:
 	movs r4, #0xd5
 	lsls r4, r4, #2
@@ -2729,7 +2729,7 @@ func_0803F8DC: @ 0x0803F8DC
 	bl func_080128D0
 	bl .L0804168A
 	.align 2, 0
-.L08040E18: .4byte 0x080F9EB8
+.L08040E18: .4byte gText_ScriptEngineUi_Error
 .L08040E1C:
 	movs r6, #0xda
 	lsls r6, r6, #1
@@ -3099,14 +3099,14 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r2, r1, r0
 	b .L080410E0
 .L080410DE:
-	ldr r2, .L080410EC @ =0x080F9EB8
+	ldr r2, .L080410EC @ =gText_ScriptEngineUi_Error
 .L080410E0:
 	adds r0, r3, #0
 	adds r1, r4, #0
 	bl func_08012ACC
 	bl .L08045572
 	.align 2, 0
-.L080410EC: .4byte 0x080F9EB8
+.L080410EC: .4byte gText_ScriptEngineUi_Error
 .L080410F0:
 	bl rand
 	adds r4, r0, #0
@@ -7595,7 +7595,7 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r4, r1, r0
 	b .L080435BA
 .L080435B8:
-	ldr r4, .L080435F0 @ =0x080F9EB8
+	ldr r4, .L080435F0 @ =gText_ScriptEngineUi_Error
 .L080435BA:
 	adds r0, r4, #0
 	bl strlen
@@ -7621,7 +7621,7 @@ func_0803F8DC: @ 0x0803F8DC
 	bl func_0800E9A8
 	bl .L08045572
 	.align 2, 0
-.L080435F0: .4byte 0x080F9EB8
+.L080435F0: .4byte gText_ScriptEngineUi_Error
 .L080435F4: .4byte 0x0000FF21
 .L080435F8: .4byte 0x00001BD8
 .L080435FC:
@@ -10648,13 +10648,13 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r1, r1, r0
 	b .L08044E2E
 .L08044E2C:
-	ldr r1, .L08044E38 @ =0x080F9EB8
+	ldr r1, .L08044E38 @ =gText_ScriptEngineUi_Error
 .L08044E2E:
 	adds r0, r2, #0
 	bl func_080126BC
 	bl .L0804168A
 	.align 2, 0
-.L08044E38: .4byte 0x080F9EB8
+.L08044E38: .4byte gText_ScriptEngineUi_Error
 .L08044E3C:
 	movs r1, #0xd4
 	lsls r1, r1, #2

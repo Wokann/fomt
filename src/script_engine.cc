@@ -50,10 +50,10 @@ asm(
     "__lower_bound__H4ZPC12JumpTableEntZiZ28ScriptJumpTableSearchCompareZl_X01T0RCX11X21PX31_X01:\n"
     "    .incbin \"baserom_jp.gba\", 0xE0654, 0x3C\n"
     "\n"
-    "    @ This ordinary C++ string object follows the JP data layout.  The\n"
-    "    @ adjacent JP data signature fixes this copy at ROM offset 0xF96F4.\n"
-    "    .section .rodata\n"
-    "    .incbin \"baserom_jp.gba\", 0xF96F4, 0x14\n"
+    "    @ Keep the compiler's bad_alloc object raw; the following Error field is\n"
+    "    @ emitted as named common text at its original ROM address.\n"
+    "    .section .rodata.script_engine_string_error_prefix\n"
+    "    .incbin \"baserom_jp.gba\", 0xF96F4, (0xF9700 - 0xF96F4)\n"
     "\n"
     "    @ Keep later shared C++ emission in agbcp's default syntax mode.\n"
     "    .syntax divided\n"
@@ -61,6 +61,7 @@ asm(
 #else
 
 #include "script_engine.hh"
+#include "script_engine_text.hh"
 
 #include <string.h> // memset, memcpy
 #include <algorithm>
@@ -671,7 +672,7 @@ char const * AScriptEngine::GetString(u32 id) const
     if (id <= string_count)
         return string_pool + string_offset_table[id];
 
-    return "Error";
+    return gText_AScriptEngine_InvalidStringId;
 }
 
 ScriptEngine::ScriptEngine(void * arg_r1)

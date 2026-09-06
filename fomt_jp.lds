@@ -471,10 +471,13 @@ SECTIONS
         src/data_schedules.o(.rodata);
         . = 0xF1810; /* JP counterpart of data_080F1A80. */
         asm/data/data_080F1A80.o(.rodata);
-        . = 0xF96F4; /* JP ScriptEngine string object. */
-        src/script_engine.o(.rodata);
+        . = 0xF96F4; /* JP ScriptEngine string-object prefix. */
+        src/script_engine.o(.rodata.script_engine_string_error_prefix);
+        . = 0xF9700; data/text/common/script_engine.o(.rodata.script_engine_string_error);
         . = 0xF9708; /* JP localized non-script data before event RIFFs. */
         asm/data/data_080F9EB8.o(.rodata.localized_data_prefix);
+        . = 0xF9714; data/text/common/ui_error.o(.rodata.script_engine_ui_error);
+        . = 0xF971A; asm/data/data_080F9EB8.o(.rodata.script_engine_ui_error_trailer);
         . = 0xF97E6; data/text/festival_contestants.o(.rodata.festival_contestants_set0);
         . = 0xF996C; asm/data/data_080F9EB8.o(.rodata.festival_contestants_set0_trailer_prefix);
         . = 0xF9994; data/text/frisbee.o(.rodata.frisbee_scoreboard);

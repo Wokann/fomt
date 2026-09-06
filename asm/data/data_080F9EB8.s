@@ -2,7 +2,10 @@
     @ JP revision 0 localized data.  Event RIFF containers begin later at
     @ ROM offset 0x4E0CE0; the early portions below are ordinary static data.
     .section .rodata.localized_data_prefix
-    .incbin "baserom_jp.gba", 0xF9708, (0xF97E6 - 0xF9708)
+    .incbin "baserom_jp.gba", 0xF9708, (0xF9714 - 0xF9708)
+
+    .section .rodata.script_engine_ui_error_trailer
+    .incbin "baserom_jp.gba", 0xF971A, (0xF97E6 - 0xF971A)
 
     .section .rodata.festival_contestants_set0_trailer_prefix
     .incbin "baserom_jp.gba", 0xF996C, (0xF9994 - 0xF996C)
@@ -260,7 +263,12 @@ gText_CharacterName_Empty:
     .else
     .section .rodata.localized_data_prefix
 
-	.incbin "baserom_us.gba", 0xF9EAC, 0x19
+	.incbin "baserom_us.gba", 0xF9EAC, (0xF9EB8 - 0xF9EAC)
+
+	.section .rodata.script_engine_ui_error_trailer
+	.incbin "baserom_us.gba", 0xF9EBE, (0xF9EC5 - 0xF9EBE)
+
+	.section .rodata.localized_data_suffix
 
 	.global gUnk_080F9EC5
 gUnk_080F9EC5:
