@@ -650,7 +650,7 @@ SECTIONS
         . = 0x107DAC; src/reference_guide.o(.rodata.reference_guide);
         . = 0x1189D4; asm/data/data_080F9EB8.o(.rodata.reference_guide_unextracted_trailer);
         . = 0x118BF4; data/text/animal_status.o(.rodata.animal_status);
-        . = 0x118C34; asm/data/data_080F9EB8.o(.rodata.animal_status_suffix);
+        . = 0x118C34; data/text/item_status.o(.rodata.item_status_basket);
         . = 0x118C68; data/text/item_status.o(.rodata.item_status_wrapped_as_present);
         . = 0x118C94; data/text/item_status_refs.o(.rodata.item_status_wrapped_as_present_text_ref);
         . = 0x118C98; data/text/item_discard.o(.rodata.item_discard_confirm);

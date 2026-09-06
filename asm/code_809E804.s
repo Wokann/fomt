@@ -100762,7 +100762,7 @@ func_080CF67C: @ 0x080CF67C
 	.align 2, 0
 .L080CF90C: .4byte gText_AnimalStatus_Healthy
 .L080CF910:
-	ldr r5, .L080CFA28 @ =gUnk_08117A50
+	ldr r5, .L080CFA28 @ =gText_ItemStatus_BasketName
 	adds r0, r5, #0
 	bl strlen
 	adds r4, r0, #0
@@ -100786,7 +100786,7 @@ func_080CF67C: @ 0x080CF67C
 	add r1, sp, #4
 	movs r2, #0
 	bl func_0804EC84
-	ldr r0, .L080CFA2C @ =gUnk_08117A5C
+	ldr r0, .L080CFA2C @ =gText_ItemStatus_BasketDescription
 	mov r8, r0
 	adds r0, r6, #0
 	bl strlen
@@ -100811,7 +100811,7 @@ func_080CF67C: @ 0x080CF67C
 	strb r1, [r0]
 .L080CF978:
 	mov sb, r6
-	ldr r0, .L080CFA30 @ =gUnk_08117A78
+	ldr r0, .L080CFA30 @ =gText_ItemStatus_BasketHoldingPrefix
 	mov r8, r0
 	adds r0, r6, #0
 	bl strlen
@@ -100860,7 +100860,7 @@ func_080CF67C: @ 0x080CF67C
 	movs r0, #0
 	strb r0, [r1]
 .L080CF9E0:
-	ldr r1, .L080CFA34 @ =gUnk_08117A84
+	ldr r1, .L080CFA34 @ =gText_ItemStatus_BasketHoldingSuffix
 	mov r8, r1
 	adds r0, r7, #0
 	bl strlen
@@ -100898,10 +100898,10 @@ func_080CF67C: @ 0x080CF67C
 	pop {r1}
 	bx r1
 	.align 2, 0
-.L080CFA28: .4byte gUnk_08117A50
-.L080CFA2C: .4byte gUnk_08117A5C
-.L080CFA30: .4byte gUnk_08117A78
-.L080CFA34: .4byte gUnk_08117A84
+.L080CFA28: .4byte gText_ItemStatus_BasketName
+.L080CFA2C: .4byte gText_ItemStatus_BasketDescription
+.L080CFA30: .4byte gText_ItemStatus_BasketHoldingPrefix
+.L080CFA34: .4byte gText_ItemStatus_BasketHoldingSuffix
 
 	thumb_func_start func_080CFA38
 func_080CFA38: @ 0x080CFA38
