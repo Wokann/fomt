@@ -41,7 +41,15 @@ func_08033928:
     .global func_08033B84
     .thumb_func
 func_08033B84:
-    .incbin "baserom_jp.gba", 0x33918, 0x1168
+    .incbin "baserom_jp.gba", 0x33918, 0x6C4
+
+    .section .text.entity_ui_animation_lookup_after
+    .syntax unified
+    .thumb
+    .global func_08034260
+    .thumb_func
+func_08034260:
+    .incbin "baserom_jp.gba", 0x33FF4, 0xA8C
 
     .global func_08032560
     .thumb_set func_08032560, func_0803242C + 0x134
@@ -67,10 +75,6 @@ func_08033B84:
     .thumb_set func_08033830, func_0803242C + 0x1404
     .global func_08034180
     .thumb_set func_08034180, func_0803242C + 0x1D54
-    .global func_08034248
-    .thumb_set func_08034248, func_0803242C + 0x1E1C
-    .global func_08034260
-    .thumb_set func_08034260, func_0803242C + 0x1E34
     .global func_0803436C
     .thumb_set func_0803436C, func_0803242C + 0x1F40
     .global func_08034940
@@ -3230,21 +3234,7 @@ func_08034180: @ 0x08034180
     bx r0
     .align 2, 0
 
-    thumb_func_start func_08034248
-func_08034248: @ 0x08034248
-    ldr r3, .L0803425C @ =gUnk_080F1450
-    adds r0, #0x30
-    ldrb r2, [r0]
-    lsls r0, r2, #2
-    adds r0, r0, r2
-    adds r0, r0, r1
-    lsls r0, r0, #1
-    adds r0, r0, r3
-    ldrh r0, [r0]
-    bx lr
-    .align 2, 0
-.L0803425C: .4byte gUnk_080F1450
-
+    .section .text.entity_ui_animation_lookup_after
     thumb_func_start func_08034260
 func_08034260: @ 0x08034260
     push {r4, r5, r6, r7, lr}

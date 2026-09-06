@@ -161,6 +161,10 @@ SECTIONS
         src/entity_ui.o(.text.entity_ui_unknown_flag);
         . = 0x33918; /* Continue the surrounding entity-UI ROM block. */
         asm/code_entities_080320DC.o(.text.entity_ui_unknown_flag_after);
+        . = 0x33FDC; /* JP counterpart of entity-UI animation lookup. */
+        src/entity_ui.o(.text.entity_ui_animation_lookup);
+        . = 0x33FF4; /* Continue the surrounding entity-UI ROM block. */
+        asm/code_entities_080320DC.o(.text.entity_ui_animation_lookup_after);
         . = 0x34A80; /* JP ROM 0x08034A80, independently matched */
         src/npc_entity.o(.text);
         . = 0x35114; /* JP ROM 0x08035114, independently matched */

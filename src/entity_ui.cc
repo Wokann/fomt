@@ -21,6 +21,12 @@ struct EntityUiHarvestSpriteResult
     u8 unknown_01[7];
 };
 
+struct EntityUiAnimationState
+{
+    u8 unknown_00[0x30];
+    u8 entry_index;
+};
+
 struct EntityUiHarvestSpriteState : public AEntity
 {
     EntityUiHarvestSpriteState(GameObject * game_object, Location const & location)
@@ -41,6 +47,8 @@ extern "C" void func_080330F4(EntityUiHarvestSpriteResult * result,
                                Location const * location,
                                HarvestSprite::Task task,
                                EntityUiHarvestSpriteEntry const * entries);
+
+extern "C" u16 const gEntityUiAnimationLookupTable[];
 
 // The ROM leaf unconditionally returns false.  Its caller-facing purpose is
 // not mapped yet.
@@ -66,6 +74,11 @@ extern "C" u32 func_08033914(u32 task_experience)
 // result-record calculation.  The names of the byte flags remain unmapped.
 extern "C" bool func_08033B24(EntityUiHarvestSpriteState * state)
     SECTION(".text.entity_ui_harvest_sprite_selection");
+
+// The caller uses this lookup result as an AActorEntityUi animation ID.  Its
+// state-byte categories have not been named yet.
+extern "C" u16 func_08034248(EntityUiAnimationState const * state, u32 value)
+    SECTION(".text.entity_ui_animation_lookup");
 
 extern "C" bool func_080324B8()
 {
@@ -143,4 +156,17 @@ extern "C" bool func_08033B24(EntityUiHarvestSpriteState * state)
         value = 1;
     }
     return value;
+}
+
+extern "C" u16 func_08034248(EntityUiAnimationState const * state, u32 value)
+{
+    u16 const * table = gEntityUiAnimationLookupTable;
+    u8 entry_index = state->entry_index;
+    u32 table_offset = entry_index;
+    table_offset <<= 2;
+    table_offset += entry_index;
+    table_offset += value;
+    table_offset <<= 1;
+
+    return *(u16 const *)((u8 const *)table + table_offset);
 }

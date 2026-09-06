@@ -16,7 +16,13 @@
     .incbin "baserom_jp.gba", 0xEFF44, (0xF06E0 - 0xEFF44)
 
     .section .rodata.not_available_trailer
-    .incbin "baserom_jp.gba", 0xF06E8, (0xF11D4 - 0xF06E8)
+    .incbin "baserom_jp.gba", 0xF06E8, (0xF0CB0 - 0xF06E8)
+
+    .global gEntityUiAnimationLookupTable
+gEntityUiAnimationLookupTable:
+    .incbin "baserom_jp.gba", 0xF0CB0, 0x46
+
+    .incbin "baserom_jp.gba", 0xF0CF6, (0xF11D4 - 0xF0CF6)
 
     .section .rodata.fixed_labels_trailer
     .incbin "baserom_jp.gba", 0xF11F0, (0xF11FC - 0xF11F0)
@@ -186,6 +192,8 @@ gUnk_080F1230:
 gUnk_080F1328:
 	.incbin "baserom_us.gba", 0xF1328, 0x128
 
+	.global gEntityUiAnimationLookupTable
+gEntityUiAnimationLookupTable:
 	.global gUnk_080F1450
 gUnk_080F1450:
 	.incbin "baserom_us.gba", 0xF1450, 0x46
