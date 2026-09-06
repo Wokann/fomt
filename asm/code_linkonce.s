@@ -31981,24 +31981,24 @@ func_080E3B80: @ 0x080E3B80
 	subs r1, r1, r0
 	lsls r1, r1, #2
 	adds r1, r1, r0
-	ldr r0, .L080E3BAC @ =gUnk_08100AD2
+	ldr r0, .L080E3BAC @ =gText_StaminaRecoveryStatus
 	adds r5, r1, r0
 	adds r0, r5, #0
 	b .L080E3BF6
 	.align 2, 0
-.L080E3BAC: .4byte gUnk_08100AD2
+.L080E3BAC: .4byte gText_StaminaRecoveryStatus
 .L080E3BB0:
 	ldrb r0, [r1, #7]
 	lsls r1, r0, #3
 	subs r1, r1, r0
 	lsls r1, r1, #2
 	adds r1, r1, r0
-	ldr r0, .L080E3BC4 @ =gUnk_08100BD7
+	ldr r0, .L080E3BC4 @ =gText_FatigueRecoveryStatus
 	adds r5, r1, r0
 	adds r0, r5, #0
 	b .L080E3BF6
 	.align 2, 0
-.L080E3BC4: .4byte gUnk_08100BD7
+.L080E3BC4: .4byte gText_FatigueRecoveryStatus
 .L080E3BC8:
 	ldrh r0, [r1, #4]
 	cmp r0, #0xab

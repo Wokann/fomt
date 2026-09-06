@@ -492,7 +492,9 @@ SECTIONS
         . = 0xFB764; data/text/records.o(.rodata);
         . = 0xFB8B8; asm/data/data_080F9EB8.o(.rodata.records_trailer);
         . = 0xFB938; data/text/staff_credits.o(.rodata.staff_credits);
-        . = 0xFBE88; asm/data/data_080F9EB8.o(.rodata.staff_credits_trailer);
+        . = 0xFBE88; asm/data/data_080F9EB8.o(.rodata.staff_credits_trailer_prefix);
+        . = 0x1005EA; data/text/recovery_status.o(.rodata);
+        . = 0x1008F9; asm/data/data_080F9EB8.o(.rodata.recovery_status_trailer);
         . = 0x103194; asm/data/data_080F9EB8.o(.rodata);
         . = 0x1032C4; data/text/fishing_results.o(.rodata);
         . = 0x103509; asm/data/data_080F9EB8.o(.rodata.fishing_results_text_padding);
