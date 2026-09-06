@@ -37,8 +37,14 @@
     .section .rodata.staff_credits_trailer_prefix
     .incbin "baserom_jp.gba", 0xFBE88, (0x1005EA - 0xFBE88)
 
-    .section .rodata.recovery_status_trailer
-    .incbin "baserom_jp.gba", 0x1008F9, (0x103194 - 0x1008F9)
+    .section .rodata.recovery_status_trailer_prefix
+    .incbin "baserom_jp.gba", 0x1008F9, (0x1008FC - 0x1008F9)
+
+    .section .rodata.cooking_menu_padding
+    .incbin "baserom_jp.gba", 0x100A0F, (0x100A10 - 0x100A0F)
+
+    .section .rodata.cooking_menu_trailer
+    .incbin "baserom_jp.gba", 0x100A10, (0x103194 - 0x100A10)
 
     .section .rodata
 
@@ -1614,51 +1620,10 @@ gUnk_08100AC2:
 	.section .rodata.recovery_status_padding
 	.incbin "baserom_us.gba", 0x100DE1, (0x100DE4 - 0x100DE1)
 
-	.section .rodata.recovery_status_trailer
+	.section .rodata.cooking_menu_padding
+	.incbin "baserom_us.gba", 0x100EEF, (0x100EF0 - 0x100EEF)
 
-	.global gUnk_08100DE4
-gUnk_08100DE4:
-	.incbin "baserom_us.gba", 0x100DE4, 0x10
-
-	.global gUnk_08100DF4
-gUnk_08100DF4:
-	.incbin "baserom_us.gba", 0x100DF4, 0x34
-
-	.global gUnk_08100E28
-gUnk_08100E28:
-	.incbin "baserom_us.gba", 0x100E28, 0xC
-
-	.global gUnk_08100E34
-gUnk_08100E34:
-	.incbin "baserom_us.gba", 0x100E34, 0x14
-
-	.global gUnk_08100E48
-gUnk_08100E48:
-	.incbin "baserom_us.gba", 0x100E48, 0x14
-
-	.global gUnk_08100E5C
-gUnk_08100E5C:
-	.incbin "baserom_us.gba", 0x100E5C, 0x18
-
-	.global gUnk_08100E74
-gUnk_08100E74:
-	.incbin "baserom_us.gba", 0x100E74, 0x1C
-
-	.global gUnk_08100E90
-gUnk_08100E90:
-	.incbin "baserom_us.gba", 0x100E90, 0x14
-
-	.global gUnk_08100EA4
-gUnk_08100EA4:
-	.incbin "baserom_us.gba", 0x100EA4, 0x18
-
-	.global gUnk_08100EBC
-gUnk_08100EBC:
-	.incbin "baserom_us.gba", 0x100EBC, 0x1C
-
-	.global gUnk_08100ED8
-gUnk_08100ED8:
-	.incbin "baserom_us.gba", 0x100ED8, 0x18
+	.section .rodata.cooking_menu_trailer
 
 	.global gUnk_08100EF0
 gUnk_08100EF0:

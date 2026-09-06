@@ -399,7 +399,9 @@ SECTIONS
         . = 0xFC6B8; asm/data/data_080F9EB8.o(.rodata.staff_credits_trailer_prefix);
         . = 0x100AD2; data/text/recovery_status.o(.rodata);
         . = 0x100DE1; asm/data/data_080F9EB8.o(.rodata.recovery_status_padding);
-        . = 0x100DE4; asm/data/data_080F9EB8.o(.rodata.recovery_status_trailer);
+        . = 0x100DE4; data/text/cooking_menu.o(.rodata);
+        . = 0x100EEF; asm/data/data_080F9EB8.o(.rodata.cooking_menu_padding);
+        . = 0x100EF0; asm/data/data_080F9EB8.o(.rodata.cooking_menu_trailer);
         . = 0x103788; data/text/fishing_results.o(.rodata);
         . = 0x103A16; asm/data/data_080F9EB8.o(.rodata.fishing_results_text_padding);
         . = 0x103A18; src/fishing_results_data.o(.rodata.fishing_record_names);

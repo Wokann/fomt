@@ -169114,7 +169114,7 @@ func_08095D80: @ 0x08095D80
 .L08095F84: .4byte 0x00000362
 .L08095F88: .4byte gUnk_08101064
 .L08095F8C:
-	ldr r5, .L08095FA8 @ =gUnk_08100DE4
+	ldr r5, .L08095FA8 @ =gText_Cooking_SeasoningSet
 	adds r4, r6, #0
 	adds r4, #0x80
 	adds r0, r4, #0
@@ -169128,7 +169128,7 @@ func_08095D80: @ 0x08095D80
 	bl func_08050DC8
 	b .L08095FB6
 	.align 2, 0
-.L08095FA8: .4byte gUnk_08100DE4
+.L08095FA8: .4byte gText_Cooking_SeasoningSet
 .L08095FAC:
 	adds r0, r6, #0
 	adds r0, #0x80
@@ -169398,7 +169398,7 @@ func_08095D80: @ 0x08095D80
 .L080961CC: .4byte 0x00000FFF
 .L080961D0: .4byte 0xFFFFF000
 .L080961D4:
-	ldr r5, .L080961F4 @ =gUnk_08100DF4
+	ldr r5, .L080961F4 @ =gText_Cooking_CompleteUtensilSelection
 	adds r4, r6, #0
 	adds r4, #0x80
 	adds r0, r4, #0
@@ -169413,7 +169413,7 @@ func_08095D80: @ 0x08095D80
 	mov sl, r0
 	b .L08096278
 	.align 2, 0
-.L080961F4: .4byte gUnk_08100DF4
+.L080961F4: .4byte gText_Cooking_CompleteUtensilSelection
 .L080961F8:
 	movs r4, #0
 	adds r0, r6, #0
@@ -170014,7 +170014,7 @@ func_080962F0: @ 0x080962F0
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L08096772
-	ldr r5, .L08096708 @ =gUnk_08100E28
+	ldr r5, .L08096708 @ =gText_Cooking_WrappedGiftDescription
 	adds r0, r5, #0
 	bl strlen
 	adds r4, r0, #0
@@ -170043,7 +170043,7 @@ func_080962F0: @ 0x080962F0
 	b .L0809671C
 	.align 2, 0
 .L08096704: .4byte 0x00002BAC
-.L08096708: .4byte gUnk_08100E28
+.L08096708: .4byte gText_Cooking_WrappedGiftDescription
 .L0809670C:
 	mov r0, r8
 	bl GetArticle__C12RucksackItem
@@ -172979,9 +172979,9 @@ func_08097D38: @ 0x08097D38
 .L08097E5C:
 	adds r0, r6, #0
 	adds r0, #0x80
-	ldr r1, .L08097E7C @ =gUnk_08100E34
-	ldr r2, .L08097E80 @ =gUnk_08100E48
-	ldr r3, .L08097E84 @ =gUnk_08100E5C
+	ldr r1, .L08097E7C @ =gText_Cooking_FollowRecipe
+	ldr r2, .L08097E80 @ =gText_Cooking_ImproviseRecipe
+	ldr r3, .L08097E84 @ =gText_Cooking_MakeAnotherRecipe
 	movs r4, #0
 	str r4, [sp]
 	str r4, [sp, #4]
@@ -172992,16 +172992,16 @@ func_08097D38: @ 0x08097D38
 	adds r1, r6, r2
 	b .L08097FCC
 	.align 2, 0
-.L08097E7C: .4byte gUnk_08100E34
-.L08097E80: .4byte gUnk_08100E48
-.L08097E84: .4byte gUnk_08100E5C
+.L08097E7C: .4byte gText_Cooking_FollowRecipe
+.L08097E80: .4byte gText_Cooking_ImproviseRecipe
+.L08097E84: .4byte gText_Cooking_MakeAnotherRecipe
 .L08097E88: .4byte 0x000033D2
 .L08097E8C:
 	adds r0, r6, #0
 	adds r0, #0x80
-	ldr r1, .L08097EA4 @ =gUnk_08100E74
-	ldr r2, .L08097EA8 @ =gUnk_08100E90
-	ldr r3, .L08097EAC @ =gUnk_08100E5C
+	ldr r1, .L08097EA4 @ =gText_Cooking_NotEnoughIngredients
+	ldr r2, .L08097EA8 @ =gText_Cooking_ImproviseAnyway
+	ldr r3, .L08097EAC @ =gText_Cooking_MakeAnotherRecipe
 	movs r4, #0
 	str r4, [sp]
 	str r4, [sp, #4]
@@ -173009,15 +173009,15 @@ func_08097D38: @ 0x08097D38
 	bl func_08050E30
 	b .L08097FC8
 	.align 2, 0
-.L08097EA4: .4byte gUnk_08100E74
-.L08097EA8: .4byte gUnk_08100E90
-.L08097EAC: .4byte gUnk_08100E5C
+.L08097EA4: .4byte gText_Cooking_NotEnoughIngredients
+.L08097EA8: .4byte gText_Cooking_ImproviseAnyway
+.L08097EAC: .4byte gText_Cooking_MakeAnotherRecipe
 .L08097EB0:
 	adds r0, r6, #0
 	adds r0, #0x80
-	ldr r1, .L08097ED0 @ =gUnk_08100EA4
-	ldr r2, .L08097ED4 @ =gUnk_08100EBC
-	ldr r3, .L08097ED8 @ =gUnk_08100ED8
+	ldr r1, .L08097ED0 @ =gText_Cooking_UseTheseIngredients
+	ldr r2, .L08097ED4 @ =gText_Cooking_RestartIngredients
+	ldr r3, .L08097ED8 @ =gText_Cooking_RestartUtensils
 	movs r4, #0
 	str r4, [sp]
 	str r4, [sp, #4]
@@ -173028,9 +173028,9 @@ func_08097D38: @ 0x08097D38
 	adds r1, r6, r2
 	b .L08097FCC
 	.align 2, 0
-.L08097ED0: .4byte gUnk_08100EA4
-.L08097ED4: .4byte gUnk_08100EBC
-.L08097ED8: .4byte gUnk_08100ED8
+.L08097ED0: .4byte gText_Cooking_UseTheseIngredients
+.L08097ED4: .4byte gText_Cooking_RestartIngredients
+.L08097ED8: .4byte gText_Cooking_RestartUtensils
 .L08097EDC: .4byte 0x000033D2
 .L08097EE0:
 	ldr r5, .L08097EF4 @ =gUnk_08100EF0
