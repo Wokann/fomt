@@ -132,3 +132,46 @@ char const gText_Blacksmith_NoOreToUpgrade[] BLACKSMITH_DIALOGUE =
     "道具を改造するのに使える鉱石\r\n"
     "を持っていないようだな。鉱石\r\n"
     "は泉の鉱石場で見つかるぞ。{Press}";
+
+char const gText_BlacksmithUpgrade_Tools[] BLACKSMITH_UPGRADE_PROMPTS =
+    "装備";
+
+char const gText_BlacksmithUpgrade_Items[] BLACKSMITH_UPGRADE_PROMPTS =
+    "持ち物";
+
+char const gText_BlacksmithUpgrade_SelectTool[] BLACKSMITH_UPGRADE_PROMPTS =
+    "まず、改造させたい道具を選ぶ\r\n"
+    "のだ。{Press}";
+
+char const gText_BlacksmithUpgrade_CursedTool[] BLACKSMITH_UPGRADE_PROMPTS =
+    "の…呪われているではないか！\r\n"
+    "な…何を考えておる！！！{Press}";
+
+char const gText_BlacksmithUpgrade_SelectOre[] BLACKSMITH_UPGRADE_PROMPTS =
+    "次に、その道具を改造する鉱石\r\n"
+    "を選ぶのだ。{Press}";
+
+char const gText_BlacksmithUpgrade_CannotUpgradeTool[] BLACKSMITH_UPGRADE_PROMPTS =
+    "それは改造できんぞ。{Press}";
+
+char const gText_BlacksmithUpgrade_InvalidUpgradeOre[] BLACKSMITH_UPGRADE_PROMPTS =
+    "それは道具の改造には使えない\r\n"
+    "のだ。道具を改造するにはそれ\r\n"
+    "なりの鉱石が必要なのだ。{Press}";
+
+char const gText_BlacksmithUpgrade_CannotChangeMind[] BLACKSMITH_UPGRADE_PROMPTS =
+    "男が一度決めたことは、\r\n"
+    "そう変えるものではないぞ。{Press}";
+
+char const gText_BlacksmithUpgrade_InsufficientExperience[] BLACKSMITH_UPGRADE_PROMPTS =
+    "その道具を改造するには\r\n"
+    "経験が足りないぞ。{Press}";
+
+char const gText_BlacksmithUpgrade_AlreadyUpgradedWithOre[] BLACKSMITH_UPGRADE_PROMPTS =
+    "その道具はすでに、同じ鉱石を\r\n"
+    "使って強くしたものだ。{Press}";
+
+char const gText_BlacksmithUpgrade_DowngradeConfirmation[] BLACKSMITH_UPGRADE_PROMPTS =
+    "ふん…、それではかえって道具\r\n"
+    "が悪くなってしまうぞ。\r\n"
+    "いいのか？{Press}";

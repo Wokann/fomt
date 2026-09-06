@@ -134,3 +134,47 @@ char const gText_Blacksmith_NoOreToUpgrade[] BLACKSMITH_DIALOGUE =
     "me to use! You can find \r\n"
     "some in the mine by the {Press}\r\n"
     "spring, you know.{Press}";
+
+char const gText_BlacksmithUpgrade_Tools[] BLACKSMITH_UPGRADE_PROMPTS =
+    "Tools ";
+
+char const gText_BlacksmithUpgrade_Items[] BLACKSMITH_UPGRADE_PROMPTS =
+    "Items ";
+
+char const gText_BlacksmithUpgrade_SelectTool[] BLACKSMITH_UPGRADE_PROMPTS =
+    "First, select a Tool to be\r\n"
+    "upgraded.{Press}";
+
+char const gText_BlacksmithUpgrade_CursedTool[] BLACKSMITH_UPGRADE_PROMPTS =
+    "This is...c-cursed!\r\n"
+    "What are you thinking!!{Press}";
+
+char const gText_BlacksmithUpgrade_SelectOre[] BLACKSMITH_UPGRADE_PROMPTS =
+    "Next, select an Ore to\r\n"
+    "upgrade that Tool with.{Press}";
+
+char const gText_BlacksmithUpgrade_CannotUpgradeTool[] BLACKSMITH_UPGRADE_PROMPTS =
+    "That can't be upgraded.{Press}";
+
+char const gText_BlacksmithUpgrade_InvalidUpgradeOre[] BLACKSMITH_UPGRADE_PROMPTS =
+    "You can't use that to\r\n"
+    "upgrade Tools. You need\r\n"
+    "a better Ore instead.{Press}";
+
+char const gText_BlacksmithUpgrade_CannotChangeMind[] BLACKSMITH_UPGRADE_PROMPTS =
+    "A real man doesn't change\r\n"
+    "his mind, you know.{Press}";
+
+char const gText_BlacksmithUpgrade_InsufficientExperience[] BLACKSMITH_UPGRADE_PROMPTS =
+    "You don't have enough\r\n"
+    "experience to upgrade\r\n"
+    "that Tool.{Press}";
+
+char const gText_BlacksmithUpgrade_AlreadyUpgradedWithOre[] BLACKSMITH_UPGRADE_PROMPTS =
+    "That Tool has already been\r\n"
+    "improved with the same Ore.{Press}";
+
+char const gText_BlacksmithUpgrade_DowngradeConfirmation[] BLACKSMITH_UPGRADE_PROMPTS =
+    "Hmmph! What are you\r\n"
+    "trying to do, downgrade\r\n"
+    "your Tools?!{Press}";

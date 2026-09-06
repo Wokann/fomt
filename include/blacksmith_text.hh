@@ -28,6 +28,7 @@ struct BlacksmithMenuHeader
 #define BLACKSMITH_MENU SECTION(".rodata.blacksmith_menu")
 #define BLACKSMITH_CATALOG SECTION(".rodata.blacksmith_catalog")
 #define BLACKSMITH_DIALOGUE SECTION(".rodata.blacksmith_dialogue")
+#define BLACKSMITH_UPGRADE_PROMPTS SECTION(".rodata.blacksmith_upgrade_prompts")
 
 extern char const gText_Blacksmith_ToolUpgradeMenuLabel[];
 extern char const gText_Blacksmith_ToolUpgradeTitle[];
@@ -62,6 +63,18 @@ extern char const gText_Blacksmith_StartWork[];
 extern char const gText_Blacksmith_CannotChangeMind[];
 extern char const gText_Blacksmith_NoToolToUpgrade[];
 extern char const gText_Blacksmith_NoOreToUpgrade[];
+
+extern char const gText_BlacksmithUpgrade_Tools[];
+extern char const gText_BlacksmithUpgrade_Items[];
+extern char const gText_BlacksmithUpgrade_SelectTool[];
+extern char const gText_BlacksmithUpgrade_CursedTool[];
+extern char const gText_BlacksmithUpgrade_SelectOre[];
+extern char const gText_BlacksmithUpgrade_CannotUpgradeTool[];
+extern char const gText_BlacksmithUpgrade_InvalidUpgradeOre[];
+extern char const gText_BlacksmithUpgrade_CannotChangeMind[];
+extern char const gText_BlacksmithUpgrade_InsufficientExperience[];
+extern char const gText_BlacksmithUpgrade_AlreadyUpgradedWithOre[];
+extern char const gText_BlacksmithUpgrade_DowngradeConfirmation[];
 
 #if defined(REGION_JP)
 extern BlacksmithMenuHeader const gBlacksmithMenuHeader;

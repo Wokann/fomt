@@ -98,7 +98,13 @@
     .incbin "baserom_jp.gba", 0xFF9A2, (0xFF9A4 - 0xFF9A2)
 
     .section .rodata.livestock_shop_trailer
-    .incbin "baserom_jp.gba", 0xFF9A4, (0x1005EA - 0xFF9A4)
+    .incbin "baserom_jp.gba", 0xFF9A4, (0xFFAE0 - 0xFF9A4)
+
+    .section .rodata.blacksmith_upgrade_prefix
+    .incbin "baserom_jp.gba", 0xFFAE0, (0xFFAE4 - 0xFFAE0)
+
+    .section .rodata.blacksmith_upgrade_dynamic
+    .incbin "baserom_jp.gba", 0xFFCCC, (0x1005EA - 0xFFCCC)
 
     .section .rodata.recovery_status_trailer_prefix
     .incbin "baserom_jp.gba", 0x1008F9, (0x1008FC - 0x1008F9)
@@ -865,53 +871,13 @@ gUnk_08100148:
 gUnk_08100150:
 	.incbin "baserom_us.gba", 0x100150, 0x18
 
+	.section .rodata.blacksmith_upgrade_prefix
+
 	.global gUnk_08100168
 gUnk_08100168:
 	.incbin "baserom_us.gba", 0x100168, 0x4
 
-	.global gUnk_0810016C
-gUnk_0810016C:
-	.incbin "baserom_us.gba", 0x10016C, 0x8
-
-	.global gUnk_08100174
-gUnk_08100174:
-	.incbin "baserom_us.gba", 0x100174, 0x8
-
-	.global gUnk_0810017C
-gUnk_0810017C:
-	.incbin "baserom_us.gba", 0x10017C, 0x28
-
-	.global gUnk_081001A4
-gUnk_081001A4:
-	.incbin "baserom_us.gba", 0x1001A4, 0x30
-
-	.global gUnk_081001D4
-gUnk_081001D4:
-	.incbin "baserom_us.gba", 0x1001D4, 0x34
-
-	.global gUnk_08100208
-gUnk_08100208:
-	.incbin "baserom_us.gba", 0x100208, 0x1C
-
-	.global gUnk_08100224
-gUnk_08100224:
-	.incbin "baserom_us.gba", 0x100224, 0x48
-
-	.global gUnk_0810026C
-gUnk_0810026C:
-	.incbin "baserom_us.gba", 0x10026C, 0x30
-
-	.global gUnk_0810029C
-gUnk_0810029C:
-	.incbin "baserom_us.gba", 0x10029C, 0x3C
-
-	.global gUnk_081002D8
-gUnk_081002D8:
-	.incbin "baserom_us.gba", 0x1002D8, 0x3C
-
-	.global gUnk_08100314
-gUnk_08100314:
-	.incbin "baserom_us.gba", 0x100314, 0x3C
+	.section .rodata.blacksmith_upgrade_dynamic
 
 	.global gUnk_08100350
 gUnk_08100350:

@@ -453,6 +453,11 @@ SECTIONS
         . = 0xFFD3C; data/text/livestock_shop.o(.rodata.livestock_shop_dialogue);
         . = 0x100024; asm/data/data_080F9EB8.o(.rodata.livestock_shop_trailer_prefix);
         . = 0x100030; asm/data/data_080F9EB8.o(.rodata.livestock_shop_trailer);
+        . = 0x100168; asm/data/data_080F9EB8.o(.rodata.blacksmith_upgrade_prefix);
+        FILL(0x00);
+        . = 0x10016C; data/text/blacksmith.o(.rodata.blacksmith_upgrade_prompts);
+        FILL(0xFF);
+        . = 0x100350; asm/data/data_080F9EB8.o(.rodata.blacksmith_upgrade_dynamic);
         . = 0x100AD2; data/text/recovery_status.o(.rodata);
         . = 0x100DE1; asm/data/data_080F9EB8.o(.rodata.recovery_status_padding);
         . = 0x100DE4; data/text/cooking_menu.o(.rodata);

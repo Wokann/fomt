@@ -160372,7 +160372,7 @@ func_0809152C: @ 0x0809152C
 	adds r0, r7, #0
 	bl func_08008940
 	adds r2, r0, #0
-	ldr r0, .L080917E4 @ =gUnk_0810016C
+	ldr r0, .L080917E4 @ =gText_BlacksmithUpgrade_Tools
 	str r0, [sp]
 	add r4, sp, #4
 	movs r0, #1
@@ -160415,7 +160415,7 @@ func_0809152C: @ 0x0809152C
 	adds r0, r7, #0
 	bl func_08008940
 	adds r2, r0, #0
-	ldr r0, .L080917E8 @ =gUnk_08100174
+	ldr r0, .L080917E8 @ =gText_BlacksmithUpgrade_Items
 	str r0, [sp]
 	movs r0, #1
 	mov r1, sb
@@ -160647,8 +160647,8 @@ func_0809152C: @ 0x0809152C
 	str r5, [r0, #0x18]
 	bl .L080924F4
 	.align 2, 0
-.L080917E4: .4byte gUnk_0810016C
-.L080917E8: .4byte gUnk_08100174
+.L080917E4: .4byte gText_BlacksmithUpgrade_Tools
+.L080917E8: .4byte gText_BlacksmithUpgrade_Items
 .L080917EC: .4byte vtable_unk_080E5A28
 .L080917F0: .4byte vtable_unk_080E5B80
 .L080917F4: .4byte 0x00000889
@@ -160824,7 +160824,7 @@ func_0809152C: @ 0x0809152C
 .L08091962:
 	adds r4, r7, #0
 	adds r4, #0x80
-	ldr r1, .L0809198C @ =gUnk_0810017C
+	ldr r1, .L0809198C @ =gText_BlacksmithUpgrade_SelectTool
 	adds r0, r4, #0
 	bl func_08050D8C
 	adds r0, r4, #0
@@ -160840,7 +160840,7 @@ func_0809152C: @ 0x0809152C
 	movs r0, #5
 	b .L08091EE6
 	.align 2, 0
-.L0809198C: .4byte gUnk_0810017C
+.L0809198C: .4byte gText_BlacksmithUpgrade_SelectTool
 .L08091990:
 	cmp r1, #0
 	beq .L08091996
@@ -160873,7 +160873,7 @@ func_0809152C: @ 0x0809152C
 	beq .L080919FC
 	adds r4, r7, #0
 	adds r4, #0x80
-	ldr r1, .L080919F8 @ =gUnk_081001A4
+	ldr r1, .L080919F8 @ =gText_BlacksmithUpgrade_CursedTool
 	adds r0, r4, #0
 	bl func_08050D8C
 	adds r0, r4, #0
@@ -160889,7 +160889,7 @@ func_0809152C: @ 0x0809152C
 	movs r0, #5
 	b .L08091EE6
 	.align 2, 0
-.L080919F8: .4byte gUnk_081001A4
+.L080919F8: .4byte gText_BlacksmithUpgrade_CursedTool
 .L080919FC:
 	ldr r1, [sp, #0x64]
 	ldr r0, [r1]
@@ -160940,7 +160940,7 @@ func_0809152C: @ 0x0809152C
 .L08091A68:
 	adds r4, r7, #0
 	adds r4, #0x80
-	ldr r1, .L08091A90 @ =gUnk_081001D4
+	ldr r1, .L08091A90 @ =gText_BlacksmithUpgrade_SelectOre
 	adds r0, r4, #0
 	bl func_08050D8C
 	adds r0, r4, #0
@@ -160956,11 +160956,11 @@ func_0809152C: @ 0x0809152C
 	movs r0, #5
 	b .L08091EE6
 	.align 2, 0
-.L08091A90: .4byte gUnk_081001D4
+.L08091A90: .4byte gText_BlacksmithUpgrade_SelectOre
 .L08091A94:
 	adds r4, r7, #0
 	adds r4, #0x80
-	ldr r1, .L08091ABC @ =gUnk_08100208
+	ldr r1, .L08091ABC @ =gText_BlacksmithUpgrade_CannotUpgradeTool
 	adds r0, r4, #0
 	bl func_08050D8C
 	adds r0, r4, #0
@@ -160976,7 +160976,7 @@ func_0809152C: @ 0x0809152C
 	movs r0, #5
 	b .L08091EE6
 	.align 2, 0
-.L08091ABC: .4byte gUnk_08100208
+.L08091ABC: .4byte gText_BlacksmithUpgrade_CannotUpgradeTool
 .L08091AC0:
 	movs r2, #0x82
 	lsls r2, r2, #1
@@ -161031,7 +161031,7 @@ func_0809152C: @ 0x0809152C
 	beq .L08091B64
 	adds r4, r7, #0
 	adds r4, #0x80
-	ldr r1, .L08091B60 @ =gUnk_081001A4
+	ldr r1, .L08091B60 @ =gText_BlacksmithUpgrade_CursedTool
 	adds r0, r4, #0
 	bl func_08050D8C
 	adds r0, r4, #0
@@ -161047,7 +161047,7 @@ func_0809152C: @ 0x0809152C
 	movs r0, #5
 	b .L08091EE6
 	.align 2, 0
-.L08091B60: .4byte gUnk_081001A4
+.L08091B60: .4byte gText_BlacksmithUpgrade_CursedTool
 .L08091B64:
 	ldr r1, [sp, #0x64]
 	ldr r0, [r1]
@@ -161119,7 +161119,7 @@ func_0809152C: @ 0x0809152C
 .L08091C06:
 	adds r4, r7, #0
 	adds r4, #0x80
-	ldr r1, .L08091C30 @ =gUnk_081001D4
+	ldr r1, .L08091C30 @ =gText_BlacksmithUpgrade_SelectOre
 	adds r0, r4, #0
 	bl func_08050D8C
 	adds r0, r4, #0
@@ -161135,11 +161135,11 @@ func_0809152C: @ 0x0809152C
 	movs r0, #5
 	b .L08091EE6
 	.align 2, 0
-.L08091C30: .4byte gUnk_081001D4
+.L08091C30: .4byte gText_BlacksmithUpgrade_SelectOre
 .L08091C34:
 	adds r4, r7, #0
 	adds r4, #0x80
-	ldr r1, .L08091C5C @ =gUnk_08100208
+	ldr r1, .L08091C5C @ =gText_BlacksmithUpgrade_CannotUpgradeTool
 	adds r0, r4, #0
 	bl func_08050D8C
 	adds r0, r4, #0
@@ -161155,7 +161155,7 @@ func_0809152C: @ 0x0809152C
 	movs r0, #5
 	b .L08091EE6
 	.align 2, 0
-.L08091C5C: .4byte gUnk_08100208
+.L08091C5C: .4byte gText_BlacksmithUpgrade_CannotUpgradeTool
 .L08091C60:
 	ldr r2, [sp, #0x60]
 	ldr r0, [r2]
@@ -161205,7 +161205,7 @@ func_0809152C: @ 0x0809152C
 .L08091CBE:
 	adds r4, r7, #0
 	adds r4, #0x80
-	ldr r1, .L08091CE8 @ =gUnk_08100224
+	ldr r1, .L08091CE8 @ =gText_BlacksmithUpgrade_InvalidUpgradeOre
 	adds r0, r4, #0
 	bl func_08050D8C
 	adds r0, r4, #0
@@ -161221,7 +161221,7 @@ func_0809152C: @ 0x0809152C
 	movs r0, #5
 	b .L08091EE6
 	.align 2, 0
-.L08091CE8: .4byte gUnk_08100224
+.L08091CE8: .4byte gText_BlacksmithUpgrade_InvalidUpgradeOre
 .L08091CEC:
 	cmp r1, #9
 	bne .L08091D90
@@ -161278,7 +161278,7 @@ func_0809152C: @ 0x0809152C
 .L08091D64:
 	adds r4, r7, #0
 	adds r4, #0x80
-	ldr r1, .L08091D8C @ =gUnk_08100224
+	ldr r1, .L08091D8C @ =gText_BlacksmithUpgrade_InvalidUpgradeOre
 	adds r0, r4, #0
 	bl func_08050D8C
 	adds r0, r4, #0
@@ -161294,7 +161294,7 @@ func_0809152C: @ 0x0809152C
 	movs r0, #5
 	b .L08091EE6
 	.align 2, 0
-.L08091D8C: .4byte gUnk_08100224
+.L08091D8C: .4byte gText_BlacksmithUpgrade_InvalidUpgradeOre
 .L08091D90:
 	movs r0, #0x82
 	lsls r0, r0, #1
@@ -161383,7 +161383,7 @@ func_0809152C: @ 0x0809152C
 .L08091E5A:
 	adds r4, r7, #0
 	adds r4, #0x80
-	ldr r1, .L08091E84 @ =gUnk_08100224
+	ldr r1, .L08091E84 @ =gText_BlacksmithUpgrade_InvalidUpgradeOre
 	adds r0, r4, #0
 	bl func_08050D8C
 	adds r0, r4, #0
@@ -161399,7 +161399,7 @@ func_0809152C: @ 0x0809152C
 	movs r0, #5
 	b .L08091EE6
 	.align 2, 0
-.L08091E84: .4byte gUnk_08100224
+.L08091E84: .4byte gText_BlacksmithUpgrade_InvalidUpgradeOre
 .L08091E88:
 	adds r0, r7, #0
 	bl func_080088CC
@@ -161438,7 +161438,7 @@ func_0809152C: @ 0x0809152C
 	adds r0, r4, #0
 	movs r1, #0xa8
 	bl func_08050E50
-	ldr r1, .L08091EFC @ =gUnk_0810026C
+	ldr r1, .L08091EFC @ =gText_BlacksmithUpgrade_CannotChangeMind
 	adds r0, r4, #0
 	bl func_08050D8C
 	movs r2, #0x84
@@ -161459,7 +161459,7 @@ func_0809152C: @ 0x0809152C
 	bl func_08091280
 	b .L0809178A
 	.align 2, 0
-.L08091EFC: .4byte gUnk_0810026C
+.L08091EFC: .4byte gText_BlacksmithUpgrade_CannotChangeMind
 .L08091F00:
 	movs r4, #0
 	movs r2, #1
@@ -161550,7 +161550,7 @@ func_0809152C: @ 0x0809152C
 	bls .L08091FF0
 	adds r4, r7, #0
 	adds r4, #0x80
-	ldr r1, .L08091FEC @ =gUnk_0810029C
+	ldr r1, .L08091FEC @ =gText_BlacksmithUpgrade_InsufficientExperience
 	adds r0, r4, #0
 	bl func_08050D8C
 	adds r0, r4, #0
@@ -161568,7 +161568,7 @@ func_0809152C: @ 0x0809152C
 	.align 2, 0
 .L08091FE4: .4byte 0x0000FFFF
 .L08091FE8: .4byte 0x00001BD8
-.L08091FEC: .4byte gUnk_0810029C
+.L08091FEC: .4byte gText_BlacksmithUpgrade_InsufficientExperience
 .L08091FF0:
 	adds r0, r7, #0
 	ldr r1, [sp, #0x4c]
@@ -161588,14 +161588,14 @@ func_0809152C: @ 0x0809152C
 .L08092012:
 	adds r4, r7, #0
 	adds r4, #0x80
-	ldr r1, .L0809201C @ =gUnk_081002D8
+	ldr r1, .L0809201C @ =gText_BlacksmithUpgrade_AlreadyUpgradedWithOre
 	b .L08092456
 	.align 2, 0
-.L0809201C: .4byte gUnk_081002D8
+.L0809201C: .4byte gText_BlacksmithUpgrade_AlreadyUpgradedWithOre
 .L08092020:
 	adds r4, r7, #0
 	adds r4, #0x80
-	ldr r1, .L08092048 @ =gUnk_08100314
+	ldr r1, .L08092048 @ =gText_BlacksmithUpgrade_DowngradeConfirmation
 	adds r0, r4, #0
 	bl func_08050D8C
 	adds r0, r4, #0
@@ -161610,7 +161610,7 @@ func_0809152C: @ 0x0809152C
 	str r0, [r1]
 	bl .L0809178A
 	.align 2, 0
-.L08092048: .4byte gUnk_08100314
+.L08092048: .4byte gText_BlacksmithUpgrade_DowngradeConfirmation
 .L0809204C:
 	movs r0, #0x84
 	lsls r0, r0, #1
@@ -162094,7 +162094,7 @@ func_0809152C: @ 0x0809152C
 	.align 2, 0
 .L08092450: .4byte 0x00000889
 .L08092454:
-	ldr r1, .L08092480 @ =gUnk_0810026C
+	ldr r1, .L08092480 @ =gText_BlacksmithUpgrade_CannotChangeMind
 .L08092456:
 	adds r0, r4, #0
 	bl func_08050D8C
@@ -162114,7 +162114,7 @@ func_0809152C: @ 0x0809152C
 	str r0, [r1]
 	bl .L0809178A
 	.align 2, 0
-.L08092480: .4byte gUnk_0810026C
+.L08092480: .4byte gText_BlacksmithUpgrade_CannotChangeMind
 .L08092484:
 	adds r0, r7, #0
 	adds r0, #0x88
