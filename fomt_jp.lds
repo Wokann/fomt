@@ -151,6 +151,32 @@ SECTIONS
         . = 0x3A518; /* JP ROM 0x0803A518, independently matched */
 
         asm/code_0803A8A4.o(.text);
+        . = 0x3BB78; /* JP counterpart of US function 0x0803BDE4. */
+        src/code_0803BDE4.o(.text);
+        . = 0x3BB90; /* JP ROM 0x0803BDFC, remaining raw control code */
+        asm/code_0803A8A4.o(.text.code_0803BDFC);
+        . = 0x3BC30; /* JP counterpart of US function 0x0803BE9C. */
+        src/code_0803BE9C.o(.text);
+        . = 0x3BC44; /* JP counterparts of US functions 0x0803BEB0..0x0803BEC8. */
+        src/code_0803BEB0.o(.text);
+        . = 0x3BC68; /* JP counterparts of US functions 0x0803BED4/0x0803BEE0. */
+        src/code_0803BED4.o(.text);
+        . = 0x3BC80; /* JP counterparts of US functions 0x0803BEEC/0x0803BEF4. */
+        src/code_0803BEEC.o(.text);
+        . = 0x3BC90; /* JP counterparts of US functions 0x0803BEFC/0x0803BF08. */
+        src/code_0803BEFC.o(.text);
+        . = 0x3BCA8; /* JP ROM 0x0803BF14, remaining raw control code */
+        asm/code_0803A8A4.o(.text.code_0803BF14);
+        . = 0x3C2AC; /* JP counterparts of US functions 0x0803C518/0x0803C52C. */
+        src/code_0803C518.o(.text);
+        . = 0x3C2D4; /* JP counterparts of US functions 0x0803C540/0x0803C544. */
+        src/code_0803C540.o(.text);
+        . = 0x3C2E0; /* JP ROM 0x0803C54C, remaining raw control code */
+        asm/code_0803A8A4.o(.text.code_0803C54C);
+        . = 0x3E080; /* JP counterpart of shared schedule gate func_0803E40C. */
+        src/code_0803E40C.o(.text);
+        . = 0x3E0BC; /* JP ROM 0x0803E448, remaining raw control code */
+        asm/code_0803A8A4.o(.text.code_0803E448);
         . = 0x3EB08; /* JP ROM 0x0803EB08, independently matched */
         src/script_engine.o(.text);
         . = 0x3F704; /* JP ROM 0x0803F704, independently matched */

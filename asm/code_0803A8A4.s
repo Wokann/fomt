@@ -11,7 +11,23 @@
     .global func_0803A8A4
     .thumb_func
 func_0803A8A4:
-    .incbin "baserom_jp.gba", 0x3A518, 0x45F0
+    .incbin "baserom_jp.gba", 0x3A518, 0x1660
+
+    .section .text.code_0803BDFC
+.Lcode_0803BDFC:
+    .incbin "baserom_jp.gba", 0x3BB90, 0xA0
+
+    .section .text.code_0803BF14
+.Lcode_0803BF14:
+    .incbin "baserom_jp.gba", 0x3BCA8, 0x604
+
+    .section .text.code_0803C54C
+.Lcode_0803C54C:
+    .incbin "baserom_jp.gba", 0x3C2E0, 0x1DA0
+
+    .section .text.code_0803E448
+.Lcode_0803E448:
+    .incbin "baserom_jp.gba", 0x3E0BC, 0xA4C
 
     .global func_0803AB30
     .thumb_set func_0803AB30, func_0803A8A4 + 0x3AC
@@ -41,34 +57,14 @@ func_0803A8A4:
     .thumb_set func_0803BCF8, func_0803A8A4 + 0x1574
     .global func_0803BD60
     .thumb_set func_0803BD60, func_0803A8A4 + 0x15DC
-    .global func_0803BDE4
-    .thumb_set func_0803BDE4, func_0803A8A4 + 0x1660
-    .global func_0803BDEC
-    .thumb_set func_0803BDEC, func_0803A8A4 + 0x1668
+    .global func_0803BD88
+    .thumb_set func_0803BD88, func_0803A8A4 + 0x1604
+    .global func_0803BDB8
+    .thumb_set func_0803BDB8, func_0803A8A4 + 0x1634
     .global func_0803BDFC
     .thumb_set func_0803BDFC, func_0803A8A4 + 0x1678
     .global func_0803BE50
     .thumb_set func_0803BE50, func_0803A8A4 + 0x16CC
-    .global func_0803BE9C
-    .thumb_set func_0803BE9C, func_0803A8A4 + 0x1718
-    .global func_0803BEB0
-    .thumb_set func_0803BEB0, func_0803A8A4 + 0x172C
-    .global func_0803BEBC
-    .thumb_set func_0803BEBC, func_0803A8A4 + 0x1738
-    .global func_0803BEC8
-    .thumb_set func_0803BEC8, func_0803A8A4 + 0x1744
-    .global func_0803BED4
-    .thumb_set func_0803BED4, func_0803A8A4 + 0x1750
-    .global func_0803BEE0
-    .thumb_set func_0803BEE0, func_0803A8A4 + 0x175C
-    .global func_0803BEEC
-    .thumb_set func_0803BEEC, func_0803A8A4 + 0x1768
-    .global func_0803BEF4
-    .thumb_set func_0803BEF4, func_0803A8A4 + 0x1770
-    .global func_0803BEFC
-    .thumb_set func_0803BEFC, func_0803A8A4 + 0x1778
-    .global func_0803BF08
-    .thumb_set func_0803BF08, func_0803A8A4 + 0x1784
     .global func_0803BF78
     .thumb_set func_0803BF78, func_0803A8A4 + 0x17F4
     .global func_0803BFC8
@@ -77,14 +73,6 @@ func_0803A8A4:
     .thumb_set func_0803C00C, func_0803A8A4 + 0x1888
     .global func_0803C028
     .thumb_set func_0803C028, func_0803A8A4 + 0x18A4
-    .global func_0803C518
-    .thumb_set func_0803C518, func_0803A8A4 + 0x1D94
-    .global func_0803C52C
-    .thumb_set func_0803C52C, func_0803A8A4 + 0x1DA8
-    .global func_0803C540
-    .thumb_set func_0803C540, func_0803A8A4 + 0x1DBC
-    .global func_0803C544
-    .thumb_set func_0803C544, func_0803A8A4 + 0x1DC0
     .global func_0803C54C
     .thumb_set func_0803C54C, func_0803A8A4 + 0x1DC8
     .global func_0803C588
@@ -134,6 +122,9 @@ func_0803A8A4:
     @ The schedule table's JP callback pointer resolves to 0x0803D699.
     .global func_0803DA24
     .thumb_set func_0803DA24, func_0803A8A4 + 0x3180
+    @ Shared C++ schedule gates call this JP counterpart at 0x0803D1A0.
+    .global func_0803D52C
+    .thumb_set func_0803D52C, func_0803A8A4 + 0x2C88
     .else
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
@@ -2688,6 +2679,7 @@ func_0803BD60: @ 0x0803BD60
 	pop {r0}
 	bx r0
 
+	.global func_0803BD88
 	thumb_func_start func_0803BD88
 func_0803BD88: @ 0x0803BD88
 	push {r4, lr}
@@ -2716,6 +2708,7 @@ func_0803BD88: @ 0x0803BD88
 	pop {r0}
 	bx r0
 
+	.global func_0803BDB8
 	thumb_func_start func_0803BDB8
 func_0803BDB8: @ 0x0803BDB8
 	push {r4, lr}
@@ -2742,24 +2735,7 @@ func_0803BDB8: @ 0x0803BDB8
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_0803BDE4
-func_0803BDE4: @ 0x0803BDE4
-	strh r1, [r0]
-	strh r2, [r0, #2]
-	bx lr
-	.align 2, 0
-
-	thumb_func_start func_0803BDEC
-func_0803BDEC: @ 0x0803BDEC
-	ldrh r3, [r0]
-	adds r3, r3, r1
-	strh r3, [r0]
-	ldrh r1, [r0, #2]
-	adds r1, r1, r2
-	strh r1, [r0, #2]
-	bx lr
-	.align 2, 0
-
+	.section .text.code_0803BDFC
 	thumb_func_start func_0803BDFC
 func_0803BDFC: @ 0x0803BDFC
 	push {r4, r5, r6, r7, lr}
@@ -2841,88 +2817,7 @@ func_0803BE50: @ 0x0803BE50
 	.align 2, 0
 .L0803BE98: .4byte vtable_unk_080E7778
 
-	thumb_func_start func_0803BE9C
-func_0803BE9C: @ 0x0803BE9C
-	ldr r0, [r0]
-	ldrb r2, [r0, #0xb]
-	lsrs r2, r2, #7
-	ldrb r0, [r0, #0xc]
-	movs r1, #0x7f
-	ands r0, r1
-	lsls r0, r0, #1
-	orrs r0, r2
-	bx lr
-	.align 2, 0
-
-	thumb_func_start func_0803BEB0
-func_0803BEB0: @ 0x0803BEB0
-	push {lr}
-	ldr r0, [r0]
-	bl func_0803BAAC
-	pop {r1}
-	bx r1
-
-	thumb_func_start func_0803BEBC
-func_0803BEBC: @ 0x0803BEBC
-	push {lr}
-	ldr r0, [r0]
-	bl func_0803BCF8
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_0803BEC8
-func_0803BEC8: @ 0x0803BEC8
-	push {lr}
-	ldr r0, [r0]
-	bl func_0803BD60
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_0803BED4
-func_0803BED4: @ 0x0803BED4
-	push {lr}
-	ldr r0, [r0]
-	bl func_0803BD88
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_0803BEE0
-func_0803BEE0: @ 0x0803BEE0
-	push {lr}
-	ldr r0, [r0]
-	bl func_0803BDB8
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_0803BEEC
-func_0803BEEC: @ 0x0803BEEC
-	ldr r0, [r0]
-	movs r1, #0
-	ldrsh r0, [r0, r1]
-	bx lr
-
-	thumb_func_start func_0803BEF4
-func_0803BEF4: @ 0x0803BEF4
-	ldr r0, [r0]
-	movs r1, #2
-	ldrsh r0, [r0, r1]
-	bx lr
-
-	thumb_func_start func_0803BEFC
-func_0803BEFC: @ 0x0803BEFC
-	push {lr}
-	ldr r0, [r0]
-	bl func_0803BDE4
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_0803BF08
-func_0803BF08: @ 0x0803BF08
-	push {lr}
-	ldr r0, [r0]
-	bl func_0803BDEC
-	pop {r0}
-	bx r0
+	.section .text.code_0803BF14
 .L0803BF14:
 	.byte 0xF0, 0xB5, 0x05, 0x9C, 0x84, 0x61, 0x06, 0x9E, 0x07, 0x9D, 0x08, 0x9F
 	.byte 0x00, 0x24, 0x04, 0x60, 0x44, 0x60, 0x10, 0x4C, 0x84, 0x60, 0xC1, 0x60, 0x02, 0x61, 0x43, 0x61
@@ -3644,42 +3539,7 @@ func_0803C028: @ 0x0803C028
 	pop {r1}
 	bx r1
 
-	thumb_func_start func_0803C518
-func_0803C518: @ 0x0803C518
-	push {r4, lr}
-	adds r4, r0, #0
-	bl func_0803BEBC
-	movs r0, #1
-	strb r0, [r4, #0xd]
-	strb r0, [r4, #0xf]
-	pop {r4}
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_0803C52C
-func_0803C52C: @ 0x0803C52C
-	push {r4, lr}
-	adds r4, r0, #0
-	bl func_0803BEC8
-	movs r0, #1
-	strb r0, [r4, #0xd]
-	strb r0, [r4, #0xf]
-	pop {r4}
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_0803C540
-func_0803C540: @ 0x0803C540
-	ldrb r0, [r0, #0xc]
-	bx lr
-
-	thumb_func_start func_0803C544
-func_0803C544: @ 0x0803C544
-	movs r1, #0
-	strb r1, [r0, #0xf]
-	bx lr
-	.align 2, 0
-
+	.section .text.code_0803C54C
 	thumb_func_start func_0803C54C
 func_0803C54C: @ 0x0803C54C
 	push {r4, r5, lr}
@@ -7437,39 +7297,7 @@ func_0803E264: @ 0x0803E264
 	pop {r1}
 	bx r1
 
-	thumb_func_start func_0803E40C
-func_0803E40C: @ 0x0803E40C
-	push {r4, r5, lr}
-	sub sp, #4
-	adds r4, r0, #0
-	mov r5, sp
-	adds r1, r4, #0
-	adds r1, #0x10
-	mov r0, sp
-	bl func_0803D52C
-	ldrb r1, [r5, #3]
-	ldr r0, .L0803E438 @ =0x00002187
-	adds r4, r4, r0
-	ldrb r0, [r4]
-	lsls r0, r0, #0x1b
-	lsrs r0, r0, #0x1e
-	cmp r0, #2
-	bne .L0803E43C
-	cmp r1, #0
-	bne .L0803E43C
-	movs r0, #1
-	b .L0803E43E
-	.align 2, 0
-.L0803E438: .4byte 0x00002187
-.L0803E43C:
-	movs r0, #0
-.L0803E43E:
-	add sp, #4
-	pop {r4, r5}
-	pop {r1}
-	bx r1
-	.align 2, 0
-
+	.section .text.code_0803E448
 	thumb_func_start func_0803E448
 func_0803E448: @ 0x0803E448
 	push {r4, r5, lr}

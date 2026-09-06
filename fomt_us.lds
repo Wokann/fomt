@@ -101,6 +101,32 @@ SECTIONS
         asm/code_entities_08034CEC.o(.text);
 
         asm/code_0803A8A4.o(.text);
+        . = 0x3BDE4; /* US ROM 0x0803BDE4, set a u16 pair */
+        src/code_0803BDE4.o(.text);
+        . = 0x3BDFC; /* US ROM 0x0803BDFC, remaining raw control code */
+        asm/code_0803A8A4.o(.text.code_0803BDFC);
+        . = 0x3BE9C; /* US ROM 0x0803BE9C, unpack a packed value */
+        src/code_0803BE9C.o(.text);
+        . = 0x3BEB0; /* US ROM 0x0803BEB0, forward owned operations */
+        src/code_0803BEB0.o(.text);
+        . = 0x3BED4; /* US ROM 0x0803BED4, forward owned operations */
+        src/code_0803BED4.o(.text);
+        . = 0x3BEEC; /* US ROM 0x0803BEEC, read signed pair values */
+        src/code_0803BEEC.o(.text);
+        . = 0x3BEFC; /* US ROM 0x0803BEFC, forward pair operations */
+        src/code_0803BEFC.o(.text);
+        . = 0x3BF14; /* US ROM 0x0803BF14, remaining raw control code */
+        asm/code_0803A8A4.o(.text.code_0803BF14);
+        . = 0x3C518; /* US ROM 0x0803C518, activate control bytes */
+        src/code_0803C518.o(.text);
+        . = 0x3C540; /* US ROM 0x0803C540, read and clear control bytes */
+        src/code_0803C540.o(.text);
+        . = 0x3C54C; /* US ROM 0x0803C54C, remaining raw control code */
+        asm/code_0803A8A4.o(.text.code_0803C54C);
+        . = 0x3E40C; /* US ROM shared Lou/Ruby Sunday schedule gate. */
+        src/code_0803E40C.o(.text);
+        . = 0x3E448; /* US ROM 0x0803E448, remaining raw control code */
+        asm/code_0803A8A4.o(.text.code_0803E448);
         src/script_engine.o(.text);
         asm/code_0803EE94.o(.text);
 
