@@ -3,6 +3,9 @@
 
 #include "prelude.h"
 
+#define COOKING_RESULT_TEXT SECTION(".rodata.cooking_result_text")
+#define COOKING_RECIPE_ACTIONS_EXTRA_TEXT SECTION(".rodata.cooking_recipe_actions_extra_text")
+
 extern char const gText_Cooking_SeasoningSet[];
 extern char const gText_Cooking_CompleteUtensilSelection[];
 extern char const gText_Cooking_WrappedGiftDescription[];
@@ -21,9 +24,11 @@ extern char const gText_Cooking_Recipe_ListTitle[];
 extern char const gText_Cooking_Recipe_Utensils[];
 extern char const gText_Cooking_Recipe_Ingredients[];
 extern char const gText_Cooking_Recipe_UseIngredients[];
+extern char const gText_Cooking_Recipe_IngredientsRequired[];
 extern char const gText_Cooking_Recipe_Empty[];
 extern char const gText_Cooking_Recipe_StorageHeader[];
 extern char const gText_Cooking_Recipe_SelectionNames[13][11];
+extern char const gText_Cooking_ResultFailure[];
 
 #if defined(REGION_JP)
 extern char const gText_Cooking_Recipe_LeavePreviousAsIs[];

@@ -33,3 +33,6 @@ char const gText_Cooking_RestartIngredients[] =
 
 char const gText_Cooking_RestartUtensils[] =
     "Restart from Utensils.";
+
+char const gText_Cooking_ResultFailure[] COOKING_RESULT_TEXT =
+    "It didn't work...{Press}";

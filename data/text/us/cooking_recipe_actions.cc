@@ -14,3 +14,7 @@ char const gText_Cooking_Recipe_Rewrite[] =
 
 char const gText_Cooking_Recipe_ViewNew[] =
     "View new recipe.";
+
+char const gText_Cooking_Recipe_IngredientsRequired[] COOKING_RECIPE_ACTIONS_EXTRA_TEXT =
+    "You must select Ingredients\r\n"
+    "to cook.{Press}";

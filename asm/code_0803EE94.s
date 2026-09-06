@@ -173033,7 +173033,7 @@ func_08097D38: @ 0x08097D38
 .L08097ED8: .4byte gText_Cooking_RestartUtensils
 .L08097EDC: .4byte 0x000033D2
 .L08097EE0:
-	ldr r5, .L08097EF4 @ =gUnk_08100EF0
+	ldr r5, .L08097EF4 @ =gText_Cooking_ResultFailure
 	adds r4, r6, #0
 	adds r4, #0x80
 	adds r0, r4, #0
@@ -173043,7 +173043,7 @@ func_08097D38: @ 0x08097D38
 	adds r2, r6, r0
 	b .L08097F6E
 	.align 2, 0
-.L08097EF4: .4byte gUnk_08100EF0
+.L08097EF4: .4byte gText_Cooking_ResultFailure
 .L08097EF8: .4byte 0x000033D8
 .L08097EFC:
 	ldr r5, .L08097F00 @ =gUnk_08100F04
@@ -173152,7 +173152,7 @@ func_08097D38: @ 0x08097D38
 .L08097FDC: .4byte gText_Cooking_Recipe_ViewNew
 .L08097FE0: .4byte 0x000033D2
 .L08097FE4:
-	ldr r5, .L08098008 @ =gUnk_08100FE0
+	ldr r5, .L08098008 @ =gText_Cooking_Recipe_IngredientsRequired
 	adds r4, r6, #0
 	adds r4, #0x80
 	adds r0, r4, #0
@@ -173169,7 +173169,7 @@ func_08097D38: @ 0x08097D38
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L08098008: .4byte gUnk_08100FE0
+.L08098008: .4byte gText_Cooking_Recipe_IngredientsRequired
 
 	thumb_func_start func_0809800C
 func_0809800C: @ 0x0809800C

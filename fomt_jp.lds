@@ -537,10 +537,12 @@ SECTIONS
         . = 0x1008F9; asm/data/data_080F9EB8.o(.rodata.recovery_status_trailer_prefix);
         . = 0x1008FC; data/text/cooking_menu.o(.rodata);
         . = 0x100A0F; asm/data/data_080F9EB8.o(.rodata.cooking_menu_padding);
-        . = 0x100A10; asm/data/data_080F9EB8.o(.rodata.cooking_menu_trailer_prefix);
+        . = 0x100A10; data/text/cooking_menu.o(.rodata.cooking_result_text);
+        . = 0x100A22; asm/data/data_080F9EB8.o(.rodata.cooking_result_trailer);
         . = 0x100A84; data/text/cooking_recipe_actions.o(.rodata);
         . = 0x100B21; asm/data/data_080F9EB8.o(.rodata.cooking_recipe_actions_padding);
-        . = 0x100B24; asm/data/data_080F9EB8.o(.rodata.cooking_recipe_actions_trailer_prefix);
+        . = 0x100B24; data/text/cooking_recipe_actions.o(.rodata.cooking_recipe_actions_extra_text);
+        . = 0x100B4E; asm/data/data_080F9EB8.o(.rodata.cooking_recipe_actions_extra_padding);
         . = 0x100B50; data/text/cooking_recipe_inventory.o(.rodata);
         . = 0x100C24; asm/data/data_080F9EB8.o(.rodata.cooking_recipe_inventory_trailer);
         . = 0x103194; asm/data/data_080F9EB8.o(.rodata);

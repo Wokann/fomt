@@ -17,3 +17,7 @@ char const gText_Cooking_Recipe_LeaveNewAsIs[] =
 
 char const gText_Cooking_Recipe_ViewNew[] =
     "新しく出来たレシピを見る";
+
+char const gText_Cooking_Recipe_IngredientsRequired[] COOKING_RECIPE_ACTIONS_EXTRA_TEXT =
+    "何か材料を選ばないと\r\n"
+    "お料理できません。{Press}";
