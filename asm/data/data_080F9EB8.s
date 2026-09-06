@@ -16,8 +16,17 @@
     .section .rodata.horse_race_dialogue_trailer
     .incbin "baserom_jp.gba", 0xFA712, (0xFA73C - 0xFA712)
 
-    .section .rodata.horse_race_ticket_controls_trailer
-    .incbin "baserom_jp.gba", 0xFA88C, (0xFB938 - 0xFA88C)
+    .section .rodata.horse_race_ticket_controls_trailer_prefix
+    .incbin "baserom_jp.gba", 0xFA88C, (0xFA898 - 0xFA88C)
+
+    .section .rodata.horse_race_prize_catalog_trailer_prefix
+    .incbin "baserom_jp.gba", 0xFA988, (0xFA9A0 - 0xFA988)
+
+    .section .rodata.horse_race_prize_exchange_padding
+    .incbin "baserom_jp.gba", 0xFAA37, (0xFAA38 - 0xFAA37)
+
+    .section .rodata.horse_race_prize_exchange_trailer
+    .incbin "baserom_jp.gba", 0xFAA38, (0xFB938 - 0xFAA38)
 
     .section .rodata.staff_credits_trailer
     .incbin "baserom_jp.gba", 0xFBE88, (0x103194 - 0xFBE88)
@@ -169,51 +178,19 @@ gUnk_080FAE6A:
 	.section .rodata.horse_race_ticket_ui_padding
 	.incbin "baserom_us.gba", 0xFAFC6, (0xFAFC8 - 0xFAFC6)
 
-	.section .rodata.horse_race_ticket_controls_trailer
+	.section .rodata.horse_race_ticket_controls_trailer_prefix
 
 	.global gUnk_080FAFF4
 gUnk_080FAFF4:
 	.incbin "baserom_us.gba", 0xFAFF4, 0xC
 
-	.global gUnk_080FB000
-gUnk_080FB000:
-	.incbin "baserom_us.gba", 0xFB000, 0xF0
+	.section .rodata.horse_race_prize_catalog_trailer_prefix
 
 	.global gUnk_080FB0F0
 gUnk_080FB0F0:
 	.incbin "baserom_us.gba", 0xFB0F0, 0x18
 
-	.global gUnk_080FB108
-gUnk_080FB108:
-	.incbin "baserom_us.gba", 0xFB108, 0x18
-
-	.global gUnk_080FB120
-gUnk_080FB120:
-	.incbin "baserom_us.gba", 0xFB120, 0x4
-
-	.global gUnk_080FB124
-gUnk_080FB124:
-	.incbin "baserom_us.gba", 0xFB124, 0x4
-
-	.global gUnk_080FB128
-gUnk_080FB128:
-	.incbin "baserom_us.gba", 0xFB128, 0x18
-
-	.global gUnk_080FB140
-gUnk_080FB140:
-	.incbin "baserom_us.gba", 0xFB140, 0x18
-
-	.global gUnk_080FB158
-gUnk_080FB158:
-	.incbin "baserom_us.gba", 0xFB158, 0xC
-
-	.global gUnk_080FB164
-gUnk_080FB164:
-	.incbin "baserom_us.gba", 0xFB164, 0x18
-
-	.global gUnk_080FB17C
-gUnk_080FB17C:
-	.incbin "baserom_us.gba", 0xFB17C, 0x2A
+	.section .rodata.horse_race_prize_exchange_trailer
 
 	.global gUnk_080FB1A6
 gUnk_080FB1A6:

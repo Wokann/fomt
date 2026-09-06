@@ -386,7 +386,11 @@ SECTIONS
         . = 0xFAE9C; data/text/horse_race.o(.rodata.horse_race_ticket_ui);
         . = 0xFAFC6; asm/data/data_080F9EB8.o(.rodata.horse_race_ticket_ui_padding);
         . = 0xFAFC8; src/horse_race_data.o(.rodata.horse_race_ticket_controls);
-        . = 0xFAFF4; asm/data/data_080F9EB8.o(.rodata.horse_race_ticket_controls_trailer);
+        . = 0xFAFF4; asm/data/data_080F9EB8.o(.rodata.horse_race_ticket_controls_trailer_prefix);
+        . = 0xFB000; data/text/horse_race_prizes.o(.rodata.horse_race_prize_catalog);
+        . = 0xFB0F0; asm/data/data_080F9EB8.o(.rodata.horse_race_prize_catalog_trailer_prefix);
+        . = 0xFB108; data/text/horse_race_prizes.o(.rodata.horse_race_prize_exchange);
+        . = 0xFB1A6; asm/data/data_080F9EB8.o(.rodata.horse_race_prize_exchange_trailer);
         . = 0xFC0A4; data/text/staff_credits.o(.rodata.staff_credits);
         . = 0xFC6B8; asm/data/data_080F9EB8.o(.rodata.staff_credits_trailer);
         . = 0x103788; data/text/fishing_results.o(.rodata);

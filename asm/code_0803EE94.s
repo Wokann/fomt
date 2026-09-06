@@ -57158,7 +57158,7 @@ func_0805D170: @ 0x0805D170
 	adds r2, #4
 	adds r1, r6, r2
 	strh r0, [r1]
-	ldr r2, .L0805D43C @ =gUnk_080FB000
+	ldr r2, .L0805D43C @ =gHorseRacePrizeCatalog
 	movs r4, #0
 	ldrsh r3, [r1, r4]
 	lsls r0, r3, #2
@@ -57185,7 +57185,7 @@ func_0805D170: @ 0x0805D170
 	.align 2, 0
 .L0805D434: .4byte 0x00000ADC
 .L0805D438: .4byte 0x00000AD4
-.L0805D43C: .4byte gUnk_080FB000
+.L0805D43C: .4byte gHorseRacePrizeCatalog
 .L0805D440: .4byte 0x00000ADA
 .L0805D444:
 	ldr r3, .L0805D450 @ =0x00000ADA
@@ -57430,7 +57430,7 @@ func_0805D170: @ 0x0805D170
 	movs r2, #0xad
 	lsls r2, r2, #4
 	adds r3, r6, r2
-	ldr r2, .L0805D684 @ =gUnk_080FB000
+	ldr r2, .L0805D684 @ =gHorseRacePrizeCatalog
 	ldr r4, .L0805D67C @ =0x00000AD8
 	adds r0, r6, r4
 	movs r4, #0
@@ -57469,7 +57469,7 @@ func_0805D170: @ 0x0805D170
 .L0805D678: .4byte gUnk_080FB0F0
 .L0805D67C: .4byte 0x00000AD8
 .L0805D680: .4byte 0x00001C2C
-.L0805D684: .4byte gUnk_080FB000
+.L0805D684: .4byte gHorseRacePrizeCatalog
 .L0805D688: .4byte 0x00002C48
 .L0805D68C: .4byte 0x0001FFFF
 .L0805D690: .4byte 0xFFF80003
@@ -57764,9 +57764,9 @@ func_0805D760: @ 0x0805D760
 	.4byte .L0805D984 @ case 8
 .L0805D8F4:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805D914 @ =gUnk_080FB108
-	ldr r2, .L0805D918 @ =gUnk_080FB120
-	ldr r3, .L0805D91C @ =gUnk_080FB124
+	ldr r1, .L0805D914 @ =gText_HorseRace_PrizeExchangePrompt
+	ldr r2, .L0805D918 @ =gText_HorseRace_PrizeExchangeYes
+	ldr r3, .L0805D91C @ =gText_HorseRace_PrizeExchangeNo
 	ldr r4, .L0805D920 @ =0x00000AEC
 	adds r5, r7, r4
 	movs r4, #0
@@ -57778,32 +57778,32 @@ func_0805D760: @ 0x0805D760
 	adds r1, r7, r6
 	b .L0805D968
 	.align 2, 0
-.L0805D914: .4byte gUnk_080FB108
-.L0805D918: .4byte gUnk_080FB120
-.L0805D91C: .4byte gUnk_080FB124
+.L0805D914: .4byte gText_HorseRace_PrizeExchangePrompt
+.L0805D918: .4byte gText_HorseRace_PrizeExchangeYes
+.L0805D91C: .4byte gText_HorseRace_PrizeExchangeNo
 .L0805D920: .4byte 0x00000AEC
 .L0805D924: .4byte 0x00000ADC
 .L0805D928:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805D930 @ =gUnk_080FB128
+	ldr r1, .L0805D930 @ =gText_HorseRace_PrizeExchangeComeAgain
 	b .L0805D988
 	.align 2, 0
-.L0805D930: .4byte gUnk_080FB128
+.L0805D930: .4byte gText_HorseRace_PrizeExchangeComeAgain
 .L0805D934:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805D944 @ =gUnk_080FB140
+	ldr r1, .L0805D944 @ =gText_HorseRace_PrizeExchangeTakeYourTime
 	ldr r4, .L0805D948 @ =0x00000AEC
 	adds r2, r7, r4
 	bl func_08050DA0
 	b .L0805D9A8
 	.align 2, 0
-.L0805D944: .4byte gUnk_080FB140
+.L0805D944: .4byte gText_HorseRace_PrizeExchangeTakeYourTime
 .L0805D948: .4byte 0x00000AEC
 .L0805D94C:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805D970 @ =gUnk_080FB158
-	ldr r2, .L0805D974 @ =gUnk_080FB120
-	ldr r3, .L0805D978 @ =gUnk_080FB124
+	ldr r1, .L0805D970 @ =gText_HorseRace_PrizeSelectionConfirmation
+	ldr r2, .L0805D974 @ =gText_HorseRace_PrizeExchangeYes
+	ldr r3, .L0805D978 @ =gText_HorseRace_PrizeExchangeNo
 	ldr r6, .L0805D97C @ =0x00000AEC
 	adds r5, r7, r6
 	movs r4, #0
@@ -57818,25 +57818,25 @@ func_0805D760: @ 0x0805D760
 	strh r0, [r1]
 	b .L0805D9A8
 	.align 2, 0
-.L0805D970: .4byte gUnk_080FB158
-.L0805D974: .4byte gUnk_080FB120
-.L0805D978: .4byte gUnk_080FB124
+.L0805D970: .4byte gText_HorseRace_PrizeSelectionConfirmation
+.L0805D974: .4byte gText_HorseRace_PrizeExchangeYes
+.L0805D978: .4byte gText_HorseRace_PrizeExchangeNo
 .L0805D97C: .4byte 0x00000AEC
 .L0805D980: .4byte 0x00000ADC
 .L0805D984:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805D994 @ =gUnk_080FB164
+	ldr r1, .L0805D994 @ =gText_HorseRace_PrizeExchangeLeaveConfirmation
 .L0805D988:
 	ldr r3, .L0805D998 @ =0x00000AEC
 	adds r2, r7, r3
 	bl func_08050DA0
 	b .L0805D9A8
 	.align 2, 0
-.L0805D994: .4byte gUnk_080FB164
+.L0805D994: .4byte gText_HorseRace_PrizeExchangeLeaveConfirmation
 .L0805D998: .4byte 0x00000AEC
 .L0805D99C:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805D9B8 @ =gUnk_080FB17C
+	ldr r1, .L0805D9B8 @ =gText_HorseRace_PrizeExchangeInsufficientMedals
 	ldr r4, .L0805D9BC @ =0x00000AEC
 	adds r2, r7, r4
 	bl func_08050DA0
@@ -57849,7 +57849,7 @@ func_0805D760: @ 0x0805D760
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L0805D9B8: .4byte gUnk_080FB17C
+.L0805D9B8: .4byte gText_HorseRace_PrizeExchangeInsufficientMedals
 .L0805D9BC: .4byte 0x00000AEC
 
 	thumb_func_start func_0805D9C0
@@ -58260,7 +58260,7 @@ func_0805DC24: @ 0x0805DC24
 	lsls r1, r0, #2
 	adds r1, r1, r0
 	lsls r1, r1, #2
-	ldr r0, .L0805DE1C @ =gUnk_080FB000
+	ldr r0, .L0805DE1C @ =gHorseRacePrizeCatalog
 	adds r1, r1, r0
 	add r0, sp, #0x3d4
 	mov r2, sl
@@ -58356,7 +58356,7 @@ func_0805DC24: @ 0x0805DC24
 .L0805DE10: .4byte 0x05000200
 .L0805DE14: .4byte 0x06010000
 .L0805DE18: .4byte 0x06002800
-.L0805DE1C: .4byte gUnk_080FB000
+.L0805DE1C: .4byte gHorseRacePrizeCatalog
 .L0805DE20: .4byte 0x0600F000
 
 	thumb_func_start func_0805DE24
@@ -58369,7 +58369,7 @@ func_0805DE24: @ 0x0805DE24
 	movs r0, #0
 	strh r0, [r1]
 	movs r4, #0
-	ldr r6, .L0805DEBC @ =gUnk_080FB000
+	ldr r6, .L0805DEBC @ =gHorseRacePrizeCatalog
 .L0805DE36:
 	lsls r2, r4, #4
 	movs r1, #0xa6
@@ -58436,7 +58436,7 @@ func_0805DE24: @ 0x0805DE24
 	bx r0
 	.align 2, 0
 .L0805DEB8: .4byte 0x000002CE
-.L0805DEBC: .4byte gUnk_080FB000
+.L0805DEBC: .4byte gHorseRacePrizeCatalog
 
 	thumb_func_start func_0805DEC0
 func_0805DEC0: @ 0x0805DEC0

@@ -3,6 +3,13 @@
 
 #include "prelude.h"
 
+// The prize name is an inline field in the original 20-byte catalog entry,
+// followed by the medal cost.  It is not a pointer to separately stored text.
+struct HorseRacePrize {
+    char name[16];
+    u32 medal_cost;
+};
+
 extern char const gText_HorseRace_BuyTicketDeclined[];
 extern char const gText_HorseRace_Yes[];
 extern char const gText_HorseRace_No[];
@@ -41,6 +48,15 @@ extern char const gText_HorseRace_TicketControls_ChangeQuantityByTenContinuation
 extern char const gText_HorseRace_TicketControls_MoveCursorToConfirm[];
 extern char const gText_HorseRace_TicketControls_Buy[];
 extern char const gText_HorseRace_TicketControls_Cancel[];
+extern char const gText_HorseRace_PrizeExchangePrompt[];
+extern char const gText_HorseRace_PrizeExchangeYes[];
+extern char const gText_HorseRace_PrizeExchangeNo[];
+extern char const gText_HorseRace_PrizeExchangeComeAgain[];
+extern char const gText_HorseRace_PrizeExchangeTakeYourTime[];
+extern char const gText_HorseRace_PrizeSelectionConfirmation[];
+extern char const gText_HorseRace_PrizeExchangeLeaveConfirmation[];
+extern char const gText_HorseRace_PrizeExchangeInsufficientMedals[];
 extern char const * const gHorseRaceTicketControls[];
+extern HorseRacePrize const gHorseRacePrizeCatalog[];
 
 #endif
