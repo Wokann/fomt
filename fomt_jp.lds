@@ -486,7 +486,9 @@ SECTIONS
         . = 0xFA988; asm/data/data_080F9EB8.o(.rodata.horse_race_prize_catalog_trailer_prefix);
         . = 0xFA9A0; data/text/horse_race_prizes.o(.rodata.horse_race_prize_exchange);
         . = 0xFAA37; asm/data/data_080F9EB8.o(.rodata.horse_race_prize_exchange_padding);
-        . = 0xFAA38; asm/data/data_080F9EB8.o(.rodata.horse_race_prize_exchange_trailer);
+        . = 0xFAA38; asm/data/data_080F9EB8.o(.rodata.horse_race_prize_exchange_trailer_prefix);
+        . = 0xFB11C; data/text/farm_status.o(.rodata);
+        . = 0xFB224; asm/data/data_080F9EB8.o(.rodata.farm_status_trailer);
         . = 0xFB938; data/text/staff_credits.o(.rodata.staff_credits);
         . = 0xFBE88; asm/data/data_080F9EB8.o(.rodata.staff_credits_trailer);
         . = 0x103194; asm/data/data_080F9EB8.o(.rodata);

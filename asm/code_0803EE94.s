@@ -62488,7 +62488,7 @@ func_0805FF14: @ 0x0805FF14
 	mov sb, r1
 	strb r1, [r0]
 	adds r7, r5, #0
-	ldr r2, .L080600A8 @ =gUnk_080FB824
+	ldr r2, .L080600A8 @ =gText_FarmStatus_OverviewTitle
 	mov r8, r2
 	adds r0, r7, #0
 	bl strlen
@@ -62533,7 +62533,7 @@ func_0805FF14: @ 0x0805FF14
 	str r0, [r1]
 	ldr r0, [r5, #4]
 	str r0, [sp, #0x1cc]
-	ldr r2, .L080600B4 @ =gUnk_080FB830
+	ldr r2, .L080600B4 @ =gText_FarmStatus_CountFieldPadding
 	add r1, sp, #0x58
 	movs r0, #2
 	strh r0, [r1]
@@ -62651,10 +62651,10 @@ func_0805FF14: @ 0x0805FF14
 	b .L08060236
 	.align 2, 0
 .L080600A4: .4byte 0xFFFFFD64
-.L080600A8: .4byte gUnk_080FB824
+.L080600A8: .4byte gText_FarmStatus_OverviewTitle
 .L080600AC: .4byte 0x000005B4
 .L080600B0: .4byte vtable_unk_080E7A78
-.L080600B4: .4byte gUnk_080FB830
+.L080600B4: .4byte gText_FarmStatus_CountFieldPadding
 .L080600B8: .4byte 0x000005BC
 .L080600BC: .4byte 0x000006C4
 .L080600C0: .4byte 0x000007CC
@@ -62849,7 +62849,7 @@ func_0805FF14: @ 0x0805FF14
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08060236:
-	ldr r2, .L08060298 @ =gUnk_080FB830
+	ldr r2, .L08060298 @ =gText_FarmStatus_CountFieldPadding
 	movs r1, #2
 	add r0, sp, #0x64
 	strh r1, [r0]
@@ -62896,7 +62896,7 @@ func_0805FF14: @ 0x0805FF14
 	str r0, [sp, #0x260]
 	b .L08060366
 	.align 2, 0
-.L08060298: .4byte gUnk_080FB830
+.L08060298: .4byte gText_FarmStatus_CountFieldPadding
 .L0806029C:
 	str r1, [sp, #0x294]
 	movs r0, #1
@@ -63012,7 +63012,7 @@ func_0805FF14: @ 0x0805FF14
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08060366:
-	ldr r2, .L080603B8 @ =gUnk_080FB830
+	ldr r2, .L080603B8 @ =gText_FarmStatus_CountFieldPadding
 	movs r1, #2
 	add r0, sp, #0x70
 	strh r1, [r0]
@@ -63052,7 +63052,7 @@ func_0805FF14: @ 0x0805FF14
 	str r0, [r6, #4]
 	b .L08060486
 	.align 2, 0
-.L080603B8: .4byte gUnk_080FB830
+.L080603B8: .4byte gText_FarmStatus_CountFieldPadding
 .L080603BC: .4byte 0x06000800
 .L080603C0:
 	str r1, [sp, #0x294]
@@ -63167,7 +63167,7 @@ func_0805FF14: @ 0x0805FF14
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08060486:
-	ldr r2, .L080604E8 @ =gUnk_080FB830
+	ldr r2, .L080604E8 @ =gText_FarmStatus_CountFieldPadding
 	movs r1, #2
 	add r0, sp, #0x7c
 	strh r1, [r0]
@@ -63214,7 +63214,7 @@ func_0805FF14: @ 0x0805FF14
 	str r0, [sp, #0x1e4]
 	b .L080605B6
 	.align 2, 0
-.L080604E8: .4byte gUnk_080FB830
+.L080604E8: .4byte gText_FarmStatus_CountFieldPadding
 .L080604EC:
 	str r1, [sp, #0x294]
 	movs r0, #1
@@ -63330,7 +63330,7 @@ func_0805FF14: @ 0x0805FF14
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L080605B6:
-	ldr r2, .L08060618 @ =gUnk_080FB830
+	ldr r2, .L08060618 @ =gText_FarmStatus_CountFieldPadding
 	movs r0, #2
 	add r1, sp, #0x88
 	strh r0, [r1]
@@ -63377,7 +63377,7 @@ func_0805FF14: @ 0x0805FF14
 	str r4, [sp, #0x1e8]
 	b .L080606E6
 	.align 2, 0
-.L08060618: .4byte gUnk_080FB830
+.L08060618: .4byte gText_FarmStatus_CountFieldPadding
 .L0806061C:
 	str r1, [sp, #0x294]
 	movs r0, #1
@@ -63493,7 +63493,7 @@ func_0805FF14: @ 0x0805FF14
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L080606E6:
-	ldr r2, .L08060748 @ =gUnk_080FB830
+	ldr r2, .L08060748 @ =gText_FarmStatus_CountFieldPadding
 	movs r0, #2
 	add r1, sp, #0x94
 	strh r0, [r1]
@@ -63540,7 +63540,7 @@ func_0805FF14: @ 0x0805FF14
 	str r4, [sp, #0x1ec]
 	b .L08060816
 	.align 2, 0
-.L08060748: .4byte gUnk_080FB830
+.L08060748: .4byte gText_FarmStatus_CountFieldPadding
 .L0806074C:
 	str r1, [sp, #0x294]
 	movs r0, #1
@@ -63656,7 +63656,7 @@ func_0805FF14: @ 0x0805FF14
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08060816:
-	ldr r2, .L08060878 @ =gUnk_080FB834
+	ldr r2, .L08060878 @ =gText_FarmStatus_GoldUnit
 	movs r0, #2
 	add r1, sp, #0xa0
 	strh r0, [r1]
@@ -63703,7 +63703,7 @@ func_0805FF14: @ 0x0805FF14
 	str r4, [sp, #0x1f0]
 	b .L08060946
 	.align 2, 0
-.L08060878: .4byte gUnk_080FB834
+.L08060878: .4byte gText_FarmStatus_GoldUnit
 .L0806087C:
 	str r1, [sp, #0x294]
 	movs r0, #1
@@ -68908,7 +68908,7 @@ func_08062E9C: @ 0x08062E9C
 	adds r1, r4, #0
 	movs r2, #0
 	bl func_0804E7A0
-	ldr r1, .L08062FB0 @ =gUnk_080FB838
+	ldr r1, .L08062FB0 @ =gText_FarmStatus_Healthy
 	add r0, sp, #0x18
 	strh r5, [r0]
 	mov r3, r8
@@ -68976,7 +68976,7 @@ func_08062E9C: @ 0x08062E9C
 .L08062FA4: .4byte 0x000005B4
 .L08062FA8: .4byte vtable_unk_080E7A68
 .L08062FAC: .4byte 0x000005BC
-.L08062FB0: .4byte gUnk_080FB838
+.L08062FB0: .4byte gText_FarmStatus_Healthy
 .L08062FB4: .4byte 0x06000700
 .L08062FB8: .4byte 0x000009C4
 .L08062FBC: .4byte 0x00000E54
@@ -69135,7 +69135,7 @@ func_08062E9C: @ 0x08062E9C
 	str r5, [r7, #4]
 	str r0, [r7, #0xc]
 .L080630EC:
-	ldr r3, .L0806313C @ =gUnk_080FB844
+	ldr r3, .L0806313C @ =gText_FarmStatus_Unhappy
 	movs r1, #8
 	movs r2, #2
 	add r0, sp, #0x24
@@ -69174,7 +69174,7 @@ func_08062E9C: @ 0x08062E9C
 	str r0, [r7, #4]
 	b .L0806320A
 	.align 2, 0
-.L0806313C: .4byte gUnk_080FB844
+.L0806313C: .4byte gText_FarmStatus_Unhappy
 .L08063140: .4byte 0x06000900
 .L08063144:
 	mov sl, r1
@@ -69300,7 +69300,7 @@ func_08062E9C: @ 0x08062E9C
 	ldr r1, [sp, #0xc8]
 	movs r2, #0
 	bl func_0804E7A0
-	ldr r1, .L0806326C @ =gUnk_080FB850
+	ldr r1, .L0806326C @ =gText_FarmStatus_Sick
 	add r0, sp, #0x34
 	strh r4, [r0]
 	ldr r3, [sp, #0xdc]
@@ -69337,7 +69337,7 @@ func_08062E9C: @ 0x08062E9C
 	str r0, [r7, #4]
 	b .L0806333A
 	.align 2, 0
-.L0806326C: .4byte gUnk_080FB850
+.L0806326C: .4byte gText_FarmStatus_Sick
 .L08063270: .4byte 0x06000B00
 .L08063274:
 	mov sl, r1
@@ -69453,7 +69453,7 @@ func_08062E9C: @ 0x08062E9C
 	str r5, [r7, #4]
 	str r0, [r7, #0xc]
 .L0806333A:
-	ldr r3, .L08063388 @ =gUnk_080FB85C
+	ldr r3, .L08063388 @ =gText_FarmStatus_Spring
 	movs r1, #6
 	movs r2, #2
 	add r0, sp, #0x40
@@ -69492,7 +69492,7 @@ func_08062E9C: @ 0x08062E9C
 	str r0, [r7, #4]
 	b .L08063456
 	.align 2, 0
-.L08063388: .4byte gUnk_080FB85C
+.L08063388: .4byte gText_FarmStatus_Spring
 .L0806338C: .4byte 0x06000D00
 .L08063390:
 	mov sl, r1
@@ -69608,7 +69608,7 @@ func_08062E9C: @ 0x08062E9C
 	str r5, [r7, #4]
 	str r0, [r7, #0xc]
 .L08063456:
-	ldr r3, .L080634A4 @ =gUnk_080FB864
+	ldr r3, .L080634A4 @ =gText_FarmStatus_Summer
 	movs r1, #6
 	movs r2, #2
 	add r0, sp, #0x4c
@@ -69647,7 +69647,7 @@ func_08062E9C: @ 0x08062E9C
 	str r0, [r7, #4]
 	b .L08063572
 	.align 2, 0
-.L080634A4: .4byte gUnk_080FB864
+.L080634A4: .4byte gText_FarmStatus_Summer
 .L080634A8: .4byte 0x06000E80
 .L080634AC:
 	mov sl, r1
@@ -69763,7 +69763,7 @@ func_08062E9C: @ 0x08062E9C
 	str r5, [r7, #4]
 	str r0, [r7, #0xc]
 .L08063572:
-	ldr r3, .L080635C0 @ =gUnk_080FB86C
+	ldr r3, .L080635C0 @ =gText_FarmStatus_Autumn
 	movs r1, #6
 	movs r2, #2
 	add r0, sp, #0x58
@@ -69802,7 +69802,7 @@ func_08062E9C: @ 0x08062E9C
 	str r0, [r7, #4]
 	b .L0806368E
 	.align 2, 0
-.L080635C0: .4byte gUnk_080FB86C
+.L080635C0: .4byte gText_FarmStatus_Autumn
 .L080635C4: .4byte 0x06001000
 .L080635C8:
 	mov sl, r1
@@ -69918,7 +69918,7 @@ func_08062E9C: @ 0x08062E9C
 	str r5, [r7, #4]
 	str r0, [r7, #0xc]
 .L0806368E:
-	ldr r3, .L080636DC @ =gUnk_080FB874
+	ldr r3, .L080636DC @ =gText_FarmStatus_Winter
 	movs r1, #6
 	movs r2, #2
 	add r0, sp, #0x64
@@ -69957,7 +69957,7 @@ func_08062E9C: @ 0x08062E9C
 	str r0, [r7, #4]
 	b .L080637AA
 	.align 2, 0
-.L080636DC: .4byte gUnk_080FB874
+.L080636DC: .4byte gText_FarmStatus_Winter
 .L080636E0: .4byte 0x06001180
 .L080636E4:
 	mov sl, r1
@@ -70073,7 +70073,7 @@ func_08062E9C: @ 0x08062E9C
 	str r5, [r7, #4]
 	str r0, [r7, #0xc]
 .L080637AA:
-	ldr r2, .L080637F4 @ =gUnk_080FB87C
+	ldr r2, .L080637F4 @ =gText_FarmStatus_AgeUnit
 	movs r1, #2
 	add r0, sp, #0x70
 	strh r1, [r0]
@@ -70110,7 +70110,7 @@ func_08062E9C: @ 0x08062E9C
 	str r0, [r7, #4]
 	b .L080638C2
 	.align 2, 0
-.L080637F4: .4byte gUnk_080FB87C
+.L080637F4: .4byte gText_FarmStatus_AgeUnit
 .L080637F8: .4byte 0x06001300
 .L080637FC:
 	mov sl, r1
@@ -70226,7 +70226,7 @@ func_08062E9C: @ 0x08062E9C
 	str r5, [r7, #4]
 	str r0, [r7, #0xc]
 .L080638C2:
-	ldr r2, .L0806390C @ =gUnk_080FB830
+	ldr r2, .L0806390C @ =gText_FarmStatus_CountFieldPadding
 	movs r1, #2
 	add r0, sp, #0x7c
 	strh r1, [r0]
@@ -70263,7 +70263,7 @@ func_08062E9C: @ 0x08062E9C
 	str r0, [r7, #4]
 	b .L080639E2
 	.align 2, 0
-.L0806390C: .4byte gUnk_080FB830
+.L0806390C: .4byte gText_FarmStatus_CountFieldPadding
 .L08063910: .4byte 0x06001380
 .L08063914:
 	str r1, [sp, #0xec]
@@ -71654,7 +71654,7 @@ func_08064320: @ 0x08064320
 	push {r7}
 	sub sp, #4
 	adds r5, r0, #0
-	ldr r0, .L08064384 @ =gUnk_080FB880
+	ldr r0, .L08064384 @ =gText_FarmStatus_ChickenList
 	str r0, [sp]
 	adds r0, r5, #0
 	movs r3, #0x2d
@@ -71696,7 +71696,7 @@ func_08064320: @ 0x08064320
 	ldr r0, .L08064398 @ =gUnk_0875270C
 	b .L080643A0
 	.align 2, 0
-.L08064384: .4byte gUnk_080FB880
+.L08064384: .4byte gText_FarmStatus_ChickenList
 .L08064388: .4byte 0x000005B4
 .L0806438C: .4byte vtable_unk_080E7A58
 .L08064390: .4byte 0x0000058C
@@ -71744,7 +71744,7 @@ func_080643DC: @ 0x080643DC
 	push {r5, r6, r7}
 	sub sp, #4
 	adds r7, r0, #0
-	ldr r0, .L08064458 @ =gUnk_080FB894
+	ldr r0, .L08064458 @ =gText_FarmStatus_CattleList
 	str r0, [sp]
 	adds r0, r7, #0
 	movs r3, #0x55
@@ -71796,7 +71796,7 @@ func_080643DC: @ 0x080643DC
 	ldr r5, .L08064474 @ =gUnk_08751D0C
 	b .L080644A8
 	.align 2, 0
-.L08064458: .4byte gUnk_080FB894
+.L08064458: .4byte gText_FarmStatus_CattleList
 .L0806445C: .4byte 0x000005B4
 .L08064460: .4byte vtable_unk_080E7A48
 .L08064464: .4byte 0x0000058C
@@ -71871,7 +71871,7 @@ func_080644F0: @ 0x080644F0
 	push {r5, r6, r7}
 	sub sp, #4
 	adds r7, r0, #0
-	ldr r0, .L08064568 @ =gUnk_080FB8A4
+	ldr r0, .L08064568 @ =gText_FarmStatus_SheepList
 	str r0, [sp]
 	adds r0, r7, #0
 	movs r3, #0x55
@@ -71921,7 +71921,7 @@ func_080644F0: @ 0x080644F0
 	ldr r5, .L08064584 @ =gUnk_087533CC
 	b .L080645A8
 	.align 2, 0
-.L08064568: .4byte gUnk_080FB8A4
+.L08064568: .4byte gText_FarmStatus_SheepList
 .L0806456C: .4byte 0x000005B4
 .L08064570: .4byte vtable_unk_080E7A38
 .L08064574: .4byte 0x0000058C
@@ -71989,7 +71989,7 @@ func_080645F0: @ 0x080645F0
 	push {r5, r6, r7}
 	sub sp, #0x168
 	str r0, [sp, #0xf0]
-	ldr r0, .L080646BC @ =gUnk_080FB8B4
+	ldr r0, .L080646BC @ =gText_FarmStatus_HarvestSpriteList
 	str r0, [sp]
 	ldr r0, [sp, #0xf0]
 	movs r3, #0x35
@@ -72024,7 +72024,7 @@ func_080645F0: @ 0x080645F0
 	ldr r4, [sp, #0xf0]
 	ldr r4, [r4, #4]
 	str r4, [sp, #0xf4]
-	ldr r2, .L080646CC @ =gUnk_080FB8C8
+	ldr r2, .L080646CC @ =gText_FarmStatus_DayAbbreviation
 	movs r1, #2
 	add r0, sp, #0x28
 	strh r1, [r0]
@@ -72082,11 +72082,11 @@ func_080645F0: @ 0x080645F0
 	str r2, [sp, #0x130]
 	b .L080647C2
 	.align 2, 0
-.L080646BC: .4byte gUnk_080FB8B4
+.L080646BC: .4byte gText_FarmStatus_HarvestSpriteList
 .L080646C0: .4byte 0x000005B4
 .L080646C4: .4byte vtable_unk_080E7A28
 .L080646C8: .4byte 0x00002164
-.L080646CC: .4byte gUnk_080FB8C8
+.L080646CC: .4byte gText_FarmStatus_DayAbbreviation
 .L080646D0: .4byte 0x000005BC
 .L080646D4: .4byte 0x00000744
 .L080646D8: .4byte 0x00000948
@@ -72218,7 +72218,7 @@ func_080645F0: @ 0x080645F0
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L080647C2:
-	ldr r3, .L08064824 @ =gUnk_080FB8CC
+	ldr r3, .L08064824 @ =gText_FarmStatus_DaysRemaining
 	movs r1, #4
 	movs r2, #2
 	add r0, sp, #0x34
@@ -72265,7 +72265,7 @@ func_080645F0: @ 0x080645F0
 	str r0, [r6, #4]
 	b .L080648E8
 	.align 2, 0
-.L08064824: .4byte gUnk_080FB8CC
+.L08064824: .4byte gText_FarmStatus_DaysRemaining
 .L08064828:
 	mov sl, r1
 	movs r0, #1
@@ -72376,7 +72376,7 @@ func_080645F0: @ 0x080645F0
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L080648E8:
-	ldr r3, .L08064948 @ =gUnk_080FB8D4
+	ldr r3, .L08064948 @ =gText_FarmStatus_WorkAssignment
 	movs r1, #8
 	movs r2, #2
 	add r0, sp, #0x40
@@ -72423,7 +72423,7 @@ func_080645F0: @ 0x080645F0
 	str r0, [r6, #4]
 	b .L08064A0C
 	.align 2, 0
-.L08064948: .4byte gUnk_080FB8D4
+.L08064948: .4byte gText_FarmStatus_WorkAssignment
 .L0806494C:
 	mov sl, r1
 	movs r0, #1
@@ -72534,7 +72534,7 @@ func_080645F0: @ 0x080645F0
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08064A0C:
-	ldr r3, .L08064A6C @ =gUnk_080FB8E0
+	ldr r3, .L08064A6C @ =gText_FarmStatus_NotAssigned
 	movs r1, #0xc
 	movs r2, #2
 	add r0, sp, #0x4c
@@ -72581,7 +72581,7 @@ func_080645F0: @ 0x080645F0
 	str r0, [r6, #4]
 	b .L08064B30
 	.align 2, 0
-.L08064A6C: .4byte gUnk_080FB8E0
+.L08064A6C: .4byte gText_FarmStatus_NotAssigned
 .L08064A70:
 	mov sl, r1
 	movs r0, #1
@@ -76115,7 +76115,7 @@ func_0806644C: @ 0x0806644C
 	push {r5, r6, r7}
 	sub sp, #0x18c
 	str r0, [sp, #0xe8]
-	ldr r0, .L08066578 @ =gUnk_080FB8F0
+	ldr r0, .L08066578 @ =gText_FarmStatus_EarningsReport
 	str r0, [sp]
 	ldr r0, [sp, #0xe8]
 	movs r3, #0x96
@@ -76135,7 +76135,7 @@ func_0806644C: @ 0x0806644C
 	str r1, [r0]
 	ldr r6, [r3, #4]
 	str r6, [sp, #0xec]
-	ldr r2, .L0806658C @ =gUnk_080FB8C8
+	ldr r2, .L0806658C @ =gText_FarmStatus_DayAbbreviation
 	add r1, sp, #0x18
 	movs r0, #2
 	strh r0, [r1]
@@ -76256,12 +76256,12 @@ func_0806644C: @ 0x0806644C
 	str r5, [sp, #0x164]
 	b .L08066712
 	.align 2, 0
-.L08066578: .4byte gUnk_080FB8F0
+.L08066578: .4byte gText_FarmStatus_EarningsReport
 .L0806657C: .4byte 0x000005B4
 .L08066580: .4byte vtable_unk_080E7A18
 .L08066584: .4byte 0x00001264
 .L08066588: .4byte 0x00001638
-.L0806658C: .4byte gUnk_080FB8C8
+.L0806658C: .4byte gText_FarmStatus_DayAbbreviation
 .L08066590: .4byte 0x000005BC
 .L08066594: .4byte 0x000006C4
 .L08066598: .4byte 0x00000A54
@@ -76455,7 +76455,7 @@ func_0806644C: @ 0x0806644C
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08066712:
-	ldr r2, .L08066774 @ =gUnk_080FB834
+	ldr r2, .L08066774 @ =gText_FarmStatus_GoldUnit
 	movs r1, #2
 	add r0, sp, #0x24
 	strh r1, [r0]
@@ -76503,7 +76503,7 @@ func_0806644C: @ 0x0806644C
 	str r3, [sp, #0x16c]
 	b .L0806683E
 	.align 2, 0
-.L08066774: .4byte gUnk_080FB834
+.L08066774: .4byte gText_FarmStatus_GoldUnit
 .L08066778:
 	mov sl, r1
 	movs r0, #1
@@ -76619,7 +76619,7 @@ func_0806644C: @ 0x0806644C
 .L0806683E:
 	movs r2, #0x40
 	mov sl, r2
-	ldr r2, .L080668A4 @ =gUnk_080FB904
+	ldr r2, .L080668A4 @ =gText_FarmStatus_PlusSign
 	movs r1, #2
 	add r0, sp, #0x30
 	strh r1, [r0]
@@ -76667,7 +76667,7 @@ func_0806644C: @ 0x0806644C
 	str r5, [sp, #0x174]
 	b .L08066974
 	.align 2, 0
-.L080668A4: .4byte gUnk_080FB904
+.L080668A4: .4byte gText_FarmStatus_PlusSign
 .L080668A8:
 	str r1, [sp, #0x184]
 	movs r0, #1
@@ -76786,7 +76786,7 @@ func_0806644C: @ 0x0806644C
 .L08066974:
 	movs r0, #0x44
 	mov sl, r0
-	ldr r2, .L080669DC @ =gUnk_080FB908
+	ldr r2, .L080669DC @ =gText_FarmStatus_MinusSign
 	movs r1, #2
 	add r0, sp, #0x3c
 	strh r1, [r0]
@@ -76834,7 +76834,7 @@ func_0806644C: @ 0x0806644C
 	str r5, [sp, #0x17c]
 	b .L08066AAC
 	.align 2, 0
-.L080669DC: .4byte gUnk_080FB908
+.L080669DC: .4byte gText_FarmStatus_MinusSign
 .L080669E0:
 	str r1, [sp, #0x184]
 	movs r0, #1
@@ -76951,7 +76951,7 @@ func_0806644C: @ 0x0806644C
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08066AAC:
-	ldr r3, .L08066B0C @ =gUnk_080FB85C
+	ldr r3, .L08066B0C @ =gText_FarmStatus_Spring
 	movs r1, #6
 	movs r2, #2
 	add r0, sp, #0x48
@@ -76998,7 +76998,7 @@ func_0806644C: @ 0x0806644C
 	str r0, [r6, #4]
 	b .L08066BD0
 	.align 2, 0
-.L08066B0C: .4byte gUnk_080FB85C
+.L08066B0C: .4byte gText_FarmStatus_Spring
 .L08066B10:
 	mov sl, r1
 	movs r0, #1
@@ -77109,7 +77109,7 @@ func_0806644C: @ 0x0806644C
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08066BD0:
-	ldr r3, .L08066C28 @ =gUnk_080FB864
+	ldr r3, .L08066C28 @ =gText_FarmStatus_Summer
 	movs r1, #6
 	movs r2, #2
 	add r0, sp, #0x54
@@ -77152,7 +77152,7 @@ func_0806644C: @ 0x0806644C
 	str r0, [r6, #4]
 	b .L08066CF0
 	.align 2, 0
-.L08066C28: .4byte gUnk_080FB864
+.L08066C28: .4byte gText_FarmStatus_Summer
 .L08066C2C: .4byte 0x06000A80
 .L08066C30:
 	mov sl, r1
@@ -77264,7 +77264,7 @@ func_0806644C: @ 0x0806644C
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08066CF0:
-	ldr r3, .L08066D48 @ =gUnk_080FB86C
+	ldr r3, .L08066D48 @ =gText_FarmStatus_Autumn
 	movs r1, #6
 	movs r2, #2
 	add r0, sp, #0x60
@@ -77307,7 +77307,7 @@ func_0806644C: @ 0x0806644C
 	str r0, [r6, #4]
 	b .L08066E10
 	.align 2, 0
-.L08066D48: .4byte gUnk_080FB86C
+.L08066D48: .4byte gText_FarmStatus_Autumn
 .L08066D4C: .4byte 0x06000C00
 .L08066D50:
 	mov sl, r1
@@ -77419,7 +77419,7 @@ func_0806644C: @ 0x0806644C
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08066E10:
-	ldr r3, .L08066E68 @ =gUnk_080FB874
+	ldr r3, .L08066E68 @ =gText_FarmStatus_Winter
 	movs r1, #6
 	movs r2, #2
 	add r0, sp, #0x6c
@@ -77462,7 +77462,7 @@ func_0806644C: @ 0x0806644C
 	str r0, [r6, #4]
 	b .L08066F30
 	.align 2, 0
-.L08066E68: .4byte gUnk_080FB874
+.L08066E68: .4byte gText_FarmStatus_Winter
 .L08066E6C: .4byte 0x06000D80
 .L08066E70:
 	mov sl, r1
@@ -77576,7 +77576,7 @@ func_0806644C: @ 0x0806644C
 .L08066F30:
 	movs r2, #0x78
 	mov sl, r2
-	ldr r3, .L08066F9C @ =gUnk_080FB90C
+	ldr r3, .L08066F9C @ =gText_FarmStatus_YearLabel
 	movs r1, #4
 	movs r2, #2
 	add r0, sp, #0x78
@@ -77626,7 +77626,7 @@ func_0806644C: @ 0x0806644C
 	str r5, [sp, #0x118]
 	b .L0806706C
 	.align 2, 0
-.L08066F9C: .4byte gUnk_080FB90C
+.L08066F9C: .4byte gText_FarmStatus_YearLabel
 .L08066FA0:
 	str r1, [sp, #0x184]
 	movs r0, #1
@@ -77745,7 +77745,7 @@ func_0806644C: @ 0x0806644C
 .L0806706C:
 	movs r0, #0x80
 	mov sl, r0
-	ldr r3, .L080670D8 @ =gUnk_080FB914
+	ldr r3, .L080670D8 @ =gText_FarmStatus_Income
 	movs r1, #6
 	movs r2, #2
 	add r0, sp, #0x84
@@ -77795,7 +77795,7 @@ func_0806644C: @ 0x0806644C
 	str r4, [sp, #0x124]
 	b .L080671A6
 	.align 2, 0
-.L080670D8: .4byte gUnk_080FB914
+.L080670D8: .4byte gText_FarmStatus_Income
 .L080670DC:
 	str r1, [sp, #0x184]
 	movs r0, #1
@@ -77913,7 +77913,7 @@ func_0806644C: @ 0x0806644C
 .L080671A6:
 	movs r0, #0x8c
 	mov sl, r0
-	ldr r3, .L08067210 @ =gUnk_080FB91C
+	ldr r3, .L08067210 @ =gText_FarmStatus_Expenses
 	movs r1, #8
 	movs r2, #2
 	add r0, sp, #0x90
@@ -77963,7 +77963,7 @@ func_0806644C: @ 0x0806644C
 	str r4, [sp, #0x12c]
 	b .L080672DE
 	.align 2, 0
-.L08067210: .4byte gUnk_080FB91C
+.L08067210: .4byte gText_FarmStatus_Expenses
 .L08067214:
 	str r1, [sp, #0x184]
 	movs r0, #1
@@ -80259,7 +80259,7 @@ func_08068344: @ 0x08068344
 	push {r5, r6, r7}
 	sub sp, #0xf4
 	str r0, [sp, #0xbc]
-	ldr r0, .L080683FC @ =gUnk_080FB928
+	ldr r0, .L080683FC @ =gText_FarmStatus_ToolLevelList
 	str r0, [sp]
 	ldr r0, [sp, #0xbc]
 	movs r3, #0x20
@@ -80277,7 +80277,7 @@ func_08068344: @ 0x08068344
 	ldr r5, [sp, #0xbc]
 	ldr r5, [r5, #4]
 	str r5, [sp, #0xc0]
-	ldr r3, .L08068410 @ =gUnk_080FB93C
+	ldr r3, .L08068410 @ =gText_FarmStatus_ToolShopLabel
 	add r2, sp, #0x38
 	movs r0, #6
 	movs r1, #2
@@ -80340,12 +80340,12 @@ func_08068344: @ 0x08068344
 	str r3, [sp, #0xdc]
 	b .L08068506
 	.align 2, 0
-.L080683FC: .4byte gUnk_080FB928
+.L080683FC: .4byte gText_FarmStatus_ToolLevelList
 .L08068400: .4byte 0x000005B4
 .L08068404: .4byte vtable_unk_080E7A08
 .L08068408: .4byte 0x000009C4
 .L0806840C: .4byte gUnk_086678A0
-.L08068410: .4byte gUnk_080FB93C
+.L08068410: .4byte gText_FarmStatus_ToolShopLabel
 .L08068414: .4byte 0x000007C4
 .L08068418: .4byte 0x000005BC
 .L0806841C:
@@ -80478,7 +80478,7 @@ func_08068344: @ 0x08068344
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08068506:
-	ldr r3, .L08068568 @ =gUnk_080FB944
+	ldr r3, .L08068568 @ =gText_FarmStatus_ToolUpgradeQuestion
 	movs r1, #8
 	movs r2, #2
 	add r0, sp, #0x44
@@ -80525,7 +80525,7 @@ func_08068344: @ 0x08068344
 	str r0, [r6, #4]
 	b .L0806862C
 	.align 2, 0
-.L08068568: .4byte gUnk_080FB944
+.L08068568: .4byte gText_FarmStatus_ToolUpgradeQuestion
 .L0806856C:
 	mov sl, r1
 	movs r0, #1
@@ -80636,7 +80636,7 @@ func_08068344: @ 0x08068344
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L0806862C:
-	ldr r2, .L08068688 @ =gUnk_080FB950
+	ldr r2, .L08068688 @ =gText_FarmStatus_PercentSign
 	movs r1, #2
 	add r0, sp, #0x50
 	strh r1, [r0]
@@ -80681,7 +80681,7 @@ func_08068344: @ 0x08068344
 	str r0, [r6, #4]
 	b .L0806874C
 	.align 2, 0
-.L08068688: .4byte gUnk_080FB950
+.L08068688: .4byte gText_FarmStatus_PercentSign
 .L0806868C:
 	mov sl, r1
 	movs r0, #1
