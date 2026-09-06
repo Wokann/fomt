@@ -62,7 +62,10 @@ func_08034260:
     .section .text.entity_ui_resource_setup_after
     .syntax unified
     .thumb
-    .incbin "baserom_jp.gba", 0x349D4, 0xAC
+    .global func_08034C64
+    .thumb_func
+func_08034C64:
+    .incbin "baserom_jp.gba", 0x349F8, 0x88
 
     .global func_08032560
     .thumb_set func_08032560, func_0803242C + 0x134
@@ -90,8 +93,6 @@ func_08034260:
     .thumb_set func_08034940, func_0803242C + 0x2514
     .global func_08034A14
     .thumb_set func_08034A14, func_0803242C + 0x25E8
-    .global func_08034C64
-    .thumb_set func_08034C64, func_0803242C + 0x2838
     .else
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
@@ -4266,29 +4267,6 @@ func_08034A14: @ 0x08034A14
     .byte 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
 
     .section .text.entity_ui_resource_setup_after
-.L08034C40:
-    .byte 0x30, 0x30, 0x00, 0x78, 0x70, 0x47, 0x00, 0x00, 0x00, 0x69, 0x70, 0x47, 0x10, 0xB5, 0x0C, 0x1C
-    .byte 0x13, 0x1C, 0x01, 0x1C, 0x30, 0x31, 0x09, 0x78, 0x22, 0x1C, 0xFE, 0xF7, 0x93, 0xFF, 0x10, 0xBC
-    .byte 0x01, 0xBC, 0x00, 0x47
-
-    @ 34c40:       3030            adds    r0, #48 @ 0x30
-    @ 34c42:       7800            ldrb    r0, [r0, #0]
-    @ 34c44:       4770            bx      lr
-    @ 34c46:       0000            movs    r0, r0
-    @ 34c48:       6900            ldr     r0, [r0, #16]
-    @ 34c4a:       4770            bx      lr
-    @ 34c4c:       b510            push    {r4, lr}
-    @ 34c4e:       1c0c            adds    r4, r1, #0
-    @ 34c50:       1c13            adds    r3, r2, #0
-    @ 34c52:       1c01            adds    r1, r0, #0
-    @ 34c54:       3130            adds    r1, #48 @ 0x30
-    @ 34c56:       7809            ldrb    r1, [r1, #0]
-    @ 34c58:       1c22            adds    r2, r4, #0
-    @ 34c5a:       f7fe ff93       bl      func_08033B84
-    @ 34c5e:       bc10            pop     {r4}
-    @ 34c60:       bc01            pop     {r0}
-    @ 34c62:       4700            bx      r0
-
     thumb_func_start func_08034C64
 func_08034C64: @ 0x08034C64
     push {r4, r5, r6, lr}

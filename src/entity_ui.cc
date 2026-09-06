@@ -46,6 +46,14 @@ struct EntityUiResourceSetupState
     u16 duration;
 };
 
+struct EntityUiCallbackState
+{
+    u8 unknown_00[0x10];
+    void * unknown_10;
+    u8 unknown_14[0x1C];
+    u8 value_30;
+};
+
 struct EntityUiHarvestSpriteState : public AEntity
 {
     EntityUiHarvestSpriteState(GameObject * game_object, Location const & location)
@@ -70,6 +78,8 @@ extern "C" void func_080330F4(EntityUiHarvestSpriteResult * result,
 extern "C" u16 const gEntityUiAnimationLookupTable[];
 extern "C" u16 const gEntityUiResourceIdTable[];
 extern "C" void ResolveIndexedResourceHandle(void * handle, u32 index);
+extern "C" void func_08033B84(EntityUiCallbackState * state, u32 value,
+                               u32 arg_1, u32 arg_2);
 extern "C" void func_080324BC(EntityUiConstructorState * state, void * arg_1,
                                u32 arg_2, u32 arg_3, u32 arg_4, u32 arg_5,
                                u32 arg_6, bool arg_7);
@@ -116,6 +126,14 @@ extern "C" void func_08034BFC(EntityUiResourceSetupState * state,
                                u32 table_index, u32 first_value,
                                u32 second_value)
     SECTION(".text.entity_ui_resource_setup");
+
+extern "C" u32 func_08034C40(EntityUiCallbackState const * state)
+    SECTION(".text.entity_ui_get_value_30");
+extern "C" void * func_08034C48(EntityUiCallbackState const * state)
+    SECTION(".text.entity_ui_get_pointer_10");
+extern "C" void func_08034C4C(EntityUiCallbackState * state, u32 arg_1,
+                               u32 arg_2)
+    SECTION(".text.entity_ui_dispatch_value_30");
 
 extern "C" bool func_080324B8()
 {
@@ -230,4 +248,20 @@ extern "C" void func_08034BFC(EntityUiResourceSetupState * state,
     state->first_value = first_value;
     state->second_value = second_value;
     state->duration = 0x3C;
+}
+
+extern "C" u32 func_08034C40(EntityUiCallbackState const * state)
+{
+    return state->value_30;
+}
+
+extern "C" void * func_08034C48(EntityUiCallbackState const * state)
+{
+    return state->unknown_10;
+}
+
+extern "C" void func_08034C4C(EntityUiCallbackState * state, u32 arg_1,
+                               u32 arg_2)
+{
+    func_08033B84(state, state->value_30, arg_1, arg_2);
 }

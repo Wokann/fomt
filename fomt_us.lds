@@ -126,6 +126,12 @@ SECTIONS
         . = 0x34BFC; /* JP/US-shared entity-UI resource setup. */
         src/entity_ui.o(.text.entity_ui_resource_setup);
         . = 0x34C40; /* Continue the surrounding entity-UI ROM block. */
+        src/entity_ui.o(.text.entity_ui_get_value_30);
+        . = 0x34C48; /* Continue the surrounding entity-UI ROM block. */
+        src/entity_ui.o(.text.entity_ui_get_pointer_10);
+        . = 0x34C4C; /* Continue the surrounding entity-UI ROM block. */
+        src/entity_ui.o(.text.entity_ui_dispatch_value_30);
+        . = 0x34C64; /* Continue the surrounding entity-UI ROM block. */
         asm/code_entities_080320DC.o(.text.entity_ui_resource_setup_after);
         src/npc_entity.o(.text);
         asm/code_entities_08034CEC.o(.text);
