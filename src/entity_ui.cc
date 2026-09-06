@@ -92,7 +92,7 @@ extern "C" bool func_08033B24(EntityUiHarvestSpriteState * state)
 
 // The caller uses this lookup result as an AActorEntityUi animation ID.  Its
 // state-byte categories have not been named yet.
-extern "C" u16 func_08034248(EntityUiAnimationState const * state, u32 value)
+extern "C" u32 func_08034248(EntityUiAnimationState const * state, u32 value)
     SECTION(".text.entity_ui_animation_lookup");
 
 // Initializes the resource handle at +0xB4 and its following UI fields.  The
@@ -180,7 +180,7 @@ extern "C" bool func_08033B24(EntityUiHarvestSpriteState * state)
     return value;
 }
 
-extern "C" u16 func_08034248(EntityUiAnimationState const * state, u32 value)
+extern "C" u32 func_08034248(EntityUiAnimationState const * state, u32 value)
 {
     u16 const * table = gEntityUiAnimationLookupTable;
     u8 entry_index = state->entry_index;
