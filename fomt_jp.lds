@@ -536,7 +536,12 @@ SECTIONS
         . = 0xFDA54; src/inn_shop_data.o(.rodata.inn_shop_catalog);
         . = 0xFDB50; data/text/inn_shop.o(.rodata.inn_shop_dialogue);
         . = 0xFDBE4; asm/data/data_080F9EB8.o(.rodata.inn_shop_trailer);
-        . = 0xFDBF0; asm/data/data_080F9EB8.o(.rodata.unextracted_shop_data);
+        . = 0xFDBF0; src/won_shop_data.o(.rodata.won_shop_catalog);
+        . = 0xFDC40; data/text/won_shop.o(.rodata.won_shop_dialogue);
+        . = 0xFDEA2; asm/data/data_080F9EB8.o(.rodata.won_shop_post_dialogue_padding);
+        . = 0xFDEA4; data/text/won_shop.o(.rodata.won_shop_delivery_dialogue);
+        . = 0xFDF90; asm/data/data_080F9EB8.o(.rodata.won_shop_trailer);
+        . = 0xFDF9C; asm/data/data_080F9EB8.o(.rodata.unextracted_shop_data);
         FILL(0x00);
         . = 0xFE53C; data/text/blacksmith.o(.rodata.blacksmith_menu);
         . = 0xFE6A0; asm/data/data_080F9EB8.o(.rodata.blacksmith_menu_padding);

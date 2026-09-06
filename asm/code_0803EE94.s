@@ -127030,7 +127030,7 @@ func_0807F684: @ 0x0807F684
 .L0807F69E:
 	cmp r0, #0
 	bne .L0807F6BC
-	ldr r0, .L0807F6B8 @ =gUnk_080FE484
+	ldr r0, .L0807F6B8 @ =gWonShopCatalog
 	lsls r1, r2, #3
 	adds r1, r1, r0
 	ldr r1, [r1]
@@ -127040,11 +127040,11 @@ func_0807F684: @ 0x0807F684
 	bl GetDesc__C4Tool
 	b .L0807F6D4
 	.align 2, 0
-.L0807F6B8: .4byte gUnk_080FE484
+.L0807F6B8: .4byte gWonShopCatalog
 .L0807F6BC:
 	mov r4, sp
 	adds r4, #1
-	ldr r1, .L0807F6E4 @ =gUnk_080FE484
+	ldr r1, .L0807F6E4 @ =gWonShopCatalog
 	lsls r0, r2, #3
 	adds r0, r0, r1
 	ldr r1, [r0]
@@ -127061,7 +127061,7 @@ func_0807F684: @ 0x0807F684
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L0807F6E4: .4byte gUnk_080FE484
+.L0807F6E4: .4byte gWonShopCatalog
 
 	thumb_func_start func_0807F6E8
 func_0807F6E8: @ 0x0807F6E8
@@ -127170,7 +127170,7 @@ func_0807F6E8: @ 0x0807F6E8
 	strh r0, [r1]
 	ldr r2, [r6]
 	lsls r0, r2, #3
-	ldr r1, .L0807F7E8 @ =gUnk_080FE484
+	ldr r1, .L0807F7E8 @ =gWonShopCatalog
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
 	ldr r0, [r0]
@@ -127192,7 +127192,7 @@ func_0807F6E8: @ 0x0807F6E8
 	b .L0807F7FE
 	.align 2, 0
 .L0807F7E4: .4byte gUnk_086678A0
-.L0807F7E8: .4byte gUnk_080FE484
+.L0807F7E8: .4byte gWonShopCatalog
 .L0807F7EC:
 	mov r4, sp
 	adds r4, #0xc1
@@ -127755,7 +127755,7 @@ func_0807F8C8: @ 0x0807F8C8
 	adds r0, r0, r4
 	ldr r2, [r0]
 	lsls r0, r2, #3
-	ldr r1, .L0807FCB8 @ =gUnk_080FE484
+	ldr r1, .L0807FCB8 @ =gWonShopCatalog
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
 	ldr r0, [r0]
@@ -127803,7 +127803,7 @@ func_0807F8C8: @ 0x0807F8C8
 	b .L0807FCF2
 	.align 2, 0
 .L0807FCB4: .4byte 0x000006A1
-.L0807FCB8: .4byte gUnk_080FE484
+.L0807FCB8: .4byte gWonShopCatalog
 .L0807FCBC: .4byte 0x00001C38
 .L0807FCC0: .4byte 0x00001C34
 .L0807FCC4:
@@ -127834,7 +127834,7 @@ func_0807F8C8: @ 0x0807F8C8
 	adds r4, r0, r7
 	cmp r4, #0
 	bne .L0807FD1A
-	ldr r1, .L0807FD8C @ =gUnk_080FE4D4
+	ldr r1, .L0807FD8C @ =gText_WonShop_ToolCapacityFull
 	adds r0, r6, #0
 	bl func_080CABA0
 	movs r3, #0xd2
@@ -127899,7 +127899,7 @@ func_0807F8C8: @ 0x0807F8C8
 	b .L0807FDFA
 	.align 2, 0
 .L0807FD88: .4byte 0x00001C34
-.L0807FD8C: .4byte gUnk_080FE4D4
+.L0807FD8C: .4byte gText_WonShop_ToolCapacityFull
 .L0807FD90: .4byte 0x00001C38
 .L0807FD94:
 	bl GetEmptyItemSlotCount__C8Rucksack
@@ -127935,7 +127935,7 @@ func_0807F8C8: @ 0x0807F8C8
 	adds r4, r0, r1
 	cmp r4, #0
 	bne .L0807FDFA
-	ldr r1, .L0807FF8C @ =gUnk_080FE50C
+	ldr r1, .L0807FF8C @ =gText_WonShop_ItemCapacityFull
 	adds r0, r6, #0
 	bl func_080CABA0
 	movs r2, #0xd2
@@ -128036,7 +128036,7 @@ func_0807F8C8: @ 0x0807F8C8
 	mov r4, sl
 	strb r4, [r0]
 .L0807FEA6:
-	ldr r5, .L0807FF9C @ =gUnk_080FE540
+	ldr r5, .L0807FF9C @ =gText_WonShop_BlankLinePair
 	mov sb, r5
 	adds r0, r7, #0
 	bl strlen
@@ -128145,11 +128145,11 @@ func_0807F8C8: @ 0x0807F8C8
 	b .L080801B6
 	.align 2, 0
 .L0807FF88: .4byte 0x00001C2C
-.L0807FF8C: .4byte gUnk_080FE50C
+.L0807FF8C: .4byte gText_WonShop_ItemCapacityFull
 .L0807FF90: .4byte 0x00001AA8
 .L0807FF94: .4byte 0x00000684
 .L0807FF98: .4byte 0x000006A4
-.L0807FF9C: .4byte gUnk_080FE540
+.L0807FF9C: .4byte gText_WonShop_BlankLinePair
 .L0807FFA0: .4byte gUnk_08117828
 .L0807FFA4: .4byte gUnk_08117814
 .L0807FFA8:
@@ -128213,23 +128213,23 @@ func_0807F8C8: @ 0x0807F8C8
 	bl AddAmountOf__5ShelfUiUi
 	cmp r5, #0
 	beq .L08080040
-	ldr r1, .L0808003C @ =gUnk_080FE548
+	ldr r1, .L0808003C @ =gText_WonShop_Delivery
 	b .L08080042
 	.align 2, 0
 .L08080030: .4byte 0x00001BD8
 .L08080034: .4byte 0x00001C2C
 .L08080038: .4byte 0x00001C38
-.L0808003C: .4byte gUnk_080FE548
+.L0808003C: .4byte gText_WonShop_Delivery
 .L08080040:
-	ldr r1, .L0808004C @ =gUnk_080FE5C8
+	ldr r1, .L0808004C @ =gText_WonShop_DeliveryMultiple
 .L08080042:
 	adds r0, r6, #0
 	bl func_080CABA0
 	b .L08080058
 	.align 2, 0
-.L0808004C: .4byte gUnk_080FE5C8
+.L0808004C: .4byte gText_WonShop_DeliveryMultiple
 .L08080050:
-	ldr r1, .L08080124 @ =gUnk_080FE63C
+	ldr r1, .L08080124 @ =gText_WonShop_PurchaseComplete
 	adds r0, r6, #0
 	bl func_080CABA0
 .L08080058:
@@ -128336,14 +128336,14 @@ func_0807F8C8: @ 0x0807F8C8
 	strb r0, [r1]
 	b .L080801B6
 	.align 2, 0
-.L08080124: .4byte gUnk_080FE63C
+.L08080124: .4byte gText_WonShop_PurchaseComplete
 .L08080128: .4byte 0x0000218C
 .L0808012C: .4byte 0xFFFE1FFF
 .L08080130: .4byte 0x000021C7
 .L08080134: .4byte 0x00000107
 .L08080138: .4byte 0x0000070C
 .L0808013C:
-	ldr r1, .L0808015C @ =gUnk_080FE66C
+	ldr r1, .L0808015C @ =gText_WonShop_InsufficientGold
 	adds r0, r6, #0
 	bl func_080CABA0
 	movs r1, #0xd2
@@ -128357,7 +128357,7 @@ func_0807F8C8: @ 0x0807F8C8
 	movs r0, #2
 	b .L080801B4
 	.align 2, 0
-.L0808015C: .4byte gUnk_080FE66C
+.L0808015C: .4byte gText_WonShop_InsufficientGold
 .L08080160:
 	adds r0, r6, #0
 	bl func_080088CC
@@ -128370,7 +128370,7 @@ func_0807F8C8: @ 0x0807F8C8
 	ldrb r0, [r0]
 	cmp r0, #0
 	beq .L08080198
-	ldr r1, .L08080194 @ =gUnk_080FE6B0
+	ldr r1, .L08080194 @ =gText_WonShop_PurchaseMorePrompt
 	adds r0, r6, #0
 	bl func_080CABA0
 	movs r4, #0xd2
@@ -128381,9 +128381,9 @@ func_0807F8C8: @ 0x0807F8C8
 	b .L080801AC
 	.align 2, 0
 .L08080190: .4byte 0x0000070C
-.L08080194: .4byte gUnk_080FE6B0
+.L08080194: .4byte gText_WonShop_PurchaseMorePrompt
 .L08080198:
-	ldr r1, .L080801CC @ =gUnk_080FE6E4
+	ldr r1, .L080801CC @ =gText_WonShop_NoPurchase
 	adds r0, r6, #0
 	bl func_080CABA0
 	movs r5, #0xd2
@@ -128409,7 +128409,7 @@ func_0807F8C8: @ 0x0807F8C8
 	bl func_080C9020
 	b .L08080430
 	.align 2, 0
-.L080801CC: .4byte gUnk_080FE6E4
+.L080801CC: .4byte gText_WonShop_NoPurchase
 .L080801D0:
 	movs r2, #0xd4
 	lsls r2, r2, #2
@@ -128419,7 +128419,7 @@ func_0807F8C8: @ 0x0807F8C8
 	beq .L080801DE
 	b .L08080430
 .L080801DE:
-	ldr r1, .L08080200 @ =gUnk_080FE708
+	ldr r1, .L08080200 @ =gText_WonShop_NoAdditionalPurchase
 	adds r0, r6, #0
 	bl func_080CABA0
 	movs r3, #0xd2
@@ -128434,7 +128434,7 @@ func_0807F8C8: @ 0x0807F8C8
 	str r0, [r1]
 	b .L08080430
 	.align 2, 0
-.L08080200: .4byte gUnk_080FE708
+.L08080200: .4byte gText_WonShop_NoAdditionalPurchase
 .L08080204:
 	movs r5, #0xd4
 	lsls r5, r5, #2
@@ -128483,7 +128483,7 @@ func_0807F8C8: @ 0x0807F8C8
 	adds r0, r0, r5
 	ldr r0, [r0]
 	lsls r0, r0, #3
-	ldr r1, .L080802C0 @ =gUnk_080FE484
+	ldr r1, .L080802C0 @ =gWonShopCatalog
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
 	ldr r0, [r0]
@@ -128522,7 +128522,7 @@ func_0807F8C8: @ 0x0807F8C8
 	b .L08080378
 	.align 2, 0
 .L080802BC: .4byte 0x00000684
-.L080802C0: .4byte gUnk_080FE484
+.L080802C0: .4byte gWonShopCatalog
 .L080802C4: .4byte 0x00001AA8
 .L080802C8: .4byte 0x00001C34
 .L080802CC:
@@ -128594,21 +128594,21 @@ func_0807F8C8: @ 0x0807F8C8
 	mov r2, r8
 	cmp r2, #0
 	beq .L08080368
-	ldr r1, .L08080364 @ =gUnk_080FE548
+	ldr r1, .L08080364 @ =gText_WonShop_Delivery
 	b .L0808036A
 	.align 2, 0
 .L08080360: .4byte 0x00001C38
-.L08080364: .4byte gUnk_080FE548
+.L08080364: .4byte gText_WonShop_Delivery
 .L08080368:
-	ldr r1, .L08080374 @ =gUnk_080FE5C8
+	ldr r1, .L08080374 @ =gText_WonShop_DeliveryMultiple
 .L0808036A:
 	adds r0, r6, #0
 	bl func_080CABA0
 	b .L08080380
 	.align 2, 0
-.L08080374: .4byte gUnk_080FE5C8
+.L08080374: .4byte gText_WonShop_DeliveryMultiple
 .L08080378:
-	ldr r1, .L080803A0 @ =gUnk_080FE63C
+	ldr r1, .L080803A0 @ =gText_WonShop_PurchaseComplete
 	adds r0, r6, #0
 	bl func_080CABA0
 .L08080380:
@@ -128627,7 +128627,7 @@ func_0807F8C8: @ 0x0807F8C8
 	strb r1, [r0]
 	b .L08080430
 	.align 2, 0
-.L080803A0: .4byte gUnk_080FE63C
+.L080803A0: .4byte gText_WonShop_PurchaseComplete
 .L080803A4: .4byte 0x0000070C
 .L080803A8:
 	adds r0, r6, #0
