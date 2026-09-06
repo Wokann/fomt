@@ -187,8 +187,10 @@ SECTIONS
         src/code_08050D8C.o(.text);
         . = 0x50B64; /* JP counterpart of shared first-field status-byte adapters. */
         src/code_08050DD8.o(.text);
-        . = 0x50B7C; /* JP ROM 0x08050B7C, remaining raw UI-adjacent code. */
-        asm/code_0803EE94.o(.text.code_08050DF0);
+        . = 0x50B7C; /* JP counterpart of shared first-field query adapter. */
+        src/code_08050DF0.o(.text);
+        . = 0x50B98; /* JP ROM 0x08050B98, remaining raw UI-adjacent code. */
+        asm/code_0803EE94.o(.text.code_08050E0C);
 
         . = 0x9AB3C; /* JP ROM 0x0809AB3C, independently matched */
 

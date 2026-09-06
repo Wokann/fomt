@@ -55,8 +55,7 @@
     jp_code_0803ee_func func_08050C64, 0x509F0, 0x50A98
     jp_code_0803ee_func func_08050D0C, 0x50A98, 0x50AC0
     jp_code_0803ee_func func_08050D34, 0x50AC0, 0x50AE8
-    .section .text.code_08050DF0
-    jp_code_0803ee_func func_08050DF0, 0x50B7C, 0x50B98
+    .section .text.code_08050E0C
     jp_code_0803ee_func func_08050E0C, 0x50B98, 0x50BDC
     jp_code_0803ee_func func_08050E50, 0x50BDC, 0x50BE8
     jp_code_0803ee_func func_08050E5C, 0x50BE8, 0x50BF4
@@ -33330,26 +33329,7 @@ func_08050D3C: @ 0x08050D3C
 	bx r1
 	.align 2, 0
 
-	.section .text.code_08050DF0
-	thumb_func_start func_08050DF0
-func_08050DF0: @ 0x08050DF0
-	push {lr}
-	ldr r1, [r0]
-	ldr r0, [r1, #8]
-	cmp r0, #6
-	beq .L08050E04
-	movs r2, #0xac
-	lsls r2, r2, #1
-	adds r0, r1, r2
-	ldr r0, [r0]
-	b .L08050E06
-.L08050E04:
-	movs r0, #0
-.L08050E06:
-	pop {r1}
-	bx r1
-	.align 2, 0
-
+	.section .text.code_08050E0C
 	thumb_func_start func_08050E0C
 func_08050E0C: @ 0x08050E0C
 	push {r4, r5, r6, r7, lr}
