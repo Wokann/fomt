@@ -11,7 +11,13 @@
     .incbin "baserom_jp.gba", 0xF9F4F, (0xF9FD6 - 0xF9F4F)
 
     .section .rodata.festival_contestants_set1_trailer_prefix
-    .incbin "baserom_jp.gba", 0xFA1DE, (0xFB938 - 0xFA1DE)
+    .incbin "baserom_jp.gba", 0xFA1DE, (0xFA280 - 0xFA1DE)
+
+    .section .rodata.horse_race_dialogue_trailer
+    .incbin "baserom_jp.gba", 0xFA712, (0xFA73C - 0xFA712)
+
+    .section .rodata.horse_race_ticket_ui_trailer
+    .incbin "baserom_jp.gba", 0xFA860, (0xFB938 - 0xFA860)
 
     .section .rodata.staff_credits_trailer
     .incbin "baserom_jp.gba", 0xFBC88, (0x103194 - 0xFBC88)
@@ -142,115 +148,22 @@ gUnk_080FA71C:
 gUnk_080FA728:
 	.incbin "baserom_us.gba", 0xFA728, 0x6E
 
-	.section .rodata.festival_contestants_set1_trailer
+	.section .rodata.festival_contestants_set1_trailer_prefix
 
 	.global gUnk_080FA99E
 gUnk_080FA99E:
 	.incbin "baserom_us.gba", 0xFA99E, 0xA2
 
-	.global gUnk_080FAA40
-gUnk_080FAA40:
-	.incbin "baserom_us.gba", 0xFAA40, 0x1C
-
-	.global gUnk_080FAA5C
-gUnk_080FAA5C:
-	.incbin "baserom_us.gba", 0xFAA5C, 0x4
-
-	.global gUnk_080FAA60
-gUnk_080FAA60:
-	.incbin "baserom_us.gba", 0xFAA60, 0x4
-
-	.global gUnk_080FAA64
-gUnk_080FAA64:
-	.incbin "baserom_us.gba", 0xFAA64, 0x10
-
-	.global gUnk_080FAA74
-gUnk_080FAA74:
-	.incbin "baserom_us.gba", 0xFAA74, 0x14
-
-	.global gUnk_080FAA88
-gUnk_080FAA88:
-	.incbin "baserom_us.gba", 0xFAA88, 0x1C
-
-	.global gUnk_080FAAA4
-gUnk_080FAAA4:
-	.incbin "baserom_us.gba", 0xFAAA4, 0x28
-
-	.global gUnk_080FAACC
-gUnk_080FAACC:
-	.incbin "baserom_us.gba", 0xFAACC, 0x14
-
-	.global gUnk_080FAAE0
-gUnk_080FAAE0:
-	.incbin "baserom_us.gba", 0xFAAE0, 0x1C
-
-	.global gUnk_080FAAFC
-gUnk_080FAAFC:
-	.incbin "baserom_us.gba", 0xFAAFC, 0x98
-
-	.global gUnk_080FAB94
-gUnk_080FAB94:
-	.incbin "baserom_us.gba", 0xFAB94, 0x4C
-
-	.global gUnk_080FABE0
-gUnk_080FABE0:
-	.incbin "baserom_us.gba", 0xFABE0, 0x44
-
-	.global gUnk_080FAC24
-gUnk_080FAC24:
-	.incbin "baserom_us.gba", 0xFAC24, 0x68
-
-	.global gUnk_080FAC8C
-gUnk_080FAC8C:
-	.incbin "baserom_us.gba", 0xFAC8C, 0x7C
-
-	.global gUnk_080FAD08
-gUnk_080FAD08:
-	.incbin "baserom_us.gba", 0xFAD08, 0x18
-
-	.global gUnk_080FAD20
-gUnk_080FAD20:
-	.incbin "baserom_us.gba", 0xFAD20, 0x8
-
-	.global gUnk_080FAD28
-gUnk_080FAD28:
-	.incbin "baserom_us.gba", 0xFAD28, 0xC
-
-	.global gUnk_080FAD34
-gUnk_080FAD34:
-	.incbin "baserom_us.gba", 0xFAD34, 0x1C
-
-	.global gUnk_080FAD50
-gUnk_080FAD50:
-	.incbin "baserom_us.gba", 0xFAD50, 0x44
-
-	.global gUnk_080FAD94
-gUnk_080FAD94:
-	.incbin "baserom_us.gba", 0xFAD94, 0x48
-
-	.global gUnk_080FADDC
-gUnk_080FADDC:
-	.incbin "baserom_us.gba", 0xFADDC, 0x24
-
-	.global gUnk_080FAE00
-gUnk_080FAE00:
-	.incbin "baserom_us.gba", 0xFAE00, 0x6A
+	.section .rodata.horse_race_dialogue_trailer
 
 	.global gUnk_080FAE6A
 gUnk_080FAE6A:
 	.incbin "baserom_us.gba", 0xFAE6A, 0x32
 
-	.global gUnk_080FAE9C
-gUnk_080FAE9C:
-	.incbin "baserom_us.gba", 0xFAE9C, 0x1C
+	.section .rodata.horse_race_ticket_ui_padding
+	.incbin "baserom_us.gba", 0xFAFC6, (0xFAFC8 - 0xFAFC6)
 
-	.global gUnk_080FAEB8
-gUnk_080FAEB8:
-	.incbin "baserom_us.gba", 0xFAEB8, 0xC
-
-	.global gUnk_080FAEC4
-gUnk_080FAEC4:
-	.incbin "baserom_us.gba", 0xFAEC4, 0x104
+	.section .rodata.horse_race_ticket_ui_trailer
 
 	.global gUnk_080FAFC8
 gUnk_080FAFC8:

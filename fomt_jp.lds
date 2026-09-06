@@ -473,6 +473,10 @@ SECTIONS
         . = 0xF9F4F; asm/data/data_080F9EB8.o(.rodata.frisbee_text_trailer);
         . = 0xF9FD6; data/text/festival_contestants.o(.rodata.festival_contestants_set1);
         . = 0xFA1DE; asm/data/data_080F9EB8.o(.rodata.festival_contestants_set1_trailer_prefix);
+        . = 0xFA280; data/text/horse_race.o(.rodata.horse_race_dialogue);
+        . = 0xFA712; asm/data/data_080F9EB8.o(.rodata.horse_race_dialogue_trailer);
+        . = 0xFA73C; data/text/horse_race.o(.rodata.horse_race_ticket_ui);
+        . = 0xFA860; asm/data/data_080F9EB8.o(.rodata.horse_race_ticket_ui_trailer);
         . = 0xFB938; data/text/staff_credits.o(.rodata.staff_credits);
         . = 0xFBC88; asm/data/data_080F9EB8.o(.rodata.staff_credits_trailer);
         . = 0x103194; asm/data/data_080F9EB8.o(.rodata);

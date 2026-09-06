@@ -376,7 +376,12 @@ SECTIONS
         . = 0xFA39C; data/text/frisbee.o(.rodata.frisbee);
         . = 0xFA710; asm/data/data_080F9EB8.o(.rodata.frisbee_text_trailer);
         . = 0xFA796; data/text/festival_contestants.o(.rodata.festival_contestants_set1);
-        . = 0xFA99E; asm/data/data_080F9EB8.o(.rodata.festival_contestants_set1_trailer);
+        . = 0xFA99E; asm/data/data_080F9EB8.o(.rodata.festival_contestants_set1_trailer_prefix);
+        . = 0xFAA40; data/text/horse_race.o(.rodata.horse_race_dialogue);
+        . = 0xFAE6A; asm/data/data_080F9EB8.o(.rodata.horse_race_dialogue_trailer);
+        . = 0xFAE9C; data/text/horse_race.o(.rodata.horse_race_ticket_ui);
+        . = 0xFAFC6; asm/data/data_080F9EB8.o(.rodata.horse_race_ticket_ui_padding);
+        . = 0xFAFC8; asm/data/data_080F9EB8.o(.rodata.horse_race_ticket_ui_trailer);
         . = 0xFC0A4; data/text/staff_credits.o(.rodata.staff_credits);
         . = 0xFC4B4; asm/data/data_080F9EB8.o(.rodata.staff_credits_trailer);
         . = 0x103788; data/text/fishing_results.o(.rodata.fishing_results);

@@ -50118,36 +50118,36 @@ func_08059878: @ 0x08059878
 	.4byte .L08059C74 @ case 31
 .L08059A8C:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08059A98 @ =gUnk_080FAA40
-	ldr r2, .L08059A9C @ =gUnk_080FAA5C
-	ldr r3, .L08059AA0 @ =gUnk_080FAA60
+	ldr r1, .L08059A98 @ =gText_HorseRace_BuyTicketDeclined
+	ldr r2, .L08059A9C @ =gText_HorseRace_Yes
+	ldr r3, .L08059AA0 @ =gText_HorseRace_No
 	b .L08059C08
 	.align 2, 0
-.L08059A98: .4byte gUnk_080FAA40
-.L08059A9C: .4byte gUnk_080FAA5C
-.L08059AA0: .4byte gUnk_080FAA60
+.L08059A98: .4byte gText_HorseRace_BuyTicketDeclined
+.L08059A9C: .4byte gText_HorseRace_Yes
+.L08059AA0: .4byte gText_HorseRace_No
 .L08059AA4:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08059AAC @ =gUnk_080FAA64
+	ldr r1, .L08059AAC @ =gText_HorseRace_ComeAgain
 	b .L08059C50
 	.align 2, 0
-.L08059AAC: .4byte gUnk_080FAA64
+.L08059AAC: .4byte gText_HorseRace_ComeAgain
 .L08059AB0:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08059AB8 @ =gUnk_080FAA74
+	ldr r1, .L08059AB8 @ =gText_HorseRace_TakeYourTime
 	b .L08059C64
 	.align 2, 0
-.L08059AB8: .4byte gUnk_080FAA74
+.L08059AB8: .4byte gText_HorseRace_TakeYourTime
 .L08059ABC:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08059AC8 @ =gUnk_080FAA88
-	ldr r2, .L08059ACC @ =gUnk_080FAA5C
-	ldr r3, .L08059AD0 @ =gUnk_080FAA60
+	ldr r1, .L08059AC8 @ =gText_HorseRace_TicketPurchaseConfirmation
+	ldr r2, .L08059ACC @ =gText_HorseRace_Yes
+	ldr r3, .L08059AD0 @ =gText_HorseRace_No
 	b .L08059C08
 	.align 2, 0
-.L08059AC8: .4byte gUnk_080FAA88
-.L08059ACC: .4byte gUnk_080FAA5C
-.L08059AD0: .4byte gUnk_080FAA60
+.L08059AC8: .4byte gText_HorseRace_TicketPurchaseConfirmation
+.L08059ACC: .4byte gText_HorseRace_Yes
+.L08059AD0: .4byte gText_HorseRace_No
 .L08059AD4:
 	ldr r1, .L08059AE4 @ =0x0000140E
 	adds r0, r7, r1
@@ -50155,36 +50155,36 @@ func_08059878: @ 0x08059878
 	cmp r0, #0
 	bne .L08059AEC
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08059AE8 @ =gUnk_080FAAA4
+	ldr r1, .L08059AE8 @ =gText_HorseRace_TicketPurchaseApproval
 	b .L08059C50
 	.align 2, 0
 .L08059AE4: .4byte 0x0000140E
-.L08059AE8: .4byte gUnk_080FAAA4
+.L08059AE8: .4byte gText_HorseRace_TicketPurchaseApproval
 .L08059AEC:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08059AF4 @ =gUnk_080FAAA4
+	ldr r1, .L08059AF4 @ =gText_HorseRace_TicketPurchaseApproval
 	b .L08059C64
 	.align 2, 0
-.L08059AF4: .4byte gUnk_080FAAA4
+.L08059AF4: .4byte gText_HorseRace_TicketPurchaseApproval
 .L08059AF8:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08059B00 @ =gUnk_080FAACC
+	ldr r1, .L08059B00 @ =gText_HorseRace_ChangeMind
 	b .L08059C50
 	.align 2, 0
-.L08059B00: .4byte gUnk_080FAACC
+.L08059B00: .4byte gText_HorseRace_ChangeMind
 .L08059B04:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08059B10 @ =gUnk_080FAAE0
-	ldr r2, .L08059B14 @ =gUnk_080FAA5C
-	ldr r3, .L08059B18 @ =gUnk_080FAA60
+	ldr r1, .L08059B10 @ =gText_HorseRace_ExplanationQuestion
+	ldr r2, .L08059B14 @ =gText_HorseRace_Yes
+	ldr r3, .L08059B18 @ =gText_HorseRace_No
 	b .L08059C08
 	.align 2, 0
-.L08059B10: .4byte gUnk_080FAAE0
-.L08059B14: .4byte gUnk_080FAA5C
-.L08059B18: .4byte gUnk_080FAA60
+.L08059B10: .4byte gText_HorseRace_ExplanationQuestion
+.L08059B14: .4byte gText_HorseRace_Yes
+.L08059B18: .4byte gText_HorseRace_No
 .L08059B1C:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08059B38 @ =gUnk_080FAAFC
+	ldr r1, .L08059B38 @ =gText_HorseRace_ExplanationBasics
 	movs r3, #0xa7
 	lsls r3, r3, #5
 	adds r2, r7, r3
@@ -50197,12 +50197,12 @@ func_08059878: @ 0x08059878
 	adds r1, r7, r0
 	b .L08059BEA
 	.align 2, 0
-.L08059B38: .4byte gUnk_080FAAFC
+.L08059B38: .4byte gText_HorseRace_ExplanationBasics
 .L08059B3C: .4byte 0x00001424
 .L08059B40: .4byte 0x00001429
 .L08059B44:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08059B60 @ =gUnk_080FAB94
+	ldr r1, .L08059B60 @ =gText_HorseRace_ExplanationGreenStamina
 	movs r3, #0xa7
 	lsls r3, r3, #5
 	adds r2, r7, r3
@@ -50215,12 +50215,12 @@ func_08059878: @ 0x08059878
 	adds r1, r7, r0
 	b .L08059BEA
 	.align 2, 0
-.L08059B60: .4byte gUnk_080FAB94
+.L08059B60: .4byte gText_HorseRace_ExplanationGreenStamina
 .L08059B64: .4byte 0x00001424
 .L08059B68: .4byte 0x00001429
 .L08059B6C:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08059B8C @ =gUnk_080FABE0
+	ldr r1, .L08059B8C @ =gText_HorseRace_ExplanationYellowStamina
 	movs r3, #0xa7
 	lsls r3, r3, #5
 	adds r2, r7, r3
@@ -50234,12 +50234,12 @@ func_08059878: @ 0x08059878
 	movs r0, #0x12
 	b .L08059BE4
 	.align 2, 0
-.L08059B8C: .4byte gUnk_080FABE0
+.L08059B8C: .4byte gText_HorseRace_ExplanationYellowStamina
 .L08059B90: .4byte 0x0000149E
 .L08059B94: .4byte 0x00001424
 .L08059B98:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08059BBC @ =gUnk_080FAC24
+	ldr r1, .L08059BBC @ =gText_HorseRace_ExplanationRedStamina
 	movs r4, #0xa7
 	lsls r4, r4, #5
 	adds r2, r7, r4
@@ -50256,12 +50256,12 @@ func_08059878: @ 0x08059878
 	adds r1, r7, r4
 	b .L08059BEA
 	.align 2, 0
-.L08059BBC: .4byte gUnk_080FAC24
+.L08059BBC: .4byte gText_HorseRace_ExplanationRedStamina
 .L08059BC0: .4byte 0x0000149E
 .L08059BC4: .4byte 0x00001424
 .L08059BC8:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08059BF0 @ =gUnk_080FAC8C
+	ldr r1, .L08059BF0 @ =gText_HorseRace_ExplanationStaminaRecovery
 	movs r3, #0xa7
 	lsls r3, r3, #5
 	adds r2, r7, r3
@@ -50282,15 +50282,15 @@ func_08059878: @ 0x08059878
 	strb r0, [r1]
 	b .L08059C82
 	.align 2, 0
-.L08059BF0: .4byte gUnk_080FAC8C
+.L08059BF0: .4byte gText_HorseRace_ExplanationStaminaRecovery
 .L08059BF4: .4byte 0x0000149E
 .L08059BF8: .4byte 0x00001424
 .L08059BFC: .4byte 0x00001429
 .L08059C00:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08059C24 @ =gUnk_080FAD08
-	ldr r2, .L08059C28 @ =gUnk_080FAD20
-	ldr r3, .L08059C2C @ =gUnk_080FAD28
+	ldr r1, .L08059C24 @ =gText_HorseRace_ExplanationUnderstoodQuestion
+	ldr r2, .L08059C28 @ =gText_HorseRace_ExplanationUnderstood
+	ldr r3, .L08059C2C @ =gText_HorseRace_ExplanationRepeat
 .L08059C08:
 	movs r4, #0xa7
 	lsls r4, r4, #5
@@ -50306,25 +50306,25 @@ func_08059878: @ 0x08059878
 	strb r0, [r1]
 	b .L08059C82
 	.align 2, 0
-.L08059C24: .4byte gUnk_080FAD08
-.L08059C28: .4byte gUnk_080FAD20
-.L08059C2C: .4byte gUnk_080FAD28
+.L08059C24: .4byte gText_HorseRace_ExplanationUnderstoodQuestion
+.L08059C28: .4byte gText_HorseRace_ExplanationUnderstood
+.L08059C2C: .4byte gText_HorseRace_ExplanationRepeat
 .L08059C30: .4byte 0x00001429
 .L08059C34:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08059C3C @ =gUnk_080FAD34
+	ldr r1, .L08059C3C @ =gText_HorseRace_StartRace
 	b .L08059C50
 	.align 2, 0
-.L08059C3C: .4byte gUnk_080FAD34
+.L08059C3C: .4byte gText_HorseRace_StartRace
 .L08059C40:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08059C48 @ =gUnk_080FAD50
+	ldr r1, .L08059C48 @ =gText_HorseRace_RaceStartAnnouncement
 	b .L08059C64
 	.align 2, 0
-.L08059C48: .4byte gUnk_080FAD50
+.L08059C48: .4byte gText_HorseRace_RaceStartAnnouncement
 .L08059C4C:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08059C5C @ =gUnk_080FAD94
+	ldr r1, .L08059C5C @ =gText_HorseRace_RaceResults
 .L08059C50:
 	movs r3, #0xa7
 	lsls r3, r3, #5
@@ -50332,10 +50332,10 @@ func_08059878: @ 0x08059878
 	bl func_08050DA0
 	b .L08059C82
 	.align 2, 0
-.L08059C5C: .4byte gUnk_080FAD94
+.L08059C5C: .4byte gText_HorseRace_RaceResults
 .L08059C60:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08059C70 @ =gUnk_080FADDC
+	ldr r1, .L08059C70 @ =gText_HorseRace_RacePayouts
 .L08059C64:
 	movs r4, #0xa7
 	lsls r4, r4, #5
@@ -50343,10 +50343,10 @@ func_08059878: @ 0x08059878
 	bl func_08050DA0
 	b .L08059C82
 	.align 2, 0
-.L08059C70: .4byte gUnk_080FADDC
+.L08059C70: .4byte gText_HorseRace_RacePayouts
 .L08059C74:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08059C90 @ =gUnk_080FAE00
+	ldr r1, .L08059C90 @ =gText_HorseRace_MedalExchangeExplanation
 	movs r3, #0xa7
 	lsls r3, r3, #5
 	adds r2, r7, r3
@@ -50360,7 +50360,7 @@ func_08059878: @ 0x08059878
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L08059C90: .4byte gUnk_080FAE00
+.L08059C90: .4byte gText_HorseRace_MedalExchangeExplanation
 
 	thumb_func_start func_08059C94
 func_08059C94: @ 0x08059C94
@@ -51006,7 +51006,7 @@ func_08059FE0: @ 0x08059FE0
 	add r1, sp, #0x334
 	movs r2, #0
 	bl func_0804E7A0
-	ldr r1, .L0805A2C4 @ =gUnk_080FAE9C
+	ldr r1, .L0805A2C4 @ =gText_HorseRace_TicketPurchaseTitle
 	movs r6, #1
 	ldr r0, .L0805A2C8 @ =0x00000B44
 	add r0, sp
@@ -51049,7 +51049,7 @@ func_08059FE0: @ 0x08059FE0
 	ldr r3, [r3]
 	cmp r3, #0
 	bne .L0805A2E8
-	ldr r2, .L0805A2E0 @ =gUnk_080FAEB8
+	ldr r2, .L0805A2E0 @ =gText_HorseRace_TicketPurchaseConfirm
 	ldr r1, .L0805A2E4 @ =0x00000B4C
 	add r1, sp
 	ldr r0, .L0805A2E4 @ =0x00000B4C
@@ -51071,17 +51071,17 @@ func_08059FE0: @ 0x08059FE0
 .L0805A2B8: .4byte 0x000014DC
 .L0805A2BC: .4byte 0x00000B68
 .L0805A2C0: .4byte 0x00000B5C
-.L0805A2C4: .4byte gUnk_080FAE9C
+.L0805A2C4: .4byte gText_HorseRace_TicketPurchaseTitle
 .L0805A2C8: .4byte 0x00000B44
 .L0805A2CC: .4byte 0x06004000
 .L0805A2D0: .4byte 0x00000B58
 .L0805A2D4: .4byte 0x00000B48
 .L0805A2D8: .4byte 0x00000B64
 .L0805A2DC: .4byte 0x00000B54
-.L0805A2E0: .4byte gUnk_080FAEB8
+.L0805A2E0: .4byte gText_HorseRace_TicketPurchaseConfirm
 .L0805A2E4: .4byte 0x00000B4C
 .L0805A2E8:
-	ldr r2, .L0805A3D8 @ =gUnk_080FAEC4
+	ldr r2, .L0805A3D8 @ =gText_HorseRace_TicketPurchaseMedalsToWin
 	movs r1, #0xb5
 	lsls r1, r1, #4
 	add r1, sp
@@ -51202,7 +51202,7 @@ func_08059FE0: @ 0x08059FE0
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L0805A3D8: .4byte gUnk_080FAEC4
+.L0805A3D8: .4byte gText_HorseRace_TicketPurchaseMedalsToWin
 .L0805A3DC: .4byte 0x00000B58
 .L0805A3E0: .4byte 0x06004800
 .L0805A3E4: .4byte 0x00000BEA

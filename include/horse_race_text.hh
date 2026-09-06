@@ -1,0 +1,45 @@
+#ifndef HORSE_RACE_TEXT_HH
+#define HORSE_RACE_TEXT_HH
+
+#include "prelude.h"
+
+extern char const gText_HorseRace_BuyTicketDeclined[];
+extern char const gText_HorseRace_Yes[];
+extern char const gText_HorseRace_No[];
+extern char const gText_HorseRace_ComeAgain[];
+extern char const gText_HorseRace_TakeYourTime[];
+extern char const gText_HorseRace_TicketPurchaseConfirmation[];
+extern char const gText_HorseRace_TicketPurchaseApproval[];
+#if defined(REGION_JP)
+extern char const gText_HorseRace_TicketPurchaseEncouragement[];
+#endif
+extern char const gText_HorseRace_ChangeMind[];
+extern char const gText_HorseRace_ExplanationQuestion[];
+extern char const gText_HorseRace_ExplanationBasics[];
+extern char const gText_HorseRace_ExplanationGreenStamina[];
+extern char const gText_HorseRace_ExplanationYellowStamina[];
+extern char const gText_HorseRace_ExplanationRedStamina[];
+extern char const gText_HorseRace_ExplanationStaminaRecovery[];
+extern char const gText_HorseRace_ExplanationUnderstoodQuestion[];
+extern char const gText_HorseRace_ExplanationUnderstood[];
+extern char const gText_HorseRace_ExplanationRepeat[];
+extern char const gText_HorseRace_StartRace[];
+extern char const gText_HorseRace_RaceStartAnnouncement[];
+extern char const gText_HorseRace_RaceResults[];
+extern char const gText_HorseRace_RacePayouts[];
+extern char const gText_HorseRace_MedalExchangeExplanation[];
+extern char const gText_HorseRace_TicketPurchaseTitle[];
+extern char const gText_HorseRace_TicketPurchaseConfirm[];
+extern char const gText_HorseRace_TicketPurchaseMedalsToWin[];
+extern char const gText_HorseRace_TicketControls_DPadUpDown[];
+extern char const gText_HorseRace_TicketControls_SelectHorse[];
+extern char const gText_HorseRace_TicketControls_DPadLeftRight[];
+extern char const gText_HorseRace_TicketControls_ChangeQuantity[];
+extern char const gText_HorseRace_TicketControls_LRButtons[];
+extern char const gText_HorseRace_TicketControls_ChangeQuantityByTen[];
+extern char const gText_HorseRace_TicketControls_ChangeQuantityByTenContinuation[];
+extern char const gText_HorseRace_TicketControls_MoveCursorToConfirm[];
+extern char const gText_HorseRace_TicketControls_Buy[];
+extern char const gText_HorseRace_TicketControls_Cancel[];
+
+#endif
