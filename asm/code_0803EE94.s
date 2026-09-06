@@ -48,20 +48,17 @@
     jp_code_0803ee_func func_08050424, 0x501B0, 0x5055C
     jp_code_0803ee_func func_080507D0, 0x5055C, 0x50584
     jp_code_0803ee_func func_080507F8, 0x50584, 0x505F4
-    jp_code_0803ee_func func_08050868, 0x505F4, 0x508C8
-    jp_code_0803ee_func func_08050B3C, 0x508C8, 0x509A4
+    jp_code_0803ee_func func_08050868, 0x505F4, 0x50864
+    jp_code_0803ee_func func_08050AD8, 0x50864, 0x508C8
+    jp_code_0803ee_func func_08050B3C, 0x508C8, 0x508DC
+    jp_code_0803ee_func func_08050B50, 0x508DC, 0x509A4
     jp_code_0803ee_func func_08050C18, 0x509A4, 0x509B8
     jp_code_0803ee_func func_08050C2C, 0x509B8, 0x509F0
     jp_code_0803ee_func func_08050C64, 0x509F0, 0x50A98
     jp_code_0803ee_func func_08050D0C, 0x50A98, 0x50AC0
     jp_code_0803ee_func func_08050D34, 0x50AC0, 0x50AE8
     .section .text.code_08050E50
-    jp_code_0803ee_func func_08050E50, 0x50BDC, 0x50BE8
-    jp_code_0803ee_func func_08050E5C, 0x50BE8, 0x50BF4
-    jp_code_0803ee_func func_08050E68, 0x50BF4, 0x50C00
-    jp_code_0803ee_func func_08050E74, 0x50C00, 0x50C0C
-    jp_code_0803ee_func func_08050E80, 0x50C0C, 0x50C18
-    jp_code_0803ee_func func_08050E8C, 0x50C18, 0x511C8
+    jp_code_0803ee_func func_08050E98, 0x50C24, 0x511C8
     jp_code_0803ee_func func_0805143C, 0x511C8, 0x52068
     jp_code_0803ee_func func_080522D8, 0x52068, 0x52078
     jp_code_0803ee_func func_080522E8, 0x52078, 0x536F0
@@ -33335,54 +33332,6 @@ func_08050D3C: @ 0x08050D3C
 	.align 2, 0
 
 	.section .text.code_08050E50
-	thumb_func_start func_08050E50
-func_08050E50: @ 0x08050E50
-	push {lr}
-	ldr r0, [r0]
-	bl func_08050AD8
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_08050E5C
-func_08050E5C: @ 0x08050E5C
-	push {lr}
-	ldr r0, [r0]
-	bl func_08050B3C
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_08050E68
-func_08050E68: @ 0x08050E68
-	push {lr}
-	ldr r0, [r0]
-	bl func_08050B50
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_08050E74
-func_08050E74: @ 0x08050E74
-	push {lr}
-	ldr r0, [r0]
-	bl func_08050C18
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_08050E80
-func_08050E80: @ 0x08050E80
-	push {lr}
-	ldr r0, [r0]
-	bl func_08050C2C
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_08050E8C
-func_08050E8C: @ 0x08050E8C
-	push {lr}
-	ldr r0, [r0]
-	bl func_08050C64
-	pop {r0}
-	bx r0
-
 	thumb_func_start func_08050E98
 func_08050E98: @ 0x08050E98
 	push {r4, lr}

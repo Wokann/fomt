@@ -191,7 +191,9 @@ SECTIONS
         src/code_08050DF0.o(.text);
         . = 0x50B98; /* JP counterpart of shared long-argument forwarding adapters. */
         src/code_08050E0C.o(.text);
-        . = 0x50BDC; /* JP ROM 0x08050BDC, remaining raw UI-adjacent code. */
+        . = 0x50BDC; /* JP counterpart of shared first-field UI-adjacent adapters. */
+        src/code_08050E50.o(.text);
+        . = 0x50C24; /* JP ROM 0x08050C24, remaining raw UI-adjacent code. */
         asm/code_0803EE94.o(.text.code_08050E50);
 
         . = 0x9AB3C; /* JP ROM 0x0809AB3C, independently matched */
