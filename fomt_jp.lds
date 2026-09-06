@@ -505,6 +505,10 @@ SECTIONS
         . = 0xFBE9C; data/text/town_map.o(.rodata);
         . = 0xFC7E5; asm/data/data_080F9EB8.o(.rodata.town_map_padding);
         . = 0xFC7E8; asm/data/data_080F9EB8.o(.rodata.town_map_trailer);
+        . = 0xFCCB8; data/text/library.o(.rodata.library_info);
+        . = 0xFCCF3; asm/data/data_080F9EB8.o(.rodata.library_info_trailer);
+        . = 0xFD0B0; data/text/library.o(.rodata.library_menu);
+        . = 0xFD0C2; asm/data/data_080F9EB8.o(.rodata.library_menu_trailer);
         . = 0xFD0D0; data/text/poultry_shop.o(.rodata.poultry_shop_menu);
         . = 0xFD0E9; asm/data/data_080F9EB8.o(.rodata.poultry_shop_menu_padding);
         . = 0xFD0EC; src/poultry_shop_data.o(.rodata.poultry_shop_catalog);

@@ -50,7 +50,13 @@
     .incbin "baserom_jp.gba", 0xFC7E5, (0xFC7E8 - 0xFC7E5)
 
     .section .rodata.town_map_trailer
-    .incbin "baserom_jp.gba", 0xFC7E8, (0xFD0D0 - 0xFC7E8)
+    .incbin "baserom_jp.gba", 0xFC7E8, (0xFCCB8 - 0xFC7E8)
+
+    .section .rodata.library_info_trailer
+    .incbin "baserom_jp.gba", 0xFCCF3, (0xFD0B0 - 0xFCCF3)
+
+    .section .rodata.library_menu_trailer
+    .incbin "baserom_jp.gba", 0xFD0C2, (0xFD0D0 - 0xFD0C2)
 
     .section .rodata.poultry_shop_menu_padding
     .incbin "baserom_jp.gba", 0xFD0E9, (0xFD0EC - 0xFD0E9)
@@ -601,17 +607,15 @@ gUnk_080FD540:
 gUnk_080FD548:
 	.incbin "baserom_us.gba", 0xFD548, 0x8
 
-	.global gUnk_080FD550
-gUnk_080FD550:
-	.incbin "baserom_us.gba", 0xFD550, 0x3D0
+	.section .rodata.library_info_trailer
+	.incbin "baserom_us.gba", 0xFD583, (0xFD920 - 0xFD583)
 
 	.global gUnk_080FD920
 gUnk_080FD920:
 	.incbin "baserom_us.gba", 0xFD920, 0x20
 
-	.global gUnk_080FD940
-gUnk_080FD940:
-	.incbin "baserom_us.gba", 0xFD940, 0x24
+	.section .rodata.library_menu_trailer
+	.incbin "baserom_us.gba", 0xFD958, (0xFD964 - 0xFD958)
 
 	.section .rodata.poultry_shop_menu_padding
 	.incbin "baserom_us.gba", 0xFD985, (0xFD988 - 0xFD985)

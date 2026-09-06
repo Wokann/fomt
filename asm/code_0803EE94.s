@@ -113162,11 +113162,11 @@ func_08078044: @ 0x08078044
 	bl GetRivalEventCount__C12Bachelorette
 	cmp r0, #4
 	bls .L08078248
-	ldr r4, .L08078244 @ =gUnk_080FD550
+	ldr r4, .L08078244 @ =gText_Library_OpeningHours
 	b .L08078288
 	.align 2, 0
 .L08078240: .4byte 0x00001E28
-.L08078244: .4byte gUnk_080FD550
+.L08078244: .4byte gText_Library_OpeningHours
 .L08078248:
 	ldrb r0, [r7, #0x14]
 	cmp r0, #0
@@ -116114,7 +116114,7 @@ func_08079A64: @ 0x08079A64
 	adds r0, r0, r1
 	lsls r0, r0, #2
 	adds r0, r6, r0
-	ldr r1, .L08079DBC @ =gUnk_080FD940
+	ldr r1, .L08079DBC @ =gText_Library_Menu
 	adds r0, r0, r1
 	ldrb r4, [r0]
 	cmp r4, #0
@@ -116181,7 +116181,7 @@ func_08079A64: @ 0x08079A64
 .L08079DB0: .4byte 0x06000C00
 .L08079DB4: .4byte 0x06010000
 .L08079DB8: .4byte 0x00000A57
-.L08079DBC: .4byte gUnk_080FD940
+.L08079DBC: .4byte gText_Library_Menu
 
 	thumb_func_start func_08079DC0
 func_08079DC0: @ 0x08079DC0
