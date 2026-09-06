@@ -33,7 +33,7 @@ func_08032934:
     .global func_08033928
     .thumb_func
 func_08033928:
-    .incbin "baserom_jp.gba", 0x336BC, 0x254
+    .incbin "baserom_jp.gba", 0x336BC, 0x1FC
 
     .section .text.entity_ui_unknown_flag_after
     .syntax unified
@@ -65,8 +65,6 @@ func_08033B84:
     .thumb_set func_08033800, func_0803242C + 0x13D4
     .global func_08033830
     .thumb_set func_08033830, func_0803242C + 0x1404
-    .global func_08033B24
-    .thumb_set func_08033B24, func_0803242C + 0x16F8
     .global func_08034180
     .thumb_set func_08034180, func_0803242C + 0x1D54
     .global func_08034248
@@ -3006,53 +3004,6 @@ func_08033928: @ 0x08033928
     .byte 0x00, 0x78, 0x40, 0x00, 0x40, 0x18, 0x00, 0x88, 0x70, 0x47, 0x00, 0x00, 0xD4, 0x14, 0x0F, 0x08
     .byte 0x10, 0xB5, 0x04, 0x1C, 0xEC, 0xF7, 0x84, 0xF9, 0x60, 0x6B, 0x6A, 0xF0, 0x5F, 0xFC, 0x10, 0xBC
     .byte 0x01, 0xBC, 0x00, 0x47
-
-    thumb_func_start func_08033B24
-func_08033B24: @ 0x08033B24
-    push {r4, r5, r6, lr}
-    sub sp, #0x18
-    adds r6, r0, #0
-    adds r0, #0x30
-    ldrb r0, [r0]
-    ldr r1, [r6, #0x38]
-    lsls r0, r0, #3
-    adds r1, r1, r0
-    ldrb r0, [r1]
-    lsls r0, r0, #0x1c
-    cmp r0, #0
-    beq .L08033B40
-    movs r0, #0
-    b .L08033B74
-.L08033B40:
-    ldr r5, [r6]
-    add r4, sp, #0x10
-    adds r0, r4, #0
-    adds r1, r6, #0
-    bl GetLocation__C7AEntity
-    ldr r0, [r6, #0x34]
-    bl GetCurrentTask__C13HarvestSprite
-    ldr r1, [r6, #0x3c]
-    str r0, [sp]
-    ldr r0, [r6, #0x38]
-    str r0, [sp, #4]
-    add r0, sp, #8
-    adds r2, r5, #0
-    adds r3, r4, #0
-    bl func_080330F4
-    add r0, sp, #8
-    movs r1, #0
-    ldrb r0, [r0]
-    lsls r0, r0, #0x1c
-    cmp r0, #0
-    bne .L08033B72
-    movs r1, #1
-.L08033B72:
-    adds r0, r1, #0
-.L08033B74:
-    add sp, #0x18
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
 
     .section .text.entity_ui_unknown_flag_after
     thumb_func_start func_08033B84

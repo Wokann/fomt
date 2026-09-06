@@ -109,6 +109,8 @@ SECTIONS
         src/entity_ui.o(.text.entity_ui_harvest_sprite_task_experience);
         . = 0x33928; /* Continue the surrounding entity-UI ROM block. */
         asm/code_entities_080320DC.o(.text.entity_ui_harvest_sprite_task_experience_after);
+        . = 0x33B24; /* JP/US-shared Harvest Sprite UI entry test. */
+        src/entity_ui.o(.text.entity_ui_harvest_sprite_selection);
         . = 0x33B7C; /* JP/US-shared entity-UI byte-0x41 clearer. */
         src/entity_ui.o(.text.entity_ui_unknown_flag);
         . = 0x33B84; /* Continue the surrounding entity-UI ROM block. */

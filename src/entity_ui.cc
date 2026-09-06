@@ -1,10 +1,46 @@
 #include "prelude.h"
 
+#include "entity.hh"
+#include "harvest_sprite.hh"
+
 struct EntityUiUnknownState
 {
     u8 unknown_00[0x41];
     u8 unknown_41;
 };
+
+struct EntityUiHarvestSpriteEntry
+{
+    u8 flags;
+    u8 unknown_01[7];
+};
+
+struct EntityUiHarvestSpriteResult
+{
+    u8 flags;
+    u8 unknown_01[7];
+};
+
+struct EntityUiHarvestSpriteState : public AEntity
+{
+    EntityUiHarvestSpriteState(GameObject * game_object, Location const & location)
+        : AEntity(game_object, location)
+    {
+    }
+
+    u8 unknown_18[0x18];
+    u8 entry_index;
+    u8 unknown_31[3];
+    HarvestSprite * harvest_sprite;
+    EntityUiHarvestSpriteEntry const * entries;
+    void * unknown_3C;
+};
+
+extern "C" void func_080330F4(EntityUiHarvestSpriteResult * result,
+                               void * unknown_3C, GameObject * game_object,
+                               Location const * location,
+                               HarvestSprite::Task task,
+                               EntityUiHarvestSpriteEntry const * entries);
 
 // The ROM leaf unconditionally returns false.  Its caller-facing purpose is
 // not mapped yet.
@@ -25,6 +61,11 @@ extern "C" u32 func_08032900(u32 kind, u32 x, i32 y)
 // by the following entity-UI path.  The game-level meaning remains unmapped.
 extern "C" u32 func_08033914(u32 task_experience)
     SECTION(".text.entity_ui_harvest_sprite_task_experience");
+
+// Tests the selected Harvest Sprite UI entry before and after its shared
+// result-record calculation.  The names of the byte flags remain unmapped.
+extern "C" bool func_08033B24(EntityUiHarvestSpriteState * state)
+    SECTION(".text.entity_ui_harvest_sprite_selection");
 
 extern "C" bool func_080324B8()
 {
@@ -75,4 +116,31 @@ extern "C" u32 func_08033914(u32 task_experience)
     u32 base = 0x80;
     base <<= 8;
     return task_experience + base;
+}
+
+extern "C" bool func_08033B24(EntityUiHarvestSpriteState * state)
+{
+    u32 entry_offset = state->entry_index;
+    EntityUiHarvestSpriteEntry const * entry = state->entries;
+    entry_offset <<= 3;
+    entry = (EntityUiHarvestSpriteEntry const *)((u8 const *)entry + entry_offset);
+    if ((entry->flags << 28) != 0)
+    {
+        return false;
+    }
+
+    GameObject * game_object = state->game_object;
+    EntityUiHarvestSpriteResult result;
+    Location location = state->GetLocation();
+    HarvestSprite::Task task = state->harvest_sprite->GetCurrentTask();
+    func_080330F4(&result, state->unknown_3C, game_object, &location, task,
+                  state->entries);
+
+    EntityUiHarvestSpriteResult * result_pointer = &result;
+    u32 value = 0;
+    if ((result_pointer->flags << 28) == 0)
+    {
+        value = 1;
+    }
+    return value;
 }

@@ -155,6 +155,8 @@ SECTIONS
         src/entity_ui.o(.text.entity_ui_harvest_sprite_task_experience);
         . = 0x336BC; /* Continue the surrounding entity-UI ROM block. */
         asm/code_entities_080320DC.o(.text.entity_ui_harvest_sprite_task_experience_after);
+        . = 0x338B8; /* JP counterpart of Harvest Sprite UI entry test. */
+        src/entity_ui.o(.text.entity_ui_harvest_sprite_selection);
         . = 0x33910; /* JP counterpart of entity-UI byte-0x41 clearer. */
         src/entity_ui.o(.text.entity_ui_unknown_flag);
         . = 0x33918; /* Continue the surrounding entity-UI ROM block. */
