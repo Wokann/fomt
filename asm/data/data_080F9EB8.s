@@ -250,8 +250,8 @@ gText_CharacterName_Empty:
     .section .rodata.harvest_sprite_minigames_watering_results_trailer
     .incbin "baserom_jp.gba", 0x107D89, (0x107DAC - 0x107D89)
 
-    .section .rodata.reference_guide_unextracted_trailer
-    .incbin "baserom_jp.gba", 0x1189D4, (0x118BF4 - 0x1189D4)
+	.section .rodata.reference_guide_unextracted_trailer
+	.incbin "baserom_jp.gba", 0x1189D4, (0x118B94 - 0x1189D4)
 
     .section .rodata.static_data_after_item_discard
     .incbin "baserom_jp.gba", 0x118CF4, (0x13BCF8 - 0x118CF4)
@@ -1599,7 +1599,7 @@ gUnk_0810827C:
 	.section .rodata.reference_guide_unextracted_trailer
 	.incbin "baserom_us.gba", 0x1177EC, (0x1177F6 - 0x1177EC)
 
-	.section .rodata.animal_status_prefix
+	.section .rodata.tool_status_prefix
 
 	.global gUnk_081177F6
 gUnk_081177F6:
@@ -1640,46 +1640,6 @@ gUnk_0811788C:
 	.global gUnk_08117890
 gUnk_08117890:
 	.incbin "baserom_us.gba", 0x117890, 0x11C
-
-	.global gUnk_081179AC
-gUnk_081179AC:
-	.incbin "baserom_us.gba", 0x1179AC, 0x10
-
-	.global gUnk_081179BC
-gUnk_081179BC:
-	.incbin "baserom_us.gba", 0x1179BC, 0x8
-
-	.global gUnk_081179C4
-gUnk_081179C4:
-	.incbin "baserom_us.gba", 0x1179C4, 0x4
-
-	.global gUnk_081179C8
-gUnk_081179C8:
-	.incbin "baserom_us.gba", 0x1179C8, 0x4
-
-	.global gUnk_081179CC
-gUnk_081179CC:
-	.incbin "baserom_us.gba", 0x1179CC, 0xC
-
-	.global gUnk_081179D8
-gUnk_081179D8:
-	.incbin "baserom_us.gba", 0x1179D8, 0x8
-
-	.global gUnk_081179E0
-gUnk_081179E0:
-	.incbin "baserom_us.gba", 0x1179E0, 0x10
-
-	.global gUnk_081179F0
-gUnk_081179F0:
-	.incbin "baserom_us.gba", 0x1179F0, 0x8
-
-	.global gUnk_081179F8
-gUnk_081179F8:
-	.incbin "baserom_us.gba", 0x1179F8, 0x4
-
-	.global gUnk_081179FC
-gUnk_081179FC:
-	.incbin "baserom_us.gba", 0x1179FC, 0x10
 
 	.section .rodata.static_data_after_item_discard
 	.incbin "baserom_us.gba", 0x117B14, (0x117B20 - 0x117B14)

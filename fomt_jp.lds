@@ -649,6 +649,7 @@ SECTIONS
         . = 0x107D89; asm/data/data_080F9EB8.o(.rodata.harvest_sprite_minigames_watering_results_trailer);
         . = 0x107DAC; src/reference_guide.o(.rodata.reference_guide);
         . = 0x1189D4; asm/data/data_080F9EB8.o(.rodata.reference_guide_unextracted_trailer);
+        . = 0x118B94; data/text/tool_status.o(.rodata.tool_status);
         . = 0x118BF4; data/text/animal_status.o(.rodata.animal_status);
         . = 0x118C34; data/text/item_status.o(.rodata.item_status_basket);
         . = 0x118C68; data/text/item_status.o(.rodata.item_status_wrapped_as_present);

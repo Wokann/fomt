@@ -99751,7 +99751,7 @@ func_080CF05C: @ 0x080CF05C
 	adds r0, r4, #0
 	movs r2, #3
 	bl func_0804EC84
-	ldr r0, .L080CF2A0 @ =gUnk_081179AC
+	ldr r0, .L080CF2A0 @ =gText_ToolStatus_GemOfTruth
 	mov r8, r0
 	adds r0, r7, #0
 	bl strlen
@@ -99776,7 +99776,7 @@ func_080CF05C: @ 0x080CF05C
 	strb r1, [r0]
 .L080CF104:
 	mov sb, r7
-	ldr r0, .L080CF2A4 @ =gUnk_081179BC
+	ldr r0, .L080CF2A4 @ =gText_ToolStatus_EnergyLabel
 	mov r8, r0
 	adds r0, r7, #0
 	bl strlen
@@ -99825,7 +99825,7 @@ func_080CF05C: @ 0x080CF05C
 	movs r0, #0
 	strb r0, [r1]
 .L080CF16C:
-	ldr r1, .L080CF2A8 @ =gUnk_081179C4
+	ldr r1, .L080CF2A8 @ =gText_ToolStatus_ValueSeparator
 	mov sb, r1
 	adds r0, r6, #0
 	bl strlen
@@ -99875,7 +99875,7 @@ func_080CF05C: @ 0x080CF05C
 	movs r0, #0
 	strb r0, [r1]
 .L080CF1D4:
-	ldr r1, .L080CF2AC @ =gUnk_081179C8
+	ldr r1, .L080CF2AC @ =gText_ToolStatus_EnergyFatigueLineBreak
 	mov sb, r1
 	adds r0, r6, #0
 	bl strlen
@@ -99901,7 +99901,7 @@ func_080CF05C: @ 0x080CF05C
 	movs r0, #0
 	strb r0, [r1]
 .L080CF20A:
-	ldr r1, .L080CF2B0 @ =gUnk_081179CC
+	ldr r1, .L080CF2B0 @ =gText_ToolStatus_FatigueLabel
 	mov sb, r1
 	adds r0, r6, #0
 	bl strlen
@@ -99951,7 +99951,7 @@ func_080CF05C: @ 0x080CF05C
 	movs r0, #0
 	strb r0, [r1]
 .L080CF272:
-	ldr r1, .L080CF2B4 @ =gUnk_081179D8
+	ldr r1, .L080CF2B4 @ =gText_ToolStatus_FatigueMaximum
 	mov r8, r1
 	adds r0, r6, #0
 	bl strlen
@@ -99974,12 +99974,12 @@ func_080CF05C: @ 0x080CF05C
 	b .L080CF648
 	.align 2, 0
 .L080CF29C: .4byte 0x00001BD8
-.L080CF2A0: .4byte gUnk_081179AC
-.L080CF2A4: .4byte gUnk_081179BC
-.L080CF2A8: .4byte gUnk_081179C4
-.L080CF2AC: .4byte gUnk_081179C8
-.L080CF2B0: .4byte gUnk_081179CC
-.L080CF2B4: .4byte gUnk_081179D8
+.L080CF2A0: .4byte gText_ToolStatus_GemOfTruth
+.L080CF2A4: .4byte gText_ToolStatus_EnergyLabel
+.L080CF2A8: .4byte gText_ToolStatus_ValueSeparator
+.L080CF2AC: .4byte gText_ToolStatus_EnergyFatigueLineBreak
+.L080CF2B0: .4byte gText_ToolStatus_FatigueLabel
+.L080CF2B4: .4byte gText_ToolStatus_FatigueMaximum
 .L080CF2B8:
 	cmp r1, #0x4c
 	bne .L080CF344
@@ -99991,7 +99991,7 @@ func_080CF05C: @ 0x080CF05C
 	mov r1, sp
 	movs r2, #0xa
 	bl func_0804EC84
-	ldr r0, .L080CF33C @ =gUnk_081179E0
+	ldr r0, .L080CF33C @ =gText_ToolStatus_PedometerLabel
 	mov r8, r0
 	adds r0, r7, #0
 	bl strlen
@@ -100038,12 +100038,12 @@ func_080CF05C: @ 0x080CF05C
 	movs r0, #0
 	strb r0, [r1]
 .L080CF332:
-	ldr r0, .L080CF340 @ =gUnk_081179F0
+	ldr r0, .L080CF340 @ =gText_ToolStatus_PedometerStepsSuffix
 	b .L080CF622
 	.align 2, 0
 .L080CF338: .4byte 0x00001BD8
-.L080CF33C: .4byte gUnk_081179E0
-.L080CF340: .4byte gUnk_081179F0
+.L080CF33C: .4byte gText_ToolStatus_PedometerLabel
+.L080CF340: .4byte gText_ToolStatus_PedometerStepsSuffix
 .L080CF344:
 	cmp r1, #0
 	beq .L080CF358
@@ -100067,7 +100067,7 @@ func_080CF05C: @ 0x080CF05C
 	strb r1, [r0]
 	bl GetDesc__C4Tool
 	adds r6, r0, #0
-	ldr r0, .L080CF43C @ =gUnk_081179F8
+	ldr r0, .L080CF43C @ =gText_ToolStatus_DescriptionQuotePrefix
 	mov sb, r0
 	adds r0, r7, #0
 	bl strlen
@@ -100116,7 +100116,7 @@ func_080CF05C: @ 0x080CF05C
 	cmp r0, #0xd
 	bne .L080CF3B0
 .L080CF3D2:
-	ldr r1, .L080CF43C @ =gUnk_081179F8
+	ldr r1, .L080CF43C @ =gText_ToolStatus_DescriptionQuotePrefix
 	mov sb, r1
 	adds r0, r7, #0
 	bl strlen
@@ -100169,7 +100169,7 @@ func_080CF05C: @ 0x080CF05C
 	b .L080CF654
 	.align 2, 0
 .L080CF438: .4byte 0x00001BD8
-.L080CF43C: .4byte gUnk_081179F8
+.L080CF43C: .4byte gText_ToolStatus_DescriptionQuotePrefix
 .L080CF440:
 	cmp r1, #0x20
 	beq .L080CF446
@@ -100195,7 +100195,7 @@ func_080CF05C: @ 0x080CF05C
 	subs r5, r1, r0
 	cmp r5, #0
 	beq .L080CF494
-	ldr r0, .L080CF58C @ =gUnk_081179F8
+	ldr r0, .L080CF58C @ =gText_ToolStatus_DescriptionQuotePrefix
 	bl strlen
 	adds r4, r0, #0
 	cmp r4, r5
@@ -100203,7 +100203,7 @@ func_080CF05C: @ 0x080CF05C
 	adds r4, r5, #0
 .L080CF482:
 	mov r0, r8
-	ldr r1, .L080CF58C @ =gUnk_081179F8
+	ldr r1, .L080CF58C @ =gText_ToolStatus_DescriptionQuotePrefix
 	adds r2, r4, #0
 	bl memcpy
 	mov r1, r8
@@ -100234,7 +100234,7 @@ func_080CF05C: @ 0x080CF05C
 	cmp r0, #0xd
 	bne .L080CF49C
 .L080CF4BE:
-	ldr r0, .L080CF58C @ =gUnk_081179F8
+	ldr r0, .L080CF58C @ =gText_ToolStatus_DescriptionQuotePrefix
 	mov sl, r0
 	adds r0, r7, #0
 	bl strlen
@@ -100313,7 +100313,7 @@ func_080CF05C: @ 0x080CF05C
 	movs r0, #0
 	strb r0, [r1]
 .L080CF560:
-	ldr r0, .L080CF590 @ =gUnk_081179FC
+	ldr r0, .L080CF590 @ =gText_ToolStatus_RemainingSquaresSuffix
 	mov r8, r0
 	adds r0, r7, #0
 	bl strlen
@@ -100334,8 +100334,8 @@ func_080CF05C: @ 0x080CF05C
 	b .L080CF648
 	.align 2, 0
 .L080CF588: .4byte 0x00001BD8
-.L080CF58C: .4byte gUnk_081179F8
-.L080CF590: .4byte gUnk_081179FC
+.L080CF58C: .4byte gText_ToolStatus_DescriptionQuotePrefix
+.L080CF590: .4byte gText_ToolStatus_RemainingSquaresSuffix
 .L080CF594:
 	adds r0, r1, #0
 	subs r0, #0x21
@@ -100403,7 +100403,7 @@ func_080CF05C: @ 0x080CF05C
 	movs r0, #0
 	strb r0, [r1]
 .L080CF620:
-	ldr r0, .L080CF65C @ =gUnk_081179FC
+	ldr r0, .L080CF65C @ =gText_ToolStatus_RemainingSquaresSuffix
 .L080CF622:
 	mov sb, r0
 	mov r0, r8
@@ -100434,7 +100434,7 @@ func_080CF05C: @ 0x080CF05C
 	b .L080CF668
 	.align 2, 0
 .L080CF658: .4byte 0x00001BD8
-.L080CF65C: .4byte gUnk_081179FC
+.L080CF65C: .4byte gText_ToolStatus_RemainingSquaresSuffix
 .L080CF660:
 	adds r0, r4, #0
 	bl GetDesc__C4Tool
