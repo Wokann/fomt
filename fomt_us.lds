@@ -425,6 +425,10 @@ SECTIONS
         . = 0xFDFE4; data/text/supermarket.o(.rodata.supermarket_secondary_text);
         . = 0xFE043; asm/data/data_080F9EB8.o(.rodata.supermarket_secondary_text_padding);
         . = 0xFE044; asm/data/data_080F9EB8.o(.rodata.supermarket_trailer);
+        . = 0xFE050; src/clinic_data.o(.rodata.clinic_catalog);
+        . = 0xFE070; data/text/clinic.o(.rodata.clinic_text);
+        . = 0xFE257; asm/data/data_080F9EB8.o(.rodata.clinic_text_padding);
+        . = 0xFE258; asm/data/data_080F9EB8.o(.rodata.clinic_trailer);
         . = 0xFFB60; data/text/livestock_shop.o(.rodata.livestock_shop_menu);
         . = 0xFFB8F; asm/data/data_080F9EB8.o(.rodata.livestock_shop_menu_padding);
         . = 0xFFB90; src/livestock_shop_data.o(.rodata.livestock_shop_catalog);

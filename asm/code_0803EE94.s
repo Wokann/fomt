@@ -124876,7 +124876,7 @@ func_0807E51C: @ 0x0807E51C
 	push {r4, lr}
 	sub sp, #4
 	adds r4, r0, #0
-	ldr r2, .L0807E554 @ =gUnk_080FE050
+	ldr r2, .L0807E554 @ =gClinicCatalog
 	lsls r1, r1, #2
 	adds r1, r1, r4
 	movs r0, #0xaa
@@ -124898,7 +124898,7 @@ func_0807E51C: @ 0x0807E51C
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L0807E554: .4byte gUnk_080FE050
+.L0807E554: .4byte gClinicCatalog
 
 	thumb_func_start func_0807E558
 func_0807E558: @ 0x0807E558
@@ -125083,7 +125083,7 @@ func_0807E558: @ 0x0807E558
 	strh r0, [r1]
 	ldr r0, [r5]
 	lsls r0, r0, #3
-	ldr r1, .L0807E844 @ =gUnk_080FE050
+	ldr r1, .L0807E844 @ =gClinicCatalog
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
 	ldr r0, [r0]
@@ -125265,7 +125265,7 @@ func_0807E558: @ 0x0807E558
 	mov pc, r0
 	.align 2, 0
 .L0807E840: .4byte gUnk_086678A0
-.L0807E844: .4byte gUnk_080FE050
+.L0807E844: .4byte gClinicCatalog
 .L0807E848: .4byte vtable_unk_080E5B80
 .L0807E84C: .4byte 0x00000889
 .L0807E850: .4byte .L0807E854
@@ -125298,7 +125298,7 @@ func_0807E558: @ 0x0807E558
 	adds r0, r0, r4
 	ldr r0, [r0]
 	lsls r0, r0, #3
-	ldr r1, .L0807E9C4 @ =gUnk_080FE050
+	ldr r1, .L0807E9C4 @ =gClinicCatalog
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
 	ldr r0, [r0]
@@ -125426,7 +125426,7 @@ func_0807E558: @ 0x0807E558
 	mov r0, sl
 	cmp r0, #0
 	bne .L0807E9D8
-	ldr r1, .L0807E9D4 @ =gUnk_080FE070
+	ldr r1, .L0807E9D4 @ =gText_Clinic_InventoryFull
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r1, #0xd2
@@ -125441,11 +125441,11 @@ func_0807E558: @ 0x0807E558
 	b .L0807EBA4
 	.align 2, 0
 .L0807E9C0: .4byte 0x000006A1
-.L0807E9C4: .4byte gUnk_080FE050
+.L0807E9C4: .4byte gClinicCatalog
 .L0807E9C8: .4byte 0x00001C38
 .L0807E9CC: .4byte 0x00001C2C
 .L0807E9D0: .4byte 0x00001AA8
-.L0807E9D4: .4byte gUnk_080FE070
+.L0807E9D4: .4byte gText_Clinic_InventoryFull
 .L0807E9D8:
 	ldr r3, .L0807EB24 @ =0x00000684
 	adds r0, r7, r3
@@ -125497,7 +125497,7 @@ func_0807E558: @ 0x0807E558
 	mov r3, sl
 	strb r3, [r0]
 .L0807EA44:
-	ldr r0, .L0807EB2C @ =gUnk_080FE0BC
+	ldr r0, .L0807EB2C @ =gText_Clinic_BlankLinePair
 	mov sb, r0
 	adds r0, r4, #0
 	bl strlen
@@ -125607,11 +125607,11 @@ func_0807E558: @ 0x0807E558
 	.align 2, 0
 .L0807EB24: .4byte 0x00000684
 .L0807EB28: .4byte 0x000006A4
-.L0807EB2C: .4byte gUnk_080FE0BC
+.L0807EB2C: .4byte gText_Clinic_BlankLinePair
 .L0807EB30: .4byte gUnk_08117828
 .L0807EB34: .4byte gUnk_08117814
 .L0807EB38:
-	ldr r1, .L0807EB58 @ =gUnk_080FE0C4
+	ldr r1, .L0807EB58 @ =gText_Clinic_InsufficientGold
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r4, #0xd2
@@ -125625,7 +125625,7 @@ func_0807E558: @ 0x0807E558
 	movs r0, #1
 	b .L0807EBA4
 	.align 2, 0
-.L0807EB58: .4byte gUnk_080FE0C4
+.L0807EB58: .4byte gText_Clinic_InsufficientGold
 .L0807EB5C:
 	adds r0, r7, #0
 	bl func_080088CC
@@ -125638,15 +125638,15 @@ func_0807E558: @ 0x0807E558
 	ldrb r0, [r0]
 	cmp r0, #0
 	beq .L0807EB88
-	ldr r1, .L0807EB84 @ =gUnk_080FE10C
+	ldr r1, .L0807EB84 @ =gText_Clinic_NoAdditionalPurchase
 	adds r0, r7, #0
 	bl func_080CABA0
 	b .L0807EB90
 	.align 2, 0
 .L0807EB80: .4byte 0x0000070C
-.L0807EB84: .4byte gUnk_080FE10C
+.L0807EB84: .4byte gText_Clinic_NoAdditionalPurchase
 .L0807EB88:
-	ldr r1, .L0807EBBC @ =gUnk_080FE134
+	ldr r1, .L0807EBBC @ =gText_Clinic_NoPurchaseRestAdvice
 	adds r0, r7, #0
 	bl func_080CABA0
 .L0807EB90:
@@ -125672,7 +125672,7 @@ func_0807E558: @ 0x0807E558
 	bl func_080C9020
 	b .L0807EDE4
 	.align 2, 0
-.L0807EBBC: .4byte gUnk_080FE134
+.L0807EBBC: .4byte gText_Clinic_NoPurchaseRestAdvice
 .L0807EBC0:
 	movs r1, #0xd4
 	lsls r1, r1, #2
@@ -125682,7 +125682,7 @@ func_0807E558: @ 0x0807E558
 	beq .L0807EBCE
 	b .L0807EDE4
 .L0807EBCE:
-	ldr r1, .L0807EBF0 @ =gUnk_080FE180
+	ldr r1, .L0807EBF0 @ =gText_Clinic_PurchaseMorePrompt
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r2, #0xd2
@@ -125697,7 +125697,7 @@ func_0807E558: @ 0x0807E558
 	str r0, [r1]
 	b .L0807EDE4
 	.align 2, 0
-.L0807EBF0: .4byte gUnk_080FE180
+.L0807EBF0: .4byte gText_Clinic_PurchaseMorePrompt
 .L0807EBF4:
 	movs r4, #0xd4
 	lsls r4, r4, #2
@@ -125745,7 +125745,7 @@ func_0807E558: @ 0x0807E558
 	adds r0, r0, r4
 	ldr r0, [r0]
 	lsls r0, r0, #3
-	ldr r1, .L0807ECF8 @ =gUnk_080FE050
+	ldr r1, .L0807ECF8 @ =gClinicCatalog
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
 	ldr r0, [r0]
@@ -125815,19 +125815,19 @@ func_0807E558: @ 0x0807E558
 	bl AddAmountOf__6FridgeUiUi
 	cmp r5, #0
 	beq .L0807ED0C
-	ldr r1, .L0807ED08 @ =gUnk_080FE19C
+	ldr r1, .L0807ED08 @ =gText_Clinic_Delivery
 	adds r0, r7, #0
 	bl func_080CABA0
 	b .L0807ED14
 	.align 2, 0
 .L0807ECF4: .4byte 0x00000684
-.L0807ECF8: .4byte gUnk_080FE050
+.L0807ECF8: .4byte gClinicCatalog
 .L0807ECFC: .4byte 0x00001AA8
 .L0807ED00: .4byte 0x00001C2C
 .L0807ED04: .4byte 0x00001C38
-.L0807ED08: .4byte gUnk_080FE19C
+.L0807ED08: .4byte gText_Clinic_Delivery
 .L0807ED0C:
-	ldr r1, .L0807ED24 @ =gUnk_080FE1E8
+	ldr r1, .L0807ED24 @ =gText_Clinic_DeliveryPartial
 	adds r0, r7, #0
 	bl func_080CABA0
 .L0807ED14:
@@ -125838,9 +125838,9 @@ func_0807E558: @ 0x0807E558
 	bl func_08050E50
 	b .L0807ED3C
 	.align 2, 0
-.L0807ED24: .4byte gUnk_080FE1E8
+.L0807ED24: .4byte gText_Clinic_DeliveryPartial
 .L0807ED28:
-	ldr r1, .L0807ED50 @ =gUnk_080FE238
+	ldr r1, .L0807ED50 @ =gText_Clinic_PurchaseComplete
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r4, #0xd2
@@ -125859,7 +125859,7 @@ func_0807E558: @ 0x0807E558
 	strb r1, [r0]
 	b .L0807EDE4
 	.align 2, 0
-.L0807ED50: .4byte gUnk_080FE238
+.L0807ED50: .4byte gText_Clinic_PurchaseComplete
 .L0807ED54: .4byte 0x0000070C
 .L0807ED58:
 	adds r0, r7, #0
