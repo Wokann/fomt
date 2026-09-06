@@ -126091,7 +126091,7 @@ func_0807EF14: @ 0x0807EF14
 	sub sp, #4
 	adds r4, r0, #0
 	adds r3, r1, #0
-	ldr r5, .L0807EF68 @ =gUnk_080FE2D8
+	ldr r5, .L0807EF68 @ =gInnShopMenu
 	movs r0, #0xa9
 	lsls r0, r0, #2
 	adds r2, r4, r0
@@ -126127,7 +126127,7 @@ func_0807EF14: @ 0x0807EF14
 	bl func_080CABEC
 	b .L0807EF88
 	.align 2, 0
-.L0807EF68: .4byte gUnk_080FE2D8
+.L0807EF68: .4byte gInnShopMenu
 .L0807EF6C:
 	lsls r0, r3, #2
 	adds r0, #4
@@ -126401,7 +126401,7 @@ func_0807EF90: @ 0x0807EF90
 	lsls r0, r1, #3
 	subs r0, r0, r1
 	lsls r0, r0, #2
-	ldr r2, .L0807F198 @ =gUnk_080FE2D8
+	ldr r2, .L0807F198 @ =gInnShopMenu
 	mov r1, r8
 	adds r0, r0, r2
 	ldm r0!, {r2, r3, r4}
@@ -126424,7 +126424,7 @@ func_0807EF90: @ 0x0807EF90
 	b .L0807F19E
 	.align 2, 0
 .L0807F194: .4byte gUnk_086678A0
-.L0807F198: .4byte gUnk_080FE2D8
+.L0807F198: .4byte gInnShopMenu
 .L0807F19C:
 	ldr r1, [sp, #0x18]
 .L0807F19E:
@@ -126638,7 +126638,7 @@ func_0807EF90: @ 0x0807EF90
 	lsls r0, r1, #3
 	subs r0, r0, r1
 	lsls r0, r0, #2
-	ldr r2, .L0807F3C0 @ =gUnk_080FE2D8
+	ldr r2, .L0807F3C0 @ =gInnShopMenu
 	adds r1, r3, #0
 	adds r0, r0, r2
 	ldm r0!, {r2, r5, r6}
@@ -126688,7 +126688,7 @@ func_0807EF90: @ 0x0807EF90
 	b .L0807F3CE
 	.align 2, 0
 .L0807F3BC: .4byte 0x000006A1
-.L0807F3C0: .4byte gUnk_080FE2D8
+.L0807F3C0: .4byte gInnShopMenu
 .L0807F3C4: .4byte 0x00001AA8
 .L0807F3C8: .4byte 0x000006AC
 .L0807F3CC:
@@ -126726,7 +126726,7 @@ func_0807EF90: @ 0x0807EF90
 .L0807F40C: .4byte 0x00001C2C
 .L0807F410:
 	adds r0, r7, #0
-	ldr r1, .L0807F42C @ =gUnk_080FE3D4
+	ldr r1, .L0807F42C @ =gText_InnShop_InsufficientGold
 	bl func_080CABA0
 	movs r1, #0xd2
 	lsls r1, r1, #2
@@ -126737,7 +126737,7 @@ func_0807EF90: @ 0x0807EF90
 	str r2, [r4]
 	b .L0807F456
 	.align 2, 0
-.L0807F42C: .4byte gUnk_080FE3D4
+.L0807F42C: .4byte gText_InnShop_InsufficientGold
 .L0807F430:
 	adds r0, r7, #0
 	bl func_080088CC
@@ -126746,7 +126746,7 @@ func_0807EF90: @ 0x0807EF90
 	cmp r0, #0
 	beq .L0807F456
 	adds r0, r7, #0
-	ldr r1, .L0807F468 @ =gUnk_080FE404
+	ldr r1, .L0807F468 @ =gText_InnShop_NoOrder
 	bl func_080CABA0
 	movs r3, #0xd2
 	lsls r3, r3, #2
@@ -126764,7 +126764,7 @@ func_0807EF90: @ 0x0807EF90
 	bl func_080C9020
 	b .L0807F54E
 	.align 2, 0
-.L0807F468: .4byte gUnk_080FE404
+.L0807F468: .4byte gText_InnShop_NoOrder
 .L0807F46C:
 	movs r5, #0xd4
 	lsls r5, r5, #2
@@ -126803,7 +126803,7 @@ func_0807EF90: @ 0x0807EF90
 	lsls r0, r3, #3
 	subs r0, r0, r3
 	lsls r0, r0, #2
-	ldr r2, .L0807F510 @ =gUnk_080FE2D8
+	ldr r2, .L0807F510 @ =gInnShopMenu
 	mov r1, sl
 	adds r0, r0, r2
 	ldm r0!, {r2, r5, r6}
@@ -126834,7 +126834,7 @@ func_0807EF90: @ 0x0807EF90
 	adds r0, r7, #0
 	bl func_080C8550
 	adds r0, r7, #0
-	ldr r1, .L0807F51C @ =gUnk_080FE448
+	ldr r1, .L0807F51C @ =gText_InnShop_OrderComplete
 	bl func_080CABA0
 	movs r6, #0xd2
 	lsls r6, r6, #2
@@ -126845,10 +126845,10 @@ func_0807EF90: @ 0x0807EF90
 	str r0, [r4]
 	b .L0807F54E
 	.align 2, 0
-.L0807F510: .4byte gUnk_080FE2D8
+.L0807F510: .4byte gInnShopMenu
 .L0807F514: .4byte 0x00001CD4
 .L0807F518: .4byte 0x00001AA8
-.L0807F51C: .4byte gUnk_080FE448
+.L0807F51C: .4byte gText_InnShop_OrderComplete
 .L0807F520:
 	movs r1, #0xd4
 	lsls r1, r1, #2

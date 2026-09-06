@@ -79,8 +79,14 @@
     .section .rodata.clinic_text_padding
     .incbin "baserom_jp.gba", 0xFD9D6, (0xFD9D8 - 0xFD9D6)
 
-    .section .rodata.clinic_trailer
-    .incbin "baserom_jp.gba", 0xFD9D8, (0xFE53C - 0xFD9D8)
+    .section .rodata.inn_shop_prefix
+    .incbin "baserom_jp.gba", 0xFD9D8, (0xFD9E4 - 0xFD9D8)
+
+    .section .rodata.inn_shop_trailer
+    .incbin "baserom_jp.gba", 0xFDBE4, (0xFDBF0 - 0xFDBE4)
+
+    .section .rodata.unextracted_shop_data
+    .incbin "baserom_jp.gba", 0xFDBF0, (0xFE53C - 0xFDBF0)
 
     .section .rodata.blacksmith_menu_padding
     .incbin "baserom_jp.gba", 0xFE6A0, (0xFE6A4 - 0xFE6A0)
@@ -602,24 +608,13 @@ gUnk_080FD920:
 	.section .rodata.clinic_text_padding
 	.incbin "baserom_us.gba", 0xFE257, (0xFE258 - 0xFE257)
 
-	.section .rodata.clinic_trailer
-	.incbin "baserom_us.gba", 0xFE258, (0xFE2D8 - 0xFE258)
+	.section .rodata.inn_shop_prefix
+	.incbin "baserom_us.gba", 0xFE258, (0xFE264 - 0xFE258)
 
-	.global gUnk_080FE2D8
-gUnk_080FE2D8:
-	.incbin "baserom_us.gba", 0xFE2D8, 0xFC
+	.section .rodata.inn_shop_trailer
+	.incbin "baserom_us.gba", 0xFE478, (0xFE484 - 0xFE478)
 
-	.global gUnk_080FE3D4
-gUnk_080FE3D4:
-	.incbin "baserom_us.gba", 0xFE3D4, 0x30
-
-	.global gUnk_080FE404
-gUnk_080FE404:
-	.incbin "baserom_us.gba", 0xFE404, 0x44
-
-	.global gUnk_080FE448
-gUnk_080FE448:
-	.incbin "baserom_us.gba", 0xFE448, 0x3C
+	.section .rodata.unextracted_shop_data
 
 	.global gUnk_080FE484
 gUnk_080FE484:
