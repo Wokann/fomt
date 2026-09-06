@@ -161911,7 +161911,7 @@ func_0809152C: @ 0x0809152C
 	movs r0, #0
 	strb r0, [r1]
 .L080922BE:
-	ldr r1, .L08092328 @ =gUnk_0810039C
+	ldr r1, .L08092328 @ =gText_BlacksmithUpgrade_InsufficientGold
 	mov r8, r1
 	mov r4, r8
 	adds r0, r6, #0
@@ -161955,7 +161955,7 @@ func_0809152C: @ 0x0809152C
 .L0809231C: .4byte gUnk_08100388
 .L08092320: .4byte 0x00001AA8
 .L08092324: .4byte gUnk_08100398
-.L08092328: .4byte gUnk_0810039C
+.L08092328: .4byte gText_BlacksmithUpgrade_InsufficientGold
 .L0809232C:
 	movs r2, #0x84
 	lsls r2, r2, #1
@@ -161986,8 +161986,8 @@ func_0809152C: @ 0x0809152C
 	adds r4, #0x80
 	adds r0, r4, #0
 	bl func_08050E5C
-	ldr r1, .L08092390 @ =gUnk_081003DC
-	ldr r2, .L08092394 @ =gUnk_081003E0
+	ldr r1, .L08092390 @ =gText_BlacksmithUpgrade_ResultYes
+	ldr r2, .L08092394 @ =gText_BlacksmithUpgrade_ResultNo
 	movs r0, #0
 	str r0, [sp]
 	str r0, [sp, #4]
@@ -162003,8 +162003,8 @@ func_0809152C: @ 0x0809152C
 	str r0, [r1]
 	bl .L0809178A
 	.align 2, 0
-.L08092390: .4byte gUnk_081003DC
-.L08092394: .4byte gUnk_081003E0
+.L08092390: .4byte gText_BlacksmithUpgrade_ResultYes
+.L08092394: .4byte gText_BlacksmithUpgrade_ResultNo
 .L08092398:
 	adds r0, r7, #0
 	adds r0, #0x88

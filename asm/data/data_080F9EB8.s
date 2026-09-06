@@ -119,7 +119,10 @@
     .incbin "baserom_jp.gba", 0xFFAE0, (0xFFAE4 - 0xFFAE0)
 
     .section .rodata.blacksmith_upgrade_dynamic
-    .incbin "baserom_jp.gba", 0xFFCCC, (0xFFD54 - 0xFFCCC)
+    .incbin "baserom_jp.gba", 0xFFCCC, (0xFFD04 - 0xFFCCC)
+
+    .section .rodata.blacksmith_upgrade_result_padding
+    .incbin "baserom_jp.gba", 0xFFD04, (0xFFD08 - 0xFFD04)
 
     .section .rodata.gift_wrap_prefix
     .incbin "baserom_jp.gba", 0xFFD54, (0xFFD64 - 0xFFD54)
@@ -872,23 +875,14 @@ gUnk_0810037C:
 gUnk_08100388:
 	.incbin "baserom_us.gba", 0x100388, 0x10
 
+	.section .rodata.blacksmith_upgrade_result_padding
+
 	.global gUnk_08100398
 gUnk_08100398:
 	.incbin "baserom_us.gba", 0x100398, 0x4
 
-	.global gUnk_0810039C
-gUnk_0810039C:
-	.incbin "baserom_us.gba", 0x10039C, 0x40
-
-	.global gUnk_081003DC
-gUnk_081003DC:
-	.incbin "baserom_us.gba", 0x1003DC, 0x4
-
-	.global gUnk_081003E0
-gUnk_081003E0:
-	.incbin "baserom_us.gba", 0x1003E0, 0x10
-
 	.section .rodata.gift_wrap_prefix
+	.incbin "baserom_us.gba", 0x1003E4, (0x1003F0 - 0x1003E4)
 
 	.global gUnk_081003F0
 gUnk_081003F0:

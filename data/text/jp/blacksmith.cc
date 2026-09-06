@@ -175,3 +175,14 @@ char const gText_BlacksmithUpgrade_DowngradeConfirmation[] BLACKSMITH_UPGRADE_PR
     "ふん…、それではかえって道具\r\n"
     "が悪くなってしまうぞ。\r\n"
     "いいのか？{Press}";
+
+char const gText_BlacksmithUpgrade_InsufficientGold[] BLACKSMITH_UPGRADE_RESULT =
+    "…………………\r\n"
+    "金が足りんぞ？\r\n"
+    "その金額では受けられんな。{Press}";
+
+char const gText_BlacksmithUpgrade_ResultYes[] BLACKSMITH_UPGRADE_RESULT =
+    "はい";
+
+char const gText_BlacksmithUpgrade_ResultNo[] BLACKSMITH_UPGRADE_RESULT =
+    "いいえ";

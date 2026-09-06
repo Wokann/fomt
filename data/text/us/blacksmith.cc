@@ -178,3 +178,14 @@ char const gText_BlacksmithUpgrade_DowngradeConfirmation[] BLACKSMITH_UPGRADE_PR
     "Hmmph! What are you\r\n"
     "trying to do, downgrade\r\n"
     "your Tools?!{Press}";
+
+char const gText_BlacksmithUpgrade_InsufficientGold[] BLACKSMITH_UPGRADE_RESULT =
+    "Hmm....You don't have\r\n"
+    "enough money!\r\n"
+    "I can't do it for that.{Press}";
+
+char const gText_BlacksmithUpgrade_ResultYes[] BLACKSMITH_UPGRADE_RESULT =
+    "Yes";
+
+char const gText_BlacksmithUpgrade_ResultNo[] BLACKSMITH_UPGRADE_RESULT =
+    "No";

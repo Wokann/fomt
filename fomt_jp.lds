@@ -565,6 +565,9 @@ SECTIONS
         . = 0xFFAE4; data/text/blacksmith.o(.rodata.blacksmith_upgrade_prompts);
         FILL(0x00);
         . = 0xFFCCC; asm/data/data_080F9EB8.o(.rodata.blacksmith_upgrade_dynamic);
+        . = 0xFFD04; asm/data/data_080F9EB8.o(.rodata.blacksmith_upgrade_result_padding);
+        FILL(0x00);
+        . = 0xFFD08; data/text/blacksmith.o(.rodata.blacksmith_upgrade_result);
         . = 0xFFD54; asm/data/data_080F9EB8.o(.rodata.gift_wrap_prefix);
         . = 0xFFD64; data/text/gift_wrap.o(.rodata.gift_wrap);
         . = 0xFFE64; asm/data/data_080F9EB8.o(.rodata.gift_wrap_trailer);
