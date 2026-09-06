@@ -122,7 +122,10 @@ gText_CharacterName_Empty:
     .incbin "baserom_jp.gba", 0x103D9B, (0x103D9C - 0x103D9B)
 
     .section .rodata.character_names_table_trailer
-    .incbin "baserom_jp.gba", 0x103EF4, (0x1073B9 - 0x103EF4)
+    .incbin "baserom_jp.gba", 0x103EF4, (0x1070F4 - 0x103EF4)
+
+    .section .rodata.harvest_sprite_minigames_animal_husbandry_trailer
+    .incbin "baserom_jp.gba", 0x10737B, (0x1073B9 - 0x10737B)
 
     .section .rodata.festival_contestants_set2_trailer
     .incbin "baserom_jp.gba", 0x1074BD, (0x107DAC - 0x1074BD)
@@ -2199,65 +2202,7 @@ gUnk_08107588:
 gUnk_0810759C:
 	.incbin "baserom_us.gba", 0x10759C, 0x14
 
-	.global gUnk_081075B0
-gUnk_081075B0:
-	.incbin "baserom_us.gba", 0x1075B0, 0x1C
-
-	.global gUnk_081075CC
-gUnk_081075CC:
-	.incbin "baserom_us.gba", 0x1075CC, 0x4
-
-	.global gUnk_081075D0
-gUnk_081075D0:
-	.incbin "baserom_us.gba", 0x1075D0, 0x4
-
-	.global gUnk_081075D4
-gUnk_081075D4:
-	.incbin "baserom_us.gba", 0x1075D4, 0x34
-
-	.global gUnk_08107608
-gUnk_08107608:
-	.incbin "baserom_us.gba", 0x107608, 0xC0
-
-	.global gUnk_081076C8
-gUnk_081076C8:
-	.incbin "baserom_us.gba", 0x1076C8, 0xDC
-
-	.global gUnk_081077A4
-gUnk_081077A4:
-	.incbin "baserom_us.gba", 0x1077A4, 0x40
-
-	.global gUnk_081077E4
-gUnk_081077E4:
-	.incbin "baserom_us.gba", 0x1077E4, 0x14
-
-	.global gUnk_081077F8
-gUnk_081077F8:
-	.incbin "baserom_us.gba", 0x1077F8, 0x10
-
-	.global gUnk_08107808
-gUnk_08107808:
-	.incbin "baserom_us.gba", 0x107808, 0x10
-
-	.global gUnk_08107818
-gUnk_08107818:
-	.incbin "baserom_us.gba", 0x107818, 0x14
-
-	.global gUnk_0810782C
-gUnk_0810782C:
-	.incbin "baserom_us.gba", 0x10782C, 0x8
-
-	.global gUnk_08107834
-gUnk_08107834:
-	.incbin "baserom_us.gba", 0x107834, 0x10
-
-	.global gUnk_08107844
-gUnk_08107844:
-	.incbin "baserom_us.gba", 0x107844, 0xC
-
-	.global gUnk_08107850
-gUnk_08107850:
-	.incbin "baserom_us.gba", 0x107850, 0x2C
+	.section .rodata.harvest_sprite_minigames_animal_husbandry_trailer
 
 	.global gUnk_0810787C
 gUnk_0810787C:

@@ -1,0 +1,28 @@
+#ifndef HARVEST_SPRITE_MINIGAMES_TEXT_HH
+#define HARVEST_SPRITE_MINIGAMES_TEXT_HH
+
+#include "prelude.h"
+
+#define HARVEST_SPRITE_MINIGAMES_ANIMAL_HUSBANDRY_TEXT \
+    SECTION(".rodata.harvest_sprite_minigames_animal_husbandry")
+
+extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ExplanationQuestion[];
+extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_Yes[];
+extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_No[];
+extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_Introduction[];
+extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_FeedingInstructions[];
+extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ChickenBehaviorInstructions[];
+extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_WatchInstructions[];
+extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_UnderstandQuestion[];
+extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_UnderstandYes[];
+extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_UnderstandAgain[];
+extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_Start[];
+extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScorePrefix[];
+extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultSuffix[];
+extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreSummary[];
+
+#if defined(REGION_US)
+extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultPrefix[];
+#endif
+
+#endif // HARVEST_SPRITE_MINIGAMES_TEXT_HH

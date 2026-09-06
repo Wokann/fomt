@@ -530,6 +530,8 @@ SECTIONS
         . = 0x103D9B; asm/data/data_080F9EB8.o(.rodata.character_names_text_padding);
         . = 0x103D9C; src/character_names_data.o(.rodata.character_name_entries);
         . = 0x103EF4; asm/data/data_080F9EB8.o(.rodata.character_names_table_trailer);
+        . = 0x1070F4; data/text/harvest_sprite_minigames.o(.rodata.harvest_sprite_minigames_animal_husbandry);
+        . = 0x10737B; asm/data/data_080F9EB8.o(.rodata.harvest_sprite_minigames_animal_husbandry_trailer);
         . = 0x1073B9; data/text/festival_contestants.o(.rodata.festival_contestants_set2);
         . = 0x1074BD; asm/data/data_080F9EB8.o(.rodata.festival_contestants_set2_trailer);
         . = 0x107DAC; src/reference_guide.o(.rodata.reference_guide);

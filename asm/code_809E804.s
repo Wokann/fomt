@@ -37918,62 +37918,62 @@ sub_080B0CC0: @ 0x080B0CC0
 	lsls r3, r3, #3
 	adds r0, r7, r3
 	ldr r0, [r0]
-	ldr r1, .L080B0FA4 @ =gUnk_081075B0
-	ldr r2, .L080B0FA8 @ =gUnk_081075CC
-	ldr r3, .L080B0FAC @ =gUnk_081075D0
+	ldr r1, .L080B0FA4 @ =gText_HarvestSpriteMiniGame_AnimalHusbandry_ExplanationQuestion
+	ldr r2, .L080B0FA8 @ =gText_HarvestSpriteMiniGame_AnimalHusbandry_Yes
+	ldr r3, .L080B0FAC @ =gText_HarvestSpriteMiniGame_AnimalHusbandry_No
 	b .L080B100E
 	.align 2, 0
-.L080B0FA4: .4byte gUnk_081075B0
-.L080B0FA8: .4byte gUnk_081075CC
-.L080B0FAC: .4byte gUnk_081075D0
+.L080B0FA4: .4byte gText_HarvestSpriteMiniGame_AnimalHusbandry_ExplanationQuestion
+.L080B0FA8: .4byte gText_HarvestSpriteMiniGame_AnimalHusbandry_Yes
+.L080B0FAC: .4byte gText_HarvestSpriteMiniGame_AnimalHusbandry_No
 .L080B0FB0:
 	movs r4, #0x83
 	lsls r4, r4, #3
 	adds r0, r7, r4
 	ldr r0, [r0]
-	ldr r1, .L080B0FC0 @ =gUnk_081075D4
+	ldr r1, .L080B0FC0 @ =gText_HarvestSpriteMiniGame_AnimalHusbandry_Introduction
 	bl func_08050D8C
 	b .L080B10E8
 	.align 2, 0
-.L080B0FC0: .4byte gUnk_081075D4
+.L080B0FC0: .4byte gText_HarvestSpriteMiniGame_AnimalHusbandry_Introduction
 .L080B0FC4:
 	movs r5, #0x83
 	lsls r5, r5, #3
 	adds r0, r7, r5
 	ldr r0, [r0]
-	ldr r1, .L080B0FD4 @ =gUnk_08107608
+	ldr r1, .L080B0FD4 @ =gText_HarvestSpriteMiniGame_AnimalHusbandry_FeedingInstructions
 	bl func_08050D8C
 	b .L080B10E8
 	.align 2, 0
-.L080B0FD4: .4byte gUnk_08107608
+.L080B0FD4: .4byte gText_HarvestSpriteMiniGame_AnimalHusbandry_FeedingInstructions
 .L080B0FD8:
 	movs r6, #0x83
 	lsls r6, r6, #3
 	adds r0, r7, r6
 	ldr r0, [r0]
-	ldr r1, .L080B0FE8 @ =gUnk_081076C8
+	ldr r1, .L080B0FE8 @ =gText_HarvestSpriteMiniGame_AnimalHusbandry_ChickenBehaviorInstructions
 	bl func_08050D8C
 	b .L080B10E8
 	.align 2, 0
-.L080B0FE8: .4byte gUnk_081076C8
+.L080B0FE8: .4byte gText_HarvestSpriteMiniGame_AnimalHusbandry_ChickenBehaviorInstructions
 .L080B0FEC:
 	movs r1, #0x83
 	lsls r1, r1, #3
 	adds r0, r7, r1
 	ldr r0, [r0]
-	ldr r1, .L080B0FFC @ =gUnk_081077A4
+	ldr r1, .L080B0FFC @ =gText_HarvestSpriteMiniGame_AnimalHusbandry_WatchInstructions
 	bl func_08050D8C
 	b .L080B10E8
 	.align 2, 0
-.L080B0FFC: .4byte gUnk_081077A4
+.L080B0FFC: .4byte gText_HarvestSpriteMiniGame_AnimalHusbandry_WatchInstructions
 .L080B1000:
 	movs r2, #0x83
 	lsls r2, r2, #3
 	adds r0, r7, r2
 	ldr r0, [r0]
-	ldr r1, .L080B101C @ =gUnk_081077E4
-	ldr r2, .L080B1020 @ =gUnk_081077F8
-	ldr r3, .L080B1024 @ =gUnk_08107808
+	ldr r1, .L080B101C @ =gText_HarvestSpriteMiniGame_AnimalHusbandry_UnderstandQuestion
+	ldr r2, .L080B1020 @ =gText_HarvestSpriteMiniGame_AnimalHusbandry_UnderstandYes
+	ldr r3, .L080B1024 @ =gText_HarvestSpriteMiniGame_AnimalHusbandry_UnderstandAgain
 .L080B100E:
 	movs r4, #0
 	str r4, [sp]
@@ -37982,19 +37982,19 @@ sub_080B0CC0: @ 0x080B0CC0
 	bl func_08050E30
 	b .L080B10E8
 	.align 2, 0
-.L080B101C: .4byte gUnk_081077E4
-.L080B1020: .4byte gUnk_081077F8
-.L080B1024: .4byte gUnk_08107808
+.L080B101C: .4byte gText_HarvestSpriteMiniGame_AnimalHusbandry_UnderstandQuestion
+.L080B1020: .4byte gText_HarvestSpriteMiniGame_AnimalHusbandry_UnderstandYes
+.L080B1024: .4byte gText_HarvestSpriteMiniGame_AnimalHusbandry_UnderstandAgain
 .L080B1028:
 	movs r3, #0x83
 	lsls r3, r3, #3
 	adds r0, r7, r3
 	ldr r0, [r0]
-	ldr r1, .L080B1038 @ =gUnk_08107818
+	ldr r1, .L080B1038 @ =gText_HarvestSpriteMiniGame_AnimalHusbandry_Start
 	bl func_08050D8C
 	b .L080B10E8
 	.align 2, 0
-.L080B1038: .4byte gUnk_08107818
+.L080B1038: .4byte gText_HarvestSpriteMiniGame_AnimalHusbandry_Start
 .L080B103C:
 	movs r4, #0x83
 	lsls r4, r4, #3
@@ -39388,17 +39388,17 @@ func_080B1B40: @ 0x080B1B40
 	movs r2, #0
 	bl func_0804EC84
 	add r0, sp, #0x10
-	ldr r4, .L080B1C18 @ =gUnk_0810782C
+	ldr r4, .L080B1C18 @ =gText_HarvestSpriteMiniGame_AnimalHusbandry_ScorePrefix
 	adds r1, r4, #0
 	movs r2, #6
 	bl memcpy
 	add r0, sp, #0x18
-	ldr r6, .L080B1C1C @ =gUnk_08107834
+	ldr r6, .L080B1C1C @ =gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultPrefix
 	adds r1, r6, #0
 	movs r2, #0xe
 	bl memcpy
 	add r0, sp, #0x28
-	ldr r2, .L080B1C20 @ =gUnk_08107844
+	ldr r2, .L080B1C20 @ =gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultSuffix
 	mov r8, r2
 	mov r1, r8
 	movs r2, #0xa
@@ -39466,9 +39466,9 @@ func_080B1B40: @ 0x080B1B40
 	b .L080B1D0C
 	.align 2, 0
 .L080B1C14: .4byte 0x0000090E
-.L080B1C18: .4byte gUnk_0810782C
-.L080B1C1C: .4byte gUnk_08107834
-.L080B1C20: .4byte gUnk_08107844
+.L080B1C18: .4byte gText_HarvestSpriteMiniGame_AnimalHusbandry_ScorePrefix
+.L080B1C1C: .4byte gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultPrefix
+.L080B1C20: .4byte gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultSuffix
 .L080B1C24:
 	adds r0, r7, #0
 	bl func_080087C8
@@ -42002,7 +42002,7 @@ func_080B2114: @ 0x080B2114
 	lsls r4, r4, #3
 	add r4, sl
 	ldr r0, [r4]
-	ldr r1, .L080B2FE8 @ =gUnk_08107850
+	ldr r1, .L080B2FE8 @ =gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreSummary
 	bl func_08050D8C
 	ldr r0, [r4]
 	bl func_08050DD8
@@ -42024,7 +42024,7 @@ func_080B2114: @ 0x080B2114
 	beq .L080B2FF8
 	b .L080B34B4
 	.align 2, 0
-.L080B2FE8: .4byte gUnk_08107850
+.L080B2FE8: .4byte gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreSummary
 .L080B2FEC: .4byte 0x0000092A
 .L080B2FF0:
 	cmp r0, #3
