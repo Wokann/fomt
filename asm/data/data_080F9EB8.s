@@ -218,7 +218,10 @@ gText_CharacterName_Empty:
     .incbin "baserom_jp.gba", 0x1048DB, (0x1048DC - 0x1048DB)
 
     .section .rodata.calendar_no_plans_trailer
-    .incbin "baserom_jp.gba", 0x104935, (0x1070F4 - 0x104935)
+    .incbin "baserom_jp.gba", 0x104935, (0x104958 - 0x104935)
+
+    .section .rodata.possessive_labels_trailer
+    .incbin "baserom_jp.gba", 0x104988, (0x1070F4 - 0x104988)
 
     .section .rodata.harvest_sprite_minigames_animal_husbandry_trailer
     .incbin "baserom_jp.gba", 0x10737B, (0x1073B9 - 0x10737B)
@@ -961,31 +964,8 @@ gUnk_08104957:
 	.section .rodata.calendar_no_plans_trailer
 	.incbin "baserom_us.gba", 0x104DEA, (0x104E0C - 0x104DEA)
 
-	.section .rodata.reference_guide_harvest_sprite_minigames_after_calendar
-
-	.global gUnk_08104E0C
-gUnk_08104E0C:
-	.incbin "baserom_us.gba", 0x104E0C, 0x8
-
-	.global gUnk_08104E14
-gUnk_08104E14:
-	.incbin "baserom_us.gba", 0x104E14, 0x8
-
-	.global gUnk_08104E1C
-gUnk_08104E1C:
-	.incbin "baserom_us.gba", 0x104E1C, 0x8
-
-	.global gUnk_08104E24
-gUnk_08104E24:
-	.incbin "baserom_us.gba", 0x104E24, 0xC
-
-	.global gUnk_08104E30
-gUnk_08104E30:
-	.incbin "baserom_us.gba", 0x104E30, 0x8
-
-	.global gUnk_08104E38
-gUnk_08104E38:
-	.incbin "baserom_us.gba", 0x104E38, 0x14
+	.section .rodata.static_data_after_possessive_labels
+	.incbin "baserom_us.gba", 0x104E40, (0x104E4C - 0x104E40)
 
 	.global gUnk_08104E4C
 gUnk_08104E4C:

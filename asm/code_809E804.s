@@ -10848,35 +10848,35 @@ func_080A3CF4: @ 0x080A3CF4
 	.4byte .L080A3D4C @ case 4
 	.4byte .L080A3D54 @ case 5
 .L080A3D2C:
-	ldr r1, .L080A3D30 @ =gUnk_08104E0C
+	ldr r1, .L080A3D30 @ =gText_Possessive_Horse
 	b .L080A3D64
 	.align 2, 0
-.L080A3D30: .4byte gUnk_08104E0C
+.L080A3D30: .4byte gText_Possessive_Horse
 .L080A3D34:
-	ldr r1, .L080A3D38 @ =gUnk_08104E14
+	ldr r1, .L080A3D38 @ =gText_Possessive_Cow
 	b .L080A3D64
 	.align 2, 0
-.L080A3D38: .4byte gUnk_08104E14
+.L080A3D38: .4byte gText_Possessive_Cow
 .L080A3D3C:
-	ldr r1, .L080A3D40 @ =gUnk_08104E1C
+	ldr r1, .L080A3D40 @ =gText_Possessive_Sheep
 	b .L080A3D64
 	.align 2, 0
-.L080A3D40: .4byte gUnk_08104E1C
+.L080A3D40: .4byte gText_Possessive_Sheep
 .L080A3D44:
-	ldr r1, .L080A3D48 @ =gUnk_08104E24
+	ldr r1, .L080A3D48 @ =gText_Possessive_Chicken
 	b .L080A3D64
 	.align 2, 0
-.L080A3D48: .4byte gUnk_08104E24
+.L080A3D48: .4byte gText_Possessive_Chicken
 .L080A3D4C:
-	ldr r1, .L080A3D50 @ =gUnk_08104E30
+	ldr r1, .L080A3D50 @ =gText_Possessive_Child
 	b .L080A3D64
 	.align 2, 0
-.L080A3D50: .4byte gUnk_08104E30
+.L080A3D50: .4byte gText_Possessive_Child
 .L080A3D54:
-	ldr r1, .L080A3D58 @ =gUnk_08104E38
+	ldr r1, .L080A3D58 @ =gText_Possessive_Player
 	b .L080A3D64
 	.align 2, 0
-.L080A3D58: .4byte gUnk_08104E38
+.L080A3D58: .4byte gText_Possessive_Player
 .L080A3D5C:
 	ldr r0, [r5, #4]
 	str r1, [r5, #4]
