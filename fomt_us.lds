@@ -392,7 +392,9 @@ SECTIONS
         . = 0xFB108; data/text/horse_race_prizes.o(.rodata.horse_race_prize_exchange);
         . = 0xFB1A6; asm/data/data_080F9EB8.o(.rodata.horse_race_prize_exchange_trailer);
         . = 0xFB824; data/text/farm_status.o(.rodata);
-        . = 0xFB954; asm/data/data_080F9EB8.o(.rodata.farm_status_trailer);
+        . = 0xFB954; asm/data/data_080F9EB8.o(.rodata.farm_status_trailer_prefix);
+        . = 0xFBE7C; data/text/records.o(.rodata);
+        . = 0xFC024; asm/data/data_080F9EB8.o(.rodata.records_trailer);
         . = 0xFC0A4; data/text/staff_credits.o(.rodata.staff_credits);
         . = 0xFC6B8; asm/data/data_080F9EB8.o(.rodata.staff_credits_trailer);
         . = 0x103788; data/text/fishing_results.o(.rodata);

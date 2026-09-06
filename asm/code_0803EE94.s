@@ -98146,7 +98146,7 @@ func_08070DE4: @ 0x08070DE4
 	str r0, [sp, #0xd0]
 	movs r3, #0xd0
 	lsls r3, r3, #1
-	ldr r0, .L08070E68 @ =gUnk_080FBE7C
+	ldr r0, .L08070E68 @ =gText_Records_NumberShipped
 	str r0, [sp]
 	ldr r0, [sp, #0xd0]
 	bl func_08070C24
@@ -98155,7 +98155,7 @@ func_08070DE4: @ 0x08070DE4
 	adds r1, r0, r2
 	ldr r0, .L08070E70 @ =vtable_unk_080E7B1C
 	str r0, [r1]
-	ldr r2, .L08070E74 @ =gUnk_080FBE8C
+	ldr r2, .L08070E74 @ =gText_Records_ShippedCountSuffix
 	add r0, sp, #0xa4
 	movs r1, #2
 	strh r1, [r0]
@@ -98200,10 +98200,10 @@ func_08070DE4: @ 0x08070DE4
 	mov sl, r5
 	b .L08070F4C
 	.align 2, 0
-.L08070E68: .4byte gUnk_080FBE7C
+.L08070E68: .4byte gText_Records_NumberShipped
 .L08070E6C: .4byte 0x000005B4
 .L08070E70: .4byte vtable_unk_080E7B1C
-.L08070E74: .4byte gUnk_080FBE8C
+.L08070E74: .4byte gText_Records_ShippedCountSuffix
 .L08070E78: .4byte 0x0000427C
 .L08070E7C: .4byte 0x06000700
 .L08070E80:
@@ -98917,7 +98917,7 @@ func_080713B8: @ 0x080713B8
 	sub sp, #0x184
 	str r0, [sp, #0x100]
 	ldr r3, .L0807148C @ =0x000001A1
-	ldr r0, .L08071490 @ =gUnk_080FBE90
+	ldr r0, .L08071490 @ =gText_Records_Fishing
 	str r0, [sp]
 	ldr r0, [sp, #0x100]
 	bl func_08070C24
@@ -98926,7 +98926,7 @@ func_080713B8: @ 0x080713B8
 	adds r1, r0, r2
 	ldr r0, .L08071498 @ =vtable_unk_080E7B0C
 	str r0, [r1]
-	ldr r3, .L0807149C @ =gUnk_080FBE9C
+	ldr r3, .L0807149C @ =gText_Records_Name
 	add r0, sp, #0x94
 	movs r1, #4
 	movs r2, #2
@@ -99013,10 +99013,10 @@ func_080713B8: @ 0x080713B8
 	b .L080715E6
 	.align 2, 0
 .L0807148C: .4byte 0x000001A1
-.L08071490: .4byte gUnk_080FBE90
+.L08071490: .4byte gText_Records_Fishing
 .L08071494: .4byte 0x000005B4
 .L08071498: .4byte vtable_unk_080E7B0C
-.L0807149C: .4byte gUnk_080FBE9C
+.L0807149C: .4byte gText_Records_Name
 .L080714A0: .4byte 0x0000427C
 .L080714A4: .4byte 0x06000700
 .L080714A8: .4byte 0x00004684
@@ -99182,7 +99182,7 @@ func_080713B8: @ 0x080713B8
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L080715E6:
-	ldr r3, .L08071640 @ =gUnk_080FBEA4
+	ldr r3, .L08071640 @ =gText_Records_MaximumSize
 	movs r1, #0xc
 	movs r2, #2
 	add r0, sp, #0xa0
@@ -99225,7 +99225,7 @@ func_080713B8: @ 0x080713B8
 	str r0, [r6, #4]
 	b .L08071714
 	.align 2, 0
-.L08071640: .4byte gUnk_080FBEA4
+.L08071640: .4byte gText_Records_MaximumSize
 .L08071644: .4byte 0x06000800
 .L08071648:
 	str r1, [sp, #0x174]
@@ -99343,7 +99343,7 @@ func_080713B8: @ 0x080713B8
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08071714:
-	ldr r3, .L0807176C @ =gUnk_080FBEB4
+	ldr r3, .L0807176C @ =gText_Records_Results
 	movs r1, #8
 	movs r2, #2
 	add r0, sp, #0xac
@@ -99386,7 +99386,7 @@ func_080713B8: @ 0x080713B8
 	str r0, [r6, #4]
 	b .L08071840
 	.align 2, 0
-.L0807176C: .4byte gUnk_080FBEB4
+.L0807176C: .4byte gText_Records_Results
 .L08071770: .4byte 0x06000B00
 .L08071774:
 	str r1, [sp, #0x174]
@@ -99504,7 +99504,7 @@ func_080713B8: @ 0x080713B8
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08071840:
-	ldr r3, .L08071898 @ =gUnk_080FBEC0
+	ldr r3, .L08071898 @ =gText_Records_FishUnit
 	movs r1, #4
 	movs r2, #2
 	add r0, sp, #0xb8
@@ -99547,7 +99547,7 @@ func_080713B8: @ 0x080713B8
 	str r0, [r6, #4]
 	b .L0807196C
 	.align 2, 0
-.L08071898: .4byte gUnk_080FBEC0
+.L08071898: .4byte gText_Records_FishUnit
 .L0807189C: .4byte 0x06000D00
 .L080718A0:
 	str r1, [sp, #0x174]
@@ -99665,7 +99665,7 @@ func_080713B8: @ 0x080713B8
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L0807196C:
-	ldr r2, .L080719C0 @ =gUnk_080FBEC8
+	ldr r2, .L080719C0 @ =gText_Records_MeterUnit
 	movs r0, #2
 	add r1, sp, #0xc4
 	strh r0, [r1]
@@ -99706,7 +99706,7 @@ func_080713B8: @ 0x080713B8
 	str r0, [r6, #4]
 	b .L08071A94
 	.align 2, 0
-.L080719C0: .4byte gUnk_080FBEC8
+.L080719C0: .4byte gText_Records_MeterUnit
 .L080719C4: .4byte 0x06000E00
 .L080719C8:
 	str r1, [sp, #0x174]
@@ -99824,7 +99824,7 @@ func_080713B8: @ 0x080713B8
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08071A94:
-	ldr r3, .L08071AEC @ =gUnk_080FBECC
+	ldr r3, .L08071AEC @ =gText_Records_CentimeterUnit
 	movs r1, #4
 	movs r2, #2
 	add r0, sp, #0xd0
@@ -99867,7 +99867,7 @@ func_080713B8: @ 0x080713B8
 	str r0, [r6, #4]
 	b .L08071BC0
 	.align 2, 0
-.L08071AEC: .4byte gUnk_080FBECC
+.L08071AEC: .4byte gText_Records_CentimeterUnit
 .L08071AF0: .4byte 0x06000E80
 .L08071AF4:
 	str r1, [sp, #0x174]
@@ -99985,7 +99985,7 @@ func_080713B8: @ 0x080713B8
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08071BC0:
-	ldr r2, .L08071C14 @ =gUnk_080FBE8C
+	ldr r2, .L08071C14 @ =gText_Records_ShippedCountSuffix
 	movs r0, #2
 	add r1, sp, #0xdc
 	strh r0, [r1]
@@ -100026,7 +100026,7 @@ func_080713B8: @ 0x080713B8
 	str r0, [r6, #4]
 	b .L08071CE8
 	.align 2, 0
-.L08071C14: .4byte gUnk_080FBE8C
+.L08071C14: .4byte gText_Records_ShippedCountSuffix
 .L08071C18: .4byte 0x06000F80
 .L08071C1C:
 	str r1, [sp, #0x174]
@@ -100475,7 +100475,7 @@ func_080713B8: @ 0x080713B8
 	.align 2, 0
 .L08071F64: .4byte 0x0000FFFF
 .L08071F68:
-	ldr r7, .L08072090 @ =gUnk_080FBED4
+	ldr r7, .L08072090 @ =gText_Records_Separator
 	mov r0, r8
 	bl strlen
 	mov r1, r8
@@ -100620,7 +100620,7 @@ func_080713B8: @ 0x080713B8
 	str r0, [r6, #4]
 	b .L0807216E
 	.align 2, 0
-.L08072090: .4byte gUnk_080FBED4
+.L08072090: .4byte gText_Records_Separator
 .L08072094: .4byte 0x00001A5C
 .L08072098: .4byte 0x000005A4
 .L0807209C:
@@ -100931,7 +100931,7 @@ func_080722DC: @ 0x080722DC
 	ldr r4, .L080724B8 @ =0xFFFFFD10
 	add sp, r4
 	mov sb, r0
-	ldr r0, .L080724BC @ =gUnk_080FBED8
+	ldr r0, .L080724BC @ =gText_Records_Other
 	str r0, [sp]
 	mov r0, sb
 	movs r3, #0x78
@@ -100945,7 +100945,7 @@ func_080722DC: @ 0x080722DC
 	str r0, [sp, #0x208]
 	movs r1, #4
 	str r1, [sp, #0x20c]
-	ldr r3, .L080724C8 @ =gUnk_080FBEE0
+	ldr r3, .L080724C8 @ =gText_Records_MiniGameRecords
 	add r0, sp, #0x98
 	movs r1, #0x1a
 	movs r2, #2
@@ -101161,10 +101161,10 @@ func_080722DC: @ 0x080722DC
 	b .L080727B4
 	.align 2, 0
 .L080724B8: .4byte 0xFFFFFD10
-.L080724BC: .4byte gUnk_080FBED8
+.L080724BC: .4byte gText_Records_Other
 .L080724C0: .4byte 0x000005B4
 .L080724C4: .4byte vtable_unk_080E7AFC
-.L080724C8: .4byte gUnk_080FBEE0
+.L080724C8: .4byte gText_Records_MiniGameRecords
 .L080724CC: .4byte 0x0000427C
 .L080724D0: .4byte 0x06003000
 .L080724D4: .4byte 0x00004B04
@@ -101501,7 +101501,7 @@ func_080722DC: @ 0x080722DC
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L080727B4:
-	ldr r3, .L0807280C @ =gUnk_080FBEFC
+	ldr r3, .L0807280C @ =gText_Records_Harvest
 	movs r1, #8
 	movs r2, #2
 	add r0, sp, #0xa4
@@ -101544,7 +101544,7 @@ func_080722DC: @ 0x080722DC
 	str r0, [r6, #4]
 	b .L080728DC
 	.align 2, 0
-.L0807280C: .4byte gUnk_080FBEFC
+.L0807280C: .4byte gText_Records_Harvest
 .L08072810: .4byte 0x06003980
 .L08072814:
 	str r1, [sp, #0x2e8]
@@ -101660,7 +101660,7 @@ func_080722DC: @ 0x080722DC
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L080728DC:
-	ldr r3, .L08072934 @ =gUnk_080FBF08
+	ldr r3, .L08072934 @ =gText_Records_AnimalHusbandry
 	movs r1, #0x10
 	movs r2, #2
 	add r0, sp, #0xb0
@@ -101703,7 +101703,7 @@ func_080722DC: @ 0x080722DC
 	str r0, [r6, #4]
 	b .L08072A04
 	.align 2, 0
-.L08072934: .4byte gUnk_080FBF08
+.L08072934: .4byte gText_Records_AnimalHusbandry
 .L08072938: .4byte 0x06003B80
 .L0807293C:
 	str r1, [sp, #0x2e8]
@@ -101819,7 +101819,7 @@ func_080722DC: @ 0x080722DC
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08072A04:
-	ldr r3, .L08072A5C @ =gUnk_080FBF1C
+	ldr r3, .L08072A5C @ =gText_Records_Watering
 	movs r1, #8
 	movs r2, #2
 	add r0, sp, #0xbc
@@ -101862,7 +101862,7 @@ func_080722DC: @ 0x080722DC
 	str r0, [r6, #4]
 	b .L08072B2C
 	.align 2, 0
-.L08072A5C: .4byte gUnk_080FBF1C
+.L08072A5C: .4byte gText_Records_Watering
 .L08072A60: .4byte 0x06003F80
 .L08072A64:
 	str r1, [sp, #0x2e8]
@@ -101978,7 +101978,7 @@ func_080722DC: @ 0x080722DC
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08072B2C:
-	ldr r3, .L08072B84 @ =gUnk_080FBF28
+	ldr r3, .L08072B84 @ =gText_Records_Frisbee
 	movs r1, #8
 	movs r2, #2
 	add r0, sp, #0xc8
@@ -102021,7 +102021,7 @@ func_080722DC: @ 0x080722DC
 	str r0, [r6, #4]
 	b .L08072C54
 	.align 2, 0
-.L08072B84: .4byte gUnk_080FBF28
+.L08072B84: .4byte gText_Records_Frisbee
 .L08072B88: .4byte 0x06004180
 .L08072B8C:
 	str r1, [sp, #0x2e8]
@@ -102137,7 +102137,7 @@ func_080722DC: @ 0x080722DC
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08072C54:
-	ldr r2, .L08072CA8 @ =gUnk_080FBE8C
+	ldr r2, .L08072CA8 @ =gText_Records_ShippedCountSuffix
 	movs r0, #2
 	add r1, sp, #0xd4
 	strh r0, [r1]
@@ -102178,7 +102178,7 @@ func_080722DC: @ 0x080722DC
 	str r0, [r6, #4]
 	b .L08072D78
 	.align 2, 0
-.L08072CA8: .4byte gUnk_080FBE8C
+.L08072CA8: .4byte gText_Records_ShippedCountSuffix
 .L08072CAC: .4byte 0x06000700
 .L08072CB0:
 	str r1, [sp, #0x2e8]
@@ -102294,7 +102294,7 @@ func_080722DC: @ 0x080722DC
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08072D78:
-	ldr r2, .L08072DCC @ =gUnk_080FBEC8
+	ldr r2, .L08072DCC @ =gText_Records_MeterUnit
 	movs r0, #2
 	add r1, sp, #0xe0
 	strh r0, [r1]
@@ -102335,7 +102335,7 @@ func_080722DC: @ 0x080722DC
 	str r0, [r6, #4]
 	b .L08072E9C
 	.align 2, 0
-.L08072DCC: .4byte gUnk_080FBEC8
+.L08072DCC: .4byte gText_Records_MeterUnit
 .L08072DD0: .4byte 0x06000780
 .L08072DD4:
 	str r1, [sp, #0x2e8]
@@ -102451,7 +102451,7 @@ func_080722DC: @ 0x080722DC
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08072E9C:
-	ldr r3, .L08072EF4 @ =gUnk_080FBECC
+	ldr r3, .L08072EF4 @ =gText_Records_CentimeterUnit
 	movs r1, #4
 	movs r2, #2
 	add r0, sp, #0xec
@@ -102494,7 +102494,7 @@ func_080722DC: @ 0x080722DC
 	str r0, [r6, #4]
 	b .L08072FC4
 	.align 2, 0
-.L08072EF4: .4byte gUnk_080FBECC
+.L08072EF4: .4byte gText_Records_CentimeterUnit
 .L08072EF8: .4byte 0x06000800
 .L08072EFC:
 	str r1, [sp, #0x2e8]
@@ -102610,7 +102610,7 @@ func_080722DC: @ 0x080722DC
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08072FC4:
-	ldr r3, .L0807301C @ =gUnk_080FBF34
+	ldr r3, .L0807301C @ =gText_Records_SecondsUnit
 	movs r1, #4
 	movs r2, #2
 	add r0, sp, #0xf8
@@ -102653,7 +102653,7 @@ func_080722DC: @ 0x080722DC
 	str r0, [r6, #4]
 	b .L080730EC
 	.align 2, 0
-.L0807301C: .4byte gUnk_080FBF34
+.L0807301C: .4byte gText_Records_SecondsUnit
 .L08073020: .4byte 0x06000900
 .L08073024:
 	str r1, [sp, #0x2e8]
@@ -103072,7 +103072,7 @@ func_080722DC: @ 0x080722DC
 	ldr r4, [sp, #0x20c]
 	adds r4, #3
 	str r4, [sp, #0x20c]
-	ldr r3, .L08073404 @ =gUnk_080FBF3C
+	ldr r3, .L08073404 @ =gText_Records_IncomeExpenses
 	movs r1, #0x1a
 	movs r2, #2
 	add r0, sp, #0x104
@@ -103128,7 +103128,7 @@ func_080722DC: @ 0x080722DC
 .L080733F8: .4byte gUnk_08751E6C
 .L080733FC: .4byte gUnk_08751EEC
 .L08073400: .4byte 0x00001C9C
-.L08073404: .4byte gUnk_080FBF3C
+.L08073404: .4byte gText_Records_IncomeExpenses
 .L08073408: .4byte 0x06004380
 .L0807340C:
 	str r1, [sp, #0x2e8]
@@ -103253,7 +103253,7 @@ func_080722DC: @ 0x080722DC
 	str r6, [r5, #4]
 	str r0, [r5, #0xc]
 .L080734E6:
-	ldr r3, .L08073540 @ =gUnk_080FBF58
+	ldr r3, .L08073540 @ =gText_Records_HighestAmount
 	movs r1, #0xe
 	movs r2, #2
 	add r0, sp, #0x110
@@ -103296,7 +103296,7 @@ func_080722DC: @ 0x080722DC
 	str r0, [r5, #4]
 	b .L08073616
 	.align 2, 0
-.L08073540: .4byte gUnk_080FBF58
+.L08073540: .4byte gText_Records_HighestAmount
 .L08073544: .4byte 0x06004A00
 .L08073548:
 	str r1, [sp, #0x2e8]
@@ -103415,7 +103415,7 @@ func_080722DC: @ 0x080722DC
 	str r6, [r5, #4]
 	str r0, [r5, #0xc]
 .L08073616:
-	ldr r3, .L08073670 @ =gUnk_080FBF68
+	ldr r3, .L08073670 @ =gText_Records_Earned
 	movs r1, #8
 	movs r2, #2
 	add r0, sp, #0x11c
@@ -103458,7 +103458,7 @@ func_080722DC: @ 0x080722DC
 	str r0, [r5, #4]
 	b .L08073746
 	.align 2, 0
-.L08073670: .4byte gUnk_080FBF68
+.L08073670: .4byte gText_Records_Earned
 .L08073674: .4byte 0x06004D80
 .L08073678:
 	str r1, [sp, #0x2e8]
@@ -103577,7 +103577,7 @@ func_080722DC: @ 0x080722DC
 	str r6, [r5, #4]
 	str r0, [r5, #0xc]
 .L08073746:
-	ldr r3, .L080737A0 @ =gUnk_080FBF74
+	ldr r3, .L080737A0 @ =gText_Records_Used
 	movs r1, #8
 	movs r2, #2
 	add r0, sp, #0x128
@@ -103620,7 +103620,7 @@ func_080722DC: @ 0x080722DC
 	str r0, [r5, #4]
 	b .L08073876
 	.align 2, 0
-.L080737A0: .4byte gUnk_080FBF74
+.L080737A0: .4byte gText_Records_Used
 .L080737A4: .4byte 0x06004F80
 .L080737A8:
 	str r1, [sp, #0x2e8]
@@ -103739,7 +103739,7 @@ func_080722DC: @ 0x080722DC
 	str r6, [r5, #4]
 	str r0, [r5, #0xc]
 .L08073876:
-	ldr r2, .L080738CC @ =gUnk_080FBF80
+	ldr r2, .L080738CC @ =gText_Records_GoldUnit
 	movs r0, #2
 	add r1, sp, #0x134
 	strh r0, [r1]
@@ -103780,7 +103780,7 @@ func_080722DC: @ 0x080722DC
 	str r0, [r5, #4]
 	b .L080739A2
 	.align 2, 0
-.L080738CC: .4byte gUnk_080FBF80
+.L080738CC: .4byte gText_Records_GoldUnit
 .L080738D0: .4byte 0x06000A00
 .L080738D4:
 	str r1, [sp, #0x2e8]
@@ -104205,7 +104205,7 @@ func_080722DC: @ 0x080722DC
 	ldr r4, [sp, #0x20c]
 	adds r4, #3
 	str r4, [sp, #0x20c]
-	ldr r3, .L08073CA0 @ =gUnk_080FBF84
+	ldr r3, .L08073CA0 @ =gText_Records_LongestLivingAnimal
 	movs r1, #0x1a
 	movs r2, #2
 	add r0, sp, #0x140
@@ -104250,7 +104250,7 @@ func_080722DC: @ 0x080722DC
 	.align 2, 0
 .L08073C98: .4byte 0x0000058C
 .L08073C9C: .4byte 0x00001AA8
-.L08073CA0: .4byte gUnk_080FBF84
+.L08073CA0: .4byte gText_Records_LongestLivingAnimal
 .L08073CA4: .4byte 0x06005180
 .L08073CA8:
 	str r1, [sp, #0x2e8]
@@ -104369,7 +104369,7 @@ func_080722DC: @ 0x080722DC
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08073D76:
-	ldr r3, .L08073DD0 @ =gUnk_080FBFA0
+	ldr r3, .L08073DD0 @ =gText_Records_Chicken
 	movs r1, #8
 	movs r2, #2
 	add r0, sp, #0x14c
@@ -104412,7 +104412,7 @@ func_080722DC: @ 0x080722DC
 	str r0, [r6, #4]
 	b .L08073EA6
 	.align 2, 0
-.L08073DD0: .4byte gUnk_080FBFA0
+.L08073DD0: .4byte gText_Records_Chicken
 .L08073DD4: .4byte 0x06000A80
 .L08073DD8:
 	str r1, [sp, #0x2e8]
@@ -104531,7 +104531,7 @@ func_080722DC: @ 0x080722DC
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08073EA6:
-	ldr r3, .L08073F00 @ =gUnk_080FBFAC
+	ldr r3, .L08073F00 @ =gText_Records_Cow
 	movs r1, #4
 	movs r2, #2
 	add r0, sp, #0x158
@@ -104574,7 +104574,7 @@ func_080722DC: @ 0x080722DC
 	str r0, [r6, #4]
 	b .L08073FD6
 	.align 2, 0
-.L08073F00: .4byte gUnk_080FBFAC
+.L08073F00: .4byte gText_Records_Cow
 .L08073F04: .4byte 0x06000C80
 .L08073F08:
 	str r1, [sp, #0x2e8]
@@ -104693,7 +104693,7 @@ func_080722DC: @ 0x080722DC
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08073FD6:
-	ldr r3, .L08074030 @ =gUnk_080FBFB4
+	ldr r3, .L08074030 @ =gText_Records_Sheep
 	movs r1, #6
 	movs r2, #2
 	add r0, sp, #0x164
@@ -104736,7 +104736,7 @@ func_080722DC: @ 0x080722DC
 	str r0, [r6, #4]
 	b .L08074106
 	.align 2, 0
-.L08074030: .4byte gUnk_080FBFB4
+.L08074030: .4byte gText_Records_Sheep
 .L08074034: .4byte 0x06000D80
 .L08074038:
 	str r1, [sp, #0x2e8]
@@ -104855,7 +104855,7 @@ func_080722DC: @ 0x080722DC
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08074106:
-	ldr r3, .L08074160 @ =gUnk_080FBFBC
+	ldr r3, .L08074160 @ =gText_Records_YearsUnit
 	movs r1, #6
 	movs r2, #2
 	add r0, sp, #0x170
@@ -104898,7 +104898,7 @@ func_080722DC: @ 0x080722DC
 	str r0, [r6, #4]
 	b .L08074236
 	.align 2, 0
-.L08074160: .4byte gUnk_080FBFBC
+.L08074160: .4byte gText_Records_YearsUnit
 .L08074164: .4byte 0x06000F00
 .L08074168:
 	str r1, [sp, #0x2e8]
@@ -105017,7 +105017,7 @@ func_080722DC: @ 0x080722DC
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08074236:
-	ldr r2, .L0807428C @ =gUnk_080FBFC4
+	ldr r2, .L0807428C @ =gText_Records_MonthsUnit
 	movs r0, #2
 	add r1, sp, #0x17c
 	strh r0, [r1]
@@ -105058,7 +105058,7 @@ func_080722DC: @ 0x080722DC
 	str r0, [r6, #4]
 	b .L08074362
 	.align 2, 0
-.L0807428C: .4byte gUnk_080FBFC4
+.L0807428C: .4byte gText_Records_MonthsUnit
 .L08074290: .4byte 0x06001080
 .L08074294:
 	str r1, [sp, #0x2e8]
@@ -105177,7 +105177,7 @@ func_080722DC: @ 0x080722DC
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08074362:
-	ldr r2, .L080743B8 @ =gUnk_080FBFC8
+	ldr r2, .L080743B8 @ =gText_Records_DaysUnit
 	movs r0, #2
 	add r1, sp, #0x188
 	strh r0, [r1]
@@ -105218,7 +105218,7 @@ func_080722DC: @ 0x080722DC
 	str r0, [r6, #4]
 	b .L0807448E
 	.align 2, 0
-.L080743B8: .4byte gUnk_080FBFC8
+.L080743B8: .4byte gText_Records_DaysUnit
 .L080743BC: .4byte 0x06001100
 .L080743C0:
 	str r1, [sp, #0x2e8]
@@ -106138,7 +106138,7 @@ func_080722DC: @ 0x080722DC
 	adds r5, #3
 	str r5, [sp, #0x20c]
 .L08074ACE:
-	ldr r3, .L08074B2C @ =gUnk_080FBFCC
+	ldr r3, .L08074B2C @ =gText_Records_MineDepth
 	movs r1, #0x1a
 	movs r2, #2
 	add r0, sp, #0x1c4
@@ -106182,7 +106182,7 @@ func_080722DC: @ 0x080722DC
 	b .L08074C02
 	.align 2, 0
 .L08074B28: .4byte 0x0000058C
-.L08074B2C: .4byte gUnk_080FBFCC
+.L08074B2C: .4byte gText_Records_MineDepth
 .L08074B30: .4byte 0x06005800
 .L08074B34:
 	str r1, [sp, #0x2e8]
@@ -106301,7 +106301,7 @@ func_080722DC: @ 0x080722DC
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08074C02:
-	ldr r3, .L08074C5C @ =gUnk_080FBFE8
+	ldr r3, .L08074C5C @ =gText_Records_MineDepthPadding
 	movs r1, #4
 	movs r2, #2
 	add r0, sp, #0x1d0
@@ -106344,7 +106344,7 @@ func_080722DC: @ 0x080722DC
 	str r0, [r6, #4]
 	b .L08074D32
 	.align 2, 0
-.L08074C5C: .4byte gUnk_080FBFE8
+.L08074C5C: .4byte gText_Records_MineDepthPadding
 .L08074C60: .4byte 0x06001180
 .L08074C64:
 	str r1, [sp, #0x2e8]
@@ -106463,7 +106463,7 @@ func_080722DC: @ 0x080722DC
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L08074D32:
-	ldr r3, .L08074D8C @ =gUnk_080FBFF0
+	ldr r3, .L08074D8C @ =gText_Records_BelowGround
 	movs r1, #0x14
 	movs r2, #2
 	add r0, sp, #0x1dc
@@ -106506,7 +106506,7 @@ func_080722DC: @ 0x080722DC
 	str r0, [r6, #4]
 	b .L08074E62
 	.align 2, 0
-.L08074D8C: .4byte gUnk_080FBFF0
+.L08074D8C: .4byte gText_Records_BelowGround
 .L08074D90: .4byte 0x06001280
 .L08074D94:
 	str r1, [sp, #0x2e8]
@@ -106678,7 +106678,7 @@ func_080722DC: @ 0x080722DC
 	adds r4, #3
 	str r4, [sp, #0x20c]
 .L08074ED4:
-	ldr r3, .L08074F34 @ =gUnk_080FC008
+	ldr r3, .L08074F34 @ =gText_Records_MolesWhacked
 	movs r1, #0x18
 	movs r2, #2
 	add r0, sp, #0x1e8
@@ -106723,7 +106723,7 @@ func_080722DC: @ 0x080722DC
 	.align 2, 0
 .L08074F2C: .4byte 0x0000058C
 .L08074F30: .4byte 0x00001BD8
-.L08074F34: .4byte gUnk_080FC008
+.L08074F34: .4byte gText_Records_MolesWhacked
 .L08074F38: .4byte 0x06005E80
 .L08074F3C:
 	str r1, [sp, #0x2e8]
@@ -106842,7 +106842,7 @@ func_080722DC: @ 0x080722DC
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L0807500A:
-	ldr r2, .L08075060 @ =gUnk_080FBE8C
+	ldr r2, .L08075060 @ =gText_Records_ShippedCountSuffix
 	movs r0, #2
 	add r1, sp, #0x1f4
 	strh r0, [r1]
@@ -106883,7 +106883,7 @@ func_080722DC: @ 0x080722DC
 	str r0, [r6, #4]
 	b .L08075136
 	.align 2, 0
-.L08075060: .4byte gUnk_080FBE8C
+.L08075060: .4byte gText_Records_ShippedCountSuffix
 .L08075064: .4byte 0x06001780
 .L08075068:
 	str r1, [sp, #0x2e8]

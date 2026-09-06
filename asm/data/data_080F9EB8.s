@@ -28,8 +28,11 @@
     .section .rodata.horse_race_prize_exchange_trailer_prefix
     .incbin "baserom_jp.gba", 0xFAA38, (0xFB11C - 0xFAA38)
 
-    .section .rodata.farm_status_trailer
-    .incbin "baserom_jp.gba", 0xFB224, (0xFB938 - 0xFB224)
+    .section .rodata.farm_status_trailer_prefix
+    .incbin "baserom_jp.gba", 0xFB224, (0xFB764 - 0xFB224)
+
+    .section .rodata.records_trailer
+    .incbin "baserom_jp.gba", 0xFB8B8, (0xFB938 - 0xFB8B8)
 
     .section .rodata.staff_credits_trailer
     .incbin "baserom_jp.gba", 0xFBE88, (0x103194 - 0xFBE88)
@@ -315,7 +318,7 @@ gUnk_080FB7A0:
 gUnk_080FB7F0:
 	.incbin "baserom_us.gba", 0xFB7F0, 0x34
 
-	.section .rodata.farm_status_trailer
+	.section .rodata.farm_status_trailer_prefix
 
 	.global gUnk_080FB954
 gUnk_080FB954:
@@ -489,137 +492,7 @@ gUnk_080FBE64:
 gUnk_080FBE67:
 	.incbin "baserom_us.gba", 0xFBE67, 0x15
 
-	.global gUnk_080FBE7C
-gUnk_080FBE7C:
-	.incbin "baserom_us.gba", 0xFBE7C, 0x10
-
-	.global gUnk_080FBE8C
-gUnk_080FBE8C:
-	.incbin "baserom_us.gba", 0xFBE8C, 0x4
-
-	.global gUnk_080FBE90
-gUnk_080FBE90:
-	.incbin "baserom_us.gba", 0xFBE90, 0xC
-
-	.global gUnk_080FBE9C
-gUnk_080FBE9C:
-	.incbin "baserom_us.gba", 0xFBE9C, 0x8
-
-	.global gUnk_080FBEA4
-gUnk_080FBEA4:
-	.incbin "baserom_us.gba", 0xFBEA4, 0x10
-
-	.global gUnk_080FBEB4
-gUnk_080FBEB4:
-	.incbin "baserom_us.gba", 0xFBEB4, 0xC
-
-	.global gUnk_080FBEC0
-gUnk_080FBEC0:
-	.incbin "baserom_us.gba", 0xFBEC0, 0x8
-
-	.global gUnk_080FBEC8
-gUnk_080FBEC8:
-	.incbin "baserom_us.gba", 0xFBEC8, 0x4
-
-	.global gUnk_080FBECC
-gUnk_080FBECC:
-	.incbin "baserom_us.gba", 0xFBECC, 0x8
-
-	.global gUnk_080FBED4
-gUnk_080FBED4:
-	.incbin "baserom_us.gba", 0xFBED4, 0x4
-
-	.global gUnk_080FBED8
-gUnk_080FBED8:
-	.incbin "baserom_us.gba", 0xFBED8, 0x8
-
-	.global gUnk_080FBEE0
-gUnk_080FBEE0:
-	.incbin "baserom_us.gba", 0xFBEE0, 0x1C
-
-	.global gUnk_080FBEFC
-gUnk_080FBEFC:
-	.incbin "baserom_us.gba", 0xFBEFC, 0xC
-
-	.global gUnk_080FBF08
-gUnk_080FBF08:
-	.incbin "baserom_us.gba", 0xFBF08, 0x14
-
-	.global gUnk_080FBF1C
-gUnk_080FBF1C:
-	.incbin "baserom_us.gba", 0xFBF1C, 0xC
-
-	.global gUnk_080FBF28
-gUnk_080FBF28:
-	.incbin "baserom_us.gba", 0xFBF28, 0xC
-
-	.global gUnk_080FBF34
-gUnk_080FBF34:
-	.incbin "baserom_us.gba", 0xFBF34, 0x8
-
-	.global gUnk_080FBF3C
-gUnk_080FBF3C:
-	.incbin "baserom_us.gba", 0xFBF3C, 0x1C
-
-	.global gUnk_080FBF58
-gUnk_080FBF58:
-	.incbin "baserom_us.gba", 0xFBF58, 0x10
-
-	.global gUnk_080FBF68
-gUnk_080FBF68:
-	.incbin "baserom_us.gba", 0xFBF68, 0xC
-
-	.global gUnk_080FBF74
-gUnk_080FBF74:
-	.incbin "baserom_us.gba", 0xFBF74, 0xC
-
-	.global gUnk_080FBF80
-gUnk_080FBF80:
-	.incbin "baserom_us.gba", 0xFBF80, 0x4
-
-	.global gUnk_080FBF84
-gUnk_080FBF84:
-	.incbin "baserom_us.gba", 0xFBF84, 0x1C
-
-	.global gUnk_080FBFA0
-gUnk_080FBFA0:
-	.incbin "baserom_us.gba", 0xFBFA0, 0xC
-
-	.global gUnk_080FBFAC
-gUnk_080FBFAC:
-	.incbin "baserom_us.gba", 0xFBFAC, 0x8
-
-	.global gUnk_080FBFB4
-gUnk_080FBFB4:
-	.incbin "baserom_us.gba", 0xFBFB4, 0x8
-
-	.global gUnk_080FBFBC
-gUnk_080FBFBC:
-	.incbin "baserom_us.gba", 0xFBFBC, 0x8
-
-	.global gUnk_080FBFC4
-gUnk_080FBFC4:
-	.incbin "baserom_us.gba", 0xFBFC4, 0x4
-
-	.global gUnk_080FBFC8
-gUnk_080FBFC8:
-	.incbin "baserom_us.gba", 0xFBFC8, 0x4
-
-	.global gUnk_080FBFCC
-gUnk_080FBFCC:
-	.incbin "baserom_us.gba", 0xFBFCC, 0x1C
-
-	.global gUnk_080FBFE8
-gUnk_080FBFE8:
-	.incbin "baserom_us.gba", 0xFBFE8, 0x8
-
-	.global gUnk_080FBFF0
-gUnk_080FBFF0:
-	.incbin "baserom_us.gba", 0xFBFF0, 0x18
-
-	.global gUnk_080FC008
-gUnk_080FC008:
-	.incbin "baserom_us.gba", 0xFC008, 0x1C
+	.section .rodata.records_trailer
 
 	.global gUnk_080FC024
 gUnk_080FC024:
