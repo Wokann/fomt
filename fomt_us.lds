@@ -373,6 +373,8 @@ SECTIONS
         . = ALIGN(4); asm/data/data_080F1A80.o(.rodata);
         . = ALIGN(4); src/script_engine.o(.rodata);
         . = ALIGN(4); asm/data/data_080F9EB8.o(.rodata.localized_data_prefix);
+        . = 0xFA39C; data/text/frisbee.o(.rodata.frisbee);
+        . = 0xFA710; asm/data/data_080F9EB8.o(.rodata.frisbee_text_trailer);
         . = 0xFA796; data/text/festival_contestants.o(.rodata.festival_contestants_set1);
         . = 0xFA99E; asm/data/data_080F9EB8.o(.rodata.festival_contestants_set1_trailer);
         . = 0xFC0A4; data/text/staff_credits.o(.rodata.staff_credits);

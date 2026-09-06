@@ -37944,34 +37944,34 @@ func_08053634: @ 0x08053634
 	.4byte .L0805391C @ case 24
 .L08053818:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08053820 @ =gUnk_080FA39C
+	ldr r1, .L08053820 @ =gText_Frisbee_ExplanationQuestion
 	b .L080538F0
 	.align 2, 0
-.L08053820: .4byte gUnk_080FA39C
+.L08053820: .4byte gText_Frisbee_ExplanationQuestion
 .L08053824:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08053830 @ =gUnk_080FA3C0
+	ldr r1, .L08053830 @ =gText_Frisbee_ExplanationCursorTiming
 	bl func_08050D8C
 	b .L0805394C
 	.align 2, 0
-.L08053830: .4byte gUnk_080FA3C0
+.L08053830: .4byte gText_Frisbee_ExplanationCursorTiming
 .L08053834:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08053840 @ =gUnk_080FA458
+	ldr r1, .L08053840 @ =gText_Frisbee_ExplanationGreenZone
 	bl func_08050D8C
 	b .L0805394C
 	.align 2, 0
-.L08053840: .4byte gUnk_080FA458
+.L08053840: .4byte gText_Frisbee_ExplanationGreenZone
 .L08053844:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08053850 @ =gUnk_080FA49C
+	ldr r1, .L08053850 @ =gText_Frisbee_ExplanationRedZone
 	bl func_08050D8C
 	b .L0805394C
 	.align 2, 0
-.L08053850: .4byte gUnk_080FA49C
+.L08053850: .4byte gText_Frisbee_ExplanationRedZone
 .L08053854:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805386C @ =gUnk_080FA510
+	ldr r1, .L0805386C @ =gText_Frisbee_ExplanationPractice
 	bl func_08050D8C
 	ldr r3, .L08053870 @ =0x00002328
 	adds r1, r7, r3
@@ -37981,12 +37981,12 @@ func_08053634: @ 0x08053634
 	adds r1, r7, r6
 	b .L0805388C
 	.align 2, 0
-.L0805386C: .4byte gUnk_080FA510
+.L0805386C: .4byte gText_Frisbee_ExplanationPractice
 .L08053870: .4byte 0x00002328
 .L08053874: .4byte 0x0000232C
 .L08053878:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08053894 @ =gUnk_080FA614
+	ldr r1, .L08053894 @ =gText_Frisbee_ExplanationTournament
 	bl func_08050D8C
 	ldr r0, .L08053898 @ =0x00002328
 	adds r1, r7, r0
@@ -37999,14 +37999,14 @@ func_08053634: @ 0x08053634
 	strh r0, [r1]
 	b .L0805394C
 	.align 2, 0
-.L08053894: .4byte gUnk_080FA614
+.L08053894: .4byte gText_Frisbee_ExplanationTournament
 .L08053898: .4byte 0x00002328
 .L0805389C: .4byte 0x0000232C
 .L080538A0:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L080538BC @ =gUnk_080FA660
-	ldr r2, .L080538C0 @ =gUnk_080FA3BC
-	ldr r3, .L080538C4 @ =gUnk_080FA3B8
+	ldr r1, .L080538BC @ =gText_Frisbee_ExplainAgain
+	ldr r2, .L080538C0 @ =gText_Frisbee_No
+	ldr r3, .L080538C4 @ =gText_Frisbee_Yes
 	movs r4, #0
 	str r4, [sp]
 	str r4, [sp, #4]
@@ -38016,30 +38016,30 @@ func_08053634: @ 0x08053634
 	adds r1, r7, r6
 	b .L08053904
 	.align 2, 0
-.L080538BC: .4byte gUnk_080FA660
-.L080538C0: .4byte gUnk_080FA3BC
-.L080538C4: .4byte gUnk_080FA3B8
+.L080538BC: .4byte gText_Frisbee_ExplainAgain
+.L080538C0: .4byte gText_Frisbee_No
+.L080538C4: .4byte gText_Frisbee_Yes
 .L080538C8: .4byte 0x0000232C
 .L080538CC:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L080538D8 @ =gUnk_080FA670
+	ldr r1, .L080538D8 @ =gText_Frisbee_ThrowAgain
 	bl func_08050D8C
 	b .L0805394C
 	.align 2, 0
-.L080538D8: .4byte gUnk_080FA670
+.L080538D8: .4byte gText_Frisbee_ThrowAgain
 .L080538DC:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L080538E8 @ =gUnk_080FA684
+	ldr r1, .L080538E8 @ =gText_Frisbee_TournamentFinished
 	bl func_08050D8C
 	b .L0805394C
 	.align 2, 0
-.L080538E8: .4byte gUnk_080FA684
+.L080538E8: .4byte gText_Frisbee_TournamentFinished
 .L080538EC:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805390C @ =gUnk_080FA6A0
+	ldr r1, .L0805390C @ =gText_Frisbee_PlayAgain
 .L080538F0:
-	ldr r2, .L08053910 @ =gUnk_080FA3B8
-	ldr r3, .L08053914 @ =gUnk_080FA3BC
+	ldr r2, .L08053910 @ =gText_Frisbee_Yes
+	ldr r3, .L08053914 @ =gText_Frisbee_No
 	movs r4, #0
 	str r4, [sp]
 	str r4, [sp, #4]
@@ -38052,30 +38052,30 @@ func_08053634: @ 0x08053634
 	strh r0, [r1]
 	b .L0805394C
 	.align 2, 0
-.L0805390C: .4byte gUnk_080FA6A0
-.L08053910: .4byte gUnk_080FA3B8
-.L08053914: .4byte gUnk_080FA3BC
+.L0805390C: .4byte gText_Frisbee_PlayAgain
+.L08053910: .4byte gText_Frisbee_Yes
+.L08053914: .4byte gText_Frisbee_No
 .L08053918: .4byte 0x0000232C
 .L0805391C:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L08053928 @ =gUnk_080FA6AC
+	ldr r1, .L08053928 @ =gText_Frisbee_DogNoLongerWantsToPlay
 	bl func_08050D8C
 	b .L0805394C
 	.align 2, 0
-.L08053928: .4byte gUnk_080FA6AC
+.L08053928: .4byte gText_Frisbee_DogNoLongerWantsToPlay
 .L0805392C:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805393C @ =gUnk_080FA6E0
+	ldr r1, .L0805393C @ =gText_Frisbee_FoundItem
 	ldr r3, .L08053940 @ =0x000023A0
 	adds r2, r7, r3
 	bl func_08050DA0
 	b .L0805394C
 	.align 2, 0
-.L0805393C: .4byte gUnk_080FA6E0
+.L0805393C: .4byte gText_Frisbee_FoundItem
 .L08053940: .4byte 0x000023A0
 .L08053944:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805395C @ =gUnk_080FA6F4
+	ldr r1, .L0805395C @ =gText_Frisbee_FoundNothing
 	bl func_08050D8C
 .L0805394C:
 	add sp, #0xc
@@ -38086,7 +38086,7 @@ func_08053634: @ 0x08053634
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L0805395C: .4byte gUnk_080FA6F4
+.L0805395C: .4byte gText_Frisbee_FoundNothing
 
 	thumb_func_start func_08053960
 func_08053960: @ 0x08053960

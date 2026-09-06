@@ -4,8 +4,11 @@
     .section .rodata.localized_data_prefix
     .incbin "baserom_jp.gba", 0xF9708, (0xF97E6 - 0xF9708)
 
-    .section .rodata.festival_contestants_set0_trailer
-    .incbin "baserom_jp.gba", 0xF996C, (0xF9FD6 - 0xF996C)
+    .section .rodata.festival_contestants_set0_trailer_prefix
+    .incbin "baserom_jp.gba", 0xF996C, (0xF9BD4 - 0xF996C)
+
+    .section .rodata.frisbee_text_trailer
+    .incbin "baserom_jp.gba", 0xF9F4F, (0xF9FD6 - 0xF9F4F)
 
     .section .rodata.festival_contestants_set1_trailer_prefix
     .incbin "baserom_jp.gba", 0xFA1DE, (0xFB938 - 0xFA1DE)
@@ -128,65 +131,8 @@ gUnk_080FA372:
 gUnk_080FA37C:
 	.incbin "baserom_us.gba", 0xFA37C, 0x20
 
-	.global gUnk_080FA39C
-gUnk_080FA39C:
-	.incbin "baserom_us.gba", 0xFA39C, 0x1C
-
-	.global gUnk_080FA3B8
-gUnk_080FA3B8:
-	.incbin "baserom_us.gba", 0xFA3B8, 0x4
-
-	.global gUnk_080FA3BC
-gUnk_080FA3BC:
-	.incbin "baserom_us.gba", 0xFA3BC, 0x4
-
-	.global gUnk_080FA3C0
-gUnk_080FA3C0:
-	.incbin "baserom_us.gba", 0xFA3C0, 0x98
-
-	.global gUnk_080FA458
-gUnk_080FA458:
-	.incbin "baserom_us.gba", 0xFA458, 0x44
-
-	.global gUnk_080FA49C
-gUnk_080FA49C:
-	.incbin "baserom_us.gba", 0xFA49C, 0x74
-
-	.global gUnk_080FA510
-gUnk_080FA510:
-	.incbin "baserom_us.gba", 0xFA510, 0x104
-
-	.global gUnk_080FA614
-gUnk_080FA614:
-	.incbin "baserom_us.gba", 0xFA614, 0x4C
-
-	.global gUnk_080FA660
-gUnk_080FA660:
-	.incbin "baserom_us.gba", 0xFA660, 0x10
-
-	.global gUnk_080FA670
-gUnk_080FA670:
-	.incbin "baserom_us.gba", 0xFA670, 0x14
-
-	.global gUnk_080FA684
-gUnk_080FA684:
-	.incbin "baserom_us.gba", 0xFA684, 0x1C
-
-	.global gUnk_080FA6A0
-gUnk_080FA6A0:
-	.incbin "baserom_us.gba", 0xFA6A0, 0xC
-
-	.global gUnk_080FA6AC
-gUnk_080FA6AC:
-	.incbin "baserom_us.gba", 0xFA6AC, 0x34
-
-	.global gUnk_080FA6E0
-gUnk_080FA6E0:
-	.incbin "baserom_us.gba", 0xFA6E0, 0x14
-
-	.global gUnk_080FA6F4
-gUnk_080FA6F4:
-	.incbin "baserom_us.gba", 0xFA6F4, 0x28
+	.section .rodata.frisbee_text_trailer
+	.incbin "baserom_us.gba", 0xFA710, 0xC
 
 	.global gUnk_080FA71C
 gUnk_080FA71C:
