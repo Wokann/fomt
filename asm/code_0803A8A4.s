@@ -3604,11 +3604,11 @@ func_0803C5B0: @ 0x0803C5B0
 	bl __builtin_new
 	adds r7, r0, #0
 	ldr r1, .L0803C78C @ =gUnk_0875B444
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	adds r0, r7, #0
 	adds r0, #0x30
 	ldr r1, .L0803C790 @ =gUnk_086678A0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	adds r4, r7, #0
 	adds r4, #0x60
 	adds r0, r4, #0

@@ -1395,7 +1395,7 @@ func_080041DC: @ 0x080041DC
     adds r6, #0x1c
     ldr r1, .L080043B4 @ =gUnk_08728208
     adds r0, r6, #0
-    bl func_0805E6CC
+    bl __22IndexedResourceArchivePCUc
     adds r4, r7, #0
     adds r4, #0x4c
     adds r0, r4, #0

@@ -25552,7 +25552,7 @@ func_080E0A94: @ 0x080E0A94
 	push {r6, r7}
 	adds r7, r0, #0
 	ldr r1, .L080E0C2C @ =gUnk_0871E7A8
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	adds r4, r7, #0
 	adds r4, #0x30
 	adds r0, r4, #0

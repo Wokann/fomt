@@ -155,6 +155,8 @@ SECTIONS
         . = 0x522E8; /* JP/US-shared animal-festival ranking entry setter. */
         src/animal_festival_ranking.o(.text.set_animal_festival_ranking_entry);
         . = 0x522F8; asm/code_0803EE94.o(.text.animal_festival_ranking_after);
+        . = 0x5E6CC; /* JP/US-shared indexed resource-archive constructor. */
+        src/resource_handle.o(.text.indexed_resource_archive_constructor);
         . = 0x5E760; /* JP/US-shared indexed resource-archive resolver. */
         src/resource_handle.o(.text.indexed_resource_archive_resolve);
         . = 0x5E790; asm/code_0803EE94.o(.text.indexed_resource_archive_resolve_after);

@@ -76,7 +76,6 @@
     jp_code_0803ee_func func_0805DC24, 0x5D968, 0x5DB68
     jp_code_0803ee_func func_0805DE24, 0x5DB68, 0x5DCAC
     jp_code_0803ee_func func_0805DF68, 0x5DCAC, 0x5E410
-    jp_code_0803ee_func func_0805E6CC, 0x5E410, 0x5E4A4
     .section .text.indexed_resource_archive_resolve_after
     jp_code_0803ee_func func_0805E790, 0x5E4D4, 0x5E568
     .section .text.indexed_resource_handle_constructor_after
@@ -29876,7 +29875,7 @@ func_0804F19C: @ 0x0804F19C
 	add r4, sp, #0x30
 	ldr r1, .L0804F27C @ =gUnk_08728208
 	adds r0, r4, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	add r0, sp, #0x10
 	adds r1, r4, #0
 	movs r2, #0
@@ -30279,13 +30278,13 @@ func_0804F288: @ 0x0804F288
 	lsls r0, r0, #1
 	add r0, r8
 	ldr r1, .L0804F688 @ =gUnk_08728208
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	movs r4, #0xc8
 	lsls r4, r4, #1
 	add r4, r8
 	ldr r1, .L0804F68C @ =gUnk_0872937C
 	adds r0, r4, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	movs r0, #0xe0
 	lsls r0, r0, #1
 	add r0, r8
@@ -30344,7 +30343,7 @@ func_0804F288: @ 0x0804F288
 	add r4, r8
 	ldr r1, .L0804F694 @ =gUnk_08728320
 	adds r0, r4, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	ldr r0, .L0804F698 @ =0x00000534
 	add r0, r8
 	movs r3, #0x80
@@ -33551,7 +33550,7 @@ func_0805143C: @ 0x0805143C
 	adds r4, #0x10
 	ldr r1, .L080514FC @ =gUnk_08527094
 	adds r0, r4, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	adds r0, r7, #0
 	adds r0, #0x40
 	adds r1, r4, #0
@@ -35384,57 +35383,57 @@ func_080522F8: @ 0x080522F8
 	adds r6, #0x20
 	ldr r1, .L08052714 @ =gUnk_0858BA28
 	adds r0, r6, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	movs r1, #0x50
 	adds r1, r1, r7
 	mov sl, r1
 	ldr r1, .L08052718 @ =gUnk_0872DE44
 	mov r0, sl
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	adds r2, r7, #0
 	adds r2, #0x80
 	str r2, [sp, #0x1c]
 	ldr r1, .L0805271C @ =gUnk_08740454
 	adds r0, r2, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	adds r0, r7, #0
 	adds r0, #0xb0
 	ldr r1, .L08052720 @ =gUnk_0873E5B0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	adds r0, r7, #0
 	adds r0, #0xe0
 	ldr r1, .L08052724 @ =gUnk_0873DE44
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	movs r1, #0x88
 	lsls r1, r1, #1
 	adds r0, r7, r1
 	ldr r1, .L08052728 @ =gUnk_0873D6D8
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	movs r2, #0xa0
 	lsls r2, r2, #1
 	adds r2, r2, r7
 	mov sb, r2
 	ldr r1, .L0805272C @ =gUnk_086678A0
 	mov r0, sb
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	movs r1, #0xb8
 	lsls r1, r1, #1
 	adds r0, r7, r1
 	ldr r1, .L08052730 @ =gUnk_0873A6E8
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	movs r2, #0xd0
 	lsls r2, r2, #1
 	adds r2, r2, r7
 	mov r8, r2
 	ldr r1, .L08052734 @ =gUnk_0873ED1C
 	mov r0, r8
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	movs r0, #0xe8
 	lsls r0, r0, #1
 	adds r0, r7, r0
 	str r0, [sp, #0x20]
 	ldr r1, .L08052738 @ =gUnk_0871D51C
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	movs r1, #0x80
 	lsls r1, r1, #2
 	adds r0, r7, r1
@@ -47012,51 +47011,51 @@ func_0805806C: @ 0x0805806C
 	mov r8, r2
 	ldr r1, .L08058484 @ =gUnk_0872EE78
 	mov r0, r8
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	mov r0, sl
 	adds r0, #0x50
 	ldr r1, .L08058488 @ =gUnk_0873CCB4
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	mov r0, sl
 	adds r0, #0x80
 	str r0, [sp, #0x1c]
 	ldr r1, .L0805848C @ =gUnk_0873D234
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	mov r1, sl
 	adds r1, #0xb0
 	str r1, [sp, #0x20]
 	ldr r1, .L08058490 @ =gUnk_0873CF90
 	ldr r0, [sp, #0x20]
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	mov r0, sl
 	adds r0, #0xe0
 	ldr r1, .L08058494 @ =gUnk_0873DE44
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	movs r2, #0x88
 	lsls r2, r2, #1
 	add r2, sl
 	mov sb, r2
 	ldr r1, .L08058498 @ =gUnk_0873ED1C
 	mov r0, sb
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	movs r7, #0xa0
 	lsls r7, r7, #1
 	add r7, sl
 	ldr r1, .L0805849C @ =gUnk_087401A4
 	adds r0, r7, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	movs r0, #0xb8
 	lsls r0, r0, #1
 	add r0, sl
 	str r0, [sp, #0x24]
 	ldr r1, .L080584A0 @ =gUnk_08728208
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	movs r6, #0xd0
 	lsls r6, r6, #1
 	add r6, sl
 	ldr r1, .L080584A4 @ =gUnk_0858BA28
 	adds r0, r6, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	movs r0, #0xe8
 	lsls r0, r0, #1
 	add r0, sl
@@ -56645,12 +56644,12 @@ func_0805CF70: @ 0x0805CF70
 	adds r4, #0x20
 	ldr r1, .L0805D158 @ =gUnk_08527094
 	adds r0, r4, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	adds r6, r7, #0
 	adds r6, #0x50
 	ldr r1, .L0805D15C @ =gUnk_08728208
 	adds r0, r6, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	adds r0, r7, #0
 	adds r0, #0x80
 	adds r1, r4, #0
@@ -59429,84 +59428,6 @@ func_0805E698: @ 0x0805E698
 	pop {r4, r5}
 	pop {r1}
 	bx r1
-
-	thumb_func_start func_0805E6CC
-func_0805E6CC: @ 0x0805E6CC
-	push {lr}
-	adds r2, r0, #0
-	ldr r0, .L0805E738 @ =vtable_unk_080E79C8
-	str r0, [r2]
-	cmp r1, #0
-	beq .L0805E73C
-	ldrh r0, [r1]
-	strh r0, [r2, #0x20]
-	adds r1, #4
-	str r1, [r2, #4]
-	ldrh r0, [r2, #0x20]
-	lsls r0, r0, #2
-	adds r1, r1, r0
-	ldrh r0, [r1]
-	strh r0, [r2, #0x22]
-	adds r1, #4
-	str r1, [r2, #8]
-	ldrh r0, [r2, #0x22]
-	lsls r0, r0, #4
-	adds r1, r1, r0
-	ldrh r0, [r1]
-	strh r0, [r2, #0x24]
-	adds r1, #4
-	str r1, [r2, #0xc]
-	ldrh r0, [r2, #0x24]
-	lsls r0, r0, #3
-	adds r1, r1, r0
-	ldrh r0, [r1]
-	strh r0, [r2, #0x26]
-	adds r1, #4
-	str r1, [r2, #0x10]
-	ldrh r0, [r2, #0x26]
-	lsls r0, r0, #5
-	adds r1, r1, r0
-	ldrh r0, [r1]
-	strh r0, [r2, #0x28]
-	adds r1, #4
-	str r1, [r2, #0x14]
-	ldrh r0, [r2, #0x28]
-	lsls r0, r0, #5
-	adds r1, r1, r0
-	ldrh r0, [r1]
-	strh r0, [r2, #0x2a]
-	adds r1, #4
-	str r1, [r2, #0x18]
-	ldrh r0, [r2, #0x2a]
-	lsls r0, r0, #3
-	adds r1, r1, r0
-	ldrh r0, [r1]
-	strh r0, [r2, #0x2c]
-	adds r0, r1, #4
-	str r0, [r2, #0x1c]
-	b .L0805E758
-	.align 2, 0
-.L0805E738: .4byte vtable_unk_080E79C8
-.L0805E73C:
-	strh r1, [r2, #0x20]
-	str r1, [r2, #4]
-	strh r1, [r2, #0x22]
-	str r1, [r2, #8]
-	strh r1, [r2, #0x24]
-	str r1, [r2, #0xc]
-	strh r1, [r2, #0x26]
-	str r1, [r2, #0x10]
-	strh r1, [r2, #0x28]
-	str r1, [r2, #0x14]
-	strh r1, [r2, #0x2a]
-	str r1, [r2, #0x18]
-	strh r1, [r2, #0x2c]
-	str r1, [r2, #0x1c]
-.L0805E758:
-	adds r0, r2, #0
-	pop {r1}
-	bx r1
-	.align 2, 0
 
 	.section .text.indexed_resource_archive_resolve_after
 
@@ -80136,7 +80057,7 @@ func_08068344: @ 0x08068344
 	ldr r4, .L08068408 @ =0x000009C4
 	adds r0, r3, r4
 	ldr r1, .L0806840C @ =gUnk_086678A0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	ldr r5, [sp, #0xbc]
 	ldr r5, [r5, #4]
 	str r5, [sp, #0xc0]
@@ -83819,13 +83740,13 @@ func_08069F14: @ 0x08069F14
 	adds r6, #0x24
 	ldr r1, .L0806A124 @ =gUnk_08527094
 	adds r0, r6, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	movs r1, #0x54
 	adds r1, r1, r7
 	mov r8, r1
 	ldr r1, .L0806A128 @ =gUnk_08728208
 	mov r0, r8
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	adds r0, r7, #0
 	adds r0, #0x84
 	strh r4, [r0]
@@ -96541,7 +96462,7 @@ func_080701BC: @ 0x080701BC
 	adds r4, #0x20
 	ldr r1, .L080704F4 @ =gUnk_08527094
 	adds r0, r4, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	adds r0, r7, #0
 	adds r0, #0x50
 	adds r1, r4, #0
@@ -96573,7 +96494,7 @@ func_080701BC: @ 0x080701BC
 	adds r0, r7, #0
 	adds r0, #0xa0
 	ldr r1, .L080704F8 @ =gUnk_087537D0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	adds r0, r7, #0
 	adds r0, #0xd0
 	str r5, [r0]
@@ -98187,7 +98108,7 @@ func_08070DE4: @ 0x08070DE4
 .L08070F4C:
 	ldr r1, .L08071030 @ =gUnk_086678A0
 	mov r0, sl
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	ldr r0, [sp, #0xd0]
 	ldr r0, [r0, #4]
 	str r0, [sp, #0xd4]
@@ -100009,7 +99930,7 @@ func_080713B8: @ 0x080713B8
 .L08071CE8:
 	ldr r1, .L08071DAC @ =gUnk_086678A0
 	ldr r0, [sp, #0x170]
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	movs r0, #4
 	mov r8, r0
 	movs r1, #0
@@ -102634,10 +102555,10 @@ func_080722DC: @ 0x080722DC
 .L080730EC:
 	ldr r1, .L080733E8 @ =gUnk_0858BA28
 	ldr r0, [sp, #0x2c8]
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	ldr r1, .L080733EC @ =gUnk_086678A0
 	ldr r0, [sp, #0x2d0]
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	ldr r1, [sp, #0x208]
 	ldr r0, [r1, #0x18]
 	ldr r2, [sp, #0x20c]
@@ -108484,7 +108405,7 @@ func_08075E7C: @ 0x08075E7C
 	mov r8, r1
 	ldr r1, .L08076160 @ =gUnk_08527094
 	mov r0, r8
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	movs r6, #0xe8
 	movs r0, #0x18
 	movs r5, #0
@@ -113514,7 +113435,7 @@ func_0807865C: @ 0x0807865C
 	adds r5, #0x28
 	ldr r1, .L08078A00 @ =gUnk_08728208
 	adds r0, r5, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	adds r0, r7, #0
 	adds r0, #0x58
 	adds r1, r5, #0
@@ -113557,7 +113478,7 @@ func_0807865C: @ 0x0807865C
 	adds r6, r7, r2
 	ldr r1, .L08078A04 @ =gUnk_087537D0
 	adds r0, r6, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	movs r3, #0xe6
 	lsls r3, r3, #1
 	adds r0, r7, r3
@@ -114083,12 +114004,12 @@ func_08078E40: @ 0x08078E40
 	adds r4, r6, r1
 	ldr r1, .L08079014 @ =gUnk_08527094
 	adds r0, r4, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	ldr r3, .L08079018 @ =0x00000744
 	adds r5, r6, r3
 	ldr r1, .L0807901C @ =gUnk_08728208
 	adds r0, r5, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	ldr r1, .L08079020 @ =0x00000774
 	adds r0, r6, r1
 	adds r1, r4, #0
@@ -118457,7 +118378,7 @@ func_0807B188: @ 0x0807B188
 	add r4, sp, #0x2c
 	adds r0, r4, #0
 	ldr r1, .L0807B294 @ =gUnk_086678A0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	add r0, sp, #0x5c
 	strh r5, [r0]
 	strh r5, [r0, #2]
@@ -122709,7 +122630,7 @@ func_0807D218: @ 0x0807D218
 	add r6, sp, #0x18
 	ldr r1, .L0807D71C @ =gUnk_086678A0
 	adds r0, r6, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	add r0, sp, #0x48
 	movs r5, #0
 	movs r4, #0
@@ -123805,7 +123726,7 @@ func_0807DE3C: @ 0x0807DE3C
 	add r6, sp, #0x18
 	ldr r1, .L0807E1F0 @ =gUnk_086678A0
 	adds r0, r6, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	add r0, sp, #0x48
 	movs r5, #0
 	movs r4, #0
@@ -124734,7 +124655,7 @@ func_0807E558: @ 0x0807E558
 	add r6, sp, #0x18
 	ldr r1, .L0807E840 @ =gUnk_086678A0
 	adds r0, r6, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	add r0, sp, #0x48
 	movs r5, #0
 	movs r4, #0
@@ -126049,7 +125970,7 @@ func_0807EF90: @ 0x0807EF90
 	add r6, sp, #0x34
 	ldr r1, .L0807F194 @ =gUnk_086678A0
 	adds r0, r6, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	add r0, sp, #0x64
 	movs r5, #0
 	movs r4, #0
@@ -126796,7 +126717,7 @@ func_0807F6E8: @ 0x0807F6E8
 	add r6, sp, #0x18
 	ldr r1, .L0807F7E4 @ =gUnk_086678A0
 	adds r0, r6, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	add r0, sp, #0x48
 	movs r5, #0
 	movs r4, #0
@@ -128602,7 +128523,7 @@ func_08080540: @ 0x08080540
 	add r6, sp, #0x18
 	ldr r1, .L080807CC @ =gUnk_086678A0
 	adds r0, r6, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	add r0, sp, #0x48
 	movs r5, #0
 	movs r4, #0
@@ -129668,7 +129589,7 @@ func_08080E68: @ 0x08080E68
 	add r6, sp, #0x18
 	ldr r1, .L08080FC8 @ =gUnk_086678A0
 	adds r0, r6, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	add r0, sp, #0x48
 	movs r5, #0
 	movs r4, #0
@@ -129836,7 +129757,7 @@ func_08080E68: @ 0x08080E68
 	str r3, [sp, #0x13c]
 	adds r0, r3, #0
 	ldr r1, .L08081100 @ =gUnk_08753608
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	add r0, sp, #0xf0
 	strh r5, [r0]
 	strh r5, [r0, #2]
@@ -131391,7 +131312,7 @@ func_08081BBC: @ 0x08081BBC
 	add r6, sp, #0x34
 	ldr r1, .L08081D38 @ =gUnk_086678A0
 	adds r0, r6, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	add r0, sp, #0x64
 	movs r5, #0
 	movs r4, #0
@@ -132116,7 +132037,7 @@ func_08082264: @ 0x08082264
 	strh r3, [r0]
 	add r5, sp, #0x10
 	adds r0, r5, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	add r0, sp, #0x40
 	strh r4, [r0]
 	strh r4, [r0, #2]
@@ -132228,7 +132149,7 @@ func_0808234C: @ 0x0808234C
 	str r3, [sp, #0xc8]
 	ldr r1, .L0808245C @ =gUnk_086678A0
 	add r0, sp, #8
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	add r0, sp, #0x38
 	movs r5, #0
 	movs r4, #0
@@ -135477,7 +135398,7 @@ func_08083C64: @ 0x08083C64
 	add r6, sp, #0x18
 	ldr r1, .L08083F6C @ =gUnk_086678A0
 	adds r0, r6, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	add r0, sp, #0x48
 	movs r5, #0
 	movs r4, #0
@@ -137686,7 +137607,7 @@ func_08085640: @ 0x08085640
 	add r4, sp, #0x2c
 	adds r0, r4, #0
 	ldr r1, .L08085750 @ =gUnk_086678A0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	add r0, sp, #0x5c
 	strh r5, [r0]
 	strh r5, [r0, #2]
@@ -166282,25 +166203,25 @@ func_08094AC0: @ 0x08094AC0
 	adds r6, #0x98
 	ldr r1, .L08094EA0 @ =gUnk_08527094
 	adds r0, r6, #0
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	movs r0, #0xc8
 	adds r0, r0, r7
 	mov r8, r0
 	ldr r1, .L08094EA4 @ =gUnk_08728208
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	movs r1, #0xf8
 	adds r1, r1, r7
 	mov sb, r1
 	ldr r1, .L08094EA8 @ =gUnk_08754C0C
 	mov r0, sb
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	movs r2, #0x94
 	lsls r2, r2, #1
 	adds r2, r2, r7
 	mov sl, r2
 	ldr r1, .L08094EAC @ =gUnk_08754674
 	mov r0, sl
-	bl func_0805E6CC
+	bl __22IndexedResourceArchivePCUc
 	movs r3, #0xac
 	lsls r3, r3, #1
 	adds r0, r7, r3

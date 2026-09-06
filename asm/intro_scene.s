@@ -64,18 +64,18 @@ func_08000914: @ 0x08000914
     adds r0, r0, r5
     mov sb, r0
     adds r1, r4, #0
-    bl func_0805E6CC
+    bl __22IndexedResourceArchivePCUc
     ldr r1, .L08000CBC @ =0x00006A40
     adds r1, r1, r5
     mov sl, r1
     ldr r1, .L08000CC0 @ =gUnk_0874E530
     mov r0, sl
-    bl func_0805E6CC
+    bl __22IndexedResourceArchivePCUc
     ldr r0, .L08000CC4 @ =0x00006A70
     adds r0, r0, r5
     mov r8, r0
     ldr r1, .L08000CC8 @ =gUnk_0858BA28
-    bl func_0805E6CC
+    bl __22IndexedResourceArchivePCUc
     ldr r1, .L08000CCC @ =0x00006AA0
     adds r4, r5, r1
     adds r0, r4, #0

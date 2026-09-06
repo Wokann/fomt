@@ -35,23 +35,117 @@ struct IndexedResourceProvider
     IndexedResourceProviderVTable * vtable;
 };
 
+#if defined(REGION_JP)
+extern "C" char vtable_unk_080E79B8;
+#define INDEXED_RESOURCE_ARCHIVE_VTABLE vtable_unk_080E79B8
+#else
+extern "C" char vtable_unk_080E79C8;
+#define INDEXED_RESOURCE_ARCHIVE_VTABLE vtable_unk_080E79C8
+#endif
+
 struct IndexedResourceArchiveEntry
 {
     u16 entry_count;
     u16 first_entry_index;
 };
 
+struct IndexedResourceArchiveGroupDescriptor
+{
+    u8 unknown_00[16];
+};
+
+struct IndexedResourceArchiveDescriptor8
+{
+    u8 unknown_00[8];
+};
+
+struct IndexedResourceArchiveDescriptor32
+{
+    u8 unknown_00[32];
+};
+
 struct IndexedResourceArchive
 {
+    IndexedResourceArchive(u8 const * data)
+        SECTION(".text.indexed_resource_archive_constructor");
+
     IndexedResourceProviderVTable * vtable;
     IndexedResourceArchiveEntry * entry_descriptors;
-    u8 unknown_08[0x14];
+    IndexedResourceArchiveGroupDescriptor * group_descriptors;
+    IndexedResourceArchiveDescriptor8 * third_descriptors;
+    IndexedResourceArchiveDescriptor32 * fourth_descriptors;
+    IndexedResourceArchiveDescriptor32 * fifth_descriptors;
+    IndexedResourceArchiveDescriptor8 * sixth_descriptors;
     IndexedResourceEntry * entries;
     u16 entry_descriptor_count;
+    u16 group_descriptor_count;
+    u16 third_descriptor_count;
+    u16 fourth_descriptor_count;
+    u16 fifth_descriptor_count;
+    u16 sixth_descriptor_count;
+    u16 entry_count;
 
     IndexedResourceResult Resolve(u32 index) const
         SECTION(".text.indexed_resource_archive_resolve");
 };
+
+IndexedResourceArchive::IndexedResourceArchive(u8 const * data)
+{
+    vtable = (IndexedResourceProviderVTable *)&INDEXED_RESOURCE_ARCHIVE_VTABLE;
+
+    if (data != 0)
+    {
+        entry_descriptor_count = *(u16 const *)data;
+        data += 4;
+        entry_descriptors = (IndexedResourceArchiveEntry *)data;
+        data += entry_descriptor_count * 4;
+
+        group_descriptor_count = *(u16 const *)data;
+        data += 4;
+        group_descriptors = (IndexedResourceArchiveGroupDescriptor *)data;
+        data += group_descriptor_count * 16;
+
+        third_descriptor_count = *(u16 const *)data;
+        data += 4;
+        third_descriptors = (IndexedResourceArchiveDescriptor8 *)data;
+        data += third_descriptor_count * 8;
+
+        fourth_descriptor_count = *(u16 const *)data;
+        data += 4;
+        fourth_descriptors = (IndexedResourceArchiveDescriptor32 *)data;
+        data += fourth_descriptor_count * 32;
+
+        fifth_descriptor_count = *(u16 const *)data;
+        data += 4;
+        fifth_descriptors = (IndexedResourceArchiveDescriptor32 *)data;
+        data += fifth_descriptor_count * 32;
+
+        sixth_descriptor_count = *(u16 const *)data;
+        data += 4;
+        sixth_descriptors = (IndexedResourceArchiveDescriptor8 *)data;
+        data += sixth_descriptor_count * 8;
+
+        entry_count = *(u16 const *)data;
+        entries = (IndexedResourceEntry *)(data + 4);
+    }
+    else
+    {
+        entry_descriptor_count = 0;
+        entry_descriptors = 0;
+        group_descriptor_count = 0;
+        group_descriptors = 0;
+        third_descriptor_count = 0;
+        third_descriptors = 0;
+        fourth_descriptor_count = 0;
+        fourth_descriptors = 0;
+        fifth_descriptor_count = 0;
+        fifth_descriptors = 0;
+        sixth_descriptor_count = 0;
+        sixth_descriptors = 0;
+        entry_count = 0;
+        entries = 0;
+    }
+}
 
 IndexedResourceResult IndexedResourceArchive::Resolve(u32 index) const
 {
