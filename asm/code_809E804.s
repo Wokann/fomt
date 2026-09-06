@@ -74,7 +74,7 @@
     jp_code_809_func func_080A3F4C, 0xA3984, 0xA3FE0
     jp_code_809_func func_080A45A8, 0xA3FE0, 0xA4088
     jp_code_809_func func_080A4650, 0xA4088, 0xA40D0
-    jp_code_809_func GetMapData, 0xA40D0, 0xA40E4
+    .section .text.get_map_data_after
     jp_code_809_func func_080A46AC, 0xA40E4, 0xA4178
     jp_code_809_func func_080A4740, 0xA4178, 0xA41EC
     jp_code_809_func func_080A47B4, 0xA41EC, 0xA437C
@@ -12023,17 +12023,7 @@ func_080A4650: @ 0x080A4650
 	bx r1
 	.align 2, 0
 
-	thumb_func_start GetMapData
-GetMapData: @ 0x080A4698
-	adds r1, r0, #0
-	lsls r0, r1, #2
-	adds r0, r0, r1
-	lsls r0, r0, #3
-	ldr r1, .L080A46A8 @ =gUnk_08105EDC
-	adds r0, r0, r1
-	bx lr
-	.align 2, 0
-.L080A46A8: .4byte gUnk_08105EDC
+	.section .text.get_map_data_after
 
 	thumb_func_start func_080A46AC
 func_080A46AC: @ 0x080A46AC

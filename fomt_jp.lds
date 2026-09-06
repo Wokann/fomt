@@ -337,6 +337,10 @@ SECTIONS
         src/npc_runtime_data.o(.text);
         . = 0x9E530; /* JP ROM 0x0809E530, remaining raw NPC runtime code. */
         asm/code_809E804.o(.text.npc_runtime_data_after);
+        . = 0xA40D0;
+        src/map_data.o(.text.get_map_data);
+        . = 0xA40E4;
+        asm/code_809E804.o(.text.get_map_data_after);
 
         . = 0xD0D4C; /* JP ROM 0x080D0D4C, independently matched */
 

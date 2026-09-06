@@ -226,7 +226,11 @@ gText_CharacterName_Empty:
     .incbin "baserom_jp.gba", 0x104988, (0x104994 - 0x104988)
 
     .section .rodata.random_item_fallback_trailer
-    .incbin "baserom_jp.gba", 0x10499C, (0x1070F4 - 0x10499C)
+    .incbin "baserom_jp.gba", 0x10499C, (0x105A24 - 0x10499C)
+
+    .global gMapData
+gMapData:
+    .incbin "baserom_jp.gba", 0x105A24, (0x1070F4 - 0x105A24)
 
     .section .rodata.harvest_sprite_minigames_animal_husbandry_trailer
     .incbin "baserom_jp.gba", 0x10737B, (0x1073B9 - 0x10737B)
@@ -1007,8 +1011,8 @@ gUnk_0810563C:
 gUnk_08105708:
 	.incbin "baserom_us.gba", 0x105708, 0x7D4
 
-	.global gUnk_08105EDC
-gUnk_08105EDC: @ map data?
+	.global gMapData
+gMapData: @ map data
 	.incbin "baserom_us.gba", 0x105EDC, 0xA50
 
 	.global gUnk_0810692C

@@ -269,6 +269,10 @@ SECTIONS
         src/npc_runtime_data.o(.text);
         . = 0x9EAF8; /* US ROM 0x0809EAF8, remaining raw NPC runtime code. */
         asm/code_809E804.o(.text.npc_runtime_data_after);
+        . = 0xA4698;
+        src/map_data.o(.text.get_map_data);
+        . = 0xA46AC;
+        asm/code_809E804.o(.text.get_map_data_after);
 
         src/m4a_1.o(.text);
         src/m4a.o(.text);
