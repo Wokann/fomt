@@ -9,6 +9,12 @@ struct EntityUiUnknownState
     u8 unknown_41;
 };
 
+struct EntityUiConstructorState
+{
+    void * unknown_00;
+    void const * vtable;
+};
+
 struct EntityUiHarvestSpriteEntry
 {
     u8 flags;
@@ -64,11 +70,20 @@ extern "C" void func_080330F4(EntityUiHarvestSpriteResult * result,
 extern "C" u16 const gEntityUiAnimationLookupTable[];
 extern "C" u16 const gEntityUiResourceIdTable[];
 extern "C" void ResolveIndexedResourceHandle(void * handle, u32 index);
+extern "C" void func_080324BC(EntityUiConstructorState * state, void * arg_1,
+                               u32 arg_2, u32 arg_3, u32 arg_4, u32 arg_5,
+                               u32 arg_6, bool arg_7);
+extern "C" u8 const vtable_unk_080E6864[];
 
 // The ROM leaf unconditionally returns false.  Its caller-facing purpose is
 // not mapped yet.
 extern "C" bool func_080324B8()
     SECTION(".text.entity_ui_default_no_action");
+
+// Initializes an unmapped entity-UI object, then assigns its verified vtable.
+extern "C" EntityUiConstructorState * func_08032A00(
+    EntityUiConstructorState * state, void * arg_1)
+    SECTION(".text.entity_ui_constructor");
 
 // The semantic name of byte 0x41 is still unknown; preserve the exact leaf
 // write while its callers and owning entity layout are recovered.
@@ -105,6 +120,14 @@ extern "C" void func_08034BFC(EntityUiResourceSetupState * state,
 extern "C" bool func_080324B8()
 {
     return false;
+}
+
+extern "C" EntityUiConstructorState * func_08032A00(
+    EntityUiConstructorState * state, void * arg_1)
+{
+    func_080324BC(state, arg_1, 6, 0x20, 1, 0, 0, false);
+    state->vtable = vtable_unk_080E6864;
+    return state;
 }
 
 extern "C" void func_08033B7C(void * entity)

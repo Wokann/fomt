@@ -105,6 +105,10 @@ SECTIONS
         src/entity_ui.o(.text.entity_ui_region_classification);
         . = 0x32934; /* Continue the surrounding entity-UI ROM block. */
         asm/code_entities_080320DC.o(.text.entity_ui_region_classification_after);
+        . = 0x32A00; /* JP/US-shared entity-UI constructor. */
+        src/entity_ui.o(.text.entity_ui_constructor);
+        . = 0x32A30; /* Continue the surrounding entity-UI ROM block. */
+        asm/code_entities_080320DC.o(.text.entity_ui_constructor_after);
         . = 0x33914; /* JP/US-shared Harvest Sprite task experience transform. */
         src/entity_ui.o(.text.entity_ui_harvest_sprite_task_experience);
         . = 0x33928; /* Continue the surrounding entity-UI ROM block. */

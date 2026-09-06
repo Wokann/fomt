@@ -25,7 +25,15 @@ func_080324BC:
     .global func_08032934
     .thumb_func
 func_08032934:
-    .incbin "baserom_jp.gba", 0x326C8, 0xFE0
+    .incbin "baserom_jp.gba", 0x326C8, 0xCC
+
+    .section .text.entity_ui_constructor_after
+    .syntax unified
+    .thumb
+    .global func_08032A30
+    .thumb_func
+func_08032A30:
+    .incbin "baserom_jp.gba", 0x327C4, 0xEE4
 
     .section .text.entity_ui_harvest_sprite_task_experience_after
     .syntax unified
@@ -62,10 +70,6 @@ func_08034260:
     .thumb_set func_0803260C, func_0803242C + 0x1E0
     .global func_08032690
     .thumb_set func_08032690, func_0803242C + 0x264
-    .global func_08032A00
-    .thumb_set func_08032A00, func_0803242C + 0x5D4
-    .global func_08032A30
-    .thumb_set func_08032A30, func_0803242C + 0x604
     .global func_08032BB4
     .thumb_set func_08032BB4, func_0803242C + 0x788
     .global func_080330F4
@@ -851,32 +855,7 @@ func_08032934: @ 0x08032934
     @ 329fc:       4710            bx      r2
     @ 329fe:       0000            movs    r0, r0
 
-    thumb_func_start func_08032A00
-func_08032A00: @ 0x08032A00
-    push {r4, lr}
-    sub sp, #0x10
-    adds r4, r0, #0
-    movs r0, #1
-    str r0, [sp]
-    movs r0, #0
-    str r0, [sp, #4]
-    str r0, [sp, #8]
-    add r2, sp, #0xc
-    strb r0, [r2]
-    adds r0, r4, #0
-    movs r2, #6
-    movs r3, #0x20
-    bl func_080324BC
-    ldr r0, .L08032A2C @ =vtable_unk_080E6864
-    str r0, [r4, #4]
-    adds r0, r4, #0
-    add sp, #0x10
-    pop {r4}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L08032A2C: .4byte vtable_unk_080E6864
-
+    .section .text.entity_ui_constructor_after
     thumb_func_start func_08032A30
 func_08032A30: @ 0x08032A30
     push {lr}
