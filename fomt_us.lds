@@ -140,8 +140,110 @@ SECTIONS
         src/chicken.o(.text);
         src/cow.o(.text);
         src/sheep.o(.text);
+        . = 0x9BFE8; /* US ROM 0x0809BFE8, independently matched */
         src/code_actor_0809BFE8.o(.text);
-        asm/code_actor_0809BFE8.o(.text);
+        . = 0x9C160; /* US ROM 0x0809C160, unlabelled raw helper */
+        asm/code_actor_0809BFE8.o(.text.code_actor_0809C160);
+        . = 0x9C22C; /* US ROM 0x0809C22C, shared selector */
+        src/code_actor_0809C22C.o(.text);
+        . = 0x9C304; /* US ROM 0x0809C304, shared table accessor */
+        src/code_actor_0809C304.o(.text);
+        . = 0x9C318; /* US ROM 0x0809C318, raw actor helper */
+        asm/code_actor_0809BFE8.o(.text.code_actor_0809C318);
+        . = 0x9C32C; /* US ROM 0x0809C32C, shared paired-state predicate */
+        src/code_actor_0809C32C.o(.text);
+        . = 0x9C38C; /* US ROM 0x0809C38C, shared nonzero-state predicate */
+        src/code_actor_0809C38C.o(.text);
+        . = 0x9C3BC; /* US ROM 0x0809C3BC, shared state initializer */
+        src/code_actor_0809C3BC.o(.text);
+        . = 0x9C3E0; /* US ROM 0x0809C3E0, shared state advancement */
+        src/code_actor_0809C3E0.o(.text);
+        . = 0x9C420; /* US ROM 0x0809C420, shared state reset */
+        src/code_actor_0809C420.o(.text);
+        . = 0x9C444; /* US ROM 0x0809C444, shared conditional state advance */
+        src/code_actor_0809C444.o(.text);
+        . = 0x9C474; /* US ROM 0x0809C474, shared state-update dispatcher */
+        src/code_actor_0809C474.o(.text);
+        . = 0x9C4B4; /* US ROM 0x0809C4B4, shared state-update dispatcher */
+        src/code_actor_0809C4B4.o(.text);
+        . = 0x9C4E4; /* US ROM 0x0809C4E4, shared word clear */
+        src/code_actor_0809C4E4.o(.text);
+        . = 0x9C4EC; /* US ROM 0x0809C4EC, shared selection helper and raw actor code */
+        asm/code_actor_0809BFE8.o(.text.code_actor_0809C4EC);
+        . = 0x9C5B4; /* US ROM 0x0809C5B4, set bounded flag */
+        src/code_actor_0809C5B4.o(.text);
+        . = 0x9C5D0; /* US ROM 0x0809C5D0, clear bounded flag */
+        src/code_actor_0809C5D0.o(.text);
+        . = 0x9C5EC; /* US ROM 0x0809C5EC, clear flag word */
+        src/code_actor_0809C5EC.o(.text);
+        . = 0x9C5F4; /* US ROM 0x0809C5F4, test flag word */
+        src/code_actor_0809C5F4.o(.text);
+        . = 0x9C600; /* US ROM 0x0809C600, register event-state variable */
+        src/code_actor_0809C600.o(.text);
+        . = 0x9C644; /* US ROM 0x0809C644, remaining raw actor code */
+        asm/code_actor_0809BFE8.o(.text.code_actor_0809C644);
+        . = 0x9C694; /* US ROM 0x0809C694, compare selected u16 */
+        src/code_actor_0809C694.o(.text);
+        . = 0x9C6AC; /* US ROM 0x0809C6AC, set selected u16 */
+        src/code_actor_0809C6AC.o(.text);
+        . = 0x9C6B0; /* US ROM 0x0809C6B0, reset selected u16 */
+        src/code_actor_0809C6B0.o(.text);
+        . = 0x9C6BC; /* US ROM 0x0809C6BC, remaining raw actor code */
+        asm/code_actor_0809BFE8.o(.text.code_actor_0809C6BC);
+        . = 0x9CD78; /* US ROM 0x0809CD78, clear tracked counters */
+        src/code_actor_0809CD78.o(.text);
+        . = 0x9CD98; /* US ROM 0x0809CD98, update count and maximum */
+        src/code_actor_0809CD98.o(.text);
+        . = 0x9CDCC; /* US ROM 0x0809CDCC, test tracked counts */
+        src/code_actor_0809CDCC.o(.text);
+        . = 0x9CDEC; /* US ROM 0x0809CDEC, sum tracked counts */
+        src/code_actor_0809CDEC.o(.text);
+        . = 0x9CE1C; /* US ROM 0x0809CE1C, get record count */
+        src/code_actor_0809CE1C.o(.text);
+        . = 0x9CE24; /* US ROM 0x0809CE24, get record maximum */
+        src/code_actor_0809CE24.o(.text);
+        . = 0x9CE30; /* US ROM 0x0809CE30, map six input codes */
+        src/code_actor_0809CE30.o(.text);
+        . = 0x9CE7C; /* US ROM 0x0809CE7C, get fishing-record name */
+        src/code_actor_0809CE7C.o(.text);
+        . = 0x9CE8C; /* US ROM 0x0809CE8C, remaining raw actor code */
+        asm/code_actor_0809BFE8.o(.text.code_actor_0809CE8C);
+        . = 0x9D418; /* US ROM 0x0809D418, map a segmented input value */
+        src/code_actor_0809D418.o(.text);
+        . = 0x9D470; /* US ROM 0x0809D470, remaining raw actor code */
+        asm/code_actor_0809BFE8.o(.text.code_actor_0809D470);
+        . = 0x9D7D8; /* US ROM 0x0809D7D8, classify actor-state value */
+        src/code_actor_0809D7D8.o(.text);
+        . = 0x9D8A0; /* US ROM 0x0809D8A0, read state value */
+        src/code_actor_0809D8A0.o(.text);
+        . = 0x9D8A4; /* US ROM 0x0809D8A4, map one state value */
+        src/code_actor_0809D8A4.o(.text);
+        . = 0x9D8B8; /* US ROM 0x0809D8B8, map two state values */
+        src/code_actor_0809D8B8.o(.text);
+        . = 0x9D8D4; /* US ROM 0x0809D8D4, read packed grid-cell value */
+        src/code_actor_0809D8D4.o(.text);
+        . = 0x9D8E8; /* US ROM 0x0809D8E8, remaining raw actor code */
+        asm/code_actor_0809BFE8.o(.text.code_actor_0809D8E8);
+        . = 0x9DF2C; /* US ROM 0x0809DF2C, query tool availability by group */
+        src/code_actor_0809DF2C.o(.text);
+        . = 0x9DFAC; /* US ROM 0x0809DFAC, count actor-state flag bits */
+        src/code_actor_0809DFAC.o(.text);
+        . = 0x9E02C; /* US ROM 0x0809E02C, count actor-state flag bits */
+        src/code_actor_0809E02C.o(.text);
+        . = 0x9E0AC; /* US ROM 0x0809E0AC, select actor-state cell-type data */
+        src/code_actor_0809E0AC.o(.text);
+        . = 0x9E118; /* US ROM 0x0809E118, remaining raw actor code */
+        asm/code_actor_0809BFE8.o(.text.code_actor_0809E118);
+        . = 0x9E174; /* US ROM 0x0809E174, read actor-state bit 0 */
+        src/code_actor_0809E174.o(.text);
+        . = 0x9E184; /* US ROM 0x0809E184, read actor-state bit 2 */
+        src/code_actor_0809E184.o(.text);
+        . = 0x9E194; /* US ROM 0x0809E194, read actor-state bit 3 */
+        src/code_actor_0809E194.o(.text);
+        . = 0x9E1A4; /* US ROM 0x0809E1A4, read actor-state bit 4 */
+        src/code_actor_0809E1A4.o(.text);
+        . = 0x9E1B4; /* US ROM 0x0809E1B4, remaining raw actor code */
+        asm/code_actor_0809BFE8.o(.text.code_actor_0809E1B4);
         src/npc.o(.text);
         src/bachelorette.o(.text);
         src/harvest_sprite.o(.text);

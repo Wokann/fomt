@@ -32,7 +32,27 @@ gUnk_086D6548:
 gUnk_086D6608:
     .incbin "baserom_jp.gba", 0x45C764, 0x90
 
-    .incbin "baserom_jp.gba", 0x45C7F4, (0x77F610 - 0x45C7F4)
+    .incbin "baserom_jp.gba", 0x45C7F4, (0x462520 - 0x45C7F4)
+
+    .global gActorStateGridCellType0Data
+gActorStateGridCellType0Data:
+    .incbin "baserom_jp.gba", 0x462520, 0xC
+
+    .global gActorStateGridCellType1Data
+gActorStateGridCellType1Data:
+    .incbin "baserom_jp.gba", 0x46252C, 0xC
+
+    .global gActorStateGridCellType2Data
+gActorStateGridCellType2Data:
+    .incbin "baserom_jp.gba", 0x462538, 0xC
+
+    .global gActorStateGridCellType3Data
+gActorStateGridCellType3Data:
+    .incbin "baserom_jp.gba", 0x462544, 0xC
+
+    .global gActorStateGridCellType4Data
+gActorStateGridCellType4Data:
+    .incbin "baserom_jp.gba", 0x462550, (0x77F610 - 0x462550)
     .else
     .section .rodata
 
@@ -204,24 +224,24 @@ gUnk_086D6698:
 gUnk_086D74F8:
 	.incbin "baserom_us.gba", 0x6D74F8, 0x4ECC
 
-	.global gUnk_086DC3C4
-gUnk_086DC3C4:
+	.global gActorStateGridCellType0Data
+gActorStateGridCellType0Data:
 	.incbin "baserom_us.gba", 0x6DC3C4, 0xC
 
-	.global gUnk_086DC3D0
-gUnk_086DC3D0:
+	.global gActorStateGridCellType1Data
+gActorStateGridCellType1Data:
 	.incbin "baserom_us.gba", 0x6DC3D0, 0xC
 
-	.global gUnk_086DC3DC
-gUnk_086DC3DC:
+	.global gActorStateGridCellType2Data
+gActorStateGridCellType2Data:
 	.incbin "baserom_us.gba", 0x6DC3DC, 0xC
 
-	.global gUnk_086DC3E8
-gUnk_086DC3E8:
+	.global gActorStateGridCellType3Data
+gActorStateGridCellType3Data:
 	.incbin "baserom_us.gba", 0x6DC3E8, 0xC
 
-	.global gUnk_086DC3F4
-gUnk_086DC3F4:
+	.global gActorStateGridCellType4Data
+gActorStateGridCellType4Data:
 	.incbin "baserom_us.gba", 0x6DC3F4, 0x158
 
 	.global gUnk_086DC54C

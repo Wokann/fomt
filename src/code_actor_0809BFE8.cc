@@ -1,6 +1,7 @@
 #include "prelude.h"
 
 #include "actor.hh"
+#include "actor_state.hh"
 
 struct Unk_Actor_0809BFE8 : Actor
 {
@@ -8,6 +9,14 @@ struct Unk_Actor_0809BFE8 : Actor
 
     u32 unk_08_0 : 7;
     u32 unk_0C;
+    u32 unk_10;
+    u32 unk_14;
+};
+
+struct Unk_Actor_0809C0AC
+{
+    u32 unk_00;
+    u32 unk_04;
 };
 
 Unk_Actor_0809BFE8::Unk_Actor_0809BFE8()
@@ -34,9 +43,65 @@ EC void func_0809C068(Unk_Actor_0809BFE8 & self, int arg_0)
     self.unk_08_0 = val;
 }
 
-EC void func_0809C098(Unk_Actor_0809BFE8 & self)
+EC void func_0809C098(Unk_Actor_0809BFE8 & self, u32 const &)
 {
     self.unk_0C = 0;
+}
+
+EC void func_0809C0A0(Unk_Actor_0809BFE8 & self, u32 const & value)
+{
+    self.unk_10 = value;
+    self.unk_0C = 1;
+}
+
+EC void func_0809C0AC(Unk_Actor_0809BFE8 & self, Unk_Actor_0809C0AC const & value)
+{
+    u32 const unk_04 = value.unk_04;
+
+    self.unk_10 = value.unk_00;
+    self.unk_14 = unk_04;
+    self.unk_0C = 2;
+}
+
+EC void func_0809C0BC(Unk_Actor_0809BFE8 & self, u32 const & value)
+{
+    self.unk_10 = value;
+    self.unk_0C = 3;
+}
+
+EC void func_0809C0C8(Unk_Actor_0809BFE8 & self, u32 const & value)
+{
+    self.unk_10 = value;
+    self.unk_0C = 4;
+}
+
+EC void func_0809C0D4(Unk_Actor_0809BFE8 & self)
+{
+    ActorLocation const location(Location(MAP_NONE, 0, 0), 0);
+    u32 unused;
+
+    self.SetLocation(location);
+    func_0809C098(self, unused);
+    self.unk_08_0 = 100;
+}
+
+EC ActorStateSlots * func_0809C144(ActorStateSlots & self)
+{
+    u32 i = 0;
+    u8 zero = 0;
+    u8 * ptr = self.unk_00;
+
+    do
+    {
+        ptr[0] = zero;
+        ptr[12] = zero;
+        ptr[6] = zero;
+        ++ptr;
+        ++i;
+    }
+    while (i <= 5);
+
+    return &self;
 }
 
 /* what follows shouldn't be hard except that to do it well I think there needs to be union/placeholder shenanigans */
