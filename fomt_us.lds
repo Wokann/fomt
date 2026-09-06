@@ -129,6 +129,10 @@ SECTIONS
         asm/code_0803A8A4.o(.text.code_0803E448);
         src/script_engine.o(.text);
         asm/code_0803EE94.o(.text);
+        . = 0x50D5C; /* US ROM shared first-field forwarding adapters. */
+        src/code_08050D5C.o(.text);
+        . = 0x50D8C; /* US ROM 0x08050D8C, remaining raw UI-adjacent code. */
+        asm/code_0803EE94.o(.text.code_08050D8C);
 
         src/actor.o(.text);
         src/animal.o(.text);

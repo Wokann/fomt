@@ -181,6 +181,10 @@ SECTIONS
         src/script_engine.o(.text);
         . = 0x3F704; /* JP ROM 0x0803F704, independently matched */
         asm/code_0803EE94.o(.text);
+        . = 0x50AE8; /* JP counterpart of shared first-field forwarding adapters. */
+        src/code_08050D5C.o(.text);
+        . = 0x50B18; /* JP ROM 0x08050B18, remaining raw UI-adjacent code. */
+        asm/code_0803EE94.o(.text.code_08050D8C);
 
         . = 0x9AB3C; /* JP ROM 0x0809AB3C, independently matched */
 

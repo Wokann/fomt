@@ -55,10 +55,7 @@
     jp_code_0803ee_func func_08050C64, 0x509F0, 0x50A98
     jp_code_0803ee_func func_08050D0C, 0x50A98, 0x50AC0
     jp_code_0803ee_func func_08050D34, 0x50AC0, 0x50AE8
-    jp_code_0803ee_func func_08050D5C, 0x50AE8, 0x50AF4
-    jp_code_0803ee_func func_08050D68, 0x50AF4, 0x50B00
-    jp_code_0803ee_func func_08050D74, 0x50B00, 0x50B0C
-    jp_code_0803ee_func func_08050D80, 0x50B0C, 0x50B18
+    .section .text.code_08050D8C
     jp_code_0803ee_func func_08050D8C, 0x50B18, 0x50B2C
     jp_code_0803ee_func func_08050DA0, 0x50B2C, 0x50B40
     jp_code_0803ee_func func_08050DB4, 0x50B40, 0x50B54
@@ -33339,38 +33336,7 @@ func_08050D3C: @ 0x08050D3C
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_08050D5C
-func_08050D5C: @ 0x08050D5C
-	push {lr}
-	ldr r0, [r0]
-	bl func_0805039C
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_08050D68
-func_08050D68: @ 0x08050D68
-	push {lr}
-	ldr r0, [r0]
-	bl func_080503E4
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_08050D74
-func_08050D74: @ 0x08050D74
-	push {lr}
-	ldr r0, [r0]
-	bl func_080503FC
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_08050D80
-func_08050D80: @ 0x08050D80
-	push {lr}
-	ldr r0, [r0]
-	bl func_08050410
-	pop {r0}
-	bx r0
-
+	.section .text.code_08050D8C
 	thumb_func_start func_08050D8C
 func_08050D8C: @ 0x08050D8C
 	push {lr}
