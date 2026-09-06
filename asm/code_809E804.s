@@ -100579,13 +100579,13 @@ func_080CF67C: @ 0x080CF67C
 	bl GetGrowthStage__C3Dog
 	cmp r0, #1
 	bne .L080CF79C
-	ldr r5, .L080CF798 @ =gUnk_08117A0C
+	ldr r5, .L080CF798 @ =gText_AnimalStatus_Dog
 	b .L080CF79E
 	.align 2, 0
 .L080CF794: .4byte 0x00001C70
-.L080CF798: .4byte gUnk_08117A0C
+.L080CF798: .4byte gText_AnimalStatus_Dog
 .L080CF79C:
-	ldr r5, .L080CF7E0 @ =gUnk_08117A14
+	ldr r5, .L080CF7E0 @ =gText_AnimalStatus_Puppy
 .L080CF79E:
 	adds r0, r5, #0
 	bl strlen
@@ -100619,7 +100619,7 @@ func_080CF67C: @ 0x080CF67C
 	adds r0, r4, #0
 	b .L080CF9F6
 	.align 2, 0
-.L080CF7E0: .4byte gUnk_08117A14
+.L080CF7E0: .4byte gText_AnimalStatus_Puppy
 .L080CF7E4: .4byte 0x00001C70
 .L080CF7E8:
 	ldr r4, [r7, #8]
@@ -100635,12 +100635,12 @@ func_080CF67C: @ 0x080CF67C
 	bl GetGrowthStage__C7Chicken
 	cmp r0, #1
 	bne .L080CF810
-	ldr r5, .L080CF80C @ =gUnk_08117A1C
+	ldr r5, .L080CF80C @ =gText_AnimalStatus_Chicken
 	b .L080CF812
 	.align 2, 0
-.L080CF80C: .4byte gUnk_08117A1C
+.L080CF80C: .4byte gText_AnimalStatus_Chicken
 .L080CF810:
-	ldr r5, .L080CF888 @ =gUnk_08117A28
+	ldr r5, .L080CF888 @ =gText_AnimalStatus_Chick
 .L080CF812:
 	adds r0, r5, #0
 	bl strlen
@@ -100689,15 +100689,15 @@ func_080CF67C: @ 0x080CF67C
 	mov sl, r0
 	cmp r0, #0
 	beq .L080CF890
-	ldr r1, .L080CF88C @ =gUnk_08117A30
+	ldr r1, .L080CF88C @ =gText_AnimalStatus_Sick
 	mov r8, r1
 	adds r0, r6, #0
 	bl strlen
 	adds r7, r6, r0
 	b .L080CF9EC
 	.align 2, 0
-.L080CF888: .4byte gUnk_08117A28
-.L080CF88C: .4byte gUnk_08117A30
+.L080CF888: .4byte gText_AnimalStatus_Chick
+.L080CF88C: .4byte gText_AnimalStatus_Sick
 .L080CF890:
 	mov r0, sb
 	bl IsUnhappy__C9Livestock
@@ -100706,7 +100706,7 @@ func_080CF67C: @ 0x080CF67C
 	mov r8, r0
 	cmp r0, #0
 	beq .L080CF8D8
-	ldr r0, .L080CF8D4 @ =gUnk_08117A38
+	ldr r0, .L080CF8D4 @ =gText_AnimalStatus_Unhappy
 	mov r8, r0
 	adds r0, r6, #0
 	bl strlen
@@ -100732,9 +100732,9 @@ func_080CF67C: @ 0x080CF67C
 	mov r1, sl
 	b .L080CF762
 	.align 2, 0
-.L080CF8D4: .4byte gUnk_08117A38
+.L080CF8D4: .4byte gText_AnimalStatus_Unhappy
 .L080CF8D8:
-	ldr r0, .L080CF90C @ =gUnk_08117A44
+	ldr r0, .L080CF90C @ =gText_AnimalStatus_Healthy
 	mov sb, r0
 	adds r0, r6, #0
 	bl strlen
@@ -100760,7 +100760,7 @@ func_080CF67C: @ 0x080CF67C
 	mov r1, r8
 	b .L080CF762
 	.align 2, 0
-.L080CF90C: .4byte gUnk_08117A44
+.L080CF90C: .4byte gText_AnimalStatus_Healthy
 .L080CF910:
 	ldr r5, .L080CFA28 @ =gUnk_08117A50
 	adds r0, r5, #0

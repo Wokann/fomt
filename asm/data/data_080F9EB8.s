@@ -251,7 +251,10 @@ gText_CharacterName_Empty:
     .incbin "baserom_jp.gba", 0x107D89, (0x107DAC - 0x107D89)
 
     .section .rodata.reference_guide_unextracted_trailer
-    .incbin "baserom_jp.gba", 0x1189D4, (0x118C68 - 0x1189D4)
+    .incbin "baserom_jp.gba", 0x1189D4, (0x118BF4 - 0x1189D4)
+
+    .section .rodata.animal_status_suffix
+    .incbin "baserom_jp.gba", 0x118C34, (0x118C68 - 0x118C34)
 
     .section .rodata.static_data_after_item_discard
     .incbin "baserom_jp.gba", 0x118CF4, (0x13BCF8 - 0x118CF4)
@@ -1599,7 +1602,7 @@ gUnk_0810827C:
 	.section .rodata.reference_guide_unextracted_trailer
 	.incbin "baserom_us.gba", 0x1177EC, (0x1177F6 - 0x1177EC)
 
-	.section .rodata
+	.section .rodata.animal_status_prefix
 
 	.global gUnk_081177F6
 gUnk_081177F6:
@@ -1681,33 +1684,7 @@ gUnk_081179F8:
 gUnk_081179FC:
 	.incbin "baserom_us.gba", 0x1179FC, 0x10
 
-	.global gUnk_08117A0C
-gUnk_08117A0C:
-	.incbin "baserom_us.gba", 0x117A0C, 0x8
-
-	.global gUnk_08117A14
-gUnk_08117A14:
-	.incbin "baserom_us.gba", 0x117A14, 0x8
-
-	.global gUnk_08117A1C
-gUnk_08117A1C:
-	.incbin "baserom_us.gba", 0x117A1C, 0xC
-
-	.global gUnk_08117A28
-gUnk_08117A28:
-	.incbin "baserom_us.gba", 0x117A28, 0x8
-
-	.global gUnk_08117A30
-gUnk_08117A30:
-	.incbin "baserom_us.gba", 0x117A30, 0x8
-
-	.global gUnk_08117A38
-gUnk_08117A38:
-	.incbin "baserom_us.gba", 0x117A38, 0xC
-
-	.global gUnk_08117A44
-gUnk_08117A44:
-	.incbin "baserom_us.gba", 0x117A44, 0xC
+	.section .rodata.animal_status_suffix
 
 	.global gUnk_08117A50
 gUnk_08117A50:
