@@ -50922,7 +50922,7 @@ func_08059FE0: @ 0x08059FE0
 	adds r1, r0, #0
 	movs r0, #0xd
 	muls r1, r0, r1
-	ldr r0, .L0805A1CC @ =gUnk_080FA796
+	ldr r0, .L0805A1CC @ =gText_FestivalContestantNames_Set1
 	adds r1, r1, r0
 	movs r3, #0xc
 	strh r3, [r6]
@@ -50956,7 +50956,7 @@ func_08059FE0: @ 0x08059FE0
 .L0805A1C0: .4byte 0x06002800
 .L0805A1C4: .4byte 0x00000B38
 .L0805A1C8: .4byte 0x00000B3C
-.L0805A1CC: .4byte gUnk_080FA796
+.L0805A1CC: .4byte gText_FestivalContestantNames_Set1
 .L0805A1D0:
 	ldr r0, .L0805A2B8 @ =0x000014DC
 	add r0, r8

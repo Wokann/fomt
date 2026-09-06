@@ -196,9 +196,7 @@ gUnk_080FA71C:
 gUnk_080FA728:
 	.incbin "baserom_us.gba", 0xFA728, 0x6E
 
-	.global gUnk_080FA796
-gUnk_080FA796:
-	.incbin "baserom_us.gba", 0xFA796, 0x208
+	.section .rodata.festival_contestants_set1_trailer
 
 	.global gUnk_080FA99E
 gUnk_080FA99E:
@@ -2957,9 +2955,11 @@ gUnk_081078A0:
 gUnk_081078BC:
 	.incbin "baserom_us.gba", 0x1078BC, 0x1
 
-	.global gUnk_081078BD
-gUnk_081078BD:
-	.incbin "baserom_us.gba", 0x1078BD, 0x107
+	.section .rodata.festival_contestants_set2_trailer
+
+	.global gUnk_081079C1
+gUnk_081079C1:
+	.incbin "baserom_us.gba", 0x1079C1, 0x3
 
 	.global gUnk_081079C4
 gUnk_081079C4:

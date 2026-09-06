@@ -373,6 +373,8 @@ SECTIONS
         . = ALIGN(4); asm/data/data_080F1A80.o(.rodata);
         . = ALIGN(4); src/script_engine.o(.rodata);
         . = ALIGN(4); asm/data/data_080F9EB8.o(.rodata.localized_data_prefix);
+        . = 0xFA796; data/text/festival_contestants.o(.rodata.festival_contestants_set1);
+        . = 0xFA99E; asm/data/data_080F9EB8.o(.rodata.festival_contestants_set1_trailer);
         . = 0xFC0A4; data/text/staff_credits.o(.rodata.staff_credits);
         . = 0xFC4B4; asm/data/data_080F9EB8.o(.rodata.staff_credits_trailer);
         . = 0x103788; data/text/fishing_results.o(.rodata.fishing_results);
@@ -383,6 +385,8 @@ SECTIONS
         . = 0x104258; src/character_names_data.o(.rodata.character_name_entries);
         . = 0x1043B0; asm/data/data_080F9EB8.o(.rodata.character_names_table_trailer);
         . = 0x1043BC; asm/data/data_080F9EB8.o(.rodata.reference_guide_harvest_sprite_minigames_after_character_names);
+        . = 0x1078BD; data/text/festival_contestants.o(.rodata.festival_contestants_set2);
+        . = 0x1079C1; asm/data/data_080F9EB8.o(.rodata.festival_contestants_set2_trailer);
         . = 0x10828C; src/reference_guide.o(.rodata.reference_guide);
         . = 0x1177EC; asm/data/data_080F9EB8.o(.rodata.reference_guide_unextracted_trailer);
         . = 0x1177F6; asm/data/data_080F9EB8.o(.rodata);

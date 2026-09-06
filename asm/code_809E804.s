@@ -50918,7 +50918,7 @@ func_080B757C: @ 0x080B757C
 	movs r0, #0xd
 	adds r1, r5, #0
 	muls r1, r0, r1
-	ldr r0, .L080B7644 @ =gUnk_081078BD
+	ldr r0, .L080B7644 @ =gText_FestivalContestantNames_Set2
 	adds r1, r1, r0
 	mov r0, r8
 	bl strcpy
@@ -50930,7 +50930,7 @@ func_080B757C: @ 0x080B757C
 	.align 2, 0
 .L080B763C: .4byte 0x0000FFFF
 .L080B7640: .4byte 0x00000B18
-.L080B7644: .4byte gUnk_081078BD
+.L080B7644: .4byte gText_FestivalContestantNames_Set2
 
 	thumb_func_start func_080B7648
 func_080B7648: @ 0x080B7648
