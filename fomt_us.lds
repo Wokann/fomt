@@ -145,6 +145,11 @@ SECTIONS
         src/code_08050E98.o(.text);
         . = 0x50EE4; /* US ROM 0x08050EE4, remaining raw UI-adjacent code. */
         asm/code_0803EE94.o(.text.code_08050E50);
+        . = 0x75DB8; /* JP/US-shared scroll-position reset. */
+        src/scroll_state.o(.text.reset_scroll_position);
+        . = 0x75DD4; /* JP/US-shared scroll-buffer clear. */
+        src/scroll_state.o(.text.clear_scroll_buffer);
+        . = 0x75DEC; asm/code_0803EE94.o(.text.clear_scroll_buffer_after);
         . = 0x76BE0; /* JP/US-shared selection-index state setter. */
         src/selection_state.o(.text.set_selection_index);
         . = 0x76BEC; /* JP/US-shared selection-index state getter. */

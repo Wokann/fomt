@@ -117,8 +117,8 @@
     jp_code_0803ee_func func_0807549C, 0x750F8, 0x75824
     jp_code_0803ee_func func_08075BC8, 0x75824, 0x758E4
     jp_code_0803ee_func func_08075C88, 0x758E4, 0x75A14
-    jp_code_0803ee_func func_08075DB8, 0x75A14, 0x75A30
-    jp_code_0803ee_func func_08075DD4, 0x75A30, 0x75A80
+    .section .text.clear_scroll_buffer_after
+    jp_code_0803ee_func func_08075DEC, 0x75A48, 0x75A80
     jp_code_0803ee_func func_08075E24, 0x75A80, 0x76600
     jp_code_0803ee_func func_080769A0, 0x76600, 0x767C4
     jp_code_0803ee_func func_08076B64, 0x767C4, 0x767F4
@@ -108544,35 +108544,9 @@ func_08075C88: @ 0x08075C88
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_08075DB8
-func_08075DB8: @ 0x08075DB8
-	push {lr}
-	ldr r2, .L08075DD0 @ =0x0000FFFF
-	strh r2, [r0, #6]
-	movs r2, #1
-	rsbs r2, r2, #0
-	strh r2, [r0, #0xa]
-	lsls r1, r1, #0x10
-	asrs r1, r1, #0x10
-	bl func_08075C88
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L08075DD0: .4byte 0x0000FFFF
+	.section .text.reset_scroll_position_after
 
-	thumb_func_start func_08075DD4
-func_08075DD4: @ 0x08075DD4
-	push {lr}
-	ldr r1, [r0, #0x18]
-	ldr r2, [r0, #0x1c]
-	subs r2, r2, r1
-	asrs r2, r2, #6
-	lsls r2, r2, #6
-	adds r0, r1, #0
-	movs r1, #0xff
-	bl memset
-	pop {r0}
-	bx r0
+	.section .text.clear_scroll_buffer_after
 
 	thumb_func_start func_08075DEC
 func_08075DEC: @ 0x08075DEC
@@ -121490,7 +121464,7 @@ sub_0807C194: @ 0x0807C194
 	cmp r5, r0
 	blo .L0807C8AC
 	ldr r0, [r7, #0x1c]
-	bl func_08075DD4
+	bl ClearScrollBuffer
 	adds r0, r7, #0
 	bl func_0807B3B0
 	adds r5, r0, #0
@@ -121504,7 +121478,7 @@ sub_0807C194: @ 0x0807C194
 	ldr r0, [r7, #0x1c]
 	movs r2, #0xc
 	ldrsh r1, [r7, r2]
-	bl func_08075DB8
+	bl ResetScrollPosition
 	ldr r0, [r7, #0x1c]
 	adds r1, r5, #0
 	adds r1, #8
@@ -121725,7 +121699,7 @@ sub_0807C194: @ 0x0807C194
 	b .L0807D054
 .L0807CB1C:
 	ldr r0, [r7, #0x1c]
-	bl func_08075DD4
+	bl ClearScrollBuffer
 	adds r0, r7, #0
 	bl func_0807B188
 	adds r5, r0, #0
@@ -121738,7 +121712,7 @@ sub_0807C194: @ 0x0807C194
 	ldr r0, [r7, #0x1c]
 	movs r2, #0xc
 	ldrsh r1, [r7, r2]
-	bl func_08075DB8
+	bl ResetScrollPosition
 	ldr r0, [r7, #0x1c]
 	adds r1, r5, #0
 	adds r1, #8
@@ -122174,7 +122148,7 @@ sub_0807C194: @ 0x0807C194
 	b .L0807D054
 .L0807CEE2:
 	ldr r0, [r7, #0x1c]
-	bl func_08075DD4
+	bl ClearScrollBuffer
 	adds r0, r7, #0
 	bl func_0807B188
 	adds r5, r0, #0
@@ -122188,7 +122162,7 @@ sub_0807C194: @ 0x0807C194
 	ldr r0, [r7, #0x1c]
 	movs r2, #0xc
 	ldrsh r1, [r7, r2]
-	bl func_08075DB8
+	bl ResetScrollPosition
 	ldr r0, [r7, #0x1c]
 	adds r1, r5, #0
 	adds r1, #8
@@ -127022,7 +126996,7 @@ func_0807F6E8: @ 0x0807F6E8
 	subs r0, r2, r0
 	str r0, [r6]
 	adds r0, r3, #0
-	bl func_08075DD4
+	bl ClearScrollBuffer
 	movs r2, #0
 	mov r8, r2
 	movs r3, #0xa9
@@ -129868,7 +129842,7 @@ func_08080E68: @ 0x08080E68
 	str r4, [r0]
 	strh r4, [r0, #4]
 	ldr r0, [r7, #0x1c]
-	bl func_08075DD4
+	bl ClearScrollBuffer
 	adds r3, r7, #0
 	adds r3, #0x20
 	movs r2, #0x24
@@ -130123,7 +130097,7 @@ func_08080E68: @ 0x08080E68
 	ldr r0, [r7, #0x1c]
 	movs r2, #0xc
 	ldrsh r1, [r7, r2]
-	bl func_08075DB8
+	bl ResetScrollPosition
 	ldr r0, [r7, #0x1c]
 	ldr r1, [sp, #0x134]
 	adds r1, #8
@@ -132824,7 +132798,7 @@ func_0808268C: @ 0x0808268C
 	movs r0, #4
 	str r0, [sp, #0x44]
 	ldr r0, [r6, #0x1c]
-	bl func_08075DD4
+	bl ClearScrollBuffer
 	adds r3, r6, #0
 	adds r3, #0x20
 	adds r5, r6, #0
@@ -133321,7 +133295,7 @@ func_0808268C: @ 0x0808268C
 	ldr r0, [r6, #0x1c]
 	movs r2, #0xc
 	ldrsh r1, [r6, r2]
-	bl func_08075DB8
+	bl ResetScrollPosition
 	ldr r0, [r6, #0x1c]
 	ldr r1, [sp, #0x44]
 	adds r1, #8
@@ -136870,7 +136844,7 @@ func_08084228: @ 0x08084228
 	b .L080854C8
 .L08084EE8:
 	ldr r0, [r6, #0x1c]
-	bl func_08075DD4
+	bl ClearScrollBuffer
 	adds r0, r6, #0
 	bl func_08083C64
 	adds r7, r0, #0
@@ -136883,7 +136857,7 @@ func_08084228: @ 0x08084228
 	ldr r0, [r6, #0x1c]
 	movs r2, #0xc
 	ldrsh r1, [r6, r2]
-	bl func_08075DB8
+	bl ResetScrollPosition
 	ldr r0, [r6, #0x1c]
 	adds r1, r7, #0
 	adds r1, #8
@@ -137168,7 +137142,7 @@ func_08084228: @ 0x08084228
 	movs r4, #0
 	str r4, [r0]
 	ldr r0, [r6, #0x1c]
-	bl func_08075DD4
+	bl ClearScrollBuffer
 	adds r0, r6, #0
 	bl func_08083C64
 	adds r7, r0, #0
@@ -137181,7 +137155,7 @@ func_08084228: @ 0x08084228
 	ldr r0, [r6, #0x1c]
 	movs r2, #0xc
 	ldrsh r1, [r6, r2]
-	bl func_08075DB8
+	bl ResetScrollPosition
 	ldr r0, [r6, #0x1c]
 	adds r1, r7, #0
 	adds r1, #8
@@ -137315,7 +137289,7 @@ func_08084228: @ 0x08084228
 	cmp r0, #0
 	beq .L080852D2
 	ldr r0, [r6, #0x1c]
-	bl func_08075DD4
+	bl ClearScrollBuffer
 	adds r0, r6, #0
 	bl func_08083C64
 	adds r7, r0, #0
@@ -137330,7 +137304,7 @@ func_08084228: @ 0x08084228
 	ldr r0, [r6, #0x1c]
 	movs r2, #0xc
 	ldrsh r1, [r6, r2]
-	bl func_08075DB8
+	bl ResetScrollPosition
 	ldr r0, [r6, #0x1c]
 	adds r1, r7, #0
 	adds r1, #8
@@ -141680,7 +141654,7 @@ sub_08086DFA: @ 0x08086DFA
 	cmp r6, r0
 	blo .L080874F0
 	ldr r0, [r7, #0x1c]
-	bl func_08075DD4
+	bl ClearScrollBuffer
 	adds r0, r7, #0
 	movs r1, #0x1e
 	b .L080876C2
@@ -141838,7 +141812,7 @@ sub_08086DFA: @ 0x08086DFA
 	cmp r6, r0
 	blo .L08087624
 	ldr r0, [r7, #0x1c]
-	bl func_08075DD4
+	bl ClearScrollBuffer
 	adds r0, r7, #0
 	movs r1, #0x1f
 .L080876C2:
@@ -141854,7 +141828,7 @@ sub_08086DFA: @ 0x08086DFA
 	ldr r0, [r7, #0x1c]
 	movs r2, #0xc
 	ldrsh r1, [r7, r2]
-	bl func_08075DB8
+	bl ResetScrollPosition
 	ldr r0, [r7, #0x1c]
 	adds r1, r5, #0
 	adds r1, #8
@@ -142072,7 +142046,7 @@ sub_08087710: @ 0x08087710
 	bl .L0808814C
 .L080878B6:
 	ldr r0, [r7, #0x1c]
-	bl func_08075DD4
+	bl ClearScrollBuffer
 	adds r0, r7, #0
 	bl func_08085640
 	adds r5, r0, #0
@@ -142085,7 +142059,7 @@ sub_08087710: @ 0x08087710
 	ldr r0, [r7, #0x1c]
 	movs r2, #0xc
 	ldrsh r1, [r7, r2]
-	bl func_08075DB8
+	bl ResetScrollPosition
 	ldr r0, [r7, #0x1c]
 	adds r1, r5, #0
 	adds r1, #8
@@ -142515,7 +142489,7 @@ sub_08087710: @ 0x08087710
 	str r0, [r1]
 .L08087C62:
 	ldr r0, [r7, #0x1c]
-	bl func_08075DD4
+	bl ClearScrollBuffer
 	adds r0, r7, #0
 	bl func_08085640
 	adds r5, r0, #0
@@ -142529,7 +142503,7 @@ sub_08087710: @ 0x08087710
 	ldr r0, [r7, #0x1c]
 	movs r2, #0xc
 	ldrsh r1, [r7, r2]
-	bl func_08075DB8
+	bl ResetScrollPosition
 	ldr r0, [r7, #0x1c]
 	adds r1, r5, #0
 	adds r1, #8
@@ -142828,7 +142802,7 @@ sub_08087710: @ 0x08087710
 	b .L0808814C
 .L08087EFA:
 	ldr r0, [r7, #0x1c]
-	bl func_08075DD4
+	bl ClearScrollBuffer
 	adds r0, r7, #0
 	bl func_08085640
 	adds r5, r0, #0
@@ -142842,7 +142816,7 @@ sub_08087710: @ 0x08087710
 	ldr r0, [r7, #0x1c]
 	movs r2, #0xc
 	ldrsh r1, [r7, r2]
-	bl func_08075DB8
+	bl ResetScrollPosition
 	ldr r0, [r7, #0x1c]
 	adds r1, r5, #0
 	adds r1, #8
