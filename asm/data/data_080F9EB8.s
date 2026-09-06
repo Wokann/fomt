@@ -145,9 +145,6 @@
     .section .rodata.blacksmith_upgrade_prefix
     .incbin "baserom_jp.gba", 0xFFAE0, (0xFFAE4 - 0xFFAE0)
 
-    .section .rodata.blacksmith_upgrade_dynamic
-    .incbin "baserom_jp.gba", 0xFFCCC, (0xFFD04 - 0xFFCCC)
-
     .section .rodata.blacksmith_upgrade_result_padding
     .incbin "baserom_jp.gba", 0xFFD04, (0xFFD08 - 0xFFD04)
 
@@ -701,28 +698,6 @@ gUnk_08100144:
 	.global gUnk_08100168
 gUnk_08100168:
 	.incbin "baserom_us.gba", 0x100168, 0x4
-
-	.section .rodata.blacksmith_upgrade_dynamic
-
-	.global gUnk_08100350
-gUnk_08100350:
-	.incbin "baserom_us.gba", 0x100350, 0x10
-
-	.global gUnk_08100360
-gUnk_08100360:
-	.incbin "baserom_us.gba", 0x100360, 0x8
-
-	.global gUnk_08100368
-gUnk_08100368:
-	.incbin "baserom_us.gba", 0x100368, 0x14
-
-	.global gUnk_0810037C
-gUnk_0810037C:
-	.incbin "baserom_us.gba", 0x10037C, 0xC
-
-	.global gUnk_08100388
-gUnk_08100388:
-	.incbin "baserom_us.gba", 0x100388, 0x10
 
 	.section .rodata.blacksmith_upgrade_result_padding
 

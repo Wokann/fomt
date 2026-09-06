@@ -161673,7 +161673,7 @@ func_0809152C: @ 0x0809152C
 	mov sb, r1
 	mov r2, sb
 	strb r2, [r4]
-	ldr r0, .L0809230C @ =gUnk_08100350
+	ldr r0, .L0809230C @ =gText_BlacksmithUpgrade_WorkOrderPrefix
 	mov r8, r0
 	adds r0, r4, #0
 	bl strlen
@@ -161733,7 +161733,7 @@ func_0809152C: @ 0x0809152C
 	strb r0, [r1]
 .L0809214A:
 	mov r4, r8
-	ldr r0, .L08092310 @ =gUnk_08100360
+	ldr r0, .L08092310 @ =gText_BlacksmithUpgrade_WorkOrderGoldSuffix
 	mov sb, r0
 	adds r0, r4, #0
 	bl strlen
@@ -161759,7 +161759,7 @@ func_0809152C: @ 0x0809152C
 	movs r0, #0
 	strb r0, [r1]
 .L08092182:
-	ldr r0, .L08092314 @ =gUnk_08100368
+	ldr r0, .L08092314 @ =gText_BlacksmithUpgrade_WorkOrderDaysPrefix
 	mov r8, r0
 	adds r0, r4, #0
 	bl strlen
@@ -161820,7 +161820,7 @@ func_0809152C: @ 0x0809152C
 	strb r0, [r1]
 .L08092202:
 	adds r6, r4, #0
-	ldr r1, .L08092318 @ =gUnk_0810037C
+	ldr r1, .L08092318 @ =gText_BlacksmithUpgrade_WorkOrderDaysSuffix
 	mov sb, r1
 	adds r0, r6, #0
 	bl strlen
@@ -161846,7 +161846,7 @@ func_0809152C: @ 0x0809152C
 	movs r0, #0
 	strb r0, [r1]
 .L0809223A:
-	ldr r1, .L0809231C @ =gUnk_08100388
+	ldr r1, .L0809231C @ =gText_BlacksmithUpgrade_WorkOrderQuestion
 	mov r8, r1
 	adds r0, r6, #0
 	bl strlen
@@ -161948,11 +161948,11 @@ func_0809152C: @ 0x0809152C
 	b .L08092334
 	.align 2, 0
 .L08092308: .4byte 0x0000C350
-.L0809230C: .4byte gUnk_08100350
-.L08092310: .4byte gUnk_08100360
-.L08092314: .4byte gUnk_08100368
-.L08092318: .4byte gUnk_0810037C
-.L0809231C: .4byte gUnk_08100388
+.L0809230C: .4byte gText_BlacksmithUpgrade_WorkOrderPrefix
+.L08092310: .4byte gText_BlacksmithUpgrade_WorkOrderGoldSuffix
+.L08092314: .4byte gText_BlacksmithUpgrade_WorkOrderDaysPrefix
+.L08092318: .4byte gText_BlacksmithUpgrade_WorkOrderDaysSuffix
+.L0809231C: .4byte gText_BlacksmithUpgrade_WorkOrderQuestion
 .L08092320: .4byte 0x00001AA8
 .L08092324: .4byte gUnk_08100398
 .L08092328: .4byte gText_BlacksmithUpgrade_InsufficientGold

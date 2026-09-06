@@ -176,6 +176,16 @@ char const gText_BlacksmithUpgrade_DowngradeConfirmation[] BLACKSMITH_UPGRADE_PR
     "が悪くなってしまうぞ。\r\n"
     "いいのか？{Press}";
 
+char const gText_BlacksmithUpgrade_WorkOrderPrefix[] BLACKSMITH_UPGRADE_DYNAMIC =
+    "その道具は、\r\n";
+
+char const gText_BlacksmithUpgrade_WorkOrderGoldSuffix[] BLACKSMITH_UPGRADE_DYNAMIC =
+    "Ｇで";
+
+char const gText_BlacksmithUpgrade_WorkOrderDaysSuffix[] BLACKSMITH_UPGRADE_DYNAMIC =
+    "日かかるぞ。\r\n"
+    "よろしいかな？{Press}";
+
 char const gText_BlacksmithUpgrade_InsufficientGold[] BLACKSMITH_UPGRADE_RESULT =
     "…………………\r\n"
     "金が足りんぞ？\r\n"

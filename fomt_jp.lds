@@ -591,7 +591,7 @@ SECTIONS
         FILL(0x00);
         . = 0xFFAE4; data/text/blacksmith.o(.rodata.blacksmith_upgrade_prompts);
         FILL(0x00);
-        . = 0xFFCCC; asm/data/data_080F9EB8.o(.rodata.blacksmith_upgrade_dynamic);
+        . = 0xFFCCC; data/text/blacksmith.o(.rodata.blacksmith_upgrade_dynamic);
         . = 0xFFD04; asm/data/data_080F9EB8.o(.rodata.blacksmith_upgrade_result_padding);
         FILL(0x00);
         . = 0xFFD08; data/text/blacksmith.o(.rodata.blacksmith_upgrade_result);

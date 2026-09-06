@@ -29,6 +29,7 @@ struct BlacksmithMenuHeader
 #define BLACKSMITH_CATALOG SECTION(".rodata.blacksmith_catalog")
 #define BLACKSMITH_DIALOGUE SECTION(".rodata.blacksmith_dialogue")
 #define BLACKSMITH_UPGRADE_PROMPTS SECTION(".rodata.blacksmith_upgrade_prompts")
+#define BLACKSMITH_UPGRADE_DYNAMIC SECTION(".rodata.blacksmith_upgrade_dynamic")
 #define BLACKSMITH_UPGRADE_RESULT SECTION(".rodata.blacksmith_upgrade_result")
 
 extern char const gText_Blacksmith_ToolUpgradeMenuLabel[];
@@ -76,6 +77,15 @@ extern char const gText_BlacksmithUpgrade_CannotChangeMind[];
 extern char const gText_BlacksmithUpgrade_InsufficientExperience[];
 extern char const gText_BlacksmithUpgrade_AlreadyUpgradedWithOre[];
 extern char const gText_BlacksmithUpgrade_DowngradeConfirmation[];
+extern char const gText_BlacksmithUpgrade_WorkOrderPrefix[];
+extern char const gText_BlacksmithUpgrade_WorkOrderGoldSuffix[];
+#if defined(REGION_US)
+extern char const gText_BlacksmithUpgrade_WorkOrderDaysPrefix[];
+#endif
+extern char const gText_BlacksmithUpgrade_WorkOrderDaysSuffix[];
+#if defined(REGION_US)
+extern char const gText_BlacksmithUpgrade_WorkOrderQuestion[];
+#endif
 extern char const gText_BlacksmithUpgrade_InsufficientGold[];
 extern char const gText_BlacksmithUpgrade_ResultYes[];
 extern char const gText_BlacksmithUpgrade_ResultNo[];

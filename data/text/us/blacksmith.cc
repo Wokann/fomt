@@ -179,6 +179,22 @@ char const gText_BlacksmithUpgrade_DowngradeConfirmation[] BLACKSMITH_UPGRADE_PR
     "trying to do, downgrade\r\n"
     "your Tools?!{Press}";
 
+char const gText_BlacksmithUpgrade_WorkOrderPrefix[] BLACKSMITH_UPGRADE_DYNAMIC =
+    "That Tool is ";
+
+char const gText_BlacksmithUpgrade_WorkOrderGoldSuffix[] BLACKSMITH_UPGRADE_DYNAMIC =
+    "G, \r\n";
+
+char const gText_BlacksmithUpgrade_WorkOrderDaysPrefix[] BLACKSMITH_UPGRADE_DYNAMIC =
+    "and It will take ";
+
+char const gText_BlacksmithUpgrade_WorkOrderDaysSuffix[] BLACKSMITH_UPGRADE_DYNAMIC =
+    " days.\r\n";
+
+// This zero is the original padding byte before the following non-text word.
+char const gText_BlacksmithUpgrade_WorkOrderQuestion[] BLACKSMITH_UPGRADE_DYNAMIC =
+    "Is that okay?{Press}\x00";
+
 char const gText_BlacksmithUpgrade_InsufficientGold[] BLACKSMITH_UPGRADE_RESULT =
     "Hmm....You don't have\r\n"
     "enough money!\r\n"
