@@ -444,7 +444,11 @@ SECTIONS
         . = 0xFE484; src/won_shop_data.o(.rodata.won_shop_catalog);
         . = 0xFE4D4; data/text/won_shop.o(.rodata.won_shop_dialogue);
         . = 0xFE734; asm/data/data_080F9EB8.o(.rodata.won_shop_trailer);
-        . = 0xFE740; asm/data/data_080F9EB8.o(.rodata.unextracted_shop_data);
+        . = 0xFE740; src/winery_shop_data.o(.rodata.winery_shop_catalog);
+        . = 0xFE750; data/text/winery_shop.o(.rodata.winery_shop_dialogue);
+        FILL(0x00);
+        . = 0xFE8F0; asm/data/data_080F9EB8.o(.rodata.winery_shop_trailer);
+        . = 0xFE8FC; asm/data/data_080F9EB8.o(.rodata.unextracted_shop_data);
         . = 0xFEC44; asm/data/data_080F9EB8.o(.rodata.blacksmith_menu_prefix);
         . = 0xFEC7C; data/text/blacksmith.o(.rodata.blacksmith_menu);
         . = 0xFED8C; src/blacksmith_data.o(.rodata.blacksmith_catalog);

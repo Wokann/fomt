@@ -91,8 +91,11 @@
     .section .rodata.won_shop_trailer
     .incbin "baserom_jp.gba", 0xFDF90, (0xFDF9C - 0xFDF90)
 
+    .section .rodata.winery_shop_trailer
+    .incbin "baserom_jp.gba", 0xFE178, (0xFE184 - 0xFE178)
+
     .section .rodata.unextracted_shop_data
-    .incbin "baserom_jp.gba", 0xFDF9C, (0xFE53C - 0xFDF9C)
+    .incbin "baserom_jp.gba", 0xFE184, (0xFE53C - 0xFE184)
 
     .section .rodata.blacksmith_menu_padding
     .incbin "baserom_jp.gba", 0xFE6A0, (0xFE6A4 - 0xFE6A0)
@@ -625,41 +628,10 @@ gUnk_080FD920:
 
 	.section .rodata.unextracted_shop_data
 
-	.global gUnk_080FE740
-gUnk_080FE740:
-	.incbin "baserom_us.gba", 0xFE740, 0x10
+	.section .rodata.winery_shop_trailer
+	.incbin "baserom_us.gba", 0xFE8F0, (0xFE8FC - 0xFE8F0)
 
-	.global gUnk_080FE750
-gUnk_080FE750:
-	.incbin "baserom_us.gba", 0xFE750, 0x50
-
-	.global gUnk_080FE7A0
-gUnk_080FE7A0:
-	.incbin "baserom_us.gba", 0xFE7A0, 0x8
-
-	.global gUnk_080FE7A8
-gUnk_080FE7A8:
-	.incbin "baserom_us.gba", 0xFE7A8, 0x38
-
-	.global gUnk_080FE7E0
-gUnk_080FE7E0:
-	.incbin "baserom_us.gba", 0xFE7E0, 0x20
-
-	.global gUnk_080FE800
-gUnk_080FE800:
-	.incbin "baserom_us.gba", 0xFE800, 0x2C
-
-	.global gUnk_080FE82C
-gUnk_080FE82C:
-	.incbin "baserom_us.gba", 0xFE82C, 0x80
-
-	.global gUnk_080FE8AC
-gUnk_080FE8AC:
-	.incbin "baserom_us.gba", 0xFE8AC, 0x14
-
-	.global gUnk_080FE8C0
-gUnk_080FE8C0:
-	.incbin "baserom_us.gba", 0xFE8C0, 0x3C
+	.section .rodata.unextracted_shop_data
 
 	.global gUnk_080FE8FC
 gUnk_080FE8FC:

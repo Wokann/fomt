@@ -128951,7 +128951,7 @@ func_08080540: @ 0x08080540
 	strh r0, [r1]
 	ldr r0, [r5]
 	lsls r0, r0, #3
-	ldr r1, .L080807D0 @ =gUnk_080FE740
+	ldr r1, .L080807D0 @ =gWineryShopCatalog
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
 	ldr r0, [r0]
@@ -129058,7 +129058,7 @@ func_08080540: @ 0x08080540
 	lsls r1, r1, #0x13
 	asrs r1, r1, #0x10
 	bl func_08075E24
-	ldr r1, .L080807D0 @ =gUnk_080FE740
+	ldr r1, .L080807D0 @ =gWineryShopCatalog
 	ldr r0, [r7, #0x10]
 	lsls r0, r0, #2
 	adds r0, r0, r7
@@ -129147,7 +129147,7 @@ func_08080540: @ 0x08080540
 	mov pc, r0
 	.align 2, 0
 .L080807CC: .4byte gUnk_086678A0
-.L080807D0: .4byte gUnk_080FE740
+.L080807D0: .4byte gWineryShopCatalog
 .L080807D4: .4byte vtable_unk_080E5B80
 .L080807D8: .4byte 0x00000889
 .L080807DC: .4byte 0x000006A4
@@ -129164,7 +129164,7 @@ func_08080540: @ 0x08080540
 	cmp r0, r2
 	beq .L0808082A
 	add r4, sp, #0xa4
-	ldr r1, .L080808EC @ =gUnk_080FE740
+	ldr r1, .L080808EC @ =gWineryShopCatalog
 	lsls r0, r2, #2
 	adds r0, r0, r7
 	movs r3, #0xaa
@@ -129197,7 +129197,7 @@ func_08080540: @ 0x08080540
 	adds r0, r0, r1
 	ldr r0, [r0]
 	lsls r0, r0, #3
-	ldr r1, .L080808EC @ =gUnk_080FE740
+	ldr r1, .L080808EC @ =gWineryShopCatalog
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
 	ldr r0, [r0]
@@ -129264,7 +129264,7 @@ func_08080540: @ 0x08080540
 	ldr r0, [sp, #0xdc]
 	cmp r0, #0
 	bne .L08080908
-	ldr r1, .L08080900 @ =gUnk_080FE750
+	ldr r1, .L08080900 @ =gText_WineryShop_InventoryFull
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r1, #0xd2
@@ -129277,12 +129277,12 @@ func_08080540: @ 0x08080540
 	movs r0, #1
 	b .L08080B52
 	.align 2, 0
-.L080808EC: .4byte gUnk_080FE740
+.L080808EC: .4byte gWineryShopCatalog
 .L080808F0: .4byte 0x000006A1
 .L080808F4: .4byte 0x00001C38
 .L080808F8: .4byte 0x00001C2C
 .L080808FC: .4byte 0x00001AA8
-.L08080900: .4byte gUnk_080FE750
+.L08080900: .4byte gText_WineryShop_InventoryFull
 .L08080904: .4byte 0x000006A4
 .L08080908:
 	movs r4, #0
@@ -129382,7 +129382,7 @@ func_08080540: @ 0x08080540
 	mov r1, sl
 	strb r1, [r0]
 .L080809DC:
-	ldr r2, .L08080AD8 @ =gUnk_080FE7A0
+	ldr r2, .L08080AD8 @ =gText_WineryShop_BlankLinePair
 	mov sb, r2
 	adds r0, r4, #0
 	bl strlen
@@ -129501,13 +129501,13 @@ func_08080540: @ 0x08080540
 	.align 2, 0
 .L08080AD0: .4byte 0x00001C38
 .L08080AD4: .4byte 0x000006AC
-.L08080AD8: .4byte gUnk_080FE7A0
+.L08080AD8: .4byte gText_WineryShop_BlankLinePair
 .L08080ADC: .4byte gUnk_08117828
 .L08080AE0: .4byte gUnk_08117814
 .L08080AE4: .4byte 0x00000684
 .L08080AE8: .4byte 0x000006A4
 .L08080AEC:
-	ldr r1, .L08080B08 @ =gUnk_080FE7A8
+	ldr r1, .L08080B08 @ =gText_WineryShop_InsufficientGold
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r1, #0xd2
@@ -129520,7 +129520,7 @@ func_08080540: @ 0x08080540
 	movs r0, #1
 	b .L08080B52
 	.align 2, 0
-.L08080B08: .4byte gUnk_080FE7A8
+.L08080B08: .4byte gText_WineryShop_InsufficientGold
 .L08080B0C: .4byte 0x000006A4
 .L08080B10:
 	adds r0, r7, #0
@@ -129535,14 +129535,14 @@ func_08080540: @ 0x08080540
 	ldrb r0, [r0]
 	cmp r0, #0
 	beq .L08080B38
-	ldr r1, .L08080B34 @ =gUnk_080FE7E0
+	ldr r1, .L08080B34 @ =gText_WineryShop_ReturnCustomer
 	adds r0, r7, #0
 	bl func_080CABA0
 	b .L08080B40
 	.align 2, 0
-.L08080B34: .4byte gUnk_080FE7E0
+.L08080B34: .4byte gText_WineryShop_ReturnCustomer
 .L08080B38:
-	ldr r1, .L08080B68 @ =gUnk_080FE800
+	ldr r1, .L08080B68 @ =gText_WineryShop_NoPurchase
 	adds r0, r7, #0
 	bl func_080CABA0
 .L08080B40:
@@ -129567,7 +129567,7 @@ func_08080540: @ 0x08080540
 	bl func_080C9020
 	b .L08080D64
 	.align 2, 0
-.L08080B68: .4byte gUnk_080FE800
+.L08080B68: .4byte gText_WineryShop_NoPurchase
 .L08080B6C: .4byte 0x000006A4
 .L08080B70:
 	movs r2, #0xd4
@@ -129613,7 +129613,7 @@ func_08080540: @ 0x08080540
 	adds r0, r0, r2
 	ldr r0, [r0]
 	lsls r0, r0, #3
-	ldr r1, .L08080C6C @ =gUnk_080FE740
+	ldr r1, .L08080C6C @ =gWineryShopCatalog
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
 	ldr r0, [r0]
@@ -129682,19 +129682,19 @@ func_08080540: @ 0x08080540
 	ldr r1, [r2]
 	adds r2, r4, #0
 	bl AddAmountOf__6FridgeUiUi
-	ldr r1, .L08080C7C @ =gUnk_080FE82C
+	ldr r1, .L08080C7C @ =gText_WineryShop_Delivery
 	adds r0, r7, #0
 	bl func_080CABA0
 	b .L08080C88
 	.align 2, 0
 .L08080C68: .4byte 0x00000684
-.L08080C6C: .4byte gUnk_080FE740
+.L08080C6C: .4byte gWineryShopCatalog
 .L08080C70: .4byte 0x00001AA8
 .L08080C74: .4byte 0x00001C2C
 .L08080C78: .4byte 0x00001C38
-.L08080C7C: .4byte gUnk_080FE82C
+.L08080C7C: .4byte gText_WineryShop_Delivery
 .L08080C80:
-	ldr r1, .L08080CA8 @ =gUnk_080FE8AC
+	ldr r1, .L08080CA8 @ =gText_WineryShop_PurchaseComplete
 	adds r0, r7, #0
 	bl func_080CABA0
 .L08080C88:
@@ -129714,7 +129714,7 @@ func_08080540: @ 0x08080540
 	strb r0, [r1]
 	b .L08080D64
 	.align 2, 0
-.L08080CA8: .4byte gUnk_080FE8AC
+.L08080CA8: .4byte gText_WineryShop_PurchaseComplete
 .L08080CAC: .4byte 0x000006A4
 .L08080CB0:
 	adds r0, r7, #0
@@ -129754,7 +129754,7 @@ func_08080540: @ 0x08080540
 	ldr r0, [r0]
 	cmp r0, #3
 	bne .L08080D64
-	ldr r1, .L08080D20 @ =gUnk_080FE8C0
+	ldr r1, .L08080D20 @ =gText_WineryShop_PurchaseMorePrompt
 	adds r0, r7, #0
 	bl func_080CABA0
 	movs r1, #0xd2
@@ -129768,7 +129768,7 @@ func_08080540: @ 0x08080540
 	str r0, [r1]
 	b .L08080D64
 	.align 2, 0
-.L08080D20: .4byte gUnk_080FE8C0
+.L08080D20: .4byte gText_WineryShop_PurchaseMorePrompt
 .L08080D24: .4byte 0x000006A4
 .L08080D28:
 	movs r3, #0xd4
