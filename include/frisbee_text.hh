@@ -3,6 +3,8 @@
 
 #include "prelude.h"
 
+#define FRISBEE_SCOREBOARD_TEXT SECTION(".rodata.frisbee_scoreboard")
+
 // Static UI text used by the Frisbee practice and tournament flow.
 // The regional source files define the same semantic labels at their
 // independently matched ROM locations.
@@ -21,5 +23,6 @@ extern char const gText_Frisbee_PlayAgain[];
 extern char const gText_Frisbee_DogNoLongerWantsToPlay[];
 extern char const gText_Frisbee_FoundItem[];
 extern char const gText_Frisbee_FoundNothing[];
+extern char const gText_Frisbee_TournamentScoreboard[];
 
 #endif // FRISBEE_TEXT_HH

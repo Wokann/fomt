@@ -78,3 +78,6 @@ char const gText_Frisbee_FoundItem[] SECTION(".rodata.frisbee") =
 char const gText_Frisbee_FoundNothing[] SECTION(".rodata.frisbee") =
     "\p"
     "なにもみつからなかった…{Press}";
+
+char const gText_Frisbee_TournamentScoreboard[] FRISBEE_SCOREBOARD_TEXT =
+    "フリスビー大会　記録表";

@@ -477,6 +477,8 @@ SECTIONS
         asm/data/data_080F9EB8.o(.rodata.localized_data_prefix);
         . = 0xF97E6; data/text/festival_contestants.o(.rodata.festival_contestants_set0);
         . = 0xF996C; asm/data/data_080F9EB8.o(.rodata.festival_contestants_set0_trailer_prefix);
+        . = 0xF9994; data/text/frisbee.o(.rodata.frisbee_scoreboard);
+        . = 0xF99AB; asm/data/data_080F9EB8.o(.rodata.frisbee_scoreboard_trailer);
         . = 0xF9BD4; data/text/frisbee.o(.rodata.frisbee);
         . = 0xF9F4F; asm/data/data_080F9EB8.o(.rodata.frisbee_text_trailer);
         . = 0xF9FD6; data/text/festival_contestants.o(.rodata.festival_contestants_set1);

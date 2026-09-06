@@ -83,3 +83,6 @@ char const gText_Frisbee_FoundItem[] SECTION(".rodata.frisbee") =
 char const gText_Frisbee_FoundNothing[] SECTION(".rodata.frisbee") =
     "\p"
     "You didn't find anything.{Press}";
+
+char const gText_Frisbee_TournamentScoreboard[] FRISBEE_SCOREBOARD_TEXT =
+    "Frisbee Contest　Scoreboard";

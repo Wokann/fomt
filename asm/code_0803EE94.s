@@ -34466,7 +34466,7 @@ func_080516F0: @ 0x080516F0
 	add r1, sp, #0x35c
 	movs r2, #0
 	bl func_0804E7A0
-	ldr r1, .L08051D10 @ =gUnk_080FA158
+	ldr r1, .L08051D10 @ =gText_Frisbee_TournamentScoreboard
 	movs r2, #1
 	ldr r0, .L08051D14 @ =0x00000A34
 	add r0, sp
@@ -34583,7 +34583,7 @@ func_080516F0: @ 0x080516F0
 .L08051D04: .4byte 0x0600F000
 .L08051D08: .4byte 0x03FF03FF
 .L08051D0C: .4byte 0x00000A6C
-.L08051D10: .4byte gUnk_080FA158
+.L08051D10: .4byte gText_Frisbee_TournamentScoreboard
 .L08051D14: .4byte 0x00000A34
 .L08051D18: .4byte 0x06002000
 .L08051D1C: .4byte 0x00000A54

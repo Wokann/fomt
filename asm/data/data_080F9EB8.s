@@ -5,7 +5,10 @@
     .incbin "baserom_jp.gba", 0xF9708, (0xF97E6 - 0xF9708)
 
     .section .rodata.festival_contestants_set0_trailer_prefix
-    .incbin "baserom_jp.gba", 0xF996C, (0xF9BD4 - 0xF996C)
+    .incbin "baserom_jp.gba", 0xF996C, (0xF9994 - 0xF996C)
+
+    .section .rodata.frisbee_scoreboard_trailer
+    .incbin "baserom_jp.gba", 0xF99AB, (0xF9BD4 - 0xF99AB)
 
     .section .rodata.frisbee_text_trailer
     .incbin "baserom_jp.gba", 0xF9F4F, (0xF9FD6 - 0xF9F4F)
@@ -276,9 +279,7 @@ gUnk_080F9F7C:
 gUnk_080FA12E:
 	.incbin "baserom_us.gba", 0xFA12E, 0x2A
 
-	.global gUnk_080FA158
-gUnk_080FA158:
-	.incbin "baserom_us.gba", 0xFA158, 0x1C
+	.section .rodata.frisbee_scoreboard_trailer
 
 	.global gUnk_080FA174
 gUnk_080FA174:
