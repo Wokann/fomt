@@ -163,8 +163,8 @@
     .section .rodata.cooking_menu_padding
     .incbin "baserom_jp.gba", 0x100A0F, (0x100A10 - 0x100A0F)
 
-    .section .rodata.cooking_result_trailer
-    .incbin "baserom_jp.gba", 0x100A22, (0x100A84 - 0x100A22)
+    .section .rodata.cooking_result_padding
+    .incbin "baserom_jp.gba", 0x100A22, (0x100A24 - 0x100A22)
 
     .section .rodata.cooking_recipe_actions_padding
     .incbin "baserom_jp.gba", 0x100B21, (0x100B24 - 0x100B21)
@@ -809,20 +809,6 @@ gUnk_08100AC2:
 
 	.section .rodata.cooking_result_padding
 	.incbin "baserom_us.gba", 0x100F03, (0x100F04 - 0x100F03)
-
-	.section .rodata.cooking_menu_trailer_prefix
-
-	.global gUnk_08100F04
-gUnk_08100F04:
-	.incbin "baserom_us.gba", 0x100F04, 0x2C
-
-	.global gUnk_08100F30
-gUnk_08100F30:
-	.incbin "baserom_us.gba", 0x100F30, 0x14
-
-	.global gUnk_08100F44
-gUnk_08100F44:
-	.incbin "baserom_us.gba", 0x100F44, 0x34
 
 	.section .rodata.cooking_recipe_actions_padding
 	.incbin "baserom_us.gba", 0x100FDD, (0x100FE0 - 0x100FDD)

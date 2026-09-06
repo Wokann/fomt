@@ -4,6 +4,7 @@
 #include "prelude.h"
 
 #define COOKING_RESULT_TEXT SECTION(".rodata.cooking_result_text")
+#define COOKING_RESULT_SUCCESS_TEXT SECTION(".rodata.cooking_result_success_text")
 #define COOKING_RECIPE_ACTIONS_EXTRA_TEXT SECTION(".rodata.cooking_recipe_actions_extra_text")
 
 extern char const gText_Cooking_SeasoningSet[];
@@ -29,6 +30,9 @@ extern char const gText_Cooking_Recipe_Empty[];
 extern char const gText_Cooking_Recipe_StorageHeader[];
 extern char const gText_Cooking_Recipe_SelectionNames[13][11];
 extern char const gText_Cooking_ResultFailure[];
+extern char const gText_Cooking_ResultSuccessNewRecipe[];
+extern char const gText_Cooking_ResultSuccess[];
+extern char const gText_Cooking_ResultComparison[];
 
 #if defined(REGION_JP)
 extern char const gText_Cooking_Recipe_LeavePreviousAsIs[];

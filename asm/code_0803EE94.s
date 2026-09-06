@@ -173046,12 +173046,12 @@ func_08097D38: @ 0x08097D38
 .L08097EF4: .4byte gText_Cooking_ResultFailure
 .L08097EF8: .4byte 0x000033D8
 .L08097EFC:
-	ldr r5, .L08097F00 @ =gUnk_08100F04
+	ldr r5, .L08097F00 @ =gText_Cooking_ResultSuccessNewRecipe
 	b .L08097F5E
 	.align 2, 0
-.L08097F00: .4byte gUnk_08100F04
+.L08097F00: .4byte gText_Cooking_ResultSuccessNewRecipe
 .L08097F04:
-	ldr r5, .L08097F18 @ =gUnk_08100F30
+	ldr r5, .L08097F18 @ =gText_Cooking_ResultSuccess
 	adds r4, r6, #0
 	adds r4, #0x80
 	adds r0, r4, #0
@@ -173061,10 +173061,10 @@ func_08097D38: @ 0x08097D38
 	adds r2, r6, r0
 	b .L08097F6E
 	.align 2, 0
-.L08097F18: .4byte gUnk_08100F30
+.L08097F18: .4byte gText_Cooking_ResultSuccess
 .L08097F1C: .4byte 0x000033D8
 .L08097F20:
-	ldr r5, .L08097F4C @ =gUnk_08100F30
+	ldr r5, .L08097F4C @ =gText_Cooking_ResultSuccess
 	adds r4, r6, #0
 	adds r4, #0x80
 	adds r0, r4, #0
@@ -173085,12 +173085,12 @@ func_08097D38: @ 0x08097D38
 	strh r0, [r1]
 	b .L08097FFE
 	.align 2, 0
-.L08097F4C: .4byte gUnk_08100F30
+.L08097F4C: .4byte gText_Cooking_ResultSuccess
 .L08097F50: .4byte 0x000033D8
 .L08097F54: .4byte 0x000033D2
 .L08097F58: .4byte 0x000033D4
 .L08097F5C:
-	ldr r5, .L08097F78 @ =gUnk_08100F44
+	ldr r5, .L08097F78 @ =gText_Cooking_ResultComparison
 .L08097F5E:
 	adds r4, r6, #0
 	adds r4, #0x80
@@ -173105,7 +173105,7 @@ func_08097D38: @ 0x08097D38
 	bl func_08050DA0
 	b .L08097FFE
 	.align 2, 0
-.L08097F78: .4byte gUnk_08100F44
+.L08097F78: .4byte gText_Cooking_ResultComparison
 .L08097F7C: .4byte 0x000033D8
 .L08097F80:
 	adds r0, r6, #0
