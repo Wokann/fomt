@@ -87,6 +87,12 @@ struct IndexedResourceArchive
 
     IndexedResourceResult Resolve(u32 index) const
         SECTION(".text.indexed_resource_archive_resolve");
+
+    u16 GetGroupDescriptorCount() const
+        SECTION(".text.indexed_resource_archive_get_group_descriptor_count");
+
+    u16 GetEntryDescriptorCount() const
+        SECTION(".text.indexed_resource_archive_get_entry_descriptor_count");
 };
 
 IndexedResourceArchive::IndexedResourceArchive(u8 const * data)
@@ -161,6 +167,16 @@ IndexedResourceResult IndexedResourceArchive::Resolve(u32 index) const
     }
 
     return IndexedResourceResult(0, 0);
+}
+
+u16 IndexedResourceArchive::GetGroupDescriptorCount() const
+{
+    return group_descriptor_count;
+}
+
+u16 IndexedResourceArchive::GetEntryDescriptorCount() const
+{
+    return entry_descriptor_count;
 }
 
 struct IndexedResourceHandle

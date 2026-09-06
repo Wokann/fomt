@@ -77,7 +77,7 @@
     jp_code_0803ee_func func_0805DE24, 0x5DB68, 0x5DCAC
     jp_code_0803ee_func func_0805DF68, 0x5DCAC, 0x5E410
     .section .text.indexed_resource_archive_resolve_after
-    jp_code_0803ee_func func_0805E790, 0x5E4D4, 0x5E568
+    jp_code_0803ee_func func_0805E790, 0x5E4D4, 0x5E560
     .section .text.indexed_resource_handle_constructor_after
     jp_code_0803ee_func func_0805E894, 0x5E5D8, 0x5E634
     jp_code_0803ee_func func_0805E8F0, 0x5E634, 0x5E968
@@ -59483,10 +59483,6 @@ func_0805E790: @ 0x0805E790
 	pop {r1}
 	bx r1
 	.align 2, 0
-.L0805E81C:
-	.byte 0x40, 0x8C, 0x70, 0x47
-	.byte 0x00, 0x8C, 0x70, 0x47
-
 	.section .text.indexed_resource_handle_constructor_after
 
 	thumb_func_start func_0805E894

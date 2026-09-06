@@ -218,6 +218,10 @@ SECTIONS
         . = 0x5E4A4; /* JP/US-shared indexed resource-archive resolver. */
         src/resource_handle.o(.text.indexed_resource_archive_resolve);
         . = 0x5E4D4; asm/code_0803EE94.o(.text.indexed_resource_archive_resolve_after);
+        . = 0x5E560; /* JP/US-shared indexed resource-archive group count. */
+        src/resource_handle.o(.text.indexed_resource_archive_get_group_descriptor_count);
+        . = 0x5E564; /* JP/US-shared indexed resource-archive entry count. */
+        src/resource_handle.o(.text.indexed_resource_archive_get_entry_descriptor_count);
         . = 0x5E568; /* JP/US-shared indexed resource-handle constructor. */
         src/resource_handle.o(.text.indexed_resource_handle_constructor);
         . = 0x5E594; /* JP/US-shared indexed resource-handle initializer. */
