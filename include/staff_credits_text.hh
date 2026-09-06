@@ -63,5 +63,11 @@ extern char const gText_StaffCredits_0055[];
 extern char const gText_StaffCredits_0056[];
 extern char const gText_StaffCredits_0057[];
 extern char const gText_StaffCredits_0058[];
+// The US table has five additional localization-credit fields.
+extern char const gText_StaffCredits_0059[];
+extern char const gText_StaffCredits_0060[];
+extern char const gText_StaffCredits_0061[];
+extern char const gText_StaffCredits_0062[];
+extern char const gText_StaffCredits_0063[];
 
 #endif // STAFF_CREDITS_TEXT_HH

@@ -52,7 +52,7 @@ gText_CharacterName_Empty:
     .section .rodata.reference_guide_unextracted_trailer
     .incbin "baserom_jp.gba", 0x1189D4, (0x13BCF8 - 0x1189D4)
     .else
-    .section .rodata.reference_guide_harvest_sprite_minigames_prefix
+    .section .rodata.localized_data_prefix
 
 	.incbin "baserom_us.gba", 0xF9EAC, 0x19
 
@@ -898,7 +898,9 @@ gUnk_080FC066:
 
 	.global gUnk_080FC082
 gUnk_080FC082:
-	.incbin "baserom_us.gba", 0xFC082, 0x432
+	.incbin "baserom_us.gba", 0xFC082, (0xFC0A4 - 0xFC082)
+
+	.section .rodata.staff_credits_trailer
 
 	.global gUnk_080FC4B4
 gUnk_080FC4B4:
