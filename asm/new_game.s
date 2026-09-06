@@ -1795,7 +1795,7 @@ func_08004570: @ 0x08004570
     ldr r0, [r0]
     movs r1, #0xa0
     lsls r1, r1, #0x13
-    ldr r2, .L080046A8 @ =gUnk_080F9F7C
+    ldr r2, .L080046A8 @ =gText_NameEntry_PresetAnimalNames - 14
     ldr r2, [r2]
     bl func_08008E64
     add r1, sp, #0xc
@@ -1908,7 +1908,7 @@ func_08004570: @ 0x08004570
     b .L08004674
     .align 2, 0
 .L080046A4: .4byte gUnk_080F9F78
-.L080046A8: .4byte gUnk_080F9F7C
+.L080046A8: .4byte gText_NameEntry_PresetAnimalNames - 14
 .L080046AC: .4byte 0x00001E4C
 .L080046B0: .4byte gUnk_080F9F70
 .L080046B4: .4byte 0x0600C000

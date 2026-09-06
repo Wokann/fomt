@@ -381,6 +381,9 @@ SECTIONS
         . = ALIGN(4); asm/data/data_080F1A80.o(.rodata);
         . = ALIGN(4); src/script_engine.o(.rodata);
         . = ALIGN(4); asm/data/data_080F9EB8.o(.rodata.localized_data_prefix);
+        . = 0xF9F7C; asm/data/data_080F9EB8.o(.rodata.name_entry_preset_animal_names_prefix);
+        . = 0xF9F8A; data/text/new_game_name_entry.o(.rodata.name_entry_preset_animal_names);
+        . = 0xFA12E; asm/data/data_080F9EB8.o(.rodata.name_entry_ui_character_codes);
         . = 0xFA158; data/text/frisbee.o(.rodata.frisbee_scoreboard);
         . = 0xFA174; asm/data/data_080F9EB8.o(.rodata.frisbee_scoreboard_trailer);
         . = 0xFA39C; data/text/frisbee.o(.rodata.frisbee);

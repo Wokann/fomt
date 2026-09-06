@@ -295,9 +295,10 @@ gUnk_080F9F74:
 gUnk_080F9F78:
 	.incbin "baserom_us.gba", 0xF9F78, 0x4
 
-	.global gUnk_080F9F7C
-gUnk_080F9F7C:
-	.incbin "baserom_us.gba", 0xF9F7C, 0x1B2
+	.section .rodata.name_entry_preset_animal_names_prefix
+	.incbin "baserom_us.gba", 0xF9F7C, (0xF9F8A - 0xF9F7C)
+
+	.section .rodata.name_entry_ui_character_codes
 
 	.global gUnk_080FA12E
 gUnk_080FA12E:
