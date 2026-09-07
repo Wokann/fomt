@@ -574,7 +574,6 @@ SECTIONS
         . = 0x1004E0; data/text/link_communication.o(.rodata.link_communication);
         . = 0x1007AC; asm/data/data_080F9EB8.o(.rodata.link_communication_trailer);
         . = 0x100AD2; data/text/recovery_status.o(.rodata);
-        . = 0x100DE1; asm/data/data_080F9EB8.o(.rodata.recovery_status_padding);
         . = 0x100DE4; data/text/cooking_menu.o(.rodata);
         . = 0x100EF0; data/text/cooking_menu.o(.rodata.cooking_result_text);
         . = 0x100F04; data/text/cooking_menu.o(.rodata.cooking_result_success_text);

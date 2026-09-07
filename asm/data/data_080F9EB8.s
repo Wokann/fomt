@@ -455,9 +455,6 @@ gUnk_08100AC0:
 gUnk_08100AC2:
 	.incbin "baserom_us.gba", 0x100AC2, 0x10
 
-	.section .rodata.recovery_status_padding
-	.incbin "baserom_us.gba", 0x100DE1, (0x100DE4 - 0x100DE1)
-
 	.section .rodata.cooking_recipe_inventory_trailer
 
 	.global gUnk_081010E8
