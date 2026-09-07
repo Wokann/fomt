@@ -522,7 +522,7 @@ SECTIONS
         FILL(0xFF);
         src/item.o(.rodata.item_product);
         . = 0xEFD48; /* JP counterpart of data_080F0348. */
-        asm/data/data_080F0348.o(.rodata);
+        src/item.o(.rodata.item_product_trailer);
         FILL(0x00);
         data/text/calendar.o(.rodata.calendar.season);
         data/text/calendar.o(.rodata.calendar.none);

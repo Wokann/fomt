@@ -437,7 +437,7 @@ SECTIONS
         . = ALIGN(4); src/item.o(.rodata.item_article);
         FILL(0xFF);
         . = ALIGN(4); src/item.o(.rodata.item_product);
-        . = ALIGN(4); asm/data/data_080F0348.o(.rodata);
+        src/item.o(.rodata.item_product_trailer);
         FILL(0x00);
         data/text/calendar.o(.rodata.calendar.season);
         data/text/calendar.o(.rodata.calendar.none);

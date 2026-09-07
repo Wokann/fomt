@@ -1092,3 +1092,7 @@ ProductInfo const gProductInfo[] __attribute__((section(".rodata.item_product"))
     /* 0x65 */ { 62, ProductInfo::KIND_ARTICLE, ARTICLE_AGATE },
     /* 0x66 */ { 60, ProductInfo::KIND_ARTICLE, ARTICLE_AMETHYST },
 };
+
+extern char const gCppRuntimeBadAlloc_ProductInfo[]
+    SECTION(".rodata.item_product_trailer") =
+    "bad_alloc";
