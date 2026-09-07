@@ -6,9 +6,6 @@
     .section .rodata.calendar_trailer
     .incbin "baserom_jp.gba", 0xEFD78, (0xEFDD0 - 0xEFD78)
 
-    .section .rodata.load_error_trailer
-    .incbin "baserom_jp.gba", 0xEFDDC, (0xEFDF8 - 0xEFDDC)
-
     .section .rodata.help_menu_trailer
     .incbin "baserom_jp.gba", 0xEFE2B, (0xEFEA4 - 0xEFE2B)
 
@@ -51,9 +48,6 @@ gUnk_080F04E4:
 	.global gUnk_080F0566
 gUnk_080F0566:
 	.incbin "baserom_us.gba", 0xF0566, 0x26
-
-	.section .rodata.load_error_trailer
-	.incbin "baserom_us.gba", 0xF059C, (0xF05B8 - 0xF059C)
 
 	.section .rodata.help_menu_trailer
 
