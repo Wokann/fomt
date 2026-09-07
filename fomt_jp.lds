@@ -687,7 +687,6 @@ SECTIONS
         . = 0x103D9C; src/character_names_data.o(.rodata.character_name_entries);
         . = 0x103EF4; asm/data/data_080F9EB8.o(.rodata.character_names_table_trailer);
         . = 0x10447C; data/text/calendar.o(.rodata.calendar.dynamic_season_names);
-        . = 0x10448C; asm/data/data_080F9EB8.o(.rodata.calendar_dynamic_season_names_trailer);
         . = 0x1044B0; data/text/calendar.o(.rodata.calendar.festival_text);
         . = 0x1048DC; data/text/calendar.o(.rodata.calendar.festival_dynamic_text);
         . = 0x10491C; data/text/calendar.o(.rodata.calendar.no_plans_text);

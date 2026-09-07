@@ -1,5 +1,7 @@
 #include "calendar_text.hh"
 
+#include "unknown_types.hh"
+
 // The section boundaries preserve the original two-byte alignment gaps without
 // embedding padding bytes in the authored text.
 char const gText_Calendar_SeasonNames[4][3] SECTION(".rodata.calendar.season") ALIGN(1) = {
@@ -10,12 +12,36 @@ char const gText_Calendar_SeasonNames[4][3] SECTION(".rodata.calendar.season") A
 };
 
 // This is the separate fixed-width season-name copy expanded by the calendar
-// dynamic-field handler, not the normal calendar menu's season array above.
-char const gText_Calendar_DynamicSeasonNames[4][4] CALENDAR_DYNAMIC_SEASON_TEXT ALIGN(1) = {
-    "春",
-    "夏",
-    "秋",
-    "冬",
+// dynamic-field handler, followed by the native calendar date storage.  Its
+// final NUL is the first logical season byte; every following pair stores a
+// day and the next logical season byte.
+CalendarDynamicSeasonData const gText_Calendar_DynamicSeasonNames
+    CALENDAR_DYNAMIC_SEASON_TEXT ALIGN(1) = {
+    {
+        "春",
+        "夏",
+        "秋",
+        "冬",
+    },
+    {
+        {  1, SEASON_SPRING },
+        { 14, SEASON_SPRING },
+        { 18, SEASON_SPRING },
+        { 22, SEASON_SUMMER },
+        {  1, SEASON_SUMMER },
+        {  7, SEASON_SUMMER },
+        { 20, SEASON_SUMMER },
+        { 24, SEASON_AUTUMN },
+        {  3, SEASON_AUTUMN },
+        {  9, SEASON_AUTUMN },
+        { 13, SEASON_AUTUMN },
+        { 18, SEASON_AUTUMN },
+        { 21, SEASON_AUTUMN },
+        { 30, SEASON_WINTER },
+        { 14, SEASON_WINTER },
+        { 24, SEASON_WINTER },
+        { 30, SEASON_SPRING },
+    },
 };
 
 char const gText_Calendar_None[] SECTION(".rodata.calendar.none") =
