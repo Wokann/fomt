@@ -48,7 +48,5 @@ CharacterNameEntry const gCharacterNameEntries[CHARACTER_NAME_ENTRY_COUNT] SECTI
     { gText_CharacterName_Timid, 0x00000041 },           // CHARACTER_TIMID
 };
 
-#if defined(REGION_US)
 extern char const gCppRuntimeBadAlloc_CharacterNameEntriesTrailer[] =
     "bad_alloc";
-#endif

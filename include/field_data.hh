@@ -70,12 +70,23 @@ struct FieldRenderPatchArgumentData
 };
 
 // func_080AACB8 selects one half-open record-index span with the current
-// season before it scans the shared trailing range.  The record payloads
-// themselves are still retained in the native gUnk_081043BC block.
+// season before it scans the shared trailing range.  The corresponding
+// payloads are the gUnk_081043BC records declared below.
 struct PACKED FieldRenderSeasonalRecordRange
 {
     u8 first_record_index;
     u8 past_last_record_index;
+};
+
+// Native callers index these 12-byte records directly.  The first two words
+// have not been assigned gameplay meanings yet; the final pair is consumed as
+// signed field coordinates.
+struct Unk_081043BCRecord
+{
+    u32 value_00;
+    u32 value_04;
+    i16 x;
+    i16 y;
 };
 
 #define FIELD_RENDER_RECT_DESCRIPTOR_COUNT 82
@@ -89,6 +100,8 @@ extern FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_
 extern FieldRenderParallelTables const gFieldRenderParallelTables;
 extern FieldRenderPatchArgumentData const gFieldRenderPatchArgumentData;
 extern FieldRenderSeasonalRecordRange const gFieldRenderSeasonalRecordRanges[NUM_SEASONS];
+extern Unk_081043BCRecord const gUnk_081043BC[];
+extern char const gCppRuntimeBadAlloc_FieldItemRecordsTrailer[];
 extern u16 const gUnk_FieldRenderLookupValues[18][2];
 extern char const gCppRuntimeBadAlloc_FieldRenderRuntime00[];
 extern char const gCppRuntimeBadAlloc_FieldRenderRuntime01[];

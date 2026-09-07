@@ -627,7 +627,11 @@ SECTIONS
         . = 0x104128; data/text/character_names.o(.rodata);
         . = 0x104258; src/character_names_data.o(.rodata.character_name_entries);
         . = 0x1043B0; src/character_names_data.o(.rodata);
-        . = 0x1043BC; asm/data/data_080F9EB8.o(.rodata.reference_guide_harvest_sprite_minigames_after_character_names);
+        FILL(0x00);
+        . = ALIGN(4);
+        src/field_data.o(.rodata.field_item_records);
+        FILL(0x00);
+        . = ALIGN(4);
         . = 0x104938; data/text/calendar.o(.rodata.calendar.dynamic_season_names);
         . = 0x10497C; data/text/calendar.o(.rodata.calendar.festival_text);
         . = 0x104D98; data/text/calendar.o(.rodata.calendar.festival_dynamic_text);

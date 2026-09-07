@@ -39,9 +39,6 @@ jp_data_080fccf3_start:
     .section .rodata.cooking_recipe_inventory_trailer
     .incbin "baserom_jp.gba", 0x100C48, (0x103194 - 0x100C48)
 
-    .section .rodata.character_names_table_trailer
-    .incbin "baserom_jp.gba", 0x103EF4, (0x10447C - 0x103EF4)
-
     .section .rodata.static_data_after_item_discard
     .global gUnk_08118CF4
 gUnk_08118CF4:
@@ -576,12 +573,6 @@ gUnk_08100A36:
 	.global gUnk_0810110C
 gUnk_0810110C:
 	.incbin "baserom_us.gba", 0x10110C, 0x254C
-
-	.section .rodata.reference_guide_harvest_sprite_minigames_after_character_names
-
-	.global gUnk_081043BC
-gUnk_081043BC:
-	.incbin "baserom_us.gba", 0x1043BC, 0x57C
 
 	.section .rodata.static_data_after_item_discard
 	.incbin "baserom_us.gba", 0x117B14, (0x117B20 - 0x117B14)

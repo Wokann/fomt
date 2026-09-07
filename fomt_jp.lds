@@ -727,7 +727,12 @@ SECTIONS
         . = 0x103BFD; src/bachelorette.o(.rodata);
         . = 0x103C1C; data/text/character_names.o(.rodata);
         . = 0x103D9C; src/character_names_data.o(.rodata.character_name_entries);
-        . = 0x103EF4; asm/data/data_080F9EB8.o(.rodata.character_names_table_trailer);
+        . = 0x103EF4; src/character_names_data.o(.rodata);
+        FILL(0x00);
+        . = ALIGN(4);
+        src/field_data.o(.rodata.field_item_records);
+        FILL(0x00);
+        . = ALIGN(4);
         . = 0x10447C; data/text/calendar.o(.rodata.calendar.dynamic_season_names);
         . = 0x1044B0; data/text/calendar.o(.rodata.calendar.festival_text);
         . = 0x1048DC; data/text/calendar.o(.rodata.calendar.festival_dynamic_text);
