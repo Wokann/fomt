@@ -601,7 +601,7 @@ SECTIONS
         . = 0x104DDC; data/text/calendar.o(.rodata.calendar.no_plans_text);
         . = 0x104DEC; data/text/calendar.o(.rodata);
         . = 0x104E0C; data/text/possessive_labels.o(.rodata.possessive_labels);
-        . = 0x104E40; asm/data/data_080F9EB8.o(.rodata.static_data_after_possessive_labels);
+        . = 0x104E40; data/text/possessive_labels.o(.rodata);
         . = 0x104E4C; data/text/random_item.o(.rodata.random_item_fallback);
         . = 0x104E54; asm/data/data_080F9EB8.o(.rodata.random_item_fallback_trailer);
         . = 0x1075B0; data/text/harvest_sprite_minigames.o(.rodata.harvest_sprite_minigames_animal_husbandry);

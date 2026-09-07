@@ -17,3 +17,6 @@ char const gText_Possessive_Child[] POSSESSIVE_LABEL_TEXT =
 
 char const gText_Possessive_Player[] POSSESSIVE_LABEL_TEXT =
     "キミの";
+
+char const gCppRuntimeBadAlloc_PossessiveLabelsTrailer[] =
+    "bad_alloc";

@@ -692,7 +692,7 @@ SECTIONS
         . = 0x10491C; data/text/calendar.o(.rodata.calendar.no_plans_text);
         . = 0x104938; data/text/calendar.o(.rodata);
         . = 0x104958; data/text/possessive_labels.o(.rodata.possessive_labels);
-        . = 0x104988; asm/data/data_080F9EB8.o(.rodata.possessive_labels_trailer);
+        . = 0x104988; data/text/possessive_labels.o(.rodata);
         . = 0x104994; data/text/random_item.o(.rodata.random_item_fallback);
         . = 0x10499C; asm/data/data_080F9EB8.o(.rodata.random_item_fallback_trailer);
         . = 0x1070F4; data/text/harvest_sprite_minigames.o(.rodata.harvest_sprite_minigames_animal_husbandry);
