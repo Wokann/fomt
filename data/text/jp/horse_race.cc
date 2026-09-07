@@ -118,6 +118,10 @@ char const gText_HorseRace_MedalExchangeExplanation[] SECTION(".rodata.horse_rac
     "替えることが出来ないから、\r\n"
     "忘れないようにね。{Press}";
 
+u16 const gHorseRaceTicketCharacterCodes[]
+    SECTION(".rodata.horse_race_ticket_character_codes") ALIGN(2) =
+    FOMT_GLYPH_TEXT("０１２３４５６７８９枚倍Ｇ現在のメダル数");
+
 char const gText_HorseRace_TicketPurchaseTitle[] SECTION(".rodata.horse_race_ticket_ui") =
     "第　レース　勝ち馬投票券";
 

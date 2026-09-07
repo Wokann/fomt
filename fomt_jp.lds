@@ -584,7 +584,7 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4);
         . = 0xFA280; data/text/horse_race.o(.rodata.horse_race_dialogue);
-        . = 0xFA712; asm/data/data_080F9EB8.o(.rodata.horse_race_dialogue_trailer);
+        . = 0xFA712; data/text/horse_race.o(.rodata.horse_race_ticket_character_codes);
         . = 0xFA73C; data/text/horse_race.o(.rodata.horse_race_ticket_ui);
         . = 0xFA860; src/horse_race_data.o(.rodata.horse_race_ticket_controls);
         . = 0xFA88C; src/horse_race_data.o(.rodata.horse_race_ticket_controls_trailer);

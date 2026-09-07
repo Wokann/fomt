@@ -35,6 +35,9 @@ extern char const gText_HorseRace_RaceStartAnnouncement[];
 extern char const gText_HorseRace_RaceResults[];
 extern char const gText_HorseRace_RacePayouts[];
 extern char const gText_HorseRace_MedalExchangeExplanation[];
+// This ticket-rendering path reads one encoded glyph value at a time rather
+// than a normal NUL-terminated text byte stream.
+extern u16 const gHorseRaceTicketCharacterCodes[];
 extern char const gText_HorseRace_TicketPurchaseTitle[];
 extern char const gText_HorseRace_TicketPurchaseConfirm[];
 extern char const gText_HorseRace_TicketPurchaseMedalsToWin[];

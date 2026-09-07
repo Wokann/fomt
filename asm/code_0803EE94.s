@@ -50677,7 +50677,7 @@ func_08059C94: @ 0x08059C94
 .L08059FD0: .4byte 0x00004218
 .L08059FD4: .4byte 0x05000202
 .L08059FD8: .4byte 0x05000204
-.L08059FDC: .4byte gUnk_080FAE6A
+.L08059FDC: .4byte gHorseRaceTicketCharacterCodes
 
 	thumb_func_start func_08059FE0
 func_08059FE0: @ 0x08059FE0

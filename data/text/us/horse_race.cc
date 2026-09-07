@@ -115,6 +115,10 @@ char const gText_HorseRace_MedalExchangeExplanation[] SECTION(".rodata.horse_rac
     "Just remember, you can\r\n"
     "only do it here.{Press}";
 
+u16 const gHorseRaceTicketCharacterCodes[]
+    SECTION(".rodata.horse_race_ticket_character_codes") ALIGN(2) =
+    FOMT_GLYPH_TEXT("0123456789 xGYour medals");
+
 char const gText_HorseRace_TicketPurchaseTitle[] SECTION(".rodata.horse_race_ticket_ui") =
     "Race  Winning Ticket    ";
 

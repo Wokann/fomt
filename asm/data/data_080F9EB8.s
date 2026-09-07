@@ -7,9 +7,6 @@
     .section .rodata.name_entry_preset_animal_names_trailer_prefix
     .incbin "baserom_jp.gba", 0xF996C, (0xF9994 - 0xF996C)
 
-    .section .rodata.horse_race_dialogue_trailer
-    .incbin "baserom_jp.gba", 0xFA712, (0xFA73C - 0xFA712)
-
     .section .rodata.horse_race_prize_catalog_trailer_prefix
     .incbin "baserom_jp.gba", 0xFA988, (0xFA9A0 - 0xFA988)
 
@@ -550,12 +547,6 @@ gUnk_080F9F78:
 
 	.section .rodata.name_entry_preset_animal_names_prefix
 	.incbin "baserom_us.gba", 0xF9F7C, 0x4
-
-	.section .rodata.horse_race_dialogue_trailer
-
-	.global gUnk_080FAE6A
-gUnk_080FAE6A:
-	.incbin "baserom_us.gba", 0xFAE6A, 0x32
 
 	.section .rodata.horse_race_prize_catalog_trailer_prefix
 
