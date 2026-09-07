@@ -89,6 +89,7 @@ extern FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_
 extern FieldRenderParallelTables const gFieldRenderParallelTables;
 extern FieldRenderPatchArgumentData const gFieldRenderPatchArgumentData;
 extern FieldRenderSeasonalRecordRange const gFieldRenderSeasonalRecordRanges[NUM_SEASONS];
+extern u16 const gUnk_FieldRenderLookupValues[18][2];
 extern u16 const gFieldPlotPositionValues[7][4];
 extern FieldPlotPositionRule const gFieldPlotPositionRules[8];
 extern char const gCppRuntimeBadAlloc_FieldPlotPositionRules[];

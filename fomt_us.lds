@@ -625,7 +625,8 @@ SECTIONS
         FILL(0x00);
         . = 0x107438; src/bachelorette.o(.rodata.bachelorette_marriage_candidate_character_ids);
         . = 0x107450; src/field_data.o(.rodata.field_render_seasonal_record_ranges);
-        . = 0x107458; asm/data/data_080F9EB8.o(.rodata.field_render_seasonal_record_ranges_after);
+        . = 0x107458; src/field_data.o(.rodata.field_render_lookup_values);
+        . = 0x1074A0; asm/data/data_080F9EB8.o(.rodata.field_render_lookup_values_after);
         . = 0x1075B0; data/text/harvest_sprite_minigames.o(.rodata.harvest_sprite_minigames_animal_husbandry);
         . = 0x10787C; asm/data/data_080F9EB8.o(.rodata.harvest_sprite_minigames_animal_husbandry_trailer);
         . = 0x1078BD; data/text/chicken_festival.o(.rodata.chicken_festival_contestant_names);

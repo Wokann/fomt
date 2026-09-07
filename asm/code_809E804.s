@@ -25448,7 +25448,7 @@ func_080AAF1C: @ 0x080AAF1C
 	thumb_func_start func_080AAF28
 func_080AAF28: @ 0x080AAF28
 	lsls r1, r1, #0x18
-	ldr r2, .L080AAF38 @ =gUnk_08107458
+	ldr r2, .L080AAF38 @ =gUnk_FieldRenderLookupValues
 	lsrs r1, r1, #0x17
 	lsls r0, r0, #2
 	adds r1, r1, r0
@@ -25456,7 +25456,7 @@ func_080AAF28: @ 0x080AAF28
 	ldrh r0, [r1]
 	bx lr
 	.align 2, 0
-.L080AAF38: .4byte gUnk_08107458
+.L080AAF38: .4byte gUnk_FieldRenderLookupValues
 
 	thumb_func_start func_080AAF3C
 func_080AAF3C: @ 0x080AAF3C

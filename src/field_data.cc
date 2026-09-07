@@ -920,3 +920,28 @@ FieldRenderSeasonalRecordRange const gFieldRenderSeasonalRecordRanges[NUM_SEASON
         { 0x3A, 0x5E },
         { 0x5E, 0x60 },
     };
+
+// func_080AAF28 indexes this as [native_record_index][variant].  The two
+// columns are both consumed by the native field-render path, but their
+// gameplay roles remain undecoded.
+u16 const gUnk_FieldRenderLookupValues[18][2]
+    SECTION(".rodata.field_render_lookup_values") = {
+        { 0x0032, 0x0033 },
+        { 0x0135, 0x0136 },
+        { 0x0132, 0x0133 },
+        { 0x00F5, 0x00F6 },
+        { 0x0119, 0x011A },
+        { 0x0041, 0x0042 },
+        { 0x00D8, 0x00D9 },
+        { 0x0178, 0x0179 },
+        { 0x01EA, 0x01EB },
+        { 0x0142, 0x0143 },
+        { 0x0165, 0x0166 },
+        { 0x0100, 0x0101 },
+        { 0x01D9, 0x01DA },
+        { 0x0008, 0x0009 },
+        { 0x012F, 0x0130 },
+        { 0x0151, 0x0152 },
+        { 0x0110, 0x0111 },
+        { 0x01C4, 0x01C5 },
+    };
