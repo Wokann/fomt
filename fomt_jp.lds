@@ -695,7 +695,8 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4);
         . = 0xFFE70; data/text/link_communication.o(.rodata.link_communication);
-        . = 0x100130; asm/data/data_080F9EB8.o(.rodata.link_communication_trailer);
+        . = 0x100130; src/link_communication_data.o(.rodata);
+        . = 0x1003BA; asm/data/data_080F9EB8.o(.rodata.link_communication_trailer);
         . = 0x1005EA; data/text/recovery_status.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
