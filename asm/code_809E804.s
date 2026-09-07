@@ -16168,7 +16168,7 @@ func_080A6660: @ 0x080A6660
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080A66FE
-	ldr r1, .L080A6820 @ =gUnk_0810725C
+	ldr r1, .L080A6820 @ =gFarmHouseVisualDescriptors + 0x58
 	mov r0, r8
 	movs r2, #0x13
 	movs r3, #0x11
@@ -16181,7 +16181,7 @@ func_080A6660: @ 0x080A6660
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080A6718
-	ldr r1, .L080A6828 @ =gUnk_0810730C
+	ldr r1, .L080A6828 @ =gFarmHouseVisualDescriptors + 0x108
 	mov r0, r8
 	movs r2, #0x16
 	movs r3, #0x10
@@ -16194,7 +16194,7 @@ func_080A6660: @ 0x080A6660
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080A6732
-	ldr r1, .L080A6830 @ =gUnk_08107230
+	ldr r1, .L080A6830 @ =gFarmHouseVisualDescriptors + 0x2C
 	mov r0, r8
 	movs r2, #0x13
 	movs r3, #0x11
@@ -16207,7 +16207,7 @@ func_080A6660: @ 0x080A6660
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080A674C
-	ldr r1, .L080A6830 @ =gUnk_08107230
+	ldr r1, .L080A6830 @ =gFarmHouseVisualDescriptors + 0x2C
 	mov r0, r8
 	movs r2, #0x13
 	movs r3, #0x11
@@ -16218,12 +16218,12 @@ func_080A6660: @ 0x080A6660
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080A676E
-	ldr r1, .L080A6838 @ =gUnk_08107204
+	ldr r1, .L080A6838 @ =gFarmHouseVisualDescriptors
 	mov r0, r8
 	movs r2, #8
 	movs r3, #0xc
 	bl func_080A5BD8
-	ldr r1, .L080A683C @ =gUnk_081072B4
+	ldr r1, .L080A683C @ =gFarmHouseVisualDescriptors + 0xB0
 	mov r0, r8
 	movs r2, #0x11
 	movs r3, #0xf
@@ -16236,7 +16236,7 @@ func_080A6660: @ 0x080A6660
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080A6788
-	ldr r1, .L080A6844 @ =gUnk_08107288
+	ldr r1, .L080A6844 @ =gFarmHouseVisualDescriptors + 0x84
 	mov r0, r8
 	movs r2, #0x17
 	movs r3, #0x17
@@ -16249,7 +16249,7 @@ func_080A6660: @ 0x080A6660
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080A67A2
-	ldr r1, .L080A6838 @ =gUnk_08107204
+	ldr r1, .L080A6838 @ =gFarmHouseVisualDescriptors
 	mov r0, r8
 	movs r2, #8
 	movs r3, #0xc
@@ -16262,12 +16262,12 @@ func_080A6660: @ 0x080A6660
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080A67C8
-	ldr r1, .L080A6838 @ =gUnk_08107204
+	ldr r1, .L080A6838 @ =gFarmHouseVisualDescriptors
 	mov r0, r8
 	movs r2, #8
 	movs r3, #0xc
 	bl func_080A5BD8
-	ldr r1, .L080A683C @ =gUnk_081072B4
+	ldr r1, .L080A683C @ =gFarmHouseVisualDescriptors + 0xB0
 	mov r0, r8
 	movs r2, #0x11
 	movs r3, #0xf
@@ -16280,7 +16280,7 @@ func_080A6660: @ 0x080A6660
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080A67E2
-	ldr r1, .L080A6838 @ =gUnk_08107204
+	ldr r1, .L080A6838 @ =gFarmHouseVisualDescriptors
 	mov r0, r8
 	movs r2, #8
 	movs r3, #0xc
@@ -16292,12 +16292,12 @@ func_080A6660: @ 0x080A6660
 	lsrs r0, r0, #6
 	cmp r0, #1
 	bne .L080A6806
-	ldr r1, .L080A6854 @ =gUnk_081072E0
+	ldr r1, .L080A6854 @ =gFarmHouseVisualDescriptors + 0xDC
 	mov r0, r8
 	movs r2, #0x1b
 	movs r3, #0x1a
 	bl func_080A5BD8
-	ldr r1, .L080A6830 @ =gUnk_08107230
+	ldr r1, .L080A6830 @ =gFarmHouseVisualDescriptors + 0x2C
 	mov r0, r8
 	movs r2, #0x13
 	movs r3, #0x11
@@ -16316,20 +16316,20 @@ func_080A6660: @ 0x080A6660
 	mov pc, r0
 	.align 2, 0
 .L080A681C: .4byte 0x000021A9
-.L080A6820: .4byte gUnk_0810725C
+.L080A6820: .4byte gFarmHouseVisualDescriptors + 0x58
 .L080A6824: .4byte 0x000021A0
-.L080A6828: .4byte gUnk_0810730C
+.L080A6828: .4byte gFarmHouseVisualDescriptors + 0x108
 .L080A682C: .4byte 0x0000219A
-.L080A6830: .4byte gUnk_08107230
+.L080A6830: .4byte gFarmHouseVisualDescriptors + 0x2C
 .L080A6834: .4byte 0x0000219B
-.L080A6838: .4byte gUnk_08107204
-.L080A683C: .4byte gUnk_081072B4
+.L080A6838: .4byte gFarmHouseVisualDescriptors
+.L080A683C: .4byte gFarmHouseVisualDescriptors + 0xB0
 .L080A6840: .4byte 0x0000219D
-.L080A6844: .4byte gUnk_08107288
+.L080A6844: .4byte gFarmHouseVisualDescriptors + 0x84
 .L080A6848: .4byte 0x0000219E
 .L080A684C: .4byte 0x000021A1
 .L080A6850: .4byte 0x000021A2
-.L080A6854: .4byte gUnk_081072E0
+.L080A6854: .4byte gFarmHouseVisualDescriptors + 0xDC
 .L080A6858: .4byte .L080A685C
 .L080A685C: @ jump table
 	.4byte .L080A6C18 @ case 0
@@ -21769,7 +21769,7 @@ sub_080A9122: @ 0x080A9122
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080A9270
-	ldr r1, .L080A9488 @ =gUnk_0810725C
+	ldr r1, .L080A9488 @ =gFarmHouseVisualDescriptors + 0x58
 	ldr r0, [r1, #0x18]
 	cmp r0, #0
 	beq .L080A9270
@@ -21787,7 +21787,7 @@ sub_080A9122: @ 0x080A9122
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080A9294
-	ldr r1, .L080A948C @ =gUnk_0810730C
+	ldr r1, .L080A948C @ =gFarmHouseVisualDescriptors + 0x108
 	ldr r0, [r1, #0x18]
 	cmp r0, #0
 	beq .L080A9294
@@ -21806,7 +21806,7 @@ sub_080A9122: @ 0x080A9122
 	adds r4, r1, #0
 	cmp r0, #1
 	bne .L080A92BA
-	ldr r1, .L080A9490 @ =gUnk_08107230
+	ldr r1, .L080A9490 @ =gFarmHouseVisualDescriptors + 0x2C
 	ldr r0, [r1, #0x18]
 	cmp r0, #0
 	beq .L080A92BA
@@ -21824,7 +21824,7 @@ sub_080A9122: @ 0x080A9122
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080A92DE
-	ldr r1, .L080A9490 @ =gUnk_08107230
+	ldr r1, .L080A9490 @ =gFarmHouseVisualDescriptors + 0x2C
 	ldr r0, [r1, #0x18]
 	cmp r0, #0
 	beq .L080A92DE
@@ -21840,7 +21840,7 @@ sub_080A9122: @ 0x080A9122
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080A9314
-	ldr r1, .L080A9494 @ =gUnk_08107204
+	ldr r1, .L080A9494 @ =gFarmHouseVisualDescriptors
 	ldr r0, [r1, #0x18]
 	cmp r0, #0
 	beq .L080A92FE
@@ -21851,7 +21851,7 @@ sub_080A9122: @ 0x080A9122
 	adds r1, r1, r3
 	bl Unpack
 .L080A92FE:
-	ldr r1, .L080A9498 @ =gUnk_081072B4
+	ldr r1, .L080A9498 @ =gFarmHouseVisualDescriptors + 0xB0
 	ldr r0, [r1, #0x18]
 	cmp r0, #0
 	beq .L080A9314
@@ -21869,7 +21869,7 @@ sub_080A9122: @ 0x080A9122
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080A9338
-	ldr r1, .L080A949C @ =gUnk_08107288
+	ldr r1, .L080A949C @ =gFarmHouseVisualDescriptors + 0x84
 	ldr r0, [r1, #0x18]
 	cmp r0, #0
 	beq .L080A9338
@@ -21887,7 +21887,7 @@ sub_080A9122: @ 0x080A9122
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080A935C
-	ldr r1, .L080A9494 @ =gUnk_08107204
+	ldr r1, .L080A9494 @ =gFarmHouseVisualDescriptors
 	ldr r0, [r1, #0x18]
 	cmp r0, #0
 	beq .L080A935C
@@ -21905,7 +21905,7 @@ sub_080A9122: @ 0x080A9122
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080A9396
-	ldr r1, .L080A9494 @ =gUnk_08107204
+	ldr r1, .L080A9494 @ =gFarmHouseVisualDescriptors
 	ldr r0, [r1, #0x18]
 	cmp r0, #0
 	beq .L080A9380
@@ -21916,7 +21916,7 @@ sub_080A9122: @ 0x080A9122
 	adds r1, r1, r2
 	bl Unpack
 .L080A9380:
-	ldr r1, .L080A9498 @ =gUnk_081072B4
+	ldr r1, .L080A9498 @ =gFarmHouseVisualDescriptors + 0xB0
 	ldr r0, [r1, #0x18]
 	cmp r0, #0
 	beq .L080A9396
@@ -21934,7 +21934,7 @@ sub_080A9122: @ 0x080A9122
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080A93BA
-	ldr r1, .L080A9494 @ =gUnk_08107204
+	ldr r1, .L080A9494 @ =gFarmHouseVisualDescriptors
 	ldr r0, [r1, #0x18]
 	cmp r0, #0
 	beq .L080A93BA
@@ -21951,7 +21951,7 @@ sub_080A9122: @ 0x080A9122
 	lsrs r0, r0, #6
 	cmp r0, #1
 	bne .L080A93F2
-	ldr r1, .L080A94A0 @ =gUnk_081072E0
+	ldr r1, .L080A94A0 @ =gFarmHouseVisualDescriptors + 0xDC
 	ldr r0, [r1, #0x18]
 	cmp r0, #0
 	beq .L080A93DC
@@ -21962,7 +21962,7 @@ sub_080A9122: @ 0x080A9122
 	adds r1, r1, r5
 	bl Unpack
 .L080A93DC:
-	ldr r1, .L080A9490 @ =gUnk_08107230
+	ldr r1, .L080A9490 @ =gFarmHouseVisualDescriptors + 0x2C
 	ldr r0, [r1, #0x18]
 	cmp r0, #0
 	beq .L080A93F2
@@ -22046,13 +22046,13 @@ sub_080A9122: @ 0x080A9122
 	str r0, [r7, #4]
 	b .L080A9574
 	.align 2, 0
-.L080A9488: .4byte gUnk_0810725C
-.L080A948C: .4byte gUnk_0810730C
-.L080A9490: .4byte gUnk_08107230
-.L080A9494: .4byte gUnk_08107204
-.L080A9498: .4byte gUnk_081072B4
-.L080A949C: .4byte gUnk_08107288
-.L080A94A0: .4byte gUnk_081072E0
+.L080A9488: .4byte gFarmHouseVisualDescriptors + 0x58
+.L080A948C: .4byte gFarmHouseVisualDescriptors + 0x108
+.L080A9490: .4byte gFarmHouseVisualDescriptors + 0x2C
+.L080A9494: .4byte gFarmHouseVisualDescriptors
+.L080A9498: .4byte gFarmHouseVisualDescriptors + 0xB0
+.L080A949C: .4byte gFarmHouseVisualDescriptors + 0x84
+.L080A94A0: .4byte gFarmHouseVisualDescriptors + 0xDC
 .L080A94A4:
 	str r1, [sp, #0x1c0]
 	movs r0, #1
@@ -23268,7 +23268,7 @@ func_080A95A4: @ 0x080A95A4
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080A9EA4
-	ldr r2, .L080AA07C @ =gUnk_0810725C
+	ldr r2, .L080AA07C @ =gFarmHouseVisualDescriptors + 0x58
 	movs r0, #0
 	ldr r1, [sp, #0xd8]
 	cmp r1, #3
@@ -23315,7 +23315,7 @@ func_080A95A4: @ 0x080A95A4
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080A9EE0
-	ldr r3, .L080AA080 @ =gUnk_0810730C
+	ldr r3, .L080AA080 @ =gFarmHouseVisualDescriptors + 0x108
 	ldr r4, [r3, #0x20]
 	cmp r4, #0
 	beq .L080A9EE0
@@ -23346,7 +23346,7 @@ func_080A95A4: @ 0x080A95A4
 	adds r5, r1, #0
 	cmp r0, #1
 	bne .L080A9F1E
-	ldr r3, .L080AA084 @ =gUnk_08107230
+	ldr r3, .L080AA084 @ =gFarmHouseVisualDescriptors + 0x2C
 	ldr r4, [r3, #0x20]
 	cmp r4, #0
 	beq .L080A9F1E
@@ -23376,7 +23376,7 @@ func_080A95A4: @ 0x080A95A4
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080A9F5A
-	ldr r3, .L080AA084 @ =gUnk_08107230
+	ldr r3, .L080AA084 @ =gFarmHouseVisualDescriptors + 0x2C
 	ldr r4, [r3, #0x20]
 	cmp r4, #0
 	beq .L080A9F5A
@@ -23404,7 +23404,7 @@ func_080A95A4: @ 0x080A95A4
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080A9FC0
-	ldr r3, .L080AA088 @ =gUnk_08107204
+	ldr r3, .L080AA088 @ =gFarmHouseVisualDescriptors
 	ldr r4, [r3, #0x20]
 	cmp r4, #0
 	beq .L080A9F92
@@ -23427,7 +23427,7 @@ func_080A95A4: @ 0x080A95A4
 	adds r0, r4, #0
 	bl func_08008E64
 .L080A9F92:
-	ldr r3, .L080AA08C @ =gUnk_081072B4
+	ldr r3, .L080AA08C @ =gFarmHouseVisualDescriptors + 0xB0
 	ldr r4, [r3, #0x20]
 	cmp r4, #0
 	beq .L080A9FC0
@@ -23457,7 +23457,7 @@ func_080A95A4: @ 0x080A95A4
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080A9FFC
-	ldr r3, .L080AA090 @ =gUnk_08107288
+	ldr r3, .L080AA090 @ =gFarmHouseVisualDescriptors + 0x84
 	ldr r4, [r3, #0x20]
 	cmp r4, #0
 	beq .L080A9FFC
@@ -23487,7 +23487,7 @@ func_080A95A4: @ 0x080A95A4
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080AA038
-	ldr r3, .L080AA088 @ =gUnk_08107204
+	ldr r3, .L080AA088 @ =gFarmHouseVisualDescriptors
 	ldr r4, [r3, #0x20]
 	cmp r4, #0
 	beq .L080AA038
@@ -23517,7 +23517,7 @@ func_080A95A4: @ 0x080A95A4
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080AA0C6
-	ldr r3, .L080AA088 @ =gUnk_08107204
+	ldr r3, .L080AA088 @ =gFarmHouseVisualDescriptors
 	ldr r4, [r3, #0x20]
 	cmp r4, #0
 	beq .L080AA098
@@ -23542,16 +23542,16 @@ func_080A95A4: @ 0x080A95A4
 	.align 2, 0
 .L080AA074: .4byte 0x00000109
 .L080AA078: .4byte 0x00000147
-.L080AA07C: .4byte gUnk_0810725C
-.L080AA080: .4byte gUnk_0810730C
-.L080AA084: .4byte gUnk_08107230
-.L080AA088: .4byte gUnk_08107204
-.L080AA08C: .4byte gUnk_081072B4
-.L080AA090: .4byte gUnk_08107288
+.L080AA07C: .4byte gFarmHouseVisualDescriptors + 0x58
+.L080AA080: .4byte gFarmHouseVisualDescriptors + 0x108
+.L080AA084: .4byte gFarmHouseVisualDescriptors + 0x2C
+.L080AA088: .4byte gFarmHouseVisualDescriptors
+.L080AA08C: .4byte gFarmHouseVisualDescriptors + 0xB0
+.L080AA090: .4byte gFarmHouseVisualDescriptors + 0x84
 .L080AA094:
 	bl func_08008E64
 .L080AA098:
-	ldr r3, .L080AA25C @ =gUnk_081072B4
+	ldr r3, .L080AA25C @ =gFarmHouseVisualDescriptors + 0xB0
 	ldr r4, [r3, #0x20]
 	cmp r4, #0
 	beq .L080AA0C6
@@ -23581,7 +23581,7 @@ func_080A95A4: @ 0x080A95A4
 	lsrs r0, r0, #0x1e
 	cmp r0, #1
 	bne .L080AA102
-	ldr r3, .L080AA260 @ =gUnk_08107204
+	ldr r3, .L080AA260 @ =gFarmHouseVisualDescriptors
 	ldr r4, [r3, #0x20]
 	cmp r4, #0
 	beq .L080AA102
@@ -23610,7 +23610,7 @@ func_080A95A4: @ 0x080A95A4
 	lsrs r0, r0, #6
 	cmp r0, #1
 	bne .L080AA1A6
-	ldr r2, .L080AA264 @ =gUnk_081072E0
+	ldr r2, .L080AA264 @ =gFarmHouseVisualDescriptors + 0xDC
 	movs r0, #0
 	ldr r3, [sp, #0xd8]
 	cmp r3, #3
@@ -23650,7 +23650,7 @@ func_080A95A4: @ 0x080A95A4
 	lsrs r2, r4, #3
 	bl func_08008E64
 .L080AA15A:
-	ldr r2, .L080AA268 @ =gUnk_08107230
+	ldr r2, .L080AA268 @ =gFarmHouseVisualDescriptors + 0x2C
 	movs r0, #0
 	ldr r4, [sp, #0xd8]
 	cmp r4, #3
@@ -23777,10 +23777,10 @@ func_080A95A4: @ 0x080A95A4
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080AA25C: .4byte gUnk_081072B4
-.L080AA260: .4byte gUnk_08107204
-.L080AA264: .4byte gUnk_081072E0
-.L080AA268: .4byte gUnk_08107230
+.L080AA25C: .4byte gFarmHouseVisualDescriptors + 0xB0
+.L080AA260: .4byte gFarmHouseVisualDescriptors
+.L080AA264: .4byte gFarmHouseVisualDescriptors + 0xDC
+.L080AA268: .4byte gFarmHouseVisualDescriptors + 0x2C
 .L080AA26C: .4byte vtable_unk_080E5A28
 
 	thumb_func_start func_080AA270

@@ -3,6 +3,7 @@
 
 #include "prelude.h"
 
+#include "field_data.hh"
 #include "furniture.hh"
 #include "unknown_types.hh"
 
@@ -132,5 +133,21 @@ struct FarmHouseTilePatchData
 };
 
 extern FarmHouseTilePatchData const gFarmHouseTilePatchData;
+
+// These records start with the exact 0x18-byte tile-patch layout consumed by
+// func_080A5BD8.  Native setup also passes unk_18 to Unpack and derives a VRAM
+// destination from unk_1C.  The remaining resource fields are preserved with
+// deliberately neutral names until their higher-level roles are recovered.
+struct FarmHouseVisualDescriptor
+{
+    FieldRenderRectDescriptor tile_patch;
+    u8 const * unk_18;
+    u32 unk_1C;
+    u8 const * unk_20[2];
+    u8 unk_28;
+    u8 unk_29;
+};
+
+extern FarmHouseVisualDescriptor const gFarmHouseVisualDescriptors[7];
 
 #endif // FARM_HOUSE_HH

@@ -77,20 +77,20 @@
     .incbin "baserom_jp.gba", 0x103EF4, (0x10447C - 0x103EF4)
 
     .section .rodata.field_render_rect_descriptors_after
-    .global gUnk_08106D4C
-gUnk_08106D4C:
-    .incbin "baserom_jp.gba", 0x106D4C, (0x1070F4 - 0x106D4C)
+    .global gUnk_08106E80
+gUnk_08106E80:
+    .incbin "baserom_jp.gba", 0x106E80, (0x1070F4 - 0x106E80)
 
     @ These labels identify the still-raw targets of gFieldRenderRectDescriptors.
     @ Their payload types are not known yet.
     .global gUnk_FieldRenderResource_158
-    .set gUnk_FieldRenderResource_158, gUnk_08106D4C + 0x14C
+    .set gUnk_FieldRenderResource_158, gUnk_08106E80 + 0x18
     .global gUnk_FieldRenderResource_159
-    .set gUnk_FieldRenderResource_159, gUnk_08106D4C + 0x150
+    .set gUnk_FieldRenderResource_159, gUnk_08106E80 + 0x1C
     .global gUnk_FieldRenderResource_177
-    .set gUnk_FieldRenderResource_177, gUnk_08106D4C + 0x158
+    .set gUnk_FieldRenderResource_177, gUnk_08106E80 + 0x24
     .global gUnk_FieldRenderResource_178
-    .set gUnk_FieldRenderResource_178, gUnk_08106D4C + 0x15C
+    .set gUnk_FieldRenderResource_178, gUnk_08106E80 + 0x28
 
     .section .rodata.harvest_sprite_minigames_animal_husbandry_trailer
     .incbin "baserom_jp.gba", 0x10737B, (0x1073B9 - 0x10737B)
@@ -129,6 +129,33 @@ gUnk_08106D4C:
     .global gUnk_08118CF4
 gUnk_08118CF4:
     .incbin "baserom_jp.gba", 0x118CF4, (0x13BCF8 - 0x118CF4)
+
+    @ Region-neutral labels for FarmHouse visual descriptor resources.
+    @ Their payload formats remain in this raw data range.
+    .global gUnk_FarmHouseVisualResource_002
+    .set gUnk_FarmHouseVisualResource_002, gUnk_08118CF4 + 0x19F04
+    .global gUnk_FarmHouseVisualResource_003
+    .set gUnk_FarmHouseVisualResource_003, gUnk_08118CF4 + 0x19F0C
+    .global gUnk_FarmHouseVisualResource_008
+    .set gUnk_FarmHouseVisualResource_008, gUnk_08118CF4 + 0x1AC6C
+    .global gUnk_FarmHouseVisualResource_009
+    .set gUnk_FarmHouseVisualResource_009, gUnk_08118CF4 + 0x1AC74
+    .global gUnk_FarmHouseVisualResource_020
+    .set gUnk_FarmHouseVisualResource_020, gUnk_08118CF4 + 0x1AD94
+    .global gUnk_FarmHouseVisualResource_021
+    .set gUnk_FarmHouseVisualResource_021, gUnk_08118CF4 + 0x1AD9C
+    .global gUnk_FarmHouseVisualResource_026
+    .set gUnk_FarmHouseVisualResource_026, gUnk_08118CF4 + 0x1AE38
+    .global gUnk_FarmHouseVisualResource_027
+    .set gUnk_FarmHouseVisualResource_027, gUnk_08118CF4 + 0x1AE40
+    .global gUnk_FarmHouseVisualResource_032
+    .set gUnk_FarmHouseVisualResource_032, gUnk_08118CF4 + 0x1ACE0
+    .global gUnk_FarmHouseVisualResource_033
+    .set gUnk_FarmHouseVisualResource_033, gUnk_08118CF4 + 0x1ACE8
+    .global gUnk_FarmHouseVisualResource_039
+    .set gUnk_FarmHouseVisualResource_039, gUnk_08118CF4 + 0x1ACFC
+    .global gUnk_FarmHouseVisualResource_040
+    .set gUnk_FarmHouseVisualResource_040, gUnk_08118CF4 + 0x1AD04
 
     @ Region-neutral labels for gMapData raw resource targets.
     @ Their payload types are not decoded yet.
@@ -878,48 +905,20 @@ gUnk_081043BC:
 
     .section .rodata.field_render_rect_descriptors_after
 
-	.global gUnk_08107204
-gUnk_08107204:
-	.incbin "baserom_us.gba", 0x107204, 0x2C
+	.global gUnk_08107338
+gUnk_08107338:
+	.incbin "baserom_us.gba", 0x107338, 0xC
 
 	@ These labels identify the still-raw targets of gFieldRenderRectDescriptors.
 	@ Their payload types are not known yet.
 	.global gUnk_FieldRenderResource_158
-	.set gUnk_FieldRenderResource_158, gUnk_08107204 + 0x14C
+	.set gUnk_FieldRenderResource_158, gUnk_08107338 + 0x18
 	.global gUnk_FieldRenderResource_159
-	.set gUnk_FieldRenderResource_159, gUnk_08107204 + 0x150
+	.set gUnk_FieldRenderResource_159, gUnk_08107338 + 0x1C
 	.global gUnk_FieldRenderResource_177
-	.set gUnk_FieldRenderResource_177, gUnk_08107204 + 0x158
+	.set gUnk_FieldRenderResource_177, gUnk_08107338 + 0x24
 	.global gUnk_FieldRenderResource_178
-	.set gUnk_FieldRenderResource_178, gUnk_08107204 + 0x15C
-
-	.global gUnk_08107230
-gUnk_08107230:
-	.incbin "baserom_us.gba", 0x107230, 0x2C
-
-	.global gUnk_0810725C
-gUnk_0810725C:
-	.incbin "baserom_us.gba", 0x10725C, 0x2C
-
-	.global gUnk_08107288
-gUnk_08107288:
-	.incbin "baserom_us.gba", 0x107288, 0x2C
-
-	.global gUnk_081072B4
-gUnk_081072B4:
-	.incbin "baserom_us.gba", 0x1072B4, 0x2C
-
-	.global gUnk_081072E0
-gUnk_081072E0:
-	.incbin "baserom_us.gba", 0x1072E0, 0x2C
-
-	.global gUnk_0810730C
-gUnk_0810730C:
-	.incbin "baserom_us.gba", 0x10730C, 0x2C
-
-	.global gUnk_08107338
-gUnk_08107338:
-	.incbin "baserom_us.gba", 0x107338, 0xC
+	.set gUnk_FieldRenderResource_178, gUnk_08107338 + 0x28
 
 	.global gUnk_08107344
 gUnk_08107344:
@@ -1239,6 +1238,33 @@ gUnk_08117BBC:
 	.global gUnk_08117BC8
 gUnk_08117BC8:
 	.incbin "baserom_us.gba", 0x117BC8, 0x21EC0
+
+	@ Region-neutral labels for FarmHouse visual descriptor resources.
+	@ Their payload formats remain in this raw data range.
+	.global gUnk_FarmHouseVisualResource_002
+	.set gUnk_FarmHouseVisualResource_002, gUnk_08117BC8 + 0x19EEC
+	.global gUnk_FarmHouseVisualResource_003
+	.set gUnk_FarmHouseVisualResource_003, gUnk_08117BC8 + 0x19EF4
+	.global gUnk_FarmHouseVisualResource_008
+	.set gUnk_FarmHouseVisualResource_008, gUnk_08117BC8 + 0x1AC54
+	.global gUnk_FarmHouseVisualResource_009
+	.set gUnk_FarmHouseVisualResource_009, gUnk_08117BC8 + 0x1AC5C
+	.global gUnk_FarmHouseVisualResource_020
+	.set gUnk_FarmHouseVisualResource_020, gUnk_08117BC8 + 0x1AD7C
+	.global gUnk_FarmHouseVisualResource_021
+	.set gUnk_FarmHouseVisualResource_021, gUnk_08117BC8 + 0x1AD84
+	.global gUnk_FarmHouseVisualResource_026
+	.set gUnk_FarmHouseVisualResource_026, gUnk_08117BC8 + 0x1AE20
+	.global gUnk_FarmHouseVisualResource_027
+	.set gUnk_FarmHouseVisualResource_027, gUnk_08117BC8 + 0x1AE28
+	.global gUnk_FarmHouseVisualResource_032
+	.set gUnk_FarmHouseVisualResource_032, gUnk_08117BC8 + 0x1ACC8
+	.global gUnk_FarmHouseVisualResource_033
+	.set gUnk_FarmHouseVisualResource_033, gUnk_08117BC8 + 0x1ACD0
+	.global gUnk_FarmHouseVisualResource_039
+	.set gUnk_FarmHouseVisualResource_039, gUnk_08117BC8 + 0x1ACE4
+	.global gUnk_FarmHouseVisualResource_040
+	.set gUnk_FarmHouseVisualResource_040, gUnk_08117BC8 + 0x1ACEC
 
 	@ Region-neutral labels for gMapData raw resource targets.
 	@ Their payload types are not decoded yet.

@@ -615,7 +615,8 @@ SECTIONS
         . = 0x105EDC; src/map_data.o(.rodata.map_data);
         . = 0x10692C; src/field_data.o(.rodata.field_render_rect_descriptors);
         . = 0x1070DC; src/farm_house.o(.rodata.farm_house_tile_patches);
-        . = 0x107204; asm/data/data_080F9EB8.o(.rodata.field_render_rect_descriptors_after);
+        . = 0x107204; src/farm_house.o(.rodata.farm_house_visual_descriptors);
+        . = 0x107338; asm/data/data_080F9EB8.o(.rodata.field_render_rect_descriptors_after);
         . = 0x1075B0; data/text/harvest_sprite_minigames.o(.rodata.harvest_sprite_minigames_animal_husbandry);
         . = 0x10787C; asm/data/data_080F9EB8.o(.rodata.harvest_sprite_minigames_animal_husbandry_trailer);
         . = 0x1078BD; data/text/chicken_festival.o(.rodata.chicken_festival_contestant_names);

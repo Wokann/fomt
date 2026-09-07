@@ -68,6 +68,71 @@ jp_data_0813b288_start:
     .global gUnk_FarmHouseTilePatchResource_027
     .set gUnk_FarmHouseTilePatchResource_027, jp_data_0813b288_start + 0x335838
 
+    @ Region-neutral labels for FarmHouse visual descriptor resources.
+    @ Their payload formats remain in the raw regional asset container.
+    .global gUnk_FarmHouseVisualResource_000
+    .set gUnk_FarmHouseVisualResource_000, jp_data_0813b288_start + 0x336C20
+    .global gUnk_FarmHouseVisualResource_001
+    .set gUnk_FarmHouseVisualResource_001, jp_data_0813b288_start + 0x336C50
+    .global gUnk_FarmHouseVisualResource_004
+    .set gUnk_FarmHouseVisualResource_004, jp_data_0813b288_start + 0x33683C
+    .global gUnk_FarmHouseVisualResource_005
+    .set gUnk_FarmHouseVisualResource_005, jp_data_0813b288_start + 0x336C00
+    .global gUnk_FarmHouseVisualResource_006
+    .set gUnk_FarmHouseVisualResource_006, jp_data_0813b288_start + 0x337104
+    .global gUnk_FarmHouseVisualResource_007
+    .set gUnk_FarmHouseVisualResource_007, jp_data_0813b288_start + 0x3371D8
+    .global gUnk_FarmHouseVisualResource_010
+    .set gUnk_FarmHouseVisualResource_010, jp_data_0813b288_start + 0x336C80
+    .global gUnk_FarmHouseVisualResource_011
+    .set gUnk_FarmHouseVisualResource_011, jp_data_0813b288_start + 0x3370A4
+    .global gUnk_FarmHouseVisualResource_012
+    .set gUnk_FarmHouseVisualResource_012, jp_data_0813b288_start + 0x3372AC
+    .global gUnk_FarmHouseVisualResource_013
+    .set gUnk_FarmHouseVisualResource_013, jp_data_0813b288_start + 0x33CB34
+    .global gUnk_FarmHouseVisualResource_014
+    .set gUnk_FarmHouseVisualResource_014, jp_data_0813b288_start + 0x33CC08
+    .global gUnk_FarmHouseVisualResource_015
+    .set gUnk_FarmHouseVisualResource_015, jp_data_0813b288_start + 0x33C6BC
+    .global gUnk_FarmHouseVisualResource_016
+    .set gUnk_FarmHouseVisualResource_016, jp_data_0813b288_start + 0x33CAD4
+    .global gUnk_FarmHouseVisualResource_017
+    .set gUnk_FarmHouseVisualResource_017, jp_data_0813b288_start + 0x33CCDC
+    .global gUnk_FarmHouseVisualResource_018
+    .set gUnk_FarmHouseVisualResource_018, jp_data_0813b288_start + 0x33A2E0
+    .global gUnk_FarmHouseVisualResource_019
+    .set gUnk_FarmHouseVisualResource_019, jp_data_0813b288_start + 0x33A418
+    .global gUnk_FarmHouseVisualResource_022
+    .set gUnk_FarmHouseVisualResource_022, jp_data_0813b288_start + 0x339724
+    .global gUnk_FarmHouseVisualResource_023
+    .set gUnk_FarmHouseVisualResource_023, jp_data_0813b288_start + 0x33A2C0
+    .global gUnk_FarmHouseVisualResource_024
+    .set gUnk_FarmHouseVisualResource_024, jp_data_0813b288_start + 0x33BC9C
+    .global gUnk_FarmHouseVisualResource_025
+    .set gUnk_FarmHouseVisualResource_025, jp_data_0813b288_start + 0x33C1AC
+    .global gUnk_FarmHouseVisualResource_028
+    .set gUnk_FarmHouseVisualResource_028, jp_data_0813b288_start + 0x33A550
+    .global gUnk_FarmHouseVisualResource_029
+    .set gUnk_FarmHouseVisualResource_029, jp_data_0813b288_start + 0x33BC3C
+    .global gUnk_FarmHouseVisualResource_030
+    .set gUnk_FarmHouseVisualResource_030, jp_data_0813b288_start + 0x3376D0
+    .global gUnk_FarmHouseVisualResource_031
+    .set gUnk_FarmHouseVisualResource_031, jp_data_0813b288_start + 0x3376F8
+    .global gUnk_FarmHouseVisualResource_034
+    .set gUnk_FarmHouseVisualResource_034, jp_data_0813b288_start + 0x33730C
+    .global gUnk_FarmHouseVisualResource_035
+    .set gUnk_FarmHouseVisualResource_035, jp_data_0813b288_start + 0x337670
+    .global gUnk_FarmHouseVisualResource_036
+    .set gUnk_FarmHouseVisualResource_036, jp_data_0813b288_start + 0x337720
+    .global gUnk_FarmHouseVisualResource_037
+    .set gUnk_FarmHouseVisualResource_037, jp_data_0813b288_start + 0x3388DC
+    .global gUnk_FarmHouseVisualResource_038
+    .set gUnk_FarmHouseVisualResource_038, jp_data_0813b288_start + 0x3389FC
+    .global gUnk_FarmHouseVisualResource_041
+    .set gUnk_FarmHouseVisualResource_041, jp_data_0813b288_start + 0x337780
+    .global gUnk_FarmHouseVisualResource_042
+    .set gUnk_FarmHouseVisualResource_042, jp_data_0813b288_start + 0x33885C
+
     @ Region-neutral labels for gMapData raw resource targets.
     @ Their payload types are not decoded yet.
     .global gUnk_MapDataResource_092
@@ -1092,6 +1157,71 @@ gActorStateGridCellType4Data:
 	.set gUnk_FarmHouseTilePatchResource_026, us_data_0813b288_start + 0x5A66A0
 	.global gUnk_FarmHouseTilePatchResource_027
 	.set gUnk_FarmHouseTilePatchResource_027, us_data_0813b288_start + 0x5B0820
+
+	@ Region-neutral labels for FarmHouse visual descriptor resources.
+	@ Their payload formats remain in the raw regional asset container.
+	.global gUnk_FarmHouseVisualResource_000
+	.set gUnk_FarmHouseVisualResource_000, us_data_0813b288_start + 0x5B1C08
+	.global gUnk_FarmHouseVisualResource_001
+	.set gUnk_FarmHouseVisualResource_001, us_data_0813b288_start + 0x5B1C38
+	.global gUnk_FarmHouseVisualResource_004
+	.set gUnk_FarmHouseVisualResource_004, us_data_0813b288_start + 0x5B1824
+	.global gUnk_FarmHouseVisualResource_005
+	.set gUnk_FarmHouseVisualResource_005, us_data_0813b288_start + 0x5B1BE8
+	.global gUnk_FarmHouseVisualResource_006
+	.set gUnk_FarmHouseVisualResource_006, us_data_0813b288_start + 0x5B20EC
+	.global gUnk_FarmHouseVisualResource_007
+	.set gUnk_FarmHouseVisualResource_007, us_data_0813b288_start + 0x5B21C0
+	.global gUnk_FarmHouseVisualResource_010
+	.set gUnk_FarmHouseVisualResource_010, us_data_0813b288_start + 0x5B1C68
+	.global gUnk_FarmHouseVisualResource_011
+	.set gUnk_FarmHouseVisualResource_011, us_data_0813b288_start + 0x5B208C
+	.global gUnk_FarmHouseVisualResource_012
+	.set gUnk_FarmHouseVisualResource_012, us_data_0813b288_start + 0x5B2294
+	.global gUnk_FarmHouseVisualResource_013
+	.set gUnk_FarmHouseVisualResource_013, us_data_0813b288_start + 0x5B7B1C
+	.global gUnk_FarmHouseVisualResource_014
+	.set gUnk_FarmHouseVisualResource_014, us_data_0813b288_start + 0x5B7BF0
+	.global gUnk_FarmHouseVisualResource_015
+	.set gUnk_FarmHouseVisualResource_015, us_data_0813b288_start + 0x5B76A4
+	.global gUnk_FarmHouseVisualResource_016
+	.set gUnk_FarmHouseVisualResource_016, us_data_0813b288_start + 0x5B7ABC
+	.global gUnk_FarmHouseVisualResource_017
+	.set gUnk_FarmHouseVisualResource_017, us_data_0813b288_start + 0x5B7CC4
+	.global gUnk_FarmHouseVisualResource_018
+	.set gUnk_FarmHouseVisualResource_018, us_data_0813b288_start + 0x5B52C8
+	.global gUnk_FarmHouseVisualResource_019
+	.set gUnk_FarmHouseVisualResource_019, us_data_0813b288_start + 0x5B5400
+	.global gUnk_FarmHouseVisualResource_022
+	.set gUnk_FarmHouseVisualResource_022, us_data_0813b288_start + 0x5B470C
+	.global gUnk_FarmHouseVisualResource_023
+	.set gUnk_FarmHouseVisualResource_023, us_data_0813b288_start + 0x5B52A8
+	.global gUnk_FarmHouseVisualResource_024
+	.set gUnk_FarmHouseVisualResource_024, us_data_0813b288_start + 0x5B6C84
+	.global gUnk_FarmHouseVisualResource_025
+	.set gUnk_FarmHouseVisualResource_025, us_data_0813b288_start + 0x5B7194
+	.global gUnk_FarmHouseVisualResource_028
+	.set gUnk_FarmHouseVisualResource_028, us_data_0813b288_start + 0x5B5538
+	.global gUnk_FarmHouseVisualResource_029
+	.set gUnk_FarmHouseVisualResource_029, us_data_0813b288_start + 0x5B6C24
+	.global gUnk_FarmHouseVisualResource_030
+	.set gUnk_FarmHouseVisualResource_030, us_data_0813b288_start + 0x5B26B8
+	.global gUnk_FarmHouseVisualResource_031
+	.set gUnk_FarmHouseVisualResource_031, us_data_0813b288_start + 0x5B26E0
+	.global gUnk_FarmHouseVisualResource_034
+	.set gUnk_FarmHouseVisualResource_034, us_data_0813b288_start + 0x5B22F4
+	.global gUnk_FarmHouseVisualResource_035
+	.set gUnk_FarmHouseVisualResource_035, us_data_0813b288_start + 0x5B2658
+	.global gUnk_FarmHouseVisualResource_036
+	.set gUnk_FarmHouseVisualResource_036, us_data_0813b288_start + 0x5B2708
+	.global gUnk_FarmHouseVisualResource_037
+	.set gUnk_FarmHouseVisualResource_037, us_data_0813b288_start + 0x5B38C4
+	.global gUnk_FarmHouseVisualResource_038
+	.set gUnk_FarmHouseVisualResource_038, us_data_0813b288_start + 0x5B39E4
+	.global gUnk_FarmHouseVisualResource_041
+	.set gUnk_FarmHouseVisualResource_041, us_data_0813b288_start + 0x5B2768
+	.global gUnk_FarmHouseVisualResource_042
+	.set gUnk_FarmHouseVisualResource_042, us_data_0813b288_start + 0x5B3844
 
 	@ Region-neutral labels for gMapData raw resource targets.
 	@ Their payload types are not decoded yet.
