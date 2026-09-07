@@ -88,9 +88,6 @@
     .section .rodata.cooking_recipe_inventory_trailer
     .incbin "baserom_jp.gba", 0x100C24, (0x103194 - 0x100C24)
 
-    .section .rodata.fishing_results_text_padding
-    .incbin "baserom_jp.gba", 0x103509, (0x10350C - 0x103509)
-
     .section .rodata.fishing_results_trailer
     .incbin "baserom_jp.gba", 0x1035F8, (0x103BFC - 0x1035F8)
 
@@ -515,9 +512,6 @@ gUnk_081010E8:
 	.global gUnk_0810110C
 gUnk_0810110C:
 	.incbin "baserom_us.gba", 0x10110C, 0x254C
-
-	.section .rodata.fishing_results_text_padding
-	.incbin "baserom_us.gba", 0x103A16, (0x103A18 - 0x103A16)
 
 	.section .rodata.fishing_results_trailer
 	.incbin "baserom_us.gba", 0x103B04, (0x103B10 - 0x103B04)

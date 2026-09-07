@@ -593,7 +593,6 @@ SECTIONS
         . = 0x1036C0; src/code_actor_0809C3E0.o(.rodata.actor_state_max_values);
         . = 0x1036C8; src/code_actor_0809C3E0.o(.rodata);
         . = 0x103788; data/text/fishing_results.o(.rodata);
-        . = 0x103A16; asm/data/data_080F9EB8.o(.rodata.fishing_results_text_padding);
         . = 0x103A18; src/fishing_results_data.o(.rodata.fishing_record_names);
         . = 0x103B04; asm/data/data_080F9EB8.o(.rodata.fishing_results_trailer);
         . = 0x103B10; asm/data/data_080F9EB8.o(.rodata.reference_guide_harvest_sprite_minigames_after_fishing_results);
