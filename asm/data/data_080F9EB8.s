@@ -40,9 +40,6 @@
     .section .rodata.farm_status_trailer_prefix
     .incbin "baserom_jp.gba", 0xFB224, (0xFB230 - 0xFB224)
 
-    .section .rodata.records_trailer
-    .incbin "baserom_jp.gba", 0xFB8B8, (0xFB938 - 0xFB8B8)
-
     .section .rodata.staff_credits_trailer_prefix
     .incbin "baserom_jp.gba", 0xFBE88, (0xFBE9C - 0xFBE88)
 
@@ -373,20 +370,6 @@ gUnk_080FB1E4:
 	.global gUnk_080FB954
 gUnk_080FB954:
 	.incbin "baserom_us.gba", 0xFB954, 0xC
-
-	.section .rodata.records_trailer
-
-	.global gUnk_080FC024
-gUnk_080FC024:
-	.incbin "baserom_us.gba", 0xFC024, 0x42
-
-	.global gUnk_080FC066
-gUnk_080FC066:
-	.incbin "baserom_us.gba", 0xFC066, 0x1C
-
-	.global gUnk_080FC082
-gUnk_080FC082:
-	.incbin "baserom_us.gba", 0xFC082, (0xFC0A4 - 0xFC082)
 
 	.section .rodata.staff_credits_trailer_prefix
 

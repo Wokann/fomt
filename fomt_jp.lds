@@ -594,7 +594,7 @@ SECTIONS
         . = 0xFB27C; data/text/animal_contest.o(.rodata);
         . = 0xFB644; src/farm_status_screen_data.o(.rodata);
         . = 0xFB764; data/text/records.o(.rodata);
-        . = 0xFB8B8; asm/data/data_080F9EB8.o(.rodata.records_trailer);
+        . = 0xFB8B8; src/records_screen_data.o(.rodata);
         . = 0xFB938; data/text/staff_credits.o(.rodata.staff_credits);
         . = 0xFBE88; asm/data/data_080F9EB8.o(.rodata.staff_credits_trailer_prefix);
         . = 0xFBE9C; data/text/town_map.o(.rodata);

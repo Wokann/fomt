@@ -102665,7 +102665,7 @@ func_080722DC: @ 0x080722DC
 	bl func_08075450
 	lsls r2, r5, #3
 	lsls r0, r0, #3
-	ldr r5, .L080733F0 @ =gUnk_080FC024
+	ldr r5, .L080733F0 @ =gRecordsScreenMinigameTaskResources
 	adds r0, r0, r5
 	ldr r3, [r0]
 	ldr r0, [r0, #4]
@@ -102988,7 +102988,7 @@ func_080722DC: @ 0x080722DC
 	.align 2, 0
 .L080733E8: .4byte gUnk_0858BA28
 .L080733EC: .4byte gUnk_086678A0
-.L080733F0: .4byte gUnk_080FC024
+.L080733F0: .4byte gRecordsScreenMinigameTaskResources
 .L080733F4: .4byte 0x0000058C
 .L080733F8: .4byte gUnk_08751E6C
 .L080733FC: .4byte gUnk_08751EEC
@@ -108730,7 +108730,7 @@ func_08075E7C: @ 0x08075E7C
 	movs r4, #2
 	mov sl, r4
 	ldr r5, .L080761A0 @ =0x06002400
-	ldr r4, .L080761A4 @ =gUnk_080FC082
+	ldr r4, .L080761A4 @ =gUiPreloadedDigitGlyphCodes
 .L080760C6:
 	ldrh r1, [r4]
 	add r0, sp, #0x84
@@ -108822,7 +108822,7 @@ func_08075E7C: @ 0x08075E7C
 .L08076198: .4byte gUnk_080F9F78
 .L0807619C: .4byte 0x05000200
 .L080761A0: .4byte 0x06002400
-.L080761A4: .4byte gUnk_080FC082
+.L080761A4: .4byte gUiPreloadedDigitGlyphCodes
 .L080761A8:
 	mov r8, r1
 	movs r0, #1

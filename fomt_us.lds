@@ -502,7 +502,7 @@ SECTIONS
         . = 0xFB9C8; data/text/animal_contest.o(.rodata);
         . = 0xFBD30; src/farm_status_screen_data.o(.rodata);
         . = 0xFBE7C; data/text/records.o(.rodata);
-        . = 0xFC024; asm/data/data_080F9EB8.o(.rodata.records_trailer);
+        . = 0xFC024; src/records_screen_data.o(.rodata);
         . = 0xFC0A4; data/text/staff_credits.o(.rodata.staff_credits);
         . = 0xFC6B8; asm/data/data_080F9EB8.o(.rodata.staff_credits_trailer_prefix);
         . = 0xFC6CC; data/text/town_map.o(.rodata);

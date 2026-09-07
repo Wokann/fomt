@@ -30020,7 +30020,7 @@ func_080E2BB4: @ 0x080E2BB4
 	lsls r1, r1, #2
 	lsrs r0, r2, #0x1e
 	adds r1, r1, r0
-	ldr r2, .L080E2C84 @ =gUnk_080FC066
+	ldr r2, .L080E2C84 @ =gCodeLinkoncePackedCellSizeLookup
 	lsrs r0, r1, #1
 	adds r0, r0, r2
 	ldrb r2, [r0]
@@ -30076,7 +30076,7 @@ func_080E2BB4: @ 0x080E2BB4
 	ldr r2, [r4, #8]
 	b .L080E2C8A
 	.align 2, 0
-.L080E2C84: .4byte gUnk_080FC066
+.L080E2C84: .4byte gCodeLinkoncePackedCellSizeLookup
 .L080E2C88:
 	ldr r2, [r2, #0xc]
 .L080E2C8A:
