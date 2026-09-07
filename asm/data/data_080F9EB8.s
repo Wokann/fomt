@@ -95,9 +95,6 @@ gUnk_08106E98:
     .section .rodata.field_render_patch_arguments_after
     .incbin "baserom_jp.gba", 0x106F6C, (0x106F76 - 0x106F6C)
 
-.section .rodata.chicken_festival_contestant_names_trailer
-.incbin "baserom_jp.gba", 0x1074BD, (0x1074C0 - 0x1074BD)
-
     .section .rodata.static_data_after_item_discard
     .global gUnk_08118CF4
 gUnk_08118CF4:
@@ -895,12 +892,6 @@ gUnk_08107350:
 
 	.section .rodata.field_render_patch_arguments_after
 	.incbin "baserom_us.gba", 0x107424, 0xA
-
-	.section .rodata.chicken_festival_contestant_names_trailer
-
-	.global gUnk_081079C1
-gUnk_081079C1:
-	.incbin "baserom_us.gba", 0x1079C1, 0x3
 
 	.section .rodata.static_data_after_item_discard
 	.incbin "baserom_us.gba", 0x117B14, (0x117B20 - 0x117B14)
