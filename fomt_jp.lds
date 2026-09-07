@@ -718,7 +718,9 @@ SECTIONS
         . = 0x106F98; src/field_data.o(.rodata.field_render_seasonal_record_ranges);
         . = 0x106FA0; src/field_data.o(.rodata.field_render_lookup_values);
         . = 0x106FE8; src/field_data.o(.rodata.field_render_runtime_strings);
-        . = 0x10703E; asm/data/data_080F9EB8.o(.rodata.field_render_lookup_values_after);
+        . = 0x10703E; src/field_data.o(.rodata.field_render_sorted_values);
+        . = 0x107058; src/field_data.o(.rodata.field_render_sorted_values_runtime_strings);
+        . = 0x107070; asm/data/data_080F9EB8.o(.rodata.field_render_lookup_values_after);
         . = 0x1070F4; data/text/harvest_sprite_minigames.o(.rodata.harvest_sprite_minigames_animal_husbandry);
         . = 0x10737B; asm/data/data_080F9EB8.o(.rodata.harvest_sprite_minigames_animal_husbandry_trailer);
         . = 0x1073B9; data/text/chicken_festival.o(.rodata.chicken_festival_contestant_names);

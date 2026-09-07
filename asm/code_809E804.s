@@ -31295,7 +31295,7 @@ func_080ADBB4: @ 0x080ADBB4
 	lsls r0, r0, #1
 	adds r0, r0, r2
 	str r0, [sp, #4]
-	ldr r0, .L080ADBFC @ =gUnk_081074F6
+	ldr r0, .L080ADBFC @ =gUnk_FieldRenderSortedValues
 	adds r4, r0, #0
 	adds r4, #0x1b
 	movs r1, #0
@@ -31320,7 +31320,7 @@ func_080ADBB4: @ 0x080ADBB4
 	pop {r1}
 	bx r1
 	.align 2, 0
-.L080ADBFC: .4byte gUnk_081074F6
+.L080ADBFC: .4byte gUnk_FieldRenderSortedValues
 
 	thumb_func_start func_080ADC00
 func_080ADC00: @ 0x080ADC00

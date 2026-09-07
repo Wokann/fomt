@@ -977,3 +977,26 @@ char const gText_FieldRenderFallbackNone[]
 char const gCppRuntimeBadAlloc_FieldRenderRuntime05[]
     SECTION(".rodata.field_render_runtime_strings") =
         "bad_alloc";
+
+// func_080ADBB4 uses this as a sorted lower-bound range.  Its key is derived
+// from a packed native field value; the values' gameplay role is not decoded
+// yet.  The JP release has two fewer entries.
+u8 const gUnk_FieldRenderSortedValues[]
+    SECTION(".rodata.field_render_sorted_values") = {
+#if defined(REGION_JP)
+        0x00, 0x0D, 0x10, 0x11, 0x14, 0x15, 0x1D, 0x1E, 0x23,
+        0x24, 0x30, 0x31, 0x35, 0x3D, 0x3E, 0x43, 0x44, 0x48,
+        0x4C, 0x4D, 0x4F, 0x50, 0x67, 0x71, 0x77,
+#else
+        0x00, 0x0D, 0x10, 0x11, 0x14, 0x15, 0x1D, 0x1E, 0x23,
+        0x24, 0x30, 0x31, 0x35, 0x3D, 0x3E, 0x43, 0x44, 0x48,
+        0x4C, 0x4D, 0x4F, 0x50, 0x59, 0x67, 0x71, 0x72, 0x77,
+#endif
+    };
+
+char const gCppRuntimeBadAlloc_FieldRenderSortedValuesFirst[]
+    SECTION(".rodata.field_render_sorted_values_runtime_strings") =
+        "bad_alloc";
+char const gCppRuntimeBadAlloc_FieldRenderSortedValuesSecond[]
+    SECTION(".rodata.field_render_sorted_values_runtime_strings") =
+        "bad_alloc";
