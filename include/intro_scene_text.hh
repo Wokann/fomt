@@ -3,6 +3,12 @@
 
 #include "prelude.h"
 
+EXTERN_C
+
+extern u8 const * const gIntroSceneUnpackSources[];
+
+EXTERN_C_END
+
 extern char const gCppRuntimeBadAlloc_IntroScenePrefix[];
 extern char const gText_IntroScene_MotherName[];
 extern char const gText_IntroScene_MotherTravelGreeting[];

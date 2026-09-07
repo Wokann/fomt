@@ -61988,7 +61988,7 @@ func_0805FBB8: @ 0x0805FBB8
 	strh r4, [r1]
 	strh r4, [r0, #0x1e]
 	adds r6, #0x20
-	ldr r5, .L0805FCCC @ =gUnk_080FB1E4
+	ldr r5, .L0805FCCC @ =gIntroSceneUnpackSources
 	movs r4, #0x13
 .L0805FC84:
 	ldm r5!, {r0}
@@ -62016,7 +62016,7 @@ func_0805FBB8: @ 0x0805FBB8
 .L0805FCC0: .4byte 0x00001E43
 .L0805FCC4: .4byte 0x00001D42
 .L0805FCC8: .4byte 0x00001C41
-.L0805FCCC: .4byte gUnk_080FB1E4
+.L0805FCCC: .4byte gIntroSceneUnpackSources
 
 	thumb_func_start func_0805FCD0
 func_0805FCD0: @ 0x0805FCD0

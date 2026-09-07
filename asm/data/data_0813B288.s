@@ -1091,9 +1091,56 @@ gActorStateGridCellType2Data:
 gActorStateGridCellType3Data:
     .incbin "baserom_jp.gba", 0x462544, 0xC
 
+    @ The following raw range also contains the still-undecoded Intro Scene
+    @ unpack inputs.  Keep a neutral local base so typed pointer tables can
+    @ refer to the original assets without embedding ROM addresses.
+jp_data_08462550_start:
     .global gActorStateGridCellType4Data
 gActorStateGridCellType4Data:
     .incbin "baserom_jp.gba", 0x462550, (0x77F610 - 0x462550)
+
+    @ Intro Scene resources unpacked in order by func_0805FBB8.
+    @ Their individual payload formats are not decoded yet.
+    .global gUnk_IntroSceneUnpackSource_000
+    .set gUnk_IntroSceneUnpackSource_000, jp_data_08462550_start + 0x6560C
+    .global gUnk_IntroSceneUnpackSource_001
+    .set gUnk_IntroSceneUnpackSource_001, jp_data_08462550_start + 0x65908
+    .global gUnk_IntroSceneUnpackSource_002
+    .set gUnk_IntroSceneUnpackSource_002, jp_data_08462550_start + 0x6595C
+    .global gUnk_IntroSceneUnpackSource_003
+    .set gUnk_IntroSceneUnpackSource_003, jp_data_08462550_start + 0x65A50
+    .global gUnk_IntroSceneUnpackSource_004
+    .set gUnk_IntroSceneUnpackSource_004, jp_data_08462550_start + 0x65ABC
+    .global gUnk_IntroSceneUnpackSource_005
+    .set gUnk_IntroSceneUnpackSource_005, jp_data_08462550_start + 0x65BFC
+    .global gUnk_IntroSceneUnpackSource_006
+    .set gUnk_IntroSceneUnpackSource_006, jp_data_08462550_start + 0x65C94
+    .global gUnk_IntroSceneUnpackSource_007
+    .set gUnk_IntroSceneUnpackSource_007, jp_data_08462550_start + 0x65DB4
+    .global gUnk_IntroSceneUnpackSource_008
+    .set gUnk_IntroSceneUnpackSource_008, jp_data_08462550_start + 0x65E2C
+    .global gUnk_IntroSceneUnpackSource_009
+    .set gUnk_IntroSceneUnpackSource_009, jp_data_08462550_start + 0x65EC0
+    .global gUnk_IntroSceneUnpackSource_010
+    .set gUnk_IntroSceneUnpackSource_010, jp_data_08462550_start + 0x65F20
+    .global gUnk_IntroSceneUnpackSource_011
+    .set gUnk_IntroSceneUnpackSource_011, jp_data_08462550_start + 0x65FF8
+    .global gUnk_IntroSceneUnpackSource_012
+    .set gUnk_IntroSceneUnpackSource_012, jp_data_08462550_start + 0x6606C
+    .global gUnk_IntroSceneUnpackSource_013
+    .set gUnk_IntroSceneUnpackSource_013, jp_data_08462550_start + 0x662D8
+    .global gUnk_IntroSceneUnpackSource_014
+    .set gUnk_IntroSceneUnpackSource_014, jp_data_08462550_start + 0x662FC
+    .global gUnk_IntroSceneUnpackSource_015
+    .set gUnk_IntroSceneUnpackSource_015, jp_data_08462550_start + 0x66570
+    .global gUnk_IntroSceneUnpackSource_016
+    .set gUnk_IntroSceneUnpackSource_016, jp_data_08462550_start + 0x665A8
+    .global gUnk_IntroSceneUnpackSource_017
+    .set gUnk_IntroSceneUnpackSource_017, jp_data_08462550_start + 0x668AC
+    .global gUnk_IntroSceneUnpackSource_018
+    .set gUnk_IntroSceneUnpackSource_018, jp_data_08462550_start + 0x668FC
+    .global gUnk_IntroSceneUnpackSource_019
+    .set gUnk_IntroSceneUnpackSource_019, jp_data_08462550_start + 0x66C08
     .else
     .section .rodata
 
@@ -2695,9 +2742,53 @@ gUnk_087405A0:
 gUnk_08740908:
 	.incbin "baserom_us.gba", 0x740908, 0xDC
 
+us_data_087409e4_start:
 	.global gUnk_087409E4
 gUnk_087409E4:
 	.incbin "baserom_us.gba", 0x7409E4, 0x2674
+
+	@ Intro Scene resources unpacked in order by func_0805FBB8.
+	@ Their individual payload formats are not decoded yet.
+	.global gUnk_IntroSceneUnpackSource_000
+	.set gUnk_IntroSceneUnpackSource_000, us_data_087409e4_start + 0x1010
+	.global gUnk_IntroSceneUnpackSource_001
+	.set gUnk_IntroSceneUnpackSource_001, us_data_087409e4_start + 0x130C
+	.global gUnk_IntroSceneUnpackSource_002
+	.set gUnk_IntroSceneUnpackSource_002, us_data_087409e4_start + 0x1360
+	.global gUnk_IntroSceneUnpackSource_003
+	.set gUnk_IntroSceneUnpackSource_003, us_data_087409e4_start + 0x1454
+	.global gUnk_IntroSceneUnpackSource_004
+	.set gUnk_IntroSceneUnpackSource_004, us_data_087409e4_start + 0x14C0
+	.global gUnk_IntroSceneUnpackSource_005
+	.set gUnk_IntroSceneUnpackSource_005, us_data_087409e4_start + 0x1600
+	.global gUnk_IntroSceneUnpackSource_006
+	.set gUnk_IntroSceneUnpackSource_006, us_data_087409e4_start + 0x1698
+	.global gUnk_IntroSceneUnpackSource_007
+	.set gUnk_IntroSceneUnpackSource_007, us_data_087409e4_start + 0x17B8
+	.global gUnk_IntroSceneUnpackSource_008
+	.set gUnk_IntroSceneUnpackSource_008, us_data_087409e4_start + 0x1830
+	.global gUnk_IntroSceneUnpackSource_009
+	.set gUnk_IntroSceneUnpackSource_009, us_data_087409e4_start + 0x18C4
+	.global gUnk_IntroSceneUnpackSource_010
+	.set gUnk_IntroSceneUnpackSource_010, us_data_087409e4_start + 0x1924
+	.global gUnk_IntroSceneUnpackSource_011
+	.set gUnk_IntroSceneUnpackSource_011, us_data_087409e4_start + 0x19FC
+	.global gUnk_IntroSceneUnpackSource_012
+	.set gUnk_IntroSceneUnpackSource_012, us_data_087409e4_start + 0x1A70
+	.global gUnk_IntroSceneUnpackSource_013
+	.set gUnk_IntroSceneUnpackSource_013, us_data_087409e4_start + 0x1CDC
+	.global gUnk_IntroSceneUnpackSource_014
+	.set gUnk_IntroSceneUnpackSource_014, us_data_087409e4_start + 0x1D00
+	.global gUnk_IntroSceneUnpackSource_015
+	.set gUnk_IntroSceneUnpackSource_015, us_data_087409e4_start + 0x1F74
+	.global gUnk_IntroSceneUnpackSource_016
+	.set gUnk_IntroSceneUnpackSource_016, us_data_087409e4_start + 0x1FAC
+	.global gUnk_IntroSceneUnpackSource_017
+	.set gUnk_IntroSceneUnpackSource_017, us_data_087409e4_start + 0x22B0
+	.global gUnk_IntroSceneUnpackSource_018
+	.set gUnk_IntroSceneUnpackSource_018, us_data_087409e4_start + 0x2300
+	.global gUnk_IntroSceneUnpackSource_019
+	.set gUnk_IntroSceneUnpackSource_019, us_data_087409e4_start + 0x260C
 
 	.global gUnk_08743058
 gUnk_08743058:
