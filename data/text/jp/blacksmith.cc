@@ -133,6 +133,9 @@ char const gText_Blacksmith_NoOreToUpgrade[] BLACKSMITH_DIALOGUE =
     "を持っていないようだな。鉱石\r\n"
     "は泉の鉱石場で見つかるぞ。{Press}";
 
+char const gCppRuntimeBadAlloc_BlacksmithDialogueTrailer[] BLACKSMITH_DIALOGUE =
+    "bad_alloc";
+
 char const gText_BlacksmithUpgrade_EmptyDescription[] BLACKSMITH_UPGRADE_TEXT =
     "";
 

@@ -63,8 +63,6 @@
 
 
 
-    .section .rodata.carpenter_menu_prefix
-    .incbin "baserom_jp.gba", 0xFEC84, (0xFEC90 - 0xFEC84)
 
     .section .rodata.carpenter_catalog_trailer
     .incbin "baserom_jp.gba", 0xFF214, (0xFF218 - 0xFF214)
@@ -385,8 +383,6 @@ gUnk_080FD920:
 
 
 
-    .section .rodata.carpenter_menu_prefix
-    .incbin "baserom_us.gba", 0xFF350, (0xFF35C - 0xFF350)
 
     .section .rodata.carpenter_catalog_trailer
     .global gUnk_080FF838

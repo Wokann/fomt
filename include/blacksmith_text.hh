@@ -63,6 +63,7 @@ extern char const gText_Blacksmith_StartWork[];
 extern char const gText_Blacksmith_CannotChangeMind[];
 extern char const gText_Blacksmith_NoToolToUpgrade[];
 extern char const gText_Blacksmith_NoOreToUpgrade[];
+extern char const gCppRuntimeBadAlloc_BlacksmithDialogueTrailer[];
 
 extern char const gText_BlacksmithUpgrade_Tools[];
 extern char const gText_BlacksmithUpgrade_Items[];

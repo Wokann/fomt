@@ -564,8 +564,8 @@ SECTIONS
         . = 0xFEC7C; data/text/blacksmith.o(.rodata.blacksmith_menu);
         . = 0xFED8C; src/blacksmith_data.o(.rodata.blacksmith_catalog);
         . = 0xFEE68; data/text/blacksmith.o(.rodata.blacksmith_dialogue);
-        . = 0xFF350; asm/data/data_080F9EB8.o(.rodata.carpenter_menu_prefix);
         FILL(0x00);
+        . = ALIGN(4);
         . = 0xFF35C; data/text/carpenter.o(.rodata.carpenter_menu);
         . = 0xFF6A8; src/carpenter_data.o(.rodata.carpenter_catalog);
         FILL(0xFF);

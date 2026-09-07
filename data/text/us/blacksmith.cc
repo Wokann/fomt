@@ -135,6 +135,9 @@ char const gText_Blacksmith_NoOreToUpgrade[] BLACKSMITH_DIALOGUE =
     "some in the mine by the {Press}\r\n"
     "spring, you know.{Press}";
 
+char const gCppRuntimeBadAlloc_BlacksmithDialogueTrailer[] BLACKSMITH_DIALOGUE =
+    "bad_alloc";
+
 char const gText_BlacksmithUpgrade_EmptyDescription[] BLACKSMITH_UPGRADE_TEXT =
     "";
 
