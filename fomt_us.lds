@@ -589,7 +589,9 @@ SECTIONS
         . = 0x101008; data/text/cooking_recipe_inventory.o(.rodata);
         . = 0x1010E8; asm/data/data_080F9EB8.o(.rodata.cooking_recipe_inventory_trailer);
         . = 0x103658; data/text/common/animal.o(.rodata.animal_unnamed);
-        . = 0x103660; asm/data/data_080F9EB8.o(.rodata.animal_unnamed_trailer);
+        . = 0x103660; src/livestock.o(.rodata.livestock_day_update);
+        . = 0x1036C0; src/code_actor_0809C3E0.o(.rodata.actor_state_max_values);
+        . = 0x1036C8; asm/data/data_080F9EB8.o(.rodata.animal_unnamed_trailer);
         . = 0x103788; data/text/fishing_results.o(.rodata);
         . = 0x103A16; asm/data/data_080F9EB8.o(.rodata.fishing_results_text_padding);
         . = 0x103A18; src/fishing_results_data.o(.rodata.fishing_record_names);

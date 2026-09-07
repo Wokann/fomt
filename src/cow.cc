@@ -2,11 +2,6 @@
 
 #include <cstdlib>
 
-extern "C"
-{
-    extern LivestockDayUpdateInfo const gUnk_08103680;
-}
-
 Cow::Cow(char const * name, ActorLocation const & location, u32 age, u32 days_fed)
     : BarnAnimal(name, location, age, days_fed)
 {
@@ -70,6 +65,6 @@ Livestock::ProductRank Cow::ConsumeProduct()
 
 void Cow::DayUpdate()
 {
-    BarnAnimal::DayUpdate(&gUnk_08103680);
+    BarnAnimal::DayUpdate(&gCowDayUpdateInfo);
     milked = false;
 }

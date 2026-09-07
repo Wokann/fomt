@@ -2,7 +2,9 @@
 
 #include "actor_state.hh"
 
-extern u8 const gActorStateMaxValues[];
+u8 const gActorStateMaxValues[] SECTION(".rodata.actor_state_max_values") = {
+    10, 10, 255, 10, 10, 255,
+};
 
 EC u32 func_0809C3E0(ActorStateSlots & self, u32 index)
 {

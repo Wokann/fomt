@@ -2,11 +2,6 @@
 
 #include <stdlib.h> // rand
 
-extern "C"
-{
-    extern LivestockDayUpdateInfo const gUnk_08103660;
-}
-
 Chicken::Chicken(char const * name, ActorLocation const & location, u32 age, u32 days_fed)
     : Livestock(name, location, age, days_fed)
 {
@@ -74,5 +69,5 @@ void Chicken::method_0809BD2C(UnkBarnAnimal2C const * param)
 
 void Chicken::DayUpdate()
 {
-    Livestock::DayUpdate(&gUnk_08103660);
+    Livestock::DayUpdate(&gChickenDayUpdateInfo);
 }

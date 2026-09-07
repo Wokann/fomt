@@ -89,23 +89,7 @@
     .incbin "baserom_jp.gba", 0x100C24, (0x103194 - 0x100C24)
 
     .section .rodata.animal_unnamed_trailer
-
-    .global gUnk_08103660
-gUnk_08103660:
-    .incbin "baserom_jp.gba", 0x10319C, (0x1031BC - 0x10319C)
-
-    .global gUnk_08103680
-gUnk_08103680:
-    .incbin "baserom_jp.gba", 0x1031BC, (0x1031DC - 0x1031BC)
-
-    .global gUnk_081036A0
-gUnk_081036A0:
-    .incbin "baserom_jp.gba", 0x1031DC, (0x1031FC - 0x1031DC)
-
-    .global gActorStateMaxValues
-gActorStateMaxValues:
-    .incbin "baserom_jp.gba", 0x1031FC, 0x6
-    .incbin "baserom_jp.gba", 0x103202, (0x1032C4 - 0x103202)
+    .incbin "baserom_jp.gba", 0x103204, (0x1032C4 - 0x103204)
 
     .section .rodata.fishing_results_text_padding
     .incbin "baserom_jp.gba", 0x103509, (0x10350C - 0x103509)
@@ -477,23 +461,7 @@ gUnk_0810110C:
 	.incbin "baserom_us.gba", 0x10110C, 0x254C
 
 	.section .rodata.animal_unnamed_trailer
-
-	.global gUnk_08103660
-gUnk_08103660:
-	.incbin "baserom_us.gba", 0x103660, 0x20
-
-	.global gUnk_08103680
-gUnk_08103680:
-	.incbin "baserom_us.gba", 0x103680, 0x20
-
-	.global gUnk_081036A0
-gUnk_081036A0:
-	.incbin "baserom_us.gba", 0x1036A0, 0x20
-
-	.global gActorStateMaxValues
-gActorStateMaxValues:
-	.incbin "baserom_us.gba", 0x1036C0, 0x6
-	.incbin "baserom_us.gba", 0x1036C6, (0x1036D4 - 0x1036C6)
+	.incbin "baserom_us.gba", 0x1036C8, (0x1036D4 - 0x1036C8)
 
 	.global gUnk_081036D4
 gUnk_081036D4:

@@ -2,11 +2,6 @@
 
 #include <stdlib.h> // rand
 
-extern "C"
-{
-    extern LivestockDayUpdateInfo const gUnk_081036A0;
-}
-
 Sheep::Sheep(char const * name, ActorLocation const & location, u32 age, u32 days_fed)
     : BarnAnimal(name, location, age, days_fed)
 {
@@ -68,7 +63,7 @@ Livestock::ProductRank Sheep::ConsumeProduct()
 
 void Sheep::DayUpdate()
 {
-    BarnAnimal::DayUpdate(&gUnk_081036A0);
+    BarnAnimal::DayUpdate(&gSheepDayUpdateInfo);
 
     if (days_until_product != 0)
         days_until_product--;

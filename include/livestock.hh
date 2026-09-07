@@ -20,6 +20,10 @@ struct LivestockDayUpdateInfo
     /* +10 */ AgeUnkRateEnt age_unk_rates[4];
 };
 
+extern LivestockDayUpdateInfo const gChickenDayUpdateInfo;
+extern LivestockDayUpdateInfo const gCowDayUpdateInfo;
+extern LivestockDayUpdateInfo const gSheepDayUpdateInfo;
+
 struct Livestock : public Animal
 {
     enum ProductRank

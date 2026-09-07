@@ -11,6 +11,8 @@ struct ActorStateSlots
     u8 unk_0C[6];
 };
 
+extern u8 const gActorStateMaxValues[];
+
 // Known bit positions in an otherwise not-yet-modeled actor-state object.
 struct ActorStateFlagBits
 {
