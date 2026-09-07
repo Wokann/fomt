@@ -388,3 +388,74 @@ void FarmHouse::DayUpdate(Season season)
     if (vase_article_lifespan == 0 && (rand() & 0xFF) <= 100)
         vase_article_id = ARTICLE_NONE;
 }
+
+// These source payloads remain in the regional asset container.  The table
+// below keeps real relocations to those raw resources rather than embedding
+// their ROM addresses in this C++ object.
+extern u8 const gUnk_FarmHouseTilePatchResource_000[];
+extern u8 const gUnk_FarmHouseTilePatchResource_001[];
+extern u8 const gUnk_FarmHouseTilePatchResource_002[];
+extern u8 const gUnk_FarmHouseTilePatchResource_003[];
+extern u8 const gUnk_FarmHouseTilePatchResource_004[];
+extern u8 const gUnk_FarmHouseTilePatchResource_005[];
+extern u8 const gUnk_FarmHouseTilePatchResource_006[];
+extern u8 const gUnk_FarmHouseTilePatchResource_007[];
+extern u8 const gUnk_FarmHouseTilePatchResource_008[];
+extern u8 const gUnk_FarmHouseTilePatchResource_009[];
+extern u8 const gUnk_FarmHouseTilePatchResource_010[];
+extern u8 const gUnk_FarmHouseTilePatchResource_011[];
+extern u8 const gUnk_FarmHouseTilePatchResource_012[];
+extern u8 const gUnk_FarmHouseTilePatchResource_013[];
+extern u8 const gUnk_FarmHouseTilePatchResource_014[];
+extern u8 const gUnk_FarmHouseTilePatchResource_015[];
+extern u8 const gUnk_FarmHouseTilePatchResource_016[];
+extern u8 const gUnk_FarmHouseTilePatchResource_017[];
+extern u8 const gUnk_FarmHouseTilePatchResource_018[];
+extern u8 const gUnk_FarmHouseTilePatchResource_019[];
+extern u8 const gUnk_FarmHouseTilePatchResource_020[];
+extern u8 const gUnk_FarmHouseTilePatchResource_021[];
+extern u8 const gUnk_FarmHouseTilePatchResource_022[];
+extern u8 const gUnk_FarmHouseTilePatchResource_023[];
+extern u8 const gUnk_FarmHouseTilePatchResource_024[];
+extern u8 const gUnk_FarmHouseTilePatchResource_025[];
+extern u8 const gUnk_FarmHouseTilePatchResource_026[];
+extern u8 const gUnk_FarmHouseTilePatchResource_027[];
+
+FarmHouseTilePatchData const gFarmHouseTilePatchData SECTION(".rodata.farm_house_tile_patches") = {
+    {
+        { 0x0099, gUnk_FarmHouseTilePatchResource_000 },
+        { 0x0099, gUnk_FarmHouseTilePatchResource_001 },
+        { 0x009F, gUnk_FarmHouseTilePatchResource_002 },
+        { 0x009F, gUnk_FarmHouseTilePatchResource_003 },
+        { 0x00AB, gUnk_FarmHouseTilePatchResource_004 },
+        { 0x00AB, gUnk_FarmHouseTilePatchResource_005 },
+        { 0x0000, gUnk_FarmHouseTilePatchResource_006 },
+    },
+    {
+        { 0x003D, gUnk_FarmHouseTilePatchResource_007, 0x0010 },
+        { 0x003D, gUnk_FarmHouseTilePatchResource_008, 0x0010 },
+        { 0x002F, gUnk_FarmHouseTilePatchResource_009, 0x0008 },
+        { 0x002F, gUnk_FarmHouseTilePatchResource_010, 0x0008 },
+    },
+    {
+        { 0x0090, gUnk_FarmHouseTilePatchResource_011 },
+        { 0x0090, gUnk_FarmHouseTilePatchResource_012 },
+        { 0x0000, gUnk_FarmHouseTilePatchResource_013 },
+    },
+    {
+        { 0x0000, gUnk_FarmHouseTilePatchResource_014, 0x000A },
+        { 0x0010, gUnk_FarmHouseTilePatchResource_015, 0x000A },
+        { 0x0000, gUnk_FarmHouseTilePatchResource_016, 0x000A },
+        { 0x0010, gUnk_FarmHouseTilePatchResource_017, 0x000A },
+        { 0x0025, gUnk_FarmHouseTilePatchResource_018, 0x000A },
+        { 0x0010, gUnk_FarmHouseTilePatchResource_019, 0x000A },
+        { 0x0039, gUnk_FarmHouseTilePatchResource_020, 0x000A },
+        { 0x0025, gUnk_FarmHouseTilePatchResource_021, 0x000A },
+        { 0x0010, gUnk_FarmHouseTilePatchResource_022, 0x000A },
+        { 0x0039, gUnk_FarmHouseTilePatchResource_023, 0x000A },
+        { 0x0000, gUnk_FarmHouseTilePatchResource_024, 0x001E },
+        { 0x001E, gUnk_FarmHouseTilePatchResource_025, 0x0007 },
+        { 0x0000, gUnk_FarmHouseTilePatchResource_026, 0x001E },
+        { 0x0000, gUnk_FarmHouseTilePatchResource_027, 0x000A },
+    },
+};

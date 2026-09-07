@@ -8,6 +8,66 @@
 jp_data_0813b288_start:
     .incbin "baserom_jp.gba", 0x13C3CC, (0x45C5B4 - 0x13C3CC)
 
+    @ Region-neutral labels for FarmHouse tile-patch source payloads.
+    @ The payload layouts remain raw; src/farm_house.cc owns their typed
+    @ descriptor tables.
+    .global gUnk_FarmHouseTilePatchResource_000
+    .set gUnk_FarmHouseTilePatchResource_000, jp_data_0813b288_start + 0x32E4D0
+    .global gUnk_FarmHouseTilePatchResource_001
+    .set gUnk_FarmHouseTilePatchResource_001, jp_data_0813b288_start + 0x3322D0
+    .global gUnk_FarmHouseTilePatchResource_002
+    .set gUnk_FarmHouseTilePatchResource_002, jp_data_0813b288_start + 0x32CE04
+    .global gUnk_FarmHouseTilePatchResource_003
+    .set gUnk_FarmHouseTilePatchResource_003, jp_data_0813b288_start + 0x330CF4
+    .global gUnk_FarmHouseTilePatchResource_004
+    .set gUnk_FarmHouseTilePatchResource_004, jp_data_0813b288_start + 0x3305D0
+    .global gUnk_FarmHouseTilePatchResource_005
+    .set gUnk_FarmHouseTilePatchResource_005, jp_data_0813b288_start + 0x334348
+    .global gUnk_FarmHouseTilePatchResource_006
+    .set gUnk_FarmHouseTilePatchResource_006, jp_data_0813b288_start + 0x335548
+    .global gUnk_FarmHouseTilePatchResource_007
+    .set gUnk_FarmHouseTilePatchResource_007, jp_data_0813b288_start + 0x32E714
+    .global gUnk_FarmHouseTilePatchResource_008
+    .set gUnk_FarmHouseTilePatchResource_008, jp_data_0813b288_start + 0x332514
+    .global gUnk_FarmHouseTilePatchResource_009
+    .set gUnk_FarmHouseTilePatchResource_009, jp_data_0813b288_start + 0x32FECC
+    .global gUnk_FarmHouseTilePatchResource_010
+    .set gUnk_FarmHouseTilePatchResource_010, jp_data_0813b288_start + 0x333C44
+    .global gUnk_FarmHouseTilePatchResource_011
+    .set gUnk_FarmHouseTilePatchResource_011, jp_data_0813b288_start + 0x32FC88
+    .global gUnk_FarmHouseTilePatchResource_012
+    .set gUnk_FarmHouseTilePatchResource_012, jp_data_0813b288_start + 0x333A00
+    .global gUnk_FarmHouseTilePatchResource_013
+    .set gUnk_FarmHouseTilePatchResource_013, jp_data_0813b288_start + 0x32CA3C
+    .global gUnk_FarmHouseTilePatchResource_014
+    .set gUnk_FarmHouseTilePatchResource_014, jp_data_0813b288_start + 0x340000
+    .global gUnk_FarmHouseTilePatchResource_015
+    .set gUnk_FarmHouseTilePatchResource_015, jp_data_0813b288_start + 0x340B84
+    .global gUnk_FarmHouseTilePatchResource_016
+    .set gUnk_FarmHouseTilePatchResource_016, jp_data_0813b288_start + 0x342408
+    .global gUnk_FarmHouseTilePatchResource_017
+    .set gUnk_FarmHouseTilePatchResource_017, jp_data_0813b288_start + 0x342F8C
+    .global gUnk_FarmHouseTilePatchResource_018
+    .set gUnk_FarmHouseTilePatchResource_018, jp_data_0813b288_start + 0x326A38
+    .global gUnk_FarmHouseTilePatchResource_019
+    .set gUnk_FarmHouseTilePatchResource_019, jp_data_0813b288_start + 0x326C3C
+    .global gUnk_FarmHouseTilePatchResource_020
+    .set gUnk_FarmHouseTilePatchResource_020, jp_data_0813b288_start + 0x326914
+    .global gUnk_FarmHouseTilePatchResource_021
+    .set gUnk_FarmHouseTilePatchResource_021, jp_data_0813b288_start + 0x327B9C
+    .global gUnk_FarmHouseTilePatchResource_022
+    .set gUnk_FarmHouseTilePatchResource_022, jp_data_0813b288_start + 0x327DA0
+    .global gUnk_FarmHouseTilePatchResource_023
+    .set gUnk_FarmHouseTilePatchResource_023, jp_data_0813b288_start + 0x327A78
+    .global gUnk_FarmHouseTilePatchResource_024
+    .set gUnk_FarmHouseTilePatchResource_024, jp_data_0813b288_start + 0x329DE4
+    .global gUnk_FarmHouseTilePatchResource_025
+    .set gUnk_FarmHouseTilePatchResource_025, jp_data_0813b288_start + 0x32CC80
+    .global gUnk_FarmHouseTilePatchResource_026
+    .set gUnk_FarmHouseTilePatchResource_026, jp_data_0813b288_start + 0x32B6B8
+    .global gUnk_FarmHouseTilePatchResource_027
+    .set gUnk_FarmHouseTilePatchResource_027, jp_data_0813b288_start + 0x335838
+
     @ Region-neutral labels for gMapData raw resource targets.
     @ Their payload types are not decoded yet.
     .global gUnk_MapDataResource_092
@@ -972,6 +1032,66 @@ gActorStateGridCellType4Data:
 
 	us_data_0813b288_start:
 	.incbin "baserom_us.gba", (.LDATA_BEG), (0x4F90CC - .LDATA_BEG)
+
+	@ Region-neutral labels for FarmHouse tile-patch source payloads.
+	@ The payload layouts remain raw; src/farm_house.cc owns their typed
+	@ descriptor tables.
+	.global gUnk_FarmHouseTilePatchResource_000
+	.set gUnk_FarmHouseTilePatchResource_000, us_data_0813b288_start + 0x5A94B8
+	.global gUnk_FarmHouseTilePatchResource_001
+	.set gUnk_FarmHouseTilePatchResource_001, us_data_0813b288_start + 0x5AD2B8
+	.global gUnk_FarmHouseTilePatchResource_002
+	.set gUnk_FarmHouseTilePatchResource_002, us_data_0813b288_start + 0x5A7DEC
+	.global gUnk_FarmHouseTilePatchResource_003
+	.set gUnk_FarmHouseTilePatchResource_003, us_data_0813b288_start + 0x5ABCDC
+	.global gUnk_FarmHouseTilePatchResource_004
+	.set gUnk_FarmHouseTilePatchResource_004, us_data_0813b288_start + 0x5AB5B8
+	.global gUnk_FarmHouseTilePatchResource_005
+	.set gUnk_FarmHouseTilePatchResource_005, us_data_0813b288_start + 0x5AF330
+	.global gUnk_FarmHouseTilePatchResource_006
+	.set gUnk_FarmHouseTilePatchResource_006, us_data_0813b288_start + 0x5B0530
+	.global gUnk_FarmHouseTilePatchResource_007
+	.set gUnk_FarmHouseTilePatchResource_007, us_data_0813b288_start + 0x5A96FC
+	.global gUnk_FarmHouseTilePatchResource_008
+	.set gUnk_FarmHouseTilePatchResource_008, us_data_0813b288_start + 0x5AD4FC
+	.global gUnk_FarmHouseTilePatchResource_009
+	.set gUnk_FarmHouseTilePatchResource_009, us_data_0813b288_start + 0x5AAEB4
+	.global gUnk_FarmHouseTilePatchResource_010
+	.set gUnk_FarmHouseTilePatchResource_010, us_data_0813b288_start + 0x5AEC2C
+	.global gUnk_FarmHouseTilePatchResource_011
+	.set gUnk_FarmHouseTilePatchResource_011, us_data_0813b288_start + 0x5AAC70
+	.global gUnk_FarmHouseTilePatchResource_012
+	.set gUnk_FarmHouseTilePatchResource_012, us_data_0813b288_start + 0x5AE9E8
+	.global gUnk_FarmHouseTilePatchResource_013
+	.set gUnk_FarmHouseTilePatchResource_013, us_data_0813b288_start + 0x5A7A24
+	.global gUnk_FarmHouseTilePatchResource_014
+	.set gUnk_FarmHouseTilePatchResource_014, us_data_0813b288_start + 0x5BAFE8
+	.global gUnk_FarmHouseTilePatchResource_015
+	.set gUnk_FarmHouseTilePatchResource_015, us_data_0813b288_start + 0x5BBB6C
+	.global gUnk_FarmHouseTilePatchResource_016
+	.set gUnk_FarmHouseTilePatchResource_016, us_data_0813b288_start + 0x5BD3F0
+	.global gUnk_FarmHouseTilePatchResource_017
+	.set gUnk_FarmHouseTilePatchResource_017, us_data_0813b288_start + 0x5BDF74
+	.global gUnk_FarmHouseTilePatchResource_018
+	.set gUnk_FarmHouseTilePatchResource_018, us_data_0813b288_start + 0x5A1A20
+	.global gUnk_FarmHouseTilePatchResource_019
+	.set gUnk_FarmHouseTilePatchResource_019, us_data_0813b288_start + 0x5A1C24
+	.global gUnk_FarmHouseTilePatchResource_020
+	.set gUnk_FarmHouseTilePatchResource_020, us_data_0813b288_start + 0x5A18FC
+	.global gUnk_FarmHouseTilePatchResource_021
+	.set gUnk_FarmHouseTilePatchResource_021, us_data_0813b288_start + 0x5A2B84
+	.global gUnk_FarmHouseTilePatchResource_022
+	.set gUnk_FarmHouseTilePatchResource_022, us_data_0813b288_start + 0x5A2D88
+	.global gUnk_FarmHouseTilePatchResource_023
+	.set gUnk_FarmHouseTilePatchResource_023, us_data_0813b288_start + 0x5A2A60
+	.global gUnk_FarmHouseTilePatchResource_024
+	.set gUnk_FarmHouseTilePatchResource_024, us_data_0813b288_start + 0x5A4DCC
+	.global gUnk_FarmHouseTilePatchResource_025
+	.set gUnk_FarmHouseTilePatchResource_025, us_data_0813b288_start + 0x5A7C68
+	.global gUnk_FarmHouseTilePatchResource_026
+	.set gUnk_FarmHouseTilePatchResource_026, us_data_0813b288_start + 0x5A66A0
+	.global gUnk_FarmHouseTilePatchResource_027
+	.set gUnk_FarmHouseTilePatchResource_027, us_data_0813b288_start + 0x5B0820
 
 	@ Region-neutral labels for gMapData raw resource targets.
 	@ Their payload types are not decoded yet.

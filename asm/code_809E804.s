@@ -12804,7 +12804,7 @@ func_080A4BEC: @ 0x080A4BEC
 .L080A4D38:
 	adds r3, r2, #0
 	adds r3, #0x40
-	ldr r1, .L080A4D8C @ =gUnk_0810718C
+	ldr r1, .L080A4D8C @ =gFarmHouseTilePatchData + 0x0B0
 	ldrb r0, [r3, #2]
 	adds r0, #1
 	movs r4, #0
@@ -12821,7 +12821,7 @@ func_080A4BEC: @ 0x080A4BEC
 .L080A4D58:
 	adds r3, r2, #0
 	adds r3, #0x44
-	ldr r1, .L080A4D90 @ =gUnk_08107198
+	ldr r1, .L080A4D90 @ =gFarmHouseTilePatchData + 0x0BC
 	ldrb r0, [r3, #2]
 	adds r0, #1
 	strb r0, [r3, #2]
@@ -12834,7 +12834,7 @@ func_080A4BEC: @ 0x080A4BEC
 	strb r0, [r3, #1]
 .L080A4D72:
 	adds r2, #0x48
-	ldr r1, .L080A4D94 @ =gUnk_081071A4
+	ldr r1, .L080A4D94 @ =gFarmHouseTilePatchData + 0x0C8
 	ldrb r0, [r2, #2]
 	adds r0, #1
 	strb r0, [r2, #2]
@@ -12847,13 +12847,13 @@ func_080A4BEC: @ 0x080A4BEC
 	strb r4, [r2, #2]
 	b .L080A4F3C
 	.align 2, 0
-.L080A4D8C: .4byte gUnk_0810718C
-.L080A4D90: .4byte gUnk_08107198
-.L080A4D94: .4byte gUnk_081071A4
+.L080A4D8C: .4byte gFarmHouseTilePatchData + 0x0B0
+.L080A4D90: .4byte gFarmHouseTilePatchData + 0x0BC
+.L080A4D94: .4byte gFarmHouseTilePatchData + 0x0C8
 .L080A4D98:
 	adds r3, r2, #0
 	adds r3, #0x40
-	ldr r1, .L080A4DEC @ =gUnk_081071B0
+	ldr r1, .L080A4DEC @ =gFarmHouseTilePatchData + 0x0D4
 	ldrb r0, [r3, #2]
 	adds r0, #1
 	movs r4, #0
@@ -12870,7 +12870,7 @@ func_080A4BEC: @ 0x080A4BEC
 .L080A4DB8:
 	adds r3, r2, #0
 	adds r3, #0x44
-	ldr r1, .L080A4DF0 @ =gUnk_081071BC
+	ldr r1, .L080A4DF0 @ =gFarmHouseTilePatchData + 0x0E0
 	ldrb r0, [r3, #2]
 	adds r0, #1
 	strb r0, [r3, #2]
@@ -12883,7 +12883,7 @@ func_080A4BEC: @ 0x080A4BEC
 	strb r0, [r3, #1]
 .L080A4DD2:
 	adds r2, #0x48
-	ldr r1, .L080A4DF4 @ =gUnk_081071C8
+	ldr r1, .L080A4DF4 @ =gFarmHouseTilePatchData + 0x0EC
 	ldrb r0, [r2, #2]
 	adds r0, #1
 	strb r0, [r2, #2]
@@ -12896,12 +12896,12 @@ func_080A4BEC: @ 0x080A4BEC
 	strb r4, [r2, #2]
 	b .L080A4F3C
 	.align 2, 0
-.L080A4DEC: .4byte gUnk_081071B0
-.L080A4DF0: .4byte gUnk_081071BC
-.L080A4DF4: .4byte gUnk_081071C8
+.L080A4DEC: .4byte gFarmHouseTilePatchData + 0x0D4
+.L080A4DF0: .4byte gFarmHouseTilePatchData + 0x0E0
+.L080A4DF4: .4byte gFarmHouseTilePatchData + 0x0EC
 .L080A4DF8:
 	adds r2, #0x50
-	ldr r1, .L080A4E14 @ =gUnk_081071F8
+	ldr r1, .L080A4E14 @ =gFarmHouseTilePatchData + 0x11C
 	ldrb r0, [r2, #2]
 	adds r0, #1
 	strb r0, [r2, #2]
@@ -12916,10 +12916,10 @@ func_080A4BEC: @ 0x080A4BEC
 	strb r0, [r2, #2]
 	b .L080A4F3C
 	.align 2, 0
-.L080A4E14: .4byte gUnk_081071F8
+.L080A4E14: .4byte gFarmHouseTilePatchData + 0x11C
 .L080A4E18:
 	adds r2, #0x54
-	ldr r1, .L080A4E34 @ =gUnk_081071E0
+	ldr r1, .L080A4E34 @ =gFarmHouseTilePatchData + 0x104
 	ldrb r0, [r2, #2]
 	adds r0, #1
 	strb r0, [r2, #2]
@@ -12934,10 +12934,10 @@ func_080A4BEC: @ 0x080A4BEC
 	strb r0, [r2, #2]
 	b .L080A4F3C
 	.align 2, 0
-.L080A4E34: .4byte gUnk_081071E0
+.L080A4E34: .4byte gFarmHouseTilePatchData + 0x104
 .L080A4E38:
 	adds r2, #0x4c
-	ldr r1, .L080A4E54 @ =gUnk_081071D4
+	ldr r1, .L080A4E54 @ =gFarmHouseTilePatchData + 0x0F8
 	ldrb r0, [r2, #2]
 	adds r0, #1
 	strb r0, [r2, #2]
@@ -12950,10 +12950,10 @@ func_080A4BEC: @ 0x080A4BEC
 	strb r0, [r2, #2]
 	b .L080A4F3C
 	.align 2, 0
-.L080A4E54: .4byte gUnk_081071D4
+.L080A4E54: .4byte gFarmHouseTilePatchData + 0x0F8
 .L080A4E58:
 	adds r2, #0x4c
-	ldr r1, .L080A4E74 @ =gUnk_081071EC
+	ldr r1, .L080A4E74 @ =gFarmHouseTilePatchData + 0x110
 	ldrb r0, [r2, #2]
 	adds r0, #1
 	strb r0, [r2, #2]
@@ -12966,11 +12966,11 @@ func_080A4BEC: @ 0x080A4BEC
 	strb r0, [r2, #2]
 	b .L080A4F3C
 	.align 2, 0
-.L080A4E74: .4byte gUnk_081071EC
+.L080A4E74: .4byte gFarmHouseTilePatchData + 0x110
 .L080A4E78:
 	adds r3, r2, #0
 	adds r3, #0x38
-	ldr r1, .L080A4EA0 @ =gUnk_0810715C
+	ldr r1, .L080A4EA0 @ =gFarmHouseTilePatchData + 0x080
 	ldrb r0, [r3, #2]
 	adds r0, #1
 	movs r5, #0
@@ -12986,15 +12986,15 @@ func_080A4BEC: @ 0x080A4BEC
 	strb r0, [r3, #1]
 .L080A4E98:
 	adds r2, #0x3c
-	ldr r1, .L080A4EA4 @ =gUnk_08107168
+	ldr r1, .L080A4EA4 @ =gFarmHouseTilePatchData + 0x08C
 	b .L080A4F2C
 	.align 2, 0
-.L080A4EA0: .4byte gUnk_0810715C
-.L080A4EA4: .4byte gUnk_08107168
+.L080A4EA0: .4byte gFarmHouseTilePatchData + 0x080
+.L080A4EA4: .4byte gFarmHouseTilePatchData + 0x08C
 .L080A4EA8:
 	adds r3, r2, #0
 	adds r3, #0x38
-	ldr r1, .L080A4ED0 @ =gUnk_08107174
+	ldr r1, .L080A4ED0 @ =gFarmHouseTilePatchData + 0x098
 	ldrb r0, [r3, #2]
 	adds r0, #1
 	movs r5, #0
@@ -13010,15 +13010,15 @@ func_080A4BEC: @ 0x080A4BEC
 	strb r0, [r3, #1]
 .L080A4EC8:
 	adds r2, #0x3c
-	ldr r1, .L080A4ED4 @ =gUnk_08107180
+	ldr r1, .L080A4ED4 @ =gFarmHouseTilePatchData + 0x0A4
 	b .L080A4F2C
 	.align 2, 0
-.L080A4ED0: .4byte gUnk_08107174
-.L080A4ED4: .4byte gUnk_08107180
+.L080A4ED0: .4byte gFarmHouseTilePatchData + 0x098
+.L080A4ED4: .4byte gFarmHouseTilePatchData + 0x0A4
 .L080A4ED8:
 	adds r3, r2, #0
 	adds r3, #0x30
-	ldr r1, .L080A4F00 @ =gUnk_08107114
+	ldr r1, .L080A4F00 @ =gFarmHouseTilePatchData + 0x038
 	ldrb r0, [r3, #2]
 	adds r0, #1
 	movs r5, #0
@@ -13034,15 +13034,15 @@ func_080A4BEC: @ 0x080A4BEC
 	strb r0, [r3, #1]
 .L080A4EF8:
 	adds r2, #0x34
-	ldr r1, .L080A4F04 @ =gUnk_0810712C
+	ldr r1, .L080A4F04 @ =gFarmHouseTilePatchData + 0x050
 	b .L080A4F2C
 	.align 2, 0
-.L080A4F00: .4byte gUnk_08107114
-.L080A4F04: .4byte gUnk_0810712C
+.L080A4F00: .4byte gFarmHouseTilePatchData + 0x038
+.L080A4F04: .4byte gFarmHouseTilePatchData + 0x050
 .L080A4F08:
 	adds r3, r2, #0
 	adds r3, #0x30
-	ldr r1, .L080A4F48 @ =gUnk_08107120
+	ldr r1, .L080A4F48 @ =gFarmHouseTilePatchData + 0x044
 	ldrb r0, [r3, #2]
 	adds r0, #1
 	movs r5, #0
@@ -13058,7 +13058,7 @@ func_080A4BEC: @ 0x080A4BEC
 	strb r0, [r3, #1]
 .L080A4F28:
 	adds r2, #0x34
-	ldr r1, .L080A4F4C @ =gUnk_08107138
+	ldr r1, .L080A4F4C @ =gFarmHouseTilePatchData + 0x05C
 .L080A4F2C:
 	ldrb r0, [r2, #2]
 	adds r0, #1
@@ -13076,8 +13076,8 @@ func_080A4BEC: @ 0x080A4BEC
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080A4F48: .4byte gUnk_08107120
-.L080A4F4C: .4byte gUnk_08107138
+.L080A4F48: .4byte gFarmHouseTilePatchData + 0x044
+.L080A4F4C: .4byte gFarmHouseTilePatchData + 0x05C
 
 	thumb_func_start func_080A4F50
 func_080A4F50: @ 0x080A4F50
@@ -13527,7 +13527,7 @@ func_080A4F50: @ 0x080A4F50
 .L080A5320:
 	adds r4, r6, #0
 	adds r4, #0x40
-	ldr r5, .L080A5398 @ =gUnk_0810718C
+	ldr r5, .L080A5398 @ =gFarmHouseTilePatchData + 0x0B0
 	ldrb r0, [r4, #1]
 	cmp r0, #0
 	beq .L080A5358
@@ -13556,7 +13556,7 @@ func_080A4F50: @ 0x080A4F50
 .L080A5358:
 	adds r4, r6, #0
 	adds r4, #0x44
-	ldr r5, .L080A539C @ =gUnk_08107198
+	ldr r5, .L080A539C @ =gFarmHouseTilePatchData + 0x0BC
 	ldrb r0, [r4, #1]
 	cmp r0, #0
 	beq .L080A5390
@@ -13585,16 +13585,16 @@ func_080A4F50: @ 0x080A4F50
 .L080A5390:
 	adds r4, r6, #0
 	adds r4, #0x48
-	ldr r5, .L080A53A0 @ =gUnk_081071A4
+	ldr r5, .L080A53A0 @ =gFarmHouseTilePatchData + 0x0C8
 	b .L080A55E2
 	.align 2, 0
-.L080A5398: .4byte gUnk_0810718C
-.L080A539C: .4byte gUnk_08107198
-.L080A53A0: .4byte gUnk_081071A4
+.L080A5398: .4byte gFarmHouseTilePatchData + 0x0B0
+.L080A539C: .4byte gFarmHouseTilePatchData + 0x0BC
+.L080A53A0: .4byte gFarmHouseTilePatchData + 0x0C8
 .L080A53A4:
 	adds r4, r6, #0
 	adds r4, #0x40
-	ldr r5, .L080A541C @ =gUnk_081071B0
+	ldr r5, .L080A541C @ =gFarmHouseTilePatchData + 0x0D4
 	ldrb r0, [r4, #1]
 	cmp r0, #0
 	beq .L080A53DC
@@ -13623,7 +13623,7 @@ func_080A4F50: @ 0x080A4F50
 .L080A53DC:
 	adds r4, r6, #0
 	adds r4, #0x44
-	ldr r5, .L080A5420 @ =gUnk_081071BC
+	ldr r5, .L080A5420 @ =gFarmHouseTilePatchData + 0x0E0
 	ldrb r0, [r4, #1]
 	cmp r0, #0
 	beq .L080A5414
@@ -13652,44 +13652,44 @@ func_080A4F50: @ 0x080A4F50
 .L080A5414:
 	adds r4, r6, #0
 	adds r4, #0x48
-	ldr r5, .L080A5424 @ =gUnk_081071C8
+	ldr r5, .L080A5424 @ =gFarmHouseTilePatchData + 0x0EC
 	b .L080A55E2
 	.align 2, 0
-.L080A541C: .4byte gUnk_081071B0
-.L080A5420: .4byte gUnk_081071BC
-.L080A5424: .4byte gUnk_081071C8
+.L080A541C: .4byte gFarmHouseTilePatchData + 0x0D4
+.L080A5420: .4byte gFarmHouseTilePatchData + 0x0E0
+.L080A5424: .4byte gFarmHouseTilePatchData + 0x0EC
 .L080A5428:
 	adds r4, r6, #0
 	adds r4, #0x50
-	ldr r5, .L080A5430 @ =gUnk_081071F8
+	ldr r5, .L080A5430 @ =gFarmHouseTilePatchData + 0x11C
 	b .L080A55E2
 	.align 2, 0
-.L080A5430: .4byte gUnk_081071F8
+.L080A5430: .4byte gFarmHouseTilePatchData + 0x11C
 .L080A5434:
 	adds r4, r6, #0
 	adds r4, #0x54
-	ldr r5, .L080A543C @ =gUnk_081071E0
+	ldr r5, .L080A543C @ =gFarmHouseTilePatchData + 0x104
 	b .L080A55E2
 	.align 2, 0
-.L080A543C: .4byte gUnk_081071E0
+.L080A543C: .4byte gFarmHouseTilePatchData + 0x104
 .L080A5440:
 	adds r4, r6, #0
 	adds r4, #0x4c
-	ldr r5, .L080A5448 @ =gUnk_081071D4
+	ldr r5, .L080A5448 @ =gFarmHouseTilePatchData + 0x0F8
 	b .L080A55E2
 	.align 2, 0
-.L080A5448: .4byte gUnk_081071D4
+.L080A5448: .4byte gFarmHouseTilePatchData + 0x0F8
 .L080A544C:
 	adds r4, r6, #0
 	adds r4, #0x4c
-	ldr r5, .L080A5454 @ =gUnk_081071EC
+	ldr r5, .L080A5454 @ =gFarmHouseTilePatchData + 0x110
 	b .L080A55E2
 	.align 2, 0
-.L080A5454: .4byte gUnk_081071EC
+.L080A5454: .4byte gFarmHouseTilePatchData + 0x110
 .L080A5458:
 	adds r4, r6, #0
 	adds r4, #0x38
-	ldr r5, .L080A5498 @ =gUnk_0810715C
+	ldr r5, .L080A5498 @ =gFarmHouseTilePatchData + 0x080
 	ldrb r0, [r4, #1]
 	cmp r0, #0
 	beq .L080A5490
@@ -13718,15 +13718,15 @@ func_080A4F50: @ 0x080A4F50
 .L080A5490:
 	adds r4, r6, #0
 	adds r4, #0x3c
-	ldr r5, .L080A549C @ =gUnk_08107168
+	ldr r5, .L080A549C @ =gFarmHouseTilePatchData + 0x08C
 	b .L080A55E2
 	.align 2, 0
-.L080A5498: .4byte gUnk_0810715C
-.L080A549C: .4byte gUnk_08107168
+.L080A5498: .4byte gFarmHouseTilePatchData + 0x080
+.L080A549C: .4byte gFarmHouseTilePatchData + 0x08C
 .L080A54A0:
 	adds r4, r6, #0
 	adds r4, #0x38
-	ldr r5, .L080A54E0 @ =gUnk_08107174
+	ldr r5, .L080A54E0 @ =gFarmHouseTilePatchData + 0x098
 	ldrb r0, [r4, #1]
 	cmp r0, #0
 	beq .L080A54D8
@@ -13755,11 +13755,11 @@ func_080A4F50: @ 0x080A4F50
 .L080A54D8:
 	adds r4, r6, #0
 	adds r4, #0x3c
-	ldr r5, .L080A54E4 @ =gUnk_08107180
+	ldr r5, .L080A54E4 @ =gFarmHouseTilePatchData + 0x0A4
 	b .L080A55E2
 	.align 2, 0
-.L080A54E0: .4byte gUnk_08107174
-.L080A54E4: .4byte gUnk_08107180
+.L080A54E0: .4byte gFarmHouseTilePatchData + 0x098
+.L080A54E4: .4byte gFarmHouseTilePatchData + 0x0A4
 .L080A54E8:
 	adds r1, r6, #0
 	adds r1, #0x58
@@ -13772,18 +13772,18 @@ func_080A4F50: @ 0x080A4F50
 	lsrs r0, r0, #0x18
 	cmp r0, #0
 	bne .L080A5510
-	ldr r1, .L080A550C @ =gUnk_08107144
+	ldr r1, .L080A550C @ =gFarmHouseTilePatchData + 0x068
 	adds r0, r6, #0
 	movs r2, #0
 	mov r3, sl
 	bl func_080A5AB0
 	b .L080A5520
 	.align 2, 0
-.L080A550C: .4byte gUnk_08107144
+.L080A550C: .4byte gFarmHouseTilePatchData + 0x068
 .L080A5510:
 	cmp r0, #0xa
 	bne .L080A5520
-	ldr r1, .L080A5560 @ =gUnk_08107144
+	ldr r1, .L080A5560 @ =gFarmHouseTilePatchData + 0x068
 	adds r0, r6, #0
 	movs r2, #1
 	mov r3, sl
@@ -13791,7 +13791,7 @@ func_080A4F50: @ 0x080A4F50
 .L080A5520:
 	adds r4, r6, #0
 	adds r4, #0x30
-	ldr r5, .L080A5564 @ =gUnk_08107114
+	ldr r5, .L080A5564 @ =gFarmHouseTilePatchData + 0x038
 	ldrb r0, [r4, #1]
 	cmp r0, #0
 	beq .L080A5558
@@ -13820,12 +13820,12 @@ func_080A4F50: @ 0x080A4F50
 .L080A5558:
 	adds r4, r6, #0
 	adds r4, #0x34
-	ldr r5, .L080A5568 @ =gUnk_0810712C
+	ldr r5, .L080A5568 @ =gFarmHouseTilePatchData + 0x050
 	b .L080A55E2
 	.align 2, 0
-.L080A5560: .4byte gUnk_08107144
-.L080A5564: .4byte gUnk_08107114
-.L080A5568: .4byte gUnk_0810712C
+.L080A5560: .4byte gFarmHouseTilePatchData + 0x068
+.L080A5564: .4byte gFarmHouseTilePatchData + 0x038
+.L080A5568: .4byte gFarmHouseTilePatchData + 0x050
 .L080A556C:
 	adds r1, r6, #0
 	adds r1, #0x58
@@ -13838,18 +13838,18 @@ func_080A4F50: @ 0x080A4F50
 	lsrs r0, r0, #0x18
 	cmp r0, #0
 	bne .L080A5594
-	ldr r1, .L080A5590 @ =gUnk_0810714C
+	ldr r1, .L080A5590 @ =gFarmHouseTilePatchData + 0x070
 	adds r0, r6, #0
 	movs r2, #0
 	mov r3, sl
 	bl func_080A5AB0
 	b .L080A55A4
 	.align 2, 0
-.L080A5590: .4byte gUnk_0810714C
+.L080A5590: .4byte gFarmHouseTilePatchData + 0x070
 .L080A5594:
 	cmp r0, #0xa
 	bne .L080A55A4
-	ldr r1, .L080A5618 @ =gUnk_0810714C
+	ldr r1, .L080A5618 @ =gFarmHouseTilePatchData + 0x070
 	adds r0, r6, #0
 	movs r2, #1
 	mov r3, sl
@@ -13857,7 +13857,7 @@ func_080A4F50: @ 0x080A4F50
 .L080A55A4:
 	adds r4, r6, #0
 	adds r4, #0x30
-	ldr r5, .L080A561C @ =gUnk_08107120
+	ldr r5, .L080A561C @ =gFarmHouseTilePatchData + 0x044
 	ldrb r0, [r4, #1]
 	cmp r0, #0
 	beq .L080A55DC
@@ -13886,7 +13886,7 @@ func_080A4F50: @ 0x080A4F50
 .L080A55DC:
 	adds r4, r6, #0
 	adds r4, #0x34
-	ldr r5, .L080A5620 @ =gUnk_08107138
+	ldr r5, .L080A5620 @ =gFarmHouseTilePatchData + 0x05C
 .L080A55E2:
 	ldrb r0, [r4, #1]
 	cmp r0, #0
@@ -13915,9 +13915,9 @@ func_080A4F50: @ 0x080A4F50
 	strb r7, [r4]
 	b .L080A565C
 	.align 2, 0
-.L080A5618: .4byte gUnk_0810714C
-.L080A561C: .4byte gUnk_08107120
-.L080A5620: .4byte gUnk_08107138
+.L080A5618: .4byte gFarmHouseTilePatchData + 0x070
+.L080A561C: .4byte gFarmHouseTilePatchData + 0x044
+.L080A5620: .4byte gFarmHouseTilePatchData + 0x05C
 .L080A5624:
 	adds r1, r6, #0
 	adds r1, #0x58
@@ -13930,18 +13930,18 @@ func_080A4F50: @ 0x080A4F50
 	lsrs r0, r0, #0x18
 	cmp r0, #0
 	bne .L080A564C
-	ldr r1, .L080A5648 @ =gUnk_08107154
+	ldr r1, .L080A5648 @ =gFarmHouseTilePatchData + 0x078
 	adds r0, r6, #0
 	movs r2, #0
 	mov r3, sl
 	bl func_080A5AB0
 	b .L080A565C
 	.align 2, 0
-.L080A5648: .4byte gUnk_08107154
+.L080A5648: .4byte gFarmHouseTilePatchData + 0x078
 .L080A564C:
 	cmp r0, #0xa
 	bne .L080A565C
-	ldr r1, .L080A566C @ =gUnk_08107154
+	ldr r1, .L080A566C @ =gFarmHouseTilePatchData + 0x078
 	adds r0, r6, #0
 	movs r2, #1
 	mov r3, sl
@@ -13956,7 +13956,7 @@ func_080A4F50: @ 0x080A4F50
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080A566C: .4byte gUnk_08107154
+.L080A566C: .4byte gFarmHouseTilePatchData + 0x078
 
 	thumb_func_start func_080A5670
 func_080A5670: @ 0x080A5670
@@ -15967,21 +15967,21 @@ func_080A6524: @ 0x080A6524
 	bl GetStockingArticleId__C9FarmHouse
 	cmp r0, #0x5f
 	bne .L080A6580
-	ldr r1, .L080A657C @ =gUnk_0810710C
+	ldr r1, .L080A657C @ =gFarmHouseTilePatchData + 0x030
 	adds r0, r5, #0
 	movs r2, #1
 	b .L080A6592
 	.align 2, 0
-.L080A657C: .4byte gUnk_0810710C
+.L080A657C: .4byte gFarmHouseTilePatchData + 0x030
 .L080A6580:
-	ldr r1, .L080A6588 @ =gUnk_0810710C
+	ldr r1, .L080A6588 @ =gFarmHouseTilePatchData + 0x030
 	adds r0, r5, #0
 	movs r2, #2
 	b .L080A6592
 	.align 2, 0
-.L080A6588: .4byte gUnk_0810710C
+.L080A6588: .4byte gFarmHouseTilePatchData + 0x030
 .L080A658C:
-	ldr r1, .L080A659C @ =gUnk_0810710C
+	ldr r1, .L080A659C @ =gFarmHouseTilePatchData + 0x030
 	adds r0, r5, #0
 	movs r2, #0
 .L080A6592:
@@ -15989,7 +15989,7 @@ func_080A6524: @ 0x080A6524
 	bl func_080A5AB0
 	b .L080A662A
 	.align 2, 0
-.L080A659C: .4byte gUnk_0810710C
+.L080A659C: .4byte gFarmHouseTilePatchData + 0x030
 .L080A65A0:
 	ldr r1, .L080A6634 @ =0x000021A0
 	adds r0, r0, r1
@@ -19944,12 +19944,12 @@ func_080A748C: @ 0x080A748C
 	str r5, [r7, #4]
 	str r0, [r7, #0xc]
 .L080A84C8:
-	ldr r1, .L080A8624 @ =gUnk_08107144
+	ldr r1, .L080A8624 @ =gFarmHouseTilePatchData + 0x068
 	ldr r0, [sp, #0x190]
 	movs r2, #0
 	adds r3, r7, #0
 	bl func_080A5AB0
-	ldr r4, .L080A8628 @ =gUnk_081070DC
+	ldr r4, .L080A8628 @ =gFarmHouseTilePatchData + 0x000
 	ldr r2, [sp, #0x1b0]
 	ldr r0, [r2]
 	movs r5, #0xfa
@@ -20028,7 +20028,7 @@ func_080A748C: @ 0x080A748C
 	mov sb, r1
 	cmp r1, #8
 	bls .L080A84FA
-	ldr r4, .L080A8630 @ =gUnk_081070EC
+	ldr r4, .L080A8630 @ =gFarmHouseTilePatchData + 0x010
 	ldr r2, [sp, #0x1b0]
 	ldr r0, [r2]
 	movs r5, #0xfa
@@ -20107,15 +20107,15 @@ func_080A748C: @ 0x080A748C
 	mov sb, r1
 	cmp r1, #0xa
 	bls .L080A85A0
-	ldr r4, .L080A8638 @ =gUnk_081070FC
+	ldr r4, .L080A8638 @ =gFarmHouseTilePatchData + 0x020
 	b .L080A88BA
 	.align 2, 0
-.L080A8624: .4byte gUnk_08107144
-.L080A8628: .4byte gUnk_081070DC
+.L080A8624: .4byte gFarmHouseTilePatchData + 0x068
+.L080A8628: .4byte gFarmHouseTilePatchData + 0x000
 .L080A862C: .4byte gUnk_0810742E
-.L080A8630: .4byte gUnk_081070EC
+.L080A8630: .4byte gFarmHouseTilePatchData + 0x010
 .L080A8634: .4byte gUnk_08107431
-.L080A8638: .4byte gUnk_081070FC
+.L080A8638: .4byte gFarmHouseTilePatchData + 0x020
 .L080A863C:
 	ldr r1, .L080A867C @ =gUnk_086D6698
 	add r0, sp, #0x30
@@ -20276,12 +20276,12 @@ func_080A748C: @ 0x080A748C
 	str r5, [r7, #4]
 	str r0, [r7, #0xc]
 .L080A8760:
-	ldr r1, .L080A88D8 @ =gUnk_0810714C
+	ldr r1, .L080A88D8 @ =gFarmHouseTilePatchData + 0x070
 	ldr r0, [sp, #0x190]
 	movs r2, #0
 	adds r3, r7, #0
 	bl func_080A5AB0
-	ldr r4, .L080A88DC @ =gUnk_081070E4
+	ldr r4, .L080A88DC @ =gFarmHouseTilePatchData + 0x008
 	ldr r1, [sp, #0x1b0]
 	ldr r0, [r1]
 	movs r5, #0xfa
@@ -20360,7 +20360,7 @@ func_080A748C: @ 0x080A748C
 	mov sb, r1
 	cmp r1, #8
 	bls .L080A8792
-	ldr r4, .L080A88E4 @ =gUnk_081070F4
+	ldr r4, .L080A88E4 @ =gFarmHouseTilePatchData + 0x018
 	ldr r2, [sp, #0x1b0]
 	ldr r0, [r2]
 	movs r5, #0xfa
@@ -20439,7 +20439,7 @@ func_080A748C: @ 0x080A748C
 	mov sb, r1
 	cmp r1, #0xa
 	bls .L080A8838
-	ldr r4, .L080A88EC @ =gUnk_08107104
+	ldr r4, .L080A88EC @ =gFarmHouseTilePatchData + 0x028
 .L080A88BA:
 	ldr r2, [sp, #0x1b0]
 	ldr r0, [r2]
@@ -20454,12 +20454,12 @@ func_080A748C: @ 0x080A748C
 	bl func_080A5AB0
 	bl .L080A9224
 	.align 2, 0
-.L080A88D8: .4byte gUnk_0810714C
-.L080A88DC: .4byte gUnk_081070E4
+.L080A88D8: .4byte gFarmHouseTilePatchData + 0x070
+.L080A88DC: .4byte gFarmHouseTilePatchData + 0x008
 .L080A88E0: .4byte gUnk_08107434
-.L080A88E4: .4byte gUnk_081070F4
+.L080A88E4: .4byte gFarmHouseTilePatchData + 0x018
 .L080A88E8: .4byte gUnk_08107431
-.L080A88EC: .4byte gUnk_08107104
+.L080A88EC: .4byte gFarmHouseTilePatchData + 0x028
 .L080A88F0:
 	add r5, sp, #0x30
 	movs r0, #0
@@ -21729,7 +21729,7 @@ sub_080A9122: @ 0x080A9122
 	str r0, [r7, #0xc]
 	b .L080A9224
 .L080A9212:
-	ldr r1, .L080A9238 @ =gUnk_08107154
+	ldr r1, .L080A9238 @ =gFarmHouseTilePatchData + 0x078
 	ldr r0, [sp, #0x190]
 	movs r2, #0
 	adds r3, r7, #0
@@ -21750,7 +21750,7 @@ sub_080A9122: @ 0x080A9122
 	beq .L080A924C
 	b .L080A93F2
 	.align 2, 0
-.L080A9238: .4byte gUnk_08107154
+.L080A9238: .4byte gFarmHouseTilePatchData + 0x078
 .L080A923C:
 	cmp r0, #0x1d
 	beq .L080A9242

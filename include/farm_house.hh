@@ -102,4 +102,35 @@ struct FarmHouse
     /* +20C */ Unk_0800BC58 unk;
 };
 
+// func_080A5AB0 reads the destination tile and source pointer from these
+// records.  The two bytes after destination_tile are compiler alignment for
+// the pointer, not an independently meaningful ROM field.
+struct FarmHouseTilePatchDescriptor
+{
+    u16 destination_tile;
+    u8 const * frame_data;
+};
+
+// Callers additionally read frame_count at +0x08.  As above, both the
+// pointer alignment and tail alignment are natural structure padding.
+struct FarmHouseTilePatchAnimationDescriptor
+{
+    u16 destination_tile;
+    u8 const * frame_data;
+    u16 frame_count;
+};
+
+// The numeric group names deliberately describe only the four physically
+// contiguous ROM groups.  The still-native callers do not prove a stronger
+// gameplay-specific subdivision yet.
+struct FarmHouseTilePatchData
+{
+    FarmHouseTilePatchDescriptor group0[7];
+    FarmHouseTilePatchAnimationDescriptor animation_group0[4];
+    FarmHouseTilePatchDescriptor group1[3];
+    FarmHouseTilePatchAnimationDescriptor animation_group1[14];
+};
+
+extern FarmHouseTilePatchData const gFarmHouseTilePatchData;
+
 #endif // FARM_HOUSE_HH

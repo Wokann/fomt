@@ -77,20 +77,20 @@
     .incbin "baserom_jp.gba", 0x103EF4, (0x10447C - 0x103EF4)
 
     .section .rodata.field_render_rect_descriptors_after
-    .global gUnk_08106C24
-gUnk_08106C24:
-    .incbin "baserom_jp.gba", 0x106C24, (0x1070F4 - 0x106C24)
+    .global gUnk_08106D4C
+gUnk_08106D4C:
+    .incbin "baserom_jp.gba", 0x106D4C, (0x1070F4 - 0x106D4C)
 
     @ These labels identify the still-raw targets of gFieldRenderRectDescriptors.
     @ Their payload types are not known yet.
     .global gUnk_FieldRenderResource_158
-    .set gUnk_FieldRenderResource_158, gUnk_08106C24 + 0x274
+    .set gUnk_FieldRenderResource_158, gUnk_08106D4C + 0x14C
     .global gUnk_FieldRenderResource_159
-    .set gUnk_FieldRenderResource_159, gUnk_08106C24 + 0x278
+    .set gUnk_FieldRenderResource_159, gUnk_08106D4C + 0x150
     .global gUnk_FieldRenderResource_177
-    .set gUnk_FieldRenderResource_177, gUnk_08106C24 + 0x280
+    .set gUnk_FieldRenderResource_177, gUnk_08106D4C + 0x158
     .global gUnk_FieldRenderResource_178
-    .set gUnk_FieldRenderResource_178, gUnk_08106C24 + 0x284
+    .set gUnk_FieldRenderResource_178, gUnk_08106D4C + 0x15C
 
     .section .rodata.harvest_sprite_minigames_animal_husbandry_trailer
     .incbin "baserom_jp.gba", 0x10737B, (0x1073B9 - 0x10737B)
@@ -878,132 +878,20 @@ gUnk_081043BC:
 
     .section .rodata.field_render_rect_descriptors_after
 
-	.global gUnk_081070DC
-gUnk_081070DC:
-	.incbin "baserom_us.gba", 0x1070DC, 0x8
+	.global gUnk_08107204
+gUnk_08107204:
+	.incbin "baserom_us.gba", 0x107204, 0x2C
 
 	@ These labels identify the still-raw targets of gFieldRenderRectDescriptors.
 	@ Their payload types are not known yet.
 	.global gUnk_FieldRenderResource_158
-	.set gUnk_FieldRenderResource_158, gUnk_081070DC + 0x274
+	.set gUnk_FieldRenderResource_158, gUnk_08107204 + 0x14C
 	.global gUnk_FieldRenderResource_159
-	.set gUnk_FieldRenderResource_159, gUnk_081070DC + 0x278
+	.set gUnk_FieldRenderResource_159, gUnk_08107204 + 0x150
 	.global gUnk_FieldRenderResource_177
-	.set gUnk_FieldRenderResource_177, gUnk_081070DC + 0x280
+	.set gUnk_FieldRenderResource_177, gUnk_08107204 + 0x158
 	.global gUnk_FieldRenderResource_178
-	.set gUnk_FieldRenderResource_178, gUnk_081070DC + 0x284
-
-	.global gUnk_081070E4
-gUnk_081070E4:
-	.incbin "baserom_us.gba", 0x1070E4, 0x8
-
-	.global gUnk_081070EC
-gUnk_081070EC:
-	.incbin "baserom_us.gba", 0x1070EC, 0x8
-
-	.global gUnk_081070F4
-gUnk_081070F4:
-	.incbin "baserom_us.gba", 0x1070F4, 0x8
-
-	.global gUnk_081070FC
-gUnk_081070FC:
-	.incbin "baserom_us.gba", 0x1070FC, 0x8
-
-	.global gUnk_08107104
-gUnk_08107104:
-	.incbin "baserom_us.gba", 0x107104, 0x8
-
-	.global gUnk_0810710C
-gUnk_0810710C:
-	.incbin "baserom_us.gba", 0x10710C, 0x8
-
-	.global gUnk_08107114
-gUnk_08107114:
-	.incbin "baserom_us.gba", 0x107114, 0xC
-
-	.global gUnk_08107120
-gUnk_08107120:
-	.incbin "baserom_us.gba", 0x107120, 0xC
-
-	.global gUnk_0810712C
-gUnk_0810712C:
-	.incbin "baserom_us.gba", 0x10712C, 0xC
-
-	.global gUnk_08107138
-gUnk_08107138:
-	.incbin "baserom_us.gba", 0x107138, 0xC
-
-	.global gUnk_08107144
-gUnk_08107144:
-	.incbin "baserom_us.gba", 0x107144, 0x8
-
-	.global gUnk_0810714C
-gUnk_0810714C:
-	.incbin "baserom_us.gba", 0x10714C, 0x8
-
-	.global gUnk_08107154
-gUnk_08107154:
-	.incbin "baserom_us.gba", 0x107154, 0x8
-
-	.global gUnk_0810715C
-gUnk_0810715C:
-	.incbin "baserom_us.gba", 0x10715C, 0xC
-
-	.global gUnk_08107168
-gUnk_08107168:
-	.incbin "baserom_us.gba", 0x107168, 0xC
-
-	.global gUnk_08107174
-gUnk_08107174:
-	.incbin "baserom_us.gba", 0x107174, 0xC
-
-	.global gUnk_08107180
-gUnk_08107180:
-	.incbin "baserom_us.gba", 0x107180, 0xC
-
-	.global gUnk_0810718C
-gUnk_0810718C:
-	.incbin "baserom_us.gba", 0x10718C, 0xC
-
-	.global gUnk_08107198
-gUnk_08107198:
-	.incbin "baserom_us.gba", 0x107198, 0xC
-
-	.global gUnk_081071A4
-gUnk_081071A4:
-	.incbin "baserom_us.gba", 0x1071A4, 0xC
-
-	.global gUnk_081071B0
-gUnk_081071B0:
-	.incbin "baserom_us.gba", 0x1071B0, 0xC
-
-	.global gUnk_081071BC
-gUnk_081071BC:
-	.incbin "baserom_us.gba", 0x1071BC, 0xC
-
-	.global gUnk_081071C8
-gUnk_081071C8:
-	.incbin "baserom_us.gba", 0x1071C8, 0xC
-
-	.global gUnk_081071D4
-gUnk_081071D4:
-	.incbin "baserom_us.gba", 0x1071D4, 0xC
-
-	.global gUnk_081071E0
-gUnk_081071E0:
-	.incbin "baserom_us.gba", 0x1071E0, 0xC
-
-	.global gUnk_081071EC
-gUnk_081071EC:
-	.incbin "baserom_us.gba", 0x1071EC, 0xC
-
-	.global gUnk_081071F8
-gUnk_081071F8:
-	.incbin "baserom_us.gba", 0x1071F8, 0xC
-
-	.global gUnk_08107204
-gUnk_08107204:
-	.incbin "baserom_us.gba", 0x107204, 0x2C
+	.set gUnk_FieldRenderResource_178, gUnk_08107204 + 0x15C
 
 	.global gUnk_08107230
 gUnk_08107230:
