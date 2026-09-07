@@ -533,8 +533,7 @@ SECTIONS
         src/help_menu.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        data/text/animal_memorial.o(.rodata.animal_memorial);
-        . = 0xEFF44; /* JP data after the animal memorial text pieces. */
+        data/text/animal_memorial.o(.rodata);
         asm/data/data_080F0348.o(.rodata.animal_memorial_trailer);
         FILL(0x00);
         . = ALIGN(4); data/text/not_available.o(.rodata.not_available);

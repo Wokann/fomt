@@ -440,6 +440,7 @@ SECTIONS
         data/text/calendar.o(.rodata.calendar.none);
         data/text/calendar.o(.rodata.calendar.weekday);
         . = ALIGN(4); asm/data/data_080F0348.o(.rodata.calendar_trailer);
+        asm/data/data_080F0348.o(.rodata.load_error_prefix);
         FILL(0x00);
         . = ALIGN(4); data/text/load_error.o(.rodata);
         FILL(0x00);
@@ -447,8 +448,8 @@ SECTIONS
         src/help_menu.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        data/text/animal_memorial.o(.rodata.animal_memorial);
-        . = ALIGN(4); asm/data/data_080F0348.o(.rodata.animal_memorial_trailer);
+        data/text/animal_memorial.o(.rodata);
+        asm/data/data_080F0348.o(.rodata.animal_memorial_trailer);
         FILL(0x00);
         . = ALIGN(4); data/text/not_available.o(.rodata.not_available);
         asm/data/data_080F0348.o(.rodata.not_available_trailer);

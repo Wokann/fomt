@@ -20,5 +20,8 @@ extern char const gText_AnimalMemorial_PrayerEnding[];
 #if defined(REGION_JP)
 extern char const gText_AnimalMemorial_PassedNaturalLife[];
 #endif
+extern char const gCppRuntimeBadAlloc_AnimalMemorial[];
+extern char const gCppRuntimeError_AnimalMemorial[];
+extern char const gText_AnimalMemorialFallbackNone[];
 
 #endif // ANIMAL_MEMORIAL_TEXT_HH
