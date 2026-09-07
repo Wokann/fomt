@@ -513,9 +513,6 @@ gUnk_081010E8:
 gUnk_0810110C:
 	.incbin "baserom_us.gba", 0x10110C, 0x254C
 
-	.section .rodata.fishing_results_trailer
-	.incbin "baserom_us.gba", 0x103B04, (0x103B10 - 0x103B04)
-
 	.section .rodata.reference_guide_harvest_sprite_minigames_after_fishing_results
 
 	.global gUnk_08103B10
