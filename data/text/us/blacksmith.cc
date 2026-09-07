@@ -194,9 +194,8 @@ char const gText_BlacksmithUpgrade_WorkOrderDaysPrefix[] BLACKSMITH_UPGRADE_TEXT
 char const gText_BlacksmithUpgrade_WorkOrderDaysSuffix[] BLACKSMITH_UPGRADE_TEXT =
     " days.\r\n";
 
-// This zero is the original padding byte before the following non-text word.
 char const gText_BlacksmithUpgrade_WorkOrderQuestion[] BLACKSMITH_UPGRADE_TEXT =
-    "Is that okay?{Press}\x00";
+    "Is that okay?{Press}";
 
 char const gText_BlacksmithUpgrade_InsufficientGoldPageBreak[] BLACKSMITH_UPGRADE_TEXT =
     "\p";

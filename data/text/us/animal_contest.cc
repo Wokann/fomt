@@ -88,4 +88,4 @@ char const gText_AnimalContest_FinalYes[] =
     "Yes";
 
 char const gText_AnimalContest_FinalNo[] =
-    "No\x00";
+    "No";

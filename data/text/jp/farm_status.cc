@@ -103,4 +103,4 @@ char const gText_FarmStatus_ToolUpgradeAvailable[] =
     "改造可能";
 
 char const gText_FarmStatus_PercentSign[] =
-    "％\x00";
+    "％";

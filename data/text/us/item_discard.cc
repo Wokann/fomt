@@ -1,7 +1,7 @@
 #include "item_discard_text.hh"
 
 char const gText_ItemDiscard_Confirm[] =
-    "Throw this away?\x00\x00\x00";
+    "Throw this away?";
 
 char const * const gItemDiscardConfirmTextRef =
     gText_ItemDiscard_Confirm;
@@ -14,7 +14,7 @@ char const * const gItemDiscardCannotDiscardTextRef =
 
 char const gText_ItemDiscard_Cursed[] =
     "You can't let go of it\r\n"
-    "because it's cursed!{Press}\x00\x00";
+    "because it's cursed!{Press}";
 
 char const * const gItemDiscardCursedTextRef =
     gText_ItemDiscard_Cursed;

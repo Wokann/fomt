@@ -85,4 +85,4 @@ char const gText_FarmStatus_ToolUpgradeQuestion[] =
     "Upgrade?";
 
 char const gText_FarmStatus_PercentSign[] =
-    "% \x00";
+    "% ";

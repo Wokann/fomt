@@ -40,7 +40,7 @@ extern u8 const gCodeLinkoncePackedCellSizeLookup[] = {
 };
 
 extern char const gCppRuntimeBadAlloc_PackedCellSizeLookup[] =
-    "bad_alloc\x00\x00";
+    "bad_alloc";
 
 extern char const gCppRuntimeBadAlloc_UiDigitGlyphs[] =
     "bad_alloc";
@@ -57,4 +57,4 @@ extern u16 const gUiPreloadedDigitGlyphCodes[] = {
 };
 
 extern char const gCppRuntimeBadAlloc_RecordsScreenTrailer[] =
-    "bad_alloc\x00\x00";
+    "bad_alloc";

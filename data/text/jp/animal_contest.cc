@@ -99,4 +99,4 @@ char const gText_AnimalContest_FinalYes[] =
     "はい";
 
 char const gText_AnimalContest_FinalNo[] =
-    "いいえ\x00";
+    "いいえ";

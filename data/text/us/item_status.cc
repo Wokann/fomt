@@ -1,13 +1,13 @@
 #include "item_status_text.hh"
 
 char const gText_ItemStatus_BasketName[] =
-    "Basket\r\n\x00\x00\x00";
+    "Basket\r\n";
 
 char const gText_ItemStatus_BasketDescription[] =
-    "Can store goods to ship.\r\n\x00";
+    "Can store goods to ship.\r\n";
 
 char const gText_ItemStatus_BasketHoldingPrefix[] =
-    "Holding \x00\x00\x00";
+    "Holding ";
 
 char const gText_ItemStatus_BasketHoldingSuffix[] =
     " items.";

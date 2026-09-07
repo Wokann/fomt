@@ -100,4 +100,4 @@ extern FarmStatusScreenExteriorStyleData const gFarmStatusScreenExteriorStyleDat
 };
 
 extern char const gCppRuntimeBadAlloc_FarmStatusScreenTrailer[] =
-    "bad_alloc\x00\x00";
+    "bad_alloc";

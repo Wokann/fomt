@@ -1,22 +1,25 @@
 #include "animal_status_text.hh"
 
 char const gText_AnimalStatus_Dog[] =
-    "犬\r\n\x00\x00\x00";
+    "犬\r\n";
 
 char const gText_AnimalStatus_Puppy[] =
-    "子犬\r\n\x00";
+    "子犬\r\n";
 
 char const gText_AnimalStatus_Chicken[] =
-    "鶏\r\n\x00\x00\x00";
+    "鶏\r\n";
 
 char const gText_AnimalStatus_Chick[] =
-    "ひよこ\r\n\x00\x00\x00";
+    "ひよこ\r\n";
 
 char const gText_AnimalStatus_Sick[] =
-    "\r\n病気\x00";
+    "\r\n"
+    "病気";
 
 char const gText_AnimalStatus_Unhappy[] =
-    "\r\n不機嫌\x00\x00\x00";
+    "\r\n"
+    "不機嫌";
 
 char const gText_AnimalStatus_Healthy[] =
-    "\r\n健康\x00";
+    "\r\n"
+    "健康";
