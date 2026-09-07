@@ -560,12 +560,6 @@ gUnk_080F9F78:
 	.section .rodata.name_entry_preset_animal_names_prefix
 	.incbin "baserom_us.gba", 0xF9F7C, 0x4
 
-	.section .rodata.name_entry_ui_character_codes
-
-	.global gUnk_080FA12E
-gUnk_080FA12E:
-	.incbin "baserom_us.gba", 0xFA12E, 0x2A
-
 	.section .rodata.frisbee_scoreboard_trailer_after
 	.global gUnk_080FA246
 gUnk_080FA246:

@@ -34139,7 +34139,7 @@ func_080516F0: @ 0x080516F0
 	mov r8, r0
 	ldr r5, .L08051A1C @ =0x06001800
 	adds r6, r7, #0
-	ldr r4, .L08051A20 @ =gUnk_080FA12E
+	ldr r4, .L08051A20 @ =gNewGameNameEntryUiCharacterCodes
 .L080518B0:
 	ldrh r1, [r4]
 	mov r2, r8
@@ -34294,7 +34294,7 @@ func_080516F0: @ 0x080516F0
 .L08051A14: .4byte 0x00000A34
 .L08051A18: .4byte 0x00000A54
 .L08051A1C: .4byte 0x06001800
-.L08051A20: .4byte gUnk_080FA12E
+.L08051A20: .4byte gNewGameNameEntryUiCharacterCodes
 .L08051A24: .4byte 0x03FF03FF
 .L08051A28: .4byte 0x00000A38
 .L08051A2C: .4byte 0x00000A3C

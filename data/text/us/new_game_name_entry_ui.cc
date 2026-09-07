@@ -1,5 +1,15 @@
 #include "new_game_name_entry_ui_text.hh"
 
+// The native US name-entry UI iterates over the first thirteen codes. Keep
+// the remaining original zero slots in this one table rather than treating
+// them as an unrelated padding array.
+extern u16 const gNewGameNameEntryUiCharacterCodes[]
+    SECTION(".rodata.name_entry_ui_character_codes") = {
+    0x0030, 0x0031, 0x0032, 0x0033, 0x0034, 0x0035, 0x0036,
+    0x0037, 0x0038, 0x0039, 0x002E, 0x006D, 0x0023,
+    0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
+};
+
 char const gText_NewGameNameEntry_Placeholder[16] SECTION(".rodata.new_game_name_entry_ui") =
     "____________";
 

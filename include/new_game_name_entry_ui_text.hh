@@ -26,6 +26,7 @@ extern char const gText_NewGameNameEntry_ModeHiragana[];
 #else
 extern char const gText_NewGameNameEntry_EndLatin[];
 extern char const gText_NewGameNameEntry_EndFullWidth[];
+extern u16 const gNewGameNameEntryUiCharacterCodes[];
 #endif
 
 #endif // NEW_GAME_NAME_ENTRY_UI_TEXT_HH
