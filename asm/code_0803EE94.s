@@ -57386,7 +57386,7 @@ func_0805D170: @ 0x0805D170
 .L0805D580: .4byte 0x00001C2C
 .L0805D584: .4byte 0x0000015F
 .L0805D588:
-	ldr r0, .L0805D5C0 @ =gUnk_080FB0F0
+	ldr r0, .L0805D5C0 @ =gHorseRacePrizeItemIds
 	ldrh r1, [r0, #0x10]
 	adds r0, r7, #0
 	bl __4FoodUi
@@ -57412,7 +57412,7 @@ func_0805D170: @ 0x0805D170
 	bl func_0800F3B0
 	b .L0805D624
 	.align 2, 0
-.L0805D5C0: .4byte gUnk_080FB0F0
+.L0805D5C0: .4byte gHorseRacePrizeItemIds
 .L0805D5C4: .4byte 0x00001C2C
 .L0805D5C8:
 	ldr r2, [r6, #8]
@@ -57445,7 +57445,7 @@ func_0805D170: @ 0x0805D170
 	strb r0, [r2]
 .L0805D600:
 	add r4, sp, #0x10
-	ldr r1, .L0805D678 @ =gUnk_080FB0F0
+	ldr r1, .L0805D678 @ =gHorseRacePrizeItemIds
 	ldr r2, .L0805D67C @ =0x00000AD8
 	adds r0, r6, r2
 	movs r3, #0
@@ -57500,7 +57500,7 @@ func_0805D170: @ 0x0805D170
 .L0805D66C: .4byte 0x0000218C
 .L0805D670: .4byte 0xFFFE1FFF
 .L0805D674: .4byte 0x000021C7
-.L0805D678: .4byte gUnk_080FB0F0
+.L0805D678: .4byte gHorseRacePrizeItemIds
 .L0805D67C: .4byte 0x00000AD8
 .L0805D680: .4byte 0x00001C2C
 .L0805D684: .4byte gHorseRacePrizeCatalog
