@@ -714,7 +714,8 @@ SECTIONS
         . = 0x106F6C; asm/data/data_080F9EB8.o(.rodata.field_render_patch_arguments_after);
         . = 0x106F76; src/farm_house.o(.rodata.farm_house_style_nibble_lookup);
         FILL(0x00);
-        . = 0x106F80; asm/data/data_080F9EB8.o(.rodata.farm_house_style_nibble_lookup_after);
+        . = 0x106F80; src/bachelorette.o(.rodata.bachelorette_marriage_candidate_character_ids);
+        . = 0x106F98; asm/data/data_080F9EB8.o(.rodata.bachelorette_marriage_candidate_character_ids_after);
         . = 0x1070F4; data/text/harvest_sprite_minigames.o(.rodata.harvest_sprite_minigames_animal_husbandry);
         . = 0x10737B; asm/data/data_080F9EB8.o(.rodata.harvest_sprite_minigames_animal_husbandry_trailer);
         . = 0x1073B9; data/text/chicken_festival.o(.rodata.chicken_festival_contestant_names);

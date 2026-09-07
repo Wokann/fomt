@@ -28,6 +28,16 @@ extern u8 const gUnk_BacheloretteLoveThresholds05[] ALIGN(1) = {
     0x5A, 0x82, 0xAA, 0xD2, 0xFA,
 };
 
+u32 const gMarriageCandidateCharacterIds[MARRIAGE_CANDIDATE_CHARACTER_COUNT]
+    SECTION(".rodata.bachelorette_marriage_candidate_character_ids") = {
+        3,  // Popuri
+        12, // Mary
+        19, // Karen
+        21, // Elli
+        25, // Ann
+        31, // Harvest Goddess
+    };
+
 Bachelorette::Bachelorette(ActorLocation const & location)
     : Npc(location)
 {

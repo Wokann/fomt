@@ -24696,7 +24696,7 @@ func_080AA8F0: @ 0x080AA8F0
 	b .L080AA9B8
 .L080AA97C:
 	mov r1, sp
-	ldr r0, .L080AA9C0 @ =gUnk_08107438
+	ldr r0, .L080AA9C0 @ =gMarriageCandidateCharacterIds
 	ldm r0!, {r2, r3, r4}
 	stm r1!, {r2, r3, r4}
 	ldm r0!, {r2, r3, r4}
@@ -24731,7 +24731,7 @@ func_080AA8F0: @ 0x080AA8F0
 	pop {r1}
 	bx r1
 	.align 2, 0
-.L080AA9C0: .4byte gUnk_08107438
+.L080AA9C0: .4byte gMarriageCandidateCharacterIds
 .L080AA9C4: .4byte 0x0000C34F
 
 	thumb_func_start func_080AA9C8

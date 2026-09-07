@@ -14,6 +14,15 @@ extern u8 const gUnk_BacheloretteLoveThresholds03[] ALIGN(1);
 extern u8 const gUnk_BacheloretteLoveThresholds04[] ALIGN(1);
 extern u8 const gUnk_BacheloretteLoveThresholds05[] ALIGN(1);
 
+enum
+{
+    MARRIAGE_CANDIDATE_CHARACTER_COUNT = 6,
+};
+
+// Native marriage-condition paths enumerate these Mary CharacterId values in
+// this fixed order.
+extern u32 const gMarriageCandidateCharacterIds[MARRIAGE_CANDIDATE_CHARACTER_COUNT];
+
 struct Bachelorette : public Npc
 {
     Bachelorette(ActorLocation const & location);
