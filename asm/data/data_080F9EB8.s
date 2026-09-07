@@ -76,9 +76,6 @@
     .section .rodata.character_names_table_trailer
     .incbin "baserom_jp.gba", 0x103EF4, (0x10447C - 0x103EF4)
 
-    .section .rodata.random_item_fallback_trailer
-    .incbin "baserom_jp.gba", 0x1049BC, (0x1049F4 - 0x1049BC)
-
     .section .rodata.random_item_selection_weights_trailer
     .incbin "baserom_jp.gba", 0x104A18, (0x105184 - 0x104A18)
 
@@ -503,12 +500,6 @@ gUnk_081040EC:
 	.global gUnk_081043BC
 gUnk_081043BC:
 	.incbin "baserom_us.gba", 0x1043BC, 0x57C
-
-	.section .rodata.random_item_fallback_trailer
-
-	.global gUnk_08104E74
-gUnk_08104E74:
-	.incbin "baserom_us.gba", 0x104E74, 0x38
 
 	.section .rodata.random_item_selection_weights_trailer
 	.global gUnk_08104ED0

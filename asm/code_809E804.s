@@ -11055,7 +11055,7 @@ func_080A3E90: @ 0x080A3E90
 	bhi .L080A3EE4
 	movs r1, #2
 .L080A3EE4:
-	ldr r2, .L080A3F40 @ =gUnk_08104E74
+	ldr r2, .L080A3F40 @ =gFieldPlotPositionValues
 	lsls r1, r1, #1
 	ldr r0, [sp, #4]
 	lsls r0, r0, #3
@@ -11102,7 +11102,7 @@ func_080A3E90: @ 0x080A3E90
 	pop {r2}
 	bx r2
 	.align 2, 0
-.L080A3F40: .4byte gUnk_08104E74
+.L080A3F40: .4byte gFieldPlotPositionValues
 .L080A3F44: .4byte 0xFFFF0000
 .L080A3F48: .4byte 0x0000FFFF
 

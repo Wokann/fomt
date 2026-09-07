@@ -39,6 +39,7 @@ extern FieldPlotWeatherRule const gFieldPlotSpecialWeatherRule3;
 extern FieldPlotWeatherRule const gFieldPlotSpecialWeatherRule4;
 extern u32 const gFieldPlotGrowthStageTransitions[21][21];
 extern FieldPlotTypeDefinition const gFieldPlotTypeDefinitions[39];
+extern u16 const gFieldPlotPositionValues[7][4];
 extern FieldPlotPositionRule const gFieldPlotPositionRules[8];
 extern char const gCppRuntimeBadAlloc_FieldPlotPositionRules[];
 
