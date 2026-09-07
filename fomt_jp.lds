@@ -539,9 +539,7 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4); src/entity_ui.o(.rodata);
         FILL(0x00);
-        . = ALIGN(4); data/text/fixed_labels.o(.rodata.fixed_labels);
-        . = 0xF11F0; /* JP runtime bytes after the two fixed labels. */
-        asm/data/data_080F0348.o(.rodata.fixed_labels_trailer);
+        . = ALIGN(4); src/fixed_labels.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); data/text/common/ui_error.o(.rodata.ui_error);
         asm/data/data_080F0348.o(.rodata.ui_error_trailer);
