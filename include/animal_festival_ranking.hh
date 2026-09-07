@@ -15,6 +15,16 @@ extern u16 const gUnk_080FA36C[];
 extern u8 const gAnimalFestivalRewardChanceWeights[];
 extern u32 const gAnimalFestivalRewardArticleIds[];
 
+struct AnimalFestivalRandomRangePair
+{
+    u32 first_minimum;
+    u32 first_maximum;
+    u32 second_minimum;
+    u32 second_maximum;
+};
+
+extern AnimalFestivalRandomRangePair const gAnimalFestivalRandomRangePairs[];
+
 struct AnimalFestivalRankingEntry
 {
     u8 animal_index;

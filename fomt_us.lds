@@ -485,7 +485,8 @@ SECTIONS
         . = ALIGN(4); src/animal_festival_ranking.o(.rodata.animal_festival_ranking_reward_article_ids);
         . = 0xFA39C; data/text/frisbee.o(.rodata.frisbee);
         . = 0xFA710; data/text/frisbee.o(.rodata.frisbee_text_trailer_runtime);
-        . = 0xFA71A; asm/data/data_080F9EB8.o(.rodata.frisbee_text_trailer_after);
+        FILL(0x00);
+        . = ALIGN(4); src/animal_festival_ranking.o(.rodata.animal_festival_ranking_random_range_pairs);
         . = 0xFA78C; data/text/animal_festival.o(.rodata.animal_festival_livestock_contestant_names_runtime);
         . = 0xFA796; data/text/animal_festival.o(.rodata.animal_festival_livestock_contestant_names);
         . = 0xFA99E; asm/data/data_080F9EB8.o(.rodata.animal_festival_livestock_contestant_names_trailer_prefix);

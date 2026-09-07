@@ -7,9 +7,6 @@
     .section .rodata.name_entry_preset_animal_names_trailer_prefix
     .incbin "baserom_jp.gba", 0xF996C, (0xF9994 - 0xF996C)
 
-    .section .rodata.frisbee_text_trailer_after
-    .incbin "baserom_jp.gba", 0xF9F5A, (0xF9FCC - 0xF9F5A)
-
     .section .rodata.animal_festival_livestock_contestant_names_trailer_prefix
     .incbin "baserom_jp.gba", 0xFA1DE, (0xFA280 - 0xFA1DE)
 
@@ -556,17 +553,6 @@ gUnk_080F9F78:
 
 	.section .rodata.name_entry_preset_animal_names_prefix
 	.incbin "baserom_us.gba", 0xF9F7C, 0x4
-
-	.section .rodata.frisbee_text_trailer_after
-	.incbin "baserom_us.gba", 0xFA71A, 0x2
-
-	.global gUnk_080FA71C
-gUnk_080FA71C:
-	.incbin "baserom_us.gba", 0xFA71C, 0xC
-
-	.global gUnk_080FA728
-gUnk_080FA728:
-	.incbin "baserom_us.gba", 0xFA728, (0xFA78C - 0xFA728)
 
 	.section .rodata.animal_festival_livestock_contestant_names_trailer_prefix
 

@@ -46922,7 +46922,7 @@ func_08057F64: @ 0x08057F64
 	ldr r1, [sp]
 	adds r1, #0x2c
 	str r1, [sp, #8]
-	ldr r0, .L08057FB0 @ =gUnk_080FA71C
+	ldr r0, .L08057FB0 @ =gAnimalFestivalRandomRangePairs
 	mov sl, r0
 .L08057FA4:
 	ldr r1, [sp, #4]
@@ -46932,7 +46932,7 @@ func_08057F64: @ 0x08057F64
 	mov r4, sb
 	b .L08057FDA
 	.align 2, 0
-.L08057FB0: .4byte gUnk_080FA71C
+.L08057FB0: .4byte gAnimalFestivalRandomRangePairs
 .L08057FB4:
 	mov r0, r8
 	cmp r0, #2
@@ -46975,7 +46975,7 @@ func_08057F64: @ 0x08057F64
 	adds r0, #8
 	adds r0, r4, r0
 	ldr r6, [r0]
-	ldr r0, .L08058068 @ =gUnk_080FA728
+	ldr r0, .L08058068 @ =gAnimalFestivalRandomRangePairs + 12 @ second_maximum
 	adds r4, r4, r0
 	ldr r5, [r4]
 	bl rand
@@ -47023,7 +47023,7 @@ func_08057F64: @ 0x08057F64
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L08058068: .4byte gUnk_080FA728
+.L08058068: .4byte gAnimalFestivalRandomRangePairs + 12
 
 	thumb_func_start func_0805806C
 func_0805806C: @ 0x0805806C

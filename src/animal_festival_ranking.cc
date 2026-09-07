@@ -81,6 +81,17 @@ extern u32 const gAnimalFestivalRewardArticleIds[]
     ARTICLE_EMPTY_CAN,
 };
 
+extern AnimalFestivalRandomRangePair const gAnimalFestivalRandomRangePairs[]
+    SECTION(".rodata.animal_festival_ranking_random_range_pairs") ALIGN(4) = {
+    { 0, 250, 0, 250 },
+    { 0, 90, 0, 250 },
+    { 150, 250, 0, 250 },
+    { 100, 149, 0, 250 },
+    { 0, 70, 0, 250 },
+    { 100, 250, 0, 250 },
+    { 0, 250, 0, 250 },
+};
+
 extern "C" void CopyAnimalFestivalRankingEntry(
     AnimalFestivalRankingEntry const * entries,
     AnimalFestivalRankingEntry * output,
