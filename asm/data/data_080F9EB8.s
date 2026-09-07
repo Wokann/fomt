@@ -13,8 +13,8 @@
     .section .rodata.frisbee_scoreboard_trailer_after
     .incbin "baserom_jp.gba", 0xF9A7E, (0xF9BD4 - 0xF9A7E)
 
-    .section .rodata.frisbee_text_trailer
-    .incbin "baserom_jp.gba", 0xF9F4F, (0xF9FD6 - 0xF9F4F)
+    .section .rodata.frisbee_text_trailer_after
+    .incbin "baserom_jp.gba", 0xF9F5A, (0xF9FCC - 0xF9F5A)
 
     .section .rodata.animal_festival_livestock_contestant_names_trailer_prefix
     .incbin "baserom_jp.gba", 0xFA1DE, (0xFA280 - 0xFA1DE)
@@ -603,8 +603,8 @@ gUnk_080FA372:
 gUnk_080FA37C:
 	.incbin "baserom_us.gba", 0xFA37C, 0x20
 
-	.section .rodata.frisbee_text_trailer
-	.incbin "baserom_us.gba", 0xFA710, 0xC
+	.section .rodata.frisbee_text_trailer_after
+	.incbin "baserom_us.gba", 0xFA71A, 0x2
 
 	.global gUnk_080FA71C
 gUnk_080FA71C:
@@ -612,7 +612,7 @@ gUnk_080FA71C:
 
 	.global gUnk_080FA728
 gUnk_080FA728:
-	.incbin "baserom_us.gba", 0xFA728, 0x6E
+	.incbin "baserom_us.gba", 0xFA728, (0xFA78C - 0xFA728)
 
 	.section .rodata.animal_festival_livestock_contestant_names_trailer_prefix
 

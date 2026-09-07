@@ -85,3 +85,7 @@ char const gText_Frisbee_TournamentScoreboard[] FRISBEE_SCOREBOARD_TEXT =
 char const gCppRuntimeBadAlloc_FrisbeeScoreboard[]
     SECTION(".rodata.frisbee_scoreboard_trailer_runtime") =
         "bad_alloc";
+
+char const gCppRuntimeBadAlloc_FrisbeeTextTrailer[]
+    SECTION(".rodata.frisbee_text_trailer_runtime") =
+        "bad_alloc";

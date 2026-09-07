@@ -25,5 +25,6 @@ extern char const gText_Frisbee_FoundItem[];
 extern char const gText_Frisbee_FoundNothing[];
 extern char const gText_Frisbee_TournamentScoreboard[];
 extern char const gCppRuntimeBadAlloc_FrisbeeScoreboard[];
+extern char const gCppRuntimeBadAlloc_FrisbeeTextTrailer[];
 
 #endif // FRISBEE_TEXT_HH

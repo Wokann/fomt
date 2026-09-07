@@ -10,6 +10,7 @@ enum
 };
 
 // Direct-indexed fixed-width rows, not a pointer table.
+extern char const gCppRuntimeBadAlloc_AnimalFestivalLivestockContestantNames[];
 extern char const gText_AnimalFestival_LivestockContestantNames[ANIMAL_FESTIVAL_LIVESTOCK_CONTESTANT_NAME_COUNT][ANIMAL_FESTIVAL_LIVESTOCK_CONTESTANT_NAME_WIDTH];
 
 #endif // ANIMAL_FESTIVAL_TEXT_HH

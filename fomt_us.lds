@@ -482,7 +482,9 @@ SECTIONS
         . = 0xFA23C; data/text/frisbee.o(.rodata.frisbee_scoreboard_trailer_runtime);
         . = 0xFA246; asm/data/data_080F9EB8.o(.rodata.frisbee_scoreboard_trailer_after);
         . = 0xFA39C; data/text/frisbee.o(.rodata.frisbee);
-        . = 0xFA710; asm/data/data_080F9EB8.o(.rodata.frisbee_text_trailer);
+        . = 0xFA710; data/text/frisbee.o(.rodata.frisbee_text_trailer_runtime);
+        . = 0xFA71A; asm/data/data_080F9EB8.o(.rodata.frisbee_text_trailer_after);
+        . = 0xFA78C; data/text/animal_festival.o(.rodata.animal_festival_livestock_contestant_names_runtime);
         . = 0xFA796; data/text/animal_festival.o(.rodata.animal_festival_livestock_contestant_names);
         . = 0xFA99E; asm/data/data_080F9EB8.o(.rodata.animal_festival_livestock_contestant_names_trailer_prefix);
         . = 0xFAA40; data/text/horse_race.o(.rodata.horse_race_dialogue);
