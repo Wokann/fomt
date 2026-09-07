@@ -682,10 +682,9 @@ SECTIONS
         . = 0xFF9A4; data/text/home_storage.o(.rodata);
         FILL(0x00);
         . = 0xFFAE0; data/text/blacksmith.o(.rodata.blacksmith_upgrade);
-        . = 0xFFD54; asm/data/data_080F9EB8.o(.rodata.gift_wrap_prefix);
-        . = 0xFFD60; data/text/gift_wrap.o(.rodata.gift_wrap);
-        . = 0xFFE64; asm/data/data_080F9EB8.o(.rodata.gift_wrap_trailer);
+        . = 0xFFD54; data/text/gift_wrap.o(.rodata);
         FILL(0x00);
+        . = ALIGN(4);
         . = 0xFFE70; data/text/link_communication.o(.rodata.link_communication);
         . = 0x100130; asm/data/data_080F9EB8.o(.rodata.link_communication_trailer);
         . = 0x1005EA; data/text/recovery_status.o(.rodata);

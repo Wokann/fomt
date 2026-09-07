@@ -82,12 +82,6 @@
     .section .rodata.livestock_shop_dialogue_padding
     .incbin "baserom_jp.gba", 0xFF9A2, (0xFF9A4 - 0xFF9A2)
 
-    .section .rodata.gift_wrap_prefix
-    .incbin "baserom_jp.gba", 0xFFD54, (0xFFD60 - 0xFFD54)
-
-    .section .rodata.gift_wrap_trailer
-    .incbin "baserom_jp.gba", 0xFFE64, (0xFFE70 - 0xFFE64)
-
     .section .rodata.link_communication_trailer
     .incbin "baserom_jp.gba", 0x100130, (0x1005EA - 0x100130)
 
@@ -400,12 +394,6 @@ gUnk_080FF838:
 
 	.section .rodata.livestock_shop_status_padding
 	.incbin "baserom_us.gba", 0xFFD3B, (0xFFD3C - 0xFFD3B)
-
-	.section .rodata.gift_wrap_prefix
-	.incbin "baserom_us.gba", 0x1003E4, (0x1003F0 - 0x1003E4)
-
-	.section .rodata.gift_wrap_trailer
-	.incbin "baserom_us.gba", 0x1004D4, (0x1004E0 - 0x1004D4)
 
 	.section .rodata.link_communication_trailer
 
