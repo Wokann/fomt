@@ -46,6 +46,12 @@ std::string HexByte(std::uint8_t value)
     return result;
 }
 
+std::string HexWord(std::uint16_t value)
+{
+    return HexByte(static_cast<std::uint8_t>(value >> 8))
+        + HexByte(static_cast<std::uint8_t>(value));
+}
+
 std::string ReadTextFile(const std::filesystem::path &path)
 {
     std::ifstream input(path, std::ios::binary);
@@ -195,6 +201,51 @@ public:
                     + ": '" + source.substr(at, snippet_length) + "'");
             }
             output.insert(output.end(), match->begin(), match->end());
+            at += match_length;
+        }
+        return output;
+    }
+
+    std::vector<std::uint16_t> EncodeGlyphWords(const std::string &source) const
+    {
+        std::vector<std::uint16_t> output;
+        std::size_t at = 0;
+        while (at < source.size()) {
+            if (source.compare(at, 2, "\\x") == 0) {
+                if (at + 4 > source.size() || !IsHexDigit(source[at + 2]) || !IsHexDigit(source[at + 3])) {
+                    throw std::runtime_error("malformed raw byte escape at byte " + std::to_string(at)
+                        + ": expected \\xNN");
+                }
+                output.push_back(ParseHexByte(source[at + 2], source[at + 3]));
+                at += 4;
+                continue;
+            }
+
+            const std::vector<std::uint8_t> *match = nullptr;
+            std::size_t match_length = 0;
+            for (const auto &[text, bytes] : encode_) {
+                if (text.size() <= match_length || text.size() > source.size() - at)
+                    continue;
+                if (source.compare(at, text.size(), text) == 0) {
+                    match = &bytes;
+                    match_length = text.size();
+                }
+            }
+
+            if (match == nullptr) {
+                const std::size_t snippet_length = std::min<std::size_t>(4, source.size() - at);
+                throw std::runtime_error(
+                    "source text contains an unmapped sequence at byte " + std::to_string(at)
+                    + ": '" + source.substr(at, snippet_length) + "'");
+            }
+            if (match->empty() || match->size() > 2)
+                throw std::runtime_error("glyph text requires one- or two-byte charmap entries");
+
+            const std::uint16_t word = match->size() == 1
+                ? (*match)[0]
+                : static_cast<std::uint16_t>((static_cast<std::uint16_t>((*match)[0]) << 8)
+                    | (*match)[1]);
+            output.push_back(word);
             at += match_length;
         }
         return output;
@@ -736,6 +787,161 @@ Bytes EncodeCppSourceStringLiteral(const std::string &literal, const Charmap &ch
     return output;
 }
 
+std::vector<std::uint16_t> EncodeCppSourceGlyphLiteral(const std::string &literal,
+    const Charmap &charmap, std::size_t line_number)
+{
+    if (literal.size() < 2 || literal.front() != '"' || literal.back() != '"') {
+        throw std::runtime_error("line " + std::to_string(line_number)
+            + ": expected one quoted C/C++ string literal");
+    }
+
+    std::vector<std::uint16_t> output;
+    std::string mapped_text;
+    const auto append_mapped = [&]() {
+        if (mapped_text.empty())
+            return;
+        const std::vector<std::uint16_t> mapped = charmap.EncodeGlyphWords(mapped_text);
+        output.insert(output.end(), mapped.begin(), mapped.end());
+        mapped_text.clear();
+    };
+    const auto append_raw = [&](std::uint8_t byte) {
+        append_mapped();
+        output.push_back(byte);
+    };
+
+    for (std::size_t at = 1; at + 1 < literal.size(); ++at) {
+        const char character = literal[at];
+        if (character != '\\') {
+            mapped_text.push_back(character);
+            continue;
+        }
+
+        if (++at + 1 >= literal.size()) {
+            throw std::runtime_error("line " + std::to_string(line_number)
+                + ": trailing backslash in C/C++ string literal");
+        }
+        const char escaped = literal[at];
+        switch (escaped) {
+        case '\\':
+            append_raw(0x5C);
+            break;
+        case '"':
+            append_raw(0x22);
+            break;
+        case '\'':
+            append_raw(0x27);
+            break;
+        case '?':
+            append_raw(0x3F);
+            break;
+        case 'a':
+            append_raw(0x07);
+            break;
+        case 'b':
+            append_raw(0x08);
+            break;
+        case 'f':
+            append_raw(0x0C);
+            break;
+        case 'v':
+            append_raw(0x0B);
+            break;
+        case '0': case '1': case '2': case '3':
+        case '4': case '5': case '6': case '7': {
+            std::uint8_t value = static_cast<std::uint8_t>(escaped - '0');
+            std::size_t digits = 1;
+            while (digits < 3 && at + 1 < literal.size() - 1
+                && literal[at + 1] >= '0' && literal[at + 1] <= '7') {
+                value = static_cast<std::uint8_t>((value << 3) | (literal[++at] - '0'));
+                ++digits;
+            }
+            append_raw(value);
+            break;
+        }
+        case 'x':
+            if (at + 2 >= literal.size() - 1
+                || !IsHexDigit(literal[at + 1]) || !IsHexDigit(literal[at + 2])) {
+                throw std::runtime_error("line " + std::to_string(line_number)
+                    + ": expected \\xNN raw byte escape");
+            }
+            append_raw(ParseHexByte(literal[at + 1], literal[at + 2]));
+            at += 2;
+            break;
+        default:
+            mapped_text.push_back('\\');
+            mapped_text.push_back(escaped);
+            break;
+        }
+    }
+    append_mapped();
+    return output;
+}
+
+std::string EmitGlyphWordInitializer(const std::vector<std::uint16_t> &words)
+{
+    std::ostringstream output;
+    output << "{\n";
+    for (std::size_t at = 0; at < words.size(); at += 8) {
+        output << "    ";
+        const std::size_t end = std::min(at + 8, words.size());
+        for (std::size_t index = at; index < end; ++index) {
+            if (index != at)
+                output << ' ';
+            output << "0x" << HexWord(words[index]) << ',';
+        }
+        output << '\n';
+    }
+    output << '}';
+    return output.str();
+}
+
+bool TryCompileGlyphTextMacro(const std::string &source, const Charmap &charmap,
+    std::size_t &at, std::ostringstream &output)
+{
+    static constexpr std::string_view kMacroName = "FOMT_GLYPH_TEXT";
+    if (!StartsCppIdentifier(source, at, kMacroName))
+        return false;
+
+    std::size_t cursor = at + kMacroName.size();
+    while (cursor < source.size() && std::isspace(static_cast<unsigned char>(source[cursor])) != 0)
+        ++cursor;
+    if (cursor == source.size() || source[cursor] != '(')
+        return false;
+    ++cursor;
+
+    std::vector<std::uint16_t> words;
+    bool found_literal = false;
+    for (;;) {
+        while (cursor < source.size() && std::isspace(static_cast<unsigned char>(source[cursor])) != 0)
+            ++cursor;
+        if (cursor == source.size() || source[cursor] != '"')
+            break;
+
+        const std::size_t line_number = SourceLineNumber(source, cursor);
+        const std::size_t end = FindCppQuotedLiteralEnd(source, cursor, line_number);
+        const std::vector<std::uint16_t> literal_words = EncodeCppSourceGlyphLiteral(
+            source.substr(cursor, end - cursor), charmap, line_number);
+        words.insert(words.end(), literal_words.begin(), literal_words.end());
+        cursor = end;
+        found_literal = true;
+    }
+    if (!found_literal) {
+        throw std::runtime_error("line " + std::to_string(SourceLineNumber(source, at))
+            + ": FOMT_GLYPH_TEXT requires one or more quoted string literals");
+    }
+    while (cursor < source.size() && std::isspace(static_cast<unsigned char>(source[cursor])) != 0)
+        ++cursor;
+    if (cursor == source.size() || source[cursor] != ')') {
+        throw std::runtime_error("line " + std::to_string(SourceLineNumber(source, at))
+            + ": FOMT_GLYPH_TEXT requires only quoted string literals");
+    }
+
+    words.push_back(0);
+    output << EmitGlyphWordInitializer(words);
+    at = cursor + 1;
+    return true;
+}
+
 std::string CompileCppSourceText(const std::string &source, const Charmap &charmap)
 {
     // This is deliberately a lexical source pass, not a C++ parser.  It runs
@@ -797,6 +1003,8 @@ std::string CompileCppSourceText(const std::string &source, const Charmap &charm
             at = end;
             continue;
         }
+        if (TryCompileGlyphTextMacro(source, charmap, at, output))
+            continue;
         if (source[at] != '"') {
             output << source[at++];
             continue;
@@ -2353,6 +2561,13 @@ void SelfTest()
         "generic source pass changed a non-text structure initializer");
     Require(generated_generic.find("\"\\x41\\x0C\"") != std::string::npos,
         "generic source pass did not encode a text control");
+
+    const Charmap glyph_map = Charmap::Parse(
+        "20= \n30=0\n824F=\xEF\xBC\x90\n");
+    const std::string generated_glyph = CompileCppSourceText(
+        "u16 const gGlyph[] = FOMT_GLYPH_TEXT(\"0 \xEF\xBC\x90\");\n", glyph_map);
+    Require(generated_glyph.find("0x0030, 0x0020, 0x824F, 0x0000,") != std::string::npos,
+        "glyph text source did not become mapped halfword codes");
 
     const std::string generic_section_source =
         "char const gText_Sectioned[] __attribute__((section(\".rodata.example\"))) = \"A\";\n";

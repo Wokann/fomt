@@ -69,6 +69,15 @@ at its real ROM position after the text it references:
 该属性由编译器生成对应的对象对齐；`fomt-preproc` 保留它，而不会把它替换成
 手写汇编或文本专用规则。
 
+少数 UI 路径逐个读取 `u16` 字符码，而不是读取普通 `char` 文本。此类对象的
+维护源使用显式的非标准标记 `FOMT_GLYPH_TEXT(...)`，以免被误认为普通 C++：
+
+    u16 const gExampleGlyphCodes[] = FOMT_GLYPH_TEXT("0123枚");
+
+`fomt-text source` 会按当前区域的 charmap 把每个字符变成一个一或双字节的
+`u16` 码值，并自动追加 `0x0000` 结束码。该标记必须经过文本工具转换后才是
+可编译的普通 C/C++ 初始化器；不要手写结束码或对齐填充。
+
 Keep a page-break control in the literal that owns it.  For example, write
 `"...{Press}\p"` and start the following text literal on the next source line.
 Use a standalone `"\p"` only when the original byte sequence itself begins
