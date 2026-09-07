@@ -9,6 +9,10 @@ char const gText_NewGameIdentity_FarmPrefix[8] SECTION(".rodata.new_game_identit
 char const gText_NewGameIdentity_DogPrefix[8] SECTION(".rodata.new_game_identity_prefix") =
     "犬　の";
 
+char const gCppRuntimeBadAlloc_NewGameIdentityPrefix[]
+    SECTION(".rodata.new_game_identity_prefix_trailer") =
+        "bad_alloc";
+
 char const gText_NewGameIdentity_BirthMonthSuffix[8] SECTION(".rodata.new_game_identity_labels") =
     "の月";
 
@@ -35,3 +39,7 @@ char const gText_NewGameIdentity_Yes[8] SECTION(".rodata.new_game_identity_label
 
 char const gText_NewGameIdentity_No[8] SECTION(".rodata.new_game_identity_labels") =
     "いいえ";
+
+char const gCppRuntimeBadAlloc_NewGameIdentityLabels[]
+    SECTION(".rodata.new_game_identity_labels_trailer") =
+        "bad_alloc";

@@ -404,11 +404,13 @@ SECTIONS
         . = ALIGN(4); data/text/new_game_status.o(.rodata.new_game_status_labels);
         . = ALIGN(4); data/text/new_game_help.o(.rodata.new_game_help_text);
         . = ALIGN(4); data/text/new_game_save.o(.rodata.new_game_save_text);
-        . = ALIGN(4); asm/data/data_080E8610.o(.rodata.new_game_save_trailer);
+        . = ALIGN(4); data/text/new_game_save.o(.rodata.new_game_save_trailer);
+        FILL(0x00);
         . = ALIGN(4); data/text/new_game_identity.o(.rodata.new_game_identity_prefix);
-        . = ALIGN(4); asm/data/data_080E8610.o(.rodata.new_game_identity_prefix_trailer);
+        . = ALIGN(4); data/text/new_game_identity.o(.rodata.new_game_identity_prefix_trailer);
+        FILL(0x00);
         . = ALIGN(4); data/text/new_game_identity.o(.rodata.new_game_identity_labels);
-        . = ALIGN(4); asm/data/data_080E8610.o(.rodata.new_game_identity_labels_trailer);
+        . = ALIGN(4); data/text/new_game_identity.o(.rodata.new_game_identity_labels_trailer);
         data/text/new_game_name_entry.o(.rodata.new_game_name_entry_characters);
         data/text/new_game_name_entry_ui.o(.rodata.new_game_name_entry_ui);
         asm/data/data_080E8610.o(.rodata.new_game_name_entry_trailer);

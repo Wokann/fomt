@@ -18,3 +18,10 @@ char const gText_NewGameSave_Negative[8] SECTION(".rodata.new_game_save_text") =
 
 char const gText_NewGameSave_OverwritePrompt[20] SECTION(".rodata.new_game_save_text") =
     "上書きしていい？";
+
+char const gCppRuntimeBadAlloc_NewGameSave[]
+    SECTION(".rodata.new_game_save_trailer") =
+        "bad_alloc";
+char const gCppRuntimeError_NewGameSave[]
+    SECTION(".rodata.new_game_save_trailer") ALIGN(4) =
+        "Error";

@@ -14,6 +14,8 @@ extern char const gText_NewGameIdentity_DogName[];
 extern char const gText_NewGameIdentity_Confirm[];
 extern char const gText_NewGameIdentity_Yes[];
 extern char const gText_NewGameIdentity_No[];
+extern char const gCppRuntimeBadAlloc_NewGameIdentityPrefix[];
+extern char const gCppRuntimeBadAlloc_NewGameIdentityLabels[];
 
 #if defined(REGION_JP)
 extern char const gText_NewGameIdentity_BirthMonthSuffix[];

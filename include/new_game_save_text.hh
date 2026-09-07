@@ -8,6 +8,8 @@ extern char const gText_NewGameSave_SaveFailed[];
 extern char const gText_NewGameSave_LoadFailed[];
 extern char const gText_NewGameSave_LoadPrompt[];
 extern char const gText_NewGameSave_OverwritePrompt[];
+extern char const gCppRuntimeBadAlloc_NewGameSave[];
+extern char const gCppRuntimeError_NewGameSave[];
 
 #if defined(REGION_JP)
 extern char const gText_NewGameSave_Affirmative[];
