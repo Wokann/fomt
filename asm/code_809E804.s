@@ -15292,7 +15292,7 @@ func_080A6024: @ 0x080A6024
 	b .L080A6064
 .L080A603A:
 	ldr r1, .L080A604C @ =gFieldRenderRectDescriptors + 0x360
-	ldr r0, .L080A6050 @ =gUnk_081073C4
+	ldr r0, .L080A6050 @ =gFieldRenderPatchArgumentData
 	adds r0, r2, r0
 	ldrb r2, [r0]
 	adds r0, r4, #0
@@ -15301,10 +15301,10 @@ func_080A6024: @ 0x080A6024
 	b .L080A6064
 	.align 2, 0
 .L080A604C: .4byte gFieldRenderRectDescriptors + 0x360
-.L080A6050: .4byte gUnk_081073C4
+.L080A6050: .4byte gFieldRenderPatchArgumentData
 .L080A6054:
 	ldr r1, .L080A6074 @ =gFieldRenderRectDescriptors + 0x360
-	ldr r0, .L080A6078 @ =gUnk_081073CC
+	ldr r0, .L080A6078 @ =gFieldRenderPatchArgumentData + 0x08
 	adds r0, r2, r0
 	ldrb r2, [r0]
 	adds r0, r4, #0
@@ -15320,7 +15320,7 @@ func_080A6024: @ 0x080A6024
 	bx r0
 	.align 2, 0
 .L080A6074: .4byte gFieldRenderRectDescriptors + 0x360
-.L080A6078: .4byte gUnk_081073CC
+.L080A6078: .4byte gFieldRenderPatchArgumentData + 0x08
 
 	thumb_func_start func_080A607C
 func_080A607C: @ 0x080A607C
@@ -15343,7 +15343,7 @@ func_080A607C: @ 0x080A607C
 	cmp r2, #0xf
 	bls .L080A60BC
 	ldr r1, .L080A60B4 @ =gFieldRenderRectDescriptors + 0x348
-	ldr r3, .L080A60B8 @ =gUnk_081073D0
+	ldr r3, .L080A60B8 @ =gFieldRenderPatchArgumentData + 0x0C
 	adds r0, r2, #0
 	subs r0, #0x10
 	lsls r0, r0, #1
@@ -15355,19 +15355,19 @@ func_080A607C: @ 0x080A607C
 	b .L080A6100
 	.align 2, 0
 .L080A60B4: .4byte gFieldRenderRectDescriptors + 0x348
-.L080A60B8: .4byte gUnk_081073D0
+.L080A60B8: .4byte gFieldRenderPatchArgumentData + 0x0C
 .L080A60BC:
 	ldr r1, .L080A60C4 @ =gFieldRenderRectDescriptors + 0x348
-	ldr r0, .L080A60C8 @ =gUnk_081073F0
+	ldr r0, .L080A60C8 @ =gFieldRenderPatchArgumentData + 0x2C
 	b .L080A60F4
 	.align 2, 0
 .L080A60C4: .4byte gFieldRenderRectDescriptors + 0x348
-.L080A60C8: .4byte gUnk_081073F0
+.L080A60C8: .4byte gFieldRenderPatchArgumentData + 0x2C
 .L080A60CC:
 	cmp r2, #0xf
 	bls .L080A60F0
 	ldr r1, .L080A60E8 @ =gFieldRenderRectDescriptors + 0x348
-	ldr r3, .L080A60EC @ =gUnk_081073D0
+	ldr r3, .L080A60EC @ =gFieldRenderPatchArgumentData + 0x0C
 	adds r0, r2, #0
 	subs r0, #0x10
 	lsls r0, r0, #1
@@ -15379,10 +15379,10 @@ func_080A607C: @ 0x080A607C
 	b .L080A6100
 	.align 2, 0
 .L080A60E8: .4byte gFieldRenderRectDescriptors + 0x348
-.L080A60EC: .4byte gUnk_081073D0
+.L080A60EC: .4byte gFieldRenderPatchArgumentData + 0x0C
 .L080A60F0:
 	ldr r1, .L080A6108 @ =gFieldRenderRectDescriptors + 0x348
-	ldr r0, .L080A610C @ =gUnk_08107400
+	ldr r0, .L080A610C @ =gFieldRenderPatchArgumentData + 0x3C
 .L080A60F4:
 	lsls r3, r2, #1
 	adds r2, r3, r0
@@ -15396,10 +15396,10 @@ func_080A607C: @ 0x080A607C
 	b .L080A6120
 	.align 2, 0
 .L080A6108: .4byte gFieldRenderRectDescriptors + 0x348
-.L080A610C: .4byte gUnk_08107400
+.L080A610C: .4byte gFieldRenderPatchArgumentData + 0x3C
 .L080A6110:
 	ldr r1, .L080A6130 @ =gFieldRenderRectDescriptors + 0x348
-	ldr r0, .L080A6134 @ =gUnk_08107420
+	ldr r0, .L080A6134 @ =gFieldRenderPatchArgumentData + 0x5C
 	adds r0, r2, r0
 	ldrb r2, [r0]
 	adds r0, r4, #0
@@ -15415,7 +15415,7 @@ func_080A607C: @ 0x080A607C
 	bx r0
 	.align 2, 0
 .L080A6130: .4byte gFieldRenderRectDescriptors + 0x348
-.L080A6134: .4byte gUnk_08107420
+.L080A6134: .4byte gFieldRenderPatchArgumentData + 0x5C
 
 	thumb_func_start func_080A6138
 func_080A6138: @ 0x080A6138

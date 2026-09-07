@@ -57,6 +57,18 @@ struct FieldRenderParallelTables
     u32 values_30[3];
 };
 
+// func_080A6024 and func_080A607C read these bytes as arguments for
+// func_080A5BD8.  The two native bases at +0x2C and +0x3C overlap, so their
+// shared 0x30-byte physical region is deliberately represented only once.
+struct FieldRenderPatchArgumentData
+{
+    u8 values_00[8];
+    u8 values_08[4];
+    u8 values_0C[16][2];
+    u8 overlapping_values_2C[0x30];
+    u8 values_5C[4];
+};
+
 #define FIELD_RENDER_RECT_DESCRIPTOR_COUNT 82
 
 extern FieldPlotWeatherRule const gFieldPlotOrdinaryWeatherRules[4][2];
@@ -66,6 +78,7 @@ extern u32 const gFieldPlotGrowthStageTransitions[21][21];
 extern FieldPlotTypeDefinition const gFieldPlotTypeDefinitions[39];
 extern FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_RECT_DESCRIPTOR_COUNT];
 extern FieldRenderParallelTables const gFieldRenderParallelTables;
+extern FieldRenderPatchArgumentData const gFieldRenderPatchArgumentData;
 extern u16 const gFieldPlotPositionValues[7][4];
 extern FieldPlotPositionRule const gFieldPlotPositionRules[8];
 extern char const gCppRuntimeBadAlloc_FieldPlotPositionRules[];
