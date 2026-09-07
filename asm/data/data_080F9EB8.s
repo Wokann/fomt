@@ -61,8 +61,6 @@
 
 
 
-    .section .rodata.beach_cafe_shop_trailer
-    .incbin "baserom_jp.gba", 0xFE530, (0xFE53C - 0xFE530)
 
     .section .rodata.blacksmith_menu_padding
     .incbin "baserom_jp.gba", 0xFE6A0, (0xFE6A4 - 0xFE6A0)
@@ -388,8 +386,6 @@ gUnk_080FD920:
 	.section .rodata.unextracted_shop_data
 
 
-	.section .rodata.beach_cafe_shop_trailer
-	.incbin "baserom_us.gba", 0xFEC70, (0xFEC7C - 0xFEC70)
 
     .section .rodata.carpenter_menu_prefix
     .incbin "baserom_us.gba", 0xFF350, (0xFF35C - 0xFF350)

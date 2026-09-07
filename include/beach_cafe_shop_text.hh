@@ -31,5 +31,6 @@ extern char const gText_BeachCafeShop_SnowConeDescription[];
 extern char const gText_BeachCafeShop_InsufficientGold[];
 extern char const gText_BeachCafeShop_NoOrder[];
 extern char const gText_BeachCafeShop_OrderComplete[];
+extern char const gCppRuntimeBadAlloc_BeachCafeShopTrailer[];
 
 #endif // BEACH_CAFE_SHOP_TEXT_HH

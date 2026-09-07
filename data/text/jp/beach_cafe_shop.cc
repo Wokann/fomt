@@ -27,3 +27,6 @@ char const gText_BeachCafeShop_NoOrder[] BEACH_CAFE_SHOP_DIALOGUE =
 char const gText_BeachCafeShop_OrderComplete[] BEACH_CAFE_SHOP_DIALOGUE =
     "ＯＫ、ちょっと待って…………\r\n"
     "おまたせ、味わって食えよ。{Press}";
+
+char const gCppRuntimeBadAlloc_BeachCafeShopTrailer[] BEACH_CAFE_SHOP_DIALOGUE =
+    "bad_alloc";

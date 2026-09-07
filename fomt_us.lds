@@ -559,7 +559,8 @@ SECTIONS
         . = 0xFEAF4; data/text/beach_cafe_shop.o(.rodata.beach_cafe_shop_descriptions);
         . = 0xFEB60; src/beach_cafe_shop_data.o(.rodata.beach_cafe_shop_catalog);
         . = 0xFEBEC; data/text/beach_cafe_shop.o(.rodata.beach_cafe_shop_dialogue);
-        . = 0xFEC70; asm/data/data_080F9EB8.o(.rodata.beach_cafe_shop_trailer);
+        FILL(0x00);
+        . = ALIGN(4);
         . = 0xFEC7C; data/text/blacksmith.o(.rodata.blacksmith_menu);
         . = 0xFED8C; src/blacksmith_data.o(.rodata.blacksmith_catalog);
         . = 0xFEE68; data/text/blacksmith.o(.rodata.blacksmith_dialogue);
