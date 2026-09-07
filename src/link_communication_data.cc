@@ -133,4 +133,34 @@ LinkCommunicationDataRecord const gUnk_08100A04[] = {
 char const gCppRuntimeBadAlloc_LinkCommunication[] =
     "bad_alloc";
 
+// The native link packet constructors load the first word of each object.
+// The region-specific fourth character is the retail game-code suffix.
+LinkCommunicationGameCode const gLinkCommunicationGameCodeA4N
+    SECTION(".rodata.link_communication_game_codes") = {
+#if defined(REGION_JP)
+        0x4A4E3441,
+#else
+        0x454E3441,
+#endif
+        0x00000000,
+    };
+
+LinkCommunicationGameCode const gLinkCommunicationGameCodeGYW
+    SECTION(".rodata.link_communication_game_codes") = {
+#if defined(REGION_JP)
+        0x4A575947,
+#else
+        0x45575947,
+#endif
+        0x00000000,
+    };
+
+char const gCppRuntimeBadAlloc_LinkCommunicationA4N[]
+    SECTION(".rodata.link_communication_game_codes") =
+        "bad_alloc";
+
+char const gCppRuntimeBadAlloc_LinkCommunicationGYW[]
+    SECTION(".rodata.link_communication_game_codes") =
+        "bad_alloc";
+
 EXTERN_C_END

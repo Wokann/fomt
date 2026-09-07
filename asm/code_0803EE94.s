@@ -165978,19 +165978,19 @@ func_08094844: @ 0x08094844
 
 	thumb_func_start func_080948E0
 func_080948E0: @ 0x080948E0
-	ldr r0, .L080948E8 @ =gUnk_08100A98
+	ldr r0, .L080948E8 @ =gLinkCommunicationGameCodeA4N
 	ldr r0, [r0]
 	bx lr
 	.align 2, 0
-.L080948E8: .4byte gUnk_08100A98
+.L080948E8: .4byte gLinkCommunicationGameCodeA4N
 
 	thumb_func_start func_080948EC
 func_080948EC: @ 0x080948EC
-	ldr r0, .L080948F4 @ =gUnk_08100AA0
+	ldr r0, .L080948F4 @ =gLinkCommunicationGameCodeGYW
 	ldr r0, [r0]
 	bx lr
 	.align 2, 0
-.L080948F4: .4byte gUnk_08100AA0
+.L080948F4: .4byte gLinkCommunicationGameCodeGYW
 .L080948F8:
 	.byte 0x0C, 0x30, 0x70, 0x47
 

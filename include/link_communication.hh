@@ -14,6 +14,12 @@ struct LinkCommunicationDataRecord
     u32 unk_04;
 };
 
+struct LinkCommunicationGameCode
+{
+    u32 value;
+    u32 unk_04;
+};
+
 enum
 {
     LINK_COMMUNICATION_DATA_GROUP_SIZE = 5,
@@ -37,6 +43,10 @@ extern LinkCommunicationDataRecord const gUnk_081009DC[LINK_COMMUNICATION_DATA_G
 extern LinkCommunicationDataRecord const gUnk_08100A04[LINK_COMMUNICATION_DATA_GROUP_SIZE];
 
 extern char const gCppRuntimeBadAlloc_LinkCommunication[];
+extern LinkCommunicationGameCode const gLinkCommunicationGameCodeA4N;
+extern LinkCommunicationGameCode const gLinkCommunicationGameCodeGYW;
+extern char const gCppRuntimeBadAlloc_LinkCommunicationA4N[];
+extern char const gCppRuntimeBadAlloc_LinkCommunicationGYW[];
 
 EXTERN_C_END
 

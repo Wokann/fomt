@@ -34,7 +34,7 @@ jp_data_080fccf3_start:
 
 
     .section .rodata.link_communication_trailer
-    .incbin "baserom_jp.gba", 0x1003BA, (0x1005D8 - 0x1003BA)
+    .incbin "baserom_jp.gba", 0x1003BA, (0x1005B0 - 0x1003BA)
 
     .section .rodata.cooking_recipe_inventory_trailer
     .incbin "baserom_jp.gba", 0x100C48, (0x103194 - 0x100C48)
@@ -573,14 +573,6 @@ us_data_080fd583_start:
 	.global gUnk_08100A36
 gUnk_08100A36:
 	.incbin "baserom_us.gba", 0x100A36, 0x62
-
-	.global gUnk_08100A98
-gUnk_08100A98:
-	.incbin "baserom_us.gba", 0x100A98, 0x8
-
-	.global gUnk_08100AA0
-gUnk_08100AA0:
-	.incbin "baserom_us.gba", 0x100AA0, 0x20
 
 	.section .rodata.cooking_recipe_inventory_trailer
 
