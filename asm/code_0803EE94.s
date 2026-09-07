@@ -171841,7 +171841,7 @@ func_080977A0: @ 0x080977A0
 	strh r0, [r4, #2]
 	strh r0, [r4, #4]
 	movs r3, #0
-	ldr r6, .L080977DC @ =gUnk_081010E8
+	ldr r6, .L080977DC @ =gCookingRecipeInventoryMaskEntries
 	ldrh r5, [r4, #6]
 	adds r2, r6, #2
 	adds r1, r6, #0
@@ -171854,7 +171854,7 @@ func_080977A0: @ 0x080977A0
 	strh r0, [r4]
 	b .L080977EA
 	.align 2, 0
-.L080977DC: .4byte gUnk_081010E8
+.L080977DC: .4byte gCookingRecipeInventoryMaskEntries
 .L080977E0:
 	adds r2, #4
 	adds r1, #4
