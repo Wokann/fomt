@@ -62,8 +62,6 @@
 
 
 
-    .section .rodata.blacksmith_menu_padding
-    .incbin "baserom_jp.gba", 0xFE6A0, (0xFE6A4 - 0xFE6A0)
 
     .section .rodata.carpenter_menu_prefix
     .incbin "baserom_jp.gba", 0xFEC84, (0xFEC90 - 0xFEC84)

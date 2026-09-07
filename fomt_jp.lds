@@ -656,9 +656,9 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4);
         . = 0xFE53C; data/text/blacksmith.o(.rodata.blacksmith_menu);
-        . = 0xFE6A0; asm/data/data_080F9EB8.o(.rodata.blacksmith_menu_padding);
-        FILL(0xFF);
+        FILL(0x00);
         . = 0xFE6A4; src/blacksmith_data.o(.rodata.blacksmith_catalog);
+        FILL(0xFF);
         . = 0xFE77C; data/text/blacksmith.o(.rodata.blacksmith_dialogue);
         . = 0xFEC84; asm/data/data_080F9EB8.o(.rodata.carpenter_menu_prefix);
         FILL(0x00);
