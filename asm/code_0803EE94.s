@@ -55836,7 +55836,7 @@ func_0805C80C: @ 0x0805C80C
 	adds r7, #0x2c
 	adds r3, r6, #0
 	adds r3, #0x24
-	ldr r5, .L0805C968 @ =gUnk_080FA99E
+	ldr r5, .L0805C968 @ =gAnimalFestivalLivestockContestantValues
 .L0805C93E:
 	adds r0, r3, r2
 	ldrh r1, [r6, #0x20]
@@ -55861,7 +55861,7 @@ func_0805C80C: @ 0x0805C80C
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L0805C968: .4byte gUnk_080FA99E
+.L0805C968: .4byte gAnimalFestivalLivestockContestantValues
 
 	thumb_func_start func_0805C96C
 func_0805C96C: @ 0x0805C96C

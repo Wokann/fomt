@@ -580,7 +580,9 @@ SECTIONS
         . = ALIGN(4); src/animal_festival_ranking.o(.rodata.animal_festival_ranking_random_range_pairs);
         . = 0xF9FCC; data/text/animal_festival.o(.rodata.animal_festival_livestock_contestant_names_runtime);
         . = 0xF9FD6; data/text/animal_festival.o(.rodata.animal_festival_livestock_contestant_names);
-        . = 0xFA1DE; asm/data/data_080F9EB8.o(.rodata.animal_festival_livestock_contestant_names_trailer_prefix);
+        . = 0xFA1DE; src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_values);
+        FILL(0x00);
+        . = ALIGN(4);
         . = 0xFA280; data/text/horse_race.o(.rodata.horse_race_dialogue);
         . = 0xFA712; asm/data/data_080F9EB8.o(.rodata.horse_race_dialogue_trailer);
         . = 0xFA73C; data/text/horse_race.o(.rodata.horse_race_ticket_ui);

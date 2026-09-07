@@ -25,6 +25,9 @@ struct AnimalFestivalRandomRangePair
 
 extern AnimalFestivalRandomRangePair const gAnimalFestivalRandomRangePairs[];
 
+// Native code indexes each contestant row as four unclassified byte values.
+extern u8 const gAnimalFestivalLivestockContestantValues[][4];
+
 struct AnimalFestivalRankingEntry
 {
     u8 animal_index;
