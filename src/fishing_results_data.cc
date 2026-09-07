@@ -70,10 +70,8 @@ char const * const gFishingRecordNames[FISHING_RECORD_COUNT] SECTION(".rodata.fi
     gText_FishingRecord_Squid,
 };
 
-#if defined(REGION_US)
 extern char const gCppRuntimeBadAlloc_FishingResultsTrailer[] =
     "bad_alloc";
-#endif
 
 // The Power Berry result follows the native UI's dedicated branch.  Its table
 // slot deliberately preserves the original ARTICLE_WEEDS placeholder.

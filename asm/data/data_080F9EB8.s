@@ -40,7 +40,7 @@ jp_data_080fccf3_start:
     .incbin "baserom_jp.gba", 0x100C48, (0x103194 - 0x100C48)
 
     .section .rodata.fishing_results_trailer
-    .incbin "baserom_jp.gba", 0x1035F8, (0x103BFC - 0x1035F8)
+    .incbin "baserom_jp.gba", 0x103604, (0x103BFC - 0x103604)
 
     .section .rodata.character_names_table_trailer
     .incbin "baserom_jp.gba", 0x103EF4, (0x10447C - 0x103EF4)
