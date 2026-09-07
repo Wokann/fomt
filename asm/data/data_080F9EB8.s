@@ -40,7 +40,7 @@ jp_data_080fccf3_start:
     .incbin "baserom_jp.gba", 0x100C48, (0x103194 - 0x100C48)
 
     .section .rodata.fishing_results_trailer
-    .incbin "baserom_jp.gba", 0x103604, (0x103BFC - 0x103604)
+    .incbin "baserom_jp.gba", 0x10362C, (0x103BFC - 0x10362C)
 
     .section .rodata.character_names_table_trailer
     .incbin "baserom_jp.gba", 0x103EF4, (0x10447C - 0x103EF4)
@@ -581,10 +581,6 @@ gUnk_0810110C:
 	.incbin "baserom_us.gba", 0x10110C, 0x254C
 
 	.section .rodata.reference_guide_harvest_sprite_minigames_after_fishing_results
-
-	.global gUnk_08103B10
-gUnk_08103B10:
-	.incbin "baserom_us.gba", 0x103B10, 0x28
 
 	.global gUnk_08103B38
 gUnk_08103B38:

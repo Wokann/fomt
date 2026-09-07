@@ -722,6 +722,7 @@ SECTIONS
         . = 0x1035F8; src/fishing_results_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
+        src/code_actor_0809BFE8.o(.rodata);
         asm/data/data_080F9EB8.o(.rodata.fishing_results_trailer);
         . = 0x103BFC; data/text/character_names_empty.o(.rodata);
         . = 0x103BFD; src/bachelorette.o(.rodata);

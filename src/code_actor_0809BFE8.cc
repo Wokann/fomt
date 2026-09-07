@@ -104,4 +104,11 @@ EC ActorStateSlots * func_0809C144(ActorStateSlots & self)
     return &self;
 }
 
+// The raw actor routine at func_0809D500 indexes this order table directly.
+// Its element meanings are not decoded yet, so its original ROM label is
+// retained.
+EC u32 const gUnk_08103B10[] = {
+    1, 2, 4, 5, 6, 7, 8, 9, 11, 3,
+};
+
 /* what follows shouldn't be hard except that to do it well I think there needs to be union/placeholder shenanigans */
