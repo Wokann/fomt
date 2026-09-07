@@ -1,29 +1,6 @@
-#include "prelude.h"
+#include "farm_status_screen_data.hh"
 
-struct FarmStatusScreenResourceDescriptor
-{
-    u16 first;
-    u16 second;
-};
-
-struct FarmStatusScreenBuildingPreview
-{
-    u32 primary_resource;
-    u32 alternate_resource;
-    u16 x;
-    u16 y;
-    u8 width;
-    u8 height;
-    u16 unused;
-};
-
-struct FarmStatusScreenExteriorStyleData
-{
-    u8 doghouse[3];
-    u8 mailbox[3][3];
-};
-
-extern u16 const gFarmStatusScreenPreloadedGlyphs[] = {
+u16 const gFarmStatusScreenPreloadedGlyphs[] = {
 #if defined(REGION_JP)
     0x824F, 0x8250, 0x8251, 0x8252, 0x8253, 0x8254, 0x8255,
     0x8256, 0x8257, 0x8258, 0x8F74, 0x89C4, 0x8F48, 0x937E,
@@ -39,17 +16,17 @@ extern u16 const gFarmStatusScreenPreloadedGlyphs[] = {
 #endif
 };
 
-extern char const gCppRuntimeBadAlloc_FarmStatusScreenGlyphs[] =
+char const gCppRuntimeBadAlloc_FarmStatusScreenGlyphs[] =
     "bad_alloc";
 
-extern FarmStatusScreenResourceDescriptor const gFarmStatusScreenResourceDescriptors[] = {
+FarmStatusScreenResourceDescriptor const gFarmStatusScreenResourceDescriptors[] = {
     { 0x0078, 0x0010 },
     { 0x0048, 0x00D8 },
     { 0x00F8, 0x0010 },
     { 0x0178, 0x0010 },
 };
 
-extern u16 const gFarmStatusScreenTileLookup[] = {
+u16 const gFarmStatusScreenTileLookup[] = {
     0xF1E0, 0xF1E1, 0xE1E2, 0xC1E3, 0xE1E4, 0xC200, 0xF201,
     0xD204, 0xC202, 0xF203, 0xE220, 0xD223, 0xD221, 0xE224,
     0xE222, 0xF1E5, 0xE205, 0xC225, 0xC226, 0xF1E6, 0xB188,
@@ -58,39 +35,39 @@ extern u16 const gFarmStatusScreenTileLookup[] = {
     0xA1A2, 0xA1A3, 0xA1C2, 0xA1C3, 0x0000,
 };
 
-extern FarmStatusScreenBuildingPreview const gFarmStatusScreenFarmHousePreviews[] = {
+FarmStatusScreenBuildingPreview const gFarmStatusScreenFarmHousePreviews[] = {
 #if defined(REGION_JP)
-    { 0x082AFED0, 0x082B317C, 0x000D, 0x0001, 0x04, 0x06, 0x0000 },
-    { 0x082AFE70, 0x082B311C, 0x0009, 0x0001, 0x08, 0x06, 0x0000 },
-    { 0x082AFDC8, 0x082B3074, 0x0005, 0x0001, 0x0C, 0x07, 0x0000 },
+    { gUnk_082AFED0, gUnk_082B317C, 0x000D, 0x0001, 0x04, 0x06, 0x0000 },
+    { gUnk_082AFE70, gUnk_082B311C, 0x0009, 0x0001, 0x08, 0x06, 0x0000 },
+    { gUnk_082AFDC8, gUnk_082B3074, 0x0005, 0x0001, 0x0C, 0x07, 0x0000 },
 #else
-    { 0x08529D74, 0x0852D020, 0x000D, 0x0001, 0x04, 0x06, 0x0000 },
-    { 0x08529D14, 0x0852CFC0, 0x0009, 0x0001, 0x08, 0x06, 0x0000 },
-    { 0x08529C6C, 0x0852CF18, 0x0005, 0x0001, 0x0C, 0x07, 0x0000 },
+    { gUnk_08529D74, gUnk_0852D020, 0x000D, 0x0001, 0x04, 0x06, 0x0000 },
+    { gUnk_08529D14, gUnk_0852CFC0, 0x0009, 0x0001, 0x08, 0x06, 0x0000 },
+    { gUnk_08529C6C, gUnk_0852CF18, 0x0005, 0x0001, 0x0C, 0x07, 0x0000 },
 #endif
 };
 
-extern FarmStatusScreenBuildingPreview const gFarmStatusScreenCoopPreviews[] = {
+FarmStatusScreenBuildingPreview const gFarmStatusScreenCoopPreviews[] = {
 #if defined(REGION_JP)
-    { 0x082AFCD4, 0x082B2F80, 0x0007, 0x001A, 0x04, 0x06, 0x0000 },
-    { 0x082AFC74, 0x082B2F20, 0x0007, 0x001A, 0x08, 0x06, 0x0000 },
+    { gUnk_082AFCD4, gUnk_082B2F80, 0x0007, 0x001A, 0x04, 0x06, 0x0000 },
+    { gUnk_082AFC74, gUnk_082B2F20, 0x0007, 0x001A, 0x08, 0x06, 0x0000 },
 #else
-    { 0x08529B78, 0x0852CE24, 0x0007, 0x001A, 0x04, 0x06, 0x0000 },
-    { 0x08529B18, 0x0852CDC4, 0x0007, 0x001A, 0x08, 0x06, 0x0000 },
+    { gUnk_08529B78, gUnk_0852CE24, 0x0007, 0x001A, 0x04, 0x06, 0x0000 },
+    { gUnk_08529B18, gUnk_0852CDC4, 0x0007, 0x001A, 0x08, 0x06, 0x0000 },
 #endif
 };
 
-extern FarmStatusScreenBuildingPreview const gFarmStatusScreenBarnPreviews[] = {
+FarmStatusScreenBuildingPreview const gFarmStatusScreenBarnPreviews[] = {
 #if defined(REGION_JP)
-    { 0x082B07E0, 0x082B3A8C, 0x001D, 0x0001, 0x06, 0x07, 0x0000 },
-    { 0x082B0744, 0x082B39F0, 0x001D, 0x0001, 0x0B, 0x07, 0x0000 },
+    { gUnk_082B07E0, gUnk_082B3A8C, 0x001D, 0x0001, 0x06, 0x07, 0x0000 },
+    { gUnk_082B0744, gUnk_082B39F0, 0x001D, 0x0001, 0x0B, 0x07, 0x0000 },
 #else
-    { 0x0852A684, 0x0852D930, 0x001D, 0x0001, 0x06, 0x07, 0x0000 },
-    { 0x0852A5E8, 0x0852D894, 0x001D, 0x0001, 0x0B, 0x07, 0x0000 },
+    { gUnk_0852A684, gUnk_0852D930, 0x001D, 0x0001, 0x06, 0x07, 0x0000 },
+    { gUnk_0852A5E8, gUnk_0852D894, 0x001D, 0x0001, 0x0B, 0x07, 0x0000 },
 #endif
 };
 
-extern FarmStatusScreenExteriorStyleData const gFarmStatusScreenExteriorStyleData = {
+FarmStatusScreenExteriorStyleData const gFarmStatusScreenExteriorStyleData = {
     { 0x05, 0x06, 0x05 },
     {
         { 0x05, 0x06, 0x08 },
@@ -99,5 +76,5 @@ extern FarmStatusScreenExteriorStyleData const gFarmStatusScreenExteriorStyleDat
     },
 };
 
-extern char const gCppRuntimeBadAlloc_FarmStatusScreenTrailer[] =
+char const gCppRuntimeBadAlloc_FarmStatusScreenTrailer[] =
     "bad_alloc";

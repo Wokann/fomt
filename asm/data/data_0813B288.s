@@ -8,6 +8,36 @@
 jp_data_0813b288_start:
     .incbin "baserom_jp.gba", 0x13C3CC, (0x45C5B4 - 0x13C3CC)
 
+    @ Farm Status preview resource labels.  The asset roles remain unknown.
+    .global gUnk_082AFC74
+    .set gUnk_082AFC74, jp_data_0813b288_start + 0x1738A8
+    .global gUnk_082AFCD4
+    .set gUnk_082AFCD4, jp_data_0813b288_start + 0x173908
+    .global gUnk_082AFDC8
+    .set gUnk_082AFDC8, jp_data_0813b288_start + 0x1739FC
+    .global gUnk_082AFE70
+    .set gUnk_082AFE70, jp_data_0813b288_start + 0x173AA4
+    .global gUnk_082AFED0
+    .set gUnk_082AFED0, jp_data_0813b288_start + 0x173B04
+    .global gUnk_082B0744
+    .set gUnk_082B0744, jp_data_0813b288_start + 0x174378
+    .global gUnk_082B07E0
+    .set gUnk_082B07E0, jp_data_0813b288_start + 0x174414
+    .global gUnk_082B2F20
+    .set gUnk_082B2F20, jp_data_0813b288_start + 0x176B54
+    .global gUnk_082B2F80
+    .set gUnk_082B2F80, jp_data_0813b288_start + 0x176BB4
+    .global gUnk_082B3074
+    .set gUnk_082B3074, jp_data_0813b288_start + 0x176CA8
+    .global gUnk_082B311C
+    .set gUnk_082B311C, jp_data_0813b288_start + 0x176D50
+    .global gUnk_082B317C
+    .set gUnk_082B317C, jp_data_0813b288_start + 0x176DB0
+    .global gUnk_082B39F0
+    .set gUnk_082B39F0, jp_data_0813b288_start + 0x177624
+    .global gUnk_082B3A8C
+    .set gUnk_082B3A8C, jp_data_0813b288_start + 0x1776C0
+
     .global gUnk_086D6458
 gUnk_086D6458:
     .incbin "baserom_jp.gba", 0x45C5B4, 0xC0
@@ -147,6 +177,36 @@ gUnk_0852D050:
 	.global gUnk_0852D984
 gUnk_0852D984:
 	.incbin "baserom_us.gba", 0x52D984, 0x5E0A4
+
+	@ Farm Status preview resource labels.  The asset roles remain unknown.
+	.global gUnk_08529B18
+	.set gUnk_08529B18, gUnk_08529994 + 0x184
+	.global gUnk_08529B78
+	.set gUnk_08529B78, gUnk_08529994 + 0x1E4
+	.global gUnk_08529C6C
+	.set gUnk_08529C6C, gUnk_08529BA8 + 0xC4
+	.global gUnk_08529D14
+	.set gUnk_08529D14, gUnk_08529BA8 + 0x16C
+	.global gUnk_08529D74
+	.set gUnk_08529D74, gUnk_08529BA8 + 0x1CC
+	.global gUnk_0852A5E8
+	.set gUnk_0852A5E8, gUnk_08529DA4 + 0x844
+	.global gUnk_0852A684
+	.set gUnk_0852A684, gUnk_08529DA4 + 0x8E0
+	.global gUnk_0852CDC4
+	.set gUnk_0852CDC4, gUnk_0852CC40 + 0x184
+	.global gUnk_0852CE24
+	.set gUnk_0852CE24, gUnk_0852CC40 + 0x1E4
+	.global gUnk_0852CF18
+	.set gUnk_0852CF18, gUnk_0852CE54 + 0xC4
+	.global gUnk_0852CFC0
+	.set gUnk_0852CFC0, gUnk_0852CE54 + 0x16C
+	.global gUnk_0852D020
+	.set gUnk_0852D020, gUnk_0852CE54 + 0x1CC
+	.global gUnk_0852D894
+	.set gUnk_0852D894, gUnk_0852D050 + 0x844
+	.global gUnk_0852D930
+	.set gUnk_0852D930, gUnk_0852D050 + 0x8E0
 
 	.global gUnk_0858BA28
 gUnk_0858BA28:
