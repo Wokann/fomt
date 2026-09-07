@@ -2,6 +2,49 @@
 
 #include <cstdlib>
 
+// These fixed tables are read by the still-native Animal Husbandry minigame
+// code.  Their precise gameplay roles are not decoded yet; names retain the
+// known table access shape and owning minigame only.
+u8 const gUnk_HarvestSpriteMiniGameAnimalHusbandryMatchValues[5]
+    SECTION(".rodata.harvest_sprite_minigames_animal_husbandry_match_values") = {
+        0x48, 0x60, 0x78, 0x90, 0xA8,
+    };
+
+u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandrySelectionValues[4]
+    SECTION(".rodata.harvest_sprite_minigames_animal_husbandry_u16_tables") = {
+        0x0424, 0x0422, 0x0423, 0x0428,
+    };
+u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues0[3]
+    SECTION(".rodata.harvest_sprite_minigames_animal_husbandry_u16_tables") = {
+        1, 0, 0,
+    };
+u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues1[5]
+    SECTION(".rodata.harvest_sprite_minigames_animal_husbandry_u16_tables") = {
+        0x071D, 0x0725, 0x0731, 0x0721, 0x0720,
+    };
+u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues2[3]
+    SECTION(".rodata.harvest_sprite_minigames_animal_husbandry_u16_tables") = {
+        0, 0, 5,
+    };
+u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues3[7]
+    SECTION(".rodata.harvest_sprite_minigames_animal_husbandry_u16_tables") = {
+        0x2A, 0x36, 0x2C, 0x2E, 0x30, 0x32, 0x34,
+    };
+
+char const gCppRuntimeBadAlloc_HarvestSpriteMiniGameAnimalHusbandry[]
+    SECTION(".rodata.harvest_sprite_minigames_animal_husbandry_runtime") =
+        "bad_alloc";
+
+#if defined(REGION_US)
+// The native US exception path deliberately takes this final NUL byte's
+// address rather than the adjacent "bad_alloc" string.  Model it as the
+// actual empty string it is, while leaving the intervening bytes as linker
+// padding.
+char const gText_HarvestSpriteMiniGameAnimalHusbandryEmpty[]
+    SECTION(".rodata.harvest_sprite_minigames_animal_husbandry_runtime_empty") =
+        "";
+#endif
+
 HarvestSprite::HarvestSprite(ActorLocation const & location)
     : Npc(location)
 {

@@ -6,6 +6,17 @@
 #include "npc.hh"
 #include "unknown_types.hh"
 
+extern u8 const gUnk_HarvestSpriteMiniGameAnimalHusbandryMatchValues[5];
+extern u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandrySelectionValues[4];
+extern u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues0[3];
+extern u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues1[5];
+extern u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues2[3];
+extern u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues3[7];
+extern char const gCppRuntimeBadAlloc_HarvestSpriteMiniGameAnimalHusbandry[];
+#if defined(REGION_US)
+extern char const gText_HarvestSpriteMiniGameAnimalHusbandryEmpty[];
+#endif
+
 struct HarvestSprite : public Npc
 {
     enum Task

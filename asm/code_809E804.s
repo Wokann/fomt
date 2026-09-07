@@ -42642,7 +42642,7 @@ func_080B34DC: @ 0x080B34DC
 	movs r0, #0x8e
 	lsls r0, r0, #4
 	adds r5, r3, r0
-	ldr r6, .L080B34FC @ =gUnk_0810787C
+	ldr r6, .L080B34FC @ =gUnk_HarvestSpriteMiniGameAnimalHusbandryMatchValues
 	subs r0, #0x5c
 	adds r4, r3, r0
 .L080B34EE:
@@ -42654,7 +42654,7 @@ func_080B34DC: @ 0x080B34DC
 	str r2, [r4]
 	b .L080B350E
 	.align 2, 0
-.L080B34FC: .4byte gUnk_0810787C
+.L080B34FC: .4byte gUnk_HarvestSpriteMiniGameAnimalHusbandryMatchValues
 .L080B3500:
 	adds r2, #1
 	cmp r2, #4
@@ -43236,7 +43236,7 @@ func_080B3948: @ 0x080B3948
 
 	thumb_func_start func_080B3990
 func_080B3990: @ 0x080B3990
-	ldr r2, .L080B39B4 @ =gUnk_08107882
+	ldr r2, .L080B39B4 @ =gUnk_HarvestSpriteMiniGameAnimalHusbandrySelectionValues
 	ldr r3, .L080B39B8 @ =0x00000844
 	adds r1, r0, r3
 	ldr r1, [r1]
@@ -43254,12 +43254,12 @@ func_080B3990: @ 0x080B3990
 	lsrs r0, r0, #0x10
 	bx lr
 	.align 2, 0
-.L080B39B4: .4byte gUnk_08107882
+.L080B39B4: .4byte gUnk_HarvestSpriteMiniGameAnimalHusbandrySelectionValues
 .L080B39B8: .4byte 0x00000844
 
 	thumb_func_start func_080B39BC
 func_080B39BC: @ 0x080B39BC
-	ldr r2, .L080B39D4 @ =gUnk_0810788A
+	ldr r2, .L080B39D4 @ =gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues0
 	lsls r1, r1, #2
 	movs r3, #0x87
 	lsls r3, r3, #4
@@ -43271,11 +43271,11 @@ func_080B39BC: @ 0x080B39BC
 	ldrh r0, [r0]
 	bx lr
 	.align 2, 0
-.L080B39D4: .4byte gUnk_0810788A
+.L080B39D4: .4byte gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues0
 
 	thumb_func_start func_080B39D8
 func_080B39D8: @ 0x080B39D8
-	ldr r2, .L080B39EC @ =gUnk_08107890
+	ldr r2, .L080B39EC @ =gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues1
 	lsls r1, r1, #2
 	ldr r3, .L080B39F0 @ =0x00000848
 	adds r0, r0, r3
@@ -43286,12 +43286,12 @@ func_080B39D8: @ 0x080B39D8
 	ldrh r0, [r0]
 	bx lr
 	.align 2, 0
-.L080B39EC: .4byte gUnk_08107890
+.L080B39EC: .4byte gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues1
 .L080B39F0: .4byte 0x00000848
 
 	thumb_func_start func_080B39F4
 func_080B39F4: @ 0x080B39F4
-	ldr r2, .L080B3A08 @ =gUnk_0810789A
+	ldr r2, .L080B3A08 @ =gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues2
 	lsls r1, r1, #2
 	ldr r3, .L080B3A0C @ =0x0000085C
 	adds r0, r0, r3
@@ -43302,12 +43302,12 @@ func_080B39F4: @ 0x080B39F4
 	ldrh r0, [r0]
 	bx lr
 	.align 2, 0
-.L080B3A08: .4byte gUnk_0810789A
+.L080B3A08: .4byte gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues2
 .L080B3A0C: .4byte 0x0000085C
 
 	thumb_func_start func_080B3A10
 func_080B3A10: @ 0x080B3A10
-	ldr r1, .L080B3A20 @ =gUnk_081078A0
+	ldr r1, .L080B3A20 @ =gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues3
 	ldr r2, .L080B3A24 @ =0x00000934
 	adds r0, r0, r2
 	ldr r0, [r0]
@@ -43316,7 +43316,7 @@ func_080B3A10: @ 0x080B3A10
 	ldrh r0, [r0]
 	bx lr
 	.align 2, 0
-.L080B3A20: .4byte gUnk_081078A0
+.L080B3A20: .4byte gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues3
 .L080B3A24: .4byte 0x00000934
 
 	thumb_func_start func_080B3A28
@@ -43631,7 +43631,7 @@ func_080B3C84: @ 0x080B3C84
 func_080B3C90: @ 0x080B3C90
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
-	ldr r6, .L080B3CC4 @ =gUnk_081078BC
+	ldr r6, .L080B3CC4 @ =gText_HarvestSpriteMiniGameAnimalHusbandryEmpty
 	adds r0, r6, #0
 	bl strlen
 	adds r4, r0, #0
@@ -43654,7 +43654,7 @@ func_080B3C90: @ 0x080B3C90
 	pop {r1}
 	bx r1
 	.align 2, 0
-.L080B3CC4: .4byte gUnk_081078BC
+.L080B3CC4: .4byte gText_HarvestSpriteMiniGameAnimalHusbandryEmpty
 
 	thumb_func_start func_080B3CC8
 func_080B3CC8: @ 0x080B3CC8
