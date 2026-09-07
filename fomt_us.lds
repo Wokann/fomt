@@ -601,7 +601,6 @@ SECTIONS
         . = 0x104938; data/text/calendar.o(.rodata.calendar.dynamic_season_names);
         . = 0x104958; asm/data/data_080F9EB8.o(.rodata.calendar_dynamic_season_names_trailer);
         . = 0x10497C; data/text/calendar.o(.rodata.calendar.festival_text);
-        . = 0x104D96; asm/data/data_080F9EB8.o(.rodata.calendar_festival_dynamic_padding);
         . = 0x104D98; data/text/calendar.o(.rodata.calendar.festival_dynamic_text);
         . = 0x104DDC; data/text/calendar.o(.rodata.calendar.no_plans_text);
         . = 0x104DEA; asm/data/data_080F9EB8.o(.rodata.calendar_no_plans_trailer);

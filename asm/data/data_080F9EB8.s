@@ -85,9 +85,6 @@
     .section .rodata.calendar_dynamic_season_names_trailer
     .incbin "baserom_jp.gba", 0x10448C, (0x1044B0 - 0x10448C)
 
-    .section .rodata.calendar_festival_dynamic_padding
-    .incbin "baserom_jp.gba", 0x1048DB, (0x1048DC - 0x1048DB)
-
     .section .rodata.calendar_no_plans_trailer
     .incbin "baserom_jp.gba", 0x104935, (0x104958 - 0x104935)
 
@@ -529,9 +526,6 @@ gUnk_081043BC:
 
 	.section .rodata.calendar_dynamic_season_names_trailer
 	.incbin "baserom_us.gba", 0x104958, (0x10497C - 0x104958)
-
-	.section .rodata.calendar_festival_dynamic_padding
-	.incbin "baserom_us.gba", 0x104D96, 0x2
 
 	.section .rodata.calendar_no_plans_trailer
 	.incbin "baserom_us.gba", 0x104DEA, (0x104E0C - 0x104DEA)
