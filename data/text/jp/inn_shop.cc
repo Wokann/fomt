@@ -29,3 +29,6 @@ char const gText_InnShop_OrderComplete[] INN_SHOP_DIALOGUE =
     "まいど！\r\n"
     "ちょっと待ってくれよ…\r\n"
     "ほら、お待ちどうっ！{Press}";
+
+extern char const gCppRuntimeBadAlloc_InnShopTrailer[] INN_SHOP_TRAILER =
+    "bad_alloc";
