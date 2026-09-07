@@ -470,9 +470,9 @@ SECTIONS
         . = ALIGN(4); src/data_schedules.o(.rodata);
         . = ALIGN(4); asm/data/data_080F1A80.o(.rodata);
         . = ALIGN(4); src/script_engine.o(.rodata);
-        . = 0xF9EA4; data/text/common/script_engine.o(.rodata.script_engine_string_error);
+        . = 0xF9EA4; src/script_engine.o(.rodata.script_engine_string_error);
         . = 0xF9EAC; asm/data/data_080F9EB8.o(.rodata.localized_data_prefix);
-        . = 0xF9EB8; data/text/common/ui_error.o(.rodata.script_engine_ui_error);
+        . = 0xF9EB8; src/script_engine.o(.rodata.script_engine_ui_error);
         . = 0xF9EBE; asm/data/data_080F9EB8.o(.rodata.script_engine_ui_error_trailer);
         . = 0xF9EC5; asm/data/data_080F9EB8.o(.rodata.localized_data_suffix);
         . = 0xF9F7C; asm/data/data_080F9EB8.o(.rodata.name_entry_preset_animal_names_prefix);

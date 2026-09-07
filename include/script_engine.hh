@@ -8,6 +8,10 @@
 #define SCRIPT_STACK_MAX 100
 #define SCRIPT_VMMEM_MAX 100
 
+// Error text objects physically owned by the Script Engine data block.
+extern char const gText_AScriptEngine_InvalidStringId[];
+extern char const gText_ScriptEngineUi_Error[];
+
 // TODO: rename this
 // TODO: retype the related fields
 struct JumpTableEnt
