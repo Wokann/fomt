@@ -480,7 +480,9 @@ SECTIONS
         . = 0xFA158; data/text/frisbee.o(.rodata.frisbee_scoreboard);
         . = 0xFA174; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_score_table);
         . = 0xFA23C; data/text/frisbee.o(.rodata.frisbee_scoreboard_trailer_runtime);
-        . = 0xFA246; asm/data/data_080F9EB8.o(.rodata.frisbee_scoreboard_trailer_after);
+        . = 0xFA246; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_data);
+        FILL(0x00);
+        . = ALIGN(4); src/animal_festival_ranking.o(.rodata.animal_festival_ranking_reward_article_ids);
         . = 0xFA39C; data/text/frisbee.o(.rodata.frisbee);
         . = 0xFA710; data/text/frisbee.o(.rodata.frisbee_text_trailer_runtime);
         . = 0xFA71A; asm/data/data_080F9EB8.o(.rodata.frisbee_text_trailer_after);

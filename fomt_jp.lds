@@ -570,7 +570,9 @@ SECTIONS
         FILL(0x00);
         . = 0xF99AC; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_score_table);
         . = 0xF9A74; data/text/frisbee.o(.rodata.frisbee_scoreboard_trailer_runtime);
-        . = 0xF9A7E; asm/data/data_080F9EB8.o(.rodata.frisbee_scoreboard_trailer_after);
+        . = 0xF9A7E; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_data);
+        FILL(0x00);
+        . = ALIGN(4); src/animal_festival_ranking.o(.rodata.animal_festival_ranking_reward_article_ids);
         . = 0xF9BD4; data/text/frisbee.o(.rodata.frisbee);
         FILL(0x00);
         . = 0xF9F50; data/text/frisbee.o(.rodata.frisbee_text_trailer_runtime);

@@ -39818,7 +39818,7 @@ func_08053960: @ 0x08053960
 	adds r1, r0, #0
 	movs r4, #7
 	movs r2, #0
-	ldr r0, .L080548F8 @ =gUnk_080FA372
+	ldr r0, .L080548F8 @ =gAnimalFestivalRewardChanceWeights
 	add r7, sp, #0x30
 	ldr r3, .L080548FC @ =0x00000434
 	adds r3, r3, r6
@@ -39838,10 +39838,10 @@ func_08053960: @ 0x08053960
 	b .L08054918
 	.align 2, 0
 .L080548F4: .4byte 0x00002284
-.L080548F8: .4byte gUnk_080FA372
+.L080548F8: .4byte gAnimalFestivalRewardChanceWeights
 .L080548FC: .4byte 0x00000434
 .L08054900:
-	ldr r3, .L080549C8 @ =gUnk_080FA372
+	ldr r3, .L080549C8 @ =gAnimalFestivalRewardChanceWeights
 	adds r0, r2, r3
 	ldrb r0, [r0]
 	subs r1, r1, r0
@@ -39936,8 +39936,8 @@ func_08053960: @ 0x08053960
 	str r0, [r7, #4]
 	b .L08054AA6
 	.align 2, 0
-.L080549C8: .4byte gUnk_080FA372
-.L080549CC: .4byte gUnk_080FA37C
+.L080549C8: .4byte gAnimalFestivalRewardChanceWeights
+.L080549CC: .4byte gAnimalFestivalRewardArticleIds
 .L080549D0: .4byte 0x000023A4
 .L080549D4: .4byte 0x00001C38
 .L080549D8: .4byte 0x05000200

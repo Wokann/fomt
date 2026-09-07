@@ -7,9 +7,6 @@
     .section .rodata.name_entry_preset_animal_names_trailer_prefix
     .incbin "baserom_jp.gba", 0xF996C, (0xF9994 - 0xF996C)
 
-    .section .rodata.frisbee_scoreboard_trailer_after
-    .incbin "baserom_jp.gba", 0xF9A7E, (0xF9BD4 - 0xF9A7E)
-
     .section .rodata.frisbee_text_trailer_after
     .incbin "baserom_jp.gba", 0xF9F5A, (0xF9FCC - 0xF9F5A)
 
@@ -559,31 +556,6 @@ gUnk_080F9F78:
 
 	.section .rodata.name_entry_preset_animal_names_prefix
 	.incbin "baserom_us.gba", 0xF9F7C, 0x4
-
-	.section .rodata.frisbee_scoreboard_trailer_after
-	.global gUnk_080FA246
-gUnk_080FA246:
-	.incbin "baserom_us.gba", 0xFA246, 0x1E
-
-	.global gUnk_080FA264
-gUnk_080FA264:
-	.incbin "baserom_us.gba", 0xFA264, 0x84
-
-	.global gUnk_080FA2E8
-gUnk_080FA2E8:
-	.incbin "baserom_us.gba", 0xFA2E8, 0x84
-
-	.global gUnk_080FA36C
-gUnk_080FA36C:
-	.incbin "baserom_us.gba", 0xFA36C, 0x6
-
-	.global gUnk_080FA372
-gUnk_080FA372:
-	.incbin "baserom_us.gba", 0xFA372, 0xA
-
-	.global gUnk_080FA37C
-gUnk_080FA37C:
-	.incbin "baserom_us.gba", 0xFA37C, 0x20
 
 	.section .rodata.frisbee_text_trailer_after
 	.incbin "baserom_us.gba", 0xFA71A, 0x2
