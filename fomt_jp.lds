@@ -572,7 +572,6 @@ SECTIONS
         . = 0xFA898; data/text/horse_race_prizes.o(.rodata.horse_race_prize_catalog);
         . = 0xFA988; asm/data/data_080F9EB8.o(.rodata.horse_race_prize_catalog_trailer_prefix);
         . = 0xFA9A0; data/text/horse_race_prizes.o(.rodata.horse_race_prize_exchange);
-        . = 0xFAA37; asm/data/data_080F9EB8.o(.rodata.horse_race_prize_exchange_padding);
         . = 0xFAA38; asm/data/data_080F9EB8.o(.rodata.intro_scene_prefix);
         . = 0xFAABC; data/text/intro_scene.o(.rodata.intro_scene_text);
         . = 0xFB10F; asm/data/data_080F9EB8.o(.rodata.intro_scene_text_trailer);

@@ -480,7 +480,6 @@ SECTIONS
         . = 0xFAA40; data/text/horse_race.o(.rodata.horse_race_dialogue);
         . = 0xFAE6A; asm/data/data_080F9EB8.o(.rodata.horse_race_dialogue_trailer);
         . = 0xFAE9C; data/text/horse_race.o(.rodata.horse_race_ticket_ui);
-        . = 0xFAFC6; asm/data/data_080F9EB8.o(.rodata.horse_race_ticket_ui_padding);
         . = 0xFAFC8; src/horse_race_data.o(.rodata.horse_race_ticket_controls);
         . = 0xFAFF4; asm/data/data_080F9EB8.o(.rodata.horse_race_ticket_controls_trailer_prefix);
         . = 0xFB000; data/text/horse_race_prizes.o(.rodata.horse_race_prize_catalog);

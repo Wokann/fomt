@@ -28,9 +28,6 @@
     .section .rodata.horse_race_prize_catalog_trailer_prefix
     .incbin "baserom_jp.gba", 0xFA988, (0xFA9A0 - 0xFA988)
 
-    .section .rodata.horse_race_prize_exchange_padding
-    .incbin "baserom_jp.gba", 0xFAA37, (0xFAA38 - 0xFAA37)
-
     .section .rodata.intro_scene_prefix
     .incbin "baserom_jp.gba", 0xFAA38, (0xFAABC - 0xFAA38)
 
@@ -292,9 +289,6 @@ gUnk_080FA99E:
 	.global gUnk_080FAE6A
 gUnk_080FAE6A:
 	.incbin "baserom_us.gba", 0xFAE6A, 0x32
-
-	.section .rodata.horse_race_ticket_ui_padding
-	.incbin "baserom_us.gba", 0xFAFC6, (0xFAFC8 - 0xFAFC6)
 
 	.section .rodata.horse_race_ticket_controls_trailer_prefix
 
