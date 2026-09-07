@@ -6,6 +6,7 @@
 EXTERN_C
 
 extern u8 const * const gIntroSceneUnpackSources[];
+extern u8 const * const gIntroSceneStartupUnpackSources[];
 
 EXTERN_C_END
 

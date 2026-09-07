@@ -25,6 +25,21 @@ extern u8 const gUnk_IntroSceneUnpackSource_016[];
 extern u8 const gUnk_IntroSceneUnpackSource_017[];
 extern u8 const gUnk_IntroSceneUnpackSource_018[];
 extern u8 const gUnk_IntroSceneUnpackSource_019[];
+extern u8 const gUnk_IntroSceneStartupUnpackSource_000[];
+extern u8 const gUnk_IntroSceneStartupUnpackSource_001[];
+extern u8 const gUnk_IntroSceneStartupUnpackSource_002[];
+extern u8 const gUnk_IntroSceneStartupUnpackSource_003[];
+
+// func_08001A90 unpacks these four payloads before the later Intro Scene
+// sequence. The raw resource bytes retain region-specific labels in the
+// asset container; this table preserves their original relocation order.
+u8 const * const gIntroSceneStartupUnpackSources[]
+    SECTION(".rodata.intro_scene_startup_resources") = {
+        gUnk_IntroSceneStartupUnpackSource_000,
+        gUnk_IntroSceneStartupUnpackSource_001,
+        gUnk_IntroSceneStartupUnpackSource_002,
+        gUnk_IntroSceneStartupUnpackSource_003,
+    };
 
 u8 const * const gIntroSceneUnpackSources[] = {
     gUnk_IntroSceneUnpackSource_000,

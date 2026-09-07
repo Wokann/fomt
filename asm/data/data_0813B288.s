@@ -1141,6 +1141,17 @@ gActorStateGridCellType4Data:
     .set gUnk_IntroSceneUnpackSource_018, jp_data_08462550_start + 0x668FC
     .global gUnk_IntroSceneUnpackSource_019
     .set gUnk_IntroSceneUnpackSource_019, jp_data_08462550_start + 0x66C08
+
+    @ Four resources unpacked by the earlier Intro Scene startup path.
+    @ Their payload formats remain raw in this region-specific asset range.
+    .global gUnk_IntroSceneStartupUnpackSource_000
+    .set gUnk_IntroSceneStartupUnpackSource_000, jp_data_08462550_start + 0x6E41C
+    .global gUnk_IntroSceneStartupUnpackSource_001
+    .set gUnk_IntroSceneStartupUnpackSource_001, jp_data_08462550_start + 0x6E7F8
+    .global gUnk_IntroSceneStartupUnpackSource_002
+    .set gUnk_IntroSceneStartupUnpackSource_002, jp_data_08462550_start + 0x6EA14
+    .global gUnk_IntroSceneStartupUnpackSource_003
+    .set gUnk_IntroSceneStartupUnpackSource_003, jp_data_08462550_start + 0x6EB08
     .else
     .section .rodata
 
@@ -2789,6 +2800,17 @@ gUnk_087409E4:
 	.set gUnk_IntroSceneUnpackSource_018, us_data_087409e4_start + 0x2300
 	.global gUnk_IntroSceneUnpackSource_019
 	.set gUnk_IntroSceneUnpackSource_019, us_data_087409e4_start + 0x260C
+
+	@ Four resources unpacked by the earlier Intro Scene startup path.
+	@ Their payload formats remain raw in this region-specific asset range.
+	.global gUnk_IntroSceneStartupUnpackSource_000
+	.set gUnk_IntroSceneStartupUnpackSource_000, us_data_087409e4_start + 0x97F4
+	.global gUnk_IntroSceneStartupUnpackSource_001
+	.set gUnk_IntroSceneStartupUnpackSource_001, us_data_087409e4_start + 0x9BD0
+	.global gUnk_IntroSceneStartupUnpackSource_002
+	.set gUnk_IntroSceneStartupUnpackSource_002, us_data_087409e4_start + 0x9DEC
+	.global gUnk_IntroSceneStartupUnpackSource_003
+	.set gUnk_IntroSceneStartupUnpackSource_003, us_data_087409e4_start + 0x9EE0
 
 	.global gUnk_08743058
 gUnk_08743058:

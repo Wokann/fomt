@@ -11,10 +11,9 @@ init_array:
 	.incbin "baserom_jp.gba", 0xE7A40, 0x1C
 
 	.section .rodata.sram_signature_trailer
-	.incbin "baserom_jp.gba", 0xE7A7C, (0xE7AB4 - 0xE7A7C)
+	.incbin "baserom_jp.gba", 0xE7A7C, (0xE7AA4 - 0xE7A7C)
 
-	.global gUnk_080E8684
-gUnk_080E8684:
+	.section .rodata.intro_scene_startup_resources_trailer
 	.incbin "baserom_jp.gba", 0xE7AB4, (0xE7AC8 - 0xE7AB4)
 
     .else
@@ -31,8 +30,7 @@ init_array:
 	.section .rodata.sram_signature_trailer
 	.incbin "baserom_us.gba", 0xE864C, (0xE8684 - 0xE864C)
 
-	.global gUnk_080E8684
-gUnk_080E8684:
-	.incbin "baserom_us.gba", 0xE8684, (0xE86A8 - 0xE8684)
+	.section .rodata.intro_scene_startup_resources_trailer
+	.incbin "baserom_us.gba", 0xE8694, (0xE86A8 - 0xE8694)
 
     .endif
