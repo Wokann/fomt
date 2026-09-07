@@ -443,7 +443,7 @@ SECTIONS
         data/text/calendar.o(.rodata.calendar.none);
         data/text/calendar.o(.rodata.calendar.weekday);
         . = ALIGN(4); data/text/calendar.o(.rodata.calendar_trailer);
-        asm/data/data_080F0348.o(.rodata.load_error_prefix);
+        src/game_state.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); data/text/load_error.o(.rodata);
         FILL(0x00);

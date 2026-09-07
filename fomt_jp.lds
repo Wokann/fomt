@@ -521,7 +521,7 @@ SECTIONS
         src/item.o(.rodata.item_article);
         FILL(0xFF);
         src/item.o(.rodata.item_product);
-        . = 0xEFD48; /* JP counterpart of data_080F0348. */
+        . = 0xEFD48; /* JP product-info runtime trailer. */
         src/item.o(.rodata.item_product_trailer);
         FILL(0x00);
         data/text/calendar.o(.rodata.calendar.season);
@@ -529,7 +529,7 @@ SECTIONS
         data/text/calendar.o(.rodata.calendar.weekday);
         . = 0xEFD78; /* JP data after the calendar text arrays. */
         data/text/calendar.o(.rodata.calendar_trailer);
-        . = 0xEFDAA; asm/data/data_080F0348.o(.rodata.load_error_prefix);
+        . = 0xEFDAA; src/game_state.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); data/text/load_error.o(.rodata);
         FILL(0x00);
