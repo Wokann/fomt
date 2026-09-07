@@ -77,7 +77,10 @@
     .incbin "baserom_jp.gba", 0x103EF4, (0x10447C - 0x103EF4)
 
     .section .rodata.random_item_fallback_trailer
-    .incbin "baserom_jp.gba", 0x1049BC, (0x105A24 - 0x1049BC)
+    .incbin "baserom_jp.gba", 0x1049BC, (0x105184 - 0x1049BC)
+
+    .section .rodata.field_plot_position_rules_after
+    .incbin "baserom_jp.gba", 0x105250, (0x105A24 - 0x105250)
 
     .global gMapData
 gMapData:
@@ -530,10 +533,7 @@ gUnk_08104EE0:
 gUnk_08104EE7:
 	.incbin "baserom_us.gba", 0x104EE7, 0x755
 
-	.global gUnk_0810563C
-gUnk_0810563C:
-	.incbin "baserom_us.gba", 0x10563C, 0xCC
-
+	.section .rodata.field_plot_position_rules_after
 	.global gUnk_08105708
 gUnk_08105708:
 	.incbin "baserom_us.gba", 0x105708, 0x7D4

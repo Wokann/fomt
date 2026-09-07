@@ -11929,7 +11929,7 @@ func_080A45A8: @ 0x080A45A8
 	asrs r3, r0, #3
 	movs r4, #0
 	ldrh r0, [r2]
-	ldr r6, .L080A4634 @ =gUnk_0810563C
+	ldr r6, .L080A4634 @ =gFieldPlotPositionRules
 	lsls r0, r0, #0x16
 	lsrs r7, r0, #0x16
 	adds r2, r6, #0
@@ -11967,7 +11967,7 @@ func_080A45A8: @ 0x080A45A8
 	b .L080A4642
 	.align 2, 0
 .L080A4630: .4byte 0x000003FF
-.L080A4634: .4byte gUnk_0810563C
+.L080A4634: .4byte gFieldPlotPositionRules
 .L080A4638:
 	adds r2, #0x18
 	adds r1, #0x18

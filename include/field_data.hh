@@ -22,10 +22,24 @@ struct FieldPlotWeatherRule
     u8 bytes[8];
 };
 
+// Native code first matches match_value, then tests the inclusive x/y bounds
+// before returning result.
+struct FieldPlotPositionRule
+{
+    u32 match_value;
+    i32 minimum_x;
+    i32 minimum_y;
+    i32 maximum_x;
+    i32 maximum_y;
+    u32 result;
+};
+
 extern FieldPlotWeatherRule const gFieldPlotOrdinaryWeatherRules[4][2];
 extern FieldPlotWeatherRule const gFieldPlotSpecialWeatherRule3;
 extern FieldPlotWeatherRule const gFieldPlotSpecialWeatherRule4;
 extern u32 const gFieldPlotGrowthStageTransitions[21][21];
 extern FieldPlotTypeDefinition const gFieldPlotTypeDefinitions[39];
+extern FieldPlotPositionRule const gFieldPlotPositionRules[8];
+extern char const gCppRuntimeBadAlloc_FieldPlotPositionRules[];
 
 #endif // FIELD_DATA_HH
