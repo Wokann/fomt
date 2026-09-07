@@ -95,9 +95,6 @@ gUnk_08106E98:
     .section .rodata.field_render_patch_arguments_after
     .incbin "baserom_jp.gba", 0x106F6C, (0x106F76 - 0x106F6C)
 
-    .section .rodata.field_render_lookup_values_after
-    .incbin "baserom_jp.gba", 0x107070, (0x1070F4 - 0x107070)
-
     .section .rodata.harvest_sprite_minigames_animal_husbandry_trailer
     .incbin "baserom_jp.gba", 0x10737B, (0x1073B9 - 0x10737B)
 
@@ -928,32 +925,6 @@ gUnk_08107350:
 
 	.section .rodata.field_render_patch_arguments_after
 	.incbin "baserom_us.gba", 0x107424, 0xA
-
-	.section .rodata.field_render_lookup_values_after
-
-	.global gUnk_0810752C
-gUnk_0810752C:
-	.incbin "baserom_us.gba", 0x10752C, 0x14
-
-	.global gUnk_08107540
-gUnk_08107540:
-	.incbin "baserom_us.gba", 0x107540, 0x28
-
-	.global gUnk_08107568
-gUnk_08107568:
-	.incbin "baserom_us.gba", 0x107568, 0x4
-
-	.global gUnk_0810756C
-gUnk_0810756C:
-	.incbin "baserom_us.gba", 0x10756C, 0x1C
-
-	.global gUnk_08107588
-gUnk_08107588:
-	.incbin "baserom_us.gba", 0x107588, 0x14
-
-	.global gUnk_0810759C
-gUnk_0810759C:
-	.incbin "baserom_us.gba", 0x10759C, 0x14
 
 	.section .rodata.harvest_sprite_minigames_animal_husbandry_trailer
 

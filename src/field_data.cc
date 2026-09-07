@@ -1000,3 +1000,41 @@ char const gCppRuntimeBadAlloc_FieldRenderSortedValuesFirst[]
 char const gCppRuntimeBadAlloc_FieldRenderSortedValuesSecond[]
     SECTION(".rodata.field_render_sorted_values_runtime_strings") =
         "bad_alloc";
+
+// These value groups are copied directly by still-native callers.  Their
+// high-level gameplay roles remain unknown, so the names identify only the
+// consuming function and their fixed layout.
+u32 const gUnk_080AE894InitialValues[5]
+    SECTION(".rodata.unk_080AE894_values") = {
+        0x48, 0x60, 0x78, 0x90, 0xA8,
+    };
+u32 const gUnk_080AE894LayoutValues[10]
+    SECTION(".rodata.unk_080AE894_values") = {
+        0x48, 0x5E, 0x60, 0x5E, 0x78,
+        0x5E, 0x90, 0x5E, 0xA8, 0x5E,
+    };
+
+// func_080B0708 copies exactly two bytes from this object.  The selected
+// region stores its original single glyph: ASCII zero in US and full-width
+// zero in JP.
+char const gText_080B0708DefaultGlyph[]
+    SECTION(".rodata.unk_080B0708_default_glyph") =
+#if defined(REGION_JP)
+        "０";
+#else
+        "0";
+#endif
+
+u32 const gUnk_080B09B0IndexValues[7]
+    SECTION(".rodata.unk_080B09B0_index_values") = {
+        4, 0, 1, 6, 3, 2, 5,
+    };
+
+u32 const gUnk_080B0BB8FirstValues[5]
+    SECTION(".rodata.unk_080B0BB8_values") = {
+        0x3C, 0x1E, 0x3C, 0x1E, 0x3C,
+    };
+u32 const gUnk_080B0BB8SecondValues[5]
+    SECTION(".rodata.unk_080B0BB8_values") = {
+        4, 0, 2, 1, 3,
+    };

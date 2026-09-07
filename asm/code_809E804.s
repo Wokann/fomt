@@ -34376,7 +34376,7 @@ func_080AE894: @ 0x080AE894
 	movs r0, #0x40
 	strh r0, [r1, #2]
 	add r1, sp, #0x14
-	ldr r0, .L080AF7F0 @ =gUnk_0810752C
+	ldr r0, .L080AF7F0 @ =gUnk_080AE894InitialValues
 	ldm r0!, {r2, r3, r4}
 	stm r1!, {r2, r3, r4}
 	ldm r0!, {r5, r6}
@@ -34439,7 +34439,7 @@ func_080AE894: @ 0x080AE894
 	cmp r1, #4
 	ble .L080AF4BA
 	ldr r0, [sp, #0xb8]
-	ldr r1, .L080AF7F4 @ =gUnk_08107540
+	ldr r1, .L080AF7F4 @ =gUnk_080AE894LayoutValues
 	ldm r1!, {r2, r3, r4}
 	stm r0!, {r2, r3, r4}
 	ldm r1!, {r5, r6, r7}
@@ -34793,8 +34793,8 @@ func_080AE894: @ 0x080AE894
 	.align 2, 0
 .L080AF7E8: .4byte 0x0000052C
 .L080AF7EC: .4byte 0x000008A8
-.L080AF7F0: .4byte gUnk_0810752C
-.L080AF7F4: .4byte gUnk_08107540
+.L080AF7F0: .4byte gUnk_080AE894InitialValues
+.L080AF7F4: .4byte gUnk_080AE894LayoutValues
 .L080AF7F8: .4byte 0x0000042C
 .L080AF7FC: .4byte 0x00000564
 .L080AF800: .4byte 0x000008B8
@@ -36829,7 +36829,7 @@ func_080B0708: @ 0x080B0708
 	cmp r0, #9
 	bhi .L080B0764
 	add r0, sp, #0x10
-	ldr r1, .L080B07AC @ =gUnk_08107568
+	ldr r1, .L080B07AC @ =gText_080B0708DefaultGlyph
 	movs r2, #2
 	bl memcpy
 	add r1, sp, #0xc
@@ -36872,7 +36872,7 @@ func_080B0708: @ 0x080B0708
 	.align 2, 0
 .L080B07A4: .4byte 0x0000090B
 .L080B07A8: .4byte 0x0000080C
-.L080B07AC: .4byte gUnk_08107568
+.L080B07AC: .4byte gText_080B0708DefaultGlyph
 .L080B07B0:
 	movs r1, #3
 	add r0, sp, #0x2c
@@ -37149,7 +37149,7 @@ func_080B09B0: @ 0x080B09B0
 	sub sp, #0x1c
 	adds r2, r0, #0
 	mov r1, sp
-	ldr r0, .L080B09EC @ =gUnk_0810756C
+	ldr r0, .L080B09EC @ =gUnk_080B09B0IndexValues
 	ldm r0!, {r3, r4, r5}
 	stm r1!, {r3, r4, r5}
 	ldm r0!, {r3, r4, r5}
@@ -37176,7 +37176,7 @@ func_080B09B0: @ 0x080B09B0
 	movs r0, #0xa
 	b .L080B0A92
 	.align 2, 0
-.L080B09EC: .4byte gUnk_0810756C
+.L080B09EC: .4byte gUnk_080B09B0IndexValues
 .L080B09F0: .4byte 0x00000934
 .L080B09F4: .4byte 0x00000938
 .L080B09F8: .4byte 0x0000090E
@@ -37430,11 +37430,11 @@ func_080B0BB8: @ 0x080B0BB8
 	mov r5, sp
 	adds r5, #0x3c
 	str r5, [sp, #0xb0]
-	ldr r5, .L080B0CB4 @ =gUnk_08107588
+	ldr r5, .L080B0CB4 @ =gUnk_080B0BB8FirstValues
 	mov r6, sp
 	adds r6, #0x50
 	str r6, [sp, #0xb4]
-	ldr r0, .L080B0CB8 @ =gUnk_0810759C
+	ldr r0, .L080B0CB8 @ =gUnk_080B0BB8SecondValues
 	mov r8, r0
 	add r4, sp, #0x64
 	ldr r2, [sp, #0xac]
@@ -37525,8 +37525,8 @@ func_080B0BB8: @ 0x080B0BB8
 	adds r0, r7, r3
 	bl .L080B1B1C
 	.align 2, 0
-.L080B0CB4: .4byte gUnk_08107588
-.L080B0CB8: .4byte gUnk_0810759C
+.L080B0CB4: .4byte gUnk_080B0BB8FirstValues
+.L080B0CB8: .4byte gUnk_080B0BB8SecondValues
 .L080B0CBC: .4byte 0x00000838
 
 	thumb_func_start sub_080B0CC0
