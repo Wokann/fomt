@@ -40,9 +40,6 @@
     .section .rodata.staff_credits_trailer_prefix
     .incbin "baserom_jp.gba", 0xFBE88, (0xFBE9C - 0xFBE88)
 
-    .section .rodata.town_map_padding
-    .incbin "baserom_jp.gba", 0xFC7E5, (0xFC7E8 - 0xFC7E5)
-
     .section .rodata.town_map_trailer
     .incbin "baserom_jp.gba", 0xFCB08, (0xFCCB8 - 0xFCB08)
 
@@ -333,9 +330,6 @@ gUnk_080FC6B8:
 	.global gUnk_080FC6C2
 gUnk_080FC6C2:
 	.incbin "baserom_us.gba", 0xFC6C2, 0xA
-
-	.section .rodata.town_map_padding
-	.incbin "baserom_us.gba", 0xFD07E, (0xFD080 - 0xFD07E)
 
 	.section .rodata.town_map_trailer
 
