@@ -512,6 +512,15 @@ FarmHouseTilePatchAnimationDescriptor const gFarmHouseTilePatchAnimations[2]
         { 0x0212, gUnk_FarmHouseTilePatchAnimationResource_001, 0x0008 },
     };
 
+// The original next object starts on a four-byte boundary.  The linker, not
+// this type, emits the one-byte zero gap after this packed 9-byte payload.
+FarmHouseStyleNibbleLookupData const gFarmHouseStyleNibbleLookupData
+    SECTION(".rodata.farm_house_style_nibble_lookup") ALIGN(1) = {
+        { 0x05, 0x06, 0x08 },
+        { 0x05, 0x06, 0x05 },
+        { 0x05, 0x01, 0x01 },
+    };
+
 FarmHouseVisualDescriptor const gFarmHouseVisualDescriptors[7] SECTION(".rodata.farm_house_visual_descriptors") = {
     {
         { 0x06, 0x04,

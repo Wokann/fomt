@@ -93,7 +93,10 @@ gUnk_08106E98:
     .set gUnk_FieldRenderResource_178, gUnk_08106E98 + 0x10
 
     .section .rodata.field_render_patch_arguments_after
-    .incbin "baserom_jp.gba", 0x106F6C, (0x1070F4 - 0x106F6C)
+    .incbin "baserom_jp.gba", 0x106F6C, (0x106F76 - 0x106F6C)
+
+    .section .rodata.farm_house_style_nibble_lookup_after
+    .incbin "baserom_jp.gba", 0x106F80, (0x1070F4 - 0x106F80)
 
     .section .rodata.harvest_sprite_minigames_animal_husbandry_trailer
     .incbin "baserom_jp.gba", 0x10737B, (0x1073B9 - 0x10737B)
@@ -926,17 +929,7 @@ gUnk_08107350:
 	.section .rodata.field_render_patch_arguments_after
 	.incbin "baserom_us.gba", 0x107424, 0xA
 
-	.global gUnk_0810742E
-gUnk_0810742E:
-	.incbin "baserom_us.gba", 0x10742E, 0x3
-
-	.global gUnk_08107431
-gUnk_08107431:
-	.incbin "baserom_us.gba", 0x107431, 0x3
-
-	.global gUnk_08107434
-gUnk_08107434:
-	.incbin "baserom_us.gba", 0x107434, 0x4
+	.section .rodata.farm_house_style_nibble_lookup_after
 
 	.global gUnk_08107438
 gUnk_08107438:

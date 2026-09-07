@@ -19974,7 +19974,7 @@ func_080A748C: @ 0x080A748C
 	str r0, [sp, #0x1a4]
 .L080A8504:
 	adds r0, r6, #0
-	ldr r1, .L080A862C @ =gUnk_0810742E
+	ldr r1, .L080A862C @ =gFarmHouseStyleNibbleLookupData
 	movs r2, #3
 	bl memcpy
 	ldr r1, [sp, #0x190]
@@ -20053,7 +20053,7 @@ func_080A748C: @ 0x080A748C
 	str r0, [sp, #0x1a8]
 .L080A85AA:
 	adds r0, r6, #0
-	ldr r1, .L080A8634 @ =gUnk_08107431
+	ldr r1, .L080A8634 @ =gFarmHouseStyleNibbleLookupData + 0x03
 	movs r2, #3
 	bl memcpy
 	ldr r1, [sp, #0x190]
@@ -20112,9 +20112,9 @@ func_080A748C: @ 0x080A748C
 	.align 2, 0
 .L080A8624: .4byte gFarmHouseTilePatchData + 0x068
 .L080A8628: .4byte gFarmHouseTilePatchData + 0x000
-.L080A862C: .4byte gUnk_0810742E
+.L080A862C: .4byte gFarmHouseStyleNibbleLookupData
 .L080A8630: .4byte gFarmHouseTilePatchData + 0x010
-.L080A8634: .4byte gUnk_08107431
+.L080A8634: .4byte gFarmHouseStyleNibbleLookupData + 0x03
 .L080A8638: .4byte gFarmHouseTilePatchData + 0x020
 .L080A863C:
 	ldr r1, .L080A867C @ =gUnk_086D6698
@@ -20306,7 +20306,7 @@ func_080A748C: @ 0x080A748C
 	str r5, [sp, #0x1ac]
 .L080A879C:
 	adds r0, r6, #0
-	ldr r1, .L080A88E0 @ =gUnk_08107434
+	ldr r1, .L080A88E0 @ =gFarmHouseStyleNibbleLookupData + 0x06
 	movs r2, #3
 	bl memcpy
 	ldr r1, [sp, #0x190]
@@ -20385,7 +20385,7 @@ func_080A748C: @ 0x080A748C
 	str r0, [sp, #0x1b8]
 .L080A8842:
 	adds r0, r6, #0
-	ldr r1, .L080A88E8 @ =gUnk_08107431
+	ldr r1, .L080A88E8 @ =gFarmHouseStyleNibbleLookupData + 0x03
 	movs r2, #3
 	bl memcpy
 	ldr r1, [sp, #0x190]
@@ -20456,9 +20456,9 @@ func_080A748C: @ 0x080A748C
 	.align 2, 0
 .L080A88D8: .4byte gFarmHouseTilePatchData + 0x070
 .L080A88DC: .4byte gFarmHouseTilePatchData + 0x008
-.L080A88E0: .4byte gUnk_08107434
+.L080A88E0: .4byte gFarmHouseStyleNibbleLookupData + 0x06
 .L080A88E4: .4byte gFarmHouseTilePatchData + 0x018
-.L080A88E8: .4byte gUnk_08107431
+.L080A88E8: .4byte gFarmHouseStyleNibbleLookupData + 0x03
 .L080A88EC: .4byte gFarmHouseTilePatchData + 0x028
 .L080A88F0:
 	add r5, sp, #0x30

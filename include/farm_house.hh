@@ -140,6 +140,19 @@ extern FarmHouseTilePatchData const gFarmHouseTilePatchData;
 // has been recovered.
 extern FarmHouseTilePatchAnimationDescriptor const gFarmHouseTilePatchAnimations[2];
 
+// Native setup indexes these three-byte tables with the selected exterior
+// style, then writes the result into a tile attribute's high nibble.  The
+// table names retain physical offsets because the three concrete display
+// groups are not fully named yet.
+struct PACKED FarmHouseStyleNibbleLookupData
+{
+    u8 values_00[3];
+    u8 values_03[3];
+    u8 values_06[3];
+};
+
+extern FarmHouseStyleNibbleLookupData const gFarmHouseStyleNibbleLookupData;
+
 // These records start with the exact 0x18-byte tile-patch layout consumed by
 // func_080A5BD8.  Native setup also passes unk_18 to Unpack and derives a VRAM
 // destination from unk_1C.  The remaining resource fields are preserved with
