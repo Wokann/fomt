@@ -679,10 +679,12 @@ SECTIONS
         . = 0xFEC90; data/text/carpenter.o(.rodata.carpenter_menu);
         . = 0xFF084; src/carpenter_data.o(.rodata.carpenter_catalog);
         FILL(0xFF);
-        . = 0xFF214; asm/data/data_080F9EB8.o(.rodata.carpenter_catalog_trailer);
+        . = 0xFF214; data/text/common/carpenter.o(.rodata.carpenter_initial_page_break);
         FILL(0x00);
-        . = 0xFF218; data/text/carpenter.o(.rodata.carpenter_dialogue);
-        . = 0xFF4FC; asm/data/data_080F9EB8.o(.rodata.carpenter_trailer);
+        . = ALIGN(4); data/text/carpenter.o(.rodata.carpenter_dialogue);
+        . = 0xFF4FC; data/text/carpenter.o(.rodata.carpenter_trailer);
+        FILL(0x00);
+        . = ALIGN(4);
         FILL(0xFF);
         . = 0xFF508; src/livestock_shop.o(.rodata);
         FILL(0x00);

@@ -135167,7 +135167,7 @@ func_08083BD4: @ 0x08083BD4
 	bne .L08083C00
 	ldr r0, .L08083C44 @ =0x00006170
 	adds r6, r5, r0
-	ldr r7, .L08083C48 @ =gUnk_080FF838
+	ldr r7, .L08083C48 @ =gText_Carpenter_InitialPageBreak
 	adds r0, r7, #0
 	bl strlen
 	adds r4, r0, #0
@@ -135194,7 +135194,7 @@ func_08083BD4: @ 0x08083BD4
 .L08083C3C: .4byte vtable_unk_080E7D14
 .L08083C40: .4byte 0x000006A4
 .L08083C44: .4byte 0x00006170
-.L08083C48: .4byte gUnk_080FF838
+.L08083C48: .4byte gText_Carpenter_InitialPageBreak
 .L08083C4C: .4byte 0x000061F0
 
 	thumb_func_start func_08083C50

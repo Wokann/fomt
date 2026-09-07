@@ -187,3 +187,7 @@ char const gText_Carpenter_ConfirmUpgrade[] CARPENTER_DIALOGUE =
 
 char const gText_Carpenter_NeedAnythingMore[] CARPENTER_DIALOGUE =
     "Need anything more?{Press}";
+
+char const gCppRuntimeBadAlloc_Carpenter[]
+    SECTION(".rodata.carpenter_trailer") ALIGN(1) =
+        "bad_alloc";

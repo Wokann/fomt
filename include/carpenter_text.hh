@@ -74,6 +74,8 @@ extern char const gText_Carpenter_StartUpgradeTomorrow[];
 extern char const gText_Carpenter_ConfirmUpgrade[];
 #endif
 extern char const gText_Carpenter_NeedAnythingMore[];
+extern char const gText_Carpenter_InitialPageBreak[];
+extern char const gCppRuntimeBadAlloc_Carpenter[];
 
 extern CarpenterCatalogEntry const gCarpenterCatalog[];
 

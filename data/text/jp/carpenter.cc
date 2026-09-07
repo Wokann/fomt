@@ -183,3 +183,7 @@ char const gText_Carpenter_StartUpgradeTomorrow[] CARPENTER_DIALOGUE =
 
 char const gText_Carpenter_NeedAnythingMore[] CARPENTER_DIALOGUE =
     "他に何かいるか？{Press}";
+
+char const gCppRuntimeBadAlloc_Carpenter[]
+    SECTION(".rodata.carpenter_trailer") ALIGN(1) =
+        "bad_alloc";

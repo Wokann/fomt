@@ -33,12 +33,6 @@ jp_data_080fccf3_start:
 
 
 
-    .section .rodata.carpenter_catalog_trailer
-    .incbin "baserom_jp.gba", 0xFF214, (0xFF218 - 0xFF214)
-
-    .section .rodata.carpenter_trailer
-    .incbin "baserom_jp.gba", 0xFF4FC, (0xFF508 - 0xFF4FC)
-
     .section .rodata.link_communication_trailer
     .incbin "baserom_jp.gba", 0x100130, (0x1005EA - 0x100130)
 
@@ -576,14 +570,6 @@ us_data_080fd583_start:
 
 
 
-
-    .section .rodata.carpenter_catalog_trailer
-    .global gUnk_080FF838
-gUnk_080FF838:
-    .incbin "baserom_us.gba", 0xFF838, 0x4
-
-    .section .rodata.carpenter_trailer
-    .incbin "baserom_us.gba", 0xFFB54, (0xFFB60 - 0xFFB54)
 
 	.section .rodata.link_communication_trailer
 
