@@ -697,8 +697,9 @@ SECTIONS
         . = 0xFFE70; data/text/link_communication.o(.rodata.link_communication);
         . = 0x100130; asm/data/data_080F9EB8.o(.rodata.link_communication_trailer);
         . = 0x1005EA; data/text/recovery_status.o(.rodata);
-        . = 0x1008F9; asm/data/data_080F9EB8.o(.rodata.recovery_status_trailer_prefix);
-        . = 0x1008FC; data/text/cooking_menu.o(.rodata);
+        FILL(0x00);
+        . = ALIGN(4);
+        data/text/cooking_menu.o(.rodata);
         . = 0x100A10; data/text/cooking_menu.o(.rodata.cooking_result_text);
         . = 0x100A24; data/text/cooking_menu.o(.rodata.cooking_result_success_text);
         . = 0x100A84; data/text/cooking_recipe_actions.o(.rodata);

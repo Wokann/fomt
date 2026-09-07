@@ -36,9 +36,6 @@ jp_data_080fccf3_start:
     .section .rodata.link_communication_trailer
     .incbin "baserom_jp.gba", 0x100130, (0x1005EA - 0x100130)
 
-    .section .rodata.recovery_status_trailer_prefix
-    .incbin "baserom_jp.gba", 0x1008F9, (0x1008FC - 0x1008F9)
-
     .section .rodata.cooking_recipe_inventory_trailer
     .incbin "baserom_jp.gba", 0x100C24, (0x103194 - 0x100C24)
 
