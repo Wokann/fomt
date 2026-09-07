@@ -708,7 +708,9 @@ SECTIONS
         . = 0x106C24; src/farm_house.o(.rodata.farm_house_tile_patches);
         . = 0x106D4C; src/farm_house.o(.rodata.farm_house_visual_descriptors);
         . = 0x106E80; src/farm_house.o(.rodata.farm_house_tile_patch_animations);
-        . = 0x106E98; asm/data/data_080F9EB8.o(.rodata.field_render_rect_descriptors_after);
+        . = 0x106E98; src/field_data.o(.rodata.field_render_resource_first_values);
+        . = 0x106EA4; src/field_data.o(.rodata.field_render_resource_second_values);
+        . = 0x106EB8; src/field_data.o(.rodata.field_render_resource_runtime_strings);
         . = 0x106ED0; src/field_data.o(.rodata.field_render_parallel_tables);
         . = 0x106F0C; src/field_data.o(.rodata.field_render_patch_arguments);
         . = 0x106F6C; asm/data/data_080F9EB8.o(.rodata.field_render_patch_arguments_after);

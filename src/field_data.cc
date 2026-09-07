@@ -871,6 +871,34 @@ FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_RECT_DE
     },
 };
 
+u8 const gUnk_FieldRenderResource_158[]
+    SECTION(".rodata.field_render_resource_first_values") = {
+        0x01, 0x00, 0x00, 0x00,
+    };
+
+u8 const gUnk_FieldRenderResource_159[]
+    SECTION(".rodata.field_render_resource_first_values") = {
+        0x00, 0x00, 0x00, 0x00,
+    };
+
+u8 const gUnk_FieldRenderResource_177[]
+    SECTION(".rodata.field_render_resource_second_values") = {
+        0x00, 0x00, 0x00, 0x00,
+    };
+
+u8 const gUnk_FieldRenderResource_178[]
+    SECTION(".rodata.field_render_resource_second_values") = {
+        0x00, 0x00, 0x00, 0x00,
+    };
+
+char const gCppRuntimeBadAlloc_FieldRenderResource00[]
+    SECTION(".rodata.field_render_resource_runtime_strings") =
+        "bad_alloc";
+
+char const gCppRuntimeBadAlloc_FieldRenderResource01[]
+    SECTION(".rodata.field_render_resource_runtime_strings") ALIGN(4) =
+        "bad_alloc";
+
 FieldRenderParallelTables const gFieldRenderParallelTables
     SECTION(".rodata.field_render_parallel_tables") = {
         { 0x0000001C, 0x0000001D, 0x0000001E },

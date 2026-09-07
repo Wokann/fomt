@@ -76,22 +76,6 @@
     .section .rodata.character_names_table_trailer
     .incbin "baserom_jp.gba", 0x103EF4, (0x10447C - 0x103EF4)
 
-    .section .rodata.field_render_rect_descriptors_after
-    .global gUnk_08106E98
-gUnk_08106E98:
-    .incbin "baserom_jp.gba", 0x106E98, (0x106ED0 - 0x106E98)
-
-    @ These labels identify the still-raw targets of gFieldRenderRectDescriptors.
-    @ Their payload types are not known yet.
-    .global gUnk_FieldRenderResource_158
-    .set gUnk_FieldRenderResource_158, gUnk_08106E98
-    .global gUnk_FieldRenderResource_159
-    .set gUnk_FieldRenderResource_159, gUnk_08106E98 + 0x04
-    .global gUnk_FieldRenderResource_177
-    .set gUnk_FieldRenderResource_177, gUnk_08106E98 + 0x0C
-    .global gUnk_FieldRenderResource_178
-    .set gUnk_FieldRenderResource_178, gUnk_08106E98 + 0x10
-
     .section .rodata.field_render_patch_arguments_after
     .incbin "baserom_jp.gba", 0x106F6C, (0x106F76 - 0x106F6C)
 
@@ -872,23 +856,6 @@ gUnk_081040EC:
 	.global gUnk_081043BC
 gUnk_081043BC:
 	.incbin "baserom_us.gba", 0x1043BC, 0x57C
-
-    .section .rodata.field_render_rect_descriptors_after
-
-	.global gUnk_08107350
-gUnk_08107350:
-	.incbin "baserom_us.gba", 0x107350, 0x38
-
-	@ These labels identify the still-raw targets of gFieldRenderRectDescriptors.
-	@ Their payload types are not known yet.
-	.global gUnk_FieldRenderResource_158
-	.set gUnk_FieldRenderResource_158, gUnk_08107350
-	.global gUnk_FieldRenderResource_159
-	.set gUnk_FieldRenderResource_159, gUnk_08107350 + 0x04
-	.global gUnk_FieldRenderResource_177
-	.set gUnk_FieldRenderResource_177, gUnk_08107350 + 0x0C
-	.global gUnk_FieldRenderResource_178
-	.set gUnk_FieldRenderResource_178, gUnk_08107350 + 0x10
 
 	.section .rodata.field_render_patch_arguments_after
 	.incbin "baserom_us.gba", 0x107424, 0xA
