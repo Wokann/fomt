@@ -3,6 +3,7 @@
 
 #include "prelude.h"
 
+extern char const gCppRuntimeBadAlloc_IntroScenePrefix[];
 extern char const gText_IntroScene_MotherName[];
 extern char const gText_IntroScene_MotherTravelGreeting[];
 extern char const gText_IntroScene_FatherName[];
@@ -31,5 +32,6 @@ extern char const gText_IntroScene_GirlSaysGoodbye[];
 extern char const gText_IntroScene_GirlAsksPlayerToReturn[];
 extern char const gText_IntroScene_OldManNotesFriend[];
 extern char const gText_IntroScene_OldManWaitsForLetter[];
+extern char const gCppRuntimeBadAlloc_IntroSceneTextTrailer[];
 
 #endif // INTRO_SCENE_TEXT_HH

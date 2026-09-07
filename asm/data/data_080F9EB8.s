@@ -25,11 +25,11 @@
     .section .rodata.horse_race_prize_catalog_trailer_prefix
     .incbin "baserom_jp.gba", 0xFA988, (0xFA9A0 - 0xFA988)
 
-    .section .rodata.intro_scene_prefix
-    .incbin "baserom_jp.gba", 0xFAA38, (0xFAABC - 0xFAA38)
+    .section .rodata.intro_scene_prefix_before_runtime
+    .incbin "baserom_jp.gba", 0xFAA38, (0xFAA60 - 0xFAA38)
 
-    .section .rodata.intro_scene_text_trailer
-    .incbin "baserom_jp.gba", 0xFB10F, (0xFB11C - 0xFB10F)
+    .section .rodata.intro_scene_prefix_after_runtime
+    .incbin "baserom_jp.gba", 0xFAA6A, (0xFAABC - 0xFAA6A)
 
     .section .rodata.staff_credits_trailer_prefix
     .incbin "baserom_jp.gba", 0xFBE88, (0xFBE9C - 0xFBE88)
@@ -629,18 +629,16 @@ gUnk_080FAE6A:
 gUnk_080FB0F0:
 	.incbin "baserom_us.gba", 0xFB0F0, 0x18
 
-	.section .rodata.intro_scene_prefix
+	.section .rodata.intro_scene_prefix_before_runtime
 
 	.global gUnk_080FB1A6
 gUnk_080FB1A6:
-	.incbin "baserom_us.gba", 0xFB1A6, 0x3E
+	.incbin "baserom_us.gba", 0xFB1A6, (0xFB1D8 - 0xFB1A6)
 
+	.section .rodata.intro_scene_prefix_after_runtime
 	.global gUnk_080FB1E4
 gUnk_080FB1E4:
 	.incbin "baserom_us.gba", 0xFB1E4, 0x50
-
-	.section .rodata.intro_scene_text_trailer
-	.incbin "baserom_us.gba", 0xFB817, (0xFB824 - 0xFB817)
 
 	.section .rodata.staff_credits_trailer_prefix
 

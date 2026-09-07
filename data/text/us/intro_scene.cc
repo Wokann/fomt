@@ -3,6 +3,10 @@
 // The physical order is the original childhood-visit sequence.  Its callers
 // load these named strings directly from code literal pools.
 
+char const gCppRuntimeBadAlloc_IntroScenePrefix[]
+    SECTION(".rodata.intro_scene_prefix_runtime") =
+        "bad_alloc";
+
 char const gText_IntroScene_MotherName[] SECTION(".rodata.intro_scene_text") =
     "Mother";
 
@@ -161,3 +165,7 @@ char const gText_IntroScene_OldManWaitsForLetter[] SECTION(".rodata.intro_scene_
     "\p"
     "I'll be waiting for \r\n"
     "your letter...{Press}";
+
+char const gCppRuntimeBadAlloc_IntroSceneTextTrailer[]
+    SECTION(".rodata.intro_scene_text_trailer") =
+        "bad_alloc";
