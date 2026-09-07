@@ -11263,26 +11263,26 @@ func_080A3F4C: @ 0x080A3F4C
 	beq .L080A408C
 	b .L080A4092
 .L080A406A:
-	ldr r2, .L080A4070 @ =gUnk_08104ED2
+	ldr r2, .L080A4070 @ =gRandomItemCandidateConfigurations + 2
 	b .L080A408E
 	.align 2, 0
-.L080A4070: .4byte gUnk_08104ED2
+.L080A4070: .4byte gRandomItemCandidateConfigurations + 2
 .L080A4074:
-	ldr r0, .L080A407C @ =gUnk_08104ED9
+	ldr r0, .L080A407C @ =gRandomItemCandidateConfigurations + 9
 	adds r0, r0, r3
 	mov r8, r0
 	b .L080A4092
 	.align 2, 0
-.L080A407C: .4byte gUnk_08104ED9
+.L080A407C: .4byte gRandomItemCandidateConfigurations + 9
 .L080A4080:
-	ldr r1, .L080A4088 @ =gUnk_08104EE0
+	ldr r1, .L080A4088 @ =gRandomItemCandidateConfigurations + 16
 	adds r1, r1, r3
 	mov r8, r1
 	b .L080A4092
 	.align 2, 0
-.L080A4088: .4byte gUnk_08104EE0
+.L080A4088: .4byte gRandomItemCandidateConfigurations + 16
 .L080A408C:
-	ldr r2, .L080A40E8 @ =gUnk_08104EE7
+	ldr r2, .L080A40E8 @ =gRandomItemCandidateConfigurations + 23
 .L080A408E:
 	adds r2, r2, r3
 	mov r8, r2
@@ -11333,7 +11333,7 @@ func_080A3F4C: @ 0x080A3F4C
 	lsrs r7, r0, #0x18
 	b .L080A4104
 	.align 2, 0
-.L080A40E8: .4byte gUnk_08104EE7
+.L080A40E8: .4byte gRandomItemCandidateConfigurations + 23
 .L080A40EC:
 	cmp r0, #0
 	bge .L080A4104
@@ -11779,7 +11779,7 @@ func_080A3F4C: @ 0x080A3F4C
 	b .L080A454C
 .L080A44C4:
 	mov r2, sp
-	ldr r1, .L080A4500 @ =gUnk_08104ED0
+	ldr r1, .L080A4500 @ =gRandomItemCandidateConfigurations
 	lsls r0, r7, #5
 	adds r0, r0, r1
 	ldrb r1, [r0]
@@ -11808,7 +11808,7 @@ func_080A3F4C: @ 0x080A3F4C
 	movs r1, #0xa0
 	b .L080A450A
 	.align 2, 0
-.L080A4500: .4byte gUnk_08104ED0
+.L080A4500: .4byte gRandomItemCandidateConfigurations
 .L080A4504:
 	cmp r0, #0x31
 	bhi .L080A450A

@@ -697,7 +697,8 @@ SECTIONS
         . = 0x10499C; src/fishing_results_data.o(.rodata.fishing_record_article_ids);
         . = 0x1049BC; src/field_data.o(.rodata.field_plot_position_values);
         . = 0x1049F4; src/random_item.o(.rodata.random_item_selection_weights);
-        . = 0x104A18; asm/data/data_080F9EB8.o(.rodata.random_item_selection_weights_trailer);
+        . = 0x104A18; src/random_item.o(.rodata.random_item_candidate_configurations);
+        . = 0x105178; src/random_item.o(.rodata);
         . = 0x105184; src/field_data.o(.rodata.field_plot_position_rules);
         . = 0x105244; src/field_data.o(.rodata);
         . = 0x105250; src/code_0800E2E4.o(.rodata.time_of_day_transition_table);
