@@ -697,6 +697,8 @@ SECTIONS
         . = 0xFFE70; data/text/link_communication.o(.rodata.link_communication);
         . = 0x100130; src/link_communication_data.o(.rodata);
         . = 0x1003BA; asm/data/data_080F9EB8.o(.rodata.link_communication_trailer);
+        . = 0x1005D8; data/text/common/cooking_recipe_inventory.o(.rodata);
+        . = 0x1005DA; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_utensil_values);
         . = 0x1005EA; data/text/recovery_status.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);

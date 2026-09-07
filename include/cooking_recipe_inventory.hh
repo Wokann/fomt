@@ -13,9 +13,12 @@ struct CookingRecipeInventoryMaskEntry
 
 enum
 {
+    COOKING_RECIPE_INVENTORY_UTENSIL_VALUE_COUNT = 8,
     COOKING_RECIPE_INVENTORY_MASK_ENTRY_COUNT = 9,
 };
 
+extern u16 const
+    gCookingRecipeInventoryUtensilValues[COOKING_RECIPE_INVENTORY_UTENSIL_VALUE_COUNT];
 extern CookingRecipeInventoryMaskEntry const
     gCookingRecipeInventoryMaskEntries[COOKING_RECIPE_INVENTORY_MASK_ENTRY_COUNT];
 

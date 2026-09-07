@@ -168206,12 +168206,12 @@ func_080958C0: @ 0x080958C0
 .L08095A7C:
 	adds r0, r6, #0
 	adds r0, #0x80
-	ldr r1, .L08095A8C @ =gUnk_08100AC0
+	ldr r1, .L08095A8C @ =gText_Cooking_Recipe_PageBreak
 	bl func_08050D8C
 	movs r7, #2
 	b .L08095D10
 	.align 2, 0
-.L08095A8C: .4byte gUnk_08100AC0
+.L08095A8C: .4byte gText_Cooking_Recipe_PageBreak
 .L08095A90:
 	ldr r0, [sp]
 	ldr r1, .L08095AB4 @ =0x00000889
@@ -168362,13 +168362,13 @@ func_080958C0: @ 0x080958C0
 .L08095BBE:
 	adds r0, r6, #0
 	adds r0, #0x80
-	ldr r1, .L08095BD0 @ =gUnk_08100AC0
+	ldr r1, .L08095BD0 @ =gText_Cooking_Recipe_PageBreak
 	bl func_08050D8C
 	movs r7, #9
 	b .L08095D10
 	.align 2, 0
 .L08095BCC: .4byte 0x000033D2
-.L08095BD0: .4byte gUnk_08100AC0
+.L08095BD0: .4byte gText_Cooking_Recipe_PageBreak
 .L08095BD4:
 	ldr r2, .L08095BF8 @ =0x000033D2
 	adds r0, r6, r2
@@ -168502,7 +168502,7 @@ func_080958C0: @ 0x080958C0
 .L08095CCC:
 	adds r0, r6, #0
 	adds r0, #0x80
-	ldr r1, .L08095CF8 @ =gUnk_08100AC0
+	ldr r1, .L08095CF8 @ =gText_Cooking_Recipe_PageBreak
 	bl func_08050D8C
 	ldr r0, [sp]
 	ldr r1, .L08095CFC @ =0x00000889
@@ -168519,7 +168519,7 @@ func_080958C0: @ 0x080958C0
 	movs r7, #0xa
 	b .L08095D10
 	.align 2, 0
-.L08095CF8: .4byte gUnk_08100AC0
+.L08095CF8: .4byte gText_Cooking_Recipe_PageBreak
 .L08095CFC: .4byte 0x00000889
 .L08095D00:
 	ldr r0, [sp]
@@ -168851,7 +168851,7 @@ func_08095D80: @ 0x08095D80
 .L08095FAC:
 	adds r0, r6, #0
 	adds r0, #0x80
-	ldr r1, .L08095FFC @ =gUnk_08100AC0
+	ldr r1, .L08095FFC @ =gText_Cooking_Recipe_PageBreak
 	bl func_08050D8C
 .L08095FB6:
 	adds r0, r6, #0
@@ -168888,7 +168888,7 @@ func_08095D80: @ 0x08095D80
 	strh r0, [r3]
 	b .L08096066
 	.align 2, 0
-.L08095FFC: .4byte gUnk_08100AC0
+.L08095FFC: .4byte gText_Cooking_Recipe_PageBreak
 .L08096000: .4byte 0x0000035A
 .L08096004: .4byte 0x00000FFF
 .L08096008: .4byte 0xFFFFF000
@@ -168963,11 +168963,11 @@ func_08095D80: @ 0x08095D80
 	mov sl, r4
 	adds r0, r6, #0
 	adds r0, #0x80
-	ldr r1, .L080960A4 @ =gUnk_08100AC0
+	ldr r1, .L080960A4 @ =gText_Cooking_Recipe_PageBreak
 	bl func_08050D8C
 	b .L08096278
 	.align 2, 0
-.L080960A4: .4byte gUnk_08100AC0
+.L080960A4: .4byte gText_Cooking_Recipe_PageBreak
 .L080960A8:
 	adds r0, r6, #0
 	bl func_080088CC
@@ -169158,7 +169158,7 @@ func_08095D80: @ 0x08095D80
 	bl func_08008B6C
 	adds r0, r6, #0
 	adds r0, #0x80
-	ldr r1, .L0809623C @ =gUnk_08100AC0
+	ldr r1, .L0809623C @ =gText_Cooking_Recipe_PageBreak
 	bl func_08050D8C
 	movs r1, #1
 	str r1, [sp, #8]
@@ -169166,7 +169166,7 @@ func_08095D80: @ 0x08095D80
 	mov sl, r2
 	b .L08096278
 	.align 2, 0
-.L0809623C: .4byte gUnk_08100AC0
+.L0809623C: .4byte gText_Cooking_Recipe_PageBreak
 .L08096240:
 	ldr r0, [sp, #4]
 	ldr r1, .L08096264 @ =0x00000889
@@ -169854,7 +169854,7 @@ func_080962F0: @ 0x080962F0
 .L080967C6:
 	adds r0, r7, #0
 	adds r0, #0x80
-	ldr r1, .L08096838 @ =gUnk_08100AC0
+	ldr r1, .L08096838 @ =gText_Cooking_Recipe_PageBreak
 	bl func_08050D8C
 .L080967D0:
 	adds r0, r7, #0
@@ -169910,7 +169910,7 @@ func_080962F0: @ 0x080962F0
 	mov sb, r2
 	b .L08096846
 	.align 2, 0
-.L08096838: .4byte gUnk_08100AC0
+.L08096838: .4byte gText_Cooking_Recipe_PageBreak
 .L0809683C: .4byte 0x00002B90
 .L08096840: .4byte 0x00002BA7
 .L08096844:
@@ -170042,14 +170042,14 @@ func_080962F0: @ 0x080962F0
 	bl func_08097114
 	adds r0, r7, #0
 	adds r0, #0x80
-	ldr r1, .L08096970 @ =gUnk_08100AC0
+	ldr r1, .L08096970 @ =gText_Cooking_Recipe_PageBreak
 	bl func_08050D8C
 	adds r0, r7, #0
 	adds r0, #0x94
 	b .L08096A82
 	.align 2, 0
 .L0809696C: .4byte 0x00002BB0
-.L08096970: .4byte gUnk_08100AC0
+.L08096970: .4byte gText_Cooking_Recipe_PageBreak
 .L08096974:
 	adds r0, r7, #0
 	adds r0, #0x94
@@ -170070,7 +170070,7 @@ func_080962F0: @ 0x080962F0
 	str r1, [sp, #0xac]
 	adds r0, r7, #0
 	adds r0, #0x80
-	ldr r1, .L080969AC @ =gUnk_08100AC0
+	ldr r1, .L080969AC @ =gText_Cooking_Recipe_PageBreak
 	bl func_08050D8C
 	adds r0, r7, #0
 	adds r0, #0x94
@@ -170078,7 +170078,7 @@ func_080962F0: @ 0x080962F0
 	bl func_08008B6C
 	b .L08096B14
 	.align 2, 0
-.L080969AC: .4byte gUnk_08100AC0
+.L080969AC: .4byte gText_Cooking_Recipe_PageBreak
 .L080969B0:
 	adds r0, r7, #0
 	bl func_080088CC
@@ -170161,7 +170161,7 @@ func_080962F0: @ 0x080962F0
 	beq .L08096A94
 	adds r2, r7, #0
 	adds r2, #0x80
-	ldr r1, .L08096A90 @ =gUnk_08100AC0
+	ldr r1, .L08096A90 @ =gText_Cooking_Recipe_PageBreak
 	cmp r5, #7
 	bgt .L08096A72
 	movs r3, #0
@@ -170190,7 +170190,7 @@ func_080962F0: @ 0x080962F0
 	b .L08096B14
 	.align 2, 0
 .L08096A8C: .4byte 0x0000034A
-.L08096A90: .4byte gUnk_08100AC0
+.L08096A90: .4byte gText_Cooking_Recipe_PageBreak
 .L08096A94:
 	ldr r2, .L08096AB4 @ =0x000033D4
 	adds r1, r7, r2
@@ -171377,11 +171377,11 @@ func_080972AC: @ 0x080972AC
 .L08097404:
 	adds r0, r6, #0
 	adds r0, #0x80
-	ldr r1, .L08097410 @ =gUnk_08100AC0
+	ldr r1, .L08097410 @ =gText_Cooking_Recipe_PageBreak
 	bl func_08050D8C
 	b .L08097584
 	.align 2, 0
-.L08097410: .4byte gUnk_08100AC0
+.L08097410: .4byte gText_Cooking_Recipe_PageBreak
 .L08097414:
 	ldr r0, [sp, #4]
 	ldr r1, .L08097438 @ =0x00000889
@@ -171524,13 +171524,13 @@ func_080972AC: @ 0x080972AC
 	bne .L08097584
 	adds r0, r6, #0
 	adds r0, #0x80
-	ldr r1, .L08097548 @ =gUnk_08100AC0
+	ldr r1, .L08097548 @ =gText_Cooking_Recipe_PageBreak
 	bl func_08050D8C
 	movs r7, #7
 	b .L08097584
 	.align 2, 0
 .L08097544: .4byte 0x000033D2
-.L08097548: .4byte gUnk_08100AC0
+.L08097548: .4byte gText_Cooking_Recipe_PageBreak
 .L0809754C:
 	ldr r0, [sp, #4]
 	ldr r1, .L08097570 @ =0x00000889
@@ -172459,7 +172459,7 @@ func_08097AE4: @ 0x08097AE4
 .L08097C66:
 	adds r0, r6, #0
 	adds r0, #0x80
-	ldr r1, .L08097C94 @ =gUnk_08100AC0
+	ldr r1, .L08097C94 @ =gText_Cooking_Recipe_PageBreak
 	bl func_08050D8C
 	ldr r0, [sp, #4]
 	adds r0, #0xc
@@ -172476,7 +172476,7 @@ func_08097AE4: @ 0x08097AE4
 	movs r7, #3
 	b .L08097CAA
 	.align 2, 0
-.L08097C94: .4byte gUnk_08100AC0
+.L08097C94: .4byte gText_Cooking_Recipe_PageBreak
 .L08097C98: .4byte 0x00000889
 .L08097C9C:
 	ldr r0, [sp, #4]
@@ -174194,7 +174194,7 @@ func_080989DC: @ 0x080989DC
 	adds r1, #0x10
 	str r1, [sp, #0x80]
 	movs r6, #1
-	ldr r5, .L08098BB4 @ =gUnk_08100AC2
+	ldr r5, .L08098BB4 @ =gCookingRecipeInventoryUtensilValues
 .L08098AAA:
 	movs r2, #0xcc
 	lsls r2, r2, #2
@@ -174319,7 +174319,7 @@ func_080989DC: @ 0x080989DC
 	b .L08098BF4
 	.align 2, 0
 .L08098BB0: .4byte gText_Cooking_Recipe_Utensils
-.L08098BB4: .4byte gUnk_08100AC2
+.L08098BB4: .4byte gCookingRecipeInventoryUtensilValues
 .L08098BB8: .4byte gUnk_086678A0
 .L08098BBC: .4byte gText_Cooking_Recipe_Ingredients
 .L08098BC0: .4byte 0x0000035D
@@ -174563,7 +174563,7 @@ func_08098CE8: @ 0x08098CE8
 	adds r1, #0x50
 	str r1, [sp, #0xa4]
 	movs r6, #1
-	ldr r5, .L08098FE0 @ =gUnk_08100AC2
+	ldr r5, .L08098FE0 @ =gCookingRecipeInventoryUtensilValues
 .L08098DBC:
 	movs r0, #0xcc
 	lsls r0, r0, #2
@@ -174825,7 +174825,7 @@ func_08098CE8: @ 0x08098CE8
 	bx r0
 	.align 2, 0
 .L08098FDC: .4byte gText_Cooking_Recipe_Utensils
-.L08098FE0: .4byte gUnk_08100AC2
+.L08098FE0: .4byte gCookingRecipeInventoryUtensilValues
 .L08098FE4: .4byte gUnk_086678A0
 .L08098FE8: .4byte 0x05000200
 .L08098FEC: .4byte 0x06010000

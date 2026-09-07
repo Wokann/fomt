@@ -27,6 +27,7 @@ extern char const gText_Cooking_Recipe_Ingredients[];
 extern char const gText_Cooking_Recipe_UseIngredients[];
 extern char const gText_Cooking_Recipe_IngredientsRequired[];
 extern char const gText_Cooking_Recipe_Empty[];
+extern char const gText_Cooking_Recipe_PageBreak[];
 extern char const gText_Cooking_Recipe_StorageHeader[];
 extern char const gText_Cooking_Recipe_SelectionNames[13][11];
 extern char const gText_Cooking_ResultFailure[];
