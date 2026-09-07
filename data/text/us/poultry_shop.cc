@@ -124,3 +124,6 @@ char const gText_PoultryShop_ChickenSold[] POULTRY_SHOP_DIALOGUE =
     "I'll ask Rick to bring the\r\n"
     "Chickens you sold from\r\n"
     "your Chicken Coop.{Press}";
+
+extern char const gCppRuntimeBadAlloc_PoultryShopTrailer[] POULTRY_SHOP_TRAILER =
+    "bad_alloc";

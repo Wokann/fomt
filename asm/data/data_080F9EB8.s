@@ -55,17 +55,6 @@
     .section .rodata.library_menu_trailer
     .incbin "baserom_jp.gba", 0xFD0C2, (0xFD0D0 - 0xFD0C2)
 
-    .section .rodata.poultry_shop_menu_padding
-    .incbin "baserom_jp.gba", 0xFD0E9, (0xFD0EC - 0xFD0E9)
-
-    .section .rodata.poultry_shop_status_prefix_padding
-    .incbin "baserom_jp.gba", 0xFD152, (0xFD154 - 0xFD152)
-
-    .section .rodata.poultry_shop_status_padding
-    .incbin "baserom_jp.gba", 0xFD1E3, (0xFD1E4 - 0xFD1E3)
-
-    .section .rodata.poultry_shop_trailer
-    .incbin "baserom_jp.gba", 0xFD552, (0xFD560 - 0xFD552)
 
     .section .rodata.supermarket_trailer
     .incbin "baserom_jp.gba", 0xFD804, (0xFD810 - 0xFD804)
@@ -408,17 +397,6 @@ gUnk_080FD920:
 	.section .rodata.library_menu_trailer
 	.incbin "baserom_us.gba", 0xFD958, (0xFD964 - 0xFD958)
 
-	.section .rodata.poultry_shop_menu_padding
-	.incbin "baserom_us.gba", 0xFD985, (0xFD988 - 0xFD985)
-
-	.section .rodata.poultry_shop_status_prefix_padding
-	.incbin "baserom_us.gba", 0xFD9EE, (0xFD9F0 - 0xFD9EE)
-
-	.section .rodata.poultry_shop_status_padding
-	.incbin "baserom_us.gba", 0xFDA7A, (0xFDA7C - 0xFDA7A)
-
-	.section .rodata.poultry_shop_trailer
-	.incbin "baserom_us.gba", 0xFDDCC, (0xFDDD8 - 0xFDDCC)
 
 	.section .rodata.supermarket_primary_text_padding
 	.incbin "baserom_us.gba", 0xFDFA1, (0xFDFA4 - 0xFDFA1)

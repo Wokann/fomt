@@ -124,3 +124,6 @@ char const gText_PoultryShop_ChickenSold[] POULTRY_SHOP_DIALOGUE =
     "売ってくれた鶏は、牧場の鶏小\r\n"
     "屋から連れてくるようにリック\r\n"
     "に言っておくから～。{Press}";
+
+extern char const gCppRuntimeBadAlloc_PoultryShopTrailer[] POULTRY_SHOP_TRAILER =
+    "bad_alloc";
