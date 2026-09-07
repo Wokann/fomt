@@ -11990,7 +11990,7 @@ func_080A4650: @ 0x080A4650
 	lsrs r0, r0, #0x18
 	lsls r1, r1, #0x18
 	lsrs r1, r1, #0x18
-	ldr r4, .L080A4688 @ =gUnk_08105708
+	ldr r4, .L080A4688 @ =gTimeOfDayTransitionTables
 	lsls r3, r3, #2
 	lsls r2, r2, #4
 	adds r3, r3, r2
@@ -12015,7 +12015,7 @@ func_080A4650: @ 0x080A4650
 	ldrh r1, [r3]
 	b .L080A4678
 	.align 2, 0
-.L080A4688: .4byte gUnk_08105708
+.L080A4688: .4byte gTimeOfDayTransitionTables
 .L080A468C: .4byte 0x0000FFFF
 .L080A4690:
 	pop {r4}
