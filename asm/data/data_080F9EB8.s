@@ -79,7 +79,7 @@
     .section .rodata.field_render_rect_descriptors_after
     .global gUnk_08106E98
 gUnk_08106E98:
-    .incbin "baserom_jp.gba", 0x106E98, (0x1070F4 - 0x106E98)
+    .incbin "baserom_jp.gba", 0x106E98, (0x106ED0 - 0x106E98)
 
     @ These labels identify the still-raw targets of gFieldRenderRectDescriptors.
     @ Their payload types are not known yet.
@@ -91,6 +91,11 @@ gUnk_08106E98:
     .set gUnk_FieldRenderResource_177, gUnk_08106E98 + 0x0C
     .global gUnk_FieldRenderResource_178
     .set gUnk_FieldRenderResource_178, gUnk_08106E98 + 0x10
+
+    .section .rodata.field_render_parallel_tables_after
+    .global gUnk_08106F0C
+gUnk_08106F0C:
+    .incbin "baserom_jp.gba", 0x106F0C, (0x1070F4 - 0x106F0C)
 
     .section .rodata.harvest_sprite_minigames_animal_husbandry_trailer
     .incbin "baserom_jp.gba", 0x10737B, (0x1073B9 - 0x10737B)
@@ -920,25 +925,7 @@ gUnk_08107350:
 	.global gUnk_FieldRenderResource_178
 	.set gUnk_FieldRenderResource_178, gUnk_08107350 + 0x10
 
-	.global gUnk_08107388
-gUnk_08107388:
-	.incbin "baserom_us.gba", 0x107388, 0xC
-
-	.global gUnk_08107394
-gUnk_08107394:
-	.incbin "baserom_us.gba", 0x107394, 0xC
-
-	.global gUnk_081073A0
-gUnk_081073A0:
-	.incbin "baserom_us.gba", 0x1073A0, 0xC
-
-	.global gUnk_081073AC
-gUnk_081073AC:
-	.incbin "baserom_us.gba", 0x1073AC, 0xC
-
-	.global gUnk_081073B8
-gUnk_081073B8:
-	.incbin "baserom_us.gba", 0x1073B8, 0xC
+	.section .rodata.field_render_parallel_tables_after
 
 	.global gUnk_081073C4
 gUnk_081073C4:

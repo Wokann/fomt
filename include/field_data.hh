@@ -45,6 +45,18 @@ struct FieldRenderRectDescriptor
     void const * lookup_indices;
 };
 
+// func_080A4F50 indexes every three-word span with the same slot.  The
+// physical-offset names are intentional: the role of each span beyond that
+// native behavior has not been recovered yet.
+struct FieldRenderParallelTables
+{
+    u32 values_00[3];
+    u32 values_0C[3];
+    u32 values_18[3];
+    u32 values_24[3];
+    u32 values_30[3];
+};
+
 #define FIELD_RENDER_RECT_DESCRIPTOR_COUNT 82
 
 extern FieldPlotWeatherRule const gFieldPlotOrdinaryWeatherRules[4][2];
@@ -53,6 +65,7 @@ extern FieldPlotWeatherRule const gFieldPlotSpecialWeatherRule4;
 extern u32 const gFieldPlotGrowthStageTransitions[21][21];
 extern FieldPlotTypeDefinition const gFieldPlotTypeDefinitions[39];
 extern FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_RECT_DESCRIPTOR_COUNT];
+extern FieldRenderParallelTables const gFieldRenderParallelTables;
 extern u16 const gFieldPlotPositionValues[7][4];
 extern FieldPlotPositionRule const gFieldPlotPositionRules[8];
 extern char const gCppRuntimeBadAlloc_FieldPlotPositionRules[];

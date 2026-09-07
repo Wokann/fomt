@@ -870,3 +870,12 @@ FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_RECT_DE
         nullptr,
     },
 };
+
+FieldRenderParallelTables const gFieldRenderParallelTables
+    SECTION(".rodata.field_render_parallel_tables") = {
+        { 0x0000001C, 0x0000001D, 0x0000001E },
+        { 0x00000003, 0x00000002, 0x00000001 },
+        { 0x0400000E, 0x0400000C, 0x0400000A },
+        { 0x0400001C, 0x04000018, 0x04000014 },
+        { 0x0400001E, 0x0400001A, 0x04000016 },
+    };

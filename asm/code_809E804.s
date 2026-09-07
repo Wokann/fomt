@@ -13153,14 +13153,14 @@ func_080A4F50: @ 0x080A4F50
 	ldr r5, [r0]
 	cmp r5, #0
 	beq .L080A5090
-	ldr r0, .L080A507C @ =gUnk_081073A0
+	ldr r0, .L080A507C @ =gFieldRenderParallelTables + 0x18
 	adds r0, r4, r0
 	ldr r0, [r0]
 	str r0, [sp, #0x50]
-	ldr r0, .L080A5080 @ =gUnk_08107394
+	ldr r0, .L080A5080 @ =gFieldRenderParallelTables + 0x0C
 	adds r0, r4, r0
 	ldr r2, [r0]
-	ldr r0, .L080A5084 @ =gUnk_08107388
+	ldr r0, .L080A5084 @ =gFieldRenderParallelTables
 	adds r0, r4, r0
 	ldr r0, [r0]
 	mov sb, r0
@@ -13181,7 +13181,7 @@ func_080A4F50: @ 0x080A4F50
 	ldr r1, [sp, #0x1c]
 	adds r3, r1, r3
 	strh r2, [r3]
-	ldr r0, .L080A5088 @ =gUnk_081073AC
+	ldr r0, .L080A5088 @ =gFieldRenderParallelTables + 0x24
 	adds r0, r4, r0
 	ldr r1, [r0]
 	mov r2, sp
@@ -13201,7 +13201,7 @@ func_080A4F50: @ 0x080A4F50
 	ldr r3, [sp, #0x1c]
 	adds r1, r3, r1
 	strh r0, [r1]
-	ldr r0, .L080A508C @ =gUnk_081073B8
+	ldr r0, .L080A508C @ =gFieldRenderParallelTables + 0x30
 	adds r0, r4, r0
 	ldr r0, [r0]
 	mov r2, sp
@@ -13237,11 +13237,11 @@ func_080A4F50: @ 0x080A4F50
 	str r0, [r1]
 	b .L080A5094
 	.align 2, 0
-.L080A507C: .4byte gUnk_081073A0
-.L080A5080: .4byte gUnk_08107394
-.L080A5084: .4byte gUnk_08107388
-.L080A5088: .4byte gUnk_081073AC
-.L080A508C: .4byte gUnk_081073B8
+.L080A507C: .4byte gFieldRenderParallelTables + 0x18
+.L080A5080: .4byte gFieldRenderParallelTables + 0x0C
+.L080A5084: .4byte gFieldRenderParallelTables
+.L080A5088: .4byte gFieldRenderParallelTables + 0x24
+.L080A508C: .4byte gFieldRenderParallelTables + 0x30
 .L080A5090:
 	mov r4, r8
 	str r5, [r4]
