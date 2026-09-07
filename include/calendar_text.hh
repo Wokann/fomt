@@ -47,6 +47,12 @@ extern char const gText_Calendar_None[];
 extern char const gText_Calendar_WeekdayNames[7][5];
 #endif
 
+extern char const gCppRuntimeBadAlloc_CalendarTrailer00[];
+extern char const gCppRuntimeBadAlloc_CalendarTrailer01[];
+extern char const gCppRuntimeError_CalendarTrailer[];
+extern char const gText_CalendarTrailerFallbackNone[];
+extern char const gCppRuntimeBadAlloc_CalendarTrailer02[];
+
 extern char const gText_Calendar_Festival_NewYearFestival[];
 extern char const gText_Calendar_Festival_SpringThanksgiving[];
 extern char const gText_Calendar_Festival_SpringHorseRace[];

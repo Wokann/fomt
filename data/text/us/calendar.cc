@@ -57,6 +57,22 @@ char const gText_Calendar_WeekdayNames[7][5] SECTION(".rodata.calendar.weekday")
     "Sat."
 };
 
+char const gCppRuntimeBadAlloc_CalendarTrailer00[]
+    SECTION(".rodata.calendar_trailer") =
+        "bad_alloc";
+char const gCppRuntimeBadAlloc_CalendarTrailer01[]
+    SECTION(".rodata.calendar_trailer") ALIGN(4) =
+        "bad_alloc";
+char const gCppRuntimeError_CalendarTrailer[]
+    SECTION(".rodata.calendar_trailer") ALIGN(4) =
+        "Error";
+char const gText_CalendarTrailerFallbackNone[]
+    SECTION(".rodata.calendar_trailer") ALIGN(4) =
+        "N/A ";
+char const gCppRuntimeBadAlloc_CalendarTrailer02[]
+    SECTION(".rodata.calendar_trailer") ALIGN(4) =
+        "bad_alloc";
+
 char const gText_Calendar_Festival_NewYearFestival[] CALENDAR_FESTIVAL_TEXT =
     "\p"
     "1st day of Spring\r\n"

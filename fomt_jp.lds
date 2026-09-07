@@ -525,7 +525,8 @@ SECTIONS
         data/text/calendar.o(.rodata.calendar.none);
         data/text/calendar.o(.rodata.calendar.weekday);
         . = 0xEFD78; /* JP data after the calendar text arrays. */
-        asm/data/data_080F0348.o(.rodata.calendar_trailer);
+        data/text/calendar.o(.rodata.calendar_trailer);
+        . = 0xEFDAA; asm/data/data_080F0348.o(.rodata.load_error_prefix);
         FILL(0x00);
         . = ALIGN(4); data/text/load_error.o(.rodata);
         FILL(0x00);

@@ -57,6 +57,22 @@ char const gText_Calendar_WeekdayNames[7][3] SECTION(".rodata.calendar.weekday")
     "土"
 };
 
+char const gCppRuntimeBadAlloc_CalendarTrailer00[]
+    SECTION(".rodata.calendar_trailer") =
+        "bad_alloc";
+char const gCppRuntimeBadAlloc_CalendarTrailer01[]
+    SECTION(".rodata.calendar_trailer") ALIGN(4) =
+        "bad_alloc";
+char const gCppRuntimeError_CalendarTrailer[]
+    SECTION(".rodata.calendar_trailer") ALIGN(4) =
+        "Error";
+char const gText_CalendarTrailerFallbackNone[]
+    SECTION(".rodata.calendar_trailer") ALIGN(4) =
+        "なし";
+char const gCppRuntimeBadAlloc_CalendarTrailer02[]
+    SECTION(".rodata.calendar_trailer") ALIGN(4) =
+        "bad_alloc";
+
 char const gText_Calendar_Festival_NewYearFestival[] CALENDAR_FESTIVAL_TEXT =
     "\p"
     "春の月　　１日\r\n"
