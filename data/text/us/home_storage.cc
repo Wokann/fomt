@@ -1,65 +1,80 @@
 #include "home_storage_text.hh"
 
-char const gText_Fridge_EmptyDescription[] HOME_STORAGE_FRIDGE_TEXT =
+char const gCppRuntimeBadAlloc_HomeStoragePrefix[] =
+    "bad_alloc";
+
+char const gText_Fridge_EmptyDescription[] =
     "";
 
-char const gText_Fridge_WrappedGiftWarning[] HOME_STORAGE_FRIDGE_TEXT =
+char const gText_Fridge_WrappedGiftWarning[] =
     "If you put it in the\r\n"
     "Refrigerator, the wrapping\r\n"
     "will come off. Are you sure?{Press}";
 
-char const gText_Fridge_Yes[] HOME_STORAGE_FRIDGE_TEXT =
+char const gText_Fridge_Yes[] =
     "Yes";
 
-char const gText_Fridge_No[] HOME_STORAGE_FRIDGE_TEXT =
+char const gText_Fridge_No[] =
     "No";
 
-char const gText_Fridge_Items[] HOME_STORAGE_FRIDGE_TEXT =
+char const gText_Fridge_Items[] =
     "Items ";
 
-char const gText_Fridge_Title[] HOME_STORAGE_FRIDGE_TEXT =
+char const gText_Fridge_Title[] =
     "Fridge";
 
-char const gText_HomeStorage_ConfirmationYes[] HOME_STORAGE_CONFIRMATION_TEXT =
+char const gCppRuntimeBadAlloc_HomeStorageFridgeTrailer[] =
+    "bad_alloc";
+
+char const gText_HomeStorage_ConfirmationYes[] =
     "Yes";
 
-char const gText_HomeStorage_ConfirmationNo[] HOME_STORAGE_CONFIRMATION_TEXT =
+char const gText_HomeStorage_ConfirmationNo[] =
     "No";
 
-char const gText_HomeStorage_EmptyDescription[] HOME_STORAGE_CONFIRMATION_TEXT =
+char const gText_HomeStorage_EmptyDescription[] =
     "";
 
-char const gText_HomeStorage_CategoryTools[] HOME_STORAGE_TOOL_CHEST_CATEGORY_TEXT =
+char const gText_HomeStorage_CategoryTools[] =
     "Tools";
 
-char const gText_HomeStorage_CategoryItems[] HOME_STORAGE_TOOL_CHEST_CATEGORY_TEXT =
+char const gText_HomeStorage_CategoryItems[] =
     "Items";
 
-char const gText_Shelf_EmptyDescription[] HOME_STORAGE_SHELF_TEXT =
+char const gCppRuntimeBadAlloc_HomeStorageCategoryTrailer[] =
+    "bad_alloc";
+
+char const gText_Shelf_EmptyDescription[] =
     "";
 
-char const gText_Shelf_WrappedGiftWarning[] HOME_STORAGE_SHELF_TEXT =
+char const gText_Shelf_WrappedGiftWarning[] =
     "If you put it in the\r\n"
     "shelf, the wrapping will\r\n"
     "come off. Are you sure?{Press}";
 
-char const gText_Shelf_Yes[] HOME_STORAGE_SHELF_TEXT =
+char const gText_Shelf_Yes[] =
     "Yes";
 
-char const gText_Shelf_No[] HOME_STORAGE_SHELF_TEXT =
+char const gText_Shelf_No[] =
     "No";
 
-char const gText_Shelf_Items[] HOME_STORAGE_SHELF_TEXT =
+char const gText_Shelf_Items[] =
     "Items";
 
-char const gText_Shelf_Title[] HOME_STORAGE_SHELF_TEXT =
+char const gText_Shelf_Title[] =
     "Shelf";
 
-char const gText_ToolChest_EmptyDescription[] HOME_STORAGE_TOOL_CHEST_HEADER_TEXT =
+char const gCppRuntimeBadAlloc_HomeStorageShelfTrailer[] =
+    "bad_alloc";
+
+char const gText_ToolChest_EmptyDescription[] =
     "";
 
-char const gText_ToolChest_HeaderTools[] HOME_STORAGE_TOOL_CHEST_HEADER_TEXT =
+char const gText_ToolChest_HeaderTools[] =
     "Tools";
 
-char const gText_ToolChest_Title[] HOME_STORAGE_TOOL_CHEST_HEADER_TEXT =
+char const gText_ToolChest_Title[] =
     "Tool Box";
+
+char const gCppRuntimeBadAlloc_HomeStorageTrailer[12] =
+    "bad_alloc";

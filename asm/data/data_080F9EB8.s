@@ -40,15 +40,6 @@
     .section .rodata.farm_status_trailer_prefix
     .incbin "baserom_jp.gba", 0xFB224, (0xFB230 - 0xFB224)
 
-    .section .rodata.animal_contest_bad_alloc
-    .incbin "baserom_jp.gba", 0xFB618, (0xFB624 - 0xFB618)
-
-    .section .rodata.animal_contest_confirmation_padding
-    .incbin "baserom_jp.gba", 0xFB643, (0xFB644 - 0xFB643)
-
-    .section .rodata.animal_contest_trailer
-    .incbin "baserom_jp.gba", 0xFB644, (0xFB764 - 0xFB644)
-
     .section .rodata.records_trailer
     .incbin "baserom_jp.gba", 0xFB8B8, (0xFB938 - 0xFB8B8)
 
@@ -129,24 +120,6 @@
 
     .section .rodata.livestock_shop_dialogue_padding
     .incbin "baserom_jp.gba", 0xFF9A2, (0xFF9A4 - 0xFF9A2)
-
-    .section .rodata.home_storage_prefix
-    .incbin "baserom_jp.gba", 0xFF9A4, (0xFF9B0 - 0xFF9A4)
-
-    .section .rodata.home_storage_fridge_trailer
-    .incbin "baserom_jp.gba", 0xFFA14, (0xFFA20 - 0xFFA14)
-
-    .section .rodata.home_storage_empty_trailer
-    .incbin "baserom_jp.gba", 0xFFA31, (0xFFA34 - 0xFFA31)
-
-    .section .rodata.home_storage_tool_chest_category_trailer_prefix
-    .incbin "baserom_jp.gba", 0xFFA44, (0xFFA50 - 0xFFA44)
-
-    .section .rodata.home_storage_shelf_trailer
-    .incbin "baserom_jp.gba", 0xFFAB4, (0xFFAC0 - 0xFFAB4)
-
-    .section .rodata.home_storage_trailer
-    .incbin "baserom_jp.gba", 0xFFAD4, (0xFFAE0 - 0xFFAD4)
 
     .section .rodata.gift_wrap_prefix
     .incbin "baserom_jp.gba", 0xFFD54, (0xFFD60 - 0xFFD54)
@@ -401,46 +374,6 @@ gUnk_080FB1E4:
 gUnk_080FB954:
 	.incbin "baserom_us.gba", 0xFB954, 0xC
 
-	.section .rodata.animal_contest_bad_alloc
-	.incbin "baserom_us.gba", 0xFBD0C, (0xFBD18 - 0xFBD0C)
-
-	.section .rodata.animal_contest_confirmation_padding
-	.incbin "baserom_us.gba", 0xFBD2F, (0xFBD30 - 0xFBD2F)
-
-	.section .rodata.animal_contest_trailer
-
-	.global gUnk_080FBD30
-gUnk_080FBD30:
-	.incbin "baserom_us.gba", 0xFBD30, 0x64
-
-	.global gUnk_080FBD94
-gUnk_080FBD94:
-	.incbin "baserom_us.gba", 0xFBD94, 0x10
-
-	.global gUnk_080FBDA4
-gUnk_080FBDA4:
-	.incbin "baserom_us.gba", 0xFBDA4, 0x50
-
-	.global gUnk_080FBDF4
-gUnk_080FBDF4:
-	.incbin "baserom_us.gba", 0xFBDF4, 0x30
-
-	.global gUnk_080FBE24
-gUnk_080FBE24:
-	.incbin "baserom_us.gba", 0xFBE24, 0x20
-
-	.global gUnk_080FBE44
-gUnk_080FBE44:
-	.incbin "baserom_us.gba", 0xFBE44, 0x20
-
-	.global gUnk_080FBE64
-gUnk_080FBE64:
-	.incbin "baserom_us.gba", 0xFBE64, 0x3
-
-	.global gUnk_080FBE67
-gUnk_080FBE67:
-	.incbin "baserom_us.gba", 0xFBE67, 0x15
-
 	.section .rodata.records_trailer
 
 	.global gUnk_080FC024
@@ -557,21 +490,6 @@ gUnk_080FF838:
 
 	.section .rodata.livestock_shop_status_padding
 	.incbin "baserom_us.gba", 0xFFD3B, (0xFFD3C - 0xFFD3B)
-
-	.section .rodata.livestock_shop_trailer_prefix
-	.incbin "baserom_us.gba", 0x100024, (0x100030 - 0x100024)
-
-	.section .rodata.home_storage_fridge_trailer
-	.incbin "baserom_us.gba", 0x10009C, (0x1000A8 - 0x10009C)
-
-	.section .rodata.home_storage_tool_chest_category_trailer
-	.incbin "baserom_us.gba", 0x1000C4, (0x1000D0 - 0x1000C4)
-
-	.section .rodata.home_storage_shelf_trailer
-	.incbin "baserom_us.gba", 0x100138, (0x100144 - 0x100138)
-
-	.section .rodata.home_storage_trailer
-	.incbin "baserom_us.gba", 0x10015C, (0x100168 - 0x10015C)
 
 	.section .rodata.gift_wrap_prefix
 	.incbin "baserom_us.gba", 0x1003E4, (0x1003F0 - 0x1003E4)

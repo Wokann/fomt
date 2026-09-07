@@ -35,10 +35,21 @@ The `cpp` command consumes a constrained, ordinary C++ text-definition form:
         "Good for cutting grass.";
 
 A text-related module may define a `char const * const` ROM pointer that refers
-to one of the text arrays.  `fomt-text` copies that ordinary C++ declaration
-unchanged; it only encodes the text array literals.  With agbcp, put a pointer
-that must relocate to a text array in a separate `*_refs.cc` translation unit,
-then place both named sections adjacently in the linker script.
+to one of the text arrays.  Keep that pointer in the same themed source file,
+at its real ROM position after the text it references:
+
+    char const gText_ItemStatus_WrappedAsPresent[] =
+        "\r\nwrapped as a present.";
+
+    char const * const gItemStatusWrappedAsPresentTextRef =
+        gText_ItemStatus_WrappedAsPresent;
+
+The normal text-object rule runs `fomt-text fixup-refs` after old `agbcp`.
+GCC 2.9-arm otherwise emits an anonymous duplicate `.LC` string for this
+specific initializer.  The fixup accepts it only when the duplicate payload
+is byte-for-byte identical to the named target, replaces the pointer with a
+real relocation to that target, and removes the duplicate.  This keeps one
+source file and one ordinary `.rodata` input object in the same order as ROM.
 
 Keep a page-break control in the literal that owns it.  For example, write
 `"...{Press}\p"` and start the following text literal on the next source line.

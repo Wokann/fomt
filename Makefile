@@ -176,6 +176,7 @@ $(BUILD_DIR)/data/text/%.d: $(BUILD_DIR)/data/text/%.cc
 $(BUILD_DIR)/data/text/%.o: $(BUILD_DIR)/data/text/%.cc $(BUILD_DIR)/data/text/%.d
 	@echo "CP $<"
 	@$(CPP) $(CPPFLAGS) $< | ($(CC1PLUS) $(CXXFLAGS) -o $(BUILD_DIR)/data/text/$*.s || false)
+	@$(TEXT_TOOL) fixup-refs $< $(BUILD_DIR)/data/text/$*.s
 	@sed 's/\r$$//' tools/scripts/align_sections.sh | bash -s -- $(BUILD_DIR)/data/text/$*.s
 	@$(AS) $(ASFLAGS) $(BUILD_DIR)/data/text/$*.s -o $@
 

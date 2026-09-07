@@ -5,10 +5,12 @@
 #include <fstream>
 #include <iostream>
 #include <map>
+#include <regex>
 #include <set>
 #include <sstream>
 #include <stdexcept>
 #include <string>
+#include <string_view>
 #include <vector>
 
 namespace {
@@ -92,6 +94,146 @@ void WriteBinaryFile(const std::filesystem::path &path, const Bytes &contents)
     output.write(reinterpret_cast<const char *>(contents.data()), static_cast<std::streamsize>(contents.size()));
     if (!output)
         throw std::runtime_error("cannot write '" + path.string() + "'");
+}
+
+std::vector<std::string> SplitLines(const std::string &source)
+{
+    std::vector<std::string> lines;
+    std::istringstream input(source);
+    std::string line;
+    while (std::getline(input, line)) {
+        if (!line.empty() && line.back() == '\r')
+            line.pop_back();
+        lines.push_back(std::move(line));
+    }
+    return lines;
+}
+
+std::string JoinLines(const std::vector<std::string> &lines)
+{
+    std::ostringstream output;
+    for (const std::string &line : lines)
+        output << line << '\n';
+    return output.str();
+}
+
+bool IsAssemblyStringPayload(const std::string &line)
+{
+    const std::string trimmed = Trim(line);
+    return trimmed.rfind(".ascii", 0) == 0
+        || trimmed.rfind(".string", 0) == 0;
+}
+
+bool IsAssemblyAlign(const std::string &line)
+{
+    return Trim(line).rfind(".align", 0) == 0;
+}
+
+std::size_t FindAssemblyLabel(const std::vector<std::string> &lines,
+    const std::string &label)
+{
+    const std::string wanted = label + ":";
+    for (std::size_t index = 0; index < lines.size(); ++index) {
+        if (Trim(lines[index]) == wanted)
+            return index;
+    }
+    return std::string::npos;
+}
+
+std::vector<std::string> AssemblyStringPayloadAfter(const std::vector<std::string> &lines,
+    std::size_t label_index)
+{
+    std::vector<std::string> payload;
+    for (std::size_t index = label_index + 1;
+         index < lines.size() && IsAssemblyStringPayload(lines[index]); ++index) {
+        payload.push_back(Trim(lines[index]));
+    }
+    return payload;
+}
+
+std::map<std::string, std::string> FindConstTextReferenceInitializers(
+    const std::string &source)
+{
+    // These remain ordinary C++ declarations.  agbcp 2.9 can turn their
+    // target into a duplicate .LC string, which is repaired after compilation.
+    static const std::regex pattern(
+        R"(char\s+const\s*\*\s*const\s+([A-Za-z_][A-Za-z0-9_]*)\s*=\s*([A-Za-z_][A-Za-z0-9_]*)\s*;)");
+
+    std::map<std::string, std::string> result;
+    for (std::sregex_iterator match(source.begin(), source.end(), pattern), end;
+         match != end; ++match) {
+        result.emplace((*match)[1].str(), (*match)[2].str());
+    }
+    return result;
+}
+
+std::string FixupSameUnitTextReferences(const std::string &source,
+    const std::string &assembly)
+{
+    const std::map<std::string, std::string> references =
+        FindConstTextReferenceInitializers(source);
+    if (references.empty())
+        return assembly;
+
+    std::vector<std::string> lines = SplitLines(assembly);
+    std::vector<std::pair<std::size_t, std::size_t>> removals;
+    std::set<std::string> removed_local_constants;
+
+    for (const auto &[reference_name, target_name] : references) {
+        const std::size_t reference_label = FindAssemblyLabel(lines, reference_name);
+        if (reference_label == std::string::npos)
+            continue;
+
+        std::size_t word_index = reference_label + 1;
+        while (word_index < lines.size() && Trim(lines[word_index]).empty())
+            ++word_index;
+        if (word_index == lines.size())
+            throw std::runtime_error("missing initializer for '" + reference_name + "'");
+
+        const std::string word = Trim(lines[word_index]);
+        static constexpr std::string_view kWord = ".word";
+        if (word.rfind(kWord, 0) != 0)
+            throw std::runtime_error("expected .word initializer for '" + reference_name + "'");
+        const std::string local_constant = Trim(word.substr(kWord.size()));
+        if (local_constant.rfind(".LC", 0) != 0)
+            continue;
+        if (!removed_local_constants.insert(local_constant).second)
+            throw std::runtime_error("duplicate compiler constant '" + local_constant + "'");
+
+        const std::size_t local_label = FindAssemblyLabel(lines, local_constant);
+        const std::size_t target_label = FindAssemblyLabel(lines, target_name);
+        if (local_label == std::string::npos || target_label == std::string::npos) {
+            throw std::runtime_error("cannot resolve compiler constant for '"
+                + reference_name + "'");
+        }
+
+        const std::vector<std::string> local_payload =
+            AssemblyStringPayloadAfter(lines, local_label);
+        const std::vector<std::string> target_payload =
+            AssemblyStringPayloadAfter(lines, target_label);
+        if (local_payload.empty() || local_payload != target_payload) {
+            throw std::runtime_error("compiler constant for '" + reference_name
+                + "' does not exactly duplicate '" + target_name + "'");
+        }
+
+        std::size_t local_end = local_label + 1 + local_payload.size();
+        if (local_end == lines.size() || !IsAssemblyAlign(lines[local_end])) {
+            throw std::runtime_error("unexpected compiler-constant layout for '"
+                + reference_name + "'");
+        }
+
+        const std::size_t indent_end = lines[word_index].find_first_not_of(" \t");
+        const std::string indent = indent_end == std::string::npos
+            ? "" : lines[word_index].substr(0, indent_end);
+        lines[word_index] = indent + ".word\t" + target_name;
+        removals.emplace_back(local_label, local_end);
+    }
+
+    std::sort(removals.rbegin(), removals.rend());
+    for (const auto &[begin, end] : removals)
+        lines.erase(lines.begin() + static_cast<std::ptrdiff_t>(begin),
+            lines.begin() + static_cast<std::ptrdiff_t>(end));
+    return JoinLines(lines);
 }
 
 class Charmap {
@@ -2133,6 +2275,27 @@ void SelfTest()
         rejected_unmapped = true;
     }
     Require(rejected_unmapped, "unmapped text was accepted");
+
+    const std::string same_unit_source =
+        "char const gText_Test[] = \"A\";\n"
+        "char const * const gTextRef_Test = gText_Test;\n";
+    const std::string same_unit_assembly =
+        "\t.globl\tgText_Test\n"
+        "gText_Test:\n"
+        "\t.ascii\t\"A\\000\"\n"
+        "\t.globl\tgTextRef_Test\n"
+        "\t.align\t2, 0\n"
+        ".LC0:\n"
+        "\t.ascii\t\"A\\000\"\n"
+        "\t.align\t2, 0\n"
+        "gTextRef_Test:\n"
+        "\t.word\t.LC0\n";
+    const std::string fixed_same_unit_assembly =
+        FixupSameUnitTextReferences(same_unit_source, same_unit_assembly);
+    Require(fixed_same_unit_assembly.find(".LC0:") == std::string::npos,
+        "same-unit duplicate text constant was retained");
+    Require(fixed_same_unit_assembly.find(".word\tgText_Test") != std::string::npos,
+        "same-unit text reference was not changed to a named relocation");
 }
 
 const char *Usage()
@@ -2143,6 +2306,7 @@ const char *Usage()
            "  fomt-text encode CHARMAP INPUT OUTPUT\n"
            "  fomt-text decode CHARMAP INPUT OUTPUT\n"
            "  fomt-text cpp CHARMAP INPUT OUTPUT\n"
+           "  fomt-text fixup-refs SOURCE ASSEMBLY\n"
            "  fomt-text guide CHARMAP INPUT TEXT_OUTPUT TABLE_OUTPUT [CATALOG_SOURCE ...]\n"
            "  fomt-text guide-collection CHARMAP REGION MANIFEST OUTPUT\n"
            "  fomt-text staff-credits CHARMAP REGION BASEROM INPUT OUTPUT\n";
@@ -2158,6 +2322,13 @@ int Run(int argc, char **argv)
     if (argc == 3 && std::string(argv[1]) == "validate") {
         const Charmap charmap = Charmap::Parse(ReadTextFile(argv[2]));
         std::cout << "fomt-text: " << charmap.EntryCount() << " charmap entries validated\n";
+        return 0;
+    }
+    if (argc == 4 && std::string(argv[1]) == "fixup-refs") {
+        const std::filesystem::path source = argv[2];
+        const std::filesystem::path assembly = argv[3];
+        WriteTextFile(assembly, FixupSameUnitTextReferences(
+            ReadTextFile(source), ReadTextFile(assembly)));
         return 0;
     }
     if (argc == 6 && std::string(argv[1]) == "guide-collection") {

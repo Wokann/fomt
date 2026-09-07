@@ -3,14 +3,13 @@
 
 #include "prelude.h"
 
-// These sections intentionally follow the original physical text groups.
-// Identical visible choices are kept separate when the ROM stores them at
-// distinct addresses for different storage interfaces.
-#define HOME_STORAGE_FRIDGE_TEXT SECTION(".rodata.home_storage_fridge")
-#define HOME_STORAGE_CONFIRMATION_TEXT SECTION(".rodata.home_storage_confirmation")
-#define HOME_STORAGE_TOOL_CHEST_CATEGORY_TEXT SECTION(".rodata.home_storage_tool_chest_category")
-#define HOME_STORAGE_SHELF_TEXT SECTION(".rodata.home_storage_shelf")
-#define HOME_STORAGE_TOOL_CHEST_HEADER_TEXT SECTION(".rodata.home_storage_tool_chest_header")
+// These are original compiler metadata strings rather than displayed text.
+// They are retained in physical order with the storage data.
+extern char const gCppRuntimeBadAlloc_HomeStoragePrefix[];
+extern char const gCppRuntimeBadAlloc_HomeStorageFridgeTrailer[];
+extern char const gCppRuntimeBadAlloc_HomeStorageCategoryTrailer[];
+extern char const gCppRuntimeBadAlloc_HomeStorageShelfTrailer[];
+extern char const gCppRuntimeBadAlloc_HomeStorageTrailer[];
 
 extern char const gText_Fridge_EmptyDescription[];
 extern char const gText_Fridge_WrappedGiftWarning[];

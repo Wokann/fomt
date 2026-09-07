@@ -84266,7 +84266,7 @@ func_0806A1F4: @ 0x0806A1F4
 	mov r8, r0
 	ldr r5, .L0806A480 @ =0x06001400
 	mov r6, sb
-	ldr r4, .L0806A484 @ =gAnimalContestStatusPrefixText + 6
+	ldr r4, .L0806A484 @ =gAnimalStatusScreenPrefixText + 6
 .L0806A31C:
 	ldrh r1, [r4]
 	mov r2, r8
@@ -84317,7 +84317,7 @@ func_0806A1F4: @ 0x0806A1F4
 	adds r1, r4, #0
 	movs r2, #0
 	bl func_0804E7A0
-	ldr r1, .L0806A488 @ =gAnimalContestStatusText
+	ldr r1, .L0806A488 @ =gAnimalStatusScreenText
 	movs r2, #1
 	mov sb, r2
 	add r0, sp, #0x100
@@ -84433,8 +84433,8 @@ func_0806A1F4: @ 0x0806A1F4
 .L0806A478: .4byte 0x00030003
 .L0806A47C: .4byte 0x0600F800
 .L0806A480: .4byte 0x06001400
-.L0806A484: .4byte gAnimalContestStatusPrefixText + 6
-.L0806A488: .4byte gAnimalContestStatusText
+.L0806A484: .4byte gAnimalStatusScreenPrefixText + 6
+.L0806A488: .4byte gAnimalStatusScreenText
 .L0806A48C: .4byte 0x00000854
 .L0806A490: .4byte 0x000009D8
 .L0806A494: .4byte 0x00000B5C
@@ -84622,7 +84622,7 @@ func_0806A1F4: @ 0x0806A1F4
 	movs r4, #0
 	ldr r5, [sp, #0x2b8]
 	strh r0, [r5, #2]
-	ldr r3, .L0806A660 @ =gAnimalContestStatusText + 0xC
+	ldr r3, .L0806A660 @ =gAnimalStatusScreenText + 0xC
 	movs r5, #1
 	movs r1, #8
 	movs r2, #2
@@ -84674,7 +84674,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r0, [r1, #4]
 	b .L0806A73A
 	.align 2, 0
-.L0806A660: .4byte gAnimalContestStatusText + 0xC
+.L0806A660: .4byte gAnimalStatusScreenText + 0xC
 .L0806A664:
 	mov r8, r1
 	add r1, sp, #0x114
@@ -84813,7 +84813,7 @@ func_0806A1F4: @ 0x0806A1F4
 	ldr r1, [sp, #0x36c]
 	movs r2, #0
 	bl func_0804E7A0
-	ldr r1, .L0806A7CC @ =gAnimalContestStatusText + 0x18
+	ldr r1, .L0806A7CC @ =gAnimalStatusScreenText + 0x18
 	movs r3, #1
 	mov sb, r3
 	add r0, sp, #0x11c
@@ -84867,7 +84867,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r6, [sp, #0x2f0]
 	b .L0806A8AE
 	.align 2, 0
-.L0806A7CC: .4byte gAnimalContestStatusText + 0x18
+.L0806A7CC: .4byte gAnimalStatusScreenText + 0x18
 .L0806A7D0:
 	mov r8, r1
 	add r1, sp, #0x124
@@ -84998,7 +84998,7 @@ func_0806A1F4: @ 0x0806A1F4
 	adds r1, r0, #0
 	adds r1, #0x20
 	str r1, [sp, #0x214]
-	ldr r3, .L0806A924 @ =gAnimalContestStatusText + 0x24
+	ldr r3, .L0806A924 @ =gAnimalStatusScreenText + 0x24
 	movs r4, #0
 	movs r5, #1
 	movs r1, #6
@@ -85050,7 +85050,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r0, [r1, #4]
 	b .L0806A9FE
 	.align 2, 0
-.L0806A924: .4byte gAnimalContestStatusText + 0x24
+.L0806A924: .4byte gAnimalStatusScreenText + 0x24
 .L0806A928:
 	mov r8, r1
 	add r1, sp, #0x130
@@ -85177,7 +85177,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r0, [sp, #0x210]
 	adds r4, r0, #0
 	adds r4, #0x20
-	ldr r3, .L0806AA78 @ =gAnimalContestStatusText + 0x2C
+	ldr r3, .L0806AA78 @ =gAnimalStatusScreenText + 0x2C
 	movs r5, #0
 	movs r1, #1
 	mov sb, r1
@@ -85231,7 +85231,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r0, [r3, #4]
 	b .L0806AB54
 	.align 2, 0
-.L0806AA78: .4byte gAnimalContestStatusText + 0x2C
+.L0806AA78: .4byte gAnimalStatusScreenText + 0x2C
 .L0806AA7C:
 	mov r8, r1
 	add r1, sp, #0x13c
@@ -85359,7 +85359,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r3, [sp, #0x210]
 	adds r4, r3, #0
 	adds r4, #0x20
-	ldr r3, .L0806ABCC @ =gAnimalContestStatusText + 0x34
+	ldr r3, .L0806ABCC @ =gAnimalStatusScreenText + 0x34
 	movs r5, #0
 	movs r6, #1
 	mov sb, r6
@@ -85412,7 +85412,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r0, [r3, #4]
 	b .L0806ACA8
 	.align 2, 0
-.L0806ABCC: .4byte gAnimalContestStatusText + 0x34
+.L0806ABCC: .4byte gAnimalStatusScreenText + 0x34
 .L0806ABD0:
 	mov r8, r1
 	add r1, sp, #0x148
@@ -85540,7 +85540,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r3, [sp, #0x210]
 	adds r4, r3, #0
 	adds r4, #0x20
-	ldr r3, .L0806AD24 @ =gAnimalContestStatusText + 0x3C
+	ldr r3, .L0806AD24 @ =gAnimalStatusScreenText + 0x3C
 	movs r5, #0
 	movs r6, #1
 	mov sb, r6
@@ -85596,7 +85596,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r4, [sp, #0x2ec]
 	b .L0806AE06
 	.align 2, 0
-.L0806AD24: .4byte gAnimalContestStatusText + 0x3C
+.L0806AD24: .4byte gAnimalStatusScreenText + 0x3C
 .L0806AD28:
 	mov r8, r1
 	add r1, sp, #0x154
@@ -85727,7 +85727,7 @@ func_0806A1F4: @ 0x0806A1F4
 	adds r1, r0, #0
 	adds r1, #0x20
 	str r1, [sp, #0x218]
-	ldr r2, .L0806AE74 @ =gAnimalContestStatusText + 0x44
+	ldr r2, .L0806AE74 @ =gAnimalStatusScreenText + 0x44
 	movs r3, #0
 	movs r4, #1
 	movs r0, #2
@@ -85776,7 +85776,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r0, [r6, #4]
 	b .L0806AF4E
 	.align 2, 0
-.L0806AE74: .4byte gAnimalContestStatusText + 0x44
+.L0806AE74: .4byte gAnimalStatusScreenText + 0x44
 .L0806AE78:
 	mov r8, r1
 	add r1, sp, #0x160
@@ -85903,7 +85903,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r0, [sp, #0x210]
 	adds r0, #0x20
 	str r0, [sp, #0x21c]
-	ldr r2, .L0806AFBC @ =gAnimalContestStatusText + 0x48
+	ldr r2, .L0806AFBC @ =gAnimalStatusScreenText + 0x48
 	movs r3, #0
 	movs r4, #1
 	movs r0, #2
@@ -85952,7 +85952,7 @@ func_0806A1F4: @ 0x0806A1F4
 	str r0, [r6, #4]
 	b .L0806B096
 	.align 2, 0
-.L0806AFBC: .4byte gAnimalContestStatusText + 0x48
+.L0806AFBC: .4byte gAnimalStatusScreenText + 0x48
 .L0806AFC0:
 	mov r8, r1
 	add r1, sp, #0x16c
@@ -92638,7 +92638,7 @@ func_0806E234: @ 0x0806E234
 	mov sl, r0
 	adds r6, #0x18
 .L0806E3A8:
-	ldr r0, .L0806E434 @ =gUnk_080FBD30
+	ldr r0, .L0806E434 @ =gFarmStatusScreenPreloadedGlyphs
 	lsls r4, r5, #1
 	adds r0, r4, r0
 	ldrh r1, [r0]
@@ -92692,7 +92692,7 @@ func_0806E234: @ 0x0806E234
 .L0806E428: .4byte 0x05000200
 .L0806E42C: .4byte 0x05000202
 .L0806E430: .4byte 0x05000204
-.L0806E434: .4byte gUnk_080FBD30
+.L0806E434: .4byte gFarmStatusScreenPreloadedGlyphs
 .L0806E438: .4byte 0x06010000
 
 	thumb_func_start func_0806E43C
@@ -93939,7 +93939,7 @@ func_0806EC94: @ 0x0806EC94
 	ands r2, r0
 	lsls r0, r2, #1
 	adds r1, r1, r0
-	ldr r2, .L0806EF88 @ =gUnk_080FBDA4
+	ldr r2, .L0806EF88 @ =gFarmStatusScreenTileLookup
 	lsls r0, r3, #1
 	adds r0, r0, r2
 	ldrh r0, [r0]
@@ -93963,7 +93963,7 @@ func_0806EC94: @ 0x0806EC94
 	adds r0, r0, r6
 	bl GetUpgradeLevel__C9FarmHouse
 	lsls r0, r0, #4
-	ldr r1, .L0806EF8C @ =gUnk_080FBDF4
+	ldr r1, .L0806EF8C @ =gFarmStatusScreenFarmHousePreviews
 	adds r0, r0, r1
 	ldrh r2, [r0, #8]
 	ldrh r3, [r0, #0xa]
@@ -93985,7 +93985,7 @@ func_0806EC94: @ 0x0806EC94
 	adds r0, r0, r3
 	bl GetUpgradeLevel__C4Coop
 	lsls r0, r0, #4
-	ldr r1, .L0806EF90 @ =gUnk_080FBE24
+	ldr r1, .L0806EF90 @ =gFarmStatusScreenCoopPreviews
 	adds r0, r0, r1
 	ldrh r2, [r0, #8]
 	ldrh r3, [r0, #0xa]
@@ -94007,7 +94007,7 @@ func_0806EC94: @ 0x0806EC94
 	adds r0, r0, r3
 	bl GetUpgradeLevel__C4Barn
 	lsls r0, r0, #4
-	ldr r1, .L0806EF94 @ =gUnk_080FBE44
+	ldr r1, .L0806EF94 @ =gFarmStatusScreenBarnPreviews
 	adds r0, r0, r1
 	ldrh r2, [r0, #8]
 	ldrh r3, [r0, #0xa]
@@ -94045,7 +94045,7 @@ func_0806EC94: @ 0x0806EC94
 	movs r5, #2
 	str r5, [sp]
 	str r5, [sp, #4]
-	ldr r0, .L0806EFA4 @ =gUnk_080FBE64
+	ldr r0, .L0806EFA4 @ =gFarmStatusScreenExteriorStyleData
 	adds r0, r4, r0
 	ldrb r0, [r0]
 	str r0, [sp, #8]
@@ -94077,7 +94077,7 @@ func_0806EC94: @ 0x0806EC94
 	movs r0, #1
 	str r0, [sp]
 	str r5, [sp, #4]
-	ldr r1, .L0806EFB4 @ =gUnk_080FBE67
+	ldr r1, .L0806EFB4 @ =gFarmStatusScreenExteriorStyleData + 3
 	ldr r3, [sp, #0x18]
 	ldr r2, [sp, #0xc]
 	adds r0, r3, r2
@@ -94120,18 +94120,18 @@ func_0806EC94: @ 0x0806EC94
 	bx r0
 	.align 2, 0
 .L0806EF84: .4byte 0x00009187
-.L0806EF88: .4byte gUnk_080FBDA4
-.L0806EF8C: .4byte gUnk_080FBDF4
-.L0806EF90: .4byte gUnk_080FBE24
-.L0806EF94: .4byte gUnk_080FBE44
+.L0806EF88: .4byte gFarmStatusScreenTileLookup
+.L0806EF8C: .4byte gFarmStatusScreenFarmHousePreviews
+.L0806EF90: .4byte gFarmStatusScreenCoopPreviews
+.L0806EF94: .4byte gFarmStatusScreenBarnPreviews
 .L0806EF98: .4byte gUnk_08529994
 .L0806EF9C: .4byte gUnk_0852CC40
 .L0806EFA0: .4byte 0x060002C0
-.L0806EFA4: .4byte gUnk_080FBE64
+.L0806EFA4: .4byte gFarmStatusScreenExteriorStyleData
 .L0806EFA8: .4byte gUnk_08529BA8
 .L0806EFAC: .4byte gUnk_0852CE54
 .L0806EFB0: .4byte 0x06000340
-.L0806EFB4: .4byte gUnk_080FBE67
+.L0806EFB4: .4byte gFarmStatusScreenExteriorStyleData + 3
 .L0806EFB8: .4byte gUnk_08529DA4
 .L0806EFBC: .4byte gUnk_0852D050
 
@@ -95664,7 +95664,7 @@ func_0806FBA4: @ 0x0806FBA4
 	sub sp, #0xa0
 	str r0, [sp, #0x48]
 	lsls r2, r1, #2
-	ldr r0, .L0806FC68 @ =gUnk_080FBD94
+	ldr r0, .L0806FC68 @ =gFarmStatusScreenResourceDescriptors
 	adds r2, r2, r0
 	str r2, [sp, #0x4c]
 	ldrh r0, [r2, #2]
@@ -95758,7 +95758,7 @@ func_0806FBA4: @ 0x0806FBA4
 	adds r6, #4
 	b .L0806FD6A
 	.align 2, 0
-.L0806FC68: .4byte gUnk_080FBD94
+.L0806FC68: .4byte gFarmStatusScreenResourceDescriptors
 .L0806FC6C:
 	ldr r5, [sp, #0x94]
 	ldr r5, [r5, #4]

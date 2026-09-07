@@ -1,124 +1,91 @@
 #include "animal_contest_text.hh"
 
-#define ANIMAL_CONTEST_TEXT SECTION(".rodata.animal_contest")
-#define ANIMAL_CONTEST_CONFIRMATION_TEXT SECTION(".rodata.animal_contest_confirmation")
-
-char const gText_AnimalContest_ChickenConfirmation[] ANIMAL_CONTEST_TEXT =
+char const gText_AnimalContest_ChickenConfirmation[] =
     "Is this Chicken OK?";
 
-char const gText_AnimalContest_Yes[] ANIMAL_CONTEST_TEXT =
+char const gText_AnimalContest_Yes[] =
     "Yes";
 
-char const gText_AnimalContest_No[] ANIMAL_CONTEST_TEXT =
+char const gText_AnimalContest_No[] =
     "No";
 
-char const gText_AnimalContest_CowConfirmation[] ANIMAL_CONTEST_TEXT =
+char const gText_AnimalContest_CowConfirmation[] =
     "Is this Cow OK?";
 
-char const gText_AnimalContest_SheepConfirmation[] ANIMAL_CONTEST_TEXT =
+char const gText_AnimalContest_SheepConfirmation[] =
     "Is this Sheep OK?";
 
-char const gText_AnimalContest_BabyChickIneligible[] ANIMAL_CONTEST_TEXT =
+char const gText_AnimalContest_BabyChickIneligible[] =
     "Baby Chicks can't compete.\r\n"
     "Choose another one?{Press}";
 
-char const gText_AnimalContest_AdultCowIneligible[] ANIMAL_CONTEST_TEXT =
+char const gText_AnimalContest_AdultCowIneligible[] =
     "Only adults can enter.\r\n"
     "Please select another Cow.{Press}";
 
-char const gText_AnimalContest_AdultSheepIneligible[] ANIMAL_CONTEST_TEXT =
+char const gText_AnimalContest_AdultSheepIneligible[] =
     "Only adults can enter.\r\n"
     "Please select another Sheep.{Press}";
 
-char const gText_AnimalContest_SickChickenIneligible[] ANIMAL_CONTEST_TEXT =
+char const gText_AnimalContest_SickChickenIneligible[] =
     "Sorry, but this Chicken is \r\n"
     "sick. Choose another one?{Press}";
 
-char const gText_AnimalContest_SickCowIneligible[] ANIMAL_CONTEST_TEXT =
+char const gText_AnimalContest_SickCowIneligible[] =
     "Sorry, but this Cow is \r\n"
     "sick. Choose another one?{Press}";
 
-char const gText_AnimalContest_SickSheepIneligible[] ANIMAL_CONTEST_TEXT =
+char const gText_AnimalContest_SickSheepIneligible[] =
     "Sorry, but this Sheep is \r\n"
     "sick. Choose another one?{Press}";
 
-char const gText_AnimalContest_PregnantCowIneligible[] ANIMAL_CONTEST_TEXT =
+char const gText_AnimalContest_PregnantCowIneligible[] =
     "Pregnant Cows can't enter.\r\n"
     "Please select another.{Press}";
 
-char const gText_AnimalContest_PregnantSheepIneligible[] ANIMAL_CONTEST_TEXT =
+char const gText_AnimalContest_PregnantSheepIneligible[] =
     "Pregnant Sheep can't enter.\r\n"
     "Please select another.{Press}";
 
-char const gText_AnimalContest_ShornSheepIneligible[] ANIMAL_CONTEST_TEXT =
+char const gText_AnimalContest_ShornSheepIneligible[] =
     "Shorn Sheep can't enter.\r\n"
     "Please select another.{Press}";
 
-char const gText_AnimalContest_EntryAccepted[] ANIMAL_CONTEST_TEXT =
+char const gText_AnimalContest_EntryAccepted[] =
     "It's a deal, then. I'll\r\n"
     "bring it to you.{Press}";
 
-char const gText_AnimalContest_ChickenSelectionPrompt[] ANIMAL_CONTEST_TEXT =
+char const gText_AnimalContest_ChickenSelectionPrompt[] =
     "In that case, select a \r\n"
     "Chicken to compete.{Press}";
 
-char const gText_AnimalContest_CowSelectionPrompt[] ANIMAL_CONTEST_TEXT =
+char const gText_AnimalContest_CowSelectionPrompt[] =
     "In that case, select a \r\n"
     "Cow to enter.{Press}";
 
-char const gText_AnimalContest_SheepSelectionPrompt[] ANIMAL_CONTEST_TEXT =
+char const gText_AnimalContest_SheepSelectionPrompt[] =
     "In that case, select a \r\n"
     "Sheep to enter.{Press}";
 
-char const gText_AnimalContest_EntryDeclinedQuestion[] ANIMAL_CONTEST_TEXT =
+char const gText_AnimalContest_EntryDeclinedQuestion[] =
     "So you don't want to enter?";
 
-char const gText_AnimalContest_ChickenEntryDeclinedResponse[] ANIMAL_CONTEST_TEXT =
+char const gText_AnimalContest_ChickenEntryDeclinedResponse[] =
     "Alright. Think about\r\n"
     "it next time.{Press}";
 
-char const gText_AnimalContest_LivestockEntryDeclinedResponse[] ANIMAL_CONTEST_TEXT =
+char const gText_AnimalContest_LivestockEntryDeclinedResponse[] =
     "Alright. Think about\r\n"
     "competing next time.{Press}";
 
-char const gText_AnimalContest_FinalConfirmation[] ANIMAL_CONTEST_CONFIRMATION_TEXT =
+char const gCppRuntimeBadAlloc_AnimalContestBoundary[] =
+    "bad_alloc";
+
+char const gText_AnimalContest_FinalConfirmation[] =
     "Are you sure?";
 
-char const gText_AnimalContest_FinalYes[] ANIMAL_CONTEST_CONFIRMATION_TEXT =
+char const gText_AnimalContest_FinalYes[] =
     "Yes";
 
-char const gText_AnimalContest_FinalNo[] ANIMAL_CONTEST_CONFIRMATION_TEXT =
-    "No";
-
-extern AnimalContestStatusPrefixText const gAnimalContestStatusPrefixText
-    ANIMAL_CONTEST_STATUS_PREFIX_TEXT = {
-        "N/A ",
-        {
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-        },
-    };
-
-extern AnimalContestStatusText const gAnimalContestStatusText
-    ANIMAL_CONTEST_STATUS_TEXT = {
-        "Healthy ",
-        "Unhappy ",
-        "Sick    ",
-        "Spring",
-        "Summer",
-        "Fall  ",
-        "Winter",
-        "Y ",
-        "D ",
-    };
-
-#undef ANIMAL_CONTEST_CONFIRMATION_TEXT
-#undef ANIMAL_CONTEST_TEXT
+char const gText_AnimalContest_FinalNo[] =
+    "No\x00";
