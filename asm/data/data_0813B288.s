@@ -855,6 +855,71 @@ jp_data_0813b288_start:
     .global gUnk_082B3A8C
     .set gUnk_082B3A8C, jp_data_0813b288_start + 0x1776C0
 
+    @ Additional region-neutral labels for later gFieldRenderRectDescriptors entries.
+    @ Their payload types are not known yet.
+    .global gUnk_FieldRenderResource_169
+    .set gUnk_FieldRenderResource_169, jp_data_0813b288_start + 0x334E44
+    .global gUnk_FieldRenderResource_170
+    .set gUnk_FieldRenderResource_170, jp_data_0813b288_start + 0x334E5C
+    .global gUnk_FieldRenderResource_173
+    .set gUnk_FieldRenderResource_173, jp_data_0813b288_start + 0x3357F8
+    .global gUnk_FieldRenderResource_176
+    .set gUnk_FieldRenderResource_176, jp_data_0813b288_start + 0x335818
+    .global gUnk_FieldRenderResource_179
+    .set gUnk_FieldRenderResource_179, jp_data_0813b288_start + 0x334D84
+    .global gUnk_FieldRenderResource_182
+    .set gUnk_FieldRenderResource_182, jp_data_0813b288_start + 0x334DA4
+    .global gUnk_FieldRenderResource_183
+    .set gUnk_FieldRenderResource_183, jp_data_0813b288_start + 0x334E04
+    .global gUnk_FieldRenderResource_186
+    .set gUnk_FieldRenderResource_186, jp_data_0813b288_start + 0x334E24
+    .global gUnk_FieldRenderResource_187
+    .set gUnk_FieldRenderResource_187, jp_data_0813b288_start + 0x334DC4
+    .global gUnk_FieldRenderResource_190
+    .set gUnk_FieldRenderResource_190, jp_data_0813b288_start + 0x334DE4
+    .global gUnk_FieldRenderResource_191
+    .set gUnk_FieldRenderResource_191, jp_data_0813b288_start + 0x334EB4
+    .global gUnk_FieldRenderResource_194
+    .set gUnk_FieldRenderResource_194, jp_data_0813b288_start + 0x334ED4
+    .global gUnk_FieldRenderResource_195
+    .set gUnk_FieldRenderResource_195, jp_data_0813b288_start + 0x334E74
+    .global gUnk_FieldRenderResource_198
+    .set gUnk_FieldRenderResource_198, jp_data_0813b288_start + 0x334E94
+    .global gUnk_FieldRenderResource_199
+    .set gUnk_FieldRenderResource_199, jp_data_0813b288_start + 0x334D44
+    .global gUnk_FieldRenderResource_202
+    .set gUnk_FieldRenderResource_202, jp_data_0813b288_start + 0x334D64
+    .global gUnk_FieldRenderResource_203
+    .set gUnk_FieldRenderResource_203, jp_data_0813b288_start + 0x334D04
+    .global gUnk_FieldRenderResource_206
+    .set gUnk_FieldRenderResource_206, jp_data_0813b288_start + 0x334D24
+    .global gUnk_FieldRenderResource_207
+    .set gUnk_FieldRenderResource_207, jp_data_0813b288_start + 0x32CDC4
+    .global gUnk_FieldRenderResource_210
+    .set gUnk_FieldRenderResource_210, jp_data_0813b288_start + 0x32CDE4
+    .global gUnk_FieldRenderResource_211
+    .set gUnk_FieldRenderResource_211, jp_data_0813b288_start + 0x32CD84
+    .global gUnk_FieldRenderResource_214
+    .set gUnk_FieldRenderResource_214, jp_data_0813b288_start + 0x32CDA4
+    .global gUnk_FieldRenderResource_215
+    .set gUnk_FieldRenderResource_215, jp_data_0813b288_start + 0x33FFC0
+    .global gUnk_FieldRenderResource_218
+    .set gUnk_FieldRenderResource_218, jp_data_0813b288_start + 0x33FFE0
+    .global gUnk_FieldRenderResource_219
+    .set gUnk_FieldRenderResource_219, jp_data_0813b288_start + 0x334B48
+    .global gUnk_FieldRenderResource_222
+    .set gUnk_FieldRenderResource_222, jp_data_0813b288_start + 0x334B68
+    .global gUnk_FieldRenderResource_223
+    .set gUnk_FieldRenderResource_223, jp_data_0813b288_start + 0x3269D8
+    .global gUnk_FieldRenderResource_224
+    .set gUnk_FieldRenderResource_224, jp_data_0813b288_start + 0x3269F8
+    .global gUnk_FieldRenderResource_225
+    .set gUnk_FieldRenderResource_225, jp_data_0813b288_start + 0x327B3C
+    .global gUnk_FieldRenderResource_226
+    .set gUnk_FieldRenderResource_226, jp_data_0813b288_start + 0x327B5C
+    .global gUnk_FieldRenderResource_227
+    .set gUnk_FieldRenderResource_227, jp_data_0813b288_start + 0x334CB4
+
     .global gUnk_086D6458
 gUnk_086D6458:
     .incbin "baserom_jp.gba", 0x45C5B4, 0xC0
@@ -1724,6 +1789,71 @@ gActorStateGridCellType4Data:
 	.set gUnk_FieldRenderResource_126, us_data_0813b288_start + 0x5BDBF4
 	.global gUnk_FieldRenderResource_127
 	.set gUnk_FieldRenderResource_127, us_data_0813b288_start + 0x5BDDB4
+
+	@ Additional region-neutral labels for later gFieldRenderRectDescriptors entries.
+	@ Their payload types are not known yet.
+	.global gUnk_FieldRenderResource_169
+	.set gUnk_FieldRenderResource_169, us_data_0813b288_start + 0x5AFE2C
+	.global gUnk_FieldRenderResource_170
+	.set gUnk_FieldRenderResource_170, us_data_0813b288_start + 0x5AFE44
+	.global gUnk_FieldRenderResource_173
+	.set gUnk_FieldRenderResource_173, us_data_0813b288_start + 0x5B07E0
+	.global gUnk_FieldRenderResource_176
+	.set gUnk_FieldRenderResource_176, us_data_0813b288_start + 0x5B0800
+	.global gUnk_FieldRenderResource_179
+	.set gUnk_FieldRenderResource_179, us_data_0813b288_start + 0x5AFD6C
+	.global gUnk_FieldRenderResource_182
+	.set gUnk_FieldRenderResource_182, us_data_0813b288_start + 0x5AFD8C
+	.global gUnk_FieldRenderResource_183
+	.set gUnk_FieldRenderResource_183, us_data_0813b288_start + 0x5AFDEC
+	.global gUnk_FieldRenderResource_186
+	.set gUnk_FieldRenderResource_186, us_data_0813b288_start + 0x5AFE0C
+	.global gUnk_FieldRenderResource_187
+	.set gUnk_FieldRenderResource_187, us_data_0813b288_start + 0x5AFDAC
+	.global gUnk_FieldRenderResource_190
+	.set gUnk_FieldRenderResource_190, us_data_0813b288_start + 0x5AFDCC
+	.global gUnk_FieldRenderResource_191
+	.set gUnk_FieldRenderResource_191, us_data_0813b288_start + 0x5AFE9C
+	.global gUnk_FieldRenderResource_194
+	.set gUnk_FieldRenderResource_194, us_data_0813b288_start + 0x5AFEBC
+	.global gUnk_FieldRenderResource_195
+	.set gUnk_FieldRenderResource_195, us_data_0813b288_start + 0x5AFE5C
+	.global gUnk_FieldRenderResource_198
+	.set gUnk_FieldRenderResource_198, us_data_0813b288_start + 0x5AFE7C
+	.global gUnk_FieldRenderResource_199
+	.set gUnk_FieldRenderResource_199, us_data_0813b288_start + 0x5AFD2C
+	.global gUnk_FieldRenderResource_202
+	.set gUnk_FieldRenderResource_202, us_data_0813b288_start + 0x5AFD4C
+	.global gUnk_FieldRenderResource_203
+	.set gUnk_FieldRenderResource_203, us_data_0813b288_start + 0x5AFCEC
+	.global gUnk_FieldRenderResource_206
+	.set gUnk_FieldRenderResource_206, us_data_0813b288_start + 0x5AFD0C
+	.global gUnk_FieldRenderResource_207
+	.set gUnk_FieldRenderResource_207, us_data_0813b288_start + 0x5A7DAC
+	.global gUnk_FieldRenderResource_210
+	.set gUnk_FieldRenderResource_210, us_data_0813b288_start + 0x5A7DCC
+	.global gUnk_FieldRenderResource_211
+	.set gUnk_FieldRenderResource_211, us_data_0813b288_start + 0x5A7D6C
+	.global gUnk_FieldRenderResource_214
+	.set gUnk_FieldRenderResource_214, us_data_0813b288_start + 0x5A7D8C
+	.global gUnk_FieldRenderResource_215
+	.set gUnk_FieldRenderResource_215, us_data_0813b288_start + 0x5BAFA8
+	.global gUnk_FieldRenderResource_218
+	.set gUnk_FieldRenderResource_218, us_data_0813b288_start + 0x5BAFC8
+	.global gUnk_FieldRenderResource_219
+	.set gUnk_FieldRenderResource_219, us_data_0813b288_start + 0x5AFB30
+	.global gUnk_FieldRenderResource_222
+	.set gUnk_FieldRenderResource_222, us_data_0813b288_start + 0x5AFB50
+	.global gUnk_FieldRenderResource_223
+	.set gUnk_FieldRenderResource_223, us_data_0813b288_start + 0x5A19C0
+	.global gUnk_FieldRenderResource_224
+	.set gUnk_FieldRenderResource_224, us_data_0813b288_start + 0x5A19E0
+	.global gUnk_FieldRenderResource_225
+	.set gUnk_FieldRenderResource_225, us_data_0813b288_start + 0x5A2B24
+	.global gUnk_FieldRenderResource_226
+	.set gUnk_FieldRenderResource_226, us_data_0813b288_start + 0x5A2B44
+	.global gUnk_FieldRenderResource_227
+	.set gUnk_FieldRenderResource_227, us_data_0813b288_start + 0x5AFC9C
 
 	.global gUnk_084F90CC
 gUnk_084F90CC:

@@ -316,6 +316,65 @@ extern u8 const gUnk_FieldRenderResource_165[];
 extern u8 const gUnk_FieldRenderResource_166[];
 extern u8 const gUnk_FieldRenderResource_167[];
 extern u8 const gUnk_FieldRenderResource_168[];
+extern u8 const gUnk_FieldRenderResource_169[];
+extern u8 const gUnk_FieldRenderResource_170[];
+extern u8 const gUnk_FieldRenderResource_171[];
+extern u8 const gUnk_FieldRenderResource_172[];
+extern u8 const gUnk_FieldRenderResource_173[];
+extern u8 const gUnk_FieldRenderResource_174[];
+extern u8 const gUnk_FieldRenderResource_175[];
+extern u8 const gUnk_FieldRenderResource_176[];
+extern u8 const gUnk_FieldRenderResource_177[];
+extern u8 const gUnk_FieldRenderResource_178[];
+extern u8 const gUnk_FieldRenderResource_179[];
+extern u8 const gUnk_FieldRenderResource_180[];
+extern u8 const gUnk_FieldRenderResource_181[];
+extern u8 const gUnk_FieldRenderResource_182[];
+extern u8 const gUnk_FieldRenderResource_183[];
+extern u8 const gUnk_FieldRenderResource_184[];
+extern u8 const gUnk_FieldRenderResource_185[];
+extern u8 const gUnk_FieldRenderResource_186[];
+extern u8 const gUnk_FieldRenderResource_187[];
+extern u8 const gUnk_FieldRenderResource_188[];
+extern u8 const gUnk_FieldRenderResource_189[];
+extern u8 const gUnk_FieldRenderResource_190[];
+extern u8 const gUnk_FieldRenderResource_191[];
+extern u8 const gUnk_FieldRenderResource_192[];
+extern u8 const gUnk_FieldRenderResource_193[];
+extern u8 const gUnk_FieldRenderResource_194[];
+extern u8 const gUnk_FieldRenderResource_195[];
+extern u8 const gUnk_FieldRenderResource_196[];
+extern u8 const gUnk_FieldRenderResource_197[];
+extern u8 const gUnk_FieldRenderResource_198[];
+extern u8 const gUnk_FieldRenderResource_199[];
+extern u8 const gUnk_FieldRenderResource_200[];
+extern u8 const gUnk_FieldRenderResource_201[];
+extern u8 const gUnk_FieldRenderResource_202[];
+extern u8 const gUnk_FieldRenderResource_203[];
+extern u8 const gUnk_FieldRenderResource_204[];
+extern u8 const gUnk_FieldRenderResource_205[];
+extern u8 const gUnk_FieldRenderResource_206[];
+extern u8 const gUnk_FieldRenderResource_207[];
+extern u8 const gUnk_FieldRenderResource_208[];
+extern u8 const gUnk_FieldRenderResource_209[];
+extern u8 const gUnk_FieldRenderResource_210[];
+extern u8 const gUnk_FieldRenderResource_211[];
+extern u8 const gUnk_FieldRenderResource_212[];
+extern u8 const gUnk_FieldRenderResource_213[];
+extern u8 const gUnk_FieldRenderResource_214[];
+extern u8 const gUnk_FieldRenderResource_215[];
+extern u8 const gUnk_FieldRenderResource_216[];
+extern u8 const gUnk_FieldRenderResource_217[];
+extern u8 const gUnk_FieldRenderResource_218[];
+extern u8 const gUnk_FieldRenderResource_219[];
+extern u8 const gUnk_FieldRenderResource_220[];
+extern u8 const gUnk_FieldRenderResource_221[];
+extern u8 const gUnk_FieldRenderResource_222[];
+extern u8 const gUnk_FieldRenderResource_223[];
+extern u8 const gUnk_FieldRenderResource_224[];
+extern u8 const gUnk_FieldRenderResource_225[];
+extern u8 const gUnk_FieldRenderResource_226[];
+extern u8 const gUnk_FieldRenderResource_227[];
 
 FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_RECT_DESCRIPTOR_COUNT] SECTION(".rodata.field_render_rect_descriptors") = {
     /* 0x00 */ {
@@ -629,5 +688,185 @@ FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_RECT_DE
         { nullptr, gUnk_FieldRenderResource_166, nullptr },
         gUnk_FieldRenderResource_167,
         gUnk_FieldRenderResource_168,
+    },
+    /* 0x34 */ {
+        0x03, 0x04,
+        { gUnk_FieldRenderResource_169, gUnk_FieldRenderResource_170, nullptr },
+        gUnk_FieldRenderResource_171,
+        gUnk_FieldRenderResource_172,
+    },
+    /* 0x35 */ {
+        0x03, 0x05,
+        { nullptr, gUnk_FieldRenderResource_173, nullptr },
+        gUnk_FieldRenderResource_174,
+        gUnk_FieldRenderResource_175,
+    },
+    /* 0x36 */ {
+        0x03, 0x05,
+        { nullptr, gUnk_FieldRenderResource_176, nullptr },
+        gUnk_FieldRenderResource_177,
+        gUnk_FieldRenderResource_178,
+    },
+    /* 0x37 */ {
+        0x03, 0x05,
+        { nullptr, gUnk_FieldRenderResource_179, nullptr },
+        gUnk_FieldRenderResource_180,
+        gUnk_FieldRenderResource_181,
+    },
+    /* 0x38 */ {
+        0x03, 0x05,
+        { nullptr, gUnk_FieldRenderResource_182, nullptr },
+        gUnk_FieldRenderResource_177,
+        gUnk_FieldRenderResource_178,
+    },
+    /* 0x39 */ {
+        0x03, 0x05,
+        { nullptr, gUnk_FieldRenderResource_183, nullptr },
+        gUnk_FieldRenderResource_184,
+        gUnk_FieldRenderResource_185,
+    },
+    /* 0x3A */ {
+        0x03, 0x05,
+        { nullptr, gUnk_FieldRenderResource_186, nullptr },
+        gUnk_FieldRenderResource_177,
+        gUnk_FieldRenderResource_178,
+    },
+    /* 0x3B */ {
+        0x03, 0x05,
+        { nullptr, gUnk_FieldRenderResource_187, nullptr },
+        gUnk_FieldRenderResource_188,
+        gUnk_FieldRenderResource_189,
+    },
+    /* 0x3C */ {
+        0x03, 0x05,
+        { nullptr, gUnk_FieldRenderResource_190, nullptr },
+        gUnk_FieldRenderResource_177,
+        gUnk_FieldRenderResource_178,
+    },
+    /* 0x3D */ {
+        0x03, 0x05,
+        { nullptr, gUnk_FieldRenderResource_191, nullptr },
+        gUnk_FieldRenderResource_192,
+        gUnk_FieldRenderResource_193,
+    },
+    /* 0x3E */ {
+        0x03, 0x05,
+        { nullptr, gUnk_FieldRenderResource_194, nullptr },
+        gUnk_FieldRenderResource_177,
+        gUnk_FieldRenderResource_178,
+    },
+    /* 0x3F */ {
+        0x03, 0x05,
+        { nullptr, gUnk_FieldRenderResource_195, nullptr },
+        gUnk_FieldRenderResource_196,
+        gUnk_FieldRenderResource_197,
+    },
+    /* 0x40 */ {
+        0x03, 0x05,
+        { nullptr, gUnk_FieldRenderResource_198, nullptr },
+        gUnk_FieldRenderResource_177,
+        gUnk_FieldRenderResource_178,
+    },
+    /* 0x41 */ {
+        0x03, 0x05,
+        { nullptr, gUnk_FieldRenderResource_199, nullptr },
+        gUnk_FieldRenderResource_200,
+        gUnk_FieldRenderResource_201,
+    },
+    /* 0x42 */ {
+        0x03, 0x05,
+        { nullptr, gUnk_FieldRenderResource_202, nullptr },
+        gUnk_FieldRenderResource_177,
+        gUnk_FieldRenderResource_178,
+    },
+    /* 0x43 */ {
+        0x03, 0x05,
+        { nullptr, gUnk_FieldRenderResource_203, nullptr },
+        gUnk_FieldRenderResource_204,
+        gUnk_FieldRenderResource_205,
+    },
+    /* 0x44 */ {
+        0x03, 0x05,
+        { nullptr, gUnk_FieldRenderResource_206, nullptr },
+        gUnk_FieldRenderResource_177,
+        gUnk_FieldRenderResource_178,
+    },
+    /* 0x45 */ {
+        0x03, 0x05,
+        { nullptr, gUnk_FieldRenderResource_207, nullptr },
+        gUnk_FieldRenderResource_208,
+        gUnk_FieldRenderResource_209,
+    },
+    /* 0x46 */ {
+        0x03, 0x05,
+        { nullptr, gUnk_FieldRenderResource_210, nullptr },
+        gUnk_FieldRenderResource_177,
+        gUnk_FieldRenderResource_178,
+    },
+    /* 0x47 */ {
+        0x03, 0x05,
+        { nullptr, gUnk_FieldRenderResource_211, nullptr },
+        gUnk_FieldRenderResource_212,
+        gUnk_FieldRenderResource_213,
+    },
+    /* 0x48 */ {
+        0x03, 0x05,
+        { nullptr, gUnk_FieldRenderResource_214, nullptr },
+        gUnk_FieldRenderResource_177,
+        gUnk_FieldRenderResource_178,
+    },
+    /* 0x49 */ {
+        0x03, 0x05,
+        { nullptr, gUnk_FieldRenderResource_215, nullptr },
+        gUnk_FieldRenderResource_216,
+        gUnk_FieldRenderResource_217,
+    },
+    /* 0x4A */ {
+        0x03, 0x05,
+        { nullptr, gUnk_FieldRenderResource_218, nullptr },
+        gUnk_FieldRenderResource_177,
+        gUnk_FieldRenderResource_178,
+    },
+    /* 0x4B */ {
+        0x03, 0x05,
+        { nullptr, gUnk_FieldRenderResource_219, nullptr },
+        gUnk_FieldRenderResource_220,
+        gUnk_FieldRenderResource_221,
+    },
+    /* 0x4C */ {
+        0x03, 0x05,
+        { nullptr, gUnk_FieldRenderResource_222, nullptr },
+        gUnk_FieldRenderResource_177,
+        gUnk_FieldRenderResource_178,
+    },
+    /* 0x4D */ {
+        0x04, 0x04,
+        { nullptr, gUnk_FieldRenderResource_223, nullptr },
+        nullptr,
+        nullptr,
+    },
+    /* 0x4E */ {
+        0x04, 0x04,
+        { nullptr, gUnk_FieldRenderResource_224, nullptr },
+        nullptr,
+        nullptr,
+    },
+    /* 0x4F */ {
+        0x04, 0x04,
+        { nullptr, gUnk_FieldRenderResource_225, nullptr },
+        nullptr,
+        nullptr,
+    },
+    /* 0x50 */ {
+        0x04, 0x04,
+        { nullptr, gUnk_FieldRenderResource_226, nullptr },
+        nullptr,
+        nullptr,
+    },
+    /* 0x51 */ {
+        0x02, 0x02,
+        { nullptr, gUnk_FieldRenderResource_227, nullptr },
+        nullptr,
+        nullptr,
     },
 };

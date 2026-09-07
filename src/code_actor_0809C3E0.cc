@@ -7,51 +7,24 @@ u8 const gActorStateMaxValues[] SECTION(".rodata.actor_state_max_values") = {
     10, 10, 255, 10, 10, 255,
 };
 
-extern u8 const gUnk_ActorDataSelection_00_00[];
-extern u8 const gUnk_ActorDataSelection_00_04[];
-extern u8 const gUnk_ActorDataSelection_01_00[];
-extern u8 const gUnk_ActorDataSelection_01_04[];
-extern u8 const gUnk_ActorDataSelection_02_00[];
-extern u8 const gUnk_ActorDataSelection_02_04[];
-extern u8 const gUnk_ActorDataSelection_03_00[];
-extern u8 const gUnk_ActorDataSelection_03_04[];
-extern u8 const gUnk_ActorDataSelection_04_00[];
-extern u8 const gUnk_ActorDataSelection_04_04[];
-extern u8 const gUnk_ActorDataSelection_05_00[];
-extern u8 const gUnk_ActorDataSelection_05_04[];
-extern u8 const gUnk_ActorDataSelection_06_00[];
-extern u8 const gUnk_ActorDataSelection_06_04[];
-extern u8 const gUnk_ActorDataSelection_07_00[];
-extern u8 const gUnk_ActorDataSelection_07_04[];
-extern u8 const gUnk_ActorDataSelection_08_00[];
-extern u8 const gUnk_ActorDataSelection_08_04[];
-extern u8 const gUnk_ActorDataSelection_09_00[];
-extern u8 const gUnk_ActorDataSelection_09_04[];
-extern u8 const gUnk_ActorDataSelection_10_00[];
-extern u8 const gUnk_ActorDataSelection_10_04[];
-extern u8 const gUnk_ActorDataSelection_11_00[];
-extern u8 const gUnk_ActorDataSelection_11_04[];
-extern u8 const gUnk_ActorDataSelection_13_00[];
-extern u8 const gUnk_ActorDataSelection_13_04[];
-
 extern char const gCppRuntimeBadAlloc_ActorDataSelectionPrefix[] =
     "bad_alloc";
 
 ActorDataSelectionEntry const gActorDataSelectionEntries[] = {
-    { gUnk_ActorDataSelection_00_00, gUnk_ActorDataSelection_00_04, 0x15, 0x0C, 0x0000 },
-    { gUnk_ActorDataSelection_01_00, gUnk_ActorDataSelection_01_04, 0x0A, 0x02, 0x0000 },
-    { gUnk_ActorDataSelection_02_00, gUnk_ActorDataSelection_02_04, 0x24, 0x1B, 0x0000 },
-    { gUnk_ActorDataSelection_03_00, gUnk_ActorDataSelection_03_04, 0x15, 0x1B, 0x0000 },
-    { gUnk_ActorDataSelection_04_00, gUnk_ActorDataSelection_04_04, 0x21, 0x19, 0x0000 },
-    { gUnk_ActorDataSelection_05_00, gUnk_ActorDataSelection_05_04, 0x0B, 0x19, 0x0000 },
-    { gUnk_ActorDataSelection_06_00, gUnk_ActorDataSelection_06_04, 0x1F, 0x10, 0x0000 },
-    { gUnk_ActorDataSelection_07_00, gUnk_ActorDataSelection_07_04, 0x05, 0x10, 0x0000 },
-    { gUnk_ActorDataSelection_08_00, gUnk_ActorDataSelection_08_04, 0x15, 0x0E, 0x0000 },
-    { gUnk_ActorDataSelection_09_00, gUnk_ActorDataSelection_09_04, 0x0B, 0x02, 0x0000 },
-    { gUnk_ActorDataSelection_10_00, gUnk_ActorDataSelection_10_04, 0x25, 0x02, 0x0000 },
-    { gUnk_ActorDataSelection_11_00, gUnk_ActorDataSelection_11_04, 0x06, 0x02, 0x0000 },
+    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 53), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 54), 0x15, 0x0C, 0x0000 },
+    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 55), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 56), 0x0A, 0x02, 0x0000 },
+    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 57), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 58), 0x24, 0x1B, 0x0000 },
+    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 59), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 60), 0x15, 0x1B, 0x0000 },
+    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 61), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 62), 0x21, 0x19, 0x0000 },
+    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 63), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 64), 0x0B, 0x19, 0x0000 },
+    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 65), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 66), 0x1F, 0x10, 0x0000 },
+    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 67), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 68), 0x05, 0x10, 0x0000 },
+    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 73), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 74), 0x15, 0x0E, 0x0000 },
+    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 75), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 76), 0x0B, 0x02, 0x0000 },
+    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 69), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 70), 0x25, 0x02, 0x0000 },
+    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 71), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 72), 0x06, 0x02, 0x0000 },
     { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 31), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 30), 0x01, 0x02, 0x0000 },
-    { gUnk_ActorDataSelection_13_00, gUnk_ActorDataSelection_13_04, 0x69, 0x3E, 0x0000 },
+    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 77), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 78), 0x69, 0x3E, 0x0000 },
 };
 
 extern char const gCppRuntimeBadAlloc_ActorDataSelectionTrailer[] =

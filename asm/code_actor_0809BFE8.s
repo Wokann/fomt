@@ -271,11 +271,11 @@ func_0809C510: @ 0x0809C510
     adds r0, #0x9c
     ldrb r1, [r0, #8]
     ldrb r2, [r0, #9]
-    ldr r0, .L0809C550 @ =gUnk_081070AC
+    ldr r0, .L0809C550 @ =gFieldRenderRectDescriptors + 0x780
     b .L0809C5A0
     .align 2, 0
 .L0809C54C: .4byte gActorDataSelectionEntries
-.L0809C550: .4byte gUnk_081070AC
+.L0809C550: .4byte gFieldRenderRectDescriptors + 0x780
 .L0809C554:
     ldr r2, .L0809C570 @ =gActorDataSelectionEntries
     lsls r0, r4, #1
@@ -302,11 +302,11 @@ func_0809C510: @ 0x0809C510
     adds r0, #0x9c
     ldrb r1, [r0, #8]
     ldrb r2, [r0, #9]
-    ldr r0, .L0809C58C @ =gUnk_08107094
+    ldr r0, .L0809C58C @ =gFieldRenderRectDescriptors + 0x768
     b .L0809C5A0
     .align 2, 0
 .L0809C588: .4byte gActorDataSelectionEntries
-.L0809C58C: .4byte gUnk_08107094
+.L0809C58C: .4byte gFieldRenderRectDescriptors + 0x768
 .L0809C590:
     ldr r1, .L0809C5B0 @ =gActorDataSelectionEntries
     lsls r0, r4, #1

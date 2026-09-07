@@ -45,7 +45,7 @@ struct FieldRenderRectDescriptor
     void const * lookup_indices;
 };
 
-#define FIELD_RENDER_RECT_DESCRIPTOR_COUNT 52
+#define FIELD_RENDER_RECT_DESCRIPTOR_COUNT 82
 
 extern FieldPlotWeatherRule const gFieldPlotOrdinaryWeatherRules[4][2];
 extern FieldPlotWeatherRule const gFieldPlotSpecialWeatherRule3;
