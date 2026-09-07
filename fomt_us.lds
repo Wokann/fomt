@@ -622,7 +622,7 @@ SECTIONS
         . = 0x107370; src/field_data.o(.rodata.field_render_resource_runtime_strings);
         . = 0x107388; src/field_data.o(.rodata.field_render_parallel_tables);
         . = 0x1073C4; src/field_data.o(.rodata.field_render_patch_arguments);
-        . = 0x107424; asm/data/data_080F9EB8.o(.rodata.field_render_patch_arguments_after);
+        . = 0x107424; src/field_data.o(.rodata.field_render_patch_arguments_after);
         . = 0x10742E; src/farm_house.o(.rodata.farm_house_style_nibble_lookup);
         FILL(0x00);
         . = 0x107438; src/bachelorette.o(.rodata.bachelorette_marriage_candidate_character_ids);

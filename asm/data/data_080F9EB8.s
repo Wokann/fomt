@@ -76,9 +76,6 @@
     .section .rodata.character_names_table_trailer
     .incbin "baserom_jp.gba", 0x103EF4, (0x10447C - 0x103EF4)
 
-    .section .rodata.field_render_patch_arguments_after
-    .incbin "baserom_jp.gba", 0x106F6C, (0x106F76 - 0x106F6C)
-
     .section .rodata.static_data_after_item_discard
     .global gUnk_08118CF4
 gUnk_08118CF4:
@@ -856,9 +853,6 @@ gUnk_081040EC:
 	.global gUnk_081043BC
 gUnk_081043BC:
 	.incbin "baserom_us.gba", 0x1043BC, 0x57C
-
-	.section .rodata.field_render_patch_arguments_after
-	.incbin "baserom_us.gba", 0x107424, 0xA
 
 	.section .rodata.static_data_after_item_discard
 	.incbin "baserom_us.gba", 0x117B14, (0x117B20 - 0x117B14)

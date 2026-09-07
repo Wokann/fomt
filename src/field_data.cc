@@ -941,6 +941,10 @@ FieldRenderPatchArgumentData const gFieldRenderPatchArgumentData
         { 0x14, 0x19, 0x03, 0x00 },
     };
 
+char const gCppRuntimeBadAlloc_FieldRenderPatchArguments[]
+    SECTION(".rodata.field_render_patch_arguments_after") =
+        "bad_alloc";
+
 FieldRenderSeasonalRecordRange const gFieldRenderSeasonalRecordRanges[NUM_SEASONS]
     SECTION(".rodata.field_render_seasonal_record_ranges") = {
         { 0x00, 0x1A },

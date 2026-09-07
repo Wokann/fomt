@@ -103,6 +103,7 @@ extern char const gCppRuntimeBadAlloc_FieldRenderSortedValuesFirst[];
 extern char const gCppRuntimeBadAlloc_FieldRenderSortedValuesSecond[];
 extern char const gCppRuntimeBadAlloc_FieldRenderResource00[];
 extern char const gCppRuntimeBadAlloc_FieldRenderResource01[];
+extern char const gCppRuntimeBadAlloc_FieldRenderPatchArguments[];
 extern u32 const gUnk_080AE894InitialValues[5];
 extern u32 const gUnk_080AE894LayoutValues[10];
 extern char const gText_080B0708DefaultGlyph[];
