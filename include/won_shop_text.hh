@@ -14,6 +14,7 @@ struct WonShopCatalogEntry
 #define WON_SHOP_CATALOG SECTION(".rodata.won_shop_catalog")
 #define WON_SHOP_DIALOGUE SECTION(".rodata.won_shop_dialogue")
 #define WON_SHOP_DELIVERY_DIALOGUE SECTION(".rodata.won_shop_delivery_dialogue")
+#define WON_SHOP_TRAILER SECTION(".rodata.won_shop_trailer")
 
 extern WonShopCatalogEntry const gWonShopCatalog[];
 
@@ -31,5 +32,6 @@ extern char const gText_WonShop_InsufficientGold[];
 extern char const gText_WonShop_PurchaseMorePrompt[];
 extern char const gText_WonShop_NoPurchase[];
 extern char const gText_WonShop_NoAdditionalPurchase[];
+extern char const gCppRuntimeBadAlloc_WonShopTrailer[];
 
 #endif // WON_SHOP_TEXT_HH

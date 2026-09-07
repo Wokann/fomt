@@ -636,10 +636,12 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4); src/won_shop_data.o(.rodata.won_shop_catalog);
         . = 0xFDC40; data/text/won_shop.o(.rodata.won_shop_dialogue);
-        . = 0xFDEA2; asm/data/data_080F9EB8.o(.rodata.won_shop_post_dialogue_padding);
-        . = 0xFDEA4; data/text/won_shop.o(.rodata.won_shop_delivery_dialogue);
-        . = 0xFDF90; asm/data/data_080F9EB8.o(.rodata.won_shop_trailer);
-        . = 0xFDF9C; src/winery_shop_data.o(.rodata.winery_shop_catalog);
+        FILL(0x00);
+        . = ALIGN(4); data/text/won_shop.o(.rodata.won_shop_delivery_dialogue);
+        FILL(0x00);
+        . = ALIGN(4); data/text/won_shop.o(.rodata.won_shop_trailer);
+        FILL(0x00);
+        . = ALIGN(4); src/winery_shop_data.o(.rodata.winery_shop_catalog);
         . = 0xFDFAC; data/text/winery_shop.o(.rodata.winery_shop_dialogue);
         . = 0xFE178; asm/data/data_080F9EB8.o(.rodata.winery_shop_trailer);
         . = 0xFE184; src/special_merchant_shop_data.o(.rodata.special_merchant_shop_catalog);

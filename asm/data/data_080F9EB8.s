@@ -58,11 +58,6 @@
 
 
 
-    .section .rodata.won_shop_post_dialogue_padding
-    .incbin "baserom_jp.gba", 0xFDEA2, (0xFDEA4 - 0xFDEA2)
-
-    .section .rodata.won_shop_trailer
-    .incbin "baserom_jp.gba", 0xFDF90, (0xFDF9C - 0xFDF90)
 
     .section .rodata.winery_shop_trailer
     .incbin "baserom_jp.gba", 0xFE178, (0xFE184 - 0xFE178)
@@ -390,8 +385,6 @@ gUnk_080FD920:
 
 
 
-	.section .rodata.won_shop_trailer
-	.incbin "baserom_us.gba", 0xFE734, (0xFE740 - 0xFE734)
 
 	.section .rodata.unextracted_shop_data
 

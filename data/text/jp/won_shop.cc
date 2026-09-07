@@ -61,3 +61,6 @@ char const gText_WonShop_ToolDeliveryMultiple[] WON_SHOP_DELIVERY_DIALOGUE =
     "らないあるねぇ～。{Press}\p"
     "家に送ってあげるある。\r\n"
     "サービス、サービスね。{Press}";
+
+extern char const gCppRuntimeBadAlloc_WonShopTrailer[] WON_SHOP_TRAILER =
+    "bad_alloc";

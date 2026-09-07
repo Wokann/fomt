@@ -46,3 +46,6 @@ char const gText_WonShop_NoPurchase[] WON_SHOP_DIALOGUE =
 char const gText_WonShop_NoAdditionalPurchase[] WON_SHOP_DIALOGUE =
     "Sure you don't want to\r\n"
     "buy anything else?{Press}";
+
+extern char const gCppRuntimeBadAlloc_WonShopTrailer[] WON_SHOP_TRAILER =
+    "bad_alloc";
