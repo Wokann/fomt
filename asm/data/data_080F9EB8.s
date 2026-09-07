@@ -545,9 +545,6 @@ gUnk_0810400C:
 gUnk_081040EC:
 	.incbin "baserom_us.gba", 0x1040EC, 0x1C
 
-	.section .rodata.character_names_table_trailer
-	.incbin "baserom_us.gba", 0x1043B0, (0x1043BC - 0x1043B0)
-
 	.section .rodata.reference_guide_harvest_sprite_minigames_after_character_names
 
 	.global gUnk_081043BC
