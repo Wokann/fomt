@@ -541,17 +541,10 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4); src/fixed_labels.o(.rodata);
         FILL(0x00);
-        . = ALIGN(4); data/text/common/ui_error.o(.rodata.ui_error);
-        asm/data/data_080F0348.o(.rodata.ui_error_trailer);
+        . = ALIGN(4); src/ui_error.o(.rodata);
         FILL(0x00);
-        . = ALIGN(4); src/menu_data.o(.rodata.menu_entry_ids);
+        . = ALIGN(4); src/menu_data.o(.rodata);
         FILL(0x00);
-        . = ALIGN(4); data/text/menu.o(.rodata.menu_labels);
-        FILL(0x00);
-        . = ALIGN(4); src/menu_data.o(.rodata.menu_label_pointers);
-        FILL(0xFF);
-        . = ALIGN(4); asm/data/data_080F0348.o(.rodata.menu_data_trailer);
-        FILL(0xFF);
         . = 0xF12DC; /* JP schedule table block. */
         src/data_schedules.o(.rodata);
         . = 0xF1810; /* JP counterpart of data_080F1A80. */

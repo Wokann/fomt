@@ -1,4 +1,17 @@
-#include "ui_error_text.hh"
+#include "ui_error.hh"
 
-char const gText_Fallback_Error[] SECTION(".rodata.ui_error") =
+#if defined(FOMT_UI_ERROR_TEXT_FALLBACK_ERROR)
+
+char const gText_Fallback_Error[] =
     "Error";
+
+#elif defined(FOMT_UI_ERROR_TEXT_RUNTIME)
+
+char const gCppRuntimeBadAlloc_UiErrorFirst[] =
+    "bad_alloc";
+char const gCppRuntimeBadAlloc_UiErrorSecond[] =
+    "bad_alloc";
+
+#else
+#error "Include this file through src/ui_error.cc with a text partition."
+#endif

@@ -1,22 +1,22 @@
-#include "menu_text.hh"
+#include "menu_data.hh"
 
-char const gText_Menu_Diary[] SECTION(".rodata.menu_labels") =
+#if defined(FOMT_MENU_TEXT_LABELS)
+
+char const gText_Menu_Diary[] =
     "Diary";
-
-char const gText_Menu_Rucksack[] SECTION(".rodata.menu_labels") =
+char const gText_Menu_Rucksack[] =
     "Rucksack";
-
-char const gText_Menu_WorldMap[] SECTION(".rodata.menu_labels") =
+char const gText_Menu_WorldMap[] =
     "World Map";
-
-char const gText_Menu_FarmMap[] SECTION(".rodata.menu_labels") =
+char const gText_Menu_FarmMap[] =
     "Farm Map";
-
-char const gText_Menu_Earnings[] SECTION(".rodata.menu_labels") =
+char const gText_Menu_Earnings[] =
     "Earnings";
-
-char const gText_Menu_Memo[] SECTION(".rodata.menu_labels") =
+char const gText_Menu_Memo[] =
     "Memo";
-
-char const gText_Menu_Tutorial[] SECTION(".rodata.menu_labels") =
+char const gText_Menu_Tutorial[] =
     "Tutorial";
+
+#else
+#error "Include this file through src/menu_data.cc with a text partition."
+#endif

@@ -5,7 +5,7 @@ Regional text belongs under this directory by its owning data structure:
     data/text/us/ and data/text/jp/
         tool.cc, food.cc, article.cc
         calendar.cc, help_menu.cc, animal_memorial.cc
-        load_error.cc, menu.cc
+        load_error.cc, menu.cc, fixed_labels.cc, ui_error.cc
         new_game_menu.cc, new_game_status.cc, new_game_help.cc
         new_game_save.cc, new_game_identity.cc
         new_game_name_entry.cc, new_game_name_entry_ui.cc
@@ -17,11 +17,16 @@ Regional text belongs under this directory by its owning data structure:
 
     data/text/common/
         fallback.cc       item fallbacks compiled with src/item.cc
-        ui_error.cc       shared UI fallback text
+        menu.cc           runtime strings compiled with src/menu_data.cc
+        ui_error.cc       fallback/runtime strings compiled with src/ui_error.cc
+        script_engine.cc  non-script error strings compiled with src/script_engine.cc
         sram_signature.cc shared fixed-width SRAM header
 
 Keep categories separate even when their entries are linked beside one another:
-each source corresponds to the C/C++ structure that owns its text pointers.
+each text source corresponds to the C/C++ structure that owns its text
+pointers. A source-owned text fragment is included at its exact physical point
+inside the owning `src/<module>.cc`; it remains under `data/text` and is listed
+in `TEXT_FRAGMENT_SOURCES` so it does not produce a second object.
 Reference Guide sources are grouped under each region's `reference_guide/`
 directory, with one source per verified guide category.  Their small pointer
 tables and declarations are centralized in `src/reference_guide.cc` and
@@ -55,8 +60,8 @@ zero-initializes any remaining field capacity.
 
 `common/fallback.cc` is included directly by `src/item.cc` because its small
 item fallback strings are byte-identical in both regions. `common/ui_error.cc`
-and `common/sram_signature.cc` are generated through the text preprocessor and
-linked into both regional ROMs. The latter is not display text: its explicit
+and `common/script_engine.cc` are included at their owning modules' physical
+ROM positions. `common/sram_signature.cc` is not display text: its explicit
 32-byte array is the persisted SRAM signature used by the save verifier.
 
 Game scripts are deliberately outside this directory and remain independently
