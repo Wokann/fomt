@@ -16,6 +16,7 @@ struct SupermarketCatalogEntry
 #define SUPERMARKET_PRIMARY_TEXT SECTION(".rodata.supermarket_primary_text")
 #define SUPERMARKET_ADDITIONAL_SEED_CATALOG SECTION(".rodata.supermarket_additional_seed_catalog")
 #define SUPERMARKET_SECONDARY_TEXT SECTION(".rodata.supermarket_secondary_text")
+#define SUPERMARKET_TRAILER SECTION(".rodata.supermarket_trailer")
 
 extern SupermarketCatalogEntry const gSupermarketCropSeedCatalog[];
 extern SupermarketCatalogEntry const gSupermarketAdditionalSeedCatalog[];
@@ -29,6 +30,7 @@ extern char const gText_Supermarket_PurchaseMorePrompt[];
 extern char const gText_Supermarket_EquipmentDelivery[];
 extern char const gText_Supermarket_SeedDelivery[];
 extern char const gText_Supermarket_SeedPurchaseConfirmation[];
+extern char const gCppRuntimeBadAlloc_SupermarketTrailer[];
 
 #if defined(REGION_JP)
 extern char const gText_Supermarket_EquipmentDeliveryPartial[];

@@ -42,3 +42,6 @@ char const gText_Supermarket_SeedDelivery[] SUPERMARKET_SECONDARY_TEXT =
 
 char const gText_Supermarket_SeedPurchaseConfirmation[] SUPERMARKET_SECONDARY_TEXT =
     "Are you sure?{Press}";
+
+extern char const gCppRuntimeBadAlloc_SupermarketTrailer[] SUPERMARKET_TRAILER =
+    "bad_alloc";

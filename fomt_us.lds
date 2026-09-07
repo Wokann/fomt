@@ -525,12 +525,13 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4); src/supermarket_data.o(.rodata.supermarket_crop_catalog);
         . = 0xFDE40; data/text/supermarket.o(.rodata.supermarket_primary_text);
-        . = 0xFDFA1; asm/data/data_080F9EB8.o(.rodata.supermarket_primary_text_padding);
-        . = 0xFDFA4; src/supermarket_data.o(.rodata.supermarket_additional_seed_catalog);
+        FILL(0x00);
+        . = ALIGN(4); src/supermarket_data.o(.rodata.supermarket_additional_seed_catalog);
         . = 0xFDFE4; data/text/supermarket.o(.rodata.supermarket_secondary_text);
-        . = 0xFE043; asm/data/data_080F9EB8.o(.rodata.supermarket_secondary_text_padding);
-        . = 0xFE044; asm/data/data_080F9EB8.o(.rodata.supermarket_trailer);
-        . = 0xFE050; src/clinic_data.o(.rodata.clinic_catalog);
+        FILL(0x00);
+        . = ALIGN(4); data/text/supermarket.o(.rodata.supermarket_trailer);
+        FILL(0x00);
+        . = ALIGN(4); src/clinic_data.o(.rodata.clinic_catalog);
         . = 0xFE070; data/text/clinic.o(.rodata.clinic_text);
         . = 0xFE257; asm/data/data_080F9EB8.o(.rodata.clinic_text_padding);
         . = 0xFE258; asm/data/data_080F9EB8.o(.rodata.inn_shop_prefix);
