@@ -25,4 +25,7 @@ extern char const gNewGameNameEntryCharacterRows[NEW_GAME_NAME_ENTRY_ROW_COUNT][
 // intentionally sits one row before this array.
 extern char const gText_NameEntry_PresetAnimalNames[NEW_GAME_NAME_ENTRY_PRESET_ANIMAL_NAME_COUNT][NEW_GAME_NAME_ENTRY_PRESET_ANIMAL_NAME_WIDTH];
 
+// C++ runtime string stored immediately before the regional preset-name rows.
+extern char const gCppRuntimeBadAlloc_NewGameNameEntryPresetNames[];
+
 #endif // NEW_GAME_NAME_ENTRY_TEXT_HH
