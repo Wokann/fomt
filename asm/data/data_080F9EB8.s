@@ -70,18 +70,6 @@
     .section .rodata.carpenter_trailer
     .incbin "baserom_jp.gba", 0xFF4FC, (0xFF508 - 0xFF4FC)
 
-    .section .rodata.livestock_shop_menu_padding
-    .incbin "baserom_jp.gba", 0xFF539, (0xFF53C - 0xFF539)
-
-    .section .rodata.livestock_shop_status_prefix_padding
-    .incbin "baserom_jp.gba", 0xFF61A, (0xFF61C - 0xFF61A)
-
-    .section .rodata.livestock_shop_status_padding
-    .incbin "baserom_jp.gba", 0xFF6C3, (0xFF6C4 - 0xFF6C3)
-
-    .section .rodata.livestock_shop_dialogue_padding
-    .incbin "baserom_jp.gba", 0xFF9A2, (0xFF9A4 - 0xFF9A2)
-
     .section .rodata.link_communication_trailer
     .incbin "baserom_jp.gba", 0x100130, (0x1005EA - 0x100130)
 
@@ -385,15 +373,6 @@ gUnk_080FF838:
 
     .section .rodata.carpenter_trailer
     .incbin "baserom_us.gba", 0xFFB54, (0xFFB60 - 0xFFB54)
-
-	.section .rodata.livestock_shop_menu_padding
-	.incbin "baserom_us.gba", 0xFFB8F, (0xFFB90 - 0xFFB8F)
-
-	.section .rodata.livestock_shop_status_prefix_padding
-	.incbin "baserom_us.gba", 0xFFC6E, (0xFFC70 - 0xFFC6E)
-
-	.section .rodata.livestock_shop_status_padding
-	.incbin "baserom_us.gba", 0xFFD3B, (0xFFD3C - 0xFFD3B)
 
 	.section .rodata.link_communication_trailer
 

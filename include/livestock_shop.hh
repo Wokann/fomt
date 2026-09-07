@@ -1,25 +1,19 @@
-#ifndef LIVESTOCK_SHOP_TEXT_HH
-#define LIVESTOCK_SHOP_TEXT_HH
+#ifndef LIVESTOCK_SHOP_HH
+#define LIVESTOCK_SHOP_HH
 
 #include "prelude.h"
 
-// Each original catalog entry is five 32-bit fields.  The first and last
-// fields are still caller-owned mode values; the two middle pointers are
-// deliberately retained as distinct fields even when they target one string.
+// Each original catalog entry is five 32-bit fields.  Native callers establish
+// the two text fields and price; the first and last fields have not yet been
+// given reliable semantic names.
 struct LivestockShopCatalogEntry
 {
-    u32 code;
+    u32 unk_00;
     char const * primary_text;
     u32 price;
     char const * secondary_text;
-    u32 mode;
+    u32 unk_10;
 };
-
-#define LIVESTOCK_SHOP_MENU SECTION(".rodata.livestock_shop_menu")
-#define LIVESTOCK_SHOP_CATALOG SECTION(".rodata.livestock_shop_catalog")
-#define LIVESTOCK_SHOP_STATUS_PREFIX SECTION(".rodata.livestock_shop_status_prefix")
-#define LIVESTOCK_SHOP_STATUS SECTION(".rodata.livestock_shop_status")
-#define LIVESTOCK_SHOP_DIALOGUE SECTION(".rodata.livestock_shop_dialogue")
 
 extern char const gText_LivestockShop_Empty[];
 extern char const gText_LivestockShop_BuyCow[];
@@ -75,4 +69,4 @@ extern char const gText_LivestockShop_PricePromptPrefix[];
 extern char const gText_LivestockShop_PricePromptSuffix[];
 #endif
 
-#endif // LIVESTOCK_SHOP_TEXT_HH
+#endif // LIVESTOCK_SHOP_HH
