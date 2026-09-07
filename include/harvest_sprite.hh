@@ -29,6 +29,13 @@ extern char const gCppRuntimeBadAlloc_HarvestSpriteMiniGamePostChickenFestival[]
 extern char const gText_080BE728DigitZero[];
 extern u32 const gUnk_080BE954Values[7];
 
+extern u16 const gUnk_080C09D8Values[11];
+extern u16 const gUnk_080C0B58Values[7];
+extern char const gCppRuntimeBadAlloc_HarvestSpriteMiniGameHarvestResults[];
+extern u16 const gUnk_080C3B18Values[8][2];
+extern char const gText_080C38E4DigitZero[];
+extern u32 const gUnk_080C3B18IndexValues[7];
+
 struct HarvestSprite : public Npc
 {
     enum Task

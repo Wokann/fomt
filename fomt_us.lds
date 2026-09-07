@@ -646,9 +646,10 @@ SECTIONS
         . = 0x107B00; data/text/harvest_sprite_minigames.o(.rodata.harvest_sprite_minigames_chicken_festival_instructions);
         . = 0x107CFC; src/harvest_sprite.o(.rodata.harvest_sprite_minigames_chicken_festival_post_text_data);
         . = 0x107DD8; data/text/harvest_sprite_minigames.o(.rodata.harvest_sprite_minigames_harvest_instructions);
-        . = 0x107F5F; asm/data/data_080F9EB8.o(.rodata.harvest_sprite_minigames_harvest_instructions_trailer);
         . = 0x107F60; data/text/harvest_sprite_minigames.o(.rodata.harvest_sprite_minigames_harvest_results);
-        . = 0x107FB0; asm/data/data_080F9EB8.o(.rodata.harvest_sprite_minigames_harvest_results_trailer);
+        . = 0x107FB0; src/harvest_sprite.o(.rodata.harvest_sprite_minigames_harvest_results_first_values);
+        . = 0x107FC6; src/harvest_sprite.o(.rodata.harvest_sprite_minigames_harvest_results_second_values);
+        . = 0x107FD4; src/harvest_sprite.o(.rodata.harvest_sprite_minigames_harvest_results_post_values);
         . = 0x108020; data/text/harvest_sprite_minigames.o(.rodata.harvest_sprite_minigames_watering_instructions);
         . = 0x108217; asm/data/data_080F9EB8.o(.rodata.harvest_sprite_minigames_watering_instructions_trailer);
         . = 0x108218; data/text/harvest_sprite_minigames.o(.rodata.harvest_sprite_minigames_watering_results);

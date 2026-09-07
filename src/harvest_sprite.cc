@@ -111,6 +111,46 @@ u32 const gUnk_080BE954Values[7]
         4, 0, 1, 6, 3, 2, 5,
     };
 
+// JP begins this native halfword lookup at a byte-aligned address.  Preserve
+// that physical layout explicitly; the US native code is the decoded caller.
+u16 const gUnk_080C09D8Values[11]
+    SECTION(".rodata.harvest_sprite_minigames_harvest_results_first_values") ALIGN(1) = {
+        0x03FE, 0x0402, 0x0406, 0x03F6, 0x040A, 0x040E,
+        0x0412, 0x03FA, 0x0416, 0x041A, 0x041E,
+    };
+
+u16 const gUnk_080C0B58Values[7]
+    SECTION(".rodata.harvest_sprite_minigames_harvest_results_second_values") ALIGN(2) = {
+        0x2A, 0x36, 0x2C, 0x2E, 0x30, 0x32, 0x34,
+    };
+
+char const gCppRuntimeBadAlloc_HarvestSpriteMiniGameHarvestResults[]
+    SECTION(".rodata.harvest_sprite_minigames_harvest_results_post_values") =
+        "bad_alloc";
+
+u16 const gUnk_080C3B18Values[8][2]
+    SECTION(".rodata.harvest_sprite_minigames_harvest_results_post_values") ALIGN(4) = {
+        { 0x033C, 0x0078 }, { 0x043C, 0x0078 },
+        { 0x0532, 0x005A }, { 0x0632, 0x005A },
+        { 0x0728, 0x003C }, { 0x0828, 0x003C },
+        { 0x091E, 0x001E }, { 0x0A1E, 0x001E },
+    };
+
+#if defined(REGION_JP)
+char const gText_080C38E4DigitZero[]
+    SECTION(".rodata.harvest_sprite_minigames_harvest_results_post_values") =
+        "０";
+#else
+char const gText_080C38E4DigitZero[]
+    SECTION(".rodata.harvest_sprite_minigames_harvest_results_post_values") =
+        "0";
+#endif
+
+u32 const gUnk_080C3B18IndexValues[7]
+    SECTION(".rodata.harvest_sprite_minigames_harvest_results_post_values") = {
+        4, 0, 1, 6, 3, 2, 5,
+    };
+
 HarvestSprite::HarvestSprite(ActorLocation const & location)
     : Npc(location)
 {
