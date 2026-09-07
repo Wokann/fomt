@@ -9,7 +9,7 @@
 
     .section .rodata.library_info_trailer
 jp_data_080fccf3_start:
-    .incbin "baserom_jp.gba", 0xFCCF3, (0xFD0B0 - 0xFCCF3)
+    .incbin "baserom_jp.gba", 0xFCCF3, (0xFD084 - 0xFCCF3)
 
     @ Rectangular Town Map area ranges.  Their record contents remain raw,
     @ but the Town Map lookup table keeps typed relocations to these starts.
@@ -550,7 +550,7 @@ gUnk_080F9F78:
 	.section .rodata.library_info_trailer
 
 us_data_080fd583_start:
-	.incbin "baserom_us.gba", 0xFD583, (0xFD920 - 0xFD583)
+	.incbin "baserom_us.gba", 0xFD583, (0xFD914 - 0xFD583)
 
 	@ Rectangular Town Map area ranges.  Their record contents remain raw,
 	@ but the Town Map lookup table keeps typed relocations to these starts.
@@ -564,10 +564,6 @@ us_data_080fd583_start:
 	.set gUnk_TownMapAreaBounds_005, us_data_080fd583_start + 0x15D
 	.global gUnk_TownMapAreaBounds_007
 	.set gUnk_TownMapAreaBounds_007, us_data_080fd583_start + 0x2A1
-
-	.global gUnk_080FD920
-gUnk_080FD920:
-	.incbin "baserom_us.gba", 0xFD920, 0x20
 
 
 

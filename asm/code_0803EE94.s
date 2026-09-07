@@ -115512,7 +115512,7 @@ func_08079A64: @ 0x08079A64
 	adds r2, r1, #0
 	ldr r0, .L08079BB8 @ =0x00000858
 	adds r4, r5, r0
-	ldr r6, .L08079BBC @ =gUnk_080FD920
+	ldr r6, .L08079BBC @ =gLibraryInitialEntryIds
 .L08079A9E:
 	movs r1, #0
 	ldrsh r0, [r2, r1]
@@ -115654,7 +115654,7 @@ func_08079A64: @ 0x08079A64
 	.align 2, 0
 .L08079BB4: .4byte 0x00000A57
 .L08079BB8: .4byte 0x00000858
-.L08079BBC: .4byte gUnk_080FD920
+.L08079BBC: .4byte gLibraryInitialEntryIds
 .L08079BC0:
 	movs r6, #0x4d
 	mov r0, sp
