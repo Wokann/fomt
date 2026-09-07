@@ -413,8 +413,9 @@ SECTIONS
         . = ALIGN(4); data/text/new_game_identity.o(.rodata.new_game_identity_labels_trailer);
         data/text/new_game_name_entry.o(.rodata.new_game_name_entry_characters);
         data/text/new_game_name_entry_ui.o(.rodata.new_game_name_entry_ui);
-        asm/data/data_080E8610.o(.rodata.new_game_name_entry_trailer);
-        asm/data/data_080E8610.o(.rodata.field_plot_prefix);
+        data/text/new_game_name_entry_ui.o(.rodata.new_game_name_entry_ui_trailer);
+        FILL(0x00);
+        . = ALIGN(4);
         src/field_data.o(.rodata.field_plot_weather_ordinary);
         src/field_data.o(.rodata.field_plot_weather_special_3);
         src/field_data.o(.rodata.field_plot_weather_special_4);

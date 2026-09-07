@@ -17,11 +17,6 @@ init_array:
 gUnk_080E8684:
 	.incbin "baserom_jp.gba", 0xE7AB4, (0xE7AC8 - 0xE7AB4)
 
-	.section .rodata.new_game_name_entry_trailer
-	.incbin "baserom_jp.gba", 0xE80EC, (0xE80F4 - 0xE80EC)
-
-	.section .rodata.field_plot_prefix
-	.incbin "baserom_jp.gba", 0xE80F4, (0xE8164 - 0xE80F4)
     .else
 
     .section .rodata
@@ -39,8 +34,5 @@ init_array:
 	.global gUnk_080E8684
 gUnk_080E8684:
 	.incbin "baserom_us.gba", 0xE8684, (0xE86A8 - 0xE8684)
-
-	.section .rodata.new_game_name_entry_trailer
-	.incbin "baserom_us.gba", 0xE8C4C, (0xE8CC4 - 0xE8C4C)
 
     .endif

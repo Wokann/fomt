@@ -8,6 +8,16 @@ extern char const gText_NewGameNameEntry_NameLabel[];
 extern char const gText_NewGameNameEntry_Confirm[];
 extern char const gText_NewGameNameEntry_Yes[];
 extern char const gText_NewGameNameEntry_No[];
+extern char const gCppRuntimeBadAlloc_NewGameNameEntryUi00[];
+extern char const gCppRuntimeBadAlloc_NewGameNameEntryUi01[];
+extern char const gCppRuntimeBadAlloc_NewGameNameEntryUi02[];
+extern char const gCppRuntimeBadAlloc_NewGameNameEntryUi03[];
+extern char const gCppRuntimeBadAlloc_NewGameNameEntryUi04[];
+extern char const gCppRuntimeBadAlloc_NewGameNameEntryUi05[];
+extern char const gCppRuntimeBadAlloc_NewGameNameEntryUi06[];
+extern char const gCppRuntimeBadAlloc_NewGameNameEntryUi07[];
+extern char const gCppRuntimeBadAlloc_NewGameNameEntryUi08[];
+extern char const gCppRuntimeBadAlloc_NewGameNameEntryUi09[];
 
 #if defined(REGION_JP)
 extern char const gText_NewGameNameEntry_ModeKatakana[];

@@ -26,3 +26,34 @@ char const gText_NewGameNameEntry_Yes[4] SECTION(".rodata.new_game_name_entry_ui
 
 char const gText_NewGameNameEntry_No[4] SECTION(".rodata.new_game_name_entry_ui") =
     "No";
+
+char const gCppRuntimeBadAlloc_NewGameNameEntryUi00[]
+    SECTION(".rodata.new_game_name_entry_ui_trailer") =
+        "bad_alloc";
+char const gCppRuntimeBadAlloc_NewGameNameEntryUi01[]
+    SECTION(".rodata.new_game_name_entry_ui_trailer") ALIGN(4) =
+        "bad_alloc";
+char const gCppRuntimeBadAlloc_NewGameNameEntryUi02[]
+    SECTION(".rodata.new_game_name_entry_ui_trailer") ALIGN(4) =
+        "bad_alloc";
+char const gCppRuntimeBadAlloc_NewGameNameEntryUi03[]
+    SECTION(".rodata.new_game_name_entry_ui_trailer") ALIGN(4) =
+        "bad_alloc";
+char const gCppRuntimeBadAlloc_NewGameNameEntryUi04[]
+    SECTION(".rodata.new_game_name_entry_ui_trailer") ALIGN(4) =
+        "bad_alloc";
+char const gCppRuntimeBadAlloc_NewGameNameEntryUi05[]
+    SECTION(".rodata.new_game_name_entry_ui_trailer") ALIGN(4) =
+        "bad_alloc";
+char const gCppRuntimeBadAlloc_NewGameNameEntryUi06[]
+    SECTION(".rodata.new_game_name_entry_ui_trailer") ALIGN(4) =
+        "bad_alloc";
+char const gCppRuntimeBadAlloc_NewGameNameEntryUi07[]
+    SECTION(".rodata.new_game_name_entry_ui_trailer") ALIGN(4) =
+        "bad_alloc";
+char const gCppRuntimeBadAlloc_NewGameNameEntryUi08[]
+    SECTION(".rodata.new_game_name_entry_ui_trailer") ALIGN(4) =
+        "bad_alloc";
+char const gCppRuntimeBadAlloc_NewGameNameEntryUi09[]
+    SECTION(".rodata.new_game_name_entry_ui_trailer") ALIGN(4) =
+        "bad_alloc";
