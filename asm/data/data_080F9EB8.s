@@ -7,11 +7,22 @@
     .section .rodata.name_entry_preset_animal_names_trailer_prefix
     .incbin "baserom_jp.gba", 0xF996C, (0xF9994 - 0xF996C)
 
-    .section .rodata.town_map_trailer
-    .incbin "baserom_jp.gba", 0xFCB08, (0xFCCB8 - 0xFCB08)
-
     .section .rodata.library_info_trailer
+jp_data_080fccf3_start:
     .incbin "baserom_jp.gba", 0xFCCF3, (0xFD0B0 - 0xFCCF3)
+
+    @ Rectangular Town Map area ranges.  Their record contents remain raw,
+    @ but the Town Map lookup table keeps typed relocations to these starts.
+    .global gUnk_TownMapAreaBounds_000
+    .set gUnk_TownMapAreaBounds_000, jp_data_080fccf3_start + 0x1
+    .global gUnk_TownMapAreaBounds_001
+    .set gUnk_TownMapAreaBounds_001, jp_data_080fccf3_start + 0x36D
+    .global gUnk_TownMapAreaBounds_003
+    .set gUnk_TownMapAreaBounds_003, jp_data_080fccf3_start + 0xD9
+    .global gUnk_TownMapAreaBounds_005
+    .set gUnk_TownMapAreaBounds_005, jp_data_080fccf3_start + 0x15D
+    .global gUnk_TownMapAreaBounds_007
+    .set gUnk_TownMapAreaBounds_007, jp_data_080fccf3_start + 0x2A1
 
 
 
@@ -536,22 +547,23 @@ gUnk_080F9F78:
 	.section .rodata.name_entry_preset_animal_names_prefix
 	.incbin "baserom_us.gba", 0xF9F7C, 0x4
 
-	.section .rodata.town_map_trailer
-
-	.global gUnk_080FD3A0
-gUnk_080FD3A0:
-	.incbin "baserom_us.gba", 0xFD3A0, 0x1A0
-
-	.global gUnk_080FD540
-gUnk_080FD540:
-	.incbin "baserom_us.gba", 0xFD540, 0x8
-
-	.global gUnk_080FD548
-gUnk_080FD548:
-	.incbin "baserom_us.gba", 0xFD548, 0x8
-
 	.section .rodata.library_info_trailer
+
+us_data_080fd583_start:
 	.incbin "baserom_us.gba", 0xFD583, (0xFD920 - 0xFD583)
+
+	@ Rectangular Town Map area ranges.  Their record contents remain raw,
+	@ but the Town Map lookup table keeps typed relocations to these starts.
+	.global gUnk_TownMapAreaBounds_000
+	.set gUnk_TownMapAreaBounds_000, us_data_080fd583_start + 0x1
+	.global gUnk_TownMapAreaBounds_001
+	.set gUnk_TownMapAreaBounds_001, us_data_080fd583_start + 0x36D
+	.global gUnk_TownMapAreaBounds_003
+	.set gUnk_TownMapAreaBounds_003, us_data_080fd583_start + 0xD9
+	.global gUnk_TownMapAreaBounds_005
+	.set gUnk_TownMapAreaBounds_005, us_data_080fd583_start + 0x15D
+	.global gUnk_TownMapAreaBounds_007
+	.set gUnk_TownMapAreaBounds_007, us_data_080fd583_start + 0x2A1
 
 	.global gUnk_080FD920
 gUnk_080FD920:

@@ -113003,7 +113003,7 @@ func_080782EC: @ 0x080782EC
 	cmp r1, #0x33
 	bhi .L0807839A
 	lsls r1, r1, #3
-	ldr r0, .L0807838C @ =gUnk_080FD3A0
+	ldr r0, .L0807838C @ =gTownMapAreaLookup
 	adds r7, r1, r0
 	ldr r5, [r7, #4]
 	cmp r5, #0
@@ -113063,7 +113063,7 @@ func_080782EC: @ 0x080782EC
 	adds r6, r7, #0
 	b .L080783B6
 	.align 2, 0
-.L0807838C: .4byte gUnk_080FD3A0
+.L0807838C: .4byte gTownMapAreaLookup
 .L08078390: .4byte 0x000003FF
 .L08078394:
 	adds r6, r2, #0
@@ -113074,16 +113074,16 @@ func_080782EC: @ 0x080782EC
 	subs r0, #0x34
 	cmp r0, #0xff
 	bhi .L080783AC
-	ldr r6, .L080783A8 @ =gUnk_080FD540
+	ldr r6, .L080783A8 @ =gTownMapAreaLookupFallback_034To133
 	b .L080783B6
 	.align 2, 0
-.L080783A8: .4byte gUnk_080FD540
+.L080783A8: .4byte gTownMapAreaLookupFallback_034To133
 .L080783AC:
 	ldr r4, .L080783F8 @ =0xFFFFFECC
 	adds r0, r1, r4
 	cmp r0, #0xff
 	bhi .L080783B6
-	ldr r6, .L080783FC @ =gUnk_080FD548
+	ldr r6, .L080783FC @ =gTownMapAreaLookupFallback_134To233
 .L080783B6:
 	cmp r6, #0
 	bne .L080783BC
@@ -113123,7 +113123,7 @@ func_080782EC: @ 0x080782EC
 	b .L08078402
 	.align 2, 0
 .L080783F8: .4byte 0xFFFFFECC
-.L080783FC: .4byte gUnk_080FD548
+.L080783FC: .4byte gTownMapAreaLookupFallback_134To233
 .L08078400:
 	ldr r1, [r1, #0xc]
 .L08078402:

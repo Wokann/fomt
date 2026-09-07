@@ -519,7 +519,7 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4); data/text/town_map.o(.rodata);
         . = 0xFD080; src/town_map_data.o(.rodata.town_map_hotspots);
-        . = 0xFD3A0; asm/data/data_080F9EB8.o(.rodata.town_map_trailer);
+        . = 0xFD3A0; src/town_map_data.o(.rodata.town_map_area_lookup);
         . = 0xFD550; data/text/library.o(.rodata.library_info);
         . = 0xFD583; asm/data/data_080F9EB8.o(.rodata.library_info_trailer);
         . = 0xFD940; data/text/library.o(.rodata.library_menu);

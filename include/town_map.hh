@@ -18,13 +18,26 @@ struct TownMapHotspot
     u8 max_cursor_y;
 };
 
+// The second field points into raw rectangular range data.  Its individual
+// record format is not fully decoded yet, but func_080782EC verifies bounds
+// in the first eight bytes of each record.
+struct TownMapAreaLookup
+{
+    u32 lookup_key;
+    u8 const * bounds;
+};
+
 enum
 {
     TOWN_MAP_HOTSPOT_COUNT = 40,
+    TOWN_MAP_AREA_LOOKUP_COUNT = 0x34,
 };
 
 extern TownMapHotspot const gTownMapHotspots[TOWN_MAP_HOTSPOT_COUNT];
 extern u16 const gTownMapResourceIds[];
+extern TownMapAreaLookup const gTownMapAreaLookup[TOWN_MAP_AREA_LOOKUP_COUNT];
+extern TownMapAreaLookup const gTownMapAreaLookupFallback_034To133;
+extern TownMapAreaLookup const gTownMapAreaLookupFallback_134To233;
 
 void CopyBgMap30x13(void const *, u32 map_block, u16 const * source);
 

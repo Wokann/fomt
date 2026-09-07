@@ -3,6 +3,16 @@
 #include "staff_credits_text.hh"
 #include "town_map_text.hh"
 
+EXTERN_C
+
+extern u8 const gUnk_TownMapAreaBounds_000[];
+extern u8 const gUnk_TownMapAreaBounds_001[];
+extern u8 const gUnk_TownMapAreaBounds_003[];
+extern u8 const gUnk_TownMapAreaBounds_005[];
+extern u8 const gUnk_TownMapAreaBounds_007[];
+
+EXTERN_C_END
+
 extern "C" void CopyBgMap30x13(void const *, u32 map_block, u16 const * source)
     SECTION(".text.copy_bg_map_30x13");
 
@@ -135,3 +145,71 @@ TownMapHotspot const gTownMapHotspots[TOWN_MAP_HOTSPOT_COUNT] SECTION(".rodata.t
     { gText_TownMap_MothersHillPeakDescription, gText_TownMap_MothersHillPeakLabel, 0x00000008, 0x00EC, 0x01D0, 0x10, 0x00, 0x28, 0x14 },
     { gText_TownMap_MothersHillDescription, gText_TownMap_MothersHillLabel, 0x00000000, 0x0497, 0x02F0, 0x00, 0x20, 0x40, 0x67 },
 };
+
+TownMapAreaLookup const gTownMapAreaLookup[TOWN_MAP_AREA_LOOKUP_COUNT]
+    SECTION(".rodata.town_map_area_lookup") = {
+        /* 0x00 */ { 0x00005C21, gUnk_TownMapAreaBounds_000 },
+        /* 0x01 */ { 0x000034D3, gUnk_TownMapAreaBounds_001 },
+        /* 0x02 */ { 0x00005054, nullptr },
+        /* 0x03 */ { 0x00005E8C, gUnk_TownMapAreaBounds_003 },
+        /* 0x04 */ { 0x00000CD0, nullptr },
+        /* 0x05 */ { 0x00001C8E, gUnk_TownMapAreaBounds_005 },
+        /* 0x06 */ { 0x000030B8, nullptr },
+        /* 0x07 */ { 0x00003C8F, gUnk_TownMapAreaBounds_007 },
+        /* 0x08 */ { 0x0000081B, nullptr },
+        /* 0x09 */ { 0x00004462, nullptr },
+        /* 0x0A */ { 0x0000417A, nullptr },
+        /* 0x0B */ { 0x0000417A, nullptr },
+        /* 0x0C */ { 0x00000BBF, nullptr },
+        /* 0x0D */ { 0x000027D8, nullptr },
+        /* 0x0E */ { 0x00000B66, nullptr },
+        /* 0x0F */ { 0x00000B85, nullptr },
+        /* 0x10 */ { 0x00000B85, nullptr },
+        /* 0x11 */ { 0x00005344, nullptr },
+        /* 0x12 */ { 0x0000310A, nullptr },
+        /* 0x13 */ { 0x00000B9E, nullptr },
+        /* 0x14 */ { 0x00000B9E, nullptr },
+        /* 0x15 */ { 0x00001E82, nullptr },
+        /* 0x16 */ { 0x00001E82, nullptr },
+        /* 0x17 */ { 0x00001E82, nullptr },
+        /* 0x18 */ { 0x00000B5B, nullptr },
+        /* 0x19 */ { 0x00000B5B, nullptr },
+        /* 0x1A */ { 0x00000B54, nullptr },
+        /* 0x1B */ { 0x00000B54, nullptr },
+        /* 0x1C */ { 0x000006DB, nullptr },
+        /* 0x1D */ { 0x00004748, nullptr },
+        /* 0x1E */ { 0x00000B72, nullptr },
+        /* 0x1F */ { 0x00001E58, nullptr },
+        /* 0x20 */ { 0x00001E58, nullptr },
+        /* 0x21 */ { 0x00001A64, nullptr },
+        /* 0x22 */ { 0x00001A64, nullptr },
+        /* 0x23 */ { 0x000035E4, nullptr },
+        /* 0x24 */ { 0x000027CB, nullptr },
+        /* 0x25 */ { 0x0000445A, nullptr },
+        /* 0x26 */ { 0x00003160, nullptr },
+        /* 0x27 */ { 0x00003475, nullptr },
+        /* 0x28 */ { 0x00005877, nullptr },
+        /* 0x29 */ { 0x0000419D, nullptr },
+        /* 0x2A */ { 0x0000419D, nullptr },
+        /* 0x2B */ { 0x00004F0A, nullptr },
+        /* 0x2C */ { 0x00000000, nullptr },
+        /* 0x2D */ { 0x00000000, nullptr },
+        /* 0x2E */ { 0x00000000, nullptr },
+        /* 0x2F */ { 0x00000000, nullptr },
+        /* 0x30 */ { 0x00000000, nullptr },
+        /* 0x31 */ { 0x00000000, nullptr },
+        /* 0x32 */ { 0x00000000, nullptr },
+        /* 0x33 */ { 0x00000000, nullptr },
+    };
+
+TownMapAreaLookup const gTownMapAreaLookupFallback_034To133
+    SECTION(".rodata.town_map_area_lookup") = {
+        0x00003F28,
+        nullptr,
+    };
+
+TownMapAreaLookup const gTownMapAreaLookupFallback_134To233
+    SECTION(".rodata.town_map_area_lookup") = {
+        0x00004F0A,
+        nullptr,
+    };
