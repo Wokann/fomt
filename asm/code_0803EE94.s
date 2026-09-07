@@ -35377,7 +35377,7 @@ func_08052230: @ 0x08052230
 	add r4, sl
 	lsls r4, r4, #2
 	add r4, sb
-	ldr r6, .L080522D4 @ =gUnk_080FA174
+	ldr r6, .L080522D4 @ =gAnimalFestivalRankingScoreTable
 	adds r4, r4, r6
 	asrs r0, r0, #8
 	movs r1, #0xa
@@ -35397,7 +35397,7 @@ func_08052230: @ 0x08052230
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080522D4: .4byte gUnk_080FA174
+.L080522D4: .4byte gAnimalFestivalRankingScoreTable
 
 	.section .text.animal_festival_ranking_after
 
