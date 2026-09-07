@@ -534,7 +534,8 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4);
         data/text/animal_memorial.o(.rodata);
-        asm/data/data_080F0348.o(.rodata.animal_memorial_trailer);
+        src/animal_data.o(.rodata.animal_data_prefix);
+        src/animal_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); data/text/not_available.o(.rodata.not_available);
         asm/data/data_080F0348.o(.rodata.not_available_trailer);
