@@ -945,3 +945,35 @@ u16 const gUnk_FieldRenderLookupValues[18][2]
         { 0x0110, 0x0111 },
         { 0x01C4, 0x01C5 },
     };
+
+// These are distinct compiler-runtime objects in the original layout.  Their
+// ordinal names describe physical order only; no owning native C++ object has
+// been recovered yet.
+char const gCppRuntimeBadAlloc_FieldRenderRuntime00[]
+    SECTION(".rodata.field_render_runtime_strings") =
+        "bad_alloc";
+char const gCppRuntimeBadAlloc_FieldRenderRuntime01[]
+    SECTION(".rodata.field_render_runtime_strings") =
+        "bad_alloc";
+char const gCppRuntimeBadAlloc_FieldRenderRuntime02[]
+    SECTION(".rodata.field_render_runtime_strings") =
+        "bad_alloc";
+char const gCppRuntimeBadAlloc_FieldRenderRuntime03[]
+    SECTION(".rodata.field_render_runtime_strings") =
+        "bad_alloc";
+char const gCppRuntimeBadAlloc_FieldRenderRuntime04[]
+    SECTION(".rodata.field_render_runtime_strings") =
+        "bad_alloc";
+char const gCppRuntimeError_FieldRenderRuntime[]
+    SECTION(".rodata.field_render_runtime_strings") =
+        "Error";
+char const gText_FieldRenderFallbackNone[]
+    SECTION(".rodata.field_render_runtime_strings") =
+#if defined(REGION_JP)
+        "なし";
+#else
+        "N/A ";
+#endif
+char const gCppRuntimeBadAlloc_FieldRenderRuntime05[]
+    SECTION(".rodata.field_render_runtime_strings") =
+        "bad_alloc";
