@@ -1,4 +1,5 @@
 #include "fishing_results_text.hh"
+#include "item.hh"
 
 // Indexed directly by the native FishingRecordId domain.  When a regional
 // ROM uses one physical string for multiple records, the table repeats that
@@ -73,3 +74,16 @@ char const * const gFishingRecordNames[FISHING_RECORD_COUNT] SECTION(".rodata.fi
 extern char const gCppRuntimeBadAlloc_FishingResultsTrailer[] =
     "bad_alloc";
 #endif
+
+// The Power Berry result follows the native UI's dedicated branch.  Its table
+// slot deliberately preserves the original ARTICLE_WEEDS placeholder.
+u32 const gFishingRecordArticleIds[] SECTION(".rodata.fishing_record_article_ids") = {
+    ARTICLE_PIRATE_TREASURE,
+    ARTICLE_FOSSIL_OF_FISH,
+    ARTICLE_WEEDS,
+    ARTICLE_MESSAGE_IN_A_BOTTLE,
+    ARTICLE_EMPTY_CAN,
+    ARTICLE_BRANCHES,
+    ARTICLE_FISH_BONES,
+    ARTICLE_BOOTS,
+};

@@ -11736,7 +11736,7 @@ func_080A3F4C: @ 0x080A3F4C
 	cmp r7, #2
 	beq .L080A44A8
 	add r4, sp, #0x8c
-	ldr r1, .L080A44A4 @ =gUnk_08104E54
+	ldr r1, .L080A44A4 @ =gFishingRecordArticleIds
 	lsls r0, r7, #2
 	adds r0, r0, r1
 	ldr r5, [r0]
@@ -11762,7 +11762,7 @@ func_080A3F4C: @ 0x080A3F4C
 	strh r0, [r1, #4]
 	b .L080A454C
 	.align 2, 0
-.L080A44A4: .4byte gUnk_08104E54
+.L080A44A4: .4byte gFishingRecordArticleIds
 .L080A44A8:
 	mov r1, sp
 	movs r4, #0

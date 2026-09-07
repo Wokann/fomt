@@ -694,7 +694,8 @@ SECTIONS
         . = 0x104958; data/text/possessive_labels.o(.rodata.possessive_labels);
         . = 0x104988; data/text/possessive_labels.o(.rodata);
         . = 0x104994; data/text/random_item.o(.rodata.random_item_fallback);
-        . = 0x10499C; asm/data/data_080F9EB8.o(.rodata.random_item_fallback_trailer);
+        . = 0x10499C; src/fishing_results_data.o(.rodata.fishing_record_article_ids);
+        . = 0x1049BC; asm/data/data_080F9EB8.o(.rodata.random_item_fallback_trailer);
         . = 0x1070F4; data/text/harvest_sprite_minigames.o(.rodata.harvest_sprite_minigames_animal_husbandry);
         . = 0x10737B; asm/data/data_080F9EB8.o(.rodata.harvest_sprite_minigames_animal_husbandry_trailer);
         . = 0x1073B9; data/text/chicken_festival.o(.rodata.chicken_festival_contestant_names);

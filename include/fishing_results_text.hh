@@ -129,5 +129,6 @@ extern char const gText_FishingRecord_Coelacanth[];
 extern char const gText_FishingRecord_Squid[];
 
 extern char const * const gFishingRecordNames[FISHING_RECORD_COUNT];
+extern u32 const gFishingRecordArticleIds[];
 
 #endif // FISHING_RESULTS_TEXT_HH
