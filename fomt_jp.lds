@@ -648,7 +648,8 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4); src/special_merchant_shop_data.o(.rodata.special_merchant_shop_catalog);
         . = 0xFE1FC; data/text/special_merchant_shop.o(.rodata.special_merchant_shop_text);
-        . = 0xFE394; asm/data/data_080F9EB8.o(.rodata.special_merchant_shop_trailer);
+        FILL(0x00);
+        . = ALIGN(4);
         . = 0xFE3A0; data/text/beach_cafe_shop.o(.rodata.beach_cafe_shop_descriptions);
         . = 0xFE414; src/beach_cafe_shop_data.o(.rodata.beach_cafe_shop_catalog);
         . = 0xFE4A0; data/text/beach_cafe_shop.o(.rodata.beach_cafe_shop_dialogue);

@@ -60,8 +60,6 @@
 
 
 
-    .section .rodata.special_merchant_shop_trailer
-    .incbin "baserom_jp.gba", 0xFE394, (0xFE3A0 - 0xFE394)
 
     .section .rodata.beach_cafe_shop_trailer
     .incbin "baserom_jp.gba", 0xFE530, (0xFE53C - 0xFE530)
@@ -389,8 +387,6 @@ gUnk_080FD920:
 
 	.section .rodata.unextracted_shop_data
 
-	.section .rodata.special_merchant_shop_trailer
-	.incbin "baserom_us.gba", 0xFEAE8, (0xFEAF4 - 0xFEAE8)
 
 	.section .rodata.beach_cafe_shop_trailer
 	.incbin "baserom_us.gba", 0xFEC70, (0xFEC7C - 0xFEC70)

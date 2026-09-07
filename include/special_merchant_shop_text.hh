@@ -30,5 +30,6 @@ extern char const gText_SpecialMerchantShop_RecordPlayerDelivery[];
 extern char const gText_SpecialMerchantShop_PurchaseCompleteShort[];
 extern char const gText_SpecialMerchantShop_ArticleDelivery[];
 extern char const gText_SpecialMerchantShop_PurchaseMorePrompt[];
+extern char const gCppRuntimeBadAlloc_SpecialMerchantShopTrailer[];
 
 #endif // SPECIAL_MERCHANT_SHOP_TEXT_HH

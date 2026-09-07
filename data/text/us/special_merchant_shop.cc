@@ -35,3 +35,6 @@ char const gText_SpecialMerchantShop_ArticleDelivery[] SPECIAL_MERCHANT_SHOP_TEX
 char const gText_SpecialMerchantShop_PurchaseMorePrompt[] SPECIAL_MERCHANT_SHOP_TEXT =
     "Sure you don't need \r\n"
     "anythign else?{Press}";
+
+char const gCppRuntimeBadAlloc_SpecialMerchantShopTrailer[] SPECIAL_MERCHANT_SHOP_TEXT =
+    "bad_alloc";
