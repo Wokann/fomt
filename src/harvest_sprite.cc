@@ -151,6 +151,17 @@ u32 const gUnk_080C3B18IndexValues[7]
         4, 0, 1, 6, 3, 2, 5,
     };
 
+u16 const gUnk_080C7B38Values[10]
+    SECTION(".rodata.harvest_sprite_minigames_watering_results_values") = {
+        0x03E2, 0x03E3, 0x03E1, 0x03E0, 0x03E6,
+        0x03E7, 0x03E5, 0x03E4, 0x03F0, 0x03E1,
+    };
+
+u16 const gUnk_080C7B64Values[7]
+    SECTION(".rodata.harvest_sprite_minigames_watering_results_values") = {
+        0x2A, 0x36, 0x2C, 0x2E, 0x30, 0x32, 0x34,
+    };
+
 HarvestSprite::HarvestSprite(ActorLocation const & location)
     : Npc(location)
 {

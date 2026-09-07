@@ -35,6 +35,8 @@ extern char const gCppRuntimeBadAlloc_HarvestSpriteMiniGameHarvestResults[];
 extern u16 const gUnk_080C3B18Values[8][2];
 extern char const gText_080C38E4DigitZero[];
 extern u32 const gUnk_080C3B18IndexValues[7];
+extern u16 const gUnk_080C7B38Values[10];
+extern u16 const gUnk_080C7B64Values[7];
 
 struct HarvestSprite : public Npc
 {

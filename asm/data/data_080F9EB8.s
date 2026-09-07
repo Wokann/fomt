@@ -98,12 +98,6 @@ gUnk_08106E98:
 .section .rodata.chicken_festival_contestant_names_trailer
 .incbin "baserom_jp.gba", 0x1074BD, (0x1074C0 - 0x1074BD)
 
-    .section .rodata.harvest_sprite_minigames_watering_instructions_trailer
-    .incbin "baserom_jp.gba", 0x107D37, (0x107D38 - 0x107D37)
-
-    .section .rodata.harvest_sprite_minigames_watering_results_trailer
-    .incbin "baserom_jp.gba", 0x107D89, (0x107DAC - 0x107D89)
-
 	.section .rodata.shop_common_unextracted_prefix
 	.incbin "baserom_jp.gba", 0x1189D4, (0x1189F4 - 0x1189D4)
 
@@ -913,20 +907,6 @@ gUnk_08107350:
 	.global gUnk_081079C1
 gUnk_081079C1:
 	.incbin "baserom_us.gba", 0x1079C1, 0x3
-
-	.section .rodata.harvest_sprite_minigames_watering_instructions_trailer
-	.incbin "baserom_us.gba", 0x108217, 0x1
-
-	.section .rodata.harvest_sprite_minigames_watering_results_trailer
-	.incbin "baserom_us.gba", 0x108267, 0x1
-
-	.global gUnk_08108268
-gUnk_08108268:
-	.incbin "baserom_us.gba", 0x108268, 0x14
-
-	.global gUnk_0810827C
-gUnk_0810827C:
-	.incbin "baserom_us.gba", 0x10827C, 0x10
 
 	.section .rodata.reference_guide_unextracted_trailer
 	.incbin "baserom_us.gba", 0x1177EC, (0x1177F6 - 0x1177EC)

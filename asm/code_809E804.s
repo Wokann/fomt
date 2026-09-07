@@ -84366,7 +84366,7 @@ func_080C76D4: @ 0x080C76D4
 
 	thumb_func_start func_080C7B38
 func_080C7B38: @ 0x080C7B38
-	ldr r2, .L080C7B5C @ =gUnk_08108268
+	ldr r2, .L080C7B5C @ =gUnk_080C7B38Values
 	ldr r3, .L080C7B60 @ =0x000008BC
 	adds r1, r0, r3
 	ldr r1, [r1]
@@ -84384,12 +84384,12 @@ func_080C7B38: @ 0x080C7B38
 	lsrs r0, r0, #0x10
 	bx lr
 	.align 2, 0
-.L080C7B5C: .4byte gUnk_08108268
+.L080C7B5C: .4byte gUnk_080C7B38Values
 .L080C7B60: .4byte 0x000008BC
 
 	thumb_func_start func_080C7B64
 func_080C7B64: @ 0x080C7B64
-	ldr r1, .L080C7B74 @ =gUnk_0810827C
+	ldr r1, .L080C7B74 @ =gUnk_080C7B64Values
 	ldr r2, .L080C7B78 @ =0x00000984
 	adds r0, r0, r2
 	ldr r0, [r0]
@@ -84398,7 +84398,7 @@ func_080C7B64: @ 0x080C7B64
 	ldrh r0, [r0]
 	bx lr
 	.align 2, 0
-.L080C7B74: .4byte gUnk_0810827C
+.L080C7B74: .4byte gUnk_080C7B64Values
 .L080C7B78: .4byte 0x00000984
 
 	thumb_func_start func_080C7B7C

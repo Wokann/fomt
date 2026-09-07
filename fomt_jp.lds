@@ -741,9 +741,8 @@ SECTIONS
         . = 0x107AC0; src/harvest_sprite.o(.rodata.harvest_sprite_minigames_harvest_results_second_values);
         . = 0x107AD0; src/harvest_sprite.o(.rodata.harvest_sprite_minigames_harvest_results_post_values);
         . = 0x107B1C; data/text/harvest_sprite_minigames.o(.rodata.harvest_sprite_minigames_watering_instructions);
-        . = 0x107D37; asm/data/data_080F9EB8.o(.rodata.harvest_sprite_minigames_watering_instructions_trailer);
         . = 0x107D38; data/text/harvest_sprite_minigames.o(.rodata.harvest_sprite_minigames_watering_results);
-        . = 0x107D89; asm/data/data_080F9EB8.o(.rodata.harvest_sprite_minigames_watering_results_trailer);
+        . = 0x107D8A; src/harvest_sprite.o(.rodata.harvest_sprite_minigames_watering_results_values);
         . = 0x107DAC; src/reference_guide.o(.rodata.reference_guide);
         . = 0x1189D4; asm/data/data_080F9EB8.o(.rodata.shop_common_unextracted_prefix);
         . = 0x1189F4; data/text/shop_common.o(.rodata);
