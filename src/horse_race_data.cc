@@ -13,3 +13,7 @@ char const * const gHorseRaceTicketControls[] SECTION(".rodata.horse_race_ticket
     gText_HorseRace_TicketControls_Cancel,
     nullptr,
 };
+
+char const gCppRuntimeBadAlloc_HorseRaceTicketControls[]
+    SECTION(".rodata.horse_race_ticket_controls_trailer") =
+        "bad_alloc";

@@ -57,6 +57,7 @@ extern char const gText_HorseRace_PrizeSelectionConfirmation[];
 extern char const gText_HorseRace_PrizeExchangeLeaveConfirmation[];
 extern char const gText_HorseRace_PrizeExchangeInsufficientMedals[];
 extern char const * const gHorseRaceTicketControls[];
+extern char const gCppRuntimeBadAlloc_HorseRaceTicketControls[];
 extern HorseRacePrize const gHorseRacePrizeCatalog[];
 
 #endif
