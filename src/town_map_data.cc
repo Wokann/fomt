@@ -1,5 +1,6 @@
 #include "town_map.hh"
 
+#include "staff_credits_text.hh"
 #include "town_map_text.hh"
 
 extern "C" void CopyBgMap30x13(void const *, u32 map_block, u16 const * source)
@@ -75,6 +76,22 @@ extern "C" bool TownMapHotspotContains(
 
     return result;
 }
+
+// This is a ten-byte string object in the original layout.  Its immediately
+// following resource-ID table is only two-byte aligned, not four-byte aligned.
+char const gCppRuntimeBadAlloc_StaffCredits[]
+    SECTION(".rodata.staff_credits_trailer") ALIGN(1) =
+        "bad_alloc";
+
+// func_0807865C copies these four IDs then resolves each from the Town Map
+// indexed resource archive before its UI is created.
+u16 const gTownMapResourceIds[]
+    SECTION(".rodata.town_map_resource_ids") ALIGN(2) = {
+        0x0000,
+        0x0001,
+        0x0003,
+        0x0002,
+    };
 
 TownMapHotspot const gTownMapHotspots[TOWN_MAP_HOTSPOT_COUNT] SECTION(".rodata.town_map_hotspots") = {
     { gText_TownMap_MountainCottageLabel, gText_TownMap_MountainCottageLabel, 0x00000000, 0x0168, 0x0090, 0x02, 0x29, 0x14, 0x37 },

@@ -113621,7 +113621,7 @@ func_0807865C: @ 0x0807865C
 	cmp r4, r5
 	blo .L080787B4
 .L080787D0:
-	ldr r1, .L08078A08 @ =gUnk_080FC6C2
+	ldr r1, .L08078A08 @ =gTownMapResourceIds
 	add r0, sp, #0x24
 	movs r2, #8
 	bl memcpy
@@ -113884,7 +113884,7 @@ func_0807865C: @ 0x0807865C
 .L080789FC: .4byte vtable_unk_080E7BB4
 .L08078A00: .4byte gUnk_08728208
 .L08078A04: .4byte gUnk_087537D0
-.L08078A08: .4byte gUnk_080FC6C2
+.L08078A08: .4byte gTownMapResourceIds
 .L08078A0C: .4byte gText_TownMap_PlayerFarmNameSuffix
 .L08078A10: .4byte gText_TownMap_PlayerFarmDescription
 .L08078A14: .4byte gText_TownMap_PlayerFarmLabel

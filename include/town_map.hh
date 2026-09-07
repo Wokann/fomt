@@ -24,6 +24,7 @@ enum
 };
 
 extern TownMapHotspot const gTownMapHotspots[TOWN_MAP_HOTSPOT_COUNT];
+extern u16 const gTownMapResourceIds[];
 
 void CopyBgMap30x13(void const *, u32 map_block, u16 const * source);
 

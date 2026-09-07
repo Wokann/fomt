@@ -6,5 +6,6 @@
 // fomt-text generates this null-terminated table from the region's visible
 // credit rows and preserves every original repeated row pointer.
 extern char const * const gStaffCreditsLines[];
+extern char const gCppRuntimeBadAlloc_StaffCredits[];
 
 #endif // STAFF_CREDITS_TEXT_HH

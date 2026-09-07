@@ -514,8 +514,10 @@ SECTIONS
         . = 0xFBE7C; data/text/records.o(.rodata);
         . = 0xFC024; src/records_screen_data.o(.rodata);
         . = 0xFC0A4; data/text/staff_credits.o(.rodata);
-        . = 0xFC6B8; asm/data/data_080F9EB8.o(.rodata.staff_credits_trailer_prefix);
-        . = 0xFC6CC; data/text/town_map.o(.rodata);
+        . = 0xFC6B8; src/town_map_data.o(.rodata.staff_credits_trailer);
+        src/town_map_data.o(.rodata.town_map_resource_ids);
+        FILL(0x00);
+        . = ALIGN(4); data/text/town_map.o(.rodata);
         . = 0xFD080; src/town_map_data.o(.rodata.town_map_hotspots);
         . = 0xFD3A0; asm/data/data_080F9EB8.o(.rodata.town_map_trailer);
         . = 0xFD550; data/text/library.o(.rodata.library_info);

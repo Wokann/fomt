@@ -7,9 +7,6 @@
     .section .rodata.name_entry_preset_animal_names_trailer_prefix
     .incbin "baserom_jp.gba", 0xF996C, (0xF9994 - 0xF996C)
 
-    .section .rodata.staff_credits_trailer_prefix
-    .incbin "baserom_jp.gba", 0xFBE88, (0xFBE9C - 0xFBE88)
-
     .section .rodata.town_map_trailer
     .incbin "baserom_jp.gba", 0xFCB08, (0xFCCB8 - 0xFCB08)
 
@@ -538,16 +535,6 @@ gUnk_080F9F78:
 
 	.section .rodata.name_entry_preset_animal_names_prefix
 	.incbin "baserom_us.gba", 0xF9F7C, 0x4
-
-	.section .rodata.staff_credits_trailer_prefix
-
-	.global gUnk_080FC6B8
-gUnk_080FC6B8:
-	.incbin "baserom_us.gba", 0xFC6B8, (0xFC6C2 - 0xFC6B8)
-
-	.global gUnk_080FC6C2
-gUnk_080FC6C2:
-	.incbin "baserom_us.gba", 0xFC6C2, 0xA
 
 	.section .rodata.town_map_trailer
 
