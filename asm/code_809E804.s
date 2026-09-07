@@ -96934,7 +96934,7 @@ func_080CDB08: @ 0x080CDB08
 	ldr r0, [r3, #0xc]
 	cmp r1, r0
 	ble .L080CDBEA
-	ldr r5, .L080CDBA4 @ =gUnk_08117890
+	ldr r5, .L080CDBA4 @ =gUnk_0811788C + 4
 	adds r4, r0, #0
 .L080CDB80:
 	lsls r0, r1, #4
@@ -96956,7 +96956,7 @@ func_080CDB08: @ 0x080CDB08
 	bgt .L080CDB80
 	b .L080CDBEA
 	.align 2, 0
-.L080CDBA4: .4byte gUnk_08117890
+.L080CDBA4: .4byte gUnk_0811788C + 4
 .L080CDBA8:
 	ldr r2, [r3, #4]
 	cmp r1, #9
@@ -96974,7 +96974,7 @@ func_080CDB08: @ 0x080CDB08
 	ldr r0, [r3, #0x10]
 	cmp r1, r0
 	ble .L080CDBEA
-	ldr r5, .L080CDBFC @ =gUnk_08117890
+	ldr r5, .L080CDBFC @ =gUnk_0811788C + 4
 	adds r4, r0, #0
 .L080CDBCA:
 	lsls r0, r1, #4
@@ -97005,7 +97005,7 @@ func_080CDB08: @ 0x080CDB08
 	pop {r1}
 	bx r1
 	.align 2, 0
-.L080CDBFC: .4byte gUnk_08117890
+.L080CDBFC: .4byte gUnk_0811788C + 4
 
 	thumb_func_start func_080CDC00
 func_080CDC00: @ 0x080CDC00

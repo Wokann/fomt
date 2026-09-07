@@ -98,9 +98,6 @@ gUnk_08106E98:
 .section .rodata.chicken_festival_contestant_names_trailer
 .incbin "baserom_jp.gba", 0x1074BD, (0x1074C0 - 0x1074BD)
 
-	.section .rodata.shop_common_unextracted_trailer
-	.incbin "baserom_jp.gba", 0x118A14, (0x118B94 - 0x118A14)
-
     .section .rodata.static_data_after_item_discard
     .global gUnk_08118CF4
 gUnk_08118CF4:
@@ -904,35 +901,6 @@ gUnk_08107350:
 	.global gUnk_081079C1
 gUnk_081079C1:
 	.incbin "baserom_us.gba", 0x1079C1, 0x3
-
-	.section .rodata.shop_common_unextracted_trailer
-	.incbin "baserom_us.gba", 0x11782C, (0x117838 - 0x11782C)
-
-	.section .rodata.tool_status_prefix_trailer
-
-	.global gUnk_08117838
-gUnk_08117838:
-	.incbin "baserom_us.gba", 0x117838, 0x4
-
-	.global gUnk_0811783C
-gUnk_0811783C:
-	.incbin "baserom_us.gba", 0x11783C, 0x20
-
-	.global gUnk_0811785C
-gUnk_0811785C:
-	.incbin "baserom_us.gba", 0x11785C, 0x4
-
-	.global gUnk_08117860
-gUnk_08117860:
-	.incbin "baserom_us.gba", 0x117860, 0x2C
-
-	.global gUnk_0811788C
-gUnk_0811788C:
-	.incbin "baserom_us.gba", 0x11788C, 0x4
-
-	.global gUnk_08117890
-gUnk_08117890:
-	.incbin "baserom_us.gba", 0x117890, 0x11C
 
 	.section .rodata.static_data_after_item_discard
 	.incbin "baserom_us.gba", 0x117B14, (0x117B20 - 0x117B14)

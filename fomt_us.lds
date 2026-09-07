@@ -656,8 +656,7 @@ SECTIONS
         . = 0x10828C; src/reference_guide.o(.rodata.reference_guide);
         . = 0x1177EC; src/shop_common.o(.rodata.shop_common_digit_glyphs);
         . = 0x11780C; data/text/shop_common.o(.rodata);
-        . = 0x11782C; asm/data/data_080F9EB8.o(.rodata.shop_common_unextracted_trailer);
-        . = 0x117838; asm/data/data_080F9EB8.o(.rodata.tool_status_prefix_trailer);
+        . = 0x11782C; src/shop_common.o(.rodata);
         . = 0x1179AC; data/text/tool_status.o(.rodata.tool_status);
         . = 0x117A0C; data/text/animal_status.o(.rodata);
         . = 0x117A50; data/text/item_status.o(.rodata);
