@@ -96,6 +96,23 @@ bool IsAssemblyAlign(const std::string &line)
     return Trim(line).rfind(".align", 0) == 0;
 }
 
+bool IsExecutableSectionDirective(const std::string &line)
+{
+    static const std::regex pattern(
+        R"(^[\t ]*\.section[\t ]+[A-Za-z0-9_.]+,"ax",%progbits[\t ]*$)");
+    return std::regex_match(line, pattern);
+}
+
+bool IsCompilerDataTailAlignment(const std::string &line)
+{
+    // agbcp 2.9 emits this exact alignment while changing from a custom
+    // alloc-only section to a function section. A C/C++ ALIGN(n) attribute
+    // is emitted before its object's label instead, so it is not matched.
+    static const std::regex pattern(
+        R"(^[\t ]*\.align[\t ]+2,[\t ]*0[\t ]*$)");
+    return std::regex_match(line, pattern);
+}
+
 std::size_t FindAssemblyLabel(const std::vector<std::string> &lines,
     const std::string &label)
 {
@@ -644,6 +661,47 @@ std::string FixupSameUnitConstCharReferences(const std::string &source,
     return JoinLines(lines);
 }
 
+void RemoveCompilerDataSectionTailAlignment(std::vector<std::string> &lines)
+{
+    // Old agbcp closes a custom alloc-only section with ".align 2, 0" before
+    // it opens the following executable section. The executable section has
+    // its own leading alignment, so retaining the former only changes the
+    // size of the preceding data section. In a ROM layout with an exact next
+    // address, that manufactured padding can make the linker move backwards.
+    //
+    // This deliberately removes only an alignment immediately at a data ->
+    // executable section transition. Source ALIGN(n) declarations align the
+    // following named object and therefore do not have this shape.
+    bool have_current_section = false;
+    bool current_section_is_executable = false;
+    for (std::size_t index = 0; index < lines.size(); ++index) {
+        const std::string trimmed = Trim(lines[index]);
+        if (trimmed == ".text") {
+            have_current_section = true;
+            current_section_is_executable = true;
+            continue;
+        }
+        if (trimmed.rfind(".section", 0) != 0)
+            continue;
+
+        const bool next_section_is_executable =
+            IsExecutableSectionDirective(lines[index]);
+        if (next_section_is_executable && have_current_section
+            && !current_section_is_executable) {
+            std::size_t previous = index;
+            while (previous != 0 && Trim(lines[previous - 1]).empty())
+                --previous;
+            if (previous != 0 && IsCompilerDataTailAlignment(lines[previous - 1])) {
+                lines.erase(lines.begin()
+                    + static_cast<std::ptrdiff_t>(previous - 1));
+                --index;
+            }
+        }
+        have_current_section = true;
+        current_section_is_executable = next_section_is_executable;
+    }
+}
+
 std::string AlignExecutableSections(const std::string &assembly)
 {
     // This is the former align_sections.sh policy, now applied by the same
@@ -654,6 +712,7 @@ std::string AlignExecutableSections(const std::string &assembly)
         R"(^[\t ]*\.section[\t ]+([A-Za-z0-9_.]+),"ax",%progbits[\t ]*$)");
 
     std::vector<std::string> lines = SplitLines(assembly);
+    RemoveCompilerDataSectionTailAlignment(lines);
     std::vector<std::string> sections;
     std::set<std::string> seen_sections;
     for (const std::string &line : lines) {
@@ -721,6 +780,10 @@ void SelfTest()
         "\t.word\t.LC2\n"
         "\t.word\t1\n"
         "\t.word\t.LC2\n"
+        "\t.section .rodata.compiler_tail,\"a\",%progbits\n"
+        "gCompilerPaddedText:\n"
+        "\t.ascii\t\"Error\\000\"\n"
+        "\t.align\t2, 0\n"
         "\t.section .text.sample,\"ax\",%progbits\n"
         "sample_function:\n"
         "\tbx\tlr\n";
@@ -736,6 +799,12 @@ void SelfTest()
         "executable section alignment was not appended");
     Require(output.find("\t.section \".rodata.sample\"") == std::string::npos,
         "ordinary rodata was given an implicit text-section alignment");
+    Require(output.find("gCompilerPaddedText:\n\t.ascii\t\"Error\\000\"\n"
+                        "\t.align\t2, 0\n\t.section .text.sample") == std::string::npos,
+        "compiler data-section tail alignment was retained");
+    Require(output.find("gCompilerPaddedText:\n\t.ascii\t\"Error\\000\"\n"
+                        "\t.section .text.sample") != std::string::npos,
+        "compiler data-section tail alignment removed data payload");
 }
 
 const char *Usage()
