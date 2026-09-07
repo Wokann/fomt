@@ -78,6 +78,10 @@ at its real ROM position after the text it references:
 `u16` 码值，并自动追加 `0x0000` 结束码。该标记必须经过文本工具转换后才是
 可编译的普通 C/C++ 初始化器；不要手写结束码或对齐填充。
 
+若原生代码按固定元素数量读取、而原 ROM 没有结束码，则使用
+`FOMT_GLYPH_SEQUENCE(...)`。它使用相同的 UTF-8 到半字码转换，但绝不追加
+`0x0000`；这不是普通字符串，必须以原始调用方的固定读取长度为依据。
+
 Keep a page-break control in the literal that owns it.  For example, write
 `"...{Press}\p"` and start the following text literal on the next source line.
 Use a standalone `"\p"` only when the original byte sequence itself begins

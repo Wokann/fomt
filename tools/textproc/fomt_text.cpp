@@ -898,11 +898,21 @@ std::string EmitGlyphWordInitializer(const std::vector<std::uint16_t> &words)
 bool TryCompileGlyphTextMacro(const std::string &source, const Charmap &charmap,
     std::size_t &at, std::ostringstream &output)
 {
-    static constexpr std::string_view kMacroName = "FOMT_GLYPH_TEXT";
-    if (!StartsCppIdentifier(source, at, kMacroName))
-        return false;
+    static constexpr std::string_view kTerminatedMacroName = "FOMT_GLYPH_TEXT";
+    static constexpr std::string_view kSequenceMacroName = "FOMT_GLYPH_SEQUENCE";
 
-    std::size_t cursor = at + kMacroName.size();
+    std::string_view macro_name;
+    bool append_terminator = false;
+    if (StartsCppIdentifier(source, at, kTerminatedMacroName)) {
+        macro_name = kTerminatedMacroName;
+        append_terminator = true;
+    } else if (StartsCppIdentifier(source, at, kSequenceMacroName)) {
+        macro_name = kSequenceMacroName;
+    } else {
+        return false;
+    }
+
+    std::size_t cursor = at + macro_name.size();
     while (cursor < source.size() && std::isspace(static_cast<unsigned char>(source[cursor])) != 0)
         ++cursor;
     if (cursor == source.size() || source[cursor] != '(')
@@ -927,16 +937,19 @@ bool TryCompileGlyphTextMacro(const std::string &source, const Charmap &charmap,
     }
     if (!found_literal) {
         throw std::runtime_error("line " + std::to_string(SourceLineNumber(source, at))
-            + ": FOMT_GLYPH_TEXT requires one or more quoted string literals");
+            + ": " + std::string(macro_name)
+            + " requires one or more quoted string literals");
     }
     while (cursor < source.size() && std::isspace(static_cast<unsigned char>(source[cursor])) != 0)
         ++cursor;
     if (cursor == source.size() || source[cursor] != ')') {
         throw std::runtime_error("line " + std::to_string(SourceLineNumber(source, at))
-            + ": FOMT_GLYPH_TEXT requires only quoted string literals");
+            + ": " + std::string(macro_name)
+            + " requires only quoted string literals");
     }
 
-    words.push_back(0);
+    if (append_terminator)
+        words.push_back(0);
     output << EmitGlyphWordInitializer(words);
     at = cursor + 1;
     return true;
@@ -2568,6 +2581,12 @@ void SelfTest()
         "u16 const gGlyph[] = FOMT_GLYPH_TEXT(\"0 \xEF\xBC\x90\");\n", glyph_map);
     Require(generated_glyph.find("0x0030, 0x0020, 0x824F, 0x0000,") != std::string::npos,
         "glyph text source did not become mapped halfword codes");
+
+    const std::string generated_glyph_sequence = CompileCppSourceText(
+        "u16 const gGlyph[] = FOMT_GLYPH_SEQUENCE(\"0 \xEF\xBC\x90\");\n", glyph_map);
+    Require(generated_glyph_sequence.find("0x0030, 0x0020, 0x824F,") != std::string::npos
+            && generated_glyph_sequence.find("0x0000") == std::string::npos,
+        "glyph sequence source unexpectedly added a terminator");
 
     const std::string generic_section_source =
         "char const gText_Sectioned[] __attribute__((section(\".rodata.example\"))) = \"A\";\n";
