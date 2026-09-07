@@ -69,6 +69,15 @@ struct FieldRenderPatchArgumentData
     u8 values_5C[4];
 };
 
+// func_080AACB8 selects one half-open record-index span with the current
+// season before it scans the shared trailing range.  The record payloads
+// themselves are still retained in the native gUnk_081043BC block.
+struct PACKED FieldRenderSeasonalRecordRange
+{
+    u8 first_record_index;
+    u8 past_last_record_index;
+};
+
 #define FIELD_RENDER_RECT_DESCRIPTOR_COUNT 82
 
 extern FieldPlotWeatherRule const gFieldPlotOrdinaryWeatherRules[4][2];
@@ -79,6 +88,7 @@ extern FieldPlotTypeDefinition const gFieldPlotTypeDefinitions[39];
 extern FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_RECT_DESCRIPTOR_COUNT];
 extern FieldRenderParallelTables const gFieldRenderParallelTables;
 extern FieldRenderPatchArgumentData const gFieldRenderPatchArgumentData;
+extern FieldRenderSeasonalRecordRange const gFieldRenderSeasonalRecordRanges[NUM_SEASONS];
 extern u16 const gFieldPlotPositionValues[7][4];
 extern FieldPlotPositionRule const gFieldPlotPositionRules[8];
 extern char const gCppRuntimeBadAlloc_FieldPlotPositionRules[];

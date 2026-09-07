@@ -25223,7 +25223,7 @@ func_080AACB8: @ 0x080AACB8
 	ldr r0, [r0]
 	ldr r1, .L080AAE0C @ =0x000034C8
 	adds r6, r0, r1
-	ldr r0, .L080AAE10 @ =gUnk_08107450
+	ldr r0, .L080AAE10 @ =gFieldRenderSeasonalRecordRanges
 	mov r2, r8
 	lsls r1, r2, #1
 	adds r2, r1, r0
@@ -25282,7 +25282,7 @@ func_080AACB8: @ 0x080AACB8
 	bx r0
 	.align 2, 0
 .L080AAE0C: .4byte 0x000034C8
-.L080AAE10: .4byte gUnk_08107450
+.L080AAE10: .4byte gFieldRenderSeasonalRecordRanges
 
 	thumb_func_start func_080AAE14
 func_080AAE14: @ 0x080AAE14

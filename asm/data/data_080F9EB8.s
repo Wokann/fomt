@@ -95,8 +95,8 @@ gUnk_08106E98:
     .section .rodata.field_render_patch_arguments_after
     .incbin "baserom_jp.gba", 0x106F6C, (0x106F76 - 0x106F6C)
 
-    .section .rodata.bachelorette_marriage_candidate_character_ids_after
-    .incbin "baserom_jp.gba", 0x106F98, (0x1070F4 - 0x106F98)
+    .section .rodata.field_render_seasonal_record_ranges_after
+    .incbin "baserom_jp.gba", 0x106FA0, (0x1070F4 - 0x106FA0)
 
     .section .rodata.harvest_sprite_minigames_animal_husbandry_trailer
     .incbin "baserom_jp.gba", 0x10737B, (0x1073B9 - 0x10737B)
@@ -929,11 +929,7 @@ gUnk_08107350:
 	.section .rodata.field_render_patch_arguments_after
 	.incbin "baserom_us.gba", 0x107424, 0xA
 
-	.section .rodata.bachelorette_marriage_candidate_character_ids_after
-
-	.global gUnk_08107450
-gUnk_08107450:
-	.incbin "baserom_us.gba", 0x107450, 0x8
+	.section .rodata.field_render_seasonal_record_ranges_after
 
 	.global gUnk_08107458
 gUnk_08107458:
