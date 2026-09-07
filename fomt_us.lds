@@ -444,9 +444,9 @@ SECTIONS
         . = ALIGN(4); data/text/load_error.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        data/text/help_menu.o(.rodata.help_menu);
-        asm/data/data_080F0348.o(.rodata.help_menu_trailer);
+        src/help_menu.o(.rodata);
         FILL(0x00);
+        . = ALIGN(4);
         data/text/animal_memorial.o(.rodata.animal_memorial);
         . = ALIGN(4); asm/data/data_080F0348.o(.rodata.animal_memorial_trailer);
         FILL(0x00);

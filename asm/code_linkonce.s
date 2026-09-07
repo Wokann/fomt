@@ -13527,7 +13527,7 @@ sub_080DA76C: @ 0x080DA76C
 	str r5, [r1, #4]
 	str r0, [r1, #0xc]
 .L080DA9FE:
-	ldr r1, .L080DAA4C @ =gUnk_080F05D9
+	ldr r1, .L080DAA4C @ =gUnk_HelpMenuByteTable
 	movs r2, #0xaf
 	lsls r2, r2, #3
 	add r2, sp
@@ -13565,7 +13565,7 @@ sub_080DA76C: @ 0x080DA76C
 	b .L080DAAE6
 	.align 2, 0
 .L080DAA48: .4byte 0x00000514
-.L080DAA4C: .4byte gUnk_080F05D9
+.L080DAA4C: .4byte gUnk_HelpMenuByteTable
 .L080DAA50:
 	movs r2, #0xac
 	lsls r2, r2, #3
