@@ -88,9 +88,6 @@
     .section .rodata.cooking_recipe_inventory_trailer
     .incbin "baserom_jp.gba", 0x100C24, (0x103194 - 0x100C24)
 
-    .section .rodata.animal_unnamed_trailer
-    .incbin "baserom_jp.gba", 0x103204, (0x1032C4 - 0x103204)
-
     .section .rodata.fishing_results_text_padding
     .incbin "baserom_jp.gba", 0x103509, (0x10350C - 0x103509)
 
@@ -124,6 +121,65 @@
     .global gMapData
 gMapData:
     .incbin "baserom_jp.gba", 0x105A24, (0x1070F4 - 0x105A24)
+
+    @ These aliases identify the still-raw targets of gActorDataSelectionEntries.
+    @ Their payload types are not known yet.
+    .global gUnk_ActorDataSelection_00_00
+    .set gUnk_ActorDataSelection_00_00, gMapData + 0xF48
+    .global gUnk_ActorDataSelection_00_04
+    .set gUnk_ActorDataSelection_00_04, gMapData + 0xF60
+    .global gUnk_ActorDataSelection_01_00
+    .set gUnk_ActorDataSelection_01_00, gMapData + 0xF78
+    .global gUnk_ActorDataSelection_01_04
+    .set gUnk_ActorDataSelection_01_04, gMapData + 0xF90
+    .global gUnk_ActorDataSelection_02_00
+    .set gUnk_ActorDataSelection_02_00, gMapData + 0xFA8
+    .global gUnk_ActorDataSelection_02_04
+    .set gUnk_ActorDataSelection_02_04, gMapData + 0xFC0
+    .global gUnk_ActorDataSelection_03_00
+    .set gUnk_ActorDataSelection_03_00, gMapData + 0xFD8
+    .global gUnk_ActorDataSelection_03_04
+    .set gUnk_ActorDataSelection_03_04, gMapData + 0xFF0
+    .global gUnk_ActorDataSelection_04_00
+    .set gUnk_ActorDataSelection_04_00, gMapData + 0x1008
+    .global gUnk_ActorDataSelection_04_04
+    .set gUnk_ActorDataSelection_04_04, gMapData + 0x1020
+    .global gUnk_ActorDataSelection_05_00
+    .set gUnk_ActorDataSelection_05_00, gMapData + 0x1038
+    .global gUnk_ActorDataSelection_05_04
+    .set gUnk_ActorDataSelection_05_04, gMapData + 0x1050
+    .global gUnk_ActorDataSelection_06_00
+    .set gUnk_ActorDataSelection_06_00, gMapData + 0x1068
+    .global gUnk_ActorDataSelection_06_04
+    .set gUnk_ActorDataSelection_06_04, gMapData + 0x1080
+    .global gUnk_ActorDataSelection_07_00
+    .set gUnk_ActorDataSelection_07_00, gMapData + 0x1098
+    .global gUnk_ActorDataSelection_07_04
+    .set gUnk_ActorDataSelection_07_04, gMapData + 0x10B0
+    .global gUnk_ActorDataSelection_08_00
+    .set gUnk_ActorDataSelection_08_00, gMapData + 0x1128
+    .global gUnk_ActorDataSelection_08_04
+    .set gUnk_ActorDataSelection_08_04, gMapData + 0x1140
+    .global gUnk_ActorDataSelection_09_00
+    .set gUnk_ActorDataSelection_09_00, gMapData + 0x1158
+    .global gUnk_ActorDataSelection_09_04
+    .set gUnk_ActorDataSelection_09_04, gMapData + 0x1170
+    .global gUnk_ActorDataSelection_10_00
+    .set gUnk_ActorDataSelection_10_00, gMapData + 0x10C8
+    .global gUnk_ActorDataSelection_10_04
+    .set gUnk_ActorDataSelection_10_04, gMapData + 0x10E0
+    .global gUnk_ActorDataSelection_11_00
+    .set gUnk_ActorDataSelection_11_00, gMapData + 0x10F8
+    .global gUnk_ActorDataSelection_11_04
+    .set gUnk_ActorDataSelection_11_04, gMapData + 0x1110
+    .global gUnk_ActorDataSelection_12_00
+    .set gUnk_ActorDataSelection_12_00, gMapData + 0xD38
+    .global gUnk_ActorDataSelection_12_04
+    .set gUnk_ActorDataSelection_12_04, gMapData + 0xD20
+    .global gUnk_ActorDataSelection_13_00
+    .set gUnk_ActorDataSelection_13_00, gMapData + 0x1188
+    .global gUnk_ActorDataSelection_13_04
+    .set gUnk_ActorDataSelection_13_04, gMapData + 0x11A0
 
     .section .rodata.harvest_sprite_minigames_animal_husbandry_trailer
     .incbin "baserom_jp.gba", 0x10737B, (0x1073B9 - 0x10737B)
@@ -459,13 +515,6 @@ gUnk_081010E8:
 	.global gUnk_0810110C
 gUnk_0810110C:
 	.incbin "baserom_us.gba", 0x10110C, 0x254C
-
-	.section .rodata.animal_unnamed_trailer
-	.incbin "baserom_us.gba", 0x1036C8, (0x1036D4 - 0x1036C8)
-
-	.global gUnk_081036D4
-gUnk_081036D4:
-	.incbin "baserom_us.gba", 0x1036D4, (0x103788 - 0x1036D4)
 
 	.section .rodata.fishing_results_text_padding
 	.incbin "baserom_us.gba", 0x103A16, (0x103A18 - 0x103A16)
@@ -807,9 +856,68 @@ gUnk_08106DDC:
 gUnk_08106DF4:
 	.incbin "baserom_us.gba", 0x106DF4, 0x18
 
-	.global gUnk_08106E0C
+    .global gUnk_08106E0C
 gUnk_08106E0C:
 	.incbin "baserom_us.gba", 0x106E0C, 0x288
+
+	@ These aliases identify the still-raw targets of gActorDataSelectionEntries.
+	@ Their payload types are not known yet.
+	.global gUnk_ActorDataSelection_00_00
+	.set gUnk_ActorDataSelection_00_00, gUnk_08106E0C + 0x18
+	.global gUnk_ActorDataSelection_00_04
+	.set gUnk_ActorDataSelection_00_04, gUnk_08106E0C + 0x30
+	.global gUnk_ActorDataSelection_01_00
+	.set gUnk_ActorDataSelection_01_00, gUnk_08106E0C + 0x48
+	.global gUnk_ActorDataSelection_01_04
+	.set gUnk_ActorDataSelection_01_04, gUnk_08106E0C + 0x60
+	.global gUnk_ActorDataSelection_02_00
+	.set gUnk_ActorDataSelection_02_00, gUnk_08106E0C + 0x78
+	.global gUnk_ActorDataSelection_02_04
+	.set gUnk_ActorDataSelection_02_04, gUnk_08106E0C + 0x90
+	.global gUnk_ActorDataSelection_03_00
+	.set gUnk_ActorDataSelection_03_00, gUnk_08106E0C + 0xA8
+	.global gUnk_ActorDataSelection_03_04
+	.set gUnk_ActorDataSelection_03_04, gUnk_08106E0C + 0xC0
+	.global gUnk_ActorDataSelection_04_00
+	.set gUnk_ActorDataSelection_04_00, gUnk_08106E0C + 0xD8
+	.global gUnk_ActorDataSelection_04_04
+	.set gUnk_ActorDataSelection_04_04, gUnk_08106E0C + 0xF0
+	.global gUnk_ActorDataSelection_05_00
+	.set gUnk_ActorDataSelection_05_00, gUnk_08106E0C + 0x108
+	.global gUnk_ActorDataSelection_05_04
+	.set gUnk_ActorDataSelection_05_04, gUnk_08106E0C + 0x120
+	.global gUnk_ActorDataSelection_06_00
+	.set gUnk_ActorDataSelection_06_00, gUnk_08106E0C + 0x138
+	.global gUnk_ActorDataSelection_06_04
+	.set gUnk_ActorDataSelection_06_04, gUnk_08106E0C + 0x150
+	.global gUnk_ActorDataSelection_07_00
+	.set gUnk_ActorDataSelection_07_00, gUnk_08106E0C + 0x168
+	.global gUnk_ActorDataSelection_07_04
+	.set gUnk_ActorDataSelection_07_04, gUnk_08106E0C + 0x180
+	.global gUnk_ActorDataSelection_08_00
+	.set gUnk_ActorDataSelection_08_00, gUnk_08106E0C + 0x1F8
+	.global gUnk_ActorDataSelection_08_04
+	.set gUnk_ActorDataSelection_08_04, gUnk_08106E0C + 0x210
+	.global gUnk_ActorDataSelection_09_00
+	.set gUnk_ActorDataSelection_09_00, gUnk_08106E0C + 0x228
+	.global gUnk_ActorDataSelection_09_04
+	.set gUnk_ActorDataSelection_09_04, gUnk_08106E0C + 0x240
+	.global gUnk_ActorDataSelection_10_00
+	.set gUnk_ActorDataSelection_10_00, gUnk_08106E0C + 0x198
+	.global gUnk_ActorDataSelection_10_04
+	.set gUnk_ActorDataSelection_10_04, gUnk_08106E0C + 0x1B0
+	.global gUnk_ActorDataSelection_11_00
+	.set gUnk_ActorDataSelection_11_00, gUnk_08106E0C + 0x1C8
+	.global gUnk_ActorDataSelection_11_04
+	.set gUnk_ActorDataSelection_11_04, gUnk_08106E0C + 0x1E0
+	.global gUnk_ActorDataSelection_12_00
+	.set gUnk_ActorDataSelection_12_00, gUnk_08106BE4 + 0x30
+	.global gUnk_ActorDataSelection_12_04
+	.set gUnk_ActorDataSelection_12_04, gUnk_08106BE4 + 0x18
+	.global gUnk_ActorDataSelection_13_00
+	.set gUnk_ActorDataSelection_13_00, gUnk_08106E0C + 0x258
+	.global gUnk_ActorDataSelection_13_04
+	.set gUnk_ActorDataSelection_13_04, gUnk_08106E0C + 0x270
 
 	.global gUnk_08107094
 gUnk_08107094:

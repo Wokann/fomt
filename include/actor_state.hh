@@ -13,6 +13,20 @@ struct ActorStateSlots
 
 extern u8 const gActorStateMaxValues[];
 
+// func_0809C510 selects one of the two unknown data pointers in each row and
+// copies unk_08 and unk_09 into its three-word output.  The pointed-to data
+// has not been identified yet.
+struct ActorDataSelectionEntry
+{
+    u8 const * unk_00;
+    u8 const * unk_04;
+    u8 unk_08;
+    u8 unk_09;
+    u16 unk_0A;
+};
+
+extern ActorDataSelectionEntry const gActorDataSelectionEntries[];
+
 // Known bit positions in an otherwise not-yet-modeled actor-state object.
 struct ActorStateFlagBits
 {

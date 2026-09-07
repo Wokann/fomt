@@ -267,17 +267,17 @@ func_0809C510: @ 0x0809C510
     bne .L0809C554
     cmp r3, #0
     beq .L0809C554
-    ldr r0, .L0809C54C @ =gUnk_081036D4
+    ldr r0, .L0809C54C @ =gActorDataSelectionEntries
     adds r0, #0x9c
     ldrb r1, [r0, #8]
     ldrb r2, [r0, #9]
     ldr r0, .L0809C550 @ =gUnk_081070AC
     b .L0809C5A0
     .align 2, 0
-.L0809C54C: .4byte gUnk_081036D4
+.L0809C54C: .4byte gActorDataSelectionEntries
 .L0809C550: .4byte gUnk_081070AC
 .L0809C554:
-    ldr r2, .L0809C570 @ =gUnk_081036D4
+    ldr r2, .L0809C570 @ =gActorDataSelectionEntries
     lsls r0, r4, #1
     adds r0, r0, r4
     lsls r0, r0, #2
@@ -292,23 +292,23 @@ func_0809C510: @ 0x0809C510
     str r3, [r5, #8]
     b .L0809C5A6
     .align 2, 0
-.L0809C570: .4byte gUnk_081036D4
+.L0809C570: .4byte gActorDataSelectionEntries
 .L0809C574:
     cmp r4, #0xd
     bne .L0809C590
     cmp r6, #0
     beq .L0809C590
-    ldr r0, .L0809C588 @ =gUnk_081036D4
+    ldr r0, .L0809C588 @ =gActorDataSelectionEntries
     adds r0, #0x9c
     ldrb r1, [r0, #8]
     ldrb r2, [r0, #9]
     ldr r0, .L0809C58C @ =gUnk_08107094
     b .L0809C5A0
     .align 2, 0
-.L0809C588: .4byte gUnk_081036D4
+.L0809C588: .4byte gActorDataSelectionEntries
 .L0809C58C: .4byte gUnk_08107094
 .L0809C590:
-    ldr r1, .L0809C5B0 @ =gUnk_081036D4
+    ldr r1, .L0809C5B0 @ =gActorDataSelectionEntries
     lsls r0, r4, #1
     adds r0, r0, r4
     lsls r0, r0, #2
@@ -326,7 +326,7 @@ func_0809C510: @ 0x0809C510
     pop {r1}
     bx r1
     .align 2, 0
-.L0809C5B0: .4byte gUnk_081036D4
+.L0809C5B0: .4byte gActorDataSelectionEntries
 
     .section .text.code_actor_0809C5B4
 .L0809C5B4:
