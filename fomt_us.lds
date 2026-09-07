@@ -502,7 +502,7 @@ SECTIONS
         . = 0xFD550; data/text/library.o(.rodata.library_info);
         . = 0xFD583; asm/data/data_080F9EB8.o(.rodata.library_info_trailer);
         . = 0xFD940; data/text/library.o(.rodata.library_menu);
-        . = 0xFD958; asm/data/data_080F9EB8.o(.rodata.library_menu_trailer);
+        . = 0xFD958; data/text/library.o(.rodata.library_menu_trailer);
         . = 0xFD964; data/text/poultry_shop.o(.rodata.poultry_shop_menu);
         . = ALIGN(4); src/poultry_shop_data.o(.rodata.poultry_shop_catalog);
         data/text/poultry_shop.o(.rodata.poultry_shop_status_prefix);

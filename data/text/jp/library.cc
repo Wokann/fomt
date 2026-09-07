@@ -8,3 +8,7 @@ char const gText_Library_OpeningHours[] LIBRARY_INFO_TEXT =
 char const gText_Library_Menu[] LIBRARY_MENU_TEXT =
     "本一覧　\x00"
     "手紙一覧";
+
+char const gCppRuntimeBadAlloc_LibraryMenu[]
+    SECTION(".rodata.library_menu_trailer") ALIGN(4) =
+    "bad_alloc";

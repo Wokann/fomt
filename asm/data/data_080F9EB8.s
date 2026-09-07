@@ -43,9 +43,6 @@
     .section .rodata.library_info_trailer
     .incbin "baserom_jp.gba", 0xFCCF3, (0xFD0B0 - 0xFCCF3)
 
-    .section .rodata.library_menu_trailer
-    .incbin "baserom_jp.gba", 0xFD0C2, (0xFD0D0 - 0xFD0C2)
-
 
 
 
@@ -690,9 +687,6 @@ gUnk_080FD548:
 	.global gUnk_080FD920
 gUnk_080FD920:
 	.incbin "baserom_us.gba", 0xFD920, 0x20
-
-	.section .rodata.library_menu_trailer
-	.incbin "baserom_us.gba", 0xFD958, (0xFD964 - 0xFD958)
 
 
 
