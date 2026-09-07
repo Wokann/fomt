@@ -168,3 +168,12 @@ char const gText_Calendar_Festival_WeddingAnniversary[] CALENDAR_FESTIVAL_DYNAMI
 char const gText_Calendar_Festival_NoPlans[] CALENDAR_NO_PLANS_TEXT =
     "\p"
     "この日は特に何もない…{Press}";
+
+char const gCppRuntimeBadAlloc_CalendarNoPlansFirst[] =
+    "bad_alloc";
+
+char const gText_Calendar_FallbackNone[] =
+    "なし";
+
+char const gCppRuntimeBadAlloc_CalendarNoPlansSecond[] =
+    "bad_alloc";

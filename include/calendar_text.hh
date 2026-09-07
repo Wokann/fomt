@@ -67,5 +67,8 @@ extern char const gText_Calendar_Festival_YearEndGathering[];
 extern char const gText_Calendar_Festival_Marriage[];
 extern char const gText_Calendar_Festival_WeddingAnniversary[];
 extern char const gText_Calendar_Festival_NoPlans[];
+extern char const gCppRuntimeBadAlloc_CalendarNoPlansFirst[];
+extern char const gText_Calendar_FallbackNone[];
+extern char const gCppRuntimeBadAlloc_CalendarNoPlansSecond[];
 
 #endif // CALENDAR_TEXT_HH

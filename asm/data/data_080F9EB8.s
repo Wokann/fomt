@@ -76,9 +76,6 @@
     .section .rodata.character_names_table_trailer
     .incbin "baserom_jp.gba", 0x103EF4, (0x10447C - 0x103EF4)
 
-    .section .rodata.calendar_no_plans_trailer
-    .incbin "baserom_jp.gba", 0x104935, (0x104958 - 0x104935)
-
     .section .rodata.possessive_labels_trailer
     .incbin "baserom_jp.gba", 0x104988, (0x104994 - 0x104988)
 
@@ -505,9 +502,6 @@ gUnk_081040EC:
 	.global gUnk_081043BC
 gUnk_081043BC:
 	.incbin "baserom_us.gba", 0x1043BC, 0x57C
-
-	.section .rodata.calendar_no_plans_trailer
-	.incbin "baserom_us.gba", 0x104DEA, (0x104E0C - 0x104DEA)
 
 	.section .rodata.static_data_after_possessive_labels
 	.incbin "baserom_us.gba", 0x104E40, (0x104E4C - 0x104E40)
