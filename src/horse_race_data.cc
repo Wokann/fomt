@@ -17,6 +17,16 @@ u16 const gHorseRacePrizeItemIds[] SECTION(".rodata.horse_race_prize_item_ids") 
     ARTICLE_PERFUME,
 };
 
+// The JP prize-exchange renderer reads a fixed twenty-glyph field and its
+// original table has no terminator. The US counterpart retains its terminal.
+u16 const gHorseRacePrizeExchangeCharacterCodes[]
+    SECTION(".rodata.horse_race_prize_exchange_character_codes") ALIGN(2) =
+#if defined(REGION_JP)
+    FOMT_GLYPH_SEQUENCE("０１２３４５６７８９枚倍Ｇ現在のメダル数");
+#else
+    FOMT_GLYPH_TEXT("0123456789 xGYour medals");
+#endif
+
 char const * const gHorseRaceTicketControls[] SECTION(".rodata.horse_race_ticket_controls") = {
     gText_HorseRace_TicketControls_DPadUpDown,
     gText_HorseRace_TicketControls_SelectHorse,

@@ -58088,7 +58088,7 @@ func_0805D9C0: @ 0x0805D9C0
 	lsls r2, r2, #1
 	adds r6, r6, r2
 .L0805DB84:
-	ldr r0, .L0805DC1C @ =gUnk_080FB1A6
+	ldr r0, .L0805DC1C @ =gHorseRacePrizeExchangeCharacterCodes
 	lsls r4, r5, #1
 	adds r0, r4, r0
 	ldrh r1, [r0]
@@ -58145,7 +58145,7 @@ func_0805D9C0: @ 0x0805D9C0
 .L0805DC10: .4byte 0x05000200
 .L0805DC14: .4byte 0x05000202
 .L0805DC18: .4byte 0x05000204
-.L0805DC1C: .4byte gUnk_080FB1A6
+.L0805DC1C: .4byte gHorseRacePrizeExchangeCharacterCodes
 .L0805DC20: .4byte 0x06010000
 
 	thumb_func_start func_0805DC24

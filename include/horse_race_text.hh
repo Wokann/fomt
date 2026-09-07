@@ -59,6 +59,7 @@ extern char const gText_HorseRace_PrizeExchangeTakeYourTime[];
 extern char const gText_HorseRace_PrizeSelectionConfirmation[];
 extern char const gText_HorseRace_PrizeExchangeLeaveConfirmation[];
 extern char const gText_HorseRace_PrizeExchangeInsufficientMedals[];
+extern u16 const gHorseRacePrizeExchangeCharacterCodes[];
 // One entry per gHorseRacePrizeCatalog entry. The native path distinguishes
 // Article and Food values itself; the Power Berry slot retains its unused
 // ARTICLE_MOON_DROP_GRASS placeholder because it has a dedicated branch.
