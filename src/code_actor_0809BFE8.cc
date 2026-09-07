@@ -143,4 +143,12 @@ EC u8 const gUnk_08103B38[][10] = {
     { 0x00, 0x50, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x00 },
 };
 
+// The raw actor routine at func_0809D500 indexes these words directly.  Their
+// values are retained without speculative symbolic names until that routine's
+// data model is decoded.
+EC u32 const gUnk_08103C3C[] = {
+    0x21, 0x0C, 0x15, 0x16, 0x13, 0x14, 0x18,
+    0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F,
+};
+
 /* what follows shouldn't be hard except that to do it well I think there needs to be union/placeholder shenanigans */
