@@ -1,0 +1,15 @@
+#ifndef ANIMAL_FESTIVAL_TEXT_HH
+#define ANIMAL_FESTIVAL_TEXT_HH
+
+#include "prelude.h"
+
+enum
+{
+    ANIMAL_FESTIVAL_LIVESTOCK_CONTESTANT_NAME_COUNT = 40,
+    ANIMAL_FESTIVAL_LIVESTOCK_CONTESTANT_NAME_WIDTH = 13,
+};
+
+// Direct-indexed fixed-width rows, not a pointer table.
+extern char const gText_AnimalFestival_LivestockContestantNames[ANIMAL_FESTIVAL_LIVESTOCK_CONTESTANT_NAME_COUNT][ANIMAL_FESTIVAL_LIVESTOCK_CONTESTANT_NAME_WIDTH];
+
+#endif // ANIMAL_FESTIVAL_TEXT_HH

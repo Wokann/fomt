@@ -135,73 +135,79 @@ char const gText_Blacksmith_NoOreToUpgrade[] BLACKSMITH_DIALOGUE =
     "some in the mine by the {Press}\r\n"
     "spring, you know.{Press}";
 
-char const gText_BlacksmithUpgrade_Tools[] BLACKSMITH_UPGRADE_PROMPTS =
+char const gText_BlacksmithUpgrade_EmptyDescription[] BLACKSMITH_UPGRADE_TEXT =
+    "";
+
+char const gText_BlacksmithUpgrade_Tools[] BLACKSMITH_UPGRADE_TEXT =
     "Tools ";
 
-char const gText_BlacksmithUpgrade_Items[] BLACKSMITH_UPGRADE_PROMPTS =
+char const gText_BlacksmithUpgrade_Items[] BLACKSMITH_UPGRADE_TEXT =
     "Items ";
 
-char const gText_BlacksmithUpgrade_SelectTool[] BLACKSMITH_UPGRADE_PROMPTS =
+char const gText_BlacksmithUpgrade_SelectTool[] BLACKSMITH_UPGRADE_TEXT =
     "First, select a Tool to be\r\n"
     "upgraded.{Press}";
 
-char const gText_BlacksmithUpgrade_CursedTool[] BLACKSMITH_UPGRADE_PROMPTS =
+char const gText_BlacksmithUpgrade_CursedTool[] BLACKSMITH_UPGRADE_TEXT =
     "This is...c-cursed!\r\n"
     "What are you thinking!!{Press}";
 
-char const gText_BlacksmithUpgrade_SelectOre[] BLACKSMITH_UPGRADE_PROMPTS =
+char const gText_BlacksmithUpgrade_SelectOre[] BLACKSMITH_UPGRADE_TEXT =
     "Next, select an Ore to\r\n"
     "upgrade that Tool with.{Press}";
 
-char const gText_BlacksmithUpgrade_CannotUpgradeTool[] BLACKSMITH_UPGRADE_PROMPTS =
+char const gText_BlacksmithUpgrade_CannotUpgradeTool[] BLACKSMITH_UPGRADE_TEXT =
     "That can't be upgraded.{Press}";
 
-char const gText_BlacksmithUpgrade_InvalidUpgradeOre[] BLACKSMITH_UPGRADE_PROMPTS =
+char const gText_BlacksmithUpgrade_InvalidUpgradeOre[] BLACKSMITH_UPGRADE_TEXT =
     "You can't use that to\r\n"
     "upgrade Tools. You need\r\n"
     "a better Ore instead.{Press}";
 
-char const gText_BlacksmithUpgrade_CannotChangeMind[] BLACKSMITH_UPGRADE_PROMPTS =
+char const gText_BlacksmithUpgrade_CannotChangeMind[] BLACKSMITH_UPGRADE_TEXT =
     "A real man doesn't change\r\n"
     "his mind, you know.{Press}";
 
-char const gText_BlacksmithUpgrade_InsufficientExperience[] BLACKSMITH_UPGRADE_PROMPTS =
+char const gText_BlacksmithUpgrade_InsufficientExperience[] BLACKSMITH_UPGRADE_TEXT =
     "You don't have enough\r\n"
     "experience to upgrade\r\n"
     "that Tool.{Press}";
 
-char const gText_BlacksmithUpgrade_AlreadyUpgradedWithOre[] BLACKSMITH_UPGRADE_PROMPTS =
+char const gText_BlacksmithUpgrade_AlreadyUpgradedWithOre[] BLACKSMITH_UPGRADE_TEXT =
     "That Tool has already been\r\n"
     "improved with the same Ore.{Press}";
 
-char const gText_BlacksmithUpgrade_DowngradeConfirmation[] BLACKSMITH_UPGRADE_PROMPTS =
+char const gText_BlacksmithUpgrade_DowngradeConfirmation[] BLACKSMITH_UPGRADE_TEXT =
     "Hmmph! What are you\r\n"
     "trying to do, downgrade\r\n"
     "your Tools?!{Press}";
 
-char const gText_BlacksmithUpgrade_WorkOrderPrefix[] BLACKSMITH_UPGRADE_DYNAMIC =
+char const gText_BlacksmithUpgrade_WorkOrderPrefix[] BLACKSMITH_UPGRADE_TEXT =
     "That Tool is ";
 
-char const gText_BlacksmithUpgrade_WorkOrderGoldSuffix[] BLACKSMITH_UPGRADE_DYNAMIC =
+char const gText_BlacksmithUpgrade_WorkOrderGoldSuffix[] BLACKSMITH_UPGRADE_TEXT =
     "G, \r\n";
 
-char const gText_BlacksmithUpgrade_WorkOrderDaysPrefix[] BLACKSMITH_UPGRADE_DYNAMIC =
+char const gText_BlacksmithUpgrade_WorkOrderDaysPrefix[] BLACKSMITH_UPGRADE_TEXT =
     "and It will take ";
 
-char const gText_BlacksmithUpgrade_WorkOrderDaysSuffix[] BLACKSMITH_UPGRADE_DYNAMIC =
+char const gText_BlacksmithUpgrade_WorkOrderDaysSuffix[] BLACKSMITH_UPGRADE_TEXT =
     " days.\r\n";
 
 // This zero is the original padding byte before the following non-text word.
-char const gText_BlacksmithUpgrade_WorkOrderQuestion[] BLACKSMITH_UPGRADE_DYNAMIC =
+char const gText_BlacksmithUpgrade_WorkOrderQuestion[] BLACKSMITH_UPGRADE_TEXT =
     "Is that okay?{Press}\x00";
 
-char const gText_BlacksmithUpgrade_InsufficientGold[] BLACKSMITH_UPGRADE_RESULT =
+char const gText_BlacksmithUpgrade_InsufficientGoldPageBreak[] BLACKSMITH_UPGRADE_TEXT =
+    "\p";
+
+char const gText_BlacksmithUpgrade_InsufficientGold[] BLACKSMITH_UPGRADE_TEXT =
     "Hmm....You don't have\r\n"
     "enough money!\r\n"
     "I can't do it for that.{Press}";
 
-char const gText_BlacksmithUpgrade_ResultYes[] BLACKSMITH_UPGRADE_RESULT =
+char const gText_BlacksmithUpgrade_ResultYes[] BLACKSMITH_UPGRADE_TEXT =
     "Yes";
 
-char const gText_BlacksmithUpgrade_ResultNo[] BLACKSMITH_UPGRADE_RESULT =
+char const gText_BlacksmithUpgrade_ResultNo[] BLACKSMITH_UPGRADE_TEXT =
     "No";

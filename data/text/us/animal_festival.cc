@@ -1,9 +1,9 @@
-#include "festival_contestant_text.hh"
+#include "animal_festival_text.hh"
 
-// US ROM fixed-width contestant-name tables.  JP Set0 has no corresponding
-// US field table; Set1 and Set2 keep their independently verified ROM rows.
+// Direct-indexed animal-festival livestock contestant names. The fixed
+// 13-byte rows retain the original US display-space padding.
 
-char const gText_FestivalContestantNames_Set1[40][13] SECTION(".rodata.festival_contestants_set1") ALIGN(1) = {
+char const gText_AnimalFestival_LivestockContestantNames[40][13] SECTION(".rodata.animal_festival_livestock_contestant_names") ALIGN(1) = {
     "Midnight    ",
     "Harmony     ",
     "Dustball    ",
@@ -44,27 +44,4 @@ char const gText_FestivalContestantNames_Set1[40][13] SECTION(".rodata.festival_
     "Pericles    ",
     "Cowboy      ",
     "Astronaut   "
-};
-
-char const gText_FestivalContestantNames_Set2[20][13] SECTION(".rodata.festival_contestants_set2") ALIGN(1) = {
-    "Saber",
-    "Homer",
-    "Beowolf",
-    "Bones",
-    "Sarge",
-    "Hawkeye",
-    "Shamus",
-    "Bruno",
-    "Sharpy",
-    "Buzz",
-    "Junior",
-    "Byron",
-    "King",
-    "Caesar",
-    "Kellog",
-    "Skip",
-    "Cash",
-    "Lioin",
-    "Lance",
-    "Spike"
 };

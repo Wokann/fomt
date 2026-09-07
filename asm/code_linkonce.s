@@ -26929,7 +26929,7 @@ func_080E14B8: @ 0x080E14B8
 	movs r0, #0xd
 	adds r5, r1, #0
 	muls r5, r0, r5
-	ldr r0, .L080E1574 @ =gText_FestivalContestantNames_Set1
+	ldr r0, .L080E1574 @ =gText_AnimalFestival_LivestockContestantNames
 	adds r5, r5, r0
 	adds r0, r5, #0
 	bl strlen
@@ -26952,7 +26952,7 @@ func_080E14B8: @ 0x080E14B8
 	bl strcpy
 	b .L080E15B6
 	.align 2, 0
-.L080E1574: .4byte gText_FestivalContestantNames_Set1
+.L080E1574: .4byte gText_AnimalFestival_LivestockContestantNames
 .L080E1578:
 	add r1, sp, #8
 	movs r0, #0

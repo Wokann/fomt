@@ -5,6 +5,7 @@
 
 #define GIFT_WRAP_TEXT SECTION(".rodata.gift_wrap")
 
+extern char const gText_GiftWrap_EmptyDescription[];
 extern char const gText_GiftWrap_CannotWrap[];
 extern char const gText_GiftWrap_Confirm[];
 extern char const gText_GiftWrap_Yes[];

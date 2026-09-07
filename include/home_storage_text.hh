@@ -12,6 +12,7 @@
 #define HOME_STORAGE_SHELF_TEXT SECTION(".rodata.home_storage_shelf")
 #define HOME_STORAGE_TOOL_CHEST_HEADER_TEXT SECTION(".rodata.home_storage_tool_chest_header")
 
+extern char const gText_Fridge_EmptyDescription[];
 extern char const gText_Fridge_WrappedGiftWarning[];
 extern char const gText_Fridge_Yes[];
 extern char const gText_Fridge_No[];
@@ -20,6 +21,7 @@ extern char const gText_Fridge_Title[];
 
 extern char const gText_HomeStorage_ConfirmationYes[];
 extern char const gText_HomeStorage_ConfirmationNo[];
+extern char const gText_HomeStorage_EmptyDescription[];
 
 extern char const gText_HomeStorage_CategoryTools[];
 extern char const gText_HomeStorage_CategoryItems[];
@@ -29,8 +31,10 @@ extern char const gText_Shelf_Yes[];
 extern char const gText_Shelf_No[];
 extern char const gText_Shelf_Items[];
 extern char const gText_Shelf_Title[];
+extern char const gText_Shelf_EmptyDescription[];
 
 extern char const gText_ToolChest_HeaderTools[];
 extern char const gText_ToolChest_Title[];
+extern char const gText_ToolChest_EmptyDescription[];
 
 #endif // HOME_STORAGE_TEXT_HH

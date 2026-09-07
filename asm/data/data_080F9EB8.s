@@ -7,7 +7,7 @@
     .section .rodata.script_engine_ui_error_trailer
     .incbin "baserom_jp.gba", 0xF971A, (0xF97E6 - 0xF971A)
 
-    .section .rodata.festival_contestants_set0_trailer_prefix
+    .section .rodata.name_entry_preset_animal_names_trailer_prefix
     .incbin "baserom_jp.gba", 0xF996C, (0xF9994 - 0xF996C)
 
     .section .rodata.frisbee_scoreboard_trailer
@@ -16,7 +16,7 @@
     .section .rodata.frisbee_text_trailer
     .incbin "baserom_jp.gba", 0xF9F4F, (0xF9FD6 - 0xF9F4F)
 
-    .section .rodata.festival_contestants_set1_trailer_prefix
+    .section .rodata.animal_festival_livestock_contestant_names_trailer_prefix
     .incbin "baserom_jp.gba", 0xFA1DE, (0xFA280 - 0xFA1DE)
 
     .section .rodata.horse_race_dialogue_trailer
@@ -31,8 +31,11 @@
     .section .rodata.horse_race_prize_exchange_padding
     .incbin "baserom_jp.gba", 0xFAA37, (0xFAA38 - 0xFAA37)
 
-    .section .rodata.horse_race_prize_exchange_trailer_prefix
-    .incbin "baserom_jp.gba", 0xFAA38, (0xFB11C - 0xFAA38)
+    .section .rodata.intro_scene_prefix
+    .incbin "baserom_jp.gba", 0xFAA38, (0xFAABC - 0xFAA38)
+
+    .section .rodata.intro_scene_text_trailer
+    .incbin "baserom_jp.gba", 0xFB10F, (0xFB11C - 0xFB10F)
 
     .section .rodata.farm_status_trailer_prefix
     .incbin "baserom_jp.gba", 0xFB224, (0xFB230 - 0xFB224)
@@ -128,31 +131,25 @@
     .incbin "baserom_jp.gba", 0xFF9A2, (0xFF9A4 - 0xFF9A2)
 
     .section .rodata.home_storage_prefix
-    .incbin "baserom_jp.gba", 0xFF9A4, (0xFF9B4 - 0xFF9A4)
+    .incbin "baserom_jp.gba", 0xFF9A4, (0xFF9B0 - 0xFF9A4)
 
     .section .rodata.home_storage_fridge_trailer
     .incbin "baserom_jp.gba", 0xFFA14, (0xFFA20 - 0xFFA14)
 
-    .section .rodata.home_storage_confirmation_padding
-    .incbin "baserom_jp.gba", 0xFFA30, (0xFFA34 - 0xFFA30)
+    .section .rodata.home_storage_empty_trailer
+    .incbin "baserom_jp.gba", 0xFFA31, (0xFFA34 - 0xFFA31)
 
-    .section .rodata.home_storage_tool_chest_category_trailer
-    .incbin "baserom_jp.gba", 0xFFA44, (0xFFA54 - 0xFFA44)
+    .section .rodata.home_storage_tool_chest_category_trailer_prefix
+    .incbin "baserom_jp.gba", 0xFFA44, (0xFFA50 - 0xFFA44)
 
     .section .rodata.home_storage_shelf_trailer
-    .incbin "baserom_jp.gba", 0xFFAB4, (0xFFAC4 - 0xFFAB4)
+    .incbin "baserom_jp.gba", 0xFFAB4, (0xFFAC0 - 0xFFAB4)
 
     .section .rodata.home_storage_trailer
     .incbin "baserom_jp.gba", 0xFFAD4, (0xFFAE0 - 0xFFAD4)
 
-    .section .rodata.blacksmith_upgrade_prefix
-    .incbin "baserom_jp.gba", 0xFFAE0, (0xFFAE4 - 0xFFAE0)
-
-    .section .rodata.blacksmith_upgrade_result_padding
-    .incbin "baserom_jp.gba", 0xFFD04, (0xFFD08 - 0xFFD04)
-
     .section .rodata.gift_wrap_prefix
-    .incbin "baserom_jp.gba", 0xFFD54, (0xFFD64 - 0xFFD54)
+    .incbin "baserom_jp.gba", 0xFFD54, (0xFFD60 - 0xFFD54)
 
     .section .rodata.gift_wrap_trailer
     .incbin "baserom_jp.gba", 0xFFE64, (0xFFE70 - 0xFFE64)
@@ -203,9 +200,8 @@ gActorStateMaxValues:
     .section .rodata.fishing_results_trailer
     .incbin "baserom_jp.gba", 0x1035F8, (0x103BFC - 0x1035F8)
 
-    .global gText_CharacterName_Empty
-gText_CharacterName_Empty:
-    .incbin "baserom_jp.gba", 0x103BFC, (0x103C1C - 0x103BFC)
+    .section .rodata.character_names_empty_trailer
+    .incbin "baserom_jp.gba", 0x103BFD, (0x103C1C - 0x103BFD)
 
     .section .rodata.character_names_text_padding
     .incbin "baserom_jp.gba", 0x103D9B, (0x103D9C - 0x103D9B)
@@ -235,7 +231,7 @@ gMapData:
     .section .rodata.harvest_sprite_minigames_animal_husbandry_trailer
     .incbin "baserom_jp.gba", 0x10737B, (0x1073B9 - 0x10737B)
 
-.section .rodata.festival_contestants_set2_trailer
+.section .rodata.chicken_festival_contestant_names_trailer
 .incbin "baserom_jp.gba", 0x1074BD, (0x1074C0 - 0x1074BD)
 
 .section .rodata.harvest_sprite_minigames_chicken_festival_opening_trailer
@@ -359,7 +355,7 @@ gUnk_080FA71C:
 gUnk_080FA728:
 	.incbin "baserom_us.gba", 0xFA728, 0x6E
 
-	.section .rodata.festival_contestants_set1_trailer_prefix
+	.section .rodata.animal_festival_livestock_contestant_names_trailer_prefix
 
 	.global gUnk_080FA99E
 gUnk_080FA99E:
@@ -386,7 +382,7 @@ gUnk_080FAFF4:
 gUnk_080FB0F0:
 	.incbin "baserom_us.gba", 0xFB0F0, 0x18
 
-	.section .rodata.horse_race_prize_exchange_trailer
+	.section .rodata.intro_scene_prefix
 
 	.global gUnk_080FB1A6
 gUnk_080FB1A6:
@@ -396,117 +392,8 @@ gUnk_080FB1A6:
 gUnk_080FB1E4:
 	.incbin "baserom_us.gba", 0xFB1E4, 0x50
 
-	.global gUnk_080FB234
-gUnk_080FB234:
-	.incbin "baserom_us.gba", 0xFB234, 0x8
-
-	.global gUnk_080FB23C
-gUnk_080FB23C:
-	.incbin "baserom_us.gba", 0xFB23C, 0x40
-
-	.global gUnk_080FB27C
-gUnk_080FB27C:
-	.incbin "baserom_us.gba", 0xFB27C, 0x8
-
-	.global gUnk_080FB284
-gUnk_080FB284:
-	.incbin "baserom_us.gba", 0xFB284, 0x4C
-
-	.global gUnk_080FB2D0
-gUnk_080FB2D0:
-	.incbin "baserom_us.gba", 0xFB2D0, 0x24
-
-	.global gUnk_080FB2F4
-gUnk_080FB2F4:
-	.incbin "baserom_us.gba", 0xFB2F4, 0xC
-
-	.global gUnk_080FB300
-gUnk_080FB300:
-	.incbin "baserom_us.gba", 0xFB300, 0x8
-
-	.global gUnk_080FB308
-gUnk_080FB308:
-	.incbin "baserom_us.gba", 0xFB308, 0x90
-
-	.global gUnk_080FB398
-gUnk_080FB398:
-	.incbin "baserom_us.gba", 0xFB398, 0x34
-
-	.global gUnk_080FB3CC
-gUnk_080FB3CC:
-	.incbin "baserom_us.gba", 0xFB3CC, 0x54
-
-	.global gUnk_080FB420
-gUnk_080FB420:
-	.incbin "baserom_us.gba", 0xFB420, 0x4C
-
-	.global gUnk_080FB46C
-gUnk_080FB46C:
-	.incbin "baserom_us.gba", 0xFB46C, 0x18
-
-	.global gUnk_080FB484
-gUnk_080FB484:
-	.incbin "baserom_us.gba", 0xFB484, 0x50
-
-	.global gUnk_080FB4D4
-gUnk_080FB4D4:
-	.incbin "baserom_us.gba", 0xFB4D4, 0x48
-
-	.global gUnk_080FB51C
-gUnk_080FB51C:
-	.incbin "baserom_us.gba", 0xFB51C, 0x4
-
-	.global gUnk_080FB520
-gUnk_080FB520:
-	.incbin "baserom_us.gba", 0xFB520, 0x14
-
-	.global gUnk_080FB534
-gUnk_080FB534:
-	.incbin "baserom_us.gba", 0xFB534, 0x8
-
-	.global gUnk_080FB53C
-gUnk_080FB53C:
-	.incbin "baserom_us.gba", 0xFB53C, 0x8
-
-	.global gUnk_080FB544
-gUnk_080FB544:
-	.incbin "baserom_us.gba", 0xFB544, 0x34
-
-	.global gUnk_080FB578
-gUnk_080FB578:
-	.incbin "baserom_us.gba", 0xFB578, 0x5C
-
-	.global gUnk_080FB5D4
-gUnk_080FB5D4:
-	.incbin "baserom_us.gba", 0xFB5D4, 0x60
-
-	.global gUnk_080FB634
-gUnk_080FB634:
-	.incbin "baserom_us.gba", 0xFB634, 0x8C
-
-	.global gUnk_080FB6C0
-gUnk_080FB6C0:
-	.incbin "baserom_us.gba", 0xFB6C0, 0x50
-
-	.global gUnk_080FB710
-gUnk_080FB710:
-	.incbin "baserom_us.gba", 0xFB710, 0x28
-
-	.global gUnk_080FB738
-gUnk_080FB738:
-	.incbin "baserom_us.gba", 0xFB738, 0x1C
-
-	.global gUnk_080FB754
-gUnk_080FB754:
-	.incbin "baserom_us.gba", 0xFB754, 0x4C
-
-	.global gUnk_080FB7A0
-gUnk_080FB7A0:
-	.incbin "baserom_us.gba", 0xFB7A0, 0x50
-
-	.global gUnk_080FB7F0
-gUnk_080FB7F0:
-	.incbin "baserom_us.gba", 0xFB7F0, 0x34
+	.section .rodata.intro_scene_text_trailer
+	.incbin "baserom_us.gba", 0xFB817, (0xFB824 - 0xFB817)
 
 	.section .rodata.farm_status_trailer_prefix
 
@@ -674,55 +561,20 @@ gUnk_080FF838:
 	.section .rodata.livestock_shop_trailer_prefix
 	.incbin "baserom_us.gba", 0x100024, (0x100030 - 0x100024)
 
-	.section .rodata.home_storage_prefix
-
-	.global gUnk_08100030
-gUnk_08100030:
-	.incbin "baserom_us.gba", 0x100030, 0x4
-
 	.section .rodata.home_storage_fridge_trailer
 	.incbin "baserom_us.gba", 0x10009C, (0x1000A8 - 0x10009C)
-
-	.section .rodata.home_storage_tool_chest_category_padding
-	.global gUnk_081000B0
-gUnk_081000B0:
-	.incbin "baserom_us.gba", 0x1000B0, 0x4
 
 	.section .rodata.home_storage_tool_chest_category_trailer
 	.incbin "baserom_us.gba", 0x1000C4, (0x1000D0 - 0x1000C4)
 
-	.global gUnk_081000D0
-gUnk_081000D0:
-	.incbin "baserom_us.gba", 0x1000D0, 0x4
-
 	.section .rodata.home_storage_shelf_trailer
 	.incbin "baserom_us.gba", 0x100138, (0x100144 - 0x100138)
-
-	.global gUnk_08100144
-gUnk_08100144:
-	.incbin "baserom_us.gba", 0x100144, 0x4
 
 	.section .rodata.home_storage_trailer
 	.incbin "baserom_us.gba", 0x10015C, (0x100168 - 0x10015C)
 
-	.section .rodata.blacksmith_upgrade_prefix
-
-	.global gUnk_08100168
-gUnk_08100168:
-	.incbin "baserom_us.gba", 0x100168, 0x4
-
-	.section .rodata.blacksmith_upgrade_result_padding
-
-	.global gUnk_08100398
-gUnk_08100398:
-	.incbin "baserom_us.gba", 0x100398, 0x4
-
 	.section .rodata.gift_wrap_prefix
 	.incbin "baserom_us.gba", 0x1003E4, (0x1003F0 - 0x1003E4)
-
-	.global gUnk_081003F0
-gUnk_081003F0:
-	.incbin "baserom_us.gba", 0x1003F0, 0x4
 
 	.section .rodata.gift_wrap_trailer
 	.incbin "baserom_us.gba", 0x1004D4, (0x1004E0 - 0x1004D4)
@@ -905,9 +757,7 @@ gUnk_0810400C:
 gUnk_081040EC:
 	.incbin "baserom_us.gba", 0x1040EC, 0x1C
 
-	.global gText_CharacterName_Empty
-gText_CharacterName_Empty:
-	.incbin "baserom_us.gba", 0x104108, 0x1
+	.section .rodata.character_names_empty_trailer
 
 	.global gUnk_08104109
 gUnk_08104109:
@@ -1493,7 +1343,7 @@ gUnk_081078A0:
 gUnk_081078BC:
 	.incbin "baserom_us.gba", 0x1078BC, 0x1
 
-	.section .rodata.festival_contestants_set2_trailer
+	.section .rodata.chicken_festival_contestant_names_trailer
 
 	.global gUnk_081079C1
 gUnk_081079C1:

@@ -83,7 +83,80 @@
     jp_code_0803ee_func func_0805E8F0, 0x5E634, 0x5E968
     jp_code_0803ee_func func_0805EC24, 0x5E968, 0x5EA90
     jp_code_0803ee_func func_0805ED4C, 0x5EA90, 0x5EB88
-    jp_code_0803ee_func func_0805EE44, 0x5EB88, 0x5F8FC
+    @ Keep the matched Thumb body raw, but give every text literal-pool entry
+    @ a relocatable semantic symbol shared with the US source.
+    .global func_0805EE44
+    .thumb_func
+func_0805EE44:
+    .incbin "baserom_jp.gba", 0x5EB88, (0x5F4CC - 0x5EB88)
+    .4byte gText_IntroScene_MotherName
+    .4byte gText_IntroScene_MotherTravelGreeting
+    .incbin "baserom_jp.gba", 0x5F4D4, (0x5F508 - 0x5F4D4)
+    .4byte gText_IntroScene_FatherName
+    .4byte gText_IntroScene_FatherFishingInvitation
+    .incbin "baserom_jp.gba", 0x5F510, (0x5F544 - 0x5F510)
+    .4byte gText_IntroScene_MotherName
+    .4byte gText_IntroScene_MotherCannotFindPlayer
+    .incbin "baserom_jp.gba", 0x5F54C, (0x5F568 - 0x5F54C)
+    .4byte gText_IntroScene_FatherName
+    .4byte gText_IntroScene_PlayerResponseWhat
+    .incbin "baserom_jp.gba", 0x5F570, (0x5F580 - 0x5F570)
+    .4byte gText_IntroScene_OldManName
+    .4byte gText_IntroScene_OldManFindsPlayer
+    .incbin "baserom_jp.gba", 0x5F588, (0x5F5AC - 0x5F588)
+    .4byte gText_IntroScene_MotherName
+    .4byte gText_IntroScene_MotherThanksOldMan
+    .incbin "baserom_jp.gba", 0x5F5B4, (0x5F5E8 - 0x5F5B4)
+    .4byte gText_IntroScene_FatherName
+    .4byte gText_IntroScene_FatherExplainsVacation
+    .incbin "baserom_jp.gba", 0x5F5F0, (0x5F624 - 0x5F5F0)
+    .4byte gText_IntroScene_OldManName
+    .4byte gText_IntroScene_OldManOffersStay
+    .incbin "baserom_jp.gba", 0x5F62C, (0x5F660 - 0x5F62C)
+    .4byte gText_IntroScene_FatherName
+    .4byte gText_IntroScene_FatherAsksAboutStay
+    .incbin "baserom_jp.gba", 0x5F668, (0x5F69C - 0x5F668)
+    .4byte gText_IntroScene_OldManName
+    .4byte gText_IntroScene_OldManWelcomesFamily
+    .incbin "baserom_jp.gba", 0x5F6A4, (0x5F6C0 - 0x5F6A4)
+    .4byte gText_IntroScene_MotherName
+    .4byte gText_IntroScene_MotherTellsPlayerToPlay
+    .incbin "baserom_jp.gba", 0x5F6C8, (0x5F6F0 - 0x5F6C8)
+    .4byte gText_IntroScene_UnknownName
+    .4byte gText_IntroScene_UnknownCallsPlayer
+    .incbin "baserom_jp.gba", 0x5F6F8, (0x5F70C - 0x5F6F8)
+    .4byte gText_IntroScene_UnknownFindsPlayer
+    .incbin "baserom_jp.gba", 0x5F710, (0x5F738 - 0x5F710)
+    .4byte gText_IntroScene_GirlName
+    .4byte gText_IntroScene_GirlThinksPlayerDead
+    .incbin "baserom_jp.gba", 0x5F740, (0x5F774 - 0x5F740)
+    .4byte gText_IntroScene_GirlName
+    .4byte gText_IntroScene_GirlInvitesPlayerToPlay
+    .incbin "baserom_jp.gba", 0x5F77C, (0x5F798 - 0x5F77C)
+    .4byte gText_IntroScene_GirlName
+    .4byte gText_IntroScene_GirlAsksPlayerStory
+    .incbin "baserom_jp.gba", 0x5F7A0, (0x5F7C8 - 0x5F7A0)
+    .4byte gText_IntroScene_OldManName
+    .4byte gText_IntroScene_OldManFarewell
+    .incbin "baserom_jp.gba", 0x5F7D0, (0x5F804 - 0x5F7D0)
+    .4byte gText_IntroScene_OldManName
+    .4byte gText_IntroScene_OldManRequestsLetter
+    .incbin "baserom_jp.gba", 0x5F80C, (0x5F828 - 0x5F80C)
+    .4byte gText_IntroScene_OldManName
+    .4byte gText_IntroScene_OldManGivesAddress
+    .incbin "baserom_jp.gba", 0x5F830, (0x5F858 - 0x5F830)
+    .4byte gText_IntroScene_GirlName
+    .4byte gText_IntroScene_GirlSaysGoodbye
+    .incbin "baserom_jp.gba", 0x5F860, (0x5F894 - 0x5F860)
+    .4byte gText_IntroScene_GirlName
+    .4byte gText_IntroScene_GirlAsksPlayerToReturn
+    .incbin "baserom_jp.gba", 0x5F89C, (0x5F8C0 - 0x5F89C)
+    .4byte gText_IntroScene_OldManName
+    .4byte gText_IntroScene_OldManNotesFriend
+    .incbin "baserom_jp.gba", 0x5F8C8, (0x5F8F0 - 0x5F8C8)
+    .4byte gText_IntroScene_OldManName
+    .4byte gText_IntroScene_OldManWaitsForLetter
+    .incbin "baserom_jp.gba", 0x5F8F8, (0x5F8FC - 0x5F8F8)
     jp_code_0803ee_func func_0805FBB8, 0x5F8FC, 0x5FABC
     jp_code_0803ee_func func_0805FD78, 0x5FABC, 0x5FC58
     jp_code_0803ee_func func_0805FF14, 0x5FC58, 0x61B44
@@ -170,24 +243,58 @@
     jp_code_0803ee_func func_080868E4, 0x8645C, 0x86518
     jp_code_0803ee_func func_080869A0, 0x86518, 0x86580
     jp_code_0803ee_func func_08086A08, 0x86580, 0x880EC
-    jp_code_0803ee_func func_080885AC, 0x880EC, 0x886E0
+    .global func_080885AC
+    .thumb_func
+func_080885AC:
+    .incbin "baserom_jp.gba", 0x880EC, (0x881C4 - 0x880EC)
+    .4byte gText_Fridge_EmptyDescription
+    .incbin "baserom_jp.gba", 0x881C8, (0x886E0 - 0x881C8)
     jp_code_0803ee_func func_08088BA0, 0x886E0, 0x8A768
     jp_code_0803ee_func func_0808AC28, 0x8A768, 0x8B5A0
     jp_code_0803ee_func func_0808BA60, 0x8B5A0, 0x8B754
-    jp_code_0803ee_func func_0808BC14, 0x8B754, 0x8C11C
+    .global func_0808BC14
+    .thumb_func
+func_0808BC14:
+    .incbin "baserom_jp.gba", 0x8B754, (0x8BBF8 - 0x8B754)
+    .4byte gText_HomeStorage_EmptyDescription
+    .incbin "baserom_jp.gba", 0x8BBFC, (0x8C11C - 0x8BBFC)
     jp_code_0803ee_func func_0808C5DC, 0x8C11C, 0x8C380
     jp_code_0803ee_func func_0808C840, 0x8C380, 0x8C434
-    jp_code_0803ee_func func_0808C8F4, 0x8C434, 0x8EAA8
-    jp_code_0803ee_func func_0808EF68, 0x8EAA8, 0x9040C
+    .global func_0808C8F4
+    .thumb_func
+func_0808C8F4:
+    .incbin "baserom_jp.gba", 0x8C434, (0x8C50C - 0x8C434)
+    .4byte gText_Shelf_EmptyDescription
+    .incbin "baserom_jp.gba", 0x8C510, (0x8EAA8 - 0x8C510)
+    .global func_0808EF68
+    .thumb_func
+func_0808EF68:
+    .incbin "baserom_jp.gba", 0x8EAA8, (0x8EBBC - 0x8EAA8)
+    .4byte gText_ToolChest_EmptyDescription
+    .incbin "baserom_jp.gba", 0x8EBC0, (0x9040C - 0x8EBC0)
     jp_code_0803ee_func func_080908CC, 0x9040C, 0x90A04
     jp_code_0803ee_func func_08090EC4, 0x90A04, 0x90A20
     jp_code_0803ee_func func_08090EE0, 0x90A20, 0x90A98
     jp_code_0803ee_func func_08090F58, 0x90A98, 0x90B0C
-    jp_code_0803ee_func func_08090FCC, 0x90B0C, 0x90F60
+    .global func_08090FCC
+    .thumb_func
+func_08090FCC:
+    .incbin "baserom_jp.gba", 0x90B0C, (0x90EEC - 0x90B0C)
+    .4byte gText_BlacksmithUpgrade_EmptyDescription
+    .incbin "baserom_jp.gba", 0x90EF0, (0x90F60 - 0x90EF0)
     jp_code_0803ee_func func_08091420, 0x90F60, 0x90FE0
-    jp_code_0803ee_func func_080914A0, 0x90FE0, 0x920D0
+    .global func_080914A0
+    .thumb_func
+func_080914A0:
+    .incbin "baserom_jp.gba", 0x90FE0, (0x91DF0 - 0x90FE0)
+    .4byte gText_BlacksmithUpgrade_InsufficientGoldPageBreak
+    .incbin "baserom_jp.gba", 0x91DF4, (0x920D0 - 0x91DF4)
     jp_code_0803ee_func func_08092604, 0x920D0, 0x92170
-    jp_code_0803ee_func func_080926A4, 0x92170, 0x9253C
+    .global func_080926A4
+    .thumb_func
+func_080926A4:
+    .incbin "baserom_jp.gba", 0x92170, (0x92538 - 0x92170)
+    .4byte gText_GiftWrap_EmptyDescription
     jp_code_0803ee_func func_08092A70, 0x9253C, 0x9279C
     jp_code_0803ee_func func_08092CD0, 0x9279C, 0x92CEC
     jp_code_0803ee_func func_08093220, 0x92CEC, 0x92DD4
@@ -50755,7 +50862,7 @@ func_08059FE0: @ 0x08059FE0
 	adds r1, r0, #0
 	movs r0, #0xd
 	muls r1, r0, r1
-	ldr r0, .L0805A1CC @ =gText_FestivalContestantNames_Set1
+	ldr r0, .L0805A1CC @ =gText_AnimalFestival_LivestockContestantNames
 	adds r1, r1, r0
 	movs r3, #0xc
 	strh r3, [r6]
@@ -50789,7 +50896,7 @@ func_08059FE0: @ 0x08059FE0
 .L0805A1C0: .4byte 0x06002800
 .L0805A1C4: .4byte 0x00000B38
 .L0805A1C8: .4byte 0x00000B3C
-.L0805A1CC: .4byte gText_FestivalContestantNames_Set1
+.L0805A1CC: .4byte gText_AnimalFestival_LivestockContestantNames
 .L0805A1D0:
 	ldr r0, .L0805A2B8 @ =0x000014DC
 	add r0, r8
@@ -61343,10 +61450,10 @@ func_0805F5F4: @ 0x0805F5F4
 	.4byte .L0805FB88 @ case 25
 .L0805F760:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F788 @ =gUnk_080FB234
+	ldr r1, .L0805F788 @ =gText_IntroScene_MotherName
 	bl func_08050E68
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F78C @ =gUnk_080FB23C
+	ldr r1, .L0805F78C @ =gText_IntroScene_MotherTravelGreeting
 	ldr r3, .L0805F790 @ =0x00006428
 	adds r2, r7, r3
 	bl func_08050DA0
@@ -61360,17 +61467,17 @@ func_0805F5F4: @ 0x0805F5F4
 	strh r0, [r1]
 	b .L0805FB9C
 	.align 2, 0
-.L0805F788: .4byte gUnk_080FB234
-.L0805F78C: .4byte gUnk_080FB23C
+.L0805F788: .4byte gText_IntroScene_MotherName
+.L0805F78C: .4byte gText_IntroScene_MotherTravelGreeting
 .L0805F790: .4byte 0x00006428
 .L0805F794: .4byte 0x00006426
 .L0805F798: .4byte 0x00006424
 .L0805F79C:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F7C4 @ =gUnk_080FB27C
+	ldr r1, .L0805F7C4 @ =gText_IntroScene_FatherName
 	bl func_08050E68
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F7C8 @ =gUnk_080FB284
+	ldr r1, .L0805F7C8 @ =gText_IntroScene_FatherFishingInvitation
 	ldr r3, .L0805F7CC @ =0x00006428
 	adds r2, r7, r3
 	bl func_08050DA0
@@ -61384,17 +61491,17 @@ func_0805F5F4: @ 0x0805F5F4
 	strh r0, [r1]
 	b .L0805FB9C
 	.align 2, 0
-.L0805F7C4: .4byte gUnk_080FB27C
-.L0805F7C8: .4byte gUnk_080FB284
+.L0805F7C4: .4byte gText_IntroScene_FatherName
+.L0805F7C8: .4byte gText_IntroScene_FatherFishingInvitation
 .L0805F7CC: .4byte 0x00006428
 .L0805F7D0: .4byte 0x00006426
 .L0805F7D4: .4byte 0x00006424
 .L0805F7D8:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F800 @ =gUnk_080FB234
+	ldr r1, .L0805F800 @ =gText_IntroScene_MotherName
 	bl func_08050E68
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F804 @ =gUnk_080FB2D0
+	ldr r1, .L0805F804 @ =gText_IntroScene_MotherCannotFindPlayer
 	ldr r3, .L0805F808 @ =0x00006428
 	adds r2, r7, r3
 	bl func_08050DA0
@@ -61408,37 +61515,37 @@ func_0805F5F4: @ 0x0805F5F4
 	strh r0, [r1]
 	b .L0805FB9C
 	.align 2, 0
-.L0805F800: .4byte gUnk_080FB234
-.L0805F804: .4byte gUnk_080FB2D0
+.L0805F800: .4byte gText_IntroScene_MotherName
+.L0805F804: .4byte gText_IntroScene_MotherCannotFindPlayer
 .L0805F808: .4byte 0x00006428
 .L0805F80C: .4byte 0x00006426
 .L0805F810: .4byte 0x00006424
 .L0805F814:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F824 @ =gUnk_080FB27C
+	ldr r1, .L0805F824 @ =gText_IntroScene_FatherName
 	bl func_08050E68
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F828 @ =gUnk_080FB2F4
+	ldr r1, .L0805F828 @ =gText_IntroScene_PlayerResponseWhat
 	b .L0805FB70
 	.align 2, 0
-.L0805F824: .4byte gUnk_080FB27C
-.L0805F828: .4byte gUnk_080FB2F4
+.L0805F824: .4byte gText_IntroScene_FatherName
+.L0805F828: .4byte gText_IntroScene_PlayerResponseWhat
 .L0805F82C:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F83C @ =gUnk_080FB300
+	ldr r1, .L0805F83C @ =gText_IntroScene_OldManName
 	bl func_08050E68
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F840 @ =gUnk_080FB308
+	ldr r1, .L0805F840 @ =gText_IntroScene_OldManFindsPlayer
 	b .L0805FB70
 	.align 2, 0
-.L0805F83C: .4byte gUnk_080FB300
-.L0805F840: .4byte gUnk_080FB308
+.L0805F83C: .4byte gText_IntroScene_OldManName
+.L0805F840: .4byte gText_IntroScene_OldManFindsPlayer
 .L0805F844:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F868 @ =gUnk_080FB234
+	ldr r1, .L0805F868 @ =gText_IntroScene_MotherName
 	bl func_08050E68
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F86C @ =gUnk_080FB398
+	ldr r1, .L0805F86C @ =gText_IntroScene_MotherThanksOldMan
 	ldr r3, .L0805F870 @ =0x00006428
 	adds r2, r7, r3
 	bl func_08050DA0
@@ -61451,17 +61558,17 @@ func_0805F5F4: @ 0x0805F5F4
 	strh r1, [r0]
 	b .L0805FB9C
 	.align 2, 0
-.L0805F868: .4byte gUnk_080FB234
-.L0805F86C: .4byte gUnk_080FB398
+.L0805F868: .4byte gText_IntroScene_MotherName
+.L0805F86C: .4byte gText_IntroScene_MotherThanksOldMan
 .L0805F870: .4byte 0x00006428
 .L0805F874: .4byte 0x00006426
 .L0805F878: .4byte 0x00006424
 .L0805F87C:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F8A4 @ =gUnk_080FB27C
+	ldr r1, .L0805F8A4 @ =gText_IntroScene_FatherName
 	bl func_08050E68
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F8A8 @ =gUnk_080FB3CC
+	ldr r1, .L0805F8A8 @ =gText_IntroScene_FatherExplainsVacation
 	ldr r3, .L0805F8AC @ =0x00006428
 	adds r2, r7, r3
 	bl func_08050DA0
@@ -61475,17 +61582,17 @@ func_0805F5F4: @ 0x0805F5F4
 	strh r0, [r1]
 	b .L0805FB9C
 	.align 2, 0
-.L0805F8A4: .4byte gUnk_080FB27C
-.L0805F8A8: .4byte gUnk_080FB3CC
+.L0805F8A4: .4byte gText_IntroScene_FatherName
+.L0805F8A8: .4byte gText_IntroScene_FatherExplainsVacation
 .L0805F8AC: .4byte 0x00006428
 .L0805F8B0: .4byte 0x00006426
 .L0805F8B4: .4byte 0x00006424
 .L0805F8B8:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F8E0 @ =gUnk_080FB300
+	ldr r1, .L0805F8E0 @ =gText_IntroScene_OldManName
 	bl func_08050E68
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F8E4 @ =gUnk_080FB420
+	ldr r1, .L0805F8E4 @ =gText_IntroScene_OldManOffersStay
 	ldr r3, .L0805F8E8 @ =0x00006428
 	adds r2, r7, r3
 	bl func_08050DA0
@@ -61499,17 +61606,17 @@ func_0805F5F4: @ 0x0805F5F4
 	strh r0, [r1]
 	b .L0805FB9C
 	.align 2, 0
-.L0805F8E0: .4byte gUnk_080FB300
-.L0805F8E4: .4byte gUnk_080FB420
+.L0805F8E0: .4byte gText_IntroScene_OldManName
+.L0805F8E4: .4byte gText_IntroScene_OldManOffersStay
 .L0805F8E8: .4byte 0x00006428
 .L0805F8EC: .4byte 0x00006426
 .L0805F8F0: .4byte 0x00006424
 .L0805F8F4:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F91C @ =gUnk_080FB27C
+	ldr r1, .L0805F91C @ =gText_IntroScene_FatherName
 	bl func_08050E68
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F920 @ =gUnk_080FB46C
+	ldr r1, .L0805F920 @ =gText_IntroScene_FatherAsksAboutStay
 	ldr r3, .L0805F924 @ =0x00006428
 	adds r2, r7, r3
 	bl func_08050DA0
@@ -61523,17 +61630,17 @@ func_0805F5F4: @ 0x0805F5F4
 	strh r0, [r1]
 	b .L0805FB9C
 	.align 2, 0
-.L0805F91C: .4byte gUnk_080FB27C
-.L0805F920: .4byte gUnk_080FB46C
+.L0805F91C: .4byte gText_IntroScene_FatherName
+.L0805F920: .4byte gText_IntroScene_FatherAsksAboutStay
 .L0805F924: .4byte 0x00006428
 .L0805F928: .4byte 0x00006426
 .L0805F92C: .4byte 0x00006424
 .L0805F930:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F958 @ =gUnk_080FB300
+	ldr r1, .L0805F958 @ =gText_IntroScene_OldManName
 	bl func_08050E68
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F95C @ =gUnk_080FB484
+	ldr r1, .L0805F95C @ =gText_IntroScene_OldManWelcomesFamily
 	ldr r3, .L0805F960 @ =0x00006428
 	adds r2, r7, r3
 	bl func_08050DA0
@@ -61547,27 +61654,27 @@ func_0805F5F4: @ 0x0805F5F4
 	strh r0, [r1]
 	b .L0805FB9C
 	.align 2, 0
-.L0805F958: .4byte gUnk_080FB300
-.L0805F95C: .4byte gUnk_080FB484
+.L0805F958: .4byte gText_IntroScene_OldManName
+.L0805F95C: .4byte gText_IntroScene_OldManWelcomesFamily
 .L0805F960: .4byte 0x00006428
 .L0805F964: .4byte 0x00006426
 .L0805F968: .4byte 0x00006424
 .L0805F96C:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F97C @ =gUnk_080FB234
+	ldr r1, .L0805F97C @ =gText_IntroScene_MotherName
 	bl func_08050E68
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F980 @ =gUnk_080FB4D4
+	ldr r1, .L0805F980 @ =gText_IntroScene_MotherTellsPlayerToPlay
 	b .L0805FB70
 	.align 2, 0
-.L0805F97C: .4byte gUnk_080FB234
-.L0805F980: .4byte gUnk_080FB4D4
+.L0805F97C: .4byte gText_IntroScene_MotherName
+.L0805F980: .4byte gText_IntroScene_MotherTellsPlayerToPlay
 .L0805F984:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F9AC @ =gUnk_080FB51C
+	ldr r1, .L0805F9AC @ =gText_IntroScene_UnknownName
 	bl func_08050E68
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F9B0 @ =gUnk_080FB520
+	ldr r1, .L0805F9B0 @ =gText_IntroScene_UnknownCallsPlayer
 	ldr r3, .L0805F9B4 @ =0x00006428
 	adds r2, r7, r3
 	bl func_08050DA0
@@ -61581,23 +61688,23 @@ func_0805F5F4: @ 0x0805F5F4
 	strh r0, [r1]
 	b .L0805FB9C
 	.align 2, 0
-.L0805F9AC: .4byte gUnk_080FB51C
-.L0805F9B0: .4byte gUnk_080FB520
+.L0805F9AC: .4byte gText_IntroScene_UnknownName
+.L0805F9B0: .4byte gText_IntroScene_UnknownCallsPlayer
 .L0805F9B4: .4byte 0x00006428
 .L0805F9B8: .4byte 0x00006426
 .L0805F9BC: .4byte 0x00006424
 .L0805F9C0:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F9C8 @ =gUnk_080FB534
+	ldr r1, .L0805F9C8 @ =gText_IntroScene_UnknownFindsPlayer
 	b .L0805FB70
 	.align 2, 0
-.L0805F9C8: .4byte gUnk_080FB534
+.L0805F9C8: .4byte gText_IntroScene_UnknownFindsPlayer
 .L0805F9CC:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F9F4 @ =gUnk_080FB53C
+	ldr r1, .L0805F9F4 @ =gText_IntroScene_GirlName
 	bl func_08050E68
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805F9F8 @ =gUnk_080FB544
+	ldr r1, .L0805F9F8 @ =gText_IntroScene_GirlThinksPlayerDead
 	ldr r3, .L0805F9FC @ =0x00006428
 	adds r2, r7, r3
 	bl func_08050DA0
@@ -61611,17 +61718,17 @@ func_0805F5F4: @ 0x0805F5F4
 	strh r0, [r1]
 	b .L0805FB9C
 	.align 2, 0
-.L0805F9F4: .4byte gUnk_080FB53C
-.L0805F9F8: .4byte gUnk_080FB544
+.L0805F9F4: .4byte gText_IntroScene_GirlName
+.L0805F9F8: .4byte gText_IntroScene_GirlThinksPlayerDead
 .L0805F9FC: .4byte 0x00006428
 .L0805FA00: .4byte 0x00006426
 .L0805FA04: .4byte 0x00006424
 .L0805FA08:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805FA30 @ =gUnk_080FB53C
+	ldr r1, .L0805FA30 @ =gText_IntroScene_GirlName
 	bl func_08050E68
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805FA34 @ =gUnk_080FB578
+	ldr r1, .L0805FA34 @ =gText_IntroScene_GirlInvitesPlayerToPlay
 	ldr r3, .L0805FA38 @ =0x00006428
 	adds r2, r7, r3
 	bl func_08050DA0
@@ -61635,27 +61742,27 @@ func_0805F5F4: @ 0x0805F5F4
 	strh r0, [r1]
 	b .L0805FB9C
 	.align 2, 0
-.L0805FA30: .4byte gUnk_080FB53C
-.L0805FA34: .4byte gUnk_080FB578
+.L0805FA30: .4byte gText_IntroScene_GirlName
+.L0805FA34: .4byte gText_IntroScene_GirlInvitesPlayerToPlay
 .L0805FA38: .4byte 0x00006428
 .L0805FA3C: .4byte 0x00006426
 .L0805FA40: .4byte 0x00006424
 .L0805FA44:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805FA54 @ =gUnk_080FB53C
+	ldr r1, .L0805FA54 @ =gText_IntroScene_GirlName
 	bl func_08050E68
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805FA58 @ =gUnk_080FB5D4
+	ldr r1, .L0805FA58 @ =gText_IntroScene_GirlAsksPlayerStory
 	b .L0805FB70
 	.align 2, 0
-.L0805FA54: .4byte gUnk_080FB53C
-.L0805FA58: .4byte gUnk_080FB5D4
+.L0805FA54: .4byte gText_IntroScene_GirlName
+.L0805FA58: .4byte gText_IntroScene_GirlAsksPlayerStory
 .L0805FA5C:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805FA84 @ =gUnk_080FB300
+	ldr r1, .L0805FA84 @ =gText_IntroScene_OldManName
 	bl func_08050E68
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805FA88 @ =gUnk_080FB634
+	ldr r1, .L0805FA88 @ =gText_IntroScene_OldManFarewell
 	ldr r3, .L0805FA8C @ =0x00006428
 	adds r2, r7, r3
 	bl func_08050DA0
@@ -61669,17 +61776,17 @@ func_0805F5F4: @ 0x0805F5F4
 	strh r0, [r1]
 	b .L0805FB9C
 	.align 2, 0
-.L0805FA84: .4byte gUnk_080FB300
-.L0805FA88: .4byte gUnk_080FB634
+.L0805FA84: .4byte gText_IntroScene_OldManName
+.L0805FA88: .4byte gText_IntroScene_OldManFarewell
 .L0805FA8C: .4byte 0x00006428
 .L0805FA90: .4byte 0x00006426
 .L0805FA94: .4byte 0x00006424
 .L0805FA98:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805FAC0 @ =gUnk_080FB300
+	ldr r1, .L0805FAC0 @ =gText_IntroScene_OldManName
 	bl func_08050E68
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805FAC4 @ =gUnk_080FB6C0
+	ldr r1, .L0805FAC4 @ =gText_IntroScene_OldManRequestsLetter
 	ldr r3, .L0805FAC8 @ =0x00006428
 	adds r2, r7, r3
 	bl func_08050DA0
@@ -61693,27 +61800,27 @@ func_0805F5F4: @ 0x0805F5F4
 	strh r0, [r1]
 	b .L0805FB9C
 	.align 2, 0
-.L0805FAC0: .4byte gUnk_080FB300
-.L0805FAC4: .4byte gUnk_080FB6C0
+.L0805FAC0: .4byte gText_IntroScene_OldManName
+.L0805FAC4: .4byte gText_IntroScene_OldManRequestsLetter
 .L0805FAC8: .4byte 0x00006428
 .L0805FACC: .4byte 0x00006426
 .L0805FAD0: .4byte 0x00006424
 .L0805FAD4:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805FAE4 @ =gUnk_080FB300
+	ldr r1, .L0805FAE4 @ =gText_IntroScene_OldManName
 	bl func_08050E68
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805FAE8 @ =gUnk_080FB710
+	ldr r1, .L0805FAE8 @ =gText_IntroScene_OldManGivesAddress
 	b .L0805FB70
 	.align 2, 0
-.L0805FAE4: .4byte gUnk_080FB300
-.L0805FAE8: .4byte gUnk_080FB710
+.L0805FAE4: .4byte gText_IntroScene_OldManName
+.L0805FAE8: .4byte gText_IntroScene_OldManGivesAddress
 .L0805FAEC:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805FB14 @ =gUnk_080FB53C
+	ldr r1, .L0805FB14 @ =gText_IntroScene_GirlName
 	bl func_08050E68
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805FB18 @ =gUnk_080FB738
+	ldr r1, .L0805FB18 @ =gText_IntroScene_GirlSaysGoodbye
 	ldr r3, .L0805FB1C @ =0x00006428
 	adds r2, r7, r3
 	bl func_08050DA0
@@ -61727,17 +61834,17 @@ func_0805F5F4: @ 0x0805F5F4
 	strh r0, [r1]
 	b .L0805FB9C
 	.align 2, 0
-.L0805FB14: .4byte gUnk_080FB53C
-.L0805FB18: .4byte gUnk_080FB738
+.L0805FB14: .4byte gText_IntroScene_GirlName
+.L0805FB18: .4byte gText_IntroScene_GirlSaysGoodbye
 .L0805FB1C: .4byte 0x00006428
 .L0805FB20: .4byte 0x00006426
 .L0805FB24: .4byte 0x00006424
 .L0805FB28:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805FB50 @ =gUnk_080FB53C
+	ldr r1, .L0805FB50 @ =gText_IntroScene_GirlName
 	bl func_08050E68
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805FB54 @ =gUnk_080FB754
+	ldr r1, .L0805FB54 @ =gText_IntroScene_GirlAsksPlayerToReturn
 	ldr r3, .L0805FB58 @ =0x00006428
 	adds r2, r7, r3
 	bl func_08050DA0
@@ -61751,32 +61858,32 @@ func_0805F5F4: @ 0x0805F5F4
 	strh r0, [r1]
 	b .L0805FB9C
 	.align 2, 0
-.L0805FB50: .4byte gUnk_080FB53C
-.L0805FB54: .4byte gUnk_080FB754
+.L0805FB50: .4byte gText_IntroScene_GirlName
+.L0805FB54: .4byte gText_IntroScene_GirlAsksPlayerToReturn
 .L0805FB58: .4byte 0x00006428
 .L0805FB5C: .4byte 0x00006426
 .L0805FB60: .4byte 0x00006424
 .L0805FB64:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805FB7C @ =gUnk_080FB300
+	ldr r1, .L0805FB7C @ =gText_IntroScene_OldManName
 	bl func_08050E68
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805FB80 @ =gUnk_080FB7A0
+	ldr r1, .L0805FB80 @ =gText_IntroScene_OldManNotesFriend
 .L0805FB70:
 	ldr r3, .L0805FB84 @ =0x00006428
 	adds r2, r7, r3
 	bl func_08050DA0
 	b .L0805FB9C
 	.align 2, 0
-.L0805FB7C: .4byte gUnk_080FB300
-.L0805FB80: .4byte gUnk_080FB7A0
+.L0805FB7C: .4byte gText_IntroScene_OldManName
+.L0805FB80: .4byte gText_IntroScene_OldManNotesFriend
 .L0805FB84: .4byte 0x00006428
 .L0805FB88:
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805FBAC @ =gUnk_080FB300
+	ldr r1, .L0805FBAC @ =gText_IntroScene_OldManName
 	bl func_08050E68
 	ldr r0, [r7, #0x10]
-	ldr r1, .L0805FBB0 @ =gUnk_080FB7F0
+	ldr r1, .L0805FBB0 @ =gText_IntroScene_OldManWaitsForLetter
 	ldr r3, .L0805FBB4 @ =0x00006428
 	adds r2, r7, r3
 	bl func_08050DA0
@@ -61789,8 +61896,8 @@ func_0805F5F4: @ 0x0805F5F4
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L0805FBAC: .4byte gUnk_080FB300
-.L0805FBB0: .4byte gUnk_080FB7F0
+.L0805FBAC: .4byte gText_IntroScene_OldManName
+.L0805FBB0: .4byte gText_IntroScene_OldManWaitsForLetter
 .L0805FBB4: .4byte 0x00006428
 
 	thumb_func_start func_0805FBB8
@@ -143475,7 +143582,7 @@ func_080885AC: @ 0x080885AC
 .L0808866E:
 	adds r0, r5, #0
 	adds r0, #0x80
-	ldr r1, .L08088684 @ =gUnk_08100030
+	ldr r1, .L08088684 @ =gText_Fridge_EmptyDescription
 	movs r2, #0
 	movs r3, #0
 	bl func_08050DC8
@@ -143485,7 +143592,7 @@ func_080885AC: @ 0x080885AC
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L08088684: .4byte gUnk_08100030
+.L08088684: .4byte gText_Fridge_EmptyDescription
 
 	thumb_func_start func_08088688
 func_08088688: @ 0x08088688
@@ -150207,7 +150314,7 @@ func_0808BF8C: @ 0x0808BF8C
 .L0808C09C:
 	adds r0, r6, #0
 	adds r0, #0x80
-	ldr r1, .L0808C0B8 @ =gUnk_081000B0
+	ldr r1, .L0808C0B8 @ =gText_HomeStorage_EmptyDescription
 	movs r2, #0
 	movs r3, #0
 	bl func_08050DC8
@@ -150220,7 +150327,7 @@ func_0808BF8C: @ 0x0808BF8C
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L0808C0B8: .4byte gUnk_081000B0
+.L0808C0B8: .4byte gText_HomeStorage_EmptyDescription
 
 	thumb_func_start func_0808C0BC
 func_0808C0BC: @ 0x0808C0BC
@@ -151306,7 +151413,7 @@ func_0808C8F4: @ 0x0808C8F4
 .L0808C9B6:
 	adds r0, r5, #0
 	adds r0, #0x80
-	ldr r1, .L0808C9CC @ =gUnk_081000D0
+	ldr r1, .L0808C9CC @ =gText_Shelf_EmptyDescription
 	movs r2, #0
 	movs r3, #0
 	bl func_08050DC8
@@ -151316,7 +151423,7 @@ func_0808C8F4: @ 0x0808C8F4
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L0808C9CC: .4byte gUnk_081000D0
+.L0808C9CC: .4byte gText_Shelf_EmptyDescription
 
 	thumb_func_start func_0808C9D0
 func_0808C9D0: @ 0x0808C9D0
@@ -155745,7 +155852,7 @@ func_0808EF68: @ 0x0808EF68
 .L0808F05E:
 	adds r0, r6, #0
 	adds r0, #0x80
-	ldr r1, .L0808F07C @ =gUnk_08100144
+	ldr r1, .L0808F07C @ =gText_ToolChest_EmptyDescription
 	movs r2, #0
 	movs r3, #0
 	bl func_08050DC8
@@ -155758,7 +155865,7 @@ func_0808EF68: @ 0x0808EF68
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L0808F07C: .4byte gUnk_08100144
+.L0808F07C: .4byte gText_ToolChest_EmptyDescription
 
 	thumb_func_start func_0808F080
 func_0808F080: @ 0x0808F080
@@ -159743,7 +159850,7 @@ func_08091280: @ 0x08091280
 .L08091390:
 	adds r0, r6, #0
 	adds r0, #0x80
-	ldr r1, .L080913AC @ =gUnk_08100168
+	ldr r1, .L080913AC @ =gText_BlacksmithUpgrade_EmptyDescription
 	movs r2, #0
 	movs r3, #0
 	bl func_08050DC8
@@ -159756,7 +159863,7 @@ func_08091280: @ 0x08091280
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080913AC: .4byte gUnk_08100168
+.L080913AC: .4byte gText_BlacksmithUpgrade_EmptyDescription
 
 	thumb_func_start func_080913B0
 func_080913B0: @ 0x080913B0
@@ -161497,7 +161604,7 @@ func_0809152C: @ 0x0809152C
 	movs r0, #0x8c
 	lsls r0, r0, #1
 	adds r6, r7, r0
-	ldr r1, .L08092324 @ =gUnk_08100398
+	ldr r1, .L08092324 @ =gText_BlacksmithUpgrade_InsufficientGoldPageBreak
 	mov sb, r1
 	adds r0, r6, #0
 	bl strlen
@@ -161566,7 +161673,7 @@ func_0809152C: @ 0x0809152C
 .L08092318: .4byte gText_BlacksmithUpgrade_WorkOrderDaysSuffix
 .L0809231C: .4byte gText_BlacksmithUpgrade_WorkOrderQuestion
 .L08092320: .4byte 0x00001AA8
-.L08092324: .4byte gUnk_08100398
+.L08092324: .4byte gText_BlacksmithUpgrade_InsufficientGoldPageBreak
 .L08092328: .4byte gText_BlacksmithUpgrade_InsufficientGold
 .L0809232C:
 	movs r2, #0x84
@@ -162445,7 +162552,7 @@ func_08092940: @ 0x08092940
 .L08092A50:
 	adds r0, r6, #0
 	adds r0, #0x80
-	ldr r1, .L08092A6C @ =gUnk_081003F0
+	ldr r1, .L08092A6C @ =gText_GiftWrap_EmptyDescription
 	movs r2, #0
 	movs r3, #0
 	bl func_08050DC8
@@ -162458,7 +162565,7 @@ func_08092940: @ 0x08092940
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L08092A6C: .4byte gUnk_081003F0
+.L08092A6C: .4byte gText_GiftWrap_EmptyDescription
 
 	thumb_func_start func_08092A70
 func_08092A70: @ 0x08092A70

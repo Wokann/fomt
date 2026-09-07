@@ -1,5 +1,8 @@
 #include "gift_wrap_text.hh"
 
+char const gText_GiftWrap_EmptyDescription[] GIFT_WRAP_TEXT =
+    "";
+
 char const gText_GiftWrap_CannotWrap[] GIFT_WRAP_TEXT =
     "ごめんねー。\r\n"
     "それ、ボクにはラッピング出来\r\n"
