@@ -490,7 +490,6 @@ SECTIONS
         . = 0xFB234; data/text/intro_scene.o(.rodata.intro_scene_text);
         . = 0xFB817; asm/data/data_080F9EB8.o(.rodata.intro_scene_text_trailer);
         . = 0xFB824; data/text/farm_status.o(.rodata);
-        . = 0xFB954; asm/data/data_080F9EB8.o(.rodata.farm_status_trailer_prefix);
         . = 0xFB960; data/text/animal_status_screen.o(.rodata);
         . = 0xFB9C8; data/text/animal_contest.o(.rodata);
         . = 0xFBD30; src/farm_status_screen_data.o(.rodata);

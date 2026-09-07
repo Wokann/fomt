@@ -577,7 +577,6 @@ SECTIONS
         . = 0xFAABC; data/text/intro_scene.o(.rodata.intro_scene_text);
         . = 0xFB10F; asm/data/data_080F9EB8.o(.rodata.intro_scene_text_trailer);
         . = 0xFB11C; data/text/farm_status.o(.rodata);
-        . = 0xFB224; asm/data/data_080F9EB8.o(.rodata.farm_status_trailer_prefix);
         . = 0xFB230; data/text/animal_status_screen.o(.rodata);
         . = 0xFB27C; data/text/animal_contest.o(.rodata);
         . = 0xFB644; src/farm_status_screen_data.o(.rodata);
