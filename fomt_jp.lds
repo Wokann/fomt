@@ -567,7 +567,9 @@ SECTIONS
         . = 0xF97E6; data/text/new_game_name_entry.o(.rodata.name_entry_preset_animal_names);
         . = 0xF996C; asm/data/data_080F9EB8.o(.rodata.name_entry_preset_animal_names_trailer_prefix);
         . = 0xF9994; data/text/frisbee.o(.rodata.frisbee_scoreboard);
-        . = 0xF99AB; asm/data/data_080F9EB8.o(.rodata.frisbee_scoreboard_trailer);
+        . = 0xF99AB; asm/data/data_080F9EB8.o(.rodata.frisbee_scoreboard_trailer_prefix);
+        . = 0xF9A74; data/text/frisbee.o(.rodata.frisbee_scoreboard_trailer_runtime);
+        . = 0xF9A7E; asm/data/data_080F9EB8.o(.rodata.frisbee_scoreboard_trailer_after);
         . = 0xF9BD4; data/text/frisbee.o(.rodata.frisbee);
         . = 0xF9F4F; asm/data/data_080F9EB8.o(.rodata.frisbee_text_trailer);
         . = 0xF9FD6; data/text/animal_festival.o(.rodata.animal_festival_livestock_contestant_names);
