@@ -91,9 +91,6 @@
     .section .rodata.fishing_results_trailer
     .incbin "baserom_jp.gba", 0x1035F8, (0x103BFC - 0x1035F8)
 
-    .section .rodata.character_names_empty_trailer
-    .incbin "baserom_jp.gba", 0x103BFD, (0x103C1C - 0x103BFD)
-
     .section .rodata.character_names_text_padding
     .incbin "baserom_jp.gba", 0x103D9B, (0x103D9C - 0x103D9B)
 
@@ -550,32 +547,6 @@ gUnk_0810400C:
 	.global gUnk_081040EC
 gUnk_081040EC:
 	.incbin "baserom_us.gba", 0x1040EC, 0x1C
-
-	.section .rodata.character_names_empty_trailer
-
-	.global gUnk_08104109
-gUnk_08104109:
-	.incbin "baserom_us.gba", 0x104109, 0x5
-
-	.global gUnk_0810410E
-gUnk_0810410E:
-	.incbin "baserom_us.gba", 0x10410E, 0x5
-
-	.global gUnk_08104113
-gUnk_08104113:
-	.incbin "baserom_us.gba", 0x104113, 0x5
-
-	.global gUnk_08104118
-gUnk_08104118:
-	.incbin "baserom_us.gba", 0x104118, 0x5
-
-	.global gUnk_0810411D
-gUnk_0810411D:
-	.incbin "baserom_us.gba", 0x10411D, 0x5
-
-	.global gUnk_08104122
-gUnk_08104122:
-	.incbin "baserom_us.gba", 0x104122, (0x104128 - 0x104122)
 
 	.section .rodata.character_names_text_padding
 	.incbin "baserom_us.gba", 0x104256, (0x104258 - 0x104256)

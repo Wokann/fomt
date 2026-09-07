@@ -597,7 +597,7 @@ SECTIONS
         . = 0x103B04; src/fishing_results_data.o(.rodata);
         . = 0x103B10; asm/data/data_080F9EB8.o(.rodata.reference_guide_harvest_sprite_minigames_after_fishing_results);
         . = 0x104108; data/text/character_names_empty.o(.rodata);
-        . = 0x104109; asm/data/data_080F9EB8.o(.rodata.character_names_empty_trailer);
+        . = 0x104109; src/bachelorette.o(.rodata);
         . = 0x104128; data/text/character_names.o(.rodata);
         . = 0x104256; asm/data/data_080F9EB8.o(.rodata.character_names_text_padding);
         . = 0x104258; src/character_names_data.o(.rodata.character_name_entries);

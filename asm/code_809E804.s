@@ -5320,11 +5320,11 @@ func_080A0B18: @ 0x080A0B18
 	bls .L080A10D6
 	lsrs r6, r6, #3
 	mov r5, sl
-	ldr r4, .L080A1100 @ =gUnk_08104109
+	ldr r4, .L080A1100 @ =gUnk_BacheloretteLoveThresholds00
 	b .L080A1112
 	.align 2, 0
 .L080A10FC: .4byte 0x00000414
-.L080A1100: .4byte gUnk_08104109
+.L080A1100: .4byte gUnk_BacheloretteLoveThresholds00
 .L080A1104:
 	adds r0, r5, #0
 	ldr r1, .L080A1154 @ =0x000009C4
@@ -5362,11 +5362,11 @@ func_080A0B18: @ 0x080A0B18
 	movs r0, #0xaa
 	lsls r0, r0, #1
 	adds r5, r7, r0
-	ldr r4, .L080A1158 @ =gUnk_0810410E
+	ldr r4, .L080A1158 @ =gUnk_BacheloretteLoveThresholds01
 	b .L080A116A
 	.align 2, 0
 .L080A1154: .4byte 0x000009C4
-.L080A1158: .4byte gUnk_0810410E
+.L080A1158: .4byte gUnk_BacheloretteLoveThresholds01
 .L080A115C:
 	adds r0, r5, #0
 	ldr r1, .L080A11AC @ =0x000009C4
@@ -5404,11 +5404,11 @@ func_080A0B18: @ 0x080A0B18
 	movs r0, #0xf2
 	lsls r0, r0, #1
 	adds r5, r7, r0
-	ldr r4, .L080A11B0 @ =gUnk_08104113
+	ldr r4, .L080A11B0 @ =gUnk_BacheloretteLoveThresholds02
 	b .L080A11C2
 	.align 2, 0
 .L080A11AC: .4byte 0x000009C4
-.L080A11B0: .4byte gUnk_08104113
+.L080A11B0: .4byte gUnk_BacheloretteLoveThresholds02
 .L080A11B4:
 	adds r0, r5, #0
 	ldr r1, .L080A1208 @ =0x000009C4
@@ -5446,11 +5446,11 @@ func_080A0B18: @ 0x080A0B18
 	movs r0, #0x84
 	lsls r0, r0, #2
 	adds r5, r7, r0
-	ldr r4, .L080A120C @ =gUnk_08104118
+	ldr r4, .L080A120C @ =gUnk_BacheloretteLoveThresholds03
 	b .L080A121E
 	.align 2, 0
 .L080A1208: .4byte 0x000009C4
-.L080A120C: .4byte gUnk_08104118
+.L080A120C: .4byte gUnk_BacheloretteLoveThresholds03
 .L080A1210:
 	adds r0, r5, #0
 	ldr r1, .L080A1260 @ =0x000009C4
@@ -5488,11 +5488,11 @@ func_080A0B18: @ 0x080A0B18
 	movs r0, #0x99
 	lsls r0, r0, #2
 	adds r5, r7, r0
-	ldr r4, .L080A1264 @ =gUnk_0810411D
+	ldr r4, .L080A1264 @ =gUnk_BacheloretteLoveThresholds04
 	b .L080A1276
 	.align 2, 0
 .L080A1260: .4byte 0x000009C4
-.L080A1264: .4byte gUnk_0810411D
+.L080A1264: .4byte gUnk_BacheloretteLoveThresholds04
 .L080A1268:
 	adds r0, r5, #0
 	ldr r1, .L080A12B4 @ =0x000009C4
@@ -5570,11 +5570,11 @@ func_080A0B18: @ 0x080A0B18
 	lsrs r1, r0, #0x1d
 	cmp r1, #4
 	bhi .L080A13DE
-	ldr r0, .L080A1324 @ =gUnk_08104122
+	ldr r0, .L080A1324 @ =gUnk_BacheloretteLoveThresholds05
 	adds r0, r1, r0
 	b .L080A13D8
 	.align 2, 0
-.L080A1324: .4byte gUnk_08104122
+.L080A1324: .4byte gUnk_BacheloretteLoveThresholds05
 .L080A1328:
 	mov r1, r8
 	cmp r1, #0
@@ -5668,7 +5668,7 @@ func_080A0B18: @ 0x080A0B18
 	lsrs r2, r2, #0x1d
 	cmp r2, #4
 	bhi .L080A13DE
-	ldr r0, .L080A1474 @ =gUnk_08104122
+	ldr r0, .L080A1474 @ =gUnk_BacheloretteLoveThresholds05
 	adds r0, r2, r0
 .L080A13D8:
 	ldrb r0, [r0]
@@ -5740,7 +5740,7 @@ func_080A0B18: @ 0x080A0B18
 	.align 2, 0
 .L080A146C: .4byte 0x000009C4
 .L080A1470: .4byte 0xFFFFFE3F
-.L080A1474: .4byte gUnk_08104122
+.L080A1474: .4byte gUnk_BacheloretteLoveThresholds05
 
 	thumb_func_start func_080A1478
 func_080A1478: @ 0x080A1478

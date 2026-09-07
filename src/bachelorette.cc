@@ -2,6 +2,32 @@
 
 #include <stdlib.h> // rand
 
+// Each row is indexed by the capped five-stage counter used by the native
+// bachelorette update.  The surrounding conditions are not all decoded yet.
+extern u8 const gUnk_BacheloretteLoveThresholds00[] ALIGN(1) = {
+    0x96, 0xB4, 0xD2, 0xE6, 0xFF,
+};
+
+extern u8 const gUnk_BacheloretteLoveThresholds01[] ALIGN(1) = {
+    0x1E, 0x3C, 0x5A, 0x78, 0x96,
+};
+
+extern u8 const gUnk_BacheloretteLoveThresholds02[] ALIGN(1) = {
+    0x14, 0x28, 0x3C, 0x50, 0x64,
+};
+
+extern u8 const gUnk_BacheloretteLoveThresholds03[] ALIGN(1) = {
+    0x0F, 0x1E, 0x2D, 0x3C, 0x4B,
+};
+
+extern u8 const gUnk_BacheloretteLoveThresholds04[] ALIGN(1) = {
+    0x0A, 0x14, 0x1E, 0x28, 0x32,
+};
+
+extern u8 const gUnk_BacheloretteLoveThresholds05[] ALIGN(1) = {
+    0x5A, 0x82, 0xAA, 0xD2, 0xFA,
+};
+
 Bachelorette::Bachelorette(ActorLocation const & location)
     : Npc(location)
 {

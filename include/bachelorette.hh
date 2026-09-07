@@ -5,6 +5,15 @@
 
 #include "npc.hh"
 
+// Six five-stage threshold rows consumed by the still-native bachelorette
+// update path.  The individual gameplay conditions have not all been decoded.
+extern u8 const gUnk_BacheloretteLoveThresholds00[] ALIGN(1);
+extern u8 const gUnk_BacheloretteLoveThresholds01[] ALIGN(1);
+extern u8 const gUnk_BacheloretteLoveThresholds02[] ALIGN(1);
+extern u8 const gUnk_BacheloretteLoveThresholds03[] ALIGN(1);
+extern u8 const gUnk_BacheloretteLoveThresholds04[] ALIGN(1);
+extern u8 const gUnk_BacheloretteLoveThresholds05[] ALIGN(1);
+
 struct Bachelorette : public Npc
 {
     Bachelorette(ActorLocation const & location);
