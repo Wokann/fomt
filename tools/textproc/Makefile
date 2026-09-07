@@ -1,18 +1,25 @@
 HOST_CXX ?= g++
 HOST_CXXFLAGS ?= -std=c++17 -O2 -Wall -Wextra -Wpedantic
 
-PROGRAM := fomt-text
-SOURCE := fomt_text.cpp
+TEXT_PROGRAM := fomt-text
+PREPROC_PROGRAM := fomt-preproc
+PROGRAMS := $(TEXT_PROGRAM) $(PREPROC_PROGRAM)
+TEXT_SOURCE := fomt_text.cpp
+PREPROC_SOURCE := fomt_preproc.cpp
 
 .PHONY: all test clean
 
-all: $(PROGRAM)
+all: $(PROGRAMS)
 
-$(PROGRAM): $(SOURCE)
+$(TEXT_PROGRAM): $(TEXT_SOURCE)
 	$(HOST_CXX) $(HOST_CXXFLAGS) $< -o $@
 
-test: $(PROGRAM)
-	./$(PROGRAM) self-test
+$(PREPROC_PROGRAM): $(PREPROC_SOURCE)
+	$(HOST_CXX) $(HOST_CXXFLAGS) $< -o $@
+
+test: $(PROGRAMS)
+	./$(TEXT_PROGRAM) self-test
+	./$(PREPROC_PROGRAM) self-test
 
 clean:
-	$(RM) $(PROGRAM)
+	$(RM) $(PROGRAMS)

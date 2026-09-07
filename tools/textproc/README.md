@@ -1,29 +1,38 @@
-# FOMT text preprocessor
+# FOMT 文本与布局预处理
 
-This C++ host-side tool converts UTF-8 source text through an explicit FOMT
-charmap.  Its map format follows the same `HEX=TEXT` semantics used by Mary,
-but it lives in this repository so the multi-language branch does not depend
-on a sibling checkout at build time.
+这里的宿主端 C++ 工具分为两个职责明确的程序：
 
-The tool deliberately has no dependency on the ROM build. Authored text is
-reviewed as normal project C++ source; the main Makefile converts it to a
-generated C++ source file and compiles that file with `agbcp`.
+1. `fomt-text` 负责文本层。它通过项目内的 FOMT charmap 把 UTF-8 游戏文本
+   转为 ROM 字节；它还会把 Reference Guide 等专用文本格式生成标准 C/C++ 的
+   文本对象、行指针表和目录表。
+2. `fomt-preproc` 负责通用布局层。它接收已转换的标准 C/C++ 源和 `agbcc`/
+   `agbcp` 输出的汇编，修复旧编译器已验证的匿名字符串副本，并完成原先由
+   `align_sections.sh` 做的可执行段收尾对齐。它不区分文本、结构体数组或指针表。
 
-Build and test it with a host C++ compiler:
+两者都不依赖 Mary 的工作树。charmap 格式沿用 Mary 的 `HEX=TEXT` 语义，但
+版本化存放在本仓库中。
+
+用宿主 C++ 编译器构建并测试两项工具：
 
     make -C tools/textproc test
 
-Validate the versioned project map before generating any game asset:
+生成游戏资源前可校验版本化 map：
 
     tools/textproc/fomt-text validate charmap.txt
 
-Encode one text payload, decode an existing byte range, or generate C++:
+`fomt-text` 可编码单条文本、解码既有字节，或处理文本源：
 
     tools/textproc/fomt-text encode CHARMAP INPUT OUTPUT
     tools/textproc/fomt-text decode CHARMAP INPUT OUTPUT
+    tools/textproc/fomt-text source CHARMAP INPUT OUTPUT
     tools/textproc/fomt-text cpp CHARMAP INPUT OUTPUT
 
-The `cpp` command consumes a constrained, ordinary C++ text-definition form:
+`source` 是普通 C/C++ 词法转换：它可处理 `.c`、`.cc`、`.h`、`.hh` 中的
+字符串。正常构建会先运行常规 C 预处理器，因此被包含的头文件内容会与其所属
+翻译单元一同经过转换。除了游戏字符串外，源代码会原样保留；尤其是 `ALIGN(n)`、
+`SECTION(...)`、结构体初始化、指针表和内联 `asm(...)` 均不由文本工具改写。
+
+`cpp` 用于受约束的普通 C++ 文本定义模块：
 
     #include "item_text.hh"
 
@@ -44,12 +53,21 @@ at its real ROM position after the text it references:
     char const * const gItemStatusWrappedAsPresentTextRef =
         gText_ItemStatus_WrappedAsPresent;
 
-The normal text-object rule runs `fomt-text fixup-refs` after old `agbcp`.
-GCC 2.9-arm otherwise emits an anonymous duplicate `.LC` string for this
-specific initializer.  The fixup accepts it only when the duplicate payload
-is byte-for-byte identical to the named target, replaces the pointer with a
-real relocation to that target, and removes the duplicate.  This keeps one
-source file and one ordinary `.rodata` input object in the same order as ROM.
+在所有 C/C++ 对象上，Makefile 使用固定流程：常规 CPP → `fomt-text source`
+→ `agbcc`/`agbcp` → `fomt-preproc asm` → 汇编器。后一步会检查普通
+`char const * const` 指针、平面指针数组，以及“源码字段数与汇编 `.word` 数完全
+一致”的普通结构体聚合数组；只有匿名 `.LC` 字符串与已命名目标逐字节一致时，才
+替换为真实重定位并移除副本。字节/半字数组不会被这一规则猜测或改写。这样一个主题
+仍可保留在一个普通 `.rodata` 输入对象中，源文件顺序就是 ROM 顺序。
+
+普通 C/C++ 的 `ALIGN(n)` 始终可用于文本、结构体数组和指针表。例如：
+
+    SomeEntry const gEntries[] ALIGN(4) = {
+        { gText_Example },
+    };
+
+该属性由编译器生成对应的对象对齐；`fomt-preproc` 保留它，而不会把它替换成
+手写汇编或文本专用规则。
 
 Keep a page-break control in the literal that owns it.  For example, write
 `"...{Press}\p"` and start the following text literal on the next source line.

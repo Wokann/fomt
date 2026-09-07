@@ -5,7 +5,6 @@
 #include <fstream>
 #include <iostream>
 #include <map>
-#include <regex>
 #include <set>
 #include <sstream>
 #include <stdexcept>
@@ -94,146 +93,6 @@ void WriteBinaryFile(const std::filesystem::path &path, const Bytes &contents)
     output.write(reinterpret_cast<const char *>(contents.data()), static_cast<std::streamsize>(contents.size()));
     if (!output)
         throw std::runtime_error("cannot write '" + path.string() + "'");
-}
-
-std::vector<std::string> SplitLines(const std::string &source)
-{
-    std::vector<std::string> lines;
-    std::istringstream input(source);
-    std::string line;
-    while (std::getline(input, line)) {
-        if (!line.empty() && line.back() == '\r')
-            line.pop_back();
-        lines.push_back(std::move(line));
-    }
-    return lines;
-}
-
-std::string JoinLines(const std::vector<std::string> &lines)
-{
-    std::ostringstream output;
-    for (const std::string &line : lines)
-        output << line << '\n';
-    return output.str();
-}
-
-bool IsAssemblyStringPayload(const std::string &line)
-{
-    const std::string trimmed = Trim(line);
-    return trimmed.rfind(".ascii", 0) == 0
-        || trimmed.rfind(".string", 0) == 0;
-}
-
-bool IsAssemblyAlign(const std::string &line)
-{
-    return Trim(line).rfind(".align", 0) == 0;
-}
-
-std::size_t FindAssemblyLabel(const std::vector<std::string> &lines,
-    const std::string &label)
-{
-    const std::string wanted = label + ":";
-    for (std::size_t index = 0; index < lines.size(); ++index) {
-        if (Trim(lines[index]) == wanted)
-            return index;
-    }
-    return std::string::npos;
-}
-
-std::vector<std::string> AssemblyStringPayloadAfter(const std::vector<std::string> &lines,
-    std::size_t label_index)
-{
-    std::vector<std::string> payload;
-    for (std::size_t index = label_index + 1;
-         index < lines.size() && IsAssemblyStringPayload(lines[index]); ++index) {
-        payload.push_back(Trim(lines[index]));
-    }
-    return payload;
-}
-
-std::map<std::string, std::string> FindConstTextReferenceInitializers(
-    const std::string &source)
-{
-    // These remain ordinary C++ declarations.  agbcp 2.9 can turn their
-    // target into a duplicate .LC string, which is repaired after compilation.
-    static const std::regex pattern(
-        R"(char\s+const\s*\*\s*const\s+([A-Za-z_][A-Za-z0-9_]*)\s*=\s*([A-Za-z_][A-Za-z0-9_]*)\s*;)");
-
-    std::map<std::string, std::string> result;
-    for (std::sregex_iterator match(source.begin(), source.end(), pattern), end;
-         match != end; ++match) {
-        result.emplace((*match)[1].str(), (*match)[2].str());
-    }
-    return result;
-}
-
-std::string FixupSameUnitTextReferences(const std::string &source,
-    const std::string &assembly)
-{
-    const std::map<std::string, std::string> references =
-        FindConstTextReferenceInitializers(source);
-    if (references.empty())
-        return assembly;
-
-    std::vector<std::string> lines = SplitLines(assembly);
-    std::vector<std::pair<std::size_t, std::size_t>> removals;
-    std::set<std::string> removed_local_constants;
-
-    for (const auto &[reference_name, target_name] : references) {
-        const std::size_t reference_label = FindAssemblyLabel(lines, reference_name);
-        if (reference_label == std::string::npos)
-            continue;
-
-        std::size_t word_index = reference_label + 1;
-        while (word_index < lines.size() && Trim(lines[word_index]).empty())
-            ++word_index;
-        if (word_index == lines.size())
-            throw std::runtime_error("missing initializer for '" + reference_name + "'");
-
-        const std::string word = Trim(lines[word_index]);
-        static constexpr std::string_view kWord = ".word";
-        if (word.rfind(kWord, 0) != 0)
-            throw std::runtime_error("expected .word initializer for '" + reference_name + "'");
-        const std::string local_constant = Trim(word.substr(kWord.size()));
-        if (local_constant.rfind(".LC", 0) != 0)
-            continue;
-        if (!removed_local_constants.insert(local_constant).second)
-            throw std::runtime_error("duplicate compiler constant '" + local_constant + "'");
-
-        const std::size_t local_label = FindAssemblyLabel(lines, local_constant);
-        const std::size_t target_label = FindAssemblyLabel(lines, target_name);
-        if (local_label == std::string::npos || target_label == std::string::npos) {
-            throw std::runtime_error("cannot resolve compiler constant for '"
-                + reference_name + "'");
-        }
-
-        const std::vector<std::string> local_payload =
-            AssemblyStringPayloadAfter(lines, local_label);
-        const std::vector<std::string> target_payload =
-            AssemblyStringPayloadAfter(lines, target_label);
-        if (local_payload.empty() || local_payload != target_payload) {
-            throw std::runtime_error("compiler constant for '" + reference_name
-                + "' does not exactly duplicate '" + target_name + "'");
-        }
-
-        std::size_t local_end = local_label + 1 + local_payload.size();
-        if (local_end == lines.size() || !IsAssemblyAlign(lines[local_end])) {
-            throw std::runtime_error("unexpected compiler-constant layout for '"
-                + reference_name + "'");
-        }
-
-        const std::size_t indent_end = lines[word_index].find_first_not_of(" \t");
-        const std::string indent = indent_end == std::string::npos
-            ? "" : lines[word_index].substr(0, indent_end);
-        lines[word_index] = indent + ".word\t" + target_name;
-        removals.emplace_back(local_label, local_end);
-    }
-
-    std::sort(removals.rbegin(), removals.rend());
-    for (const auto &[begin, end] : removals)
-        lines.erase(lines.begin() + static_cast<std::ptrdiff_t>(begin),
-            lines.begin() + static_cast<std::ptrdiff_t>(end));
-    return JoinLines(lines);
 }
 
 class Charmap {
@@ -515,7 +374,7 @@ void EmitStaffCreditsCppString(std::ostringstream &output, const std::string &la
     // original field size is recovered from the baseline pointer table, then
     // emitted here so shorter edited strings retain the original zero-fill.
     output << "extern StaffCreditsTextStorage<" << storage_size << "> const " << label
-           << " SECTION(\".rodata.staff_credits\") ALIGN(1) =\n{\n";
+           << " ALIGN(1) =\n{\n";
     if (bytes.empty()) {
         output << "    \"\"\n};\n\n";
         return;
@@ -531,9 +390,9 @@ void EmitStaffCreditsCppString(std::ostringstream &output, const std::string &la
 }
 
 void EmitCppStringRows(std::ostringstream &output, const std::string &declarator,
-    const std::vector<Bytes> &rows)
+    const std::vector<Bytes> &rows, const std::string &storage_class = "")
 {
-    output << "char const " << declarator << " =\n{\n";
+    output << storage_class << "char const " << declarator << " =\n{\n";
     for (std::size_t row = 0; row < rows.size(); ++row) {
         output << "    \"";
         for (const std::uint8_t byte : rows[row])
@@ -596,6 +455,110 @@ std::size_t FindCppCharacterLiteralEnd(const std::string &source, std::size_t be
         + ": unterminated C++ character literal");
 }
 
+bool IsCppIdentifierCharacter(char value)
+{
+    const unsigned char character = static_cast<unsigned char>(value);
+    return std::isalnum(character) != 0 || value == '_';
+}
+
+bool StartsCppIdentifier(const std::string &source, std::size_t at, std::string_view name)
+{
+    return source.compare(at, name.size(), name) == 0
+        && (at == 0 || !IsCppIdentifierCharacter(source[at - 1]))
+        && (at + name.size() == source.size()
+            || !IsCppIdentifierCharacter(source[at + name.size()]));
+}
+
+bool IsSectionSpecifierString(const std::string &source, std::size_t quote)
+{
+    // A section name is compiler metadata rather than authored game text.
+    // This covers both SECTION("...") before ordinary CPP and GCC's expanded
+    // __attribute__((section("..."))) form after it.  It intentionally checks
+    // only the immediate argument, leaving an adjacent object initializer to
+    // follow the normal text-encoding path.
+    std::size_t at = quote;
+    while (at > 0 && std::isspace(static_cast<unsigned char>(source[at - 1])) != 0)
+        --at;
+    if (at == 0 || source[at - 1] != '(')
+        return false;
+    --at;
+    while (at > 0 && std::isspace(static_cast<unsigned char>(source[at - 1])) != 0)
+        --at;
+
+    const std::size_t identifier_end = at;
+    while (at > 0 && IsCppIdentifierCharacter(source[at - 1]))
+        --at;
+    const std::string_view identifier(source.data() + at, identifier_end - at);
+    return identifier == "section" || identifier == "SECTION";
+}
+
+std::size_t FindInlineAssemblyEnd(const std::string &source, std::size_t begin)
+{
+    // Inline assembler strings are compiler syntax, not FOMT game text.  In
+    // particular, an assembler macro may contain "\\name", which must stay a
+    // literal backslash followed by name rather than becoming the FOMT \n
+    // control.  Copy the complete asm(...) expression unchanged.
+    std::size_t at = begin;
+    if (StartsCppIdentifier(source, at, "asm"))
+        at += 3;
+    else if (StartsCppIdentifier(source, at, "__asm__"))
+        at += 7;
+    else
+        return std::string::npos;
+
+    while (at < source.size() && std::isspace(static_cast<unsigned char>(source[at])) != 0)
+        ++at;
+    for (;;) {
+        if (StartsCppIdentifier(source, at, "volatile"))
+            at += 8;
+        else if (StartsCppIdentifier(source, at, "__volatile__"))
+            at += 12;
+        else if (StartsCppIdentifier(source, at, "goto"))
+            at += 4;
+        else if (StartsCppIdentifier(source, at, "__goto__"))
+            at += 8;
+        else
+            break;
+        while (at < source.size() && std::isspace(static_cast<unsigned char>(source[at])) != 0)
+            ++at;
+    }
+    if (at == source.size() || source[at] != '(')
+        return std::string::npos;
+
+    std::size_t depth = 0;
+    for (; at < source.size(); ++at) {
+        if (source.compare(at, 2, "//") == 0) {
+            const std::size_t newline = source.find('\n', at + 2);
+            at = newline == std::string::npos ? source.size() : newline;
+            continue;
+        }
+        if (source.compare(at, 2, "/*") == 0) {
+            const std::size_t close = source.find("*/", at + 2);
+            if (close == std::string::npos) {
+                throw std::runtime_error("line " + std::to_string(SourceLineNumber(source, at))
+                    + ": unterminated C/C++ block comment inside asm");
+            }
+            at = close + 1;
+            continue;
+        }
+        if (source[at] == '"') {
+            at = FindCppQuotedLiteralEnd(source, at, SourceLineNumber(source, at)) - 1;
+            continue;
+        }
+        if (source[at] == '\'') {
+            at = FindCppCharacterLiteralEnd(source, at, SourceLineNumber(source, at)) - 1;
+            continue;
+        }
+        if (source[at] == '(') {
+            ++depth;
+        } else if (source[at] == ')' && --depth == 0) {
+            return at + 1;
+        }
+    }
+    throw std::runtime_error("line " + std::to_string(SourceLineNumber(source, begin))
+        + ": unterminated inline asm expression");
+}
+
 void ValidatePageBreakLayout(const std::string &source)
 {
     bool previous_literal_was_page_break = false;
@@ -613,6 +576,11 @@ void ValidatePageBreakLayout(const std::string &source)
                     + ": unterminated C++ block comment");
             }
             at = close + 2;
+            continue;
+        }
+        if (const std::size_t inline_asm_end = FindInlineAssemblyEnd(source, at);
+            inline_asm_end != std::string::npos) {
+            at = inline_asm_end;
             continue;
         }
         if (source[at] == '\'') {
@@ -659,6 +627,204 @@ std::string EmitInlineCppStringLiteral(const Bytes &bytes)
         for (std::size_t index = at; index < end; ++index)
             output << "\\x" << HexByte(bytes[index]);
         output << '"';
+    }
+    return output.str();
+}
+
+bool ContainsNonAscii(const std::string &value)
+{
+    return std::any_of(value.begin(), value.end(), [](const char character) {
+        return static_cast<unsigned char>(character) >= 0x80;
+    });
+}
+
+Bytes EncodeCppSourceStringLiteral(const std::string &literal, const Charmap &charmap,
+    std::size_t line_number)
+{
+    if (literal.size() < 2 || literal.front() != '"' || literal.back() != '"') {
+        throw std::runtime_error("line " + std::to_string(line_number)
+            + ": expected one quoted C/C++ string literal");
+    }
+
+    // Parse only C escapes whose byte value must remain literal.  FOMT text
+    // controls such as \p, \r, \n, and {Press} stay in mapped_text and are
+    // resolved by charmap.txt.  In particular, C source "\\\\A" represents a
+    // literal backslash plus A; the backslash must not combine with the A (or
+    // a following n/p) into another FOMT control during map lookup.
+    Bytes output;
+    std::string mapped_text;
+    const auto append_mapped = [&]() {
+        if (mapped_text.empty())
+            return;
+        const Bytes mapped = charmap.EncodeText(mapped_text);
+        output.insert(output.end(), mapped.begin(), mapped.end());
+        mapped_text.clear();
+    };
+    const auto append_raw = [&](std::uint8_t byte) {
+        append_mapped();
+        output.push_back(byte);
+    };
+
+    for (std::size_t at = 1; at + 1 < literal.size(); ++at) {
+        const char character = literal[at];
+        if (character != '\\') {
+            mapped_text.push_back(character);
+            continue;
+        }
+
+        if (++at + 1 >= literal.size()) {
+            throw std::runtime_error("line " + std::to_string(line_number)
+                + ": trailing backslash in C/C++ string literal");
+        }
+        const char escaped = literal[at];
+        switch (escaped) {
+        case '\\':
+            append_raw(0x5C);
+            break;
+        case '"':
+            append_raw(0x22);
+            break;
+        case '\'':
+            append_raw(0x27);
+            break;
+        case '?':
+            append_raw(0x3F);
+            break;
+        case 'a':
+            append_raw(0x07);
+            break;
+        case 'b':
+            append_raw(0x08);
+            break;
+        case 'f':
+            append_raw(0x0C);
+            break;
+        case 'v':
+            append_raw(0x0B);
+            break;
+        case '0': case '1': case '2': case '3':
+        case '4': case '5': case '6': case '7': {
+            std::uint8_t value = static_cast<std::uint8_t>(escaped - '0');
+            std::size_t digits = 1;
+            while (digits < 3 && at + 1 < literal.size() - 1
+                && literal[at + 1] >= '0' && literal[at + 1] <= '7') {
+                value = static_cast<std::uint8_t>((value << 3) | (literal[++at] - '0'));
+                ++digits;
+            }
+            append_raw(value);
+            break;
+        }
+        case 'x':
+            if (at + 2 >= literal.size() - 1
+                || !IsHexDigit(literal[at + 1]) || !IsHexDigit(literal[at + 2])) {
+                throw std::runtime_error("line " + std::to_string(line_number)
+                    + ": expected \\xNN raw byte escape");
+            }
+            append_raw(ParseHexByte(literal[at + 1], literal[at + 2]));
+            at += 2;
+            break;
+        default:
+            // This includes the project-defined \p control.  Standard \n,
+            // \r, and \t are intentionally map-driven too, so their actual
+            // byte spelling is centrally defined in charmap.txt.
+            mapped_text.push_back('\\');
+            mapped_text.push_back(escaped);
+            break;
+        }
+    }
+    append_mapped();
+    return output;
+}
+
+std::string CompileCppSourceText(const std::string &source, const Charmap &charmap)
+{
+    // This is deliberately a lexical source pass, not a C++ parser.  It runs
+    // after the ordinary C preprocessor in the ROM build, so included .h/.hh
+    // text is present in the same stream as its owning .c/.cc translation
+    // unit.  Everything other than quoted string tokens is copied verbatim:
+    // section attributes, ALIGN(n), structure initializers, and pointer tables
+    // therefore retain normal C/C++ semantics.
+    ValidatePageBreakLayout(source);
+
+    std::ostringstream output;
+    for (std::size_t at = 0; at < source.size();) {
+        const std::size_t line_begin = source.rfind('\n', at);
+        const std::size_t first_column = line_begin == std::string::npos ? 0 : line_begin + 1;
+        const bool after_line_whitespace = std::all_of(
+            source.begin() + static_cast<std::ptrdiff_t>(first_column),
+            source.begin() + static_cast<std::ptrdiff_t>(at), [](const char value) {
+                return std::isspace(static_cast<unsigned char>(value)) != 0;
+            });
+
+        // Keep directives intact when the command is explicitly run on a
+        // header/source before CPP.  The normal build uses CPP -P first, but
+        // preserving this syntax makes the text pass valid for .h and .hh too.
+        if (source[at] == '#' && after_line_whitespace) {
+            const std::size_t newline = source.find('\n', at + 1);
+            const std::size_t end = newline == std::string::npos ? source.size() : newline + 1;
+            output << source.substr(at, end - at);
+            at = end;
+            continue;
+        }
+        if (source.compare(at, 2, "//") == 0) {
+            const std::size_t newline = source.find('\n', at + 2);
+            const std::size_t end = newline == std::string::npos ? source.size() : newline + 1;
+            output << source.substr(at, end - at);
+            at = end;
+            continue;
+        }
+        if (source.compare(at, 2, "/*") == 0) {
+            const std::size_t close = source.find("*/", at + 2);
+            if (close == std::string::npos) {
+                throw std::runtime_error("line " + std::to_string(SourceLineNumber(source, at))
+                    + ": unterminated C/C++ block comment");
+            }
+            const std::size_t end = close + 2;
+            output << source.substr(at, end - at);
+            at = end;
+            continue;
+        }
+        if (const std::size_t inline_asm_end = FindInlineAssemblyEnd(source, at);
+            inline_asm_end != std::string::npos) {
+            output << source.substr(at, inline_asm_end - at);
+            at = inline_asm_end;
+            continue;
+        }
+        if (source[at] == '\'') {
+            const std::size_t end = FindCppCharacterLiteralEnd(source, at,
+                SourceLineNumber(source, at));
+            output << source.substr(at, end - at);
+            at = end;
+            continue;
+        }
+        if (source[at] != '"') {
+            output << source[at++];
+            continue;
+        }
+
+        const std::size_t line_number = SourceLineNumber(source, at);
+        const std::size_t end = FindCppQuotedLiteralEnd(source, at, line_number);
+        const std::string literal = source.substr(at, end - at);
+        if (IsSectionSpecifierString(source, at)) {
+            output << literal;
+            at = end;
+            continue;
+        }
+        try {
+            output << EmitInlineCppStringLiteral(
+                EncodeCppSourceStringLiteral(literal, charmap, line_number));
+        } catch (const std::runtime_error &error) {
+            // Host/compiler implementation strings may use a standard C escape
+            // for which FOMT has no text control.  Preserve those unchanged.
+            // A UTF-8 source character, however, must never reach agbcp
+            // unconverted: it is necessarily authored regional game text.
+            if (ContainsNonAscii(literal)) {
+                throw std::runtime_error("source text at line " + std::to_string(line_number)
+                    + ": " + error.what());
+            }
+            output << literal;
+        }
+        at = end;
     }
     return output.str();
 }
@@ -797,6 +963,7 @@ std::size_t ParsePositiveDecimal(const std::string &source, std::size_t line_num
 struct TextDeclarator {
     std::string label;
     std::string emitted;
+    std::string storage_class;
     bool is_fixed_width = false;
     std::size_t fixed_width = 0;
     bool is_fixed_rows = false;
@@ -1290,8 +1457,7 @@ std::string CompileStaffCredits(const std::string &source, const std::string &re
             field.storage_size, text_by_address.at(field.address));
     }
 
-    output << "extern char const * const gStaffCreditsLines[]"
-              " SECTION(\".rodata.staff_credits\") = {\n";
+    output << "extern char const * const gStaffCreditsLines[] = {\n";
     for (const std::uint32_t address : baseline.row_addresses)
         output << "    " << label_by_address.at(address) << ".bytes,\n";
     output << "    nullptr,\n};\n";
@@ -1906,7 +2072,8 @@ std::string CompileCppTextInclude(const std::string &source, const Charmap &char
                 + std::to_string(bytes.size() + 1) + " bytes including its terminator; maximum is "
                 + std::to_string(current_declarator.fixed_width));
         }
-        EmitCppString(output, current_declarator.emitted, bytes);
+        EmitCppString(output, current_declarator.emitted, bytes,
+            current_declarator.storage_class);
         current_string_emitted = true;
     };
 
@@ -1935,7 +2102,8 @@ std::string CompileCppTextInclude(const std::string &source, const Charmap &char
                         + current_declarator.label + "' has " + std::to_string(current_rows.size())
                         + " rows; expected " + std::to_string(current_declarator.row_count));
                 }
-                EmitCppStringRows(output, current_declarator.emitted, current_rows);
+                EmitCppStringRows(output, current_declarator.emitted, current_rows,
+                    current_declarator.storage_class);
                 has_current_declaration = false;
                 current_rows.clear();
                 continue;
@@ -1970,7 +2138,8 @@ std::string CompileCppTextInclude(const std::string &source, const Charmap &char
 
         constexpr char kDeclaration[] = "char const ";
         std::string declaration_line = trimmed;
-        if (declaration_line.rfind("extern ", 0) == 0)
+        const bool is_extern_definition = declaration_line.rfind("extern ", 0) == 0;
+        if (is_extern_definition)
             declaration_line = Trim(declaration_line.substr(sizeof("extern ") - 1));
         if (declaration_line.rfind(kDeclaration, 0) == 0) {
             if (has_current_declaration && !current_string_emitted) {
@@ -1992,6 +2161,7 @@ std::string CompileCppTextInclude(const std::string &source, const Charmap &char
                     + ": expected '=' in text declaration");
             }
             current_declarator = ParseTextDeclarator(declarator, line_number);
+            current_declarator.storage_class = is_extern_definition ? "extern " : "";
             has_current_declaration = true;
             current_has_string = false;
             current_string_emitted = false;
@@ -2112,6 +2282,12 @@ void SelfTest()
                                          "    gText_TestReference;") != std::string::npos,
         "text-reference pointer declaration was not preserved");
 
+    const std::string generated_external_text = CompileCppTextInclude(
+        "extern char const gText_External[] = \"A\";\n", map);
+    Require(generated_external_text.find("extern char const gText_External[]")
+            != std::string::npos,
+        "external text definition lost its linkage");
+
     bool rejected_inline_page_break = false;
     try {
         static_cast<void>(CompileCppTextInclude(
@@ -2161,6 +2337,43 @@ void SelfTest()
     Require(generated_inline.find("gText_TestStandalone") != std::string::npos
             && generated_inline.find("\\x43") != std::string::npos,
         "structured source did not encode a direct text declaration");
+
+    const std::string generic_source =
+        "#include \"test.hh\"\n"
+        "struct TestPointer { char const *text; };\n"
+        "char const gText_Generic[] ALIGN(4) = \"A\\p\";\n"
+        "TestPointer const gGenericPointers[] = { { gText_Generic } };\n"
+        "char const * const gGenericTextReference = gText_Generic;\n";
+    const std::string generated_generic = CompileCppSourceText(generic_source, map);
+    Require(generated_generic.find("#include \"test.hh\"") != std::string::npos,
+        "generic source pass changed a preprocessor directive");
+    Require(generated_generic.find("ALIGN(4)") != std::string::npos,
+        "generic source pass changed an explicit alignment attribute");
+    Require(generated_generic.find("TestPointer const gGenericPointers[]") != std::string::npos,
+        "generic source pass changed a non-text structure initializer");
+    Require(generated_generic.find("\"\\x41\\x0C\"") != std::string::npos,
+        "generic source pass did not encode a text control");
+
+    const std::string generic_section_source =
+        "char const gText_Sectioned[] __attribute__((section(\".rodata.example\"))) = \"A\";\n";
+    const std::string generated_generic_section =
+        CompileCppSourceText(generic_section_source, map);
+    Require(generated_generic_section.find("section(\".rodata.example\")") != std::string::npos,
+        "generic source pass changed a compiler section name");
+    Require(generated_generic_section.find("= \"\\x41\"") != std::string::npos,
+        "generic source pass did not encode a sectioned game string");
+
+    const std::string generic_inline_asm =
+        "asm(\"    .global \\\\name\\n\");\n";
+    Require(CompileCppSourceText(generic_inline_asm, map) == generic_inline_asm,
+        "generic source pass changed an inline assembler string");
+
+    const std::string generic_literal_backslash =
+        "char const gText_Backslash[] = \"\\\\A\";\n";
+    const std::string generated_literal_backslash =
+        CompileCppSourceText(generic_literal_backslash, map);
+    Require(generated_literal_backslash.find("\"\\x5C\\x41\"") != std::string::npos,
+        "generic source pass treated a literal backslash as a text control prefix");
 
     const std::string guide_source =
         "TITLE\n"
@@ -2276,26 +2489,6 @@ void SelfTest()
     }
     Require(rejected_unmapped, "unmapped text was accepted");
 
-    const std::string same_unit_source =
-        "char const gText_Test[] = \"A\";\n"
-        "char const * const gTextRef_Test = gText_Test;\n";
-    const std::string same_unit_assembly =
-        "\t.globl\tgText_Test\n"
-        "gText_Test:\n"
-        "\t.ascii\t\"A\\000\"\n"
-        "\t.globl\tgTextRef_Test\n"
-        "\t.align\t2, 0\n"
-        ".LC0:\n"
-        "\t.ascii\t\"A\\000\"\n"
-        "\t.align\t2, 0\n"
-        "gTextRef_Test:\n"
-        "\t.word\t.LC0\n";
-    const std::string fixed_same_unit_assembly =
-        FixupSameUnitTextReferences(same_unit_source, same_unit_assembly);
-    Require(fixed_same_unit_assembly.find(".LC0:") == std::string::npos,
-        "same-unit duplicate text constant was retained");
-    Require(fixed_same_unit_assembly.find(".word\tgText_Test") != std::string::npos,
-        "same-unit text reference was not changed to a named relocation");
 }
 
 const char *Usage()
@@ -2305,8 +2498,8 @@ const char *Usage()
            "  fomt-text validate CHARMAP\n"
            "  fomt-text encode CHARMAP INPUT OUTPUT\n"
            "  fomt-text decode CHARMAP INPUT OUTPUT\n"
+           "  fomt-text source CHARMAP INPUT OUTPUT\n"
            "  fomt-text cpp CHARMAP INPUT OUTPUT\n"
-           "  fomt-text fixup-refs SOURCE ASSEMBLY\n"
            "  fomt-text guide CHARMAP INPUT TEXT_OUTPUT TABLE_OUTPUT [CATALOG_SOURCE ...]\n"
            "  fomt-text guide-collection CHARMAP REGION MANIFEST OUTPUT\n"
            "  fomt-text staff-credits CHARMAP REGION BASEROM INPUT OUTPUT\n";
@@ -2322,13 +2515,6 @@ int Run(int argc, char **argv)
     if (argc == 3 && std::string(argv[1]) == "validate") {
         const Charmap charmap = Charmap::Parse(ReadTextFile(argv[2]));
         std::cout << "fomt-text: " << charmap.EntryCount() << " charmap entries validated\n";
-        return 0;
-    }
-    if (argc == 4 && std::string(argv[1]) == "fixup-refs") {
-        const std::filesystem::path source = argv[2];
-        const std::filesystem::path assembly = argv[3];
-        WriteTextFile(assembly, FixupSameUnitTextReferences(
-            ReadTextFile(source), ReadTextFile(assembly)));
         return 0;
     }
     if (argc == 6 && std::string(argv[1]) == "guide-collection") {
@@ -2386,6 +2572,10 @@ int Run(int argc, char **argv)
     }
     if (command == "decode") {
         WriteTextFile(output, charmap.DecodeText(ReadBinaryFile(input)));
+        return 0;
+    }
+    if (command == "source") {
+        WriteTextFile(output, CompileCppSourceText(ReadTextFile(input), charmap));
         return 0;
     }
     if (command == "cpp") {

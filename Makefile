@@ -98,7 +98,8 @@ compare: $(ROM)
 
 TEXT_TOOL_DIR := tools/textproc
 TEXT_TOOL := $(TEXT_TOOL_DIR)/fomt-text
-TEXT_COMMON_SOURCES := data/text/common/animal.cc data/text/common/script_engine.cc data/text/common/ui_error.cc data/text/common/sram_signature.cc
+TEXT_PREPROC := $(TEXT_TOOL_DIR)/fomt-preproc
+TEXT_TOOLS := $(TEXT_TOOL) $(TEXT_PREPROC)
 
 ifeq ($(GAME_REGION),JP)
 TEXT_REGION := jp
@@ -106,38 +107,79 @@ else
 TEXT_REGION := us
 endif
 
-# Direct regional text modules are self-registering.  The guide pages live in
-# a child directory because fomt-text compiles their collection as one object.
-TEXT_SOURCES := $(wildcard data/text/$(TEXT_REGION)/*.cc)
-TEXT_SOURCES += $(wildcard data/text/$(TEXT_REGION)/reference_guide/*.cc)
+# Every ordinary .cc file joins the same C++ compilation channel below.  The
+# remaining regional fragments are included at a physical point inside their
+# owning src module, so they deliberately do not produce a second object.
+TEXT_FRAGMENT_SOURCES := \
+  data/text/common/animal_data.cc \
+  data/text/common/entity_ui.cc \
+  data/text/common/fixed_labels.cc \
+  data/text/common/menu.cc \
+  data/text/common/script_engine.cc \
+  data/text/common/ui_error.cc \
+  data/text/$(TEXT_REGION)/animal_data.cc \
+  data/text/$(TEXT_REGION)/entity_ui.cc \
+  data/text/$(TEXT_REGION)/fixed_labels.cc \
+  data/text/$(TEXT_REGION)/help_menu.cc \
+  data/text/$(TEXT_REGION)/livestock_shop.cc \
+  data/text/$(TEXT_REGION)/menu.cc \
+  data/text/$(TEXT_REGION)/ui_error.cc \
+  data/text/$(TEXT_REGION)/new_game_menu.cc \
+  data/text/$(TEXT_REGION)/horse_race_ticket_ui.cc \
+  data/text/common/fallback.cc
+
+# The staff-credit source and the Reference Guide pages use their own visible
+# authoring formats.  They are the only inputs that must be lowered to a
+# normal .cc source before entering the shared compilation channel.
+STAFF_CREDITS_SOURCE := data/text/$(TEXT_REGION)/staff_credits.cc
+REGION_TEXT_SOURCES := $(filter-out $(TEXT_FRAGMENT_SOURCES) $(STAFF_CREDITS_SOURCE),$(wildcard data/text/$(TEXT_REGION)/*.cc))
+REGION_TEXT_OBJS := $(patsubst data/text/$(TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.o,$(REGION_TEXT_SOURCES))
+REGION_TEXT_DEPS := $(REGION_TEXT_OBJS:.o=.d)
+COMMON_TEXT_SOURCES := $(filter-out $(TEXT_FRAGMENT_SOURCES),$(wildcard data/text/common/*.cc))
+COMMON_TEXT_OBJS := $(COMMON_TEXT_SOURCES:%.cc=$(BUILD_DIR)/%.o)
+COMMON_TEXT_DEPS := $(COMMON_TEXT_OBJS:.o=.d)
 
 # The manifest records directory order, physical ROM-group order, and whether
 # an auxiliary page participates in the master directory.
 GUIDE_COLLECTION_MANIFEST := src/reference_guide.cc
 GUIDE_PAGE_SOURCES := $(wildcard data/text/$(TEXT_REGION)/reference_guide/*.cc)
-STAFF_CREDITS_SOURCE := data/text/$(TEXT_REGION)/staff_credits.cc
-NORMAL_TEXT_SOURCES := $(filter-out $(GUIDE_PAGE_SOURCES) $(STAFF_CREDITS_SOURCE),$(TEXT_SOURCES))
-
-STAFF_CREDITS_GENERATED_SOURCE := $(BUILD_DIR)/data/text/staff_credits.cc
-TEXT_GENERATED_SOURCES := $(patsubst data/text/$(TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.cc,$(NORMAL_TEXT_SOURCES)) $(STAFF_CREDITS_GENERATED_SOURCE)
-TEXT_OBJS := $(TEXT_GENERATED_SOURCES:.cc=.o)
-TEXT_DEPS := $(TEXT_GENERATED_SOURCES:.cc=.d)
-TEXT_COMMON_GENERATED_SOURCES := $(patsubst data/text/common/%.cc,$(BUILD_DIR)/data/text/common/%.cc,$(TEXT_COMMON_SOURCES))
-TEXT_COMMON_OBJS := $(TEXT_COMMON_GENERATED_SOURCES:.cc=.o)
-TEXT_COMMON_DEPS := $(TEXT_COMMON_GENERATED_SOURCES:.cc=.d)
-
+STAFF_CREDITS_GENERATED_SOURCE := $(BUILD_DIR)/data/text/$(TEXT_REGION)/staff_credits.cc
+STAFF_CREDITS_GENERATED_OBJ := $(BUILD_DIR)/data/text/staff_credits.o
+STAFF_CREDITS_GENERATED_DEP := $(BUILD_DIR)/data/text/staff_credits.d
 GUIDE_GENERATED_SOURCE := $(BUILD_DIR)/src/reference_guide.cc
-GUIDE_GENERATED_SOURCES := $(GUIDE_GENERATED_SOURCE)
-GUIDE_GENERATED_OBJS := $(GUIDE_GENERATED_SOURCES:.cc=.o)
-GUIDE_GENERATED_DEPS := $(GUIDE_GENERATED_SOURCES:.cc=.d)
+GUIDE_GENERATED_OBJ := $(BUILD_DIR)/src/reference_guide.o
+GUIDE_GENERATED_DEP := $(BUILD_DIR)/src/reference_guide.d
 
-ALL_OBJS += $(TEXT_OBJS) $(TEXT_COMMON_OBJS) $(GUIDE_GENERATED_OBJS)
-ALL_DEPS += $(TEXT_DEPS) $(TEXT_COMMON_DEPS) $(GUIDE_GENERATED_DEPS)
+ALL_OBJS += $(REGION_TEXT_OBJS) $(COMMON_TEXT_OBJS) $(STAFF_CREDITS_GENERATED_OBJ) $(GUIDE_GENERATED_OBJ)
+ALL_DEPS += $(REGION_TEXT_DEPS) $(COMMON_TEXT_DEPS) $(STAFF_CREDITS_GENERATED_DEP) $(GUIDE_GENERATED_DEP)
 
-.SECONDARY: $(TEXT_GENERATED_SOURCES) $(TEXT_COMMON_GENERATED_SOURCES) $(GUIDE_GENERATED_SOURCES)
+.SECONDARY: $(GUIDE_GENERATED_SOURCE) $(STAFF_CREDITS_GENERATED_SOURCE)
 
-$(TEXT_TOOL): $(TEXT_TOOL_DIR)/fomt_text.cpp $(TEXT_TOOL_DIR)/Makefile
+$(TEXT_TOOLS): $(TEXT_TOOL_DIR)/fomt_text.cpp $(TEXT_TOOL_DIR)/fomt_preproc.cpp $(TEXT_TOOL_DIR)/Makefile
 	@$(MAKE) -C $(TEXT_TOOL_DIR) $(notdir $@)
+
+# Every ordinary C/C++ unit first becomes a normal preprocessed source file.
+# fomt-text then lowers only its quoted game text to FOMT byte literals; it
+# leaves ALIGN(n), SECTION(...), structures, and pointer tables as C/C++.
+# fomt-preproc consumes the resulting source plus agbcc/agbcp assembly to
+# perform generic relocation repair and executable-section closing alignment.
+define FOMT_COMPILE_CPP
+@mkdir -p $(dir $(basename $@).fomt-preprocessed.cc)
+@$(CPP) -iquote $(BUILD_DIR) $(1) -P $(CPPFLAGS) $< -o $(basename $@).fomt-preprocessed.cc
+@$(TEXT_TOOL) source charmap.txt $(basename $@).fomt-preprocessed.cc $(basename $@).fomt-text.cc
+@($(CC1PLUS) $(CXXFLAGS) -o $(basename $@).s < $(basename $@).fomt-text.cc || false)
+@$(TEXT_PREPROC) asm $(basename $@).fomt-text.cc $(basename $@).s
+@$(AS) $(ASFLAGS) $(basename $@).s -o $@
+endef
+
+define FOMT_COMPILE_C
+@mkdir -p $(dir $(basename $@).fomt-preprocessed.c)
+@$(CPP) -iquote $(BUILD_DIR) $(1) -P $(CPPFLAGS) $< -o $(basename $@).fomt-preprocessed.c
+@$(TEXT_TOOL) source charmap.txt $(basename $@).fomt-preprocessed.c $(basename $@).fomt-text.c
+@$(CC1) $(CFLAGS) -o $(basename $@).s < $(basename $@).fomt-text.c
+@$(TEXT_PREPROC) asm $(basename $@).fomt-text.c $(basename $@).s
+@$(AS) $(ASFLAGS) $(basename $@).s -o $@
+endef
 
 # Every article remains a deliberately non-C++ text source.  One collection
 # invocation emits one physical C++ object: master directory, group text, and
@@ -149,36 +191,39 @@ $(GUIDE_GENERATED_SOURCE): $(GUIDE_COLLECTION_MANIFEST) $(GUIDE_PAGE_SOURCES) $(
 $(BUILD_DIR)/src/reference_guide.d: $(GUIDE_GENERATED_SOURCE)
 	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MT $(BUILD_DIR)/src/reference_guide.o
 
-$(BUILD_DIR)/src/reference_guide.o: $(GUIDE_GENERATED_SOURCE) $(BUILD_DIR)/src/reference_guide.d
+$(BUILD_DIR)/src/reference_guide.o: $(GUIDE_GENERATED_SOURCE) $(BUILD_DIR)/src/reference_guide.d $(TEXT_TOOLS) charmap.txt
 	@echo "CP $<"
-	@$(CPP) $(CPPFLAGS) $< | ($(CC1PLUS) $(CXXFLAGS) -o $(BUILD_DIR)/src/reference_guide.s || false)
-	@sed 's/\r$$//' tools/scripts/align_sections.sh | bash -s -- $(BUILD_DIR)/src/reference_guide.s
-	@$(AS) $(ASFLAGS) $(BUILD_DIR)/src/reference_guide.s -o $@
+	$(call FOMT_COMPILE_CPP,)
 
 # Staff credits are one visible scrolling sequence.  fomt-text recovers the
 # original text-field layout and row-pointer sharing from the selected ROM,
-# then emits the one physical text-and-table object used by the game.
+# then emits standard C++ which immediately enters the shared channel below.
 $(STAFF_CREDITS_GENERATED_SOURCE): $(STAFF_CREDITS_SOURCE) $(TEXT_TOOL) charmap.txt baserom_$(TEXT_REGION).gba
 	@mkdir -p $(dir $@)
 	$(TEXT_TOOL) staff-credits charmap.txt $(GAME_REGION) baserom_$(TEXT_REGION).gba $< $@
 
-$(BUILD_DIR)/data/text/%.cc: data/text/$(TEXT_REGION)/%.cc $(TEXT_TOOL) charmap.txt
+
+# The selected regional .cc sources map to the region-neutral object paths
+# used by the linker scripts.  Their recipe is the same universal pipeline as
+# every other C++ translation unit; no text-specific staging source is made.
+$(REGION_TEXT_DEPS): $(BUILD_DIR)/data/text/%.d: data/text/$(TEXT_REGION)/%.cc
 	@mkdir -p $(dir $@)
-	$(TEXT_TOOL) cpp charmap.txt $< $@
+	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MT $@ -MT $(BUILD_DIR)/data/text/$*.o
 
-$(BUILD_DIR)/data/text/common/%.cc: data/text/common/%.cc $(TEXT_TOOL) charmap.txt
-	@mkdir -p $(dir $@)
-	$(TEXT_TOOL) cpp charmap.txt $< $@
-
-$(BUILD_DIR)/data/text/%.d: $(BUILD_DIR)/data/text/%.cc
-	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MT $(BUILD_DIR)/data/text/$*.o
-
-$(BUILD_DIR)/data/text/%.o: $(BUILD_DIR)/data/text/%.cc $(BUILD_DIR)/data/text/%.d
+$(REGION_TEXT_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGION)/%.cc $(BUILD_DIR)/data/text/%.d $(TEXT_TOOLS) charmap.txt
 	@echo "CP $<"
-	@$(CPP) $(CPPFLAGS) $< | ($(CC1PLUS) $(CXXFLAGS) -o $(BUILD_DIR)/data/text/$*.s || false)
-	@$(TEXT_TOOL) fixup-refs $< $(BUILD_DIR)/data/text/$*.s
-	@sed 's/\r$$//' tools/scripts/align_sections.sh | bash -s -- $(BUILD_DIR)/data/text/$*.s
-	@$(AS) $(ASFLAGS) $(BUILD_DIR)/data/text/$*.s -o $@
+	$(call FOMT_COMPILE_CPP,)
+
+# The generated staff-credit source follows the same C++ text pipeline as any
+# other data/text translation unit.  Its ROM-neutral object name is the one
+# referenced by both linker scripts.
+$(STAFF_CREDITS_GENERATED_DEP): $(STAFF_CREDITS_GENERATED_SOURCE)
+	@mkdir -p $(dir $@)
+	@$(CPP) -iquote $(BUILD_DIR) $(CPPFLAGS) $< -o $@ -MM -MG -MT $(STAFF_CREDITS_GENERATED_OBJ)
+
+$(STAFF_CREDITS_GENERATED_OBJ): $(STAFF_CREDITS_GENERATED_SOURCE) $(STAFF_CREDITS_GENERATED_DEP) $(TEXT_TOOLS) charmap.txt
+	@echo "CP $<"
+	$(call FOMT_COMPILE_CPP,)
 
 # ROM from ELF
 %.gba: %.elf
@@ -192,25 +237,23 @@ $(ELF): $(ALL_OBJS) $(LDS)
 
 # C dependency file
 $(BUILD_DIR)/%.d: %.c
+	@mkdir -p $(dir $@)
 	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MT $@ -MT $(BUILD_DIR)/$*.o
 
 # C object
-$(BUILD_DIR)/%.o: %.c $(BUILD_DIR)/%.d
+$(BUILD_DIR)/%.o: %.c $(BUILD_DIR)/%.d $(TEXT_TOOLS) charmap.txt
 	@echo "CC $<"
-	@$(CPP) $(CPPFLAGS) $< | $(CC1) $(CFLAGS) -o $(BUILD_DIR)/$*.s
-	@sed 's/\r$$//' tools/scripts/align_sections.sh | bash -s -- $(BUILD_DIR)/$*.s
-	@$(AS) $(ASFLAGS) $(BUILD_DIR)/$*.s -o $@ 
+	$(call FOMT_COMPILE_C,)
 
 # C++ dependency file
 $(BUILD_DIR)/%.d: %.cc
+	@mkdir -p $(dir $@)
 	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MT $@ -MT $(BUILD_DIR)/$*.o
 
 # C++ object
-$(BUILD_DIR)/%.o: %.cc $(BUILD_DIR)/%.d
+$(BUILD_DIR)/%.o: %.cc $(BUILD_DIR)/%.d $(TEXT_TOOLS) charmap.txt
 	@echo "CP $<"
-	@$(CPP) $(CPPFLAGS) $< | ($(CC1PLUS) $(CXXFLAGS) -o $(BUILD_DIR)/$*.s || false)
-	@sed 's/\r$$//' tools/scripts/align_sections.sh | bash -s -- $(BUILD_DIR)/$*.s
-	@$(AS) $(ASFLAGS) $(BUILD_DIR)/$*.s -o $@
+	$(call FOMT_COMPILE_CPP,)
 
 # ASM dependency file (dummy, generated with the object)
 $(BUILD_DIR)/%.d: $(BUILD_DIR)/%.o

@@ -8,4 +8,4 @@
 *.sav
 
 build/
-tools/textproc/fomt-text
+tools/textproc/fomt-*
