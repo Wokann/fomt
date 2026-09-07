@@ -707,7 +707,8 @@ SECTIONS
         . = 0x106474; src/field_data.o(.rodata.field_render_rect_descriptors);
         . = 0x106C24; src/farm_house.o(.rodata.farm_house_tile_patches);
         . = 0x106D4C; src/farm_house.o(.rodata.farm_house_visual_descriptors);
-        . = 0x106E80; asm/data/data_080F9EB8.o(.rodata.field_render_rect_descriptors_after);
+        . = 0x106E80; src/farm_house.o(.rodata.farm_house_tile_patch_animations);
+        . = 0x106E98; asm/data/data_080F9EB8.o(.rodata.field_render_rect_descriptors_after);
         . = 0x1070F4; data/text/harvest_sprite_minigames.o(.rodata.harvest_sprite_minigames_animal_husbandry);
         . = 0x10737B; asm/data/data_080F9EB8.o(.rodata.harvest_sprite_minigames_animal_husbandry_trailer);
         . = 0x1073B9; data/text/chicken_festival.o(.rodata.chicken_festival_contestant_names);

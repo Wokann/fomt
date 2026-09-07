@@ -134,6 +134,12 @@ struct FarmHouseTilePatchData
 
 extern FarmHouseTilePatchData const gFarmHouseTilePatchData;
 
+// These are the two contiguous animation descriptors following
+// gFarmHouseVisualDescriptors in ROM.  Their neutral table name deliberately
+// avoids assigning a stronger gameplay role before the neighboring raw data
+// has been recovered.
+extern FarmHouseTilePatchAnimationDescriptor const gFarmHouseTilePatchAnimations[2];
+
 // These records start with the exact 0x18-byte tile-patch layout consumed by
 // func_080A5BD8.  Native setup also passes unk_18 to Unpack and derives a VRAM
 // destination from unk_1C.  The remaining resource fields are preserved with

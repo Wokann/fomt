@@ -15894,7 +15894,7 @@ func_080A64B8: @ 0x080A64B8
 	bne .L080A6510
 	adds r2, r4, #0
 	adds r2, #0xb4
-	ldr r1, .L080A651C @ =gUnk_08107338
+	ldr r1, .L080A651C @ =gFarmHouseTilePatchAnimations
 	ldrb r0, [r2, #2]
 	adds r0, #1
 	movs r6, #0
@@ -15910,7 +15910,7 @@ func_080A64B8: @ 0x080A64B8
 .L080A64F8:
 	adds r2, r4, #0
 	adds r2, #0xb8
-	ldr r1, .L080A6520 @ =gUnk_08107344
+	ldr r1, .L080A6520 @ =gFarmHouseTilePatchAnimations + 0x0C
 	ldrb r0, [r2, #2]
 	adds r0, #1
 	strb r0, [r2, #2]
@@ -15926,8 +15926,8 @@ func_080A64B8: @ 0x080A64B8
 	bx r0
 	.align 2, 0
 .L080A6518: .4byte 0x000021A0
-.L080A651C: .4byte gUnk_08107338
-.L080A6520: .4byte gUnk_08107344
+.L080A651C: .4byte gFarmHouseTilePatchAnimations
+.L080A6520: .4byte gFarmHouseTilePatchAnimations + 0x0C
 
 	thumb_func_start func_080A6524
 func_080A6524: @ 0x080A6524
@@ -16000,7 +16000,7 @@ func_080A6524: @ 0x080A6524
 	bne .L080A662A
 	adds r4, r5, #0
 	adds r4, #0xb4
-	ldr r7, .L080A6638 @ =gUnk_08107338
+	ldr r7, .L080A6638 @ =gFarmHouseTilePatchAnimations
 	ldrb r0, [r4, #1]
 	cmp r0, #0
 	beq .L080A65EC
@@ -16032,7 +16032,7 @@ func_080A6524: @ 0x080A6524
 .L080A65EC:
 	adds r4, r5, #0
 	adds r4, #0xb8
-	ldr r7, .L080A663C @ =gUnk_08107344
+	ldr r7, .L080A663C @ =gFarmHouseTilePatchAnimations + 0x0C
 	ldrb r0, [r4, #1]
 	cmp r0, #0
 	beq .L080A662A
@@ -16069,8 +16069,8 @@ func_080A6524: @ 0x080A6524
 	bx r0
 	.align 2, 0
 .L080A6634: .4byte 0x000021A0
-.L080A6638: .4byte gUnk_08107338
-.L080A663C: .4byte gUnk_08107344
+.L080A6638: .4byte gFarmHouseTilePatchAnimations
+.L080A663C: .4byte gFarmHouseTilePatchAnimations + 0x0C
 
 	thumb_func_start func_080A6640
 func_080A6640: @ 0x080A6640

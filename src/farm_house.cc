@@ -420,6 +420,8 @@ extern u8 const gUnk_FarmHouseTilePatchResource_024[];
 extern u8 const gUnk_FarmHouseTilePatchResource_025[];
 extern u8 const gUnk_FarmHouseTilePatchResource_026[];
 extern u8 const gUnk_FarmHouseTilePatchResource_027[];
+extern u8 const gUnk_FarmHouseTilePatchAnimationResource_000[];
+extern u8 const gUnk_FarmHouseTilePatchAnimationResource_001[];
 
 extern u8 const gUnk_FarmHouseVisualResource_000[];
 extern u8 const gUnk_FarmHouseVisualResource_001[];
@@ -503,6 +505,12 @@ FarmHouseTilePatchData const gFarmHouseTilePatchData SECTION(".rodata.farm_house
         { 0x0000, gUnk_FarmHouseTilePatchResource_027, 0x000A },
     },
 };
+
+FarmHouseTilePatchAnimationDescriptor const gFarmHouseTilePatchAnimations[2]
+    SECTION(".rodata.farm_house_tile_patch_animations") = {
+        { 0x0200, gUnk_FarmHouseTilePatchAnimationResource_000, 0x000C },
+        { 0x0212, gUnk_FarmHouseTilePatchAnimationResource_001, 0x0008 },
+    };
 
 FarmHouseVisualDescriptor const gFarmHouseVisualDescriptors[7] SECTION(".rodata.farm_house_visual_descriptors") = {
     {

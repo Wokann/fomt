@@ -67,6 +67,10 @@ jp_data_0813b288_start:
     .set gUnk_FarmHouseTilePatchResource_026, jp_data_0813b288_start + 0x32B6B8
     .global gUnk_FarmHouseTilePatchResource_027
     .set gUnk_FarmHouseTilePatchResource_027, jp_data_0813b288_start + 0x335838
+    .global gUnk_FarmHouseTilePatchAnimationResource_000
+    .set gUnk_FarmHouseTilePatchAnimationResource_000, jp_data_0813b288_start + 0x338E20
+    .global gUnk_FarmHouseTilePatchAnimationResource_001
+    .set gUnk_FarmHouseTilePatchAnimationResource_001, jp_data_0813b288_start + 0x338B1C
 
     @ Region-neutral labels for FarmHouse visual descriptor resources.
     @ Their payload formats remain in the raw regional asset container.
@@ -1157,6 +1161,10 @@ gActorStateGridCellType4Data:
 	.set gUnk_FarmHouseTilePatchResource_026, us_data_0813b288_start + 0x5A66A0
 	.global gUnk_FarmHouseTilePatchResource_027
 	.set gUnk_FarmHouseTilePatchResource_027, us_data_0813b288_start + 0x5B0820
+	.global gUnk_FarmHouseTilePatchAnimationResource_000
+	.set gUnk_FarmHouseTilePatchAnimationResource_000, us_data_0813b288_start + 0x5B3E08
+	.global gUnk_FarmHouseTilePatchAnimationResource_001
+	.set gUnk_FarmHouseTilePatchAnimationResource_001, us_data_0813b288_start + 0x5B3B04
 
 	@ Region-neutral labels for FarmHouse visual descriptor resources.
 	@ Their payload formats remain in the raw regional asset container.
