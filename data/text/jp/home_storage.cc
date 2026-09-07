@@ -76,5 +76,5 @@ char const gText_ToolChest_HeaderTools[] =
 char const gText_ToolChest_Title[] =
     "道具箱";
 
-char const gCppRuntimeBadAlloc_HomeStorageTrailer[12] =
+char const gCppRuntimeBadAlloc_HomeStorageTrailer[] =
     "bad_alloc";
