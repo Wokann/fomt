@@ -85777,7 +85777,7 @@ func_080C85A0: @ 0x080C85A0
 	mov sb, r3
 	ldr r5, .L080C87DC @ =0x06001400
 	mov r6, r8
-	ldr r4, .L080C87E0 @ =gUnk_081177F6
+	ldr r4, .L080C87E0 @ =gUnk_080C85A0DigitGlyphs
 .L080C86DA:
 	ldrh r1, [r4]
 	mov r0, sb
@@ -85893,7 +85893,7 @@ func_080C85A0: @ 0x080C85A0
 .L080C87D4: .4byte 0x03FF03FF
 .L080C87D8: .4byte 0x000001EB
 .L080C87DC: .4byte 0x06001400
-.L080C87E0: .4byte gUnk_081177F6
+.L080C87E0: .4byte gUnk_080C85A0DigitGlyphs
 .L080C87E4: .4byte 0x00000454
 .L080C87E8: .4byte gText_ShopCommon_GoldUnit
 .L080C87EC: .4byte 0x06000400
