@@ -45,6 +45,22 @@ char const gText_HarvestSpriteMiniGameAnimalHusbandryEmpty[]
         "";
 #endif
 
+// The native Chicken Festival code selects a row with a twelve-byte stride,
+// then adds one of these four byte offsets to the selected u16 value.  JP
+// places the table at a two-byte (rather than four-byte) boundary.
+u16 const gUnk_HarvestSpriteMiniGameChickenFestivalValues[4][6]
+    SECTION(".rodata.harvest_sprite_minigames_chicken_festival_values") ALIGN(2) = {
+        { 0x071C, 0x0720, 0x0724, 0x0728, 0x072C, 0x0730 },
+        { 0x06EA, 0x06EE, 0x06F2, 0x06F6, 0x06FA, 0x06FE },
+        { 0x0703, 0x0707, 0x070B, 0x070F, 0x0713, 0x0717 },
+        { 0x06D1, 0x06D5, 0x06D9, 0x06DD, 0x06E1, 0x06E5 },
+    };
+
+u8 const gUnk_HarvestSpriteMiniGameChickenFestivalOffsets[4]
+    SECTION(".rodata.harvest_sprite_minigames_chicken_festival_offsets") = {
+        1, 3, 0, 2,
+    };
+
 HarvestSprite::HarvestSprite(ActorLocation const & location)
     : Npc(location)
 {

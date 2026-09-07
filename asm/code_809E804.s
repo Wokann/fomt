@@ -53851,14 +53851,14 @@ func_080B8DAC: @ 0x080B8DAC
 	lsls r0, r0, #0x18
 	lsrs r3, r0, #0x18
 .L080B8DC4:
-	ldr r2, .L080B8DEC @ =gUnk_08107ACC
+	ldr r2, .L080B8DEC @ =gUnk_HarvestSpriteMiniGameChickenFestivalValues
 	lsls r1, r1, #1
 	lsls r0, r3, #1
 	adds r0, r0, r3
 	lsls r0, r0, #2
 	adds r1, r1, r0
 	adds r1, r1, r2
-	ldr r0, .L080B8DF0 @ =gUnk_08107AFC
+	ldr r0, .L080B8DF0 @ =gUnk_HarvestSpriteMiniGameChickenFestivalOffsets
 	adds r0, r4, r0
 	ldrb r2, [r0]
 	ldrh r0, [r1]
@@ -53870,8 +53870,8 @@ func_080B8DAC: @ 0x080B8DAC
 	bx r1
 	.align 2, 0
 .L080B8DE8: .4byte 0x00000B18
-.L080B8DEC: .4byte gUnk_08107ACC
-.L080B8DF0: .4byte gUnk_08107AFC
+.L080B8DEC: .4byte gUnk_HarvestSpriteMiniGameChickenFestivalValues
+.L080B8DF0: .4byte gUnk_HarvestSpriteMiniGameChickenFestivalOffsets
 
 	thumb_func_start func_080B8DF4
 func_080B8DF4: @ 0x080B8DF4

@@ -17,6 +17,9 @@ extern char const gCppRuntimeBadAlloc_HarvestSpriteMiniGameAnimalHusbandry[];
 extern char const gText_HarvestSpriteMiniGameAnimalHusbandryEmpty[];
 #endif
 
+extern u16 const gUnk_HarvestSpriteMiniGameChickenFestivalValues[4][6];
+extern u8 const gUnk_HarvestSpriteMiniGameChickenFestivalOffsets[4];
+
 struct HarvestSprite : public Npc
 {
     enum Task
