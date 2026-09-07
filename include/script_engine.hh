@@ -12,6 +12,7 @@
 extern char const gText_AScriptEngine_InvalidStringId[];
 extern char const gText_ScriptEngineUi_Error[];
 extern char const gCppRuntimeBadAlloc_ScriptEngineUiPrefix[];
+extern char const gText_ScriptEngineUi_FallbackNone[];
 
 // TODO: rename this
 // TODO: retype the related fields

@@ -720,6 +720,14 @@ char const gCppRuntimeBadAlloc_ScriptEngineUiPrefix[]
     SECTION(".rodata.script_engine_ui_error_prefix") =
         "bad_alloc";
 
+char const gText_ScriptEngineUi_FallbackNone[]
+    SECTION(".rodata.script_engine_ui_error_trailer") =
+#if defined(REGION_JP)
+        "なし";
+#else
+        "N/A ";
+#endif
+
 // These text objects occur at separate physical Script Engine addresses.
 #define FOMT_SCRIPT_ENGINE_TEXT_INVALID_STRING_ID
 #include "data/text/common/script_engine.cc"
