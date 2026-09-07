@@ -643,8 +643,10 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4); src/winery_shop_data.o(.rodata.winery_shop_catalog);
         . = 0xFDFAC; data/text/winery_shop.o(.rodata.winery_shop_dialogue);
-        . = 0xFE178; asm/data/data_080F9EB8.o(.rodata.winery_shop_trailer);
-        . = 0xFE184; src/special_merchant_shop_data.o(.rodata.special_merchant_shop_catalog);
+        FILL(0x00);
+        . = ALIGN(4); data/text/winery_shop.o(.rodata.winery_shop_trailer);
+        FILL(0x00);
+        . = ALIGN(4); src/special_merchant_shop_data.o(.rodata.special_merchant_shop_catalog);
         . = 0xFE1FC; data/text/special_merchant_shop.o(.rodata.special_merchant_shop_text);
         . = 0xFE394; asm/data/data_080F9EB8.o(.rodata.special_merchant_shop_trailer);
         . = 0xFE3A0; data/text/beach_cafe_shop.o(.rodata.beach_cafe_shop_descriptions);

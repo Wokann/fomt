@@ -59,8 +59,6 @@
 
 
 
-    .section .rodata.winery_shop_trailer
-    .incbin "baserom_jp.gba", 0xFE178, (0xFE184 - 0xFE178)
 
     .section .rodata.special_merchant_shop_trailer
     .incbin "baserom_jp.gba", 0xFE394, (0xFE3A0 - 0xFE394)
@@ -388,8 +386,6 @@ gUnk_080FD920:
 
 	.section .rodata.unextracted_shop_data
 
-	.section .rodata.winery_shop_trailer
-	.incbin "baserom_us.gba", 0xFE8F0, (0xFE8FC - 0xFE8F0)
 
 	.section .rodata.unextracted_shop_data
 

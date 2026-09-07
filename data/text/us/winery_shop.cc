@@ -34,3 +34,6 @@ char const gText_WineryShop_PurchaseComplete[] WINERY_SHOP_DIALOGUE =
 char const gText_WineryShop_PurchaseMorePrompt[] WINERY_SHOP_DIALOGUE =
     "Are you looking to buy\r\n"
     "something else now?{Press}";
+
+extern char const gCppRuntimeBadAlloc_WineryShopTrailer[] WINERY_SHOP_TRAILER =
+    "bad_alloc";

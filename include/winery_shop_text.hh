@@ -11,6 +11,7 @@ struct WineryShopCatalogEntry
 
 #define WINERY_SHOP_CATALOG SECTION(".rodata.winery_shop_catalog")
 #define WINERY_SHOP_DIALOGUE SECTION(".rodata.winery_shop_dialogue")
+#define WINERY_SHOP_TRAILER SECTION(".rodata.winery_shop_trailer")
 
 extern WineryShopCatalogEntry const gWineryShopCatalog[];
 
@@ -24,5 +25,6 @@ extern char const gText_WineryShop_DeliveryAll[];
 extern char const gText_WineryShop_Delivery[];
 extern char const gText_WineryShop_PurchaseComplete[];
 extern char const gText_WineryShop_PurchaseMorePrompt[];
+extern char const gCppRuntimeBadAlloc_WineryShopTrailer[];
 
 #endif // WINERY_SHOP_TEXT_HH
