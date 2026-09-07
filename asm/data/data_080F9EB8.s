@@ -77,7 +77,10 @@
     .incbin "baserom_jp.gba", 0x103EF4, (0x10447C - 0x103EF4)
 
     .section .rodata.random_item_fallback_trailer
-    .incbin "baserom_jp.gba", 0x1049BC, (0x105184 - 0x1049BC)
+    .incbin "baserom_jp.gba", 0x1049BC, (0x1049F4 - 0x1049BC)
+
+    .section .rodata.random_item_selection_weights_trailer
+    .incbin "baserom_jp.gba", 0x104A18, (0x105184 - 0x104A18)
 
     .section .rodata.game_time_transition_after
     .global gMapData
@@ -507,10 +510,7 @@ gUnk_081043BC:
 gUnk_08104E74:
 	.incbin "baserom_us.gba", 0x104E74, 0x38
 
-	.global gUnk_08104EAC
-gUnk_08104EAC:
-	.incbin "baserom_us.gba", 0x104EAC, 0x24
-
+	.section .rodata.random_item_selection_weights_trailer
 	.global gUnk_08104ED0
 gUnk_08104ED0:
 	.incbin "baserom_us.gba", 0x104ED0, 0x2
