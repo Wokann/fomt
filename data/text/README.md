@@ -5,7 +5,7 @@ Regional text belongs under this directory by its owning data structure:
     data/text/us/ and data/text/jp/
         tool.cc, food.cc, article.cc
         calendar.cc, help_menu.cc, animal_memorial.cc
-        load_error.cc, menu.cc, not_available.cc, fixed_labels.cc
+        load_error.cc, menu.cc, fixed_labels.cc
         new_game_menu.cc, new_game_status.cc, new_game_help.cc
         new_game_save.cc, new_game_identity.cc
         new_game_name_entry.cc, new_game_name_entry_ui.cc
@@ -44,9 +44,9 @@ text object or an assembler alias.
 `calendar.cc` demonstrates fixed-row text arrays: the C++ dimensions are the
 actual ROM row strides used by the callers. The text preprocessor verifies
 every encoded row, including its terminator, fits that width; ordinary C++
-zero-initializes any remaining bytes in the fixed row. Its section attributes
-only preserve the pre-existing ROM placement; the source still contains
-ordinary UTF-8 C++ strings and no handwritten assembler.
+zero-initializes any remaining bytes in the fixed row. Normal text objects do
+not need per-string section attributes: their owning source module and linker
+order preserve the ROM layout.
 
 When a verified fixed field contains nonzero bytes after an embedded FOMT
 terminator, express that boundary as `\x00` followed by ordinary mapped text
