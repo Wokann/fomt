@@ -8,6 +8,553 @@
 jp_data_0813b288_start:
     .incbin "baserom_jp.gba", 0x13C3CC, (0x45C5B4 - 0x13C3CC)
 
+    @ Region-neutral labels for gMapData raw resource targets.
+    @ Their payload types are not decoded yet.
+    .global gUnk_MapDataResource_092
+    .set gUnk_MapDataResource_092, jp_data_0813b288_start + 0x2C3E78
+    .global gUnk_MapDataResource_093
+    .set gUnk_MapDataResource_093, jp_data_0813b288_start + 0x2C89B4
+    .global gUnk_MapDataResource_095
+    .set gUnk_MapDataResource_095, jp_data_0813b288_start + 0x2C8AAC
+    .global gUnk_MapDataResource_096
+    .set gUnk_MapDataResource_096, jp_data_0813b288_start + 0x2CA7A0
+    .global gUnk_MapDataResource_097
+    .set gUnk_MapDataResource_097, jp_data_0813b288_start + 0x2CB40C
+    .global gUnk_MapDataResource_094
+    .set gUnk_MapDataResource_094, jp_data_0813b288_start + 0x2CBBE4
+    .global gUnk_MapDataResource_100
+    .set gUnk_MapDataResource_100, jp_data_0813b288_start + 0x2CBCBC
+    .global gUnk_MapDataResource_101
+    .set gUnk_MapDataResource_101, jp_data_0813b288_start + 0x2D0CBC
+    .global gUnk_MapDataResource_103
+    .set gUnk_MapDataResource_103, jp_data_0813b288_start + 0x2D0DB4
+    .global gUnk_MapDataResource_104
+    .set gUnk_MapDataResource_104, jp_data_0813b288_start + 0x2D2B34
+    .global gUnk_MapDataResource_105
+    .set gUnk_MapDataResource_105, jp_data_0813b288_start + 0x2D379C
+    .global gUnk_MapDataResource_102
+    .set gUnk_MapDataResource_102, jp_data_0813b288_start + 0x2D3F0C
+    .global gUnk_MapDataResource_244
+    .set gUnk_MapDataResource_244, jp_data_0813b288_start + 0x2D3FE0
+    .global gUnk_MapDataResource_245
+    .set gUnk_MapDataResource_245, jp_data_0813b288_start + 0x2D41EC
+    .global gUnk_MapDataResource_246
+    .set gUnk_MapDataResource_246, jp_data_0813b288_start + 0x2D4344
+    .global gUnk_MapDataResource_056
+    .set gUnk_MapDataResource_056, jp_data_0813b288_start + 0x2D43CC
+    .global gUnk_MapDataResource_057
+    .set gUnk_MapDataResource_057, jp_data_0813b288_start + 0x2D749C
+    .global gUnk_MapDataResource_059
+    .set gUnk_MapDataResource_059, jp_data_0813b288_start + 0x2D757C
+    .global gUnk_MapDataResource_060
+    .set gUnk_MapDataResource_060, jp_data_0813b288_start + 0x2D7C98
+    .global gUnk_MapDataResource_061
+    .set gUnk_MapDataResource_061, jp_data_0813b288_start + 0x2D7EF8
+    .global gUnk_MapDataResource_058
+    .set gUnk_MapDataResource_058, jp_data_0813b288_start + 0x2D7F74
+    .global gUnk_MapDataResource_064
+    .set gUnk_MapDataResource_064, jp_data_0813b288_start + 0x2D8058
+    .global gUnk_MapDataResource_065
+    .set gUnk_MapDataResource_065, jp_data_0813b288_start + 0x2DA62C
+    .global gUnk_MapDataResource_067
+    .set gUnk_MapDataResource_067, jp_data_0813b288_start + 0x2DA704
+    .global gUnk_MapDataResource_068
+    .set gUnk_MapDataResource_068, jp_data_0813b288_start + 0x2DAE08
+    .global gUnk_MapDataResource_069
+    .set gUnk_MapDataResource_069, jp_data_0813b288_start + 0x2DB02C
+    .global gUnk_MapDataResource_066
+    .set gUnk_MapDataResource_066, jp_data_0813b288_start + 0x2DB098
+    .global gUnk_MapDataResource_222
+    .set gUnk_MapDataResource_222, jp_data_0813b288_start + 0x2DB164
+    .global gUnk_MapDataResource_223
+    .set gUnk_MapDataResource_223, jp_data_0813b288_start + 0x2DCA1C
+    .global gUnk_MapDataResource_268
+    .set gUnk_MapDataResource_268, jp_data_0813b288_start + 0x2DCB40
+    .global gUnk_MapDataResource_269
+    .set gUnk_MapDataResource_269, jp_data_0813b288_start + 0x2DCD94
+    .global gUnk_MapDataResource_270
+    .set gUnk_MapDataResource_270, jp_data_0813b288_start + 0x2DCEC8
+    .global gUnk_MapDataResource_273
+    .set gUnk_MapDataResource_273, jp_data_0813b288_start + 0x2DCF9C
+    .global gUnk_MapDataResource_274
+    .set gUnk_MapDataResource_274, jp_data_0813b288_start + 0x2DD1BC
+    .global gUnk_MapDataResource_275
+    .set gUnk_MapDataResource_275, jp_data_0813b288_start + 0x2DD330
+    .global gUnk_MapDataResource_266
+    .set gUnk_MapDataResource_266, jp_data_0813b288_start + 0x2DD3C0
+    .global gUnk_MapDataResource_267
+    .set gUnk_MapDataResource_267, jp_data_0813b288_start + 0x2DF938
+    .global gUnk_MapDataResource_195
+    .set gUnk_MapDataResource_195, jp_data_0813b288_start + 0x2DFA40
+    .global gUnk_MapDataResource_196
+    .set gUnk_MapDataResource_196, jp_data_0813b288_start + 0x2DFD60
+    .global gUnk_MapDataResource_197
+    .set gUnk_MapDataResource_197, jp_data_0813b288_start + 0x2DFE64
+    .global gUnk_MapDataResource_321
+    .set gUnk_MapDataResource_321, jp_data_0813b288_start + 0x2DFF50
+    .global gUnk_MapDataResource_322
+    .set gUnk_MapDataResource_322, jp_data_0813b288_start + 0x2E1558
+    .global gUnk_MapDataResource_178
+    .set gUnk_MapDataResource_178, jp_data_0813b288_start + 0x2E5148
+    .global gUnk_MapDataResource_179
+    .set gUnk_MapDataResource_179, jp_data_0813b288_start + 0x2E529C
+    .global gUnk_MapDataResource_180
+    .set gUnk_MapDataResource_180, jp_data_0813b288_start + 0x2E53EC
+    .global gUnk_MapDataResource_000
+    .set gUnk_MapDataResource_000, jp_data_0813b288_start + 0x2E54C0
+    .global gUnk_MapDataResource_001
+    .set gUnk_MapDataResource_001, jp_data_0813b288_start + 0x2E9070
+    .global gUnk_MapDataResource_003
+    .set gUnk_MapDataResource_003, jp_data_0813b288_start + 0x2E9164
+    .global gUnk_MapDataResource_004
+    .set gUnk_MapDataResource_004, jp_data_0813b288_start + 0x2E9910
+    .global gUnk_MapDataResource_005
+    .set gUnk_MapDataResource_005, jp_data_0813b288_start + 0x2E9D98
+    .global gUnk_MapDataResource_002
+    .set gUnk_MapDataResource_002, jp_data_0813b288_start + 0x2E9E28
+    .global gUnk_MapDataResource_008
+    .set gUnk_MapDataResource_008, jp_data_0813b288_start + 0x2E9F1C
+    .global gUnk_MapDataResource_009
+    .set gUnk_MapDataResource_009, jp_data_0813b288_start + 0x2EDCD8
+    .global gUnk_MapDataResource_011
+    .set gUnk_MapDataResource_011, jp_data_0813b288_start + 0x2EDDBC
+    .global gUnk_MapDataResource_012
+    .set gUnk_MapDataResource_012, jp_data_0813b288_start + 0x2EE6E0
+    .global gUnk_MapDataResource_013
+    .set gUnk_MapDataResource_013, jp_data_0813b288_start + 0x2EEB94
+    .global gUnk_MapDataResource_010
+    .set gUnk_MapDataResource_010, jp_data_0813b288_start + 0x2EEC28
+    .global gUnk_MapDataResource_070
+    .set gUnk_MapDataResource_070, jp_data_0813b288_start + 0x2EECFC
+    .global gUnk_MapDataResource_071
+    .set gUnk_MapDataResource_071, jp_data_0813b288_start + 0x2F2678
+    .global gUnk_MapDataResource_084
+    .set gUnk_MapDataResource_084, jp_data_0813b288_start + 0x2F2744
+    .global gUnk_MapDataResource_085
+    .set gUnk_MapDataResource_085, jp_data_0813b288_start + 0x2F31C4
+    .global gUnk_MapDataResource_086
+    .set gUnk_MapDataResource_086, jp_data_0813b288_start + 0x2F38BC
+    .global gUnk_MapDataResource_072
+    .set gUnk_MapDataResource_072, jp_data_0813b288_start + 0x2F3E04
+    .global gUnk_MapDataResource_078
+    .set gUnk_MapDataResource_078, jp_data_0813b288_start + 0x2F3EC0
+    .global gUnk_MapDataResource_079
+    .set gUnk_MapDataResource_079, jp_data_0813b288_start + 0x2F7818
+    .global gUnk_MapDataResource_089
+    .set gUnk_MapDataResource_089, jp_data_0813b288_start + 0x2F78E0
+    .global gUnk_MapDataResource_090
+    .set gUnk_MapDataResource_090, jp_data_0813b288_start + 0x2F846C
+    .global gUnk_MapDataResource_091
+    .set gUnk_MapDataResource_091, jp_data_0813b288_start + 0x2F8ACC
+    .global gUnk_MapDataResource_080
+    .set gUnk_MapDataResource_080, jp_data_0813b288_start + 0x2F9004
+    .global gUnk_MapDataResource_309
+    .set gUnk_MapDataResource_309, jp_data_0813b288_start + 0x2F90BC
+    .global gUnk_MapDataResource_310
+    .set gUnk_MapDataResource_310, jp_data_0813b288_start + 0x2F92B0
+    .global gUnk_MapDataResource_311
+    .set gUnk_MapDataResource_311, jp_data_0813b288_start + 0x2F946C
+    .global gUnk_MapDataResource_168
+    .set gUnk_MapDataResource_168, jp_data_0813b288_start + 0x2F9538
+    .global gUnk_MapDataResource_169
+    .set gUnk_MapDataResource_169, jp_data_0813b288_start + 0x2F9704
+    .global gUnk_MapDataResource_170
+    .set gUnk_MapDataResource_170, jp_data_0813b288_start + 0x2F98C4
+    .global gUnk_MapDataResource_159
+    .set gUnk_MapDataResource_159, jp_data_0813b288_start + 0x2F9998
+    .global gUnk_MapDataResource_160
+    .set gUnk_MapDataResource_160, jp_data_0813b288_start + 0x2FB0A4
+    .global gUnk_MapDataResource_161
+    .set gUnk_MapDataResource_161, jp_data_0813b288_start + 0x2FB25C
+    .global gUnk_MapDataResource_162
+    .set gUnk_MapDataResource_162, jp_data_0813b288_start + 0x2FB4C4
+    .global gUnk_MapDataResource_163
+    .set gUnk_MapDataResource_163, jp_data_0813b288_start + 0x2FB6A4
+    .global gUnk_MapDataResource_229
+    .set gUnk_MapDataResource_229, jp_data_0813b288_start + 0x2FB7B8
+    .global gUnk_MapDataResource_230
+    .set gUnk_MapDataResource_230, jp_data_0813b288_start + 0x2FBAA0
+    .global gUnk_MapDataResource_231
+    .set gUnk_MapDataResource_231, jp_data_0813b288_start + 0x2FBB54
+    .global gUnk_MapDataResource_224
+    .set gUnk_MapDataResource_224, jp_data_0813b288_start + 0x2FBBF4
+    .global gUnk_MapDataResource_225
+    .set gUnk_MapDataResource_225, jp_data_0813b288_start + 0x2FBE68
+    .global gUnk_MapDataResource_226
+    .set gUnk_MapDataResource_226, jp_data_0813b288_start + 0x2FBEF8
+    .global gUnk_MapDataResource_323
+    .set gUnk_MapDataResource_323, jp_data_0813b288_start + 0x2FBF8C
+    .global gUnk_MapDataResource_324
+    .set gUnk_MapDataResource_324, jp_data_0813b288_start + 0x2FC110
+    .global gUnk_MapDataResource_325
+    .set gUnk_MapDataResource_325, jp_data_0813b288_start + 0x2FC1FC
+    .global gUnk_MapDataResource_185
+    .set gUnk_MapDataResource_185, jp_data_0813b288_start + 0x2FC280
+    .global gUnk_MapDataResource_186
+    .set gUnk_MapDataResource_186, jp_data_0813b288_start + 0x2FC5D0
+    .global gUnk_MapDataResource_187
+    .set gUnk_MapDataResource_187, jp_data_0813b288_start + 0x2FC7B4
+    .global gUnk_MapDataResource_190
+    .set gUnk_MapDataResource_190, jp_data_0813b288_start + 0x2FC92C
+    .global gUnk_MapDataResource_191
+    .set gUnk_MapDataResource_191, jp_data_0813b288_start + 0x2FCB78
+    .global gUnk_MapDataResource_192
+    .set gUnk_MapDataResource_192, jp_data_0813b288_start + 0x2FCDC4
+    .global gUnk_MapDataResource_183
+    .set gUnk_MapDataResource_183, jp_data_0813b288_start + 0x2FCF10
+    .global gUnk_MapDataResource_184
+    .set gUnk_MapDataResource_184, jp_data_0813b288_start + 0x30070C
+    .global gUnk_MapDataResource_144
+    .set gUnk_MapDataResource_144, jp_data_0813b288_start + 0x300884
+    .global gUnk_MapDataResource_145
+    .set gUnk_MapDataResource_145, jp_data_0813b288_start + 0x300B84
+    .global gUnk_MapDataResource_146
+    .set gUnk_MapDataResource_146, jp_data_0813b288_start + 0x300D84
+    .global gUnk_MapDataResource_149
+    .set gUnk_MapDataResource_149, jp_data_0813b288_start + 0x300EB0
+    .global gUnk_MapDataResource_150
+    .set gUnk_MapDataResource_150, jp_data_0813b288_start + 0x3011B8
+    .global gUnk_MapDataResource_151
+    .set gUnk_MapDataResource_151, jp_data_0813b288_start + 0x3014BC
+    .global gUnk_MapDataResource_154
+    .set gUnk_MapDataResource_154, jp_data_0813b288_start + 0x3015E8
+    .global gUnk_MapDataResource_155
+    .set gUnk_MapDataResource_155, jp_data_0813b288_start + 0x3018E4
+    .global gUnk_MapDataResource_156
+    .set gUnk_MapDataResource_156, jp_data_0813b288_start + 0x301B18
+    .global gUnk_MapDataResource_142
+    .set gUnk_MapDataResource_142, jp_data_0813b288_start + 0x301C0C
+    .global gUnk_MapDataResource_143
+    .set gUnk_MapDataResource_143, jp_data_0813b288_start + 0x3051D0
+    .global gUnk_MapDataResource_302
+    .set gUnk_MapDataResource_302, jp_data_0813b288_start + 0x30532C
+    .global gUnk_MapDataResource_303
+    .set gUnk_MapDataResource_303, jp_data_0813b288_start + 0x306D8C
+    .global gUnk_MapDataResource_212
+    .set gUnk_MapDataResource_212, jp_data_0813b288_start + 0x306EA0
+    .global gUnk_MapDataResource_213
+    .set gUnk_MapDataResource_213, jp_data_0813b288_start + 0x307058
+    .global gUnk_MapDataResource_214
+    .set gUnk_MapDataResource_214, jp_data_0813b288_start + 0x307158
+    .global gUnk_MapDataResource_217
+    .set gUnk_MapDataResource_217, jp_data_0813b288_start + 0x307278
+    .global gUnk_MapDataResource_218
+    .set gUnk_MapDataResource_218, jp_data_0813b288_start + 0x307410
+    .global gUnk_MapDataResource_219
+    .set gUnk_MapDataResource_219, jp_data_0813b288_start + 0x307528
+    .global gUnk_MapDataResource_202
+    .set gUnk_MapDataResource_202, jp_data_0813b288_start + 0x3075D0
+    .global gUnk_MapDataResource_203
+    .set gUnk_MapDataResource_203, jp_data_0813b288_start + 0x30774C
+    .global gUnk_MapDataResource_204
+    .set gUnk_MapDataResource_204, jp_data_0813b288_start + 0x30783C
+    .global gUnk_MapDataResource_207
+    .set gUnk_MapDataResource_207, jp_data_0813b288_start + 0x30791C
+    .global gUnk_MapDataResource_208
+    .set gUnk_MapDataResource_208, jp_data_0813b288_start + 0x307A10
+    .global gUnk_MapDataResource_209
+    .set gUnk_MapDataResource_209, jp_data_0813b288_start + 0x307B10
+    .global gUnk_MapDataResource_200
+    .set gUnk_MapDataResource_200, jp_data_0813b288_start + 0x307B94
+    .global gUnk_MapDataResource_201
+    .set gUnk_MapDataResource_201, jp_data_0813b288_start + 0x30A86C
+    .global gUnk_MapDataResource_314
+    .set gUnk_MapDataResource_314, jp_data_0813b288_start + 0x30A9D8
+    .global gUnk_MapDataResource_315
+    .set gUnk_MapDataResource_315, jp_data_0813b288_start + 0x30BAD4
+    .global gUnk_MapDataResource_316
+    .set gUnk_MapDataResource_316, jp_data_0813b288_start + 0x30BBD8
+    .global gUnk_MapDataResource_317
+    .set gUnk_MapDataResource_317, jp_data_0813b288_start + 0x30BD80
+    .global gUnk_MapDataResource_318
+    .set gUnk_MapDataResource_318, jp_data_0813b288_start + 0x30BEE8
+    .global gUnk_MapDataResource_304
+    .set gUnk_MapDataResource_304, jp_data_0813b288_start + 0x30BFE0
+    .global gUnk_MapDataResource_305
+    .set gUnk_MapDataResource_305, jp_data_0813b288_start + 0x30C1A4
+    .global gUnk_MapDataResource_306
+    .set gUnk_MapDataResource_306, jp_data_0813b288_start + 0x30C308
+    .global gUnk_MapDataResource_249
+    .set gUnk_MapDataResource_249, jp_data_0813b288_start + 0x30C3C0
+    .global gUnk_MapDataResource_250
+    .set gUnk_MapDataResource_250, jp_data_0813b288_start + 0x30EAF8
+    .global gUnk_MapDataResource_261
+    .set gUnk_MapDataResource_261, jp_data_0813b288_start + 0x30EC00
+    .global gUnk_MapDataResource_262
+    .set gUnk_MapDataResource_262, jp_data_0813b288_start + 0x30ED84
+    .global gUnk_MapDataResource_263
+    .set gUnk_MapDataResource_263, jp_data_0813b288_start + 0x30EE88
+    .global gUnk_MapDataResource_256
+    .set gUnk_MapDataResource_256, jp_data_0813b288_start + 0x30EF54
+    .global gUnk_MapDataResource_257
+    .set gUnk_MapDataResource_257, jp_data_0813b288_start + 0x30F0B4
+    .global gUnk_MapDataResource_258
+    .set gUnk_MapDataResource_258, jp_data_0813b288_start + 0x30F1B4
+    .global gUnk_MapDataResource_251
+    .set gUnk_MapDataResource_251, jp_data_0813b288_start + 0x30F274
+    .global gUnk_MapDataResource_252
+    .set gUnk_MapDataResource_252, jp_data_0813b288_start + 0x30F3C0
+    .global gUnk_MapDataResource_253
+    .set gUnk_MapDataResource_253, jp_data_0813b288_start + 0x30F4A8
+    .global gUnk_MapDataResource_073
+    .set gUnk_MapDataResource_073, jp_data_0813b288_start + 0x30F550
+    .global gUnk_MapDataResource_074
+    .set gUnk_MapDataResource_074, jp_data_0813b288_start + 0x30FA10
+    .global gUnk_MapDataResource_075
+    .set gUnk_MapDataResource_075, jp_data_0813b288_start + 0x30FC44
+    .global gUnk_MapDataResource_081
+    .set gUnk_MapDataResource_081, jp_data_0813b288_start + 0x30FE1C
+    .global gUnk_MapDataResource_082
+    .set gUnk_MapDataResource_082, jp_data_0813b288_start + 0x3102D0
+    .global gUnk_MapDataResource_083
+    .set gUnk_MapDataResource_083, jp_data_0813b288_start + 0x3104F0
+    .global gUnk_MapDataResource_028
+    .set gUnk_MapDataResource_028, jp_data_0813b288_start + 0x3106B0
+    .global gUnk_MapDataResource_029
+    .set gUnk_MapDataResource_029, jp_data_0813b288_start + 0x3153BC
+    .global gUnk_MapDataResource_031
+    .set gUnk_MapDataResource_031, jp_data_0813b288_start + 0x3154F0
+    .global gUnk_MapDataResource_032
+    .set gUnk_MapDataResource_032, jp_data_0813b288_start + 0x316570
+    .global gUnk_MapDataResource_033
+    .set gUnk_MapDataResource_033, jp_data_0813b288_start + 0x317608
+    .global gUnk_MapDataResource_030
+    .set gUnk_MapDataResource_030, jp_data_0813b288_start + 0x317C48
+    .global gUnk_MapDataResource_036
+    .set gUnk_MapDataResource_036, jp_data_0813b288_start + 0x317D7C
+    .global gUnk_MapDataResource_037
+    .set gUnk_MapDataResource_037, jp_data_0813b288_start + 0x31CC28
+    .global gUnk_MapDataResource_039
+    .set gUnk_MapDataResource_039, jp_data_0813b288_start + 0x31CD24
+    .global gUnk_MapDataResource_040
+    .set gUnk_MapDataResource_040, jp_data_0813b288_start + 0x31DC4C
+    .global gUnk_MapDataResource_041
+    .set gUnk_MapDataResource_041, jp_data_0813b288_start + 0x31EC64
+    .global gUnk_MapDataResource_038
+    .set gUnk_MapDataResource_038, jp_data_0813b288_start + 0x31F1B8
+    .global gUnk_MapDataResource_122
+    .set gUnk_MapDataResource_122, jp_data_0813b288_start + 0x3212E8
+    .global gUnk_MapDataResource_123
+    .set gUnk_MapDataResource_123, jp_data_0813b288_start + 0x3214C4
+    .global gUnk_MapDataResource_124
+    .set gUnk_MapDataResource_124, jp_data_0813b288_start + 0x321630
+    .global gUnk_MapDataResource_127
+    .set gUnk_MapDataResource_127, jp_data_0813b288_start + 0x321718
+    .global gUnk_MapDataResource_128
+    .set gUnk_MapDataResource_128, jp_data_0813b288_start + 0x3218F0
+    .global gUnk_MapDataResource_129
+    .set gUnk_MapDataResource_129, jp_data_0813b288_start + 0x321A1C
+    .global gUnk_MapDataResource_120
+    .set gUnk_MapDataResource_120, jp_data_0813b288_start + 0x321B18
+    .global gUnk_MapDataResource_121
+    .set gUnk_MapDataResource_121, jp_data_0813b288_start + 0x324C38
+    .global gUnk_MapDataResource_338
+    .set gUnk_MapDataResource_338, jp_data_0813b288_start + 0x324D5C
+    .global gUnk_MapDataResource_339
+    .set gUnk_MapDataResource_339, jp_data_0813b288_start + 0x325B14
+    .global gUnk_MapDataResource_340
+    .set gUnk_MapDataResource_340, jp_data_0813b288_start + 0x325BB4
+    .global gUnk_MapDataResource_341
+    .set gUnk_MapDataResource_341, jp_data_0813b288_start + 0x325C4C
+    .global gUnk_MapDataResource_342
+    .set gUnk_MapDataResource_342, jp_data_0813b288_start + 0x325C58
+    .global gUnk_MapDataResource_345
+    .set gUnk_MapDataResource_345, jp_data_0813b288_start + 0x325D04
+    .global gUnk_MapDataResource_346
+    .set gUnk_MapDataResource_346, jp_data_0813b288_start + 0x325D80
+    .global gUnk_MapDataResource_347
+    .set gUnk_MapDataResource_347, jp_data_0813b288_start + 0x325D8C
+    .global gUnk_MapDataResource_350
+    .set gUnk_MapDataResource_350, jp_data_0813b288_start + 0x325DE8
+    .global gUnk_MapDataResource_351
+    .set gUnk_MapDataResource_351, jp_data_0813b288_start + 0x325E74
+    .global gUnk_MapDataResource_352
+    .set gUnk_MapDataResource_352, jp_data_0813b288_start + 0x325E80
+    .global gUnk_MapDataResource_355
+    .set gUnk_MapDataResource_355, jp_data_0813b288_start + 0x325EE0
+    .global gUnk_MapDataResource_356
+    .set gUnk_MapDataResource_356, jp_data_0813b288_start + 0x325F60
+    .global gUnk_MapDataResource_357
+    .set gUnk_MapDataResource_357, jp_data_0813b288_start + 0x325F6C
+    .global gUnk_MapDataResource_360
+    .set gUnk_MapDataResource_360, jp_data_0813b288_start + 0x325FC8
+    .global gUnk_MapDataResource_361
+    .set gUnk_MapDataResource_361, jp_data_0813b288_start + 0x32607C
+    .global gUnk_MapDataResource_362
+    .set gUnk_MapDataResource_362, jp_data_0813b288_start + 0x3260A8
+    .global gUnk_MapDataResource_365
+    .set gUnk_MapDataResource_365, jp_data_0813b288_start + 0x326190
+    .global gUnk_MapDataResource_366
+    .set gUnk_MapDataResource_366, jp_data_0813b288_start + 0x326254
+    .global gUnk_MapDataResource_367
+    .set gUnk_MapDataResource_367, jp_data_0813b288_start + 0x326260
+    .global gUnk_MapDataResource_014
+    .set gUnk_MapDataResource_014, jp_data_0813b288_start + 0x344D94
+    .global gUnk_MapDataResource_015
+    .set gUnk_MapDataResource_015, jp_data_0813b288_start + 0x346F2C
+    .global gUnk_MapDataResource_017
+    .set gUnk_MapDataResource_017, jp_data_0813b288_start + 0x346FD0
+    .global gUnk_MapDataResource_018
+    .set gUnk_MapDataResource_018, jp_data_0813b288_start + 0x347560
+    .global gUnk_MapDataResource_019
+    .set gUnk_MapDataResource_019, jp_data_0813b288_start + 0x347784
+    .global gUnk_MapDataResource_016
+    .set gUnk_MapDataResource_016, jp_data_0813b288_start + 0x34781C
+    .global gUnk_MapDataResource_022
+    .set gUnk_MapDataResource_022, jp_data_0813b288_start + 0x3478BC
+    .global gUnk_MapDataResource_023
+    .set gUnk_MapDataResource_023, jp_data_0813b288_start + 0x349814
+    .global gUnk_MapDataResource_025
+    .set gUnk_MapDataResource_025, jp_data_0813b288_start + 0x3498B4
+    .global gUnk_MapDataResource_026
+    .set gUnk_MapDataResource_026, jp_data_0813b288_start + 0x349E40
+    .global gUnk_MapDataResource_027
+    .set gUnk_MapDataResource_027, jp_data_0813b288_start + 0x34A05C
+    .global gUnk_MapDataResource_024
+    .set gUnk_MapDataResource_024, jp_data_0813b288_start + 0x34A104
+    .global gUnk_MapDataResource_132
+    .set gUnk_MapDataResource_132, jp_data_0813b288_start + 0x34A198
+    .global gUnk_MapDataResource_133
+    .set gUnk_MapDataResource_133, jp_data_0813b288_start + 0x34A370
+    .global gUnk_MapDataResource_134
+    .set gUnk_MapDataResource_134, jp_data_0813b288_start + 0x34A474
+    .global gUnk_MapDataResource_137
+    .set gUnk_MapDataResource_137, jp_data_0813b288_start + 0x34A544
+    .global gUnk_MapDataResource_138
+    .set gUnk_MapDataResource_138, jp_data_0813b288_start + 0x34A744
+    .global gUnk_MapDataResource_139
+    .set gUnk_MapDataResource_139, jp_data_0813b288_start + 0x34A7FC
+    .global gUnk_MapDataResource_328
+    .set gUnk_MapDataResource_328, jp_data_0813b288_start + 0x34A870
+    .global gUnk_MapDataResource_329
+    .set gUnk_MapDataResource_329, jp_data_0813b288_start + 0x34A9FC
+    .global gUnk_MapDataResource_330
+    .set gUnk_MapDataResource_330, jp_data_0813b288_start + 0x34AB14
+    .global gUnk_MapDataResource_166
+    .set gUnk_MapDataResource_166, jp_data_0813b288_start + 0x34ABA0
+    .global gUnk_MapDataResource_167
+    .set gUnk_MapDataResource_167, jp_data_0813b288_start + 0x34D664
+    .global gUnk_MapDataResource_173
+    .set gUnk_MapDataResource_173, jp_data_0813b288_start + 0x34D7A4
+    .global gUnk_MapDataResource_174
+    .set gUnk_MapDataResource_174, jp_data_0813b288_start + 0x34D8F0
+    .global gUnk_MapDataResource_175
+    .set gUnk_MapDataResource_175, jp_data_0813b288_start + 0x34DA00
+    .global gUnk_MapDataResource_239
+    .set gUnk_MapDataResource_239, jp_data_0813b288_start + 0x34DAD8
+    .global gUnk_MapDataResource_240
+    .set gUnk_MapDataResource_240, jp_data_0813b288_start + 0x34DF9C
+    .global gUnk_MapDataResource_241
+    .set gUnk_MapDataResource_241, jp_data_0813b288_start + 0x34E0B8
+    .global gUnk_MapDataResource_234
+    .set gUnk_MapDataResource_234, jp_data_0813b288_start + 0x34E1B4
+    .global gUnk_MapDataResource_235
+    .set gUnk_MapDataResource_235, jp_data_0813b288_start + 0x34E54C
+    .global gUnk_MapDataResource_236
+    .set gUnk_MapDataResource_236, jp_data_0813b288_start + 0x34E628
+    .global gUnk_MapDataResource_292
+    .set gUnk_MapDataResource_292, jp_data_0813b288_start + 0x34E708
+    .global gUnk_MapDataResource_293
+    .set gUnk_MapDataResource_293, jp_data_0813b288_start + 0x34E8FC
+    .global gUnk_MapDataResource_294
+    .set gUnk_MapDataResource_294, jp_data_0813b288_start + 0x34E9E4
+    .global gUnk_MapDataResource_042
+    .set gUnk_MapDataResource_042, jp_data_0813b288_start + 0x34EAC0
+    .global gUnk_MapDataResource_043
+    .set gUnk_MapDataResource_043, jp_data_0813b288_start + 0x353938
+    .global gUnk_MapDataResource_045
+    .set gUnk_MapDataResource_045, jp_data_0813b288_start + 0x353AC4
+    .global gUnk_MapDataResource_046
+    .set gUnk_MapDataResource_046, jp_data_0813b288_start + 0x354638
+    .global gUnk_MapDataResource_047
+    .set gUnk_MapDataResource_047, jp_data_0813b288_start + 0x354FB0
+    .global gUnk_MapDataResource_044
+    .set gUnk_MapDataResource_044, jp_data_0813b288_start + 0x355438
+    .global gUnk_MapDataResource_050
+    .set gUnk_MapDataResource_050, jp_data_0813b288_start + 0x3555AC
+    .global gUnk_MapDataResource_051
+    .set gUnk_MapDataResource_051, jp_data_0813b288_start + 0x35A244
+    .global gUnk_MapDataResource_053
+    .set gUnk_MapDataResource_053, jp_data_0813b288_start + 0x35A36C
+    .global gUnk_MapDataResource_054
+    .set gUnk_MapDataResource_054, jp_data_0813b288_start + 0x35AC40
+    .global gUnk_MapDataResource_055
+    .set gUnk_MapDataResource_055, jp_data_0813b288_start + 0x35B5A8
+    .global gUnk_MapDataResource_052
+    .set gUnk_MapDataResource_052, jp_data_0813b288_start + 0x35BA20
+    .global gUnk_MapDataResource_106
+    .set gUnk_MapDataResource_106, jp_data_0813b288_start + 0x35BB30
+    .global gUnk_MapDataResource_107
+    .set gUnk_MapDataResource_107, jp_data_0813b288_start + 0x35E310
+    .global gUnk_MapDataResource_109
+    .set gUnk_MapDataResource_109, jp_data_0813b288_start + 0x35E3A0
+    .global gUnk_MapDataResource_110
+    .set gUnk_MapDataResource_110, jp_data_0813b288_start + 0x35E560
+    .global gUnk_MapDataResource_111
+    .set gUnk_MapDataResource_111, jp_data_0813b288_start + 0x35E710
+    .global gUnk_MapDataResource_108
+    .set gUnk_MapDataResource_108, jp_data_0813b288_start + 0x35E860
+    .global gUnk_MapDataResource_114
+    .set gUnk_MapDataResource_114, jp_data_0813b288_start + 0x35EA14
+    .global gUnk_MapDataResource_115
+    .set gUnk_MapDataResource_115, jp_data_0813b288_start + 0x3608C8
+    .global gUnk_MapDataResource_117
+    .set gUnk_MapDataResource_117, jp_data_0813b288_start + 0x360950
+    .global gUnk_MapDataResource_118
+    .set gUnk_MapDataResource_118, jp_data_0813b288_start + 0x360AB4
+    .global gUnk_MapDataResource_119
+    .set gUnk_MapDataResource_119, jp_data_0813b288_start + 0x360C5C
+    .global gUnk_MapDataResource_116
+    .set gUnk_MapDataResource_116, jp_data_0813b288_start + 0x360DA8
+    .global gUnk_MapDataResource_333
+    .set gUnk_MapDataResource_333, jp_data_0813b288_start + 0x360EDC
+    .global gUnk_MapDataResource_334
+    .set gUnk_MapDataResource_334, jp_data_0813b288_start + 0x361094
+    .global gUnk_MapDataResource_335
+    .set gUnk_MapDataResource_335, jp_data_0813b288_start + 0x3611C4
+    .global gUnk_MapDataResource_370
+    .set gUnk_MapDataResource_370, jp_data_0813b288_start + 0x361264
+    .global gUnk_MapDataResource_371
+    .set gUnk_MapDataResource_371, jp_data_0813b288_start + 0x3612F8
+    .global gUnk_MapDataResource_374
+    .set gUnk_MapDataResource_374, jp_data_0813b288_start + 0x361340
+    .global gUnk_MapDataResource_375
+    .set gUnk_MapDataResource_375, jp_data_0813b288_start + 0x36144C
+    .global gUnk_MapDataResource_376
+    .set gUnk_MapDataResource_376, jp_data_0813b288_start + 0x3614C0
+    .global gUnk_MapDataResource_377
+    .set gUnk_MapDataResource_377, jp_data_0813b288_start + 0x3616E4
+    .global gUnk_MapDataResource_378
+    .set gUnk_MapDataResource_378, jp_data_0813b288_start + 0x3617D0
+    .global gUnk_MapDataResource_379
+    .set gUnk_MapDataResource_379, jp_data_0813b288_start + 0x3619B4
+    .global gUnk_MapDataResource_297
+    .set gUnk_MapDataResource_297, jp_data_0813b288_start + 0x361A80
+    .global gUnk_MapDataResource_298
+    .set gUnk_MapDataResource_298, jp_data_0813b288_start + 0x361BF4
+    .global gUnk_MapDataResource_299
+    .set gUnk_MapDataResource_299, jp_data_0813b288_start + 0x361D98
+    .global gUnk_MapDataResource_290
+    .set gUnk_MapDataResource_290, jp_data_0813b288_start + 0x361E70
+    .global gUnk_MapDataResource_291
+    .set gUnk_MapDataResource_291, jp_data_0813b288_start + 0x364868
+    .global gUnk_MapDataResource_280
+    .set gUnk_MapDataResource_280, jp_data_0813b288_start + 0x364958
+    .global gUnk_MapDataResource_281
+    .set gUnk_MapDataResource_281, jp_data_0813b288_start + 0x364BBC
+    .global gUnk_MapDataResource_282
+    .set gUnk_MapDataResource_282, jp_data_0813b288_start + 0x364D14
+    .global gUnk_MapDataResource_285
+    .set gUnk_MapDataResource_285, jp_data_0813b288_start + 0x364E18
+    .global gUnk_MapDataResource_286
+    .set gUnk_MapDataResource_286, jp_data_0813b288_start + 0x36503C
+    .global gUnk_MapDataResource_287
+    .set gUnk_MapDataResource_287, jp_data_0813b288_start + 0x365164
+    .global gUnk_MapDataResource_278
+    .set gUnk_MapDataResource_278, jp_data_0813b288_start + 0x365204
+    .global gUnk_MapDataResource_279
+    .set gUnk_MapDataResource_279, jp_data_0813b288_start + 0x367184
+
     @ Farm Status preview resource labels.  The asset roles remain unknown.
     .global gUnk_082AFC74
     .set gUnk_082AFC74, jp_data_0813b288_start + 0x1738A8
@@ -88,7 +635,555 @@ gActorStateGridCellType4Data:
 
     .LDATA_BEG = 0x13B288
 
+	us_data_0813b288_start:
 	.incbin "baserom_us.gba", (.LDATA_BEG), (0x4F90CC - .LDATA_BEG)
+
+	@ Region-neutral labels for gMapData raw resource targets.
+	@ Their payload types are not decoded yet.
+	.global gUnk_MapDataResource_092
+	.set gUnk_MapDataResource_092, us_data_0813b288_start + 0x53EE60
+	.global gUnk_MapDataResource_093
+	.set gUnk_MapDataResource_093, us_data_0813b288_start + 0x54399C
+	.global gUnk_MapDataResource_095
+	.set gUnk_MapDataResource_095, us_data_0813b288_start + 0x543A94
+	.global gUnk_MapDataResource_096
+	.set gUnk_MapDataResource_096, us_data_0813b288_start + 0x545788
+	.global gUnk_MapDataResource_097
+	.set gUnk_MapDataResource_097, us_data_0813b288_start + 0x5463F4
+	.global gUnk_MapDataResource_094
+	.set gUnk_MapDataResource_094, us_data_0813b288_start + 0x546BCC
+	.global gUnk_MapDataResource_100
+	.set gUnk_MapDataResource_100, us_data_0813b288_start + 0x546CA4
+	.global gUnk_MapDataResource_101
+	.set gUnk_MapDataResource_101, us_data_0813b288_start + 0x54BCA4
+	.global gUnk_MapDataResource_103
+	.set gUnk_MapDataResource_103, us_data_0813b288_start + 0x54BD9C
+	.global gUnk_MapDataResource_104
+	.set gUnk_MapDataResource_104, us_data_0813b288_start + 0x54DB1C
+	.global gUnk_MapDataResource_105
+	.set gUnk_MapDataResource_105, us_data_0813b288_start + 0x54E784
+	.global gUnk_MapDataResource_102
+	.set gUnk_MapDataResource_102, us_data_0813b288_start + 0x54EEF4
+	.global gUnk_MapDataResource_244
+	.set gUnk_MapDataResource_244, us_data_0813b288_start + 0x54EFC8
+	.global gUnk_MapDataResource_245
+	.set gUnk_MapDataResource_245, us_data_0813b288_start + 0x54F1D4
+	.global gUnk_MapDataResource_246
+	.set gUnk_MapDataResource_246, us_data_0813b288_start + 0x54F32C
+	.global gUnk_MapDataResource_056
+	.set gUnk_MapDataResource_056, us_data_0813b288_start + 0x54F3B4
+	.global gUnk_MapDataResource_057
+	.set gUnk_MapDataResource_057, us_data_0813b288_start + 0x552484
+	.global gUnk_MapDataResource_059
+	.set gUnk_MapDataResource_059, us_data_0813b288_start + 0x552564
+	.global gUnk_MapDataResource_060
+	.set gUnk_MapDataResource_060, us_data_0813b288_start + 0x552C80
+	.global gUnk_MapDataResource_061
+	.set gUnk_MapDataResource_061, us_data_0813b288_start + 0x552EE0
+	.global gUnk_MapDataResource_058
+	.set gUnk_MapDataResource_058, us_data_0813b288_start + 0x552F5C
+	.global gUnk_MapDataResource_064
+	.set gUnk_MapDataResource_064, us_data_0813b288_start + 0x553040
+	.global gUnk_MapDataResource_065
+	.set gUnk_MapDataResource_065, us_data_0813b288_start + 0x555614
+	.global gUnk_MapDataResource_067
+	.set gUnk_MapDataResource_067, us_data_0813b288_start + 0x5556EC
+	.global gUnk_MapDataResource_068
+	.set gUnk_MapDataResource_068, us_data_0813b288_start + 0x555DF0
+	.global gUnk_MapDataResource_069
+	.set gUnk_MapDataResource_069, us_data_0813b288_start + 0x556014
+	.global gUnk_MapDataResource_066
+	.set gUnk_MapDataResource_066, us_data_0813b288_start + 0x556080
+	.global gUnk_MapDataResource_222
+	.set gUnk_MapDataResource_222, us_data_0813b288_start + 0x55614C
+	.global gUnk_MapDataResource_223
+	.set gUnk_MapDataResource_223, us_data_0813b288_start + 0x557A04
+	.global gUnk_MapDataResource_268
+	.set gUnk_MapDataResource_268, us_data_0813b288_start + 0x557B28
+	.global gUnk_MapDataResource_269
+	.set gUnk_MapDataResource_269, us_data_0813b288_start + 0x557D7C
+	.global gUnk_MapDataResource_270
+	.set gUnk_MapDataResource_270, us_data_0813b288_start + 0x557EB0
+	.global gUnk_MapDataResource_273
+	.set gUnk_MapDataResource_273, us_data_0813b288_start + 0x557F84
+	.global gUnk_MapDataResource_274
+	.set gUnk_MapDataResource_274, us_data_0813b288_start + 0x5581A4
+	.global gUnk_MapDataResource_275
+	.set gUnk_MapDataResource_275, us_data_0813b288_start + 0x558318
+	.global gUnk_MapDataResource_266
+	.set gUnk_MapDataResource_266, us_data_0813b288_start + 0x5583A8
+	.global gUnk_MapDataResource_267
+	.set gUnk_MapDataResource_267, us_data_0813b288_start + 0x55A920
+	.global gUnk_MapDataResource_195
+	.set gUnk_MapDataResource_195, us_data_0813b288_start + 0x55AA28
+	.global gUnk_MapDataResource_196
+	.set gUnk_MapDataResource_196, us_data_0813b288_start + 0x55AD48
+	.global gUnk_MapDataResource_197
+	.set gUnk_MapDataResource_197, us_data_0813b288_start + 0x55AE4C
+	.global gUnk_MapDataResource_321
+	.set gUnk_MapDataResource_321, us_data_0813b288_start + 0x55AF38
+	.global gUnk_MapDataResource_322
+	.set gUnk_MapDataResource_322, us_data_0813b288_start + 0x55C540
+	.global gUnk_MapDataResource_178
+	.set gUnk_MapDataResource_178, us_data_0813b288_start + 0x560130
+	.global gUnk_MapDataResource_179
+	.set gUnk_MapDataResource_179, us_data_0813b288_start + 0x560284
+	.global gUnk_MapDataResource_180
+	.set gUnk_MapDataResource_180, us_data_0813b288_start + 0x5603D4
+	.global gUnk_MapDataResource_000
+	.set gUnk_MapDataResource_000, us_data_0813b288_start + 0x5604A8
+	.global gUnk_MapDataResource_001
+	.set gUnk_MapDataResource_001, us_data_0813b288_start + 0x564058
+	.global gUnk_MapDataResource_003
+	.set gUnk_MapDataResource_003, us_data_0813b288_start + 0x56414C
+	.global gUnk_MapDataResource_004
+	.set gUnk_MapDataResource_004, us_data_0813b288_start + 0x5648F8
+	.global gUnk_MapDataResource_005
+	.set gUnk_MapDataResource_005, us_data_0813b288_start + 0x564D80
+	.global gUnk_MapDataResource_002
+	.set gUnk_MapDataResource_002, us_data_0813b288_start + 0x564E10
+	.global gUnk_MapDataResource_008
+	.set gUnk_MapDataResource_008, us_data_0813b288_start + 0x564F04
+	.global gUnk_MapDataResource_009
+	.set gUnk_MapDataResource_009, us_data_0813b288_start + 0x568CC0
+	.global gUnk_MapDataResource_011
+	.set gUnk_MapDataResource_011, us_data_0813b288_start + 0x568DA4
+	.global gUnk_MapDataResource_012
+	.set gUnk_MapDataResource_012, us_data_0813b288_start + 0x5696C8
+	.global gUnk_MapDataResource_013
+	.set gUnk_MapDataResource_013, us_data_0813b288_start + 0x569B7C
+	.global gUnk_MapDataResource_010
+	.set gUnk_MapDataResource_010, us_data_0813b288_start + 0x569C10
+	.global gUnk_MapDataResource_070
+	.set gUnk_MapDataResource_070, us_data_0813b288_start + 0x569CE4
+	.global gUnk_MapDataResource_071
+	.set gUnk_MapDataResource_071, us_data_0813b288_start + 0x56D660
+	.global gUnk_MapDataResource_084
+	.set gUnk_MapDataResource_084, us_data_0813b288_start + 0x56D72C
+	.global gUnk_MapDataResource_085
+	.set gUnk_MapDataResource_085, us_data_0813b288_start + 0x56E1AC
+	.global gUnk_MapDataResource_086
+	.set gUnk_MapDataResource_086, us_data_0813b288_start + 0x56E8A4
+	.global gUnk_MapDataResource_072
+	.set gUnk_MapDataResource_072, us_data_0813b288_start + 0x56EDEC
+	.global gUnk_MapDataResource_078
+	.set gUnk_MapDataResource_078, us_data_0813b288_start + 0x56EEA8
+	.global gUnk_MapDataResource_079
+	.set gUnk_MapDataResource_079, us_data_0813b288_start + 0x572800
+	.global gUnk_MapDataResource_089
+	.set gUnk_MapDataResource_089, us_data_0813b288_start + 0x5728C8
+	.global gUnk_MapDataResource_090
+	.set gUnk_MapDataResource_090, us_data_0813b288_start + 0x573454
+	.global gUnk_MapDataResource_091
+	.set gUnk_MapDataResource_091, us_data_0813b288_start + 0x573AB4
+	.global gUnk_MapDataResource_080
+	.set gUnk_MapDataResource_080, us_data_0813b288_start + 0x573FEC
+	.global gUnk_MapDataResource_309
+	.set gUnk_MapDataResource_309, us_data_0813b288_start + 0x5740A4
+	.global gUnk_MapDataResource_310
+	.set gUnk_MapDataResource_310, us_data_0813b288_start + 0x574298
+	.global gUnk_MapDataResource_311
+	.set gUnk_MapDataResource_311, us_data_0813b288_start + 0x574454
+	.global gUnk_MapDataResource_168
+	.set gUnk_MapDataResource_168, us_data_0813b288_start + 0x574520
+	.global gUnk_MapDataResource_169
+	.set gUnk_MapDataResource_169, us_data_0813b288_start + 0x5746EC
+	.global gUnk_MapDataResource_170
+	.set gUnk_MapDataResource_170, us_data_0813b288_start + 0x5748AC
+	.global gUnk_MapDataResource_159
+	.set gUnk_MapDataResource_159, us_data_0813b288_start + 0x574980
+	.global gUnk_MapDataResource_160
+	.set gUnk_MapDataResource_160, us_data_0813b288_start + 0x57608C
+	.global gUnk_MapDataResource_161
+	.set gUnk_MapDataResource_161, us_data_0813b288_start + 0x576244
+	.global gUnk_MapDataResource_162
+	.set gUnk_MapDataResource_162, us_data_0813b288_start + 0x5764AC
+	.global gUnk_MapDataResource_163
+	.set gUnk_MapDataResource_163, us_data_0813b288_start + 0x57668C
+	.global gUnk_MapDataResource_229
+	.set gUnk_MapDataResource_229, us_data_0813b288_start + 0x5767A0
+	.global gUnk_MapDataResource_230
+	.set gUnk_MapDataResource_230, us_data_0813b288_start + 0x576A88
+	.global gUnk_MapDataResource_231
+	.set gUnk_MapDataResource_231, us_data_0813b288_start + 0x576B3C
+	.global gUnk_MapDataResource_224
+	.set gUnk_MapDataResource_224, us_data_0813b288_start + 0x576BDC
+	.global gUnk_MapDataResource_225
+	.set gUnk_MapDataResource_225, us_data_0813b288_start + 0x576E50
+	.global gUnk_MapDataResource_226
+	.set gUnk_MapDataResource_226, us_data_0813b288_start + 0x576EE0
+	.global gUnk_MapDataResource_323
+	.set gUnk_MapDataResource_323, us_data_0813b288_start + 0x576F74
+	.global gUnk_MapDataResource_324
+	.set gUnk_MapDataResource_324, us_data_0813b288_start + 0x5770F8
+	.global gUnk_MapDataResource_325
+	.set gUnk_MapDataResource_325, us_data_0813b288_start + 0x5771E4
+	.global gUnk_MapDataResource_185
+	.set gUnk_MapDataResource_185, us_data_0813b288_start + 0x577268
+	.global gUnk_MapDataResource_186
+	.set gUnk_MapDataResource_186, us_data_0813b288_start + 0x5775B8
+	.global gUnk_MapDataResource_187
+	.set gUnk_MapDataResource_187, us_data_0813b288_start + 0x57779C
+	.global gUnk_MapDataResource_190
+	.set gUnk_MapDataResource_190, us_data_0813b288_start + 0x577914
+	.global gUnk_MapDataResource_191
+	.set gUnk_MapDataResource_191, us_data_0813b288_start + 0x577B60
+	.global gUnk_MapDataResource_192
+	.set gUnk_MapDataResource_192, us_data_0813b288_start + 0x577DAC
+	.global gUnk_MapDataResource_183
+	.set gUnk_MapDataResource_183, us_data_0813b288_start + 0x577EF8
+	.global gUnk_MapDataResource_184
+	.set gUnk_MapDataResource_184, us_data_0813b288_start + 0x57B6F4
+	.global gUnk_MapDataResource_144
+	.set gUnk_MapDataResource_144, us_data_0813b288_start + 0x57B86C
+	.global gUnk_MapDataResource_145
+	.set gUnk_MapDataResource_145, us_data_0813b288_start + 0x57BB6C
+	.global gUnk_MapDataResource_146
+	.set gUnk_MapDataResource_146, us_data_0813b288_start + 0x57BD6C
+	.global gUnk_MapDataResource_149
+	.set gUnk_MapDataResource_149, us_data_0813b288_start + 0x57BE98
+	.global gUnk_MapDataResource_150
+	.set gUnk_MapDataResource_150, us_data_0813b288_start + 0x57C1A0
+	.global gUnk_MapDataResource_151
+	.set gUnk_MapDataResource_151, us_data_0813b288_start + 0x57C4A4
+	.global gUnk_MapDataResource_154
+	.set gUnk_MapDataResource_154, us_data_0813b288_start + 0x57C5D0
+	.global gUnk_MapDataResource_155
+	.set gUnk_MapDataResource_155, us_data_0813b288_start + 0x57C8CC
+	.global gUnk_MapDataResource_156
+	.set gUnk_MapDataResource_156, us_data_0813b288_start + 0x57CB00
+	.global gUnk_MapDataResource_142
+	.set gUnk_MapDataResource_142, us_data_0813b288_start + 0x57CBF4
+	.global gUnk_MapDataResource_143
+	.set gUnk_MapDataResource_143, us_data_0813b288_start + 0x5801B8
+	.global gUnk_MapDataResource_302
+	.set gUnk_MapDataResource_302, us_data_0813b288_start + 0x580314
+	.global gUnk_MapDataResource_303
+	.set gUnk_MapDataResource_303, us_data_0813b288_start + 0x581D74
+	.global gUnk_MapDataResource_212
+	.set gUnk_MapDataResource_212, us_data_0813b288_start + 0x581E88
+	.global gUnk_MapDataResource_213
+	.set gUnk_MapDataResource_213, us_data_0813b288_start + 0x582040
+	.global gUnk_MapDataResource_214
+	.set gUnk_MapDataResource_214, us_data_0813b288_start + 0x582140
+	.global gUnk_MapDataResource_217
+	.set gUnk_MapDataResource_217, us_data_0813b288_start + 0x582260
+	.global gUnk_MapDataResource_218
+	.set gUnk_MapDataResource_218, us_data_0813b288_start + 0x5823F8
+	.global gUnk_MapDataResource_219
+	.set gUnk_MapDataResource_219, us_data_0813b288_start + 0x582510
+	.global gUnk_MapDataResource_202
+	.set gUnk_MapDataResource_202, us_data_0813b288_start + 0x5825B8
+	.global gUnk_MapDataResource_203
+	.set gUnk_MapDataResource_203, us_data_0813b288_start + 0x582734
+	.global gUnk_MapDataResource_204
+	.set gUnk_MapDataResource_204, us_data_0813b288_start + 0x582824
+	.global gUnk_MapDataResource_207
+	.set gUnk_MapDataResource_207, us_data_0813b288_start + 0x582904
+	.global gUnk_MapDataResource_208
+	.set gUnk_MapDataResource_208, us_data_0813b288_start + 0x5829F8
+	.global gUnk_MapDataResource_209
+	.set gUnk_MapDataResource_209, us_data_0813b288_start + 0x582AF8
+	.global gUnk_MapDataResource_200
+	.set gUnk_MapDataResource_200, us_data_0813b288_start + 0x582B7C
+	.global gUnk_MapDataResource_201
+	.set gUnk_MapDataResource_201, us_data_0813b288_start + 0x585854
+	.global gUnk_MapDataResource_314
+	.set gUnk_MapDataResource_314, us_data_0813b288_start + 0x5859C0
+	.global gUnk_MapDataResource_315
+	.set gUnk_MapDataResource_315, us_data_0813b288_start + 0x586ABC
+	.global gUnk_MapDataResource_316
+	.set gUnk_MapDataResource_316, us_data_0813b288_start + 0x586BC0
+	.global gUnk_MapDataResource_317
+	.set gUnk_MapDataResource_317, us_data_0813b288_start + 0x586D68
+	.global gUnk_MapDataResource_318
+	.set gUnk_MapDataResource_318, us_data_0813b288_start + 0x586ED0
+	.global gUnk_MapDataResource_304
+	.set gUnk_MapDataResource_304, us_data_0813b288_start + 0x586FC8
+	.global gUnk_MapDataResource_305
+	.set gUnk_MapDataResource_305, us_data_0813b288_start + 0x58718C
+	.global gUnk_MapDataResource_306
+	.set gUnk_MapDataResource_306, us_data_0813b288_start + 0x5872F0
+	.global gUnk_MapDataResource_249
+	.set gUnk_MapDataResource_249, us_data_0813b288_start + 0x5873A8
+	.global gUnk_MapDataResource_250
+	.set gUnk_MapDataResource_250, us_data_0813b288_start + 0x589AE0
+	.global gUnk_MapDataResource_261
+	.set gUnk_MapDataResource_261, us_data_0813b288_start + 0x589BE8
+	.global gUnk_MapDataResource_262
+	.set gUnk_MapDataResource_262, us_data_0813b288_start + 0x589D6C
+	.global gUnk_MapDataResource_263
+	.set gUnk_MapDataResource_263, us_data_0813b288_start + 0x589E70
+	.global gUnk_MapDataResource_256
+	.set gUnk_MapDataResource_256, us_data_0813b288_start + 0x589F3C
+	.global gUnk_MapDataResource_257
+	.set gUnk_MapDataResource_257, us_data_0813b288_start + 0x58A09C
+	.global gUnk_MapDataResource_258
+	.set gUnk_MapDataResource_258, us_data_0813b288_start + 0x58A19C
+	.global gUnk_MapDataResource_251
+	.set gUnk_MapDataResource_251, us_data_0813b288_start + 0x58A25C
+	.global gUnk_MapDataResource_252
+	.set gUnk_MapDataResource_252, us_data_0813b288_start + 0x58A3A8
+	.global gUnk_MapDataResource_253
+	.set gUnk_MapDataResource_253, us_data_0813b288_start + 0x58A490
+	.global gUnk_MapDataResource_073
+	.set gUnk_MapDataResource_073, us_data_0813b288_start + 0x58A538
+	.global gUnk_MapDataResource_074
+	.set gUnk_MapDataResource_074, us_data_0813b288_start + 0x58A9F8
+	.global gUnk_MapDataResource_075
+	.set gUnk_MapDataResource_075, us_data_0813b288_start + 0x58AC2C
+	.global gUnk_MapDataResource_081
+	.set gUnk_MapDataResource_081, us_data_0813b288_start + 0x58AE04
+	.global gUnk_MapDataResource_082
+	.set gUnk_MapDataResource_082, us_data_0813b288_start + 0x58B2B8
+	.global gUnk_MapDataResource_083
+	.set gUnk_MapDataResource_083, us_data_0813b288_start + 0x58B4D8
+	.global gUnk_MapDataResource_028
+	.set gUnk_MapDataResource_028, us_data_0813b288_start + 0x58B698
+	.global gUnk_MapDataResource_029
+	.set gUnk_MapDataResource_029, us_data_0813b288_start + 0x5903A4
+	.global gUnk_MapDataResource_031
+	.set gUnk_MapDataResource_031, us_data_0813b288_start + 0x5904D8
+	.global gUnk_MapDataResource_032
+	.set gUnk_MapDataResource_032, us_data_0813b288_start + 0x591558
+	.global gUnk_MapDataResource_033
+	.set gUnk_MapDataResource_033, us_data_0813b288_start + 0x5925F0
+	.global gUnk_MapDataResource_030
+	.set gUnk_MapDataResource_030, us_data_0813b288_start + 0x592C30
+	.global gUnk_MapDataResource_036
+	.set gUnk_MapDataResource_036, us_data_0813b288_start + 0x592D64
+	.global gUnk_MapDataResource_037
+	.set gUnk_MapDataResource_037, us_data_0813b288_start + 0x597C10
+	.global gUnk_MapDataResource_039
+	.set gUnk_MapDataResource_039, us_data_0813b288_start + 0x597D0C
+	.global gUnk_MapDataResource_040
+	.set gUnk_MapDataResource_040, us_data_0813b288_start + 0x598C34
+	.global gUnk_MapDataResource_041
+	.set gUnk_MapDataResource_041, us_data_0813b288_start + 0x599C4C
+	.global gUnk_MapDataResource_038
+	.set gUnk_MapDataResource_038, us_data_0813b288_start + 0x59A1A0
+	.global gUnk_MapDataResource_122
+	.set gUnk_MapDataResource_122, us_data_0813b288_start + 0x59C2D0
+	.global gUnk_MapDataResource_123
+	.set gUnk_MapDataResource_123, us_data_0813b288_start + 0x59C4AC
+	.global gUnk_MapDataResource_124
+	.set gUnk_MapDataResource_124, us_data_0813b288_start + 0x59C618
+	.global gUnk_MapDataResource_127
+	.set gUnk_MapDataResource_127, us_data_0813b288_start + 0x59C700
+	.global gUnk_MapDataResource_128
+	.set gUnk_MapDataResource_128, us_data_0813b288_start + 0x59C8D8
+	.global gUnk_MapDataResource_129
+	.set gUnk_MapDataResource_129, us_data_0813b288_start + 0x59CA04
+	.global gUnk_MapDataResource_120
+	.set gUnk_MapDataResource_120, us_data_0813b288_start + 0x59CB00
+	.global gUnk_MapDataResource_121
+	.set gUnk_MapDataResource_121, us_data_0813b288_start + 0x59FC20
+	.global gUnk_MapDataResource_338
+	.set gUnk_MapDataResource_338, us_data_0813b288_start + 0x59FD44
+	.global gUnk_MapDataResource_339
+	.set gUnk_MapDataResource_339, us_data_0813b288_start + 0x5A0AFC
+	.global gUnk_MapDataResource_340
+	.set gUnk_MapDataResource_340, us_data_0813b288_start + 0x5A0B9C
+	.global gUnk_MapDataResource_341
+	.set gUnk_MapDataResource_341, us_data_0813b288_start + 0x5A0C34
+	.global gUnk_MapDataResource_342
+	.set gUnk_MapDataResource_342, us_data_0813b288_start + 0x5A0C40
+	.global gUnk_MapDataResource_345
+	.set gUnk_MapDataResource_345, us_data_0813b288_start + 0x5A0CEC
+	.global gUnk_MapDataResource_346
+	.set gUnk_MapDataResource_346, us_data_0813b288_start + 0x5A0D68
+	.global gUnk_MapDataResource_347
+	.set gUnk_MapDataResource_347, us_data_0813b288_start + 0x5A0D74
+	.global gUnk_MapDataResource_350
+	.set gUnk_MapDataResource_350, us_data_0813b288_start + 0x5A0DD0
+	.global gUnk_MapDataResource_351
+	.set gUnk_MapDataResource_351, us_data_0813b288_start + 0x5A0E5C
+	.global gUnk_MapDataResource_352
+	.set gUnk_MapDataResource_352, us_data_0813b288_start + 0x5A0E68
+	.global gUnk_MapDataResource_355
+	.set gUnk_MapDataResource_355, us_data_0813b288_start + 0x5A0EC8
+	.global gUnk_MapDataResource_356
+	.set gUnk_MapDataResource_356, us_data_0813b288_start + 0x5A0F48
+	.global gUnk_MapDataResource_357
+	.set gUnk_MapDataResource_357, us_data_0813b288_start + 0x5A0F54
+	.global gUnk_MapDataResource_360
+	.set gUnk_MapDataResource_360, us_data_0813b288_start + 0x5A0FB0
+	.global gUnk_MapDataResource_361
+	.set gUnk_MapDataResource_361, us_data_0813b288_start + 0x5A1064
+	.global gUnk_MapDataResource_362
+	.set gUnk_MapDataResource_362, us_data_0813b288_start + 0x5A1090
+	.global gUnk_MapDataResource_365
+	.set gUnk_MapDataResource_365, us_data_0813b288_start + 0x5A1178
+	.global gUnk_MapDataResource_366
+	.set gUnk_MapDataResource_366, us_data_0813b288_start + 0x5A123C
+	.global gUnk_MapDataResource_367
+	.set gUnk_MapDataResource_367, us_data_0813b288_start + 0x5A1248
+	.global gUnk_MapDataResource_014
+	.set gUnk_MapDataResource_014, us_data_0813b288_start + 0x5BFD7C
+	.global gUnk_MapDataResource_015
+	.set gUnk_MapDataResource_015, us_data_0813b288_start + 0x5C1F14
+	.global gUnk_MapDataResource_017
+	.set gUnk_MapDataResource_017, us_data_0813b288_start + 0x5C1FB8
+	.global gUnk_MapDataResource_018
+	.set gUnk_MapDataResource_018, us_data_0813b288_start + 0x5C2548
+	.global gUnk_MapDataResource_019
+	.set gUnk_MapDataResource_019, us_data_0813b288_start + 0x5C276C
+	.global gUnk_MapDataResource_016
+	.set gUnk_MapDataResource_016, us_data_0813b288_start + 0x5C2804
+	.global gUnk_MapDataResource_022
+	.set gUnk_MapDataResource_022, us_data_0813b288_start + 0x5C28A4
+	.global gUnk_MapDataResource_023
+	.set gUnk_MapDataResource_023, us_data_0813b288_start + 0x5C47FC
+	.global gUnk_MapDataResource_025
+	.set gUnk_MapDataResource_025, us_data_0813b288_start + 0x5C489C
+	.global gUnk_MapDataResource_026
+	.set gUnk_MapDataResource_026, us_data_0813b288_start + 0x5C4E28
+	.global gUnk_MapDataResource_027
+	.set gUnk_MapDataResource_027, us_data_0813b288_start + 0x5C5044
+	.global gUnk_MapDataResource_024
+	.set gUnk_MapDataResource_024, us_data_0813b288_start + 0x5C50EC
+	.global gUnk_MapDataResource_132
+	.set gUnk_MapDataResource_132, us_data_0813b288_start + 0x5C5180
+	.global gUnk_MapDataResource_133
+	.set gUnk_MapDataResource_133, us_data_0813b288_start + 0x5C5358
+	.global gUnk_MapDataResource_134
+	.set gUnk_MapDataResource_134, us_data_0813b288_start + 0x5C545C
+	.global gUnk_MapDataResource_137
+	.set gUnk_MapDataResource_137, us_data_0813b288_start + 0x5C552C
+	.global gUnk_MapDataResource_138
+	.set gUnk_MapDataResource_138, us_data_0813b288_start + 0x5C572C
+	.global gUnk_MapDataResource_139
+	.set gUnk_MapDataResource_139, us_data_0813b288_start + 0x5C57E4
+	.global gUnk_MapDataResource_328
+	.set gUnk_MapDataResource_328, us_data_0813b288_start + 0x5C5858
+	.global gUnk_MapDataResource_329
+	.set gUnk_MapDataResource_329, us_data_0813b288_start + 0x5C59E4
+	.global gUnk_MapDataResource_330
+	.set gUnk_MapDataResource_330, us_data_0813b288_start + 0x5C5AFC
+	.global gUnk_MapDataResource_166
+	.set gUnk_MapDataResource_166, us_data_0813b288_start + 0x5C5B88
+	.global gUnk_MapDataResource_167
+	.set gUnk_MapDataResource_167, us_data_0813b288_start + 0x5C864C
+	.global gUnk_MapDataResource_173
+	.set gUnk_MapDataResource_173, us_data_0813b288_start + 0x5C878C
+	.global gUnk_MapDataResource_174
+	.set gUnk_MapDataResource_174, us_data_0813b288_start + 0x5C88D8
+	.global gUnk_MapDataResource_175
+	.set gUnk_MapDataResource_175, us_data_0813b288_start + 0x5C89E8
+	.global gUnk_MapDataResource_239
+	.set gUnk_MapDataResource_239, us_data_0813b288_start + 0x5C8AC0
+	.global gUnk_MapDataResource_240
+	.set gUnk_MapDataResource_240, us_data_0813b288_start + 0x5C8F84
+	.global gUnk_MapDataResource_241
+	.set gUnk_MapDataResource_241, us_data_0813b288_start + 0x5C90A0
+	.global gUnk_MapDataResource_234
+	.set gUnk_MapDataResource_234, us_data_0813b288_start + 0x5C919C
+	.global gUnk_MapDataResource_235
+	.set gUnk_MapDataResource_235, us_data_0813b288_start + 0x5C9534
+	.global gUnk_MapDataResource_236
+	.set gUnk_MapDataResource_236, us_data_0813b288_start + 0x5C9610
+	.global gUnk_MapDataResource_292
+	.set gUnk_MapDataResource_292, us_data_0813b288_start + 0x5C96F0
+	.global gUnk_MapDataResource_293
+	.set gUnk_MapDataResource_293, us_data_0813b288_start + 0x5C98E4
+	.global gUnk_MapDataResource_294
+	.set gUnk_MapDataResource_294, us_data_0813b288_start + 0x5C99CC
+	.global gUnk_MapDataResource_042
+	.set gUnk_MapDataResource_042, us_data_0813b288_start + 0x5C9AA8
+	.global gUnk_MapDataResource_043
+	.set gUnk_MapDataResource_043, us_data_0813b288_start + 0x5CE920
+	.global gUnk_MapDataResource_045
+	.set gUnk_MapDataResource_045, us_data_0813b288_start + 0x5CEAAC
+	.global gUnk_MapDataResource_046
+	.set gUnk_MapDataResource_046, us_data_0813b288_start + 0x5CF620
+	.global gUnk_MapDataResource_047
+	.set gUnk_MapDataResource_047, us_data_0813b288_start + 0x5CFF98
+	.global gUnk_MapDataResource_044
+	.set gUnk_MapDataResource_044, us_data_0813b288_start + 0x5D0420
+	.global gUnk_MapDataResource_050
+	.set gUnk_MapDataResource_050, us_data_0813b288_start + 0x5D0594
+	.global gUnk_MapDataResource_051
+	.set gUnk_MapDataResource_051, us_data_0813b288_start + 0x5D522C
+	.global gUnk_MapDataResource_053
+	.set gUnk_MapDataResource_053, us_data_0813b288_start + 0x5D5354
+	.global gUnk_MapDataResource_054
+	.set gUnk_MapDataResource_054, us_data_0813b288_start + 0x5D5C28
+	.global gUnk_MapDataResource_055
+	.set gUnk_MapDataResource_055, us_data_0813b288_start + 0x5D6590
+	.global gUnk_MapDataResource_052
+	.set gUnk_MapDataResource_052, us_data_0813b288_start + 0x5D6A08
+	.global gUnk_MapDataResource_106
+	.set gUnk_MapDataResource_106, us_data_0813b288_start + 0x5D6B18
+	.global gUnk_MapDataResource_107
+	.set gUnk_MapDataResource_107, us_data_0813b288_start + 0x5D92F8
+	.global gUnk_MapDataResource_109
+	.set gUnk_MapDataResource_109, us_data_0813b288_start + 0x5D9388
+	.global gUnk_MapDataResource_110
+	.set gUnk_MapDataResource_110, us_data_0813b288_start + 0x5D9548
+	.global gUnk_MapDataResource_111
+	.set gUnk_MapDataResource_111, us_data_0813b288_start + 0x5D96F8
+	.global gUnk_MapDataResource_108
+	.set gUnk_MapDataResource_108, us_data_0813b288_start + 0x5D9848
+	.global gUnk_MapDataResource_114
+	.set gUnk_MapDataResource_114, us_data_0813b288_start + 0x5D99FC
+	.global gUnk_MapDataResource_115
+	.set gUnk_MapDataResource_115, us_data_0813b288_start + 0x5DB8B0
+	.global gUnk_MapDataResource_117
+	.set gUnk_MapDataResource_117, us_data_0813b288_start + 0x5DB938
+	.global gUnk_MapDataResource_118
+	.set gUnk_MapDataResource_118, us_data_0813b288_start + 0x5DBA9C
+	.global gUnk_MapDataResource_119
+	.set gUnk_MapDataResource_119, us_data_0813b288_start + 0x5DBC44
+	.global gUnk_MapDataResource_116
+	.set gUnk_MapDataResource_116, us_data_0813b288_start + 0x5DBD90
+	.global gUnk_MapDataResource_333
+	.set gUnk_MapDataResource_333, us_data_0813b288_start + 0x5DBEC4
+	.global gUnk_MapDataResource_334
+	.set gUnk_MapDataResource_334, us_data_0813b288_start + 0x5DC07C
+	.global gUnk_MapDataResource_335
+	.set gUnk_MapDataResource_335, us_data_0813b288_start + 0x5DC1AC
+	.global gUnk_MapDataResource_370
+	.set gUnk_MapDataResource_370, us_data_0813b288_start + 0x5DC24C
+	.global gUnk_MapDataResource_371
+	.set gUnk_MapDataResource_371, us_data_0813b288_start + 0x5DC2E0
+	.global gUnk_MapDataResource_374
+	.set gUnk_MapDataResource_374, us_data_0813b288_start + 0x5DC328
+	.global gUnk_MapDataResource_375
+	.set gUnk_MapDataResource_375, us_data_0813b288_start + 0x5DC434
+	.global gUnk_MapDataResource_376
+	.set gUnk_MapDataResource_376, us_data_0813b288_start + 0x5DC4A8
+	.global gUnk_MapDataResource_377
+	.set gUnk_MapDataResource_377, us_data_0813b288_start + 0x5DC6CC
+	.global gUnk_MapDataResource_378
+	.set gUnk_MapDataResource_378, us_data_0813b288_start + 0x5DC7B8
+	.global gUnk_MapDataResource_379
+	.set gUnk_MapDataResource_379, us_data_0813b288_start + 0x5DC99C
+	.global gUnk_MapDataResource_297
+	.set gUnk_MapDataResource_297, us_data_0813b288_start + 0x5DCA68
+	.global gUnk_MapDataResource_298
+	.set gUnk_MapDataResource_298, us_data_0813b288_start + 0x5DCBDC
+	.global gUnk_MapDataResource_299
+	.set gUnk_MapDataResource_299, us_data_0813b288_start + 0x5DCD80
+	.global gUnk_MapDataResource_290
+	.set gUnk_MapDataResource_290, us_data_0813b288_start + 0x5DCE58
+	.global gUnk_MapDataResource_291
+	.set gUnk_MapDataResource_291, us_data_0813b288_start + 0x5DF850
+	.global gUnk_MapDataResource_280
+	.set gUnk_MapDataResource_280, us_data_0813b288_start + 0x5DF940
+	.global gUnk_MapDataResource_281
+	.set gUnk_MapDataResource_281, us_data_0813b288_start + 0x5DFBA4
+	.global gUnk_MapDataResource_282
+	.set gUnk_MapDataResource_282, us_data_0813b288_start + 0x5DFCFC
+	.global gUnk_MapDataResource_285
+	.set gUnk_MapDataResource_285, us_data_0813b288_start + 0x5DFE00
+	.global gUnk_MapDataResource_286
+	.set gUnk_MapDataResource_286, us_data_0813b288_start + 0x5E0024
+	.global gUnk_MapDataResource_287
+	.set gUnk_MapDataResource_287, us_data_0813b288_start + 0x5E014C
+	.global gUnk_MapDataResource_278
+	.set gUnk_MapDataResource_278, us_data_0813b288_start + 0x5E01EC
+	.global gUnk_MapDataResource_279
+	.set gUnk_MapDataResource_279, us_data_0813b288_start + 0x5E216C
 
 	.global gUnk_084F90CC
 gUnk_084F90CC:
