@@ -467,7 +467,8 @@ SECTIONS
         . = ALIGN(4); asm/data/data_080F1A80.o(.rodata);
         . = ALIGN(4); src/script_engine.o(.rodata);
         . = 0xF9EA4; src/script_engine.o(.rodata.script_engine_string_error);
-        . = 0xF9EAC; asm/data/data_080F9EB8.o(.rodata.localized_data_prefix);
+        . = 0xF9EAC; src/script_engine.o(.rodata.script_engine_ui_error_prefix);
+        FILL(0x00);
         . = 0xF9EB8; src/script_engine.o(.rodata.script_engine_ui_error);
         . = 0xF9EBE; asm/data/data_080F9EB8.o(.rodata.script_engine_ui_error_trailer);
         . = 0xF9EC5; asm/data/data_080F9EB8.o(.rodata.localized_data_suffix);

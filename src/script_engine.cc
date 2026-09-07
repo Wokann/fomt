@@ -716,6 +716,10 @@ void ScriptEngine::Push(i32 value)
 
 #endif // REGION_JP
 
+char const gCppRuntimeBadAlloc_ScriptEngineUiPrefix[]
+    SECTION(".rodata.script_engine_ui_error_prefix") =
+        "bad_alloc";
+
 // These text objects occur at separate physical Script Engine addresses.
 #define FOMT_SCRIPT_ENGINE_TEXT_INVALID_STRING_ID
 #include "data/text/common/script_engine.cc"

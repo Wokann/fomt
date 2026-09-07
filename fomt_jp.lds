@@ -556,8 +556,9 @@ SECTIONS
         . = 0xF96F4; /* JP ScriptEngine string-object prefix. */
         src/script_engine.o(.rodata.script_engine_string_error_prefix);
         . = 0xF9700; src/script_engine.o(.rodata.script_engine_string_error);
-        . = 0xF9708; /* JP localized non-script data before event RIFFs. */
-        asm/data/data_080F9EB8.o(.rodata.localized_data_prefix);
+        . = 0xF9708; /* JP Script Engine UI-error runtime string. */
+        src/script_engine.o(.rodata.script_engine_ui_error_prefix);
+        FILL(0x00);
         . = 0xF9714; src/script_engine.o(.rodata.script_engine_ui_error);
         . = 0xF971A; asm/data/data_080F9EB8.o(.rodata.script_engine_ui_error_trailer);
         . = 0xF97E6; data/text/new_game_name_entry.o(.rodata.name_entry_preset_animal_names);

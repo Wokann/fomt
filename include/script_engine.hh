@@ -11,6 +11,7 @@
 // Error text objects physically owned by the Script Engine data block.
 extern char const gText_AScriptEngine_InvalidStringId[];
 extern char const gText_ScriptEngineUi_Error[];
+extern char const gCppRuntimeBadAlloc_ScriptEngineUiPrefix[];
 
 // TODO: rename this
 // TODO: retype the related fields
