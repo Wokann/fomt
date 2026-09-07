@@ -20,6 +20,15 @@ extern char const gText_HarvestSpriteMiniGameAnimalHusbandryEmpty[];
 extern u16 const gUnk_HarvestSpriteMiniGameChickenFestivalValues[4][6];
 extern u8 const gUnk_HarvestSpriteMiniGameChickenFestivalOffsets[4];
 
+extern u32 const gUnk_080BAC9CValues[16];
+extern u16 const gUnk_080BB890FirstValues[5];
+extern u16 const gUnk_080BB890TableValues[4][4];
+extern u16 const gUnk_080BB890LastValues[3];
+extern u32 const gUnk_080BC288Values[16];
+extern char const gCppRuntimeBadAlloc_HarvestSpriteMiniGamePostChickenFestival[];
+extern char const gText_080BE728DigitZero[];
+extern u32 const gUnk_080BE954Values[7];
+
 struct HarvestSprite : public Npc
 {
     enum Task

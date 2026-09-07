@@ -61,6 +61,56 @@ u8 const gUnk_HarvestSpriteMiniGameChickenFestivalOffsets[4]
         1, 3, 0, 2,
     };
 
+// This contiguous group is consumed by several still-native minigame and UI
+// routines.  The individual table shapes below follow their exact accesses;
+// unresolved gameplay meanings deliberately retain gUnk names.
+u32 const gUnk_080BAC9CValues[16]
+    SECTION(".rodata.harvest_sprite_minigames_chicken_festival_post_text_data") = {
+        0x4B, 0x28, 0xC8, 0x72, 0xCD, 0x30, 0x5A, 0x92,
+        0x24, 0x7D, 0x78, 0x16, 0x78, 0x8E, 0x3A, 0x50,
+    };
+
+u16 const gUnk_080BB890FirstValues[5]
+    SECTION(".rodata.harvest_sprite_minigames_chicken_festival_post_text_data") ALIGN(2) = {
+        0x09A1, 0x07B4, 0x08C2, 0x0230, 0x09F2,
+    };
+u16 const gUnk_080BB890TableValues[4][4]
+    SECTION(".rodata.harvest_sprite_minigames_chicken_festival_post_text_data") ALIGN(2) = {
+        { 0x0192, 0x01CA, 0x019A, 0x01C2 },
+        { 0x0641, 0x063D, 0x0639, 0x0641 },
+        { 0x064D, 0x0649, 0x0645, 0x064D },
+        { 0x0635, 0x0631, 0x062D, 0x0635 },
+    };
+u16 const gUnk_080BB890LastValues[3]
+    SECTION(".rodata.harvest_sprite_minigames_chicken_festival_post_text_data") ALIGN(2) = {
+        0x0216, 0x0222, 0,
+    };
+
+u32 const gUnk_080BC288Values[16]
+    SECTION(".rodata.harvest_sprite_minigames_chicken_festival_post_text_data") = {
+        0x4B, 0x28, 0xC8, 0x72, 0xCD, 0x30, 0x5A, 0x92,
+        0x24, 0x7D, 0x78, 0x16, 0x78, 0x8E, 0x3A, 0x50,
+    };
+
+char const gCppRuntimeBadAlloc_HarvestSpriteMiniGamePostChickenFestival[]
+    SECTION(".rodata.harvest_sprite_minigames_chicken_festival_post_text_data") =
+        "bad_alloc";
+
+#if defined(REGION_JP)
+char const gText_080BE728DigitZero[]
+    SECTION(".rodata.harvest_sprite_minigames_chicken_festival_post_text_data") =
+        "０";
+#else
+char const gText_080BE728DigitZero[]
+    SECTION(".rodata.harvest_sprite_minigames_chicken_festival_post_text_data") =
+        "0";
+#endif
+
+u32 const gUnk_080BE954Values[7]
+    SECTION(".rodata.harvest_sprite_minigames_chicken_festival_post_text_data") = {
+        4, 0, 1, 6, 3, 2, 5,
+    };
+
 HarvestSprite::HarvestSprite(ActorLocation const & location)
     : Npc(location)
 {
