@@ -15291,7 +15291,7 @@ func_080A6024: @ 0x080A6024
 	beq .L080A6054
 	b .L080A6064
 .L080A603A:
-	ldr r1, .L080A604C @ =gUnk_08106C8C
+	ldr r1, .L080A604C @ =gFieldRenderRectDescriptors + 0x360
 	ldr r0, .L080A6050 @ =gUnk_081073C4
 	adds r0, r2, r0
 	ldrb r2, [r0]
@@ -15300,10 +15300,10 @@ func_080A6024: @ 0x080A6024
 	bl func_080A5BD8
 	b .L080A6064
 	.align 2, 0
-.L080A604C: .4byte gUnk_08106C8C
+.L080A604C: .4byte gFieldRenderRectDescriptors + 0x360
 .L080A6050: .4byte gUnk_081073C4
 .L080A6054:
-	ldr r1, .L080A6074 @ =gUnk_08106C8C
+	ldr r1, .L080A6074 @ =gFieldRenderRectDescriptors + 0x360
 	ldr r0, .L080A6078 @ =gUnk_081073CC
 	adds r0, r2, r0
 	ldrb r2, [r0]
@@ -15319,7 +15319,7 @@ func_080A6024: @ 0x080A6024
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080A6074: .4byte gUnk_08106C8C
+.L080A6074: .4byte gFieldRenderRectDescriptors + 0x360
 .L080A6078: .4byte gUnk_081073CC
 
 	thumb_func_start func_080A607C
@@ -15342,7 +15342,7 @@ func_080A607C: @ 0x080A607C
 .L080A6098:
 	cmp r2, #0xf
 	bls .L080A60BC
-	ldr r1, .L080A60B4 @ =gUnk_08106C74
+	ldr r1, .L080A60B4 @ =gFieldRenderRectDescriptors + 0x348
 	ldr r3, .L080A60B8 @ =gUnk_081073D0
 	adds r0, r2, #0
 	subs r0, #0x10
@@ -15354,19 +15354,19 @@ func_080A607C: @ 0x080A607C
 	ldrb r3, [r0]
 	b .L080A6100
 	.align 2, 0
-.L080A60B4: .4byte gUnk_08106C74
+.L080A60B4: .4byte gFieldRenderRectDescriptors + 0x348
 .L080A60B8: .4byte gUnk_081073D0
 .L080A60BC:
-	ldr r1, .L080A60C4 @ =gUnk_08106C74
+	ldr r1, .L080A60C4 @ =gFieldRenderRectDescriptors + 0x348
 	ldr r0, .L080A60C8 @ =gUnk_081073F0
 	b .L080A60F4
 	.align 2, 0
-.L080A60C4: .4byte gUnk_08106C74
+.L080A60C4: .4byte gFieldRenderRectDescriptors + 0x348
 .L080A60C8: .4byte gUnk_081073F0
 .L080A60CC:
 	cmp r2, #0xf
 	bls .L080A60F0
-	ldr r1, .L080A60E8 @ =gUnk_08106C74
+	ldr r1, .L080A60E8 @ =gFieldRenderRectDescriptors + 0x348
 	ldr r3, .L080A60EC @ =gUnk_081073D0
 	adds r0, r2, #0
 	subs r0, #0x10
@@ -15378,10 +15378,10 @@ func_080A607C: @ 0x080A607C
 	ldrb r3, [r0]
 	b .L080A6100
 	.align 2, 0
-.L080A60E8: .4byte gUnk_08106C74
+.L080A60E8: .4byte gFieldRenderRectDescriptors + 0x348
 .L080A60EC: .4byte gUnk_081073D0
 .L080A60F0:
-	ldr r1, .L080A6108 @ =gUnk_08106C74
+	ldr r1, .L080A6108 @ =gFieldRenderRectDescriptors + 0x348
 	ldr r0, .L080A610C @ =gUnk_08107400
 .L080A60F4:
 	lsls r3, r2, #1
@@ -15395,10 +15395,10 @@ func_080A607C: @ 0x080A607C
 	bl func_080A5BD8
 	b .L080A6120
 	.align 2, 0
-.L080A6108: .4byte gUnk_08106C74
+.L080A6108: .4byte gFieldRenderRectDescriptors + 0x348
 .L080A610C: .4byte gUnk_08107400
 .L080A6110:
-	ldr r1, .L080A6130 @ =gUnk_08106C74
+	ldr r1, .L080A6130 @ =gFieldRenderRectDescriptors + 0x348
 	ldr r0, .L080A6134 @ =gUnk_08107420
 	adds r0, r2, r0
 	ldrb r2, [r0]
@@ -15414,7 +15414,7 @@ func_080A607C: @ 0x080A607C
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080A6130: .4byte gUnk_08106C74
+.L080A6130: .4byte gFieldRenderRectDescriptors + 0x348
 .L080A6134: .4byte gUnk_08107420
 
 	thumb_func_start func_080A6138
@@ -15434,14 +15434,14 @@ func_080A6138: @ 0x080A6138
 	beq .L080A6174
 	b .L080A6180
 .L080A6152:
-	ldr r1, .L080A615C @ =gUnk_08106A7C
+	ldr r1, .L080A615C @ =gFieldRenderRectDescriptors + 0x150
 	adds r0, r4, #0
 	movs r2, #0x19
 	b .L080A6166
 	.align 2, 0
-.L080A615C: .4byte gUnk_08106A7C
+.L080A615C: .4byte gFieldRenderRectDescriptors + 0x150
 .L080A6160:
-	ldr r1, .L080A6170 @ =gUnk_08106A7C
+	ldr r1, .L080A6170 @ =gFieldRenderRectDescriptors + 0x150
 	adds r0, r4, #0
 	movs r2, #0x28
 .L080A6166:
@@ -15449,9 +15449,9 @@ func_080A6138: @ 0x080A6138
 	bl func_080A5BD8
 	b .L080A6180
 	.align 2, 0
-.L080A6170: .4byte gUnk_08106A7C
+.L080A6170: .4byte gFieldRenderRectDescriptors + 0x150
 .L080A6174:
-	ldr r1, .L080A6190 @ =gUnk_08106A7C
+	ldr r1, .L080A6190 @ =gFieldRenderRectDescriptors + 0x150
 	adds r0, r4, #0
 	movs r2, #0x36
 	movs r3, #0xf
@@ -15465,7 +15465,7 @@ func_080A6138: @ 0x080A6138
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080A6190: .4byte gUnk_08106A7C
+.L080A6190: .4byte gFieldRenderRectDescriptors + 0x150
 
 	thumb_func_start func_080A6194
 func_080A6194: @ 0x080A6194
@@ -15484,14 +15484,14 @@ func_080A6194: @ 0x080A6194
 	beq .L080A61D0
 	b .L080A61DC
 .L080A61AE:
-	ldr r1, .L080A61B8 @ =gUnk_08106A94
+	ldr r1, .L080A61B8 @ =gFieldRenderRectDescriptors + 0x168
 	adds r0, r4, #0
 	movs r2, #0x19
 	b .L080A61C2
 	.align 2, 0
-.L080A61B8: .4byte gUnk_08106A94
+.L080A61B8: .4byte gFieldRenderRectDescriptors + 0x168
 .L080A61BC:
-	ldr r1, .L080A61CC @ =gUnk_08106A94
+	ldr r1, .L080A61CC @ =gFieldRenderRectDescriptors + 0x168
 	adds r0, r4, #0
 	movs r2, #0x28
 .L080A61C2:
@@ -15499,9 +15499,9 @@ func_080A6194: @ 0x080A6194
 	bl func_080A5BD8
 	b .L080A61DC
 	.align 2, 0
-.L080A61CC: .4byte gUnk_08106A94
+.L080A61CC: .4byte gFieldRenderRectDescriptors + 0x168
 .L080A61D0:
-	ldr r1, .L080A61EC @ =gUnk_08106A94
+	ldr r1, .L080A61EC @ =gFieldRenderRectDescriptors + 0x168
 	adds r0, r4, #0
 	movs r2, #0x36
 	movs r3, #0xf
@@ -15515,7 +15515,7 @@ func_080A6194: @ 0x080A6194
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080A61EC: .4byte gUnk_08106A94
+.L080A61EC: .4byte gFieldRenderRectDescriptors + 0x168
 
 	thumb_func_start func_080A61F0
 func_080A61F0: @ 0x080A61F0
@@ -15528,16 +15528,16 @@ func_080A61F0: @ 0x080A61F0
 	beq .L080A6214
 	b .L080A6220
 .L080A6200:
-	ldr r1, .L080A6210 @ =gUnk_08106AAC
+	ldr r1, .L080A6210 @ =gFieldRenderRectDescriptors + 0x180
 	adds r0, r4, #0
 	movs r2, #0xb
 	movs r3, #3
 	bl func_080A5BD8
 	b .L080A6220
 	.align 2, 0
-.L080A6210: .4byte gUnk_08106AAC
+.L080A6210: .4byte gFieldRenderRectDescriptors + 0x180
 .L080A6214:
-	ldr r1, .L080A6230 @ =gUnk_08106AAC
+	ldr r1, .L080A6230 @ =gFieldRenderRectDescriptors + 0x180
 	adds r0, r4, #0
 	movs r2, #0x13
 	movs r3, #3
@@ -15551,7 +15551,7 @@ func_080A61F0: @ 0x080A61F0
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080A6230: .4byte gUnk_08106AAC
+.L080A6230: .4byte gFieldRenderRectDescriptors + 0x180
 
 	thumb_func_start func_080A6234
 func_080A6234: @ 0x080A6234
@@ -15564,16 +15564,16 @@ func_080A6234: @ 0x080A6234
 	beq .L080A6258
 	b .L080A6264
 .L080A6244:
-	ldr r1, .L080A6254 @ =gUnk_08106AC4
+	ldr r1, .L080A6254 @ =gFieldRenderRectDescriptors + 0x198
 	adds r0, r4, #0
 	movs r2, #0xb
 	movs r3, #3
 	bl func_080A5BD8
 	b .L080A6264
 	.align 2, 0
-.L080A6254: .4byte gUnk_08106AC4
+.L080A6254: .4byte gFieldRenderRectDescriptors + 0x198
 .L080A6258:
-	ldr r1, .L080A6274 @ =gUnk_08106AC4
+	ldr r1, .L080A6274 @ =gFieldRenderRectDescriptors + 0x198
 	adds r0, r4, #0
 	movs r2, #0x13
 	movs r3, #3
@@ -15587,7 +15587,7 @@ func_080A6234: @ 0x080A6234
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080A6274: .4byte gUnk_08106AC4
+.L080A6274: .4byte gFieldRenderRectDescriptors + 0x198
 
 	thumb_func_start func_080A6278
 func_080A6278: @ 0x080A6278
@@ -15600,16 +15600,16 @@ func_080A6278: @ 0x080A6278
 	beq .L080A629C
 	b .L080A62A8
 .L080A6288:
-	ldr r1, .L080A6298 @ =gUnk_08106ADC
+	ldr r1, .L080A6298 @ =gFieldRenderRectDescriptors + 0x1B0
 	adds r0, r4, #0
 	movs r2, #0xf
 	movs r3, #2
 	bl func_080A5BD8
 	b .L080A62A8
 	.align 2, 0
-.L080A6298: .4byte gUnk_08106ADC
+.L080A6298: .4byte gFieldRenderRectDescriptors + 0x1B0
 .L080A629C:
-	ldr r1, .L080A62B8 @ =gUnk_08106ADC
+	ldr r1, .L080A62B8 @ =gFieldRenderRectDescriptors + 0x1B0
 	adds r0, r4, #0
 	movs r2, #0x17
 	movs r3, #2
@@ -15623,7 +15623,7 @@ func_080A6278: @ 0x080A6278
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080A62B8: .4byte gUnk_08106ADC
+.L080A62B8: .4byte gFieldRenderRectDescriptors + 0x1B0
 
 	thumb_func_start func_080A62BC
 func_080A62BC: @ 0x080A62BC
@@ -15636,16 +15636,16 @@ func_080A62BC: @ 0x080A62BC
 	beq .L080A62E0
 	b .L080A62EC
 .L080A62CC:
-	ldr r1, .L080A62DC @ =gUnk_08106AF4
+	ldr r1, .L080A62DC @ =gFieldRenderRectDescriptors + 0x1C8
 	adds r0, r4, #0
 	movs r2, #0xf
 	movs r3, #2
 	bl func_080A5BD8
 	b .L080A62EC
 	.align 2, 0
-.L080A62DC: .4byte gUnk_08106AF4
+.L080A62DC: .4byte gFieldRenderRectDescriptors + 0x1C8
 .L080A62E0:
-	ldr r1, .L080A62FC @ =gUnk_08106AF4
+	ldr r1, .L080A62FC @ =gFieldRenderRectDescriptors + 0x1C8
 	adds r0, r4, #0
 	movs r2, #0x17
 	movs r3, #2
@@ -15659,7 +15659,7 @@ func_080A62BC: @ 0x080A62BC
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080A62FC: .4byte gUnk_08106AF4
+.L080A62FC: .4byte gFieldRenderRectDescriptors + 0x1C8
 
 	thumb_func_start func_080A6300
 func_080A6300: @ 0x080A6300
@@ -15678,14 +15678,14 @@ func_080A6300: @ 0x080A6300
 	beq .L080A633C
 	b .L080A6350
 .L080A631A:
-	ldr r1, .L080A6324 @ =gUnk_08106B3C
+	ldr r1, .L080A6324 @ =gFieldRenderRectDescriptors + 0x210
 	adds r0, r4, #0
 	movs r2, #1
 	b .L080A632E
 	.align 2, 0
-.L080A6324: .4byte gUnk_08106B3C
+.L080A6324: .4byte gFieldRenderRectDescriptors + 0x210
 .L080A6328:
-	ldr r1, .L080A6338 @ =gUnk_08106B3C
+	ldr r1, .L080A6338 @ =gFieldRenderRectDescriptors + 0x210
 	adds r0, r4, #0
 	movs r2, #0x10
 .L080A632E:
@@ -15693,9 +15693,9 @@ func_080A6300: @ 0x080A6300
 	bl func_080A5BD8
 	b .L080A6348
 	.align 2, 0
-.L080A6338: .4byte gUnk_08106B3C
+.L080A6338: .4byte gFieldRenderRectDescriptors + 0x210
 .L080A633C:
-	ldr r1, .L080A6358 @ =gUnk_08106B3C
+	ldr r1, .L080A6358 @ =gFieldRenderRectDescriptors + 0x210
 	adds r0, r4, #0
 	movs r2, #0x18
 	movs r3, #0x11
@@ -15710,7 +15710,7 @@ func_080A6300: @ 0x080A6300
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080A6358: .4byte gUnk_08106B3C
+.L080A6358: .4byte gFieldRenderRectDescriptors + 0x210
 
 	thumb_func_start func_080A635C
 func_080A635C: @ 0x080A635C
@@ -15729,14 +15729,14 @@ func_080A635C: @ 0x080A635C
 	beq .L080A6398
 	b .L080A63AC
 .L080A6376:
-	ldr r1, .L080A6380 @ =gUnk_08106B24
+	ldr r1, .L080A6380 @ =gFieldRenderRectDescriptors + 0x1F8
 	adds r0, r4, #0
 	movs r2, #1
 	b .L080A638A
 	.align 2, 0
-.L080A6380: .4byte gUnk_08106B24
+.L080A6380: .4byte gFieldRenderRectDescriptors + 0x1F8
 .L080A6384:
-	ldr r1, .L080A6394 @ =gUnk_08106B24
+	ldr r1, .L080A6394 @ =gFieldRenderRectDescriptors + 0x1F8
 	adds r0, r4, #0
 	movs r2, #0x10
 .L080A638A:
@@ -15744,9 +15744,9 @@ func_080A635C: @ 0x080A635C
 	bl func_080A5BD8
 	b .L080A63A4
 	.align 2, 0
-.L080A6394: .4byte gUnk_08106B24
+.L080A6394: .4byte gFieldRenderRectDescriptors + 0x1F8
 .L080A6398:
-	ldr r1, .L080A63B4 @ =gUnk_08106B24
+	ldr r1, .L080A63B4 @ =gFieldRenderRectDescriptors + 0x1F8
 	adds r0, r4, #0
 	movs r2, #0x18
 	movs r3, #0x11
@@ -15761,7 +15761,7 @@ func_080A635C: @ 0x080A635C
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080A63B4: .4byte gUnk_08106B24
+.L080A63B4: .4byte gFieldRenderRectDescriptors + 0x1F8
 
 	thumb_func_start func_080A63B8
 func_080A63B8: @ 0x080A63B8
@@ -16150,7 +16150,7 @@ func_080A6660: @ 0x080A6660
 	beq .L080A66CA
 	b .L080A6806
 .L080A66CA:
-	ldr r1, .L080A66E0 @ =gUnk_08106D34
+	ldr r1, .L080A66E0 @ =gFieldRenderRectDescriptors + 0x408
 	mov r0, r8
 	movs r2, #0x17
 	movs r3, #0x11
@@ -16159,7 +16159,7 @@ func_080A6660: @ 0x080A6660
 	.align 2, 0
 .L080A66D8: .4byte 0x0000214C
 .L080A66DC: .4byte 0x0000219C
-.L080A66E0: .4byte gUnk_08106D34
+.L080A66E0: .4byte gFieldRenderRectDescriptors + 0x408
 .L080A66E4:
 	ldr r2, .L080A681C @ =0x000021A9
 	adds r0, r4, r2
@@ -16397,7 +16397,7 @@ func_080A6660: @ 0x080A6660
 .L080A6954:
 	cmp r6, #1
 	bne .L080A6964
-	ldr r1, .L080A6980 @ =gUnk_08106D1C
+	ldr r1, .L080A6980 @ =gFieldRenderRectDescriptors + 0x3F0
 	mov r0, r8
 	movs r2, #0xa
 	movs r3, #0x19
@@ -16411,13 +16411,13 @@ func_080A6660: @ 0x080A6660
 	bne .L080A6976
 	bl .L080A746E
 .L080A6976:
-	ldr r1, .L080A6984 @ =gUnk_08106CEC
+	ldr r1, .L080A6984 @ =gFieldRenderRectDescriptors + 0x3C0
 	mov r0, r8
 	movs r2, #0x17
 	b .L080A6ED6
 	.align 2, 0
-.L080A6980: .4byte gUnk_08106D1C
-.L080A6984: .4byte gUnk_08106CEC
+.L080A6980: .4byte gFieldRenderRectDescriptors + 0x3F0
+.L080A6984: .4byte gFieldRenderRectDescriptors + 0x3C0
 .L080A6988:
 	mov r2, sb
 	ldr r0, [r2]
@@ -16427,12 +16427,12 @@ func_080A6660: @ 0x080A6660
 	bne .L080A699A
 	bl .L080A746E
 .L080A699A:
-	ldr r1, .L080A69A4 @ =gUnk_08106D04
+	ldr r1, .L080A69A4 @ =gFieldRenderRectDescriptors + 0x3D8
 	mov r0, r8
 	movs r2, #0x17
 	b .L080A6ED6
 	.align 2, 0
-.L080A69A4: .4byte gUnk_08106D04
+.L080A69A4: .4byte gFieldRenderRectDescriptors + 0x3D8
 .L080A69A8:
 	mov r0, r8
 	movs r1, #0
@@ -16622,14 +16622,14 @@ func_080A6660: @ 0x080A6660
 	.align 2, 0
 .L080A6B40: .4byte 0x00001C38
 .L080A6B44:
-	ldr r1, .L080A6B54 @ =gUnk_08106D7C
+	ldr r1, .L080A6B54 @ =gFieldRenderRectDescriptors + 0x450
 	mov r0, r8
 	movs r2, #0x21
 	movs r3, #0x14
 	bl func_080A5BD8
 	b .L080A6B74
 	.align 2, 0
-.L080A6B54: .4byte gUnk_08106D7C
+.L080A6B54: .4byte gFieldRenderRectDescriptors + 0x450
 .L080A6B58:
 	mov r3, sb
 	ldr r0, [r3]
@@ -16638,7 +16638,7 @@ func_080A6660: @ 0x080A6660
 	bl func_0800E9A0
 	cmp r0, #7
 	bne .L080A6B74
-	ldr r1, .L080A6BA0 @ =gUnk_08106D7C
+	ldr r1, .L080A6BA0 @ =gFieldRenderRectDescriptors + 0x450
 	mov r0, r8
 	movs r2, #0x21
 	movs r3, #0x14
@@ -16649,7 +16649,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A6B8C
-	ldr r1, .L080A6BA4 @ =gUnk_08106D94
+	ldr r1, .L080A6BA4 @ =gFieldRenderRectDescriptors + 0x468
 	mov r0, r8
 	movs r2, #0x21
 	movs r3, #0x17
@@ -16664,24 +16664,24 @@ func_080A6660: @ 0x080A6660
 	bl .L080A746E
 	.align 2, 0
 .L080A6B9C: .4byte 0x00001BD8
-.L080A6BA0: .4byte gUnk_08106D7C
-.L080A6BA4: .4byte gUnk_08106D94
+.L080A6BA0: .4byte gFieldRenderRectDescriptors + 0x450
+.L080A6BA4: .4byte gFieldRenderRectDescriptors + 0x468
 .L080A6BA8:
 	cmp r6, #2
 	beq .L080A6BC0
 	bl .L080A746E
 .L080A6BB0:
-	ldr r1, .L080A6BB4 @ =gUnk_08106DC4
+	ldr r1, .L080A6BB4 @ =gFieldRenderRectDescriptors + 0x498
 	b .L080A6BC2
 	.align 2, 0
-.L080A6BB4: .4byte gUnk_08106DC4
+.L080A6BB4: .4byte gFieldRenderRectDescriptors + 0x498
 .L080A6BB8:
-	ldr r1, .L080A6BBC @ =gUnk_08106DDC
+	ldr r1, .L080A6BBC @ =gFieldRenderRectDescriptors + 0x4B0
 	b .L080A6BC2
 	.align 2, 0
-.L080A6BBC: .4byte gUnk_08106DDC
+.L080A6BBC: .4byte gFieldRenderRectDescriptors + 0x4B0
 .L080A6BC0:
-	ldr r1, .L080A6BD0 @ =gUnk_08106DF4
+	ldr r1, .L080A6BD0 @ =gFieldRenderRectDescriptors + 0x4C8
 .L080A6BC2:
 	mov r0, r8
 	movs r2, #0xc
@@ -16689,7 +16689,7 @@ func_080A6660: @ 0x080A6660
 	bl func_080A5BD8
 	bl .L080A746E
 	.align 2, 0
-.L080A6BD0: .4byte gUnk_08106DF4
+.L080A6BD0: .4byte gFieldRenderRectDescriptors + 0x4C8
 .L080A6BD4:
 	mov r2, sb
 	ldr r0, [r2]
@@ -16699,10 +16699,10 @@ func_080A6660: @ 0x080A6660
 	bne .L080A6BE6
 	bl .L080A746E
 .L080A6BE6:
-	ldr r1, .L080A6BEC @ =gUnk_08106CBC
+	ldr r1, .L080A6BEC @ =gFieldRenderRectDescriptors + 0x390
 	b .L080A6C04
 	.align 2, 0
-.L080A6BEC: .4byte gUnk_08106CBC
+.L080A6BEC: .4byte gFieldRenderRectDescriptors + 0x390
 .L080A6BF0:
 	mov r3, sb
 	ldr r0, [r3]
@@ -16712,7 +16712,7 @@ func_080A6660: @ 0x080A6660
 	bne .L080A6C02
 	bl .L080A746E
 .L080A6C02:
-	ldr r1, .L080A6C14 @ =gUnk_08106CD4
+	ldr r1, .L080A6C14 @ =gFieldRenderRectDescriptors + 0x3A8
 .L080A6C04:
 	mov r0, r8
 	movs r2, #0x3c
@@ -16720,7 +16720,7 @@ func_080A6660: @ 0x080A6660
 	bl func_080A5BD8
 	bl .L080A746E
 	.align 2, 0
-.L080A6C14: .4byte gUnk_08106CD4
+.L080A6C14: .4byte gFieldRenderRectDescriptors + 0x3A8
 .L080A6C18:
 	movs r0, #0
 .L080A6C1A:
@@ -16829,14 +16829,14 @@ func_080A6660: @ 0x080A6660
 	beq .L080A6D04
 	b .L080A6D10
 .L080A6CE4:
-	ldr r1, .L080A6CEC @ =gUnk_0810692C
+	ldr r1, .L080A6CEC @ =gFieldRenderRectDescriptors
 	mov r0, r8
 	movs r2, #0x1a
 	b .L080A6CF6
 	.align 2, 0
-.L080A6CEC: .4byte gUnk_0810692C
+.L080A6CEC: .4byte gFieldRenderRectDescriptors
 .L080A6CF0:
-	ldr r1, .L080A6D00 @ =gUnk_0810695C
+	ldr r1, .L080A6D00 @ =gFieldRenderRectDescriptors + 0x30
 	mov r0, r8
 	movs r2, #0x12
 .L080A6CF6:
@@ -16844,9 +16844,9 @@ func_080A6660: @ 0x080A6660
 	bl func_080A5BD8
 	b .L080A6D10
 	.align 2, 0
-.L080A6D00: .4byte gUnk_0810695C
+.L080A6D00: .4byte gFieldRenderRectDescriptors + 0x30
 .L080A6D04:
-	ldr r1, .L080A6D28 @ =gUnk_0810698C
+	ldr r1, .L080A6D28 @ =gFieldRenderRectDescriptors + 0x60
 	mov r0, r8
 	movs r2, #0xa
 	movs r3, #2
@@ -16864,18 +16864,18 @@ func_080A6660: @ 0x080A6660
 	beq .L080A6D40
 	b .L080A6D4C
 	.align 2, 0
-.L080A6D28: .4byte gUnk_0810698C
+.L080A6D28: .4byte gFieldRenderRectDescriptors + 0x60
 .L080A6D2C:
-	ldr r1, .L080A6D3C @ =gUnk_081069BC
+	ldr r1, .L080A6D3C @ =gFieldRenderRectDescriptors + 0x90
 	mov r0, r8
 	movs r2, #0x3a
 	movs r3, #2
 	bl func_080A5BD8
 	b .L080A6D4C
 	.align 2, 0
-.L080A6D3C: .4byte gUnk_081069BC
+.L080A6D3C: .4byte gFieldRenderRectDescriptors + 0x90
 .L080A6D40:
-	ldr r1, .L080A6D64 @ =gUnk_081069EC
+	ldr r1, .L080A6D64 @ =gFieldRenderRectDescriptors + 0xC0
 	mov r0, r8
 	movs r2, #0x3a
 	movs r3, #2
@@ -16893,17 +16893,17 @@ func_080A6660: @ 0x080A6660
 	beq .L080A6D70
 	b .L080A746E
 	.align 2, 0
-.L080A6D64: .4byte gUnk_081069EC
+.L080A6D64: .4byte gFieldRenderRectDescriptors + 0xC0
 .L080A6D68:
-	ldr r1, .L080A6D6C @ =gUnk_08106A1C
+	ldr r1, .L080A6D6C @ =gFieldRenderRectDescriptors + 0xF0
 	b .L080A6ED2
 	.align 2, 0
-.L080A6D6C: .4byte gUnk_08106A1C
+.L080A6D6C: .4byte gFieldRenderRectDescriptors + 0xF0
 .L080A6D70:
-	ldr r1, .L080A6D74 @ =gUnk_08106A4C
+	ldr r1, .L080A6D74 @ =gFieldRenderRectDescriptors + 0x120
 	b .L080A6ED2
 	.align 2, 0
-.L080A6D74: .4byte gUnk_08106A4C
+.L080A6D74: .4byte gFieldRenderRectDescriptors + 0x120
 .L080A6D78:
 	movs r0, #0
 .L080A6D7A:
@@ -17012,14 +17012,14 @@ func_080A6660: @ 0x080A6660
 	beq .L080A6E64
 	b .L080A6E70
 .L080A6E44:
-	ldr r1, .L080A6E4C @ =gUnk_08106944
+	ldr r1, .L080A6E4C @ =gFieldRenderRectDescriptors + 0x18
 	mov r0, r8
 	movs r2, #0x1a
 	b .L080A6E56
 	.align 2, 0
-.L080A6E4C: .4byte gUnk_08106944
+.L080A6E4C: .4byte gFieldRenderRectDescriptors + 0x18
 .L080A6E50:
-	ldr r1, .L080A6E60 @ =gUnk_08106974
+	ldr r1, .L080A6E60 @ =gFieldRenderRectDescriptors + 0x48
 	mov r0, r8
 	movs r2, #0x12
 .L080A6E56:
@@ -17027,9 +17027,9 @@ func_080A6660: @ 0x080A6660
 	bl func_080A5BD8
 	b .L080A6E70
 	.align 2, 0
-.L080A6E60: .4byte gUnk_08106974
+.L080A6E60: .4byte gFieldRenderRectDescriptors + 0x48
 .L080A6E64:
-	ldr r1, .L080A6E88 @ =gUnk_081069A4
+	ldr r1, .L080A6E88 @ =gFieldRenderRectDescriptors + 0x78
 	mov r0, r8
 	movs r2, #0xa
 	movs r3, #2
@@ -17047,18 +17047,18 @@ func_080A6660: @ 0x080A6660
 	beq .L080A6EA0
 	b .L080A6EAC
 	.align 2, 0
-.L080A6E88: .4byte gUnk_081069A4
+.L080A6E88: .4byte gFieldRenderRectDescriptors + 0x78
 .L080A6E8C:
-	ldr r1, .L080A6E9C @ =gUnk_081069D4
+	ldr r1, .L080A6E9C @ =gFieldRenderRectDescriptors + 0xA8
 	mov r0, r8
 	movs r2, #0x3a
 	movs r3, #2
 	bl func_080A5BD8
 	b .L080A6EAC
 	.align 2, 0
-.L080A6E9C: .4byte gUnk_081069D4
+.L080A6E9C: .4byte gFieldRenderRectDescriptors + 0xA8
 .L080A6EA0:
-	ldr r1, .L080A6EC4 @ =gUnk_08106A04
+	ldr r1, .L080A6EC4 @ =gFieldRenderRectDescriptors + 0xD8
 	mov r0, r8
 	movs r2, #0x3a
 	movs r3, #2
@@ -17076,14 +17076,14 @@ func_080A6660: @ 0x080A6660
 	beq .L080A6ED0
 	b .L080A746E
 	.align 2, 0
-.L080A6EC4: .4byte gUnk_08106A04
+.L080A6EC4: .4byte gFieldRenderRectDescriptors + 0xD8
 .L080A6EC8:
-	ldr r1, .L080A6ECC @ =gUnk_08106A34
+	ldr r1, .L080A6ECC @ =gFieldRenderRectDescriptors + 0x108
 	b .L080A6ED2
 	.align 2, 0
-.L080A6ECC: .4byte gUnk_08106A34
+.L080A6ECC: .4byte gFieldRenderRectDescriptors + 0x108
 .L080A6ED0:
-	ldr r1, .L080A6EE0 @ =gUnk_08106A64
+	ldr r1, .L080A6EE0 @ =gFieldRenderRectDescriptors + 0x138
 .L080A6ED2:
 	mov r0, r8
 	movs r2, #0xe
@@ -17092,9 +17092,9 @@ func_080A6660: @ 0x080A6660
 	bl func_080A5BD8
 	b .L080A746E
 	.align 2, 0
-.L080A6EE0: .4byte gUnk_08106A64
+.L080A6EE0: .4byte gFieldRenderRectDescriptors + 0x138
 .L080A6EE4:
-	ldr r1, .L080A6F10 @ =gUnk_08106A94
+	ldr r1, .L080A6F10 @ =gFieldRenderRectDescriptors + 0x168
 	mov r0, r8
 	movs r2, #0x19
 	movs r3, #0xf
@@ -17111,13 +17111,13 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A6F18
-	ldr r1, .L080A6F14 @ =gUnk_08106B24
+	ldr r1, .L080A6F14 @ =gFieldRenderRectDescriptors + 0x1F8
 	b .L080A6F1A
 	.align 2, 0
-.L080A6F10: .4byte gUnk_08106A94
-.L080A6F14: .4byte gUnk_08106B24
+.L080A6F10: .4byte gFieldRenderRectDescriptors + 0x168
+.L080A6F14: .4byte gFieldRenderRectDescriptors + 0x1F8
 .L080A6F18:
-	ldr r1, .L080A6F28 @ =gUnk_08106B3C
+	ldr r1, .L080A6F28 @ =gFieldRenderRectDescriptors + 0x210
 .L080A6F1A:
 	mov r0, r8
 	movs r2, #1
@@ -17125,9 +17125,9 @@ func_080A6660: @ 0x080A6660
 	bl func_080A5BD8
 	b .L080A6F38
 	.align 2, 0
-.L080A6F28: .4byte gUnk_08106B3C
+.L080A6F28: .4byte gFieldRenderRectDescriptors + 0x210
 .L080A6F2C:
-	ldr r1, .L080A6F90 @ =gUnk_08106B0C
+	ldr r1, .L080A6F90 @ =gFieldRenderRectDescriptors + 0x1E0
 	mov r0, r8
 	movs r2, #1
 	movs r3, #0x11
@@ -17142,7 +17142,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A6F58
-	ldr r1, .L080A6F94 @ =gUnk_08106BB4
+	ldr r1, .L080A6F94 @ =gFieldRenderRectDescriptors + 0x288
 	mov r0, r8
 	movs r2, #0x13
 	movs r3, #6
@@ -17155,7 +17155,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A6F74
-	ldr r1, .L080A6F98 @ =gUnk_08106BCC
+	ldr r1, .L080A6F98 @ =gFieldRenderRectDescriptors + 0x2A0
 	mov r0, r8
 	movs r2, #8
 	movs r3, #2
@@ -17170,17 +17170,17 @@ func_080A6660: @ 0x080A6660
 	bne .L080A6F86
 	b .L080A746E
 .L080A6F86:
-	ldr r1, .L080A6F9C @ =gUnk_08106BE4
+	ldr r1, .L080A6F9C @ =gFieldRenderRectDescriptors + 0x2B8
 	mov r0, r8
 	movs r2, #5
 	b .L080A70C0
 	.align 2, 0
-.L080A6F90: .4byte gUnk_08106B0C
-.L080A6F94: .4byte gUnk_08106BB4
-.L080A6F98: .4byte gUnk_08106BCC
-.L080A6F9C: .4byte gUnk_08106BE4
+.L080A6F90: .4byte gFieldRenderRectDescriptors + 0x1E0
+.L080A6F94: .4byte gFieldRenderRectDescriptors + 0x288
+.L080A6F98: .4byte gFieldRenderRectDescriptors + 0x2A0
+.L080A6F9C: .4byte gFieldRenderRectDescriptors + 0x2B8
 .L080A6FA0:
-	ldr r1, .L080A701C @ =gUnk_08106A94
+	ldr r1, .L080A701C @ =gFieldRenderRectDescriptors + 0x168
 	mov r0, r8
 	movs r2, #0x28
 	movs r3, #0xf
@@ -17194,7 +17194,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A6FCC
-	ldr r1, .L080A7020 @ =gUnk_08106B54
+	ldr r1, .L080A7020 @ =gFieldRenderRectDescriptors + 0x228
 	mov r0, r8
 	movs r2, #2
 	movs r3, #1
@@ -17206,7 +17206,7 @@ func_080A6660: @ 0x080A6660
 	bl GetFridge__C9FarmHouse
 	cmp r0, #0
 	beq .L080A6FE6
-	ldr r1, .L080A7024 @ =gUnk_08106AC4
+	ldr r1, .L080A7024 @ =gFieldRenderRectDescriptors + 0x198
 	mov r0, r8
 	movs r2, #0xb
 	movs r3, #3
@@ -17218,7 +17218,7 @@ func_080A6660: @ 0x080A6660
 	bl GetShelf__C9FarmHouse
 	cmp r0, #0
 	beq .L080A7000
-	ldr r1, .L080A7028 @ =gUnk_08106AF4
+	ldr r1, .L080A7028 @ =gFieldRenderRectDescriptors + 0x1C8
 	mov r0, r8
 	movs r2, #0xf
 	movs r3, #2
@@ -17234,16 +17234,16 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A7030
-	ldr r1, .L080A702C @ =gUnk_08106B24
+	ldr r1, .L080A702C @ =gFieldRenderRectDescriptors + 0x1F8
 	b .L080A7032
 	.align 2, 0
-.L080A701C: .4byte gUnk_08106A94
-.L080A7020: .4byte gUnk_08106B54
-.L080A7024: .4byte gUnk_08106AC4
-.L080A7028: .4byte gUnk_08106AF4
-.L080A702C: .4byte gUnk_08106B24
+.L080A701C: .4byte gFieldRenderRectDescriptors + 0x168
+.L080A7020: .4byte gFieldRenderRectDescriptors + 0x228
+.L080A7024: .4byte gFieldRenderRectDescriptors + 0x198
+.L080A7028: .4byte gFieldRenderRectDescriptors + 0x1C8
+.L080A702C: .4byte gFieldRenderRectDescriptors + 0x1F8
 .L080A7030:
-	ldr r1, .L080A7040 @ =gUnk_08106B3C
+	ldr r1, .L080A7040 @ =gFieldRenderRectDescriptors + 0x210
 .L080A7032:
 	mov r0, r8
 	movs r2, #0x10
@@ -17251,9 +17251,9 @@ func_080A6660: @ 0x080A6660
 	bl func_080A5BD8
 	b .L080A7050
 	.align 2, 0
-.L080A7040: .4byte gUnk_08106B3C
+.L080A7040: .4byte gFieldRenderRectDescriptors + 0x210
 .L080A7044:
-	ldr r1, .L080A70C8 @ =gUnk_08106B0C
+	ldr r1, .L080A70C8 @ =gFieldRenderRectDescriptors + 0x1E0
 	mov r0, r8
 	movs r2, #0x10
 	movs r3, #0x11
@@ -17268,7 +17268,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A7070
-	ldr r1, .L080A70CC @ =gUnk_08106B9C
+	ldr r1, .L080A70CC @ =gFieldRenderRectDescriptors + 0x270
 	mov r0, r8
 	movs r2, #0x17
 	movs r3, #0xa
@@ -17281,7 +17281,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A708C
-	ldr r1, .L080A70D0 @ =gUnk_08106BB4
+	ldr r1, .L080A70D0 @ =gFieldRenderRectDescriptors + 0x288
 	mov r0, r8
 	movs r2, #0x22
 	movs r3, #6
@@ -17294,7 +17294,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A70A8
-	ldr r1, .L080A70D4 @ =gUnk_08106BCC
+	ldr r1, .L080A70D4 @ =gFieldRenderRectDescriptors + 0x2A0
 	mov r0, r8
 	movs r2, #0x17
 	movs r3, #2
@@ -17309,7 +17309,7 @@ func_080A6660: @ 0x080A6660
 	bne .L080A70BA
 	b .L080A746E
 .L080A70BA:
-	ldr r1, .L080A70D8 @ =gUnk_08106BE4
+	ldr r1, .L080A70D8 @ =gFieldRenderRectDescriptors + 0x2B8
 	mov r0, r8
 	movs r2, #0x14
 .L080A70C0:
@@ -17317,13 +17317,13 @@ func_080A6660: @ 0x080A6660
 	bl func_080A5BD8
 	b .L080A746E
 	.align 2, 0
-.L080A70C8: .4byte gUnk_08106B0C
-.L080A70CC: .4byte gUnk_08106B9C
-.L080A70D0: .4byte gUnk_08106BB4
-.L080A70D4: .4byte gUnk_08106BCC
-.L080A70D8: .4byte gUnk_08106BE4
+.L080A70C8: .4byte gFieldRenderRectDescriptors + 0x1E0
+.L080A70CC: .4byte gFieldRenderRectDescriptors + 0x270
+.L080A70D0: .4byte gFieldRenderRectDescriptors + 0x288
+.L080A70D4: .4byte gFieldRenderRectDescriptors + 0x2A0
+.L080A70D8: .4byte gFieldRenderRectDescriptors + 0x2B8
 .L080A70DC:
-	ldr r1, .L080A7158 @ =gUnk_08106A94
+	ldr r1, .L080A7158 @ =gFieldRenderRectDescriptors + 0x168
 	mov r0, r8
 	movs r2, #0x36
 	movs r3, #0xf
@@ -17337,7 +17337,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A7108
-	ldr r1, .L080A715C @ =gUnk_08106B54
+	ldr r1, .L080A715C @ =gFieldRenderRectDescriptors + 0x228
 	mov r0, r8
 	movs r2, #0xa
 	movs r3, #1
@@ -17349,7 +17349,7 @@ func_080A6660: @ 0x080A6660
 	bl GetFridge__C9FarmHouse
 	cmp r0, #0
 	beq .L080A7122
-	ldr r1, .L080A7160 @ =gUnk_08106AC4
+	ldr r1, .L080A7160 @ =gFieldRenderRectDescriptors + 0x198
 	mov r0, r8
 	movs r2, #0x13
 	movs r3, #3
@@ -17361,7 +17361,7 @@ func_080A6660: @ 0x080A6660
 	bl GetShelf__C9FarmHouse
 	cmp r0, #0
 	beq .L080A713C
-	ldr r1, .L080A7164 @ =gUnk_08106AF4
+	ldr r1, .L080A7164 @ =gFieldRenderRectDescriptors + 0x1C8
 	mov r0, r8
 	movs r2, #0x17
 	movs r3, #2
@@ -17377,16 +17377,16 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A716C
-	ldr r1, .L080A7168 @ =gUnk_08106B24
+	ldr r1, .L080A7168 @ =gFieldRenderRectDescriptors + 0x1F8
 	b .L080A716E
 	.align 2, 0
-.L080A7158: .4byte gUnk_08106A94
-.L080A715C: .4byte gUnk_08106B54
-.L080A7160: .4byte gUnk_08106AC4
-.L080A7164: .4byte gUnk_08106AF4
-.L080A7168: .4byte gUnk_08106B24
+.L080A7158: .4byte gFieldRenderRectDescriptors + 0x168
+.L080A715C: .4byte gFieldRenderRectDescriptors + 0x228
+.L080A7160: .4byte gFieldRenderRectDescriptors + 0x198
+.L080A7164: .4byte gFieldRenderRectDescriptors + 0x1C8
+.L080A7168: .4byte gFieldRenderRectDescriptors + 0x1F8
 .L080A716C:
-	ldr r1, .L080A717C @ =gUnk_08106B3C
+	ldr r1, .L080A717C @ =gFieldRenderRectDescriptors + 0x210
 .L080A716E:
 	mov r0, r8
 	movs r2, #0x18
@@ -17394,15 +17394,15 @@ func_080A6660: @ 0x080A6660
 	bl func_080A5BD8
 	b .L080A718C
 	.align 2, 0
-.L080A717C: .4byte gUnk_08106B3C
+.L080A717C: .4byte gFieldRenderRectDescriptors + 0x210
 .L080A7180:
-	ldr r1, .L080A7244 @ =gUnk_08106B0C
+	ldr r1, .L080A7244 @ =gFieldRenderRectDescriptors + 0x1E0
 	mov r0, r8
 	movs r2, #0x18
 	movs r3, #0x11
 	bl func_080A5BD8
 .L080A718C:
-	ldr r1, .L080A7248 @ =gUnk_08106B6C
+	ldr r1, .L080A7248 @ =gFieldRenderRectDescriptors + 0x240
 	mov r0, r8
 	movs r2, #4
 	movs r3, #1
@@ -17416,7 +17416,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A71B8
-	ldr r1, .L080A724C @ =gUnk_08106B84
+	ldr r1, .L080A724C @ =gFieldRenderRectDescriptors + 0x258
 	mov r0, r8
 	movs r2, #0x34
 	movs r3, #5
@@ -17429,7 +17429,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A71D4
-	ldr r1, .L080A7250 @ =gUnk_08106B9C
+	ldr r1, .L080A7250 @ =gFieldRenderRectDescriptors + 0x270
 	mov r0, r8
 	movs r2, #0x1f
 	movs r3, #0xa
@@ -17442,7 +17442,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A71F0
-	ldr r1, .L080A7254 @ =gUnk_08106BB4
+	ldr r1, .L080A7254 @ =gFieldRenderRectDescriptors + 0x288
 	mov r0, r8
 	movs r2, #0x2a
 	movs r3, #6
@@ -17455,7 +17455,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A720C
-	ldr r1, .L080A7258 @ =gUnk_08106BCC
+	ldr r1, .L080A7258 @ =gFieldRenderRectDescriptors + 0x2A0
 	mov r0, r8
 	movs r2, #0x1f
 	movs r3, #2
@@ -17468,7 +17468,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A7228
-	ldr r1, .L080A725C @ =gUnk_08106BE4
+	ldr r1, .L080A725C @ =gFieldRenderRectDescriptors + 0x2B8
 	mov r0, r8
 	movs r2, #0x1c
 	movs r3, #3
@@ -17488,13 +17488,13 @@ func_080A6660: @ 0x080A6660
 	bl func_080AA850
 	b .L080A746E
 	.align 2, 0
-.L080A7244: .4byte gUnk_08106B0C
-.L080A7248: .4byte gUnk_08106B6C
-.L080A724C: .4byte gUnk_08106B84
-.L080A7250: .4byte gUnk_08106B9C
-.L080A7254: .4byte gUnk_08106BB4
-.L080A7258: .4byte gUnk_08106BCC
-.L080A725C: .4byte gUnk_08106BE4
+.L080A7244: .4byte gFieldRenderRectDescriptors + 0x1E0
+.L080A7248: .4byte gFieldRenderRectDescriptors + 0x240
+.L080A724C: .4byte gFieldRenderRectDescriptors + 0x258
+.L080A7250: .4byte gFieldRenderRectDescriptors + 0x270
+.L080A7254: .4byte gFieldRenderRectDescriptors + 0x288
+.L080A7258: .4byte gFieldRenderRectDescriptors + 0x2A0
+.L080A725C: .4byte gFieldRenderRectDescriptors + 0x2B8
 .L080A7260:
 	mov r3, sb
 	ldr r0, [r3]
@@ -17566,7 +17566,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A72FA
-	ldr r1, .L080A7338 @ =gUnk_08106C2C
+	ldr r1, .L080A7338 @ =gFieldRenderRectDescriptors + 0x300
 	mov r0, r8
 	movs r2, #2
 	movs r3, #5
@@ -17601,7 +17601,7 @@ func_080A6660: @ 0x080A6660
 	bl func_080A63B8
 	b .L080A746E
 	.align 2, 0
-.L080A7338: .4byte gUnk_08106C2C
+.L080A7338: .4byte gFieldRenderRectDescriptors + 0x300
 .L080A733C:
 	mov r2, sb
 	ldr r0, [r2]
@@ -17698,7 +17698,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A7406
-	ldr r1, .L080A7420 @ =gUnk_08106C5C
+	ldr r1, .L080A7420 @ =gFieldRenderRectDescriptors + 0x330
 	mov r0, r8
 	movs r2, #0xc
 	movs r3, #5
@@ -17709,15 +17709,15 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A746E
-	ldr r1, .L080A7424 @ =gUnk_08106C44
+	ldr r1, .L080A7424 @ =gFieldRenderRectDescriptors + 0x318
 	mov r0, r8
 	movs r2, #8
 	movs r3, #5
 	bl func_080A5BD8
 	b .L080A746E
 	.align 2, 0
-.L080A7420: .4byte gUnk_08106C5C
-.L080A7424: .4byte gUnk_08106C44
+.L080A7420: .4byte gFieldRenderRectDescriptors + 0x330
+.L080A7424: .4byte gFieldRenderRectDescriptors + 0x318
 .L080A7428:
 	mov r3, sb
 	ldr r0, [r3]
@@ -17725,16 +17725,16 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A746E
-	ldr r1, .L080A7444 @ =gUnk_08106D4C
+	ldr r1, .L080A7444 @ =gFieldRenderRectDescriptors + 0x420
 	mov r0, r8
 	movs r2, #0x24
 	movs r3, #2
 	bl func_080A5BD8
 	b .L080A746E
 	.align 2, 0
-.L080A7444: .4byte gUnk_08106D4C
+.L080A7444: .4byte gFieldRenderRectDescriptors + 0x420
 .L080A7448:
-	ldr r1, .L080A7484 @ =gUnk_08106CA4
+	ldr r1, .L080A7484 @ =gFieldRenderRectDescriptors + 0x378
 	mov r0, r8
 	movs r2, #0x20
 	movs r3, #0x20
@@ -17745,7 +17745,7 @@ func_080A6660: @ 0x080A6660
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L080A746E
-	ldr r1, .L080A7488 @ =gUnk_08106D64
+	ldr r1, .L080A7488 @ =gFieldRenderRectDescriptors + 0x438
 	mov r0, r8
 	movs r2, #0x24
 	movs r3, #2
@@ -17762,8 +17762,8 @@ func_080A6660: @ 0x080A6660
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080A7484: .4byte gUnk_08106CA4
-.L080A7488: .4byte gUnk_08106D64
+.L080A7484: .4byte gFieldRenderRectDescriptors + 0x378
+.L080A7488: .4byte gFieldRenderRectDescriptors + 0x438
 
 	thumb_func_start func_080A748C
 func_080A748C: @ 0x080A748C
@@ -24583,7 +24583,7 @@ func_080AA850: @ 0x080AA850
 func_080AA89C: @ 0x080AA89C
 	push {r4, lr}
 	adds r4, r0, #0
-	ldr r1, .L080AA8B8 @ =gUnk_08106DAC
+	ldr r1, .L080AA8B8 @ =gFieldRenderRectDescriptors + 0x480
 	movs r2, #0x21
 	movs r3, #0x14
 	bl func_080A5BD8
@@ -24594,13 +24594,13 @@ func_080AA89C: @ 0x080AA89C
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080AA8B8: .4byte gUnk_08106DAC
+.L080AA8B8: .4byte gFieldRenderRectDescriptors + 0x480
 
 	thumb_func_start func_080AA8BC
 func_080AA8BC: @ 0x080AA8BC
 	push {r4, lr}
 	adds r4, r0, #0
-	ldr r1, .L080AA8D8 @ =gUnk_08106DAC
+	ldr r1, .L080AA8D8 @ =gFieldRenderRectDescriptors + 0x480
 	movs r2, #0x21
 	movs r3, #0x17
 	bl func_080A5BD8
@@ -24611,7 +24611,7 @@ func_080AA8BC: @ 0x080AA8BC
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L080AA8D8: .4byte gUnk_08106DAC
+.L080AA8D8: .4byte gFieldRenderRectDescriptors + 0x480
 
 	thumb_func_start func_080AA8DC
 func_080AA8DC: @ 0x080AA8DC

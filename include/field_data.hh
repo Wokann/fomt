@@ -34,11 +34,25 @@ struct FieldPlotPositionRule
     u32 result;
 };
 
+// The two bytes after height in the ROM layout are natural alignment before
+// the pointer fields; they are not a separate data member.
+struct FieldRenderRectDescriptor
+{
+    u8 width;
+    u8 height;
+    void const * source_buffers[3];
+    void const * lookup_values;
+    void const * lookup_indices;
+};
+
+#define FIELD_RENDER_RECT_DESCRIPTOR_COUNT 52
+
 extern FieldPlotWeatherRule const gFieldPlotOrdinaryWeatherRules[4][2];
 extern FieldPlotWeatherRule const gFieldPlotSpecialWeatherRule3;
 extern FieldPlotWeatherRule const gFieldPlotSpecialWeatherRule4;
 extern u32 const gFieldPlotGrowthStageTransitions[21][21];
 extern FieldPlotTypeDefinition const gFieldPlotTypeDefinitions[39];
+extern FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_RECT_DESCRIPTOR_COUNT];
 extern u16 const gFieldPlotPositionValues[7][4];
 extern FieldPlotPositionRule const gFieldPlotPositionRules[8];
 extern char const gCppRuntimeBadAlloc_FieldPlotPositionRules[];

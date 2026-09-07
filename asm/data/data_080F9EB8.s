@@ -76,69 +76,72 @@
     .section .rodata.character_names_table_trailer
     .incbin "baserom_jp.gba", 0x103EF4, (0x10447C - 0x103EF4)
 
-    .section .rodata.map_data_after
-    .global gUnk_08106474
-gUnk_08106474:
-    .incbin "baserom_jp.gba", 0x106474, (0x1070F4 - 0x106474)
+    .section .rodata.field_render_rect_descriptors_after
+    .global gUnk_08106954
+gUnk_08106954:
+    .incbin "baserom_jp.gba", 0x106954, (0x1070F4 - 0x106954)
+
+    @ These labels identify the still-raw targets of gFieldRenderRectDescriptors.
+    @ Their payload types are not known yet.
+    .global gUnk_FieldRenderResource_158
+    .set gUnk_FieldRenderResource_158, gUnk_08106954 + 0x544
+    .global gUnk_FieldRenderResource_159
+    .set gUnk_FieldRenderResource_159, gUnk_08106954 + 0x548
 
     @ These aliases identify the still-raw targets of gActorDataSelectionEntries.
     @ Their payload types are not known yet.
     .global gUnk_ActorDataSelection_00_00
-    .set gUnk_ActorDataSelection_00_00, gUnk_08106474 + 0x4F8
+    .set gUnk_ActorDataSelection_00_00, gUnk_08106954 + 0x18
     .global gUnk_ActorDataSelection_00_04
-    .set gUnk_ActorDataSelection_00_04, gUnk_08106474 + 0x510
+    .set gUnk_ActorDataSelection_00_04, gUnk_08106954 + 0x30
     .global gUnk_ActorDataSelection_01_00
-    .set gUnk_ActorDataSelection_01_00, gUnk_08106474 + 0x528
+    .set gUnk_ActorDataSelection_01_00, gUnk_08106954 + 0x48
     .global gUnk_ActorDataSelection_01_04
-    .set gUnk_ActorDataSelection_01_04, gUnk_08106474 + 0x540
+    .set gUnk_ActorDataSelection_01_04, gUnk_08106954 + 0x60
     .global gUnk_ActorDataSelection_02_00
-    .set gUnk_ActorDataSelection_02_00, gUnk_08106474 + 0x558
+    .set gUnk_ActorDataSelection_02_00, gUnk_08106954 + 0x78
     .global gUnk_ActorDataSelection_02_04
-    .set gUnk_ActorDataSelection_02_04, gUnk_08106474 + 0x570
+    .set gUnk_ActorDataSelection_02_04, gUnk_08106954 + 0x90
     .global gUnk_ActorDataSelection_03_00
-    .set gUnk_ActorDataSelection_03_00, gUnk_08106474 + 0x588
+    .set gUnk_ActorDataSelection_03_00, gUnk_08106954 + 0xA8
     .global gUnk_ActorDataSelection_03_04
-    .set gUnk_ActorDataSelection_03_04, gUnk_08106474 + 0x5A0
+    .set gUnk_ActorDataSelection_03_04, gUnk_08106954 + 0xC0
     .global gUnk_ActorDataSelection_04_00
-    .set gUnk_ActorDataSelection_04_00, gUnk_08106474 + 0x5B8
+    .set gUnk_ActorDataSelection_04_00, gUnk_08106954 + 0xD8
     .global gUnk_ActorDataSelection_04_04
-    .set gUnk_ActorDataSelection_04_04, gUnk_08106474 + 0x5D0
+    .set gUnk_ActorDataSelection_04_04, gUnk_08106954 + 0xF0
     .global gUnk_ActorDataSelection_05_00
-    .set gUnk_ActorDataSelection_05_00, gUnk_08106474 + 0x5E8
+    .set gUnk_ActorDataSelection_05_00, gUnk_08106954 + 0x108
     .global gUnk_ActorDataSelection_05_04
-    .set gUnk_ActorDataSelection_05_04, gUnk_08106474 + 0x600
+    .set gUnk_ActorDataSelection_05_04, gUnk_08106954 + 0x120
     .global gUnk_ActorDataSelection_06_00
-    .set gUnk_ActorDataSelection_06_00, gUnk_08106474 + 0x618
+    .set gUnk_ActorDataSelection_06_00, gUnk_08106954 + 0x138
     .global gUnk_ActorDataSelection_06_04
-    .set gUnk_ActorDataSelection_06_04, gUnk_08106474 + 0x630
+    .set gUnk_ActorDataSelection_06_04, gUnk_08106954 + 0x150
     .global gUnk_ActorDataSelection_07_00
-    .set gUnk_ActorDataSelection_07_00, gUnk_08106474 + 0x648
+    .set gUnk_ActorDataSelection_07_00, gUnk_08106954 + 0x168
     .global gUnk_ActorDataSelection_07_04
-    .set gUnk_ActorDataSelection_07_04, gUnk_08106474 + 0x660
+    .set gUnk_ActorDataSelection_07_04, gUnk_08106954 + 0x180
     .global gUnk_ActorDataSelection_08_00
-    .set gUnk_ActorDataSelection_08_00, gUnk_08106474 + 0x6D8
+    .set gUnk_ActorDataSelection_08_00, gUnk_08106954 + 0x1F8
     .global gUnk_ActorDataSelection_08_04
-    .set gUnk_ActorDataSelection_08_04, gUnk_08106474 + 0x6F0
+    .set gUnk_ActorDataSelection_08_04, gUnk_08106954 + 0x210
     .global gUnk_ActorDataSelection_09_00
-    .set gUnk_ActorDataSelection_09_00, gUnk_08106474 + 0x708
+    .set gUnk_ActorDataSelection_09_00, gUnk_08106954 + 0x228
     .global gUnk_ActorDataSelection_09_04
-    .set gUnk_ActorDataSelection_09_04, gUnk_08106474 + 0x720
+    .set gUnk_ActorDataSelection_09_04, gUnk_08106954 + 0x240
     .global gUnk_ActorDataSelection_10_00
-    .set gUnk_ActorDataSelection_10_00, gUnk_08106474 + 0x678
+    .set gUnk_ActorDataSelection_10_00, gUnk_08106954 + 0x198
     .global gUnk_ActorDataSelection_10_04
-    .set gUnk_ActorDataSelection_10_04, gUnk_08106474 + 0x690
+    .set gUnk_ActorDataSelection_10_04, gUnk_08106954 + 0x1B0
     .global gUnk_ActorDataSelection_11_00
-    .set gUnk_ActorDataSelection_11_00, gUnk_08106474 + 0x6A8
+    .set gUnk_ActorDataSelection_11_00, gUnk_08106954 + 0x1C8
     .global gUnk_ActorDataSelection_11_04
-    .set gUnk_ActorDataSelection_11_04, gUnk_08106474 + 0x6C0
-    .global gUnk_ActorDataSelection_12_00
-    .set gUnk_ActorDataSelection_12_00, gUnk_08106474 + 0x2E8
-    .global gUnk_ActorDataSelection_12_04
-    .set gUnk_ActorDataSelection_12_04, gUnk_08106474 + 0x2D0
+    .set gUnk_ActorDataSelection_11_04, gUnk_08106954 + 0x1E0
     .global gUnk_ActorDataSelection_13_00
-    .set gUnk_ActorDataSelection_13_00, gUnk_08106474 + 0x738
+    .set gUnk_ActorDataSelection_13_00, gUnk_08106954 + 0x258
     .global gUnk_ActorDataSelection_13_04
-    .set gUnk_ActorDataSelection_13_04, gUnk_08106474 + 0x750
+    .set gUnk_ActorDataSelection_13_04, gUnk_08106954 + 0x270
 
     .section .rodata.harvest_sprite_minigames_animal_husbandry_trailer
     .incbin "baserom_jp.gba", 0x10737B, (0x1073B9 - 0x10737B)
@@ -396,6 +399,156 @@ gUnk_08118CF4:
     .set gUnk_MapDataResource_288, gUnk_08118CF4 + 0x21B6C
     .global gUnk_MapDataResource_289
     .set gUnk_MapDataResource_289, gUnk_08118CF4 + 0x21B90
+    @ Region-neutral labels for FieldRenderRectDescriptor raw resources.
+    @ Their payload types are not decoded yet.
+    .global gUnk_FieldRenderResource_146
+    .set gUnk_FieldRenderResource_146, gUnk_08118CF4 + 0x24
+    .global gUnk_FieldRenderResource_147
+    .set gUnk_FieldRenderResource_147, gUnk_08118CF4 + 0x30
+    .global gUnk_FieldRenderResource_120
+    .set gUnk_FieldRenderResource_120, gUnk_08118CF4 + 0x3BF8
+    .global gUnk_FieldRenderResource_121
+    .set gUnk_FieldRenderResource_121, gUnk_08118CF4 + 0x3C0C
+    .global gUnk_FieldRenderResource_137
+    .set gUnk_FieldRenderResource_137, gUnk_08118CF4 + 0x5A38
+    .global gUnk_FieldRenderResource_138
+    .set gUnk_FieldRenderResource_138, gUnk_08118CF4 + 0x5A48
+    .global gUnk_FieldRenderResource_130
+    .set gUnk_FieldRenderResource_130, gUnk_08118CF4 + 0x5D60
+    .global gUnk_FieldRenderResource_131
+    .set gUnk_FieldRenderResource_131, gUnk_08118CF4 + 0x5D74
+    .global gUnk_FieldRenderResource_141
+    .set gUnk_FieldRenderResource_141, gUnk_08118CF4 + 0x5EC8
+    .global gUnk_FieldRenderResource_142
+    .set gUnk_FieldRenderResource_142, gUnk_08118CF4 + 0x5ED0
+    .global gUnk_FieldRenderResource_041
+    .set gUnk_FieldRenderResource_041, gUnk_08118CF4 + 0x7130
+    .global gUnk_FieldRenderResource_042
+    .set gUnk_FieldRenderResource_042, gUnk_08118CF4 + 0x713C
+    .global gUnk_FieldRenderResource_033
+    .set gUnk_FieldRenderResource_033, gUnk_08118CF4 + 0x722C
+    .global gUnk_FieldRenderResource_034
+    .set gUnk_FieldRenderResource_034, gUnk_08118CF4 + 0x7238
+    .global gUnk_FieldRenderResource_014
+    .set gUnk_FieldRenderResource_014, gUnk_08118CF4 + 0x9F00
+    .global gUnk_FieldRenderResource_015
+    .set gUnk_FieldRenderResource_015, gUnk_08118CF4 + 0x9F0C
+    .global gUnk_FieldRenderResource_008
+    .set gUnk_FieldRenderResource_008, gUnk_08118CF4 + 0xA044
+    .global gUnk_FieldRenderResource_009
+    .set gUnk_FieldRenderResource_009, gUnk_08118CF4 + 0xA050
+    .global gUnk_FieldRenderResource_002
+    .set gUnk_FieldRenderResource_002, gUnk_08118CF4 + 0xA120
+    .global gUnk_FieldRenderResource_003
+    .set gUnk_FieldRenderResource_003, gUnk_08118CF4 + 0xA12C
+    .global gUnk_FieldRenderResource_026
+    .set gUnk_FieldRenderResource_026, gUnk_08118CF4 + 0xA194
+    .global gUnk_FieldRenderResource_027
+    .set gUnk_FieldRenderResource_027, gUnk_08118CF4 + 0xA1A0
+    .global gUnk_FieldRenderResource_020
+    .set gUnk_FieldRenderResource_020, gUnk_08118CF4 + 0xA2D4
+    .global gUnk_FieldRenderResource_021
+    .set gUnk_FieldRenderResource_021, gUnk_08118CF4 + 0xA2E0
+    .global gUnk_FieldRenderResource_155
+    .set gUnk_FieldRenderResource_155, gUnk_08118CF4 + 0xCD4C
+    .global gUnk_FieldRenderResource_156
+    .set gUnk_FieldRenderResource_156, gUnk_08118CF4 + 0xCD50
+    .global gUnk_FieldRenderResource_152
+    .set gUnk_FieldRenderResource_152, gUnk_08118CF4 + 0xD39C
+    .global gUnk_FieldRenderResource_153
+    .set gUnk_FieldRenderResource_153, gUnk_08118CF4 + 0xD3A0
+    .global gUnk_FieldRenderResource_167
+    .set gUnk_FieldRenderResource_167, gUnk_08118CF4 + 0xD3A8
+    .global gUnk_FieldRenderResource_168
+    .set gUnk_FieldRenderResource_168, gUnk_08118CF4 + 0xD3AC
+    .global gUnk_FieldRenderResource_161
+    .set gUnk_FieldRenderResource_161, gUnk_08118CF4 + 0xD3DC
+    .global gUnk_FieldRenderResource_162
+    .set gUnk_FieldRenderResource_162, gUnk_08118CF4 + 0xD3E0
+    .global gUnk_FieldRenderResource_164
+    .set gUnk_FieldRenderResource_164, gUnk_08118CF4 + 0xD410
+    .global gUnk_FieldRenderResource_165
+    .set gUnk_FieldRenderResource_165, gUnk_08118CF4 + 0xD414
+    .global gUnk_FieldRenderResource_108
+    .set gUnk_FieldRenderResource_108, gUnk_08118CF4 + 0xD444
+    .global gUnk_FieldRenderResource_109
+    .set gUnk_FieldRenderResource_109, gUnk_08118CF4 + 0xD44C
+    .global gUnk_FieldRenderResource_104
+    .set gUnk_FieldRenderResource_104, gUnk_08118CF4 + 0x11C34
+    .global gUnk_FieldRenderResource_105
+    .set gUnk_FieldRenderResource_105, gUnk_08118CF4 + 0x11C38
+    .global gUnk_FieldRenderResource_090
+    .set gUnk_FieldRenderResource_090, gUnk_08118CF4 + 0x11C48
+    .global gUnk_FieldRenderResource_091
+    .set gUnk_FieldRenderResource_091, gUnk_08118CF4 + 0x11C50
+    .global gUnk_FieldRenderResource_100
+    .set gUnk_FieldRenderResource_100, gUnk_08118CF4 + 0x11C80
+    .global gUnk_FieldRenderResource_101
+    .set gUnk_FieldRenderResource_101, gUnk_08118CF4 + 0x11C8C
+    .global gUnk_FieldRenderResource_084
+    .set gUnk_FieldRenderResource_084, gUnk_08118CF4 + 0x11CA0
+    .global gUnk_FieldRenderResource_085
+    .set gUnk_FieldRenderResource_085, gUnk_08118CF4 + 0x11CAC
+    .global gUnk_FieldRenderResource_097
+    .set gUnk_FieldRenderResource_097, gUnk_08118CF4 + 0x123EC
+    .global gUnk_FieldRenderResource_098
+    .set gUnk_FieldRenderResource_098, gUnk_08118CF4 + 0x123F0
+    .global gUnk_FieldRenderResource_072
+    .set gUnk_FieldRenderResource_072, gUnk_08118CF4 + 0x1291C
+    .global gUnk_FieldRenderResource_073
+    .set gUnk_FieldRenderResource_073, gUnk_08118CF4 + 0x12924
+    .global gUnk_FieldRenderResource_080
+    .set gUnk_FieldRenderResource_080, gUnk_08118CF4 + 0x12930
+    .global gUnk_FieldRenderResource_081
+    .set gUnk_FieldRenderResource_081, gUnk_08118CF4 + 0x12938
+    .global gUnk_FieldRenderResource_076
+    .set gUnk_FieldRenderResource_076, gUnk_08118CF4 + 0x12944
+    .global gUnk_FieldRenderResource_077
+    .set gUnk_FieldRenderResource_077, gUnk_08118CF4 + 0x1294C
+    .global gUnk_FieldRenderResource_060
+    .set gUnk_FieldRenderResource_060, gUnk_08118CF4 + 0x12958
+    .global gUnk_FieldRenderResource_061
+    .set gUnk_FieldRenderResource_061, gUnk_08118CF4 + 0x12960
+    .global gUnk_FieldRenderResource_056
+    .set gUnk_FieldRenderResource_056, gUnk_08118CF4 + 0x12978
+    .global gUnk_FieldRenderResource_057
+    .set gUnk_FieldRenderResource_057, gUnk_08118CF4 + 0x12980
+    .global gUnk_FieldRenderResource_068
+    .set gUnk_FieldRenderResource_068, gUnk_08118CF4 + 0x12998
+    .global gUnk_FieldRenderResource_069
+    .set gUnk_FieldRenderResource_069, gUnk_08118CF4 + 0x129A0
+    .global gUnk_FieldRenderResource_064
+    .set gUnk_FieldRenderResource_064, gUnk_08118CF4 + 0x129BC
+    .global gUnk_FieldRenderResource_065
+    .set gUnk_FieldRenderResource_065, gUnk_08118CF4 + 0x129C0
+    .global gUnk_FieldRenderResource_087
+    .set gUnk_FieldRenderResource_087, gUnk_08118CF4 + 0x129DC
+    .global gUnk_FieldRenderResource_088
+    .set gUnk_FieldRenderResource_088, gUnk_08118CF4 + 0x129E8
+    .global gUnk_FieldRenderResource_052
+    .set gUnk_FieldRenderResource_052, gUnk_08118CF4 + 0x12D90
+    .global gUnk_FieldRenderResource_053
+    .set gUnk_FieldRenderResource_053, gUnk_08118CF4 + 0x12D98
+    .global gUnk_FieldRenderResource_048
+    .set gUnk_FieldRenderResource_048, gUnk_08118CF4 + 0x12DB0
+    .global gUnk_FieldRenderResource_049
+    .set gUnk_FieldRenderResource_049, gUnk_08118CF4 + 0x12DB8
+    .global gUnk_FieldRenderResource_094
+    .set gUnk_FieldRenderResource_094, gUnk_08118CF4 + 0x12DD0
+    .global gUnk_FieldRenderResource_095
+    .set gUnk_FieldRenderResource_095, gUnk_08118CF4 + 0x12DD4
+    .global gUnk_FieldRenderResource_116
+    .set gUnk_FieldRenderResource_116, gUnk_08118CF4 + 0x1BE7C
+    .global gUnk_FieldRenderResource_117
+    .set gUnk_FieldRenderResource_117, gUnk_08118CF4 + 0x1BE84
+    .global gUnk_FieldRenderResource_112
+    .set gUnk_FieldRenderResource_112, gUnk_08118CF4 + 0x1D05C
+    .global gUnk_FieldRenderResource_113
+    .set gUnk_FieldRenderResource_113, gUnk_08118CF4 + 0x1D064
+    .global gUnk_FieldRenderResource_124
+    .set gUnk_FieldRenderResource_124, gUnk_08118CF4 + 0x1FF8C
+    .global gUnk_FieldRenderResource_125
+    .set gUnk_FieldRenderResource_125, gUnk_08118CF4 + 0x1FF9C
     .else
     .section .rodata.localized_data_prefix
 
@@ -719,211 +872,18 @@ gUnk_081040EC:
 gUnk_081043BC:
 	.incbin "baserom_us.gba", 0x1043BC, 0x57C
 
-	.section .rodata.map_data_after
-
-	.global gUnk_0810692C
-gUnk_0810692C:
-	.incbin "baserom_us.gba", 0x10692C, 0x18
-
-	.global gUnk_08106944
-gUnk_08106944:
-	.incbin "baserom_us.gba", 0x106944, 0x18
-
-	.global gUnk_0810695C
-gUnk_0810695C:
-	.incbin "baserom_us.gba", 0x10695C, 0x18
-
-	.global gUnk_08106974
-gUnk_08106974:
-	.incbin "baserom_us.gba", 0x106974, 0x18
-
-	.global gUnk_0810698C
-gUnk_0810698C:
-	.incbin "baserom_us.gba", 0x10698C, 0x18
-
-	.global gUnk_081069A4
-gUnk_081069A4:
-	.incbin "baserom_us.gba", 0x1069A4, 0x18
-
-	.global gUnk_081069BC
-gUnk_081069BC:
-	.incbin "baserom_us.gba", 0x1069BC, 0x18
-
-	.global gUnk_081069D4
-gUnk_081069D4:
-	.incbin "baserom_us.gba", 0x1069D4, 0x18
-
-	.global gUnk_081069EC
-gUnk_081069EC:
-	.incbin "baserom_us.gba", 0x1069EC, 0x18
-
-	.global gUnk_08106A04
-gUnk_08106A04:
-	.incbin "baserom_us.gba", 0x106A04, 0x18
-
-	.global gUnk_08106A1C
-gUnk_08106A1C:
-	.incbin "baserom_us.gba", 0x106A1C, 0x18
-
-	.global gUnk_08106A34
-gUnk_08106A34:
-	.incbin "baserom_us.gba", 0x106A34, 0x18
-
-	.global gUnk_08106A4C
-gUnk_08106A4C:
-	.incbin "baserom_us.gba", 0x106A4C, 0x18
-
-	.global gUnk_08106A64
-gUnk_08106A64:
-	.incbin "baserom_us.gba", 0x106A64, 0x18
-
-	.global gUnk_08106A7C
-gUnk_08106A7C:
-	.incbin "baserom_us.gba", 0x106A7C, 0x18
-
-	.global gUnk_08106A94
-gUnk_08106A94:
-	.incbin "baserom_us.gba", 0x106A94, 0x18
-
-	.global gUnk_08106AAC
-gUnk_08106AAC:
-	.incbin "baserom_us.gba", 0x106AAC, 0x18
-
-	.global gUnk_08106AC4
-gUnk_08106AC4:
-	.incbin "baserom_us.gba", 0x106AC4, 0x18
-
-	.global gUnk_08106ADC
-gUnk_08106ADC:
-	.incbin "baserom_us.gba", 0x106ADC, 0x18
-
-	.global gUnk_08106AF4
-gUnk_08106AF4:
-	.incbin "baserom_us.gba", 0x106AF4, 0x18
-
-	.global gUnk_08106B0C
-gUnk_08106B0C:
-	.incbin "baserom_us.gba", 0x106B0C, 0x18
-
-	.global gUnk_08106B24
-gUnk_08106B24:
-	.incbin "baserom_us.gba", 0x106B24, 0x18
-
-	.global gUnk_08106B3C
-gUnk_08106B3C:
-	.incbin "baserom_us.gba", 0x106B3C, 0x18
-
-	.global gUnk_08106B54
-gUnk_08106B54:
-	.incbin "baserom_us.gba", 0x106B54, 0x18
-
-	.global gUnk_08106B6C
-gUnk_08106B6C:
-	.incbin "baserom_us.gba", 0x106B6C, 0x18
-
-	.global gUnk_08106B84
-gUnk_08106B84:
-	.incbin "baserom_us.gba", 0x106B84, 0x18
-
-	.global gUnk_08106B9C
-gUnk_08106B9C:
-	.incbin "baserom_us.gba", 0x106B9C, 0x18
-
-	.global gUnk_08106BB4
-gUnk_08106BB4:
-	.incbin "baserom_us.gba", 0x106BB4, 0x18
-
-	.global gUnk_08106BCC
-gUnk_08106BCC:
-	.incbin "baserom_us.gba", 0x106BCC, 0x18
-
-	.global gUnk_08106BE4
-gUnk_08106BE4:
-	.incbin "baserom_us.gba", 0x106BE4, 0x48
-
-	.global gUnk_08106C2C
-gUnk_08106C2C:
-	.incbin "baserom_us.gba", 0x106C2C, 0x18
-
-	.global gUnk_08106C44
-gUnk_08106C44:
-	.incbin "baserom_us.gba", 0x106C44, 0x18
-
-	.global gUnk_08106C5C
-gUnk_08106C5C:
-	.incbin "baserom_us.gba", 0x106C5C, 0x18
-
-	.global gUnk_08106C74
-gUnk_08106C74:
-	.incbin "baserom_us.gba", 0x106C74, 0x18
-
-	.global gUnk_08106C8C
-gUnk_08106C8C:
-	.incbin "baserom_us.gba", 0x106C8C, 0x18
-
-	.global gUnk_08106CA4
-gUnk_08106CA4:
-	.incbin "baserom_us.gba", 0x106CA4, 0x18
-
-	.global gUnk_08106CBC
-gUnk_08106CBC:
-	.incbin "baserom_us.gba", 0x106CBC, 0x18
-
-	.global gUnk_08106CD4
-gUnk_08106CD4:
-	.incbin "baserom_us.gba", 0x106CD4, 0x18
-
-	.global gUnk_08106CEC
-gUnk_08106CEC:
-	.incbin "baserom_us.gba", 0x106CEC, 0x18
-
-	.global gUnk_08106D04
-gUnk_08106D04:
-	.incbin "baserom_us.gba", 0x106D04, 0x18
-
-	.global gUnk_08106D1C
-gUnk_08106D1C:
-	.incbin "baserom_us.gba", 0x106D1C, 0x18
-
-	.global gUnk_08106D34
-gUnk_08106D34:
-	.incbin "baserom_us.gba", 0x106D34, 0x18
-
-	.global gUnk_08106D4C
-gUnk_08106D4C:
-	.incbin "baserom_us.gba", 0x106D4C, 0x18
-
-	.global gUnk_08106D64
-gUnk_08106D64:
-	.incbin "baserom_us.gba", 0x106D64, 0x18
-
-	.global gUnk_08106D7C
-gUnk_08106D7C:
-	.incbin "baserom_us.gba", 0x106D7C, 0x18
-
-	.global gUnk_08106D94
-gUnk_08106D94:
-	.incbin "baserom_us.gba", 0x106D94, 0x18
-
-	.global gUnk_08106DAC
-gUnk_08106DAC:
-	.incbin "baserom_us.gba", 0x106DAC, 0x18
-
-	.global gUnk_08106DC4
-gUnk_08106DC4:
-	.incbin "baserom_us.gba", 0x106DC4, 0x18
-
-	.global gUnk_08106DDC
-gUnk_08106DDC:
-	.incbin "baserom_us.gba", 0x106DDC, 0x18
-
-	.global gUnk_08106DF4
-gUnk_08106DF4:
-	.incbin "baserom_us.gba", 0x106DF4, 0x18
+    .section .rodata.field_render_rect_descriptors_after
 
     .global gUnk_08106E0C
 gUnk_08106E0C:
 	.incbin "baserom_us.gba", 0x106E0C, 0x288
+
+	@ These aliases identify the still-raw targets of gFieldRenderRectDescriptors.
+	@ Their payload types are not known yet.
+	.global gUnk_FieldRenderResource_158
+	.set gUnk_FieldRenderResource_158, gUnk_08106E0C + 0x544
+	.global gUnk_FieldRenderResource_159
+	.set gUnk_FieldRenderResource_159, gUnk_08106E0C + 0x548
 
 	@ These aliases identify the still-raw targets of gActorDataSelectionEntries.
 	@ Their payload types are not known yet.
@@ -975,10 +935,6 @@ gUnk_08106E0C:
 	.set gUnk_ActorDataSelection_11_00, gUnk_08106E0C + 0x1C8
 	.global gUnk_ActorDataSelection_11_04
 	.set gUnk_ActorDataSelection_11_04, gUnk_08106E0C + 0x1E0
-	.global gUnk_ActorDataSelection_12_00
-	.set gUnk_ActorDataSelection_12_00, gUnk_08106BE4 + 0x30
-	.global gUnk_ActorDataSelection_12_04
-	.set gUnk_ActorDataSelection_12_04, gUnk_08106BE4 + 0x18
 	.global gUnk_ActorDataSelection_13_00
 	.set gUnk_ActorDataSelection_13_00, gUnk_08106E0C + 0x258
 	.global gUnk_ActorDataSelection_13_04
@@ -1677,6 +1633,157 @@ gUnk_08117BC8:
 	.set gUnk_MapDataResource_288, gUnk_08117BC8 + 0x21B54
 	.global gUnk_MapDataResource_289
 	.set gUnk_MapDataResource_289, gUnk_08117BC8 + 0x21B78
+
+	@ Region-neutral labels for FieldRenderRectDescriptor raw resources.
+	@ Their payload types are not decoded yet.
+	.global gUnk_FieldRenderResource_146
+	.set gUnk_FieldRenderResource_146, gUnk_08117BC8 + 0xC
+	.global gUnk_FieldRenderResource_147
+	.set gUnk_FieldRenderResource_147, gUnk_08117BC8 + 0x18
+	.global gUnk_FieldRenderResource_120
+	.set gUnk_FieldRenderResource_120, gUnk_08117BC8 + 0x3BE0
+	.global gUnk_FieldRenderResource_121
+	.set gUnk_FieldRenderResource_121, gUnk_08117BC8 + 0x3BF4
+	.global gUnk_FieldRenderResource_137
+	.set gUnk_FieldRenderResource_137, gUnk_08117BC8 + 0x5A20
+	.global gUnk_FieldRenderResource_138
+	.set gUnk_FieldRenderResource_138, gUnk_08117BC8 + 0x5A30
+	.global gUnk_FieldRenderResource_130
+	.set gUnk_FieldRenderResource_130, gUnk_08117BC8 + 0x5D48
+	.global gUnk_FieldRenderResource_131
+	.set gUnk_FieldRenderResource_131, gUnk_08117BC8 + 0x5D5C
+	.global gUnk_FieldRenderResource_141
+	.set gUnk_FieldRenderResource_141, gUnk_08117BC8 + 0x5EB0
+	.global gUnk_FieldRenderResource_142
+	.set gUnk_FieldRenderResource_142, gUnk_08117BC8 + 0x5EB8
+	.global gUnk_FieldRenderResource_041
+	.set gUnk_FieldRenderResource_041, gUnk_08117BC8 + 0x7118
+	.global gUnk_FieldRenderResource_042
+	.set gUnk_FieldRenderResource_042, gUnk_08117BC8 + 0x7124
+	.global gUnk_FieldRenderResource_033
+	.set gUnk_FieldRenderResource_033, gUnk_08117BC8 + 0x7214
+	.global gUnk_FieldRenderResource_034
+	.set gUnk_FieldRenderResource_034, gUnk_08117BC8 + 0x7220
+	.global gUnk_FieldRenderResource_014
+	.set gUnk_FieldRenderResource_014, gUnk_08117BC8 + 0x9EE8
+	.global gUnk_FieldRenderResource_015
+	.set gUnk_FieldRenderResource_015, gUnk_08117BC8 + 0x9EF4
+	.global gUnk_FieldRenderResource_008
+	.set gUnk_FieldRenderResource_008, gUnk_08117BC8 + 0xA02C
+	.global gUnk_FieldRenderResource_009
+	.set gUnk_FieldRenderResource_009, gUnk_08117BC8 + 0xA038
+	.global gUnk_FieldRenderResource_002
+	.set gUnk_FieldRenderResource_002, gUnk_08117BC8 + 0xA108
+	.global gUnk_FieldRenderResource_003
+	.set gUnk_FieldRenderResource_003, gUnk_08117BC8 + 0xA114
+	.global gUnk_FieldRenderResource_026
+	.set gUnk_FieldRenderResource_026, gUnk_08117BC8 + 0xA17C
+	.global gUnk_FieldRenderResource_027
+	.set gUnk_FieldRenderResource_027, gUnk_08117BC8 + 0xA188
+	.global gUnk_FieldRenderResource_020
+	.set gUnk_FieldRenderResource_020, gUnk_08117BC8 + 0xA2BC
+	.global gUnk_FieldRenderResource_021
+	.set gUnk_FieldRenderResource_021, gUnk_08117BC8 + 0xA2C8
+	.global gUnk_FieldRenderResource_155
+	.set gUnk_FieldRenderResource_155, gUnk_08117BC8 + 0xCD34
+	.global gUnk_FieldRenderResource_156
+	.set gUnk_FieldRenderResource_156, gUnk_08117BC8 + 0xCD38
+	.global gUnk_FieldRenderResource_152
+	.set gUnk_FieldRenderResource_152, gUnk_08117BC8 + 0xD384
+	.global gUnk_FieldRenderResource_153
+	.set gUnk_FieldRenderResource_153, gUnk_08117BC8 + 0xD388
+	.global gUnk_FieldRenderResource_167
+	.set gUnk_FieldRenderResource_167, gUnk_08117BC8 + 0xD390
+	.global gUnk_FieldRenderResource_168
+	.set gUnk_FieldRenderResource_168, gUnk_08117BC8 + 0xD394
+	.global gUnk_FieldRenderResource_161
+	.set gUnk_FieldRenderResource_161, gUnk_08117BC8 + 0xD3C4
+	.global gUnk_FieldRenderResource_162
+	.set gUnk_FieldRenderResource_162, gUnk_08117BC8 + 0xD3C8
+	.global gUnk_FieldRenderResource_164
+	.set gUnk_FieldRenderResource_164, gUnk_08117BC8 + 0xD3F8
+	.global gUnk_FieldRenderResource_165
+	.set gUnk_FieldRenderResource_165, gUnk_08117BC8 + 0xD3FC
+	.global gUnk_FieldRenderResource_108
+	.set gUnk_FieldRenderResource_108, gUnk_08117BC8 + 0xD42C
+	.global gUnk_FieldRenderResource_109
+	.set gUnk_FieldRenderResource_109, gUnk_08117BC8 + 0xD434
+	.global gUnk_FieldRenderResource_104
+	.set gUnk_FieldRenderResource_104, gUnk_08117BC8 + 0x11C1C
+	.global gUnk_FieldRenderResource_105
+	.set gUnk_FieldRenderResource_105, gUnk_08117BC8 + 0x11C20
+	.global gUnk_FieldRenderResource_090
+	.set gUnk_FieldRenderResource_090, gUnk_08117BC8 + 0x11C30
+	.global gUnk_FieldRenderResource_091
+	.set gUnk_FieldRenderResource_091, gUnk_08117BC8 + 0x11C38
+	.global gUnk_FieldRenderResource_100
+	.set gUnk_FieldRenderResource_100, gUnk_08117BC8 + 0x11C68
+	.global gUnk_FieldRenderResource_101
+	.set gUnk_FieldRenderResource_101, gUnk_08117BC8 + 0x11C74
+	.global gUnk_FieldRenderResource_084
+	.set gUnk_FieldRenderResource_084, gUnk_08117BC8 + 0x11C88
+	.global gUnk_FieldRenderResource_085
+	.set gUnk_FieldRenderResource_085, gUnk_08117BC8 + 0x11C94
+	.global gUnk_FieldRenderResource_097
+	.set gUnk_FieldRenderResource_097, gUnk_08117BC8 + 0x123D4
+	.global gUnk_FieldRenderResource_098
+	.set gUnk_FieldRenderResource_098, gUnk_08117BC8 + 0x123D8
+	.global gUnk_FieldRenderResource_072
+	.set gUnk_FieldRenderResource_072, gUnk_08117BC8 + 0x12904
+	.global gUnk_FieldRenderResource_073
+	.set gUnk_FieldRenderResource_073, gUnk_08117BC8 + 0x1290C
+	.global gUnk_FieldRenderResource_080
+	.set gUnk_FieldRenderResource_080, gUnk_08117BC8 + 0x12918
+	.global gUnk_FieldRenderResource_081
+	.set gUnk_FieldRenderResource_081, gUnk_08117BC8 + 0x12920
+	.global gUnk_FieldRenderResource_076
+	.set gUnk_FieldRenderResource_076, gUnk_08117BC8 + 0x1292C
+	.global gUnk_FieldRenderResource_077
+	.set gUnk_FieldRenderResource_077, gUnk_08117BC8 + 0x12934
+	.global gUnk_FieldRenderResource_060
+	.set gUnk_FieldRenderResource_060, gUnk_08117BC8 + 0x12940
+	.global gUnk_FieldRenderResource_061
+	.set gUnk_FieldRenderResource_061, gUnk_08117BC8 + 0x12948
+	.global gUnk_FieldRenderResource_056
+	.set gUnk_FieldRenderResource_056, gUnk_08117BC8 + 0x12960
+	.global gUnk_FieldRenderResource_057
+	.set gUnk_FieldRenderResource_057, gUnk_08117BC8 + 0x12968
+	.global gUnk_FieldRenderResource_068
+	.set gUnk_FieldRenderResource_068, gUnk_08117BC8 + 0x12980
+	.global gUnk_FieldRenderResource_069
+	.set gUnk_FieldRenderResource_069, gUnk_08117BC8 + 0x12988
+	.global gUnk_FieldRenderResource_064
+	.set gUnk_FieldRenderResource_064, gUnk_08117BC8 + 0x129A4
+	.global gUnk_FieldRenderResource_065
+	.set gUnk_FieldRenderResource_065, gUnk_08117BC8 + 0x129A8
+	.global gUnk_FieldRenderResource_087
+	.set gUnk_FieldRenderResource_087, gUnk_08117BC8 + 0x129C4
+	.global gUnk_FieldRenderResource_088
+	.set gUnk_FieldRenderResource_088, gUnk_08117BC8 + 0x129D0
+	.global gUnk_FieldRenderResource_052
+	.set gUnk_FieldRenderResource_052, gUnk_08117BC8 + 0x12D78
+	.global gUnk_FieldRenderResource_053
+	.set gUnk_FieldRenderResource_053, gUnk_08117BC8 + 0x12D80
+	.global gUnk_FieldRenderResource_048
+	.set gUnk_FieldRenderResource_048, gUnk_08117BC8 + 0x12D98
+	.global gUnk_FieldRenderResource_049
+	.set gUnk_FieldRenderResource_049, gUnk_08117BC8 + 0x12DA0
+	.global gUnk_FieldRenderResource_094
+	.set gUnk_FieldRenderResource_094, gUnk_08117BC8 + 0x12DB8
+	.global gUnk_FieldRenderResource_095
+	.set gUnk_FieldRenderResource_095, gUnk_08117BC8 + 0x12DBC
+	.global gUnk_FieldRenderResource_116
+	.set gUnk_FieldRenderResource_116, gUnk_08117BC8 + 0x1BE64
+	.global gUnk_FieldRenderResource_117
+	.set gUnk_FieldRenderResource_117, gUnk_08117BC8 + 0x1BE6C
+	.global gUnk_FieldRenderResource_112
+	.set gUnk_FieldRenderResource_112, gUnk_08117BC8 + 0x1D044
+	.global gUnk_FieldRenderResource_113
+	.set gUnk_FieldRenderResource_113, gUnk_08117BC8 + 0x1D04C
+	.global gUnk_FieldRenderResource_124
+	.set gUnk_FieldRenderResource_124, gUnk_08117BC8 + 0x1FF74
+	.global gUnk_FieldRenderResource_125
+	.set gUnk_FieldRenderResource_125, gUnk_08117BC8 + 0x1FF84
 
 	.global gUnk_08139A88
 gUnk_08139A88:

@@ -1,6 +1,7 @@
 #include "prelude.h"
 
 #include "actor_state.hh"
+#include "field_data.hh"
 
 u8 const gActorStateMaxValues[] SECTION(".rodata.actor_state_max_values") = {
     10, 10, 255, 10, 10, 255,
@@ -30,8 +31,6 @@ extern u8 const gUnk_ActorDataSelection_10_00[];
 extern u8 const gUnk_ActorDataSelection_10_04[];
 extern u8 const gUnk_ActorDataSelection_11_00[];
 extern u8 const gUnk_ActorDataSelection_11_04[];
-extern u8 const gUnk_ActorDataSelection_12_00[];
-extern u8 const gUnk_ActorDataSelection_12_04[];
 extern u8 const gUnk_ActorDataSelection_13_00[];
 extern u8 const gUnk_ActorDataSelection_13_04[];
 
@@ -51,7 +50,7 @@ ActorDataSelectionEntry const gActorDataSelectionEntries[] = {
     { gUnk_ActorDataSelection_09_00, gUnk_ActorDataSelection_09_04, 0x0B, 0x02, 0x0000 },
     { gUnk_ActorDataSelection_10_00, gUnk_ActorDataSelection_10_04, 0x25, 0x02, 0x0000 },
     { gUnk_ActorDataSelection_11_00, gUnk_ActorDataSelection_11_04, 0x06, 0x02, 0x0000 },
-    { gUnk_ActorDataSelection_12_00, gUnk_ActorDataSelection_12_04, 0x01, 0x02, 0x0000 },
+    { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 31), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 30), 0x01, 0x02, 0x0000 },
     { gUnk_ActorDataSelection_13_00, gUnk_ActorDataSelection_13_04, 0x69, 0x3E, 0x0000 },
 };
 
