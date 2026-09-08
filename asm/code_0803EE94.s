@@ -414,7 +414,8 @@ func_08090FCC:
 func_080914A0:
     .incbin "baserom_jp.gba", 0x90FE0, (0x91DF0 - 0x90FE0)
     .4byte gText_BlacksmithUpgrade_InsufficientGoldPageBreak
-    .incbin "baserom_jp.gba", 0x91DF4, (0x920D0 - 0x91DF4)
+    .incbin "baserom_jp.gba", 0x91DF4, (0x92090 - 0x91DF4)
+    jp_code_0803ee_func func_08092090, 0x92090, 0x920D0
     jp_code_0803ee_func func_08092604, 0x920D0, 0x92170
     .global func_080926A4
     .thumb_func
