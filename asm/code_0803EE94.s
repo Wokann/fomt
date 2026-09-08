@@ -28292,7 +28292,7 @@ func_0804E4AC: @ 0x0804E4AC
 	adds r7, r3, #0
 	ldr r1, [sp, #0xac]
 	add r0, sp, #4
-	bl func_080D0D28
+	bl DrawCharacterGlyph
 	mov sl, r0
 	subs r0, #1
 	cmp r0, #1
@@ -28426,7 +28426,7 @@ func_0804E5AC: @ 0x0804E5AC
 	adds r6, r3, #0
 	ldr r1, [sp, #0xc0]
 	add r0, sp, #0xc
-	bl func_080D0D28
+	bl DrawCharacterGlyph
 	str r0, [sp, #0x8c]
 	subs r0, #1
 	cmp r0, #1

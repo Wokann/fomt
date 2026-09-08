@@ -359,9 +359,9 @@ SECTIONS
         src/map_data.o(.text.get_map_data);
         . = 0xA46AC;
         asm/code_809E804.o(.text.get_map_data_after);
-        . = 0xD0CD4; /* Shared Shift-JIS glyph-map index converter. */
+        . = 0xD0CD4; /* Shift-JIS glyph-map index converter and renderer. */
         src/font.o(.text);
-        . = 0xD0D28; /* Remaining font glyph resolver. */
+        . = 0xD0EBC; /* Remaining font support code. */
         asm/code_809E804.o(.text.font_after);
 
         src/m4a_1.o(.text);

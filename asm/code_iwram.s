@@ -27,11 +27,19 @@ func_030004DC:
 func_03000714:
     inc 0x03000714, 0x0300085C
 
+    @ ARM routine that expands one 16x12 glyph into the destination tiles.
+    .global DrawGlyph2Tile
+    .set DrawGlyph2Tile, func_03000714
+
     .global func_0300085C
     .type func_0300085C, function
     .arm
 func_0300085C:
     inc 0x0300085C, 0x03000958
+
+    @ ARM routine that expands one 8x12 glyph into the destination tiles.
+    .global DrawGlyph1Tile
+    .set DrawGlyph1Tile, func_0300085C
 
     .global func_03000958
     .type func_03000958, function

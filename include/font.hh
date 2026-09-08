@@ -8,6 +8,7 @@ EXTERN_C
 // Converts one Shift-JIS two-byte code to the index used by the font's
 // double-width glyph map. Returns -1 for a code outside that map.
 i32 GetShiftJisGlyphMapIndex(i32 character);
+i32 DrawCharacterGlyph(void *destination, i32 character);
 
 // Raw font payloads selected by the renderer. Single-width glyphs occupy
 // 12 bytes; double-width glyphs occupy 24 bytes.
