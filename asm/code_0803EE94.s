@@ -177649,7 +177649,7 @@ func_0809A58C: @ 0x0809A58C
 	adds r1, r5, #0
 	b .L0809A622
 	.align 2, 0
-.L0809A618: .4byte gUnk_0810110C
+.L0809A618: .4byte gCookingRecipeDefinitions
 .L0809A61C: .4byte 0x0000FFBD
 .L0809A620:
 	adds r3, #1
@@ -178084,7 +178084,7 @@ func_0809A8AC: @ 0x0809A8AC
 	mov r2, sb
 	b .L0809A950
 	.align 2, 0
-.L0809A92C: .4byte gUnk_0810110C
+.L0809A92C: .4byte gCookingRecipeDefinitions
 .L0809A930: .4byte 0xFFFFF000
 .L0809A934: .4byte 0x00000A01
 .L0809A938:

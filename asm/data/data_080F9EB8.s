@@ -16,7 +16,9 @@
 
 
     .section .rodata.cooking_recipe_inventory_trailer
-    .incbin "baserom_jp.gba", 0x100C48, (0x103194 - 0x100C48)
+    .global gUnk_CookingRecipeDefinitionPayload
+gUnk_CookingRecipeDefinitionPayload:
+    .incbin "baserom_jp.gba", 0x101580, (0x103194 - 0x101580)
 
     .section .rodata.static_data_after_item_discard
     .global gUnk_08118CF4
@@ -493,9 +495,9 @@ gUnk_08118CF4:
 
 	.section .rodata.cooking_recipe_inventory_trailer
 
-	.global gUnk_0810110C
-gUnk_0810110C:
-	.incbin "baserom_us.gba", 0x10110C, 0x254C
+	.global gUnk_CookingRecipeDefinitionPayload
+gUnk_CookingRecipeDefinitionPayload:
+	.incbin "baserom_us.gba", 0x101A44, (0x103658 - 0x101A44)
 
 	.section .rodata.static_data_after_item_discard
 	.incbin "baserom_us.gba", 0x117B14, (0x117B20 - 0x117B14)
@@ -1052,3 +1054,540 @@ gUnk_08139CFC:
 gUnk_08139D30:
 	.incbin "baserom_us.gba", 0x139D30, 0xE84
     .endif
+
+    @ Region-neutral labels for the still-raw recipe-list payload.  The
+    @ C++ definition table uses these real symbols instead of ROM literals.
+    .global gUnk_CookingRecipeDefinition_000_Values08
+    .set gUnk_CookingRecipeDefinition_000_Values08, gUnk_CookingRecipeDefinitionPayload + 0x0
+    .global gUnk_CookingRecipeDefinition_001_Values08
+    .set gUnk_CookingRecipeDefinition_001_Values08, gUnk_CookingRecipeDefinitionPayload + 0x6
+    .global gUnk_CookingRecipeDefinition_001_Entries0C
+    .set gUnk_CookingRecipeDefinition_001_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0xC
+    .global gUnk_CookingRecipeDefinition_002_Values08
+    .set gUnk_CookingRecipeDefinition_002_Values08, gUnk_CookingRecipeDefinitionPayload + 0x14
+    .global gUnk_CookingRecipeDefinition_002_Entries0C
+    .set gUnk_CookingRecipeDefinition_002_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x1C
+    .global gUnk_CookingRecipeDefinition_003_Values08
+    .set gUnk_CookingRecipeDefinition_003_Values08, gUnk_CookingRecipeDefinitionPayload + 0x28
+    .global gUnk_CookingRecipeDefinition_003_Entries0C
+    .set gUnk_CookingRecipeDefinition_003_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x30
+    .global gUnk_CookingRecipeDefinition_004_Values08
+    .set gUnk_CookingRecipeDefinition_004_Values08, gUnk_CookingRecipeDefinitionPayload + 0x40
+    .global gUnk_CookingRecipeDefinition_004_Entries0C
+    .set gUnk_CookingRecipeDefinition_004_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x48
+    .global gUnk_CookingRecipeDefinition_005_Values08
+    .set gUnk_CookingRecipeDefinition_005_Values08, gUnk_CookingRecipeDefinitionPayload + 0x5C
+    .global gUnk_CookingRecipeDefinition_006_Values08
+    .set gUnk_CookingRecipeDefinition_006_Values08, gUnk_CookingRecipeDefinitionPayload + 0x62
+    .global gUnk_CookingRecipeDefinition_005_Entries0C
+    .set gUnk_CookingRecipeDefinition_005_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x70
+    .global gUnk_CookingRecipeDefinition_007_Values08
+    .set gUnk_CookingRecipeDefinition_007_Values08, gUnk_CookingRecipeDefinitionPayload + 0x88
+    .global gUnk_CookingRecipeDefinition_008_Values08
+    .set gUnk_CookingRecipeDefinition_008_Values08, gUnk_CookingRecipeDefinitionPayload + 0x94
+    .global gUnk_CookingRecipeDefinition_009_Values08
+    .set gUnk_CookingRecipeDefinition_009_Values08, gUnk_CookingRecipeDefinitionPayload + 0xA0
+    .global gUnk_CookingRecipeDefinition_010_Values08
+    .set gUnk_CookingRecipeDefinition_010_Values08, gUnk_CookingRecipeDefinitionPayload + 0xAC
+    .global gUnk_CookingRecipeDefinition_012_Values08
+    .set gUnk_CookingRecipeDefinition_012_Values08, gUnk_CookingRecipeDefinitionPayload + 0xB4
+    .global gUnk_CookingRecipeDefinition_012_Entries0C
+    .set gUnk_CookingRecipeDefinition_012_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0xC0
+    .global gUnk_CookingRecipeDefinition_012_Entries10
+    .set gUnk_CookingRecipeDefinition_012_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x150
+    .global gUnk_CookingRecipeDefinition_013_Values08
+    .set gUnk_CookingRecipeDefinition_013_Values08, gUnk_CookingRecipeDefinitionPayload + 0x160
+    .global gUnk_CookingRecipeDefinition_013_Entries0C
+    .set gUnk_CookingRecipeDefinition_013_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x168
+    .global gUnk_CookingRecipeDefinition_013_Entries10
+    .set gUnk_CookingRecipeDefinition_013_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x24C
+    .global gUnk_CookingRecipeDefinition_014_Values08
+    .set gUnk_CookingRecipeDefinition_014_Values08, gUnk_CookingRecipeDefinitionPayload + 0x264
+    .global gUnk_CookingRecipeDefinition_014_Entries0C
+    .set gUnk_CookingRecipeDefinition_014_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x26C
+    .global gUnk_CookingRecipeDefinition_014_Entries10
+    .set gUnk_CookingRecipeDefinition_014_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x350
+    .global gUnk_CookingRecipeDefinition_015_Values08
+    .set gUnk_CookingRecipeDefinition_015_Values08, gUnk_CookingRecipeDefinitionPayload + 0x364
+    .global gUnk_CookingRecipeDefinition_015_Entries0C
+    .set gUnk_CookingRecipeDefinition_015_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x368
+    .global gUnk_CookingRecipeDefinition_015_Entries10
+    .set gUnk_CookingRecipeDefinition_015_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x3E0
+    .global gUnk_CookingRecipeDefinition_016_Values08
+    .set gUnk_CookingRecipeDefinition_016_Values08, gUnk_CookingRecipeDefinitionPayload + 0x3F8
+    .global gUnk_CookingRecipeDefinition_016_Entries0C
+    .set gUnk_CookingRecipeDefinition_016_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x400
+    .global gUnk_CookingRecipeDefinition_016_Entries10
+    .set gUnk_CookingRecipeDefinition_016_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x44C
+    .global gUnk_CookingRecipeDefinition_017_Values08
+    .set gUnk_CookingRecipeDefinition_017_Values08, gUnk_CookingRecipeDefinitionPayload + 0x45C
+    .global gUnk_CookingRecipeDefinition_017_Entries0C
+    .set gUnk_CookingRecipeDefinition_017_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x464
+    .global gUnk_CookingRecipeDefinition_017_Entries10
+    .set gUnk_CookingRecipeDefinition_017_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x500
+    .global gUnk_CookingRecipeDefinition_018_Values08
+    .set gUnk_CookingRecipeDefinition_018_Values08, gUnk_CookingRecipeDefinitionPayload + 0x514
+    .global gUnk_CookingRecipeDefinition_018_Entries0C
+    .set gUnk_CookingRecipeDefinition_018_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x520
+    .global gUnk_CookingRecipeDefinition_018_Entries10
+    .set gUnk_CookingRecipeDefinition_018_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x5E0
+    .global gUnk_CookingRecipeDefinition_019_Values08
+    .set gUnk_CookingRecipeDefinition_019_Values08, gUnk_CookingRecipeDefinitionPayload + 0x5EC
+    .global gUnk_CookingRecipeDefinition_019_Entries0C
+    .set gUnk_CookingRecipeDefinition_019_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x5F8
+    .global gUnk_CookingRecipeDefinition_019_Entries10
+    .set gUnk_CookingRecipeDefinition_019_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x6A0
+    .global gUnk_CookingRecipeDefinition_020_Values08
+    .set gUnk_CookingRecipeDefinition_020_Values08, gUnk_CookingRecipeDefinitionPayload + 0x6AC
+    .global gUnk_CookingRecipeDefinition_020_Entries0C
+    .set gUnk_CookingRecipeDefinition_020_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x6B8
+    .global gUnk_CookingRecipeDefinition_020_Entries10
+    .set gUnk_CookingRecipeDefinition_020_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x6E4
+    .global gUnk_CookingRecipeDefinition_021_Values08
+    .set gUnk_CookingRecipeDefinition_021_Values08, gUnk_CookingRecipeDefinitionPayload + 0x6F8
+    .global gUnk_CookingRecipeDefinition_021_Entries0C
+    .set gUnk_CookingRecipeDefinition_021_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x70C
+    .global gUnk_CookingRecipeDefinition_021_Entries10
+    .set gUnk_CookingRecipeDefinition_021_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x754
+    .global gUnk_CookingRecipeDefinition_022_Values08
+    .set gUnk_CookingRecipeDefinition_022_Values08, gUnk_CookingRecipeDefinitionPayload + 0x768
+    .global gUnk_CookingRecipeDefinition_022_Entries0C
+    .set gUnk_CookingRecipeDefinition_022_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x770
+    .global gUnk_CookingRecipeDefinition_022_Entries10
+    .set gUnk_CookingRecipeDefinition_022_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x7B4
+    .global gUnk_CookingRecipeDefinition_023_Values08
+    .set gUnk_CookingRecipeDefinition_023_Values08, gUnk_CookingRecipeDefinitionPayload + 0x7C8
+    .global gUnk_CookingRecipeDefinition_023_Entries0C
+    .set gUnk_CookingRecipeDefinition_023_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x7D4
+    .global gUnk_CookingRecipeDefinition_023_Entries10
+    .set gUnk_CookingRecipeDefinition_023_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x834
+    .global gUnk_CookingRecipeDefinition_024_Values08
+    .set gUnk_CookingRecipeDefinition_024_Values08, gUnk_CookingRecipeDefinitionPayload + 0x848
+    .global gUnk_CookingRecipeDefinition_025_Values08
+    .set gUnk_CookingRecipeDefinition_025_Values08, gUnk_CookingRecipeDefinitionPayload + 0x85E
+    .global gUnk_CookingRecipeDefinition_024_Entries0C
+    .set gUnk_CookingRecipeDefinition_024_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x864
+    .global gUnk_CookingRecipeDefinition_024_Entries10
+    .set gUnk_CookingRecipeDefinition_024_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x8D4
+    .global gUnk_CookingRecipeDefinition_026_Values08
+    .set gUnk_CookingRecipeDefinition_026_Values08, gUnk_CookingRecipeDefinitionPayload + 0x8E8
+    .global gUnk_CookingRecipeDefinition_027_Values08
+    .set gUnk_CookingRecipeDefinition_027_Values08, gUnk_CookingRecipeDefinitionPayload + 0x900
+    .global gUnk_CookingRecipeDefinition_028_Values08
+    .set gUnk_CookingRecipeDefinition_028_Values08, gUnk_CookingRecipeDefinitionPayload + 0x906
+    .global gUnk_CookingRecipeDefinition_026_Entries0C
+    .set gUnk_CookingRecipeDefinition_026_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x910
+    .global gUnk_CookingRecipeDefinition_026_Entries10
+    .set gUnk_CookingRecipeDefinition_026_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x9A0
+    .global gUnk_CookingRecipeDefinition_029_Values08
+    .set gUnk_CookingRecipeDefinition_029_Values08, gUnk_CookingRecipeDefinitionPayload + 0x9B4
+    .global gUnk_CookingRecipeDefinition_029_Entries10
+    .set gUnk_CookingRecipeDefinition_029_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x9B8
+    .global gUnk_CookingRecipeDefinition_030_Values08
+    .set gUnk_CookingRecipeDefinition_030_Values08, gUnk_CookingRecipeDefinitionPayload + 0x9C8
+    .global gUnk_CookingRecipeDefinition_030_Entries0C
+    .set gUnk_CookingRecipeDefinition_030_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x9D0
+    .global gUnk_CookingRecipeDefinition_030_Entries10
+    .set gUnk_CookingRecipeDefinition_030_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x9D8
+    .global gUnk_CookingRecipeDefinition_011_Values08
+    .set gUnk_CookingRecipeDefinition_011_Values08, gUnk_CookingRecipeDefinitionPayload + 0x9E4
+    .global gUnk_CookingRecipeDefinition_011_Entries10
+    .set gUnk_CookingRecipeDefinition_011_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x9E8
+    .global gUnk_CookingRecipeDefinition_031_Values08
+    .set gUnk_CookingRecipeDefinition_031_Values08, gUnk_CookingRecipeDefinitionPayload + 0x9F4
+    .global gUnk_CookingRecipeDefinition_031_Entries0C
+    .set gUnk_CookingRecipeDefinition_031_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x9F8
+    .global gUnk_CookingRecipeDefinition_031_Entries10
+    .set gUnk_CookingRecipeDefinition_031_Entries10, gUnk_CookingRecipeDefinitionPayload + 0xA04
+    .global gUnk_CookingRecipeDefinition_032_Values08
+    .set gUnk_CookingRecipeDefinition_032_Values08, gUnk_CookingRecipeDefinitionPayload + 0xA10
+    .global gUnk_CookingRecipeDefinition_032_Entries0C
+    .set gUnk_CookingRecipeDefinition_032_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0xA18
+    .global gUnk_CookingRecipeDefinition_032_Entries10
+    .set gUnk_CookingRecipeDefinition_032_Entries10, gUnk_CookingRecipeDefinitionPayload + 0xA38
+    .global gUnk_CookingRecipeDefinition_033_Values08
+    .set gUnk_CookingRecipeDefinition_033_Values08, gUnk_CookingRecipeDefinitionPayload + 0xA44
+    .global gUnk_CookingRecipeDefinition_033_Entries10
+    .set gUnk_CookingRecipeDefinition_033_Entries10, gUnk_CookingRecipeDefinitionPayload + 0xA48
+    .global gUnk_CookingRecipeDefinition_034_Values08
+    .set gUnk_CookingRecipeDefinition_034_Values08, gUnk_CookingRecipeDefinitionPayload + 0xA54
+    .global gUnk_CookingRecipeDefinition_035_Values08
+    .set gUnk_CookingRecipeDefinition_035_Values08, gUnk_CookingRecipeDefinitionPayload + 0xA5A
+    .global gUnk_CookingRecipeDefinition_035_Entries0C
+    .set gUnk_CookingRecipeDefinition_035_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0xA60
+    .global gUnk_CookingRecipeDefinition_035_Entries10
+    .set gUnk_CookingRecipeDefinition_035_Entries10, gUnk_CookingRecipeDefinitionPayload + 0xA68
+    .global gUnk_CookingRecipeDefinition_036_Values08
+    .set gUnk_CookingRecipeDefinition_036_Values08, gUnk_CookingRecipeDefinitionPayload + 0xA74
+    .global gUnk_CookingRecipeDefinition_036_Entries0C
+    .set gUnk_CookingRecipeDefinition_036_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0xA78
+    .global gUnk_CookingRecipeDefinition_036_Entries10
+    .set gUnk_CookingRecipeDefinition_036_Entries10, gUnk_CookingRecipeDefinitionPayload + 0xAB4
+    .global gUnk_CookingRecipeDefinition_037_Values08
+    .set gUnk_CookingRecipeDefinition_037_Values08, gUnk_CookingRecipeDefinitionPayload + 0xABC
+    .global gUnk_CookingRecipeDefinition_037_Entries0C
+    .set gUnk_CookingRecipeDefinition_037_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0xAC0
+    .global gUnk_CookingRecipeDefinition_037_Entries10
+    .set gUnk_CookingRecipeDefinition_037_Entries10, gUnk_CookingRecipeDefinitionPayload + 0xACC
+    .global gUnk_CookingRecipeDefinition_038_Values08
+    .set gUnk_CookingRecipeDefinition_038_Values08, gUnk_CookingRecipeDefinitionPayload + 0xADC
+    .global gUnk_CookingRecipeDefinition_038_Entries0C
+    .set gUnk_CookingRecipeDefinition_038_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0xAE0
+    .global gUnk_CookingRecipeDefinition_038_Entries10
+    .set gUnk_CookingRecipeDefinition_038_Entries10, gUnk_CookingRecipeDefinitionPayload + 0xAE8
+    .global gUnk_CookingRecipeDefinition_039_Values08
+    .set gUnk_CookingRecipeDefinition_039_Values08, gUnk_CookingRecipeDefinitionPayload + 0xAFC
+    .global gUnk_CookingRecipeDefinition_039_Entries0C
+    .set gUnk_CookingRecipeDefinition_039_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0xB04
+    .global gUnk_CookingRecipeDefinition_039_Entries10
+    .set gUnk_CookingRecipeDefinition_039_Entries10, gUnk_CookingRecipeDefinitionPayload + 0xB40
+    .global gUnk_CookingRecipeDefinition_040_Values08
+    .set gUnk_CookingRecipeDefinition_040_Values08, gUnk_CookingRecipeDefinitionPayload + 0xB48
+    .global gUnk_CookingRecipeDefinition_040_Entries0C
+    .set gUnk_CookingRecipeDefinition_040_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0xB4C
+    .global gUnk_CookingRecipeDefinition_040_Entries10
+    .set gUnk_CookingRecipeDefinition_040_Entries10, gUnk_CookingRecipeDefinitionPayload + 0xB5C
+    .global gUnk_CookingRecipeDefinition_041_Values08
+    .set gUnk_CookingRecipeDefinition_041_Values08, gUnk_CookingRecipeDefinitionPayload + 0xB6C
+    .global gUnk_CookingRecipeDefinition_041_Entries10
+    .set gUnk_CookingRecipeDefinition_041_Entries10, gUnk_CookingRecipeDefinitionPayload + 0xB70
+    .global gUnk_CookingRecipeDefinition_042_Values08
+    .set gUnk_CookingRecipeDefinition_042_Values08, gUnk_CookingRecipeDefinitionPayload + 0xB78
+    .global gUnk_CookingRecipeDefinition_042_Entries0C
+    .set gUnk_CookingRecipeDefinition_042_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0xB80
+    .global gUnk_CookingRecipeDefinition_043_Values08
+    .set gUnk_CookingRecipeDefinition_043_Values08, gUnk_CookingRecipeDefinitionPayload + 0xB9C
+    .global gUnk_CookingRecipeDefinition_043_Entries0C
+    .set gUnk_CookingRecipeDefinition_043_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0xBA0
+    .global gUnk_CookingRecipeDefinition_043_Entries10
+    .set gUnk_CookingRecipeDefinition_043_Entries10, gUnk_CookingRecipeDefinitionPayload + 0xBAC
+    .global gUnk_CookingRecipeDefinition_044_Values08
+    .set gUnk_CookingRecipeDefinition_044_Values08, gUnk_CookingRecipeDefinitionPayload + 0xBB8
+    .global gUnk_CookingRecipeDefinition_044_Entries0C
+    .set gUnk_CookingRecipeDefinition_044_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0xBBC
+    .global gUnk_CookingRecipeDefinition_044_Entries10
+    .set gUnk_CookingRecipeDefinition_044_Entries10, gUnk_CookingRecipeDefinitionPayload + 0xBC4
+    .global gUnk_CookingRecipeDefinition_045_Values08
+    .set gUnk_CookingRecipeDefinition_045_Values08, gUnk_CookingRecipeDefinitionPayload + 0xBD0
+    .global gUnk_CookingRecipeDefinition_045_Entries0C
+    .set gUnk_CookingRecipeDefinition_045_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0xBD8
+    .global gUnk_CookingRecipeDefinition_045_Entries10
+    .set gUnk_CookingRecipeDefinition_045_Entries10, gUnk_CookingRecipeDefinitionPayload + 0xC10
+    .global gUnk_CookingRecipeDefinition_046_Values08
+    .set gUnk_CookingRecipeDefinition_046_Values08, gUnk_CookingRecipeDefinitionPayload + 0xC24
+    .global gUnk_CookingRecipeDefinition_046_Entries0C
+    .set gUnk_CookingRecipeDefinition_046_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0xC2C
+    .global gUnk_CookingRecipeDefinition_046_Entries10
+    .set gUnk_CookingRecipeDefinition_046_Entries10, gUnk_CookingRecipeDefinitionPayload + 0xCD4
+    .global gUnk_CookingRecipeDefinition_047_Values08
+    .set gUnk_CookingRecipeDefinition_047_Values08, gUnk_CookingRecipeDefinitionPayload + 0xCEC
+    .global gUnk_CookingRecipeDefinition_047_Entries0C
+    .set gUnk_CookingRecipeDefinition_047_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0xCF8
+    .global gUnk_CookingRecipeDefinition_047_Entries10
+    .set gUnk_CookingRecipeDefinition_047_Entries10, gUnk_CookingRecipeDefinitionPayload + 0xDA0
+    .global gUnk_CookingRecipeDefinition_048_Values08
+    .set gUnk_CookingRecipeDefinition_048_Values08, gUnk_CookingRecipeDefinitionPayload + 0xDB8
+    .global gUnk_CookingRecipeDefinition_048_Entries0C
+    .set gUnk_CookingRecipeDefinition_048_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0xDBC
+    .global gUnk_CookingRecipeDefinition_048_Entries10
+    .set gUnk_CookingRecipeDefinition_048_Entries10, gUnk_CookingRecipeDefinitionPayload + 0xDF0
+    .global gUnk_CookingRecipeDefinition_049_Values08
+    .set gUnk_CookingRecipeDefinition_049_Values08, gUnk_CookingRecipeDefinitionPayload + 0xDF8
+    .global gUnk_CookingRecipeDefinition_049_Entries0C
+    .set gUnk_CookingRecipeDefinition_049_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0xE00
+    .global gUnk_CookingRecipeDefinition_049_Entries10
+    .set gUnk_CookingRecipeDefinition_049_Entries10, gUnk_CookingRecipeDefinitionPayload + 0xE70
+    .global gUnk_CookingRecipeDefinition_050_Values08
+    .set gUnk_CookingRecipeDefinition_050_Values08, gUnk_CookingRecipeDefinitionPayload + 0xE78
+    .global gUnk_CookingRecipeDefinition_050_Entries0C
+    .set gUnk_CookingRecipeDefinition_050_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0xE7C
+    .global gUnk_CookingRecipeDefinition_050_Entries10
+    .set gUnk_CookingRecipeDefinition_050_Entries10, gUnk_CookingRecipeDefinitionPayload + 0xE98
+    .global gUnk_CookingRecipeDefinition_051_Values08
+    .set gUnk_CookingRecipeDefinition_051_Values08, gUnk_CookingRecipeDefinitionPayload + 0xEA0
+    .global gUnk_CookingRecipeDefinition_051_Entries0C
+    .set gUnk_CookingRecipeDefinition_051_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0xEA4
+    .global gUnk_CookingRecipeDefinition_051_Entries10
+    .set gUnk_CookingRecipeDefinition_051_Entries10, gUnk_CookingRecipeDefinitionPayload + 0xEC0
+    .global gUnk_CookingRecipeDefinition_052_Values08
+    .set gUnk_CookingRecipeDefinition_052_Values08, gUnk_CookingRecipeDefinitionPayload + 0xEC8
+    .global gUnk_CookingRecipeDefinition_052_Entries0C
+    .set gUnk_CookingRecipeDefinition_052_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0xED0
+    .global gUnk_CookingRecipeDefinition_052_Entries10
+    .set gUnk_CookingRecipeDefinition_052_Entries10, gUnk_CookingRecipeDefinitionPayload + 0xF34
+    .global gUnk_CookingRecipeDefinition_053_Values08
+    .set gUnk_CookingRecipeDefinition_053_Values08, gUnk_CookingRecipeDefinitionPayload + 0xF3C
+    .global gUnk_CookingRecipeDefinition_053_Entries0C
+    .set gUnk_CookingRecipeDefinition_053_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0xF44
+    .global gUnk_CookingRecipeDefinition_053_Entries10
+    .set gUnk_CookingRecipeDefinition_053_Entries10, gUnk_CookingRecipeDefinitionPayload + 0xF94
+    .global gUnk_CookingRecipeDefinition_054_Values08
+    .set gUnk_CookingRecipeDefinition_054_Values08, gUnk_CookingRecipeDefinitionPayload + 0xFA8
+    .global gUnk_CookingRecipeDefinition_054_Entries0C
+    .set gUnk_CookingRecipeDefinition_054_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0xFB8
+    .global gUnk_CookingRecipeDefinition_055_Values08
+    .set gUnk_CookingRecipeDefinition_055_Values08, gUnk_CookingRecipeDefinitionPayload + 0xFF4
+    .global gUnk_CookingRecipeDefinition_055_Entries0C
+    .set gUnk_CookingRecipeDefinition_055_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x1000
+    .global gUnk_CookingRecipeDefinition_055_Entries10
+    .set gUnk_CookingRecipeDefinition_055_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x1020
+    .global gUnk_CookingRecipeDefinition_056_Values08
+    .set gUnk_CookingRecipeDefinition_056_Values08, gUnk_CookingRecipeDefinitionPayload + 0x102C
+    .global gUnk_CookingRecipeDefinition_056_Entries0C
+    .set gUnk_CookingRecipeDefinition_056_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x1038
+    .global gUnk_CookingRecipeDefinition_056_Entries10
+    .set gUnk_CookingRecipeDefinition_056_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x1044
+    .global gUnk_CookingRecipeDefinition_057_Values08
+    .set gUnk_CookingRecipeDefinition_057_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1050
+    .global gUnk_CookingRecipeDefinition_057_Entries10
+    .set gUnk_CookingRecipeDefinition_057_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x1058
+    .global gUnk_CookingRecipeDefinition_058_Values08
+    .set gUnk_CookingRecipeDefinition_058_Values08, gUnk_CookingRecipeDefinitionPayload + 0x106C
+    .global gUnk_CookingRecipeDefinition_058_Entries0C
+    .set gUnk_CookingRecipeDefinition_058_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x1070
+    .global gUnk_CookingRecipeDefinition_058_Entries10
+    .set gUnk_CookingRecipeDefinition_058_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x1080
+    .global gUnk_CookingRecipeDefinition_059_Values08
+    .set gUnk_CookingRecipeDefinition_059_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1088
+    .global gUnk_CookingRecipeDefinition_059_Entries0C
+    .set gUnk_CookingRecipeDefinition_059_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x108C
+    .global gUnk_CookingRecipeDefinition_059_Entries10
+    .set gUnk_CookingRecipeDefinition_059_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x1094
+    .global gUnk_CookingRecipeDefinition_060_Values08
+    .set gUnk_CookingRecipeDefinition_060_Values08, gUnk_CookingRecipeDefinitionPayload + 0x10A8
+    .global gUnk_CookingRecipeDefinition_060_Entries10
+    .set gUnk_CookingRecipeDefinition_060_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x10B0
+    .global gUnk_CookingRecipeDefinition_061_Values08
+    .set gUnk_CookingRecipeDefinition_061_Values08, gUnk_CookingRecipeDefinitionPayload + 0x10C4
+    .global gUnk_CookingRecipeDefinition_061_Entries10
+    .set gUnk_CookingRecipeDefinition_061_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x10CC
+    .global gUnk_CookingRecipeDefinition_062_Values08
+    .set gUnk_CookingRecipeDefinition_062_Values08, gUnk_CookingRecipeDefinitionPayload + 0x10E0
+    .global gUnk_CookingRecipeDefinition_062_Entries0C
+    .set gUnk_CookingRecipeDefinition_062_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x10E8
+    .global gUnk_CookingRecipeDefinition_062_Entries10
+    .set gUnk_CookingRecipeDefinition_062_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x10F0
+    .global gUnk_CookingRecipeDefinition_063_Values08
+    .set gUnk_CookingRecipeDefinition_063_Values08, gUnk_CookingRecipeDefinitionPayload + 0x10F8
+    .global gUnk_CookingRecipeDefinition_063_Entries0C
+    .set gUnk_CookingRecipeDefinition_063_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x1104
+    .global gUnk_CookingRecipeDefinition_063_Entries10
+    .set gUnk_CookingRecipeDefinition_063_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x1118
+    .global gUnk_CookingRecipeDefinition_064_Values08
+    .set gUnk_CookingRecipeDefinition_064_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1124
+    .global gUnk_CookingRecipeDefinition_064_Entries0C
+    .set gUnk_CookingRecipeDefinition_064_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x112C
+    .global gUnk_CookingRecipeDefinition_065_Values08
+    .set gUnk_CookingRecipeDefinition_065_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1134
+    .global gUnk_CookingRecipeDefinition_065_Entries0C
+    .set gUnk_CookingRecipeDefinition_065_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x113C
+    .global gUnk_CookingRecipeDefinition_066_Values08
+    .set gUnk_CookingRecipeDefinition_066_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1148
+    .global gUnk_CookingRecipeDefinition_066_Entries0C
+    .set gUnk_CookingRecipeDefinition_066_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x1150
+    .global gUnk_CookingRecipeDefinition_066_Entries10
+    .set gUnk_CookingRecipeDefinition_066_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x1230
+    .global gUnk_CookingRecipeDefinition_067_Values08
+    .set gUnk_CookingRecipeDefinition_067_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1248
+    .global gUnk_CookingRecipeDefinition_067_Entries0C
+    .set gUnk_CookingRecipeDefinition_067_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x124C
+    .global gUnk_CookingRecipeDefinition_067_Entries10
+    .set gUnk_CookingRecipeDefinition_067_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x1264
+    .global gUnk_CookingRecipeDefinition_068_Values08
+    .set gUnk_CookingRecipeDefinition_068_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1270
+    .global gUnk_CookingRecipeDefinition_068_Entries0C
+    .set gUnk_CookingRecipeDefinition_068_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x1278
+    .global gUnk_CookingRecipeDefinition_068_Entries10
+    .set gUnk_CookingRecipeDefinition_068_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x12B4
+    .global gUnk_CookingRecipeDefinition_069_Values08
+    .set gUnk_CookingRecipeDefinition_069_Values08, gUnk_CookingRecipeDefinitionPayload + 0x12C0
+    .global gUnk_CookingRecipeDefinition_069_Entries0C
+    .set gUnk_CookingRecipeDefinition_069_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x12C8
+    .global gUnk_CookingRecipeDefinition_069_Entries10
+    .set gUnk_CookingRecipeDefinition_069_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x12D4
+    .global gUnk_CookingRecipeDefinition_070_Values08
+    .set gUnk_CookingRecipeDefinition_070_Values08, gUnk_CookingRecipeDefinitionPayload + 0x12DC
+    .global gUnk_CookingRecipeDefinition_070_Entries0C
+    .set gUnk_CookingRecipeDefinition_070_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x12E0
+    .global gUnk_CookingRecipeDefinition_070_Entries10
+    .set gUnk_CookingRecipeDefinition_070_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x12E8
+    .global gUnk_CookingRecipeDefinition_071_Values08
+    .set gUnk_CookingRecipeDefinition_071_Values08, gUnk_CookingRecipeDefinitionPayload + 0x12F4
+    .global gUnk_CookingRecipeDefinition_071_Entries0C
+    .set gUnk_CookingRecipeDefinition_071_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x12FC
+    .global gUnk_CookingRecipeDefinition_071_Entries10
+    .set gUnk_CookingRecipeDefinition_071_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x1320
+    .global gUnk_CookingRecipeDefinition_072_Values08
+    .set gUnk_CookingRecipeDefinition_072_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1328
+    .global gUnk_CookingRecipeDefinition_072_Entries0C
+    .set gUnk_CookingRecipeDefinition_072_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x1330
+    .global gUnk_CookingRecipeDefinition_072_Entries10
+    .set gUnk_CookingRecipeDefinition_072_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x13C0
+    .global gUnk_CookingRecipeDefinition_073_Values08
+    .set gUnk_CookingRecipeDefinition_073_Values08, gUnk_CookingRecipeDefinitionPayload + 0x13D0
+    .global gUnk_CookingRecipeDefinition_073_Entries0C
+    .set gUnk_CookingRecipeDefinition_073_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x13D4
+    .global gUnk_CookingRecipeDefinition_073_Entries10
+    .set gUnk_CookingRecipeDefinition_073_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x1438
+    .global gUnk_CookingRecipeDefinition_074_Values08
+    .set gUnk_CookingRecipeDefinition_074_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1450
+    .global gUnk_CookingRecipeDefinition_075_Values08
+    .set gUnk_CookingRecipeDefinition_075_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1456
+    .global gUnk_CookingRecipeDefinition_074_Entries0C
+    .set gUnk_CookingRecipeDefinition_074_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x145C
+    .global gUnk_CookingRecipeDefinition_074_Entries10
+    .set gUnk_CookingRecipeDefinition_074_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x14C0
+    .global gUnk_CookingRecipeDefinition_076_Values08
+    .set gUnk_CookingRecipeDefinition_076_Values08, gUnk_CookingRecipeDefinitionPayload + 0x14D8
+    .global gUnk_CookingRecipeDefinition_077_Values08
+    .set gUnk_CookingRecipeDefinition_077_Values08, gUnk_CookingRecipeDefinitionPayload + 0x14DE
+    .global gUnk_CookingRecipeDefinition_076_Entries0C
+    .set gUnk_CookingRecipeDefinition_076_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x14E4
+    .global gUnk_CookingRecipeDefinition_076_Entries10
+    .set gUnk_CookingRecipeDefinition_076_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x1544
+    .global gUnk_CookingRecipeDefinition_078_Values08
+    .set gUnk_CookingRecipeDefinition_078_Values08, gUnk_CookingRecipeDefinitionPayload + 0x155C
+    .global gUnk_CookingRecipeDefinition_078_Entries0C
+    .set gUnk_CookingRecipeDefinition_078_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x1564
+    .global gUnk_CookingRecipeDefinition_078_Entries10
+    .set gUnk_CookingRecipeDefinition_078_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x15C4
+    .global gUnk_CookingRecipeDefinition_079_Values08
+    .set gUnk_CookingRecipeDefinition_079_Values08, gUnk_CookingRecipeDefinitionPayload + 0x15DC
+    .global gUnk_CookingRecipeDefinition_079_Entries0C
+    .set gUnk_CookingRecipeDefinition_079_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x15E0
+    .global gUnk_CookingRecipeDefinition_079_Entries10
+    .set gUnk_CookingRecipeDefinition_079_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x1640
+    .global gUnk_CookingRecipeDefinition_080_Values08
+    .set gUnk_CookingRecipeDefinition_080_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1658
+    .global gUnk_CookingRecipeDefinition_081_Values08
+    .set gUnk_CookingRecipeDefinition_081_Values08, gUnk_CookingRecipeDefinitionPayload + 0x165E
+    .global gUnk_CookingRecipeDefinition_080_Entries0C
+    .set gUnk_CookingRecipeDefinition_080_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x1664
+    .global gUnk_CookingRecipeDefinition_080_Entries10
+    .set gUnk_CookingRecipeDefinition_080_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x16C4
+    .global gUnk_CookingRecipeDefinition_082_Values08
+    .set gUnk_CookingRecipeDefinition_082_Values08, gUnk_CookingRecipeDefinitionPayload + 0x16DC
+    .global gUnk_CookingRecipeDefinition_082_Entries0C
+    .set gUnk_CookingRecipeDefinition_082_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x16E4
+    .global gUnk_CookingRecipeDefinition_082_Entries10
+    .set gUnk_CookingRecipeDefinition_082_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x1744
+    .global gUnk_CookingRecipeDefinition_083_Values08
+    .set gUnk_CookingRecipeDefinition_083_Values08, gUnk_CookingRecipeDefinitionPayload + 0x175C
+    .global gUnk_CookingRecipeDefinition_083_Entries10
+    .set gUnk_CookingRecipeDefinition_083_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x1760
+    .global gUnk_CookingRecipeDefinition_084_Values08
+    .set gUnk_CookingRecipeDefinition_084_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1770
+    .global gUnk_CookingRecipeDefinition_084_Entries0C
+    .set gUnk_CookingRecipeDefinition_084_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x1778
+    .global gUnk_CookingRecipeDefinition_084_Entries10
+    .set gUnk_CookingRecipeDefinition_084_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x17F4
+    .global gUnk_CookingRecipeDefinition_085_Values08
+    .set gUnk_CookingRecipeDefinition_085_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1804
+    .global gUnk_CookingRecipeDefinition_085_Entries0C
+    .set gUnk_CookingRecipeDefinition_085_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x180C
+    .global gUnk_CookingRecipeDefinition_086_Values08
+    .set gUnk_CookingRecipeDefinition_086_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1830
+    .global gUnk_CookingRecipeDefinition_087_Values08
+    .set gUnk_CookingRecipeDefinition_087_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1834
+    .global gUnk_CookingRecipeDefinition_087_Entries0C
+    .set gUnk_CookingRecipeDefinition_087_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x1838
+    .global gUnk_CookingRecipeDefinition_087_Entries10
+    .set gUnk_CookingRecipeDefinition_087_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x1844
+    .global gUnk_CookingRecipeDefinition_088_Values08
+    .set gUnk_CookingRecipeDefinition_088_Values08, gUnk_CookingRecipeDefinitionPayload + 0x185C
+    .global gUnk_CookingRecipeDefinition_088_Entries10
+    .set gUnk_CookingRecipeDefinition_088_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x1860
+    .global gUnk_CookingRecipeDefinition_089_Values08
+    .set gUnk_CookingRecipeDefinition_089_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1874
+    .global gUnk_CookingRecipeDefinition_089_Entries0C
+    .set gUnk_CookingRecipeDefinition_089_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x1878
+    .global gUnk_CookingRecipeDefinition_090_Values08
+    .set gUnk_CookingRecipeDefinition_090_Values08, gUnk_CookingRecipeDefinitionPayload + 0x18A0
+    .global gUnk_CookingRecipeDefinition_090_Entries10
+    .set gUnk_CookingRecipeDefinition_090_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x18A8
+    .global gUnk_CookingRecipeDefinition_091_Values08
+    .set gUnk_CookingRecipeDefinition_091_Values08, gUnk_CookingRecipeDefinitionPayload + 0x18B8
+    .global gUnk_CookingRecipeDefinition_091_Entries10
+    .set gUnk_CookingRecipeDefinition_091_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x18C0
+    .global gUnk_CookingRecipeDefinition_092_Values08
+    .set gUnk_CookingRecipeDefinition_092_Values08, gUnk_CookingRecipeDefinitionPayload + 0x18D0
+    .global gUnk_CookingRecipeDefinition_092_Entries10
+    .set gUnk_CookingRecipeDefinition_092_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x18D8
+    .global gUnk_CookingRecipeDefinition_093_Values08
+    .set gUnk_CookingRecipeDefinition_093_Values08, gUnk_CookingRecipeDefinitionPayload + 0x18E4
+    .global gUnk_CookingRecipeDefinition_093_Entries10
+    .set gUnk_CookingRecipeDefinition_093_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x18F0
+    .global gUnk_CookingRecipeDefinition_094_Values08
+    .set gUnk_CookingRecipeDefinition_094_Values08, gUnk_CookingRecipeDefinitionPayload + 0x18F8
+    .global gUnk_CookingRecipeDefinition_095_Values08
+    .set gUnk_CookingRecipeDefinition_095_Values08, gUnk_CookingRecipeDefinitionPayload + 0x18FE
+    .global gUnk_CookingRecipeDefinition_095_Entries0C
+    .set gUnk_CookingRecipeDefinition_095_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x1908
+    .global gUnk_CookingRecipeDefinition_096_Values08
+    .set gUnk_CookingRecipeDefinition_096_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1928
+    .global gUnk_CookingRecipeDefinition_097_Values08
+    .set gUnk_CookingRecipeDefinition_097_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1932
+    .global gUnk_CookingRecipeDefinition_096_Entries0C
+    .set gUnk_CookingRecipeDefinition_096_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x1938
+    .global gUnk_CookingRecipeDefinition_096_Entries10
+    .set gUnk_CookingRecipeDefinition_096_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x1958
+    .global gUnk_CookingRecipeDefinition_098_Values08
+    .set gUnk_CookingRecipeDefinition_098_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1960
+    .global gUnk_CookingRecipeDefinition_098_Entries0C
+    .set gUnk_CookingRecipeDefinition_098_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x1968
+    .global gUnk_CookingRecipeDefinition_098_Entries10
+    .set gUnk_CookingRecipeDefinition_098_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x19C8
+    .global gUnk_CookingRecipeDefinition_099_Values08
+    .set gUnk_CookingRecipeDefinition_099_Values08, gUnk_CookingRecipeDefinitionPayload + 0x19D0
+    .global gUnk_CookingRecipeDefinition_099_Entries0C
+    .set gUnk_CookingRecipeDefinition_099_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x19D8
+    .global gUnk_CookingRecipeDefinition_099_Entries10
+    .set gUnk_CookingRecipeDefinition_099_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x1A28
+    .global gUnk_CookingRecipeDefinition_100_Values08
+    .set gUnk_CookingRecipeDefinition_100_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1A30
+    .global gUnk_CookingRecipeDefinition_100_Entries0C
+    .set gUnk_CookingRecipeDefinition_100_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x1A3C
+    .global gUnk_CookingRecipeDefinition_100_Entries10
+    .set gUnk_CookingRecipeDefinition_100_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x1A8C
+    .global gUnk_CookingRecipeDefinition_101_Values08
+    .set gUnk_CookingRecipeDefinition_101_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1A94
+    .global gUnk_CookingRecipeDefinition_101_Entries0C
+    .set gUnk_CookingRecipeDefinition_101_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x1AA4
+    .global gUnk_CookingRecipeDefinition_101_Entries10
+    .set gUnk_CookingRecipeDefinition_101_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x1ABC
+    .global gUnk_CookingRecipeDefinition_102_Values08
+    .set gUnk_CookingRecipeDefinition_102_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1AC8
+    .global gUnk_CookingRecipeDefinition_102_Entries0C
+    .set gUnk_CookingRecipeDefinition_102_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x1ACC
+    .global gUnk_CookingRecipeDefinition_102_Entries10
+    .set gUnk_CookingRecipeDefinition_102_Entries10, gUnk_CookingRecipeDefinitionPayload + 0x1B30
+    .global gUnk_CookingRecipeDefinition_103_Values08
+    .set gUnk_CookingRecipeDefinition_103_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1B3C
+    .global gUnk_CookingRecipeDefinition_104_Values08
+    .set gUnk_CookingRecipeDefinition_104_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1B44
+    .global gUnk_CookingRecipeDefinition_105_Values08
+    .set gUnk_CookingRecipeDefinition_105_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1B4C
+    .global gUnk_CookingRecipeDefinition_106_Values08
+    .set gUnk_CookingRecipeDefinition_106_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1B54
+    .global gUnk_CookingRecipeDefinition_107_Values08
+    .set gUnk_CookingRecipeDefinition_107_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1B5E
+    .global gUnk_CookingRecipeDefinition_108_Values08
+    .set gUnk_CookingRecipeDefinition_108_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1B64
+    .global gUnk_CookingRecipeDefinition_109_Values08
+    .set gUnk_CookingRecipeDefinition_109_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1B6E
+    .global gUnk_CookingRecipeDefinition_110_Values08
+    .set gUnk_CookingRecipeDefinition_110_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1B74
+    .global gUnk_CookingRecipeDefinition_111_Values08
+    .set gUnk_CookingRecipeDefinition_111_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1B86
+    .global gUnk_CookingRecipeDefinition_112_Values08
+    .set gUnk_CookingRecipeDefinition_112_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1B98
+    .global gUnk_CookingRecipeDefinition_111_Entries0C
+    .set gUnk_CookingRecipeDefinition_111_Entries0C, gUnk_CookingRecipeDefinitionPayload + 0x1B9C
+    .global gUnk_CookingRecipeDefinition_113_Values08
+    .set gUnk_CookingRecipeDefinition_113_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1BC4
+    .global gUnk_CookingRecipeDefinition_114_Values08
+    .set gUnk_CookingRecipeDefinition_114_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1BD0
+    .global gUnk_CookingRecipeDefinition_115_Values08
+    .set gUnk_CookingRecipeDefinition_115_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1BDC
+    .global gUnk_CookingRecipeDefinition_116_Values08
+    .set gUnk_CookingRecipeDefinition_116_Values08, gUnk_CookingRecipeDefinitionPayload + 0x1BEA

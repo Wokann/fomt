@@ -627,7 +627,8 @@ SECTIONS
         . = 0x100FE0; data/text/cooking_recipe_actions.o(.rodata.cooking_recipe_actions_extra_text);
         . = 0x101008; data/text/cooking_recipe_inventory.o(.rodata);
         . = 0x1010E8; src/cooking_recipe_inventory_data.o(.rodata);
-        . = 0x10110C; asm/data/data_080F9EB8.o(.rodata.cooking_recipe_inventory_trailer);
+        . = 0x10110C; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_definitions);
+        . = 0x101A44; asm/data/data_080F9EB8.o(.rodata.cooking_recipe_inventory_trailer);
         . = 0x103658; data/text/common/animal.o(.rodata.animal_unnamed);
         . = 0x103660; src/livestock.o(.rodata.livestock_day_update);
         . = 0x1036C0; src/code_actor_0809C3E0.o(.rodata.actor_state_max_values);
