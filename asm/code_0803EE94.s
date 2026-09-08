@@ -50,6 +50,8 @@
     .thumb_set func_0804EC48, func_0804EC84 + 0x19C
     .global func_0804EC68
     .thumb_set func_0804EC68, func_0804EC84 + 0x1BC
+    .global func_0804EEEC
+    .thumb_set func_0804EEEC, func_0804F15C + 0x4
 
     jp_code_0803ee_func func_0804F69C, 0x4F428, 0x4F530
     jp_code_0803ee_func func_0804F7A4, 0x4F530, 0x50128

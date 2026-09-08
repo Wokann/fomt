@@ -26326,6 +26326,12 @@ func_080E0E80: @ 0x080E0E80
     .thumb_set func_080E3E28, func_080E0EF0 + 0x2F30
     .global func_080E07B8
     .thumb_set func_080E07B8, func_080E0F90 + 0x88
+    .global func_080E07C4
+    .thumb_set func_080E07C4, func_080E0F90 + 0x94
+    .global func_080E07D0
+    .thumb_set func_080E07D0, func_080E0F90 + 0xA0
+    .global func_080E07DC
+    .thumb_set func_080E07DC, func_080E0F90 + 0xAC
     .else
 
 	thumb_func_start func_080E0EF0

@@ -14,6 +14,9 @@ struct RawVTableWithOffset {
 
 extern void __pure_virtual(void);
 extern void func_0804EEFC(void);
+extern void func_0804F19C(void);
+extern void func_080E0F48(void);
+extern void func_080E0F90(void);
 extern void func_080E0EF0(void);
 extern void method_0803EFD8__13AScriptEngine(void);
 #if defined(REGION_JP)
@@ -24,8 +27,11 @@ extern void func_0804EBC8(void);
 extern void func_0804EC34(void);
 extern void func_0804EC48(void);
 extern void func_0804EC68(void);
-extern void func_0804F19C(void);
+extern void func_0804EEEC(void);
 extern void func_080E07B8(void);
+extern void func_080E07C4(void);
+extern void func_080E07D0(void);
+extern void func_080E07DC(void);
 #else
 extern void func_0803F8DC(void);
 extern void func_0804EA80(void);
@@ -35,6 +41,9 @@ extern void func_0804EE88(void);
 extern void func_0804EE9C(void);
 extern void func_0804EEBC(void);
 extern void func_0804EEDC(void);
+extern void func_080E1018(void);
+extern void func_080E1024(void);
+extern void func_080E1030(void);
 #endif
 extern void func_080D3BE8(void);
 extern void func_080D3C24(void);
@@ -1004,7 +1013,7 @@ extern RawVTableFunction const __vt_12ScriptEngine[]
 #endif
     };
 
-// Four adjacent two-method dispatch tables.  The table shapes are shared;
+// Seven adjacent two-method dispatch tables.  The table shapes are shared;
 // only their raw code entry points differ between the two regional ROMs.
 extern RawVTableFunction const vtable_unk_080E7838[]
     SECTION(".rodata.vtable_script_engine_adjacent") = {
@@ -1055,6 +1064,45 @@ extern RawVTableFunction const vtable_unk_080E7868[]
 #else
         func_0804EEFC,
         func_0804EA80,
+#endif
+    };
+
+extern RawVTableFunction const vtable_unk_080E7878[]
+    SECTION(".rodata.vtable_script_engine_adjacent") = {
+        nullptr,
+        nullptr,
+#if defined(REGION_JP)
+        func_080E0F90,
+        func_080E07C4,
+#else
+        func_0804F19C,
+        func_080E1018,
+#endif
+    };
+
+extern RawVTableFunction const vtable_unk_080E7888[]
+    SECTION(".rodata.vtable_script_engine_adjacent") = {
+        nullptr,
+        nullptr,
+#if defined(REGION_JP)
+        func_080E0F48,
+        func_080E07D0,
+#else
+        func_080E0F90,
+        func_080E1024,
+#endif
+    };
+
+extern RawVTableFunction const vtable_unk_080E7898[]
+    SECTION(".rodata.vtable_script_engine_adjacent") = {
+        nullptr,
+        nullptr,
+#if defined(REGION_JP)
+        func_080E07DC,
+        func_0804EEEC,
+#else
+        func_080E0F48,
+        func_080E1030,
 #endif
     };
 
