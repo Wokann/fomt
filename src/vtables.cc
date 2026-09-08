@@ -238,6 +238,7 @@ extern void func_080DC49C(void);
 extern void func_080DC4E4(void);
 extern void func_080DC50C(void);
 extern void func_080DC554(void);
+extern void func_080DC5A8(void);
 extern void func_080D6C58(void);
 extern void func_080D6D8C(void);
 extern void func_080D780C(void);
@@ -880,6 +881,12 @@ extern RawVTableFunction const vtable_unk_080E5EC4[] = {
     func_0801F924,
     func_0801C550,
     func_0801C69C,
+};
+
+extern RawVTableFunction const vtable_unk_080E602C[] = {
+    nullptr,
+    nullptr,
+    func_080DC5A8,
 };
 
 EXTERN_C_END

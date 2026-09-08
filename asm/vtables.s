@@ -5,9 +5,7 @@
     @ declarations. The remaining tables stay in this static ROM range.
 
     .section .rodata
-    .set jp_vtables_start, jp_vtables_raw_start - 0x660
-    .global vtable_unk_080E602C
-    .set vtable_unk_080E602C, jp_vtables_start + 0x660
+    .set jp_vtables_start, jp_vtables_raw_start - 0x66C
     .global vtable_unk_080E6038
     .set vtable_unk_080E6038, jp_vtables_start + 0x66C
     .global vtable_unk_080E61A0
@@ -500,14 +498,10 @@
     .set vtable_unk_080E85E8, jp_vtables_start + 0x2C1C
 
 jp_vtables_raw_start:
-    .incbin "baserom_jp.gba", 0xE546C, (0xE7A40 - 0xE546C)
+    .incbin "baserom_jp.gba", 0xE5478, (0xE7A40 - 0xE5478)
     .else
 
     .section .rodata
-
-	.global vtable_unk_080E602C
-vtable_unk_080E602C:
-	.incbin "baserom_us.gba", 0xE602C, 0xC
 
 	.global vtable_unk_080E6038
 vtable_unk_080E6038:
