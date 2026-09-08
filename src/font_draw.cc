@@ -401,4 +401,21 @@ i32 DrawCharacterGlyphTo2DGfxBufferExtUnaligned(u32 size, void *buffer,
     return 0;
 }
 
+void Copy2DGfxBuffer(u32 size, void *destination, void const *source)
+    SECTION(".text.font_draw_after");
+
+// Copy a complete packed 4bpp tile buffer. The low and high halves of size
+// are its tile width and height respectively.
+void Copy2DGfxBuffer(u32 size, void *destination, void const *source)
+{
+    u32 tile_width = (u16)size;
+    u32 tile_height = size >> 16;
+    u32 word_count = tile_width * tile_height;
+
+    word_count <<= 5;
+    word_count >>= 2;
+    word_count &= 0x1FFFFF;
+    CpuFastSet(source, destination, word_count);
+}
+
 EXTERN_C_END

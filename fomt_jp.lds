@@ -223,7 +223,8 @@ SECTIONS
         asm/code_0803EE94.o(.text.font_draw_ext);
         . = 0x4E5C8; /* Shared 2D tile-buffer fillers and Shift-JIS renderers. */
         src/font_draw.o(.text);
-        . = 0x4E7F8; asm/code_0803EE94.o(.text.font_draw_after);
+        . = 0x4E7F8; src/font_draw.o(.text.font_draw_after);
+        . = 0x4E81C; asm/code_0803EE94.o(.text.font_draw_after);
         . = 0x50188; /* JP/US-shared nonzero UI-state setter. */
         src/ui_state.o(.text.set_ui_object_state_two_if_nonzero);
         . = 0x5019C; /* JP/US-shared nonzero UI-state clearer. */

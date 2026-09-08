@@ -29,9 +29,8 @@
     .section .text.font_draw_ext
     jp_code_0803ee_func func_0804E5AC, 0x4E3D4, 0x4E5C8
     .section .text.font_draw_after
-    @ The two preceding four-byte unaligned no-ops are rebuilt from
-    @ src/font_draw.cc. This unnamed helper remains raw for now.
-    jp_code_0803ee_func func_0804E9D0, 0x4E7F8, 0x4E81C
+    @ The preceding unaligned no-ops and packed tile-buffer copy helper are
+    @ rebuilt from src/font_draw.cc.
     jp_code_0803ee_func func_0804E9F4, 0x4E81C, 0x4E880
     jp_code_0803ee_func func_0804EA58, 0x4E880, 0x4E8BC
     jp_code_0803ee_func func_0804EA94, 0x4E8BC, 0x4EAAC
@@ -28551,16 +28550,10 @@ func_0804E5AC: @ 0x0804E5AC
 	bx r1
 	.align 2, 0
 
-	@ The full-buffer and rectangle 2D fillers, plus both four-byte unaligned
-	@ glyph fallbacks, are rebuilt from src/font_draw.cc for both regions.
+	@ The full-buffer and rectangle 2D fillers, both four-byte unaligned glyph
+	@ fallbacks, and the packed tile-buffer copy helper are rebuilt from
+	@ src/font_draw.cc for both regions.
 	.section .text.font_draw_after
-
-	.global func_0804E9D0
-	.thumb_func
-func_0804E9D0: @ 0x0804E9D0
-	.byte 0x00, 0xB5, 0x13, 0x1C, 0x02, 0x04, 0x12, 0x0C, 0x00, 0x0C, 0x42, 0x43, 0x52, 0x01, 0x92, 0x08
-	.byte 0x03, 0x48, 0x02, 0x40, 0x18, 0x1C, 0x84, 0xF0, 0xB1, 0xFE, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
-	.byte 0xFF, 0xFF, 0x1F, 0x00
 
 	thumb_func_start func_0804E9F4
 func_0804E9F4: @ 0x0804E9F4

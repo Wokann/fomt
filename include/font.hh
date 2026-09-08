@@ -30,6 +30,9 @@ i32 DrawCharacterGlyphTo2DGfxBufferExtUnaligned(u32 size, void *buffer,
 void Clear2DGfxBuffer(u32 size, void *buffer, u32 color);
 void Clear2DGfxBufferRect(u32 size, void *buffer, u32 x, u32 y, u32 width,
     u32 height, u32 color);
+// Copies every 32-byte tile in a packed two-dimensional 4bpp buffer.
+void Copy2DGfxBuffer(u32 size, void *destination, void const *source)
+    asm("func_0804E9D0");
 void DrawStringTo2DGfxBuffer(u32 size, void *buffer, i32 x, i32 y,
     u8 const *string);
 void DrawStringTo2DGfxBufferExt(u32 size, void *buffer, i32 x, i32 y,
