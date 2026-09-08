@@ -69,6 +69,8 @@ func_08034C64:
 
     .global func_08032560
     .thumb_set func_08032560, func_0803242C + 0x134
+    .global func_080328D4
+    .thumb_set func_080328D4, func_08032A30 + 0x110
     .global func_0803260C
     .thumb_set func_0803260C, func_0803242C + 0x1E0
     .global func_08032690
@@ -4337,4 +4339,6 @@ func_08034C64: @ 0x08034C64
 	pop {r1}
 	bx r1
 	.align 2, 0
+    .global func_08032B40
+    .thumb_set func_08032B40, func_08032A30 + 0x110
     .endif

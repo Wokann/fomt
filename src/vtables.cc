@@ -3989,4 +3989,72 @@ extern RawVTableFunction const vtable_unk_080E8344[]
 #endif
     };
 
+#if defined(REGION_JP)
+extern void vfunc_10__7AEntity(void);
+extern void vfunc_14__7AEntity(void);
+extern void func_08032A30(void);
+extern void vfunc_1C__7AEntityUi(void);
+extern void vfunc_20__7AEntity(void);
+extern void vfunc_24__7AEntity(void);
+extern void vfunc_28__C7AEntity(void);
+extern void func_0803242C(void);
+extern void func_080E3C7C(void);
+extern void func_080324B8(void);
+extern void func_080328D4(void);
+extern void func_080E3CDC(void);
+#else
+extern void func_080E4510(void);
+extern void func_0803240C(void);
+extern void vfunc_10__7AEntity(void);
+extern void vfunc_14__7AEntity(void);
+extern void func_08032A30(void);
+extern void vfunc_1C__7AEntityUi(void);
+extern void vfunc_20__7AEntity(void);
+extern void vfunc_24__7AEntity(void);
+extern void vfunc_28__C7AEntity(void);
+extern void func_0803242C(void);
+extern void func_080E44E4(void);
+extern void func_080324B8(void);
+extern void func_08032B40(void);
+#endif
+
+// This short table has a region-dependent slot layout. Retain the opaque
+// callback sequence and null slots in ROM order until its class is identified.
+extern RawVTableFunction const vtable_unk_080E8404[]
+    SECTION(".rodata.vtable_8404") = {
+#if defined(REGION_JP)
+        vfunc_10__7AEntity,
+        vfunc_14__7AEntity,
+        func_08032A30,
+        vfunc_1C__7AEntityUi,
+        vfunc_20__7AEntity,
+        vfunc_24__7AEntity,
+        vfunc_28__C7AEntity,
+        func_0803242C,
+        func_080E3C7C,
+        func_080324B8,
+        func_080328D4,
+        nullptr,
+        nullptr,
+        func_080E3CDC,
+        __pure_virtual,
+#else
+        nullptr,
+        nullptr,
+        func_080E4510,
+        func_0803240C,
+        vfunc_10__7AEntity,
+        vfunc_14__7AEntity,
+        func_08032A30,
+        vfunc_1C__7AEntityUi,
+        vfunc_20__7AEntity,
+        vfunc_24__7AEntity,
+        vfunc_28__C7AEntity,
+        func_0803242C,
+        func_080E44E4,
+        func_080324B8,
+        func_08032B40,
+#endif
+    };
+
 EXTERN_C_END
