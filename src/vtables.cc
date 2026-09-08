@@ -32,6 +32,18 @@ extern void func_080E07B8(void);
 extern void func_080E07C4(void);
 extern void func_080E07D0(void);
 extern void func_080E07DC(void);
+extern void func_0804ED38(void);
+extern void func_0804EDE4(void);
+extern void func_0804EE6C(void);
+extern void func_080E0880(void);
+extern void func_080E0890(void);
+extern void func_080E0894(void);
+extern void func_080E0898(void);
+extern void func_080E08B8(void);
+extern void func_080E08BC(void);
+extern void func_080E08C0(void);
+extern void func_080E08C4(void);
+extern void func_080E08C8(void);
 #else
 extern void func_0803F8DC(void);
 extern void func_0804EA80(void);
@@ -44,7 +56,29 @@ extern void func_0804EEDC(void);
 extern void func_080E1018(void);
 extern void func_080E1024(void);
 extern void func_080E1030(void);
+extern void func_0804F058(void);
+extern void func_080E10F0(void);
+extern void func_080E10F4(void);
+extern void func_080E1118(void);
+extern void func_080E111C(void);
+extern void func_080E1120(void);
+extern void func_080E1124(void);
 #endif
+extern void func_0804EF20(void);
+extern void func_0804EFAC(void);
+extern void func_0804F060(void);
+extern void func_0804F0E0(void);
+extern void func_0804F15C(void);
+extern void func_0804F160(void);
+extern void func_0804F174(void);
+extern void func_0804F178(void);
+extern void func_080E103C(void);
+extern void func_080E105C(void);
+extern void func_080E10E0(void);
+extern void func_080E10EC(void);
+extern void func_080E10F8(void);
+extern void func_080E1128(void);
+extern void func_080E1148(void);
 extern void func_080D3BE8(void);
 extern void func_080D3C24(void);
 extern void func_080D3C60(void);
@@ -1103,6 +1137,105 @@ extern RawVTableFunction const vtable_unk_080E7898[]
 #else
         func_080E0F48,
         func_080E1030,
+#endif
+    };
+
+// The next dispatch blocks have region-specific slot layouts. Keep their
+// real pointer order without assigning unsupported class or ABI semantics.
+extern RawVTableFunction const vtable_unk_080E78A8[]
+    SECTION(".rodata.vtable_script_engine_adjacent") = {
+#if defined(REGION_JP)
+        func_0804F174,
+        func_0804F178,
+        nullptr,
+        nullptr,
+        func_080E105C,
+        func_0804ED38,
+#else
+        nullptr,
+        nullptr,
+        func_080E103C,
+        func_0804F160,
+        func_0804F174,
+        func_0804F178,
+#endif
+    };
+
+extern RawVTableFunction const vtable_unk_080E78C0[]
+    SECTION(".rodata.vtable_script_engine_adjacent") = {
+#if defined(REGION_JP)
+        func_0804EDE4,
+        func_0804F060,
+        func_0804EE6C,
+        func_0804F15C,
+        nullptr,
+        nullptr,
+        func_0804EF20,
+        func_080E0880,
+#else
+        nullptr,
+        nullptr,
+        func_080E105C,
+        func_0804EFAC,
+        func_0804F058,
+        func_0804F060,
+        func_0804F0E0,
+        func_0804F15C,
+#endif
+    };
+
+extern RawVTableFunction const vtable_unk_080E78E0[]
+    SECTION(".rodata.vtable_script_engine_adjacent") = {
+        nullptr,
+        nullptr,
+#if defined(REGION_JP)
+        func_080E0898,
+        func_080E0894,
+#else
+        func_0804EF20,
+        func_080E10E0,
+#endif
+    };
+
+extern RawVTableFunction const vtable_unk_080E78F0[]
+    SECTION(".rodata.vtable_script_engine_adjacent") = {
+#if defined(REGION_JP)
+        func_080E0890,
+        func_080E10EC,
+        nullptr,
+        nullptr,
+        func_080E08C8,
+        __pure_virtual,
+#else
+        nullptr,
+        nullptr,
+        func_080E10F8,
+        func_080E10F4,
+        func_080E10F0,
+        func_080E10EC,
+#endif
+    };
+
+extern RawVTableFunction const vtable_unk_080E7908[]
+    SECTION(".rodata.vtable_script_engine_adjacent") = {
+#if defined(REGION_JP)
+        func_080E08C4,
+        func_080E08C0,
+        func_080E08BC,
+        func_080E08B8,
+        nullptr,
+        nullptr,
+        func_080E1148,
+        nullptr,
+#else
+        nullptr,
+        nullptr,
+        func_080E1128,
+        __pure_virtual,
+        func_080E1124,
+        func_080E1120,
+        func_080E111C,
+        func_080E1118,
 #endif
     };
 

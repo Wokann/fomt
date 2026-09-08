@@ -52,6 +52,12 @@
     .thumb_set func_0804EC68, func_0804EC84 + 0x1BC
     .global func_0804EEEC
     .thumb_set func_0804EEEC, func_0804F15C + 0x4
+    .global func_0804ED38
+    .thumb_set func_0804ED38, func_0804EF20 + 0x8C
+    .global func_0804EDE4
+    .thumb_set func_0804EDE4, func_0804EF20 + 0x138
+    .global func_0804EE6C
+    .thumb_set func_0804EE6C, func_0804F060 + 0x80
 
     jp_code_0803ee_func func_0804F69C, 0x4F428, 0x4F530
     jp_code_0803ee_func func_0804F7A4, 0x4F530, 0x50128
@@ -178505,5 +178511,9 @@ func_0809B0D8: @ 0x0809B0D8
 	pop {r1}
 	bx r1
 	.align 2, 0
+
+    @ Exact US entry point referenced by a recovered dispatch table.
+	.global func_0804F058
+	.thumb_set func_0804F058, func_0804F060 - 0x8
 
     .endif

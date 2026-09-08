@@ -410,7 +410,7 @@ SECTIONS
         *(.gnu.linkonce.d.__vt_13AScriptEngine);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_script_engine);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_script_engine_adjacent);
-        . = ALIGN(4); asm/vtables.o(.rodata.080E78A8);
+        . = ALIGN(4); asm/vtables.o(.rodata.080E7928);
 
         . = ALIGN(4); src/crt0_data.o(.rodata);
         FILL(0x00);

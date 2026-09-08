@@ -26332,6 +26332,24 @@ func_080E0E80: @ 0x080E0E80
     .thumb_set func_080E07D0, func_080E0F90 + 0xA0
     .global func_080E07DC
     .thumb_set func_080E07DC, func_080E0F90 + 0xAC
+    .global func_080E0880
+    .thumb_set func_080E0880, func_080E105C + 0x84
+    .global func_080E0890
+    .thumb_set func_080E0890, func_080E10EC + 0x4
+    .global func_080E0894
+    .thumb_set func_080E0894, func_080E10EC + 0x8
+    .global func_080E0898
+    .thumb_set func_080E0898, func_080E10EC + 0xC
+    .global func_080E08B8
+    .thumb_set func_080E08B8, func_080E10EC + 0x2C
+    .global func_080E08BC
+    .thumb_set func_080E08BC, func_080E10EC + 0x30
+    .global func_080E08C0
+    .thumb_set func_080E08C0, func_080E10EC + 0x34
+    .global func_080E08C4
+    .thumb_set func_080E08C4, func_080E10EC + 0x38
+    .global func_080E08C8
+    .thumb_set func_080E08C8, func_080E10EC + 0x3C
     .else
 
 	thumb_func_start func_080E0EF0
@@ -35940,5 +35958,19 @@ func_080E59C0: @ 0x080E59C0
 	pop {r0}
 	bx r0
 .align 2, 0
+
+    @ Exact US entry points referenced by recovered dispatch tables.
+	.global func_080E10F0
+	.thumb_set func_080E10F0, func_080E10EC + 0x4
+	.global func_080E10F4
+	.thumb_set func_080E10F4, func_080E10EC + 0x8
+	.global func_080E1118
+	.thumb_set func_080E1118, func_080E1128 - 0x10
+	.global func_080E111C
+	.thumb_set func_080E111C, func_080E1128 - 0xC
+	.global func_080E1120
+	.thumb_set func_080E1120, func_080E1128 - 0x8
+	.global func_080E1124
+	.thumb_set func_080E1124, func_080E1128 - 0x4
 
     .endif
