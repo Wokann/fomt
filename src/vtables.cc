@@ -13,9 +13,25 @@ struct RawVTableWithOffset {
 };
 
 extern void __pure_virtual(void);
+extern void func_0804EEFC(void);
 #if defined(REGION_JP)
 extern void func_0803EB3C(void);
 extern void method_0803EFD8__13AScriptEngine(void);
+extern void func_0804E8A8(void);
+extern void func_0804EBC8(void);
+extern void func_0804EC34(void);
+extern void func_0804EC48(void);
+extern void func_0804EC68(void);
+extern void func_0804F19C(void);
+extern void func_080E07B8(void);
+#else
+extern void func_0804EA80(void);
+extern void func_0804EDA0(void);
+extern void func_0804EE1C(void);
+extern void func_0804EE88(void);
+extern void func_0804EE9C(void);
+extern void func_0804EEBC(void);
+extern void func_0804EEDC(void);
 #endif
 extern void func_080D3BE8(void);
 extern void func_080D3C24(void);
@@ -969,5 +985,59 @@ extern RawVTableFunction const __vt_13AScriptEngine[]
         __pure_virtual,
     };
 #endif
+
+// Four adjacent two-method dispatch tables.  The table shapes are shared;
+// only their raw code entry points differ between the two regional ROMs.
+extern RawVTableFunction const vtable_unk_080E7838[]
+    SECTION(".rodata.vtable_script_engine_adjacent") = {
+        nullptr,
+        nullptr,
+#if defined(REGION_JP)
+        func_0804EC48,
+        func_0804EC34,
+#else
+        func_0804EE9C,
+        func_0804EE88,
+#endif
+    };
+
+extern RawVTableFunction const vtable_unk_080E7848[]
+    SECTION(".rodata.vtable_script_engine_adjacent") = {
+        nullptr,
+        nullptr,
+#if defined(REGION_JP)
+        func_0804EC68,
+        func_0804EBC8,
+#else
+        func_0804EEBC,
+        func_0804EE1C,
+#endif
+    };
+
+extern RawVTableFunction const vtable_unk_080E7858[]
+    SECTION(".rodata.vtable_script_engine_adjacent") = {
+        nullptr,
+        nullptr,
+#if defined(REGION_JP)
+        func_0804EEFC,
+        func_0804E8A8,
+#else
+        func_0804EEDC,
+        func_0804EDA0,
+#endif
+    };
+
+extern RawVTableFunction const vtable_unk_080E7868[]
+    SECTION(".rodata.vtable_script_engine_adjacent") = {
+        nullptr,
+        nullptr,
+#if defined(REGION_JP)
+        func_0804F19C,
+        func_080E07B8,
+#else
+        func_0804EEFC,
+        func_0804EA80,
+#endif
+    };
 
 EXTERN_C_END

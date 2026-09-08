@@ -38,6 +38,19 @@
     jp_code_0803ee_func func_0804F174, 0x4EF00, 0x4EF04
     jp_code_0803ee_func func_0804F178, 0x4EF04, 0x4EF28
     jp_code_0803ee_func func_0804F19C, 0x4EF28, 0x4F428
+
+    @ Exact JP entry points referenced by the reconstructed virtual tables.
+    .global func_0804E8A8
+    .thumb_set func_0804E8A8, func_0804EA58 + 0x28
+    .global func_0804EBC8
+    .thumb_set func_0804EBC8, func_0804EC84 + 0x11C
+    .global func_0804EC34
+    .thumb_set func_0804EC34, func_0804EC84 + 0x188
+    .global func_0804EC48
+    .thumb_set func_0804EC48, func_0804EC84 + 0x19C
+    .global func_0804EC68
+    .thumb_set func_0804EC68, func_0804EC84 + 0x1BC
+
     jp_code_0803ee_func func_0804F69C, 0x4F428, 0x4F530
     jp_code_0803ee_func func_0804F7A4, 0x4F530, 0x50128
     jp_code_0803ee_func func_0805039C, 0x50128, 0x50170
