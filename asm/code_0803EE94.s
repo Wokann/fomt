@@ -112,6 +112,8 @@
     .thumb_set func_0805E3DC, func_0805DF68 + 0x730
     .section .text.indexed_resource_archive_resolve_after
     jp_code_0803ee_func func_0805E790, 0x5E4D4, 0x5E560
+    .global func_0805E4D4
+    .thumb_set func_0805E4D4, func_0805E790
     .section .text.indexed_resource_handle_constructor_after
     jp_code_0803ee_func func_0805E894, 0x5E5D8, 0x5E634
     jp_code_0803ee_func func_0805E8F0, 0x5E634, 0x5E968
