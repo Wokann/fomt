@@ -7533,7 +7533,7 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r4, r2, #1
 	bl .L080454A8
 	.align 2, 0
-.L08043474: .4byte gUnk_080F9ED9
+.L08043474: .4byte gThomasStockingGiftSelectionWeights
 .L08043478:
 	subs r1, r1, r0
 	adds r2, #1
