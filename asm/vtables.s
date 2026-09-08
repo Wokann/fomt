@@ -5,37 +5,7 @@
     @ declarations. The remaining tables stay in this static ROM range.
 
     .section .rodata
-    .set jp_vtables_start, jp_vtables_raw_start - 0x3A8
-    .global vtable_unk_080E5D74
-    .set vtable_unk_080E5D74, jp_vtables_start + 0x3A8
-    .global vtable_unk_080E5D84
-    .set vtable_unk_080E5D84, jp_vtables_start + 0x3B8
-    .global vtable_unk_080E5D94
-    .set vtable_unk_080E5D94, jp_vtables_start + 0x3C8
-    .global vtable_unk_080E5DA4
-    .set vtable_unk_080E5DA4, jp_vtables_start + 0x3D8
-    .global vtable_unk_080E5DB4
-    .set vtable_unk_080E5DB4, jp_vtables_start + 0x3E8
-    .global vtable_unk_080E5DC4
-    .set vtable_unk_080E5DC4, jp_vtables_start + 0x3F8
-    .global vtable_unk_080E5DD4
-    .set vtable_unk_080E5DD4, jp_vtables_start + 0x408
-    .global vtable_unk_080E5DE4
-    .set vtable_unk_080E5DE4, jp_vtables_start + 0x418
-    .global vtable_unk_080E5DF4
-    .set vtable_unk_080E5DF4, jp_vtables_start + 0x428
-    .global vtable_unk_080E5E04
-    .set vtable_unk_080E5E04, jp_vtables_start + 0x438
-    .global vtable_unk_080E5E14
-    .set vtable_unk_080E5E14, jp_vtables_start + 0x448
-    .global vtable_unk_080E5E24
-    .set vtable_unk_080E5E24, jp_vtables_start + 0x458
-    .global vtable_unk_080E5E34
-    .set vtable_unk_080E5E34, jp_vtables_start + 0x468
-    .global vtable_unk_080E5E44
-    .set vtable_unk_080E5E44, jp_vtables_start + 0x478
-    .global vtable_unk_080E5E54
-    .set vtable_unk_080E5E54, jp_vtables_start + 0x488
+    .set jp_vtables_start, jp_vtables_raw_start - 0x498
     .global vtable_unk_080E5E64
     .set vtable_unk_080E5E64, jp_vtables_start + 0x498
     .global vtable_unk_080E5E74
@@ -542,70 +512,10 @@
     .set vtable_unk_080E85E8, jp_vtables_start + 0x2C1C
 
 jp_vtables_raw_start:
-    .incbin "baserom_jp.gba", 0xE51B4, (0xE7A40 - 0xE51B4)
+    .incbin "baserom_jp.gba", 0xE52A4, (0xE7A40 - 0xE52A4)
     .else
 
     .section .rodata
-
-	.global vtable_unk_080E5D74
-vtable_unk_080E5D74:
-	.incbin "baserom_us.gba", 0xE5D74, 0x10
-
-	.global vtable_unk_080E5D84
-vtable_unk_080E5D84:
-	.incbin "baserom_us.gba", 0xE5D84, 0x10
-
-	.global vtable_unk_080E5D94
-vtable_unk_080E5D94:
-	.incbin "baserom_us.gba", 0xE5D94, 0x10
-
-	.global vtable_unk_080E5DA4
-vtable_unk_080E5DA4:
-	.incbin "baserom_us.gba", 0xE5DA4, 0x10
-
-	.global vtable_unk_080E5DB4
-vtable_unk_080E5DB4:
-	.incbin "baserom_us.gba", 0xE5DB4, 0x10
-
-	.global vtable_unk_080E5DC4
-vtable_unk_080E5DC4:
-	.incbin "baserom_us.gba", 0xE5DC4, 0x10
-
-	.global vtable_unk_080E5DD4
-vtable_unk_080E5DD4:
-	.incbin "baserom_us.gba", 0xE5DD4, 0x10
-
-	.global vtable_unk_080E5DE4
-vtable_unk_080E5DE4:
-	.incbin "baserom_us.gba", 0xE5DE4, 0x10
-
-	.global vtable_unk_080E5DF4
-vtable_unk_080E5DF4:
-	.incbin "baserom_us.gba", 0xE5DF4, 0x10
-
-	.global vtable_unk_080E5E04
-vtable_unk_080E5E04:
-	.incbin "baserom_us.gba", 0xE5E04, 0x10
-
-	.global vtable_unk_080E5E14
-vtable_unk_080E5E14:
-	.incbin "baserom_us.gba", 0xE5E14, 0x10
-
-	.global vtable_unk_080E5E24
-vtable_unk_080E5E24:
-	.incbin "baserom_us.gba", 0xE5E24, 0x10
-
-	.global vtable_unk_080E5E34
-vtable_unk_080E5E34:
-	.incbin "baserom_us.gba", 0xE5E34, 0x10
-
-	.global vtable_unk_080E5E44
-vtable_unk_080E5E44:
-	.incbin "baserom_us.gba", 0xE5E44, 0x10
-
-	.global vtable_unk_080E5E54
-vtable_unk_080E5E54:
-	.incbin "baserom_us.gba", 0xE5E54, 0x10
 
 	.global vtable_unk_080E5E64
 vtable_unk_080E5E64:
