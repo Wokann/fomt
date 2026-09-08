@@ -543,6 +543,22 @@ bool IsSectionSpecifierString(const std::string &source, std::size_t quote)
     return identifier == "section" || identifier == "SECTION";
 }
 
+bool IsCppLinkageSpecifierString(const std::string &source, std::size_t quote)
+{
+    // `extern "C"` and `extern "C++"` are C++ grammar, rather than game
+    // text.  The source pass runs after macro expansion, so this also covers
+    // the project's EXTERN_C wrapper from prelude.h.
+    std::size_t at = quote;
+    while (at > 0 && std::isspace(static_cast<unsigned char>(source[at - 1])) != 0)
+        --at;
+
+    const std::size_t identifier_end = at;
+    while (at > 0 && IsCppIdentifierCharacter(source[at - 1]))
+        --at;
+    return source.compare(at, identifier_end - at, "extern") == 0
+        && (at == 0 || !IsCppIdentifierCharacter(source[at - 1]));
+}
+
 std::size_t FindInlineAssemblyEnd(const std::string &source, std::size_t begin)
 {
     // Inline assembler strings are compiler syntax, not FOMT game text.  In
@@ -1026,7 +1042,7 @@ std::string CompileCppSourceText(const std::string &source, const Charmap &charm
         const std::size_t line_number = SourceLineNumber(source, at);
         const std::size_t end = FindCppQuotedLiteralEnd(source, at, line_number);
         const std::string literal = source.substr(at, end - at);
-        if (IsSectionSpecifierString(source, at)) {
+        if (IsSectionSpecifierString(source, at) || IsCppLinkageSpecifierString(source, at)) {
             output << literal;
             at = end;
             continue;
@@ -2574,6 +2590,16 @@ void SelfTest()
         "generic source pass changed a non-text structure initializer");
     Require(generated_generic.find("\"\\x41\\x0C\"") != std::string::npos,
         "generic source pass did not encode a text control");
+
+    const std::string generic_linkage_source =
+        "extern \"C\" {\n"
+        "char const gText_Linkage[] = \"A\";\n"
+        "}\n";
+    const std::string generated_linkage = CompileCppSourceText(generic_linkage_source, map);
+    Require(generated_linkage.find("extern \"C\"") != std::string::npos,
+        "generic source pass changed a C++ linkage specifier");
+    Require(generated_linkage.find("gText_Linkage[] = \"\\x41\"") != std::string::npos,
+        "generic source pass did not encode text inside a C++ linkage block");
 
     const Charmap glyph_map = Charmap::Parse(
         "20= \n30=0\n824F=\xEF\xBC\x90\n");
