@@ -67,6 +67,8 @@ func_0800736C:
     .thumb_set func_080098AC, func_0800736C + 0x2540
     .global func_080098D8
     .thumb_set func_080098D8, func_0800736C + 0x256C
+    .global func_080098DC
+    .thumb_set func_080098DC, func_0800736C + 0x2570
     .global func_08009908
     .thumb_set func_08009908, func_0800736C + 0x259C
     .global func_08009940

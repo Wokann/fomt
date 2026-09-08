@@ -8229,6 +8229,37 @@ func_080D7B44: @ 0x080D7B44
     .thumb_set func_080E0A94, func_080D7E64 + 0x8C18
     .global func_080E0D70
     .thumb_set func_080E0D70, func_080D7E64 + 0x8EF4
+    @ Verified JP entries referenced by the remaining virtual tables.
+    .global func_080DB238
+    .thumb_set func_080DB238, func_080DB1E4 + 0x54
+    .global func_080DB2EC
+    .thumb_set func_080DB2EC, func_080DB1E4 + 0x108
+    .global func_080DB314
+    .thumb_set func_080DB314, func_080DB1E4 + 0x130
+    .global func_080DB320
+    .thumb_set func_080DB320, func_080DB1E4 + 0x13C
+    .global func_080DB36C
+    .thumb_set func_080DB36C, func_080DB1E4 + 0x188
+    .global func_080DB394
+    .thumb_set func_080DB394, func_080DB1E4 + 0x1B0
+    .global func_080DB3DC
+    .thumb_set func_080DB3DC, func_080DB1E4 + 0x1F8
+    .global func_080DB404
+    .thumb_set func_080DB404, func_080DB1E4 + 0x220
+    .global func_080DB44C
+    .thumb_set func_080DB44C, func_080DB1E4 + 0x268
+    .global func_080DB474
+    .thumb_set func_080DB474, func_080DB1E4 + 0x290
+    .global func_080DB4C8
+    .thumb_set func_080DB4C8, func_080DB1E4 + 0x2E4
+    .global func_080DB4F0
+    .thumb_set func_080DB4F0, func_080DB1E4 + 0x30C
+    .global func_080DB540
+    .thumb_set func_080DB540, func_080DB1E4 + 0x35C
+    .global func_080DB568
+    .thumb_set func_080DB568, func_080DB1E4 + 0x384
+    .global func_080DB5B8
+    .thumb_set func_080DB5B8, func_080DB1E4 + 0x3D4
     .else
 
 	thumb_func_start func_080D7E64
@@ -26046,6 +26077,24 @@ func_080E0E80: @ 0x080E0E80
 	pop {r4, r5, r6, r7}
 	pop {r1}
 	bx r1
+
+	@ US counterparts of virtual-table targets that are internal code labels.
+	.global func_080DB404
+	.thumb_set func_080DB404, func_080DB1E4 + 0x220
+	.global func_080DB44C
+	.thumb_set func_080DB44C, func_080DB1E4 + 0x268
+	.global func_080DB474
+	.thumb_set func_080DB474, func_080DB1E4 + 0x290
+	.global func_080DB4C8
+	.thumb_set func_080DB4C8, func_080DB1E4 + 0x2E4
+	.global func_080DB4F0
+	.thumb_set func_080DB4F0, func_080DB1E4 + 0x30C
+	.global func_080DB540
+	.thumb_set func_080DB540, func_080DB1E4 + 0x35C
+	.global func_080DB568
+	.thumb_set func_080DB568, func_080DB1E4 + 0x384
+	.global func_080DB5B8
+	.thumb_set func_080DB5B8, func_080DB1E4 + 0x3D4
 
     .endif
 	.section ".text.code_080E0EF0"
