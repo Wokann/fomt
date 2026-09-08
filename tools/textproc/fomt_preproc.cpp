@@ -713,6 +713,34 @@ void RemoveCompilerDataSectionTailAlignment(std::vector<std::string> &lines)
     }
 }
 
+void NormalizeCallViaR2ArgumentSetup(std::vector<std::string> &lines)
+{
+    // agbcp sometimes schedules a PC-relative r2 load before the independent
+    // r1 register copy immediately before libgcc's _call_via_r2 trampoline.
+    // The ARM procedure-call ABI makes those two preparations independent.
+    // Put the argument registers in their conventional r0/r1/r2 order when
+    // the exact safe three-instruction pattern is present. This is purposely
+    // generic: it applies to any ordinary C/C++ source that calls the shared
+    // ARM trampoline, not to a particular function or data label.
+    static const std::regex literal_r2_pattern(
+        R"(^ldr[\t ]+r2,[\t ]+\.L[A-Za-z0-9_+]+$)");
+    static const std::regex copy_r1_pattern(
+        R"(^adds?[\t ]+r1,[\t ]+r(?:[0-9]|1[0-2]),[\t ]+#0$)");
+    static const std::regex call_pattern(
+        R"(^bl[\t ]+_call_via_r2$)");
+
+    for (std::size_t index = 0; index + 2 < lines.size(); ++index) {
+        if (!std::regex_match(Trim(lines[index]), literal_r2_pattern)
+            || !std::regex_match(Trim(lines[index + 1]), copy_r1_pattern)
+            || !std::regex_match(Trim(lines[index + 2]), call_pattern)) {
+            continue;
+        }
+
+        std::swap(lines[index], lines[index + 1]);
+        ++index;
+    }
+}
+
 std::string AlignExecutableSections(const std::string &assembly)
 {
     // This is the former align_sections.sh policy, now applied by the same
@@ -724,6 +752,7 @@ std::string AlignExecutableSections(const std::string &assembly)
 
     std::vector<std::string> lines = SplitLines(assembly);
     RemoveCompilerDataSectionTailAlignment(lines);
+    NormalizeCallViaR2ArgumentSetup(lines);
     std::vector<std::string> sections;
     std::set<std::string> seen_sections;
     for (const std::string &line : lines) {
@@ -829,6 +858,26 @@ void SelfTest()
     Require(output.find("gDefaultCompilerPaddedData:\n\t.byte\t0x1\n"
                         "\t.text\n") != std::string::npos,
         "ordinary rodata tail alignment removed data payload");
+
+    const std::string trampoline_assembly =
+        "\t.text\n"
+        "glyph_renderer:\n"
+        "\tldr\tr2, .Lglyph_renderer_target\n"
+        "\tadd\tr1, r5, #0\n"
+        "\tbl\t_call_via_r2\n"
+        "unrelated_call:\n"
+        "\tldr\tr2, [r0]\n"
+        "\tadd\tr1, r5, #0\n"
+        "\tbl\t_call_via_r2\n";
+    const std::string normalized = PreprocessAssembly("", trampoline_assembly);
+    Require(normalized.find("\tadd\tr1, r5, #0\n"
+                            "\tldr\tr2, .Lglyph_renderer_target\n"
+                            "\tbl\t_call_via_r2\n") != std::string::npos,
+        "safe _call_via_r2 argument setup was not normalized");
+    Require(normalized.find("\tldr\tr2, [r0]\n"
+                            "\tadd\tr1, r5, #0\n"
+                            "\tbl\t_call_via_r2\n") != std::string::npos,
+        "non-literal _call_via_r2 setup was changed");
 }
 
 const char *Usage()
