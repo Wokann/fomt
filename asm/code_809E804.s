@@ -32893,7 +32893,7 @@ func_080AE894: @ 0x080AE894
 	adds r1, r4, #0
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 	mov r0, sb
 	bl func_08008910
 	adds r5, r0, #0
@@ -36869,7 +36869,7 @@ func_080B0708: @ 0x080B0708
 	mov r1, r8
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 	b .L080B07CE
 	.align 2, 0
 .L080B07A4: .4byte 0x0000090B
@@ -36889,7 +36889,7 @@ func_080B0708: @ 0x080B0708
 	mov r1, r8
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 .L080B07CE:
 	mov r0, sb
 	bl func_08008910
@@ -40319,7 +40319,7 @@ func_080B2114: @ 0x080B2114
 	str r5, [sp, #4]
 	str r3, [sp, #8]
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 	b .L080B2384
 	.align 2, 0
 .L080B2338: .4byte 0x00000844
@@ -40351,7 +40351,7 @@ func_080B2114: @ 0x080B2114
 	lsls r1, r1, #2
 	add r1, sl
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 .L080B2384:
 	mov r0, sl
 	bl func_08008910
@@ -42060,7 +42060,7 @@ func_080B2114: @ 0x080B2114
 	str r7, [sp, #4]
 	str r3, [sp, #8]
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 	b .L080B30C8
 	.align 2, 0
 .L080B3094: .4byte 0x0000092A
@@ -42085,7 +42085,7 @@ func_080B2114: @ 0x080B2114
 	str r6, [sp, #4]
 	str r3, [sp, #8]
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 .L080B30C8:
 	mov r0, sl
 	bl func_08008910
@@ -42337,7 +42337,7 @@ func_080B2114: @ 0x080B2114
 	str r7, [sp, #4]
 	str r3, [sp, #8]
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 	b .L080B32DA
 .L080B32AA:
 	ldr r0, [sp, #0x110]
@@ -42361,7 +42361,7 @@ func_080B2114: @ 0x080B2114
 	lsls r1, r1, #2
 	add r1, sl
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 .L080B32DA:
 	mov r0, sl
 	bl func_08008910
@@ -50397,7 +50397,7 @@ func_080B7164: @ 0x080B7164
 	movs r3, #1
 	str r3, [sp, #8]
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 	mov r0, sb
 	bl func_08008910
 	add r4, sb
@@ -50618,7 +50618,7 @@ func_080B7164: @ 0x080B7164
 	str r2, [sp, #4]
 	str r5, [sp, #8]
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 	mov r0, sb
 	bl func_08008910
 	add r4, sb
@@ -62649,7 +62649,7 @@ func_080BD064: @ 0x080BD064
 	adds r1, r4, #0
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 	mov r0, sb
 	bl func_08008910
 	adds r5, r0, #0
@@ -65641,7 +65641,7 @@ func_080BE728: @ 0x080BE728
 	mov r1, r8
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 	b .L080BE7EE
 	.align 2, 0
 .L080BE7C8: .4byte 0x000005FD
@@ -65660,7 +65660,7 @@ func_080BE728: @ 0x080BE728
 	mov r1, r8
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 .L080BE7EE:
 	mov r0, sb
 	bl func_08008910
@@ -68423,7 +68423,7 @@ func_080BF764: @ 0x080BF764
 	str r7, [sp, #4]
 	str r3, [sp, #8]
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 	b .L080BFDEE
 .L080BFDBE:
 	add r0, sp, #0x28
@@ -68447,7 +68447,7 @@ func_080BF764: @ 0x080BF764
 	lsls r1, r1, #2
 	add r1, sl
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 .L080BFDEE:
 	mov r0, sl
 	bl func_08008910
@@ -69340,7 +69340,7 @@ func_080BF764: @ 0x080BF764
 	str r7, [sp, #4]
 	str r3, [sp, #8]
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 	b .L080C0504
 	.align 2, 0
 .L080C04D4: .4byte 0x0000060B
@@ -69364,7 +69364,7 @@ func_080BF764: @ 0x080BF764
 	str r6, [sp, #4]
 	str r3, [sp, #8]
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 .L080C0504:
 	mov r0, sl
 	bl func_08008910
@@ -69616,7 +69616,7 @@ func_080BF764: @ 0x080BF764
 	str r7, [sp, #4]
 	str r3, [sp, #8]
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 	b .L080C0716
 .L080C06E6:
 	add r0, sp, #0x28
@@ -69640,7 +69640,7 @@ func_080BF764: @ 0x080BF764
 	lsls r1, r1, #2
 	add r1, sl
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 .L080C0716:
 	mov r0, sl
 	bl func_08008910
@@ -71638,7 +71638,7 @@ func_080C16D4: @ 0x080C16D4
 	adds r1, r4, #0
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 	mov r0, sb
 	bl func_08008910
 	adds r5, r0, #0
@@ -76104,7 +76104,7 @@ func_080C38E4: @ 0x080C38E4
 	mov r1, r8
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 	b .L080C39AA
 	.align 2, 0
 .L080C3984: .4byte 0x0000097B
@@ -76123,7 +76123,7 @@ func_080C38E4: @ 0x080C38E4
 	mov r1, r8
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 .L080C39AA:
 	mov r0, sb
 	bl func_08008910
@@ -80736,7 +80736,7 @@ func_080C5A6C: @ 0x080C5A6C
 	mov r1, sb
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 	adds r0, r7, #0
 	bl func_08008910
 	adds r4, r0, #0
@@ -81547,7 +81547,7 @@ func_080C608C: @ 0x080C608C
 	str r7, [sp, #4]
 	str r3, [sp, #8]
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 	b .L080C65DA
 	.align 2, 0
 .L080C65A4: .4byte 0x0000088C
@@ -81574,7 +81574,7 @@ func_080C608C: @ 0x080C608C
 	lsls r1, r1, #2
 	add r1, sl
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 .L080C65DA:
 	mov r0, sl
 	bl func_08008910
@@ -83236,7 +83236,7 @@ func_080C608C: @ 0x080C608C
 	str r7, [sp, #4]
 	str r3, [sp, #8]
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 	b .L080C72AE
 .L080C727E:
 	add r0, sp, #0x30
@@ -83260,7 +83260,7 @@ func_080C608C: @ 0x080C608C
 	str r6, [sp, #4]
 	str r3, [sp, #8]
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 .L080C72AE:
 	mov r0, sl
 	bl func_08008910
@@ -83512,7 +83512,7 @@ func_080C608C: @ 0x080C608C
 	str r7, [sp, #4]
 	str r3, [sp, #8]
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 	b .L080C74C4
 .L080C7492:
 	add r0, sp, #0x30
@@ -83537,7 +83537,7 @@ func_080C608C: @ 0x080C608C
 	lsls r1, r1, #2
 	add r1, sl
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 .L080C74C4:
 	mov r0, sl
 	bl func_08008910
@@ -85839,7 +85839,7 @@ func_080C85A0: @ 0x080C85A0
 	adds r1, r5, #0
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 	adds r0, r7, #0
 	bl func_08008910
 	str r0, [sp, #0x138]
@@ -91450,7 +91450,7 @@ func_080CB090: @ 0x080CB090
 	str r5, [sp, #8]
 	adds r1, r4, #0
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 	movs r3, #0x80
 	lsls r3, r3, #2
 	movs r0, #0x9e
@@ -93939,7 +93939,7 @@ func_080CC310: @ 0x080CC310
 	str r5, [sp, #8]
 	adds r1, r4, #0
 	movs r3, #0
-	bl func_0804E958
+	bl DrawStringTo2DGfxBufferExt
 	movs r3, #0x80
 	lsls r3, r3, #2
 	movs r0, #0x9e

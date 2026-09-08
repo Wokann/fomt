@@ -768,7 +768,7 @@ func_08003C80: @ 0x08003C80
     adds r1, r6, #0
     movs r2, #0x10
     adds r3, r5, #0
-    bl func_0804E8F0
+    bl DrawStringTo2DGfxBuffer
     ldr r1, [r4, #4]
     ldr r0, .L08003DD8 @ =0x00002D10
     add r0, sp
@@ -784,7 +784,7 @@ func_08003C80: @ 0x08003C80
     adds r1, r6, #0
     movs r2, #0x80
     adds r3, r5, #0
-    bl func_0804E8F0
+    bl DrawStringTo2DGfxBuffer
     ldr r1, [r4, #8]
     ldr r0, .L08003DE0 @ =0x00002D14
     add r0, sp
@@ -800,7 +800,7 @@ func_08003C80: @ 0x08003C80
     adds r1, r6, #0
     movs r2, #0xc0
     adds r3, r5, #0
-    bl func_0804E8F0
+    bl DrawStringTo2DGfxBuffer
     movs r0, #0xc
     add sb, r0
     adds r7, #1
@@ -3517,7 +3517,7 @@ func_08005278: @ 0x08005278
     adds r1, r4, #0
     movs r2, #0
     movs r3, #0
-    bl func_0804E8F0
+    bl DrawStringTo2DGfxBuffer
     movs r0, #0xc1
     lsls r0, r0, #2
     adds r4, r4, r0
@@ -3538,7 +3538,7 @@ func_08005278: @ 0x08005278
     adds r1, r7, #0
     movs r2, #0
     movs r3, #0
-    bl func_0804E8F0
+    bl DrawStringTo2DGfxBuffer
     ldr r1, .L080054BC @ =gText_NewGameIdentity_PlayerBirthday
     add r0, sp, #0x30
     strh r4, [r0]
@@ -3549,7 +3549,7 @@ func_08005278: @ 0x08005278
     ldr r1, [sp, #0x54]
     movs r2, #0
     movs r3, #0
-    bl func_0804E8F0
+    bl DrawStringTo2DGfxBuffer
     ldr r1, .L080054C0 @ =gText_NewGameIdentity_FarmName
     add r0, sp, #0x34
     strh r4, [r0]
@@ -3560,7 +3560,7 @@ func_08005278: @ 0x08005278
     ldr r1, [sp, #0x58]
     movs r2, #0
     movs r3, #0
-    bl func_0804E8F0
+    bl DrawStringTo2DGfxBuffer
     ldr r1, .L080054C4 @ =gText_NewGameIdentity_DogName
     add r0, sp, #0x38
     strh r4, [r0]
@@ -3571,7 +3571,7 @@ func_08005278: @ 0x08005278
     ldr r1, [sp, #0x6c]
     movs r2, #0
     movs r3, #0
-    bl func_0804E8F0
+    bl DrawStringTo2DGfxBuffer
     movs r3, #0
     mov r8, r3
     ldr r4, [sp, #0x5c]
@@ -4847,7 +4847,7 @@ func_08005CDC: @ 0x08005CDC
     adds r1, r7, #0
     movs r2, #0x58
     movs r3, #0
-    bl func_0804E8F0
+    bl DrawStringTo2DGfxBuffer
     mov r0, sl
     bl func_08008910
     movs r3, #0xf0
@@ -5048,7 +5048,7 @@ func_08005CDC: @ 0x08005CDC
     adds r1, r4, #0
     movs r2, #0
     movs r3, #0
-    bl func_0804E8F0
+    bl DrawStringTo2DGfxBuffer
 .L08006032:
     mov r0, sl
     bl func_08008910
@@ -5500,7 +5500,7 @@ func_0800637C: @ 0x0800637C
     adds r1, r4, #0
     movs r2, #0x90
     movs r3, #0
-    bl func_0804E8F0
+    bl DrawStringTo2DGfxBuffer
     adds r0, r5, #0
     bl func_08008910
     adds r6, r0, #0
@@ -5729,7 +5729,7 @@ func_080064E8: @ 0x080064E8
     str r2, [sp]
     movs r2, #0
     movs r3, #0
-    bl func_0804E8F0
+    bl DrawStringTo2DGfxBuffer
     mov r0, sl
     bl func_08008910
     add r4, sl
@@ -5946,7 +5946,7 @@ func_080064E8: @ 0x080064E8
     ldr r1, [sp, #0x50]
     movs r2, #0x18
     movs r3, #0
-    bl func_0804E8F0
+    bl DrawStringTo2DGfxBuffer
     b .L0800672A
     .align 2, 0
 .L08006710: .4byte gText_NewGameNameEntry_EndFullWidth
@@ -5960,7 +5960,7 @@ func_080064E8: @ 0x080064E8
     ldr r1, [sp, #0x50]
     movs r2, #0x18
     movs r3, #0
-    bl func_0804E8F0
+    bl DrawStringTo2DGfxBuffer
 .L0800672A:
     mov r0, sl
     bl func_08008910

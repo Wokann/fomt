@@ -3374,7 +3374,7 @@ func_0803C028: @ 0x0803C028
 	adds r1, r6, #0
 	movs r2, #0
 	movs r3, #0
-	bl func_0804E8F0
+	bl DrawStringTo2DGfxBuffer
 .L0803C3B0:
 	mov r0, r8
 	adds r0, #0x30

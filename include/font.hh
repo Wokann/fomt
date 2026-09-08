@@ -10,6 +10,20 @@ EXTERN_C
 i32 GetShiftJisGlyphMapIndex(i32 character);
 i32 DrawCharacterGlyph(void *destination, i32 character);
 
+// Draw one encoded glyph or a terminated encoded string into a two-dimensional
+// 4bpp tile buffer. The packed size stores width in its low half and height
+// in its high half; x and y are pixel coordinates.
+i32 DrawCharacterGlyphTo2DGfxBuffer(u32 size, void *buffer, i32 x, i32 y,
+    i32 character) asm("func_0804E4AC");
+// The extended compositor remains in the raw block for now. Keeping its
+// original linker label lets normal C++ callers use its semantic declaration.
+i32 DrawCharacterGlyphTo2DGfxBufferExt(u32 size, void *buffer, i32 x, i32 y,
+    i32 character, i32 foreground, i32 background) asm("func_0804E5AC");
+void DrawStringTo2DGfxBuffer(u32 size, void *buffer, i32 x, i32 y,
+    u8 const *string);
+void DrawStringTo2DGfxBufferExt(u32 size, void *buffer, i32 x, i32 y,
+    u8 const *string, i32 foreground, i32 background);
+
 // Raw font payloads selected by the renderer. Single-width glyphs occupy
 // 12 bytes; double-width glyphs occupy 24 bytes.
 extern u8 const gFontSingleWidthGlyphData[];

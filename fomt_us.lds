@@ -165,6 +165,9 @@ SECTIONS
         asm/code_0803A8A4.o(.text.code_0803E448);
         src/script_engine.o(.text);
         asm/code_0803EE94.o(.text);
+        . = 0x4E8F0; /* Shared Shift-JIS text stream walkers. */
+        src/font_draw.o(.text);
+        . = 0x4E9C8; asm/code_0803EE94.o(.text.font_draw_after);
         . = 0x503FC; /* JP/US-shared nonzero UI-state setter. */
         src/ui_state.o(.text.set_ui_object_state_two_if_nonzero);
         . = 0x50410; /* JP/US-shared nonzero UI-state clearer. */
