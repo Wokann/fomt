@@ -105,6 +105,11 @@
     jp_code_0803ee_func func_0805DC24, 0x5D968, 0x5DB68
     jp_code_0803ee_func func_0805DE24, 0x5DB68, 0x5DCAC
     jp_code_0803ee_func func_0805DF68, 0x5DCAC, 0x5E410
+    @ Exact JP entry points referenced by the reconstructed virtual tables.
+    .global func_0805E39C
+    .thumb_set func_0805E39C, func_0805DF68 + 0x6F0
+    .global func_0805E3DC
+    .thumb_set func_0805E3DC, func_0805DF68 + 0x730
     .section .text.indexed_resource_archive_resolve_after
     jp_code_0803ee_func func_0805E790, 0x5E4D4, 0x5E560
     .section .text.indexed_resource_handle_constructor_after
