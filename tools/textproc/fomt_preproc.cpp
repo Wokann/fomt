@@ -741,6 +741,80 @@ void NormalizeCallViaR2ArgumentSetup(std::vector<std::string> &lines)
     }
 }
 
+void NormalizeThreeOutcomeZeroBranch(std::vector<std::string> &lines)
+{
+    // agbcp may emit a three-outcome dispatch as
+    //
+    //   cmp rN, #1; beq one; cmp rN, #0; beq zero; cmp rN, #2; beq two
+    //
+    // while the original compiler used "cmp rN, #1; bcc zero" for its
+    // second comparison. The two forms are exactly equivalent for every
+    // unsigned machine word: the only value below one is zero. Normalize only
+    // this complete, adjacent dispatch shape; unrelated zero comparisons are
+    // deliberately left untouched.
+    static const std::regex compare_pattern(
+        R"(^cmp[\t ]+r([0-9]|1[0-2]),[\t ]+#(?:0x)?([0-9a-fA-F]+)$)");
+    static const std::regex branch_pattern(
+        R"(^beq[\t ]+([^\t ]+)(?:[\t ]+@.*)?$)");
+    static const std::regex debug_marker_pattern(R"(^\.LM[0-9]+:$)");
+
+    const auto next_instruction = [&lines](std::size_t index) {
+        while (index < lines.size()) {
+            const std::string trimmed = Trim(lines[index]);
+            if (!trimmed.empty()
+                && !std::regex_match(trimmed, debug_marker_pattern)) {
+                break;
+            }
+            ++index;
+        }
+        return index;
+    };
+
+    for (std::size_t index = 0; index < lines.size(); ++index) {
+        const std::size_t first_index = next_instruction(index);
+        const std::size_t second_index = next_instruction(first_index + 1);
+        const std::size_t third_index = next_instruction(second_index + 1);
+        const std::size_t fourth_index = next_instruction(third_index + 1);
+        const std::size_t fifth_index = next_instruction(fourth_index + 1);
+        const std::size_t sixth_index = next_instruction(fifth_index + 1);
+        if (sixth_index >= lines.size())
+            break;
+        std::smatch first_compare;
+        std::smatch first_branch;
+        std::smatch zero_compare;
+        std::smatch zero_branch;
+        std::smatch two_compare;
+        std::smatch two_branch;
+        const std::string first = Trim(lines[first_index]);
+        const std::string second = Trim(lines[second_index]);
+        const std::string third = Trim(lines[third_index]);
+        const std::string fourth = Trim(lines[fourth_index]);
+        const std::string fifth = Trim(lines[fifth_index]);
+        const std::string sixth = Trim(lines[sixth_index]);
+        if (!std::regex_match(first, first_compare, compare_pattern)
+            || !std::regex_match(second, first_branch, branch_pattern)
+            || !std::regex_match(third, zero_compare, compare_pattern)
+            || !std::regex_match(fourth, zero_branch, branch_pattern)
+            || !std::regex_match(fifth, two_compare, compare_pattern)
+            || !std::regex_match(sixth, two_branch, branch_pattern)
+            || first_compare[2].str() != "1"
+            || zero_compare[2].str() != "0"
+            || two_compare[2].str() != "2"
+            || first_compare[1].str() != zero_compare[1].str()
+            || first_compare[1].str() != two_compare[1].str()) {
+            continue;
+        }
+
+        const std::string indent = lines[third_index].substr(0,
+            lines[third_index].find_first_not_of("\t "));
+        const std::string branch_indent = lines[fourth_index].substr(0,
+            lines[fourth_index].find_first_not_of("\t "));
+        lines[third_index] = indent + "cmp\tr" + zero_compare[1].str() + ", #0x1";
+        lines[fourth_index] = branch_indent + "bcc\t" + zero_branch[1].str();
+        index = sixth_index;
+    }
+}
+
 std::string AlignExecutableSections(const std::string &assembly)
 {
     // This is the former align_sections.sh policy, now applied by the same
@@ -753,6 +827,7 @@ std::string AlignExecutableSections(const std::string &assembly)
     std::vector<std::string> lines = SplitLines(assembly);
     RemoveCompilerDataSectionTailAlignment(lines);
     NormalizeCallViaR2ArgumentSetup(lines);
+    NormalizeThreeOutcomeZeroBranch(lines);
     std::vector<std::string> sections;
     std::set<std::string> seen_sections;
     for (const std::string &line : lines) {
@@ -878,6 +953,29 @@ void SelfTest()
                             "\tadd\tr1, r5, #0\n"
                             "\tbl\t_call_via_r2\n") != std::string::npos,
         "non-literal _call_via_r2 setup was changed");
+
+    const std::string three_outcome_assembly =
+        "\t.text\n"
+        "three_outcome:\n"
+        "\tcmp\tr0, #0x1\n"
+        "\tbeq\t.Lone\n"
+        "\tcmp\tr0, #0\n"
+        "\tbeq\t.Lzero\n"
+        "\tcmp\tr0, #0x2\n"
+        "\tbeq\t.Ltwo\n"
+        "ordinary_zero_test:\n"
+        "\tcmp\tr1, #0\n"
+        "\tbeq\t.Lordinary\n";
+    const std::string normalized_dispatch =
+        PreprocessAssembly("", three_outcome_assembly);
+    Require(normalized_dispatch.find("\tcmp\tr0, #0x1\n"
+                                    "\tbcc\t.Lzero\n"
+                                    "\tcmp\tr0, #0x2\n") != std::string::npos,
+        "three-outcome zero branch was not normalized");
+    Require(normalized_dispatch.find("ordinary_zero_test:\n"
+                                    "\tcmp\tr1, #0\n"
+                                    "\tbeq\t.Lordinary\n") != std::string::npos,
+        "ordinary zero comparison was changed");
 }
 
 const char *Usage()
