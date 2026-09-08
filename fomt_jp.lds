@@ -291,6 +291,8 @@ SECTIONS
         . = 0x77E4C; /* JP/US-shared town-map cursor hit test. */
         src/town_map_data.o(.text.town_map_hotspot_contains);
         . = 0x77E74; asm/code_0803EE94.o(.text.town_map_hotspot_contains_after);
+        . = 0x78670; asm/code_0803EE94.o(.text.func_08078670);
+        . = 0x786A0; asm/code_0803EE94.o(.text.func_080786A0);
 
         . = 0x9AB3C; /* JP ROM 0x0809AB3C, independently matched */
 
@@ -533,7 +535,8 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7b88);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7b98);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7ba4);
-. = ALIGN(4); asm/vtables.o(.rodata.080E6FF4);
+. = ALIGN(4); src/vtables.o(.rodata.vtable_7bb4);
+. = ALIGN(4); asm/vtables.o(.rodata.080E7000);
 
         . = 0xE7A40; /* JP data_080E8610 begins after the C++ table region. */
         src/crt0_data.o(.rodata);

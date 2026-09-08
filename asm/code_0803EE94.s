@@ -285,7 +285,13 @@ func_0805EE44:
 	jp_code_0803ee_func func_08077EC0, 0x77A48, 0x77E4C
     .section .text.town_map_hotspot_contains_after
     jp_code_0803ee_func func_080782EC, 0x77E74, 0x78150
-    jp_code_0803ee_func func_080785C8, 0x78150, 0x793E8
+    jp_code_0803ee_func func_080785C8, 0x78150, 0x78670
+
+    .section .text.func_08078670
+    jp_code_0803ee_func func_08078670, 0x78670, 0x786A0
+
+    .section .text.func_080786A0
+    jp_code_0803ee_func func_080786A0, 0x786A0, 0x793E8
     jp_code_0803ee_func func_08079860, 0x793E8, 0x79E54
     jp_code_0803ee_func func_0807A2AC, 0x79E54, 0x7A2B0
     jp_code_0803ee_func func_0807A708, 0x7A2B0, 0x7A420
