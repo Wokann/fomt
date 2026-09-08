@@ -261,6 +261,8 @@ func_0805EE44:
     jp_code_0803ee_func func_08075C88, 0x758E4, 0x75A14
     .section .text.clear_scroll_buffer_after
     jp_code_0803ee_func func_08075DEC, 0x75A48, 0x75A80
+    .global func_08075A5C
+    .thumb_set func_08075A5C, func_08075DEC + 0x14
     jp_code_0803ee_func func_08075E24, 0x75A80, 0x76600
     jp_code_0803ee_func func_080769A0, 0x76600, 0x767C4
     jp_code_0803ee_func func_08076B64, 0x767C4, 0x767F4
