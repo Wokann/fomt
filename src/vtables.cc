@@ -44,6 +44,7 @@ extern void func_080E08BC(void);
 extern void func_080E08C0(void);
 extern void func_080E08C4(void);
 extern void func_080E08C8(void);
+extern void func_080E11EC(void);
 #else
 extern void func_0803F8DC(void);
 extern void func_0804EA80(void);
@@ -63,6 +64,8 @@ extern void func_080E1118(void);
 extern void func_080E111C(void);
 extern void func_080E1120(void);
 extern void func_080E1124(void);
+extern void func_080521BC(void);
+extern void func_080521FC(void);
 #endif
 extern void func_0804EF20(void);
 extern void func_0804EFAC(void);
@@ -1236,6 +1239,23 @@ extern RawVTableFunction const vtable_unk_080E7908[]
         func_080E1120,
         func_080E111C,
         func_080E1118,
+#endif
+    };
+
+// This following four-slot block stays between raw table ranges, so it is
+// emitted separately while retaining its original physical order.
+extern RawVTableFunction const vtable_unk_080E7934[]
+    SECTION(".rodata.vtable_7934") = {
+#if defined(REGION_JP)
+        nullptr,
+        nullptr,
+        func_080E11EC,
+        nullptr,
+#else
+        nullptr,
+        func_080521BC,
+        func_080521FC,
+        nullptr,
 #endif
     };
 
