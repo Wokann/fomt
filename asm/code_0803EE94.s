@@ -416,7 +416,8 @@ func_080914A0:
     .4byte gText_BlacksmithUpgrade_InsufficientGoldPageBreak
     .incbin "baserom_jp.gba", 0x91DF4, (0x92090 - 0x91DF4)
     jp_code_0803ee_func func_08092090, 0x92090, 0x920D0
-    jp_code_0803ee_func func_08092604, 0x920D0, 0x92170
+    jp_code_0803ee_func func_08092604, 0x920D0, 0x9215C
+    jp_code_0803ee_func func_0809215C, 0x9215C, 0x92170
     .global func_080926A4
     .thumb_func
 func_080926A4:
