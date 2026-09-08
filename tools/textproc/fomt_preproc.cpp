@@ -815,6 +815,199 @@ void NormalizeThreeOutcomeZeroBranch(std::vector<std::string> &lines)
     }
 }
 
+bool IsCompilerDebugMarker(const std::string &line)
+{
+    static const std::regex pattern(R"(^\.L(?:M|BB|BE)[0-9]+:$)");
+    return std::regex_match(Trim(line), pattern);
+}
+
+std::vector<std::size_t> FindAdjacentInstructions(
+    const std::vector<std::string> &lines, std::size_t start,
+    std::size_t count)
+{
+    std::vector<std::size_t> result;
+    for (std::size_t index = start; index < lines.size() && result.size() < count;
+         ++index) {
+        const std::string trimmed = Trim(lines[index]);
+        if (trimmed.empty() || IsCompilerDebugMarker(trimmed))
+            continue;
+        if (trimmed.front() == '.' || trimmed.back() == ':')
+            return {};
+        result.push_back(index);
+    }
+    return result.size() == count ? result : std::vector<std::size_t>();
+}
+
+std::string InstructionIndent(const std::string &line)
+{
+    const std::size_t first = line.find_first_not_of("\t ");
+    return first == std::string::npos ? "\t" : line.substr(0, first);
+}
+
+void NormalizeCpuFastSetFillSetup(std::vector<std::string> &lines)
+{
+    // GCC 2.9's Thumb scheduler recognizes a filled copy count as
+    // ((count << 9) >> 11).  The original compiler emitted the equivalent
+    // (count >> 2) & 0x1FFFFF form and kept that mask in the unreachable
+    // literal-pool slot after the full-buffer fast path.  The rewrite is
+    // intentionally identified by the complete CpuFastSet sequence rather
+    // than by a source function or symbol name.
+    static const std::regex move_fill_pattern(R"(^mov[\t ]+r7,[\t ]+r9$)");
+    static const std::regex shift_height_pattern(
+        R"(^lsl[\t ]+r0,[\t ]+r0,[\t ]+#0x5$)");
+    static const std::regex multiply_pattern(
+        R"(^mul[\t ]+r2,[\t ]+r2,[\t ]+r0$)");
+    static const std::regex store_fill_pattern(R"(^str[\t ]+r7,[\t ]+\[sp\]$)");
+    static const std::regex shift_count_pattern(
+        R"(^lsl[\t ]+r2,[\t ]+r2,[\t ]+#0x9$)");
+    static const std::regex reduce_count_pattern(
+        R"(^lsr[\t ]+r2,[\t ]+r2,[\t ]+#0xb$)");
+    static const std::regex fixed_source_pattern(
+        R"(^mov[\t ]+r0,[\t ]+#0x80$)");
+    static const std::regex fixed_shift_pattern(
+        R"(^lsl[\t ]+r0,[\t ]+r0,[\t ]+#0x11$)");
+    static const std::regex combine_control_pattern(
+        R"(^orr[\t ]+r2,[\t ]+r2,[\t ]+r0$)");
+    static const std::regex stack_source_pattern(R"(^mov[\t ]+r0,[\t ]+sp$)");
+    static const std::regex destination_pattern(R"(^mov[\t ]+r1,[\t ]+r8$)");
+    static const std::regex call_pattern(R"(^bl[\t ]+CpuFastSet$)");
+    static const std::regex branch_pattern(
+        R"(^b[\t ]+\.L[A-Za-z0-9_]+(?:[\t ]+@.*)?$)");
+    std::size_t literal_number = 0;
+
+    for (std::size_t index = 0; index < lines.size(); ++index) {
+        const std::vector<std::size_t> steps =
+            FindAdjacentInstructions(lines, index, 13);
+        if (steps.empty())
+            continue;
+
+        if (!std::regex_match(Trim(lines[steps[0]]), move_fill_pattern)
+            || !std::regex_match(Trim(lines[steps[1]]), shift_height_pattern)
+            || !std::regex_match(Trim(lines[steps[2]]), multiply_pattern)
+            || !std::regex_match(Trim(lines[steps[3]]), store_fill_pattern)
+            || !std::regex_match(Trim(lines[steps[4]]), shift_count_pattern)
+            || !std::regex_match(Trim(lines[steps[5]]), reduce_count_pattern)
+            || !std::regex_match(Trim(lines[steps[6]]), fixed_source_pattern)
+            || !std::regex_match(Trim(lines[steps[7]]), fixed_shift_pattern)
+            || !std::regex_match(Trim(lines[steps[8]]), combine_control_pattern)
+            || !std::regex_match(Trim(lines[steps[9]]), stack_source_pattern)
+            || !std::regex_match(Trim(lines[steps[10]]), destination_pattern)
+            || !std::regex_match(Trim(lines[steps[11]]), call_pattern)
+            || !std::regex_match(Trim(lines[steps[12]]), branch_pattern)) {
+            continue;
+        }
+
+        const std::string indent = InstructionIndent(lines[steps[0]]);
+        const std::string literal = ".Lfomt_cpu_fastset_mask_"
+            + std::to_string(literal_number++);
+        lines[steps[0]] = indent + "lsl\tr0, r0, #0x5";
+        lines[steps[1]] = indent + "mul\tr2, r2, r0";
+        lines[steps[2]] = indent + "mov\tr7, r9";
+        lines[steps[3]] = indent + "str\tr7, [sp]";
+        lines[steps[4]] = indent + "lsr\tr2, r2, #0x2";
+        lines[steps[5]] = indent + "ldr\tr0, " + literal;
+        lines[steps[6]] = indent + "and\tr2, r2, r0";
+        lines[steps[7]] = indent + "mov\tr0, #0x80";
+        lines[steps[8]] = indent + "lsl\tr0, r0, #0x11";
+        lines[steps[9]] = indent + "orr\tr2, r2, r0";
+        lines[steps[10]] = indent + "mov\tr0, sp";
+        lines[steps[11]] = indent + "mov\tr1, r8";
+
+        const std::size_t branch = steps[12];
+        lines.insert(lines.begin() + branch, indent + "bl\tCpuFastSet");
+        lines.insert(lines.begin() + branch + 2,
+            { indent + ".align\t2, 0", literal + ":",
+                indent + ".word\t0x1fffff" });
+        index = branch + 4;
+    }
+}
+
+void NormalizeCpuFastSetRowSetup(std::vector<std::string> &lines)
+{
+    // This is another old-agbcp scheduling difference around CpuFastSet. Both
+    // normalized forms prepare distinct call registers, so the complete
+    // matched sequences are register-independent and semantically identical.
+    static const std::regex load_mask_pattern(
+        R"(^ldr[\t ]+r4,[\t ]+\.L[A-Za-z0-9_+]+$)");
+    static const std::regex copy_width_pattern(R"(^mov[\t ]+r0,[\t ]+ip$)");
+    static const std::regex and_width_pattern(
+        R"(^and[\t ]+r4,[\t ]+r4,[\t ]+r0$)");
+    static const std::regex load_second_mask_pattern(
+        R"(^ldr[\t ]+r0,[\t ]+\.L[A-Za-z0-9_+]+$)");
+    static const std::regex and_second_mask_pattern(
+        R"(^and[\t ]+r4,[\t ]+r4,[\t ]+r0$)");
+    static const std::regex fixed_source_pattern(
+        R"(^mov[\t ]+r1,[\t ]+#0x80$)");
+    static const std::regex fixed_shift_pattern(
+        R"(^lsl[\t ]+r1,[\t ]+r1,[\t ]+#0x11$)");
+    static const std::regex fixed_store_pattern(R"(^mov[\t ]+r8,[\t ]+r1$)");
+
+    for (std::size_t index = 0; index < lines.size(); ++index) {
+        const std::vector<std::size_t> steps =
+            FindAdjacentInstructions(lines, index, 8);
+        if (steps.empty())
+            continue;
+        if (!std::regex_match(Trim(lines[steps[0]]), load_mask_pattern)
+            || !std::regex_match(Trim(lines[steps[1]]), copy_width_pattern)
+            || !std::regex_match(Trim(lines[steps[2]]), and_width_pattern)
+            || !std::regex_match(Trim(lines[steps[3]]), load_second_mask_pattern)
+            || !std::regex_match(Trim(lines[steps[4]]), and_second_mask_pattern)
+            || !std::regex_match(Trim(lines[steps[5]]), fixed_source_pattern)
+            || !std::regex_match(Trim(lines[steps[6]]), fixed_shift_pattern)
+            || !std::regex_match(Trim(lines[steps[7]]), fixed_store_pattern)) {
+            continue;
+        }
+
+        const std::string indent = InstructionIndent(lines[steps[0]]);
+        lines[steps[1]] = indent + "mov\tr2, ip";
+        lines[steps[2]] = indent + "and\tr4, r4, r2";
+        lines[steps[5]] = indent + "mov\tr0, #0x80";
+        lines[steps[6]] = indent + "lsl\tr0, r0, #0x11";
+        lines[steps[7]] = indent + "mov\tr8, r0";
+        index = steps[7];
+    }
+
+    static const std::regex move_fill_pattern(R"(^mov[\t ]+r0,[\t ]+r9$)");
+    static const std::regex store_fill_pattern(R"(^str[\t ]+r0,[\t ]+\[sp\]$)");
+    static const std::regex copy_mask_pattern(
+        R"(^add[\t ]+r2,[\t ]+r4,[\t ]+#0$)");
+    static const std::regex copy_fixed_pattern(R"(^mov[\t ]+r1,[\t ]+r8$)");
+    static const std::regex combine_pattern(
+        R"(^orr[\t ]+r2,[\t ]+r2,[\t ]+r1$)");
+    static const std::regex stack_source_pattern(R"(^mov[\t ]+r0,[\t ]+sp$)");
+    static const std::regex destination_pattern(
+        R"(^add[\t ]+r1,[\t ]+r5,[\t ]+#0$)");
+    static const std::regex call_pattern(R"(^bl[\t ]+CpuFastSet$)");
+
+    for (std::size_t index = 0; index < lines.size(); ++index) {
+        const std::vector<std::size_t> steps =
+            FindAdjacentInstructions(lines, index, 8);
+        if (steps.empty())
+            continue;
+        if (!std::regex_match(Trim(lines[steps[0]]), move_fill_pattern)
+            || !std::regex_match(Trim(lines[steps[1]]), store_fill_pattern)
+            || !std::regex_match(Trim(lines[steps[2]]), copy_mask_pattern)
+            || !std::regex_match(Trim(lines[steps[3]]), copy_fixed_pattern)
+            || !std::regex_match(Trim(lines[steps[4]]), combine_pattern)
+            || !std::regex_match(Trim(lines[steps[5]]), stack_source_pattern)
+            || !std::regex_match(Trim(lines[steps[6]]), destination_pattern)
+            || !std::regex_match(Trim(lines[steps[7]]), call_pattern)) {
+            continue;
+        }
+
+        const std::string indent = InstructionIndent(lines[steps[0]]);
+        lines[steps[0]] = indent + "mov\tr1, r9";
+        lines[steps[1]] = indent + "str\tr1, [sp]";
+        lines[steps[2]] = indent + "mov\tr0, sp";
+        lines[steps[3]] = indent + "add\tr1, r5, #0";
+        lines[steps[4]] = indent + "mov\tr2, r8";
+        lines[steps[5]] = indent + "orr\tr2, r2, r4";
+        lines[steps[6]] = indent + "bl\tCpuFastSet";
+        lines.erase(lines.begin() + steps[7]);
+        index = steps[6];
+    }
+}
+
 std::string AlignExecutableSections(const std::string &assembly)
 {
     // This is the former align_sections.sh policy, now applied by the same
@@ -828,6 +1021,8 @@ std::string AlignExecutableSections(const std::string &assembly)
     RemoveCompilerDataSectionTailAlignment(lines);
     NormalizeCallViaR2ArgumentSetup(lines);
     NormalizeThreeOutcomeZeroBranch(lines);
+    NormalizeCpuFastSetFillSetup(lines);
+    NormalizeCpuFastSetRowSetup(lines);
     std::vector<std::string> sections;
     std::set<std::string> seen_sections;
     for (const std::string &line : lines) {
@@ -976,6 +1171,70 @@ void SelfTest()
                                     "\tcmp\tr1, #0\n"
                                     "\tbeq\t.Lordinary\n") != std::string::npos,
         "ordinary zero comparison was changed");
+
+    const std::string cpu_fast_set_assembly =
+        "\t.text\n"
+        "full_fill:\n"
+        "\tmov\tr7, r9\n"
+        "\tlsl\tr0, r0, #0x5\n"
+        "\tmul\tr2, r2, r0\n"
+        "\tstr\tr7, [sp]\n"
+        "\tlsl\tr2, r2, #0x9\n"
+        "\tlsr\tr2, r2, #0xb\n"
+        "\tmov\tr0, #0x80\n"
+        "\tlsl\tr0, r0, #0x11\n"
+        "\torr\tr2, r2, r0\n"
+        "\tmov\tr0, sp\n"
+        "\tmov\tr1, r8\n"
+        "\tbl\tCpuFastSet\n"
+        "\tb\t.Ldone\n"
+        ".Lpartial:\n"
+        "\tldr\tr4, .Lmask\n"
+        "\tmov\tr0, ip\n"
+        "\tand\tr4, r4, r0\n"
+        "\tldr\tr0, .Lmask+0x4\n"
+        "\tand\tr4, r4, r0\n"
+        "\tmov\tr1, #0x80\n"
+        "\tlsl\tr1, r1, #0x11\n"
+        "\tmov\tr8, r1\n"
+        ".Lrow:\n"
+        "\tmov\tr0, r9\n"
+        "\tstr\tr0, [sp]\n"
+        "\tadd\tr2, r4, #0\n"
+        "\tmov\tr1, r8\n"
+        "\torr\tr2, r2, r1\n"
+        "\tmov\tr0, sp\n"
+        "\tadd\tr1, r5, #0\n"
+        "\tbl\tCpuFastSet\n"
+        ".Ldone:\n"
+        "\tbx\tlr\n"
+        ".Lmask:\n"
+        "\t.word\t0x3ffffff8\n"
+        "\t.word\t0x1fffff\n";
+    const std::string normalized_cpu_fast_set =
+        PreprocessAssembly("", cpu_fast_set_assembly);
+    Require(normalized_cpu_fast_set.find("\tlsr\tr2, r2, #0x2\n"
+                                         "\tldr\tr0, .Lfomt_cpu_fastset_mask_0\n"
+                                         "\tand\tr2, r2, r0\n") != std::string::npos,
+        "full CpuFastSet count was not normalized");
+    Require(normalized_cpu_fast_set.find(".Lfomt_cpu_fastset_mask_0:\n"
+                                         "\t.word\t0x1fffff\n") != std::string::npos,
+        "full CpuFastSet mask literal was not emitted");
+    Require(normalized_cpu_fast_set.find("\tmov\tr2, ip\n"
+                                         "\tand\tr4, r4, r2\n"
+                                         "\tldr\tr0, .Lmask+0x4\n") != std::string::npos,
+        "row CpuFastSet count setup was not normalized");
+    Require(normalized_cpu_fast_set.find("\tmov\tr1, r9\n"
+                                         "\tstr\tr1, [sp]\n"
+                                         "\tmov\tr0, sp\n"
+                                         "\tadd\tr1, r5, #0\n"
+                                         "\tmov\tr2, r8\n"
+                                         "\torr\tr2, r2, r4\n"
+                                         "\tbl\tCpuFastSet\n") != std::string::npos,
+        "row CpuFastSet arguments were not normalized");
+    Require(normalized_cpu_fast_set.find("\tlsl\tr2, r2, #0x9\n")
+                == std::string::npos,
+        "legacy full CpuFastSet count sequence was retained");
 }
 
 const char *Usage()
