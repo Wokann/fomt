@@ -3787,4 +3787,206 @@ extern RawVTableFunction const vtable_unk_080E831C[]
 #endif
     };
 
+#if defined(REGION_JP)
+extern void func_080AC648(void);
+extern void func_080AD5CC(void);
+extern void func_080AD5C4(void);
+extern void func_080AD5BC(void);
+extern void func_080AD5E0(void);
+extern void func_080AD5D4(void);
+extern void func_080AD5B0(void);
+extern void func_080AD4E0(void);
+extern void func_080AD4BC(void);
+extern void func_080AD0D4(void);
+extern void func_080ACED4(void);
+extern void func_080AD58C(void);
+extern void func_080AD580(void);
+extern void func_080AD574(void);
+extern void func_080AD010(void);
+extern void func_080AD55C(void);
+extern void func_080AD534(void);
+extern void func_080AD504(void);
+extern void func_080AD4B0(void);
+extern void func_080AD48C(void);
+extern void func_080AD480(void);
+extern void func_080AD498(void);
+extern void func_080AD4A4(void);
+extern void func_080AD474(void);
+extern void func_080AD444(void);
+extern void func_080AD438(void);
+extern void func_080AD42C(void);
+extern void func_080AD420(void);
+extern void func_080AD408(void);
+extern void func_080AD3FC(void);
+extern void func_080AD3F0(void);
+extern void func_080AD3E4(void);
+extern void func_080AD3D8(void);
+extern void func_080AD3CC(void);
+extern void func_080AD3C0(void);
+extern void func_080AD3B4(void);
+extern void func_080AD3A8(void);
+extern void func_080AD398(void);
+extern void func_080AD388(void);
+extern void func_080AD37C(void);
+extern void func_080ACDE8(void);
+extern void func_080AD370(void);
+extern void func_080AD2FC(void);
+extern void func_080AD1B4(void);
+extern void func_080E3CA8(void);
+extern void func_0803240C(void);
+#else
+extern void func_080E44B8(void);
+extern void func_080ACAF0(void);
+extern void func_080ACC10(void);
+extern void func_080ADB94(void);
+extern void func_080ADB8C(void);
+extern void func_080ADB84(void);
+extern void func_080ADBA8(void);
+extern void func_080ADB9C(void);
+extern void func_080ADB78(void);
+extern void func_080ADAA8(void);
+extern void func_080ADA84(void);
+extern void func_080AD69C(void);
+extern void func_080AD49C(void);
+extern void func_080ADB54(void);
+extern void func_080ADB48(void);
+extern void func_080ADB3C(void);
+extern void func_080AD5D8(void);
+extern void func_080ADB24(void);
+extern void func_080ADAFC(void);
+extern void func_080ADACC(void);
+extern void func_080ADA78(void);
+extern void func_080ADA54(void);
+extern void func_080ADA48(void);
+extern void func_080ADA60(void);
+extern void func_080ADA6C(void);
+extern void func_080ADA3C(void);
+extern void func_080ADA0C(void);
+extern void func_080ADA00(void);
+extern void func_080AD9F4(void);
+extern void func_080AD9E8(void);
+extern void func_080AD9D0(void);
+extern void func_080AD9C4(void);
+extern void func_080AD9B8(void);
+extern void func_080AD9AC(void);
+extern void func_080AD9A0(void);
+extern void func_080AD994(void);
+extern void func_080AD988(void);
+extern void func_080AD97C(void);
+extern void func_080AD970(void);
+extern void func_080AD960(void);
+extern void func_080AD950(void);
+extern void func_080AD944(void);
+extern void func_080AD3B0(void);
+extern void func_080AD938(void);
+extern void func_080AD8C4(void);
+extern void func_080AD77C(void);
+#endif
+
+// This is a single 48-slot ROM table. Its class layout remains unverified, so
+// retain every callback and null slot in physical order rather than inventing
+// a higher-level C++ representation.
+extern RawVTableFunction const vtable_unk_080E8344[]
+    SECTION(".rodata.vtable_8344") = {
+#if defined(REGION_JP)
+        func_080AC648,
+        func_080AD5CC,
+        func_080AD5C4,
+        func_080AD5BC,
+        func_080AD5E0,
+        func_080AD5D4,
+        func_080AD5B0,
+        func_080AD4E0,
+        func_080AD4BC,
+        func_080AD0D4,
+        func_080ACED4,
+        func_080AD58C,
+        func_080AD580,
+        func_080AD574,
+        func_080AD010,
+        func_080AD55C,
+        func_080AD534,
+        func_080AD504,
+        func_080AD4B0,
+        func_080AD48C,
+        func_080AD480,
+        func_080AD498,
+        func_080AD4A4,
+        func_080AD474,
+        func_080AD444,
+        func_080AD438,
+        func_080AD42C,
+        func_080AD420,
+        func_080AD408,
+        func_080AD3FC,
+        func_080AD3F0,
+        func_080AD3E4,
+        func_080AD3D8,
+        func_080AD3CC,
+        func_080AD3C0,
+        func_080AD3B4,
+        func_080AD3A8,
+        func_080AD398,
+        func_080AD388,
+        func_080AD37C,
+        func_080ACDE8,
+        func_080AD370,
+        func_080AD2FC,
+        func_080AD1B4,
+        nullptr,
+        nullptr,
+        func_080E3CA8,
+        func_0803240C,
+#else
+        nullptr,
+        nullptr,
+        func_080E44B8,
+        func_080ACAF0,
+        func_080ACC10,
+        func_080ADB94,
+        func_080ADB8C,
+        func_080ADB84,
+        func_080ADBA8,
+        func_080ADB9C,
+        func_080ADB78,
+        func_080ADAA8,
+        func_080ADA84,
+        func_080AD69C,
+        func_080AD49C,
+        func_080ADB54,
+        func_080ADB48,
+        func_080ADB3C,
+        func_080AD5D8,
+        func_080ADB24,
+        func_080ADAFC,
+        func_080ADACC,
+        func_080ADA78,
+        func_080ADA54,
+        func_080ADA48,
+        func_080ADA60,
+        func_080ADA6C,
+        func_080ADA3C,
+        func_080ADA0C,
+        func_080ADA00,
+        func_080AD9F4,
+        func_080AD9E8,
+        func_080AD9D0,
+        func_080AD9C4,
+        func_080AD9B8,
+        func_080AD9AC,
+        func_080AD9A0,
+        func_080AD994,
+        func_080AD988,
+        func_080AD97C,
+        func_080AD970,
+        func_080AD960,
+        func_080AD950,
+        func_080AD944,
+        func_080AD3B0,
+        func_080AD938,
+        func_080AD8C4,
+        func_080AD77C,
+#endif
+    };
+
 EXTERN_C_END

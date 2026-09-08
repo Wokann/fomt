@@ -404,6 +404,52 @@
     .thumb_set func_0809EB8C, func_0809E804 + 0x388
     .global func_080AB788
     .thumb_set func_080AB788, func_0809E804 + 0xCF84
+
+    @ Exact JP entry points referenced by the raw table at 0x080E8344.
+    jp_code_809_entry func_080AC648, func_080ACC10, 0x0
+    jp_code_809_entry func_080AD5CC, func_080ADB78, 0x1C
+    jp_code_809_entry func_080AD5C4, func_080ADB78, 0x14
+    jp_code_809_entry func_080AD5BC, func_080ADB78, 0x0C
+    jp_code_809_entry func_080AD5E0, func_080ADBA8, 0x0
+    jp_code_809_entry func_080AD5D4, func_080ADB9C, 0x0
+    jp_code_809_entry func_080AD5B0, func_080ADB78, 0x0
+    jp_code_809_entry func_080AD4E0, func_080AD9D0, 0xD8
+    jp_code_809_entry func_080AD4BC, func_080AD9D0, 0xB4
+    jp_code_809_entry func_080AD0D4, func_080AD69C, 0x0
+    jp_code_809_entry func_080ACED4, func_080AD49C, 0x0
+    jp_code_809_entry func_080AD58C, func_080ADB54, 0x0
+    jp_code_809_entry func_080AD580, func_080ADAFC, 0x4C
+    jp_code_809_entry func_080AD574, func_080ADAFC, 0x40
+    jp_code_809_entry func_080AD010, func_080AD5D8, 0x0
+    jp_code_809_entry func_080AD55C, func_080ADAFC, 0x28
+    jp_code_809_entry func_080AD534, func_080ADAFC, 0x0
+    jp_code_809_entry func_080AD504, func_080ADACC, 0x0
+    jp_code_809_entry func_080AD4B0, func_080AD9D0, 0xA8
+    jp_code_809_entry func_080AD48C, func_080AD9D0, 0x84
+    jp_code_809_entry func_080AD480, func_080AD9D0, 0x78
+    jp_code_809_entry func_080AD498, func_080AD9D0, 0x90
+    jp_code_809_entry func_080AD4A4, func_080AD9D0, 0x9C
+    jp_code_809_entry func_080AD474, func_080AD9D0, 0x6C
+    jp_code_809_entry func_080AD444, func_080AD9D0, 0x3C
+    jp_code_809_entry func_080AD438, func_080AD9D0, 0x30
+    jp_code_809_entry func_080AD42C, func_080AD9D0, 0x24
+    jp_code_809_entry func_080AD420, func_080AD9D0, 0x18
+    jp_code_809_entry func_080AD408, func_080AD9D0, 0x0
+    jp_code_809_entry func_080AD3FC, func_080AD9C4, 0x0
+    jp_code_809_entry func_080AD3F0, func_080AD9B8, 0x0
+    jp_code_809_entry func_080AD3E4, func_080AD9AC, 0x0
+    jp_code_809_entry func_080AD3D8, func_080AD9A0, 0x0
+    jp_code_809_entry func_080AD3CC, func_080AD994, 0x0
+    jp_code_809_entry func_080AD3C0, func_080AD988, 0x0
+    jp_code_809_entry func_080AD3B4, func_080AD97C, 0x0
+    jp_code_809_entry func_080AD3A8, func_080AD970, 0x0
+    jp_code_809_entry func_080AD398, func_080AD960, 0x0
+    jp_code_809_entry func_080AD388, func_080AD950, 0x0
+    jp_code_809_entry func_080AD37C, func_080AD944, 0x0
+    jp_code_809_entry func_080ACDE8, func_080AD3B0, 0x0
+    jp_code_809_entry func_080AD370, func_080AD8C4, 0x74
+    jp_code_809_entry func_080AD2FC, func_080AD8C4, 0x0
+    jp_code_809_entry func_080AD1B4, func_080AD77C, 0x0
     .else
 
     .INCLUDE "asm/macro.inc"
@@ -104246,5 +104292,28 @@ func_080D1574: @ 0x080D1574
 	cmp r0, r8
 	blo .L080D157C
 	bx lr
+
+    .macro us_code_809_entry name, base, offset
+        .global \name
+        .thumb_set \name, \base + \offset
+    .endm
+
+    @ Exact US entry points referenced by the raw table at 0x080E8344.
+    us_code_809_entry func_080ADB94, func_080ADB78, 0x1C
+    us_code_809_entry func_080ADB8C, func_080ADB78, 0x14
+    us_code_809_entry func_080ADB84, func_080ADB78, 0x0C
+    us_code_809_entry func_080ADB48, func_080ADAFC, 0x4C
+    us_code_809_entry func_080ADB3C, func_080ADAFC, 0x40
+    us_code_809_entry func_080ADB24, func_080ADAFC, 0x28
+    us_code_809_entry func_080ADA78, func_080AD9D0, 0xA8
+    us_code_809_entry func_080ADA54, func_080AD9D0, 0x84
+    us_code_809_entry func_080ADA48, func_080AD9D0, 0x78
+    us_code_809_entry func_080ADA60, func_080AD9D0, 0x90
+    us_code_809_entry func_080ADA6C, func_080AD9D0, 0x9C
+    us_code_809_entry func_080ADA3C, func_080AD9D0, 0x6C
+    us_code_809_entry func_080ADA0C, func_080AD9D0, 0x3C
+    us_code_809_entry func_080ADA00, func_080AD9D0, 0x30
+    us_code_809_entry func_080AD9F4, func_080AD9D0, 0x24
+    us_code_809_entry func_080AD9E8, func_080AD9D0, 0x18
 
     .endif
