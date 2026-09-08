@@ -194,6 +194,9 @@ func_08011DC4:
     jp_game_state_chunk 0x19924, 0x19980
     jp_game_state_chunk 0x19980, 0x19CCC
 
+    .global func_08019F38
+    .thumb_func
+func_08019F38:
     jp_game_state_chunk 0x19CCC, 0x19DE8
 
     .global func_0801A054
@@ -210,6 +213,9 @@ func_0801A054:
     jp_game_state_chunk 0x1CB50, 0x1D660
     jp_game_state_chunk 0x1D660, 0x1D6DC
 
+    .global func_0801D948
+    .thumb_func
+func_0801D948:
     jp_game_state_chunk 0x1D6DC, 0x1D73C
 
     .global func_0801D9A8
@@ -239,6 +245,177 @@ func_0801D9A8:
     .thumb_set func_08011FE8, func_08011DC4 + 0x114
     .global func_08012028
     .thumb_set func_08012028, func_08011DC4 + 0x154
+
+    @ Verified entries in the game-object virtual table.  Each keeps its
+    @ original US label while resolving to the matching JP code entry.
+    .global func_080179CC
+    .thumb_set func_080179CC, func_08011DC4 + 0x59BC
+    .global func_08017C30
+    .thumb_set func_08017C30, func_08011DC4 + 0x5C20
+    .global func_080182C8
+    .thumb_set func_080182C8, func_08011DC4 + 0x62B8
+    .global func_0801FD58
+    .thumb_set func_0801FD58, func_0801D9A8 + 0x23B0
+    .global func_0801FD50
+    .thumb_set func_0801FD50, func_0801D9A8 + 0x23A8
+    .global func_0801FD48
+    .thumb_set func_0801FD48, func_0801D9A8 + 0x23A0
+    .global func_0801FD6C
+    .thumb_set func_0801FD6C, func_0801D9A8 + 0x23C4
+    .global func_0801FD60
+    .thumb_set func_0801FD60, func_0801D9A8 + 0x23B8
+    .global func_0801FD3C
+    .thumb_set func_0801FD3C, func_0801D9A8 + 0x2394
+    .global func_08019F7C
+    .thumb_set func_08019F7C, func_08019F38 + 0x44
+    .global func_08019FE8
+    .thumb_set func_08019FE8, func_08019F38 + 0xB0
+    .global func_0801A8E0
+    .thumb_set func_0801A8E0, func_0801A054 + 0x88C
+    .global func_0801FD0C
+    .thumb_set func_0801FD0C, func_0801D9A8 + 0x2364
+    .global func_0801FD00
+    .thumb_set func_0801FD00, func_0801D9A8 + 0x2358
+    .global func_0801FCF4
+    .thumb_set func_0801FCF4, func_0801D9A8 + 0x234C
+    .global func_0801B5C0
+    .thumb_set func_0801B5C0, func_0801A054 + 0x156C
+    .global func_0801FCDC
+    .thumb_set func_0801FCDC, func_0801D9A8 + 0x2334
+    .global func_0801FCB4
+    .thumb_set func_0801FCB4, func_0801D9A8 + 0x230C
+    .global func_0801B9E8
+    .thumb_set func_0801B9E8, func_0801A054 + 0x1994
+    .global func_0801FD30
+    .thumb_set func_0801FD30, func_0801D9A8 + 0x2388
+    .global func_0801FC54
+    .thumb_set func_0801FC54, func_0801D9A8 + 0x22AC
+    .global func_0801FC48
+    .thumb_set func_0801FC48, func_0801D9A8 + 0x22A0
+    .global func_0801FC60
+    .thumb_set func_0801FC60, func_0801D9A8 + 0x22B8
+    .global func_0801FC6C
+    .thumb_set func_0801FC6C, func_0801D9A8 + 0x22C4
+    .global func_0801FC3C
+    .thumb_set func_0801FC3C, func_0801D9A8 + 0x2294
+    .global func_0801FC0C
+    .thumb_set func_0801FC0C, func_0801D9A8 + 0x2264
+    .global func_0801FC00
+    .thumb_set func_0801FC00, func_0801D9A8 + 0x2258
+    .global func_0801FBF4
+    .thumb_set func_0801FBF4, func_0801D9A8 + 0x224C
+    .global func_0801FBE8
+    .thumb_set func_0801FBE8, func_0801D9A8 + 0x2240
+    .global func_0801DD78
+    .thumb_set func_0801DD78, func_0801D9A8 + 0x3D0
+    .global func_0801DD18
+    .thumb_set func_0801DD18, func_0801D9A8 + 0x370
+    .global func_0801DD24
+    .thumb_set func_0801DD24, func_0801D9A8 + 0x37C
+    .global func_0801DD30
+    .thumb_set func_0801DD30, func_0801D9A8 + 0x388
+    .global func_0801DD3C
+    .thumb_set func_0801DD3C, func_0801D9A8 + 0x394
+    .global func_0801DD48
+    .thumb_set func_0801DD48, func_0801D9A8 + 0x3A0
+    .global func_0801DD54
+    .thumb_set func_0801DD54, func_0801D9A8 + 0x3AC
+    .global func_0801DD60
+    .thumb_set func_0801DD60, func_0801D9A8 + 0x3B8
+    .global func_0801DD6C
+    .thumb_set func_0801DD6C, func_0801D9A8 + 0x3C4
+    .global func_0801DD84
+    .thumb_set func_0801DD84, func_0801D9A8 + 0x3DC
+    .global func_0801DE54
+    .thumb_set func_0801DE54, func_0801D9A8 + 0x4AC
+    .global func_0801DE24
+    .thumb_set func_0801DE24, func_0801D9A8 + 0x47C
+    .global func_08017C00
+    .thumb_set func_08017C00, func_08011DC4 + 0x5BF0
+    .global func_08019BEC
+    .thumb_set func_08019BEC, func_08011DC4 + 0x7BDC
+    .global func_08019B90
+    .thumb_set func_08019B90, func_08011DC4 + 0x7B80
+    .global func_0801EAA0
+    .thumb_set func_0801EAA0, func_0801D9A8 + 0x10F8
+    .global func_0801C29C
+    .thumb_set func_0801C29C, func_0801A054 + 0x2248
+    .global func_0801CA1C
+    .thumb_set func_0801CA1C, func_0801A054 + 0x29C8
+    .global func_0801C49C
+    .thumb_set func_0801C49C, func_0801A054 + 0x2448
+    .global func_0801CAD8
+    .thumb_set func_0801CAD8, func_0801A054 + 0x2A84
+    .global func_0801CEFC
+    .thumb_set func_0801CEFC, func_0801A054 + 0x2EA8
+    .global func_0801D23C
+    .thumb_set func_0801D23C, func_0801A054 + 0x31E8
+    .global func_0801D3FC
+    .thumb_set func_0801D3FC, func_0801A054 + 0x33A8
+    .global func_0801D4E0
+    .thumb_set func_0801D4E0, func_0801A054 + 0x348C
+    .global func_0801D5BC
+    .thumb_set func_0801D5BC, func_0801A054 + 0x3568
+    .global func_0801D7B0
+    .thumb_set func_0801D7B0, func_0801A054 + 0x375C
+    .global func_0801D88C
+    .thumb_set func_0801D88C, func_0801A054 + 0x3838
+    .global func_0801CBB0
+    .thumb_set func_0801CBB0, func_0801A054 + 0x2B5C
+    .global func_0801CFB8
+    .thumb_set func_0801CFB8, func_0801A054 + 0x2F64
+    .global func_0801C3DC
+    .thumb_set func_0801C3DC, func_0801A054 + 0x2388
+    .global func_0801C3E0
+    .thumb_set func_0801C3E0, func_0801A054 + 0x238C
+    .global func_0801DE30
+    .thumb_set func_0801DE30, func_0801D9A8 + 0x488
+    .global func_0801DE3C
+    .thumb_set func_0801DE3C, func_0801D9A8 + 0x494
+    .global func_0801DE48
+    .thumb_set func_0801DE48, func_0801D9A8 + 0x4A0
+    .global func_0801DEB4
+    .thumb_set func_0801DEB4, func_0801D9A8 + 0x50C
+    .global func_0801DDCC
+    .thumb_set func_0801DDCC, func_0801D9A8 + 0x424
+    .global func_0801DDF8
+    .thumb_set func_0801DDF8, func_0801D9A8 + 0x450
+    .global func_0801DCD4
+    .thumb_set func_0801DCD4, func_0801D9A8 + 0x32C
+    .global func_0801DC24
+    .thumb_set func_0801DC24, func_0801D9A8 + 0x27C
+    .global func_0801DCA8
+    .thumb_set func_0801DCA8, func_0801D9A8 + 0x300
+    .global func_0801D8CC
+    .thumb_set func_0801D8CC, func_0801A054 + 0x3878
+    .global func_0801FAA8
+    .thumb_set func_0801FAA8, func_0801D9A8 + 0x2100
+    .global func_0801FAB8
+    .thumb_set func_0801FAB8, func_0801D9A8 + 0x2110
+    .global func_0801B498
+    .thumb_set func_0801B498, func_0801A054 + 0x1444
+    .global func_0801E084
+    .thumb_set func_0801E084, func_0801D9A8 + 0x6DC
+    .global func_0801C0E0
+    .thumb_set func_0801C0E0, func_0801A054 + 0x208C
+    .global func_0801FCA4
+    .thumb_set func_0801FCA4, func_0801D9A8 + 0x22FC
+    .global func_0801D9BC
+    .thumb_set func_0801D9BC, func_0801D9A8 + 0x14
+    .global func_0801DB44
+    .thumb_set func_0801DB44, func_0801D9A8 + 0x19C
+    .global func_0801F518
+    .thumb_set func_0801F518, func_0801D9A8 + 0x1B70
+    .global func_0801F5F0
+    .thumb_set func_0801F5F0, func_0801D9A8 + 0x1C48
+    .global func_0801EE00
+    .thumb_set func_0801EE00, func_0801D9A8 + 0x1458
+    .global func_0801F924
+    .thumb_set func_0801F924, func_0801D9A8 + 0x1F7C
+    .global func_0801C550
+    .thumb_set func_0801C550, func_0801A054 + 0x24FC
+    .global func_0801C69C
+    .thumb_set func_0801C69C, func_0801A054 + 0x2648
     .else
 
     .INCLUDE "asm/macro.inc"
@@ -26794,5 +26971,105 @@ func_0801FD6C: @ 0x0801FD6C
     bl func_080A5960
     pop {r0}
     bx r0
+
+    @ Game-object virtual-table entries that begin within retained raw code.
+    .global func_0801FD58
+    .thumb_set func_0801FD58, func_08011DC4 + 0xDF94
+    .global func_0801FD50
+    .thumb_set func_0801FD50, func_08011DC4 + 0xDF8C
+    .global func_0801FD48
+    .thumb_set func_0801FD48, func_08011DC4 + 0xDF84
+    .global func_0801FD00
+    .thumb_set func_0801FD00, func_08011DC4 + 0xDF3C
+    .global func_0801FCF4
+    .thumb_set func_0801FCF4, func_08011DC4 + 0xDF30
+    .global func_0801B5C0
+    .thumb_set func_0801B5C0, func_08011DC4 + 0x97FC
+    .global func_0801FCDC
+    .thumb_set func_0801FCDC, func_08011DC4 + 0xDF18
+    .global func_0801FCB4
+    .thumb_set func_0801FCB4, func_08011DC4 + 0xDEF0
+    .global func_0801B9E8
+    .thumb_set func_0801B9E8, func_08011DC4 + 0x9C24
+    .global func_0801FD30
+    .thumb_set func_0801FD30, func_08011DC4 + 0xDF6C
+    .global func_0801FC54
+    .thumb_set func_0801FC54, func_08011DC4 + 0xDE90
+    .global func_0801FC48
+    .thumb_set func_0801FC48, func_08011DC4 + 0xDE84
+    .global func_0801FC60
+    .thumb_set func_0801FC60, func_08011DC4 + 0xDE9C
+    .global func_0801FC6C
+    .thumb_set func_0801FC6C, func_08011DC4 + 0xDEA8
+    .global func_0801FC3C
+    .thumb_set func_0801FC3C, func_08011DC4 + 0xDE78
+    .global func_0801FC0C
+    .thumb_set func_0801FC0C, func_08011DC4 + 0xDE48
+    .global func_0801FC00
+    .thumb_set func_0801FC00, func_08011DC4 + 0xDE3C
+    .global func_0801FBF4
+    .thumb_set func_0801FBF4, func_08011DC4 + 0xDE30
+    .global func_0801FBE8
+    .thumb_set func_0801FBE8, func_08011DC4 + 0xDE24
+    .global func_0801DD3C
+    .thumb_set func_0801DD3C, func_08011DC4 + 0xBF78
+    .global func_0801DD48
+    .thumb_set func_0801DD48, func_08011DC4 + 0xBF84
+    .global func_0801DD54
+    .thumb_set func_0801DD54, func_08011DC4 + 0xBF90
+    .global func_0801DD60
+    .thumb_set func_0801DD60, func_08011DC4 + 0xBF9C
+    .global func_0801DD6C
+    .thumb_set func_0801DD6C, func_08011DC4 + 0xBFA8
+    .global func_0801DD84
+    .thumb_set func_0801DD84, func_08011DC4 + 0xBFC0
+    .global func_0801DE54
+    .thumb_set func_0801DE54, func_08011DC4 + 0xC090
+    .global func_0801CA1C
+    .thumb_set func_0801CA1C, func_08011DC4 + 0xAC58
+    .global func_0801C49C
+    .thumb_set func_0801C49C, func_08011DC4 + 0xA6D8
+    .global func_0801CAD8
+    .thumb_set func_0801CAD8, func_08011DC4 + 0xAD14
+    .global func_0801CEFC
+    .thumb_set func_0801CEFC, func_08011DC4 + 0xB138
+    .global func_0801D23C
+    .thumb_set func_0801D23C, func_08011DC4 + 0xB478
+    .global func_0801D3FC
+    .thumb_set func_0801D3FC, func_08011DC4 + 0xB638
+    .global func_0801D4E0
+    .thumb_set func_0801D4E0, func_08011DC4 + 0xB71C
+    .global func_0801D5BC
+    .thumb_set func_0801D5BC, func_08011DC4 + 0xB7F8
+    .global func_0801D7B0
+    .thumb_set func_0801D7B0, func_08011DC4 + 0xB9EC
+    .global func_0801D88C
+    .thumb_set func_0801D88C, func_08011DC4 + 0xBAC8
+    .global func_0801CBB0
+    .thumb_set func_0801CBB0, func_08011DC4 + 0xADEC
+    .global func_0801CFB8
+    .thumb_set func_0801CFB8, func_08011DC4 + 0xB1F4
+    .global func_0801C3DC
+    .thumb_set func_0801C3DC, func_08011DC4 + 0xA618
+    .global func_0801C3E0
+    .thumb_set func_0801C3E0, func_08011DC4 + 0xA61C
+    .global func_0801DE30
+    .thumb_set func_0801DE30, func_08011DC4 + 0xC06C
+    .global func_0801B498
+    .thumb_set func_0801B498, func_08011DC4 + 0x96D4
+    .global func_0801E084
+    .thumb_set func_0801E084, func_08011DC4 + 0xC2C0
+    .global func_0801C0E0
+    .thumb_set func_0801C0E0, func_08011DC4 + 0xA31C
+    .global func_0801FCA4
+    .thumb_set func_0801FCA4, func_08011DC4 + 0xDEE0
+    .global func_0801D9BC
+    .thumb_set func_0801D9BC, func_08011DC4 + 0xBBF8
+    .global func_0801F518
+    .thumb_set func_0801F518, func_08011DC4 + 0xD754
+    .global func_0801C550
+    .thumb_set func_0801C550, func_08011DC4 + 0xA78C
+    .global func_0801C69C
+    .thumb_set func_0801C69C, func_08011DC4 + 0xA8D8
 
     .endif

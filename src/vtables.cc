@@ -58,6 +58,94 @@ extern void func_0801004C(void);
 extern void func_08010158(void);
 extern void func_08011FE8(void);
 extern void func_08012028(void);
+extern void func_080179CC(void);
+extern void func_08017C30(void);
+extern void func_080182C8(void);
+extern void func_0801FD58(void);
+extern void func_0801FD50(void);
+extern void func_0801FD48(void);
+extern void func_0801FD6C(void);
+extern void func_0801FD60(void);
+extern void func_0801FD3C(void);
+extern void func_08019F7C(void);
+extern void func_08019FE8(void);
+extern void func_0801A054(void);
+extern void func_0801A8E0(void);
+extern void func_0801FD0C(void);
+extern void func_0801FD00(void);
+extern void func_0801FCF4(void);
+extern void func_0801B5C0(void);
+extern void func_0801FCDC(void);
+extern void func_0801FCB4(void);
+extern void func_0801B9E8(void);
+extern void func_0801FD30(void);
+extern void func_0801FC54(void);
+extern void func_0801FC48(void);
+extern void func_0801FC60(void);
+extern void func_0801FC6C(void);
+extern void func_0801FC3C(void);
+extern void func_0801FC0C(void);
+extern void func_0801FC00(void);
+extern void func_0801FBF4(void);
+extern void func_0801FBE8(void);
+extern void func_0801DD78(void);
+extern void func_0801DD18(void);
+extern void func_0801DD24(void);
+extern void func_0801DD30(void);
+extern void func_0801DD3C(void);
+extern void func_0801DD48(void);
+extern void func_0801DD54(void);
+extern void func_0801DD60(void);
+extern void func_0801DD6C(void);
+extern void func_0801DD84(void);
+extern void func_0801DE54(void);
+extern void func_0801DE24(void);
+extern void func_08017C00(void);
+extern void func_08019BEC(void);
+extern void func_08019B90(void);
+extern void func_0801EAA0(void);
+extern void func_0801C29C(void);
+extern void func_0801CA1C(void);
+extern void func_0801C49C(void);
+extern void func_0801CAD8(void);
+extern void func_0801CEFC(void);
+extern void func_0801D23C(void);
+extern void func_0801D3FC(void);
+extern void func_0801D4E0(void);
+extern void func_0801D5BC(void);
+extern void func_0801D7B0(void);
+extern void func_0801D88C(void);
+extern void func_0801CBB0(void);
+extern void func_0801CFB8(void);
+extern void func_0801C3DC(void);
+extern void func_0801C3E0(void);
+extern void func_0801DE30(void);
+extern void func_0801DE3C(void);
+extern void func_0801DE48(void);
+extern void func_0801DEB4(void);
+extern void func_0801DDCC(void);
+extern void func_0801DDF8(void);
+extern void func_0801DCD4(void);
+extern void func_0801DC24(void);
+extern void func_0801DCA8(void);
+extern void func_08019F38(void);
+extern void func_0801D8CC(void);
+extern void func_0801D948(void);
+extern void func_0801FAA8(void);
+extern void func_0801FAB8(void);
+extern void func_0801B498(void);
+extern void func_0801E084(void);
+extern void func_0801C0E0(void);
+extern void func_0801D9A8(void);
+extern void func_0801FCA4(void);
+extern void func_0801D9BC(void);
+extern void func_0801DB44(void);
+extern void func_0801F518(void);
+extern void func_0801F5F0(void);
+extern void func_0801EE00(void);
+extern void func_0801F924(void);
+extern void func_0801C550(void);
+extern void func_0801C69C(void);
 extern void func_080D7944(void);
 extern void func_080D79CC(void);
 extern void func_080D7AAC(void);
@@ -699,6 +787,99 @@ extern RawVTableFunction const vtable_unk_080E5EB4[] = {
     nullptr,
     func_080DC554,
     func_080DC50C,
+};
+
+extern RawVTableFunction const vtable_unk_080E5EC4[] = {
+    nullptr,
+    nullptr,
+    func_080179CC,
+    func_08017C30,
+    func_080182C8,
+    func_0801FD58,
+    func_0801FD50,
+    func_0801FD48,
+    func_0801FD6C,
+    func_0801FD60,
+    func_0801FD3C,
+    func_08019F7C,
+    func_08019FE8,
+    func_0801A054,
+    func_0801A8E0,
+    func_0801FD0C,
+    func_0801FD00,
+    func_0801FCF4,
+    func_0801B5C0,
+    func_0801FCDC,
+    func_0801FCB4,
+    func_0801B9E8,
+    func_0801FD30,
+    func_0801FC54,
+    func_0801FC48,
+    func_0801FC60,
+    func_0801FC6C,
+    func_0801FC3C,
+    func_0801FC0C,
+    func_0801FC00,
+    func_0801FBF4,
+    func_0801FBE8,
+    func_0801DD78,
+    func_0801DD18,
+    func_0801DD24,
+    func_0801DD30,
+    func_0801DD3C,
+    func_0801DD48,
+    func_0801DD54,
+    func_0801DD60,
+    func_0801DD6C,
+    func_0801DD84,
+    func_0801DE54,
+    func_0801DE24,
+    func_08017C00,
+    func_08019BEC,
+    func_08019B90,
+    func_0801EAA0,
+    func_0801C29C,
+    func_0801CA1C,
+    func_0801C49C,
+    func_0801CAD8,
+    func_0801CEFC,
+    func_0801D23C,
+    func_0801D3FC,
+    func_0801D4E0,
+    func_0801D5BC,
+    func_0801D7B0,
+    func_0801D88C,
+    func_0801CBB0,
+    func_0801CFB8,
+    func_0801C3DC,
+    func_0801C3E0,
+    func_0801DE30,
+    func_0801DE3C,
+    func_0801DE48,
+    func_0801DEB4,
+    func_0801DDCC,
+    func_0801DDF8,
+    func_0801DCD4,
+    func_0801DC24,
+    func_0801DCA8,
+    func_08019F38,
+    func_0801D8CC,
+    func_0801D948,
+    func_0801FAA8,
+    func_0801FAB8,
+    func_0801B498,
+    func_0801E084,
+    func_0801C0E0,
+    func_0801D9A8,
+    func_0801FCA4,
+    func_0801D9BC,
+    func_0801DB44,
+    func_0801F518,
+    func_0801F5F0,
+    func_0801EE00,
+    func_0801F924,
+    func_0801C550,
+    func_0801C69C,
 };
 
 EXTERN_C_END

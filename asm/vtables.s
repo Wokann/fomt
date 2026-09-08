@@ -5,7 +5,7 @@
     @ declarations. The remaining tables stay in this static ROM range.
 
     .section .rodata
-    .set jp_vtables_start, jp_vtables_raw_start - 0x4F8
+    .set jp_vtables_start, jp_vtables_raw_start - 0x660
     .global vtable_unk_080E602C
     .set vtable_unk_080E602C, jp_vtables_start + 0x660
     .global vtable_unk_080E6038
@@ -500,102 +500,10 @@
     .set vtable_unk_080E85E8, jp_vtables_start + 0x2C1C
 
 jp_vtables_raw_start:
-    .incbin "baserom_jp.gba", 0xE5304, (0xE7A40 - 0xE5304)
+    .incbin "baserom_jp.gba", 0xE546C, (0xE7A40 - 0xE546C)
     .else
 
     .section .rodata
-
-	.global vtable_unk_080E5EC4
-vtable_unk_080E5EC4: @ game object
-	.word 0, 0
-	.word func_080179CC @ 08
-	.word func_08017C30 @ 0C
-	.word func_080182C8 @ 10
-	.word 0x0801FD59
-	.word 0x0801FD51
-	.word 0x0801FD49
-	.word func_0801FD6C
-	.word func_0801FD60 @ 20
-	.word func_0801FD3C
-	.word func_08019F7C
-	.word func_08019FE8
-	.word func_0801A054 @ 30
-	.word func_0801A8E0
-	.word func_0801FD0C
-	.word 0x0801FD01
-	.word 0x0801FCF5
-	.word 0x0801B5C1
-	.word 0x0801FCDD
-	.word 0x0801FCB5
-	.word 0x0801B9E9
-	.word 0x0801FD31
-	.word 0x0801FC55
-	.word 0x0801FC49
-	.word 0x0801FC61
-	.word 0x0801FC6D
-	.word 0x0801FC3D
-	.word 0x0801FC0D
-	.word 0x0801FC01
-	.word 0x0801FBF5
-	.word 0x0801FBE9
-	.word func_0801DD78
-	.word func_0801DD18
-	.word func_0801DD24
-	.word func_0801DD30
-	.word 0x0801DD3D
-	.word 0x0801DD49
-	.word 0x0801DD55
-	.word 0x0801DD61
-	.word 0x0801DD6D
-	.word 0x0801DD85
-	.word 0x0801DE55
-	.word func_0801DE24
-	.word func_08017C00
-	.word func_08019BEC
-	.word func_08019B90
-	.word func_0801EAA0
-	.word func_0801C29C
-	.word 0x0801CA1D
-	.word 0x0801C49D
-	.word 0x0801CAD9
-	.word 0x0801CEFD
-	.word 0x0801D23D
-	.word 0x0801D3FD
-	.word 0x0801D4E1
-	.word 0x0801D5BD
-	.word 0x0801D7B1
-	.word 0x0801D88D
-	.word 0x0801CBB1
-	.word 0x0801CFB9
-	.word 0x0801C3DD
-	.word 0x0801C3E1
-	.word 0x0801DE31
-	.word func_0801DE3C
-	.word func_0801DE48
-	.word func_0801DEB4
-	.word func_0801DDCC
-	.word func_0801DDF8
-	.word func_0801DCD4
-	.word func_0801DC24
-	.word func_0801DCA8
-	.word func_08019F38
-	.word func_0801D8CC
-	.word func_0801D948
-	.word func_0801FAA8
-	.word func_0801FAB8
-	.word 0x0801B499
-	.word 0x0801E085
-	.word 0x0801C0E1
-	.word func_0801D9A8
-	.word 0x0801FCA5
-	.word 0x0801D9BD
-	.word func_0801DB44
-	.word 0x0801F519
-	.word func_0801F5F0
-	.word func_0801EE00
-	.word func_0801F924
-	.word 0x0801C551
-	.word 0x0801C69D
 
 	.global vtable_unk_080E602C
 vtable_unk_080E602C:
