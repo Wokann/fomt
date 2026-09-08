@@ -26388,6 +26388,8 @@ func_080E0E80: @ 0x080E0E80
     .thumb_set func_080E152C, func_080E1D54 + 0x38
     .global func_080E1538
     .thumb_set func_080E1538, func_080E1D54 + 0x44
+    .global func_080E1544
+    .thumb_set func_080E1544, func_080E1D54 + 0x50
     .else
 
 	thumb_func_start func_080E0EF0
