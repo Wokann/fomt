@@ -390,6 +390,7 @@ extern void func_0805E790(void);
 extern void func_0805FD04(void);
 extern void func_0805FD44(void);
 extern void func_08063E58(void);
+extern void func_08093308(void);
 extern void func_08094288(void);
 extern void func_080942BC(void);
 extern void func_08094388(void);
@@ -2914,5 +2915,18 @@ extern RawVTableWithOffsetAnd66Entries const vtable_unk_080E7DF4
         },
     };
 #endif
+
+extern RawVTableFunction const vtable_unk_080E7F00[]
+    SECTION(".rodata.vtable_7f00") = {
+#if defined(REGION_JP)
+        nullptr,
+        func_08093D4C,
+        func_08093D80,
+#else
+        nullptr,
+        nullptr,
+        func_08093308,
+#endif
+    };
 
 EXTERN_C_END
