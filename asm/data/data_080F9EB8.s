@@ -13,22 +13,7 @@
     .section .rodata.name_entry_preset_animal_names_trailer_prefix
     .incbin "baserom_jp.gba", 0xF996C, (0xF9994 - 0xF996C)
 
-    .section .rodata.library_info_trailer
-jp_data_080fccf3_start:
-    .incbin "baserom_jp.gba", 0xFCCF3, (0xFD084 - 0xFCCF3)
 
-    @ Rectangular Town Map area ranges.  Their record contents remain raw,
-    @ but the Town Map lookup table keeps typed relocations to these starts.
-    .global gUnk_TownMapAreaBounds_000
-    .set gUnk_TownMapAreaBounds_000, jp_data_080fccf3_start + 0x1
-    .global gUnk_TownMapAreaBounds_001
-    .set gUnk_TownMapAreaBounds_001, jp_data_080fccf3_start + 0x36D
-    .global gUnk_TownMapAreaBounds_003
-    .set gUnk_TownMapAreaBounds_003, jp_data_080fccf3_start + 0xD9
-    .global gUnk_TownMapAreaBounds_005
-    .set gUnk_TownMapAreaBounds_005, jp_data_080fccf3_start + 0x15D
-    .global gUnk_TownMapAreaBounds_007
-    .set gUnk_TownMapAreaBounds_007, jp_data_080fccf3_start + 0x2A1
 
 
 
@@ -510,23 +495,7 @@ gUnk_08118CF4:
 	.section .rodata.name_entry_preset_animal_names_prefix
 	.incbin "baserom_us.gba", 0xF9F7C, 0x4
 
-	.section .rodata.library_info_trailer
 
-us_data_080fd583_start:
-	.incbin "baserom_us.gba", 0xFD583, (0xFD914 - 0xFD583)
-
-	@ Rectangular Town Map area ranges.  Their record contents remain raw,
-	@ but the Town Map lookup table keeps typed relocations to these starts.
-	.global gUnk_TownMapAreaBounds_000
-	.set gUnk_TownMapAreaBounds_000, us_data_080fd583_start + 0x1
-	.global gUnk_TownMapAreaBounds_001
-	.set gUnk_TownMapAreaBounds_001, us_data_080fd583_start + 0x36D
-	.global gUnk_TownMapAreaBounds_003
-	.set gUnk_TownMapAreaBounds_003, us_data_080fd583_start + 0xD9
-	.global gUnk_TownMapAreaBounds_005
-	.set gUnk_TownMapAreaBounds_005, us_data_080fd583_start + 0x15D
-	.global gUnk_TownMapAreaBounds_007
-	.set gUnk_TownMapAreaBounds_007, us_data_080fd583_start + 0x2A1
 
 
 

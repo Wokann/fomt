@@ -532,8 +532,9 @@ SECTIONS
         . = 0xFD080; src/town_map_data.o(.rodata.town_map_hotspots);
         . = 0xFD3A0; src/town_map_data.o(.rodata.town_map_area_lookup);
         . = 0xFD550; data/text/library.o(.rodata.library_info);
-        . = 0xFD583; asm/data/data_080F9EB8.o(.rodata.library_info_trailer);
-        . = 0xFD914; src/library_data.o(.rodata.library_info_runtime);
+        FILL(0x00);
+        . = ALIGN(4); src/town_map_data.o(.rodata.town_map_area_bounds);
+        src/library_data.o(.rodata.library_info_runtime);
         FILL(0x00);
         . = ALIGN(4); src/library_data.o(.rodata.library_initial_entry_ids);
         . = 0xFD940; data/text/library.o(.rodata.library_menu);

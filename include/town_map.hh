@@ -18,23 +18,49 @@ struct TownMapHotspot
     u8 max_cursor_y;
 };
 
-// The second field points into raw rectangular range data.  Its individual
-// record format is not fully decoded yet, but func_080782EC verifies bounds
-// in the first eight bytes of each record.
-struct TownMapAreaLookup
+// Native Town Map selection scans these records until either minimum coordinate
+// is no longer less than its corresponding maximum coordinate. The final
+// all-zero record in every subtable is therefore a terminator, not padding.
+struct TownMapAreaBounds
 {
-    u32 lookup_key;
-    u8 const * bounds;
+    u16 min_x;
+    u16 min_y;
+    u16 max_x;
+    u16 max_y;
+    u32 unk_08;
 };
 
 enum
 {
+    TOWN_MAP_AREA_BOUNDS_000_COUNT = 18,
+    TOWN_MAP_AREA_BOUNDS_003_COUNT = 11,
+    TOWN_MAP_AREA_BOUNDS_005_COUNT = 27,
+    TOWN_MAP_AREA_BOUNDS_007_COUNT = 17,
+    TOWN_MAP_AREA_BOUNDS_001_COUNT = 3,
     TOWN_MAP_HOTSPOT_COUNT = 40,
     TOWN_MAP_AREA_LOOKUP_COUNT = 0x34,
 };
 
+// The source field order follows the physical ROM order, which differs from
+// the lookup-table order.
+struct TownMapAreaBoundsTables
+{
+    TownMapAreaBounds map_000[TOWN_MAP_AREA_BOUNDS_000_COUNT];
+    TownMapAreaBounds map_003[TOWN_MAP_AREA_BOUNDS_003_COUNT];
+    TownMapAreaBounds map_005[TOWN_MAP_AREA_BOUNDS_005_COUNT];
+    TownMapAreaBounds map_007[TOWN_MAP_AREA_BOUNDS_007_COUNT];
+    TownMapAreaBounds map_001[TOWN_MAP_AREA_BOUNDS_001_COUNT];
+};
+
+struct TownMapAreaLookup
+{
+    u32 lookup_key;
+    TownMapAreaBounds const * bounds;
+};
+
 extern TownMapHotspot const gTownMapHotspots[TOWN_MAP_HOTSPOT_COUNT];
 extern u16 const gTownMapResourceIds[];
+extern TownMapAreaBoundsTables const gTownMapAreaBounds;
 extern TownMapAreaLookup const gTownMapAreaLookup[TOWN_MAP_AREA_LOOKUP_COUNT];
 extern TownMapAreaLookup const gTownMapAreaLookupFallback_034To133;
 extern TownMapAreaLookup const gTownMapAreaLookupFallback_134To233;
