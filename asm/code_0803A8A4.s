@@ -122,6 +122,9 @@ func_0803A8A4:
     @ The schedule table's JP callback pointer resolves to 0x0803D699.
     .global func_0803DA24
     .thumb_set func_0803DA24, func_0803A8A4 + 0x3180
+    @ The next schedule table's JP callback pointer resolves to 0x0803D6F1.
+    .global func_0803DA7C
+    .thumb_set func_0803DA7C, func_0803A8A4 + 0x31D8
     @ Shared C++ schedule gates call this JP counterpart at 0x0803D1A0.
     .global func_0803D52C
     .thumb_set func_0803D52C, func_0803A8A4 + 0x2C88

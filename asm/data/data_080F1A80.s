@@ -2,20 +2,16 @@
     @ JP revision 0 counterpart of the script and schedule-adjacent data.
     .section .rodata.data_080f1a80_prefix
 jp_data_080f1a80_prefix_start:
-    .incbin "baserom_jp.gba", 0xF181C, 0x13F8
+    .incbin "baserom_jp.gba", 0xF2068, 0xBAC
 
-    .global gUnk_080F1FC0
-gUnk_080F1FC0 = jp_data_080f1a80_prefix_start + 0x000
-    .global gUnk_080F280C
-gUnk_080F280C = jp_data_080f1a80_prefix_start + 0x840
     .global gUnk_080F29C0
-gUnk_080F29C0 = jp_data_080f1a80_prefix_start + 0x9F4
+gUnk_080F29C0 = jp_data_080f1a80_prefix_start + 0x1A8
     .global gUnk_080F2AF8
-gUnk_080F2AF8 = jp_data_080f1a80_prefix_start + 0xB2C
+gUnk_080F2AF8 = jp_data_080f1a80_prefix_start + 0x2E0
     .global gUnk_080F2DC0
-gUnk_080F2DC0 = jp_data_080f1a80_prefix_start + 0xDFC
+gUnk_080F2DC0 = jp_data_080f1a80_prefix_start + 0x5B0
     .global gUnk_080F3010
-gUnk_080F3010 = jp_data_080f1a80_prefix_start + 0x1050
+gUnk_080F3010 = jp_data_080f1a80_prefix_start + 0x604
 
     .section .rodata.data_080f1a80_suffix
 jp_data_080f1a80_suffix_start:
@@ -71,10 +67,6 @@ gUnk_080F89D4 = jp_data_080f1a80_suffix_start + 0x48E4
 	@ schedules
 
 	@ .incbin "baserom_us.gba", 0xF1AC0, 0x500
-
-	.global gUnk_080F1FC0
-gUnk_080F1FC0:
-	.incbin "baserom_us.gba", 0xF1FC0, 0x84C
 
 	.global gUnk_080F280C
 gUnk_080F280C:
