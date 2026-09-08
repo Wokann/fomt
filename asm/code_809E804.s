@@ -292,7 +292,14 @@
     jp_code_809_func func_080D0BE0, 0xD0464, 0xD0494
     jp_code_809_func func_080D0C10, 0xD0494, 0xD04B0
     jp_code_809_func func_080D0C2C, 0xD04B0, 0xD0558
-    jp_code_809_func func_080D0CD4, 0xD0558, 0xD0674
+    @ The shared Shift-JIS glyph-map index converter is rebuilt from
+    @ src/font.cc at 0x080D0558. Keep JP's distinct glyph resolver
+    @ in the following raw range until it is recovered with its data tables.
+    .section .text.font_after
+    .global func_080D0D28
+    .thumb_func
+func_080D0D28:
+    .incbin "baserom_jp.gba", 0xD05AC, (0xD0674 - 0xD05AC)
     jp_code_809_func func_080D0EBC, 0xD0674, 0xD0680
     jp_code_809_func __divsi3, 0xD0680, 0xD0688
     jp_code_809_func __modsi3, 0xD0688, 0xD0692
@@ -103253,56 +103260,9 @@ func_080D0C2C: @ 0x080D0C2C
 	.byte 0x04, 0xD1, 0x48, 0x78, 0xD2, 0x78, 0x90, 0x42, 0x00, 0xD1, 0x01, 0x23, 0x18, 0x1C, 0x10, 0xBC
 	.byte 0x02, 0xBC, 0x08, 0x47
 
-	thumb_func_start func_080D0CD4
-func_080D0CD4: @ 0x080D0CD4
-	push {lr}
-	adds r1, r0, #0
-	ldr r0, .L080D0D08 @ =0x0000FFFF
-	cmp r1, r0
-	bhi .L080D0D02
-	movs r3, #0xff
-	ands r3, r1
-	movs r0, #0xff
-	lsls r0, r0, #8
-	ands r0, r1
-	asrs r2, r0, #8
-	adds r0, r3, #0
-	subs r0, #0x40
-	cmp r0, #0xbc
-	bhi .L080D0D02
-	cmp r2, #0x80
-	bls .L080D0D02
-	cmp r2, #0xea
-	bhi .L080D0D02
-	adds r0, r2, #0
-	subs r0, #0xa0
-	cmp r0, #0x3f
-	bhi .L080D0D0C
-.L080D0D02:
-	movs r0, #1
-	rsbs r0, r0, #0
-	b .L080D0D22
-	.align 2, 0
-.L080D0D08: .4byte 0x0000FFFF
-.L080D0D0C:
-	cmp r2, #0x9f
-	bhi .L080D0D14
-	subs r2, #0x81
-	b .L080D0D16
-.L080D0D14:
-	subs r2, #0xc1
-.L080D0D16:
-	subs r3, #0x40
-	lsls r1, r2, #1
-	adds r1, r1, r2
-	lsls r0, r1, #6
-	subs r0, r0, r1
-	adds r0, r0, r3
-.L080D0D22:
-	pop {r1}
-	bx r1
-	.align 2, 0
-
+	@ The shared Shift-JIS glyph-map index converter is rebuilt from
+	@ src/font.cc at 0x080D0CD4.
+	.section .text.font_after
 	thumb_func_start func_080D0D28
 func_080D0D28: @ 0x080D0D28
 	push {r4, r5, r6, lr}
@@ -103345,75 +103305,75 @@ func_080D0D28: @ 0x080D0D28
 	.4byte .L080D0E00 @ case 17
 	.4byte .L080D0E08 @ case 18
 .L080D0D98:
-	ldr r0, .L080D0D9C @ =gUnk_080D0D28Blocks
+	ldr r0, .L080D0D9C @ =gFontSpecialGlyphBlocks
 	b .L080D0E0A
 	.align 2, 0
-.L080D0D9C: .4byte gUnk_080D0D28Blocks
+.L080D0D9C: .4byte gFontSpecialGlyphBlocks
 .L080D0DA0:
-	ldr r0, .L080D0DA4 @ =gUnk_080D0D28Blocks+0xC
+	ldr r0, .L080D0DA4 @ =gFontSpecialGlyphBlocks+0xC
 	b .L080D0E0A
 	.align 2, 0
-.L080D0DA4: .4byte gUnk_080D0D28Blocks+0xC
+.L080D0DA4: .4byte gFontSpecialGlyphBlocks+0xC
 .L080D0DA8:
-	ldr r0, .L080D0DAC @ =gUnk_080D0D28Blocks+0x18
+	ldr r0, .L080D0DAC @ =gFontSpecialGlyphBlocks+0x18
 	b .L080D0E0A
 	.align 2, 0
-.L080D0DAC: .4byte gUnk_080D0D28Blocks+0x18
+.L080D0DAC: .4byte gFontSpecialGlyphBlocks+0x18
 .L080D0DB0:
-	ldr r0, .L080D0DB4 @ =gUnk_080D0D28Blocks+0x24
+	ldr r0, .L080D0DB4 @ =gFontSpecialGlyphBlocks+0x24
 	b .L080D0E0A
 	.align 2, 0
-.L080D0DB4: .4byte gUnk_080D0D28Blocks+0x24
+.L080D0DB4: .4byte gFontSpecialGlyphBlocks+0x24
 .L080D0DB8:
-	ldr r0, .L080D0DBC @ =gUnk_080D0D28Blocks+0x30
+	ldr r0, .L080D0DBC @ =gFontSpecialGlyphBlocks+0x30
 	b .L080D0E0A
 	.align 2, 0
-.L080D0DBC: .4byte gUnk_080D0D28Blocks+0x30
+.L080D0DBC: .4byte gFontSpecialGlyphBlocks+0x30
 .L080D0DC0:
-	ldr r0, .L080D0DC4 @ =gUnk_080D0D28Blocks+0x3C
+	ldr r0, .L080D0DC4 @ =gFontSpecialGlyphBlocks+0x3C
 	b .L080D0E0A
 	.align 2, 0
-.L080D0DC4: .4byte gUnk_080D0D28Blocks+0x3C
+.L080D0DC4: .4byte gFontSpecialGlyphBlocks+0x3C
 .L080D0DC8:
-	ldr r0, .L080D0DCC @ =gUnk_080D0D28Blocks+0x48
+	ldr r0, .L080D0DCC @ =gFontSpecialGlyphBlocks+0x48
 	b .L080D0E0A
 	.align 2, 0
-.L080D0DCC: .4byte gUnk_080D0D28Blocks+0x48
+.L080D0DCC: .4byte gFontSpecialGlyphBlocks+0x48
 .L080D0DD0:
-	ldr r0, .L080D0DD4 @ =gUnk_080D0D28Blocks+0x54
+	ldr r0, .L080D0DD4 @ =gFontSpecialGlyphBlocks+0x54
 	b .L080D0E0A
 	.align 2, 0
-.L080D0DD4: .4byte gUnk_080D0D28Blocks+0x54
+.L080D0DD4: .4byte gFontSpecialGlyphBlocks+0x54
 .L080D0DD8:
-	ldr r0, .L080D0DDC @ =gUnk_080D0D28Blocks+0x60
+	ldr r0, .L080D0DDC @ =gFontSpecialGlyphBlocks+0x60
 	b .L080D0E0A
 	.align 2, 0
-.L080D0DDC: .4byte gUnk_080D0D28Blocks+0x60
+.L080D0DDC: .4byte gFontSpecialGlyphBlocks+0x60
 .L080D0DE0:
-	ldr r0, .L080D0DE4 @ =gUnk_080D0D28Blocks+0x6C
+	ldr r0, .L080D0DE4 @ =gFontSpecialGlyphBlocks+0x6C
 	b .L080D0E0A
 	.align 2, 0
-.L080D0DE4: .4byte gUnk_080D0D28Blocks+0x6C
+.L080D0DE4: .4byte gFontSpecialGlyphBlocks+0x6C
 .L080D0DE8:
-	ldr r0, .L080D0DEC @ =gUnk_080D0D28Blocks+0x78
+	ldr r0, .L080D0DEC @ =gFontSpecialGlyphBlocks+0x78
 	b .L080D0E0A
 	.align 2, 0
-.L080D0DEC: .4byte gUnk_080D0D28Blocks+0x78
+.L080D0DEC: .4byte gFontSpecialGlyphBlocks+0x78
 .L080D0DF0:
-	ldr r0, .L080D0DF4 @ =gUnk_080D0D28Blocks+0x84
+	ldr r0, .L080D0DF4 @ =gFontSpecialGlyphBlocks+0x84
 	b .L080D0E0A
 	.align 2, 0
-.L080D0DF4: .4byte gUnk_080D0D28Blocks+0x84
+.L080D0DF4: .4byte gFontSpecialGlyphBlocks+0x84
 .L080D0DF8:
-	ldr r0, .L080D0DFC @ =gUnk_080D0D28Blocks+0x90
+	ldr r0, .L080D0DFC @ =gFontSpecialGlyphBlocks+0x90
 	b .L080D0E0A
 	.align 2, 0
-.L080D0DFC: .4byte gUnk_080D0D28Blocks+0x90
+.L080D0DFC: .4byte gFontSpecialGlyphBlocks+0x90
 .L080D0E00:
-	ldr r0, .L080D0E04 @ =gUnk_080D0D28Blocks+0x9C
+	ldr r0, .L080D0E04 @ =gFontSpecialGlyphBlocks+0x9C
 	b .L080D0E0A
 	.align 2, 0
-.L080D0E04: .4byte gUnk_080D0D28Blocks+0x9C
+.L080D0E04: .4byte gFontSpecialGlyphBlocks+0x9C
 .L080D0E08:
 	ldr r0, .L080D0E18 @ =gUnk_08117BC8
 .L080D0E0A:
@@ -103444,7 +103404,7 @@ func_080D0D28: @ 0x080D0D28
 	cmp r2, r0
 	bgt .L080D0E58
 	adds r0, r2, #0
-	bl func_080D0CD4
+	bl GetShiftJisGlyphMapIndex
 	cmp r0, #0
 	blt .L080D0E58
 	ldr r1, .L080D0E7C @ =gUnk_08523290

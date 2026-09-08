@@ -1,16 +1,46 @@
-#include "code_080D0D28.hh"
+#include "font.hh"
 
 EXTERN_C
+
+// Converts one Shift-JIS two-byte code to the index used by the font's
+// double-width glyph map. Returns -1 for a code outside that map.
+i32 GetShiftJisGlyphMapIndex(i32 character)
+{
+    u32 low_byte;
+    u32 high_byte;
+    u32 row;
+
+    if ((u32)character > 0xFFFF)
+        return -1;
+
+    low_byte = character & 0xFF;
+    high_byte = (character & 0xFF00) >> 8;
+    if ((u32)(low_byte - 0x40) > 0xBC
+        || high_byte <= 0x80
+        || high_byte > 0xEA
+        || (u32)(high_byte - 0xA0) <= 0x3F) {
+        return -1;
+    }
+
+    if (high_byte <= 0x9F)
+        high_byte -= 0x81;
+    else
+        high_byte -= 0xC1;
+
+    low_byte -= 0x40;
+    row = high_byte * 3;
+    return (row << 6) - row + low_byte;
+}
 
 #if defined(REGION_US)
 // This is an ordinary terminated C string. Its two additional trailing zero
 // bytes arise from the four-byte alignment of the following object.
-extern char const gCppRuntimeBadAlloc_Code080D0D28[] ALIGN(4) =
+extern char const gCppRuntimeBadAlloc_Font[] ALIGN(4) =
     "bad_alloc";
 
-// func_080D0D28 selects these contiguous blocks and passes their addresses to
-// func_0300085C. The format and semantic role of the bytes are not established.
-extern u8 const gUnk_080D0D28Blocks[14][12] ALIGN(4) = {
+// The US glyph resolver selects these contiguous 12-byte glyph bitmaps and
+// passes them to func_0300085C. Their individual display meanings remain unknown.
+extern u8 const gFontSpecialGlyphBlocks[14][12] ALIGN(4) = {
     { 0x00, 0x00, 0x00, 0x48, 0xB4, 0x84, 0x84, 0x48, 0x30, 0x00, 0x00, 0x00 },
     { 0x10, 0x10, 0x10, 0x28, 0x44, 0x28, 0x28, 0x28, 0x54, 0x6C, 0x44, 0x00 },
     { 0x10, 0x10, 0x10, 0x38, 0x7C, 0x38, 0x38, 0x38, 0x7C, 0x6C, 0x44, 0x00 },

@@ -427,6 +427,10 @@ SECTIONS
         src/map_data.o(.text.get_map_data);
         . = 0xA40E4;
         asm/code_809E804.o(.text.get_map_data_after);
+        . = 0xD0558; /* Shared Shift-JIS glyph-map index converter. */
+        src/font.o(.text);
+        . = 0xD05AC; /* Remaining JP font glyph resolver. */
+        asm/code_809E804.o(.text.font_after);
 
         . = 0xD0D4C; /* JP ROM 0x080D0D4C, independently matched */
 

@@ -359,6 +359,10 @@ SECTIONS
         src/map_data.o(.text.get_map_data);
         . = 0xA46AC;
         asm/code_809E804.o(.text.get_map_data_after);
+        . = 0xD0CD4; /* Shared Shift-JIS glyph-map index converter. */
+        src/font.o(.text);
+        . = 0xD0D28; /* Remaining font glyph resolver. */
+        asm/code_809E804.o(.text.font_after);
 
         src/m4a_1.o(.text);
         src/m4a.o(.text);
@@ -713,7 +717,7 @@ SECTIONS
         . = 0x117A0C; data/text/animal_status.o(.rodata);
         . = 0x117A50; data/text/item_status.o(.rodata);
         . = 0x117AA8; data/text/item_discard.o(.rodata);
-        . = 0x117B14; src/code_080D0D28.o(.rodata);
+        . = 0x117B14; src/font.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard);
