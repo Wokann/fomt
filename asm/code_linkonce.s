@@ -26354,6 +26354,8 @@ func_080E0E80: @ 0x080E0E80
     @ func_080E0C38 symbol, so retain a neutral local dispatch-target name.
     .global func_080E0C38_vtable_target
     .thumb_set func_080E0C38_vtable_target, func_080E11EC + 0x2AC
+    .global func_080E0D60
+    .thumb_set func_080E0D60, func_080E14B8 + 0x108
     .else
 
 	thumb_func_start func_080E0EF0
