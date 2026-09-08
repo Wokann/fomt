@@ -28,7 +28,11 @@ char const gNewGameNameEntryCharacterRows[18][31] SECTION(".rodata.new_game_name
 
 // The JP name-entry screen indexes this one-indexed table with index × 13.
 // Keeping the rows fixed-width preserves the original full-width padding and
-// the raw lookup base located one row before the first valid entry.
+// the metadata lookup base located 14 bytes before the first valid entry.
+u32 const gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue
+    SECTION(".rodata.new_game_name_entry_preset_animal_names_runtime") =
+        0x20;
+
 char const gCppRuntimeBadAlloc_NewGameNameEntryPresetNames[]
     SECTION(".rodata.new_game_name_entry_preset_animal_names_runtime") =
         "bad_alloc";

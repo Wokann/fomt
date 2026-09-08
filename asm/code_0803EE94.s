@@ -34308,7 +34308,7 @@ func_080516F0: @ 0x080516F0
 	lsls r1, r0, #3
 	subs r1, r1, r0
 	lsls r1, r1, #1
-	ldr r0, .L08051CE0 @ =gText_NameEntry_PresetAnimalNames - 14
+	ldr r0, .L08051CE0 @ =gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue
 	adds r1, r1, r0
 	ldr r0, .L08051CE4 @ =0x00000A2C
 	add r0, sp
@@ -34625,7 +34625,7 @@ func_080516F0: @ 0x080516F0
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L08051CE0: .4byte gText_NameEntry_PresetAnimalNames - 14
+.L08051CE0: .4byte gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue
 .L08051CE4: .4byte 0x00000A2C
 .L08051CE8: .4byte 0x06002800
 .L08051CEC: .4byte 0x00000A5C

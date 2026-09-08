@@ -28,6 +28,10 @@ char const gNewGameNameEntryCharacterRows[18][31] SECTION(".rodata.new_game_name
 // The US animal-name selection is a one-indexed, fixed-stride list.  Each
 // string remains in its original 14-byte row so the native index × 14 lookup
 // and its full-width display-space padding remain exact.
+u32 const gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue
+    SECTION(".rodata.new_game_name_entry_preset_animal_names_runtime") =
+        0x20;
+
 char const gCppRuntimeBadAlloc_NewGameNameEntryPresetNames[]
     SECTION(".rodata.new_game_name_entry_preset_animal_names_runtime") =
         "bad_alloc";

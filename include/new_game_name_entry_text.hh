@@ -21,11 +21,15 @@ enum
 extern char const gNewGameNameEntryCharacterRows[NEW_GAME_NAME_ENTRY_ROW_COUNT][NEW_GAME_NAME_ENTRY_ROW_WIDTH];
 
 // Both name-entry screens index this fixed-width list with values 1..30.
-// The JP and US encodings have different row widths; each original lookup base
-// intentionally sits one row before this array.
+// The JP and US encodings have different row widths. The native metadata base
+// is a separate 14-byte prefix immediately before this array.
 extern char const gText_NameEntry_PresetAnimalNames[NEW_GAME_NAME_ENTRY_PRESET_ANIMAL_NAME_COUNT][NEW_GAME_NAME_ENTRY_PRESET_ANIMAL_NAME_WIDTH];
 
-// C++ runtime string stored immediately before the regional preset-name rows.
+// Native code dereferences this exact word through the lookup base located
+// before the regional fixed-stride name rows. Its high-level role is unknown.
+extern u32 const gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue;
+
+// Runtime string stored after the prefix word and before the name rows.
 extern char const gCppRuntimeBadAlloc_NewGameNameEntryPresetNames[];
 
 #endif // NEW_GAME_NAME_ENTRY_TEXT_HH
