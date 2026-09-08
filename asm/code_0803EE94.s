@@ -202,6 +202,8 @@ func_0805EE44:
     jp_code_0803ee_func func_0805FD78, 0x5FABC, 0x5FC58
     jp_code_0803ee_func func_0805FF14, 0x5FC58, 0x61B44
     jp_code_0803ee_func sub_08061E00, 0x61B44, 0x63B3C
+    .global func_08063B90
+    .thumb_set func_08063B90, sub_08061E00 + 0x204C
     jp_code_0803ee_func func_08063E04, 0x63B3C, 0x64050
     jp_code_0803ee_func func_08064320, 0x64050, 0x64320
     jp_code_0803ee_func func_080645F0, 0x64320, 0x65844
