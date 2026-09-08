@@ -7475,7 +7475,7 @@ func_0803F8DC: @ 0x0803F8DC
 	movs r6, #0
 	b .L0804343A
 	.align 2, 0
-.L08043408: .4byte gUnk_080F9EC5
+.L08043408: .4byte gCookingFestivalDishCategoryRatingThresholds
 .L0804340C:
 	adds r0, r2, #1
 	adds r0, r1, r0

@@ -476,7 +476,8 @@ SECTIONS
         . = 0xF9EB8; src/script_engine.o(.rodata.script_engine_ui_error);
         FILL(0x00);
         . = 0xF9EC0; src/script_engine.o(.rodata.script_engine_ui_error_trailer);
-        . = 0xF9EC5; asm/data/data_080F9EB8.o(.rodata.localized_data_suffix);
+        . = 0xF9EC5; src/cooking_festival_data.o(.rodata);
+        asm/data/data_080F9EB8.o(.rodata.localized_data_suffix);
         . = 0xF9F7C; asm/data/data_080F9EB8.o(.rodata.name_entry_preset_animal_names_prefix);
         . = 0xF9F80; data/text/new_game_name_entry.o(.rodata.new_game_name_entry_preset_animal_names_runtime);
         . = 0xF9F8A; data/text/new_game_name_entry.o(.rodata.name_entry_preset_animal_names);
