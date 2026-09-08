@@ -138,9 +138,15 @@
     @ Exact JP entry point referenced by the raw table at 0x080E830C.
     jp_code_809_entry func_080A5EF0, func_080A64B8, 0x0
     jp_code_809_func func_080A6524, 0xA5F5C, 0xA6078
+    @ Exact JP entry point referenced by the raw table at 0x080E831C.
+    jp_code_809_entry func_080A5F5C, func_080A6524, 0x0
     jp_code_809_func func_080A6640, 0xA6078, 0xA6EC4
+    jp_code_809_entry func_080A6078, func_080A6640, 0x0
+    jp_code_809_entry func_080A6098, func_080A6640, 0x20
     jp_code_809_func func_080A748C, 0xA6EC4, 0xA8FDC
+    jp_code_809_entry func_080A6EC4, func_080A748C, 0x0
     jp_code_809_func func_080A95A4, 0xA8FDC, 0xAA288
+    jp_code_809_entry func_080A8FDC, func_080A95A4, 0x0
     jp_code_809_func func_080AA850, 0xAA288, 0xAA2D4
     jp_code_809_func func_080AA89C, 0xAA2D4, 0xAA2F4
     jp_code_809_func func_080AA8BC, 0xAA2F4, 0xAA314
@@ -153,6 +159,7 @@
     jp_code_809_func func_080AAF1C, 0xAA954, 0xAA960
     jp_code_809_func func_080AAF28, 0xAA960, 0xAA974
     jp_code_809_func func_080AAF3C, 0xAA974, 0xAADB8
+    jp_code_809_entry func_080AA974, func_080AAF3C, 0x0
     jp_code_809_func func_080AB380, 0xAADB8, 0xAB0C4
     jp_code_809_func func_080AB68C, 0xAB0C4, 0xAB1DC
     jp_code_809_func func_080AB7A4, 0xAB1DC, 0xAB264
@@ -167,6 +174,7 @@
     jp_code_809_func func_080AC96C, 0xAC3A4, 0xAC424
     jp_code_809_func func_080AC9EC, 0xAC424, 0xAC528
     jp_code_809_func func_080ACAF0, 0xAC528, 0xAC648
+    jp_code_809_entry func_080AC528, func_080ACAF0, 0x0
     jp_code_809_func func_080ACC10, 0xAC648, 0xACDE8
     jp_code_809_func func_080AD3B0, 0xACDE8, 0xACED4
     jp_code_809_func func_080AD49C, 0xACED4, 0xAD010
