@@ -216,8 +216,6 @@
     .set vtable_unk_080E77E0, jp_vtables_start + 0x1E14
     .global vtable_unk_080E7928
     .set vtable_unk_080E7928, jp_vtables_start + 0x1F5C
-    .global vtable_unk_080E7AFC
-    .set vtable_unk_080E7AFC, jp_vtables_start + 0x2130
     .global vtable_unk_080E7B0C
     .set vtable_unk_080E7B0C, jp_vtables_start + 0x2140
     .global vtable_unk_080E7B1C
@@ -412,9 +410,9 @@ jp_vtables_raw_start:
 jp_vtables_raw_after_script_engine_adjacent:
     .incbin "baserom_jp.gba", 0xE6D68, (0xE6D74 - 0xE6D68)
 
-.section .rodata.080E6F3C
-jp_vtables_raw_after_vtable_7aec:
-    .incbin "baserom_jp.gba", 0xE6F3C, (0xE7A40 - 0xE6F3C)
+.section .rodata.080E6F4C
+jp_vtables_raw_after_vtable_7afc:
+    .incbin "baserom_jp.gba", 0xE6F4C, (0xE7A40 - 0xE6F4C)
     .else
 
     .section .rodata
@@ -843,11 +841,7 @@ vtable_unk_080E77E0:
 vtable_unk_080E7928:
 	.incbin "baserom_us.gba", 0xE7928, 0xC
 
-	.section .rodata.080E7AFC
-
-	.global vtable_unk_080E7AFC
-vtable_unk_080E7AFC:
-	.incbin "baserom_us.gba", 0xE7AFC, 0x10
+	.section .rodata.080E7B0C
 
 	.global vtable_unk_080E7B0C
 vtable_unk_080E7B0C:
