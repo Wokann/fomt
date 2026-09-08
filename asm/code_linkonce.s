@@ -26294,6 +26294,8 @@ func_080E0E80: @ 0x080E0E80
     jp_linkonce_e0_func func_080E2354, 0xE1AF4, 0xE1D9C
     jp_linkonce_e0_func func_080E25FC, 0xE1D9C, 0xE22C8
     jp_linkonce_e0_func func_080E2B28, 0xE22C8, 0xE2354
+    .global func_080E2A88
+    .thumb_set func_080E2A88, func_080E2B28 + 0x7C0
     jp_linkonce_e0_func func_080E2BB4, 0xE2354, 0xE2644
     .global func_080E260C
     .thumb_set func_080E260C, func_080E2BB4 + 0x2B8
