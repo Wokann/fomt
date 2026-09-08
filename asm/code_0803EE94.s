@@ -177581,7 +177581,7 @@ func_0809A58C: @ 0x0809A58C
 	sub sp, #0x30
 	str r0, [sp, #0x24]
 	str r1, [sp, #0x28]
-	ldr r0, .L0809A618 @ =gUnk_0810110C
+	ldr r0, .L0809A618 @ =gCookingRecipeDefinitions
 	mov r8, r0
 	add r1, sp, #0x10
 	movs r0, #0
@@ -178024,7 +178024,7 @@ func_0809A8AC: @ 0x0809A8AC
 	adds r5, r0, #0
 	adds r2, r5, #0
 	movs r4, #0x7f
-	ldr r0, .L0809A92C @ =gUnk_0810110C
+	ldr r0, .L0809A92C @ =gCookingRecipeDefinitions
 	mov sb, r0
 	movs r6, #0
 	ldr r1, .L0809A930 @ =0xFFFFF000
