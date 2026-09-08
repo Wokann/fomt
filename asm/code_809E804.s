@@ -82,6 +82,9 @@
     @ Exact JP entry points referenced by the raw table at 0x080E8288.
     jp_code_809_entry func_080A3434, func_080A3774, 0x288
     jp_code_809_entry func_080A3678, func_080A3774, 0x4CC
+    @ Exact JP entry points referenced by the raw table at 0x080E8298.
+    jp_code_809_entry func_080A3338, func_080A3774, 0x18C
+    jp_code_809_entry func_080A36C4, func_080A3774, 0x518
     jp_code_809_func func_080A3CF4, 0xA372C, 0xA38C8
     jp_code_809_func func_080A3E90, 0xA38C8, 0xA3984
     jp_code_809_func func_080A3F4C, 0xA3984, 0xA3FE0
