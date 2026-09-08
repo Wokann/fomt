@@ -8370,6 +8370,24 @@ func_080D7B44: @ 0x080D7B44
     .thumb_set func_080DC1D4, func_080DC068 + 0x16C
     .global func_080DC21C
     .thumb_set func_080DC21C, func_080DC068 + 0x1B4
+    .global func_080DC244
+    .thumb_set func_080DC244, func_080DC068 + 0x1DC
+    .global func_080DC288
+    .thumb_set func_080DC288, func_080DC068 + 0x220
+    .global func_080DC404
+    .thumb_set func_080DC404, func_080DC068 + 0x39C
+    .global func_080DC42C
+    .thumb_set func_080DC42C, func_080DC068 + 0x3C4
+    .global func_080DC474
+    .thumb_set func_080DC474, func_080DC068 + 0x40C
+    .global func_080DC49C
+    .thumb_set func_080DC49C, func_080DC068 + 0x434
+    .global func_080DC4E4
+    .thumb_set func_080DC4E4, func_080DC068 + 0x47C
+    .global func_080DC50C
+    .thumb_set func_080DC50C, func_080DC068 + 0x4A4
+    .global func_080DC554
+    .thumb_set func_080DC554, func_080DC068 + 0x4EC
     .else
 
 	thumb_func_start func_080D7E64
