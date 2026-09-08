@@ -302,7 +302,9 @@ func_0805EE44:
     jp_code_0803ee_func func_0807AC60, 0x7AC60, 0x7AD18
     jp_code_0803ee_func func_0807AD18, 0x7AD18, 0x7B498
     jp_code_0803ee_func func_0807B8F4, 0x7B498, 0x7BA18
-    jp_code_0803ee_func func_0807BE74, 0x7BA18, 0x7D910
+    jp_code_0803ee_func func_0807BE74, 0x7BA18, 0x7CC1C
+    jp_code_0803ee_func func_0807CC1C, 0x7CC1C, 0x7CC5C
+    jp_code_0803ee_func func_0807CC5C, 0x7CC5C, 0x7D910
     jp_code_0803ee_func func_0807DDA8, 0x7D910, 0x7D9A4
     jp_code_0803ee_func func_0807DE3C, 0x7D9A4, 0x7E020
     jp_code_0803ee_func func_0807E4B8, 0x7E020, 0x7E9EC
@@ -117718,6 +117720,9 @@ func_0807B0F0: @ 0x0807B0F0
 	.align 2, 0
 .L0807B10C: .4byte vtable_unk_080E7BEC
 .L0807B110: .4byte 0x000006A4
+
+	.global func_0807B174
+	.thumb_set func_0807B174, func_0807B0F0 + 0x84
 .L0807B114:
 	str r4, [r1]
 .L0807B116:
