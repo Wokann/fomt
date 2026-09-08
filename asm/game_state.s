@@ -233,6 +233,12 @@ func_0801D9A8:
     jp_game_state_chunk 0x1F85C, 0x1F910
     jp_game_state_chunk 0x1F910, 0x1FAA0
     jp_game_state_chunk 0x1FAA0, 0x1FB0C
+
+    @ Verified entries in the retained game-state range used by a virtual table.
+    .global func_08011FE8
+    .thumb_set func_08011FE8, func_08011DC4 + 0x114
+    .global func_08012028
+    .thumb_set func_08012028, func_08011DC4 + 0x154
     .else
 
     .INCLUDE "asm/macro.inc"
