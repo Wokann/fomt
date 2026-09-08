@@ -150,6 +150,8 @@ func_0803A8A4:
 
 	thumb_func_start func_0803A8A4
 func_0803A8A4: @ 0x0803A8A4
+	.global func_0803DCB4
+	.thumb_set func_0803DCB4, func_0803A8A4 + 0x3410
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	adds r4, r1, #0
