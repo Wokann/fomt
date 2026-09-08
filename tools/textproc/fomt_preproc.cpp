@@ -968,6 +968,102 @@ bool BranchTargetCannotObserveRegister(const std::vector<std::string> &lines,
     return false;
 }
 
+void NormalizeStackedArgumentCalleeSavedSetup(std::vector<std::string> &lines)
+{
+    // Affected agbcp builds sometimes save r1 through a low callee-saved
+    // register before loading a stacked argument into r1, then copy the saved
+    // value into a high callee-saved register.  When that low register is
+    // immediately overwritten from r2, the independent operations can be
+    // scheduled in the original order without changing any live value:
+    //
+    //   stage = r1; r1 = stacked; save0 = r0; high = stage;
+    //   stage = r2; save3 = r3; scratch = sp + n; call
+    //
+    // becomes:
+    //
+    //   save0 = r0; high = r1; stage = r2; save3 = r3;
+    //   r1 = stacked; scratch = sp + n; call
+    //
+    // The rule intentionally depends only on this complete data-flow shape.
+    // It accepts arbitrary stack offsets, high registers, scratch offsets,
+    // and call targets; it has no source-function, label, ROM-offset, or hex
+    // byte dependency.
+    static const std::regex stage_r1_pattern(
+        R"(^add[\t ]+(r[4-7]),[\t ]+r1,[\t ]+#0$)");
+    static const std::regex stacked_argument_pattern(
+        R"(^ldr[\t ]+r1,[\t ]+\[sp,[\t ]+#(0x)?[0-9a-fA-F]+\]$)");
+    static const std::regex save_r0_pattern(
+        R"(^add[\t ]+(r[4-7]),[\t ]+r0,[\t ]+#0$)");
+    static const std::regex move_staged_r1_pattern(
+        R"(^mov[\t ]+(r(?:8|9|1[0-2])|ip|sl|fp),[\t ]+(r[4-7])$)");
+    static const std::regex save_r2_pattern(
+        R"(^add[\t ]+(r[4-7]),[\t ]+r2,[\t ]+#0$)");
+    static const std::regex save_r3_pattern(
+        R"(^add[\t ]+(r[4-7]),[\t ]+r3,[\t ]+#0$)");
+    static const std::regex scratch_pattern(
+        R"(^add[\t ]+r0,[\t ]+sp,[\t ]+#(?:0x)?[0-9a-fA-F]+$)");
+    static const std::regex call_pattern(
+        R"(^bl[\t ]+[^ \t]+(?:[\t ]+@.*)?$)");
+
+    for (std::size_t index = 0; index < lines.size(); ++index) {
+        const std::vector<std::size_t> steps =
+            FindAdjacentInstructions(lines, index, 8, true);
+        if (steps.empty())
+            continue;
+
+        std::smatch stage_r1;
+        std::smatch save_r0;
+        std::smatch move_staged_r1;
+        std::smatch save_r2;
+        std::smatch save_r3;
+        const std::string stage_instruction = Trim(lines[steps[0]]);
+        const std::string stacked_argument_instruction = Trim(lines[steps[1]]);
+        const std::string save_r0_instruction = Trim(lines[steps[2]]);
+        const std::string move_staged_r1_instruction = Trim(lines[steps[3]]);
+        const std::string save_r2_instruction = Trim(lines[steps[4]]);
+        const std::string save_r3_instruction = Trim(lines[steps[5]]);
+        const std::string scratch_instruction = Trim(lines[steps[6]]);
+        const std::string call_instruction = Trim(lines[steps[7]]);
+        if (!std::regex_match(stage_instruction, stage_r1, stage_r1_pattern)
+            || !std::regex_match(stacked_argument_instruction,
+                stacked_argument_pattern)
+            || !std::regex_match(save_r0_instruction, save_r0, save_r0_pattern)
+            || !std::regex_match(move_staged_r1_instruction, move_staged_r1,
+                move_staged_r1_pattern)
+            || !std::regex_match(save_r2_instruction, save_r2, save_r2_pattern)
+            || !std::regex_match(save_r3_instruction, save_r3, save_r3_pattern)
+            || !std::regex_match(scratch_instruction, scratch_pattern)
+            || !std::regex_match(call_instruction, call_pattern)) {
+            continue;
+        }
+
+        const std::string stage = stage_r1[1].str();
+        const std::string saved_r0 = save_r0[1].str();
+        const std::string saved_r2 = save_r2[1].str();
+        const std::string saved_r3 = save_r3[1].str();
+        if (move_staged_r1[2].str() != stage || saved_r2 != stage
+            || stage == saved_r0 || stage == saved_r3
+            || saved_r0 == saved_r3) {
+            continue;
+        }
+
+        const std::string indent = InstructionIndent(lines[steps[0]]);
+        const std::string stacked_argument = lines[steps[1]];
+        const std::string scratch = lines[steps[6]];
+        const std::string call = lines[steps[7]];
+        lines[steps[0]] = indent + "add\t" + saved_r0 + ", r0, #0";
+        lines[steps[1]] = indent + "mov\t" + move_staged_r1[1].str()
+            + ", r1";
+        lines[steps[2]] = indent + "add\t" + saved_r2 + ", r2, #0";
+        lines[steps[3]] = indent + "add\t" + saved_r3 + ", r3, #0";
+        lines[steps[4]] = stacked_argument;
+        lines[steps[5]] = scratch;
+        lines[steps[6]] = call;
+        lines.erase(lines.begin() + static_cast<std::ptrdiff_t>(steps[7]));
+        index = steps[6];
+    }
+}
+
 void NormalizeDeferredCalleeSavedArgumentSetup(std::vector<std::string> &lines)
 {
     // In this Thumb argument-preservation shape, agbcp first copies r1
@@ -1316,6 +1412,7 @@ std::string AlignExecutableSections(const std::string &assembly)
     RemoveCompilerDataSectionTailAlignment(lines);
     NormalizeCallViaR2ArgumentSetup(lines);
     NormalizeThreeOutcomeZeroBranch(lines);
+    NormalizeStackedArgumentCalleeSavedSetup(lines);
     NormalizeDeferredCalleeSavedArgumentSetup(lines);
     NormalizeCpuFastSetFillSetup(lines);
     NormalizeCpuFastSetRowSetup(lines);
@@ -1440,10 +1537,50 @@ void SelfTest()
                         "\t.text\n") != std::string::npos,
         "ordinary rodata tail alignment removed data payload");
 
+    const std::string stacked_setup_assembly =
+        "\t.text\n"
+        "generic_stacked_dispatch:\n"
+        "\tadd\tr5, r1, #0\n"
+        "\tldr\tr1, [sp, #0x30]\n"
+        "\tadd\tr4, r0, #0\n"
+        "\tmov\tsl, r5\n"
+        "\tadd\tr5, r2, #0\n"
+        "\tadd\tr6, r3, #0\n"
+        "\tadd\tr0, sp, #0xc\n"
+        "\tbl\tany_callee\n"
+        "nonmatching_stacked_dispatch:\n"
+        "\tadd\tr5, r1, #0\n"
+        "\tldr\tr1, [sp, #0x30]\n"
+        "\tadd\tr4, r0, #0\n"
+        "\tmov\tsl, r5\n"
+        "\tadd\tr6, r2, #0\n"
+        "\tadd\tr7, r3, #0\n"
+        "\tadd\tr0, sp, #0xc\n"
+        "\tbl\tany_callee\n";
+    const std::string normalized_stacked_setup =
+        PreprocessAssembly("", stacked_setup_assembly);
+    Require(normalized_stacked_setup.find("\tadd\tr4, r0, #0\n"
+                                        "\tmov\tsl, r1\n"
+                                        "\tadd\tr5, r2, #0\n"
+                                        "\tadd\tr6, r3, #0\n"
+                                        "\tldr\tr1, [sp, #0x30]\n"
+                                        "\tadd\tr0, sp, #0xc\n"
+                                        "\tbl\tany_callee\n")
+            != std::string::npos,
+        "generic stacked-argument setup was not normalized");
+    Require(normalized_stacked_setup.find("nonmatching_stacked_dispatch:\n"
+                                        "\tadd\tr5, r1, #0\n"
+                                        "\tldr\tr1, [sp, #0x30]\n"
+                                        "\tadd\tr4, r0, #0\n"
+                                        "\tmov\tsl, r5\n"
+                                        "\tadd\tr6, r2, #0\n")
+            != std::string::npos,
+        "non-equivalent stacked-argument setup was changed");
+
     const std::string trampoline_assembly =
         "\t.text\n"
-        "glyph_renderer:\n"
-        "\tldr\tr2, .Lglyph_renderer_target\n"
+        "literal_dispatch:\n"
+        "\tldr\tr2, .Lliteral_dispatch_target\n"
         "\tadd\tr1, r5, #0\n"
         "\tbl\t_call_via_r2\n"
         "unrelated_call:\n"
@@ -1452,7 +1589,7 @@ void SelfTest()
         "\tbl\t_call_via_r2\n";
     const std::string normalized = PreprocessAssembly("", trampoline_assembly);
     Require(normalized.find("\tadd\tr1, r5, #0\n"
-                            "\tldr\tr2, .Lglyph_renderer_target\n"
+                            "\tldr\tr2, .Lliteral_dispatch_target\n"
                             "\tbl\t_call_via_r2\n") != std::string::npos,
         "safe _call_via_r2 argument setup was not normalized");
     Require(normalized.find("\tldr\tr2, [r0]\n"
