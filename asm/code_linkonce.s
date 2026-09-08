@@ -31236,6 +31236,8 @@ func_080E3054: @ 0x080E3054
 
 	.global func_080E32E8
 	.thumb_set func_080E32E8, func_080E3054 + 0x294
+	.global func_080E33D0
+	.thumb_set func_080E33D0, func_080E3054 + 0x37C
 
 	thumb_func_start func_080E3398
 func_080E3398: @ 0x080E3398
