@@ -720,11 +720,115 @@ extern "C" EntityUiResourceSelectorStorage const gUnk_080F33B8
             { 0, &gUnk_080F33B8.payload },
             { 0, &gUnk_080F33B8.payload },
         },
-        { 0, 0x00800000, 0x000E0060 },
+        { nullptr, 0x0000, 0x0080, 0x0060, 0x000E },
     };
 
 // "bad_alloc" has one automatic C terminator. The two subsequent zero bytes
 // are linker alignment before the next raw object, not part of this string.
 extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelector[]
+    SECTION(".rodata.entity_ui_resource_selector") =
+        "bad_alloc";
+
+#if defined(REGION_JP)
+extern "C" u32 func_0803DC08(void const * state);
+#else
+extern "C" u32 func_0803DF94(void const * state);
+#endif
+
+// This is the immediately following, larger instance of the same selector
+// family. The repeated entries intentionally retain their original pointers:
+// native readers distinguish table placement even when a payload is shared.
+extern "C" EntityUiResourceSelectorExtendedStorage const gUnk_080F3408
+    SECTION(".rodata.entity_ui_resource_selector") = {
+        {
+#if defined(REGION_JP)
+            func_0803DC08,
+#else
+            func_0803DF94,
+#endif
+            5,
+            gUnk_080F3408.table_choices,
+        },
+        {
+            nullptr,
+            &gUnk_080F3408.table_storage[0],
+            &gUnk_080F3408.table_storage[1],
+            &gUnk_080F3408.table_storage[2],
+            &gUnk_080F3408.table_storage[3],
+        },
+        {
+            { 3, 0, gUnk_080F3408.entry_storage_0 },
+            { 7, 0, gUnk_080F3408.entry_storage_1 },
+            { 5, 0, gUnk_080F3408.entry_storage_2 },
+            { 1, 0, gUnk_080F3408.entry_storage_3 },
+        },
+        {
+            { 0x0000, &gUnk_080F3408.payload_storage[0] },
+            { 0x0078, &gUnk_080F3408.payload_storage[1] },
+            { 0x02D0, &gUnk_080F3408.payload_storage[0] },
+        },
+        {
+            { 0x0000, &gUnk_080F3408.payload_storage[0] },
+            { 0x00F3, &gUnk_080F3408.payload_storage[2] },
+            { 0x010E, &gUnk_080F3408.payload_storage[3] },
+            { 0x01A7, &gUnk_080F3408.payload_storage[4] },
+            { 0x01BB, &gUnk_080F3408.payload_storage[5] },
+            { 0x0258, &gUnk_080F3408.payload_storage[6] },
+            { 0x0263, &gUnk_080F3408.payload_storage[0] },
+        },
+        {
+            { 0x0000, &gUnk_080F3408.payload_storage[0] },
+            { 0x01A7, &gUnk_080F3408.payload_storage[7] },
+            { 0x01C4, &gUnk_080F3408.payload_storage[8] },
+            { 0x025B, &gUnk_080F3408.payload_storage[9] },
+            { 0x0278, &gUnk_080F3408.payload_storage[0] },
+        },
+        {
+            { 0x0000, &gUnk_080F3408.payload_storage[0] },
+        },
+        {
+            { nullptr, 0x0000, 0x0028, 0x0058, 0x0410 },
+            { nullptr, 0x0000, 0x00E3, 0x0073, 0x000F },
+            { gUnk_080F3408.detail_storage_0, 0x0003, 0x02B0, 0x00A0, 0x0005 },
+            { nullptr, 0x0000, 0x0108, 0x009B, 0x040C },
+            { gUnk_080F3408.detail_storage_1, 0x0003, 0x04D0, 0x009C, 0x0005 },
+            { nullptr, 0x0000, 0x0028, 0x00C0, 0x0C13 },
+            { gUnk_080F3408.detail_storage_2, 0x0003, 0x0358, 0x00A4, 0x0005 },
+            { gUnk_080F3408.detail_storage_3, 0x0005, 0x02B0, 0x00A0, 0x0005 },
+            { nullptr, 0x0000, 0x00E0, 0x00EB, 0x0C15 },
+            { gUnk_080F3408.detail_storage_4, 0x0005, 0x0278, 0x01E8, 0x0005 },
+        },
+        {
+            { 0x0002, 0x00D8, 0x0001, 0x0000 },
+            { 0x0018, 0x04D0, 0x0000, 0x0000 },
+            { 0x001B, 0x009C, 0x0001, 0x0000 },
+        },
+        {
+            { 0x0003, 0x00D8, 0x0001, 0x0000 },
+            { 0x0012, 0x0358, 0x0000, 0x0000 },
+            { 0x0014, 0x00A4, 0x0001, 0x0000 },
+        },
+        {
+            { 0x0002, 0x00D8, 0x0001, 0x0000 },
+            { 0x0009, 0x02B0, 0x0000, 0x0000 },
+            { 0x000B, 0x00A0, 0x0001, 0x0000 },
+        },
+        {
+            { 0x0002, 0x00D8, 0x0001, 0x0000 },
+            { 0x0007, 0x0328, 0x0000, 0x0000 },
+            { 0x0014, 0x0218, 0x0001, 0x0000 },
+            { 0x001B, 0x0278, 0x0000, 0x0000 },
+            { 0x001D, 0x01E8, 0x0001, 0x0000 },
+        },
+        {
+            { 0x0002, 0x0218, 0x0001, 0x0000 },
+            { 0x0009, 0x0328, 0x0000, 0x0000 },
+            { 0x0016, 0x00D8, 0x0001, 0x0000 },
+            { 0x001B, 0x02B0, 0x0000, 0x0000 },
+            { 0x001D, 0x00A0, 0x0001, 0x0000 },
+        },
+    };
+
+extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelectorExtended[]
     SECTION(".rodata.entity_ui_resource_selector") =
         "bad_alloc";

@@ -80,9 +80,11 @@ typedef u32 (*EntityUiResourceSelectorCallback)(void const * state);
 
 struct EntityUiResourceSelectorPayload
 {
-    u32 unk_00;
-    u32 unk_04;
-    u32 unk_08;
+    void const * unk_00;
+    u16 unk_04;
+    u16 unk_06;
+    u16 unk_08;
+    u16 unk_0A;
 };
 
 struct EntityUiResourceSelectorEntry
@@ -117,6 +119,33 @@ struct EntityUiResourceSelectorStorage
     EntityUiResourceSelectorPayload payload;
 };
 
+struct EntityUiResourceSelectorDetailEntry
+{
+    u16 unk_00;
+    u16 unk_02;
+    u16 unk_04;
+    u16 unk_06;
+};
+
+// The next physical selector has the same leading layout, followed by four
+// indexed tables, ten payload records, and five pointed detail arrays.
+struct EntityUiResourceSelectorExtendedStorage
+{
+    EntityUiResourceSelectorDescriptor descriptor;
+    EntityUiResourceSelectorTable const * const table_choices[5];
+    EntityUiResourceSelectorTable table_storage[4];
+    EntityUiResourceSelectorEntry entry_storage_0[3];
+    EntityUiResourceSelectorEntry entry_storage_1[7];
+    EntityUiResourceSelectorEntry entry_storage_2[5];
+    EntityUiResourceSelectorEntry entry_storage_3[1];
+    EntityUiResourceSelectorPayload payload_storage[10];
+    EntityUiResourceSelectorDetailEntry detail_storage_0[3];
+    EntityUiResourceSelectorDetailEntry detail_storage_1[3];
+    EntityUiResourceSelectorDetailEntry detail_storage_2[3];
+    EntityUiResourceSelectorDetailEntry detail_storage_3[5];
+    EntityUiResourceSelectorDetailEntry detail_storage_4[5];
+};
+
 struct EntityUiCallbackState
 {
     u8 unknown_00[0x10];
@@ -143,6 +172,7 @@ struct EntityUiHarvestSpriteState : public AEntity
 extern "C" char const gText_NotAvailable[8];
 
 extern "C" EntityUiResourceSelectorStorage const gUnk_080F33B8;
+extern "C" EntityUiResourceSelectorExtendedStorage const gUnk_080F3408;
 
 extern "C" char const gCppRuntimeBadAlloc_EntityUiBeforeOffsets[];
 extern "C" char const gCppRuntimeError_EntityUiBeforeOffsets[];
