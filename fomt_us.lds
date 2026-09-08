@@ -713,7 +713,10 @@ SECTIONS
         . = 0x117A0C; data/text/animal_status.o(.rodata);
         . = 0x117A50; data/text/item_status.o(.rodata);
         . = 0x117AA8; data/text/item_discard.o(.rodata);
-        . = 0x117B14; asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard);
+        . = 0x117B14; src/code_080D0D28.o(.rodata);
+        FILL(0x00);
+        . = ALIGN(4);
+        asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
     } > ROM = 0xFF

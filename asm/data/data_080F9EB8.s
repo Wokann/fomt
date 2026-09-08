@@ -491,64 +491,8 @@ gUnk_08118CF4:
 
 
 	.section .rodata.static_data_after_item_discard
-	.incbin "baserom_us.gba", 0x117B14, (0x117B20 - 0x117B14)
-
-	.global gUnk_08117B20
-gUnk_08117B20:
-	.incbin "baserom_us.gba", 0x117B20, 0xC
-
-	.global gUnk_08117B2C
-gUnk_08117B2C:
-	.incbin "baserom_us.gba", 0x117B2C, 0xC
-
-	.global gUnk_08117B38
-gUnk_08117B38:
-	.incbin "baserom_us.gba", 0x117B38, 0xC
-
-	.global gUnk_08117B44
-gUnk_08117B44:
-	.incbin "baserom_us.gba", 0x117B44, 0xC
-
-	.global gUnk_08117B50
-gUnk_08117B50:
-	.incbin "baserom_us.gba", 0x117B50, 0xC
-
-	.global gUnk_08117B5C
-gUnk_08117B5C:
-	.incbin "baserom_us.gba", 0x117B5C, 0xC
-
-	.global gUnk_08117B68
-gUnk_08117B68:
-	.incbin "baserom_us.gba", 0x117B68, 0xC
-
-	.global gUnk_08117B74
-gUnk_08117B74:
-	.incbin "baserom_us.gba", 0x117B74, 0xC
-
-	.global gUnk_08117B80
-gUnk_08117B80:
-	.incbin "baserom_us.gba", 0x117B80, 0xC
-
-	.global gUnk_08117B8C
-gUnk_08117B8C:
-	.incbin "baserom_us.gba", 0x117B8C, 0xC
-
-	.global gUnk_08117B98
-gUnk_08117B98:
-	.incbin "baserom_us.gba", 0x117B98, 0xC
-
-	.global gUnk_08117BA4
-gUnk_08117BA4:
-	.incbin "baserom_us.gba", 0x117BA4, 0xC
-
-	.global gUnk_08117BB0
-gUnk_08117BB0:
-	.incbin "baserom_us.gba", 0x117BB0, 0xC
-
-	.global gUnk_08117BBC
-gUnk_08117BBC:
-	.incbin "baserom_us.gba", 0x117BBC, 0xC
-
+	@ gUnk_08117BC8 begins with the fifteenth block selected by
+	@ func_080D0D28 and remains the anchor for the following raw resources.
 	.global gUnk_08117BC8
 gUnk_08117BC8:
 	.incbin "baserom_us.gba", 0x117BC8, 0x21EC0
