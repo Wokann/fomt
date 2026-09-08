@@ -23,7 +23,17 @@ func_08004B58:
     .global func_08004B94
     .thumb_func
 func_08004B94:
-    .incbin "baserom_jp.gba", 0x4BAC, 0xB4
+    .incbin "baserom_jp.gba", 0x4BAC, (0x4BF4 - 0x4BAC)
+
+    .global func_08004BDC
+    .thumb_func
+func_08004BDC:
+    .incbin "baserom_jp.gba", 0x4BF4, (0x4C24 - 0x4BF4)
+
+    .global func_08004C0C
+    .thumb_func
+func_08004C0C:
+    .incbin "baserom_jp.gba", 0x4C24, (0x4C60 - 0x4C24)
 
     .global func_08004C48
     .thumb_func
