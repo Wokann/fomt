@@ -1,9 +1,5 @@
     .ifdef REGION_JP
-    @ JP revision 0 counterpart of the script and schedule-adjacent data.
-    .section .rodata.data_080f1a80_prefix
-jp_data_080f1a80_prefix_start:
-    .incbin "baserom_jp.gba", 0xF286C, 0x3A8
-
+    @ JP revision 0 script-adjacent data.
     .section .rodata.data_080f1a80_suffix
 jp_data_080f1a80_suffix_start:
     .incbin "baserom_jp.gba", 0xF3B4C, (0xF96F4 - 0xF3B4C)
@@ -53,17 +49,7 @@ gUnk_080F8678 = jp_data_080f1a80_suffix_start + 0x4588
     .global gUnk_080F89D4
 gUnk_080F89D4 = jp_data_080f1a80_suffix_start + 0x48E4
     .else
-    .section .rodata.data_080f1a80_prefix
-
-	@ schedules
-
-	@ .incbin "baserom_us.gba", 0xF1AC0, 0x500
-
-	.global gUnk_080F3010
-gUnk_080F3010:
-	.incbin "baserom_us.gba", 0xF3010, 0x3A8
-
-	.section .rodata.data_080f1a80_suffix
+    .section .rodata.data_080f1a80_suffix
 	.global gUnk_080F42F0
 gUnk_080F42F0:
 	.incbin "baserom_us.gba", 0xF42F0, 0xEC

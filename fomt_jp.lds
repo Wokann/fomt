@@ -565,7 +565,6 @@ SECTIONS
         FILL(0x00);
         . = 0xF12DC; /* JP schedule table block. */
         src/data_schedules.o(.rodata);
-        . = ALIGN(4); asm/data/data_080F1A80.o(.rodata.data_080f1a80_prefix);
         . = ALIGN(4); src/entity_ui.o(.rodata.entity_ui_resource_selector);
         FILL(0x00);
         . = ALIGN(4); asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix);
