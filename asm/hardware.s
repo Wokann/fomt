@@ -37,16 +37,48 @@ func_0800736C:
     .thumb_set func_08008A68, func_0800736C + 0x16FC
     .global func_08008AFC
     .thumb_set func_08008AFC, func_0800736C + 0x1790
+    .global func_08008B0C
+    .thumb_set func_08008B0C, func_0800736C + 0x17A0
+    .global func_08008B18
+    .thumb_set func_08008B18, func_0800736C + 0x17AC
     .global func_08008FE4
     .thumb_set func_08008FE4, func_0800736C + 0x1C78
+    .global func_080094AC
+    .thumb_set func_080094AC, func_0800736C + 0x2140
+    .global func_080094B8
+    .thumb_set func_080094B8, func_0800736C + 0x214C
+    .global func_0800956C
+    .thumb_set func_0800956C, func_0800736C + 0x2200
     .global func_0800959C
     .thumb_set func_0800959C, func_0800736C + 0x2230
+    .global func_080095C0
+    .thumb_set func_080095C0, func_0800736C + 0x2254
+    .global func_080095FC
+    .thumb_set func_080095FC, func_0800736C + 0x2290
+    .global func_08009638
+    .thumb_set func_08009638, func_0800736C + 0x22CC
+    .global func_08009674
+    .thumb_set func_08009674, func_0800736C + 0x2308
     .global func_080096F0
     .thumb_set func_080096F0, func_0800736C + 0x2384
     .global func_08009864
     .thumb_set func_08009864, func_0800736C + 0x24F8
     .global func_080098AC
     .thumb_set func_080098AC, func_0800736C + 0x2540
+    .global func_080098D8
+    .thumb_set func_080098D8, func_0800736C + 0x256C
+    .global func_08009908
+    .thumb_set func_08009908, func_0800736C + 0x259C
+    .global func_08009940
+    .thumb_set func_08009940, func_0800736C + 0x25D4
+    .global func_08009968
+    .thumb_set func_08009968, func_0800736C + 0x25FC
+    .global func_08009984
+    .thumb_set func_08009984, func_0800736C + 0x2618
+    .global func_080099B0
+    .thumb_set func_080099B0, func_0800736C + 0x2644
+    .global func_080099D4
+    .thumb_set func_080099D4, func_0800736C + 0x2668
     .else
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
@@ -4205,7 +4237,8 @@ func_080098AC: @ 0x080098AC
     bx r0
     .align 2, 0
 .L080098D4: .4byte vtable_unk_080E5BE8
-.L080098D8:
+    thumb_func_start func_080098D8
+func_080098D8: @ 0x080098D8
     .byte 0x01, 0x20, 0x70, 0x47
 
     thumb_func_start func_080098DC

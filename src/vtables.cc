@@ -7,6 +7,11 @@ EXTERN_C
 // their no-argument types retain only the original pointer relocations.
 typedef void (*RawVTableFunction)(void);
 
+struct RawVTableWithOffset {
+    i32 offset;
+    RawVTableFunction entries[2];
+};
+
 extern void __pure_virtual(void);
 extern void func_080D3BE8(void);
 extern void func_080D3C24(void);
@@ -30,6 +35,36 @@ extern void func_08005B38(void);
 extern void func_080070A4(void);
 extern void func_080070D4(void);
 extern void func_080086BC(void);
+extern void func_08008B0C(void);
+extern void func_08008B18(void);
+extern void func_080094AC(void);
+extern void func_080094B8(void);
+extern void func_0800956C(void);
+extern void func_0800959C(void);
+extern void func_080095C0(void);
+extern void func_080095FC(void);
+extern void func_08009638(void);
+extern void func_08009674(void);
+extern void func_080098AC(void);
+extern void func_080098D8(void);
+extern void func_080098DC(void);
+extern void func_08009908(void);
+extern void func_08009940(void);
+extern void func_08009968(void);
+extern void func_08009984(void);
+extern void func_080099B0(void);
+extern void func_080099D4(void);
+extern void func_0801004C(void);
+extern void func_08010158(void);
+extern void func_080D7944(void);
+extern void func_080D79CC(void);
+extern void func_080D7AAC(void);
+extern void func_080D7AD4(void);
+extern void func_080D7B04(void);
+extern void func_080D7B2C(void);
+extern void func_080D7B38(void);
+extern void func_080D7B44(void);
+extern void func_080DB0EC(void);
 extern void func_080D6C58(void);
 extern void func_080D6D8C(void);
 extern void func_080D780C(void);
@@ -168,6 +203,116 @@ extern RawVTableFunction const vtable_unk_080E5B00[] = {
     nullptr,
     nullptr,
     func_080086BC,
+};
+
+extern RawVTableWithOffset const vtable_unk_080E5B0C = {
+    -28,
+    {
+        nullptr,
+        func_080D79CC,
+    },
+};
+
+extern RawVTableFunction const vtable_unk_080E5B18[] = {
+    nullptr,
+    nullptr,
+    func_08009908,
+    func_080D7AD4,
+    func_080095C0,
+    func_080095FC,
+    func_0800956C,
+    func_08009638,
+    func_08009674,
+};
+
+extern RawVTableFunction const vtable_unk_080E5B3C[] = {
+    nullptr,
+    nullptr,
+    func_080D7944,
+};
+
+extern RawVTableFunction const vtable_unk_080E5B48[] = {
+    nullptr,
+    nullptr,
+    func_080D7B04,
+};
+
+extern RawVTableFunction const vtable_unk_080E5B54[] = {
+    nullptr,
+    nullptr,
+    func_080D7AAC,
+};
+
+extern RawVTableFunction const vtable_unk_080E5B60[] = {
+    nullptr,
+    nullptr,
+    func_08008B18,
+    func_080D7B2C,
+};
+
+extern RawVTableFunction const vtable_unk_080E5B70[] = {
+    nullptr,
+    nullptr,
+    func_08008B0C,
+    func_080D7B38,
+};
+
+extern RawVTableFunction const vtable_unk_080E5B80[] = {
+    nullptr,
+    nullptr,
+    func_080094AC,
+    func_080094B8,
+};
+
+extern RawVTableFunction const vtable_unk_080E5B90[] = {
+    nullptr,
+    nullptr,
+    func_08009908,
+    func_0800959C,
+    func_080095C0,
+    func_080095FC,
+    func_0800956C,
+    func_08009638,
+    func_08009674,
+};
+
+extern RawVTableFunction const vtable_unk_080E5BB4[] = {
+    nullptr,
+    nullptr,
+    func_08009908,
+    func_080098DC,
+    func_08009940,
+    func_08009968,
+    func_08009984,
+    func_080099B0,
+    func_080099D4,
+};
+
+extern RawVTableFunction const vtable_unk_080E5BD8[] = {
+    nullptr,
+    nullptr,
+    func_080098D8,
+    func_080D7B44,
+};
+
+extern RawVTableFunction const vtable_unk_080E5BE8[] = {
+    nullptr,
+    nullptr,
+    __pure_virtual,
+    func_080098AC,
+};
+
+extern RawVTableFunction const vtable_unk_080E5BF8[] = {
+    nullptr,
+    nullptr,
+    func_08010158,
+    func_0801004C,
+};
+
+extern RawVTableFunction const vtable_unk_080E5C08[] = {
+    nullptr,
+    nullptr,
+    func_080DB0EC,
 };
 
 EXTERN_C_END
