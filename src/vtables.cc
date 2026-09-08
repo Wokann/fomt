@@ -21,6 +21,23 @@ extern void func_080D404C(void);
 extern void func_080D406C(void);
 extern void func_08004BDC(void);
 extern void func_08004C0C(void);
+extern void func_08004C54(void);
+extern void func_08004C68(void);
+extern void func_080050C8(void);
+extern void func_080059D0(void);
+extern void func_08005A00(void);
+extern void func_08005B38(void);
+extern void func_080070A4(void);
+extern void func_080070D4(void);
+extern void func_080086BC(void);
+extern void func_080D6C58(void);
+extern void func_080D6D8C(void);
+extern void func_080D780C(void);
+extern void func_080D781C(void);
+extern void func_080D782C(void);
+extern void func_080D7868(void);
+extern void func_080D7874(void);
+extern void func_080D7880(void);
 extern void func_0800371C(void);
 extern void func_0800374C(void);
 
@@ -84,6 +101,73 @@ extern RawVTableFunction const vtable_unk_080E5A68[] = {
     nullptr,
     func_08004BDC,
     func_08004C0C,
+};
+
+extern RawVTableFunction const vtable_unk_080E5A78[] = {
+    nullptr,
+    nullptr,
+    func_080D6D8C,
+    func_080D6C58,
+};
+
+extern RawVTableFunction const vtable_unk_080E5A88[] = {
+    nullptr,
+    nullptr,
+    func_08004C54,
+    func_08004C68,
+};
+
+extern RawVTableFunction const vtable_unk_080E5A98[] = {
+    nullptr,
+    nullptr,
+    func_080050C8,
+};
+
+extern RawVTableFunction const vtable_unk_080E5AA4[] = {
+    nullptr,
+    nullptr,
+    func_080059D0,
+    func_08005A00,
+};
+
+extern RawVTableFunction const vtable_unk_080E5AB4[] = {
+    nullptr,
+    nullptr,
+    func_08005B38,
+};
+
+extern RawVTableFunction const vtable_unk_080E5AC0[] = {
+    nullptr,
+    nullptr,
+    func_080070A4,
+    func_080070D4,
+};
+
+extern RawVTableFunction const vtable_unk_080E5AD0[] = {
+    nullptr,
+    nullptr,
+    func_080D782C,
+    func_080D7868,
+};
+
+extern RawVTableFunction const vtable_unk_080E5AE0[] = {
+    nullptr,
+    nullptr,
+    func_080D781C,
+    func_080D7874,
+};
+
+extern RawVTableFunction const vtable_unk_080E5AF0[] = {
+    nullptr,
+    nullptr,
+    func_080D780C,
+    func_080D7880,
+};
+
+extern RawVTableFunction const vtable_unk_080E5B00[] = {
+    nullptr,
+    nullptr,
+    func_080086BC,
 };
 
 EXTERN_C_END
