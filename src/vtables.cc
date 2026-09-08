@@ -143,6 +143,7 @@ extern void func_080850E0(void);
 extern void func_080851A4(void);
 extern void func_08087CEC(void);
 extern void func_08087D2C(void);
+extern void func_08087E44(void);
 extern void func_080E2C34(void);
 extern void func_080E2C7C(void);
 extern void func_080E14B8(void);
@@ -164,6 +165,8 @@ extern void func_08083C50(void);
 extern void func_08085528(void);
 extern void func_08085568(void);
 extern void func_0808562C(void);
+extern void func_080881AC(void);
+extern void func_080881EC(void);
 extern void func_0804EDA0(void);
 extern void func_0804EE1C(void);
 extern void func_0804EE88(void);
@@ -2400,6 +2403,21 @@ extern RawVTableFunction const vtable_unk_080E7D30[]
         nullptr,
         nullptr,
         func_0808562C,
+#endif
+    };
+
+extern RawVTableFunction const vtable_unk_080E7D3C[]
+    SECTION(".rodata.vtable_7d3c") = {
+#if defined(REGION_JP)
+        nullptr,
+        nullptr,
+        func_08087E44,
+        nullptr,
+#else
+        nullptr,
+        nullptr,
+        func_080881AC,
+        func_080881EC,
 #endif
     };
 
