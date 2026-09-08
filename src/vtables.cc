@@ -4236,4 +4236,28 @@ extern RawVTableFunction const vtable_unk_080E851C[]
 #endif
     };
 
+#if defined(REGION_JP)
+extern void func_080E4D50(void);
+#else
+extern void func_080BC8C0(void);
+extern void func_080BC8FC(void);
+#endif
+
+// Keep this four-slot table in physical order; only the function targets vary
+// between the JP and US revisions.
+extern RawVTableFunction const vtable_unk_080E8528[]
+    SECTION(".rodata.vtable_8528") = {
+#if defined(REGION_JP)
+        nullptr,
+        nullptr,
+        func_080E4D50,
+        nullptr,
+#else
+        nullptr,
+        nullptr,
+        func_080BC8C0,
+        func_080BC8FC,
+#endif
+    };
+
 EXTERN_C_END
