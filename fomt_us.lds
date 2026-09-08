@@ -167,8 +167,8 @@ SECTIONS
         asm/code_0803EE94.o(.text);
         . = 0x4E4AC; /* Ordinary 2D glyph compositor. */
         src/font_draw.o(.text.font_draw_normal);
-        . = 0x4E5AC; /* Extended palette glyph compositor, still raw. */
-        asm/code_0803EE94.o(.text.font_draw_ext);
+        . = 0x4E5AC; /* Extended palette glyph compositor. */
+        src/font_draw_ext.o(.text);
         . = 0x4E7A0; /* Shared 2D tile-buffer fillers and Shift-JIS renderers. */
         src/font_draw.o(.text);
         . = 0x4E9D0; src/font_draw.o(.text.font_draw_after);

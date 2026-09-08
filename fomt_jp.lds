@@ -219,8 +219,8 @@ SECTIONS
         asm/code_0803EE94.o(.text);
         . = 0x4E2D4; /* JP ordinary 2D glyph compositor. */
         src/font_draw.o(.text.font_draw_normal);
-        . = 0x4E3D4; /* JP extended palette glyph compositor, still raw. */
-        asm/code_0803EE94.o(.text.font_draw_ext);
+        . = 0x4E3D4; /* JP extended palette glyph compositor. */
+        src/font_draw_ext.o(.text);
         . = 0x4E5C8; /* Shared 2D tile-buffer fillers and Shift-JIS renderers. */
         src/font_draw.o(.text);
         . = 0x4E7F8; src/font_draw.o(.text.font_draw_after);

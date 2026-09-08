@@ -15,8 +15,8 @@ i32 DrawCharacterGlyph(void *destination, i32 character);
 // in its high half; x and y are pixel coordinates.
 i32 DrawCharacterGlyphTo2DGfxBuffer(u32 size, void *buffer, i32 x, i32 y,
     i32 character) asm("func_0804E4AC");
-// The extended compositor remains in the raw block for now. Keeping its
-// original linker label lets normal C++ callers use its semantic declaration.
+// Draws a glyph with a caller-provided foreground/background palette pair.
+// The original linker label is retained for raw assembly callers.
 i32 DrawCharacterGlyphTo2DGfxBufferExt(u32 size, void *buffer, i32 x, i32 y,
     i32 character, i32 foreground, i32 background) asm("func_0804E5AC");
 // Both original unaligned paths return zero without modifying their
