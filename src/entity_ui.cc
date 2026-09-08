@@ -683,3 +683,48 @@ extern "C" void func_08034C4C(EntityUiCallbackState * state, u32 arg_1,
 {
     func_08033B84(state, state->value_30, arg_1, arg_2);
 }
+
+// This region-specific native callback chooses one of the descriptor's three
+// table pointers.  Its input object type remains unmapped.
+#if defined(REGION_JP)
+extern "C" u32 func_0803DBC4(void const * state);
+#else
+extern "C" u32 func_0803DF50(void const * state);
+#endif
+
+// The physical order below is descriptor, table-choice array, two tables,
+// two entries, the shared payload, and the C++ runtime string immediately
+// following it.  Keeping it as one aggregate preserves the real internal
+// relocations rather than embedding raw ROM addresses.
+extern "C" EntityUiResourceSelectorStorage const gUnk_080F33B8
+    SECTION(".rodata.entity_ui_resource_selector") = {
+        {
+#if defined(REGION_JP)
+            func_0803DBC4,
+#else
+            func_0803DF50,
+#endif
+            3,
+            gUnk_080F33B8.table_choices,
+        },
+        {
+            nullptr,
+            &gUnk_080F33B8.table_storage[0],
+            &gUnk_080F33B8.table_storage[1],
+        },
+        {
+            { 1, 0, &gUnk_080F33B8.entry_storage[0] },
+            { 1, 0, &gUnk_080F33B8.entry_storage[1] },
+        },
+        {
+            { 0, &gUnk_080F33B8.payload },
+            { 0, &gUnk_080F33B8.payload },
+        },
+        { 0, 0x00800000, 0x000E0060 },
+    };
+
+// "bad_alloc" has one automatic C terminator. The two subsequent zero bytes
+// are linker alignment before the next raw object, not part of this string.
+extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelector[]
+    SECTION(".rodata.entity_ui_resource_selector") =
+        "bad_alloc";

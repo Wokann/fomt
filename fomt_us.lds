@@ -466,7 +466,10 @@ SECTIONS
         . = ALIGN(4); src/menu_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/data_schedules.o(.rodata);
-        . = ALIGN(4); asm/data/data_080F1A80.o(.rodata);
+        . = ALIGN(4); asm/data/data_080F1A80.o(.rodata.data_080f1a80_prefix);
+        . = ALIGN(4); src/entity_ui.o(.rodata.entity_ui_resource_selector);
+        FILL(0x00);
+        . = ALIGN(4); asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix);
         . = ALIGN(4); src/script_engine.o(.rodata);
         . = 0xF9EA4; src/script_engine.o(.rodata.script_engine_string_error);
         . = 0xF9EAC; src/script_engine.o(.rodata.script_engine_ui_error_prefix);

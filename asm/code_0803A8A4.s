@@ -125,6 +125,9 @@ func_0803A8A4:
     @ Shared C++ schedule gates call this JP counterpart at 0x0803D1A0.
     .global func_0803D52C
     .thumb_set func_0803D52C, func_0803A8A4 + 0x2C88
+    @ Entity-UI resource selector used by gUnk_080F33B8.
+    .global func_0803DBC4
+    .thumb_set func_0803DBC4, func_0803A8A4 + 0x36AC
     .else
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED

@@ -73,6 +73,50 @@ struct EntityUiResourceSetupState
     u16 duration;
 };
 
+// func_08034C64 calls selector, then selects one of the three table pointers.
+// The later entry and payload fields are read by native Entity-UI code, but
+// their game-level meanings are not established yet.
+typedef u32 (*EntityUiResourceSelectorCallback)(void const * state);
+
+struct EntityUiResourceSelectorPayload
+{
+    u32 unk_00;
+    u32 unk_04;
+    u32 unk_08;
+};
+
+struct EntityUiResourceSelectorEntry
+{
+    u32 unk_00;
+    EntityUiResourceSelectorPayload const * payload;
+};
+
+struct EntityUiResourceSelectorTable
+{
+    u16 entry_count;
+    u16 unk_02;
+    EntityUiResourceSelectorEntry const * entries;
+};
+
+struct EntityUiResourceSelectorDescriptor
+{
+    EntityUiResourceSelectorCallback selector;
+    u32 table_count;
+    EntityUiResourceSelectorTable const * const * tables;
+};
+
+// This is one physical ROM object: descriptor, table pointers, two tables,
+// two entries, and their shared payload. Its first member is the label used
+// by the remaining native Entity-UI code.
+struct EntityUiResourceSelectorStorage
+{
+    EntityUiResourceSelectorDescriptor descriptor;
+    EntityUiResourceSelectorTable const * const table_choices[3];
+    EntityUiResourceSelectorTable table_storage[2];
+    EntityUiResourceSelectorEntry entry_storage[2];
+    EntityUiResourceSelectorPayload payload;
+};
+
 struct EntityUiCallbackState
 {
     u8 unknown_00[0x10];
@@ -97,6 +141,8 @@ struct EntityUiHarvestSpriteState : public AEntity
 };
 
 extern "C" char const gText_NotAvailable[8];
+
+extern "C" EntityUiResourceSelectorStorage const gUnk_080F33B8;
 
 extern "C" char const gCppRuntimeBadAlloc_EntityUiBeforeOffsets[];
 extern "C" char const gCppRuntimeError_EntityUiBeforeOffsets[];
