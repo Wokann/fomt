@@ -81,6 +81,34 @@ extern void func_080DB4F0(void);
 extern void func_080DB540(void);
 extern void func_080DB568(void);
 extern void func_080DB5B8(void);
+extern void func_080DB5E0(void);
+extern void func_080DB630(void);
+extern void func_080DB658(void);
+extern void func_080DB6A4(void);
+extern void func_080DB6CC(void);
+extern void func_080DB714(void);
+extern void func_080DB73C(void);
+extern void func_080DB784(void);
+extern void func_080DB7AC(void);
+extern void func_080DB7F4(void);
+extern void func_080DB81C(void);
+extern void func_080DB864(void);
+extern void func_080DB88C(void);
+extern void func_080DB8D4(void);
+extern void func_080DB8FC(void);
+extern void func_080DB944(void);
+extern void func_080DB96C(void);
+extern void func_080DB9B4(void);
+extern void func_080DB9DC(void);
+extern void func_080DBA24(void);
+extern void func_080DBA4C(void);
+extern void func_080DBA94(void);
+extern void func_080DBABC(void);
+extern void func_080DBB04(void);
+extern void func_080DBB2C(void);
+extern void func_080DBB74(void);
+extern void func_080DBB9C(void);
+extern void func_080DBBE4(void);
 extern void func_080D6C58(void);
 extern void func_080D6D8C(void);
 extern void func_080D780C(void);
@@ -385,6 +413,104 @@ extern RawVTableFunction const vtable_unk_080E5C84[] = {
     nullptr,
     func_080DB5B8,
     func_080DB568,
+};
+
+extern RawVTableFunction const vtable_unk_080E5C94[] = {
+    nullptr,
+    nullptr,
+    func_080DB630,
+    func_080DB5E0,
+};
+
+extern RawVTableFunction const vtable_unk_080E5CA4[] = {
+    nullptr,
+    nullptr,
+    func_080DB6A4,
+    func_080DB658,
+};
+
+extern RawVTableFunction const vtable_unk_080E5CB4[] = {
+    nullptr,
+    nullptr,
+    func_080DB714,
+    func_080DB6CC,
+};
+
+extern RawVTableFunction const vtable_unk_080E5CC4[] = {
+    nullptr,
+    nullptr,
+    func_080DB784,
+    func_080DB73C,
+};
+
+extern RawVTableFunction const vtable_unk_080E5CD4[] = {
+    nullptr,
+    nullptr,
+    func_080DB7F4,
+    func_080DB7AC,
+};
+
+extern RawVTableFunction const vtable_unk_080E5CE4[] = {
+    nullptr,
+    nullptr,
+    func_080DB864,
+    func_080DB81C,
+};
+
+extern RawVTableFunction const vtable_unk_080E5CF4[] = {
+    nullptr,
+    nullptr,
+    func_080DB8D4,
+    func_080DB88C,
+};
+
+extern RawVTableFunction const vtable_unk_080E5D04[] = {
+    nullptr,
+    nullptr,
+    func_080DB944,
+    func_080DB8FC,
+};
+
+extern RawVTableFunction const vtable_unk_080E5D14[] = {
+    nullptr,
+    nullptr,
+    func_080DB9B4,
+    func_080DB96C,
+};
+
+extern RawVTableFunction const vtable_unk_080E5D24[] = {
+    nullptr,
+    nullptr,
+    func_080DBA24,
+    func_080DB9DC,
+};
+
+extern RawVTableFunction const vtable_unk_080E5D34[] = {
+    nullptr,
+    nullptr,
+    func_080DBA94,
+    func_080DBA4C,
+};
+
+extern RawVTableFunction const vtable_unk_080E5D44[] = {
+    nullptr,
+    nullptr,
+    func_080DBB04,
+    func_080DBABC,
+};
+
+extern RawVTableFunction const vtable_unk_080E5D54[] = {
+    nullptr,
+    nullptr,
+    func_080DBB74,
+    func_080DBB2C,
+};
+
+extern RawVTableFunction const vtable_unk_080E5D64[] = {
+    nullptr,
+    nullptr,
+    func_080DBBE4,
+    func_080DBB9C,
 };
 
 EXTERN_C_END

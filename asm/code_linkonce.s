@@ -8260,6 +8260,62 @@ func_080D7B44: @ 0x080D7B44
     .thumb_set func_080DB568, func_080DB1E4 + 0x384
     .global func_080DB5B8
     .thumb_set func_080DB5B8, func_080DB1E4 + 0x3D4
+    .global func_080DB5E0
+    .thumb_set func_080DB5E0, func_080DB1E4 + 0x3FC
+    .global func_080DB630
+    .thumb_set func_080DB630, func_080DB1E4 + 0x44C
+    .global func_080DB658
+    .thumb_set func_080DB658, func_080DB1E4 + 0x474
+    .global func_080DB6A4
+    .thumb_set func_080DB6A4, func_080DB1E4 + 0x4C0
+    .global func_080DB6CC
+    .thumb_set func_080DB6CC, func_080DB1E4 + 0x4E8
+    .global func_080DB714
+    .thumb_set func_080DB714, func_080DB1E4 + 0x530
+    .global func_080DB73C
+    .thumb_set func_080DB73C, func_080DB1E4 + 0x558
+    .global func_080DB784
+    .thumb_set func_080DB784, func_080DB1E4 + 0x5A0
+    .global func_080DB7AC
+    .thumb_set func_080DB7AC, func_080DB1E4 + 0x5C8
+    .global func_080DB7F4
+    .thumb_set func_080DB7F4, func_080DB1E4 + 0x610
+    .global func_080DB81C
+    .thumb_set func_080DB81C, func_080DB1E4 + 0x638
+    .global func_080DB864
+    .thumb_set func_080DB864, func_080DB1E4 + 0x680
+    .global func_080DB88C
+    .thumb_set func_080DB88C, func_080DB1E4 + 0x6A8
+    .global func_080DB8D4
+    .thumb_set func_080DB8D4, func_080DB1E4 + 0x6F0
+    .global func_080DB8FC
+    .thumb_set func_080DB8FC, func_080DB1E4 + 0x718
+    .global func_080DB944
+    .thumb_set func_080DB944, func_080DB1E4 + 0x760
+    .global func_080DB96C
+    .thumb_set func_080DB96C, func_080DB1E4 + 0x788
+    .global func_080DB9B4
+    .thumb_set func_080DB9B4, func_080DB1E4 + 0x7D0
+    .global func_080DB9DC
+    .thumb_set func_080DB9DC, func_080DB1E4 + 0x7F8
+    .global func_080DBA24
+    .thumb_set func_080DBA24, func_080DB1E4 + 0x840
+    .global func_080DBA4C
+    .thumb_set func_080DBA4C, func_080DB1E4 + 0x868
+    .global func_080DBA94
+    .thumb_set func_080DBA94, func_080DB1E4 + 0x8B0
+    .global func_080DBABC
+    .thumb_set func_080DBABC, func_080DB1E4 + 0x8D8
+    .global func_080DBB04
+    .thumb_set func_080DBB04, func_080DB1E4 + 0x920
+    .global func_080DBB2C
+    .thumb_set func_080DBB2C, func_080DB1E4 + 0x948
+    .global func_080DBB74
+    .thumb_set func_080DBB74, func_080DB1E4 + 0x990
+    .global func_080DBB9C
+    .thumb_set func_080DBB9C, func_080DB1E4 + 0x9B8
+    .global func_080DBBE4
+    .thumb_set func_080DBBE4, func_080DB1E4 + 0xA00
     .else
 
 	thumb_func_start func_080D7E64
@@ -26095,6 +26151,8 @@ func_080E0E80: @ 0x080E0E80
 	.thumb_set func_080DB568, func_080DB1E4 + 0x384
 	.global func_080DB5B8
 	.thumb_set func_080DB5B8, func_080DB1E4 + 0x3D4
+	.global func_080DB5E0
+	.thumb_set func_080DB5E0, func_080DB1E4 + 0x3FC
 
     .endif
 	.section ".text.code_080E0EF0"
