@@ -368,7 +368,8 @@ func_080885AC:
     .incbin "baserom_jp.gba", 0x881C8, (0x886E0 - 0x881C8)
     jp_code_0803ee_func func_08088BA0, 0x886E0, 0x8A6A8
     jp_code_0803ee_func func_0808A6A8, 0x8A6A8, 0x8A6E8
-    jp_code_0803ee_func func_0808A6E8, 0x8A6E8, 0x8A768
+    jp_code_0803ee_func func_0808A6E8, 0x8A6E8, 0x8A754
+    jp_code_0803ee_func func_0808A754, 0x8A754, 0x8A768
     jp_code_0803ee_func func_0808AC28, 0x8A768, 0x8B5A0
     jp_code_0803ee_func func_0808BA60, 0x8B5A0, 0x8B754
     .global func_0808BC14
