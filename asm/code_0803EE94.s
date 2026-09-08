@@ -255,6 +255,8 @@ func_0805EE44:
     .thumb_set func_08075278, func_0807549C + 0x180
     .global func_080752B8
     .thumb_set func_080752B8, func_0807549C + 0x1C0
+    .global func_0807532C
+    .thumb_set func_0807532C, func_0807549C + 0x234
     jp_code_0803ee_func func_08075BC8, 0x75824, 0x758E4
     jp_code_0803ee_func func_08075C88, 0x758E4, 0x75A14
     .section .text.clear_scroll_buffer_after
