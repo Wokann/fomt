@@ -24,9 +24,10 @@
     jp_code_0803ee_func VarSet__12ScriptEngineUii, 0x48E24, 0x4DF20
     jp_code_0803ee_func func_0804E0F8, 0x4DF20, 0x4E200
     jp_code_0803ee_func func_0804E3D8, 0x4E200, 0x4E2D4
-    jp_code_0803ee_func func_0804E4AC, 0x4E2D4, 0x4E5C8
-    @ The 2D fillers and text-stream walkers are rebuilt from
-    @ src/font_draw.cc for both regions.
+    @ The ordinary compositor is rebuilt from src/font_draw.cc. The extended
+    @ palette compositor stays raw until its C++ form is byte-exact.
+    .section .text.font_draw_ext
+    jp_code_0803ee_func func_0804E5AC, 0x4E3D4, 0x4E5C8
     .section .text.font_draw_after
     jp_code_0803ee_func func_0804E9C8, 0x4E7F0, 0x4E7F4
     jp_code_0803ee_func func_0804E9CC, 0x4E7F4, 0x4E81C
@@ -337,8 +338,6 @@ func_080926A4:
     .thumb_set func_0805E99C, func_0803F8DC + 0x1EFDC
     .global func_08051320
     .thumb_set func_08051320, func_0803F8DC + 0x119A8
-    .global func_0804E5AC
-    .thumb_set func_0804E5AC, func_0803F8DC + 0xECD0
     @ Internal JP entry points called by shared C++ forwarding adapters.
     @ Both were located by unique 12-byte US/JP prefix matches.
     .global func_08050478
@@ -28280,140 +28279,7 @@ func_0804E3D8: @ 0x0804E3D8
 	.align 2, 0
 .L0804E4A8: .4byte 0x00001C70
 
-	thumb_func_start func_0804E4AC
-func_0804E4AC: @ 0x0804E4AC
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	sub sp, #0x8c
-	adds r5, r0, #0
-	mov sb, r1
-	adds r6, r2, #0
-	adds r7, r3, #0
-	ldr r1, [sp, #0xac]
-	add r0, sp, #4
-	bl DrawCharacterGlyph
-	mov sl, r0
-	subs r0, #1
-	cmp r0, #1
-	bhi .L0804E598
-	lsrs r4, r6, #3
-	str r4, [sp, #0x84]
-	lsrs r2, r7, #3
-	lsls r0, r5, #0x10
-	lsrs r0, r0, #0x10
-	mov r8, r0
-	lsrs r0, r5, #0x10
-	mov ip, r0
-	cmp r4, r8
-	bhs .L0804E594
-	cmp r2, r0
-	bhs .L0804E594
-	movs r1, #0
-	movs r3, #7
-	adds r0, r6, #0
-	ands r0, r3
-	cmp r0, #0
-	bne .L0804E4F6
-	movs r1, #1
-.L0804E4F6:
-	cmp r1, #0
-	beq .L0804E584
-	movs r1, #0
-	adds r0, r7, #0
-	ands r0, r3
-	cmp r0, #0
-	bne .L0804E506
-	movs r1, #1
-.L0804E506:
-	cmp r1, #0
-	beq .L0804E584
-	movs r0, #0
-	str r0, [sp, #0x88]
-	adds r0, r4, #1
-	cmp r0, r8
-	bhs .L0804E518
-	movs r1, #1
-	str r1, [sp, #0x88]
-.L0804E518:
-	movs r7, #0
-	adds r5, r2, #1
-	cmp r5, ip
-	bhs .L0804E522
-	movs r7, #1
-.L0804E522:
-	mov r0, r8
-	muls r0, r2, r0
-	adds r0, r0, r4
-	lsls r0, r0, #5
-	mov r2, sb
-	adds r6, r0, r2
-	add r0, sp, #4
-	adds r1, r6, #0
-	movs r2, #8
-	bl CpuFastSet
-	cmp r7, #0
-	beq .L0804E54E
-	mov r1, r8
-	muls r1, r5, r1
-	adds r1, r1, r4
-	lsls r1, r1, #5
-	add r1, sb
-	add r0, sp, #0x44
-	movs r2, #8
-	bl CpuFastSet
-.L0804E54E:
-	ldr r0, [sp, #0x88]
-	cmp r0, #0
-	beq .L0804E594
-	mov r1, sl
-	cmp r1, #1
-	bls .L0804E594
-	adds r1, r6, #0
-	adds r1, #0x20
-	add r0, sp, #0x24
-	movs r2, #8
-	bl CpuFastSet
-	cmp r7, #0
-	beq .L0804E594
-	mov r0, r8
-	muls r0, r5, r0
-	ldr r2, [sp, #0x84]
-	adds r1, r2, r0
-	lsls r0, r1, #5
-	mov r2, sb
-	adds r1, r0, r2
-	adds r1, #0x20
-	add r0, sp, #0x64
-	movs r2, #8
-	bl CpuFastSet
-	b .L0804E594
-.L0804E584:
-	add r0, sp, #4
-	str r0, [sp]
-	adds r0, r5, #0
-	mov r1, sb
-	adds r2, r6, #0
-	adds r3, r7, #0
-	bl func_0804E9C8
-.L0804E594:
-	mov r0, sl
-	b .L0804E59A
-.L0804E598:
-	movs r0, #0
-.L0804E59A:
-	add sp, #0x8c
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-
+	.section .text.font_draw_ext
 	thumb_func_start func_0804E5AC
 func_0804E5AC: @ 0x0804E5AC
 	push {r4, r5, r6, r7, lr}

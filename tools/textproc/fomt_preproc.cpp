@@ -815,22 +815,53 @@ void NormalizeThreeOutcomeZeroBranch(std::vector<std::string> &lines)
     }
 }
 
+bool IsNumericLocalLabelWithPrefix(const std::string &line,
+    std::string_view prefix)
+{
+    const std::string marker = Trim(line);
+    if (marker.size() <= prefix.size() + 1 || marker.back() != ':'
+        || marker.compare(0, prefix.size(), prefix) != 0) {
+        return false;
+    }
+
+    return std::all_of(marker.begin()
+            + static_cast<std::ptrdiff_t>(prefix.size()),
+        marker.end() - 1, [](unsigned char character) {
+            return std::isdigit(character) != 0;
+        });
+}
+
 bool IsCompilerDebugMarker(const std::string &line)
 {
-    static const std::regex pattern(R"(^\.L(?:M|BB|BE)[0-9]+:$)");
-    return std::regex_match(Trim(line), pattern);
+    // Preserve the established matching scope for older normalization passes.
+    return IsNumericLocalLabelWithPrefix(line, ".LM")
+        || IsNumericLocalLabelWithPrefix(line, ".LBB")
+        || IsNumericLocalLabelWithPrefix(line, ".LBE");
+}
+
+bool IsExtendedCompilerDebugMarker(const std::string &line)
+{
+    // GCC 2.9-arm additionally emits .LSM source-map labels between every
+    // instruction. Newer scheduling repairs opt in to skipping them; older
+    // normalizers retain their original matching scope.
+    return IsCompilerDebugMarker(line)
+        || IsNumericLocalLabelWithPrefix(line, ".LSM");
 }
 
 std::vector<std::size_t> FindAdjacentInstructions(
     const std::vector<std::string> &lines, std::size_t start,
-    std::size_t count)
+    std::size_t count, bool skip_extended_debug_markers = false)
 {
     std::vector<std::size_t> result;
     for (std::size_t index = start; index < lines.size() && result.size() < count;
          ++index) {
         const std::string trimmed = Trim(lines[index]);
-        if (trimmed.empty() || IsCompilerDebugMarker(trimmed))
+        if (trimmed.empty()
+            || (skip_extended_debug_markers
+                    ? IsExtendedCompilerDebugMarker(trimmed)
+                    : IsCompilerDebugMarker(trimmed))) {
             continue;
+        }
         if (trimmed.front() == '.' || trimmed.back() == ':')
             return {};
         result.push_back(index);
@@ -842,6 +873,270 @@ std::string InstructionIndent(const std::string &line)
 {
     const std::size_t first = line.find_first_not_of("\t ");
     return first == std::string::npos ? "\t" : line.substr(0, first);
+}
+
+bool ContainsRegisterToken(const std::string &line, const std::string &reg)
+{
+    std::size_t position = line.find(reg);
+    while (position != std::string::npos) {
+        const bool left_boundary = position == 0
+            || (!std::isalnum(static_cast<unsigned char>(line[position - 1]))
+                && line[position - 1] != '_');
+        const std::size_t end = position + reg.size();
+        const bool right_boundary = end == line.size()
+            || (!std::isalnum(static_cast<unsigned char>(line[end]))
+                && line[end] != '_');
+        if (left_boundary && right_boundary)
+            return true;
+        position = line.find(reg, position + 1);
+    }
+    return false;
+}
+
+bool IsWriteOnlyRegisterAssignment(const std::string &line,
+    const std::string &reg)
+{
+    const std::size_t opcode_end = line.find_first_of("\t ");
+    if (opcode_end == std::string::npos)
+        return false;
+
+    const std::string opcode = line.substr(0, opcode_end);
+    const bool writes_first_operand = opcode == "mov" || opcode == "add"
+        || opcode == "sub" || opcode == "lsl" || opcode == "lsr"
+        || opcode == "asr" || opcode == "ldr" || opcode == "mvn"
+        || opcode == "and" || opcode == "orr" || opcode == "eor"
+        || opcode == "mul" || opcode == "neg" || opcode == "bic";
+    if (!writes_first_operand)
+        return false;
+
+    const std::string operands = Trim(line.substr(opcode_end));
+    if (operands.compare(0, reg.size(), reg) != 0
+        || operands.size() == reg.size() || operands[reg.size()] != ',') {
+        return false;
+    }
+    return !ContainsRegisterToken(operands.substr(reg.size()), reg);
+}
+
+bool IsControlTransferInstruction(const std::string &line)
+{
+    const std::size_t opcode_end = line.find_first_of("\t ");
+    const std::string opcode = line.substr(0, opcode_end);
+    return opcode == "b" || opcode == "beq" || opcode == "bne"
+        || opcode == "bcs" || opcode == "bcc" || opcode == "bmi"
+        || opcode == "bpl" || opcode == "bvs" || opcode == "bvc"
+        || opcode == "bhi" || opcode == "bls" || opcode == "bge"
+        || opcode == "blt" || opcode == "bgt" || opcode == "ble"
+        || opcode == "bl" || opcode == "blx" || opcode == "bx";
+}
+
+bool BranchTargetCannotObserveRegister(const std::vector<std::string> &lines,
+    std::size_t branch_index, const std::string &target,
+    const std::string &reg)
+{
+    std::size_t target_index = branch_index + 1;
+    for (; target_index < lines.size(); ++target_index) {
+        if (Trim(lines[target_index]) == target + ":")
+            break;
+    }
+    if (target_index == lines.size())
+        return false;
+
+    // Follow the branch target's straight-line path until the staging
+    // register is overwritten, returned, or an unproven control transfer is
+    // encountered. This is independent of source function and label names.
+    for (++target_index; target_index < lines.size(); ++target_index) {
+        const std::string instruction = Trim(lines[target_index]);
+        if (instruction.empty() || IsExtendedCompilerDebugMarker(instruction)
+            || instruction.back() == ':') {
+            continue;
+        }
+        if (instruction.rfind(".size", 0) == 0
+            || instruction.rfind(".LFE", 0) == 0) {
+            return true;
+        }
+        if (instruction.front() == '.')
+            continue;
+        if (IsControlTransferInstruction(instruction))
+            return instruction.rfind("bx", 0) == 0
+                && !ContainsRegisterToken(instruction, reg);
+        if (!ContainsRegisterToken(instruction, reg))
+            continue;
+        if (instruction.rfind("pop", 0) == 0)
+            return true;
+        return IsWriteOnlyRegisterAssignment(instruction, reg);
+    }
+    return false;
+}
+
+void NormalizeDeferredCalleeSavedArgumentSetup(std::vector<std::string> &lines)
+{
+    // In this Thumb argument-preservation shape, agbcp first copies r1
+    // through a callee-saved staging register, then reloads the stacked fifth
+    // argument before moving that copy to a high register. The original
+    // compiler placed the independent high-register assignment first.
+    //
+    // The complete argument/data-flow shape proves that the staging register
+    // is dead on the accepted path. Branch-target scanning additionally
+    // proves that the rejected path cannot observe its old value. No function
+    // name, ROM offset, linker label, or hard-coded instruction address
+    // participates in matching.
+    static const std::regex stage_r1_pattern(
+        R"(^add[\t ]+(r[4-7]),[\t ]+r1,[\t ]+#0$)");
+    static const std::regex stacked_argument_pattern(
+        R"(^ldr[\t ]+r1,[\t ]+\[sp,[\t ]+#(0x)?[0-9a-fA-F]+\]$)");
+    static const std::regex save_r0_pattern(
+        R"(^add[\t ]+(r[4-7]),[\t ]+r0,[\t ]+#0$)");
+    static const std::regex move_staged_r1_pattern(
+        R"(^mov[\t ]+(r(?:8|9|1[0-2])|ip|sl|fp),[\t ]+(r[4-7])$)");
+    static const std::regex save_r2_pattern(
+        R"(^add[\t ]+(r[4-7]),[\t ]+r2,[\t ]+#0$)");
+    static const std::regex save_r3_pattern(
+        R"(^add[\t ]+(r[4-7]),[\t ]+r3,[\t ]+#0$)");
+    static const std::regex scratch_pattern(
+        R"(^add[\t ]+r0,[\t ]+sp,[\t ]+#(?:0x)?[0-9a-fA-F]+$)");
+    static const std::regex call_pattern(
+        R"(^bl[\t ]+[^ \t]+(?:[\t ]+@.*)?$)");
+    static const std::regex save_result_pattern(
+        R"(^mov[\t ]+(?:r(?:[0-9]|1[0-2])|ip|sl|fp),[\t ]+r0$)");
+    static const std::regex subtract_one_pattern(
+        R"(^sub[\t ]+r0,[\t ]+r0,[\t ]+#(?:0x)?1$)");
+    static const std::regex compare_one_pattern(
+        R"(^cmp[\t ]+r0,[\t ]+#(?:0x)?1$)");
+    static const std::regex invalid_branch_pattern(
+        R"(^bhi[\t ]+(\.L[A-Za-z0-9_]+)([\t ]+@.*)?$)");
+    static const std::regex overwrite_stage_pattern(
+        R"(^lsr[\t ]+(r[4-7]),[\t ]+(r[4-7]),[\t ]+#(?:0x)?[0-9a-fA-F]+$)");
+
+    for (std::size_t index = 0; index < lines.size(); ++index) {
+        const std::vector<std::size_t> steps =
+            FindAdjacentInstructions(lines, index, 13, true);
+        if (steps.empty())
+            continue;
+
+        std::smatch stage_r1;
+        std::smatch save_r0;
+        std::smatch move_staged_r1;
+        std::smatch save_r2;
+        std::smatch save_r3;
+        std::smatch invalid_branch;
+        std::smatch overwrite_stage;
+        const std::string stage_instruction = Trim(lines[steps[0]]);
+        const std::string stacked_argument_instruction = Trim(lines[steps[1]]);
+        const std::string save_r0_instruction = Trim(lines[steps[2]]);
+        const std::string move_staged_r1_instruction = Trim(lines[steps[3]]);
+        const std::string save_r2_instruction = Trim(lines[steps[4]]);
+        const std::string save_r3_instruction = Trim(lines[steps[5]]);
+        const std::string scratch_instruction = Trim(lines[steps[6]]);
+        const std::string call_instruction = Trim(lines[steps[7]]);
+        const std::string save_result_instruction = Trim(lines[steps[8]]);
+        const std::string subtract_one_instruction = Trim(lines[steps[9]]);
+        const std::string compare_one_instruction = Trim(lines[steps[10]]);
+        const std::string invalid_branch_instruction = Trim(lines[steps[11]]);
+        const std::string overwrite_stage_instruction = Trim(lines[steps[12]]);
+        if (!std::regex_match(stage_instruction, stage_r1,
+                stage_r1_pattern)
+            || !std::regex_match(stacked_argument_instruction,
+                stacked_argument_pattern)
+            || !std::regex_match(save_r0_instruction, save_r0,
+                save_r0_pattern)
+            || !std::regex_match(move_staged_r1_instruction, move_staged_r1,
+                move_staged_r1_pattern)
+            || !std::regex_match(save_r2_instruction, save_r2,
+                save_r2_pattern)
+            || !std::regex_match(save_r3_instruction, save_r3,
+                save_r3_pattern)
+            || !std::regex_match(scratch_instruction, scratch_pattern)
+            || !std::regex_match(call_instruction, call_pattern)
+            || !std::regex_match(save_result_instruction, save_result_pattern)
+            || !std::regex_match(subtract_one_instruction, subtract_one_pattern)
+            || !std::regex_match(compare_one_instruction, compare_one_pattern)
+            || !std::regex_match(invalid_branch_instruction, invalid_branch,
+                invalid_branch_pattern)
+            || !std::regex_match(overwrite_stage_instruction, overwrite_stage,
+                overwrite_stage_pattern)) {
+            continue;
+        }
+
+        const std::string stage = stage_r1[1].str();
+        const std::string saved_r0 = save_r0[1].str();
+        const std::string saved_r2 = save_r2[1].str();
+        const std::string saved_r3 = save_r3[1].str();
+        if (move_staged_r1[2].str() != stage
+            || overwrite_stage[1].str() != stage
+            || overwrite_stage[2].str() != saved_r2
+            || stage == saved_r0 || stage == saved_r2 || stage == saved_r3
+            || saved_r0 == saved_r2 || saved_r0 == saved_r3
+            || saved_r2 == saved_r3
+            || !BranchTargetCannotObserveRegister(lines, steps[11],
+                invalid_branch[1].str(), stage)) {
+            continue;
+        }
+
+        const std::string indent = InstructionIndent(lines[steps[0]]);
+        const std::string stacked_argument = lines[steps[1]];
+        const std::string scratch = lines[steps[6]];
+        const std::string call = lines[steps[7]];
+        lines[steps[0]] = indent + "add\t" + saved_r0 + ", r0, #0";
+        lines[steps[1]] = indent + "mov\t" + move_staged_r1[1].str()
+            + ", r1";
+        lines[steps[2]] = indent + "add\t" + saved_r2 + ", r2, #0";
+        lines[steps[3]] = indent + "add\t" + saved_r3 + ", r3, #0";
+        lines[steps[4]] = stacked_argument;
+        lines[steps[5]] = scratch;
+        lines[steps[6]] = call;
+        lines.erase(lines.begin() + static_cast<std::ptrdiff_t>(steps[7]));
+        index = steps[6];
+    }
+}
+
+void NormalizeHighRegisterTileAddressSetup(std::vector<std::string> &lines)
+{
+    // agbcp can fold a high-register buffer base into r0 and then copy it to
+    // r1. The original scheduling makes a temporary ordinary-register base
+    // copy explicit. The final r2 control setup overwrites that temporary
+    // before the call, so both forms preserve every input and output.
+    //
+    // This is deliberately identified by register data flow only. It accepts
+    // any call target and any immediate tile/scratch dimensions; it does not
+    // use function names, labels, or ROM-specific addresses.
+    static const std::regex shift_pattern(
+        R"(^lsl[\t ]+r0,[\t ]+r1,[\t ]+#(?:0x)?[0-9a-fA-F]+$)");
+    static const std::regex folded_base_pattern(
+        R"(^add[\t ]+r0,[\t ]+r0,[\t ]+(r(?:8|9|1[0-2])|ip|sl|fp)$)");
+    static const std::regex copy_destination_pattern(
+        R"(^add[\t ]+r1,[\t ]+r0,[\t ]+#0$)");
+    static const std::regex add_tile_pattern(
+        R"(^add[\t ]+r1,[\t ]+r1,[\t ]+#(?:0x)?[0-9a-fA-F]+$)");
+    static const std::regex scratch_pattern(
+        R"(^add[\t ]+r0,[\t ]+sp,[\t ]+#(?:0x)?[0-9a-fA-F]+$)");
+    static const std::regex control_pattern(
+        R"(^mov[\t ]+r2,[\t ]+#(?:0x)?[0-9a-fA-F]+$)");
+    static const std::regex call_pattern(
+        R"(^bl[\t ]+[^ \t]+(?:[\t ]+@.*)?$)");
+
+    for (std::size_t index = 0; index < lines.size(); ++index) {
+        const std::vector<std::size_t> steps =
+            FindAdjacentInstructions(lines, index, 7, true);
+        std::smatch folded_base;
+        const std::string folded_base_instruction = steps.empty()
+            ? "" : Trim(lines[steps[1]]);
+        if (steps.empty()
+            || !std::regex_match(Trim(lines[steps[0]]), shift_pattern)
+            || !std::regex_match(folded_base_instruction, folded_base,
+                folded_base_pattern)
+            || !std::regex_match(Trim(lines[steps[2]]), copy_destination_pattern)
+            || !std::regex_match(Trim(lines[steps[3]]), add_tile_pattern)
+            || !std::regex_match(Trim(lines[steps[4]]), scratch_pattern)
+            || !std::regex_match(Trim(lines[steps[5]]), control_pattern)
+            || !std::regex_match(Trim(lines[steps[6]]), call_pattern)) {
+            continue;
+        }
+
+        const std::string indent = InstructionIndent(lines[steps[0]]);
+        lines[steps[1]] = indent + "mov\tr2, " + folded_base[1].str();
+        lines[steps[2]] = indent + "add\tr1, r0, r2";
+        index = steps[6];
+    }
 }
 
 void NormalizeCpuFastSetFillSetup(std::vector<std::string> &lines)
@@ -1021,8 +1316,10 @@ std::string AlignExecutableSections(const std::string &assembly)
     RemoveCompilerDataSectionTailAlignment(lines);
     NormalizeCallViaR2ArgumentSetup(lines);
     NormalizeThreeOutcomeZeroBranch(lines);
+    NormalizeDeferredCalleeSavedArgumentSetup(lines);
     NormalizeCpuFastSetFillSetup(lines);
     NormalizeCpuFastSetRowSetup(lines);
+    NormalizeHighRegisterTileAddressSetup(lines);
     std::vector<std::string> sections;
     std::set<std::string> seen_sections;
     for (const std::string &line : lines) {
@@ -1055,6 +1352,20 @@ void Require(bool condition, const std::string &message)
 
 void SelfTest()
 {
+    Require(IsCompilerDebugMarker(".LBB2:")
+                && !IsCompilerDebugMarker(".LSM1:")
+                && IsExtendedCompilerDebugMarker(".LSM1:")
+                && IsExtendedCompilerDebugMarker(".LBE3:"),
+        "compiler debug-marker recognition scope failed");
+    const std::vector<std::string> source_map_marker_lines = SplitLines(
+        "\tadd\tr4, r1, #0\n"
+        ".LSM1:\n"
+        "\tldr\tr1, [sp, #0xac]\n");
+    Require(FindAdjacentInstructions(source_map_marker_lines, 0, 2).empty()
+                && FindAdjacentInstructions(source_map_marker_lines, 0, 2, true).size()
+                    == 2,
+        "extended source-map marker skipping was not isolated");
+
     const std::string source =
         "char const gNamedByteSequence[] = \"A\";\n"
         "char const * const gPointerToNamedByteSequence = gNamedByteSequence;\n"
@@ -1235,6 +1546,121 @@ void SelfTest()
     Require(normalized_cpu_fast_set.find("\tlsl\tr2, r2, #0x9\n")
                 == std::string::npos,
         "legacy full CpuFastSet count sequence was retained");
+
+    const std::string fixed_register_assembly =
+        "\t.text\n"
+        "generic_wrapper:\n"
+        "\tadd\tr4, r1, #0\n"
+        "\tldr\tr1, [sp, #0xac]\n"
+        "\tadd\tr5, r0, #0\n"
+        "\tmov\tr9, r4\n"
+        "\tadd\tr6, r2, #0\n"
+        "\tadd\tr7, r3, #0\n"
+        "\tadd\tr0, sp, #0x4\n"
+        "\tbl\tGenericCallee\n"
+        "\tmov\tsl, r0\n"
+        "\tsub\tr0, r0, #0x1\n"
+        "\tcmp\tr0, #0x1\n"
+        "\tbhi\t.Lgeneric_invalid\n"
+        "\tlsr\tr4, r6, #0x3\n"
+        "unrelated_wrapper:\n"
+        "\tadd\tr4, r1, #0\n"
+        "\tldr\tr1, [sp, #0xac]\n"
+        "\tadd\tr5, r0, #0\n"
+        "\tmov\tr9, r4\n"
+        "\tadd\tr6, r2, #0\n"
+        "\tadd\tr7, r3, #0\n"
+        "\tadd\tr0, sp, #0x4\n"
+        "\tbl\tUnprovenCallee\n"
+        "\tmov\tsl, r0\n"
+        "\tsub\tr0, r0, #0x1\n"
+        "\tcmp\tr0, #0x1\n"
+        "\tbhi\t.Lunrelated_invalid\n"
+        "\tlsr\tr5, r6, #0x3\n"
+        "tile_address:\n"
+        "\tlsl\tr0, r1, #0x5\n"
+        "\tadd\tr0, r0, r9\n"
+        "\tadd\tr1, r0, #0\n"
+        "\tadd\tr1, r1, #0x20\n"
+        "\tadd\tr0, sp, #0x64\n"
+        "\tmov\tr2, #0x8\n"
+        "\tbl\tGenericCopy\n"
+        "unrelated_tile_address:\n"
+        "\tlsl\tr0, r1, #0x5\n"
+        "\tadd\tr0, r0, r8\n"
+        "\tadd\tr1, r0, #0\n"
+        "\tadd\tr1, r1, #0x20\n"
+        "\tadd\tr0, sp, #0x64\n"
+        "\tmov\tr2, #0x8\n"
+        "\tbl\tOtherCopy\n"
+        "unsafe_wrapper:\n"
+        "\tadd\tr4, r1, #0\n"
+        "\tldr\tr1, [sp, #0xac]\n"
+        "\tadd\tr5, r0, #0\n"
+        "\tmov\tr9, r4\n"
+        "\tadd\tr6, r2, #0\n"
+        "\tadd\tr7, r3, #0\n"
+        "\tadd\tr0, sp, #0x4\n"
+        "\tbl\tUnsafeCallee\n"
+        "\tmov\tsl, r0\n"
+        "\tsub\tr0, r0, #0x1\n"
+        "\tcmp\tr0, #0x1\n"
+        "\tbhi\t.Lunsafe_invalid\n"
+        "\tlsr\tr4, r6, #0x3\n"
+        ".Lgeneric_invalid:\n"
+        "\tmov\tr0, #0\n"
+        "\tpop\t{r4, r5, r6, r7, pc}\n"
+        ".Lunrelated_invalid:\n"
+        "\tmov\tr0, #0\n"
+        "\tpop\t{r4, r5, r6, r7, pc}\n"
+        ".Lunsafe_invalid:\n"
+        "\tadd\tr0, r4, #0\n"
+        "\tbx\tlr\n";
+    const std::vector<std::string> fixed_register_lines =
+        SplitLines(fixed_register_assembly);
+    Require(FindAdjacentInstructions(fixed_register_lines, 2, 13).size() == 13,
+        "compiler debug markers interrupted instruction matching");
+    Require(std::regex_match("add r4, r1, #0",
+                std::regex(R"(^add[\t ]+r4,[\t ]+r1,[\t ]+#0$)"))
+            && std::regex_match("ldr r1, [sp, #0xac]",
+                std::regex(R"(^ldr[\t ]+r1,[\t ]+\[sp,[\t ]+#(0x)?[0-9a-fA-F]+\]$)"))
+            && std::regex_match("bhi .Lgeneric_invalid",
+                std::regex(R"(^bhi[\t ]+\.L[A-Za-z0-9_]+([\t ]+@.*)?$)")),
+        "generic argument-preservation patterns failed to match");
+    const std::string normalized_fixed_registers =
+        PreprocessAssembly("", fixed_register_assembly);
+    Require(normalized_fixed_registers.find("\tadd\tr5, r0, #0\n"
+                                            "\tmov\tr9, r1\n"
+                                            "\tadd\tr6, r2, #0\n"
+                                            "\tadd\tr7, r3, #0\n"
+                                            "\tldr\tr1, [sp, #0xac]\n"
+                                            "\tadd\tr0, sp, #0x4\n"
+                                            "\tbl\tGenericCallee\n")
+                != std::string::npos,
+        "generic deferred argument setup was not normalized");
+    Require(normalized_fixed_registers.find("unrelated_wrapper:\n"
+                                            "\tadd\tr4, r1, #0\n"
+                                            "\tldr\tr1, [sp, #0xac]\n")
+                != std::string::npos,
+        "unproven r4 staging sequence was changed");
+    Require(normalized_fixed_registers.find("tile_address:\n"
+                                            "\tlsl\tr0, r1, #0x5\n"
+                                            "\tmov\tr2, r9\n"
+                                            "\tadd\tr1, r0, r2\n"
+                                            "\tadd\tr1, r1, #0x20\n")
+                != std::string::npos,
+        "high-register tile address setup was not normalized");
+    Require(normalized_fixed_registers.find("unrelated_tile_address:\n"
+                                            "\tlsl\tr0, r1, #0x5\n"
+                                            "\tmov\tr2, r8\n"
+                                            "\tadd\tr1, r0, r2\n")
+                != std::string::npos,
+        "generic high-register address setup was not normalized");
+    Require(normalized_fixed_registers.find("unsafe_wrapper:\n"
+                                            "\tadd\tr4, r1, #0\n"
+                                            "\tldr\tr1, [sp, #0xac]\n")
+                != std::string::npos,
+        "branch-visible staging value was changed");
 }
 
 const char *Usage()

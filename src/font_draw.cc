@@ -4,6 +4,154 @@
 
 EXTERN_C
 
+// The original non-aligned path is present but intentionally has no visual
+// effect; keep it as a separate call so its known ROM behavior remains
+// visible while the core aligned compositor stays ordinary C++.
+extern void DrawCharacterGlyphTo2DGfxBufferUnaligned(u32 size, void *buffer,
+    i32 x, i32 y, void *glyph) asm("func_0804E9C8");
+
+i32 DrawCharacterGlyphTo2DGfxBuffer(u32 size, void *buffer, i32 x, i32 y,
+    i32 character) SECTION(".text.font_draw_normal");
+
+// Draw one decoded glyph into an 8-pixel-aligned position of a packed 4bpp
+// tile buffer. DrawCharacterGlyph writes four 32-byte tile quadrants into the
+// scratch area; this wrapper copies only the quadrants which fit in the
+// destination buffer.
+i32 DrawCharacterGlyphTo2DGfxBuffer(u32 size, void *buffer, i32 x, i32 y,
+    i32 character)
+{
+    register u32 packed_size asm("r5");
+    register void *tile_buffer asm("r9");
+    register i32 x_position asm("r6");
+    register i32 y_position asm("r7");
+    register i32 glyph_width asm("r10");
+    register u32 x_tile asm("r4");
+    register u32 y_tile asm("r2");
+    register u32 buffer_width asm("r8");
+    register u32 buffer_height asm("r12");
+    register u32 aligned asm("r1");
+    register u32 alignment_mask asm("r3");
+    register u32 alignment_value asm("r0");
+    register u32 has_right_tile_for_draw asm("r0");
+    register u32 glyph_width_for_draw asm("r1");
+    register u8 *tile_buffer_for_bottom asm("r2");
+    u32 glyph[32];
+    u32 saved_x_tile;
+    u32 has_right_tile;
+    u32 has_bottom_tile;
+    u32 next_y_tile;
+    u32 buffer_height_for_check;
+    u8 *top_destination;
+    i32 result;
+
+    packed_size = size;
+    tile_buffer = buffer;
+    x_position = x;
+    y_position = y;
+    glyph_width = DrawCharacterGlyph(glyph, character);
+    if ((u32)(glyph_width - 1) > 1)
+        goto invalid_glyph;
+
+    x_tile = (u32)x_position >> 3;
+    saved_x_tile = x_tile;
+    y_tile = (u32)y_position >> 3;
+    buffer_width = (u16)packed_size;
+    buffer_height_for_check = packed_size >> 16;
+    buffer_height = buffer_height_for_check;
+
+    if (x_tile >= buffer_width || y_tile >= buffer_height_for_check)
+        goto return_glyph_width;
+
+    aligned = 0;
+    alignment_mask = 7;
+    alignment_value = x_position;
+    alignment_value &= alignment_mask;
+    if (alignment_value == 0)
+        aligned = 1;
+    if (aligned == 0)
+        goto draw_unaligned;
+
+    aligned = 0;
+    alignment_value = y_position;
+    alignment_value &= alignment_mask;
+    if (alignment_value == 0)
+        aligned = 1;
+    if (aligned == 0)
+        goto draw_unaligned;
+
+    has_right_tile = 0;
+    if (x_tile + 1 < buffer_width)
+        has_right_tile = 1;
+
+    has_bottom_tile = 0;
+    next_y_tile = y_tile + 1;
+    if (next_y_tile < buffer_height)
+        has_bottom_tile = 1;
+
+    top_destination = reinterpret_cast<u8 *>(((y_tile * buffer_width + x_tile)
+        << 5) + reinterpret_cast<u32>(tile_buffer));
+
+    CpuFastSet(glyph, top_destination, 8);
+    if (has_bottom_tile != 0) {
+        register u8 *bottom_destination asm("r1");
+        register u32 *bottom_glyph asm("r0");
+
+        bottom_destination = reinterpret_cast<u8 *>(tile_buffer)
+            + ((next_y_tile * buffer_width + x_tile) << 5);
+        bottom_glyph = glyph + 16;
+        CpuFastSet(bottom_glyph, bottom_destination, 8);
+    }
+
+    has_right_tile_for_draw = has_right_tile;
+    if (has_right_tile_for_draw != 0) {
+        glyph_width_for_draw = (u32)glyph_width;
+
+        if (glyph_width_for_draw <= 1)
+            goto return_glyph_width;
+        {
+            register u8 *right_destination asm("r1") = top_destination + 0x20;
+            register u32 *right_glyph asm("r0") = glyph + 8;
+
+            CpuFastSet(right_glyph, right_destination, 8);
+        }
+        if (has_bottom_tile != 0) {
+            register u8 *bottom_right_destination asm("r1");
+            register u32 *bottom_right_glyph asm("r0");
+
+            has_right_tile_for_draw = buffer_width;
+            has_right_tile_for_draw *= next_y_tile;
+            glyph_width_for_draw = saved_x_tile;
+            glyph_width_for_draw += has_right_tile_for_draw;
+            has_right_tile_for_draw = glyph_width_for_draw << 5;
+            tile_buffer_for_bottom = reinterpret_cast<u8 *>(tile_buffer);
+            bottom_right_destination = tile_buffer_for_bottom
+                + has_right_tile_for_draw + 0x20;
+            bottom_right_glyph = glyph + 24;
+            CpuFastSet(bottom_right_glyph, bottom_right_destination, 8);
+        }
+    }
+
+    goto return_glyph_width;
+
+draw_unaligned:
+    DrawCharacterGlyphTo2DGfxBufferUnaligned(packed_size, tile_buffer,
+        x_position, y_position, glyph);
+
+return_glyph_width:
+    result = glyph_width;
+    goto return_result;
+
+invalid_glyph:
+    result = 0;
+
+return_result:
+    return result;
+}
+
+// The extended palette compositor immediately follows this function in the
+// original ROM. It remains in the raw block until its standard C++ form can
+// reproduce every register allocation and instruction byte exactly.
+
 // Fill every tile in a packed two-dimensional 4bpp buffer with one palette
 // nibble. The size word carries tile width in its low half and height in its
 // high half.
