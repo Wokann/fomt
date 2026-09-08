@@ -308,8 +308,9 @@ func_0805EE44:
     jp_code_0803ee_func func_0807CD30, 0x7CD30, 0x7D910
     jp_code_0803ee_func func_0807DDA8, 0x7D910, 0x7D960
     jp_code_0803ee_func func_0807D960, 0x7D960, 0x7D9A4
-    jp_code_0803ee_func func_0807DE3C, 0x7D9A4, 0x7E020
-    jp_code_0803ee_func func_0807E4B8, 0x7E020, 0x7E9EC
+    jp_code_0803ee_func func_0807DE3C, 0x7D9A4, 0x7DFE0
+    jp_code_0803ee_func func_0807DFE0, 0x7DFE0, 0x7E020
+    jp_code_0803ee_func func_0807E020, 0x7E020, 0x7E9EC
     jp_code_0803ee_func func_0807EE84, 0x7E9EC, 0x7F158
     jp_code_0803ee_func func_0807F5F0, 0x7F158, 0x7F1EC
     jp_code_0803ee_func func_0807F684, 0x7F1EC, 0x7F250
@@ -121677,6 +121678,8 @@ func_0807D194: @ 0x0807D194
 .L0807D1C0: .4byte vtable_unk_080E7C14
 .L0807D1C4: .4byte 0x000006A4
 .L0807D1C8:
+	thumb_func_start func_0807D1C8
+func_0807D1C8: @ 0x0807D1C8
 	.byte 0x00, 0xB5, 0x03, 0x4A, 0x42, 0x60, 0x4B, 0xF0
 	.byte 0xC7, 0xF8, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x14, 0x7C, 0x0E, 0x08
 
