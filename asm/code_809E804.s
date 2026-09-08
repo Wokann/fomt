@@ -32878,7 +32878,7 @@ func_080AE894: @ 0x080AE894
 	adds r4, #0xc
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	movs r2, #1
 	mov sl, r2
 	add r0, sp, #0x70
@@ -36851,7 +36851,7 @@ func_080B0708: @ 0x080B0708
 	adds r4, #0xc
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldrb r0, [r5]
 	mov r8, r4
 	cmp r0, #9
@@ -40292,7 +40292,7 @@ func_080B2114: @ 0x080B2114
 	lsls r2, r2, #1
 	adds r1, r1, r2
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	mov r3, sb
 	cmp r3, #1
 	beq .L080B2354
@@ -42035,7 +42035,7 @@ func_080B2114: @ 0x080B2114
 	lsls r3, r3, #1
 	adds r1, r1, r3
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r0, [sp, #0xf8]
 	cmp r0, #1
 	beq .L080B309C
@@ -42310,7 +42310,7 @@ func_080B2114: @ 0x080B2114
 	lsls r6, r6, #1
 	adds r1, r1, r6
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	mov r7, sb
 	cmp r7, #1
 	beq .L080B32AA
@@ -50371,7 +50371,7 @@ func_080B7164: @ 0x080B7164
 	ldr r0, [sp, #0x20]
 	adds r1, #0xf0
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	mov r7, sl
 	lsls r6, r7, #1
 	mov r0, sb
@@ -50592,7 +50592,7 @@ func_080B7164: @ 0x080B7164
 	ldr r0, [sp, #0x30]
 	adds r1, #4
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	mov r0, sb
 	movs r1, #2
 	ldr r2, [sp, #0x58]
@@ -62634,7 +62634,7 @@ func_080BD064: @ 0x080BD064
 	adds r4, #0xc
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	movs r2, #1
 	mov sl, r2
 	add r0, sp, #0x48
@@ -65623,7 +65623,7 @@ func_080BE728: @ 0x080BE728
 	adds r4, #0xc
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldrb r0, [r5]
 	mov r8, r4
 	cmp r0, #9
@@ -68396,7 +68396,7 @@ func_080BF764: @ 0x080BF764
 	lsls r2, r2, #1
 	adds r1, r1, r2
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	str r5, [sp, #0xf4]
 	ldr r3, [sp, #0xc8]
 	cmp r3, #1
@@ -69315,7 +69315,7 @@ func_080BF764: @ 0x080BF764
 	lsls r3, r3, #1
 	adds r1, r1, r3
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r0, [sp, #0xdc]
 	cmp r0, #1
 	beq .L080C04D8
@@ -69589,7 +69589,7 @@ func_080BF764: @ 0x080BF764
 	lsls r6, r6, #1
 	adds r1, r1, r6
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r7, [sp, #0xc8]
 	cmp r7, #1
 	beq .L080C06E6
@@ -71623,7 +71623,7 @@ func_080C16D4: @ 0x080C16D4
 	adds r4, #0xc
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	movs r2, #1
 	mov sl, r2
 	add r0, sp, #0x48
@@ -76086,7 +76086,7 @@ func_080C38E4: @ 0x080C38E4
 	adds r4, #0xc
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldrb r0, [r5]
 	mov r8, r4
 	cmp r0, #9
@@ -80720,7 +80720,7 @@ func_080C5A6C: @ 0x080C5A6C
 	ldr r0, [sp, #0x40]
 	mov r1, sb
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	movs r1, #1
 	mov sl, r1
 	add r0, sp, #0x44
@@ -81520,7 +81520,7 @@ func_080C608C: @ 0x080C608C
 	lsls r2, r2, #1
 	adds r1, r1, r2
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	str r5, [sp, #0x124]
 	ldr r3, [sp, #0xf4]
 	cmp r3, #2
@@ -83211,7 +83211,7 @@ func_080C608C: @ 0x080C608C
 	movs r3, #0x88
 	lsls r3, r3, #1
 	adds r1, r1, r3
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r0, [sp, #0x104]
 	cmp r0, #2
 	beq .L080C727E
@@ -83485,7 +83485,7 @@ func_080C608C: @ 0x080C608C
 	lsls r6, r6, #1
 	adds r1, r1, r6
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r7, [sp, #0xf4]
 	cmp r7, #2
 	beq .L080C7492
@@ -85823,7 +85823,7 @@ func_080C85A0: @ 0x080C85A0
 	adds r5, r7, r3
 	adds r1, r5, #0
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r1, .L080C87E8 @ =gText_ShopCommon_GoldUnit
 	movs r0, #1
 	mov sb, r0
@@ -91433,7 +91433,7 @@ func_080CB090: @ 0x080CB090
 	adds r4, #0x10
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	adds r0, r7, #0
 	bl strlen
 	lsls r0, r0, #3
@@ -93922,7 +93922,7 @@ func_080CC310: @ 0x080CC310
 	adds r4, #0x10
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	adds r0, r7, #0
 	bl strlen
 	lsls r0, r0, #3

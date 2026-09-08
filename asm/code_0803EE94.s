@@ -25,9 +25,7 @@
     jp_code_0803ee_func func_0804E0F8, 0x4DF20, 0x4E200
     jp_code_0803ee_func func_0804E3D8, 0x4E200, 0x4E2D4
     jp_code_0803ee_func func_0804E4AC, 0x4E2D4, 0x4E5C8
-    jp_code_0803ee_func func_0804E7A0, 0x4E5C8, 0x4E604
-    jp_code_0803ee_func func_0804E7DC, 0x4E604, 0x4E718
-    @ The two text-stream walkers at 0x0804E8F0 are rebuilt from
+    @ The 2D fillers and text-stream walkers are rebuilt from
     @ src/font_draw.cc for both regions.
     .section .text.font_draw_after
     jp_code_0803ee_func func_0804E9C8, 0x4E7F0, 0x4E7F4
@@ -28686,186 +28684,8 @@ func_0804E5AC: @ 0x0804E5AC
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_0804E7A0
-func_0804E7A0: @ 0x0804E7A0
-	push {lr}
-	sub sp, #4
-	movs r3, #0xf
-	ands r3, r2
-	lsls r2, r3, #4
-	orrs r3, r2
-	lsls r2, r3, #8
-	orrs r3, r2
-	lsls r2, r3, #0x10
-	orrs r3, r2
-	lsls r2, r0, #0x10
-	lsrs r2, r2, #0x10
-	lsrs r0, r0, #0x10
-	lsls r0, r0, #5
-	muls r2, r0, r2
-	str r3, [sp]
-	lsrs r2, r2, #2
-	ldr r0, .L0804E7D8 @ =0x001FFFFF
-	ands r2, r0
-	movs r0, #0x80
-	lsls r0, r0, #0x11
-	orrs r2, r0
-	mov r0, sp
-	bl CpuFastSet
-	add sp, #4
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L0804E7D8: .4byte 0x001FFFFF
-
-	thumb_func_start func_0804E7DC
-func_0804E7DC: @ 0x0804E7DC
-	push {r4, r5, r6, r7, lr}
-	mov r7, sb
-	mov r6, r8
-	push {r6, r7}
-	sub sp, #4
-	mov r8, r1
-	adds r5, r2, #0
-	ldr r1, [sp, #0x20]
-	mov ip, r1
-	ldr r6, [sp, #0x24]
-	ldr r1, [sp, #0x28]
-	movs r2, #0xf
-	ands r1, r2
-	lsls r2, r1, #4
-	orrs r1, r2
-	lsls r2, r1, #8
-	orrs r1, r2
-	lsls r2, r1, #0x10
-	orrs r2, r1
-	mov sb, r2
-	lsls r1, r0, #0x10
-	lsrs r2, r1, #0x10
-	lsrs r0, r0, #0x10
-	lsls r1, r2, #3
-	lsls r4, r0, #3
-	cmp r5, #0
-	bne .L0804E840
-	cmp r3, #0
-	bne .L0804E840
-	cmp ip, r1
-	blo .L0804E840
-	cmp r6, r4
-	blo .L0804E840
-	lsls r0, r0, #5
-	muls r2, r0, r2
-	mov r7, sb
-	str r7, [sp]
-	lsrs r2, r2, #2
-	ldr r0, .L0804E83C @ =0x001FFFFF
-	ands r2, r0
-	movs r0, #0x80
-	lsls r0, r0, #0x11
-	orrs r2, r0
-	mov r0, sp
-	mov r1, r8
-	bl CpuFastSet
-	b .L0804E8D8
-	.align 2, 0
-.L0804E83C: .4byte 0x001FFFFF
-.L0804E840:
-	cmp r5, r2
-	bhs .L0804E8D8
-	cmp r3, r0
-	bhs .L0804E8D8
-	mov r7, ip
-	adds r0, r5, r7
-	cmp r0, r1
-	blo .L0804E854
-	subs r1, r1, r5
-	mov ip, r1
-.L0804E854:
-	adds r0, r3, r6
-	cmp r0, r4
-	blo .L0804E85C
-	subs r6, r4, r3
-.L0804E85C:
-	movs r1, #0
-	movs r4, #7
-	adds r0, r5, #0
-	ands r0, r4
-	cmp r0, #0
-	bne .L0804E86A
-	movs r1, #1
-.L0804E86A:
-	cmp r1, #0
-	beq .L0804E8D8
-	movs r1, #0
-	adds r0, r3, #0
-	ands r0, r4
-	cmp r0, #0
-	bne .L0804E87A
-	movs r1, #1
-.L0804E87A:
-	cmp r1, #0
-	beq .L0804E8D8
-	movs r1, #0
-	mov r0, ip
-	ands r0, r4
-	cmp r0, #0
-	bne .L0804E88A
-	movs r1, #1
-.L0804E88A:
-	cmp r1, #0
-	beq .L0804E8D8
-	movs r1, #0
-	adds r0, r6, #0
-	ands r0, r4
-	cmp r0, #0
-	bne .L0804E89A
-	movs r1, #1
-.L0804E89A:
-	cmp r1, #0
-	beq .L0804E8D8
-	lsrs r6, r6, #3
-	lsrs r0, r3, #3
-	muls r0, r2, r0
-	lsrs r1, r5, #3
-	adds r0, r0, r1
-	lsls r0, r0, #5
-	mov r1, r8
-	adds r5, r1, r0
-	lsls r7, r2, #5
-	ldr r4, .L0804E8E8 @ =0x3FFFFFF8
-	mov r2, ip
-	ands r4, r2
-	ldr r0, .L0804E8EC @ =0x001FFFFF
-	ands r4, r0
-	movs r0, #0x80
-	lsls r0, r0, #0x11
-	mov r8, r0
-.L0804E8C0:
-	mov r1, sb
-	str r1, [sp]
-	mov r0, sp
-	adds r1, r5, #0
-	mov r2, r8
-	orrs r2, r4
-	bl CpuFastSet
-	adds r5, r5, r7
-	subs r6, #1
-	cmp r6, #0
-	bne .L0804E8C0
-.L0804E8D8:
-	add sp, #4
-	pop {r3, r4}
-	mov r8, r3
-	mov sb, r4
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L0804E8E8: .4byte 0x3FFFFFF8
-.L0804E8EC: .4byte 0x001FFFFF
-
-	@ The ordinary and extended Shift-JIS text stream walkers at
-	@ 0x0804E8F0 are rebuilt from src/font_draw.cc.
+	@ The full-buffer and rectangle 2D fillers at 0x0804E7A0 are rebuilt
+	@ from src/font_draw.cc for both regions.
 	.section .text.font_draw_after
 
 	thumb_func_start func_0804E9C8
@@ -29652,7 +29472,7 @@ func_0804F060: @ 0x0804F060
 	ldr r0, [sp]
 	adds r1, #4
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r1, [r4, #8]
 	rsbs r0, r1, #0
 	orrs r0, r1
@@ -29709,7 +29529,7 @@ func_0804F0E0: @ 0x0804F0E0
 	adds r1, #4
 	movs r2, #0
 	str r3, [sp, #4]
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r1, [r4, #4]
 	rsbs r0, r1, #0
 	orrs r0, r1
@@ -30137,7 +29957,7 @@ func_0804F288: @ 0x0804F288
 	ldr r0, [sp, #8]
 	adds r1, #4
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	movs r0, #1
 .L0804F47A:
 	strb r0, [r5, #0xc]
@@ -33080,7 +32900,7 @@ func_08050B50: @ 0x08050B50
 	adds r4, r1, r2
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	adds r5, #1
 	cmp r6, #0
 	beq .L08050BF0
@@ -34123,7 +33943,7 @@ func_080516F0: @ 0x080516F0
 	ldr r0, [r0]
 	add r1, sp, #0x58
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	movs r0, #0xa2
 	lsls r0, r0, #4
 	add r0, sp
@@ -34403,7 +34223,7 @@ func_080516F0: @ 0x080516F0
 	ldr r0, [r0]
 	add r1, sp, #0x35c
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r1, .L08051D10 @ =gText_Frisbee_TournamentScoreboard
 	movs r2, #1
 	ldr r0, .L08051D14 @ =0x00000A34
@@ -50739,7 +50559,7 @@ func_08059FE0: @ 0x08059FE0
 	ldr r0, [r0]
 	add r1, sp, #0x30
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldrh r0, [r4, #0x20]
 	cmp r0, #0x27
 	bhi .L0805A1D0
@@ -50829,7 +50649,7 @@ func_08059FE0: @ 0x08059FE0
 	ldr r0, [r0]
 	add r1, sp, #0x334
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r1, .L0805A2C4 @ =gText_HorseRace_TicketPurchaseTitle
 	movs r6, #1
 	ldr r0, .L0805A2C8 @ =0x00000B44
@@ -50867,7 +50687,7 @@ func_08059FE0: @ 0x08059FE0
 	add r2, sp
 	ldr r1, [r2]
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r3, .L0805A2DC @ =0x00000B54
 	add r3, sp
 	ldr r3, [r3]
@@ -51098,7 +50918,7 @@ func_0805A3F0: @ 0x0805A3F0
 	ldr r0, [r6]
 	adds r1, r5, #0
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	mov r0, r8
 	adds r0, #4
 	mov r8, r0
@@ -58169,7 +57989,7 @@ func_0805DC24: @ 0x0805DC24
 	ldr r0, [r7]
 	add r1, sp, #0x50
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	movs r0, #0xae
 	lsls r0, r0, #4
 	add r0, r8
@@ -65092,7 +64912,7 @@ func_0805FF14: @ 0x0805FF14
 	ldr r0, [r0]
 	ldr r1, [sp, #0x20c]
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r3, [sp, #0x1c4]
 	ldr r7, .L080614A0 @ =0x0000058C
 	adds r0, r3, r7
@@ -65682,7 +65502,7 @@ func_0805FF14: @ 0x0805FF14
 	ldr r0, [r0]
 	mov r1, sb
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r2, [sp, #0x1c4]
 	ldr r3, .L08061954 @ =0x0000058C
 	adds r0, r2, r3
@@ -66137,7 +65957,7 @@ func_0805FF14: @ 0x0805FF14
 	ldr r0, [r0]
 	mov r1, sb
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r0, [sp, #0x1dc]
 	bl func_0809EACC
 	adds r1, r0, #0
@@ -66562,7 +66382,7 @@ sub_08061E00: @ 0x08061E00
 	ldr r0, [r0]
 	ldr r1, [sp, #0x224]
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r0, [r6]
 	adds r0, r0, r7
 	bl GetName__C6Animal
@@ -67030,7 +66850,7 @@ sub_08061E00: @ 0x08061E00
 	ldr r0, [r0]
 	mov r1, sb
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r0, [sp, #0x1e0]
 	bl GetName__C6Animal
 	adds r1, r0, #0
@@ -68656,7 +68476,7 @@ func_08062E9C: @ 0x08062E9C
 	adds r4, r1, r2
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r1, .L08062FB0 @ =gText_FarmStatus_Healthy
 	add r0, sp, #0x18
 	strh r5, [r0]
@@ -69048,7 +68868,7 @@ func_08062E9C: @ 0x08062E9C
 	ldr r0, [sp, #0x30]
 	ldr r1, [sp, #0xc8]
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r1, .L0806326C @ =gText_FarmStatus_Sick
 	add r0, sp, #0x34
 	strh r4, [r0]
@@ -70737,7 +70557,7 @@ func_08063E04: @ 0x08063E04
 	adds r4, r4, r1
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	add r0, sp, #8
 	strh r5, [r0]
 	strh r6, [r0, #2]
@@ -75049,7 +74869,7 @@ sub_08065B14: @ 0x08065B14
 	ldr r2, .L08065EBC @ =0x00000C4C
 	adds r1, r1, r2
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r3, [sp, #0xf0]
 	ldr r7, .L08065EC0 @ =0x0000058C
 	adds r0, r3, r7
@@ -84200,7 +84020,7 @@ func_0806A1F4: @ 0x0806A1F4
 	adds r4, r7, r1
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r1, .L0806A488 @ =gAnimalStatusScreenText
 	movs r2, #1
 	mov sb, r2
@@ -84696,7 +84516,7 @@ func_0806A1F4: @ 0x0806A1F4
 	ldr r0, [r0]
 	ldr r1, [sp, #0x36c]
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r1, .L0806A7CC @ =gAnimalStatusScreenText + 0x18
 	movs r3, #1
 	mov sb, r3
@@ -86876,7 +86696,7 @@ func_0806A1F4: @ 0x0806A1F4
 	ldr r0, [r0]
 	adds r1, #4
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	mov r0, sb
 	bl GetName__C6Animal
 	adds r2, r0, #0
@@ -87365,7 +87185,7 @@ func_0806A1F4: @ 0x0806A1F4
 	ldr r0, [r0]
 	adds r1, #4
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	mov r0, sb
 	bl GetName__C6Animal
 	adds r2, r0, #0
@@ -87855,7 +87675,7 @@ func_0806A1F4: @ 0x0806A1F4
 	ldr r0, [r0]
 	adds r1, #4
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	mov r0, sb
 	bl GetName__C6Animal
 	adds r2, r0, #0
@@ -97824,7 +97644,7 @@ func_08070CA4: @ 0x08070CA4
 	ldr r0, [sp, #4]
 	adds r1, #4
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r3, .L08070DA0 @ =0x000005BC
 	adds r1, r5, r3
 	adds r4, r4, r6
@@ -105173,7 +104993,7 @@ func_080722DC: @ 0x080722DC
 	add r4, sb
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r0, [r7]
 	movs r7, #0x82
 	lsls r7, r7, #3
@@ -105426,7 +105246,7 @@ func_080722DC: @ 0x080722DC
 	add r4, sb
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r0, [r7]
 	movs r7, #0xbe
 	lsls r7, r7, #3
@@ -105679,7 +105499,7 @@ func_080722DC: @ 0x080722DC
 	add r4, sb
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r0, [r7]
 	movs r7, #0xbe
 	lsls r7, r7, #3
@@ -110147,7 +109967,7 @@ func_08076BFC: @ 0x08076BFC
 	adds r4, #0xc
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r0, [sp, #0x58]
 	bl strlen
 	adds r1, r0, #0
@@ -111173,7 +110993,7 @@ func_080773E8: @ 0x080773E8
 	adds r1, r4, #0
 	adds r1, #0x14
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r0, .L08077480 @ =0x00000714
 	adds r1, r4, r0
 	movs r0, #0x80
@@ -111839,7 +111659,7 @@ func_080779B4: @ 0x080779B4
 	ldr r0, [sp]
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	adds r0, r4, #0
 	adds r1, r7, #0
 	movs r2, #0xe0
@@ -111889,7 +111709,7 @@ func_08077A1C: @ 0x08077A1C
 	adds r1, r5, #0
 	adds r1, #0x14
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	movs r3, #0xe5
 	lsls r3, r3, #3
 	adds r2, r5, r3
@@ -113964,7 +113784,7 @@ func_08078E40: @ 0x08078E40
 	adds r1, r6, #0
 	adds r1, #0x14
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r1, .L08079010 @ =0x00000714
 	adds r4, r6, r1
 	ldr r1, .L08079014 @ =gUnk_08527094
@@ -115613,7 +115433,7 @@ func_08079A64: @ 0x08079A64
 	ldr r0, [sp, #0x70]
 	adds r1, r6, #0
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r1, .L08079DA8 @ =0x0000084E
 	adds r0, r5, r1
 	movs r2, #0
@@ -115729,7 +115549,7 @@ func_08079A64: @ 0x08079A64
 	ldr r0, [sp, #0x78]
 	add r1, sp, #0x30
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	mov r0, r8
 	strh r7, [r0]
 	mov r1, sl
@@ -115834,7 +115654,7 @@ func_08079DC0: @ 0x08079DC0
 	adds r4, #0x14
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	cmp r7, #0
 	blt .L08079E6A
 	ldr r0, .L08079EAC @ =0x00000A5C
@@ -116285,7 +116105,7 @@ func_08079F8C: @ 0x08079F8C
 	ldr r0, [sp, #0x80]
 	adds r1, r7, #0
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r1, [sp, #0x98]
 	asrs r0, r1, #0x10
 	cmp r4, r0
@@ -116373,7 +116193,7 @@ func_08079F8C: @ 0x08079F8C
 	ldr r0, [sp, #0x88]
 	add r1, sp, #0x34
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	mov r3, r8
 	strh r3, [r6]
 	mov r0, sl
@@ -116790,7 +116610,7 @@ func_0807A554: @ 0x0807A554
 	adds r4, #0x14
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	cmp r6, #0
 	blt .L0807A5EE
 	ldr r3, .L0807A630 @ =0x00000A5C
@@ -118668,7 +118488,7 @@ func_0807B3B0: @ 0x0807B3B0
 	ldr r0, [sp, #0x2c]
 	adds r1, #4
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r0, [sp, #0x50]
 	bl GetName__C6Animal
 	adds r2, r0, #0
@@ -120086,7 +119906,7 @@ func_0807BEC8: @ 0x0807BEC8
 	ldr r0, [sp, #0x6c]
 	adds r1, #4
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	mov r0, sb
 	cmp r0, #1
 	bls .L0807BFD8
@@ -132653,7 +132473,7 @@ func_0808268C: @ 0x0808268C
 	ldr r0, [sp, #0x30]
 	adds r1, #4
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r0, [r4]
 	lsls r1, r0, #1
 	adds r1, r1, r0
@@ -135828,7 +135648,7 @@ func_08084228: @ 0x08084228
 	ldr r0, [sp, #0x44]
 	adds r1, #4
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	adds r1, r4, r6
 	movs r0, #0xe4
 	lsls r0, r0, #3
@@ -137952,7 +137772,7 @@ func_0808586C: @ 0x0808586C
 	ldr r3, .L08085A14 @ =0x00000774
 	adds r1, r1, r3
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r0, [sp, #0x50]
 	cmp r0, #0x1e
 	bne .L08085A18
@@ -140263,7 +140083,7 @@ func_08086A08: @ 0x08086A08
 	ldr r0, [sp, #0x7c]
 	adds r1, #4
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r0, [sp, #0x1c]
 	cmp r0, #0
 	beq .L08086C1E
@@ -167528,7 +167348,7 @@ func_08095580: @ 0x08095580
 	lsls r2, r2, #2
 	adds r1, r1, r2
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	ldr r3, [sp, #0x58]
 	adds r2, r3, r6
 	movs r0, #0xda
@@ -173124,7 +172944,7 @@ func_0809800C: @ 0x0809800C
 	ldr r0, [r7]
 	add r1, sp, #0x54
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	mov r2, r8
 	strh r2, [r6]
 	mov r3, sb
@@ -174627,7 +174447,7 @@ func_08098CE8: @ 0x08098CE8
 	ldr r0, [r0]
 	add r1, sp, #0x50
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	add r0, sp, #0x9c
 	mov r1, sb
 	strh r1, [r0]
@@ -175938,7 +175758,7 @@ func_0809964C: @ 0x0809964C
 	ldr r0, [r0]
 	add r1, sp, #0x54
 	movs r2, #0
-	bl func_0804E7A0
+	bl Clear2DGfxBuffer
 	mov r3, sb
 	strh r3, [r6]
 	mov r0, sl

@@ -737,7 +737,7 @@ func_08003C80: @ 0x08003C80
     add r2, sp
     ldr r1, [r2]
     movs r2, #0
-    bl func_0804E7A0
+    bl Clear2DGfxBuffer
     movs r7, #0
     movs r3, #0xc
     mov sl, r3
@@ -3452,7 +3452,7 @@ func_08005278: @ 0x08005278
     ldr r0, [sp, #0x20]
     adds r1, r4, #0
     movs r2, #0
-    bl func_0804E7A0
+    bl Clear2DGfxBuffer
     movs r2, #0xc1
     lsls r2, r2, #2
     adds r4, r4, r2
@@ -3487,7 +3487,7 @@ func_08005278: @ 0x08005278
     ldr r0, [sp, #0x24]
     adds r1, r4, #0
     movs r2, #0
-    bl func_0804E7A0
+    bl Clear2DGfxBuffer
     movs r1, #0xe1
     lsls r1, r1, #2
     adds r4, r4, r1
@@ -4836,7 +4836,7 @@ func_08005CDC: @ 0x08005CDC
     ldr r0, [sp, #0x20]
     adds r1, r7, #0
     movs r2, #0
-    bl func_0804E7A0
+    bl Clear2DGfxBuffer
     ldr r1, .L08005F18 @ =gText_NewGameNameEntry_NameLabel
     add r0, sp, #0x24
     strh r4, [r0]
@@ -5034,7 +5034,7 @@ func_08005CDC: @ 0x08005CDC
     ldr r4, [sp, #0x40]
     adds r1, r4, #0
     movs r2, #0
-    bl func_0804E7A0
+    bl Clear2DGfxBuffer
     ldr r0, .L08006078 @ =0x000045FC
     add r0, sl
     ldr r1, [r0]
@@ -5488,7 +5488,7 @@ func_0800637C: @ 0x0800637C
     str r3, [sp, #8]
     adds r1, r4, #0
     movs r2, #0
-    bl func_0804E7DC
+    bl Clear2DGfxBufferRect
     ldr r0, .L08006414 @ =0x0000461C
     adds r1, r5, r0
     add r0, sp, #0x20
@@ -5704,7 +5704,7 @@ func_080064E8: @ 0x080064E8
     ldr r0, [sp, #0x14]
     adds r1, #0xc
     movs r2, #0
-    bl func_0804E7A0
+    bl Clear2DGfxBuffer
     movs r0, #0x8c
     lsls r0, r0, #7
     add r0, sl
@@ -5910,7 +5910,7 @@ func_080064E8: @ 0x080064E8
     ldr r0, [sp, #0x24]
     ldr r1, [sp, #0x50]
     movs r2, #0
-    bl func_0804E7A0
+    bl Clear2DGfxBuffer
     movs r0, #0x8c
     lsls r0, r0, #7
     add r0, sl

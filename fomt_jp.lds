@@ -217,7 +217,7 @@ SECTIONS
         src/script_engine.o(.text);
         . = 0x3F704; /* JP ROM 0x0803F704, independently matched */
         asm/code_0803EE94.o(.text);
-        . = 0x4E718; /* Shared Shift-JIS text stream walkers. */
+        . = 0x4E5C8; /* Shared 2D tile-buffer fillers and Shift-JIS renderers. */
         src/font_draw.o(.text);
         . = 0x4E7F0; asm/code_0803EE94.o(.text.font_draw_after);
         . = 0x50188; /* JP/US-shared nonzero UI-state setter. */

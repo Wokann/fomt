@@ -19,6 +19,9 @@ i32 DrawCharacterGlyphTo2DGfxBuffer(u32 size, void *buffer, i32 x, i32 y,
 // original linker label lets normal C++ callers use its semantic declaration.
 i32 DrawCharacterGlyphTo2DGfxBufferExt(u32 size, void *buffer, i32 x, i32 y,
     i32 character, i32 foreground, i32 background) asm("func_0804E5AC");
+void Clear2DGfxBuffer(u32 size, void *buffer, u32 color);
+void Clear2DGfxBufferRect(u32 size, void *buffer, u32 x, u32 y, u32 width,
+    u32 height, u32 color);
 void DrawStringTo2DGfxBuffer(u32 size, void *buffer, i32 x, i32 y,
     u8 const *string);
 void DrawStringTo2DGfxBufferExt(u32 size, void *buffer, i32 x, i32 y,
