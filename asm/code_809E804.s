@@ -450,6 +450,9 @@
     jp_code_809_entry func_080AD370, func_080AD8C4, 0x74
     jp_code_809_entry func_080AD2FC, func_080AD8C4, 0x0
     jp_code_809_entry func_080AD1B4, func_080AD77C, 0x0
+
+    @ Exact JP entry point referenced by the raw table at 0x080E8500.
+    jp_code_809_entry func_080B3640, func_080B3A28, 0x1E4
     .else
 
     .INCLUDE "asm/macro.inc"

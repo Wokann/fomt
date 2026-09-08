@@ -4168,4 +4168,26 @@ extern RawVTableFunction const vtable_unk_080E8440[]
 #endif
     };
 
+#if defined(REGION_JP)
+extern void func_080B3640(void);
+extern void func_080B3C3C(void);
+#else
+extern void func_080E4564(void);
+#endif
+
+// Preserve this three-slot region-dependent table without assigning semantics
+// to the entries before the corresponding class implementation is recovered.
+extern RawVTableFunction const vtable_unk_080E8500[]
+    SECTION(".rodata.vtable_8500") = {
+#if defined(REGION_JP)
+        nullptr,
+        func_080B3640,
+        func_080B3C3C,
+#else
+        nullptr,
+        nullptr,
+        func_080E4564,
+#endif
+    };
+
 EXTERN_C_END
