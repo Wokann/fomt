@@ -327,6 +327,9 @@ extern void func_080A3338(void);
 extern void func_080A36C4(void);
 extern void func_080A31E0(void);
 extern void func_080E3980(void);
+extern void func_080E39A8(void);
+extern void func_080A372C(void);
+extern void func_080A41EC(void);
 #else
 extern void func_0803F8DC(void);
 extern void func_0804EA80(void);
@@ -620,6 +623,10 @@ extern void func_080A3C40(void);
 extern void func_080A39FC(void);
 extern void func_080A3C8C(void);
 extern void func_080A3900(void);
+extern void func_080E41E8(void);
+extern void func_080A37A8(void);
+extern void func_080E4210(void);
+extern void func_080A3CF4(void);
 #endif
 extern void func_080E1FAC(void);
 extern void func_080E2018(void);
@@ -3634,6 +3641,30 @@ extern RawVTableFunction const vtable_unk_080E82A8[]
 #else
         func_080A3C8C,
         func_080A3900,
+#endif
+    };
+
+// The ROM places two four-word callback groups consecutively here. Keep the
+// groups in one array so their physical order and the JP null final slot stay
+// explicit without inferring an unverified class layout.
+extern RawVTableFunction const vtable_unk_080E82B8[]
+    SECTION(".rodata.vtable_82b8") = {
+        nullptr,
+        nullptr,
+#if defined(REGION_JP)
+        func_080E39A8,
+        func_080A372C,
+        nullptr,
+        nullptr,
+        func_080A41EC,
+        nullptr,
+#else
+        func_080E41E8,
+        func_080A37A8,
+        nullptr,
+        nullptr,
+        func_080E4210,
+        func_080A3CF4,
 #endif
     };
 
