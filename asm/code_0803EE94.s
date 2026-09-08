@@ -194,6 +194,11 @@ func_0805EE44:
     .4byte gText_IntroScene_OldManWaitsForLetter
     .incbin "baserom_jp.gba", 0x5F8F8, (0x5F8FC - 0x5F8F8)
     jp_code_0803ee_func func_0805FBB8, 0x5F8FC, 0x5FABC
+    @ Exact JP entry points referenced by the reconstructed virtual tables.
+    .global func_0805FA48
+    .thumb_set func_0805FA48, func_0805FBB8 + 0x14C
+    .global func_0805FA88
+    .thumb_set func_0805FA88, func_0805FBB8 + 0x18C
     jp_code_0803ee_func func_0805FD78, 0x5FABC, 0x5FC58
     jp_code_0803ee_func func_0805FF14, 0x5FC58, 0x61B44
     jp_code_0803ee_func sub_08061E00, 0x61B44, 0x63B3C
