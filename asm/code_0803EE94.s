@@ -8850,7 +8850,7 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r0, r0, r2
 	bl GetUpgradeLevel__C9FarmHouse
 	ldr r2, [r6]
-	ldr r1, .L08043F78 @ =gUnk_080F9EF4
+	ldr r1, .L08043F78 @ =gFarmHouseBedXPositions
 	lsls r0, r0, #1
 	adds r0, r0, r1
 	ldrh r4, [r0]
@@ -8868,7 +8868,7 @@ func_0803F8DC: @ 0x0803F8DC
 	bl func_08012064
 	bl .L08045572
 	.align 2, 0
-.L08043F78: .4byte gUnk_080F9EF4
+.L08043F78: .4byte gFarmHouseBedXPositions
 .L08043F7C:
 	adds r4, r5, #0
 	adds r4, #0x24

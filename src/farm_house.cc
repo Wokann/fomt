@@ -2,6 +2,12 @@
 
 #include <stdlib.h>
 
+u16 const gFarmHouseBedXPositions[3] = {
+    143,
+    263,
+    327,
+};
+
 FarmHouse::FarmHouse()
     : upgrade_level(0),
       window_style(0),

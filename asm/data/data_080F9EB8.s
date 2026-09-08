@@ -5,7 +5,7 @@
     .incbin "baserom_jp.gba", 0xF973A, (0xF973C - 0xF973A)
 
     .section .rodata.script_engine_ui_error_trailer_after
-    .incbin "baserom_jp.gba", 0xF9750, (0xF97DC - 0xF9750)
+    .incbin "baserom_jp.gba", 0xF9756, (0xF97DC - 0xF9756)
 
     .section .rodata.name_entry_preset_animal_names_trailer_prefix
     .incbin "baserom_jp.gba", 0xF996C, (0xF9994 - 0xF996C)
@@ -505,9 +505,7 @@ gUnk_08118CF4:
 
 	.section .rodata.localized_data_suffix
 
-	.global gUnk_080F9EF4
-gUnk_080F9EF4:
-	.incbin "baserom_us.gba", 0xF9EF4, 0x48
+	.incbin "baserom_us.gba", 0xF9EFA, (0xF9F3C - 0xF9EFA)
 
 	.global gUnk_080F9F3C
 gUnk_080F9F3C:

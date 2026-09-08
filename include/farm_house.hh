@@ -103,6 +103,9 @@ struct FarmHouse
     /* +20C */ Unk_0800BC58 unk;
 };
 
+// PlacePlayerAtFarmhouseBed indexes this by the current house upgrade level.
+extern u16 const gFarmHouseBedXPositions[3];
+
 // func_080A5AB0 reads the destination tile and source pointer from these
 // records.  The two bytes after destination_tile are compiler alignment for
 // the pointer, not an independently meaningful ROM field.
