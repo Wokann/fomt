@@ -574,7 +574,8 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7dac);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7dbc);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7dc8);
-. = ALIGN(4); asm/vtables.o(.rodata.080E7218);
+. = ALIGN(4); src/vtables.o(.rodata.vtable_7dd8);
+. = ALIGN(4); asm/vtables.o(.rodata.080E7224);
 
         . = 0xE7A40; /* JP data_080E8610 begins after the C++ table region. */
         src/crt0_data.o(.rodata);

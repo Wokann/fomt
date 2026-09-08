@@ -424,7 +424,8 @@ func_080926A4:
     .incbin "baserom_jp.gba", 0x92170, (0x92538 - 0x92170)
     .4byte gText_GiftWrap_EmptyDescription
     jp_code_0803ee_func func_08092A70, 0x9253C, 0x9279C
-    jp_code_0803ee_func func_08092CD0, 0x9279C, 0x92CEC
+    jp_code_0803ee_func func_08092CD0, 0x9279C, 0x92CAC
+    jp_code_0803ee_func func_08092CAC, 0x92CAC, 0x92CEC
     jp_code_0803ee_func func_08093220, 0x92CEC, 0x92DD4
     jp_code_0803ee_func func_08093308, 0x92DD4, 0x93594
     jp_code_0803ee_func func_08093AC8, 0x93594, 0x935A0
