@@ -569,6 +569,10 @@ func_080926A4:
     jp_code_0803ee_entry func_0809421C, func_08094648, 0x110
     jp_code_0803ee_entry func_08094218, func_08094648, 0x10C
 
+    @ Exact JP entry points referenced by the raw table at 0x080E823C.
+    jp_code_0803ee_entry func_08099F50, func_0809A3E0, 0x138
+    jp_code_0803ee_entry func_08099F90, func_0809A3E0, 0x178
+
     @ JP entries referenced by static US callers.
     .global func_0805E99C
     .thumb_set func_0805E99C, func_0803F8DC + 0x1EFDC
