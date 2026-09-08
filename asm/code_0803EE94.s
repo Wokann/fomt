@@ -7559,7 +7559,7 @@ func_0803F8DC: @ 0x0803F8DC
 	adds r1, r5, r0
 	bl .L080454B2
 	.align 2, 0
-.L080434A8: .4byte gUnk_080F9EE0
+.L080434A8: .4byte gSpouseGiftArticleSelectionEntries
 .L080434AC:
 	subs r1, r1, r0
 	adds r2, #4
