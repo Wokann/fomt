@@ -387,7 +387,9 @@ func_0808BC14:
 func_0808C8F4:
     .incbin "baserom_jp.gba", 0x8C434, (0x8C50C - 0x8C434)
     .4byte gText_Shelf_EmptyDescription
-    .incbin "baserom_jp.gba", 0x8C510, (0x8EAA8 - 0x8C510)
+    .incbin "baserom_jp.gba", 0x8C510, (0x8E848 - 0x8C510)
+    jp_code_0803ee_func func_0808E848, 0x8E848, 0x8E888
+    jp_code_0803ee_func func_0808E888, 0x8E888, 0x8EAA8
     .global func_0808EF68
     .thumb_func
 func_0808EF68:
