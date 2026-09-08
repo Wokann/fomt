@@ -159,6 +159,18 @@ struct EntityUiResourceSelectorLargeStorage
     EntityUiResourceSelectorDetailEntry detail_storage[108];
 };
 
+// This physical selector has one null choice and four real tables. Its backing
+// records are contiguous in ROM, so one aggregate preserves their order.
+struct EntityUiResourceSelectorFiveChoiceStorage
+{
+    EntityUiResourceSelectorDescriptor descriptor;
+    EntityUiResourceSelectorTable const * const table_choices[5];
+    EntityUiResourceSelectorTable table_storage[4];
+    EntityUiResourceSelectorEntry entry_storage[22];
+    EntityUiResourceSelectorPayload payload_storage[15];
+    EntityUiResourceSelectorDetailEntry detail_storage[45];
+};
+
 struct EntityUiCallbackState
 {
     u8 unknown_00[0x10];
@@ -187,6 +199,7 @@ extern "C" char const gText_NotAvailable[8];
 extern "C" EntityUiResourceSelectorStorage const gUnk_080F33B8;
 extern "C" EntityUiResourceSelectorExtendedStorage const gUnk_080F3408;
 extern "C" EntityUiResourceSelectorLargeStorage const gUnk_080F35E4;
+extern "C" EntityUiResourceSelectorFiveChoiceStorage const gUnk_080F3FD8;
 
 extern "C" char const gCppRuntimeBadAlloc_EntityUiBeforeOffsets[];
 extern "C" char const gCppRuntimeError_EntityUiBeforeOffsets[];

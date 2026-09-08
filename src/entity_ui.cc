@@ -1201,3 +1201,133 @@ extern "C" EntityUiResourceSelectorLargeStorage const gUnk_080F35E4
 extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelectorLarge[]
     SECTION(".rodata.entity_ui_resource_selector") =
         "bad_alloc";
+
+#if defined(REGION_JP)
+extern "C" u32 func_0803DE18(void const * state);
+#else
+extern "C" u32 func_0803E1A4(void const * state);
+#endif
+
+// The next ROM object has five choices, of which the first is null. Keep its
+// tables, entry records, payloads, and detail records contiguous and ordered.
+extern "C" EntityUiResourceSelectorFiveChoiceStorage const gUnk_080F3FD8
+    SECTION(".rodata.entity_ui_resource_selector") = {
+        {
+#if defined(REGION_JP)
+            func_0803DE18,
+#else
+            func_0803E1A4,
+#endif
+            5,
+            gUnk_080F3FD8.table_choices,
+        },
+        {
+            nullptr,
+            &gUnk_080F3FD8.table_storage[0],
+            &gUnk_080F3FD8.table_storage[1],
+            &gUnk_080F3FD8.table_storage[2],
+            &gUnk_080F3FD8.table_storage[3],
+        },
+        {
+            { 7, 0, &gUnk_080F3FD8.entry_storage[0] },  // Choice 01.
+            { 3, 0, &gUnk_080F3FD8.entry_storage[7] },  // Choice 02.
+            { 11, 0, &gUnk_080F3FD8.entry_storage[10] }, // Choice 03.
+            { 1, 0, &gUnk_080F3FD8.entry_storage[21] }, // Choice 04.
+        },
+        {
+            // Table 01.
+            { 0x0000, &gUnk_080F3FD8.payload_storage[0] },
+            { 0x01A4, &gUnk_080F3FD8.payload_storage[1] },
+            { 0x01D2, &gUnk_080F3FD8.payload_storage[2] },
+            { 0x01D9, &gUnk_080F3FD8.payload_storage[3] },
+            { 0x0258, &gUnk_080F3FD8.payload_storage[4] },
+            { 0x025F, &gUnk_080F3FD8.payload_storage[5] },
+            { 0x028C, &gUnk_080F3FD8.payload_storage[0] },
+            // Table 02.
+            { 0x0000, &gUnk_080F3FD8.payload_storage[0] },
+            { 0x01A4, &gUnk_080F3FD8.payload_storage[12] },
+            { 0x0258, &gUnk_080F3FD8.payload_storage[0] },
+            // Table 03.
+            { 0x0000, &gUnk_080F3FD8.payload_storage[0] },
+            { 0x003C, &gUnk_080F3FD8.payload_storage[1] },
+            { 0x006A, &gUnk_080F3FD8.payload_storage[6] },
+            { 0x0083, &gUnk_080F3FD8.payload_storage[7] },
+            { 0x00F3, &gUnk_080F3FD8.payload_storage[8] },
+            { 0x011E, &gUnk_080F3FD8.payload_storage[9] },
+            { 0x01A7, &gUnk_080F3FD8.payload_storage[10] },
+            { 0x01C5, &gUnk_080F3FD8.payload_storage[11] },
+            { 0x01E7, &gUnk_080F3FD8.payload_storage[13] },
+            { 0x0258, &gUnk_080F3FD8.payload_storage[14] },
+            { 0x0268, &gUnk_080F3FD8.payload_storage[0] },
+            // Table 04.
+            { 0x0000, &gUnk_080F3FD8.payload_storage[0] },
+        },
+        {
+            { &gUnk_080F3FD8.detail_storage[0], 0x0002, 0x0088, 0x0050, 0x1010 },
+            { &gUnk_080F3FD8.detail_storage[2], 0x0005, 0x02B0, 0x00A0, 0x0005 },
+            { &gUnk_080F3FD8.detail_storage[7], 0x0002, 0x00DC, 0x0000, 0x0006 },
+            { nullptr, 0x0000, 0x0148, 0x0050, 0x0006 },
+            { &gUnk_080F3FD8.detail_storage[9], 0x0002, 0x0148, 0x0050, 0x0006 },
+            { &gUnk_080F3FD8.detail_storage[11], 0x0005, 0x04EC, 0x02C0, 0x0005 },
+            { &gUnk_080F3FD8.detail_storage[16], 0x0007, 0x04F8, 0x0000, 0x0007 },
+            { nullptr, 0x0000, 0x0078, 0x0078, 0x0029 },
+            { &gUnk_080F3FD8.detail_storage[23], 0x0007, 0x03E0, 0x00EA, 0x0007 },
+            { nullptr, 0x0000, 0x00C0, 0x008A, 0x000A },
+            { &gUnk_080F3FD8.detail_storage[30], 0x0005, 0x023C, 0x00E3, 0x0007 },
+            { &gUnk_080F3FD8.detail_storage[35], 0x0005, 0x0068, 0x02C0, 0x0005 },
+            { &gUnk_080F3FD8.detail_storage[40], 0x0002, 0x0100, 0x0050, 0x100F },
+            { nullptr, 0x0000, 0x0070, 0x0088, 0x040E },
+            { &gUnk_080F3FD8.detail_storage[42], 0x0003, 0x0190, 0x00A0, 0x0005 },
+        },
+        {
+            { 0x0110, 0x0002, 0x0078, 0x0003 },
+            { 0x0088, 0x0002, 0x0078, 0x0002 },
+            { 0x0002, 0x00D8, 0x0001, 0x0000 },
+            { 0x0018, 0x04E0, 0x0000, 0x0000 },
+            { 0x0019, 0x00F0, 0x0001, 0x0000 },
+            { 0x001A, 0x04EC, 0x0000, 0x0000 },
+            { 0x002E, 0x02E0, 0x0001, 0x0000 },
+            { 0x0003, 0x0050, 0x0001, 0x0000 },
+            { 0x0007, 0x0148, 0x0000, 0x0000 },
+            { 0x0004, 0x00DC, 0x0000, 0x0000 },
+            { 0x0007, 0x0000, 0x0001, 0x0000 },
+            { 0x0013, 0x00F0, 0x0001, 0x0000 },
+            { 0x0014, 0x04E0, 0x0000, 0x0000 },
+            { 0x0015, 0x00D8, 0x0001, 0x0000 },
+            { 0x002B, 0x02B0, 0x0000, 0x0000 },
+            { 0x002D, 0x00A0, 0x0001, 0x0000 },
+            { 0x0005, 0x0080, 0x0001, 0x0000 },
+            { 0x0006, 0x04E0, 0x0000, 0x0000 },
+            { 0x0007, 0x0098, 0x0001, 0x0000 },
+            { 0x000F, 0x0424, 0x0000, 0x0000 },
+            { 0x0014, 0x0118, 0x0001, 0x0000 },
+            { 0x0017, 0x03E0, 0x0000, 0x0000 },
+            { 0x0019, 0x00E8, 0x0001, 0x0000 },
+            { 0x0002, 0x0118, 0x0001, 0x0000 },
+            { 0x0005, 0x0424, 0x0000, 0x0000 },
+            { 0x000A, 0x0098, 0x0001, 0x0000 },
+            { 0x0022, 0x01D8, 0x0000, 0x0000 },
+            { 0x0026, 0x00F8, 0x0001, 0x0000 },
+            { 0x002A, 0x023C, 0x0000, 0x0000 },
+            { 0x002B, 0x00E3, 0x0001, 0x0000 },
+            { 0x0001, 0x00F8, 0x0001, 0x0000 },
+            { 0x0005, 0x01D8, 0x0000, 0x0000 },
+            { 0x0009, 0x0098, 0x0001, 0x0000 },
+            { 0x0018, 0x0068, 0x0000, 0x0000 },
+            { 0x001E, 0x0000, 0x0001, 0x0000 },
+            { 0x0013, 0x00F0, 0x0001, 0x0000 },
+            { 0x0015, 0x0090, 0x0000, 0x0000 },
+            { 0x0016, 0x00D8, 0x0001, 0x0000 },
+            { 0x0020, 0x0190, 0x0000, 0x0000 },
+            { 0x0022, 0x00A0, 0x0001, 0x0000 },
+            { 0x00C8, 0x0002, 0x0078, 0x0002 },
+            { 0x0100, 0x0002, 0x0078, 0x0003 },
+            { 0x0002, 0x00D8, 0x0001, 0x0000 },
+            { 0x000E, 0x02B0, 0x0000, 0x0000 },
+            { 0x0010, 0x00A0, 0x0001, 0x0000 },
+        },
+    };
+
+extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelectorFiveChoice[]
+    SECTION(".rodata.entity_ui_resource_selector") =
+        "bad_alloc";

@@ -134,6 +134,9 @@ func_0803A8A4:
     @ Entity-UI resource selector used by gUnk_080F35E4.
     .global func_0803DC5C
     .thumb_set func_0803DC5C, func_0803A8A4 + 0x3744
+    @ Entity-UI resource selector used by gUnk_080F3FD8.
+    .global func_0803DE18
+    .thumb_set func_0803DE18, func_0803A8A4 + 0x3900
     .else
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
