@@ -5,15 +5,7 @@
     @ declarations. The remaining tables stay in this static ROM range.
 
     .section .rodata
-    .set jp_vtables_start, jp_vtables_raw_start - 0x20
-    .global vtable_unk_080E59EC
-    .set vtable_unk_080E59EC, jp_vtables_start + 0x20
-    .global vtable_unk_080E59FC
-    .set vtable_unk_080E59FC, jp_vtables_start + 0x30
-    .global vtable_unk_080E5A0C
-    .set vtable_unk_080E5A0C, jp_vtables_start + 0x40
-    .global vtable_unk_080E5A18
-    .set vtable_unk_080E5A18, jp_vtables_start + 0x4C
+    .set jp_vtables_start, jp_vtables_raw_start - 0x5C
     .global vtable_unk_080E5A28
     .set vtable_unk_080E5A28, jp_vtables_start + 0x5C
     .global vtable_unk_080E5A3C
@@ -652,26 +644,10 @@
     .set vtable_unk_080E85E8, jp_vtables_start + 0x2C1C
 
 jp_vtables_raw_start:
-    .incbin "baserom_jp.gba", 0xE4E2C, (0xE7A40 - 0xE4E2C)
+    .incbin "baserom_jp.gba", 0xE4E68, (0xE7A40 - 0xE4E68)
     .else
 
     .section .rodata
-
-	.global vtable_unk_080E59EC
-vtable_unk_080E59EC:
-	.incbin "baserom_us.gba", 0xE59EC, 0x10
-
-	.global vtable_unk_080E59FC
-vtable_unk_080E59FC:
-	.incbin "baserom_us.gba", 0xE59FC, 0x10
-
-	.global vtable_unk_080E5A0C
-vtable_unk_080E5A0C:
-	.incbin "baserom_us.gba", 0xE5A0C, 0xC
-
-	.global vtable_unk_080E5A18
-vtable_unk_080E5A18:
-	.incbin "baserom_us.gba", 0xE5A18, 0x10
 
 	@ ASprite
 	.global vtable_unk_080E5A28
