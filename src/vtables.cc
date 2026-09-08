@@ -17,6 +17,11 @@ struct RawVTableWithOffsetThreeEntries {
     RawVTableFunction entries[3];
 };
 
+struct RawVTableWithOffsetAnd66Entries {
+    i32 offset;
+    RawVTableFunction entries[66];
+};
+
 extern void __pure_virtual(void);
 extern void func_0804EEFC(void);
 extern void func_0804F19C(void);
@@ -175,6 +180,70 @@ extern void func_08063B90(void);
 extern void func_0805E4D4(void);
 extern void func_0805FA48(void);
 extern void func_0805FA88(void);
+extern void func_08093E4C(void);
+extern void func_08093E80(void);
+extern void func_08093E84(void);
+extern void func_08094210(void);
+extern void func_080E3224(void);
+extern void func_080E30C4(void);
+extern void func_080E30B8(void);
+extern void func_080E30AC(void);
+extern void func_080E3218(void);
+extern void func_080E3204(void);
+extern void func_080E31F4(void);
+extern void func_080E31DC(void);
+extern void func_080E3184(void);
+extern void func_080E312C(void);
+extern void func_080E30D0(void);
+extern void func_080E31E8(void);
+extern void func_080E30A8(void);
+extern void func_080E3078(void);
+extern void func_080E3048(void);
+extern void func_080E300C(void);
+extern void func_080E2D7C(void);
+extern void func_08093E88(void);
+extern void func_08093EA8(void);
+extern void func_080E2D88(void);
+extern void func_080E2DB0(void);
+extern void func_08094204(void);
+extern void func_08093F10(void);
+extern void func_08093F30(void);
+extern void func_080E2DC8(void);
+extern void func_080941FC(void);
+extern void func_080941F8(void);
+extern void func_08093F6C(void);
+extern void func_08093FAC(void);
+extern void func_080E2DF0(void);
+extern void func_080941F0(void);
+extern void func_080941EC(void);
+extern void func_08094020(void);
+extern void func_08094024(void);
+extern void func_080E2E18(void);
+extern void func_080E2E54(void);
+extern void func_080E2ED0(void);
+extern void func_08094048(void);
+extern void func_08094074(void);
+extern void func_080E2ED4(void);
+extern void func_080E2EFC(void);
+extern void func_080941D4(void);
+extern void func_0809410C(void);
+extern void func_0809412C(void);
+extern void func_080E2F14(void);
+extern void func_080941CC(void);
+extern void func_080E2F38(void);
+extern void func_0809416C(void);
+extern void func_08094180(void);
+extern void func_080941C4(void);
+extern void func_080941C0(void);
+extern void func_080941BC(void);
+extern void func_08094184(void);
+extern void func_08094188(void);
+extern void func_080E2F3C(void);
+extern void func_080E2F74_vtable_target(void);
+extern void func_080E2FF0(void);
+extern void func_080E2FF4(void);
+extern void func_080E3000(void);
+extern void func_08092DD4(void);
 #else
 extern void func_0803F8DC(void);
 extern void func_0804EA80(void);
@@ -321,6 +390,71 @@ extern void func_0805E790(void);
 extern void func_0805FD04(void);
 extern void func_0805FD44(void);
 extern void func_08063E58(void);
+extern void func_08094288(void);
+extern void func_080942BC(void);
+extern void func_08094388(void);
+extern void func_080943BC(void);
+extern void func_080943C0(void);
+extern void func_0809474C(void);
+extern void func_080E3A8C(void);
+extern void func_080E392C(void);
+extern void func_080E3920(void);
+extern void func_080E3914(void);
+extern void func_080E3A80(void);
+extern void func_080E3A6C(void);
+extern void func_080E3A5C(void);
+extern void func_080E3A44(void);
+extern void func_080E39EC(void);
+extern void func_080E3994(void);
+extern void func_080E3938(void);
+extern void func_080E3A50(void);
+extern void func_080E3910(void);
+extern void func_080E38E0(void);
+extern void func_080E38B0(void);
+extern void func_080E3874(void);
+extern void func_080E35DC(void);
+extern void func_080943C4(void);
+extern void func_080943E4(void);
+extern void func_080E35E8(void);
+extern void func_080E3610(void);
+extern void func_08094740(void);
+extern void func_0809444C(void);
+extern void func_0809446C(void);
+extern void func_080E3628(void);
+extern void func_08094738(void);
+extern void func_08094734(void);
+extern void func_080944A8(void);
+extern void func_080944E8(void);
+extern void func_080E3650(void);
+extern void func_0809472C(void);
+extern void func_08094728(void);
+extern void func_0809455C(void);
+extern void func_08094560(void);
+extern void func_080E3678(void);
+extern void func_080E36B4(void);
+extern void func_080E3730(void);
+extern void func_08094584(void);
+extern void func_080945B0(void);
+extern void func_080E3734(void);
+extern void func_080E375C(void);
+extern void func_08094710(void);
+extern void func_08094648(void);
+extern void func_08094668(void);
+extern void func_080E3774(void);
+extern void func_08094708(void);
+extern void func_080E3798(void);
+extern void func_080946A8(void);
+extern void func_080946BC(void);
+extern void func_08094700(void);
+extern void func_080946FC(void);
+extern void func_080946F8(void);
+extern void func_080946C0(void);
+extern void func_080946C4(void);
+extern void func_080E379C(void);
+extern void func_080E37DC(void);
+extern void func_080E3858(void);
+extern void func_080E385C(void);
+extern void func_080E3868(void);
 #endif
 extern void func_080E1FAC(void);
 extern void func_080E2018(void);
@@ -2634,5 +2768,151 @@ extern RawVTableWithOffsetThreeEntries const vtable_unk_080E7DE4
         },
 #endif
     };
+
+#if defined(REGION_JP)
+extern RawVTableFunction const vtable_unk_080E7DF4[]
+    SECTION(".rodata.vtable_7df4") = {
+        func_08093E4C,
+        func_08093E80,
+        func_08093E84,
+        func_08094210,
+        func_080E3224,
+        func_080E30C4,
+        func_080E30B8,
+        func_080E30AC,
+        func_080E3218,
+        func_080E3204,
+        func_080E31F4,
+        func_080E31DC,
+        func_080E3184,
+        func_080E312C,
+        func_080E30D0,
+        func_080E31E8,
+        func_080E30A8,
+        func_080E3078,
+        func_080E3048,
+        func_080E300C,
+        func_080E2D7C,
+        func_08093E88,
+        func_08093EA8,
+        func_080E2D88,
+        func_080E2DB0,
+        func_08094204,
+        func_08093F10,
+        func_08093F30,
+        func_080E2DC8,
+        func_080941FC,
+        func_080941F8,
+        func_08093F6C,
+        func_08093FAC,
+        func_080E2DF0,
+        func_080941F0,
+        func_080941EC,
+        func_08094020,
+        func_08094024,
+        func_080E2E18,
+        func_080E2E54,
+        func_080E2ED0,
+        func_08094048,
+        func_08094074,
+        func_080E2ED4,
+        func_080E2EFC,
+        func_080941D4,
+        func_0809410C,
+        func_0809412C,
+        func_080E2F14,
+        func_080941CC,
+        func_080E2F38,
+        func_0809416C,
+        func_08094180,
+        func_080941C4,
+        func_080941C0,
+        func_080941BC,
+        func_08094184,
+        func_08094188,
+        func_080E2F3C,
+        func_080E2F74_vtable_target,
+        func_080E2FF0,
+        func_080E2FF4,
+        func_080E3000,
+        nullptr,
+        nullptr,
+        func_08092DD4,
+        nullptr,
+    };
+#else
+extern RawVTableWithOffsetAnd66Entries const vtable_unk_080E7DF4
+    SECTION(".rodata.vtable_7df4") = {
+        -8,
+        {
+            nullptr,
+            func_08094288,
+            func_080942BC,
+            func_08094388,
+            func_080943BC,
+            func_080943C0,
+            func_0809474C,
+            func_080E3A8C,
+            func_080E392C,
+            func_080E3920,
+            func_080E3914,
+            func_080E3A80,
+            func_080E3A6C,
+            func_080E3A5C,
+            func_080E3A44,
+            func_080E39EC,
+            func_080E3994,
+            func_080E3938,
+            func_080E3A50,
+            func_080E3910,
+            func_080E38E0,
+            func_080E38B0,
+            func_080E3874,
+            func_080E35DC,
+            func_080943C4,
+            func_080943E4,
+            func_080E35E8,
+            func_080E3610,
+            func_08094740,
+            func_0809444C,
+            func_0809446C,
+            func_080E3628,
+            func_08094738,
+            func_08094734,
+            func_080944A8,
+            func_080944E8,
+            func_080E3650,
+            func_0809472C,
+            func_08094728,
+            func_0809455C,
+            func_08094560,
+            func_080E3678,
+            func_080E36B4,
+            func_080E3730,
+            func_08094584,
+            func_080945B0,
+            func_080E3734,
+            func_080E375C,
+            func_08094710,
+            func_08094648,
+            func_08094668,
+            func_080E3774,
+            func_08094708,
+            func_080E3798,
+            func_080946A8,
+            func_080946BC,
+            func_08094700,
+            func_080946FC,
+            func_080946F8,
+            func_080946C0,
+            func_080946C4,
+            func_080E379C,
+            func_080E37DC,
+            func_080E3858,
+            func_080E385C,
+            func_080E3868,
+        },
+    };
+#endif
 
 EXTERN_C_END

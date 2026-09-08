@@ -16,6 +16,11 @@
 \name:
         .incbin "baserom_jp.gba", \start, (\end - \start)
     .endm
+
+    .macro jp_code_0803ee_entry name, base, offset
+        .global \name
+        .thumb_set \name, \base + \offset
+    .endm
     jp_code_0803ee_func func_0803F8DC, 0x3F704, 0x451F8
     jp_code_0803ee_func func_08045584, 0x451F8, 0x4524C
     jp_code_0803ee_func func_080455D8, 0x4524C, 0x45734
@@ -460,6 +465,39 @@ func_080926A4:
     jp_code_0803ee_func func_0809ADA8, 0x9A7E0, 0x9AA50
     jp_code_0803ee_func func_0809B018, 0x9AA50, 0x9AA70
     jp_code_0803ee_func func_0809B038, 0x9AA70, 0x9AB3C
+
+    @ Exact JP entry points referenced by the large raw table at 0x080E7DF4.
+    jp_code_0803ee_entry func_08093E4C, func_08093D80, 0xCC
+    jp_code_0803ee_entry func_08093E80, func_08093D80, 0x100
+    jp_code_0803ee_entry func_08093E84, func_08093D80, 0x104
+    jp_code_0803ee_entry func_08094210, func_08094648, 0x104
+    jp_code_0803ee_entry func_08093E88, func_08093D80, 0x108
+    jp_code_0803ee_entry func_08093EA8, func_08093D80, 0x128
+    jp_code_0803ee_entry func_08094204, func_08094648, 0xF8
+    jp_code_0803ee_entry func_08093F10, func_0809444C, 0x0
+    jp_code_0803ee_entry func_08093F30, func_0809444C, 0x20
+    jp_code_0803ee_entry func_080941FC, func_08094648, 0xF0
+    jp_code_0803ee_entry func_080941F8, func_08094648, 0xEC
+    jp_code_0803ee_entry func_08093F6C, func_080944A8, 0x0
+    jp_code_0803ee_entry func_08093FAC, func_080944A8, 0x40
+    jp_code_0803ee_entry func_080941F0, func_08094648, 0xE4
+    jp_code_0803ee_entry func_080941EC, func_08094648, 0xE0
+    jp_code_0803ee_entry func_08094020, func_080944A8, 0xB4
+    jp_code_0803ee_entry func_08094024, func_080944A8, 0xB8
+    jp_code_0803ee_entry func_08094048, func_080944A8, 0xDC
+    jp_code_0803ee_entry func_08094074, func_080944A8, 0x108
+    jp_code_0803ee_entry func_080941D4, func_08094648, 0xC8
+    jp_code_0803ee_entry func_0809410C, func_08094648, 0x0
+    jp_code_0803ee_entry func_0809412C, func_08094648, 0x20
+    jp_code_0803ee_entry func_080941CC, func_08094648, 0xC0
+    jp_code_0803ee_entry func_0809416C, func_08094648, 0x60
+    jp_code_0803ee_entry func_08094180, func_08094648, 0x74
+    jp_code_0803ee_entry func_080941C4, func_08094648, 0xB8
+    jp_code_0803ee_entry func_080941C0, func_08094648, 0xB4
+    jp_code_0803ee_entry func_080941BC, func_08094648, 0xB0
+    jp_code_0803ee_entry func_08094184, func_08094648, 0x78
+    jp_code_0803ee_entry func_08094188, func_08094648, 0x7C
+    jp_code_0803ee_entry func_08092DD4, func_08093308, 0x0
 
     @ JP entries referenced by static US callers.
     .global func_0805E99C
@@ -165281,6 +165319,32 @@ func_080946C4: @ 0x080946C4
 	.byte 0x70, 0x47, 0x00, 0x00, 0x00, 0x20, 0x70, 0x47, 0x70, 0x47, 0x00, 0x00, 0x70, 0x47, 0x00, 0x00
 	.byte 0x00, 0x20, 0x70, 0x47, 0x70, 0x47, 0x00, 0x00, 0x70, 0x47, 0x00, 0x00, 0x00, 0x20, 0x70, 0x47
 	.byte 0x70, 0x47, 0x00, 0x00, 0x40, 0x69, 0x80, 0x68, 0x70, 0x47, 0x00, 0x00
+
+    @ Exact US entry points inside the packed trivial-handler run.
+    .global func_0809455C
+    .thumb_set func_0809455C, func_08094560 - 0x4
+    .global func_080946F8
+    .thumb_set func_080946F8, func_080946C4 + 0x34
+    .global func_080946FC
+    .thumb_set func_080946FC, func_080946C4 + 0x38
+    .global func_08094700
+    .thumb_set func_08094700, func_080946C4 + 0x3C
+    .global func_08094708
+    .thumb_set func_08094708, func_080946C4 + 0x44
+    .global func_08094710
+    .thumb_set func_08094710, func_080946C4 + 0x4C
+    .global func_08094728
+    .thumb_set func_08094728, func_080946C4 + 0x64
+    .global func_0809472C
+    .thumb_set func_0809472C, func_080946C4 + 0x68
+    .global func_08094734
+    .thumb_set func_08094734, func_080946C4 + 0x70
+    .global func_08094738
+    .thumb_set func_08094738, func_080946C4 + 0x74
+    .global func_08094740
+    .thumb_set func_08094740, func_080946C4 + 0x7C
+    .global func_0809474C
+    .thumb_set func_0809474C, func_080946C4 + 0x88
 
 	thumb_func_start func_080947BC
 func_080947BC: @ 0x080947BC

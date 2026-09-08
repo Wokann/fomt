@@ -26261,6 +26261,11 @@ func_080E0E80: @ 0x080E0E80
         .incbin "baserom_jp.gba", \start, (\end - \start)
     .endm
 
+    .macro jp_linkonce_e0_entry name, base, offset
+        .global \name
+        .thumb_set \name, \base + \offset
+    .endm
+
     jp_linkonce_e0_func func_080E0EF0, 0xE0690, 0xE06E8
     jp_linkonce_e0_func func_080E0F48, 0xE06E8, 0xE0730
     jp_linkonce_e0_func func_080E0F90, 0xE0730, 0xE07FC
@@ -26332,6 +26337,42 @@ func_080E0E80: @ 0x080E0E80
     jp_linkonce_e0_func func_080E542C, 0xE4BC4, 0xE4CAC
     jp_linkonce_e0_func func_080E586C, 0xE4CAC, 0xE4CD8
     jp_linkonce_e0_func func_080E5898, 0xE4CD8, 0xE4E0C
+
+    @ Exact JP entry points referenced by the large raw table at 0x080E7DF4.
+    jp_linkonce_e0_entry func_080E3224, func_080E39EC, 0xA0
+    jp_linkonce_e0_entry func_080E30C4, func_080E38E0, 0x4C
+    jp_linkonce_e0_entry func_080E30B8, func_080E38E0, 0x40
+    jp_linkonce_e0_entry func_080E30AC, func_080E38E0, 0x34
+    jp_linkonce_e0_entry func_080E3218, func_080E39EC, 0x94
+    jp_linkonce_e0_entry func_080E3204, func_080E39EC, 0x80
+    jp_linkonce_e0_entry func_080E31F4, func_080E39EC, 0x70
+    jp_linkonce_e0_entry func_080E31DC, func_080E39EC, 0x58
+    jp_linkonce_e0_entry func_080E3184, func_080E39EC, 0x0
+    jp_linkonce_e0_entry func_080E312C, func_080E38E0, 0xB4
+    jp_linkonce_e0_entry func_080E30D0, func_080E38E0, 0x58
+    jp_linkonce_e0_entry func_080E31E8, func_080E39EC, 0x64
+    jp_linkonce_e0_entry func_080E30A8, func_080E38E0, 0x30
+    jp_linkonce_e0_entry func_080E3078, func_080E38E0, 0x0
+    jp_linkonce_e0_entry func_080E3048, func_080E38B0, 0x0
+    jp_linkonce_e0_entry func_080E300C, func_080E3874, 0x0
+    jp_linkonce_e0_entry func_080E2D7C, func_080E3504, 0xD8
+    jp_linkonce_e0_entry func_080E2D88, func_080E3504, 0xE4
+    jp_linkonce_e0_entry func_080E2DB0, func_080E3504, 0x10C
+    jp_linkonce_e0_entry func_080E2DC8, func_080E3504, 0x124
+    jp_linkonce_e0_entry func_080E2DF0, func_080E3504, 0x14C
+    jp_linkonce_e0_entry func_080E2E18, func_080E3504, 0x174
+    jp_linkonce_e0_entry func_080E2E54, func_080E36B4, 0x0
+    jp_linkonce_e0_entry func_080E2ED0, func_080E3730, 0x0
+    jp_linkonce_e0_entry func_080E2ED4, func_080E3730, 0x4
+    jp_linkonce_e0_entry func_080E2EFC, func_080E3730, 0x2C
+    jp_linkonce_e0_entry func_080E2F14, func_080E3774, 0x0
+    jp_linkonce_e0_entry func_080E2F38, func_080E3774, 0x24
+    jp_linkonce_e0_entry func_080E2F3C, func_080E3774, 0x28
+    @ The existing cross-region func_080E2F74 symbol names a different JP entry.
+    jp_linkonce_e0_entry func_080E2F74_vtable_target, func_080E37DC, 0x0
+    jp_linkonce_e0_entry func_080E2FF0, func_080E37DC, 0x7C
+    jp_linkonce_e0_entry func_080E2FF4, func_080E37DC, 0x80
+    jp_linkonce_e0_entry func_080E3000, func_080E37DC, 0x8C
 
     @ Paired target entries preserve the original order after matching JP
     @ prefixes; aliases keep the raw counterpart's byte layout intact.
@@ -31689,6 +31730,8 @@ func_080E3774: @ 0x080E3774
 .L080E3794: .4byte gText_LinkCommunication_NowSendingData
 .L080E3798:
 	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_080E3798
+	.thumb_set func_080E3798, .L080E3798
 
 	thumb_func_start func_080E379C
 func_080E379C: @ 0x080E379C
