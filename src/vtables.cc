@@ -239,6 +239,8 @@ extern void func_080DC4E4(void);
 extern void func_080DC50C(void);
 extern void func_080DC554(void);
 extern void func_080DC5A8(void);
+extern void func_080DC5B4(void);
+extern void func_080DC5D4(void);
 extern void func_080D6C58(void);
 extern void func_080D6D8C(void);
 extern void func_080D780C(void);
@@ -887,6 +889,68 @@ extern RawVTableFunction const vtable_unk_080E602C[] = {
     nullptr,
     nullptr,
     func_080DC5A8,
+};
+
+extern RawVTableFunction const vtable_unk_080E6038[] = {
+    nullptr,
+    nullptr,
+    func_080DC5B4,
+    // 0x03-0x0A: pure virtual slots.
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    // 0x0B-0x12: pure virtual slots.
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    // 0x13-0x1A: pure virtual slots.
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    // 0x1B-0x22: pure virtual slots.
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    // 0x23-0x2A: pure virtual slots.
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    // 0x2B-0x32: pure virtual slots.
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    // 0x33-0x3A: pure virtual slots.
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    // 0x3B-0x42: pure virtual slots.
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    // 0x43-0x4A: pure virtual slots.
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    // 0x4B-0x52: pure virtual slots.
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    // 0x53-0x59: pure virtual slots.
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    __pure_virtual, __pure_virtual, __pure_virtual,
+};
+
+extern RawVTableFunction const vtable_unk_080E61A0[] = {
+    nullptr,
+    nullptr,
+    func_080DC5D4,
+    // 0x03-0x0A: pure virtual slots.
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    // 0x0B-0x12: pure virtual slots.
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    // 0x13-0x1A: pure virtual slots.
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    // 0x1B-0x22: pure virtual slots.
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    // 0x23-0x2A: pure virtual slots.
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    __pure_virtual, __pure_virtual, __pure_virtual, __pure_virtual,
+    // 0x2B: pure virtual slot.
+    __pure_virtual,
 };
 
 EXTERN_C_END
