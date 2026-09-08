@@ -522,6 +522,53 @@ func_080926A4:
     jp_code_0803ee_entry func_080938B0, func_08093C3C, 0x1B0
     jp_code_0803ee_entry func_080938E4, func_08093C3C, 0x1E4
 
+    @ Exact JP entry points referenced by the raw table at 0x080E812C.
+    jp_code_0803ee_entry func_08093890, func_08093C3C, 0x190
+    jp_code_0803ee_entry func_080939B0, func_08093C3C, 0x2B0
+    jp_code_0803ee_entry func_080939E4, func_08093C3C, 0x2E4
+    jp_code_0803ee_entry func_080939E8, func_08093C3C, 0x2E8
+    jp_code_0803ee_entry func_080939EC, func_08093C3C, 0x2EC
+    jp_code_0803ee_entry func_08093A0C, func_08093C3C, 0x30C
+    jp_code_0803ee_entry func_08093A74, func_08093FB0, 0x0
+    jp_code_0803ee_entry func_08093A88, func_08093FB0, 0x14
+    jp_code_0803ee_entry func_08093AC4, func_08094000, 0x0
+    jp_code_0803ee_entry func_08093B0C, func_08094000, 0x48
+    jp_code_0803ee_entry func_08093B80, func_08094000, 0xBC
+    jp_code_0803ee_entry func_08093B84, func_08094000, 0xC0
+    jp_code_0803ee_entry func_08093BA8, func_08094000, 0xE4
+    jp_code_0803ee_entry func_08093BD4, func_08094000, 0x110
+    jp_code_0803ee_entry func_08093C6C, func_080941A8, 0x0
+    jp_code_0803ee_entry func_08093C8C, func_080941A8, 0x20
+    jp_code_0803ee_entry func_08093CCC, func_080941A8, 0x60
+    jp_code_0803ee_entry func_08093CE0, func_080941A8, 0x74
+    jp_code_0803ee_entry func_08093CE4, func_080941A8, 0x78
+    jp_code_0803ee_entry func_08093CE8, func_080941A8, 0x7C
+    jp_code_0803ee_entry func_08094278, func_08094648, 0x16C
+    jp_code_0803ee_entry func_08094274, func_08094648, 0x168
+    jp_code_0803ee_entry func_08094270, func_08094648, 0x164
+    jp_code_0803ee_entry func_0809426C, func_08094648, 0x160
+    jp_code_0803ee_entry func_08094268, func_08094648, 0x15C
+    jp_code_0803ee_entry func_08094264, func_08094648, 0x158
+    jp_code_0803ee_entry func_08094260, func_08094648, 0x154
+    jp_code_0803ee_entry func_0809425C, func_08094648, 0x150
+    jp_code_0803ee_entry func_08094258, func_08094648, 0x14C
+    jp_code_0803ee_entry func_08094254, func_08094648, 0x148
+    jp_code_0803ee_entry func_08094250, func_08094648, 0x144
+    jp_code_0803ee_entry func_0809424C, func_08094648, 0x140
+    jp_code_0803ee_entry func_08094248, func_08094648, 0x13C
+    jp_code_0803ee_entry func_08094244, func_08094648, 0x138
+    jp_code_0803ee_entry func_08094240, func_08094648, 0x134
+    jp_code_0803ee_entry func_0809423C, func_08094648, 0x130
+    jp_code_0803ee_entry func_08094238, func_08094648, 0x12C
+    jp_code_0803ee_entry func_08094234, func_08094648, 0x128
+    jp_code_0803ee_entry func_08094230, func_08094648, 0x124
+    jp_code_0803ee_entry func_0809422C, func_08094648, 0x120
+    jp_code_0803ee_entry func_08094228, func_08094648, 0x11C
+    jp_code_0803ee_entry func_08094224, func_08094648, 0x118
+    jp_code_0803ee_entry func_08094220, func_08094648, 0x114
+    jp_code_0803ee_entry func_0809421C, func_08094648, 0x110
+    jp_code_0803ee_entry func_08094218, func_08094648, 0x10C
+
     @ JP entries referenced by static US callers.
     .global func_0805E99C
     .thumb_set func_0805E99C, func_0803F8DC + 0x1EFDC
@@ -165396,6 +165443,68 @@ func_080946C4: @ 0x080946C4
     .thumb_set func_080946F0, func_080946C4 + 0x2C
     .global func_080946EC
     .thumb_set func_080946EC, func_080946C4 + 0x28
+
+    @ Exact US entry points referenced by the raw table at 0x080E812C.
+    .global func_080947B4
+    .thumb_set func_080947B4, func_080946C4 + 0xF0
+    .global func_080947B0
+    .thumb_set func_080947B0, func_080946C4 + 0xEC
+    .global func_080947AC
+    .thumb_set func_080947AC, func_080946C4 + 0xE8
+    .global func_080947A8
+    .thumb_set func_080947A8, func_080946C4 + 0xE4
+    .global func_080947A4
+    .thumb_set func_080947A4, func_080946C4 + 0xE0
+    .global func_080947A0
+    .thumb_set func_080947A0, func_080946C4 + 0xDC
+    .global func_0809479C
+    .thumb_set func_0809479C, func_080946C4 + 0xD8
+    .global func_08094798
+    .thumb_set func_08094798, func_080946C4 + 0xD4
+    .global func_08094794
+    .thumb_set func_08094794, func_080946C4 + 0xD0
+    .global func_08094790
+    .thumb_set func_08094790, func_080946C4 + 0xCC
+    .global func_0809478C
+    .thumb_set func_0809478C, func_080946C4 + 0xC8
+    .global func_08094788
+    .thumb_set func_08094788, func_080946C4 + 0xC4
+    .global func_08094784
+    .thumb_set func_08094784, func_080946C4 + 0xC0
+    .global func_08094780
+    .thumb_set func_08094780, func_080946C4 + 0xBC
+    .global func_0809477C
+    .thumb_set func_0809477C, func_080946C4 + 0xB8
+    .global func_08094778
+    .thumb_set func_08094778, func_080946C4 + 0xB4
+    .global func_08094774
+    .thumb_set func_08094774, func_080946C4 + 0xB0
+    .global func_08094770
+    .thumb_set func_08094770, func_080946C4 + 0xAC
+    .global func_0809476C
+    .thumb_set func_0809476C, func_080946C4 + 0xA8
+    .global func_08094768
+    .thumb_set func_08094768, func_080946C4 + 0xA4
+    .global func_08094764
+    .thumb_set func_08094764, func_080946C4 + 0xA0
+    .global func_08094760
+    .thumb_set func_08094760, func_080946C4 + 0x9C
+    .global func_0809475C
+    .thumb_set func_0809475C, func_080946C4 + 0x98
+    .global func_08094758
+    .thumb_set func_08094758, func_080946C4 + 0x94
+    .global func_08094754
+    .thumb_set func_08094754, func_080946C4 + 0x90
+    .global func_080940BC
+    .thumb_set func_080940BC, func_080940C0 - 0x4
+    .global func_08094208
+    .thumb_set func_08094208, func_080941C8 + 0x40
+    .global func_0809421C
+    .thumb_set func_0809421C, func_080941C8 + 0x54
+    .global func_08094220
+    .thumb_set func_08094220, func_080941C8 + 0x58
+    .global func_08094224
+    .thumb_set func_08094224, func_080941C8 + 0x5C
 
 	thumb_func_start func_080947BC
 func_080947BC: @ 0x080947BC
