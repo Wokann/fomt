@@ -4260,4 +4260,25 @@ extern RawVTableFunction const vtable_unk_080E8528[]
 #endif
     };
 
+#if defined(REGION_JP)
+extern void func_080C0770(void);
+extern void func_080C0D90(void);
+#else
+extern void func_080E4D50(void);
+#endif
+
+// Keep the three original slots and region-specific target sequence intact.
+extern RawVTableFunction const vtable_unk_080E8538[]
+    SECTION(".rodata.vtable_8538") = {
+#if defined(REGION_JP)
+        nullptr,
+        func_080C0770,
+        func_080C0D90,
+#else
+        nullptr,
+        nullptr,
+        func_080E4D50,
+#endif
+    };
+
 EXTERN_C_END
