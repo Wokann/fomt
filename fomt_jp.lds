@@ -824,7 +824,9 @@ SECTIONS
         . = 0x118BF4; data/text/animal_status.o(.rodata);
         . = 0x118C34; data/text/item_status.o(.rodata);
         . = 0x118C98; data/text/item_discard.o(.rodata);
-        . = 0x118CF4; asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard);
+        . = 0x118CF4; src/font.o(.rodata);
+        . = 0x118D18; /* Static resources after font-owned data. */
+        asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */

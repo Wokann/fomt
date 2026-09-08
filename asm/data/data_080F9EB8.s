@@ -2,13 +2,12 @@
     @ JP revision 0 localized data.  Event RIFF containers begin later at
     @ ROM offset 0x4E0CE0; the early portions below are ordinary static data.
     .section .rodata.static_data_after_item_discard
+    @ The immediately preceding font object owns 0x24 bytes at 0x118CF4:
+    @ its aligned bad_alloc string and the 0x81CD double-width glyph.
     .global gUnk_08118CF4
-gUnk_08118CF4:
-    .incbin "baserom_jp.gba", 0x118CF4, (0x13BCF8 - 0x118CF4)
-
-    @ The JP renderer uses this 24-byte glyph only for input code 0x81CD.
-    .global gFontSpecialGlyph81CD
-    .set gFontSpecialGlyph81CD, gUnk_08118CF4 + 0xC
+    .set gUnk_08118CF4, jp_static_data_after_font - 0x24
+jp_static_data_after_font:
+    .incbin "baserom_jp.gba", 0x118D18, (0x13BCF8 - 0x118D18)
 
     @ Region-neutral labels for FarmHouse visual descriptor resources.
     @ Their payload formats remain in this raw data range.
@@ -471,15 +470,12 @@ gUnk_08118CF4:
 
 
 	.section .rodata.static_data_after_item_discard
-	@ gUnk_08117BC8 begins with the fifteenth block selected by
-	@ func_080D0D28 and remains the anchor for the following raw resources.
+	@ The immediately preceding font object owns the 0x00C3 single-width glyph
+	@ at 0x117BC8. This raw resource range begins immediately after it.
 	.global gUnk_08117BC8
-gUnk_08117BC8:
-	.incbin "baserom_us.gba", 0x117BC8, 0x21EC0
-
-	@ The US renderer uses this 12-byte glyph only for input code 0x00C3.
-	.global gFontSpecialGlyphC3
-	.set gFontSpecialGlyphC3, gUnk_08117BC8
+    .set gUnk_08117BC8, us_static_data_after_font - 0xC
+us_static_data_after_font:
+	.incbin "baserom_us.gba", 0x117BD4, (0x139A88 - 0x117BD4)
 
 	@ Region-neutral labels for FarmHouse visual descriptor resources.
 	@ Their payload formats remain in this raw data range.
