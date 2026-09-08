@@ -270,6 +270,8 @@ func_0805EE44:
     .section .text.get_selection_index_after
     jp_code_0803ee_func func_08076BFC, 0x7685C, 0x76A44
     jp_code_0803ee_func func_08076E0C, 0x76A44, 0x77020
+    .global func_08076AE0
+    .thumb_set func_08076AE0, func_08076E0C + 0x9C
     jp_code_0803ee_func func_080773E8, 0x77020, 0x7753C
     jp_code_0803ee_func func_080779B4, 0x7753C, 0x775A4
     jp_code_0803ee_func func_08077A1C, 0x775A4, 0x777C8

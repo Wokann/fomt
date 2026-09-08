@@ -30614,6 +30614,9 @@ func_080E2E78: @ 0x080E2E78
 	bx r0
 	.align 2, 0
 
+	.global func_080E2E34
+	.thumb_set func_080E2E34, func_080E2BB4 + 0x280
+
 	thumb_func_start func_080E2EA4
 func_080E2EA4: @ 0x080E2EA4
 	push {r4, r5, r6, r7, lr}
