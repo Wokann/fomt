@@ -2,80 +2,78 @@
     @ JP revision 0 counterpart of the script and schedule-adjacent data.
     .section .rodata
 jp_data_080f1a80_start:
-    .incbin "baserom_jp.gba", 0xF1810, 0x7EE4
+    .incbin "baserom_jp.gba", 0xF181C, (0xF96F4 - 0xF181C)
 
     .global gUnk_080F1FC0
-gUnk_080F1FC0 = jp_data_080f1a80_start + 0x00C
+gUnk_080F1FC0 = jp_data_080f1a80_start + 0x000
     .global gUnk_080F280C
-gUnk_080F280C = jp_data_080f1a80_start + 0x84C
+gUnk_080F280C = jp_data_080f1a80_start + 0x840
     .global gUnk_080F29C0
-gUnk_080F29C0 = jp_data_080f1a80_start + 0xA00
+gUnk_080F29C0 = jp_data_080f1a80_start + 0x9F4
     .global gUnk_080F2AF8
-gUnk_080F2AF8 = jp_data_080f1a80_start + 0xB38
+gUnk_080F2AF8 = jp_data_080f1a80_start + 0xB2C
     .global gUnk_080F2DC0
-gUnk_080F2DC0 = jp_data_080f1a80_start + 0xE08
+gUnk_080F2DC0 = jp_data_080f1a80_start + 0xDFC
     .global gUnk_080F3010
-gUnk_080F3010 = jp_data_080f1a80_start + 0x105C
+gUnk_080F3010 = jp_data_080f1a80_start + 0x1050
     .global gUnk_080F33B8
-gUnk_080F33B8 = jp_data_080f1a80_start + 0x1404
+gUnk_080F33B8 = jp_data_080f1a80_start + 0x13F8
     .global gUnk_080F3408
-gUnk_080F3408 = jp_data_080f1a80_start + 0x1454
+gUnk_080F3408 = jp_data_080f1a80_start + 0x1448
     .global gUnk_080F35E4
-gUnk_080F35E4 = jp_data_080f1a80_start + 0x1630
+gUnk_080F35E4 = jp_data_080f1a80_start + 0x1624
     .global gUnk_080F3FD8
-gUnk_080F3FD8 = jp_data_080f1a80_start + 0x2024
+gUnk_080F3FD8 = jp_data_080f1a80_start + 0x2018
     .global gUnk_080F42F0
-gUnk_080F42F0 = jp_data_080f1a80_start + 0x233C
+gUnk_080F42F0 = jp_data_080f1a80_start + 0x2330
     .global gUnk_080F43DC
-gUnk_080F43DC = jp_data_080f1a80_start + 0x2428
+gUnk_080F43DC = jp_data_080f1a80_start + 0x241C
     .global gUnk_080F4974
-gUnk_080F4974 = jp_data_080f1a80_start + 0x29C0
+gUnk_080F4974 = jp_data_080f1a80_start + 0x29B4
     .global gUnk_080F49C0
-gUnk_080F49C0 = jp_data_080f1a80_start + 0x2A0C
+gUnk_080F49C0 = jp_data_080f1a80_start + 0x2A00
     .global gUnk_080F4D74
-gUnk_080F4D74 = jp_data_080f1a80_start + 0x2DC0
+gUnk_080F4D74 = jp_data_080f1a80_start + 0x2DB4
     .global gUnk_080F5540
-gUnk_080F5540 = jp_data_080f1a80_start + 0x358C
+gUnk_080F5540 = jp_data_080f1a80_start + 0x3580
     .global gUnk_080F597C
-gUnk_080F597C = jp_data_080f1a80_start + 0x39C8
+gUnk_080F597C = jp_data_080f1a80_start + 0x39BC
     .global gUnk_080F59CC
-gUnk_080F59CC = jp_data_080f1a80_start + 0x3A18
+gUnk_080F59CC = jp_data_080f1a80_start + 0x3A0C
     .global gUnk_080F5D94
-gUnk_080F5D94 = jp_data_080f1a80_start + 0x3DE0
+gUnk_080F5D94 = jp_data_080f1a80_start + 0x3DD4
     .global gUnk_080F61FC
-gUnk_080F61FC = jp_data_080f1a80_start + 0x4268
+gUnk_080F61FC = jp_data_080f1a80_start + 0x425C
     .global gUnk_080F6370
-gUnk_080F6370 = jp_data_080f1a80_start + 0x43DC
+gUnk_080F6370 = jp_data_080f1a80_start + 0x43D0
     .global gUnk_080F66C4
-gUnk_080F66C4 = jp_data_080f1a80_start + 0x4730
+gUnk_080F66C4 = jp_data_080f1a80_start + 0x4724
     .global gUnk_080F6B10
-gUnk_080F6B10 = jp_data_080f1a80_start + 0x4B5C
+gUnk_080F6B10 = jp_data_080f1a80_start + 0x4B50
     .global gUnk_080F6B4C
-gUnk_080F6B4C = jp_data_080f1a80_start + 0x4B98
+gUnk_080F6B4C = jp_data_080f1a80_start + 0x4B8C
     .global gUnk_080F6DE8
-gUnk_080F6DE8 = jp_data_080f1a80_start + 0x4E34
+gUnk_080F6DE8 = jp_data_080f1a80_start + 0x4E28
     .global gUnk_080F6FF8
-gUnk_080F6FF8 = jp_data_080f1a80_start + 0x5044
+gUnk_080F6FF8 = jp_data_080f1a80_start + 0x5038
     .global gUnk_080F7294
-gUnk_080F7294 = jp_data_080f1a80_start + 0x52E0
+gUnk_080F7294 = jp_data_080f1a80_start + 0x52D4
     .global gUnk_080F77FC
-gUnk_080F77FC = jp_data_080f1a80_start + 0x5848
+gUnk_080F77FC = jp_data_080f1a80_start + 0x583C
     .global gUnk_080F7B40
-gUnk_080F7B40 = jp_data_080f1a80_start + 0x5B8C
+gUnk_080F7B40 = jp_data_080f1a80_start + 0x5B80
     .global gUnk_080F81BC
-gUnk_080F81BC = jp_data_080f1a80_start + 0x6208
+gUnk_080F81BC = jp_data_080f1a80_start + 0x61FC
     .global gUnk_080F8678
-gUnk_080F8678 = jp_data_080f1a80_start + 0x66C4
+gUnk_080F8678 = jp_data_080f1a80_start + 0x66B8
     .global gUnk_080F89D4
-gUnk_080F89D4 = jp_data_080f1a80_start + 0x6B20
+gUnk_080F89D4 = jp_data_080f1a80_start + 0x6B14
     .else
     .section .rodata
 
 	@ schedules
 
 	@ .incbin "baserom_us.gba", 0xF1AC0, 0x500
-
-	.incbin "baserom_us.gba", 0xF1FB4, 12 @ bad_alloc
 
 	.global gUnk_080F1FC0
 gUnk_080F1FC0:

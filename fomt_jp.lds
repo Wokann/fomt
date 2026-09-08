@@ -554,7 +554,7 @@ SECTIONS
         FILL(0x00);
         . = 0xF12DC; /* JP schedule table block. */
         src/data_schedules.o(.rodata);
-        . = 0xF1810; /* JP counterpart of data_080F1A80. */
+        . = ALIGN(4); /* JP counterpart of data_080F1A80. */
         asm/data/data_080F1A80.o(.rodata);
         . = 0xF96F4; /* JP ScriptEngine string-object prefix. */
         src/script_engine.o(.rodata.script_engine_string_error_prefix);

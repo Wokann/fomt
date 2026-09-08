@@ -445,3 +445,9 @@ PathPointA const Unk_080F1A80_21_Path_Points[5] = {
 PathPointA const Unk_080F1A80_22_Path_Points[7] = {
     { 4, 248, 1 }, { 6, 472, 0 }, { 10, 152, 1 }, { 41, 1248, 0 }, { 42, 128, 1 }, { 43, 1272, 0 }, { 48, 0, 1 },
 };
+
+// This ordinary C++ string occupies the final slot of the recovered schedule
+// object.  Its terminator and the following four-byte boundary reproduce the
+// original 12-byte runtime string slot without manual zero-byte padding.
+extern char const gCppRuntimeBadAlloc_DataSchedules[] ALIGN(4) =
+    "bad_alloc";
