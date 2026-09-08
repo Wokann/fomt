@@ -4190,4 +4190,28 @@ extern RawVTableFunction const vtable_unk_080E8500[]
 #endif
     };
 
+#if defined(REGION_JP)
+extern void func_080E4940(void);
+#else
+extern void func_080B3C0C(void);
+extern void func_080B3C3C(void);
+#endif
+
+// Retain every slot of this four-entry region-dependent callback table in the
+// original ROM order until the owning type has been recovered.
+extern RawVTableFunction const vtable_unk_080E850C[]
+    SECTION(".rodata.vtable_850c") = {
+#if defined(REGION_JP)
+        nullptr,
+        nullptr,
+        func_080E4940,
+        nullptr,
+#else
+        nullptr,
+        nullptr,
+        func_080B3C0C,
+        func_080B3C3C,
+#endif
+    };
+
 EXTERN_C_END
