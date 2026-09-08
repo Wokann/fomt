@@ -472,7 +472,9 @@ SECTIONS
         asm/vtables.o(.rodata);
 
         . = 0xE7A40; /* JP data_080E8610 begins after the C++ table region. */
-        asm/data/data_080E8610.o(.rodata);
+        src/crt0_data.o(.rodata);
+        FILL(0x00);
+        . = ALIGN(4);
         data/text/common/sram_signature.o(.rodata.sram_signature);
         asm/data/data_080E8610.o(.rodata.sram_signature_trailer);
         src/intro_scene_data.o(.rodata.intro_scene_startup_resources);

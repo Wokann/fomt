@@ -4,12 +4,6 @@
     @ The source module is already data-only incbin content.  This static JP
     @ range retains its exported data names and covers the verified JP span.
 
-	.section .rodata
-
-	.global init_array
-init_array:
-	.incbin "baserom_jp.gba", 0xE7A40, 0x1C
-
 	.section .rodata.sram_signature_trailer
 	.incbin "baserom_jp.gba", 0xE7A7C, (0xE7AA4 - 0xE7A7C)
 
@@ -17,15 +11,6 @@ init_array:
 	.incbin "baserom_jp.gba", 0xE7AB4, (0xE7AC8 - 0xE7AB4)
 
     .else
-
-    .section .rodata
-
-	.global init_array
-init_array:
-	.word 0, 0, 0, 0
-
-	@ "bad_alloc"
-	.incbin "baserom_us.gba", 0xE8620, 0x0C
 
 	.section .rodata.sram_signature_trailer
 	.incbin "baserom_us.gba", 0xE864C, (0xE8684 - 0xE864C)
