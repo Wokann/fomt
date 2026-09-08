@@ -275,6 +275,10 @@ func_0805EE44:
     jp_code_0803ee_func func_080773E8, 0x77020, 0x7753C
     jp_code_0803ee_func func_080779B4, 0x7753C, 0x775A4
     jp_code_0803ee_func func_08077A1C, 0x775A4, 0x777C8
+    .global func_080777F4
+    .thumb_set func_080777F4, func_08077A1C + 0x250
+    .global func_08077834
+    .thumb_set func_08077834, func_08077A1C + 0x290
     jp_code_0803ee_func func_08077C40, 0x777C8, 0x77960
     jp_code_0803ee_func func_08077DD8, 0x77960, 0x779BC
 	.section .text.copy_bg_map_rect_after
