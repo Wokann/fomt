@@ -14,9 +14,11 @@ struct RawVTableWithOffset {
 
 extern void __pure_virtual(void);
 extern void func_0804EEFC(void);
+extern void func_080E0EF0(void);
+extern void method_0803EFD8__13AScriptEngine(void);
 #if defined(REGION_JP)
 extern void func_0803EB3C(void);
-extern void method_0803EFD8__13AScriptEngine(void);
+extern void func_0803F550(void);
 extern void func_0804E8A8(void);
 extern void func_0804EBC8(void);
 extern void func_0804EC34(void);
@@ -25,6 +27,7 @@ extern void func_0804EC68(void);
 extern void func_0804F19C(void);
 extern void func_080E07B8(void);
 #else
+extern void func_0803F8DC(void);
 extern void func_0804EA80(void);
 extern void func_0804EDA0(void);
 extern void func_0804EE1C(void);
@@ -985,6 +988,21 @@ extern RawVTableFunction const __vt_13AScriptEngine[]
         __pure_virtual,
     };
 #endif
+
+// The base Script Engine table follows the AScriptEngine table in both ROMs.
+// JP keeps its implementation code raw, but all five ABI slots are known.
+extern RawVTableFunction const __vt_12ScriptEngine[]
+    SECTION(".rodata.vtable_script_engine") = {
+        nullptr,
+        nullptr,
+        func_080E0EF0,
+        method_0803EFD8__13AScriptEngine,
+#if defined(REGION_JP)
+        func_0803F550,
+#else
+        func_0803F8DC,
+#endif
+    };
 
 // Four adjacent two-method dispatch tables.  The table shapes are shared;
 // only their raw code entry points differ between the two regional ROMs.

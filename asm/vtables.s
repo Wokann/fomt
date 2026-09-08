@@ -484,10 +484,6 @@
 jp_vtables_raw_start:
     .incbin "baserom_jp.gba", 0xE56C4, (0xE6C50 - 0xE56C4)
 
-    .section .rodata.080E6C64
-jp_vtables_raw_after_ascript_engine:
-    .incbin "baserom_jp.gba", 0xE6C64, (0xE6C78 - 0xE6C64)
-
     .section .rodata.080E6CB8
 jp_vtables_raw_after_script_engine_adjacent:
     .incbin "baserom_jp.gba", 0xE6CB8, (0xE7A40 - 0xE6CB8)
@@ -912,15 +908,6 @@ vtable_unk_080E77D0:
 	.global vtable_unk_080E77E0
 vtable_unk_080E77E0:
 	.incbin "baserom_us.gba", 0xE77E0, 0x30
-
-	.section .rodata.080E7824
-
-	.global __vt_12ScriptEngine
-__vt_12ScriptEngine:
-	.word 0, 0
-	.4byte func_080E0EF0 @ ScriptEngine::~ScriptEngine
-	.4byte method_0803EFD8__13AScriptEngine
-	.4byte func_0803F8DC @ ScriptEngine::OnCall
 
 	.section .rodata.080E7878
 
