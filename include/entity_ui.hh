@@ -146,6 +146,19 @@ struct EntityUiResourceSelectorExtendedStorage
     EntityUiResourceSelectorDetailEntry detail_storage_4[5];
 };
 
+// The following selector is a larger contiguous instance of the same format.
+// Its individual table sizes vary, so the physical table, entry, payload, and
+// detail regions are each represented by one ordered storage array.
+struct EntityUiResourceSelectorLargeStorage
+{
+    EntityUiResourceSelectorDescriptor descriptor;
+    EntityUiResourceSelectorTable const * const table_choices[24];
+    EntityUiResourceSelectorTable table_storage[23];
+    EntityUiResourceSelectorEntry entry_storage[120];
+    EntityUiResourceSelectorPayload payload_storage[35];
+    EntityUiResourceSelectorDetailEntry detail_storage[108];
+};
+
 struct EntityUiCallbackState
 {
     u8 unknown_00[0x10];
@@ -173,6 +186,7 @@ extern "C" char const gText_NotAvailable[8];
 
 extern "C" EntityUiResourceSelectorStorage const gUnk_080F33B8;
 extern "C" EntityUiResourceSelectorExtendedStorage const gUnk_080F3408;
+extern "C" EntityUiResourceSelectorLargeStorage const gUnk_080F35E4;
 
 extern "C" char const gCppRuntimeBadAlloc_EntityUiBeforeOffsets[];
 extern "C" char const gCppRuntimeError_EntityUiBeforeOffsets[];

@@ -19,56 +19,54 @@ gUnk_080F3010 = jp_data_080f1a80_prefix_start + 0x1050
 
     .section .rodata.data_080f1a80_suffix
 jp_data_080f1a80_suffix_start:
-    .incbin "baserom_jp.gba", 0xF2E40, (0xF96F4 - 0xF2E40)
+    .incbin "baserom_jp.gba", 0xF3834, (0xF96F4 - 0xF3834)
 
-    .global gUnk_080F35E4
-gUnk_080F35E4 = jp_data_080f1a80_suffix_start + 0x000
     .global gUnk_080F3FD8
-gUnk_080F3FD8 = jp_data_080f1a80_suffix_start + 0x9F4
+gUnk_080F3FD8 = jp_data_080f1a80_suffix_start + 0x000
     .global gUnk_080F42F0
-gUnk_080F42F0 = jp_data_080f1a80_suffix_start + 0xD0C
+gUnk_080F42F0 = jp_data_080f1a80_suffix_start + 0x318
     .global gUnk_080F43DC
-gUnk_080F43DC = jp_data_080f1a80_suffix_start + 0xDF8
+gUnk_080F43DC = jp_data_080f1a80_suffix_start + 0x404
     .global gUnk_080F4974
-gUnk_080F4974 = jp_data_080f1a80_suffix_start + 0x1390
+gUnk_080F4974 = jp_data_080f1a80_suffix_start + 0x990
     .global gUnk_080F49C0
-gUnk_080F49C0 = jp_data_080f1a80_suffix_start + 0x13DC
+gUnk_080F49C0 = jp_data_080f1a80_suffix_start + 0x9DC
     .global gUnk_080F4D74
-gUnk_080F4D74 = jp_data_080f1a80_suffix_start + 0x1790
+gUnk_080F4D74 = jp_data_080f1a80_suffix_start + 0xD90
     .global gUnk_080F5540
-gUnk_080F5540 = jp_data_080f1a80_suffix_start + 0x1F5C
+gUnk_080F5540 = jp_data_080f1a80_suffix_start + 0x155C
     .global gUnk_080F597C
-gUnk_080F597C = jp_data_080f1a80_suffix_start + 0x2398
+gUnk_080F597C = jp_data_080f1a80_suffix_start + 0x1998
     .global gUnk_080F59CC
-gUnk_080F59CC = jp_data_080f1a80_suffix_start + 0x23E8
+gUnk_080F59CC = jp_data_080f1a80_suffix_start + 0x19E8
     .global gUnk_080F5D94
-gUnk_080F5D94 = jp_data_080f1a80_suffix_start + 0x27B0
+gUnk_080F5D94 = jp_data_080f1a80_suffix_start + 0x1DB0
     .global gUnk_080F61FC
-gUnk_080F61FC = jp_data_080f1a80_suffix_start + 0x2C38
+gUnk_080F61FC = jp_data_080f1a80_suffix_start + 0x2238
     .global gUnk_080F6370
-gUnk_080F6370 = jp_data_080f1a80_suffix_start + 0x2DAC
+gUnk_080F6370 = jp_data_080f1a80_suffix_start + 0x23AC
     .global gUnk_080F66C4
-gUnk_080F66C4 = jp_data_080f1a80_suffix_start + 0x3100
+gUnk_080F66C4 = jp_data_080f1a80_suffix_start + 0x2700
     .global gUnk_080F6B10
-gUnk_080F6B10 = jp_data_080f1a80_suffix_start + 0x352C
+gUnk_080F6B10 = jp_data_080f1a80_suffix_start + 0x2B2C
     .global gUnk_080F6B4C
-gUnk_080F6B4C = jp_data_080f1a80_suffix_start + 0x3568
+gUnk_080F6B4C = jp_data_080f1a80_suffix_start + 0x2B68
     .global gUnk_080F6DE8
-gUnk_080F6DE8 = jp_data_080f1a80_suffix_start + 0x3804
+gUnk_080F6DE8 = jp_data_080f1a80_suffix_start + 0x2E04
     .global gUnk_080F6FF8
-gUnk_080F6FF8 = jp_data_080f1a80_suffix_start + 0x3A14
+gUnk_080F6FF8 = jp_data_080f1a80_suffix_start + 0x3014
     .global gUnk_080F7294
-gUnk_080F7294 = jp_data_080f1a80_suffix_start + 0x3CB0
+gUnk_080F7294 = jp_data_080f1a80_suffix_start + 0x32B0
     .global gUnk_080F77FC
-gUnk_080F77FC = jp_data_080f1a80_suffix_start + 0x4218
+gUnk_080F77FC = jp_data_080f1a80_suffix_start + 0x3818
     .global gUnk_080F7B40
-gUnk_080F7B40 = jp_data_080f1a80_suffix_start + 0x455C
+gUnk_080F7B40 = jp_data_080f1a80_suffix_start + 0x3B5C
     .global gUnk_080F81BC
-gUnk_080F81BC = jp_data_080f1a80_suffix_start + 0x4BD8
+gUnk_080F81BC = jp_data_080f1a80_suffix_start + 0x41E4
     .global gUnk_080F8678
-gUnk_080F8678 = jp_data_080f1a80_suffix_start + 0x5094
+gUnk_080F8678 = jp_data_080f1a80_suffix_start + 0x48A0
     .global gUnk_080F89D4
-gUnk_080F89D4 = jp_data_080f1a80_suffix_start + 0x54F0
+gUnk_080F89D4 = jp_data_080f1a80_suffix_start + 0x4BFC
     .else
     .section .rodata.data_080f1a80_prefix
 
@@ -101,10 +99,6 @@ gUnk_080F3010:
 	.incbin "baserom_us.gba", 0xF3010, 0x3A8
 
 	.section .rodata.data_080f1a80_suffix
-	.global gUnk_080F35E4
-gUnk_080F35E4:
-	.incbin "baserom_us.gba", 0xF35E4, 0x9F4
-
 	.global gUnk_080F3FD8
 gUnk_080F3FD8:
 	.incbin "baserom_us.gba", 0xF3FD8, 0x318
