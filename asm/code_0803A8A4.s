@@ -105,6 +105,8 @@ func_0803A8A4:
     .thumb_set func_0803D7E4, func_0803A8A4 + 0x2F40
     .global func_0803DC64
     .thumb_set func_0803DC64, func_0803A8A4 + 0x33C0
+    .global func_0803DCB4
+    .thumb_set func_0803DCB4, func_0803A8A4 + 0x3410
     .global func_0803DDE8
     .thumb_set func_0803DDE8, func_0803A8A4 + 0x3544
     .global func_0803DECC

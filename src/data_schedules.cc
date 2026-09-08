@@ -1349,3 +1349,146 @@ PathPointA const gUnk_080F297C[] = {
 extern char const gUnk_080F29B4[] =
     "bad_alloc";
 #endif
+
+// JP keeps this runtime string before the following schedule data.
+#if defined(REGION_JP)
+extern char const gUnk_080F29C0[] =
+    "bad_alloc";
+#endif
+
+// Recovered schedule data at US ROM 0x080F29C0 (JP 0x080F221C).
+// The two regional payloads differ only in relocated function/data pointers.
+
+extern "C" u32 func_0803DCB4(void const *);
+
+#if defined(REGION_JP)
+extern ScheduleInfo const gUnk_080F221C;
+#else
+extern ScheduleInfo const gUnk_080F29C0;
+#endif
+extern Schedule const * const gUnk_080F29CC[];
+extern Schedule const gUnk_080F29E4;
+extern Schedule const gUnk_080F29EC;
+extern Schedule const gUnk_080F29F4;
+extern Schedule const gUnk_080F29FC;
+extern Schedule const gUnk_080F2A04;
+extern ScheduleEntry const gUnk_080F2A0C[];
+extern ScheduleEntry const gUnk_080F2A2C[];
+extern ScheduleEntry const gUnk_080F2A4C[];
+extern ScheduleEntry const gUnk_080F2A54[];
+extern ScheduleEntry const gUnk_080F2A6C[];
+extern PathInfo const gUnk_080F2A7C;
+extern PathInfo const gUnk_080F2A88;
+extern PathInfo const gUnk_080F2A94;
+extern PathInfo const gUnk_080F2AA0;
+extern PathPointB const gUnk_080F2AAC[];
+extern PathPointB const gUnk_080F2ACC[];
+
+#if defined(REGION_JP)
+ScheduleInfo const gUnk_080F221C = {
+#else
+ScheduleInfo const gUnk_080F29C0 = {
+#endif
+    func_0803DCB4,
+    6,
+    gUnk_080F29CC,
+};
+
+Schedule const * const gUnk_080F29CC[] = {
+    nullptr, &gUnk_080F29E4, &gUnk_080F29EC, &gUnk_080F29F4,
+    &gUnk_080F29FC, &gUnk_080F2A04,
+};
+
+Schedule const gUnk_080F29E4 = { 4, gUnk_080F2A0C };
+Schedule const gUnk_080F29EC = { 4, gUnk_080F2A2C };
+Schedule const gUnk_080F29F4 = { 1, gUnk_080F2A4C };
+Schedule const gUnk_080F29FC = { 3, gUnk_080F2A54 };
+Schedule const gUnk_080F2A04 = { 2, gUnk_080F2A6C };
+
+ScheduleEntry const gUnk_080F2A0C[] = {
+    { 0, &gUnk_080F2A7C },
+    { 180, &gUnk_080F2A88 },
+    { 720, &gUnk_080F2A7C },
+    { 840, &gUnk_080F2A88 },
+};
+
+ScheduleEntry const gUnk_080F2A2C[] = {
+    { 0, &gUnk_080F2A7C },
+    { 300, &gUnk_080F2A88 },
+    { 720, &gUnk_080F2A7C },
+    { 840, &gUnk_080F2A88 },
+};
+
+ScheduleEntry const gUnk_080F2A4C[] = {
+    { 0, &gUnk_080F2A88 },
+};
+
+ScheduleEntry const gUnk_080F2A54[] = {
+    { 0, &gUnk_080F2A94 },
+    { 300, &gUnk_080F2AA0 },
+    { 720, &gUnk_080F2A88 },
+};
+
+ScheduleEntry const gUnk_080F2A6C[] = {
+    { 0, &gUnk_080F2A7C },
+    { 180, &gUnk_080F2A88 },
+};
+
+PathInfo const gUnk_080F2A7C = {
+    nullptr,
+    0,
+    0,
+    0,
+    564,
+    1,
+    0,
+};
+
+PathInfo const gUnk_080F2A88 = {
+    nullptr,
+    0,
+    416,
+    -48,
+    29,
+    0,
+    0,
+};
+
+PathInfo const gUnk_080F2A94 = {
+    (void const *)gUnk_080F2AAC,
+    4,
+    352,
+    128,
+    29,
+    0,
+    1,
+};
+
+PathInfo const gUnk_080F2AA0 = {
+    (void const *)gUnk_080F2ACC,
+    4,
+    56,
+    128,
+    29,
+    0,
+    1,
+};
+
+PathPointB const gUnk_080F2AAC[] = {
+    { 408, 2, 120, 3, 0 },
+    { 160, 2, 120, 0, 1 },
+    { 352, 2, 120, 2, 0 },
+    { 128, 2, 120, 1, 1 },
+};
+
+PathPointB const gUnk_080F2ACC[] = {
+    { 160, 2, 120, 0, 1 },
+    { 104, 2, 120, 3, 0 },
+    { 128, 2, 120, 1, 1 },
+    { 56, 2, 120, 2, 0 },
+};
+
+#if defined(REGION_US)
+extern char const gUnk_080F2AEC[] =
+    "bad_alloc";
+#endif
