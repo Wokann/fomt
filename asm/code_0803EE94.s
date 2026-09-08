@@ -397,7 +397,8 @@ func_0808EF68:
     .incbin "baserom_jp.gba", 0x8EAA8, (0x8EBBC - 0x8EAA8)
     .4byte gText_ToolChest_EmptyDescription
     .incbin "baserom_jp.gba", 0x8EBC0, (0x9040C - 0x8EBC0)
-    jp_code_0803ee_func func_080908CC, 0x9040C, 0x90A04
+    jp_code_0803ee_func func_080908CC, 0x9040C, 0x909C4
+    jp_code_0803ee_func func_080909C4, 0x909C4, 0x90A04
     jp_code_0803ee_func func_08090EC4, 0x90A04, 0x90A20
     jp_code_0803ee_func func_08090EE0, 0x90A20, 0x90A98
     jp_code_0803ee_func func_08090F58, 0x90A98, 0x90B0C
