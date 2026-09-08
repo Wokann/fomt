@@ -517,6 +517,11 @@ func_080926A4:
     jp_code_0803ee_entry func_080941B4, func_08094648, 0xA8
     jp_code_0803ee_entry func_080941B0, func_08094648, 0xA4
 
+    @ Exact JP entry points referenced by the raw table at 0x080E8028.
+    jp_code_0803ee_entry func_08093D2C, func_080941A8, 0xC0
+    jp_code_0803ee_entry func_080938B0, func_08093C3C, 0x1B0
+    jp_code_0803ee_entry func_080938E4, func_08093C3C, 0x1E4
+
     @ JP entries referenced by static US callers.
     .global func_0805E99C
     .thumb_set func_0805E99C, func_0803F8DC + 0x1EFDC
