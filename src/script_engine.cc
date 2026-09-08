@@ -26,6 +26,8 @@ asm(
     "\n"
     "    jp_script_func __13AScriptEngine, 0x3EB08, 0x3EB3C\n"
     "    jp_script_func _._13AScriptEngine, 0x3EB3C, 0x3EB60\n"
+    "    .global func_0803EB3C\n"
+    "    .thumb_set func_0803EB3C, _._13AScriptEngine\n"
     "    jp_script_func Load__13AScriptEnginePCv, 0x3EB60, 0x3EC4C\n"
     "    jp_script_func method_0803EFD8__13AScriptEngine, 0x3EC4C, 0x3ECA0\n"
     "    jp_script_func method_0803F02C__C13AScriptEngine, 0x3ECA0, 0x3ECA4\n"

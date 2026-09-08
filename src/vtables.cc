@@ -13,6 +13,10 @@ struct RawVTableWithOffset {
 };
 
 extern void __pure_virtual(void);
+#if defined(REGION_JP)
+extern void func_0803EB3C(void);
+extern void method_0803EFD8__13AScriptEngine(void);
+#endif
 extern void func_080D3BE8(void);
 extern void func_080D3C24(void);
 extern void func_080D3C60(void);
@@ -952,5 +956,18 @@ extern RawVTableFunction const vtable_unk_080E61A0[] = {
     // 0x2B: pure virtual slot.
     __pure_virtual,
 };
+
+#if defined(REGION_JP)
+// The JP Script Engine code is still retained as a raw code range, but this
+// ABI table has the same five logical slots as the compiled US table.
+extern RawVTableFunction const __vt_13AScriptEngine[]
+    SECTION(".rodata.vtable_ascript_engine") = {
+        nullptr,
+        nullptr,
+        func_0803EB3C,
+        method_0803EFD8__13AScriptEngine,
+        __pure_virtual,
+    };
+#endif
 
 EXTERN_C_END
