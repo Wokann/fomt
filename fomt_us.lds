@@ -482,7 +482,8 @@ SECTIONS
         src/spouse_gift_data.o(.rodata);
         . = 0xF9EF4; src/farm_house.o(.rodata);
         asm/data/data_080F9EB8.o(.rodata.localized_data_suffix);
-        . = 0xF9F70; src/ui_state.o(.rodata);
+        . = 0xF9F3C; src/code_08050E0C.o(.rodata);
+        src/ui_state.o(.rodata);
         . = 0xF9F7C; asm/data/data_080F9EB8.o(.rodata.name_entry_preset_animal_names_prefix);
         . = 0xF9F80; data/text/new_game_name_entry.o(.rodata.new_game_name_entry_preset_animal_names_runtime);
         . = 0xF9F8A; data/text/new_game_name_entry.o(.rodata.name_entry_preset_animal_names);

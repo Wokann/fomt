@@ -32327,7 +32327,7 @@ func_08050478: @ 0x08050478
 	cmp r0, r6
 	bls .L0805050E
 .L0805050C:
-	ldr r7, .L08050580 @ =gUnk_080F9F3C
+	ldr r7, .L08050580 @ =gUiTextLayoutPositionTable
 .L0805050E:
 	mov r2, r8
 	cmp r2, #0
@@ -32337,7 +32337,7 @@ func_08050478: @ 0x08050478
 	cmp r0, r6
 	bls .L08050522
 .L0805051E:
-	ldr r0, .L08050580 @ =gUnk_080F9F3C
+	ldr r0, .L08050580 @ =gUiTextLayoutPositionTable
 	mov r8, r0
 .L08050522:
 	mov r1, sl
@@ -32348,7 +32348,7 @@ func_08050478: @ 0x08050478
 	cmp r0, r6
 	bls .L08050536
 .L08050532:
-	ldr r2, .L08050580 @ =gUnk_080F9F3C
+	ldr r2, .L08050580 @ =gUiTextLayoutPositionTable
 	mov sl, r2
 .L08050536:
 	mov r0, sb
@@ -32358,7 +32358,7 @@ func_08050478: @ 0x08050478
 	cmp r0, r6
 	bls .L08050548
 .L08050544:
-	ldr r1, .L08050580 @ =gUnk_080F9F3C
+	ldr r1, .L08050580 @ =gUiTextLayoutPositionTable
 	mov sb, r1
 .L08050548:
 	ldr r2, [sp, #0xc]
@@ -32369,7 +32369,7 @@ func_08050478: @ 0x08050478
 	cmp r0, r6
 	bls .L0805055C
 .L08050558:
-	ldr r0, .L08050580 @ =gUnk_080F9F3C
+	ldr r0, .L08050580 @ =gUiTextLayoutPositionTable
 	str r0, [sp, #0xc]
 .L0805055C:
 	ldr r1, [sp, #8]
@@ -32380,7 +32380,7 @@ func_08050478: @ 0x08050478
 	cmp r0, r6
 	bls .L08050570
 .L0805056C:
-	ldr r2, .L08050580 @ =gUnk_080F9F3C
+	ldr r2, .L08050580 @ =gUiTextLayoutPositionTable
 	str r2, [sp, #8]
 .L08050570:
 	cmp r5, #4
@@ -32391,7 +32391,7 @@ func_08050478: @ 0x08050478
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-.L08050580: .4byte gUnk_080F9F3C
+.L08050580: .4byte gUiTextLayoutPositionTable
 .L08050584: .4byte .L08050588
 .L08050588: @ jump table
 	.4byte .L080505FA @ case 0
@@ -32516,7 +32516,7 @@ func_08050664: @ 0x08050664
 	cmp r0, #0x1c
 	bls .L0805068E
 .L0805068C:
-	ldr r7, .L080506B4 @ =gUnk_080F9F3C
+	ldr r7, .L080506B4 @ =gUiTextLayoutPositionTable
 .L0805068E:
 	movs r4, #7
 	movs r1, #0xc
@@ -32539,7 +32539,7 @@ func_08050664: @ 0x08050664
 	beq .L080506E2
 	b .L080506BC
 	.align 2, 0
-.L080506B4: .4byte gUnk_080F9F3C
+.L080506B4: .4byte gUiTextLayoutPositionTable
 .L080506B8:
 	cmp r4, #7
 	beq .L080506BE
@@ -32553,7 +32553,7 @@ func_08050664: @ 0x08050664
 	cmp r0, r8
 	bls .L080506CE
 .L080506CC:
-	ldr r6, .L08050730 @ =gUnk_080F9F3C
+	ldr r6, .L08050730 @ =gUiTextLayoutPositionTable
 .L080506CE:
 	mov r1, sb
 	cmp r1, #0
@@ -32563,7 +32563,7 @@ func_08050664: @ 0x08050664
 	cmp r0, r8
 	bls .L080506E2
 .L080506DE:
-	ldr r2, .L08050730 @ =gUnk_080F9F3C
+	ldr r2, .L08050730 @ =gUiTextLayoutPositionTable
 	mov sb, r2
 .L080506E2:
 	mov r0, sl
@@ -32573,7 +32573,7 @@ func_08050664: @ 0x08050664
 	cmp r0, r8
 	bls .L080506F4
 .L080506F0:
-	ldr r1, .L08050730 @ =gUnk_080F9F3C
+	ldr r1, .L08050730 @ =gUiTextLayoutPositionTable
 	mov sl, r1
 .L080506F4:
 	ldr r2, [sp, #8]
@@ -32584,7 +32584,7 @@ func_08050664: @ 0x08050664
 	cmp r0, r8
 	bls .L08050708
 .L08050704:
-	ldr r0, .L08050730 @ =gUnk_080F9F3C
+	ldr r0, .L08050730 @ =gUiTextLayoutPositionTable
 	str r0, [sp, #8]
 .L08050708:
 	adds r0, r5, #0
@@ -32606,7 +32606,7 @@ func_08050664: @ 0x08050664
 	beq .L08050768
 	b .L08050798
 	.align 2, 0
-.L08050730: .4byte gUnk_080F9F3C
+.L08050730: .4byte gUiTextLayoutPositionTable
 .L08050734:
 	cmp r4, #7
 	bne .L08050798
@@ -32699,13 +32699,13 @@ func_080507D0: @ 0x080507D0
 	adds r0, r0, r2
 	lsls r0, r0, #1
 	adds r0, r0, r1
-	ldr r1, .L080507F4 @ =gUnk_080F9F3C
+	ldr r1, .L080507F4 @ =gUiTextLayoutPositionTable
 	adds r0, r0, r1
 	ldrb r0, [r0]
 	pop {r1}
 	bx r1
 	.align 2, 0
-.L080507F4: .4byte gUnk_080F9F3C
+.L080507F4: .4byte gUiTextLayoutPositionTable
 
 	thumb_func_start func_080507F8
 func_080507F8: @ 0x080507F8
