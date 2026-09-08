@@ -19,6 +19,14 @@ i32 DrawCharacterGlyphTo2DGfxBuffer(u32 size, void *buffer, i32 x, i32 y,
 // original linker label lets normal C++ callers use its semantic declaration.
 i32 DrawCharacterGlyphTo2DGfxBufferExt(u32 size, void *buffer, i32 x, i32 y,
     i32 character, i32 foreground, i32 background) asm("func_0804E5AC");
+// Both original unaligned paths return zero without modifying their
+// destination. Keeping their original linker labels lets the raw callers
+// retain ordinary C/C++ definitions instead of four-byte assembly stubs.
+i32 DrawCharacterGlyphTo2DGfxBufferUnaligned(u32 size, void *buffer, i32 x,
+    i32 y, void *glyph) asm("func_0804E9C8");
+i32 DrawCharacterGlyphTo2DGfxBufferExtUnaligned(u32 size, void *buffer,
+    i32 x, i32 y, void *glyph, i32 foreground,
+    i32 background) asm("func_0804E9CC");
 void Clear2DGfxBuffer(u32 size, void *buffer, u32 color);
 void Clear2DGfxBufferRect(u32 size, void *buffer, u32 x, u32 y, u32 width,
     u32 height, u32 color);

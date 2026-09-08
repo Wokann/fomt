@@ -4,12 +4,6 @@
 
 EXTERN_C
 
-// The original non-aligned path is present but intentionally has no visual
-// effect; keep it as a separate call so its known ROM behavior remains
-// visible while the core aligned compositor stays ordinary C++.
-extern void DrawCharacterGlyphTo2DGfxBufferUnaligned(u32 size, void *buffer,
-    i32 x, i32 y, void *glyph) asm("func_0804E9C8");
-
 i32 DrawCharacterGlyphTo2DGfxBuffer(u32 size, void *buffer, i32 x, i32 y,
     i32 character) SECTION(".text.font_draw_normal");
 
@@ -390,6 +384,21 @@ advance_character:
         byte = *current;
         character <<= 8;
     }
+}
+
+// The original game reserves two ABI-compatible unaligned glyph paths, but
+// both are deliberate no-ops. They return zero and leave the destination
+// untouched; callers already ignore the return value on their fallback path.
+i32 DrawCharacterGlyphTo2DGfxBufferUnaligned(u32 size, void *buffer, i32 x,
+    i32 y, void *glyph)
+{
+    return 0;
+}
+
+i32 DrawCharacterGlyphTo2DGfxBufferExtUnaligned(u32 size, void *buffer,
+    i32 x, i32 y, void *glyph, i32 foreground, i32 background)
+{
+    return 0;
 }
 
 EXTERN_C_END
