@@ -16,6 +16,11 @@
 \name:
         .incbin "baserom_jp.gba", \start, (\end - \start)
     .endm
+
+    .macro jp_code_809_entry name, base, offset
+        .global \name
+        .thumb_set \name, \base + \offset
+    .endm
     jp_code_809_func func_0809E804, 0x9E23C, 0x9E31C
     jp_code_809_func func_0809E8E4, 0x9E31C, 0x9E3A0
     jp_code_809_func func_0809E968, 0x9E3A0, 0x9E3C0
@@ -69,6 +74,8 @@
     jp_code_809_func func_080A3618, 0xA3050, 0xA317C
     jp_code_809_func func_080A3744, 0xA317C, 0xA31AC
     jp_code_809_func func_080A3774, 0xA31AC, 0xA372C
+    @ Exact JP entry point referenced by the raw table at 0x080E8268.
+    jp_code_809_entry func_080A31AC, func_080A3774, 0x0
     jp_code_809_func func_080A3CF4, 0xA372C, 0xA38C8
     jp_code_809_func func_080A3E90, 0xA38C8, 0xA3984
     jp_code_809_func func_080A3F4C, 0xA3984, 0xA3FE0
