@@ -1,16 +1,11 @@
     .ifdef REGION_JP
     @ JP revision 0 virtual-table region.
     @
-    @ The US source already models this as raw data entries.  JP keeps one
-    @ static ROM range and exports the same source labels relative to the
-    @ verified beginning of its corresponding region.
+    @ AScene and AUnk_0800080C are emitted from their ordinary C++ class
+    @ declarations. The remaining tables stay in this static ROM range.
 
     .section .rodata
-jp_vtables_start:
-    .global __vt_6AScene
-    .set __vt_6AScene, jp_vtables_start + 0x0
-    .global __vt_13AUnk_0800080C
-    .set __vt_13AUnk_0800080C, jp_vtables_start + 0x10
+    .set jp_vtables_start, jp_vtables_raw_start - 0x20
     .global vtable_unk_080E59EC
     .set vtable_unk_080E59EC, jp_vtables_start + 0x20
     .global vtable_unk_080E59FC
@@ -656,7 +651,8 @@ jp_vtables_start:
     .global vtable_unk_080E85E8
     .set vtable_unk_080E85E8, jp_vtables_start + 0x2C1C
 
-    .incbin "baserom_jp.gba", 0xE4E0C, 0x2C34
+jp_vtables_raw_start:
+    .incbin "baserom_jp.gba", 0xE4E2C, (0xE7A40 - 0xE4E2C)
     .else
 
     .section .rodata

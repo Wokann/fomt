@@ -481,7 +481,9 @@ SECTIONS
         asm/code_linkonce.o(.text.code_080E0EF0);
 
         . = 0xE4E0C; /* JP C++ table region begins after code_linkonce. */
-        asm/vtables.o(.rodata);
+        *(.gnu.linkonce.d.__vt_6AScene);
+        *(.gnu.linkonce.d.__vt_13AUnk_0800080C);
+        . = ALIGN(4); asm/vtables.o(.rodata);
 
         . = 0xE7A40; /* JP data_080E8610 begins after the C++ table region. */
         src/crt0_data.o(.rodata);
