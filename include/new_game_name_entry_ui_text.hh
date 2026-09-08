@@ -19,6 +19,10 @@ extern char const gCppRuntimeBadAlloc_NewGameNameEntryUi07[];
 extern char const gCppRuntimeBadAlloc_NewGameNameEntryUi08[];
 extern char const gCppRuntimeBadAlloc_NewGameNameEntryUi09[];
 
+// Both regional name-entry UIs consume the first thirteen glyph codes.  The
+// native fixed storage has different total capacities between the releases.
+extern u16 const gNewGameNameEntryUiCharacterCodes[];
+
 #if defined(REGION_JP)
 extern char const gText_NewGameNameEntry_ModeKatakana[];
 extern char const gText_NewGameNameEntry_ModeSymbols[];
@@ -26,7 +30,6 @@ extern char const gText_NewGameNameEntry_ModeHiragana[];
 #else
 extern char const gText_NewGameNameEntry_EndLatin[];
 extern char const gText_NewGameNameEntry_EndFullWidth[];
-extern u16 const gNewGameNameEntryUiCharacterCodes[];
 #endif
 
 #endif // NEW_GAME_NAME_ENTRY_UI_TEXT_HH

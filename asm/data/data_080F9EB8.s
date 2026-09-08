@@ -4,9 +4,6 @@
     .section .rodata.script_engine_ui_error_trailer_after_suffix
     .incbin "baserom_jp.gba", 0xF97D8, (0xF97DC - 0xF97D8)
 
-    .section .rodata.name_entry_preset_animal_names_trailer_prefix
-    .incbin "baserom_jp.gba", 0xF996C, (0xF9994 - 0xF996C)
-
 
 
 
