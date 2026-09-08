@@ -433,7 +433,9 @@ func_080926A4:
     jp_code_0803ee_func func_08093C3C, 0x93700, 0x93A74
     jp_code_0803ee_func func_08093FB0, 0x93A74, 0x93AC4
     jp_code_0803ee_func func_08094000, 0x93AC4, 0x93C6C
-    jp_code_0803ee_func func_080941A8, 0x93C6C, 0x93F10
+    jp_code_0803ee_func func_080941A8, 0x93C6C, 0x93D4C
+    jp_code_0803ee_func func_08093D4C, 0x93D4C, 0x93D80
+    jp_code_0803ee_func func_08093D80, 0x93D80, 0x93F10
     jp_code_0803ee_func func_0809444C, 0x93F10, 0x93F6C
     jp_code_0803ee_func func_080944A8, 0x93F6C, 0x9410C
     jp_code_0803ee_func func_08094648, 0x9410C, 0x942D8

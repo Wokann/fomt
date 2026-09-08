@@ -12,6 +12,11 @@ struct RawVTableWithOffset {
     RawVTableFunction entries[2];
 };
 
+struct RawVTableWithOffsetThreeEntries {
+    i32 offset;
+    RawVTableFunction entries[3];
+};
+
 extern void __pure_virtual(void);
 extern void func_0804EEFC(void);
 extern void func_0804F19C(void);
@@ -161,6 +166,8 @@ extern void func_08092604(void);
 extern void func_0809215C(void);
 extern void func_08092CAC(void);
 extern void func_08093220(void);
+extern void func_08093D4C(void);
+extern void func_08093D80(void);
 extern void func_080E2C34(void);
 extern void func_080E2C7C(void);
 extern void func_080E14B8(void);
@@ -200,6 +207,8 @@ extern void func_08090F58(void);
 extern void func_080925C4(void);
 extern void func_08092604(void);
 extern void func_08092690(void);
+extern void func_080931E0(void);
+extern void func_08093220(void);
 extern void func_0804EDA0(void);
 extern void func_0804EE1C(void);
 extern void func_0804EE88(void);
@@ -2604,6 +2613,25 @@ extern RawVTableFunction const vtable_unk_080E7DD8[]
         nullptr,
         nullptr,
         func_08092690,
+#endif
+    };
+
+extern RawVTableWithOffsetThreeEntries const vtable_unk_080E7DE4
+    SECTION(".rodata.vtable_7de4") = {
+#if defined(REGION_JP)
+        -8,
+        {
+            nullptr,
+            func_08093D4C,
+            func_08093D80,
+        },
+#else
+        0,
+        {
+            nullptr,
+            func_080931E0,
+            func_08093220,
+        },
 #endif
     };
 
