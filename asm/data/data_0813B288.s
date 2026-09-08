@@ -1099,6 +1099,17 @@ jp_data_08462550_start:
 gActorStateGridCellType4Data:
     .incbin "baserom_jp.gba", 0x462550, (0x77F610 - 0x462550)
 
+    @ Font renderer payloads. The byte layouts remain raw assets, while
+    @ src/font.cc owns the typed references used by the glyph resolver.
+    .global gFontSingleWidthGlyphData
+    .set gFontSingleWidthGlyphData, jp_data_08462550_start + 0x2EF058
+    .global gFontSingleByteGlyphIndices
+    .set gFontSingleByteGlyphIndices, jp_data_08462550_start + 0x2F072C
+    .global gFontDoubleWidthGlyphData
+    .set gFontDoubleWidthGlyphData, jp_data_08462550_start + 0x2F092C
+    .global gFontShiftJisGlyphIndices
+    .set gFontShiftJisGlyphIndices, jp_data_08462550_start + 0x31921C
+
     @ Intro Scene resources unpacked in order by func_0805FBB8.
     @ Their individual payload formats are not decoded yet.
     .global gUnk_IntroSceneUnpackSource_000
@@ -2180,18 +2191,26 @@ gActorStateGridCellType4Data:
 	.global gUnk_084F90CC
 gUnk_084F90CC:
 	.incbin "baserom_us.gba", 0x4F90CC, 0x16D4
+	.global gFontSingleWidthGlyphData
+	.set gFontSingleWidthGlyphData, gUnk_084F90CC
 
 	.global gUnk_084FA7A0
 gUnk_084FA7A0:
 	.incbin "baserom_us.gba", 0x4FA7A0, 0x200
+	.global gFontSingleByteGlyphIndices
+	.set gFontSingleByteGlyphIndices, gUnk_084FA7A0
 
 	.global gUnk_084FA9A0
 gUnk_084FA9A0:
 	.incbin "baserom_us.gba", 0x4FA9A0, 0x288F0
+	.global gFontDoubleWidthGlyphData
+	.set gFontDoubleWidthGlyphData, gUnk_084FA9A0
 
 	.global gUnk_08523290
 gUnk_08523290:
 	.incbin "baserom_us.gba", 0x523290, 0x3E04
+	.global gFontShiftJisGlyphIndices
+	.set gFontShiftJisGlyphIndices, gUnk_08523290
 
 	.global gUnk_08527094
 gUnk_08527094:

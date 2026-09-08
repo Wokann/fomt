@@ -6,6 +6,10 @@
 gUnk_08118CF4:
     .incbin "baserom_jp.gba", 0x118CF4, (0x13BCF8 - 0x118CF4)
 
+    @ The JP renderer uses this 24-byte glyph only for input code 0x81CD.
+    .global gFontSpecialGlyph81CD
+    .set gFontSpecialGlyph81CD, gUnk_08118CF4 + 0xC
+
     @ Region-neutral labels for FarmHouse visual descriptor resources.
     @ Their payload formats remain in this raw data range.
     .global gUnk_FarmHouseVisualResource_002
@@ -472,6 +476,10 @@ gUnk_08118CF4:
 	.global gUnk_08117BC8
 gUnk_08117BC8:
 	.incbin "baserom_us.gba", 0x117BC8, 0x21EC0
+
+	@ The US renderer uses this 12-byte glyph only for input code 0x00C3.
+	.global gFontSpecialGlyphC3
+	.set gFontSpecialGlyphC3, gUnk_08117BC8
 
 	@ Region-neutral labels for FarmHouse visual descriptor resources.
 	@ Their payload formats remain in this raw data range.
