@@ -377,7 +377,8 @@ func_080885AC:
 func_0808BC14:
     .incbin "baserom_jp.gba", 0x8B754, (0x8BBF8 - 0x8B754)
     .4byte gText_HomeStorage_EmptyDescription
-    .incbin "baserom_jp.gba", 0x8BBFC, (0x8C11C - 0x8BBFC)
+    .incbin "baserom_jp.gba", 0x8BBFC, (0x8C0DC - 0x8BBFC)
+    jp_code_0803ee_func func_0808C0DC, 0x8C0DC, 0x8C11C
     jp_code_0803ee_func func_0808C5DC, 0x8C11C, 0x8C380
     jp_code_0803ee_func func_0808C840, 0x8C380, 0x8C434
     .global func_0808C8F4
