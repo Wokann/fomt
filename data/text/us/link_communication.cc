@@ -68,3 +68,14 @@ char const gText_LinkCommunication_Declined[] LINK_COMMUNICATION_TEXT =
 
 char const gText_LinkCommunication_Complete[] LINK_COMMUNICATION_TEXT =
     "Communication complete.{Press}";
+
+// The extended single-byte game-font glyphs have no independently verified
+// Unicode names yet, so keep their proven ROM codes explicit.
+u8 const gLinkCommunicationCharacterCodeTable[]
+    SECTION(".rodata.link_communication_character_codes") ALIGN(2) =
+    FOMT_GLYPH_TEXT(
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        "abcdefghijklmnopqrstuvwxyz"
+        "0123456789!%&\xBF()~\xA2\xA3<>.?\xA5+-x*/o\xB6\xB7\xB3\xB2\xB1\xC0"
+        "\xBB\xBC\xBD\xBE\xC1\xC2\xC3 \xB4"
+    );

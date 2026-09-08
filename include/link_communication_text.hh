@@ -23,4 +23,10 @@ extern char const gText_LinkCommunication_ActionQuestion[];
 extern char const gText_LinkCommunication_Declined[];
 extern char const gText_LinkCommunication_Complete[];
 
+#if defined(REGION_JP)
+extern u16 const gLinkCommunicationCharacterCodeTable[];
+#else
+extern u8 const gLinkCommunicationCharacterCodeTable[];
+#endif
+
 #endif // LINK_COMMUNICATION_TEXT_HH

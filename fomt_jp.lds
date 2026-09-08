@@ -708,8 +708,8 @@ SECTIONS
         . = ALIGN(4);
         . = 0xFFE70; data/text/link_communication.o(.rodata.link_communication);
         . = 0x100130; src/link_communication_data.o(.rodata);
-        . = 0x1003BA; asm/data/data_080F9EB8.o(.rodata.link_communication_trailer);
-        . = 0x1005B0; src/link_communication_data.o(.rodata.link_communication_game_codes);
+        data/text/link_communication.o(.rodata.link_communication_character_codes);
+        src/link_communication_data.o(.rodata.link_communication_game_codes);
         FILL(0x00);
         . = ALIGN(4);
         . = 0x1005D8; data/text/common/cooking_recipe_inventory.o(.rodata);

@@ -166093,7 +166093,7 @@ func_08094994: @ 0x08094994
 	ldrb r0, [r4]
 	cmp r0, #0
 	beq .L080949EA
-	ldr r0, .L080949D4 @ =gUnk_08100A36
+	ldr r0, .L080949D4 @ =gLinkCommunicationCharacterCodeTable
 	ldrb r0, [r0]
 	mov ip, r0
 	adds r2, r7, #0
@@ -166103,7 +166103,7 @@ func_08094994: @ 0x08094994
 	movs r3, #0
 	cmp r1, ip
 	beq .L080949C8
-	ldr r6, .L080949D4 @ =gUnk_08100A36
+	ldr r6, .L080949D4 @ =gLinkCommunicationCharacterCodeTable
 .L080949B6:
 	adds r0, r3, #1
 	lsls r0, r0, #0x18
@@ -166122,7 +166122,7 @@ func_08094994: @ 0x08094994
 	strb r0, [r2]
 	b .L080949EA
 	.align 2, 0
-.L080949D4: .4byte gUnk_08100A36
+.L080949D4: .4byte gLinkCommunicationCharacterCodeTable
 .L080949D8:
 	adds r0, r3, #1
 	strb r0, [r2]
@@ -166158,7 +166158,7 @@ func_08094A00: @ 0x08094A00
 	subs r0, #1
 	cmp r0, #0x60
 	bhi .L08094A2E
-	ldr r4, .L08094A38 @ =gUnk_08100A36
+	ldr r4, .L08094A38 @ =gLinkCommunicationCharacterCodeTable
 .L08094A12:
 	adds r0, r0, r4
 	ldrb r0, [r0]
@@ -166181,7 +166181,7 @@ func_08094A00: @ 0x08094A00
 	pop {r0}
 	bx r0
 	.align 2, 0
-.L08094A38: .4byte gUnk_08100A36
+.L08094A38: .4byte gLinkCommunicationCharacterCodeTable
 
 	thumb_func_start func_08094A3C
 func_08094A3C: @ 0x08094A3C
