@@ -1152,6 +1152,12 @@ gActorStateGridCellType4Data:
     .set gUnk_IntroSceneStartupUnpackSource_002, jp_data_08462550_start + 0x6EA14
     .global gUnk_IntroSceneStartupUnpackSource_003
     .set gUnk_IntroSceneStartupUnpackSource_003, jp_data_08462550_start + 0x6EB08
+
+    @ Shared UI resource payloads.  Their internal encodings remain raw.
+    .global gUnk_UiSharedResourceData_000
+    .set gUnk_UiSharedResourceData_000, jp_data_08462550_start + 0x7E650
+    .global gUnk_UiSharedResourceData_001
+    .set gUnk_UiSharedResourceData_001, jp_data_08462550_start + 0x7E770
     .else
     .section .rodata
 
@@ -3391,4 +3397,10 @@ gUnk_0875A440:
 	.global gUnk_0875B444
 gUnk_0875B444:
 	.incbin "baserom_us.gba", 0x75B444, 0x5B4
+
+	@ Shared UI resource payloads.  Their internal encodings remain raw.
+	.global gUnk_UiSharedResourceData_000
+	.set gUnk_UiSharedResourceData_000, gUnk_0875B444 + 0x3D4
+	.global gUnk_UiSharedResourceData_001
+	.set gUnk_UiSharedResourceData_001, gUnk_0875B444 + 0x4F4
     .endif

@@ -32809,7 +32809,7 @@ func_080AE894: @ 0x080AE894
 	push {r5, r6, r7}
 	sub sp, #0xdc
 	mov sb, r0
-	ldr r0, .L080AE9B8 @ =gUnk_080F9F78
+	ldr r0, .L080AE9B8 @ =gUiSharedResourceData + 8
 	ldr r0, [r0]
 	ldr r1, .L080AE9BC @ =0x050003C0
 	movs r2, #0x20
@@ -32940,7 +32940,7 @@ func_080AE894: @ 0x080AE894
 	str r0, [sp, #0xbc]
 	b .L080AEACE
 	.align 2, 0
-.L080AE9B8: .4byte gUnk_080F9F78
+.L080AE9B8: .4byte gUiSharedResourceData + 8
 .L080AE9BC: .4byte 0x050003C0
 .L080AE9C0: .4byte 0x0500024A
 .L080AE9C4: .4byte 0x050003C2
@@ -62565,7 +62565,7 @@ func_080BD064: @ 0x080BD064
 	push {r5, r6, r7}
 	sub sp, #0xac
 	mov sb, r0
-	ldr r0, .L080BD17C @ =gUnk_080F9F78
+	ldr r0, .L080BD17C @ =gUiSharedResourceData + 8
 	ldr r0, [r0]
 	ldr r1, .L080BD180 @ =0x05000320
 	movs r2, #0x20
@@ -62691,7 +62691,7 @@ func_080BD064: @ 0x080BD064
 	str r6, [sp, #0x9c]
 	b .L080BD280
 	.align 2, 0
-.L080BD17C: .4byte gUnk_080F9F78
+.L080BD17C: .4byte gUiSharedResourceData + 8
 .L080BD180: .4byte 0x05000320
 .L080BD184: .4byte 0x0500024A
 .L080BD188: .4byte 0x05000322
@@ -71554,7 +71554,7 @@ func_080C16D4: @ 0x080C16D4
 	push {r5, r6, r7}
 	sub sp, #0xd4
 	mov sb, r0
-	ldr r0, .L080C17EC @ =gUnk_080F9F78
+	ldr r0, .L080C17EC @ =gUiSharedResourceData + 8
 	ldr r0, [r0]
 	ldr r1, .L080C17F0 @ =0x05000360
 	movs r2, #0x20
@@ -71679,7 +71679,7 @@ func_080C16D4: @ 0x080C16D4
 	str r6, [sp, #0xc8]
 	b .L080C18F4
 	.align 2, 0
-.L080C17EC: .4byte gUnk_080F9F78
+.L080C17EC: .4byte gUiSharedResourceData + 8
 .L080C17F0: .4byte 0x05000360
 .L080C17F4: .4byte 0x0500024A
 .L080C17F8: .4byte 0x05000362
@@ -85707,9 +85707,9 @@ func_080C85A0: @ 0x080C85A0
 	strh r2, [r1]
 	movs r4, #0
 	strh r2, [r0]
-	ldr r0, .L080C87C4 @ =gUnk_080F9F70
+	ldr r0, .L080C87C4 @ =gUiSharedResourceData
 	ldr r0, [r0]
-	ldr r1, .L080C87C8 @ =gUnk_080F9F74
+	ldr r1, .L080C87C8 @ =gUiSharedResourceData + 4
 	ldr r2, [r1]
 	mov r1, r8
 	bl func_08008E64
@@ -85726,7 +85726,7 @@ func_080C85A0: @ 0x080C85A0
 	movs r2, #0
 	movs r3, #0x1e
 	bl func_08051320
-	ldr r0, .L080C87D0 @ =gUnk_080F9F78
+	ldr r0, .L080C87D0 @ =gUiSharedResourceData + 8
 	ldr r0, [r0]
 	movs r1, #0xa0
 	lsls r1, r1, #0x13
@@ -85886,10 +85886,10 @@ func_080C85A0: @ 0x080C85A0
 .L080C87B8: .4byte 0x0600E800
 .L080C87BC: .4byte 0x0600F000
 .L080C87C0: .4byte 0x0600F800
-.L080C87C4: .4byte gUnk_080F9F70
-.L080C87C8: .4byte gUnk_080F9F74
+.L080C87C4: .4byte gUiSharedResourceData
+.L080C87C8: .4byte gUiSharedResourceData + 4
 .L080C87CC: .4byte 0x00030003
-.L080C87D0: .4byte gUnk_080F9F78
+.L080C87D0: .4byte gUiSharedResourceData + 8
 .L080C87D4: .4byte 0x03FF03FF
 .L080C87D8: .4byte 0x000001EB
 .L080C87DC: .4byte 0x06001400
@@ -96322,15 +96322,15 @@ func_080CD620: @ 0x080CD620
 	adds r1, r7, #0
 	strh r1, [r2]
 	strh r1, [r0]
-	ldr r0, .L080CD74C @ =gUnk_080F9F78
+	ldr r0, .L080CD74C @ =gUiSharedResourceData + 8
 	ldr r0, [r0]
 	movs r1, #0xa0
 	lsls r1, r1, #0x13
 	movs r2, #0x20
 	bl func_08008E64
-	ldr r0, .L080CD750 @ =gUnk_080F9F70
+	ldr r0, .L080CD750 @ =gUiSharedResourceData
 	ldr r0, [r0]
-	ldr r1, .L080CD754 @ =gUnk_080F9F74
+	ldr r1, .L080CD754 @ =gUiSharedResourceData + 4
 	ldr r2, [r1]
 	adds r1, r4, #0
 	bl func_08008E64
@@ -96402,9 +96402,9 @@ func_080CD620: @ 0x080CD620
 .L080CD740: .4byte 0x00003F42
 .L080CD744: .4byte 0x0600F000
 .L080CD748: .4byte 0x0600F800
-.L080CD74C: .4byte gUnk_080F9F78
-.L080CD750: .4byte gUnk_080F9F70
-.L080CD754: .4byte gUnk_080F9F74
+.L080CD74C: .4byte gUiSharedResourceData + 8
+.L080CD750: .4byte gUiSharedResourceData
+.L080CD754: .4byte gUiSharedResourceData + 4
 .L080CD758: .4byte 0x00030003
 .L080CD75C: .4byte 0x0600F81C
 .L080CD760: .4byte 0x03FF03FF

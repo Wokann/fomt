@@ -1,4 +1,4 @@
-#include "prelude.h"
+#include "ui_state.hh"
 
 struct UiObjectState
 {
@@ -18,6 +18,12 @@ struct UiActionState
     UiActionStateFlags flags_01dc;
     u8 unknown_01e0[0x10];
     UiActionStateFlags flags_01f0;
+};
+
+UiSharedResourceData const gUiSharedResourceData = {
+    gUnk_UiSharedResourceData_000,
+    0x120,
+    gUnk_UiSharedResourceData_001,
 };
 
 extern "C" void SetUiObjectStateTwoIfNonzero(void * object)
