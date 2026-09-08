@@ -57,6 +57,7 @@ extern void func_080E1044(void);
 extern void func_080E0FE4(void);
 extern void func_080E1104(void);
 extern void func_080E1124(void);
+extern void func_080E1198(void);
 extern void func_080E14B8(void);
 extern void func_0805E4D4(void);
 #else
@@ -94,6 +95,7 @@ extern void func_080E18A4(void);
 extern void func_080E1844(void);
 extern void func_080E1964(void);
 extern void func_080E1984(void);
+extern void func_080E19F8(void);
 extern void func_0805E658(void);
 extern void func_0805E698(void);
 extern void func_0805E790(void);
@@ -1419,6 +1421,17 @@ extern RawVTableFunction const vtable_unk_080E79C8[]
         func_080E1984,
         Resolve__C22IndexedResourceArchiveUi,
         func_0805E790,
+#endif
+    };
+
+extern RawVTableFunction const vtable_unk_080E79DC[]
+    SECTION(".rodata.vtable_79dc") = {
+        nullptr,
+        nullptr,
+#if defined(REGION_JP)
+        func_080E1198,
+#else
+        func_080E19F8,
 #endif
     };
 
