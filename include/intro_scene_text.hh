@@ -7,6 +7,8 @@ EXTERN_C
 
 extern u8 const * const gIntroSceneUnpackSources[];
 extern u8 const * const gIntroSceneStartupUnpackSources[];
+extern char const gCppRuntimeBadAlloc_IntroSceneStartup[];
+extern char const gCppRuntimeError_IntroSceneStartup[];
 
 EXTERN_C_END
 

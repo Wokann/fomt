@@ -38,8 +38,19 @@ u8 const * const gIntroSceneStartupUnpackSources[]
         gUnk_IntroSceneStartupUnpackSource_000,
         gUnk_IntroSceneStartupUnpackSource_001,
         gUnk_IntroSceneStartupUnpackSource_002,
-        gUnk_IntroSceneStartupUnpackSource_003,
-    };
+    gUnk_IntroSceneStartupUnpackSource_003,
+};
+
+// These runtime strings immediately follow the startup resource table in the
+// original ROM.  C++ supplies each terminator; the linker supplies only the
+// object-boundary padding required by the next four-byte-aligned object.
+char const gCppRuntimeBadAlloc_IntroSceneStartup[]
+    SECTION(".rodata.intro_scene_startup_resources") =
+        "bad_alloc";
+
+char const gCppRuntimeError_IntroSceneStartup[]
+    SECTION(".rodata.intro_scene_startup_resources") ALIGN(4) =
+        "Error";
 
 u8 const * const gIntroSceneUnpackSources[] = {
     gUnk_IntroSceneUnpackSource_000,
