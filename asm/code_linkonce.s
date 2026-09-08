@@ -26350,6 +26350,10 @@ func_080E0E80: @ 0x080E0E80
     .thumb_set func_080E08C4, func_080E10EC + 0x38
     .global func_080E08C8
     .thumb_set func_080E08C8, func_080E10EC + 0x3C
+    @ This physical JP entry would collide with the existing cross-region
+    @ func_080E0C38 symbol, so retain a neutral local dispatch-target name.
+    .global func_080E0C38_vtable_target
+    .thumb_set func_080E0C38_vtable_target, func_080E11EC + 0x2AC
     .else
 
 	thumb_func_start func_080E0EF0
