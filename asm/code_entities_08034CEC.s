@@ -224,6 +224,9 @@
     .thumb_set func_08036F0C, func_08036E70 + 0x9C
     .global func_08036F68
     .thumb_set func_08036F68, func_08036E70 + 0xF8
+    @ Exact entry referenced by the raw table at 0x080E6958.
+    .global func_08036E00
+    .thumb_set func_08036E00, func_08036DC4 + 0x3C
     .else
 
     .INCLUDE "asm/macro.inc"
@@ -3623,6 +3626,9 @@ func_08036D98: @ 0x08036D98
 
     thumb_func_start func_08036DC4
 func_08036DC4: @ 0x08036DC4
+    @ Exact entry referenced by the raw table at 0x080E6958.
+    .global func_08036E00
+    .thumb_set func_08036E00, func_08036DC4 + 0x3C
     push {r4, lr}
     sub sp, #0x10
     adds r4, r0, #0
