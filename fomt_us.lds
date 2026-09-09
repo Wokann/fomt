@@ -784,7 +784,7 @@ SECTIONS
         src/link_communication_data.o(.rodata.link_communication_game_codes);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0x100AC0; data/text/common/cooking_recipe_inventory.o(.rodata);
+        . = 0x100AC0; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_page_break);
         . = 0x100AC2; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_utensil_values);
         . = 0x100AD2; data/text/recovery_status.o(.rodata);
         . = 0x100DE4; data/text/cooking.o(.rodata);

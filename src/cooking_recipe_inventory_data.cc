@@ -2,6 +2,12 @@
 
 EXTERN_C
 
+#define FOMT_COOKING_RECIPE_INVENTORY_TEXT_PAGE_BREAK
+#define FOMT_COOKING_RECIPE_INVENTORY_TEXT_ATTRIBUTE SECTION(".rodata.cooking_recipe_inventory_page_break")
+#include "data/text/common/cooking_recipe_inventory.cc"
+#undef FOMT_COOKING_RECIPE_INVENTORY_TEXT_ATTRIBUTE
+#undef FOMT_COOKING_RECIPE_INVENTORY_TEXT_PAGE_BREAK
+
 // The recipe screen walks the eight utensil flags in order and passes the
 // corresponding value to its native display helper.
 u16 const gCookingRecipeInventoryUtensilValues[]
