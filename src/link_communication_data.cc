@@ -1,4 +1,5 @@
 #include "link_communication.hh"
+#include "link_communication_text.hh"
 
 EXTERN_C
 
@@ -164,3 +165,28 @@ char const gCppRuntimeBadAlloc_LinkCommunicationGYW[]
         "bad_alloc";
 
 EXTERN_C_END
+
+#if defined(REGION_JP)
+u16 const gLinkCommunicationCharacterCodeTable[] ALIGN(2) =
+    FOMT_GLYPH_TEXT(
+        "　あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほま"
+        "みむめもやゆよらりるれろわをんぁぃぅぇぉっゃゅょがぎぐげござじず"
+        "ぜぞだぢづでどばびぶべぼぱぴぷぺぽアイウエオカキクケコサシスセソ"
+        "タチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンァ"
+        "ィゥェォッャュョガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペ"
+        "ポーＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄ"
+        "ｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ０１２３４５６７８９"
+        "！％＆’（）～「」＜＞．？·＋－×＊／○☆★♪♂♀※"
+    );
+
+#else
+// The extended single-byte game-font glyphs have no independently verified
+// Unicode names yet, so keep their proven ROM codes explicit.
+u8 const gLinkCommunicationCharacterCodeTable[] ALIGN(2) =
+    FOMT_GLYPH_TEXT(
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        "abcdefghijklmnopqrstuvwxyz"
+        "0123456789!%&\xBF()~\xA2\xA3<>.?\xA5+-x*/o\xB6\xB7\xB3\xB2\xB1\xC0"
+        "\xBB\xBC\xBD\xBE\xC1\xC2\xC3 \xB4"
+    );
+#endif

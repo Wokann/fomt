@@ -64,16 +64,3 @@ char const gText_LinkCommunication_Declined[] =
 
 char const gText_LinkCommunication_Complete[] =
     "通信が終わったわよ。{Press}";
-
-u16 const gLinkCommunicationCharacterCodeTable[]
-    SECTION(".rodata.link_communication_character_codes") ALIGN(2) =
-    FOMT_GLYPH_TEXT(
-        "　あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほま"
-        "みむめもやゆよらりるれろわをんぁぃぅぇぉっゃゅょがぎぐげござじず"
-        "ぜぞだぢづでどばびぶべぼぱぴぷぺぽアイウエオカキクケコサシスセソ"
-        "タチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンァ"
-        "ィゥェォッャュョガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペ"
-        "ポーＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄ"
-        "ｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ０１２３４５６７８９"
-        "！％＆’（）～「」＜＞．？·＋－×＊／○☆★♪♂♀※"
-    );

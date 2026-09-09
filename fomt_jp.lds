@@ -896,7 +896,6 @@ SECTIONS
         . = ALIGN(4);
         . = 0xFFE70; data/text/link_communication.o(.rodata);
         . = 0x100130; src/link_communication_data.o(.rodata);
-        data/text/link_communication.o(.rodata.link_communication_character_codes);
         src/link_communication_data.o(.rodata.link_communication_game_codes);
         FILL(0x00);
         . = ALIGN(4);
