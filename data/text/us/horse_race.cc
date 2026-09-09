@@ -1,5 +1,7 @@
 #include "horse_race_text.hh"
 
+#if defined(FOMT_TEXT_HORSE_RACE_TICKET_CONTROLS)
+
 // Static Horse Race text.  The text processor converts these UTF-8 strings
 // and named controls into the exact regional ROM bytes during the build.
 
@@ -156,3 +158,55 @@ char const gText_HorseRace_TicketControls_Buy[] =
 
 char const gText_HorseRace_TicketControls_Cancel[] =
     "Cancel with the B Button.";
+
+#elif defined(FOMT_TEXT_HORSE_RACE_PRIZE_CATALOG)
+
+HorseRacePrize const gHorseRacePrizeCatalog[] = {
+    { "Jewel of Truth", 1000 },
+    { "Power Berry", 900 },
+    { "Facial Pack", 42 },
+    { "Skin Lotion", 35 },
+    { "Sunblock", 30 },
+    { "Necklace", 20 },
+    { "Broach", 18 },
+    { "Diamond", 14 },
+    { "Truffle", 10 },
+    { "Adamantite", 4 },
+    { "Dress", 250 },
+    { "Perfume", 150 },
+};
+
+#elif defined(FOMT_TEXT_HORSE_RACE_PRIZE_EXCHANGE)
+
+char const gText_HorseRace_PrizeExchangePrompt[] =
+    "Exchange for a prize?";
+
+char const gText_HorseRace_PrizeExchangeYes[] =
+    "Yes";
+
+char const gText_HorseRace_PrizeExchangeNo[] =
+    "No";
+
+char const gText_HorseRace_PrizeExchangeComeAgain[] =
+    "\p"
+    "Come again any time.{Press}";
+
+char const gText_HorseRace_PrizeExchangeTakeYourTime[] =
+    "\p"
+    "Take your time now.{Press}";
+
+char const gText_HorseRace_PrizeSelectionConfirmation[] =
+    "So want \xFF?";
+
+char const gText_HorseRace_PrizeExchangeLeaveConfirmation[] =
+    "\p"
+    "So you want to leave?{Press}";
+
+char const gText_HorseRace_PrizeExchangeInsufficientMedals[] =
+    "\p"
+    "You don't have enough\r\n"
+    "medals for this.{Press}";
+
+#else
+#error "Select one horse_race text fragment before including this file."
+#endif

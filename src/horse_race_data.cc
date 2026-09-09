@@ -3,9 +3,13 @@
 #include "item.hh"
 
 #if defined(REGION_JP)
+#define FOMT_TEXT_HORSE_RACE_TICKET_CONTROLS
 #include "data/text/jp/horse_race.cc"
+#undef FOMT_TEXT_HORSE_RACE_TICKET_CONTROLS
 #else
+#define FOMT_TEXT_HORSE_RACE_TICKET_CONTROLS
 #include "data/text/us/horse_race.cc"
+#undef FOMT_TEXT_HORSE_RACE_TICKET_CONTROLS
 #endif
 
 char const * const gHorseRaceTicketControls[] = {
@@ -26,9 +30,13 @@ char const gCppRuntimeBadAlloc_HorseRaceTicketControls[] =
     "bad_alloc";
 
 #if defined(REGION_JP)
-#include "data/text/jp/horse_race_prize_catalog.cc"
+#define FOMT_TEXT_HORSE_RACE_PRIZE_CATALOG
+#include "data/text/jp/horse_race.cc"
+#undef FOMT_TEXT_HORSE_RACE_PRIZE_CATALOG
 #else
-#include "data/text/us/horse_race_prize_catalog.cc"
+#define FOMT_TEXT_HORSE_RACE_PRIZE_CATALOG
+#include "data/text/us/horse_race.cc"
+#undef FOMT_TEXT_HORSE_RACE_PRIZE_CATALOG
 #endif
 
 u16 const gHorseRacePrizeItemIds[] = {
@@ -47,9 +55,13 @@ u16 const gHorseRacePrizeItemIds[] = {
 };
 
 #if defined(REGION_JP)
-#include "data/text/jp/horse_race_prize_exchange.cc"
+#define FOMT_TEXT_HORSE_RACE_PRIZE_EXCHANGE
+#include "data/text/jp/horse_race.cc"
+#undef FOMT_TEXT_HORSE_RACE_PRIZE_EXCHANGE
 #else
-#include "data/text/us/horse_race_prize_exchange.cc"
+#define FOMT_TEXT_HORSE_RACE_PRIZE_EXCHANGE
+#include "data/text/us/horse_race.cc"
+#undef FOMT_TEXT_HORSE_RACE_PRIZE_EXCHANGE
 #endif
 
 // The JP prize-exchange renderer reads a fixed twenty-glyph field and its
