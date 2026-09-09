@@ -1,5 +1,10 @@
 #include "character_names_text.hh"
 
+// The lookup table uses this one-byte object for IDs without a visible name.
+char const gText_CharacterName_Empty[]
+    SECTION(".rodata.character_names_empty") =
+        "";
+
 // Entries are indexed directly by Mary CharacterId.  ID 0 and the Child entry
 // point at the original empty string retained in surrounding raw data.
 CharacterNameEntry const gCharacterNameEntries[CHARACTER_NAME_ENTRY_COUNT] SECTION(".rodata.character_name_entries") = {

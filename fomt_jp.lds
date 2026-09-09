@@ -906,7 +906,7 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4);
         src/code_actor_0809BFE8.o(.rodata);
-        . = 0x103BFC; data/text/character_names_empty.o(.rodata);
+        . = 0x103BFC; src/character_names_data.o(.rodata.character_names_empty);
         . = 0x103BFD; src/bachelorette.o(.rodata);
         . = 0x103C1C; data/text/character_names.o(.rodata);
         . = 0x103D9C; src/character_names_data.o(.rodata.character_name_entries);

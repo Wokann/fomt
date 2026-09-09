@@ -806,7 +806,7 @@ SECTIONS
         . = 0x103A18; src/fishing_results_data.o(.rodata.fishing_record_names);
         . = 0x103B04; src/fishing_results_data.o(.rodata);
         . = 0x103B10; src/code_actor_0809BFE8.o(.rodata);
-        . = 0x104108; data/text/character_names_empty.o(.rodata);
+        . = 0x104108; src/character_names_data.o(.rodata.character_names_empty);
         . = 0x104109; src/bachelorette.o(.rodata);
         . = 0x104128; data/text/character_names.o(.rodata);
         . = 0x104258; src/character_names_data.o(.rodata.character_name_entries);
