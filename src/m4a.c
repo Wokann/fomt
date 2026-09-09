@@ -350,6 +350,13 @@ extern struct WaveData gM4aWaveData_095;
 extern struct WaveData gM4aWaveData_096;
 extern struct WaveData gM4aWaveData_097;
 extern struct WaveData gM4aWaveData_098;
+extern struct WaveData gM4aWaveData_099;
+extern struct WaveData gM4aWaveData_100;
+extern struct WaveData gM4aWaveData_101;
+extern struct WaveData gM4aWaveData_102;
+extern struct WaveData gM4aWaveData_103;
+extern struct WaveData gM4aWaveData_104;
+extern struct WaveData gM4aWaveData_105;
 extern struct WaveData gM4aCgbWave_000;
 extern struct WaveData gM4aCgbWave_001;
 extern struct WaveData gM4aCgbWave_002;
@@ -622,6 +629,20 @@ struct ToneData const gM4aSfxVoiceGroup[] = {
     /* 125 */ { 0x01, 0x3C, 0x00, 0x00, (struct WaveData *)0x2, 0x00, 0x00, 0x0F, 0x00 },
     /* 126 */ { 0x01, 0x3C, 0x00, 0x00, (struct WaveData *)0x2, 0x00, 0x00, 0x0F, 0x00 },
     /* 127 */ { 0x09, 0x3C, 0x00, 0x00, (struct WaveData *)0x2, 0x00, 0x03, 0x00, 0x00 },
+};
+
+// These seven valid ToneData records follow the two referenced voice groups,
+// but no owner table has been recovered yet.  Keep their unknown identity
+// explicit while preserving their typed layout and raw-asset relocations.
+SECTION(".rodata.gM4aVoiceGroups")
+struct ToneData const gUnk_M4aToneDataTail[] = {
+    /* 000 */ { 0x00, 0x3C, 0x00, 0x00, &gM4aWaveData_099, 0xFF, 0x00, 0xFF, 0x00 },
+    /* 001 */ { 0x00, 0x3C, 0x00, 0x00, &gM4aWaveData_100, 0xFF, 0x00, 0xFF, 0x00 },
+    /* 002 */ { 0x00, 0x3C, 0x00, 0x00, &gM4aWaveData_101, 0xFF, 0x00, 0xFF, 0x00 },
+    /* 003 */ { 0x00, 0x3C, 0x00, 0x00, &gM4aWaveData_102, 0xFF, 0x00, 0xFF, 0x00 },
+    /* 004 */ { 0x00, 0x3C, 0x00, 0x00, &gM4aWaveData_103, 0xFF, 0x00, 0xFF, 0x00 },
+    /* 005 */ { 0x00, 0x3C, 0x00, 0x00, &gM4aWaveData_104, 0xFF, 0x00, 0xFF, 0x00 },
+    /* 006 */ { 0x00, 0x3C, 0x00, 0x00, &gM4aWaveData_105, 0xFF, 0x00, 0xFF, 0x00 },
 };
 
 // This table follows the still-raw M4A voice/sample configuration block in

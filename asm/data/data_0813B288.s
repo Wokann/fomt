@@ -500,6 +500,20 @@ jp_data_0813b288_start:
     .set gM4aWaveData_097, jp_data_0813b288_start + 0x13E2DC
     .global gM4aWaveData_098
     .set gM4aWaveData_098, jp_data_0813b288_start + 0x14B4B8
+    .global gM4aWaveData_099
+    .set gM4aWaveData_099, jp_data_0813b288_start + 0x152C48
+    .global gM4aWaveData_100
+    .set gM4aWaveData_100, jp_data_0813b288_start + 0x153420
+    .global gM4aWaveData_101
+    .set gM4aWaveData_101, jp_data_0813b288_start + 0x154254
+    .global gM4aWaveData_102
+    .set gM4aWaveData_102, jp_data_0813b288_start + 0x1547B8
+    .global gM4aWaveData_103
+    .set gM4aWaveData_103, jp_data_0813b288_start + 0x1566EC
+    .global gM4aWaveData_104
+    .set gM4aWaveData_104, jp_data_0813b288_start + 0x158300
+    .global gM4aWaveData_105
+    .set gM4aWaveData_105, jp_data_0813b288_start + 0x15BAF4
 
     @ Region-neutral labels for FarmHouse tile-patch source payloads.
     @ The payload layouts remain raw; src/farm_house.cc owns their typed
@@ -2162,6 +2176,20 @@ us_data_0813b288_start:
     .set gM4aWaveData_097, us_data_0813b288_start + 0x13E2DC
     .global gM4aWaveData_098
     .set gM4aWaveData_098, us_data_0813b288_start + 0x14B4B8
+    .global gM4aWaveData_099
+    .set gM4aWaveData_099, us_data_0813b288_start + 0x152C48
+    .global gM4aWaveData_100
+    .set gM4aWaveData_100, us_data_0813b288_start + 0x153420
+    .global gM4aWaveData_101
+    .set gM4aWaveData_101, us_data_0813b288_start + 0x154254
+    .global gM4aWaveData_102
+    .set gM4aWaveData_102, us_data_0813b288_start + 0x1547B8
+    .global gM4aWaveData_103
+    .set gM4aWaveData_103, us_data_0813b288_start + 0x1566EC
+    .global gM4aWaveData_104
+    .set gM4aWaveData_104, us_data_0813b288_start + 0x158300
+    .global gM4aWaveData_105
+    .set gM4aWaveData_105, us_data_0813b288_start + 0x15BAF4
 
 	@ Region-neutral labels for FarmHouse tile-patch source payloads.
 	@ The payload layouts remain raw; src/farm_house.cc owns their typed
