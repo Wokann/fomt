@@ -64,6 +64,54 @@ func_08020060:
     .global func_08024280
     .thumb_set func_08024280, func_08020060 + 0x448C
 
+    @ Exact JP entries referenced by the raw table at 0x080E6310.
+    .global func_08020068
+    .thumb_set func_08020068, func_08020064 + 0x4
+    .global func_08020074
+    .thumb_set func_08020074, func_08020070 + 0x4
+    .global func_08020088
+    .thumb_set func_08020088, func_08020084 + 0x4
+    .global func_08020094
+    .thumb_set func_08020094, func_08020090 + 0x4
+    .global func_080229F4
+    .thumb_set func_080229F4, func_08020090 + 0x2964
+    .global func_08022A48
+    .thumb_set func_08022A48, func_08020090 + 0x29B8
+    .global func_08022A8C
+    .thumb_set func_08022A8C, func_08020090 + 0x29FC
+    .global func_080231A8
+    .thumb_set func_080231A8, func_08020090 + 0x3118
+    .global func_0802328C
+    .thumb_set func_0802328C, func_08020090 + 0x31FC
+    .global func_080232D8
+    .thumb_set func_080232D8, func_08020090 + 0x3248
+    .global func_080232DC
+    .thumb_set func_080232DC, func_08020090 + 0x324C
+    .global func_08023304
+    .thumb_set func_08023304, func_08020090 + 0x3274
+    .global func_08023314
+    .thumb_set func_08023314, func_08020090 + 0x3284
+    .global func_08023320
+    .thumb_set func_08023320, func_08020090 + 0x3290
+    .global func_0802332C
+    .thumb_set func_0802332C, func_08020090 + 0x329C
+    .global func_0802335C
+    .thumb_set func_0802335C, func_08020090 + 0x32CC
+    .global func_080233EC
+    .thumb_set func_080233EC, func_08020090 + 0x335C
+    .global func_080233F8
+    .thumb_set func_080233F8, func_08020090 + 0x3368
+    .global func_08023458
+    .thumb_set func_08023458, func_08020090 + 0x33C8
+    .global func_08023478
+    .thumb_set func_08023478, func_08020090 + 0x33E8
+    .global func_0802349C
+    .thumb_set func_0802349C, func_08020090 + 0x340C
+    .global func_08023528
+    .thumb_set func_08023528, func_08020090 + 0x3498
+    .global func_080235B4
+    .thumb_set func_080235B4, func_08020090 + 0x3524
+
     .global func_08032090
     .thumb_set func_08032090, func_08020060 + 0x12030
     .else
@@ -31927,4 +31975,52 @@ func_08032090: @ 0x08032090
     .thumb_set func_08024468, func_080240BC + 0x3AC
     .global func_080244EC
     .thumb_set func_080244EC, func_080244D8 + 0x14
+
+    @ Exact US entries referenced by the raw table at 0x080E6310.
+    .global func_080202D4
+    .thumb_set func_080202D4, func_080202D0 + 0x4
+    .global func_080202E0
+    .thumb_set func_080202E0, func_080202DC + 0x4
+    .global func_080202F4
+    .thumb_set func_080202F4, func_080202F0 + 0x4
+    .global func_08020300
+    .thumb_set func_08020300, func_080202FC + 0x4
+    .global func_08022C60
+    .thumb_set func_08022C60, func_08022C18 + 0x48
+    .global func_08022CB4
+    .thumb_set func_08022CB4, func_08022C18 + 0x9C
+    .global func_08022CF8
+    .thumb_set func_08022CF8, func_08022C18 + 0xE0
+    .global func_08023414
+    .thumb_set func_08023414, func_08023400 + 0x14
+    .global func_080234F8
+    .thumb_set func_080234F8, func_08023400 + 0xF8
+    .global func_08023544
+    .thumb_set func_08023544, func_08023400 + 0x144
+    .global func_08023548
+    .thumb_set func_08023548, func_08023400 + 0x148
+    .global func_08023570
+    .thumb_set func_08023570, func_08023400 + 0x170
+    .global func_08023580
+    .thumb_set func_08023580, func_08023400 + 0x180
+    .global func_0802358C
+    .thumb_set func_0802358C, func_08023400 + 0x18C
+    .global func_08023598
+    .thumb_set func_08023598, func_08023400 + 0x198
+    .global func_080235C8
+    .thumb_set func_080235C8, func_08023400 + 0x1C8
+    .global func_08023658
+    .thumb_set func_08023658, func_08023400 + 0x258
+    .global func_08023664
+    .thumb_set func_08023664, func_08023400 + 0x264
+    .global func_080236C4
+    .thumb_set func_080236C4, func_08023400 + 0x2C4
+    .global func_080236E4
+    .thumb_set func_080236E4, func_08023400 + 0x2E4
+    .global func_08023708
+    .thumb_set func_08023708, func_08023400 + 0x308
+    .global func_08023794
+    .thumb_set func_08023794, func_08023400 + 0x394
+    .global func_08023820
+    .thumb_set func_08023820, func_08023804 + 0x1C
     .endif
