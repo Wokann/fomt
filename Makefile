@@ -129,6 +129,7 @@ TEXT_FRAGMENT_SOURCES := \
   data/text/$(TEXT_REGION)/tool.cc \
   data/text/$(TEXT_REGION)/food.cc \
   data/text/$(TEXT_REGION)/article.cc \
+  data/text/$(TEXT_REGION)/fishing_results.cc \
   data/text/$(TEXT_REGION)/ui_error.cc \
   data/text/$(TEXT_REGION)/poultry_shop.cc \
   data/text/$(TEXT_REGION)/supermarket.cc \

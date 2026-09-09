@@ -1,10 +1,18 @@
 #include "fishing_results_text.hh"
 #include "item.hh"
 
+// The selected regional record names directly precede their native pointer
+// table and runtime trailer in both ROMs.
+#if defined(REGION_JP)
+#include "data/text/jp/fishing_results.cc"
+#else
+#include "data/text/us/fishing_results.cc"
+#endif
+
 // Indexed directly by the native FishingRecordId domain.  When a regional
 // ROM uses one physical string for multiple records, the table repeats that
 // same pointer instead of introducing an assembler alias.
-char const * const gFishingRecordNames[FISHING_RECORD_COUNT] SECTION(".rodata.fishing_record_names") = {
+char const * const gFishingRecordNames[FISHING_RECORD_COUNT] = {
     gText_FishingRecord_PirateFortune,
     gText_FishingRecord_FossilOfFish,
     gText_FishingRecord_PowerBerry,

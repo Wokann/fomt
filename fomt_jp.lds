@@ -862,12 +862,11 @@ SECTIONS
         . = 0x10319C; src/livestock.o(.rodata.livestock_day_update);
         . = 0x1031FC; src/code_actor_0809C3E0.o(.rodata.actor_state_max_values);
         . = 0x103204; src/code_actor_0809C3E0.o(.rodata);
-        . = 0x1032C4; data/text/fishing_results.o(.rodata);
-        . = 0x10350C; src/fishing_results_data.o(.rodata.fishing_record_names);
-        . = 0x1035F8; src/fishing_results_data.o(.rodata);
+        /* Bounded fishing-record localization island: names, lookup, trailer. */
+        . = 0x1032C4; src/fishing_results_data.o(.rodata);
+        ASSERT(. <= 0x103604, "JP fishing-record localization island overflow");
         FILL(0x00);
-        . = ALIGN(4);
-        src/code_actor_0809BFE8.o(.rodata);
+        . = 0x103604; src/code_actor_0809BFE8.o(.rodata);
         . = 0x103BFC; src/character_names_data.o(.rodata.character_names_empty);
         . = 0x103BFD; src/bachelorette.o(.rodata);
         . = 0x103C1C; data/text/character_names.o(.rodata);

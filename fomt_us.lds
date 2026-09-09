@@ -770,9 +770,10 @@ SECTIONS
         . = 0x103660; src/livestock.o(.rodata.livestock_day_update);
         . = 0x1036C0; src/code_actor_0809C3E0.o(.rodata.actor_state_max_values);
         . = 0x1036C8; src/code_actor_0809C3E0.o(.rodata);
-        . = 0x103788; data/text/fishing_results.o(.rodata);
-        . = 0x103A18; src/fishing_results_data.o(.rodata.fishing_record_names);
-        . = 0x103B04; src/fishing_results_data.o(.rodata);
+        /* Bounded fishing-record localization island: names, lookup, trailer. */
+        . = 0x103788; src/fishing_results_data.o(.rodata);
+        ASSERT(. <= 0x103B10, "US fishing-record localization island overflow");
+        FILL(0x00);
         . = 0x103B10; src/code_actor_0809BFE8.o(.rodata);
         . = 0x104108; src/character_names_data.o(.rodata.character_names_empty);
         . = 0x104109; src/bachelorette.o(.rodata);

@@ -165,10 +165,7 @@
 | `0x08103202`–`0x08103203` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08103204`–`0x081032C1` | `src/code_actor_0809C3E0.o(.rodata)` | [数据] | `src/code_actor_0809C3E0.c/.cc` | 运行时字符串 `2` 项<br>`gActorDataSelectionEntries` |
 | `0x081032C2`–`0x081032C3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x081032C4`–`0x08103508` | `data/text/fishing_results.o(.rodata)` | [文本对象] | `data/text/jp/fishing_results.cc` | 文本 `59` 项（详见下方索引） |
-| `0x08103509`–`0x0810350B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
-| `0x0810350C`–`0x081035F7` | `src/fishing_results_data.o(.rodata.fishing_record_names)` | [数据] | `src/fishing_results_data.c/.cc` | `gFishingRecordNames` |
-| `0x081035F8`–`0x08103601` | `src/fishing_results_data.o(.rodata)` | [数据] | `src/fishing_results_data.c/.cc` | 运行时字符串 `1` 项 |
+| `0x081032C4`–`0x08103601` | `src/fishing_results_data.o(.rodata)` | [嵌入文本 / 数据] | `src/fishing_results_data.cc`<br>`data/text/jp/fishing_results.cc` | 文本 `59` 项（详见下方索引）<br>文本后对象内 `00` 对齐 `3` 字节<br>`gFishingRecordNames`<br>运行时字符串 `1` 项 |
 | `0x08103602`–`0x08103603` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08103604`–`0x08103BFB` | `src/code_actor_0809BFE8.o(.rodata)` | [数据] | `src/code_actor_0809BFE8.c/.cc` | 运行时字符串 `1` 项<br>`gUnk_08103B10`, `gUnk_08103B38`, `gUnk_08103C3C`, `gUnk_08103C74`, `gUnk_08103F84`, `gUnk_08103F98`, … +3 |
 | `0x08103BFC`–`0x08103BFC` | `src/character_names_data.o(.rodata.character_names_empty)` | [嵌入文本] | `src/character_names_data.c/.cc` | 文本 `1` 项（详见下方索引） |
@@ -1675,65 +1672,65 @@
 | `0x08100B88` | `gText_Cooking_Recipe_StorageHeader` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
 | `0x08100B95` | `gText_Cooking_Recipe_SelectionNames` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
 | `0x08103194` | `gText_Animal_Unnamed` | `data/text/common/animal.cc` | `src/animal.o(.rodata.animal_unnamed)` |
-| `0x081032C4` | `gText_FishingRecord_PirateFortune` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081032D0` | `gText_FishingRecord_FossilOfFish` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081032E0` | `gText_FishingRecord_PowerBerry` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081032EC` | `gText_FishingRecord_MessageBottle` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081032FC` | `gText_FishingRecord_EmptyCan` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103304` | `gText_FishingRecord_Branch` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103308` | `gText_FishingRecord_FishBones` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103310` | `gText_FishingRecord_Boots` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103318` | `gText_FishingRecord_RockTrout` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103324` | `gText_FishingRecord_Scad` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x0810332C` | `gText_FishingRecord_Fatminnow` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103338` | `gText_FishingRecord_CherrySalmon` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103340` | `gText_FishingRecord_Pigfish` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103348` | `gText_FishingRecord_Sardine` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103350` | `gText_FishingRecord_MountainTrout` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103358` | `gText_FishingRecord_Whitefish` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103360` | `gText_FishingRecord_Eel` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103368` | `gText_FishingRecord_Bitterling` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103374` | `gText_FishingRecord_Bonito` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x0810337C` | `gText_FishingRecord_Fluke` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103384` | `gText_FishingRecord_Filefish` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103390` | `gText_FishingRecord_GoldenCarp` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x0810339C` | `gText_FishingRecord_SilverCarp22` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081033A8` | `gText_FishingRecord_KelpBass` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081033B0` | `gText_FishingRecord_Bighead` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081033BC` | `gText_FishingRecord_Salmon` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081033C4` | `gText_FishingRecord_Mackerel` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081033CC` | `gText_FishingRecord_Needlefish` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081033D4` | `gText_FishingRecord_SpanishMackerel` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081033DC` | `gText_FishingRecord_SauryPike` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081033E4` | `gText_FishingRecord_Dorado` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081033EC` | `gText_FishingRecord_RedSnapper` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081033F4` | `gText_FishingRecord_Cod` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081033FC` | `gText_FishingRecord_Roach` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103408` | `gText_FishingRecord_BrownHakeling` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103410` | `gText_FishingRecord_RainbowTrout` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x0810341C` | `gText_FishingRecord_Herring` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103424` | `gText_FishingRecord_SilverCarp37` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103430` | `gText_FishingRecord_Sandfish` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x0810343C` | `gText_FishingRecord_Flounder` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103444` | `gText_FishingRecord_Blowfish` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x0810344C` | `gText_FishingRecord_BlackBass` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x0810345C` | `gText_FishingRecord_Yellowtail` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103464` | `gText_FishingRecord_Bluegill` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103470` | `gText_FishingRecord_CrucianCarp` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x0810347C` | `gText_FishingRecord_Greenling` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103484` | `gText_FishingRecord_Tuna` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x0810348C` | `gText_FishingRecord_OceanSunfish` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103498` | `gText_FishingRecord_Lionfish` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081034A4` | `gText_FishingRecord_Rockfish` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081034AC` | `gText_FishingRecord_LargeSalmon` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081034B4` | `gText_FishingRecord_Snakehead` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081034C0` | `gText_FishingRecord_LakeSmelt` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081034CC` | `gText_FishingRecord_JapaneseHuchen` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081034D4` | `gText_FishingRecord_Monkfish` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081034E0` | `gText_FishingRecord_Catfish` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081034EC` | `gText_FishingRecord_Carp` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081034F4` | `gText_FishingRecord_Coelacanth` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103504` | `gText_FishingRecord_Squid` | `data/text/jp/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
+| `0x081032C4` | `gText_FishingRecord_PirateFortune` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081032D0` | `gText_FishingRecord_FossilOfFish` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081032E0` | `gText_FishingRecord_PowerBerry` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081032EC` | `gText_FishingRecord_MessageBottle` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081032FC` | `gText_FishingRecord_EmptyCan` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103304` | `gText_FishingRecord_Branch` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103308` | `gText_FishingRecord_FishBones` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103310` | `gText_FishingRecord_Boots` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103318` | `gText_FishingRecord_RockTrout` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103324` | `gText_FishingRecord_Scad` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x0810332C` | `gText_FishingRecord_Fatminnow` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103338` | `gText_FishingRecord_CherrySalmon` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103340` | `gText_FishingRecord_Pigfish` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103348` | `gText_FishingRecord_Sardine` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103350` | `gText_FishingRecord_MountainTrout` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103358` | `gText_FishingRecord_Whitefish` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103360` | `gText_FishingRecord_Eel` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103368` | `gText_FishingRecord_Bitterling` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103374` | `gText_FishingRecord_Bonito` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x0810337C` | `gText_FishingRecord_Fluke` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103384` | `gText_FishingRecord_Filefish` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103390` | `gText_FishingRecord_GoldenCarp` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x0810339C` | `gText_FishingRecord_SilverCarp22` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081033A8` | `gText_FishingRecord_KelpBass` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081033B0` | `gText_FishingRecord_Bighead` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081033BC` | `gText_FishingRecord_Salmon` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081033C4` | `gText_FishingRecord_Mackerel` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081033CC` | `gText_FishingRecord_Needlefish` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081033D4` | `gText_FishingRecord_SpanishMackerel` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081033DC` | `gText_FishingRecord_SauryPike` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081033E4` | `gText_FishingRecord_Dorado` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081033EC` | `gText_FishingRecord_RedSnapper` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081033F4` | `gText_FishingRecord_Cod` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081033FC` | `gText_FishingRecord_Roach` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103408` | `gText_FishingRecord_BrownHakeling` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103410` | `gText_FishingRecord_RainbowTrout` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x0810341C` | `gText_FishingRecord_Herring` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103424` | `gText_FishingRecord_SilverCarp37` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103430` | `gText_FishingRecord_Sandfish` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x0810343C` | `gText_FishingRecord_Flounder` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103444` | `gText_FishingRecord_Blowfish` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x0810344C` | `gText_FishingRecord_BlackBass` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x0810345C` | `gText_FishingRecord_Yellowtail` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103464` | `gText_FishingRecord_Bluegill` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103470` | `gText_FishingRecord_CrucianCarp` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x0810347C` | `gText_FishingRecord_Greenling` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103484` | `gText_FishingRecord_Tuna` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x0810348C` | `gText_FishingRecord_OceanSunfish` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103498` | `gText_FishingRecord_Lionfish` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081034A4` | `gText_FishingRecord_Rockfish` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081034AC` | `gText_FishingRecord_LargeSalmon` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081034B4` | `gText_FishingRecord_Snakehead` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081034C0` | `gText_FishingRecord_LakeSmelt` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081034CC` | `gText_FishingRecord_JapaneseHuchen` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081034D4` | `gText_FishingRecord_Monkfish` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081034E0` | `gText_FishingRecord_Catfish` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081034EC` | `gText_FishingRecord_Carp` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081034F4` | `gText_FishingRecord_Coelacanth` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103504` | `gText_FishingRecord_Squid` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
 | `0x08103BFC` | `gText_CharacterName_Empty` | 未在 `data/text` 源中直接命名；请以宿主对象核对 | `src/character_names_data.o(.rodata.character_names_empty)` |
 | `0x08103C1C` | `gText_CharacterName_Lillia` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
 | `0x08103C24` | `gText_CharacterName_Rick` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
@@ -2044,10 +2041,7 @@
 | `0x081036C6`–`0x081036C7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x081036C8`–`0x08103785` | `src/code_actor_0809C3E0.o(.rodata)` | [数据] | `src/code_actor_0809C3E0.c/.cc` | 运行时字符串 `2` 项<br>`gActorDataSelectionEntries` |
 | `0x08103786`–`0x08103787` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08103788`–`0x08103A15` | `data/text/fishing_results.o(.rodata)` | [文本对象] | `data/text/us/fishing_results.cc` | 文本 `58` 项（详见下方索引） |
-| `0x08103A16`–`0x08103A17` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08103A18`–`0x08103B03` | `src/fishing_results_data.o(.rodata.fishing_record_names)` | [数据] | `src/fishing_results_data.c/.cc` | `gFishingRecordNames` |
-| `0x08103B04`–`0x08103B0D` | `src/fishing_results_data.o(.rodata)` | [数据] | `src/fishing_results_data.c/.cc` | 运行时字符串 `1` 项 |
+| `0x08103788`–`0x08103B0D` | `src/fishing_results_data.o(.rodata)` | [嵌入文本 / 数据] | `src/fishing_results_data.cc`<br>`data/text/us/fishing_results.cc` | 文本 `58` 项（详见下方索引）<br>文本后对象内 `00` 对齐 `2` 字节<br>`gFishingRecordNames`<br>运行时字符串 `1` 项 |
 | `0x08103B0E`–`0x08103B0F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08103B10`–`0x08104107` | `src/code_actor_0809BFE8.o(.rodata)` | [数据] | `src/code_actor_0809BFE8.c/.cc` | 运行时字符串 `1` 项<br>`gUnk_08103B10`, `gUnk_08103B38`, `gUnk_08103C3C`, `gUnk_08103C74`, `gUnk_08103F84`, `gUnk_08103F98`, … +3 |
 | `0x08104108`–`0x08104108` | `src/character_names_data.o(.rodata.character_names_empty)` | [嵌入文本] | `src/character_names_data.c/.cc` | 文本 `1` 项（详见下方索引） |
@@ -3546,64 +3540,64 @@
 | `0x08101048` | `gText_Cooking_Recipe_StorageHeader` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
 | `0x08101059` | `gText_Cooking_Recipe_SelectionNames` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
 | `0x08103658` | `gText_Animal_Unnamed` | `data/text/common/animal.cc` | `src/animal.o(.rodata.animal_unnamed)` |
-| `0x08103788` | `gText_FishingRecord_PirateFortune` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103798` | `gText_FishingRecord_FossilOfFish` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081037A8` | `gText_FishingRecord_PowerBerry` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081037B4` | `gText_FishingRecord_MessageBottle` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081037C4` | `gText_FishingRecord_EmptyCan` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081037D0` | `gText_FishingRecord_Branch` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081037D8` | `gText_FishingRecord_FishBones` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081037E4` | `gText_FishingRecord_Boots` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081037EC` | `gText_FishingRecord_RockTrout` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081037F8` | `gText_FishingRecord_Scad` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103800` | `gText_FishingRecord_Fatminnow` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x0810380C` | `gText_FishingRecord_CherrySalmon` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x0810381C` | `gText_FishingRecord_Pigfish` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103824` | `gText_FishingRecord_Sardine` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x0810382C` | `gText_FishingRecord_MountainTrout` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x0810383C` | `gText_FishingRecord_Whitefish` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103848` | `gText_FishingRecord_Eel` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x0810384C` | `gText_FishingRecord_Bitterling` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103858` | `gText_FishingRecord_Bonito` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103860` | `gText_FishingRecord_Fluke` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103868` | `gText_FishingRecord_Filefish` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103874` | `gText_FishingRecord_GoldenCarp` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103880` | `gText_FishingRecord_SilverCarp22` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x0810388C` | `gText_FishingRecord_KelpBass` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103898` | `gText_FishingRecord_Bighead` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081038A0` | `gText_FishingRecord_Salmon` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081038A8` | `gText_FishingRecord_Mackerel` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081038B4` | `gText_FishingRecord_Needlefish` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081038C0` | `gText_FishingRecord_SpanishMackerel` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081038D0` | `gText_FishingRecord_SauryPike` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081038DC` | `gText_FishingRecord_Dorado` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081038E4` | `gText_FishingRecord_RedSnapper` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081038F0` | `gText_FishingRecord_Cod` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081038F4` | `gText_FishingRecord_Roach` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081038FC` | `gText_FishingRecord_BrownHakeling` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x0810390C` | `gText_FishingRecord_RainbowTrout` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x0810391C` | `gText_FishingRecord_Herring` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103924` | `gText_FishingRecord_Sandfish` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103930` | `gText_FishingRecord_Flounder` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x0810393C` | `gText_FishingRecord_Blowfish` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103948` | `gText_FishingRecord_BlackBass` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103954` | `gText_FishingRecord_Yellowtail` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103960` | `gText_FishingRecord_Bluegill` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x0810396C` | `gText_FishingRecord_CrucianCarp` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x0810397C` | `gText_FishingRecord_Greenling` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103988` | `gText_FishingRecord_Tuna` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103990` | `gText_FishingRecord_OceanSunfish` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081039A0` | `gText_FishingRecord_Lionfish` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081039AC` | `gText_FishingRecord_Rockfish` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081039B8` | `gText_FishingRecord_LargeSalmon` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081039C4` | `gText_FishingRecord_Snakehead` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081039D0` | `gText_FishingRecord_LakeSmelt` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081039DC` | `gText_FishingRecord_JapaneseHuchen` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081039E8` | `gText_FishingRecord_Monkfish` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081039F4` | `gText_FishingRecord_Catfish` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x081039FC` | `gText_FishingRecord_Carp` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103A04` | `gText_FishingRecord_Coelacanth` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
-| `0x08103A10` | `gText_FishingRecord_Squid` | `data/text/us/fishing_results.cc` | `data/text/fishing_results.o(.rodata)` |
+| `0x08103788` | `gText_FishingRecord_PirateFortune` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103798` | `gText_FishingRecord_FossilOfFish` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081037A8` | `gText_FishingRecord_PowerBerry` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081037B4` | `gText_FishingRecord_MessageBottle` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081037C4` | `gText_FishingRecord_EmptyCan` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081037D0` | `gText_FishingRecord_Branch` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081037D8` | `gText_FishingRecord_FishBones` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081037E4` | `gText_FishingRecord_Boots` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081037EC` | `gText_FishingRecord_RockTrout` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081037F8` | `gText_FishingRecord_Scad` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103800` | `gText_FishingRecord_Fatminnow` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x0810380C` | `gText_FishingRecord_CherrySalmon` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x0810381C` | `gText_FishingRecord_Pigfish` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103824` | `gText_FishingRecord_Sardine` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x0810382C` | `gText_FishingRecord_MountainTrout` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x0810383C` | `gText_FishingRecord_Whitefish` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103848` | `gText_FishingRecord_Eel` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x0810384C` | `gText_FishingRecord_Bitterling` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103858` | `gText_FishingRecord_Bonito` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103860` | `gText_FishingRecord_Fluke` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103868` | `gText_FishingRecord_Filefish` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103874` | `gText_FishingRecord_GoldenCarp` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103880` | `gText_FishingRecord_SilverCarp22` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x0810388C` | `gText_FishingRecord_KelpBass` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103898` | `gText_FishingRecord_Bighead` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081038A0` | `gText_FishingRecord_Salmon` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081038A8` | `gText_FishingRecord_Mackerel` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081038B4` | `gText_FishingRecord_Needlefish` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081038C0` | `gText_FishingRecord_SpanishMackerel` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081038D0` | `gText_FishingRecord_SauryPike` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081038DC` | `gText_FishingRecord_Dorado` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081038E4` | `gText_FishingRecord_RedSnapper` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081038F0` | `gText_FishingRecord_Cod` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081038F4` | `gText_FishingRecord_Roach` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081038FC` | `gText_FishingRecord_BrownHakeling` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x0810390C` | `gText_FishingRecord_RainbowTrout` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x0810391C` | `gText_FishingRecord_Herring` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103924` | `gText_FishingRecord_Sandfish` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103930` | `gText_FishingRecord_Flounder` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x0810393C` | `gText_FishingRecord_Blowfish` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103948` | `gText_FishingRecord_BlackBass` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103954` | `gText_FishingRecord_Yellowtail` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103960` | `gText_FishingRecord_Bluegill` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x0810396C` | `gText_FishingRecord_CrucianCarp` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x0810397C` | `gText_FishingRecord_Greenling` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103988` | `gText_FishingRecord_Tuna` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103990` | `gText_FishingRecord_OceanSunfish` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081039A0` | `gText_FishingRecord_Lionfish` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081039AC` | `gText_FishingRecord_Rockfish` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081039B8` | `gText_FishingRecord_LargeSalmon` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081039C4` | `gText_FishingRecord_Snakehead` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081039D0` | `gText_FishingRecord_LakeSmelt` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081039DC` | `gText_FishingRecord_JapaneseHuchen` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081039E8` | `gText_FishingRecord_Monkfish` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081039F4` | `gText_FishingRecord_Catfish` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x081039FC` | `gText_FishingRecord_Carp` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103A04` | `gText_FishingRecord_Coelacanth` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
+| `0x08103A10` | `gText_FishingRecord_Squid` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
 | `0x08104108` | `gText_CharacterName_Empty` | 未在 `data/text` 源中直接命名；请以宿主对象核对 | `src/character_names_data.o(.rodata.character_names_empty)` |
 | `0x08104128` | `gText_CharacterName_Lillia` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
 | `0x08104130` | `gText_CharacterName_Rick` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
