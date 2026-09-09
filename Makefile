@@ -143,9 +143,34 @@ TEXT_FRAGMENT_SOURCES := \
 # authoring formats.  They are the only inputs that must be lowered to a
 # normal .cc source before entering the shared compilation channel.
 STAFF_CREDITS_SOURCE := data/text/$(TEXT_REGION)/staff_credits.cc
-REGION_TEXT_SOURCES := $(filter-out $(TEXT_FRAGMENT_SOURCES) $(STAFF_CREDITS_SOURCE),$(wildcard data/text/$(TEXT_REGION)/*.cc))
-REGION_TEXT_OBJS := $(patsubst data/text/$(TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.o,$(REGION_TEXT_SOURCES))
-REGION_TEXT_DEPS := $(REGION_TEXT_OBJS:.o=.d)
+
+# These seven physical blocks are separated by native Harvest Sprite data in
+# the ROM.  Keep their text in one source file in ROM order, but compile each
+# selected C++ branch to the pre-existing object name that the linker uses.
+HARVEST_SPRITE_MINIGAME_TEXT_SOURCE := data/text/$(TEXT_REGION)/harvest_sprite_minigames.cc
+HARVEST_SPRITE_MINIGAME_TEXT_STEMS := \
+  harvest_sprite_minigames \
+  harvest_sprite_minigames_chicken_festival_opening \
+  harvest_sprite_minigames_chicken_festival_instructions \
+  harvest_sprite_minigames_harvest_instructions \
+  harvest_sprite_minigames_harvest_results \
+  harvest_sprite_minigames_watering_instructions \
+  harvest_sprite_minigames_watering_results
+HARVEST_SPRITE_MINIGAME_TEXT_OBJS := $(addprefix $(BUILD_DIR)/data/text/,$(addsuffix .o,$(HARVEST_SPRITE_MINIGAME_TEXT_STEMS)))
+HARVEST_SPRITE_MINIGAME_TEXT_DEPS := $(HARVEST_SPRITE_MINIGAME_TEXT_OBJS:.o=.d)
+FOMT_HARVEST_SPRITE_MINIGAME_PART_harvest_sprite_minigames := ANIMAL_HUSBANDRY
+FOMT_HARVEST_SPRITE_MINIGAME_PART_harvest_sprite_minigames_chicken_festival_opening := CHICKEN_FESTIVAL_OPENING
+FOMT_HARVEST_SPRITE_MINIGAME_PART_harvest_sprite_minigames_chicken_festival_instructions := CHICKEN_FESTIVAL_INSTRUCTIONS
+FOMT_HARVEST_SPRITE_MINIGAME_PART_harvest_sprite_minigames_harvest_instructions := HARVEST_INSTRUCTIONS
+FOMT_HARVEST_SPRITE_MINIGAME_PART_harvest_sprite_minigames_harvest_results := HARVEST_RESULTS
+FOMT_HARVEST_SPRITE_MINIGAME_PART_harvest_sprite_minigames_watering_instructions := WATERING_INSTRUCTIONS
+FOMT_HARVEST_SPRITE_MINIGAME_PART_harvest_sprite_minigames_watering_results := WATERING_RESULTS
+
+REGION_TEXT_SOURCES := $(filter-out $(TEXT_FRAGMENT_SOURCES) $(STAFF_CREDITS_SOURCE) $(HARVEST_SPRITE_MINIGAME_TEXT_SOURCE),$(wildcard data/text/$(TEXT_REGION)/*.cc))
+REGION_TEXT_ORDINARY_OBJS := $(patsubst data/text/$(TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.o,$(REGION_TEXT_SOURCES))
+REGION_TEXT_ORDINARY_DEPS := $(REGION_TEXT_ORDINARY_OBJS:.o=.d)
+REGION_TEXT_OBJS := $(REGION_TEXT_ORDINARY_OBJS) $(HARVEST_SPRITE_MINIGAME_TEXT_OBJS)
+REGION_TEXT_DEPS := $(REGION_TEXT_ORDINARY_DEPS) $(HARVEST_SPRITE_MINIGAME_TEXT_DEPS)
 COMMON_TEXT_SOURCES := $(filter-out $(TEXT_FRAGMENT_SOURCES),$(wildcard data/text/common/*.cc))
 COMMON_TEXT_OBJS := $(COMMON_TEXT_SOURCES:%.cc=$(BUILD_DIR)/%.o)
 COMMON_TEXT_DEPS := $(COMMON_TEXT_OBJS:.o=.d)
@@ -217,13 +242,21 @@ $(STAFF_CREDITS_GENERATED_SOURCE): $(STAFF_CREDITS_SOURCE) $(TEXT_TOOL) charmap.
 # The selected regional .cc sources map to the region-neutral object paths
 # used by the linker scripts.  Their recipe is the same universal pipeline as
 # every other C++ translation unit; no text-specific staging source is made.
-$(REGION_TEXT_DEPS): $(BUILD_DIR)/data/text/%.d: data/text/$(TEXT_REGION)/%.cc
+$(REGION_TEXT_ORDINARY_DEPS): $(BUILD_DIR)/data/text/%.d: data/text/$(TEXT_REGION)/%.cc
 	@mkdir -p $(dir $@)
 	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MT $@ -MT $(BUILD_DIR)/data/text/$*.o
 
-$(REGION_TEXT_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGION)/%.cc $(BUILD_DIR)/data/text/%.d $(TEXT_TOOLS) charmap.txt
+$(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGION)/%.cc $(BUILD_DIR)/data/text/%.d $(TEXT_TOOLS) charmap.txt
 	@echo "CP $<"
 	$(call FOMT_COMPILE_CPP,)
+
+$(HARVEST_SPRITE_MINIGAME_TEXT_DEPS): $(BUILD_DIR)/data/text/%.d: $(HARVEST_SPRITE_MINIGAME_TEXT_SOURCE)
+	@mkdir -p $(dir $@)
+	@$(CPP) $(CPPFLAGS) -DFOMT_TEXT_HARVEST_SPRITE_MINIGAMES_$(FOMT_HARVEST_SPRITE_MINIGAME_PART_$*)=1 $< -o $@ -MM -MG -MT $@ -MT $(BUILD_DIR)/data/text/$*.o
+
+$(HARVEST_SPRITE_MINIGAME_TEXT_OBJS): $(BUILD_DIR)/data/text/%.o: $(HARVEST_SPRITE_MINIGAME_TEXT_SOURCE) $(BUILD_DIR)/data/text/%.d $(TEXT_TOOLS) charmap.txt
+	@echo "CP $<"
+	$(call FOMT_COMPILE_CPP,-DFOMT_TEXT_HARVEST_SPRITE_MINIGAMES_$(FOMT_HARVEST_SPRITE_MINIGAME_PART_$*)=1)
 
 # The generated staff-credit source follows the same C++ text pipeline as any
 # other data/text translation unit.  Its ROM-neutral object name is the one
