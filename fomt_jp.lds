@@ -723,13 +723,7 @@ SECTIONS
         src/sram_proxy_1.o(.rodata);
         src/intro_scene_data.o(.rodata.intro_scene_startup_resources);
         . = ALIGN(4); src/new_game_menu_data.o(.rodata);
-        . = ALIGN(4); data/text/new_game_status.o(.rodata);
-        . = ALIGN(4); data/text/new_game_help.o(.rodata);
-        . = ALIGN(4); data/text/new_game_save.o(.rodata);
-        FILL(0x00);
-        . = ALIGN(4); data/text/new_game_identity.o(.rodata);
-        data/text/new_game_name_entry.o(.rodata);
-        . = ALIGN(4); data/text/new_game_name_entry_ui.o(.rodata);
+        . = ALIGN(4); data/text/new_game.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         src/field_data.o(.rodata.field_plot_weather_ordinary);
