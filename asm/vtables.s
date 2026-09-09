@@ -217,10 +217,6 @@
 jp_vtables_raw_start:
     .incbin "baserom_jp.gba", 0xE56C4, (0xE6C50 - 0xE56C4)
 
-.section .rodata.080E6FAC
-jp_vtables_raw_before_vtable_7b78:
-    .incbin "baserom_jp.gba", 0xE6FAC, (0xE6FB8 - 0xE6FAC)
-
     .else
 
     .section .rodata

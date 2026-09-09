@@ -26302,6 +26302,8 @@ func_080E0E80: @ 0x080E0E80
     .global func_080E2A88
     .thumb_set func_080E2A88, func_080E2B28 + 0x7C0
     jp_linkonce_e0_func func_080E2BB4, 0xE2354, 0xE2644
+    @ Exact JP entry point referenced by the JP-only raw table at 0x080E6FAC.
+    jp_linkonce_e0_entry func_080E25D4, func_080E2BB4, 0x280
     .global func_080E260C
     .thumb_set func_080E260C, func_080E2BB4 + 0x2B8
     jp_linkonce_e0_func func_080E2EA4, 0xE2644, 0xE2714

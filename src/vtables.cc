@@ -4597,4 +4597,17 @@ extern RawVTableFunction const vtable_unk_080E7928[]
 #endif
     };
 
+#if defined(REGION_JP)
+extern void func_080E25D4(void);
+extern void __pure_virtual(void);
+
+// This three-slot table exists only in the JP vtable range.
+extern RawVTableFunction const vtable_unk_080E6FAC[]
+    SECTION(".rodata.vtable_6fac") = {
+        nullptr,
+        func_080E25D4,
+        __pure_virtual,
+    };
+#endif
+
 EXTERN_C_END
