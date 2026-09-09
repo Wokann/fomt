@@ -33,21 +33,3 @@ char const gText_Cooking_RestartIngredients[] =
 
 char const gText_Cooking_RestartUtensils[] =
     "Restart from Utensils.";
-
-char const gText_Cooking_ResultFailure[] COOKING_RESULT_TEXT =
-    "It didn't work...{Press}";
-
-char const gText_Cooking_ResultSuccessNewRecipe[] COOKING_RESULT_SUCCESS_TEXT =
-    "The \xFF \r\n"
-    "is done!\r\n"
-    "Write down the recipe!{Press}";
-
-char const gText_Cooking_ResultSuccess[] COOKING_RESULT_SUCCESS_TEXT =
-    "The \xFF \r\n"
-    "is done!{Press}";
-
-char const gText_Cooking_ResultComparison[] COOKING_RESULT_SUCCESS_TEXT =
-    "Compared with what you've\r\n"
-    "made before...{Press}\r\n"
-    "\xF0\r\n"
-    "\xF1{Press}";

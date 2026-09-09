@@ -3,9 +3,6 @@
 
 #include "prelude.h"
 
-#define COOKING_RESULT_TEXT SECTION(".rodata.cooking_result_text")
-#define COOKING_RESULT_SUCCESS_TEXT SECTION(".rodata.cooking_result_success_text")
-#define COOKING_RECIPE_ACTIONS_EXTRA_TEXT SECTION(".rodata.cooking_recipe_actions_extra_text")
 
 extern char const gText_Cooking_SeasoningSet[];
 extern char const gText_Cooking_CompleteUtensilSelection[];

@@ -32,20 +32,3 @@ char const gText_Cooking_RestartIngredients[] =
 
 char const gText_Cooking_RestartUtensils[] =
     "調理道具選択からやりなおす";
-
-char const gText_Cooking_ResultFailure[] COOKING_RESULT_TEXT =
-    "失敗しちゃった…{Press}";
-
-char const gText_Cooking_ResultSuccessNewRecipe[] COOKING_RESULT_SUCCESS_TEXT =
-    "\xFFが\r\n"
-    "できた！\r\n"
-    "新しくレシピに書きこもう！{Press}";
-
-char const gText_Cooking_ResultSuccess[] COOKING_RESULT_SUCCESS_TEXT =
-    "\xFFの\r\n"
-    "できあがり！{Press}";
-
-char const gText_Cooking_ResultComparison[] COOKING_RESULT_SUCCESS_TEXT =
-    "前に作ったのに比べて…\r\n"
-    "\xF0\r\n"
-    "\xF1{Press}";
