@@ -169,11 +169,18 @@ FOMT_HARVEST_SPRITE_MINIGAME_PART_harvest_sprite_minigames_harvest_results := HA
 FOMT_HARVEST_SPRITE_MINIGAME_PART_harvest_sprite_minigames_watering_instructions := WATERING_INSTRUCTIONS
 FOMT_HARVEST_SPRITE_MINIGAME_PART_harvest_sprite_minigames_watering_results := WATERING_RESULTS
 
+# The preset animal-name rows belong to the New Game source, but live beside
+# a later UI data block.  Compile its standard C++ branch to that existing
+# physical object name while the ordinary branch emits the main New Game run.
+NEW_GAME_PRESET_TEXT_SOURCE := data/text/$(TEXT_REGION)/new_game.cc
+NEW_GAME_PRESET_TEXT_OBJ := $(BUILD_DIR)/data/text/new_game_name_entry_preset.o
+NEW_GAME_PRESET_TEXT_DEP := $(NEW_GAME_PRESET_TEXT_OBJ:.o=.d)
+
 REGION_TEXT_SOURCES := $(filter-out $(TEXT_FRAGMENT_SOURCES) $(STAFF_CREDITS_SOURCE) $(HARVEST_SPRITE_MINIGAME_TEXT_SOURCE),$(wildcard data/text/$(TEXT_REGION)/*.cc))
 REGION_TEXT_ORDINARY_OBJS := $(patsubst data/text/$(TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.o,$(REGION_TEXT_SOURCES))
 REGION_TEXT_ORDINARY_DEPS := $(REGION_TEXT_ORDINARY_OBJS:.o=.d)
-REGION_TEXT_OBJS := $(REGION_TEXT_ORDINARY_OBJS) $(HARVEST_SPRITE_MINIGAME_TEXT_OBJS)
-REGION_TEXT_DEPS := $(REGION_TEXT_ORDINARY_DEPS) $(HARVEST_SPRITE_MINIGAME_TEXT_DEPS)
+REGION_TEXT_OBJS := $(REGION_TEXT_ORDINARY_OBJS) $(HARVEST_SPRITE_MINIGAME_TEXT_OBJS) $(NEW_GAME_PRESET_TEXT_OBJ)
+REGION_TEXT_DEPS := $(REGION_TEXT_ORDINARY_DEPS) $(HARVEST_SPRITE_MINIGAME_TEXT_DEPS) $(NEW_GAME_PRESET_TEXT_DEP)
 COMMON_TEXT_SOURCES := $(filter-out $(TEXT_FRAGMENT_SOURCES),$(wildcard data/text/common/*.cc))
 COMMON_TEXT_OBJS := $(COMMON_TEXT_SOURCES:%.cc=$(BUILD_DIR)/%.o)
 COMMON_TEXT_DEPS := $(COMMON_TEXT_OBJS:.o=.d)
@@ -260,6 +267,14 @@ $(HARVEST_SPRITE_MINIGAME_TEXT_DEPS): $(BUILD_DIR)/data/text/%.d: $(HARVEST_SPRI
 $(HARVEST_SPRITE_MINIGAME_TEXT_OBJS): $(BUILD_DIR)/data/text/%.o: $(HARVEST_SPRITE_MINIGAME_TEXT_SOURCE) $(BUILD_DIR)/data/text/%.d $(TEXT_TOOLS) charmap.txt
 	@echo "CP $<"
 	$(call FOMT_COMPILE_CPP,-DFOMT_TEXT_HARVEST_SPRITE_MINIGAMES_$(FOMT_HARVEST_SPRITE_MINIGAME_PART_$*)=1)
+
+$(NEW_GAME_PRESET_TEXT_DEP): $(NEW_GAME_PRESET_TEXT_SOURCE)
+	@mkdir -p $(dir $@)
+	@$(CPP) $(CPPFLAGS) -DFOMT_NEW_GAME_TEXT_PRESET=1 $< -o $@ -MM -MG -MT $@ -MT $(NEW_GAME_PRESET_TEXT_OBJ)
+
+$(NEW_GAME_PRESET_TEXT_OBJ): $(NEW_GAME_PRESET_TEXT_SOURCE) $(NEW_GAME_PRESET_TEXT_DEP) $(TEXT_TOOLS) charmap.txt
+	@echo "CP $<"
+	$(call FOMT_COMPILE_CPP,-DFOMT_NEW_GAME_TEXT_PRESET=1)
 
 # The generated staff-credit source follows the same C++ text pipeline as any
 # other data/text translation unit.  Its ROM-neutral object name is the one
