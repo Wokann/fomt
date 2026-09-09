@@ -33,6 +33,21 @@ u32 func_080003A0(void *source)
     return value;
 }
 
+void func_080003E8(void *source, u32 index)
+    SECTION(".text.sram_proxy_1_set_flags");
+
+void func_080003E8(void *source, u32 index)
+{
+    u32 value = 0;
+
+    func_080006E4(source, &value, 0x20, sizeof(value));
+    if (gUnk_03000400 == 0)
+    {
+        value |= 1 << index;
+        func_080006A4(source, 0x20, &value, sizeof(value));
+    }
+}
+
 void func_0800042C(void *source, u32 index)
     SECTION(".text.sram_proxy_1_clear_value");
 
