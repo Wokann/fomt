@@ -525,7 +525,8 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8544);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8554);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8560);
-. = ALIGN(4); asm/vtables.o(.rodata.080E8570);
+. = ALIGN(4); src/vtables.o(.rodata.vtable_8570);
+. = ALIGN(4); asm/vtables.o(.rodata.080E857C);
 
         . = ALIGN(4); src/crt0_data.o(.rodata);
         FILL(0x00);

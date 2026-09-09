@@ -4349,4 +4349,24 @@ extern RawVTableFunction const vtable_unk_080E8560[]
 #endif
     };
 
+#if defined(REGION_JP)
+extern void func_080E4C10(void);
+#else
+extern void func_080C8360(void);
+#endif
+
+// Preserve the original three-slot table, including the JP-only middle entry.
+extern RawVTableFunction const vtable_unk_080E8570[]
+    SECTION(".rodata.vtable_8570") = {
+#if defined(REGION_JP)
+        nullptr,
+        func_080E4C10,
+        nullptr,
+#else
+        nullptr,
+        nullptr,
+        func_080C8360,
+#endif
+    };
+
 EXTERN_C_END
