@@ -100,39 +100,6 @@ func_08000358: @ 0x08000358
 .L08000398: .4byte gSramImageSignature
 .L0800039C: .4byte gUnk_03000400
 
-    thumb_func_start func_080003A0
-func_080003A0: @ 0x080003A0
-    push {r4, lr}
-    sub sp, #4
-    adds r4, r0, #0
-    bl func_080002E0
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .L080003D0
-    movs r0, #0
-    str r0, [sp]
-    adds r0, r4, #0
-    mov r1, sp
-    movs r2, #0x20
-    movs r3, #4
-    bl func_080006E4
-    ldr r0, .L080003CC @ =gUnk_03000400
-    ldrh r0, [r0]
-    cmp r0, #0
-    bne .L080003D0
-    ldr r0, [sp]
-    b .L080003D2
-    .align 2, 0
-.L080003CC: .4byte gUnk_03000400
-.L080003D0:
-    movs r0, #0
-.L080003D2:
-    add sp, #4
-    pop {r4}
-    pop {r1}
-    bx r1
-    .align 2, 0
-
     .section .text.sram_proxy_1_after_address
     thumb_func_start func_080003E8
 func_080003E8: @ 0x080003E8

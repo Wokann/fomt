@@ -15,6 +15,24 @@ u32 func_080003DC(u32 unused, u32 index)
     return index * multiplier + 0x28;
 }
 
+u32 func_080003A0(void *source)
+    SECTION(".text.sram_proxy_1_read_flags");
+
+u32 func_080003A0(void *source)
+{
+    u32 value;
+
+    if (!func_080002E0(source))
+        return 0;
+
+    value = 0;
+    func_080006E4(source, &value, 0x20, sizeof(value));
+    if (gUnk_03000400 != 0)
+        return 0;
+
+    return value;
+}
+
 void func_0800042C(void *source, u32 index)
     SECTION(".text.sram_proxy_1_clear_value");
 

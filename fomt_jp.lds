@@ -67,6 +67,7 @@ SECTIONS
         src/main.o(.text);
         . = 0x2E0; /* JP ROM 0x080002E0, independently matched */
         asm/sram_proxy_1.o(.text);
+        src/sram_proxy_1.o(.text.sram_proxy_1_read_flags);
         src/sram_proxy_1.o(.text);
         asm/sram_proxy_1.o(.text.sram_proxy_1_after_address);
         src/sram_proxy_1.o(.text.sram_proxy_1_clear_value);
