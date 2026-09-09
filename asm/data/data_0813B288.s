@@ -301,6 +301,206 @@ jp_data_0813b288_start:
     .global gSong_Audio210
     .set gSong_Audio210, jp_data_0813b288_start + 0x170E18
 
+    @ WaveData headers referenced by the recovered M4A ToneData tables.
+    .global gM4aWaveData_000
+    .set gM4aWaveData_000, jp_data_0813b288_start + 0x4
+    .global gM4aWaveData_001
+    .set gM4aWaveData_001, jp_data_0813b288_start + 0x8C44
+    .global gM4aWaveData_002
+    .set gM4aWaveData_002, jp_data_0813b288_start + 0xA980
+    .global gM4aWaveData_003
+    .set gM4aWaveData_003, jp_data_0813b288_start + 0xDB7C
+    .global gM4aWaveData_004
+    .set gM4aWaveData_004, jp_data_0813b288_start + 0xF414
+    .global gM4aWaveData_005
+    .set gM4aWaveData_005, jp_data_0813b288_start + 0x11B8C
+    .global gM4aWaveData_006
+    .set gM4aWaveData_006, jp_data_0813b288_start + 0x16398
+    .global gM4aWaveData_007
+    .set gM4aWaveData_007, jp_data_0813b288_start + 0x170AC
+    .global gM4aWaveData_008
+    .set gM4aWaveData_008, jp_data_0813b288_start + 0x17484
+    .global gM4aWaveData_009
+    .set gM4aWaveData_009, jp_data_0813b288_start + 0x1E37C
+    .global gM4aWaveData_010
+    .set gM4aWaveData_010, jp_data_0813b288_start + 0x228CC
+    .global gM4aWaveData_011
+    .set gM4aWaveData_011, jp_data_0813b288_start + 0x2869C
+    .global gM4aWaveData_012
+    .set gM4aWaveData_012, jp_data_0813b288_start + 0x29C60
+    .global gM4aWaveData_013
+    .set gM4aWaveData_013, jp_data_0813b288_start + 0x2E504
+    .global gM4aWaveData_014
+    .set gM4aWaveData_014, jp_data_0813b288_start + 0x343DC
+    .global gM4aWaveData_015
+    .set gM4aWaveData_015, jp_data_0813b288_start + 0x38DA0
+    .global gM4aWaveData_016
+    .set gM4aWaveData_016, jp_data_0813b288_start + 0x3A900
+    .global gM4aWaveData_017
+    .set gM4aWaveData_017, jp_data_0813b288_start + 0x3C168
+    .global gM4aWaveData_018
+    .set gM4aWaveData_018, jp_data_0813b288_start + 0x42F88
+    .global gM4aWaveData_019
+    .set gM4aWaveData_019, jp_data_0813b288_start + 0x4D8C4
+    .global gM4aWaveData_020
+    .set gM4aWaveData_020, jp_data_0813b288_start + 0x50E70
+    .global gM4aWaveData_021
+    .set gM4aWaveData_021, jp_data_0813b288_start + 0x53C04
+    .global gM4aWaveData_022
+    .set gM4aWaveData_022, jp_data_0813b288_start + 0x60428
+    .global gM4aWaveData_023
+    .set gM4aWaveData_023, jp_data_0813b288_start + 0x7387C
+    .global gM4aWaveData_024
+    .set gM4aWaveData_024, jp_data_0813b288_start + 0x74C98
+    .global gM4aWaveData_025
+    .set gM4aWaveData_025, jp_data_0813b288_start + 0x756E8
+    .global gM4aWaveData_026
+    .set gM4aWaveData_026, jp_data_0813b288_start + 0x76B20
+    .global gM4aWaveData_027
+    .set gM4aWaveData_027, jp_data_0813b288_start + 0x7E534
+    .global gM4aWaveData_028
+    .set gM4aWaveData_028, jp_data_0813b288_start + 0x87BD4
+    .global gM4aWaveData_029
+    .set gM4aWaveData_029, jp_data_0813b288_start + 0x91CF8
+    .global gM4aWaveData_030
+    .set gM4aWaveData_030, jp_data_0813b288_start + 0x9508C
+    .global gM4aWaveData_031
+    .set gM4aWaveData_031, jp_data_0813b288_start + 0x99024
+    .global gM4aWaveData_032
+    .set gM4aWaveData_032, jp_data_0813b288_start + 0xA2DE8
+    .global gM4aWaveData_033
+    .set gM4aWaveData_033, jp_data_0813b288_start + 0xABCFC
+    .global gM4aWaveData_034
+    .set gM4aWaveData_034, jp_data_0813b288_start + 0xAE990
+    .global gM4aWaveData_035
+    .set gM4aWaveData_035, jp_data_0813b288_start + 0xAF518
+    .global gM4aWaveData_036
+    .set gM4aWaveData_036, jp_data_0813b288_start + 0xB5F2C
+    .global gM4aWaveData_037
+    .set gM4aWaveData_037, jp_data_0813b288_start + 0xB8268
+    .global gM4aWaveData_038
+    .set gM4aWaveData_038, jp_data_0813b288_start + 0xB95FC
+    .global gM4aWaveData_039
+    .set gM4aWaveData_039, jp_data_0813b288_start + 0xBA8D4
+    .global gM4aWaveData_040
+    .set gM4aWaveData_040, jp_data_0813b288_start + 0xBC06C
+    .global gM4aWaveData_041
+    .set gM4aWaveData_041, jp_data_0813b288_start + 0xBC98C
+    .global gM4aWaveData_042
+    .set gM4aWaveData_042, jp_data_0813b288_start + 0xBDF80
+    .global gM4aWaveData_043
+    .set gM4aWaveData_043, jp_data_0813b288_start + 0xBE730
+    .global gM4aWaveData_044
+    .set gM4aWaveData_044, jp_data_0813b288_start + 0xC0434
+    .global gM4aWaveData_045
+    .set gM4aWaveData_045, jp_data_0813b288_start + 0xC2844
+    .global gM4aWaveData_046
+    .set gM4aWaveData_046, jp_data_0813b288_start + 0xC3E30
+    .global gM4aWaveData_047
+    .set gM4aWaveData_047, jp_data_0813b288_start + 0xC49D0
+    .global gM4aWaveData_048
+    .set gM4aWaveData_048, jp_data_0813b288_start + 0xC50B8
+    .global gM4aWaveData_049
+    .set gM4aWaveData_049, jp_data_0813b288_start + 0xC5770
+    .global gM4aWaveData_050
+    .set gM4aWaveData_050, jp_data_0813b288_start + 0xC6188
+    .global gM4aWaveData_051
+    .set gM4aWaveData_051, jp_data_0813b288_start + 0xC6820
+    .global gM4aWaveData_052
+    .set gM4aWaveData_052, jp_data_0813b288_start + 0xC85F4
+    .global gM4aWaveData_053
+    .set gM4aWaveData_053, jp_data_0813b288_start + 0xC9064
+    .global gM4aWaveData_054
+    .set gM4aWaveData_054, jp_data_0813b288_start + 0xC960C
+    .global gM4aWaveData_055
+    .set gM4aWaveData_055, jp_data_0813b288_start + 0xC9F58
+    .global gM4aWaveData_056
+    .set gM4aWaveData_056, jp_data_0813b288_start + 0xCC914
+    .global gM4aWaveData_057
+    .set gM4aWaveData_057, jp_data_0813b288_start + 0xCEC1C
+    .global gM4aWaveData_058
+    .set gM4aWaveData_058, jp_data_0813b288_start + 0xCF180
+    .global gM4aWaveData_059
+    .set gM4aWaveData_059, jp_data_0813b288_start + 0xD08A4
+    .global gM4aWaveData_060
+    .set gM4aWaveData_060, jp_data_0813b288_start + 0xD1508
+    .global gM4aWaveData_061
+    .set gM4aWaveData_061, jp_data_0813b288_start + 0xD2C24
+    .global gM4aWaveData_062
+    .set gM4aWaveData_062, jp_data_0813b288_start + 0xD8CB8
+    .global gM4aWaveData_063
+    .set gM4aWaveData_063, jp_data_0813b288_start + 0xDDD64
+    .global gM4aWaveData_064
+    .set gM4aWaveData_064, jp_data_0813b288_start + 0xDFCB0
+    .global gM4aWaveData_065
+    .set gM4aWaveData_065, jp_data_0813b288_start + 0xE0E28
+    .global gM4aWaveData_066
+    .set gM4aWaveData_066, jp_data_0813b288_start + 0xE45F8
+    .global gM4aWaveData_067
+    .set gM4aWaveData_067, jp_data_0813b288_start + 0xE9800
+    .global gM4aWaveData_068
+    .set gM4aWaveData_068, jp_data_0813b288_start + 0xEBD88
+    .global gM4aWaveData_069
+    .set gM4aWaveData_069, jp_data_0813b288_start + 0xEDDBC
+    .global gM4aWaveData_070
+    .set gM4aWaveData_070, jp_data_0813b288_start + 0xEE684
+    .global gM4aWaveData_071
+    .set gM4aWaveData_071, jp_data_0813b288_start + 0xF0174
+    .global gM4aWaveData_072
+    .set gM4aWaveData_072, jp_data_0813b288_start + 0xF170C
+    .global gM4aWaveData_073
+    .set gM4aWaveData_073, jp_data_0813b288_start + 0xF431C
+    .global gM4aWaveData_074
+    .set gM4aWaveData_074, jp_data_0813b288_start + 0xF6A30
+    .global gM4aWaveData_075
+    .set gM4aWaveData_075, jp_data_0813b288_start + 0xF7468
+    .global gM4aWaveData_076
+    .set gM4aWaveData_076, jp_data_0813b288_start + 0xFAE94
+    .global gM4aWaveData_077
+    .set gM4aWaveData_077, jp_data_0813b288_start + 0xFC830
+    .global gM4aWaveData_078
+    .set gM4aWaveData_078, jp_data_0813b288_start + 0x100014
+    .global gM4aWaveData_079
+    .set gM4aWaveData_079, jp_data_0813b288_start + 0x100470
+    .global gM4aWaveData_080
+    .set gM4aWaveData_080, jp_data_0813b288_start + 0x100EF0
+    .global gM4aWaveData_081
+    .set gM4aWaveData_081, jp_data_0813b288_start + 0x101D50
+    .global gM4aWaveData_082
+    .set gM4aWaveData_082, jp_data_0813b288_start + 0x10BDC0
+    .global gM4aWaveData_083
+    .set gM4aWaveData_083, jp_data_0813b288_start + 0x112720
+    .global gM4aWaveData_084
+    .set gM4aWaveData_084, jp_data_0813b288_start + 0x117B5C
+    .global gM4aWaveData_085
+    .set gM4aWaveData_085, jp_data_0813b288_start + 0x11C578
+    .global gM4aWaveData_086
+    .set gM4aWaveData_086, jp_data_0813b288_start + 0x11F8D0
+    .global gM4aWaveData_087
+    .set gM4aWaveData_087, jp_data_0813b288_start + 0x122D64
+    .global gM4aWaveData_088
+    .set gM4aWaveData_088, jp_data_0813b288_start + 0x124920
+    .global gM4aWaveData_089
+    .set gM4aWaveData_089, jp_data_0813b288_start + 0x126998
+    .global gM4aWaveData_090
+    .set gM4aWaveData_090, jp_data_0813b288_start + 0x127B44
+    .global gM4aWaveData_091
+    .set gM4aWaveData_091, jp_data_0813b288_start + 0x1293D8
+    .global gM4aWaveData_092
+    .set gM4aWaveData_092, jp_data_0813b288_start + 0x12A8E4
+    .global gM4aWaveData_093
+    .set gM4aWaveData_093, jp_data_0813b288_start + 0x12B5C4
+    .global gM4aWaveData_094
+    .set gM4aWaveData_094, jp_data_0813b288_start + 0x12BF34
+    .global gM4aWaveData_095
+    .set gM4aWaveData_095, jp_data_0813b288_start + 0x136BF0
+    .global gM4aWaveData_096
+    .set gM4aWaveData_096, jp_data_0813b288_start + 0x13CE38
+    .global gM4aWaveData_097
+    .set gM4aWaveData_097, jp_data_0813b288_start + 0x13E2DC
+    .global gM4aWaveData_098
+    .set gM4aWaveData_098, jp_data_0813b288_start + 0x14B4B8
+
     @ Region-neutral labels for FarmHouse tile-patch source payloads.
     @ The payload layouts remain raw; src/farm_house.cc owns their typed
     @ descriptor tables.
@@ -1762,6 +1962,206 @@ us_data_0813b288_start:
     .set gSong_Audio209, us_data_0813b288_start + 0x170DFC
     .global gSong_Audio210
     .set gSong_Audio210, us_data_0813b288_start + 0x170E1C
+
+    @ WaveData headers referenced by the recovered M4A ToneData tables.
+    .global gM4aWaveData_000
+    .set gM4aWaveData_000, us_data_0813b288_start + 0x4
+    .global gM4aWaveData_001
+    .set gM4aWaveData_001, us_data_0813b288_start + 0x8C44
+    .global gM4aWaveData_002
+    .set gM4aWaveData_002, us_data_0813b288_start + 0xA980
+    .global gM4aWaveData_003
+    .set gM4aWaveData_003, us_data_0813b288_start + 0xDB7C
+    .global gM4aWaveData_004
+    .set gM4aWaveData_004, us_data_0813b288_start + 0xF414
+    .global gM4aWaveData_005
+    .set gM4aWaveData_005, us_data_0813b288_start + 0x11B8C
+    .global gM4aWaveData_006
+    .set gM4aWaveData_006, us_data_0813b288_start + 0x16398
+    .global gM4aWaveData_007
+    .set gM4aWaveData_007, us_data_0813b288_start + 0x170AC
+    .global gM4aWaveData_008
+    .set gM4aWaveData_008, us_data_0813b288_start + 0x17484
+    .global gM4aWaveData_009
+    .set gM4aWaveData_009, us_data_0813b288_start + 0x1E37C
+    .global gM4aWaveData_010
+    .set gM4aWaveData_010, us_data_0813b288_start + 0x228CC
+    .global gM4aWaveData_011
+    .set gM4aWaveData_011, us_data_0813b288_start + 0x2869C
+    .global gM4aWaveData_012
+    .set gM4aWaveData_012, us_data_0813b288_start + 0x29C60
+    .global gM4aWaveData_013
+    .set gM4aWaveData_013, us_data_0813b288_start + 0x2E504
+    .global gM4aWaveData_014
+    .set gM4aWaveData_014, us_data_0813b288_start + 0x343DC
+    .global gM4aWaveData_015
+    .set gM4aWaveData_015, us_data_0813b288_start + 0x38DA0
+    .global gM4aWaveData_016
+    .set gM4aWaveData_016, us_data_0813b288_start + 0x3A900
+    .global gM4aWaveData_017
+    .set gM4aWaveData_017, us_data_0813b288_start + 0x3C168
+    .global gM4aWaveData_018
+    .set gM4aWaveData_018, us_data_0813b288_start + 0x42F88
+    .global gM4aWaveData_019
+    .set gM4aWaveData_019, us_data_0813b288_start + 0x4D8C4
+    .global gM4aWaveData_020
+    .set gM4aWaveData_020, us_data_0813b288_start + 0x50E70
+    .global gM4aWaveData_021
+    .set gM4aWaveData_021, us_data_0813b288_start + 0x53C04
+    .global gM4aWaveData_022
+    .set gM4aWaveData_022, us_data_0813b288_start + 0x60428
+    .global gM4aWaveData_023
+    .set gM4aWaveData_023, us_data_0813b288_start + 0x7387C
+    .global gM4aWaveData_024
+    .set gM4aWaveData_024, us_data_0813b288_start + 0x74C98
+    .global gM4aWaveData_025
+    .set gM4aWaveData_025, us_data_0813b288_start + 0x756E8
+    .global gM4aWaveData_026
+    .set gM4aWaveData_026, us_data_0813b288_start + 0x76B20
+    .global gM4aWaveData_027
+    .set gM4aWaveData_027, us_data_0813b288_start + 0x7E534
+    .global gM4aWaveData_028
+    .set gM4aWaveData_028, us_data_0813b288_start + 0x87BD4
+    .global gM4aWaveData_029
+    .set gM4aWaveData_029, us_data_0813b288_start + 0x91CF8
+    .global gM4aWaveData_030
+    .set gM4aWaveData_030, us_data_0813b288_start + 0x9508C
+    .global gM4aWaveData_031
+    .set gM4aWaveData_031, us_data_0813b288_start + 0x99024
+    .global gM4aWaveData_032
+    .set gM4aWaveData_032, us_data_0813b288_start + 0xA2DE8
+    .global gM4aWaveData_033
+    .set gM4aWaveData_033, us_data_0813b288_start + 0xABCFC
+    .global gM4aWaveData_034
+    .set gM4aWaveData_034, us_data_0813b288_start + 0xAE990
+    .global gM4aWaveData_035
+    .set gM4aWaveData_035, us_data_0813b288_start + 0xAF518
+    .global gM4aWaveData_036
+    .set gM4aWaveData_036, us_data_0813b288_start + 0xB5F2C
+    .global gM4aWaveData_037
+    .set gM4aWaveData_037, us_data_0813b288_start + 0xB8268
+    .global gM4aWaveData_038
+    .set gM4aWaveData_038, us_data_0813b288_start + 0xB95FC
+    .global gM4aWaveData_039
+    .set gM4aWaveData_039, us_data_0813b288_start + 0xBA8D4
+    .global gM4aWaveData_040
+    .set gM4aWaveData_040, us_data_0813b288_start + 0xBC06C
+    .global gM4aWaveData_041
+    .set gM4aWaveData_041, us_data_0813b288_start + 0xBC98C
+    .global gM4aWaveData_042
+    .set gM4aWaveData_042, us_data_0813b288_start + 0xBDF80
+    .global gM4aWaveData_043
+    .set gM4aWaveData_043, us_data_0813b288_start + 0xBE730
+    .global gM4aWaveData_044
+    .set gM4aWaveData_044, us_data_0813b288_start + 0xC0434
+    .global gM4aWaveData_045
+    .set gM4aWaveData_045, us_data_0813b288_start + 0xC2844
+    .global gM4aWaveData_046
+    .set gM4aWaveData_046, us_data_0813b288_start + 0xC3E30
+    .global gM4aWaveData_047
+    .set gM4aWaveData_047, us_data_0813b288_start + 0xC49D0
+    .global gM4aWaveData_048
+    .set gM4aWaveData_048, us_data_0813b288_start + 0xC50B8
+    .global gM4aWaveData_049
+    .set gM4aWaveData_049, us_data_0813b288_start + 0xC5770
+    .global gM4aWaveData_050
+    .set gM4aWaveData_050, us_data_0813b288_start + 0xC6188
+    .global gM4aWaveData_051
+    .set gM4aWaveData_051, us_data_0813b288_start + 0xC6820
+    .global gM4aWaveData_052
+    .set gM4aWaveData_052, us_data_0813b288_start + 0xC85F4
+    .global gM4aWaveData_053
+    .set gM4aWaveData_053, us_data_0813b288_start + 0xC9064
+    .global gM4aWaveData_054
+    .set gM4aWaveData_054, us_data_0813b288_start + 0xC960C
+    .global gM4aWaveData_055
+    .set gM4aWaveData_055, us_data_0813b288_start + 0xC9F58
+    .global gM4aWaveData_056
+    .set gM4aWaveData_056, us_data_0813b288_start + 0xCC914
+    .global gM4aWaveData_057
+    .set gM4aWaveData_057, us_data_0813b288_start + 0xCEC1C
+    .global gM4aWaveData_058
+    .set gM4aWaveData_058, us_data_0813b288_start + 0xCF180
+    .global gM4aWaveData_059
+    .set gM4aWaveData_059, us_data_0813b288_start + 0xD08A4
+    .global gM4aWaveData_060
+    .set gM4aWaveData_060, us_data_0813b288_start + 0xD1508
+    .global gM4aWaveData_061
+    .set gM4aWaveData_061, us_data_0813b288_start + 0xD2C24
+    .global gM4aWaveData_062
+    .set gM4aWaveData_062, us_data_0813b288_start + 0xD8CB8
+    .global gM4aWaveData_063
+    .set gM4aWaveData_063, us_data_0813b288_start + 0xDDD64
+    .global gM4aWaveData_064
+    .set gM4aWaveData_064, us_data_0813b288_start + 0xDFCB0
+    .global gM4aWaveData_065
+    .set gM4aWaveData_065, us_data_0813b288_start + 0xE0E28
+    .global gM4aWaveData_066
+    .set gM4aWaveData_066, us_data_0813b288_start + 0xE45F8
+    .global gM4aWaveData_067
+    .set gM4aWaveData_067, us_data_0813b288_start + 0xE9800
+    .global gM4aWaveData_068
+    .set gM4aWaveData_068, us_data_0813b288_start + 0xEBD88
+    .global gM4aWaveData_069
+    .set gM4aWaveData_069, us_data_0813b288_start + 0xEDDBC
+    .global gM4aWaveData_070
+    .set gM4aWaveData_070, us_data_0813b288_start + 0xEE684
+    .global gM4aWaveData_071
+    .set gM4aWaveData_071, us_data_0813b288_start + 0xF0174
+    .global gM4aWaveData_072
+    .set gM4aWaveData_072, us_data_0813b288_start + 0xF170C
+    .global gM4aWaveData_073
+    .set gM4aWaveData_073, us_data_0813b288_start + 0xF431C
+    .global gM4aWaveData_074
+    .set gM4aWaveData_074, us_data_0813b288_start + 0xF6A30
+    .global gM4aWaveData_075
+    .set gM4aWaveData_075, us_data_0813b288_start + 0xF7468
+    .global gM4aWaveData_076
+    .set gM4aWaveData_076, us_data_0813b288_start + 0xFAE94
+    .global gM4aWaveData_077
+    .set gM4aWaveData_077, us_data_0813b288_start + 0xFC830
+    .global gM4aWaveData_078
+    .set gM4aWaveData_078, us_data_0813b288_start + 0x100014
+    .global gM4aWaveData_079
+    .set gM4aWaveData_079, us_data_0813b288_start + 0x100470
+    .global gM4aWaveData_080
+    .set gM4aWaveData_080, us_data_0813b288_start + 0x100EF0
+    .global gM4aWaveData_081
+    .set gM4aWaveData_081, us_data_0813b288_start + 0x101D50
+    .global gM4aWaveData_082
+    .set gM4aWaveData_082, us_data_0813b288_start + 0x10BDC0
+    .global gM4aWaveData_083
+    .set gM4aWaveData_083, us_data_0813b288_start + 0x112720
+    .global gM4aWaveData_084
+    .set gM4aWaveData_084, us_data_0813b288_start + 0x117B5C
+    .global gM4aWaveData_085
+    .set gM4aWaveData_085, us_data_0813b288_start + 0x11C578
+    .global gM4aWaveData_086
+    .set gM4aWaveData_086, us_data_0813b288_start + 0x11F8D0
+    .global gM4aWaveData_087
+    .set gM4aWaveData_087, us_data_0813b288_start + 0x122D64
+    .global gM4aWaveData_088
+    .set gM4aWaveData_088, us_data_0813b288_start + 0x124920
+    .global gM4aWaveData_089
+    .set gM4aWaveData_089, us_data_0813b288_start + 0x126998
+    .global gM4aWaveData_090
+    .set gM4aWaveData_090, us_data_0813b288_start + 0x127B44
+    .global gM4aWaveData_091
+    .set gM4aWaveData_091, us_data_0813b288_start + 0x1293D8
+    .global gM4aWaveData_092
+    .set gM4aWaveData_092, us_data_0813b288_start + 0x12A8E4
+    .global gM4aWaveData_093
+    .set gM4aWaveData_093, us_data_0813b288_start + 0x12B5C4
+    .global gM4aWaveData_094
+    .set gM4aWaveData_094, us_data_0813b288_start + 0x12BF34
+    .global gM4aWaveData_095
+    .set gM4aWaveData_095, us_data_0813b288_start + 0x136BF0
+    .global gM4aWaveData_096
+    .set gM4aWaveData_096, us_data_0813b288_start + 0x13CE38
+    .global gM4aWaveData_097
+    .set gM4aWaveData_097, us_data_0813b288_start + 0x13E2DC
+    .global gM4aWaveData_098
+    .set gM4aWaveData_098, us_data_0813b288_start + 0x14B4B8
 
 	@ Region-neutral labels for FarmHouse tile-patch source payloads.
 	@ The payload layouts remain raw; src/farm_house.cc owns their typed

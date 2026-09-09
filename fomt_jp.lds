@@ -1058,7 +1058,8 @@ SECTIONS
         . = 0x118D18; /* Static resources after font-owned data. */
         asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard);
         . = 0x13ABCC; src/m4a.o(.rodata);
-        asm/data/data_080F9EB8.o(.rodata.m4a_static_data_after_driver_tables);
+        . = 0x13AEA4; src/m4a.o(.rodata.gM4aVoiceGroups);
+        asm/data/data_080F9EB8.o(.rodata.m4a_static_data_after_voice_groups);
         . = 0x13BCF8; src/m4a.o(.rodata.gMusicPlayerTable);
         src/m4a.o(.rodata.gSongTable);
         . = 0x13C3CC; /* JP asset container, independently matched. */
