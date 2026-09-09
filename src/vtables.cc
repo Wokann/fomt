@@ -4505,6 +4505,7 @@ extern void func_080DE128(void);
 extern void func_080DE0AC(void);
 extern void func_080DE080(void);
 extern void func_080DE05C(void);
+extern void func_08039F50(void);
 
 // Preserve this six-slot table and its exact callbacks in ROM order.
 extern RawVTableFunction const vtable_unk_080E76A4[]
@@ -4515,6 +4516,17 @@ extern RawVTableFunction const vtable_unk_080E76A4[]
         func_080DE0AC,
         func_080DE080,
         func_080DE05C,
+    };
+
+// Preserve this six-slot table and its exact callbacks in ROM order.
+extern RawVTableFunction const vtable_unk_080E76BC[]
+    SECTION(".rodata.vtable_76bc") = {
+        nullptr,
+        nullptr,
+        func_08039F50,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
     };
 
 #if defined(REGION_JP)
