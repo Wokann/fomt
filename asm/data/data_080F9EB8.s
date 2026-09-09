@@ -7,7 +7,7 @@
     .global gUnk_08118CF4
     .set gUnk_08118CF4, jp_static_data_after_font - 0x24
 jp_static_data_after_font:
-    .incbin "baserom_jp.gba", 0x118D18, (0x13BCF8 - 0x118D18)
+    .incbin "baserom_jp.gba", 0x118D18, (0x13ABCC - 0x118D18)
 
     @ Region-neutral labels for FarmHouse visual descriptor resources.
     @ Their payload formats remain in this raw data range.
@@ -458,6 +458,13 @@ jp_static_data_after_font:
     .set gUnk_FieldRenderResource_220, gUnk_08118CF4 + 0xCD58
     .global gUnk_FieldRenderResource_221
     .set gUnk_FieldRenderResource_221, gUnk_08118CF4 + 0xCD5C
+
+    @ M4A driver tables occupy 0x13ABCC..0x13AEA4 in src/m4a.c.
+    @ The following voice/sample configuration data is not decoded yet.
+    .section .rodata.m4a_static_data_after_driver_tables
+    .global gUnk_0813AEA4
+gUnk_0813AEA4:
+    .incbin "baserom_jp.gba", 0x13AEA4, (0x13BCF8 - 0x13AEA4)
 
     .else
 	.section .rodata.unextracted_shop_data
@@ -929,43 +936,10 @@ us_static_data_after_font:
 	.global gUnk_FieldRenderResource_221
 	.set gUnk_FieldRenderResource_221, gUnk_08117BC8 + 0xCD44
 
-	.global gUnk_08139A88
-gUnk_08139A88:
-	.incbin "baserom_us.gba", 0x139A88, 0x90
-
-	.global gUnk_08139B18
-gUnk_08139B18:
-	.incbin "baserom_us.gba", 0x139B18, 0xB4
-
-	.global gUnk_08139BCC
-gUnk_08139BCC:
-	.incbin "baserom_us.gba", 0x139BCC, 0x30
-
-	.global gUnk_08139BFC
-gUnk_08139BFC:
-	.incbin "baserom_us.gba", 0x139BFC, 0x18
-
-	.global gUnk_08139C14
-gUnk_08139C14:
-	.incbin "baserom_us.gba", 0x139C14, 0x84
-
-	.global gUnk_08139C98
-gUnk_08139C98:
-	.incbin "baserom_us.gba", 0x139C98, 0x18
-
-	.global gUnk_08139CB0
-gUnk_08139CB0:
-	.incbin "baserom_us.gba", 0x139CB0, 0x3C
-
-	.global gUnk_08139CEC
-gUnk_08139CEC:
-	.incbin "baserom_us.gba", 0x139CEC, 0x10
-
-	.global gUnk_08139CFC
-gUnk_08139CFC:
-	.incbin "baserom_us.gba", 0x139CFC, 0x34
-
-	.global gUnk_08139D30
-gUnk_08139D30:
-	.incbin "baserom_us.gba", 0x139D30, 0xE84
+	@ M4A driver tables occupy 0x139A88..0x139D60 in src/m4a.c.
+	@ The following voice/sample configuration data is not decoded yet.
+	.section .rodata.m4a_static_data_after_driver_tables
+	.global gUnk_08139D60
+gUnk_08139D60:
+	.incbin "baserom_us.gba", 0x139D60, (0x13ABB4 - 0x139D60)
     .endif

@@ -3,17 +3,6 @@ OUTPUT_ARCH(arm)
 _M4aNumMusicPlayers = 5;
 _M4aMaxLines = 0x50;
 
-gMPlayJumpTableTemplate = 0x08139A88;
-gScaleTable = 0x08139B18;
-gFreqTable = 0x08139BCC;
-gPcmSamplesPerVBlankTable = 0x08139BFC;
-gCgbScaleTable = 0x08139C14;
-gCgbFreqTable = 0x08139C98;
-gNoiseTable = 0x08139CB0;
-gCgb3Vol = 0x08139CEC;
-gClockTable = 0x08139CFC;
-gXcmdTable = 0x08139D30;
-
 MEMORY
 {
     EWRAM (w!x) : ORIGIN = 0x02000000, LENGTH = 256K
@@ -957,6 +946,8 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4);
         asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard);
+        src/m4a.o(.rodata);
+        asm/data/data_080F9EB8.o(.rodata.m4a_static_data_after_driver_tables);
         . = ALIGN(4); src/sound_data.o(.rodata.*);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
     } > ROM = 0xFF

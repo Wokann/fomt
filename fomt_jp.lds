@@ -11,18 +11,6 @@ OUTPUT_ARCH(arm)
 _M4aNumMusicPlayers = 5;
 _M4aMaxLines = 0x50;
 
-/* Verified against the JP m4a tables in baserom_jp.gba. */
-gMPlayJumpTableTemplate = 0x0813ABCC;
-gScaleTable = 0x0813AC5C;
-gFreqTable = 0x0813AD10;
-gPcmSamplesPerVBlankTable = 0x0813AD40;
-gCgbScaleTable = 0x0813AD58;
-gCgbFreqTable = 0x0813ADDC;
-gNoiseTable = 0x0813ADF4;
-gCgb3Vol = 0x0813AE30;
-gClockTable = 0x0813AE40;
-gXcmdTable = 0x0813AE74;
-
 MEMORY
 {
     EWRAM (w!x) : ORIGIN = 0x02000000, LENGTH = 256K
@@ -1065,6 +1053,8 @@ SECTIONS
         . = 0x118CF4; src/font.o(.rodata);
         . = 0x118D18; /* Static resources after font-owned data. */
         asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard);
+        . = 0x13ABCC; src/m4a.o(.rodata);
+        asm/data/data_080F9EB8.o(.rodata.m4a_static_data_after_driver_tables);
         . = 0x13BCF8; /* JP m4a player and song tables. */
         src/sound_data.o(.rodata.*);
         . = 0x13C3CC; /* JP asset container, independently matched. */
