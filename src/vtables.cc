@@ -4450,4 +4450,28 @@ extern RawVTableFunction const vtable_unk_080E85A0[]
 #endif
     };
 
+#if defined(REGION_JP)
+extern void func_080CD950(void);
+extern void func_080CC150(void);
+#else
+extern void func_080E5898(void);
+extern void func_080CAF6C(void);
+#endif
+
+// Preserve this four-slot callback sequence and its regional targets in ROM order.
+extern RawVTableFunction const vtable_unk_080E85AC[]
+    SECTION(".rodata.vtable_85ac") = {
+#if defined(REGION_JP)
+        nullptr,
+        nullptr,
+        func_080CD950,
+        func_080CC150,
+#else
+        nullptr,
+        nullptr,
+        func_080E5898,
+        func_080CAF6C,
+#endif
+    };
+
 EXTERN_C_END
