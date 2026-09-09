@@ -731,8 +731,7 @@ SECTIONS
         . = 0xFA710; data/text/frisbee_text_trailer.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/animal_festival_ranking.o(.rodata.animal_festival_ranking_random_range_pairs);
-        . = 0xFA78C; data/text/animal_festival.o(.rodata.animal_festival_livestock_contestant_names_runtime);
-        . = 0xFA796; data/text/animal_festival.o(.rodata.animal_festival_livestock_contestant_names);
+        . = 0xFA78C; data/text/animal_festival.o(.rodata);
         . = 0xFA99E; src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_values);
         FILL(0x00);
         . = ALIGN(4);

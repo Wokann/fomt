@@ -3,11 +3,10 @@
 // Direct-indexed animal-festival livestock contestant names. The fixed
 // 13-byte rows retain the original JP display-space padding.
 
-char const gCppRuntimeBadAlloc_AnimalFestivalLivestockContestantNames[]
-    SECTION(".rodata.animal_festival_livestock_contestant_names_runtime") =
-        "bad_alloc";
+char const gCppRuntimeBadAlloc_AnimalFestivalLivestockContestantNames[] =
+    "bad_alloc";
 
-char const gText_AnimalFestival_LivestockContestantNames[40][13] SECTION(".rodata.animal_festival_livestock_contestant_names") ALIGN(1) = {
+char const gText_AnimalFestival_LivestockContestantNames[40][13] ALIGN(1) = {
     "ミッドナイト",
     "ハルモニア　",
     "ダストホール",
