@@ -1,11 +1,5 @@
 #include "library_text.hh"
 
-// This is a ten-byte string object in the original layout.  The following
-// entry-ID table begins at the next four-byte boundary.
-char const gCppRuntimeBadAlloc_LibraryInfo[]
-    SECTION(".rodata.library_info_runtime") ALIGN(1) =
-        "bad_alloc";
-
 // func_08079A64 loads one 32-bit source slot at a time, then stores its low
 // halfword into the active Library entry list.  Keep the original word width.
 u32 const gLibraryInitialEntryIds[]

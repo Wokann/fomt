@@ -851,14 +851,13 @@ SECTIONS
         . = ALIGN(4); data/text/town_map.o(.rodata);
         . = 0xFC7E8; src/town_map_data.o(.rodata.town_map_hotspots);
         . = 0xFCB08; src/town_map_data.o(.rodata.town_map_area_lookup);
-        . = 0xFCCB8; data/text/library.o(.rodata.library_info);
+        . = 0xFCCB8; data/text/library.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/town_map_data.o(.rodata.town_map_area_bounds);
-        src/library_data.o(.rodata.library_info_runtime);
+        data/text/common/library_info.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/library_data.o(.rodata.library_initial_entry_ids);
-        . = 0xFD0B0; data/text/library.o(.rodata.library_menu);
-        . = 0xFD0C2; data/text/library.o(.rodata.library_menu_trailer);
+        . = 0xFD0B0; data/text/library_menu.o(.rodata);
         . = 0xFD0D0; src/poultry_shop_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/supermarket_data.o(.rodata);
