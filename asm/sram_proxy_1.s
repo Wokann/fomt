@@ -174,37 +174,3 @@ func_080003E8: @ 0x080003E8
     .byte 0x00, 0xF0, 0x50, 0xF9, 0x09, 0x48, 0x00, 0x88, 0x00, 0x28, 0x0A, 0xD1, 0x01, 0x21, 0xA9, 0x40
     .byte 0x00, 0x98, 0x88, 0x43, 0x00, 0x90, 0x20, 0x1C, 0x20, 0x21, 0x6A, 0x46, 0x04, 0x23, 0x00, 0xF0
     .byte 0x21, 0xF9, 0x01, 0xB0, 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x00, 0x04, 0x00, 0x03
-
-    .section .text.sram_proxy_1_after_save_value
-    thumb_func_start func_08000488
-func_08000488: @ 0x08000488
-    push {r4, lr}
-    sub sp, #4
-    adds r4, r0, #0
-    bl func_080002E0
-    lsls r0, r0, #0x18
-    cmp r0, #0
-    beq .L080004B8
-    movs r0, #0
-    str r0, [sp]
-    adds r0, r4, #0
-    mov r1, sp
-    movs r2, #0x24
-    movs r3, #4
-    bl func_080006E4
-    ldr r0, .L080004B4 @ =gUnk_03000400
-    ldrh r0, [r0]
-    cmp r0, #0
-    bne .L080004B8
-    ldr r0, [sp]
-    b .L080004BA
-    .align 2, 0
-.L080004B4: .4byte gUnk_03000400
-.L080004B8:
-    movs r0, #0
-.L080004BA:
-    add sp, #4
-    pop {r4}
-    pop {r1}
-    bx r1
-    .align 2, 0

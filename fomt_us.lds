@@ -59,7 +59,7 @@ SECTIONS
         src/sram_proxy_1.o(.text);
         asm/sram_proxy_1.o(.text.sram_proxy_1_after_address);
         src/sram_proxy_1.o(.text.sram_proxy_1_save_value);
-        asm/sram_proxy_1.o(.text.sram_proxy_1_after_save_value);
+        src/sram_proxy_1.o(.text.sram_proxy_1_read_value);
         asm/interrupt.o(.text);
         src/new.o(.text);
         src/pure_virtual.o(.text);
