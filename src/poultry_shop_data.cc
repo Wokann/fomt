@@ -3,9 +3,13 @@
 #include "item.hh"
 
 #if defined(REGION_JP)
-#include "data/text/jp/poultry_shop_menu.cc"
+#define FOMT_TEXT_POULTRY_SHOP_MENU
+#include "data/text/jp/poultry_shop.cc"
+#undef FOMT_TEXT_POULTRY_SHOP_MENU
 #else
-#include "data/text/us/poultry_shop_menu.cc"
+#define FOMT_TEXT_POULTRY_SHOP_MENU
+#include "data/text/us/poultry_shop.cc"
+#undef FOMT_TEXT_POULTRY_SHOP_MENU
 #endif
 
 PoultryShopCatalogEntry const gPoultryShopCatalog[] = {
@@ -17,7 +21,11 @@ PoultryShopCatalogEntry const gPoultryShopCatalog[] = {
 };
 
 #if defined(REGION_JP)
-#include "data/text/jp/poultry_shop_status.cc"
+#define FOMT_TEXT_POULTRY_SHOP_STATUS
+#include "data/text/jp/poultry_shop.cc"
+#undef FOMT_TEXT_POULTRY_SHOP_STATUS
 #else
-#include "data/text/us/poultry_shop_status.cc"
+#define FOMT_TEXT_POULTRY_SHOP_STATUS
+#include "data/text/us/poultry_shop.cc"
+#undef FOMT_TEXT_POULTRY_SHOP_STATUS
 #endif
