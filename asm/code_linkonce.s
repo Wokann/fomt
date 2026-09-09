@@ -26425,6 +26425,9 @@ func_080E0E80: @ 0x080E0E80
     @ Exact JP entry point referenced by the raw table at 0x080E8588.
     jp_linkonce_e0_entry func_080E4C5C, func_080E542C, 0x98
 
+    @ Exact JP entry point referenced by the raw table at 0x080E8594.
+    jp_linkonce_e0_entry func_080E4DAC, func_080E5898, 0xD4
+
     @ Paired target entries preserve the original order after matching JP
     @ prefixes; aliases keep the raw counterpart's byte layout intact.
     .global func_080E3DB4
