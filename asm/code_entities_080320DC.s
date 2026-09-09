@@ -52,6 +52,17 @@ func_08032A30:
     .global func_08033928
     .thumb_func
 func_08033928:
+    @ Exact entries referenced by the raw table at 0x080E68C8.
+    .global func_08033A2C
+    .thumb_set func_08033A2C, func_08033928 + 0x104
+    .global func_08033A80
+    .thumb_set func_08033A80, func_08033928 + 0x158
+    .global func_08033AE4
+    .thumb_set func_08033AE4, func_08033928 + 0x1BC
+    .global func_08033AFC
+    .thumb_set func_08033AFC, func_08033928 + 0x1D4
+    .global func_08033B10
+    .thumb_set func_08033B10, func_08033928 + 0x1E8
     .incbin "baserom_jp.gba", 0x336BC, 0x1FC
 
     .section .text.entity_ui_unknown_flag_after
@@ -60,6 +71,8 @@ func_08033928:
     .global func_08033B84
     .thumb_func
 func_08033B84:
+    .global func_08033B94
+    .thumb_set func_08033B94, func_08033B84 + 0x10
     .incbin "baserom_jp.gba", 0x33918, 0x6C4
 
     .section .text.entity_ui_animation_lookup_after
@@ -2879,7 +2892,18 @@ func_080338F0: @ 0x080338F0
     .section .text.entity_ui_harvest_sprite_task_experience_after
     thumb_func_start func_08033928
 func_08033928: @ 0x08033928
-    push {r4, r5, r6, r7, lr}
+	@ Exact entries referenced by the raw table at 0x080E68C8.
+	.global func_08033A2C
+	.thumb_set func_08033A2C, func_08033928 + 0x104
+	.global func_08033A80
+	.thumb_set func_08033A80, func_08033928 + 0x158
+	.global func_08033AE4
+	.thumb_set func_08033AE4, func_08033928 + 0x1BC
+	.global func_08033AFC
+	.thumb_set func_08033AFC, func_08033928 + 0x1D4
+	.global func_08033B10
+	.thumb_set func_08033B10, func_08033928 + 0x1E8
+	push {r4, r5, r6, r7, lr}
     mov r7, r8
     push {r7}
     sub sp, #0x14
@@ -3016,10 +3040,12 @@ func_08033928: @ 0x08033928
     .byte 0x10, 0xB5, 0x04, 0x1C, 0xEC, 0xF7, 0x84, 0xF9, 0x60, 0x6B, 0x6A, 0xF0, 0x5F, 0xFC, 0x10, 0xBC
     .byte 0x01, 0xBC, 0x00, 0x47
 
-    .section .text.entity_ui_unknown_flag_after
-    thumb_func_start func_08033B84
+	.section .text.entity_ui_unknown_flag_after
+	thumb_func_start func_08033B84
 func_08033B84: @ 0x08033B84
-    push {lr}
+	.global func_08033B94
+	.thumb_set func_08033B94, func_08033B84 + 0x10
+	push {lr}
     ldr r0, [r0, #0x10]
     cmp r0, #0
     beq .L08033B90
