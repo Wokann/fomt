@@ -3,10 +3,6 @@
 
 #include "prelude.h"
 
-#define CALENDAR_FESTIVAL_TEXT SECTION(".rodata.calendar.festival_text")
-#define CALENDAR_FESTIVAL_DYNAMIC_TEXT SECTION(".rodata.calendar.festival_dynamic_text")
-#define CALENDAR_DYNAMIC_SEASON_TEXT SECTION(".rodata.calendar.dynamic_season_names")
-#define CALENDAR_NO_PLANS_TEXT SECTION(".rodata.calendar.no_plans_text")
 
 // The native calendar scan begins with the last NUL in season_names, then
 // reads a day and the following entry's season byte.  Keep this physical

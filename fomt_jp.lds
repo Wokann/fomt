@@ -763,11 +763,11 @@ SECTIONS
         . = 0xEFD48; /* JP product-info runtime trailer. */
         src/item.o(.rodata.item_product_trailer);
         FILL(0x00);
-        data/text/calendar.o(.rodata.calendar.season);
-        data/text/calendar.o(.rodata.calendar.none);
-        data/text/calendar.o(.rodata.calendar.weekday);
+        data/text/calendar.o(.rodata);
+        data/text/calendar_none.o(.rodata);
+        data/text/calendar_weekday.o(.rodata);
         . = 0xEFD78; /* JP data after the calendar text arrays. */
-        data/text/calendar.o(.rodata.calendar_trailer);
+        data/text/calendar_trailer.o(.rodata);
         . = 0xEFDAA; src/game_state.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); data/text/load_error.o(.rodata);
@@ -935,11 +935,11 @@ SECTIONS
         src/field_data.o(.rodata.field_item_records);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0x10447C; data/text/calendar.o(.rodata.calendar.dynamic_season_names);
-        . = 0x1044B0; data/text/calendar.o(.rodata.calendar.festival_text);
-        . = 0x1048DC; data/text/calendar.o(.rodata.calendar.festival_dynamic_text);
-        . = 0x10491C; data/text/calendar.o(.rodata.calendar.no_plans_text);
-        . = 0x104938; data/text/calendar.o(.rodata);
+        . = 0x10447C; data/text/calendar_dynamic.o(.rodata);
+        . = 0x1044B0; data/text/calendar_festival.o(.rodata);
+        . = 0x1048DC; data/text/calendar_festival_dynamic.o(.rodata);
+        . = 0x10491C; data/text/calendar_no_plans.o(.rodata);
+        . = 0x104938; data/text/calendar_fallback.o(.rodata);
         . = 0x104958; data/text/possessive_labels.o(.rodata.possessive_labels);
         . = 0x104988; data/text/possessive_labels.o(.rodata);
         . = 0x104994; data/text/random_item.o(.rodata);
