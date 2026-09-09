@@ -1630,6 +1630,154 @@ extern RawVTableFunction const vtable_unk_080E61A0[] = {
 };
 
 #if defined(REGION_JP)
+extern void func_08023688(void);
+extern void func_08020034(void);
+extern void vfunc_10__7AEntity(void);
+extern void vfunc_14__7AEntity(void);
+extern void func_08023720(void);
+extern void vfunc_1C__7AEntityUi(void);
+extern void vfunc_20__7AEntity(void);
+extern void vfunc_24__7AEntity(void);
+extern void vfunc_28__C7AEntity(void);
+extern void func_0803242C(void);
+extern void func_08024280(void);
+extern void func_080324B8(void);
+extern void func_080328D4(void);
+extern void func_08023E64(void);
+extern void func_08023F40(void);
+extern void func_08023F8C(void);
+extern void func_08020064(void);
+extern void func_08023F90(void);
+extern void func_08023FB8(void);
+extern void func_08020070(void);
+extern void func_08023FC8(void);
+extern void func_08023FD4(void);
+extern void func_08023FE0(void);
+extern void func_08024010(void);
+extern void func_08020084(void);
+extern void func_080240A0(void);
+extern void func_080240AC(void);
+extern void func_08020090(void);
+extern void func_0802410C(void);
+extern void func_0802414C(void);
+extern void func_08024170(void);
+extern void func_080241FC(void);
+extern void func_080236DC(void);
+#else
+extern void func_080238F4(void);
+extern void func_080202A0(void);
+extern void vfunc_10__7AEntity(void);
+extern void vfunc_14__7AEntity(void);
+extern void func_0802398C(void);
+extern void vfunc_1C__7AEntityUi(void);
+extern void vfunc_20__7AEntity(void);
+extern void vfunc_24__7AEntity(void);
+extern void vfunc_28__C7AEntity(void);
+extern void func_0803242C(void);
+extern void func_080244EC(void);
+extern void func_080324B8(void);
+extern void func_08032B40(void);
+extern void func_080240D0(void);
+extern void func_080241AC(void);
+extern void func_080241F8(void);
+extern void func_080202D0(void);
+extern void func_080241FC(void);
+extern void func_08024224(void);
+extern void func_080202DC(void);
+extern void func_08024234(void);
+extern void func_08024240(void);
+extern void func_0802424C(void);
+extern void func_0802427C(void);
+extern void func_080202F0(void);
+extern void func_0802430C(void);
+extern void func_08024318(void);
+extern void func_080202FC(void);
+extern void func_08024378(void);
+extern void func_080243B8(void);
+extern void func_080243DC(void);
+extern void func_08024468(void);
+extern void func_08023948(void);
+#endif
+
+// Preserve this 35-slot table and its region-specific callback targets in ROM order.
+extern RawVTableFunction const vtable_unk_080E6284[]
+    SECTION(".rodata.vtable_6284") = {
+#if defined(REGION_JP)
+        nullptr,
+        nullptr,
+        func_08023688,
+        func_08020034,
+        vfunc_10__7AEntity,
+        vfunc_14__7AEntity,
+        func_08023720,
+        vfunc_1C__7AEntityUi,
+        vfunc_20__7AEntity,
+        vfunc_24__7AEntity,
+        vfunc_28__C7AEntity,
+        func_0803242C,
+        func_08024280,
+        func_080324B8,
+        func_080328D4,
+        func_08023E64,
+        func_08023F40,
+        func_08023F8C,
+        func_08020064,
+        func_08023F90,
+        func_08023FB8,
+        func_08020070,
+        func_08023FC8,
+        func_08023FD4,
+        func_08023FE0,
+        func_08024010,
+        func_08020084,
+        func_080240A0,
+        func_080240AC,
+        func_08020090,
+        func_0802410C,
+        func_0802414C,
+        func_08024170,
+        func_080241FC,
+        func_080236DC,
+#else
+        nullptr,
+        nullptr,
+        func_080238F4,
+        func_080202A0,
+        vfunc_10__7AEntity,
+        vfunc_14__7AEntity,
+        func_0802398C,
+        vfunc_1C__7AEntityUi,
+        vfunc_20__7AEntity,
+        vfunc_24__7AEntity,
+        vfunc_28__C7AEntity,
+        func_0803242C,
+        func_080244EC,
+        func_080324B8,
+        func_08032B40,
+        func_080240D0,
+        func_080241AC,
+        func_080241F8,
+        func_080202D0,
+        func_080241FC,
+        func_08024224,
+        func_080202DC,
+        func_08024234,
+        func_08024240,
+        func_0802424C,
+        func_0802427C,
+        func_080202F0,
+        func_0802430C,
+        func_08024318,
+        func_080202FC,
+        func_08024378,
+        func_080243B8,
+        func_080243DC,
+        func_08024468,
+        func_08023948,
+#endif
+    };
+
+#if defined(REGION_JP)
 // The JP Script Engine code is still retained as a raw code range, but this
 // ABI table has the same five logical slots as the compiled US table.
 extern RawVTableFunction const __vt_13AScriptEngine[]
