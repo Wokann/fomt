@@ -30,7 +30,11 @@ BlacksmithCatalogEntry const gBlacksmithCatalog[] = {
 };
 
 #if defined(REGION_JP)
-#include "data/text/jp/blacksmith_dialogue.cc"
+#define FOMT_TEXT_BLACKSMITH_DIALOGUE
+#include "data/text/jp/blacksmith.cc"
+#undef FOMT_TEXT_BLACKSMITH_DIALOGUE
 #else
-#include "data/text/us/blacksmith_dialogue.cc"
+#define FOMT_TEXT_BLACKSMITH_DIALOGUE
+#include "data/text/us/blacksmith.cc"
+#undef FOMT_TEXT_BLACKSMITH_DIALOGUE
 #endif

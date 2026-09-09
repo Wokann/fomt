@@ -2,7 +2,11 @@
 
 // The upgrade UI is a distinct later rodata block in both regional ROMs.
 #if defined(REGION_JP)
-#include "data/text/jp/blacksmith_upgrade.cc"
+#define FOMT_TEXT_BLACKSMITH_UPGRADE
+#include "data/text/jp/blacksmith.cc"
+#undef FOMT_TEXT_BLACKSMITH_UPGRADE
 #else
-#include "data/text/us/blacksmith_upgrade.cc"
+#define FOMT_TEXT_BLACKSMITH_UPGRADE
+#include "data/text/us/blacksmith.cc"
+#undef FOMT_TEXT_BLACKSMITH_UPGRADE
 #endif
