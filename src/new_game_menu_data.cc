@@ -2,13 +2,13 @@
 
 // The regional fixed-width text fields precede this original pointer order.
 #if defined(REGION_JP)
-#define FOMT_NEW_GAME_MENU_TEXT_LABELS
-#include "data/text/jp/new_game_menu.cc"
-#undef FOMT_NEW_GAME_MENU_TEXT_LABELS
+#define FOMT_NEW_GAME_TEXT_MENU
+#include "data/text/jp/new_game.cc"
+#undef FOMT_NEW_GAME_TEXT_MENU
 #else
-#define FOMT_NEW_GAME_MENU_TEXT_LABELS
-#include "data/text/us/new_game_menu.cc"
-#undef FOMT_NEW_GAME_MENU_TEXT_LABELS
+#define FOMT_NEW_GAME_TEXT_MENU
+#include "data/text/us/new_game.cc"
+#undef FOMT_NEW_GAME_TEXT_MENU
 #endif
 
 // REGION_JP maps the two control-choice semantic names to the stored data
