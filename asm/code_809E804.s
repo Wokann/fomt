@@ -306,6 +306,10 @@
     jp_code_809_func func_080CF050, 0xCE860, 0xCE864
     jp_code_809_func func_080CF054, 0xCE864, 0xCF2BC
     jp_code_809_func func_080CFA38, 0xCF2BC, 0xCFA64
+    @ Exact JP entry points referenced by the raw table at 0x080E85E8.
+    jp_code_809_entry func_080CF3E0, func_080CFA38, 0x124
+    jp_code_809_entry func_080CF430, func_080CFA38, 0x174
+    jp_code_809_entry func_080CF500, func_080CFA38, 0x244
     jp_code_809_func func_080D01E0, 0xCFA64, 0xCFA7C
     jp_code_809_func malloc, 0xCFA7C, 0xCFAE4
     jp_code_809_func free, 0xCFAE4, 0xCFB50

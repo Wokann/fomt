@@ -4541,4 +4541,39 @@ extern RawVTableFunction const vtable_unk_080E85DC[]
 #endif
     };
 
+#if defined(REGION_JP)
+extern void func_080CF500(void);
+extern void func_080CF430(void);
+extern void func_080CF3E0(void);
+#else
+extern void func_080E59C0(void);
+extern void func_080CFC7C(void);
+extern void func_080CFBAC(void);
+extern void func_080CFB5C(void);
+#endif
+
+// Preserve the region-specific vtable layouts and callback order in ROM order.
+extern RawVTableFunction const vtable_unk_080E85E8[]
+    SECTION(".rodata.vtable_85e8") = {
+#if defined(REGION_JP)
+        func_080A4988,
+        func_080A5198,
+        func_080A5E58,
+        func_080CF500,
+        func_080CF430,
+        func_080CF3E0,
+#else
+        nullptr,
+        nullptr,
+        func_080E59C0,
+        func_080A4BEC,
+        func_080A4F50,
+        func_080A5760,
+        func_080A6420,
+        func_080CFC7C,
+        func_080CFBAC,
+        func_080CFB5C,
+#endif
+    };
+
 EXTERN_C_END
