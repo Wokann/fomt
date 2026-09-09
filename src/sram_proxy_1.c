@@ -1,14 +1,45 @@
-#include "prelude.h"
 #include "sram_signature.hh"
 #include "types.h"
 
+#include <string.h>
+
 extern void func_080006A4(void *destination, u32 offset, void const *source, u32 size);
 extern void func_080006E4(void *source, void *destination, u32 offset, u32 size);
-extern u8 func_080002E0(void *source);
 extern u16 gUnk_03000400;
 
-void func_08000358(void *destination)
-    SECTION(".text.sram_proxy_1_func_08000358");
+u8 func_080002E0(void *source)
+{
+    u8 header[0x20];
+    u32 flags;
+    u32 state;
+    u8 result;
+
+    func_080006E4(source, header, 0, sizeof(header));
+    if (gUnk_03000400 != 0)
+        return 0;
+
+    flags = 0;
+    func_080006E4(source, &flags, 0x20, sizeof(flags));
+    if (gUnk_03000400 != 0)
+        return 0;
+
+    state = 0;
+    func_080006E4(source, &state, 0x24, sizeof(state));
+    if (gUnk_03000400 != 0)
+        return 0;
+
+    result = 0;
+    if (memcmp(header, gSramImageSignature, sizeof(header)) == 0)
+    {
+        if ((flags & 3) == flags)
+        {
+            if (state <= 1)
+                result = 1;
+        }
+    }
+
+    return result;
+}
 
 void func_08000358(void *destination)
 {
@@ -25,9 +56,6 @@ void func_08000358(void *destination)
 
     func_080006A4(destination, 0x24, &zero, sizeof(zero));
 }
-
-u32 func_080003A0(void *source)
-    SECTION(".text.sram_proxy_1_read_flags");
 
 u32 func_080003A0(void *source)
 {
@@ -54,9 +82,6 @@ u32 func_080003DC(u32 unused, u32 index)
 }
 
 void func_080003E8(void *source, u32 index)
-    SECTION(".text.sram_proxy_1_set_flags");
-
-void func_080003E8(void *source, u32 index)
 {
     u32 value = 0;
 
@@ -67,9 +92,6 @@ void func_080003E8(void *source, u32 index)
         func_080006A4(source, 0x20, &value, sizeof(value));
     }
 }
-
-void func_0800042C(void *source, u32 index)
-    SECTION(".text.sram_proxy_1_clear_value");
 
 void func_0800042C(void *source, u32 index)
 {
@@ -84,15 +106,9 @@ void func_0800042C(void *source, u32 index)
 }
 
 void func_08000470(void *destination, u32 value)
-    SECTION(".text.sram_proxy_1_save_value");
-
-void func_08000470(void *destination, u32 value)
 {
     func_080006A4(destination, 0x24, &value, sizeof(value));
 }
-
-u32 func_08000488(void *source)
-    SECTION(".text.sram_proxy_1_read_value");
 
 u32 func_08000488(void *source)
 {

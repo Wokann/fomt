@@ -66,14 +66,7 @@ SECTIONS
         asm/main.o(.text);
         src/main.o(.text);
         . = 0x2E0; /* JP ROM 0x080002E0, independently matched */
-        asm/sram_proxy_1.o(.text);
-        src/sram_proxy_1.o(.text.sram_proxy_1_func_08000358);
-        src/sram_proxy_1.o(.text.sram_proxy_1_read_flags);
         src/sram_proxy_1.o(.text);
-        src/sram_proxy_1.o(.text.sram_proxy_1_set_flags);
-        src/sram_proxy_1.o(.text.sram_proxy_1_clear_value);
-        src/sram_proxy_1.o(.text.sram_proxy_1_save_value);
-        src/sram_proxy_1.o(.text.sram_proxy_1_read_value);
         . = 0x4C4; /* JP ROM 0x080004C4, independently matched */
         asm/interrupt.o(.text);
         . = 0x59C; /* JP ROM 0x0800059C, independently matched */

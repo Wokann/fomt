@@ -55,14 +55,7 @@ SECTIONS
         src/crt0.o(.rom_header);
         asm/main.o(.text);
         src/main.o(.text);
-        asm/sram_proxy_1.o(.text);
-        src/sram_proxy_1.o(.text.sram_proxy_1_func_08000358);
-        src/sram_proxy_1.o(.text.sram_proxy_1_read_flags);
         src/sram_proxy_1.o(.text);
-        src/sram_proxy_1.o(.text.sram_proxy_1_set_flags);
-        src/sram_proxy_1.o(.text.sram_proxy_1_clear_value);
-        src/sram_proxy_1.o(.text.sram_proxy_1_save_value);
-        src/sram_proxy_1.o(.text.sram_proxy_1_read_value);
         asm/interrupt.o(.text);
         src/new.o(.text);
         src/pure_virtual.o(.text);
