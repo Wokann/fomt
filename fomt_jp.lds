@@ -725,9 +725,7 @@ SECTIONS
         . = ALIGN(4); src/new_game_menu_data.o(.rodata);
         . = ALIGN(4); data/text/new_game_status.o(.rodata);
         . = ALIGN(4); data/text/new_game_help.o(.rodata);
-        . = ALIGN(4); data/text/new_game_save.o(.rodata.new_game_save_text);
-        . = 0xE7D80; /* JP raw data after the regional new-game save text. */
-        data/text/new_game_save.o(.rodata.new_game_save_trailer);
+        . = ALIGN(4); data/text/new_game_save.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); data/text/new_game_identity.o(.rodata.new_game_identity_prefix);
         . = 0xE7DAC; /* JP runtime data between identity text groups. */
