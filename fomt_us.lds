@@ -839,7 +839,7 @@ SECTIONS
         . = 0x104DEC; data/text/calendar.o(.rodata);
         . = 0x104E0C; data/text/possessive_labels.o(.rodata.possessive_labels);
         . = 0x104E40; data/text/possessive_labels.o(.rodata);
-        . = 0x104E4C; data/text/random_item.o(.rodata.random_item_fallback);
+        . = 0x104E4C; data/text/random_item.o(.rodata);
         . = 0x104E54; src/fishing_results_data.o(.rodata.fishing_record_article_ids);
         . = 0x104E74; src/field_data.o(.rodata.field_plot_position_values);
         . = 0x104EAC; src/random_item.o(.rodata.random_item_selection_weights);
