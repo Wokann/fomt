@@ -4369,4 +4369,24 @@ extern RawVTableFunction const vtable_unk_080E8570[]
 #endif
     };
 
+#if defined(REGION_JP)
+extern void func_080E4C84(void);
+#else
+extern void func_080E5478(void);
+#endif
+
+// Preserve the region-specific placement of the only non-null callback.
+extern RawVTableFunction const vtable_unk_080E857C[]
+    SECTION(".rodata.vtable_857c") = {
+#if defined(REGION_JP)
+        nullptr,
+        func_080E4C84,
+        nullptr,
+#else
+        nullptr,
+        nullptr,
+        func_080E5478,
+#endif
+    };
+
 EXTERN_C_END
