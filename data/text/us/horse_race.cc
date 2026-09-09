@@ -3,39 +3,39 @@
 // Static Horse Race text.  The text processor converts these UTF-8 strings
 // and named controls into the exact regional ROM bytes during the build.
 
-char const gText_HorseRace_BuyTicketDeclined[] SECTION(".rodata.horse_race_dialogue") =
+char const gText_HorseRace_BuyTicketDeclined[] =
     "Sure you don't want one?";
 
-char const gText_HorseRace_Yes[] SECTION(".rodata.horse_race_dialogue") =
+char const gText_HorseRace_Yes[] =
     "Yes";
 
-char const gText_HorseRace_No[] SECTION(".rodata.horse_race_dialogue") =
+char const gText_HorseRace_No[] =
     "No";
 
-char const gText_HorseRace_ComeAgain[] SECTION(".rodata.horse_race_dialogue") =
+char const gText_HorseRace_ComeAgain[] =
     "\p"
     "Come again.{Press}";
 
-char const gText_HorseRace_TakeYourTime[] SECTION(".rodata.horse_race_dialogue") =
+char const gText_HorseRace_TakeYourTime[] =
     "\p"
     "Take your time.{Press}";
 
-char const gText_HorseRace_TicketPurchaseConfirmation[] SECTION(".rodata.horse_race_dialogue") =
+char const gText_HorseRace_TicketPurchaseConfirmation[] =
     "So this is what you want?";
 
-char const gText_HorseRace_TicketPurchaseApproval[] SECTION(".rodata.horse_race_dialogue") =
+char const gText_HorseRace_TicketPurchaseApproval[] =
     "\p"
     "Here you go.\r\n"
     "Best of luck to you!{Press}";
 
-char const gText_HorseRace_ChangeMind[] SECTION(".rodata.horse_race_dialogue") =
+char const gText_HorseRace_ChangeMind[] =
     "\p"
     "Change your mind?{Press}";
 
-char const gText_HorseRace_ExplanationQuestion[] SECTION(".rodata.horse_race_dialogue") =
+char const gText_HorseRace_ExplanationQuestion[] =
     "Need to hear how to do it?";
 
-char const gText_HorseRace_ExplanationBasics[] SECTION(".rodata.horse_race_dialogue") =
+char const gText_HorseRace_ExplanationBasics[] =
     "\p"
     "OK, listen carefully.{Press}\r\n"
     "Use the A Button to spur\r\n"
@@ -44,26 +44,26 @@ char const gText_HorseRace_ExplanationBasics[] SECTION(".rodata.horse_race_dialo
     "horse only has a certain\r\n"
     "amount of stamina.{Press}";
 
-char const gText_HorseRace_ExplanationGreenStamina[] SECTION(".rodata.horse_race_dialogue") =
+char const gText_HorseRace_ExplanationGreenStamina[] =
     "\p"
     "When your horse is still in\r\n"
     "the green, it has plenty of\r\n"
     "stamina left.{Press}";
 
-char const gText_HorseRace_ExplanationYellowStamina[] SECTION(".rodata.horse_race_dialogue") =
+char const gText_HorseRace_ExplanationYellowStamina[] =
     "\p"
     "If you speed up even more,\r\n"
     "your horse will go into\r\n"
     "the yellow.{Press}";
 
-char const gText_HorseRace_ExplanationRedStamina[] SECTION(".rodata.horse_race_dialogue") =
+char const gText_HorseRace_ExplanationRedStamina[] =
     "\p"
     "Speed up even more,\r\n"
     "and you'll enter the red.{Press}\r\n"
     "Once you're in the red you\r\n"
     "can't speed up any more.{Press}";
 
-char const gText_HorseRace_ExplanationStaminaRecovery[] SECTION(".rodata.horse_race_dialogue") =
+char const gText_HorseRace_ExplanationStaminaRecovery[] =
     "\p"
     "Hold off on the A Button to\r\n"
     "allow your horse to regain\r\n"
@@ -71,20 +71,20 @@ char const gText_HorseRace_ExplanationStaminaRecovery[] SECTION(".rodata.horse_r
     "Pace your horse judiciously\r\n"
     "and you have a chance!{Press}";
 
-char const gText_HorseRace_ExplanationUnderstoodQuestion[] SECTION(".rodata.horse_race_dialogue") =
+char const gText_HorseRace_ExplanationUnderstoodQuestion[] =
     "Everything understood?";
 
-char const gText_HorseRace_ExplanationUnderstood[] SECTION(".rodata.horse_race_dialogue") =
+char const gText_HorseRace_ExplanationUnderstood[] =
     "Got it.";
 
-char const gText_HorseRace_ExplanationRepeat[] SECTION(".rodata.horse_race_dialogue") =
+char const gText_HorseRace_ExplanationRepeat[] =
     "Come again?";
 
-char const gText_HorseRace_StartRace[] SECTION(".rodata.horse_race_dialogue") =
+char const gText_HorseRace_StartRace[] =
     "\p"
     "Let's get started, then!{Press}";
 
-char const gText_HorseRace_RaceStartAnnouncement[] SECTION(".rodata.horse_race_dialogue") =
+char const gText_HorseRace_RaceStartAnnouncement[] =
     "\p"
     "No.1 \xFC\r\n"
     "No.2 \xFD{Press}\r\n"
@@ -93,7 +93,7 @@ char const gText_HorseRace_RaceStartAnnouncement[] SECTION(".rodata.horse_race_d
     "On your marks...{Press}\p"
     "Get set....{Press}";
 
-char const gText_HorseRace_RaceResults[] SECTION(".rodata.horse_race_dialogue") =
+char const gText_HorseRace_RaceResults[] =
     "\p"
     "Race Results:\r\n"
     "1st place \xFC\r\n"
@@ -102,12 +102,12 @@ char const gText_HorseRace_RaceResults[] SECTION(".rodata.horse_race_dialogue") 
     "4th place \xFF{Press}\r\n"
     "{Press}";
 
-char const gText_HorseRace_RacePayouts[] SECTION(".rodata.horse_race_dialogue") =
+char const gText_HorseRace_RacePayouts[] =
     "\p"
     "Race \xFA payouts\r\n"
     "are as follows:{Press}";
 
-char const gText_HorseRace_MedalExchangeExplanation[] SECTION(".rodata.horse_race_dialogue") =
+char const gText_HorseRace_MedalExchangeExplanation[] =
     "\p"
     "Come to me if you want to\r\n"
     "exchange your medal\r\n"
@@ -115,45 +115,44 @@ char const gText_HorseRace_MedalExchangeExplanation[] SECTION(".rodata.horse_rac
     "Just remember, you can\r\n"
     "only do it here.{Press}";
 
-u16 const gHorseRaceTicketCharacterCodes[]
-    SECTION(".rodata.horse_race_ticket_character_codes") ALIGN(2) =
+u16 const gHorseRaceTicketCharacterCodes[] =
     FOMT_GLYPH_TEXT("0123456789 xGYour medals");
 
-char const gText_HorseRace_TicketPurchaseTitle[] SECTION(".rodata.horse_race_ticket_ui") =
+char const gText_HorseRace_TicketPurchaseTitle[] =
     "Race  Winning Ticket    ";
 
-char const gText_HorseRace_TicketPurchaseConfirm[] SECTION(".rodata.horse_race_ticket_ui") =
+char const gText_HorseRace_TicketPurchaseConfirm[] =
     "   Enter";
 
-char const gText_HorseRace_TicketPurchaseMedalsToWin[] SECTION(".rodata.horse_race_ticket_ui") =
+char const gText_HorseRace_TicketPurchaseMedalsToWin[] =
     "  Medals to Win     ";
 
-char const gText_HorseRace_TicketControls_DPadUpDown[] SECTION(".rodata.horse_race_ticket_ui") =
+char const gText_HorseRace_TicketControls_DPadUpDown[] =
     "Control Pad Up/Down:";
 
-char const gText_HorseRace_TicketControls_SelectHorse[] SECTION(".rodata.horse_race_ticket_ui") =
+char const gText_HorseRace_TicketControls_SelectHorse[] =
     "  Select a horse to bet on.";
 
-char const gText_HorseRace_TicketControls_DPadLeftRight[] SECTION(".rodata.horse_race_ticket_ui") =
+char const gText_HorseRace_TicketControls_DPadLeftRight[] =
     "Control Pad Left/Right:";
 
-char const gText_HorseRace_TicketControls_ChangeQuantity[] SECTION(".rodata.horse_race_ticket_ui") =
+char const gText_HorseRace_TicketControls_ChangeQuantity[] =
     "  Change number of tickets.";
 
-char const gText_HorseRace_TicketControls_LRButtons[] SECTION(".rodata.horse_race_ticket_ui") =
+char const gText_HorseRace_TicketControls_LRButtons[] =
     "L/R Buttons:";
 
-char const gText_HorseRace_TicketControls_ChangeQuantityByTen[] SECTION(".rodata.horse_race_ticket_ui") =
+char const gText_HorseRace_TicketControls_ChangeQuantityByTen[] =
     "  Change number of tickets";
 
-char const gText_HorseRace_TicketControls_ChangeQuantityByTenContinuation[] SECTION(".rodata.horse_race_ticket_ui") =
+char const gText_HorseRace_TicketControls_ChangeQuantityByTenContinuation[] =
     "  by ten.";
 
-char const gText_HorseRace_TicketControls_MoveCursorToConfirm[] SECTION(".rodata.horse_race_ticket_ui") =
+char const gText_HorseRace_TicketControls_MoveCursorToConfirm[] =
     "Move the cursor to OK.";
 
-char const gText_HorseRace_TicketControls_Buy[] SECTION(".rodata.horse_race_ticket_ui") =
+char const gText_HorseRace_TicketControls_Buy[] =
     "Buy with the A Button.";
 
-char const gText_HorseRace_TicketControls_Cancel[] SECTION(".rodata.horse_race_ticket_ui") =
+char const gText_HorseRace_TicketControls_Cancel[] =
     "Cancel with the B Button.";

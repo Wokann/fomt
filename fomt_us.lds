@@ -741,16 +741,9 @@ SECTIONS
         . = 0xFA99E; src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_values);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0xFAA40; data/text/horse_race.o(.rodata.horse_race_dialogue);
-        . = 0xFAE6A; data/text/horse_race.o(.rodata.horse_race_ticket_character_codes);
-        . = 0xFAE9C; data/text/horse_race.o(.rodata.horse_race_ticket_ui);
-        . = 0xFAFC8; src/horse_race_data.o(.rodata.horse_race_ticket_controls);
-        . = 0xFAFF4; src/horse_race_data.o(.rodata.horse_race_ticket_controls_trailer);
+        . = 0xFAA40; src/horse_race_data.o(.rodata);
         FILL(0x00);
-        . = 0xFB000; data/text/horse_race_prizes.o(.rodata.horse_race_prize_catalog);
-        . = 0xFB0F0; src/horse_race_data.o(.rodata.horse_race_prize_item_ids);
-        . = 0xFB108; data/text/horse_race_prizes.o(.rodata.horse_race_prize_exchange);
-        . = 0xFB1A6; src/horse_race_data.o(.rodata.horse_race_prize_exchange_character_codes);
+        . = ALIGN(4);
         . = 0xFB1D8; data/text/intro_scene.o(.rodata.intro_scene_prefix_runtime);
         . = 0xFB1E4; src/intro_scene_data.o(.rodata);
         . = 0xFB234; data/text/intro_scene.o(.rodata.intro_scene_text);

@@ -2,7 +2,36 @@
 
 #include "item.hh"
 
-u16 const gHorseRacePrizeItemIds[] SECTION(".rodata.horse_race_prize_item_ids") = {
+#if defined(REGION_JP)
+#include "data/text/jp/horse_race.cc"
+#else
+#include "data/text/us/horse_race.cc"
+#endif
+
+char const * const gHorseRaceTicketControls[] = {
+    gText_HorseRace_TicketControls_DPadUpDown,
+    gText_HorseRace_TicketControls_SelectHorse,
+    gText_HorseRace_TicketControls_DPadLeftRight,
+    gText_HorseRace_TicketControls_ChangeQuantity,
+    gText_HorseRace_TicketControls_LRButtons,
+    gText_HorseRace_TicketControls_ChangeQuantityByTen,
+    gText_HorseRace_TicketControls_ChangeQuantityByTenContinuation,
+    gText_HorseRace_TicketControls_MoveCursorToConfirm,
+    gText_HorseRace_TicketControls_Buy,
+    gText_HorseRace_TicketControls_Cancel,
+    nullptr,
+};
+
+char const gCppRuntimeBadAlloc_HorseRaceTicketControls[] =
+    "bad_alloc";
+
+#if defined(REGION_JP)
+#include "data/text/jp/horse_race_prize_catalog.cc"
+#else
+#include "data/text/us/horse_race_prize_catalog.cc"
+#endif
+
+u16 const gHorseRacePrizeItemIds[] = {
     ARTICLE_JEWEL_OF_TRUTH,
     ARTICLE_MOON_DROP_GRASS, // Native placeholder; Power Berry has a dedicated branch.
     ARTICLE_FACIAL_PACK,
@@ -17,30 +46,17 @@ u16 const gHorseRacePrizeItemIds[] SECTION(".rodata.horse_race_prize_item_ids") 
     ARTICLE_PERFUME,
 };
 
+#if defined(REGION_JP)
+#include "data/text/jp/horse_race_prize_exchange.cc"
+#else
+#include "data/text/us/horse_race_prize_exchange.cc"
+#endif
+
 // The JP prize-exchange renderer reads a fixed twenty-glyph field and its
 // original table has no terminator. The US counterpart retains its terminal.
-u16 const gHorseRacePrizeExchangeCharacterCodes[]
-    SECTION(".rodata.horse_race_prize_exchange_character_codes") ALIGN(2) =
+u16 const gHorseRacePrizeExchangeCharacterCodes[] =
 #if defined(REGION_JP)
     FOMT_GLYPH_SEQUENCE("０１２３４５６７８９枚倍Ｇ現在のメダル数");
 #else
     FOMT_GLYPH_TEXT("0123456789 xGYour medals");
 #endif
-
-char const * const gHorseRaceTicketControls[] SECTION(".rodata.horse_race_ticket_controls") = {
-    gText_HorseRace_TicketControls_DPadUpDown,
-    gText_HorseRace_TicketControls_SelectHorse,
-    gText_HorseRace_TicketControls_DPadLeftRight,
-    gText_HorseRace_TicketControls_ChangeQuantity,
-    gText_HorseRace_TicketControls_LRButtons,
-    gText_HorseRace_TicketControls_ChangeQuantityByTen,
-    gText_HorseRace_TicketControls_ChangeQuantityByTenContinuation,
-    gText_HorseRace_TicketControls_MoveCursorToConfirm,
-    gText_HorseRace_TicketControls_Buy,
-    gText_HorseRace_TicketControls_Cancel,
-    nullptr,
-};
-
-char const gCppRuntimeBadAlloc_HorseRaceTicketControls[]
-    SECTION(".rodata.horse_race_ticket_controls_trailer") =
-        "bad_alloc";
