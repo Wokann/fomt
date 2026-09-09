@@ -9,60 +9,59 @@
     .section .text
     .syntax unified
     .thumb
-    .global func_08020060
     .thumb_func
-func_08020060:
+code_entities_jp_raw_start:
     .incbin "baserom_jp.gba", 0x1FDF4, 0x1207C
 
     @ Exact JP entries referenced by the raw table at 0x080E6284.
     .global func_08020034
-    .thumb_set func_08020034, func_08020060 + 0x240
+    .thumb_set func_08020034, code_entities_jp_raw_start + 0x240
     .global func_08020064
-    .thumb_set func_08020064, func_08020060 + 0x270
+    .thumb_set func_08020064, code_entities_jp_raw_start + 0x270
     .global func_08020070
-    .thumb_set func_08020070, func_08020060 + 0x27C
+    .thumb_set func_08020070, code_entities_jp_raw_start + 0x27C
     .global func_08020084
-    .thumb_set func_08020084, func_08020060 + 0x290
+    .thumb_set func_08020084, code_entities_jp_raw_start + 0x290
     .global func_08020090
-    .thumb_set func_08020090, func_08020060 + 0x29C
+    .thumb_set func_08020090, code_entities_jp_raw_start + 0x29C
     .global func_08023688
-    .thumb_set func_08023688, func_08020060 + 0x3894
+    .thumb_set func_08023688, code_entities_jp_raw_start + 0x3894
     .global func_080236DC
-    .thumb_set func_080236DC, func_08020060 + 0x38E8
+    .thumb_set func_080236DC, code_entities_jp_raw_start + 0x38E8
     .global func_08023720
-    .thumb_set func_08023720, func_08020060 + 0x392C
+    .thumb_set func_08023720, code_entities_jp_raw_start + 0x392C
     .global func_08023E64
-    .thumb_set func_08023E64, func_08020060 + 0x4070
+    .thumb_set func_08023E64, code_entities_jp_raw_start + 0x4070
     .global func_08023F40
-    .thumb_set func_08023F40, func_08020060 + 0x414C
+    .thumb_set func_08023F40, code_entities_jp_raw_start + 0x414C
     .global func_08023F8C
-    .thumb_set func_08023F8C, func_08020060 + 0x4198
+    .thumb_set func_08023F8C, code_entities_jp_raw_start + 0x4198
     .global func_08023F90
-    .thumb_set func_08023F90, func_08020060 + 0x419C
+    .thumb_set func_08023F90, code_entities_jp_raw_start + 0x419C
     .global func_08023FB8
-    .thumb_set func_08023FB8, func_08020060 + 0x41C4
+    .thumb_set func_08023FB8, code_entities_jp_raw_start + 0x41C4
     .global func_08023FC8
-    .thumb_set func_08023FC8, func_08020060 + 0x41D4
+    .thumb_set func_08023FC8, code_entities_jp_raw_start + 0x41D4
     .global func_08023FD4
-    .thumb_set func_08023FD4, func_08020060 + 0x41E0
+    .thumb_set func_08023FD4, code_entities_jp_raw_start + 0x41E0
     .global func_08023FE0
-    .thumb_set func_08023FE0, func_08020060 + 0x41EC
+    .thumb_set func_08023FE0, code_entities_jp_raw_start + 0x41EC
     .global func_08024010
-    .thumb_set func_08024010, func_08020060 + 0x421C
+    .thumb_set func_08024010, code_entities_jp_raw_start + 0x421C
     .global func_080240A0
-    .thumb_set func_080240A0, func_08020060 + 0x42AC
+    .thumb_set func_080240A0, code_entities_jp_raw_start + 0x42AC
     .global func_080240AC
-    .thumb_set func_080240AC, func_08020060 + 0x42B8
+    .thumb_set func_080240AC, code_entities_jp_raw_start + 0x42B8
     .global func_0802410C
-    .thumb_set func_0802410C, func_08020060 + 0x4318
+    .thumb_set func_0802410C, code_entities_jp_raw_start + 0x4318
     .global func_0802414C
-    .thumb_set func_0802414C, func_08020060 + 0x4358
+    .thumb_set func_0802414C, code_entities_jp_raw_start + 0x4358
     .global func_08024170
-    .thumb_set func_08024170, func_08020060 + 0x437C
+    .thumb_set func_08024170, code_entities_jp_raw_start + 0x437C
     .global func_080241FC
-    .thumb_set func_080241FC, func_08020060 + 0x4408
+    .thumb_set func_080241FC, code_entities_jp_raw_start + 0x4408
     .global func_08024280
-    .thumb_set func_08024280, func_08020060 + 0x448C
+    .thumb_set func_08024280, code_entities_jp_raw_start + 0x448C
 
     @ Exact JP entries referenced by the raw table at 0x080E6310.
     .global func_08020068
@@ -114,42 +113,74 @@ func_08020060:
 
     @ Exact JP entries referenced by the raw table at 0x080E639C.
     .global func_08020058
-    .thumb_set func_08020058, func_08020060 + 0x264
+    .thumb_set func_08020058, code_entities_jp_raw_start + 0x264
     .global func_0802005C
-    .thumb_set func_0802005C, func_08020060 + 0x268
+    .thumb_set func_0802005C, code_entities_jp_raw_start + 0x268
     .global func_0802006C
-    .thumb_set func_0802006C, func_08020060 + 0x278
+    .thumb_set func_0802006C, code_entities_jp_raw_start + 0x278
     .global func_0802008C
-    .thumb_set func_0802008C, func_08020060 + 0x298
+    .thumb_set func_0802008C, code_entities_jp_raw_start + 0x298
     .global func_080200A0
-    .thumb_set func_080200A0, func_08020060 + 0x2AC
+    .thumb_set func_080200A0, code_entities_jp_raw_start + 0x2AC
     .global func_08022184
-    .thumb_set func_08022184, func_08020060 + 0x2390
+    .thumb_set func_08022184, code_entities_jp_raw_start + 0x2390
     .global func_080221D8
-    .thumb_set func_080221D8, func_08020060 + 0x23E4
+    .thumb_set func_080221D8, code_entities_jp_raw_start + 0x23E4
     .global func_0802221C
-    .thumb_set func_0802221C, func_08020060 + 0x2428
+    .thumb_set func_0802221C, code_entities_jp_raw_start + 0x2428
     .global func_08022250
-    .thumb_set func_08022250, func_08020060 + 0x245C
+    .thumb_set func_08022250, code_entities_jp_raw_start + 0x245C
     .global func_0802274C
-    .thumb_set func_0802274C, func_08020060 + 0x2958
+    .thumb_set func_0802274C, code_entities_jp_raw_start + 0x2958
     .global func_08022750
-    .thumb_set func_08022750, func_08020060 + 0x295C
+    .thumb_set func_08022750, code_entities_jp_raw_start + 0x295C
     .global func_0802275C
-    .thumb_set func_0802275C, func_08020060 + 0x2968
+    .thumb_set func_0802275C, code_entities_jp_raw_start + 0x2968
     .global func_0802278C
-    .thumb_set func_0802278C, func_08020060 + 0x2998
+    .thumb_set func_0802278C, code_entities_jp_raw_start + 0x2998
     .global func_0802281C
-    .thumb_set func_0802281C, func_08020060 + 0x2A28
+    .thumb_set func_0802281C, code_entities_jp_raw_start + 0x2A28
     .global func_08022840
-    .thumb_set func_08022840, func_08020060 + 0x2A4C
+    .thumb_set func_08022840, code_entities_jp_raw_start + 0x2A4C
     .global func_080228CC
-    .thumb_set func_080228CC, func_08020060 + 0x2AD8
+    .thumb_set func_080228CC, code_entities_jp_raw_start + 0x2AD8
     .global func_08022904
-    .thumb_set func_08022904, func_08020060 + 0x2B10
+    .thumb_set func_08022904, code_entities_jp_raw_start + 0x2B10
+
+    @ Exact JP entries referenced by the raw table at 0x080E6428.
+    .global func_08020060
+    .thumb_set func_08020060, code_entities_jp_raw_start + 0x26C
+    .global func_08020078
+    .thumb_set func_08020078, code_entities_jp_raw_start + 0x284
+    .global func_0802007C
+    .thumb_set func_0802007C, code_entities_jp_raw_start + 0x288
+    .global func_08020080
+    .thumb_set func_08020080, code_entities_jp_raw_start + 0x28C
+    .global func_08020098
+    .thumb_set func_08020098, code_entities_jp_raw_start + 0x2A4
+    .global func_0802009C
+    .thumb_set func_0802009C, code_entities_jp_raw_start + 0x2A8
+    .global func_080214D0
+    .thumb_set func_080214D0, code_entities_jp_raw_start + 0x16DC
+    .global func_0802153C
+    .thumb_set func_0802153C, code_entities_jp_raw_start + 0x1748
+    .global func_08021580
+    .thumb_set func_08021580, code_entities_jp_raw_start + 0x178C
+    .global func_08021C3C
+    .thumb_set func_08021C3C, code_entities_jp_raw_start + 0x1E48
+    .global func_08021E94
+    .thumb_set func_08021E94, code_entities_jp_raw_start + 0x20A0
+    .global func_08021EE8
+    .thumb_set func_08021EE8, code_entities_jp_raw_start + 0x20F4
+    .global func_08021EF8
+    .thumb_set func_08021EF8, code_entities_jp_raw_start + 0x2104
+    .global func_08021F30
+    .thumb_set func_08021F30, code_entities_jp_raw_start + 0x213C
+    .global func_080220DC
+    .thumb_set func_080220DC, code_entities_jp_raw_start + 0x22E8
 
     .global func_08032090
-    .thumb_set func_08032090, func_08020060 + 0x12030
+    .thumb_set func_08032090, code_entities_jp_raw_start + 0x12030
     .else
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
@@ -32091,4 +32122,36 @@ func_08032090: @ 0x08032090
     .thumb_set func_08022B38, func_080229A4 + 0x194
     .global func_08022B70
     .thumb_set func_08022B70, func_08022B5C + 0x14
+
+    @ Exact US entries referenced by the raw table at 0x080E6428.
+    .global func_080202CC
+    .thumb_set func_080202CC, func_080202C8 + 0x4
+    .global func_080202E4
+    .thumb_set func_080202E4, func_080202E0 + 0x4
+    .global func_080202E8
+    .thumb_set func_080202E8, func_080202E0 + 0x8
+    .global func_080202EC
+    .thumb_set func_080202EC, func_080202E0 + 0xC
+    .global func_08020304
+    .thumb_set func_08020304, func_08020300 + 0x4
+    .global func_08020308
+    .thumb_set func_08020308, func_08020300 + 0x8
+    .global func_0802173C
+    .thumb_set func_0802173C, func_080216BC + 0x80
+    .global func_080217A8
+    .thumb_set func_080217A8, func_080216BC + 0xEC
+    .global func_080217EC
+    .thumb_set func_080217EC, func_080216BC + 0x130
+    .global func_08021EA8
+    .thumb_set func_08021EA8, func_080216BC + 0x7EC
+    .global func_08022100
+    .thumb_set func_08022100, func_080220D4 + 0x2C
+    .global func_08022154
+    .thumb_set func_08022154, func_080220D4 + 0x80
+    .global func_08022164
+    .thumb_set func_08022164, func_080220D4 + 0x90
+    .global func_0802219C
+    .thumb_set func_0802219C, func_080220D4 + 0xC8
+    .global func_08022348
+    .thumb_set func_08022348, func_08022334 + 0x14
     .endif
