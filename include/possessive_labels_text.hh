@@ -3,8 +3,6 @@
 
 #include "prelude.h"
 
-#define POSSESSIVE_LABEL_TEXT SECTION(".rodata.possessive_labels")
-
 // Directly selected possessive labels for farm entities.  Each literal owns
 // its normal C terminator; object spacing is linker padding rather than text.
 extern char const gText_Possessive_Horse[];
