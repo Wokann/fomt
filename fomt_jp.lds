@@ -727,13 +727,7 @@ SECTIONS
         . = ALIGN(4); data/text/new_game_help.o(.rodata);
         . = ALIGN(4); data/text/new_game_save.o(.rodata);
         FILL(0x00);
-        . = ALIGN(4); data/text/new_game_identity.o(.rodata.new_game_identity_prefix);
-        . = 0xE7DAC; /* JP runtime data between identity text groups. */
-        data/text/new_game_identity.o(.rodata.new_game_identity_prefix_trailer);
-        FILL(0x00);
-        . = ALIGN(4); data/text/new_game_identity.o(.rodata.new_game_identity_labels);
-        . = 0xE7E24; /* JP raw data after the regional identity labels. */
-        data/text/new_game_identity.o(.rodata.new_game_identity_labels_trailer);
+        . = ALIGN(4); data/text/new_game_identity.o(.rodata);
         data/text/new_game_name_entry.o(.rodata.new_game_name_entry_characters);
         data/text/new_game_name_entry_ui.o(.rodata.new_game_name_entry_ui);
         . = 0xE80EC; /* JP data after the regional name-entry UI fields. */

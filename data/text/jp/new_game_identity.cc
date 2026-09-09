@@ -1,45 +1,43 @@
 #include "new_game_identity_text.hh"
 
-char const gText_NewGameIdentity_PlayerPrefix[8] SECTION(".rodata.new_game_identity_prefix") =
+char const gText_NewGameIdentity_PlayerPrefix[] =
     "キミの";
 
-char const gText_NewGameIdentity_FarmPrefix[8] SECTION(".rodata.new_game_identity_prefix") =
+char const gText_NewGameIdentity_FarmPrefix[] ALIGN(4) =
     "牧場の";
 
-char const gText_NewGameIdentity_DogPrefix[8] SECTION(".rodata.new_game_identity_prefix") =
+char const gText_NewGameIdentity_DogPrefix[] ALIGN(4) =
     "犬　の";
 
-char const gCppRuntimeBadAlloc_NewGameIdentityPrefix[]
-    SECTION(".rodata.new_game_identity_prefix_trailer") =
-        "bad_alloc";
+char const gCppRuntimeBadAlloc_NewGameIdentityPrefix[] ALIGN(4) =
+    "bad_alloc";
 
-char const gText_NewGameIdentity_BirthMonthSuffix[8] SECTION(".rodata.new_game_identity_labels") =
+char const gText_NewGameIdentity_BirthMonthSuffix[] ALIGN(4) =
     "の月";
 
-char const gText_NewGameIdentity_BirthDaySuffix[4] SECTION(".rodata.new_game_identity_labels") =
+char const gText_NewGameIdentity_BirthDaySuffix[] ALIGN(4) =
     "日";
 
-char const gText_NewGameIdentity_PlayerName[16] SECTION(".rodata.new_game_identity_labels") =
+char const gText_NewGameIdentity_PlayerName[] ALIGN(4) =
     "キミのなまえ";
 
-char const gText_NewGameIdentity_PlayerBirthday[16] SECTION(".rodata.new_game_identity_labels") =
+char const gText_NewGameIdentity_PlayerBirthday[] ALIGN(4) =
     "キミの誕生日";
 
-char const gText_NewGameIdentity_FarmName[16] SECTION(".rodata.new_game_identity_labels") =
+char const gText_NewGameIdentity_FarmName[] ALIGN(4) =
     "牧場のなまえ";
 
-char const gText_NewGameIdentity_DogName[16] SECTION(".rodata.new_game_identity_labels") =
+char const gText_NewGameIdentity_DogName[] ALIGN(4) =
     "犬　のなまえ";
 
-char const gText_NewGameIdentity_Confirm[16] SECTION(".rodata.new_game_identity_labels") =
+char const gText_NewGameIdentity_Confirm[] ALIGN(4) =
     "これでいい？";
 
-char const gText_NewGameIdentity_Yes[8] SECTION(".rodata.new_game_identity_labels") =
+char const gText_NewGameIdentity_Yes[] ALIGN(4) =
     "はい";
 
-char const gText_NewGameIdentity_No[8] SECTION(".rodata.new_game_identity_labels") =
+char const gText_NewGameIdentity_No[] ALIGN(4) =
     "いいえ";
 
-char const gCppRuntimeBadAlloc_NewGameIdentityLabels[]
-    SECTION(".rodata.new_game_identity_labels_trailer") =
-        "bad_alloc";
+char const gCppRuntimeBadAlloc_NewGameIdentityLabels[] ALIGN(4) =
+    "bad_alloc";

@@ -1,39 +1,37 @@
 #include "new_game_identity_text.hh"
 
-char const gText_NewGameIdentity_PlayerPrefix[8] SECTION(".rodata.new_game_identity_prefix") =
+char const gText_NewGameIdentity_PlayerPrefix[] =
     "Your  ";
 
-char const gText_NewGameIdentity_FarmPrefix[8] SECTION(".rodata.new_game_identity_prefix") =
+char const gText_NewGameIdentity_FarmPrefix[] ALIGN(4) =
     "Farm's";
 
-char const gText_NewGameIdentity_DogPrefix[8] SECTION(".rodata.new_game_identity_prefix") =
+char const gText_NewGameIdentity_DogPrefix[] ALIGN(4) =
     "Dog's ";
 
-char const gCppRuntimeBadAlloc_NewGameIdentityPrefix[]
-    SECTION(".rodata.new_game_identity_prefix_trailer") =
-        "bad_alloc";
+char const gCppRuntimeBadAlloc_NewGameIdentityPrefix[] ALIGN(4) =
+    "bad_alloc";
 
-char const gText_NewGameIdentity_PlayerName[16] SECTION(".rodata.new_game_identity_labels") =
+char const gText_NewGameIdentity_PlayerName[] ALIGN(4) =
     "Your name     ";
 
-char const gText_NewGameIdentity_PlayerBirthday[16] SECTION(".rodata.new_game_identity_labels") =
+char const gText_NewGameIdentity_PlayerBirthday[] ALIGN(4) =
     "Your birthday ";
 
-char const gText_NewGameIdentity_FarmName[16] SECTION(".rodata.new_game_identity_labels") =
+char const gText_NewGameIdentity_FarmName[] ALIGN(4) =
     "Farm name     ";
 
-char const gText_NewGameIdentity_DogName[16] SECTION(".rodata.new_game_identity_labels") =
+char const gText_NewGameIdentity_DogName[] ALIGN(4) =
     "Dog's name    ";
 
-char const gText_NewGameIdentity_Confirm[12] SECTION(".rodata.new_game_identity_labels") =
+char const gText_NewGameIdentity_Confirm[] ALIGN(4) =
     "Is this OK?";
 
-char const gText_NewGameIdentity_Yes[4] SECTION(".rodata.new_game_identity_labels") =
+char const gText_NewGameIdentity_Yes[] ALIGN(4) =
     "Yes";
 
-char const gText_NewGameIdentity_No[4] SECTION(".rodata.new_game_identity_labels") =
+char const gText_NewGameIdentity_No[] ALIGN(4) =
     "No";
 
-char const gCppRuntimeBadAlloc_NewGameIdentityLabels[]
-    SECTION(".rodata.new_game_identity_labels_trailer") =
-        "bad_alloc";
+char const gCppRuntimeBadAlloc_NewGameIdentityLabels[] ALIGN(4) =
+    "bad_alloc";
