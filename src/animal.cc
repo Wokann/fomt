@@ -1,6 +1,12 @@
 #include "animal.hh"
 #include "animal_text.hh"
 
+#define FOMT_ANIMAL_TEXT_UNNAMED
+#define FOMT_ANIMAL_TEXT_ATTRIBUTE SECTION(".rodata.animal_unnamed")
+#include "data/text/common/animal.cc"
+#undef FOMT_ANIMAL_TEXT_ATTRIBUTE
+#undef FOMT_ANIMAL_TEXT_UNNAMED
+
 Animal::Animal(char const * a_name, ActorLocation const & location, u32 a_age)
     : Actor(location), name(a_name)
 {
