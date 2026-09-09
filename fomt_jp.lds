@@ -590,7 +590,7 @@ SECTIONS
         . = ALIGN(4); src/vtables.o(.rodata.vtable_7778);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_77a4);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_77d0);
-        . = ALIGN(4); asm/vtables.o(.rodata.080E6C20);
+        . = ALIGN(4); src/vtables.o(.rodata.vtable_77e0);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_ascript_engine);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_script_engine);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_script_engine_adjacent);
@@ -1101,7 +1101,6 @@ SECTIONS
     /* Discard everything not specifically mentioned above. */
     /DISCARD/ :
     {
-        /* JP vtable bytes and labels are emitted by asm/vtables.o above. */
         *(.gnu.linkonce.d.__vt_*)
         *(.gnu.linkonce.t._._*)
         *(*);
