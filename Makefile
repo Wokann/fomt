@@ -127,6 +127,8 @@ TEXT_FRAGMENT_SOURCES := \
   data/text/$(TEXT_REGION)/new_game_menu.cc \
   data/text/$(TEXT_REGION)/poultry_shop_menu.cc \
   data/text/$(TEXT_REGION)/poultry_shop_status.cc \
+  data/text/$(TEXT_REGION)/supermarket_primary.cc \
+  data/text/$(TEXT_REGION)/supermarket_secondary.cc \
   data/text/$(TEXT_REGION)/records.cc \
   data/text/$(TEXT_REGION)/horse_race.cc \
   data/text/$(TEXT_REGION)/horse_race_prize_catalog.cc \

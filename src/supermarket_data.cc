@@ -2,7 +2,7 @@
 
 #include "item.hh"
 
-SupermarketCatalogEntry const gSupermarketCropSeedCatalog[] SUPERMARKET_CROP_CATALOG = {
+SupermarketCatalogEntry const gSupermarketCropSeedCatalog[] = {
     { TOOL_TURNIP_SEEDS, 120 },
     { TOOL_POTATO_SEEDS, 150 },
     { TOOL_CUCUMBER_SEEDS, 200 },
@@ -18,7 +18,13 @@ SupermarketCatalogEntry const gSupermarketCropSeedCatalog[] SUPERMARKET_CROP_CAT
     { TOOL_GRASS_SEEDS, 500 },
 };
 
-SupermarketCatalogEntry const gSupermarketAdditionalSeedCatalog[] SUPERMARKET_ADDITIONAL_SEED_CATALOG = {
+#if defined(REGION_JP)
+#include "data/text/jp/supermarket_primary.cc"
+#else
+#include "data/text/us/supermarket_primary.cc"
+#endif
+
+SupermarketCatalogEntry const gSupermarketAdditionalSeedCatalog[] = {
     { TOOL_SPINACH_SEEDS, 100 },
     { TOOL_GREEN_PEPPER_SEEDS, 100 },
     { TOOL_GRASS_SEEDS, 50 },
@@ -28,3 +34,9 @@ SupermarketCatalogEntry const gSupermarketAdditionalSeedCatalog[] SUPERMARKET_AD
     { TOOL_TOY_FLOWER_SEEDS, 100 },
     { 0, 0 },
 };
+
+#if defined(REGION_JP)
+#include "data/text/jp/supermarket_secondary.cc"
+#else
+#include "data/text/us/supermarket_secondary.cc"
+#endif

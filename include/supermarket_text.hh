@@ -12,12 +12,6 @@ struct SupermarketCatalogEntry
     u32 price;
 };
 
-#define SUPERMARKET_CROP_CATALOG SECTION(".rodata.supermarket_crop_catalog")
-#define SUPERMARKET_PRIMARY_TEXT SECTION(".rodata.supermarket_primary_text")
-#define SUPERMARKET_ADDITIONAL_SEED_CATALOG SECTION(".rodata.supermarket_additional_seed_catalog")
-#define SUPERMARKET_SECONDARY_TEXT SECTION(".rodata.supermarket_secondary_text")
-#define SUPERMARKET_TRAILER SECTION(".rodata.supermarket_trailer")
-
 extern SupermarketCatalogEntry const gSupermarketCropSeedCatalog[];
 extern SupermarketCatalogEntry const gSupermarketAdditionalSeedCatalog[];
 
