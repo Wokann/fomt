@@ -814,7 +814,7 @@ SECTIONS
         src/code_08050E0C.o(.rodata);
         src/ui_state.o(.rodata);
         . = 0xF97D8; data/text/new_game_name_entry_preset.o(.rodata);
-        . = 0xF996C; data/text/new_game_name_entry_ui.o(.rodata.name_entry_ui_character_codes);
+        . = 0xF996C; src/new_game_name_entry_ui_data.o(.rodata);
         . = 0xF9994; data/text/frisbee_scoreboard.o(.rodata);
         FILL(0x00);
         . = 0xF99AC; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_score_table);

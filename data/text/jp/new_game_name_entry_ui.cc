@@ -1,12 +1,5 @@
 #include "new_game_name_entry_ui_text.hh"
 
-// The native name-entry path reads the first thirteen glyph codes.  The
-// declared capacity preserves its seven trailing zero slots as part of this
-// fixed table, rather than treating them as an unrelated padding array.
-u16 const gNewGameNameEntryUiCharacterCodes[20]
-    SECTION(".rodata.name_entry_ui_character_codes") =
-    FOMT_GLYPH_SEQUENCE("０１２３４５６７８９．ｍ位");
-
 char const gText_NewGameNameEntry_Placeholder[] =
     "＿＿＿＿＿＿";
 
