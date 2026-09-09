@@ -8,6 +8,299 @@
 jp_data_0813b288_start:
     .incbin "baserom_jp.gba", 0x13C3CC, (0x45C5B4 - 0x13C3CC)
 
+    @ Song header labels recovered from gSongTable.  The raw M4A payloads
+    @ remain in this regional asset container; the C table uses these labels.
+    .global gSong_Unused
+    .set gSong_Unused, jp_data_0813b288_start + 0x0
+    .global gSong_Audio001
+    .set gSong_Audio001, jp_data_0813b288_start + 0x1622AC
+    .global gSong_Audio002
+    .set gSong_Audio002, jp_data_0813b288_start + 0x162900
+    .global gSong_Audio003
+    .set gSong_Audio003, jp_data_0813b288_start + 0x1630B8
+    .global gSong_Audio004
+    .set gSong_Audio004, jp_data_0813b288_start + 0x1632E4
+    .global gSong_Audio005
+    .set gSong_Audio005, jp_data_0813b288_start + 0x163E54
+    .global gSong_Audio006
+    .set gSong_Audio006, jp_data_0813b288_start + 0x164840
+    .global gSong_Audio007
+    .set gSong_Audio007, jp_data_0813b288_start + 0x164F44
+    .global gSong_Audio008
+    .set gSong_Audio008, jp_data_0813b288_start + 0x165C84
+    .global gSong_Audio009
+    .set gSong_Audio009, jp_data_0813b288_start + 0x16651C
+    .global gSong_Audio010
+    .set gSong_Audio010, jp_data_0813b288_start + 0x1667A8
+    .global gSong_Audio011
+    .set gSong_Audio011, jp_data_0813b288_start + 0x167A8C
+    .global gSong_Audio012
+    .set gSong_Audio012, jp_data_0813b288_start + 0x1683A4
+    .global gSong_Audio013
+    .set gSong_Audio013, jp_data_0813b288_start + 0x168BA8
+    .global gSong_Audio014
+    .set gSong_Audio014, jp_data_0813b288_start + 0x169360
+    .global gSong_Audio015
+    .set gSong_Audio015, jp_data_0813b288_start + 0x169904
+    .global gSong_Audio016
+    .set gSong_Audio016, jp_data_0813b288_start + 0x169E90
+    .global gSong_Audio017
+    .set gSong_Audio017, jp_data_0813b288_start + 0x16A5CC
+    .global gSong_Audio018
+    .set gSong_Audio018, jp_data_0813b288_start + 0x16A86C
+    .global gSong_Audio019
+    .set gSong_Audio019, jp_data_0813b288_start + 0x16B0BC
+    .global gSong_Audio020
+    .set gSong_Audio020, jp_data_0813b288_start + 0x16B54C
+    .global gSong_Audio021
+    .set gSong_Audio021, jp_data_0813b288_start + 0x16B974
+    .global gSong_Audio022
+    .set gSong_Audio022, jp_data_0813b288_start + 0x16BD94
+    .global gSong_Audio023
+    .set gSong_Audio023, jp_data_0813b288_start + 0x16C310
+    .global gSong_Audio024
+    .set gSong_Audio024, jp_data_0813b288_start + 0x16C7E4
+    .global gSong_Audio025
+    .set gSong_Audio025, jp_data_0813b288_start + 0x16D16C
+    .global gSong_Audio026
+    .set gSong_Audio026, jp_data_0813b288_start + 0x16D4F8
+    .global gSong_Audio027
+    .set gSong_Audio027, jp_data_0813b288_start + 0x16D87C
+    .global gSong_Audio028
+    .set gSong_Audio028, jp_data_0813b288_start + 0x16D8A0
+    .global gSong_Audio029
+    .set gSong_Audio029, jp_data_0813b288_start + 0x16D8BC
+    .global gSong_Audio030
+    .set gSong_Audio030, jp_data_0813b288_start + 0x16D8D8
+    .global gSong_Audio031
+    .set gSong_Audio031, jp_data_0813b288_start + 0x16D8F4
+    .global gSong_Audio032
+    .set gSong_Audio032, jp_data_0813b288_start + 0x16D910
+    .global gSong_Audio033
+    .set gSong_Audio033, jp_data_0813b288_start + 0x16DEE0
+    .global gSong_Audio034
+    .set gSong_Audio034, jp_data_0813b288_start + 0x16E6A0
+    .global gSong_Audio035
+    .set gSong_Audio035, jp_data_0813b288_start + 0x16F0BC
+    .global gSong_Audio036
+    .set gSong_Audio036, jp_data_0813b288_start + 0x16F8D8
+    .global gSong_Audio037
+    .set gSong_Audio037, jp_data_0813b288_start + 0x16FDB0
+    .global gSong_Audio101
+    .set gSong_Audio101, jp_data_0813b288_start + 0x16FDD4
+    .global gSong_Audio102
+    .set gSong_Audio102, jp_data_0813b288_start + 0x16FDF0
+    .global gSong_Audio103
+    .set gSong_Audio103, jp_data_0813b288_start + 0x16FE0C
+    .global gSong_Audio104
+    .set gSong_Audio104, jp_data_0813b288_start + 0x16FE30
+    .global gSong_Audio105
+    .set gSong_Audio105, jp_data_0813b288_start + 0x16FE4C
+    .global gSong_Audio106
+    .set gSong_Audio106, jp_data_0813b288_start + 0x16FE68
+    .global gSong_Audio107
+    .set gSong_Audio107, jp_data_0813b288_start + 0x16FE84
+    .global gSong_Audio108
+    .set gSong_Audio108, jp_data_0813b288_start + 0x16FEA0
+    .global gSong_Audio109
+    .set gSong_Audio109, jp_data_0813b288_start + 0x16FEBC
+    .global gSong_Audio110
+    .set gSong_Audio110, jp_data_0813b288_start + 0x16FED8
+    .global gSong_Audio111
+    .set gSong_Audio111, jp_data_0813b288_start + 0x16FEF4
+    .global gSong_Audio112
+    .set gSong_Audio112, jp_data_0813b288_start + 0x16FF10
+    .global gSong_Audio113
+    .set gSong_Audio113, jp_data_0813b288_start + 0x16FF2C
+    .global gSong_Audio114
+    .set gSong_Audio114, jp_data_0813b288_start + 0x16FF48
+    .global gSong_Audio115
+    .set gSong_Audio115, jp_data_0813b288_start + 0x16FF64
+    .global gSong_Audio116
+    .set gSong_Audio116, jp_data_0813b288_start + 0x16FF80
+    .global gSong_Audio117
+    .set gSong_Audio117, jp_data_0813b288_start + 0x16FF9C
+    .global gSong_Audio118
+    .set gSong_Audio118, jp_data_0813b288_start + 0x16FFB8
+    .global gSong_Audio119
+    .set gSong_Audio119, jp_data_0813b288_start + 0x16FFD4
+    .global gSong_Audio120
+    .set gSong_Audio120, jp_data_0813b288_start + 0x16FFF0
+    .global gSong_Audio121
+    .set gSong_Audio121, jp_data_0813b288_start + 0x17000C
+    .global gSong_Audio122
+    .set gSong_Audio122, jp_data_0813b288_start + 0x170028
+    .global gSong_Audio123
+    .set gSong_Audio123, jp_data_0813b288_start + 0x170044
+    .global gSong_Audio124
+    .set gSong_Audio124, jp_data_0813b288_start + 0x170060
+    .global gSong_Audio125
+    .set gSong_Audio125, jp_data_0813b288_start + 0x17007C
+    .global gSong_Audio126
+    .set gSong_Audio126, jp_data_0813b288_start + 0x170098
+    .global gSong_Audio127
+    .set gSong_Audio127, jp_data_0813b288_start + 0x1700B4
+    .global gSong_Audio128
+    .set gSong_Audio128, jp_data_0813b288_start + 0x1700D0
+    .global gSong_Audio129
+    .set gSong_Audio129, jp_data_0813b288_start + 0x1700EC
+    .global gSong_Audio130
+    .set gSong_Audio130, jp_data_0813b288_start + 0x170108
+    .global gSong_Audio131
+    .set gSong_Audio131, jp_data_0813b288_start + 0x170124
+    .global gSong_Audio132
+    .set gSong_Audio132, jp_data_0813b288_start + 0x170140
+    .global gSong_Audio133
+    .set gSong_Audio133, jp_data_0813b288_start + 0x17015C
+    .global gSong_Audio134
+    .set gSong_Audio134, jp_data_0813b288_start + 0x170178
+    .global gSong_Audio135
+    .set gSong_Audio135, jp_data_0813b288_start + 0x170194
+    .global gSong_Audio136
+    .set gSong_Audio136, jp_data_0813b288_start + 0x1701B0
+    .global gSong_Audio137
+    .set gSong_Audio137, jp_data_0813b288_start + 0x1701D0
+    .global gSong_Audio138
+    .set gSong_Audio138, jp_data_0813b288_start + 0x1701EC
+    .global gSong_Audio139
+    .set gSong_Audio139, jp_data_0813b288_start + 0x170208
+    .global gSong_Audio140
+    .set gSong_Audio140, jp_data_0813b288_start + 0x170224
+    .global gSong_Audio141
+    .set gSong_Audio141, jp_data_0813b288_start + 0x170240
+    .global gSong_Audio142
+    .set gSong_Audio142, jp_data_0813b288_start + 0x17026C
+    .global gSong_Audio143
+    .set gSong_Audio143, jp_data_0813b288_start + 0x170288
+    .global gSong_Audio144
+    .set gSong_Audio144, jp_data_0813b288_start + 0x1702A4
+    .global gSong_Audio145
+    .set gSong_Audio145, jp_data_0813b288_start + 0x1702D0
+    .global gSong_Audio146
+    .set gSong_Audio146, jp_data_0813b288_start + 0x1702F4
+    .global gSong_Audio147
+    .set gSong_Audio147, jp_data_0813b288_start + 0x170318
+    .global gSong_Audio148
+    .set gSong_Audio148, jp_data_0813b288_start + 0x170334
+    .global gSong_Audio149
+    .set gSong_Audio149, jp_data_0813b288_start + 0x170354
+    .global gSong_Audio150
+    .set gSong_Audio150, jp_data_0813b288_start + 0x170370
+    .global gSong_Audio151
+    .set gSong_Audio151, jp_data_0813b288_start + 0x17038C
+    .global gSong_Audio152
+    .set gSong_Audio152, jp_data_0813b288_start + 0x1703A8
+    .global gSong_Audio153
+    .set gSong_Audio153, jp_data_0813b288_start + 0x1703CC
+    .global gSong_Audio154
+    .set gSong_Audio154, jp_data_0813b288_start + 0x1703E8
+    .global gSong_Audio155
+    .set gSong_Audio155, jp_data_0813b288_start + 0x170408
+    .global gSong_Audio156
+    .set gSong_Audio156, jp_data_0813b288_start + 0x170424
+    .global gSong_Audio157
+    .set gSong_Audio157, jp_data_0813b288_start + 0x170484
+    .global gSong_Audio158
+    .set gSong_Audio158, jp_data_0813b288_start + 0x1704B0
+    .global gSong_Audio159
+    .set gSong_Audio159, jp_data_0813b288_start + 0x1704D8
+    .global gSong_Audio160
+    .set gSong_Audio160, jp_data_0813b288_start + 0x170508
+    .global gSong_Audio161
+    .set gSong_Audio161, jp_data_0813b288_start + 0x170524
+    .global gSong_Audio162
+    .set gSong_Audio162, jp_data_0813b288_start + 0x170550
+    .global gSong_Audio163
+    .set gSong_Audio163, jp_data_0813b288_start + 0x17056C
+    .global gSong_Audio164
+    .set gSong_Audio164, jp_data_0813b288_start + 0x17058C
+    .global gSong_Audio165
+    .set gSong_Audio165, jp_data_0813b288_start + 0x1705B0
+    .global gSong_Audio166
+    .set gSong_Audio166, jp_data_0813b288_start + 0x1705CC
+    .global gSong_Audio167
+    .set gSong_Audio167, jp_data_0813b288_start + 0x170600
+    .global gSong_Audio168
+    .set gSong_Audio168, jp_data_0813b288_start + 0x170628
+    .global gSong_Audio169
+    .set gSong_Audio169, jp_data_0813b288_start + 0x170644
+    .global gSong_Audio170
+    .set gSong_Audio170, jp_data_0813b288_start + 0x170660
+    .global gSong_Audio171
+    .set gSong_Audio171, jp_data_0813b288_start + 0x170680
+    .global gSong_Audio172
+    .set gSong_Audio172, jp_data_0813b288_start + 0x17069C
+    .global gSong_Audio173
+    .set gSong_Audio173, jp_data_0813b288_start + 0x1706D4
+    .global gSong_Audio174
+    .set gSong_Audio174, jp_data_0813b288_start + 0x1706F8
+    .global gSong_Audio175
+    .set gSong_Audio175, jp_data_0813b288_start + 0x17076C
+    .global gSong_Audio176
+    .set gSong_Audio176, jp_data_0813b288_start + 0x1707F8
+    .global gSong_Audio177
+    .set gSong_Audio177, jp_data_0813b288_start + 0x170818
+    .global gSong_Audio178
+    .set gSong_Audio178, jp_data_0813b288_start + 0x170874
+    .global gSong_Audio179
+    .set gSong_Audio179, jp_data_0813b288_start + 0x1708E0
+    .global gSong_Audio180
+    .set gSong_Audio180, jp_data_0813b288_start + 0x17090C
+    .global gSong_Audio181
+    .set gSong_Audio181, jp_data_0813b288_start + 0x17093C
+    .global gSong_Audio182
+    .set gSong_Audio182, jp_data_0813b288_start + 0x170980
+    .global gSong_Audio183
+    .set gSong_Audio183, jp_data_0813b288_start + 0x170AE8
+    .global gSong_Audio184
+    .set gSong_Audio184, jp_data_0813b288_start + 0x170B0C
+    .global gSong_Audio185
+    .set gSong_Audio185, jp_data_0813b288_start + 0x170B28
+    .global gSong_Audio186
+    .set gSong_Audio186, jp_data_0813b288_start + 0x170B44
+    .global gSong_Audio187
+    .set gSong_Audio187, jp_data_0813b288_start + 0x170B64
+    .global gSong_Audio188
+    .set gSong_Audio188, jp_data_0813b288_start + 0x170B98
+    .global gSong_Audio189
+    .set gSong_Audio189, jp_data_0813b288_start + 0x170BC0
+    .global gSong_Audio190
+    .set gSong_Audio190, jp_data_0813b288_start + 0x170C14
+    .global gSong_Audio191
+    .set gSong_Audio191, jp_data_0813b288_start + 0x170C34
+    .global gSong_Audio192
+    .set gSong_Audio192, jp_data_0813b288_start + 0x170C50
+    .global gSong_Audio193
+    .set gSong_Audio193, jp_data_0813b288_start + 0x170C68
+    .global gSong_Audio197
+    .set gSong_Audio197, jp_data_0813b288_start + 0x170C84
+    .global gSong_Audio198
+    .set gSong_Audio198, jp_data_0813b288_start + 0x170CA0
+    .global gSong_Audio199
+    .set gSong_Audio199, jp_data_0813b288_start + 0x170CBC
+    .global gSong_Audio200
+    .set gSong_Audio200, jp_data_0813b288_start + 0x170CE0
+    .global gSong_Audio201
+    .set gSong_Audio201, jp_data_0813b288_start + 0x170D00
+    .global gSong_Audio202
+    .set gSong_Audio202, jp_data_0813b288_start + 0x170D20
+    .global gSong_Audio203
+    .set gSong_Audio203, jp_data_0813b288_start + 0x170D3C
+    .global gSong_Audio204
+    .set gSong_Audio204, jp_data_0813b288_start + 0x170D60
+    .global gSong_Audio205
+    .set gSong_Audio205, jp_data_0813b288_start + 0x170D80
+    .global gSong_Audio206
+    .set gSong_Audio206, jp_data_0813b288_start + 0x170DA0
+    .global gSong_Audio207
+    .set gSong_Audio207, jp_data_0813b288_start + 0x170DC0
+    .global gSong_Audio208
+    .set gSong_Audio208, jp_data_0813b288_start + 0x170DDC
+    .global gSong_Audio209
+    .set gSong_Audio209, jp_data_0813b288_start + 0x170DF8
+    .global gSong_Audio210
+    .set gSong_Audio210, jp_data_0813b288_start + 0x170E18
+
     @ Region-neutral labels for FarmHouse tile-patch source payloads.
     @ The payload layouts remain raw; src/farm_house.cc owns their typed
     @ descriptor tables.
@@ -1174,8 +1467,301 @@ gActorStateGridCellType4Data:
 
     .LDATA_BEG = 0x13B288
 
-	us_data_0813b288_start:
+us_data_0813b288_start:
 	.incbin "baserom_us.gba", (.LDATA_BEG), (0x4F90CC - .LDATA_BEG)
+
+    @ Song header labels recovered from gSongTable.  The raw M4A payloads
+    @ remain in this regional asset container; the C table uses these labels.
+    .global gSong_Unused
+    .set gSong_Unused, us_data_0813b288_start + 0x0
+    .global gSong_Audio001
+    .set gSong_Audio001, us_data_0813b288_start + 0x1622AC
+    .global gSong_Audio002
+    .set gSong_Audio002, us_data_0813b288_start + 0x162900
+    .global gSong_Audio003
+    .set gSong_Audio003, us_data_0813b288_start + 0x1630B8
+    .global gSong_Audio004
+    .set gSong_Audio004, us_data_0813b288_start + 0x1632E4
+    .global gSong_Audio005
+    .set gSong_Audio005, us_data_0813b288_start + 0x163E54
+    .global gSong_Audio006
+    .set gSong_Audio006, us_data_0813b288_start + 0x164840
+    .global gSong_Audio007
+    .set gSong_Audio007, us_data_0813b288_start + 0x164F44
+    .global gSong_Audio008
+    .set gSong_Audio008, us_data_0813b288_start + 0x165C84
+    .global gSong_Audio009
+    .set gSong_Audio009, us_data_0813b288_start + 0x16651C
+    .global gSong_Audio010
+    .set gSong_Audio010, us_data_0813b288_start + 0x1667A8
+    .global gSong_Audio011
+    .set gSong_Audio011, us_data_0813b288_start + 0x167A8C
+    .global gSong_Audio012
+    .set gSong_Audio012, us_data_0813b288_start + 0x1683A4
+    .global gSong_Audio013
+    .set gSong_Audio013, us_data_0813b288_start + 0x168BA8
+    .global gSong_Audio014
+    .set gSong_Audio014, us_data_0813b288_start + 0x169360
+    .global gSong_Audio015
+    .set gSong_Audio015, us_data_0813b288_start + 0x169904
+    .global gSong_Audio016
+    .set gSong_Audio016, us_data_0813b288_start + 0x169E90
+    .global gSong_Audio017
+    .set gSong_Audio017, us_data_0813b288_start + 0x16A5CC
+    .global gSong_Audio018
+    .set gSong_Audio018, us_data_0813b288_start + 0x16A86C
+    .global gSong_Audio019
+    .set gSong_Audio019, us_data_0813b288_start + 0x16B0BC
+    .global gSong_Audio020
+    .set gSong_Audio020, us_data_0813b288_start + 0x16B54C
+    .global gSong_Audio021
+    .set gSong_Audio021, us_data_0813b288_start + 0x16B974
+    .global gSong_Audio022
+    .set gSong_Audio022, us_data_0813b288_start + 0x16BD94
+    .global gSong_Audio023
+    .set gSong_Audio023, us_data_0813b288_start + 0x16C310
+    .global gSong_Audio024
+    .set gSong_Audio024, us_data_0813b288_start + 0x16C7E4
+    .global gSong_Audio025
+    .set gSong_Audio025, us_data_0813b288_start + 0x16D16C
+    .global gSong_Audio026
+    .set gSong_Audio026, us_data_0813b288_start + 0x16D4F8
+    .global gSong_Audio027
+    .set gSong_Audio027, us_data_0813b288_start + 0x16D87C
+    .global gSong_Audio028
+    .set gSong_Audio028, us_data_0813b288_start + 0x16D8A0
+    .global gSong_Audio029
+    .set gSong_Audio029, us_data_0813b288_start + 0x16D8BC
+    .global gSong_Audio030
+    .set gSong_Audio030, us_data_0813b288_start + 0x16D8D8
+    .global gSong_Audio031
+    .set gSong_Audio031, us_data_0813b288_start + 0x16D8F4
+    .global gSong_Audio032
+    .set gSong_Audio032, us_data_0813b288_start + 0x16D910
+    .global gSong_Audio033
+    .set gSong_Audio033, us_data_0813b288_start + 0x16DEE0
+    .global gSong_Audio034
+    .set gSong_Audio034, us_data_0813b288_start + 0x16E6A0
+    .global gSong_Audio035
+    .set gSong_Audio035, us_data_0813b288_start + 0x16F0BC
+    .global gSong_Audio036
+    .set gSong_Audio036, us_data_0813b288_start + 0x16F8D8
+    .global gSong_Audio037
+    .set gSong_Audio037, us_data_0813b288_start + 0x16FDB0
+    .global gSong_Audio101
+    .set gSong_Audio101, us_data_0813b288_start + 0x16FDD4
+    .global gSong_Audio102
+    .set gSong_Audio102, us_data_0813b288_start + 0x16FDF0
+    .global gSong_Audio103
+    .set gSong_Audio103, us_data_0813b288_start + 0x16FE0C
+    .global gSong_Audio104
+    .set gSong_Audio104, us_data_0813b288_start + 0x16FE30
+    .global gSong_Audio105
+    .set gSong_Audio105, us_data_0813b288_start + 0x16FE4C
+    .global gSong_Audio106
+    .set gSong_Audio106, us_data_0813b288_start + 0x16FE68
+    .global gSong_Audio107
+    .set gSong_Audio107, us_data_0813b288_start + 0x16FE84
+    .global gSong_Audio108
+    .set gSong_Audio108, us_data_0813b288_start + 0x16FEA0
+    .global gSong_Audio109
+    .set gSong_Audio109, us_data_0813b288_start + 0x16FEBC
+    .global gSong_Audio110
+    .set gSong_Audio110, us_data_0813b288_start + 0x16FED8
+    .global gSong_Audio111
+    .set gSong_Audio111, us_data_0813b288_start + 0x16FEF4
+    .global gSong_Audio112
+    .set gSong_Audio112, us_data_0813b288_start + 0x16FF10
+    .global gSong_Audio113
+    .set gSong_Audio113, us_data_0813b288_start + 0x16FF2C
+    .global gSong_Audio114
+    .set gSong_Audio114, us_data_0813b288_start + 0x16FF48
+    .global gSong_Audio115
+    .set gSong_Audio115, us_data_0813b288_start + 0x16FF64
+    .global gSong_Audio116
+    .set gSong_Audio116, us_data_0813b288_start + 0x16FF80
+    .global gSong_Audio117
+    .set gSong_Audio117, us_data_0813b288_start + 0x16FF9C
+    .global gSong_Audio118
+    .set gSong_Audio118, us_data_0813b288_start + 0x16FFB8
+    .global gSong_Audio119
+    .set gSong_Audio119, us_data_0813b288_start + 0x16FFD4
+    .global gSong_Audio120
+    .set gSong_Audio120, us_data_0813b288_start + 0x16FFF0
+    .global gSong_Audio121
+    .set gSong_Audio121, us_data_0813b288_start + 0x17000C
+    .global gSong_Audio122
+    .set gSong_Audio122, us_data_0813b288_start + 0x170028
+    .global gSong_Audio123
+    .set gSong_Audio123, us_data_0813b288_start + 0x170044
+    .global gSong_Audio124
+    .set gSong_Audio124, us_data_0813b288_start + 0x170060
+    .global gSong_Audio125
+    .set gSong_Audio125, us_data_0813b288_start + 0x17007C
+    .global gSong_Audio126
+    .set gSong_Audio126, us_data_0813b288_start + 0x170098
+    .global gSong_Audio127
+    .set gSong_Audio127, us_data_0813b288_start + 0x1700B4
+    .global gSong_Audio128
+    .set gSong_Audio128, us_data_0813b288_start + 0x1700D0
+    .global gSong_Audio129
+    .set gSong_Audio129, us_data_0813b288_start + 0x1700EC
+    .global gSong_Audio130
+    .set gSong_Audio130, us_data_0813b288_start + 0x170108
+    .global gSong_Audio131
+    .set gSong_Audio131, us_data_0813b288_start + 0x170124
+    .global gSong_Audio132
+    .set gSong_Audio132, us_data_0813b288_start + 0x170140
+    .global gSong_Audio133
+    .set gSong_Audio133, us_data_0813b288_start + 0x17015C
+    .global gSong_Audio134
+    .set gSong_Audio134, us_data_0813b288_start + 0x170178
+    .global gSong_Audio135
+    .set gSong_Audio135, us_data_0813b288_start + 0x170194
+    .global gSong_Audio136
+    .set gSong_Audio136, us_data_0813b288_start + 0x1701B0
+    .global gSong_Audio137
+    .set gSong_Audio137, us_data_0813b288_start + 0x1701D0
+    .global gSong_Audio138
+    .set gSong_Audio138, us_data_0813b288_start + 0x1701EC
+    .global gSong_Audio139
+    .set gSong_Audio139, us_data_0813b288_start + 0x170208
+    .global gSong_Audio140
+    .set gSong_Audio140, us_data_0813b288_start + 0x170224
+    .global gSong_Audio141
+    .set gSong_Audio141, us_data_0813b288_start + 0x170240
+    .global gSong_Audio142
+    .set gSong_Audio142, us_data_0813b288_start + 0x17026C
+    .global gSong_Audio143
+    .set gSong_Audio143, us_data_0813b288_start + 0x170288
+    .global gSong_Audio144
+    .set gSong_Audio144, us_data_0813b288_start + 0x1702A4
+    .global gSong_Audio145
+    .set gSong_Audio145, us_data_0813b288_start + 0x1702D0
+    .global gSong_Audio146
+    .set gSong_Audio146, us_data_0813b288_start + 0x1702F4
+    .global gSong_Audio147
+    .set gSong_Audio147, us_data_0813b288_start + 0x170318
+    .global gSong_Audio148
+    .set gSong_Audio148, us_data_0813b288_start + 0x170334
+    .global gSong_Audio149
+    .set gSong_Audio149, us_data_0813b288_start + 0x170354
+    .global gSong_Audio150
+    .set gSong_Audio150, us_data_0813b288_start + 0x170370
+    .global gSong_Audio151
+    .set gSong_Audio151, us_data_0813b288_start + 0x17038C
+    .global gSong_Audio152
+    .set gSong_Audio152, us_data_0813b288_start + 0x1703A8
+    .global gSong_Audio153
+    .set gSong_Audio153, us_data_0813b288_start + 0x1703CC
+    .global gSong_Audio154
+    .set gSong_Audio154, us_data_0813b288_start + 0x1703E8
+    .global gSong_Audio155
+    .set gSong_Audio155, us_data_0813b288_start + 0x170408
+    .global gSong_Audio156
+    .set gSong_Audio156, us_data_0813b288_start + 0x170424
+    .global gSong_Audio157
+    .set gSong_Audio157, us_data_0813b288_start + 0x170484
+    .global gSong_Audio158
+    .set gSong_Audio158, us_data_0813b288_start + 0x1704B0
+    .global gSong_Audio159
+    .set gSong_Audio159, us_data_0813b288_start + 0x1704D8
+    .global gSong_Audio160
+    .set gSong_Audio160, us_data_0813b288_start + 0x170508
+    .global gSong_Audio161
+    .set gSong_Audio161, us_data_0813b288_start + 0x170524
+    .global gSong_Audio162
+    .set gSong_Audio162, us_data_0813b288_start + 0x170550
+    .global gSong_Audio163
+    .set gSong_Audio163, us_data_0813b288_start + 0x17056C
+    .global gSong_Audio164
+    .set gSong_Audio164, us_data_0813b288_start + 0x17058C
+    .global gSong_Audio165
+    .set gSong_Audio165, us_data_0813b288_start + 0x1705B0
+    .global gSong_Audio166
+    .set gSong_Audio166, us_data_0813b288_start + 0x1705CC
+    .global gSong_Audio167
+    .set gSong_Audio167, us_data_0813b288_start + 0x170600
+    .global gSong_Audio168
+    .set gSong_Audio168, us_data_0813b288_start + 0x170628
+    .global gSong_Audio169
+    .set gSong_Audio169, us_data_0813b288_start + 0x170644
+    .global gSong_Audio170
+    .set gSong_Audio170, us_data_0813b288_start + 0x170660
+    .global gSong_Audio171
+    .set gSong_Audio171, us_data_0813b288_start + 0x170680
+    .global gSong_Audio172
+    .set gSong_Audio172, us_data_0813b288_start + 0x17069C
+    .global gSong_Audio173
+    .set gSong_Audio173, us_data_0813b288_start + 0x1706D4
+    .global gSong_Audio174
+    .set gSong_Audio174, us_data_0813b288_start + 0x1706F8
+    .global gSong_Audio175
+    .set gSong_Audio175, us_data_0813b288_start + 0x17076C
+    .global gSong_Audio176
+    .set gSong_Audio176, us_data_0813b288_start + 0x1707F8
+    .global gSong_Audio177
+    .set gSong_Audio177, us_data_0813b288_start + 0x170818
+    .global gSong_Audio178
+    .set gSong_Audio178, us_data_0813b288_start + 0x170874
+    .global gSong_Audio179
+    .set gSong_Audio179, us_data_0813b288_start + 0x1708E0
+    .global gSong_Audio180
+    .set gSong_Audio180, us_data_0813b288_start + 0x17090C
+    .global gSong_Audio181
+    .set gSong_Audio181, us_data_0813b288_start + 0x17093C
+    .global gSong_Audio182
+    .set gSong_Audio182, us_data_0813b288_start + 0x170980
+    .global gSong_Audio183
+    .set gSong_Audio183, us_data_0813b288_start + 0x170AEC
+    .global gSong_Audio184
+    .set gSong_Audio184, us_data_0813b288_start + 0x170B10
+    .global gSong_Audio185
+    .set gSong_Audio185, us_data_0813b288_start + 0x170B2C
+    .global gSong_Audio186
+    .set gSong_Audio186, us_data_0813b288_start + 0x170B48
+    .global gSong_Audio187
+    .set gSong_Audio187, us_data_0813b288_start + 0x170B68
+    .global gSong_Audio188
+    .set gSong_Audio188, us_data_0813b288_start + 0x170B9C
+    .global gSong_Audio189
+    .set gSong_Audio189, us_data_0813b288_start + 0x170BC4
+    .global gSong_Audio190
+    .set gSong_Audio190, us_data_0813b288_start + 0x170C18
+    .global gSong_Audio191
+    .set gSong_Audio191, us_data_0813b288_start + 0x170C38
+    .global gSong_Audio192
+    .set gSong_Audio192, us_data_0813b288_start + 0x170C54
+    .global gSong_Audio193
+    .set gSong_Audio193, us_data_0813b288_start + 0x170C6C
+    .global gSong_Audio197
+    .set gSong_Audio197, us_data_0813b288_start + 0x170C88
+    .global gSong_Audio198
+    .set gSong_Audio198, us_data_0813b288_start + 0x170CA4
+    .global gSong_Audio199
+    .set gSong_Audio199, us_data_0813b288_start + 0x170CC0
+    .global gSong_Audio200
+    .set gSong_Audio200, us_data_0813b288_start + 0x170CE4
+    .global gSong_Audio201
+    .set gSong_Audio201, us_data_0813b288_start + 0x170D04
+    .global gSong_Audio202
+    .set gSong_Audio202, us_data_0813b288_start + 0x170D24
+    .global gSong_Audio203
+    .set gSong_Audio203, us_data_0813b288_start + 0x170D40
+    .global gSong_Audio204
+    .set gSong_Audio204, us_data_0813b288_start + 0x170D64
+    .global gSong_Audio205
+    .set gSong_Audio205, us_data_0813b288_start + 0x170D84
+    .global gSong_Audio206
+    .set gSong_Audio206, us_data_0813b288_start + 0x170DA4
+    .global gSong_Audio207
+    .set gSong_Audio207, us_data_0813b288_start + 0x170DC4
+    .global gSong_Audio208
+    .set gSong_Audio208, us_data_0813b288_start + 0x170DE0
+    .global gSong_Audio209
+    .set gSong_Audio209, us_data_0813b288_start + 0x170DFC
+    .global gSong_Audio210
+    .set gSong_Audio210, us_data_0813b288_start + 0x170E1C
 
 	@ Region-neutral labels for FarmHouse tile-patch source payloads.
 	@ The payload layouts remain raw; src/farm_house.cc owns their typed

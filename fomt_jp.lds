@@ -1060,7 +1060,7 @@ SECTIONS
         . = 0x13ABCC; src/m4a.o(.rodata);
         asm/data/data_080F9EB8.o(.rodata.m4a_static_data_after_driver_tables);
         . = 0x13BCF8; src/m4a.o(.rodata.gMusicPlayerTable);
-        src/sound_data.o(.rodata.gSongTable);
+        src/m4a.o(.rodata.gSongTable);
         . = 0x13C3CC; /* JP asset container, independently matched. */
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
     } > ROM = 0xFF

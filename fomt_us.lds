@@ -953,7 +953,7 @@ SECTIONS
         src/m4a.o(.rodata);
         asm/data/data_080F9EB8.o(.rodata.m4a_static_data_after_driver_tables);
         . = ALIGN(4); src/m4a.o(.rodata.gMusicPlayerTable);
-        . = ALIGN(4); src/sound_data.o(.rodata.gSongTable);
+        . = ALIGN(4); src/m4a.o(.rodata.gSongTable);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
     } > ROM = 0xFF
 
