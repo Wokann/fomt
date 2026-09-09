@@ -45,7 +45,7 @@
 | `0x080EFDCE`–`0x080EFDCF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080EFDD0`–`0x080EFEA2` | `src/help_menu.o(.rodata)` | [嵌入文本 / 数据] | `src/help_menu.cc`<br>`data/text/jp/load_error.cc`<br>`data/text/jp/help_menu.cc` | 文本 `6` 项（加载错误 `2`、帮助菜单 `4`；详见下方索引）<br>运行时字符串 `2` 项<br>`gUnk_HelpMenuByteTable` |
 | `0x080EFEA3`–`0x080EFEA3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x080EFEA4`–`0x080EFF5C` | `data/text/animal_memorial.o(.rodata)` | [文本对象] | `data/text/jp/animal_memorial.cc` | 文本 `11` 项（详见下方索引）<br>运行时字符串 `2` 项 |
+| `0x080EFEA4`–`0x080EFF5C` | `data/text/animal_memorial.o(.rodata)` | [文本对象] | `data/text/jp/animal_memorial.cc` | 文本 `11` 项（详见下方索引）<br>运行时字符串 `2` 项<br>动物本地化岛首段：与紧邻动物数据共同受 LD 上界保护 |
 | `0x080EFF5D`–`0x080F006F` | `src/animal_data.o(.rodata.animal_data_prefix)` | [数据] | `data/text/common/animal_data.cc`<br>`data/text/jp/animal_data.cc` | `gUnk_080F06FD`, `gUnk_080F0704`, `gUnk_080F0718`, `gUnk_080F0730`, `gUnk_080F0748`, `gUnk_080F0770`, … +1 |
 | `0x080F0070`–`0x080F06DD` | `src/animal_data.o(.rodata)` | [嵌入文本] | `data/text/common/animal_data.cc`<br>`data/text/jp/animal_data.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `5` 项<br>`gUnk_080F0838`, `gUnk_080F0908`, `gUnk_080F093C`, `gUnk_080F09AC`, `gUnk_080F09C8`, `gUnk_080F0A68`, … +4 |
 | `0x080F06DE`–`0x080F06DF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1913,7 +1913,7 @@
 | `0x080F058A`–`0x080F058B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F058C`–`0x080F0650` | `src/help_menu.o(.rodata)` | [嵌入文本 / 数据] | `src/help_menu.cc`<br>`data/text/us/load_error.cc`<br>`data/text/us/help_menu.cc` | 文本 `6` 项（加载错误 `2`、帮助菜单 `4`；详见下方索引）<br>运行时字符串 `2` 项<br>`gUnk_HelpMenuByteTable` |
 | `0x080F0651`–`0x080F0653` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
-| `0x080F0654`–`0x080F06FC` | `data/text/animal_memorial.o(.rodata)` | [文本对象] | `data/text/us/animal_memorial.cc` | 文本 `11` 项（详见下方索引）<br>运行时字符串 `2` 项 |
+| `0x080F0654`–`0x080F06FC` | `data/text/animal_memorial.o(.rodata)` | [文本对象] | `data/text/us/animal_memorial.cc` | 文本 `11` 项（详见下方索引）<br>运行时字符串 `2` 项<br>动物本地化岛首段：与紧邻动物数据共同受 LD 上界保护 |
 | `0x080F06FD`–`0x080F080F` | `src/animal_data.o(.rodata.animal_data_prefix)` | [数据] | `data/text/common/animal_data.cc`<br>`data/text/us/animal_data.cc` | `gUnk_080F06FD`, `gUnk_080F0704`, `gUnk_080F0718`, `gUnk_080F0730`, `gUnk_080F0748`, `gUnk_080F0770`, … +1 |
 | `0x080F0810`–`0x080F0E7D` | `src/animal_data.o(.rodata)` | [嵌入文本] | `data/text/common/animal_data.cc`<br>`data/text/us/animal_data.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `5` 项<br>`gUnk_080F0838`, `gUnk_080F0908`, `gUnk_080F093C`, `gUnk_080F09AC`, `gUnk_080F09C8`, `gUnk_080F0A68`, … +4 |
 | `0x080F0E7E`–`0x080F0E7F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |

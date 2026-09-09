@@ -736,9 +736,11 @@ SECTIONS
         . = 0xEFDD0; src/help_menu.o(.rodata);
         ASSERT(. <= 0xEFEA4, "JP Help localization island overflow");
         FILL(0x00);
-        data/text/animal_memorial.o(.rodata);
+        /* Bounded Animal localization island: memorial text and animal data. */
+        . = 0xEFEA4; data/text/animal_memorial.o(.rodata);
         src/animal_data.o(.rodata.animal_data_prefix);
         src/animal_data.o(.rodata);
+        ASSERT(. <= 0xF06E0, "JP Animal localization island overflow");
         FILL(0x00);
         . = ALIGN(4); src/entity_ui.o(.rodata);
         FILL(0x00);
