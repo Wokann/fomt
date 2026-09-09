@@ -1,9 +1,13 @@
 #include "inn_shop_text.hh"
 
 #if defined(REGION_JP)
-#include "data/text/jp/inn_shop_descriptions.cc"
+#define FOMT_TEXT_INN_SHOP_DESCRIPTIONS
+#include "data/text/jp/inn_shop.cc"
+#undef FOMT_TEXT_INN_SHOP_DESCRIPTIONS
 #else
-#include "data/text/us/inn_shop_descriptions.cc"
+#define FOMT_TEXT_INN_SHOP_DESCRIPTIONS
+#include "data/text/us/inn_shop.cc"
+#undef FOMT_TEXT_INN_SHOP_DESCRIPTIONS
 #endif
 
 InnShopMenuEntry const gInnShopMenu[] = {
@@ -19,7 +23,11 @@ InnShopMenuEntry const gInnShopMenu[] = {
 };
 
 #if defined(REGION_JP)
-#include "data/text/jp/inn_shop_dialogue.cc"
+#define FOMT_TEXT_INN_SHOP_DIALOGUE
+#include "data/text/jp/inn_shop.cc"
+#undef FOMT_TEXT_INN_SHOP_DIALOGUE
 #else
-#include "data/text/us/inn_shop_dialogue.cc"
+#define FOMT_TEXT_INN_SHOP_DIALOGUE
+#include "data/text/us/inn_shop.cc"
+#undef FOMT_TEXT_INN_SHOP_DIALOGUE
 #endif

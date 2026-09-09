@@ -129,8 +129,7 @@ TEXT_FRAGMENT_SOURCES := \
   data/text/$(TEXT_REGION)/poultry_shop.cc \
   data/text/$(TEXT_REGION)/supermarket.cc \
   data/text/$(TEXT_REGION)/clinic.cc \
-  data/text/$(TEXT_REGION)/inn_shop_descriptions.cc \
-  data/text/$(TEXT_REGION)/inn_shop_dialogue.cc \
+  data/text/$(TEXT_REGION)/inn_shop.cc \
   data/text/$(TEXT_REGION)/won_shop.cc \
   data/text/$(TEXT_REGION)/winery_shop.cc \
   data/text/$(TEXT_REGION)/special_merchant_shop.cc \
