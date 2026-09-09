@@ -729,9 +729,9 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4); data/text/new_game_identity.o(.rodata);
         data/text/new_game_name_entry.o(.rodata.new_game_name_entry_characters);
-        data/text/new_game_name_entry_ui.o(.rodata.new_game_name_entry_ui);
+        . = ALIGN(4); data/text/new_game_name_entry_ui.o(.rodata);
         . = 0xE80EC; /* JP data after the regional name-entry UI fields. */
-        data/text/new_game_name_entry_ui.o(.rodata.new_game_name_entry_ui_trailer);
+        data/text/new_game_name_entry_ui_trailer.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         src/field_data.o(.rodata.field_plot_weather_ordinary);
