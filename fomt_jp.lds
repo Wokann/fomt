@@ -953,10 +953,7 @@ SECTIONS
         . = 0x1189D4; src/shop_common.o(.rodata.shop_common_digit_glyphs);
         . = 0x1189F4; data/text/shop_common.o(.rodata);
         . = 0x118A14; src/shop_common.o(.rodata);
-        . = 0x118B94; data/text/tool_status.o(.rodata);
-        . = 0x118BF4; data/text/animal_status.o(.rodata);
-        . = 0x118C34; data/text/item_status.o(.rodata);
-        . = 0x118C98; data/text/item_discard.o(.rodata);
+        . = 0x118B94; data/text/status_ui.o(.rodata);
         . = 0x118CF4; src/font.o(.rodata);
         . = 0x118D18; /* Static resources after font-owned data. */
         asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard);

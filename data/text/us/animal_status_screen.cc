@@ -1,4 +1,4 @@
-#include "animal_status_text.hh"
+#include "status_ui_text.hh"
 
 extern AnimalStatusScreenPrefixText const gAnimalStatusScreenPrefixText = {
     "N/A ",
