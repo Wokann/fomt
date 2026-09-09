@@ -84,6 +84,9 @@
     .section .text.code_08050E50
     jp_code_0803ee_func func_08050EE4, 0x50C70, 0x511C8
     jp_code_0803ee_func func_0805143C, 0x511C8, 0x52068
+    @ Exact JP entries referenced by the raw table at 0x080E7928.
+    jp_code_0803ee_entry func_08051F4C, func_0805143C, 0xD84
+    jp_code_0803ee_entry func_08051F8C, func_0805143C, 0xDC4
     .section .text.animal_festival_ranking_after
     jp_code_0803ee_func func_080522F8, 0x52088, 0x536F0
     jp_code_0803ee_func func_08053960, 0x536F0, 0x54AC4
