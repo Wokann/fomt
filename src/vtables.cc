@@ -4567,6 +4567,18 @@ extern RawVTableFunction const vtable_unk_080E76F8[]
         func_080DE240,
     };
 
+extern void func_080DE280(void);
+
+// Preserve this offset-bearing three-word table in ROM order.
+extern RawVTableWithOffset const vtable_unk_080E7708
+    SECTION(".rodata.vtable_7708") = {
+        -4,
+        {
+            nullptr,
+            func_080DE280,
+        },
+    };
+
 #if defined(REGION_JP)
 // The JP Script Engine code is still retained as a raw code range, but this
 // ABI table has the same five logical slots as the compiled US table.
