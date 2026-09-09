@@ -14,7 +14,11 @@ SECTIONS
 {
     .ewram_bss (NOLOAD) : ALIGN(4)
     {
-        . = ALIGN(4); src/sound_data.o(.sbss);
+        . = ALIGN(4); src/m4a.o(.gMusicPlayerTrackA);
+        . = ALIGN(4); src/m4a.o(.gMusicPlayerTrackB);
+        . = ALIGN(4); src/m4a.o(.gMusicPlayerTrackC);
+        . = ALIGN(4); src/m4a.o(.gMusicPlayerTrackD);
+        . = ALIGN(4); src/m4a.o(.gMusicPlayerTrackE);
         . = ALIGN(4); src/m4a.o(.gSoundInfo);
         . = ALIGN(4); src/m4a.o(.gMPlayJumpTable);
         . = ALIGN(4); src/m4a.o(.gCgbChans);
@@ -948,7 +952,8 @@ SECTIONS
         asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard);
         src/m4a.o(.rodata);
         asm/data/data_080F9EB8.o(.rodata.m4a_static_data_after_driver_tables);
-        . = ALIGN(4); src/sound_data.o(.rodata.*);
+        . = ALIGN(4); src/m4a.o(.rodata.gMusicPlayerTable);
+        . = ALIGN(4); src/sound_data.o(.rodata.gSongTable);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
     } > ROM = 0xFF
 

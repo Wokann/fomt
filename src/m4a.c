@@ -77,6 +77,21 @@ extern void ply_xswee(struct MusicPlayer *, struct MusicPlayerTrack *);
 
 SECTION(".bss") ALIGN(4) u8 SoundMainRam[0x400] = { 0 };
 
+SECTION(".gMusicPlayerTrackA")
+struct MusicPlayerTrack gMusicPlayerTrackA[8] = { 0 };
+
+SECTION(".gMusicPlayerTrackB")
+struct MusicPlayerTrack gMusicPlayerTrackB[8] = { 0 };
+
+SECTION(".gMusicPlayerTrackC")
+struct MusicPlayerTrack gMusicPlayerTrackC[8] = { 0 };
+
+SECTION(".gMusicPlayerTrackD")
+struct MusicPlayerTrack gMusicPlayerTrackD[8] = { 0 };
+
+SECTION(".gMusicPlayerTrackE")
+struct MusicPlayerTrack gMusicPlayerTrackE[8] = { 0 };
+
 SECTION(".gSoundInfo")
 struct SoundInfo gSoundInfo = { 0 };
 
@@ -231,6 +246,17 @@ XcmdFunc const gXcmdTable[] = {
     ply_xiecl,
     ply_xleng,
     ply_xswee,
+};
+
+// This table follows the still-raw M4A voice/sample configuration block in
+// ROM, so it has a distinct output section despite sharing this driver source.
+SECTION(".rodata.gMusicPlayerTable")
+struct MusicPlayerEnt const gMusicPlayerTable[] = {
+    { &gMusicPlayerA, gMusicPlayerTrackA, 8, 0 },
+    { &gMusicPlayerB, gMusicPlayerTrackB, 8, 0 },
+    { &gMusicPlayerC, gMusicPlayerTrackC, 8, 0 },
+    { &gMusicPlayerD, gMusicPlayerTrackD, 8, 0 },
+    { &gMusicPlayerE, gMusicPlayerTrackE, 8, 0 },
 };
 
 u32 MidiKeyToFreq(struct WaveData * wav, u8 key, u8 fine_adjust)
