@@ -793,9 +793,10 @@ SECTIONS
         ASSERT(. <= 0xFB110, "JP intro-scene localization island overflow");
         FILL(0x00);
         . = 0xFB110; src/intro_scene_data.o(.rodata.intro_scene_trailer);
-        . = 0xFB11C; data/text/farm_status.o(.rodata);
-        . = 0xFB27C; data/text/animal_contest.o(.rodata);
-        . = 0xFB644; src/farm_status_screen_data.o(.rodata);
+        /* Bounded Farm Status localization island: two text groups and UI data. */
+        . = 0xFB11C; src/farm_status_screen_data.o(.rodata);
+        ASSERT(. <= 0xFB764, "JP Farm Status localization island overflow");
+        FILL(0x00);
         . = 0xFB764; src/records_screen_data.o(.rodata);
         . = ALIGN(4); data/text/staff_credits.o(.rodata);
         . = 0xFBE88; src/town_map_data.o(.rodata.staff_credits_trailer);

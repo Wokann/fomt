@@ -1,5 +1,15 @@
 #include "farm_status_screen_data.hh"
 
+// These regional text groups occupy the native Farm Status ROM run immediately
+// before the screen's lookup and preview data.
+#if defined(REGION_JP)
+#include "data/text/jp/farm_status.cc"
+#include "data/text/jp/animal_contest.cc"
+#else
+#include "data/text/us/farm_status.cc"
+#include "data/text/us/animal_contest.cc"
+#endif
+
 u16 const gFarmStatusScreenPreloadedGlyphs[] = {
 #if defined(REGION_JP)
     0x824F, 0x8250, 0x8251, 0x8252, 0x8253, 0x8254, 0x8255,
