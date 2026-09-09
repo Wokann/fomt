@@ -89,3 +89,31 @@ char const gText_FarmStatus_PercentSign[] =
 
 extern char const gCppRuntimeBadAlloc_FarmStatus[] =
     "bad_alloc";
+
+extern AnimalStatusScreenPrefixText const gAnimalStatusScreenPrefixText = {
+    "N/A ",
+    {
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+    },
+};
+
+extern AnimalStatusScreenText const gAnimalStatusScreenText = {
+    "Healthy ",
+    "Unhappy ",
+    "Sick    ",
+    "Spring",
+    "Summer",
+    "Fall  ",
+    "Winter",
+    "Y ",
+    "D ",
+};

@@ -810,7 +810,6 @@ SECTIONS
         FILL(0x00);
         . = 0xFB110; src/intro_scene_data.o(.rodata.intro_scene_trailer);
         . = 0xFB11C; data/text/farm_status.o(.rodata);
-        . = 0xFB230; data/text/animal_status_screen.o(.rodata);
         . = 0xFB27C; data/text/animal_contest.o(.rodata);
         . = 0xFB644; src/farm_status_screen_data.o(.rodata);
         . = 0xFB764; src/records_screen_data.o(.rodata);
