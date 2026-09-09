@@ -952,7 +952,6 @@ SECTIONS
         asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard);
         . = 0x139A88; src/m4a.o(.rodata);
         . = 0x139D60; src/m4a.o(.rodata.gM4aVoiceGroups);
-        asm/data/data_080F9EB8.o(.rodata.m4a_static_data_after_voice_groups);
         . = 0x13ABB4; src/m4a.o(.rodata.gMusicPlayerTable);
         . = ALIGN(4); src/m4a.o(.rodata.gSongTable);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);

@@ -459,31 +459,6 @@ jp_static_data_after_font:
     .global gUnk_FieldRenderResource_221
     .set gUnk_FieldRenderResource_221, gUnk_08118CF4 + 0xCD5C
 
-    @ M4A driver tables occupy 0x13ABCC..0x13AEA4 in src/m4a.c.
-    @ The preceding 0xC54 bytes are recovered ToneData records in src/m4a.c.
-    @ This remaining 0x200-byte waveform tail is still raw.
-    .section .rodata.m4a_static_data_after_voice_groups
-    .global gUnk_0813BAF8
-gUnk_0813BAF8:
-    .incbin "baserom_jp.gba", 0x13BAF8, (0x13BCF8 - 0x13BAF8)
-
-    @ CGB waveform labels referenced by the recovered ToneData tables.
-    .global gM4aCgbWave_000
-    .set gM4aCgbWave_000, gUnk_0813BAF8 + 0x0
-    .global gM4aCgbWave_001
-    .set gM4aCgbWave_001, gUnk_0813BAF8 + 0x10
-    .global gM4aCgbWave_002
-    .set gM4aCgbWave_002, gUnk_0813BAF8 + 0x30
-    .global gM4aCgbWave_003
-    .set gM4aCgbWave_003, gUnk_0813BAF8 + 0x40
-    .global gM4aCgbWave_004
-    .set gM4aCgbWave_004, gUnk_0813BAF8 + 0x50
-    .global gM4aCgbWave_005
-    .set gM4aCgbWave_005, gUnk_0813BAF8 + 0x70
-    .global gM4aCgbWave_006
-    .set gM4aCgbWave_006, gUnk_0813BAF8 + 0x1E0
-    .global gM4aCgbWave_007
-    .set gM4aCgbWave_007, gUnk_0813BAF8 + 0x1F0
 
     .else
 	.section .rodata.unextracted_shop_data
@@ -955,29 +930,4 @@ us_static_data_after_font:
 	.global gUnk_FieldRenderResource_221
 	.set gUnk_FieldRenderResource_221, gUnk_08117BC8 + 0xCD44
 
-    @ M4A driver tables occupy 0x139A88..0x139D60 in src/m4a.c.
-    @ The preceding 0xC54 bytes are recovered ToneData records in src/m4a.c.
-    @ This remaining 0x200-byte waveform tail is still raw.
-    .section .rodata.m4a_static_data_after_voice_groups
-    .global gUnk_0813A9B4
-gUnk_0813A9B4:
-    .incbin "baserom_us.gba", 0x13A9B4, (0x13ABB4 - 0x13A9B4)
-
-    @ CGB waveform labels referenced by the recovered ToneData tables.
-    .global gM4aCgbWave_000
-    .set gM4aCgbWave_000, gUnk_0813A9B4 + 0x0
-    .global gM4aCgbWave_001
-    .set gM4aCgbWave_001, gUnk_0813A9B4 + 0x10
-    .global gM4aCgbWave_002
-    .set gM4aCgbWave_002, gUnk_0813A9B4 + 0x30
-    .global gM4aCgbWave_003
-    .set gM4aCgbWave_003, gUnk_0813A9B4 + 0x40
-    .global gM4aCgbWave_004
-    .set gM4aCgbWave_004, gUnk_0813A9B4 + 0x50
-    .global gM4aCgbWave_005
-    .set gM4aCgbWave_005, gUnk_0813A9B4 + 0x70
-    .global gM4aCgbWave_006
-    .set gM4aCgbWave_006, gUnk_0813A9B4 + 0x1E0
-    .global gM4aCgbWave_007
-    .set gM4aCgbWave_007, gUnk_0813A9B4 + 0x1F0
     .endif
