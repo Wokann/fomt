@@ -3,20 +3,6 @@
 
 #include "prelude.h"
 
-#define HARVEST_SPRITE_MINIGAMES_ANIMAL_HUSBANDRY_TEXT \
-    SECTION(".rodata.harvest_sprite_minigames_animal_husbandry")
-#define HARVEST_SPRITE_MINIGAMES_CHICKEN_FESTIVAL_OPENING_TEXT \
-    SECTION(".rodata.harvest_sprite_minigames_chicken_festival_opening")
-#define HARVEST_SPRITE_MINIGAMES_CHICKEN_FESTIVAL_INSTRUCTIONS_TEXT \
-    SECTION(".rodata.harvest_sprite_minigames_chicken_festival_instructions")
-#define HARVEST_SPRITE_MINIGAMES_HARVEST_INSTRUCTIONS_TEXT \
-    SECTION(".rodata.harvest_sprite_minigames_harvest_instructions")
-#define HARVEST_SPRITE_MINIGAMES_HARVEST_RESULTS_TEXT \
-    SECTION(".rodata.harvest_sprite_minigames_harvest_results")
-#define HARVEST_SPRITE_MINIGAMES_WATERING_INSTRUCTIONS_TEXT \
-    SECTION(".rodata.harvest_sprite_minigames_watering_instructions")
-#define HARVEST_SPRITE_MINIGAMES_WATERING_RESULTS_TEXT \
-    SECTION(".rodata.harvest_sprite_minigames_watering_results")
 
 extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ExplanationQuestion[];
 extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_Yes[];
