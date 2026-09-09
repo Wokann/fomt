@@ -770,8 +770,11 @@ SECTIONS
         . = ALIGN(4);
         src/ui_state.o(.rodata.ui_state_adapters);
         src/ui_state.o(.rodata);
+        /* Bounded New Game preset localization island: names and UI glyphs. */
         . = 0xF97D8; data/text/new_game_name_entry_preset.o(.rodata);
         . = 0xF996C; src/new_game_name_entry_ui_data.o(.rodata);
+        ASSERT(. <= 0xF9994, "JP New Game preset localization island overflow");
+        FILL(0x00);
         . = 0xF9994; data/text/frisbee_scoreboard.o(.rodata);
         FILL(0x00);
         . = 0xF99AC; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_score_table);

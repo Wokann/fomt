@@ -6,7 +6,7 @@
 
 指南页由 `fomt-text guide-collection` 生成到 `src/reference_guide.o(.rodata.reference_guide)`；按维护规则，指南仅作为一个连续 ROM 块记录起点和终点，不逐页展开。
 
-已整理的 `[嵌入文本 / 数据]` 本地化岛在链接脚本中均有显式起点、`ASSERT` 上界与下一个已知物理块的起点。可在岛内修改文本及紧邻的已解析指针/结构；若总大小越过上界，构建会失败，而不会静默挤压后续尚未反编译的 ROM 数据。
+已整理的本地化岛（包括嵌入宿主对象的文本/数据，以及与已解析数据相邻的独立文本对象）在链接脚本中均有显式起点、`ASSERT` 上界与下一个已知物理块的起点。可在岛内修改文本及紧邻的已解析指针/结构；若总大小越过上界，构建会失败，而不会静默挤压后续尚未反编译的 ROM 数据。
 
 ## 读取规则
 
@@ -72,8 +72,8 @@
 | `0x080F9756`–`0x080F9757` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F9758`–`0x080F97CB` | `src/ui_state.o(.rodata.ui_state_adapters)` | [数据] | `src/ui_state.c/.cc` | 运行时字符串 `2` 项<br>`gUnk_PreUiTextLayoutDigitRows`, `gUnk_PreUiTextLayoutFullWidthSpace`, `gUnk_PreUiTextLayoutFullWidthHyphen`, `gUiTextLayoutPositionTable` |
 | `0x080F97CC`–`0x080F97D7` | `src/ui_state.o(.rodata)` | [数据] | `src/ui_state.c/.cc` | `gUiSharedResourceData` |
-| `0x080F97D8`–`0x080F996B` | `data/text/new_game_name_entry_preset.o(.rodata)` | [文本对象] | `data/text/jp/new_game.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue` |
-| `0x080F996C`–`0x080F9993` | `src/new_game_name_entry_ui_data.o(.rodata)` | [数据] | `src/new_game_name_entry_ui_data.c/.cc` | `gNewGameNameEntryUiCharacterCodes` |
+| `0x080F97D8`–`0x080F996B` | `data/text/new_game_name_entry_preset.o(.rodata)` | [文本对象] | `data/text/jp/new_game.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue`<br>新游戏预设本地化岛首段：与紧邻的 UI 字符代码表共同受 LD 上界保护 |
+| `0x080F996C`–`0x080F9993` | `src/new_game_name_entry_ui_data.o(.rodata)` | [数据] | `src/new_game_name_entry_ui_data.c/.cc` | `gNewGameNameEntryUiCharacterCodes`<br>新游戏预设本地化岛末段：下方为飞盘记分牌块 |
 | `0x080F9994`–`0x080F99AA` | `data/text/frisbee_scoreboard.o(.rodata)` | [文本对象] | `data/text/jp/frisbee.cc` | 文本 `1` 项（详见下方索引） |
 | `0x080F99AB`–`0x080F99AB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x080F99AC`–`0x080F9A73` | `src/animal_festival_ranking.o(.rodata.animal_festival_ranking_score_table)` | [数据] | `src/animal_festival_ranking.c/.cc` | `gAnimalFestivalRankingScoreTable` |
@@ -1941,8 +1941,8 @@
 | `0x080F9EFA`–`0x080F9EFB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F9EFC`–`0x080F9F6F` | `src/ui_state.o(.rodata.ui_state_adapters)` | [数据] | `src/ui_state.c/.cc` | 运行时字符串 `2` 项<br>`gUnk_PreUiTextLayoutDigitRows`, `gUnk_PreUiTextLayoutFullWidthSpace`, `gUnk_PreUiTextLayoutFullWidthHyphen`, `gUiTextLayoutPositionTable` |
 | `0x080F9F70`–`0x080F9F7B` | `src/ui_state.o(.rodata)` | [数据] | `src/ui_state.c/.cc` | `gUiSharedResourceData` |
-| `0x080F9F7C`–`0x080FA12D` | `data/text/new_game_name_entry_preset.o(.rodata)` | [文本对象] | `data/text/us/new_game.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue` |
-| `0x080FA12E`–`0x080FA157` | `src/new_game_name_entry_ui_data.o(.rodata)` | [数据] | `src/new_game_name_entry_ui_data.c/.cc` | `gNewGameNameEntryUiCharacterCodes` |
+| `0x080F9F7C`–`0x080FA12D` | `data/text/new_game_name_entry_preset.o(.rodata)` | [文本对象] | `data/text/us/new_game.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue`<br>新游戏预设本地化岛首段：与紧邻的 UI 字符代码表共同受 LD 上界保护 |
+| `0x080FA12E`–`0x080FA157` | `src/new_game_name_entry_ui_data.o(.rodata)` | [数据] | `src/new_game_name_entry_ui_data.c/.cc` | `gNewGameNameEntryUiCharacterCodes`<br>新游戏预设本地化岛末段：下方为飞盘记分牌块 |
 | `0x080FA158`–`0x080FA173` | `data/text/frisbee_scoreboard.o(.rodata)` | [文本对象] | `data/text/us/frisbee.cc` | 文本 `1` 项（详见下方索引） |
 | `0x080FA174`–`0x080FA23B` | `src/animal_festival_ranking.o(.rodata.animal_festival_ranking_score_table)` | [数据] | `src/animal_festival_ranking.c/.cc` | `gAnimalFestivalRankingScoreTable` |
 | `0x080FA23C`–`0x080FA245` | `src/animal_festival_ranking.o(.rodata.animal_festival_ranking_scoreboard_trailer)` | [数据] | `src/animal_festival_ranking.c/.cc` | 运行时字符串 `1` 项 |
