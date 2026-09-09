@@ -112,6 +112,42 @@ func_08020060:
     .global func_080235B4
     .thumb_set func_080235B4, func_08020090 + 0x3524
 
+    @ Exact JP entries referenced by the raw table at 0x080E639C.
+    .global func_08020058
+    .thumb_set func_08020058, func_08020060 + 0x264
+    .global func_0802005C
+    .thumb_set func_0802005C, func_08020060 + 0x268
+    .global func_0802006C
+    .thumb_set func_0802006C, func_08020060 + 0x278
+    .global func_0802008C
+    .thumb_set func_0802008C, func_08020060 + 0x298
+    .global func_080200A0
+    .thumb_set func_080200A0, func_08020060 + 0x2AC
+    .global func_08022184
+    .thumb_set func_08022184, func_08020060 + 0x2390
+    .global func_080221D8
+    .thumb_set func_080221D8, func_08020060 + 0x23E4
+    .global func_0802221C
+    .thumb_set func_0802221C, func_08020060 + 0x2428
+    .global func_08022250
+    .thumb_set func_08022250, func_08020060 + 0x245C
+    .global func_0802274C
+    .thumb_set func_0802274C, func_08020060 + 0x2958
+    .global func_08022750
+    .thumb_set func_08022750, func_08020060 + 0x295C
+    .global func_0802275C
+    .thumb_set func_0802275C, func_08020060 + 0x2968
+    .global func_0802278C
+    .thumb_set func_0802278C, func_08020060 + 0x2998
+    .global func_0802281C
+    .thumb_set func_0802281C, func_08020060 + 0x2A28
+    .global func_08022840
+    .thumb_set func_08022840, func_08020060 + 0x2A4C
+    .global func_080228CC
+    .thumb_set func_080228CC, func_08020060 + 0x2AD8
+    .global func_08022904
+    .thumb_set func_08022904, func_08020060 + 0x2B10
+
     .global func_08032090
     .thumb_set func_08032090, func_08020060 + 0x12030
     .else
@@ -32023,4 +32059,36 @@ func_08032090: @ 0x08032090
     .thumb_set func_08023794, func_08023400 + 0x394
     .global func_08023820
     .thumb_set func_08023820, func_08023804 + 0x1C
+
+    @ Exact US entries referenced by the raw table at 0x080E639C.
+    .global func_080202D8
+    .thumb_set func_080202D8, func_080202D4 + 0x4
+    .global func_080202F8
+    .thumb_set func_080202F8, func_080202F4 + 0x4
+    .global func_0802030C
+    .thumb_set func_0802030C, func_08020300 + 0xC
+    .global func_080223F0
+    .thumb_set func_080223F0, func_080223A8 + 0x48
+    .global func_08022444
+    .thumb_set func_08022444, func_080223A8 + 0x9C
+    .global func_08022488
+    .thumb_set func_08022488, func_080223A8 + 0xE0
+    .global func_080224BC
+    .thumb_set func_080224BC, func_080223A8 + 0x114
+    .global func_080229B8
+    .thumb_set func_080229B8, func_080229A4 + 0x14
+    .global func_080229BC
+    .thumb_set func_080229BC, func_080229A4 + 0x18
+    .global func_080229C8
+    .thumb_set func_080229C8, func_080229A4 + 0x24
+    .global func_080229F8
+    .thumb_set func_080229F8, func_080229A4 + 0x54
+    .global func_08022A88
+    .thumb_set func_08022A88, func_080229A4 + 0xE4
+    .global func_08022AAC
+    .thumb_set func_08022AAC, func_080229A4 + 0x108
+    .global func_08022B38
+    .thumb_set func_08022B38, func_080229A4 + 0x194
+    .global func_08022B70
+    .thumb_set func_08022B70, func_08022B5C + 0x14
     .endif
