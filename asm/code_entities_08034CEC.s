@@ -217,6 +217,13 @@
     jp_code_entity_func func_0803A334, 0x3A0C8, 0x3A0E4
     jp_code_entity_func func_0803A350, 0x3A0E4, 0x3A128
     jp_code_entity_func func_0803A394, 0x3A128, 0x3A518
+    @ Exact entries referenced by the raw table at 0x080E6918.
+    .global func_08036EF0
+    .thumb_set func_08036EF0, func_08036E70 + 0x80
+    .global func_08036F0C
+    .thumb_set func_08036F0C, func_08036E70 + 0x9C
+    .global func_08036F68
+    .thumb_set func_08036F68, func_08036E70 + 0xF8
     .else
 
     .INCLUDE "asm/macro.inc"
@@ -3680,6 +3687,13 @@ func_08036E2C: @ 0x08036E2C
 
     thumb_func_start func_08036E70
 func_08036E70: @ 0x08036E70
+    @ Exact entries referenced by the raw table at 0x080E6918.
+    .global func_08036EF0
+    .thumb_set func_08036EF0, func_08036E70 + 0x80
+    .global func_08036F0C
+    .thumb_set func_08036F0C, func_08036E70 + 0x9C
+    .global func_08036F68
+    .thumb_set func_08036F68, func_08036E70 + 0xF8
     push {r4, r5, r6, r7, lr}
     adds r4, r0, #0
     ldr r0, [r4, #0x34]
