@@ -534,7 +534,8 @@ SECTIONS
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6ed8);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6f18);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6f58);
-        . = ALIGN(4); asm/vtables.o(.rodata.080E63D8);
+        . = ALIGN(4); src/vtables.o(.rodata.vtable_6f98);
+        . = ALIGN(4); asm/vtables.o(.rodata.080E6418);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_ascript_engine);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_script_engine);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_script_engine_adjacent);
