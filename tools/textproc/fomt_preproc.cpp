@@ -597,6 +597,102 @@ void FixupConstCharPointerWord(std::vector<std::string> &lines,
         removals.emplace_back(local_label, local_end);
 }
 
+std::set<std::string> FindExpressionReferencedCharArrays(
+    const std::string &source)
+{
+    // A direct function expression such as "return gText_Name;" is another
+    // normal C/C++ way to consume a named byte string.  agbcp 2.9 sometimes
+    // materializes a second .LC copy for this form, even though it preserves
+    // the named definition in a custom data section.
+    static const std::regex declaration_pattern(
+        R"(\bchar\s+const\s+([A-Za-z_][A-Za-z0-9_]*)\s*\[\s*\])");
+
+    std::set<std::string> result;
+    for (std::sregex_iterator match(source.begin(), source.end(),
+             declaration_pattern), end;
+         match != end; ++match) {
+        const std::string name = (*match)[1].str();
+        const std::regex use_pattern(
+            R"((?:\breturn\s+|[=(,]\s*)" + name + R"(\b))");
+        if (std::regex_search(source, use_pattern))
+            result.insert(name);
+    }
+    return result;
+}
+
+void FixupExpressionStringLiteralReferences(std::vector<std::string> &lines,
+    const std::set<std::string> &target_names,
+    std::vector<std::pair<std::size_t, std::size_t>> &removals,
+    std::set<std::string> &removed_local_constants)
+{
+    // Do not infer an intended target from a byte sequence alone.  A repair
+    // is permitted only when source syntax has already proved that a named
+    // array is used as an expression, and exactly one such named array has
+    // the compiler constant's byte-for-byte payload.
+    for (std::size_t local_label = 0; local_label < lines.size(); ++local_label) {
+        const std::string label_line = Trim(lines[local_label]);
+        if (label_line.size() < 5 || label_line.back() != ':'
+            || label_line.rfind(".LC", 0) != 0) {
+            continue;
+        }
+        const std::string local_constant = label_line.substr(0,
+            label_line.size() - 1);
+        if (removed_local_constants.find(local_constant)
+            != removed_local_constants.end()) {
+            continue;
+        }
+
+        const std::vector<std::string> local_payload =
+            AssemblyStringPayloadAfter(lines, local_label);
+        if (local_payload.empty())
+            continue;
+
+        std::string target_name;
+        for (const std::string &candidate : target_names) {
+            const std::size_t target_label = FindAssemblyLabel(lines, candidate);
+            if (target_label == std::string::npos
+                || AssemblyStringPayloadAfter(lines, target_label) != local_payload) {
+                continue;
+            }
+            if (!target_name.empty()) {
+                target_name.clear();
+                break;
+            }
+            target_name = candidate;
+        }
+        if (target_name.empty())
+            continue;
+
+        std::vector<std::size_t> words;
+        for (std::size_t index = 0; index < lines.size(); ++index) {
+            const std::string word = Trim(lines[index]);
+            if (word == ".word " + local_constant
+                || word == ".word\t" + local_constant) {
+                words.push_back(index);
+            }
+        }
+        if (words.empty())
+            continue;
+
+        const std::size_t local_end = local_label + 1 + local_payload.size();
+        if (local_end == lines.size()
+            || (!IsAssemblyAlign(lines[local_end])
+                && !IsAssemblyDataSectionTransition(lines[local_end]))) {
+            throw std::runtime_error("unexpected compiler-constant layout for expression '"
+                + target_name + "'");
+        }
+
+        for (const std::size_t word_index : words) {
+            const std::size_t indent_end = lines[word_index].find_first_not_of(" \t");
+            const std::string indent = indent_end == std::string::npos
+                ? "" : lines[word_index].substr(0, indent_end);
+            lines[word_index] = indent + ".word\t" + target_name;
+        }
+        if (removed_local_constants.insert(local_constant).second)
+            removals.emplace_back(local_label, local_end);
+    }
+}
+
 std::string FixupSameUnitConstCharReferences(const std::string &source,
     const std::string &assembly)
 {
@@ -606,8 +702,12 @@ std::string FixupSameUnitConstCharReferences(const std::string &source,
         FindConstCharPointerArrayInitializers(source);
     const std::vector<WordOnlyAggregateInitializer> aggregates =
         FindWordOnlyAggregateInitializers(source);
-    if (references.empty() && arrays.empty() && aggregates.empty())
+    const std::set<std::string> expression_targets =
+        FindExpressionReferencedCharArrays(source);
+    if (references.empty() && arrays.empty() && aggregates.empty()
+        && expression_targets.empty()) {
         return assembly;
+    }
 
     std::vector<std::string> lines = SplitLines(assembly);
     std::vector<std::pair<std::size_t, std::size_t>> removals;
@@ -674,6 +774,9 @@ std::string FixupSameUnitConstCharReferences(const std::string &source,
             ++word_index;
         }
     }
+
+    FixupExpressionStringLiteralReferences(lines, expression_targets, removals,
+        removed_local_constants);
 
     std::sort(removals.rbegin(), removals.rend());
     for (const auto &[begin, end] : removals)
@@ -1567,6 +1670,27 @@ void SelfTest()
             && section_boundary_output.find("\t.word\tgSectionBoundaryText")
                 != std::string::npos,
         "section-bound compiler string relocation was not restored");
+
+    const std::string expression_source =
+        "char const gFunctionText[] = \"A\";\n"
+        "char const * FunctionText() { return gFunctionText; }\n";
+    const std::string expression_assembly =
+        "\t.section .rodata.named,\"a\",%progbits\n"
+        "gFunctionText:\n"
+        "\t.ascii\t\"A\\000\"\n"
+        "\t.section .rodata\n"
+        "\t.align\t2, 0\n"
+        ".LC0:\n"
+        "\t.ascii\t\"A\\000\"\n"
+        "\t.text\n"
+        "FunctionText:\n"
+        "\t.word\t.LC0\n";
+    const std::string expression_output = PreprocessAssembly(
+        expression_source, expression_assembly);
+    Require(expression_output.find(".LC0:") == std::string::npos
+            && expression_output.find("\t.word\tgFunctionText")
+                != std::string::npos,
+        "function-expression compiler string relocation was not restored");
 
     const std::string stacked_setup_assembly =
         "\t.text\n"
