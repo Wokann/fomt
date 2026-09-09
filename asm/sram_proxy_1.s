@@ -63,39 +63,3 @@ func_080002E0: @ 0x080002E0
     bx r1
     .align 2, 0
 .L08000354: .4byte gSramImageSignature
-
-    thumb_func_start func_08000358
-func_08000358: @ 0x08000358
-    push {r4, r5, lr}
-    sub sp, #4
-    adds r4, r0, #0
-    ldr r2, .L08000398 @ =gSramImageSignature
-    movs r1, #0
-    movs r3, #0x20
-    bl func_080006A4
-    ldr r5, .L0800039C @ =gUnk_03000400
-    ldrh r0, [r5]
-    cmp r0, #0
-    bne .L08000390
-    str r0, [sp]
-    adds r0, r4, #0
-    movs r1, #0x20
-    mov r2, sp
-    movs r3, #4
-    bl func_080006A4
-    ldrh r0, [r5]
-    cmp r0, #0
-    bne .L08000390
-    adds r0, r4, #0
-    movs r1, #0x24
-    mov r2, sp
-    movs r3, #4
-    bl func_080006A4
-.L08000390:
-    add sp, #4
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08000398: .4byte gSramImageSignature
-.L0800039C: .4byte gUnk_03000400

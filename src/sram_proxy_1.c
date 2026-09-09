@@ -1,4 +1,5 @@
 #include "prelude.h"
+#include "sram_signature.hh"
 #include "types.h"
 
 extern void func_080006A4(void *destination, u32 offset, void const *source, u32 size);
@@ -6,13 +7,23 @@ extern void func_080006E4(void *source, void *destination, u32 offset, u32 size)
 extern u8 func_080002E0(void *source);
 extern u16 gUnk_03000400;
 
-u32 func_080003DC(u32 unused, u32 index)
-{
-    register u32 multiplier asm("r0") = 0x3FEC;
+void func_08000358(void *destination)
+    SECTION(".text.sram_proxy_1_func_08000358");
 
-    // Emits no instruction; keeps the original literal-load-and-multiply form.
-    __asm__ volatile ("" : "+r"(multiplier));
-    return index * multiplier + 0x28;
+void func_08000358(void *destination)
+{
+    u32 zero;
+
+    func_080006A4(destination, 0, gSramImageSignature, 0x20);
+    if (gUnk_03000400 != 0)
+        return;
+
+    zero = 0;
+    func_080006A4(destination, 0x20, &zero, sizeof(zero));
+    if (gUnk_03000400 != 0)
+        return;
+
+    func_080006A4(destination, 0x24, &zero, sizeof(zero));
 }
 
 u32 func_080003A0(void *source)
@@ -31,6 +42,15 @@ u32 func_080003A0(void *source)
         return 0;
 
     return value;
+}
+
+u32 func_080003DC(u32 unused, u32 index)
+{
+    register u32 multiplier asm("r0") = 0x3FEC;
+
+    // Emits no instruction; keeps the original literal-load-and-multiply form.
+    __asm__ volatile ("" : "+r"(multiplier));
+    return index * multiplier + 0x28;
 }
 
 void func_080003E8(void *source, u32 index)

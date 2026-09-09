@@ -56,6 +56,7 @@ SECTIONS
         asm/main.o(.text);
         src/main.o(.text);
         asm/sram_proxy_1.o(.text);
+        src/sram_proxy_1.o(.text.sram_proxy_1_func_08000358);
         src/sram_proxy_1.o(.text.sram_proxy_1_read_flags);
         src/sram_proxy_1.o(.text);
         src/sram_proxy_1.o(.text.sram_proxy_1_set_flags);
