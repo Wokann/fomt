@@ -662,13 +662,13 @@ SECTIONS
         . = 0xF0E80; src/entity_ui.o(.rodata);
         ASSERT(. <= 0xF1974, "US Entity UI localization island overflow");
         FILL(0x00);
+        /* Bounded Common UI localization island: labels, errors, menu table. */
         . = 0xF1974; src/fixed_labels.o(.rodata);
+        src/ui_error.o(.rodata);
+        src/menu_data.o(.rodata);
+        ASSERT(. <= 0xF1A80, "US Common UI localization island overflow");
         FILL(0x00);
-        . = ALIGN(4); src/ui_error.o(.rodata);
-        FILL(0x00);
-        . = ALIGN(4); src/menu_data.o(.rodata);
-        FILL(0x00);
-        . = ALIGN(4); src/data_schedules.o(.rodata);
+        . = 0xF1A80; src/data_schedules.o(.rodata);
         . = ALIGN(4); src/entity_ui.o(.rodata.entity_ui_resource_selector);
         FILL(0x00);
         . = ALIGN(4); asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix);

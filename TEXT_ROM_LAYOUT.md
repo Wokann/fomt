@@ -51,11 +51,11 @@
 | `0x080F06DE`–`0x080F06DF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F06E0`–`0x080F11D1` | `src/entity_ui.o(.rodata)` | [嵌入文本 / 数据] | `data/text/common/entity_ui.cc`<br>`data/text/jp/entity_ui.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `18` 项<br>`gUnk_080F0E88`, `gUnk_080F0F78`, `gUnk_080F0FCC`, `gUnk_080F1020`, `gUnk_080F1170`, `gUnk_080F1178`, … +41<br>Entity UI 本地化岛：与本对象内紧邻 UI 数据共同受 LD 上界保护 |
 | `0x080F11D2`–`0x080F11D3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F11D4`–`0x080F11F9` | `src/fixed_labels.o(.rodata)` | [嵌入文本] | `data/text/common/fixed_labels.cc`<br>`data/text/jp/fixed_labels.cc` | 文本 `2` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gFixedLabelsPaddingBeforeUnnamedSetting` |
+| `0x080F11D4`–`0x080F11F9` | `src/fixed_labels.o(.rodata)` | [嵌入文本 / 数据] | `data/text/common/fixed_labels.cc`<br>`data/text/jp/fixed_labels.cc` | 文本 `2` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gFixedLabelsPaddingBeforeUnnamedSetting`<br>公共 UI 本地化岛首段：固定标签、错误回退和菜单表共同受 LD 上界保护 |
 | `0x080F11FA`–`0x080F11FB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F11FC`–`0x080F1225` | `src/ui_error.o(.rodata)` | [嵌入文本] | `data/text/common/ui_error.cc`<br>`data/text/jp/ui_error.cc` | 文本 `2` 项（详见下方索引）<br>运行时字符串 `2` 项<br>`gUnk_080F19AE` |
+| `0x080F11FC`–`0x080F1225` | `src/ui_error.o(.rodata)` | [嵌入文本 / 数据] | `data/text/common/ui_error.cc`<br>`data/text/jp/ui_error.cc` | 文本 `2` 项（详见下方索引）<br>运行时字符串 `2` 项<br>`gUnk_080F19AE` |
 | `0x080F1226`–`0x080F1227` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F1228`–`0x080F12D9` | `src/menu_data.o(.rodata)` | [嵌入文本] | `data/text/common/menu.cc`<br>`data/text/jp/menu.cc` | 文本 `7` 项（详见下方索引）<br>运行时字符串 `3` 项<br>`gMenuEntryIds`, `gMenuEntryLabels`, `gUnk_080F1A66` |
+| `0x080F1228`–`0x080F12D9` | `src/menu_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/common/menu.cc`<br>`data/text/jp/menu.cc` | 文本 `7` 项（详见下方索引）<br>运行时字符串 `3` 项<br>`gMenuEntryIds`, `gMenuEntryLabels`, `gUnk_080F1A66`<br>公共 UI 本地化岛末段：下方为固定的排程数据块 |
 | `0x080F12DA`–`0x080F12DB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F12DC`–`0x080F2C11` | `src/data_schedules.o(.rodata)` | [数据] | `src/data_schedules.c/.cc` | 运行时字符串 `3` 项<br>`ScheduleInfo_Unk_080F1A80`, `Unk_080F1A80_Schedules`, `Unk_080F1A80_Schedule_1`, `Unk_080F1A80_Schedule_2`, `Unk_080F1A80_Schedule_3`, `Unk_080F1A80_Schedule_4`, … +271 |
 | `0x080F2C12`–`0x080F2C13` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1919,11 +1919,11 @@
 | `0x080F0E7E`–`0x080F0E7F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F0E80`–`0x080F1971` | `src/entity_ui.o(.rodata)` | [嵌入文本 / 数据] | `data/text/common/entity_ui.cc`<br>`data/text/us/entity_ui.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `18` 项<br>`gUnk_080F0E88`, `gUnk_080F0F78`, `gUnk_080F0FCC`, `gUnk_080F1020`, `gUnk_080F1170`, `gUnk_080F1178`, … +41<br>Entity UI 本地化岛：与本对象内紧邻 UI 数据共同受 LD 上界保护 |
 | `0x080F1972`–`0x080F1973` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F1974`–`0x080F199D` | `src/fixed_labels.o(.rodata)` | [嵌入文本] | `data/text/common/fixed_labels.cc`<br>`data/text/us/fixed_labels.cc` | 文本 `2` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gFixedLabelsPaddingBeforeUnnamedSetting` |
+| `0x080F1974`–`0x080F199D` | `src/fixed_labels.o(.rodata)` | [嵌入文本 / 数据] | `data/text/common/fixed_labels.cc`<br>`data/text/us/fixed_labels.cc` | 文本 `2` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gFixedLabelsPaddingBeforeUnnamedSetting`<br>公共 UI 本地化岛首段：固定标签、错误回退和菜单表共同受 LD 上界保护 |
 | `0x080F199E`–`0x080F199F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F19A0`–`0x080F19C9` | `src/ui_error.o(.rodata)` | [嵌入文本] | `data/text/common/ui_error.cc`<br>`data/text/us/ui_error.cc` | 文本 `2` 项（详见下方索引）<br>运行时字符串 `2` 项<br>`gUnk_080F19AE` |
+| `0x080F19A0`–`0x080F19C9` | `src/ui_error.o(.rodata)` | [嵌入文本 / 数据] | `data/text/common/ui_error.cc`<br>`data/text/us/ui_error.cc` | 文本 `2` 项（详见下方索引）<br>运行时字符串 `2` 项<br>`gUnk_080F19AE` |
 | `0x080F19CA`–`0x080F19CB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F19CC`–`0x080F1A7D` | `src/menu_data.o(.rodata)` | [嵌入文本] | `data/text/common/menu.cc`<br>`data/text/us/menu.cc` | 文本 `7` 项（详见下方索引）<br>运行时字符串 `3` 项<br>`gMenuEntryIds`, `gMenuEntryLabels`, `gUnk_080F1A66` |
+| `0x080F19CC`–`0x080F1A7D` | `src/menu_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/common/menu.cc`<br>`data/text/us/menu.cc` | 文本 `7` 项（详见下方索引）<br>运行时字符串 `3` 项<br>`gMenuEntryIds`, `gMenuEntryLabels`, `gUnk_080F1A66`<br>公共 UI 本地化岛末段：下方为固定的排程数据块 |
 | `0x080F1A7E`–`0x080F1A7F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F1A80`–`0x080F33B5` | `src/data_schedules.o(.rodata)` | [数据] | `src/data_schedules.c/.cc` | 运行时字符串 `1` 项<br>`ScheduleInfo_Unk_080F1A80`, `Unk_080F1A80_Schedules`, `Unk_080F1A80_Schedule_1`, `Unk_080F1A80_Schedule_2`, `Unk_080F1A80_Schedule_3`, `Unk_080F1A80_Schedule_4`, … +271 |
 | `0x080F33B6`–`0x080F33B7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |

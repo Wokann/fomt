@@ -746,11 +746,11 @@ SECTIONS
         . = 0xF06E0; src/entity_ui.o(.rodata);
         ASSERT(. <= 0xF11D4, "JP Entity UI localization island overflow");
         FILL(0x00);
+        /* Bounded Common UI localization island: labels, errors, menu table. */
         . = 0xF11D4; src/fixed_labels.o(.rodata);
-        FILL(0x00);
-        . = ALIGN(4); src/ui_error.o(.rodata);
-        FILL(0x00);
-        . = ALIGN(4); src/menu_data.o(.rodata);
+        src/ui_error.o(.rodata);
+        src/menu_data.o(.rodata);
+        ASSERT(. <= 0xF12DC, "JP Common UI localization island overflow");
         FILL(0x00);
         . = 0xF12DC; /* JP schedule table block. */
         src/data_schedules.o(.rodata);
