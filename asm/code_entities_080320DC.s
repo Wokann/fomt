@@ -25,6 +25,17 @@ func_080324BC:
     .global func_08032934
     .thumb_func
 func_08032934:
+    @ Exact JP entries referenced by the raw table at 0x080E6828.
+    .global func_080326F0
+    .thumb_set func_080326F0, func_08032934 + 0x28
+    .global func_08032748
+    .thumb_set func_08032748, func_08032934 + 0x80
+    .global func_08032760
+    .thumb_set func_08032760, func_08032934 + 0x98
+    .global func_08032768
+    .thumb_set func_08032768, func_08032934 + 0xA0
+    .global func_08032770
+    .thumb_set func_08032770, func_08032934 + 0xA8
     .incbin "baserom_jp.gba", 0x326C8, 0xCC
 
     .section .text.entity_ui_constructor_after
@@ -748,7 +759,18 @@ func_08032690: @ 0x08032690
     .section .text.entity_ui_region_classification_after
     thumb_func_start func_08032934
 func_08032934: @ 0x08032934
-    push {r4, r5, lr}
+	@ Exact US entries referenced by the raw table at 0x080E6828.
+	.global func_0803295C
+	.thumb_set func_0803295C, func_08032934 + 0x28
+	.global func_080329B4
+	.thumb_set func_080329B4, func_08032934 + 0x80
+	.global func_080329CC
+	.thumb_set func_080329CC, func_08032934 + 0x98
+	.global func_080329D4
+	.thumb_set func_080329D4, func_08032934 + 0xA0
+	.global func_080329DC
+	.thumb_set func_080329DC, func_08032934 + 0xA8
+	push {r4, r5, lr}
     sub sp, #4
     adds r5, r0, #0
     adds r4, r2, #0
