@@ -154,6 +154,92 @@ std::vector<std::string> AssemblyStringPayloadAfter(const std::vector<std::strin
     return payload;
 }
 
+bool IsAssemblyObjectPreambleLine(const std::string &line)
+{
+    const std::string trimmed = Trim(line);
+    return trimmed.empty()
+        || IsAssemblyAlign(line)
+        || trimmed.rfind(".globl", 0) == 0
+        || trimmed.rfind(".weak", 0) == 0
+        || trimmed.rfind(".hidden", 0) == 0
+        || trimmed.rfind(".local", 0) == 0
+        || trimmed.rfind(".type", 0) == 0
+        || trimmed.rfind(".size", 0) == 0;
+}
+
+std::set<std::string> FindExplicitByteAlignedUnsectionedTextObjects(
+    const std::string &source)
+{
+    // agbcp 2.9 gives a stand-alone string literal a four-byte preferred
+    // alignment even when its ordinary char-array declaration explicitly
+    // requests ALIGN(1). Restrict this repair to an unsectioned, one-
+    // dimensional char string with that exact source request: it is a
+    // declaration-level rule, never a symbol-, function-, or ROM-address
+    // special case. Sectioned legacy data keeps its existing linker-owned
+    // layout and is deliberately outside this rule.
+    static const std::regex declaration_pattern(
+        R"((?:^|[;\r\n])[\t ]*(?:(?:extern(?:[\t ]+"C")?|static)[\t ]+)*(?:char[\t ]+const|const[\t ]+char)[\t ]+([A-Za-z_][A-Za-z0-9_]*)[\t ]*\[[\t ]*\]([^;=]*)=[\t\r\n ]*")");
+    static const std::regex byte_alignment_pattern(
+        R"(\baligned[\t ]*\([\t ]*1[\t ]*\))");
+    static const std::regex section_pattern(R"(\bsection[\t ]*\()");
+
+    std::set<std::string> result;
+    for (std::sregex_iterator match(source.begin(), source.end(), declaration_pattern), end;
+         match != end; ++match) {
+        const std::string attributes = (*match)[2].str();
+        if (!std::regex_search(attributes, byte_alignment_pattern)
+            || std::regex_search(attributes, section_pattern)) {
+            continue;
+        }
+        result.insert((*match)[1].str());
+    }
+    return result;
+}
+
+bool RemoveCompilerOverAlignmentBeforeLabel(std::vector<std::string> &lines,
+    const std::string &label)
+{
+    const std::size_t label_index = FindAssemblyLabel(lines, label);
+    if (label_index == std::string::npos
+        || AssemblyStringPayloadAfter(lines, label_index).empty()) {
+        return false;
+    }
+
+    std::size_t preamble_begin = label_index;
+    while (preamble_begin != 0 && IsAssemblyObjectPreambleLine(lines[preamble_begin - 1]))
+        --preamble_begin;
+
+    std::size_t alignment_index = std::string::npos;
+    for (std::size_t index = preamble_begin; index < label_index; ++index) {
+        if (!IsAssemblyAlign(lines[index]))
+            continue;
+        if (alignment_index != std::string::npos) {
+            throw std::runtime_error("ambiguous compiler alignment before explicit "
+                "byte-aligned text '" + label + "'");
+        }
+        alignment_index = index;
+    }
+    if (alignment_index == std::string::npos)
+        return false;
+
+    lines.erase(lines.begin() + static_cast<std::ptrdiff_t>(alignment_index));
+    return true;
+}
+
+std::string HonorExplicitByteAlignedUnsectionedText(const std::string &source,
+    const std::string &assembly)
+{
+    const std::set<std::string> labels =
+        FindExplicitByteAlignedUnsectionedTextObjects(source);
+    if (labels.empty())
+        return assembly;
+
+    std::vector<std::string> lines = SplitLines(assembly);
+    for (const std::string &label : labels)
+        RemoveCompilerOverAlignmentBeforeLabel(lines, label);
+    return JoinLines(lines);
+}
+
 std::map<std::string, std::string> FindDirectConstCharPointerInitializers(
     const std::string &source)
 {
@@ -1549,7 +1635,8 @@ std::string AlignExecutableSections(const std::string &assembly)
 
 std::string PreprocessAssembly(const std::string &source, const std::string &assembly)
 {
-    return AlignExecutableSections(FixupSameUnitConstCharReferences(source, assembly));
+    return AlignExecutableSections(HonorExplicitByteAlignedUnsectionedText(source,
+        FixupSameUnitConstCharReferences(source, assembly)));
 }
 
 void Require(bool condition, const std::string &message)
@@ -1647,6 +1734,40 @@ void SelfTest()
     Require(output.find("gDefaultCompilerPaddedData:\n\t.byte\t0x1\n"
                         "\t.text\n") != std::string::npos,
         "ordinary rodata tail alignment removed data payload");
+
+    const std::string byte_aligned_text_source =
+        "char const gByteAlignedText[] __attribute__((aligned(1))) = \"A\";\n"
+        "char const gDefaultAlignedText[] = \"B\";\n"
+        "char const gSectionedByteAlignedText[] "
+        "__attribute__((aligned(1), section(\".rodata.legacy\"))) = \"C\";\n";
+    const std::string byte_aligned_text_assembly =
+        "\t.section .rodata\n"
+        "\t.globl\tgByteAlignedText\n"
+        "\t.align\t2, 0\n"
+        "\t.type\t gByteAlignedText,object\n"
+        "gByteAlignedText:\n"
+        "\t.ascii\t\"A\\000\"\n"
+        "\t.globl\tgDefaultAlignedText\n"
+        "\t.align\t2, 0\n"
+        "\t.type\t gDefaultAlignedText,object\n"
+        "gDefaultAlignedText:\n"
+        "\t.ascii\t\"B\\000\"\n"
+        "\t.globl\tgSectionedByteAlignedText\n"
+        "\t.align\t2, 0\n"
+        "\t.type\t gSectionedByteAlignedText,object\n"
+        "gSectionedByteAlignedText:\n"
+        "\t.ascii\t\"C\\000\"\n";
+    const std::string byte_aligned_text_output = PreprocessAssembly(
+        byte_aligned_text_source, byte_aligned_text_assembly);
+    Require(byte_aligned_text_output.find("\t.globl\tgByteAlignedText\n"
+                                          "\t.align\t2, 0\n") == std::string::npos,
+        "explicit byte-aligned text retained compiler over-alignment");
+    Require(byte_aligned_text_output.find("\t.globl\tgDefaultAlignedText\n"
+                                          "\t.align\t2, 0\n") != std::string::npos,
+        "ordinary text alignment was changed without an explicit request");
+    Require(byte_aligned_text_output.find("\t.globl\tgSectionedByteAlignedText\n"
+                                          "\t.align\t2, 0\n") != std::string::npos,
+        "sectioned legacy text alignment was changed");
 
     const std::string section_boundary_source =
         "char const gSectionBoundaryText[] = \"A\";\n"

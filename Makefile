@@ -107,79 +107,19 @@ else
 TEXT_REGION := us
 endif
 
-# Every ordinary .cc file joins the same C++ compilation channel below.  The
-# remaining regional fragments are included at a physical point inside their
-# owning src module, so they deliberately do not produce a second object.
-TEXT_FRAGMENT_SOURCES := \
-  data/text/common/animal_data.cc \
-  data/text/common/carpenter.cc \
-  data/text/common/entity_ui.cc \
-  data/text/common/fixed_labels.cc \
-  data/text/common/menu.cc \
-  data/text/common/ui_error.cc \
-  data/text/$(TEXT_REGION)/animal_data.cc \
-  data/text/$(TEXT_REGION)/entity_ui.cc \
-  data/text/$(TEXT_REGION)/fixed_labels.cc \
-  data/text/$(TEXT_REGION)/load_error.cc \
-  data/text/$(TEXT_REGION)/help_menu.cc \
-  data/text/$(TEXT_REGION)/intro_scene.cc \
-  data/text/$(TEXT_REGION)/link_communication.cc \
-  data/text/$(TEXT_REGION)/livestock_shop.cc \
-  data/text/$(TEXT_REGION)/menu.cc \
-  data/text/$(TEXT_REGION)/town_map.cc \
-  data/text/$(TEXT_REGION)/tool.cc \
-  data/text/$(TEXT_REGION)/food.cc \
-  data/text/$(TEXT_REGION)/article.cc \
-  data/text/$(TEXT_REGION)/fishing_results.cc \
-  data/text/$(TEXT_REGION)/character_names.cc \
-  data/text/$(TEXT_REGION)/new_game.cc \
-  data/text/$(TEXT_REGION)/calendar.cc \
-  data/text/$(TEXT_REGION)/farm_status.cc \
-  data/text/$(TEXT_REGION)/animal_contest.cc \
-  data/text/$(TEXT_REGION)/ui_error.cc \
-  data/text/$(TEXT_REGION)/poultry_shop.cc \
-  data/text/$(TEXT_REGION)/supermarket.cc \
-  data/text/$(TEXT_REGION)/clinic.cc \
-  data/text/$(TEXT_REGION)/inn_shop.cc \
-  data/text/$(TEXT_REGION)/won_shop.cc \
-  data/text/$(TEXT_REGION)/winery_shop.cc \
-  data/text/$(TEXT_REGION)/special_merchant_shop.cc \
-  data/text/$(TEXT_REGION)/beach_cafe_shop.cc \
-  data/text/$(TEXT_REGION)/blacksmith.cc \
-  data/text/$(TEXT_REGION)/carpenter.cc \
-  data/text/$(TEXT_REGION)/records.cc \
-  data/text/$(TEXT_REGION)/horse_race.cc \
-  data/text/$(TEXT_REGION)/library.cc \
-  data/text/common/cooking_recipe_inventory.cc \
-  data/text/common/animal.cc \
-  data/text/common/fallback.cc
+# Every ordinary .cc file joins the same C++ compilation channel below.  Files
+# included at a physical point inside an owning src module must not also become
+# standalone objects.  Enumerate existing text files with wildcard, then use
+# the actual src include relation to select those fragments.  Renaming or
+# adding an included fragment therefore needs no Makefile update.
+TEXT_FRAGMENT_CANDIDATES := $(wildcard data/text/common/*.cc data/text/$(TEXT_REGION)/*.cc)
+TEXT_FRAGMENT_INCLUDES := $(shell grep -RhoE '^#include "data/text/(common|$(TEXT_REGION))/[^"]+\.cc"' $(SRC_DIR) | sed -E 's/^#include "([^"]+)"/\1/' | sort -u)
+TEXT_FRAGMENT_SOURCES := $(sort $(filter $(TEXT_FRAGMENT_CANDIDATES),$(TEXT_FRAGMENT_INCLUDES)))
 
 # The staff-credit source and the Reference Guide pages use their own visible
 # authoring formats.  They are the only inputs that must be lowered to a
 # normal .cc source before entering the shared compilation channel.
 STAFF_CREDITS_SOURCE := data/text/$(TEXT_REGION)/staff_credits.cc
-
-# These seven physical blocks are separated by native Harvest Sprite data in
-# the ROM.  Keep their text in one source file in ROM order, but compile each
-# selected C++ branch to the pre-existing object name that the linker uses.
-HARVEST_SPRITE_MINIGAME_TEXT_SOURCE := data/text/$(TEXT_REGION)/harvest_sprite_minigames.cc
-HARVEST_SPRITE_MINIGAME_TEXT_STEMS := \
-  harvest_sprite_minigames \
-  harvest_sprite_minigames_chicken_festival_opening \
-  harvest_sprite_minigames_chicken_festival_instructions \
-  harvest_sprite_minigames_harvest_instructions \
-  harvest_sprite_minigames_harvest_results \
-  harvest_sprite_minigames_watering_instructions \
-  harvest_sprite_minigames_watering_results
-HARVEST_SPRITE_MINIGAME_TEXT_OBJS := $(addprefix $(BUILD_DIR)/data/text/,$(addsuffix .o,$(HARVEST_SPRITE_MINIGAME_TEXT_STEMS)))
-HARVEST_SPRITE_MINIGAME_TEXT_DEPS := $(HARVEST_SPRITE_MINIGAME_TEXT_OBJS:.o=.d)
-FOMT_HARVEST_SPRITE_MINIGAME_PART_harvest_sprite_minigames := ANIMAL_HUSBANDRY
-FOMT_HARVEST_SPRITE_MINIGAME_PART_harvest_sprite_minigames_chicken_festival_opening := CHICKEN_FESTIVAL_OPENING
-FOMT_HARVEST_SPRITE_MINIGAME_PART_harvest_sprite_minigames_chicken_festival_instructions := CHICKEN_FESTIVAL_INSTRUCTIONS
-FOMT_HARVEST_SPRITE_MINIGAME_PART_harvest_sprite_minigames_harvest_instructions := HARVEST_INSTRUCTIONS
-FOMT_HARVEST_SPRITE_MINIGAME_PART_harvest_sprite_minigames_harvest_results := HARVEST_RESULTS
-FOMT_HARVEST_SPRITE_MINIGAME_PART_harvest_sprite_minigames_watering_instructions := WATERING_INSTRUCTIONS
-FOMT_HARVEST_SPRITE_MINIGAME_PART_harvest_sprite_minigames_watering_results := WATERING_RESULTS
 
 # The preset animal-name rows belong to the New Game source, but live beside
 # a later UI data block.  Compile its standard C++ branch to that existing
@@ -202,11 +142,11 @@ STATUS_UI_SHOP_COMMON_TEXT_SOURCE := data/text/$(TEXT_REGION)/status_ui.cc
 STATUS_UI_SHOP_COMMON_TEXT_OBJ := $(BUILD_DIR)/data/text/shop_common.o
 STATUS_UI_SHOP_COMMON_TEXT_DEP := $(STATUS_UI_SHOP_COMMON_TEXT_OBJ:.o=.d)
 
-REGION_TEXT_SOURCES := $(filter-out $(TEXT_FRAGMENT_SOURCES) $(STAFF_CREDITS_SOURCE) $(HARVEST_SPRITE_MINIGAME_TEXT_SOURCE),$(wildcard data/text/$(TEXT_REGION)/*.cc))
+REGION_TEXT_SOURCES := $(filter-out $(TEXT_FRAGMENT_SOURCES) $(STAFF_CREDITS_SOURCE),$(wildcard data/text/$(TEXT_REGION)/*.cc))
 REGION_TEXT_ORDINARY_OBJS := $(patsubst data/text/$(TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.o,$(REGION_TEXT_SOURCES))
 REGION_TEXT_ORDINARY_DEPS := $(REGION_TEXT_ORDINARY_OBJS:.o=.d)
-REGION_TEXT_OBJS := $(REGION_TEXT_ORDINARY_OBJS) $(HARVEST_SPRITE_MINIGAME_TEXT_OBJS) $(NEW_GAME_PRESET_TEXT_OBJ) $(FRISBEE_SCOREBOARD_TEXT_OBJ) $(STATUS_UI_SHOP_COMMON_TEXT_OBJ)
-REGION_TEXT_DEPS := $(REGION_TEXT_ORDINARY_DEPS) $(HARVEST_SPRITE_MINIGAME_TEXT_DEPS) $(NEW_GAME_PRESET_TEXT_DEP) $(FRISBEE_SCOREBOARD_TEXT_DEP) $(STATUS_UI_SHOP_COMMON_TEXT_DEP)
+REGION_TEXT_OBJS := $(REGION_TEXT_ORDINARY_OBJS) $(NEW_GAME_PRESET_TEXT_OBJ) $(FRISBEE_SCOREBOARD_TEXT_OBJ) $(STATUS_UI_SHOP_COMMON_TEXT_OBJ)
+REGION_TEXT_DEPS := $(REGION_TEXT_ORDINARY_DEPS) $(NEW_GAME_PRESET_TEXT_DEP) $(FRISBEE_SCOREBOARD_TEXT_DEP) $(STATUS_UI_SHOP_COMMON_TEXT_DEP)
 COMMON_TEXT_SOURCES := $(filter-out $(TEXT_FRAGMENT_SOURCES),$(wildcard data/text/common/*.cc))
 COMMON_TEXT_OBJS := $(COMMON_TEXT_SOURCES:%.cc=$(BUILD_DIR)/%.o)
 COMMON_TEXT_DEPS := $(COMMON_TEXT_OBJS:.o=.d)
@@ -285,14 +225,6 @@ $(REGION_TEXT_ORDINARY_DEPS): $(BUILD_DIR)/data/text/%.d: data/text/$(TEXT_REGIO
 $(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGION)/%.cc $(BUILD_DIR)/data/text/%.d $(TEXT_TOOLS) charmap.txt
 	@echo "CP $<"
 	$(call FOMT_COMPILE_CPP,)
-
-$(HARVEST_SPRITE_MINIGAME_TEXT_DEPS): $(BUILD_DIR)/data/text/%.d: $(HARVEST_SPRITE_MINIGAME_TEXT_SOURCE)
-	@mkdir -p $(dir $@)
-	@$(CPP) $(CPPFLAGS) -DFOMT_TEXT_HARVEST_SPRITE_MINIGAMES_$(FOMT_HARVEST_SPRITE_MINIGAME_PART_$*)=1 $< -o $@ -MM -MG -MT $@ -MT $(BUILD_DIR)/data/text/$*.o
-
-$(HARVEST_SPRITE_MINIGAME_TEXT_OBJS): $(BUILD_DIR)/data/text/%.o: $(HARVEST_SPRITE_MINIGAME_TEXT_SOURCE) $(BUILD_DIR)/data/text/%.d $(TEXT_TOOLS) charmap.txt
-	@echo "CP $<"
-	$(call FOMT_COMPILE_CPP,-DFOMT_TEXT_HARVEST_SPRITE_MINIGAMES_$(FOMT_HARVEST_SPRITE_MINIGAME_PART_$*)=1)
 
 $(NEW_GAME_PRESET_TEXT_DEP): $(NEW_GAME_PRESET_TEXT_SOURCE)
 	@mkdir -p $(dir $@)
