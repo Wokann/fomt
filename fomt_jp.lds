@@ -231,20 +231,8 @@ SECTIONS
         . = 0x509A4; /* JP/US-shared UI action-state second-flag clearer. */
         src/ui_state.o(.text.clear_ui_action_state_flag_01f0);
         . = 0x509B8; asm/code_0803EE94.o(.text.clear_ui_action_state_flag_01f0_after);
-        . = 0x50AE8; /* JP counterpart of shared first-field forwarding adapters. */
-        src/code_08050D5C.o(.text);
-        . = 0x50B18; /* JP counterpart of shared argument-normalizing forwarding adapters. */
-        src/code_08050D8C.o(.text);
-        . = 0x50B64; /* JP counterpart of shared first-field status-byte adapters. */
-        src/code_08050DD8.o(.text);
-        . = 0x50B7C; /* JP counterpart of shared first-field query adapter. */
-        src/code_08050DF0.o(.text);
-        . = 0x50B98; /* JP counterpart of shared long-argument forwarding adapters. */
-        src/code_08050E0C.o(.text);
-        . = 0x50BDC; /* JP counterpart of shared first-field UI-adjacent adapters. */
-        src/code_08050E50.o(.text);
-        . = 0x50C24; /* JP counterpart of shared first-field UI-flag adapters. */
-        src/code_08050E98.o(.text);
+        . = 0x50AE8; /* JP ROM contiguous UI-state adapter block. */
+        src/ui_state.o(.text.ui_state_adapters);
         . = 0x50C70; /* JP ROM 0x08050C70, remaining raw UI-adjacent code. */
         asm/code_0803EE94.o(.text.code_08050E50);
         . = 0x52068; /* JP/US-shared animal-festival ranking entry copy. */
@@ -793,7 +781,7 @@ SECTIONS
         . = 0xF9750; src/farm_house.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        src/code_08050E0C.o(.rodata);
+        src/ui_state.o(.rodata.ui_state_adapters);
         src/ui_state.o(.rodata);
         . = 0xF97D8; data/text/new_game_name_entry_preset.o(.rodata);
         . = 0xF996C; src/new_game_name_entry_ui_data.o(.rodata);
