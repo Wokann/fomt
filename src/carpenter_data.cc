@@ -1,9 +1,13 @@
 #include "carpenter_text.hh"
 
 #if defined(REGION_JP)
-#include "data/text/jp/carpenter_menu.cc"
+#define FOMT_TEXT_CARPENTER_MENU
+#include "data/text/jp/carpenter.cc"
+#undef FOMT_TEXT_CARPENTER_MENU
 #else
-#include "data/text/us/carpenter_menu.cc"
+#define FOMT_TEXT_CARPENTER_MENU
+#include "data/text/us/carpenter.cc"
+#undef FOMT_TEXT_CARPENTER_MENU
 #endif
 
 CarpenterCatalogEntry const gCarpenterCatalog[] = {
@@ -32,9 +36,13 @@ CarpenterCatalogEntry const gCarpenterCatalog[] = {
 #include "data/text/common/carpenter.cc"
 
 #if defined(REGION_JP)
-#include "data/text/jp/carpenter_dialogue.cc"
+#define FOMT_TEXT_CARPENTER_DIALOGUE
+#include "data/text/jp/carpenter.cc"
+#undef FOMT_TEXT_CARPENTER_DIALOGUE
 #else
-#include "data/text/us/carpenter_dialogue.cc"
+#define FOMT_TEXT_CARPENTER_DIALOGUE
+#include "data/text/us/carpenter.cc"
+#undef FOMT_TEXT_CARPENTER_DIALOGUE
 #endif
 
 char const gCppRuntimeBadAlloc_Carpenter[] ALIGN(4) =
