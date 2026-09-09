@@ -81,6 +81,19 @@ u8 const * const gIntroSceneUnpackSources[] = {
     gUnk_IntroSceneUnpackSource_019,
 };
 
+EXTERN_C_END
+
+// The childhood-visit dialogue follows the unpack-source table in both ROMs.
+// Keeping this selected text here makes the source order match the bounded
+// intro-scene localization island in the linker scripts.
+#if defined(REGION_JP)
+#include "data/text/jp/intro_scene.cc"
+#else
+#include "data/text/us/intro_scene.cc"
+#endif
+
+EXTERN_C
+
 // The matching runtime literal follows the dialogue data in the original ROM.
 char const gCppRuntimeBadAlloc_IntroSceneTextTrailer[]
     SECTION(".rodata.intro_scene_trailer") =

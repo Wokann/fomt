@@ -711,8 +711,10 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4);
         . = 0xFB1D8; src/intro_scene_data.o(.rodata.intro_scene_prefix);
+        /* Bounded intro-scene localization island: resource table and dialogue. */
+        FILL(0x00);
         . = 0xFB1E4; src/intro_scene_data.o(.rodata);
-        . = 0xFB234; data/text/intro_scene.o(.rodata);
+        ASSERT(. <= 0xFB818, "US intro-scene localization island overflow");
         FILL(0x00);
         . = 0xFB818; src/intro_scene_data.o(.rodata.intro_scene_trailer);
         . = 0xFB824; data/text/farm_status.o(.rodata);
