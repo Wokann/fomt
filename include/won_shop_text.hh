@@ -11,11 +11,6 @@ struct WonShopCatalogEntry
     u32 price;
 };
 
-#define WON_SHOP_CATALOG SECTION(".rodata.won_shop_catalog")
-#define WON_SHOP_DIALOGUE SECTION(".rodata.won_shop_dialogue")
-#define WON_SHOP_DELIVERY_DIALOGUE SECTION(".rodata.won_shop_delivery_dialogue")
-#define WON_SHOP_TRAILER SECTION(".rodata.won_shop_trailer")
-
 extern WonShopCatalogEntry const gWonShopCatalog[];
 
 extern char const gText_WonShop_ToolCapacityFull[];

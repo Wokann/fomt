@@ -2,7 +2,7 @@
 
 #include "item.hh"
 
-WonShopCatalogEntry const gWonShopCatalog[] WON_SHOP_CATALOG = {
+WonShopCatalogEntry const gWonShopCatalog[] = {
     { ARTICLE_BALL, 100 },
     { ARTICLE_FRISBEE, 5000 },
     { ARTICLE_JEWEL_OF_TRUTH, 50000 },
@@ -14,3 +14,9 @@ WonShopCatalogEntry const gWonShopCatalog[] WON_SHOP_CATALOG = {
     { TOOL_MAGIC_SEEDS, 600 },
     { TOOL_TOY_FLOWER_SEEDS, 400 },
 };
+
+#if defined(REGION_JP)
+#include "data/text/jp/won_shop.cc"
+#else
+#include "data/text/us/won_shop.cc"
+#endif

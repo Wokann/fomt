@@ -132,6 +132,7 @@ TEXT_FRAGMENT_SOURCES := \
   data/text/$(TEXT_REGION)/clinic.cc \
   data/text/$(TEXT_REGION)/inn_shop_descriptions.cc \
   data/text/$(TEXT_REGION)/inn_shop_dialogue.cc \
+  data/text/$(TEXT_REGION)/won_shop.cc \
   data/text/$(TEXT_REGION)/records.cc \
   data/text/$(TEXT_REGION)/horse_race.cc \
   data/text/$(TEXT_REGION)/horse_race_prize_catalog.cc \
