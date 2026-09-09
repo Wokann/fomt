@@ -6,6 +6,8 @@
 
 指南页由 `fomt-text guide-collection` 生成到 `src/reference_guide.o(.rodata.reference_guide)`；按维护规则，指南仅作为一个连续 ROM 块记录起点和终点，不逐页展开。
 
+已整理的 `[嵌入文本 / 数据]` 本地化岛在链接脚本中均有显式起点、`ASSERT` 上界与下一个已知物理块的起点。可在岛内修改文本及紧邻的已解析指针/结构；若总大小越过上界，构建会失败，而不会静默挤压后续尚未反编译的 ROM 数据。
+
 ## 读取规则
 
 - `[文本对象]`：独立 `data/text` 对象，或包含已识别 `gText_*` 的宿主对象。
@@ -118,10 +120,7 @@
 | `0x080FBE88`–`0x080FBE91` | `src/town_map_data.o(.rodata.staff_credits_trailer)` | [数据] | `src/town_map_data.c/.cc` | 运行时字符串 `1` 项 |
 | `0x080FBE92`–`0x080FBE99` | `src/town_map_data.o(.rodata.town_map_resource_ids)` | [数据] | `src/town_map_data.c/.cc` | `gTownMapResourceIds` |
 | `0x080FBE9A`–`0x080FBE9B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FBE9C`–`0x080FC7E4` | `data/text/town_map.o(.rodata)` | [文本对象] | `data/text/jp/town_map.cc` | 文本 `65` 项（详见下方索引） |
-| `0x080FC7E5`–`0x080FC7E7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
-| `0x080FC7E8`–`0x080FCB07` | `src/town_map_data.o(.rodata.town_map_hotspots)` | [数据] | `src/town_map_data.c/.cc` | `gTownMapHotspots` |
-| `0x080FCB08`–`0x080FCCB7` | `src/town_map_data.o(.rodata.town_map_area_lookup)` | [数据] | `src/town_map_data.c/.cc` | `gTownMapAreaLookup`, `gTownMapAreaLookupFallback_034To133`, `gTownMapAreaLookupFallback_134To233` |
+| `0x080FBE9C`–`0x080FCCB7` | `src/town_map_data.o(.rodata)` | [嵌入文本 / 数据] | `src/town_map_data.cc`<br>`data/text/jp/town_map.cc` | 文本 `65` 项（详见下方索引）<br>文本后对象内 `00` 对齐 `3` 字节<br>`gTownMapHotspots`<br>`gTownMapAreaLookup`, `gTownMapAreaLookupFallback_034To133`, `gTownMapAreaLookupFallback_134To233` |
 | `0x080FCCB8`–`0x080FCCF2` | `src/library_data.o(.rodata.library_opening_hours)` | [嵌入文本] | `data/text/jp/library.cc` | 文本 `1` 项（详见下方索引） |
 | `0x080FCCF3`–`0x080FCCF3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x080FCCF4`–`0x080FD083` | `src/town_map_data.o(.rodata.town_map_area_bounds)` | [数据] | `src/town_map_data.c/.cc` | `gTownMapAreaBounds` |
@@ -1300,71 +1299,71 @@
 | `0x080FBC60` | `gText_StaffCredits_Line114` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
 | `0x080FBC74` | `gText_StaffCredits_Line116` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
 | `0x080FBC80` | `gText_StaffCredits_Line126` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBE9C` | `gText_TownMap_PlayerFarmNameSuffix` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FBEA4` | `gText_TownMap_PlayerFarmDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FBEB8` | `gText_TownMap_PlayerFarmLabel` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FBEC0` | `gText_TownMap_MountainCottageLabel` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FBECC` | `gText_TownMap_SeasideCottageLabel` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FBED8` | `gText_TownMap_TownCottageLabel` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FBEE4` | `gText_TownMap_TimeWindowSeasonDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FBF08` | `gText_TownMap_TimeWindowDateDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FBF2C` | `gText_TownMap_TimeWindowDayDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FBF50` | `gText_TownMap_TimeWindowTimeDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FBF74` | `gText_TownMap_TimeWindowWeatherDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FBF98` | `gText_TownMap_TimeWindowLabel` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FBFA8` | `gText_TownMap_BasilHouseLabel` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FBFB8` | `gText_TownMap_MaryLibraryDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FBFE4` | `gText_TownMap_MaryLibraryHours` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC020` | `gText_TownMap_EllenHouseLabel` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC030` | `gText_TownMap_MayorHouseLabel` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC040` | `gText_TownMap_SupermarketDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC07C` | `gText_TownMap_SupermarketHours` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC0B8` | `gText_TownMap_MineralClinicDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC0F0` | `gText_TownMap_MineralClinicHours` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC12C` | `gText_TownMap_ChurchDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC168` | `gText_TownMap_ChurchHours` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC18C` | `gText_TownMap_AjaWineryDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC1D4` | `gText_TownMap_AjaWineryHours` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC210` | `gText_TownMap_DukeCellarLabel` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC22C` | `gText_TownMap_DougsInnDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC26C` | `gText_TownMap_DougsInnHours` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC2A4` | `gText_TownMap_HarvestSpritesHomeDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC2D0` | `gText_TownMap_HarvestSpritesHomeHours` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC300` | `gText_TownMap_ZackHouseDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC338` | `gText_TownMap_ZackHouseLabel` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC348` | `gText_TownMap_KaiSeasideLodgeDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC370` | `gText_TownMap_KaiSeasideLodgeHours` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC3BC` | `gText_TownMap_SaibaraBlacksmithDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC3F8` | `gText_TownMap_SaibaraBlacksmithHours` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC434` | `gText_TownMap_YodelFarmDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC458` | `gText_TownMap_YodelFarmHours` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC494` | `gText_TownMap_PoultryFarmDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC4B4` | `gText_TownMap_PoultryFarmHours` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC4F0` | `gText_TownMap_WoodcutterHouseDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC524` | `gText_TownMap_WoodcutterHouseHours` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC55C` | `gText_TownMap_LakeMineDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC584` | `gText_TownMap_LakeMineLabel` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC590` | `gText_TownMap_SpringMineDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC5B8` | `gText_TownMap_SpringMineLabel` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC5C4` | `gText_TownMap_HotSpringDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC5E4` | `gText_TownMap_HotSpringLabel` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC5EC` | `gText_TownMap_Empty` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC5F0` | `gText_TownMap_NorthMineralTownDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC620` | `gText_TownMap_NorthMineralTownLabel` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC634` | `gText_TownMap_RearChurchDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC658` | `gText_TownMap_RearChurchLabel` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC660` | `gText_TownMap_RoseSquareDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC68C` | `gText_TownMap_RoseSquareLabel` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC698` | `gText_TownMap_MineralBeachDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC6E4` | `gText_TownMap_MineralBeachLabel` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC6F4` | `gText_TownMap_SouthMineralTownDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC730` | `gText_TownMap_SouthMineralTownLabel` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC744` | `gText_TownMap_ForestDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC75C` | `gText_TownMap_ForestLabel` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC760` | `gText_TownMap_MothersHillPeakDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC790` | `gText_TownMap_MothersHillPeakLabel` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC7A4` | `gText_TownMap_MothersHillDescription` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC7D8` | `gText_TownMap_MothersHillLabel` | `data/text/jp/town_map.cc` | `data/text/town_map.o(.rodata)` |
+| `0x080FBE9C` | `gText_TownMap_PlayerFarmNameSuffix` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FBEA4` | `gText_TownMap_PlayerFarmDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FBEB8` | `gText_TownMap_PlayerFarmLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FBEC0` | `gText_TownMap_MountainCottageLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FBECC` | `gText_TownMap_SeasideCottageLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FBED8` | `gText_TownMap_TownCottageLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FBEE4` | `gText_TownMap_TimeWindowSeasonDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FBF08` | `gText_TownMap_TimeWindowDateDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FBF2C` | `gText_TownMap_TimeWindowDayDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FBF50` | `gText_TownMap_TimeWindowTimeDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FBF74` | `gText_TownMap_TimeWindowWeatherDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FBF98` | `gText_TownMap_TimeWindowLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FBFA8` | `gText_TownMap_BasilHouseLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FBFB8` | `gText_TownMap_MaryLibraryDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FBFE4` | `gText_TownMap_MaryLibraryHours` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC020` | `gText_TownMap_EllenHouseLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC030` | `gText_TownMap_MayorHouseLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC040` | `gText_TownMap_SupermarketDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC07C` | `gText_TownMap_SupermarketHours` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC0B8` | `gText_TownMap_MineralClinicDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC0F0` | `gText_TownMap_MineralClinicHours` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC12C` | `gText_TownMap_ChurchDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC168` | `gText_TownMap_ChurchHours` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC18C` | `gText_TownMap_AjaWineryDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC1D4` | `gText_TownMap_AjaWineryHours` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC210` | `gText_TownMap_DukeCellarLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC22C` | `gText_TownMap_DougsInnDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC26C` | `gText_TownMap_DougsInnHours` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC2A4` | `gText_TownMap_HarvestSpritesHomeDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC2D0` | `gText_TownMap_HarvestSpritesHomeHours` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC300` | `gText_TownMap_ZackHouseDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC338` | `gText_TownMap_ZackHouseLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC348` | `gText_TownMap_KaiSeasideLodgeDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC370` | `gText_TownMap_KaiSeasideLodgeHours` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC3BC` | `gText_TownMap_SaibaraBlacksmithDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC3F8` | `gText_TownMap_SaibaraBlacksmithHours` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC434` | `gText_TownMap_YodelFarmDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC458` | `gText_TownMap_YodelFarmHours` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC494` | `gText_TownMap_PoultryFarmDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC4B4` | `gText_TownMap_PoultryFarmHours` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC4F0` | `gText_TownMap_WoodcutterHouseDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC524` | `gText_TownMap_WoodcutterHouseHours` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC55C` | `gText_TownMap_LakeMineDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC584` | `gText_TownMap_LakeMineLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC590` | `gText_TownMap_SpringMineDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC5B8` | `gText_TownMap_SpringMineLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC5C4` | `gText_TownMap_HotSpringDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC5E4` | `gText_TownMap_HotSpringLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC5EC` | `gText_TownMap_Empty` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC5F0` | `gText_TownMap_NorthMineralTownDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC620` | `gText_TownMap_NorthMineralTownLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC634` | `gText_TownMap_RearChurchDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC658` | `gText_TownMap_RearChurchLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC660` | `gText_TownMap_RoseSquareDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC68C` | `gText_TownMap_RoseSquareLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC698` | `gText_TownMap_MineralBeachDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC6E4` | `gText_TownMap_MineralBeachLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC6F4` | `gText_TownMap_SouthMineralTownDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC730` | `gText_TownMap_SouthMineralTownLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC744` | `gText_TownMap_ForestDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC75C` | `gText_TownMap_ForestLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC760` | `gText_TownMap_MothersHillPeakDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC790` | `gText_TownMap_MothersHillPeakLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC7A4` | `gText_TownMap_MothersHillDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC7D8` | `gText_TownMap_MothersHillLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
 | `0x080FCCB8` | `gText_Library_OpeningHours` | `data/text/jp/library.cc` | `src/library_data.o(.rodata.library_opening_hours)` |
 | `0x080FD0B0` | `gText_Library_Menu` | `data/text/jp/library.cc` | `src/library_data.o(.rodata.library_menu)` |
 | `0x080FD0D0` | `gText_PoultryShop_Empty` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
@@ -2013,10 +2012,7 @@
 | `0x080FC6B8`–`0x080FC6C1` | `src/town_map_data.o(.rodata.staff_credits_trailer)` | [数据] | `src/town_map_data.c/.cc` | 运行时字符串 `1` 项 |
 | `0x080FC6C2`–`0x080FC6C9` | `src/town_map_data.o(.rodata.town_map_resource_ids)` | [数据] | `src/town_map_data.c/.cc` | `gTownMapResourceIds` |
 | `0x080FC6CA`–`0x080FC6CB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FC6CC`–`0x080FD07D` | `data/text/town_map.o(.rodata)` | [文本对象] | `data/text/us/town_map.cc` | 文本 `65` 项（详见下方索引） |
-| `0x080FD07E`–`0x080FD07F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FD080`–`0x080FD39F` | `src/town_map_data.o(.rodata.town_map_hotspots)` | [数据] | `src/town_map_data.c/.cc` | `gTownMapHotspots` |
-| `0x080FD3A0`–`0x080FD54F` | `src/town_map_data.o(.rodata.town_map_area_lookup)` | [数据] | `src/town_map_data.c/.cc` | `gTownMapAreaLookup`, `gTownMapAreaLookupFallback_034To133`, `gTownMapAreaLookupFallback_134To233` |
+| `0x080FC6CC`–`0x080FD54F` | `src/town_map_data.o(.rodata)` | [嵌入文本 / 数据] | `src/town_map_data.cc`<br>`data/text/us/town_map.cc` | 文本 `65` 项（详见下方索引）<br>文本后对象内 `00` 对齐 `2` 字节<br>`gTownMapHotspots`<br>`gTownMapAreaLookup`, `gTownMapAreaLookupFallback_034To133`, `gTownMapAreaLookupFallback_134To233` |
 | `0x080FD550`–`0x080FD582` | `src/library_data.o(.rodata.library_opening_hours)` | [嵌入文本] | `data/text/us/library.cc` | 文本 `1` 项（详见下方索引） |
 | `0x080FD583`–`0x080FD583` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x080FD584`–`0x080FD913` | `src/town_map_data.o(.rodata.town_map_area_bounds)` | [数据] | `src/town_map_data.c/.cc` | `gTownMapAreaBounds` |
@@ -3183,71 +3179,71 @@
 | `0x080FC478` | `gText_StaffCredits_Line122` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
 | `0x080FC488` | `gText_StaffCredits_Line125` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
 | `0x080FC4A0` | `gText_StaffCredits_Line126` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC6CC` | `gText_TownMap_PlayerFarmNameSuffix` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC6D4` | `gText_TownMap_PlayerFarmDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC6E8` | `gText_TownMap_PlayerFarmLabel` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC6F0` | `gText_TownMap_MountainCottageLabel` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC704` | `gText_TownMap_SeasideCottageLabel` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC714` | `gText_TownMap_TownCottageLabel` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC724` | `gText_TownMap_TimeWindowSeasonDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC750` | `gText_TownMap_TimeWindowDateDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC774` | `gText_TownMap_TimeWindowDayDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC798` | `gText_TownMap_TimeWindowTimeDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC7C0` | `gText_TownMap_TimeWindowWeatherDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC7E8` | `gText_TownMap_TimeWindowLabel` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC7F4` | `gText_TownMap_BasilHouseLabel` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC804` | `gText_TownMap_MaryLibraryDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC82C` | `gText_TownMap_MaryLibraryHours` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC860` | `gText_TownMap_EllenHouseLabel` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC870` | `gText_TownMap_MayorHouseLabel` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC880` | `gText_TownMap_SupermarketDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC8C4` | `gText_TownMap_SupermarketHours` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC8FC` | `gText_TownMap_MineralClinicDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC928` | `gText_TownMap_MineralClinicHours` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC95C` | `gText_TownMap_ChurchDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC99C` | `gText_TownMap_ChurchHours` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC9B4` | `gText_TownMap_AjaWineryDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FC9F0` | `gText_TownMap_AjaWineryHours` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCA20` | `gText_TownMap_DukeCellarLabel` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCA30` | `gText_TownMap_DougsInnDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCA88` | `gText_TownMap_DougsInnHours` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCAB4` | `gText_TownMap_HarvestSpritesHomeDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCAF0` | `gText_TownMap_HarvestSpritesHomeHours` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCB18` | `gText_TownMap_ZackHouseDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCB4C` | `gText_TownMap_ZackHouseLabel` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCB5C` | `gText_TownMap_KaiSeasideLodgeDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCB88` | `gText_TownMap_KaiSeasideLodgeHours` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCBC0` | `gText_TownMap_SaibaraBlacksmithDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCC0C` | `gText_TownMap_SaibaraBlacksmithHours` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCC48` | `gText_TownMap_YodelFarmDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCC6C` | `gText_TownMap_YodelFarmHours` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCC9C` | `gText_TownMap_PoultryFarmDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCCBC` | `gText_TownMap_PoultryFarmHours` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCCEC` | `gText_TownMap_WoodcutterHouseDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCD2C` | `gText_TownMap_WoodcutterHouseHours` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCD64` | `gText_TownMap_LakeMineDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCD90` | `gText_TownMap_LakeMineLabel` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCD9C` | `gText_TownMap_SpringMineDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCDCC` | `gText_TownMap_SpringMineLabel` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCDD8` | `gText_TownMap_HotSpringDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCE08` | `gText_TownMap_HotSpringLabel` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCE14` | `gText_TownMap_Empty` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCE18` | `gText_TownMap_NorthMineralTownDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCE50` | `gText_TownMap_NorthMineralTownLabel` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCE6C` | `gText_TownMap_RearChurchDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCEA0` | `gText_TownMap_RearChurchLabel` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCEB0` | `gText_TownMap_RoseSquareDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCED8` | `gText_TownMap_RoseSquareLabel` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCEE4` | `gText_TownMap_MineralBeachDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCF28` | `gText_TownMap_MineralBeachLabel` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCF38` | `gText_TownMap_SouthMineralTownDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCF8C` | `gText_TownMap_SouthMineralTownLabel` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCFA8` | `gText_TownMap_ForestDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCFD4` | `gText_TownMap_ForestLabel` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FCFDC` | `gText_TownMap_MothersHillPeakDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FD014` | `gText_TownMap_MothersHillPeakLabel` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FD02C` | `gText_TownMap_MothersHillDescription` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
-| `0x080FD070` | `gText_TownMap_MothersHillLabel` | `data/text/us/town_map.cc` | `data/text/town_map.o(.rodata)` |
+| `0x080FC6CC` | `gText_TownMap_PlayerFarmNameSuffix` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC6D4` | `gText_TownMap_PlayerFarmDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC6E8` | `gText_TownMap_PlayerFarmLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC6F0` | `gText_TownMap_MountainCottageLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC704` | `gText_TownMap_SeasideCottageLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC714` | `gText_TownMap_TownCottageLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC724` | `gText_TownMap_TimeWindowSeasonDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC750` | `gText_TownMap_TimeWindowDateDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC774` | `gText_TownMap_TimeWindowDayDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC798` | `gText_TownMap_TimeWindowTimeDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC7C0` | `gText_TownMap_TimeWindowWeatherDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC7E8` | `gText_TownMap_TimeWindowLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC7F4` | `gText_TownMap_BasilHouseLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC804` | `gText_TownMap_MaryLibraryDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC82C` | `gText_TownMap_MaryLibraryHours` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC860` | `gText_TownMap_EllenHouseLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC870` | `gText_TownMap_MayorHouseLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC880` | `gText_TownMap_SupermarketDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC8C4` | `gText_TownMap_SupermarketHours` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC8FC` | `gText_TownMap_MineralClinicDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC928` | `gText_TownMap_MineralClinicHours` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC95C` | `gText_TownMap_ChurchDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC99C` | `gText_TownMap_ChurchHours` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC9B4` | `gText_TownMap_AjaWineryDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FC9F0` | `gText_TownMap_AjaWineryHours` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCA20` | `gText_TownMap_DukeCellarLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCA30` | `gText_TownMap_DougsInnDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCA88` | `gText_TownMap_DougsInnHours` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCAB4` | `gText_TownMap_HarvestSpritesHomeDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCAF0` | `gText_TownMap_HarvestSpritesHomeHours` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCB18` | `gText_TownMap_ZackHouseDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCB4C` | `gText_TownMap_ZackHouseLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCB5C` | `gText_TownMap_KaiSeasideLodgeDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCB88` | `gText_TownMap_KaiSeasideLodgeHours` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCBC0` | `gText_TownMap_SaibaraBlacksmithDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCC0C` | `gText_TownMap_SaibaraBlacksmithHours` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCC48` | `gText_TownMap_YodelFarmDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCC6C` | `gText_TownMap_YodelFarmHours` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCC9C` | `gText_TownMap_PoultryFarmDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCCBC` | `gText_TownMap_PoultryFarmHours` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCCEC` | `gText_TownMap_WoodcutterHouseDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCD2C` | `gText_TownMap_WoodcutterHouseHours` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCD64` | `gText_TownMap_LakeMineDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCD90` | `gText_TownMap_LakeMineLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCD9C` | `gText_TownMap_SpringMineDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCDCC` | `gText_TownMap_SpringMineLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCDD8` | `gText_TownMap_HotSpringDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCE08` | `gText_TownMap_HotSpringLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCE14` | `gText_TownMap_Empty` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCE18` | `gText_TownMap_NorthMineralTownDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCE50` | `gText_TownMap_NorthMineralTownLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCE6C` | `gText_TownMap_RearChurchDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCEA0` | `gText_TownMap_RearChurchLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCEB0` | `gText_TownMap_RoseSquareDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCED8` | `gText_TownMap_RoseSquareLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCEE4` | `gText_TownMap_MineralBeachDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCF28` | `gText_TownMap_MineralBeachLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCF38` | `gText_TownMap_SouthMineralTownDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCF8C` | `gText_TownMap_SouthMineralTownLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCFA8` | `gText_TownMap_ForestDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCFD4` | `gText_TownMap_ForestLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FCFDC` | `gText_TownMap_MothersHillPeakDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FD014` | `gText_TownMap_MothersHillPeakLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FD02C` | `gText_TownMap_MothersHillDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
+| `0x080FD070` | `gText_TownMap_MothersHillLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
 | `0x080FD550` | `gText_Library_OpeningHours` | `data/text/us/library.cc` | `src/library_data.o(.rodata.library_opening_hours)` |
 | `0x080FD940` | `gText_Library_Menu` | `data/text/us/library.cc` | `src/library_data.o(.rodata.library_menu)` |
 | `0x080FD964` | `gText_PoultryShop_Empty` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |

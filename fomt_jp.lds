@@ -817,10 +817,10 @@ SECTIONS
         . = ALIGN(4); data/text/staff_credits.o(.rodata);
         . = 0xFBE88; src/town_map_data.o(.rodata.staff_credits_trailer);
         src/town_map_data.o(.rodata.town_map_resource_ids);
+        /* Bounded Town Map localization island: labels, hotspots, and lookup. */
         FILL(0x00);
-        . = ALIGN(4); data/text/town_map.o(.rodata);
-        . = 0xFC7E8; src/town_map_data.o(.rodata.town_map_hotspots);
-        . = 0xFCB08; src/town_map_data.o(.rodata.town_map_area_lookup);
+        . = 0xFBE9C; src/town_map_data.o(.rodata);
+        ASSERT(. <= 0xFCCB8, "JP Town Map localization island overflow");
         . = 0xFCCB8; src/library_data.o(.rodata.library_opening_hours);
         FILL(0x00);
         . = ALIGN(4); src/town_map_data.o(.rodata.town_map_area_bounds);

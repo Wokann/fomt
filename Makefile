@@ -125,6 +125,7 @@ TEXT_FRAGMENT_SOURCES := \
   data/text/$(TEXT_REGION)/link_communication.cc \
   data/text/$(TEXT_REGION)/livestock_shop.cc \
   data/text/$(TEXT_REGION)/menu.cc \
+  data/text/$(TEXT_REGION)/town_map.cc \
   data/text/$(TEXT_REGION)/ui_error.cc \
   data/text/$(TEXT_REGION)/poultry_shop.cc \
   data/text/$(TEXT_REGION)/supermarket.cc \
