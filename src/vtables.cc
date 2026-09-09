@@ -1849,6 +1849,27 @@ extern RawVTableFunction const vtable_unk_080E7908[]
 #endif
     };
 
+#if defined(REGION_JP)
+extern void func_08051F4C(void);
+extern void func_08051F8C(void);
+#else
+extern void func_080E1148(void);
+#endif
+
+// Preserve this three-slot region-specific callback table in ROM order.
+extern RawVTableFunction const vtable_unk_080E7928[]
+    SECTION(".rodata.vtable_7928") = {
+#if defined(REGION_JP)
+        nullptr,
+        func_08051F4C,
+        func_08051F8C,
+#else
+        nullptr,
+        nullptr,
+        func_080E1148,
+#endif
+    };
+
 // This following four-slot block stays between raw table ranges, so it is
 // emitted separately while retaining its original physical order.
 extern RawVTableFunction const vtable_unk_080E7934[]
@@ -2346,6 +2367,19 @@ extern RawVTableFunction const vtable_unk_080E7B68[]
         func_08075DEC,
 #endif
     };
+
+#if defined(REGION_JP)
+extern void func_080E25D4(void);
+extern void __pure_virtual(void);
+
+// This three-slot table exists only in the JP vtable range.
+extern RawVTableFunction const vtable_unk_080E6FAC[]
+    SECTION(".rodata.vtable_6fac") = {
+        nullptr,
+        func_080E25D4,
+        __pure_virtual,
+    };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E7B78[]
     SECTION(".rodata.vtable_7b78") = {
@@ -4575,39 +4609,5 @@ extern RawVTableFunction const vtable_unk_080E85E8[]
         func_080CFB5C,
 #endif
     };
-
-#if defined(REGION_JP)
-extern void func_08051F4C(void);
-extern void func_08051F8C(void);
-#else
-extern void func_080E1148(void);
-#endif
-
-// Preserve this three-slot region-specific callback table in ROM order.
-extern RawVTableFunction const vtable_unk_080E7928[]
-    SECTION(".rodata.vtable_7928") = {
-#if defined(REGION_JP)
-        nullptr,
-        func_08051F4C,
-        func_08051F8C,
-#else
-        nullptr,
-        nullptr,
-        func_080E1148,
-#endif
-    };
-
-#if defined(REGION_JP)
-extern void func_080E25D4(void);
-extern void __pure_virtual(void);
-
-// This three-slot table exists only in the JP vtable range.
-extern RawVTableFunction const vtable_unk_080E6FAC[]
-    SECTION(".rodata.vtable_6fac") = {
-        nullptr,
-        func_080E25D4,
-        __pure_virtual,
-    };
-#endif
 
 EXTERN_C_END
