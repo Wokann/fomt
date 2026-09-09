@@ -1,12 +1,15 @@
 #include "help_menu.hh"
 
 /*
- * Keep the source order equal to the ROM order: the four localized menu
- * labels are followed directly by the byte table that their UI code uses.
+ * Keep the source order equal to the ROM order: the localized load-error
+ * strings precede the four menu labels, which are followed by the byte table
+ * that their UI code uses.
  */
 #if defined(REGION_JP)
+#include "data/text/jp/load_error.cc"
 #include "data/text/jp/help_menu.cc"
 #else
+#include "data/text/us/load_error.cc"
 #include "data/text/us/help_menu.cc"
 #endif
 

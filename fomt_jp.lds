@@ -732,12 +732,10 @@ SECTIONS
         . = 0xEFD60; src/game_state.o(.rodata);
         ASSERT(. <= 0xEFDD0, "JP Calendar localization island overflow");
         FILL(0x00);
-        . = 0xEFDD0; data/text/load_error.o(.rodata);
+        /* Bounded Help localization island: error text, labels, byte table. */
+        . = 0xEFDD0; src/help_menu.o(.rodata);
+        ASSERT(. <= 0xEFEA4, "JP Help localization island overflow");
         FILL(0x00);
-        . = ALIGN(4);
-        src/help_menu.o(.rodata);
-        FILL(0x00);
-        . = ALIGN(4);
         data/text/animal_memorial.o(.rodata);
         src/animal_data.o(.rodata.animal_data_prefix);
         src/animal_data.o(.rodata);

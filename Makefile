@@ -120,6 +120,7 @@ TEXT_FRAGMENT_SOURCES := \
   data/text/$(TEXT_REGION)/animal_data.cc \
   data/text/$(TEXT_REGION)/entity_ui.cc \
   data/text/$(TEXT_REGION)/fixed_labels.cc \
+  data/text/$(TEXT_REGION)/load_error.cc \
   data/text/$(TEXT_REGION)/help_menu.cc \
   data/text/$(TEXT_REGION)/intro_scene.cc \
   data/text/$(TEXT_REGION)/link_communication.cc \
