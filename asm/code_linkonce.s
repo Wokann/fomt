@@ -8423,6 +8423,12 @@ func_080D7B44: @ 0x080D7B44
     .thumb_set func_080DD540, func_080DD4F0 + 0x50
     .global func_080DD514
     .thumb_set func_080DD514, func_080DD4F0 + 0x24
+    @ Exact JP entries corresponding to native US callbacks in the raw table
+    @ at 0x080E75E4.
+    .global func_080DD788
+    .thumb_set func_080DD788, func_080DD5E4 + 0x1A4
+    .global func_080DD5B8
+    .thumb_set func_080DD5B8, func_080DD594 + 0x24
     .global func_080E0C38
     .thumb_set func_080E0C38, func_080D7E64 + 0x8DBC
     .global func_080E0A94
