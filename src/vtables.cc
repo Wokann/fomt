@@ -2253,6 +2253,87 @@ extern RawVTableFunction const vtable_unk_080E64C8[]
 #endif
     };
 
+extern void func_080DC6028(void);
+#if defined(REGION_JP)
+extern void func_08024330(void);
+#else
+extern void func_0802459C(void);
+#endif
+
+// Preserve this 35-slot virtual table and its region-specific callbacks in ROM order.
+extern RawVTableFunction const __vt_15Entity_080E6554[]
+    SECTION(".rodata.vtable_6554") = {
+        nullptr,
+        nullptr,
+        func_080DC6028,
+#if defined(REGION_JP)
+        func_08020034,
+#else
+        func_080202A0,
+#endif
+        vfunc_10__7AEntity,
+        vfunc_14__7AEntity,
+#if defined(REGION_JP)
+        func_08024330,
+#else
+        func_0802459C,
+#endif
+        vfunc_1C__7AEntityUi,
+        vfunc_20__7AEntity,
+        vfunc_24__7AEntity,
+        vfunc_28__C7AEntity,
+        func_0803242C,
+        __pure_virtual,
+        func_080324B8,
+#if defined(REGION_JP)
+        func_080328D4,
+#else
+        func_08032B40,
+#endif
+#if defined(REGION_JP)
+        func_08020058,
+        func_0802005C,
+        func_08020060,
+        func_08020064,
+        func_08020068,
+        func_0802006C,
+        func_08020070,
+        func_08020074,
+        func_08020078,
+        func_0802007C,
+        func_08020080,
+        func_08020084,
+        func_08020088,
+        func_0802008C,
+        func_08020090,
+        func_08020094,
+        func_08020098,
+        func_0802009C,
+        func_080200A0,
+#else
+        func_080202C4,
+        func_080202C8,
+        func_080202CC,
+        func_080202D0,
+        func_080202D4,
+        func_080202D8,
+        func_080202DC,
+        func_080202E0,
+        func_080202E4,
+        func_080202E8,
+        func_080202EC,
+        func_080202F0,
+        func_080202F4,
+        func_080202F8,
+        func_080202FC,
+        func_08020300,
+        func_08020304,
+        func_08020308,
+        func_0802030C,
+#endif
+        __pure_virtual,
+    };
+
 #if defined(REGION_JP)
 // The JP Script Engine code is still retained as a raw code range, but this
 // ABI table has the same five logical slots as the compiled US table.

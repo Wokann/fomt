@@ -201,6 +201,10 @@ code_entities_jp_raw_start:
     .global func_080213C8
     .thumb_set func_080213C8, code_entities_jp_raw_start + 0x15D4
 
+    @ Exact JP entry referenced by the virtual table at 0x080E6554.
+    .global func_08024330
+    .thumb_set func_08024330, func_08024280 + 0xB0
+
     .global func_08032090
     .thumb_set func_08032090, code_entities_jp_raw_start + 0x12030
     .else
@@ -32196,4 +32200,8 @@ func_08032090: @ 0x08032090
     .thumb_set func_080215FC, func_0802151C + 0xE0
     .global func_08021634
     .thumb_set func_08021634, func_08021620 + 0x14
+
+    @ Exact US entry referenced by the virtual table at 0x080E6554.
+    .global func_0802459C
+    .thumb_set func_0802459C, func_080244EC + 0xB0
     .endif
