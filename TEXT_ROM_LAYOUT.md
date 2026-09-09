@@ -220,7 +220,7 @@
 | `0x08107380`–`0x081073AB` | `src/harvest_sprite.o(.rodata.harvest_sprite_minigames_animal_husbandry_u16_tables)` | [数据] | `src/harvest_sprite.c/.cc` | `gUnk_HarvestSpriteMiniGameAnimalHusbandrySelectionValues`, `gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues0`, `gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues1`, `gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues2`, `gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues3` |
 | `0x081073AC`–`0x081073B5` | `src/harvest_sprite.o(.rodata.harvest_sprite_minigames_animal_husbandry_runtime)` | [数据] | `src/harvest_sprite.c/.cc` | 运行时字符串 `1` 项 |
 | `0x081073B6`–`0x081073B8` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
-| `0x081073B9`–`0x081074BC` | `data/text/chicken_festival.o(.rodata)` | [文本对象] | `data/text/jp/chicken_festival.cc` | 文本 `1` 项（详见下方索引） |
+| `0x081073B9`–`0x081074BC` | `src/harvest_sprite.o(.rodata.harvest_sprite_minigames_chicken_festival_contestant_names)` | [鸡祭典小游戏文本段] | `data/text/jp/chicken_festival.cc` | 文本 `1` 项（详见下方索引） |
 | `0x081074BD`–`0x081074BF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
 | `0x081074C0`–`0x081075E9` | `data/text/harvest_sprite_minigames_chicken_festival_opening.o(.rodata)` | [文本对象] | `data/text/jp/harvest_sprite_minigames.cc` | 文本 `11` 项（详见下方索引） |
 | `0x081075EA`–`0x08107619` | `src/harvest_sprite.o(.rodata.harvest_sprite_minigames_chicken_festival_values)` | [数据] | `src/harvest_sprite.c/.cc` | `gUnk_HarvestSpriteMiniGameChickenFestivalValues` |
@@ -1808,7 +1808,7 @@
 | `0x0810732C` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_ScorePrefix` | `data/text/jp/harvest_sprite_minigames.cc` | `data/text/harvest_sprite_minigames.o(.rodata)` |
 | `0x08107338` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultSuffix` | `data/text/jp/harvest_sprite_minigames.cc` | `data/text/harvest_sprite_minigames.o(.rodata)` |
 | `0x0810734C` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreSummary` | `data/text/jp/harvest_sprite_minigames.cc` | `data/text/harvest_sprite_minigames.o(.rodata)` |
-| `0x081073B9` | `gText_ChickenFestival_ContestantNames` | `data/text/jp/chicken_festival.cc` | `data/text/chicken_festival.o(.rodata)` |
+| `0x081073B9` | `gText_ChickenFestival_ContestantNames` | `data/text/jp/chicken_festival.cc` | `src/harvest_sprite.o(.rodata.harvest_sprite_minigames_chicken_festival_contestant_names)` |
 | `0x081074C0` | `gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsAnnouncement` | `data/text/jp/harvest_sprite_minigames.cc` | `data/text/harvest_sprite_minigames_chicken_festival_opening.o(.rodata)` |
 | `0x081074D8` | `gText_HarvestSpriteMiniGame_ChickenFestival_FinalRoundAnnouncement` | `data/text/jp/harvest_sprite_minigames.cc` | `data/text/harvest_sprite_minigames_chicken_festival_opening.o(.rodata)` |
 | `0x0810752C` | `gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationQuestion` | `data/text/jp/harvest_sprite_minigames.cc` | `data/text/harvest_sprite_minigames_chicken_festival_opening.o(.rodata)` |
@@ -2089,7 +2089,7 @@
 | `0x081078B0`–`0x081078B9` | `src/harvest_sprite.o(.rodata.harvest_sprite_minigames_animal_husbandry_runtime)` | [数据] | `src/harvest_sprite.c/.cc` | 运行时字符串 `1` 项 |
 | `0x081078BA`–`0x081078BB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x081078BC`–`0x081078BC` | `src/harvest_sprite.o(.rodata.harvest_sprite_minigames_animal_husbandry_runtime_empty)` | [嵌入文本] | `src/harvest_sprite.c/.cc` | 文本 `1` 项（详见下方索引） |
-| `0x081078BD`–`0x081079C0` | `data/text/chicken_festival.o(.rodata)` | [文本对象] | `data/text/us/chicken_festival.cc` | 文本 `1` 项（详见下方索引） |
+| `0x081078BD`–`0x081079C0` | `src/harvest_sprite.o(.rodata.harvest_sprite_minigames_chicken_festival_contestant_names)` | [鸡祭典小游戏文本段] | `data/text/us/chicken_festival.cc` | 文本 `1` 项（详见下方索引） |
 | `0x081079C1`–`0x081079C3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
 | `0x081079C4`–`0x08107ACB` | `data/text/harvest_sprite_minigames_chicken_festival_opening.o(.rodata)` | [文本对象] | `data/text/us/harvest_sprite_minigames.cc` | 文本 `11` 项（详见下方索引） |
 | `0x08107ACC`–`0x08107AFB` | `src/harvest_sprite.o(.rodata.harvest_sprite_minigames_chicken_festival_values)` | [数据] | `src/harvest_sprite.c/.cc` | `gUnk_HarvestSpriteMiniGameChickenFestivalValues` |
@@ -3667,7 +3667,7 @@
 | `0x08107844` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultSuffix` | `data/text/us/harvest_sprite_minigames.cc` | `data/text/harvest_sprite_minigames.o(.rodata)` |
 | `0x08107850` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreSummary` | `data/text/us/harvest_sprite_minigames.cc` | `data/text/harvest_sprite_minigames.o(.rodata)` |
 | `0x081078BC` | `gText_HarvestSpriteMiniGameAnimalHusbandryEmpty` | 未在 `data/text` 源中直接命名；请以宿主对象核对 | `src/harvest_sprite.o(.rodata.harvest_sprite_minigames_animal_husbandry_runtime_empty)` |
-| `0x081078BD` | `gText_ChickenFestival_ContestantNames` | `data/text/us/chicken_festival.cc` | `data/text/chicken_festival.o(.rodata)` |
+| `0x081078BD` | `gText_ChickenFestival_ContestantNames` | `data/text/us/chicken_festival.cc` | `src/harvest_sprite.o(.rodata.harvest_sprite_minigames_chicken_festival_contestant_names)` |
 | `0x081079C4` | `gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsAnnouncement` | `data/text/us/harvest_sprite_minigames.cc` | `data/text/harvest_sprite_minigames_chicken_festival_opening.o(.rodata)` |
 | `0x081079E0` | `gText_HarvestSpriteMiniGame_ChickenFestival_FinalRoundAnnouncement` | `data/text/us/harvest_sprite_minigames.cc` | `data/text/harvest_sprite_minigames_chicken_festival_opening.o(.rodata)` |
 | `0x08107A30` | `gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationQuestion` | `data/text/us/harvest_sprite_minigames.cc` | `data/text/harvest_sprite_minigames_chicken_festival_opening.o(.rodata)` |

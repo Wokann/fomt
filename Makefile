@@ -139,6 +139,7 @@ TEXT_FRAGMENT_SOURCES := \
   data/text/$(TEXT_REGION)/calendar.cc \
   data/text/$(TEXT_REGION)/farm_status.cc \
   data/text/$(TEXT_REGION)/animal_contest.cc \
+  data/text/$(TEXT_REGION)/chicken_festival.cc \
   data/text/$(TEXT_REGION)/ui_error.cc \
   data/text/$(TEXT_REGION)/poultry_shop.cc \
   data/text/$(TEXT_REGION)/random_item.cc \
