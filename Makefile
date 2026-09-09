@@ -127,8 +127,7 @@ TEXT_FRAGMENT_SOURCES := \
   data/text/$(TEXT_REGION)/ui_error.cc \
   data/text/$(TEXT_REGION)/new_game_menu.cc \
   data/text/$(TEXT_REGION)/poultry_shop.cc \
-  data/text/$(TEXT_REGION)/supermarket_primary.cc \
-  data/text/$(TEXT_REGION)/supermarket_secondary.cc \
+  data/text/$(TEXT_REGION)/supermarket.cc \
   data/text/$(TEXT_REGION)/clinic.cc \
   data/text/$(TEXT_REGION)/inn_shop_descriptions.cc \
   data/text/$(TEXT_REGION)/inn_shop_dialogue.cc \
