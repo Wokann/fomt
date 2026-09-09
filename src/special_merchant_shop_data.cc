@@ -2,7 +2,7 @@
 
 #include "item.hh"
 
-SpecialMerchantShopCatalogEntry const gSpecialMerchantShopCatalog[] SPECIAL_MERCHANT_SHOP_CATALOG = {
+SpecialMerchantShopCatalogEntry const gSpecialMerchantShopCatalog[] = {
     { ARTICLE_ALBUM_1, 500 },
     { ARTICLE_ALBUM_2, 600 },
     { ARTICLE_ALBUM_3, 700 },
@@ -19,3 +19,9 @@ SpecialMerchantShopCatalogEntry const gSpecialMerchantShopCatalog[] SPECIAL_MERC
     { ARTICLE_GOLD, 250 },
     { ARTICLE_MYSTRILE, 400 },
 };
+
+#if defined(REGION_JP)
+#include "data/text/jp/special_merchant_shop.cc"
+#else
+#include "data/text/us/special_merchant_shop.cc"
+#endif

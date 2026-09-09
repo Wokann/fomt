@@ -781,8 +781,7 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4); src/winery_shop_data.o(.rodata);
         FILL(0x00);
-        . = ALIGN(4); src/special_merchant_shop_data.o(.rodata.special_merchant_shop_catalog);
-        . = 0xFE974; data/text/special_merchant_shop.o(.rodata.special_merchant_shop_text);
+        . = ALIGN(4); src/special_merchant_shop_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         . = 0xFEAF4; data/text/beach_cafe_shop.o(.rodata.beach_cafe_shop_descriptions);

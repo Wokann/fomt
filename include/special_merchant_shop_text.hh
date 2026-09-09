@@ -16,9 +16,6 @@ enum
     SPECIAL_MERCHANT_RECORD_PLAYER_SENTINEL = 10,
 };
 
-#define SPECIAL_MERCHANT_SHOP_CATALOG SECTION(".rodata.special_merchant_shop_catalog")
-#define SPECIAL_MERCHANT_SHOP_TEXT SECTION(".rodata.special_merchant_shop_text")
-
 extern SpecialMerchantShopCatalogEntry const gSpecialMerchantShopCatalog[];
 
 extern char const gText_SpecialMerchantShop_RecordPlayerDescription[];
