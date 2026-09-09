@@ -15,10 +15,6 @@ struct CarpenterCatalogEntry
     char const * detail_text;
 };
 
-#define CARPENTER_MENU SECTION(".rodata.carpenter_menu")
-#define CARPENTER_CATALOG SECTION(".rodata.carpenter_catalog")
-#define CARPENTER_DIALOGUE SECTION(".rodata.carpenter_dialogue")
-
 extern char const gText_Carpenter_Lumber[];
 extern char const gText_Carpenter_GoldenLumber[];
 extern char const gText_Carpenter_HouseExtension[];

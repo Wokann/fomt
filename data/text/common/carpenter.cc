@@ -2,6 +2,5 @@
 
 // The Carpenter menu constructor seeds its working text buffer with this
 // single page-break control code before adding the selected entry text.
-char const gText_Carpenter_InitialPageBreak[]
-    SECTION(".rodata.carpenter_initial_page_break") ALIGN(1) =
-        "\p";
+char const gText_Carpenter_InitialPageBreak[] =
+    "\p";

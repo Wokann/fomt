@@ -892,13 +892,7 @@ SECTIONS
         . = 0xFE6A4; src/blacksmith_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0xFEC90; data/text/carpenter.o(.rodata.carpenter_menu);
-        . = 0xFF084; src/carpenter_data.o(.rodata.carpenter_catalog);
-        FILL(0xFF);
-        . = 0xFF214; data/text/common/carpenter.o(.rodata.carpenter_initial_page_break);
-        FILL(0x00);
-        . = ALIGN(4); data/text/carpenter.o(.rodata.carpenter_dialogue);
-        . = 0xFF4FC; data/text/carpenter.o(.rodata.carpenter_trailer);
+        . = 0xFEC90; src/carpenter_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         FILL(0xFF);

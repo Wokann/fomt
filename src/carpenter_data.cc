@@ -1,6 +1,12 @@
 #include "carpenter_text.hh"
 
-CarpenterCatalogEntry const gCarpenterCatalog[] CARPENTER_CATALOG = {
+#if defined(REGION_JP)
+#include "data/text/jp/carpenter_menu.cc"
+#else
+#include "data/text/us/carpenter_menu.cc"
+#endif
+
+CarpenterCatalogEntry const gCarpenterCatalog[] = {
     { gText_Carpenter_Lumber, 50, 0, 0, nullptr },
     { gText_Carpenter_GoldenLumber, 100000, 0, 0, nullptr },
     { gText_Carpenter_HouseExtension, 3000, 200, 1, gText_Carpenter_HouseExtensionFirstCost },
@@ -22,3 +28,14 @@ CarpenterCatalogEntry const gCarpenterCatalog[] CARPENTER_CATALOG = {
     { gText_Carpenter_BlueMailbox, 10000, 200, 9, gText_Carpenter_MailboxCost },
     { gText_Carpenter_StrangeMailbox, 10000, 200, 10, gText_Carpenter_MailboxCost },
 };
+
+#include "data/text/common/carpenter.cc"
+
+#if defined(REGION_JP)
+#include "data/text/jp/carpenter_dialogue.cc"
+#else
+#include "data/text/us/carpenter_dialogue.cc"
+#endif
+
+char const gCppRuntimeBadAlloc_Carpenter[] ALIGN(4) =
+    "bad_alloc";

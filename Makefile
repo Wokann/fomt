@@ -112,6 +112,7 @@ endif
 # owning src module, so they deliberately do not produce a second object.
 TEXT_FRAGMENT_SOURCES := \
   data/text/common/animal_data.cc \
+  data/text/common/carpenter.cc \
   data/text/common/entity_ui.cc \
   data/text/common/fixed_labels.cc \
   data/text/common/menu.cc \
@@ -140,6 +141,8 @@ TEXT_FRAGMENT_SOURCES := \
   data/text/$(TEXT_REGION)/blacksmith_menu.cc \
   data/text/$(TEXT_REGION)/blacksmith_dialogue.cc \
   data/text/$(TEXT_REGION)/blacksmith_upgrade.cc \
+  data/text/$(TEXT_REGION)/carpenter_menu.cc \
+  data/text/$(TEXT_REGION)/carpenter_dialogue.cc \
   data/text/$(TEXT_REGION)/records.cc \
   data/text/$(TEXT_REGION)/horse_race.cc \
   data/text/$(TEXT_REGION)/horse_race_prize_catalog.cc \
