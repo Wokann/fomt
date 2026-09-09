@@ -64,6 +64,7 @@ SECTIONS
         src/crt0.o(.rom_header);
         . = 0x18C; /* JP ROM 0x0800018C, independently matched */
         asm/main.o(.text);
+        src/main.o(.text);
         . = 0x2E0; /* JP ROM 0x080002E0, independently matched */
         asm/sram_proxy_1.o(.text);
         . = 0x4C4; /* JP ROM 0x080004C4, independently matched */
