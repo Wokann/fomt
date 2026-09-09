@@ -133,8 +133,7 @@ TEXT_FRAGMENT_SOURCES := \
   data/text/$(TEXT_REGION)/won_shop.cc \
   data/text/$(TEXT_REGION)/winery_shop.cc \
   data/text/$(TEXT_REGION)/special_merchant_shop.cc \
-  data/text/$(TEXT_REGION)/beach_cafe_shop_descriptions.cc \
-  data/text/$(TEXT_REGION)/beach_cafe_shop_dialogue.cc \
+  data/text/$(TEXT_REGION)/beach_cafe_shop.cc \
   data/text/$(TEXT_REGION)/blacksmith_menu.cc \
   data/text/$(TEXT_REGION)/blacksmith_dialogue.cc \
   data/text/$(TEXT_REGION)/blacksmith_upgrade.cc \

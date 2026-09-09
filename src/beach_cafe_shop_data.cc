@@ -1,9 +1,13 @@
 #include "beach_cafe_shop_text.hh"
 
 #if defined(REGION_JP)
-#include "data/text/jp/beach_cafe_shop_descriptions.cc"
+#define FOMT_TEXT_BEACH_CAFE_SHOP_DESCRIPTIONS
+#include "data/text/jp/beach_cafe_shop.cc"
+#undef FOMT_TEXT_BEACH_CAFE_SHOP_DESCRIPTIONS
 #else
-#include "data/text/us/beach_cafe_shop_descriptions.cc"
+#define FOMT_TEXT_BEACH_CAFE_SHOP_DESCRIPTIONS
+#include "data/text/us/beach_cafe_shop.cc"
+#undef FOMT_TEXT_BEACH_CAFE_SHOP_DESCRIPTIONS
 #endif
 
 BeachCafeShopMenuEntry const gBeachCafeShopMenu[] = {
@@ -15,7 +19,11 @@ BeachCafeShopMenuEntry const gBeachCafeShopMenu[] = {
 };
 
 #if defined(REGION_JP)
-#include "data/text/jp/beach_cafe_shop_dialogue.cc"
+#define FOMT_TEXT_BEACH_CAFE_SHOP_DIALOGUE
+#include "data/text/jp/beach_cafe_shop.cc"
+#undef FOMT_TEXT_BEACH_CAFE_SHOP_DIALOGUE
 #else
-#include "data/text/us/beach_cafe_shop_dialogue.cc"
+#define FOMT_TEXT_BEACH_CAFE_SHOP_DIALOGUE
+#include "data/text/us/beach_cafe_shop.cc"
+#undef FOMT_TEXT_BEACH_CAFE_SHOP_DIALOGUE
 #endif
