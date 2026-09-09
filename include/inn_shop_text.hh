@@ -18,11 +18,6 @@ struct InnShopMenuEntry
     u32 field_18;
 };
 
-#define INN_SHOP_DESCRIPTIONS SECTION(".rodata.inn_shop_descriptions")
-#define INN_SHOP_CATALOG SECTION(".rodata.inn_shop_catalog")
-#define INN_SHOP_DIALOGUE SECTION(".rodata.inn_shop_dialogue")
-#define INN_SHOP_TRAILER SECTION(".rodata.inn_shop_trailer")
-
 extern InnShopMenuEntry const gInnShopMenu[];
 
 extern char const gText_InnShop_WaterDescription[];

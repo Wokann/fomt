@@ -130,6 +130,8 @@ TEXT_FRAGMENT_SOURCES := \
   data/text/$(TEXT_REGION)/supermarket_primary.cc \
   data/text/$(TEXT_REGION)/supermarket_secondary.cc \
   data/text/$(TEXT_REGION)/clinic.cc \
+  data/text/$(TEXT_REGION)/inn_shop_descriptions.cc \
+  data/text/$(TEXT_REGION)/inn_shop_dialogue.cc \
   data/text/$(TEXT_REGION)/records.cc \
   data/text/$(TEXT_REGION)/horse_race.cc \
   data/text/$(TEXT_REGION)/horse_race_prize_catalog.cc \

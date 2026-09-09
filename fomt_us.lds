@@ -775,11 +775,7 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4); src/clinic_data.o(.rodata);
         FILL(0x00);
-        . = ALIGN(4); data/text/inn_shop.o(.rodata.inn_shop_descriptions);
-        . = ALIGN(4); src/inn_shop_data.o(.rodata.inn_shop_catalog);
-        . = 0xFE3D4; data/text/inn_shop.o(.rodata.inn_shop_dialogue);
-        FILL(0x00);
-        . = ALIGN(4); data/text/inn_shop.o(.rodata.inn_shop_trailer);
+        . = ALIGN(4); src/inn_shop_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/won_shop_data.o(.rodata.won_shop_catalog);
         . = 0xFE4D4; data/text/won_shop.o(.rodata.won_shop_dialogue);
