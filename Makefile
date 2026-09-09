@@ -131,6 +131,7 @@ TEXT_FRAGMENT_SOURCES := \
   data/text/$(TEXT_REGION)/article.cc \
   data/text/$(TEXT_REGION)/fishing_results.cc \
   data/text/$(TEXT_REGION)/character_names.cc \
+  data/text/$(TEXT_REGION)/new_game.cc \
   data/text/$(TEXT_REGION)/farm_status.cc \
   data/text/$(TEXT_REGION)/animal_contest.cc \
   data/text/$(TEXT_REGION)/ui_error.cc \

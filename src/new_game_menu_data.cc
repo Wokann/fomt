@@ -33,3 +33,11 @@ char const * const gNewGameMenuLabels[18] = {
     gText_NewGameMenu_Yes,
     gText_NewGameMenu_No,
 };
+
+// The main New Game text run follows the menu labels in the native ROM.  The
+// preset animal-name branch is compiled separately at its later physical slot.
+#if defined(REGION_JP)
+#include "data/text/jp/new_game.cc"
+#else
+#include "data/text/us/new_game.cc"
+#endif

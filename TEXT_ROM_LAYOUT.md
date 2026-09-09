@@ -29,8 +29,7 @@
 | `0x080E7AA2`–`0x080E7AA3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080E7AA4`–`0x080E7AC5` | `src/intro_scene_data.o(.rodata.intro_scene_startup_resources)` | [数据] | `src/intro_scene_data.c/.cc` | 运行时字符串 `2` 项<br>`gIntroSceneStartupUnpackSources` |
 | `0x080E7AC6`–`0x080E7AC7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080E7AC8`–`0x080E7B7B` | `src/new_game_menu_data.o(.rodata)` | [嵌入文本] | `data/text/jp/new_game.cc` | 文本 `12` 项（详见下方索引）<br>`gNewGameMenuLabels` |
-| `0x080E7B7C`–`0x080E8161` | `data/text/new_game.o(.rodata)` | [文本对象] | `data/text/jp/new_game.cc` | 文本 `39` 项（详见下方索引）<br>运行时字符串 `14` 项<br>`gNewGameNameEntryCharacterRows` |
+| `0x080E7AC8`–`0x080E8161` | `src/new_game_menu_data.o(.rodata)` | [嵌入文本 / 数据] | `src/new_game_menu_data.cc`<br>`data/text/jp/new_game.cc` | 文本 `51` 项（菜单 `12`、状态/帮助/保存/身份/姓名输入 `39`；详见下方索引）<br>`gNewGameMenuLabels`<br>运行时字符串 `14` 项<br>`gNewGameNameEntryCharacterRows` |
 | `0x080E8162`–`0x080E8163` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080E8164`–`0x080E81A3` | `src/field_data.o(.rodata.field_plot_weather_ordinary)` | [数据] | `src/field_data.c/.cc` | `gFieldPlotOrdinaryWeatherRules` |
 | `0x080E81A4`–`0x080E81AB` | `src/field_data.o(.rodata.field_plot_weather_special_3)` | [数据] | `src/field_data.c/.cc` | `gFieldPlotSpecialWeatherRule3` |
@@ -273,45 +272,45 @@
 | `0x080E7B14` | `gText_NewGameMenu_No` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
 | `0x080E7B1C` | `gText_NewGameMenu_FaceDisplay` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
 | `0x080E7B28` | `gText_NewGameMenu_NameDisplay` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
-| `0x080E7B7C` | `gText_NewGameStatus_YearSuffix` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7B84` | `gText_NewGameStatus_SeasonSeparator` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7B8C` | `gText_NewGameStatus_DaySuffix` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7B90` | `gText_NewGameStatus_OpenParen` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7B94` | `gText_NewGameStatus_CloseParen` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7B98` | `gText_NewGameStatus_FarmSuffix` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7BA0` | `gText_NewGameStatus_ReadDiary` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7BAC` | `gText_NewGameStatus_WriteDiary` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7BBC` | `gText_NewGameStatus_NoSavedData` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7BD8` | `gText_NewGameHelp_Controls` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7C28` | `gText_NewGameHelp_ClockDisplay` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7C5C` | `gText_NewGameHelp_FaceDisplay` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7CAC` | `gText_NewGameHelp_NameDisplay` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7CFC` | `gText_NewGameSave_SaveFailed` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7D14` | `gText_NewGameSave_LoadFailed` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7D48` | `gText_NewGameSave_LoadPrompt` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7D5C` | `gText_NewGameSave_Affirmative` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7D64` | `gText_NewGameSave_Negative` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7D6C` | `gText_NewGameSave_OverwritePrompt` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7D94` | `gText_NewGameIdentity_PlayerPrefix` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7D9C` | `gText_NewGameIdentity_FarmPrefix` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7DA4` | `gText_NewGameIdentity_DogPrefix` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7DB8` | `gText_NewGameIdentity_BirthMonthSuffix` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7DC0` | `gText_NewGameIdentity_BirthDaySuffix` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7DC4` | `gText_NewGameIdentity_PlayerName` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7DD4` | `gText_NewGameIdentity_PlayerBirthday` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7DE4` | `gText_NewGameIdentity_FarmName` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7DF4` | `gText_NewGameIdentity_DogName` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7E04` | `gText_NewGameIdentity_Confirm` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7E14` | `gText_NewGameIdentity_Yes` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E7E1C` | `gText_NewGameIdentity_No` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E805C` | `gText_NewGameNameEntry_Placeholder` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E806C` | `gText_NewGameNameEntry_NameLabel` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8074` | `gText_NewGameNameEntry_ModeKatakana` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8090` | `gText_NewGameNameEntry_ModeSymbols` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E80AC` | `gText_NewGameNameEntry_ModeHiragana` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E80C8` | `gText_NewGameNameEntry_Confirm` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E80DC` | `gText_NewGameNameEntry_Yes` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E80E4` | `gText_NewGameNameEntry_No` | `data/text/jp/new_game.cc` | `data/text/new_game.o(.rodata)` |
+| `0x080E7B7C` | `gText_NewGameStatus_YearSuffix` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7B84` | `gText_NewGameStatus_SeasonSeparator` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7B8C` | `gText_NewGameStatus_DaySuffix` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7B90` | `gText_NewGameStatus_OpenParen` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7B94` | `gText_NewGameStatus_CloseParen` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7B98` | `gText_NewGameStatus_FarmSuffix` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7BA0` | `gText_NewGameStatus_ReadDiary` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7BAC` | `gText_NewGameStatus_WriteDiary` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7BBC` | `gText_NewGameStatus_NoSavedData` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7BD8` | `gText_NewGameHelp_Controls` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7C28` | `gText_NewGameHelp_ClockDisplay` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7C5C` | `gText_NewGameHelp_FaceDisplay` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7CAC` | `gText_NewGameHelp_NameDisplay` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7CFC` | `gText_NewGameSave_SaveFailed` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7D14` | `gText_NewGameSave_LoadFailed` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7D48` | `gText_NewGameSave_LoadPrompt` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7D5C` | `gText_NewGameSave_Affirmative` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7D64` | `gText_NewGameSave_Negative` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7D6C` | `gText_NewGameSave_OverwritePrompt` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7D94` | `gText_NewGameIdentity_PlayerPrefix` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7D9C` | `gText_NewGameIdentity_FarmPrefix` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7DA4` | `gText_NewGameIdentity_DogPrefix` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7DB8` | `gText_NewGameIdentity_BirthMonthSuffix` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7DC0` | `gText_NewGameIdentity_BirthDaySuffix` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7DC4` | `gText_NewGameIdentity_PlayerName` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7DD4` | `gText_NewGameIdentity_PlayerBirthday` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7DE4` | `gText_NewGameIdentity_FarmName` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7DF4` | `gText_NewGameIdentity_DogName` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7E04` | `gText_NewGameIdentity_Confirm` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7E14` | `gText_NewGameIdentity_Yes` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E7E1C` | `gText_NewGameIdentity_No` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E805C` | `gText_NewGameNameEntry_Placeholder` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E806C` | `gText_NewGameNameEntry_NameLabel` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8074` | `gText_NewGameNameEntry_ModeKatakana` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8090` | `gText_NewGameNameEntry_ModeSymbols` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E80AC` | `gText_NewGameNameEntry_ModeHiragana` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E80C8` | `gText_NewGameNameEntry_Confirm` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E80DC` | `gText_NewGameNameEntry_Yes` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E80E4` | `gText_NewGameNameEntry_No` | `data/text/jp/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
 | `0x080E8B08` | `gText_Item_Tool_IronSickle_Name` | `data/text/jp/tool.cc` | `src/item.o(.rodata)` |
 | `0x080E8B14` | `gText_Item_Tool_IronSickle_Description` | `data/text/jp/tool.cc` | `src/item.o(.rodata)` |
 | `0x080E8B54` | `gText_Item_Tool_CopperSickle_Name` | `data/text/jp/tool.cc` | `src/item.o(.rodata)` |
@@ -1901,8 +1900,7 @@
 | `0x080E8681`–`0x080E8683` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
 | `0x080E8684`–`0x080E86A5` | `src/intro_scene_data.o(.rodata.intro_scene_startup_resources)` | [数据] | `src/intro_scene_data.c/.cc` | 运行时字符串 `2` 项<br>`gIntroSceneStartupUnpackSources` |
 | `0x080E86A6`–`0x080E86A7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080E86A8`–`0x080E874B` | `src/new_game_menu_data.o(.rodata)` | [嵌入文本] | `data/text/us/new_game.cc` | 文本 `14` 项（详见下方索引）<br>`gNewGameMenuLabels` |
-| `0x080E874C`–`0x080E8CC1` | `data/text/new_game.o(.rodata)` | [文本对象] | `data/text/us/new_game.cc` | 文本 `34` 项（详见下方索引）<br>运行时字符串 `14` 项<br>`gNewGameNameEntryCharacterRows` |
+| `0x080E86A8`–`0x080E8CC1` | `src/new_game_menu_data.o(.rodata)` | [嵌入文本 / 数据] | `src/new_game_menu_data.cc`<br>`data/text/us/new_game.cc` | 文本 `48` 项（菜单 `14`、状态/帮助/保存/身份/姓名输入 `34`；详见下方索引）<br>`gNewGameMenuLabels`<br>运行时字符串 `14` 项<br>`gNewGameNameEntryCharacterRows` |
 | `0x080E8CC2`–`0x080E8CC3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080E8CC4`–`0x080E8D03` | `src/field_data.o(.rodata.field_plot_weather_ordinary)` | [数据] | `src/field_data.c/.cc` | `gFieldPlotOrdinaryWeatherRules` |
 | `0x080E8D04`–`0x080E8D0B` | `src/field_data.o(.rodata.field_plot_weather_special_3)` | [数据] | `src/field_data.c/.cc` | `gFieldPlotSpecialWeatherRule3` |
@@ -2146,40 +2144,40 @@
 | `0x080E86F0` | `gText_NewGameMenu_No` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
 | `0x080E86F4` | `gText_NewGameMenu_FaceDisplay` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
 | `0x080E86FC` | `gText_NewGameMenu_NameDisplay` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
-| `0x080E874C` | `gText_NewGameStatus_YearSuffix` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8754` | `gText_NewGameStatus_SeasonSeparator` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8758` | `gText_NewGameStatus_DaySuffix` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8760` | `gText_NewGameStatus_OpenParen` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8764` | `gText_NewGameStatus_CloseParen` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8768` | `gText_NewGameStatus_FarmSuffix` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8770` | `gText_NewGameStatus_ReadDiary` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E877C` | `gText_NewGameStatus_WriteDiary` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E878C` | `gText_NewGameStatus_NoSavedData` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E87A4` | `gText_NewGameHelp_Controls` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E87FC` | `gText_NewGameHelp_ClockDisplay` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8828` | `gText_NewGameHelp_FaceDisplay` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8878` | `gText_NewGameHelp_NameDisplay` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E88C8` | `gText_NewGameSave_SaveFailed` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E88D8` | `gText_NewGameSave_LoadFailed` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E890C` | `gText_NewGameSave_LoadPrompt` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8914` | `gText_NewGameSave_OverwritePrompt` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8934` | `gText_NewGameIdentity_PlayerPrefix` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E893C` | `gText_NewGameIdentity_FarmPrefix` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8944` | `gText_NewGameIdentity_DogPrefix` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8958` | `gText_NewGameIdentity_PlayerName` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8968` | `gText_NewGameIdentity_PlayerBirthday` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8978` | `gText_NewGameIdentity_FarmName` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8988` | `gText_NewGameIdentity_DogName` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8998` | `gText_NewGameIdentity_Confirm` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E89A4` | `gText_NewGameIdentity_Yes` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E89A8` | `gText_NewGameIdentity_No` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8BE4` | `gText_NewGameNameEntry_Placeholder` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8BF4` | `gText_NewGameNameEntry_NameLabel` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8BFC` | `gText_NewGameNameEntry_EndLatin` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8C14` | `gText_NewGameNameEntry_EndFullWidth` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8C2C` | `gText_NewGameNameEntry_Confirm` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8C44` | `gText_NewGameNameEntry_Yes` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
-| `0x080E8C48` | `gText_NewGameNameEntry_No` | `data/text/us/new_game.cc` | `data/text/new_game.o(.rodata)` |
+| `0x080E874C` | `gText_NewGameStatus_YearSuffix` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8754` | `gText_NewGameStatus_SeasonSeparator` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8758` | `gText_NewGameStatus_DaySuffix` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8760` | `gText_NewGameStatus_OpenParen` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8764` | `gText_NewGameStatus_CloseParen` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8768` | `gText_NewGameStatus_FarmSuffix` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8770` | `gText_NewGameStatus_ReadDiary` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E877C` | `gText_NewGameStatus_WriteDiary` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E878C` | `gText_NewGameStatus_NoSavedData` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E87A4` | `gText_NewGameHelp_Controls` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E87FC` | `gText_NewGameHelp_ClockDisplay` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8828` | `gText_NewGameHelp_FaceDisplay` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8878` | `gText_NewGameHelp_NameDisplay` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E88C8` | `gText_NewGameSave_SaveFailed` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E88D8` | `gText_NewGameSave_LoadFailed` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E890C` | `gText_NewGameSave_LoadPrompt` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8914` | `gText_NewGameSave_OverwritePrompt` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8934` | `gText_NewGameIdentity_PlayerPrefix` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E893C` | `gText_NewGameIdentity_FarmPrefix` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8944` | `gText_NewGameIdentity_DogPrefix` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8958` | `gText_NewGameIdentity_PlayerName` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8968` | `gText_NewGameIdentity_PlayerBirthday` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8978` | `gText_NewGameIdentity_FarmName` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8988` | `gText_NewGameIdentity_DogName` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8998` | `gText_NewGameIdentity_Confirm` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E89A4` | `gText_NewGameIdentity_Yes` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E89A8` | `gText_NewGameIdentity_No` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8BE4` | `gText_NewGameNameEntry_Placeholder` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8BF4` | `gText_NewGameNameEntry_NameLabel` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8BFC` | `gText_NewGameNameEntry_EndLatin` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8C14` | `gText_NewGameNameEntry_EndFullWidth` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8C2C` | `gText_NewGameNameEntry_Confirm` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8C44` | `gText_NewGameNameEntry_Yes` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
+| `0x080E8C48` | `gText_NewGameNameEntry_No` | `data/text/us/new_game.cc` | `src/new_game_menu_data.o(.rodata)` |
 | `0x080E9668` | `gText_Item_Tool_IronSickle_Name` | `data/text/us/tool.cc` | `src/item.o(.rodata)` |
 | `0x080E9674` | `gText_Item_Tool_IronSickle_Description` | `data/text/us/tool.cc` | `src/item.o(.rodata)` |
 | `0x080E96B0` | `gText_Item_Tool_CopperSickle_Name` | `data/text/us/tool.cc` | `src/item.o(.rodata)` |

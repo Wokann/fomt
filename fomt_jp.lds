@@ -710,11 +710,11 @@ SECTIONS
         . = ALIGN(4);
         src/sram_proxy_1.o(.rodata);
         src/intro_scene_data.o(.rodata.intro_scene_startup_resources);
-        . = ALIGN(4); src/new_game_menu_data.o(.rodata);
-        . = ALIGN(4); data/text/new_game.o(.rodata);
+        /* Bounded New Game localization island: menu, text, and name-entry data. */
+        . = 0xE7AC8; src/new_game_menu_data.o(.rodata);
+        ASSERT(. <= 0xE8164, "JP New Game localization island overflow");
         FILL(0x00);
-        . = ALIGN(4);
-        src/field_data.o(.rodata.field_plot_weather_ordinary);
+        . = 0xE8164; src/field_data.o(.rodata.field_plot_weather_ordinary);
         src/field_data.o(.rodata.field_plot_weather_special_3);
         src/field_data.o(.rodata.field_plot_weather_special_4);
         src/field_data.o(.rodata.field_plot_growth_transitions);
