@@ -787,9 +787,7 @@ SECTIONS
         . = 0x100AC0; data/text/common/cooking_recipe_inventory.o(.rodata);
         . = 0x100AC2; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_utensil_values);
         . = 0x100AD2; data/text/recovery_status.o(.rodata);
-        . = 0x100DE4; data/text/cooking_menu.o(.rodata);
-        . = 0x100F78; data/text/cooking_recipe_actions.o(.rodata);
-        . = 0x101008; data/text/cooking_recipe_inventory.o(.rodata);
+        . = 0x100DE4; data/text/cooking.o(.rodata);
         . = 0x1010E8; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_mask_entries);
         . = 0x10110C; src/cooking_recipe_inventory_data.o(.rodata);
         data/text/common/animal.o(.rodata);
