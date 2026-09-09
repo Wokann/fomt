@@ -135,6 +135,8 @@ TEXT_FRAGMENT_SOURCES := \
   data/text/$(TEXT_REGION)/won_shop.cc \
   data/text/$(TEXT_REGION)/winery_shop.cc \
   data/text/$(TEXT_REGION)/special_merchant_shop.cc \
+  data/text/$(TEXT_REGION)/beach_cafe_shop_descriptions.cc \
+  data/text/$(TEXT_REGION)/beach_cafe_shop_dialogue.cc \
   data/text/$(TEXT_REGION)/records.cc \
   data/text/$(TEXT_REGION)/horse_race.cc \
   data/text/$(TEXT_REGION)/horse_race_prize_catalog.cc \

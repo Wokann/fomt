@@ -884,9 +884,7 @@ SECTIONS
         . = ALIGN(4); src/special_merchant_shop_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0xFE3A0; data/text/beach_cafe_shop.o(.rodata.beach_cafe_shop_descriptions);
-        . = 0xFE414; src/beach_cafe_shop_data.o(.rodata.beach_cafe_shop_catalog);
-        . = 0xFE4A0; data/text/beach_cafe_shop.o(.rodata.beach_cafe_shop_dialogue);
+        . = 0xFE3A0; src/beach_cafe_shop_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         . = 0xFE53C; data/text/blacksmith.o(.rodata.blacksmith_menu);

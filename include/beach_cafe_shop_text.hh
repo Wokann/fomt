@@ -18,10 +18,6 @@ struct BeachCafeShopMenuEntry
     u32 field_18;
 };
 
-#define BEACH_CAFE_SHOP_DESCRIPTIONS SECTION(".rodata.beach_cafe_shop_descriptions")
-#define BEACH_CAFE_SHOP_CATALOG SECTION(".rodata.beach_cafe_shop_catalog")
-#define BEACH_CAFE_SHOP_DIALOGUE SECTION(".rodata.beach_cafe_shop_dialogue")
-
 extern BeachCafeShopMenuEntry const gBeachCafeShopMenu[];
 
 extern char const gText_BeachCafeShop_WaterDescription[];
