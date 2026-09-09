@@ -1,31 +1,31 @@
 #include "tool_status_text.hh"
 
-char const gText_ToolStatus_GemOfTruth[] TOOL_STATUS_TEXT =
+char const gText_ToolStatus_GemOfTruth[] =
     "Gem of Truth\r\n";
 
-char const gText_ToolStatus_EnergyLabel[] TOOL_STATUS_TEXT =
+char const gText_ToolStatus_EnergyLabel[] =
     "Energy ";
 
-char const gText_ToolStatus_ValueSeparator[] TOOL_STATUS_TEXT =
+char const gText_ToolStatus_ValueSeparator[] =
     "/";
 
-char const gText_ToolStatus_EnergyFatigueLineBreak[] TOOL_STATUS_TEXT =
+char const gText_ToolStatus_EnergyFatigueLineBreak[] =
     "\r\n";
 
-char const gText_ToolStatus_FatigueLabel[] TOOL_STATUS_TEXT =
+char const gText_ToolStatus_FatigueLabel[] =
     "Fatigue ";
 
-char const gText_ToolStatus_FatigueMaximum[] TOOL_STATUS_TEXT =
+char const gText_ToolStatus_FatigueMaximum[] =
     "/100";
 
-char const gText_ToolStatus_PedometerLabel[] TOOL_STATUS_TEXT =
+char const gText_ToolStatus_PedometerLabel[] =
     "Pedometer\r\n\n";
 
-char const gText_ToolStatus_PedometerStepsSuffix[] TOOL_STATUS_TEXT =
+char const gText_ToolStatus_PedometerStepsSuffix[] =
     " steps";
 
-char const gText_ToolStatus_DescriptionQuotePrefix[] TOOL_STATUS_TEXT =
+char const gText_ToolStatus_DescriptionQuotePrefix[] =
     " \"";
 
-char const gText_ToolStatus_RemainingSquaresSuffix[] TOOL_STATUS_TEXT =
+char const gText_ToolStatus_RemainingSquaresSuffix[] =
     " squares left";

@@ -890,7 +890,7 @@ SECTIONS
         . = 0x1177EC; src/shop_common.o(.rodata.shop_common_digit_glyphs);
         . = 0x11780C; data/text/shop_common.o(.rodata);
         . = 0x11782C; src/shop_common.o(.rodata);
-        . = 0x1179AC; data/text/tool_status.o(.rodata.tool_status);
+        . = 0x1179AC; data/text/tool_status.o(.rodata);
         . = 0x117A0C; data/text/animal_status.o(.rodata);
         . = 0x117A50; data/text/item_status.o(.rodata);
         . = 0x117AA8; data/text/item_discard.o(.rodata);

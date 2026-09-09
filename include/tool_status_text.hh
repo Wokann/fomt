@@ -3,7 +3,6 @@
 
 #include "prelude.h"
 
-#define TOOL_STATUS_TEXT SECTION(".rodata.tool_status")
 
 extern char const gText_ToolStatus_GemOfTruth[];
 extern char const gText_ToolStatus_EnergyLabel[];

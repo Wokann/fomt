@@ -1,37 +1,37 @@
 #include "tool_status_text.hh"
 
-char const gText_ToolStatus_GemOfTruth[] TOOL_STATUS_TEXT =
+char const gText_ToolStatus_GemOfTruth[] =
     "真実の秘宝\r\n";
 
-char const gText_ToolStatus_EnergyLabel[] TOOL_STATUS_TEXT =
+char const gText_ToolStatus_EnergyLabel[] =
     "体力　";
 
-char const gText_ToolStatus_ValueSeparator[] TOOL_STATUS_TEXT =
+char const gText_ToolStatus_ValueSeparator[] =
     "／";
 
-char const gText_ToolStatus_EnergyFatigueLineBreak[] TOOL_STATUS_TEXT =
+char const gText_ToolStatus_EnergyFatigueLineBreak[] =
     "\r\n";
 
-char const gText_ToolStatus_FatigueLabel[] TOOL_STATUS_TEXT =
+char const gText_ToolStatus_FatigueLabel[] =
     "疲労　";
 
-char const gText_ToolStatus_FatigueMaximum[] TOOL_STATUS_TEXT =
+char const gText_ToolStatus_FatigueMaximum[] =
     "／１００";
 
-char const gText_ToolStatus_PedometerLabel[] TOOL_STATUS_TEXT =
+char const gText_ToolStatus_PedometerLabel[] =
     "万歩計\r\n\n";
 
-char const gText_ToolStatus_PedometerStepsSuffix[] TOOL_STATUS_TEXT =
+char const gText_ToolStatus_PedometerStepsSuffix[] =
     "歩";
 
-char const gText_ToolStatus_DescriptionQuoteOpen[] TOOL_STATUS_TEXT =
+char const gText_ToolStatus_DescriptionQuoteOpen[] =
     "『";
 
-char const gText_ToolStatus_DescriptionQuoteClose[] TOOL_STATUS_TEXT =
+char const gText_ToolStatus_DescriptionQuoteClose[] =
     "』";
 
-char const gText_ToolStatus_RemainingSquaresPrefix[] TOOL_STATUS_TEXT =
+char const gText_ToolStatus_RemainingSquaresPrefix[] =
     "のこり";
 
-char const gText_ToolStatus_RemainingSquaresSuffix[] TOOL_STATUS_TEXT =
+char const gText_ToolStatus_RemainingSquaresSuffix[] =
     "マス分。";
