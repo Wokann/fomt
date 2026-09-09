@@ -4304,4 +4304,26 @@ extern RawVTableFunction const vtable_unk_080E8544[]
 #endif
     };
 
+#if defined(REGION_JP)
+extern void func_080C78F4(void);
+extern void func_080C7F1C(void);
+#else
+extern void func_080E4FF0(void);
+#endif
+
+// Preserve the original three-pointer layout instead of assigning an
+// unverified class name to this regional callback table.
+extern RawVTableFunction const vtable_unk_080E8554[]
+    SECTION(".rodata.vtable_8554") = {
+#if defined(REGION_JP)
+        nullptr,
+        func_080C78F4,
+        func_080C7F1C,
+#else
+        nullptr,
+        nullptr,
+        func_080E4FF0,
+#endif
+    };
+
 EXTERN_C_END
