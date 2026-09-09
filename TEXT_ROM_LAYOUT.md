@@ -10,6 +10,7 @@
 
 - `[文本对象]`：独立 `data/text` 对象，或包含已识别 `gText_*` 的宿主对象。
 - `[嵌入文本]`：`data/text` 文件被 `#include` 到 `src/*.c/.cc` 的宿主对象；具体符号以“文本地址索引”为准。
+- `[嵌入文本 / 数据]`：区域文本与紧邻的功能数据同属一个宿主对象，按源码顺序共同占用一个可定位的 ROM 区间。
 - `[数据]`：文本之间的已命名普通数据；名称和节名就是当前可靠证据。
 - `[原始 incbin]`：来自汇编的保留 ROM 数据，尚未当作结构体解出。
 - `[指南连续块]`：指南生成器产生的连续区域；只记录整体边界，避免把已知连续块误写成独立物理对象。
@@ -160,10 +161,7 @@
 | `0x080FFD53`–`0x080FFD53` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x080FFD54`–`0x080FFE6D` | `data/text/gift_wrap.o(.rodata)` | [文本对象] | `data/text/jp/gift_wrap.cc` | 文本 `11` 项（详见下方索引）<br>运行时字符串 `2` 项 |
 | `0x080FFE6E`–`0x080FFE6F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FFE70`–`0x0810012D` | `data/text/link_communication.o(.rodata)` | [文本对象] | `data/text/jp/link_communication.cc` | 文本 `17` 项（详见下方索引） |
-| `0x0810012E`–`0x0810012F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08100130`–`0x081005AF` | `src/link_communication_data.o(.rodata)` | [数据] | `src/link_communication_data.c/.cc` | 运行时字符串 `1` 项<br>`gUnk_081007AC`, `gUnk_081007D4`, `gUnk_081007FC`, `gUnk_08100824`, `gUnk_0810084C`, `gUnk_08100874`, … +11 |
-| `0x081005B0`–`0x081005D5` | `src/link_communication_data.o(.rodata.link_communication_game_codes)` | [数据] | `src/link_communication_data.c/.cc` | 运行时字符串 `2` 项<br>`gLinkCommunicationGameCodeA4N`, `gLinkCommunicationGameCodeGYW` |
+| `0x080FFE70`–`0x081005D5` | `src/link_communication_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/jp/link_communication.cc`<br>`src/link_communication_data.cc` | 文本 `17` 项（详见下方索引）<br>运行时字符串 `3` 项<br>`gUnk_081007AC`, `gUnk_081007D4`, `gUnk_081007FC`, `gUnk_08100824`, `gUnk_0810084C`, `gUnk_08100874`, … +11<br>`gLinkCommunicationGameCodeA4N`, `gLinkCommunicationGameCodeGYW` |
 | `0x081005D6`–`0x081005D7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x081005D8`–`0x081005D9` | `src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_page_break)` | [嵌入文本] | `data/text/common/cooking_recipe_inventory.cc` | 文本 `1` 项（详见下方索引） |
 | `0x081005DA`–`0x081005E9` | `src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_utensil_values)` | [数据] | `data/text/common/cooking_recipe_inventory.cc` | `gCookingRecipeInventoryUtensilValues` |
@@ -1641,23 +1639,23 @@
 | `0x080FFDE8` | `gText_GiftWrap_Recommendation` | `data/text/jp/gift_wrap.cc` | `data/text/gift_wrap.o(.rodata)` |
 | `0x080FFE18` | `gText_GiftWrap_Complete` | `data/text/jp/gift_wrap.cc` | `data/text/gift_wrap.o(.rodata)` |
 | `0x080FFE48` | `gText_GiftWrap_SelectItem` | `data/text/jp/gift_wrap.cc` | `data/text/gift_wrap.o(.rodata)` |
-| `0x080FFE70` | `gText_LinkCommunication_Waiting` | `data/text/jp/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x080FFEBC` | `gText_LinkCommunication_SendingGameData` | `data/text/jp/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x080FFEDC` | `gText_LinkCommunication_TestingConnection` | `data/text/jp/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x080FFEF4` | `gText_LinkCommunication_CannotResendPreviousData` | `data/text/jp/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x080FFF24` | `gText_LinkCommunication_ProceedQuestion` | `data/text/jp/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x080FFF2C` | `gText_LinkCommunication_Yes` | `data/text/jp/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x080FFF34` | `gText_LinkCommunication_No` | `data/text/jp/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x080FFF3C` | `gText_LinkCommunication_WaitingForOtherPlayer` | `data/text/jp/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x080FFF74` | `gText_LinkCommunication_NowSendingData` | `data/text/jp/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x080FFF8C` | `gText_LinkCommunication_DataExchangeFailed` | `data/text/jp/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x080FFFC0` | `gText_LinkCommunication_QuitCommunication` | `data/text/jp/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x080FFFE0` | `gText_LinkCommunication_OtherPlayerCanceled` | `data/text/jp/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x08100004` | `gText_LinkCommunication_IncompatibleGameData` | `data/text/jp/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x08100060` | `gText_LinkCommunication_ExchangeRestriction` | `data/text/jp/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x081000D4` | `gText_LinkCommunication_ActionQuestion` | `data/text/jp/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x081000F4` | `gText_LinkCommunication_Declined` | `data/text/jp/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x08100118` | `gText_LinkCommunication_Complete` | `data/text/jp/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
+| `0x080FFE70` | `gText_LinkCommunication_Waiting` | `data/text/jp/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x080FFEBC` | `gText_LinkCommunication_SendingGameData` | `data/text/jp/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x080FFEDC` | `gText_LinkCommunication_TestingConnection` | `data/text/jp/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x080FFEF4` | `gText_LinkCommunication_CannotResendPreviousData` | `data/text/jp/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x080FFF24` | `gText_LinkCommunication_ProceedQuestion` | `data/text/jp/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x080FFF2C` | `gText_LinkCommunication_Yes` | `data/text/jp/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x080FFF34` | `gText_LinkCommunication_No` | `data/text/jp/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x080FFF3C` | `gText_LinkCommunication_WaitingForOtherPlayer` | `data/text/jp/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x080FFF74` | `gText_LinkCommunication_NowSendingData` | `data/text/jp/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x080FFF8C` | `gText_LinkCommunication_DataExchangeFailed` | `data/text/jp/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x080FFFC0` | `gText_LinkCommunication_QuitCommunication` | `data/text/jp/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x080FFFE0` | `gText_LinkCommunication_OtherPlayerCanceled` | `data/text/jp/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x08100004` | `gText_LinkCommunication_IncompatibleGameData` | `data/text/jp/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x08100060` | `gText_LinkCommunication_ExchangeRestriction` | `data/text/jp/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x081000D4` | `gText_LinkCommunication_ActionQuestion` | `data/text/jp/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x081000F4` | `gText_LinkCommunication_Declined` | `data/text/jp/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x08100118` | `gText_LinkCommunication_Complete` | `data/text/jp/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
 | `0x081005D8` | `gText_Cooking_Recipe_PageBreak` | `data/text/common/cooking_recipe_inventory.cc` | `src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_page_break)` |
 | `0x081005EA` | `gText_StaminaRecoveryStatus` | `data/text/jp/recovery_status.cc` | `data/text/recovery_status.o(.rodata)` |
 | `0x081006EF` | `gText_FatigueRecoveryStatus` | `data/text/jp/recovery_status.cc` | `data/text/recovery_status.o(.rodata)` |
@@ -2057,10 +2055,7 @@
 | `0x081003E3`–`0x081003E3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x081003E4`–`0x081004DD` | `data/text/gift_wrap.o(.rodata)` | [文本对象] | `data/text/us/gift_wrap.cc` | 文本 `11` 项（详见下方索引）<br>运行时字符串 `2` 项 |
 | `0x081004DE`–`0x081004DF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x081004E0`–`0x081007A8` | `data/text/link_communication.o(.rodata)` | [文本对象] | `data/text/us/link_communication.cc` | 文本 `17` 项（详见下方索引） |
-| `0x081007A9`–`0x081007AB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
-| `0x081007AC`–`0x08100A97` | `src/link_communication_data.o(.rodata)` | [数据] | `src/link_communication_data.c/.cc` | 运行时字符串 `1` 项<br>`gUnk_081007AC`, `gUnk_081007D4`, `gUnk_081007FC`, `gUnk_08100824`, `gUnk_0810084C`, `gUnk_08100874`, … +11 |
-| `0x08100A98`–`0x08100ABD` | `src/link_communication_data.o(.rodata.link_communication_game_codes)` | [数据] | `src/link_communication_data.c/.cc` | 运行时字符串 `2` 项<br>`gLinkCommunicationGameCodeA4N`, `gLinkCommunicationGameCodeGYW` |
+| `0x081004E0`–`0x08100ABD` | `src/link_communication_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/us/link_communication.cc`<br>`src/link_communication_data.cc` | 文本 `17` 项（详见下方索引）<br>运行时字符串 `3` 项<br>`gUnk_081007AC`, `gUnk_081007D4`, `gUnk_081007FC`, `gUnk_08100824`, `gUnk_0810084C`, `gUnk_08100874`, … +11<br>`gLinkCommunicationGameCodeA4N`, `gLinkCommunicationGameCodeGYW` |
 | `0x08100ABE`–`0x08100ABF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08100AC0`–`0x08100AC1` | `src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_page_break)` | [嵌入文本] | `data/text/common/cooking_recipe_inventory.cc` | 文本 `1` 项（详见下方索引） |
 | `0x08100AC2`–`0x08100AD1` | `src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_utensil_values)` | [数据] | `data/text/common/cooking_recipe_inventory.cc` | `gCookingRecipeInventoryUtensilValues` |
@@ -3530,23 +3525,23 @@
 | `0x08100460` | `gText_GiftWrap_Recommendation` | `data/text/us/gift_wrap.cc` | `data/text/gift_wrap.o(.rodata)` |
 | `0x08100490` | `gText_GiftWrap_Complete` | `data/text/us/gift_wrap.cc` | `data/text/gift_wrap.o(.rodata)` |
 | `0x081004BC` | `gText_GiftWrap_SelectItem` | `data/text/us/gift_wrap.cc` | `data/text/gift_wrap.o(.rodata)` |
-| `0x081004E0` | `gText_LinkCommunication_Waiting` | `data/text/us/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x08100524` | `gText_LinkCommunication_SendingGameData` | `data/text/us/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x08100540` | `gText_LinkCommunication_TestingConnection` | `data/text/us/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x08100558` | `gText_LinkCommunication_CannotResendPreviousData` | `data/text/us/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x08100588` | `gText_LinkCommunication_ProceedQuestion` | `data/text/us/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x0810058C` | `gText_LinkCommunication_Yes` | `data/text/us/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x08100590` | `gText_LinkCommunication_No` | `data/text/us/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x08100594` | `gText_LinkCommunication_WaitingForOtherPlayer` | `data/text/us/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x081005D8` | `gText_LinkCommunication_NowSendingData` | `data/text/us/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x081005EC` | `gText_LinkCommunication_DataExchangeFailed` | `data/text/us/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x08100610` | `gText_LinkCommunication_QuitCommunication` | `data/text/us/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x08100638` | `gText_LinkCommunication_OtherPlayerCanceled` | `data/text/us/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x08100678` | `gText_LinkCommunication_IncompatibleGameData` | `data/text/us/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x081006C4` | `gText_LinkCommunication_ExchangeRestriction` | `data/text/us/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x0810073C` | `gText_LinkCommunication_ActionQuestion` | `data/text/us/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x08100758` | `gText_LinkCommunication_Declined` | `data/text/us/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
-| `0x08100790` | `gText_LinkCommunication_Complete` | `data/text/us/link_communication.cc` | `data/text/link_communication.o(.rodata)` |
+| `0x081004E0` | `gText_LinkCommunication_Waiting` | `data/text/us/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x08100524` | `gText_LinkCommunication_SendingGameData` | `data/text/us/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x08100540` | `gText_LinkCommunication_TestingConnection` | `data/text/us/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x08100558` | `gText_LinkCommunication_CannotResendPreviousData` | `data/text/us/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x08100588` | `gText_LinkCommunication_ProceedQuestion` | `data/text/us/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x0810058C` | `gText_LinkCommunication_Yes` | `data/text/us/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x08100590` | `gText_LinkCommunication_No` | `data/text/us/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x08100594` | `gText_LinkCommunication_WaitingForOtherPlayer` | `data/text/us/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x081005D8` | `gText_LinkCommunication_NowSendingData` | `data/text/us/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x081005EC` | `gText_LinkCommunication_DataExchangeFailed` | `data/text/us/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x08100610` | `gText_LinkCommunication_QuitCommunication` | `data/text/us/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x08100638` | `gText_LinkCommunication_OtherPlayerCanceled` | `data/text/us/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x08100678` | `gText_LinkCommunication_IncompatibleGameData` | `data/text/us/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x081006C4` | `gText_LinkCommunication_ExchangeRestriction` | `data/text/us/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x0810073C` | `gText_LinkCommunication_ActionQuestion` | `data/text/us/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x08100758` | `gText_LinkCommunication_Declined` | `data/text/us/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
+| `0x08100790` | `gText_LinkCommunication_Complete` | `data/text/us/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
 | `0x08100AC0` | `gText_Cooking_Recipe_PageBreak` | `data/text/common/cooking_recipe_inventory.cc` | `src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_page_break)` |
 | `0x08100AD2` | `gText_StaminaRecoveryStatus` | `data/text/us/recovery_status.cc` | `data/text/recovery_status.o(.rodata)` |
 | `0x08100BD7` | `gText_FatigueRecoveryStatus` | `data/text/us/recovery_status.cc` | `data/text/recovery_status.o(.rodata)` |

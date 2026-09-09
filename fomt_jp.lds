@@ -862,11 +862,10 @@ SECTIONS
         . = 0xFFD54; data/text/gift_wrap.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0xFFE70; data/text/link_communication.o(.rodata);
-        . = 0x100130; src/link_communication_data.o(.rodata);
-        src/link_communication_data.o(.rodata.link_communication_game_codes);
+        /* Bounded link-communication localization island: text, tables, codes. */
         FILL(0x00);
-        . = ALIGN(4);
+        . = 0xFFE70; src/link_communication_data.o(.rodata);
+        ASSERT(. <= 0x1005D8, "JP link-communication localization island overflow");
         . = 0x1005D8; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_page_break);
         . = 0x1005DA; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_utensil_values);
         . = 0x1005EA; data/text/recovery_status.o(.rodata);

@@ -1,6 +1,14 @@
 #include "link_communication.hh"
 #include "link_communication_text.hh"
 
+// Keep the selected regional dialog immediately before its native packet
+// tables.  The linker gives this whole source object one bounded ROM island.
+#if defined(REGION_JP)
+#include "data/text/jp/link_communication.cc"
+#else
+#include "data/text/us/link_communication.cc"
+#endif
+
 EXTERN_C
 
 LinkCommunicationDataRecord const gUnk_081007AC[] = {
@@ -134,36 +142,6 @@ LinkCommunicationDataRecord const gUnk_08100A04[] = {
 char const gCppRuntimeBadAlloc_LinkCommunication[] =
     "bad_alloc";
 
-// The native link packet constructors load the first word of each object.
-// The region-specific fourth character is the retail game-code suffix.
-LinkCommunicationGameCode const gLinkCommunicationGameCodeA4N
-    SECTION(".rodata.link_communication_game_codes") = {
-#if defined(REGION_JP)
-        0x4A4E3441,
-#else
-        0x454E3441,
-#endif
-        0x00000000,
-    };
-
-LinkCommunicationGameCode const gLinkCommunicationGameCodeGYW
-    SECTION(".rodata.link_communication_game_codes") = {
-#if defined(REGION_JP)
-        0x4A575947,
-#else
-        0x45575947,
-#endif
-        0x00000000,
-    };
-
-char const gCppRuntimeBadAlloc_LinkCommunicationA4N[]
-    SECTION(".rodata.link_communication_game_codes") =
-        "bad_alloc";
-
-char const gCppRuntimeBadAlloc_LinkCommunicationGYW[]
-    SECTION(".rodata.link_communication_game_codes") =
-        "bad_alloc";
-
 EXTERN_C_END
 
 #if defined(REGION_JP)
@@ -190,3 +168,32 @@ u8 const gLinkCommunicationCharacterCodeTable[] ALIGN(2) =
         "\xBB\xBC\xBD\xBE\xC1\xC2\xC3 \xB4"
     );
 #endif
+
+EXTERN_C
+
+// The native link packet constructors load the first word of each object.
+// The region-specific fourth character is the retail game-code suffix.
+LinkCommunicationGameCode const gLinkCommunicationGameCodeA4N = {
+#if defined(REGION_JP)
+    0x4A4E3441,
+#else
+    0x454E3441,
+#endif
+    0x00000000,
+};
+
+LinkCommunicationGameCode const gLinkCommunicationGameCodeGYW = {
+#if defined(REGION_JP)
+    0x4A575947,
+#else
+    0x45575947,
+#endif
+    0x00000000,
+};
+
+char const gCppRuntimeBadAlloc_LinkCommunicationA4N[] =
+    "bad_alloc";
+char const gCppRuntimeBadAlloc_LinkCommunicationGYW[] =
+    "bad_alloc";
+
+EXTERN_C_END
