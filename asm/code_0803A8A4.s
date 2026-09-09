@@ -8742,3 +8742,8 @@ func_0803EE50: @ 0x0803EE50
 	bx r1
 	.align 2, 0
     .endif
+
+    @ This intra-function Thumb entry is referenced by the raw vtable at
+    @ 0x080E76E8 in both regional ROMs.
+    .global func_0803B4DC
+    .thumb_set func_0803B4DC, func_0803B4B0 + 0x2C
