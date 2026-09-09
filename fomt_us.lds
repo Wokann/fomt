@@ -769,15 +769,7 @@ SECTIONS
         . = ALIGN(4); src/library_data.o(.rodata.library_initial_entry_ids);
         . = 0xFD940; data/text/library.o(.rodata.library_menu);
         . = 0xFD958; data/text/library.o(.rodata.library_menu_trailer);
-        . = 0xFD964; data/text/poultry_shop.o(.rodata.poultry_shop_menu);
-        . = ALIGN(4); src/poultry_shop_data.o(.rodata.poultry_shop_catalog);
-        data/text/poultry_shop.o(.rodata.poultry_shop_status_prefix);
-        FILL(0x00);
-        . = ALIGN(4); data/text/poultry_shop.o(.rodata.poultry_shop_status);
-        FILL(0x00);
-        . = ALIGN(4); data/text/poultry_shop.o(.rodata.poultry_shop_dialogue);
-        FILL(0x00);
-        . = ALIGN(4); data/text/poultry_shop.o(.rodata.poultry_shop_trailer);
+        . = 0xFD964; src/poultry_shop_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/supermarket_data.o(.rodata.supermarket_crop_catalog);
         . = 0xFDE40; data/text/supermarket.o(.rodata.supermarket_primary_text);

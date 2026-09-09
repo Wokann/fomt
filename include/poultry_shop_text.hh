@@ -14,13 +14,6 @@ struct PoultryShopCatalogEntry
     u32 mode;
 };
 
-#define POULTRY_SHOP_MENU SECTION(".rodata.poultry_shop_menu")
-#define POULTRY_SHOP_CATALOG SECTION(".rodata.poultry_shop_catalog")
-#define POULTRY_SHOP_STATUS_PREFIX SECTION(".rodata.poultry_shop_status_prefix")
-#define POULTRY_SHOP_STATUS SECTION(".rodata.poultry_shop_status")
-#define POULTRY_SHOP_DIALOGUE SECTION(".rodata.poultry_shop_dialogue")
-#define POULTRY_SHOP_TRAILER SECTION(".rodata.poultry_shop_trailer")
-
 extern char const gText_PoultryShop_Empty[];
 extern char const gText_PoultryShop_BuyChicken[];
 extern char const gText_PoultryShop_SellChicken[];
