@@ -1,5 +1,6 @@
 #include "animal_festival_ranking.hh"
 
+#include "frisbee_text.hh"
 #include "item.hh"
 
 // The still-native animal-festival ranking path reads a halfword from this
@@ -18,6 +19,12 @@ extern u16 const gAnimalFestivalRankingScoreTable[]
     710, 700, 690, 650, 630, 600, 590, 580, 550, 520,
     850, 800, 790, 750, 740, 710, 690, 680, 650, 630,
 };
+
+// This runtime literal follows the ranking score table in the original ROM.
+// It is not a separate Frisbee text resource.
+char const gCppRuntimeBadAlloc_FrisbeeScoreboard[]
+    SECTION(".rodata.animal_festival_ranking_scoreboard_trailer") =
+        "bad_alloc";
 
 // These three tables are indexed by still-native festival code. Their exact
 // dimensions have not been recovered, so retain the original flat ordering.

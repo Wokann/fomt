@@ -83,3 +83,6 @@ char const gText_Frisbee_FoundItem[] ALIGN(4) =
 char const gText_Frisbee_FoundNothing[] ALIGN(4) =
     "\p"
     "You didn't find anything.{Press}";
+
+char const gCppRuntimeBadAlloc_FrisbeeTextTrailer[] ALIGN(4) =
+    "bad_alloc";

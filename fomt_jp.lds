@@ -806,13 +806,12 @@ SECTIONS
         . = 0xF9994; data/text/frisbee_scoreboard.o(.rodata);
         FILL(0x00);
         . = 0xF99AC; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_score_table);
-        . = 0xF9A74; data/text/frisbee_scoreboard_trailer.o(.rodata);
+        . = 0xF9A74; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_scoreboard_trailer);
         . = 0xF9A7E; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_data);
         FILL(0x00);
         . = ALIGN(4); src/animal_festival_ranking.o(.rodata.animal_festival_ranking_reward_article_ids);
         . = 0xF9BD4; data/text/frisbee.o(.rodata);
         FILL(0x00);
-        . = 0xF9F50; data/text/frisbee_text_trailer.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/animal_festival_ranking.o(.rodata.animal_festival_ranking_random_range_pairs);
         . = 0xF9FCC; data/text/animal_festival.o(.rodata);

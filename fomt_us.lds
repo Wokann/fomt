@@ -714,12 +714,11 @@ SECTIONS
         . = 0xFA12E; src/new_game_name_entry_ui_data.o(.rodata);
         . = 0xFA158; data/text/frisbee_scoreboard.o(.rodata);
         . = 0xFA174; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_score_table);
-        . = 0xFA23C; data/text/frisbee_scoreboard_trailer.o(.rodata);
+        . = 0xFA23C; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_scoreboard_trailer);
         . = 0xFA246; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_data);
         FILL(0x00);
         . = ALIGN(4); src/animal_festival_ranking.o(.rodata.animal_festival_ranking_reward_article_ids);
         . = 0xFA39C; data/text/frisbee.o(.rodata);
-        . = 0xFA710; data/text/frisbee_text_trailer.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/animal_festival_ranking.o(.rodata.animal_festival_ranking_random_range_pairs);
         . = 0xFA78C; data/text/animal_festival.o(.rodata);
