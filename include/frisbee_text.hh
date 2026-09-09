@@ -3,7 +3,6 @@
 
 #include "prelude.h"
 
-#define FRISBEE_SCOREBOARD_TEXT SECTION(".rodata.frisbee_scoreboard")
 
 // Static UI text used by the Frisbee practice and tournament flow.
 // The regional source files define the same semantic labels at their
