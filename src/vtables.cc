@@ -2680,6 +2680,69 @@ extern RawVTableFunction const vtable_unk_080E671C[]
     };
 
 #if defined(REGION_JP)
+extern void func_080DBFB4(void);
+#else
+extern void func_080DC800(void);
+#endif
+
+// Preserve this 44-slot table and its region-specific callbacks in ROM order.
+extern RawVTableFunction const vtable_unk_080E676C[]
+    SECTION(".rodata.vtable_676c") = {
+        nullptr,
+        nullptr,
+#if defined(REGION_JP)
+        func_080DBFB4,
+#else
+        func_080DC800,
+#endif
+        func_0803240C,
+        vfunc_10__7AEntity,
+        vfunc_14__7AEntity,
+        func_08032A30,
+        vfunc_1C__7AEntityUi,
+        vfunc_20__7AEntity,
+        vfunc_24__7AEntity,
+        vfunc_28__C7AEntity,
+        func_0803242C,
+        __pure_virtual,
+        func_080324B8,
+#if defined(REGION_JP)
+        func_080328D4,
+#else
+        func_08032B40,
+#endif
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+        __pure_virtual,
+    };
+
+#if defined(REGION_JP)
 // The JP Script Engine code is still retained as a raw code range, but this
 // ABI table has the same five logical slots as the compiled US table.
 extern RawVTableFunction const __vt_13AScriptEngine[]
