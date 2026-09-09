@@ -4,10 +4,8 @@
     @ AScene and AUnk_0800080C are emitted from their ordinary C++ class
     @ declarations. The remaining tables stay in this static ROM range.
 
-    .section .rodata.080E6A54
-    .set jp_vtables_start, jp_vtables_raw_after_vtable_75fc - 0x1C48
-    .global vtable_unk_080E7614
-    .set vtable_unk_080E7614, jp_vtables_start + 0x1C48
+    .section .rodata.080E6A6C
+    .set jp_vtables_start, jp_vtables_raw_after_vtable_7614 - 0x1C60
     .global vtable_unk_080E762C
     .set vtable_unk_080E762C, jp_vtables_start + 0x1C60
     .global vtable_unk_080E7644
@@ -50,18 +48,14 @@
     .set vtable_unk_080E77D0, jp_vtables_start + 0x1E04
     .global vtable_unk_080E77E0
     .set vtable_unk_080E77E0, jp_vtables_start + 0x1E14
-jp_vtables_raw_after_vtable_75fc:
-    .incbin "baserom_jp.gba", 0xE6A54, (0xE6C50 - 0xE6A54)
+jp_vtables_raw_after_vtable_7614:
+    .incbin "baserom_jp.gba", 0xE6A6C, (0xE6C50 - 0xE6A6C)
 
     .else
 
     .section .rodata
 
-	.section .rodata.080E7614
-
-	.global vtable_unk_080E7614
-vtable_unk_080E7614:
-	.incbin "baserom_us.gba", 0xE7614, 0x18
+	.section .rodata.080E762C
 
 	.global vtable_unk_080E762C
 vtable_unk_080E762C:
