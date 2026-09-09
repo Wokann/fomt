@@ -735,11 +735,11 @@ SECTIONS
         . = 0xFAA40; src/horse_race_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0xFB1D8; data/text/intro_scene_prefix.o(.rodata);
+        . = 0xFB1D8; src/intro_scene_data.o(.rodata.intro_scene_prefix);
         . = 0xFB1E4; src/intro_scene_data.o(.rodata);
         . = 0xFB234; data/text/intro_scene.o(.rodata);
         FILL(0x00);
-        . = 0xFB818; data/text/intro_scene_trailer.o(.rodata);
+        . = 0xFB818; src/intro_scene_data.o(.rodata.intro_scene_trailer);
         . = 0xFB824; data/text/farm_status.o(.rodata);
         . = 0xFB960; data/text/animal_status_screen.o(.rodata);
         . = 0xFB9C8; data/text/animal_contest.o(.rodata);

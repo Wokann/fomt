@@ -2,6 +2,12 @@
 
 EXTERN_C
 
+// This runtime literal physically precedes the intro resource table.  It
+// belongs to this data module rather than to a standalone regional text file.
+char const gCppRuntimeBadAlloc_IntroScenePrefix[]
+    SECTION(".rodata.intro_scene_prefix") =
+        "bad_alloc";
+
 // The concrete graphics payload formats remain raw.  These labels retain the
 // original region-specific relocations while the loading order is expressed
 // as ordinary C++ data.
@@ -74,5 +80,10 @@ u8 const * const gIntroSceneUnpackSources[] = {
     gUnk_IntroSceneUnpackSource_018,
     gUnk_IntroSceneUnpackSource_019,
 };
+
+// The matching runtime literal follows the dialogue data in the original ROM.
+char const gCppRuntimeBadAlloc_IntroSceneTextTrailer[]
+    SECTION(".rodata.intro_scene_trailer") =
+        "bad_alloc";
 
 EXTERN_C_END
