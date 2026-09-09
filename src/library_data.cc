@@ -10,11 +10,9 @@
 #undef FOMT_LIBRARY_TEXT_ATTRIBUTE
 #undef FOMT_LIBRARY_TEXT_OPENING_HOURS
 
-#define FOMT_LIBRARY_TEXT_INFO
-#define FOMT_LIBRARY_TEXT_ATTRIBUTE SECTION(".rodata.library_info")
-#include "data/text/common/library_info.cc"
-#undef FOMT_LIBRARY_TEXT_ATTRIBUTE
-#undef FOMT_LIBRARY_TEXT_INFO
+// This runtime literal precedes the native entry-ID table in both ROMs.
+char const gCppRuntimeBadAlloc_LibraryInfo[] SECTION(".rodata.library_info") =
+    "bad_alloc";
 
 // func_08079A64 loads one 32-bit source slot at a time, then stores its low
 // halfword into the active Library entry list.  Keep the original word width.
@@ -33,9 +31,9 @@ u32 const gLibraryInitialEntryIds[]
 #define FOMT_LIBRARY_TEXT_MENU
 #define FOMT_LIBRARY_TEXT_ATTRIBUTE SECTION(".rodata.library_menu")
 #if defined(REGION_JP)
-#include "data/text/jp/library_menu.cc"
+#include "data/text/jp/library.cc"
 #else
-#include "data/text/us/library_menu.cc"
+#include "data/text/us/library.cc"
 #endif
 #undef FOMT_LIBRARY_TEXT_ATTRIBUTE
 #undef FOMT_LIBRARY_TEXT_MENU

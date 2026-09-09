@@ -138,8 +138,6 @@ TEXT_FRAGMENT_SOURCES := \
   data/text/$(TEXT_REGION)/records.cc \
   data/text/$(TEXT_REGION)/horse_race.cc \
   data/text/$(TEXT_REGION)/library.cc \
-  data/text/$(TEXT_REGION)/library_menu.cc \
-  data/text/common/library_info.cc \
   data/text/common/cooking_recipe_inventory.cc \
   data/text/common/animal.cc \
   data/text/common/fallback.cc
