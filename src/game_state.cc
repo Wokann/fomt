@@ -1,5 +1,13 @@
 #include "game_state.hh"
 
+// Calendar rows and labels occupy the native run immediately before this
+// game-state record.
+#if defined(REGION_JP)
+#include "data/text/jp/calendar.cc"
+#else
+#include "data/text/us/calendar.cc"
+#endif
+
 // Keep the native order and trailing sentinel. Its higher-level event role
 // remains undecoded, so the original ROM-address label is retained.
 Unk_080F0566Data const gUnk_080F0566 = {

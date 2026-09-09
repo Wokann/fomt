@@ -642,11 +642,13 @@ SECTIONS
         . = 0xE9614; src/item.o(.rodata);
         ASSERT(. <= 0xF04EE, "US item localization island overflow");
         FILL(0x00);
-        . = 0xF04EE; data/text/calendar.o(.rodata.calendar_season);
-        data/text/calendar.o(.rodata);
-        src/game_state.o(.rodata);
+        /* Bounded Calendar localization island: rows, labels, state record. */
+        . = 0xF04EE; src/game_state.o(.rodata.calendar_season);
         FILL(0x00);
-        . = ALIGN(4); data/text/load_error.o(.rodata);
+        . = 0xF050C; src/game_state.o(.rodata);
+        ASSERT(. <= 0xF058C, "US Calendar localization island overflow");
+        FILL(0x00);
+        . = 0xF058C; data/text/load_error.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         src/help_menu.o(.rodata);
