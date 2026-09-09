@@ -33,6 +33,10 @@ void Clear2DGfxBufferRect(u32 size, void *buffer, u32 x, u32 y, u32 width,
 // Copies every 32-byte tile in a packed two-dimensional 4bpp buffer.
 void Copy2DGfxBuffer(u32 size, void *destination, void const *source)
     asm("func_0804E9D0");
+// Fills a tilemap rectangle with sequential tile IDs. Only the low 16 bits
+// of first_tile and palette are represented in each tilemap entry.
+void Fill2DGfxTilemapRect(u16 *destination, u32 first_tile, u32 width,
+    u32 height, u32 palette, u32 row_stride) asm("func_0804E9F4");
 void DrawStringTo2DGfxBuffer(u32 size, void *buffer, i32 x, i32 y,
     u8 const *string);
 void DrawStringTo2DGfxBufferExt(u32 size, void *buffer, i32 x, i32 y,

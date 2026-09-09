@@ -168,7 +168,7 @@ SECTIONS
         . = 0x4E7A0; /* Shared 2D tile-buffer fillers and Shift-JIS renderers. */
         src/font_draw.o(.text);
         . = 0x4E9D0; src/font_draw.o(.text.font_draw_after);
-        . = 0x4E9F4; asm/code_0803EE94.o(.text.font_draw_after);
+        asm/code_0803EE94.o(.text.font_draw_after);
         . = 0x503FC; /* JP/US-shared nonzero UI-state setter. */
         src/ui_state.o(.text.set_ui_object_state_two_if_nonzero);
         . = 0x50410; /* JP/US-shared nonzero UI-state clearer. */

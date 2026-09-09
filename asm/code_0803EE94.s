@@ -32,7 +32,7 @@
     .section .text.font_draw_after
     @ The preceding unaligned no-ops and packed tile-buffer copy helper are
     @ rebuilt from src/font_draw.cc.
-    jp_code_0803ee_func func_0804E9F4, 0x4E81C, 0x4E880
+    @ The following tilemap rectangle filler is also rebuilt there.
     jp_code_0803ee_func func_0804EA58, 0x4E880, 0x4E8BC
     jp_code_0803ee_func func_0804EA94, 0x4E8BC, 0x4EAAC
     jp_code_0803ee_func func_0804EC84, 0x4EAAC, 0x4EC88
@@ -28526,63 +28526,6 @@ func_0804E3D8: @ 0x0804E3D8
 	@ fallbacks, and the packed tile-buffer copy helper are rebuilt from
 	@ src/font_draw.cc for both regions.
 	.section .text.font_draw_after
-
-	thumb_func_start func_0804E9F4
-func_0804E9F4: @ 0x0804E9F4
-	push {r4, r5, r6, r7, lr}
-	mov r7, sl
-	mov r6, sb
-	mov r5, r8
-	push {r5, r6, r7}
-	adds r4, r0, #0
-	mov ip, r2
-	mov r8, r3
-	ldr r0, [sp, #0x20]
-	lsls r1, r1, #0x10
-	lsrs r5, r1, #0x10
-	lsls r0, r0, #0x10
-	lsrs r0, r0, #0x10
-	mov sl, r0
-	adds r6, r4, #0
-	movs r1, #0
-	cmp r1, r8
-	bhs .L0804EA48
-	ldr r0, [sp, #0x24]
-	lsls r0, r0, #1
-	mov sb, r0
-.L0804EA1E:
-	movs r2, #0
-	adds r7, r1, #1
-	cmp r2, ip
-	bhs .L0804EA3E
-	mov r0, sl
-	lsls r3, r0, #0xc
-.L0804EA2A:
-	adds r1, r5, #0
-	adds r0, r1, #1
-	lsls r0, r0, #0x10
-	lsrs r5, r0, #0x10
-	orrs r1, r3
-	strh r1, [r4]
-	adds r4, #2
-	adds r2, #1
-	cmp r2, ip
-	blo .L0804EA2A
-.L0804EA3E:
-	add r6, sb
-	adds r4, r6, #0
-	adds r1, r7, #0
-	cmp r1, r8
-	blo .L0804EA1E
-.L0804EA48:
-	pop {r3, r4, r5}
-	mov r8, r3
-	mov sb, r4
-	mov sl, r5
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-	.align 2, 0
 
 	thumb_func_start func_0804EA58
 func_0804EA58: @ 0x0804EA58

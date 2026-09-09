@@ -403,6 +403,9 @@ i32 DrawCharacterGlyphTo2DGfxBufferExtUnaligned(u32 size, void *buffer,
 
 void Copy2DGfxBuffer(u32 size, void *destination, void const *source)
     SECTION(".text.font_draw_after");
+void Fill2DGfxTilemapRect(u16 *destination, u32 first_tile, u32 width,
+    u32 height, u32 palette, u32 row_stride) asm("func_0804E9F4")
+    SECTION(".text.font_draw_after");
 
 // Copy a complete packed 4bpp tile buffer. The low and high halves of size
 // are its tile width and height respectively.
@@ -416,6 +419,68 @@ void Copy2DGfxBuffer(u32 size, void *destination, void const *source)
     word_count >>= 2;
     word_count &= 0x1FFFFF;
     CpuFastSet(source, destination, word_count);
+}
+
+// Fill a tilemap rectangle with sequential tile IDs. The row stride is in
+// 16-bit entries, so it may be larger than the visible width.
+void Fill2DGfxTilemapRect(u16 *destination, u32 first_tile, u32 width,
+    u32 height, u32 palette, u32 row_stride)
+{
+    // These are ordinary C++ register bindings. The empty constraints below
+    // preserve their lifetimes for the legacy compiler without emitting code.
+    register u16 *write_pointer asm("r4");
+    register u32 next_tile asm("r5");
+    register u16 *row_pointer asm("r6");
+    register u32 row asm("r1");
+    register u32 column_count asm("r12");
+    register u32 row_count asm("r8");
+    register u32 row_stride_bytes asm("r9");
+    register u32 palette_value asm("r10");
+    register u32 palette_input asm("r0");
+    register u32 tile_input asm("r1");
+
+    write_pointer = destination;
+    column_count = width;
+    row_count = height;
+    tile_input = first_tile;
+    palette_input = palette;
+    next_tile = static_cast<u16>(tile_input);
+    palette_input <<= 16;
+    __asm__ volatile ("" : "+r"(palette_input));
+    palette_input >>= 16;
+    palette_value = palette_input;
+    row_pointer = write_pointer;
+    row = 0;
+
+    if (row >= row_count)
+        return;
+
+    row_stride_bytes = row_stride * sizeof(*destination);
+    do {
+        register u32 column asm("r2") = 0;
+        u32 next_row = row + 1;
+
+        __asm__ volatile ("" : "+r"(row));
+        __asm__ volatile ("" : "+r"(next_row));
+        if (column < column_count) {
+            register u32 tile_attribute asm("r3") = palette_value << 12;
+
+            do {
+                u32 current_tile = next_tile;
+                register u32 incremented_tile asm("r0") = current_tile + 1;
+
+                next_tile = static_cast<u16>(incremented_tile);
+                *write_pointer++ = current_tile | tile_attribute;
+                column++;
+            } while (column < column_count);
+        }
+
+        __asm__ volatile ("" : "+r"(row_pointer));
+        row_pointer = reinterpret_cast<u16 *>(reinterpret_cast<u8 *>(row_pointer)
+            + row_stride_bytes);
+        write_pointer = row_pointer;
+        row = next_row;
+    } while (row < row_count);
 }
 
 EXTERN_C_END
