@@ -45,16 +45,6 @@ char const gText_HarvestSpriteMiniGameAnimalHusbandryEmpty[]
         "";
 #endif
 
-// The native Chicken Festival code indexes these fixed-width contestant rows.
-#define FOMT_CHICKEN_FESTIVAL_TEXT_ATTRIBUTE \
-    SECTION(".rodata.harvest_sprite_minigames_chicken_festival_contestant_names")
-#if defined(REGION_JP)
-#include "data/text/jp/chicken_festival.cc"
-#else
-#include "data/text/us/chicken_festival.cc"
-#endif
-#undef FOMT_CHICKEN_FESTIVAL_TEXT_ATTRIBUTE
-
 // The native Chicken Festival code selects a row with a twelve-byte stride,
 // then adds one of these four byte offsets to the selected u16 value.  JP
 // places the table at a two-byte (rather than four-byte) boundary.

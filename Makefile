@@ -116,11 +116,8 @@ TEXT_FRAGMENT_SOURCES := \
   data/text/common/entity_ui.cc \
   data/text/common/fixed_labels.cc \
   data/text/common/menu.cc \
-  data/text/common/script_engine.cc \
   data/text/common/ui_error.cc \
   data/text/$(TEXT_REGION)/animal_data.cc \
-  data/text/$(TEXT_REGION)/animal_festival.cc \
-  data/text/$(TEXT_REGION)/animal_memorial.cc \
   data/text/$(TEXT_REGION)/entity_ui.cc \
   data/text/$(TEXT_REGION)/fixed_labels.cc \
   data/text/$(TEXT_REGION)/load_error.cc \
@@ -139,10 +136,8 @@ TEXT_FRAGMENT_SOURCES := \
   data/text/$(TEXT_REGION)/calendar.cc \
   data/text/$(TEXT_REGION)/farm_status.cc \
   data/text/$(TEXT_REGION)/animal_contest.cc \
-  data/text/$(TEXT_REGION)/chicken_festival.cc \
   data/text/$(TEXT_REGION)/ui_error.cc \
   data/text/$(TEXT_REGION)/poultry_shop.cc \
-  data/text/$(TEXT_REGION)/random_item.cc \
   data/text/$(TEXT_REGION)/supermarket.cc \
   data/text/$(TEXT_REGION)/clinic.cc \
   data/text/$(TEXT_REGION)/inn_shop.cc \

@@ -737,7 +737,7 @@ SECTIONS
         ASSERT(. <= 0xEFEA4, "JP Help localization island overflow");
         FILL(0x00);
         /* Bounded Animal localization island: memorial text and animal data. */
-        . = 0xEFEA4; src/game_state.o(.rodata.animal_memorial);
+        . = 0xEFEA4; data/text/animal_memorial.o(.rodata);
         src/animal_data.o(.rodata.animal_data_prefix);
         src/animal_data.o(.rodata);
         ASSERT(. <= 0xF06E0, "JP Animal localization island overflow");
@@ -759,7 +759,7 @@ SECTIONS
         . = ALIGN(4); asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix);
         . = 0xF96F4; /* JP ScriptEngine string-object prefix. */
         src/script_engine.o(.rodata.script_engine_string_error_prefix);
-        . = 0xF9700; src/script_engine.o(.rodata.script_engine_text);
+        . = 0xF9700; data/text/common/script_engine.o(.rodata);
         . = 0xF9721; src/cooking_festival_data.o(.rodata);
         src/thomas_stocking_data.o(.rodata);
         FILL(0x00);
@@ -786,7 +786,7 @@ SECTIONS
         FILL(0x00);
         FILL(0x00);
         . = ALIGN(4); src/animal_festival_ranking.o(.rodata.animal_festival_ranking_random_range_pairs);
-        . = 0xF9FCC; src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_names);
+        . = 0xF9FCC; data/text/animal_festival.o(.rodata);
         . = 0xFA1DE; src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_values);
         FILL(0x00);
         . = ALIGN(4);
@@ -886,7 +886,7 @@ SECTIONS
         . = ALIGN(4);
         . = 0x10447C; data/text/calendar_events.o(.rodata);
         . = 0x104958; data/text/possessive_labels.o(.rodata);
-        . = 0x104994; src/random_item.o(.rodata.random_item_not_available);
+        . = 0x104994; data/text/random_item.o(.rodata);
         . = 0x10499C; src/fishing_results_data.o(.rodata.fishing_record_article_ids);
         . = 0x1049BC; src/field_data.o(.rodata.field_plot_position_values);
         . = 0x1049F4; src/random_item.o(.rodata.random_item_selection_weights);
@@ -923,7 +923,7 @@ SECTIONS
         . = 0x10737B; src/harvest_sprite.o(.rodata.harvest_sprite_minigames_animal_husbandry_match_values);
         . = 0x107380; src/harvest_sprite.o(.rodata.harvest_sprite_minigames_animal_husbandry_u16_tables);
         . = 0x1073AC; src/harvest_sprite.o(.rodata.harvest_sprite_minigames_animal_husbandry_runtime);
-        . = 0x1073B9; src/harvest_sprite.o(.rodata.harvest_sprite_minigames_chicken_festival_contestant_names);
+        . = 0x1073B9; data/text/chicken_festival.o(.rodata);
         . = 0x1074C0; data/text/harvest_sprite_minigames_chicken_festival_opening.o(.rodata);
         . = 0x1075EA; src/harvest_sprite.o(.rodata.harvest_sprite_minigames_chicken_festival_values);
         . = 0x10761A; src/harvest_sprite.o(.rodata.harvest_sprite_minigames_chicken_festival_offsets);

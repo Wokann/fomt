@@ -45,7 +45,7 @@
 | `0x080EFDCE`–`0x080EFDCF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080EFDD0`–`0x080EFEA2` | `src/help_menu.o(.rodata)` | [嵌入文本 / 数据] | `src/help_menu.cc`<br>`data/text/jp/load_error.cc`<br>`data/text/jp/help_menu.cc` | 文本 `6` 项（加载错误 `2`、帮助菜单 `4`；详见下方索引）<br>运行时字符串 `2` 项<br>`gUnk_HelpMenuByteTable` |
 | `0x080EFEA3`–`0x080EFEA3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x080EFEA4`–`0x080EFF5C` | `src/game_state.o(.rodata.animal_memorial)` | [游戏状态文本段] | `data/text/jp/animal_memorial.cc` | 文本 `11` 项（详见下方索引）<br>运行时字符串 `2` 项<br>动物本地化岛首段：与紧邻动物数据共同受 LD 上界保护 |
+| `0x080EFEA4`–`0x080EFF5C` | `data/text/animal_memorial.o(.rodata)` | [文本对象] | `data/text/jp/animal_memorial.cc` | 文本 `11` 项（详见下方索引）<br>运行时字符串 `2` 项<br>动物本地化岛首段：与紧邻动物数据共同受 LD 上界保护 |
 | `0x080EFF5D`–`0x080F006F` | `src/animal_data.o(.rodata.animal_data_prefix)` | [数据] | `data/text/common/animal_data.cc`<br>`data/text/jp/animal_data.cc` | `gUnk_080F06FD`, `gUnk_080F0704`, `gUnk_080F0718`, `gUnk_080F0730`, `gUnk_080F0748`, `gUnk_080F0770`, … +1 |
 | `0x080F0070`–`0x080F06DD` | `src/animal_data.o(.rodata)` | [嵌入文本] | `data/text/common/animal_data.cc`<br>`data/text/jp/animal_data.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `5` 项<br>`gUnk_080F0838`, `gUnk_080F0908`, `gUnk_080F093C`, `gUnk_080F09AC`, `gUnk_080F09C8`, `gUnk_080F0A68`, … +4 |
 | `0x080F06DE`–`0x080F06DF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -63,7 +63,7 @@
 | `0x080F3B4A`–`0x080F3B4B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F3B4C`–`0x080F96F3` | `asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix)` | [Mary 脚本连续块] | `asm/data/data_080F1A80.s`<br>Mary 独立管理的连续剧情脚本区域（含脚本表入口）；按维护规则不展开内部内容 | 连续脚本相关原始区域；按维护规则不展开内部标签或表 |
 | `0x080F96F4`–`0x080F96FF` | `src/script_engine.o(.rodata.script_engine_string_error_prefix)` | [数据] | `src/script_engine.c/.cc` | 无全局符号 |
-| `0x080F9700`–`0x080F9720` | `src/script_engine.o(.rodata.script_engine_text)` | [脚本引擎文本段] | `data/text/common/script_engine.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `1` 项 |
+| `0x080F9700`–`0x080F9720` | `data/text/common/script_engine.o(.rodata)` | [文本对象] | `data/text/common/script_engine.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080F9721`–`0x080F9734` | `src/cooking_festival_data.o(.rodata)` | [数据] | `src/cooking_festival_data.c/.cc` | `gCookingFestivalDishCategoryRatingThresholds` |
 | `0x080F9735`–`0x080F9739` | `src/thomas_stocking_data.o(.rodata)` | [数据] | `src/thomas_stocking_data.c/.cc` | `gThomasStockingGiftSelectionWeights` |
 | `0x080F973A`–`0x080F973B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -84,7 +84,7 @@
 | `0x080F9BD4`–`0x080F9F59` | `data/text/frisbee.o(.rodata)` | [文本对象] | `data/text/jp/frisbee.cc` | 文本 `15` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080F9F5A`–`0x080F9F5B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F9F5C`–`0x080F9FCB` | `src/animal_festival_ranking.o(.rodata.animal_festival_ranking_random_range_pairs)` | [数据] | `src/animal_festival_ranking.c/.cc` | `gAnimalFestivalRandomRangePairs` |
-| `0x080F9FCC`–`0x080FA1DD` | `src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_names)` | [动物祭典排名文本段] | `data/text/jp/animal_festival.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项 |
+| `0x080F9FCC`–`0x080FA1DD` | `data/text/animal_festival.o(.rodata)` | [文本对象] | `data/text/jp/animal_festival.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080FA1DE`–`0x080FA27D` | `src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_values)` | [数据] | `src/animal_festival_ranking.c/.cc` | `gAnimalFestivalLivestockContestantValues` |
 | `0x080FA27E`–`0x080FA27F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FA280`–`0x080FAA5F` | `src/horse_race_data.o(.rodata)` | [嵌入文本] | `data/text/jp/horse_race.cc` | 文本 `44` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gHorseRaceTicketCharacterCodes`, `gHorseRaceTicketControls`, `gHorseRacePrizeCatalog`, `gHorseRacePrizeItemIds`, `gHorseRacePrizeExchangeCharacterCodes` |
@@ -172,7 +172,7 @@
 | `0x08104956`–`0x08104957` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08104958`–`0x08104991` | `data/text/possessive_labels.o(.rodata)` | [文本对象] | `data/text/jp/possessive_labels.cc` | 文本 `6` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x08104992`–`0x08104993` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08104994`–`0x08104998` | `src/random_item.o(.rodata.random_item_not_available)` | [随机物品文本段] | `data/text/jp/random_item.cc` | 文本 `1` 项（详见下方索引） |
+| `0x08104994`–`0x08104998` | `data/text/random_item.o(.rodata)` | [文本对象] | `data/text/jp/random_item.cc` | 文本 `1` 项（详见下方索引） |
 | `0x08104999`–`0x0810499B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
 | `0x0810499C`–`0x081049BB` | `src/fishing_results_data.o(.rodata.fishing_record_article_ids)` | [数据] | `src/fishing_results_data.c/.cc` | `gFishingRecordArticleIds` |
 | `0x081049BC`–`0x081049F3` | `src/field_data.o(.rodata.field_plot_position_values)` | [数据] | `src/field_data.c/.cc` | `gFieldPlotPositionValues` |
@@ -220,7 +220,7 @@
 | `0x08107380`–`0x081073AB` | `src/harvest_sprite.o(.rodata.harvest_sprite_minigames_animal_husbandry_u16_tables)` | [数据] | `src/harvest_sprite.c/.cc` | `gUnk_HarvestSpriteMiniGameAnimalHusbandrySelectionValues`, `gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues0`, `gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues1`, `gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues2`, `gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues3` |
 | `0x081073AC`–`0x081073B5` | `src/harvest_sprite.o(.rodata.harvest_sprite_minigames_animal_husbandry_runtime)` | [数据] | `src/harvest_sprite.c/.cc` | 运行时字符串 `1` 项 |
 | `0x081073B6`–`0x081073B8` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
-| `0x081073B9`–`0x081074BC` | `src/harvest_sprite.o(.rodata.harvest_sprite_minigames_chicken_festival_contestant_names)` | [鸡祭典小游戏文本段] | `data/text/jp/chicken_festival.cc` | 文本 `1` 项（详见下方索引） |
+| `0x081073B9`–`0x081074BC` | `data/text/chicken_festival.o(.rodata)` | [文本对象] | `data/text/jp/chicken_festival.cc` | 文本 `1` 项（详见下方索引） |
 | `0x081074BD`–`0x081074BF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
 | `0x081074C0`–`0x081075E9` | `data/text/harvest_sprite_minigames_chicken_festival_opening.o(.rodata)` | [文本对象] | `data/text/jp/harvest_sprite_minigames.cc` | 文本 `11` 项（详见下方索引） |
 | `0x081075EA`–`0x08107619` | `src/harvest_sprite.o(.rodata.harvest_sprite_minigames_chicken_festival_values)` | [数据] | `src/harvest_sprite.c/.cc` | `gUnk_HarvestSpriteMiniGameChickenFestivalValues` |
@@ -1004,17 +1004,17 @@
 | `0x080EFE08` | `gText_HelpMenu_Animals` | `data/text/jp/help_menu.cc` | `src/help_menu.o(.rodata)` |
 | `0x080EFE18` | `gText_HelpMenu_UsefulTips` | `data/text/jp/help_menu.cc` | `src/help_menu.o(.rodata)` |
 | `0x080EFE24` | `gText_HelpMenu_Exit` | `data/text/jp/help_menu.cc` | `src/help_menu.o(.rodata)` |
-| `0x080EFEA4` | `gText_AnimalMemorial_LineBreak` | `data/text/jp/animal_memorial.cc` | `src/game_state.o(.rodata.animal_memorial)` |
-| `0x080EFEA8` | `gText_AnimalMemorial_Continue` | `data/text/jp/animal_memorial.cc` | `src/game_state.o(.rodata.animal_memorial)` |
-| `0x080EFEAC` | `gText_AnimalMemorial_PageBreak` | `data/text/jp/animal_memorial.cc` | `src/game_state.o(.rodata.animal_memorial)` |
-| `0x080EFEB0` | `gText_AnimalMemorial_Header` | `data/text/jp/animal_memorial.cc` | `src/game_state.o(.rodata.animal_memorial)` |
-| `0x080EFEB8` | `gText_AnimalMemorial_FarmPrefix` | `data/text/jp/animal_memorial.cc` | `src/game_state.o(.rodata.animal_memorial)` |
-| `0x080EFEC8` | `gText_AnimalMemorial_PassedAway` | `data/text/jp/animal_memorial.cc` | `src/game_state.o(.rodata.animal_memorial)` |
-| `0x080EFEDC` | `gText_AnimalMemorial_NamesIntro` | `data/text/jp/animal_memorial.cc` | `src/game_state.o(.rodata.animal_memorial)` |
-| `0x080EFEF8` | `gText_AnimalMemorial_PrayerIntro` | `data/text/jp/animal_memorial.cc` | `src/game_state.o(.rodata.animal_memorial)` |
-| `0x080EFF0C` | `gText_AnimalMemorial_PrayerEnding` | `data/text/jp/animal_memorial.cc` | `src/game_state.o(.rodata.animal_memorial)` |
-| `0x080EFF28` | `gText_AnimalMemorial_PassedNaturalLife` | `data/text/jp/animal_memorial.cc` | `src/game_state.o(.rodata.animal_memorial)` |
-| `0x080EFF58` | `gText_AnimalMemorialFallbackNone` | `data/text/jp/animal_memorial.cc` | `src/game_state.o(.rodata.animal_memorial)` |
+| `0x080EFEA4` | `gText_AnimalMemorial_LineBreak` | `data/text/jp/animal_memorial.cc` | `data/text/animal_memorial.o(.rodata)` |
+| `0x080EFEA8` | `gText_AnimalMemorial_Continue` | `data/text/jp/animal_memorial.cc` | `data/text/animal_memorial.o(.rodata)` |
+| `0x080EFEAC` | `gText_AnimalMemorial_PageBreak` | `data/text/jp/animal_memorial.cc` | `data/text/animal_memorial.o(.rodata)` |
+| `0x080EFEB0` | `gText_AnimalMemorial_Header` | `data/text/jp/animal_memorial.cc` | `data/text/animal_memorial.o(.rodata)` |
+| `0x080EFEB8` | `gText_AnimalMemorial_FarmPrefix` | `data/text/jp/animal_memorial.cc` | `data/text/animal_memorial.o(.rodata)` |
+| `0x080EFEC8` | `gText_AnimalMemorial_PassedAway` | `data/text/jp/animal_memorial.cc` | `data/text/animal_memorial.o(.rodata)` |
+| `0x080EFEDC` | `gText_AnimalMemorial_NamesIntro` | `data/text/jp/animal_memorial.cc` | `data/text/animal_memorial.o(.rodata)` |
+| `0x080EFEF8` | `gText_AnimalMemorial_PrayerIntro` | `data/text/jp/animal_memorial.cc` | `data/text/animal_memorial.o(.rodata)` |
+| `0x080EFF0C` | `gText_AnimalMemorial_PrayerEnding` | `data/text/jp/animal_memorial.cc` | `data/text/animal_memorial.o(.rodata)` |
+| `0x080EFF28` | `gText_AnimalMemorial_PassedNaturalLife` | `data/text/jp/animal_memorial.cc` | `data/text/animal_memorial.o(.rodata)` |
+| `0x080EFF58` | `gText_AnimalMemorialFallbackNone` | `data/text/jp/animal_memorial.cc` | `data/text/animal_memorial.o(.rodata)` |
 | `0x080F0090` | `gText_AnimalDataFallbackNone` | `data/text/jp/animal_data.cc` | `src/animal_data.o(.rodata)` |
 | `0x080F06E0` | `gText_NotAvailable` | `data/text/jp/entity_ui.cc` | `src/entity_ui.o(.rodata)` |
 | `0x080F11D4` | `gText_Moneybags` | `data/text/jp/fixed_labels.cc` | `src/fixed_labels.o(.rodata)` |
@@ -1028,9 +1028,9 @@
 | `0x080F1274` | `gText_Menu_Earnings` | `data/text/jp/menu.cc` | `src/menu_data.o(.rodata)` |
 | `0x080F127C` | `gText_Menu_Memo` | `data/text/jp/menu.cc` | `src/menu_data.o(.rodata)` |
 | `0x080F1288` | `gText_Menu_Tutorial` | `data/text/jp/menu.cc` | `src/menu_data.o(.rodata)` |
-| `0x080F9700` | `gText_AScriptEngine_InvalidStringId` | `data/text/common/script_engine.cc` | `src/script_engine.o(.rodata.script_engine_text)` |
-| `0x080F9714` | `gText_ScriptEngineUi_Error` | `data/text/common/script_engine.cc` | `src/script_engine.o(.rodata.script_engine_text)` |
-| `0x080F971C` | `gText_ScriptEngineUi_FallbackNone` | `data/text/common/script_engine.cc` | `src/script_engine.o(.rodata.script_engine_text)` |
+| `0x080F9700` | `gText_AScriptEngine_InvalidStringId` | `data/text/common/script_engine.cc` | `data/text/common/script_engine.o(.rodata)` |
+| `0x080F9714` | `gText_ScriptEngineUi_Error` | `data/text/common/script_engine.cc` | `data/text/common/script_engine.o(.rodata)` |
+| `0x080F971C` | `gText_ScriptEngineUi_FallbackNone` | `data/text/common/script_engine.cc` | `data/text/common/script_engine.o(.rodata)` |
 | `0x080F97E6` | `gText_NameEntry_PresetAnimalNames` | `data/text/jp/new_game.cc` | `data/text/new_game_name_entry_preset.o(.rodata)` |
 | `0x080F9994` | `gText_Frisbee_TournamentScoreboard` | `data/text/jp/frisbee.cc` | `data/text/frisbee_scoreboard.o(.rodata)` |
 | `0x080F9BD4` | `gText_Frisbee_ExplanationQuestion` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
@@ -1048,7 +1048,7 @@
 | `0x080F9EF4` | `gText_Frisbee_DogNoLongerWantsToPlay` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
 | `0x080F9F24` | `gText_Frisbee_FoundItem` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
 | `0x080F9F34` | `gText_Frisbee_FoundNothing` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080F9FD6` | `gText_AnimalFestival_LivestockContestantNames` | `data/text/jp/animal_festival.cc` | `src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_names)` |
+| `0x080F9FD6` | `gText_AnimalFestival_LivestockContestantNames` | `data/text/jp/animal_festival.cc` | `data/text/animal_festival.o(.rodata)` |
 | `0x080FA280` | `gText_HorseRace_BuyTicketDeclined` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
 | `0x080FA294` | `gText_HorseRace_Yes` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
 | `0x080FA29C` | `gText_HorseRace_No` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
@@ -1791,7 +1791,7 @@
 | `0x08104970` | `gText_Possessive_Chicken` | `data/text/jp/possessive_labels.cc` | `data/text/possessive_labels.o(.rodata)` |
 | `0x08104978` | `gText_Possessive_Child` | `data/text/jp/possessive_labels.cc` | `data/text/possessive_labels.o(.rodata)` |
 | `0x08104980` | `gText_Possessive_Player` | `data/text/jp/possessive_labels.cc` | `data/text/possessive_labels.o(.rodata)` |
-| `0x08104994` | `gText_RandomItem_NotAvailable` | `data/text/jp/random_item.cc` | `src/random_item.o(.rodata.random_item_not_available)` |
+| `0x08104994` | `gText_RandomItem_NotAvailable` | `data/text/jp/random_item.cc` | `data/text/random_item.o(.rodata)` |
 | `0x0810702C` | `gText_FieldRenderFallbackNone` | 未在 `data/text` 源中直接命名；请以宿主对象核对 | `src/field_data.o(.rodata.field_render_runtime_strings)` |
 | `0x081070AC` | `gText_080B0708DefaultGlyph` | 未在 `data/text` 源中直接命名；请以宿主对象核对 | `src/field_data.o(.rodata.unk_080B0708_default_glyph)` |
 | `0x081070F4` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_ExplanationQuestion` | `data/text/jp/harvest_sprite_minigames.cc` | `data/text/harvest_sprite_minigames.o(.rodata)` |
@@ -1808,7 +1808,7 @@
 | `0x0810732C` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_ScorePrefix` | `data/text/jp/harvest_sprite_minigames.cc` | `data/text/harvest_sprite_minigames.o(.rodata)` |
 | `0x08107338` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultSuffix` | `data/text/jp/harvest_sprite_minigames.cc` | `data/text/harvest_sprite_minigames.o(.rodata)` |
 | `0x0810734C` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreSummary` | `data/text/jp/harvest_sprite_minigames.cc` | `data/text/harvest_sprite_minigames.o(.rodata)` |
-| `0x081073B9` | `gText_ChickenFestival_ContestantNames` | `data/text/jp/chicken_festival.cc` | `src/harvest_sprite.o(.rodata.harvest_sprite_minigames_chicken_festival_contestant_names)` |
+| `0x081073B9` | `gText_ChickenFestival_ContestantNames` | `data/text/jp/chicken_festival.cc` | `data/text/chicken_festival.o(.rodata)` |
 | `0x081074C0` | `gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsAnnouncement` | `data/text/jp/harvest_sprite_minigames.cc` | `data/text/harvest_sprite_minigames_chicken_festival_opening.o(.rodata)` |
 | `0x081074D8` | `gText_HarvestSpriteMiniGame_ChickenFestival_FinalRoundAnnouncement` | `data/text/jp/harvest_sprite_minigames.cc` | `data/text/harvest_sprite_minigames_chicken_festival_opening.o(.rodata)` |
 | `0x0810752C` | `gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationQuestion` | `data/text/jp/harvest_sprite_minigames.cc` | `data/text/harvest_sprite_minigames_chicken_festival_opening.o(.rodata)` |
@@ -1913,7 +1913,7 @@
 | `0x080F058A`–`0x080F058B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F058C`–`0x080F0650` | `src/help_menu.o(.rodata)` | [嵌入文本 / 数据] | `src/help_menu.cc`<br>`data/text/us/load_error.cc`<br>`data/text/us/help_menu.cc` | 文本 `6` 项（加载错误 `2`、帮助菜单 `4`；详见下方索引）<br>运行时字符串 `2` 项<br>`gUnk_HelpMenuByteTable` |
 | `0x080F0651`–`0x080F0653` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
-| `0x080F0654`–`0x080F06FC` | `src/game_state.o(.rodata.animal_memorial)` | [游戏状态文本段] | `data/text/us/animal_memorial.cc` | 文本 `11` 项（详见下方索引）<br>运行时字符串 `2` 项<br>动物本地化岛首段：与紧邻动物数据共同受 LD 上界保护 |
+| `0x080F0654`–`0x080F06FC` | `data/text/animal_memorial.o(.rodata)` | [文本对象] | `data/text/us/animal_memorial.cc` | 文本 `11` 项（详见下方索引）<br>运行时字符串 `2` 项<br>动物本地化岛首段：与紧邻动物数据共同受 LD 上界保护 |
 | `0x080F06FD`–`0x080F080F` | `src/animal_data.o(.rodata.animal_data_prefix)` | [数据] | `data/text/common/animal_data.cc`<br>`data/text/us/animal_data.cc` | `gUnk_080F06FD`, `gUnk_080F0704`, `gUnk_080F0718`, `gUnk_080F0730`, `gUnk_080F0748`, `gUnk_080F0770`, … +1 |
 | `0x080F0810`–`0x080F0E7D` | `src/animal_data.o(.rodata)` | [嵌入文本] | `data/text/common/animal_data.cc`<br>`data/text/us/animal_data.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `5` 项<br>`gUnk_080F0838`, `gUnk_080F0908`, `gUnk_080F093C`, `gUnk_080F09AC`, `gUnk_080F09C8`, `gUnk_080F0A68`, … +4 |
 | `0x080F0E7E`–`0x080F0E7F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1932,7 +1932,7 @@
 | `0x080F42F0`–`0x080F9E97` | `asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix)` | [Mary 脚本连续块] | `asm/data/data_080F1A80.s`<br>Mary 独立管理的连续剧情脚本区域（含脚本表入口）；按维护规则不展开内部内容 | 连续脚本相关原始区域；按维护规则不展开内部标签或表 |
 | `0x080F9E98`–`0x080F9EA1` | `src/script_engine.o(.rodata)` | [数据] | `src/script_engine.c/.cc` | 无全局符号 |
 | `0x080F9EA2`–`0x080F9EA3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F9EA4`–`0x080F9EC4` | `src/script_engine.o(.rodata.script_engine_text)` | [脚本引擎文本段] | `data/text/common/script_engine.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `1` 项 |
+| `0x080F9EA4`–`0x080F9EC4` | `data/text/common/script_engine.o(.rodata)` | [文本对象] | `data/text/common/script_engine.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080F9EC5`–`0x080F9ED8` | `src/cooking_festival_data.o(.rodata)` | [数据] | `src/cooking_festival_data.c/.cc` | `gCookingFestivalDishCategoryRatingThresholds` |
 | `0x080F9ED9`–`0x080F9EDD` | `src/thomas_stocking_data.o(.rodata)` | [数据] | `src/thomas_stocking_data.c/.cc` | `gThomasStockingGiftSelectionWeights` |
 | `0x080F9EDE`–`0x080F9EDF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1952,7 +1952,7 @@
 | `0x080FA39C`–`0x080FA719` | `data/text/frisbee.o(.rodata)` | [文本对象] | `data/text/us/frisbee.cc` | 文本 `15` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080FA71A`–`0x080FA71B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FA71C`–`0x080FA78B` | `src/animal_festival_ranking.o(.rodata.animal_festival_ranking_random_range_pairs)` | [数据] | `src/animal_festival_ranking.c/.cc` | `gAnimalFestivalRandomRangePairs` |
-| `0x080FA78C`–`0x080FA99D` | `src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_names)` | [动物祭典排名文本段] | `data/text/us/animal_festival.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项 |
+| `0x080FA78C`–`0x080FA99D` | `data/text/animal_festival.o(.rodata)` | [文本对象] | `data/text/us/animal_festival.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080FA99E`–`0x080FAA3D` | `src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_values)` | [数据] | `src/animal_festival_ranking.c/.cc` | `gAnimalFestivalLivestockContestantValues` |
 | `0x080FAA3E`–`0x080FAA3F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FAA40`–`0x080FB1D7` | `src/horse_race_data.o(.rodata)` | [嵌入文本] | `data/text/us/horse_race.cc` | 文本 `43` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gHorseRaceTicketCharacterCodes`, `gHorseRaceTicketControls`, `gHorseRacePrizeCatalog`, `gHorseRacePrizeItemIds`, `gHorseRacePrizeExchangeCharacterCodes` |
@@ -2038,7 +2038,7 @@
 | `0x08104E0A`–`0x08104E0B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08104E0C`–`0x08104E49` | `data/text/possessive_labels.o(.rodata)` | [文本对象] | `data/text/us/possessive_labels.cc` | 文本 `6` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x08104E4A`–`0x08104E4B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08104E4C`–`0x08104E50` | `src/random_item.o(.rodata.random_item_not_available)` | [随机物品文本段] | `data/text/us/random_item.cc` | 文本 `1` 项（详见下方索引） |
+| `0x08104E4C`–`0x08104E50` | `data/text/random_item.o(.rodata)` | [文本对象] | `data/text/us/random_item.cc` | 文本 `1` 项（详见下方索引） |
 | `0x08104E51`–`0x08104E53` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
 | `0x08104E54`–`0x08104E73` | `src/fishing_results_data.o(.rodata.fishing_record_article_ids)` | [数据] | `src/fishing_results_data.c/.cc` | `gFishingRecordArticleIds` |
 | `0x08104E74`–`0x08104EAB` | `src/field_data.o(.rodata.field_plot_position_values)` | [数据] | `src/field_data.c/.cc` | `gFieldPlotPositionValues` |
@@ -2089,7 +2089,7 @@
 | `0x081078B0`–`0x081078B9` | `src/harvest_sprite.o(.rodata.harvest_sprite_minigames_animal_husbandry_runtime)` | [数据] | `src/harvest_sprite.c/.cc` | 运行时字符串 `1` 项 |
 | `0x081078BA`–`0x081078BB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x081078BC`–`0x081078BC` | `src/harvest_sprite.o(.rodata.harvest_sprite_minigames_animal_husbandry_runtime_empty)` | [嵌入文本] | `src/harvest_sprite.c/.cc` | 文本 `1` 项（详见下方索引） |
-| `0x081078BD`–`0x081079C0` | `src/harvest_sprite.o(.rodata.harvest_sprite_minigames_chicken_festival_contestant_names)` | [鸡祭典小游戏文本段] | `data/text/us/chicken_festival.cc` | 文本 `1` 项（详见下方索引） |
+| `0x081078BD`–`0x081079C0` | `data/text/chicken_festival.o(.rodata)` | [文本对象] | `data/text/us/chicken_festival.cc` | 文本 `1` 项（详见下方索引） |
 | `0x081079C1`–`0x081079C3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
 | `0x081079C4`–`0x08107ACB` | `data/text/harvest_sprite_minigames_chicken_festival_opening.o(.rodata)` | [文本对象] | `data/text/us/harvest_sprite_minigames.cc` | 文本 `11` 项（详见下方索引） |
 | `0x08107ACC`–`0x08107AFB` | `src/harvest_sprite.o(.rodata.harvest_sprite_minigames_chicken_festival_values)` | [数据] | `src/harvest_sprite.c/.cc` | `gUnk_HarvestSpriteMiniGameChickenFestivalValues` |
@@ -2864,17 +2864,17 @@
 | `0x080F05C0` | `gText_HelpMenu_Animals` | `data/text/us/help_menu.cc` | `src/help_menu.o(.rodata)` |
 | `0x080F05C8` | `gText_HelpMenu_UsefulTips` | `data/text/us/help_menu.cc` | `src/help_menu.o(.rodata)` |
 | `0x080F05D4` | `gText_HelpMenu_Exit` | `data/text/us/help_menu.cc` | `src/help_menu.o(.rodata)` |
-| `0x080F0654` | `gText_AnimalMemorial_LineBreak` | `data/text/us/animal_memorial.cc` | `src/game_state.o(.rodata.animal_memorial)` |
-| `0x080F0658` | `gText_AnimalMemorial_Continue` | `data/text/us/animal_memorial.cc` | `src/game_state.o(.rodata.animal_memorial)` |
-| `0x080F065C` | `gText_AnimalMemorial_PageBreak` | `data/text/us/animal_memorial.cc` | `src/game_state.o(.rodata.animal_memorial)` |
-| `0x080F0660` | `gText_AnimalMemorial_Header` | `data/text/us/animal_memorial.cc` | `src/game_state.o(.rodata.animal_memorial)` |
-| `0x080F067C` | `gText_AnimalMemorial_FarmPrefix` | `data/text/us/animal_memorial.cc` | `src/game_state.o(.rodata.animal_memorial)` |
-| `0x080F0684` | `gText_AnimalMemorial_FarmSuffix` | `data/text/us/animal_memorial.cc` | `src/game_state.o(.rodata.animal_memorial)` |
-| `0x080F068C` | `gText_AnimalMemorial_PassedAway` | `data/text/us/animal_memorial.cc` | `src/game_state.o(.rodata.animal_memorial)` |
-| `0x080F069C` | `gText_AnimalMemorial_NamesIntro` | `data/text/us/animal_memorial.cc` | `src/game_state.o(.rodata.animal_memorial)` |
-| `0x080F06B4` | `gText_AnimalMemorial_PrayerIntro` | `data/text/us/animal_memorial.cc` | `src/game_state.o(.rodata.animal_memorial)` |
-| `0x080F06D0` | `gText_AnimalMemorial_PrayerEnding` | `data/text/us/animal_memorial.cc` | `src/game_state.o(.rodata.animal_memorial)` |
-| `0x080F06F8` | `gText_AnimalMemorialFallbackNone` | `data/text/us/animal_memorial.cc` | `src/game_state.o(.rodata.animal_memorial)` |
+| `0x080F0654` | `gText_AnimalMemorial_LineBreak` | `data/text/us/animal_memorial.cc` | `data/text/animal_memorial.o(.rodata)` |
+| `0x080F0658` | `gText_AnimalMemorial_Continue` | `data/text/us/animal_memorial.cc` | `data/text/animal_memorial.o(.rodata)` |
+| `0x080F065C` | `gText_AnimalMemorial_PageBreak` | `data/text/us/animal_memorial.cc` | `data/text/animal_memorial.o(.rodata)` |
+| `0x080F0660` | `gText_AnimalMemorial_Header` | `data/text/us/animal_memorial.cc` | `data/text/animal_memorial.o(.rodata)` |
+| `0x080F067C` | `gText_AnimalMemorial_FarmPrefix` | `data/text/us/animal_memorial.cc` | `data/text/animal_memorial.o(.rodata)` |
+| `0x080F0684` | `gText_AnimalMemorial_FarmSuffix` | `data/text/us/animal_memorial.cc` | `data/text/animal_memorial.o(.rodata)` |
+| `0x080F068C` | `gText_AnimalMemorial_PassedAway` | `data/text/us/animal_memorial.cc` | `data/text/animal_memorial.o(.rodata)` |
+| `0x080F069C` | `gText_AnimalMemorial_NamesIntro` | `data/text/us/animal_memorial.cc` | `data/text/animal_memorial.o(.rodata)` |
+| `0x080F06B4` | `gText_AnimalMemorial_PrayerIntro` | `data/text/us/animal_memorial.cc` | `data/text/animal_memorial.o(.rodata)` |
+| `0x080F06D0` | `gText_AnimalMemorial_PrayerEnding` | `data/text/us/animal_memorial.cc` | `data/text/animal_memorial.o(.rodata)` |
+| `0x080F06F8` | `gText_AnimalMemorialFallbackNone` | `data/text/us/animal_memorial.cc` | `data/text/animal_memorial.o(.rodata)` |
 | `0x080F0830` | `gText_AnimalDataFallbackNone` | `data/text/us/animal_data.cc` | `src/animal_data.o(.rodata)` |
 | `0x080F0E80` | `gText_NotAvailable` | `data/text/us/entity_ui.cc` | `src/entity_ui.o(.rodata)` |
 | `0x080F1974` | `gText_Moneybags` | `data/text/us/fixed_labels.cc` | `src/fixed_labels.o(.rodata)` |
@@ -2888,9 +2888,9 @@
 | `0x080F1A14` | `gText_Menu_Earnings` | `data/text/us/menu.cc` | `src/menu_data.o(.rodata)` |
 | `0x080F1A20` | `gText_Menu_Memo` | `data/text/us/menu.cc` | `src/menu_data.o(.rodata)` |
 | `0x080F1A28` | `gText_Menu_Tutorial` | `data/text/us/menu.cc` | `src/menu_data.o(.rodata)` |
-| `0x080F9EA4` | `gText_AScriptEngine_InvalidStringId` | `data/text/common/script_engine.cc` | `src/script_engine.o(.rodata.script_engine_text)` |
-| `0x080F9EB8` | `gText_ScriptEngineUi_Error` | `data/text/common/script_engine.cc` | `src/script_engine.o(.rodata.script_engine_text)` |
-| `0x080F9EC0` | `gText_ScriptEngineUi_FallbackNone` | `data/text/common/script_engine.cc` | `src/script_engine.o(.rodata.script_engine_text)` |
+| `0x080F9EA4` | `gText_AScriptEngine_InvalidStringId` | `data/text/common/script_engine.cc` | `data/text/common/script_engine.o(.rodata)` |
+| `0x080F9EB8` | `gText_ScriptEngineUi_Error` | `data/text/common/script_engine.cc` | `data/text/common/script_engine.o(.rodata)` |
+| `0x080F9EC0` | `gText_ScriptEngineUi_FallbackNone` | `data/text/common/script_engine.cc` | `data/text/common/script_engine.o(.rodata)` |
 | `0x080F9F8A` | `gText_NameEntry_PresetAnimalNames` | `data/text/us/new_game.cc` | `data/text/new_game_name_entry_preset.o(.rodata)` |
 | `0x080FA158` | `gText_Frisbee_TournamentScoreboard` | `data/text/us/frisbee.cc` | `data/text/frisbee_scoreboard.o(.rodata)` |
 | `0x080FA39C` | `gText_Frisbee_ExplanationQuestion` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
@@ -2908,7 +2908,7 @@
 | `0x080FA6AC` | `gText_Frisbee_DogNoLongerWantsToPlay` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
 | `0x080FA6E0` | `gText_Frisbee_FoundItem` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
 | `0x080FA6F4` | `gText_Frisbee_FoundNothing` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080FA796` | `gText_AnimalFestival_LivestockContestantNames` | `data/text/us/animal_festival.cc` | `src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_names)` |
+| `0x080FA796` | `gText_AnimalFestival_LivestockContestantNames` | `data/text/us/animal_festival.cc` | `data/text/animal_festival.o(.rodata)` |
 | `0x080FAA40` | `gText_HorseRace_BuyTicketDeclined` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
 | `0x080FAA5C` | `gText_HorseRace_Yes` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
 | `0x080FAA60` | `gText_HorseRace_No` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
@@ -3648,7 +3648,7 @@
 | `0x08104E24` | `gText_Possessive_Chicken` | `data/text/us/possessive_labels.cc` | `data/text/possessive_labels.o(.rodata)` |
 | `0x08104E30` | `gText_Possessive_Child` | `data/text/us/possessive_labels.cc` | `data/text/possessive_labels.o(.rodata)` |
 | `0x08104E38` | `gText_Possessive_Player` | `data/text/us/possessive_labels.cc` | `data/text/possessive_labels.o(.rodata)` |
-| `0x08104E4C` | `gText_RandomItem_NotAvailable` | `data/text/us/random_item.cc` | `src/random_item.o(.rodata.random_item_not_available)` |
+| `0x08104E4C` | `gText_RandomItem_NotAvailable` | `data/text/us/random_item.cc` | `data/text/random_item.o(.rodata)` |
 | `0x081074E4` | `gText_FieldRenderFallbackNone` | 未在 `data/text` 源中直接命名；请以宿主对象核对 | `src/field_data.o(.rodata.field_render_runtime_strings)` |
 | `0x08107568` | `gText_080B0708DefaultGlyph` | 未在 `data/text` 源中直接命名；请以宿主对象核对 | `src/field_data.o(.rodata.unk_080B0708_default_glyph)` |
 | `0x081075B0` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_ExplanationQuestion` | `data/text/us/harvest_sprite_minigames.cc` | `data/text/harvest_sprite_minigames.o(.rodata)` |
@@ -3667,7 +3667,7 @@
 | `0x08107844` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultSuffix` | `data/text/us/harvest_sprite_minigames.cc` | `data/text/harvest_sprite_minigames.o(.rodata)` |
 | `0x08107850` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreSummary` | `data/text/us/harvest_sprite_minigames.cc` | `data/text/harvest_sprite_minigames.o(.rodata)` |
 | `0x081078BC` | `gText_HarvestSpriteMiniGameAnimalHusbandryEmpty` | 未在 `data/text` 源中直接命名；请以宿主对象核对 | `src/harvest_sprite.o(.rodata.harvest_sprite_minigames_animal_husbandry_runtime_empty)` |
-| `0x081078BD` | `gText_ChickenFestival_ContestantNames` | `data/text/us/chicken_festival.cc` | `src/harvest_sprite.o(.rodata.harvest_sprite_minigames_chicken_festival_contestant_names)` |
+| `0x081078BD` | `gText_ChickenFestival_ContestantNames` | `data/text/us/chicken_festival.cc` | `data/text/chicken_festival.o(.rodata)` |
 | `0x081079C4` | `gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsAnnouncement` | `data/text/us/harvest_sprite_minigames.cc` | `data/text/harvest_sprite_minigames_chicken_festival_opening.o(.rodata)` |
 | `0x081079E0` | `gText_HarvestSpriteMiniGame_ChickenFestival_FinalRoundAnnouncement` | `data/text/us/harvest_sprite_minigames.cc` | `data/text/harvest_sprite_minigames_chicken_festival_opening.o(.rodata)` |
 | `0x08107A30` | `gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationQuestion` | `data/text/us/harvest_sprite_minigames.cc` | `data/text/harvest_sprite_minigames_chicken_festival_opening.o(.rodata)` |

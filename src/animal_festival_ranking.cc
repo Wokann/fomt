@@ -99,16 +99,6 @@ extern AnimalFestivalRandomRangePair const gAnimalFestivalRandomRangePairs[]
     { 0, 250, 0, 250 },
 };
 
-// The native festival ranking routines index this fixed-width name matrix.
-#define FOMT_ANIMAL_FESTIVAL_TEXT_ATTRIBUTE \
-    SECTION(".rodata.animal_festival_livestock_contestant_names")
-#if defined(REGION_JP)
-#include "data/text/jp/animal_festival.cc"
-#else
-#include "data/text/us/animal_festival.cc"
-#endif
-#undef FOMT_ANIMAL_FESTIVAL_TEXT_ATTRIBUTE
-
 extern u8 const gAnimalFestivalLivestockContestantValues[][4]
     SECTION(".rodata.animal_festival_livestock_contestant_values") ALIGN(1) = {
     { 70, 80, 40, 90 },
