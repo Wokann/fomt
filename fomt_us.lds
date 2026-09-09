@@ -638,23 +638,11 @@ SECTIONS
         src/field_data.o(.rodata.field_plot_definitions);
         src/shipping_bin.o(.rodata);
         src/record_player.o(.rodata);
-        . = ALIGN(4); src/item.o(.rodata);
-        . = ALIGN(4); data/text/tool.o(.rodata);
+        /* Bounded item localization island: text, catalogs, products, trailer. */
+        . = 0xE9614; src/item.o(.rodata);
+        ASSERT(. <= 0xF04EE, "US item localization island overflow");
         FILL(0x00);
-        . = ALIGN(4); src/item.o(.rodata.item_tool);
-        FILL(0xFF);
-        . = ALIGN(4); data/text/food.o(.rodata);
-        FILL(0x00);
-        . = ALIGN(4); src/item.o(.rodata.item_food);
-        FILL(0xFF);
-        . = ALIGN(4); data/text/article.o(.rodata);
-        FILL(0x00);
-        . = ALIGN(4); src/item.o(.rodata.item_article);
-        FILL(0xFF);
-        . = ALIGN(4); src/item.o(.rodata.item_product);
-        src/item.o(.rodata.item_product_trailer);
-        FILL(0x00);
-        data/text/calendar.o(.rodata.calendar_season);
+        . = 0xF04EE; data/text/calendar.o(.rodata.calendar_season);
         data/text/calendar.o(.rodata);
         src/game_state.o(.rodata);
         FILL(0x00);

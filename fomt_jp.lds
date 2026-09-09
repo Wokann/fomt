@@ -722,28 +722,11 @@ SECTIONS
         . = 0xE8A6C; /* JP ROM 0x080E8A6C, independently matched */
         src/shipping_bin.o(.rodata);
         src/record_player.o(.rodata);
-        . = 0xE8AB4; /* JP item tables begin here. */
-        src/item.o(.rodata);
-        data/text/tool.o(.rodata);
+        /* Bounded item localization island: text, catalogs, products, trailer. */
+        . = 0xE8AB4; src/item.o(.rodata);
+        ASSERT(. <= 0xEFD52, "JP item localization island overflow");
         FILL(0x00);
-        . = ALIGN(4);
-        src/item.o(.rodata.item_tool);
-        FILL(0xFF);
-        data/text/food.o(.rodata);
-        FILL(0x00);
-        . = ALIGN(4);
-        src/item.o(.rodata.item_food);
-        FILL(0xFF);
-        data/text/article.o(.rodata);
-        FILL(0x00);
-        . = ALIGN(4);
-        src/item.o(.rodata.item_article);
-        FILL(0xFF);
-        src/item.o(.rodata.item_product);
-        . = 0xEFD48; /* JP product-info runtime trailer. */
-        src/item.o(.rodata.item_product_trailer);
-        FILL(0x00);
-        data/text/calendar.o(.rodata.calendar_season);
+        . = 0xEFD52; data/text/calendar.o(.rodata.calendar_season);
         data/text/calendar.o(.rodata);
         . = 0xEFDAA; src/game_state.o(.rodata);
         FILL(0x00);

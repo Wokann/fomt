@@ -481,6 +481,48 @@ enum
     NUM_PRODUCTS = PRODUCT_NONE,
 };
 
+struct FoodInfo
+{
+    /* +00 */ char const * name;
+    /* +04 */ bool is_drink : 1;
+    /* +05 */ i8 stamina;
+    /* +06 */ i8 fatigue;
+    /* +08 */ u16 icon_id;
+    /* +0C */ char const * desc;
+};
+
+struct ArticleInfo
+{
+    /* +00 */ char const * name;
+    /* +04 */ u16 icon_id;
+    /* +08 */ char const * desc;
+};
+
+struct ProductInfo
+{
+    enum Kind
+    {
+        KIND_FOOD,
+        KIND_ARTICLE,
+    };
+
+    /* +00 */ u32 price : 15;
+    /* +01 */ u32 kind : 1;
+    /* +02 */ u32 item : 8;
+};
+
+struct ToolInfo
+{
+    /* +00 */ char const * name;
+    /* +04 */ u16 icon_id;
+    /* +08 */ char const * desc;
+};
+
+extern FoodInfo const gFoodInfo[];
+extern ArticleInfo const gArticleInfo[];
+extern ProductInfo const gProductInfo[];
+extern ToolInfo const gToolInfo[];
+
 struct PACKED Tool
 {
     Tool(u32 id);

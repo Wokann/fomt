@@ -1,51 +1,6 @@
 #include "item.hh"
 #include "item_text.hh"
 
-struct FoodInfo
-{
-    /* +00 */ char const * name;
-    /* +04 */ bool is_drink : 1;
-    /* +05 */ i8 stamina;
-    /* +06 */ i8 fatigue;
-    /* +08 */ u16 icon_id;
-    /* +0C */ char const * desc;
-};
-
-extern FoodInfo const gFoodInfo[];
-
-struct ArticleInfo
-{
-    /* +00 */ char const * name;
-    /* +04 */ u16 icon_id;
-    /* +08 */ char const * desc;
-};
-
-extern ArticleInfo const gArticleInfo[];
-
-struct ProductInfo
-{
-    enum Kind
-    {
-        KIND_FOOD,
-        KIND_ARTICLE,
-    };
-
-    /* +00 */ u32 price : 15;
-    /* +01 */ u32 kind : 1;
-    /* +02 */ u32 item : 8;
-};
-
-extern ProductInfo const gProductInfo[];
-
-struct ToolInfo
-{
-    /* +00 */ char const * name;
-    /* +04 */ u16 icon_id;
-    /* +08 */ char const * desc;
-};
-
-extern ToolInfo const gToolInfo[];
-
 static inline bool IsValidFoodId(u8 id)
 {
     return id < NUM_FOODS;
@@ -594,7 +549,15 @@ Article ItemVariant::AsArticle() const
 
 // Item Info tables
 
-ToolInfo const gToolInfo[] __attribute__((section(".rodata.item_tool"))) = {
+// Keep each selected text run immediately before its owning catalog.  The
+// linker emits this whole source object as one bounded item-data island.
+#if defined(REGION_JP)
+#include "data/text/jp/tool.cc"
+#else
+#include "data/text/us/tool.cc"
+#endif
+
+ToolInfo const gToolInfo[] = {
     /* 0x00 */ { gText_Item_Tool_IronSickle_Name, 403, gText_Item_Tool_IronSickle_Description },
     /* 0x01 */ { gText_Item_Tool_CopperSickle_Name, 404, gText_Item_Tool_CopperSickle_Description },
     /* 0x02 */ { gText_Item_Tool_SilverSickle_Name, 405, gText_Item_Tool_SilverSickle_Description },
@@ -678,7 +641,13 @@ ToolInfo const gToolInfo[] __attribute__((section(".rodata.item_tool"))) = {
     /* 0x50 */ { gText_Item_Tool_GemOfTruth_Name, 456, gText_Item_Tool_GemOfTruth_Description },
 };
 
-FoodInfo const gFoodInfo[] __attribute__((section(".rodata.item_food"))) = {
+#if defined(REGION_JP)
+#include "data/text/jp/food.cc"
+#else
+#include "data/text/us/food.cc"
+#endif
+
+FoodInfo const gFoodInfo[] = {
     /* 0x00 */ { gText_Item_Food_Turnip_Name, false, 3, -1, 457, gText_Item_Food_Turnip_Description },
     /* 0x01 */ { gText_Item_Food_Potato_Name, false, 3, -1, 347, gText_Item_Food_Potato_Description },
     /* 0x02 */ { gText_Item_Food_Cucumber_Name, false, 4, -1, 113, gText_Item_Food_Cucumber_Description },
@@ -863,7 +832,13 @@ FoodInfo const gFoodInfo[] __attribute__((section(".rodata.item_food"))) = {
     /* 0xAA */ { gText_Item_Food_PotatoPancakes_Name, false, 20, -2, 112, gText_Item_Food_PotatoPancakes_Description },
 };
 
-ArticleInfo const gArticleInfo[] __attribute__((section(".rodata.item_article"))) = {
+#if defined(REGION_JP)
+#include "data/text/jp/article.cc"
+#else
+#include "data/text/us/article.cc"
+#endif
+
+ArticleInfo const gArticleInfo[] = {
     /* 0x00 */ { gText_Item_Article_MoonDropGrass_Name, 303, gText_Item_Article_MoonDropGrass_Description },
     /* 0x01 */ { gText_Item_Article_PinkCatGrass_Name, 337, gText_Item_Article_PinkCatGrass_Description },
     /* 0x02 */ { gText_Item_Article_BlueMagicGrass_Name, 272, gText_Item_Article_BlueMagicGrass_Description },
@@ -971,7 +946,7 @@ ArticleInfo const gArticleInfo[] __attribute__((section(".rodata.item_article"))
     /* 0x5E */ { gText_Item_Article_Frisbee_Name, 201, gText_Item_Article_Frisbee_Description },
 };
 
-ProductInfo const gProductInfo[] __attribute__((section(".rodata.item_product"))) = {
+ProductInfo const gProductInfo[] = {
     /* 0x00 */ { 60, ProductInfo::KIND_FOOD, FOOD_TURNIP },
     /* 0x01 */ { 80, ProductInfo::KIND_FOOD, FOOD_POTATO },
     /* 0x02 */ { 60, ProductInfo::KIND_FOOD, FOOD_CUCUMBER },
@@ -1093,6 +1068,5 @@ ProductInfo const gProductInfo[] __attribute__((section(".rodata.item_product"))
     /* 0x66 */ { 60, ProductInfo::KIND_ARTICLE, ARTICLE_AMETHYST },
 };
 
-extern char const gCppRuntimeBadAlloc_ProductInfo[]
-    SECTION(".rodata.item_product_trailer") =
+extern char const gCppRuntimeBadAlloc_ProductInfo[] =
     "bad_alloc";
