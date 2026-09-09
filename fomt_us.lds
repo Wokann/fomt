@@ -449,7 +449,8 @@ SECTIONS
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6dd8);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6e18);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6e58);
-        . = ALIGN(4); asm/vtables.o(.rodata.080E6E98);
+        . = ALIGN(4); src/vtables.o(.rodata.vtable_6e98);
+        . = ALIGN(4); asm/vtables.o(.rodata.080E6ED8);
         *(.gnu.linkonce.d.__vt_13AScriptEngine);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_script_engine);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_script_engine_adjacent);
