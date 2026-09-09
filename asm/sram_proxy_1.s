@@ -133,15 +133,7 @@ func_080003A0: @ 0x080003A0
     bx r1
     .align 2, 0
 
-    thumb_func_start func_080003DC
-func_080003DC: @ 0x080003DC
-    ldr r0, .L080003E4 @ =0x00003FEC
-    muls r0, r1, r0
-    adds r0, #0x28
-    bx lr
-    .align 2, 0
-.L080003E4: .4byte 0x00003FEC
-
+    .section .text.sram_proxy_1_after_address
     thumb_func_start func_080003E8
 func_080003E8: @ 0x080003E8
     push {r4, r5, lr}
