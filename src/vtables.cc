@@ -4157,6 +4157,18 @@ extern RawVTableFunction const vtable_unk_080E74AC[]
         func_08039E88,
     };
 
+extern void func_08039204(void);
+extern void func_0803930C(void);
+
+// Preserve this four-slot table and its exact callbacks in ROM order.
+extern RawVTableFunction const vtable_unk_080E74BC[]
+    SECTION(".rodata.vtable_74bc") = {
+        nullptr,
+        nullptr,
+        func_08039204,
+        func_0803930C,
+    };
+
 #if defined(REGION_JP)
 // The JP Script Engine code is still retained as a raw code range, but this
 // ABI table has the same five logical slots as the compiled US table.
