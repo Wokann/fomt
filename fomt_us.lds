@@ -787,9 +787,8 @@ SECTIONS
         . = 0xFEAF4; src/beach_cafe_shop_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0xFEC7C; data/text/blacksmith.o(.rodata.blacksmith_menu);
-        . = 0xFED8C; src/blacksmith_data.o(.rodata.blacksmith_catalog);
-        . = 0xFEE68; data/text/blacksmith.o(.rodata.blacksmith_dialogue);
+        . = 0xFEC7C; src/blacksmith_menu_data.o(.rodata);
+        . = 0xFED8C; src/blacksmith_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         . = 0xFF35C; data/text/carpenter.o(.rodata.carpenter_menu);
@@ -805,7 +804,7 @@ SECTIONS
         . = 0xFFB60; src/livestock_shop.o(.rodata);
         . = 0x100024; data/text/home_storage.o(.rodata);
         FILL(0x00);
-        . = 0x100168; data/text/blacksmith.o(.rodata.blacksmith_upgrade);
+        . = 0x100168; src/blacksmith_upgrade_data.o(.rodata);
         . = 0x1003E4; data/text/gift_wrap.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);

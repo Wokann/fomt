@@ -5,7 +5,7 @@
 // JP and US encode the tool-upgrade header differently.  Keep their native
 // layouts rather than adding artificial data solely to make the arrays match.
 #if defined(REGION_JP)
-BlacksmithMenuHeader const gBlacksmithMenuHeader BLACKSMITH_CATALOG = {
+BlacksmithMenuHeader const gBlacksmithMenuHeader = {
     gText_Blacksmith_ToolUpgradeMenuLabel,
     0,
     0,
@@ -13,7 +13,7 @@ BlacksmithMenuHeader const gBlacksmithMenuHeader BLACKSMITH_CATALOG = {
 };
 #endif
 
-BlacksmithCatalogEntry const gBlacksmithCatalog[] BLACKSMITH_CATALOG = {
+BlacksmithCatalogEntry const gBlacksmithCatalog[] = {
 #if defined(REGION_US)
     { 0, gText_Blacksmith_ToolUpgradeMenuLabel, 0, 0, gText_Blacksmith_ToolUpgradeTitle },
 #endif
@@ -28,3 +28,9 @@ BlacksmithCatalogEntry const gBlacksmithCatalog[] BLACKSMITH_CATALOG = {
     { ARTICLE_BRACELET, gText_Blacksmith_MakeBracelet, 1000, 2, gText_Blacksmith_CostOrichalc },
     { ARTICLE_BROACH, gText_Blacksmith_MakeBroach, 1000, 2, gText_Blacksmith_CostOrichalc },
 };
+
+#if defined(REGION_JP)
+#include "data/text/jp/blacksmith_dialogue.cc"
+#else
+#include "data/text/us/blacksmith_dialogue.cc"
+#endif

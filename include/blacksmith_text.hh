@@ -25,11 +25,6 @@ struct BlacksmithMenuHeader
     char const * title_text;
 };
 
-#define BLACKSMITH_MENU SECTION(".rodata.blacksmith_menu")
-#define BLACKSMITH_CATALOG SECTION(".rodata.blacksmith_catalog")
-#define BLACKSMITH_DIALOGUE SECTION(".rodata.blacksmith_dialogue")
-#define BLACKSMITH_UPGRADE_TEXT SECTION(".rodata.blacksmith_upgrade")
-
 extern char const gText_Blacksmith_ToolUpgradeMenuLabel[];
 extern char const gText_Blacksmith_ToolUpgradeTitle[];
 extern char const gText_Blacksmith_Empty[];
