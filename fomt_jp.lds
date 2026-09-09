@@ -763,11 +763,8 @@ SECTIONS
         . = 0xEFD48; /* JP product-info runtime trailer. */
         src/item.o(.rodata.item_product_trailer);
         FILL(0x00);
+        data/text/calendar.o(.rodata.calendar_season);
         data/text/calendar.o(.rodata);
-        data/text/calendar_none.o(.rodata);
-        data/text/calendar_weekday.o(.rodata);
-        . = 0xEFD78; /* JP data after the calendar text arrays. */
-        data/text/calendar_trailer.o(.rodata);
         . = 0xEFDAA; src/game_state.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); data/text/load_error.o(.rodata);

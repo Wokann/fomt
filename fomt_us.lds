@@ -673,10 +673,8 @@ SECTIONS
         . = ALIGN(4); src/item.o(.rodata.item_product);
         src/item.o(.rodata.item_product_trailer);
         FILL(0x00);
+        data/text/calendar.o(.rodata.calendar_season);
         data/text/calendar.o(.rodata);
-        data/text/calendar_none.o(.rodata);
-        data/text/calendar_weekday.o(.rodata);
-        . = ALIGN(4); data/text/calendar_trailer.o(.rodata);
         src/game_state.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); data/text/load_error.o(.rodata);
