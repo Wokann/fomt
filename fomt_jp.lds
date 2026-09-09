@@ -924,11 +924,7 @@ SECTIONS
         src/field_data.o(.rodata.field_item_records);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0x10447C; data/text/calendar_dynamic.o(.rodata);
-        . = 0x1044B0; data/text/calendar_festival.o(.rodata);
-        . = 0x1048DC; data/text/calendar_festival_dynamic.o(.rodata);
-        . = 0x10491C; data/text/calendar_no_plans.o(.rodata);
-        . = 0x104938; data/text/calendar_fallback.o(.rodata);
+        . = 0x10447C; data/text/calendar_events.o(.rodata);
         . = 0x104958; data/text/possessive_labels.o(.rodata);
         . = 0x104994; data/text/random_item.o(.rodata);
         . = 0x10499C; src/fishing_results_data.o(.rodata.fishing_record_article_ids);
