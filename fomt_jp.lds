@@ -900,9 +900,7 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4);
         data/text/cooking_menu.o(.rodata);
-        . = 0x100A10; data/text/cooking_menu_result.o(.rodata);
         . = 0x100A84; data/text/cooking_recipe_actions.o(.rodata);
-        . = 0x100B24; data/text/cooking_recipe_actions_extra.o(.rodata);
         . = 0x100B50; data/text/cooking_recipe_inventory.o(.rodata);
         . = 0x100C24; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_mask_entries);
         . = 0x100C48; src/cooking_recipe_inventory_data.o(.rodata);
