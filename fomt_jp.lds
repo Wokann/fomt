@@ -786,7 +786,7 @@ SECTIONS
         FILL(0x00);
         FILL(0x00);
         . = ALIGN(4); src/animal_festival_ranking.o(.rodata.animal_festival_ranking_random_range_pairs);
-        . = 0xF9FCC; data/text/animal_festival.o(.rodata);
+        . = 0xF9FCC; src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_names);
         . = 0xFA1DE; src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_values);
         FILL(0x00);
         . = ALIGN(4);

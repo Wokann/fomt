@@ -84,7 +84,7 @@
 | `0x080F9BD4`–`0x080F9F59` | `data/text/frisbee.o(.rodata)` | [文本对象] | `data/text/jp/frisbee.cc` | 文本 `15` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080F9F5A`–`0x080F9F5B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F9F5C`–`0x080F9FCB` | `src/animal_festival_ranking.o(.rodata.animal_festival_ranking_random_range_pairs)` | [数据] | `src/animal_festival_ranking.c/.cc` | `gAnimalFestivalRandomRangePairs` |
-| `0x080F9FCC`–`0x080FA1DD` | `data/text/animal_festival.o(.rodata)` | [文本对象] | `data/text/jp/animal_festival.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项 |
+| `0x080F9FCC`–`0x080FA1DD` | `src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_names)` | [动物祭典排名文本段] | `data/text/jp/animal_festival.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080FA1DE`–`0x080FA27D` | `src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_values)` | [数据] | `src/animal_festival_ranking.c/.cc` | `gAnimalFestivalLivestockContestantValues` |
 | `0x080FA27E`–`0x080FA27F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FA280`–`0x080FAA5F` | `src/horse_race_data.o(.rodata)` | [嵌入文本] | `data/text/jp/horse_race.cc` | 文本 `44` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gHorseRaceTicketCharacterCodes`, `gHorseRaceTicketControls`, `gHorseRacePrizeCatalog`, `gHorseRacePrizeItemIds`, `gHorseRacePrizeExchangeCharacterCodes` |
@@ -1048,7 +1048,7 @@
 | `0x080F9EF4` | `gText_Frisbee_DogNoLongerWantsToPlay` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
 | `0x080F9F24` | `gText_Frisbee_FoundItem` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
 | `0x080F9F34` | `gText_Frisbee_FoundNothing` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080F9FD6` | `gText_AnimalFestival_LivestockContestantNames` | `data/text/jp/animal_festival.cc` | `data/text/animal_festival.o(.rodata)` |
+| `0x080F9FD6` | `gText_AnimalFestival_LivestockContestantNames` | `data/text/jp/animal_festival.cc` | `src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_names)` |
 | `0x080FA280` | `gText_HorseRace_BuyTicketDeclined` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
 | `0x080FA294` | `gText_HorseRace_Yes` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
 | `0x080FA29C` | `gText_HorseRace_No` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
@@ -1952,7 +1952,7 @@
 | `0x080FA39C`–`0x080FA719` | `data/text/frisbee.o(.rodata)` | [文本对象] | `data/text/us/frisbee.cc` | 文本 `15` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080FA71A`–`0x080FA71B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FA71C`–`0x080FA78B` | `src/animal_festival_ranking.o(.rodata.animal_festival_ranking_random_range_pairs)` | [数据] | `src/animal_festival_ranking.c/.cc` | `gAnimalFestivalRandomRangePairs` |
-| `0x080FA78C`–`0x080FA99D` | `data/text/animal_festival.o(.rodata)` | [文本对象] | `data/text/us/animal_festival.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项 |
+| `0x080FA78C`–`0x080FA99D` | `src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_names)` | [动物祭典排名文本段] | `data/text/us/animal_festival.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080FA99E`–`0x080FAA3D` | `src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_values)` | [数据] | `src/animal_festival_ranking.c/.cc` | `gAnimalFestivalLivestockContestantValues` |
 | `0x080FAA3E`–`0x080FAA3F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FAA40`–`0x080FB1D7` | `src/horse_race_data.o(.rodata)` | [嵌入文本] | `data/text/us/horse_race.cc` | 文本 `43` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gHorseRaceTicketCharacterCodes`, `gHorseRaceTicketControls`, `gHorseRacePrizeCatalog`, `gHorseRacePrizeItemIds`, `gHorseRacePrizeExchangeCharacterCodes` |
@@ -2908,7 +2908,7 @@
 | `0x080FA6AC` | `gText_Frisbee_DogNoLongerWantsToPlay` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
 | `0x080FA6E0` | `gText_Frisbee_FoundItem` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
 | `0x080FA6F4` | `gText_Frisbee_FoundNothing` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080FA796` | `gText_AnimalFestival_LivestockContestantNames` | `data/text/us/animal_festival.cc` | `data/text/animal_festival.o(.rodata)` |
+| `0x080FA796` | `gText_AnimalFestival_LivestockContestantNames` | `data/text/us/animal_festival.cc` | `src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_names)` |
 | `0x080FAA40` | `gText_HorseRace_BuyTicketDeclined` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
 | `0x080FAA5C` | `gText_HorseRace_Yes` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
 | `0x080FAA60` | `gText_HorseRace_No` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
