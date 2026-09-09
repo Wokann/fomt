@@ -15,6 +15,21 @@ u32 func_080003DC(u32 unused, u32 index)
     return index * multiplier + 0x28;
 }
 
+void func_0800042C(void *source, u32 index)
+    SECTION(".text.sram_proxy_1_clear_value");
+
+void func_0800042C(void *source, u32 index)
+{
+    u32 value = 0;
+
+    func_080006E4(source, &value, 0x20, sizeof(value));
+    if (gUnk_03000400 == 0)
+    {
+        value &= ~(1 << index);
+        func_080006A4(source, 0x20, &value, sizeof(value));
+    }
+}
+
 void func_08000470(void *destination, u32 value)
     SECTION(".text.sram_proxy_1_save_value");
 
