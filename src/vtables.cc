@@ -3791,6 +3791,31 @@ extern RawVTableFunction const vtable_unk_080E7198[]
         func_08034F00,
     };
 
+// The original destructor has a legacy assembler symbol that is not a valid
+// C++ identifier; retain that exact linkage name for the table relocation.
+extern void destructor_ANpcEntity(void) asm("_._10ANpcEntity");
+
+// Preserve the ANpcEntity ABI table and its exact callbacks in ROM order.
+extern RawVTableFunction const __vt_10ANpcEntity[]
+    SECTION(".rodata.vtable_npc_entity") = {
+        nullptr,
+        nullptr,
+        destructor_ANpcEntity,
+        func_0803240C,
+        vfunc_10__7AEntity,
+        func_08034E8C,
+        func_08034EB4,
+        vfunc_1C__7AEntityUi,
+        vfunc_20__7AEntity,
+        func_08034EA0,
+        vfunc_28__C7AEntity,
+        func_0803242C,
+        __pure_virtual,
+        func_08034EE0,
+        func_08034EF8,
+        func_08034F00,
+    };
+
 #if defined(REGION_JP)
 // The JP Script Engine code is still retained as a raw code range, but this
 // ABI table has the same five logical slots as the compiled US table.
