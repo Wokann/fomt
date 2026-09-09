@@ -10980,3 +10980,8 @@ func_0803A798: @ 0x0803A798
     .byte 0x00, 0x68, 0x70, 0x47
 
     .endif
+
+    @ This intra-function Thumb entry is referenced by the raw vtable at
+    @ 0x080E7444 in both regional ROMs.
+    .global func_08037CDC
+    .thumb_set func_08037CDC, func_08037CC4 + 0x18
