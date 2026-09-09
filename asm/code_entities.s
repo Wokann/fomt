@@ -303,6 +303,12 @@ code_entities_jp_raw_start:
     .global func_08024A2C
     .thumb_set func_08024A2C, code_entities_jp_raw_start + 0x4C38
 
+    @ Exact JP entries referenced by the raw table at 0x080E6708.
+    .global func_0802B148
+    .thumb_set func_0802B148, code_entities_jp_raw_start + 0xB354
+    .global func_0802B2B0
+    .thumb_set func_0802B2B0, code_entities_jp_raw_start + 0xB4BC
+
     .global func_08032090
     .thumb_set func_08032090, code_entities_jp_raw_start + 0x12030
     .else
@@ -32336,4 +32342,8 @@ func_08032090: @ 0x08032090
     .thumb_set func_08032020, sub_08031E0A + 0x216
     .global func_08032018
     .thumb_set func_08032018, sub_08031E0A + 0x20E
+
+    @ Exact US entry referenced by the raw table at 0x080E6708.
+    .global func_0802B51C
+    .thumb_set func_0802B51C, func_0802B46C + 0xB0
     .endif
