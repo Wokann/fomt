@@ -194,7 +194,7 @@ struct EntityUiHarvestSpriteState : public AEntity
     void * unknown_3C;
 };
 
-extern "C" char const gText_NotAvailable[8];
+extern "C" char const gText_NotAvailable[];
 
 extern "C" EntityUiResourceSelectorStorage const gUnk_080F33B8;
 extern "C" EntityUiResourceSelectorExtendedStorage const gUnk_080F3408;

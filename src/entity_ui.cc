@@ -12,7 +12,7 @@
 // Native callers establish the widths and offsets below; unresolved fields keep
 // their original gUnk names instead of receiving speculative game meanings.
 
-extern "C" u32 const gUnk_080F0E88[] ALIGN(1) = {
+extern "C" u32 const gUnk_080F0E88[] ALIGN(4) = {
     0x00000001, 0x00000002, 0x00000003, 0x00000004, 0x00000005,
     0x00000006, 0x00000007, 0x00000008, 0x00000009, 0x0000000A,
     0x0000000B, 0x0000000C, 0x0000000D, 0x0000000E, 0x0000000F,

@@ -2,7 +2,7 @@
 
 #if defined(FOMT_ENTITY_UI_TEXT_NOT_AVAILABLE)
 
-char const gText_NotAvailable[8] =
+char const gText_NotAvailable[] =
     "N/A ";
 
 #else
