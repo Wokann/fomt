@@ -794,7 +794,7 @@ SECTIONS
         . = 0x1003E4; data/text/gift_wrap.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0x1004E0; data/text/link_communication.o(.rodata.link_communication);
+        . = 0x1004E0; data/text/link_communication.o(.rodata);
         . = 0x1007AC; src/link_communication_data.o(.rodata);
         data/text/link_communication.o(.rodata.link_communication_character_codes);
         src/link_communication_data.o(.rodata.link_communication_game_codes);

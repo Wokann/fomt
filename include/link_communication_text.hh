@@ -3,7 +3,6 @@
 
 #include "prelude.h"
 
-#define LINK_COMMUNICATION_TEXT SECTION(".rodata.link_communication")
 
 extern char const gText_LinkCommunication_Waiting[];
 extern char const gText_LinkCommunication_SendingGameData[];
