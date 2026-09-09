@@ -640,7 +640,7 @@ SECTIONS
         data/text/common/sram_signature.o(.rodata.sram_signature);
         src/intro_scene_data.o(.rodata.intro_scene_startup_resources);
         . = ALIGN(4); src/new_game_menu_data.o(.rodata);
-        . = ALIGN(4); data/text/new_game_status.o(.rodata.new_game_status_labels);
+        . = ALIGN(4); data/text/new_game_status.o(.rodata);
         . = ALIGN(4); data/text/new_game_help.o(.rodata.new_game_help_text);
         . = ALIGN(4); data/text/new_game_save.o(.rodata.new_game_save_text);
         . = ALIGN(4); data/text/new_game_save.o(.rodata.new_game_save_trailer);
