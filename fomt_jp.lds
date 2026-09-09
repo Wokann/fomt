@@ -759,7 +759,7 @@ SECTIONS
         . = ALIGN(4); asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix);
         . = 0xF96F4; /* JP ScriptEngine string-object prefix. */
         src/script_engine.o(.rodata.script_engine_string_error_prefix);
-        . = 0xF9700; data/text/common/script_engine.o(.rodata);
+        . = 0xF9700; src/script_engine.o(.rodata.script_engine_text);
         . = 0xF9721; src/cooking_festival_data.o(.rodata);
         src/thomas_stocking_data.o(.rodata);
         FILL(0x00);

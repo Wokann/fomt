@@ -673,7 +673,7 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4); asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix);
         . = ALIGN(4); src/script_engine.o(.rodata);
-        . = 0xF9EA4; data/text/common/script_engine.o(.rodata);
+        . = 0xF9EA4; src/script_engine.o(.rodata.script_engine_text);
         . = 0xF9EC5; src/cooking_festival_data.o(.rodata);
         src/thomas_stocking_data.o(.rodata);
         FILL(0x00);

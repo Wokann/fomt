@@ -718,3 +718,8 @@ void ScriptEngine::Push(i32 value)
 // next up: int OnCall(int id);
 
 #endif // REGION_JP
+
+// This error-text run follows the Script Engine's native string prefix.
+#define FOMT_SCRIPT_ENGINE_TEXT_ATTRIBUTE SECTION(".rodata.script_engine_text")
+#include "data/text/common/script_engine.cc"
+#undef FOMT_SCRIPT_ENGINE_TEXT_ATTRIBUTE
