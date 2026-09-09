@@ -795,13 +795,14 @@ SECTIONS
         . = ALIGN(4); asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix);
         . = 0xF96F4; /* JP ScriptEngine string-object prefix. */
         src/script_engine.o(.rodata.script_engine_string_error_prefix);
-        . = 0xF9700; src/script_engine.o(.rodata.script_engine_string_error);
+        . = 0xF9700; data/text/common/script_engine_invalid_string.o(.rodata);
+        FILL(0x00);
         . = 0xF9708; /* JP Script Engine UI-error runtime string. */
-        src/script_engine.o(.rodata.script_engine_ui_error_prefix);
+        data/text/common/script_engine_ui_prefix.o(.rodata);
         FILL(0x00);
-        . = 0xF9714; src/script_engine.o(.rodata.script_engine_ui_error);
+        . = 0xF9714; data/text/common/script_engine_ui_error.o(.rodata);
         FILL(0x00);
-        . = 0xF971C; src/script_engine.o(.rodata.script_engine_ui_error_trailer);
+        . = 0xF971C; data/text/common/script_engine_ui_fallback.o(.rodata);
         . = 0xF9721; src/cooking_festival_data.o(.rodata);
         src/thomas_stocking_data.o(.rodata);
         FILL(0x00);

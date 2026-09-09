@@ -56,7 +56,7 @@ asm(
     "    .incbin \"baserom_jp.gba\", 0xE0654, 0x3C\n"
     "\n"
     "    @ Keep the compiler's bad_alloc object raw; the following Error field is\n"
-    "    @ emitted below as named ScriptEngine text at its original ROM address.\n"
+    "    @ emitted by an ordinary ScriptEngine text object at its original ROM address.\n"
     "    .section .rodata.script_engine_string_error_prefix\n"
     "    .incbin \"baserom_jp.gba\", 0xF96F4, (0xF9700 - 0xF96F4)\n"
     "\n"
@@ -718,24 +718,3 @@ void ScriptEngine::Push(i32 value)
 // next up: int OnCall(int id);
 
 #endif // REGION_JP
-
-char const gCppRuntimeBadAlloc_ScriptEngineUiPrefix[]
-    SECTION(".rodata.script_engine_ui_error_prefix") =
-        "bad_alloc";
-
-char const gText_ScriptEngineUi_FallbackNone[]
-    SECTION(".rodata.script_engine_ui_error_trailer") =
-#if defined(REGION_JP)
-        "なし";
-#else
-        "N/A ";
-#endif
-
-// These text objects occur at separate physical Script Engine addresses.
-#define FOMT_SCRIPT_ENGINE_TEXT_INVALID_STRING_ID
-#include "data/text/common/script_engine.cc"
-#undef FOMT_SCRIPT_ENGINE_TEXT_INVALID_STRING_ID
-
-#define FOMT_SCRIPT_ENGINE_TEXT_UI_ERROR
-#include "data/text/common/script_engine.cc"
-#undef FOMT_SCRIPT_ENGINE_TEXT_UI_ERROR

@@ -59,9 +59,11 @@ or raw `\xNN` bytes. `textproc` retains the explicit terminator while C++ still
 zero-initializes any remaining field capacity.
 
 `common/fallback.cc` is included directly by `src/item.cc` because its small
-item fallback strings are byte-identical in both regions. `common/ui_error.cc`
-and `common/script_engine.cc` are included at their owning modules' physical
-ROM positions. `common/sram_signature.cc` is not display text: its explicit
+item fallback strings are byte-identical in both regions.
+
+`common/ui_error.cc` is included at its owning module's physical ROM
+position. `common/script_engine_*.cc` are linked as ordinary physical text
+fragments. `common/sram_signature.cc` is not display text: its explicit
 32-byte array is the persisted SRAM signature used by the save verifier.
 
 Game scripts are deliberately outside this directory and remain independently
