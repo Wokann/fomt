@@ -36509,3 +36509,7 @@ func_080E59C0: @ 0x080E59C0
     @ 0x080E7708 in both regional ROMs.
     .global func_080DE280
     .thumb_set func_080DE280, func_080DE220 + 0x60
+    @ This intra-function Thumb entry is referenced by the raw table at
+    @ 0x080E7714 in both regional ROMs.
+    .global func_080DE28C
+    .thumb_set func_080DE28C, func_080DE220 + 0x6C

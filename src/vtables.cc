@@ -17,6 +17,11 @@ struct RawVTableWithOffsetThreeEntries {
     RawVTableFunction entries[3];
 };
 
+struct RawVTableWithOffsetFourEntries {
+    i32 offset;
+    RawVTableFunction entries[4];
+};
+
 struct RawVTableWithOffsetAnd66Entries {
     i32 offset;
     RawVTableFunction entries[66];
@@ -4576,6 +4581,22 @@ extern RawVTableWithOffset const vtable_unk_080E7708
         {
             nullptr,
             func_080DE280,
+        },
+    };
+
+extern void func_080DE28C(void);
+extern void method_0803EFD8__13AScriptEngine(void);
+extern void func_080DE298(void);
+
+// Preserve this offset-bearing five-word table in ROM order.
+extern RawVTableWithOffsetFourEntries const vtable_unk_080E7714
+    SECTION(".rodata.vtable_7714") = {
+        -12,
+        {
+            nullptr,
+            func_080DE28C,
+            method_0803EFD8__13AScriptEngine,
+            func_080DE298,
         },
     };
 
