@@ -8401,6 +8401,14 @@ func_080D7B44: @ 0x080D7B44
     @ at 0x080E7568.
     .global func_080DCFCC
     .thumb_set func_080DCFCC, func_080DCF4C + 0x80
+    @ Exact JP entries corresponding to native US callbacks in the raw table
+    @ at 0x080E759C.
+    .global func_080DD404
+    .thumb_set func_080DD404, func_080DCFE0 + 0x424
+    .global func_080DD3D4
+    .thumb_set func_080DD3D4, func_080DCFE0 + 0x3F4
+    .global func_080DD3A8
+    .thumb_set func_080DD3A8, func_080DCFE0 + 0x3C8
     .global func_080E0C38
     .thumb_set func_080E0C38, func_080D7E64 + 0x8DBC
     .global func_080E0A94
@@ -36404,3 +36412,8 @@ func_080E59C0: @ 0x080E59C0
 	.thumb_set func_080E1124, func_080E1128 - 0x4
 
     .endif
+
+    @ This intra-function Thumb entry is referenced by the raw vtable at
+    @ 0x080E759C in both regional ROMs.
+    .global func_080DD384
+    .thumb_set func_080DD384, func_080DCFE0 + 0x3A4
