@@ -27,6 +27,22 @@ i32 DrawCharacterGlyphTo2DGfxBufferUnaligned(u32 size, void *buffer, i32 x,
 i32 DrawCharacterGlyphTo2DGfxBufferExtUnaligned(u32 size, void *buffer,
     i32 x, i32 y, void *glyph, i32 foreground,
     i32 background) asm("func_0804E9CC");
+
+// The adjacent virtual object has not yet received a semantic class name.
+// Its layout is retained here because its constructor is shared by both ROMs.
+typedef struct UnkFontDrawObject
+{
+    void * unk_00;
+    void * unk_04;
+    void const * vtable;
+    u32 unk_0c;
+    u16 unk_10;
+    u16 unk_12;
+    u32 unk_14;
+    u32 unk_18;
+    u32 unk_1c;
+} UnkFontDrawObject;
+
 void Clear2DGfxBuffer(u32 size, void *buffer, u32 color);
 void Clear2DGfxBufferRect(u32 size, void *buffer, u32 x, u32 y, u32 width,
     u32 height, u32 color);
@@ -37,6 +53,11 @@ void Copy2DGfxBuffer(u32 size, void *destination, void const *source)
 // of first_tile and palette are represented in each tilemap entry.
 void Fill2DGfxTilemapRect(u16 *destination, u32 first_tile, u32 width,
     u32 height, u32 palette, u32 row_stride) asm("func_0804E9F4");
+UnkFontDrawObject * InitializeUnkFontDrawObject(UnkFontDrawObject * object,
+    u32 unk_0c, u16 unk_12, u32 unk_14, u32 unk_18, u16 unk_10,
+    u32 unk_1c) asm("func_0804EA58");
+void DestroyUnkFontDrawObject(UnkFontDrawObject * object)
+    asm("func_0804EA80");
 void DrawStringTo2DGfxBuffer(u32 size, void *buffer, i32 x, i32 y,
     u8 const *string);
 void DrawStringTo2DGfxBufferExt(u32 size, void *buffer, i32 x, i32 y,

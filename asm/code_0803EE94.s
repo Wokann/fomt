@@ -33,7 +33,7 @@
     @ The preceding unaligned no-ops and packed tile-buffer copy helper are
     @ rebuilt from src/font_draw.cc.
     @ The following tilemap rectangle filler is also rebuilt there.
-    jp_code_0803ee_func func_0804EA58, 0x4E880, 0x4E8BC
+    @ Its adjacent unknown virtual-object initializer is rebuilt there too.
     jp_code_0803ee_func func_0804EA94, 0x4E8BC, 0x4EAAC
     jp_code_0803ee_func func_0804EC84, 0x4EAAC, 0x4EC88
     jp_code_0803ee_func func_0804EEFC, 0x4EC88, 0x4ECAC
@@ -45,8 +45,6 @@
     jp_code_0803ee_func func_0804F19C, 0x4EF28, 0x4F428
 
     @ Exact JP entry points referenced by the reconstructed virtual tables.
-    .global func_0804E8A8
-    .thumb_set func_0804E8A8, func_0804EA58 + 0x28
     .global func_0804EBC8
     .thumb_set func_0804EBC8, func_0804EC84 + 0x11C
     .global func_0804EC34
@@ -28526,40 +28524,6 @@ func_0804E3D8: @ 0x0804E3D8
 	@ fallbacks, and the packed tile-buffer copy helper are rebuilt from
 	@ src/font_draw.cc for both regions.
 	.section .text.font_draw_after
-
-	thumb_func_start func_0804EA58
-func_0804EA58: @ 0x0804EA58
-	push {r4, r5, r6, r7, lr}
-	ldr r5, [sp, #0x14]
-	ldr r6, [sp, #0x18]
-	ldr r7, [sp, #0x1c]
-	movs r4, #0
-	str r4, [r0]
-	str r4, [r0, #4]
-	ldr r4, .L0804EA7C @ =vtable_unk_080E7868
-	str r4, [r0, #8]
-	str r1, [r0, #0xc]
-	strh r2, [r0, #0x12]
-	str r3, [r0, #0x14]
-	str r5, [r0, #0x18]
-	strh r6, [r0, #0x10]
-	str r7, [r0, #0x1c]
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0804EA7C: .4byte vtable_unk_080E7868
-
-	thumb_func_start func_0804EA80
-func_0804EA80: @ 0x0804EA80
-	push {lr}
-	ldr r2, .L0804EA90 @ =vtable_unk_080E7868
-	str r2, [r0, #8]
-	bl func_080098AC
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L0804EA90: .4byte vtable_unk_080E7868
 
 	thumb_func_start func_0804EA94
 func_0804EA94: @ 0x0804EA94

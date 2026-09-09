@@ -406,6 +406,15 @@ void Copy2DGfxBuffer(u32 size, void *destination, void const *source)
 void Fill2DGfxTilemapRect(u16 *destination, u32 first_tile, u32 width,
     u32 height, u32 palette, u32 row_stride) asm("func_0804E9F4")
     SECTION(".text.font_draw_after");
+UnkFontDrawObject * InitializeUnkFontDrawObject(UnkFontDrawObject * object,
+    u32 unk_0c, u16 unk_12, u32 unk_14, u32 unk_18, u16 unk_10,
+    u32 unk_1c) asm("func_0804EA58") SECTION(".text.font_draw_after");
+void DestroyUnkFontDrawObject(UnkFontDrawObject * object)
+    asm("func_0804EA80") SECTION(".text.font_draw_after");
+
+extern void const * const vtable_unk_080E7858[];
+extern void const * const vtable_unk_080E7868[];
+extern void func_080098AC(void * object);
 
 // Copy a complete packed 4bpp tile buffer. The low and high halves of size
 // are its tile width and height respectively.
@@ -482,5 +491,43 @@ void Fill2DGfxTilemapRect(u16 *destination, u32 first_tile, u32 width,
         row = next_row;
     } while (row < row_count);
 }
+
+UnkFontDrawObject * InitializeUnkFontDrawObject(UnkFontDrawObject * object,
+    u32 unk_0c, u16 unk_12, u32 unk_14, u32 unk_18, u16 unk_10,
+    u32 unk_1c)
+{
+    object->unk_00 = nullptr;
+    object->unk_04 = nullptr;
+#if defined(REGION_JP)
+    object->vtable = vtable_unk_080E7858;
+#else
+    object->vtable = vtable_unk_080E7868;
+#endif
+    object->unk_0c = unk_0c;
+    object->unk_12 = unk_12;
+    object->unk_14 = unk_14;
+    object->unk_18 = unk_18;
+    object->unk_10 = unk_10;
+    object->unk_1c = unk_1c;
+    return object;
+}
+
+void DestroyUnkFontDrawObject(UnkFontDrawObject * object)
+{
+#if defined(REGION_JP)
+    register void const * vtable asm("r2") = vtable_unk_080E7858;
+#else
+    register void const * vtable asm("r2") = vtable_unk_080E7868;
+#endif
+
+    __asm__ volatile ("" : "+r"(vtable));
+    object->vtable = vtable;
+    func_080098AC(object);
+}
+
+#if defined(REGION_JP)
+// The JP virtual table stores the destructor's distinct original entry label.
+void func_0804E8A8(UnkFontDrawObject * object) ALIAS(func_0804EA80);
+#endif
 
 EXTERN_C_END
