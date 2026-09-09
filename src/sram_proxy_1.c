@@ -1,11 +1,8 @@
 #include "sram_signature.hh"
+#include "sram_proxy.hh"
 #include "types.h"
 
 #include <string.h>
-
-extern void func_080006A4(void *destination, u32 offset, void const *source, u32 size);
-extern void func_080006E4(void *source, void *destination, u32 offset, u32 size);
-extern u16 gUnk_03000400;
 
 u8 func_080002E0(void *source)
 {

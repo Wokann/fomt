@@ -74,6 +74,8 @@ SECTIONS
         src/pure_virtual.o(.text);
         . = 0x63C; /* JP ROM 0x0800063C, independently matched */
         asm/sram_proxy_2.o(.text);
+        src/sram_proxy_2.o(.text);
+        asm/sram_proxy_2.o(.text.sram_proxy_2_after_006e4);
         . = 0x7EC; /* JP ROM 0x080007EC, independently matched */
         src/scene.o(.text);
         . = 0x82C; /* JP ROM 0x0800082C, independently matched */

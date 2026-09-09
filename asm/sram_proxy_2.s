@@ -4,7 +4,7 @@
     .syntax unified
     .thumb
 jp_sram_proxy_2_start:
-    .incbin "baserom_jp.gba", 0x63C, 0x1B0
+    .incbin "baserom_jp.gba", 0x63C, 0xA8
 
     .global func_0800063C
     .thumb_set func_0800063C, jp_sram_proxy_2_start
@@ -12,10 +12,13 @@ jp_sram_proxy_2_start:
     .thumb_set func_08000640, jp_sram_proxy_2_start + 0x4
     .global func_080006A4
     .thumb_set func_080006A4, jp_sram_proxy_2_start + 0x68
-    .global func_080006E4
-    .thumb_set func_080006E4, jp_sram_proxy_2_start + 0xA8
+
+    .section .text.sram_proxy_2_after_006e4
+jp_sram_proxy_2_after_006e4:
+    .incbin "baserom_jp.gba", 0x714, 0xD8
+
     .global func_08000728
-    .thumb_set func_08000728, jp_sram_proxy_2_start + 0xEC
+    .thumb_set func_08000728, jp_sram_proxy_2_after_006e4 + 0x14
     .else
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
@@ -85,32 +88,7 @@ func_080006A4: @ 0x080006A4
     .align 2, 0
 .L080006E0: .4byte gUnk_03000400
 
-    thumb_func_start func_080006E4
-func_080006E4: @ 0x080006E4
-    push {r4, r5, lr}
-    adds r5, r1, #0
-    adds r4, r2, #0
-    adds r2, r3, #0
-    ldr r1, .L08000708 @ =gUnk_03000400
-    movs r0, #0
-    strh r0, [r1]
-    cmp r2, #0
-    beq .L0800070C
-    movs r0, #0xe0
-    lsls r0, r0, #0x14
-    orrs r0, r4
-    adds r1, r5, #0
-    bl func_080D379C
-    movs r0, #1
-    b .L0800070E
-    .align 2, 0
-.L08000708: .4byte gUnk_03000400
-.L0800070C:
-    movs r0, #0
-.L0800070E:
-    pop {r4, r5}
-    pop {r1}
-    bx r1
+    .section .text.sram_proxy_2_after_006e4
 .L08000714:
     .byte 0x00, 0xB5, 0x00, 0x79, 0x03, 0x22, 0x10, 0x40, 0x03, 0x30, 0xD0, 0xF0
     .byte 0x75, 0xFC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
