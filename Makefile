@@ -137,6 +137,9 @@ TEXT_FRAGMENT_SOURCES := \
   data/text/$(TEXT_REGION)/carpenter.cc \
   data/text/$(TEXT_REGION)/records.cc \
   data/text/$(TEXT_REGION)/horse_race.cc \
+  data/text/$(TEXT_REGION)/library.cc \
+  data/text/$(TEXT_REGION)/library_menu.cc \
+  data/text/common/library_info.cc \
   data/text/common/fallback.cc
 
 # The staff-credit source and the Reference Guide pages use their own visible

@@ -745,13 +745,13 @@ SECTIONS
         . = ALIGN(4); data/text/town_map.o(.rodata);
         . = 0xFD080; src/town_map_data.o(.rodata.town_map_hotspots);
         . = 0xFD3A0; src/town_map_data.o(.rodata.town_map_area_lookup);
-        . = 0xFD550; data/text/library.o(.rodata);
+        . = 0xFD550; src/library_data.o(.rodata.library_opening_hours);
         FILL(0x00);
         . = ALIGN(4); src/town_map_data.o(.rodata.town_map_area_bounds);
-        data/text/common/library_info.o(.rodata);
+        src/library_data.o(.rodata.library_info);
         FILL(0x00);
         . = ALIGN(4); src/library_data.o(.rodata.library_initial_entry_ids);
-        . = 0xFD940; data/text/library_menu.o(.rodata);
+        . = 0xFD940; src/library_data.o(.rodata.library_menu);
         . = 0xFD964; src/poultry_shop_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/supermarket_data.o(.rodata);
