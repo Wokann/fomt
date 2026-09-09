@@ -658,9 +658,11 @@ SECTIONS
         src/animal_data.o(.rodata);
         ASSERT(. <= 0xF0E80, "US Animal localization island overflow");
         FILL(0x00);
-        . = ALIGN(4); src/entity_ui.o(.rodata);
+        /* Bounded Entity UI localization island: labels and native UI data. */
+        . = 0xF0E80; src/entity_ui.o(.rodata);
+        ASSERT(. <= 0xF1974, "US Entity UI localization island overflow");
         FILL(0x00);
-        . = ALIGN(4); src/fixed_labels.o(.rodata);
+        . = 0xF1974; src/fixed_labels.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/ui_error.o(.rodata);
         FILL(0x00);

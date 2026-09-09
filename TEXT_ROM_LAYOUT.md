@@ -49,7 +49,7 @@
 | `0x080EFF5D`–`0x080F006F` | `src/animal_data.o(.rodata.animal_data_prefix)` | [数据] | `data/text/common/animal_data.cc`<br>`data/text/jp/animal_data.cc` | `gUnk_080F06FD`, `gUnk_080F0704`, `gUnk_080F0718`, `gUnk_080F0730`, `gUnk_080F0748`, `gUnk_080F0770`, … +1 |
 | `0x080F0070`–`0x080F06DD` | `src/animal_data.o(.rodata)` | [嵌入文本] | `data/text/common/animal_data.cc`<br>`data/text/jp/animal_data.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `5` 项<br>`gUnk_080F0838`, `gUnk_080F0908`, `gUnk_080F093C`, `gUnk_080F09AC`, `gUnk_080F09C8`, `gUnk_080F0A68`, … +4 |
 | `0x080F06DE`–`0x080F06DF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F06E0`–`0x080F11D1` | `src/entity_ui.o(.rodata)` | [嵌入文本] | `data/text/common/entity_ui.cc`<br>`data/text/jp/entity_ui.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `18` 项<br>`gUnk_080F0E88`, `gUnk_080F0F78`, `gUnk_080F0FCC`, `gUnk_080F1020`, `gUnk_080F1170`, `gUnk_080F1178`, … +41 |
+| `0x080F06E0`–`0x080F11D1` | `src/entity_ui.o(.rodata)` | [嵌入文本 / 数据] | `data/text/common/entity_ui.cc`<br>`data/text/jp/entity_ui.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `18` 项<br>`gUnk_080F0E88`, `gUnk_080F0F78`, `gUnk_080F0FCC`, `gUnk_080F1020`, `gUnk_080F1170`, `gUnk_080F1178`, … +41<br>Entity UI 本地化岛：与本对象内紧邻 UI 数据共同受 LD 上界保护 |
 | `0x080F11D2`–`0x080F11D3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F11D4`–`0x080F11F9` | `src/fixed_labels.o(.rodata)` | [嵌入文本] | `data/text/common/fixed_labels.cc`<br>`data/text/jp/fixed_labels.cc` | 文本 `2` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gFixedLabelsPaddingBeforeUnnamedSetting` |
 | `0x080F11FA`–`0x080F11FB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1917,7 +1917,7 @@
 | `0x080F06FD`–`0x080F080F` | `src/animal_data.o(.rodata.animal_data_prefix)` | [数据] | `data/text/common/animal_data.cc`<br>`data/text/us/animal_data.cc` | `gUnk_080F06FD`, `gUnk_080F0704`, `gUnk_080F0718`, `gUnk_080F0730`, `gUnk_080F0748`, `gUnk_080F0770`, … +1 |
 | `0x080F0810`–`0x080F0E7D` | `src/animal_data.o(.rodata)` | [嵌入文本] | `data/text/common/animal_data.cc`<br>`data/text/us/animal_data.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `5` 项<br>`gUnk_080F0838`, `gUnk_080F0908`, `gUnk_080F093C`, `gUnk_080F09AC`, `gUnk_080F09C8`, `gUnk_080F0A68`, … +4 |
 | `0x080F0E7E`–`0x080F0E7F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F0E80`–`0x080F1971` | `src/entity_ui.o(.rodata)` | [嵌入文本] | `data/text/common/entity_ui.cc`<br>`data/text/us/entity_ui.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `18` 项<br>`gUnk_080F0E88`, `gUnk_080F0F78`, `gUnk_080F0FCC`, `gUnk_080F1020`, `gUnk_080F1170`, `gUnk_080F1178`, … +41 |
+| `0x080F0E80`–`0x080F1971` | `src/entity_ui.o(.rodata)` | [嵌入文本 / 数据] | `data/text/common/entity_ui.cc`<br>`data/text/us/entity_ui.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `18` 项<br>`gUnk_080F0E88`, `gUnk_080F0F78`, `gUnk_080F0FCC`, `gUnk_080F1020`, `gUnk_080F1170`, `gUnk_080F1178`, … +41<br>Entity UI 本地化岛：与本对象内紧邻 UI 数据共同受 LD 上界保护 |
 | `0x080F1972`–`0x080F1973` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F1974`–`0x080F199D` | `src/fixed_labels.o(.rodata)` | [嵌入文本] | `data/text/common/fixed_labels.cc`<br>`data/text/us/fixed_labels.cc` | 文本 `2` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gFixedLabelsPaddingBeforeUnnamedSetting` |
 | `0x080F199E`–`0x080F199F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
