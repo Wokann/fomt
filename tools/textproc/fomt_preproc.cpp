@@ -96,6 +96,12 @@ bool IsAssemblyAlign(const std::string &line)
     return Trim(line).rfind(".align", 0) == 0;
 }
 
+bool IsAssemblyDataSectionTransition(const std::string &line)
+{
+    const std::string trimmed = Trim(line);
+    return trimmed == ".text" || trimmed.rfind(".section", 0) == 0;
+}
+
 bool IsExecutableSectionDirective(const std::string &line)
 {
     static const std::regex pattern(
@@ -576,7 +582,9 @@ void FixupConstCharPointerWord(std::vector<std::string> &lines,
     }
 
     const std::size_t local_end = local_label + 1 + local_payload.size();
-    if (local_end == lines.size() || !IsAssemblyAlign(lines[local_end])) {
+    if (local_end == lines.size()
+        || (!IsAssemblyAlign(lines[local_end])
+            && !IsAssemblyDataSectionTransition(lines[local_end]))) {
         throw std::runtime_error("unexpected compiler-constant layout for '"
             + reference_name + "'");
     }
@@ -1536,6 +1544,29 @@ void SelfTest()
     Require(output.find("gDefaultCompilerPaddedData:\n\t.byte\t0x1\n"
                         "\t.text\n") != std::string::npos,
         "ordinary rodata tail alignment removed data payload");
+
+    const std::string section_boundary_source =
+        "char const gSectionBoundaryText[] = \"A\";\n"
+        "char const * const gSectionBoundaryPointer = gSectionBoundaryText;\n";
+    const std::string section_boundary_assembly =
+        "\t.section .rodata.named,\"a\",%progbits\n"
+        "gSectionBoundaryText:\n"
+        "\t.ascii\t\"A\\000\"\n"
+        "\t.globl\tgSectionBoundaryPointer\n"
+        "\t.section .rodata\n"
+        "\t.align\t2, 0\n"
+        ".LC0:\n"
+        "\t.ascii\t\"A\\000\"\n"
+        "\t.section .rodata.pointers,\"a\",%progbits\n"
+        "\t.align\t2, 0\n"
+        "gSectionBoundaryPointer:\n"
+        "\t.word\t.LC0\n";
+    const std::string section_boundary_output = PreprocessAssembly(
+        section_boundary_source, section_boundary_assembly);
+    Require(section_boundary_output.find(".LC0:") == std::string::npos
+            && section_boundary_output.find("\t.word\tgSectionBoundaryText")
+                != std::string::npos,
+        "section-bound compiler string relocation was not restored");
 
     const std::string stacked_setup_assembly =
         "\t.text\n"
