@@ -119,6 +119,11 @@ func_08034C64:
     .thumb_set func_08034940, func_0803242C + 0x2514
     .global func_08034A14
     .thumb_set func_08034A14, func_0803242C + 0x25E8
+    @ Exact entries referenced by the raw table at 0x080E6904.
+    .global func_08034AA0
+    .thumb_set func_08034AA0, func_08034A14 + 0x8C
+    .global func_08034AE8
+    .thumb_set func_08034AE8, func_08034A14 + 0xD4
     .else
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
@@ -4227,7 +4232,12 @@ func_08034940: @ 0x08034940
 
     thumb_func_start func_08034A14
 func_08034A14: @ 0x08034A14
-    push {r4, r5, r6, lr}
+	@ Exact entries referenced by the raw table at 0x080E6904.
+	.global func_08034AA0
+	.thumb_set func_08034AA0, func_08034A14 + 0x8C
+	.global func_08034AE8
+	.thumb_set func_08034AE8, func_08034A14 + 0xD4
+	push {r4, r5, r6, lr}
     mov r6, sb
     mov r5, r8
     push {r5, r6}
