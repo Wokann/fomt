@@ -1,5 +1,12 @@
 #include "frisbee_text.hh"
 
+#if defined(FOMT_FRISBEE_TEXT_SCOREBOARD)
+
+char const gText_Frisbee_TournamentScoreboard[] =
+    "Frisbee Contest　Scoreboard";
+
+#else
+
 // Static Frisbee UI text.  The text processor converts these UTF-8 strings
 // and named controls into the exact regional ROM bytes during the build.
 
@@ -86,3 +93,5 @@ char const gText_Frisbee_FoundNothing[] ALIGN(4) =
 
 char const gCppRuntimeBadAlloc_FrisbeeTextTrailer[] ALIGN(4) =
     "bad_alloc";
+
+#endif
