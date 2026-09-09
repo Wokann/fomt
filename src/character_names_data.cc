@@ -5,9 +5,17 @@ char const gText_CharacterName_Empty[]
     SECTION(".rodata.character_names_empty") =
         "";
 
+// The selected regional names directly precede their native lookup table and
+// runtime trailer in both ROMs.
+#if defined(REGION_JP)
+#include "data/text/jp/character_names.cc"
+#else
+#include "data/text/us/character_names.cc"
+#endif
+
 // Entries are indexed directly by Mary CharacterId.  ID 0 and the Child entry
 // point at the original empty string retained in surrounding raw data.
-CharacterNameEntry const gCharacterNameEntries[CHARACTER_NAME_ENTRY_COUNT] SECTION(".rodata.character_name_entries") = {
+CharacterNameEntry const gCharacterNameEntries[CHARACTER_NAME_ENTRY_COUNT] = {
     { gText_CharacterName_Empty, 0x00000000 },            // ID 0
     { gText_CharacterName_Lillia, 0x0000004C },          // CHARACTER_LILLIA
     { gText_CharacterName_Rick, 0x0000006E },            // CHARACTER_RICK

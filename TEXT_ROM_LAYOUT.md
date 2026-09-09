@@ -171,10 +171,7 @@
 | `0x08103BFC`–`0x08103BFC` | `src/character_names_data.o(.rodata.character_names_empty)` | [嵌入文本] | `src/character_names_data.c/.cc` | 文本 `1` 项（详见下方索引） |
 | `0x08103BFD`–`0x08103C1A` | `src/bachelorette.o(.rodata)` | [数据] | `src/bachelorette.c/.cc` | `gUnk_BacheloretteLoveThresholds00`, `gUnk_BacheloretteLoveThresholds01`, `gUnk_BacheloretteLoveThresholds02`, `gUnk_BacheloretteLoveThresholds03`, `gUnk_BacheloretteLoveThresholds04`, `gUnk_BacheloretteLoveThresholds05` |
 | `0x08103C1B`–`0x08103C1B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x08103C1C`–`0x08103D9A` | `data/text/character_names.o(.rodata)` | [文本对象] | `data/text/jp/character_names.cc` | 文本 `41` 项（详见下方索引） |
-| `0x08103D9B`–`0x08103D9B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x08103D9C`–`0x08103EF3` | `src/character_names_data.o(.rodata.character_name_entries)` | [数据] | `src/character_names_data.c/.cc` | `gCharacterNameEntries` |
-| `0x08103EF4`–`0x08103EFD` | `src/character_names_data.o(.rodata)` | [数据] | `src/character_names_data.c/.cc` | 运行时字符串 `1` 项 |
+| `0x08103C1C`–`0x08103EFD` | `src/character_names_data.o(.rodata)` | [嵌入文本 / 数据] | `src/character_names_data.cc`<br>`data/text/jp/character_names.cc` | 文本 `41` 项（详见下方索引）<br>文本后对象内 `00` 对齐 `1` 字节<br>`gCharacterNameEntries`<br>运行时字符串 `1` 项 |
 | `0x08103EFE`–`0x08103EFF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08103F00`–`0x08104479` | `src/field_data.o(.rodata.field_item_records)` | [数据] | `src/field_data.c/.cc` | 运行时字符串 `1` 项<br>`gUnk_081043BC` |
 | `0x0810447A`–`0x0810447B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1732,47 +1729,47 @@
 | `0x081034F4` | `gText_FishingRecord_Coelacanth` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
 | `0x08103504` | `gText_FishingRecord_Squid` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
 | `0x08103BFC` | `gText_CharacterName_Empty` | 未在 `data/text` 源中直接命名；请以宿主对象核对 | `src/character_names_data.o(.rodata.character_names_empty)` |
-| `0x08103C1C` | `gText_CharacterName_Lillia` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103C24` | `gText_CharacterName_Rick` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103C2C` | `gText_CharacterName_Popuri` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103C34` | `gText_CharacterName_Barley` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103C3C` | `gText_CharacterName_May` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103C44` | `gText_CharacterName_Saibara` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103C50` | `gText_CharacterName_Gray` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103C58` | `gText_CharacterName_Duke` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103C64` | `gText_CharacterName_Manna` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103C6C` | `gText_CharacterName_Basil` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103C74` | `gText_CharacterName_Anna` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103C7C` | `gText_CharacterName_Mary` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103C84` | `gText_CharacterName_Thomas` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103C90` | `gText_CharacterName_Harris` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103C98` | `gText_CharacterName_Ellen` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103CA0` | `gText_CharacterName_Stu` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103CA8` | `gText_CharacterName_Jeff` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103CB0` | `gText_CharacterName_Sasha` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103CBC` | `gText_CharacterName_Karen` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103CC4` | `gText_CharacterName_Doctor` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103CD0` | `gText_CharacterName_Elli` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103CD8` | `gText_CharacterName_Carter` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103CE4` | `gText_CharacterName_Cliff` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103CEC` | `gText_CharacterName_Doug` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103CF4` | `gText_CharacterName_Ann` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103CFC` | `gText_CharacterName_Kai` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103D04` | `gText_CharacterName_Gotz` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103D0C` | `gText_CharacterName_Zack` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103D14` | `gText_CharacterName_Won` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103D1C` | `gText_CharacterName_Gourmet` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103D28` | `gText_CharacterName_HarvestGoddess` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103D34` | `gText_CharacterName_Kappa` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103D3C` | `gText_CharacterName_Van` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103D44` | `gText_CharacterName_LouOrRuby` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103D4C` | `gText_CharacterName_Staid` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103D58` | `gText_CharacterName_Nappy` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103D64` | `gText_CharacterName_Bold` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103D70` | `gText_CharacterName_Chef` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103D7C` | `gText_CharacterName_Aqua` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103D84` | `gText_CharacterName_Hoggy` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08103D90` | `gText_CharacterName_Timid` | `data/text/jp/character_names.cc` | `data/text/character_names.o(.rodata)` |
+| `0x08103C1C` | `gText_CharacterName_Lillia` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103C24` | `gText_CharacterName_Rick` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103C2C` | `gText_CharacterName_Popuri` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103C34` | `gText_CharacterName_Barley` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103C3C` | `gText_CharacterName_May` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103C44` | `gText_CharacterName_Saibara` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103C50` | `gText_CharacterName_Gray` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103C58` | `gText_CharacterName_Duke` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103C64` | `gText_CharacterName_Manna` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103C6C` | `gText_CharacterName_Basil` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103C74` | `gText_CharacterName_Anna` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103C7C` | `gText_CharacterName_Mary` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103C84` | `gText_CharacterName_Thomas` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103C90` | `gText_CharacterName_Harris` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103C98` | `gText_CharacterName_Ellen` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103CA0` | `gText_CharacterName_Stu` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103CA8` | `gText_CharacterName_Jeff` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103CB0` | `gText_CharacterName_Sasha` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103CBC` | `gText_CharacterName_Karen` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103CC4` | `gText_CharacterName_Doctor` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103CD0` | `gText_CharacterName_Elli` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103CD8` | `gText_CharacterName_Carter` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103CE4` | `gText_CharacterName_Cliff` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103CEC` | `gText_CharacterName_Doug` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103CF4` | `gText_CharacterName_Ann` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103CFC` | `gText_CharacterName_Kai` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103D04` | `gText_CharacterName_Gotz` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103D0C` | `gText_CharacterName_Zack` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103D14` | `gText_CharacterName_Won` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103D1C` | `gText_CharacterName_Gourmet` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103D28` | `gText_CharacterName_HarvestGoddess` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103D34` | `gText_CharacterName_Kappa` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103D3C` | `gText_CharacterName_Van` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103D44` | `gText_CharacterName_LouOrRuby` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103D4C` | `gText_CharacterName_Staid` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103D58` | `gText_CharacterName_Nappy` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103D64` | `gText_CharacterName_Bold` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103D70` | `gText_CharacterName_Chef` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103D7C` | `gText_CharacterName_Aqua` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103D84` | `gText_CharacterName_Hoggy` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08103D90` | `gText_CharacterName_Timid` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
 | `0x0810447C` | `gText_Calendar_DynamicSeasonNames` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
 | `0x081044B0` | `gText_Calendar_Festival_NewYearFestival` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
 | `0x081044F8` | `gText_Calendar_Festival_SpringThanksgiving` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
@@ -2047,10 +2044,7 @@
 | `0x08104108`–`0x08104108` | `src/character_names_data.o(.rodata.character_names_empty)` | [嵌入文本] | `src/character_names_data.c/.cc` | 文本 `1` 项（详见下方索引） |
 | `0x08104109`–`0x08104126` | `src/bachelorette.o(.rodata)` | [数据] | `src/bachelorette.c/.cc` | `gUnk_BacheloretteLoveThresholds00`, `gUnk_BacheloretteLoveThresholds01`, `gUnk_BacheloretteLoveThresholds02`, `gUnk_BacheloretteLoveThresholds03`, `gUnk_BacheloretteLoveThresholds04`, `gUnk_BacheloretteLoveThresholds05` |
 | `0x08104127`–`0x08104127` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x08104128`–`0x08104255` | `data/text/character_names.o(.rodata)` | [文本对象] | `data/text/us/character_names.cc` | 文本 `41` 项（详见下方索引） |
-| `0x08104256`–`0x08104257` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08104258`–`0x081043AF` | `src/character_names_data.o(.rodata.character_name_entries)` | [数据] | `src/character_names_data.c/.cc` | `gCharacterNameEntries` |
-| `0x081043B0`–`0x081043B9` | `src/character_names_data.o(.rodata)` | [数据] | `src/character_names_data.c/.cc` | 运行时字符串 `1` 项 |
+| `0x08104128`–`0x081043B9` | `src/character_names_data.o(.rodata)` | [嵌入文本 / 数据] | `src/character_names_data.cc`<br>`data/text/us/character_names.cc` | 文本 `41` 项（详见下方索引）<br>文本后对象内 `00` 对齐 `2` 字节<br>`gCharacterNameEntries`<br>运行时字符串 `1` 项 |
 | `0x081043BA`–`0x081043BB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x081043BC`–`0x08104935` | `src/field_data.o(.rodata.field_item_records)` | [数据] | `src/field_data.c/.cc` | 运行时字符串 `1` 项<br>`gUnk_081043BC` |
 | `0x08104936`–`0x08104937` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -3599,47 +3593,47 @@
 | `0x08103A04` | `gText_FishingRecord_Coelacanth` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
 | `0x08103A10` | `gText_FishingRecord_Squid` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
 | `0x08104108` | `gText_CharacterName_Empty` | 未在 `data/text` 源中直接命名；请以宿主对象核对 | `src/character_names_data.o(.rodata.character_names_empty)` |
-| `0x08104128` | `gText_CharacterName_Lillia` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08104130` | `gText_CharacterName_Rick` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08104138` | `gText_CharacterName_Popuri` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08104140` | `gText_CharacterName_Barley` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08104148` | `gText_CharacterName_May` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x0810414C` | `gText_CharacterName_Saibara` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08104154` | `gText_CharacterName_Gray` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x0810415C` | `gText_CharacterName_Duke` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08104164` | `gText_CharacterName_Manna` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x0810416C` | `gText_CharacterName_Basil` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08104174` | `gText_CharacterName_Anna` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x0810417C` | `gText_CharacterName_Mary` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08104184` | `gText_CharacterName_Thomas` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x0810418C` | `gText_CharacterName_Harris` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08104194` | `gText_CharacterName_Ellen` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x0810419C` | `gText_CharacterName_Stu` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x081041A0` | `gText_CharacterName_Jeff` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x081041A8` | `gText_CharacterName_Sasha` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x081041B0` | `gText_CharacterName_Karen` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x081041B8` | `gText_CharacterName_Doctor` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x081041C0` | `gText_CharacterName_Elli` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x081041C8` | `gText_CharacterName_Carter` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x081041D0` | `gText_CharacterName_Cliff` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x081041D8` | `gText_CharacterName_Doug` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x081041E0` | `gText_CharacterName_Ann` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x081041E4` | `gText_CharacterName_Kai` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x081041E8` | `gText_CharacterName_Gotz` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x081041F0` | `gText_CharacterName_Zack` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x081041F8` | `gText_CharacterName_Won` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x081041FC` | `gText_CharacterName_Gourmet` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08104204` | `gText_CharacterName_HarvestGoddess` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08104210` | `gText_CharacterName_Kappa` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08104218` | `gText_CharacterName_Van` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x0810421C` | `gText_CharacterName_LouOrRuby` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08104220` | `gText_CharacterName_Staid` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08104228` | `gText_CharacterName_Nappy` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08104230` | `gText_CharacterName_Bold` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08104238` | `gText_CharacterName_Chef` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08104240` | `gText_CharacterName_Aqua` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08104248` | `gText_CharacterName_Hoggy` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
-| `0x08104250` | `gText_CharacterName_Timid` | `data/text/us/character_names.cc` | `data/text/character_names.o(.rodata)` |
+| `0x08104128` | `gText_CharacterName_Lillia` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08104130` | `gText_CharacterName_Rick` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08104138` | `gText_CharacterName_Popuri` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08104140` | `gText_CharacterName_Barley` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08104148` | `gText_CharacterName_May` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x0810414C` | `gText_CharacterName_Saibara` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08104154` | `gText_CharacterName_Gray` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x0810415C` | `gText_CharacterName_Duke` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08104164` | `gText_CharacterName_Manna` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x0810416C` | `gText_CharacterName_Basil` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08104174` | `gText_CharacterName_Anna` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x0810417C` | `gText_CharacterName_Mary` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08104184` | `gText_CharacterName_Thomas` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x0810418C` | `gText_CharacterName_Harris` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08104194` | `gText_CharacterName_Ellen` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x0810419C` | `gText_CharacterName_Stu` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x081041A0` | `gText_CharacterName_Jeff` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x081041A8` | `gText_CharacterName_Sasha` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x081041B0` | `gText_CharacterName_Karen` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x081041B8` | `gText_CharacterName_Doctor` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x081041C0` | `gText_CharacterName_Elli` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x081041C8` | `gText_CharacterName_Carter` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x081041D0` | `gText_CharacterName_Cliff` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x081041D8` | `gText_CharacterName_Doug` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x081041E0` | `gText_CharacterName_Ann` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x081041E4` | `gText_CharacterName_Kai` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x081041E8` | `gText_CharacterName_Gotz` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x081041F0` | `gText_CharacterName_Zack` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x081041F8` | `gText_CharacterName_Won` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x081041FC` | `gText_CharacterName_Gourmet` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08104204` | `gText_CharacterName_HarvestGoddess` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08104210` | `gText_CharacterName_Kappa` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08104218` | `gText_CharacterName_Van` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x0810421C` | `gText_CharacterName_LouOrRuby` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08104220` | `gText_CharacterName_Staid` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08104228` | `gText_CharacterName_Nappy` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08104230` | `gText_CharacterName_Bold` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08104238` | `gText_CharacterName_Chef` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08104240` | `gText_CharacterName_Aqua` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08104248` | `gText_CharacterName_Hoggy` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
+| `0x08104250` | `gText_CharacterName_Timid` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
 | `0x08104938` | `gText_Calendar_DynamicSeasonNames` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
 | `0x0810497C` | `gText_Calendar_Festival_NewYearFestival` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
 | `0x081049C4` | `gText_Calendar_Festival_SpringThanksgiving` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |

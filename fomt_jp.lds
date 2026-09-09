@@ -869,12 +869,11 @@ SECTIONS
         . = 0x103604; src/code_actor_0809BFE8.o(.rodata);
         . = 0x103BFC; src/character_names_data.o(.rodata.character_names_empty);
         . = 0x103BFD; src/bachelorette.o(.rodata);
-        . = 0x103C1C; data/text/character_names.o(.rodata);
-        . = 0x103D9C; src/character_names_data.o(.rodata.character_name_entries);
-        . = 0x103EF4; src/character_names_data.o(.rodata);
+        /* Bounded character-name localization island: names, lookup, trailer. */
+        . = 0x103C1C; src/character_names_data.o(.rodata);
+        ASSERT(. <= 0x103F00, "JP character-name localization island overflow");
         FILL(0x00);
-        . = ALIGN(4);
-        src/field_data.o(.rodata.field_item_records);
+        . = 0x103F00; src/field_data.o(.rodata.field_item_records);
         FILL(0x00);
         . = ALIGN(4);
         . = 0x10447C; data/text/calendar_events.o(.rodata);

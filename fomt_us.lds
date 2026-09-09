@@ -777,12 +777,11 @@ SECTIONS
         . = 0x103B10; src/code_actor_0809BFE8.o(.rodata);
         . = 0x104108; src/character_names_data.o(.rodata.character_names_empty);
         . = 0x104109; src/bachelorette.o(.rodata);
-        . = 0x104128; data/text/character_names.o(.rodata);
-        . = 0x104258; src/character_names_data.o(.rodata.character_name_entries);
-        . = 0x1043B0; src/character_names_data.o(.rodata);
+        /* Bounded character-name localization island: names, lookup, trailer. */
+        . = 0x104128; src/character_names_data.o(.rodata);
+        ASSERT(. <= 0x1043BC, "US character-name localization island overflow");
         FILL(0x00);
-        . = ALIGN(4);
-        src/field_data.o(.rodata.field_item_records);
+        . = 0x1043BC; src/field_data.o(.rodata.field_item_records);
         FILL(0x00);
         . = ALIGN(4);
         . = 0x104938; data/text/calendar_events.o(.rodata);
