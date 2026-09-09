@@ -879,10 +879,7 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4); src/won_shop_data.o(.rodata);
         FILL(0x00);
-        . = ALIGN(4); src/winery_shop_data.o(.rodata.winery_shop_catalog);
-        . = 0xFDFAC; data/text/winery_shop.o(.rodata.winery_shop_dialogue);
-        FILL(0x00);
-        . = ALIGN(4); data/text/winery_shop.o(.rodata.winery_shop_trailer);
+        . = ALIGN(4); src/winery_shop_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/special_merchant_shop_data.o(.rodata.special_merchant_shop_catalog);
         . = 0xFE1FC; data/text/special_merchant_shop.o(.rodata.special_merchant_shop_text);
