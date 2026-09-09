@@ -8415,6 +8415,9 @@ func_080D7B44: @ 0x080D7B44
     @ Exact JP entry referenced by the raw table at 0x080E676C.
     .global func_080DBFB4
     .thumb_set func_080DBFB4, func_080DBF80 + 0x34
+    @ Exact JP entry referenced by the raw table at 0x080E681C.
+    .global func_080DBFE8
+    .thumb_set func_080DBFE8, func_080DBFB4 + 0x34
     .else
 
 	thumb_func_start func_080D7E64
@@ -17295,6 +17298,9 @@ func_080DC764: @ 0x080DC764
 	@ Exact US entry referenced by the raw table at 0x080E676C.
 	.global func_080DC800
 	.thumb_set func_080DC800, func_080DC7CC + 0x34
+	@ Exact US entry referenced by the raw table at 0x080E681C.
+	.global func_080DC834
+	.thumb_set func_080DC834, func_080DC800 + 0x34
 	push {r4, r5, r6, r7, lr}
 	adds r6, r0, #0
 	adds r7, r1, #0
