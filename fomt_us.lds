@@ -773,10 +773,7 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4); src/supermarket_data.o(.rodata);
         FILL(0x00);
-        . = ALIGN(4); src/clinic_data.o(.rodata.clinic_catalog);
-        . = 0xFE070; data/text/clinic.o(.rodata.clinic_text);
-        FILL(0x00);
-        . = ALIGN(4); data/text/clinic.o(.rodata.clinic_trailer);
+        . = ALIGN(4); src/clinic_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); data/text/inn_shop.o(.rodata.inn_shop_descriptions);
         . = ALIGN(4); src/inn_shop_data.o(.rodata.inn_shop_catalog);

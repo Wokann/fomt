@@ -9,10 +9,6 @@ struct ClinicCatalogEntry
     u32 price;
 };
 
-#define CLINIC_CATALOG SECTION(".rodata.clinic_catalog")
-#define CLINIC_TEXT SECTION(".rodata.clinic_text")
-#define CLINIC_TRAILER SECTION(".rodata.clinic_trailer")
-
 extern ClinicCatalogEntry const gClinicCatalog[];
 
 extern char const gText_Clinic_InventoryFull[];
