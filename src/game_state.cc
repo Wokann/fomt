@@ -18,3 +18,13 @@ Unk_080F0566Data const gUnk_080F0566 = {
     },
     "bad_alloc",
 };
+
+// These strings are consumed by the still-assembly game-state memorial flow.
+// The linker places the grouped text run after the Help localization island.
+#define FOMT_ANIMAL_MEMORIAL_TEXT_ATTRIBUTE SECTION(".rodata.animal_memorial")
+#if defined(REGION_JP)
+#include "data/text/jp/animal_memorial.cc"
+#else
+#include "data/text/us/animal_memorial.cc"
+#endif
+#undef FOMT_ANIMAL_MEMORIAL_TEXT_ATTRIBUTE

@@ -118,6 +118,7 @@ TEXT_FRAGMENT_SOURCES := \
   data/text/common/menu.cc \
   data/text/common/ui_error.cc \
   data/text/$(TEXT_REGION)/animal_data.cc \
+  data/text/$(TEXT_REGION)/animal_memorial.cc \
   data/text/$(TEXT_REGION)/entity_ui.cc \
   data/text/$(TEXT_REGION)/fixed_labels.cc \
   data/text/$(TEXT_REGION)/load_error.cc \

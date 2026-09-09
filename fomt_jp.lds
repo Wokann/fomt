@@ -737,7 +737,7 @@ SECTIONS
         ASSERT(. <= 0xEFEA4, "JP Help localization island overflow");
         FILL(0x00);
         /* Bounded Animal localization island: memorial text and animal data. */
-        . = 0xEFEA4; data/text/animal_memorial.o(.rodata);
+        . = 0xEFEA4; src/game_state.o(.rodata.animal_memorial);
         src/animal_data.o(.rodata.animal_data_prefix);
         src/animal_data.o(.rodata);
         ASSERT(. <= 0xF06E0, "JP Animal localization island overflow");

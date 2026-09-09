@@ -653,7 +653,7 @@ SECTIONS
         ASSERT(. <= 0xF0654, "US Help localization island overflow");
         FILL(0x00);
         /* Bounded Animal localization island: memorial text and animal data. */
-        . = 0xF0654; data/text/animal_memorial.o(.rodata);
+        . = 0xF0654; src/game_state.o(.rodata.animal_memorial);
         src/animal_data.o(.rodata.animal_data_prefix);
         src/animal_data.o(.rodata);
         ASSERT(. <= 0xF0E80, "US Animal localization island overflow");
