@@ -760,9 +760,8 @@ SECTIONS
         . = 0xFB960; data/text/animal_status_screen.o(.rodata);
         . = 0xFB9C8; data/text/animal_contest.o(.rodata);
         . = 0xFBD30; src/farm_status_screen_data.o(.rodata);
-        . = 0xFBE7C; data/text/records.o(.rodata);
-        . = 0xFC024; src/records_screen_data.o(.rodata);
-        . = 0xFC0A4; data/text/staff_credits.o(.rodata);
+        . = 0xFBE7C; src/records_screen_data.o(.rodata);
+        . = ALIGN(4); data/text/staff_credits.o(.rodata);
         . = 0xFC6B8; src/town_map_data.o(.rodata.staff_credits_trailer);
         src/town_map_data.o(.rodata.town_map_resource_ids);
         FILL(0x00);

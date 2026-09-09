@@ -1,15 +1,15 @@
-#include "prelude.h"
+#include "records_screen_data.hh"
 
-struct RecordsScreenTaskResourcePair
-{
-    // These are ROM resource handles.  Their pointed-to asset format is not
-    // decoded yet, so retain the original 32-bit representation.
-    u32 primary_resource;
-    u32 alternate_resource;
-};
+#if defined(REGION_JP)
+#include "data/text/jp/records.cc"
+#else
+#include "data/text/us/records.cc"
+#endif
 
-// The Records screen chooses one graphics pair for each Harvest Sprite task.
-extern RecordsScreenTaskResourcePair const gRecordsScreenMinigameTaskResources[] = {
+// Records-screen callers select entries from this two-word resource table.
+// The pointed-to payload format and the roles of its two fields are not yet
+// decoded, so their member names intentionally remain address-based.
+RecordsScreenTaskResourcePair const gRecordsScreenMinigameTaskResources[] = {
 #if defined(REGION_JP)
     { 0x084D7EB8, 0x084D7F38 },
     { 0x084D7FF8, 0x084D8078 },
@@ -29,24 +29,24 @@ extern RecordsScreenTaskResourcePair const gRecordsScreenMinigameTaskResources[]
 #endif
 };
 
-extern char const gCppRuntimeBadAlloc_RecordsScreenResources[] =
+char const gCppRuntimeBadAlloc_RecordsScreenResources[] =
     "bad_alloc";
 
 // func_080E2BB4 extracts packed two-bit cell dimensions from these bytes.
 // Its owning high-level type is not decoded yet, so this name states only the
 // verified call-site role rather than guessing a game subsystem.
-extern u8 const gCodeLinkoncePackedCellSizeLookup[] = {
+u8 const gCodeLinkoncePackedCellSizeLookup[] = {
     0x50, 0xFA, 0x21, 0xB6, 0x84, 0xE9,
 };
 
-extern char const gCppRuntimeBadAlloc_PackedCellSizeLookup[] =
+char const gCppRuntimeBadAlloc_PackedCellSizeLookup[] =
     "bad_alloc";
 
-extern char const gCppRuntimeBadAlloc_UiDigitGlyphs[] =
+char const gCppRuntimeBadAlloc_UiDigitGlyphs[] =
     "bad_alloc";
 
 // func_08075E7C renders these preloaded glyphs in numeric order.
-extern u16 const gUiPreloadedDigitGlyphCodes[] = {
+u16 const gUiPreloadedDigitGlyphCodes[] = {
 #if defined(REGION_JP)
     0x824F, 0x8250, 0x8251, 0x8252, 0x8253,
     0x8254, 0x8255, 0x8256, 0x8257, 0x8258,
@@ -56,5 +56,5 @@ extern u16 const gUiPreloadedDigitGlyphCodes[] = {
 #endif
 };
 
-extern char const gCppRuntimeBadAlloc_RecordsScreenTrailer[] =
+char const gCppRuntimeBadAlloc_RecordsScreenTrailer[] =
     "bad_alloc";

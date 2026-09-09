@@ -125,6 +125,7 @@ TEXT_FRAGMENT_SOURCES := \
   data/text/$(TEXT_REGION)/menu.cc \
   data/text/$(TEXT_REGION)/ui_error.cc \
   data/text/$(TEXT_REGION)/new_game_menu.cc \
+  data/text/$(TEXT_REGION)/records.cc \
   data/text/$(TEXT_REGION)/horse_race_ticket_ui.cc \
   data/text/common/fallback.cc
 
