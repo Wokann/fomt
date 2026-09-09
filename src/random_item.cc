@@ -1,5 +1,13 @@
 #include "random_item.hh"
 
+#define FOMT_RANDOM_ITEM_TEXT_ATTRIBUTE SECTION(".rodata.random_item_not_available")
+#if defined(REGION_JP)
+#include "data/text/jp/random_item.cc"
+#else
+#include "data/text/us/random_item.cc"
+#endif
+#undef FOMT_RANDOM_ITEM_TEXT_ATTRIBUTE
+
 u8 const gRandomItemSelectionWeights[7][5] SECTION(".rodata.random_item_selection_weights") = {
     { 0x08, 0x00, 0x05, 0x54, 0x03 },
     { 0x0A, 0x00, 0x0A, 0x50, 0x00 },

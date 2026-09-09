@@ -1,4 +1,14 @@
 #include "random_item_text.hh"
 
-char const gText_RandomItem_NotAvailable[] =
+#ifndef FOMT_RANDOM_ITEM_TEXT_ATTRIBUTE
+#define FOMT_RANDOM_ITEM_TEXT_ATTRIBUTE
+#define FOMT_RANDOM_ITEM_TEXT_ATTRIBUTE_LOCAL
+#endif
+
+char const gText_RandomItem_NotAvailable[] FOMT_RANDOM_ITEM_TEXT_ATTRIBUTE =
     "N/A ";
+
+#ifdef FOMT_RANDOM_ITEM_TEXT_ATTRIBUTE_LOCAL
+#undef FOMT_RANDOM_ITEM_TEXT_ATTRIBUTE_LOCAL
+#undef FOMT_RANDOM_ITEM_TEXT_ATTRIBUTE
+#endif

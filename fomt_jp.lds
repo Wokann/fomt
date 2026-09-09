@@ -886,7 +886,7 @@ SECTIONS
         . = ALIGN(4);
         . = 0x10447C; data/text/calendar_events.o(.rodata);
         . = 0x104958; data/text/possessive_labels.o(.rodata);
-        . = 0x104994; data/text/random_item.o(.rodata);
+        . = 0x104994; src/random_item.o(.rodata.random_item_not_available);
         . = 0x10499C; src/fishing_results_data.o(.rodata.fishing_record_article_ids);
         . = 0x1049BC; src/field_data.o(.rodata.field_plot_position_values);
         . = 0x1049F4; src/random_item.o(.rodata.random_item_selection_weights);
