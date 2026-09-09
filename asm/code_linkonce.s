@@ -8406,6 +8406,9 @@ func_080D7B44: @ 0x080D7B44
     @ Exact entry referenced by the raw table at 0x080E65F4.
     .global func_080DC6F0
     .thumb_set func_080DC6F0, func_080DC67C + 0x74
+    @ Exact entry referenced by the raw table at 0x080E6644.
+    .global func_080DC724
+    .thumb_set func_080DC724, func_080DC6F0 + 0x34
     .else
 
 	thumb_func_start func_080D7E64

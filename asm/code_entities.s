@@ -221,6 +221,12 @@ code_entities_jp_raw_start:
     .global func_0802C068
     .thumb_set func_0802C068, code_entities_jp_raw_start + 0xC274
 
+    @ Exact JP entries referenced by the raw table at 0x080E6644.
+    .global func_0802BD34
+    .thumb_set func_0802BD34, code_entities_jp_raw_start + 0xBF40
+    .global func_0802BD78
+    .thumb_set func_0802BD78, code_entities_jp_raw_start + 0xBF84
+
     .global func_08032090
     .thumb_set func_08032090, code_entities_jp_raw_start + 0x12030
     .else
