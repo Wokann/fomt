@@ -4281,4 +4281,27 @@ extern RawVTableFunction const vtable_unk_080E8538[]
 #endif
     };
 
+#if defined(REGION_JP)
+extern void func_080E4FF0(void);
+#else
+extern void func_080C0D44(void);
+extern void func_080C0D90(void);
+#endif
+
+// Preserve all four slots of this region-dependent table in ROM order.
+extern RawVTableFunction const vtable_unk_080E8544[]
+    SECTION(".rodata.vtable_8544") = {
+#if defined(REGION_JP)
+        nullptr,
+        nullptr,
+        func_080E4FF0,
+        nullptr,
+#else
+        nullptr,
+        nullptr,
+        func_080C0D44,
+        func_080C0D90,
+#endif
+    };
+
 EXTERN_C_END
