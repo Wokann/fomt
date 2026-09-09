@@ -876,7 +876,7 @@ SECTIONS
         . = 0x107882; src/harvest_sprite.o(.rodata.harvest_sprite_minigames_animal_husbandry_u16_tables);
         . = 0x1078B0; src/harvest_sprite.o(.rodata.harvest_sprite_minigames_animal_husbandry_runtime);
         . = 0x1078BC; src/harvest_sprite.o(.rodata.harvest_sprite_minigames_animal_husbandry_runtime_empty);
-        . = 0x1078BD; data/text/chicken_festival.o(.rodata.chicken_festival_contestant_names);
+        . = 0x1078BD; data/text/chicken_festival.o(.rodata);
         . = 0x1079C4; data/text/harvest_sprite_minigames.o(.rodata.harvest_sprite_minigames_chicken_festival_opening);
         . = 0x107ACC; src/harvest_sprite.o(.rodata.harvest_sprite_minigames_chicken_festival_values);
         . = 0x107AFC; src/harvest_sprite.o(.rodata.harvest_sprite_minigames_chicken_festival_offsets);
