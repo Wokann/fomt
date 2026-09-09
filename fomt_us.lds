@@ -645,7 +645,7 @@ SECTIONS
         . = ALIGN(4); data/text/new_game_save.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); data/text/new_game_identity.o(.rodata);
-        data/text/new_game_name_entry.o(.rodata.new_game_name_entry_characters);
+        data/text/new_game_name_entry.o(.rodata);
         . = ALIGN(4); data/text/new_game_name_entry_ui.o(.rodata);
         data/text/new_game_name_entry_ui_trailer.o(.rodata);
         FILL(0x00);
@@ -718,8 +718,7 @@ SECTIONS
         . = ALIGN(4);
         src/code_08050E0C.o(.rodata);
         src/ui_state.o(.rodata);
-        . = 0xF9F7C; data/text/new_game_name_entry.o(.rodata.new_game_name_entry_preset_animal_names_runtime);
-        . = 0xF9F8A; data/text/new_game_name_entry.o(.rodata.name_entry_preset_animal_names);
+        . = 0xF9F7C; data/text/new_game_name_entry_preset.o(.rodata);
         . = 0xFA12E; data/text/new_game_name_entry_ui.o(.rodata.name_entry_ui_character_codes);
         . = 0xFA158; data/text/frisbee_scoreboard.o(.rodata);
         . = 0xFA174; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_score_table);
