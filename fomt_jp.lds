@@ -69,6 +69,8 @@ SECTIONS
         asm/sram_proxy_1.o(.text);
         src/sram_proxy_1.o(.text);
         asm/sram_proxy_1.o(.text.sram_proxy_1_after_address);
+        src/sram_proxy_1.o(.text.sram_proxy_1_save_value);
+        asm/sram_proxy_1.o(.text.sram_proxy_1_after_save_value);
         . = 0x4C4; /* JP ROM 0x080004C4, independently matched */
         asm/interrupt.o(.text);
         . = 0x59C; /* JP ROM 0x0800059C, independently matched */
