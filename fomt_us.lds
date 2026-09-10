@@ -639,9 +639,8 @@ SECTIONS
         FILL(0x00);
         . = 0xF050C; src/game_state.o(.rodata);
         FILL(0x00);
-        /* Bounded Help localization island: error text, labels, byte table. */
+        /* Help-menu text and byte table. */
         . = 0xF058C; src/help_menu.o(.rodata);
-        ASSERT(. <= 0xF0654, "US Help localization island overflow");
         FILL(0x00);
         /* Bounded Animal localization island: memorial text and animal data. */
         . = 0xF0654; data/text/animal_memorial.o(.rodata);

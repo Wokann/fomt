@@ -43,7 +43,7 @@
 | `0x080EFD5E`–`0x080EFD5F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080EFD60`–`0x080EFDCD` | `src/game_state.o(.rodata)` | [嵌入文本 / 数据] | `src/game_state.cc`<br>`data/text/jp/game_state.cc`<br>`data/text/common/game_state.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `5` 项<br>`gUnk_080F0566` |
 | `0x080EFDCE`–`0x080EFDCF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080EFDD0`–`0x080EFEA2` | `src/help_menu.o(.rodata)` | [嵌入文本 / 数据] | `src/help_menu.cc`<br>`data/text/jp/load_error.cc`<br>`data/text/jp/help_menu.cc` | 文本 `6` 项（加载错误 `2`、帮助菜单 `4`；详见下方索引）<br>运行时字符串 `2` 项<br>`gUnk_HelpMenuByteTable` |
+| `0x080EFDD0`–`0x080EFEA2` | `src/help_menu.o(.rodata)` | [嵌入文本 / 数据] | `src/help_menu.cc`<br>`data/text/jp/help_menu.cc` | 文本 `6` 项（加载错误 `2`、帮助菜单 `4`；详见下方索引）<br>运行时字符串 `2` 项<br>`gUnk_HelpMenuByteTable` |
 | `0x080EFEA3`–`0x080EFEA3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x080EFEA4`–`0x080EFF5C` | `data/text/animal_memorial.o(.rodata)` | [文本对象] | `data/text/jp/animal_memorial.cc` | 文本 `11` 项（详见下方索引）<br>运行时字符串 `2` 项<br>动物本地化岛首段：与紧邻动物数据共同受 LD 上界保护 |
 | `0x080EFF5D`–`0x080F006F` | `src/animal_data.o(.rodata.animal_data_prefix)` | [数据] | `data/text/common/animal_data.cc`<br>`data/text/jp/animal_data.cc` | `gUnk_080F06FD`, `gUnk_080F0704`, `gUnk_080F0718`, `gUnk_080F0730`, `gUnk_080F0748`, `gUnk_080F0770`, … +1 |
@@ -994,8 +994,8 @@
 | `0x080EFD98` | `gText_CalendarTrailerFallbackNone` | `data/text/jp/game_state.cc` | `src/game_state.o(.rodata)` |
 | `0x080EFDAA` | `gUnk_080F0566` | `data/text/common/game_state.cc` | `src/game_state.o(.rodata)` |
 | `0x080EFDC4` | `gCppRuntimeBadAlloc_GameState` | `data/text/common/game_state.cc` | `src/game_state.o(.rodata)` |
-| `0x080EFDD0` | `gText_LoadError` | `data/text/jp/load_error.cc` | `src/help_menu.o(.rodata)` |
-| `0x080EFDE8` | `gText_LoadErrorFallbackNone` | `data/text/jp/load_error.cc` | `src/help_menu.o(.rodata)` |
+| `0x080EFDD0` | `gText_LoadError` | `data/text/jp/help_menu.cc` | `src/help_menu.o(.rodata)` |
+| `0x080EFDE8` | `gText_LoadErrorFallbackNone` | `data/text/jp/help_menu.cc` | `src/help_menu.o(.rodata)` |
 | `0x080EFDF8` | `gText_HelpMenu_Crops` | `data/text/jp/help_menu.cc` | `src/help_menu.o(.rodata)` |
 | `0x080EFE08` | `gText_HelpMenu_Animals` | `data/text/jp/help_menu.cc` | `src/help_menu.o(.rodata)` |
 | `0x080EFE18` | `gText_HelpMenu_UsefulTips` | `data/text/jp/help_menu.cc` | `src/help_menu.o(.rodata)` |
@@ -1908,7 +1908,7 @@
 | `0x080F050A`–`0x080F050B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F050C`–`0x080F0589` | `src/game_state.o(.rodata)` | [嵌入文本 / 数据] | `src/game_state.cc`<br>`data/text/us/game_state.cc`<br>`data/text/common/game_state.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `5` 项<br>`gUnk_080F0566` |
 | `0x080F058A`–`0x080F058B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F058C`–`0x080F0650` | `src/help_menu.o(.rodata)` | [嵌入文本 / 数据] | `src/help_menu.cc`<br>`data/text/us/load_error.cc`<br>`data/text/us/help_menu.cc` | 文本 `6` 项（加载错误 `2`、帮助菜单 `4`；详见下方索引）<br>运行时字符串 `2` 项<br>`gUnk_HelpMenuByteTable` |
+| `0x080F058C`–`0x080F0650` | `src/help_menu.o(.rodata)` | [嵌入文本 / 数据] | `src/help_menu.cc`<br>`data/text/us/help_menu.cc` | 文本 `6` 项（加载错误 `2`、帮助菜单 `4`；详见下方索引）<br>运行时字符串 `2` 项<br>`gUnk_HelpMenuByteTable` |
 | `0x080F0651`–`0x080F0653` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
 | `0x080F0654`–`0x080F06FC` | `data/text/animal_memorial.o(.rodata)` | [文本对象] | `data/text/us/animal_memorial.cc` | 文本 `11` 项（详见下方索引）<br>运行时字符串 `2` 项<br>动物本地化岛首段：与紧邻动物数据共同受 LD 上界保护 |
 | `0x080F06FD`–`0x080F080F` | `src/animal_data.o(.rodata.animal_data_prefix)` | [数据] | `data/text/common/animal_data.cc`<br>`data/text/us/animal_data.cc` | `gUnk_080F06FD`, `gUnk_080F0704`, `gUnk_080F0718`, `gUnk_080F0730`, `gUnk_080F0748`, `gUnk_080F0770`, … +1 |
@@ -2851,8 +2851,8 @@
 | `0x080F0554` | `gText_CalendarTrailerFallbackNone` | `data/text/us/game_state.cc` | `src/game_state.o(.rodata)` |
 | `0x080F0566` | `gUnk_080F0566` | `data/text/common/game_state.cc` | `src/game_state.o(.rodata)` |
 | `0x080F0580` | `gCppRuntimeBadAlloc_GameState` | `data/text/common/game_state.cc` | `src/game_state.o(.rodata)` |
-| `0x080F058C` | `gText_LoadError` | `data/text/us/load_error.cc` | `src/help_menu.o(.rodata)` |
-| `0x080F05A8` | `gText_LoadErrorFallbackNone` | `data/text/us/load_error.cc` | `src/help_menu.o(.rodata)` |
+| `0x080F058C` | `gText_LoadError` | `data/text/us/help_menu.cc` | `src/help_menu.o(.rodata)` |
+| `0x080F05A8` | `gText_LoadErrorFallbackNone` | `data/text/us/help_menu.cc` | `src/help_menu.o(.rodata)` |
 | `0x080F05B8` | `gText_HelpMenu_Crops` | `data/text/us/help_menu.cc` | `src/help_menu.o(.rodata)` |
 | `0x080F05C0` | `gText_HelpMenu_Animals` | `data/text/us/help_menu.cc` | `src/help_menu.o(.rodata)` |
 | `0x080F05C8` | `gText_HelpMenu_UsefulTips` | `data/text/us/help_menu.cc` | `src/help_menu.o(.rodata)` |

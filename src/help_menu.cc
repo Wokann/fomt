@@ -6,10 +6,8 @@
  * that their UI code uses.
  */
 #if defined(REGION_JP)
-#include "data/text/jp/load_error.cc"
 #include "data/text/jp/help_menu.cc"
 #else
-#include "data/text/us/load_error.cc"
 #include "data/text/us/help_menu.cc"
 #endif
 
