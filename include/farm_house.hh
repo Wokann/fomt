@@ -3,7 +3,7 @@
 
 #include "prelude.h"
 
-#include "field_data.hh"
+#include "field_render_rect_descriptors.hh"
 #include "furniture.hh"
 #include "unknown_types.hh"
 

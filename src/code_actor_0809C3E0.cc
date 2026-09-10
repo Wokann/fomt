@@ -1,7 +1,7 @@
 #include "prelude.h"
 
 #include "actor_state.hh"
-#include "field_data.hh"
+#include "field_render_rect_descriptors.hh"
 
 u8 const gActorStateMaxValues[] SECTION(".rodata.actor_state_max_values") = {
     10, 10, 255, 10, 10, 255,
