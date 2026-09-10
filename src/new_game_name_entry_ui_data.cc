@@ -1,4 +1,4 @@
-#include "new_game_name_entry_ui_text.hh"
+#include "new_game.hh"
 
 #if defined(REGION_JP)
 // The native name-entry path reads the first thirteen glyph codes.  The

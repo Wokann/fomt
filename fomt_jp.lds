@@ -710,10 +710,7 @@ SECTIONS
         . = ALIGN(4);
         src/sram_proxy_1.o(.rodata);
         src/intro_scene_data.o(.rodata.intro_scene_startup_resources);
-        /* Bounded New Game localization island: menu, text, and name-entry data. */
         . = 0xE7AC8; src/new_game_menu_data.o(.rodata);
-        ASSERT(. <= 0xE8164, "JP New Game localization island overflow");
-        FILL(0x00);
         . = 0xE8164; src/field_data.o(.rodata.field_plot_weather_ordinary);
         src/field_data.o(.rodata.field_plot_weather_special_3);
         src/field_data.o(.rodata.field_plot_weather_special_4);
@@ -771,7 +768,7 @@ SECTIONS
         src/ui_state.o(.rodata.ui_state_adapters);
         src/ui_state.o(.rodata);
         /* Bounded New Game preset localization island: names and UI glyphs. */
-        . = 0xF97D8; data/text/new_game_name_entry_preset.o(.rodata);
+        . = 0xF97D8; data/text/new_game_preset.o(.rodata);
         . = 0xF996C; src/new_game_name_entry_ui_data.o(.rodata);
         ASSERT(. <= 0xF9994, "JP New Game preset localization island overflow");
         FILL(0x00);

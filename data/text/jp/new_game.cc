@@ -1,12 +1,4 @@
-#include "new_game_status_text.hh"
-#include "new_game_help_text.hh"
-#include "new_game_save_text.hh"
-#include "new_game_identity_text.hh"
-#include "new_game_name_entry_text.hh"
-#include "new_game_name_entry_ui_text.hh"
-#include "new_game_menu_text.hh"
-
-#if defined(FOMT_NEW_GAME_TEXT_MENU)
+#include "new_game.hh"
 
 char const gText_NewGameMenu_Diary[] =
     "日記";
@@ -44,7 +36,28 @@ char const gText_NewGameMenu_FaceDisplay[] ALIGN(4) =
 char const gText_NewGameMenu_NameDisplay[] ALIGN(4) =
     "名前の表示";
 
-#elif !defined(FOMT_NEW_GAME_TEXT_PRESET)
+// Native menu order: the JP control-option names are source-level aliases for
+// Data1 and Data2, so this table keeps the original repeated pointers.
+char const * const gNewGameMenuLabels[18] = {
+    gText_NewGameMenu_Diary,
+    gText_NewGameMenu_Save,
+    gText_NewGameMenu_Load,
+    gText_NewGameMenu_Blank,
+    gText_NewGameMenu_Data1,
+    gText_NewGameMenu_Data2,
+    gText_NewGameMenu_ControlSettings,
+    gText_NewGameMenu_ControlOption1,
+    gText_NewGameMenu_ControlOption2,
+    gText_NewGameMenu_ClockDisplay,
+    gText_NewGameMenu_Yes,
+    gText_NewGameMenu_No,
+    gText_NewGameMenu_FaceDisplay,
+    gText_NewGameMenu_Yes,
+    gText_NewGameMenu_No,
+    gText_NewGameMenu_NameDisplay,
+    gText_NewGameMenu_Yes,
+    gText_NewGameMenu_No,
+};
 
 // Fixed-width fragments copied by the new-game status renderer and its
 // save-data prompts.  C++ array initialization preserves the zero-fill.
@@ -230,49 +243,3 @@ char const gCppRuntimeBadAlloc_NewGameNameEntryUi08[] ALIGN(4) =
     "bad_alloc";
 char const gCppRuntimeBadAlloc_NewGameNameEntryUi09[] ALIGN(4) =
     "bad_alloc";
-
-#else
-
-// The JP name-entry screen indexes this one-indexed table with index × 13.
-// Keeping the rows fixed-width preserves the original full-width padding and
-// the metadata lookup base located 14 bytes before the first valid entry.
-u32 const gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue =
-    0x20;
-
-char const gCppRuntimeBadAlloc_NewGameNameEntryPresetNames[] =
-    "bad_alloc";
-
-char const gText_NameEntry_PresetAnimalNames[30][13] ALIGN(1) = {
-    "アーガイル　",
-    "アヴァロン　",
-    "アンコロモチ",
-    "カタナ　　　",
-    "カンデンチ　",
-    "さくや　　　",
-    "桜丸　　　　",
-    "シシオー　　",
-    "シャリオン　",
-    "ジロー　　　",
-    "セラフィック",
-    "チョビチ　　",
-    "トリスタン　",
-    "とんこつ丸　",
-    "日輪丸　　　",
-    "バウワウ　　",
-    "ハナビ　　　",
-    "ぷにぷに　　",
-    "ブロンディ　",
-    "ぽん太　　　",
-    "マメタロウ　",
-    "マローン　　",
-    "モロキュウ　",
-    "夜叉　　　　",
-    "ゆうなぎ　　",
-    "ハナ　　　　",
-    "ランブル　　",
-    "リーソクツモ",
-    "リヴァイアン",
-    "ロケッツ　　",
-};
-
-#endif

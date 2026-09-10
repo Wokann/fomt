@@ -1,12 +1,4 @@
-#include "new_game_status_text.hh"
-#include "new_game_help_text.hh"
-#include "new_game_save_text.hh"
-#include "new_game_identity_text.hh"
-#include "new_game_name_entry_text.hh"
-#include "new_game_name_entry_ui_text.hh"
-#include "new_game_menu_text.hh"
-
-#if defined(FOMT_NEW_GAME_TEXT_MENU)
+#include "new_game.hh"
 
 char const gText_NewGameMenu_Diary[] =
     "Diary";
@@ -50,7 +42,28 @@ char const gText_NewGameMenu_FaceDisplay[] ALIGN(4) =
 char const gText_NewGameMenu_NameDisplay[] ALIGN(4) =
     "Name";
 
-#elif !defined(FOMT_NEW_GAME_TEXT_PRESET)
+// Native menu order.  The US ROM stores two dedicated control-option strings,
+// unlike the JP aliases used for the corresponding two entries.
+char const * const gNewGameMenuLabels[18] = {
+    gText_NewGameMenu_Diary,
+    gText_NewGameMenu_Save,
+    gText_NewGameMenu_Load,
+    gText_NewGameMenu_Blank,
+    gText_NewGameMenu_Data1,
+    gText_NewGameMenu_Data2,
+    gText_NewGameMenu_ControlSettings,
+    gText_NewGameMenu_ControlOption1,
+    gText_NewGameMenu_ControlOption2,
+    gText_NewGameMenu_ClockDisplay,
+    gText_NewGameMenu_Yes,
+    gText_NewGameMenu_No,
+    gText_NewGameMenu_FaceDisplay,
+    gText_NewGameMenu_Yes,
+    gText_NewGameMenu_No,
+    gText_NewGameMenu_NameDisplay,
+    gText_NewGameMenu_Yes,
+    gText_NewGameMenu_No,
+};
 
 // Fixed-width fragments copied by the new-game status renderer and its
 // save-data prompts.  C++ array initialization preserves the zero-fill.
@@ -227,49 +240,3 @@ char const gCppRuntimeBadAlloc_NewGameNameEntryUi08[] ALIGN(4) =
     "bad_alloc";
 char const gCppRuntimeBadAlloc_NewGameNameEntryUi09[] ALIGN(4) =
     "bad_alloc";
-
-#else
-
-// The US animal-name selection is a one-indexed, fixed-stride list.  Each
-// string remains in its original 14-byte row so the native index × 14 lookup
-// and its full-width display-space padding remain exact.
-u32 const gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue =
-    0x20;
-
-char const gCppRuntimeBadAlloc_NewGameNameEntryPresetNames[] =
-    "bad_alloc";
-
-char const gText_NameEntry_PresetAnimalNames[30][14] ALIGN(1) = {
-    "Fido",
-    "Sox",
-    "Sam",
-    "Lady　",
-    "Princess　",
-    "Ginger　　",
-    "Max　　　　",
-    "Sam　　",
-    "Rocky",
-    "Buster　　　",
-    "Charlie",
-    "Rusty　　",
-    "Zoe",
-    "Daisy　",
-    "Molly　　　",
-    "Jess　　",
-    "Tricky　　　",
-    "Brewster　　",
-    "Isis　",
-    "Myst　　",
-    "Amanda",
-    "Amber　　",
-    "Panda　",
-    "Angel　　　　",
-    "Fifi　　",
-    "Echo　　　　",
-    "Nic",
-    "Quartz",
-    "Betty",
-    "Gertrude　",
-};
-
-#endif

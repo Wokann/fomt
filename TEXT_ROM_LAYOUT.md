@@ -72,7 +72,7 @@
 | `0x080F9756`–`0x080F9757` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F9758`–`0x080F97CB` | `src/ui_state.o(.rodata.ui_state_adapters)` | [数据] | `src/ui_state.c/.cc` | 运行时字符串 `2` 项<br>`gUnk_PreUiTextLayoutDigitRows`, `gUnk_PreUiTextLayoutFullWidthSpace`, `gUnk_PreUiTextLayoutFullWidthHyphen`, `gUiTextLayoutPositionTable` |
 | `0x080F97CC`–`0x080F97D7` | `src/ui_state.o(.rodata)` | [数据] | `src/ui_state.c/.cc` | `gUiSharedResourceData` |
-| `0x080F97D8`–`0x080F996B` | `data/text/new_game_name_entry_preset.o(.rodata)` | [文本对象] | `data/text/jp/new_game.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue`<br>新游戏预设本地化岛首段：与紧邻的 UI 字符代码表共同受 LD 上界保护 |
+| `0x080F97D8`–`0x080F996B` | `data/text/new_game_preset.o(.rodata)` | [文本对象] | `data/text/jp/new_game_preset.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue`<br>新游戏预设本地化岛首段：与紧邻的 UI 字符代码表共同受 LD 上界保护 |
 | `0x080F996C`–`0x080F9993` | `src/new_game_name_entry_ui_data.o(.rodata)` | [数据] | `src/new_game_name_entry_ui_data.c/.cc` | `gNewGameNameEntryUiCharacterCodes`<br>新游戏预设本地化岛末段：下方为飞盘记分牌块 |
 | `0x080F9994`–`0x080F99AA` | `data/text/frisbee_scoreboard.o(.rodata)` | [文本对象] | `data/text/jp/frisbee.cc` | 文本 `1` 项（详见下方索引） |
 | `0x080F99AB`–`0x080F99AB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
@@ -1025,7 +1025,7 @@
 | `0x080F9700` | `gText_AScriptEngine_InvalidStringId` | `data/text/common/script_engine.cc` | `data/text/common/script_engine.o(.rodata)` |
 | `0x080F9714` | `gText_ScriptEngineUi_Error` | `data/text/common/script_engine.cc` | `data/text/common/script_engine.o(.rodata)` |
 | `0x080F971C` | `gText_ScriptEngineUi_FallbackNone` | `data/text/common/script_engine.cc` | `data/text/common/script_engine.o(.rodata)` |
-| `0x080F97E6` | `gText_NameEntry_PresetAnimalNames` | `data/text/jp/new_game.cc` | `data/text/new_game_name_entry_preset.o(.rodata)` |
+| `0x080F97E6` | `gText_NameEntry_PresetAnimalNames` | `data/text/jp/new_game_preset.cc` | `data/text/new_game_preset.o(.rodata)` |
 | `0x080F9994` | `gText_Frisbee_TournamentScoreboard` | `data/text/jp/frisbee.cc` | `data/text/frisbee_scoreboard.o(.rodata)` |
 | `0x080F9BD4` | `gText_Frisbee_ExplanationQuestion` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
 | `0x080F9BF0` | `gText_Frisbee_Yes` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
@@ -1936,7 +1936,7 @@
 | `0x080F9EFA`–`0x080F9EFB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F9EFC`–`0x080F9F6F` | `src/ui_state.o(.rodata.ui_state_adapters)` | [数据] | `src/ui_state.c/.cc` | 运行时字符串 `2` 项<br>`gUnk_PreUiTextLayoutDigitRows`, `gUnk_PreUiTextLayoutFullWidthSpace`, `gUnk_PreUiTextLayoutFullWidthHyphen`, `gUiTextLayoutPositionTable` |
 | `0x080F9F70`–`0x080F9F7B` | `src/ui_state.o(.rodata)` | [数据] | `src/ui_state.c/.cc` | `gUiSharedResourceData` |
-| `0x080F9F7C`–`0x080FA12D` | `data/text/new_game_name_entry_preset.o(.rodata)` | [文本对象] | `data/text/us/new_game.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue`<br>新游戏预设本地化岛首段：与紧邻的 UI 字符代码表共同受 LD 上界保护 |
+| `0x080F9F7C`–`0x080FA12D` | `data/text/new_game_preset.o(.rodata)` | [文本对象] | `data/text/us/new_game_preset.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue`<br>新游戏预设本地化岛首段：与紧邻的 UI 字符代码表共同受 LD 上界保护 |
 | `0x080FA12E`–`0x080FA157` | `src/new_game_name_entry_ui_data.o(.rodata)` | [数据] | `src/new_game_name_entry_ui_data.c/.cc` | `gNewGameNameEntryUiCharacterCodes`<br>新游戏预设本地化岛末段：下方为飞盘记分牌块 |
 | `0x080FA158`–`0x080FA173` | `data/text/frisbee_scoreboard.o(.rodata)` | [文本对象] | `data/text/us/frisbee.cc` | 文本 `1` 项（详见下方索引） |
 | `0x080FA174`–`0x080FA23B` | `src/animal_festival_ranking.o(.rodata.animal_festival_ranking_score_table)` | [数据] | `src/animal_festival_ranking.c/.cc` | `gAnimalFestivalRankingScoreTable` |
@@ -2880,7 +2880,7 @@
 | `0x080F9EA4` | `gText_AScriptEngine_InvalidStringId` | `data/text/common/script_engine.cc` | `data/text/common/script_engine.o(.rodata)` |
 | `0x080F9EB8` | `gText_ScriptEngineUi_Error` | `data/text/common/script_engine.cc` | `data/text/common/script_engine.o(.rodata)` |
 | `0x080F9EC0` | `gText_ScriptEngineUi_FallbackNone` | `data/text/common/script_engine.cc` | `data/text/common/script_engine.o(.rodata)` |
-| `0x080F9F8A` | `gText_NameEntry_PresetAnimalNames` | `data/text/us/new_game.cc` | `data/text/new_game_name_entry_preset.o(.rodata)` |
+| `0x080F9F8A` | `gText_NameEntry_PresetAnimalNames` | `data/text/us/new_game_preset.cc` | `data/text/new_game_preset.o(.rodata)` |
 | `0x080FA158` | `gText_Frisbee_TournamentScoreboard` | `data/text/us/frisbee.cc` | `data/text/frisbee_scoreboard.o(.rodata)` |
 | `0x080FA39C` | `gText_Frisbee_ExplanationQuestion` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
 | `0x080FA3B8` | `gText_Frisbee_Yes` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
