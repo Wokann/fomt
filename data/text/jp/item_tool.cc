@@ -1,4 +1,4 @@
-#include "item_text.hh"
+#include "item.hh"
 
 // JP tool text. The build emits .align 2, 0 after every declaration.
 

@@ -35,7 +35,7 @@
 
 `cpp` 用于受约束的普通 C++ 文本定义模块：
 
-    #include "item_text.hh"
+    #include "item.hh"
 
     char const gText_Item_Tool_IronSickle_Name[] =
         "Iron Sickle";

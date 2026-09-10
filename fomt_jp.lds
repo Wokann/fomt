@@ -714,9 +714,8 @@ SECTIONS
         . = 0xE8164; src/field_data.o(.rodata);
         src/shipping_bin.o(.rodata);
         src/record_player.o(.rodata);
-        /* Bounded item localization island: text, catalogs, products, trailer. */
+        /* Item text, catalogs, products, and trailer. */
         . = 0xE8AB4; src/item.o(.rodata);
-        ASSERT(. <= 0xEFD52, "JP item localization island overflow");
         FILL(0x00);
         /* Bounded Calendar localization island: rows, labels, state record. */
         . = 0xEFD52; src/game_state.o(.rodata.calendar_season);

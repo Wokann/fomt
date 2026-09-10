@@ -1,4 +1,4 @@
-#include "item_text.hh"
+#include "item.hh"
 
 // US food text. Keep entry order and four-byte alignment to preserve ROM layout.
 

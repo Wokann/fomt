@@ -1,5 +1,4 @@
-// Shared item fallback text.  This file is included by src/item.cc so agbcp
-// emits the C++ arrays and their natural object alignment in that module.
+// Default display text for invalid Item data.
 
 static char const gBrokenToolName[] =
     "Broken Tool";

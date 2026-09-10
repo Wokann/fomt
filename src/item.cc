@@ -1,5 +1,4 @@
 #include "item.hh"
-#include "item_text.hh"
 
 static inline bool IsValidFoodId(u8 id)
 {
@@ -41,7 +40,7 @@ static inline T const & FomtMin(T const & left, T const & right)
 
 // This source is common to both revisions.  As ordinary C++ arrays, its
 // storage and alignment are emitted by agbcp with the rest of this module.
-#include "data/text/common/fallback.cc"
+#include "data/text/common/item_invalid.cc"
 
 char const * Tool::GetName() const
 {
@@ -549,12 +548,12 @@ Article ItemVariant::AsArticle() const
 
 // Item Info tables
 
-// Keep each selected text run immediately before its owning catalog.  The
-// linker emits this whole source object as one bounded item-data island.
+// Keep each selected text run immediately before its owning catalog in this
+// single physical item-data object.
 #if defined(REGION_JP)
-#include "data/text/jp/tool.cc"
+#include "data/text/jp/item_tool.cc"
 #else
-#include "data/text/us/tool.cc"
+#include "data/text/us/item_tool.cc"
 #endif
 
 ToolInfo const gToolInfo[] = {
@@ -642,9 +641,9 @@ ToolInfo const gToolInfo[] = {
 };
 
 #if defined(REGION_JP)
-#include "data/text/jp/food.cc"
+#include "data/text/jp/item_food.cc"
 #else
-#include "data/text/us/food.cc"
+#include "data/text/us/item_food.cc"
 #endif
 
 FoodInfo const gFoodInfo[] = {
@@ -833,9 +832,9 @@ FoodInfo const gFoodInfo[] = {
 };
 
 #if defined(REGION_JP)
-#include "data/text/jp/article.cc"
+#include "data/text/jp/item_article.cc"
 #else
-#include "data/text/us/article.cc"
+#include "data/text/us/item_article.cc"
 #endif
 
 ArticleInfo const gArticleInfo[] = {
@@ -1068,5 +1067,4 @@ ProductInfo const gProductInfo[] = {
     /* 0x66 */ { 60, ProductInfo::KIND_ARTICLE, ARTICLE_AMETHYST },
 };
 
-extern char const gCppRuntimeBadAlloc_ProductInfo[] =
-    "bad_alloc";
+#include "data/text/common/item_fallback.cc"
