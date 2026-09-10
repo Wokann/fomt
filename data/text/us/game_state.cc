@@ -1,8 +1,6 @@
 #include "game_state.hh"
 
-// This short row table begins at a two-byte-aligned ROM address, while the
-// following ordinary data begins on a four-byte boundary.
-char const gText_Calendar_SeasonNames[4][7] SECTION(".rodata.calendar_season") ALIGN(1) = {
+char const gText_Calendar_SeasonNames[4][7] ALIGN(1) = {
     "Spring",
     "Summer",
     "Fall  ",

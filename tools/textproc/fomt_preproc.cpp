@@ -240,6 +240,67 @@ std::string HonorExplicitByteAlignedUnsectionedText(const std::string &source,
     return JoinLines(lines);
 }
 
+std::set<std::string> FindExplicitSourceSectionNames(const std::string &source)
+{
+    static const std::regex section_pattern(
+        R"FOMT(\bsection[\t ]*\([\t ]*"([^"]+)")FOMT");
+
+    std::set<std::string> sections;
+    for (std::sregex_iterator match(source.begin(), source.end(), section_pattern), end;
+         match != end; ++match) {
+        sections.insert((*match)[1].str());
+    }
+    return sections;
+}
+
+bool IsCompilerGeneratedRodataSectionForLabel(const std::vector<std::string> &lines,
+    std::size_t section_index, const std::string &label)
+{
+    const std::string wanted_label = label + ":";
+    for (std::size_t index = section_index + 1; index < lines.size(); ++index) {
+        const std::string trimmed = Trim(lines[index]);
+        if (IsAssemblyDataSectionTransition(lines[index]))
+            return false;
+        if (trimmed == wanted_label)
+            return true;
+    }
+    return false;
+}
+
+std::string NormalizeCompilerGeneratedRodataSections(const std::string &source,
+    const std::string &assembly)
+{
+    // -fdata-sections gives every ordinary named object a private input
+    // section. Keep that physical separation, but give all of those sections
+    // the ordinary .rodata name through GNU as' unique-section form. A linker
+    // script can then place one source object with file.o(.rodata), while ld
+    // still honors the alignment of each individual C/C++ object. Explicit
+    // SECTION(".rodata.*") declarations are intentional legacy layout and
+    // remain untouched until their owning module is simplified separately.
+    static const std::regex section_pattern(
+        R"(^[\t ]*\.section[\t ]+(\.rodata\.([^,\t ]+)),"a"(?:,%progbits)?[\t ]*$)");
+
+    const std::set<std::string> explicit_sections = FindExplicitSourceSectionNames(source);
+    std::vector<std::string> lines = SplitLines(assembly);
+    std::size_t unique_id = 1;
+    for (std::size_t index = 0; index < lines.size(); ++index) {
+        std::smatch match;
+        if (!std::regex_match(lines[index], match, section_pattern))
+            continue;
+
+        const std::string section_name = match[1].str();
+        const std::string label = match[2].str();
+        if (explicit_sections.count(section_name) != 0
+            || !IsCompilerGeneratedRodataSectionForLabel(lines, index, label)) {
+            continue;
+        }
+
+        lines[index] = "\t.section .rodata,\"a\",%progbits,unique,"
+            + std::to_string(unique_id++);
+    }
+    return JoinLines(lines);
+}
+
 std::map<std::string, std::string> FindDirectConstCharPointerInitializers(
     const std::string &source)
 {
@@ -1635,8 +1696,9 @@ std::string AlignExecutableSections(const std::string &assembly)
 
 std::string PreprocessAssembly(const std::string &source, const std::string &assembly)
 {
-    return AlignExecutableSections(HonorExplicitByteAlignedUnsectionedText(source,
-        FixupSameUnitConstCharReferences(source, assembly)));
+    return AlignExecutableSections(NormalizeCompilerGeneratedRodataSections(source,
+        HonorExplicitByteAlignedUnsectionedText(source,
+            FixupSameUnitConstCharReferences(source, assembly))));
 }
 
 void Require(bool condition, const std::string &message)
@@ -1768,6 +1830,35 @@ void SelfTest()
     Require(byte_aligned_text_output.find("\t.globl\tgSectionedByteAlignedText\n"
                                           "\t.align\t2, 0\n") != std::string::npos,
         "sectioned legacy text alignment was changed");
+
+    const std::string data_sections_source =
+        "char const gByteData[] __attribute__((aligned(1))) = \"A\";\n"
+        "char const gWordData[] __attribute__((aligned(4))) = \"B\";\n"
+        "char const gLegacyData[] __attribute__((section(\".rodata.legacy\"))) = \"C\";\n";
+    const std::string data_sections_assembly =
+        "\t.section .rodata.gByteData,\"a\"\n"
+        "\t.globl\tgByteData\n"
+        "gByteData:\n"
+        "\t.ascii\t\"A\\000\"\n"
+        "\t.section .rodata.gWordData,\"a\"\n"
+        "\t.globl\tgWordData\n"
+        "\t.align\t2, 0\n"
+        "gWordData:\n"
+        "\t.ascii\t\"B\\000\"\n"
+        "\t.section .rodata.legacy,\"a\"\n"
+        "\t.globl\tgLegacyData\n"
+        "gLegacyData:\n"
+        "\t.ascii\t\"C\\000\"\n";
+    const std::string data_sections_output = PreprocessAssembly(
+        data_sections_source, data_sections_assembly);
+    Require(data_sections_output.find("\t.section .rodata,\"a\",%progbits,unique,1")
+                != std::string::npos
+            && data_sections_output.find("\t.section .rodata,\"a\",%progbits,unique,2")
+                != std::string::npos,
+        "compiler-generated data sections were not normalized");
+    Require(data_sections_output.find("\t.section .rodata.legacy,\"a\"")
+                != std::string::npos,
+        "explicit source data section was normalized");
 
     const std::string section_boundary_source =
         "char const gSectionBoundaryText[] = \"A\";\n"

@@ -718,9 +718,7 @@ SECTIONS
         . = 0xE8AB4; src/item.o(.rodata);
         FILL(0x00);
         /* Calendar rows, labels, and state data. */
-        . = 0xEFD52; src/game_state.o(.rodata.calendar_season);
-        FILL(0x00);
-        . = 0xEFD60; src/game_state.o(.rodata);
+        . = 0xEFD52; src/game_state.o(.rodata);
         FILL(0x00);
         /* Help-menu text and byte table. */
         . = 0xEFDD0; src/help_menu.o(.rodata);
