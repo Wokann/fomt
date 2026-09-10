@@ -169,6 +169,39 @@ enum Season
 
 #define NUM_SEASONS 4u
 
+// Calendar day values. Shift these left by two bits when forming a GameDate
+// byte, whose low two bits hold a Season.
+#define DAY_01 1
+#define DAY_02 2
+#define DAY_03 3
+#define DAY_04 4
+#define DAY_05 5
+#define DAY_06 6
+#define DAY_07 7
+#define DAY_08 8
+#define DAY_09 9
+#define DAY_10 10
+#define DAY_11 11
+#define DAY_12 12
+#define DAY_13 13
+#define DAY_14 14
+#define DAY_15 15
+#define DAY_16 16
+#define DAY_17 17
+#define DAY_18 18
+#define DAY_19 19
+#define DAY_20 20
+#define DAY_21 21
+#define DAY_22 22
+#define DAY_23 23
+#define DAY_24 24
+#define DAY_25 25
+#define DAY_26 26
+#define DAY_27 27
+#define DAY_28 28
+#define DAY_29 29
+#define DAY_30 30
+
 struct PACKED GameDate
 {
     /* bit 0 */ Season season : 2;

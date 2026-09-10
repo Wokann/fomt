@@ -1,5 +1,5 @@
-#ifndef CALENDAR_TEXT_HH
-#define CALENDAR_TEXT_HH
+#ifndef CALENDAR_EVENTS_HH
+#define CALENDAR_EVENTS_HH
 
 #include "prelude.h"
 
@@ -73,4 +73,4 @@ extern char const gCppRuntimeBadAlloc_CalendarNoPlansFirst[];
 extern char const gText_Calendar_FallbackNone[];
 extern char const gCppRuntimeBadAlloc_CalendarNoPlansSecond[];
 
-#endif // CALENDAR_TEXT_HH
+#endif // CALENDAR_EVENTS_HH

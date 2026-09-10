@@ -1,6 +1,6 @@
 #include "prelude.h"
 
-#include "calendar_text.hh"
+#include "game_state.hh"
 #include "time_of_day_data.hh"
 #include "unknown_types.hh" // for GameDate and Time
 

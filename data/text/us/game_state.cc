@@ -1,13 +1,7 @@
-#include "calendar_text.hh"
+#include "game_state.hh"
 
-#include "unknown_types.hh"
-
-// Fixed row widths remain because native calendar code indexes them directly.
-
-
-// This short row table begins at a two-byte-aligned ROM address while the
-// following ordinary data requires four-byte alignment, so it keeps the one
-// necessary physical subsection within the shared Calendar source object.
+// This short row table begins at a two-byte-aligned ROM address, while the
+// following ordinary data begins on a four-byte boundary.
 char const gText_Calendar_SeasonNames[4][7] SECTION(".rodata.calendar_season") ALIGN(1) = {
     "Spring",
     "Summer",

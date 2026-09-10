@@ -39,9 +39,9 @@
 | `0x080E8A6C`–`0x080E8AA4` | `src/shipping_bin.o(.rodata)` | [数据] | `src/shipping_bin.c/.cc` | 无全局符号 |
 | `0x080E8AA5`–`0x080E8AB3` | `src/record_player.o(.rodata)` | [数据] | `src/record_player.c/.cc` | 无全局符号 |
 | `0x080E8AB4`–`0x080EFD51` | `src/item.o(.rodata)` | [嵌入文本 / 数据] | `src/item.cc`<br>`data/text/common/item_invalid.cc`<br>`data/text/jp/item_tool.cc`<br>`data/text/jp/item_food.cc`<br>`data/text/jp/item_article.cc`<br>`data/text/common/item_fallback.cc` | 工具文本 `162`、食物文本 `337`、物品文本 `187` 项（详见下方索引）<br>对象内文本后 `00` 对齐：`1`、`3`、`3` 字节<br>`gToolInfo`, `gFoodInfo`, `gArticleInfo`, `gProductInfo`<br>运行时字符串 `1` 项 |
-| `0x080EFD52`–`0x080EFD5D` | `src/game_state.o(.rodata.calendar_season)` | [嵌入文本 / 数据] | `src/game_state.cc`<br>`data/text/jp/calendar.cc` | 固定季节行文本 `1` 项（保留必要的二字节对齐子段） |
+| `0x080EFD52`–`0x080EFD5D` | `src/game_state.o(.rodata.calendar_season)` | [嵌入文本 / 数据] | `src/game_state.cc`<br>`data/text/jp/game_state.cc` | 固定季节行文本 `1` 项（保留必要的二字节对齐子段） |
 | `0x080EFD5E`–`0x080EFD5F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080EFD60`–`0x080EFDCD` | `src/game_state.o(.rodata)` | [嵌入文本 / 数据] | `src/game_state.cc`<br>`data/text/jp/calendar.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `4` 项<br>`gUnk_080F0566` |
+| `0x080EFD60`–`0x080EFDCD` | `src/game_state.o(.rodata)` | [嵌入文本 / 数据] | `src/game_state.cc`<br>`data/text/jp/game_state.cc`<br>`data/text/common/game_state.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `5` 项<br>`gUnk_080F0566` |
 | `0x080EFDCE`–`0x080EFDCF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080EFDD0`–`0x080EFEA2` | `src/help_menu.o(.rodata)` | [嵌入文本 / 数据] | `src/help_menu.cc`<br>`data/text/jp/load_error.cc`<br>`data/text/jp/help_menu.cc` | 文本 `6` 项（加载错误 `2`、帮助菜单 `4`；详见下方索引）<br>运行时字符串 `2` 项<br>`gUnk_HelpMenuByteTable` |
 | `0x080EFEA3`–`0x080EFEA3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
@@ -988,10 +988,12 @@
 | `0x080EF6AC` | `gText_Item_Article_Lottery_Description` | `data/text/jp/item_article.cc` | `src/item.o(.rodata)` |
 | `0x080EF6EC` | `gText_Item_Article_Frisbee_Name` | `data/text/jp/item_article.cc` | `src/item.o(.rodata)` |
 | `0x080EF6F8` | `gText_Item_Article_Frisbee_Description` | `data/text/jp/item_article.cc` | `src/item.o(.rodata)` |
-| `0x080EFD52` | `gText_Calendar_SeasonNames` | `data/text/jp/calendar.cc` | `src/game_state.o(.rodata.calendar_season)` |
-| `0x080EFD60` | `gText_Calendar_None` | `data/text/jp/calendar.cc` | `src/game_state.o(.rodata)` |
-| `0x080EFD63` | `gText_Calendar_WeekdayNames` | `data/text/jp/calendar.cc` | `src/game_state.o(.rodata)` |
-| `0x080EFD98` | `gText_CalendarTrailerFallbackNone` | `data/text/jp/calendar.cc` | `src/game_state.o(.rodata)` |
+| `0x080EFD52` | `gText_Calendar_SeasonNames` | `data/text/jp/game_state.cc` | `src/game_state.o(.rodata.calendar_season)` |
+| `0x080EFD60` | `gText_Calendar_None` | `data/text/jp/game_state.cc` | `src/game_state.o(.rodata)` |
+| `0x080EFD63` | `gText_Calendar_WeekdayNames` | `data/text/jp/game_state.cc` | `src/game_state.o(.rodata)` |
+| `0x080EFD98` | `gText_CalendarTrailerFallbackNone` | `data/text/jp/game_state.cc` | `src/game_state.o(.rodata)` |
+| `0x080EFDAA` | `gUnk_080F0566` | `data/text/common/game_state.cc` | `src/game_state.o(.rodata)` |
+| `0x080EFDC4` | `gCppRuntimeBadAlloc_GameState` | `data/text/common/game_state.cc` | `src/game_state.o(.rodata)` |
 | `0x080EFDD0` | `gText_LoadError` | `data/text/jp/load_error.cc` | `src/help_menu.o(.rodata)` |
 | `0x080EFDE8` | `gText_LoadErrorFallbackNone` | `data/text/jp/load_error.cc` | `src/help_menu.o(.rodata)` |
 | `0x080EFDF8` | `gText_HelpMenu_Crops` | `data/text/jp/help_menu.cc` | `src/help_menu.o(.rodata)` |
@@ -1902,9 +1904,9 @@
 | `0x080E95CC`–`0x080E9604` | `src/shipping_bin.o(.rodata)` | [数据] | `src/shipping_bin.c/.cc` | 无全局符号 |
 | `0x080E9605`–`0x080E9613` | `src/record_player.o(.rodata)` | [数据] | `src/record_player.c/.cc` | 无全局符号 |
 | `0x080E9614`–`0x080F04ED` | `src/item.o(.rodata)` | [嵌入文本 / 数据] | `src/item.cc`<br>`data/text/common/item_invalid.cc`<br>`data/text/us/item_tool.cc`<br>`data/text/us/item_food.cc`<br>`data/text/us/item_article.cc`<br>`data/text/common/item_fallback.cc` | 工具文本 `162`、食物文本 `335`、物品文本 `185` 项（详见下方索引）<br>对象内文本后 `00` 对齐：`2`、`1`、`2` 字节<br>`gToolInfo`, `gFoodInfo`, `gArticleInfo`, `gProductInfo`<br>运行时字符串 `1` 项 |
-| `0x080F04EE`–`0x080F0509` | `src/game_state.o(.rodata.calendar_season)` | [嵌入文本 / 数据] | `src/game_state.cc`<br>`data/text/us/calendar.cc` | 固定季节行文本 `1` 项（保留必要的二字节对齐子段） |
+| `0x080F04EE`–`0x080F0509` | `src/game_state.o(.rodata.calendar_season)` | [嵌入文本 / 数据] | `src/game_state.cc`<br>`data/text/us/game_state.cc` | 固定季节行文本 `1` 项（保留必要的二字节对齐子段） |
 | `0x080F050A`–`0x080F050B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F050C`–`0x080F0589` | `src/game_state.o(.rodata)` | [嵌入文本 / 数据] | `src/game_state.cc`<br>`data/text/us/calendar.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `4` 项<br>`gUnk_080F0566` |
+| `0x080F050C`–`0x080F0589` | `src/game_state.o(.rodata)` | [嵌入文本 / 数据] | `src/game_state.cc`<br>`data/text/us/game_state.cc`<br>`data/text/common/game_state.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `5` 项<br>`gUnk_080F0566` |
 | `0x080F058A`–`0x080F058B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F058C`–`0x080F0650` | `src/help_menu.o(.rodata)` | [嵌入文本 / 数据] | `src/help_menu.cc`<br>`data/text/us/load_error.cc`<br>`data/text/us/help_menu.cc` | 文本 `6` 项（加载错误 `2`、帮助菜单 `4`；详见下方索引）<br>运行时字符串 `2` 项<br>`gUnk_HelpMenuByteTable` |
 | `0x080F0651`–`0x080F0653` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
@@ -2843,10 +2845,12 @@
 | `0x080EFE3C` | `gText_Item_Article_Lottery_Description` | `data/text/us/item_article.cc` | `src/item.o(.rodata)` |
 | `0x080EFE94` | `gText_Item_Article_Frisbee_Name` | `data/text/us/item_article.cc` | `src/item.o(.rodata)` |
 | `0x080EFE9C` | `gText_Item_Article_Frisbee_Description` | `data/text/us/item_article.cc` | `src/item.o(.rodata)` |
-| `0x080F04EE` | `gText_Calendar_SeasonNames` | `data/text/us/calendar.cc` | `src/game_state.o(.rodata.calendar_season)` |
-| `0x080F050C` | `gText_Calendar_None` | `data/text/us/calendar.cc` | `src/game_state.o(.rodata)` |
-| `0x080F050F` | `gText_Calendar_WeekdayNames` | `data/text/us/calendar.cc` | `src/game_state.o(.rodata)` |
-| `0x080F0554` | `gText_CalendarTrailerFallbackNone` | `data/text/us/calendar.cc` | `src/game_state.o(.rodata)` |
+| `0x080F04EE` | `gText_Calendar_SeasonNames` | `data/text/us/game_state.cc` | `src/game_state.o(.rodata.calendar_season)` |
+| `0x080F050C` | `gText_Calendar_None` | `data/text/us/game_state.cc` | `src/game_state.o(.rodata)` |
+| `0x080F050F` | `gText_Calendar_WeekdayNames` | `data/text/us/game_state.cc` | `src/game_state.o(.rodata)` |
+| `0x080F0554` | `gText_CalendarTrailerFallbackNone` | `data/text/us/game_state.cc` | `src/game_state.o(.rodata)` |
+| `0x080F0566` | `gUnk_080F0566` | `data/text/common/game_state.cc` | `src/game_state.o(.rodata)` |
+| `0x080F0580` | `gCppRuntimeBadAlloc_GameState` | `data/text/common/game_state.cc` | `src/game_state.o(.rodata)` |
 | `0x080F058C` | `gText_LoadError` | `data/text/us/load_error.cc` | `src/help_menu.o(.rodata)` |
 | `0x080F05A8` | `gText_LoadErrorFallbackNone` | `data/text/us/load_error.cc` | `src/help_menu.o(.rodata)` |
 | `0x080F05B8` | `gText_HelpMenu_Crops` | `data/text/us/help_menu.cc` | `src/help_menu.o(.rodata)` |

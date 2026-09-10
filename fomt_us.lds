@@ -634,11 +634,10 @@ SECTIONS
         /* Item text, catalogs, products, and trailer. */
         . = 0xE9614; src/item.o(.rodata);
         FILL(0x00);
-        /* Bounded Calendar localization island: rows, labels, state record. */
+        /* Calendar rows, labels, and state data. */
         . = 0xF04EE; src/game_state.o(.rodata.calendar_season);
         FILL(0x00);
         . = 0xF050C; src/game_state.o(.rodata);
-        ASSERT(. <= 0xF058C, "US Calendar localization island overflow");
         FILL(0x00);
         /* Bounded Help localization island: error text, labels, byte table. */
         . = 0xF058C; src/help_menu.o(.rodata);

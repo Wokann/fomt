@@ -3,17 +3,23 @@
 
 #include "prelude.h"
 
-// func_08010F54 scans the first 25 bytes, decoding the low two bits as a
-// season value and bits 2-6 as a day value. The final zero remains part of
-// the original table layout but is not scanned by that loop. The following
-// runtime string is physically contiguous in the original ROM, so one packed
-// C++ object preserves the native layout without explicit zero padding.
-struct PACKED Unk_080F0566Data
-{
-    u8 values[26];
-    char cpp_runtime_bad_alloc[sizeof("bad_alloc")];
-};
+#if defined(REGION_JP)
+extern char const gText_Calendar_SeasonNames[4][3];
+extern char const gText_Calendar_WeekdayNames[7][3];
+#else
+extern char const gText_Calendar_SeasonNames[4][7];
+extern char const gText_Calendar_WeekdayNames[7][5];
+#endif
 
-extern Unk_080F0566Data const gUnk_080F0566;
+extern char const gText_Calendar_None[];
+extern char const gCppRuntimeBadAlloc_CalendarTrailer00[];
+extern char const gCppRuntimeBadAlloc_CalendarTrailer01[];
+extern char const gCppRuntimeError_CalendarTrailer[];
+extern char const gText_CalendarTrailerFallbackNone[];
+extern char const gCppRuntimeBadAlloc_CalendarTrailer02[];
+
+// func_08010F54 scans the first 25 entries as packed season/day values.
+extern u8 const gUnk_080F0566[];
+extern char const gCppRuntimeBadAlloc_GameState[];
 
 #endif // GAME_STATE_HH

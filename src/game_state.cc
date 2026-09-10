@@ -1,20 +1,11 @@
 #include "game_state.hh"
 
-// Calendar rows and labels occupy the native run immediately before this
-// game-state record.
+// The fixed season rows use the sole physical alignment subsection in this
+// source; the rest of this module follows in native ROM order.
 #if defined(REGION_JP)
-#include "data/text/jp/calendar.cc"
+#include "data/text/jp/game_state.cc"
 #else
-#include "data/text/us/calendar.cc"
+#include "data/text/us/game_state.cc"
 #endif
 
-// Keep the native order and trailing sentinel. Its higher-level event role
-// remains undecoded, so the original ROM-address label is retained.
-Unk_080F0566Data const gUnk_080F0566 = {
-    {
-        0x04, 0x44, 0x48, 0x54, 0x58, 0x78, 0x05, 0x19, 0x1D,
-        0x4D, 0x51, 0x61, 0x0A, 0x0E, 0x22, 0x26, 0x36, 0x46,
-        0x4A, 0x52, 0x56, 0x7A, 0x3B, 0x63, 0x7B, 0x00,
-    },
-    "bad_alloc",
-};
+#include "data/text/common/game_state.cc"
