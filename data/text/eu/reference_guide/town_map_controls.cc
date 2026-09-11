@@ -1,0 +1,31 @@
+// fomt-text input, intentionally not a C++ translation unit.
+// TITLE is fixed at the top of the screen; MAIN rows scroll below it.
+TITLE
+    "Town Map Controls"
+MAIN
+    "·Control Pad"
+    "Move cursor."
+    "A message describing the"
+    "cursor location will appear"
+    "in the message window."
+    ""
+    "·L Button"
+    "Press the L Button while"
+    "using the Control Pad to"
+    "slow cursor speed."
+    ""
+    "·R Button"
+    "Press the R Button while"
+    "using the Control Pad to"
+    "increase cursor speed."
+    ""
+    "·A Button"
+    "Change message displayed."
+    ""
+    "Store Explanation"
+    "↓↑"
+    "Store hours, day off"
+    ""
+    "·B Button"
+    "Exit window."
+END_FOMT_REFERENCE_GUIDE_PAGE

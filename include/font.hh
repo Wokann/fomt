@@ -70,7 +70,7 @@ extern i16 const gFontSingleByteGlyphIndices[256];
 extern u8 const gFontDoubleWidthGlyphData[];
 extern i16 const gFontShiftJisGlyphIndices[7938];
 
-#if defined(REGION_US)
+#if defined(REGION_WESTERN)
 extern u8 const gFontSpecialGlyphBlocks[14][12];
 extern u8 const gFontSpecialGlyphC3[12];
 #else

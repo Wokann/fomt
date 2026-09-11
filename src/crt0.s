@@ -44,8 +44,18 @@ _start:
     .byte  0xD6, 0x25, 0xE4, 0x8B, 0x38, 0x0A, 0xAC, 0x72
     .byte  0x21, 0xD4, 0xF8, 0x07
     @ CHECKSUM AREA BEGIN
+    .ifdef REGION_DE
+    .ascii "HARVESTMOGER"  @ Game title
+    .ascii "A4ND"          @ Game code
+    .else
+    .ifdef REGION_EU
+    .ascii "HARVESTMOGBA"  @ Game title
+    .ascii "A4NP"          @ Game code
+    .else
     .ascii "HARVESTMOGBA"  @ Game title
     .ascii "A4NE"          @ Game code
+    .endif
+    .endif
     .ascii "E9"            @ Maker code
     .byte  0x96            @ Mandatory
     .zero  1               @ Device code
@@ -53,7 +63,15 @@ _start:
     .zero  7               @ Reserved
     .zero  1               @ Game version
     @ CHECKSUM AREA END
+    .ifdef REGION_DE
+    .byte  0x35            @ Checksum
+    .else
+    .ifdef REGION_EU
+    .byte  0x3D            @ Checksum
+    .else
     .byte  0x48            @ Checksum
+    .endif
+    .endif
     .zero  2               @ Reserved
 
     .arm

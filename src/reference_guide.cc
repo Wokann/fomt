@@ -73,7 +73,7 @@ FomtReferenceGuideBookManifest const gReferenceGuideBooks[] = {
     { "town_map_controls", 6, true },
     { "farm_map_controls", 7, true },
     { "tool_and_item_controls", 8, true },
-#if defined(REGION_US)
+#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     { "tool_and_item_controls_additional", 9, false },
 #endif
     { "raising_crops", 10, true },

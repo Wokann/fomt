@@ -96,9 +96,9 @@ u16 const gTownMapResourceIds[]
 // The selected regional labels and descriptions immediately precede the
 // native Town Map tables in both ROMs.
 #if defined(REGION_JP)
-#include "data/text/jp/town_map.cc"
+#include FOMT_TEXT_INCLUDE(town_map.cc)
 #else
-#include "data/text/us/town_map.cc"
+#include FOMT_TEXT_INCLUDE(town_map.cc)
 #endif
 
 TownMapHotspot const gTownMapHotspots[TOWN_MAP_HOTSPOT_COUNT] = {

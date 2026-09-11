@@ -829,7 +829,7 @@ SECTIONS
         . = 0xFEC90; src/carpenter_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        FILL(0xFF);
+        FILL(0x00);
         . = 0xFF508; src/livestock_shop.o(.rodata);
         FILL(0x00);
         . = 0xFF9A4; data/text/home_storage.o(.rodata);

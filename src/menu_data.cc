@@ -13,11 +13,11 @@ u32 const gMenuEntryIds[7] = {
 
 #if defined(REGION_JP)
 #define FOMT_MENU_TEXT_LABELS
-#include "data/text/jp/menu.cc"
+#include FOMT_TEXT_INCLUDE(menu.cc)
 #undef FOMT_MENU_TEXT_LABELS
 #else
 #define FOMT_MENU_TEXT_LABELS
-#include "data/text/us/menu.cc"
+#include FOMT_TEXT_INCLUDE(menu.cc)
 #undef FOMT_MENU_TEXT_LABELS
 #endif
 

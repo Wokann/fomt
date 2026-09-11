@@ -66,7 +66,7 @@ extern char const gText_Carpenter_DontBuild[];
 extern char const gText_Carpenter_Upgrade[];
 extern char const gText_Carpenter_DontUpgrade[];
 extern char const gText_Carpenter_StartUpgradeTomorrow[];
-#if defined(REGION_US)
+#if defined(REGION_WESTERN)
 extern char const gText_Carpenter_ConfirmUpgrade[];
 #endif
 extern char const gText_Carpenter_NeedAnythingMore[];

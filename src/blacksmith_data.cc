@@ -14,7 +14,7 @@ BlacksmithMenuHeader const gBlacksmithMenuHeader = {
 #endif
 
 BlacksmithCatalogEntry const gBlacksmithCatalog[] = {
-#if defined(REGION_US)
+#if defined(REGION_WESTERN)
     { 0, gText_Blacksmith_ToolUpgradeMenuLabel, 0, 0, gText_Blacksmith_ToolUpgradeTitle },
 #endif
     { TOOL_BRUSH, gText_Blacksmith_Empty, 800, 1, gText_Blacksmith_Empty },
@@ -31,10 +31,10 @@ BlacksmithCatalogEntry const gBlacksmithCatalog[] = {
 
 #if defined(REGION_JP)
 #define FOMT_TEXT_BLACKSMITH_DIALOGUE
-#include "data/text/jp/blacksmith.cc"
+#include FOMT_TEXT_INCLUDE(blacksmith.cc)
 #undef FOMT_TEXT_BLACKSMITH_DIALOGUE
 #else
 #define FOMT_TEXT_BLACKSMITH_DIALOGUE
-#include "data/text/us/blacksmith.cc"
+#include FOMT_TEXT_INCLUDE(blacksmith.cc)
 #undef FOMT_TEXT_BLACKSMITH_DIALOGUE
 #endif

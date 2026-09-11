@@ -2,9 +2,9 @@
 
 #define FOMT_ENTITY_UI_TEXT_NOT_AVAILABLE
 #if defined(REGION_JP)
-#include "data/text/jp/entity_ui.cc"
+#include FOMT_TEXT_INCLUDE(entity_ui.cc)
 #else
-#include "data/text/us/entity_ui.cc"
+#include FOMT_TEXT_INCLUDE(entity_ui.cc)
 #endif
 #undef FOMT_ENTITY_UI_TEXT_NOT_AVAILABLE
 

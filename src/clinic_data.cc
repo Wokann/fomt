@@ -10,7 +10,7 @@ ClinicCatalogEntry const gClinicCatalog[] = {
 };
 
 #if defined(REGION_JP)
-#include "data/text/jp/clinic.cc"
+#include FOMT_TEXT_INCLUDE(clinic.cc)
 #else
-#include "data/text/us/clinic.cc"
+#include FOMT_TEXT_INCLUDE(clinic.cc)
 #endif

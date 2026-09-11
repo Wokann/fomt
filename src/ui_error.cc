@@ -6,11 +6,11 @@
 
 #if defined(REGION_JP)
 #define FOMT_UI_ERROR_TEXT_FALLBACK_NONE
-#include "data/text/jp/ui_error.cc"
+#include FOMT_TEXT_INCLUDE(ui_error.cc)
 #undef FOMT_UI_ERROR_TEXT_FALLBACK_NONE
 #else
 #define FOMT_UI_ERROR_TEXT_FALLBACK_NONE
-#include "data/text/us/ui_error.cc"
+#include FOMT_TEXT_INCLUDE(ui_error.cc)
 #undef FOMT_UI_ERROR_TEXT_FALLBACK_NONE
 #endif
 

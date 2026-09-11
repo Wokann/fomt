@@ -18,6 +18,7 @@ EXTERN_C
 #include <stdint.h>
 
 #include "types.h" // IWYU pragma: export
+#include "region.h" // IWYU pragma: export
 
 #define nullptr 0
 

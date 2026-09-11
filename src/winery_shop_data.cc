@@ -8,7 +8,7 @@ WineryShopCatalogEntry const gWineryShopCatalog[] = {
 };
 
 #if defined(REGION_JP)
-#include "data/text/jp/winery_shop.cc"
+#include FOMT_TEXT_INCLUDE(winery_shop.cc)
 #else
-#include "data/text/us/winery_shop.cc"
+#include FOMT_TEXT_INCLUDE(winery_shop.cc)
 #endif

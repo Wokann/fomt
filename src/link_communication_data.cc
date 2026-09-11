@@ -4,9 +4,9 @@
 // Keep the selected regional dialog immediately before its native packet
 // tables.  The linker gives this whole source object one bounded ROM island.
 #if defined(REGION_JP)
-#include "data/text/jp/link_communication.cc"
+#include FOMT_TEXT_INCLUDE(link_communication.cc)
 #else
-#include "data/text/us/link_communication.cc"
+#include FOMT_TEXT_INCLUDE(link_communication.cc)
 #endif
 
 EXTERN_C

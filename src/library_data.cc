@@ -3,9 +3,9 @@
 #define FOMT_LIBRARY_TEXT_OPENING_HOURS
 #define FOMT_LIBRARY_TEXT_ATTRIBUTE SECTION(".rodata.library_opening_hours")
 #if defined(REGION_JP)
-#include "data/text/jp/library.cc"
+#include FOMT_TEXT_INCLUDE(library.cc)
 #else
-#include "data/text/us/library.cc"
+#include FOMT_TEXT_INCLUDE(library.cc)
 #endif
 #undef FOMT_LIBRARY_TEXT_ATTRIBUTE
 #undef FOMT_LIBRARY_TEXT_OPENING_HOURS
@@ -31,9 +31,9 @@ u32 const gLibraryInitialEntryIds[]
 #define FOMT_LIBRARY_TEXT_MENU
 #define FOMT_LIBRARY_TEXT_ATTRIBUTE SECTION(".rodata.library_menu")
 #if defined(REGION_JP)
-#include "data/text/jp/library.cc"
+#include FOMT_TEXT_INCLUDE(library.cc)
 #else
-#include "data/text/us/library.cc"
+#include FOMT_TEXT_INCLUDE(library.cc)
 #endif
 #undef FOMT_LIBRARY_TEXT_ATTRIBUTE
 #undef FOMT_LIBRARY_TEXT_MENU

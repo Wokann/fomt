@@ -21,7 +21,7 @@ SpecialMerchantShopCatalogEntry const gSpecialMerchantShopCatalog[] = {
 };
 
 #if defined(REGION_JP)
-#include "data/text/jp/special_merchant_shop.cc"
+#include FOMT_TEXT_INCLUDE(special_merchant_shop.cc)
 #else
-#include "data/text/us/special_merchant_shop.cc"
+#include FOMT_TEXT_INCLUDE(special_merchant_shop.cc)
 #endif

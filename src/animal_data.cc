@@ -1,9 +1,9 @@
 #include "animal_data.hh"
 
 #if defined(REGION_JP)
-#include "data/text/jp/animal_data.cc"
+#include FOMT_TEXT_INCLUDE(animal_data.cc)
 #else
-#include "data/text/us/animal_data.cc"
+#include FOMT_TEXT_INCLUDE(animal_data.cc)
 #endif
 
 // These adjacent raw records are read at different widths by native code.
@@ -68,9 +68,9 @@ u8 const gUnk_080F0800[] ALIGN(1) = {
 #include "data/text/common/animal_data_1.cc"
 
 #if defined(REGION_JP)
-#include "data/text/jp/animal_data_1.cc"
+#include FOMT_TEXT_INCLUDE(animal_data_1.cc)
 #else
-#include "data/text/us/animal_data_1.cc"
+#include FOMT_TEXT_INCLUDE(animal_data_1.cc)
 #endif
 
 AnimalDataEntry const gUnk_080F0838[2][2][13] ALIGN(1)

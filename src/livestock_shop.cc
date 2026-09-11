@@ -7,9 +7,9 @@
  */
 #define FOMT_LIVESTOCK_SHOP_TEXT_MENU
 #if defined(REGION_JP)
-#include "data/text/jp/livestock_shop.cc"
+#include FOMT_TEXT_INCLUDE(livestock_shop.cc)
 #else
-#include "data/text/us/livestock_shop.cc"
+#include FOMT_TEXT_INCLUDE(livestock_shop.cc)
 #endif
 #undef FOMT_LIVESTOCK_SHOP_TEXT_MENU
 
@@ -29,16 +29,16 @@ LivestockShopCatalogEntry const gLivestockShopCatalog[] = {
 
 #define FOMT_LIVESTOCK_SHOP_TEXT_STATUS
 #if defined(REGION_JP)
-#include "data/text/jp/livestock_shop.cc"
+#include FOMT_TEXT_INCLUDE(livestock_shop.cc)
 #else
-#include "data/text/us/livestock_shop.cc"
+#include FOMT_TEXT_INCLUDE(livestock_shop.cc)
 #endif
 #undef FOMT_LIVESTOCK_SHOP_TEXT_STATUS
 
 #define FOMT_LIVESTOCK_SHOP_TEXT_DIALOGUE
 #if defined(REGION_JP)
-#include "data/text/jp/livestock_shop.cc"
+#include FOMT_TEXT_INCLUDE(livestock_shop.cc)
 #else
-#include "data/text/us/livestock_shop.cc"
+#include FOMT_TEXT_INCLUDE(livestock_shop.cc)
 #endif
 #undef FOMT_LIVESTOCK_SHOP_TEXT_DIALOGUE

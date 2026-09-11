@@ -142,7 +142,7 @@ char const gUnk_SramSignatureTrailerBadAllocSecond[] ALIGN(4) =
 char const gUnk_SramSignatureTrailerBadAllocThird[] ALIGN(4) =
     "bad_alloc";
 
-#if defined(REGION_US)
+#if defined(REGION_WESTERN)
 char const gUnk_SramSignatureTrailerError[] ALIGN(4) =
     "Error";
 

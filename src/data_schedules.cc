@@ -1345,7 +1345,7 @@ PathPointA const gUnk_080F297C[] = {
     { 47, 227, 1 },
 };
 
-#if defined(REGION_US)
+#if defined(REGION_WESTERN)
 extern char const gUnk_080F29B4[] =
     "bad_alloc";
 #endif
@@ -1488,7 +1488,7 @@ PathPointB const gUnk_080F2ACC[] = {
     { 56, 2, 120, 2, 0 },
 };
 
-#if defined(REGION_US)
+#if defined(REGION_WESTERN)
 extern char const gUnk_080F2AEC[] =
     "bad_alloc";
 #endif

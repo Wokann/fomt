@@ -28,6 +28,10 @@
     tools/textproc/fomt-text source CHARMAP REGION INPUT OUTPUT
     tools/textproc/fomt-text cpp CHARMAP REGION INPUT OUTPUT
 
+To recover the editable, visible row source for a regional staff-credit table:
+
+    tools/textproc/fomt-text staff-credits-decode CHARMAP REGION BASEROM OUTPUT
+
 `source` 是普通 C/C++ 词法转换：它可处理 `.c`、`.cc`、`.h`、`.hh` 中的
 字符串。正常构建会先运行常规 C 预处理器，因此被包含的头文件内容会与其所属
 翻译单元一同经过转换。除了游戏字符串外，源代码会原样保留；尤其是 `ALIGN(n)`、

@@ -1,0 +1,31 @@
+// fomt-text input, intentionally not a C++ translation unit.
+// TITLE is fixed at the top of the screen; MAIN rows scroll below it.
+TITLE
+    "Television Controls"
+MAIN
+    "→Use the Control Pad to"
+    "change channels."
+    "The program depends on which"
+    "direction you push."
+    "You can of course"
+    "change channels in the"
+    "middle of a program."
+    "However, there are some"
+    "programs where you can't"
+    "change the channel."
+    ""
+    "Up: Weather forecast"
+    "Down: Life on the Farm"
+    "Right: News"
+    "Left: Variety programs"
+    ""
+    "·B Button"
+    "Turn off TV"
+    ""
+    "·A Button"
+    "·Start"
+    "·Select"
+    "Fast forward messages."
+    "When the program ends,"
+    "turn off TV."
+END_FOMT_REFERENCE_GUIDE_PAGE

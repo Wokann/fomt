@@ -4,10 +4,10 @@
 // catalog that begins in blacksmith_data.cc.
 #if defined(REGION_JP)
 #define FOMT_TEXT_BLACKSMITH_MENU
-#include "data/text/jp/blacksmith.cc"
+#include FOMT_TEXT_INCLUDE(blacksmith.cc)
 #undef FOMT_TEXT_BLACKSMITH_MENU
 #else
 #define FOMT_TEXT_BLACKSMITH_MENU
-#include "data/text/us/blacksmith.cc"
+#include FOMT_TEXT_INCLUDE(blacksmith.cc)
 #undef FOMT_TEXT_BLACKSMITH_MENU
 #endif

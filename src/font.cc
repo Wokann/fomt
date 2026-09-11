@@ -39,7 +39,7 @@ i32 GetShiftJisGlyphMapIndex(i32 character)
 extern char const gCppRuntimeBadAlloc_Font[] ALIGN(4) =
     "bad_alloc";
 
-#if defined(REGION_US)
+#if defined(REGION_WESTERN)
 // The US glyph resolver selects these contiguous 12-byte glyph bitmaps and
 // passes them to func_0300085C. Their individual display meanings remain unknown.
 extern u8 const gFontSpecialGlyphBlocks[14][12] ALIGN(4) = {
@@ -72,7 +72,7 @@ extern u8 const gFontSpecialGlyph81CD[24] ALIGN(4) = {
     0x20, 0x20, 0x10, 0x40, 0x08, 0x80,
     0x05, 0x00, 0x02, 0x00, 0x00, 0x00,
 };
-#endif // REGION_US
+#endif // REGION_WESTERN
 
 extern void DrawGlyph2Tile(u8 const *glyph, void *destination);
 extern void DrawGlyph1Tile(u8 const *glyph, void *destination);
@@ -92,7 +92,7 @@ i32 DrawCharacterGlyph(void *destination, i32 character)
     i32 glyph_width = 0;
     i32 glyph_index = -1;
 
-#if defined(REGION_US)
+#if defined(REGION_WESTERN)
     switch (character - 0xB1) {
     // Preserve the original physical case order; the switch table still maps
     // each encoded character to its corresponding glyph.

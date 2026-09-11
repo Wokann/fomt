@@ -6,9 +6,9 @@
  * that their UI code uses.
  */
 #if defined(REGION_JP)
-#include "data/text/jp/help_menu.cc"
+#include FOMT_TEXT_INCLUDE(help_menu.cc)
 #else
-#include "data/text/us/help_menu.cc"
+#include FOMT_TEXT_INCLUDE(help_menu.cc)
 #endif
 
 u8 const gUnk_HelpMenuByteTable[] ALIGN(1) = {

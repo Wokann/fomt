@@ -1,0 +1,32 @@
+// fomt-text input, intentionally not a C++ translation unit.
+// TITLE is fixed at the top of the screen; MAIN rows scroll below it.
+TITLE
+    "Useful Controls"
+MAIN
+    "Open Town Map"
+    "Press Start while holding"
+    "down the L Button."
+    ""
+    "Open Farm Map"
+    "Press Select while holding"
+    "down the L Button."
+    ""
+    "Switch Tools"
+    "With empty hands,"
+    "press the B Button while "
+    "holding down the L Button."
+    ""
+    "Open Tools and Item Screen"
+    "Press the B Button while"
+    "holding down the A Button."
+    ""
+    "Put Item Away"
+    "Press the B Button"
+    "when holding something,"
+    " *Except when Rucksack"
+    " is full."
+    ""
+    "Call Out to Person"
+    "Press L Button when "
+    "not holding anything."
+END_FOMT_REFERENCE_GUIDE_PAGE

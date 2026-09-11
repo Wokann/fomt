@@ -2,11 +2,11 @@
 
 #if defined(REGION_JP)
 #define FOMT_TEXT_CARPENTER_MENU
-#include "data/text/jp/carpenter.cc"
+#include FOMT_TEXT_INCLUDE(carpenter.cc)
 #undef FOMT_TEXT_CARPENTER_MENU
 #else
 #define FOMT_TEXT_CARPENTER_MENU
-#include "data/text/us/carpenter.cc"
+#include FOMT_TEXT_INCLUDE(carpenter.cc)
 #undef FOMT_TEXT_CARPENTER_MENU
 #endif
 
@@ -37,11 +37,11 @@ CarpenterCatalogEntry const gCarpenterCatalog[] = {
 
 #if defined(REGION_JP)
 #define FOMT_TEXT_CARPENTER_DIALOGUE
-#include "data/text/jp/carpenter.cc"
+#include FOMT_TEXT_INCLUDE(carpenter.cc)
 #undef FOMT_TEXT_CARPENTER_DIALOGUE
 #else
 #define FOMT_TEXT_CARPENTER_DIALOGUE
-#include "data/text/us/carpenter.cc"
+#include FOMT_TEXT_INCLUDE(carpenter.cc)
 #undef FOMT_TEXT_CARPENTER_DIALOGUE
 #endif
 

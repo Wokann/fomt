@@ -60,7 +60,7 @@ extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScorePrefix[];
 extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultSuffix[];
 extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreSummary[];
 
-#if defined(REGION_US)
+#if defined(REGION_WESTERN)
 extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultPrefix[];
 #endif
 
@@ -83,7 +83,7 @@ extern char const gText_HarvestSpriteMiniGame_ChickenFestival_Encouragement[];
 extern char const gText_HarvestSpriteMiniGame_ChickenFestival_CautionAtRingEdge[];
 extern char const gText_HarvestSpriteMiniGame_ChickenFestival_CautionLeavingRing[];
 
-#if defined(REGION_US)
+#if defined(REGION_WESTERN)
 extern char const gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandAgain[];
 #endif
 
@@ -117,7 +117,7 @@ extern char const gText_HarvestSpriteMiniGame_Watering_ScorePrefix[];
 extern char const gText_HarvestSpriteMiniGame_Watering_ScoreResultSuffix[];
 extern char const gText_HarvestSpriteMiniGame_Watering_ScoreSummary[];
 
-#if defined(REGION_US)
+#if defined(REGION_WESTERN)
 extern char const gText_HarvestSpriteMiniGame_Harvest_ScoreResultPrefix[];
 extern char const gText_HarvestSpriteMiniGame_Watering_ScoreResultPrefix[];
 #endif

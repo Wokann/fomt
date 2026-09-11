@@ -551,9 +551,9 @@ Article ItemVariant::AsArticle() const
 // Keep each selected text run immediately before its owning catalog in this
 // single physical item-data object.
 #if defined(REGION_JP)
-#include "data/text/jp/item_tool.cc"
+#include FOMT_TEXT_INCLUDE(item_tool.cc)
 #else
-#include "data/text/us/item_tool.cc"
+#include FOMT_TEXT_INCLUDE(item_tool.cc)
 #endif
 
 ToolInfo const gToolInfo[] = {
@@ -641,9 +641,9 @@ ToolInfo const gToolInfo[] = {
 };
 
 #if defined(REGION_JP)
-#include "data/text/jp/item_food.cc"
+#include FOMT_TEXT_INCLUDE(item_food.cc)
 #else
-#include "data/text/us/item_food.cc"
+#include FOMT_TEXT_INCLUDE(item_food.cc)
 #endif
 
 FoodInfo const gFoodInfo[] = {
@@ -832,9 +832,9 @@ FoodInfo const gFoodInfo[] = {
 };
 
 #if defined(REGION_JP)
-#include "data/text/jp/item_article.cc"
+#include FOMT_TEXT_INCLUDE(item_article.cc)
 #else
-#include "data/text/us/item_article.cc"
+#include FOMT_TEXT_INCLUDE(item_article.cc)
 #endif
 
 ArticleInfo const gArticleInfo[] = {

@@ -1,9 +1,9 @@
 #include "records_screen_data.hh"
 
 #if defined(REGION_JP)
-#include "data/text/jp/records.cc"
+#include FOMT_TEXT_INCLUDE(records.cc)
 #else
-#include "data/text/us/records.cc"
+#include FOMT_TEXT_INCLUDE(records.cc)
 #endif
 
 // Records-screen callers select entries from this two-word resource table.

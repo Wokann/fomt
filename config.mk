@@ -9,8 +9,12 @@ ifneq ($(origin REGION),undefined)
     override GAME_REGION := US
   else ifeq ($(REGION),jp)
     override GAME_REGION := JP
+  else ifeq ($(REGION),eu)
+    override GAME_REGION := EU
+  else ifeq ($(REGION),de)
+    override GAME_REGION := DE
   else
-    $(error Unsupported REGION '$(REGION)'; expected us or jp)
+    $(error Unsupported REGION '$(REGION)'; expected us, jp, eu, or de)
   endif
 endif
 
@@ -32,6 +36,20 @@ else ifeq ($(GAME_REGION),JP)
   REGION_DEFINE := REGION_JP
   LDS := fomt_jp.lds
   LDS_LINK_PATH := ../../fomt_jp.lds
+else ifeq ($(GAME_REGION),EU)
+  BUILD_NAME := fomt_eu
+  BASE_ROM := baserom_eu.gba
+  REGION_DIR := eu
+  REGION_DEFINE := REGION_EU
+  LDS := fomt_eu.lds
+  LDS_LINK_PATH := ../../fomt_eu.lds
+else ifeq ($(GAME_REGION),DE)
+  BUILD_NAME := fomt_de
+  BASE_ROM := baserom_de.gba
+  REGION_DIR := de
+  REGION_DEFINE := REGION_DE
+  LDS := fomt_de.lds
+  LDS_LINK_PATH := ../../fomt_de.lds
 else
-  $(error Unsupported GAME_REGION '$(GAME_REGION)'; expected US or JP)
+  $(error Unsupported GAME_REGION '$(GAME_REGION)'; expected US, JP, EU, or DE)
 endif

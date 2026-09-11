@@ -1800,7 +1800,11 @@ StaffCreditsRomLayout StaffCreditsLayoutForRegion(const std::string &region)
         return {0x000FB938, 0x000FBC88};
     if (region == "US")
         return {0x000FC0A4, 0x000FC4B4};
-    throw std::runtime_error("staff-credit compilation requires region JP or US");
+    if (region == "EU")
+        return {0x000FC0F0, 0x000FC500};
+    if (region == "DE")
+        return {0x000FC7B0, 0x000FCBC0};
+    throw std::runtime_error("staff-credit compilation requires region JP, US, EU, or DE");
 }
 
 std::uint32_t ReadLittleEndian32(const Bytes &source, std::size_t offset,
@@ -1946,6 +1950,49 @@ std::string CompileStaffCredits(const std::string &source, const std::string &re
     return output.str();
 }
 
+std::string QuoteFomtTextSource(const std::string &text)
+{
+    std::ostringstream output;
+    output << '"';
+    for (const char value : text) {
+        if (value == '"')
+            output << "\\\"";
+        else if (value == '\n')
+            output << "\\n";
+        else if (value == '\r')
+            output << "\\r";
+        else
+            output << value;
+    }
+    output << '"';
+    return output.str();
+}
+
+std::string DecompileStaffCredits(const std::string &region, const Bytes &rom,
+    const Charmap &charmap)
+{
+    const StaffCreditsBaseline baseline = ReadStaffCreditsBaseline(rom,
+        StaffCreditsLayoutForRegion(region));
+    std::map<std::uint32_t, std::string> text_by_address;
+    for (const StaffCreditsTextField &field : baseline.fields) {
+        const auto begin = rom.begin() + static_cast<std::ptrdiff_t>(field.address);
+        const auto terminator = std::find(begin, begin + static_cast<std::ptrdiff_t>(field.storage_size), 0);
+        if (terminator == begin + static_cast<std::ptrdiff_t>(field.storage_size)) {
+            throw std::runtime_error("staff-credit text field has no terminating zero");
+        }
+        text_by_address.emplace(field.address, charmap.DecodeText(Bytes(begin, terminator)));
+    }
+
+    std::ostringstream output;
+    output << "// Generated from the " << region << " baseline by fomt-text.\n"
+              "// This is an editable fomt-text input, not a C++ translation unit.\n"
+              "FOMT_STAFF_CREDITS\n";
+    for (const std::uint32_t address : baseline.row_addresses)
+        output << "    " << QuoteFomtTextSource(text_by_address.at(address)) << '\n';
+    output << "END_FOMT_STAFF_CREDITS\n";
+    return output.str();
+}
+
 bool TryParseGuideManifestRow(const std::string &source, std::vector<std::string> &arguments,
     std::size_t line_number)
 {
@@ -2030,17 +2077,14 @@ bool ParseGuideCatalogFlag(const std::string &source, std::size_t line_number)
 std::vector<GuideManifestEntry> ParseGuideManifest(const std::filesystem::path &path,
     const std::string &region)
 {
-    if (region != "JP" && region != "US")
-        throw std::runtime_error("guide collection region must be JP or US");
-
+    const std::set<std::string> defines = RegionDefines(region);
     std::vector<GuideManifestEntry> result;
     std::set<std::string> pages;
     std::set<std::size_t> rom_orders;
     std::istringstream lines(ReadTextFile(path));
     std::string line;
     std::size_t line_number = 0;
-    bool in_region_us = false;
-    bool include_current_line = true;
+    std::vector<CharmapConditional> conditionals;
     bool in_manifest = false;
     bool manifest_closed = false;
     constexpr char kManifestStart[] = "FomtReferenceGuideBookManifest const gReferenceGuideBooks[] = {";
@@ -2064,34 +2108,75 @@ std::vector<GuideManifestEntry> ParseGuideManifest(const std::filesystem::path &
         }
 
         if (trimmed == "};") {
-            if (in_region_us) {
+            if (!conditionals.empty()) {
                 throw std::runtime_error("line " + std::to_string(line_number)
-                    + ": Reference Guide manifest closes inside REGION_US conditional");
+                    + ": Reference Guide manifest closes inside a conditional");
             }
             in_manifest = false;
             manifest_closed = true;
             continue;
         }
 
-        if (trimmed == "#if defined(REGION_US)") {
-            if (in_region_us) {
-                throw std::runtime_error("line " + std::to_string(line_number)
-                    + ": nested REGION_US conditional in Reference Guide catalog");
+        const bool parent_active = conditionals.empty() || conditionals.back().active;
+        std::string directive_arguments;
+        const CharmapDirective directive = ReadCharmapDirective(trimmed, &directive_arguments);
+        if (directive != CharmapDirective::None) {
+            switch (directive) {
+            case CharmapDirective::If: {
+                const bool condition = CharmapConditionParser(directive_arguments, defines, line_number).Parse();
+                conditionals.push_back({ line_number, parent_active, condition,
+                    parent_active && condition, false });
+                break;
             }
-            in_region_us = true;
-            include_current_line = region == "US";
+            case CharmapDirective::Ifdef:
+            case CharmapDirective::Ifndef: {
+                if (directive_arguments.empty() || !IsMacroNameStart(directive_arguments.front())
+                    || !std::all_of(directive_arguments.begin(), directive_arguments.end(), IsMacroNameContinue)) {
+                    throw std::runtime_error(LineError(line_number, "expected macro name"));
+                }
+                const bool condition = (defines.count(directive_arguments) != 0)
+                    == (directive == CharmapDirective::Ifdef);
+                conditionals.push_back({ line_number, parent_active, condition,
+                    parent_active && condition, false });
+                break;
+            }
+            case CharmapDirective::Elif: {
+                if (conditionals.empty())
+                    throw std::runtime_error(LineError(line_number, "unmatched #elif"));
+                CharmapConditional &conditional = conditionals.back();
+                if (conditional.saw_else)
+                    throw std::runtime_error(LineError(line_number, "#elif after #else"));
+                const bool condition = CharmapConditionParser(directive_arguments, defines, line_number).Parse();
+                conditional.active = conditional.parent_active && !conditional.branch_taken && condition;
+                conditional.branch_taken = conditional.branch_taken || condition;
+                break;
+            }
+            case CharmapDirective::Else: {
+                if (!directive_arguments.empty())
+                    throw std::runtime_error(LineError(line_number, "#else does not take arguments"));
+                if (conditionals.empty())
+                    throw std::runtime_error(LineError(line_number, "unmatched #else"));
+                CharmapConditional &conditional = conditionals.back();
+                if (conditional.saw_else)
+                    throw std::runtime_error(LineError(line_number, "duplicate #else"));
+                conditional.saw_else = true;
+                conditional.active = conditional.parent_active && !conditional.branch_taken;
+                conditional.branch_taken = true;
+                break;
+            }
+            case CharmapDirective::Endif:
+                if (!directive_arguments.empty())
+                    throw std::runtime_error(LineError(line_number, "#endif does not take arguments"));
+                if (conditionals.empty())
+                    throw std::runtime_error(LineError(line_number, "unmatched #endif"));
+                conditionals.pop_back();
+                break;
+            case CharmapDirective::None:
+                break;
+            }
             continue;
         }
-        if (trimmed == "#endif") {
-            if (!in_region_us) {
-                throw std::runtime_error("line " + std::to_string(line_number)
-                    + ": unmatched #endif in Reference Guide catalog");
-            }
-            in_region_us = false;
-            include_current_line = true;
-            continue;
-        }
-        if (!include_current_line)
+        if (!parent_active)
             continue;
 
         std::vector<std::string> arguments;
@@ -2118,8 +2203,8 @@ std::vector<GuideManifestEntry> ParseGuideManifest(const std::filesystem::path &
         result.push_back({page, rom_order, include_in_catalog});
     }
 
-    if (in_region_us)
-        throw std::runtime_error("Reference Guide catalog has an unterminated REGION_US conditional");
+    if (!conditionals.empty())
+        throw std::runtime_error("Reference Guide catalog has an unterminated conditional");
     if (in_manifest || !manifest_closed)
         throw std::runtime_error("guide collection manifest has no closed gReferenceGuideBooks array");
     if (result.empty())
@@ -3019,7 +3104,8 @@ const char *Usage()
            "  fomt-text cpp CHARMAP REGION INPUT OUTPUT\n"
            "  fomt-text guide CHARMAP REGION INPUT TEXT_OUTPUT TABLE_OUTPUT [CATALOG_SOURCE ...]\n"
            "  fomt-text guide-collection CHARMAP REGION MANIFEST OUTPUT\n"
-           "  fomt-text staff-credits CHARMAP REGION BASEROM INPUT OUTPUT\n";
+           "  fomt-text staff-credits CHARMAP REGION BASEROM INPUT OUTPUT\n"
+           "  fomt-text staff-credits-decode CHARMAP REGION BASEROM OUTPUT\n";
 }
 
 int Run(int argc, char **argv)
@@ -3052,6 +3138,12 @@ int Run(int argc, char **argv)
         const std::filesystem::path output = argv[6];
         WriteTextFile(output, CompileStaffCredits(ReadTextFile(input), region,
             ReadBinaryFile(baserom), charmap));
+        return 0;
+    }
+    if (argc == 6 && std::string(argv[1]) == "staff-credits-decode") {
+        const std::string region = argv[3];
+        const Charmap charmap = Charmap::Parse(ReadTextFile(argv[2]), RegionDefines(region));
+        WriteTextFile(argv[5], DecompileStaffCredits(region, ReadBinaryFile(argv[4]), charmap));
         return 0;
     }
     if (argc >= 7 && std::string(argv[1]) == "guide") {

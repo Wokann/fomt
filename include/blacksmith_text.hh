@@ -74,11 +74,11 @@ extern char const gText_BlacksmithUpgrade_DowngradeConfirmation[];
 extern char const gText_BlacksmithUpgrade_EmptyDescription[];
 extern char const gText_BlacksmithUpgrade_WorkOrderPrefix[];
 extern char const gText_BlacksmithUpgrade_WorkOrderGoldSuffix[];
-#if defined(REGION_US)
+#if defined(REGION_WESTERN)
 extern char const gText_BlacksmithUpgrade_WorkOrderDaysPrefix[];
 #endif
 extern char const gText_BlacksmithUpgrade_WorkOrderDaysSuffix[];
-#if defined(REGION_US)
+#if defined(REGION_WESTERN)
 extern char const gText_BlacksmithUpgrade_WorkOrderQuestion[];
 #endif
 extern char const gText_BlacksmithUpgrade_InsufficientGoldPageBreak[];

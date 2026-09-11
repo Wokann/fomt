@@ -16,7 +16,7 @@ WonShopCatalogEntry const gWonShopCatalog[] = {
 };
 
 #if defined(REGION_JP)
-#include "data/text/jp/won_shop.cc"
+#include FOMT_TEXT_INCLUDE(won_shop.cc)
 #else
-#include "data/text/us/won_shop.cc"
+#include FOMT_TEXT_INCLUDE(won_shop.cc)
 #endif

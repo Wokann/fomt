@@ -51,7 +51,7 @@ OLD_CC1  := tools/agbcc/bin/old_agbcc$(EXE)
 
 INCFLAGS     := $(foreach dir, $(INCLUDE_DIRS), -I "$(dir)")
 
-CPPFLAGS := $(INCFLAGS) -iquote . -iquote include -Wno-trigraphs -fno-exceptions -D$(REGION_DEFINE)=1
+CPPFLAGS := $(INCFLAGS) -I . -iquote . -iquote include -Wno-trigraphs -fno-exceptions -D$(REGION_DEFINE)=1
 CFLAGS   := -g -mthumb-interwork -Wimplicit -Wparentheses -Werror -O2 -fhex-asm -fdata-sections
 CXXFLAGS := -quiet -fno-exceptions -fno-rtti -fvtable-thunks $(CFLAGS)
 ASFLAGS  := $(INCFLAGS) -I . -I include -mcpu=arm7tdmi --defsym $(REGION_DEFINE)=1
@@ -89,12 +89,26 @@ fomt_us:
 fomt_jp:
 	@$(MAKE) GAME_REGION=JP GAME_REVISION=0 compare
 
-# Both regional targets build and verify their corresponding base ROM.
+fomt_eu:
+	@$(MAKE) GAME_REGION=EU GAME_REVISION=0 fomt_eu.gba
+
+fomt_de:
+	@$(MAKE) GAME_REGION=DE GAME_REVISION=0 fomt_de.gba
+
+# EU/DE build targets are usable before their full regional layouts are
+# matched.  Keep their hash checks explicit until those baselines are exact.
+compare_eu:
+	@$(MAKE) GAME_REGION=EU GAME_REVISION=0 compare
+
+compare_de:
+	@$(MAKE) GAME_REGION=DE GAME_REVISION=0 compare
+
+# US and JP targets build and verify their corresponding base ROM.
 
 compare: $(ROM)
 	sha1sum -c $(BUILD_NAME).sha1
 
-.PHONY: fomt_us fomt_jp compare
+.PHONY: fomt_us fomt_jp fomt_eu fomt_de compare_eu compare_de compare
 
 TEXT_TOOL_DIR := tools/textproc
 TEXT_TOOL := $(TEXT_TOOL_DIR)/fomt-text
@@ -103,6 +117,10 @@ TEXT_TOOLS := $(TEXT_TOOL) $(TEXT_PREPROC)
 
 ifeq ($(GAME_REGION),JP)
 TEXT_REGION := jp
+else ifeq ($(GAME_REGION),EU)
+TEXT_REGION := eu
+else ifeq ($(GAME_REGION),DE)
+TEXT_REGION := de
 else
 TEXT_REGION := us
 endif
@@ -113,7 +131,13 @@ endif
 # the actual src include relation to select those fragments.  Renaming or
 # adding an included fragment therefore needs no Makefile update.
 TEXT_FRAGMENT_CANDIDATES := $(wildcard data/text/common/*.cc data/text/$(TEXT_REGION)/*.cc)
-TEXT_FRAGMENT_INCLUDES := $(shell grep -RhoE '^#include "data/text/(common|$(TEXT_REGION))/[^"]+\.cc"' $(SRC_DIR) | sed -E 's/^#include "([^"]+)"/\1/' | sort -u)
+TEXT_FRAGMENT_LITERAL_INCLUDES := $(shell grep -RhoE '^#include "data/text/(common|$(TEXT_REGION))/[^"]+\.cc"' $(SRC_DIR) | sed -E 's/^#include "([^"]+)"/\1/' | sort -u)
+FOMT_TEXT_INCLUDE_LPAREN := (
+FOMT_TEXT_INCLUDE_RPAREN := )
+FOMT_TEXT_INCLUDE_REGEX_LPAREN := \(
+FOMT_TEXT_INCLUDE_REGEX_RPAREN := \)
+TEXT_FRAGMENT_REGION_INCLUDES := $(shell grep -RhoE '^#include FOMT_TEXT_INCLUDE$(FOMT_TEXT_INCLUDE_REGEX_LPAREN)[[:alnum:]_]+\.cc$(FOMT_TEXT_INCLUDE_REGEX_RPAREN)' $(SRC_DIR) | cut -d '$(FOMT_TEXT_INCLUDE_LPAREN)' -f2 | tr -d '$(FOMT_TEXT_INCLUDE_RPAREN)' | sed 's|^|data/text/$(TEXT_REGION)/|' | sort -u)
+TEXT_FRAGMENT_INCLUDES := $(sort $(TEXT_FRAGMENT_LITERAL_INCLUDES) $(TEXT_FRAGMENT_REGION_INCLUDES))
 TEXT_FRAGMENT_SOURCES := $(sort $(filter $(TEXT_FRAGMENT_CANDIDATES),$(TEXT_FRAGMENT_INCLUDES)))
 
 # The staff-credit source and the Reference Guide pages use their own visible
@@ -296,7 +320,7 @@ clean:
 .PHONY: clean
 
 ifneq (clean,$(MAKECMDGOALS))
-ifeq (,$(filter fomt_us fomt_jp,$(MAKECMDGOALS)))
+ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare_eu compare_de,$(MAKECMDGOALS)))
 -include $(ALL_DEPS)
 endif
 .PRECIOUS: $(BUILD_DIR)/%.d

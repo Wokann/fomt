@@ -8,9 +8,9 @@ char const gText_CharacterName_Empty[]
 // The selected regional names directly precede their native lookup table and
 // runtime trailer in both ROMs.
 #if defined(REGION_JP)
-#include "data/text/jp/character_names.cc"
+#include FOMT_TEXT_INCLUDE(character_names.cc)
 #else
-#include "data/text/us/character_names.cc"
+#include FOMT_TEXT_INCLUDE(character_names.cc)
 #endif
 
 // Entries are indexed directly by Mary CharacterId.  ID 0 and the Child entry

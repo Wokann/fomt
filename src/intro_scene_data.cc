@@ -87,9 +87,9 @@ EXTERN_C_END
 // Keeping this selected text here makes the source order match the bounded
 // intro-scene localization island in the linker scripts.
 #if defined(REGION_JP)
-#include "data/text/jp/intro_scene.cc"
+#include FOMT_TEXT_INCLUDE(intro_scene.cc)
 #else
-#include "data/text/us/intro_scene.cc"
+#include FOMT_TEXT_INCLUDE(intro_scene.cc)
 #endif
 
 EXTERN_C

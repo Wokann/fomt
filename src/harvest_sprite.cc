@@ -3,9 +3,9 @@
 #include <cstdlib>
 
 #if defined(REGION_JP)
-#include "data/text/jp/harvest_sprite_1.cc"
+#include FOMT_TEXT_INCLUDE(harvest_sprite_1.cc)
 #else
-#include "data/text/us/harvest_sprite_1.cc"
+#include FOMT_TEXT_INCLUDE(harvest_sprite_1.cc)
 #endif
 
 // These fixed tables are read by the still-native Animal Husbandry minigame
@@ -32,9 +32,9 @@ u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues3[7] = {
     };
 
 #if defined(REGION_JP)
-#include "data/text/jp/harvest_sprite_2.cc"
+#include FOMT_TEXT_INCLUDE(harvest_sprite_2.cc)
 #else
-#include "data/text/us/harvest_sprite_2.cc"
+#include FOMT_TEXT_INCLUDE(harvest_sprite_2.cc)
 #endif
 
 // The native Chicken Festival code selects a row with a twelve-byte stride,
@@ -52,9 +52,9 @@ u8 const gUnk_HarvestSpriteMiniGameChickenFestivalOffsets[4] = {
 };
 
 #if defined(REGION_JP)
-#include "data/text/jp/harvest_sprite_3.cc"
+#include FOMT_TEXT_INCLUDE(harvest_sprite_3.cc)
 #else
-#include "data/text/us/harvest_sprite_3.cc"
+#include FOMT_TEXT_INCLUDE(harvest_sprite_3.cc)
 #endif
 
 // This contiguous group is consumed by several still-native minigame and UI
@@ -99,9 +99,9 @@ u32 const gUnk_080BE954Values[7] = {
 };
 
 #if defined(REGION_JP)
-#include "data/text/jp/harvest_sprite_4.cc"
+#include FOMT_TEXT_INCLUDE(harvest_sprite_4.cc)
 #else
-#include "data/text/us/harvest_sprite_4.cc"
+#include FOMT_TEXT_INCLUDE(harvest_sprite_4.cc)
 #endif
 
 // JP begins this native halfword lookup at a byte-aligned address.  Preserve
@@ -138,9 +138,9 @@ u32 const gUnk_080C3B18IndexValues[7] = {
 };
 
 #if defined(REGION_JP)
-#include "data/text/jp/harvest_sprite_5.cc"
+#include FOMT_TEXT_INCLUDE(harvest_sprite_5.cc)
 #else
-#include "data/text/us/harvest_sprite_5.cc"
+#include FOMT_TEXT_INCLUDE(harvest_sprite_5.cc)
 #endif
 
 u16 const gUnk_080C7B38Values[10] = {

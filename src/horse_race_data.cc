@@ -4,11 +4,11 @@
 
 #if defined(REGION_JP)
 #define FOMT_TEXT_HORSE_RACE_TICKET_CONTROLS
-#include "data/text/jp/horse_race.cc"
+#include FOMT_TEXT_INCLUDE(horse_race.cc)
 #undef FOMT_TEXT_HORSE_RACE_TICKET_CONTROLS
 #else
 #define FOMT_TEXT_HORSE_RACE_TICKET_CONTROLS
-#include "data/text/us/horse_race.cc"
+#include FOMT_TEXT_INCLUDE(horse_race.cc)
 #undef FOMT_TEXT_HORSE_RACE_TICKET_CONTROLS
 #endif
 
@@ -31,11 +31,11 @@ char const gCppRuntimeBadAlloc_HorseRaceTicketControls[] =
 
 #if defined(REGION_JP)
 #define FOMT_TEXT_HORSE_RACE_PRIZE_CATALOG
-#include "data/text/jp/horse_race.cc"
+#include FOMT_TEXT_INCLUDE(horse_race.cc)
 #undef FOMT_TEXT_HORSE_RACE_PRIZE_CATALOG
 #else
 #define FOMT_TEXT_HORSE_RACE_PRIZE_CATALOG
-#include "data/text/us/horse_race.cc"
+#include FOMT_TEXT_INCLUDE(horse_race.cc)
 #undef FOMT_TEXT_HORSE_RACE_PRIZE_CATALOG
 #endif
 
@@ -56,11 +56,11 @@ u16 const gHorseRacePrizeItemIds[] = {
 
 #if defined(REGION_JP)
 #define FOMT_TEXT_HORSE_RACE_PRIZE_EXCHANGE
-#include "data/text/jp/horse_race.cc"
+#include FOMT_TEXT_INCLUDE(horse_race.cc)
 #undef FOMT_TEXT_HORSE_RACE_PRIZE_EXCHANGE
 #else
 #define FOMT_TEXT_HORSE_RACE_PRIZE_EXCHANGE
-#include "data/text/us/horse_race.cc"
+#include FOMT_TEXT_INCLUDE(horse_race.cc)
 #undef FOMT_TEXT_HORSE_RACE_PRIZE_EXCHANGE
 #endif
 

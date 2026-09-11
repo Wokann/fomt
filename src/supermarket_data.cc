@@ -20,11 +20,11 @@ SupermarketCatalogEntry const gSupermarketCropSeedCatalog[] = {
 
 #if defined(REGION_JP)
 #define FOMT_TEXT_SUPERMARKET_PRIMARY
-#include "data/text/jp/supermarket.cc"
+#include FOMT_TEXT_INCLUDE(supermarket.cc)
 #undef FOMT_TEXT_SUPERMARKET_PRIMARY
 #else
 #define FOMT_TEXT_SUPERMARKET_PRIMARY
-#include "data/text/us/supermarket.cc"
+#include FOMT_TEXT_INCLUDE(supermarket.cc)
 #undef FOMT_TEXT_SUPERMARKET_PRIMARY
 #endif
 
@@ -41,10 +41,10 @@ SupermarketCatalogEntry const gSupermarketAdditionalSeedCatalog[] = {
 
 #if defined(REGION_JP)
 #define FOMT_TEXT_SUPERMARKET_SECONDARY
-#include "data/text/jp/supermarket.cc"
+#include FOMT_TEXT_INCLUDE(supermarket.cc)
 #undef FOMT_TEXT_SUPERMARKET_SECONDARY
 #else
 #define FOMT_TEXT_SUPERMARKET_SECONDARY
-#include "data/text/us/supermarket.cc"
+#include FOMT_TEXT_INCLUDE(supermarket.cc)
 #undef FOMT_TEXT_SUPERMARKET_SECONDARY
 #endif

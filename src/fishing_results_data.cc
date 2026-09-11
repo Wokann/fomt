@@ -4,9 +4,9 @@
 // The selected regional record names directly precede their native pointer
 // table and runtime trailer in both ROMs.
 #if defined(REGION_JP)
-#include "data/text/jp/fishing_results.cc"
+#include FOMT_TEXT_INCLUDE(fishing_results.cc)
 #else
-#include "data/text/us/fishing_results.cc"
+#include FOMT_TEXT_INCLUDE(fishing_results.cc)
 #endif
 
 // Indexed directly by the native FishingRecordId domain.  When a regional
