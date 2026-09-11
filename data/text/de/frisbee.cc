@@ -7,89 +7,89 @@ char const gText_Frisbee_TournamentScoreboard[] =
 
 #else
 
-// Static Frisbee UI text.  The text processor converts these UTF-8 strings
-// and named controls into the exact regional ROM bytes during the build.
-
 char const gText_Frisbee_ExplanationQuestion[] =
-    "Do you want an explanation?";
+    "Möchtest du eine Erklärung?";
 
 char const gText_Frisbee_Yes[] ALIGN(4) =
-    "Yes";
+    "Ja";
 
 char const gText_Frisbee_No[] ALIGN(4) =
-    "No";
+    "Nein";
 
 char const gText_Frisbee_ExplanationCursorTiming[] ALIGN(4) =
     "\p"
-    "The cursor on the gauge\r\n"
-    "to the left will start to \r\n"
-    "move when the game starts.{Press}\r\n"
-    "Press the A Button to stop\r\n"
-    "the cursor with the \r\n"
-    "correct timing.{Press}";
+    "Der Cursor links auf der\r\n"
+    "Anzeige beginnt sich zu \r\n"
+    "bewegen,  wenn{Press}\r\n"
+    "das Spiel beginnt.\r\n"
+    "Drücke Knopf A, um den\r\n"
+    "Cursor im richtigen{Press}\r\n"
+    "Augenblick zu stoppen.{Press}";
 
 char const gText_Frisbee_ExplanationGreenZone[] ALIGN(4) =
     "\p"
-    "The green zone shows how\r\n"
-    "far your dog can catch \r\n"
-    "the frisbee.{Press}";
+    "Die grüne Zone markiert\r\n"
+    "den Raum, in dem dein Hund \r\n"
+    "den Frisbee erwischen kann.{Press}";
 
 char const gText_Frisbee_ExplanationRedZone[] ALIGN(4) =
     "\p"
-    "The red zone shows where\r\n"
-    "the frisbee can't be \r\n"
-    "caught.{Press}\r\n"
-    "Be sure to catch the \r\n"
-    "frisbee inside the green\r\n"
-    "zone.{Press}";
+    "Die rote Zone markiert\r\n"
+    "den Raum, in dem der Frisbee\r\n"
+    "nicht erwischt werden kann.{Press}\r\n"
+    "Sieh zu, dass du den\r\n"
+    "Frisbee innerhalb der\r\n"
+    "grünen Zone erwischst.{Press}\r\n";
 
 char const gText_Frisbee_ExplanationPractice[] ALIGN(4) =
     "\p"
-    "The more you practice,\r\n"
-    "the greater your dog's \r\n"
-    "range becomes{Press}\r\n"
-    "However, if you practice\r\n"
-    "too much at once, your\r\n"
-    "dog will get bored.{Press}\r\n"
-    "If this happens he won't\r\n"
-    "play any more. The higher\r\n"
-    "your dog's affection is{Press}\r\n"
-    "toward you, the more he\r\n"
-    "will practice.{Press}";
+    "Je mehr du übst,\r\n"
+    "umso größer wird die\r\n"
+    "Zone, in der dein Hund den{Press}\r\n"
+    "Frisbee schnappen kann.\r\n"
+    "Wenn du aber zu lange\r\n"
+    "am Stück spielst, verliert{Press}\r\n"
+    "dein Hund die Lust am Spiel.\r\n"
+    "Wenn das passiert, wird\r\n"
+    "er nicht mehr spielen.{Press}\r\n"
+    "Je mehr dein Hund dich\r\n"
+    "mag, desto mehr\r\n"
+    "wird er üben.{Press}";
 
 char const gText_Frisbee_ExplanationTournament[] ALIGN(4) =
     "\p"
-    "In the Frisbee Tournament,\r\n"
-    "you get two tries. The\r\n"
-    "better throw is used.{Press}";
+    "Im Frisbee-Wettkampf\r\n"
+    "kriegst du zwei Versuche. \r\n"
+    "Der bessere Wurf zählt.{Press}";
 
 char const gText_Frisbee_ExplainAgain[] ALIGN(4) =
-    "Explain again?";
+    "Nochmal erklären?";
 
 char const gText_Frisbee_ThrowAgain[] ALIGN(4) =
     "\p"
-    "Now throw again.{Press}";
+    "Jetzt wirf nochmal.{Press}";
 
 char const gText_Frisbee_TournamentFinished[] ALIGN(4) =
     "\p"
-    "The Tournament is over.{Press}";
+    "Der Wettkampf ist vorbei.{Press}";
 
 char const gText_Frisbee_PlayAgain[] ALIGN(4) =
-    "Play again?";
+    "Noch einmal spielen?";
 
 char const gText_Frisbee_DogNoLongerWantsToPlay[] ALIGN(4) =
     "\p"
-    "Your dog doesn't seem to\r\n"
-    "want to play anymore.{Press}";
+    "Dein Hund will anscheinend\r\n"
+    "nicht mehr spielen.{Press}";
 
 char const gText_Frisbee_FoundItem[] ALIGN(4) =
     "\p"
-    "You found a\r\n"
+    "Du hast ein\r\n"
+    "gefunden!\r\n"
     "{Player}{Press}";
 
 char const gText_Frisbee_FoundNothing[] ALIGN(4) =
     "\p"
-    "You didn't find anything.{Press}";
+    "Du hast nichts gefunden.{Press}";
 
 char const gCppRuntimeBadAlloc_FrisbeeTextTrailer[] ALIGN(4) =
     "bad_alloc";
