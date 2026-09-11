@@ -4457,7 +4457,16 @@ gUnk_0875A440:
 
 	.global gUnk_0875B444
 gUnk_0875B444:
-	.incbin "baserom_us.gba", 0x75B444, 0x5B4
+	.incbin "baserom_us.gba", 0x75B444, 0x520
+
+	@ Thumb function dispatch table.  Keep these as relocations so regional
+	@ code-layout differences update the function pointers automatically.
+	.4byte func_080D3778 + 1
+	.4byte func_080D379C + 1
+	.4byte func_080D3840 + 1
+	.4byte func_080D3870 + 1
+
+	.incbin "baserom_us.gba", 0x75B974, 0x84
 
 	@ Shared UI resource payloads.  Their internal encodings remain raw.
 	.global gUnk_UiSharedResourceData_000
