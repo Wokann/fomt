@@ -1679,10 +1679,19 @@ gActorStateGridCellType4Data:
     .else
     .section .rodata
 
+    .ifdef REGION_EU
+    @ EU keeps this asset stream as an intact regional block.  It includes
+    @ Mary-managed script payloads, which are intentionally not split here.
+    .LDATA_BEG = 0x13B2E0
+
+us_data_0813b288_start:
+	.incbin "baserom_eu.gba", (.LDATA_BEG), (0x4F9130 - .LDATA_BEG)
+    .else
     .LDATA_BEG = 0x13B288
 
 us_data_0813b288_start:
 	.incbin "baserom_us.gba", (.LDATA_BEG), (0x4F90CC - .LDATA_BEG)
+    .endif
 
     @ Song header labels recovered from gSongTable.  The raw M4A payloads
     @ remain in this regional asset container; the C table uses these labels.
