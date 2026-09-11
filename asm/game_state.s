@@ -59,7 +59,9 @@ func_08010F04:
     jp_game_state_chunk 0x10F10, 0x10F1C
     jp_game_state_chunk 0x10F1C, 0x10F28
     jp_game_state_chunk 0x10F28, 0x10F34
-    jp_game_state_chunk 0x10F34, 0x113EC
+    jp_game_state_chunk 0x10F34, 0x110CC
+    .4byte gUnk_080F0566
+    jp_game_state_chunk 0x110D0, 0x113EC
     jp_game_state_chunk 0x113EC, 0x11438
     jp_game_state_chunk 0x11438, 0x11444
 
