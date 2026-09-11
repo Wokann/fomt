@@ -93,136 +93,136 @@ SECTIONS
         asm/code_entities.o(.text);
         src/entity_actor.o(.text);
         asm/code_entities_080320DC.o(.text);
-        . = 0x324B8; /* JP/US-shared default entity-UI false handler. */
+        . = 0x324CC; /* JP/US-shared default entity-UI false handler. */
         src/entity_ui.o(.text.entity_ui_default_no_action);
-        . = 0x324BC; /* Continue the surrounding entity-UI ROM block. */
+        . = 0x324D0; /* Continue the surrounding entity-UI ROM block. */
         asm/code_entities_080320DC.o(.text.entity_ui_default_no_action_after);
-        . = 0x32900; /* JP/US-shared entity-UI coordinate classifier. */
+        . = 0x32914; /* JP/US-shared entity-UI coordinate classifier. */
         src/entity_ui.o(.text.entity_ui_region_classification);
-        . = 0x32934; /* Continue the surrounding entity-UI ROM block. */
+        . = 0x32948; /* Continue the surrounding entity-UI ROM block. */
         asm/code_entities_080320DC.o(.text.entity_ui_region_classification_after);
-        . = 0x32A00; /* JP/US-shared entity-UI constructor. */
+        . = 0x32A14; /* JP/US-shared entity-UI constructor. */
         src/entity_ui.o(.text.entity_ui_constructor);
-        . = 0x32A30; /* Continue the surrounding entity-UI ROM block. */
+        . = 0x32A44; /* Continue the surrounding entity-UI ROM block. */
         asm/code_entities_080320DC.o(.text.entity_ui_constructor_after);
-        . = 0x33914; /* JP/US-shared Harvest Sprite task experience transform. */
+        . = 0x33928; /* JP/US-shared Harvest Sprite task experience transform. */
         src/entity_ui.o(.text.entity_ui_harvest_sprite_task_experience);
-        . = 0x33928; /* Continue the surrounding entity-UI ROM block. */
+        . = 0x3393C; /* Continue the surrounding entity-UI ROM block. */
         asm/code_entities_080320DC.o(.text.entity_ui_harvest_sprite_task_experience_after);
-        . = 0x33B24; /* JP/US-shared Harvest Sprite UI entry test. */
+        . = 0x33B38; /* JP/US-shared Harvest Sprite UI entry test. */
         src/entity_ui.o(.text.entity_ui_harvest_sprite_selection);
-        . = 0x33B7C; /* JP/US-shared entity-UI byte-0x41 clearer. */
+        . = 0x33B90; /* JP/US-shared entity-UI byte-0x41 clearer. */
         src/entity_ui.o(.text.entity_ui_unknown_flag);
-        . = 0x33B84; /* Continue the surrounding entity-UI ROM block. */
+        . = 0x33B98; /* Continue the surrounding entity-UI ROM block. */
         asm/code_entities_080320DC.o(.text.entity_ui_unknown_flag_after);
-        . = 0x34248; /* JP/US-shared entity-UI animation lookup. */
+        . = 0x3425C; /* JP/US-shared entity-UI animation lookup. */
         src/entity_ui.o(.text.entity_ui_animation_lookup);
-        . = 0x34260; /* Continue the surrounding entity-UI ROM block. */
+        . = 0x34274; /* Continue the surrounding entity-UI ROM block. */
         asm/code_entities_080320DC.o(.text.entity_ui_animation_lookup_after);
-        . = 0x34BFC; /* JP/US-shared entity-UI resource setup. */
+        . = 0x34C10; /* JP/US-shared entity-UI resource setup. */
         src/entity_ui.o(.text.entity_ui_resource_setup);
-        . = 0x34C40; /* Continue the surrounding entity-UI ROM block. */
+        . = 0x34C54; /* Continue the surrounding entity-UI ROM block. */
         src/entity_ui.o(.text.entity_ui_get_value_30);
-        . = 0x34C48; /* Continue the surrounding entity-UI ROM block. */
+        . = 0x34C5C; /* Continue the surrounding entity-UI ROM block. */
         src/entity_ui.o(.text.entity_ui_get_pointer_10);
-        . = 0x34C4C; /* Continue the surrounding entity-UI ROM block. */
+        . = 0x34C60; /* Continue the surrounding entity-UI ROM block. */
         src/entity_ui.o(.text.entity_ui_dispatch_value_30);
-        . = 0x34C64; /* Continue the surrounding entity-UI ROM block. */
+        . = 0x34C78; /* Continue the surrounding entity-UI ROM block. */
         asm/code_entities_080320DC.o(.text.entity_ui_resource_setup_after);
         src/npc_entity.o(.text);
         asm/code_entities_08034CEC.o(.text);
 
         asm/code_0803A8A4.o(.text);
-        . = 0x3BDE4; /* US ROM 0x0803BDE4, set a u16 pair */
+        . = 0x3BDF8; /* US ROM 0x0803BDE4, set a u16 pair */
         src/code_0803BDE4.o(.text);
-        . = 0x3BDFC; /* US ROM 0x0803BDFC, remaining raw control code */
+        . = 0x3BE10; /* US ROM 0x0803BDFC, remaining raw control code */
         asm/code_0803A8A4.o(.text.code_0803BDFC);
-        . = 0x3BE9C; /* US ROM 0x0803BE9C, unpack a packed value */
+        . = 0x3BEB0; /* US ROM 0x0803BE9C, unpack a packed value */
         src/code_0803BE9C.o(.text);
-        . = 0x3BEB0; /* US ROM 0x0803BEB0, forward owned operations */
+        . = 0x3BEC4; /* US ROM 0x0803BEB0, forward owned operations */
         src/code_0803BEB0.o(.text);
-        . = 0x3BED4; /* US ROM 0x0803BED4, forward owned operations */
+        . = 0x3BEE8; /* US ROM 0x0803BED4, forward owned operations */
         src/code_0803BED4.o(.text);
-        . = 0x3BEEC; /* US ROM 0x0803BEEC, read signed pair values */
+        . = 0x3BF00; /* US ROM 0x0803BEEC, read signed pair values */
         src/code_0803BEEC.o(.text);
-        . = 0x3BEFC; /* US ROM 0x0803BEFC, forward pair operations */
+        . = 0x3BF10; /* US ROM 0x0803BEFC, forward pair operations */
         src/code_0803BEFC.o(.text);
-        . = 0x3BF14; /* US ROM 0x0803BF14, remaining raw control code */
+        . = 0x3BF28; /* US ROM 0x0803BF14, remaining raw control code */
         asm/code_0803A8A4.o(.text.code_0803BF14);
-        . = 0x3C518; /* US ROM 0x0803C518, activate control bytes */
+        . = 0x3C52C; /* US ROM 0x0803C518, activate control bytes */
         src/code_0803C518.o(.text);
-        . = 0x3C540; /* US ROM 0x0803C540, read and clear control bytes */
+        . = 0x3C554; /* US ROM 0x0803C540, read and clear control bytes */
         src/code_0803C540.o(.text);
-        . = 0x3C54C; /* US ROM 0x0803C54C, remaining raw control code */
+        . = 0x3C560; /* US ROM 0x0803C54C, remaining raw control code */
         asm/code_0803A8A4.o(.text.code_0803C54C);
-        . = 0x3E40C; /* US ROM shared Lou/Ruby Sunday schedule gate. */
+        . = 0x3E420; /* US ROM shared Lou/Ruby Sunday schedule gate. */
         src/code_0803E40C.o(.text);
-        . = 0x3E448; /* US ROM 0x0803E448, remaining raw control code */
+        . = 0x3E45C; /* US ROM 0x0803E448, remaining raw control code */
         asm/code_0803A8A4.o(.text.code_0803E448);
         src/script_engine.o(.text);
         asm/code_0803EE94.o(.text);
-        . = 0x4E4AC; /* Ordinary 2D glyph compositor. */
+        . = 0x4E4C0; /* Ordinary 2D glyph compositor. */
         src/font_draw.o(.text.font_draw_normal);
-        . = 0x4E5AC; /* Extended palette glyph compositor. */
+        . = 0x4E5C0; /* Extended palette glyph compositor. */
         src/font_draw_ext.o(.text);
-        . = 0x4E7A0; /* Shared 2D tile-buffer fillers and Shift-JIS renderers. */
+        . = 0x4E7B4; /* Shared 2D tile-buffer fillers and Shift-JIS renderers. */
         src/font_draw.o(.text);
-        . = 0x4E9D0; src/font_draw.o(.text.font_draw_after);
+        . = 0x4E9E4; src/font_draw.o(.text.font_draw_after);
         asm/code_0803EE94.o(.text.font_draw_after);
-        . = 0x503FC; /* JP/US-shared nonzero UI-state setter. */
+        . = 0x50410; /* JP/US-shared nonzero UI-state setter. */
         src/ui_state.o(.text.set_ui_object_state_two_if_nonzero);
-        . = 0x50410; /* JP/US-shared nonzero UI-state clearer. */
+        . = 0x50424; /* JP/US-shared nonzero UI-state clearer. */
         src/ui_state.o(.text.clear_ui_object_state_if_nonzero);
-        . = 0x50424; asm/code_0803EE94.o(.text.ui_object_state_after);
-        . = 0x50B3C; /* JP/US-shared UI action-state first-flag clearer. */
+        . = 0x50438; asm/code_0803EE94.o(.text.ui_object_state_after);
+        . = 0x50B50; /* JP/US-shared UI action-state first-flag clearer. */
         src/ui_state.o(.text.clear_ui_action_state_flag_01dc);
-        . = 0x50B50; asm/code_0803EE94.o(.text.clear_ui_action_state_flag_01dc_after);
-        . = 0x50C18; /* JP/US-shared UI action-state second-flag clearer. */
+        . = 0x50B64; asm/code_0803EE94.o(.text.clear_ui_action_state_flag_01dc_after);
+        . = 0x50C2C; /* JP/US-shared UI action-state second-flag clearer. */
         src/ui_state.o(.text.clear_ui_action_state_flag_01f0);
-        . = 0x50C2C; asm/code_0803EE94.o(.text.clear_ui_action_state_flag_01f0_after);
-        . = 0x50D5C; /* US ROM contiguous UI-state adapter block. */
+        . = 0x50C40; asm/code_0803EE94.o(.text.clear_ui_action_state_flag_01f0_after);
+        . = 0x50D70; /* US ROM contiguous UI-state adapter block. */
         src/ui_state.o(.text.ui_state_adapters);
-        . = 0x50EE4; /* US ROM 0x08050EE4, remaining raw UI-adjacent code. */
+        . = 0x50EF8; /* US ROM 0x08050EE4, remaining raw UI-adjacent code. */
         asm/code_0803EE94.o(.text.code_08050E50);
-        . = 0x522D8; /* JP/US-shared animal-festival ranking entry copy. */
+        . = 0x522EC; /* JP/US-shared animal-festival ranking entry copy. */
         src/animal_festival_ranking.o(.text.copy_animal_festival_ranking_entry);
-        . = 0x522E8; /* JP/US-shared animal-festival ranking entry setter. */
+        . = 0x522FC; /* JP/US-shared animal-festival ranking entry setter. */
         src/animal_festival_ranking.o(.text.set_animal_festival_ranking_entry);
-        . = 0x522F8; asm/code_0803EE94.o(.text.animal_festival_ranking_after);
-        . = 0x5E6CC; /* JP/US-shared indexed resource-archive constructor. */
+        . = 0x5230C; asm/code_0803EE94.o(.text.animal_festival_ranking_after);
+        . = 0x5E6E0; /* JP/US-shared indexed resource-archive constructor. */
         src/resource_handle.o(.text.indexed_resource_archive_constructor);
-        . = 0x5E760; /* JP/US-shared indexed resource-archive resolver. */
+        . = 0x5E774; /* JP/US-shared indexed resource-archive resolver. */
         src/resource_handle.o(.text.indexed_resource_archive_resolve);
-        . = 0x5E790; asm/code_0803EE94.o(.text.indexed_resource_archive_resolve_after);
-        . = 0x5E81C; /* JP/US-shared indexed resource-archive group count. */
+        . = 0x5E7A4; asm/code_0803EE94.o(.text.indexed_resource_archive_resolve_after);
+        . = 0x5E830; /* JP/US-shared indexed resource-archive group count. */
         src/resource_handle.o(.text.indexed_resource_archive_get_group_descriptor_count);
-        . = 0x5E820; /* JP/US-shared indexed resource-archive entry count. */
+        . = 0x5E834; /* JP/US-shared indexed resource-archive entry count. */
         src/resource_handle.o(.text.indexed_resource_archive_get_entry_descriptor_count);
-        . = 0x5E824; /* JP/US-shared indexed resource-handle constructor. */
+        . = 0x5E838; /* JP/US-shared indexed resource-handle constructor. */
         src/resource_handle.o(.text.indexed_resource_handle_constructor);
-        . = 0x5E850; /* JP/US-shared indexed resource-handle initializer. */
+        . = 0x5E864; /* JP/US-shared indexed resource-handle initializer. */
         src/resource_handle.o(.text.initialize_indexed_resource_handle);
-        . = 0x5E860; /* JP/US-shared indexed resource-handle resolver. */
+        . = 0x5E874; /* JP/US-shared indexed resource-handle resolver. */
         src/resource_handle.o(.text.resolve_indexed_resource_handle);
-        . = 0x5E894; asm/code_0803EE94.o(.text.indexed_resource_handle_constructor_after);
-        . = 0x75DB8; /* JP/US-shared scroll-position reset. */
+        . = 0x5E8A8; asm/code_0803EE94.o(.text.indexed_resource_handle_constructor_after);
+        . = 0x75DCC; /* JP/US-shared scroll-position reset. */
         src/scroll_state.o(.text.reset_scroll_position);
-        . = 0x75DD4; /* JP/US-shared scroll-buffer clear. */
+        . = 0x75DE8; /* JP/US-shared scroll-buffer clear. */
         src/scroll_state.o(.text.clear_scroll_buffer);
-        . = 0x75DEC; asm/code_0803EE94.o(.text.clear_scroll_buffer_after);
-        . = 0x76BE0; /* JP/US-shared selection-index state setter. */
+        . = 0x75E00; asm/code_0803EE94.o(.text.clear_scroll_buffer_after);
+        . = 0x76BF4; /* JP/US-shared selection-index state setter. */
         src/selection_state.o(.text.set_selection_index);
-        . = 0x76BEC; /* JP/US-shared selection-index state getter. */
+        . = 0x76C00; /* JP/US-shared selection-index state getter. */
         src/selection_state.o(.text.get_selection_index);
-        . = 0x76BFC; asm/code_0803EE94.o(.text.get_selection_index_after);
-        . = 0x77E34; /* JP/US-shared 30x13 BG map copier. */
+        . = 0x76C10; asm/code_0803EE94.o(.text.get_selection_index_after);
+        . = 0x77E48; /* JP/US-shared 30x13 BG map copier. */
         src/town_map_data.o(.text.copy_bg_map_30x13);
-        . = 0x77E64; /* JP/US-shared rectangular BG map copier. */
+        . = 0x77E78; /* JP/US-shared rectangular BG map copier. */
         src/town_map_data.o(.text.copy_bg_map_rect);
-        . = 0x77EC0; asm/code_0803EE94.o(.text.copy_bg_map_rect_after);
-        . = 0x782C4; /* JP/US-shared town-map cursor hit test. */
+        . = 0x77ED4; asm/code_0803EE94.o(.text.copy_bg_map_rect_after);
+        . = 0x782D8; /* JP/US-shared town-map cursor hit test. */
         src/town_map_data.o(.text.town_map_hotspot_contains);
-        . = 0x782EC; asm/code_0803EE94.o(.text.town_map_hotspot_contains_after);
+        . = 0x78300; asm/code_0803EE94.o(.text.town_map_hotspot_contains_after);
 
         src/actor.o(.text);
         src/animal.o(.text);
@@ -234,126 +234,126 @@ SECTIONS
         src/chicken.o(.text);
         src/cow.o(.text);
         src/sheep.o(.text);
-        . = 0x9BFE8; /* US ROM 0x0809BFE8, independently matched */
+        . = 0x9C018; /* US ROM 0x0809BFE8, independently matched */
         src/code_actor_0809BFE8.o(.text);
-        . = 0x9C160; /* US ROM 0x0809C160, unlabelled raw helper */
+        . = 0x9C190; /* US ROM 0x0809C160, unlabelled raw helper */
         asm/code_actor_0809BFE8.o(.text.code_actor_0809C160);
-        . = 0x9C22C; /* US ROM 0x0809C22C, shared selector */
+        . = 0x9C25C; /* US ROM 0x0809C22C, shared selector */
         src/code_actor_0809C22C.o(.text);
-        . = 0x9C304; /* US ROM 0x0809C304, shared table accessor */
+        . = 0x9C334; /* US ROM 0x0809C304, shared table accessor */
         src/code_actor_0809C304.o(.text);
-        . = 0x9C318; /* US ROM 0x0809C318, raw actor helper */
+        . = 0x9C348; /* US ROM 0x0809C318, raw actor helper */
         asm/code_actor_0809BFE8.o(.text.code_actor_0809C318);
-        . = 0x9C32C; /* US ROM 0x0809C32C, shared paired-state predicate */
+        . = 0x9C35C; /* US ROM 0x0809C32C, shared paired-state predicate */
         src/code_actor_0809C32C.o(.text);
-        . = 0x9C38C; /* US ROM 0x0809C38C, shared nonzero-state predicate */
+        . = 0x9C3BC; /* US ROM 0x0809C38C, shared nonzero-state predicate */
         src/code_actor_0809C38C.o(.text);
-        . = 0x9C3BC; /* US ROM 0x0809C3BC, shared state initializer */
+        . = 0x9C3EC; /* US ROM 0x0809C3BC, shared state initializer */
         src/code_actor_0809C3BC.o(.text);
-        . = 0x9C3E0; /* US ROM 0x0809C3E0, shared state advancement */
+        . = 0x9C410; /* US ROM 0x0809C3E0, shared state advancement */
         src/code_actor_0809C3E0.o(.text);
-        . = 0x9C420; /* US ROM 0x0809C420, shared state reset */
+        . = 0x9C450; /* US ROM 0x0809C420, shared state reset */
         src/code_actor_0809C420.o(.text);
-        . = 0x9C444; /* US ROM 0x0809C444, shared conditional state advance */
+        . = 0x9C474; /* US ROM 0x0809C444, shared conditional state advance */
         src/code_actor_0809C444.o(.text);
-        . = 0x9C474; /* US ROM 0x0809C474, shared state-update dispatcher */
+        . = 0x9C4A4; /* US ROM 0x0809C474, shared state-update dispatcher */
         src/code_actor_0809C474.o(.text);
-        . = 0x9C4B4; /* US ROM 0x0809C4B4, shared state-update dispatcher */
+        . = 0x9C4E4; /* US ROM 0x0809C4B4, shared state-update dispatcher */
         src/code_actor_0809C4B4.o(.text);
-        . = 0x9C4E4; /* US ROM 0x0809C4E4, shared word clear */
+        . = 0x9C514; /* US ROM 0x0809C4E4, shared word clear */
         src/code_actor_0809C4E4.o(.text);
-        . = 0x9C4EC; /* US ROM 0x0809C4EC, shared selection helper and raw actor code */
+        . = 0x9C51C; /* US ROM 0x0809C4EC, shared selection helper and raw actor code */
         asm/code_actor_0809BFE8.o(.text.code_actor_0809C4EC);
-        . = 0x9C5B4; /* US ROM 0x0809C5B4, set bounded flag */
+        . = 0x9C5E4; /* US ROM 0x0809C5B4, set bounded flag */
         src/code_actor_0809C5B4.o(.text);
-        . = 0x9C5D0; /* US ROM 0x0809C5D0, clear bounded flag */
+        . = 0x9C600; /* US ROM 0x0809C5D0, clear bounded flag */
         src/code_actor_0809C5D0.o(.text);
-        . = 0x9C5EC; /* US ROM 0x0809C5EC, clear flag word */
+        . = 0x9C61C; /* US ROM 0x0809C5EC, clear flag word */
         src/code_actor_0809C5EC.o(.text);
-        . = 0x9C5F4; /* US ROM 0x0809C5F4, test flag word */
+        . = 0x9C624; /* US ROM 0x0809C5F4, test flag word */
         src/code_actor_0809C5F4.o(.text);
-        . = 0x9C600; /* US ROM 0x0809C600, register event-state variable */
+        . = 0x9C630; /* US ROM 0x0809C600, register event-state variable */
         src/code_actor_0809C600.o(.text);
-        . = 0x9C644; /* US ROM 0x0809C644, remaining raw actor code */
+        . = 0x9C674; /* US ROM 0x0809C644, remaining raw actor code */
         asm/code_actor_0809BFE8.o(.text.code_actor_0809C644);
-        . = 0x9C694; /* US ROM 0x0809C694, compare selected u16 */
+        . = 0x9C6C4; /* US ROM 0x0809C694, compare selected u16 */
         src/code_actor_0809C694.o(.text);
-        . = 0x9C6AC; /* US ROM 0x0809C6AC, set selected u16 */
+        . = 0x9C6DC; /* US ROM 0x0809C6AC, set selected u16 */
         src/code_actor_0809C6AC.o(.text);
-        . = 0x9C6B0; /* US ROM 0x0809C6B0, reset selected u16 */
+        . = 0x9C6E0; /* US ROM 0x0809C6B0, reset selected u16 */
         src/code_actor_0809C6B0.o(.text);
-        . = 0x9C6BC; /* US ROM 0x0809C6BC, remaining raw actor code */
+        . = 0x9C6EC; /* US ROM 0x0809C6BC, remaining raw actor code */
         asm/code_actor_0809BFE8.o(.text.code_actor_0809C6BC);
-        . = 0x9CD78; /* US ROM 0x0809CD78, clear tracked counters */
+        . = 0x9CDA8; /* US ROM 0x0809CD78, clear tracked counters */
         src/code_actor_0809CD78.o(.text);
-        . = 0x9CD98; /* US ROM 0x0809CD98, update count and maximum */
+        . = 0x9CDC8; /* US ROM 0x0809CD98, update count and maximum */
         src/code_actor_0809CD98.o(.text);
-        . = 0x9CDCC; /* US ROM 0x0809CDCC, test tracked counts */
+        . = 0x9CDFC; /* US ROM 0x0809CDCC, test tracked counts */
         src/code_actor_0809CDCC.o(.text);
-        . = 0x9CDEC; /* US ROM 0x0809CDEC, sum tracked counts */
+        . = 0x9CE1C; /* US ROM 0x0809CDEC, sum tracked counts */
         src/code_actor_0809CDEC.o(.text);
-        . = 0x9CE1C; /* US ROM 0x0809CE1C, get record count */
+        . = 0x9CE4C; /* US ROM 0x0809CE1C, get record count */
         src/code_actor_0809CE1C.o(.text);
-        . = 0x9CE24; /* US ROM 0x0809CE24, get record maximum */
+        . = 0x9CE54; /* US ROM 0x0809CE24, get record maximum */
         src/code_actor_0809CE24.o(.text);
-        . = 0x9CE30; /* US ROM 0x0809CE30, map six input codes */
+        . = 0x9CE60; /* US ROM 0x0809CE30, map six input codes */
         src/code_actor_0809CE30.o(.text);
-        . = 0x9CE7C; /* US ROM 0x0809CE7C, get fishing-record name */
+        . = 0x9CEAC; /* US ROM 0x0809CE7C, get fishing-record name */
         src/code_actor_0809CE7C.o(.text);
-        . = 0x9CE8C; /* US ROM 0x0809CE8C, remaining raw actor code */
+        . = 0x9CEBC; /* US ROM 0x0809CE8C, remaining raw actor code */
         asm/code_actor_0809BFE8.o(.text.code_actor_0809CE8C);
-        . = 0x9D418; /* US ROM 0x0809D418, map a segmented input value */
+        . = 0x9D448; /* US ROM 0x0809D418, map a segmented input value */
         src/code_actor_0809D418.o(.text);
-        . = 0x9D470; /* US ROM 0x0809D470, remaining raw actor code */
+        . = 0x9D4A0; /* US ROM 0x0809D470, remaining raw actor code */
         asm/code_actor_0809BFE8.o(.text.code_actor_0809D470);
-        . = 0x9D7D8; /* US ROM 0x0809D7D8, classify actor-state value */
+        . = 0x9D808; /* US ROM 0x0809D7D8, classify actor-state value */
         src/code_actor_0809D7D8.o(.text);
-        . = 0x9D8A0; /* US ROM 0x0809D8A0, read state value */
+        . = 0x9D8D0; /* US ROM 0x0809D8A0, read state value */
         src/code_actor_0809D8A0.o(.text);
-        . = 0x9D8A4; /* US ROM 0x0809D8A4, map one state value */
+        . = 0x9D8D4; /* US ROM 0x0809D8A4, map one state value */
         src/code_actor_0809D8A4.o(.text);
-        . = 0x9D8B8; /* US ROM 0x0809D8B8, map two state values */
+        . = 0x9D8E8; /* US ROM 0x0809D8B8, map two state values */
         src/code_actor_0809D8B8.o(.text);
-        . = 0x9D8D4; /* US ROM 0x0809D8D4, read packed grid-cell value */
+        . = 0x9D904; /* US ROM 0x0809D8D4, read packed grid-cell value */
         src/code_actor_0809D8D4.o(.text);
-        . = 0x9D8E8; /* US ROM 0x0809D8E8, remaining raw actor code */
+        . = 0x9D918; /* US ROM 0x0809D8E8, remaining raw actor code */
         asm/code_actor_0809BFE8.o(.text.code_actor_0809D8E8);
-        . = 0x9DF2C; /* US ROM 0x0809DF2C, query tool availability by group */
+        . = 0x9DF5C; /* US ROM 0x0809DF2C, query tool availability by group */
         src/code_actor_0809DF2C.o(.text);
-        . = 0x9DFAC; /* US ROM 0x0809DFAC, count actor-state flag bits */
+        . = 0x9DFDC; /* US ROM 0x0809DFAC, count actor-state flag bits */
         src/code_actor_0809DFAC.o(.text);
-        . = 0x9E02C; /* US ROM 0x0809E02C, count actor-state flag bits */
+        . = 0x9E05C; /* US ROM 0x0809E02C, count actor-state flag bits */
         src/code_actor_0809E02C.o(.text);
-        . = 0x9E0AC; /* US ROM 0x0809E0AC, select actor-state cell-type data */
+        . = 0x9E0DC; /* US ROM 0x0809E0AC, select actor-state cell-type data */
         src/code_actor_0809E0AC.o(.text);
-        . = 0x9E118; /* US ROM 0x0809E118, remaining raw actor code */
+        . = 0x9E148; /* US ROM 0x0809E118, remaining raw actor code */
         asm/code_actor_0809BFE8.o(.text.code_actor_0809E118);
-        . = 0x9E174; /* US ROM 0x0809E174, read actor-state bit 0 */
+        . = 0x9E1A4; /* US ROM 0x0809E174, read actor-state bit 0 */
         src/code_actor_0809E174.o(.text);
-        . = 0x9E184; /* US ROM 0x0809E184, read actor-state bit 2 */
+        . = 0x9E1B4; /* US ROM 0x0809E184, read actor-state bit 2 */
         src/code_actor_0809E184.o(.text);
-        . = 0x9E194; /* US ROM 0x0809E194, read actor-state bit 3 */
+        . = 0x9E1C4; /* US ROM 0x0809E194, read actor-state bit 3 */
         src/code_actor_0809E194.o(.text);
-        . = 0x9E1A4; /* US ROM 0x0809E1A4, read actor-state bit 4 */
+        . = 0x9E1D4; /* US ROM 0x0809E1A4, read actor-state bit 4 */
         src/code_actor_0809E1A4.o(.text);
-        . = 0x9E1B4; /* US ROM 0x0809E1B4, remaining raw actor code */
+        . = 0x9E1E4; /* US ROM 0x0809E1B4, remaining raw actor code */
         asm/code_actor_0809BFE8.o(.text.code_actor_0809E1B4);
         src/npc.o(.text);
         src/bachelorette.o(.text);
         src/harvest_sprite.o(.text);
 
         asm/code_809E804.o(.text);
-        . = 0x9EACC; /* US ROM 0x0809EACC, shared NPC runtime fields. */
+        . = 0x9EAFC; /* US ROM 0x0809EACC, shared NPC runtime fields. */
         src/npc_runtime_data.o(.text);
-        . = 0x9EAF8; /* US ROM 0x0809EAF8, remaining raw NPC runtime code. */
+        . = 0x9EB28; /* US ROM 0x0809EAF8, remaining raw NPC runtime code. */
         asm/code_809E804.o(.text.npc_runtime_data_after);
-        . = 0xA4698;
+        . = 0xA46C8;
         src/map_data.o(.text.get_map_data);
-        . = 0xA46AC;
+        . = 0xA46DC;
         asm/code_809E804.o(.text.get_map_data_after);
-        . = 0xD0CD4; /* Shift-JIS glyph-map index converter and renderer. */
+        . = 0xD0D20; /* Shift-JIS glyph-map index converter and renderer. */
         src/font.o(.text);
-        . = 0xD0EBC; /* Remaining font support code. */
+        . = 0xD0F08; /* Remaining font support code. */
         asm/code_809E804.o(.text.font_after);
 
         src/m4a_1.o(.text);
@@ -627,96 +627,90 @@ SECTIONS
         . = ALIGN(4);
         src/sram_proxy_1.o(.rodata);
         src/intro_scene_data.o(.rodata.intro_scene_startup_resources);
-        . = 0xE86A8; src/new_game_menu_data.o(.rodata);
-        . = 0xE8CC4; src/field_data.o(.rodata);
+        . = 0xE86F4; src/new_game_menu_data.o(.rodata);
+        . = 0xE8D10; src/field_data.o(.rodata);
         src/shipping_bin.o(.rodata);
         src/record_player.o(.rodata);
         /* Item text, catalogs, products, and trailer. */
-        . = 0xE9614; src/item.o(.rodata);
+        . = 0xE9660; src/item.o(.rodata);
         FILL(0x00);
         /* Calendar rows, labels, and state data. */
-        . = 0xF04EE; src/game_state.o(.rodata);
+        . = 0xF053A; src/game_state.o(.rodata);
         FILL(0x00);
         /* Help-menu text and byte table. */
-        . = 0xF058C; src/help_menu.o(.rodata);
+        . = 0xF05D8; src/help_menu.o(.rodata);
         FILL(0x00);
         /* Animal memorial text and animal data. */
-        . = 0xF0654; src/animal_data.o(.rodata);
+        . = 0xF06A0; src/animal_data.o(.rodata);
         FILL(0x00);
-        /* Bounded Entity UI localization island: labels and native UI data. */
-        . = 0xF0E80; src/entity_ui.o(.rodata);
-        ASSERT(. <= 0xF1974, "US Entity UI localization island overflow");
+        /* Entity UI regional data: labels and native UI data. */
+        . = 0xF0ECC; src/entity_ui.o(.rodata);
         FILL(0x00);
-        /* Bounded Common UI localization island: labels, errors, menu table. */
-        . = 0xF1974; src/fixed_labels.o(.rodata);
+        /* Common UI regional data: labels, errors, menu table. */
+        . = 0xF19C0; src/fixed_labels.o(.rodata);
         src/ui_error.o(.rodata);
         src/menu_data.o(.rodata);
-        ASSERT(. <= 0xF1A80, "US Common UI localization island overflow");
         FILL(0x00);
-        . = 0xF1A80; src/data_schedules.o(.rodata);
+        . = 0xF1ACC; src/data_schedules.o(.rodata);
         . = ALIGN(4); src/entity_ui.o(.rodata.entity_ui_resource_selector);
         FILL(0x00);
-        . = ALIGN(4); asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix);
+        . = 0xF433C; asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix);
         . = ALIGN(4); src/script_engine.o(.rodata);
-        . = 0xF9EA4; data/text/common/script_engine.o(.rodata);
-        . = 0xF9EC5; src/cooking_festival_data.o(.rodata);
+        . = 0xF9EF0; data/text/common/script_engine.o(.rodata);
+        . = 0xF9F11; src/cooking_festival_data.o(.rodata);
         src/thomas_stocking_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         src/spouse_gift_data.o(.rodata);
-        . = 0xF9EF4; src/farm_house.o(.rodata);
+        . = 0xF9F40; src/farm_house.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         src/ui_state.o(.rodata.ui_state_adapters);
         src/ui_state.o(.rodata);
-        /* Bounded New Game preset localization island: names and UI glyphs. */
-        . = 0xF9F7C; data/text/new_game_preset.o(.rodata);
-        . = 0xFA12E; src/new_game_name_entry_ui_data.o(.rodata);
-        ASSERT(. <= 0xFA158, "US New Game preset localization island overflow");
+        /* New Game preset regional data: names and UI glyphs. */
+        . = 0xF9FC8; data/text/new_game_preset.o(.rodata);
+        . = 0xFA17A; src/new_game_name_entry_ui_data.o(.rodata);
         FILL(0x00);
-        . = 0xFA158; data/text/frisbee_scoreboard.o(.rodata);
-        . = 0xFA174; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_score_table);
-        . = 0xFA23C; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_scoreboard_trailer);
-        . = 0xFA246; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_data);
+        . = 0xFA1A4; data/text/frisbee_scoreboard.o(.rodata);
+        . = 0xFA1C0; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_score_table);
+        . = 0xFA288; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_scoreboard_trailer);
+        . = 0xFA292; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_data);
         FILL(0x00);
         . = ALIGN(4); src/animal_festival_ranking.o(.rodata.animal_festival_ranking_reward_article_ids);
-        . = 0xFA39C; data/text/frisbee.o(.rodata);
+        . = 0xFA3E8; data/text/frisbee.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/animal_festival_ranking.o(.rodata.animal_festival_ranking_random_range_pairs);
-        . = 0xFA78C; data/text/animal_festival.o(.rodata);
-        . = 0xFA99E; src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_values);
+        . = 0xFA7D8; data/text/animal_festival.o(.rodata);
+        . = 0xFA9EA; src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_values);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0xFAA40; src/horse_race_data.o(.rodata);
+        . = 0xFAA8C; src/horse_race_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0xFB1D8; src/intro_scene_data.o(.rodata.intro_scene_prefix);
-        /* Bounded intro-scene localization island: resource table and dialogue. */
+        . = 0xFB224; src/intro_scene_data.o(.rodata.intro_scene_prefix);
+        /* Intro-scene regional data: resource table and dialogue. */
         FILL(0x00);
-        . = 0xFB1E4; src/intro_scene_data.o(.rodata);
-        ASSERT(. <= 0xFB818, "US intro-scene localization island overflow");
+        . = 0xFB230; src/intro_scene_data.o(.rodata);
         FILL(0x00);
-        . = 0xFB818; src/intro_scene_data.o(.rodata.intro_scene_trailer);
-        /* Bounded Farm Status localization island: two text groups and UI data. */
-        . = 0xFB824; src/farm_status_screen_data.o(.rodata);
-        ASSERT(. <= 0xFBE7C, "US Farm Status localization island overflow");
+        . = 0xFB864; src/intro_scene_data.o(.rodata.intro_scene_trailer);
+        /* Farm Status regional data: two text groups and UI data. */
+        . = 0xFB870; src/farm_status_screen_data.o(.rodata);
         FILL(0x00);
-        . = 0xFBE7C; src/records_screen_data.o(.rodata);
+        . = 0xFBEC8; src/records_screen_data.o(.rodata);
         . = ALIGN(4); data/text/staff_credits.o(.rodata);
-        . = 0xFC6B8; src/town_map_data.o(.rodata.staff_credits_trailer);
+        . = 0xFC704; src/town_map_data.o(.rodata.staff_credits_trailer);
         src/town_map_data.o(.rodata.town_map_resource_ids);
-        /* Bounded Town Map localization island: labels, hotspots, and lookup. */
+        /* Town Map regional data: labels, hotspots, and lookup. */
         FILL(0x00);
-        . = 0xFC6CC; src/town_map_data.o(.rodata);
-        ASSERT(. <= 0xFD550, "US Town Map localization island overflow");
-        . = 0xFD550; src/library_data.o(.rodata.library_opening_hours);
+        . = 0xFC718; src/town_map_data.o(.rodata);
+        . = 0xFD59C; src/library_data.o(.rodata.library_opening_hours);
         FILL(0x00);
         . = ALIGN(4); src/town_map_data.o(.rodata.town_map_area_bounds);
         src/library_data.o(.rodata.library_info);
         FILL(0x00);
         . = ALIGN(4); src/library_data.o(.rodata.library_initial_entry_ids);
-        . = 0xFD940; src/library_data.o(.rodata.library_menu);
-        . = 0xFD964; src/poultry_shop_data.o(.rodata);
+        . = 0xFD98C; src/library_data.o(.rodata.library_menu);
+        . = 0xFD9B0; src/poultry_shop_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/supermarket_data.o(.rodata);
         FILL(0x00);
@@ -731,86 +725,82 @@ SECTIONS
         . = ALIGN(4); src/special_merchant_shop_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0xFEAF4; src/beach_cafe_shop_data.o(.rodata);
+        . = 0xFEB40; src/beach_cafe_shop_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0xFEC7C; src/blacksmith_menu_data.o(.rodata);
-        . = 0xFED8C; src/blacksmith_data.o(.rodata);
+        . = 0xFECC8; src/blacksmith_menu_data.o(.rodata);
+        . = 0xFEDD8; src/blacksmith_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0xFF35C; src/carpenter_data.o(.rodata);
+        . = 0xFF3B0; src/carpenter_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         FILL(0x00);
-        . = 0xFFB60; src/livestock_shop.o(.rodata);
-        . = 0x100024; data/text/home_storage.o(.rodata);
+        . = 0xFFBB4; src/livestock_shop.o(.rodata);
+        . = 0x100078; data/text/home_storage.o(.rodata);
         FILL(0x00);
-        . = 0x100168; src/blacksmith_upgrade_data.o(.rodata);
-        . = 0x1003E4; data/text/gift_wrap.o(.rodata);
+        . = 0x1001BC; src/blacksmith_upgrade_data.o(.rodata);
+        . = 0x100438; data/text/gift_wrap.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        /* Bounded link-communication localization island: text, tables, codes. */
+        /* Link-communication regional data: text, tables, codes. */
         FILL(0x00);
-        . = 0x1004E0; src/link_communication_data.o(.rodata);
-        ASSERT(. <= 0x100AC0, "US link-communication localization island overflow");
-        . = 0x100AC0; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_page_break);
-        . = 0x100AC2; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_utensil_values);
-        . = 0x100AD2; data/text/recovery_status.o(.rodata);
-        . = 0x100DE4; data/text/cooking.o(.rodata);
-        . = 0x1010E8; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_mask_entries);
-        . = 0x10110C; src/cooking_recipe_inventory_data.o(.rodata);
+        . = 0x100534; src/link_communication_data.o(.rodata);
+        . = 0x100B18; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_page_break);
+        . = 0x100B1A; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_utensil_values);
+        . = 0x100B2A; data/text/recovery_status.o(.rodata);
+        . = 0x100E3C; data/text/cooking.o(.rodata);
+        . = 0x101140; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_mask_entries);
+        . = 0x101164; src/cooking_recipe_inventory_data.o(.rodata);
         src/animal.o(.rodata.animal_unnamed);
-        . = 0x103660; src/livestock.o(.rodata.livestock_day_update);
-        . = 0x1036C0; src/code_actor_0809C3E0.o(.rodata.actor_state_max_values);
-        . = 0x1036C8; src/code_actor_0809C3E0.o(.rodata);
-        /* Bounded fishing-record localization island: names, lookup, trailer. */
-        . = 0x103788; src/fishing_results_data.o(.rodata);
-        ASSERT(. <= 0x103B10, "US fishing-record localization island overflow");
+        . = 0x1036B8; src/livestock.o(.rodata.livestock_day_update);
+        . = 0x103718; src/code_actor_0809C3E0.o(.rodata.actor_state_max_values);
+        . = 0x103720; src/code_actor_0809C3E0.o(.rodata);
+        /* Fishing-record regional data: names, lookup, trailer. */
+        . = 0x1037E0; src/fishing_results_data.o(.rodata);
         FILL(0x00);
-        . = 0x103B10; src/code_actor_0809BFE8.o(.rodata);
-        . = 0x104108; src/character_names_data.o(.rodata.character_names_empty);
-        . = 0x104109; src/bachelorette.o(.rodata);
-        /* Bounded character-name localization island: names, lookup, trailer. */
-        . = 0x104128; src/character_names_data.o(.rodata);
-        ASSERT(. <= 0x1043BC, "US character-name localization island overflow");
+        . = 0x103B68; src/code_actor_0809BFE8.o(.rodata);
+        . = 0x104160; src/character_names_data.o(.rodata.character_names_empty);
+        . = 0x104161; src/bachelorette.o(.rodata);
+        /* Character-name regional data: names, lookup, trailer. */
+        . = 0x104180; src/character_names_data.o(.rodata);
         FILL(0x00);
-        . = 0x1043BC; src/field_item_data.o(.rodata);
+        . = 0x104414; src/field_item_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0x104938; data/text/calendar_events.o(.rodata);
-        . = 0x104E0C; data/text/possessive_labels.o(.rodata);
-        . = 0x104E4C; data/text/random_item.o(.rodata);
-        . = 0x104E54; src/fishing_results_data.o(.rodata.fishing_record_article_ids);
-        . = 0x104E74; src/field_plot_position_values.o(.rodata);
-        . = 0x104EAC; src/random_item.o(.rodata.random_item_selection_weights);
-        . = 0x104ED0; src/random_item.o(.rodata.random_item_candidate_configurations);
-        . = 0x105630; src/random_item.o(.rodata);
-        . = 0x10563C; src/field_plot_position_rules.o(.rodata);
-        . = 0x105708; src/code_0800E2E4.o(.rodata.time_of_day_transition_table);
-        . = 0x105748; src/code_0800E2E4.o(.rodata.time_of_day_transition_records);
-        . = 0x105EDC; src/map_data.o(.rodata.map_data);
-        . = 0x10692C; src/field_render_rect_descriptors.o(.rodata);
-        . = 0x1070DC; src/farm_house.o(.rodata.farm_house_tile_patches);
-        . = 0x107204; src/farm_house.o(.rodata.farm_house_visual_descriptors);
-        . = 0x107338; src/farm_house.o(.rodata.farm_house_tile_patch_animations);
-        . = 0x107350; src/field_render_resource_data.o(.rodata);
-        . = 0x10742E; src/farm_house.o(.rodata.farm_house_style_nibble_lookup);
+        . = 0x104990; data/text/calendar_events.o(.rodata);
+        . = 0x104E64; data/text/possessive_labels.o(.rodata);
+        . = 0x104EA4; data/text/random_item.o(.rodata);
+        . = 0x104EAC; src/fishing_results_data.o(.rodata.fishing_record_article_ids);
+        . = 0x104ECC; src/field_plot_position_values.o(.rodata);
+        . = 0x104F04; src/random_item.o(.rodata.random_item_selection_weights);
+        . = 0x104F28; src/random_item.o(.rodata.random_item_candidate_configurations);
+        . = 0x105688; src/random_item.o(.rodata);
+        . = 0x105694; src/field_plot_position_rules.o(.rodata);
+        . = 0x105760; src/code_0800E2E4.o(.rodata.time_of_day_transition_table);
+        . = 0x1057A0; src/code_0800E2E4.o(.rodata.time_of_day_transition_records);
+        . = 0x105F34; src/map_data.o(.rodata.map_data);
+        . = 0x106984; src/field_render_rect_descriptors.o(.rodata);
+        . = 0x107134; src/farm_house.o(.rodata.farm_house_tile_patches);
+        . = 0x10725C; src/farm_house.o(.rodata.farm_house_visual_descriptors);
+        . = 0x107390; src/farm_house.o(.rodata.farm_house_tile_patch_animations);
+        . = 0x1073A8; src/field_render_resource_data.o(.rodata);
+        . = 0x107486; src/farm_house.o(.rodata.farm_house_style_nibble_lookup);
         FILL(0x00);
-        . = 0x107438; src/bachelorette.o(.rodata.bachelorette_marriage_candidate_character_ids);
-        . = 0x107450; src/field_render_runtime_data.o(.rodata);
-        . = 0x1075B0; src/harvest_sprite.o(.rodata);
-        . = 0x10828C; src/reference_guide.o(.rodata.reference_guide);
-        . = 0x1177EC; src/shop_common.o(.rodata.shop_common_digit_glyphs);
-        . = 0x11780C; data/text/shop_common.o(.rodata);
-        . = 0x11782C; src/shop_common.o(.rodata);
-        . = 0x1179AC; data/text/status_ui.o(.rodata);
-        . = 0x117B14; src/font.o(.rodata);
+        . = 0x107490; src/bachelorette.o(.rodata.bachelorette_marriage_candidate_character_ids);
+        . = 0x1074A8; src/field_render_runtime_data.o(.rodata);
+        . = 0x107608; src/harvest_sprite.o(.rodata);
+        . = 0x1082E4; src/reference_guide.o(.rodata.reference_guide);
+        . = 0x117844; src/shop_common.o(.rodata.shop_common_digit_glyphs);
+        . = 0x117864; data/text/shop_common.o(.rodata);
+        . = 0x117884; src/shop_common.o(.rodata);
+        . = 0x117A04; data/text/status_ui.o(.rodata);
+        . = 0x117B6C; src/font.o(.rodata);
         FILL(0x00);
-        . = ALIGN(4);
-        asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard);
-        . = 0x139A88; src/m4a.o(.rodata);
-        . = 0x139D60; src/m4a.o(.rodata.gM4aVoiceGroups);
-        . = 0x13ABB4; src/m4a.o(.rodata.gMusicPlayerTable);
+        . = 0x117C2C; asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard);
+        . = 0x139AE0; src/m4a.o(.rodata);
+        . = 0x139DB8; src/m4a.o(.rodata.gM4aVoiceGroups);
+        . = 0x13AC0C; src/m4a.o(.rodata.gMusicPlayerTable);
         . = ALIGN(4); src/m4a.o(.rodata.gSongTable);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
     } > ROM = 0xFF
@@ -827,7 +817,7 @@ SECTIONS
     .pad : ALIGN(4)
     {
         LONG(0);
-        . = 0x08800000 - 0x0875C240;
+        . = 0x08800000 - (__iwram_lma + SIZEOF(.iwram));
     } > ROM = 0xFF
 
     /* DWARF 2 sections */

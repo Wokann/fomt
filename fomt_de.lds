@@ -643,80 +643,74 @@ SECTIONS
         /* Animal memorial text and animal data. */
         . = 0xF0654; src/animal_data.o(.rodata);
         FILL(0x00);
-        /* Bounded Entity UI localization island: labels and native UI data. */
+        /* Entity UI regional data: labels and native UI data. */
         . = 0xF0E80; src/entity_ui.o(.rodata);
-        ASSERT(. <= 0xF1974, "US Entity UI localization island overflow");
         FILL(0x00);
-        /* Bounded Common UI localization island: labels, errors, menu table. */
+        /* Common UI regional data: labels, errors, menu table. */
         . = 0xF1974; src/fixed_labels.o(.rodata);
         src/ui_error.o(.rodata);
         src/menu_data.o(.rodata);
-        ASSERT(. <= 0xF1A80, "US Common UI localization island overflow");
         FILL(0x00);
         . = 0xF1A80; src/data_schedules.o(.rodata);
         . = ALIGN(4); src/entity_ui.o(.rodata.entity_ui_resource_selector);
         FILL(0x00);
-        . = ALIGN(4); asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix);
+        . = 0xF47D8; asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix);
         . = ALIGN(4); src/script_engine.o(.rodata);
-        . = 0xF9EA4; data/text/common/script_engine.o(.rodata);
-        . = 0xF9EC5; src/cooking_festival_data.o(.rodata);
+        . = 0xFA38C; data/text/common/script_engine.o(.rodata);
+         src/cooking_festival_data.o(.rodata);
         src/thomas_stocking_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         src/spouse_gift_data.o(.rodata);
-        . = 0xF9EF4; src/farm_house.o(.rodata);
+         src/farm_house.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         src/ui_state.o(.rodata.ui_state_adapters);
         src/ui_state.o(.rodata);
-        /* Bounded New Game preset localization island: names and UI glyphs. */
-        . = 0xF9F7C; data/text/new_game_preset.o(.rodata);
-        . = 0xFA12E; src/new_game_name_entry_ui_data.o(.rodata);
-        ASSERT(. <= 0xFA158, "US New Game preset localization island overflow");
+        /* New Game preset regional data: names and UI glyphs. */
+        data/text/new_game_preset.o(.rodata);
+         src/new_game_name_entry_ui_data.o(.rodata);
         FILL(0x00);
-        . = 0xFA158; data/text/frisbee_scoreboard.o(.rodata);
-        . = 0xFA174; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_score_table);
-        . = 0xFA23C; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_scoreboard_trailer);
-        . = 0xFA246; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_data);
+         data/text/frisbee_scoreboard.o(.rodata);
+         src/animal_festival_ranking.o(.rodata.animal_festival_ranking_score_table);
+         src/animal_festival_ranking.o(.rodata.animal_festival_ranking_scoreboard_trailer);
+         src/animal_festival_ranking.o(.rodata.animal_festival_ranking_data);
         FILL(0x00);
         . = ALIGN(4); src/animal_festival_ranking.o(.rodata.animal_festival_ranking_reward_article_ids);
-        . = 0xFA39C; data/text/frisbee.o(.rodata);
+         data/text/frisbee.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/animal_festival_ranking.o(.rodata.animal_festival_ranking_random_range_pairs);
-        . = 0xFA78C; data/text/animal_festival.o(.rodata);
-        . = 0xFA99E; src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_values);
+         data/text/animal_festival.o(.rodata);
+         src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_values);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0xFAA40; src/horse_race_data.o(.rodata);
+         src/horse_race_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0xFB1D8; src/intro_scene_data.o(.rodata.intro_scene_prefix);
-        /* Bounded intro-scene localization island: resource table and dialogue. */
+         src/intro_scene_data.o(.rodata.intro_scene_prefix);
+        /* Intro-scene regional data: resource table and dialogue. */
         FILL(0x00);
-        . = 0xFB1E4; src/intro_scene_data.o(.rodata);
-        ASSERT(. <= 0xFB818, "US intro-scene localization island overflow");
+         src/intro_scene_data.o(.rodata);
         FILL(0x00);
-        . = 0xFB818; src/intro_scene_data.o(.rodata.intro_scene_trailer);
-        /* Bounded Farm Status localization island: two text groups and UI data. */
-        . = 0xFB824; src/farm_status_screen_data.o(.rodata);
-        ASSERT(. <= 0xFBE7C, "US Farm Status localization island overflow");
+         src/intro_scene_data.o(.rodata.intro_scene_trailer);
+        /* Farm Status regional data: two text groups and UI data. */
+         src/farm_status_screen_data.o(.rodata);
         FILL(0x00);
-        . = 0xFBE7C; src/records_screen_data.o(.rodata);
+         src/records_screen_data.o(.rodata);
         . = ALIGN(4); data/text/staff_credits.o(.rodata);
-        . = 0xFC6B8; src/town_map_data.o(.rodata.staff_credits_trailer);
+         src/town_map_data.o(.rodata.staff_credits_trailer);
         src/town_map_data.o(.rodata.town_map_resource_ids);
-        /* Bounded Town Map localization island: labels, hotspots, and lookup. */
+        /* Town Map regional data: labels, hotspots, and lookup. */
         FILL(0x00);
-        . = 0xFC6CC; src/town_map_data.o(.rodata);
-        ASSERT(. <= 0xFD550, "US Town Map localization island overflow");
-        . = 0xFD550; src/library_data.o(.rodata.library_opening_hours);
+         src/town_map_data.o(.rodata);
+         src/library_data.o(.rodata.library_opening_hours);
         FILL(0x00);
         . = ALIGN(4); src/town_map_data.o(.rodata.town_map_area_bounds);
         src/library_data.o(.rodata.library_info);
         FILL(0x00);
         . = ALIGN(4); src/library_data.o(.rodata.library_initial_entry_ids);
-        . = 0xFD940; src/library_data.o(.rodata.library_menu);
-        . = 0xFD964; src/poultry_shop_data.o(.rodata);
+        src/library_data.o(.rodata.library_menu);
+        src/poultry_shop_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/supermarket_data.o(.rodata);
         FILL(0x00);
@@ -731,86 +725,82 @@ SECTIONS
         . = ALIGN(4); src/special_merchant_shop_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0xFEAF4; src/beach_cafe_shop_data.o(.rodata);
+         src/beach_cafe_shop_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0xFEC7C; src/blacksmith_menu_data.o(.rodata);
-        . = 0xFED8C; src/blacksmith_data.o(.rodata);
+         src/blacksmith_menu_data.o(.rodata);
+         src/blacksmith_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0xFF35C; src/carpenter_data.o(.rodata);
+        src/carpenter_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         FILL(0x00);
-        . = 0xFFB60; src/livestock_shop.o(.rodata);
-        . = 0x100024; data/text/home_storage.o(.rodata);
+        src/livestock_shop.o(.rodata);
+         data/text/home_storage.o(.rodata);
         FILL(0x00);
-        . = 0x100168; src/blacksmith_upgrade_data.o(.rodata);
-        . = 0x1003E4; data/text/gift_wrap.o(.rodata);
+         src/blacksmith_upgrade_data.o(.rodata);
+         data/text/gift_wrap.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        /* Bounded link-communication localization island: text, tables, codes. */
+        /* Link-communication regional data: text, tables, codes. */
         FILL(0x00);
-        . = 0x1004E0; src/link_communication_data.o(.rodata);
-        ASSERT(. <= 0x100AC0, "US link-communication localization island overflow");
-        . = 0x100AC0; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_page_break);
-        . = 0x100AC2; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_utensil_values);
-        . = 0x100AD2; data/text/recovery_status.o(.rodata);
-        . = 0x100DE4; data/text/cooking.o(.rodata);
-        . = 0x1010E8; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_mask_entries);
-        . = 0x10110C; src/cooking_recipe_inventory_data.o(.rodata);
+         src/link_communication_data.o(.rodata);
+         src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_page_break);
+         src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_utensil_values);
+         data/text/recovery_status.o(.rodata);
+         data/text/cooking.o(.rodata);
+         src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_mask_entries);
+         src/cooking_recipe_inventory_data.o(.rodata);
         src/animal.o(.rodata.animal_unnamed);
-        . = 0x103660; src/livestock.o(.rodata.livestock_day_update);
-        . = 0x1036C0; src/code_actor_0809C3E0.o(.rodata.actor_state_max_values);
-        . = 0x1036C8; src/code_actor_0809C3E0.o(.rodata);
-        /* Bounded fishing-record localization island: names, lookup, trailer. */
-        . = 0x103788; src/fishing_results_data.o(.rodata);
-        ASSERT(. <= 0x103B10, "US fishing-record localization island overflow");
+         src/livestock.o(.rodata.livestock_day_update);
+         src/code_actor_0809C3E0.o(.rodata.actor_state_max_values);
+         src/code_actor_0809C3E0.o(.rodata);
+        /* Fishing-record regional data: names, lookup, trailer. */
+         src/fishing_results_data.o(.rodata);
         FILL(0x00);
-        . = 0x103B10; src/code_actor_0809BFE8.o(.rodata);
-        . = 0x104108; src/character_names_data.o(.rodata.character_names_empty);
-        . = 0x104109; src/bachelorette.o(.rodata);
-        /* Bounded character-name localization island: names, lookup, trailer. */
-        . = 0x104128; src/character_names_data.o(.rodata);
-        ASSERT(. <= 0x1043BC, "US character-name localization island overflow");
+         src/code_actor_0809BFE8.o(.rodata);
+         src/character_names_data.o(.rodata.character_names_empty);
+         src/bachelorette.o(.rodata);
+        /* Character-name regional data: names, lookup, trailer. */
+         src/character_names_data.o(.rodata);
         FILL(0x00);
-        . = 0x1043BC; src/field_item_data.o(.rodata);
+        src/field_item_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0x104938; data/text/calendar_events.o(.rodata);
-        . = 0x104E0C; data/text/possessive_labels.o(.rodata);
-        . = 0x104E4C; data/text/random_item.o(.rodata);
-        . = 0x104E54; src/fishing_results_data.o(.rodata.fishing_record_article_ids);
-        . = 0x104E74; src/field_plot_position_values.o(.rodata);
-        . = 0x104EAC; src/random_item.o(.rodata.random_item_selection_weights);
-        . = 0x104ED0; src/random_item.o(.rodata.random_item_candidate_configurations);
-        . = 0x105630; src/random_item.o(.rodata);
-        . = 0x10563C; src/field_plot_position_rules.o(.rodata);
-        . = 0x105708; src/code_0800E2E4.o(.rodata.time_of_day_transition_table);
-        . = 0x105748; src/code_0800E2E4.o(.rodata.time_of_day_transition_records);
-        . = 0x105EDC; src/map_data.o(.rodata.map_data);
-        . = 0x10692C; src/field_render_rect_descriptors.o(.rodata);
-        . = 0x1070DC; src/farm_house.o(.rodata.farm_house_tile_patches);
-        . = 0x107204; src/farm_house.o(.rodata.farm_house_visual_descriptors);
-        . = 0x107338; src/farm_house.o(.rodata.farm_house_tile_patch_animations);
-        . = 0x107350; src/field_render_resource_data.o(.rodata);
-        . = 0x10742E; src/farm_house.o(.rodata.farm_house_style_nibble_lookup);
+         data/text/calendar_events.o(.rodata);
+         data/text/possessive_labels.o(.rodata);
+         data/text/random_item.o(.rodata);
+         src/fishing_results_data.o(.rodata.fishing_record_article_ids);
+        src/field_plot_position_values.o(.rodata);
+         src/random_item.o(.rodata.random_item_selection_weights);
+         src/random_item.o(.rodata.random_item_candidate_configurations);
+         src/random_item.o(.rodata);
+        src/field_plot_position_rules.o(.rodata);
+        src/code_0800E2E4.o(.rodata.time_of_day_transition_table);
+         src/code_0800E2E4.o(.rodata.time_of_day_transition_records);
+         src/map_data.o(.rodata.map_data);
+        src/field_render_rect_descriptors.o(.rodata);
+         src/farm_house.o(.rodata.farm_house_tile_patches);
+         src/farm_house.o(.rodata.farm_house_visual_descriptors);
+         src/farm_house.o(.rodata.farm_house_tile_patch_animations);
+        src/field_render_resource_data.o(.rodata);
+         src/farm_house.o(.rodata.farm_house_style_nibble_lookup);
         FILL(0x00);
-        . = 0x107438; src/bachelorette.o(.rodata.bachelorette_marriage_candidate_character_ids);
-        . = 0x107450; src/field_render_runtime_data.o(.rodata);
-        . = 0x1075B0; src/harvest_sprite.o(.rodata);
-        . = 0x10828C; src/reference_guide.o(.rodata.reference_guide);
-        . = 0x1177EC; src/shop_common.o(.rodata.shop_common_digit_glyphs);
-        . = 0x11780C; data/text/shop_common.o(.rodata);
-        . = 0x11782C; src/shop_common.o(.rodata);
-        . = 0x1179AC; data/text/status_ui.o(.rodata);
-        . = 0x117B14; src/font.o(.rodata);
+         src/bachelorette.o(.rodata.bachelorette_marriage_candidate_character_ids);
+        src/field_render_runtime_data.o(.rodata);
+        src/harvest_sprite.o(.rodata);
+         src/reference_guide.o(.rodata.reference_guide);
+         src/shop_common.o(.rodata.shop_common_digit_glyphs);
+         data/text/shop_common.o(.rodata);
+         src/shop_common.o(.rodata);
+         data/text/status_ui.o(.rodata);
+         src/font.o(.rodata);
         FILL(0x00);
-        . = ALIGN(4);
-        asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard);
-        . = 0x139A88; src/m4a.o(.rodata);
-        . = 0x139D60; src/m4a.o(.rodata.gM4aVoiceGroups);
-        . = 0x13ABB4; src/m4a.o(.rodata.gMusicPlayerTable);
+        . = 0x119C54; asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard);
+        . = 0x13BB08; src/m4a.o(.rodata);
+        . = 0x13BDE0; src/m4a.o(.rodata.gM4aVoiceGroups);
+        . = 0x13CC34; src/m4a.o(.rodata.gMusicPlayerTable);
         . = ALIGN(4); src/m4a.o(.rodata.gSongTable);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
     } > ROM = 0xFF
@@ -827,7 +817,7 @@ SECTIONS
     .pad : ALIGN(4)
     {
         LONG(0);
-        . = 0x08800000 - 0x0875C240;
+        . = 0x08800000 - (__iwram_lma + SIZEOF(.iwram));
     } > ROM = 0xFF
 
     /* DWARF 2 sections */

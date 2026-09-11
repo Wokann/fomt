@@ -476,7 +476,15 @@ jp_static_data_after_font:
 	.global gUnk_08117BC8
     .set gUnk_08117BC8, us_static_data_after_font - 0xC
 us_static_data_after_font:
+	.ifdef REGION_EU
+	.incbin "baserom_eu.gba", 0x117C2C, (0x139AE0 - 0x117C2C)
+	.else
+	.ifdef REGION_DE
+	.incbin "baserom_de.gba", 0x119C54, (0x13BB08 - 0x119C54)
+	.else
 	.incbin "baserom_us.gba", 0x117BD4, (0x139A88 - 0x117BD4)
+	.endif
+	.endif
 
 	@ Region-neutral labels for FarmHouse visual descriptor resources.
 	@ Their payload formats remain in this raw data range.
