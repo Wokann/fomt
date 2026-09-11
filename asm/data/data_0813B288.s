@@ -3211,101 +3211,116 @@ us_data_0813b288_start:
 	.global gUnk_FieldRenderResource_227
 	.set gUnk_FieldRenderResource_227, us_data_0813b288_start + 0x5AFC9C
 
+	@ The EU stream resumes at US source offsets + 0x64 immediately after
+	@ the regional script block.  Their lengths are identical through the
+	@ following resource; the next physical boundary is handled explicitly.
+	.macro eu_post_script_incbin source_offset, size
+	.ifdef REGION_EU
+	.incbin "baserom_eu.gba", (\source_offset + 0x64), \size
+	.else
+	.incbin "baserom_us.gba", \source_offset, \size
+	.endif
+	.endm
+
 	.global gUnk_084F90CC
 gUnk_084F90CC:
-	.incbin "baserom_us.gba", 0x4F90CC, 0x16D4
+	eu_post_script_incbin 0x4F90CC, 0x16D4
 	.global gFontSingleWidthGlyphData
 	.set gFontSingleWidthGlyphData, gUnk_084F90CC
 
 	.global gUnk_084FA7A0
 gUnk_084FA7A0:
-	.incbin "baserom_us.gba", 0x4FA7A0, 0x200
+	eu_post_script_incbin 0x4FA7A0, 0x200
 	.global gFontSingleByteGlyphIndices
 	.set gFontSingleByteGlyphIndices, gUnk_084FA7A0
 
 	.global gUnk_084FA9A0
 gUnk_084FA9A0:
-	.incbin "baserom_us.gba", 0x4FA9A0, 0x288F0
+	eu_post_script_incbin 0x4FA9A0, 0x288F0
 	.global gFontDoubleWidthGlyphData
 	.set gFontDoubleWidthGlyphData, gUnk_084FA9A0
 
 	.global gUnk_08523290
 gUnk_08523290:
-	.incbin "baserom_us.gba", 0x523290, 0x3E04
+	eu_post_script_incbin 0x523290, 0x3E04
 	.global gFontShiftJisGlyphIndices
 	.set gFontShiftJisGlyphIndices, gUnk_08523290
 
 	.global gUnk_08527094
 gUnk_08527094:
-	.incbin "baserom_us.gba", 0x527094, 0x1A4
+	eu_post_script_incbin 0x527094, 0x1A4
 
 	.global gUnk_08527238
 gUnk_08527238:
-	.incbin "baserom_us.gba", 0x527238, 0x110
+	eu_post_script_incbin 0x527238, 0x110
 
 	.global gUnk_08527348
 gUnk_08527348:
-	.incbin "baserom_us.gba", 0x527348, 0x1D8
+	eu_post_script_incbin 0x527348, 0x1D8
 
 	.global gUnk_08527520
 gUnk_08527520:
-	.incbin "baserom_us.gba", 0x527520, 0xB0
+	eu_post_script_incbin 0x527520, 0xB0
 
 	.global gUnk_085275D0
 gUnk_085275D0:
-	.incbin "baserom_us.gba", 0x5275D0, 0x21C4
+	eu_post_script_incbin 0x5275D0, 0x21C4
 
 	.global gUnk_08529794
 gUnk_08529794:
-	.incbin "baserom_us.gba", 0x529794, 0x200
+	eu_post_script_incbin 0x529794, 0x200
 
 	.global gUnk_08529994
 gUnk_08529994:
-	.incbin "baserom_us.gba", 0x529994, 0x214
+	eu_post_script_incbin 0x529994, 0x214
 
 	.global gUnk_08529BA8
 gUnk_08529BA8:
-	.incbin "baserom_us.gba", 0x529BA8, 0x1FC
+	eu_post_script_incbin 0x529BA8, 0x1FC
 
 	.global gUnk_08529DA4
 gUnk_08529DA4:
-	.incbin "baserom_us.gba", 0x529DA4, 0x934
+	eu_post_script_incbin 0x529DA4, 0x934
 
 	.global gUnk_0852A6D8
 gUnk_0852A6D8:
-	.incbin "baserom_us.gba", 0x52A6D8, 0x114
+	eu_post_script_incbin 0x52A6D8, 0x114
 
 	.global gUnk_0852A7EC
 gUnk_0852A7EC:
-	.incbin "baserom_us.gba", 0x52A7EC, 0x1D0
+	eu_post_script_incbin 0x52A7EC, 0x1D0
 
 	.global gUnk_0852A9BC
 gUnk_0852A9BC:
-	.incbin "baserom_us.gba", 0x52A9BC, 0xB0
+	eu_post_script_incbin 0x52A9BC, 0xB0
 
 	.global gUnk_0852AA6C
 gUnk_0852AA6C:
-	.incbin "baserom_us.gba", 0x52AA6C, 0x1FD4
+	eu_post_script_incbin 0x52AA6C, 0x1FD4
 
 	.global gUnk_0852CA40
 gUnk_0852CA40:
-	.incbin "baserom_us.gba", 0x52CA40, 0x200
+	eu_post_script_incbin 0x52CA40, 0x200
 
 	.global gUnk_0852CC40
 gUnk_0852CC40:
-	.incbin "baserom_us.gba", 0x52CC40, 0x214
+	eu_post_script_incbin 0x52CC40, 0x214
 
 	.global gUnk_0852CE54
 gUnk_0852CE54:
-	.incbin "baserom_us.gba", 0x52CE54, 0x1FC
+	eu_post_script_incbin 0x52CE54, 0x1FC
 
 	.global gUnk_0852D050
 gUnk_0852D050:
-	.incbin "baserom_us.gba", 0x52D050, 0x934
+	eu_post_script_incbin 0x52D050, 0x934
 
 	.global gUnk_0852D984
 gUnk_0852D984:
+	.ifdef REGION_EU
+	.incbin "baserom_eu.gba", 0x52D9E8, 0x5E09C
+	.else
 	.incbin "baserom_us.gba", 0x52D984, 0x5E0A4
+	.endif
 
 	@ Farm Status preview resource labels.  The asset roles remain unknown.
 	.global gUnk_08529B18
@@ -3339,7 +3354,11 @@ gUnk_0852D984:
 
 	.global gUnk_0858BA28
 gUnk_0858BA28:
+	.ifdef REGION_EU
+	.incbin "baserom_eu.gba", 0x58BA84, 0xDB638
+	.else
 	.incbin "baserom_us.gba", 0x58BA28, 0xDB638
+	.endif
 
 	.global gUnk_08667060
 gUnk_08667060:
