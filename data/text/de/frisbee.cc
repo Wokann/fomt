@@ -3,7 +3,7 @@
 #if defined(FOMT_FRISBEE_TEXT_SCOREBOARD)
 
 char const gText_Frisbee_TournamentScoreboard[] =
-    "Frisbee Contest　Scoreboard";
+    "Frisbeeturnier Punktetafel ";
 
 #else
 
