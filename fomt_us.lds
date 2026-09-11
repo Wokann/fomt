@@ -640,11 +640,8 @@ SECTIONS
         /* Help-menu text and byte table. */
         . = 0xF058C; src/help_menu.o(.rodata);
         FILL(0x00);
-        /* Bounded Animal localization island: memorial text and animal data. */
-        . = 0xF0654; data/text/animal_memorial.o(.rodata);
-        src/animal_data.o(.rodata.animal_data_prefix);
-        src/animal_data.o(.rodata);
-        ASSERT(. <= 0xF0E80, "US Animal localization island overflow");
+        /* Animal memorial text and animal data. */
+        . = 0xF0654; src/animal_data.o(.rodata);
         FILL(0x00);
         /* Bounded Entity UI localization island: labels and native UI data. */
         . = 0xF0E80; src/entity_ui.o(.rodata);

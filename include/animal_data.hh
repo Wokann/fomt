@@ -3,6 +3,28 @@
 
 #include "prelude.h"
 
+// The animal memorial message is assembled by native code from these direct
+// text pointers. The US version has a separate farm-name suffix, while JP has
+// a natural-life sentence instead.
+extern char const gText_AnimalMemorial_LineBreak[];
+extern char const gText_AnimalMemorial_Continue[];
+extern char const gText_AnimalMemorial_PageBreak[];
+extern char const gText_AnimalMemorial_Header[];
+extern char const gText_AnimalMemorial_FarmPrefix[];
+#if !defined(REGION_JP)
+extern char const gText_AnimalMemorial_FarmSuffix[];
+#endif
+extern char const gText_AnimalMemorial_PassedAway[];
+extern char const gText_AnimalMemorial_NamesIntro[];
+extern char const gText_AnimalMemorial_PrayerIntro[];
+extern char const gText_AnimalMemorial_PrayerEnding[];
+#if defined(REGION_JP)
+extern char const gText_AnimalMemorial_PassedNaturalLife[];
+#endif
+extern char const gCppRuntimeBadAlloc_AnimalMemorial[];
+extern char const gCppRuntimeError_AnimalMemorial[];
+extern char const gText_AnimalMemorialFallbackNone[];
+
 // The labels retain their established US-ROM names.  The same object is
 // positioned at the corresponding JP address by each regional linker script.
 extern u8 const gUnk_080F06FD[];

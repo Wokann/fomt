@@ -1,31 +1,37 @@
 #include "animal_data.hh"
 
+#if defined(REGION_JP)
+#include "data/text/jp/animal_data.cc"
+#else
+#include "data/text/us/animal_data.cc"
+#endif
+
 // These adjacent raw records are read at different widths by native code.
 // Their individual semantics remain unresolved, so the original gUnk names
 // are retained rather than assigning speculative game meanings.
-u8 const gUnk_080F06FD[] SECTION(".rodata.animal_data_prefix") ALIGN(1) = {
+u8 const gUnk_080F06FD[] ALIGN(1) = {
     0x0F, 0x04, 0x1E, 0x04, 0x26, 0x04, 0x00,
 };
 
-u8 const gUnk_080F0704[] SECTION(".rodata.animal_data_prefix") ALIGN(1) = {
+u8 const gUnk_080F0704[] ALIGN(1) = {
     0xD1, 0x00, 0x79, 0x00, 0x41, 0x00, 0x9D, 0x00,
     0xB0, 0x00, 0x40, 0x00, 0x78, 0x00, 0xD0, 0x00,
     0xD4, 0x00, 0x88, 0x00,
 };
 
-u8 const gUnk_080F0718[] SECTION(".rodata.animal_data_prefix") ALIGN(1) = {
+u8 const gUnk_080F0718[] ALIGN(1) = {
     0x38, 0x00, 0x97, 0x00, 0x87, 0x00, 0x6A, 0x00,
     0x2A, 0x01, 0x7D, 0x00, 0x28, 0x01, 0x40, 0x00,
     0xF0, 0x00, 0xD0, 0x00, 0x4C, 0x01, 0x88, 0x00,
 };
 
-u8 const gUnk_080F0730[] SECTION(".rodata.animal_data_prefix") ALIGN(1) = {
+u8 const gUnk_080F0730[] ALIGN(1) = {
     0x95, 0x01, 0x83, 0x00, 0xCF, 0x00, 0x6D, 0x00,
     0x25, 0x00, 0x64, 0x00, 0x68, 0x01, 0x40, 0x00,
     0x30, 0x01, 0xD0, 0x00, 0xBC, 0x01, 0x88, 0x00,
 };
 
-u8 const gUnk_080F0748[] SECTION(".rodata.animal_data_prefix") ALIGN(1) = {
+u8 const gUnk_080F0748[] ALIGN(1) = {
     0x1C, 0x00, 0x00, 0x00, 0x24, 0x00, 0x00, 0x00,
     0x25, 0x00, 0x00, 0x00, 0x26, 0x00, 0x00, 0x00,
     0x27, 0x00, 0x00, 0x00, 0x28, 0x00, 0x00, 0x00,
@@ -33,7 +39,7 @@ u8 const gUnk_080F0748[] SECTION(".rodata.animal_data_prefix") ALIGN(1) = {
     0x2B, 0x00, 0x00, 0x00, 0x2D, 0x00, 0x00, 0x00,
 };
 
-u8 const gUnk_080F0770[] SECTION(".rodata.animal_data_prefix") ALIGN(1) = {
+u8 const gUnk_080F0770[] ALIGN(1) = {
     0x00, 0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00,
     0x24, 0x00, 0x00, 0x00, 0x25, 0x00, 0x00, 0x00,
     0x26, 0x00, 0x00, 0x00, 0x27, 0x00, 0x00, 0x00,
@@ -54,22 +60,18 @@ u8 const gUnk_080F0770[] SECTION(".rodata.animal_data_prefix") ALIGN(1) = {
     0x44, 0x00, 0x00, 0x00, 0x45, 0x00, 0x00, 0x00,
 };
 
-u8 const gUnk_080F0800[] SECTION(".rodata.animal_data_prefix") ALIGN(1) = {
+u8 const gUnk_080F0800[] ALIGN(1) = {
     0x01, 0x02, 0x03, 0x04, 0x05, 0x08, 0x09, 0x01,
     0x02, 0x03, 0x04, 0x08, 0x08, 0x08, 0x00, 0x00,
 };
 
-#define FOMT_ANIMAL_DATA_TEXT_MAIN_COMMON
-#include "data/text/common/animal_data.cc"
-#undef FOMT_ANIMAL_DATA_TEXT_MAIN_COMMON
+#include "data/text/common/animal_data_1.cc"
 
-#define FOMT_ANIMAL_DATA_TEXT_MAIN_REGION
 #if defined(REGION_JP)
-#include "data/text/jp/animal_data.cc"
+#include "data/text/jp/animal_data_1.cc"
 #else
-#include "data/text/us/animal_data.cc"
+#include "data/text/us/animal_data_1.cc"
 #endif
-#undef FOMT_ANIMAL_DATA_TEXT_MAIN_REGION
 
 AnimalDataEntry const gUnk_080F0838[2][2][13] ALIGN(1)
     = {
@@ -231,6 +233,4 @@ u16 const gUnk_080F0E34[28] = {
     0x0955, 0x0921, 0x0959, 0x095D, 0x0961, 0x0965, 0x0969,
 };
 
-#define FOMT_ANIMAL_DATA_TEXT_TRAILER_COMMON
-#include "data/text/common/animal_data.cc"
-#undef FOMT_ANIMAL_DATA_TEXT_TRAILER_COMMON
+#include "data/text/common/animal_data_2.cc"

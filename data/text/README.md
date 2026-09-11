@@ -4,7 +4,7 @@ Regional text belongs under this directory by its owning data structure:
 
     data/text/us/ and data/text/jp/
         tool.cc, food.cc, article.cc
-        game_state.cc, help_menu.cc, animal_memorial.cc
+        game_state.cc, help_menu.cc, animal_data.cc
         menu.cc, fixed_labels.cc, ui_error.cc
         new_game_menu.cc, new_game_status.cc, new_game_help.cc
         new_game_save.cc, new_game_identity.cc
