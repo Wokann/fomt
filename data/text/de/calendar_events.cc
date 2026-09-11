@@ -10,9 +10,9 @@
 CalendarDynamicSeasonData const gText_Calendar_DynamicSeasonNames
     ALIGN(1) = {
     {
-        "Spring",
-        "Summer",
-        "Fall",
+        "Frühling",
+        "Sommer",
+        "Herbst",
         "Winter",
     },
     {
@@ -38,115 +38,114 @@ CalendarDynamicSeasonData const gText_Calendar_DynamicSeasonNames
 
 char const gText_Calendar_Festival_NewYearFestival[] =
     "\p"
-    "1st day of Spring\r\n"
-    "New Year Festival in Rose\r\n"
-    "Square. 6PM - Midnight{Press}";
+    "1. Frühlingstag\r\n"
+    "Neujahrsfeier Rosenplatz\r\n"
+    "18 Uhr bis Mitternacht.{Press}";
 
 char const gText_Calendar_Festival_SpringThanksgiving[] ALIGN(4) =
     "\p"
-    "14th day of Spring\r\n"
-    "Spring Thanksgiving Festival{Press}";
+    "14. Frühlingstag\r\n"
+    "Frühlings-Erntedankfest{Press}";
 
 char const gText_Calendar_Festival_SpringHorseRace[] ALIGN(4) =
     "\p"
-    "18th day of Spring\r\n"
-    "Spring Horse Racing\r\n"
-    "in Rose Square (10AM - 6PM){Press}";
+    "18. Frühlingstag\r\n"
+    "Frühlings-Pferderennen auf\r\n"
+    "dem Rosenplatz (10 - 18Uhr){Press}";
 
 char const gText_Calendar_Festival_CookingFestival[] ALIGN(4) =
     "\p"
-    "22nd day of Spring\r\n"
-    "Cooking Festival\r\n"
-    "in Rose Square (10AM - 6PM){Press}";
+    "22. Frühlingstag\r\n"
+    "Kochfestival auf dem\r\n"
+    "Rosenplatz (10 -18Uhr){Press}";
 
 char const gText_Calendar_Festival_BeachDay[] ALIGN(4) =
     "\p"
-    "1st day of Summer\r\n"
-    "Beach Day at Mineral Beach\r\n"
-    "(10AM - 6PM) {Press}";
+    "1. Sommertag\r\n"
+    "Strandtag am Mineralstrand\r\n"
+    "(10 -18Uhr) {Press}";
 
 char const gText_Calendar_Festival_ChickenFestival[] ALIGN(4) =
     "\p"
-    "7th day of Summer\r\n"
-    "Chicken Festival in \r\n"
-    "Rose Square (10AM - 6PM){Press}";
+    "7. Sommertag\r\n"
+    "Hühnerfestival auf dem\r\n"
+    "Rosenplatz (10 -18Uhr){Press}";
 
 char const gText_Calendar_Festival_CowFestival[] ALIGN(4) =
     "\p"
-    "20th day of Summer\r\n"
-    "Cow Festival \r\n"
-    "in Rose Square (10AM - 6PM){Press}";
+    "20. Sommertag\r\n"
+    "Kuhfestival auf dem \r\n"
+    "Rosenplatz (10 - 18Uhr){Press}";
 
 char const gText_Calendar_Festival_FireworksFestival[] ALIGN(4) =
     "\p"
-    "24th day of Summer\r\n"
-    "Fireworks Festival \r\n"
-    "at Mineral Beach (6-9PM) {Press}";
+    "24. Sommertag\r\n"
+    "Feuerwerkfestival am\r\n"
+    "Mineralstrand (18 - 21Uhr){Press}";
 
 char const gText_Calendar_Festival_MusicFestival[] ALIGN(4) =
     "\p"
-    "3rd day of Fall\r\n"
-    "Music Festival in Church \r\n"
-    "(6PM - Midnight) {Press}";
+    "3. Herbsttag\r\n"
+    "Musikfestival in der Kirche\r\n"
+    "(18 Uhr - Mitternacht) {Press}";
 
 char const gText_Calendar_Festival_HarvestFestival[] ALIGN(4) =
     "\p"
-    "9th day of Fall\r\n"
-    "Harvest Festival \r\n"
-    "in Rose Square (10AM - 6PM){Press}";
+    "9. Herbsttag\r\n"
+    "Erntefest auf dem \r\n"
+    "Rosenplatz (10 - 18Uhr){Press}";
 
 char const gText_Calendar_Festival_FullMoonFestival[] ALIGN(4) =
     "\p"
-    "13th day of Fall \r\n"
-    "Full Moon Festival\r\n"
-    "(6PM - Midnight) {Press}";
+    "13. Herbsttag \r\n"
+    "Vollmondfest\r\n"
+    "(18 Uhr - Mitternacht) {Press}";
 
 char const gText_Calendar_Festival_FallHorseRace[] ALIGN(4) =
     "\p"
-    "18th day of Fall\r\n"
-    "Fall Horse Racing in\r\n"
-    "Rose Square (10AM - 6PM) {Press}";
+    "18. Herbsttag\r\n"
+    "Herbst-Pferderennen auf\r\n"
+    "dem Rosenplatz (10 - 18Uhr){Press}";
 
 char const gText_Calendar_Festival_SheepFestival[] ALIGN(4) =
     "\p"
-    "21st day of Fall \r\n"
-    "Sheep Festival \r\n"
-    "in Rose Square (10AM - 6PM){Press}";
+    "21. Herbsttag \r\n"
+    "Schaffestival auf dem \r\n"
+    "Rosenplatz (10 - 18 Uhr){Press}";
 
 char const gText_Calendar_Festival_PumpkinFestival[] ALIGN(4) =
     "\p"
-    "30th day of Fall\r\n"
-    "Pumpkin Festival {Press}";
+    "30. Herbsttag\r\n"
+    "Kürbisfestival {Press}";
 
 char const gText_Calendar_Festival_WinterThanksgiving[] ALIGN(4) =
     "\p"
-    "14th day of Winter\r\n"
-    "Thanksgiving{Press}";
+    "14. Wintertag\r\n"
+    "Erntedankfest{Press}";
 
 char const gText_Calendar_Festival_StarryNightFestival[] ALIGN(4) =
     "\p"
-    "24th day of Winter\r\n"
-    "Starry Night Festival {Press}";
+    "24. Wintertag\r\n"
+    "Sternennachtfest {Press}";
 
 char const gText_Calendar_Festival_YearEndGathering[] ALIGN(4) =
     "\p"
-    "30th day of Winter\r\n"
-    "Year End Gathering \r\n"
-    "Year End Festival {Press}";
+    "30. Wintertag\r\n"
+    "Jahresendversammlung\r\n"
+    "Jahresendfeier {Press}";
 
 char const gText_Calendar_Festival_Marriage[] =
     "\p"
-    "\xF1st day of \xF0\r\n"
-    "Marriage to \xF2{Press}";
+    "\xF1. Tag von \xF0\r\n"
+    "Ehe mit \xF2{Press}";
 
 char const gText_Calendar_Festival_WeddingAnniversary[] ALIGN(4) =
     "\p"
-    "\xF1st day of \xF0\r\n"
-    "Wedding Anniversary{Press}";
+    "Hochzeitstag{Press}";
 
 char const gText_Calendar_Festival_NoPlans[] ALIGN(4) =
     "\p"
-    "No plans...{Press}";
+    "Keine Pläne...{Press}";
 
 char const gCppRuntimeBadAlloc_CalendarNoPlansFirst[] ALIGN(4) =
     "bad_alloc";

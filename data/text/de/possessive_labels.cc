@@ -1,22 +1,22 @@
 #include "possessive_labels_text.hh"
 
 char const gText_Possessive_Horse[] =
-    "Horse's";
+    "d Pferdes";
 
 char const gText_Possessive_Cow[] =
-    "Cow's";
+    "der Kuh";
 
 char const gText_Possessive_Sheep[] =
-    "Sheep's";
+    "d Schafes";
 
 char const gText_Possessive_Chicken[] =
-    "Chicken's";
+    "des Huhns";
 
 char const gText_Possessive_Child[] =
-    "Child's";
+    "d. Kindes";
 
 char const gText_Possessive_Player[] =
-    "Your";
+    "Dein";
 
 char const gCppRuntimeBadAlloc_PossessiveLabelsTrailer[] =
     "bad_alloc";

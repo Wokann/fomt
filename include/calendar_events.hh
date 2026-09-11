@@ -27,6 +27,28 @@ extern CalendarDynamicSeasonData const gText_Calendar_DynamicSeasonNames;
 extern char const gText_Calendar_SeasonNames[4][3];
 extern char const gText_Calendar_None[];
 extern char const gText_Calendar_WeekdayNames[7][3];
+#elif defined(REGION_DE)
+// The German executable indexes these four native fields at 0x00, 0x0C,
+// 0x14, and 0x1C.  German "Frühling" needs the larger first storage field.
+struct PACKED CalendarDynamicSeasonData
+{
+    struct PACKED
+    {
+        char spring[12];
+        char summer[8];
+        char autumn[8];
+        char winter[8];
+    } season_names;
+    CalendarFestivalDateStorage festival_dates[17];
+};
+
+extern CalendarDynamicSeasonData const gText_Calendar_DynamicSeasonNames;
+
+// The fixed row widths are part of the original menu ABI: callers index these
+// arrays directly rather than through a pointer table.
+extern char const gText_Calendar_SeasonNames[4][7];
+extern char const gText_Calendar_None[];
+extern char const gText_Calendar_WeekdayNames[7][5];
 #else
 struct PACKED CalendarDynamicSeasonData
 {
