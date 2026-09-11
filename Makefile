@@ -171,7 +171,7 @@ $(TEXT_TOOLS): $(TEXT_TOOL_DIR)/fomt_text.cpp $(TEXT_TOOL_DIR)/fomt_preproc.cpp 
 define FOMT_COMPILE_CPP
 @mkdir -p $(dir $(basename $@).fomt-preprocessed.cc)
 @$(CPP) -iquote $(BUILD_DIR) $(1) -P $(CPPFLAGS) $< -o $(basename $@).fomt-preprocessed.cc
-@$(TEXT_TOOL) source charmap.txt $(basename $@).fomt-preprocessed.cc $(basename $@).fomt-text.cc
+@$(TEXT_TOOL) source charmap.txt $(GAME_REGION) $(basename $@).fomt-preprocessed.cc $(basename $@).fomt-text.cc
 @($(CC1PLUS) $(CXXFLAGS) -o $(basename $@).s < $(basename $@).fomt-text.cc || false)
 @$(TEXT_PREPROC) asm $(basename $@).fomt-text.cc $(basename $@).s
 @$(AS) $(ASFLAGS) $(basename $@).s -o $@
@@ -180,7 +180,7 @@ endef
 define FOMT_COMPILE_C
 @mkdir -p $(dir $(basename $@).fomt-preprocessed.c)
 @$(CPP) -iquote $(BUILD_DIR) $(1) -P $(CPPFLAGS) $< -o $(basename $@).fomt-preprocessed.c
-@$(TEXT_TOOL) source charmap.txt $(basename $@).fomt-preprocessed.c $(basename $@).fomt-text.c
+@$(TEXT_TOOL) source charmap.txt $(GAME_REGION) $(basename $@).fomt-preprocessed.c $(basename $@).fomt-text.c
 @$(CC1) $(CFLAGS) -o $(basename $@).s < $(basename $@).fomt-text.c
 @$(TEXT_PREPROC) asm $(basename $@).fomt-text.c $(basename $@).s
 @$(AS) $(ASFLAGS) $(basename $@).s -o $@

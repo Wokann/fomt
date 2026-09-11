@@ -19,14 +19,14 @@
 
 生成游戏资源前可校验版本化 map：
 
-    tools/textproc/fomt-text validate charmap.txt
+    tools/textproc/fomt-text validate charmap.txt JP
 
 `fomt-text` 可编码单条文本、解码既有字节，或处理文本源：
 
-    tools/textproc/fomt-text encode CHARMAP INPUT OUTPUT
-    tools/textproc/fomt-text decode CHARMAP INPUT OUTPUT
-    tools/textproc/fomt-text source CHARMAP INPUT OUTPUT
-    tools/textproc/fomt-text cpp CHARMAP INPUT OUTPUT
+    tools/textproc/fomt-text encode CHARMAP REGION INPUT OUTPUT
+    tools/textproc/fomt-text decode CHARMAP REGION INPUT OUTPUT
+    tools/textproc/fomt-text source CHARMAP REGION INPUT OUTPUT
+    tools/textproc/fomt-text cpp CHARMAP REGION INPUT OUTPUT
 
 `source` 是普通 C/C++ 词法转换：它可处理 `.c`、`.cc`、`.h`、`.hh` 中的
 字符串。正常构建会先运行常规 C 预处理器，因此被包含的头文件内容会与其所属

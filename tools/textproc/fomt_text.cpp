@@ -101,14 +101,195 @@ void WriteBinaryFile(const std::filesystem::path &path, const Bytes &contents)
         throw std::runtime_error("cannot write '" + path.string() + "'");
 }
 
+bool IsMacroNameStart(char value)
+{
+    return value == '_' || std::isalpha(static_cast<unsigned char>(value)) != 0;
+}
+
+bool IsMacroNameContinue(char value)
+{
+    return value == '_' || std::isalnum(static_cast<unsigned char>(value)) != 0;
+}
+
+std::set<std::string> RegionDefines(const std::string &region)
+{
+    std::string normalized;
+    normalized.reserve(region.size());
+    for (char value : region)
+        normalized += static_cast<char>(std::toupper(static_cast<unsigned char>(value)));
+
+    if (normalized != "JP" && normalized != "US" && normalized != "EU" && normalized != "DE")
+        throw std::runtime_error("unsupported charmap region '" + region
+            + "'; expected JP, US, EU, or DE");
+    return { "REGION_" + normalized };
+}
+
+std::string LineError(std::size_t number, const std::string &message)
+{
+    return "line " + std::to_string(number) + ": " + message;
+}
+
+class CharmapConditionParser {
+public:
+    CharmapConditionParser(const std::string &source, const std::set<std::string> &defines,
+        std::size_t line_number)
+        : source_(source), defines_(defines), line_number_(line_number)
+    {
+    }
+
+    bool Parse()
+    {
+        const bool value = ParseOr();
+        SkipWhitespace();
+        if (offset_ != source_.size())
+            throw std::runtime_error(LineError(line_number_, "unexpected condition text '"
+                + source_.substr(offset_) + "'"));
+        return value;
+    }
+
+private:
+    bool ParseOr()
+    {
+        bool value = ParseAnd();
+        while (Consume("||")) {
+            const bool right = ParseAnd();
+            value = value || right;
+        }
+        return value;
+    }
+
+    bool ParseAnd()
+    {
+        bool value = ParseUnary();
+        while (Consume("&&")) {
+            const bool right = ParseUnary();
+            value = value && right;
+        }
+        return value;
+    }
+
+    bool ParseUnary()
+    {
+        if (Consume("!"))
+            return !ParseUnary();
+        if (Consume("(")) {
+            const bool value = ParseOr();
+            if (!Consume(")"))
+                throw std::runtime_error(LineError(line_number_, "missing ')' in condition"));
+            return value;
+        }
+        if (ConsumeWord("defined")) {
+            const bool parenthesized = Consume("(");
+            const std::string name = ParseMacroName();
+            if (parenthesized && !Consume(")"))
+                throw std::runtime_error(LineError(line_number_, "missing ')' after defined"));
+            return defines_.count(name) != 0;
+        }
+        return defines_.count(ParseMacroName()) != 0;
+    }
+
+    std::string ParseMacroName()
+    {
+        SkipWhitespace();
+        if (offset_ == source_.size() || !IsMacroNameStart(source_[offset_]))
+            throw std::runtime_error(LineError(line_number_, "expected macro name"));
+        const std::size_t start = offset_++;
+        while (offset_ < source_.size() && IsMacroNameContinue(source_[offset_]))
+            ++offset_;
+        return source_.substr(start, offset_ - start);
+    }
+
+    bool Consume(const std::string_view token)
+    {
+        SkipWhitespace();
+        if (source_.compare(offset_, token.size(), token) != 0)
+            return false;
+        offset_ += token.size();
+        return true;
+    }
+
+    bool ConsumeWord(const std::string_view token)
+    {
+        SkipWhitespace();
+        if (source_.compare(offset_, token.size(), token) != 0)
+            return false;
+        const std::size_t after = offset_ + token.size();
+        if (after < source_.size() && IsMacroNameContinue(source_[after]))
+            return false;
+        offset_ = after;
+        return true;
+    }
+
+    void SkipWhitespace()
+    {
+        while (offset_ < source_.size()
+            && std::isspace(static_cast<unsigned char>(source_[offset_])) != 0)
+            ++offset_;
+    }
+
+    const std::string &source_;
+    const std::set<std::string> &defines_;
+    std::size_t line_number_;
+    std::size_t offset_ = 0;
+};
+
+enum class CharmapDirective {
+    None,
+    If,
+    Ifdef,
+    Ifndef,
+    Elif,
+    Else,
+    Endif,
+};
+
+CharmapDirective ReadCharmapDirective(const std::string &trimmed, std::string *arguments)
+{
+    if (trimmed.empty() || trimmed.front() != '#')
+        return CharmapDirective::None;
+
+    std::size_t at = 1;
+    while (at < trimmed.size() && (trimmed[at] == ' ' || trimmed[at] == '\t'))
+        ++at;
+    const std::size_t start = at;
+    while (at < trimmed.size() && std::isalpha(static_cast<unsigned char>(trimmed[at])) != 0)
+        ++at;
+    const std::string name = trimmed.substr(start, at - start);
+    *arguments = Trim(trimmed.substr(at));
+
+    if (name == "if")
+        return CharmapDirective::If;
+    if (name == "ifdef")
+        return CharmapDirective::Ifdef;
+    if (name == "ifndef")
+        return CharmapDirective::Ifndef;
+    if (name == "elif")
+        return CharmapDirective::Elif;
+    if (name == "else")
+        return CharmapDirective::Else;
+    if (name == "endif")
+        return CharmapDirective::Endif;
+    return CharmapDirective::None;
+}
+
+struct CharmapConditional {
+    std::size_t line_number;
+    bool parent_active;
+    bool branch_taken;
+    bool active;
+    bool saw_else;
+};
+
 class Charmap {
 public:
-    static Charmap Parse(const std::string &source)
+    static Charmap Parse(const std::string &source,
+        const std::set<std::string> &defines = {})
     {
         Charmap result;
         std::istringstream lines(source);
         std::string line;
         std::size_t line_number = 0;
+        std::vector<CharmapConditional> conditionals;
 
         while (std::getline(lines, line)) {
             ++line_number;
@@ -116,7 +297,66 @@ public:
                 line.pop_back();
 
             const std::string trimmed = Trim(line);
-            if (trimmed.empty() || trimmed.front() == '#')
+            const bool parent_active = conditionals.empty() || conditionals.back().active;
+            std::string arguments;
+            const CharmapDirective directive = ReadCharmapDirective(trimmed, &arguments);
+            if (directive != CharmapDirective::None) {
+                switch (directive) {
+                case CharmapDirective::If: {
+                    const bool condition = CharmapConditionParser(arguments, defines, line_number).Parse();
+                    conditionals.push_back({ line_number, parent_active, condition,
+                        parent_active && condition, false });
+                    break;
+                }
+                case CharmapDirective::Ifdef:
+                case CharmapDirective::Ifndef: {
+                    if (arguments.empty() || !IsMacroNameStart(arguments.front())
+                        || !std::all_of(arguments.begin() + 1, arguments.end(), IsMacroNameContinue)) {
+                        throw std::runtime_error(LineError(line_number, "expected macro name"));
+                    }
+                    const bool condition = (defines.count(arguments) != 0)
+                        == (directive == CharmapDirective::Ifdef);
+                    conditionals.push_back({ line_number, parent_active, condition,
+                        parent_active && condition, false });
+                    break;
+                }
+                case CharmapDirective::Elif: {
+                    if (conditionals.empty())
+                        throw std::runtime_error(LineError(line_number, "unmatched #elif"));
+                    CharmapConditional &conditional = conditionals.back();
+                    if (conditional.saw_else)
+                        throw std::runtime_error(LineError(line_number, "#elif after #else"));
+                    const bool condition = CharmapConditionParser(arguments, defines, line_number).Parse();
+                    conditional.active = conditional.parent_active && !conditional.branch_taken && condition;
+                    conditional.branch_taken = conditional.branch_taken || condition;
+                    break;
+                }
+                case CharmapDirective::Else: {
+                    if (!arguments.empty())
+                        throw std::runtime_error(LineError(line_number, "#else does not take arguments"));
+                    if (conditionals.empty())
+                        throw std::runtime_error(LineError(line_number, "unmatched #else"));
+                    CharmapConditional &conditional = conditionals.back();
+                    if (conditional.saw_else)
+                        throw std::runtime_error(LineError(line_number, "duplicate #else"));
+                    conditional.saw_else = true;
+                    conditional.active = conditional.parent_active && !conditional.branch_taken;
+                    conditional.branch_taken = true;
+                    break;
+                }
+                case CharmapDirective::Endif:
+                    if (!arguments.empty())
+                        throw std::runtime_error(LineError(line_number, "#endif does not take arguments"));
+                    if (conditionals.empty())
+                        throw std::runtime_error(LineError(line_number, "unmatched #endif"));
+                    conditionals.pop_back();
+                    break;
+                case CharmapDirective::None:
+                    break;
+                }
+                continue;
+            }
+            if (!parent_active || trimmed.empty() || trimmed.front() == '#')
                 continue;
 
             const auto equals = line.find('=');
@@ -161,6 +401,11 @@ public:
             else
                 result.encode_.emplace(text, bytes);
             result.decode_.emplace(std::move(bytes), text);
+        }
+
+        if (!conditionals.empty()) {
+            throw std::runtime_error("unterminated conditional block opened on line "
+                + std::to_string(conditionals.back().line_number));
         }
 
         if (result.decode_.empty())
@@ -2477,6 +2722,18 @@ void SelfTest()
         "named controls and explicit bytes do not encode");
     Require(map.DecodeText(Bytes{0x41, 0x0A, 0xFE}) == "A\\n\\xFE",
         "unknown bytes do not round-trip as escapes");
+    const std::string regional_map =
+        "# ordinary map comment\n"
+        "#if defined(REGION_US) || defined(REGION_EU)\n"
+        "B1=U\n"
+        "#elif defined(REGION_JP)\n"
+        "B1=J\n"
+        "#endif\n";
+    const Charmap us_map = Charmap::Parse(regional_map, RegionDefines("US"));
+    const Charmap jp_map = Charmap::Parse(regional_map, RegionDefines("JP"));
+    Require(us_map.EncodeText("U") == Bytes{0xB1}
+            && jp_map.EncodeText("J") == Bytes{0xB1},
+        "regional charmap conditionals did not select the requested mapping");
     Require(GuideLineLabel("example", 1, "") == "gText_ReferenceGuide_EmptyLine",
         "empty guide text did not use the global layout label");
     Require(GuideLineLabel("example", 1, "\xE3\x80\x80")
@@ -2755,12 +3012,12 @@ const char *Usage()
 {
     return "usage:\n"
            "  fomt-text self-test\n"
-           "  fomt-text validate CHARMAP\n"
-           "  fomt-text encode CHARMAP INPUT OUTPUT\n"
-           "  fomt-text decode CHARMAP INPUT OUTPUT\n"
-           "  fomt-text source CHARMAP INPUT OUTPUT\n"
-           "  fomt-text cpp CHARMAP INPUT OUTPUT\n"
-           "  fomt-text guide CHARMAP INPUT TEXT_OUTPUT TABLE_OUTPUT [CATALOG_SOURCE ...]\n"
+           "  fomt-text validate CHARMAP REGION\n"
+           "  fomt-text encode CHARMAP REGION INPUT OUTPUT\n"
+           "  fomt-text decode CHARMAP REGION INPUT OUTPUT\n"
+           "  fomt-text source CHARMAP REGION INPUT OUTPUT\n"
+           "  fomt-text cpp CHARMAP REGION INPUT OUTPUT\n"
+           "  fomt-text guide CHARMAP REGION INPUT TEXT_OUTPUT TABLE_OUTPUT [CATALOG_SOURCE ...]\n"
            "  fomt-text guide-collection CHARMAP REGION MANIFEST OUTPUT\n"
            "  fomt-text staff-credits CHARMAP REGION BASEROM INPUT OUTPUT\n";
 }
@@ -2772,14 +3029,14 @@ int Run(int argc, char **argv)
         std::cout << "fomt-text: self-test passed\n";
         return 0;
     }
-    if (argc == 3 && std::string(argv[1]) == "validate") {
-        const Charmap charmap = Charmap::Parse(ReadTextFile(argv[2]));
+    if (argc == 4 && std::string(argv[1]) == "validate") {
+        const Charmap charmap = Charmap::Parse(ReadTextFile(argv[2]), RegionDefines(argv[3]));
         std::cout << "fomt-text: " << charmap.EntryCount() << " charmap entries validated\n";
         return 0;
     }
     if (argc == 6 && std::string(argv[1]) == "guide-collection") {
-        const Charmap charmap = Charmap::Parse(ReadTextFile(argv[2]));
         const std::string region = argv[3];
+        const Charmap charmap = Charmap::Parse(ReadTextFile(argv[2]), RegionDefines(region));
         const std::filesystem::path manifest = argv[4];
         const std::filesystem::path output = argv[5];
         const GuideCollectionOutput generated = CompileGuideCollection(
@@ -2788,8 +3045,8 @@ int Run(int argc, char **argv)
         return 0;
     }
     if (argc == 7 && std::string(argv[1]) == "staff-credits") {
-        const Charmap charmap = Charmap::Parse(ReadTextFile(argv[2]));
         const std::string region = argv[3];
+        const Charmap charmap = Charmap::Parse(ReadTextFile(argv[2]), RegionDefines(region));
         const std::filesystem::path baserom = argv[4];
         const std::filesystem::path input = argv[5];
         const std::filesystem::path output = argv[6];
@@ -2797,13 +3054,13 @@ int Run(int argc, char **argv)
             ReadBinaryFile(baserom), charmap));
         return 0;
     }
-    if (argc >= 6 && std::string(argv[1]) == "guide") {
-        const Charmap charmap = Charmap::Parse(ReadTextFile(argv[2]));
-        const std::filesystem::path input = argv[3];
-        const std::filesystem::path text_output = argv[4];
-        const std::filesystem::path table_output = argv[5];
+    if (argc >= 7 && std::string(argv[1]) == "guide") {
+        const Charmap charmap = Charmap::Parse(ReadTextFile(argv[2]), RegionDefines(argv[3]));
+        const std::filesystem::path input = argv[4];
+        const std::filesystem::path text_output = argv[5];
+        const std::filesystem::path table_output = argv[6];
         std::vector<std::filesystem::path> catalog_sources;
-        for (int index = 6; index < argc; ++index)
+        for (int index = 7; index < argc; ++index)
             catalog_sources.emplace_back(argv[index]);
         if (catalog_sources.empty())
             catalog_sources.push_back(input);
@@ -2815,12 +3072,12 @@ int Run(int argc, char **argv)
         WriteTextFile(table_output, generated.table);
         return 0;
     }
-    if (argc != 5)
+    if (argc != 6)
         throw std::runtime_error(Usage());
 
-    const Charmap charmap = Charmap::Parse(ReadTextFile(argv[2]));
-    const std::filesystem::path input = argv[3];
-    const std::filesystem::path output = argv[4];
+    const Charmap charmap = Charmap::Parse(ReadTextFile(argv[2]), RegionDefines(argv[3]));
+    const std::filesystem::path input = argv[4];
+    const std::filesystem::path output = argv[5];
     const std::string command = argv[1];
 
     if (command == "encode") {
