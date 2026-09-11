@@ -38,7 +38,7 @@ char const gText_NameEntry_PresetAnimalNames
     "Angel　　　　",
     "Fifi　　",
     "Echo　　　　",
-    "Nic",
+    "Ebony　　",
     "Quartz",
     "Betty",
     "Gertrude　",
