@@ -7,39 +7,40 @@ char const gText_Fridge_EmptyDescription[] =
     "";
 
 char const gText_Fridge_WrappedGiftWarning[] =
-    "If you put it in the\r\n"
-    "Refrigerator, the wrapping\r\n"
-    "will come off. Are you sure?{Press}";
+    "Wenn du es in den Kühl-\r\n"
+    "schrank tust, geht das\r\n"
+    "Geschenkpapier ab.{Press}\p"
+    "Bist du sicher?{Press}";
 
 char const gText_Fridge_Yes[] =
-    "Yes";
+    "Ja";
 
 char const gText_Fridge_No[] =
-    "No";
+    "Nein";
 
 char const gText_Fridge_Items[] =
-    "Items ";
+    "Dinge ";
 
 char const gText_Fridge_Title[] =
-    "Fridge";
+    "Kühls.";
 
 char const gCppRuntimeBadAlloc_HomeStorageFridgeTrailer[] =
     "bad_alloc";
 
 char const gText_HomeStorage_ConfirmationYes[] =
-    "Yes";
+    "Ja";
 
 char const gText_HomeStorage_ConfirmationNo[] =
-    "No";
+    "Nein";
 
 char const gText_HomeStorage_EmptyDescription[] =
     "";
 
 char const gText_HomeStorage_CategoryTools[] =
-    "Tools";
+    "Werkzeug";
 
 char const gText_HomeStorage_CategoryItems[] =
-    "Items";
+    "Dinge";
 
 char const gCppRuntimeBadAlloc_HomeStorageCategoryTrailer[] =
     "bad_alloc";
@@ -48,21 +49,22 @@ char const gText_Shelf_EmptyDescription[] =
     "";
 
 char const gText_Shelf_WrappedGiftWarning[] =
-    "If you put it in the\r\n"
-    "shelf, the wrapping will\r\n"
-    "come off. Are you sure?{Press}";
+    "Wenn du es in das\r\n"
+    "Regal stellst, geht das\r\n"
+    "Geschenkpapier ab. {Press}\p"
+    "Bist du sicher?{Press}";
 
 char const gText_Shelf_Yes[] =
-    "Yes";
+    "Ja";
 
 char const gText_Shelf_No[] =
-    "No";
+    "Nein";
 
 char const gText_Shelf_Items[] =
-    "Items";
+    "Dinge";
 
 char const gText_Shelf_Title[] =
-    "Shelf";
+    "Regal";
 
 char const gCppRuntimeBadAlloc_HomeStorageShelfTrailer[] =
     "bad_alloc";
@@ -71,10 +73,10 @@ char const gText_ToolChest_EmptyDescription[] =
     "";
 
 char const gText_ToolChest_HeaderTools[] =
-    "Tools";
+    "Werkzeug";
 
 char const gText_ToolChest_Title[] =
-    "Tool Box";
+    "Box";
 
 char const gCppRuntimeBadAlloc_HomeStorageTrailer[] =
     "bad_alloc";
