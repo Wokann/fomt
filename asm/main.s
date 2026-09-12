@@ -37,8 +37,19 @@ AgbMain:
     movs r0, #0x80
     lsls r0, r0, #5
     bl func_0800050C
-    @ The EU startup routine initializes these additional hardware registers.
+    @ The localized western startup routines initialize these additional
+    @ hardware registers before the common boot flow continues.
     .ifdef REGION_EU
+    ldr r1, .LAgbMain_RegionalControl
+    movs r2, #0xc0
+    lsls r2, r2, #7
+    adds r0, r2, #0
+    strh r0, [r1]
+    adds r1, #0xc
+    movs r0, #0
+    strh r0, [r1]
+    .endif
+    .ifdef REGION_DE
     ldr r1, .LAgbMain_RegionalControl
     movs r2, #0xc0
     lsls r2, r2, #7
@@ -86,5 +97,8 @@ AgbMain:
 .LAgbMain_SerialControl: .4byte 0x04000132
 .LAgbMain_SerialControlValue: .4byte 0x0000C00F
     .ifdef REGION_EU
+.LAgbMain_RegionalControl: .4byte 0x04000128
+    .endif
+    .ifdef REGION_DE
 .LAgbMain_RegionalControl: .4byte 0x04000128
     .endif
