@@ -705,7 +705,11 @@ FoodInfo const gFoodInfo[] = {
     /* 0x37 */ { gText_Item_Food_WhiteGrass_Name, false, 10, -10, 473, gText_Item_Food_WhiteGrass_Description },
     /* 0x38 */ { gText_Item_Food_QueenOfTheNight_Name, false, 0, 0, 58, gText_Item_Food_QueenOfTheNight_Description },
     /* 0x39 */ { gText_Item_Food_Bodigizer_Name, true, 50, -1, 349, gText_Item_Food_Bodigizer_Description },
+#if defined(REGION_DE)
+    /* 0x3A */ { gText_Item_Food_Bodigizer_Name, true, 100, -1, 350, gText_Item_Food_BodigizerXl_Description },
+#else
     /* 0x3A */ { gText_Item_Food_BodigizerXl_Name, true, 100, -1, 350, gText_Item_Food_BodigizerXl_Description },
+#endif
     /* 0x3B */ { gText_Item_Food_Turbojolt_Name, true, 0, -20, 146, gText_Item_Food_Turbojolt_Description },
     /* 0x3C */ { gText_Item_Food_TurbojoltXl_Name, true, 0, -50, 147, gText_Item_Food_TurbojoltXl_Description },
     /* 0x3D */ { gText_Item_Food_Wine_Name, true, 1, -5, 475, gText_Item_Food_Wine_Description },
@@ -813,9 +817,15 @@ FoodInfo const gFoodInfo[] = {
     /* 0x98 */ { gText_Item_Food_RoastedRiceCake_Name, false, 10, -2, 390, gText_Item_Food_RoastedRiceCake_Description },
     /* 0x99 */ { gText_Item_Food_ElliLeaves_Name, false, 100, -50, 138, gText_Item_Food_ElliLeaves_Description },
     /* 0x9A */ { gText_Item_Food_FailedDish_Name, false, -10, 10, 140, gText_Item_Food_FailedDish_Description },
+#if defined(REGION_DE)
+    /* 0x9B */ { gText_Item_Food_FailedDrink_Name, true, -10, 10, 143, gText_Item_Food_FailedRecipe_Description },
+    /* 0x9C */ { gText_Item_Food_FailedPotDish_Name, false, -10, 10, 145, gText_Item_Food_FailedRecipe_Description },
+    /* 0x9D */ { gText_Item_Food_FailedDessert_Name, false, -10, 10, 142, gText_Item_Food_FailedRecipe_Description },
+#else
     /* 0x9B */ { gText_Item_Food_FailedDrink_Name, true, -10, 10, 143, gText_Item_Food_FailedDish_Description },
     /* 0x9C */ { gText_Item_Food_FailedPotDish_Name, false, -10, 10, 145, gText_Item_Food_FailedDish_Description },
     /* 0x9D */ { gText_Item_Food_FailedDessert_Name, false, -10, 10, 142, gText_Item_Food_FailedDish_Description },
+#endif
     /* 0x9E */ { gText_Item_Food_FailedBread_Name, false, -10, 10, 141, gText_Item_Food_FailedDish_Description },
     /* 0x9F */ { gText_Item_Food_FailedNoodles_Name, false, -10, 10, 144, gText_Item_Food_FailedDish_Description },
     /* 0xA0 */ { gText_Item_Food_SmallFish_Name, false, 2, -1, 159, gText_Item_Food_SmallFish_Description },
@@ -886,8 +896,13 @@ ArticleInfo const gArticleInfo[] = {
     /* 0x23 */ { gText_Item_Article_Agate_Name, 2, gText_Item_Article_Agate_Description },
     /* 0x24 */ { gText_Item_Article_Amethyst_Name, 5, gText_Item_Article_Amethyst_Description },
     /* 0x25 */ { gText_Item_Article_HarvestGoddessJewel_Name, 207, gText_Item_Article_HarvestGoddessJewel_Description },
+#if defined(REGION_DE)
+    /* 0x26 */ { gText_Item_Tool_GemOfTheKappa_Name, 261, gText_Item_Article_KappaJewel_Description },
+    /* 0x27 */ { gText_Item_Tool_GemOfTruth_Name, 455, gText_Item_Article_JewelOfTruth_Description },
+#else
     /* 0x26 */ { gText_Item_Article_KappaJewel_Name, 261, gText_Item_Article_KappaJewel_Description },
     /* 0x27 */ { gText_Item_Article_JewelOfTruth_Name, 455, gText_Item_Article_JewelOfTruth_Description },
+#endif
     /* 0x28 */ { gText_Item_Article_TheSpringSun_Name, 426, gText_Item_Article_TheSpringSun_Description },
     /* 0x29 */ { gText_Item_Article_TheSummerSun_Name, 436, gText_Item_Article_TheSpringSun_Description },
     /* 0x2A */ { gText_Item_Article_TheAutumnSun_Name, 12, gText_Item_Article_TheSpringSun_Description },

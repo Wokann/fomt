@@ -1,1242 +1,1238 @@
 #include "item.hh"
 
-// US food text. Keep entry order and four-byte alignment to preserve ROM layout.
+// German food text. Keep declaration order synchronized with its catalog.
 
 char const gText_Item_Food_Turnip_Name[] =
-    "Turnip";
+    "Rübe";
 
 char const gText_Item_Food_Turnip_Description[] =
-    "Turnip\r\n"
-    "Can be eaten or shipped.\r\n"
-    "";
+    "Rübe\r\n"
+    "Kann gegessen oder\r\n"
+    "versandt werden.";
 
 char const gText_Item_Food_Potato_Name[] =
-    "Potato";
+    "Kartoffel";
 
 char const gText_Item_Food_Potato_Description[] =
-    "Potato\r\n"
-    "Can be eaten or shipped.\r\n"
-    "";
+    "Kartoffel\r\n"
+    "Kann gegessen oder\r\n"
+    "versandt werden.";
 
 char const gText_Item_Food_Cucumber_Name[] =
-    "Cucumber";
+    "Gurke";
 
 char const gText_Item_Food_Cucumber_Description[] =
-    "Cucumber\r\n"
-    "Can be eaten or shipped.\r\n"
-    "";
+    "Gurke\r\n"
+    "Kann gegessen oder\r\n"
+    "versandt werden.";
 
 char const gText_Item_Food_Strawberry_Name[] =
-    "Strawberry";
+    "Erdbeere";
 
 char const gText_Item_Food_Strawberry_Description[] =
-    "Strawberry\r\n"
-    "Can be eaten or shipped.\r\n"
-    "";
+    "Erdbeere\r\n"
+    "Kann gegessen oder\r\n"
+    "versandt werden.";
 
 char const gText_Item_Food_Cabbage_Name[] =
-    "Cabbage";
+    "Kohl";
 
 char const gText_Item_Food_Cabbage_Description[] =
-    "Cabbage\r\n"
-    "Can be eaten or shipped.\r\n"
-    "";
+    "Kohl\r\n"
+    "Kann gegessen oder\r\n"
+    "versandt werden.";
 
 char const gText_Item_Food_Tomato_Name[] =
-    "Tomato";
+    "Tomate";
 
 char const gText_Item_Food_Tomato_Description[] =
-    "Tomato\r\n"
-    "Can be eaten or shipped.\r\n"
-    "";
+    "Tomate\r\n"
+    "Kann gegessen oder\r\n"
+    "versandt werden.";
 
 char const gText_Item_Food_Corn_Name[] =
-    "Corn";
+    "Getreide";
 
 char const gText_Item_Food_Corn_Description[] =
-    "Corn\r\n"
-    "Can be eaten or shipped.\r\n"
-    "";
+    "Getreide\r\n"
+    "Kann gegessen oder\r\n"
+    "versandt werden.";
 
 char const gText_Item_Food_Onion_Name[] =
-    "Onion";
+    "Zwiebel";
 
 char const gText_Item_Food_Onion_Description[] =
-    "Onion\r\n"
-    "Can be eaten or shipped.\r\n"
-    "";
+    "Zwiebel\r\n"
+    "Kann gegessen oder\r\n"
+    "versandt werden.";
 
 char const gText_Item_Food_Pumpkin_Name[] =
-    "Pumpkin";
+    "Kürbis";
 
 char const gText_Item_Food_Pumpkin_Description[] =
-    "Pumpkin\r\n"
-    "Can be eaten or shipped.\r\n"
-    "";
+    "Kürbis\r\n"
+    "Kann gegessen oder.\r\n"
+    "versandt werden.";
 
 char const gText_Item_Food_Pineapple_Name[] =
-    "Pineapple";
+    "Ananas";
 
 char const gText_Item_Food_Pineapple_Description[] =
-    "Pineapple\r\n"
-    "Can be eaten or shipped.\r\n"
-    "";
+    "Ananas\r\n"
+    "Kann gegessen oder\r\n"
+    "versandt werden.";
 
 char const gText_Item_Food_Eggplant_Name[] =
-    "Eggplant";
+    "Aubergine";
 
 char const gText_Item_Food_Eggplant_Description[] =
-    "Eggplant\r\n"
-    "Can be eaten or shipped.\r\n"
-    "";
+    "Aubergine\r\n"
+    "Kann gegessen oder\r\n"
+    "versandt werden.";
 
 char const gText_Item_Food_Carrot_Name[] =
-    "Carrot";
+    "Karotte";
 
 char const gText_Item_Food_Carrot_Description[] =
-    "Carrot\r\n"
-    "Can be eaten or shipped.\r\n"
-    "";
+    "Karotte\r\n"
+    "Kann gegessen oder\r\n"
+    "versandt werden.";
 
 char const gText_Item_Food_SweetPotato_Name[] =
-    "Sweet Potato";
+    "Süßkartoffel";
 
 char const gText_Item_Food_SweetPotato_Description[] =
-    "Sweet Potato\r\n"
-    "Can be eaten or shipped.\r\n"
-    "";
+    "Süßkartoffel\r\n"
+    "Kann gegessen oder\r\n"
+    "versandt werden.";
 
 char const gText_Item_Food_Spinach_Name[] =
-    "Spinach";
+    "Spinat";
 
 char const gText_Item_Food_Spinach_Description[] =
-    "Spinach\r\n"
-    "Can be eaten or shipped.\r\n"
-    "";
+    "Spinat\r\n"
+    "Kann gegessen oder\r\n"
+    "versandt werden.";
 
 char const gText_Item_Food_GreenPepper_Name[] =
-    "Green Pepper";
+    "Grüne Paprika";
 
 char const gText_Item_Food_GreenPepper_Description[] =
-    "Green Pepper\r\n"
-    "Can be eaten or shipped.\r\n"
-    "";
+    "Grüne Paprika\r\n"
+    "Kann gegessen oder\r\n"
+    "versandt werden.";
 
 char const gText_Item_Food_RegularQualityEgg_Name[] =
-    "Regular Quality Egg";
+    "Gewöhnliches Ei";
 
 char const gText_Item_Food_RegularQualityEgg_Description[] =
-    "Regular Quality Egg\r\n"
-    "Can be eaten or shipped.\r\n"
-    "";
+    "Gewöhnliches Ei\r\n"
+    "Kann gegessen oder\r\n"
+    "versandt werden.";
 
 char const gText_Item_Food_GoodQualityEgg_Name[] =
-    "Good Quality Egg";
+    "Hochwertiges Ei";
 
 char const gText_Item_Food_GoodQualityEgg_Description[] =
-    "Good Quality Egg\r\n"
-    "Can be eaten or shipped.\r\n"
-    "";
+    "Hochwertiges Ei\r\n"
+    "Kann gegessen oder\r\n"
+    "versandt werden.";
 
 char const gText_Item_Food_HighQualityEgg_Name[] =
-    "High Quality Egg";
+    "Sehr hochw. Ei";
 
 char const gText_Item_Food_HighQualityEgg_Description[] =
-    "High Quality Egg\r\n"
-    "Can be eaten or shipped.\r\n"
-    "";
+    "Sehr hochwertiges Ei\r\n"
+    "Kann gegessen oder\r\n"
+    "versandt werden.";
 
 char const gText_Item_Food_GoldenEgg_Name[] =
-    "Golden Egg";
+    "Goldenes Ei";
 
 char const gText_Item_Food_GoldenEgg_Description[] =
-    "Golden Egg\r\n"
-    "Can be eaten or shipped.\r\n"
-    "";
+    "Goldenes Ei\r\n"
+    "Kann gegessen oder\r\n"
+    "versandt werden.";
 
 char const gText_Item_Food_PEgg_Name[] =
-    "P Egg";
+    "P-Ei";
 
 char const gText_Item_Food_PEgg_Description[] =
-    "P Egg\r\n"
-    "Can be eaten or shipped.\r\n"
-    "";
+    "P-Ei\r\n"
+    "Kann gegessen oder\r\n"
+    "versandt werden.";
 
 char const gText_Item_Food_XEgg_Name[] =
-    "X Egg";
+    "X-Ei";
 
 char const gText_Item_Food_XEgg_Description[] =
-    "X Egg\r\n"
-    "Can be eaten or shipped.\r\n"
-    "";
+    "X-Ei\r\n"
+    "Kann gegessen oder\r\n"
+    "versandt werden.";
 
 char const gText_Item_Food_SpaboiledEgg_Name[] =
-    "Spa-Boiled Egg";
+    "Thermalei";
 
 char const gText_Item_Food_SpaboiledEgg_Description[] =
-    "Spa-Boiled Egg\r\n"
-    "Put an Egg in Hot Spring.\r\n"
-    "Can be eaten or shipped.";
+    "Thermalei\r\n"
+    "Lege Ei in heiße Quelle.\r\n"
+    "Zum Essen oder Versenden.";
 
 char const gText_Item_Food_MayonnaiseS_Name[] =
     "Mayonnaise (S)";
 
 char const gText_Item_Food_MayonnaiseS_Description[] =
     "Mayonnaise (S)\r\n"
-    "Place Eggs in the \r\n"
-    "Mayonnaise Maker.";
+    "Gib die Eier in die \r\n"
+    "Mayonnaisemaschine.";
 
 char const gText_Item_Food_MayonnaiseM_Name[] =
     "Mayonnaise (M)";
 
 char const gText_Item_Food_MayonnaiseM_Description[] =
     "Mayonnaise (M)\r\n"
-    "Place Eggs in the \r\n"
-    "Mayonnaise Maker.";
+    "Gib die Eier in die \r\n"
+    "Mayonnaisemaschine.";
 
 char const gText_Item_Food_MayonnaiseL_Name[] =
     "Mayonnaise (L)";
 
 char const gText_Item_Food_MayonnaiseL_Description[] =
     "Mayonnaise (L)\r\n"
-    "Place Eggs in the \r\n"
-    "Mayonnaise Maker.";
+    "Gib die Eier in die \r\n"
+    "Mayonnaisemaschine.";
 
 char const gText_Item_Food_MayonnaiseG_Name[] =
     "Mayonnaise (G)";
 
 char const gText_Item_Food_MayonnaiseG_Description[] =
     "Mayonnaise (G)\r\n"
-    "Place Eggs in the \r\n"
-    "Mayonnaise Maker.";
+    "Gib die Eier in die \r\n"
+    "Mayonnaisemaschine.";
 
 char const gText_Item_Food_MayonnaiseP_Name[] =
     "Mayonnaise (P)";
 
 char const gText_Item_Food_MayonnaiseP_Description[] =
     "Mayonnaise (P)\r\n"
-    "Place Eggs in the \r\n"
-    "Mayonnaise Maker.";
+    "Gib die Eier in die \r\n"
+    "Mayonnaisemaschine.";
 
 char const gText_Item_Food_MayonnaiseX_Name[] =
     "Mayonnaise (X)";
 
 char const gText_Item_Food_MayonnaiseX_Description[] =
     "Mayonnaise (X)\r\n"
-    "Place Eggs in the \r\n"
-    "Mayonnaise Maker.";
+    "Gib die Eier in die \r\n"
+    "Mayonnaisemaschine.";
 
 char const gText_Item_Food_MilkS_Name[] =
-    "Milk (S)";
+    "Milch (S)";
 
 char const gText_Item_Food_MilkS_Description[] =
-    "Milk (S)\r\n"
-    "Milk from a Cow.\r\n"
-    "Can be drunk or shipped.";
+    "Milch (S)\r\n"
+    "Kuhmilch. Kann getrunken\r\n"
+    "oder versandt werden.";
 
 char const gText_Item_Food_MilkM_Name[] =
-    "Milk (M)";
+    "Milch (M)";
 
 char const gText_Item_Food_MilkM_Description[] =
-    "Milk (M)\r\n"
-    "Milk from a Cow.\r\n"
-    "Can be drunk or shipped.";
+    "Milch (M)\r\n"
+    "Kuhmilch. Kann getrunken\r\n"
+    "oder versandt werden.";
 
 char const gText_Item_Food_MilkL_Name[] =
-    "Milk (L)";
+    "Milch(L)";
 
 char const gText_Item_Food_MilkL_Description[] =
-    "Milk (L)\r\n"
-    "Milk from a Cow.\r\n"
-    "Can be drunk or shipped.";
+    "Milch (L)\r\n"
+    "Kuhmilch. Kann getrunken\r\n"
+    "oder versandt werden.";
 
 char const gText_Item_Food_MilkG_Name[] =
-    "Milk (G)";
+    "Milch (G)";
 
 char const gText_Item_Food_MilkG_Description[] =
-    "Milk (G)\r\n"
-    "Milk from a Cow.\r\n"
-    "Can be drunk or shipped.";
+    "Milch (G)\r\n"
+    "Kuhmilch. Kann getrunken\r\n"
+    "oder versandt werden.";
 
 char const gText_Item_Food_MilkP_Name[] =
-    "Milk (P)";
+    "Milch (P)";
 
 char const gText_Item_Food_MilkP_Description[] =
-    "Milk (P)\r\n"
-    "Milk from a Cow.\r\n"
-    "Can be drunk or shipped.";
+    "Milch (P)\r\n"
+    "Kuhmilch. Kann getrunken\r\n"
+    "oder versandt werden.";
 
 char const gText_Item_Food_MilkX_Name[] =
-    "Milk (X)";
+    "Milch (X)";
 
 char const gText_Item_Food_MilkX_Description[] =
-    "Milk (X)\r\n"
-    "Milk from a Cow.\r\n"
-    "Can be drunk or shipped.";
+    "Milch (X)\r\n"
+    "Kuhmilch. Kann getrunken\r\n"
+    "Kann getrunken oder.";
 
 char const gText_Item_Food_CheeseS_Name[] =
-    "Cheese (S)";
+    "Käse (S)";
 
 char const gText_Item_Food_CheeseS_Description[] =
-    "Cheese (S)\r\n"
-    "Place Milk in the Cheese \r\n"
-    "Maker. ";
+    "Käse (S)\r\n"
+    "Fülle Milch in die \r\n"
+    "Käsemaschine.";
 
 char const gText_Item_Food_CheeseM_Name[] =
-    "Cheese (M)";
+    "Käse (M)";
 
 char const gText_Item_Food_CheeseM_Description[] =
-    "Cheese (M)\r\n"
-    "Place Milk in the Cheese \r\n"
-    "Maker. ";
+    "Käse (M)\r\n"
+    "Fülle Milch in die \r\n"
+    "Käsemaschine.";
 
 char const gText_Item_Food_CheeseL_Name[] =
-    "Cheese (L)";
+    "Käse (L)";
 
 char const gText_Item_Food_CheeseL_Description[] =
-    "Cheese (L)\r\n"
-    "Place Milk in the Cheese \r\n"
-    "Maker. ";
+    "Käse (L)\r\n"
+    "Fülle Milch in die \r\n"
+    "Käsemaschine.";
 
 char const gText_Item_Food_CheeseG_Name[] =
-    "Cheese (G)";
+    "Käse (G)";
 
 char const gText_Item_Food_CheeseG_Description[] =
-    "Cheese (G)\r\n"
-    "Place Milk in the Cheese \r\n"
-    "Maker. ";
+    "Käse (G)\r\n"
+    "Fülle Milch in die \r\n"
+    "Käsemaschine.";
 
 char const gText_Item_Food_CheeseP_Name[] =
-    "Cheese (P)";
+    "Käse (P)";
 
 char const gText_Item_Food_CheeseP_Description[] =
-    "Cheese (P)\r\n"
-    "Place Milk in the Cheese \r\n"
-    "Maker. ";
+    "Käse (P)\r\n"
+    "Fülle Milch in die \r\n"
+    "Käsemaschine.";
 
 char const gText_Item_Food_CheeseX_Name[] =
-    "Cheese (X)";
+    "Käse (X)";
 
 char const gText_Item_Food_CheeseX_Description[] =
-    "Cheese (X)\r\n"
-    "Place Milk in the Cheese \r\n"
-    "Maker. ";
+    "Käse (X)\r\n"
+    "Fülle Milch in die \r\n"
+    "Käsemaschine.";
 
 char const gText_Item_Food_Apple_Name[] =
-    "Apple";
+    "Apfel";
 
 char const gText_Item_Food_Apple_Description[] =
-    "Apple\r\n"
-    "Grows on Apple Trees\r\n"
-    "Can be eated or shipped.";
+    "Apfel\r\n"
+    "Wächst auf Apfelbäumen.\r\n"
+    "Zum Essen oder Versenden.";
 
 char const gText_Item_Food_Honey_Name[] =
-    "Honey";
+    "Honig";
 
 char const gText_Item_Food_Honey_Description[] =
-    "Honey\r\n"
-    "Made by Honey Bees.\r\n"
-    "Can be eaten or shipped.";
+    "Honig\r\n"
+    "Von Honigbienen.\r\n"
+    "Zum Essen oder Versenden.";
 
 char const gText_Item_Food_BambooShoot_Name[] =
-    "Bamboo Shoot";
+    "Bambussprossen";
 
 char const gText_Item_Food_BambooShoot_Description[] =
-    "Bamboo Shoot\r\n"
-    "Find them in the mountains.\r\n"
-    "Can be eaten or shipped.";
+    "Bambussprossen\r\n"
+    "Finde sie in den Bergen.\r\n"
+    "Zum Essen oder Versenden.";
 
 char const gText_Item_Food_WildGrapes_Name[] =
-    "Wild Grapes";
+    "Wilde Trauben";
 
 char const gText_Item_Food_WildGrapes_Description[] =
-    "Wild Grapes\r\n"
-    "Find them in the mountains.\r\n"
-    "Can be eaten or shipped.";
+    "Wilde Trauben\r\n"
+    "Finde sie in den Bergen.\r\n"
+    "Zum Essen oder Versenden.";
 
 char const gText_Item_Food_Mushroom_Name[] =
-    "Mushroom";
+    "Pilze";
 
 char const gText_Item_Food_Mushroom_Description[] =
-    "Mushroom\r\n"
-    "Find them in the mountains.\r\n"
-    "Can be eaten or shipped.";
+    "Pilze\r\n"
+    "Finde sie in den Bergen.\r\n"
+    "Zum Essen oder Versenden.";
 
 char const gText_Item_Food_PoisonousMushroom_Name[] =
-    "Poisonous Mushroom";
+    "Giftpilze";
 
 char const gText_Item_Food_PoisonousMushroom_Description[] =
-    "Poisonous Mushroom\r\n"
-    "Find them in the mountains.\r\n"
-    "Dangerous if eaten.";
+    "Giftpilze\r\n"
+    "Finde sie in den Bergen.\r\n"
+    "Gefahr bei Verzehr.";
 
 char const gText_Item_Food_Truffle_Name[] =
-    "Truffle";
+    "Trüffel";
 
 char const gText_Item_Food_Truffle_Description[] =
-    "Truffle\r\n"
-    "Find them in the mountains.\r\n"
-    "Very rare.";
+    "Trüffel\r\n"
+    "Finde sie in den Bergen.\r\n"
+    "Sehr selten.";
 
 char const gText_Item_Food_BlueGrass_Name[] =
-    "Blue Grass";
+    "Blaue Gräser";
 
 char const gText_Item_Food_BlueGrass_Description[] =
-    "Blue Grass\r\n"
-    "Find them in the mountains.\r\n"
-    "Eat to recover some Stamina.";
+    "Blaue Gräser\r\n"
+    "Finde sie in den Bergen.\r\n"
+    "Gewinne etwas Ausdauer.";
 
 char const gText_Item_Food_GreenGrass_Name[] =
-    "Green Grass";
+    "Grüne Gräser";
 
 char const gText_Item_Food_GreenGrass_Description[] =
-    "Green Grass\r\n"
-    "Find them in the mountains.\r\n"
-    "Eat to recover some Fatigue.";
+    "Grüne Gräser\r\n"
+    "Aus den Bergen. Wieder-\r\n"
+    "herstellung Energieverlust.";
 
 char const gText_Item_Food_RedGrass_Name[] =
-    "Red Grass";
+    "Rote Gräser";
 
 char const gText_Item_Food_RedGrass_Description[] =
-    "Red Grass\r\n"
-    "Find them in the mountains.\r\n"
-    "Dangerous if eaten.";
+    "Rote Gräser\r\n"
+    "Finde sie in den Bergen.\r\n"
+    "Gefahr bei Verzehr.";
 
 char const gText_Item_Food_YellowGrass_Name[] =
-    "Yellow Grass";
+    "Gelbe Gräser";
 
 char const gText_Item_Food_YellowGrass_Description[] =
-    "Yellow Grass\r\n"
-    "Decreases Stamina,\r\n"
-    "but recovers some Fatigue.";
+    "Gelbe Gräser\r\n"
+    "Vermindert die Ausdauer,\r\n"
+    "hilft bei Energieverlust.";
 
 char const gText_Item_Food_OrangeGrass_Name[] =
-    "Orange Grass";
+    "Orange Gräser";
 
 char const gText_Item_Food_OrangeGrass_Description[] =
-    "Orange Grass\r\n"
-    "Does not affect\r\n"
-    "Stamina or Fatigue.";
+    "Orange Gräser\r\n"
+    "Kein Einfluss auf Aus-\r\n"
+    "dauer oder Energieverlust.";
 
 char const gText_Item_Food_PurpleGrass_Name[] =
-    "Purple Grass";
+    "Lila Gräser";
 
 char const gText_Item_Food_PurpleGrass_Description[] =
-    "Purple Grass\r\n"
-    "Eat to recover some\r\n"
-    "Stamina and Fatigue.";
+    "Lila Gräser\r\n"
+    "Iss sie, sie verbessern\r\n"
+    "Ausdauer und Energie.";
 
 char const gText_Item_Food_IndigoGrass_Name[] =
-    "Indigo Grass";
+    "Indigoblaue Gräser";
 
 char const gText_Item_Food_IndigoGrass_Description[] =
-    "Indigo Grass\r\n"
-    "Find them on the beach.\r\n"
-    "Eat to recover Stamina.";
+    "Indigoblaue Gräser\r\n"
+    "Finde sie am Strand.\r\n"
+    "Iss sie, gut für Ausdauer.";
 
 char const gText_Item_Food_BlackGrass_Name[] =
-    "Black Grass";
+    "Schwarze Gräser";
 
 char const gText_Item_Food_BlackGrass_Description[] =
-    "Black Grass\r\n"
-    "Eat to recover some\r\n"
-    "Stamina and Fatigue.";
+    "Schwarze Gräser\r\n"
+    "Iss sie, sie verbessern\r\n"
+    "Ausdauer und Energie.";
 
 char const gText_Item_Food_WhiteGrass_Name[] =
-    "White Grass";
+    "Weiße Gräser";
 
 char const gText_Item_Food_WhiteGrass_Description[] =
-    "White Grass\r\n"
-    "Eat to recover some\r\n"
-    "Stamina and Fatigue.";
+    "Weiße Gräser\r\n"
+    "Iss sie, sie verbessern\r\n"
+    "Ausdauer und Energie.";
 
 char const gText_Item_Food_QueenOfTheNight_Name[] =
-    "Queen of the Night";
+    "Königin der Nacht";
 
 char const gText_Item_Food_QueenOfTheNight_Description[] =
-    "Queen of the Night\r\n"
-    "Blooms on Summer nights. \r\n"
-    "Brings good luck.";
+    "Königin der Nacht\r\n"
+    "Blüht in Sommernächten.\r\n"
+    "Bringt Glück.";
 
 char const gText_Item_Food_Bodigizer_Name[] =
     "Bodigizer";
 
 char const gText_Item_Food_Bodigizer_Description[] =
     "Bodigizer\r\n"
-    "Helps recuperate Stamina.\r\n"
-    "";
-
-char const gText_Item_Food_BodigizerXl_Name[] =
-    "Bodigizer XL";
+    "Hilft, Ausdauer zu gewinnen.";
 
 char const gText_Item_Food_BodigizerXl_Description[] =
     "Bodigizer XL\r\n"
-    "Helps recuperate \r\n"
-    "lots of Stamina.";
+    "Hilft, eine Menge \r\n"
+    "Ausdauer zu gewinnen.";
 
 char const gText_Item_Food_Turbojolt_Name[] =
-    "Turbojolt";
+    "Turboschub";
 
 char const gText_Item_Food_Turbojolt_Description[] =
-    "Turbojolt\r\n"
-    "Helps recuperate Fatigue.\r\n"
-    "";
+    "Turboschub\r\n"
+    "Hilft, Energieverlust\r\n"
+    "wiederherzustellen.";
 
 char const gText_Item_Food_TurbojoltXl_Name[] =
-    "Turbojolt XL";
+    "Turboschub XL";
 
 char const gText_Item_Food_TurbojoltXl_Description[] =
-    "Turbojolt XL\r\n"
-    "Helps recuperate \r\n"
-    "lots of Fatigue.";
+    "Turboschub XL\r\n"
+    "Hilft, sehr starken \r\n"
+    "Energieverlust zu kurieren.";
 
 char const gText_Item_Food_Wine_Name[] =
-    "Wine";
+    "Wein";
 
 char const gText_Item_Food_Wine_Description[] =
-    "Wine\r\n"
-    "Made with Grapes from the \r\n"
-    "winery or the mountain.";
+    "Wein\r\n"
+    "Aus Trauben vom Weingut \r\n"
+    "oder aus den Bergen.";
 
 char const gText_Item_Food_GrapeJuice_Name[] =
-    "Grape Juice";
+    "Traubensaft";
 
 char const gText_Item_Food_GrapeJuice_Description[] =
-    "Grape Juice\r\n"
-    "Made with Grapes from the \r\n"
-    "winery or the mountain.";
+    "Traubensaft\r\n"
+    "Aus Trauben vom Weingut \r\n"
+    "oder aus den Bergen.";
 
 char const gText_Item_Food_RiceBall_Name[] =
-    "Rice Ball";
+    "Reisbällchen";
 
 char const gText_Item_Food_RiceBall_Description[] =
-    "Rice Ball\r\n"
-    "May be eaten as is,\r\n"
-    "or used for cooking.";
+    "Reisbällchen\r\n"
+    "Kann so gegessen oder \r\n"
+    "zum Kochen benutzt werden.";
 
 char const gText_Item_Food_Bread_Name[] =
-    "Bread";
+    "Brot";
 
 char const gText_Item_Food_Bread_Description[] =
-    "Bread\r\n"
-    "May be eaten as is,\r\n"
-    "or used for cooking.\r\n"
-    "";
+    "Brot\r\n"
+    "Kann so gegessen oder\r\n"
+    "zum Kochen benutzt werden.";
 
 char const gText_Item_Food_Oil_Name[] =
-    "Oil";
+    "Öl";
 
 char const gText_Item_Food_Oil_Description[] =
-    "Oil\r\n"
-    "May be eaten as is,\r\n"
-    "or used for cooking.";
+    "Öl\r\n"
+    "Kann so gegessen oder\r\n"
+    "zum Kochen benutzt werden.";
 
 char const gText_Item_Food_Flower_Name[] =
-    "Flower";
+    "Blume";
 
 char const gText_Item_Food_Flower_Description[] =
-    "Flower\r\n"
-    "May be eaten as is,\r\n"
-    "or used for cooking.";
+    "Blume\r\n"
+    "Kann so gegessen oder\r\n"
+    "zum Kochen benutzt werden.";
 
 char const gText_Item_Food_CurryPowder_Name[] =
-    "Curry Powder";
+    "Currypulver";
 
 char const gText_Item_Food_CurryPowder_Description[] =
-    "Curry Powder\r\n"
-    "May be eaten as is,\r\n"
-    "or used for cooking.";
+    "Currypulver\r\n"
+    "Kann so gegessen oder\r\n"
+    "zum Kochen benutzt werden.";
 
 char const gText_Item_Food_MuffinMix_Name[] =
-    "Muffin Mix";
+    "Muffin-Mix";
 
 char const gText_Item_Food_MuffinMix_Description[] =
-    "Muffin Mix\r\n"
-    "May be eaten as is,\r\n"
-    "or used for cooking.";
+    "Muffin-Mix\r\n"
+    "Kann so gegessen oder\r\n"
+    "zum Kochen benutzt werden.";
 
 char const gText_Item_Food_Chocolate_Name[] =
-    "Chocolate";
+    "Schokolade";
 
 char const gText_Item_Food_Chocolate_Description[] =
-    "Chocolate\r\n"
-    "May be eaten as is,\r\n"
-    "or used for cooking.";
+    "Schokolade\r\n"
+    "Kann so gegessen oder\r\n"
+    "zum Kochen benutzt werden.";
 
 char const gText_Item_Food_RelaxTeaLeaves_Name[] =
-    "Relax Tea Leaves";
+    "Entspannungstee";
 
 char const gText_Item_Food_RelaxTeaLeaves_Description[] =
-    "Relaxation Tea Leaves\r\n"
-    "Present from the Harvest\r\n"
-    "Sprite's Tea Party.";
+    "Entspannungstee \r\n"
+    "Geschenk von der Ernte-\r\n"
+    "Wichtel-Teeparty.";
 
 char const gText_Item_Food_SugdwApple_Name[] =
-    "SUGDW Apple";
+    "SUGDW Apfel";
 
 char const gText_Item_Food_SugdwApple_Description[] =
-    "SUGDW Apple\r\n"
-    "Full name: Super Ultra Great\r\n"
-    "Delicious Wonderful Apple.";
+    "SUGDW Apfel\r\n"
+    "Name: Super Ultra Guter\r\n"
+    "Delikater Wunder-Apfel.";
 
 char const gText_Item_Food_HmsgbApple_Name[] =
-    "HMSGB Apple";
+    "HMSGB Apfel";
 
 char const gText_Item_Food_HmsgbApple_Description[] =
-    "HMSGB Apple\r\n"
-    "Stands for Hyper-Miracle \r\n"
-    "Sweet-Gorgeous-Beautiful.";
+    "HMSGB Apfel\r\n"
+    "Hyper-Magischer-Süßer\r\n"
+    "Galaktischer-Bombiger.";
 
 char const gText_Item_Food_AepfeApple_Name[] =
-    "AEPFE Apple";
+    "HKEFG Apfel";
 
 char const gText_Item_Food_AepfeApple_Description[] =
-    "AEPFE Apple\r\n"
-    "Stands for Angelic-Eternal-\r\n"
-    "Pure-Fresh-Elegant.";
+    "HKEFG Apfel\r\n"
+    "Himmlisch-Knackig-Ewig-\r\n"
+    "Frischer-Geschmackvoller.";
 
 char const gText_Item_Food_BuckwheatFlour_Name[] =
-    "Buckwheat Flour";
+    "Buchweizenmehl";
 
 char const gText_Item_Food_BuckwheatFlour_Description[] =
-    "Buckwheat Flour\r\n"
-    "May be eaten as is,\r\n"
-    "or used for cooking.";
+    "Buchweizenmehl\r\n"
+    "Kann so gegessen oder\r\n"
+    "zum Kochen benutzt werden.";
 
 char const gText_Item_Food_WildGrapeJuice_Name[] =
-    "Wild Grape Juice";
+    "Wilder Traubensaft";
 
 char const gText_Item_Food_WildGrapeJuice_Description[] =
-    "A wine made with \r\n"
-    "Wild Grapes.\r\n"
-    "";
+    "Aus wilden Trauben \r\n"
+    "gemachter Saft.";
 
 char const gText_Item_Food_Salad_Name[] =
-    "Salad";
+    "Salat";
 
 char const gText_Item_Food_Salad_Description[] =
-    "Salad\r\n"
-    "Made with fresh vegetables.\r\n"
-    "To eat or use as a gift.";
+    "Salat\r\n"
+    "Aus frischem Gemüse.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_CurryRice_Name[] =
-    "Curry Rice";
+    "Curryreis";
 
 char const gText_Item_Food_CurryRice_Description[] =
-    "Curry Rice\r\n"
-    "Curry eaten with Rice.\r\n"
-    "To eat or use as a gift.";
+    "Curryreis\r\n"
+    "Curry mit Reis gegessen.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_Stew_Name[] =
-    "Stew";
+    "Eintopf";
 
 char const gText_Item_Food_Stew_Description[] =
-    "Stew\r\n"
-    "Stewed vegetables.\r\n"
-    "To eat or use as a gift.";
+    "Eintopf\r\n"
+    "Gedünstetes Gemüse.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_MisoSoup_Name[] =
-    "Miso Soup";
+    "Miso-Suppe";
 
 char const gText_Item_Food_MisoSoup_Description[] =
-    "Miso Soup\r\n"
-    "A delicious soup.\r\n"
-    "To drink or use as a gift.";
+    "Miso-SuppeEine köstliche Suppe.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_StirFry_Name[] =
-    "Stir Fry";
+    "Geschmortes Gemüse";
 
 char const gText_Item_Food_StirFry_Description[] =
-    "Stir Fry\r\n"
-    "Healthy veggy stir fry.\r\n"
-    "To eat or use as a gift.";
+    "Geschmortes Gemüse\r\n"
+    "Vegetarisch, gesund.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_FriedRice_Name[] =
-    "Fried Rice";
+    "Gebratener Reis";
 
 char const gText_Item_Food_FriedRice_Description[] =
-    "Fried Rice\r\n"
-    "A yummy rice dish.\r\n"
-    "To eat or use as a gift.";
+    "Gebratener Reis\r\n"
+    "Ein leckeres Reisgericht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_SavoryPancake_Name[] =
-    "Savory Pancake";
+    "Lecker Pfannkuchen";
 
 char const gText_Item_Food_SavoryPancake_Description[] =
-    "Savory Pancake\r\n"
-    "Made with flour and veggies.\r\n"
-    "To eat or use as a gift.";
+    "Lecker Pfannkuchen\r\n"
+    "Aus Mehl und Gemüse.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_Sandwich_Name[] =
     "Sandwich";
 
 char const gText_Item_Food_Sandwich_Description[] =
     "Sandwich\r\n"
-    "An old favorite.\r\n"
-    "To eat or use as a gift.";
+    "Guter alter Favorit.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_FruitJuice_Name[] =
-    "Fruit Juice";
+    "Fruchtsaft";
 
 char const gText_Item_Food_FruitJuice_Description[] =
-    "Fruit Juice\r\n"
-    "A drink made with fruits.\r\n"
-    "To drink or use as a gift.";
+    "Fruchtsaft\r\n"
+    "Saft aus Früchten.\r\n"
+    "Selbertrinken o verschenken.";
 
 char const gText_Item_Food_VegetableJuice_Name[] =
-    "Vegetable Juice";
+    "Gemüsesaft";
 
 char const gText_Item_Food_VegetableJuice_Description[] =
-    "Vegetable Juice\r\n"
-    "A drink made with veggies.\r\n"
-    "To drink or use as a gift.";
+    "Gemüsesaft\r\n"
+    "Saft aus Gemüse.\r\n"
+    "Selbertrinken o verschenken.";
 
 char const gText_Item_Food_MixedJuice_Name[] =
-    "Mixed Juice";
+    "Gemixter Saft";
 
 char const gText_Item_Food_MixedJuice_Description[] =
-    "Mixed Juice\r\n"
-    "A drink made with fruits.\r\n"
-    "To drink or use as a gift.";
+    "Gemixter Saft\r\n"
+    "Saft aus Früchten.\r\n"
+    "Zum Selbertrinken.";
 
 char const gText_Item_Food_FruitLatte_Name[] =
-    "Fruit Latte";
+    "Fruchtmilch";
 
 char const gText_Item_Food_FruitLatte_Description[] =
-    "Fruit Latte\r\n"
-    "Made with fruits and Milk.\r\n"
-    "To eat or use as a gift.";
+    "Fruchtmilch\r\n"
+    "Fruchtmilchgetränk \r\n"
+    "Selbertrinken o verschenken.";
 
 char const gText_Item_Food_VegetableLatte_Name[] =
-    "Vegetable Latte";
+    "Gemüsemilch";
 
 char const gText_Item_Food_VegetableLatte_Description[] =
-    "Vegetable Latte\r\n"
-    "A drink made with  \r\n"
-    "vegetables and Milk.";
+    "Gemüsemilch\r\n"
+    "Getränk aus Gemüse \r\n"
+    "und Milch.";
 
 char const gText_Item_Food_MixedLatte_Name[] =
-    "Mixed Latte";
+    "Milchmixgetränk";
 
 char const gText_Item_Food_MixedLatte_Description[] =
-    "Mixed Latte\r\n"
-    "A drink made with fruit, \r\n"
-    "vegetables and Milk.";
+    "Milchmixgetränk\r\n"
+    "Aus Früchten, Gemüse und\r\n"
+    "Selbertrinken o verschenken.";
 
 char const gText_Item_Food_StrawberryMilk_Name[] =
-    "Strawberry Milk";
+    "Erdbeermilch";
 
 char const gText_Item_Food_StrawberryMilk_Description[] =
-    "A drink made with\r\n"
-    "Strawberries and Milk.\r\n"
-    "To drink or use as a gift.";
+    "Aus Erdbeeren und\r\n"
+    "Milch gemachtes Getränk.\r\n"
+    "Selbertrinken o verschenken.";
 
 char const gText_Item_Food_StrawberryJam_Name[] =
-    "Strawberry Jam";
+    "Erdbeermarmelade";
 
 char const gText_Item_Food_StrawberryJam_Description[] =
-    "Strawberry Jam\r\n"
-    "Jam made with Strawberries.\r\n"
-    "To eat or use as a gift.";
+    "Erdbeermarmelade\r\n"
+    "Marmelade aus Erdbeeren.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_TomatoJuice_Name[] =
-    "Tomato Juice";
+    "Tomatensaft";
 
 char const gText_Item_Food_TomatoJuice_Description[] =
-    "Tomato Juice\r\n"
-    "A juice made from Tomatoes.\r\n"
-    "To drink or use as a gift.";
+    "Tomatensaft\r\n"
+    "Aus Tomaten gemachter Saft.\r\n"
+    "Selbertrinken o verschenken.";
 
 char const gText_Item_Food_PickledTurnip_Name[] =
-    "Pickled Turnip";
+    "Eingelegte Rüben";
 
 char const gText_Item_Food_PickledTurnip_Description[] =
-    "Pickled Turnip\r\n"
-    "A Turnip dish.\r\n"
-    "To eat or use as a gift.";
+    "Eingelegte Rüben\r\n"
+    "Ein Gericht aus Rüben.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_FrenchFries_Name[] =
-    "French Fries";
+    "Pommes Frites";
 
 char const gText_Item_Food_FrenchFries_Description[] =
-    "French Fries\r\n"
-    "Everyone's favorite.\r\n"
-    "To eat or use as a gift.";
+    "Pommes Frites\r\n"
+    "Jedermanns Favorit. \r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_Pickles_Name[] =
     "Pickles";
 
 char const gText_Item_Food_Pickles_Description[] =
     "Pickles\r\n"
-    "A Pickled Cucumber.\r\n"
-    "To eat or use as a gift.";
+    "Eingelegte Gurken.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_Ketchup_Name[] =
     "Ketchup";
 
 char const gText_Item_Food_Ketchup_Description[] =
     "Ketchup\r\n"
-    "Made with fresh Tomatoes.\r\n"
-    "To eat or use as a gift.";
+    "Aus frischen\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_Popcorn_Name[] =
     "Popcorn";
 
 char const gText_Item_Food_Popcorn_Description[] =
     "Popcorn\r\n"
-    "Made with fresh Corn.\r\n"
-    "To eat or use as a gift.";
+    "Aus frischem Mais.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_CornFlakes_Name[] =
-    "Corn Flakes";
+    "Cornflakes ";
 
 char const gText_Item_Food_CornFlakes_Description[] =
-    "Corn Flakes\r\n"
-    "Great in the morning.\r\n"
-    "To eat or use as a gift.";
+    "Cornflakes\r\n"
+    "Super am Morgen. \r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_BakedCorn_Name[] =
-    "Baked Corn";
+    "Gebratener Mais";
 
 char const gText_Item_Food_BakedCorn_Description[] =
-    "Baked Corn\r\n"
-    "Made with fresh Corn.\r\n"
-    "To eat or use as a gift.";
+    "Gebratener Mais\r\n"
+    "Aus frischem Mais.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_PineappleJuice_Name[] =
-    "Pineapple Juice";
+    "Ananassaft";
 
 char const gText_Item_Food_PineappleJuice_Description[] =
-    "Pineapple Juice\r\n"
-    "Freshly squeezed Pinapple.\r\n"
-    "To drink or use as a gift.";
+    "Ananassaft\r\n"
+    "Frisch gepresste Ananas.\r\n"
+    "Selbertrinken o verschenken.";
 
 char const gText_Item_Food_PumpkinPudding_Name[] =
-    "Pumpkin Pudding";
+    "Kürbispudding";
 
 char const gText_Item_Food_PumpkinPudding_Description[] =
-    "Pumpkin Pudding\r\n"
-    "A delicious dessert.\r\n"
-    "To eat or use as a gift.";
+    "Kürbispudding\r\n"
+    "Köstliche Kürbis-Leckerei.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_PumpkinStew_Name[] =
-    "Pumpkin Stew";
+    "Kürbiseintopf";
 
 char const gText_Item_Food_PumpkinStew_Description[] =
-    "Pumpkin Stew\r\n"
-    "Savory Pumpkin dish.\r\n"
-    "To eat or use as a gift.";
+    "Kürbiseintopf\r\n"
+    "Leckeres Kürbisgericht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_HappyEggplant_Name[] =
-    "Happy Eggplant";
+    "Happy Aubergine";
 
 char const gText_Item_Food_HappyEggplant_Description[] =
-    "Happy Eggplant\r\n"
-    "Using Eggplant and Miso.\r\n"
-    "To eat or use as a gift.";
+    "Happy Aubergine\r\n"
+    "Mit Aubergine und Miso.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_SweetPotatoes_Name[] =
-    "Sweet Potatoes";
+    "Süßkartoffeln";
 
 char const gText_Item_Food_SweetPotatoes_Description[] =
-    "Sweet Potatoes\r\n"
-    "Sweet and yummy.\r\n"
-    "To eat or use as a gift.";
+    "Süßkartoffeln\r\n"
+    "Süß und lecker.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_BakedSweetPotato_Name[] =
-    "Baked Sweet Potato";
+    "Geb. Süßkartoffel";
 
 char const gText_Item_Food_BakedSweetPotato_Description[] =
-    "Baked Sweet Potato\r\n"
-    "Sweet and delicious.\r\n"
-    "To eat or use as a gift.";
+    "Geb. Süßkartoffel\r\n"
+    "Süß und köstlich.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_Greens_Name[] =
-    "Greens";
+    "Grünzeug";
 
 char const gText_Item_Food_Greens_Description[] =
-    "Greens\r\n"
-    "Healthy and delicious.\r\n"
-    "To eat or use as a gift.";
+    "Grünzeug\r\n"
+    "Gesund und köstlich.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_ScrambledEggs_Name[] =
-    "Scrambled Eggs";
+    "Rührei";
 
 char const gText_Item_Food_ScrambledEggs_Description[] =
-    "Scrambled Eggs\r\n"
-    "Made with fresh Eggs.\r\n"
-    "To eat or use as a gift.";
+    "Rührei\r\n"
+    "Mit frischen Eiern gemacht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_Omelet_Name[] =
-    "Omelet";
+    "Omelett";
 
 char const gText_Item_Food_Omelet_Description[] =
-    "Omelet\r\n"
-    "Made with fresh Eggs.\r\n"
-    "To eat or use as a gift.";
+    "Omelett\r\n"
+    "Mit frischen Eiern gemacht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_OmeletRice_Name[] =
-    "Omelet Rice";
+    "Omelett und Reis";
 
 char const gText_Item_Food_OmeletRice_Description[] =
-    "Omelet Rice\r\n"
-    "Made with fresh Eggs.\r\n"
-    "To eat or use as a gift.";
+    "Omelett und Reis\r\n"
+    "Mit frischen Eiern gemacht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_BoiledEgg_Name[] =
-    "Boiled Egg";
+    "Gekochtes Ei";
 
 char const gText_Item_Food_BoiledEgg_Description[] =
-    "Boiled Egg\r\n"
-    "Made with a fresh Egg.\r\n"
-    "To eat or use as a gift.";
+    "Gekochtes Ei\r\n"
+    "Mit frischem Ei gemacht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_HotMilk_Name[] =
-    "Hot Milk";
+    "Heiße Milch";
 
 char const gText_Item_Food_HotMilk_Description[] =
-    "Hot Milk\r\n"
-    "Made with fresh Milk.\r\n"
-    "To eat or use as a gift.";
+    "Heiße Milch\r\n"
+    "Lässt dich sofort schlafen.\r\n"
+    "Selbertrinken o verschenken.";
 
 char const gText_Item_Food_Butter_Name[] =
     "Butter";
 
 char const gText_Item_Food_Butter_Description[] =
     "Butter\r\n"
-    "Made with fresh Milk.\r\n"
-    "To eat or use as a gift.";
+    "Mit frischer Milch gemacht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_CheeseCake_Name[] =
-    "Cheese Cake";
+    "Käsekuchen";
 
 char const gText_Item_Food_CheeseCake_Description[] =
-    "Cheese Cake\r\n"
-    "Made with fresh Cheese.\r\n"
-    "To eat or use as a gift.";
+    "Käsekuchen\r\n"
+    "Mit frischem Käse gemacht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_CheeseFondue_Name[] =
-    "Cheese Fondue";
+    "Käsefondue";
 
 char const gText_Item_Food_CheeseFondue_Description[] =
-    "Cheese Fondue\r\n"
-    "Made with fresh Cheese.\r\n"
-    "To eat or use as a gift.";
+    "Käsefondue\r\n"
+    "Mit frischem Käse gemacht\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_ApplePie_Name[] =
-    "Apple Pie";
+    "Apfelkuchen ";
 
 char const gText_Item_Food_ApplePie_Description[] =
-    "Apple Pie\r\n"
-    "A traditional dessert.\r\n"
-    "To eat or use as a gift.";
+    "Apfelkuchen\r\n"
+    "Traditionelles Dessert.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_AppleJam_Name[] =
-    "Apple Jam";
+    "Apfelmarmelade";
 
 char const gText_Item_Food_AppleJam_Description[] =
-    "Apple Jam\r\n"
-    "Made with fresh Apples.\r\n"
-    "To eat or use as a gift.";
+    "Apfelmarmelade\r\n"
+    "Mit frischen Äpfeln gemacht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_AppleSouffl_Name[] =
-    "Apple Souffl?";
+    "Apfelauflauf";
 
 char const gText_Item_Food_AppleSouffl_Description[] =
-    "Apple Souffl?\r\n"
-    "Made with fresh Apples.\r\n"
-    "To eat or use as a gift.";
+    "Apfelauflauf\r\n"
+    "Mit frischen Äpfeln gemacht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_MushroomRice_Name[] =
-    "Mushroom Rice";
+    "Pilzreis";
 
 char const gText_Item_Food_MushroomRice_Description[] =
-    "Mushroom Rice\r\n"
-    "Mushroom-mixed Rice.\r\n"
-    "To eat or use as a gift.";
+    "Pilzreis\r\n"
+    "Mit Pilzen gemacht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_BambooRice_Name[] =
-    "Bamboo Rice";
+    "Bambusreis";
 
 char const gText_Item_Food_BambooRice_Description[] =
-    "Bamboo Rice\r\n"
-    "Bamboo Shoots-mixed Rice.\r\n"
-    "To eat or use as a gift.";
+    "Bambusreis\r\n"
+    "Mit Bambussprossen gemacht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_TruffleRice_Name[] =
-    "Truffle Rice";
+    "Trüffelreis";
 
 char const gText_Item_Food_TruffleRice_Description[] =
-    "Truffle Rice\r\n"
-    "Truffle-mixed Rice.\r\n"
-    "To eat or use as a gift.";
+    "Trüffelreis\r\n"
+    "Mit Trüffeln gemacht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_Sushi_Name[] =
     "Sushi";
 
 char const gText_Item_Food_Sushi_Description[] =
     "Sushi\r\n"
-    "Made with Sashimi, Rice,\r\n"
-    "and Vinegar.";
+    "Mit Reis, Sashimi \r\n"
+    "und Essig gemacht.";
 
 char const gText_Item_Food_JamBun_Name[] =
-    "Jam Bun";
+    "Marmeladensemmel";
 
 char const gText_Item_Food_JamBun_Description[] =
-    "Jam Bun\r\n"
-    "Made with Jam and Bread.\r\n"
-    "To eat or use as a gift.";
+    "Marmeladensemmel\r\n"
+    "Brot und Marmelade.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_DinnerRole_Name[] =
-    "Dinner Role";
+    "Abendbrot-Schnitte";
 
 char const gText_Item_Food_DinnerRole_Description[] =
-    "Dinner Role\r\n"
-    "Made with Bread and Butter.\r\n"
-    "To eat or use as a gift.";
+    "Abendbrot-Schnitte\r\n"
+    "Mit Brot und Butter gemacht.\r\n"
+    "Zum Selberessen.";
 
 char const gText_Item_Food_RaisinBread_Name[] =
-    "Raisin Bread";
+    "Rosinenbrot";
 
 char const gText_Item_Food_RaisinBread_Description[] =
-    "Raisin Bread\r\n"
-    "Made with Wild Grapes.\r\n"
-    "To eat or use as a gift.";
+    "Rosinenbrot\r\n"
+    "Mit wilden Trauben gemacht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_GrapeJam_Name[] =
-    "Grape Jam";
+    "Traubenmarmelade";
 
 char const gText_Item_Food_GrapeJam_Description[] =
-    "Grape Jam\r\n"
-    "Made with Wild Grapes.\r\n"
-    "To eat or use as a gift.";
+    "Traubenmarmelade\r\n"
+    "Mit wilden Trauben gemacht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_CurryBread_Name[] =
-    "Curry Bread";
+    "Curry-Brot";
 
 char const gText_Item_Food_CurryBread_Description[] =
-    "Curry Bread\r\n"
-    "Made with Curry and Bread.\r\n"
-    "To eat or use as a gift.";
+    "Curry-Brot\r\n"
+    "Gemacht aus Curry und Brot.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_Sashimi_Name[] =
     "Sashimi";
 
 char const gText_Item_Food_Sashimi_Description[] =
     "Sashimi\r\n"
-    "Thinly sliced raw fish.\r\n"
-    "To eat or use as a gift.";
+    "Rohe Fisch-Scheiben.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_GrilledFish_Name[] =
-    "Grilled Fish";
+    "Gegrillter Fisch";
 
 char const gText_Item_Food_GrilledFish_Description[] =
-    "Grilled Fish\r\n"
-    "Made with fresh fish.\r\n"
-    "To eat or use as a gift.";
+    "Gegrillter Fisch\r\n"
+    "Mit frischem Fisch gemacht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_ChirashiSushi_Name[] =
     "Chirashi Sushi";
 
 char const gText_Item_Food_ChirashiSushi_Description[] =
-    "Sashimi and other goodies\r\n"
-    "on top of Rice.\r\n"
-    "To eat or use as a gift.";
+    "Sashimi und andere\r\n"
+    "Leckereien auf Reis.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_Pizza_Name[] =
     "Pizza";
 
 char const gText_Item_Food_Pizza_Description[] =
     "Pizza\r\n"
-    "Savory Italian Pizza.\r\n"
-    "To eat or use as a gift.";
+    "Italienische Pizza.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_Noodles_Name[] =
-    "Noodles";
+    "Nudeln";
 
 char const gText_Item_Food_Noodles_Description[] =
-    "Noodles\r\n"
-    "Made with Flour.\r\n"
-    "To eat or use as a gift.";
+    "Nudeln\r\n"
+    "Mit Mehl gemacht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_CurryNoodles_Name[] =
-    "Curry Noodles";
+    "Curry-Nudeln";
 
 char const gText_Item_Food_CurryNoodles_Description[] =
-    "Curry Noodles\r\n"
-    "Made with Curry and Noodles.\r\n"
-    "To eat or use as a gift.";
+    "Curry-Nudeln\r\n"
+    "Nudeln mit Curry.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_TempuraNoodles_Name[] =
-    "Tempura Noodles";
+    "Tempura-Nudeln";
 
 char const gText_Item_Food_TempuraNoodles_Description[] =
-    "Tempura Noodles\r\n"
-    "Made with Noodles.\r\n"
-    "To eat or use as a gift.";
+    "Tempura-Nudeln\r\n"
+    "Mit Nudeln gemacht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_FriedNoodles_Name[] =
-    "Fried Noodles";
+    "Gebratene Nudeln";
 
 char const gText_Item_Food_FriedNoodles_Description[] =
-    "Fried Noodles\r\n"
-    "Made with Noodles.\r\n"
-    "To eat or use as a gift.";
+    "Gebratene Nudeln\r\n"
+    "Mit Nudeln gemacht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_BuckwheatNoodles_Name[] =
-    "Buckwheat Noodles";
+    "Buchweizen-Nudeln";
 
 char const gText_Item_Food_BuckwheatNoodles_Description[] =
-    "Buckwheat Noodles\r\n"
-    "Noodles made with \r\n"
-    "Buckwheat flour. ";
+    "Buchweizen-Nudeln\r\n"
+    "Nudeln aus Buchweizenmehl.\r\n";
 
 char const gText_Item_Food_NoodlesWTempura_Name[] =
-    "Noodles w/ Tempura";
+    "Nudeln m/ Tempura";
 
 char const gText_Item_Food_NoodlesWTempura_Description[] =
-    "Tempura Buckwheat Noodles\r\n"
-    "Made with Tempura.\r\n"
-    "To eat or use as a gift.";
+    "Tempura-Buchweizen-Nudeln\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_BuckwheatChips_Name[] =
-    "Buckwheat Chips";
+    "Buchweizenchips";
 
 char const gText_Item_Food_BuckwheatChips_Description[] =
-    "Buckwheat Chips\r\n"
-    "Made with Buckwheat Flour.\r\n"
-    "To eat or use as a gift.";
+    "Buchweizenchips\r\n"
+    "Aus Buchweizenmehl gemacht.\r\n"
+    "Zum Selberessen.";
 
 char const gText_Item_Food_Cookies_Name[] =
-    "Cookies";
+    "Kekse";
 
 char const gText_Item_Food_Cookies_Description[] =
-    "Cookies\r\n"
-    "A delicious treat.\r\n"
-    "To eat or use as a gift.";
+    "Kekse\r\n"
+    "Eine köstliche Leckerei.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_ChocolateCookies_Name[] =
-    "Chocolate Cookies";
+    "Schokoladenkekse";
 
 char const gText_Item_Food_ChocolateCookies_Description[] =
-    "Chocolate Cookies\r\n"
-    "A delicious treat.\r\n"
-    "To eat or use as a gift.";
+    "Schokoladenkekse\r\n"
+    "Eine köstliche Leckerei.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_Tempura_Name[] =
     "Tempura";
 
 char const gText_Item_Food_Tempura_Description[] =
     "Tempura\r\n"
-    "Deep-fried.\r\n"
-    "To eat or use as a gift.";
+    "Heiß und feurig.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_IceCream_Name[] =
-    "Ice Cream";
+    "Eiskrem";
 
 char const gText_Item_Food_IceCream_Description[] =
-    "Ice Cream\r\n"
-    "Cold and sweet.\r\n"
-    "To eat or use as a gift.";
+    "Eiskrem\r\n"
+    "Süß und kalt.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_Cake_Name[] =
-    "Cake";
+    "Kuchen";
 
 char const gText_Item_Food_Cake_Description[] =
-    "Cake\r\n"
-    "A sweet treat.\r\n"
-    "To eat or use as a gift.";
+    "Kuchen\r\n"
+    "Eine süße Leckerei.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_ChocolateCake_Name[] =
-    "Chocolate Cake";
+    "Schokoladenkuchen";
 
 char const gText_Item_Food_ChocolateCake_Description[] =
-    "Chocolate Cake\r\n"
-    "A delicious treat.\r\n"
-    "To eat or use as a gift.";
+    "Schokoladenkuchen\r\n"
+    "Eine köstliche Leckerei.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_RelaxationTea_Name[] =
-    "Relaxation Tea";
+    "Entspannungstee ";
 
 char const gText_Item_Food_RelaxationTea_Description[] =
-    "Relaxation Tea \r\n"
-    "An English Tea.\r\n"
-    "To drink or use as a gift.";
+    "Entspannungstee \r\n"
+    "Englischer Tee.\r\n"
+    "Selbertrinken o verschenken.";
 
 char const gText_Item_Food_Toast_Name[] =
     "Toast";
 
 char const gText_Item_Food_Toast_Description[] =
     "Toast\r\n"
-    "Toasted Bread.\r\n"
-    "To eat or use as a gift.";
+    "Getoastetes Brot.\r\n"
+    "Selbertrinken o verschenken.";
 
 char const gText_Item_Food_FrenchToast_Name[] =
-    "French Toast";
+    "Französisches Brot";
 
 char const gText_Item_Food_FrenchToast_Description[] =
-    "French Toast\r\n"
-    "Made with fresh Bread.\r\n"
-    "To eat or use as a gift.";
+    "Französisches Brot\r\n"
+    "Mit frischem Brot gemacht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_Pudding_Name[] =
     "Pudding";
 
 char const gText_Item_Food_Pudding_Description[] =
     "Pudding\r\n"
-    "A delicious dessert.\r\n"
-    "To eat or use as a gift.";
+    "Ein köstliches Dessert.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_MountainStew_Name[] =
-    "Mountain Stew";
+    "Gebirgseintopf";
 
 char const gText_Item_Food_MountainStew_Description[] =
-    "Mountain Stew\r\n"
-    "A very healthy dish.\r\n"
-    "To eat or use as a gift.";
+    "Gebirgseintopf\r\n"
+    "Ein sehr gesundes Gericht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_MoonDumplings_Name[] =
-    "Moon Dumplings";
+    "Mondklöße";
 
 char const gText_Item_Food_MoonDumplings_Description[] =
-    "Moon Dumplings\r\n"
-    "Roasted veggies on a stick.\r\n"
-    "To eat or use as a gift.";
+    "Mondklöße\r\n"
+    "Gemüse-Kebab.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_RiceCake_Name[] =
-    "Rice Cake";
+    "Reiskuchen";
 
 char const gText_Item_Food_RiceCake_Description[] =
-    "Rice Cake\r\n"
-    "Eaten on New Year’s day.\r\n"
-    "To eat or use as a gift.";
+    "Reiskuchen\r\n"
+    "Wird an Neujahr gegessen.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_RoastedRiceCake_Name[] =
-    "Roasted Rice Cake";
+    "Gebr. Reiskuchen";
 
 char const gText_Item_Food_RoastedRiceCake_Description[] =
-    "Roasted Rice Cake\r\n"
-    "Made with Rice Cakes.\r\n"
-    "To eat or use as a gift.";
+    "Gebr. Reiskuchen\r\n"
+    "Mit Reiskuchen gemacht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_ElliLeaves_Name[] =
-    "Elli Leaves";
+    "Elli-Blätter";
 
 char const gText_Item_Food_ElliLeaves_Description[] =
-    "Elli Leaves\r\n"
-    "Recover Stamina and Fatigue.\r\n"
-    "To eat or use as a gift.";
+    "Elli-Blätter\r\n"
+    "Für Ausdauer, Energie.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_FailedDish_Name[] =
-    "Failed Dish";
+    "Missl. Gericht";
 
 char const gText_Item_Food_FailedDish_Description[] =
-    "Failure\r\n"
-    "Too bad the recipe didn't\r\n"
-    "work out...";
+    "Misserfolg\r\n"
+    "Zu dumm, dass das\r\n"
+    "Rezept misslungen ist...";
 
 char const gText_Item_Food_FailedDrink_Name[] =
     "Failed Drink";
+
+char const gText_Item_Food_FailedRecipe_Description[] =
+    "Failure\r\n"
+    "Too bad the recipe didn't\r\n"
+    "work out...";
 
 char const gText_Item_Food_FailedPotDish_Name[] =
     "Failed Pot Dish";
@@ -1245,95 +1241,95 @@ char const gText_Item_Food_FailedDessert_Name[] =
     "Failed Dessert";
 
 char const gText_Item_Food_FailedBread_Name[] =
-    "Failed Bread";
+    "Misslungenes Brot";
 
 char const gText_Item_Food_FailedNoodles_Name[] =
-    "Failed Noodles";
+    "Misslungene Nudeln";
 
 char const gText_Item_Food_SmallFish_Name[] =
-    "Small Fish";
+    "Kleine Fische";
 
 char const gText_Item_Food_SmallFish_Description[] =
-    "Small Fish\r\n"
-    "Caught in ocean or river.\r\n"
-    "Can be eaten or shipped.";
+    "Kleine Fische\r\n"
+    "Gefangen in Meer oder Fluss.\r\n"
+    "Zum Essen oder Versenden.";
 
 char const gText_Item_Food_MediumFish_Name[] =
-    "Medium Fish";
+    "Mittelgroße Fische";
 
 char const gText_Item_Food_MediumFish_Description[] =
-    "Medium Fish\r\n"
-    "Caught in ocean or river.\r\n"
-    "Can be eaten or shipped.";
+    "Mittelgroße Fische\r\n"
+    "Gefangen in Meer oder Fluss.\r\n"
+    "Zum Essen oder Versenden.";
 
 char const gText_Item_Food_LargeFish_Name[] =
-    "Large Fish";
+    "Große Fische";
 
 char const gText_Item_Food_LargeFish_Description[] =
-    "Large Fish\r\n"
-    "Caught in ocean or river.\r\n"
-    "Can be eaten or shipped.";
+    "Große Fische\r\n"
+    "Gefangen in Meer oder Fluss.\r\n"
+    "Zum Essen oder Versenden.";
 
 char const gText_Item_Food_ToastedRiceBall_Name[] =
-    "Toasted Rice Ball";
+    "Getoast. Reisball";
 
 char const gText_Item_Food_ToastedRiceBall_Description[] =
-    "Toasted Rice Ball\r\n"
-    "Made with Rice.\r\n"
-    "To eat or use as a gift.";
+    "Getoast. Reisball\r\n"
+    "Aus Reis gemacht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_TempuraRice_Name[] =
-    "Tempura Rice";
+    "Tempura-Reis";
 
 char const gText_Item_Food_TempuraRice_Description[] =
-    "Tempura Rice\r\n"
-    "Tempura with Rice.\r\n"
-    "To eat or use as a gift.";
+    "Tempura-Reis\r\n"
+    "Tempura mit Reis/\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_EggOverRice_Name[] =
-    "Egg Over Rice";
+    "Ei auf Reis";
 
 char const gText_Item_Food_EggOverRice_Description[] =
-    "Egg Over Rice\r\n"
-    "Made with Eggs and Rice.\r\n"
-    "To eat or use as a gift.";
+    "Ei auf Reis\r\n"
+    "Aus Eiern und Reis gemacht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_RiceGruel_Name[] =
-    "Rice Gruel";
+    "Reisbrei";
 
 char const gText_Item_Food_RiceGruel_Description[] =
-    "Rice Gruel\r\n"
-    "A soft Rice soup.\r\n"
-    "To eat or use as a gift.";
+    "Reisbrei\r\n"
+    "Eine milde Reissuppe.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_Pancakes_Name[] =
-    "Pancakes";
+    "Pfannkuchen";
 
 char const gText_Item_Food_Pancakes_Description[] =
-    "Pancakes\r\n"
-    "Made with Flour.\r\n"
-    "To eat or use as a gift.";
+    "Pfannkuchen\r\n"
+    "Mit Mehl gemacht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_FishSticks_Name[] =
-    "Fish Sticks";
+    "Fischstäbchen";
 
 char const gText_Item_Food_FishSticks_Description[] =
-    "Fish Sticks\r\n"
-    "Made with Fish.\r\n"
-    "To eat or use as a gift.";
+    "Fischstäbchen\r\n"
+    "Aus Fisch gemacht.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_CandiedPotato_Name[] =
-    "Candied Potato";
+    "Kandierte Kartoffel";
 
 char const gText_Item_Food_CandiedPotato_Description[] =
-    "Candied Potato\r\n"
-    "Potato with sweet glaze.\r\n"
-    "To eat or use as a gift.";
+    "Kandierte Kartoffel\r\n"
+    "Kartoffel mit süßer Glasur.\r\n"
+    "Selberessen o. verschenken.";
 
 char const gText_Item_Food_PotatoPancakes_Name[] =
-    "Potato Pancakes";
+    "Kartoffelpfannku.";
 
 char const gText_Item_Food_PotatoPancakes_Description[] =
-    "Potato Pancakes\r\n"
-    "Made with Potatoes.\r\n"
-    "To eat or use as a gift.";
+    "Kartoffelpfannku.\r\n"
+    "Aus Kartoffeln gemacht.\r\n"
+    "Selberessen o. verschenken.";

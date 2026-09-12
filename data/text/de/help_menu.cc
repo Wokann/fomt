@@ -1,7 +1,7 @@
 #include "help_menu.hh"
 
 char const gText_LoadError[] =
-    "Load failed.";
+    "Ladefehler";
 
 char const gCppRuntimeBadAlloc_LoadError[] =
     "bad_alloc";
@@ -12,13 +12,13 @@ char const gCppRuntimeError_LoadError[] =
 
 // The original constructor receives these as four separate pointers.
 char const gText_HelpMenu_Crops[] =
-    "Crops";
+    "Getreide";
 
 char const gText_HelpMenu_Animals[] =
-    "Animals";
+    "Tiere";
 
 char const gText_HelpMenu_UsefulTips[] =
-    "Useful Tips";
+    "Tipps";
 
 char const gText_HelpMenu_Exit[] =
-    "Exit";
+    "Schließen";

@@ -1,591 +1,563 @@
 #include "item.hh"
 
-// US article text. Keep entry order and four-byte alignment to preserve ROM layout.
+// German article text. Keep declaration order synchronized with its catalog.
 
 char const gText_Item_Article_MoonDropGrass_Name[] =
-    "Moon Drop Grass";
+    "Mondtropfengras";
 
 char const gText_Item_Article_MoonDropGrass_Description[] =
-    "Moon Drop Grass\r\n"
-    "Flowers in Spring.\r\n"
-    "Cannot be shipped.";
+    "Mondtropfengras\r\n"
+    "Frühlingsblumen.\r\n"
+    "Nicht zum Versenden.";
 
 char const gText_Item_Article_PinkCatGrass_Name[] =
-    "Pink Cat Grass";
+    "Pinkes Katzengras";
 
 char const gText_Item_Article_PinkCatGrass_Description[] =
-    "Pink Cat Grass\r\n"
-    "Flowers in Summer.\r\n"
-    "Cannot be shipped.";
+    "Pinkes Katzengras\r\n"
+    "Sommerblumen.\r\n"
+    "Nicht zum Versenden.";
 
 char const gText_Item_Article_BlueMagicGrass_Name[] =
-    "Blue Magic Grass";
+    "Magisches Blaugras";
 
 char const gText_Item_Article_BlueMagicGrass_Description[] =
-    "Blue Magic Grass\r\n"
-    "Flowers in Fall.\r\n"
-    "Cannot be shipped.";
+    "Magisches Blaugras\r\n"
+    "Herbstblumen.\r\n"
+    "Nicht zum Versenden.";
 
 char const gText_Item_Article_RedMagicGrass_Name[] =
-    "Red Magic Grass";
+    "Magisches Rotgras";
 
 char const gText_Item_Article_RedMagicGrass_Description[] =
-    "Red Magic Grass\r\n"
-    "Flowers in Fall.\r\n"
-    "Cannot be shipped.";
+    "Magisches Rotgras\r\n"
+    "Herbstblumen.\r\n"
+    "Nicht zum Versenden.";
 
 char const gText_Item_Article_ToyFlower_Name[] =
-    "Toy Flower";
+    "Spielblume";
 
 char const gText_Item_Article_ToyFlower_Description[] =
-    "Toy Flower\r\n"
-    "Flowers in Spring.\r\n"
-    "Cannot be shipped.";
+    "Spielblume\r\n"
+    "Frühlingsblumen.\r\n"
+    "Nicht zum Versenden.";
 
 char const gText_Item_Article_WoolS_Name[] =
-    "Wool (S)";
+    "Wolle (S)";
 
 char const gText_Item_Article_WoolS_Description[] =
-    "Wool (S)\r\n"
-    "Shorn from Sheep.\r\n"
-    "";
+    "Wolle (S)\r\n"
+    "Von Schafen geschoren.\r\n";
 
 char const gText_Item_Article_WoolM_Name[] =
-    "Wool (M)";
+    "Wolle (M) ";
 
 char const gText_Item_Article_WoolM_Description[] =
-    "Wool (M)\r\n"
-    "Shorn from Sheep.\r\n"
-    "";
+    "Wolle (M)\r\n"
+    "Von Schafen geschoren.\r\n";
 
 char const gText_Item_Article_WoolL_Name[] =
-    "Wool (L)";
+    "Wolle (L)";
 
 char const gText_Item_Article_WoolL_Description[] =
-    "Wool (L)\r\n"
-    "Shorn from Sheep.\r\n"
-    "";
+    "Wolle (L)\r\n"
+    "Von Schafen geschoren.\r\n";
 
 char const gText_Item_Article_WoolG_Name[] =
-    "Wool (G)";
+    "Wolle (G)";
 
 char const gText_Item_Article_WoolG_Description[] =
-    "Wool (G)\r\n"
-    "Shorn from Sheep.\r\n"
-    "";
+    "Wolle (G)\r\n"
+    "Von Schafen geschoren.\r\n";
 
 char const gText_Item_Article_WoolP_Name[] =
-    "Wool (P)";
+    "Wolle (P)";
 
 char const gText_Item_Article_WoolP_Description[] =
-    "Wool (P)\r\n"
-    "Shorn from Sheep.\r\n"
-    "";
+    "Wolle (P)\r\n"
+    "Von Schafen geschoren.\r\n";
 
 char const gText_Item_Article_YarnS_Name[] =
-    "Yarn (S)";
+    "Garn (S)";
 
 char const gText_Item_Article_YarnS_Description[] =
-    "Yarn (S)\r\n"
-    "Made by putting Wool \r\n"
-    "in a Yarn Maker.";
+    "Garn (S)\r\n"
+    "Aus Wolle in \r\n"
+    "Spinnmaschine hergestellt.";
 
 char const gText_Item_Article_YarnM_Name[] =
-    "Yarn (M)";
+    "Garn (M)";
 
 char const gText_Item_Article_YarnM_Description[] =
-    "Yarn (M)\r\n"
-    "Made by putting Wool \r\n"
-    "in a Yarn Maker.";
+    "Garn (M)\r\n"
+    "Aus Wolle in \r\n"
+    "Spinnmaschine hergestellt.";
 
 char const gText_Item_Article_YarnL_Name[] =
-    "Yarn (L)";
+    "Garn (L)";
 
 char const gText_Item_Article_YarnL_Description[] =
-    "Yarn (L)\r\n"
-    "Made by putting Wool \r\n"
-    "in a Yarn Maker.";
+    "Garn (L)\r\n"
+    "Aus Wolle in \r\n"
+    "Spinnmaschine hergestellt.";
 
 char const gText_Item_Article_YarnG_Name[] =
-    "Yarn (G)";
+    "Garn (G)";
 
 char const gText_Item_Article_YarnG_Description[] =
-    "Yarn (G)\r\n"
-    "Made by putting Wool \r\n"
-    "in a Yarn Maker.";
+    "Garn (G)\r\n"
+    "Aus Wolle in \r\n"
+    "Spinnmaschine hergestellt.";
 
 char const gText_Item_Article_YarnP_Name[] =
-    "Yarn (P)";
+    "Garn (P)";
 
 char const gText_Item_Article_YarnP_Description[] =
-    "Yarn (P)\r\n"
-    "Made by putting Wool \r\n"
-    "in a Yarn Maker.";
+    "Garn (P)\r\n"
+    "Aus Wolle in \r\n"
+    "Spinnmaschine hergestellt.";
 
 char const gText_Item_Article_YarnX_Name[] =
-    "Yarn (X)";
+    "Garn (X)";
 
 char const gText_Item_Article_YarnX_Description[] =
-    "Yarn (X)\r\n"
-    "Made by putting Wool \r\n"
-    "in a Yarn Maker.";
+    "Garn (X)\r\n"
+    "Aus Wolle in \r\n"
+    "Spinnmaschine hergestellt.";
 
 char const gText_Item_Article_JunkOre_Name[] =
-    "Junk Ore";
+    "Abfallmetall";
 
 char const gText_Item_Article_JunkOre_Description[] =
-    "Junk Ore\r\n"
-    "Found in mines. Not very\r\n"
-    "valuable so it's cheap.";
+    "Abfallmetall\r\n"
+    "Wird in Minen gefunden.\r\n"
+    "Nicht sehr wertvoll, billig.";
 
 char const gText_Item_Article_Copper_Name[] =
-    "Copper";
+    "Kupfer";
 
 char const gText_Item_Article_Copper_Description[] =
-    "Copper\r\n"
-    "Found in mines. Used to \r\n"
-    "upgrade Tools.";
+    "Kupfer\r\n"
+    "Wird in Minen gefunden. \r\n"
+    "Zum Werzeugeaufrüsten.";
 
 char const gText_Item_Article_Silver_Name[] =
-    "Silver";
+    "Silber";
 
 char const gText_Item_Article_Silver_Description[] =
-    "Silver\r\n"
-    "Found in mines. Used to \r\n"
-    "upgrade Tools.";
+    "Silber\r\n"
+    "Wird in Minen gefunden.\r\n"
+    "Zum Werzeugeaufrüsten.";
 
 char const gText_Item_Article_Gold_Name[] =
     "Gold";
 
 char const gText_Item_Article_Gold_Description[] =
     "Gold\r\n"
-    "Found in mines. Used to \r\n"
-    "upgrade Tools.";
+    "Wird in Minen gefunden. \r\n"
+    "Zum Werzeugeaufrüsten.";
 
 char const gText_Item_Article_Mystrile_Name[] =
-    "Mystrile";
+    "Mythril";
 
 char const gText_Item_Article_Mystrile_Description[] =
-    "Mystrile\r\n"
-    "Found in mines. Used to \r\n"
-    "upgrade Tools.";
+    "Mythril\r\n"
+    "Wird in Minen gefunden. \r\n"
+    "Zum Werzeugeaufrüsten.";
 
 char const gText_Item_Article_Orichalc_Name[] =
     "Orichalc";
 
 char const gText_Item_Article_Orichalc_Description[] =
     "Orichalc\r\n"
-    "Found in mines. Used to \r\n"
-    "make jewelry.";
+    "Wird in Minen gefunden. \r\n"
+    "Zum Herstellen von Schmuck.";
 
 char const gText_Item_Article_Adamantite_Name[] =
-    "Adamantite";
+    "Adamantit";
 
 char const gText_Item_Article_Adamantite_Description[] =
-    "Adamantite\r\n"
-    "Found in mines. Used to\r\n"
-    "create Makers.";
+    "Adamantit\r\n"
+    "Wird in Minen gefunden. \r\n"
+    "Zum Herstellen von Schmuck.";
 
 char const gText_Item_Article_MoonStone_Name[] =
-    "Moon Stone";
+    "Mondstein";
 
 char const gText_Item_Article_MoonStone_Description[] =
-    "Moon Stone\r\n"
-    "Found in mines, and \r\n"
-    "relatively valuable.";
+    "Mondstein\r\n"
+    "Wird in Minen gefunden, \r\n"
+    "ist ziemlich wertvoll.";
 
 char const gText_Item_Article_SandRose_Name[] =
-    "Sand Rose";
+    "Sand-Rose";
 
 char const gText_Item_Article_SandRose_Description[] =
-    "Sand Rose\r\n"
-    "Found in mines, and \r\n"
-    "relatively valuable.";
+    "Sand-Rose\r\n"
+    "Wird in Minen gefunden, \r\n"
+    "ist ziemlich wertvoll.";
 
 char const gText_Item_Article_PinkDiamond_Name[] =
-    "Pink Diamond";
+    "Pinker Diamant";
 
 char const gText_Item_Article_PinkDiamond_Description[] =
-    "Pink Diamond\r\n"
-    "Found in mines. Very \r\n"
-    "rare and valuable.";
+    "Pinker Diamant\r\n"
+    "Wird in Minen gefunden. \r\n"
+    "Sehr selten, wertvoll.";
 
 char const gText_Item_Article_Alexandrite_Name[] =
-    "Alexandrite";
+    "Alexandrit";
 
 char const gText_Item_Article_Alexandrite_Description[] =
-    "Alexandrite\r\n"
-    "Found in mines. Very \r\n"
-    "rare and valuable.";
+    "Alexandrit\r\n"
+    "Wird in Minen gefunden. \r\n"
+    "Sehr selten, wertvoll.";
 
 char const gText_Item_Article_MythicStone_Name[] =
-    "Mythic Stone";
+    "Mythische Steine";
 
 char const gText_Item_Article_MythicStone_Description[] =
-    "Mythic Stone\r\n"
-    "Found rarely in mines. \r\n"
-    "Used to upgrade Tools.";
+    "Mythische Steine\r\n"
+    "Selten in Minen gefunden.\r\n"
+    "Zum Werkzeugeaufrüsten.";
 
 char const gText_Item_Article_Diamond_Name[] =
-    "Diamond";
+    "Diamant";
 
 char const gText_Item_Article_Diamond_Description[] =
-    "Diamond\r\n"
-    "Found in mines. \r\n"
-    "Rare and valuable.";
+    "Diamant\r\n"
+    "Wird in Minen gefunden.\r\n"
+    "Selten und wertvoll.";
 
 char const gText_Item_Article_Emerald_Name[] =
-    "Emerald";
+    "Smaragd";
 
 char const gText_Item_Article_Emerald_Description[] =
-    "Emerald\r\n"
-    "Found in mines. \r\n"
-    "Rare and valuable.";
+    "Smaragd\r\n"
+    "Wird in Minen gefunden. \r\n"
+    "Selten und wertvoll.";
 
 char const gText_Item_Article_Ruby_Name[] =
-    "Ruby";
+    "Rubin";
 
 char const gText_Item_Article_Ruby_Description[] =
-    "Ruby\r\n"
-    "Found in mines, and \r\n"
-    "relatively valuable.";
+    "Rubin\r\n"
+    "Wird in Minen gefunden, \r\n"
+    "ziemlich wertvoll.";
 
 char const gText_Item_Article_Topaz_Name[] =
-    "Topaz";
+    "Topas";
 
 char const gText_Item_Article_Topaz_Description[] =
-    "Ruby\r\n"
-    "Topaz in mines, and \r\n"
-    "relatively valuable.";
+    "Topas\r\n"
+    "Wird in Minen gefunden \r\n"
+    "ziemlich wertvoll.";
 
 char const gText_Item_Article_Peridot_Name[] =
     "Peridot";
 
 char const gText_Item_Article_Peridot_Description[] =
     "Peridot\r\n"
-    "Found in mines, and \r\n"
-    "relatively valuable.";
+    "Wird in Minen gefunden, \r\n"
+    "ziemlich wertvoll.";
 
 char const gText_Item_Article_Fluorite_Name[] =
-    "Fluorite";
+    "Fluorit";
 
 char const gText_Item_Article_Fluorite_Description[] =
-    "Fluorite\r\n"
-    "Found in mines, and \r\n"
-    "relatively valuable.";
+    "Fluorit\r\n"
+    "Wird in Minen gefunden,\r\n"
+    "ziemlich wertvoll.";
 
 char const gText_Item_Article_Agate_Name[] =
-    "Agate";
+    "Achat";
 
 char const gText_Item_Article_Agate_Description[] =
-    "Agate\r\n"
-    "Found in mines, and \r\n"
-    "relatively valuable.";
+    "Achat\r\n"
+    "Wird in Minen gefunden,\r\n"
+    "ziemlich wertvoll.";
 
 char const gText_Item_Article_Amethyst_Name[] =
     "Amethyst";
 
 char const gText_Item_Article_Amethyst_Description[] =
     "Amethyst\r\n"
-    "Found in mines, and \r\n"
-    "relatively valuable.";
+    "Wird in Minen gefunden,\r\n"
+    "ziemlich wertvoll.";
 
 char const gText_Item_Article_HarvestGoddessJewel_Name[] =
-    "Harvest Goddess Jewel";
+    "Juwel d. Ernteg.";
 
 char const gText_Item_Article_HarvestGoddessJewel_Description[] =
-    "Harvest Goddess Jewel\r\n"
-    "Found in mines. Collect 9\r\n"
-    "and see what happens.";
-
-char const gText_Item_Article_KappaJewel_Name[] =
-    "Kappa Jewel";
+    "Juwel d. Ernteg.\r\n"
+    "In Minen gefunden. Sammle 9\r\n"
+    "und sieh, was geschieht.";
 
 char const gText_Item_Article_KappaJewel_Description[] =
-    "Kappa Jewel\r\n"
-    "Found in mines. Collect 9\r\n"
-    "and see what happens.";
-
-char const gText_Item_Article_JewelOfTruth_Name[] =
-    "Jewel of Truth";
+    "Kappa-Juwel\r\n"
+    "In Minen gefunden. Sammle 9\r\n"
+    "und sieh, was geschieht.";
 
 char const gText_Item_Article_JewelOfTruth_Description[] =
-    "Jewel of Truth\r\n"
-    "Collect 9 and see what\r\n"
-    "happens.";
+    "Juwel der Wahrheit\r\n"
+    "Sammle 9 und sieh,\r\n"
+    "was geschieht.";
 
 char const gText_Item_Article_TheSpringSun_Name[] =
-    "The Spring Sun";
+    "Die Frühlingssonne";
 
 char const gText_Item_Article_TheSpringSun_Description[] =
-    "Unused Item\r\n"
-    "You can cook it.\r\n"
-    "";
+    "Ungenutzter Gegenstand\r\n"
+    "Du kannst ihn kochen.\r\n";
 
 char const gText_Item_Article_TheSummerSun_Name[] =
-    "The Summer Sun";
+    "Die Sommersonne";
 
 char const gText_Item_Article_TheAutumnSun_Name[] =
-    "The Autumn Sun";
+    "Die Herbstsonne";
 
 char const gText_Item_Article_TheWinterSun_Name[] =
-    "The Winter Sun";
+    "Die Wintersonne";
 
 char const gText_Item_Article_Bracelet_Name[] =
-    "Bracelet";
+    "Armband";
 
 char const gText_Item_Article_Bracelet_Description[] =
-    "Bracelet\r\n"
-    "Jewelry that the blacksmith\r\n"
-    "can make.";
+    "Armband\r\n"
+    "Schmuck, den der Schmied\r\n"
+    "herstellen kann.";
 
 char const gText_Item_Article_Necklace_Name[] =
-    "Necklace";
+    "Halskette";
 
 char const gText_Item_Article_Necklace_Description[] =
-    "Necklace\r\n"
-    "Jewelry that the blacksmith\r\n"
-    "can make.";
+    "Halskette\r\n"
+    "Schmuck, den der Schmied\r\n"
+    "herstellen kann.";
 
 char const gText_Item_Article_Earrings_Name[] =
-    "Earrings";
+    "Ohrringe";
 
 char const gText_Item_Article_Earrings_Description[] =
-    "Earrings\r\n"
-    "Jewelry that the blacksmith\r\n"
-    "can make.";
+    "Ohrringe\r\n"
+    "Schmuck, den der Schmied\r\n"
+    "herstellen kann.";
 
 char const gText_Item_Article_Broach_Name[] =
-    "Broach";
+    "Brosche";
 
 char const gText_Item_Article_Broach_Description[] =
-    "Broach\r\n"
-    "Jewelry that the blacksmith\r\n"
-    "can make.";
+    "Brosche\r\n"
+    "Schmuck, den der Schmied\r\n"
+    "herstellen kann.";
 
 char const gText_Item_Article_Weeds_Name[] =
-    "Weeds";
+    "Unkraut";
 
 char const gText_Item_Article_Weeds_Description[] =
-    "Weeds\r\n"
-    "Grow in Spring and Fall.\r\n"
-    "Should be removed.";
+    "Unkraut\r\n"
+    "Im Frühling und Herbst.\r\n"
+    "Sollte beseitigt werden.";
 
 char const gText_Item_Article_Stones_Name[] =
-    "Stones";
+    "Steine";
 
 char const gText_Item_Article_Stones_Description[] =
-    "Stones\r\n"
-    "Can be smashed with Hammer.\r\n"
-    "or placed on tillable land.";
+    "Steine\r\n"
+    "Mit Hammer zerschlagen oder\r\n"
+    "auf anbaufähiges Land legen.";
 
 char const gText_Item_Article_Branches_Name[] =
-    "Branches";
+    "Äste";
 
 char const gText_Item_Article_Branches_Description[] =
-    "Branches\r\n"
-    "Material for Lumber. Can be\r\n"
-    "placed on tillable land.";
+    "Äste\r\n"
+    "Material für Nutzholz.\r\n"
+    "Auf anbaufähiges Land legen.";
 
 char const gText_Item_Article_Lithograph_Name[] =
     "Lithograph";
 
 char const gText_Item_Article_Lithograph_Description[] =
-    "Recipe for French Fries\r\n"
-    "Ingredients: Potato, Oil\r\n"
-    "Utensils: Frying Pan, Knife";
+    "Pommes Frites Rezept\r\n"
+    "Zutaten: Kartoffeln, Öl\r\n"
+    "Utensil.: Bratpfanne, Messer";
 
 char const gText_Item_Article_MessageInABottle_Name[] =
-    "Message in a Bottle";
+    "Flaschenpost";
 
 char const gText_Item_Article_MessageInABottle_Description[] =
-    "Recipe for Ketchup\r\n"
-    "Tomato, Onion, Sugar, Salt,\r\n"
-    "Vinegar and Mixer.";
+    "Ketchup Rezept\r\n"
+    "Tomaten, Zwiebeln, Zucker\r\n"
+    "Salz, Essig und Mixer.";
 
 char const gText_Item_Article_Ball_Name[] =
     "Ball";
 
 char const gText_Item_Article_Ball_Description[] =
     "Ball\r\n"
-    "A dog toy.\r\n"
-    "";
+    "Spielzeug für Hunde.\r\n";
 
 char const gText_Item_Article_PirateTreasure_Name[] =
-    "Pirate Treasure";
+    "Piratenschatz";
 
 char const gText_Item_Article_PirateTreasure_Description[] =
-    "Pirate Treasure\r\n"
-    "Very valuable Pirate \r\n"
-    "Treasure from long ago.";
+    "Piratenschatz\r\n"
+    "Sehr wertvoller Piraten-\r\n"
+    "schatz aus alten Zeiten.";
 
 char const gText_Item_Article_FossilOfFish_Name[] =
-    "Fossil of Fish";
+    "Fischfossil";
 
 char const gText_Item_Article_FossilOfFish_Description[] =
-    "Fossil of Ancient Fish\r\n"
-    "A very valuable fossil.\r\n"
-    "";
+    "Uraltes Fischfossil\r\n"
+    "Sehr wertvolles Fossil.";
 
 char const gText_Item_Article_EmptyCan_Name[] =
-    "Empty Can";
+    "Leere Dose";
 
 char const gText_Item_Article_EmptyCan_Description[] =
-    "Empty Can\r\n"
-    "Garbage.\r\n"
-    "";
+    "Leere Dose\r\n"
+    "Abfall.";
 
 char const gText_Item_Article_Boots_Name[] =
-    "Boots";
+    "Stiefel";
 
 char const gText_Item_Article_Boots_Description[] =
-    "Boots\r\n"
-    "Garbage\r\n"
-    "";
+    "Stiefel\r\n"
+    "Abfall";
 
 char const gText_Item_Article_FishBones_Name[] =
-    "Fish Bones";
+    "Fischgräten";
 
 char const gText_Item_Article_FishBones_Description[] =
-    "Fish Bones\r\n"
-    "Garbage\r\n"
-    "";
+    "Fischgräten\r\n"
+    "Abfall";
 
 char const gText_Item_Article_KarensWine_Name[] =
-    "Karen's Wine";
+    "Karens Wein";
 
 char const gText_Item_Article_KarensWine_Description[] =
-    "Karen's Wine\r\n"
-    "Wine received from Karen.\r\n"
-    "The label has her name.";
+    "Karens Wein\r\n"
+    "Von Karen erhaltener Wein.\r\n"
+    "Etikett mit ihrem Namen.";
 
 char const gText_Item_Article_PopurisMudBall_Name[] =
-    "Popuri's Mud Ball";
+    "Popuris Schlammball";
 
 char const gText_Item_Article_PopurisMudBall_Description[] =
-    "Popuri's Mud Ball\r\n"
-    "A ball of mud made by \r\n"
-    "Popuri.";
+    "Popuris Schlammball\r\n"
+    "Von Popuri gemachter \r\n"
+    "Ball aus Schlamm.";
 
 char const gText_Item_Article_AnnsMusicBox_Name[] =
-    "Ann's Music Box";
+    "Anns Spieldose";
 
 char const gText_Item_Article_AnnsMusicBox_Description[] =
-    "A Music Box received from \r\n"
-    "Ann. It's broken, so it \r\n"
-    "plays no music.";
+    "Von Ann erhaltene Spieldose.\r\n"
+    "Kaputt, spielt keine Musik.";
 
 char const gText_Item_Article_MarysGreatBook_Name[] =
-    "Mary's Great Book";
+    "Marys Superbuch";
 
 char const gText_Item_Article_MarysGreatBook_Description[] =
-    "Mary's Great Book\r\n"
-    "A fabulous novel received\r\n"
-    "from Mary.";
+    "Marys Superbuch\r\n"
+    "Ein fabelhafter Roman,\r\n"
+    "von Mary erhalten.";
 
 char const gText_Item_Article_EllisPressedFlower_Name[] =
-    "Elli's Pressed Flwr";
+    "Ellis Pressblume\r\n";
 
 char const gText_Item_Article_EllisPressedFlower_Description[] =
-    "Elli's Pressed Flower\r\n"
-    "A pressed flower made by\r\n"
-    "Elli. Quite pretty.";
+    "Ellis Pressblume\r\n"
+    "Blume, von Elli gepresst.\r\n"
+    "Elli. Ziemlich hübsch.";
 
 char const gText_Item_Article_Album1_Name[] =
     "Album 1";
 
 char const gText_Item_Article_Album1_Description[] =
     "Album 1\r\n"
-    "Spring song for SFC Map\r\n"
-    "";
+    "Frühlingslied SFC Karte.\r\n";
 
 char const gText_Item_Article_Album2_Name[] =
     "Album 2";
 
 char const gText_Item_Article_Album2_Description[] =
     "Album 2\r\n"
-    "Song for SFC Event\r\n"
-    "";
+    "Lied für SFC-Event\r\n";
 
 char const gText_Item_Article_Album3_Name[] =
     "Album 3";
 
 char const gText_Item_Article_Album3_Description[] =
     "Album 3\r\n"
-    "Fall song for N64 Map\r\n"
-    "";
+    "Herbstlied für N64-Karte\r\n";
 
 char const gText_Item_Article_Album4_Name[] =
     "Album 4";
 
 char const gText_Item_Article_Album4_Description[] =
     "Album 4\r\n"
-    "N64 opening song \r\n"
-    "";
+    "N64 Eröffnungslied \r\n";
 
 char const gText_Item_Article_Album5_Name[] =
     "Album 5";
 
 char const gText_Item_Article_Album5_Description[] =
     "Album 5\r\n"
-    "PS girl opening song \r\n"
-    "";
+    "PS Mädchen Eröffnungslied\r\n";
 
 char const gText_Item_Article_Album6_Name[] =
     "Album 6";
 
 char const gText_Item_Article_Album6_Description[] =
     "Album 6\r\n"
-    "PS girl love event song \r\n"
-    "";
+    "PS Mädchen Liebeslied\r\n";
 
 char const gText_Item_Article_Album7_Name[] =
     "Album 7";
 
 char const gText_Item_Article_Album7_Description[] =
     "Album 7\r\n"
-    "Summer song for PS2 map\r\n"
-    "";
+    "Sommerlied für PS2-Karte\r\n";
 
 char const gText_Item_Article_Album8_Name[] =
     "Album 8";
 
 char const gText_Item_Article_Album8_Description[] =
     "Album 8\r\n"
-    "Fall song for PS2 forest\r\n"
-    "";
+    "Herbstlied für PS2-Wald\r\n";
 
 char const gText_Item_Article_Album9_Name[] =
     "Album 9";
 
 char const gText_Item_Article_Album9_Description[] =
     "Album 9\r\n"
-    "GC farm Fall/Winter song\r\n"
-    "";
+    "GC-Farm Herbst-/Winterlied\r\n";
 
 char const gText_Item_Article_Album10_Name[] =
     "Album 10";
 
 char const gText_Item_Article_Album10_Description[] =
     "Album 10\r\n"
-    "GC bar night song\r\n"
-    "";
+    "GC-Bar Nachtlied\r\n";
 
 char const gText_Item_Article_Album11_Name[] =
     "Album 11";
 
 char const gText_Item_Article_Album11_Description[] =
-    "Unused item\r\n"
-    "Received after 90 straight\r\n"
-    "Rock-Papers-Scissors wins.";
+    "Ungenutzter Gegenstand\r\n"
+    "Preis für 90 direkte Siege\r\n"
+    "bei Schere-Stein-Papier.";
 
 char const gText_Item_Article_Album12_Name[] =
     "Album 12";
 
 char const gText_Item_Article_Album12_Description[] =
-    "Unused item\r\n"
-    "Received after 80 straight\r\n"
-    "Rock-Papers-Scissors wins.";
+    "Ungenutzter Gegenstand\r\n"
+    "Preis für 80 direkte Siege\r\n"
+    "bei Schere-Stein-Papier.";
 
 char const gText_Item_Article_Album13_Name[] =
     "Album 13";
@@ -599,142 +571,141 @@ char const gText_Item_Article_Album14_Name[] =
     "Album 14";
 
 char const gText_Item_Article_Album14_Description[] =
-    "Unused item\r\n"
-    "Received after 60 straight\r\n"
-    "Rock-Papers-Scissors wins.";
+    "Ungenutzter Gegenstand\r\n"
+    "Preis für 60 direkte Siege\r\n"
+    "bei Schere-Stein-Papier.";
 
 char const gText_Item_Article_Album15_Name[] =
     "Album 15";
 
 char const gText_Item_Article_Album15_Description[] =
-    "Unused item\r\n"
-    "Received after 50 straight\r\n"
-    "Rock-Papers-Scissors wins.";
+    "Ungenutzter Gegenstand\r\n"
+    "Preis für 50 direkte Siege\r\n"
+    "bei Schere-Stein-Papier.";
 
 char const gText_Item_Article_Bandaid_Name[] =
-    "Band-Aid";
+    "Pflaster";
 
 char const gText_Item_Article_Bandaid_Description[] =
-    "Band-Aid\r\n"
-    "Always a good idea to\r\n"
-    "keep one around!";
+    "Pflaster\r\n"
+    "Immer eine gute Idee,\r\n"
+    "eins bei sich zu haben. ";
 
 char const gText_Item_Article_Book_Name[] =
-    "Book";
+    "Buch";
 
 char const gText_Item_Article_Book_Description[] =
-    "Guess if the number is small\r\n"
-    "or large. Win 100 times and\r\n"
-    "get this book from H.G.";
+    "Rate, ob große oder kleine\r\n"
+    "Zahl. Gewinne 100 Mal und du\r\n"
+    "kriegst dieses Buch von E.G.";
 
 char const gText_Item_Article_Perfume_Name[] =
-    "Perfume";
+    "Parfüm";
 
 char const gText_Item_Article_Perfume_Description[] =
-    "Perfume\r\n"
-    "This elegant perfume is a \r\n"
-    "perfect gift for women.";
+    "Parfüm\r\n"
+    "Elegantes Parfüm, perfektes \r\n"
+    "Geschenk für Frauen.";
 
 char const gText_Item_Article_Photo_Name[] =
-    "Photo";
+    "Foto";
 
 char const gText_Item_Article_Photo_Description[] =
-    "Photo\r\n"
-    "A photo fallen next to \r\n"
-    "Cliff. A family picture?";
+    "Foto\r\n"
+    "Foto, neben Cliff runter-\r\n"
+    "gefallen. Familienporträt?";
 
 char const gText_Item_Article_PlantEncyclopedia_Name[] =
-    "Plant Encyclopedia";
+    "Pflanzenenzyklopäd.";
 
 char const gText_Item_Article_PlantEncyclopedia_Description[] =
-    "Plant Encyclopedia\r\n"
-    "This book from the Library\r\n"
-    "contains every plant ever.";
+    "Pflanzenenzyklopäd.\r\n"
+    "Bibliotheksbuch enthält\r\n"
+    "alle Pflanzensorten.";
 
 char const gText_Item_Article_Invitation_Name[] =
-    "Invitation";
+    "Einladung";
 
 char const gText_Item_Article_Invitation_Description[] =
-    "Invitation\r\n"
-    "An invitation to the Harvest\r\n"
-    "Sprites' Tea party.";
+    "Einladung\r\n"
+    "Einladung zur\r\n"
+    "Wichtel-Teeparty";
 
 char const gText_Item_Article_Dress_Name[] =
-    "Dress";
+    "Kleid";
 
 char const gText_Item_Article_Dress_Description[] =
-    "Dress\r\n"
-    "Sure to please girls, and\r\n"
-    "wrapped in a pretty box.";
+    "Kleid\r\n"
+    "Gefällt sicher jedem Mädchen\r\n"
+    "und kommt in netter Box.";
 
 char const gText_Item_Article_FacialPack_Name[] =
-    "Facial Pack";
+    "Gesichtsmaske";
 
 char const gText_Item_Article_FacialPack_Description[] =
-    "Facial Pack\r\n"
-    "Makes skin silky smooth,\r\n"
-    "but looks silly when on.";
+    "Gesichtsmaske\r\n"
+    "Macht seidenweiche Haut,\r\n"
+    "sieht aufgetragen ulkig aus.";
 
 char const gText_Item_Article_SkinLotion_Name[] =
-    "Skin Lotion";
+    "Hautlotion";
 
 char const gText_Item_Article_SkinLotion_Description[] =
-    "Skin Lotion \r\n"
-    "This special lotion is great\r\n"
-    "for skin. Girls like it.";
+    "Hautlotion \r\n"
+    "Spezielle Lotion für Haut.\r\n"
+    "Mädchen mögen sie.";
 
 char const gText_Item_Article_Sunblock_Name[] =
-    "Sunblock";
+    "Sonnenkreme";
 
 char const gText_Item_Article_Sunblock_Description[] =
-    "Sunblock\r\n"
-    "Helps avoid sunburn in\r\n"
-    "the summertime.";
+    "Sonnenkreme\r\n"
+    "Schützt vor Sonnenbrand\r\n"
+    "im Sommer.";
 
 char const gText_Item_Article_Lumber_Name[] =
-    "Lumber";
+    "Nutzholz";
 
 char const gText_Item_Article_Lumber_Description[] =
-    "Lumber\r\n"
-    "Use for construction, fire-\r\n"
-    "wood, or Fences.";
+    "Nutzholz\r\n"
+    "Nutze es zum Bauen, als\r\n"
+    "Feuerholz oder für Zäune.";
 
 char const gText_Item_Article_GoldenLumber_Name[] =
-    "Golden Lumber";
+    "Goldenes Nutzholz";
 
 char const gText_Item_Article_GoldenLumber_Description[] =
-    "Golden Lumber\r\n"
-    "Can be used to build Fences.\r\n"
-    "Won't rot ever.";
+    "Goldenes Nutzholz\r\n"
+    "Zum Zäune bauen.\r\n"
+    "Verfault nie.";
 
 char const gText_Item_Article_AnimalFodder_Name[] =
-    "Animal Fodder";
+    "Viehfutter";
 
 char const gText_Item_Article_AnimalFodder_Description[] =
-    "Animal Fodder\r\n"
-    "Feed for Cows and Sheep.\r\n"
-    "Place in Feed Boxes.";
+    "Viehfutter\r\n"
+    "Futter für Kühe und Schafe.\r\n"
+    "Gib es in die Futterboxen.";
 
 char const gText_Item_Article_ChickenFeed_Name[] =
-    "Chicken Feed";
+    "Hühnerfutter";
 
 char const gText_Item_Article_ChickenFeed_Description[] =
-    "Chicken Feed\r\n"
-    "Place in the Feed Bin in \r\n"
-    "the Chicken Coop.";
+    "Hühnerfutter\r\n"
+    "Gib es in den Futterkasten\r\n"
+    "im Hühnerstall.";
 
 char const gText_Item_Article_Lottery_Name[] =
-    "Lottery";
+    "Lotterie";
 
 char const gText_Item_Article_Lottery_Description[] =
-    "Certificate of Rock-Papers-\r\n"
-    "Scissors Mastery. Win after\r\n"
-    "100 straight wins over H.G.";
+    "Bestätigt Können d. Schere-\r\n"
+    "Stein-Papier-Spiels. Gewinne\r\n"
+    "es nach 100 Siegen gegen EG.";
 
 char const gText_Item_Article_Frisbee_Name[] =
     "Frisbee";
 
 char const gText_Item_Article_Frisbee_Description[] =
-    "Frisbee\r\n"
-    "Use to play with your Dog\r\n"
-    "on Mineral Beach.";
+    "Gut, um mit deinem Hund\r\n"
+    "am Mineralstrand zu spielen.";
