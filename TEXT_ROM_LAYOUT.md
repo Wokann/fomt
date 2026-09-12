@@ -49,6 +49,14 @@
 | DE | `0x080FC780`–`0x080FCDC3` | 纪录界面尾部至制作人员表 | `src/records_screen_data.cc`、`data/text/de/records.cc`、`data/text/staff_credits.cc` | 精确 |
 | DE | `0x080FCDD8`–`0x080FDDC3` | 城镇地图文本、热点表、区域查询及图书馆开放时间 | `src/town_map_data.cc`、`src/library_data.cc`、`data/text/de/town_map.cc`、`data/text/de/library.cc` | 精确 |
 | DE | `0x080FE094`–`0x080FE0B7` | 图书馆菜单 | `src/library_data.cc` 与 `data/text/de/library.cc` | 精确 |
+| DE | `0x080FE0B8`–`0x080FE5E3` | `src/poultry_shop_data.o(.rodata)` | `src/poultry_shop_data.cc` 与 `data/text/de/poultry_shop.cc` | 精确 |
+| DE | `0x080FE5E4`–`0x080FE7FB` | `src/supermarket_data.o(.rodata)` | `src/supermarket_data.cc` 与 `data/text/de/supermarket.cc` | 精确 |
+| DE | `0x080FE7FC`–`0x080FEA23` | `src/clinic_data.o(.rodata)` | `src/clinic_data.cc` 与 `data/text/de/clinic.cc` | 精确 |
+| DE | `0x080FEA24`–`0x080FEC8B` | `src/inn_shop_data.o(.rodata)` | `src/inn_shop_data.cc` 与 `data/text/de/inn_shop.cc` | 精确 |
+| DE | `0x080FEC8C`–`0x080FEF1F` | `src/won_shop_data.o(.rodata)` | `src/won_shop_data.cc` 与 `data/text/de/won_shop.cc` | 精确 |
+| DE | `0x080FEF20`–`0x080FF12B` | `src/winery_shop_data.o(.rodata)` | `src/winery_shop_data.cc` 与 `data/text/de/winery_shop.cc` | 精确 |
+| DE | `0x080FF12C`–`0x080FF2AB` | `src/special_merchant_shop_data.o(.rodata)` | `src/special_merchant_shop_data.cc` 与 `data/text/de/special_merchant_shop.cc` | 精确 |
+| DE | `0x080FF2AC`–`0x080FF4AB` | `src/beach_cafe_shop_data.o(.rodata)` | `src/beach_cafe_shop_data.cc` 与 `data/text/de/beach_cafe_shop.cc` | 精确 |
 | DE | `0x08100938`–`0x08100A93` | `data/text/home_storage.o(.rodata)` | `data/text/de/home_storage.cc` | 精确 |
 | DE | `0x081014EE`–`0x081017FA` | `data/text/recovery_status.o(.rodata)` | `data/text/de/recovery_status.cc` | 精确 |
 | DE | `0x08101800`–`0x08101B29` | `data/text/cooking.o(.rodata)` | `data/text/de/cooking.cc` | 精确 |

@@ -128880,7 +128880,12 @@ func_08080540: @ 0x08080540
 .L08080C70: .4byte 0x00001AA8
 .L08080C74: .4byte 0x00001C2C
 .L08080C78: .4byte 0x00001C38
-.L08080C7C: .4byte gText_WineryShop_Delivery
+.L08080C7C:
+	.ifdef REGION_DE
+	.4byte gText_WineryShop_DeliveryRemainder
+	.else
+	.4byte gText_WineryShop_Delivery
+	.endif
 .L08080C80:
 	ldr r1, .L08080CA8 @ =gText_WineryShop_PurchaseComplete
 	adds r0, r7, #0

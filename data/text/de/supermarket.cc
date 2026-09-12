@@ -3,49 +3,49 @@
 #if defined(FOMT_TEXT_SUPERMARKET_PRIMARY)
 
 char const gText_Supermarket_EquipmentCapacityFull[] =
-    "I'm afraid you\r\n"
-    "can't equip anything more...{Press}";
+    "Ich fürchte du kannst\r\n"
+    "nichts mehr aufrüsten...{Press}";
 
 char const gText_Supermarket_BlankLinePair[] =
     "\r\n"
     "\r\n";
 
 char const gText_Supermarket_InsufficientGold[] =
-    "Um...well...You don't\r\n"
-    "seem to have enough Gold...{Press}";
+    "Hm...tja...Du hast\r\n"
+    "wohl nicht genug Gold...{Press}";
 
 char const gText_Supermarket_ThankYou[] =
-    "Thank you very much!{Press}";
+    "Vielen Dank!{Press}";
 
 char const gText_Supermarket_PurchaseConfirmation[] =
-    "Really?\r\n"
-    "Are you sure?{Press}";
+    "Echt?\r\n"
+    "Bist du sicher?{Press}";
 
 char const gText_Supermarket_PurchaseMorePrompt[] =
-    "Do you need anything else?{Press}";
+    "Brauchst du noch etwas?{Press}";
 
 char const gText_Supermarket_EquipmentDelivery[] =
-    "Thank you very much.{Press}\p"
-    "Wait a minute.\r\n"
-    "Your Rucksack is full.\r\n"
-    "I'll have it delivered.{Press}";
+    "Vielen Dank.{Press}\p"
+    "Warte eine Minute.\r\n"
+    "Dein Rucksack ist voll.\r\n"
+    "Ich lasse es liefern.{Press}.";
 
 char const gText_Supermarket_DeliveryPartial[] =
-    "Thank you very much.{Press}\p"
-    "Wait.\r\n"
-    "You can't carry any more.\r\n"
-    "I'll have it delivered.{Press}";
+    "Vielen Dank.{Press}\p"
+    "Warte.\r\n"
+    "Du kannst nicht mehr tragen.\r\n"
+    "Ich lasse es liefern.{Press}";
 
 #elif defined(FOMT_TEXT_SUPERMARKET_SECONDARY)
 
 char const gText_Supermarket_SeedDelivery[] =
-    "Thank you very much.{Press}\p"
-    "Wait.\r\n"
-    "Your Rucksack is full.\r\n"
-    "I'll have it delivered.{Press}";
+    "Vielen Dank.{Press}\p"
+    "Warte.\r\n"
+    "Dein Rucksack ist voll.\r\n"
+    "Ich lasse es liefern.{Press}";
 
 char const gText_Supermarket_SeedPurchaseConfirmation[] =
-    "Are you sure?{Press}";
+    "Bist du sicher?{Press}";
 
 extern char const gCppRuntimeBadAlloc_SupermarketTrailer[] =
     "bad_alloc";

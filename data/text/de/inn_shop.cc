@@ -3,34 +3,34 @@
 #if defined(FOMT_TEXT_INN_SHOP_DESCRIPTIONS)
 
 char const gText_InnShop_WaterDescription[] =
-    "Water. Just plain old water.";
+    "Wasser. Gutes altes Wasser.";
 
 char const gText_InnShop_BoxLunchDescription[] =
-    "Box Lunch.\r\n"
-    "Sold only at the Hotel\r\n"
-    "in the afternoon.";
+    "Lunch in der Box.\r\n"
+    "Wird nur nachmittags\r\n"
+    "im Hotel verkauft.";
 
 char const gText_InnShop_Empty[] =
     "";
 
 char const gText_InnShop_MilkDescription[] =
-    "Milk. Freshly squeezed.";
+    "Milch. Frisch gemolken.";
 
 #elif defined(FOMT_TEXT_INN_SHOP_DIALOGUE)
 
 char const gText_InnShop_InsufficientGold[] =
-    "You don't have enough\r\n"
-    "Gold. Come back later.{Press}";
+    "Du hast nicht genug\r\n"
+    "Gold. Komm später wieder.{Press}";
 
 char const gText_InnShop_NoOrder[] =
-    "So you don't want\r\n"
-    "anything? You sure?\r\n"
-    "Come back any time now!{Press}";
+    "Du möchtest also\r\n"
+    "nichts? Sicher?\r\n"
+    "Komm jederzeit wieder!{Press}";
 
 char const gText_InnShop_OrderComplete[] =
-    "Thanks!\r\n"
-    "Wait one moment...\r\n"
-    "OK, here you are!{Press}";
+    "Danke!\r\n"
+    "Warte einen Moment...\r\n"
+    "OK, hier bitte!{Press}";
 
 extern char const gCppRuntimeBadAlloc_InnShopTrailer[] =
     "bad_alloc";

@@ -1,51 +1,55 @@
 #include "won_shop_text.hh"
 
 char const gText_WonShop_ToolCapacityFull[] =
-    "You can't hold more tools!\r\n"
-    "Why are you so greedy!?{Press}";
+    "Du kannst nicht mehr\r\n"
+    "Werkzeuge tragen!\r\n"
+    "Warum bist du so gierig!?{Press}";
 
 char const gText_WonShop_ItemCapacityFull[] =
-    "You can't hold any more!\r\n"
-    "Why are you so greedy!?{Press}";
+    "Du kannst nichts\r\n"
+    "mehr tragen!\r\n"
+    "Warum bist du so gierig!?{Press}";
 
 char const gText_WonShop_BlankLinePair[] =
     "\r\n"
     "\r\n";
 
 char const gText_WonShop_Delivery[] =
-    "Thanks any time!\r\n"
-    "Ach! You can't fit anything\r\n"
-    "more in your Rucksack!{Press}\p"
-    "I'll send it along, though.\r\n"
-    "No worries, no worries!{Press}";
+    "Danke!\r\n"
+    "Ach! In deinen Rucksack\r\n"
+    "passt nichts mehr rein!{Press}\p"
+    "Ich lasse es dir schicken.\r\n"
+    "Kein Problem, kein Problem!{Press}";
 
 char const gText_WonShop_DeliveryMultiple[] =
-    "Thanks any time!\r\n"
-    "Ach! Some won't fit into\r\n"
-    "your Rucksack!{Press}\p"
-    "I'll send it along, though.\r\n"
-    "No worries, no worries!{Press}";
+    "Danke!\r\n"
+    "Ach! Einiges passt nicht in\r\n"
+    "deinen Rucksack!{Press}\p"
+    "Ich lasse es dir schicken.\r\n"
+    "Kein Problem, kein Problem!{Press}";
 
 char const gText_WonShop_PurchaseComplete[] =
-    "Thanks very much now!\r\n"
-    "Do business any time!{Press}";
+    "Vielen Dank!\r\n"
+    "Jederzeit zum\r\n"
+    "Geschäft bereit!{Press}";
 
 char const gText_WonShop_InsufficientGold[] =
-    "Your Gold in insufficient!\r\n"
-    "Do these eyes look\r\n"
-    "blind to you!?...{Press}";
+    "Dein Gold reicht nicht!\r\n"
+    "Sehe ich aus, als ob\r\n"
+    "ich blind wäre!?...{Press}";
 
 char const gText_WonShop_PurchaseMorePrompt[] =
-    "Want to buy anything else?\r\n"
-    "Extra cheap for you...{Press}";
+    "Möchtest du etwas\r\n"
+    "anderes kaufen?\r\n"
+    "Sonderpreis für dich...{Press}";
 
 char const gText_WonShop_NoPurchase[] =
-    "...Are you playing games\r\n"
-    "with me?{Press}";
+    "...Versuchst du, mich\r\n"
+    "auszutricksen?{Press}";
 
 char const gText_WonShop_NoAdditionalPurchase[] =
-    "Sure you don't want to\r\n"
-    "buy anything else?{Press}";
+    "Sicher, dass du nichts\r\n"
+    "anderes kaufen willst?{Press}";
 
 extern char const gCppRuntimeBadAlloc_WonShopTrailer[] =
     "bad_alloc";

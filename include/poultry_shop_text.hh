@@ -56,6 +56,9 @@ extern char const gCppRuntimeBadAlloc_PoultryShopTrailer[];
 extern char const gText_PoultryShop_PricePrompt[];
 #else
 extern char const gText_PoultryShop_PricePromptPrefix[];
+#if defined(REGION_DE)
+extern char const gText_PoultryShop_PricePromptSuffix[];
+#endif
 #endif
 
 #endif // POULTRY_SHOP_TEXT_HH

@@ -6,10 +6,10 @@ char const gText_PoultryShop_Empty[] =
     "";
 
 char const gText_PoultryShop_BuyChicken[] =
-    "Buy Chicken ";
+    "Huhn kaufen";
 
 char const gText_PoultryShop_SellChicken[] =
-    "Sell Chicken";
+    "Huhn verkaufen";
 
 #elif defined(FOMT_TEXT_POULTRY_SHOP_STATUS)
 
@@ -17,117 +17,120 @@ char const gText_PoultryShop_PageBreak[] =
     "\p";
 
 char const gText_PoultryShop_StatusSick[] =
-    "　　　Sick ";
+    "　　　Krank";
 
 char const gText_PoultryShop_StatusUnhappy[] =
-    "　　　Unhealthy ";
+    "　　　Ungesund  ";
 
 char const gText_PoultryShop_StatusHealthy[] =
-    "　　　Healthy ";
+    "　　　Gesund  ";
 
 char const gText_PoultryShop_StatusSpacer[] =
     " ";
 
 char const gText_PoultryShop_Age[] =
-    "years old\r\n"
-    "              ";
+    "Jahre alt\r\n"
+    "          ";
 
 char const gText_PoultryShop_Spring[] =
-    "Spring";
+    "Frühling";
 
 char const gText_PoultryShop_Summer[] =
-    "Summer";
+    "Sommer";
 
 char const gText_PoultryShop_Autumn[] =
-    "Fall";
+    "Herbst";
 
 char const gText_PoultryShop_Winter[] =
     "Winter";
 
 char const gText_PoultryShop_DailySellingPrice[] =
     "D\r\n"
-    "Selling Price　　 ";
+    "Verkaufspreis　   ";
 
 char const gText_PoultryShop_Currency[] =
     "G";
 
 char const gText_PoultryShop_InsufficientGold[] =
-    "I'm sorry...\r\n"
-    "You don't have enough gold.{Press}";
+    "Tut mir leid...\r\n"
+    "Du hast nicht genug Gold.{Press}";
 
 char const gText_PoultryShop_FeedBinFull[] =
-    "So much Feed won't fit\r\n"
-    "in your Feed Bin!{Press}";
+    "So viel Futter passt nicht\r\n"
+    "in deinen Eimer!{Press}";
 
 char const gText_PoultryShop_BlankLinePair[] =
     "\r\n"
     "\r\n";
 
 char const gText_PoultryShop_InventoryFull[] =
-    "It looks like you can't\r\n"
-    "hold anything more.{Press}";
+    "Sieht aus, also könntest\r\n"
+    "du nicht mehr halten.{Press}";
 
 char const gText_PoultryShop_CoopFull[] =
-    "Your farm's Chicken Coop\r\n"
-    "is already full!{Press}";
+    "Dein Hühnerstall\r\n"
+    "ist schon voll!{Press}";
 
 char const gText_PoultryShop_NameChickenPrompt[] =
-    "The Chickens like it if you\r\n"
-    "name them, you know.{Press}";
+    "Die Hühner mögen es,\r\n"
+    "wenn du ihnen Namen gibst.{Press}";
 
 char const gText_PoultryShop_NoChickensToSell[] =
-    "You don't have any\r\n"
-    "Chickens you can sell...!{Press}";
+    "Du hast keine Hühner, die\r\n"
+    "du verkaufen könntest...!{Press}";
 
 char const gText_PoultryShop_NotInterested[] =
-    "Are you sure you're not\r\n"
-    "interested?{Press}";
+    "Sicher, dass du nicht\r\n"
+    "interessiert bist?{Press}";
 
 char const gText_PoultryShop_PurchaseDeclined[] =
-    "So you're not going\r\n"
-    "to buy...?{Press}";
+    "Also kaufst du kein...?{Press}";
 
 char const gText_PoultryShop_PricePromptPrefix[] =
-    "I'll buy it for";
+    "Ich kaufe es für";
+
+char const gText_PoultryShop_PricePromptSuffix[] =
+    "G.";
 
 char const gText_PoultryShop_Yes[] =
-    "Yes";
+    "Ja";
 
 char const gText_PoultryShop_No[] =
-    "No";
+    "Nein";
 
 char const gText_PoultryShop_FeedPurchaseComplete[] =
-    "Thanks! Come again.{Press}\p"
-    "I'll tell Rick to put the\r\n"
-    "Feed you purchased in\r\n"
-    "your Feed Bin.{Press}";
+    "Danke! Komm bald wieder.{Press}\p"
+    "Ich sage Rick, er soll das\r\n"
+    "Futter das du gekauft hast\r\n"
+    "in deinen Futtereimer tun.{Press}";
 
 char const gText_PoultryShop_PurchaseDeliveryPartial[] =
-    "Thanks! Come gain.{Press}\p"
-    "Oh...it looks like you\r\n"
-    "can't hold that many. I'll\r\n"
-    "ask Rick to deliver them.{Press}";
+    "Danke! Komm bald wieder.{Press}\p"
+    "Oh...scheint, als könntest\r\n"
+    "du nicht so viele tragen.\r\n"
+    "Ich werde Rick bitten,{Press}\r\n"
+    "sie zu liefern.{Press}";
 
 char const gText_PoultryShop_MedicinePurchaseComplete[] =
-    "Thanks! Come again.\r\n"
-    "I'll have Rick deliver the\r\n"
-    "Medicine you bought.{Press}";
+    "Danke! Komm bald wieder.\r\n"
+    "Rick wird dir die gekaufte\r\n"
+    "Medizin liefern.{Press}";
 
 char const gText_PoultryShop_PurchaseComplete[] =
-    "Thanks! Come again.{Press}";
+    "Danke! Komm bald wieder.{Press}";
 
 char const gText_PoultryShop_ChickenPurchaseComplete[] =
-    "I'll tell Rick to put the\r\n"
-    "Chicken you purchased\r\n"
-    "in your Chicken Coop.{Press}";
+    "Ich sage Rick, er soll die\r\n"
+    "Hühner, die du gekauft hast,\r\n"
+    "in deinen Stall bringen.{Press}";
 
 char const gText_PoultryShop_PurchaseMorePrompt[] =
-    "Do you need anything else?{Press}";
+    "Brauchst du noch etwas?{Press}";
 
 char const gText_PoultryShop_ChickenSold[] =
-    "I'll ask Rick to bring the\r\n"
-    "Chickens you sold from\r\n"
-    "your Chicken Coop.{Press}";
+    "Ich bitte Rick, die Hühner,\r\n"
+    "die du verkauft hast, aus\r\n"
+    "deinem Stall zu holen.{Press}";
 
 extern char const gCppRuntimeBadAlloc_PoultryShopTrailer[] =
     "bad_alloc";

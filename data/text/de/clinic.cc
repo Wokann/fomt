@@ -1,44 +1,47 @@
 #include "clinic_text.hh"
 
 char const gText_Clinic_InventoryFull[] =
-    "You can't seem to hold\r\n"
-    "anything else. Why don't\r\n"
-    "you lighten your load?{Press}";
+    "Du kannst anscheinend\r\n"
+    "nichts mehr halten.\r\n"
+    "Warum erleichterst du{Press}\r\n"
+    "deine Ladung nicht?{Press}";
 
 char const gText_Clinic_BlankLinePair[] =
     "\r\n"
     "\r\n";
 
 char const gText_Clinic_InsufficientGold[] =
-    "You don't have enough \r\n"
-    "money for the Medicine.\r\n"
-    "I'm terribly sorry.{Press}";
+    "Du hast nicht genug\r\n"
+    "Geld für die Medizin.\r\n"
+    "Tut mir sehr leid.{Press}";
 
 char const gText_Clinic_NoAdditionalPurchase[] =
-    "Sure you don't need\r\n"
-    "anything else?{Press}";
+    "Sicher, dass du nichts\r\n"
+    "anderes brauchst?{Press}";
 
 char const gText_Clinic_NoPurchaseRestAdvice[] =
-    "Sure you don't need \r\n"
-    "anything? It looks like\r\n"
-    "you should get more rest...{Press}";
+    "Sicher, dass du nichts \r\n"
+    "anderes brauchst?\r\n"
+    "Sieht aus, als müsstest{Press}\r\n"
+    "du dich mehr ausruhen...{Press}";
 
 char const gText_Clinic_PurchaseMorePrompt[] =
-    "Do you need anything else?{Press}";
+    "Brauchst du noch etwas?{Press}";
 
 char const gText_Clinic_Delivery[] =
-    "Since you can't hold\r\n"
-    "anything else, I'll have\r\n"
-    "this delivered for you.{Press}";
+    "Da du nichts mehr tragen\r\n"
+    "kannst, werde ich dies\r\n"
+    "für dich liefern lassen.{Press}";
 
 char const gText_Clinic_DeliveryPartial[] =
-    "Looks like you can't \r\n"
-    "hold all this. I'll have\r\n"
-    "the rest delivered for you.{Press}";
+    "Sieht aus, als könntest du\r\n"
+    "das nicht alles halten.\r\n"
+    "Ich lasse den Rest{Press}\r\n"
+    "für dich liefern.{Press}";
 
 char const gText_Clinic_PurchaseComplete[] =
-    "Here you go.\r\n"
-    "Take care, now.{Press}";
+    "Bitte sehr.\r\n"
+    "Pass auf dich auf.{Press}";
 
 extern char const gCppRuntimeBadAlloc_ClinicTrailer[] =
     "bad_alloc";
