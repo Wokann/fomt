@@ -3,141 +3,143 @@
 #if defined(FOMT_TEXT_BLACKSMITH_MENU)
 
 char const gText_Blacksmith_ToolUpgradeMenuLabel[] =
-    "            Upgrading ";
+    "            Aufrüsten";
 
 char const gText_Blacksmith_ToolUpgradeTitle[] =
-    "Upgrading Tools";
+    "Werkzeuge aufrüsten";
 
 char const gText_Blacksmith_Empty[] =
     "";
 
 char const gText_Blacksmith_MakeMayonnaiseMaker[] =
-    "Make Mayonnaise Maker";
+    "Mayonnaisemaschine machen";
 
 char const gText_Blacksmith_CostAdamantite[] =
-    "Cost to make this\r\n"
-    "Gold   20,000G\r\n"
-    "Ore     Adamantite";
+    "Preis für\r\n"
+    "Gold   20.000G\r\n"
+    "Erz     Adamantite";
 
 char const gText_Blacksmith_MakeCheeseMaker[] =
-    "Make Cheese Maker";
+    "Käsemaschine machen";
 
 char const gText_Blacksmith_MakeYarnMaker[] =
-    "Make Yarn Maker";
+    "Garnmaschine machen";
 
 char const gText_Blacksmith_MakeNecklace[] =
-    "Make Necklace";
+    "Halskette machen";
 
 char const gText_Blacksmith_CostOrichalc[] =
-    "Cost to make this\r\n"
-    "Gold   1,000G\r\n"
-    "Ore     Orichalc";
+    "Preis für\r\n"
+    "Gold   1.000G\r\n"
+    "Erz     Orichalc";
 
 char const gText_Blacksmith_MakeEarrings[] =
-    "Make Earrings";
+    "Ohrringe machen";
 
 char const gText_Blacksmith_MakeBracelet[] =
-    "Make Bracelet";
+    "Armband machen";
 
 char const gText_Blacksmith_MakeBroach[] =
-    "Make Broach";
+    "Brosche machen";
 
 #elif defined(FOMT_TEXT_BLACKSMITH_DIALOGUE)
 
 char const gText_Blacksmith_InsufficientGoldAdamantite[] =
-    "To make this, you need\r\n"
-    "Adamantite Ore and 20,000\r\n"
-    "gold pieces...{Press}\p"
-    "So you don't have the \r\n"
-    "money?...Too bad!{Press}";
+    "Hierfür brauchst du\r\n"
+    "Adamantiterz und  20.000\r\n"
+    "Goldstücke...{Press}\p"
+    "Du hast das Geld \r\n"
+    "nicht?...Zu schade!{Press}";
 
 char const gText_Blacksmith_InsufficientGoldOrichalc[] =
-    "To make this, you need\r\n"
-    "Orichalc Ore and 1,000\r\n"
-    "gold pieces...{Press}\p"
-    "So you don't have the \r\n"
-    "money?...Too bad!{Press}";
+    "Hierfür brauchst du\r\n"
+    "Orichalcerz und 1.000\r\n"
+    "Goldstücke...{Press}\p"
+    "Du hast das Geld also\r\n"
+    "nicht?...Zu schade!{Press}";
 
 char const gText_Blacksmith_MakerFiveDays[] =
-    "It will take me five days\r\n"
-    "to make. Are you sure?{Press}";
+    "Für die Herstellung\r\n"
+    "brauche ich 5 Tage. \r\n"
+    "Bist du sicher?{Press}";
 
 char const gText_Blacksmith_MakerOneDay[] =
-    "It will take me one day\r\n"
-    "to make. Are you sure?{Press}";
+    "Ich brauche einen Tag\r\n"
+    "für die Herstellung.\r\n"
+    "Bist du sicher?{Press}";
 
 char const gText_Blacksmith_InsufficientOreAdamantite[] =
-    "To make this, you need\r\n"
-    "Adamantite Ore and 20,000\r\n"
-    "gold pieces...{Press}\p"
-    "So you don't have the \r\n"
-    "Ore?...You can find it in \r\n"
-    "the mine near the spring.{Press}";
+    "Hierfür brauchst du\r\n"
+    "Adamantiterz und  20.000\r\n"
+    "Goldstücke...{Press}\p"
+    "Du hast das Erz also \r\n"
+    "nicht?...Du findest es in\r\n"
+    "der Mine bei der Quelle.{Press}";
 
 char const gText_Blacksmith_InsufficientOreOrichalc[] =
-    "To make this, you need\r\n"
-    "Orichalc Ore and 1,000\r\n"
-    "gold pieces...{Press}\p"
-    "So you don't have the \r\n"
-    "Ore?...You can find it in \r\n"
-    "the mine near the spring.{Press}";
+    "Hierfür brauchst du\r\n"
+    "Orichalcerz und 1.000\r\n"
+    "Goldstücke...{Press}\p"
+    "Du hast das Erz also \r\n"
+    "nicht?...Du findest es in\r\n"
+    "der Mine bei der Quelle.{Press}";
 
 char const gText_Blacksmith_SelectToolAndOre[] =
-    "Select a Tool to upgrade\r\n"
-    "and an Ore to upgrade\r\n"
-    "it with.{Press}";
+    "Wähle ein Werkzeug und\r\n"
+    "das gewünschte Erz\r\n"
+    "zum Aufrüsten.{Press}";
 
 char const gText_Blacksmith_InsufficientGold[] =
-    "Sorry, but you don't have\r\n"
-    "enough gold.{Press}";
+    "Tut mir leid, aber du\r\n"
+    "hast nicht genug Gold.{Press}";
 
 char const gText_Blacksmith_EquipmentFull[] =
-    "You can't hold anything \r\n"
-    "else. {Press}";
+    "Du kannst nichts anderes \r\n"
+    "mehr halten. {Press}";
 
 char const gText_Blacksmith_NeedAnythingElse[] =
-    "Do you need anything else?{Press}";
+    "Brauchst du noch etwas?{Press}";
 
 char const gText_Blacksmith_NothingElse[] =
-    "You're sure you don't\r\n"
-    "need anything?{Press}";
+    "Sicher, dass du nichts\r\n"
+    "brauchst?{Press}";
 
 char const gText_Blacksmith_PurchaseComplete[] =
-    "Thanks a lot!{Press}";
+    "Vielen Dank!{Press}";
 
 char const gText_Blacksmith_Delivery[] =
-    "Thanks a lot. You can't\r\n"
-    "anything else, though, so\r\n"
-    "I'll have Gray deliver it.{Press}";
+    "Vielen Dank. Du kannst \r\n"
+    "nichts mehr, also lasse ich\r\n"
+    "es von Gray liefern.{Press}";
 
 char const gText_Blacksmith_PurchaseMore[] =
-    "Looking for something else\r\n"
-    "as well?{Press}";
+    "Suchst du auch noch\r\n"
+    "nach etwas anderem?{Press}";
 
 char const gText_Blacksmith_MakeIt[] =
-    "Make it";
+    "Herstellen";
 
 char const gText_Blacksmith_DontMakeIt[] =
-    "Don't make it";
+    "Nicht herstellen";
 
 char const gText_Blacksmith_StartWork[] =
-    "OK, I have to get to work!\r\n"
-    "Quit bothering me!{Press}";
+    "OK, ich muss arbeiten!\r\n"
+    "Hör auf, mich zu stören!{Press}";
 
 char const gText_Blacksmith_CannotChangeMind[] =
-    "A man doesn't change\r\n"
-    "his mind, you know.{Press}";
+    "Ein Mann ändert seine\r\n"
+    "Meinung nicht.{Press}";
 
 char const gText_Blacksmith_NoToolToUpgrade[] =
-    "Why don't you come back\r\n"
-    "when you have something\r\n"
-    "for me to upgrade for you!{Press}";
+    "Warum kommst du nicht\r\n"
+    "wieder, wenn du etwas\r\n"
+    "zum Aufrüsten hast!{Press}";
 
 char const gText_Blacksmith_NoOreToUpgrade[] =
-    "You don't have any Ore for\r\n"
-    "me to use! You can find \r\n"
-    "some in the mine by the {Press}\r\n"
-    "spring, you know.{Press}";
+    "Du hast kein Erz, das ich\r\n"
+    "gebrauchen kann! Du weißt,\r\n"
+    "dass du in der Mine bei{Press}\r\n"
+    "der Quelle welches findest.{Press}";
 
 char const gCppRuntimeBadAlloc_BlacksmithDialogueTrailer[] =
     "bad_alloc";
