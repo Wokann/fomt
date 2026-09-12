@@ -2,15 +2,15 @@
     .SYNTAX UNIFIED
 
     thumb_func_start AgbMain
-AgbMain: @ 0x0800018C
+AgbMain:
     push {r4, lr}
     sub sp, #0x1c
-    ldr r1, .L08000228 @ =0x04000204
-    ldr r2, .L0800022C @ =0x00004014
+    ldr r1, .LAgbMain_DisplayControl
+    ldr r2, .LAgbMain_DisplayMode
     adds r0, r2, #0
     strh r0, [r1]
     bl func_080004C4
-    ldr r1, .L08000230 @ =func_03000490
+    ldr r1, .LAgbMain_IwramInit
     movs r0, #0xd
     bl func_080D100C
     movs r0, #0x80
@@ -27,16 +27,27 @@ AgbMain: @ 0x0800018C
     adds r0, r4, #0
     bl func_08000358
 .L080001C6:
-    ldr r1, .L08000234 @ =func_08000240
+    ldr r1, .LAgbMain_ResetHandler
     movs r0, #0xc
     bl func_080D100C
-    ldr r1, .L08000238 @ =0x04000132
-    ldr r2, .L0800023C @ =0x0000C00F
+    ldr r1, .LAgbMain_SerialControl
+    ldr r2, .LAgbMain_SerialControlValue
     adds r0, r2, #0
     strh r0, [r1]
     movs r0, #0x80
     lsls r0, r0, #5
     bl func_0800050C
+    @ The EU startup routine initializes these additional hardware registers.
+    .ifdef REGION_EU
+    ldr r1, .LAgbMain_RegionalControl
+    movs r2, #0xc0
+    lsls r2, r2, #7
+    adds r0, r2, #0
+    strh r0, [r1]
+    adds r1, #0xc
+    movs r0, #0
+    strh r0, [r1]
+    .endif
     bl func_08008AFC
     mov r0, sp
     bl func_08008980
@@ -68,9 +79,12 @@ AgbMain: @ 0x0800018C
     pop {r0}
     bx r0
     .align 2, 0
-.L08000228: .4byte 0x04000204
-.L0800022C: .4byte 0x00004014
-.L08000230: .4byte func_03000490
-.L08000234: .4byte func_08000240
-.L08000238: .4byte 0x04000132
-.L0800023C: .4byte 0x0000C00F
+.LAgbMain_DisplayControl: .4byte 0x04000204
+.LAgbMain_DisplayMode: .4byte 0x00004014
+.LAgbMain_IwramInit: .4byte func_03000490
+.LAgbMain_ResetHandler: .4byte func_08000240
+.LAgbMain_SerialControl: .4byte 0x04000132
+.LAgbMain_SerialControlValue: .4byte 0x0000C00F
+    .ifdef REGION_EU
+.LAgbMain_RegionalControl: .4byte 0x04000128
+    .endif
