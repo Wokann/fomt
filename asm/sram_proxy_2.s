@@ -1,25 +1,3 @@
-    .ifdef REGION_JP
-    @ JP revision 0 SRAM proxy implementation.
-    .section .text
-    .syntax unified
-    .thumb
-jp_sram_proxy_2_start:
-    .incbin "baserom_jp.gba", 0x63C, 0xA8
-
-    .global func_0800063C
-    .thumb_set func_0800063C, jp_sram_proxy_2_start
-    .global func_08000640
-    .thumb_set func_08000640, jp_sram_proxy_2_start + 0x4
-    .global func_080006A4
-    .thumb_set func_080006A4, jp_sram_proxy_2_start + 0x68
-
-    .section .text.sram_proxy_2_after_006e4
-jp_sram_proxy_2_after_006e4:
-    .incbin "baserom_jp.gba", 0x714, 0xD8
-
-    .global func_08000728
-    .thumb_set func_08000728, jp_sram_proxy_2_after_006e4 + 0x14
-    .else
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
 
@@ -244,4 +222,3 @@ func_08000728: @ 0x08000728
     bx r0
     .align 2, 0
 .L080007E8: .4byte gUnk_03000400
-    .endif

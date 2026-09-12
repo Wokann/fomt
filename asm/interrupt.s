@@ -1,24 +1,3 @@
-    .ifdef REGION_JP
-    @ JP revision 0 interrupt implementation.
-    .section .text
-    .syntax unified
-    .thumb
-jp_interrupt_start:
-    .incbin "baserom_jp.gba", 0x4C4, 0xD8
-
-    .global func_080004C4
-    .thumb_set func_080004C4, jp_interrupt_start
-    .global func_080004F4
-    .thumb_set func_080004F4, jp_interrupt_start + 0x30
-    .global func_0800050C
-    .thumb_set func_0800050C, jp_interrupt_start + 0x48
-    .global func_08000528
-    .thumb_set func_08000528, jp_interrupt_start + 0x64
-    .global func_08000540
-    .thumb_set func_08000540, jp_interrupt_start + 0x7C
-    .global func_08000568
-    .thumb_set func_08000568, jp_interrupt_start + 0xA4
-    .else
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
 
@@ -148,4 +127,3 @@ func_08000590:
     pop {r0}
     bx r0
     .align 2, 0
-    .endif
