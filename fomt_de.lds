@@ -629,34 +629,34 @@ SECTIONS
         src/intro_scene_data.o(.rodata.intro_scene_startup_resources);
         . = 0xE86A8; src/new_game_menu_data.o(.rodata);
         . = 0xE8CC4; src/field_data.o(.rodata);
-        src/shipping_bin.o(.rodata);
+        . = 0xE95D8; src/shipping_bin.o(.rodata);
         src/record_player.o(.rodata);
         /* Item text, catalogs, products, and trailer. */
-        . = 0xE9614; src/item.o(.rodata);
+        src/item.o(.rodata);
         FILL(0x00);
         /* Calendar rows, labels, and state data. */
-        . = 0xF04EE; src/game_state.o(.rodata);
+        . = 0xF09B2; src/game_state.o(.rodata);
         FILL(0x00);
         /* Help-menu text and byte table. */
-        . = 0xF058C; src/help_menu.o(.rodata);
+        . = 0xF0A50; src/help_menu.o(.rodata);
         FILL(0x00);
         /* Animal memorial text and animal data. */
-        . = 0xF0654; src/animal_data.o(.rodata);
+        . = 0xF0B18; src/animal_data.o(.rodata);
         FILL(0x00);
         /* Entity UI regional data: labels and native UI data. */
-        . = 0xF0E80; src/entity_ui.o(.rodata);
+        . = 0xF1368; src/entity_ui.o(.rodata);
         FILL(0x00);
         /* Common UI regional data: labels, errors, menu table. */
-        . = 0xF1974; src/fixed_labels.o(.rodata);
+        . = 0xF1E5C; src/fixed_labels.o(.rodata);
         src/ui_error.o(.rodata);
         src/menu_data.o(.rodata);
         FILL(0x00);
-        . = 0xF1A80; src/data_schedules.o(.rodata);
+        . = 0xF1F68; src/data_schedules.o(.rodata);
         . = ALIGN(4); src/entity_ui.o(.rodata.entity_ui_resource_selector);
         FILL(0x00);
-        . = 0xF47D8; asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix);
+        . = 0xF47E0; asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix);
         . = ALIGN(4); src/script_engine.o(.rodata);
-        . = 0xFA38C; data/text/common/script_engine.o(.rodata);
+        . = 0xFA394; data/text/common/script_engine.o(.rodata);
          src/cooking_festival_data.o(.rodata);
         src/thomas_stocking_data.o(.rodata);
         FILL(0x00);
