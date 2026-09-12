@@ -1,19 +1,20 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Introducing Ruby"
+    "Vorstellung Ruby"
 MAIN
-    "Tim's wife Ruby is renowned"
-    "as a famous chef."
+    "Tims Frau Ruby ist bekannt"
+    "als fabelhafte Köchin."
     "<191>"
     ""
-    "She takes trips to research"
-    "new cuisine. Sometimes she"
-    "even comes to Mineral Town."
+    "Sie unternimmt Reisen,"
+    "um neue Rezepte zu lernen."
+    "Manchmal kommt sie"
+    "sogar nach Mineralstadt."
     "<192>"
     ""
-    "She fell in love with Tim"
-    "on her travels, and found"
-    "she couldn't leave "
-    "his side."
+    "Auf ihren Reisen hat sie"
+    "sich in Tim verliebt und"
+    "gemerkt, dass sie ihn "
+    "nicht mehr verlassen wollte."
 END_FOMT_REFERENCE_GUIDE_PAGE

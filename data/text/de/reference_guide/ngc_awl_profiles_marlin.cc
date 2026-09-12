@@ -1,18 +1,20 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Introducing Marlin"
+    "Vorstellung Marlin"
 MAIN
-    "Vesta's brother, Marlin "
-    "helps her out on the farm."
+    "Vestas Bruder, Marlin, "
+    "hilft ihr auf der Farm."
     "<271>"
-    "He's not very sociable, "
-    "but not a bad person."
-    "He's also actually not "
-    "much help on the farm."
+    ""
+    "Er ist nicht sehr gesellig,"
+    "aber kein schlechter Kerl."
+    "Er ist eigentlich auch "
+    "keine große Hilfe auf"
+    "der Farm."
     "<272>"
     ""
-    "The only person he really "
-    "seems to care for is"
-    "Celia."
+    "Der einzige Mensch, an dem"
+    "ihm etwas zu liegen scheint,"
+    "ist Celia."
 END_FOMT_REFERENCE_GUIDE_PAGE

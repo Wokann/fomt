@@ -635,15 +635,21 @@ void EmitCppString(std::ostringstream &output, const std::string &declarator, co
     }
 }
 
+std::string GuideLineLabel(const std::string &page, std::size_t index,
+    const std::string &text, bool has_fixed_title);
+
 void EmitGuideCppString(std::ostringstream &output, const std::string &label,
-    const std::string &section, const Bytes &bytes)
+    const std::string &section, const Bytes &bytes, std::size_t alignment = 0)
 {
     // agbcp treats a const char array as its initializer literal when that
     // array decays inside a later pointer table.  A first-member wrapper
     // preserves the emitted symbol address while keeping pointer tables tied
     // to the explicitly sectioned object rather than its default .rodata copy.
     output << "extern ReferenceGuideTextStorage<" << (bytes.size() + 1) << "> const "
-           << label << " SECTION(\"" << section << "\") =\n{\n";
+           << label << " SECTION(\"" << section << "\")";
+    if (alignment != 0)
+        output << " ALIGN(" << alignment << ')';
+    output << " =\n{\n";
     if (bytes.empty()) {
         output << "    \"\"\n};\n\n";
         return;
@@ -656,6 +662,26 @@ void EmitGuideCppString(std::ostringstream &output, const std::string &label,
             output << "\\x" << HexByte(bytes[index]);
         output << '"' << (end == bytes.size() ? "\n};\n\n" : "\n");
     }
+}
+
+std::string GuidePaddingLabel(const std::string &page, std::size_t index,
+    const std::string &text, bool has_fixed_title)
+{
+    const std::string line_label = GuideLineLabel(page, index, text, has_fixed_title);
+    constexpr char kTextPrefix[] = "gText_ReferenceGuide_";
+    return "gReferenceGuidePadding_" + line_label.substr(sizeof(kTextPrefix) - 1) + "_Before";
+}
+
+void EmitGuidePadding(std::ostringstream &output, const std::string &label,
+    const std::string &section, std::size_t size)
+{
+    // A PAD directive represents verified, unreferenced original ROM fill;
+    // it is deliberately not exposed as semantic game data.
+    output << "// Verified unreferenced raw ROM fill.\n"
+           << "extern u8 const " << label << "[] SECTION(\"" << section << "\") = {";
+    for (std::size_t index = 0; index < size; ++index)
+        output << (index == 0 ? " " : ", ") << '0';
+    output << " };\n\n";
 }
 
 void EmitStaffCreditsCppString(std::ostringstream &output, const std::string &label,
@@ -1526,16 +1552,23 @@ std::vector<std::string> ExtractIncludeDirectives(const std::string &source)
 struct GuidePageSource {
     std::string page;
     std::vector<std::string> lines;
+    std::map<std::size_t, std::size_t> line_alignments;
+    std::map<std::size_t, std::size_t> line_paddings;
     bool has_fixed_title;
 };
 
 // The collection manifest is an ordinary X-macro list.  Its source order is
-// the game-visible book directory; ROM order independently preserves the
+// the game-visible book directory; text_id independently preserves the
 // physical data sequence.
+enum class GuidePageType {
+    First,
+    Second,
+};
+
 struct GuideManifestEntry {
     std::string page;
-    std::size_t rom_order;
-    bool include_in_catalog;
+    std::size_t text_id;
+    GuidePageType page_type;
 };
 
 struct GuideCollectionPage {
@@ -1650,6 +1683,57 @@ std::string StripLineComment(const std::string &source)
     return source;
 }
 
+std::size_t ParseGuideAlignment(const std::string &source, std::size_t line_number)
+{
+    constexpr char kPrefix[] = "ALIGN(";
+    if (source.rfind(kPrefix, 0) != 0 || source.size() <= sizeof(kPrefix)
+        || source.back() != ')') {
+        throw std::runtime_error("line " + std::to_string(line_number)
+            + ": expected ALIGN(power_of_two)");
+    }
+    const std::string value = source.substr(sizeof(kPrefix) - 1,
+        source.size() - sizeof(kPrefix));
+    if (value.empty() || !std::all_of(value.begin(), value.end(), [](char character) {
+            return std::isdigit(static_cast<unsigned char>(character)) != 0;
+        })) {
+        throw std::runtime_error("line " + std::to_string(line_number)
+            + ": guide alignment must be a positive power of two");
+    }
+    const std::size_t alignment = static_cast<std::size_t>(std::stoul(value));
+    // This agbcp version cannot emit an object alignment greater than four.
+    // Larger verified holes must use PAD(n), which preserves bytes without
+    // asking the compiler for an unsupported object alignment.
+    if (alignment == 0 || (alignment & (alignment - 1)) != 0 || alignment > 4) {
+        throw std::runtime_error("line " + std::to_string(line_number)
+            + ": guide alignment must be ALIGN(1), ALIGN(2), or ALIGN(4)");
+    }
+    return alignment;
+}
+
+std::size_t ParseGuidePadding(const std::string &source, std::size_t line_number)
+{
+    constexpr char kPrefix[] = "PAD(";
+    if (source.rfind(kPrefix, 0) != 0 || source.size() <= sizeof(kPrefix)
+        || source.back() != ')') {
+        throw std::runtime_error("line " + std::to_string(line_number)
+            + ": expected PAD(byte_count)");
+    }
+    const std::string value = source.substr(sizeof(kPrefix) - 1,
+        source.size() - sizeof(kPrefix));
+    if (value.empty() || !std::all_of(value.begin(), value.end(), [](char character) {
+            return std::isdigit(static_cast<unsigned char>(character)) != 0;
+        })) {
+        throw std::runtime_error("line " + std::to_string(line_number)
+            + ": guide padding must be a positive decimal byte count");
+    }
+    const std::size_t padding = static_cast<std::size_t>(std::stoul(value));
+    if (padding == 0) {
+        throw std::runtime_error("line " + std::to_string(line_number)
+            + ": guide padding must be a positive decimal byte count");
+    }
+    return padding;
+}
+
 bool IsGuidePageSource(const std::string &source)
 {
     return source.find("END_FOMT_REFERENCE_GUIDE_PAGE") != std::string::npos;
@@ -1660,7 +1744,7 @@ GuidePageSource ParseGuidePageSource(const std::string &source, const std::strin
     if (!IsValidLabel(page))
         throw std::runtime_error("invalid generated guide-page name '" + page + "'");
 
-    GuidePageSource result{page, {}, true};
+    GuidePageSource result{page, {}, {}, {}, true};
     enum class ParseState {
         TitleKeyword,
         TitleText,
@@ -1669,6 +1753,8 @@ GuidePageSource ParseGuidePageSource(const std::string &source, const std::strin
         Closed,
     };
     ParseState state = ParseState::TitleKeyword;
+    std::size_t pending_alignment = 0;
+    std::size_t pending_padding = 0;
     std::istringstream lines(source);
     std::string line;
     std::size_t line_number = 0;
@@ -1680,6 +1766,24 @@ GuidePageSource ParseGuidePageSource(const std::string &source, const std::strin
         const std::string trimmed = Trim(StripLineComment(line));
         if (trimmed.empty())
             continue;
+
+        if (trimmed.rfind("ALIGN(", 0) == 0) {
+            if (pending_alignment != 0) {
+                throw std::runtime_error("line " + std::to_string(line_number)
+                    + ": consecutive guide alignment directives");
+            }
+            pending_alignment = ParseGuideAlignment(trimmed, line_number);
+            continue;
+        }
+
+        if (trimmed.rfind("PAD(", 0) == 0) {
+            if (pending_padding != 0) {
+                throw std::runtime_error("line " + std::to_string(line_number)
+                    + ": consecutive guide padding directives");
+            }
+            pending_padding = ParseGuidePadding(trimmed, line_number);
+            continue;
+        }
 
         if (trimmed.rfind("FOMT_REFERENCE_GUIDE_PAGE(", 0) == 0) {
             throw std::runtime_error("line " + std::to_string(line_number)
@@ -1700,6 +1804,14 @@ GuidePageSource ParseGuidePageSource(const std::string &source, const std::strin
         }
 
         if (state == ParseState::TitleText) {
+            if (pending_alignment != 0) {
+                result.line_alignments.emplace(result.lines.size(), pending_alignment);
+                pending_alignment = 0;
+            }
+            if (pending_padding != 0) {
+                result.line_paddings.emplace(result.lines.size(), pending_padding);
+                pending_padding = 0;
+            }
             result.lines.push_back(ParseStringLiteral(trimmed, line_number));
             state = ParseState::MainKeyword;
             continue;
@@ -1719,6 +1831,14 @@ GuidePageSource ParseGuidePageSource(const std::string &source, const std::strin
                 state = ParseState::Closed;
                 continue;
             }
+            if (pending_alignment != 0) {
+                result.line_alignments.emplace(result.lines.size(), pending_alignment);
+                pending_alignment = 0;
+            }
+            if (pending_padding != 0) {
+                result.line_paddings.emplace(result.lines.size(), pending_padding);
+                pending_padding = 0;
+            }
             result.lines.push_back(ParseStringLiteral(trimmed, line_number));
             continue;
         }
@@ -1730,6 +1850,10 @@ GuidePageSource ParseGuidePageSource(const std::string &source, const std::strin
     if (state != ParseState::Closed)
         throw std::runtime_error("guide page '" + result.page
             + "' has no END_FOMT_REFERENCE_GUIDE_PAGE");
+    if (pending_alignment != 0 || pending_padding != 0) {
+        throw std::runtime_error("guide page '" + result.page
+            + "' has a layout directive without a following text row");
+    }
     if (result.lines.size() < 2)
         throw std::runtime_error("guide page '" + result.page
             + "' must contain one TITLE text and at least one MAIN text row");
@@ -2058,25 +2182,26 @@ bool IsGuideManifestStem(const std::string &stem)
     });
 }
 
-std::size_t ParseGuideRomOrder(const std::string &source, std::size_t line_number)
+std::size_t ParseGuideTextId(const std::string &source, std::size_t line_number)
 {
     if (source.empty() || !std::all_of(source.begin(), source.end(), [](char value) {
             return std::isdigit(static_cast<unsigned char>(value)) != 0;
         })) {
         throw std::runtime_error("line " + std::to_string(line_number)
-            + ": Reference Guide ROM order must be a non-negative decimal integer");
+        + ": Reference Guide text ID must be a non-negative decimal integer");
     }
     return static_cast<std::size_t>(std::stoul(source));
 }
 
-bool ParseGuideCatalogFlag(const std::string &source, std::size_t line_number)
+GuidePageType ParseGuidePageType(const std::string &source, std::size_t line_number)
 {
-    if (source == "true")
-        return true;
-    if (source == "false")
-        return false;
+    if (source == "FOMT_REFERENCE_GUIDE_PAGE_1")
+        return GuidePageType::First;
+    if (source == "FOMT_REFERENCE_GUIDE_PAGE_2")
+        return GuidePageType::Second;
     throw std::runtime_error("line " + std::to_string(line_number)
-        + ": Reference Guide catalog flag must be true or false");
+        + ": Reference Guide page type must be FOMT_REFERENCE_GUIDE_PAGE_1 or "
+          "FOMT_REFERENCE_GUIDE_PAGE_2");
 }
 
 std::vector<GuideManifestEntry> ParseGuideManifest(const std::filesystem::path &path,
@@ -2085,7 +2210,6 @@ std::vector<GuideManifestEntry> ParseGuideManifest(const std::filesystem::path &
     const std::set<std::string> defines = RegionDefines(region);
     std::vector<GuideManifestEntry> result;
     std::set<std::string> pages;
-    std::set<std::size_t> rom_orders;
     std::istringstream lines(ReadTextFile(path));
     std::string line;
     std::size_t line_number = 0;
@@ -2187,7 +2311,7 @@ std::vector<GuideManifestEntry> ParseGuideManifest(const std::filesystem::path &
         std::vector<std::string> arguments;
         if (!TryParseGuideManifestRow(trimmed, arguments, line_number)) {
             throw std::runtime_error("line " + std::to_string(line_number)
-                + ": expected a { \"book_name\", rom_order, catalog_flag } row");
+                + ": expected a { \"book_name\", text_id, page_type } row");
         }
         if (arguments.size() != 3) {
             throw std::runtime_error("line " + std::to_string(line_number)
@@ -2198,14 +2322,13 @@ std::vector<GuideManifestEntry> ParseGuideManifest(const std::filesystem::path &
             throw std::runtime_error("line " + std::to_string(line_number)
                 + ": invalid Reference Guide book name");
         }
-        const std::size_t rom_order = ParseGuideRomOrder(arguments[1], line_number);
-        const bool include_in_catalog = ParseGuideCatalogFlag(arguments[2], line_number);
-        if (!pages.insert(page).second
-            || !rom_orders.insert(rom_order).second) {
+        const std::size_t text_id = ParseGuideTextId(arguments[1], line_number);
+        const GuidePageType page_type = ParseGuidePageType(arguments[2], line_number);
+        if (!pages.insert(page).second) {
             throw std::runtime_error("line " + std::to_string(line_number)
-                + ": duplicate Reference Guide name or ROM order");
+                + ": duplicate Reference Guide name");
         }
-        result.push_back({page, rom_order, include_in_catalog});
+        result.push_back({page, text_id, page_type});
     }
 
     if (!conditionals.empty())
@@ -2456,10 +2579,21 @@ GuidePageOutput CompileGuidePage(const std::string &source, const std::string &p
         }
         const std::string local_label = GuideLineLabel(page.page, index, page.lines[index],
             page.has_fixed_title);
-        pointer_entries.push_back(canonical->second);
-        if (canonical->second == local_label && emitted_labels.insert(local_label).second) {
-            EmitCppString(text_output, local_label + "[] SECTION(\"" + guide_section + "\")",
-                PadGuideTextStorage(bytes), "extern ");
+        const auto alignment = page.line_alignments.find(index);
+        const auto padding = page.line_paddings.find(index);
+        const bool force_local = alignment != page.line_alignments.end()
+            || padding != page.line_paddings.end();
+        pointer_entries.push_back(force_local ? local_label : canonical->second);
+        if ((force_local || canonical->second == local_label)
+            && emitted_labels.insert(local_label).second) {
+            if (padding != page.line_paddings.end()) {
+                EmitGuidePadding(text_output, GuidePaddingLabel(page.page, index,
+                    page.lines[index], page.has_fixed_title), guide_section, padding->second);
+            }
+            std::string declarator = local_label + "[] SECTION(\"" + guide_section + "\")";
+            if (alignment != page.line_alignments.end())
+                declarator += " ALIGN(" + std::to_string(alignment->second) + ')';
+            EmitCppString(text_output, declarator, PadGuideTextStorage(bytes), "extern ");
         }
     }
 
@@ -2493,7 +2627,12 @@ std::vector<std::string> ResolveGuidePointerEntries(const GuidePageSource &page,
             throw std::runtime_error("guide page '" + page.page
                 + "' is absent from the guide-text catalog");
         }
-        result.push_back(canonical->second);
+        if (page.line_alignments.count(index) != 0 || page.line_paddings.count(index) != 0) {
+            result.push_back(GuideLineLabel(page.page, index, page.lines[index],
+                page.has_fixed_title));
+        } else {
+            result.push_back(canonical->second);
+        }
     }
     return result;
 }
@@ -2505,8 +2644,8 @@ struct GuideCollectionOutput {
 GuideCollectionOutput CompileGuideCollection(const std::vector<GuideCollectionPage> &pages,
     const Charmap &charmap)
 {
-    // The manifest source is the runtime-directory order.  Its ROM-order
-    // field determines physical order.  A false entry is an auxiliary page:
+    // The manifest source is the runtime-directory order.  Its text ID
+    // determines physical order.  A second-page entry is an auxiliary page:
     // it joins the immediately preceding ROM group, so all group text is
     // emitted before that group's line-pointer tables.
     std::vector<std::size_t> physical_indexes;
@@ -2515,22 +2654,34 @@ GuideCollectionOutput CompileGuideCollection(const std::vector<GuideCollectionPa
         physical_indexes.push_back(index);
     std::sort(physical_indexes.begin(), physical_indexes.end(),
         [&pages](std::size_t left, std::size_t right) {
-            if (pages[left].manifest.rom_order != pages[right].manifest.rom_order) {
-                return pages[left].manifest.rom_order < pages[right].manifest.rom_order;
+            if (pages[left].manifest.text_id != pages[right].manifest.text_id) {
+                return pages[left].manifest.text_id < pages[right].manifest.text_id;
             }
             return left < right;
         });
 
     std::vector<std::vector<std::size_t>> physical_groups;
+    std::set<std::size_t> first_page_text_ids;
     for (const std::size_t page_index : physical_indexes) {
-        if (pages[page_index].manifest.include_in_catalog) {
+        if (pages[page_index].manifest.page_type == GuidePageType::First) {
+            if (!first_page_text_ids.insert(pages[page_index].manifest.text_id).second) {
+                throw std::runtime_error("Reference Guide first page '"
+                    + pages[page_index].manifest.page
+                    + "' duplicates an existing text ID");
+            }
             physical_groups.push_back({page_index});
             continue;
         }
         if (physical_groups.empty()) {
-            throw std::runtime_error("Reference Guide auxiliary page '"
+            throw std::runtime_error("Reference Guide second page '"
                 + pages[page_index].manifest.page
                 + "' has no preceding ROM group");
+        }
+        const std::size_t first_page_index = physical_groups.back().front();
+        if (pages[first_page_index].manifest.text_id != pages[page_index].manifest.text_id) {
+            throw std::runtime_error("Reference Guide second page '"
+                + pages[page_index].manifest.page
+                + "' must share the preceding first page's text ID");
         }
         physical_groups.back().push_back(page_index);
     }
@@ -2569,7 +2720,7 @@ GuideCollectionOutput CompileGuideCollection(const std::vector<GuideCollectionPa
     output << "extern char const * const * const gReferenceGuideTables[]"
            << " SECTION(\"" << kGuideSection << "\") = {\n";
     for (const GuideCollectionPage &page : pages) {
-        if (page.manifest.include_in_catalog)
+        if (page.manifest.page_type == GuidePageType::First)
             output << "    gReferenceGuide_" << page.manifest.page << ",\n";
     }
     output << "};\n\n";
@@ -2583,9 +2734,21 @@ GuideCollectionOutput CompileGuideCollection(const std::vector<GuideCollectionPa
                 const std::string local_label = GuideLineLabel(page.source.page, line_index,
                     page.source.lines[line_index], page.source.has_fixed_title);
                 const std::string &canonical = catalog.at(bytes);
-                if (canonical == local_label && emitted_labels.insert(local_label).second) {
+                const auto alignment = page.source.line_alignments.find(line_index);
+                const auto padding = page.source.line_paddings.find(line_index);
+                const bool force_local = alignment != page.source.line_alignments.end()
+                    || padding != page.source.line_paddings.end();
+                if ((force_local || canonical == local_label)
+                    && emitted_labels.insert(local_label).second) {
+                    if (padding != page.source.line_paddings.end()) {
+                        EmitGuidePadding(output, GuidePaddingLabel(page.source.page, line_index,
+                            page.source.lines[line_index], page.source.has_fixed_title),
+                            kGuideSection, padding->second);
+                    }
                     EmitGuideCppString(output, local_label, kGuideSection,
-                        PadGuideTextStorage(bytes));
+                        PadGuideTextStorage(bytes),
+                        alignment != page.source.line_alignments.end()
+                            ? alignment->second : 0);
                 }
             }
         }
@@ -2599,8 +2762,12 @@ GuideCollectionOutput CompileGuideCollection(const std::vector<GuideCollectionPa
             output << "    nullptr,\n};\n\n";
         }
     }
-    if (emitted_labels.size() != catalog.size())
-        throw std::runtime_error("guide collection did not emit every canonical text object");
+    for (const auto &entry : catalog) {
+        if (emitted_labels.count(entry.second) == 0) {
+            throw std::runtime_error("guide collection did not emit canonical text object '"
+                + entry.second + "'");
+        }
+    }
     return {output.str()};
 }
 
@@ -2854,6 +3021,24 @@ void SelfTest()
         "END_FOMT_REFERENCE_GUIDE_PAGE\n", "continuation_example");
     Require(!continuation_page.has_fixed_title && continuation_page.lines.size() == 2,
         "guide continuation source was not parsed");
+    const GuidePageSource aligned_page = ParseGuidePageSource(
+        "ALIGN(4)\n"
+        "TITLE\n"
+        "\"A\"\n"
+        "MAIN\n"
+        "\"B\"\n"
+        "END_FOMT_REFERENCE_GUIDE_PAGE\n", "aligned_example");
+    Require(aligned_page.line_alignments.at(0) == 4,
+        "guide alignment did not attach to the following text row");
+    const GuidePageSource padded_page = ParseGuidePageSource(
+        "PAD(4)\n"
+        "TITLE\n"
+        "\"A\"\n"
+        "MAIN\n"
+        "\"B\"\n"
+        "END_FOMT_REFERENCE_GUIDE_PAGE\n", "padded_example");
+    Require(padded_page.line_paddings.at(0) == 4,
+        "guide padding did not attach to the following text row");
 
     const std::string generated = CompileCppTextInclude(
         "char const gText_Test[] =\n"
@@ -3032,8 +3217,8 @@ void SelfTest()
         "generated guide table did not reuse the first matching text object");
 
     const std::vector<GuideCollectionPage> grouped_pages = {
-        {{"first", 0, true}, {"first", {"A", "B"}, true}},
-        {{"second", 1, false}, {"second", {"C", "A"}, true}},
+        {{"first", 0, GuidePageType::First}, {"first", {"A", "B"}, {}, {}, true}},
+        {{"second", 0, GuidePageType::Second}, {"second", {"C", "A"}, {}, {}, true}},
     };
     const GuideCollectionOutput grouped = CompileGuideCollection(grouped_pages, map);
     const std::size_t master_table = grouped.source.find("gReferenceGuideTables[]");
@@ -3047,6 +3232,19 @@ void SelfTest()
             && master_table < first_text && first_text < second_text
             && second_text < first_table && first_table < second_table,
         "auxiliary Reference Guide page did not emit text before both pointer tables");
+    const std::vector<GuideCollectionPage> padded_pages = {
+        {{"padded", 0, GuidePageType::First}, padded_page},
+    };
+    const GuideCollectionOutput padded = CompileGuideCollection(padded_pages, map);
+    const std::size_t padding_object = padded.source.find("gReferenceGuidePadding_padded_example_Title_Before");
+    const std::size_t padded_text = padded.source.find("gText_ReferenceGuide_padded_example_Title");
+    Require(padding_object != std::string::npos && padded_text != std::string::npos
+            && padding_object < padded_text,
+        "guide padding did not emit before its local text object");
+    const std::string padded_declarator =
+        "gText_ReferenceGuide_padded_example_Title SECTION(\".rodata.reference_guide\")";
+    Require(padded.source.find(padded_declarator + " ALIGN(") == std::string::npos,
+        "guide padding incorrectly produced an alignment attribute for its text object");
     const std::size_t master_end = grouped.source.find("};", master_table);
     Require(master_end != std::string::npos
             && grouped.source.substr(master_table, master_end - master_table)

@@ -1,20 +1,22 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Introducing Tim"
+    "Vorstellung Tim"
 MAIN
-    "Tim runs the Inn, and is "
-    "loved by everyone."
+    "Tim betreibt den Gasthof"
+    "und alle lieben ihn."
     "<181>"
     ""
-    "He wound up in Forget-me-not "
-    "Valley in his travels, and "
-    "decided to open up an Inn"
-    "so he could care for other"
-    "travelers like himself."
+    "Er kam auf seinen Reisen "
+    "durch das Vergissmein-"
+    "nicht-Tal und entschied,"
+    "einen Gasthof aufzumachen,"
+    "damit er für andere"
+    "Reisende sorgen kann."
     "<182>"
     ""
-    "He has many rare objects "
-    "he's collected all over the"
-    "world in his Inn."
+    "Er hat viele seltene Dinge"
+    "in seinem Gasthof,"
+    "die er aus aller Welt"
+    "hergebracht hat."
 END_FOMT_REFERENCE_GUIDE_PAGE

@@ -37,6 +37,7 @@
 | EU | `0x080FECC8`–`0x080FEDD7` | `src/blacksmith_menu_data.o(.rodata)` | `src/blacksmith_menu_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
 | EU | `0x080FEDD8`–`0x080FF3AF` | `src/blacksmith_data.o(.rodata)` | `src/blacksmith_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
 | EU | `0x08100534`–`0x08100B17` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc` 与 `data/text/eu/link_communication.cc` | 精确 |
+| EU | `0x081082E4`–`0x08117843` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 EU 指南源文件；主目录只收录 `PAGE_1`，`tool_and_item_controls_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 | DE | `0x080E9620`–`0x080F09B1` | `src/item.o(.rodata)` | `src/item.cc` 与 `data/text/de/item_*.cc` | 精确 |
 | DE | `0x080F09B2`–`0x080F0A4F` | `src/game_state.o(.rodata)` | `src/game_state.cc` 与 `data/text/de/game_state.cc` | 精确 |
 | DE | `0x080F0A50`–`0x080F0B17` | `src/help_menu.o(.rodata)` | `src/help_menu.cc` 与 `data/text/de/help_menu.cc` | 精确 |
@@ -61,7 +62,7 @@
 | DE | `0x081014EE`–`0x081017FA` | `data/text/recovery_status.o(.rodata)` | `data/text/de/recovery_status.cc` | 精确 |
 | DE | `0x08101800`–`0x08101B29` | `data/text/cooking.o(.rodata)` | `data/text/de/cooking.cc` | 精确 |
 | DE | `0x08107FD4`–`0x08108DB3` | `src/harvest_sprite.o(.rodata)` | `src/harvest_sprite.cc` 与 `data/text/de/harvest_sprite_*.cc` | 精确 |
-| DE | `0x08108FD8`–`0x0810B20F` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与 DE 指南前九本源文件（`harvest_sprite_minigames` 至 `tool_and_item_controls`） | 精确 |
+| DE | `0x08108DB4`–`0x081197FF` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 DE 指南源文件；主目录只收录 `PAGE_1`，`using_tools_2` 与 `newborn_congratulations_cliff_and_ann_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 
 ## JP：物理 `.rodata` 顺序
 

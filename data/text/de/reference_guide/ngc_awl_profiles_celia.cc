@@ -1,19 +1,20 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Introducing Celia"
+    "Vorstellung Celia"
 MAIN
-    "Celia works on Vesta's "
-    "farm. "
+    "Celia arbeitet auf"
+    "Vestas Farm. "
     "<281>"
     ""
-    "Bright and cheerful, Celia"
-    "looks up to Vesta like "
-    "her own mother. "
+    "Locker und fröhlich,"
+    "schaut zu Vesta auf,"
+    "wie zu einer Mutter. "
     "<282>"
     ""
-    "She loves farming so much"
-    "she left her family to "
-    "come to Forget-me-not Valley"
-    "with Vesta. "
+    "Sie mag Farmarbeit so"
+    "gerne, dass sie ihre "
+    "Familie verlassen hat, um"
+    "zu Vesta ins Vergissmein-"
+    "nicht-Tal zu kommen."
 END_FOMT_REFERENCE_GUIDE_PAGE

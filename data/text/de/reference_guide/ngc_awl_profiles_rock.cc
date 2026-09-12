@@ -1,20 +1,20 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Introducing Rock"
+    "Vorstellung Rock"
 MAIN
     ""
-    "Tim and Ruby's son."
-    "He lives in the Lobby of"
-    "the Inn."
+    "Sohn von Tim und Ruby."
+    "Er lebt in der Lobby"
+    "des Gasthofs."
     "<211>"
     ""
-    "He has no job, just spends"
-    "all day loafing around."
+    "Er hat keinen Job und"
+    "faulenzt den ganzen Tag."
     "<212>"
     ""
-    "He's very relaxed, and "
-    "doesn't have much "
-    "ambition, but his parents"
-    "don't seem to mind. "
+    "Er sieht alles locker und"
+    "ist nicht sehr ehrgeizig,"
+    "aber seine Eltern scheint"
+    "das nicht zu stören."
 END_FOMT_REFERENCE_GUIDE_PAGE

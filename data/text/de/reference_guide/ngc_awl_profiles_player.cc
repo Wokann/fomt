@@ -1,17 +1,18 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Introducing <cp>"
+    "Vorstellung <cp>"
 MAIN
-    "Works on a farm with "
-    "Takakura in Forget-me-not "
-    "Valley. "
+    "Arbeitet auf einer Farm"
+    "mit Takakura im Vergiss- "
+    "meinnicht-Tal. "
     "<361>"
     ""
-    "He lives with his wife and"
-    "3 sons."
+    "Er lebt mit seiner Frau"
+    "und 3 Söhnen."
     "<362>"
     ""
-    "He is said to raise "
-    "mysterious crops. "
+    "Man sagt, er pflanze"
+    "mysteriöse Feld-"
+    "früchte an. "
 END_FOMT_REFERENCE_GUIDE_PAGE

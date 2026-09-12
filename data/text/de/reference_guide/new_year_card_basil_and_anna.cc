@@ -1,12 +1,12 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Card From Basil and Ann"
+    "Karte von Basil und Ann"
 MAIN
-    "Happy new year!"
-    "Thank goodness Spring "
-    "is finally here!"
-    "Don't be a stranger."
+    "Frohes Neues Jahr!"
+    "Zum Glück ist der "
+    "Frühling endlich da!"
+    "Lass von dir hören."
     ""
-    "       Basil and Anna"
+    "       Basil und Anna"
 END_FOMT_REFERENCE_GUIDE_PAGE

@@ -1,12 +1,12 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Ellen's New Year Card"
+    "Ellens Neujahrskarte"
 MAIN
     ""
-    "Happy new year!"
-    "I hope you have a great"
-    "year this year, "
+    "Frohes Neues Jahr!"
+    "Ich hoffe, du hast ein"
+    "tolles neues Jahr,"
     "<p>!"
     ""
     "                 Ellen"

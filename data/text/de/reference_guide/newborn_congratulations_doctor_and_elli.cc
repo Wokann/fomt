@@ -1,13 +1,15 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Congrats from Dr. and Elli"
+    "Glückwünsche von"
 MAIN
+    "dem Doktor und Elli"
     ""
-    "Congratulations on the safe"
-    "birth of your son. Come "
-    "for a checkup any time."
+    "Glückwunsch zur"
+    "Geburt eures Sohnes. Ihr "
+    "könnt jederzeit zur"
+    "Untersuchung vorbeikommen."
     ""
-    "       Doctor and Elli"
-    "       Mineral Clinic"
+    "       Doktor und Elli"
+    "       Mineralklinik"
 END_FOMT_REFERENCE_GUIDE_PAGE

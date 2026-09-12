@@ -1,13 +1,13 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Card from the Poultry Farm"
+    "Karte von der Geflügelfarm"
 MAIN
     ""
-    "Dear <p> and"
+    "Lieber <p> und"
     "Popuri,"
-    " Come visit us soon"
-    "in the new year!"
+    " Komm uns im neuen Jahr"
+    "bald mal besuchen!"
     ""
-    "       Lillia and Rick"
+    "       Lillia und Rick"
 END_FOMT_REFERENCE_GUIDE_PAGE

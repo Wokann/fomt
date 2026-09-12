@@ -1,17 +1,17 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Kai's Seaside Lodge"
+    "Kais Strandhäuschen"
 MAIN
-    "·Kai makes great food,"
-    " but no takeout."
+    "Kai macht tolles Essen,"
+    "aber nicht zum Mitnehmen."
     ""
-    "·Only open during Summer."
+    "·Nur im Sommer geöffnet."
     ""
-    "·Store Hours:"
-    " Morning: 11AM-1PM"
-    " Night: 5PM-7PM"
+    "·Geschäftszeiten:"
+    " Morgens: 11-13 Uhr"
+    " Abends: 17-19 Uhr"
     ""
-    "·Closed:"
-    " Sundays"
+    "·Geschlossen:"
+    " Sonntags"
 END_FOMT_REFERENCE_GUIDE_PAGE

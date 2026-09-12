@@ -1,7 +1,7 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Happy Birthday from Karen"
+    "Happy Birthday von Karen"
 MAIN
     ""
     "H A P P Y"

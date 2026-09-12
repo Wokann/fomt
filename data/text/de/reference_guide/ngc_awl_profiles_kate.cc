@@ -1,24 +1,27 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
+// The original DE layout has four unreferenced zero-fill bytes after Samantha's table.
+PAD(4)
 TITLE
-    "Introducing Kate"
+    "Vorstellung Kate"
 MAIN
-    "Grant and Sam's daughter."
-    "Kate has always rebelled"
-    "against her conservative"
-    "parents."
+    "Tochter von Grant und Sam."
+    "Kate hat immer gegen"
+    "ihre konservativen"
+    "Eltern rebelliert."
     "<091>"
     ""
-    "She teases Hugh mercilessly"
-    "but never in front of her"
-    "parents. She is very "
-    "calculating."
+    "Sie neckt Hugh gnadenlos,"
+    "aber niemals vor ihren"
+    "Eltern. Sie ist sehr "
+    "berechnend."
     "<092>"
     ""
-    "She has never been able to"
-    "spend much time with her "
-    "busy father, and her mother"
-    "is very strict. However, "
-    "she does enjoy life in "
-    "Forget-me-not Valley."
+    "Sie konnte nie viel Zeit"
+    "mit ihrem gestressten Vater"
+    "verbringen, und ihre"
+    "Mutter ist sehr streng."
+    "Wie auch immer, "
+    "sie genießt das Leben "
+    "im Vergissmeinnicht-Tal."
 END_FOMT_REFERENCE_GUIDE_PAGE

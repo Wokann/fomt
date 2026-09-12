@@ -1,13 +1,13 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Refrigerator"
+    "Kühlschrank"
 MAIN
-    "This is where you can store"
-    "your food Items."
-    "Unlike the Rucksack, the"
-    "Refrigerator holds 99 "
-    "Items in each space."
-    "Select Ingredients from "
-    "here when cooking."
+    "Hier kannst du deine"
+    "Nahrungsmittel lagern."
+    "Anders als beim Rucksack"
+    "passen 99 Dinge in jeden"
+    "Teil des Kühlschrankes."
+    "Wenn du kochst, wähle "
+    "die Zutaten von hier."
 END_FOMT_REFERENCE_GUIDE_PAGE

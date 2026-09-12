@@ -1,12 +1,12 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Congrats from Kai and Popuri"
+    "Kai und Popuri gratulieren"
 MAIN
     ""
-    "Congratulations! We're "
-    "incredibly happy for "
-    "you two!"
+    "Herzlichen Glückwunsch! "
+    "Wir freuen uns unglaublich"
+    "für euch Beide!"
     ""
-    "       Kai and Popuri"
+    "       Kai und Popuri"
 END_FOMT_REFERENCE_GUIDE_PAGE

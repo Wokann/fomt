@@ -1,17 +1,16 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Using the Vase"
+    "Die Vase benutzen"
 MAIN
-    "Investigate the Vase while "
-    "holding flowers to put them"
-    "in the Vase."
-    "If there are already "
-    "flowers in the Vase, the"
-    "old flowers will be "
-    "thrown out first."
-    "Once you put flowers in"
-    "the Vase, you cannot"
-    "take them back out"
-    "and use them again."
+    "Untersuche die Vase, während"
+    "du die Blumen dafür in"
+    "der Hand hältst."
+    "Wenn in der Vase noch"
+    "alte Blumen sind, werden"
+    "diese zuerst weggeworfen."
+    "Hast du die Blumen in "
+    "die Vase gestellt, kannst"
+    "du sie nicht rausnehmen "
+    "und neu benutzen."
 END_FOMT_REFERENCE_GUIDE_PAGE

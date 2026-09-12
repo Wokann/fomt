@@ -1,18 +1,19 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Doug's Inn"
+    "Dougs Gasthof"
 MAIN
-    "·This restaurant has very "
-    " good food. They don't "
-    " offer takeout, though."
+    "·Dieses Restaurant hat "
+    " sehr gutes Essen. "
+    "Man kann aber kein "
+    " Essen mitnehmen."
     ""
-    "·Morning and night menus"
-    " are different."
+    "·Tages- und Abendspeise-"
+    "karten sind unterschiedlich."
     ""
-    "·Store Hours:"
-    " 8AM-9PM"
+    "·Geschäftszeiten:"
+    " 8-21 Uhr"
     ""
-    "·Closed:"
-    " Open all week"
+    "·Geschlossen:"
+    " Immer geöffnet"
 END_FOMT_REFERENCE_GUIDE_PAGE

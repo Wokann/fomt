@@ -1,14 +1,15 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Notice of Change of "
+    "Änderung der"
 MAIN
-    "    Store Hours"
+    "Geschäftszeiten"
+    "    Geschäftszeiten"
     ""
-    "We will close at 5PM on "
-    "the 5th of this month."
-    "Thank you for your "
-    "understanding."
+    "Am 5. dieses Monats "
+    "schließen wir um 17 Uhr."
+    "Danke für dein"
+    "Verständnis."
     ""
-    "                Doug's Inn"
+    "               Dougs Gasthof"
 END_FOMT_REFERENCE_GUIDE_PAGE

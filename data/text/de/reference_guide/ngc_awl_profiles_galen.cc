@@ -1,18 +1,19 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Introducing Galen"
+    "Vorstellung Galen"
 MAIN
-    "He moved to Forget-me-not"
-    "Valley to spend his "
-    "retirement with his wife"
-    "Nina. "
-    "He can be quite stubborn"
-    "but is usually happy. "
+    "Er zog ins Vergissmein-"
+    "nicht-Tal, um hier seinen "
+    "Lebensabend mit seiner"
+    "Frau Nina zu verbringen. "
+    "Er kann ziemlich störrisch"
+    "sein, sonst eine Frohnatur. "
     "<101>"
     ""
-    "When Nina died, he built a"
-    "cottage near her grave "
-    "on a hill, where he spends"
-    "all day watching the ocean."
+    "Als Nina starb, hat er eine"
+    "Hütte auf einem Hügel"
+    "in der Nähe ihres Grabes"
+    "gebaut, von wo er den ganzen"
+    "Tag aufs Meer schaut."
 END_FOMT_REFERENCE_GUIDE_PAGE

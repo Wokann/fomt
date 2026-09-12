@@ -1,12 +1,12 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Notice of Change of Day Off"
+    "Änderung des freien Tages"
 MAIN
     ""
-    "Our day off is changing"
-    "from Thursday to Monday."
-    "Please make a note of it."
+    "Unser freier Tag ist nun"
+    "Montag anstatt Donnerstag."
+    "Bitte zur Kenntnis nehmen."
     ""
-    "       Mary's Library"
+    "       Marys Bibliothek"
 END_FOMT_REFERENCE_GUIDE_PAGE

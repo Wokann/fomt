@@ -1,18 +1,18 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Introducing Hardy"
+    "Hardy, Romanas Arzt, kommt"
 MAIN
-    "Romana’s doctor who comes"
-    "to her mansion from town."
+    "aus der Stadt zu "
+    "ihrer Villa."
     "<291>"
     ""
-    "He followed Galen to "
-    "Forget-me-not Valley after "
-    "Nina's death. "
+    "Er ist Galen nach Ninas"
+    "Tod ins Vergissmein-"
+    "nicht-Tal gefolgt."
     "<292>"
     ""
-    "Rumor has it that he "
-    "taught the doctor in "
-    "Mineral Town. "
+    "Gerüchte besagen, dass "
+    "er den Arzt in Mineralstadt"
+    "gelehrt hat. "
 END_FOMT_REFERENCE_GUIDE_PAGE

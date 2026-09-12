@@ -1,14 +1,14 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "From Thomas and Harris"
+    "Von Thomas und Harris"
 MAIN
     ""
-    "Congratulations on the "
-    "birth of your son! May"
-    "he and <f>"
-    "contribute great things"
-    "to Mineral Town!"
+    "Glückwunsch zur Geburt "
+    "eures Sohnes! Mögen er"
+    "und <f> "
+    "großartige Dinge erreichen"
+    "in Mineralstadt!"
     ""
-    "       Thomas and Harris"
+    "       Thomas und Harris"
 END_FOMT_REFERENCE_GUIDE_PAGE

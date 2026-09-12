@@ -1,15 +1,14 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Doctor and Elli's "
+    "Neujahrskarte"
 MAIN
-    "   New Year Card"
-    "Happy new year!"
-    "Please take care of your"
-    "health in the coming year!"
+    "Frohes Neues Jahr!"
+    "Bitte pass im nächsten"
+    "Jahr gut auf dich auf!"
     ""
-    "We're open on New Year's"
-    "as well!"
+    "Wir haben auch an"
+    "Neujahr geöffnet!"
     ""
-    "       Doctor and Elli"
+    "       Doktor und Elli"
 END_FOMT_REFERENCE_GUIDE_PAGE

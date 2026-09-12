@@ -1,16 +1,17 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Introducing Nina"
+    "Vorstellung Nina"
 MAIN
-    "Galen's loving wife."
-    "A warm and loving woman."
+    "Galens liebende Ehefrau."
+    "Warme, liebevolle Frau."
+    "<111>"
     ""
-    "She loves her stubborn old"
-    "husband more than anything."
+    "Sie liebt ihren störrischen,"
+    "alten Mann über alles."
     "<112>"
     ""
-    "She wanted to take care of"
-    "him always, but she died"
-    "before her husband."
+    "Sie wollte immer für ihn"
+    "da sein, aber sie ist vor"
+    "ihrem Mann gestorben."
 END_FOMT_REFERENCE_GUIDE_PAGE

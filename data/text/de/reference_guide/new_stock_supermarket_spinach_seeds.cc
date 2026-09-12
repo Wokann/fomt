@@ -1,13 +1,13 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "News from the Supermarket"
+    "Neuigkeiten vom Supermarkt"
 MAIN
     ""
-    "We now have Spinach"
-    "Seeds in stock!"
+    "Wir haben jetzt Spinatsamen"
+    "anzubieten!"
     ""
-    "A limited Fall item."
+    "Limitierter Herbstartikel."
     ""
-    "       The Supermarket"
+    "       Der Supermarkt"
 END_FOMT_REFERENCE_GUIDE_PAGE

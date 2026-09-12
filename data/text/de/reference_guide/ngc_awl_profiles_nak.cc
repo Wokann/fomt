@@ -1,17 +1,18 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Introducing Nak"
+    "Vorstellung Nak"
 MAIN
-    "One of the Harvest Sprites."
+    "Einer der Erntewichtel."
     "<331>"
     ""
-    "He sends information about"
-    "Forget-me-not Valley to his"
-    "friends in Mineral Town."
+    "Er sendet seinen Freunden"
+    "in Mineralstadt "
+    "Informationen über das "
+    "VergissmeinnichtTal."
     ""
-    "He likes wearing yellow."
-    "He's the most relaxed of "
-    "the bunch, but has a "
-    "dirty mouth. "
+    "Er trägt gerne gelb."
+    "Er ist der lockerste von"
+    "allen und hat ein"
+    "loses Mundwerk. "
 END_FOMT_REFERENCE_GUIDE_PAGE

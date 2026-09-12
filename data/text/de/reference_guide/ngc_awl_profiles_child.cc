@@ -1,14 +1,14 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Introducing <cs>"
+    "Vorstellung <cs>"
 MAIN
-    "<cp>'s son."
+    "<cs>s Sohn."
     "<321>"
     ""
-    "He takes after his mother."
+    "Er kommt nach seiner Mutter."
     "<322>"
     ""
-    "What kind of man will he"
-    "grow up to be?"
+    "Wie wird er sein, wenn er"
+    "erwachsen ist?"
 END_FOMT_REFERENCE_GUIDE_PAGE

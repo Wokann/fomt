@@ -1,18 +1,18 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Invitation from the H.S."
+    "Einladung der Erntewichtel"
 MAIN
     ""
-    "Spring is the season of"
-    "Tea Parties, budum!"
-    "You are hereby invited"
-    "to ours, budum."
+    "Im Frühling ist Teeparty-"
+    "Saison, budum!"
+    "Du bist hiermit zu unserer"
+    "Teeparty eingeladen, budum."
     ""
-    "Please bring this "
-    "Invitation when you come"
-    "to our house, budum."
+    "Bitte bring diese Einladung "
+    "mit, wenn du zu unserem "
+    "Haus kommst, budum."
     ""
-    "The time is AM10-PM5."
-    "We'll be waiting, budum!"
+    "Partyzeit 10-17 Uhr."
+    "Wir erwarten dich, budum!"
 END_FOMT_REFERENCE_GUIDE_PAGE
