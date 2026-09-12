@@ -172,29 +172,28 @@ u8 const gLinkCommunicationCharacterCodeTable[] ALIGN(2) =
 EXTERN_C
 
 // The native link packet constructors load the first word of each object.
-// The region-specific fourth character is the retail game-code suffix.
+// These are ASCII protocol identifiers, not display text.  They deliberately
+// use byte-wise constants instead of the regional charmap pipeline.
 LinkCommunicationGameCode const gLinkCommunicationGameCodeA4N = {
 #if defined(REGION_JP)
-    0x4A4E3441,
+    FOMT_ASCII_FOURCC_LE('A', '4', 'N', 'J'),
 #elif defined(REGION_EU)
-    0x504E3441,
+    FOMT_ASCII_FOURCC_LE('A', '4', 'N', 'P'),
 #elif defined(REGION_DE)
-    0x444E3441,
+    FOMT_ASCII_FOURCC_LE('A', '4', 'N', 'D'),
 #else
-    0x454E3441,
+    FOMT_ASCII_FOURCC_LE('A', '4', 'N', 'E'),
 #endif
     0x00000000,
 };
 
 LinkCommunicationGameCode const gLinkCommunicationGameCodeGYW = {
 #if defined(REGION_JP)
-    0x4A575947,
-#elif defined(REGION_EU)
-    0x50575947,
-#elif defined(REGION_DE)
-    0x50575947,
+    FOMT_ASCII_FOURCC_LE('G', 'Y', 'W', 'J'),
+#elif defined(REGION_EU) || defined(REGION_DE)
+    FOMT_ASCII_FOURCC_LE('G', 'Y', 'W', 'P'),
 #else
-    0x45575947,
+    FOMT_ASCII_FOURCC_LE('G', 'Y', 'W', 'E'),
 #endif
     0x00000000,
 };

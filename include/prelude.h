@@ -41,6 +41,10 @@ EXTERN_C
 
 #define ARRAY_COUNT(array) (size_t)(sizeof(array) / sizeof((array)[0]))
 
+// Compose four ASCII protocol/header bytes in their byte order in ROM.
+#define FOMT_ASCII_FOURCC_LE(a, b, c, d) \
+    ((u32)(u8)(a) | ((u32)(u8)(b) << 8) | ((u32)(u8)(c) << 16) | ((u32)(u8)(d) << 24))
+
 #define CONST_MIN(a, b) (((a) < (b)) ? (a) : (b))
 #define CONST_MAX(a, b) (((a) > (b)) ? (a) : (b))
 

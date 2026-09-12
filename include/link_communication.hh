@@ -16,7 +16,7 @@ struct LinkCommunicationDataRecord
 
 struct LinkCommunicationGameCode
 {
-    u32 value;
+    u32 game_code;
     u32 unk_04;
 };
 
