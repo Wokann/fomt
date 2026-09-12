@@ -18,6 +18,10 @@ extern char const gText_AnimalMemorial_PassedAway[];
 extern char const gText_AnimalMemorial_NamesIntro[];
 extern char const gText_AnimalMemorial_PrayerIntro[];
 extern char const gText_AnimalMemorial_PrayerEnding[];
+#if defined(REGION_DE)
+extern char const gText_AnimalMemorial_DeathHeader[];
+extern char const gText_AnimalMemorial_DeathFarmPrefix[];
+#endif
 #if defined(REGION_JP)
 extern char const gText_AnimalMemorial_PassedNaturalLife[];
 #endif

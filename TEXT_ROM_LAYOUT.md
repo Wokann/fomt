@@ -19,6 +19,31 @@
 - `[Mary 脚本连续块]`：汇编明确标注为脚本相邻/脚本表的数据；只记录边界，不展开内部内容。
 - `[填充]`：链接映射中实际存在的 `*fill*` 字节，显示字节值。
 
+## EU / DE：已验证本地化块
+
+下表补充 EU、DE 已按原 ROM 地址核验的区域文本块。每行的起止地址
+均为包含式范围，且同一地区内按物理地址升序列出；`精确`表示当前构建
+产物在该整个范围内逐字节等于相应的基准 ROM。剧情脚本仍由 Mary 单独
+管理，未计入这里。
+
+| 地区 | 地址范围 | 链接输入 | 维护源 | 核验结果 |
+| --- | --- | --- | --- | --- |
+| EU | `0x080E9660`–`0x080F0539` | `src/item.o(.rodata)` | `src/item.cc` 与 `data/text/eu/item_*.cc` | 精确 |
+| EU | `0x080F053A`–`0x080F05D7` | `src/game_state.o(.rodata)` | `src/game_state.cc` 与 `data/text/eu/game_state.cc` | 精确 |
+| EU | `0x080F05D8`–`0x080F069F` | `src/help_menu.o(.rodata)` | `src/help_menu.cc` 与 `data/text/eu/help_menu.cc` | 精确 |
+| EU | `0x080F06A0`–`0x080F0ECB` | `src/animal_data.o(.rodata)` | `src/animal_data.cc` 与 `data/text/eu/animal_data*.cc` | 精确 |
+| EU | `0x080F0ECC`–`0x080F19BF` | `src/entity_ui.o(.rodata)` | `src/entity_ui.cc` 与 `data/text/eu/entity_ui.cc` | 精确 |
+| EU | `0x080F19C0`–`0x080F1ACB` | `src/fixed_labels.o` 至 `src/menu_data.o` | 对应 `data/text/eu/*.cc` | 精确 |
+| EU | `0x080FECC8`–`0x080FEDD7` | `src/blacksmith_menu_data.o(.rodata)` | `src/blacksmith_menu_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
+| EU | `0x080FEDD8`–`0x080FF3AF` | `src/blacksmith_data.o(.rodata)` | `src/blacksmith_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
+| EU | `0x08100534`–`0x08100B17` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc` 与 `data/text/eu/link_communication.cc` | 精确 |
+| DE | `0x080E9620`–`0x080F09B1` | `src/item.o(.rodata)` | `src/item.cc` 与 `data/text/de/item_*.cc` | 精确 |
+| DE | `0x080F09B2`–`0x080F0A4F` | `src/game_state.o(.rodata)` | `src/game_state.cc` 与 `data/text/de/game_state.cc` | 精确 |
+| DE | `0x080F0A50`–`0x080F0B17` | `src/help_menu.o(.rodata)` | `src/help_menu.cc` 与 `data/text/de/help_menu.cc` | 精确 |
+| DE | `0x080F0B18`–`0x080F1367` | `src/animal_data.o(.rodata)` | `src/animal_data.cc`、`data/text/de/animal_data.cc` 与共用片段 | 精确 |
+| DE | `0x080F1368`–`0x080F1E5B` | `src/entity_ui.o(.rodata)` | `src/entity_ui.cc` 与 `data/text/de/entity_ui.cc` | 精确 |
+| DE | `0x080F1E5C`–`0x080F1F67` | `src/fixed_labels.o` 至 `src/menu_data.o` | 对应 `data/text/de/*.cc` | 精确 |
+
 ## JP：物理 `.rodata` 顺序
 
 范围：`0x080E7A5C`–`0x0813ABCB`。所有行都按当前 ROM 物理地址排序。
