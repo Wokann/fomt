@@ -4,261 +4,261 @@ char const gText_TownMap_PlayerFarmNameSuffix[] =
     " Farm\r\n";
 
 char const gText_TownMap_PlayerFarmDescription[] =
-    "This is your house.";
+    "Das ist dein Pferd.";
 
 char const gText_TownMap_PlayerFarmLabel[] =
     " Farm";
 
 char const gText_TownMap_MountainCottageLabel[] =
-    "Mountain Cottage";
+    "Berghütte";
 
 char const gText_TownMap_SeasideCottageLabel[] =
-    "Seaside Cottage";
+    "Strandhütte";
 
 char const gText_TownMap_TownCottageLabel[] =
-    "Town Cottage";
+    "Stadthütte";
 
 char const gText_TownMap_TimeWindowSeasonDescription[] =
-    "Time Window\r\n"
-    "This is the present season.";
+    "Zeitfenster\r\n"
+    "Die aktuelle Jahreszeit.";
 
 char const gText_TownMap_TimeWindowDateDescription[] =
-    "Time Window\r\n"
-    "This is today's date.";
+    "Zeitfenster\r\n"
+    "Das heutige Datum.";
 
 char const gText_TownMap_TimeWindowDayDescription[] =
-    "Time Window\r\n"
-    "This is today's day.";
+    "Zeitfenster\r\n"
+    "Der Wochentag.";
 
 char const gText_TownMap_TimeWindowTimeDescription[] =
-    "Time Window\r\n"
-    "This is the current time.";
+    "Zeitfenster\r\n"
+    "Die Uhrzeit.";
 
 char const gText_TownMap_TimeWindowWeatherDescription[] =
-    "Time Window\r\n"
-    "This is today's weather.";
+    "Zeitfenster\r\n"
+    "Das heutige Wetter.";
 
 char const gText_TownMap_TimeWindowLabel[] =
-    "Time Window";
+    "Zeitfenster";
 
 char const gText_TownMap_BasilHouseLabel[] =
-    "Basil's House";
+    "Basils Haus";
 
 char const gText_TownMap_MaryLibraryDescription[] =
-    "Mary's Library \r\n"
-    "There are many books.";
+    "Marys Bibliothek, wo \r\n"
+    "es viele Bücher gibt.";
 
 char const gText_TownMap_MaryLibraryHours[] =
-    "Mary's Library\r\n"
-    "Hours: 10AM-4PM\r\n"
-    "Closed: Mondays";
+    "Marys Bibliothek\r\n"
+    "Öffnungszeiten: 10-16 Uhr\r\n"
+    "Geschlossen: Montags";
 
 char const gText_TownMap_EllenHouseLabel[] =
-    "Ellen's House";
+    "Ellens Haus";
 
 char const gText_TownMap_MayorHouseLabel[] =
-    "Mayor's House";
+    "Bürgermeisterhaus";
 
 char const gText_TownMap_SupermarketDescription[] =
-    "Supermarket\r\n"
-    "Has many things, including \r\n"
-    "Seeds and ingredients.";
+    "Supermarkt\r\n"
+    "Führt viele Waren, auch \r\n"
+    "Saatgut und Zutaten.";
 
 char const gText_TownMap_SupermarketHours[] =
-    "Supermarket\r\n"
-    "Hours: 9AM-5PM\r\n"
-    "Closed: Tuesdays, Sundays";
+    "Supermarkt\r\n"
+    "Öffnungszeiten: 9-17 Uhr\r\n"
+    "Geschlossen: Di., So.";
 
 char const gText_TownMap_MineralClinicDescription[] =
-    "Mineral Clinic\r\n"
-    "Get examined or buy drugs.";
+    "Lass dich untersuchen\r\n"
+    "oder kaufe Medizin.";
 
 char const gText_TownMap_MineralClinicHours[] =
-    "Mineral Clinic\r\n"
-    "Hours: 9AM-4PM\r\n"
-    "Closed: Wednesdays";
+    "Mineralklinik\r\n"
+    "Öffnungszeiten: 9-16 Uhr\r\n"
+    "Geschlossen: Mittwochs";
 
 char const gText_TownMap_ChurchDescription[] =
-    "Church\r\n"
-    "Weddings, funerals and also\r\n"
-    "confessionals are here.";
+    "Kirche\r\n"
+    "Hochzeiten, Beerdigungen\r\n"
+    "und auch Beichten.";
 
 char const gText_TownMap_ChurchHours[] =
-    "Church\r\n"
-    "Time: 10AM-7PM";
+    "Kirche\r\n"
+    "Geöffnet: 10-19 Uhr";
 
 char const gText_TownMap_AjaWineryDescription[] =
-    "Aja Winery\r\n"
-    "Duke and his wife sell \r\n"
-    "both juice and wine.";
+    "Aja Weingut\r\n"
+    "Duke und seine Frau \r\n"
+    "verkaufen Saft und Wein.";
 
 char const gText_TownMap_AjaWineryHours[] =
-    "Aja Winery\r\n"
-    "Hours: 10AM-Noon\r\n"
-    "Closed: Saturdays";
+    "Aja Weingut\r\n"
+    "Öffnungszeiten: 10-12\r\n"
+    "Geschlossen: Samstags";
 
 char const gText_TownMap_DukeCellarLabel[] =
-    "Duke's Cellar";
+    "Dukes Weinkeller";
 
 char const gText_TownMap_DougsInnDescription[] =
-    "Doug's Inn. Doug serves food\r\n"
-    "during the day and liquor at\r\n"
-    "night. He also has a phone.";
+    "Dougs Gasthof\r\n"
+    "Tagsüber Essen, abends\r\n"
+    "Getränke. Hat Telefon.";
 
 char const gText_TownMap_DougsInnHours[] =
-    "Doug's Inn\r\n"
-    "Hours: 8AM-9PM\r\n"
-    "Closed: Never";
+    "Dougs Gasthof\r\n"
+    "Öffnungszeiten: 8-21 Uhr\r\n"
+    "Geschlossen: Niemals";
 
 char const gText_TownMap_HarvestSpritesHomeDescription[] =
-    "Harvest Sprites' Home\r\n"
-    "A small house behind the \r\n"
-    "Church.";
+    "Heim der Erntewichtel\r\n"
+    "Ein kleines Haus\r\n"
+    "hinter der Kirche.";
 
 char const gText_TownMap_HarvestSpritesHomeHours[] =
-    "Harvest Sprites' House\r\n"
-    "Time: 9AM-6PM";
+    "Heim der Erntewichtel\r\n"
+    "Geöffnet: 9-18 Uhr";
 
 char const gText_TownMap_ZackHouseDescription[] =
-    "Zack's House\r\n"
-    "The merchant Won also \r\n"
-    "lives here.";
+    "Zacks Haus\r\n"
+    "Won der Händler lebt \r\n"
+    "auch dort.";
 
 char const gText_TownMap_ZackHouseLabel[] =
-    "Zack's House";
+    "Zacks Haus";
 
 char const gText_TownMap_KaiSeasideLodgeDescription[] =
-    "Kai's Seaside Lodge\r\n"
-    "Open only in Summer";
+    "Kais Strandhäuschen\r\n"
+    "Nur im Sommer geöffnet";
 
 char const gText_TownMap_KaiSeasideLodgeHours[] =
-    "Kai's Seaside Lodge\r\n"
-    "Hours: 11AM-1PM\r\n"
-    "       5PM-7PM";
+    "Kais Strandhäuschen\r\n"
+    "Öffnungszeiten: 11-13 Uhr\r\n"
+    "       17-19 Uhr";
 
 char const gText_TownMap_SaibaraBlacksmithDescription[] =
-    "Saibara the Blacksmith\r\n"
-    "Makes many things for you\r\n"
-    "if you give him the Ore.";
+    "Saibara der Schmied\r\n"
+    "Macht viele nützliche\r\n"
+    "Dinge, wenn du Erz gibst.";
 
 char const gText_TownMap_SaibaraBlacksmithHours[] =
-    "Saibara the Blacksmith\r\n"
-    "Hours: 10AM-4PM\r\n"
-    "Closed: Thursdays";
+    "Saibara der Schmied\r\n"
+    "Öffnungszeiten: 10-16 Uhr\r\n"
+    "Geschlossen: Donnerstags";
 
 char const gText_TownMap_YodelFarmDescription[] =
-    "Yodel Farm\r\n"
-    "Sells Cows and Sheep.";
+    "Jodel-Farm\r\n"
+    "Verkauft Kühe und Schafe.";
 
 char const gText_TownMap_YodelFarmHours[] =
-    "Yodel Farm\r\n"
-    "Hours: 10AM-3PM\r\n"
-    "Closed: Mondays";
+    "Jodel-Farm\r\n"
+    "Öffnungszeiten: 10-15 Uhr\r\n"
+    "Geschlossen: Montags";
 
 char const gText_TownMap_PoultryFarmDescription[] =
-    "Poultry Farm\r\n"
-    "Sells Chickens.";
+    "Geflügelfarm\r\n"
+    "Verkauft Hühner.";
 
 char const gText_TownMap_PoultryFarmHours[] =
-    "Poultry Farm\r\n"
-    "Hours: 11AM-4PM\r\n"
-    "Closed: Sundays";
+    "Geflügelfarm\r\n"
+    "Öffnungszeiten: 11-16 Uhr\r\n"
+    "Geschlossen: Sonntags";
 
 char const gText_TownMap_WoodcutterHouseDescription[] =
-    "Woodcutter's House\r\n"
-    "Sells Lumber, and can \r\n"
-    "expand your house.";
+    "Holzfällerhaus\r\n"
+    "Verkauft Nutzholz und kann\r\n"
+    "dein Haus ausbauen.";
 
 char const gText_TownMap_WoodcutterHouseHours[] =
-    "Woodcutter's House\r\n"
-    "Hours: 11AM-4PM\r\n"
-    "Closed: Saturdays";
+    "Holzfällerhaus\r\n"
+    "Öffnungszeiten: 11-16 Uhr\r\n"
+    "Geschlossen: Samstags";
 
 char const gText_TownMap_LakeMineDescription[] =
-    "Lake Mine\r\n"
-    "You can mine many\r\n"
-    "things here.";
+    "Seemine\r\n"
+    "Hier kannst du viele\r\n"
+    "Dinge abbauen.";
 
 char const gText_TownMap_LakeMineLabel[] =
-    "Lake Mine";
+    "Seemine";
 
 char const gText_TownMap_SpringMineDescription[] =
-    "Spring Mine\r\n"
-    "You can mine many\r\n"
-    "things here.";
+    "Frühlingsmine\r\n"
+    "Hier kannst du viele\r\n"
+    "Dinge abbauen.";
 
 char const gText_TownMap_SpringMineLabel[] =
-    "Spring Mine";
+    "Frühlingsmine";
 
 char const gText_TownMap_HotSpringDescription[] =
-    "Hot Spring\r\n"
-    "Recuperate Stamina and\r\n"
-    "Fatigue.";
+    "Heiße Quelle \r\n"
+    "Verbessert Ausdauer\r\n"
+    "und Energie.";
 
 char const gText_TownMap_HotSpringLabel[] =
-    "Hot Spring";
+    "Heiße Quelle";
 
 char const gText_TownMap_Empty[] =
     "";
 
 char const gText_TownMap_NorthMineralTownDescription[] =
-    "North Side of Mineral Town\r\n"
-    "Lots of shops and homes.";
+    "Nordteil von Mineralstadt\r\n"
+    "Viele Läden und Häuser.";
 
 char const gText_TownMap_NorthMineralTownLabel[] =
-    "North Side of Mineral Town";
+    "Nordteil von Mineralstadt";
 
 char const gText_TownMap_RearChurchDescription[] =
-    "Rear of Church\r\n"
-    "Harvest Sprites' home \r\n"
-    "is here.";
+    "Kirchenhinterhof\r\n"
+    "Das Heim der Ernte- \r\n"
+    "wichtel ist hier.";
 
 char const gText_TownMap_RearChurchLabel[] =
-    "Rear of Church";
+    "Kirchenhinterhof";
 
 char const gText_TownMap_RoseSquareDescription[] =
-    "Rose Square\r\n"
-    "Many events are held here.";
+    "Rosenplatz\r\n"
+    "Ort für Veranstaltungen.";
 
 char const gText_TownMap_RoseSquareLabel[] =
-    "Rose Square";
+    "Rosenplatz";
 
 char const gText_TownMap_MineralBeachDescription[] =
-    "Mineral Beach\r\n"
-    "Beach House is open \r\n"
-    "in Summer. Zack lives here.";
+    "Mineralstrand\r\n"
+    "Toll zum Schwimmen im\r\n"
+    "im Sommer. Zack wohnt hier.";
 
 char const gText_TownMap_MineralBeachLabel[] =
-    "Mineral Beach";
+    "Mineralstrand";
 
 char const gText_TownMap_SouthMineralTownDescription[] =
-    "South Side of Mineral Town\r\n"
-    "Yodel Farm, Poultry Farm, \r\n"
-    "and Blacksmith are here.";
+    "Südteil von Mineralstadt\r\n"
+    "Jodel-Farm, Geflügelfarm,\r\n"
+    "und der Schmied sind hier.";
 
 char const gText_TownMap_SouthMineralTownLabel[] =
-    "South Side of Mineral Town";
+    "Südteil von Mineralstadt";
 
 char const gText_TownMap_ForestDescription[] =
-    "Forest\r\n"
-    "The Woodcutter's House\r\n"
-    "is here.";
+    "Wald\r\n"
+    "Das Holzfällerhaus\r\n"
+    "ist hier.";
 
 char const gText_TownMap_ForestLabel[] =
-    "Forest";
+    "Wald";
 
 char const gText_TownMap_MothersHillPeakDescription[] =
-    "Peak of Mother's Hill\r\n"
-    "There's a great view\r\n"
-    "from here.";
+    "Mutterbergspitze\r\n"
+    "Von hier hat man\r\n"
+    "eine tolle Aussicht.";
 
 char const gText_TownMap_MothersHillPeakLabel[] =
-    "Peak of Mother's Hill";
+    "Mutterbergspitze";
 
 char const gText_TownMap_MothersHillDescription[] =
-    "Mother's Hill\r\n"
-    "The Harvest Goddess is said\r\n"
-    "to live in the spring.";
+    "Mutterberg\r\n"
+    "Man sagt, die Erntegöttin\r\n"
+    "lebe in der Quelle.";
 
 char const gText_TownMap_MothersHillLabel[] =
-    "Mother's Hill";
+    "Mutterberg ";
