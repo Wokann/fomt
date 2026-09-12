@@ -2,72 +2,74 @@
 
 
 char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ExplanationQuestion[] =
-    "Wanna hear how to do it?";
+    "Lernen, wie es geht?";
 
 char const gText_HarvestSpriteMiniGame_AnimalHusbandry_Yes[] =
-    "Yes";
+    "Ja";
 
 char const gText_HarvestSpriteMiniGame_AnimalHusbandry_No[] =
-    "No";
+    "Nein";
 
 char const gText_HarvestSpriteMiniGame_AnimalHusbandry_Introduction[] =
     "\p"
-    "Now I will explain the\r\n"
-    "Animal Husbandry game.{Press}";
+    "Nun werde ich das\r\n"
+    "Tierhaltungsspiel erklären.{Press}";
 
 char const gText_HarvestSpriteMiniGame_AnimalHusbandry_FeedingInstructions[] =
     "\p"
-    "Use the Control Pad and the\r\n"
-    "A Button to help us feed the\r\n"
-    "Chickens. If you feed them{Press}\r\n"
-    "when they don't need to be\r\n"
-    "fed, they'll get angry.\r\n"
-    "So, wait until their Feed{Press}\r\n"
-    "starts to get low.{Press}";
+    "Nutze das Steuerkreuz und\r\n"
+    "Taste A, um uns beim\r\n"
+    "Hühnerfüttern zu helfen.{Press}\r\n"
+    "Fütterst du sie, wenn sie\r\n"
+    "kein Futter brauchen,\r\n"
+    "werden sie wütend.{Press}\r\n"
+    "Also warte, bis ihr\r\n"
+    "Futter zu Ende geht.{Press}";
 
 char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ChickenBehaviorInstructions[] =
     "\p"
-    "Chickens will start to flap\r\n"
-    "their wings when Feed starts\r\n"
-    "getting low, and they'll go{Press}\r\n"
-    "outside when Feed runs out.\r\n"
-    "If they leave the\r\n"
-    "Chicken Coop, they may not{Press}\r\n"
-    "come back even when you\r\n"
-    "feed them, so be careful.{Press}";
+    "Hühner schlagen mit ihren\r\n"
+    "Flügeln, wenn das Futter\r\n"
+    "weniger wird und sie kommen{Press}\r\n"
+    "raus, wenn es zu Ende geht.\r\n"
+    "Haben sie den Hühnerstall\r\n"
+    "verlassen, kommen sie{Press}\r\n"
+    "vielleicht nicht zurück,\r\n"
+    "selbst wenn du sie\r\n"
+    "fütterst, also gib Acht...{Press}";
 
 char const gText_HarvestSpriteMiniGame_AnimalHusbandry_WatchInstructions[] =
     "\p"
-    "Watch the Chickens closely\r\n"
-    "and feed them as best \r\n"
-    "you can.{Press}";
+    "Beobachte die Hühner\r\n"
+    "gut und füttere sie\r\n"
+    "so gut du kannst.{Press}";
 
 char const gText_HarvestSpriteMiniGame_AnimalHusbandry_UnderstandQuestion[] =
-    "Do you understand?";
+    "Alles verstanden?";
 
 char const gText_HarvestSpriteMiniGame_AnimalHusbandry_UnderstandYes[] =
-    "I understand.";
+    "Verstanden.";
 
 char const gText_HarvestSpriteMiniGame_AnimalHusbandry_UnderstandAgain[] =
-    "Tell me again.";
+    "Bitte wiederholen.";
 
 char const gText_HarvestSpriteMiniGame_AnimalHusbandry_Start[] =
     "\p"
-    "OK, let's start!{Press}";
+    "OK, fangen wir an!{Press}";
 
 char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScorePrefix[] =
     "\p"
     "\r\n"
-    "　";
+    "  ";
 
 char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultPrefix[] =
-    "Cleared with ";
+    " Beendet mit ";
 
 char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultSuffix[] =
-    " points.{Press}";
+    " Punkten.{Press}";
 
 char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreSummary[] =
     "\p"
-    "Feed given\r\n"
-    "Misses\r\n"
-    "　　　　　　　　Total{Press}";
+    "Gefüttert\r\n"
+    "Vergessen\r\n"
+    "               Gesamt{Press}";

@@ -2,45 +2,60 @@
 
 
 char const gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandQuestion[] =
-    "Do you understand?";
+    "Verstanden?";
 
 char const gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandYes[] =
-    "Got it.";
+    "Verstanden.";
 
 char const gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandAgain[] =
-    "Come again?";
+    "Nochmal bitte.";
+
+char const gText_HarvestSpriteMiniGame_ChickenFestival_RoundOneStartPageBreak[] =
+    "\p"
+    "1. Runde. Auf die Plätze...{Press}";
+
+char const gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsStartPageBreak[] =
+    "\p"
+    "Halbfinale. Auf die Plätze.{Press}";
+
+char const gText_HarvestSpriteMiniGame_ChickenFestival_FinalsStartPageBreak[] =
+    "\p"
+    "Finale. Auf die Plätze... {Press}";
+
+char const gText_HarvestSpriteMiniGame_ChickenFestival_StartPageBreak[] =
+    "\p"
+    "Los!{Press}";
 
 char const gText_HarvestSpriteMiniGame_ChickenFestival_Introduction[] =
     "\p"
-    "Now I will explain about\r\n"
-    "the Chicken Festival.{Press}";
+    "Jetzt erkläre ich alles\r\n"
+    "über das Hühnerfest.{Press}";
 
 char const gText_HarvestSpriteMiniGame_ChickenFestival_Rules[] =
     "\p"
-    "It's your job to root for\r\n"
-    "your Chicken by\r\n"
-    "pressing the A Button.{Press}\r\n"
-    "Use it when your Chicken\r\n"
-    "looks like it needs help.\r\n"
-    "The object is to drive{Press}\r\n"
-    "the other Chicken out\r\n"
-    "of the ring.{Press}";
+    "Es ist deine Aufgabe, \r\n"
+    "dein Huhn anzufeuern, \r\n"
+    "indem du Knopf A drückst.{Press}\r\n"
+    "Benutze ihn, wenn es so\r\n"
+    "aussieht, als ob dein\r\n"
+    "Huhn Unterstützung braucht.{Press}\r\n"
+    "Ziel ist es, das andere Huhn\r\n"
+    "aus dem Ring zu drängen.{Press}";
 
 char const gText_HarvestSpriteMiniGame_ChickenFestival_Encouragement[] =
     "\p"
-    "If the rival Chicken\r\n"
-    "is in front of you,{Press}\r\n"
-    "it will get scared and\r\n"
-    "run away.{Press}\r\n"
-    "Do a good job of rooting\r\n"
-    "for your Chicken and\r\n"
-    "you'll be victorious!{Press}";
+    "Wenn das gegnerische\r\n"
+    "Huhn vor dir steht, kriegt\r\n"
+    "es Angst und rennt weg.{Press}\r\n"
+    "Mach deine Sache gut, \r\n"
+    "unterstütze dein Huhn\r\n"
+    "und du wirst gewinnen! {Press}";
 
 char const gText_HarvestSpriteMiniGame_ChickenFestival_CautionAtRingEdge[] =
     "\p"
-    "However, be careful not\r\n"
-    "not to run your own{Press}";
+    "Trotzdem, pass auf, \r\n"
+    "dass du nicht dein eigenes{Press}";
 
 char const gText_HarvestSpriteMiniGame_ChickenFestival_CautionLeavingRing[] =
     "\p"
-    "Chicken out of the ring!{Press}";
+    "Huhn aus dem Ring drängst!{Press}";

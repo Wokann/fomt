@@ -60,6 +60,7 @@
 | DE | `0x08100938`–`0x08100A93` | `data/text/home_storage.o(.rodata)` | `data/text/de/home_storage.cc` | 精确 |
 | DE | `0x081014EE`–`0x081017FA` | `data/text/recovery_status.o(.rodata)` | `data/text/de/recovery_status.cc` | 精确 |
 | DE | `0x08101800`–`0x08101B29` | `data/text/cooking.o(.rodata)` | `data/text/de/cooking.cc` | 精确 |
+| DE | `0x08107FD4`–`0x08108DB3` | `src/harvest_sprite.o(.rodata)` | `src/harvest_sprite.cc` 与 `data/text/de/harvest_sprite_*.cc` | 精确 |
 
 ## JP：物理 `.rodata` 顺序
 

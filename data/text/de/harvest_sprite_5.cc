@@ -2,70 +2,69 @@
 
 
 char const gText_HarvestSpriteMiniGame_Watering_ExplanationQuestion[] =
-    "Do you need an explanation?";
+    "Brauchst du eine Anleitung?";
 
 char const gText_HarvestSpriteMiniGame_Watering_Yes[] =
-    "Yes";
+    "Ja";
 
 char const gText_HarvestSpriteMiniGame_Watering_No[] =
-    "No";
+    "Nein";
 
 char const gText_HarvestSpriteMiniGame_Watering_Introduction[] =
     "\p"
-    "Now I will explain the\r\n"
-    "Watering game.{Press}";
+    "Nun erkläre ich das\r\n"
+    "Bewässerungsspiel.{Press}";
 
 char const gText_HarvestSpriteMiniGame_Watering_Instructions[] =
     "\p"
-    "Help us water the plants\r\n"
-    "following the patterns shown{Press}\r\n"
-    "using the Control Pad and\r\n"
-    "the A Button.\r\n"
-    "There are three turns.{Press}";
+    "Hilf uns, die Pflanzen nach\r\n"
+    "dem angezeigten System\r\n"
+    "zu bewässern. Benutze{Press}\r\n"
+    "das Steuerkreuz und Knopf A.{Press}\r\n"
+    "\p"
+    "Es gibt drei Runden.{Press}";
 
 char const gText_HarvestSpriteMiniGame_Watering_SuccessInstructions[] =
     "\p"
-    "If you follow the pattern,\r\n"
-    "we'll be happy and{Press}\r\n"
-    "sprouts will come up.{Press}\r\n"
-    "If you miss, though,\r\n"
-    "none will come up at all.{Press}";
+    "Folgst du dem System, \r\n"
+    "sind wir zufrieden und die\r\n"
+    "Keime sprießen. {Press}\r\n"
+    "Wenn du es falsch machst,\r\n"
+    "werden keine Keime sprießen.{Press}";
 
 char const gText_HarvestSpriteMiniGame_Watering_MistakeWarning[] =
     "\p"
-    "Do your best to follow the\r\n"
-    "pattern, and don't \r\n"
-    "repeat any places.{Press}\r\n"
-    "If you make mistakes,\r\n"
-    "we'll get upset.{Press}";
+    "Gib dein Bestes, um dem\r\n"
+    "System zu folgen und\r\n"
+    "wiederhole keine Orte.{Press}\r\n"
+    "\p"
+    "Machst du Fehler, \r\n"
+    "werden wir sauer.{Press}";
 
 char const gText_HarvestSpriteMiniGame_Watering_UnderstandQuestion[] =
-    "Understand?";
+    "Verstanden?";
 
 char const gText_HarvestSpriteMiniGame_Watering_UnderstandYes[] =
-    "I understand.";
+    "Verstanden.";
 
 char const gText_HarvestSpriteMiniGame_Watering_UnderstandAgain[] =
-    "One more time.";
+    "Noch einmal bitte.";
 
 char const gText_HarvestSpriteMiniGame_Watering_Start[] =
     "\p"
-    "OK, let's start!{Press}";
+    "OK, fangen wir an! {Press}";
 
 
 char const gText_HarvestSpriteMiniGame_Watering_ScorePrefix[] =
     "\p"
     "\r\n"
-    "　";
-
-char const gText_HarvestSpriteMiniGame_Watering_ScoreResultPrefix[] =
-    " Cleared with ";
+    "　　";
 
 char const gText_HarvestSpriteMiniGame_Watering_ScoreResultSuffix[] =
-    " points.{Press}";
+    " Nach Punkten!{Press}";
 
 char const gText_HarvestSpriteMiniGame_Watering_ScoreSummary[] =
     "\p"
-    "Watered\r\n"
-    "Turns\r\n"
-    "Misses  　　　　　 Total{Press}";
+    "Bewässert \r\n"
+    "Runden \r\n"
+    "Verfehlungen  　   Gesamt{Press}";

@@ -79188,7 +79188,12 @@ func_080C516C: @ 0x080C516C
 	.align 2, 0
 .L080C5250: .4byte 0x0000097C
 .L080C5254: .4byte gText_HarvestSpriteMiniGame_Watering_ScorePrefix
-.L080C5258: .4byte gText_HarvestSpriteMiniGame_Watering_ScoreResultPrefix
+.L080C5258:
+	.ifdef REGION_DE
+	.4byte gText_HarvestSpriteMiniGame_Watering_ScoreResultSuffix
+	.else
+	.4byte gText_HarvestSpriteMiniGame_Watering_ScoreResultPrefix
+	.endif
 .L080C525C: .4byte gText_HarvestSpriteMiniGame_Watering_ScoreResultSuffix
 .L080C5260: .4byte 0x00000904
 .L080C5264: .4byte 0x0000051C

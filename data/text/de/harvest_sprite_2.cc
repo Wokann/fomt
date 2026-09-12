@@ -36,42 +36,40 @@ char const gText_ChickenFestival_ContestantNames[CHICKEN_FESTIVAL_CONTESTANT_NAM
 
 char const gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsAnnouncement[] =
     "\p"
-    "Now for the semi-finals!{Press}";
+    "Jetzt geht es \r\n"
+    "ins Halbfinale!{Press}";
 
 char const gText_HarvestSpriteMiniGame_ChickenFestival_FinalRoundAnnouncement[] =
     "\p"
-    "Now for the third round!\r\n"
-    "This will decide the\r\n"
-    "champion, so do your best! {Press}";
+    "Auf in die dritte Runde!\r\n"
+    "Jetzt entscheidet sich, wer\r\n"
+    "der Sieger sein wird,{Press}\r\n"
+    "also gib dein Bestes! {Press}";
 
 char const gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationQuestion[] =
-    "Do you need an explanation?";
+    "Brauchst du eine Erklärung?";
 
 char const gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationNo[] =
-    "No, thanks.";
+    "Nein, danke.";
 
 char const gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationYes[] =
-    "Yes, please.";
+    "Lass hören.";
 
 char const gText_HarvestSpriteMiniGame_ChickenFestival_RoundOneStart[] =
-    "\p"
-    "Round 1. Get ready...{Press}";
+    "1.Runde. Auf die Plätze...{Press}";
 
 char const gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsStart[] =
-    "\p"
-    "Semi-finals. Get ready...{Press}";
+    "Halbfinale.\r\n"
+    "Auf die Plätze...{Press}";
 
 char const gText_HarvestSpriteMiniGame_ChickenFestival_FinalsStart[] =
-    "\p"
-    "Finals. Get ready...{Press}";
+    "Finale. Auf die Plätze...{Press}";
 
 char const gText_HarvestSpriteMiniGame_ChickenFestival_Start[] =
-    "\p"
-    "Go!{Press}";
+    "Los! {Press}";
 
 char const gText_HarvestSpriteMiniGame_ChickenFestival_Stop[] =
-    "\p"
-    "Stop!{Press}";
+    "Stopp! {Press}";
 
 char const gText_HarvestSpriteMiniGame_ChickenFestival_WinnerSuffix[] =
-    " wins!{Press}";
+    " Gewinnt!{Press}";

@@ -2,64 +2,66 @@
 
 
 char const gText_HarvestSpriteMiniGame_Harvest_ExplanationQuestion[] =
-    "Wanna hear how to do it?";
+    "Lernen, wie es geht?";
 
 char const gText_HarvestSpriteMiniGame_Harvest_Yes[] =
-    "Yes";
+    "Ja";
 
 char const gText_HarvestSpriteMiniGame_Harvest_No[] =
-    "No";
+    "Nein";
 
 char const gText_HarvestSpriteMiniGame_Harvest_Introduction[] =
     "\p"
-    "Now I will explain the\r\n"
-    "Harvest game.{Press}";
+    "Jetzt erkläre ich\r\n"
+    "das Erntespiel.{Press}.";
 
 char const gText_HarvestSpriteMiniGame_Harvest_Instructions[] =
     "\p"
-    "Hit the A Button repeatedly\r\n"
-    "to help us harvest.{Press}";
+    "Drücke wiederholt Knopf A,\r\n"
+    "um uns beim Ernten zu \r\n"
+    "helfen.{Press}";
 
 char const gText_HarvestSpriteMiniGame_Harvest_FatigueWarning[] =
     "\p"
-    "If you make us work too \r\n"
-    "fast, our faces get red.{Press}\r\n"
-    "If you don't slow down,{Press}\r\n"
-    "we'll start making mistakes.{Press}";
+    "Wir bekommen rote Gesichter,\r\n"
+    "wenn du uns zu\r\n"
+    "hart arbeiten lässt.{Press}\r\n"
+    "Wenn du nicht langsamer{Press}\r\n"
+    "wirst, machen wir Fehler.{Press}";
 
 char const gText_HarvestSpriteMiniGame_Harvest_RestInstructions[] =
     "\p"
-    "So, if you see our faces\r\n"
-    "getting red, slow down the\r\n"
-    "pace to give us a rest.{Press}";
+    "Also, wenn wir rot werden, \r\n"
+    "mach langsamer, damit\r\n"
+    "wir uns erholen können.{Press}";
 
 char const gText_HarvestSpriteMiniGame_Harvest_UnderstandQuestion[] =
-    "Do you understand?";
+    "Alles verstanden?";
 
 char const gText_HarvestSpriteMiniGame_Harvest_UnderstandYes[] =
-    "I understand.";
+    "Verstanden.";
 
 char const gText_HarvestSpriteMiniGame_Harvest_UnderstandAgain[] =
-    "Tell me again.";
+    "Bitte wiederholen.";
 
 char const gText_HarvestSpriteMiniGame_Harvest_Start[] =
     "\p"
-    "OK, let's start!{Press}";
+    "OK, fangen wir an!{Press}";
 
 
 char const gText_HarvestSpriteMiniGame_Harvest_ScorePrefix[] =
     "\p"
     "\r\n"
-    "　";
+    " ";
 
 char const gText_HarvestSpriteMiniGame_Harvest_ScoreResultPrefix[] =
-    " Cleared with ";
+    " Beendet mit ";
 
 char const gText_HarvestSpriteMiniGame_Harvest_ScoreResultSuffix[] =
-    " points.{Press}";
+    " Punkten.{Press}";
 
 char const gText_HarvestSpriteMiniGame_Harvest_ScoreSummary[] =
     "\p"
-    "Harvests\r\n"
-    "Misses\r\n"
-    "　　　　　　　　　Total{Press}";
+    "Gefüttert\r\n"
+    "Vergessen\r\n"
+    "               Gesamt{Press}";
