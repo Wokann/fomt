@@ -11,21 +11,21 @@
 // decoded, so their member names intentionally remain address-based.
 RecordsScreenTaskResourcePair const gRecordsScreenMinigameTaskResources[] = {
 #if defined(REGION_JP)
-    { 0x084D7EB8, 0x084D7F38 },
-    { 0x084D7FF8, 0x084D8078 },
-    { 0x084D8098, 0x084D8118 },
-    { 0x084D8138, 0x084D81B8 },
-    { 0x084D81D8, 0x084D8258 },
-    { 0x084D8278, 0x084D82F8 },
-    { 0x084D7F58, 0x084D7FD8 },
+    { reinterpret_cast<u8 const *>(0x084D7EB8), reinterpret_cast<u8 const *>(0x084D7F38) },
+    { reinterpret_cast<u8 const *>(0x084D7FF8), reinterpret_cast<u8 const *>(0x084D8078) },
+    { reinterpret_cast<u8 const *>(0x084D8098), reinterpret_cast<u8 const *>(0x084D8118) },
+    { reinterpret_cast<u8 const *>(0x084D8138), reinterpret_cast<u8 const *>(0x084D81B8) },
+    { reinterpret_cast<u8 const *>(0x084D81D8), reinterpret_cast<u8 const *>(0x084D8258) },
+    { reinterpret_cast<u8 const *>(0x084D8278), reinterpret_cast<u8 const *>(0x084D82F8) },
+    { reinterpret_cast<u8 const *>(0x084D7F58), reinterpret_cast<u8 const *>(0x084D7FD8) },
 #else
-    { 0x08751F0C, 0x08751F8C },
-    { 0x0875204C, 0x087520CC },
-    { 0x087520EC, 0x0875216C },
-    { 0x0875218C, 0x0875220C },
-    { 0x0875222C, 0x087522AC },
-    { 0x087522CC, 0x0875234C },
-    { 0x08751FAC, 0x0875202C },
+    { gUnk_08751F0C, gUnk_08751F8C },
+    { gUnk_0875204C, gUnk_087520CC },
+    { gUnk_087520EC, gUnk_0875216C },
+    { gUnk_0875218C, gUnk_0875220C },
+    { gUnk_0875222C, gUnk_087522AC },
+    { gUnk_087522CC, gUnk_0875234C },
+    { gUnk_08751FAC, gUnk_0875202C },
 #endif
 };
 
