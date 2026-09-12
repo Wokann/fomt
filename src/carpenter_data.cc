@@ -26,7 +26,11 @@ CarpenterCatalogEntry const gCarpenterCatalog[] = {
     { gText_Carpenter_SquareWindowWithoutShutters, 25000, 300, 6, gText_Carpenter_WindowCost },
     { gText_Carpenter_RoundWindow, 25000, 300, 7, gText_Carpenter_WindowCost },
     { gText_Carpenter_RedDoghouse, 20000, 500, 11, gText_Carpenter_DoghouseCost },
+#if defined(REGION_DE)
+    { gText_Carpenter_BlueDoghouse, 20000, 500, 12, gText_Carpenter_BlueDoghouseCost },
+#else
     { gText_Carpenter_BlueDoghouse, 20000, 500, 12, gText_Carpenter_DoghouseCost },
+#endif
     { gText_Carpenter_StrangeDoghouse, 20000, 500, 13, gText_Carpenter_DoghouseCost },
     { gText_Carpenter_RedMailbox, 10000, 200, 8, gText_Carpenter_MailboxCost },
     { gText_Carpenter_BlueMailbox, 10000, 200, 9, gText_Carpenter_MailboxCost },

@@ -136690,7 +136690,12 @@ func_08084228: @ 0x08084228
 	str r0, [r1]
 	b .L080854C8
 	.align 2, 0
-.L0808532C: .4byte gText_Carpenter_ConfirmUpgrade
+.L0808532C:
+	.ifdef REGION_DE
+	.4byte gText_Carpenter_AreYouSureNow
+	.else
+	.4byte gText_Carpenter_ConfirmUpgrade
+	.endif
 .L08085330:
 	movs r1, #0xd4
 	lsls r1, r1, #2
@@ -136824,7 +136829,12 @@ func_08084228: @ 0x08084228
 	str r0, [r1]
 	b .L080854C8
 	.align 2, 0
-.L08085450: .4byte gText_Carpenter_ConfirmUpgrade
+.L08085450:
+	.ifdef REGION_DE
+	.4byte gText_Carpenter_AreYouSureNow
+	.else
+	.4byte gText_Carpenter_ConfirmUpgrade
+	.endif
 .L08085454:
 	movs r1, #0xd4
 	lsls r1, r1, #2

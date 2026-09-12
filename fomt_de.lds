@@ -728,11 +728,11 @@ SECTIONS
          src/beach_cafe_shop_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-         src/blacksmith_menu_data.o(.rodata);
-         src/blacksmith_data.o(.rodata);
+        . = 0xFF4AC; src/blacksmith_menu_data.o(.rodata);
+        src/blacksmith_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        src/carpenter_data.o(.rodata);
+        . = 0xFFB98; src/carpenter_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         FILL(0x00);

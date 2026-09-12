@@ -39,6 +39,9 @@ extern char const gText_Carpenter_RoundWindow[];
 extern char const gText_Carpenter_RedDoghouse[];
 extern char const gText_Carpenter_DoghouseCost[];
 extern char const gText_Carpenter_BlueDoghouse[];
+#if defined(REGION_DE)
+extern char const gText_Carpenter_BlueDoghouseCost[];
+#endif
 extern char const gText_Carpenter_StrangeDoghouse[];
 extern char const gText_Carpenter_RedMailbox[];
 extern char const gText_Carpenter_MailboxCost[];
@@ -66,7 +69,7 @@ extern char const gText_Carpenter_DontBuild[];
 extern char const gText_Carpenter_Upgrade[];
 extern char const gText_Carpenter_DontUpgrade[];
 extern char const gText_Carpenter_StartUpgradeTomorrow[];
-#if defined(REGION_WESTERN)
+#if defined(REGION_US) || defined(REGION_EU)
 extern char const gText_Carpenter_ConfirmUpgrade[];
 #endif
 extern char const gText_Carpenter_NeedAnythingMore[];
