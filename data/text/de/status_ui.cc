@@ -12,7 +12,7 @@ char const * const gShopCommonQuantitySuffixTextRef =
     gText_ShopCommon_QuantitySuffix;
 
 char const gText_ShopCommon_OwnedQuantityLabel[] =
-    "You have    ";
+    "Du hast     ";
 
 char const * const gShopCommonOwnedQuantityLabelTextRef =
     gText_ShopCommon_OwnedQuantityLabel;
@@ -20,10 +20,10 @@ char const * const gShopCommonOwnedQuantityLabelTextRef =
 #else
 
 char const gText_ToolStatus_GemOfTruth[] =
-    "Gem of Truth\r\n";
+    "Juwel der Wahrheit\r\n";
 
 char const gText_ToolStatus_EnergyLabel[] =
-    "Energy ";
+    "Energie ";
 
 char const gText_ToolStatus_ValueSeparator[] =
     "/";
@@ -32,80 +32,81 @@ char const gText_ToolStatus_EnergyFatigueLineBreak[] =
     "\r\n";
 
 char const gText_ToolStatus_FatigueLabel[] =
-    "Fatigue ";
+    "Energieverlust ";
 
 char const gText_ToolStatus_FatigueMaximum[] =
     "/100";
 
 char const gText_ToolStatus_PedometerLabel[] =
-    "Pedometer\r\n\n";
+    "Schrittmesser\r\n\n";
 
 char const gText_ToolStatus_PedometerStepsSuffix[] =
-    " steps";
+    " Schritte";
 
 char const gText_ToolStatus_DescriptionQuotePrefix[] =
     " \"";
 
 char const gText_ToolStatus_RemainingSquaresSuffix[] =
-    " squares left";
+    " übrige Quadrate";
 
 char const gText_AnimalStatus_Dog[] =
-    "Dog\r\n";
+    "Hund\r\n";
 
 char const gText_AnimalStatus_Puppy[] =
-    "Puppy\r\n";
+    "Welpe\r\n";
 
 char const gText_AnimalStatus_Chicken[] =
-    "Chicken\r\n";
+    "Huhn\r\n";
 
 char const gText_AnimalStatus_Chick[] =
-    "Chick\r\n";
+    "Küken\r\n";
 
 char const gText_AnimalStatus_Sick[] =
     "\r\n"
-    "Sick";
+    "Krank";
 
 char const gText_AnimalStatus_Unhappy[] =
     "\r\n"
-    "Unhappy";
+    "Unglücklich";
 
 char const gText_AnimalStatus_Healthy[] =
     "\r\n"
-    "Healthy";
+    "Gesund";
 
 char const gText_ItemStatus_BasketName[] =
-    "Basket\r\n";
+    "Korb\r\n";
 
 char const gText_ItemStatus_BasketDescription[] =
-    "Can store goods to ship.\r\n";
+    "Dinge zum Versand lagern.\r\n";
 
 char const gText_ItemStatus_BasketHoldingPrefix[] =
-    "Holding ";
+    "Hält ";
 
 char const gText_ItemStatus_BasketHoldingSuffix[] =
-    " items.";
+    " Dinge.";
 
 char const gText_ItemStatus_WrappedAsPresent[] =
-    "\r\nwrapped as a present.";
+    "\r\nals Geschenk verpackt.";
 
 char const * const gItemStatusWrappedAsPresentTextRef =
     gText_ItemStatus_WrappedAsPresent;
 
 char const gText_ItemDiscard_Confirm[] =
-    "Throw this away?";
+    "Wegwerfen?";
 
 char const * const gItemDiscardConfirmTextRef =
     gText_ItemDiscard_Confirm;
 
 char const gText_ItemDiscard_CannotDiscard[] =
-    "You can't throw this away.{Press}";
+    "Du kannst das nicht\r\n"
+    "wegwerfen.{Press}";
 
 char const * const gItemDiscardCannotDiscardTextRef =
     gText_ItemDiscard_CannotDiscard;
 
 char const gText_ItemDiscard_Cursed[] =
-    "You can't let go of it\r\n"
-    "because it's cursed!{Press}";
+    "Du kannst nicht loslassen,\r\n"
+    "weil es verwünscht ist!{Press}";
 
 char const * const gItemDiscardCursedTextRef =
     gText_ItemDiscard_Cursed;
