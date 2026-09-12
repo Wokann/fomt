@@ -99,9 +99,17 @@ func_08000540: @ 0x08000540
     pop {r1}
     bx r1
     .align 2, 0
-.L08000554:
-    .byte 0x00, 0xB5, 0x01, 0x1C, 0x09, 0x04, 0x09, 0x0C, 0x00, 0x20, 0xD3, 0xF0
-    .byte 0xF9, 0xF8, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
+
+    thumb_func_start func_08000554
+func_08000554:
+    push {lr}
+    adds r1, r0, #0
+    lsls r1, r1, #0x10
+    lsrs r1, r1, #0x10
+    movs r0, #0
+    bl IntrWait
+    pop {r0}
+    bx r0
 
     thumb_func_start func_08000568
 func_08000568: @ 0x08000568
@@ -114,8 +122,30 @@ func_08000568: @ 0x08000568
     pop {r0}
     bx r0
     .align 2, 0
-.L0800057C:
-    .byte 0x08, 0x1C, 0x70, 0x47
-    .byte 0x08, 0x1C, 0x70, 0x47, 0x00, 0xB5, 0x00, 0xF0, 0x25, 0xF8, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
-    .byte 0x00, 0xB5, 0x00, 0xF0, 0x39, 0xF8, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
+
+    thumb_func_start func_0800057C
+func_0800057C:
+    adds r0, r1, #0
+    bx lr
+
+    thumb_func_start func_08000580
+func_08000580:
+    adds r0, r1, #0
+    bx lr
+
+    thumb_func_start func_08000584
+func_08000584:
+    push {lr}
+    bl __builtin_new
+    pop {r1}
+    bx r1
+    .align 2, 0
+
+    thumb_func_start func_08000590
+func_08000590:
+    push {lr}
+    bl __builtin_delete
+    pop {r0}
+    bx r0
+    .align 2, 0
     .endif

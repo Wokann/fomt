@@ -47,12 +47,43 @@ func_08000640: @ 0x08000640
     .align 2, 0
 .L0800065C: .4byte gUnk_03000402
 .L08000660: .4byte gUnk_03000400
-.L08000664:
-    .byte 0x70, 0xB5, 0x82, 0xB0, 0x06, 0x1C, 0x00, 0x22, 0xFF, 0x23, 0x69, 0x46
-    .byte 0x88, 0x18, 0x01, 0x78, 0x19, 0x43, 0x01, 0x70, 0x50, 0x1C, 0x00, 0x06, 0x02, 0x0E, 0x07, 0x2A
-    .byte 0xF5, 0xD9, 0x00, 0x24, 0x80, 0x25, 0x2D, 0x02, 0x30, 0x1C, 0x21, 0x1C, 0x6A, 0x46, 0x08, 0x23
-    .byte 0x00, 0xF0, 0x08, 0xF8, 0x08, 0x34, 0xAC, 0x42, 0xF6, 0xD3, 0x01, 0x20, 0x02, 0xB0, 0x70, 0xBC
-    .byte 0x02, 0xBC, 0x08, 0x47
+
+    thumb_func_start func_08000664
+func_08000664:
+    push {r4, r5, r6, lr}
+    sub sp, #8
+    adds r6, r0, #0
+    movs r2, #0
+    movs r3, #0xff
+.L0800066E:
+    mov r1, sp
+    adds r0, r1, r2
+    ldrb r1, [r0]
+    orrs r1, r3
+    strb r1, [r0]
+    adds r0, r2, #1
+    lsls r0, r0, #0x18
+    lsrs r2, r0, #0x18
+    cmp r2, #7
+    bls .L0800066E
+.L08000682:
+    movs r4, #0
+    movs r5, #0x80
+    lsls r5, r5, #8
+.L08000688:
+    adds r0, r6, #0
+    adds r1, r4, #0
+    mov r2, sp
+    movs r3, #8
+    bl func_080006A4
+    adds r4, #8
+    cmp r4, r5
+    bcc .L08000688
+    movs r0, #1
+    add sp, #8
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
 
     thumb_func_start func_080006A4
 func_080006A4: @ 0x080006A4
@@ -89,9 +120,17 @@ func_080006A4: @ 0x080006A4
 .L080006E0: .4byte gUnk_03000400
 
     .section .text.sram_proxy_2_after_006e4
-.L08000714:
-    .byte 0x00, 0xB5, 0x00, 0x79, 0x03, 0x22, 0x10, 0x40, 0x03, 0x30, 0xD0, 0xF0
-    .byte 0x75, 0xFC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
+    thumb_func_start func_08000714
+func_08000714:
+    push {lr}
+    ldrb r0, [r0, #4]
+    movs r2, #3
+    ands r0, r2
+    adds r0, #3
+    bl func_080D100C
+    pop {r1}
+    bx r1
+    .align 2, 0
 
     thumb_func_start func_08000728
 func_08000728: @ 0x08000728
