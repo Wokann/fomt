@@ -1,106 +1,107 @@
 #include "cooking_menu_text.hh"
 
 char const gText_Cooking_SeasoningSet[] =
-    "Seasoning Set";
+    "Gewürzset";
 
 char const gText_Cooking_CompleteUtensilSelection[] =
-    "Complete utensil selection\r\n"
-    "and select Ingredients.";
+    "Utensilienauswahl\r\n"
+    "vervollständigen\r\n"
+    "und Zutaten wählen.";
 
 char const gText_Cooking_WrappedGiftDescription[] =
-    "A wrapped";
+    "Gepackt";
 
 char const gText_Cooking_FollowRecipe[] =
-    "Follow the recipe.";
+    "Rezept befolgen.";
 
 char const gText_Cooking_ImproviseRecipe[] =
-    "Improvise recipe.";
+    "Rezept improvisieren.";
 
 char const gText_Cooking_MakeAnotherRecipe[] =
-    "Make another recipe.";
+    "Anderes Rezept machen.";
 
 char const gText_Cooking_NotEnoughIngredients[] =
-    "Not enough Ingredients...";
+    "Nicht genug Zutaten...";
 
 char const gText_Cooking_ImproviseAnyway[] =
-    "Improvise anyway.";
+    "Improvisiere trotzdem.";
 
 char const gText_Cooking_UseTheseIngredients[] =
-    "Use these Ingredients.";
+    "Diese Zutaten benutzen.";
 
 char const gText_Cooking_RestartIngredients[] =
-    "Restart from Ingredients.";
+    "Ab Zutaten beginnen.";
 
 char const gText_Cooking_RestartUtensils[] =
-    "Restart from Utensils.";
+    "Ab Utensilien beginnen.";
 
 char const gText_Cooking_ResultFailure[] =
-    "It didn't work...{Press}";
+    "Hat nicht geklappt...{Press}";
 
 char const gText_Cooking_ResultSuccessNewRecipe[] =
-    "The \xFF \r\n"
-    "is done!\r\n"
-    "Write down the recipe!{Press}";
+    "Das \xFF \r\n"
+    "ist fertig!\r\n"
+    "Schreibe das Rezept auf!{Press}";
 
 char const gText_Cooking_ResultSuccess[] =
-    "The \xFF \r\n"
-    "is done!{Press}";
+    "Das \xFF \r\n"
+    "ist fertig!{Press}";
 
 char const gText_Cooking_ResultComparison[] =
-    "Compared with what you've\r\n"
-    "made before...{Press}\r\n"
+    "Verglichen mit dem, was du\r\n"
+    "vorher gemacht hast...{Press}\r\n"
     "\xF0\r\n"
     "\xF1{Press}";
 
 char const gText_Cooking_Recipe_MakeThis[] =
-    "Make this the recipe.";
+    "Dies zum Rezept machen.";
 
 char const gText_Cooking_Recipe_LeaveAsIs[] =
-    "Leave recipe as is.";
+    "Rezept lassen wie gehabt.";
 
 char const gText_Cooking_Recipe_ViewCurrent[] =
-    "View current recipe.";
+    "Aktuelles Rezept ansehen.";
 
 char const gText_Cooking_Recipe_Rewrite[] =
-    "Rewrite recipe.";
+    "Rezept ändern.";
 
 char const gText_Cooking_Recipe_ViewNew[] =
-    "View new recipe.";
+    "Neues Rezept ansehen.";
 
 char const gText_Cooking_Recipe_IngredientsRequired[] =
-    "You must select Ingredients\r\n"
-    "to cook.{Press}";
+    "Um zu kochen, musst\r\n"
+    "du Zutaten auswählen.{Press}";
 
 char const gText_Cooking_Recipe_ListTitle[] =
-    "Recipe List           ";
+    "Rezeptliste.          ";
 
 char const gText_Cooking_Recipe_Utensils[] =
-    "Utensils";
+    "Utensil.";
 
 char const gText_Cooking_Recipe_Ingredients[] =
-    "Elements";
+    "Elemente";
 
 char const gText_Cooking_Recipe_UseIngredients[] =
-    "Use what";
+    "Nutzen? ";
 
 char const gText_Cooking_Recipe_Empty[] =
     "";
 
 char const gText_Cooking_Recipe_StorageHeader[] =
-    "Frige       Item";
+    "KühlschrankDinge";
 
 char const gText_Cooking_Recipe_SelectionNames[13][11] = {
-    "　　　　　",
-    "Knife     ",
-    "Frying pan",
-    "Pot       ",
+    "          ",
+    "Messer    ",
+    "Bratpfanne",
+    "Topf      ",
     "Mixer     ",
-    "Whisk     ",
-    "Roll.Pin  ",
-    "Oven      ",
-    "Sugar     ",
-    "Salt      ",
-    "Vinegar   ",
-    "Soy Sauce ",
+    "Quirl     ",
+    "Nudelholz ",
+    "Ofen      ",
+    "Zucker    ",
+    "Salz      ",
+    "Essig     ",
+    "Soyasoße",
     "Miso      ",
 };
