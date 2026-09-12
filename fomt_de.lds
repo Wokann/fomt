@@ -654,9 +654,9 @@ SECTIONS
         . = 0xF1F68; src/data_schedules.o(.rodata);
         . = ALIGN(4); src/entity_ui.o(.rodata.entity_ui_resource_selector);
         FILL(0x00);
-        . = 0xF47E0; asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix);
+        . = 0xF47D8; asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix);
         . = ALIGN(4); src/script_engine.o(.rodata);
-        . = 0xFA394; data/text/common/script_engine.o(.rodata);
+        . = 0xFA38C; data/text/common/script_engine.o(.rodata);
          src/cooking_festival_data.o(.rodata);
         src/thomas_stocking_data.o(.rodata);
         FILL(0x00);
@@ -694,11 +694,11 @@ SECTIONS
         FILL(0x00);
          src/intro_scene_data.o(.rodata.intro_scene_trailer);
         /* Farm Status regional data: two text groups and UI data. */
-         src/farm_status_screen_data.o(.rodata);
+        . = 0xFBE5C; src/farm_status_screen_data.o(.rodata);
         FILL(0x00);
-         src/records_screen_data.o(.rodata);
-        . = ALIGN(4); data/text/staff_credits.o(.rodata);
-         src/town_map_data.o(.rodata.staff_credits_trailer);
+        . = 0xFC580; src/records_screen_data.o(.rodata);
+        . = 0xFC7B0; data/text/staff_credits.o(.rodata);
+        . = 0xFCDC4; src/town_map_data.o(.rodata.staff_credits_trailer);
         src/town_map_data.o(.rodata.town_map_resource_ids);
         /* Town Map regional data: labels, hotspots, and lookup. */
         FILL(0x00);

@@ -1,25 +1,25 @@
 #include "records_text.hh"
 
 char const gText_Records_NumberShipped[] =
-    "Number shipped";
+    "Anzahl versandt ";
 
 char const gText_Records_ShippedCountSuffix[] =
     "  ";
 
 char const gText_Records_Fishing[] =
-    "Fishing ";
+    "Fischen ";
 
 char const gText_Records_Name[] =
     "Name";
 
 char const gText_Records_MaximumSize[] =
-    "Maximum size";
+    "Maximale Größe";
 
 char const gText_Records_Results[] =
-    "Results ";
+    "Ergebnisse";
 
 char const gText_Records_FishUnit[] =
-    "fish";
+    "Fisch ";
 
 char const gText_Records_MeterUnit[] =
     "m ";
@@ -31,70 +31,70 @@ char const gText_Records_Separator[] =
     " ";
 
 char const gText_Records_Other[] =
-    "Other ";
+    "Andere";
 
 char const gText_Records_MiniGameRecords[] =
-    "Mini-Game Records ■■■■";
+    "Mini-Game Rekorde ■■■■";
 
 char const gText_Records_Harvest[] =
-    "Harvest ";
+    "Ernte   ";
 
 char const gText_Records_AnimalHusbandry[] =
-    "Animal Husbandry";
+    "Tierhaltung     ";
 
 char const gText_Records_Watering[] =
-    "Watering";
+    "Bewässerung ";
 
 char const gText_Records_Frisbee[] =
     "Frisbee ";
 
 char const gText_Records_SecondsUnit[] =
-    "sec.";
+    "sek.";
 
 char const gText_Records_IncomeExpenses[] =
-    "Income/Expenses ■■■■■";
+    "Einkommen/Ausgaben■■■■";
 
 char const gText_Records_HighestAmount[] =
-    "Highest amount";
+    "Höchstbetrag  ";
 
 char const gText_Records_Earned[] =
-    "earned  ";
+    "verdient";
 
 char const gText_Records_Used[] =
-    "used    ";
+    "gebraucht ";
 
 char const gText_Records_GoldUnit[] =
     "G ";
 
 char const gText_Records_LongestLivingAnimal[] =
-    "Longest living animal ■■";
+    "Ältestes Tier ■■■■■■";
 
 char const gText_Records_Chicken[] =
-    "Chicken ";
+    "Huhn    ";
 
 char const gText_Records_Cow[] =
-    "Cow ";
+    "Kuh ";
 
 char const gText_Records_Sheep[] =
-    "Sheep ";
+    "Schaf ";
 
 char const gText_Records_YearsUnit[] =
-    "years ";
+    "Jahre ";
 
 char const gText_Records_MonthsUnit[] =
     "M ";
 
 char const gText_Records_DaysUnit[] =
-    "D ";
+    "T ";
 
 char const gText_Records_MineDepth[] =
-    "Lowest Level in Mine■■■";
+    "Niedrigstes Level der Mine";
 
 char const gText_Records_MineDepthPadding[] =
     "    ";
 
 char const gText_Records_BelowGround[] =
-    "levels below ground ";
+    "Unterirdische Levels";
 
 char const gText_Records_MolesWhacked[] =
-    "Number of moles whacked ";
+    "Zahl geschlag. Maulwürfe";

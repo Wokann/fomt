@@ -10,6 +10,10 @@
 #include FOMT_TEXT_INCLUDE(animal_contest.cc)
 #endif
 
+#if defined(REGION_DE)
+u16 const gFarmStatusScreenPreloadedGlyphs[] =
+    FOMT_GLYPH_SEQUENCE("0123456789Frühl.SommerHerbstWinter_Geburtstag ");
+#else
 u16 const gFarmStatusScreenPreloadedGlyphs[] = {
 #if defined(REGION_JP)
     0x824F, 0x8250, 0x8251, 0x8252, 0x8253, 0x8254, 0x8255,
@@ -25,6 +29,7 @@ u16 const gFarmStatusScreenPreloadedGlyphs[] = {
     0x0079,
 #endif
 };
+#endif
 
 char const gCppRuntimeBadAlloc_FarmStatusScreenGlyphs[] =
     "bad_alloc";

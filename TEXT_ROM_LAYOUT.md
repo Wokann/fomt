@@ -6,7 +6,7 @@
 
 指南页由 `fomt-text guide-collection` 生成到 `src/reference_guide.o(.rodata.reference_guide)`；按维护规则，指南仅作为一个连续 ROM 块记录起点和终点，不逐页展开。
 
-已整理的本地化岛（包括嵌入宿主对象的文本/数据，以及与已解析数据相邻的独立文本对象）在链接脚本中均有显式起点、`ASSERT` 上界与下一个已知物理块的起点。可在岛内修改文本及紧邻的已解析指针/结构；若总大小越过上界，构建会失败，而不会静默挤压后续尚未反编译的 ROM 数据。
+已整理的本地化岛（包括嵌入宿主对象的文本/数据，以及与已解析数据相邻的独立文本对象）在链接脚本中均有显式起点；下一个已知物理块的起点自然构成当前可用范围的上界。可在岛内修改文本及紧邻的已解析指针/结构；若总大小越过该上界，链接会因与后续物理块冲突而失败，不会静默挤压后续尚未反编译的 ROM 数据。
 
 ## 读取规则
 
@@ -43,6 +43,13 @@
 | DE | `0x080F0B18`–`0x080F1367` | `src/animal_data.o(.rodata)` | `src/animal_data.cc`、`data/text/de/animal_data.cc` 与共用片段 | 精确 |
 | DE | `0x080F1368`–`0x080F1E5B` | `src/entity_ui.o(.rodata)` | `src/entity_ui.cc` 与 `data/text/de/entity_ui.cc` | 精确 |
 | DE | `0x080F1E5C`–`0x080F1F67` | `src/fixed_labels.o` 至 `src/menu_data.o` | 对应 `data/text/de/*.cc` | 精确 |
+| DE | `0x080F47D8`–`0x080FA3E7` | `asm/data/data_080F1A80.o` 至相邻脚本引擎数据 | `asm/data/data_080F1A80.s`（Mary 管理的剧情脚本原始块）及 `src/script_engine.cc`、`data/text/common/script_engine.cc` | 精确 |
+| DE | `0x080FBE5C`–`0x080FC4F7` | `src/farm_status_screen_data.o(.rodata)` | `src/farm_status_screen_data.cc`、`data/text/de/farm_status.cc`、`data/text/de/animal_contest.cc` | 精确 |
+| DE | `0x080FC580`–`0x080FC72F` | `src/records_screen_data.o(.rodata)` | `src/records_screen_data.cc` 与 `data/text/de/records.cc` | 精确 |
+| DE | `0x080FC780`–`0x080FCDC3` | 纪录界面尾部至制作人员表 | `src/records_screen_data.cc`、`data/text/de/records.cc`、`data/text/staff_credits.cc` | 精确 |
+| DE | `0x08100938`–`0x08100A93` | `data/text/home_storage.o(.rodata)` | `data/text/de/home_storage.cc` | 精确 |
+| DE | `0x081014EE`–`0x081017FA` | `data/text/recovery_status.o(.rodata)` | `data/text/de/recovery_status.cc` | 精确 |
+| DE | `0x08101800`–`0x08101B29` | `data/text/cooking.o(.rodata)` | `data/text/de/cooking.cc` | 精确 |
 
 ## JP：物理 `.rodata` 顺序
 

@@ -1,7 +1,7 @@
 #include "farm_status_text.hh"
 
 char const gText_FarmStatus_OverviewTitle[] =
-    " Property ";
+    " Eigentum ";
 
 char const gText_FarmStatus_CountFieldPadding[] =
     "  ";
@@ -10,55 +10,55 @@ char const gText_FarmStatus_GoldUnit[] =
     "G ";
 
 char const gText_FarmStatus_Healthy[] =
-    "Healthy ";
+    "Gesund  ";
 
 char const gText_FarmStatus_Unhappy[] =
-    "Unhappy ";
+    "Traurig ";
 
 char const gText_FarmStatus_Sick[] =
-    "Sick    ";
+    "Krank   ";
 
 char const gText_FarmStatus_Spring[] =
-    "Spring";
+    "Frühl.";
 
 char const gText_FarmStatus_Summer[] =
-    "Summer";
+    "Sommer";
 
 char const gText_FarmStatus_Autumn[] =
-    "Fall  ";
+    "Herbst";
 
 char const gText_FarmStatus_Winter[] =
     "Winter";
 
 char const gText_FarmStatus_AgeUnit[] =
-    "yr";
+    "J ";
 
 char const gText_FarmStatus_ChickenList[] =
-    "List of Chickens";
+    "Liste der Hühner";
 
 char const gText_FarmStatus_CattleList[] =
-    "List of Cattle";
+    "Liste der Rinder";
 
 char const gText_FarmStatus_SheepList[] =
-    "List of Sheep ";
+    "Liste der Schafe";
 
 char const gText_FarmStatus_HarvestSpriteList[] =
-    "Harvest Sprites ";
+    "Erntewichtel    ";
 
 char const gText_FarmStatus_DayAbbreviation[] =
-    "D ";
+    "T ";
 
 char const gText_FarmStatus_DaysRemaining[] =
-    "left";
+    "links ";
 
 char const gText_FarmStatus_WorkAssignment[] =
-    "work    ";
+    "Arbeit";
 
 char const gText_FarmStatus_NotAssigned[] =
-    "N/A         ";
+    "k.A.        ";
 
 char const gText_FarmStatus_EarningsReport[] =
-    "Earnings Report ";
+    "Verdienstbericht";
 
 char const gText_FarmStatus_PlusSign[] =
     "+ ";
@@ -67,22 +67,22 @@ char const gText_FarmStatus_MinusSign[] =
     "- ";
 
 char const gText_FarmStatus_YearLabel[] =
-    "Year";
+    "Jahr";
 
 char const gText_FarmStatus_Income[] =
-    "Income";
+    "Ertrag";
 
 char const gText_FarmStatus_Expenses[] =
-    "Expenses";
+    "Ausgaben";
 
 char const gText_FarmStatus_ToolLevelList[] =
-    "Tool Level List ";
+    "Werkzeuglevel-Liste ";
 
 char const gText_FarmStatus_ToolShopLabel[] =
-    "Shop  ";
+    "Laden ";
 
 char const gText_FarmStatus_ToolUpgradeQuestion[] =
-    "Upgrade?";
+    "Rüsten? ";
 
 char const gText_FarmStatus_PercentSign[] =
     "% ";
@@ -107,13 +107,13 @@ extern AnimalStatusScreenPrefixText const gAnimalStatusScreenPrefixText = {
 };
 
 extern AnimalStatusScreenText const gAnimalStatusScreenText = {
-    "Healthy ",
-    "Unhappy ",
-    "Sick    ",
-    "Spring",
-    "Summer",
-    "Fall  ",
+    "Gesund  ",
+    "Traurig ",
+    "Krank   ",
+    "Frühl.",
+    "Sommer",
+    "Herbst",
     "Winter",
-    "Y ",
-    "D ",
+    "J ",
+    "T ",
 };

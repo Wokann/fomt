@@ -1,91 +1,100 @@
 #include "animal_contest_text.hh"
 
 char const gText_AnimalContest_ChickenConfirmation[] =
-    "Is this Chicken OK?";
+    "Ist dieses Huhn OK?";
 
 char const gText_AnimalContest_Yes[] =
-    "Yes";
+    "Ja";
 
 char const gText_AnimalContest_No[] =
-    "No";
+    "Nein";
 
 char const gText_AnimalContest_CowConfirmation[] =
-    "Is this Cow OK?";
+    "Ist diese Kuh OK?";
 
 char const gText_AnimalContest_SheepConfirmation[] =
-    "Is this Sheep OK?";
+    "Ist dieses Schaf OK?";
 
 char const gText_AnimalContest_BabyChickIneligible[] =
-    "Baby Chicks can't compete.\r\n"
-    "Choose another one?{Press}";
+    "Kleine Küken können\r\n"
+    "nicht mitmachen. \r\n"
+    "Ein anderes wählen?{Press}";
 
 char const gText_AnimalContest_AdultCowIneligible[] =
-    "Only adults can enter.\r\n"
-    "Please select another Cow.{Press}";
+    "Nur ausgewachsene\r\n"
+    "Tiere können mitmachen.\r\n"
+    "Wähle eine andere Kuh.{Press}";
 
 char const gText_AnimalContest_AdultSheepIneligible[] =
-    "Only adults can enter.\r\n"
-    "Please select another Sheep.{Press}";
+    "Nur ausgewachsene\r\n"
+    "Tiere können mitmachen.\r\n"
+    "Wähle bitte ein{Press}\r\n"
+    "anderes Schaf.{Press}";
 
 char const gText_AnimalContest_SickChickenIneligible[] =
-    "Sorry, but this Chicken is \r\n"
-    "sick. Choose another one?{Press}";
+    "Tut mir leid, aber dieses \r\n"
+    "Huhn ist krank. {Press}";
 
 char const gText_AnimalContest_SickCowIneligible[] =
-    "Sorry, but this Cow is \r\n"
-    "sick. Choose another one?{Press}";
+    "Tut mir leid, aber diese \r\n"
+    "Kuh ist krank. \r\n"
+    "Eine andere wählen?{Press}";
 
 char const gText_AnimalContest_SickSheepIneligible[] =
-    "Sorry, but this Sheep is \r\n"
-    "sick. Choose another one?{Press}";
+    "Tut mir leid, aber dieses \r\n"
+    "Schaf ist krank\r\n"
+    ".Ein anderes wählen?{Press}";
 
 char const gText_AnimalContest_PregnantCowIneligible[] =
-    "Pregnant Cows can't enter.\r\n"
-    "Please select another.{Press}";
+    "Trächtige Kühe\r\n"
+    "können nicht mitmachen.\r\n"
+    "Wähle bitte eine andere.{Press}";
 
 char const gText_AnimalContest_PregnantSheepIneligible[] =
-    "Pregnant Sheep can't enter.\r\n"
-    "Please select another.{Press}";
+    "Trächtige Schafe\r\n"
+    "können nicht mitmachen.\r\n"
+    "Wähle bitte ein anderes.{Press}";
 
 char const gText_AnimalContest_ShornSheepIneligible[] =
-    "Shorn Sheep can't enter.\r\n"
-    "Please select another.{Press}";
+    "Geschorene Schafe\r\n"
+    "können nicht mitmachen.\r\n"
+    "Wähle bitte ein anderes.{Press}";
 
 char const gText_AnimalContest_EntryAccepted[] =
-    "It's a deal, then. I'll\r\n"
-    "bring it to you.{Press}";
+    "Ok, abgemacht. Ich werde es\r\n"
+    "dir bringen.{Press}";
 
 char const gText_AnimalContest_ChickenSelectionPrompt[] =
-    "In that case, select a \r\n"
-    "Chicken to compete.{Press}";
+    "Wenn das so ist, wähle\r\n"
+    "ein Huhn zum Mitmachen.{Press}";
 
 char const gText_AnimalContest_CowSelectionPrompt[] =
-    "In that case, select a \r\n"
-    "Cow to enter.{Press}";
+    "Wenn das so ist, wähle \r\n"
+    "eine Kuh zum Mitmachen.{Press}";
 
 char const gText_AnimalContest_SheepSelectionPrompt[] =
-    "In that case, select a \r\n"
-    "Sheep to enter.{Press}";
+    "Wenn das so ist, wähle \r\n"
+    "ein Schaf zum Mitmachen.{Press}";
 
 char const gText_AnimalContest_EntryDeclinedQuestion[] =
-    "So you don't want to enter?";
+    "Du willst nicht mitmachen?";
 
 char const gText_AnimalContest_ChickenEntryDeclinedResponse[] =
-    "Alright. Think about\r\n"
-    "it next time.{Press}";
+    "Ok. Überlege, ob du nächstes\r\n"
+    "Mal dabei sein willst.{Press}";
 
 char const gText_AnimalContest_LivestockEntryDeclinedResponse[] =
-    "Alright. Think about\r\n"
-    "competing next time.{Press}";
+    "Ok. Überlege, ob du nächstes\r\n"
+    "Mal mitmachen willst.{Press}";
 
 char const gCppRuntimeBadAlloc_AnimalContestBoundary[] =
     "bad_alloc";
 
 char const gText_AnimalContest_FinalConfirmation[] =
-    "Are you sure?";
+    "Bist du sicher?";
 
 char const gText_AnimalContest_FinalYes[] =
-    "Yes";
+    "Ja";
 
 char const gText_AnimalContest_FinalNo[] =
-    "No";
+    "Nein";
