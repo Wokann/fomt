@@ -106,7 +106,7 @@ char const gText_Blacksmith_PurchaseComplete[] =
     "Thanks a lot!{Press}";
 
 char const gText_Blacksmith_Delivery[] =
-    "Thanks a lot. You can't\r\n"
+    "Thanks a lot.You can't carry\r\n"
     "anything else, though, so\r\n"
     "I'll have Gray deliver it.{Press}";
 
