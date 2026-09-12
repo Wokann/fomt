@@ -15,7 +15,11 @@
 
 LivestockShopCatalogEntry const gLivestockShopCatalog[] = {
     { 0x5B, gText_LivestockShop_Empty, 20, gText_LivestockShop_Empty, 0 },
+#if defined(REGION_DE)
+    { 0x01, gText_LivestockShop_BuyCowPrimary, 5000, gText_LivestockShop_BuyCow, 1 },
+#else
     { 0x01, gText_LivestockShop_BuyCow, 5000, gText_LivestockShop_BuyCow, 1 },
+#endif
     { 0x02, gText_LivestockShop_BuySheep, 4000, gText_LivestockShop_BuySheep, 1 },
     { 0x30, gText_LivestockShop_Empty, 3000, gText_LivestockShop_Empty, 2 },
     { 0x31, gText_LivestockShop_Empty, 3000, gText_LivestockShop_Empty, 2 },

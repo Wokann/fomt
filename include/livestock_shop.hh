@@ -16,6 +16,9 @@ struct LivestockShopCatalogEntry
 };
 
 extern char const gText_LivestockShop_Empty[];
+#if defined(REGION_DE)
+extern char const gText_LivestockShop_BuyCowPrimary[];
+#endif
 extern char const gText_LivestockShop_BuyCow[];
 extern char const gText_LivestockShop_BuySheep[];
 extern char const gText_LivestockShop_SellCow[];
@@ -60,6 +63,9 @@ extern char const gText_LivestockShop_PurchaseComplete[];
 extern char const gText_LivestockShop_AnimalPurchaseComplete[];
 extern char const gText_LivestockShop_PurchaseMorePrompt[];
 extern char const gText_LivestockShop_PurchaseDeclinedPrefix[];
+#if defined(REGION_DE)
+extern char const gText_LivestockShop_AnimalDeliveryLineBreak[];
+#endif
 extern char const gText_LivestockShop_AnimalDelivery[];
 
 #if defined(REGION_JP)

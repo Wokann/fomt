@@ -5,17 +5,20 @@
 char const gText_LivestockShop_Empty[] =
     "";
 
+char const gText_LivestockShop_BuyCowPrimary[] =
+    "Kuh kaufen.";
+
 char const gText_LivestockShop_BuyCow[] =
-    "Buy Cow";
+    "Kuh kaufen";
 
 char const gText_LivestockShop_BuySheep[] =
-    "Buy Sheep";
+    "Schaf kaufen";
 
 char const gText_LivestockShop_SellCow[] =
-    "Sell Cow";
+    "Kuh verkaufen";
 
 char const gText_LivestockShop_SellSheep[] =
-    "Sell Sheep";
+    "Schaf verkaufen";
 
 #elif defined(FOMT_LIVESTOCK_SHOP_TEXT_STATUS)
 
@@ -23,132 +26,135 @@ char const gText_LivestockShop_PageBreak[] =
     "\p";
 
 char const gText_LivestockShop_StatusSick[] =
-    "　　　Sick　  ";
+    "　　　Krank   ";
 
 char const gText_LivestockShop_StatusUnhappy[] =
-    "　　　Unhappy ";
+    " Unglücklich";
 
 char const gText_LivestockShop_StatusHealthy[] =
-    "　　　Healthy ";
+    "　　　Gesund  ";
 
 char const gText_LivestockShop_StatusSpacer[] =
     " ";
 
 char const gText_LivestockShop_Age[] =
-    "years old\r\n　　　　　    ";
+    "Jahre alt\r\n　　　　　";
 
 char const gText_LivestockShop_Spring[] =
-    "Spring";
+    "Frühling";
 
 char const gText_LivestockShop_Summer[] =
-    "Summer";
+    "Sommer";
 
 char const gText_LivestockShop_Autumn[] =
-    "Fall";
+    "Herbst";
 
 char const gText_LivestockShop_Winter[] =
     "Winter";
 
 char const gText_LivestockShop_DailySellingPrice[] =
-    "D\r\nSelling Price　 ";
+    "D\r\nVerkaufspreis   ";
 
 char const gText_LivestockShop_Currency[] =
     "G";
 
 char const gText_LivestockShop_SecondaryStatusSick[] =
-    "　　　Sick  　";
+    "　　　Krank 　";
 
 char const gText_LivestockShop_SecondaryAge[] =
-    "years old \r\n　　　　　    ";
+    "Jahre alt \r\n　　　　  ";
 
 char const gText_LivestockShop_SecondaryDailySellingPrice[] =
-    "D \r\nSelling Price　　 ";
+    "D \r\nVerkaufspreis　　 ";
 
 #elif defined(FOMT_LIVESTOCK_SHOP_TEXT_DIALOGUE)
 
 char const gText_LivestockShop_InsufficientGold[] =
-    "You don't have enough gold!{Press}";
+    "Du hast nicht genug Gold!{Press}";
 
 char const gText_LivestockShop_FeedBinFull[] =
-    "The Feed Bin is already\r\n"
-    "full, don't you know...{Press}";
+    "Der Futtereimer ist\r\n"
+    "schon voll, siehst du nicht?{Press}";
 
 char const gText_LivestockShop_BlankLinePair[] =
     "\r\n"
     "\r\n";
 
 char const gText_LivestockShop_InventoryFull[] =
-    "You can't hold \r\n"
-    "anything else! {Press}";
+    "Du kannst nichts \r\n"
+    "anderes mehr tragen! {Press}";
 
 char const gText_LivestockShop_BarnFull[] =
-    "The Barn is full...!{Press}";
+    "Die Scheune ist voll...!{Press}";
 
 char const gText_LivestockShop_NameAnimalPrompt[] =
-    "Will you do the naming\r\n"
-    "for me?{Press}";
+    "Benennst du sie\r\n"
+    "für mich?{Press}";
 
 char const gText_LivestockShop_NoCowsToSell[] =
-    "I don't have any cows\r\n"
-    "to sell at all...{Press}";
+    "Ich habe überhaupt\r\n"
+    "keine Kühe zu verkaufen...{Press}";
 
 char const gText_LivestockShop_NoSheepToSell[] =
-    "I don't have any sheep\r\n"
-    "to sell at all...{Press}";
+    "Ich habe überhaupt keine\r\n"
+    "Schafe zu verkaufen...{Press}";
 
 char const gText_LivestockShop_ComeAgain[] =
-    "Just let me know if you\r\n"
-    "want to buy anything, now.{Press}";
+    "Sag mir einfach, wenn du\r\n"
+    "etwas kaufen willst.{Press}";
 
 char const gText_LivestockShop_PurchaseConfirmation[] =
-    "You're sure now?{Press}";
+    "Bist du sicher?{Press}";
 
 char const gText_LivestockShop_PricePromptPrefix[] =
-    "How about ";
+    "Wie wären";
 
 char const gText_LivestockShop_PricePromptSuffix[] =
     " G?";
 
 char const gText_LivestockShop_Yes[] =
-    "Yes";
+    "Ja";
 
 char const gText_LivestockShop_No[] =
-    "No";
+    "Nein";
 
 char const gText_LivestockShop_FeedPurchaseComplete[] =
-    "I'll put this here Chicken\r\n"
-    "Feed in the Feed Bin, now.{Press}";
+    "Ich tue das Hühnerfutter\r\n"
+    "jetzt in den Eimer.{Press}";
 
 char const gText_LivestockShop_PurchaseDeliveryPartial[] =
-    "Come any time.{Press}\p"
-    "Since you can't hold\r\n"
-    "all of this, I'll deliver\r\n"
-    "it, OK?{Press}";
+    "Komm jederzeit.{Press}\p"
+    "Da du das nicht alles\r\n"
+    "tragen kannst, liefere\r\n"
+    "ich es dir, Ok?{Press}";
 
 char const gText_LivestockShop_PurchaseDeliveryAll[] =
-    "Come any time.{Press}\p"
-    "Since you can't hold\r\n"
-    "anything else, I'll deliver\r\n"
-    "it, OK?{Press}";
+    "Komm jederzeit.{Press}\p"
+    "Da du nichts mehr tragen\r\n"
+    "kannst, liefere ich es\r\n"
+    "dir, Ok?{Press}";
 
 char const gText_LivestockShop_PurchaseComplete[] =
-    "Come any time.{Press}";
+    "Komm jederzeit.{Press}";
 
 char const gText_LivestockShop_AnimalPurchaseComplete[] =
-    "I'll put 'er in the barn \r\n"
-    "for you. Thanks!{Press}";
+    "Ich bringe sie für \r\n"
+    "dich in die Scheune. Danke!{Press}";
 
 char const gText_LivestockShop_PurchaseMorePrompt[] =
-    "Not interested in anything\r\n"
-    "else?{Press}";
+    "An nichts anderem\r\n"
+    "interessiert?{Press}";
 
 char const gText_LivestockShop_PurchaseDeclinedPrefix[] =
-    "Alright...{Press}\p"
-    "Then, ";
+    "Na gut...{Press}\p"
+    "Dann, ";
+
+char const gText_LivestockShop_AnimalDeliveryLineBreak[] =
+    "\r\n";
 
 char const gText_LivestockShop_AnimalDelivery[] =
-    " I'll take\r\n"
-    "it from the pastor's barn.{Press}";
+    "Ich hole es von der Scheune\r\n"
+    "des Priesters.{Press}";
 
 #else
 #error "Include this file through src/livestock_shop.cc with a text partition."
