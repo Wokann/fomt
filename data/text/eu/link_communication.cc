@@ -30,7 +30,7 @@ char const gText_LinkCommunication_WaitingForOtherPlayer[] =
     "Press B Button to cancel.{Press}";
 
 char const gText_LinkCommunication_NowSendingData[] =
-    "Now sending dgata.";
+    "Now sending data.";
 
 char const gText_LinkCommunication_DataExchangeFailed[] =
     "Data exchange failed.\r\n"
@@ -53,13 +53,13 @@ char const gText_LinkCommunication_IncompatibleGameData[] =
 
 char const gText_LinkCommunication_ExchangeRestriction[] =
     "You can only exchange data\r\n"
-    "with Game Cube's Harvest\r\n"
+    "with GameCube's Harvest\r\n"
     "Moon, and only if you{Press}\r\n"
     "haven't shared data with\r\n"
     "other games. {Press}";
 
 char const gText_LinkCommunication_ActionQuestion[] =
-    "Shall I stop communication?";
+    "Shall I start communication?";
 
 char const gText_LinkCommunication_Declined[] =
     "So you don't want to\r\n"

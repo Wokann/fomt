@@ -176,6 +176,10 @@ EXTERN_C
 LinkCommunicationGameCode const gLinkCommunicationGameCodeA4N = {
 #if defined(REGION_JP)
     0x4A4E3441,
+#elif defined(REGION_EU)
+    0x504E3441,
+#elif defined(REGION_DE)
+    0x444E3441,
 #else
     0x454E3441,
 #endif
@@ -185,6 +189,10 @@ LinkCommunicationGameCode const gLinkCommunicationGameCodeA4N = {
 LinkCommunicationGameCode const gLinkCommunicationGameCodeGYW = {
 #if defined(REGION_JP)
     0x4A575947,
+#elif defined(REGION_EU)
+    0x50575947,
+#elif defined(REGION_DE)
+    0x50575947,
 #else
     0x45575947,
 #endif

@@ -1,70 +1,83 @@
 #include "link_communication_text.hh"
 
 char const gText_LinkCommunication_Waiting[] =
-    "Now communicating.\r\n"
-    "Is other player prepared?\r\n"
-    "(B Button to cancel)";
+    "Kommunikation.\r\n"
+    "Ist der andere\r\n"
+    " Spieler bereit?{Press}\p"
+    "(Abbrechen\r\n"
+    " dr[u]cke Knopf B){Press}";
 
 char const gText_LinkCommunication_SendingGameData[] =
-    "Sending game data now...";
+    "Spieldaten jetzt senden...";
 
 char const gText_LinkCommunication_TestingConnection[] =
-    "Testing connection...";
+    "Verbindung testen...";
 
 char const gText_LinkCommunication_CannotResendPreviousData[] =
-    "You won't be able to send\r\n"
-    "previous game data.{Press}";
+    "Du kannst keine früheren\r\n"
+    "Spieldaten senden.{Press}";
 
 char const gText_LinkCommunication_ProceedQuestion[] =
     "OK?";
 
 char const gText_LinkCommunication_Yes[] =
-    "Yes";
+    "Ja";
 
 char const gText_LinkCommunication_No[] =
-    "No";
+    "Nein";
 
 char const gText_LinkCommunication_WaitingForOtherPlayer[] =
-    "Waiting for other player\r\n"
-    "to respond.\r\n"
-    "Press B Button to cancel.{Press}";
+    "Warten auf Antwort des\r\n"
+    "anderen Spielers.\r\n"
+    "Drücke Knopf B,{Press}\p"
+    "um abzubrechen.{Press}";
 
 char const gText_LinkCommunication_NowSendingData[] =
-    "Now sending dgata.";
+    "Jetzt Daten senden.";
 
 char const gText_LinkCommunication_DataExchangeFailed[] =
-    "Data exchange failed.\r\n"
-    "Try again?{Press}";
+    "Datenaustausch\r\n"
+    "fehlgeschlagen.\r\n"
+    "Erneut versuchen?{Press}";
 
 char const gText_LinkCommunication_QuitCommunication[] =
-    "OK, I'll quit\r\n"
-    "communication, then.{Press}";
+    "OK, Kommunikation\r\n"
+    "abbrechen.{Press}";
 
 char const gText_LinkCommunication_OtherPlayerCanceled[] =
-    "What's the matter?\r\n"
-    "The other player seems\r\n"
-    "to have canceled.{Press}";
+    "Was ist los?\r\n"
+    "Der andere Spieler hat\r\n"
+    "wohl abgebrochen.{Press}";
 
 char const gText_LinkCommunication_IncompatibleGameData[] =
     "Hmmm?\r\n"
-    "This data and A Wonderful\r\n"
-    "Life's data didn't{Press}\r\n"
-    "go well together.{Press}";
+    "Diese Daten und die Ein\r\n"
+    "wundervolles-Leben-Daten{Press}\r\n"
+    "passten nicht zusammen.{Press}";
 
 char const gText_LinkCommunication_ExchangeRestriction[] =
-    "You can only exchange data\r\n"
-    "with Game Cube's Harvest\r\n"
-    "Moon, and only if you{Press}\r\n"
-    "haven't shared data with\r\n"
-    "other games. {Press}";
+    "Nur mit der Harvest Moon-\r\n"
+    "Version des Game Cube kannst\r\n"
+    "du Daten tauschen und auch{Press}\r\n"
+    "nur dann, wenn du zuvor\r\n"
+    "nicht mit anderen\r\n"
+    "Spielen Daten geteilt hast. {Press}";
 
 char const gText_LinkCommunication_ActionQuestion[] =
-    "Shall I stop communication?";
+    "Kommunikation starten?";
+
+// The DE retail ROM uses this distinct English pair for the action prompt;
+// the earlier confirmation still uses its separate Ja/Nein pair.
+char const gText_LinkCommunication_ActionYes[] =
+    "Yes";
+
+char const gText_LinkCommunication_ActionNo[] =
+    "No";
 
 char const gText_LinkCommunication_Declined[] =
-    "So you don't want to\r\n"
-    "send data after all?\r\n"
-    "Too bad...{Press}";
+    "Also willst du nun\r\n"
+    "keine Daten senden?\r\n"
+    "Zu schade...{Press}";
 
 char const gText_LinkCommunication_Complete[] =
-    "Communication complete.{Press}";
+    "Kommunikation abgeschlossen.{Press}";

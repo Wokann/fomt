@@ -163488,8 +163488,13 @@ func_08093364: @ 0x08093364
 	b .L080937C4
 	.align 2, 0
 .L080936EC: .4byte gText_LinkCommunication_ActionQuestion
+.ifdef REGION_DE
+.L080936F0: .4byte gText_LinkCommunication_ActionYes
+.L080936F4: .4byte gText_LinkCommunication_ActionNo
+.else
 .L080936F0: .4byte gText_LinkCommunication_Yes
 .L080936F4: .4byte gText_LinkCommunication_No
+.endif
 .L080936F8:
 	movs r1, #0xee
 	lsls r1, r1, #1

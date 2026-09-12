@@ -19,6 +19,10 @@ extern char const gText_LinkCommunication_OtherPlayerCanceled[];
 extern char const gText_LinkCommunication_IncompatibleGameData[];
 extern char const gText_LinkCommunication_ExchangeRestriction[];
 extern char const gText_LinkCommunication_ActionQuestion[];
+#if defined(REGION_DE)
+extern char const gText_LinkCommunication_ActionYes[];
+extern char const gText_LinkCommunication_ActionNo[];
+#endif
 extern char const gText_LinkCommunication_Declined[];
 extern char const gText_LinkCommunication_Complete[];
 

@@ -745,7 +745,8 @@ SECTIONS
         . = ALIGN(4);
         /* Link-communication regional data: text, tables, codes. */
         FILL(0x00);
-         src/link_communication_data.o(.rodata);
+        . = 0x100EA0; src/link_communication_data.o(.rodata);
+        . = 0x1014DC;
          src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_page_break);
          src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_utensil_values);
          data/text/recovery_status.o(.rodata);
