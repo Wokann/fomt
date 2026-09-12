@@ -1,13 +1,3 @@
-    .ifdef REGION_JP
-    @ JP revision 0 ROM header and startup path.
-    .section .rom_header, "ax", %progbits
-    .align 2, 0
-    .arm
-    .global _start
-    .type _start, %function
-_start:
-    .incbin "baserom_jp.gba", 0x0, 0x18C
-    .else
     .include "six/asm/prelude.s"
     .include "six/asm/hw/dma.s"
 
@@ -44,6 +34,11 @@ _start:
     .byte  0xD6, 0x25, 0xE4, 0x8B, 0x38, 0x0A, 0xAC, 0x72
     .byte  0x21, 0xD4, 0xF8, 0x07
     @ CHECKSUM AREA BEGIN
+    .ifdef REGION_JP
+    .ascii "BOKUMONOGBA"  @ Game title
+    .zero  1              @ JP title terminator
+    .ascii "A4NJ"         @ Game code
+    .else
     .ifdef REGION_DE
     .ascii "HARVESTMOGER"  @ Game title
     .ascii "A4ND"          @ Game code
@@ -56,13 +51,21 @@ _start:
     .ascii "A4NE"          @ Game code
     .endif
     .endif
+    .endif
+    .ifdef REGION_JP
+    .ascii "99"            @ Maker code
+    .else
     .ascii "E9"            @ Maker code
+    .endif
     .byte  0x96            @ Mandatory
     .zero  1               @ Device code
     .zero  1               @ Device type
     .zero  7               @ Reserved
     .zero  1               @ Game version
     @ CHECKSUM AREA END
+    .ifdef REGION_JP
+    .byte  0x9E            @ Checksum
+    .else
     .ifdef REGION_DE
     .byte  0x35            @ Checksum
     .else
@@ -70,6 +73,7 @@ _start:
     .byte  0x3D            @ Checksum
     .else
     .byte  0x48            @ Checksum
+    .endif
     .endif
     .endif
     .zero  2               @ Reserved
@@ -149,4 +153,3 @@ exit:
     bx     lr
 
     .align 2, 0
-    .endif

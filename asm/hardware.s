@@ -1,87 +1,3 @@
-    .ifdef REGION_JP
-    @ JP revision 0 counterpart of asm/hardware.s.
-    @
-    @ This bounded hardware-support object has JP literals in a small subset
-    @ of its routines.  The whole existing object range is retained exactly;
-    @ public aliases are added only when a remaining native caller needs one.
-
-    .section .text
-    .syntax unified
-    .thumb
-    .global func_0800736C
-    .thumb_func
-func_0800736C:
-    .incbin "baserom_jp.gba", 0x7374, 0x26DC
-
-    .global func_080073E0
-    .thumb_set func_080073E0, func_0800736C + 0x74
-    .global func_0800745C
-    .thumb_set func_0800745C, func_0800736C + 0xF0
-    .global func_080077DC
-    .thumb_set func_080077DC, func_0800736C + 0x470
-    .global func_08007844
-    .thumb_set func_08007844, func_0800736C + 0x4D8
-    .global func_08007874
-    .thumb_set func_08007874, func_0800736C + 0x508
-    .global func_080079E8
-    .thumb_set func_080079E8, func_0800736C + 0x67C
-    .global func_08007C28
-    .thumb_set func_08007C28, func_0800736C + 0x8BC
-    .global func_08007CD8
-    .thumb_set func_08007CD8, func_0800736C + 0x96C
-    .global func_080086BC
-    .thumb_set func_080086BC, func_0800736C + 0x1350
-    .global func_08008980
-    .thumb_set func_08008980, func_0800736C + 0x1614
-    .global func_08008A68
-    .thumb_set func_08008A68, func_0800736C + 0x16FC
-    .global func_08008AFC
-    .thumb_set func_08008AFC, func_0800736C + 0x1790
-    .global func_08008B0C
-    .thumb_set func_08008B0C, func_0800736C + 0x17A0
-    .global func_08008B18
-    .thumb_set func_08008B18, func_0800736C + 0x17AC
-    .global func_08008FE4
-    .thumb_set func_08008FE4, func_0800736C + 0x1C78
-    .global func_080094AC
-    .thumb_set func_080094AC, func_0800736C + 0x2140
-    .global func_080094B8
-    .thumb_set func_080094B8, func_0800736C + 0x214C
-    .global func_0800956C
-    .thumb_set func_0800956C, func_0800736C + 0x2200
-    .global func_0800959C
-    .thumb_set func_0800959C, func_0800736C + 0x2230
-    .global func_080095C0
-    .thumb_set func_080095C0, func_0800736C + 0x2254
-    .global func_080095FC
-    .thumb_set func_080095FC, func_0800736C + 0x2290
-    .global func_08009638
-    .thumb_set func_08009638, func_0800736C + 0x22CC
-    .global func_08009674
-    .thumb_set func_08009674, func_0800736C + 0x2308
-    .global func_080096F0
-    .thumb_set func_080096F0, func_0800736C + 0x2384
-    .global func_08009864
-    .thumb_set func_08009864, func_0800736C + 0x24F8
-    .global func_080098AC
-    .thumb_set func_080098AC, func_0800736C + 0x2540
-    .global func_080098D8
-    .thumb_set func_080098D8, func_0800736C + 0x256C
-    .global func_080098DC
-    .thumb_set func_080098DC, func_0800736C + 0x2570
-    .global func_08009908
-    .thumb_set func_08009908, func_0800736C + 0x259C
-    .global func_08009940
-    .thumb_set func_08009940, func_0800736C + 0x25D4
-    .global func_08009968
-    .thumb_set func_08009968, func_0800736C + 0x25FC
-    .global func_08009984
-    .thumb_set func_08009984, func_0800736C + 0x2618
-    .global func_080099B0
-    .thumb_set func_080099B0, func_0800736C + 0x2644
-    .global func_080099D4
-    .thumb_set func_080099D4, func_0800736C + 0x2668
-    .else
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
 
@@ -2776,13 +2692,44 @@ func_08008724: @ 0x08008724
     bx r0
     .align 2, 0
 .L08008770: .4byte vtable_unk_080E5AF0
-.L08008774:
-    .byte 0x10, 0xB5, 0x84, 0xB0, 0x04, 0x68, 0x23, 0x1C, 0x34, 0x33, 0x00, 0x22
-    .byte 0xA1, 0x8E, 0x0F, 0x48, 0x08, 0x40, 0xA0, 0x86, 0x00, 0x92, 0x01, 0x92, 0x0D, 0x48, 0x02, 0x90
-    .byte 0x03, 0x93, 0x92, 0x20, 0xC0, 0x00, 0x24, 0x18, 0x20, 0x1C, 0x00, 0xF0, 0xA1, 0xF9, 0x81, 0x68
-    .byte 0x0A, 0x69, 0x69, 0x46, 0xCB, 0xF0, 0xB6, 0xF8, 0x20, 0x1C, 0x00, 0xF0, 0xA1, 0xF9, 0x68, 0x46
-    .byte 0x02, 0x21, 0x01, 0xF0, 0x7B, 0xF8, 0x04, 0xB0, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
-    .byte 0x7F, 0xFF, 0x00, 0x00, 0xF0, 0x5A, 0x0E, 0x08
+    thumb_func_start func_08008774
+func_08008774:
+    push {r4, lr}
+    sub sp, #0x10
+    ldr r4, [r0]
+    adds r3, r4, #0
+    adds r3, #0x34
+    movs r2, #0
+    ldrh r1, [r4, #0x34]
+    ldr r0, .L080087BC
+    ands r0, r1
+    strh r0, [r4, #0x34]
+    str r2, [sp]
+    str r2, [sp, #4]
+    ldr r0, .L080087C0
+    str r0, [sp, #8]
+    str r3, [sp, #0xc]
+    movs r0, #0x92
+    lsls r0, r0, #3
+    adds r4, r4, r0
+    adds r0, r4, #0
+    bl func_08008AE0
+    ldr r1, [r0, #8]
+    ldr r2, [r1, #0x10]
+    mov r1, sp
+    bl _call_via_r2
+    adds r0, r4, #0
+    bl func_08008AF0
+    mov r0, sp
+    movs r1, #2
+    bl func_080098AC
+    add sp, #0x10
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.L080087BC: .4byte 0x0000FF7F
+.L080087C0: .4byte vtable_unk_080E5AF0
 
     thumb_func_start func_080087C8
 func_080087C8: @ 0x080087C8
@@ -3290,9 +3237,13 @@ func_08008BE0: @ 0x08008BE0
     bl m4aMPlayStop
     pop {r0}
     bx r0
-.L08008BEC:
-    .byte 0x00, 0xB5, 0x00, 0x68
-    .byte 0xC9, 0xF0, 0x22, 0xFC, 0x01, 0xBC, 0x00, 0x47
+    thumb_func_start func_08008BEC
+func_08008BEC:
+    push {lr}
+    ldr r0, [r0]
+    bl m4aMPlayContinue
+    pop {r0}
+    bx r0
 
     thumb_func_start func_08008BF8
 func_08008BF8: @ 0x08008BF8
@@ -3303,10 +3254,25 @@ func_08008BF8: @ 0x08008BF8
     bl m4aMPlayFadeOut
     pop {r0}
     bx r0
-.L08008C08:
-    .byte 0x00, 0xB5, 0x09, 0x04, 0x09, 0x0C, 0x00, 0x68
-    .byte 0xC9, 0xF0, 0x36, 0xFC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0xB5, 0x09, 0x04, 0x09, 0x0C, 0x00, 0x68
-    .byte 0xC9, 0xF0, 0x3E, 0xFC, 0x01, 0xBC, 0x00, 0x47
+    thumb_func_start func_08008C08
+func_08008C08:
+    push {lr}
+    lsls r1, r1, #0x10
+    lsrs r1, r1, #0x10
+    ldr r0, [r0]
+    bl m4aMPlayFadeOutTemporarily
+    pop {r0}
+    bx r0
+
+    thumb_func_start func_08008C18
+func_08008C18:
+    push {lr}
+    lsls r1, r1, #0x10
+    lsrs r1, r1, #0x10
+    ldr r0, [r0]
+    bl m4aMPlayFadeIn
+    pop {r0}
+    bx r0
 
     thumb_func_start func_08008C28
 func_08008C28: @ 0x08008C28
@@ -3440,11 +3406,29 @@ func_08008D3C: @ 0x08008D3C
     bx r1
     .align 2, 0
 .L08008D58: .4byte gSongTable
-.L08008D5C:
-    .byte 0x00, 0x04, 0x03, 0x49
-    .byte 0x40, 0x0B, 0x40, 0x18, 0x00, 0x68, 0x00, 0x78, 0x70, 0x47, 0x00, 0x00, 0xF0, 0xAB, 0x13, 0x08
-    .byte 0x00, 0x04, 0x03, 0x49, 0x40, 0x0B, 0x40, 0x18, 0x00, 0x68, 0x80, 0x78, 0x70, 0x47, 0x00, 0x00
-    .byte 0xF0, 0xAB, 0x13, 0x08
+    thumb_func_start func_08008D5C
+func_08008D5C:
+    lsls r0, r0, #0x10
+    ldr r1, .L08008D6C
+    lsrs r0, r0, #0xd
+    adds r0, r0, r1
+    ldr r0, [r0]
+    ldrb r0, [r0]
+    bx lr
+    .align 2, 0
+.L08008D6C: .4byte gSongTable
+
+    thumb_func_start func_08008D70
+func_08008D70:
+    lsls r0, r0, #0x10
+    ldr r1, .L08008D80
+    lsrs r0, r0, #0xd
+    adds r0, r0, r1
+    ldr r0, [r0]
+    ldrb r0, [r0, #2]
+    bx lr
+    .align 2, 0
+.L08008D80: .4byte gSongTable
 
     thumb_func_start func_08008D84
 func_08008D84: @ 0x08008D84
@@ -3490,10 +3474,25 @@ func_08008DB8: @ 0x08008DB8
     pop {r0}
     bx r0
     .align 2, 0
-.L08008DC8:
-    .byte 0x00, 0xB5, 0x00, 0x04, 0x00, 0x0C, 0xC9, 0xF0
-    .byte 0xBF, 0xFA, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x00, 0xB5, 0x00, 0x04, 0x00, 0x0C, 0xC9, 0xF0
-    .byte 0xE1, 0xFA, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
+    thumb_func_start func_08008DC8
+func_08008DC8:
+    push {lr}
+    lsls r0, r0, #0x10
+    lsrs r0, r0, #0x10
+    bl m4aSongNumStartOrContinue
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    thumb_func_start func_08008DD8
+func_08008DD8:
+    push {lr}
+    lsls r0, r0, #0x10
+    lsrs r0, r0, #0x10
+    bl m4aSongNumStop
+    pop {r0}
+    bx r0
+    .align 2, 0
 
     thumb_func_start func_08008DE8
 func_08008DE8: @ 0x08008DE8
@@ -3502,15 +3501,77 @@ func_08008DE8: @ 0x08008DE8
     pop {r0}
     bx r0
     .align 2, 0
-.L08008DF4:
-    .byte 0x00, 0xB5, 0x00, 0x04, 0x00, 0x0C, 0xC9, 0xF0, 0xED, 0xFA, 0x01, 0xBC
-    .byte 0x00, 0x47, 0x00, 0x00, 0x00, 0xB5, 0xC9, 0xF0, 0x1D, 0xFB, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
-    .byte 0x01, 0x48, 0x00, 0x06, 0x00, 0x0E, 0x70, 0x47, 0x05, 0x00, 0x00, 0x00, 0x01, 0x48, 0x00, 0x06
-    .byte 0x00, 0x0E, 0x70, 0x47, 0xD3, 0x00, 0x00, 0x00, 0x00, 0xB5, 0x00, 0x2A, 0x15, 0xD0, 0x01, 0x43
-    .byte 0x11, 0x43, 0x01, 0x20, 0x08, 0x40, 0x00, 0x28, 0x0F, 0xD1, 0x03, 0x20, 0x01, 0x40, 0x00, 0x29
-    .byte 0x05, 0xD1, 0x90, 0x03, 0x02, 0x0C, 0x84, 0x20, 0x00, 0x06, 0x02, 0x43, 0x06, 0xE0, 0xD0, 0x03
-    .byte 0x02, 0x0C, 0x80, 0x20, 0x00, 0x06, 0x02, 0x43, 0x00, 0xE0, 0x00, 0x22, 0x10, 0x1C, 0x02, 0xBC
-    .byte 0x08, 0x47, 0x00, 0x00
+    thumb_func_start func_08008DF4
+func_08008DF4:
+    push {lr}
+    lsls r0, r0, #0x10
+    lsrs r0, r0, #0x10
+    bl m4aSongNumContinue
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    thumb_func_start func_08008E04
+func_08008E04:
+    push {lr}
+    bl m4aMPlayAllContinue
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    thumb_func_start func_08008E10
+func_08008E10:
+    ldr r0, .L08008E18
+    lsls r0, r0, #0x18
+    lsrs r0, r0, #0x18
+    bx lr
+    .align 2, 0
+.L08008E18: .4byte 0x00000005
+
+    thumb_func_start func_08008E1C
+func_08008E1C:
+    ldr r0, .L08008E24
+    lsls r0, r0, #0x18
+    lsrs r0, r0, #0x18
+    bx lr
+    .align 2, 0
+.L08008E24: .4byte 0x000000D3
+
+    thumb_func_start func_08008E28
+func_08008E28:
+    push {lr}
+    cmp r2, #0
+    beq .L08008E58
+    orrs r1, r0
+    orrs r1, r2
+    movs r0, #1
+    ands r0, r1
+    cmp r0, #0
+    bne .L08008E58
+    movs r0, #3
+    ands r1, r0
+    cmp r1, #0
+    bne .L08008E4C
+    lsls r0, r2, #0xe
+    lsrs r2, r0, #0x10
+    movs r0, #0x84
+    lsls r0, r0, #0x18
+    orrs r2, r0
+    b .L08008E5A
+.L08008E4C:
+    lsls r0, r2, #0xf
+    lsrs r2, r0, #0x10
+    movs r0, #0x80
+    lsls r0, r0, #0x18
+    orrs r2, r0
+    b .L08008E5A
+.L08008E58:
+    movs r2, #0
+.L08008E5A:
+    adds r0, r2, #0
+    pop {r1}
+    bx r1
+    .align 2, 0
 
     thumb_func_start func_08008E64
 func_08008E64: @ 0x08008E64
@@ -3707,10 +3768,28 @@ func_08008F60: @ 0x08008F60
     pop {r1}
     bx r1
 .L08008FB8:
-    .byte 0x10, 0xB5, 0x81, 0xB0, 0x02, 0x1C, 0x54, 0x68
-    .byte 0x10, 0x68, 0x01, 0x28, 0x01, 0xD1, 0x00, 0x94, 0x6C, 0x46, 0x91, 0x68, 0xD2, 0x68, 0x04, 0x4B
-    .byte 0x20, 0x1C, 0xC7, 0xF0, 0x73, 0xFF, 0x01, 0xB0, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
-    .byte 0xD4, 0x00, 0x00, 0x04
+    push {r4, lr}
+    sub sp, #4
+    adds r2, r0, #0
+    ldr r4, [r2, #4]
+    ldr r0, [r2]
+    cmp r0, #1
+    bne .L08008FCE
+    str r4, [sp]
+    mov r4, sp
+.L08008FCE:
+    ldr r1, [r2, #8]
+    ldr r2, [r2, #0xc]
+    ldr r3, .L08008FE0
+    adds r0, r4, #0
+    bl func_080D0EBC
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.L08008FE0:
+    .4byte 0x040000D4
 
     thumb_func_start func_08008FE4
 func_08008FE4: @ 0x08008FE4
@@ -3745,15 +3824,69 @@ func_08008FE4: @ 0x08008FE4
     .align 2, 0
 .L08009018: .4byte 0x040000D4
 .L0800901C:
-    .byte 0xF0, 0xB5, 0x82, 0xB0
-    .byte 0x01, 0x1C, 0x4C, 0x68, 0x08, 0x68, 0x01, 0x28, 0x01, 0xD1, 0x00, 0x94, 0x6C, 0x46, 0xCE, 0x68
-    .byte 0x8F, 0x68, 0x80, 0x20, 0xC0, 0x04, 0x30, 0x40, 0x00, 0x28, 0x21, 0xD0, 0x0F, 0x4D, 0x35, 0x40
-    .byte 0x07, 0x23, 0x2B, 0x40, 0xED, 0x1A, 0x00, 0x2D, 0x01, 0xD1, 0x00, 0x2B, 0x10, 0xD1, 0xF2, 0x1A
-    .byte 0x20, 0x1C, 0x39, 0x1C, 0x01, 0x93, 0xCA, 0xF0, 0x79, 0xFB, 0xA9, 0x00, 0x7F, 0x18, 0x80, 0x20
-    .byte 0x40, 0x04, 0x30, 0x40, 0x01, 0x9B, 0x00, 0x28, 0x00, 0xD1, 0x64, 0x18, 0x00, 0x2B, 0x0C, 0xD0
-    .byte 0x72, 0x1B, 0x20, 0x1C, 0x39, 0x1C, 0xCA, 0xF0, 0x6B, 0xFB, 0x06, 0xE0, 0xFF, 0xFF, 0x00, 0x00
-    .byte 0x20, 0x1C, 0x39, 0x1C, 0x32, 0x1C, 0xCA, 0xF0, 0x63, 0xFB, 0x02, 0xB0, 0xF0, 0xBC, 0x01, 0xBC
-    .byte 0x00, 0x47, 0x00, 0x00
+    push {r4, r5, r6, r7, lr}
+    sub sp, #8
+    adds r1, r0, #0
+    ldr r4, [r1, #4]
+    ldr r0, [r1]
+    cmp r0, #1
+    bne .L0800902E
+    str r4, [sp]
+    mov r4, sp
+.L0800902E:
+    ldr r6, [r1, #0xc]
+    ldr r7, [r1, #8]
+    movs r0, #0x80
+    lsls r0, r0, #0x13
+    ands r0, r6
+    cmp r0, #0
+    beq .L08009080
+    ldr r5, .L0800907C
+    ands r5, r6
+    movs r3, #7
+    ands r3, r5
+    subs r5, r5, r3
+    cmp r5, #0
+    bne .L0800904E
+    cmp r3, #0
+    bne .L08009070
+.L0800904E:
+    subs r2, r6, r3
+    adds r0, r4, #0
+    adds r1, r7, #0
+    str r3, [sp, #4]
+    bl CpuFastSet
+    lsls r1, r5, #2
+    adds r7, r7, r1
+    movs r0, #0x80
+    lsls r0, r0, #0x11
+    ands r0, r6
+    ldr r3, [sp, #4]
+    cmp r0, #0
+    bne .L0800906C
+    adds r4, r4, r1
+.L0800906C:
+    cmp r3, #0
+    beq .L0800908A
+.L08009070:
+    subs r2, r6, r5
+    adds r0, r4, #0
+    adds r1, r7, #0
+    bl CpuSet
+    b .L0800908A
+    .align 2, 0
+.L0800907C: .4byte 0x0000FFFF
+.L08009080:
+    adds r0, r4, #0
+    adds r1, r7, #0
+    adds r2, r6, #0
+    bl CpuSet
+.L0800908A:
+    add sp, #8
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
 
     thumb_func_start func_08009094
 func_08009094: @ 0x08009094
@@ -4365,10 +4498,31 @@ func_080094B8: @ 0x080094B8
     .align 2, 0
 .L080094DC: .4byte vtable_unk_080E5B80
 .L080094E0:
-    .byte 0x00, 0xB5, 0x0C, 0x30, 0xFF, 0xF7, 0xDE, 0xFF, 0x01, 0x1C, 0x09, 0x04, 0x09, 0x14, 0x48, 0x42
-    .byte 0x08, 0x43, 0xC0, 0x0F, 0x02, 0xBC, 0x08, 0x47, 0x00, 0xB5, 0x0C, 0x30, 0xFF, 0xF7, 0xD2, 0xFF
-    .byte 0x00, 0x04, 0x00, 0x14, 0x02, 0xBC, 0x08, 0x47, 0x00, 0xB5, 0x0C, 0x30, 0x09, 0x04, 0x09, 0x14
-    .byte 0xFF, 0xF7, 0x46, 0xFF
+    push {lr}
+    adds r0, #0xc
+    bl func_080094A4
+    adds r1, r0, #0
+    lsls r1, r1, #0x10
+    asrs r1, r1, #0x10
+    negs r0, r1
+    orrs r0, r1
+    lsrs r0, r0, #0x1f
+    pop {r1}
+    bx r1
+.L080094F8:
+    push {lr}
+    adds r0, #0xc
+    bl func_080094A4
+    lsls r0, r0, #0x10
+    asrs r0, r0, #0x10
+    pop {r1}
+    bx r1
+.L08009508:
+    push {lr}
+    adds r0, #0xc
+    lsls r1, r1, #0x10
+    asrs r1, r1, #0x10
+    bl func_080093A0
 
     thumb_func_start func_08009514
 func_08009514: @ 0x08009514
@@ -4377,12 +4531,44 @@ func_08009514: @ 0x08009514
     pop {r1}
     bx r1
 .L0800951C:
-    .byte 0x00, 0xB5, 0x0C, 0x30
-    .byte 0x09, 0x04, 0x09, 0x14, 0xFF, 0xF7, 0x28, 0xFF, 0x01, 0xBC, 0x00, 0x47, 0x00, 0xB5, 0x0C, 0x30
-    .byte 0x09, 0x04, 0x09, 0x14, 0xFF, 0xF7, 0x0A, 0xFF, 0x01, 0xBC, 0x00, 0x47, 0x00, 0xB5, 0x0C, 0x30
-    .byte 0xFF, 0xF7, 0x00, 0xFF, 0x02, 0xBC, 0x08, 0x47, 0x10, 0xB5, 0x04, 0x1C, 0x00, 0x20, 0x20, 0x60
-    .byte 0x60, 0x60, 0x05, 0x48, 0xA0, 0x60, 0x20, 0x1C, 0x0C, 0x30, 0xFF, 0xF7, 0xD1, 0xFE, 0x20, 0x1C
-    .byte 0x10, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00, 0x80, 0x5B, 0x0E, 0x08
+    push {lr}
+    adds r0, #0xc
+    lsls r1, r1, #0x10
+    asrs r1, r1, #0x10
+    bl func_08009378
+    pop {r0}
+    bx r0
+.L0800952C:
+    push {lr}
+    adds r0, #0xc
+    lsls r1, r1, #0x10
+    asrs r1, r1, #0x10
+    bl func_0800934C
+    pop {r0}
+    bx r0
+.L0800953C:
+    push {lr}
+    adds r0, #0xc
+    bl func_08009344
+    pop {r1}
+    bx r1
+.L08009548:
+    push {r4, lr}
+    adds r4, r0, #0
+    movs r0, #0
+    str r0, [r4]
+    str r0, [r4, #4]
+    ldr r0, .L08009568
+    str r0, [r4, #8]
+    adds r0, r4, #0
+    adds r0, #0xc
+    bl func_08009300
+    adds r0, r4, #0
+    pop {r4}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.L08009568: .4byte vtable_unk_080E5B80
 
     thumb_func_start func_0800956C
 func_0800956C: @ 0x0800956C
@@ -4602,10 +4788,27 @@ func_080096F0: @ 0x080096F0
     .align 2, 0
 .L0800970C: .4byte 0x04000054
 .L08009710:
-    .byte 0x10, 0xB5, 0x04, 0x1C, 0x80, 0x21, 0xC9, 0x04, 0x10, 0x22, 0xCA, 0xF0, 0x17, 0xF8, 0x20, 0x1C
-    .byte 0x40, 0x30, 0x05, 0x49, 0x05, 0x4A, 0xCA, 0xF0, 0x13, 0xF8, 0x05, 0x49, 0xA0, 0x8A, 0x08, 0x80
-    .byte 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x40, 0x00, 0x00, 0x04, 0x05, 0x00, 0x00, 0x04
-    .byte 0x14, 0x00, 0x00, 0x04
+    push {r4, lr}
+    adds r4, r0, #0
+    movs r1, #0x80
+    lsls r1, r1, #0x13
+    movs r2, #0x10
+    bl CpuFastSet
+    adds r0, r4, #0
+    adds r0, #0x40
+    ldr r1, .L08009738
+    ldr r2, .L0800973C
+    bl CpuSet
+    ldr r1, .L08009740
+    ldrh r0, [r4, #0x14]
+    strh r0, [r1]
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.L08009738: .4byte 0x04000040
+.L0800973C: .4byte 0x04000005
+.L08009740: .4byte 0x04000014
 
     thumb_func_start func_08009744
 func_08009744: @ 0x08009744
@@ -4650,8 +4853,15 @@ func_0800977C: @ 0x0800977C
     pop {r0}
     bx r0
 .L08009790:
-    .byte 0x00, 0xB5, 0x04, 0x30, 0xE0, 0x21, 0xC9, 0x04, 0x80, 0x22, 0x52, 0x00, 0xC9, 0xF0, 0xD6, 0xFF
-    .byte 0x01, 0xBC, 0x00, 0x47
+    push {lr}
+    adds r0, #4
+    movs r1, #0xe0
+    lsls r1, r1, #0x13
+    movs r2, #0x80
+    lsls r2, r2, #1
+    bl CpuFastSet
+    pop {r0}
+    bx r0
 
     thumb_func_start func_080097A4
 func_080097A4: @ 0x080097A4
@@ -4772,10 +4982,29 @@ func_08009864: @ 0x08009864
     pop {r0}
     bx r0
 .L08009878:
-    .byte 0x10, 0xB5, 0x04, 0x1C, 0x20, 0x1D, 0xE0, 0x21
-    .byte 0xC9, 0x04, 0x80, 0x22, 0x52, 0x00, 0xC9, 0xF0, 0x61, 0xFF, 0x20, 0x1C, 0xFF, 0xF7, 0xD2, 0xFF
-    .byte 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x10, 0xB5, 0x04, 0x1C, 0xFF, 0xF7, 0x82, 0xFF
-    .byte 0x20, 0x1C, 0xFF, 0xF7, 0xC7, 0xFF, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47
+    push {r4, lr}
+    adds r4, r0, #0
+    adds r0, r4, #4
+    movs r1, #0xe0
+    lsls r1, r1, #0x13
+    movs r2, #0x80
+    lsls r2, r2, #1
+    bl CpuFastSet
+    adds r0, r4, #0
+    bl func_08009834
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.L08009898:
+    push {r4, lr}
+    adds r4, r0, #0
+    bl func_080097A4
+    adds r0, r4, #0
+    bl func_08009834
+    pop {r4}
+    pop {r0}
+    bx r0
 
     thumb_func_start func_080098AC
 func_080098AC: @ 0x080098AC
@@ -4964,11 +5193,50 @@ func_080099D4: @ 0x080099D4
     bx lr
     .align 2, 0
 .L080099EC:
-    .byte 0x00, 0xB5, 0x00, 0x22
-    .byte 0x01, 0x1C, 0x10, 0x31, 0xC0, 0x68, 0x88, 0x42, 0x00, 0xD1, 0x01, 0x22, 0x10, 0x1C, 0x02, 0xBC
-    .byte 0x08, 0x47, 0x00, 0x00, 0x00, 0x23, 0x03, 0x60, 0x43, 0x60, 0x06, 0x49, 0x81, 0x60, 0x02, 0x1C
-    .byte 0x10, 0x32, 0xC2, 0x60, 0x53, 0x60, 0x04, 0x49, 0x91, 0x60, 0x01, 0x1C, 0x0C, 0x31, 0x01, 0x61
-    .byte 0x42, 0x61, 0x70, 0x47, 0xB4, 0x5B, 0x0E, 0x08, 0xD8, 0x5B, 0x0E, 0x08, 0x01, 0x68, 0x48, 0x42
-    .byte 0x08, 0x43, 0xC0, 0x0F, 0x70, 0x47, 0x00, 0x00, 0x02, 0x49, 0x81, 0x60, 0x00, 0x21, 0x01, 0x60
-    .byte 0x41, 0x60, 0x70, 0x47, 0xE8, 0x5B, 0x0E, 0x08
-    .endif
+    push {lr}
+    movs r2, #0
+    adds r1, r0, #0
+    adds r1, #0x10
+    ldr r0, [r0, #0xc]
+    cmp r0, r1
+    bne .L080099FC
+    movs r2, #1
+.L080099FC:
+    adds r0, r2, #0
+    pop {r1}
+    bx r1
+    .align 2, 0
+.L08009A04:
+    movs r3, #0
+    str r3, [r0]
+    str r3, [r0, #4]
+    ldr r1, .L08009A24
+    str r1, [r0, #8]
+    adds r2, r0, #0
+    adds r2, #0x10
+    str r2, [r0, #0xc]
+    str r3, [r2, #4]
+    ldr r1, .L08009A28
+    str r1, [r2, #8]
+    adds r1, r0, #0
+    adds r1, #0xc
+    str r1, [r0, #0x10]
+    str r2, [r0, #0x14]
+    bx lr
+.L08009A24: .4byte vtable_unk_080E5BB4
+.L08009A28: .4byte vtable_unk_080E5BD8
+.L08009A2C:
+    ldr r1, [r0]
+    negs r0, r1
+    orrs r0, r1
+    lsrs r0, r0, #0x1f
+    bx lr
+    .align 2, 0
+.L08009A38:
+    ldr r1, .L08009A44
+    str r1, [r0, #8]
+    movs r1, #0
+    str r1, [r0]
+    str r1, [r0, #4]
+    bx lr
+.L08009A44: .4byte vtable_unk_080E5BE8
