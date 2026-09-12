@@ -1,17 +1,16 @@
 // fomt-text input, intentionally not a C++ translation unit.
 // TITLE is fixed at the top of the screen; MAIN rows scroll below it.
 TITLE
-    "Message Window Controls"
+    "Steuerung Meldungsfenster"
 MAIN
-    "Control Pad"
-    "A Button"
-    "B Button"
-    "Start"
+    "Steuerkreuz"
+    "Knopf A"
+    "Knopf B"
+    "Startknopf"
+    "Select-Knopf"
+    "Meldungen vorspulen."
     ""
-    "Select"
-    "Fast forward messages."
-    ""
-    "When there is a choice,"
-    "use the Control Pad to"
-    "move cursor."
+    "Wenn du auswählen kannst,"
+    "benutze das Steuerkreuz, um"
+    "den Cursor zu bewegen."
 END_FOMT_REFERENCE_GUIDE_PAGE
