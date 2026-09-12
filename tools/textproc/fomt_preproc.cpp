@@ -422,18 +422,6 @@ std::vector<ConstCharPointerArrayInitializer> FindConstCharPointerArrayInitializ
     return result;
 }
 
-bool IsIdentifier(const std::string &value)
-{
-    if (value.empty()
-        || !(std::isalpha(static_cast<unsigned char>(value.front())) != 0
-            || value.front() == '_')) {
-        return false;
-    }
-    return std::all_of(value.begin() + 1, value.end(), [](const char value) {
-        return std::isalnum(static_cast<unsigned char>(value)) != 0 || value == '_';
-    });
-}
-
 std::size_t SkipWhitespace(const std::string &source, std::size_t cursor)
 {
     while (cursor < source.size()
@@ -597,20 +585,20 @@ std::vector<std::string> FlattenAggregateInitializer(const std::string &source,
     return result;
 }
 
-struct WordOnlyAggregateInitializer {
+struct AggregateInitializer {
     std::string reference_name;
     std::vector<std::string> fields;
 };
 
-std::vector<WordOnlyAggregateInitializer> FindWordOnlyAggregateInitializers(
+std::vector<AggregateInitializer> FindAggregateInitializers(
     const std::string &source)
 {
-    // This is intentionally a lexical, source-order parser.  It accepts an
-    // ordinary aggregate initializer only when its emitted object later proves
-    // to contain precisely one .word for every source field.  That condition
-    // makes it safe for pointer-bearing structure arrays without guessing any
-    // field types or changing byte/halfword records.
-    std::vector<WordOnlyAggregateInitializer> result;
+    // This is intentionally a lexical, source-order parser.  It records
+    // ordinary aggregate initializers without assuming that every field has
+    // word width: mixed pointer/byte/halfword structures are common in ROM
+    // data tables.  The later assembly pass only acts after its named-text
+    // pointer sequence exactly agrees with the emitted .word sequence.
+    std::vector<AggregateInitializer> result;
     for (std::size_t at = 0; at < source.size();) {
         if (!(std::isalpha(static_cast<unsigned char>(source[at])) != 0
                 || source[at] == '_')) {
@@ -767,6 +755,128 @@ std::set<std::string> FindExpressionReferencedCharArrays(
     return result;
 }
 
+std::set<std::string> FindNamedCharArrays(const std::string &source)
+{
+    static const std::regex declaration_pattern(
+        R"(\b(?:extern\s+)?(?:char\s+const|const\s+char)\s+([A-Za-z_][A-Za-z0-9_]*)\s*\[\s*\])");
+
+    std::set<std::string> result;
+    for (std::sregex_iterator match(source.begin(), source.end(), declaration_pattern), end;
+         match != end; ++match) {
+        result.insert((*match)[1].str());
+    }
+    return result;
+}
+
+std::vector<std::string> FindDefinedCharArrays(const std::string &source)
+{
+    // Preserve declaration order, rather than guessing an order from an
+    // assembly string pool.  A declaration is a definition only when its
+    // declarator reaches '=' before its terminating ';'; header externs are
+    // deliberately excluded.
+    static const std::regex declaration_pattern(
+        R"(\b(?:char\s+const|const\s+char)\s+([A-Za-z_][A-Za-z0-9_]*)\s*\[\s*\])");
+
+    std::vector<std::string> result;
+    for (std::sregex_iterator match(source.begin(), source.end(), declaration_pattern), end;
+         match != end; ++match) {
+        const std::size_t declarator_end = static_cast<std::size_t>(
+            (*match).position() + (*match).length());
+        const std::size_t equals = source.find('=', declarator_end);
+        const std::size_t semicolon = source.find(';', declarator_end);
+        if (equals == std::string::npos
+            || (semicolon != std::string::npos && semicolon < equals)) {
+            continue;
+        }
+        result.push_back((*match)[1].str());
+    }
+    return result;
+}
+
+std::size_t FindAssemblyObjectPreambleBegin(const std::vector<std::string> &lines,
+    std::size_t label_index, const std::string &label)
+{
+    const std::string tab_global = ".globl\t" + label;
+    const std::string space_global = ".globl " + label;
+    for (std::size_t index = label_index; index != 0; --index) {
+        const std::string line = Trim(lines[index - 1]);
+        if (line == tab_global || line == space_global)
+            return index - 1;
+    }
+    return label_index;
+}
+
+struct MaterializedCharArray {
+    std::string local_constant;
+    std::vector<std::string> payload;
+    std::string fallback_reference_name;
+};
+
+void MaterializeMissingNamedCharArrays(std::vector<std::string> &lines,
+    const std::vector<std::string> &definition_order,
+    const std::map<std::string, MaterializedCharArray> &missing,
+    const std::set<std::string> &byte_aligned)
+{
+    if (missing.empty())
+        return;
+
+    std::map<std::string, std::size_t> definition_positions;
+    for (std::size_t index = 0; index < definition_order.size(); ++index)
+        definition_positions.emplace(definition_order[index], index);
+
+    std::vector<std::string> names;
+    names.reserve(missing.size());
+    for (const auto &[name, entry] : missing) {
+        (void)entry;
+        if (definition_positions.count(name) == 0) {
+            throw std::runtime_error("cannot materialize undeclared text object '"
+                + name + "'");
+        }
+        names.push_back(name);
+    }
+    std::sort(names.begin(), names.end(), [&definition_positions](
+        const std::string &left, const std::string &right) {
+        return definition_positions[left] > definition_positions[right];
+    });
+
+    for (const std::string &name : names) {
+        const MaterializedCharArray &entry = missing.at(name);
+        std::size_t anchor = std::string::npos;
+        for (std::size_t index = definition_positions.at(name) + 1;
+             index < definition_order.size(); ++index) {
+            const std::size_t next_label = FindAssemblyLabel(lines,
+                definition_order[index]);
+            if (next_label == std::string::npos)
+                continue;
+            anchor = FindAssemblyObjectPreambleBegin(lines, next_label,
+                definition_order[index]);
+            break;
+        }
+        if (anchor == std::string::npos) {
+            const std::size_t fallback_label = FindAssemblyLabel(lines,
+                entry.fallback_reference_name);
+            if (fallback_label == std::string::npos) {
+                throw std::runtime_error("cannot find a physical insertion point for text object '"
+                    + name + "'");
+            }
+            anchor = FindAssemblyObjectPreambleBegin(lines, fallback_label,
+                entry.fallback_reference_name);
+        }
+
+        std::vector<std::string> generated = {
+            "\t.globl\t" + name,
+            "\t.section .rodata." + name + ",\"a\"",
+        };
+        if (byte_aligned.count(name) == 0)
+            generated.push_back("\t.align\t2, 0");
+        generated.push_back("\t.type\t " + name + ",object");
+        generated.push_back(name + ":");
+        generated.insert(generated.end(), entry.payload.begin(), entry.payload.end());
+        lines.insert(lines.begin() + static_cast<std::ptrdiff_t>(anchor),
+            generated.begin(), generated.end());
+    }
+}
+
 void FixupExpressionStringLiteralReferences(std::vector<std::string> &lines,
     const std::set<std::string> &target_names,
     std::vector<std::pair<std::size_t, std::size_t>> &removals,
@@ -847,8 +957,14 @@ std::string FixupSameUnitConstCharReferences(const std::string &source,
         FindDirectConstCharPointerInitializers(source);
     const std::vector<ConstCharPointerArrayInitializer> arrays =
         FindConstCharPointerArrayInitializers(source);
-    const std::vector<WordOnlyAggregateInitializer> aggregates =
-        FindWordOnlyAggregateInitializers(source);
+    const std::vector<AggregateInitializer> aggregates =
+        FindAggregateInitializers(source);
+    const std::set<std::string> named_char_arrays = FindNamedCharArrays(source);
+    const std::vector<std::string> defined_char_arrays = FindDefinedCharArrays(source);
+    const std::set<std::string> defined_char_array_names(defined_char_arrays.begin(),
+        defined_char_arrays.end());
+    const std::set<std::string> byte_aligned_char_arrays =
+        FindExplicitByteAlignedUnsectionedTextObjects(source);
     const std::set<std::string> expression_targets =
         FindExpressionReferencedCharArrays(source);
     if (references.empty() && arrays.empty() && aggregates.empty()
@@ -859,31 +975,155 @@ std::string FixupSameUnitConstCharReferences(const std::string &source,
     std::vector<std::string> lines = SplitLines(assembly);
     std::vector<std::pair<std::size_t, std::size_t>> removals;
     std::set<std::string> removed_local_constants;
+    std::map<std::string, MaterializedCharArray> missing_char_arrays;
+    std::map<std::string, std::string> missing_target_by_local_constant;
+    std::map<std::string, std::set<std::size_t>> missing_local_constant_words;
 
-    for (const WordOnlyAggregateInitializer &aggregate : aggregates) {
+    for (const AggregateInitializer &aggregate : aggregates) {
         const std::size_t reference_label = FindAssemblyLabel(lines,
             aggregate.reference_name);
         if (reference_label == std::string::npos)
             continue;
 
-        const std::vector<std::size_t> words = FindObjectWordInitializers(lines,
-            reference_label);
-        if (words.size() != aggregate.fields.size())
+        std::vector<std::string> target_names;
+        for (const std::string &field : aggregate.fields) {
+            const std::string target_name = TrimWhitespace(field);
+            if (named_char_arrays.count(target_name) != 0)
+                target_names.push_back(target_name);
+        }
+        if (target_names.empty())
             continue;
 
-        for (std::size_t index = 0; index < words.size(); ++index) {
-            const std::string target_name = TrimWhitespace(aggregate.fields[index]);
-            if (!IsIdentifier(target_name)
-                || FindAssemblyLabel(lines, target_name) == std::string::npos
-                || AssemblyStringPayloadAfter(lines,
-                       FindAssemblyLabel(lines, target_name)).empty()) {
+        std::vector<std::size_t> pointer_words;
+        for (const std::size_t word_index : FindObjectWordInitializers(lines, reference_label)) {
+            const std::string word = Trim(lines[word_index]);
+            const std::string operand = Trim(word.substr(std::string_view(".word").size()));
+            if (operand.rfind(".LC", 0) == 0 || named_char_arrays.count(operand) != 0)
+                pointer_words.push_back(word_index);
+        }
+        if (pointer_words.size() != target_names.size())
+            continue;
+
+        struct PlannedPointer {
+            std::size_t word_index;
+            std::string target_name;
+            std::string local_constant;
+            std::vector<std::string> payload;
+            bool materialize;
+        };
+        std::vector<PlannedPointer> planned;
+        bool matches_source_order = true;
+        for (std::size_t index = 0; index < pointer_words.size(); ++index) {
+            const std::string word = Trim(lines[pointer_words[index]]);
+            const std::string operand = Trim(word.substr(std::string_view(".word").size()));
+            const std::size_t target_label = FindAssemblyLabel(lines, target_names[index]);
+            if (target_label != std::string::npos) {
+                if (AssemblyStringPayloadAfter(lines, target_label).empty()
+                    || (operand.rfind(".LC", 0) != 0 && operand != target_names[index])) {
+                    matches_source_order = false;
+                    break;
+                }
+                planned.push_back({ pointer_words[index], target_names[index], "", {}, false });
                 continue;
             }
-            const std::string reference = aggregate.reference_name + "["
-                + std::to_string(index) + "]";
-            FixupConstCharPointerWord(lines, words[index], reference, target_name,
-                removals, removed_local_constants);
+
+            // A named string that occurs only through an aggregate pointer can
+            // be folded away entirely by agbcp.  It is recoverable only when
+            // the source has an actual definition and this exact pointer uses
+            // a compiler-local byte-identical string constant.
+            if (defined_char_array_names.count(target_names[index]) == 0
+                || operand.rfind(".LC", 0) != 0) {
+                matches_source_order = false;
+                break;
+            }
+            const std::size_t local_label = FindAssemblyLabel(lines, operand);
+            const std::vector<std::string> payload = local_label == std::string::npos
+                ? std::vector<std::string>()
+                : AssemblyStringPayloadAfter(lines, local_label);
+            const std::size_t local_end = local_label == std::string::npos
+                ? std::string::npos : local_label + 1 + payload.size();
+            if (payload.empty() || local_end == lines.size()
+                || (!IsAssemblyAlign(lines[local_end])
+                    && !IsAssemblyDataSectionTransition(lines[local_end]))) {
+                matches_source_order = false;
+                break;
+            }
+            const auto known_target = missing_target_by_local_constant.find(operand);
+            if (known_target != missing_target_by_local_constant.end()
+                && known_target->second != target_names[index]) {
+                matches_source_order = false;
+                break;
+            }
+            for (const PlannedPointer &earlier : planned) {
+                if (earlier.materialize && earlier.local_constant == operand
+                    && earlier.target_name != target_names[index]) {
+                    matches_source_order = false;
+                    break;
+                }
+            }
+            if (!matches_source_order)
+                break;
+            planned.push_back({ pointer_words[index], target_names[index], operand,
+                payload, true });
         }
+        if (!matches_source_order)
+            continue;
+
+        for (const PlannedPointer &pointer : planned) {
+            if (!pointer.materialize) {
+                const std::string word = Trim(lines[pointer.word_index]);
+                if (Trim(word.substr(std::string_view(".word").size())).rfind(".LC", 0) != 0)
+                    continue;
+                const std::string reference = aggregate.reference_name + "["
+                    + std::to_string(&pointer - planned.data()) + "]";
+                FixupConstCharPointerWord(lines, pointer.word_index, reference,
+                    pointer.target_name, removals, removed_local_constants);
+                continue;
+            }
+
+            const auto [entry, inserted] = missing_char_arrays.emplace(pointer.target_name,
+                MaterializedCharArray { pointer.local_constant, pointer.payload,
+                    aggregate.reference_name });
+            if (!inserted && (entry->second.local_constant != pointer.local_constant
+                || entry->second.payload != pointer.payload)) {
+                throw std::runtime_error("ambiguous folded string constants for '"
+                    + pointer.target_name + "'");
+            }
+            missing_target_by_local_constant.emplace(pointer.local_constant,
+                pointer.target_name);
+            missing_local_constant_words[pointer.local_constant].insert(pointer.word_index);
+            const std::size_t indent_end = lines[pointer.word_index].find_first_not_of(" \t");
+            const std::string indent = indent_end == std::string::npos
+                ? "" : lines[pointer.word_index].substr(0, indent_end);
+            lines[pointer.word_index] = indent + ".word\t" + pointer.target_name;
+        }
+    }
+
+    for (const auto &[local_constant, word_indexes] : missing_local_constant_words) {
+        for (std::size_t index = 0; index < lines.size(); ++index) {
+            const std::string word = Trim(lines[index]);
+            if (word != ".word " + local_constant
+                && word != ".word\t" + local_constant) {
+                continue;
+            }
+            if (word_indexes.count(index) == 0) {
+                throw std::runtime_error("folded compiler constant '" + local_constant
+                    + "' has an unproven reference");
+            }
+        }
+        const std::size_t local_label = FindAssemblyLabel(lines, local_constant);
+        const std::vector<std::string> payload = local_label == std::string::npos
+            ? std::vector<std::string>() : AssemblyStringPayloadAfter(lines, local_label);
+        const std::size_t local_end = local_label == std::string::npos
+            ? std::string::npos : local_label + 1 + payload.size();
+        if (payload.empty() || local_end == lines.size()
+            || (!IsAssemblyAlign(lines[local_end])
+                && !IsAssemblyDataSectionTransition(lines[local_end]))) {
+            throw std::runtime_error("unexpected folded compiler-constant layout for '"
+                + local_constant + "'");
+        }
+        if (removed_local_constants.insert(local_constant).second)
+            removals.emplace_back(local_label, local_end);
     }
 
     for (const auto &[reference_name, target_name] : references) {
@@ -929,6 +1169,8 @@ std::string FixupSameUnitConstCharReferences(const std::string &source,
     for (const auto &[begin, end] : removals)
         lines.erase(lines.begin() + static_cast<std::ptrdiff_t>(begin),
             lines.begin() + static_cast<std::ptrdiff_t>(end));
+    MaterializeMissingNamedCharArrays(lines, defined_char_arrays,
+        missing_char_arrays, byte_aligned_char_arrays);
     return JoinLines(lines);
 }
 
@@ -1734,6 +1976,17 @@ void SelfTest()
         "unsigned int value; char const *repeat; };\n"
         "NamedPointerPair const gNamedPointerPairs[] = {\n"
         "    { 0, gNamedByteSequence, 1, gNamedByteSequence },\n"
+        "};\n"
+        "struct MixedPointerPair { char const *text; unsigned short kind; "
+        "char const *repeat; };\n"
+        "MixedPointerPair const gMixedPointerPairs[] = {\n"
+        "    { gNamedByteSequence, 403, gNamedByteSequence },\n"
+        "};\n"
+        "char const gFoldedAggregateText[] = \"B\";\n"
+        "struct FoldedPointerPair { char const *text; unsigned short kind; "
+        "char const *repeat; };\n"
+        "FoldedPointerPair const gFoldedPointerPairs[] = {\n"
+        "    { gFoldedAggregateText, 1, gFoldedAggregateText },\n"
         "};\n";
     const std::string assembly =
         "\t.section .rodata.sample,\"a\",%progbits\n"
@@ -1758,6 +2011,26 @@ void SelfTest()
         "\t.word\t.LC2\n"
         "\t.word\t1\n"
         "\t.word\t.LC2\n"
+        "\t.globl\tgMixedPointerPairs\n"
+        ".LC3:\n"
+        "\t.ascii\t\"A\\000\"\n"
+        "\t.align\t2, 0\n"
+        "gMixedPointerPairs:\n"
+        "\t.word\t.LC3\n"
+        "\t.short\t0x193\n"
+        "\t.space\t2\n"
+        "\t.word\t.LC3\n"
+        ".LC4:\n"
+        "\t.ascii\t\"B\\000\"\n"
+        "\t.align\t2, 0\n"
+        "\t.globl\tgFoldedPointerPairs\n"
+        "\t.section .rodata.gFoldedPointerPairs,\"a\"\n"
+        "\t.align\t2, 0\n"
+        "gFoldedPointerPairs:\n"
+        "\t.word\t.LC4\n"
+        "\t.short\t0x1\n"
+        "\t.space\t2\n"
+        "\t.word\t.LC4\n"
         "\t.section .rodata.compiler_tail,\"a\",%progbits\n"
         "gCompilerPaddedText:\n"
         "\t.ascii\t\"Error\\000\"\n"
@@ -1776,10 +2049,15 @@ void SelfTest()
     const std::string output = PreprocessAssembly(source, assembly);
     Require(output.find(".LC0:") == std::string::npos
             && output.find(".LC1:") == std::string::npos
-            && output.find(".LC2:") == std::string::npos,
+            && output.find(".LC2:") == std::string::npos
+            && output.find(".LC3:") == std::string::npos
+            && output.find(".LC4:") == std::string::npos,
         "duplicate compiler string constants were retained");
     Require(output.find(".word\tgNamedByteSequence") != std::string::npos,
         "named text relocation was not restored");
+    Require(output.find("gFoldedAggregateText:") != std::string::npos
+            && output.find(".word\tgFoldedAggregateText") != std::string::npos,
+        "folded aggregate text was not materialized as a named relocation");
     Require(output.find("\t.section \".text.sample\"\n\t.align 2, 0\n") != std::string::npos,
         "executable section alignment was not appended");
     Require(output.find("\t.section \".rodata.sample\"") == std::string::npos,
