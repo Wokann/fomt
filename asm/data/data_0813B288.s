@@ -51,7 +51,85 @@ gUnk_082B39F0:
     .incbin "baserom_jp.gba", 0x2B39F0, (0x2B3A8C - 0x2B39F0)
     .global gUnk_082B3A8C
 gUnk_082B3A8C:
-    .incbin "baserom_jp.gba", 0x2B3A8C, (0x45C5B4 - 0x2B3A8C)
+    .incbin "baserom_jp.gba", 0x2B3A8C, 0x16B250
+    .global gUnk_FieldPlotRenderRecord_004
+gUnk_FieldPlotRenderRecord_004:
+    .incbin "baserom_jp.gba", 0x41ECDC, 0x30
+    .global gUnk_FieldPlotRenderRecord_011
+gUnk_FieldPlotRenderRecord_011:
+    .incbin "baserom_jp.gba", 0x41ED0C, 0x18
+    .global gUnk_FieldPlotRenderRecord_006
+gUnk_FieldPlotRenderRecord_006:
+    .incbin "baserom_jp.gba", 0x41ED24, 0x3C
+    .global gUnk_FieldPlotRenderRecord_002
+gUnk_FieldPlotRenderRecord_002:
+    .incbin "baserom_jp.gba", 0x41ED60, 0x30
+    .global gUnk_FieldPlotRenderRecord_010
+gUnk_FieldPlotRenderRecord_010:
+    .incbin "baserom_jp.gba", 0x41ED90, 0x24
+    .global gUnk_FieldPlotRenderRecord_014
+gUnk_FieldPlotRenderRecord_014:
+    .incbin "baserom_jp.gba", 0x41EDB4, 0x30
+    .global gUnk_FieldPlotRenderRecord_017
+gUnk_FieldPlotRenderRecord_017:
+    .incbin "baserom_jp.gba", 0x41EDE4, 0x30
+    .global gUnk_FieldPlotRenderRecord_018
+gUnk_FieldPlotRenderRecord_018:
+    .incbin "baserom_jp.gba", 0x41EE14, 0x30
+    .global gUnk_FieldPlotRenderRecord_015
+gUnk_FieldPlotRenderRecord_015:
+    .incbin "baserom_jp.gba", 0x41EE44, 0x30
+    .global gUnk_FieldPlotRenderRecord_007
+gUnk_FieldPlotRenderRecord_007:
+    .incbin "baserom_jp.gba", 0x41EE74, 0x24
+    .global gUnk_FieldPlotRenderRecord_009
+gUnk_FieldPlotRenderRecord_009:
+    .incbin "baserom_jp.gba", 0x41EE98, 0x3C
+    .global gUnk_FieldPlotRenderRecord_016
+gUnk_FieldPlotRenderRecord_016:
+    .incbin "baserom_jp.gba", 0x41EED4, 0x30
+    .global gUnk_FieldPlotRenderRecord_001
+gUnk_FieldPlotRenderRecord_001:
+    .incbin "baserom_jp.gba", 0x41EF04, 0x24
+    .global gUnk_FieldPlotRenderRecord_008
+gUnk_FieldPlotRenderRecord_008:
+    .incbin "baserom_jp.gba", 0x41EF28, 0x30
+    .global gUnk_FieldPlotRenderRecord_013
+gUnk_FieldPlotRenderRecord_013:
+    .incbin "baserom_jp.gba", 0x41EF58, 0x1278
+    .global gUnk_FieldPlotRenderRecord_003
+gUnk_FieldPlotRenderRecord_003:
+    .incbin "baserom_jp.gba", 0x4201D0, 0x1290
+    .global gUnk_FieldPlotRenderRecord_012
+gUnk_FieldPlotRenderRecord_012:
+    .incbin "baserom_jp.gba", 0x421460, 0x18
+    .global gUnk_FieldPlotRenderRecord_005
+gUnk_FieldPlotRenderRecord_005:
+    .incbin "baserom_jp.gba", 0x421478, 0x3C
+    .global gUnk_FieldPlotRenderRecord_019
+gUnk_FieldPlotRenderRecord_019:
+    .incbin "baserom_jp.gba", 0x4214B4, 0x3C
+    .global gUnk_FieldPlotRenderRecord_000
+gUnk_FieldPlotRenderRecord_000:
+    .incbin "baserom_jp.gba", 0x4214F0, 0x3B034
+    .global gUnk_FieldPlotRenderRecord_033
+gUnk_FieldPlotRenderRecord_033:
+    .incbin "baserom_jp.gba", 0x45C524, 0x18
+    .global gUnk_FieldPlotRenderRecord_031
+gUnk_FieldPlotRenderRecord_031:
+    .incbin "baserom_jp.gba", 0x45C53C, 0x18
+    .global gUnk_FieldPlotRenderRecord_034
+gUnk_FieldPlotRenderRecord_034:
+    .incbin "baserom_jp.gba", 0x45C554, 0x18
+    .global gUnk_FieldPlotRenderRecord_032
+gUnk_FieldPlotRenderRecord_032:
+    .incbin "baserom_jp.gba", 0x45C56C, 0x18
+    .global gUnk_FieldPlotRenderRecord_023
+gUnk_FieldPlotRenderRecord_023:
+    .incbin "baserom_jp.gba", 0x45C584, 0x18
+    .global gUnk_FieldPlotRenderRecord_025
+gUnk_FieldPlotRenderRecord_025:
+    .incbin "baserom_jp.gba", 0x45C59C, 0x18
 
     @ Song header labels recovered from gSongTable.  The raw M4A payloads
     @ remain in this regional asset container; the C table uses these labels.
@@ -1236,87 +1314,6 @@ gUnk_082B3A8C:
     .global gUnk_MapDataResource_279
     .set gUnk_MapDataResource_279, jp_data_0813b288_start + 0x367184
 
-    @ Region-neutral labels for FieldPlotTypeDefinition raw render records.
-    @ The record payload format is not decoded yet.
-    .global gUnk_FieldPlotRenderRecord_004
-    .set gUnk_FieldPlotRenderRecord_004, jp_data_0813b288_start + 0x2E2910
-    .global gUnk_FieldPlotRenderRecord_011
-    .set gUnk_FieldPlotRenderRecord_011, jp_data_0813b288_start + 0x2E2940
-    .global gUnk_FieldPlotRenderRecord_006
-    .set gUnk_FieldPlotRenderRecord_006, jp_data_0813b288_start + 0x2E2958
-    .global gUnk_FieldPlotRenderRecord_002
-    .set gUnk_FieldPlotRenderRecord_002, jp_data_0813b288_start + 0x2E2994
-    .global gUnk_FieldPlotRenderRecord_010
-    .set gUnk_FieldPlotRenderRecord_010, jp_data_0813b288_start + 0x2E29C4
-    .global gUnk_FieldPlotRenderRecord_014
-    .set gUnk_FieldPlotRenderRecord_014, jp_data_0813b288_start + 0x2E29E8
-    .global gUnk_FieldPlotRenderRecord_017
-    .set gUnk_FieldPlotRenderRecord_017, jp_data_0813b288_start + 0x2E2A18
-    .global gUnk_FieldPlotRenderRecord_018
-    .set gUnk_FieldPlotRenderRecord_018, jp_data_0813b288_start + 0x2E2A48
-    .global gUnk_FieldPlotRenderRecord_015
-    .set gUnk_FieldPlotRenderRecord_015, jp_data_0813b288_start + 0x2E2A78
-    .global gUnk_FieldPlotRenderRecord_007
-    .set gUnk_FieldPlotRenderRecord_007, jp_data_0813b288_start + 0x2E2AA8
-    .global gUnk_FieldPlotRenderRecord_009
-    .set gUnk_FieldPlotRenderRecord_009, jp_data_0813b288_start + 0x2E2ACC
-    .global gUnk_FieldPlotRenderRecord_016
-    .set gUnk_FieldPlotRenderRecord_016, jp_data_0813b288_start + 0x2E2B08
-    .global gUnk_FieldPlotRenderRecord_001
-    .set gUnk_FieldPlotRenderRecord_001, jp_data_0813b288_start + 0x2E2B38
-    .global gUnk_FieldPlotRenderRecord_008
-    .set gUnk_FieldPlotRenderRecord_008, jp_data_0813b288_start + 0x2E2B5C
-    .global gUnk_FieldPlotRenderRecord_013
-    .set gUnk_FieldPlotRenderRecord_013, jp_data_0813b288_start + 0x2E2B8C
-    .global gUnk_FieldPlotRenderRecord_003
-    .set gUnk_FieldPlotRenderRecord_003, jp_data_0813b288_start + 0x2E3E04
-    .global gUnk_FieldPlotRenderRecord_012
-    .set gUnk_FieldPlotRenderRecord_012, jp_data_0813b288_start + 0x2E5094
-    .global gUnk_FieldPlotRenderRecord_005
-    .set gUnk_FieldPlotRenderRecord_005, jp_data_0813b288_start + 0x2E50AC
-    .global gUnk_FieldPlotRenderRecord_019
-    .set gUnk_FieldPlotRenderRecord_019, jp_data_0813b288_start + 0x2E50E8
-    .global gUnk_FieldPlotRenderRecord_000
-    .set gUnk_FieldPlotRenderRecord_000, jp_data_0813b288_start + 0x2E5124
-    .global gUnk_FieldPlotRenderRecord_033
-    .set gUnk_FieldPlotRenderRecord_033, jp_data_0813b288_start + 0x320158
-    .global gUnk_FieldPlotRenderRecord_031
-    .set gUnk_FieldPlotRenderRecord_031, jp_data_0813b288_start + 0x320170
-    .global gUnk_FieldPlotRenderRecord_034
-    .set gUnk_FieldPlotRenderRecord_034, jp_data_0813b288_start + 0x320188
-    .global gUnk_FieldPlotRenderRecord_032
-    .set gUnk_FieldPlotRenderRecord_032, jp_data_0813b288_start + 0x3201A0
-    .global gUnk_FieldPlotRenderRecord_023
-    .set gUnk_FieldPlotRenderRecord_023, jp_data_0813b288_start + 0x3201B8
-    .global gUnk_FieldPlotRenderRecord_025
-    .set gUnk_FieldPlotRenderRecord_025, jp_data_0813b288_start + 0x3201D0
-    .global gUnk_FieldPlotRenderRecord_026
-    .set gUnk_FieldPlotRenderRecord_026, jp_data_0813b288_start + 0x3201F4
-    .global gUnk_FieldPlotRenderRecord_020
-    .set gUnk_FieldPlotRenderRecord_020, jp_data_0813b288_start + 0x32020C
-    .global gUnk_FieldPlotRenderRecord_024
-    .set gUnk_FieldPlotRenderRecord_024, jp_data_0813b288_start + 0x3202C0
-    .global gUnk_FieldPlotRenderRecord_037
-    .set gUnk_FieldPlotRenderRecord_037, jp_data_0813b288_start + 0x320338
-    .global gUnk_FieldPlotRenderRecord_035
-    .set gUnk_FieldPlotRenderRecord_035, jp_data_0813b288_start + 0x320350
-    .global gUnk_FieldPlotRenderRecord_038
-    .set gUnk_FieldPlotRenderRecord_038, jp_data_0813b288_start + 0x320368
-    .global gUnk_FieldPlotRenderRecord_036
-    .set gUnk_FieldPlotRenderRecord_036, jp_data_0813b288_start + 0x320380
-    .global gUnk_FieldPlotRenderRecord_022
-    .set gUnk_FieldPlotRenderRecord_022, jp_data_0813b288_start + 0x3203A4
-    .global gUnk_FieldPlotRenderRecord_029
-    .set gUnk_FieldPlotRenderRecord_029, jp_data_0813b288_start + 0x3203BC
-    .global gUnk_FieldPlotRenderRecord_027
-    .set gUnk_FieldPlotRenderRecord_027, jp_data_0813b288_start + 0x3203D4
-    .global gUnk_FieldPlotRenderRecord_030
-    .set gUnk_FieldPlotRenderRecord_030, jp_data_0813b288_start + 0x3203EC
-    .global gUnk_FieldPlotRenderRecord_028
-    .set gUnk_FieldPlotRenderRecord_028, jp_data_0813b288_start + 0x320404
-    .global gUnk_FieldPlotRenderRecord_021
-    .set gUnk_FieldPlotRenderRecord_021, jp_data_0813b288_start + 0x32041C
-
     @ Region-neutral labels for FieldRenderRectDescriptor raw resources.
     @ Their payload types are not decoded yet.
     .global gUnk_FieldRenderResource_143
@@ -1573,7 +1570,13 @@ gUnk_082B3A8C:
 
     .global gUnk_086D6458
 gUnk_086D6458:
-    .incbin "baserom_jp.gba", 0x45C5B4, 0xC0
+    .incbin "baserom_jp.gba", 0x45C5B4, 0xC
+    .global gUnk_FieldPlotRenderRecord_026
+gUnk_FieldPlotRenderRecord_026:
+    .incbin "baserom_jp.gba", 0x45C5C0, 0x18
+    .global gUnk_FieldPlotRenderRecord_020
+gUnk_FieldPlotRenderRecord_020:
+    .incbin "baserom_jp.gba", 0x45C5D8, 0x9C
 
     .global gUnk_086D6518
 gUnk_086D6518:
@@ -1585,15 +1588,48 @@ gUnk_086D6520:
 
     .global gUnk_086D6528
 gUnk_086D6528:
-    .incbin "baserom_jp.gba", 0x45C684, 0x20
+    .incbin "baserom_jp.gba", 0x45C684, 0x8
+    .global gUnk_FieldPlotRenderRecord_024
+gUnk_FieldPlotRenderRecord_024:
+    .incbin "baserom_jp.gba", 0x45C68C, 0x18
 
     .global gUnk_086D6548
 gUnk_086D6548:
-    .incbin "baserom_jp.gba", 0x45C6A4, 0xC0
+    .incbin "baserom_jp.gba", 0x45C6A4, 0x60
+    .global gUnk_FieldPlotRenderRecord_037
+gUnk_FieldPlotRenderRecord_037:
+    .incbin "baserom_jp.gba", 0x45C704, 0x18
+    .global gUnk_FieldPlotRenderRecord_035
+gUnk_FieldPlotRenderRecord_035:
+    .incbin "baserom_jp.gba", 0x45C71C, 0x18
+    .global gUnk_FieldPlotRenderRecord_038
+gUnk_FieldPlotRenderRecord_038:
+    .incbin "baserom_jp.gba", 0x45C734, 0x18
+    .global gUnk_FieldPlotRenderRecord_036
+gUnk_FieldPlotRenderRecord_036:
+    .incbin "baserom_jp.gba", 0x45C74C, 0x18
 
     .global gUnk_086D6608
 gUnk_086D6608:
-    .incbin "baserom_jp.gba", 0x45C764, 0x90
+    .incbin "baserom_jp.gba", 0x45C764, 0xC
+    .global gUnk_FieldPlotRenderRecord_022
+gUnk_FieldPlotRenderRecord_022:
+    .incbin "baserom_jp.gba", 0x45C770, 0x18
+    .global gUnk_FieldPlotRenderRecord_029
+gUnk_FieldPlotRenderRecord_029:
+    .incbin "baserom_jp.gba", 0x45C788, 0x18
+    .global gUnk_FieldPlotRenderRecord_027
+gUnk_FieldPlotRenderRecord_027:
+    .incbin "baserom_jp.gba", 0x45C7A0, 0x18
+    .global gUnk_FieldPlotRenderRecord_030
+gUnk_FieldPlotRenderRecord_030:
+    .incbin "baserom_jp.gba", 0x45C7B8, 0x18
+    .global gUnk_FieldPlotRenderRecord_028
+gUnk_FieldPlotRenderRecord_028:
+    .incbin "baserom_jp.gba", 0x45C7D0, 0x18
+    .global gUnk_FieldPlotRenderRecord_021
+gUnk_FieldPlotRenderRecord_021:
+    .incbin "baserom_jp.gba", 0x45C7E8, 0xC
 
     .incbin "baserom_jp.gba", 0x45C7F4, (0x462520 - 0x45C7F4)
 
@@ -1778,6 +1814,14 @@ gUnk_084D82F8:
     .else
     .incbin "baserom_us.gba", \offset, \length
     .endif
+    .endm
+
+    @ Emits a direct record label at the exact byte consumed by the C++ table.
+    @ The selected region's resource stream supplies the record bytes directly.
+    .macro FOMT_FIELD_PLOT_RENDER_RECORD label, offset, length
+    .global \label
+\label:
+    FOMT_REGION_ASSET_INCBIN \offset, \length
     .endm
 
     .ifdef REGION_EU
@@ -3533,90 +3577,6 @@ us_data_0813b288_start:
 	.set gUnk_MapDataResource_279, us_data_0813b288_start + 0x5E216C
 	.endif
 
-	.ifndef REGION_DE
-	@ Region-neutral labels for FieldPlotTypeDefinition raw render records.
-	@ The record payload format is not decoded yet.
-	.global gUnk_FieldPlotRenderRecord_004
-	.set gUnk_FieldPlotRenderRecord_004, us_data_0813b288_start + 0x55D8F8
-	.global gUnk_FieldPlotRenderRecord_011
-	.set gUnk_FieldPlotRenderRecord_011, us_data_0813b288_start + 0x55D928
-	.global gUnk_FieldPlotRenderRecord_006
-	.set gUnk_FieldPlotRenderRecord_006, us_data_0813b288_start + 0x55D940
-	.global gUnk_FieldPlotRenderRecord_002
-	.set gUnk_FieldPlotRenderRecord_002, us_data_0813b288_start + 0x55D97C
-	.global gUnk_FieldPlotRenderRecord_010
-	.set gUnk_FieldPlotRenderRecord_010, us_data_0813b288_start + 0x55D9AC
-	.global gUnk_FieldPlotRenderRecord_014
-	.set gUnk_FieldPlotRenderRecord_014, us_data_0813b288_start + 0x55D9D0
-	.global gUnk_FieldPlotRenderRecord_017
-	.set gUnk_FieldPlotRenderRecord_017, us_data_0813b288_start + 0x55DA00
-	.global gUnk_FieldPlotRenderRecord_018
-	.set gUnk_FieldPlotRenderRecord_018, us_data_0813b288_start + 0x55DA30
-	.global gUnk_FieldPlotRenderRecord_015
-	.set gUnk_FieldPlotRenderRecord_015, us_data_0813b288_start + 0x55DA60
-	.global gUnk_FieldPlotRenderRecord_007
-	.set gUnk_FieldPlotRenderRecord_007, us_data_0813b288_start + 0x55DA90
-	.global gUnk_FieldPlotRenderRecord_009
-	.set gUnk_FieldPlotRenderRecord_009, us_data_0813b288_start + 0x55DAB4
-	.global gUnk_FieldPlotRenderRecord_016
-	.set gUnk_FieldPlotRenderRecord_016, us_data_0813b288_start + 0x55DAF0
-	.global gUnk_FieldPlotRenderRecord_001
-	.set gUnk_FieldPlotRenderRecord_001, us_data_0813b288_start + 0x55DB20
-	.global gUnk_FieldPlotRenderRecord_008
-	.set gUnk_FieldPlotRenderRecord_008, us_data_0813b288_start + 0x55DB44
-	.global gUnk_FieldPlotRenderRecord_013
-	.set gUnk_FieldPlotRenderRecord_013, us_data_0813b288_start + 0x55DB74
-	.global gUnk_FieldPlotRenderRecord_003
-	.set gUnk_FieldPlotRenderRecord_003, us_data_0813b288_start + 0x55EDEC
-	.global gUnk_FieldPlotRenderRecord_012
-	.set gUnk_FieldPlotRenderRecord_012, us_data_0813b288_start + 0x56007C
-	.global gUnk_FieldPlotRenderRecord_005
-	.set gUnk_FieldPlotRenderRecord_005, us_data_0813b288_start + 0x560094
-	.global gUnk_FieldPlotRenderRecord_019
-	.set gUnk_FieldPlotRenderRecord_019, us_data_0813b288_start + 0x5600D0
-	.global gUnk_FieldPlotRenderRecord_000
-	.set gUnk_FieldPlotRenderRecord_000, us_data_0813b288_start + 0x56010C
-	.global gUnk_FieldPlotRenderRecord_033
-	.set gUnk_FieldPlotRenderRecord_033, us_data_0813b288_start + 0x59B140
-	.global gUnk_FieldPlotRenderRecord_031
-	.set gUnk_FieldPlotRenderRecord_031, us_data_0813b288_start + 0x59B158
-	.global gUnk_FieldPlotRenderRecord_034
-	.set gUnk_FieldPlotRenderRecord_034, us_data_0813b288_start + 0x59B170
-	.global gUnk_FieldPlotRenderRecord_032
-	.set gUnk_FieldPlotRenderRecord_032, us_data_0813b288_start + 0x59B188
-	.global gUnk_FieldPlotRenderRecord_023
-	.set gUnk_FieldPlotRenderRecord_023, us_data_0813b288_start + 0x59B1A0
-	.global gUnk_FieldPlotRenderRecord_025
-	.set gUnk_FieldPlotRenderRecord_025, us_data_0813b288_start + 0x59B1B8
-	.global gUnk_FieldPlotRenderRecord_026
-	.set gUnk_FieldPlotRenderRecord_026, us_data_0813b288_start + 0x59B1DC
-	.global gUnk_FieldPlotRenderRecord_020
-	.set gUnk_FieldPlotRenderRecord_020, us_data_0813b288_start + 0x59B1F4
-	.global gUnk_FieldPlotRenderRecord_024
-	.set gUnk_FieldPlotRenderRecord_024, us_data_0813b288_start + 0x59B2A8
-	.global gUnk_FieldPlotRenderRecord_037
-	.set gUnk_FieldPlotRenderRecord_037, us_data_0813b288_start + 0x59B320
-	.global gUnk_FieldPlotRenderRecord_035
-	.set gUnk_FieldPlotRenderRecord_035, us_data_0813b288_start + 0x59B338
-	.global gUnk_FieldPlotRenderRecord_038
-	.set gUnk_FieldPlotRenderRecord_038, us_data_0813b288_start + 0x59B350
-	.global gUnk_FieldPlotRenderRecord_036
-	.set gUnk_FieldPlotRenderRecord_036, us_data_0813b288_start + 0x59B368
-	.global gUnk_FieldPlotRenderRecord_022
-	.set gUnk_FieldPlotRenderRecord_022, us_data_0813b288_start + 0x59B38C
-	.global gUnk_FieldPlotRenderRecord_029
-	.set gUnk_FieldPlotRenderRecord_029, us_data_0813b288_start + 0x59B3A4
-	.global gUnk_FieldPlotRenderRecord_027
-	.set gUnk_FieldPlotRenderRecord_027, us_data_0813b288_start + 0x59B3BC
-	.global gUnk_FieldPlotRenderRecord_030
-	.set gUnk_FieldPlotRenderRecord_030, us_data_0813b288_start + 0x59B3D4
-	.global gUnk_FieldPlotRenderRecord_028
-	.set gUnk_FieldPlotRenderRecord_028, us_data_0813b288_start + 0x59B3EC
-	.global gUnk_FieldPlotRenderRecord_021
-	.set gUnk_FieldPlotRenderRecord_021, us_data_0813b288_start + 0x59B404
-
-	.endif
-
 	@ Region-neutral labels for FieldRenderRectDescriptor raw resources.
 	@ Their payload types are not decoded yet.
 	.ifndef REGION_DE
@@ -4478,7 +4438,26 @@ gUnk_086678A0:
 	FOMT_REGION_ASSET_INCBIN 0x697920, 0x11E0
 
 	non_de_asset_label gUnk_08698B00
-	FOMT_REGION_ASSET_INCBIN 0x698B00, 0x314
+    .ifdef REGION_DE
+    FOMT_REGION_ASSET_INCBIN 0x698B00, 0x314
+    .else
+    FOMT_REGION_ASSET_INCBIN 0x698B00, 0x80
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_004, 0x698B80, 0x30
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_011, 0x698BB0, 0x18
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_006, 0x698BC8, 0x3C
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_002, 0x698C04, 0x30
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_010, 0x698C34, 0x24
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_014, 0x698C58, 0x30
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_017, 0x698C88, 0x30
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_018, 0x698CB8, 0x30
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_015, 0x698CE8, 0x30
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_007, 0x698D18, 0x24
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_009, 0x698D3C, 0x3C
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_016, 0x698D78, 0x30
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_001, 0x698DA8, 0x24
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_008, 0x698DCC, 0x30
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_013, 0x698DFC, 0x18
+    .endif
 
 	.ifndef REGION_DE
 	.global gUnk_08698E14
@@ -4490,13 +4469,26 @@ gUnk_08698E14:
 	.global gUnk_08699FF4
 gUnk_08699FF4:
 	.endif
-	FOMT_REGION_ASSET_INCBIN 0x699FF4, 0xB0
+    .ifdef REGION_DE
+    FOMT_REGION_ASSET_INCBIN 0x699FF4, 0xB0
+    .else
+    FOMT_REGION_ASSET_INCBIN 0x699FF4, 0x80
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_003, 0x69A074, 0x30
+    .endif
 
 	non_de_asset_label gUnk_0869A0A4
 	FOMT_REGION_ASSET_INCBIN 0x69A0A4, 0x11E0
 
 	non_de_asset_label gUnk_0869B284
-	FOMT_REGION_ASSET_INCBIN 0x69B284, 0x3A284
+    .ifdef REGION_DE
+    FOMT_REGION_ASSET_INCBIN 0x69B284, 0x3A284
+    .else
+    FOMT_REGION_ASSET_INCBIN 0x69B284, 0x80
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_012, 0x69B304, 0x18
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_005, 0x69B31C, 0x3C
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_019, 0x69B358, 0x3C
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_000, 0x69B394, 0x3A174
+    .endif
 
 	.ifndef REGION_DE
 	.global gUnk_086D5508
@@ -4508,10 +4500,26 @@ gUnk_086D5508:
 	.global gUnk_086D6368
 gUnk_086D6368:
 	.endif
-	FOMT_REGION_ASSET_INCBIN 0x6D6368, 0xF0
+    .ifdef REGION_DE
+    FOMT_REGION_ASSET_INCBIN 0x6D6368, 0xF0
+    .else
+    FOMT_REGION_ASSET_INCBIN 0x6D6368, 0x60
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_033, 0x6D63C8, 0x18
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_031, 0x6D63E0, 0x18
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_034, 0x6D63F8, 0x18
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_032, 0x6D6410, 0x18
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_023, 0x6D6428, 0x18
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_025, 0x6D6440, 0x18
+    .endif
 
 	non_de_asset_label gUnk_086D6458
-	FOMT_REGION_ASSET_INCBIN 0x6D6458, 0xC0
+    .ifdef REGION_DE
+    FOMT_REGION_ASSET_INCBIN 0x6D6458, 0xC0
+    .else
+    FOMT_REGION_ASSET_INCBIN 0x6D6458, 0xC
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_026, 0x6D6464, 0x18
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_020, 0x6D647C, 0x9C
+    .endif
 
 	non_de_asset_label gUnk_086D6518
 	FOMT_REGION_ASSET_INCBIN 0x6D6518, 0x8
@@ -4520,13 +4528,36 @@ gUnk_086D6368:
 	FOMT_REGION_ASSET_INCBIN 0x6D6520, 0x8
 
 	non_de_asset_label gUnk_086D6528
-	FOMT_REGION_ASSET_INCBIN 0x6D6528, 0x20
+    .ifdef REGION_DE
+    FOMT_REGION_ASSET_INCBIN 0x6D6528, 0x20
+    .else
+    FOMT_REGION_ASSET_INCBIN 0x6D6528, 0x8
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_024, 0x6D6530, 0x18
+    .endif
 
 	non_de_asset_label gUnk_086D6548
-	FOMT_REGION_ASSET_INCBIN 0x6D6548, 0xC0
+    .ifdef REGION_DE
+    FOMT_REGION_ASSET_INCBIN 0x6D6548, 0xC0
+    .else
+    FOMT_REGION_ASSET_INCBIN 0x6D6548, 0x60
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_037, 0x6D65A8, 0x18
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_035, 0x6D65C0, 0x18
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_038, 0x6D65D8, 0x18
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_036, 0x6D65F0, 0x18
+    .endif
 
 	non_de_asset_label gUnk_086D6608
-	FOMT_REGION_ASSET_INCBIN 0x6D6608, 0x90
+    .ifdef REGION_DE
+    FOMT_REGION_ASSET_INCBIN 0x6D6608, 0x90
+    .else
+    FOMT_REGION_ASSET_INCBIN 0x6D6608, 0xC
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_022, 0x6D6614, 0x18
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_029, 0x6D662C, 0x18
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_027, 0x6D6644, 0x18
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_030, 0x6D665C, 0x18
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_028, 0x6D6674, 0x18
+    FOMT_FIELD_PLOT_RENDER_RECORD gUnk_FieldPlotRenderRecord_021, 0x6D668C, 0xC
+    .endif
 
 	non_de_asset_label gUnk_086D6698
 	FOMT_REGION_ASSET_INCBIN 0x6D6698, 0xE60
@@ -5920,47 +5951,6 @@ gUnk_0875B444:
     .set gUnk_FarmHouseVisualResource_041, gUnk_FarmHouseVisualResource_041 + 4
     .set gUnk_FarmHouseVisualResource_042, gUnk_FarmHouseVisualResource_042 + 4
 
-    @ EU field assets use the archive payload, not its four-byte header.
-    @ These symbols therefore resolve directly to payload byte 0 for C++ relocations.
-    .set gUnk_FieldPlotRenderRecord_000, gUnk_FieldPlotRenderRecord_000 + 4
-    .set gUnk_FieldPlotRenderRecord_001, gUnk_FieldPlotRenderRecord_001 + 4
-    .set gUnk_FieldPlotRenderRecord_002, gUnk_FieldPlotRenderRecord_002 + 4
-    .set gUnk_FieldPlotRenderRecord_003, gUnk_FieldPlotRenderRecord_003 + 4
-    .set gUnk_FieldPlotRenderRecord_004, gUnk_FieldPlotRenderRecord_004 + 4
-    .set gUnk_FieldPlotRenderRecord_005, gUnk_FieldPlotRenderRecord_005 + 4
-    .set gUnk_FieldPlotRenderRecord_006, gUnk_FieldPlotRenderRecord_006 + 4
-    .set gUnk_FieldPlotRenderRecord_007, gUnk_FieldPlotRenderRecord_007 + 4
-    .set gUnk_FieldPlotRenderRecord_008, gUnk_FieldPlotRenderRecord_008 + 4
-    .set gUnk_FieldPlotRenderRecord_009, gUnk_FieldPlotRenderRecord_009 + 4
-    .set gUnk_FieldPlotRenderRecord_010, gUnk_FieldPlotRenderRecord_010 + 4
-    .set gUnk_FieldPlotRenderRecord_011, gUnk_FieldPlotRenderRecord_011 + 4
-    .set gUnk_FieldPlotRenderRecord_012, gUnk_FieldPlotRenderRecord_012 + 4
-    .set gUnk_FieldPlotRenderRecord_013, gUnk_FieldPlotRenderRecord_013 + 4
-    .set gUnk_FieldPlotRenderRecord_014, gUnk_FieldPlotRenderRecord_014 + 4
-    .set gUnk_FieldPlotRenderRecord_015, gUnk_FieldPlotRenderRecord_015 + 4
-    .set gUnk_FieldPlotRenderRecord_016, gUnk_FieldPlotRenderRecord_016 + 4
-    .set gUnk_FieldPlotRenderRecord_017, gUnk_FieldPlotRenderRecord_017 + 4
-    .set gUnk_FieldPlotRenderRecord_018, gUnk_FieldPlotRenderRecord_018 + 4
-    .set gUnk_FieldPlotRenderRecord_019, gUnk_FieldPlotRenderRecord_019 + 4
-    .set gUnk_FieldPlotRenderRecord_020, gUnk_FieldPlotRenderRecord_020 + 4
-    .set gUnk_FieldPlotRenderRecord_021, gUnk_FieldPlotRenderRecord_021 + 4
-    .set gUnk_FieldPlotRenderRecord_022, gUnk_FieldPlotRenderRecord_022 + 4
-    .set gUnk_FieldPlotRenderRecord_023, gUnk_FieldPlotRenderRecord_023 + 4
-    .set gUnk_FieldPlotRenderRecord_024, gUnk_FieldPlotRenderRecord_024 + 4
-    .set gUnk_FieldPlotRenderRecord_025, gUnk_FieldPlotRenderRecord_025 + 4
-    .set gUnk_FieldPlotRenderRecord_026, gUnk_FieldPlotRenderRecord_026 + 4
-    .set gUnk_FieldPlotRenderRecord_027, gUnk_FieldPlotRenderRecord_027 + 4
-    .set gUnk_FieldPlotRenderRecord_028, gUnk_FieldPlotRenderRecord_028 + 4
-    .set gUnk_FieldPlotRenderRecord_029, gUnk_FieldPlotRenderRecord_029 + 4
-    .set gUnk_FieldPlotRenderRecord_030, gUnk_FieldPlotRenderRecord_030 + 4
-    .set gUnk_FieldPlotRenderRecord_031, gUnk_FieldPlotRenderRecord_031 + 4
-    .set gUnk_FieldPlotRenderRecord_032, gUnk_FieldPlotRenderRecord_032 + 4
-    .set gUnk_FieldPlotRenderRecord_033, gUnk_FieldPlotRenderRecord_033 + 4
-    .set gUnk_FieldPlotRenderRecord_034, gUnk_FieldPlotRenderRecord_034 + 4
-    .set gUnk_FieldPlotRenderRecord_035, gUnk_FieldPlotRenderRecord_035 + 4
-    .set gUnk_FieldPlotRenderRecord_036, gUnk_FieldPlotRenderRecord_036 + 4
-    .set gUnk_FieldPlotRenderRecord_037, gUnk_FieldPlotRenderRecord_037 + 4
-    .set gUnk_FieldPlotRenderRecord_038, gUnk_FieldPlotRenderRecord_038 + 4
     .set gUnk_FieldRenderResource_000, gUnk_FieldRenderResource_000 + 4
     .set gUnk_FieldRenderResource_001, gUnk_FieldRenderResource_001 + 4
     .set gUnk_FieldRenderResource_004, gUnk_FieldRenderResource_004 + 4

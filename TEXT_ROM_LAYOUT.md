@@ -35,7 +35,7 @@
 | EU | `0x080E86D0`–`0x080E86F1` | `src/intro_scene_startup.o(.rodata)` | `src/intro_scene_startup.cc`、`include/intro_scene_startup.hh`、`data/text/eu/intro_scene_startup.cc`；四个启动资源入口均为资产容器中的真实标签 | 精确 |
 | EU | `0x080E86F2`–`0x080E86F3` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080E86F4`–`0x080E8D0F` | `src/new_game_data.o(.rodata)` | `src/new_game_data.cc`、`include/new_game_data.hh`、`data/text/eu/new_game_data.cc` | 精确 |
-| EU | `0x080E8D10`–`0x080E9617` | `src/field_data.o(.rodata)` | `src/field_data.cc`、`include/field_data.hh` | 精确 |
+| EU | `0x080E8D10`–`0x080E9617` | `src/field_data.o(.rodata)` | `src/field_data.cc`、`include/field_data.hh` | 精确；39 个原始渲染记录均为资源流内的直接符号 |
 | EU | `0x080E9618`–`0x080E9650` | `src/shipping_bin.o(.rodata)` | `src/shipping_bin.cc`、`include/shipping_bin.hh`；三个本地产品编号表按源码顺序存放 | 精确 |
 | EU | `0x080E9651`–`0x080E965F` | `src/record_player.o(.rodata)` | `src/record_player.cc`、`include/record_player.hh`；本地唱片至音频序号表 | 精确 |
 | EU | `0x080E9660`–`0x080F0539` | `src/item.o(.rodata)` | `src/item.cc` 与 `data/text/eu/item.cc`–`item_3.cc` | 精确 |
@@ -124,7 +124,7 @@
 | DE | `0x080E85E8`–`0x080E8609` | `src/intro_scene_startup.o(.rodata)` | `src/intro_scene_startup.cc`、`include/intro_scene_startup.hh`、`data/text/de/intro_scene_startup.cc`；四个启动资源入口均为资产容器中的真实标签 | 精确 |
 | DE | `0x080E860A`–`0x080E860B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080E860C`–`0x080E8CCF` | `src/new_game_data.o(.rodata)` | `src/new_game_data.cc`、`include/new_game_data.hh`、`data/text/de/new_game_data.cc` | 精确 |
-| DE | `0x080E8CD0`–`0x080E95D7` | `src/field_data.o(.rodata)` | `src/field_data.cc`、`include/field_data.hh` | 精确 |
+| DE | `0x080E8CD0`–`0x080E95D7` | `src/field_data.o(.rodata)` | `src/field_data.cc`、`include/field_data.hh` | 精确；39 个原始渲染记录均为资源流内的直接符号 |
 | DE | `0x080E95D8`–`0x080E9610` | `src/shipping_bin.o(.rodata)` | `src/shipping_bin.cc`、`include/shipping_bin.hh`；三个本地产品编号表按源码顺序存放 | 精确 |
 | DE | `0x080E9611`–`0x080E961F` | `src/record_player.o(.rodata)` | `src/record_player.cc`、`include/record_player.hh`；本地唱片至音频序号表 | 精确 |
 | DE | `0x080E9620`–`0x080F09B1` | `src/item.o(.rodata)` | `src/item.cc` 与 `data/text/de/item.cc`–`item_3.cc` | 精确 |
@@ -220,7 +220,7 @@
 | `0x080E7AC6`–`0x080E7AC7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080E7AC8`–`0x080E8161` | `src/new_game_data.o(.rodata)` | [嵌入文本 / 数据] | `src/new_game_data.cc`<br>`include/new_game_data.hh`<br>`data/text/jp/new_game_data.cc` | 文本 `51` 项（菜单 `12`、状态/帮助/保存/身份/姓名输入 `39`；详见下方索引）<br>`gNewGameMenuLabels`（JP 直接重复 `Data1` / `Data2` 指针）<br>运行时字符串 `14` 项<br>`gNewGameNameEntryCharacterRows` |
 | `0x080E8162`–`0x080E8163` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080E8164`–`0x080E8A6B` | `src/field_data.o(.rodata)` | [数据] | `src/field_data.cc`<br>`include/field_data.hh` | `gFieldPlotOrdinaryWeatherRules`、`gFieldPlotSpecialWeatherRule3`、`gFieldPlotSpecialWeatherRule4`、`gFieldPlotGrowthStageTransitions`、`gFieldPlotTypeDefinitions`<br>定义表中的 39 个原始渲染记录均为符号重定位；格式未明，保留 `gUnk_` 标签 |
+| `0x080E8164`–`0x080E8A6B` | `src/field_data.o(.rodata)` | [数据] | `src/field_data.cc`<br>`include/field_data.hh` | `gFieldPlotOrdinaryWeatherRules`、`gFieldPlotSpecialWeatherRule3`、`gFieldPlotSpecialWeatherRule4`、`gFieldPlotGrowthStageTransitions`、`gFieldPlotTypeDefinitions`<br>定义表中的 39 个原始渲染记录均为资源流内的直接符号，C++ 表项对其保留重定位；格式未明，保留 `gUnk_` 标签 |
 | `0x080E8A6C`–`0x080E8AA4` | `src/shipping_bin.o(.rodata)` | [数据] | `src/shipping_bin.cc`<br>`include/shipping_bin.hh` | `sStartingDisplayedProductList`、`sCropProductList`、`sMineralProductList`；均只由本对象代码直接引用 |
 | `0x080E8AA5`–`0x080E8AB3` | `src/record_player.o(.rodata)` | [数据] | `src/record_player.cc`<br>`include/record_player.hh` | `sRecordPlayerAlbumAudioSequenceIds`；唱片 1–15 至音频序号 18–32，本对象直接重定位引用 |
 | `0x080E8AB4`–`0x080EFD51` | `src/item.o(.rodata)` | [嵌入文本 / 数据] | `src/item.cc`<br>`data/text/jp/item.cc`<br>`data/text/jp/item_1.cc`<br>`data/text/jp/item_2.cc`<br>`data/text/jp/item_3.cc` | 工具文本 `162`、食物文本 `337`、物品文本 `187` 项（详见下方索引）<br>文本段按物理断点依次为：无效物品标签与工具文本、食物文本、物品文本、尾部运行时文本<br>对象内文本后 `00` 对齐：`1`、`3`、`3` 字节<br>`gToolInfo`, `gFoodInfo`, `gArticleInfo`, `gProductInfo`<br>运行时字符串 `1` 项 |
@@ -2060,7 +2060,7 @@
 | `0x080E86A6`–`0x080E86A7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080E86A8`–`0x080E8CC1` | `src/new_game_data.o(.rodata)` | [嵌入文本 / 数据] | `src/new_game_data.cc`<br>`include/new_game_data.hh`<br>`data/text/us/new_game_data.cc` | 文本 `48` 项（菜单 `14`、状态/帮助/保存/身份/姓名输入 `34`；详见下方索引）<br>`gNewGameMenuLabels`<br>运行时字符串 `14` 项<br>`gNewGameNameEntryCharacterRows` |
 | `0x080E8CC2`–`0x080E8CC3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080E8CC4`–`0x080E95CB` | `src/field_data.o(.rodata)` | [数据] | `src/field_data.cc`<br>`include/field_data.hh` | `gFieldPlotOrdinaryWeatherRules`、`gFieldPlotSpecialWeatherRule3`、`gFieldPlotSpecialWeatherRule4`、`gFieldPlotGrowthStageTransitions`、`gFieldPlotTypeDefinitions`<br>定义表中的 39 个原始渲染记录均为符号重定位；格式未明，保留 `gUnk_` 标签 |
+| `0x080E8CC4`–`0x080E95CB` | `src/field_data.o(.rodata)` | [数据] | `src/field_data.cc`<br>`include/field_data.hh` | `gFieldPlotOrdinaryWeatherRules`、`gFieldPlotSpecialWeatherRule3`、`gFieldPlotSpecialWeatherRule4`、`gFieldPlotGrowthStageTransitions`、`gFieldPlotTypeDefinitions`<br>定义表中的 39 个原始渲染记录均为资源流内的直接符号，C++ 表项对其保留重定位；格式未明，保留 `gUnk_` 标签 |
 | `0x080E95CC`–`0x080E9604` | `src/shipping_bin.o(.rodata)` | [数据] | `src/shipping_bin.cc`<br>`include/shipping_bin.hh` | `sStartingDisplayedProductList`、`sCropProductList`、`sMineralProductList`；均只由本对象代码直接引用 |
 | `0x080E9605`–`0x080E9613` | `src/record_player.o(.rodata)` | [数据] | `src/record_player.cc`<br>`include/record_player.hh` | `sRecordPlayerAlbumAudioSequenceIds`；唱片 1–15 至音频序号 18–32，本对象直接重定位引用 |
 | `0x080E9614`–`0x080F04ED` | `src/item.o(.rodata)` | [嵌入文本 / 数据] | `src/item.cc`<br>`data/text/us/item.cc`<br>`data/text/us/item_1.cc`<br>`data/text/us/item_2.cc`<br>`data/text/us/item_3.cc` | 工具文本 `162`、食物文本 `335`、物品文本 `185` 项（详见下方索引）<br>文本段按物理断点依次为：无效物品标签与工具文本、食物文本、物品文本、尾部运行时文本<br>对象内文本后 `00` 对齐：`2`、`1`、`2` 字节<br>`gToolInfo`, `gFoodInfo`, `gArticleInfo`, `gProductInfo`<br>运行时字符串 `1` 项 |

@@ -1,46 +1,5 @@
 #include "field_data.hh"
 
-// These labels name still-raw field render records.  Their payload format is not decoded yet.
-extern Unk_Something const gUnk_FieldPlotRenderRecord_000[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_001[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_002[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_003[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_004[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_005[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_006[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_007[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_008[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_009[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_010[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_011[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_012[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_013[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_014[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_015[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_016[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_017[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_018[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_019[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_020[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_021[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_022[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_023[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_024[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_025[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_026[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_027[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_028[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_029[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_030[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_031[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_032[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_033[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_034[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_035[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_036[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_037[];
-extern Unk_Something const gUnk_FieldPlotRenderRecord_038[];
-
 FieldPlotWeatherRule const gFieldPlotOrdinaryWeatherRules[4][2] ALIGN(4) = {
     { { { 0x02, 0x02, 0x01, 0x00, 0x02, 0x00, 0x00, 0x00 } }, { { 0x0C, 0x02, 0x02, 0x00, 0x03, 0x00, 0x00, 0x00 } } },
     { { { 0x02, 0x01, 0x02, 0x00, 0x03, 0x00, 0x00, 0x00 } }, { { 0x10, 0x02, 0x03, 0x00, 0x05, 0x00, 0x00, 0x00 } } },
