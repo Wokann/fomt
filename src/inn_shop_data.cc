@@ -1,14 +1,6 @@
-#include "inn_shop_text.hh"
+#include "inn_shop_data.hh"
 
-#if defined(REGION_JP)
-#define FOMT_TEXT_INN_SHOP_DESCRIPTIONS
-#include FOMT_TEXT_INCLUDE(inn_shop.cc)
-#undef FOMT_TEXT_INN_SHOP_DESCRIPTIONS
-#else
-#define FOMT_TEXT_INN_SHOP_DESCRIPTIONS
-#include FOMT_TEXT_INCLUDE(inn_shop.cc)
-#undef FOMT_TEXT_INN_SHOP_DESCRIPTIONS
-#endif
+#include FOMT_TEXT_INCLUDE(inn_shop_data.cc)
 
 InnShopMenuEntry const gInnShopMenu[] = {
     { 0x1CD, 0, gText_InnShop_WaterDescription, 1, 1, 0, 1 },
@@ -22,12 +14,4 @@ InnShopMenuEntry const gInnShopMenu[] = {
     { 0x122, 200, gText_InnShop_MilkDescription, 1, 3, -20, 1 },
 };
 
-#if defined(REGION_JP)
-#define FOMT_TEXT_INN_SHOP_DIALOGUE
-#include FOMT_TEXT_INCLUDE(inn_shop.cc)
-#undef FOMT_TEXT_INN_SHOP_DIALOGUE
-#else
-#define FOMT_TEXT_INN_SHOP_DIALOGUE
-#include FOMT_TEXT_INCLUDE(inn_shop.cc)
-#undef FOMT_TEXT_INN_SHOP_DIALOGUE
-#endif
+#include FOMT_TEXT_INCLUDE(inn_shop_data_1.cc)

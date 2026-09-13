@@ -1,5 +1,5 @@
-#ifndef INN_SHOP_TEXT_HH
-#define INN_SHOP_TEXT_HH
+#ifndef INN_SHOP_DATA_HH
+#define INN_SHOP_DATA_HH
 
 #include "prelude.h"
 
@@ -29,4 +29,4 @@ extern char const gText_InnShop_NoOrder[];
 extern char const gText_InnShop_OrderComplete[];
 extern char const gCppRuntimeBadAlloc_InnShopTrailer[];
 
-#endif // INN_SHOP_TEXT_HH
+#endif // INN_SHOP_DATA_HH

@@ -67,6 +67,8 @@
 | EU | `0x080FE09A`–`0x080FE09B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FE09C`–`0x080FE2AD` | `src/clinic_data.o(.rodata)` | `src/clinic_data.cc`、`include/clinic_data.hh`、`data/text/eu/clinic_data.cc`；目录表、9 项文本及运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
 | EU | `0x080FE2AE`–`0x080FE2AF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
+| EU | `0x080FE2B0`–`0x080FE4CD` | `src/inn_shop_data.o(.rodata)` | `src/inn_shop_data.cc`、`include/inn_shop_data.hh`、`data/text/eu/inn_shop_data.cc`、`data/text/eu/inn_shop_data_1.cc`；菜品说明、菜单表、对话与运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
+| EU | `0x080FE4CE`–`0x080FE4CF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FECC8`–`0x080FEDD7` | `src/blacksmith_menu_data.o(.rodata)` | `src/blacksmith_menu_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
 | EU | `0x080FEDD8`–`0x080FF3AF` | `src/blacksmith_data.o(.rodata)` | `src/blacksmith_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
 | EU | `0x08100534`–`0x08100B17` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc` 与 `data/text/eu/link_communication.cc` | 精确 |
@@ -110,7 +112,8 @@
 | DE | `0x080FE7DA`–`0x080FE7DB` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080FE7DC`–`0x080FEA21` | `src/clinic_data.o(.rodata)` | `src/clinic_data.cc`、`include/clinic_data.hh`、`data/text/de/clinic_data.cc`；目录表、9 项文本及运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
 | DE | `0x080FEA22`–`0x080FEA23` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| DE | `0x080FEA24`–`0x080FEC8B` | `src/inn_shop_data.o(.rodata)` | `src/inn_shop_data.cc` 与 `data/text/de/inn_shop.cc` | 精确 |
+| DE | `0x080FEA24`–`0x080FEC39` | `src/inn_shop_data.o(.rodata)` | `src/inn_shop_data.cc`、`include/inn_shop_data.hh`、`data/text/de/inn_shop_data.cc`、`data/text/de/inn_shop_data_1.cc`；菜品说明、菜单表、对话与运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
+| DE | `0x080FEC3A`–`0x080FEC3B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080FEC8C`–`0x080FEF1F` | `src/won_shop_data.o(.rodata)` | `src/won_shop_data.cc` 与 `data/text/de/won_shop.cc` | 精确 |
 | DE | `0x080FEF20`–`0x080FF12B` | `src/winery_shop_data.o(.rodata)` | `src/winery_shop_data.cc` 与 `data/text/de/winery_shop.cc` | 精确 |
 | DE | `0x080FF12C`–`0x080FF2AB` | `src/special_merchant_shop_data.o(.rodata)` | `src/special_merchant_shop_data.cc` 与 `data/text/de/special_merchant_shop.cc` | 精确 |
@@ -194,7 +197,7 @@
 | `0x080FD80E`–`0x080FD80F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FD810`–`0x080FD9E1` | `src/clinic_data.o(.rodata)` | [嵌入文本 / 数据] | `src/clinic_data.cc`<br>`include/clinic_data.hh`<br>`data/text/jp/clinic_data.cc` | `gClinicCatalog`<br>文本 `9` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080FD9E2`–`0x080FD9E3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FD9E4`–`0x080FDBED` | `src/inn_shop_data.o(.rodata)` | [嵌入文本] | `data/text/jp/inn_shop.cc` | 文本 `7` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gInnShopMenu` |
+| `0x080FD9E4`–`0x080FDBED` | `src/inn_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/inn_shop_data.cc`<br>`include/inn_shop_data.hh`<br>`data/text/jp/inn_shop_data.cc`<br>`data/text/jp/inn_shop_data_1.cc` | 菜品说明 `4` 项<br>`gInnShopMenu`<br>对话文本 `3` 项<br>运行时字符串 `1` 项 |
 | `0x080FDBEE`–`0x080FDBEF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FDBF0`–`0x080FDF99` | `src/won_shop_data.o(.rodata)` | [嵌入文本] | `data/text/jp/won_shop.cc` | 文本 `12` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gWonShopCatalog` |
 | `0x080FDF9A`–`0x080FDF9B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1467,13 +1470,13 @@
 | `0x080FD930` | `gText_Clinic_Delivery` | `data/text/jp/clinic_data.cc` | `src/clinic_data.o(.rodata)` |
 | `0x080FD970` | `gText_Clinic_DeliveryPartial` | `data/text/jp/clinic_data.cc` | `src/clinic_data.o(.rodata)` |
 | `0x080FD9B8` | `gText_Clinic_PurchaseComplete` | `data/text/jp/clinic_data.cc` | `src/clinic_data.o(.rodata)` |
-| `0x080FD9E4` | `gText_InnShop_WaterDescription` | `data/text/jp/inn_shop.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FDA04` | `gText_InnShop_BoxLunchDescription` | `data/text/jp/inn_shop.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FDA30` | `gText_InnShop_Empty` | `data/text/jp/inn_shop.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FDA34` | `gText_InnShop_MilkDescription` | `data/text/jp/inn_shop.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FDB50` | `gText_InnShop_InsufficientGold` | `data/text/jp/inn_shop.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FDB74` | `gText_InnShop_NoOrder` | `data/text/jp/inn_shop.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FDBAC` | `gText_InnShop_OrderComplete` | `data/text/jp/inn_shop.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FD9E4` | `gText_InnShop_WaterDescription` | `data/text/jp/inn_shop_data.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FDA04` | `gText_InnShop_BoxLunchDescription` | `data/text/jp/inn_shop_data.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FDA30` | `gText_InnShop_Empty` | `data/text/jp/inn_shop_data.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FDA34` | `gText_InnShop_MilkDescription` | `data/text/jp/inn_shop_data.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FDB50` | `gText_InnShop_InsufficientGold` | `data/text/jp/inn_shop_data_1.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FDB74` | `gText_InnShop_NoOrder` | `data/text/jp/inn_shop_data_1.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FDBAC` | `gText_InnShop_OrderComplete` | `data/text/jp/inn_shop_data_1.cc` | `src/inn_shop_data.o(.rodata)` |
 | `0x080FDC40` | `gText_WonShop_ToolCapacityFull` | `data/text/jp/won_shop.cc` | `src/won_shop_data.o(.rodata)` |
 | `0x080FDC84` | `gText_WonShop_ItemCapacityFull` | `data/text/jp/won_shop.cc` | `src/won_shop_data.o(.rodata)` |
 | `0x080FDCC8` | `gText_WonShop_BlankLinePair` | `data/text/jp/won_shop.cc` | `src/won_shop_data.o(.rodata)` |
@@ -2031,7 +2034,7 @@
 | `0x080FE04E`–`0x080FE04F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FE050`–`0x080FE261` | `src/clinic_data.o(.rodata)` | [嵌入文本 / 数据] | `src/clinic_data.cc`<br>`include/clinic_data.hh`<br>`data/text/us/clinic_data.cc` | `gClinicCatalog`<br>文本 `9` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080FE262`–`0x080FE263` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FE264`–`0x080FE481` | `src/inn_shop_data.o(.rodata)` | [嵌入文本] | `data/text/us/inn_shop.cc` | 文本 `7` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gInnShopMenu` |
+| `0x080FE264`–`0x080FE481` | `src/inn_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/inn_shop_data.cc`<br>`include/inn_shop_data.hh`<br>`data/text/us/inn_shop_data.cc`<br>`data/text/us/inn_shop_data_1.cc` | 菜品说明 `4` 项<br>`gInnShopMenu`<br>对话文本 `3` 项<br>运行时字符串 `1` 项 |
 | `0x080FE482`–`0x080FE483` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FE484`–`0x080FE73D` | `src/won_shop_data.o(.rodata)` | [嵌入文本] | `data/text/us/won_shop.cc` | 文本 `10` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gWonShopCatalog` |
 | `0x080FE73E`–`0x080FE73F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -3291,13 +3294,13 @@
 | `0x080FE19C` | `gText_Clinic_Delivery` | `data/text/us/clinic_data.cc` | `src/clinic_data.o(.rodata)` |
 | `0x080FE1E8` | `gText_Clinic_DeliveryPartial` | `data/text/us/clinic_data.cc` | `src/clinic_data.o(.rodata)` |
 | `0x080FE238` | `gText_Clinic_PurchaseComplete` | `data/text/us/clinic_data.cc` | `src/clinic_data.o(.rodata)` |
-| `0x080FE264` | `gText_InnShop_WaterDescription` | `data/text/us/inn_shop.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FE284` | `gText_InnShop_BoxLunchDescription` | `data/text/us/inn_shop.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FE2BC` | `gText_InnShop_Empty` | `data/text/us/inn_shop.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FE2C0` | `gText_InnShop_MilkDescription` | `data/text/us/inn_shop.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FE3D4` | `gText_InnShop_InsufficientGold` | `data/text/us/inn_shop.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FE404` | `gText_InnShop_NoOrder` | `data/text/us/inn_shop.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FE448` | `gText_InnShop_OrderComplete` | `data/text/us/inn_shop.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FE264` | `gText_InnShop_WaterDescription` | `data/text/us/inn_shop_data.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FE284` | `gText_InnShop_BoxLunchDescription` | `data/text/us/inn_shop_data.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FE2BC` | `gText_InnShop_Empty` | `data/text/us/inn_shop_data.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FE2C0` | `gText_InnShop_MilkDescription` | `data/text/us/inn_shop_data.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FE3D4` | `gText_InnShop_InsufficientGold` | `data/text/us/inn_shop_data_1.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FE404` | `gText_InnShop_NoOrder` | `data/text/us/inn_shop_data_1.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FE448` | `gText_InnShop_OrderComplete` | `data/text/us/inn_shop_data_1.cc` | `src/inn_shop_data.o(.rodata)` |
 | `0x080FE4D4` | `gText_WonShop_ToolCapacityFull` | `data/text/us/won_shop.cc` | `src/won_shop_data.o(.rodata)` |
 | `0x080FE50C` | `gText_WonShop_ItemCapacityFull` | `data/text/us/won_shop.cc` | `src/won_shop_data.o(.rodata)` |
 | `0x080FE540` | `gText_WonShop_BlankLinePair` | `data/text/us/won_shop.cc` | `src/won_shop_data.o(.rodata)` |
