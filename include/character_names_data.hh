@@ -1,20 +1,15 @@
-#ifndef CHARACTER_NAMES_TEXT_HH
-#define CHARACTER_NAMES_TEXT_HH
+#ifndef CHARACTER_NAMES_DATA_HH
+#define CHARACTER_NAMES_DATA_HH
 
 #include "prelude.h"
+#include "fomt_constants.mary.h"
 
-// The native name lookup has an empty ID 0 record followed by one record for
-// each Mary CharacterId from 1 to 42.  The second word is retained as observed
-// data until its purpose is decompiled.
+// The native name lookup has one record for each MaryCharacterId.  The second
+// word is retained as observed data until its purpose is decompiled.
 struct CharacterNameEntry
 {
     char const *text;
     u32 unk_04;
-};
-
-enum
-{
-    CHARACTER_NAME_ENTRY_COUNT = 43,
 };
 
 extern char const gText_CharacterName_Lillia[];
@@ -51,7 +46,6 @@ extern char const gText_CharacterName_HarvestGoddess[];
 extern char const gText_CharacterName_Kappa[];
 extern char const gText_CharacterName_Van[];
 extern char const gText_CharacterName_LouOrRuby[];
-extern char const gText_CharacterName_Empty[];
 extern char const gText_CharacterName_Staid[];
 extern char const gText_CharacterName_Nappy[];
 extern char const gText_CharacterName_Bold[];
@@ -60,6 +54,7 @@ extern char const gText_CharacterName_Aqua[];
 extern char const gText_CharacterName_Hoggy[];
 extern char const gText_CharacterName_Timid[];
 
-extern CharacterNameEntry const gCharacterNameEntries[CHARACTER_NAME_ENTRY_COUNT];
+extern CharacterNameEntry const gCharacterNameEntries[CHARACTER_TIMID + 1];
+extern char const gCppRuntimeBadAlloc_CharacterNameEntriesTrailer[];
 
-#endif // CHARACTER_NAMES_TEXT_HH
+#endif // CHARACTER_NAMES_DATA_HH

@@ -750,7 +750,7 @@ SECTIONS
          src/fishing_results_data.o(.rodata);
         FILL(0x00);
          src/actor_runtime_data.o(.rodata);
-         src/character_names_data.o(.rodata.character_names_empty);
+         src/character_names_empty.o(.rodata);
          src/bachelorette.o(.rodata);
         /* Character-name regional data: names, lookup, trailer. */
          src/character_names_data.o(.rodata);
@@ -774,7 +774,7 @@ SECTIONS
          src/field_render_farm_house_data.o(.rodata);
         src/field_render_resource_data.o(.rodata);
         FILL(0x00);
-         src/bachelorette.o(.rodata.bachelorette_marriage_candidate_character_ids);
+         src/bachelorette_marriage_candidate_data.o(.rodata);
         src/field_render_runtime_data.o(.rodata);
         src/harvest_sprite.o(.rodata);
          src/reference_guide.o(.rodata.reference_guide);

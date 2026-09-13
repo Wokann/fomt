@@ -1,21 +1,12 @@
-#include "character_names_text.hh"
+#include "character_names_data.hh"
+#include "character_names_empty.hh"
 
-// The lookup table uses this one-byte object for IDs without a visible name.
-char const gText_CharacterName_Empty[]
-    SECTION(".rodata.character_names_empty") =
-        "";
-
-// The selected regional names directly precede their native lookup table and
-// runtime trailer in both ROMs.
-#if defined(REGION_JP)
+// The selected regional names directly precede their native lookup table.
 #include FOMT_TEXT_INCLUDE(character_names.cc)
-#else
-#include FOMT_TEXT_INCLUDE(character_names.cc)
-#endif
 
-// Entries are indexed directly by Mary CharacterId.  ID 0 and the Child entry
-// point at the original empty string retained in surrounding raw data.
-CharacterNameEntry const gCharacterNameEntries[CHARACTER_NAME_ENTRY_COUNT] = {
+// Entries are indexed directly by MaryCharacterId.  ID 0 and the Child entry
+// point at the physically preceding empty-name object.
+CharacterNameEntry const gCharacterNameEntries[CHARACTER_TIMID + 1] = {
     { gText_CharacterName_Empty, 0x00000000 },            // ID 0
     { gText_CharacterName_Lillia, 0x0000004C },          // CHARACTER_LILLIA
     { gText_CharacterName_Rick, 0x0000006E },            // CHARACTER_RICK
@@ -61,5 +52,4 @@ CharacterNameEntry const gCharacterNameEntries[CHARACTER_NAME_ENTRY_COUNT] = {
     { gText_CharacterName_Timid, 0x00000041 },           // CHARACTER_TIMID
 };
 
-extern char const gCppRuntimeBadAlloc_CharacterNameEntriesTrailer[] =
-    "bad_alloc";
+#include FOMT_TEXT_INCLUDE(character_names_1.cc)

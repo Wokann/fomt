@@ -1,4 +1,4 @@
-#include "character_names_text.hh"
+#include "character_names_data.hh"
 
 // Text storage selected by gCharacterNameEntries.  Each independent string is
 // compiler-aligned to four bytes; the linker places this object as one ROM region.

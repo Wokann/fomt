@@ -740,11 +740,10 @@ SECTIONS
         . = 0x103788; src/fishing_results_data.o(.rodata);
         FILL(0x00);
         . = 0x103B10; src/actor_runtime_data.o(.rodata);
-        . = 0x104108; src/character_names_data.o(.rodata.character_names_empty);
+        . = 0x104108; src/character_names_empty.o(.rodata);
         . = 0x104109; src/bachelorette.o(.rodata);
-        /* Bounded character-name localization island: names, lookup, trailer. */
+        /* Character-name text, lookup table, and runtime trailer. */
         . = 0x104128; src/character_names_data.o(.rodata);
-        ASSERT(. <= 0x1043BC, "US character-name localization island overflow");
         FILL(0x00);
         . = 0x1043BC; src/field_item_data.o(.rodata);
         FILL(0x00);
@@ -765,7 +764,7 @@ SECTIONS
         . = 0x1070DC; src/field_render_farm_house_data.o(.rodata);
         . = 0x107350; src/field_render_resource_data.o(.rodata);
         FILL(0x00);
-        . = 0x107438; src/bachelorette.o(.rodata.bachelorette_marriage_candidate_character_ids);
+        . = 0x107438; src/bachelorette_marriage_candidate_data.o(.rodata);
         . = 0x107450; src/field_render_runtime_data.o(.rodata);
         . = 0x1075B0; src/harvest_sprite.o(.rodata);
         . = 0x10828C; src/reference_guide.o(.rodata.reference_guide);
