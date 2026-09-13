@@ -116,5 +116,57 @@ extern "C" u8 const gUnk_080F11AC[];
 extern "C" u8 const gUnk_080F11B4[];
 extern "C" u32 const gUnk_080F11BC[];
 extern "C" u32 const gUnk_080F11E0[];
+extern "C" u32 const gUnk_080F1218[];
+extern "C" u32 const gUnk_080F1224[];
+extern "C" u8 const gUnk_080F1230[];
+extern "C" EntityUiScreenOffset const gUnk_080F1328[];
+extern "C" u32 const gUnk_080F143C[];
+extern "C" u16 const gEntityUiAnimationLookupTable[];
+extern "C" u8 const gUnk_080F1496[];
+extern "C" u32 const gUnk_080F149C[];
+extern "C" u32 const gUnk_080F14B8[];
+extern "C" u16 const gUnk_080F14D4[];
+extern "C" u16 const gUnk_080F14E2[];
+extern "C" u16 const gUnk_080F14F0[];
+extern "C" u16 const gUnk_080F1514[];
+extern "C" EntityUiUnknownEntry const gUnk_080F1538[];
+extern "C" u16 const gUnk_080F1560[];
+extern "C" EntityUiUnknownEntry const gUnk_080F156C[];
+extern "C" u16 const gUnk_080F15A4[];
+extern "C" EntityUiUnknownEntry const gUnk_080F15B4[];
+extern "C" u16 const gUnk_080F161C[];
+extern "C" EntityUiUnknownEntry const gUnk_080F1638[];
+extern "C" u16 const gUnk_080F1644[];
+extern "C" u16 const gUnk_080F165E[];
+extern "C" u16 const gUnk_080F1672[];
+extern "C" u32 const gUnk_080F1678[];
+extern "C" u16 const gUnk_080F1684[][4];
+extern "C" u16 const gUnk_080F16AE[];
+extern "C" u16 const gUnk_080F16C2[];
+extern "C" i16 const gUnk_080F16D2[];
+extern "C" u8 const gUnk_080F18D2[];
+extern "C" u8 const gUnk_080F1904[];
+extern "C" u32 const gUnk_080F1948[];
+
+// These runtime literals are physically interleaved with the native tables
+// above, so their declarations belong to this one UI module as well.
+extern "C" char const gCppRuntimeBadAlloc_EntityUiBeforeOffsets[];
+extern "C" char const gCppRuntimeError_EntityUiBeforeOffsets[];
+extern "C" char const gCppRuntimeBadAlloc_EntityUiAfterOffsets[];
+extern "C" char const gCppRuntimeError_EntityUiAfterOffsets[];
+extern "C" char const gCppRuntimeBadAlloc_EntityUiFirst[];
+extern "C" char const gCppRuntimeError_EntityUiFirst[];
+extern "C" char const gCppRuntimeBadAlloc_EntityUiSecond[];
+extern "C" char const gCppRuntimeError_EntityUiSecond[];
+extern "C" char const gCppRuntimeBadAlloc_EntityUiThird[];
+extern "C" char const gCppRuntimeError_EntityUiThird[];
+extern "C" char const gCppRuntimeBadAlloc_EntityUiFourth[];
+extern "C" char const gCppRuntimeError_EntityUiFourth[];
+extern "C" char const gCppRuntimeBadAlloc_EntityUiFifth[];
+extern "C" char const gCppRuntimeBadAlloc_EntityUiSixth[];
+extern "C" char const gCppRuntimeBadAlloc_EntityUiSeventh[];
+extern "C" char const gCppRuntimeBadAlloc_EntityUiEighth[];
+extern "C" char const gCppRuntimeBadAlloc_EntityUiNinth[];
+extern "C" char const gCppRuntimeBadAlloc_EntityUiTenth[];
 
 #endif

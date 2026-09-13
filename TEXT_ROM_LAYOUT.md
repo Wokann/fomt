@@ -42,7 +42,7 @@
 | EU | `0x080F053A`–`0x080F05D7` | `src/game_state.o(.rodata)` | `src/game_state.cc`、`include/game_state.hh` 与 `data/text/eu/game_state.cc`–`game_state_1.cc` | 精确 |
 | EU | `0x080F05D8`–`0x080F069F` | `src/help_menu.o(.rodata)` | `src/help_menu.cc`、`include/help_menu.hh` 与 `data/text/eu/help_menu.cc` | 精确 |
 | EU | `0x080F06A0`–`0x080F0ECB` | `src/animal_data.o(.rodata)` | `src/animal_data.cc`、`include/animal_data.hh`、`data/text/eu/animal_data.cc`、`data/text/eu/animal_data_1.cc`、`data/text/eu/animal_data_2.cc` | 精确 |
-| EU | `0x080F0ECC`–`0x080F19BF` | `src/entity_ui.o(.rodata)` | `src/entity_ui.cc`、`include/entity_ui.hh`、`data/text/eu/entity_ui.cc`–`entity_ui_9.cc` | 精确 |
+| EU | `0x080F0ECC`–`0x080F19BF` | `src/entity_ui.o(.rodata)` | `src/entity_ui.cc`、`include/entity_ui.hh`、`data/text/eu/entity_ui.cc`–`entity_ui_9.cc`；外部表和运行时文本均在同名头文件声明，汇编读取保持符号重定位 | 精确 |
 | EU | `0x080F19C0`–`0x080F1AC9` | `src/common_ui.o(.rodata)` | `src/common_ui.cc`、`include/common_ui.hh`、`data/text/eu/common_ui.cc`–`common_ui_6.cc` | 精确 |
 | EU | `0x080F1ACA`–`0x080F1ACB` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080F1ACC`–`0x080F3401` | `src/data_schedules.o(.rodata)` | `src/data_schedules.cc`、`include/data_schedules.hh`、`data/text/eu/data_schedules.cc`–`data_schedules_6.cc`；7 处运行时字符串与所有日程/路径表按 ROM 顺序嵌入同一对象 | 精确 |
@@ -131,7 +131,7 @@
 | DE | `0x080F09B2`–`0x080F0A4F` | `src/game_state.o(.rodata)` | `src/game_state.cc`、`include/game_state.hh` 与 `data/text/de/game_state.cc`–`game_state_1.cc` | 精确 |
 | DE | `0x080F0A50`–`0x080F0B17` | `src/help_menu.o(.rodata)` | `src/help_menu.cc`、`include/help_menu.hh` 与 `data/text/de/help_menu.cc` | 精确 |
 | DE | `0x080F0B18`–`0x080F1367` | `src/animal_data.o(.rodata)` | `src/animal_data.cc`、`include/animal_data.hh`、`data/text/de/animal_data.cc`、`data/text/de/animal_data_1.cc`、`data/text/de/animal_data_2.cc` | 精确 |
-| DE | `0x080F1368`–`0x080F1E5B` | `src/entity_ui.o(.rodata)` | `src/entity_ui.cc`、`include/entity_ui.hh`、`data/text/de/entity_ui.cc`–`entity_ui_9.cc` | 精确 |
+| DE | `0x080F1368`–`0x080F1E5B` | `src/entity_ui.o(.rodata)` | `src/entity_ui.cc`、`include/entity_ui.hh`、`data/text/de/entity_ui.cc`–`entity_ui_9.cc`；外部表和运行时文本均在同名头文件声明，汇编读取保持符号重定位 | 精确 |
 | DE | `0x080F1E5C`–`0x080F1F65` | `src/common_ui.o(.rodata)` | `src/common_ui.cc`、`include/common_ui.hh`、`data/text/de/common_ui.cc`–`common_ui_6.cc` | 精确 |
 | DE | `0x080F1F66`–`0x080F1F67` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080F1F68`–`0x080F389D` | `src/data_schedules.o(.rodata)` | `src/data_schedules.cc`、`include/data_schedules.hh`、`data/text/de/data_schedules.cc`–`data_schedules_6.cc`；7 处运行时字符串与所有日程/路径表按 ROM 顺序嵌入同一对象 | 精确 |
@@ -232,7 +232,7 @@
 | `0x080EFEA3`–`0x080EFEA3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x080EFEA4`–`0x080F06DD` | `src/animal_data.o(.rodata)` | [嵌入文本 / 数据] | `src/animal_data.cc`<br>`include/animal_data.hh`<br>`data/text/jp/animal_data.cc`<br>`data/text/jp/animal_data_1.cc`<br>`data/text/jp/animal_data_2.cc` | 文本 `12` 项（动物纪念 `11`、动物数据回退 `1`；详见下方索引）<br>运行时字符串 `7` 项<br>`gUnk_080F06FD`, `gUnk_080F0704`, `gUnk_080F0718`, `gUnk_080F0730`, `gUnk_080F0748`, `gUnk_080F0770`, … +11<br>单一 Animal Data 模块，文本、普通数组与表按 ROM 物理顺序嵌入 |
 | `0x080F06DE`–`0x080F06DF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F06E0`–`0x080F11D1` | `src/entity_ui.o(.rodata)` | [嵌入文本 / 数据] | `src/entity_ui.cc`<br>`include/entity_ui.hh`<br>`data/text/jp/entity_ui.cc`–`entity_ui_9.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `18` 项<br>`gUnk_080F0E88`, `gUnk_080F0F78`, `gUnk_080F0FCC`, `gUnk_080F1020`, `gUnk_080F1170`, `gUnk_080F1178`, … +41<br>单一主 UI 模块；终点由后续 `src/common_ui.o(.rodata)` 起点自然限制 |
+| `0x080F06E0`–`0x080F11D1` | `src/entity_ui.o(.rodata)` | [嵌入文本 / 数据] | `src/entity_ui.cc`<br>`include/entity_ui.hh`<br>`data/text/jp/entity_ui.cc`–`entity_ui_9.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `18` 项<br>`gUnk_080F0E88`, `gUnk_080F0F78`, `gUnk_080F0FCC`, `gUnk_080F1020`, `gUnk_080F1170`, `gUnk_080F1178`, … +41<br>所有外部表与运行时文本均集中在同名头文件声明；汇编读取保持符号重定位<br>单一主 UI 模块；终点由后续 `src/common_ui.o(.rodata)` 起点自然限制 |
 | `0x080F11D2`–`0x080F11D3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F11D4`–`0x080F12D9` | `src/common_ui.o(.rodata)` | [嵌入文本 / 数据] | `src/common_ui.cc`<br>`include/common_ui.hh`<br>`data/text/jp/common_ui.cc`–`common_ui_6.cc` | 文本 `11` 项（详见下方索引）<br>运行时字符串 `6` 项<br>`gFixedLabelsPaddingBeforeUnnamedSetting`、`gUnk_080F19AE`、`gMenuEntryIds`、`gMenuEntryLabels`、`gUnk_080F1A66`<br>所有原始内部对齐零字节均由同一对象中的相邻定义自然保留；下方起点约束此可本地化范围 |
 | `0x080F12DA`–`0x080F12DB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -2072,7 +2072,7 @@
 | `0x080F0651`–`0x080F0653` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
 | `0x080F0654`–`0x080F0E7D` | `src/animal_data.o(.rodata)` | [嵌入文本 / 数据] | `src/animal_data.cc`<br>`include/animal_data.hh`<br>`data/text/us/animal_data.cc`<br>`data/text/us/animal_data_1.cc`<br>`data/text/us/animal_data_2.cc` | 文本 `12` 项（动物纪念 `11`、动物数据回退 `1`；详见下方索引）<br>运行时字符串 `7` 项<br>`gUnk_080F06FD`, `gUnk_080F0704`, `gUnk_080F0718`, `gUnk_080F0730`, `gUnk_080F0748`, `gUnk_080F0770`, … +11<br>单一 Animal Data 模块，文本、普通数组与表按 ROM 物理顺序嵌入 |
 | `0x080F0E7E`–`0x080F0E7F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F0E80`–`0x080F1971` | `src/entity_ui.o(.rodata)` | [嵌入文本 / 数据] | `src/entity_ui.cc`<br>`include/entity_ui.hh`<br>`data/text/us/entity_ui.cc`–`entity_ui_9.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `18` 项<br>`gUnk_080F0E88`, `gUnk_080F0F78`, `gUnk_080F0FCC`, `gUnk_080F1020`, `gUnk_080F1170`, `gUnk_080F1178`, … +41<br>单一主 UI 模块；终点由后续 `src/common_ui.o(.rodata)` 起点自然限制 |
+| `0x080F0E80`–`0x080F1971` | `src/entity_ui.o(.rodata)` | [嵌入文本 / 数据] | `src/entity_ui.cc`<br>`include/entity_ui.hh`<br>`data/text/us/entity_ui.cc`–`entity_ui_9.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `18` 项<br>`gUnk_080F0E88`, `gUnk_080F0F78`, `gUnk_080F0FCC`, `gUnk_080F1020`, `gUnk_080F1170`, `gUnk_080F1178`, … +41<br>所有外部表与运行时文本均集中在同名头文件声明；汇编读取保持符号重定位<br>单一主 UI 模块；终点由后续 `src/common_ui.o(.rodata)` 起点自然限制 |
 | `0x080F1972`–`0x080F1973` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F1974`–`0x080F1A7D` | `src/common_ui.o(.rodata)` | [嵌入文本 / 数据] | `src/common_ui.cc`<br>`include/common_ui.hh`<br>`data/text/us/common_ui.cc`–`common_ui_6.cc` | 文本 `11` 项（详见下方索引）<br>运行时字符串 `6` 项<br>`gFixedLabelsPaddingBeforeUnnamedSetting`、`gUnk_080F19AE`、`gMenuEntryIds`、`gMenuEntryLabels`、`gUnk_080F1A66`<br>所有原始内部对齐零字节均由同一对象中的相邻定义自然保留；下方起点约束此可本地化范围 |
 | `0x080F1A7E`–`0x080F1A7F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
