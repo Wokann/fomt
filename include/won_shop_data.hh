@@ -1,5 +1,5 @@
-#ifndef WON_SHOP_TEXT_HH
-#define WON_SHOP_TEXT_HH
+#ifndef WON_SHOP_DATA_HH
+#define WON_SHOP_DATA_HH
 
 #include "prelude.h"
 
@@ -29,4 +29,4 @@ extern char const gText_WonShop_NoPurchase[];
 extern char const gText_WonShop_NoAdditionalPurchase[];
 extern char const gCppRuntimeBadAlloc_WonShopTrailer[];
 
-#endif // WON_SHOP_TEXT_HH
+#endif // WON_SHOP_DATA_HH

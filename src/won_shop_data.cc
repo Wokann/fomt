@@ -1,4 +1,4 @@
-#include "won_shop_text.hh"
+#include "won_shop_data.hh"
 
 #include "item.hh"
 
@@ -15,8 +15,4 @@ WonShopCatalogEntry const gWonShopCatalog[] = {
     { ITEM_TOOL_SEEDS_TOY_FLOWER, 400 },
 };
 
-#if defined(REGION_JP)
-#include FOMT_TEXT_INCLUDE(won_shop.cc)
-#else
-#include FOMT_TEXT_INCLUDE(won_shop.cc)
-#endif
+#include FOMT_TEXT_INCLUDE(won_shop_data.cc)

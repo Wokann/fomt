@@ -1,4 +1,4 @@
-#include "won_shop_text.hh"
+#include "won_shop_data.hh"
 
 char const gText_WonShop_ToolCapacityFull[] =
     "You can't hold more tools!\r\n"
@@ -47,5 +47,5 @@ char const gText_WonShop_NoAdditionalPurchase[] =
     "Sure you don't want to\r\n"
     "buy anything else?{Press}";
 
-extern char const gCppRuntimeBadAlloc_WonShopTrailer[] =
+char const gCppRuntimeBadAlloc_WonShopTrailer[] =
     "bad_alloc";

@@ -1,4 +1,4 @@
-#include "won_shop_text.hh"
+#include "won_shop_data.hh"
 
 char const gText_WonShop_ToolCapacityFull[] =
     "もう、装備品持てないあるよ。\r\n"
@@ -62,5 +62,5 @@ char const gText_WonShop_ToolDeliveryMultiple[] =
     "家に送ってあげるある。\r\n"
     "サービス、サービスね。{Press}";
 
-extern char const gCppRuntimeBadAlloc_WonShopTrailer[] =
+char const gCppRuntimeBadAlloc_WonShopTrailer[] =
     "bad_alloc";
