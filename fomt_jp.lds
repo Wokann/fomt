@@ -299,7 +299,7 @@ SECTIONS
         . = 0x9B8CC; /* JP ROM 0x0809B8CC, independently matched */
         src/sheep.o(.text);
         . = 0x9BA20; /* JP ROM 0x0809BA20, independently matched */
-        src/code_actor_0809BFE8.o(.text);
+        src/actor_runtime_data.o(.text);
         . = 0x9BB98; /* JP ROM 0x0809BB98, unlabelled raw helper */
         asm/code_actor_0809BFE8.o(.text.code_actor_0809C160);
         . = 0x9BC64; /* JP ROM 0x0809BC64, shared selector */
@@ -828,7 +828,7 @@ SECTIONS
         /* Fishing-record regional data: names, lookup, trailer. */
         . = 0x1032C4; src/fishing_results_data.o(.rodata);
         FILL(0x00);
-        . = 0x103604; src/code_actor_0809BFE8.o(.rodata);
+        . = 0x103604; src/actor_runtime_data.o(.rodata);
         . = 0x103BFC; src/character_names_data.o(.rodata.character_names_empty);
         . = 0x103BFD; src/bachelorette.o(.rodata);
         /* Bounded character-name localization island: names, lookup, trailer. */

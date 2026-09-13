@@ -1,23 +1,4 @@
-#include "prelude.h"
-
-#include "actor.hh"
-#include "actor_state.hh"
-
-struct Unk_Actor_0809BFE8 : Actor
-{
-    Unk_Actor_0809BFE8();
-
-    u32 unk_08_0 : 7;
-    u32 unk_0C;
-    u32 unk_10;
-    u32 unk_14;
-};
-
-struct Unk_Actor_0809C0AC
-{
-    u32 unk_00;
-    u32 unk_04;
-};
+#include "actor_runtime_data.hh"
 
 Unk_Actor_0809BFE8::Unk_Actor_0809BFE8()
     : Actor(ActorLocation(Location(MAP_NONE, 0, 0), 0)), unk_08_0(100), unk_0C(0)
@@ -271,11 +252,7 @@ EC u8 const gUnk_0810400C[][10] = {
     { 0x32, 0x00, 0x05, 0x19, 0x19, 0x19, 0x19, 0x19, 0x19, 0x01 },
 };
 
-// This compiler runtime string is a normal C string.  The required leading
-// and trailing zero bytes are emitted by object alignment, not by \0 source
-// escapes.
-extern char const gCppRuntimeBadAlloc_ActorSelectorTrailer[] ALIGN(4) =
-    "bad_alloc";
+#include FOMT_TEXT_INCLUDE(actor_runtime_data.cc)
 
 // func_0809E804 treats these as seven four-byte records and reads their bytes
 // individually; they are not ROM pointers.

@@ -93,6 +93,7 @@
 | EU | `0x081036B8`–`0x08103717` | `src/livestock_day_update_data.o(.rodata)` | `src/livestock_day_update_data.cc`、`include/livestock_day_update_data.hh` | 精确 |
 | EU | `0x08103718`–`0x081037DD` | `src/actor_state.o(.rodata)` | `src/actor_state.cc`、`include/actor_state.hh`、`data/text/{jp,us,eu,de}/actor_state.cc`、`data/text/{jp,us,eu,de}/actor_state_1.cc` | 精确 |
 | EU | `0x081037E0`–`0x08103B65` | `src/fishing_results_data.o(.rodata)` | `src/fishing_results_data.cc`、`include/fishing_results_data.hh`、`data/text/eu/fishing_results_data.cc`、`data/text/eu/fishing_results_data_1.cc` | 文本 `58` 项、`gFishingRecordNames`、运行时字符串 `1` 项 |
+| EU | `0x08103B68`–`0x0810415F` | `src/actor_runtime_data.o(.rodata)` | `src/actor_runtime_data.cc`、`include/actor_runtime_data.hh`、`data/text/eu/actor_runtime_data.cc`；运行时字符串与 9 个已命名数据对象按 ROM 顺序同属该对象 | 精确 |
 | EU | `0x08104EAC`–`0x08104ECB` | `src/fishing_record_article_ids.o(.rodata)` | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | `gFishingRecordArticleIds` |
 | EU | `0x081082E4`–`0x08117843` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 EU 指南源文件；主目录只收录 `PAGE_1`，`tool_and_item_controls_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 | DE | `0x080E8574`–`0x080E858D` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0.hh`、`data/text/de/crt0_data.cc` | 精确 |
@@ -158,6 +159,7 @@
 | DE | `0x081040A4`–`0x08104103` | `src/livestock_day_update_data.o(.rodata)` | `src/livestock_day_update_data.cc`、`include/livestock_day_update_data.hh` | 精确 |
 | DE | `0x08104104`–`0x081041C9` | `src/actor_state.o(.rodata)` | `src/actor_state.cc`、`include/actor_state.hh`、`data/text/{jp,us,eu,de}/actor_state.cc`、`data/text/{jp,us,eu,de}/actor_state_1.cc` | 精确 |
 | DE | `0x081041CC`–`0x08104565` | `src/fishing_results_data.o(.rodata)` | `src/fishing_results_data.cc`、`include/fishing_results_data.hh`、`data/text/de/fishing_results_data.cc`、`data/text/de/fishing_results_data_1.cc` | 文本 `58` 项、`gFishingRecordNames`、运行时字符串 `1` 项 |
+| DE | `0x08104568`–`0x08104B5F` | `src/actor_runtime_data.o(.rodata)` | `src/actor_runtime_data.cc`、`include/actor_runtime_data.hh`、`data/text/de/actor_runtime_data.cc`；运行时字符串与 9 个已命名数据对象按 ROM 顺序同属该对象 | 精确 |
 | DE | `0x08105878`–`0x08105897` | `src/fishing_record_article_ids.o(.rodata)` | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | `gFishingRecordArticleIds` |
 | DE | `0x08107FD4`–`0x08108DB3` | `src/harvest_sprite.o(.rodata)` | `src/harvest_sprite.cc` 与 `data/text/de/harvest_sprite_*.cc` | 精确 |
 | DE | `0x08108DB4`–`0x081197FF` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 DE 指南源文件；主目录只收录 `PAGE_1`，`using_tools_2` 与 `newborn_congratulations_cliff_and_ann_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
@@ -274,7 +276,7 @@
 | `0x081032C2`–`0x081032C3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x081032C4`–`0x08103601` | `src/fishing_results_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/fishing_results_data.cc`、`include/fishing_results_data.hh`<br>`data/text/jp/fishing_results_data.cc`、`data/text/jp/fishing_results_data_1.cc` | 文本 `59` 项（详见下方索引）<br>文本后对象内 `00` 对齐 `3` 字节<br>`gFishingRecordNames`<br>运行时字符串 `1` 项 |
 | `0x08103602`–`0x08103603` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08103604`–`0x08103BFB` | `src/code_actor_0809BFE8.o(.rodata)` | [数据] | `src/code_actor_0809BFE8.c/.cc` | 运行时字符串 `1` 项<br>`gUnk_08103B10`, `gUnk_08103B38`, `gUnk_08103C3C`, `gUnk_08103C74`, `gUnk_08103F84`, `gUnk_08103F98`, … +3 |
+| `0x08103604`–`0x08103BFB` | `src/actor_runtime_data.o(.rodata)` | [数据 / 嵌入文本] | `src/actor_runtime_data.cc`、`include/actor_runtime_data.hh`<br>`data/text/jp/actor_runtime_data.cc` | 运行时字符串 `1` 项<br>`gUnk_08103B10`, `gUnk_08103B38`, `gUnk_08103C3C`, `gUnk_08103C74`, `gUnk_08103F84`, `gUnk_08103F98`, … +3 |
 | `0x08103BFC`–`0x08103BFC` | `src/character_names_data.o(.rodata.character_names_empty)` | [嵌入文本] | `src/character_names_data.c/.cc` | 文本 `1` 项（详见下方索引） |
 | `0x08103BFD`–`0x08103C1A` | `src/bachelorette.o(.rodata)` | [数据] | `src/bachelorette.c/.cc` | `gUnk_BacheloretteLoveThresholds00`, `gUnk_BacheloretteLoveThresholds01`, `gUnk_BacheloretteLoveThresholds02`, `gUnk_BacheloretteLoveThresholds03`, `gUnk_BacheloretteLoveThresholds04`, `gUnk_BacheloretteLoveThresholds05` |
 | `0x08103C1B`–`0x08103C1B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
@@ -2105,7 +2107,7 @@
 | `0x08103786`–`0x08103787` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08103788`–`0x08103B0D` | `src/fishing_results_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/fishing_results_data.cc`、`include/fishing_results_data.hh`<br>`data/text/us/fishing_results_data.cc`、`data/text/us/fishing_results_data_1.cc` | 文本 `58` 项（详见下方索引）<br>文本后对象内 `00` 对齐 `2` 字节<br>`gFishingRecordNames`<br>运行时字符串 `1` 项 |
 | `0x08103B0E`–`0x08103B0F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08103B10`–`0x08104107` | `src/code_actor_0809BFE8.o(.rodata)` | [数据] | `src/code_actor_0809BFE8.c/.cc` | 运行时字符串 `1` 项<br>`gUnk_08103B10`, `gUnk_08103B38`, `gUnk_08103C3C`, `gUnk_08103C74`, `gUnk_08103F84`, `gUnk_08103F98`, … +3 |
+| `0x08103B10`–`0x08104107` | `src/actor_runtime_data.o(.rodata)` | [数据 / 嵌入文本] | `src/actor_runtime_data.cc`、`include/actor_runtime_data.hh`<br>`data/text/us/actor_runtime_data.cc` | 运行时字符串 `1` 项<br>`gUnk_08103B10`, `gUnk_08103B38`, `gUnk_08103C3C`, `gUnk_08103C74`, `gUnk_08103F84`, `gUnk_08103F98`, … +3 |
 | `0x08104108`–`0x08104108` | `src/character_names_data.o(.rodata.character_names_empty)` | [嵌入文本] | `src/character_names_data.c/.cc` | 文本 `1` 项（详见下方索引） |
 | `0x08104109`–`0x08104126` | `src/bachelorette.o(.rodata)` | [数据] | `src/bachelorette.c/.cc` | `gUnk_BacheloretteLoveThresholds00`, `gUnk_BacheloretteLoveThresholds01`, `gUnk_BacheloretteLoveThresholds02`, `gUnk_BacheloretteLoveThresholds03`, `gUnk_BacheloretteLoveThresholds04`, `gUnk_BacheloretteLoveThresholds05` |
 | `0x08104127`–`0x08104127` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
