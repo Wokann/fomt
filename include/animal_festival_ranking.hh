@@ -3,38 +3,20 @@
 
 #include "prelude.h"
 
-// The score-table axes remain native-code work; the storage order is exact.
-extern u16 const gAnimalFestivalRankingScoreTable[];
-
-// Runtime literal physically following the ranking score table.
-extern char const gCppRuntimeBadAlloc_FrisbeeScoreboard[];
-
-// These native-code tables are kept flat until their axes are decompiled.
-extern u8 const gUnk_080FA246[];
-extern u8 const gUnk_080FA264[];
-extern u8 const gUnk_080FA2E8[];
-extern u16 const gUnk_080FA36C[];
-
-extern u8 const gAnimalFestivalRewardChanceWeights[];
-extern u32 const gAnimalFestivalRewardArticleIds[];
-
-struct AnimalFestivalRandomRangePair
-{
-    u32 first_minimum;
-    u32 first_maximum;
-    u32 second_minimum;
-    u32 second_maximum;
-};
-
-extern AnimalFestivalRandomRangePair const gAnimalFestivalRandomRangePairs[];
-
-// Native code indexes each contestant row as four unclassified byte values.
-extern u8 const gAnimalFestivalLivestockContestantValues[][4];
-
 struct AnimalFestivalRankingEntry
 {
     u8 animal_index;
     u16 score;
 };
+
+extern "C" void CopyAnimalFestivalRankingEntry(
+    AnimalFestivalRankingEntry const * entries,
+    AnimalFestivalRankingEntry * output,
+    u32 index);
+
+extern "C" void SetAnimalFestivalRankingEntry(
+    AnimalFestivalRankingEntry * entries,
+    AnimalFestivalRankingEntry const * input,
+    u32 index);
 
 #endif // ANIMAL_FESTIVAL_RANKING_HH
