@@ -87,6 +87,7 @@
 | EU | `0x08100534`–`0x08100B17` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc`、`include/link_communication_data.hh`、`data/text/eu/link_communication.cc` | 精确 |
 | EU | `0x08100B18`–`0x08100B29` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | `src/cooking_recipe_inventory_page_data.cc`、`include/cooking_recipe_inventory_page_data.hh`、`data/text/common/cooking_recipe_inventory_page_data.cc` | 精确 |
 | EU | `0x08100B2A`–`0x08100E38` | `src/recovery_status.o(.rodata)` | `src/recovery_status.cc`、`include/recovery_status.hh`、`data/text/eu/recovery_status.cc` | 精确 |
+| EU | `0x08100E3C`–`0x0810113F` | `src/cooking.o(.rodata)` | `src/cooking.cc`、`include/cooking.hh`、`data/text/eu/cooking.cc` | 精确 |
 | EU | `0x081082E4`–`0x08117843` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 EU 指南源文件；主目录只收录 `PAGE_1`，`tool_and_item_controls_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 | DE | `0x080E8574`–`0x080E858D` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0.hh`、`data/text/de/crt0_data.cc` | 精确 |
 | DE | `0x080E858E`–`0x080E858F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -145,7 +146,7 @@
 | DE | `0x08100EA0`–`0x081014DB` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc`、`include/link_communication_data.hh`、`data/text/de/link_communication.cc` | 精确 |
 | DE | `0x081014DC`–`0x081014ED` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | `src/cooking_recipe_inventory_page_data.cc`、`include/cooking_recipe_inventory_page_data.hh`、`data/text/common/cooking_recipe_inventory_page_data.cc` | 精确 |
 | DE | `0x081014EE`–`0x081017FC` | `src/recovery_status.o(.rodata)` | `src/recovery_status.cc`、`include/recovery_status.hh`、`data/text/de/recovery_status.cc` | 精确 |
-| DE | `0x08101800`–`0x08101B29` | `data/text/cooking.o(.rodata)` | `data/text/de/cooking.cc` | 精确 |
+| DE | `0x08101800`–`0x08101B29` | `src/cooking.o(.rodata)` | `src/cooking.cc`、`include/cooking.hh`、`data/text/de/cooking.cc` | 精确 |
 | DE | `0x08107FD4`–`0x08108DB3` | `src/harvest_sprite.o(.rodata)` | `src/harvest_sprite.cc` 与 `data/text/de/harvest_sprite_*.cc` | 精确 |
 | DE | `0x08108DB4`–`0x081197FF` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 DE 指南源文件；主目录只收录 `PAGE_1`，`using_tools_2` 与 `newborn_congratulations_cliff_and_ann_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 
@@ -251,7 +252,7 @@
 | `0x081005D8`–`0x081005E9` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | [嵌入文本 / 数据] | `src/cooking_recipe_inventory_page_data.cc`<br>`include/cooking_recipe_inventory_page_data.hh`<br>`data/text/common/cooking_recipe_inventory_page_data.cc` | `gText_Cooking_Recipe_PageBreak`<br>`gCookingRecipeInventoryUtensilValues` |
 | `0x081005EA`–`0x081008F8` | `src/recovery_status.o(.rodata)` | [嵌入文本] | `src/recovery_status.cc`、`include/recovery_status.hh`、`data/text/jp/recovery_status.cc` | 文本 `2` 项（详见下方索引） |
 | `0x081008F9`–`0x081008FB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
-| `0x081008FC`–`0x08100C23` | `data/text/cooking.o(.rodata)` | [文本对象] | `data/text/jp/cooking.cc` | 文本 `28` 项（详见下方索引） |
+| `0x081008FC`–`0x08100C23` | `src/cooking.o(.rodata)` | [嵌入文本] | `src/cooking.cc`、`include/cooking.hh`、`data/text/jp/cooking.cc` | 文本 `28` 项（详见下方索引） |
 | `0x08100C24`–`0x08100C47` | `src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_mask_entries)` | [数据] | `src/cooking_recipe_inventory_data.cc`<br>`include/cooking_recipe_inventory_data.hh` | `gCookingRecipeInventoryMaskEntries` |
 | `0x08100C48`–`0x08103191` | `src/cooking_recipe_inventory_data.o(.rodata)` | [数据] | `src/cooking_recipe_inventory_data.cc`<br>`include/cooking_recipe_inventory_data.hh` | 运行时字符串 `2` 项<br>`gCookingRecipeDefinitions`, `gCookingRecipeDefinitionPayload` |
 | `0x08103192`–`0x08103193` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1731,34 +1732,34 @@
 | `0x081005D8` | `gText_Cooking_Recipe_PageBreak` | `data/text/common/cooking_recipe_inventory_page_data.cc` | `src/cooking_recipe_inventory_page_data.o(.rodata)` |
 | `0x081005EA` | `gText_StaminaRecoveryStatus` | `data/text/jp/recovery_status.cc` | `src/recovery_status.o(.rodata)` |
 | `0x081006EF` | `gText_FatigueRecoveryStatus` | `data/text/jp/recovery_status.cc` | `src/recovery_status.o(.rodata)` |
-| `0x081008FC` | `gText_Cooking_SeasoningSet` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x0810090C` | `gText_Cooking_CompleteUtensilSelection` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100948` | `gText_Cooking_WrappedGiftDescription` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100974` | `gText_Cooking_FollowRecipe` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100988` | `gText_Cooking_ImproviseRecipe` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x0810099C` | `gText_Cooking_MakeAnotherRecipe` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x081009B0` | `gText_Cooking_NotEnoughIngredients` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x081009C8` | `gText_Cooking_UseTheseIngredients` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x081009DC` | `gText_Cooking_RestartIngredients` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x081009F4` | `gText_Cooking_RestartUtensils` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100A10` | `gText_Cooking_ResultFailure` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100A24` | `gText_Cooking_ResultSuccessNewRecipe` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100A50` | `gText_Cooking_ResultSuccess` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100A64` | `gText_Cooking_ResultComparison` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100A84` | `gText_Cooking_Recipe_MakeThis` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100AA0` | `gText_Cooking_Recipe_LeavePreviousAsIs` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100ABC` | `gText_Cooking_Recipe_ViewCurrent` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100AD0` | `gText_Cooking_Recipe_Rewrite` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100AEC` | `gText_Cooking_Recipe_LeaveNewAsIs` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100B08` | `gText_Cooking_Recipe_ViewNew` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100B24` | `gText_Cooking_Recipe_IngredientsRequired` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100B50` | `gText_Cooking_Recipe_ListTitle` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100B68` | `gText_Cooking_Recipe_Utensils` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100B70` | `gText_Cooking_Recipe_Ingredients` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100B78` | `gText_Cooking_Recipe_UseIngredients` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100B84` | `gText_Cooking_Recipe_Empty` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100B88` | `gText_Cooking_Recipe_StorageHeader` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100B95` | `gText_Cooking_Recipe_SelectionNames` | `data/text/jp/cooking.cc` | `data/text/cooking.o(.rodata)` |
+| `0x081008FC` | `gText_Cooking_SeasoningSet` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x0810090C` | `gText_Cooking_CompleteUtensilSelection` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100948` | `gText_Cooking_WrappedGiftDescription` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100974` | `gText_Cooking_FollowRecipe` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100988` | `gText_Cooking_ImproviseRecipe` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x0810099C` | `gText_Cooking_MakeAnotherRecipe` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x081009B0` | `gText_Cooking_NotEnoughIngredients` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x081009C8` | `gText_Cooking_UseTheseIngredients` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x081009DC` | `gText_Cooking_RestartIngredients` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x081009F4` | `gText_Cooking_RestartUtensils` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100A10` | `gText_Cooking_ResultFailure` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100A24` | `gText_Cooking_ResultSuccessNewRecipe` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100A50` | `gText_Cooking_ResultSuccess` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100A64` | `gText_Cooking_ResultComparison` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100A84` | `gText_Cooking_Recipe_MakeThis` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100AA0` | `gText_Cooking_Recipe_LeavePreviousAsIs` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100ABC` | `gText_Cooking_Recipe_ViewCurrent` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100AD0` | `gText_Cooking_Recipe_Rewrite` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100AEC` | `gText_Cooking_Recipe_LeaveNewAsIs` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100B08` | `gText_Cooking_Recipe_ViewNew` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100B24` | `gText_Cooking_Recipe_IngredientsRequired` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100B50` | `gText_Cooking_Recipe_ListTitle` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100B68` | `gText_Cooking_Recipe_Utensils` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100B70` | `gText_Cooking_Recipe_Ingredients` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100B78` | `gText_Cooking_Recipe_UseIngredients` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100B84` | `gText_Cooking_Recipe_Empty` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100B88` | `gText_Cooking_Recipe_StorageHeader` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100B95` | `gText_Cooking_Recipe_SelectionNames` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
 | `0x08103194` | `gText_Animal_Unnamed` | `data/text/common/animal.cc` | `src/animal.o(.rodata.animal_unnamed)` |
 | `0x081032C4` | `gText_FishingRecord_PirateFortune` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
 | `0x081032D0` | `gText_FishingRecord_FossilOfFish` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
@@ -2085,7 +2086,7 @@
 | `0x08100AC0`–`0x08100AD1` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | [嵌入文本 / 数据] | `src/cooking_recipe_inventory_page_data.cc`<br>`include/cooking_recipe_inventory_page_data.hh`<br>`data/text/common/cooking_recipe_inventory_page_data.cc` | `gText_Cooking_Recipe_PageBreak`<br>`gCookingRecipeInventoryUtensilValues` |
 | `0x08100AD2`–`0x08100DE0` | `src/recovery_status.o(.rodata)` | [嵌入文本] | `src/recovery_status.cc`、`include/recovery_status.hh`、`data/text/us/recovery_status.cc` | 文本 `2` 项（详见下方索引） |
 | `0x08100DE1`–`0x08100DE3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
-| `0x08100DE4`–`0x081010E7` | `data/text/cooking.o(.rodata)` | [文本对象] | `data/text/us/cooking.cc` | 文本 `28` 项（详见下方索引） |
+| `0x08100DE4`–`0x081010E7` | `src/cooking.o(.rodata)` | [嵌入文本] | `src/cooking.cc`、`include/cooking.hh`、`data/text/us/cooking.cc` | 文本 `28` 项（详见下方索引） |
 | `0x081010E8`–`0x0810110B` | `src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_mask_entries)` | [数据] | `src/cooking_recipe_inventory_data.cc`<br>`include/cooking_recipe_inventory_data.hh` | `gCookingRecipeInventoryMaskEntries` |
 | `0x0810110C`–`0x08103655` | `src/cooking_recipe_inventory_data.o(.rodata)` | [数据] | `src/cooking_recipe_inventory_data.cc`<br>`include/cooking_recipe_inventory_data.hh` | 运行时字符串 `2` 项<br>`gCookingRecipeDefinitions`, `gCookingRecipeDefinitionPayload` |
 | `0x08103656`–`0x08103657` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -3557,34 +3558,34 @@
 | `0x08100AC0` | `gText_Cooking_Recipe_PageBreak` | `data/text/common/cooking_recipe_inventory_page_data.cc` | `src/cooking_recipe_inventory_page_data.o(.rodata)` |
 | `0x08100AD2` | `gText_StaminaRecoveryStatus` | `data/text/us/recovery_status.cc` | `src/recovery_status.o(.rodata)` |
 | `0x08100BD7` | `gText_FatigueRecoveryStatus` | `data/text/us/recovery_status.cc` | `src/recovery_status.o(.rodata)` |
-| `0x08100DE4` | `gText_Cooking_SeasoningSet` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100DF4` | `gText_Cooking_CompleteUtensilSelection` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100E28` | `gText_Cooking_WrappedGiftDescription` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100E34` | `gText_Cooking_FollowRecipe` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100E48` | `gText_Cooking_ImproviseRecipe` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100E5C` | `gText_Cooking_MakeAnotherRecipe` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100E74` | `gText_Cooking_NotEnoughIngredients` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100E90` | `gText_Cooking_ImproviseAnyway` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100EA4` | `gText_Cooking_UseTheseIngredients` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100EBC` | `gText_Cooking_RestartIngredients` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100ED8` | `gText_Cooking_RestartUtensils` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100EF0` | `gText_Cooking_ResultFailure` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100F04` | `gText_Cooking_ResultSuccessNewRecipe` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100F30` | `gText_Cooking_ResultSuccess` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100F44` | `gText_Cooking_ResultComparison` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100F78` | `gText_Cooking_Recipe_MakeThis` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100F90` | `gText_Cooking_Recipe_LeaveAsIs` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100FA4` | `gText_Cooking_Recipe_ViewCurrent` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100FBC` | `gText_Cooking_Recipe_Rewrite` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100FCC` | `gText_Cooking_Recipe_ViewNew` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08100FE0` | `gText_Cooking_Recipe_IngredientsRequired` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08101008` | `gText_Cooking_Recipe_ListTitle` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08101020` | `gText_Cooking_Recipe_Utensils` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x0810102C` | `gText_Cooking_Recipe_Ingredients` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08101038` | `gText_Cooking_Recipe_UseIngredients` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08101044` | `gText_Cooking_Recipe_Empty` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08101048` | `gText_Cooking_Recipe_StorageHeader` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
-| `0x08101059` | `gText_Cooking_Recipe_SelectionNames` | `data/text/us/cooking.cc` | `data/text/cooking.o(.rodata)` |
+| `0x08100DE4` | `gText_Cooking_SeasoningSet` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100DF4` | `gText_Cooking_CompleteUtensilSelection` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100E28` | `gText_Cooking_WrappedGiftDescription` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100E34` | `gText_Cooking_FollowRecipe` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100E48` | `gText_Cooking_ImproviseRecipe` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100E5C` | `gText_Cooking_MakeAnotherRecipe` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100E74` | `gText_Cooking_NotEnoughIngredients` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100E90` | `gText_Cooking_ImproviseAnyway` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100EA4` | `gText_Cooking_UseTheseIngredients` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100EBC` | `gText_Cooking_RestartIngredients` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100ED8` | `gText_Cooking_RestartUtensils` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100EF0` | `gText_Cooking_ResultFailure` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100F04` | `gText_Cooking_ResultSuccessNewRecipe` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100F30` | `gText_Cooking_ResultSuccess` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100F44` | `gText_Cooking_ResultComparison` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100F78` | `gText_Cooking_Recipe_MakeThis` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100F90` | `gText_Cooking_Recipe_LeaveAsIs` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100FA4` | `gText_Cooking_Recipe_ViewCurrent` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100FBC` | `gText_Cooking_Recipe_Rewrite` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100FCC` | `gText_Cooking_Recipe_ViewNew` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08100FE0` | `gText_Cooking_Recipe_IngredientsRequired` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08101008` | `gText_Cooking_Recipe_ListTitle` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08101020` | `gText_Cooking_Recipe_Utensils` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x0810102C` | `gText_Cooking_Recipe_Ingredients` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08101038` | `gText_Cooking_Recipe_UseIngredients` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08101044` | `gText_Cooking_Recipe_Empty` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08101048` | `gText_Cooking_Recipe_StorageHeader` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
+| `0x08101059` | `gText_Cooking_Recipe_SelectionNames` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
 | `0x08103658` | `gText_Animal_Unnamed` | `data/text/common/animal.cc` | `src/animal.o(.rodata.animal_unnamed)` |
 | `0x08103788` | `gText_FishingRecord_PirateFortune` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
 | `0x08103798` | `gText_FishingRecord_FossilOfFish` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |

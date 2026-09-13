@@ -1,4 +1,4 @@
-#include "cooking_menu_text.hh"
+#include "cooking.hh"
 
 char const gText_Cooking_SeasoningSet[] =
     "Gewürzset";

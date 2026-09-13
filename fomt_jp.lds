@@ -820,7 +820,7 @@ SECTIONS
         . = 0x1005EA; src/recovery_status.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        data/text/cooking.o(.rodata);
+        src/cooking.o(.rodata);
         . = 0x100C24; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_mask_entries);
         . = 0x100C48; src/cooking_recipe_inventory_data.o(.rodata);
         src/animal.o(.rodata.animal_unnamed);

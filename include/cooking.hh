@@ -1,5 +1,5 @@
-#ifndef COOKING_MENU_TEXT_HH
-#define COOKING_MENU_TEXT_HH
+#ifndef COOKING_HH
+#define COOKING_HH
 
 #include "prelude.h"
 
@@ -39,4 +39,4 @@ extern char const gText_Cooking_ImproviseAnyway[];
 extern char const gText_Cooking_Recipe_LeaveAsIs[];
 #endif
 
-#endif // COOKING_MENU_TEXT_HH
+#endif // COOKING_HH
