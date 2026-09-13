@@ -1,5 +1,5 @@
-#ifndef WINERY_SHOP_TEXT_HH
-#define WINERY_SHOP_TEXT_HH
+#ifndef WINERY_SHOP_DATA_HH
+#define WINERY_SHOP_DATA_HH
 
 #include "prelude.h"
 
@@ -23,4 +23,4 @@ extern char const gText_WineryShop_PurchaseComplete[];
 extern char const gText_WineryShop_PurchaseMorePrompt[];
 extern char const gCppRuntimeBadAlloc_WineryShopTrailer[];
 
-#endif // WINERY_SHOP_TEXT_HH
+#endif // WINERY_SHOP_DATA_HH

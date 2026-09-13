@@ -1,4 +1,4 @@
-#include "winery_shop_text.hh"
+#include "winery_shop_data.hh"
 
 char const gText_WineryShop_InventoryFull[] =
     "Ich würde es dir gerne\r\n"
@@ -42,5 +42,5 @@ char const gText_WineryShop_PurchaseMorePrompt[] =
     "Möchtest du noch\r\n"
     "etwas anderes kaufen?{Press}";
 
-extern char const gCppRuntimeBadAlloc_WineryShopTrailer[] =
+char const gCppRuntimeBadAlloc_WineryShopTrailer[] =
     "bad_alloc";
