@@ -18,38 +18,12 @@ struct TownMapHotspot
     u8 max_cursor_y;
 };
 
-// Native Town Map selection scans these records until either minimum coordinate
-// is no longer less than its corresponding maximum coordinate. The final
-// all-zero record in every subtable is therefore a terminator, not padding.
-struct TownMapAreaBounds
-{
-    u16 min_x;
-    u16 min_y;
-    u16 max_x;
-    u16 max_y;
-    u32 unk_08;
-};
+struct TownMapAreaBounds;
 
 enum
 {
-    TOWN_MAP_AREA_BOUNDS_000_COUNT = 18,
-    TOWN_MAP_AREA_BOUNDS_003_COUNT = 11,
-    TOWN_MAP_AREA_BOUNDS_005_COUNT = 27,
-    TOWN_MAP_AREA_BOUNDS_007_COUNT = 17,
-    TOWN_MAP_AREA_BOUNDS_001_COUNT = 3,
     TOWN_MAP_HOTSPOT_COUNT = 40,
     TOWN_MAP_AREA_LOOKUP_COUNT = 0x34,
-};
-
-// The source field order follows the physical ROM order, which differs from
-// the lookup-table order.
-struct TownMapAreaBoundsTables
-{
-    TownMapAreaBounds map_000[TOWN_MAP_AREA_BOUNDS_000_COUNT];
-    TownMapAreaBounds map_003[TOWN_MAP_AREA_BOUNDS_003_COUNT];
-    TownMapAreaBounds map_005[TOWN_MAP_AREA_BOUNDS_005_COUNT];
-    TownMapAreaBounds map_007[TOWN_MAP_AREA_BOUNDS_007_COUNT];
-    TownMapAreaBounds map_001[TOWN_MAP_AREA_BOUNDS_001_COUNT];
 };
 
 struct TownMapAreaLookup
@@ -60,7 +34,6 @@ struct TownMapAreaLookup
 
 extern TownMapHotspot const gTownMapHotspots[TOWN_MAP_HOTSPOT_COUNT];
 extern u16 const gTownMapResourceIds[];
-extern TownMapAreaBoundsTables const gTownMapAreaBounds;
 extern TownMapAreaLookup const gTownMapAreaLookup[TOWN_MAP_AREA_LOOKUP_COUNT];
 extern TownMapAreaLookup const gTownMapAreaLookupFallback_034To133;
 extern TownMapAreaLookup const gTownMapAreaLookupFallback_134To233;
@@ -80,5 +53,71 @@ bool TownMapHotspotContains(
     void const *, u32 cursor_x, u32 cursor_y, TownMapHotspot const * hotspot);
 
 EXTERN_C_END
+
+extern char const gText_TownMap_PlayerFarmNameSuffix[];
+extern char const gText_TownMap_PlayerFarmDescription[];
+extern char const gText_TownMap_PlayerFarmLabel[];
+extern char const gText_TownMap_MountainCottageLabel[];
+extern char const gText_TownMap_SeasideCottageLabel[];
+extern char const gText_TownMap_TownCottageLabel[];
+extern char const gText_TownMap_TimeWindowSeasonDescription[];
+extern char const gText_TownMap_TimeWindowDateDescription[];
+extern char const gText_TownMap_TimeWindowDayDescription[];
+extern char const gText_TownMap_TimeWindowTimeDescription[];
+extern char const gText_TownMap_TimeWindowWeatherDescription[];
+extern char const gText_TownMap_TimeWindowLabel[];
+extern char const gText_TownMap_BasilHouseLabel[];
+extern char const gText_TownMap_MaryLibraryDescription[];
+extern char const gText_TownMap_MaryLibraryHours[];
+extern char const gText_TownMap_EllenHouseLabel[];
+extern char const gText_TownMap_MayorHouseLabel[];
+extern char const gText_TownMap_SupermarketDescription[];
+extern char const gText_TownMap_SupermarketHours[];
+extern char const gText_TownMap_MineralClinicDescription[];
+extern char const gText_TownMap_MineralClinicHours[];
+extern char const gText_TownMap_ChurchDescription[];
+extern char const gText_TownMap_ChurchHours[];
+extern char const gText_TownMap_AjaWineryDescription[];
+extern char const gText_TownMap_AjaWineryHours[];
+extern char const gText_TownMap_DukeCellarLabel[];
+extern char const gText_TownMap_DougsInnDescription[];
+extern char const gText_TownMap_DougsInnHours[];
+extern char const gText_TownMap_HarvestSpritesHomeDescription[];
+extern char const gText_TownMap_HarvestSpritesHomeHours[];
+extern char const gText_TownMap_ZackHouseDescription[];
+extern char const gText_TownMap_ZackHouseLabel[];
+extern char const gText_TownMap_KaiSeasideLodgeDescription[];
+extern char const gText_TownMap_KaiSeasideLodgeHours[];
+extern char const gText_TownMap_SaibaraBlacksmithDescription[];
+extern char const gText_TownMap_SaibaraBlacksmithHours[];
+extern char const gText_TownMap_YodelFarmDescription[];
+extern char const gText_TownMap_YodelFarmHours[];
+extern char const gText_TownMap_PoultryFarmDescription[];
+extern char const gText_TownMap_PoultryFarmHours[];
+extern char const gText_TownMap_WoodcutterHouseDescription[];
+extern char const gText_TownMap_WoodcutterHouseHours[];
+extern char const gText_TownMap_LakeMineDescription[];
+extern char const gText_TownMap_LakeMineLabel[];
+extern char const gText_TownMap_SpringMineDescription[];
+extern char const gText_TownMap_SpringMineLabel[];
+extern char const gText_TownMap_HotSpringDescription[];
+extern char const gText_TownMap_HotSpringLabel[];
+extern char const gText_TownMap_Empty[];
+extern char const gText_TownMap_NorthMineralTownDescription[];
+extern char const gText_TownMap_NorthMineralTownLabel[];
+extern char const gText_TownMap_RearChurchDescription[];
+extern char const gText_TownMap_RearChurchLabel[];
+extern char const gText_TownMap_RoseSquareDescription[];
+extern char const gText_TownMap_RoseSquareLabel[];
+extern char const gText_TownMap_MineralBeachDescription[];
+extern char const gText_TownMap_MineralBeachLabel[];
+extern char const gText_TownMap_SouthMineralTownDescription[];
+extern char const gText_TownMap_SouthMineralTownLabel[];
+extern char const gText_TownMap_ForestDescription[];
+extern char const gText_TownMap_ForestLabel[];
+extern char const gText_TownMap_MothersHillPeakDescription[];
+extern char const gText_TownMap_MothersHillPeakLabel[];
+extern char const gText_TownMap_MothersHillDescription[];
+extern char const gText_TownMap_MothersHillLabel[];
 
 #endif // TOWN_MAP_HH

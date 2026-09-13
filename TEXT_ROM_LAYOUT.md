@@ -55,6 +55,10 @@
 | EU | `0x080FBEC8`–`0x080FC0ED` | `src/records_screen_data.o(.rodata)` | `src/records_screen_data.cc`、`include/records_screen_data.hh`、`data/text/eu/records_screen_data.cc`、`data/text/common/records_screen_data.cc`–`records_screen_data_2.cc`、`data/text/eu/records_screen_data_1.cc`；14 个资源入口均为资产容器直接标签 | 精确 |
 | EU | `0x080FC0EE`–`0x080FC0EF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FC0F0`–`0x080FC70D` | `src/staff_credits.o(.rodata)` | `src/staff_credits.cc`、`include/staff_credits.hh`、`data/text/eu/staff_credits.cc`、`data/text/eu/staff_credits_1.cc`；名单文本、行指针表与运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
+| EU | `0x080FC70E`–`0x080FD59B` | `src/town_map_data.o(.rodata)` | `src/town_map_data.cc`、`include/town_map.hh`、`data/text/eu/town_map.cc`；资源 ID、文本、热点和区域查询表按 ROM 顺序同属该对象 | 精确 |
+| EU | `0x080FD59C`–`0x080FD5CE` | `src/library_data.o(.rodata.library_opening_hours)` | `src/library_data.cc`、`data/text/eu/library.cc` | 精确 |
+| EU | `0x080FD5CF`–`0x080FD5CF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
+| EU | `0x080FD5D0`–`0x080FD95F` | `src/town_map_area_data.o(.rodata)` | `src/town_map_area_data.cc`、`include/town_map_area_data.hh`；`gTownMapAreaBounds` | 精确 |
 | EU | `0x080FECC8`–`0x080FEDD7` | `src/blacksmith_menu_data.o(.rodata)` | `src/blacksmith_menu_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
 | EU | `0x080FEDD8`–`0x080FF3AF` | `src/blacksmith_data.o(.rodata)` | `src/blacksmith_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
 | EU | `0x08100534`–`0x08100B17` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc` 与 `data/text/eu/link_communication.cc` | 精确 |
@@ -86,7 +90,9 @@
 | DE | `0x080FC580`–`0x080FC7AD` | `src/records_screen_data.o(.rodata)` | `src/records_screen_data.cc`、`include/records_screen_data.hh`、`data/text/de/records_screen_data.cc`、`data/text/common/records_screen_data.cc`–`records_screen_data_2.cc`、`data/text/de/records_screen_data_1.cc`；14 个资源入口均为资产容器直接标签 | 精确 |
 | DE | `0x080FC7AE`–`0x080FC7AF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080FC7B0`–`0x080FCDCD` | `src/staff_credits.o(.rodata)` | `src/staff_credits.cc`、`include/staff_credits.hh`、`data/text/de/staff_credits.cc`、`data/text/de/staff_credits_1.cc`；名单文本、行指针表与运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
-| DE | `0x080FCDD8`–`0x080FDDC3` | 城镇地图文本、热点表、区域查询及图书馆开放时间 | `src/town_map_data.cc`、`src/library_data.cc`、`data/text/de/town_map.cc`、`data/text/de/library.cc` | 精确 |
+| DE | `0x080FCDCE`–`0x080FDC8F` | `src/town_map_data.o(.rodata)` | `src/town_map_data.cc`、`include/town_map.hh`、`data/text/de/town_map.cc`；资源 ID、文本、热点和区域查询表按 ROM 顺序同属该对象 | 精确 |
+| DE | `0x080FDC90`–`0x080FDCD7` | `src/library_data.o(.rodata.library_opening_hours)` | `src/library_data.cc`、`data/text/de/library.cc` | 精确 |
+| DE | `0x080FDCD8`–`0x080FE067` | `src/town_map_area_data.o(.rodata)` | `src/town_map_area_data.cc`、`include/town_map_area_data.hh`；`gTownMapAreaBounds` | 精确 |
 | DE | `0x080FE094`–`0x080FE0B7` | 图书馆菜单 | `src/library_data.cc` 与 `data/text/de/library.cc` | 精确 |
 | DE | `0x080FE0B8`–`0x080FE5E3` | `src/poultry_shop_data.o(.rodata)` | `src/poultry_shop_data.cc` 与 `data/text/de/poultry_shop.cc` | 精确 |
 | DE | `0x080FE5E4`–`0x080FE7FB` | `src/supermarket_data.o(.rodata)` | `src/supermarket_data.cc` 与 `data/text/de/supermarket.cc` | 精确 |
@@ -163,12 +169,10 @@
 | `0x080FB764`–`0x080FB935` | `src/records_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `src/records_screen_data.cc`<br>`include/records_screen_data.hh`<br>`data/text/jp/records_screen_data.cc`<br>`data/text/common/records_screen_data.cc`–`records_screen_data_2.cc`<br>`data/text/jp/records_screen_data_1.cc` | 文本 `33` 项（详见下方索引）<br>运行时字符串 `4` 项<br>`gRecordsScreenMinigameTaskResources` 的 14 个 JP 资源入口为资产容器直接标签；`gCodeLinkoncePackedCellSizeLookup`、`gUiPreloadedDigitGlyphCodes` 按原顺序嵌入同一对象 |
 | `0x080FB936`–`0x080FB937` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FB938`–`0x080FBE91` | `src/staff_credits.o(.rodata)` | [嵌入文本 / 指针表] | `src/staff_credits.cc`<br>`include/staff_credits.hh`<br>`data/text/jp/staff_credits.cc`<br>`data/text/jp/staff_credits_1.cc` | 文本 `59` 项（详见下方索引）<br>`gStaffCreditsLines`<br>`gCppRuntimeBadAlloc_StaffCredits` |
-| `0x080FBE92`–`0x080FBE99` | `src/town_map_data.o(.rodata.town_map_resource_ids)` | [数据] | `src/town_map_data.c/.cc` | `gTownMapResourceIds` |
-| `0x080FBE9A`–`0x080FBE9B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FBE9C`–`0x080FCCB7` | `src/town_map_data.o(.rodata)` | [嵌入文本 / 数据] | `src/town_map_data.cc`<br>`data/text/jp/town_map.cc` | 文本 `65` 项（详见下方索引）<br>文本后对象内 `00` 对齐 `3` 字节<br>`gTownMapHotspots`<br>`gTownMapAreaLookup`, `gTownMapAreaLookupFallback_034To133`, `gTownMapAreaLookupFallback_134To233` |
+| `0x080FBE92`–`0x080FCCB7` | `src/town_map_data.o(.rodata)` | [嵌入文本 / 数据] | `src/town_map_data.cc`<br>`include/town_map.hh`<br>`data/text/jp/town_map.cc` | `gTownMapResourceIds`<br>文本 `65` 项（详见下方索引）<br>`gTownMapHotspots`<br>`gTownMapAreaLookup`, `gTownMapAreaLookupFallback_034To133`, `gTownMapAreaLookupFallback_134To233` |
 | `0x080FCCB8`–`0x080FCCF2` | `src/library_data.o(.rodata.library_opening_hours)` | [嵌入文本] | `data/text/jp/library.cc` | 文本 `1` 项（详见下方索引） |
 | `0x080FCCF3`–`0x080FCCF3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x080FCCF4`–`0x080FD083` | `src/town_map_data.o(.rodata.town_map_area_bounds)` | [数据] | `src/town_map_data.c/.cc` | `gTownMapAreaBounds` |
+| `0x080FCCF4`–`0x080FD083` | `src/town_map_area_data.o(.rodata)` | [数据] | `src/town_map_area_data.cc`<br>`include/town_map_area_data.hh` | `gTownMapAreaBounds` |
 | `0x080FD084`–`0x080FD08D` | `src/library_data.o(.rodata.library_info)` | [数据] | `data/text/jp/library.cc` | 运行时字符串 `1` 项 |
 | `0x080FD08E`–`0x080FD08F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FD090`–`0x080FD0AF` | `src/library_data.o(.rodata.library_initial_entry_ids)` | [数据] | `data/text/jp/library.cc` | `gLibraryInitialEntryIds` |
@@ -2005,12 +2009,10 @@
 | `0x080FBE7C`–`0x080FC0A1` | `src/records_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `src/records_screen_data.cc`<br>`include/records_screen_data.hh`<br>`data/text/us/records_screen_data.cc`<br>`data/text/common/records_screen_data.cc`–`records_screen_data_2.cc`<br>`data/text/us/records_screen_data_1.cc` | 文本 `33` 项（详见下方索引）<br>运行时字符串 `4` 项<br>`gRecordsScreenMinigameTaskResources` 的 14 个资源入口为资产容器直接标签；`gCodeLinkoncePackedCellSizeLookup`、`gUiPreloadedDigitGlyphCodes` 按原顺序嵌入同一对象 |
 | `0x080FC0A2`–`0x080FC0A3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FC0A4`–`0x080FC6C1` | `src/staff_credits.o(.rodata)` | [嵌入文本 / 指针表] | `src/staff_credits.cc`<br>`include/staff_credits.hh`<br>`data/text/us/staff_credits.cc`<br>`data/text/us/staff_credits_1.cc` | 文本 `65` 项（详见下方索引）<br>`gStaffCreditsLines`<br>`gCppRuntimeBadAlloc_StaffCredits` |
-| `0x080FC6C2`–`0x080FC6C9` | `src/town_map_data.o(.rodata.town_map_resource_ids)` | [数据] | `src/town_map_data.c/.cc` | `gTownMapResourceIds` |
-| `0x080FC6CA`–`0x080FC6CB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FC6CC`–`0x080FD54F` | `src/town_map_data.o(.rodata)` | [嵌入文本 / 数据] | `src/town_map_data.cc`<br>`data/text/us/town_map.cc` | 文本 `65` 项（详见下方索引）<br>文本后对象内 `00` 对齐 `2` 字节<br>`gTownMapHotspots`<br>`gTownMapAreaLookup`, `gTownMapAreaLookupFallback_034To133`, `gTownMapAreaLookupFallback_134To233` |
+| `0x080FC6C2`–`0x080FD54F` | `src/town_map_data.o(.rodata)` | [嵌入文本 / 数据] | `src/town_map_data.cc`<br>`include/town_map.hh`<br>`data/text/us/town_map.cc` | `gTownMapResourceIds`<br>文本 `65` 项（详见下方索引）<br>`gTownMapHotspots`<br>`gTownMapAreaLookup`, `gTownMapAreaLookupFallback_034To133`, `gTownMapAreaLookupFallback_134To233` |
 | `0x080FD550`–`0x080FD582` | `src/library_data.o(.rodata.library_opening_hours)` | [嵌入文本] | `data/text/us/library.cc` | 文本 `1` 项（详见下方索引） |
 | `0x080FD583`–`0x080FD583` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x080FD584`–`0x080FD913` | `src/town_map_data.o(.rodata.town_map_area_bounds)` | [数据] | `src/town_map_data.c/.cc` | `gTownMapAreaBounds` |
+| `0x080FD584`–`0x080FD913` | `src/town_map_area_data.o(.rodata)` | [数据] | `src/town_map_area_data.cc`<br>`include/town_map_area_data.hh` | `gTownMapAreaBounds` |
 | `0x080FD914`–`0x080FD91D` | `src/library_data.o(.rodata.library_info)` | [数据] | `data/text/us/library.cc` | 运行时字符串 `1` 项 |
 | `0x080FD91E`–`0x080FD91F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FD920`–`0x080FD93F` | `src/library_data.o(.rodata.library_initial_entry_ids)` | [数据] | `data/text/us/library.cc` | `gLibraryInitialEntryIds` |

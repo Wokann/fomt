@@ -697,14 +697,11 @@ SECTIONS
         FILL(0x00);
         . = 0xFC580; src/records_screen_data.o(.rodata);
         . = 0xFC7B0; src/staff_credits.o(.rodata);
-        . = 0xFCDCE;
-        src/town_map_data.o(.rodata.town_map_resource_ids);
         /* Town Map regional data: labels, hotspots, and lookup. */
-        FILL(0x00);
-         src/town_map_data.o(.rodata);
+        . = 0xFCDCE; src/town_map_data.o(.rodata);
          src/library_data.o(.rodata.library_opening_hours);
         FILL(0x00);
-        . = ALIGN(4); src/town_map_data.o(.rodata.town_map_area_bounds);
+        . = ALIGN(4); src/town_map_area_data.o(.rodata);
         src/library_data.o(.rodata.library_info);
         FILL(0x00);
         . = ALIGN(4); src/library_data.o(.rodata.library_initial_entry_ids);

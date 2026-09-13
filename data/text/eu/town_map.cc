@@ -1,4 +1,4 @@
-#include "town_map_text.hh"
+#include "town_map.hh"
 
 char const gText_TownMap_PlayerFarmNameSuffix[] =
     " Farm\r\n";
