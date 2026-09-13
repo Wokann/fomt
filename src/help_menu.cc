@@ -5,11 +5,7 @@
  * strings precede the four menu labels, which are followed by the byte table
  * that their UI code uses.
  */
-#if defined(REGION_JP)
 #include FOMT_TEXT_INCLUDE(help_menu.cc)
-#else
-#include FOMT_TEXT_INCLUDE(help_menu.cc)
-#endif
 
 u8 const gUnk_HelpMenuByteTable[] ALIGN(1) = {
     0x10, 0x10, 0x10, 0x0C, 0x10, 0x10, 0x0C, 0x0C, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10,
