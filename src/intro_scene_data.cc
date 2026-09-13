@@ -1,14 +1,10 @@
-#include "intro_scene_text.hh"
+#include "intro_scene_data.hh"
 
 EXTERN_C
 
-// This runtime literal physically precedes the intro resource table.  It
-// belongs to this data module rather than to a standalone regional text file.
-char const gCppRuntimeBadAlloc_IntroScenePrefix[]
-    SECTION(".rodata.intro_scene_prefix") =
-        "bad_alloc";
+#include FOMT_TEXT_INCLUDE(intro_scene_data.cc)
 
-// The concrete graphics payload formats remain raw.  These labels retain the
+// The concrete graphics payload formats remain raw. These labels retain the
 // original region-specific relocations while the loading order is expressed
 // as ordinary C++ data.
 extern u8 const gUnk_IntroSceneUnpackSource_000[];
@@ -31,33 +27,6 @@ extern u8 const gUnk_IntroSceneUnpackSource_016[];
 extern u8 const gUnk_IntroSceneUnpackSource_017[];
 extern u8 const gUnk_IntroSceneUnpackSource_018[];
 extern u8 const gUnk_IntroSceneUnpackSource_019[];
-extern u8 const gUnk_IntroSceneStartupUnpackSource_000[];
-extern u8 const gUnk_IntroSceneStartupUnpackSource_001[];
-extern u8 const gUnk_IntroSceneStartupUnpackSource_002[];
-extern u8 const gUnk_IntroSceneStartupUnpackSource_003[];
-
-// func_08001A90 unpacks these four payloads before the later Intro Scene
-// sequence. The raw resource bytes retain region-specific labels in the
-// asset container; this table preserves their original relocation order.
-u8 const * const gIntroSceneStartupUnpackSources[]
-    SECTION(".rodata.intro_scene_startup_resources") = {
-        gUnk_IntroSceneStartupUnpackSource_000,
-        gUnk_IntroSceneStartupUnpackSource_001,
-        gUnk_IntroSceneStartupUnpackSource_002,
-    gUnk_IntroSceneStartupUnpackSource_003,
-};
-
-// These runtime strings immediately follow the startup resource table in the
-// original ROM.  C++ supplies each terminator; the linker supplies only the
-// object-boundary padding required by the next four-byte-aligned object.
-char const gCppRuntimeBadAlloc_IntroSceneStartup[]
-    SECTION(".rodata.intro_scene_startup_resources") =
-        "bad_alloc";
-
-char const gCppRuntimeError_IntroSceneStartup[]
-    SECTION(".rodata.intro_scene_startup_resources") ALIGN(4) =
-        "Error";
-
 u8 const * const gIntroSceneUnpackSources[] = {
     gUnk_IntroSceneUnpackSource_000,
     gUnk_IntroSceneUnpackSource_001,
@@ -83,20 +52,6 @@ u8 const * const gIntroSceneUnpackSources[] = {
 
 EXTERN_C_END
 
-// The childhood-visit dialogue follows the unpack-source table in both ROMs.
-// Keeping this selected text here makes the source order match the bounded
-// intro-scene localization island in the linker scripts.
-#if defined(REGION_JP)
-#include FOMT_TEXT_INCLUDE(intro_scene.cc)
-#else
-#include FOMT_TEXT_INCLUDE(intro_scene.cc)
-#endif
-
-EXTERN_C
-
-// The matching runtime literal follows the dialogue data in the original ROM.
-char const gCppRuntimeBadAlloc_IntroSceneTextTrailer[]
-    SECTION(".rodata.intro_scene_trailer") =
-        "bad_alloc";
-
-EXTERN_C_END
+// The childhood-visit dialogue and trailing runtime literal follow the unpack
+// source table in both ROMs.
+#include FOMT_TEXT_INCLUDE(intro_scene_data_1.cc)

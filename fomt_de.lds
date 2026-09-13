@@ -636,7 +636,7 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4);
         src/sram_proxy_1.o(.rodata);
-        src/intro_scene_data.o(.rodata.intro_scene_startup_resources);
+        src/intro_scene_startup.o(.rodata);
         . = 0xE860C; /* DE ROM 0x080E860C, new-game regional text and tables. */
         src/new_game_menu_data.o(.rodata);
         . = 0xE8CD0; /* DE ROM 0x080E8CD0, following field data. */
@@ -700,12 +700,9 @@ SECTIONS
          src/horse_race_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-         src/intro_scene_data.o(.rodata.intro_scene_prefix);
-        /* Intro-scene regional data: resource table and dialogue. */
+        /* Intro-scene resource table, dialogue, and runtime tail. */
+        src/intro_scene_data.o(.rodata);
         FILL(0x00);
-         src/intro_scene_data.o(.rodata);
-        FILL(0x00);
-         src/intro_scene_data.o(.rodata.intro_scene_trailer);
         /* Farm Status regional data: two text groups and UI data. */
         . = 0xFBE5C; src/farm_status_screen_data.o(.rodata);
         FILL(0x00);

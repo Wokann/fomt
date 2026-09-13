@@ -1,6 +1,6 @@
 # 文本 ROM 物理地址布局
 
-本表严格以当前 `fomt_jp.map` 与 `fomt_us.map` 的链接结果为准，而不是按目录或主题排序。每个地区分别按实际 GBA ROM 地址升序列出 `.rodata` 输入段；因此文本块之间的指针表、结构/数组、填充和原始 `incbin` 都会显示在相邻行。
+本表严格以当前 `fomt_jp.map`、`fomt_us.map`、`fomt_eu.map` 与 `fomt_de.map` 的链接结果为准，而不是按目录或主题排序。每个地区分别按实际 GBA ROM 地址升序列出 `.rodata` 输入段；因此文本块之间的指针表、结构/数组、填充和原始 `incbin` 都会显示在相邻行。
 
 “维护源”表示当前应编辑的文件；“文本符号”是链接映射中的 `gText_*` 标签。普通非文本行不猜测 C 类型，只报告已知输入对象、节名和符号，避免把未分析数据误称为数组或结构体。
 
@@ -28,16 +28,29 @@
 
 | 地区 | 地址范围 | 链接输入 | 维护源 | 核验结果 |
 | --- | --- | --- | --- | --- |
+| EU | `0x080E865C`–`0x080E8675` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0.hh`、`data/text/eu/crt0_data.cc` | 精确 |
+| EU | `0x080E8676`–`0x080E8677` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
+| EU | `0x080E8678`–`0x080E86CC` | `src/sram_proxy_1.o(.rodata)` | `src/sram_proxy_1.c`、`include/sram_proxy.hh`、`data/text/eu/sram_proxy_1.cc` | 精确 |
+| EU | `0x080E86CD`–`0x080E86CF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
+| EU | `0x080E86D0`–`0x080E86F1` | `src/intro_scene_startup.o(.rodata)` | `src/intro_scene_startup.cc`、`include/intro_scene_startup.hh`、`data/text/eu/intro_scene_startup.cc` | 精确 |
+| EU | `0x080E86F2`–`0x080E86F3` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080E9660`–`0x080F0539` | `src/item.o(.rodata)` | `src/item.cc` 与 `data/text/eu/item_*.cc` | 精确 |
 | EU | `0x080F053A`–`0x080F05D7` | `src/game_state.o(.rodata)` | `src/game_state.cc` 与 `data/text/eu/game_state.cc` | 精确 |
 | EU | `0x080F05D8`–`0x080F069F` | `src/help_menu.o(.rodata)` | `src/help_menu.cc` 与 `data/text/eu/help_menu.cc` | 精确 |
 | EU | `0x080F06A0`–`0x080F0ECB` | `src/animal_data.o(.rodata)` | `src/animal_data.cc` 与 `data/text/eu/animal_data*.cc` | 精确 |
 | EU | `0x080F0ECC`–`0x080F19BF` | `src/entity_ui.o(.rodata)` | `src/entity_ui.cc` 与 `data/text/eu/entity_ui.cc` | 精确 |
 | EU | `0x080F19C0`–`0x080F1ACB` | `src/fixed_labels.o` 至 `src/menu_data.o` | 对应 `data/text/eu/*.cc` | 精确 |
+| EU | `0x080FB224`–`0x080FB86D` | `src/intro_scene_data.o(.rodata)` | `src/intro_scene_data.cc`、`include/intro_scene_data.hh`、`data/text/eu/intro_scene_data.cc`、`data/text/eu/intro_scene_data_1.cc` | 精确 |
 | EU | `0x080FECC8`–`0x080FEDD7` | `src/blacksmith_menu_data.o(.rodata)` | `src/blacksmith_menu_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
 | EU | `0x080FEDD8`–`0x080FF3AF` | `src/blacksmith_data.o(.rodata)` | `src/blacksmith_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
 | EU | `0x08100534`–`0x08100B17` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc` 与 `data/text/eu/link_communication.cc` | 精确 |
 | EU | `0x081082E4`–`0x08117843` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 EU 指南源文件；主目录只收录 `PAGE_1`，`tool_and_item_controls_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
+| DE | `0x080E8574`–`0x080E858D` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0.hh`、`data/text/de/crt0_data.cc` | 精确 |
+| DE | `0x080E858E`–`0x080E858F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
+| DE | `0x080E8590`–`0x080E85E4` | `src/sram_proxy_1.o(.rodata)` | `src/sram_proxy_1.c`、`include/sram_proxy.hh`、`data/text/de/sram_proxy_1.cc` | 精确 |
+| DE | `0x080E85E5`–`0x080E85E7` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
+| DE | `0x080E85E8`–`0x080E8609` | `src/intro_scene_startup.o(.rodata)` | `src/intro_scene_startup.cc`、`include/intro_scene_startup.hh`、`data/text/de/intro_scene_startup.cc` | 精确 |
+| DE | `0x080E860A`–`0x080E860B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080E9620`–`0x080F09B1` | `src/item.o(.rodata)` | `src/item.cc` 与 `data/text/de/item_*.cc` | 精确 |
 | DE | `0x080F09B2`–`0x080F0A4F` | `src/game_state.o(.rodata)` | `src/game_state.cc` 与 `data/text/de/game_state.cc` | 精确 |
 | DE | `0x080F0A50`–`0x080F0B17` | `src/help_menu.o(.rodata)` | `src/help_menu.cc` 与 `data/text/de/help_menu.cc` | 精确 |
@@ -45,6 +58,7 @@
 | DE | `0x080F1368`–`0x080F1E5B` | `src/entity_ui.o(.rodata)` | `src/entity_ui.cc` 与 `data/text/de/entity_ui.cc` | 精确 |
 | DE | `0x080F1E5C`–`0x080F1F67` | `src/fixed_labels.o` 至 `src/menu_data.o` | 对应 `data/text/de/*.cc` | 精确 |
 | DE | `0x080F47D8`–`0x080FA3E7` | `asm/data/data_080F1A80.o` 至相邻脚本引擎数据 | `asm/data/data_080F1A80.s`（Mary 管理的剧情脚本原始块）及 `src/script_engine.cc`、`data/text/common/script_engine.cc` | 精确 |
+| DE | `0x080FB77C`–`0x080FBE59` | `src/intro_scene_data.o(.rodata)` | `src/intro_scene_data.cc`、`include/intro_scene_data.hh`、`data/text/de/intro_scene_data.cc`、`data/text/de/intro_scene_data_1.cc` | 精确 |
 | DE | `0x080FBE5C`–`0x080FC4F7` | `src/farm_status_screen_data.o(.rodata)` | `src/farm_status_screen_data.cc`、`data/text/de/farm_status.cc`、`data/text/de/animal_contest.cc` | 精确 |
 | DE | `0x080FC580`–`0x080FC72F` | `src/records_screen_data.o(.rodata)` | `src/records_screen_data.cc` 与 `data/text/de/records.cc` | 精确 |
 | DE | `0x080FC780`–`0x080FCDC3` | 纪录界面尾部至制作人员表 | `src/records_screen_data.cc`、`data/text/de/records.cc`、`data/text/staff_credits.cc` | 精确 |
@@ -66,13 +80,15 @@
 
 ## JP：物理 `.rodata` 顺序
 
-范围：`0x080E7A5C`–`0x0813ABCB`。所有行都按当前 ROM 物理地址排序。
+范围：`0x080E7A40`–`0x0813ABCB`。所有行都按当前 ROM 物理地址排序。
 
 | 地址范围 | 链接输入 | 内容状态 | 维护源 / 文本来源 | 已命名内容 |
 | --- | --- | --- | --- | --- |
-| `0x080E7A5C`–`0x080E7AA1` | `src/sram_proxy_1.o(.rodata)` | [数据] | `src/sram_proxy_1.c/.cc` | `gSramImageSignature`, `gUnk_SramSignatureTrailerBadAllocFirst`, `gUnk_SramSignatureTrailerEmptyText`, `gUnk_SramSignatureTrailerBadAllocSecond`, `gUnk_SramSignatureTrailerBadAllocThird` |
+| `0x080E7A40`–`0x080E7A59` | `src/crt0_data.o(.rodata)` | [嵌入文本 / 数据] | `src/crt0_data.cc`<br>`include/crt0.hh`<br>`data/text/jp/crt0_data.cc` | `init_array`、`gCppRuntimeBadAlloc_Crt0` |
+| `0x080E7A5A`–`0x080E7A5B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
+| `0x080E7A5C`–`0x080E7AA1` | `src/sram_proxy_1.o(.rodata)` | [嵌入文本] | `src/sram_proxy_1.c`<br>`include/sram_proxy.hh`<br>`data/text/jp/sram_proxy_1.cc` | `gSramImageSignature`, `gUnk_SramSignatureTrailerBadAllocFirst`, `gUnk_SramSignatureTrailerEmptyText`, `gUnk_SramSignatureTrailerBadAllocSecond`, `gUnk_SramSignatureTrailerBadAllocThird` |
 | `0x080E7AA2`–`0x080E7AA3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080E7AA4`–`0x080E7AC5` | `src/intro_scene_data.o(.rodata.intro_scene_startup_resources)` | [数据] | `src/intro_scene_data.c/.cc` | 运行时字符串 `2` 项<br>`gIntroSceneStartupUnpackSources` |
+| `0x080E7AA4`–`0x080E7AC5` | `src/intro_scene_startup.o(.rodata)` | [嵌入文本 / 数据] | `src/intro_scene_startup.cc`<br>`include/intro_scene_startup.hh`<br>`data/text/jp/intro_scene_startup.cc` | `gIntroSceneStartupUnpackSources`<br>运行时字符串 `2` 项 |
 | `0x080E7AC6`–`0x080E7AC7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080E7AC8`–`0x080E8161` | `src/new_game_menu_data.o(.rodata)` | [嵌入文本 / 数据] | `src/new_game_menu_data.cc`<br>`data/text/jp/new_game.cc` | 文本 `51` 项（菜单 `12`、状态/帮助/保存/身份/姓名输入 `39`；详见下方索引）<br>`gNewGameMenuLabels`<br>运行时字符串 `14` 项<br>`gNewGameNameEntryCharacterRows` |
 | `0x080E8162`–`0x080E8163` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -131,11 +147,7 @@
 | `0x080FA1DE`–`0x080FA27D` | `src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_values)` | [数据] | `src/animal_festival_ranking.c/.cc` | `gAnimalFestivalLivestockContestantValues` |
 | `0x080FA27E`–`0x080FA27F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FA280`–`0x080FAA5F` | `src/horse_race_data.o(.rodata)` | [嵌入文本] | `data/text/jp/horse_race.cc` | 文本 `44` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gHorseRaceTicketCharacterCodes`, `gHorseRaceTicketControls`, `gHorseRacePrizeCatalog`, `gHorseRacePrizeItemIds`, `gHorseRacePrizeExchangeCharacterCodes` |
-| `0x080FAA60`–`0x080FAA69` | `src/intro_scene_data.o(.rodata.intro_scene_prefix)` | [数据] | `src/intro_scene_data.c/.cc` | 运行时字符串 `1` 项 |
-| `0x080FAA6A`–`0x080FAA6B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FAA6C`–`0x080FB10E` | `src/intro_scene_data.o(.rodata)` | [嵌入文本 / 数据] | `src/intro_scene_data.cc`<br>`data/text/jp/intro_scene.cc` | `gIntroSceneUnpackSources`<br>文本 `28` 项（详见下方索引） |
-| `0x080FB10F`–`0x080FB10F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x080FB110`–`0x080FB119` | `src/intro_scene_data.o(.rodata.intro_scene_trailer)` | [数据] | `src/intro_scene_data.c/.cc` | 运行时字符串 `1` 项 |
+| `0x080FAA60`–`0x080FB119` | `src/intro_scene_data.o(.rodata)` | [嵌入文本 / 数据] | `src/intro_scene_data.cc`<br>`include/intro_scene_data.hh`<br>`data/text/jp/intro_scene_data.cc`<br>`data/text/jp/intro_scene_data_1.cc` | 前缀运行时字符串 `1` 项<br>`gIntroSceneUnpackSources`<br>文本 `28` 项（详见下方索引）<br>尾部运行时字符串 `1` 项；`_1` 表示其物理位置在指针表之后 |
 | `0x080FB11A`–`0x080FB11B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FB11C`–`0x080FB761` | `src/farm_status_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `src/farm_status_screen_data.cc`<br>`data/text/jp/farm_status.cc`<br>`data/text/jp/animal_contest.cc` | 文本 `62` 项（农场状态 `35`、动物参赛 `27`；详见下方索引）<br>对象内 `00` 对齐 `1` 字节<br>`gAnimalStatusScreenPrefixText`、`gAnimalStatusScreenText`<br>运行时字符串 `4` 项<br>`gFarmStatusScreenPreloadedGlyphs`、资源与建筑预览表 |
 | `0x080FB762`–`0x080FB763` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1132,34 +1144,34 @@
 | `0x080FA9F4` | `gText_HorseRace_PrizeSelectionConfirmation` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
 | `0x080FAA04` | `gText_HorseRace_PrizeExchangeLeaveConfirmation` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
 | `0x080FAA18` | `gText_HorseRace_PrizeExchangeInsufficientMedals` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAABC` | `gText_IntroScene_MotherName` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAAC0` | `gText_IntroScene_MotherTravelGreeting` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAB08` | `gText_IntroScene_FatherName` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAB0C` | `gText_IntroScene_FatherFishingInvitation` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAB5C` | `gText_IntroScene_MotherCannotFindPlayer` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAB94` | `gText_IntroScene_PlayerResponseWhat` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FABA4` | `gText_IntroScene_OldManName` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FABB0` | `gText_IntroScene_OldManFindsPlayer` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAC58` | `gText_IntroScene_MotherThanksOldMan` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAC90` | `gText_IntroScene_FatherExplainsVacation` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FACF8` | `gText_IntroScene_OldManOffersStay` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAD50` | `gText_IntroScene_FatherAsksAboutStay` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAD6C` | `gText_IntroScene_OldManWelcomesFamily` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FADB4` | `gText_IntroScene_MotherTellsPlayerToPlay` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FADF0` | `gText_IntroScene_UnknownName` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FADF8` | `gText_IntroScene_UnknownCallsPlayer` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAE14` | `gText_IntroScene_UnknownFindsPlayer` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAE1C` | `gText_IntroScene_GirlName` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAE24` | `gText_IntroScene_GirlThinksPlayerDead` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAE58` | `gText_IntroScene_GirlInvitesPlayerToPlay` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAEAC` | `gText_IntroScene_GirlAsksPlayerStory` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAF28` | `gText_IntroScene_OldManFarewell` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAFBC` | `gText_IntroScene_OldManRequestsLetter` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAFF4` | `gText_IntroScene_OldManGivesAddress` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB034` | `gText_IntroScene_GirlSaysGoodbye` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB054` | `gText_IntroScene_GirlAsksPlayerToReturn` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB0B0` | `gText_IntroScene_OldManNotesFriend` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB0F4` | `gText_IntroScene_OldManWaitsForLetter` | `data/text/jp/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAABC` | `gText_IntroScene_MotherName` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAAC0` | `gText_IntroScene_MotherTravelGreeting` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAB08` | `gText_IntroScene_FatherName` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAB0C` | `gText_IntroScene_FatherFishingInvitation` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAB5C` | `gText_IntroScene_MotherCannotFindPlayer` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAB94` | `gText_IntroScene_PlayerResponseWhat` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FABA4` | `gText_IntroScene_OldManName` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FABB0` | `gText_IntroScene_OldManFindsPlayer` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAC58` | `gText_IntroScene_MotherThanksOldMan` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAC90` | `gText_IntroScene_FatherExplainsVacation` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FACF8` | `gText_IntroScene_OldManOffersStay` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAD50` | `gText_IntroScene_FatherAsksAboutStay` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAD6C` | `gText_IntroScene_OldManWelcomesFamily` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FADB4` | `gText_IntroScene_MotherTellsPlayerToPlay` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FADF0` | `gText_IntroScene_UnknownName` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FADF8` | `gText_IntroScene_UnknownCallsPlayer` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAE14` | `gText_IntroScene_UnknownFindsPlayer` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAE1C` | `gText_IntroScene_GirlName` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAE24` | `gText_IntroScene_GirlThinksPlayerDead` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAE58` | `gText_IntroScene_GirlInvitesPlayerToPlay` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAEAC` | `gText_IntroScene_GirlAsksPlayerStory` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAF28` | `gText_IntroScene_OldManFarewell` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAFBC` | `gText_IntroScene_OldManRequestsLetter` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAFF4` | `gText_IntroScene_OldManGivesAddress` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB034` | `gText_IntroScene_GirlSaysGoodbye` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB054` | `gText_IntroScene_GirlAsksPlayerToReturn` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB0B0` | `gText_IntroScene_OldManNotesFriend` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB0F4` | `gText_IntroScene_OldManWaitsForLetter` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
 | `0x080FB11C` | `gText_FarmStatus_OverviewTitle` | `data/text/jp/farm_status.cc` | `src/farm_status_screen_data.o(.rodata)` |
 | `0x080FB128` | `gText_FarmStatus_CounterBirds` | `data/text/jp/farm_status.cc` | `src/farm_status_screen_data.o(.rodata)` |
 | `0x080FB12C` | `gText_FarmStatus_CounterHeads` | `data/text/jp/farm_status.cc` | `src/farm_status_screen_data.o(.rodata)` |
@@ -1929,13 +1941,15 @@
 
 ## US：物理 `.rodata` 顺序
 
-范围：`0x080E862C`–`0x08139A87`。所有行都按当前 ROM 物理地址排序。
+范围：`0x080E8610`–`0x08139A87`。所有行都按当前 ROM 物理地址排序。
 
 | 地址范围 | 链接输入 | 内容状态 | 维护源 / 文本来源 | 已命名内容 |
 | --- | --- | --- | --- | --- |
-| `0x080E862C`–`0x080E8680` | `src/sram_proxy_1.o(.rodata)` | [数据] | `src/sram_proxy_1.c/.cc` | `gSramImageSignature`, `gUnk_SramSignatureTrailerBadAllocFirst`, `gUnk_SramSignatureTrailerEmptyText`, `gUnk_SramSignatureTrailerBadAllocSecond`, `gUnk_SramSignatureTrailerBadAllocThird`, `gUnk_SramSignatureTrailerError`, … +1 |
+| `0x080E8610`–`0x080E8629` | `src/crt0_data.o(.rodata)` | [嵌入文本 / 数据] | `src/crt0_data.cc`<br>`include/crt0.hh`<br>`data/text/us/crt0_data.cc` | `init_array`、`gCppRuntimeBadAlloc_Crt0` |
+| `0x080E862A`–`0x080E862B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
+| `0x080E862C`–`0x080E8680` | `src/sram_proxy_1.o(.rodata)` | [嵌入文本] | `src/sram_proxy_1.c`<br>`include/sram_proxy.hh`<br>`data/text/us/sram_proxy_1.cc` | `gSramImageSignature`, `gUnk_SramSignatureTrailerBadAllocFirst`, `gUnk_SramSignatureTrailerEmptyText`, `gUnk_SramSignatureTrailerBadAllocSecond`, `gUnk_SramSignatureTrailerBadAllocThird`, `gUnk_SramSignatureTrailerError`, … +1 |
 | `0x080E8681`–`0x080E8683` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
-| `0x080E8684`–`0x080E86A5` | `src/intro_scene_data.o(.rodata.intro_scene_startup_resources)` | [数据] | `src/intro_scene_data.c/.cc` | 运行时字符串 `2` 项<br>`gIntroSceneStartupUnpackSources` |
+| `0x080E8684`–`0x080E86A5` | `src/intro_scene_startup.o(.rodata)` | [嵌入文本 / 数据] | `src/intro_scene_startup.cc`<br>`include/intro_scene_startup.hh`<br>`data/text/us/intro_scene_startup.cc` | `gIntroSceneStartupUnpackSources`<br>运行时字符串 `2` 项 |
 | `0x080E86A6`–`0x080E86A7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080E86A8`–`0x080E8CC1` | `src/new_game_menu_data.o(.rodata)` | [嵌入文本 / 数据] | `src/new_game_menu_data.cc`<br>`data/text/us/new_game.cc` | 文本 `48` 项（菜单 `14`、状态/帮助/保存/身份/姓名输入 `34`；详见下方索引）<br>`gNewGameMenuLabels`<br>运行时字符串 `14` 项<br>`gNewGameNameEntryCharacterRows` |
 | `0x080E8CC2`–`0x080E8CC3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1994,11 +2008,7 @@
 | `0x080FA99E`–`0x080FAA3D` | `src/animal_festival_ranking.o(.rodata.animal_festival_livestock_contestant_values)` | [数据] | `src/animal_festival_ranking.c/.cc` | `gAnimalFestivalLivestockContestantValues` |
 | `0x080FAA3E`–`0x080FAA3F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FAA40`–`0x080FB1D7` | `src/horse_race_data.o(.rodata)` | [嵌入文本] | `data/text/us/horse_race.cc` | 文本 `43` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gHorseRaceTicketCharacterCodes`, `gHorseRaceTicketControls`, `gHorseRacePrizeCatalog`, `gHorseRacePrizeItemIds`, `gHorseRacePrizeExchangeCharacterCodes` |
-| `0x080FB1D8`–`0x080FB1E1` | `src/intro_scene_data.o(.rodata.intro_scene_prefix)` | [数据] | `src/intro_scene_data.c/.cc` | 运行时字符串 `1` 项 |
-| `0x080FB1E2`–`0x080FB1E3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FB1E4`–`0x080FB816` | `src/intro_scene_data.o(.rodata)` | [嵌入文本 / 数据] | `src/intro_scene_data.cc`<br>`data/text/us/intro_scene.cc` | `gIntroSceneUnpackSources`<br>文本 `28` 项（详见下方索引） |
-| `0x080FB817`–`0x080FB817` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x080FB818`–`0x080FB821` | `src/intro_scene_data.o(.rodata.intro_scene_trailer)` | [数据] | `src/intro_scene_data.c/.cc` | 运行时字符串 `1` 项 |
+| `0x080FB1D8`–`0x080FB821` | `src/intro_scene_data.o(.rodata)` | [嵌入文本 / 数据] | `src/intro_scene_data.cc`<br>`include/intro_scene_data.hh`<br>`data/text/us/intro_scene_data.cc`<br>`data/text/us/intro_scene_data_1.cc` | 前缀运行时字符串 `1` 项<br>`gIntroSceneUnpackSources`<br>文本 `28` 项（详见下方索引）<br>尾部运行时字符串 `1` 项；`_1` 表示其物理位置在指针表之后 |
 | `0x080FB822`–`0x080FB823` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FB824`–`0x080FBE79` | `src/farm_status_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `src/farm_status_screen_data.cc`<br>`data/text/us/farm_status.cc`<br>`data/text/us/animal_contest.cc` | 文本 `53` 项（农场状态 `29`、动物参赛 `24`；详见下方索引）<br>对象内 `00` 对齐 `1` 字节<br>`gAnimalStatusScreenPrefixText`、`gAnimalStatusScreenText`<br>运行时字符串 `4` 项<br>`gFarmStatusScreenPreloadedGlyphs`、资源与建筑预览表 |
 | `0x080FBE7A`–`0x080FBE7B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -2986,34 +2996,34 @@
 | `0x080FB158` | `gText_HorseRace_PrizeSelectionConfirmation` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
 | `0x080FB164` | `gText_HorseRace_PrizeExchangeLeaveConfirmation` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
 | `0x080FB17C` | `gText_HorseRace_PrizeExchangeInsufficientMedals` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FB234` | `gText_IntroScene_MotherName` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB23C` | `gText_IntroScene_MotherTravelGreeting` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB27C` | `gText_IntroScene_FatherName` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB284` | `gText_IntroScene_FatherFishingInvitation` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB2D0` | `gText_IntroScene_MotherCannotFindPlayer` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB2F4` | `gText_IntroScene_PlayerResponseWhat` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB300` | `gText_IntroScene_OldManName` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB308` | `gText_IntroScene_OldManFindsPlayer` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB398` | `gText_IntroScene_MotherThanksOldMan` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB3CC` | `gText_IntroScene_FatherExplainsVacation` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB420` | `gText_IntroScene_OldManOffersStay` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB46C` | `gText_IntroScene_FatherAsksAboutStay` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB484` | `gText_IntroScene_OldManWelcomesFamily` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB4D4` | `gText_IntroScene_MotherTellsPlayerToPlay` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB51C` | `gText_IntroScene_UnknownName` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB520` | `gText_IntroScene_UnknownCallsPlayer` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB534` | `gText_IntroScene_UnknownFindsPlayer` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB53C` | `gText_IntroScene_GirlName` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB544` | `gText_IntroScene_GirlThinksPlayerDead` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB578` | `gText_IntroScene_GirlInvitesPlayerToPlay` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB5D4` | `gText_IntroScene_GirlAsksPlayerStory` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB634` | `gText_IntroScene_OldManFarewell` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB6C0` | `gText_IntroScene_OldManRequestsLetter` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB710` | `gText_IntroScene_OldManGivesAddress` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB738` | `gText_IntroScene_GirlSaysGoodbye` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB754` | `gText_IntroScene_GirlAsksPlayerToReturn` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB7A0` | `gText_IntroScene_OldManNotesFriend` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB7F0` | `gText_IntroScene_OldManWaitsForLetter` | `data/text/us/intro_scene.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB234` | `gText_IntroScene_MotherName` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB23C` | `gText_IntroScene_MotherTravelGreeting` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB27C` | `gText_IntroScene_FatherName` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB284` | `gText_IntroScene_FatherFishingInvitation` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB2D0` | `gText_IntroScene_MotherCannotFindPlayer` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB2F4` | `gText_IntroScene_PlayerResponseWhat` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB300` | `gText_IntroScene_OldManName` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB308` | `gText_IntroScene_OldManFindsPlayer` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB398` | `gText_IntroScene_MotherThanksOldMan` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB3CC` | `gText_IntroScene_FatherExplainsVacation` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB420` | `gText_IntroScene_OldManOffersStay` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB46C` | `gText_IntroScene_FatherAsksAboutStay` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB484` | `gText_IntroScene_OldManWelcomesFamily` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB4D4` | `gText_IntroScene_MotherTellsPlayerToPlay` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB51C` | `gText_IntroScene_UnknownName` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB520` | `gText_IntroScene_UnknownCallsPlayer` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB534` | `gText_IntroScene_UnknownFindsPlayer` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB53C` | `gText_IntroScene_GirlName` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB544` | `gText_IntroScene_GirlThinksPlayerDead` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB578` | `gText_IntroScene_GirlInvitesPlayerToPlay` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB5D4` | `gText_IntroScene_GirlAsksPlayerStory` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB634` | `gText_IntroScene_OldManFarewell` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB6C0` | `gText_IntroScene_OldManRequestsLetter` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB710` | `gText_IntroScene_OldManGivesAddress` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB738` | `gText_IntroScene_GirlSaysGoodbye` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB754` | `gText_IntroScene_GirlAsksPlayerToReturn` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB7A0` | `gText_IntroScene_OldManNotesFriend` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB7F0` | `gText_IntroScene_OldManWaitsForLetter` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
 | `0x080FB824` | `gText_FarmStatus_OverviewTitle` | `data/text/us/farm_status.cc` | `src/farm_status_screen_data.o(.rodata)` |
 | `0x080FB830` | `gText_FarmStatus_CountFieldPadding` | `data/text/us/farm_status.cc` | `src/farm_status_screen_data.o(.rodata)` |
 | `0x080FB834` | `gText_FarmStatus_GoldUnit` | `data/text/us/farm_status.cc` | `src/farm_status_screen_data.o(.rodata)` |

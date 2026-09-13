@@ -1,4 +1,4 @@
-#include "intro_scene_text.hh"
+#include "intro_scene_data.hh"
 
 // The physical order is the original childhood-visit sequence.  Its callers
 // load these named strings directly from code literal pools.
@@ -161,3 +161,10 @@ char const gText_IntroScene_OldManWaitsForLetter[] ALIGN(4) =
     "\p"
     "I'll be waiting for \r\n"
     "your letter...{Press}";
+
+EXTERN_C
+
+char const gCppRuntimeBadAlloc_IntroSceneTextTrailer[] ALIGN(4) =
+    "bad_alloc";
+
+EXTERN_C_END

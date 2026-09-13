@@ -1,4 +1,3 @@
-#include "sram_signature.hh"
 #include "sram_proxy.hh"
 #include "types.h"
 
@@ -122,30 +121,7 @@ u32 func_08000488(void *source)
     return value;
 }
 
-// This is persisted to SRAM and compared as all 32 bytes, including its
-// single terminator.  The same header is present in both regional ROMs.
-char const gSramImageSignature[32] =
-    "GBA牧場物語のSRAMイメージ 00000";
-
-// These objects occupy the contiguous tail after the persisted signature.
-// Their byte layouts are known, but no code reference establishes a higher-
-// level role for them, so their names intentionally remain gUnk.
-char const gUnk_SramSignatureTrailerBadAllocFirst[] ALIGN(4) =
-    "bad_alloc";
-
-char const gUnk_SramSignatureTrailerEmptyText[] ALIGN(4) =
-    "";
-
-char const gUnk_SramSignatureTrailerBadAllocSecond[] ALIGN(4) =
-    "bad_alloc";
-
-char const gUnk_SramSignatureTrailerBadAllocThird[] ALIGN(4) =
-    "bad_alloc";
-
-#if defined(REGION_WESTERN)
-char const gUnk_SramSignatureTrailerError[] ALIGN(4) =
-    "Error";
-
-char const gUnk_SramSignatureTrailerNotAvailable[] ALIGN(4) =
-    "N/A ";
-#endif
+// The persisted signature and its physically adjacent runtime strings are
+// region-owned text.  Keeping the include here preserves their exact ROM
+// order after the SRAM routines above.
+#include FOMT_TEXT_INCLUDE(sram_proxy_1.cc)

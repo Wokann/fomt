@@ -1,14 +1,11 @@
-#ifndef INTRO_SCENE_TEXT_HH
-#define INTRO_SCENE_TEXT_HH
+#ifndef INTRO_SCENE_DATA_HH
+#define INTRO_SCENE_DATA_HH
 
 #include "prelude.h"
 
 EXTERN_C
 
 extern u8 const * const gIntroSceneUnpackSources[];
-extern u8 const * const gIntroSceneStartupUnpackSources[];
-extern char const gCppRuntimeBadAlloc_IntroSceneStartup[];
-extern char const gCppRuntimeError_IntroSceneStartup[];
 
 EXTERN_C_END
 
@@ -43,4 +40,4 @@ extern char const gText_IntroScene_OldManNotesFriend[];
 extern char const gText_IntroScene_OldManWaitsForLetter[];
 extern char const gCppRuntimeBadAlloc_IntroSceneTextTrailer[];
 
-#endif // INTRO_SCENE_TEXT_HH
+#endif // INTRO_SCENE_DATA_HH

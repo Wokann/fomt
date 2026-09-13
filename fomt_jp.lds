@@ -709,7 +709,7 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4);
         src/sram_proxy_1.o(.rodata);
-        src/intro_scene_data.o(.rodata.intro_scene_startup_resources);
+        src/intro_scene_startup.o(.rodata);
         . = 0xE7AC8; src/new_game_menu_data.o(.rodata);
         . = 0xE8164; src/field_data.o(.rodata);
         src/shipping_bin.o(.rodata);
@@ -778,13 +778,9 @@ SECTIONS
         . = 0xFA280; src/horse_race_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0xFAA60; src/intro_scene_data.o(.rodata.intro_scene_prefix);
+        /* Intro-scene resource table, dialogue, and runtime tail. */
+        . = 0xFAA60; src/intro_scene_data.o(.rodata);
         FILL(0x00);
-        /* Bounded intro-scene localization island: resource table and dialogue. */
-        . = 0xFAA6C; src/intro_scene_data.o(.rodata);
-        ASSERT(. <= 0xFB110, "JP intro-scene localization island overflow");
-        FILL(0x00);
-        . = 0xFB110; src/intro_scene_data.o(.rodata.intro_scene_trailer);
         /* Bounded Farm Status localization island: two text groups and UI data. */
         . = 0xFB11C; src/farm_status_screen_data.o(.rodata);
         ASSERT(. <= 0xFB764, "JP Farm Status localization island overflow");

@@ -9,7 +9,6 @@ u32 const init_array[4] = {
     0,
 };
 
-char const gCppRuntimeBadAlloc_Crt0[] =
-    "bad_alloc";
+#include FOMT_TEXT_INCLUDE(crt0_data.cc)
 
 EXTERN_C_END
