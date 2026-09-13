@@ -1,16 +1,8 @@
-#include "poultry_shop_text.hh"
+#include "poultry_shop_data.hh"
 
 #include "item.hh"
 
-#if defined(REGION_JP)
-#define FOMT_TEXT_POULTRY_SHOP_MENU
-#include FOMT_TEXT_INCLUDE(poultry_shop.cc)
-#undef FOMT_TEXT_POULTRY_SHOP_MENU
-#else
-#define FOMT_TEXT_POULTRY_SHOP_MENU
-#include FOMT_TEXT_INCLUDE(poultry_shop.cc)
-#undef FOMT_TEXT_POULTRY_SHOP_MENU
-#endif
+#include FOMT_TEXT_INCLUDE(poultry_shop_data.cc)
 
 PoultryShopCatalogEntry const gPoultryShopCatalog[] = {
     { ITEM_ARTICLE_CHICKEN_FEED, gText_PoultryShop_Empty, 10, gText_PoultryShop_Empty, 0 },
@@ -20,12 +12,4 @@ PoultryShopCatalogEntry const gPoultryShopCatalog[] = {
     { 4, gText_PoultryShop_Empty, 0, gText_PoultryShop_Empty, 4 },
 };
 
-#if defined(REGION_JP)
-#define FOMT_TEXT_POULTRY_SHOP_STATUS
-#include FOMT_TEXT_INCLUDE(poultry_shop.cc)
-#undef FOMT_TEXT_POULTRY_SHOP_STATUS
-#else
-#define FOMT_TEXT_POULTRY_SHOP_STATUS
-#include FOMT_TEXT_INCLUDE(poultry_shop.cc)
-#undef FOMT_TEXT_POULTRY_SHOP_STATUS
-#endif
+#include FOMT_TEXT_INCLUDE(poultry_shop_data_1.cc)

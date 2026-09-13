@@ -1,5 +1,5 @@
-#ifndef POULTRY_SHOP_TEXT_HH
-#define POULTRY_SHOP_TEXT_HH
+#ifndef POULTRY_SHOP_DATA_HH
+#define POULTRY_SHOP_DATA_HH
 
 #include "prelude.h"
 
@@ -61,4 +61,4 @@ extern char const gText_PoultryShop_PricePromptSuffix[];
 #endif
 #endif
 
-#endif // POULTRY_SHOP_TEXT_HH
+#endif // POULTRY_SHOP_DATA_HH

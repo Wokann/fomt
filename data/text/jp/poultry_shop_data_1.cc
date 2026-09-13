@@ -1,17 +1,4 @@
-#include "poultry_shop_text.hh"
-
-#if defined(FOMT_TEXT_POULTRY_SHOP_MENU)
-
-char const gText_PoultryShop_Empty[] =
-    "";
-
-char const gText_PoultryShop_BuyChicken[] =
-    "鶏を買う";
-
-char const gText_PoultryShop_SellChicken[] =
-    "鶏を売る";
-
-#elif defined(FOMT_TEXT_POULTRY_SHOP_STATUS)
+#include "poultry_shop_data.hh"
 
 char const gText_PoultryShop_PageBreak[] =
     "\p";
@@ -129,9 +116,5 @@ char const gText_PoultryShop_ChickenSold[] =
     "屋から連れてくるようにリック\r\n"
     "に言っておくから～。{Press}";
 
-extern char const gCppRuntimeBadAlloc_PoultryShopTrailer[] =
+char const gCppRuntimeBadAlloc_PoultryShopTrailer[] =
     "bad_alloc";
-
-#else
-#error "Select one poultry-shop text fragment before including this file."
-#endif

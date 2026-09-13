@@ -61,6 +61,8 @@
 | EU | `0x080FD5D0`–`0x080FD95F` | `src/town_map_area_data.o(.rodata)` | `src/town_map_area_data.cc`、`include/town_map_area_data.hh`；`gTownMapAreaBounds` | 精确 |
 | EU | `0x080FD960`–`0x080FD9AD` | `src/library_data.o(.rodata)` | `src/library_data.cc`、`include/library_data.hh`、`data/text/eu/library_data.cc`、`data/text/eu/library_data_1.cc`；运行时字符串、初始条目表和菜单按 ROM 顺序同属该对象 | 精确 |
 | EU | `0x080FD9AE`–`0x080FD9AF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
+| EU | `0x080FD9B0`–`0x080FDE21` | `src/poultry_shop_data.o(.rodata)` | `src/poultry_shop_data.cc`、`include/poultry_shop_data.hh`、`data/text/eu/poultry_shop_data.cc`、`data/text/eu/poultry_shop_data_1.cc`；菜单文本、目录表、状态与对话文本按 ROM 顺序同属该对象 | 精确 |
+| EU | `0x080FDE22`–`0x080FDE23` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FECC8`–`0x080FEDD7` | `src/blacksmith_menu_data.o(.rodata)` | `src/blacksmith_menu_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
 | EU | `0x080FEDD8`–`0x080FF3AF` | `src/blacksmith_data.o(.rodata)` | `src/blacksmith_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
 | EU | `0x08100534`–`0x08100B17` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc` 与 `data/text/eu/link_communication.cc` | 精确 |
@@ -98,7 +100,8 @@
 | DE | `0x080FDCD8`–`0x080FE067` | `src/town_map_area_data.o(.rodata)` | `src/town_map_area_data.cc`、`include/town_map_area_data.hh`；`gTownMapAreaBounds` | 精确 |
 | DE | `0x080FE068`–`0x080FE0B5` | `src/library_data.o(.rodata)` | `src/library_data.cc`、`include/library_data.hh`、`data/text/de/library_data.cc`、`data/text/de/library_data_1.cc`；运行时字符串、初始条目表和菜单按 ROM 顺序同属该对象 | 精确 |
 | DE | `0x080FE0B6`–`0x080FE0B7` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| DE | `0x080FE0B8`–`0x080FE5E3` | `src/poultry_shop_data.o(.rodata)` | `src/poultry_shop_data.cc` 与 `data/text/de/poultry_shop.cc` | 精确 |
+| DE | `0x080FE0B8`–`0x080FE579` | `src/poultry_shop_data.o(.rodata)` | `src/poultry_shop_data.cc`、`include/poultry_shop_data.hh`、`data/text/de/poultry_shop_data.cc`、`data/text/de/poultry_shop_data_1.cc`；菜单文本、目录表、状态与对话文本按 ROM 顺序同属该对象 | 精确 |
+| DE | `0x080FE57A`–`0x080FE57B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080FE5E4`–`0x080FE7FB` | `src/supermarket_data.o(.rodata)` | `src/supermarket_data.cc` 与 `data/text/de/supermarket.cc` | 精确 |
 | DE | `0x080FE7FC`–`0x080FEA23` | `src/clinic_data.o(.rodata)` | `src/clinic_data.cc` 与 `data/text/de/clinic.cc` | 精确 |
 | DE | `0x080FEA24`–`0x080FEC8B` | `src/inn_shop_data.o(.rodata)` | `src/inn_shop_data.cc` 与 `data/text/de/inn_shop.cc` | 精确 |
@@ -179,7 +182,7 @@
 | `0x080FCCF4`–`0x080FD083` | `src/town_map_area_data.o(.rodata)` | [数据] | `src/town_map_area_data.cc`<br>`include/town_map_area_data.hh` | `gTownMapAreaBounds` |
 | `0x080FD084`–`0x080FD0CD` | `src/library_data.o(.rodata)` | [嵌入文本 / 数据] | `src/library_data.cc`<br>`include/library_data.hh`<br>`data/text/jp/library_data.cc`<br>`data/text/jp/library_data_1.cc` | `gCppRuntimeBadAlloc_LibraryInfo`<br>对象内 `00` 对齐 `2` 字节<br>`gLibraryInitialEntryIds`<br>`gText_Library_Menu`<br>`gCppRuntimeBadAlloc_LibraryMenu` |
 | `0x080FD0CE`–`0x080FD0CF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FD0D0`–`0x080FD55D` | `src/poultry_shop_data.o(.rodata)` | [嵌入文本] | `data/text/jp/poultry_shop.cc` | 文本 `34` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gPoultryShopCatalog` |
+| `0x080FD0D0`–`0x080FD55D` | `src/poultry_shop_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/poultry_shop_data.cc`<br>`include/poultry_shop_data.hh`<br>`data/text/jp/poultry_shop_data.cc`<br>`data/text/jp/poultry_shop_data_1.cc` | 菜单文本 `3` 项<br>`gPoultryShopCatalog`<br>状态与对话文本 `31` 项<br>运行时字符串 `1` 项 |
 | `0x080FD55E`–`0x080FD55F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FD560`–`0x080FD80D` | `src/supermarket_data.o(.rodata)` | [嵌入文本] | `data/text/jp/supermarket.cc` | 文本 `11` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gSupermarketCropSeedCatalog`, `gSupermarketAdditionalSeedCatalog` |
 | `0x080FD80E`–`0x080FD80F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1404,40 +1407,40 @@
 | `0x080FC7D8` | `gText_TownMap_MothersHillLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
 | `0x080FCCB8` | `gText_Library_OpeningHours` | `data/text/jp/library_opening_hours_data.cc` | `src/library_opening_hours_data.o(.rodata)` |
 | `0x080FD0B0` | `gText_Library_Menu` | `data/text/jp/library_data_1.cc` | `src/library_data.o(.rodata)` |
-| `0x080FD0D0` | `gText_PoultryShop_Empty` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD0D4` | `gText_PoultryShop_BuyChicken` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD0E0` | `gText_PoultryShop_SellChicken` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD150` | `gText_PoultryShop_PageBreak` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD154` | `gText_PoultryShop_StatusSick` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD16C` | `gText_PoultryShop_StatusUnhappy` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD184` | `gText_PoultryShop_StatusHealthy` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD19C` | `gText_PoultryShop_StatusSpacer` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD1A0` | `gText_PoultryShop_Age` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD1B8` | `gText_PoultryShop_Spring` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD1BC` | `gText_PoultryShop_Summer` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD1C0` | `gText_PoultryShop_Autumn` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD1C4` | `gText_PoultryShop_Winter` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD1C8` | `gText_PoultryShop_DailySellingPrice` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD1E0` | `gText_PoultryShop_Currency` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD1E4` | `gText_PoultryShop_InsufficientGold` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD20C` | `gText_PoultryShop_FeedBinFull` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD238` | `gText_PoultryShop_BlankLinePair` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD240` | `gText_PoultryShop_InventoryFull` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD264` | `gText_PoultryShop_CoopFull` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD28C` | `gText_PoultryShop_NameChickenPrompt` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD2B8` | `gText_PoultryShop_NoChickensToSell` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD2E0` | `gText_PoultryShop_NotInterested` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD2F4` | `gText_PoultryShop_PurchaseDeclined` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD308` | `gText_PoultryShop_PricePrompt` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD31C` | `gText_PoultryShop_Yes` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD324` | `gText_PoultryShop_No` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD32C` | `gText_PoultryShop_FeedPurchaseComplete` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD3A0` | `gText_PoultryShop_PurchaseDeliveryPartial` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD418` | `gText_PoultryShop_MedicinePurchaseComplete` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD47C` | `gText_PoultryShop_PurchaseComplete` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD498` | `gText_PoultryShop_ChickenPurchaseComplete` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD4EC` | `gText_PoultryShop_PurchaseMorePrompt` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD500` | `gText_PoultryShop_ChickenSold` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD0D0` | `gText_PoultryShop_Empty` | `data/text/jp/poultry_shop_data.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD0D4` | `gText_PoultryShop_BuyChicken` | `data/text/jp/poultry_shop_data.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD0E0` | `gText_PoultryShop_SellChicken` | `data/text/jp/poultry_shop_data.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD150` | `gText_PoultryShop_PageBreak` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD154` | `gText_PoultryShop_StatusSick` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD16C` | `gText_PoultryShop_StatusUnhappy` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD184` | `gText_PoultryShop_StatusHealthy` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD19C` | `gText_PoultryShop_StatusSpacer` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD1A0` | `gText_PoultryShop_Age` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD1B8` | `gText_PoultryShop_Spring` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD1BC` | `gText_PoultryShop_Summer` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD1C0` | `gText_PoultryShop_Autumn` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD1C4` | `gText_PoultryShop_Winter` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD1C8` | `gText_PoultryShop_DailySellingPrice` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD1E0` | `gText_PoultryShop_Currency` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD1E4` | `gText_PoultryShop_InsufficientGold` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD20C` | `gText_PoultryShop_FeedBinFull` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD238` | `gText_PoultryShop_BlankLinePair` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD240` | `gText_PoultryShop_InventoryFull` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD264` | `gText_PoultryShop_CoopFull` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD28C` | `gText_PoultryShop_NameChickenPrompt` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD2B8` | `gText_PoultryShop_NoChickensToSell` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD2E0` | `gText_PoultryShop_NotInterested` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD2F4` | `gText_PoultryShop_PurchaseDeclined` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD308` | `gText_PoultryShop_PricePrompt` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD31C` | `gText_PoultryShop_Yes` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD324` | `gText_PoultryShop_No` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD32C` | `gText_PoultryShop_FeedPurchaseComplete` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD3A0` | `gText_PoultryShop_PurchaseDeliveryPartial` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD418` | `gText_PoultryShop_MedicinePurchaseComplete` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD47C` | `gText_PoultryShop_PurchaseComplete` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD498` | `gText_PoultryShop_ChickenPurchaseComplete` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD4EC` | `gText_PoultryShop_PurchaseMorePrompt` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD500` | `gText_PoultryShop_ChickenSold` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
 | `0x080FD5C8` | `gText_Supermarket_EquipmentCapacityFull` | `data/text/jp/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
 | `0x080FD5F0` | `gText_Supermarket_BlankLinePair` | `data/text/jp/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
 | `0x080FD5F8` | `gText_Supermarket_InsufficientGold` | `data/text/jp/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
@@ -2016,7 +2019,7 @@
 | `0x080FD584`–`0x080FD913` | `src/town_map_area_data.o(.rodata)` | [数据] | `src/town_map_area_data.cc`<br>`include/town_map_area_data.hh` | `gTownMapAreaBounds` |
 | `0x080FD914`–`0x080FD961` | `src/library_data.o(.rodata)` | [嵌入文本 / 数据] | `src/library_data.cc`<br>`include/library_data.hh`<br>`data/text/us/library_data.cc`<br>`data/text/us/library_data_1.cc` | `gCppRuntimeBadAlloc_LibraryInfo`<br>对象内 `00` 对齐 `2` 字节<br>`gLibraryInitialEntryIds`<br>`gText_Library_Menu`<br>`gCppRuntimeBadAlloc_LibraryMenu` |
 | `0x080FD962`–`0x080FD963` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FD964`–`0x080FDDD5` | `src/poultry_shop_data.o(.rodata)` | [嵌入文本] | `data/text/us/poultry_shop.cc` | 文本 `34` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gPoultryShopCatalog` |
+| `0x080FD964`–`0x080FDDD5` | `src/poultry_shop_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/poultry_shop_data.cc`<br>`include/poultry_shop_data.hh`<br>`data/text/us/poultry_shop_data.cc`<br>`data/text/us/poultry_shop_data_1.cc` | 菜单文本 `3` 项<br>`gPoultryShopCatalog`<br>状态与对话文本 `31` 项<br>运行时字符串 `1` 项 |
 | `0x080FDDD6`–`0x080FDDD7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FDDD8`–`0x080FE04D` | `src/supermarket_data.o(.rodata)` | [嵌入文本] | `data/text/us/supermarket.cc` | 文本 `10` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gSupermarketCropSeedCatalog`, `gSupermarketAdditionalSeedCatalog` |
 | `0x080FE04E`–`0x080FE04F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -3229,40 +3232,40 @@
 | `0x080FD070` | `gText_TownMap_MothersHillLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
 | `0x080FD550` | `gText_Library_OpeningHours` | `data/text/us/library_opening_hours_data.cc` | `src/library_opening_hours_data.o(.rodata)` |
 | `0x080FD940` | `gText_Library_Menu` | `data/text/us/library_data_1.cc` | `src/library_data.o(.rodata)` |
-| `0x080FD964` | `gText_PoultryShop_Empty` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD968` | `gText_PoultryShop_BuyChicken` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD978` | `gText_PoultryShop_SellChicken` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD9EC` | `gText_PoultryShop_PageBreak` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD9F0` | `gText_PoultryShop_StatusSick` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD9FC` | `gText_PoultryShop_StatusUnhappy` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDA10` | `gText_PoultryShop_StatusHealthy` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDA20` | `gText_PoultryShop_StatusSpacer` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDA24` | `gText_PoultryShop_Age` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDA40` | `gText_PoultryShop_Spring` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDA48` | `gText_PoultryShop_Summer` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDA50` | `gText_PoultryShop_Autumn` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDA58` | `gText_PoultryShop_Winter` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDA60` | `gText_PoultryShop_DailySellingPrice` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDA78` | `gText_PoultryShop_Currency` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDA7C` | `gText_PoultryShop_InsufficientGold` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDAA8` | `gText_PoultryShop_FeedBinFull` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDAD4` | `gText_PoultryShop_BlankLinePair` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDADC` | `gText_PoultryShop_InventoryFull` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDB0C` | `gText_PoultryShop_CoopFull` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDB38` | `gText_PoultryShop_NameChickenPrompt` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDB6C` | `gText_PoultryShop_NoChickensToSell` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDB9C` | `gText_PoultryShop_NotInterested` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDBC4` | `gText_PoultryShop_PurchaseDeclined` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDBE8` | `gText_PoultryShop_PricePromptPrefix` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDBF8` | `gText_PoultryShop_Yes` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDBFC` | `gText_PoultryShop_No` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDC00` | `gText_PoultryShop_FeedPurchaseComplete` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDC58` | `gText_PoultryShop_PurchaseDeliveryPartial` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDCBC` | `gText_PoultryShop_MedicinePurchaseComplete` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDD04` | `gText_PoultryShop_PurchaseComplete` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDD1C` | `gText_PoultryShop_ChickenPurchaseComplete` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDD68` | `gText_PoultryShop_PurchaseMorePrompt` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDD84` | `gText_PoultryShop_ChickenSold` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD964` | `gText_PoultryShop_Empty` | `data/text/us/poultry_shop_data.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD968` | `gText_PoultryShop_BuyChicken` | `data/text/us/poultry_shop_data.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD978` | `gText_PoultryShop_SellChicken` | `data/text/us/poultry_shop_data.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD9EC` | `gText_PoultryShop_PageBreak` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD9F0` | `gText_PoultryShop_StatusSick` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD9FC` | `gText_PoultryShop_StatusUnhappy` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDA10` | `gText_PoultryShop_StatusHealthy` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDA20` | `gText_PoultryShop_StatusSpacer` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDA24` | `gText_PoultryShop_Age` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDA40` | `gText_PoultryShop_Spring` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDA48` | `gText_PoultryShop_Summer` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDA50` | `gText_PoultryShop_Autumn` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDA58` | `gText_PoultryShop_Winter` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDA60` | `gText_PoultryShop_DailySellingPrice` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDA78` | `gText_PoultryShop_Currency` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDA7C` | `gText_PoultryShop_InsufficientGold` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDAA8` | `gText_PoultryShop_FeedBinFull` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDAD4` | `gText_PoultryShop_BlankLinePair` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDADC` | `gText_PoultryShop_InventoryFull` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDB0C` | `gText_PoultryShop_CoopFull` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDB38` | `gText_PoultryShop_NameChickenPrompt` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDB6C` | `gText_PoultryShop_NoChickensToSell` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDB9C` | `gText_PoultryShop_NotInterested` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDBC4` | `gText_PoultryShop_PurchaseDeclined` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDBE8` | `gText_PoultryShop_PricePromptPrefix` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDBF8` | `gText_PoultryShop_Yes` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDBFC` | `gText_PoultryShop_No` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDC00` | `gText_PoultryShop_FeedPurchaseComplete` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDC58` | `gText_PoultryShop_PurchaseDeliveryPartial` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDCBC` | `gText_PoultryShop_MedicinePurchaseComplete` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDD04` | `gText_PoultryShop_PurchaseComplete` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDD1C` | `gText_PoultryShop_ChickenPurchaseComplete` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDD68` | `gText_PoultryShop_PurchaseMorePrompt` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDD84` | `gText_PoultryShop_ChickenSold` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
 | `0x080FDE40` | `gText_Supermarket_EquipmentCapacityFull` | `data/text/us/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
 | `0x080FDE70` | `gText_Supermarket_BlankLinePair` | `data/text/us/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
 | `0x080FDE78` | `gText_Supermarket_InsufficientGold` | `data/text/us/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
