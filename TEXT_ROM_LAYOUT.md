@@ -98,6 +98,7 @@
 | EU | `0x08104161`–`0x0810417E` | `src/bachelorette.o(.rodata)` | `src/bachelorette.cc`、`include/bachelorette.hh` | 6 个婚姻候选人好感度阈值 |
 | EU | `0x08104180`–`0x08104411` | `src/character_names_data.o(.rodata)` | `src/character_names_data.cc`、`include/character_names_data.hh`、`data/text/eu/character_names.cc`、`data/text/eu/character_names_1.cc` | 文本 `41` 项、`gCharacterNameEntries`、运行时字符串 `1` 项 |
 | EU | `0x08104414`–`0x0810498D` | `src/field_item_data.o(.rodata)` | `src/field_item_data.cc`、`include/field_item_data.hh`、`data/text/common/field_item_data.cc` | `gUnk_081043BC`、运行时字符串 `1` 项 |
+| EU | `0x08104990`–`0x08104E61` | `src/calendar_events.o(.rodata)` | `src/calendar_events.cc`、`include/calendar_events.hh`、`data/text/eu/calendar_events.cc` | `gText_Calendar_DynamicSeasonNames`、节日文本 `21` 项、回退文本 `1` 项、运行时字符串 `2` 项 |
 | EU | `0x08104EAC`–`0x08104ECB` | `src/fishing_record_article_ids.o(.rodata)` | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | `gFishingRecordArticleIds` |
 | EU | `0x08107490`–`0x081074A7` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
 | EU | `0x081082E4`–`0x08117843` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 EU 指南源文件；主目录只收录 `PAGE_1`，`tool_and_item_controls_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
@@ -169,6 +170,7 @@
 | DE | `0x08104B61`–`0x08104B7E` | `src/bachelorette.o(.rodata)` | `src/bachelorette.cc`、`include/bachelorette.hh` | 6 个婚姻候选人好感度阈值 |
 | DE | `0x08104B80`–`0x08104E11` | `src/character_names_data.o(.rodata)` | `src/character_names_data.cc`、`include/character_names_data.hh`、`data/text/de/character_names.cc`、`data/text/de/character_names_1.cc` | 文本 `41` 项、`gCharacterNameEntries`、运行时字符串 `1` 项 |
 | DE | `0x08104E14`–`0x0810538D` | `src/field_item_data.o(.rodata)` | `src/field_item_data.cc`、`include/field_item_data.hh`、`data/text/common/field_item_data.cc` | `gUnk_081043BC`、运行时字符串 `1` 项 |
+| DE | `0x08105390`–`0x08105821` | `src/calendar_events.o(.rodata)` | `src/calendar_events.cc`、`include/calendar_events.hh`、`data/text/de/calendar_events.cc` | `gText_Calendar_DynamicSeasonNames`、节日文本 `21` 项、回退文本 `1` 项、运行时字符串 `2` 项 |
 | DE | `0x08105878`–`0x08105897` | `src/fishing_record_article_ids.o(.rodata)` | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | `gFishingRecordArticleIds` |
 | DE | `0x08107E5C`–`0x08107E73` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
 | DE | `0x08107FD4`–`0x08108DB3` | `src/harvest_sprite.o(.rodata)` | `src/harvest_sprite.cc` 与 `data/text/de/harvest_sprite_*.cc` | 精确 |
@@ -294,7 +296,7 @@
 | `0x08103EFE`–`0x08103EFF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08103F00`–`0x08104479` | `src/field_item_data.o(.rodata)` | [数据 / 嵌入文本] | `src/field_item_data.cc`、`include/field_item_data.hh`<br>`data/text/common/field_item_data.cc` | `gUnk_081043BC`<br>运行时字符串 `1` 项 |
 | `0x0810447A`–`0x0810447B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x0810447C`–`0x08104955` | `data/text/calendar_events.o(.rodata)` | [文本对象] | `data/text/jp/calendar_events.cc` | 文本 `22` 项（详见下方索引）<br>运行时字符串 `2` 项 |
+| `0x0810447C`–`0x08104955` | `src/calendar_events.o(.rodata)` | [数据 / 嵌入文本] | `src/calendar_events.cc`、`include/calendar_events.hh`<br>`data/text/jp/calendar_events.cc` | `gText_Calendar_DynamicSeasonNames`<br>文本 `22` 项（详见下方索引）<br>运行时字符串 `2` 项 |
 | `0x08104956`–`0x08104957` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08104958`–`0x08104991` | `data/text/possessive_labels.o(.rodata)` | [文本对象] | `data/text/jp/possessive_labels.cc` | 文本 `6` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x08104992`–`0x08104993` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1883,28 +1885,28 @@
 | `0x08103D7C` | `gText_CharacterName_Aqua` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
 | `0x08103D84` | `gText_CharacterName_Hoggy` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
 | `0x08103D90` | `gText_CharacterName_Timid` | `data/text/jp/character_names.cc` | `src/character_names_data.o(.rodata)` |
-| `0x0810447C` | `gText_Calendar_DynamicSeasonNames` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x081044B0` | `gText_Calendar_Festival_NewYearFestival` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x081044F8` | `gText_Calendar_Festival_SpringThanksgiving` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x0810451C` | `gText_Calendar_Festival_SpringHorseRace` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104568` | `gText_Calendar_Festival_CookingFestival` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x081045B0` | `gText_Calendar_Festival_BeachDay` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x081045FC` | `gText_Calendar_Festival_ChickenFestival` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104644` | `gText_Calendar_Festival_CowFestival` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x0810468C` | `gText_Calendar_Festival_FireworksFestival` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x081046D8` | `gText_Calendar_Festival_MusicFestival` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104718` | `gText_Calendar_Festival_HarvestFestival` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104760` | `gText_Calendar_Festival_FullMoonFestival` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x081047AC` | `gText_Calendar_Festival_FallHorseRace` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x081047F8` | `gText_Calendar_Festival_SheepFestival` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104840` | `gText_Calendar_Festival_PumpkinFestival` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104864` | `gText_Calendar_Festival_WinterThanksgiving` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104888` | `gText_Calendar_Festival_StarryNightFestival` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x081048A8` | `gText_Calendar_Festival_YearEndGathering` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x081048DC` | `gText_Calendar_Festival_Marriage` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x081048FC` | `gText_Calendar_Festival_WeddingAnniversary` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x0810491C` | `gText_Calendar_Festival_NoPlans` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104944` | `gText_Calendar_FallbackNone` | `data/text/jp/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
+| `0x0810447C` | `gText_Calendar_DynamicSeasonNames` | `src/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x081044B0` | `gText_Calendar_Festival_NewYearFestival` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x081044F8` | `gText_Calendar_Festival_SpringThanksgiving` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x0810451C` | `gText_Calendar_Festival_SpringHorseRace` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104568` | `gText_Calendar_Festival_CookingFestival` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x081045B0` | `gText_Calendar_Festival_BeachDay` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x081045FC` | `gText_Calendar_Festival_ChickenFestival` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104644` | `gText_Calendar_Festival_CowFestival` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x0810468C` | `gText_Calendar_Festival_FireworksFestival` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x081046D8` | `gText_Calendar_Festival_MusicFestival` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104718` | `gText_Calendar_Festival_HarvestFestival` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104760` | `gText_Calendar_Festival_FullMoonFestival` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x081047AC` | `gText_Calendar_Festival_FallHorseRace` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x081047F8` | `gText_Calendar_Festival_SheepFestival` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104840` | `gText_Calendar_Festival_PumpkinFestival` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104864` | `gText_Calendar_Festival_WinterThanksgiving` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104888` | `gText_Calendar_Festival_StarryNightFestival` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x081048A8` | `gText_Calendar_Festival_YearEndGathering` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x081048DC` | `gText_Calendar_Festival_Marriage` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x081048FC` | `gText_Calendar_Festival_WeddingAnniversary` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x0810491C` | `gText_Calendar_Festival_NoPlans` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104944` | `gText_Calendar_FallbackNone` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
 | `0x08104958` | `gText_Possessive_Horse` | `data/text/jp/possessive_labels.cc` | `data/text/possessive_labels.o(.rodata)` |
 | `0x08104960` | `gText_Possessive_Cow` | `data/text/jp/possessive_labels.cc` | `data/text/possessive_labels.o(.rodata)` |
 | `0x08104968` | `gText_Possessive_Sheep` | `data/text/jp/possessive_labels.cc` | `data/text/possessive_labels.o(.rodata)` |
@@ -2125,7 +2127,7 @@
 | `0x081043BA`–`0x081043BB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x081043BC`–`0x08104935` | `src/field_item_data.o(.rodata)` | [数据 / 嵌入文本] | `src/field_item_data.cc`、`include/field_item_data.hh`<br>`data/text/common/field_item_data.cc` | `gUnk_081043BC`<br>运行时字符串 `1` 项 |
 | `0x08104936`–`0x08104937` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08104938`–`0x08104E09` | `data/text/calendar_events.o(.rodata)` | [文本对象] | `data/text/us/calendar_events.cc` | 文本 `22` 项（详见下方索引）<br>运行时字符串 `2` 项 |
+| `0x08104938`–`0x08104E09` | `src/calendar_events.o(.rodata)` | [数据 / 嵌入文本] | `src/calendar_events.cc`、`include/calendar_events.hh`<br>`data/text/us/calendar_events.cc` | `gText_Calendar_DynamicSeasonNames`<br>文本 `22` 项（详见下方索引）<br>运行时字符串 `2` 项 |
 | `0x08104E0A`–`0x08104E0B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08104E0C`–`0x08104E49` | `data/text/possessive_labels.o(.rodata)` | [文本对象] | `data/text/us/possessive_labels.cc` | 文本 `6` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x08104E4A`–`0x08104E4B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -3705,28 +3707,28 @@
 | `0x08104240` | `gText_CharacterName_Aqua` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
 | `0x08104248` | `gText_CharacterName_Hoggy` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
 | `0x08104250` | `gText_CharacterName_Timid` | `data/text/us/character_names.cc` | `src/character_names_data.o(.rodata)` |
-| `0x08104938` | `gText_Calendar_DynamicSeasonNames` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x0810497C` | `gText_Calendar_Festival_NewYearFestival` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x081049C4` | `gText_Calendar_Festival_SpringThanksgiving` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x081049F8` | `gText_Calendar_Festival_SpringHorseRace` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104A40` | `gText_Calendar_Festival_CookingFestival` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104A84` | `gText_Calendar_Festival_BeachDay` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104AC4` | `gText_Calendar_Festival_ChickenFestival` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104B08` | `gText_Calendar_Festival_CowFestival` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104B4C` | `gText_Calendar_Festival_FireworksFestival` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104B94` | `gText_Calendar_Festival_MusicFestival` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104BD4` | `gText_Calendar_Festival_HarvestFestival` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104C18` | `gText_Calendar_Festival_FullMoonFestival` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104C54` | `gText_Calendar_Festival_FallHorseRace` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104C98` | `gText_Calendar_Festival_SheepFestival` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104CDC` | `gText_Calendar_Festival_PumpkinFestival` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104D04` | `gText_Calendar_Festival_WinterThanksgiving` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104D28` | `gText_Calendar_Festival_StarryNightFestival` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104D58` | `gText_Calendar_Festival_YearEndGathering` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104D98` | `gText_Calendar_Festival_Marriage` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104DB8` | `gText_Calendar_Festival_WeddingAnniversary` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104DDC` | `gText_Calendar_Festival_NoPlans` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
-| `0x08104DF8` | `gText_Calendar_FallbackNone` | `data/text/us/calendar_events.cc` | `data/text/calendar_events.o(.rodata)` |
+| `0x08104938` | `gText_Calendar_DynamicSeasonNames` | `src/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x0810497C` | `gText_Calendar_Festival_NewYearFestival` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x081049C4` | `gText_Calendar_Festival_SpringThanksgiving` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x081049F8` | `gText_Calendar_Festival_SpringHorseRace` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104A40` | `gText_Calendar_Festival_CookingFestival` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104A84` | `gText_Calendar_Festival_BeachDay` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104AC4` | `gText_Calendar_Festival_ChickenFestival` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104B08` | `gText_Calendar_Festival_CowFestival` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104B4C` | `gText_Calendar_Festival_FireworksFestival` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104B94` | `gText_Calendar_Festival_MusicFestival` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104BD4` | `gText_Calendar_Festival_HarvestFestival` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104C18` | `gText_Calendar_Festival_FullMoonFestival` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104C54` | `gText_Calendar_Festival_FallHorseRace` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104C98` | `gText_Calendar_Festival_SheepFestival` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104CDC` | `gText_Calendar_Festival_PumpkinFestival` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104D04` | `gText_Calendar_Festival_WinterThanksgiving` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104D28` | `gText_Calendar_Festival_StarryNightFestival` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104D58` | `gText_Calendar_Festival_YearEndGathering` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104D98` | `gText_Calendar_Festival_Marriage` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104DB8` | `gText_Calendar_Festival_WeddingAnniversary` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104DDC` | `gText_Calendar_Festival_NoPlans` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
+| `0x08104DF8` | `gText_Calendar_FallbackNone` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
 | `0x08104E0C` | `gText_Possessive_Horse` | `data/text/us/possessive_labels.cc` | `data/text/possessive_labels.o(.rodata)` |
 | `0x08104E14` | `gText_Possessive_Cow` | `data/text/us/possessive_labels.cc` | `data/text/possessive_labels.o(.rodata)` |
 | `0x08104E1C` | `gText_Possessive_Sheep` | `data/text/us/possessive_labels.cc` | `data/text/possessive_labels.o(.rodata)` |

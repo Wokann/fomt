@@ -746,7 +746,7 @@ SECTIONS
         . = 0x104414; src/field_item_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0x104990; data/text/calendar_events.o(.rodata);
+        . = 0x104990; src/calendar_events.o(.rodata);
         . = 0x104E64; data/text/possessive_labels.o(.rodata);
         . = 0x104EA4; data/text/random_item.o(.rodata);
         . = 0x104EAC; src/fishing_record_article_ids.o(.rodata);
