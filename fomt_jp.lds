@@ -725,9 +725,8 @@ SECTIONS
         /* Animal memorial text and animal data. */
         . = 0xEFEA4; src/animal_data.o(.rodata);
         FILL(0x00);
-        /* Bounded Entity UI localization island: labels and native UI data. */
+        /* Entity UI labels and native UI data. */
         . = 0xF06E0; src/entity_ui.o(.rodata);
-        ASSERT(. <= 0xF11D4, "JP Entity UI localization island overflow");
         FILL(0x00);
         /* Bounded Common UI localization island: labels, errors, menu table. */
         . = 0xF11D4; src/fixed_labels.o(.rodata);
@@ -737,7 +736,8 @@ SECTIONS
         FILL(0x00);
         . = 0xF12DC; /* JP schedule table block. */
         src/data_schedules.o(.rodata);
-        . = ALIGN(4); src/entity_ui.o(.rodata.entity_ui_resource_selector);
+        /* Entity UI resource-selector data follows schedule data. */
+        . = ALIGN(4); src/entity_ui_resource_selector.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix);
         . = 0xF8230; data/scripts/script_table.o(.rodata.mary_script_table);

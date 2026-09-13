@@ -652,7 +652,7 @@ SECTIONS
         . = 0xF0A50; src/help_menu.o(.rodata);
         /* Animal memorial text and animal data. */
         . = 0xF0B18; src/animal_data.o(.rodata);
-        /* Entity UI regional data: labels and native UI data. */
+        /* Entity UI labels and native UI data. */
         . = 0xF1368; src/entity_ui.o(.rodata);
         FILL(0x00);
         /* Common UI regional data: labels, errors, menu table. */
@@ -661,7 +661,8 @@ SECTIONS
         src/menu_data.o(.rodata);
         FILL(0x00);
         . = 0xF1F68; src/data_schedules.o(.rodata);
-        . = ALIGN(4); src/entity_ui.o(.rodata.entity_ui_resource_selector);
+        /* Entity UI resource-selector data follows schedule data. */
+        . = ALIGN(4); src/entity_ui_resource_selector.o(.rodata);
         FILL(0x00);
         . = 0xF47D8; asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix);
         . = 0xF8EBC; data/scripts/script_table.o(.rodata.mary_script_table);

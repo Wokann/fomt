@@ -73,104 +73,6 @@ struct EntityUiResourceSetupState
     u16 duration;
 };
 
-// func_08034C64 calls selector, then selects one of the three table pointers.
-// The later entry and payload fields are read by native Entity-UI code, but
-// their game-level meanings are not established yet.
-typedef u32 (*EntityUiResourceSelectorCallback)(void const * state);
-
-struct EntityUiResourceSelectorPayload
-{
-    void const * unk_00;
-    u16 unk_04;
-    u16 unk_06;
-    u16 unk_08;
-    u16 unk_0A;
-};
-
-struct EntityUiResourceSelectorEntry
-{
-    u32 unk_00;
-    EntityUiResourceSelectorPayload const * payload;
-};
-
-struct EntityUiResourceSelectorTable
-{
-    u16 entry_count;
-    u16 unk_02;
-    EntityUiResourceSelectorEntry const * entries;
-};
-
-struct EntityUiResourceSelectorDescriptor
-{
-    EntityUiResourceSelectorCallback selector;
-    u32 table_count;
-    EntityUiResourceSelectorTable const * const * tables;
-};
-
-// This is one physical ROM object: descriptor, table pointers, two tables,
-// two entries, and their shared payload. Its first member is the label used
-// by the remaining native Entity-UI code.
-struct EntityUiResourceSelectorStorage
-{
-    EntityUiResourceSelectorDescriptor descriptor;
-    EntityUiResourceSelectorTable const * const table_choices[3];
-    EntityUiResourceSelectorTable table_storage[2];
-    EntityUiResourceSelectorEntry entry_storage[2];
-    EntityUiResourceSelectorPayload payload;
-};
-
-struct EntityUiResourceSelectorDetailEntry
-{
-    u16 unk_00;
-    u16 unk_02;
-    u16 unk_04;
-    u16 unk_06;
-};
-
-// The next physical selector has the same leading layout, followed by four
-// indexed tables, ten payload records, and five pointed detail arrays.
-struct EntityUiResourceSelectorExtendedStorage
-{
-    EntityUiResourceSelectorDescriptor descriptor;
-    EntityUiResourceSelectorTable const * const table_choices[5];
-    EntityUiResourceSelectorTable table_storage[4];
-    EntityUiResourceSelectorEntry entry_storage_0[3];
-    EntityUiResourceSelectorEntry entry_storage_1[7];
-    EntityUiResourceSelectorEntry entry_storage_2[5];
-    EntityUiResourceSelectorEntry entry_storage_3[1];
-    EntityUiResourceSelectorPayload payload_storage[10];
-    EntityUiResourceSelectorDetailEntry detail_storage_0[3];
-    EntityUiResourceSelectorDetailEntry detail_storage_1[3];
-    EntityUiResourceSelectorDetailEntry detail_storage_2[3];
-    EntityUiResourceSelectorDetailEntry detail_storage_3[5];
-    EntityUiResourceSelectorDetailEntry detail_storage_4[5];
-};
-
-// The following selector is a larger contiguous instance of the same format.
-// Its individual table sizes vary, so the physical table, entry, payload, and
-// detail regions are each represented by one ordered storage array.
-struct EntityUiResourceSelectorLargeStorage
-{
-    EntityUiResourceSelectorDescriptor descriptor;
-    EntityUiResourceSelectorTable const * const table_choices[24];
-    EntityUiResourceSelectorTable table_storage[23];
-    EntityUiResourceSelectorEntry entry_storage[120];
-    EntityUiResourceSelectorPayload payload_storage[35];
-    EntityUiResourceSelectorDetailEntry detail_storage[108];
-};
-
-// This physical selector has one null choice and four real tables. Its backing
-// records are contiguous in ROM, so one aggregate preserves their order.
-struct EntityUiResourceSelectorFiveChoiceStorage
-{
-    EntityUiResourceSelectorDescriptor descriptor;
-    EntityUiResourceSelectorTable const * const table_choices[5];
-    EntityUiResourceSelectorTable table_storage[4];
-    EntityUiResourceSelectorEntry entry_storage[22];
-    EntityUiResourceSelectorPayload payload_storage[15];
-    EntityUiResourceSelectorDetailEntry detail_storage[45];
-};
-
 struct EntityUiCallbackState
 {
     u8 unknown_00[0x10];
@@ -196,28 +98,23 @@ struct EntityUiHarvestSpriteState : public AEntity
 
 extern "C" char const gText_NotAvailable[];
 
-extern "C" EntityUiResourceSelectorStorage const gUnk_080F33B8;
-extern "C" EntityUiResourceSelectorExtendedStorage const gUnk_080F3408;
-extern "C" EntityUiResourceSelectorLargeStorage const gUnk_080F35E4;
-extern "C" EntityUiResourceSelectorFiveChoiceStorage const gUnk_080F3FD8;
-
-extern "C" char const gCppRuntimeBadAlloc_EntityUiBeforeOffsets[];
-extern "C" char const gCppRuntimeError_EntityUiBeforeOffsets[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiAfterOffsets[];
-extern "C" char const gCppRuntimeError_EntityUiAfterOffsets[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiFirst[];
-extern "C" char const gCppRuntimeError_EntityUiFirst[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiSecond[];
-extern "C" char const gCppRuntimeError_EntityUiSecond[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiThird[];
-extern "C" char const gCppRuntimeError_EntityUiThird[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiFourth[];
-extern "C" char const gCppRuntimeError_EntityUiFourth[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiFifth[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiSixth[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiSeventh[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiEighth[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiNinth[];
-extern "C" char const gCppRuntimeBadAlloc_EntityUiTenth[];
+// Native assembly has direct relocations to these source-defined UI tables.
+// Keep the unresolved names until the callers establish game-level meanings.
+extern "C" u32 const gUnk_080F0E88[];
+extern "C" u32 const gUnk_080F0F78[];
+extern "C" u16 const gUnk_080F0FCC[6][7];
+extern "C" EntityUiUnknownTableEntry const gUnk_080F1020[6][7];
+extern "C" u32 const gUnk_080F1170[];
+extern "C" u8 const gUnk_080F1178[];
+extern "C" u8 const gUnk_080F117F[];
+extern "C" u8 const gUnk_080F1184[];
+extern "C" u8 const gUnk_080F118C[];
+extern "C" u8 const gUnk_080F1194[];
+extern "C" u8 const gUnk_080F119C[];
+extern "C" u8 const gUnk_080F11A4[];
+extern "C" u8 const gUnk_080F11AC[];
+extern "C" u8 const gUnk_080F11B4[];
+extern "C" u32 const gUnk_080F11BC[];
+extern "C" u32 const gUnk_080F11E0[];
 
 #endif
