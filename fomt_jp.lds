@@ -716,7 +716,6 @@ SECTIONS
         src/record_player.o(.rodata);
         /* Item text, catalogs, products, and trailer. */
         . = 0xE8AB4; src/item.o(.rodata);
-        FILL(0x00);
         /* Calendar rows, labels, and state data. */
         . = 0xEFD52; src/game_state.o(.rodata);
         FILL(0x00);
