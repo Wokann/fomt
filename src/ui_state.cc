@@ -1,5 +1,4 @@
 #include "ui_state.hh"
-#include "ui_text_layout.hh"
 
 struct UiObjectState
 {
@@ -19,12 +18,6 @@ struct UiActionState
     UiActionStateFlags flags_01dc;
     u8 unknown_01e0[0x10];
     UiActionStateFlags flags_01f0;
-};
-
-UiSharedResourceData const gUiSharedResourceData = {
-    gUnk_UiSharedResourceData_000,
-    0x120,
-    gUnk_UiSharedResourceData_001,
 };
 
 extern "C" void SetUiObjectStateTwoIfNonzero(void * object)
@@ -211,29 +204,9 @@ EC void * func_08050DF0(void * const * object)
     return data->result;
 }
 
-extern char const gCppRuntimeBadAlloc_PreUiTextLayout[]
-    SECTION(".rodata.ui_state_adapters") ALIGN(4) =
-    "bad_alloc";
+#include "data/text/common/ui_state.cc"
 
-extern char const gUnk_PreUiTextLayoutDigitRows[10][3]
-    SECTION(".rodata.ui_state_adapters") ALIGN(4) = {
-        "０", "１", "２", "３", "４",
-        "５", "６", "７", "８", "９",
-    };
-
-extern char const gUnk_PreUiTextLayoutFullWidthSpace[]
-    SECTION(".rodata.ui_state_adapters") ALIGN(4) =
-    "　";
-extern char const gUnk_PreUiTextLayoutFullWidthHyphen[]
-    SECTION(".rodata.ui_state_adapters") ALIGN(4) =
-    "－";
-
-extern char const gCppRuntimeBadAlloc_PostUiTextLayoutGlyphRows[]
-    SECTION(".rodata.ui_state_adapters") ALIGN(4) =
-    "bad_alloc";
-
-UiTextLayoutPositionTable const gUiTextLayoutPositionTable
-    SECTION(".rodata.ui_state_adapters") = {
+UiTextLayoutPositionTable const gUiTextLayoutPositionTable = {
     0x00,
     {
         { 0x08, 0x09, 0x00, 0x00, 0x00, 0x00 },
@@ -245,6 +218,12 @@ UiTextLayoutPositionTable const gUiTextLayoutPositionTable
         { 0x09, 0x0A, 0x41, 0x00, 0x00, 0x00 },
         { 0x09, 0x0A, 0x41, 0x42, 0x00, 0x00 },
     },
+};
+
+UiSharedResourceData const gUiSharedResourceData = {
+    gUnk_UiSharedResourceData_000,
+    0x120,
+    gUnk_UiSharedResourceData_001,
 };
 
 EC void func_08050E0C(void * const * object, u32 arg_r1, u32 arg_r2,

@@ -661,7 +661,6 @@ SECTIONS
         . = 0xF9F40; src/farm_house.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        src/ui_state.o(.rodata.ui_state_adapters);
         src/ui_state.o(.rodata);
         /* New Game preset regional data: names and UI glyphs. */
         . = 0xF9FC8; data/text/new_game_preset.o(.rodata);
