@@ -221,7 +221,7 @@ $(MARY_SCRIPT_TABLE_OBJ): $(MARY_SCRIPT_TABLE_ASM)
 define FOMT_COMPILE_CPP
 @mkdir -p $(dir $(basename $@).fomt-preprocessed.cc)
 @$(CPP) -iquote $(BUILD_DIR) $(1) -P $(CPPFLAGS) $< -o $(basename $@).fomt-preprocessed.cc
-@$(TEXT_TOOL) source charmap.txt $(GAME_REGION) $(basename $@).fomt-preprocessed.cc $(basename $@).fomt-text.cc
+@$(TEXT_TOOL) source charmap.txt $(GAME_REGION) $(basename $@).fomt-preprocessed.cc $(basename $@).fomt-text.cc $(FOMT_TEXT_SOURCE_ARGS)
 @($(CC1PLUS) $(CXXFLAGS) -o $(basename $@).s < $(basename $@).fomt-text.cc || false)
 @$(TEXT_PREPROC) asm $(basename $@).fomt-text.cc $(basename $@).s
 @$(AS) $(ASFLAGS) $(basename $@).s -o $@
@@ -230,7 +230,7 @@ endef
 define FOMT_COMPILE_C
 @mkdir -p $(dir $(basename $@).fomt-preprocessed.c)
 @$(CPP) -iquote $(BUILD_DIR) $(1) -P $(CPPFLAGS) $< -o $(basename $@).fomt-preprocessed.c
-@$(TEXT_TOOL) source charmap.txt $(GAME_REGION) $(basename $@).fomt-preprocessed.c $(basename $@).fomt-text.c
+@$(TEXT_TOOL) source charmap.txt $(GAME_REGION) $(basename $@).fomt-preprocessed.c $(basename $@).fomt-text.c $(FOMT_TEXT_SOURCE_ARGS)
 @$(CC1) $(CFLAGS) -o $(basename $@).s < $(basename $@).fomt-text.c
 @$(TEXT_PREPROC) asm $(basename $@).fomt-text.c $(basename $@).s
 @$(AS) $(ASFLAGS) $(basename $@).s -o $@
