@@ -47,7 +47,7 @@
 | EU | `0x080F1ACA`–`0x080F1ACB` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080F1ACC`–`0x080F3401` | `src/data_schedules.o(.rodata)` | `src/data_schedules.cc`、`include/data_schedules.hh`、`data/text/eu/data_schedules.cc`–`data_schedules_6.cc`；7 处运行时字符串与所有日程/路径表按 ROM 顺序嵌入同一对象，所有外部对象均由同名头文件声明并使用符号重定位 | 精确 |
 | EU | `0x080F3402`–`0x080F3403` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| EU | `0x080F3404`–`0x080F4339` | `src/entity_ui_resource_selector.o(.rodata)` | `src/entity_ui_resource_selector.cc`、`include/entity_ui_resource_selector.hh`、`data/text/eu/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_3.cc` | 精确 |
+| EU | `0x080F3404`–`0x080F4339` | `src/entity_ui_resource_selector.o(.rodata)` | `src/entity_ui_resource_selector.cc`、`include/entity_ui_resource_selector.hh`、`data/text/eu/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_3.cc`；所有顶层描述符与运行时文本均在同名头文件声明，内部指针保持符号重定位 | 精确 |
 | EU | `0x080F433C`–`0x080F9EE3` | `asm/data/data_080F1A80.o` 至 `data/scripts/script_table.o` | `asm/data/data_080F1A80.s`（Mary 管理的连续剧情脚本块及脚本表） | 精确 |
 | EU | `0x080F9EE4`–`0x080F9F10` | `src/script_engine.o(.rodata)` | `src/script_engine.cc`、`include/script_engine.hh`、`data/text/eu/script_engine.cc`；运行时 `bad_alloc` 与 3 项 UI 字符串按原 ROM 顺序同属该对象 | 精确 |
 | EU | `0x080FB224`–`0x080FB86D` | `src/intro_scene_data.o(.rodata)` | `src/intro_scene_data.cc`、`include/intro_scene_data.hh`、`data/text/eu/intro_scene_data.cc`、`data/text/eu/intro_scene_data_1.cc`；20 个解包资源入口均为资产容器中的直接标签 | 精确 |
@@ -136,7 +136,7 @@
 | DE | `0x080F1F66`–`0x080F1F67` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080F1F68`–`0x080F389D` | `src/data_schedules.o(.rodata)` | `src/data_schedules.cc`、`include/data_schedules.hh`、`data/text/de/data_schedules.cc`–`data_schedules_6.cc`；7 处运行时字符串与所有日程/路径表按 ROM 顺序嵌入同一对象，所有外部对象均由同名头文件声明并使用符号重定位 | 精确 |
 | DE | `0x080F389E`–`0x080F389F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| DE | `0x080F38A0`–`0x080F47D5` | `src/entity_ui_resource_selector.o(.rodata)` | `src/entity_ui_resource_selector.cc`、`include/entity_ui_resource_selector.hh`、`data/text/de/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_3.cc` | 精确 |
+| DE | `0x080F38A0`–`0x080F47D5` | `src/entity_ui_resource_selector.o(.rodata)` | `src/entity_ui_resource_selector.cc`、`include/entity_ui_resource_selector.hh`、`data/text/de/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_3.cc`；所有顶层描述符与运行时文本均在同名头文件声明，内部指针保持符号重定位 | 精确 |
 | DE | `0x080F47D8`–`0x080FA37F` | `asm/data/data_080F1A80.o` 至 `data/scripts/script_table.o` | `asm/data/data_080F1A80.s`（Mary 管理的连续剧情脚本块及脚本表） | 精确 |
 | DE | `0x080FA380`–`0x080FA3AC` | `src/script_engine.o(.rodata)` | `src/script_engine.cc`、`include/script_engine.hh`、`data/text/de/script_engine.cc`；运行时 `bad_alloc` 与 3 项 UI 字符串按原 ROM 顺序同属该对象 | 精确 |
 | DE | `0x080FB77C`–`0x080FBE59` | `src/intro_scene_data.o(.rodata)` | `src/intro_scene_data.cc`、`include/intro_scene_data.hh`、`data/text/de/intro_scene_data.cc`、`data/text/de/intro_scene_data_1.cc`；20 个解包资源入口均为资产容器中的直接标签 | 精确 |
@@ -238,7 +238,7 @@
 | `0x080F12DA`–`0x080F12DB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F12DC`–`0x080F2C11` | `src/data_schedules.o(.rodata)` | [嵌入文本 / 数据] | `src/data_schedules.cc`<br>`include/data_schedules.hh`<br>`data/text/jp/data_schedules.cc`–`data_schedules_6.cc` | 运行时字符串 `7` 处（`gCppRuntimeBadAllocPrefix_FourthSchedule` 与 `gUnk_080F2DC0` 共同保持原 JP 的可重定位分界）<br>`ScheduleInfo_Unk_080F1A80`、`Unk_080F1A80_Schedules`、`Unk_080F1A80_Schedule_1`、`Unk_080F1A80_Schedule_2`、`Unk_080F1A80_Schedule_3`、`Unk_080F1A80_Schedule_4`，… +271<br>所有表、路径和外部声明均集中于同名模块并使用符号重定位；下一对象起点限制此连续块 |
 | `0x080F2C12`–`0x080F2C13` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F2C14`–`0x080F3B49` | `src/entity_ui_resource_selector.o(.rodata)` | [嵌入文本 / 数据] | `src/entity_ui_resource_selector.cc`<br>`include/entity_ui_resource_selector.hh`<br>`data/text/jp/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_3.cc` | 运行时字符串 `4` 项<br>`gUnk_080F33B8`, `gUnk_080F3408`, `gUnk_080F35E4`, `gUnk_080F3FD8` |
+| `0x080F2C14`–`0x080F3B49` | `src/entity_ui_resource_selector.o(.rodata)` | [嵌入文本 / 数据] | `src/entity_ui_resource_selector.cc`<br>`include/entity_ui_resource_selector.hh`<br>`data/text/jp/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_3.cc` | 运行时字符串 `4` 项<br>`gUnk_080F33B8`, `gUnk_080F3408`, `gUnk_080F35E4`, `gUnk_080F3FD8`<br>顶层描述符和运行时文本均由同名头文件声明；内部所有指针为符号重定位 |
 | `0x080F3B4A`–`0x080F3B4B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F3B4C`–`0x080F96F3` | `asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix)` | [Mary 脚本连续块] | `asm/data/data_080F1A80.s`<br>Mary 独立管理的连续剧情脚本区域（含脚本表入口）；按维护规则不展开内部内容 | 连续脚本相关原始区域；按维护规则不展开内部标签或表 |
 | `0x080F96F4`–`0x080F9720` | `src/script_engine.o(.rodata)` | [嵌入文本] | `src/script_engine.cc`<br>`include/script_engine.hh`<br>`data/text/jp/script_engine.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `2` 项；原始 JP 前缀现为普通命名文本 `gCppRuntimeBadAlloc_ScriptEngine`，对象内四字节对齐零填充保持原字节布局 |
@@ -2079,7 +2079,7 @@
 | `0x080F1A7E`–`0x080F1A7F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F1A80`–`0x080F33B5` | `src/data_schedules.o(.rodata)` | [嵌入文本 / 数据] | `src/data_schedules.cc`<br>`include/data_schedules.hh`<br>`data/text/us/data_schedules.cc`–`data_schedules_6.cc` | 运行时字符串 `7` 处<br>`ScheduleInfo_Unk_080F1A80`、`Unk_080F1A80_Schedules`、`Unk_080F1A80_Schedule_1`、`Unk_080F1A80_Schedule_2`、`Unk_080F1A80_Schedule_3`、`Unk_080F1A80_Schedule_4`，… +271<br>所有表、路径和外部声明均集中于同名模块并使用符号重定位；下一对象起点限制此连续块 |
 | `0x080F33B6`–`0x080F33B7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F33B8`–`0x080F42ED` | `src/entity_ui_resource_selector.o(.rodata)` | [嵌入文本 / 数据] | `src/entity_ui_resource_selector.cc`<br>`include/entity_ui_resource_selector.hh`<br>`data/text/us/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_3.cc` | 运行时字符串 `4` 项<br>`gUnk_080F33B8`, `gUnk_080F3408`, `gUnk_080F35E4`, `gUnk_080F3FD8` |
+| `0x080F33B8`–`0x080F42ED` | `src/entity_ui_resource_selector.o(.rodata)` | [嵌入文本 / 数据] | `src/entity_ui_resource_selector.cc`<br>`include/entity_ui_resource_selector.hh`<br>`data/text/us/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_3.cc` | 运行时字符串 `4` 项<br>`gUnk_080F33B8`, `gUnk_080F3408`, `gUnk_080F35E4`, `gUnk_080F3FD8`<br>顶层描述符和运行时文本均由同名头文件声明；内部所有指针为符号重定位 |
 | `0x080F42EE`–`0x080F42EF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F42F0`–`0x080F9E97` | `asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix)` | [Mary 脚本连续块] | `asm/data/data_080F1A80.s`<br>Mary 独立管理的连续剧情脚本区域（含脚本表入口）；按维护规则不展开内部内容 | 连续脚本相关原始区域；按维护规则不展开内部标签或表 |
 | `0x080F9E98`–`0x080F9EC4` | `src/script_engine.o(.rodata)` | [嵌入文本] | `src/script_engine.cc`<br>`include/script_engine.hh`<br>`data/text/us/script_engine.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `2` 项；首项是旧 `agbcp` 自动发出的未命名 `bad_alloc` 常量，随后对象内两字节对齐填充与区域文本保持原字节布局 |

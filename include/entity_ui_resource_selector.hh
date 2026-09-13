@@ -103,4 +103,9 @@ extern "C" EntityUiResourceSelectorExtendedStorage const gUnk_080F3408;
 extern "C" EntityUiResourceSelectorLargeStorage const gUnk_080F35E4;
 extern "C" EntityUiResourceSelectorFiveChoiceStorage const gUnk_080F3FD8;
 
+extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelector[];
+extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelectorExtended[];
+extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelectorLarge[];
+extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelectorFiveChoice[];
+
 #endif // ENTITY_UI_RESOURCE_SELECTOR_HH
