@@ -1,70 +1,67 @@
 #include "harvest_sprite.hh"
 
 
-char const gText_HarvestSpriteMiniGame_Watering_ExplanationQuestion[] =
-    "Brauchst du eine Anleitung?";
+char const gText_HarvestSpriteMiniGame_Harvest_ExplanationQuestion[] =
+    "Lernen, wie es geht?";
 
-char const gText_HarvestSpriteMiniGame_Watering_Yes[] =
+char const gText_HarvestSpriteMiniGame_Harvest_Yes[] =
     "Ja";
 
-char const gText_HarvestSpriteMiniGame_Watering_No[] =
+char const gText_HarvestSpriteMiniGame_Harvest_No[] =
     "Nein";
 
-char const gText_HarvestSpriteMiniGame_Watering_Introduction[] =
+char const gText_HarvestSpriteMiniGame_Harvest_Introduction[] =
     "\p"
-    "Nun erkläre ich das\r\n"
-    "Bewässerungsspiel.{Press}";
+    "Jetzt erkläre ich\r\n"
+    "das Erntespiel.{Press}.";
 
-char const gText_HarvestSpriteMiniGame_Watering_Instructions[] =
+char const gText_HarvestSpriteMiniGame_Harvest_Instructions[] =
     "\p"
-    "Hilf uns, die Pflanzen nach\r\n"
-    "dem angezeigten System\r\n"
-    "zu bewässern. Benutze{Press}\r\n"
-    "das Steuerkreuz und Knopf A.{Press}\r\n"
-    "\p"
-    "Es gibt drei Runden.{Press}";
+    "Drücke wiederholt Knopf A,\r\n"
+    "um uns beim Ernten zu \r\n"
+    "helfen.{Press}";
 
-char const gText_HarvestSpriteMiniGame_Watering_SuccessInstructions[] =
+char const gText_HarvestSpriteMiniGame_Harvest_FatigueWarning[] =
     "\p"
-    "Folgst du dem System, \r\n"
-    "sind wir zufrieden und die\r\n"
-    "Keime sprießen. {Press}\r\n"
-    "Wenn du es falsch machst,\r\n"
-    "werden keine Keime sprießen.{Press}";
+    "Wir bekommen rote Gesichter,\r\n"
+    "wenn du uns zu\r\n"
+    "hart arbeiten lässt.{Press}\r\n"
+    "Wenn du nicht langsamer{Press}\r\n"
+    "wirst, machen wir Fehler.{Press}";
 
-char const gText_HarvestSpriteMiniGame_Watering_MistakeWarning[] =
+char const gText_HarvestSpriteMiniGame_Harvest_RestInstructions[] =
     "\p"
-    "Gib dein Bestes, um dem\r\n"
-    "System zu folgen und\r\n"
-    "wiederhole keine Orte.{Press}\r\n"
-    "\p"
-    "Machst du Fehler, \r\n"
-    "werden wir sauer.{Press}";
+    "Also, wenn wir rot werden, \r\n"
+    "mach langsamer, damit\r\n"
+    "wir uns erholen können.{Press}";
 
-char const gText_HarvestSpriteMiniGame_Watering_UnderstandQuestion[] =
-    "Verstanden?";
+char const gText_HarvestSpriteMiniGame_Harvest_UnderstandQuestion[] =
+    "Alles verstanden?";
 
-char const gText_HarvestSpriteMiniGame_Watering_UnderstandYes[] =
+char const gText_HarvestSpriteMiniGame_Harvest_UnderstandYes[] =
     "Verstanden.";
 
-char const gText_HarvestSpriteMiniGame_Watering_UnderstandAgain[] =
-    "Noch einmal bitte.";
+char const gText_HarvestSpriteMiniGame_Harvest_UnderstandAgain[] =
+    "Bitte wiederholen.";
 
-char const gText_HarvestSpriteMiniGame_Watering_Start[] =
+char const gText_HarvestSpriteMiniGame_Harvest_Start[] =
     "\p"
-    "OK, fangen wir an! {Press}";
+    "OK, fangen wir an!{Press}";
 
 
-char const gText_HarvestSpriteMiniGame_Watering_ScorePrefix[] =
+char const gText_HarvestSpriteMiniGame_Harvest_ScorePrefix[] =
     "\p"
     "\r\n"
-    "　　";
+    " ";
 
-char const gText_HarvestSpriteMiniGame_Watering_ScoreResultSuffix[] =
-    " Nach Punkten!{Press}";
+char const gText_HarvestSpriteMiniGame_Harvest_ScoreResultPrefix[] =
+    " Beendet mit ";
 
-char const gText_HarvestSpriteMiniGame_Watering_ScoreSummary[] =
+char const gText_HarvestSpriteMiniGame_Harvest_ScoreResultSuffix[] =
+    " Punkten.{Press}";
+
+char const gText_HarvestSpriteMiniGame_Harvest_ScoreSummary[] =
     "\p"
-    "Bewässert \r\n"
-    "Runden \r\n"
-    "Verfehlungen  　   Gesamt{Press}";
+    "Gefüttert\r\n"
+    "Vergessen\r\n"
+    "               Gesamt{Press}";

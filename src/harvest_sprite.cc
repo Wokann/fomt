@@ -2,11 +2,7 @@
 
 #include <cstdlib>
 
-#if defined(REGION_JP)
 #include FOMT_TEXT_INCLUDE(harvest_sprite_1.cc)
-#else
-#include FOMT_TEXT_INCLUDE(harvest_sprite_1.cc)
-#endif
 
 // These fixed tables are read by the still-native Animal Husbandry minigame
 // code.  Their precise gameplay roles are not decoded yet; names retain the
@@ -31,11 +27,7 @@ u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues3[7] = {
         0x2A, 0x36, 0x2C, 0x2E, 0x30, 0x32, 0x34,
     };
 
-#if defined(REGION_JP)
 #include FOMT_TEXT_INCLUDE(harvest_sprite_2.cc)
-#else
-#include FOMT_TEXT_INCLUDE(harvest_sprite_2.cc)
-#endif
 
 // The native Chicken Festival code selects a row with a twelve-byte stride,
 // then adds one of these four byte offsets to the selected u16 value.  JP
@@ -51,11 +43,7 @@ u8 const gUnk_HarvestSpriteMiniGameChickenFestivalOffsets[4] = {
         1, 3, 0, 2,
 };
 
-#if defined(REGION_JP)
 #include FOMT_TEXT_INCLUDE(harvest_sprite_3.cc)
-#else
-#include FOMT_TEXT_INCLUDE(harvest_sprite_3.cc)
-#endif
 
 // This contiguous group is consumed by several still-native minigame and UI
 // routines.  The individual table shapes below follow their exact accesses;
@@ -83,26 +71,13 @@ u32 const gUnk_080BC288Values[16] = {
         0x24, 0x7D, 0x78, 0x16, 0x78, 0x8E, 0x3A, 0x50,
     };
 
-char const gCppRuntimeBadAlloc_HarvestSpriteMiniGamePostChickenFestival[] =
-    "bad_alloc";
-
-#if defined(REGION_JP)
-char const gText_080BE728DigitZero[] =
-    "０";
-#else
-char const gText_080BE728DigitZero[] =
-    "0";
-#endif
+#include FOMT_TEXT_INCLUDE(harvest_sprite_4.cc)
 
 u32 const gUnk_080BE954Values[7] = {
         4, 0, 1, 6, 3, 2, 5,
 };
 
-#if defined(REGION_JP)
-#include FOMT_TEXT_INCLUDE(harvest_sprite_4.cc)
-#else
-#include FOMT_TEXT_INCLUDE(harvest_sprite_4.cc)
-#endif
+#include FOMT_TEXT_INCLUDE(harvest_sprite_5.cc)
 
 // JP begins this native halfword lookup at a byte-aligned address.  Preserve
 // that physical layout explicitly; the US native code is the decoded caller.
@@ -115,8 +90,7 @@ u16 const gUnk_080C0B58Values[7] ALIGN(2) = {
         0x2A, 0x36, 0x2C, 0x2E, 0x30, 0x32, 0x34,
     };
 
-char const gCppRuntimeBadAlloc_HarvestSpriteMiniGameHarvestResults[] =
-    "bad_alloc";
+#include FOMT_TEXT_INCLUDE(harvest_sprite_6.cc)
 
 u16 const gUnk_080C3B18Values[8][2] ALIGN(4) = {
         { 0x033C, 0x0078 }, { 0x043C, 0x0078 },
@@ -125,23 +99,13 @@ u16 const gUnk_080C3B18Values[8][2] ALIGN(4) = {
         { 0x091E, 0x001E }, { 0x0A1E, 0x001E },
     };
 
-#if defined(REGION_JP)
-char const gText_080C38E4DigitZero[] =
-    "０";
-#else
-char const gText_080C38E4DigitZero[] =
-    "0";
-#endif
+#include FOMT_TEXT_INCLUDE(harvest_sprite_7.cc)
 
 u32 const gUnk_080C3B18IndexValues[7] = {
         4, 0, 1, 6, 3, 2, 5,
 };
 
-#if defined(REGION_JP)
-#include FOMT_TEXT_INCLUDE(harvest_sprite_5.cc)
-#else
-#include FOMT_TEXT_INCLUDE(harvest_sprite_5.cc)
-#endif
+#include FOMT_TEXT_INCLUDE(harvest_sprite_8.cc)
 
 u16 const gUnk_080C7B38Values[10] = {
         0x03E2, 0x03E3, 0x03E1, 0x03E0, 0x03E6,

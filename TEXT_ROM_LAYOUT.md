@@ -363,25 +363,33 @@
 | `0x081070AF`–`0x081070AF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x081070B0`–`0x081070CB` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_080B09B0IndexValues` |
 | `0x081070CC`–`0x081070F3` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_080B0BB8FirstValues`, `gUnk_080B0BB8SecondValues` |
-| `0x081070F4`–`0x0810737A` | `src/harvest_sprite.o(.rodata)` | [文本对象] | `data/text/jp/harvest_sprite_1.cc` | 文本 `14` 项（详见下方索引） |
+| `0x081070F4`–`0x0810737A` | `src/harvest_sprite.o(.rodata)` | [嵌入文本] | `src/harvest_sprite.cc`<br>`data/text/jp/harvest_sprite_1.cc` | 文本 `14` 项（详见下方索引） |
 | `0x0810737B`–`0x0810737F` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc` | `gUnk_HarvestSpriteMiniGameAnimalHusbandryMatchValues` |
 | `0x08107380`–`0x081073AB` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc` | `gUnk_HarvestSpriteMiniGameAnimalHusbandrySelectionValues`, `gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues0`, `gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues1`, `gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues2`, `gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues3` |
-| `0x081073AC`–`0x081073B5` | `src/harvest_sprite.o(.rodata)` | [文本对象] | `data/text/jp/harvest_sprite_2.cc` | `gCppRuntimeBadAlloc_HarvestSpriteMiniGameAnimalHusbandry` |
-| `0x081073B6`–`0x081073B8` | `src/harvest_sprite.o(.rodata)` | [文本对象] | `data/text/jp/harvest_sprite_2.cc` | `gText_HarvestSpriteMiniGameAnimalHusbandryEmpty`（两个显式 `00` 与字符串终止 `00`） |
-| `0x081073B9`–`0x081075E9` | `src/harvest_sprite.o(.rodata)` | [文本对象] | `data/text/jp/harvest_sprite_2.cc` | 连续文本 `12` 项；`0x081074BD`–`0x081074BF` 是对象内对齐填充 `00` |
+| `0x081073AC`–`0x081073B5` | `src/harvest_sprite.o(.rodata)` | [嵌入文本] | `src/harvest_sprite.cc`<br>`data/text/jp/harvest_sprite_2.cc` | `gCppRuntimeBadAlloc_HarvestSpriteMiniGameAnimalHusbandry` |
+| `0x081073B6`–`0x081073B8` | `src/harvest_sprite.o(.rodata)` | [嵌入文本] | `src/harvest_sprite.cc`<br>`data/text/jp/harvest_sprite_2.cc` | `gText_HarvestSpriteMiniGameAnimalHusbandryEmpty`（两个显式 `00` 与字符串终止 `00`） |
+| `0x081073B9`–`0x081075E9` | `src/harvest_sprite.o(.rodata)` | [嵌入文本] | `src/harvest_sprite.cc`<br>`data/text/jp/harvest_sprite_2.cc` | 连续文本 `12` 项；`0x081074BD`–`0x081074BF` 是对象内对齐填充 `00` |
 | `0x081075EA`–`0x08107619` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc` | `gUnk_HarvestSpriteMiniGameChickenFestivalValues` |
 | `0x0810761A`–`0x0810761D` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc` | `gUnk_HarvestSpriteMiniGameChickenFestivalOffsets` |
 | `0x0810761E`–`0x0810761F` | `src/harvest_sprite.o(.rodata)` | [对象内填充] | `src/harvest_sprite.cc` | 对象内对齐填充字节 `00`，2 字节 |
-| `0x08107620`–`0x08107800` | `src/harvest_sprite.o(.rodata)` | [文本对象] | `data/text/jp/harvest_sprite_3.cc` | 文本 `7` 项（详见下方索引） |
+| `0x08107620`–`0x08107800` | `src/harvest_sprite.o(.rodata)` | [嵌入文本] | `src/harvest_sprite.cc`<br>`data/text/jp/harvest_sprite_3.cc` | 文本 `7` 项（详见下方索引） |
 | `0x08107801`–`0x08107803` | `src/harvest_sprite.o(.rodata)` | [对象内填充] | `src/harvest_sprite.cc` | 对象内对齐填充字节 `00`，3 字节 |
-| `0x08107804`–`0x081078DF` | `src/harvest_sprite.o(.rodata)` | [嵌入文本] | `src/harvest_sprite.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gUnk_080BAC9CValues`, `gUnk_080BB890FirstValues`, `gUnk_080BB890TableValues`, `gUnk_080BB890LastValues`, `gUnk_080BC288Values`, `gUnk_080BE954Values` |
-| `0x081078E0`–`0x08107AA8` | `src/harvest_sprite.o(.rodata)` | [文本对象] | `data/text/jp/harvest_sprite_4.cc` | 连续文本 `14` 项；`0x08107A5B` 是对象内对齐填充 `00` |
+| `0x08107804`–`0x081078B3` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc`<br>`include/harvest_sprite.hh` | `gUnk_080BAC9CValues`、`gUnk_080BB890FirstValues`、`gUnk_080BB890TableValues`、`gUnk_080BB890LastValues`、`gUnk_080BC288Values` |
+| `0x081078B4`–`0x081078C2` | `src/harvest_sprite.o(.rodata)` | [嵌入文本] | `src/harvest_sprite.cc`<br>`data/text/jp/harvest_sprite_4.cc` | 运行时字符串 `1` 项、`gText_080BE728DigitZero`；中间 `00` 为自然对象对齐 |
+| `0x081078C3`–`0x081078C3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
+| `0x081078C4`–`0x081078DF` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc`<br>`include/harvest_sprite.hh` | `gUnk_080BE954Values` |
+| `0x081078E0`–`0x08107AA8` | `src/harvest_sprite.o(.rodata)` | [嵌入文本] | `src/harvest_sprite.cc`<br>`data/text/jp/harvest_sprite_5.cc` | 连续文本 `14` 项；`0x08107A5B` 是对象内对齐填充 `00` |
 | `0x08107AA9`–`0x08107AA9` | `src/harvest_sprite.o(.rodata)` | [对象内填充] | `src/harvest_sprite.cc` | 对象内对齐填充字节 `00`，1 字节 |
 | `0x08107AAA`–`0x08107ABF` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc` | `gUnk_080C09D8Values` |
 | `0x08107AC0`–`0x08107ACD` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc` | `gUnk_080C0B58Values` |
 | `0x08107ACE`–`0x08107ACF` | `src/harvest_sprite.o(.rodata)` | [对象内填充] | `src/harvest_sprite.cc` | 对象内对齐填充字节 `00`，2 字节 |
-| `0x08107AD0`–`0x08107B1B` | `src/harvest_sprite.o(.rodata)` | [嵌入文本] | `src/harvest_sprite.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gUnk_080C3B18Values`, `gUnk_080C3B18IndexValues` |
-| `0x08107B1C`–`0x08107D88` | `src/harvest_sprite.o(.rodata)` | [文本对象] | `data/text/jp/harvest_sprite_5.cc` | 连续文本 `14` 项；`0x08107D37` 是对象内对齐填充 `00` |
+| `0x08107AD0`–`0x08107AD9` | `src/harvest_sprite.o(.rodata)` | [嵌入文本] | `src/harvest_sprite.cc`<br>`data/text/jp/harvest_sprite_6.cc` | 运行时字符串 `1` 项 |
+| `0x08107ADA`–`0x08107ADB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
+| `0x08107ADC`–`0x08107AFB` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc`<br>`include/harvest_sprite.hh` | `gUnk_080C3B18Values` |
+| `0x08107AFC`–`0x08107AFE` | `src/harvest_sprite.o(.rodata)` | [嵌入文本] | `src/harvest_sprite.cc`<br>`data/text/jp/harvest_sprite_7.cc` | `gText_080C38E4DigitZero` |
+| `0x08107AFF`–`0x08107AFF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
+| `0x08107B00`–`0x08107B1B` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc`<br>`include/harvest_sprite.hh` | `gUnk_080C3B18IndexValues` |
+| `0x08107B1C`–`0x08107D88` | `src/harvest_sprite.o(.rodata)` | [嵌入文本] | `src/harvest_sprite.cc`<br>`data/text/jp/harvest_sprite_8.cc` | 连续文本 `14` 项；`0x08107D37` 是对象内对齐填充 `00` |
 | `0x08107D89`–`0x08107D89` | `src/harvest_sprite.o(.rodata)` | [对象内填充] | `src/harvest_sprite.cc` | 对象内对齐填充字节 `00`，1 字节 |
 | `0x08107D8A`–`0x08107DAB` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc` | `gUnk_080C7B38Values`, `gUnk_080C7B64Values` |
 | `0x08107DAC`–`0x081189D3` | `src/reference_guide.o(.rodata.reference_guide)` | [指南连续块] | `src/reference_guide.cc`<br>`data/text/jp/reference_guide/*.cc (137 页)`<br>连续生成块；按维护规则不展开页内文本或页指针表 | 连续生成区域；按维护规则仅记录起止 |
@@ -1972,36 +1980,36 @@
 | `0x0810771C` | `gText_HarvestSpriteMiniGame_ChickenFestival_Encouragement` | `data/text/jp/harvest_sprite_3.cc` | `src/harvest_sprite.o(.rodata)` |
 | `0x08107788` | `gText_HarvestSpriteMiniGame_ChickenFestival_CautionAtRingEdge` | `data/text/jp/harvest_sprite_3.cc` | `src/harvest_sprite.o(.rodata)` |
 | `0x081077D0` | `gText_HarvestSpriteMiniGame_ChickenFestival_CautionLeavingRing` | `data/text/jp/harvest_sprite_3.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x081078C0` | `gText_080BE728DigitZero` | 未在 `data/text` 源中直接命名；请以宿主对象核对 | `src/harvest_sprite.o(.rodata)` |
-| `0x081078E0` | `gText_HarvestSpriteMiniGame_Harvest_ExplanationQuestion` | `data/text/jp/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x081078F4` | `gText_HarvestSpriteMiniGame_Harvest_Yes` | `data/text/jp/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x081078FC` | `gText_HarvestSpriteMiniGame_Harvest_No` | `data/text/jp/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107904` | `gText_HarvestSpriteMiniGame_Harvest_Introduction` | `data/text/jp/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x0810792C` | `gText_HarvestSpriteMiniGame_Harvest_Instructions` | `data/text/jp/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107968` | `gText_HarvestSpriteMiniGame_Harvest_FatigueWarning` | `data/text/jp/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x081079CC` | `gText_HarvestSpriteMiniGame_Harvest_RestInstructions` | `data/text/jp/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107A18` | `gText_HarvestSpriteMiniGame_Harvest_UnderstandQuestion` | `data/text/jp/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107A28` | `gText_HarvestSpriteMiniGame_Harvest_UnderstandYes` | `data/text/jp/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107A34` | `gText_HarvestSpriteMiniGame_Harvest_UnderstandAgain` | `data/text/jp/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107A40` | `gText_HarvestSpriteMiniGame_Harvest_Start` | `data/text/jp/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107A5C` | `gText_HarvestSpriteMiniGame_Harvest_ScorePrefix` | `data/text/jp/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107A68` | `gText_HarvestSpriteMiniGame_Harvest_ScoreResultSuffix` | `data/text/jp/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107A7C` | `gText_HarvestSpriteMiniGame_Harvest_ScoreSummary` | `data/text/jp/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107AFC` | `gText_080C38E4DigitZero` | 未在 `data/text` 源中直接命名；请以宿主对象核对 | `src/harvest_sprite.o(.rodata)` |
-| `0x08107B1C` | `gText_HarvestSpriteMiniGame_Watering_ExplanationQuestion` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107B30` | `gText_HarvestSpriteMiniGame_Watering_Yes` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107B38` | `gText_HarvestSpriteMiniGame_Watering_No` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107B40` | `gText_HarvestSpriteMiniGame_Watering_Introduction` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107B6C` | `gText_HarvestSpriteMiniGame_Watering_Instructions` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107BD8` | `gText_HarvestSpriteMiniGame_Watering_SuccessInstructions` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107C70` | `gText_HarvestSpriteMiniGame_Watering_MistakeWarning` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107CF4` | `gText_HarvestSpriteMiniGame_Watering_UnderstandQuestion` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107D04` | `gText_HarvestSpriteMiniGame_Watering_UnderstandYes` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107D10` | `gText_HarvestSpriteMiniGame_Watering_UnderstandAgain` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107D1C` | `gText_HarvestSpriteMiniGame_Watering_Start` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107D38` | `gText_HarvestSpriteMiniGame_Watering_ScorePrefix` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107D44` | `gText_HarvestSpriteMiniGame_Watering_ScoreResultSuffix` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107D58` | `gText_HarvestSpriteMiniGame_Watering_ScoreSummary` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x081078C0` | `gText_080BE728DigitZero` | `data/text/jp/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x081078E0` | `gText_HarvestSpriteMiniGame_Harvest_ExplanationQuestion` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x081078F4` | `gText_HarvestSpriteMiniGame_Harvest_Yes` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x081078FC` | `gText_HarvestSpriteMiniGame_Harvest_No` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107904` | `gText_HarvestSpriteMiniGame_Harvest_Introduction` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x0810792C` | `gText_HarvestSpriteMiniGame_Harvest_Instructions` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107968` | `gText_HarvestSpriteMiniGame_Harvest_FatigueWarning` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x081079CC` | `gText_HarvestSpriteMiniGame_Harvest_RestInstructions` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107A18` | `gText_HarvestSpriteMiniGame_Harvest_UnderstandQuestion` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107A28` | `gText_HarvestSpriteMiniGame_Harvest_UnderstandYes` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107A34` | `gText_HarvestSpriteMiniGame_Harvest_UnderstandAgain` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107A40` | `gText_HarvestSpriteMiniGame_Harvest_Start` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107A5C` | `gText_HarvestSpriteMiniGame_Harvest_ScorePrefix` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107A68` | `gText_HarvestSpriteMiniGame_Harvest_ScoreResultSuffix` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107A7C` | `gText_HarvestSpriteMiniGame_Harvest_ScoreSummary` | `data/text/jp/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107AFC` | `gText_080C38E4DigitZero` | `data/text/jp/harvest_sprite_7.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107B1C` | `gText_HarvestSpriteMiniGame_Watering_ExplanationQuestion` | `data/text/jp/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107B30` | `gText_HarvestSpriteMiniGame_Watering_Yes` | `data/text/jp/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107B38` | `gText_HarvestSpriteMiniGame_Watering_No` | `data/text/jp/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107B40` | `gText_HarvestSpriteMiniGame_Watering_Introduction` | `data/text/jp/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107B6C` | `gText_HarvestSpriteMiniGame_Watering_Instructions` | `data/text/jp/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107BD8` | `gText_HarvestSpriteMiniGame_Watering_SuccessInstructions` | `data/text/jp/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107C70` | `gText_HarvestSpriteMiniGame_Watering_MistakeWarning` | `data/text/jp/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107CF4` | `gText_HarvestSpriteMiniGame_Watering_UnderstandQuestion` | `data/text/jp/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107D04` | `gText_HarvestSpriteMiniGame_Watering_UnderstandYes` | `data/text/jp/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107D10` | `gText_HarvestSpriteMiniGame_Watering_UnderstandAgain` | `data/text/jp/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107D1C` | `gText_HarvestSpriteMiniGame_Watering_Start` | `data/text/jp/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107D38` | `gText_HarvestSpriteMiniGame_Watering_ScorePrefix` | `data/text/jp/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107D44` | `gText_HarvestSpriteMiniGame_Watering_ScoreResultSuffix` | `data/text/jp/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107D58` | `gText_HarvestSpriteMiniGame_Watering_ScoreSummary` | `data/text/jp/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
 | `0x081189F4` | `gText_ShopCommon_GoldUnit` | `data/text/jp/status_ui.cc` | `data/text/shop_common.o(.rodata)` |
 | `0x081189F8` | `gText_ShopCommon_QuantitySuffix` | `data/text/jp/status_ui.cc` | `data/text/shop_common.o(.rodata)` |
 | `0x08118A00` | `gText_ShopCommon_OwnedQuantityLabel` | `data/text/jp/status_ui.cc` | `data/text/shop_common.o(.rodata)` |
@@ -2192,25 +2200,33 @@
 | `0x0810756A`–`0x0810756B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x0810756C`–`0x08107587` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_080B09B0IndexValues` |
 | `0x08107588`–`0x081075AF` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_080B0BB8FirstValues`, `gUnk_080B0BB8SecondValues` |
-| `0x081075B0`–`0x0810787B` | `src/harvest_sprite.o(.rodata)` | [文本对象] | `data/text/us/harvest_sprite_1.cc` | 文本 `15` 项（详见下方索引） |
+| `0x081075B0`–`0x0810787B` | `src/harvest_sprite.o(.rodata)` | [嵌入文本] | `src/harvest_sprite.cc`<br>`data/text/us/harvest_sprite_1.cc` | 文本 `15` 项（详见下方索引） |
 | `0x0810787C`–`0x08107880` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc` | `gUnk_HarvestSpriteMiniGameAnimalHusbandryMatchValues` |
 | `0x08107881`–`0x08107881` | `src/harvest_sprite.o(.rodata)` | [对象内填充] | `src/harvest_sprite.cc` | 对象内对齐填充字节 `00`，1 字节 |
 | `0x08107882`–`0x081078AD` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc` | `gUnk_HarvestSpriteMiniGameAnimalHusbandrySelectionValues`, `gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues0`, `gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues1`, `gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues2`, `gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues3` |
 | `0x081078AE`–`0x081078AF` | `src/harvest_sprite.o(.rodata)` | [对象内填充] | `src/harvest_sprite.cc` | 对象内对齐填充字节 `00`，2 字节 |
-| `0x081078B0`–`0x081078B9` | `src/harvest_sprite.o(.rodata)` | [文本对象] | `data/text/us/harvest_sprite_2.cc` | `gCppRuntimeBadAlloc_HarvestSpriteMiniGameAnimalHusbandry` |
+| `0x081078B0`–`0x081078B9` | `src/harvest_sprite.o(.rodata)` | [嵌入文本] | `src/harvest_sprite.cc`<br>`data/text/us/harvest_sprite_2.cc` | `gCppRuntimeBadAlloc_HarvestSpriteMiniGameAnimalHusbandry` |
 | `0x081078BA`–`0x081078BB` | `src/harvest_sprite.o(.rodata)` | [对象内填充] | `src/harvest_sprite.cc` | 对象内对齐填充字节 `00`，2 字节 |
-| `0x081078BC`–`0x081078BC` | `src/harvest_sprite.o(.rodata)` | [文本对象] | `data/text/us/harvest_sprite_2.cc` | `gText_HarvestSpriteMiniGameAnimalHusbandryEmpty` |
-| `0x081078BD`–`0x08107ACB` | `src/harvest_sprite.o(.rodata)` | [文本对象] | `data/text/us/harvest_sprite_2.cc` | 连续文本 `12` 项；`0x081079C1`–`0x081079C3` 是对象内对齐填充 `00` |
+| `0x081078BC`–`0x081078BC` | `src/harvest_sprite.o(.rodata)` | [嵌入文本] | `src/harvest_sprite.cc`<br>`data/text/us/harvest_sprite_2.cc` | `gText_HarvestSpriteMiniGameAnimalHusbandryEmpty` |
+| `0x081078BD`–`0x08107ACB` | `src/harvest_sprite.o(.rodata)` | [嵌入文本] | `src/harvest_sprite.cc`<br>`data/text/us/harvest_sprite_2.cc` | 连续文本 `12` 项；`0x081079C1`–`0x081079C3` 是对象内对齐填充 `00` |
 | `0x08107ACC`–`0x08107AFB` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc` | `gUnk_HarvestSpriteMiniGameChickenFestivalValues` |
 | `0x08107AFC`–`0x08107AFF` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc` | `gUnk_HarvestSpriteMiniGameChickenFestivalOffsets` |
-| `0x08107B00`–`0x08107CFA` | `src/harvest_sprite.o(.rodata)` | [文本对象] | `data/text/us/harvest_sprite_3.cc` | 文本 `8` 项（详见下方索引） |
+| `0x08107B00`–`0x08107CFA` | `src/harvest_sprite.o(.rodata)` | [嵌入文本] | `src/harvest_sprite.cc`<br>`data/text/us/harvest_sprite_3.cc` | 文本 `8` 项（详见下方索引） |
 | `0x08107CFB`–`0x08107CFB` | `src/harvest_sprite.o(.rodata)` | [对象内填充] | `src/harvest_sprite.cc` | 对象内对齐填充字节 `00`，1 字节 |
-| `0x08107CFC`–`0x08107DD7` | `src/harvest_sprite.o(.rodata)` | [嵌入文本] | `src/harvest_sprite.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gUnk_080BAC9CValues`, `gUnk_080BB890FirstValues`, `gUnk_080BB890TableValues`, `gUnk_080BB890LastValues`, `gUnk_080BC288Values`, `gUnk_080BE954Values` |
-| `0x08107DD8`–`0x08107FAF` | `src/harvest_sprite.o(.rodata)` | [文本对象] | `data/text/us/harvest_sprite_4.cc` | 连续文本 `15` 项；`0x08107F5F` 是对象内对齐填充 `00` |
+| `0x08107CFC`–`0x08107DAB` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc`<br>`include/harvest_sprite.hh` | `gUnk_080BAC9CValues`、`gUnk_080BB890FirstValues`、`gUnk_080BB890TableValues`、`gUnk_080BB890LastValues`、`gUnk_080BC288Values` |
+| `0x08107DAC`–`0x08107DB9` | `src/harvest_sprite.o(.rodata)` | [嵌入文本] | `src/harvest_sprite.cc`<br>`data/text/us/harvest_sprite_4.cc` | 运行时字符串 `1` 项、`gText_080BE728DigitZero`；中间 `00` 为自然对象对齐 |
+| `0x08107DBA`–`0x08107DBB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
+| `0x08107DBC`–`0x08107DD7` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc`<br>`include/harvest_sprite.hh` | `gUnk_080BE954Values` |
+| `0x08107DD8`–`0x08107FAF` | `src/harvest_sprite.o(.rodata)` | [嵌入文本] | `src/harvest_sprite.cc`<br>`data/text/us/harvest_sprite_5.cc` | 连续文本 `15` 项；`0x08107F5F` 是对象内对齐填充 `00` |
 | `0x08107FB0`–`0x08107FC5` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc` | `gUnk_080C09D8Values` |
 | `0x08107FC6`–`0x08107FD3` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc` | `gUnk_080C0B58Values` |
-| `0x08107FD4`–`0x0810801F` | `src/harvest_sprite.o(.rodata)` | [嵌入文本] | `src/harvest_sprite.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gUnk_080C3B18Values`, `gUnk_080C3B18IndexValues` |
-| `0x08108020`–`0x08108266` | `src/harvest_sprite.o(.rodata)` | [文本对象] | `data/text/us/harvest_sprite_5.cc` | 连续文本 `15` 项；`0x08108217` 是对象内对齐填充 `00` |
+| `0x08107FD4`–`0x08107FDD` | `src/harvest_sprite.o(.rodata)` | [嵌入文本] | `src/harvest_sprite.cc`<br>`data/text/us/harvest_sprite_6.cc` | 运行时字符串 `1` 项 |
+| `0x08107FDE`–`0x08107FDF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
+| `0x08107FE0`–`0x08107FFF` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc`<br>`include/harvest_sprite.hh` | `gUnk_080C3B18Values` |
+| `0x08108000`–`0x08108001` | `src/harvest_sprite.o(.rodata)` | [嵌入文本] | `src/harvest_sprite.cc`<br>`data/text/us/harvest_sprite_7.cc` | `gText_080C38E4DigitZero` |
+| `0x08108002`–`0x08108003` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
+| `0x08108004`–`0x0810801F` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc`<br>`include/harvest_sprite.hh` | `gUnk_080C3B18IndexValues` |
+| `0x08108020`–`0x08108266` | `src/harvest_sprite.o(.rodata)` | [嵌入文本] | `src/harvest_sprite.cc`<br>`data/text/us/harvest_sprite_8.cc` | 连续文本 `15` 项；`0x08108217` 是对象内对齐填充 `00` |
 | `0x08108267`–`0x08108267` | `src/harvest_sprite.o(.rodata)` | [对象内填充] | `src/harvest_sprite.cc` | 对象内对齐填充字节 `00`，1 字节 |
 | `0x08108268`–`0x08108289` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc` | `gUnk_080C7B38Values`, `gUnk_080C7B64Values` |
 | `0x0810828A`–`0x0810828B` | `src/harvest_sprite.o(.rodata)` | [对象内填充] | `src/harvest_sprite.cc` | 对象内对齐填充字节 `00`，2 字节 |
@@ -3794,38 +3810,38 @@
 | `0x08107C18` | `gText_HarvestSpriteMiniGame_ChickenFestival_Encouragement` | `data/text/us/harvest_sprite_3.cc` | `src/harvest_sprite.o(.rodata)` |
 | `0x08107CB0` | `gText_HarvestSpriteMiniGame_ChickenFestival_CautionAtRingEdge` | `data/text/us/harvest_sprite_3.cc` | `src/harvest_sprite.o(.rodata)` |
 | `0x08107CE0` | `gText_HarvestSpriteMiniGame_ChickenFestival_CautionLeavingRing` | `data/text/us/harvest_sprite_3.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107DB8` | `gText_080BE728DigitZero` | 未在 `data/text` 源中直接命名；请以宿主对象核对 | `src/harvest_sprite.o(.rodata)` |
-| `0x08107DD8` | `gText_HarvestSpriteMiniGame_Harvest_ExplanationQuestion` | `data/text/us/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107DF4` | `gText_HarvestSpriteMiniGame_Harvest_Yes` | `data/text/us/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107DF8` | `gText_HarvestSpriteMiniGame_Harvest_No` | `data/text/us/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107DFC` | `gText_HarvestSpriteMiniGame_Harvest_Introduction` | `data/text/us/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107E24` | `gText_HarvestSpriteMiniGame_Harvest_Instructions` | `data/text/us/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107E58` | `gText_HarvestSpriteMiniGame_Harvest_FatigueWarning` | `data/text/us/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107EC8` | `gText_HarvestSpriteMiniGame_Harvest_RestInstructions` | `data/text/us/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107F18` | `gText_HarvestSpriteMiniGame_Harvest_UnderstandQuestion` | `data/text/us/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107F2C` | `gText_HarvestSpriteMiniGame_Harvest_UnderstandYes` | `data/text/us/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107F3C` | `gText_HarvestSpriteMiniGame_Harvest_UnderstandAgain` | `data/text/us/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107F4C` | `gText_HarvestSpriteMiniGame_Harvest_Start` | `data/text/us/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107F60` | `gText_HarvestSpriteMiniGame_Harvest_ScorePrefix` | `data/text/us/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107F68` | `gText_HarvestSpriteMiniGame_Harvest_ScoreResultPrefix` | `data/text/us/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107F78` | `gText_HarvestSpriteMiniGame_Harvest_ScoreResultSuffix` | `data/text/us/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08107F84` | `gText_HarvestSpriteMiniGame_Harvest_ScoreSummary` | `data/text/us/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08108000` | `gText_080C38E4DigitZero` | 未在 `data/text` 源中直接命名；请以宿主对象核对 | `src/harvest_sprite.o(.rodata)` |
-| `0x08108020` | `gText_HarvestSpriteMiniGame_Watering_ExplanationQuestion` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x0810803C` | `gText_HarvestSpriteMiniGame_Watering_Yes` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08108040` | `gText_HarvestSpriteMiniGame_Watering_No` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08108044` | `gText_HarvestSpriteMiniGame_Watering_Introduction` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08108070` | `gText_HarvestSpriteMiniGame_Watering_Instructions` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x081080EC` | `gText_HarvestSpriteMiniGame_Watering_SuccessInstructions` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08108168` | `gText_HarvestSpriteMiniGame_Watering_MistakeWarning` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x081081D8` | `gText_HarvestSpriteMiniGame_Watering_UnderstandQuestion` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x081081E4` | `gText_HarvestSpriteMiniGame_Watering_UnderstandYes` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x081081F4` | `gText_HarvestSpriteMiniGame_Watering_UnderstandAgain` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08108204` | `gText_HarvestSpriteMiniGame_Watering_Start` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08108218` | `gText_HarvestSpriteMiniGame_Watering_ScorePrefix` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08108220` | `gText_HarvestSpriteMiniGame_Watering_ScoreResultPrefix` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x08108230` | `gText_HarvestSpriteMiniGame_Watering_ScoreResultSuffix` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x0810823C` | `gText_HarvestSpriteMiniGame_Watering_ScoreSummary` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107DB8` | `gText_080BE728DigitZero` | `data/text/us/harvest_sprite_4.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107DD8` | `gText_HarvestSpriteMiniGame_Harvest_ExplanationQuestion` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107DF4` | `gText_HarvestSpriteMiniGame_Harvest_Yes` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107DF8` | `gText_HarvestSpriteMiniGame_Harvest_No` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107DFC` | `gText_HarvestSpriteMiniGame_Harvest_Introduction` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107E24` | `gText_HarvestSpriteMiniGame_Harvest_Instructions` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107E58` | `gText_HarvestSpriteMiniGame_Harvest_FatigueWarning` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107EC8` | `gText_HarvestSpriteMiniGame_Harvest_RestInstructions` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107F18` | `gText_HarvestSpriteMiniGame_Harvest_UnderstandQuestion` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107F2C` | `gText_HarvestSpriteMiniGame_Harvest_UnderstandYes` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107F3C` | `gText_HarvestSpriteMiniGame_Harvest_UnderstandAgain` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107F4C` | `gText_HarvestSpriteMiniGame_Harvest_Start` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107F60` | `gText_HarvestSpriteMiniGame_Harvest_ScorePrefix` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107F68` | `gText_HarvestSpriteMiniGame_Harvest_ScoreResultPrefix` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107F78` | `gText_HarvestSpriteMiniGame_Harvest_ScoreResultSuffix` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08107F84` | `gText_HarvestSpriteMiniGame_Harvest_ScoreSummary` | `data/text/us/harvest_sprite_5.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08108000` | `gText_080C38E4DigitZero` | `data/text/us/harvest_sprite_7.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08108020` | `gText_HarvestSpriteMiniGame_Watering_ExplanationQuestion` | `data/text/us/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x0810803C` | `gText_HarvestSpriteMiniGame_Watering_Yes` | `data/text/us/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08108040` | `gText_HarvestSpriteMiniGame_Watering_No` | `data/text/us/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08108044` | `gText_HarvestSpriteMiniGame_Watering_Introduction` | `data/text/us/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08108070` | `gText_HarvestSpriteMiniGame_Watering_Instructions` | `data/text/us/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x081080EC` | `gText_HarvestSpriteMiniGame_Watering_SuccessInstructions` | `data/text/us/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08108168` | `gText_HarvestSpriteMiniGame_Watering_MistakeWarning` | `data/text/us/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x081081D8` | `gText_HarvestSpriteMiniGame_Watering_UnderstandQuestion` | `data/text/us/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x081081E4` | `gText_HarvestSpriteMiniGame_Watering_UnderstandYes` | `data/text/us/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x081081F4` | `gText_HarvestSpriteMiniGame_Watering_UnderstandAgain` | `data/text/us/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08108204` | `gText_HarvestSpriteMiniGame_Watering_Start` | `data/text/us/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08108218` | `gText_HarvestSpriteMiniGame_Watering_ScorePrefix` | `data/text/us/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08108220` | `gText_HarvestSpriteMiniGame_Watering_ScoreResultPrefix` | `data/text/us/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x08108230` | `gText_HarvestSpriteMiniGame_Watering_ScoreResultSuffix` | `data/text/us/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
+| `0x0810823C` | `gText_HarvestSpriteMiniGame_Watering_ScoreSummary` | `data/text/us/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
 | `0x0811780C` | `gText_ShopCommon_GoldUnit` | `data/text/us/status_ui.cc` | `data/text/shop_common.o(.rodata)` |
 | `0x08117810` | `gText_ShopCommon_QuantitySuffix` | `data/text/us/status_ui.cc` | `data/text/shop_common.o(.rodata)` |
 | `0x08117818` | `gText_ShopCommon_OwnedQuantityLabel` | `data/text/us/status_ui.cc` | `data/text/shop_common.o(.rodata)` |
