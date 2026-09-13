@@ -473,6 +473,8 @@ extern u8 const gUnk_FarmHouseVisualResource_040[];
 extern u8 const gUnk_FarmHouseVisualResource_041[];
 extern u8 const gUnk_FarmHouseVisualResource_042[];
 
+// Every resource symbol below denotes the actual payload start in every region.
+// EU archive headers remain in the raw asset stream before those labels.
 FarmHouseTilePatchData const gFarmHouseTilePatchData SECTION(".rodata.farm_house_tile_patches") = {
     {
         { 0x0099, gUnk_FarmHouseTilePatchResource_000 },

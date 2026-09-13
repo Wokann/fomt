@@ -90,13 +90,12 @@ fomt_jp:
 	@$(MAKE) GAME_REGION=JP GAME_REVISION=0 compare
 
 fomt_eu:
-	@$(MAKE) GAME_REGION=EU GAME_REVISION=0 fomt_eu.gba
+	@$(MAKE) GAME_REGION=EU GAME_REVISION=0 compare
 
 fomt_de:
-	@$(MAKE) GAME_REGION=DE GAME_REVISION=0 fomt_de.gba
+	@$(MAKE) GAME_REGION=DE GAME_REVISION=0 compare
 
-# EU/DE build targets are usable before their full regional layouts are
-# matched.  Keep their hash checks explicit until those baselines are exact.
+# Every regional target builds and verifies its corresponding base ROM.
 compare_eu:
 	@$(MAKE) GAME_REGION=EU GAME_REVISION=0 compare
 

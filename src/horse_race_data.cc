@@ -69,6 +69,8 @@ u16 const gHorseRacePrizeItemIds[] = {
 u16 const gHorseRacePrizeExchangeCharacterCodes[] =
 #if defined(REGION_JP)
     FOMT_GLYPH_SEQUENCE("０１２３４５６７８９枚倍Ｇ現在のメダル数");
+#elif defined(REGION_DE)
+    FOMT_GLYPH_SEQUENCE("0123456789 xGD. Medillen");
 #else
     FOMT_GLYPH_TEXT("0123456789 xGYour medals");
 #endif

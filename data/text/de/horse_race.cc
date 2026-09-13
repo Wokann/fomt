@@ -6,207 +6,208 @@
 // and named controls into the exact regional ROM bytes during the build.
 
 char const gText_HorseRace_BuyTicketDeclined[] =
-    "Sure you don't want one?";
+    "Sicher keine haben?";
 
 char const gText_HorseRace_Yes[] =
-    "Yes";
+    "Ja";
 
 char const gText_HorseRace_No[] =
-    "No";
+    "Nein";
 
 char const gText_HorseRace_ComeAgain[] =
     "\p"
-    "Come again.{Press}";
+    "Komm wieder.{Press}";
 
 char const gText_HorseRace_TakeYourTime[] =
     "\p"
-    "Take your time.{Press}";
+    "Nimm dir Zeit.{Press}";
 
 char const gText_HorseRace_TicketPurchaseConfirmation[] =
-    "So this is what you want?";
+    "Das willst du also?";
 
 char const gText_HorseRace_TicketPurchaseApproval[] =
     "\p"
-    "Here you go.\r\n"
-    "Best of luck to you!{Press}";
+    "Bitte sehr.\r\n"
+    "Viel Glück!{Press}";
 
 char const gText_HorseRace_ChangeMind[] =
     "\p"
-    "Change your mind?{Press}";
+    "Deine Meinung geändert?{Press}";
 
 char const gText_HorseRace_ExplanationQuestion[] =
-    "Need to hear how to do it?";
+    "Lernen, wie es geht?";
 
 char const gText_HorseRace_ExplanationBasics[] =
     "\p"
-    "OK, listen carefully.{Press}\r\n"
-    "Use the A Button to spur\r\n"
-    "your horse on faster.{Press}\r\n"
-    "Remember, though, that your\r\n"
-    "horse only has a certain\r\n"
-    "amount of stamina.{Press}";
+    "OK, hör gut zu.{Press}\r\n"
+    "Benutze Knopf A, um dein\r\n"
+    "Pferd anzuspornen.{Press}\r\n"
+    "Denke aber daran, dass\r\n"
+    "dein Pferd nur über\r\n"
+    "bestimmte Ausdauer verfügt.{Press}";
 
 char const gText_HorseRace_ExplanationGreenStamina[] =
     "\p"
-    "When your horse is still in\r\n"
-    "the green, it has plenty of\r\n"
-    "stamina left.{Press}";
+    "Wenn dein Pferd noch im\r\n"
+    "grünen Bereich ist, hat es\r\n"
+    "noch genügend Ausdauer.{Press}";
 
 char const gText_HorseRace_ExplanationYellowStamina[] =
     "\p"
-    "If you speed up even more,\r\n"
-    "your horse will go into\r\n"
-    "the yellow.{Press}";
+    "Wenn du es noch schneller\r\n"
+    "rennen lässt, springt die\r\n"
+    "Anzeige auf gelb.{Press}";
 
 char const gText_HorseRace_ExplanationRedStamina[] =
     "\p"
-    "Speed up even more,\r\n"
-    "and you'll enter the red.{Press}\r\n"
-    "Once you're in the red you\r\n"
-    "can't speed up any more.{Press}";
+    "Werde noch schneller\r\n"
+    "und du kommst in\r\n"
+    "den roten Bereich.{Press}\r\n"
+    "Bist du einmal im roten\r\n"
+    "Bereich, kannst du nicht\r\n"
+    "mehr schneller werden.{Press}";
 
 char const gText_HorseRace_ExplanationStaminaRecovery[] =
     "\p"
-    "Hold off on the A Button to\r\n"
-    "allow your horse to regain\r\n"
-    "Stamina.{Press}\r\n"
-    "Pace your horse judiciously\r\n"
-    "and you have a chance!{Press}";
+    "Halt dich zurück mit\r\n"
+    "Knopf A, damit dein Pferd\r\n"
+    "wieder an Ausdauer gewinnt.{Press}\r\n"
+    "Führe dein Pferd\r\n"
+    "vernünftig, und du\r\n"
+    "kannst gewinnen!{Press}";
 
 char const gText_HorseRace_ExplanationUnderstoodQuestion[] =
-    "Everything understood?";
+    "Alles verstanden?";
 
 char const gText_HorseRace_ExplanationUnderstood[] =
-    "Got it.";
+    "Verstanden.";
 
 char const gText_HorseRace_ExplanationRepeat[] =
-    "Come again?";
+    "Noch einmal bitte.";
 
 char const gText_HorseRace_StartRace[] =
     "\p"
-    "Let's get started, then!{Press}";
+    "Dann lass uns anfangen!{Press}";
 
 char const gText_HorseRace_RaceStartAnnouncement[] =
     "\p"
-    "No.1 \xFC\r\n"
-    "No.2 \xFD{Press}\r\n"
-    "No.3 \xFE\r\n"
-    "No.4 \xFF{Press}\r\n"
-    "On your marks...{Press}\p"
-    "Get set....{Press}";
+    "Nr.1 \xFC\x0D\n"
+    "Nr.2 \xFD{Press}\r\n"
+    "Nr.3 \xFE\r\n"
+    "Nr.4 \xFF\x05\r\n"
+    "Auf die Plätze...{Press}\p"
+    "Fertig.... {Press}";
 
 char const gText_HorseRace_RaceResults[] =
     "\p"
-    "Race Results:\r\n"
-    "1st place \xFC\r\n"
-    "2nd place \xFD{Press}\r\n"
-    "3rd place \xFE\r\n"
-    "4th place \xFF{Press}\r\n"
+    "Rennergebnisse:\r\n"
+    "1. Platz \xFC\x0D\n"
+    "2. Platz \xFD{Press}\r\n"
+    "3. Platz \xFE\r\n"
+    "4. Platz \xFF\x05\r\n"
     "{Press}";
 
 char const gText_HorseRace_RacePayouts[] =
     "\p"
-    "Race \xFA payouts\r\n"
-    "are as follows:{Press}";
+    "Auszahlungen\r\n"
+    "wie folgt:{Press}";
 
 char const gText_HorseRace_MedalExchangeExplanation[] =
     "\p"
-    "Come to me if you want to\r\n"
-    "exchange your medal\r\n"
-    "for a prize.{Press}\r\n"
-    "Just remember, you can\r\n"
-    "only do it here.{Press}";
+    "Komm zu mir, wenn du\r\n"
+    "deine Medaille gegen einen\r\n"
+    "Gewinn eintauschen willst.{Press}\r\n"
+    "Denke daran, du kannst\r\n"
+    "das nur hier tun.{Press}";
 
 u16 const gHorseRaceTicketCharacterCodes[] =
-    FOMT_GLYPH_TEXT("0123456789 xGYour medals");
+    FOMT_GLYPH_SEQUENCE("0123456789 xGD. Medillen");
 
 char const gText_HorseRace_TicketPurchaseTitle[] =
-    "Race  Winning Ticket    ";
+    "Renngewinnticket        ";
 
 char const gText_HorseRace_TicketPurchaseConfirm[] =
-    "   Enter";
+    "    Mitmach.";
 
 char const gText_HorseRace_TicketPurchaseMedalsToWin[] =
-    "  Medals to Win     ";
+    "  Siegermedaillen   ";
 
 char const gText_HorseRace_TicketControls_DPadUpDown[] =
-    "Control Pad Up/Down:";
+    "Steuerkreuz nach Oben/Unten:";
 
 char const gText_HorseRace_TicketControls_SelectHorse[] =
-    "  Select a horse to bet on.";
+    "  Wähle Pferd zum Wetten.";
 
 char const gText_HorseRace_TicketControls_DPadLeftRight[] =
-    "Control Pad Left/Right:";
+    "Steuerkreuz nach ";
 
 char const gText_HorseRace_TicketControls_ChangeQuantity[] =
-    "  Change number of tickets.";
+    "Links/Rechts:";
 
 char const gText_HorseRace_TicketControls_LRButtons[] =
-    "L/R Buttons:";
+    "  Ticketanzahl ändern";
 
 char const gText_HorseRace_TicketControls_ChangeQuantityByTen[] =
-    "  Change number of tickets";
+    "Knöpfe L/R:";
 
 char const gText_HorseRace_TicketControls_ChangeQuantityByTenContinuation[] =
-    "  by ten.";
+    "  Ticketanzahl um 10 ändern.";
 
 char const gText_HorseRace_TicketControls_MoveCursorToConfirm[] =
-    "Move the cursor to OK.";
+    "Bewege den Cursor auf OK.";
 
 char const gText_HorseRace_TicketControls_Buy[] =
-    "Buy with the A Button.";
+    "Kaufe mit Knopf A.";
 
 char const gText_HorseRace_TicketControls_Cancel[] =
-    "Cancel with the B Button.";
-
+    "Brich ab mit Knopf B.";
 #elif defined(FOMT_TEXT_HORSE_RACE_PRIZE_CATALOG)
 
 HorseRacePrize const gHorseRacePrizeCatalog[] = {
-    { "Jewel of Truth", 1000 },
-    { "Power Berry", 900 },
-    { "Facial Pack", 42 },
-    { "Skin Lotion", 35 },
-    { "Sunblock", 30 },
-    { "Necklace", 20 },
-    { "Broach", 18 },
-    { "Diamond", 14 },
-    { "Truffle", 10 },
-    { "Adamantite", 4 },
-    { "Dress", 250 },
-    { "Perfume", 150 },
+    { "Wahrheitsjuwel", 1000 },
+    { "Power-Beere", 900 },
+    { "Gesichtsmaske", 42 },
+    { "Hautlotion", 35 },
+    { "Sonnenkreme", 30 },
+    { "Halskette", 20 },
+    { "Brosche", 18 },
+    { "Diamant", 14 },
+    { "Trüffel", 10 },
+    { "Adamantit", 4 },
+    { "Kleid", 250 },
+    { "Parfüm", 150 },
 };
 
 #elif defined(FOMT_TEXT_HORSE_RACE_PRIZE_EXCHANGE)
 
 char const gText_HorseRace_PrizeExchangePrompt[] =
-    "Exchange for a prize?";
+    "Gegen Preis tauschen?";
 
 char const gText_HorseRace_PrizeExchangeYes[] =
-    "Yes";
+    "Ja";
 
 char const gText_HorseRace_PrizeExchangeNo[] =
-    "No";
+    "Nein";
 
 char const gText_HorseRace_PrizeExchangeComeAgain[] =
     "\p"
-    "Come again any time.{Press}";
+    "Komm jederzeit wieder.{Press}";
 
 char const gText_HorseRace_PrizeExchangeTakeYourTime[] =
     "\p"
-    "Take your time now.{Press}";
+    "Nimm dir jetzt Zeit.{Press}";
 
 char const gText_HorseRace_PrizeSelectionConfirmation[] =
-    "So want \xFF?";
+    "Möchtest du \xFF\x3F";
 
 char const gText_HorseRace_PrizeExchangeLeaveConfirmation[] =
     "\p"
-    "So you want to leave?{Press}";
+    "Du möchtest also gehen?{Press}";
 
 char const gText_HorseRace_PrizeExchangeInsufficientMedals[] =
     "\p"
-    "You don't have enough\r\n"
-    "medals for this.{Press}";
-
+    "Hierfür hast du nicht \r\n"
+    "genug Medaillen. {Press}";
 #else
 #error "Select one horse_race text fragment before including this file."
 #endif

@@ -4376,6 +4376,107 @@ func_08005A3C: @ 0x08005A3C
 
     thumb_func_start func_08005A58
 func_08005A58: @ 0x08005A58
+    .ifdef REGION_DE
+    push {r4, r5, r6, r7, lr}
+    mov r7, r8
+    push {r7}
+    sub sp, #0x14
+    adds r5, r0, #0
+    mov r8, r1
+    adds r7, r2, #0
+    bl func_08008444
+    ldr r0, .LNewGameNameEntryDE_VTable
+    str r0, [r5, #4]
+    movs r0, #8
+    add r6, sp, #0x10
+    movs r1, #1
+    negs r1, r1
+.LNewGameNameEntryDE_Retry:
+    subs r0, #1
+    cmp r0, r1
+    bne .LNewGameNameEntryDE_Retry
+    ldr r1, .LNewGameNameEntryDE_Field4D74
+    adds r0, r5, r1
+    movs r1, #1
+    bl func_08008B54
+    ldr r2, .LNewGameNameEntryDE_Field4D78
+    adds r0, r5, r2
+    movs r1, #2
+    bl func_08008B54
+    movs r0, #4
+    bl __builtin_new
+    adds r4, r0, #0
+    add r0, sp, #0xc
+    bl func_0800835C
+    adds r0, r6, #0
+    bl func_0800770C
+    movs r0, #0
+    str r0, [sp]
+    add r3, sp, #0xc
+    str r3, [sp, #4]
+    str r6, [sp, #8]
+    adds r0, r4, #0
+    movs r1, #0
+    movs r2, #0xf
+    movs r3, #4
+    bl func_08050CC0
+    ldr r4, .LNewGameNameEntryDE_Field4D7C
+    adds r1, r5, r4
+    str r0, [r1]
+    adds r0, r6, #0
+    movs r1, #2
+    bl func_08007714
+    add r0, sp, #0xc
+    movs r1, #2
+    bl func_08008364
+    movs r6, #0x9b
+    lsls r6, r6, #7
+    adds r0, r5, r6
+    mov r1, r8
+    str r1, [r0]
+    ldr r3, .LNewGameNameEntryDE_Field4DA0
+    adds r2, r5, r3
+    adds r1, r2, #0
+    ldr r0, .LNewGameNameEntryDE_Placeholder
+    ldm r0!, {r3, r4, r6}
+    stm r1!, {r3, r4, r6}
+    ldrb r0, [r0]
+    strb r0, [r1]
+    cmp r7, #0
+    beq .LNewGameNameEntryDE_Done
+    movs r3, #0
+    ldrb r0, [r7]
+    cmp r0, #0
+    beq .LNewGameNameEntryDE_Done
+    adds r4, r2, #0
+    adds r2, r7, #0
+.LNewGameNameEntryDE_CopyName:
+    adds r1, r4, r3
+    ldrb r0, [r2]
+    strb r0, [r1]
+    adds r2, #1
+    adds r3, #1
+    cmp r3, #0xc
+    bgt .LNewGameNameEntryDE_Done
+    ldrb r0, [r2]
+    cmp r0, #0
+    bne .LNewGameNameEntryDE_CopyName
+.LNewGameNameEntryDE_Done:
+    adds r0, r5, #0
+    add sp, #0x14
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.LNewGameNameEntryDE_VTable: .4byte vtable_unk_080E5AB4
+.LNewGameNameEntryDE_Field4D74: .4byte 0x00004D74
+.LNewGameNameEntryDE_Field4D78: .4byte 0x00004D78
+.LNewGameNameEntryDE_Field4D7C: .4byte 0x00004D7C
+.LNewGameNameEntryDE_Field4DA0: .4byte 0x00004DA0
+.LNewGameNameEntryDE_Placeholder: .4byte gText_NewGameNameEntry_Placeholder
+    .else
     push {r4, r5, r6, r7, lr}
     mov r7, r8
     push {r7}
@@ -4475,6 +4576,7 @@ func_08005A58: @ 0x08005A58
 .L08005B2C: .4byte 0x000045FC
 .L08005B30: .4byte 0x0000461C
 .L08005B34: .4byte gText_NewGameNameEntry_Placeholder
+    .endif
 
     thumb_func_start func_08005B38
 func_08005B38: @ 0x08005B38
@@ -4499,7 +4601,12 @@ func_08005B38: @ 0x08005B38
     bx r0
     .align 2, 0
 .L08005B60: .4byte vtable_unk_080E5AB4
-.L08005B64: .4byte 0x000045F8
+.L08005B64:
+    .ifdef REGION_DE
+    .4byte 0x00004D7C
+    .else
+    .4byte 0x000045F8
+    .endif
 
     thumb_func_start func_08005B68
 func_08005B68: @ 0x08005B68
@@ -4619,7 +4726,12 @@ func_08005B68: @ 0x08005B68
     bl _call_via_r2
     b .L08005C8E
     .align 2, 0
-.L08005C80: .4byte 0x00004636
+.L08005C80:
+    .ifdef REGION_DE
+    .4byte 0x00004DBA
+    .else
+    .4byte 0x00004636
+    .endif
 .L08005C84: .4byte 0x00000889
 .L08005C88:
     adds r0, r6, #0
@@ -4664,6 +4776,617 @@ func_08005B68: @ 0x08005B68
 
     thumb_func_start func_08005CDC
 func_08005CDC: @ 0x08005CDC
+    .ifdef REGION_DE
+.LNewGameDE_08005CEC:
+push	{r4, r5, r6, r7, lr}
+mov	r7, sl
+mov	r6, r9
+mov	r5, r8
+push	{r5, r6, r7}
+sub	sp, #84
+mov	sl, r0
+ldr	r0, [pc, #472]
+ldr	r0, [r0, #0]
+ldr	r1, [pc, #472]
+ldr	r2, [pc, #472]
+ldr	r2, [r2, #0]
+bl	func_08008E64
+ldr	r0, [pc, #468]
+ldr	r0, [r0, #0]
+movs	r1, #160
+lsls	r1, r1, #19
+movs	r2, #32
+bl	func_08008E64
+mov	r0, sl
+bl	func_08008918
+.LNewGameDE_08005D1C:
+add	r1, sp, #12
+movs	r3, #186
+lsls	r3, r3, #5
+adds	r2, r3, #0
+strh	r2, [r1, #0]
+movs	r4, #0
+strh	r2, [r0, #0]
+mov	r0, sl
+bl	func_08008918
+.LNewGameDE_08005D30:
+add	r2, sp, #12
+ldr	r5, [pc, #432]
+adds	r1, r5, #0
+strh	r1, [r2, #0]
+strh	r1, [r0, #10]
+mov	r0, sl
+bl	func_08008918
+add	r2, sp, #12
+ldr	r7, [pc, #420]
+adds	r1, r7, #0
+strh	r1, [r2, #0]
+strh	r1, [r0, #12]
+ldr	r0, [pc, #416]
+movs	r1, #20
+str	r1, [sp, #0]
+movs	r1, #155
+lsls	r1, r1, #2
+str	r1, [sp, #4]
+str	r4, [sp, #8]
+movs	r1, #0
+movs	r2, #0
+movs	r3, #30
+bl	func_08051320
+movs	r0, #1
+negs	r0, r0
+ldr	r4, [pc, #392]
+movs	r2, #128
+lsls	r2, r2, #4
+adds	r1, r4, #0
+bl	func_08008EB8
+movs	r1, #0
+add	r0, sp, #32
+mov	r8, r0
+add	r2, sp, #36
+mov	r9, r2
+mov	r3, sp
+adds	r3, #16
+str	r3, [sp, #64]
+mov	r5, sp
+adds	r5, #48
+str	r5, [sp, #68]
+mov	r7, sl
+adds	r7, #12
+ldr	r0, [pc, #356]
+add	r0, sl
+str	r0, [sp, #72]
+movs	r6, #28
+.LNewGameDE_08005D94:
+movs	r3, #0
+lsls	r2, r1, #6
+adds	r5, r1, #1
+adds	r0, r2, r4
+.LNewGameDE_08005D9C:
+strh	r6, [r0, #0]
+adds	r0, #2
+adds	r3, #1
+cmp	r3, #29
+bls.n	.LNewGameDE_08005D9C
+adds	r1, r5, #0
+cmp	r1, #19
+bls.n	.LNewGameDE_08005D94
+movs	r3, #10
+ldr	r2, [pc, #328]
+ldr	r1, [pc, #328]
+.LNewGameDE_08005DB2:
+strh	r3, [r1, #0]
+adds	r0, r3, #0
+adds	r0, #30
+strh	r0, [r2, #0]
+adds	r2, #2
+adds	r1, #2
+adds	r3, #1
+cmp	r3, #15
+bls.n	.LNewGameDE_08005DB2
+.LNewGameDE_08005DC4:
+movs	r3, #3
+movs	r1, #240
+lsls	r1, r1, #1
+adds	r5, r1, #0
+movs	r2, #255
+lsls	r2, r2, #1
+adds	r4, r2, #0
+ldr	r2, [pc, #300]
+ldr	r1, [pc, #300]
+.LNewGameDE_08005DD6:
+adds	r0, r3, r5
+strh	r0, [r1, #0]
+adds	r0, r3, r4
+strh	r0, [r2, #0]
+adds	r2, #2
+adds	r1, #2
+adds	r3, #1
+cmp	r3, #26
+bls.n	.LNewGameDE_08005DD6
+movs	r1, #4
+ldr	r4, [pc, #260]
+.LNewGameDE_08005DEC:
+movs	r3, #0
+lsls	r2, r1, #6
+adds	r5, r1, #1
+subs	r1, #2
+lsls	r0, r1, #4
+subs	r0, r0, r1
+lsls	r1, r0, #1
+adds	r2, r2, r4
+.LNewGameDE_08005DFC:
+adds	r0, r1, r3
+strh	r0, [r2, #0]
+adds	r2, #2
+adds	r3, #1
+cmp	r3, #29
+bls.n	.LNewGameDE_08005DFC
+adds	r1, r5, #0
+cmp	r1, #17
+bls.n	.LNewGameDE_08005DEC
+movs	r3, #18
+movs	r4, #135
+lsls	r4, r4, #2
+adds	r5, r4, #0
+ldr	r0, [pc, #240]
+adds	r4, r0, #0
+ldr	r2, [pc, #240]
+ldr	r1, [pc, #240]
+.LNewGameDE_08005E1E:
+adds	r0, r3, r5
+strh	r0, [r1, #0]
+adds	r0, r3, r4
+strh	r0, [r2, #0]
+adds	r2, #2
+adds	r1, #2
+adds	r3, #1
+cmp	r3, #29
+bls.n	.LNewGameDE_08005E1E
+movs	r0, #155
+lsls	r0, r0, #7
+add	r0, sl
+ldr	r0, [r0, #0]
+cmp	r0, #0
+beq.n	.LNewGameDE_08005E5E
+movs	r3, #1
+ldr	r1, [pc, #212]
+adds	r5, r1, #0
+movs	r2, #152
+lsls	r2, r2, #2
+adds	r4, r2, #0
+ldr	r2, [pc, #204]
+ldr	r1, [pc, #208]
+.LNewGameDE_08005E4C:
+adds	r0, r3, r5
+strh	r0, [r1, #0]
+adds	r0, r3, r4
+strh	r0, [r2, #0]
+adds	r2, #2
+adds	r1, #2
+adds	r3, #1
+cmp	r3, #9
+bls.n	.LNewGameDE_08005E4C
+.LNewGameDE_08005E5E:
+ldr	r1, [pc, #192]
+movs	r0, #0
+movs	r2, #32
+bl	func_08008EB8
+movs	r4, #30
+movs	r5, #2
+add	r0, sp, #32
+strh	r4, [r0, #0]
+mov	r3, r8
+strh	r5, [r3, #2]
+ldr	r0, [sp, #32]
+adds	r1, r7, #0
+movs	r2, #0
+bl	Clear2DGfxBuffer
+ldr	r1, [pc, #164]
+add	r0, sp, #36
+strh	r4, [r0, #0]
+mov	r4, r9
+strh	r5, [r4, #2]
+ldr	r0, [sp, #36]
+str	r1, [sp, #0]
+adds	r1, r7, #0
+movs	r2, #88
+movs	r3, #0
+bl	DrawStringTo2DGfxBuffer
+mov	r0, sl
+bl	func_08008910
+movs	r3, #240
+lsls	r3, r3, #3
+adds	r6, r0, #0
+add	r0, sp, #16
+adds	r1, r7, #0
+movs	r2, #192
+lsls	r2, r2, #19
+bl	func_08008F0C
+ldr	r5, [sp, #64]
+mov	r8, r5
+ldr	r1, [r6, #4]
+ldr	r0, [r6, #12]
+cmp	r1, r0
+beq.n	.LNewGameDE_08005F28
+cmp	r1, #0
+beq.n	.LNewGameDE_08005ECA
+adds	r0, r1, #0
+mov	r1, r8
+ldmia	r1!, {r2, r3, r7}
+stmia	r0!, {r2, r3, r7}
+ldr	r1, [r1, #0]
+str	r1, [r0, #0]
+.LNewGameDE_08005ECA:
+ldr	r0, [r6, #4]
+adds	r0, #16
+str	r0, [r6, #4]
+b.n	.LNewGameDE_08005FEE
+    .align 2, 0
+.LNewGameDE_08005ED4: .4byte gUiSharedResourceData
+.LNewGameDE_08005ED8: .4byte 0x06004D80
+.LNewGameDE_08005EDC: .4byte gUiSharedResourceData + 4
+.LNewGameDE_08005EE0: .4byte gUiSharedResourceData + 8
+.LNewGameDE_08005EE4: .4byte 0x00001841
+.LNewGameDE_08005EE8: .4byte 0x00001F02
+.LNewGameDE_08005EEC: .4byte 0x0600F800
+.LNewGameDE_08005EF0: .4byte 0x0600C000
+.LNewGameDE_08005EF4: .4byte 0x00004B34
+.LNewGameDE_08005EF8: .4byte 0x0600C094
+.LNewGameDE_08005EFC: .4byte 0x0600C054
+.LNewGameDE_08005F00: .4byte 0x0600C4C6
+.LNewGameDE_08005F04: .4byte 0x0600C486
+.LNewGameDE_08005F08: .4byte 0x0000023A
+.LNewGameDE_08005F0C: .4byte 0x0600C0A4
+.LNewGameDE_08005F10: .4byte 0x0600C064
+.LNewGameDE_08005F14: .4byte 0x00000257
+.LNewGameDE_08005F18: .4byte 0x0600C082
+.LNewGameDE_08005F1C: .4byte 0x0600C042
+.LNewGameDE_08005F20: .4byte 0x06FFC000
+.LNewGameDE_08005F24: .4byte gText_NewGameNameEntry_NameLabel
+.LNewGameDE_08005F28:
+str	r1, [sp, #76]
+movs	r0, #1
+str	r0, [sp, #44]
+ldr	r0, [r6, #0]
+adds	r4, r1, #0
+subs	r0, r4, r0
+asrs	r4, r0, #4
+str	r4, [sp, #40]
+add	r1, sp, #44
+add	r0, sp, #40
+cmp	r4, #1
+bcs.n	.LNewGameDE_08005F42
+adds	r0, r1, #0
+.LNewGameDE_08005F42:
+ldr	r0, [r0, #0]
+adds	r0, r4, r0
+cmp	r0, #0
+beq.n	.LNewGameDE_08005F60
+lsls	r4, r0, #4
+adds	r0, r4, #0
+bl	malloc
+mov	r9, r4
+cmp	r0, #0
+bne.n	.LNewGameDE_08005F64
+mov	r0, r9
+bl	func_080D3BC0
+b.n	.LNewGameDE_08005F64
+.LNewGameDE_08005F60:
+movs	r0, #0
+mov	r9, r0
+.LNewGameDE_08005F64:
+adds	r5, r0, #0
+str	r5, [sp, #80]
+ldr	r2, [r6, #0]
+adds	r3, r5, #0
+ldr	r5, [sp, #76]
+cmp	r2, r5
+beq.n	.LNewGameDE_08005F8C
+.LNewGameDE_08005F72:
+cmp	r3, #0
+beq.n	.LNewGameDE_08005F82
+adds	r0, r3, #0
+adds	r1, r2, #0
+ldmia	r1!, {r4, r5, r7}
+stmia	r0!, {r4, r5, r7}
+ldr	r1, [r1, #0]
+str	r1, [r0, #0]
+.LNewGameDE_08005F82:
+adds	r2, #16
+adds	r3, #16
+ldr	r7, [sp, #76]
+cmp	r2, r7
+bne.n	.LNewGameDE_08005F72
+.LNewGameDE_08005F8C:
+adds	r5, r3, #0
+ldr	r0, [sp, #44]
+cmp	r0, #1
+bne.n	.LNewGameDE_08005FA8
+cmp	r5, #0
+beq.n	.LNewGameDE_08005FA4
+adds	r0, r5, #0
+mov	r1, r8
+ldmia	r1!, {r2, r3, r4}
+stmia	r0!, {r2, r3, r4}
+ldr	r1, [r1, #0]
+str	r1, [r0, #0]
+.LNewGameDE_08005FA4:
+adds	r5, #16
+b.n	.LNewGameDE_08005FCA
+.LNewGameDE_08005FA8:
+adds	r3, r0, #0
+adds	r2, r5, #0
+cmp	r3, #0
+beq.n	.LNewGameDE_08005FC8
+.LNewGameDE_08005FB0:
+cmp	r2, #0
+beq.n	.LNewGameDE_08005FC0
+adds	r0, r2, #0
+mov	r1, r8
+ldmia	r1!, {r4, r5, r7}
+stmia	r0!, {r4, r5, r7}
+ldr	r1, [r1, #0]
+str	r1, [r0, #0]
+.LNewGameDE_08005FC0:
+subs	r3, #1
+adds	r2, #16
+cmp	r3, #0
+bne.n	.LNewGameDE_08005FB0
+.LNewGameDE_08005FC8:
+adds	r5, r2, #0
+.LNewGameDE_08005FCA:
+ldr	r2, [r6, #4]
+ldr	r0, [r6, #0]
+adds	r1, r0, #0
+cmp	r0, r2
+beq.n	.LNewGameDE_08005FDA
+.LNewGameDE_08005FD4:
+adds	r1, #16
+cmp	r1, r2
+bne.n	.LNewGameDE_08005FD4
+.LNewGameDE_08005FDA:
+cmp	r0, #0
+beq.n	.LNewGameDE_08005FE2
+bl	free
+.LNewGameDE_08005FE2:
+ldr	r0, [sp, #80]
+add	r0, r9
+ldr	r7, [sp, #80]
+str	r7, [r6, #0]
+str	r5, [r6, #4]
+str	r0, [r6, #12]
+.LNewGameDE_08005FEE:
+ldr	r1, [pc, #152]
+add	r1, sl
+movs	r0, #0
+str	r0, [r1, #0]
+ldr	r0, [pc, #148]
+add	r0, sl
+movs	r1, #1
+mov	r8, r1
+mov	r2, r8
+strb	r2, [r0, #0]
+mov	r0, sl
+bl	func_080064E8
+movs	r7, #240
+lsls	r7, r7, #3
+movs	r5, #9
+movs	r6, #2
+add	r0, sp, #48
+strh	r5, [r0, #0]
+ldr	r3, [sp, #68]
+strh	r6, [r3, #2]
+ldr	r0, [sp, #48]
+ldr	r4, [sp, #72]
+adds	r1, r4, #0
+movs	r2, #0
+bl	Clear2DGfxBuffer
+movs	r0, #155
+lsls	r0, r0, #7
+add	r0, sl
+ldr	r1, [r0, #0]
+cmp	r1, #0
+beq.n	.LNewGameDE_08006044
+add	r0, sp, #52
+strh	r5, [r0, #0]
+strh	r6, [r0, #2]
+ldr	r0, [sp, #52]
+str	r1, [sp, #0]
+adds	r1, r4, #0
+movs	r2, #0
+movs	r3, #0
+bl	DrawStringTo2DGfxBuffer
+.LNewGameDE_08006044:
+mov	r0, sl
+bl	func_08008910
+movs	r3, #144
+lsls	r3, r3, #2
+adds	r6, r0, #0
+lsls	r2, r7, #2
+adds	r2, r7, r2
+lsls	r2, r2, #1
+movs	r0, #192
+lsls	r0, r0, #19
+adds	r2, r2, r0
+add	r0, sp, #12
+ldr	r1, [sp, #72]
+bl	func_08008F0C
+add	r4, sp, #12
+mov	r9, r4
+ldr	r1, [r6, #4]
+ldr	r0, [r6, #12]
+cmp	r1, r0
+beq.n	.LNewGameDE_08006090
+cmp	r1, #0
+beq.n	.LNewGameDE_08006080
+adds	r0, r1, #0
+add	r1, sp, #12
+ldmia	r1!, {r2, r5, r7}
+stmia	r0!, {r2, r5, r7}
+ldr	r1, [r1, #0]
+str	r1, [r0, #0]
+.LNewGameDE_08006080:
+ldr	r0, [r6, #4]
+adds	r0, #16
+str	r0, [r6, #4]
+b.n	.LNewGameDE_08006156
+.LNewGameDE_08006088: .4byte 0x00004D84
+.LNewGameDE_0800608C: .4byte 0x00004DBB
+.LNewGameDE_08006090:
+str	r1, [sp, #76]
+mov	r3, r8
+str	r3, [sp, #60]
+ldr	r0, [r6, #0]
+adds	r4, r1, #0
+subs	r0, r4, r0
+asrs	r4, r0, #4
+str	r4, [sp, #56]
+add	r1, sp, #60
+add	r0, sp, #56
+cmp	r4, #1
+bcs.n	.LNewGameDE_080060AA
+adds	r0, r1, #0
+.LNewGameDE_080060AA:
+ldr	r0, [r0, #0]
+adds	r0, r4, r0
+cmp	r0, #0
+beq.n	.LNewGameDE_080060C8
+lsls	r4, r0, #4
+adds	r0, r4, #0
+bl	malloc
+mov	r8, r4
+cmp	r0, #0
+bne.n	.LNewGameDE_080060CC
+mov	r0, r8
+bl	func_080D3BC0
+b.n	.LNewGameDE_080060CC
+.LNewGameDE_080060C8:
+movs	r0, #0
+mov	r8, r0
+.LNewGameDE_080060CC:
+adds	r5, r0, #0
+str	r5, [sp, #80]
+ldr	r2, [r6, #0]
+adds	r3, r5, #0
+ldr	r5, [sp, #76]
+cmp	r2, r5
+beq.n	.LNewGameDE_080060F4
+.LNewGameDE_080060DA:
+cmp	r3, #0
+beq.n	.LNewGameDE_080060EA
+adds	r0, r3, #0
+adds	r1, r2, #0
+ldmia	r1!, {r4, r5, r7}
+stmia	r0!, {r4, r5, r7}
+ldr	r1, [r1, #0]
+str	r1, [r0, #0]
+.LNewGameDE_080060EA:
+adds	r2, #16
+adds	r3, #16
+ldr	r7, [sp, #76]
+cmp	r2, r7
+bne.n	.LNewGameDE_080060DA
+.LNewGameDE_080060F4:
+adds	r5, r3, #0
+ldr	r0, [sp, #60]
+cmp	r0, #1
+bne.n	.LNewGameDE_08006110
+cmp	r5, #0
+beq.n	.LNewGameDE_0800610C
+adds	r0, r5, #0
+mov	r1, r9
+ldmia	r1!, {r2, r3, r4}
+stmia	r0!, {r2, r3, r4}
+ldr	r1, [r1, #0]
+str	r1, [r0, #0]
+.LNewGameDE_0800610C:
+adds	r5, #16
+b.n	.LNewGameDE_08006132
+.LNewGameDE_08006110:
+adds	r3, r0, #0
+adds	r2, r5, #0
+cmp	r3, #0
+beq.n	.LNewGameDE_08006130
+.LNewGameDE_08006118:
+cmp	r2, #0
+beq.n	.LNewGameDE_08006128
+adds	r0, r2, #0
+mov	r1, r9
+ldmia	r1!, {r4, r5, r7}
+stmia	r0!, {r4, r5, r7}
+ldr	r1, [r1, #0]
+str	r1, [r0, #0]
+.LNewGameDE_08006128:
+subs	r3, #1
+adds	r2, #16
+cmp	r3, #0
+bne.n	.LNewGameDE_08006118
+.LNewGameDE_08006130:
+adds	r5, r2, #0
+.LNewGameDE_08006132:
+ldr	r2, [r6, #4]
+ldr	r0, [r6, #0]
+adds	r1, r0, #0
+cmp	r0, r2
+beq.n	.LNewGameDE_08006142
+.LNewGameDE_0800613C:
+adds	r1, #16
+cmp	r1, r2
+bne.n	.LNewGameDE_0800613C
+.LNewGameDE_08006142:
+cmp	r0, #0
+beq.n	.LNewGameDE_0800614A
+bl	free
+.LNewGameDE_0800614A:
+ldr	r0, [sp, #80]
+add	r0, r8
+ldr	r7, [sp, #80]
+str	r7, [r6, #0]
+str	r5, [r6, #4]
+str	r0, [r6, #12]
+.LNewGameDE_08006156:
+ldr	r0, [pc, #84]
+add	r0, sl
+ldr	r0, [r0, #0]
+mov	r9, r0
+mov	r0, sl
+bl	func_080088DC
+mov	r8, r0
+mov	r0, sl
+bl	func_08008920
+adds	r6, r0, #0
+mov	r0, sl
+bl	func_08008918
+adds	r5, r0, #0
+mov	r0, sl
+bl	func_08008940
+adds	r4, r0, #0
+mov	r0, sl
+bl	func_0800894C
+ldr	r1, [pc, #40]
+add	r1, sl
+str	r4, [sp, #0]
+str	r0, [sp, #4]
+str	r1, [sp, #8]
+mov	r0, r9
+mov	r1, r8
+adds	r2, r6, #0
+adds	r3, r5, #0
+bl	func_08050D3C
+add	sp, #84
+pop	{r3, r4, r5}
+mov	r8, r3
+mov	r9, r4
+mov	sl, r5
+pop	{r4, r5, r6, r7}
+pop	{r0}
+bx	r0
+    .align 2, 0
+.LNewGameDE_080061AC: .4byte 0x00004D7C
+.LNewGameDE_080061B0: .4byte 0x00004D74
+
+    .else
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -5266,6 +5989,7 @@ func_08005CDC: @ 0x08005CDC
     .align 2, 0
 .L08006198: .4byte 0x000045F8
 .L0800619C: .4byte 0x000045F0
+    .endif
 
     thumb_func_start func_080061A0
 func_080061A0: @ 0x080061A0
@@ -5431,26 +6155,86 @@ func_080061A0: @ 0x080061A0
     pop {r0}
     bx r0
     .align 2, 0
-.L080062E4: .4byte 0x00004608
-.L080062E8: .4byte 0x00004614
-.L080062EC: .4byte 0x0000460B
-.L080062F0: .4byte 0x00004617
-.L080062F4: .4byte 0x00004615
-.L080062F8: .4byte 0x00004609
-.L080062FC: .4byte 0x0000460C
+.L080062E4:
+    .ifdef REGION_DE
+    .4byte 0x00004D8C
+    .else
+    .4byte 0x00004608
+    .endif
+.L080062E8:
+    .ifdef REGION_DE
+    .4byte 0x00004D98
+    .else
+    .4byte 0x00004614
+    .endif
+.L080062EC:
+    .ifdef REGION_DE
+    .4byte 0x00004D8F
+    .else
+    .4byte 0x0000460B
+    .endif
+.L080062F0:
+    .ifdef REGION_DE
+    .4byte 0x00004D9B
+    .else
+    .4byte 0x00004617
+    .endif
+.L080062F4:
+    .ifdef REGION_DE
+    .4byte 0x00004D99
+    .else
+    .4byte 0x00004615
+    .endif
+.L080062F8:
+    .ifdef REGION_DE
+    .4byte 0x00004D8D
+    .else
+    .4byte 0x00004609
+    .endif
+.L080062FC:
+    .ifdef REGION_DE
+    .4byte 0x00004D90
+    .else
+    .4byte 0x0000460C
+    .endif
 .L08006300: .4byte 0x000003FF
 .L08006304: .4byte 0xFFFFFC00
-.L08006308: .4byte 0x00004618
-.L0800630C: .4byte 0x0000460D
-.L08006310: .4byte 0x00004619
+.L08006308:
+    .ifdef REGION_DE
+    .4byte 0x00004D9C
+    .else
+    .4byte 0x00004618
+    .endif
+.L0800630C:
+    .ifdef REGION_DE
+    .4byte 0x00004D91
+    .else
+    .4byte 0x0000460D
+    .endif
+.L08006310:
+    .ifdef REGION_DE
+    .4byte 0x00004D9D
+    .else
+    .4byte 0x00004619
+    .endif
 .L08006314: .4byte 0x88888888
 .L08006318: .4byte 0x06010000
 .L0800631C: .4byte 0x060100E0
 .L08006320: .4byte 0x05000290
 .L08006324: .4byte 0x0000027F
-.L08006328: .4byte 0x00004616
+.L08006328:
+    .ifdef REGION_DE
+    .4byte 0x00004D9A
+    .else
+    .4byte 0x00004616
+    .endif
 .L0800632C: .4byte 0xFFFFFE00
-.L08006330: .4byte 0x0000460A
+.L08006330:
+    .ifdef REGION_DE
+    .4byte 0x00004D8E
+    .else
+    .4byte 0x0000460A
+    .endif
 
     thumb_func_start func_08006334
 func_08006334: @ 0x08006334
@@ -5484,12 +6268,219 @@ func_08006334: @ 0x08006334
     str r2, [r0]
     bx lr
     .align 2, 0
-.L08006370: .4byte 0x00004639
-.L08006374: .4byte 0x00004638
-.L08006378: .4byte 0x0000463C
+.L08006370:
+    .ifdef REGION_DE
+    .4byte 0x00004DBD
+    .else
+    .4byte 0x00004639
+    .endif
+.L08006374:
+    .ifdef REGION_DE
+    .4byte 0x00004DBC
+    .else
+    .4byte 0x00004638
+    .endif
+.L08006378:
+    .ifdef REGION_DE
+    .4byte 0x00004DC0
+    .else
+    .4byte 0x0000463C
+    .endif
 
     thumb_func_start func_0800637C
 func_0800637C: @ 0x0800637C
+    .ifdef REGION_DE
+.LNewGameDE_08006390:
+push	{r4, r5, r6, r7, lr}
+mov	r7, sl
+mov	r6, r9
+mov	r5, r8
+push	{r5, r6, r7}
+sub	sp, #48
+adds	r4, r0, #0
+movs	r1, #96
+movs	r2, #16
+movs	r3, #0
+add	r0, sp, #28
+movs	r6, #30
+movs	r5, #2
+mov	r8, r5
+strh	r6, [r0, #0]
+mov	r7, r8
+strh	r7, [r0, #2]
+ldr	r0, [sp, #28]
+ldr	r7, [pc, #100]
+adds	r5, r4, r7
+str	r1, [sp, #0]
+str	r2, [sp, #4]
+str	r3, [sp, #8]
+adds	r1, r5, #0
+movs	r2, #0
+bl	Clear2DGfxBufferRect
+ldr	r0, [pc, #88]
+adds	r1, r4, r0
+add	r0, sp, #32
+strh	r6, [r0, #0]
+mov	r2, r8
+strh	r2, [r0, #2]
+ldr	r0, [sp, #32]
+str	r1, [sp, #0]
+adds	r1, r5, #0
+movs	r2, #144
+movs	r3, #0
+bl	DrawStringTo2DGfxBuffer
+adds	r0, r4, #0
+bl	func_08008910
+adds	r6, r0, #0
+movs	r4, #240
+lsls	r4, r4, #3
+ldr	r2, [pc, #52]
+add	r0, sp, #12
+adds	r1, r5, #0
+adds	r3, r4, #0
+bl	func_08008F0C
+add	r3, sp, #12
+mov	r9, r3
+ldr	r1, [r6, #4]
+ldr	r0, [r6, #12]
+cmp	r1, r0
+beq.n	.LNewGameDE_08006428
+cmp	r1, #0
+beq.n	.LNewGameDE_08006414
+adds	r0, r1, #0
+add	r1, sp, #12
+ldmia	r1!, {r4, r5, r7}
+stmia	r0!, {r4, r5, r7}
+ldr	r1, [r1, #0]
+str	r1, [r0, #0]
+.LNewGameDE_08006414:
+ldr	r0, [r6, #4]
+adds	r0, #16
+str	r0, [r6, #4]
+b.n	.LNewGameDE_080064E8
+.LNewGameDE_0800641C: .4byte 0x000043B0
+.LNewGameDE_08006420: .4byte 0x00004DA0
+.LNewGameDE_08006424: .4byte 0x06004380
+.LNewGameDE_08006428:
+mov	sl, r1
+movs	r0, #1
+str	r0, [sp, #40]
+ldr	r0, [r6, #0]
+subs	r0, r1, r0
+asrs	r4, r0, #4
+str	r4, [sp, #36]
+add	r1, sp, #40
+add	r0, sp, #36
+cmp	r4, #1
+bcs.n	.LNewGameDE_08006440
+adds	r0, r1, #0
+.LNewGameDE_08006440:
+ldr	r0, [r0, #0]
+adds	r0, r4, r0
+cmp	r0, #0
+beq.n	.LNewGameDE_0800645E
+lsls	r4, r0, #4
+adds	r0, r4, #0
+bl	malloc
+mov	r8, r4
+cmp	r0, #0
+bne.n	.LNewGameDE_08006462
+mov	r0, r8
+bl	func_080D3BC0
+b.n	.LNewGameDE_08006462
+.LNewGameDE_0800645E:
+movs	r0, #0
+mov	r8, r0
+.LNewGameDE_08006462:
+adds	r5, r0, #0
+str	r5, [sp, #44]
+ldr	r2, [r6, #0]
+adds	r3, r5, #0
+cmp	r2, sl
+beq.n	.LNewGameDE_08006486
+.LNewGameDE_0800646E:
+cmp	r3, #0
+beq.n	.LNewGameDE_0800647E
+adds	r0, r3, #0
+adds	r1, r2, #0
+ldmia	r1!, {r4, r5, r7}
+stmia	r0!, {r4, r5, r7}
+ldr	r1, [r1, #0]
+str	r1, [r0, #0]
+.LNewGameDE_0800647E:
+adds	r2, #16
+adds	r3, #16
+cmp	r2, sl
+bne.n	.LNewGameDE_0800646E
+.LNewGameDE_08006486:
+adds	r5, r3, #0
+ldr	r0, [sp, #40]
+cmp	r0, #1
+bne.n	.LNewGameDE_080064A2
+cmp	r5, #0
+beq.n	.LNewGameDE_0800649E
+adds	r0, r5, #0
+mov	r1, r9
+ldmia	r1!, {r2, r3, r4}
+stmia	r0!, {r2, r3, r4}
+ldr	r1, [r1, #0]
+str	r1, [r0, #0]
+.LNewGameDE_0800649E:
+adds	r5, #16
+b.n	.LNewGameDE_080064C4
+.LNewGameDE_080064A2:
+adds	r3, r0, #0
+adds	r2, r5, #0
+cmp	r3, #0
+beq.n	.LNewGameDE_080064C2
+.LNewGameDE_080064AA:
+cmp	r2, #0
+beq.n	.LNewGameDE_080064BA
+adds	r0, r2, #0
+mov	r1, r9
+ldmia	r1!, {r4, r5, r7}
+stmia	r0!, {r4, r5, r7}
+ldr	r1, [r1, #0]
+str	r1, [r0, #0]
+.LNewGameDE_080064BA:
+subs	r3, #1
+adds	r2, #16
+cmp	r3, #0
+bne.n	.LNewGameDE_080064AA
+.LNewGameDE_080064C2:
+adds	r5, r2, #0
+.LNewGameDE_080064C4:
+ldr	r2, [r6, #4]
+ldr	r0, [r6, #0]
+adds	r1, r0, #0
+cmp	r0, r2
+beq.n	.LNewGameDE_080064D4
+.LNewGameDE_080064CE:
+adds	r1, #16
+cmp	r1, r2
+bne.n	.LNewGameDE_080064CE
+.LNewGameDE_080064D4:
+cmp	r0, #0
+beq.n	.LNewGameDE_080064DC
+bl	free
+.LNewGameDE_080064DC:
+ldr	r0, [sp, #44]
+add	r0, r8
+ldr	r7, [sp, #44]
+str	r7, [r6, #0]
+str	r5, [r6, #4]
+str	r0, [r6, #12]
+.LNewGameDE_080064E8:
+add	sp, #48
+pop	{r3, r4, r5}
+mov	r8, r3
+mov	r9, r4
+mov	sl, r5
+pop	{r4, r5, r6, r7}
+pop	{r0}
+bx	r0
+
+    .else
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -5682,9 +6673,482 @@ func_0800637C: @ 0x0800637C
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
+    .endif
 
     thumb_func_start func_080064E8
 func_080064E8: @ 0x080064E8
+    .ifdef REGION_DE
+.LNewGameDE_080064F8:
+push	{r4, r5, r6, r7, lr}
+mov	r7, sl
+mov	r6, r9
+mov	r5, r8
+push	{r5, r6, r7}
+sub	sp, #92
+mov	sl, r0
+ldr	r0, [pc, #220]
+add	r0, sl
+ldrb	r0, [r0, #0]
+cmp	r0, #0
+bne.n	.LNewGameDE_08006512
+b.n	.LNewGameDE_0800685A
+.LNewGameDE_08006512:
+movs	r0, #1
+mov	r8, r0
+mov	r1, sp
+adds	r1, #20
+str	r1, [sp, #64]
+mov	r2, sp
+adds	r2, #24
+str	r2, [sp, #68]
+mov	r3, sp
+adds	r3, #36
+str	r3, [sp, #72]
+ldr	r4, [pc, #188]
+add	r4, sl
+str	r4, [sp, #80]
+mov	r6, sp
+adds	r6, #4
+str	r6, [sp, #60]
+.LNewGameDE_08006534:
+mov	r7, r8
+lsls	r4, r7, #4
+subs	r4, r4, r7
+lsls	r4, r4, #5
+add	r4, r8
+lsls	r4, r4, #2
+mov	r0, sl
+adds	r1, r4, r0
+add	r0, sp, #20
+movs	r2, #30
+strh	r2, [r0, #0]
+movs	r6, #2
+ldr	r3, [sp, #64]
+strh	r6, [r3, #2]
+ldr	r0, [sp, #20]
+adds	r1, #12
+movs	r2, #0
+bl	Clear2DGfxBuffer
+ldr	r0, [pc, #144]
+add	r0, sl
+ldr	r0, [r0, #0]
+mov	r7, sl
+adds	r1, r4, r7
+mov	r2, r8
+lsls	r3, r2, #5
+subs	r3, r3, r2
+lsls	r2, r0, #3
+subs	r2, r2, r0
+lsls	r0, r2, #5
+subs	r0, r0, r2
+adds	r3, r3, r0
+ldr	r0, [pc, #120]
+adds	r3, r3, r0
+add	r0, sp, #24
+movs	r6, #30
+strh	r6, [r0, #0]
+movs	r0, #2
+.LNewGameDE_08006580:
+ldr	r7, [sp, #68]
+strh	r0, [r7, #2]
+ldr	r0, [sp, #24]
+adds	r1, #12
+str	r3, [sp, #0]
+movs	r2, #0
+movs	r3, #0
+bl	DrawStringTo2DGfxBuffer
+mov	r0, sl
+bl	func_08008910
+add	r4, sl
+adds	r4, #12
+movs	r1, #240
+lsls	r1, r1, #3
+mov	r2, r8
+muls	r2, r1
+adds	r5, r0, #0
+movs	r3, #192
+.LNewGameDE_080065A8:
+lsls	r3, r3, #19
+adds	r2, r2, r3
+add	r0, sp, #4
+adds	r1, r4, #0
+movs	r3, #240
+lsls	r3, r3, #3
+bl	func_08008F0C
+ldr	r1, [r5, #4]
+ldr	r0, [r5, #12]
+cmp	r1, r0
+beq.n	.LNewGameDE_080065F4
+cmp	r1, #0
+beq.n	.LNewGameDE_080065D0
+adds	r0, r1, #0
+add	r1, sp, #4
+ldmia	r1!, {r4, r6, r7}
+stmia	r0!, {r4, r6, r7}
+ldr	r1, [r1, #0]
+str	r1, [r0, #0]
+.LNewGameDE_080065D0:
+ldr	r0, [r5, #4]
+adds	r0, #16
+str	r0, [r5, #4]
+movs	r0, #1
+add	r8, r0
+movs	r1, #240
+lsls	r1, r1, #3
+lsls	r1, r1, #3
+str	r1, [sp, #76]
+b.n	.LNewGameDE_080066C6
+.LNewGameDE_080065E4: .4byte 0x00004DBB
+.LNewGameDE_080065E8: .4byte 0x00003C2C
+.LNewGameDE_080065EC: .4byte 0x00004D84
+.LNewGameDE_080065F0: .4byte gText_NewGameIdentity_Confirm + 3
+.LNewGameDE_080065F4:
+str	r1, [sp, #84]
+movs	r0, #1
+str	r0, [sp, #32]
+ldr	r0, [r5, #0]
+adds	r2, r1, #0
+subs	r0, r2, r0
+asrs	r4, r0, #4
+str	r4, [sp, #28]
+add	r1, sp, #32
+add	r0, sp, #28
+cmp	r4, #1
+bcs.n	.LNewGameDE_0800660E
+adds	r0, r1, #0
+.LNewGameDE_0800660E:
+ldr	r0, [r0, #0]
+adds	r0, r4, r0
+cmp	r0, #0
+beq.n	.LNewGameDE_0800662C
+lsls	r4, r0, #4
+adds	r0, r4, #0
+bl	malloc
+mov	r9, r4
+cmp	r0, #0
+bne.n	.LNewGameDE_08006630
+mov	r0, r9
+bl	func_080D3BC0
+b.n	.LNewGameDE_08006630
+.LNewGameDE_0800662C:
+movs	r0, #0
+mov	r9, r0
+.LNewGameDE_08006630:
+adds	r4, r0, #0
+str	r4, [sp, #88]
+ldr	r2, [r5, #0]
+adds	r3, r4, #0
+movs	r4, #1
+add	r8, r4
+movs	r6, #240
+lsls	r6, r6, #3
+lsls	r6, r6, #3
+str	r6, [sp, #76]
+ldr	r7, [sp, #84]
+cmp	r2, r7
+beq.n	.LNewGameDE_08006664
+.LNewGameDE_0800664A:
+cmp	r3, #0
+beq.n	.LNewGameDE_0800665A
+adds	r0, r3, #0
+adds	r1, r2, #0
+ldmia	r1!, {r4, r6, r7}
+stmia	r0!, {r4, r6, r7}
+ldr	r1, [r1, #0]
+str	r1, [r0, #0]
+.LNewGameDE_0800665A:
+adds	r2, #16
+adds	r3, #16
+ldr	r0, [sp, #84]
+cmp	r2, r0
+bne.n	.LNewGameDE_0800664A
+.LNewGameDE_08006664:
+adds	r4, r3, #0
+ldr	r0, [sp, #32]
+cmp	r0, #1
+bne.n	.LNewGameDE_08006680
+cmp	r4, #0
+beq.n	.LNewGameDE_0800667C
+adds	r0, r4, #0
+ldr	r1, [sp, #60]
+ldmia	r1!, {r2, r3, r6}
+stmia	r0!, {r2, r3, r6}
+ldr	r1, [r1, #0]
+str	r1, [r0, #0]
+.LNewGameDE_0800667C:
+adds	r4, #16
+b.n	.LNewGameDE_080066A2
+.LNewGameDE_08006680:
+adds	r3, r0, #0
+adds	r2, r4, #0
+cmp	r3, #0
+beq.n	.LNewGameDE_080066A0
+.LNewGameDE_08006688:
+cmp	r2, #0
+beq.n	.LNewGameDE_08006698
+adds	r0, r2, #0
+ldr	r1, [sp, #60]
+ldmia	r1!, {r4, r6, r7}
+stmia	r0!, {r4, r6, r7}
+ldr	r1, [r1, #0]
+str	r1, [r0, #0]
+.LNewGameDE_08006698:
+subs	r3, #1
+adds	r2, #16
+cmp	r3, #0
+bne.n	.LNewGameDE_08006688
+.LNewGameDE_080066A0:
+adds	r4, r2, #0
+.LNewGameDE_080066A2:
+ldr	r2, [r5, #4]
+ldr	r0, [r5, #0]
+adds	r1, r0, #0
+cmp	r0, r2
+beq.n	.LNewGameDE_080066B2
+.LNewGameDE_080066AC:
+adds	r1, #16
+cmp	r1, r2
+bne.n	.LNewGameDE_080066AC
+.LNewGameDE_080066B2:
+cmp	r0, #0
+beq.n	.LNewGameDE_080066BA
+bl	free
+.LNewGameDE_080066BA:
+ldr	r0, [sp, #88]
+add	r0, r9
+ldr	r7, [sp, #88]
+str	r7, [r5, #0]
+str	r4, [r5, #4]
+str	r0, [r5, #12]
+.LNewGameDE_080066C6:
+mov	r0, r8
+cmp	r0, #7
+bhi.n	.LNewGameDE_080066CE
+b.n	.LNewGameDE_08006534
+.LNewGameDE_080066CE:
+movs	r4, #30
+movs	r5, #2
+add	r0, sp, #36
+strh	r4, [r0, #0]
+ldr	r1, [sp, #72]
+strh	r5, [r1, #2]
+ldr	r0, [sp, #36]
+ldr	r1, [sp, #80]
+movs	r2, #0
+bl	Clear2DGfxBuffer
+ldr	r0, [pc, #16]
+add	r0, sl
+ldr	r2, [r0, #0]
+cmp	r2, #1
+beq.n	.LNewGameDE_08006714
+cmp	r2, #1
+bgt.n	.LNewGameDE_080066FC
+cmp	r2, #0
+beq.n	.LNewGameDE_08006702
+b.n	.LNewGameDE_08006746
+.LNewGameDE_080066F8: .4byte 0x00004D84
+.LNewGameDE_080066FC:
+cmp	r2, #2
+beq.n	.LNewGameDE_08006730
+b.n	.LNewGameDE_08006746
+.LNewGameDE_08006702:
+ldr	r1, [pc, #12]
+add	r0, sp, #40
+strh	r4, [r0, #0]
+strh	r5, [r0, #2]
+ldr	r0, [sp, #40]
+b.n	.LNewGameDE_0800671E
+    .align 2, 0
+.LNewGameDE_08006710: .4byte gText_NewGameNameEntry_EndLatin
+.LNewGameDE_08006714:
+ldr	r1, [pc, #20]
+add	r0, sp, #44
+strh	r4, [r0, #0]
+strh	r5, [r0, #2]
+ldr	r0, [sp, #44]
+.LNewGameDE_0800671E:
+str	r1, [sp, #0]
+ldr	r1, [sp, #80]
+movs	r2, #24
+movs	r3, #0
+bl	DrawStringTo2DGfxBuffer
+b.n	.LNewGameDE_08006746
+.LNewGameDE_0800672C: .4byte gText_NewGameNameEntry_EndLatin
+.LNewGameDE_08006730:
+ldr	r1, [pc, #84]
+add	r0, sp, #48
+strh	r4, [r0, #0]
+strh	r2, [r0, #2]
+ldr	r0, [sp, #48]
+str	r1, [sp, #0]
+ldr	r1, [sp, #80]
+movs	r2, #24
+movs	r3, #0
+bl	DrawStringTo2DGfxBuffer
+.LNewGameDE_08006746:
+mov	r0, sl
+bl	func_08008910
+adds	r5, r0, #0
+movs	r2, #192
+lsls	r2, r2, #19
+ldr	r3, [sp, #76]
+adds	r2, r3, r2
+add	r0, sp, #4
+ldr	r1, [sp, #80]
+movs	r3, #240
+lsls	r3, r3, #3
+bl	func_08008F0C
+add	r4, sp, #4
+mov	r9, r4
+ldr	r1, [r5, #4]
+ldr	r0, [r5, #12]
+cmp	r1, r0
+beq.n	.LNewGameDE_0800678C
+cmp	r1, #0
+beq.n	.LNewGameDE_0800677E
+adds	r0, r1, #0
+add	r1, sp, #4
+ldmia	r1!, {r2, r6, r7}
+stmia	r0!, {r2, r6, r7}
+ldr	r1, [r1, #0]
+str	r1, [r0, #0]
+.LNewGameDE_0800677E:
+ldr	r0, [r5, #4]
+adds	r0, #16
+str	r0, [r5, #4]
+b.n	.LNewGameDE_08006852
+    .align 2, 0
+.LNewGameDE_08006788: .4byte gText_NewGameNameEntry_EndLatin
+.LNewGameDE_0800678C:
+str	r1, [sp, #84]
+movs	r0, #1
+str	r0, [sp, #56]
+ldr	r0, [r5, #0]
+adds	r3, r1, #0
+subs	r0, r3, r0
+asrs	r4, r0, #4
+str	r4, [sp, #52]
+add	r1, sp, #56
+add	r0, sp, #52
+cmp	r4, #1
+bcs.n	.LNewGameDE_080067A6
+adds	r0, r1, #0
+.LNewGameDE_080067A6:
+ldr	r0, [r0, #0]
+adds	r0, r4, r0
+cmp	r0, #0
+beq.n	.LNewGameDE_080067C4
+lsls	r4, r0, #4
+adds	r0, r4, #0
+bl	malloc
+mov	r8, r4
+cmp	r0, #0
+bne.n	.LNewGameDE_080067C8
+mov	r0, r8
+bl	func_080D3BC0
+b.n	.LNewGameDE_080067C8
+.LNewGameDE_080067C4:
+movs	r0, #0
+mov	r8, r0
+.LNewGameDE_080067C8:
+adds	r4, r0, #0
+str	r4, [sp, #88]
+ldr	r2, [r5, #0]
+adds	r3, r4, #0
+ldr	r4, [sp, #84]
+cmp	r2, r4
+beq.n	.LNewGameDE_080067F0
+.LNewGameDE_080067D6:
+cmp	r3, #0
+beq.n	.LNewGameDE_080067E6
+adds	r0, r3, #0
+adds	r1, r2, #0
+ldmia	r1!, {r4, r6, r7}
+stmia	r0!, {r4, r6, r7}
+ldr	r1, [r1, #0]
+str	r1, [r0, #0]
+.LNewGameDE_080067E6:
+adds	r2, #16
+adds	r3, #16
+ldr	r6, [sp, #84]
+cmp	r2, r6
+bne.n	.LNewGameDE_080067D6
+.LNewGameDE_080067F0:
+adds	r4, r3, #0
+ldr	r0, [sp, #56]
+cmp	r0, #1
+bne.n	.LNewGameDE_0800680C
+cmp	r4, #0
+beq.n	.LNewGameDE_08006808
+adds	r0, r4, #0
+mov	r1, r9
+ldmia	r1!, {r2, r3, r7}
+stmia	r0!, {r2, r3, r7}
+ldr	r1, [r1, #0]
+str	r1, [r0, #0]
+.LNewGameDE_08006808:
+adds	r4, #16
+b.n	.LNewGameDE_0800682E
+.LNewGameDE_0800680C:
+adds	r3, r0, #0
+adds	r2, r4, #0
+cmp	r3, #0
+beq.n	.LNewGameDE_0800682C
+.LNewGameDE_08006814:
+cmp	r2, #0
+beq.n	.LNewGameDE_08006824
+adds	r0, r2, #0
+mov	r1, r9
+ldmia	r1!, {r4, r6, r7}
+stmia	r0!, {r4, r6, r7}
+ldr	r1, [r1, #0]
+str	r1, [r0, #0]
+.LNewGameDE_08006824:
+subs	r3, #1
+adds	r2, #16
+cmp	r3, #0
+bne.n	.LNewGameDE_08006814
+.LNewGameDE_0800682C:
+adds	r4, r2, #0
+.LNewGameDE_0800682E:
+ldr	r2, [r5, #4]
+ldr	r0, [r5, #0]
+adds	r1, r0, #0
+cmp	r0, r2
+beq.n	.LNewGameDE_0800683E
+.LNewGameDE_08006838:
+adds	r1, #16
+cmp	r1, r2
+bne.n	.LNewGameDE_08006838
+.LNewGameDE_0800683E:
+cmp	r0, #0
+beq.n	.LNewGameDE_08006846
+bl	free
+.LNewGameDE_08006846:
+ldr	r0, [sp, #88]
+add	r0, r8
+ldr	r1, [sp, #88]
+str	r1, [r5, #0]
+str	r4, [r5, #4]
+str	r0, [r5, #12]
+.LNewGameDE_08006852:
+ldr	r1, [pc, #24]
+add	r1, sl
+movs	r0, #0
+strb	r0, [r1, #0]
+.LNewGameDE_0800685A:
+add	sp, #92
+pop	{r3, r4, r5}
+mov	r8, r3
+mov	r9, r4
+mov	sl, r5
+pop	{r4, r5, r6, r7}
+pop	{r0}
+bx	r0
+    .align 2, 0
+.LNewGameDE_0800686C: .4byte 0x00004DBB
+
+    .else
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -6155,9 +7619,67 @@ func_080064E8: @ 0x080064E8
     bx r0
     .align 2, 0
 .L08006854: .4byte 0x00004637
+    .endif
 
     thumb_func_start func_08006858
 func_08006858: @ 0x08006858
+    .ifdef REGION_DE
+push	{r4, r5, lr}
+adds	r4, r0, #0
+ldr	r1, [pc, #92]
+adds	r0, r4, r1
+ldr	r0, [r0, #0]
+cmp	r0, #0
+bne.n	.LNewGameDE_080068A6
+adds	r0, r4, #0
+bl	func_08008920
+adds	r3, r0, #0
+ldr	r5, [pc, #80]
+adds	r1, r4, r5
+ldrb	r2, [r3, #0]
+cmp	r2, #127
+bhi.n	.LNewGameDE_080068A6
+lsls	r0, r2, #3
+adds	r0, #4
+adds	r0, r3, r0
+ldr	r1, [r1, #0]
+str	r1, [r0, #0]
+adds	r5, #4
+adds	r1, r4, r5
+ldrh	r1, [r1, #0]
+strh	r1, [r0, #4]
+adds	r0, r2, #1
+strb	r0, [r3, #0]
+.LNewGameDE_080068A6:
+adds	r0, r4, #0
+bl	func_08008920
+adds	r3, r0, #0
+ldr	r0, [pc, #44]
+adds	r1, r4, r0
+ldrb	r2, [r3, #0]
+cmp	r2, #127
+bhi.n	.LNewGameDE_080068CE
+lsls	r0, r2, #3
+adds	r0, #4
+adds	r0, r3, r0
+ldr	r1, [r1, #0]
+str	r1, [r0, #0]
+ldr	r5, [pc, #28]
+adds	r1, r4, r5
+ldrh	r1, [r1, #0]
+strh	r1, [r0, #4]
+adds	r0, r2, #1
+strb	r0, [r3, #0]
+.LNewGameDE_080068CE:
+pop	{r4, r5}
+pop	{r0}
+bx	r0
+.LNewGameDE_080068D4: .4byte 0x00004DC0
+.LNewGameDE_080068D8: .4byte 0x00004D8C
+.LNewGameDE_080068DC: .4byte 0x00004D98
+.LNewGameDE_080068E0: .4byte 0x00004D9C
+
+    .else
     push {r4, r5, lr}
     adds r4, r0, #0
     ldr r1, .L080068BC @ =0x0000463C
@@ -6213,6 +7735,7 @@ func_08006858: @ 0x08006858
 .L080068C0: .4byte 0x00004608
 .L080068C4: .4byte 0x00004614
 .L080068C8: .4byte 0x00004618
+    .endif
 
     thumb_func_start func_080068CC
 func_080068CC: @ 0x080068CC
@@ -6242,7 +7765,11 @@ func_080068CC: @ 0x080068CC
     adds r5, r4, r0
     movs r0, #0
     ldrsb r0, [r5, r0]
+    .ifdef REGION_DE
+    cmp r0, #6
+    .else
     cmp r0, #5
+    .endif
     bgt .L08006970
     ldr r1, .L08006960 @ =0x00004604
     adds r0, r4, r1
@@ -6278,16 +7805,56 @@ func_080068CC: @ 0x080068CC
     movs r0, #0x80
     b .L080069CC
     .align 2, 0
-.L08006948: .4byte 0x00004610
-.L0800694C: .4byte 0x00004616
+.L08006948:
+    .ifdef REGION_DE
+    .4byte 0x00004D94
+    .else
+    .4byte 0x00004610
+    .endif
+.L0800694C:
+    .ifdef REGION_DE
+    .4byte 0x00004D9A
+    .else
+    .4byte 0x00004616
+    .endif
 .L08006950: .4byte 0x000001FF
 .L08006954: .4byte 0xFFFFFE00
-.L08006958: .4byte 0x00004614
-.L0800695C: .4byte 0x00004605
-.L08006960: .4byte 0x00004604
-.L08006964: .4byte 0x00004608
-.L08006968: .4byte 0x0000460B
-.L0800696C: .4byte 0x00004609
+.L08006958:
+    .ifdef REGION_DE
+    .4byte 0x00004D98
+    .else
+    .4byte 0x00004614
+    .endif
+.L0800695C:
+    .ifdef REGION_DE
+    .4byte 0x00004D89
+    .else
+    .4byte 0x00004605
+    .endif
+.L08006960:
+    .ifdef REGION_DE
+    .4byte 0x00004D88
+    .else
+    .4byte 0x00004604
+    .endif
+.L08006964:
+    .ifdef REGION_DE
+    .4byte 0x00004D8C
+    .else
+    .4byte 0x00004608
+    .endif
+.L08006968:
+    .ifdef REGION_DE
+    .4byte 0x00004D8F
+    .else
+    .4byte 0x0000460B
+    .endif
+.L0800696C:
+    .ifdef REGION_DE
+    .4byte 0x00004D8D
+    .else
+    .4byte 0x00004609
+    .endif
 .L08006970:
     movs r2, #0
     ldr r1, .L080069D8 @ =0x00004604
@@ -6321,7 +7888,11 @@ func_080068CC: @ 0x080068CC
     strh r0, [r3]
     ldr r0, .L080069E8 @ =0x00004608
     adds r1, r4, r0
+    .ifdef REGION_DE
+    movs r0, #0x90
+    .else
     movs r0, #0x88
+    .endif
     strb r0, [r1]
     ldr r1, .L080069EC @ =0x0000460B
     adds r3, r4, r1
@@ -6344,13 +7915,38 @@ func_080068CC: @ 0x080068CC
     pop {r0}
     bx r0
     .align 2, 0
-.L080069D8: .4byte 0x00004604
-.L080069DC: .4byte 0x0000460A
+.L080069D8:
+    .ifdef REGION_DE
+    .4byte 0x00004D88
+    .else
+    .4byte 0x00004604
+    .endif
+.L080069DC:
+    .ifdef REGION_DE
+    .4byte 0x00004D8E
+    .else
+    .4byte 0x0000460A
+    .endif
 .L080069E0: .4byte 0x000001FF
 .L080069E4: .4byte 0xFFFFFE00
-.L080069E8: .4byte 0x00004608
-.L080069EC: .4byte 0x0000460B
-.L080069F0: .4byte 0x00004609
+.L080069E8:
+    .ifdef REGION_DE
+    .4byte 0x00004D8C
+    .else
+    .4byte 0x00004608
+    .endif
+.L080069EC:
+    .ifdef REGION_DE
+    .4byte 0x00004D8F
+    .else
+    .4byte 0x0000460B
+    .endif
+.L080069F0:
+    .ifdef REGION_DE
+    .4byte 0x00004D8D
+    .else
+    .4byte 0x00004609
+    .endif
 
     thumb_func_start func_080069F4
 func_080069F4: @ 0x080069F4
@@ -6376,7 +7972,11 @@ func_080069F4: @ 0x080069F4
     lsls r0, r0, #0x18
     cmp r0, #0
     bge .L08006A30
+    .ifdef REGION_DE
+    movs r0, #7
+    .else
     movs r0, #6
+    .endif
     strb r0, [r2]
     ldr r0, .L08006A5C @ =0x00004604
     adds r1, r4, r0
@@ -6386,7 +7986,11 @@ func_080069F4: @ 0x080069F4
     ldrb r1, [r2]
     movs r0, #0
     ldrsb r0, [r2, r0]
+    .ifdef REGION_DE
+    cmp r0, #6
+    .else
     cmp r0, #5
+    .endif
     beq .L08006A3C
     b .L08006B8A
 .L08006A3C:
@@ -6395,7 +7999,11 @@ func_080069F4: @ 0x080069F4
     ldrb r0, [r0]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
+    .ifdef REGION_DE
+    cmp r0, #4
+    .else
     cmp r0, #0xc
+    .endif
     bgt .L08006A4C
     b .L08006B8A
 .L08006A4C:
@@ -6403,9 +8011,24 @@ func_080069F4: @ 0x080069F4
     strb r0, [r2]
     b .L08006B8A
     .align 2, 0
-.L08006A54: .4byte 0x000045F4
-.L08006A58: .4byte 0x00004605
-.L08006A5C: .4byte 0x00004604
+.L08006A54:
+    .ifdef REGION_DE
+    .4byte 0x00004D78
+    .else
+    .4byte 0x000045F4
+    .endif
+.L08006A58:
+    .ifdef REGION_DE
+    .4byte 0x00004D89
+    .else
+    .4byte 0x00004605
+    .endif
+.L08006A5C:
+    .ifdef REGION_DE
+    .4byte 0x00004D88
+    .else
+    .4byte 0x00004604
+    .endif
 .L08006A60:
     movs r0, #0x80
     ands r0, r1
@@ -6424,21 +8047,33 @@ func_080069F4: @ 0x080069F4
     strb r0, [r1]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
+    .ifdef REGION_DE
+    cmp r0, #7
+    .else
     cmp r0, #6
+    .endif
     ble .L08006A8A
     strb r6, [r1]
 .L08006A8A:
     ldrb r2, [r1]
     movs r0, #0
     ldrsb r0, [r1, r0]
+    .ifdef REGION_DE
+    cmp r0, #6
+    .else
     cmp r0, #5
+    .endif
     bne .L08006AA6
     ldr r3, .L08006AC4 @ =0x00004604
     adds r0, r4, r3
     ldrb r0, [r0]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
+    .ifdef REGION_DE
+    cmp r0, #4
+    .else
     cmp r0, #0xc
+    .endif
     ble .L08006AA6
     adds r0, r2, #1
     strb r0, [r1]
@@ -6448,16 +8083,35 @@ func_080069F4: @ 0x080069F4
     ldrb r0, [r0]
     lsls r0, r0, #0x18
     asrs r0, r0, #0x18
+    .ifdef REGION_DE
+    cmp r0, #7
+    .else
     cmp r0, #6
+    .endif
     bne .L08006B8A
     ldr r3, .L08006AC4 @ =0x00004604
     adds r1, r4, r3
     movs r0, #0xc
     b .L08006B88
     .align 2, 0
-.L08006ABC: .4byte 0x000045F4
-.L08006AC0: .4byte 0x00004605
-.L08006AC4: .4byte 0x00004604
+.L08006ABC:
+    .ifdef REGION_DE
+    .4byte 0x00004D78
+    .else
+    .4byte 0x000045F4
+    .endif
+.L08006AC0:
+    .ifdef REGION_DE
+    .4byte 0x00004D89
+    .else
+    .4byte 0x00004605
+    .endif
+.L08006AC4:
+    .ifdef REGION_DE
+    .4byte 0x00004D88
+    .else
+    .4byte 0x00004604
+    .endif
 .L08006AC8:
     movs r0, #0x10
     ands r0, r1
@@ -6471,16 +8125,35 @@ func_080069F4: @ 0x080069F4
     adds r3, r4, r0
     movs r0, #0
     ldrsb r0, [r3, r0]
+    .ifdef REGION_DE
+    cmp r0, #7
+    .else
     cmp r0, #6
+    .endif
     bne .L08006AFC
     ldr r3, .L08006AF8 @ =0x00004604
     adds r1, r4, r3
     movs r0, #0xc
     b .L08006B88
     .align 2, 0
-.L08006AF0: .4byte 0x000045F4
-.L08006AF4: .4byte 0x00004605
-.L08006AF8: .4byte 0x00004604
+.L08006AF0:
+    .ifdef REGION_DE
+    .4byte 0x00004D78
+    .else
+    .4byte 0x000045F4
+    .endif
+.L08006AF4:
+    .ifdef REGION_DE
+    .4byte 0x00004D89
+    .else
+    .4byte 0x00004605
+    .endif
+.L08006AF8:
+    .ifdef REGION_DE
+    .4byte 0x00004D88
+    .else
+    .4byte 0x00004604
+    .endif
 .L08006AFC:
     ldr r0, .L08006B1C @ =0x00004604
     adds r1, r4, r0
@@ -6489,16 +8162,31 @@ func_080069F4: @ 0x080069F4
     strb r2, [r1]
     movs r0, #0
     ldrsb r0, [r3, r0]
+    .ifdef REGION_DE
+    cmp r0, #6
+    .else
     cmp r0, #5
+    .endif
     bne .L08006B20
+    .ifdef REGION_DE
+    lsls r0, r2, #0x18
+    asrs r0, r0, #0x18
+    cmp r0, #4
+    .else
     movs r0, #0
     ldrsb r0, [r1, r0]
     cmp r0, #0xc
+    .endif
     ble .L08006B8A
     strb r5, [r1]
     b .L08006B8A
     .align 2, 0
-.L08006B1C: .4byte 0x00004604
+.L08006B1C:
+    .ifdef REGION_DE
+    .4byte 0x00004D88
+    .else
+    .4byte 0x00004604
+    .endif
 .L08006B20:
     lsls r0, r2, #0x18
     asrs r0, r0, #0x18
@@ -6519,16 +8207,35 @@ func_080069F4: @ 0x080069F4
     adds r3, r4, r0
     movs r0, #0
     ldrsb r0, [r3, r0]
+    .ifdef REGION_DE
+    cmp r0, #7
+    .else
     cmp r0, #6
+    .endif
     bne .L08006B60
     ldr r3, .L08006B5C @ =0x00004604
     adds r1, r4, r3
     movs r0, #0xc
     b .L08006B88
     .align 2, 0
-.L08006B54: .4byte 0x000045F4
-.L08006B58: .4byte 0x00004605
-.L08006B5C: .4byte 0x00004604
+.L08006B54:
+    .ifdef REGION_DE
+    .4byte 0x00004D78
+    .else
+    .4byte 0x000045F4
+    .endif
+.L08006B58:
+    .ifdef REGION_DE
+    .4byte 0x00004D89
+    .else
+    .4byte 0x00004605
+    .endif
+.L08006B5C:
+    .ifdef REGION_DE
+    .4byte 0x00004D88
+    .else
+    .4byte 0x00004604
+    .endif
 .L08006B60:
     ldr r0, .L08006B7C @ =0x00004604
     adds r1, r4, r0
@@ -6537,15 +8244,28 @@ func_080069F4: @ 0x080069F4
     strb r2, [r1]
     movs r0, #0
     ldrsb r0, [r3, r0]
+    .ifdef REGION_DE
+    cmp r0, #6
+    .else
     cmp r0, #5
+    .endif
     bne .L08006B80
     lsls r0, r2, #0x18
     cmp r0, #0
     bge .L08006B8A
+    .ifdef REGION_DE
+    movs r0, #4
+    .else
     movs r0, #0xc
+    .endif
     b .L08006B88
     .align 2, 0
-.L08006B7C: .4byte 0x00004604
+.L08006B7C:
+    .ifdef REGION_DE
+    .4byte 0x00004D88
+    .else
+    .4byte 0x00004604
+    .endif
 .L08006B80:
     lsls r0, r2, #0x18
     cmp r0, #0
@@ -6560,6 +8280,83 @@ func_080069F4: @ 0x080069F4
 
     thumb_func_start func_08006B90
 func_08006B90: @ 0x08006B90
+    .ifdef REGION_DE
+push	{r4, r5, lr}
+sub	sp, #4
+adds	r5, r0, #0
+mov	r4, sp
+ldr	r3, [pc, #68]
+ldr	r1, [pc, #72]
+adds	r0, r5, r1
+movs	r2, #0
+ldrsb	r2, [r0, r2]
+lsls	r2, r2, #1
+adds	r1, #1
+adds	r0, r5, r1
+movs	r1, #0
+ldrsb	r1, [r0, r1]
+lsls	r0, r1, #5
+subs	r0, r0, r1
+adds	r2, r2, r0
+ldr	r1, [pc, #52]
+adds	r0, r5, r1
+ldr	r0, [r0, #0]
+lsls	r1, r0, #3
+subs	r1, r1, r0
+lsls	r0, r1, #5
+subs	r0, r0, r1
+adds	r2, r2, r0
+adds	r2, r2, r3
+ldrb	r2, [r2, #0]
+strb	r2, [r4, #0]
+ldr	r3, [pc, #32]
+adds	r1, r5, r3
+ldrb	r4, [r1, #0]
+adds	r3, #12
+adds	r0, r5, r3
+adds	r3, r0, r4
+ldrb	r0, [r3, #0]
+cmp	r0, r2
+bne.n	.LNewGameDE_08006C08
+adds	r0, r4, #1
+b.n	.LNewGameDE_08006C0E
+    .align 2, 0
+.LNewGameDE_08006BF8: .4byte gNewGameNameEntryCharacterRows
+.LNewGameDE_08006BFC: .4byte 0x00004D88
+.LNewGameDE_08006C00: .4byte 0x00004D84
+.LNewGameDE_08006C04: .4byte 0x00004D94
+.LNewGameDE_08006C08:
+strb	r2, [r3, #0]
+ldrb	r0, [r1, #0]
+adds	r0, #1
+.LNewGameDE_08006C0E:
+strb	r0, [r1, #0]
+ldr	r0, [pc, #36]
+adds	r2, r5, r0
+ldrb	r0, [r2, #0]
+cmp	r0, #11
+bls.n	.LNewGameDE_08006C2E
+ldr	r3, [pc, #32]
+adds	r1, r5, r3
+movs	r0, #12
+strb	r0, [r1, #0]
+ldr	r0, [pc, #28]
+adds	r1, r5, r0
+movs	r0, #7
+strb	r0, [r1, #0]
+movs	r0, #11
+strb	r0, [r2, #0]
+.LNewGameDE_08006C2E:
+add	sp, #4
+pop	{r4, r5}
+pop	{r0}
+bx	r0
+    .align 2, 0
+.LNewGameDE_08006C38: .4byte 0x00004D94
+.LNewGameDE_08006C3C: .4byte 0x00004D88
+.LNewGameDE_08006C40: .4byte 0x00004D89
+
+    .else
     push {r4, r5, lr}
     sub sp, #4
     adds r5, r0, #0
@@ -6633,6 +8430,7 @@ func_08006B90: @ 0x08006B90
 .L08006C1C: .4byte 0x00004610
 .L08006C20: .4byte 0x00004604
 .L08006C24: .4byte 0x00004605
+    .endif
 
     thumb_func_start func_08006C28
 func_08006C28: @ 0x08006C28
@@ -6663,8 +8461,18 @@ func_08006C28: @ 0x08006C28
     pop {r0}
     bx r0
     .align 2, 0
-.L08006C58: .4byte 0x0000461C
-.L08006C5C: .4byte 0x00004627
+.L08006C58:
+    .ifdef REGION_DE
+    .4byte 0x00004DA0
+    .else
+    .4byte 0x0000461C
+    .endif
+.L08006C5C:
+    .ifdef REGION_DE
+    .4byte 0x00004DAB
+    .else
+    .4byte 0x00004627
+    .endif
 
     thumb_func_start func_08006C60
 func_08006C60: @ 0x08006C60
@@ -6688,7 +8496,12 @@ func_08006C60: @ 0x08006C60
     adds r0, r1, #1
     b .L08006C96
     .align 2, 0
-.L08006C88: .4byte 0x00004629
+.L08006C88:
+    .ifdef REGION_DE
+    .4byte 0x00004DAD
+    .else
+    .4byte 0x00004629
+    .endif
 .L08006C8C:
     cmp r0, #0x20
     bne .L08006C92
@@ -6734,10 +8547,267 @@ func_08006C60: @ 0x08006C60
     pop {r1}
     bx r1
     .align 2, 0
-.L08006CD8: .4byte 0x00004629
+.L08006CD8:
+    .ifdef REGION_DE
+    .4byte 0x00004DAD
+    .else
+    .4byte 0x00004629
+    .endif
 
     thumb_func_start func_08006CDC
 func_08006CDC: @ 0x08006CDC
+    .ifdef REGION_DE
+push	{r4, r5, r6, r7, lr}
+sub	sp, #4
+adds	r4, r0, #0
+ldr	r0, [pc, #72]
+adds	r5, r4, r0
+ldr	r6, [r5, #0]
+cmp	r6, #0
+beq.n	.LNewGameDE_08006D0A
+b.n	.LNewGameDE_08006EE8
+.LNewGameDE_08006D0A:
+adds	r0, r4, #0
+bl	func_080069F4
+adds	r0, r4, #0
+bl	func_080088D4
+str	r0, [sp, #0]
+mov	r0, sp
+ldrb	r1, [r0, #0]
+movs	r7, #1
+adds	r0, r7, #0
+ands	r0, r1
+cmp	r0, #0
+beq.n	.LNewGameDE_08006DC6
+ldr	r1, [pc, #36]
+adds	r0, r4, r1
+ldrb	r0, [r0, #0]
+lsls	r0, r0, #24
+asrs	r0, r0, #24
+cmp	r0, #6
+bgt.n	.LNewGameDE_08006D50
+subs	r1, #17
+adds	r0, r4, r1
+movs	r1, #106
+bl	func_08008B6C
+adds r0, r4, #0
+bl func_08006B90
+b .LNewGameDE_08006EE8
+.align 2, 0
+.LNewGameDE_08006D48: .4byte 0x00004DC0
+.LNewGameDE_08006D4C: .4byte 0x00004D89
+.LNewGameDE_08006D50:
+ldr	r1, [pc, #28]
+adds	r0, r4, r1
+ldrb	r1, [r0, #0]
+ldrb	r0, [r0, #0]
+lsls	r0, r0, #24
+asrs	r0, r0, #24
+cmp	r0, #4
+bgt.n	.LNewGameDE_08006D7C
+ldr	r0, [pc, #16]
+adds	r1, r4, r0
+ldr	r0, [r1, #0]
+cmp	r0, #2
+bne.n	.LNewGameDE_08006D78
+str	r6, [r1, #0]
+b.n	.LNewGameDE_08006D9C
+    .align 2, 0
+.LNewGameDE_08006D70: .4byte 0x00004D88
+.LNewGameDE_08006D74: .4byte 0x00004D84
+.LNewGameDE_08006D78:
+adds	r0, #1
+b.n	.LNewGameDE_08006D9A
+.LNewGameDE_08006D7C:
+subs	r0, r1, #5
+lsls	r0, r0, #24
+lsrs	r0, r0, #24
+cmp	r0, #4
+bhi.n	.LNewGameDE_08006DB8
+ldr	r0, [pc, #12]
+adds	r1, r4, r0
+ldr	r0, [r1, #0]
+cmp	r0, #0
+bne.n	.LNewGameDE_08006D98
+movs	r0, #2
+b.n	.LNewGameDE_08006D9A
+.LNewGameDE_08006D94: .4byte 0x00004D84
+.LNewGameDE_08006D98:
+subs	r0, #1
+.LNewGameDE_08006D9A:
+str	r0, [r1, #0]
+.LNewGameDE_08006D9C:
+ldr	r1, [pc, #16]
+adds	r0, r4, r1
+movs	r1, #1
+strb	r1, [r0, #0]
+ldr	r1, [pc, #12]
+adds	r0, r4, r1
+movs	r1, #202
+bl	func_08008B6C
+b .LNewGameDE_08006EE8
+.LNewGameDE_08006DB0: .4byte 0x00004DBB
+.LNewGameDE_08006DB4: .4byte 0x00004D78
+.LNewGameDE_08006DB8:
+adds	r0, r4, #0
+bl	func_08006C60
+lsls	r0, r0, #24
+cmp	r0, #0
+bne.n	.LNewGameDE_08006E68
+b.n	.LNewGameDE_08006E08
+.LNewGameDE_08006DC6:
+movs	r2, #2
+adds	r0, r2, #0
+ands	r0, r1
+cmp	r0, #0
+beq.n	.LNewGameDE_08006E34
+ldr	r0, [pc, #16]
+adds	r1, r4, r0
+ldrb	r0, [r1, #0]
+cmp	r0, #0
+beq.n	.LNewGameDE_08006DE8
+subs	r0, #1
+strb	r0, [r1, #0]
+ldrb	r1, [r1, #0]
+adds	r0, r4, #0
+b.n	.LNewGameDE_08006E20
+.LNewGameDE_08006DE4: .4byte 0x00004D94
+.LNewGameDE_08006DE8:
+movs	r2, #0
+movs	r1, #0
+ldr	r0, [pc, #36]
+adds	r3, r4, r0
+.LNewGameDE_08006DF0:
+adds	r0, r3, r1
+ldrb	r0, [r0, #0]
+cmp	r0, #95
+bne.n	.LNewGameDE_08006DFE
+adds	r0, r2, #1
+lsls	r0, r0, #24
+lsrs	r2, r0, #24
+.LNewGameDE_08006DFE:
+adds	r1, #1
+cmp	r1, #11
+ble.n	.LNewGameDE_08006DF0
+cmp	r2, #12
+bne.n	.LNewGameDE_08006E1C
+.LNewGameDE_08006E08:
+ldr	r1, [pc, #12]
+adds	r0, r4, r1
+movs	r1, #199
+bl	func_08008B6C
+b .LNewGameDE_08006EE8
+.LNewGameDE_08006E14: .4byte 0x00004DA0
+.LNewGameDE_08006E18: .4byte 0x00004D78
+.LNewGameDE_08006E1C:
+adds	r0, r4, #0
+movs	r1, #0
+.LNewGameDE_08006E20:
+bl	func_08006C28
+ldr	r1, [pc, #8]
+adds	r0, r4, r1
+movs	r1, #108
+bl	func_08008B6C
+b .LNewGameDE_08006EE8
+.LNewGameDE_08006E30: .4byte 0x00004D78
+.LNewGameDE_08006E34:
+movs	r0, #8
+ands	r0, r1
+cmp	r0, #0
+beq.n	.LNewGameDE_08006E98
+ldr	r1, [pc, #56]
+adds	r0, r4, r1
+ldrb	r0, [r0, #0]
+lsls	r0, r0, #24
+asrs	r0, r0, #24
+cmp	r0, #7
+bne.n	.LNewGameDE_08006E80
+subs	r1, #1
+adds	r0, r4, r1
+ldrb	r0, [r0, #0]
+lsls	r0, r0, #24
+asrs	r0, r0, #24
+cmp	r0, #9
+ble.n	.LNewGameDE_08006E80
+cmp	r0, #14
+bgt.n	.LNewGameDE_08006E80
+adds	r0, r4, #0
+bl	func_08006C60
+lsls	r0, r0, #24
+cmp	r0, #0
+beq.n	.LNewGameDE_08006E6A
+.LNewGameDE_08006E68:
+str	r7, [r5, #0]
+.LNewGameDE_08006E6A:
+ldr	r1, [pc, #16]
+adds	r0, r4, r1
+movs	r1, #197
+bl	func_08008B6C
+b .LNewGameDE_08006EE8
+.align 2, 0
+.LNewGameDE_08006E78: .4byte 0x00004D89
+.LNewGameDE_08006E7C: .4byte 0x00004D78
+.LNewGameDE_08006E80:
+ldr	r0, [pc, #12]
+adds	r1, r4, r0
+movs	r0, #12
+strb	r0, [r1, #0]
+ldr	r0, [pc, #8]
+adds	r1, r4, r0
+movs	r0, #7
+b.n	.LNewGameDE_08006EB0
+.LNewGameDE_08006E90: .4byte 0x00004D88
+.LNewGameDE_08006E94: .4byte 0x00004D89
+.LNewGameDE_08006E98:
+mov	r0, sp
+ldrb	r1, [r0, #1]
+adds	r0, r2, #0
+ands	r0, r1
+cmp	r0, #0
+beq.n	.LNewGameDE_08006EC8
+ldr	r0, [pc, #24]
+adds	r1, r4, r0
+ldrb	r0, [r1, #0]
+cmp	r0, #0
+beq.n	.LNewGameDE_08006EB2
+subs	r0, #1
+.LNewGameDE_08006EB0:
+strb	r0, [r1, #0]
+.LNewGameDE_08006EB2:
+ldr	r1, [pc, #16]
+adds	r0, r4, r1
+movs	r1, #203
+bl	func_08008B6C
+b .LNewGameDE_08006EE8
+.align 2, 0
+.LNewGameDE_08006EC0: .4byte 0x00004D94
+.LNewGameDE_08006EC4: .4byte 0x00004D78
+.LNewGameDE_08006EC8:
+adds	r0, r7, #0
+ands	r0, r1
+cmp	r0, #0
+beq.n	.LNewGameDE_08006EE8
+ldr	r0, [pc, #28]
+adds	r1, r4, r0
+ldrb	r0, [r1, #0]
+cmp	r0, #11
+beq.n	.LNewGameDE_08006EDE
+adds	r0, #1
+strb	r0, [r1, #0]
+.LNewGameDE_08006EDE:
+ldr	r1, [pc, #20]
+adds	r0, r4, r1
+movs	r1, #203
+bl	func_08008B6C
+.LNewGameDE_08006EE8:
+add	sp, #4
+pop	{r4, r5, r6, r7}
+pop	{r0}
+bx	r0
+.LNewGameDE_08006EF0: .4byte 0x00004D94
+.LNewGameDE_08006EF4: .4byte 0x00004D78
+
+    .else
     push {r4, r5, r6, r7, lr}
     sub sp, #4
     adds r4, r0, #0
@@ -6993,6 +9063,7 @@ func_08006CDC: @ 0x08006CDC
     .align 2, 0
 .L08006ED0: .4byte 0x00004610
 .L08006ED4: .4byte 0x000045F4
+    .endif
 
     thumb_func_start func_08006ED8
 func_08006ED8: @ 0x08006ED8
@@ -7051,9 +9122,24 @@ func_08006ED8: @ 0x08006ED8
     ldr r0, [r0]
     mov pc, r0
     .align 2, 0
-.L08006F50: .4byte 0x0000463C
-.L08006F54: .4byte 0x000045F8
-.L08006F58: .4byte 0x000045F0
+.L08006F50:
+    .ifdef REGION_DE
+    .4byte 0x00004DC0
+    .else
+    .4byte 0x0000463C
+    .endif
+.L08006F54:
+    .ifdef REGION_DE
+    .4byte 0x00004D7C
+    .else
+    .4byte 0x000045F8
+    .endif
+.L08006F58:
+    .ifdef REGION_DE
+    .4byte 0x00004D74
+    .else
+    .4byte 0x000045F0
+    .endif
 .L08006F5C: .4byte .L08006F60
 .L08006F60: @ jump table
     .4byte .L08006F7C @ case 0
@@ -7098,12 +9184,42 @@ func_08006ED8: @ 0x08006ED8
     bl func_08050D5C
     b .L08007064
     .align 2, 0
-.L08006FC0: .4byte 0x00004638
-.L08006FC4: .4byte 0x0000463C
-.L08006FC8: .4byte 0x00004639
-.L08006FCC: .4byte 0x00004636
-.L08006FD0: .4byte 0x0000461C
-.L08006FD4: .4byte 0x000045F8
+.L08006FC0:
+    .ifdef REGION_DE
+    .4byte 0x00004DBC
+    .else
+    .4byte 0x00004638
+    .endif
+.L08006FC4:
+    .ifdef REGION_DE
+    .4byte 0x00004DC0
+    .else
+    .4byte 0x0000463C
+    .endif
+.L08006FC8:
+    .ifdef REGION_DE
+    .4byte 0x00004DBD
+    .else
+    .4byte 0x00004639
+    .endif
+.L08006FCC:
+    .ifdef REGION_DE
+    .4byte 0x00004DBA
+    .else
+    .4byte 0x00004636
+    .endif
+.L08006FD0:
+    .ifdef REGION_DE
+    .4byte 0x00004DA0
+    .else
+    .4byte 0x0000461C
+    .endif
+.L08006FD4:
+    .ifdef REGION_DE
+    .4byte 0x00004D7C
+    .else
+    .4byte 0x000045F8
+    .endif
 .L08006FD8:
     cmp r6, #5
     bgt .L08006FE6
@@ -7122,7 +9238,12 @@ func_08006ED8: @ 0x08006ED8
     bl func_08050D74
     b .L08007064
     .align 2, 0
-.L08006FF8: .4byte 0x000045F8
+.L08006FF8:
+    .ifdef REGION_DE
+    .4byte 0x00004D7C
+    .else
+    .4byte 0x000045F8
+    .endif
 .L08006FFC:
     ldr r1, .L08007020 @ =0x0000463C
     adds r0, r7, r1
@@ -7142,8 +9263,18 @@ func_08006ED8: @ 0x08006ED8
     bl func_08050E30
     b .L08007064
     .align 2, 0
-.L08007020: .4byte 0x0000463C
-.L08007024: .4byte 0x000045F8
+.L08007020:
+    .ifdef REGION_DE
+    .4byte 0x00004DC0
+    .else
+    .4byte 0x0000463C
+    .endif
+.L08007024:
+    .ifdef REGION_DE
+    .4byte 0x00004D7C
+    .else
+    .4byte 0x000045F8
+    .endif
 .L08007028: .4byte gText_NewGameNameEntry_Confirm
 .L0800702C: .4byte gText_NewGameNameEntry_Yes
 .L08007030: .4byte gText_NewGameNameEntry_No
@@ -7159,14 +9290,24 @@ func_08006ED8: @ 0x08006ED8
     beq .L0800705C
     b .L08007064
     .align 2, 0
-.L0800704C: .4byte 0x000045F8
+.L0800704C:
+    .ifdef REGION_DE
+    .4byte 0x00004D7C
+    .else
+    .4byte 0x000045F8
+    .endif
 .L08007050:
     ldr r1, .L08007058 @ =0x00004639
     adds r0, r7, r1
     strb r2, [r0]
     b .L08007064
     .align 2, 0
-.L08007058: .4byte 0x00004639
+.L08007058:
+    .ifdef REGION_DE
+    .4byte 0x00004DBD
+    .else
+    .4byte 0x00004639
+    .endif
 .L0800705C:
     ldr r2, .L08007074 @ =0x00004638
     adds r1, r7, r2
@@ -7182,7 +9323,12 @@ func_08006ED8: @ 0x08006ED8
     pop {r0}
     bx r0
     .align 2, 0
-.L08007074: .4byte 0x00004638
+.L08007074:
+    .ifdef REGION_DE
+    .4byte 0x00004DBC
+    .else
+    .4byte 0x00004638
+    .endif
 
     thumb_func_start func_08007078
 func_08007078: @ 0x08007078
@@ -7204,7 +9350,12 @@ func_08007078: @ 0x08007078
     bx r1
     .align 2, 0
 .L0800709C: .4byte vtable_unk_080E5AC0
-.L080070A0: .4byte 0x00004640
+.L080070A0:
+    .ifdef REGION_DE
+    .4byte 0x00004DC4
+    .else
+    .4byte 0x00004640
+    .endif
 
     thumb_func_start func_080070A4
 func_080070A4: @ 0x080070A4
@@ -7270,8 +9421,21 @@ func_08007110: @ 0x08007110
     adds r0, r0, r1
     bx lr
     .align 2, 0
-.L08007118: .4byte 0x0000461C
+.L08007118:
+    .ifdef REGION_DE
+    .4byte 0x00004DA0
+    .else
+    .4byte 0x0000461C
+    .endif
 .L0800711C:
-    .byte 0x01, 0x49, 0x40, 0x18
-    .byte 0x70, 0x47, 0x00, 0x00, 0x1C, 0x46, 0x00, 0x00
+    ldr r1, .L08007128
+    adds r0, r0, r1
+    bx lr
+    .align 2, 0
+.L08007128:
+    .ifdef REGION_DE
+    .4byte 0x00004DA0
+    .else
+    .4byte 0x0000461C
+    .endif
     .endif

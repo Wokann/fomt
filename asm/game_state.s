@@ -10527,12 +10527,16 @@ func_08014D9C: @ 0x08014D9C
     .else
     ldr r0, .L08015204 @ =gText_AnimalMemorial_PrayerEnding
     .endif
-    mov r8, r0
-    adds r0, r6, #0
-    bl strlen
-    adds r7, r6, r0
-    ldr r1, .L08015208 @ =0x00000383
-    subs r5, r1, r0
+	mov r8, r0
+	adds r0, r6, #0
+	bl strlen
+	adds r7, r6, r0
+	.ifdef REGION_DE
+	ldr r1, .L08015120 @ =0x00000383
+	.else
+	ldr r1, .L08015208 @ =0x00000383
+	.endif
+	subs r5, r1, r0
     cmp r5, #0
     beq .L0801517E
     mov r0, r8
@@ -28241,103 +28245,301 @@ func_0801FD6C: @ 0x0801FD6C
     bx r0
 
     @ Game-object virtual-table entries that begin within retained raw code.
+    @ The DE code block has a verified 0x10C-byte layout reduction before
+    @ these entries, so each exported target names its real DE entry point.
     .global func_0801FD58
+    .ifdef REGION_DE
+    .thumb_set func_0801FD58, func_08011DC4 + 0xDE88
+    .else
     .thumb_set func_0801FD58, func_08011DC4 + 0xDF94
+    .endif
     .global func_0801FD50
+    .ifdef REGION_DE
+    .thumb_set func_0801FD50, func_08011DC4 + 0xDE80
+    .else
     .thumb_set func_0801FD50, func_08011DC4 + 0xDF8C
+    .endif
     .global func_0801FD48
+    .ifdef REGION_DE
+    .thumb_set func_0801FD48, func_08011DC4 + 0xDE78
+    .else
     .thumb_set func_0801FD48, func_08011DC4 + 0xDF84
+    .endif
     .global func_0801FD00
+    .ifdef REGION_DE
+    .thumb_set func_0801FD00, func_08011DC4 + 0xDE30
+    .else
     .thumb_set func_0801FD00, func_08011DC4 + 0xDF3C
+    .endif
     .global func_0801FCF4
+    .ifdef REGION_DE
+    .thumb_set func_0801FCF4, func_08011DC4 + 0xDE24
+    .else
     .thumb_set func_0801FCF4, func_08011DC4 + 0xDF30
+    .endif
     .global func_0801B5C0
+    .ifdef REGION_DE
+    .thumb_set func_0801B5C0, func_08011DC4 + 0x96F0
+    .else
     .thumb_set func_0801B5C0, func_08011DC4 + 0x97FC
+    .endif
     .global func_0801FCDC
+    .ifdef REGION_DE
+    .thumb_set func_0801FCDC, func_08011DC4 + 0xDE0C
+    .else
     .thumb_set func_0801FCDC, func_08011DC4 + 0xDF18
+    .endif
     .global func_0801FCB4
+    .ifdef REGION_DE
+    .thumb_set func_0801FCB4, func_08011DC4 + 0xDDE4
+    .else
     .thumb_set func_0801FCB4, func_08011DC4 + 0xDEF0
+    .endif
     .global func_0801B9E8
+    .ifdef REGION_DE
+    .thumb_set func_0801B9E8, func_08011DC4 + 0x9B18
+    .else
     .thumb_set func_0801B9E8, func_08011DC4 + 0x9C24
+    .endif
     .global func_0801FD30
+    .ifdef REGION_DE
+    .thumb_set func_0801FD30, func_08011DC4 + 0xDE60
+    .else
     .thumb_set func_0801FD30, func_08011DC4 + 0xDF6C
+    .endif
     .global func_0801FC54
+    .ifdef REGION_DE
+    .thumb_set func_0801FC54, func_08011DC4 + 0xDD84
+    .else
     .thumb_set func_0801FC54, func_08011DC4 + 0xDE90
+    .endif
     .global func_0801FC48
+    .ifdef REGION_DE
+    .thumb_set func_0801FC48, func_08011DC4 + 0xDD78
+    .else
     .thumb_set func_0801FC48, func_08011DC4 + 0xDE84
+    .endif
     .global func_0801FC60
+    .ifdef REGION_DE
+    .thumb_set func_0801FC60, func_08011DC4 + 0xDD90
+    .else
     .thumb_set func_0801FC60, func_08011DC4 + 0xDE9C
+    .endif
     .global func_0801FC6C
+    .ifdef REGION_DE
+    .thumb_set func_0801FC6C, func_08011DC4 + 0xDD9C
+    .else
     .thumb_set func_0801FC6C, func_08011DC4 + 0xDEA8
+    .endif
     .global func_0801FC3C
+    .ifdef REGION_DE
+    .thumb_set func_0801FC3C, func_08011DC4 + 0xDD6C
+    .else
     .thumb_set func_0801FC3C, func_08011DC4 + 0xDE78
+    .endif
     .global func_0801FC0C
+    .ifdef REGION_DE
+    .thumb_set func_0801FC0C, func_08011DC4 + 0xDD3C
+    .else
     .thumb_set func_0801FC0C, func_08011DC4 + 0xDE48
+    .endif
     .global func_0801FC00
+    .ifdef REGION_DE
+    .thumb_set func_0801FC00, func_08011DC4 + 0xDD30
+    .else
     .thumb_set func_0801FC00, func_08011DC4 + 0xDE3C
+    .endif
     .global func_0801FBF4
+    .ifdef REGION_DE
+    .thumb_set func_0801FBF4, func_08011DC4 + 0xDD24
+    .else
     .thumb_set func_0801FBF4, func_08011DC4 + 0xDE30
+    .endif
     .global func_0801FBE8
+    .ifdef REGION_DE
+    .thumb_set func_0801FBE8, func_08011DC4 + 0xDD18
+    .else
     .thumb_set func_0801FBE8, func_08011DC4 + 0xDE24
+    .endif
     .global func_0801DD3C
+    .ifdef REGION_DE
+    .thumb_set func_0801DD3C, func_08011DC4 + 0xBE6C
+    .else
     .thumb_set func_0801DD3C, func_08011DC4 + 0xBF78
+    .endif
     .global func_0801DD48
+    .ifdef REGION_DE
+    .thumb_set func_0801DD48, func_08011DC4 + 0xBE78
+    .else
     .thumb_set func_0801DD48, func_08011DC4 + 0xBF84
+    .endif
     .global func_0801DD54
+    .ifdef REGION_DE
+    .thumb_set func_0801DD54, func_08011DC4 + 0xBE84
+    .else
     .thumb_set func_0801DD54, func_08011DC4 + 0xBF90
+    .endif
     .global func_0801DD60
+    .ifdef REGION_DE
+    .thumb_set func_0801DD60, func_08011DC4 + 0xBE90
+    .else
     .thumb_set func_0801DD60, func_08011DC4 + 0xBF9C
+    .endif
     .global func_0801DD6C
+    .ifdef REGION_DE
+    .thumb_set func_0801DD6C, func_08011DC4 + 0xBE9C
+    .else
     .thumb_set func_0801DD6C, func_08011DC4 + 0xBFA8
+    .endif
     .global func_0801DD84
+    .ifdef REGION_DE
+    .thumb_set func_0801DD84, func_08011DC4 + 0xBEB4
+    .else
     .thumb_set func_0801DD84, func_08011DC4 + 0xBFC0
+    .endif
     .global func_0801DE54
+    .ifdef REGION_DE
+    .thumb_set func_0801DE54, func_08011DC4 + 0xBF84
+    .else
     .thumb_set func_0801DE54, func_08011DC4 + 0xC090
+    .endif
     .global func_0801CA1C
+    .ifdef REGION_DE
+    .thumb_set func_0801CA1C, func_08011DC4 + 0xAB4C
+    .else
     .thumb_set func_0801CA1C, func_08011DC4 + 0xAC58
+    .endif
     .global func_0801C49C
+    .ifdef REGION_DE
+    .thumb_set func_0801C49C, func_08011DC4 + 0xA5CC
+    .else
     .thumb_set func_0801C49C, func_08011DC4 + 0xA6D8
+    .endif
     .global func_0801CAD8
+    .ifdef REGION_DE
+    .thumb_set func_0801CAD8, func_08011DC4 + 0xAC08
+    .else
     .thumb_set func_0801CAD8, func_08011DC4 + 0xAD14
+    .endif
     .global func_0801CEFC
+    .ifdef REGION_DE
+    .thumb_set func_0801CEFC, func_08011DC4 + 0xB02C
+    .else
     .thumb_set func_0801CEFC, func_08011DC4 + 0xB138
+    .endif
     .global func_0801D23C
+    .ifdef REGION_DE
+    .thumb_set func_0801D23C, func_08011DC4 + 0xB36C
+    .else
     .thumb_set func_0801D23C, func_08011DC4 + 0xB478
+    .endif
     .global func_0801D3FC
+    .ifdef REGION_DE
+    .thumb_set func_0801D3FC, func_08011DC4 + 0xB52C
+    .else
     .thumb_set func_0801D3FC, func_08011DC4 + 0xB638
+    .endif
     .global func_0801D4E0
+    .ifdef REGION_DE
+    .thumb_set func_0801D4E0, func_08011DC4 + 0xB610
+    .else
     .thumb_set func_0801D4E0, func_08011DC4 + 0xB71C
+    .endif
     .global func_0801D5BC
+    .ifdef REGION_DE
+    .thumb_set func_0801D5BC, func_08011DC4 + 0xB6EC
+    .else
     .thumb_set func_0801D5BC, func_08011DC4 + 0xB7F8
+    .endif
     .global func_0801D7B0
+    .ifdef REGION_DE
+    .thumb_set func_0801D7B0, func_08011DC4 + 0xB8E0
+    .else
     .thumb_set func_0801D7B0, func_08011DC4 + 0xB9EC
+    .endif
     .global func_0801D88C
+    .ifdef REGION_DE
+    .thumb_set func_0801D88C, func_08011DC4 + 0xB9BC
+    .else
     .thumb_set func_0801D88C, func_08011DC4 + 0xBAC8
+    .endif
     .global func_0801CBB0
+    .ifdef REGION_DE
+    .thumb_set func_0801CBB0, func_08011DC4 + 0xACE0
+    .else
     .thumb_set func_0801CBB0, func_08011DC4 + 0xADEC
+    .endif
     .global func_0801CFB8
+    .ifdef REGION_DE
+    .thumb_set func_0801CFB8, func_08011DC4 + 0xB0E8
+    .else
     .thumb_set func_0801CFB8, func_08011DC4 + 0xB1F4
+    .endif
     .global func_0801C3DC
+    .ifdef REGION_DE
+    .thumb_set func_0801C3DC, func_08011DC4 + 0xA50C
+    .else
     .thumb_set func_0801C3DC, func_08011DC4 + 0xA618
+    .endif
     .global func_0801C3E0
+    .ifdef REGION_DE
+    .thumb_set func_0801C3E0, func_08011DC4 + 0xA510
+    .else
     .thumb_set func_0801C3E0, func_08011DC4 + 0xA61C
+    .endif
     .global func_0801DE30
+    .ifdef REGION_DE
+    .thumb_set func_0801DE30, func_08011DC4 + 0xBF60
+    .else
     .thumb_set func_0801DE30, func_08011DC4 + 0xC06C
+    .endif
     .global func_0801B498
+    .ifdef REGION_DE
+    .thumb_set func_0801B498, func_08011DC4 + 0x95C8
+    .else
     .thumb_set func_0801B498, func_08011DC4 + 0x96D4
+    .endif
     .global func_0801E084
+    .ifdef REGION_DE
+    .thumb_set func_0801E084, func_08011DC4 + 0xC1B4
+    .else
     .thumb_set func_0801E084, func_08011DC4 + 0xC2C0
+    .endif
     .global func_0801C0E0
+    .ifdef REGION_DE
+    .thumb_set func_0801C0E0, func_08011DC4 + 0xA210
+    .else
     .thumb_set func_0801C0E0, func_08011DC4 + 0xA31C
+    .endif
     .global func_0801FCA4
+    .ifdef REGION_DE
+    .thumb_set func_0801FCA4, func_08011DC4 + 0xDDD4
+    .else
     .thumb_set func_0801FCA4, func_08011DC4 + 0xDEE0
+    .endif
     .global func_0801D9BC
+    .ifdef REGION_DE
+    .thumb_set func_0801D9BC, func_08011DC4 + 0xBAEC
+    .else
     .thumb_set func_0801D9BC, func_08011DC4 + 0xBBF8
+    .endif
     .global func_0801F518
+    .ifdef REGION_DE
+    .thumb_set func_0801F518, func_08011DC4 + 0xD648
+    .else
     .thumb_set func_0801F518, func_08011DC4 + 0xD754
+    .endif
     .global func_0801C550
+    .ifdef REGION_DE
+    .thumb_set func_0801C550, func_08011DC4 + 0xA680
+    .else
     .thumb_set func_0801C550, func_08011DC4 + 0xA78C
+    .endif
     .global func_0801C69C
+    .ifdef REGION_DE
+    .thumb_set func_0801C69C, func_08011DC4 + 0xA7CC
+    .else
     .thumb_set func_0801C69C, func_08011DC4 + 0xA8D8
+    .endif
 
     .endif

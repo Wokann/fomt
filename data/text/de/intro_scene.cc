@@ -4,91 +4,92 @@
 // load these named strings directly from code literal pools.
 
 char const gText_IntroScene_MotherName[] =
-    "Mother";
+    "Mutter";
 
 char const gText_IntroScene_MotherTravelGreeting[] ALIGN(4) =
     "\p"
-    "What about it, \xFF?\r\n"
-    "Aren't you glad you came \r\n"
-    "on the trip?{Press}";
+    "Was ist damit, \xFF\x3F\r\n"
+    "Freust du dich nicht, dass \r\n"
+    "du mitgekommen bist?{Press}";
 
 char const gText_IntroScene_FatherName[] ALIGN(4) =
-    "Father";
+    "Vater";
 
 char const gText_IntroScene_FatherFishingInvitation[] ALIGN(4) =
     "\p"
-    "I'm glad for the vacation,\r\n"
-    "too.  Hey, want to go \r\n"
-    "fishing in the river?{Press}";
+    "Ich bin auch froh über\r\n"
+    "den Urlaub. Willst du am\r\n"
+    "Fluss angeln gehen?{Press}";
 
 char const gText_IntroScene_MotherCannotFindPlayer[] ALIGN(4) =
     "\p"
-    "\xFF?{Press}"
-    "\p"
-    "Oh, dear! I can't find \r\n"
-    "{Player}{Press}";
+    "\xFF\x3F{Press}\p"
+    "Mensch! Ich kann \r\n"
+    "\xFF\x20nicht finden!{Press}";
 
 char const gText_IntroScene_PlayerResponseWhat[] ALIGN(4) =
     "\p"
-    "What...?{Press}";
+    "Was...?{Press}";
 
 char const gText_IntroScene_OldManName[] ALIGN(4) =
-    "Old Man";
+    "Alter Mann";
 
 char const gText_IntroScene_OldManFindsPlayer[] ALIGN(4) =
     "\p"
-    "Hey, young man. \r\n"
-    "Why are you crying?\r\n"
-    "Did you get lost?{Press}\r\n"
-    "What's this? Is that your\r\n"
-    "phone number on your bag?{Press}\r\n"
-    "Let's call your parents.{Press}";
+    "Hey, kleiner Mann,\r\n"
+    "warum weinst du?{Press}\p"
+    "Hast du\r\n"
+    "dich verlaufen?{Press}\r\n"
+    "Was ist das? Eine Telefon- \r\n"
+    "nummer auf deinem Rucksack?{Press}\r\n"
+    "Lass uns anrufen.{Press}";
 
 char const gText_IntroScene_MotherThanksOldMan[] ALIGN(4) =
     "\p"
-    "Thank you so much for \r\n"
-    "helping us find our son!{Press}";
+    "Vielen Dank, dass du \r\n"
+    "uns geholfen hast,\r\n"
+    "unseren Sohn zu finden!{Press}";
 
 char const gText_IntroScene_FatherExplainsVacation[] ALIGN(4) =
     "\p"
-    "We live in the city, but we\r\n"
-    "wanted to show our son the\r\n"
-    "country on this trip.{Press}";
+    "Wir wohnen in der Stadt, auf\r\n"
+    "diesem Ausflug wollten wir\r\n"
+    "unserem Sohn das{Press}\r\n"
+    "Landleben zeigen.{Press}";
 
 char const gText_IntroScene_OldManOffersStay[] ALIGN(4) =
     "\p"
-    "Is that so? {Press}"
-    "\p"
-    "In that case, why not come\r\n"
-    "spend a few days \r\n"
-    "on my farm?{Press}";
+    "Tatsächlich? {Press}\p"
+    "Wenn das so ist, warum\r\n"
+    "kommt ihr nicht mit und\r\n"
+    "verbringt ein paar Tage{Press}\r\n"
+    "auf meiner Farm?{Press}";
 
 char const gText_IntroScene_FatherAsksAboutStay[] ALIGN(4) =
     "\p"
-    "You really mean it?{Press}";
+    "Im Ernst?{Press}";
 
 char const gText_IntroScene_OldManWelcomesFamily[] ALIGN(4) =
     "\p"
-    "Sure! I live alone, so you\r\n"
-    "wouldn't bother anybody.\r\n"
-    "I'd love the company.{Press}";
+    "Ja! Ich wohne allein, ihr \r\n"
+    "stört niemanden.\r\n"
+    "Ich würde mich über{Press}\r\n"
+    "Gesellschaft freuen.{Press}";
 
 char const gText_IntroScene_MotherTellsPlayerToPlay[] ALIGN(4) =
     "\p"
-    "Isn't this great, \r\n"
-    "\xFF?{Press}\r\n"
-    "Now you'll have a whole\r\n"
-    "farm to play on!{Press}";
+    "Ist das nicht toll, \r\n"
+    "\xFF\x3F{Press}\r\n"
+    "Dann hast du die ganze Farm\r\n"
+    "zum Spielen!{Press}";
 
 char const gText_IntroScene_UnknownName[] ALIGN(4) =
     "???";
 
 char const gText_IntroScene_UnknownCallsPlayer[] ALIGN(4) =
     "\p"
-    "y...{Press}"
-    "\p"
-    "ey...{Press}"
-    "\p"
+    "y...{Press}\p"
+    "ey...{Press}\p"
     "Hey.{Press}";
 
 char const gText_IntroScene_UnknownFindsPlayer[] ALIGN(4) =
@@ -96,68 +97,68 @@ char const gText_IntroScene_UnknownFindsPlayer[] ALIGN(4) =
     "！{Press}";
 
 char const gText_IntroScene_GirlName[] ALIGN(4) =
-    "Girl";
+    "Mädchen";
 
 char const gText_IntroScene_GirlThinksPlayerDead[] ALIGN(4) =
     "\p"
-    "You were so quiet that\r\n"
-    "I thought you were dead!{Press}";
+    "Du warst so still, \r\n"
+    "ich dachte, du wärst tot!{Press}";
 
 char const gText_IntroScene_GirlInvitesPlayerToPlay[] ALIGN(4) =
     "\p"
-    "This is perfect. I was \r\n"
-    "looking for someone to\r\n"
-    "play together. {Press}\r\n"
-    "I guess you'll do. {Press}";
+    "Das ist perfekt. \r\n"
+    "Ich habe jemanden\r\n"
+    "zum Spielen gesucht. {Press}\r\n"
+    "Denke, du bist gut dafür. {Press}";
 
 char const gText_IntroScene_GirlAsksPlayerStory[] ALIGN(4) =
     "\p"
-    "It's no fun if you just sit\r\n"
-    "there and say nothing!{Press}"
-    "\p"
-    "Why don't you tell me about\r\n"
-    "yourself?{Press}";
+    "Es macht keinen Spaß, wenn\r\n"
+    "du nur stumm da sitzt!{Press}\p"
+    "Warum erzählst du mir\r\n"
+    "nichts über dich? \r\n"
+    "Ich bin neugierig.{Press}";
 
 char const gText_IntroScene_OldManFarewell[] ALIGN(4) =
     "\p"
-    "Did you have fun?{Press}"
-    "\p"
-    "I sure had fun with you.\r\n"
-    "I don't have any grandkids \r\n"
-    "of my own, you know...{Press}"
-    "\p"
-    "Well, you have to go now.\r\n"
-    "Farewell!...{Press}";
+    "Hattest du Spaß?{Press}\p"
+    "Ich hatte auf jeden Fall\r\n"
+    "Spaß mit dir.\r\n"
+    "Ich selber habe keine{Press}\r\n"
+    "Enkelkinder, weißt du...{Press}\p"
+    "Na ja, du musst nun gehen.\r\n"
+    "Mach es gut!...{Press}";
 
 char const gText_IntroScene_OldManRequestsLetter[] ALIGN(4) =
     "\p"
-    "Is there any chance of you\r\n"
-    "writing an old man a letter\r\n"
-    "once in a while...?{Press}";
+    "Meinst du, dass du einem\r\n"
+    "alten Mann mal einen Brief\r\n"
+    "schrieben könntest...?{Press}";
 
 char const gText_IntroScene_OldManGivesAddress[] ALIGN(4) =
     "\p"
-    "Really? \r\n"
-    "Here's my address, then.{Press}";
+    "Wirklich? \r\n"
+    "Hier ist meine Adresse.{Press}";
 
 char const gText_IntroScene_GirlSaysGoodbye[] ALIGN(4) =
     "\p"
-    "You're leaving already?{Press}";
+    "Du gehst schon?{Press}";
 
 char const gText_IntroScene_GirlAsksPlayerToReturn[] ALIGN(4) =
     "\p"
-    "If you go, I'll be bored\r\n"
-    "and lonely again...{Press}"
-    "\p"
-    "You HAVE to come back, OK?{Press}";
+    "Wenn du gehst, ist mir\r\n"
+    "langweilig und ich bin\r\n"
+    "allein. Du MUSST{Press}\p"
+    "zurückkommen, OK?{Press}";
 
 char const gText_IntroScene_OldManNotesFriend[] ALIGN(4) =
     "\p"
-    "Looks like you've made \r\n"
-    "a friend! Just one more \r\n"
-    "reason to return, I guess.{Press}";
+    "Sieht aus, als hättest du \r\n"
+    "einen Freund gefunden! \r\n"
+    "Nur ein weiterer Grund, um{Press}\r\n"
+    "zurückzukommen...{Press}";
 
 char const gText_IntroScene_OldManWaitsForLetter[] ALIGN(4) =
     "\p"
-    "I'll be waiting for \r\n"
-    "your letter...{Press}";
+    "Ich warte auf deinen \r\n"
+    "Brief!...{Press}";

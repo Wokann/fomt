@@ -41,6 +41,21 @@ extern u8 const gUnk_082B311C[];
 extern u8 const gUnk_082B317C[];
 extern u8 const gUnk_082B39F0[];
 extern u8 const gUnk_082B3A8C[];
+#elif defined(REGION_DE)
+extern u8 const gUnk_082B0BB4[];
+extern u8 const gUnk_082B0C14[];
+extern u8 const gUnk_082B0D08[];
+extern u8 const gUnk_082B0DB0[];
+extern u8 const gUnk_082B0E10[];
+extern u8 const gUnk_082B1684[];
+extern u8 const gUnk_082B1720[];
+extern u8 const gUnk_082B3E60[];
+extern u8 const gUnk_082B3EC0[];
+extern u8 const gUnk_082B3FB4[];
+extern u8 const gUnk_082B405C[];
+extern u8 const gUnk_082B40BC[];
+extern u8 const gUnk_082B4930[];
+extern u8 const gUnk_082B49CC[];
 #else
 extern u8 const gUnk_08529B18[];
 extern u8 const gUnk_08529B78[];

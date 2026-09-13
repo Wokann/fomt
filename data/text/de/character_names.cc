@@ -94,7 +94,7 @@ char const gText_CharacterName_Gourmet[] =
     "Gourmet";
 
 char const gText_CharacterName_HarvestGoddess[] =
-    "H. Goddess";
+    "Erntegöttin";
 
 char const gText_CharacterName_Kappa[] =
     "Kappa";

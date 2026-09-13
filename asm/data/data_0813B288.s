@@ -1696,7 +1696,10 @@ gActorStateGridCellType4Data:
     .LDATA_BEG = 0x13B2E0
 
 us_data_0813b288_start:
-	.incbin "baserom_eu.gba", (.LDATA_BEG), (0x4F9130 - .LDATA_BEG)
+	.incbin "baserom_eu.gba", (.LDATA_BEG), (0x4F9128 - .LDATA_BEG)
+	.global gFontSingleWidthGlyphData
+gFontSingleWidthGlyphData:
+	.incbin "baserom_eu.gba", 0x4F9128, (0x4F9130 - 0x4F9128)
     .else
     .ifdef REGION_DE
     .LDATA_BEG = 0x13D308
@@ -2218,6 +2221,8 @@ us_data_0813b288_start:
     .global gM4aWaveData_105
     .set gM4aWaveData_105, us_data_0813b288_start + 0x15BAF4
 
+	.ifndef REGION_DE
+	.ifndef REGION_DE
 	@ Region-neutral labels for FarmHouse tile-patch source payloads.
 	@ The payload layouts remain raw; src/farm_house.cc owns their typed
 	@ descriptor tables.
@@ -2347,553 +2352,1102 @@ us_data_0813b288_start:
 	.global gUnk_FarmHouseVisualResource_042
 	.set gUnk_FarmHouseVisualResource_042, us_data_0813b288_start + 0x5B3844
 
+	.endif
+
+	.endif
+
 	@ Region-neutral labels for gMapData raw resource targets.
 	@ Their payload types are not decoded yet.
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_092
 	.set gUnk_MapDataResource_092, us_data_0813b288_start + 0x53EE60
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_093
 	.set gUnk_MapDataResource_093, us_data_0813b288_start + 0x54399C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_095
 	.set gUnk_MapDataResource_095, us_data_0813b288_start + 0x543A94
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_096
 	.set gUnk_MapDataResource_096, us_data_0813b288_start + 0x545788
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_097
 	.set gUnk_MapDataResource_097, us_data_0813b288_start + 0x5463F4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_094
 	.set gUnk_MapDataResource_094, us_data_0813b288_start + 0x546BCC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_100
 	.set gUnk_MapDataResource_100, us_data_0813b288_start + 0x546CA4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_101
 	.set gUnk_MapDataResource_101, us_data_0813b288_start + 0x54BCA4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_103
 	.set gUnk_MapDataResource_103, us_data_0813b288_start + 0x54BD9C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_104
 	.set gUnk_MapDataResource_104, us_data_0813b288_start + 0x54DB1C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_105
 	.set gUnk_MapDataResource_105, us_data_0813b288_start + 0x54E784
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_102
 	.set gUnk_MapDataResource_102, us_data_0813b288_start + 0x54EEF4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_244
 	.set gUnk_MapDataResource_244, us_data_0813b288_start + 0x54EFC8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_245
 	.set gUnk_MapDataResource_245, us_data_0813b288_start + 0x54F1D4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_246
 	.set gUnk_MapDataResource_246, us_data_0813b288_start + 0x54F32C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_056
 	.set gUnk_MapDataResource_056, us_data_0813b288_start + 0x54F3B4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_057
 	.set gUnk_MapDataResource_057, us_data_0813b288_start + 0x552484
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_059
 	.set gUnk_MapDataResource_059, us_data_0813b288_start + 0x552564
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_060
 	.set gUnk_MapDataResource_060, us_data_0813b288_start + 0x552C80
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_061
 	.set gUnk_MapDataResource_061, us_data_0813b288_start + 0x552EE0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_058
 	.set gUnk_MapDataResource_058, us_data_0813b288_start + 0x552F5C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_064
 	.set gUnk_MapDataResource_064, us_data_0813b288_start + 0x553040
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_065
 	.set gUnk_MapDataResource_065, us_data_0813b288_start + 0x555614
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_067
 	.set gUnk_MapDataResource_067, us_data_0813b288_start + 0x5556EC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_068
 	.set gUnk_MapDataResource_068, us_data_0813b288_start + 0x555DF0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_069
 	.set gUnk_MapDataResource_069, us_data_0813b288_start + 0x556014
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_066
 	.set gUnk_MapDataResource_066, us_data_0813b288_start + 0x556080
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_222
 	.set gUnk_MapDataResource_222, us_data_0813b288_start + 0x55614C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_223
 	.set gUnk_MapDataResource_223, us_data_0813b288_start + 0x557A04
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_268
 	.set gUnk_MapDataResource_268, us_data_0813b288_start + 0x557B28
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_269
 	.set gUnk_MapDataResource_269, us_data_0813b288_start + 0x557D7C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_270
 	.set gUnk_MapDataResource_270, us_data_0813b288_start + 0x557EB0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_273
 	.set gUnk_MapDataResource_273, us_data_0813b288_start + 0x557F84
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_274
 	.set gUnk_MapDataResource_274, us_data_0813b288_start + 0x5581A4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_275
 	.set gUnk_MapDataResource_275, us_data_0813b288_start + 0x558318
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_266
 	.set gUnk_MapDataResource_266, us_data_0813b288_start + 0x5583A8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_267
 	.set gUnk_MapDataResource_267, us_data_0813b288_start + 0x55A920
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_195
 	.set gUnk_MapDataResource_195, us_data_0813b288_start + 0x55AA28
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_196
 	.set gUnk_MapDataResource_196, us_data_0813b288_start + 0x55AD48
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_197
 	.set gUnk_MapDataResource_197, us_data_0813b288_start + 0x55AE4C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_321
 	.set gUnk_MapDataResource_321, us_data_0813b288_start + 0x55AF38
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_322
 	.set gUnk_MapDataResource_322, us_data_0813b288_start + 0x55C540
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_178
 	.set gUnk_MapDataResource_178, us_data_0813b288_start + 0x560130
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_179
 	.set gUnk_MapDataResource_179, us_data_0813b288_start + 0x560284
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_180
 	.set gUnk_MapDataResource_180, us_data_0813b288_start + 0x5603D4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_000
 	.set gUnk_MapDataResource_000, us_data_0813b288_start + 0x5604A8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_001
 	.set gUnk_MapDataResource_001, us_data_0813b288_start + 0x564058
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_003
 	.set gUnk_MapDataResource_003, us_data_0813b288_start + 0x56414C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_004
 	.set gUnk_MapDataResource_004, us_data_0813b288_start + 0x5648F8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_005
 	.set gUnk_MapDataResource_005, us_data_0813b288_start + 0x564D80
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_002
 	.set gUnk_MapDataResource_002, us_data_0813b288_start + 0x564E10
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_008
 	.set gUnk_MapDataResource_008, us_data_0813b288_start + 0x564F04
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_009
 	.set gUnk_MapDataResource_009, us_data_0813b288_start + 0x568CC0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_011
 	.set gUnk_MapDataResource_011, us_data_0813b288_start + 0x568DA4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_012
 	.set gUnk_MapDataResource_012, us_data_0813b288_start + 0x5696C8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_013
 	.set gUnk_MapDataResource_013, us_data_0813b288_start + 0x569B7C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_010
 	.set gUnk_MapDataResource_010, us_data_0813b288_start + 0x569C10
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_070
 	.set gUnk_MapDataResource_070, us_data_0813b288_start + 0x569CE4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_071
 	.set gUnk_MapDataResource_071, us_data_0813b288_start + 0x56D660
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_084
 	.set gUnk_MapDataResource_084, us_data_0813b288_start + 0x56D72C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_085
 	.set gUnk_MapDataResource_085, us_data_0813b288_start + 0x56E1AC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_086
 	.set gUnk_MapDataResource_086, us_data_0813b288_start + 0x56E8A4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_072
 	.set gUnk_MapDataResource_072, us_data_0813b288_start + 0x56EDEC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_078
 	.set gUnk_MapDataResource_078, us_data_0813b288_start + 0x56EEA8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_079
 	.set gUnk_MapDataResource_079, us_data_0813b288_start + 0x572800
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_089
 	.set gUnk_MapDataResource_089, us_data_0813b288_start + 0x5728C8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_090
 	.set gUnk_MapDataResource_090, us_data_0813b288_start + 0x573454
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_091
 	.set gUnk_MapDataResource_091, us_data_0813b288_start + 0x573AB4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_080
 	.set gUnk_MapDataResource_080, us_data_0813b288_start + 0x573FEC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_309
 	.set gUnk_MapDataResource_309, us_data_0813b288_start + 0x5740A4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_310
 	.set gUnk_MapDataResource_310, us_data_0813b288_start + 0x574298
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_311
 	.set gUnk_MapDataResource_311, us_data_0813b288_start + 0x574454
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_168
 	.set gUnk_MapDataResource_168, us_data_0813b288_start + 0x574520
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_169
 	.set gUnk_MapDataResource_169, us_data_0813b288_start + 0x5746EC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_170
 	.set gUnk_MapDataResource_170, us_data_0813b288_start + 0x5748AC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_159
 	.set gUnk_MapDataResource_159, us_data_0813b288_start + 0x574980
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_160
 	.set gUnk_MapDataResource_160, us_data_0813b288_start + 0x57608C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_161
 	.set gUnk_MapDataResource_161, us_data_0813b288_start + 0x576244
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_162
 	.set gUnk_MapDataResource_162, us_data_0813b288_start + 0x5764AC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_163
 	.set gUnk_MapDataResource_163, us_data_0813b288_start + 0x57668C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_229
 	.set gUnk_MapDataResource_229, us_data_0813b288_start + 0x5767A0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_230
 	.set gUnk_MapDataResource_230, us_data_0813b288_start + 0x576A88
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_231
 	.set gUnk_MapDataResource_231, us_data_0813b288_start + 0x576B3C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_224
 	.set gUnk_MapDataResource_224, us_data_0813b288_start + 0x576BDC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_225
 	.set gUnk_MapDataResource_225, us_data_0813b288_start + 0x576E50
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_226
 	.set gUnk_MapDataResource_226, us_data_0813b288_start + 0x576EE0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_323
 	.set gUnk_MapDataResource_323, us_data_0813b288_start + 0x576F74
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_324
 	.set gUnk_MapDataResource_324, us_data_0813b288_start + 0x5770F8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_325
 	.set gUnk_MapDataResource_325, us_data_0813b288_start + 0x5771E4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_185
 	.set gUnk_MapDataResource_185, us_data_0813b288_start + 0x577268
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_186
 	.set gUnk_MapDataResource_186, us_data_0813b288_start + 0x5775B8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_187
 	.set gUnk_MapDataResource_187, us_data_0813b288_start + 0x57779C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_190
 	.set gUnk_MapDataResource_190, us_data_0813b288_start + 0x577914
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_191
 	.set gUnk_MapDataResource_191, us_data_0813b288_start + 0x577B60
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_192
 	.set gUnk_MapDataResource_192, us_data_0813b288_start + 0x577DAC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_183
 	.set gUnk_MapDataResource_183, us_data_0813b288_start + 0x577EF8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_184
 	.set gUnk_MapDataResource_184, us_data_0813b288_start + 0x57B6F4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_144
 	.set gUnk_MapDataResource_144, us_data_0813b288_start + 0x57B86C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_145
 	.set gUnk_MapDataResource_145, us_data_0813b288_start + 0x57BB6C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_146
 	.set gUnk_MapDataResource_146, us_data_0813b288_start + 0x57BD6C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_149
 	.set gUnk_MapDataResource_149, us_data_0813b288_start + 0x57BE98
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_150
 	.set gUnk_MapDataResource_150, us_data_0813b288_start + 0x57C1A0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_151
 	.set gUnk_MapDataResource_151, us_data_0813b288_start + 0x57C4A4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_154
 	.set gUnk_MapDataResource_154, us_data_0813b288_start + 0x57C5D0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_155
 	.set gUnk_MapDataResource_155, us_data_0813b288_start + 0x57C8CC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_156
 	.set gUnk_MapDataResource_156, us_data_0813b288_start + 0x57CB00
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_142
 	.set gUnk_MapDataResource_142, us_data_0813b288_start + 0x57CBF4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_143
 	.set gUnk_MapDataResource_143, us_data_0813b288_start + 0x5801B8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_302
 	.set gUnk_MapDataResource_302, us_data_0813b288_start + 0x580314
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_303
 	.set gUnk_MapDataResource_303, us_data_0813b288_start + 0x581D74
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_212
 	.set gUnk_MapDataResource_212, us_data_0813b288_start + 0x581E88
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_213
 	.set gUnk_MapDataResource_213, us_data_0813b288_start + 0x582040
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_214
 	.set gUnk_MapDataResource_214, us_data_0813b288_start + 0x582140
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_217
 	.set gUnk_MapDataResource_217, us_data_0813b288_start + 0x582260
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_218
 	.set gUnk_MapDataResource_218, us_data_0813b288_start + 0x5823F8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_219
 	.set gUnk_MapDataResource_219, us_data_0813b288_start + 0x582510
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_202
 	.set gUnk_MapDataResource_202, us_data_0813b288_start + 0x5825B8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_203
 	.set gUnk_MapDataResource_203, us_data_0813b288_start + 0x582734
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_204
 	.set gUnk_MapDataResource_204, us_data_0813b288_start + 0x582824
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_207
 	.set gUnk_MapDataResource_207, us_data_0813b288_start + 0x582904
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_208
 	.set gUnk_MapDataResource_208, us_data_0813b288_start + 0x5829F8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_209
 	.set gUnk_MapDataResource_209, us_data_0813b288_start + 0x582AF8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_200
 	.set gUnk_MapDataResource_200, us_data_0813b288_start + 0x582B7C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_201
 	.set gUnk_MapDataResource_201, us_data_0813b288_start + 0x585854
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_314
 	.set gUnk_MapDataResource_314, us_data_0813b288_start + 0x5859C0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_315
 	.set gUnk_MapDataResource_315, us_data_0813b288_start + 0x586ABC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_316
 	.set gUnk_MapDataResource_316, us_data_0813b288_start + 0x586BC0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_317
 	.set gUnk_MapDataResource_317, us_data_0813b288_start + 0x586D68
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_318
 	.set gUnk_MapDataResource_318, us_data_0813b288_start + 0x586ED0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_304
 	.set gUnk_MapDataResource_304, us_data_0813b288_start + 0x586FC8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_305
 	.set gUnk_MapDataResource_305, us_data_0813b288_start + 0x58718C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_306
 	.set gUnk_MapDataResource_306, us_data_0813b288_start + 0x5872F0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_249
 	.set gUnk_MapDataResource_249, us_data_0813b288_start + 0x5873A8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_250
 	.set gUnk_MapDataResource_250, us_data_0813b288_start + 0x589AE0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_261
 	.set gUnk_MapDataResource_261, us_data_0813b288_start + 0x589BE8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_262
 	.set gUnk_MapDataResource_262, us_data_0813b288_start + 0x589D6C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_263
 	.set gUnk_MapDataResource_263, us_data_0813b288_start + 0x589E70
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_256
 	.set gUnk_MapDataResource_256, us_data_0813b288_start + 0x589F3C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_257
 	.set gUnk_MapDataResource_257, us_data_0813b288_start + 0x58A09C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_258
 	.set gUnk_MapDataResource_258, us_data_0813b288_start + 0x58A19C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_251
 	.set gUnk_MapDataResource_251, us_data_0813b288_start + 0x58A25C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_252
 	.set gUnk_MapDataResource_252, us_data_0813b288_start + 0x58A3A8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_253
 	.set gUnk_MapDataResource_253, us_data_0813b288_start + 0x58A490
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_073
 	.set gUnk_MapDataResource_073, us_data_0813b288_start + 0x58A538
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_074
 	.set gUnk_MapDataResource_074, us_data_0813b288_start + 0x58A9F8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_075
 	.set gUnk_MapDataResource_075, us_data_0813b288_start + 0x58AC2C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_081
 	.set gUnk_MapDataResource_081, us_data_0813b288_start + 0x58AE04
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_082
 	.set gUnk_MapDataResource_082, us_data_0813b288_start + 0x58B2B8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_083
 	.set gUnk_MapDataResource_083, us_data_0813b288_start + 0x58B4D8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_028
 	.set gUnk_MapDataResource_028, us_data_0813b288_start + 0x58B698
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_029
 	.set gUnk_MapDataResource_029, us_data_0813b288_start + 0x5903A4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_031
 	.set gUnk_MapDataResource_031, us_data_0813b288_start + 0x5904D8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_032
 	.set gUnk_MapDataResource_032, us_data_0813b288_start + 0x591558
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_033
 	.set gUnk_MapDataResource_033, us_data_0813b288_start + 0x5925F0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_030
 	.set gUnk_MapDataResource_030, us_data_0813b288_start + 0x592C30
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_036
 	.set gUnk_MapDataResource_036, us_data_0813b288_start + 0x592D64
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_037
 	.set gUnk_MapDataResource_037, us_data_0813b288_start + 0x597C10
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_039
 	.set gUnk_MapDataResource_039, us_data_0813b288_start + 0x597D0C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_040
 	.set gUnk_MapDataResource_040, us_data_0813b288_start + 0x598C34
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_041
 	.set gUnk_MapDataResource_041, us_data_0813b288_start + 0x599C4C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_038
 	.set gUnk_MapDataResource_038, us_data_0813b288_start + 0x59A1A0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_122
 	.set gUnk_MapDataResource_122, us_data_0813b288_start + 0x59C2D0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_123
 	.set gUnk_MapDataResource_123, us_data_0813b288_start + 0x59C4AC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_124
 	.set gUnk_MapDataResource_124, us_data_0813b288_start + 0x59C618
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_127
 	.set gUnk_MapDataResource_127, us_data_0813b288_start + 0x59C700
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_128
 	.set gUnk_MapDataResource_128, us_data_0813b288_start + 0x59C8D8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_129
 	.set gUnk_MapDataResource_129, us_data_0813b288_start + 0x59CA04
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_120
 	.set gUnk_MapDataResource_120, us_data_0813b288_start + 0x59CB00
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_121
 	.set gUnk_MapDataResource_121, us_data_0813b288_start + 0x59FC20
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_338
 	.set gUnk_MapDataResource_338, us_data_0813b288_start + 0x59FD44
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_339
 	.set gUnk_MapDataResource_339, us_data_0813b288_start + 0x5A0AFC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_340
 	.set gUnk_MapDataResource_340, us_data_0813b288_start + 0x5A0B9C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_341
 	.set gUnk_MapDataResource_341, us_data_0813b288_start + 0x5A0C34
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_342
 	.set gUnk_MapDataResource_342, us_data_0813b288_start + 0x5A0C40
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_345
 	.set gUnk_MapDataResource_345, us_data_0813b288_start + 0x5A0CEC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_346
 	.set gUnk_MapDataResource_346, us_data_0813b288_start + 0x5A0D68
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_347
 	.set gUnk_MapDataResource_347, us_data_0813b288_start + 0x5A0D74
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_350
 	.set gUnk_MapDataResource_350, us_data_0813b288_start + 0x5A0DD0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_351
 	.set gUnk_MapDataResource_351, us_data_0813b288_start + 0x5A0E5C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_352
 	.set gUnk_MapDataResource_352, us_data_0813b288_start + 0x5A0E68
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_355
 	.set gUnk_MapDataResource_355, us_data_0813b288_start + 0x5A0EC8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_356
 	.set gUnk_MapDataResource_356, us_data_0813b288_start + 0x5A0F48
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_357
 	.set gUnk_MapDataResource_357, us_data_0813b288_start + 0x5A0F54
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_360
 	.set gUnk_MapDataResource_360, us_data_0813b288_start + 0x5A0FB0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_361
 	.set gUnk_MapDataResource_361, us_data_0813b288_start + 0x5A1064
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_362
 	.set gUnk_MapDataResource_362, us_data_0813b288_start + 0x5A1090
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_365
 	.set gUnk_MapDataResource_365, us_data_0813b288_start + 0x5A1178
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_366
 	.set gUnk_MapDataResource_366, us_data_0813b288_start + 0x5A123C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_367
 	.set gUnk_MapDataResource_367, us_data_0813b288_start + 0x5A1248
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_014
 	.set gUnk_MapDataResource_014, us_data_0813b288_start + 0x5BFD7C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_015
 	.set gUnk_MapDataResource_015, us_data_0813b288_start + 0x5C1F14
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_017
 	.set gUnk_MapDataResource_017, us_data_0813b288_start + 0x5C1FB8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_018
 	.set gUnk_MapDataResource_018, us_data_0813b288_start + 0x5C2548
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_019
 	.set gUnk_MapDataResource_019, us_data_0813b288_start + 0x5C276C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_016
 	.set gUnk_MapDataResource_016, us_data_0813b288_start + 0x5C2804
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_022
 	.set gUnk_MapDataResource_022, us_data_0813b288_start + 0x5C28A4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_023
 	.set gUnk_MapDataResource_023, us_data_0813b288_start + 0x5C47FC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_025
 	.set gUnk_MapDataResource_025, us_data_0813b288_start + 0x5C489C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_026
 	.set gUnk_MapDataResource_026, us_data_0813b288_start + 0x5C4E28
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_027
 	.set gUnk_MapDataResource_027, us_data_0813b288_start + 0x5C5044
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_024
 	.set gUnk_MapDataResource_024, us_data_0813b288_start + 0x5C50EC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_132
 	.set gUnk_MapDataResource_132, us_data_0813b288_start + 0x5C5180
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_133
 	.set gUnk_MapDataResource_133, us_data_0813b288_start + 0x5C5358
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_134
 	.set gUnk_MapDataResource_134, us_data_0813b288_start + 0x5C545C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_137
 	.set gUnk_MapDataResource_137, us_data_0813b288_start + 0x5C552C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_138
 	.set gUnk_MapDataResource_138, us_data_0813b288_start + 0x5C572C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_139
 	.set gUnk_MapDataResource_139, us_data_0813b288_start + 0x5C57E4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_328
 	.set gUnk_MapDataResource_328, us_data_0813b288_start + 0x5C5858
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_329
 	.set gUnk_MapDataResource_329, us_data_0813b288_start + 0x5C59E4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_330
 	.set gUnk_MapDataResource_330, us_data_0813b288_start + 0x5C5AFC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_166
 	.set gUnk_MapDataResource_166, us_data_0813b288_start + 0x5C5B88
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_167
 	.set gUnk_MapDataResource_167, us_data_0813b288_start + 0x5C864C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_173
 	.set gUnk_MapDataResource_173, us_data_0813b288_start + 0x5C878C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_174
 	.set gUnk_MapDataResource_174, us_data_0813b288_start + 0x5C88D8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_175
 	.set gUnk_MapDataResource_175, us_data_0813b288_start + 0x5C89E8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_239
 	.set gUnk_MapDataResource_239, us_data_0813b288_start + 0x5C8AC0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_240
 	.set gUnk_MapDataResource_240, us_data_0813b288_start + 0x5C8F84
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_241
 	.set gUnk_MapDataResource_241, us_data_0813b288_start + 0x5C90A0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_234
 	.set gUnk_MapDataResource_234, us_data_0813b288_start + 0x5C919C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_235
 	.set gUnk_MapDataResource_235, us_data_0813b288_start + 0x5C9534
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_236
 	.set gUnk_MapDataResource_236, us_data_0813b288_start + 0x5C9610
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_292
 	.set gUnk_MapDataResource_292, us_data_0813b288_start + 0x5C96F0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_293
 	.set gUnk_MapDataResource_293, us_data_0813b288_start + 0x5C98E4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_294
 	.set gUnk_MapDataResource_294, us_data_0813b288_start + 0x5C99CC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_042
 	.set gUnk_MapDataResource_042, us_data_0813b288_start + 0x5C9AA8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_043
 	.set gUnk_MapDataResource_043, us_data_0813b288_start + 0x5CE920
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_045
 	.set gUnk_MapDataResource_045, us_data_0813b288_start + 0x5CEAAC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_046
 	.set gUnk_MapDataResource_046, us_data_0813b288_start + 0x5CF620
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_047
 	.set gUnk_MapDataResource_047, us_data_0813b288_start + 0x5CFF98
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_044
 	.set gUnk_MapDataResource_044, us_data_0813b288_start + 0x5D0420
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_050
 	.set gUnk_MapDataResource_050, us_data_0813b288_start + 0x5D0594
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_051
 	.set gUnk_MapDataResource_051, us_data_0813b288_start + 0x5D522C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_053
 	.set gUnk_MapDataResource_053, us_data_0813b288_start + 0x5D5354
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_054
 	.set gUnk_MapDataResource_054, us_data_0813b288_start + 0x5D5C28
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_055
 	.set gUnk_MapDataResource_055, us_data_0813b288_start + 0x5D6590
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_052
 	.set gUnk_MapDataResource_052, us_data_0813b288_start + 0x5D6A08
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_106
 	.set gUnk_MapDataResource_106, us_data_0813b288_start + 0x5D6B18
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_107
 	.set gUnk_MapDataResource_107, us_data_0813b288_start + 0x5D92F8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_109
 	.set gUnk_MapDataResource_109, us_data_0813b288_start + 0x5D9388
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_110
 	.set gUnk_MapDataResource_110, us_data_0813b288_start + 0x5D9548
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_111
 	.set gUnk_MapDataResource_111, us_data_0813b288_start + 0x5D96F8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_108
 	.set gUnk_MapDataResource_108, us_data_0813b288_start + 0x5D9848
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_114
 	.set gUnk_MapDataResource_114, us_data_0813b288_start + 0x5D99FC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_115
 	.set gUnk_MapDataResource_115, us_data_0813b288_start + 0x5DB8B0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_117
 	.set gUnk_MapDataResource_117, us_data_0813b288_start + 0x5DB938
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_118
 	.set gUnk_MapDataResource_118, us_data_0813b288_start + 0x5DBA9C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_119
 	.set gUnk_MapDataResource_119, us_data_0813b288_start + 0x5DBC44
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_116
 	.set gUnk_MapDataResource_116, us_data_0813b288_start + 0x5DBD90
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_333
 	.set gUnk_MapDataResource_333, us_data_0813b288_start + 0x5DBEC4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_334
 	.set gUnk_MapDataResource_334, us_data_0813b288_start + 0x5DC07C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_335
 	.set gUnk_MapDataResource_335, us_data_0813b288_start + 0x5DC1AC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_370
 	.set gUnk_MapDataResource_370, us_data_0813b288_start + 0x5DC24C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_371
 	.set gUnk_MapDataResource_371, us_data_0813b288_start + 0x5DC2E0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_374
 	.set gUnk_MapDataResource_374, us_data_0813b288_start + 0x5DC328
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_375
 	.set gUnk_MapDataResource_375, us_data_0813b288_start + 0x5DC434
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_376
 	.set gUnk_MapDataResource_376, us_data_0813b288_start + 0x5DC4A8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_377
 	.set gUnk_MapDataResource_377, us_data_0813b288_start + 0x5DC6CC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_378
 	.set gUnk_MapDataResource_378, us_data_0813b288_start + 0x5DC7B8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_379
 	.set gUnk_MapDataResource_379, us_data_0813b288_start + 0x5DC99C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_297
 	.set gUnk_MapDataResource_297, us_data_0813b288_start + 0x5DCA68
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_298
 	.set gUnk_MapDataResource_298, us_data_0813b288_start + 0x5DCBDC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_299
 	.set gUnk_MapDataResource_299, us_data_0813b288_start + 0x5DCD80
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_290
 	.set gUnk_MapDataResource_290, us_data_0813b288_start + 0x5DCE58
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_291
 	.set gUnk_MapDataResource_291, us_data_0813b288_start + 0x5DF850
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_280
 	.set gUnk_MapDataResource_280, us_data_0813b288_start + 0x5DF940
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_281
 	.set gUnk_MapDataResource_281, us_data_0813b288_start + 0x5DFBA4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_282
 	.set gUnk_MapDataResource_282, us_data_0813b288_start + 0x5DFCFC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_285
 	.set gUnk_MapDataResource_285, us_data_0813b288_start + 0x5DFE00
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_286
 	.set gUnk_MapDataResource_286, us_data_0813b288_start + 0x5E0024
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_287
 	.set gUnk_MapDataResource_287, us_data_0813b288_start + 0x5E014C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_278
 	.set gUnk_MapDataResource_278, us_data_0813b288_start + 0x5E01EC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_MapDataResource_279
 	.set gUnk_MapDataResource_279, us_data_0813b288_start + 0x5E216C
+	.endif
 
+	.ifndef REGION_DE
 	@ Region-neutral labels for FieldPlotTypeDefinition raw render records.
 	@ The record payload format is not decoded yet.
 	.global gUnk_FieldPlotRenderRecord_004
@@ -2975,259 +3529,509 @@ us_data_0813b288_start:
 	.global gUnk_FieldPlotRenderRecord_021
 	.set gUnk_FieldPlotRenderRecord_021, us_data_0813b288_start + 0x59B404
 
+	.endif
+
 	@ Region-neutral labels for FieldRenderRectDescriptor raw resources.
 	@ Their payload types are not decoded yet.
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_143
 	.set gUnk_FieldRenderResource_143, us_data_0813b288_start + 0x5A12FC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_144
 	.set gUnk_FieldRenderResource_144, us_data_0813b288_start + 0x5A14FC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_145
 	.set gUnk_FieldRenderResource_145, us_data_0813b288_start + 0x5A16FC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_148
 	.set gUnk_FieldRenderResource_148, us_data_0813b288_start + 0x5A2460
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_149
 	.set gUnk_FieldRenderResource_149, us_data_0813b288_start + 0x5A2660
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_150
 	.set gUnk_FieldRenderResource_150, us_data_0813b288_start + 0x5A2860
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_134
 	.set gUnk_FieldRenderResource_134, us_data_0813b288_start + 0x5A358C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_135
 	.set gUnk_FieldRenderResource_135, us_data_0813b288_start + 0x5A3BBC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_136
 	.set gUnk_FieldRenderResource_136, us_data_0813b288_start + 0x5A41EC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_128
 	.set gUnk_FieldRenderResource_128, us_data_0813b288_start + 0x5A481C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_129
 	.set gUnk_FieldRenderResource_129, us_data_0813b288_start + 0x5A4AC4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_139
 	.set gUnk_FieldRenderResource_139, us_data_0813b288_start + 0x5A4D6C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_140
 	.set gUnk_FieldRenderResource_140, us_data_0813b288_start + 0x5A4D9C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_132
 	.set gUnk_FieldRenderResource_132, us_data_0813b288_start + 0x5A6150
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_133
 	.set gUnk_FieldRenderResource_133, us_data_0813b288_start + 0x5A63F8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_038
 	.set gUnk_FieldRenderResource_038, us_data_0813b288_start + 0x5A8270
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_039
 	.set gUnk_FieldRenderResource_039, us_data_0813b288_start + 0x5A844C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_040
 	.set gUnk_FieldRenderResource_040, us_data_0813b288_start + 0x5A8628
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_030
 	.set gUnk_FieldRenderResource_030, us_data_0813b288_start + 0x5A8804
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_031
 	.set gUnk_FieldRenderResource_031, us_data_0813b288_start + 0x5A8900
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_032
 	.set gUnk_FieldRenderResource_032, us_data_0813b288_start + 0x5A89FC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_012
 	.set gUnk_FieldRenderResource_012, us_data_0813b288_start + 0x5A8AF8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_013
 	.set gUnk_FieldRenderResource_013, us_data_0813b288_start + 0x5A8D68
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_006
 	.set gUnk_FieldRenderResource_006, us_data_0813b288_start + 0x5A8FD8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_007
 	.set gUnk_FieldRenderResource_007, us_data_0813b288_start + 0x5A9178
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_000
 	.set gUnk_FieldRenderResource_000, us_data_0813b288_start + 0x5A9318
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_001
 	.set gUnk_FieldRenderResource_001, us_data_0813b288_start + 0x5A93E8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_024
 	.set gUnk_FieldRenderResource_024, us_data_0813b288_start + 0x5AA500
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_025
 	.set gUnk_FieldRenderResource_025, us_data_0813b288_start + 0x5AA768
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_018
 	.set gUnk_FieldRenderResource_018, us_data_0813b288_start + 0x5AA9D0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_019
 	.set gUnk_FieldRenderResource_019, us_data_0813b288_start + 0x5AAB20
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_043
 	.set gUnk_FieldRenderResource_043, us_data_0813b288_start + 0x5AC160
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_044
 	.set gUnk_FieldRenderResource_044, us_data_0813b288_start + 0x5AC31C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_045
 	.set gUnk_FieldRenderResource_045, us_data_0813b288_start + 0x5AC4D8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_035
 	.set gUnk_FieldRenderResource_035, us_data_0813b288_start + 0x5AC694
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_036
 	.set gUnk_FieldRenderResource_036, us_data_0813b288_start + 0x5AC780
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_037
 	.set gUnk_FieldRenderResource_037, us_data_0813b288_start + 0x5AC86C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_016
 	.set gUnk_FieldRenderResource_016, us_data_0813b288_start + 0x5AC958
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_017
 	.set gUnk_FieldRenderResource_017, us_data_0813b288_start + 0x5ACBC8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_010
 	.set gUnk_FieldRenderResource_010, us_data_0813b288_start + 0x5ACE38
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_011
 	.set gUnk_FieldRenderResource_011, us_data_0813b288_start + 0x5ACFB8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_004
 	.set gUnk_FieldRenderResource_004, us_data_0813b288_start + 0x5AD138
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_005
 	.set gUnk_FieldRenderResource_005, us_data_0813b288_start + 0x5AD1F8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_028
 	.set gUnk_FieldRenderResource_028, us_data_0813b288_start + 0x5AE300
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_029
 	.set gUnk_FieldRenderResource_029, us_data_0813b288_start + 0x5AE53C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_022
 	.set gUnk_FieldRenderResource_022, us_data_0813b288_start + 0x5AE778
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_023
 	.set gUnk_FieldRenderResource_023, us_data_0813b288_start + 0x5AE8B0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_154
 	.set gUnk_FieldRenderResource_154, us_data_0813b288_start + 0x5AFB24
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_157
 	.set gUnk_FieldRenderResource_157, us_data_0813b288_start + 0x5AFB70
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_151
 	.set gUnk_FieldRenderResource_151, us_data_0813b288_start + 0x5AFB7C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_166
 	.set gUnk_FieldRenderResource_166, us_data_0813b288_start + 0x5AFB88
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_160
 	.set gUnk_FieldRenderResource_160, us_data_0813b288_start + 0x5AFBE4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_163
 	.set gUnk_FieldRenderResource_163, us_data_0813b288_start + 0x5AFC40
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_119
 	.set gUnk_FieldRenderResource_119, us_data_0813b288_start + 0x5AFCA4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_106
 	.set gUnk_FieldRenderResource_106, us_data_0813b288_start + 0x5AFCAC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_107
 	.set gUnk_FieldRenderResource_107, us_data_0813b288_start + 0x5AFCCC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_103
 	.set gUnk_FieldRenderResource_103, us_data_0813b288_start + 0x5AFEDC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_102
 	.set gUnk_FieldRenderResource_102, us_data_0813b288_start + 0x5AFEFC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_089
 	.set gUnk_FieldRenderResource_089, us_data_0813b288_start + 0x5AFF1C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_099
 	.set gUnk_FieldRenderResource_099, us_data_0813b288_start + 0x5AFF7C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_082
 	.set gUnk_FieldRenderResource_082, us_data_0813b288_start + 0x5AFFA0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_083
 	.set gUnk_FieldRenderResource_083, us_data_0813b288_start + 0x5B00CC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_096
 	.set gUnk_FieldRenderResource_096, us_data_0813b288_start + 0x5B01F8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_070
 	.set gUnk_FieldRenderResource_070, us_data_0813b288_start + 0x5B0210
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_071
 	.set gUnk_FieldRenderResource_071, us_data_0813b288_start + 0x5B0228
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_078
 	.set gUnk_FieldRenderResource_078, us_data_0813b288_start + 0x5B0240
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_079
 	.set gUnk_FieldRenderResource_079, us_data_0813b288_start + 0x5B0258
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_074
 	.set gUnk_FieldRenderResource_074, us_data_0813b288_start + 0x5B0270
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_075
 	.set gUnk_FieldRenderResource_075, us_data_0813b288_start + 0x5B0288
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_058
 	.set gUnk_FieldRenderResource_058, us_data_0813b288_start + 0x5B02A0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_059
 	.set gUnk_FieldRenderResource_059, us_data_0813b288_start + 0x5B02D0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_054
 	.set gUnk_FieldRenderResource_054, us_data_0813b288_start + 0x5B0300
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_055
 	.set gUnk_FieldRenderResource_055, us_data_0813b288_start + 0x5B0330
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_092
 	.set gUnk_FieldRenderResource_092, us_data_0813b288_start + 0x5B0360
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_066
 	.set gUnk_FieldRenderResource_066, us_data_0813b288_start + 0x5B0450
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_067
 	.set gUnk_FieldRenderResource_067, us_data_0813b288_start + 0x5B0488
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_062
 	.set gUnk_FieldRenderResource_062, us_data_0813b288_start + 0x5B04C0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_063
 	.set gUnk_FieldRenderResource_063, us_data_0813b288_start + 0x5B04F8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_086
 	.set gUnk_FieldRenderResource_086, us_data_0813b288_start + 0x5B06B4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_050
 	.set gUnk_FieldRenderResource_050, us_data_0813b288_start + 0x5B0714
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_051
 	.set gUnk_FieldRenderResource_051, us_data_0813b288_start + 0x5B0744
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_046
 	.set gUnk_FieldRenderResource_046, us_data_0813b288_start + 0x5B0774
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_047
 	.set gUnk_FieldRenderResource_047, us_data_0813b288_start + 0x5B07A4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_093
 	.set gUnk_FieldRenderResource_093, us_data_0813b288_start + 0x5B07D4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_114
 	.set gUnk_FieldRenderResource_114, us_data_0813b288_start + 0x5BAF20
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_115
 	.set gUnk_FieldRenderResource_115, us_data_0813b288_start + 0x5BAF40
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_118
 	.set gUnk_FieldRenderResource_118, us_data_0813b288_start + 0x5BAF60
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_110
 	.set gUnk_FieldRenderResource_110, us_data_0813b288_start + 0x5BAF68
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_111
 	.set gUnk_FieldRenderResource_111, us_data_0813b288_start + 0x5BAF88
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_122
 	.set gUnk_FieldRenderResource_122, us_data_0813b288_start + 0x5BB7EC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_123
 	.set gUnk_FieldRenderResource_123, us_data_0813b288_start + 0x5BB9AC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_126
 	.set gUnk_FieldRenderResource_126, us_data_0813b288_start + 0x5BDBF4
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_127
 	.set gUnk_FieldRenderResource_127, us_data_0813b288_start + 0x5BDDB4
+	.endif
 
 	@ Additional region-neutral labels for later gFieldRenderRectDescriptors entries.
 	@ Their payload types are not known yet.
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_169
 	.set gUnk_FieldRenderResource_169, us_data_0813b288_start + 0x5AFE2C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_170
 	.set gUnk_FieldRenderResource_170, us_data_0813b288_start + 0x5AFE44
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_173
 	.set gUnk_FieldRenderResource_173, us_data_0813b288_start + 0x5B07E0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_176
 	.set gUnk_FieldRenderResource_176, us_data_0813b288_start + 0x5B0800
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_179
 	.set gUnk_FieldRenderResource_179, us_data_0813b288_start + 0x5AFD6C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_182
 	.set gUnk_FieldRenderResource_182, us_data_0813b288_start + 0x5AFD8C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_183
 	.set gUnk_FieldRenderResource_183, us_data_0813b288_start + 0x5AFDEC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_186
 	.set gUnk_FieldRenderResource_186, us_data_0813b288_start + 0x5AFE0C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_187
 	.set gUnk_FieldRenderResource_187, us_data_0813b288_start + 0x5AFDAC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_190
 	.set gUnk_FieldRenderResource_190, us_data_0813b288_start + 0x5AFDCC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_191
 	.set gUnk_FieldRenderResource_191, us_data_0813b288_start + 0x5AFE9C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_194
 	.set gUnk_FieldRenderResource_194, us_data_0813b288_start + 0x5AFEBC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_195
 	.set gUnk_FieldRenderResource_195, us_data_0813b288_start + 0x5AFE5C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_198
 	.set gUnk_FieldRenderResource_198, us_data_0813b288_start + 0x5AFE7C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_199
 	.set gUnk_FieldRenderResource_199, us_data_0813b288_start + 0x5AFD2C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_202
 	.set gUnk_FieldRenderResource_202, us_data_0813b288_start + 0x5AFD4C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_203
 	.set gUnk_FieldRenderResource_203, us_data_0813b288_start + 0x5AFCEC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_206
 	.set gUnk_FieldRenderResource_206, us_data_0813b288_start + 0x5AFD0C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_207
 	.set gUnk_FieldRenderResource_207, us_data_0813b288_start + 0x5A7DAC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_210
 	.set gUnk_FieldRenderResource_210, us_data_0813b288_start + 0x5A7DCC
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_211
 	.set gUnk_FieldRenderResource_211, us_data_0813b288_start + 0x5A7D6C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_214
 	.set gUnk_FieldRenderResource_214, us_data_0813b288_start + 0x5A7D8C
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_215
 	.set gUnk_FieldRenderResource_215, us_data_0813b288_start + 0x5BAFA8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_218
 	.set gUnk_FieldRenderResource_218, us_data_0813b288_start + 0x5BAFC8
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_219
 	.set gUnk_FieldRenderResource_219, us_data_0813b288_start + 0x5AFB30
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_222
 	.set gUnk_FieldRenderResource_222, us_data_0813b288_start + 0x5AFB50
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_223
 	.set gUnk_FieldRenderResource_223, us_data_0813b288_start + 0x5A19C0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_224
 	.set gUnk_FieldRenderResource_224, us_data_0813b288_start + 0x5A19E0
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_225
 	.set gUnk_FieldRenderResource_225, us_data_0813b288_start + 0x5A2B24
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_226
 	.set gUnk_FieldRenderResource_226, us_data_0813b288_start + 0x5A2B44
+	.endif
+	.ifndef REGION_DE
 	.global gUnk_FieldRenderResource_227
 	.set gUnk_FieldRenderResource_227, us_data_0813b288_start + 0x5AFC9C
+	.endif
 
 	@ The EU stream resumes at US source offsets + 0x64 immediately after
 	@ the regional script block.  Their lengths are identical through the
@@ -3244,105 +4048,280 @@ us_data_0813b288_start:
 
 	.global gUnk_084F90CC
 gUnk_084F90CC:
-	eu_post_script_incbin 0x4F90CC, 0x16D4
+	.ifdef REGION_EU
+	.incbin "baserom_eu.gba", 0x4F9130, (0x4FA7FC - 0x4F9130)
+	.global gFontSingleByteGlyphIndices
+gFontSingleByteGlyphIndices:
+	.incbin "baserom_eu.gba", 0x4FA7FC, (0x4FA804 - 0x4FA7FC)
+	.else
+	.ifndef REGION_DE
 	.global gFontSingleWidthGlyphData
-	.set gFontSingleWidthGlyphData, gUnk_084F90CC
+	gFontSingleWidthGlyphData:
+	.endif
+	eu_post_script_incbin 0x4F90CC, 0x16D4
+	.endif
 
 	.global gUnk_084FA7A0
 gUnk_084FA7A0:
-	eu_post_script_incbin 0x4FA7A0, 0x200
+	.ifdef REGION_EU
+	.incbin "baserom_eu.gba", 0x4FA804, (0x4FA9FC - 0x4FA804)
+	.global gFontDoubleWidthGlyphData
+gFontDoubleWidthGlyphData:
+	.incbin "baserom_eu.gba", 0x4FA9FC, (0x4FAA04 - 0x4FA9FC)
+	.else
+	.ifndef REGION_DE
 	.global gFontSingleByteGlyphIndices
-	.set gFontSingleByteGlyphIndices, gUnk_084FA7A0
+	gFontSingleByteGlyphIndices:
+	.endif
+	eu_post_script_incbin 0x4FA7A0, 0x200
+	.endif
 
 	.global gUnk_084FA9A0
 gUnk_084FA9A0:
-	eu_post_script_incbin 0x4FA9A0, 0x288F0
+	.ifdef REGION_EU
+	.incbin "baserom_eu.gba", 0x4FAA04, (0x5232EC - 0x4FAA04)
+	.global gFontShiftJisGlyphIndices
+gFontShiftJisGlyphIndices:
+	.incbin "baserom_eu.gba", 0x5232EC, (0x5232F4 - 0x5232EC)
+	.else
+	.ifndef REGION_DE
 	.global gFontDoubleWidthGlyphData
-	.set gFontDoubleWidthGlyphData, gUnk_084FA9A0
+	gFontDoubleWidthGlyphData:
+	.endif
+	eu_post_script_incbin 0x4FA9A0, 0x288F0
+	.endif
 
 	.global gUnk_08523290
 gUnk_08523290:
-	eu_post_script_incbin 0x523290, 0x3E04
+	.ifndef REGION_EU
+	.ifndef REGION_DE
 	.global gFontShiftJisGlyphIndices
-	.set gFontShiftJisGlyphIndices, gUnk_08523290
-
+gFontShiftJisGlyphIndices:
+	.endif
+	.endif
+	.ifdef REGION_EU
+	.incbin "baserom_eu.gba", 0x5232F4, 0x3DFC
+	@ The EU archive header directly precedes the payload label used by US.
 	.global gUnk_08527094
 gUnk_08527094:
+	.incbin "baserom_eu.gba", 0x5270F0, 0x8
+	.else
+	FOMT_REGION_ASSET_INCBIN 0x523290, 0x3E04
+	.endif
+	.ifndef REGION_DE
+	.ifndef REGION_EU
+	.global gUnk_08527094
+gUnk_08527094:
+	.endif
+	.endif
+	.ifdef REGION_EU
+	.incbin "baserom_eu.gba", 0x5270F8, 0x19C
+	.global gUnk_08527294
+gUnk_08527294:
+	.incbin "baserom_eu.gba", 0x527294, 0x8
+	.else
 	eu_post_script_incbin 0x527094, 0x1A4
+	.endif
 
-	.global gUnk_08527238
-gUnk_08527238:
+	.macro non_de_asset_label name
+	.ifndef REGION_DE
+	.global \name
+\name:
+	.endif
+	.endm
+
+	non_de_asset_label gUnk_08527238
+	.ifdef REGION_EU
+	.incbin "baserom_eu.gba", 0x52729C, 0x108
+	.global gUnk_085273A4
+gUnk_085273A4:
+	.incbin "baserom_eu.gba", 0x5273A4, 0x8
+	.else
 	eu_post_script_incbin 0x527238, 0x110
+	.endif
 
-	.global gUnk_08527348
-gUnk_08527348:
+	non_de_asset_label gUnk_08527348
+	.ifdef REGION_EU
+	.incbin "baserom_eu.gba", 0x5273AC, 0x1D0
+	.global gUnk_0852757C
+gUnk_0852757C:
+	.incbin "baserom_eu.gba", 0x52757C, 0x8
+	.else
 	eu_post_script_incbin 0x527348, 0x1D8
+	.endif
 
-	.global gUnk_08527520
-gUnk_08527520:
+	non_de_asset_label gUnk_08527520
+	.ifdef REGION_EU
+	.incbin "baserom_eu.gba", 0x527584, 0xA8
+	.global gUnk_0852762C
+gUnk_0852762C:
+	.incbin "baserom_eu.gba", 0x52762C, 0x8
+	.else
 	eu_post_script_incbin 0x527520, 0xB0
+	.endif
 
-	.global gUnk_085275D0
-gUnk_085275D0:
+	non_de_asset_label gUnk_085275D0
+	.ifdef REGION_EU
+	.incbin "baserom_eu.gba", 0x527634, 0x21BC
+	.global gUnk_085297F0
+gUnk_085297F0:
+	.incbin "baserom_eu.gba", 0x5297F0, 0x8
+	.else
 	eu_post_script_incbin 0x5275D0, 0x21C4
+	.endif
 
+	.ifdef REGION_EU
+	@ EU stores archive headers at the targets used by its regional code.
+	@ Bind every resource name directly to those physical bytes.
 	.global gUnk_08529794
 gUnk_08529794:
-	eu_post_script_incbin 0x529794, 0x200
-
+	.incbin "baserom_eu.gba", 0x5297F8, 0x1F8
 	.global gUnk_08529994
 gUnk_08529994:
-	eu_post_script_incbin 0x529994, 0x214
-
+	.incbin "baserom_eu.gba", 0x5299F0, 0x8
+	.incbin "baserom_eu.gba", 0x5299F8, 0x17C
+	.global gUnk_08529B18
+gUnk_08529B18:
+	.incbin "baserom_eu.gba", 0x529B74, 0x60
+	.global gUnk_08529B78
+gUnk_08529B78:
+	.incbin "baserom_eu.gba", 0x529BD4, 0x30
 	.global gUnk_08529BA8
 gUnk_08529BA8:
-	eu_post_script_incbin 0x529BA8, 0x1FC
-
+	.incbin "baserom_eu.gba", 0x529C04, 0x8
+	.incbin "baserom_eu.gba", 0x529C0C, 0xBC
+	.global gUnk_08529C6C
+gUnk_08529C6C:
+	.incbin "baserom_eu.gba", 0x529CC8, 0xA8
+	.global gUnk_08529D14
+gUnk_08529D14:
+	.incbin "baserom_eu.gba", 0x529D70, 0x60
+	.global gUnk_08529D74
+gUnk_08529D74:
+	.incbin "baserom_eu.gba", 0x529DD0, 0x30
 	.global gUnk_08529DA4
 gUnk_08529DA4:
-	eu_post_script_incbin 0x529DA4, 0x934
-
+	.incbin "baserom_eu.gba", 0x529E00, 0x8
+	.incbin "baserom_eu.gba", 0x529E08, 0x83C
+	.global gUnk_0852A5E8
+gUnk_0852A5E8:
+	.incbin "baserom_eu.gba", 0x52A644, 0x9C
+	.global gUnk_0852A684
+gUnk_0852A684:
+	.incbin "baserom_eu.gba", 0x52A6E0, 0x54
+	.global gUnk_0852A734
+gUnk_0852A734:
+	.incbin "baserom_eu.gba", 0x52A734, 0x8
 	.global gUnk_0852A6D8
 gUnk_0852A6D8:
-	eu_post_script_incbin 0x52A6D8, 0x114
-
+	.incbin "baserom_eu.gba", 0x52A73C, 0x10C
+	.global gUnk_0852A848
+gUnk_0852A848:
+	.incbin "baserom_eu.gba", 0x52A848, 0x8
 	.global gUnk_0852A7EC
 gUnk_0852A7EC:
-	eu_post_script_incbin 0x52A7EC, 0x1D0
-
+	.incbin "baserom_eu.gba", 0x52A850, 0x1C8
+	.global gUnk_0852AA18
+gUnk_0852AA18:
+	.incbin "baserom_eu.gba", 0x52AA18, 0x8
 	.global gUnk_0852A9BC
 gUnk_0852A9BC:
-	eu_post_script_incbin 0x52A9BC, 0xB0
-
+	.incbin "baserom_eu.gba", 0x52AA20, 0xA8
+	.global gUnk_0852AAC8
+gUnk_0852AAC8:
+	.incbin "baserom_eu.gba", 0x52AAC8, 0x8
 	.global gUnk_0852AA6C
 gUnk_0852AA6C:
-	eu_post_script_incbin 0x52AA6C, 0x1FD4
-
+	.incbin "baserom_eu.gba", 0x52AAD0, 0x1FCC
+	.global gUnk_0852CA9C
+gUnk_0852CA9C:
+	.incbin "baserom_eu.gba", 0x52CA9C, 0x8
 	.global gUnk_0852CA40
 gUnk_0852CA40:
-	eu_post_script_incbin 0x52CA40, 0x200
-
+	.incbin "baserom_eu.gba", 0x52CAA4, 0x1F8
 	.global gUnk_0852CC40
 gUnk_0852CC40:
-	eu_post_script_incbin 0x52CC40, 0x214
-
+	.incbin "baserom_eu.gba", 0x52CC9C, 0x8
+	.incbin "baserom_eu.gba", 0x52CCA4, 0x17C
+	.global gUnk_0852CDC4
+gUnk_0852CDC4:
+	.incbin "baserom_eu.gba", 0x52CE20, 0x60
+	.global gUnk_0852CE24
+gUnk_0852CE24:
+	.incbin "baserom_eu.gba", 0x52CE80, 0x30
 	.global gUnk_0852CE54
 gUnk_0852CE54:
-	eu_post_script_incbin 0x52CE54, 0x1FC
-
+	.incbin "baserom_eu.gba", 0x52CEB0, 0x8
+	.incbin "baserom_eu.gba", 0x52CEB8, 0xBC
+	.global gUnk_0852CF18
+gUnk_0852CF18:
+	.incbin "baserom_eu.gba", 0x52CF74, 0xA8
+	.global gUnk_0852CFC0
+gUnk_0852CFC0:
+	.incbin "baserom_eu.gba", 0x52D01C, 0x60
+	.global gUnk_0852D020
+gUnk_0852D020:
+	.incbin "baserom_eu.gba", 0x52D07C, 0x30
 	.global gUnk_0852D050
 gUnk_0852D050:
-	eu_post_script_incbin 0x52D050, 0x934
-
+	.incbin "baserom_eu.gba", 0x52D0AC, 0x8
+	.incbin "baserom_eu.gba", 0x52D0B4, 0x83C
+	.global gUnk_0852D894
+gUnk_0852D894:
+	.incbin "baserom_eu.gba", 0x52D8F0, 0x9C
+	.global gUnk_0852D930
+gUnk_0852D930:
+	.incbin "baserom_eu.gba", 0x52D98C, 0x54
 	.global gUnk_0852D984
 gUnk_0852D984:
-	.ifdef REGION_EU
+	.incbin "baserom_eu.gba", 0x52D9E0, 0x8
 	.incbin "baserom_eu.gba", 0x52D9E8, 0x5E09C
 	.else
+	non_de_asset_label gUnk_08529794
+	eu_post_script_incbin 0x529794, 0x200
+
+	non_de_asset_label gUnk_08529994
+	eu_post_script_incbin 0x529994, 0x214
+
+	non_de_asset_label gUnk_08529BA8
+	eu_post_script_incbin 0x529BA8, 0x1FC
+
+	non_de_asset_label gUnk_08529DA4
+	eu_post_script_incbin 0x529DA4, 0x934
+
+	non_de_asset_label gUnk_0852A6D8
+	eu_post_script_incbin 0x52A6D8, 0x114
+
+	non_de_asset_label gUnk_0852A7EC
+	eu_post_script_incbin 0x52A7EC, 0x1D0
+
+	non_de_asset_label gUnk_0852A9BC
+	eu_post_script_incbin 0x52A9BC, 0xB0
+
+	non_de_asset_label gUnk_0852AA6C
+	eu_post_script_incbin 0x52AA6C, 0x1FD4
+
+	non_de_asset_label gUnk_0852CA40
+	eu_post_script_incbin 0x52CA40, 0x200
+
+	non_de_asset_label gUnk_0852CC40
+	eu_post_script_incbin 0x52CC40, 0x214
+
+	non_de_asset_label gUnk_0852CE54
+	eu_post_script_incbin 0x52CE54, 0x1FC
+
+	non_de_asset_label gUnk_0852D050
+	eu_post_script_incbin 0x52D050, 0x934
+
+	.ifndef REGION_DE
+	.global gUnk_0852D984
+gUnk_0852D984:
+	.endif
 	FOMT_REGION_ASSET_INCBIN 0x52D984, 0x5E0A4
 	.endif
 
 	@ Farm Status preview resource labels.  The asset roles remain unknown.
+	.ifndef REGION_EU
 	.global gUnk_08529B18
 	.set gUnk_08529B18, gUnk_08529994 + 0x184
 	.global gUnk_08529B78
@@ -3371,480 +4350,448 @@ gUnk_0852D984:
 	.set gUnk_0852D894, gUnk_0852D050 + 0x844
 	.global gUnk_0852D930
 	.set gUnk_0852D930, gUnk_0852D050 + 0x8E0
+	.endif
 
+	.ifndef REGION_DE
 	.global gUnk_0858BA28
 gUnk_0858BA28:
+	.endif
 	.ifdef REGION_EU
 	.incbin "baserom_eu.gba", 0x58BA84, 0xDB638
 	.else
 	FOMT_REGION_ASSET_INCBIN 0x58BA28, 0xDB638
 	.endif
 
-	.global gUnk_08667060
-gUnk_08667060:
+	non_de_asset_label gUnk_08667060
 	FOMT_REGION_ASSET_INCBIN 0x667060, 0x840
 
+	.ifndef REGION_DE
 	.global gUnk_086678A0
 gUnk_086678A0:
+	.endif
 	FOMT_REGION_ASSET_INCBIN 0x6678A0, 0x30080
 
-	.global gUnk_08697920
-gUnk_08697920:
+	non_de_asset_label gUnk_08697920
 	FOMT_REGION_ASSET_INCBIN 0x697920, 0x11E0
 
-	.global gUnk_08698B00
-gUnk_08698B00:
+	non_de_asset_label gUnk_08698B00
 	FOMT_REGION_ASSET_INCBIN 0x698B00, 0x314
 
+	.ifndef REGION_DE
 	.global gUnk_08698E14
 gUnk_08698E14:
+	.endif
 	FOMT_REGION_ASSET_INCBIN 0x698E14, 0x11E0
 
+	.ifndef REGION_DE
 	.global gUnk_08699FF4
 gUnk_08699FF4:
+	.endif
 	FOMT_REGION_ASSET_INCBIN 0x699FF4, 0xB0
 
-	.global gUnk_0869A0A4
-gUnk_0869A0A4:
+	non_de_asset_label gUnk_0869A0A4
 	FOMT_REGION_ASSET_INCBIN 0x69A0A4, 0x11E0
 
-	.global gUnk_0869B284
-gUnk_0869B284:
+	non_de_asset_label gUnk_0869B284
 	FOMT_REGION_ASSET_INCBIN 0x69B284, 0x3A284
 
+	.ifndef REGION_DE
 	.global gUnk_086D5508
 gUnk_086D5508:
+	.endif
 	FOMT_REGION_ASSET_INCBIN 0x6D5508, 0xE60
 
+	.ifndef REGION_DE
 	.global gUnk_086D6368
 gUnk_086D6368:
+	.endif
 	FOMT_REGION_ASSET_INCBIN 0x6D6368, 0xF0
 
-	.global gUnk_086D6458
-gUnk_086D6458:
+	non_de_asset_label gUnk_086D6458
 	FOMT_REGION_ASSET_INCBIN 0x6D6458, 0xC0
 
-	.global gUnk_086D6518
-gUnk_086D6518:
+	non_de_asset_label gUnk_086D6518
 	FOMT_REGION_ASSET_INCBIN 0x6D6518, 0x8
 
-	.global gUnk_086D6520
-gUnk_086D6520:
+	non_de_asset_label gUnk_086D6520
 	FOMT_REGION_ASSET_INCBIN 0x6D6520, 0x8
 
-	.global gUnk_086D6528
-gUnk_086D6528:
+	non_de_asset_label gUnk_086D6528
 	FOMT_REGION_ASSET_INCBIN 0x6D6528, 0x20
 
-	.global gUnk_086D6548
-gUnk_086D6548:
+	non_de_asset_label gUnk_086D6548
 	FOMT_REGION_ASSET_INCBIN 0x6D6548, 0xC0
 
-	.global gUnk_086D6608
-gUnk_086D6608:
+	non_de_asset_label gUnk_086D6608
 	FOMT_REGION_ASSET_INCBIN 0x6D6608, 0x90
 
-	.global gUnk_086D6698
-gUnk_086D6698:
+	non_de_asset_label gUnk_086D6698
 	FOMT_REGION_ASSET_INCBIN 0x6D6698, 0xE60
 
-	.global gUnk_086D74F8
-gUnk_086D74F8:
+	non_de_asset_label gUnk_086D74F8
 	FOMT_REGION_ASSET_INCBIN 0x6D74F8, 0x4ECC
 
-	.global gActorStateGridCellType0Data
-gActorStateGridCellType0Data:
+	non_de_asset_label gActorStateGridCellType0Data
 	FOMT_REGION_ASSET_INCBIN 0x6DC3C4, 0xC
 
-	.global gActorStateGridCellType1Data
-gActorStateGridCellType1Data:
+	non_de_asset_label gActorStateGridCellType1Data
 	FOMT_REGION_ASSET_INCBIN 0x6DC3D0, 0xC
 
-	.global gActorStateGridCellType2Data
-gActorStateGridCellType2Data:
+	non_de_asset_label gActorStateGridCellType2Data
 	FOMT_REGION_ASSET_INCBIN 0x6DC3DC, 0xC
 
-	.global gActorStateGridCellType3Data
-gActorStateGridCellType3Data:
+	non_de_asset_label gActorStateGridCellType3Data
 	FOMT_REGION_ASSET_INCBIN 0x6DC3E8, 0xC
 
-	.global gActorStateGridCellType4Data
-gActorStateGridCellType4Data:
+	non_de_asset_label gActorStateGridCellType4Data
 	FOMT_REGION_ASSET_INCBIN 0x6DC3F4, 0x158
 
-	.global gUnk_086DC54C
-gUnk_086DC54C:
+	non_de_asset_label gUnk_086DC54C
 	FOMT_REGION_ASSET_INCBIN 0x6DC54C, 0x30
 
-	.global gUnk_086DC57C
-gUnk_086DC57C:
+	non_de_asset_label gUnk_086DC57C
 	FOMT_REGION_ASSET_INCBIN 0x6DC57C, 0x70C
 
-	.global gUnk_086DCC88
-gUnk_086DCC88:
+	non_de_asset_label gUnk_086DCC88
 	FOMT_REGION_ASSET_INCBIN 0x6DCC88, 0xA08
 
-	.global gUnk_086DD690
-gUnk_086DD690:
+	non_de_asset_label gUnk_086DD690
 	FOMT_REGION_ASSET_INCBIN 0x6DD690, 0x20
 
-	.global gUnk_086DD6B0
-gUnk_086DD6B0:
+	non_de_asset_label gUnk_086DD6B0
 	FOMT_REGION_ASSET_INCBIN 0x6DD6B0, 0x30
 
-	.global gUnk_086DD6E0
-gUnk_086DD6E0:
+	non_de_asset_label gUnk_086DD6E0
 	FOMT_REGION_ASSET_INCBIN 0x6DD6E0, 0x70C
 
-	.global gUnk_086DDDEC
-gUnk_086DDDEC:
+	non_de_asset_label gUnk_086DDDEC
 	FOMT_REGION_ASSET_INCBIN 0x6DDDEC, 0xA08
 
-	.global gUnk_086DE7F4
-gUnk_086DE7F4:
+	non_de_asset_label gUnk_086DE7F4
 	FOMT_REGION_ASSET_INCBIN 0x6DE7F4, 0xC4E8
 
-	.global gUnk_086EACDC
-gUnk_086EACDC:
+	non_de_asset_label gUnk_086EACDC
 	FOMT_REGION_ASSET_INCBIN 0x6EACDC, 0x8
 
-	.global gUnk_086EACE4
-gUnk_086EACE4:
+	non_de_asset_label gUnk_086EACE4
 	FOMT_REGION_ASSET_INCBIN 0x6EACE4, 0x20
 
-	.global gUnk_086EAD04
-gUnk_086EAD04:
+	non_de_asset_label gUnk_086EAD04
 	FOMT_REGION_ASSET_INCBIN 0x6EAD04, 0x20
 
-	.global gUnk_086EAD24
-gUnk_086EAD24:
+	non_de_asset_label gUnk_086EAD24
 	FOMT_REGION_ASSET_INCBIN 0x6EAD24, 0x20
 
-	.global gUnk_086EAD44
-gUnk_086EAD44:
+	non_de_asset_label gUnk_086EAD44
 	FOMT_REGION_ASSET_INCBIN 0x6EAD44, 0x20
 
-	.global gUnk_086EAD64
-gUnk_086EAD64:
+	non_de_asset_label gUnk_086EAD64
 	FOMT_REGION_ASSET_INCBIN 0x6EAD64, 0x20
 
-	.global gUnk_086EAD84
-gUnk_086EAD84:
+	non_de_asset_label gUnk_086EAD84
 	FOMT_REGION_ASSET_INCBIN 0x6EAD84, 0x8
 
-	.global gUnk_086EAD8C
-gUnk_086EAD8C:
+	non_de_asset_label gUnk_086EAD8C
 	FOMT_REGION_ASSET_INCBIN 0x6EAD8C, 0x8220
 
-	.global gUnk_086F2FAC
-gUnk_086F2FAC:
+	non_de_asset_label gUnk_086F2FAC
 	FOMT_REGION_ASSET_INCBIN 0x6F2FAC, 0x7AD4
 
-	.global gUnk_086FAA80
-gUnk_086FAA80:
+	non_de_asset_label gUnk_086FAA80
 	FOMT_REGION_ASSET_INCBIN 0x6FAA80, 0x584
 
-	.global gUnk_086FB004
-gUnk_086FB004:
+	non_de_asset_label gUnk_086FB004
 	FOMT_REGION_ASSET_INCBIN 0x6FB004, 0x2198
 
-	.global gUnk_086FD19C
-gUnk_086FD19C:
+	non_de_asset_label gUnk_086FD19C
 	FOMT_REGION_ASSET_INCBIN 0x6FD19C, 0xA4
 
-	.global gUnk_086FD240
-gUnk_086FD240:
+	non_de_asset_label gUnk_086FD240
 	FOMT_REGION_ASSET_INCBIN 0x6FD240, 0x177F0
 
-	.global gUnk_08714A30
-gUnk_08714A30:
+	non_de_asset_label gUnk_08714A30
 	FOMT_REGION_ASSET_INCBIN 0x714A30, 0x130
 
-	.global gUnk_08714B60
-gUnk_08714B60:
+	non_de_asset_label gUnk_08714B60
 	FOMT_REGION_ASSET_INCBIN 0x714B60, 0x8C
 
-	.global gUnk_08714BEC
-gUnk_08714BEC:
+	non_de_asset_label gUnk_08714BEC
 	FOMT_REGION_ASSET_INCBIN 0x714BEC, 0x2398
 
-	.global gUnk_08716F84
-gUnk_08716F84:
+	non_de_asset_label gUnk_08716F84
 	FOMT_REGION_ASSET_INCBIN 0x716F84, 0x134
 
-	.global gUnk_087170B8
-gUnk_087170B8:
+	non_de_asset_label gUnk_087170B8
+	.ifdef REGION_DE
+	.incbin "baserom_de.gba", 0x719138, 0x4C9C
+	.global gFontSingleWidthGlyphData
+gFontSingleWidthGlyphData:
+	.incbin "baserom_de.gba", 0x71DDD4, 0x16D4
+	.global gFontSingleByteGlyphIndices
+gFontSingleByteGlyphIndices:
+	.incbin "baserom_de.gba", 0x71F4A8, 0xF4
+	.else
 	FOMT_REGION_ASSET_INCBIN 0x7170B8, 0x6464
+	.endif
 
+	.ifndef REGION_DE
 	.global gUnk_0871D51C
 gUnk_0871D51C:
+	.endif
+	.ifdef REGION_DE
+	.incbin "baserom_de.gba", 0x71F59C, 0x10C
+	.global gFontDoubleWidthGlyphData
+gFontDoubleWidthGlyphData:
+	.incbin "baserom_de.gba", 0x71F6A8, 0x1180
+	.else
 	FOMT_REGION_ASSET_INCBIN 0x71D51C, 0x128C
+	.endif
 
-	.global gUnk_0871E7A8
-gUnk_0871E7A8:
+	non_de_asset_label gUnk_0871E7A8
 	FOMT_REGION_ASSET_INCBIN 0x71E7A8, 0x504
 
-	.global gUnk_0871ECAC
-gUnk_0871ECAC:
+	non_de_asset_label gUnk_0871ECAC
 	FOMT_REGION_ASSET_INCBIN 0x71ECAC, 0x128
 
-	.global gUnk_0871EDD4
-gUnk_0871EDD4:
+	non_de_asset_label gUnk_0871EDD4
 	FOMT_REGION_ASSET_INCBIN 0x71EDD4, 0x12C
 
-	.global gUnk_0871EF00
-gUnk_0871EF00:
+	non_de_asset_label gUnk_0871EF00
 	FOMT_REGION_ASSET_INCBIN 0x71EF00, 0x6EA0
 
-	.global gUnk_08725DA0
-gUnk_08725DA0:
+	non_de_asset_label gUnk_08725DA0
 	FOMT_REGION_ASSET_INCBIN 0x725DA0, 0xF2C
 
-	.global gUnk_08726CCC
-gUnk_08726CCC:
+	non_de_asset_label gUnk_08726CCC
 	FOMT_REGION_ASSET_INCBIN 0x726CCC, 0x69C
 
-	.global gUnk_08727368
-gUnk_08727368:
+	non_de_asset_label gUnk_08727368
 	FOMT_REGION_ASSET_INCBIN 0x727368, 0x70C
 
-	.global gUnk_08727A74
-gUnk_08727A74:
+	non_de_asset_label gUnk_08727A74
 	FOMT_REGION_ASSET_INCBIN 0x727A74, 0x794
 
+	.ifndef REGION_DE
 	.global gUnk_08728208
 gUnk_08728208:
+	.endif
 	FOMT_REGION_ASSET_INCBIN 0x728208, 0x118
 
-	.global gUnk_08728320
-gUnk_08728320:
+	non_de_asset_label gUnk_08728320
 	FOMT_REGION_ASSET_INCBIN 0x728320, 0x105C
 
-	.global gUnk_0872937C
-gUnk_0872937C:
+	non_de_asset_label gUnk_0872937C
 	FOMT_REGION_ASSET_INCBIN 0x72937C, 0xE4
 
-	.global gUnk_08729460
-gUnk_08729460:
+	non_de_asset_label gUnk_08729460
 	FOMT_REGION_ASSET_INCBIN 0x729460, 0x2A04
 
+	.ifndef REGION_DE
 	.global gUnk_0872BE64
 gUnk_0872BE64:
+	.endif
 	FOMT_REGION_ASSET_INCBIN 0x72BE64, 0x76C
 
-	.global gUnk_0872C5D0
-gUnk_0872C5D0:
+	non_de_asset_label gUnk_0872C5D0
 	FOMT_REGION_ASSET_INCBIN 0x72C5D0, 0x16C
 
-	.global gUnk_0872C73C
-gUnk_0872C73C:
+	non_de_asset_label gUnk_0872C73C
 	FOMT_REGION_ASSET_INCBIN 0x72C73C, 0x110
 
-	.global gUnk_0872C84C
-gUnk_0872C84C:
+	non_de_asset_label gUnk_0872C84C
 	FOMT_REGION_ASSET_INCBIN 0x72C84C, 0xD60
 
-	.global gUnk_0872D5AC
-gUnk_0872D5AC:
+	non_de_asset_label gUnk_0872D5AC
 	FOMT_REGION_ASSET_INCBIN 0x72D5AC, 0x20
 
-	.global gUnk_0872D5CC
-gUnk_0872D5CC:
+	non_de_asset_label gUnk_0872D5CC
 	FOMT_REGION_ASSET_INCBIN 0x72D5CC, 0x64
 
-	.global gUnk_0872D630
-gUnk_0872D630:
+	non_de_asset_label gUnk_0872D630
 	FOMT_REGION_ASSET_INCBIN 0x72D630, 0xA8
 
-	.global gUnk_0872D6D8
-gUnk_0872D6D8:
+	non_de_asset_label gUnk_0872D6D8
 	FOMT_REGION_ASSET_INCBIN 0x72D6D8, 0x70C
 
-	.global gUnk_0872DDE4
-gUnk_0872DDE4:
+	non_de_asset_label gUnk_0872DDE4
 	FOMT_REGION_ASSET_INCBIN 0x72DDE4, 0x60
 
+	.ifndef REGION_DE
 	.global gUnk_0872DE44
 gUnk_0872DE44:
+	.endif
 	FOMT_REGION_ASSET_INCBIN 0x72DE44, 0x1034
 
+	.ifndef REGION_DE
 	.global gUnk_0872EE78
 gUnk_0872EE78:
+	.endif
 	FOMT_REGION_ASSET_INCBIN 0x72EE78, 0x2A4
 
-	.global gUnk_0872F11C
-gUnk_0872F11C:
+	non_de_asset_label gUnk_0872F11C
 	FOMT_REGION_ASSET_INCBIN 0x72F11C, 0xA0
 
-	.global gUnk_0872F1BC
-gUnk_0872F1BC:
+	non_de_asset_label gUnk_0872F1BC
 	FOMT_REGION_ASSET_INCBIN 0x72F1BC, 0x30
 
-	.global gUnk_0872F1EC
-gUnk_0872F1EC:
+	non_de_asset_label gUnk_0872F1EC
 	FOMT_REGION_ASSET_INCBIN 0x72F1EC, 0x30
 
-	.global gUnk_0872F21C
-gUnk_0872F21C:
+	non_de_asset_label gUnk_0872F21C
 	FOMT_REGION_ASSET_INCBIN 0x72F21C, 0x880
 
-	.global gUnk_0872FA9C
-gUnk_0872FA9C:
+	non_de_asset_label gUnk_0872FA9C
 	FOMT_REGION_ASSET_INCBIN 0x72FA9C, 0x160
 
-	.global gUnk_0872FBFC
-gUnk_0872FBFC:
+	non_de_asset_label gUnk_0872FBFC
 	FOMT_REGION_ASSET_INCBIN 0x72FBFC, 0x38
 
-	.global gUnk_0872FC34
-gUnk_0872FC34:
+	non_de_asset_label gUnk_0872FC34
 	FOMT_REGION_ASSET_INCBIN 0x72FC34, 0x238
 
-	.global gUnk_0872FE6C
-gUnk_0872FE6C:
+	non_de_asset_label gUnk_0872FE6C
 	FOMT_REGION_ASSET_INCBIN 0x72FE6C, 0x8C
 
-	.global gUnk_0872FEF8
-gUnk_0872FEF8:
+	non_de_asset_label gUnk_0872FEF8
 	FOMT_REGION_ASSET_INCBIN 0x72FEF8, 0x1A48
 
-	.global gUnk_08731940
-gUnk_08731940:
+	non_de_asset_label gUnk_08731940
 	FOMT_REGION_ASSET_INCBIN 0x731940, 0x200
 
-	.global gUnk_08731B40 @ChickenPortraits
-gUnk_08731B40:
+	non_de_asset_label gUnk_08731B40 @ChickenPortraits
 	FOMT_REGION_ASSET_INCBIN 0x731B40, 0x6604
 
-	.global gUnk_08738144 @gCalendarFont?
-gUnk_08738144:
+	non_de_asset_label gUnk_08738144 @gCalendarFont?
 	FOMT_REGION_ASSET_INCBIN 0x738144, 0x994
 
-	.global gUnk_08738AD8
-gUnk_08738AD8:
+	non_de_asset_label gUnk_08738AD8
 	FOMT_REGION_ASSET_INCBIN 0x738AD8, 0x1F0
 
-	.global gUnk_08738CC8
-gUnk_08738CC8:
+	non_de_asset_label gUnk_08738CC8
 	FOMT_REGION_ASSET_INCBIN 0x738CC8, 0x28
 
-	.global gUnk_08738CF0
-gUnk_08738CF0:
+	non_de_asset_label gUnk_08738CF0
 	FOMT_REGION_ASSET_INCBIN 0x738CF0, 0x2C
 
-	.global gUnk_08738D1C
-gUnk_08738D1C:
+	non_de_asset_label gUnk_08738D1C
 	FOMT_REGION_ASSET_INCBIN 0x738D1C, 0xCA8
 
-	.global gUnk_087399C4
-gUnk_087399C4:
+	non_de_asset_label gUnk_087399C4
 	FOMT_REGION_ASSET_INCBIN 0x7399C4, 0xA0
 
-	.global gUnk_08739A64
-gUnk_08739A64:
+	non_de_asset_label gUnk_08739A64
 	FOMT_REGION_ASSET_INCBIN 0x739A64, 0xC84
 
+	.ifndef REGION_DE
 	.global gUnk_0873A6E8
 gUnk_0873A6E8:
+	.endif
 	FOMT_REGION_ASSET_INCBIN 0x73A6E8, 0x76C
 
-	.global gUnk_0873AE54
-gUnk_0873AE54:
+	non_de_asset_label gUnk_0873AE54
 	FOMT_REGION_ASSET_INCBIN 0x73AE54, 0x174
 
-	.global gUnk_0873AFC8
-gUnk_0873AFC8:
+	non_de_asset_label gUnk_0873AFC8
 	FOMT_REGION_ASSET_INCBIN 0x73AFC8, 0xE5C
 
-	.global gUnk_0873BE24
-gUnk_0873BE24:
+	non_de_asset_label gUnk_0873BE24
 	FOMT_REGION_ASSET_INCBIN 0x73BE24, 0x124
 
-	.global gUnk_0873BF48
-gUnk_0873BF48:
+	non_de_asset_label gUnk_0873BF48
 	FOMT_REGION_ASSET_INCBIN 0x73BF48, 0xA8
 
-	.global gUnk_0873BFF0
-gUnk_0873BFF0:
+	non_de_asset_label gUnk_0873BFF0
 	FOMT_REGION_ASSET_INCBIN 0x73BFF0, 0xC04
 
-	.global gUnk_0873CBF4
-gUnk_0873CBF4:
+	non_de_asset_label gUnk_0873CBF4
 	FOMT_REGION_ASSET_INCBIN 0x73CBF4, 0xC0
 
+	.ifndef REGION_DE
 	.global gUnk_0873CCB4
 gUnk_0873CCB4:
+	.endif
 	FOMT_REGION_ASSET_INCBIN 0x73CCB4, 0x1F8
 
-	.global gUnk_0873CEAC
-gUnk_0873CEAC:
+	non_de_asset_label gUnk_0873CEAC
 	FOMT_REGION_ASSET_INCBIN 0x73CEAC, 0xE4
 
+	.ifndef REGION_DE
 	.global gUnk_0873CF90
 gUnk_0873CF90:
+	.endif
 	FOMT_REGION_ASSET_INCBIN 0x73CF90, 0x2A4
 
+	.ifndef REGION_DE
 	.global gUnk_0873D234
 gUnk_0873D234:
+	.endif
 	FOMT_REGION_ASSET_INCBIN 0x73D234, 0x3C8
 
-	.global gUnk_0873D5FC
-gUnk_0873D5FC:
+	non_de_asset_label gUnk_0873D5FC
 	FOMT_REGION_ASSET_INCBIN 0x73D5FC, 0xDC
 
+	.ifndef REGION_DE
 	.global gUnk_0873D6D8
 gUnk_0873D6D8:
+	.endif
 	FOMT_REGION_ASSET_INCBIN 0x73D6D8, 0x76C
 
+	.ifndef REGION_DE
 	.global gUnk_0873DE44
 gUnk_0873DE44:
+	.endif
 	FOMT_REGION_ASSET_INCBIN 0x73DE44, 0x76C
 
+	.ifndef REGION_DE
 	.global gUnk_0873E5B0
 gUnk_0873E5B0:
+	.endif
 	FOMT_REGION_ASSET_INCBIN 0x73E5B0, 0x76C
 
+	.ifndef REGION_DE
 	.global gUnk_0873ED1C
 gUnk_0873ED1C:
+	.endif
 	FOMT_REGION_ASSET_INCBIN 0x73ED1C, 0x6AC
 
-	.global gUnk_0873F3C8
-gUnk_0873F3C8:
+	non_de_asset_label gUnk_0873F3C8
 	FOMT_REGION_ASSET_INCBIN 0x73F3C8, 0x20C
 
-	.global gUnk_0873F5D4
-gUnk_0873F5D4:
+	non_de_asset_label gUnk_0873F5D4
 	FOMT_REGION_ASSET_INCBIN 0x73F5D4, 0xD8
 
-	.global gUnk_0873F6AC
-gUnk_0873F6AC:
+	non_de_asset_label gUnk_0873F6AC
 	FOMT_REGION_ASSET_INCBIN 0x73F6AC, 0xA38
 
-	.global gUnk_087400E4
-gUnk_087400E4:
+	non_de_asset_label gUnk_087400E4
 	FOMT_REGION_ASSET_INCBIN 0x7400E4, 0xC0
 
+	.ifndef REGION_DE
 	.global gUnk_087401A4
 gUnk_087401A4:
+	.endif
 	FOMT_REGION_ASSET_INCBIN 0x7401A4, 0x2B0
 
+	.ifndef REGION_DE
 	.global gUnk_08740454
 gUnk_08740454:
+	.endif
 	FOMT_REGION_ASSET_INCBIN 0x740454, 0x14C
 
+	.ifndef REGION_DE
 	.global gUnk_087405A0
 gUnk_087405A0:
+	.endif
 	FOMT_REGION_ASSET_INCBIN 0x7405A0, 0x368
 
-	.global gUnk_08740908
-gUnk_08740908:
+	non_de_asset_label gUnk_08740908
 	FOMT_REGION_ASSET_INCBIN 0x740908, 0xDC
 
 us_data_087409e4_start:
-	.global gUnk_087409E4
-gUnk_087409E4:
+	non_de_asset_label gUnk_087409E4
 	FOMT_REGION_ASSET_INCBIN 0x7409E4, 0x2674
 
+	.ifndef REGION_DE
 	@ Intro Scene resources unpacked in order by func_0805FBB8.
 	@ Their individual payload formats are not decoded yet.
 	.global gUnk_IntroSceneUnpackSource_000
@@ -3887,9 +4834,11 @@ gUnk_087409E4:
 	.set gUnk_IntroSceneUnpackSource_018, us_data_087409e4_start + 0x2300
 	.global gUnk_IntroSceneUnpackSource_019
 	.set gUnk_IntroSceneUnpackSource_019, us_data_087409e4_start + 0x260C
+	.endif
 
 	@ Four resources unpacked by the earlier Intro Scene startup path.
 	@ Their payload formats remain raw in this region-specific asset range.
+	.ifndef REGION_DE
 	.global gUnk_IntroSceneStartupUnpackSource_000
 	.set gUnk_IntroSceneStartupUnpackSource_000, us_data_087409e4_start + 0x97F4
 	.global gUnk_IntroSceneStartupUnpackSource_001
@@ -3898,13 +4847,19 @@ gUnk_087409E4:
 	.set gUnk_IntroSceneStartupUnpackSource_002, us_data_087409e4_start + 0x9DEC
 	.global gUnk_IntroSceneStartupUnpackSource_003
 	.set gUnk_IntroSceneStartupUnpackSource_003, us_data_087409e4_start + 0x9EE0
+	.endif
 
-	.global gUnk_08743058
-gUnk_08743058:
+	non_de_asset_label gUnk_08743058
+	.ifdef REGION_DE
+	.incbin "baserom_de.gba", 0x7450D8, 0x2EC0
+	.global gFontShiftJisGlyphIndices
+gFontShiftJisGlyphIndices:
+	.incbin "baserom_de.gba", 0x747F98, 0x1AFC
+	.else
 	FOMT_REGION_ASSET_INCBIN 0x743058, 0x49BC
+	.endif
 
-	.global gUnk_08747A14
-gUnk_08747A14:
+	non_de_asset_label gUnk_08747A14
 	FOMT_REGION_ASSET_INCBIN 0x747A14, 0x60
 
 	.ifdef REGION_DE
@@ -4500,4 +5455,509 @@ gUnk_0875B444:
 	.global gUnk_UiSharedResourceData_001
 	.set gUnk_UiSharedResourceData_001, gUnk_0875B444 + 0x4F4
 	.endif
+    .endif
+
+    @ EU payload labels used directly by map and FarmHouse C++ tables.
+    @ The preceding four bytes remain the EU archive header; each label below
+    @ denotes payload byte 0, so C++ never compensates with a regional offset.
+    .ifdef REGION_EU
+    .set gUnk_MapDataResource_000, gUnk_MapDataResource_000 + 4
+    .set gUnk_MapDataResource_001, gUnk_MapDataResource_001 + 4
+    .set gUnk_MapDataResource_002, gUnk_MapDataResource_002 + 4
+    .set gUnk_MapDataResource_003, gUnk_MapDataResource_003 + 4
+    .set gUnk_MapDataResource_004, gUnk_MapDataResource_004 + 4
+    .set gUnk_MapDataResource_005, gUnk_MapDataResource_005 + 4
+    .set gUnk_MapDataResource_008, gUnk_MapDataResource_008 + 4
+    .set gUnk_MapDataResource_009, gUnk_MapDataResource_009 + 4
+    .set gUnk_MapDataResource_010, gUnk_MapDataResource_010 + 4
+    .set gUnk_MapDataResource_011, gUnk_MapDataResource_011 + 4
+    .set gUnk_MapDataResource_012, gUnk_MapDataResource_012 + 4
+    .set gUnk_MapDataResource_013, gUnk_MapDataResource_013 + 4
+    .set gUnk_MapDataResource_014, gUnk_MapDataResource_014 + 4
+    .set gUnk_MapDataResource_015, gUnk_MapDataResource_015 + 4
+    .set gUnk_MapDataResource_016, gUnk_MapDataResource_016 + 4
+    .set gUnk_MapDataResource_017, gUnk_MapDataResource_017 + 4
+    .set gUnk_MapDataResource_018, gUnk_MapDataResource_018 + 4
+    .set gUnk_MapDataResource_019, gUnk_MapDataResource_019 + 4
+    .set gUnk_MapDataResource_022, gUnk_MapDataResource_022 + 4
+    .set gUnk_MapDataResource_023, gUnk_MapDataResource_023 + 4
+    .set gUnk_MapDataResource_024, gUnk_MapDataResource_024 + 4
+    .set gUnk_MapDataResource_025, gUnk_MapDataResource_025 + 4
+    .set gUnk_MapDataResource_026, gUnk_MapDataResource_026 + 4
+    .set gUnk_MapDataResource_027, gUnk_MapDataResource_027 + 4
+    .set gUnk_MapDataResource_028, gUnk_MapDataResource_028 + 4
+    .set gUnk_MapDataResource_029, gUnk_MapDataResource_029 + 4
+    .set gUnk_MapDataResource_030, gUnk_MapDataResource_030 + 4
+    .set gUnk_MapDataResource_031, gUnk_MapDataResource_031 + 4
+    .set gUnk_MapDataResource_032, gUnk_MapDataResource_032 + 4
+    .set gUnk_MapDataResource_033, gUnk_MapDataResource_033 + 4
+    .set gUnk_MapDataResource_036, gUnk_MapDataResource_036 + 4
+    .set gUnk_MapDataResource_037, gUnk_MapDataResource_037 + 4
+    .set gUnk_MapDataResource_038, gUnk_MapDataResource_038 + 4
+    .set gUnk_MapDataResource_039, gUnk_MapDataResource_039 + 4
+    .set gUnk_MapDataResource_040, gUnk_MapDataResource_040 + 4
+    .set gUnk_MapDataResource_041, gUnk_MapDataResource_041 + 4
+    .set gUnk_MapDataResource_042, gUnk_MapDataResource_042 + 4
+    .set gUnk_MapDataResource_043, gUnk_MapDataResource_043 + 4
+    .set gUnk_MapDataResource_044, gUnk_MapDataResource_044 + 4
+    .set gUnk_MapDataResource_045, gUnk_MapDataResource_045 + 4
+    .set gUnk_MapDataResource_046, gUnk_MapDataResource_046 + 4
+    .set gUnk_MapDataResource_047, gUnk_MapDataResource_047 + 4
+    .set gUnk_MapDataResource_050, gUnk_MapDataResource_050 + 4
+    .set gUnk_MapDataResource_051, gUnk_MapDataResource_051 + 4
+    .set gUnk_MapDataResource_052, gUnk_MapDataResource_052 + 4
+    .set gUnk_MapDataResource_053, gUnk_MapDataResource_053 + 4
+    .set gUnk_MapDataResource_054, gUnk_MapDataResource_054 + 4
+    .set gUnk_MapDataResource_055, gUnk_MapDataResource_055 + 4
+    .set gUnk_MapDataResource_056, gUnk_MapDataResource_056 + 4
+    .set gUnk_MapDataResource_057, gUnk_MapDataResource_057 + 4
+    .set gUnk_MapDataResource_058, gUnk_MapDataResource_058 + 4
+    .set gUnk_MapDataResource_059, gUnk_MapDataResource_059 + 4
+    .set gUnk_MapDataResource_060, gUnk_MapDataResource_060 + 4
+    .set gUnk_MapDataResource_061, gUnk_MapDataResource_061 + 4
+    .set gUnk_MapDataResource_064, gUnk_MapDataResource_064 + 4
+    .set gUnk_MapDataResource_065, gUnk_MapDataResource_065 + 4
+    .set gUnk_MapDataResource_066, gUnk_MapDataResource_066 + 4
+    .set gUnk_MapDataResource_067, gUnk_MapDataResource_067 + 4
+    .set gUnk_MapDataResource_068, gUnk_MapDataResource_068 + 4
+    .set gUnk_MapDataResource_069, gUnk_MapDataResource_069 + 4
+    .set gUnk_MapDataResource_070, gUnk_MapDataResource_070 + 4
+    .set gUnk_MapDataResource_071, gUnk_MapDataResource_071 + 4
+    .set gUnk_MapDataResource_072, gUnk_MapDataResource_072 + 4
+    .set gUnk_MapDataResource_073, gUnk_MapDataResource_073 + 4
+    .set gUnk_MapDataResource_074, gUnk_MapDataResource_074 + 4
+    .set gUnk_MapDataResource_075, gUnk_MapDataResource_075 + 4
+    .set gUnk_MapDataResource_078, gUnk_MapDataResource_078 + 4
+    .set gUnk_MapDataResource_079, gUnk_MapDataResource_079 + 4
+    .set gUnk_MapDataResource_080, gUnk_MapDataResource_080 + 4
+    .set gUnk_MapDataResource_081, gUnk_MapDataResource_081 + 4
+    .set gUnk_MapDataResource_082, gUnk_MapDataResource_082 + 4
+    .set gUnk_MapDataResource_083, gUnk_MapDataResource_083 + 4
+    .set gUnk_MapDataResource_084, gUnk_MapDataResource_084 + 4
+    .set gUnk_MapDataResource_085, gUnk_MapDataResource_085 + 4
+    .set gUnk_MapDataResource_086, gUnk_MapDataResource_086 + 4
+    .set gUnk_MapDataResource_089, gUnk_MapDataResource_089 + 4
+    .set gUnk_MapDataResource_090, gUnk_MapDataResource_090 + 4
+    .set gUnk_MapDataResource_091, gUnk_MapDataResource_091 + 4
+    .set gUnk_MapDataResource_092, gUnk_MapDataResource_092 + 4
+    .set gUnk_MapDataResource_093, gUnk_MapDataResource_093 + 4
+    .set gUnk_MapDataResource_094, gUnk_MapDataResource_094 + 4
+    .set gUnk_MapDataResource_095, gUnk_MapDataResource_095 + 4
+    .set gUnk_MapDataResource_096, gUnk_MapDataResource_096 + 4
+    .set gUnk_MapDataResource_097, gUnk_MapDataResource_097 + 4
+    .set gUnk_MapDataResource_100, gUnk_MapDataResource_100 + 4
+    .set gUnk_MapDataResource_101, gUnk_MapDataResource_101 + 4
+    .set gUnk_MapDataResource_102, gUnk_MapDataResource_102 + 4
+    .set gUnk_MapDataResource_103, gUnk_MapDataResource_103 + 4
+    .set gUnk_MapDataResource_104, gUnk_MapDataResource_104 + 4
+    .set gUnk_MapDataResource_105, gUnk_MapDataResource_105 + 4
+    .set gUnk_MapDataResource_106, gUnk_MapDataResource_106 + 4
+    .set gUnk_MapDataResource_107, gUnk_MapDataResource_107 + 4
+    .set gUnk_MapDataResource_108, gUnk_MapDataResource_108 + 4
+    .set gUnk_MapDataResource_109, gUnk_MapDataResource_109 + 4
+    .set gUnk_MapDataResource_110, gUnk_MapDataResource_110 + 4
+    .set gUnk_MapDataResource_111, gUnk_MapDataResource_111 + 4
+    .set gUnk_MapDataResource_114, gUnk_MapDataResource_114 + 4
+    .set gUnk_MapDataResource_115, gUnk_MapDataResource_115 + 4
+    .set gUnk_MapDataResource_116, gUnk_MapDataResource_116 + 4
+    .set gUnk_MapDataResource_117, gUnk_MapDataResource_117 + 4
+    .set gUnk_MapDataResource_118, gUnk_MapDataResource_118 + 4
+    .set gUnk_MapDataResource_119, gUnk_MapDataResource_119 + 4
+    .set gUnk_MapDataResource_120, gUnk_MapDataResource_120 + 4
+    .set gUnk_MapDataResource_121, gUnk_MapDataResource_121 + 4
+    .set gUnk_MapDataResource_122, gUnk_MapDataResource_122 + 4
+    .set gUnk_MapDataResource_123, gUnk_MapDataResource_123 + 4
+    .set gUnk_MapDataResource_124, gUnk_MapDataResource_124 + 4
+    .set gUnk_MapDataResource_127, gUnk_MapDataResource_127 + 4
+    .set gUnk_MapDataResource_128, gUnk_MapDataResource_128 + 4
+    .set gUnk_MapDataResource_129, gUnk_MapDataResource_129 + 4
+    .set gUnk_MapDataResource_132, gUnk_MapDataResource_132 + 4
+    .set gUnk_MapDataResource_133, gUnk_MapDataResource_133 + 4
+    .set gUnk_MapDataResource_134, gUnk_MapDataResource_134 + 4
+    .set gUnk_MapDataResource_137, gUnk_MapDataResource_137 + 4
+    .set gUnk_MapDataResource_138, gUnk_MapDataResource_138 + 4
+    .set gUnk_MapDataResource_139, gUnk_MapDataResource_139 + 4
+    .set gUnk_MapDataResource_142, gUnk_MapDataResource_142 + 4
+    .set gUnk_MapDataResource_143, gUnk_MapDataResource_143 + 4
+    .set gUnk_MapDataResource_144, gUnk_MapDataResource_144 + 4
+    .set gUnk_MapDataResource_145, gUnk_MapDataResource_145 + 4
+    .set gUnk_MapDataResource_146, gUnk_MapDataResource_146 + 4
+    .set gUnk_MapDataResource_149, gUnk_MapDataResource_149 + 4
+    .set gUnk_MapDataResource_150, gUnk_MapDataResource_150 + 4
+    .set gUnk_MapDataResource_151, gUnk_MapDataResource_151 + 4
+    .set gUnk_MapDataResource_154, gUnk_MapDataResource_154 + 4
+    .set gUnk_MapDataResource_155, gUnk_MapDataResource_155 + 4
+    .set gUnk_MapDataResource_156, gUnk_MapDataResource_156 + 4
+    .set gUnk_MapDataResource_159, gUnk_MapDataResource_159 + 4
+    .set gUnk_MapDataResource_160, gUnk_MapDataResource_160 + 4
+    .set gUnk_MapDataResource_161, gUnk_MapDataResource_161 + 4
+    .set gUnk_MapDataResource_162, gUnk_MapDataResource_162 + 4
+    .set gUnk_MapDataResource_163, gUnk_MapDataResource_163 + 4
+    .set gUnk_MapDataResource_166, gUnk_MapDataResource_166 + 4
+    .set gUnk_MapDataResource_167, gUnk_MapDataResource_167 + 4
+    .set gUnk_MapDataResource_168, gUnk_MapDataResource_168 + 4
+    .set gUnk_MapDataResource_169, gUnk_MapDataResource_169 + 4
+    .set gUnk_MapDataResource_170, gUnk_MapDataResource_170 + 4
+    .set gUnk_MapDataResource_173, gUnk_MapDataResource_173 + 4
+    .set gUnk_MapDataResource_174, gUnk_MapDataResource_174 + 4
+    .set gUnk_MapDataResource_175, gUnk_MapDataResource_175 + 4
+    .set gUnk_MapDataResource_178, gUnk_MapDataResource_178 + 4
+    .set gUnk_MapDataResource_179, gUnk_MapDataResource_179 + 4
+    .set gUnk_MapDataResource_180, gUnk_MapDataResource_180 + 4
+    .set gUnk_MapDataResource_183, gUnk_MapDataResource_183 + 4
+    .set gUnk_MapDataResource_184, gUnk_MapDataResource_184 + 4
+    .set gUnk_MapDataResource_185, gUnk_MapDataResource_185 + 4
+    .set gUnk_MapDataResource_186, gUnk_MapDataResource_186 + 4
+    .set gUnk_MapDataResource_187, gUnk_MapDataResource_187 + 4
+    .set gUnk_MapDataResource_190, gUnk_MapDataResource_190 + 4
+    .set gUnk_MapDataResource_191, gUnk_MapDataResource_191 + 4
+    .set gUnk_MapDataResource_192, gUnk_MapDataResource_192 + 4
+    .set gUnk_MapDataResource_195, gUnk_MapDataResource_195 + 4
+    .set gUnk_MapDataResource_196, gUnk_MapDataResource_196 + 4
+    .set gUnk_MapDataResource_197, gUnk_MapDataResource_197 + 4
+    .set gUnk_MapDataResource_200, gUnk_MapDataResource_200 + 4
+    .set gUnk_MapDataResource_201, gUnk_MapDataResource_201 + 4
+    .set gUnk_MapDataResource_202, gUnk_MapDataResource_202 + 4
+    .set gUnk_MapDataResource_203, gUnk_MapDataResource_203 + 4
+    .set gUnk_MapDataResource_204, gUnk_MapDataResource_204 + 4
+    .set gUnk_MapDataResource_207, gUnk_MapDataResource_207 + 4
+    .set gUnk_MapDataResource_208, gUnk_MapDataResource_208 + 4
+    .set gUnk_MapDataResource_209, gUnk_MapDataResource_209 + 4
+    .set gUnk_MapDataResource_212, gUnk_MapDataResource_212 + 4
+    .set gUnk_MapDataResource_213, gUnk_MapDataResource_213 + 4
+    .set gUnk_MapDataResource_214, gUnk_MapDataResource_214 + 4
+    .set gUnk_MapDataResource_217, gUnk_MapDataResource_217 + 4
+    .set gUnk_MapDataResource_218, gUnk_MapDataResource_218 + 4
+    .set gUnk_MapDataResource_219, gUnk_MapDataResource_219 + 4
+    .set gUnk_MapDataResource_222, gUnk_MapDataResource_222 + 4
+    .set gUnk_MapDataResource_223, gUnk_MapDataResource_223 + 4
+    .set gUnk_MapDataResource_224, gUnk_MapDataResource_224 + 4
+    .set gUnk_MapDataResource_225, gUnk_MapDataResource_225 + 4
+    .set gUnk_MapDataResource_226, gUnk_MapDataResource_226 + 4
+    .set gUnk_MapDataResource_229, gUnk_MapDataResource_229 + 4
+    .set gUnk_MapDataResource_230, gUnk_MapDataResource_230 + 4
+    .set gUnk_MapDataResource_231, gUnk_MapDataResource_231 + 4
+    .set gUnk_MapDataResource_234, gUnk_MapDataResource_234 + 4
+    .set gUnk_MapDataResource_235, gUnk_MapDataResource_235 + 4
+    .set gUnk_MapDataResource_236, gUnk_MapDataResource_236 + 4
+    .set gUnk_MapDataResource_239, gUnk_MapDataResource_239 + 4
+    .set gUnk_MapDataResource_240, gUnk_MapDataResource_240 + 4
+    .set gUnk_MapDataResource_241, gUnk_MapDataResource_241 + 4
+    .set gUnk_MapDataResource_244, gUnk_MapDataResource_244 + 4
+    .set gUnk_MapDataResource_245, gUnk_MapDataResource_245 + 4
+    .set gUnk_MapDataResource_246, gUnk_MapDataResource_246 + 4
+    .set gUnk_MapDataResource_249, gUnk_MapDataResource_249 + 4
+    .set gUnk_MapDataResource_250, gUnk_MapDataResource_250 + 4
+    .set gUnk_MapDataResource_251, gUnk_MapDataResource_251 + 4
+    .set gUnk_MapDataResource_252, gUnk_MapDataResource_252 + 4
+    .set gUnk_MapDataResource_253, gUnk_MapDataResource_253 + 4
+    .set gUnk_MapDataResource_256, gUnk_MapDataResource_256 + 4
+    .set gUnk_MapDataResource_257, gUnk_MapDataResource_257 + 4
+    .set gUnk_MapDataResource_258, gUnk_MapDataResource_258 + 4
+    .set gUnk_MapDataResource_261, gUnk_MapDataResource_261 + 4
+    .set gUnk_MapDataResource_262, gUnk_MapDataResource_262 + 4
+    .set gUnk_MapDataResource_263, gUnk_MapDataResource_263 + 4
+    .set gUnk_MapDataResource_266, gUnk_MapDataResource_266 + 4
+    .set gUnk_MapDataResource_267, gUnk_MapDataResource_267 + 4
+    .set gUnk_MapDataResource_268, gUnk_MapDataResource_268 + 4
+    .set gUnk_MapDataResource_269, gUnk_MapDataResource_269 + 4
+    .set gUnk_MapDataResource_270, gUnk_MapDataResource_270 + 4
+    .set gUnk_MapDataResource_273, gUnk_MapDataResource_273 + 4
+    .set gUnk_MapDataResource_274, gUnk_MapDataResource_274 + 4
+    .set gUnk_MapDataResource_275, gUnk_MapDataResource_275 + 4
+    .set gUnk_MapDataResource_278, gUnk_MapDataResource_278 + 4
+    .set gUnk_MapDataResource_279, gUnk_MapDataResource_279 + 4
+    .set gUnk_MapDataResource_280, gUnk_MapDataResource_280 + 4
+    .set gUnk_MapDataResource_281, gUnk_MapDataResource_281 + 4
+    .set gUnk_MapDataResource_282, gUnk_MapDataResource_282 + 4
+    .set gUnk_MapDataResource_285, gUnk_MapDataResource_285 + 4
+    .set gUnk_MapDataResource_286, gUnk_MapDataResource_286 + 4
+    .set gUnk_MapDataResource_287, gUnk_MapDataResource_287 + 4
+    .set gUnk_MapDataResource_290, gUnk_MapDataResource_290 + 4
+    .set gUnk_MapDataResource_291, gUnk_MapDataResource_291 + 4
+    .set gUnk_MapDataResource_292, gUnk_MapDataResource_292 + 4
+    .set gUnk_MapDataResource_293, gUnk_MapDataResource_293 + 4
+    .set gUnk_MapDataResource_294, gUnk_MapDataResource_294 + 4
+    .set gUnk_MapDataResource_297, gUnk_MapDataResource_297 + 4
+    .set gUnk_MapDataResource_298, gUnk_MapDataResource_298 + 4
+    .set gUnk_MapDataResource_299, gUnk_MapDataResource_299 + 4
+    .set gUnk_MapDataResource_302, gUnk_MapDataResource_302 + 4
+    .set gUnk_MapDataResource_303, gUnk_MapDataResource_303 + 4
+    .set gUnk_MapDataResource_304, gUnk_MapDataResource_304 + 4
+    .set gUnk_MapDataResource_305, gUnk_MapDataResource_305 + 4
+    .set gUnk_MapDataResource_306, gUnk_MapDataResource_306 + 4
+    .set gUnk_MapDataResource_309, gUnk_MapDataResource_309 + 4
+    .set gUnk_MapDataResource_310, gUnk_MapDataResource_310 + 4
+    .set gUnk_MapDataResource_311, gUnk_MapDataResource_311 + 4
+    .set gUnk_MapDataResource_314, gUnk_MapDataResource_314 + 4
+    .set gUnk_MapDataResource_315, gUnk_MapDataResource_315 + 4
+    .set gUnk_MapDataResource_316, gUnk_MapDataResource_316 + 4
+    .set gUnk_MapDataResource_317, gUnk_MapDataResource_317 + 4
+    .set gUnk_MapDataResource_318, gUnk_MapDataResource_318 + 4
+    .set gUnk_MapDataResource_321, gUnk_MapDataResource_321 + 4
+    .set gUnk_MapDataResource_322, gUnk_MapDataResource_322 + 4
+    .set gUnk_MapDataResource_323, gUnk_MapDataResource_323 + 4
+    .set gUnk_MapDataResource_324, gUnk_MapDataResource_324 + 4
+    .set gUnk_MapDataResource_325, gUnk_MapDataResource_325 + 4
+    .set gUnk_MapDataResource_328, gUnk_MapDataResource_328 + 4
+    .set gUnk_MapDataResource_329, gUnk_MapDataResource_329 + 4
+    .set gUnk_MapDataResource_330, gUnk_MapDataResource_330 + 4
+    .set gUnk_MapDataResource_333, gUnk_MapDataResource_333 + 4
+    .set gUnk_MapDataResource_334, gUnk_MapDataResource_334 + 4
+    .set gUnk_MapDataResource_335, gUnk_MapDataResource_335 + 4
+    .set gUnk_MapDataResource_338, gUnk_MapDataResource_338 + 4
+    .set gUnk_MapDataResource_339, gUnk_MapDataResource_339 + 4
+    .set gUnk_MapDataResource_340, gUnk_MapDataResource_340 + 4
+    .set gUnk_MapDataResource_341, gUnk_MapDataResource_341 + 4
+    .set gUnk_MapDataResource_342, gUnk_MapDataResource_342 + 4
+    .set gUnk_MapDataResource_345, gUnk_MapDataResource_345 + 4
+    .set gUnk_MapDataResource_346, gUnk_MapDataResource_346 + 4
+    .set gUnk_MapDataResource_347, gUnk_MapDataResource_347 + 4
+    .set gUnk_MapDataResource_350, gUnk_MapDataResource_350 + 4
+    .set gUnk_MapDataResource_351, gUnk_MapDataResource_351 + 4
+    .set gUnk_MapDataResource_352, gUnk_MapDataResource_352 + 4
+    .set gUnk_MapDataResource_355, gUnk_MapDataResource_355 + 4
+    .set gUnk_MapDataResource_356, gUnk_MapDataResource_356 + 4
+    .set gUnk_MapDataResource_357, gUnk_MapDataResource_357 + 4
+    .set gUnk_MapDataResource_360, gUnk_MapDataResource_360 + 4
+    .set gUnk_MapDataResource_361, gUnk_MapDataResource_361 + 4
+    .set gUnk_MapDataResource_362, gUnk_MapDataResource_362 + 4
+    .set gUnk_MapDataResource_365, gUnk_MapDataResource_365 + 4
+    .set gUnk_MapDataResource_366, gUnk_MapDataResource_366 + 4
+    .set gUnk_MapDataResource_367, gUnk_MapDataResource_367 + 4
+    .set gUnk_MapDataResource_370, gUnk_MapDataResource_370 + 4
+    .set gUnk_MapDataResource_371, gUnk_MapDataResource_371 + 4
+    .set gUnk_MapDataResource_374, gUnk_MapDataResource_374 + 4
+    .set gUnk_MapDataResource_375, gUnk_MapDataResource_375 + 4
+    .set gUnk_MapDataResource_376, gUnk_MapDataResource_376 + 4
+    .set gUnk_MapDataResource_377, gUnk_MapDataResource_377 + 4
+    .set gUnk_MapDataResource_378, gUnk_MapDataResource_378 + 4
+    .set gUnk_MapDataResource_379, gUnk_MapDataResource_379 + 4
+    .set gUnk_FarmHouseTilePatchResource_000, gUnk_FarmHouseTilePatchResource_000 + 4
+    .set gUnk_FarmHouseTilePatchResource_001, gUnk_FarmHouseTilePatchResource_001 + 4
+    .set gUnk_FarmHouseTilePatchResource_002, gUnk_FarmHouseTilePatchResource_002 + 4
+    .set gUnk_FarmHouseTilePatchResource_003, gUnk_FarmHouseTilePatchResource_003 + 4
+    .set gUnk_FarmHouseTilePatchResource_004, gUnk_FarmHouseTilePatchResource_004 + 4
+    .set gUnk_FarmHouseTilePatchResource_005, gUnk_FarmHouseTilePatchResource_005 + 4
+    .set gUnk_FarmHouseTilePatchResource_006, gUnk_FarmHouseTilePatchResource_006 + 4
+    .set gUnk_FarmHouseTilePatchResource_007, gUnk_FarmHouseTilePatchResource_007 + 4
+    .set gUnk_FarmHouseTilePatchResource_008, gUnk_FarmHouseTilePatchResource_008 + 4
+    .set gUnk_FarmHouseTilePatchResource_009, gUnk_FarmHouseTilePatchResource_009 + 4
+    .set gUnk_FarmHouseTilePatchResource_010, gUnk_FarmHouseTilePatchResource_010 + 4
+    .set gUnk_FarmHouseTilePatchResource_011, gUnk_FarmHouseTilePatchResource_011 + 4
+    .set gUnk_FarmHouseTilePatchResource_012, gUnk_FarmHouseTilePatchResource_012 + 4
+    .set gUnk_FarmHouseTilePatchResource_013, gUnk_FarmHouseTilePatchResource_013 + 4
+    .set gUnk_FarmHouseTilePatchResource_014, gUnk_FarmHouseTilePatchResource_014 + 4
+    .set gUnk_FarmHouseTilePatchResource_015, gUnk_FarmHouseTilePatchResource_015 + 4
+    .set gUnk_FarmHouseTilePatchResource_016, gUnk_FarmHouseTilePatchResource_016 + 4
+    .set gUnk_FarmHouseTilePatchResource_017, gUnk_FarmHouseTilePatchResource_017 + 4
+    .set gUnk_FarmHouseTilePatchResource_018, gUnk_FarmHouseTilePatchResource_018 + 4
+    .set gUnk_FarmHouseTilePatchResource_019, gUnk_FarmHouseTilePatchResource_019 + 4
+    .set gUnk_FarmHouseTilePatchResource_020, gUnk_FarmHouseTilePatchResource_020 + 4
+    .set gUnk_FarmHouseTilePatchResource_021, gUnk_FarmHouseTilePatchResource_021 + 4
+    .set gUnk_FarmHouseTilePatchResource_022, gUnk_FarmHouseTilePatchResource_022 + 4
+    .set gUnk_FarmHouseTilePatchResource_023, gUnk_FarmHouseTilePatchResource_023 + 4
+    .set gUnk_FarmHouseTilePatchResource_024, gUnk_FarmHouseTilePatchResource_024 + 4
+    .set gUnk_FarmHouseTilePatchResource_025, gUnk_FarmHouseTilePatchResource_025 + 4
+    .set gUnk_FarmHouseTilePatchResource_026, gUnk_FarmHouseTilePatchResource_026 + 4
+    .set gUnk_FarmHouseTilePatchResource_027, gUnk_FarmHouseTilePatchResource_027 + 4
+    .set gUnk_FarmHouseTilePatchAnimationResource_000, gUnk_FarmHouseTilePatchAnimationResource_000 + 4
+    .set gUnk_FarmHouseTilePatchAnimationResource_001, gUnk_FarmHouseTilePatchAnimationResource_001 + 4
+    .set gUnk_FarmHouseVisualResource_000, gUnk_FarmHouseVisualResource_000 + 4
+    .set gUnk_FarmHouseVisualResource_001, gUnk_FarmHouseVisualResource_001 + 4
+    .set gUnk_FarmHouseVisualResource_004, gUnk_FarmHouseVisualResource_004 + 4
+    .set gUnk_FarmHouseVisualResource_005, gUnk_FarmHouseVisualResource_005 + 4
+    .set gUnk_FarmHouseVisualResource_006, gUnk_FarmHouseVisualResource_006 + 4
+    .set gUnk_FarmHouseVisualResource_007, gUnk_FarmHouseVisualResource_007 + 4
+    .set gUnk_FarmHouseVisualResource_010, gUnk_FarmHouseVisualResource_010 + 4
+    .set gUnk_FarmHouseVisualResource_011, gUnk_FarmHouseVisualResource_011 + 4
+    .set gUnk_FarmHouseVisualResource_012, gUnk_FarmHouseVisualResource_012 + 4
+    .set gUnk_FarmHouseVisualResource_013, gUnk_FarmHouseVisualResource_013 + 4
+    .set gUnk_FarmHouseVisualResource_014, gUnk_FarmHouseVisualResource_014 + 4
+    .set gUnk_FarmHouseVisualResource_015, gUnk_FarmHouseVisualResource_015 + 4
+    .set gUnk_FarmHouseVisualResource_016, gUnk_FarmHouseVisualResource_016 + 4
+    .set gUnk_FarmHouseVisualResource_017, gUnk_FarmHouseVisualResource_017 + 4
+    .set gUnk_FarmHouseVisualResource_018, gUnk_FarmHouseVisualResource_018 + 4
+    .set gUnk_FarmHouseVisualResource_019, gUnk_FarmHouseVisualResource_019 + 4
+    .set gUnk_FarmHouseVisualResource_022, gUnk_FarmHouseVisualResource_022 + 4
+    .set gUnk_FarmHouseVisualResource_023, gUnk_FarmHouseVisualResource_023 + 4
+    .set gUnk_FarmHouseVisualResource_024, gUnk_FarmHouseVisualResource_024 + 4
+    .set gUnk_FarmHouseVisualResource_025, gUnk_FarmHouseVisualResource_025 + 4
+    .set gUnk_FarmHouseVisualResource_028, gUnk_FarmHouseVisualResource_028 + 4
+    .set gUnk_FarmHouseVisualResource_029, gUnk_FarmHouseVisualResource_029 + 4
+    .set gUnk_FarmHouseVisualResource_030, gUnk_FarmHouseVisualResource_030 + 4
+    .set gUnk_FarmHouseVisualResource_031, gUnk_FarmHouseVisualResource_031 + 4
+    .set gUnk_FarmHouseVisualResource_034, gUnk_FarmHouseVisualResource_034 + 4
+    .set gUnk_FarmHouseVisualResource_035, gUnk_FarmHouseVisualResource_035 + 4
+    .set gUnk_FarmHouseVisualResource_036, gUnk_FarmHouseVisualResource_036 + 4
+    .set gUnk_FarmHouseVisualResource_037, gUnk_FarmHouseVisualResource_037 + 4
+    .set gUnk_FarmHouseVisualResource_038, gUnk_FarmHouseVisualResource_038 + 4
+    .set gUnk_FarmHouseVisualResource_041, gUnk_FarmHouseVisualResource_041 + 4
+    .set gUnk_FarmHouseVisualResource_042, gUnk_FarmHouseVisualResource_042 + 4
+
+    @ EU field assets use the archive payload, not its four-byte header.
+    @ These symbols therefore resolve directly to payload byte 0 for C++ relocations.
+    .set gUnk_FieldPlotRenderRecord_000, gUnk_FieldPlotRenderRecord_000 + 4
+    .set gUnk_FieldPlotRenderRecord_001, gUnk_FieldPlotRenderRecord_001 + 4
+    .set gUnk_FieldPlotRenderRecord_002, gUnk_FieldPlotRenderRecord_002 + 4
+    .set gUnk_FieldPlotRenderRecord_003, gUnk_FieldPlotRenderRecord_003 + 4
+    .set gUnk_FieldPlotRenderRecord_004, gUnk_FieldPlotRenderRecord_004 + 4
+    .set gUnk_FieldPlotRenderRecord_005, gUnk_FieldPlotRenderRecord_005 + 4
+    .set gUnk_FieldPlotRenderRecord_006, gUnk_FieldPlotRenderRecord_006 + 4
+    .set gUnk_FieldPlotRenderRecord_007, gUnk_FieldPlotRenderRecord_007 + 4
+    .set gUnk_FieldPlotRenderRecord_008, gUnk_FieldPlotRenderRecord_008 + 4
+    .set gUnk_FieldPlotRenderRecord_009, gUnk_FieldPlotRenderRecord_009 + 4
+    .set gUnk_FieldPlotRenderRecord_010, gUnk_FieldPlotRenderRecord_010 + 4
+    .set gUnk_FieldPlotRenderRecord_011, gUnk_FieldPlotRenderRecord_011 + 4
+    .set gUnk_FieldPlotRenderRecord_012, gUnk_FieldPlotRenderRecord_012 + 4
+    .set gUnk_FieldPlotRenderRecord_013, gUnk_FieldPlotRenderRecord_013 + 4
+    .set gUnk_FieldPlotRenderRecord_014, gUnk_FieldPlotRenderRecord_014 + 4
+    .set gUnk_FieldPlotRenderRecord_015, gUnk_FieldPlotRenderRecord_015 + 4
+    .set gUnk_FieldPlotRenderRecord_016, gUnk_FieldPlotRenderRecord_016 + 4
+    .set gUnk_FieldPlotRenderRecord_017, gUnk_FieldPlotRenderRecord_017 + 4
+    .set gUnk_FieldPlotRenderRecord_018, gUnk_FieldPlotRenderRecord_018 + 4
+    .set gUnk_FieldPlotRenderRecord_019, gUnk_FieldPlotRenderRecord_019 + 4
+    .set gUnk_FieldPlotRenderRecord_020, gUnk_FieldPlotRenderRecord_020 + 4
+    .set gUnk_FieldPlotRenderRecord_021, gUnk_FieldPlotRenderRecord_021 + 4
+    .set gUnk_FieldPlotRenderRecord_022, gUnk_FieldPlotRenderRecord_022 + 4
+    .set gUnk_FieldPlotRenderRecord_023, gUnk_FieldPlotRenderRecord_023 + 4
+    .set gUnk_FieldPlotRenderRecord_024, gUnk_FieldPlotRenderRecord_024 + 4
+    .set gUnk_FieldPlotRenderRecord_025, gUnk_FieldPlotRenderRecord_025 + 4
+    .set gUnk_FieldPlotRenderRecord_026, gUnk_FieldPlotRenderRecord_026 + 4
+    .set gUnk_FieldPlotRenderRecord_027, gUnk_FieldPlotRenderRecord_027 + 4
+    .set gUnk_FieldPlotRenderRecord_028, gUnk_FieldPlotRenderRecord_028 + 4
+    .set gUnk_FieldPlotRenderRecord_029, gUnk_FieldPlotRenderRecord_029 + 4
+    .set gUnk_FieldPlotRenderRecord_030, gUnk_FieldPlotRenderRecord_030 + 4
+    .set gUnk_FieldPlotRenderRecord_031, gUnk_FieldPlotRenderRecord_031 + 4
+    .set gUnk_FieldPlotRenderRecord_032, gUnk_FieldPlotRenderRecord_032 + 4
+    .set gUnk_FieldPlotRenderRecord_033, gUnk_FieldPlotRenderRecord_033 + 4
+    .set gUnk_FieldPlotRenderRecord_034, gUnk_FieldPlotRenderRecord_034 + 4
+    .set gUnk_FieldPlotRenderRecord_035, gUnk_FieldPlotRenderRecord_035 + 4
+    .set gUnk_FieldPlotRenderRecord_036, gUnk_FieldPlotRenderRecord_036 + 4
+    .set gUnk_FieldPlotRenderRecord_037, gUnk_FieldPlotRenderRecord_037 + 4
+    .set gUnk_FieldPlotRenderRecord_038, gUnk_FieldPlotRenderRecord_038 + 4
+    .set gUnk_FieldRenderResource_000, gUnk_FieldRenderResource_000 + 4
+    .set gUnk_FieldRenderResource_001, gUnk_FieldRenderResource_001 + 4
+    .set gUnk_FieldRenderResource_004, gUnk_FieldRenderResource_004 + 4
+    .set gUnk_FieldRenderResource_005, gUnk_FieldRenderResource_005 + 4
+    .set gUnk_FieldRenderResource_006, gUnk_FieldRenderResource_006 + 4
+    .set gUnk_FieldRenderResource_007, gUnk_FieldRenderResource_007 + 4
+    .set gUnk_FieldRenderResource_010, gUnk_FieldRenderResource_010 + 4
+    .set gUnk_FieldRenderResource_011, gUnk_FieldRenderResource_011 + 4
+    .set gUnk_FieldRenderResource_012, gUnk_FieldRenderResource_012 + 4
+    .set gUnk_FieldRenderResource_013, gUnk_FieldRenderResource_013 + 4
+    .set gUnk_FieldRenderResource_016, gUnk_FieldRenderResource_016 + 4
+    .set gUnk_FieldRenderResource_017, gUnk_FieldRenderResource_017 + 4
+    .set gUnk_FieldRenderResource_018, gUnk_FieldRenderResource_018 + 4
+    .set gUnk_FieldRenderResource_019, gUnk_FieldRenderResource_019 + 4
+    .set gUnk_FieldRenderResource_022, gUnk_FieldRenderResource_022 + 4
+    .set gUnk_FieldRenderResource_023, gUnk_FieldRenderResource_023 + 4
+    .set gUnk_FieldRenderResource_024, gUnk_FieldRenderResource_024 + 4
+    .set gUnk_FieldRenderResource_025, gUnk_FieldRenderResource_025 + 4
+    .set gUnk_FieldRenderResource_028, gUnk_FieldRenderResource_028 + 4
+    .set gUnk_FieldRenderResource_029, gUnk_FieldRenderResource_029 + 4
+    .set gUnk_FieldRenderResource_030, gUnk_FieldRenderResource_030 + 4
+    .set gUnk_FieldRenderResource_031, gUnk_FieldRenderResource_031 + 4
+    .set gUnk_FieldRenderResource_032, gUnk_FieldRenderResource_032 + 4
+    .set gUnk_FieldRenderResource_035, gUnk_FieldRenderResource_035 + 4
+    .set gUnk_FieldRenderResource_036, gUnk_FieldRenderResource_036 + 4
+    .set gUnk_FieldRenderResource_037, gUnk_FieldRenderResource_037 + 4
+    .set gUnk_FieldRenderResource_038, gUnk_FieldRenderResource_038 + 4
+    .set gUnk_FieldRenderResource_039, gUnk_FieldRenderResource_039 + 4
+    .set gUnk_FieldRenderResource_040, gUnk_FieldRenderResource_040 + 4
+    .set gUnk_FieldRenderResource_043, gUnk_FieldRenderResource_043 + 4
+    .set gUnk_FieldRenderResource_044, gUnk_FieldRenderResource_044 + 4
+    .set gUnk_FieldRenderResource_045, gUnk_FieldRenderResource_045 + 4
+    .set gUnk_FieldRenderResource_046, gUnk_FieldRenderResource_046 + 4
+    .set gUnk_FieldRenderResource_047, gUnk_FieldRenderResource_047 + 4
+    .set gUnk_FieldRenderResource_050, gUnk_FieldRenderResource_050 + 4
+    .set gUnk_FieldRenderResource_051, gUnk_FieldRenderResource_051 + 4
+    .set gUnk_FieldRenderResource_054, gUnk_FieldRenderResource_054 + 4
+    .set gUnk_FieldRenderResource_055, gUnk_FieldRenderResource_055 + 4
+    .set gUnk_FieldRenderResource_058, gUnk_FieldRenderResource_058 + 4
+    .set gUnk_FieldRenderResource_059, gUnk_FieldRenderResource_059 + 4
+    .set gUnk_FieldRenderResource_062, gUnk_FieldRenderResource_062 + 4
+    .set gUnk_FieldRenderResource_063, gUnk_FieldRenderResource_063 + 4
+    .set gUnk_FieldRenderResource_066, gUnk_FieldRenderResource_066 + 4
+    .set gUnk_FieldRenderResource_067, gUnk_FieldRenderResource_067 + 4
+    .set gUnk_FieldRenderResource_070, gUnk_FieldRenderResource_070 + 4
+    .set gUnk_FieldRenderResource_071, gUnk_FieldRenderResource_071 + 4
+    .set gUnk_FieldRenderResource_074, gUnk_FieldRenderResource_074 + 4
+    .set gUnk_FieldRenderResource_075, gUnk_FieldRenderResource_075 + 4
+    .set gUnk_FieldRenderResource_078, gUnk_FieldRenderResource_078 + 4
+    .set gUnk_FieldRenderResource_079, gUnk_FieldRenderResource_079 + 4
+    .set gUnk_FieldRenderResource_082, gUnk_FieldRenderResource_082 + 4
+    .set gUnk_FieldRenderResource_083, gUnk_FieldRenderResource_083 + 4
+    .set gUnk_FieldRenderResource_086, gUnk_FieldRenderResource_086 + 4
+    .set gUnk_FieldRenderResource_089, gUnk_FieldRenderResource_089 + 4
+    .set gUnk_FieldRenderResource_092, gUnk_FieldRenderResource_092 + 4
+    .set gUnk_FieldRenderResource_093, gUnk_FieldRenderResource_093 + 4
+    .set gUnk_FieldRenderResource_096, gUnk_FieldRenderResource_096 + 4
+    .set gUnk_FieldRenderResource_099, gUnk_FieldRenderResource_099 + 4
+    .set gUnk_FieldRenderResource_102, gUnk_FieldRenderResource_102 + 4
+    .set gUnk_FieldRenderResource_103, gUnk_FieldRenderResource_103 + 4
+    .set gUnk_FieldRenderResource_106, gUnk_FieldRenderResource_106 + 4
+    .set gUnk_FieldRenderResource_107, gUnk_FieldRenderResource_107 + 4
+    .set gUnk_FieldRenderResource_110, gUnk_FieldRenderResource_110 + 4
+    .set gUnk_FieldRenderResource_111, gUnk_FieldRenderResource_111 + 4
+    .set gUnk_FieldRenderResource_114, gUnk_FieldRenderResource_114 + 4
+    .set gUnk_FieldRenderResource_115, gUnk_FieldRenderResource_115 + 4
+    .set gUnk_FieldRenderResource_118, gUnk_FieldRenderResource_118 + 4
+    .set gUnk_FieldRenderResource_119, gUnk_FieldRenderResource_119 + 4
+    .set gUnk_FieldRenderResource_122, gUnk_FieldRenderResource_122 + 4
+    .set gUnk_FieldRenderResource_123, gUnk_FieldRenderResource_123 + 4
+    .set gUnk_FieldRenderResource_126, gUnk_FieldRenderResource_126 + 4
+    .set gUnk_FieldRenderResource_127, gUnk_FieldRenderResource_127 + 4
+    .set gUnk_FieldRenderResource_128, gUnk_FieldRenderResource_128 + 4
+    .set gUnk_FieldRenderResource_129, gUnk_FieldRenderResource_129 + 4
+    .set gUnk_FieldRenderResource_132, gUnk_FieldRenderResource_132 + 4
+    .set gUnk_FieldRenderResource_133, gUnk_FieldRenderResource_133 + 4
+    .set gUnk_FieldRenderResource_134, gUnk_FieldRenderResource_134 + 4
+    .set gUnk_FieldRenderResource_135, gUnk_FieldRenderResource_135 + 4
+    .set gUnk_FieldRenderResource_136, gUnk_FieldRenderResource_136 + 4
+    .set gUnk_FieldRenderResource_139, gUnk_FieldRenderResource_139 + 4
+    .set gUnk_FieldRenderResource_140, gUnk_FieldRenderResource_140 + 4
+    .set gUnk_FieldRenderResource_143, gUnk_FieldRenderResource_143 + 4
+    .set gUnk_FieldRenderResource_144, gUnk_FieldRenderResource_144 + 4
+    .set gUnk_FieldRenderResource_145, gUnk_FieldRenderResource_145 + 4
+    .set gUnk_FieldRenderResource_148, gUnk_FieldRenderResource_148 + 4
+    .set gUnk_FieldRenderResource_149, gUnk_FieldRenderResource_149 + 4
+    .set gUnk_FieldRenderResource_150, gUnk_FieldRenderResource_150 + 4
+    .set gUnk_FieldRenderResource_151, gUnk_FieldRenderResource_151 + 4
+    .set gUnk_FieldRenderResource_154, gUnk_FieldRenderResource_154 + 4
+    .set gUnk_FieldRenderResource_157, gUnk_FieldRenderResource_157 + 4
+    .set gUnk_FieldRenderResource_160, gUnk_FieldRenderResource_160 + 4
+    .set gUnk_FieldRenderResource_163, gUnk_FieldRenderResource_163 + 4
+    .set gUnk_FieldRenderResource_166, gUnk_FieldRenderResource_166 + 4
+    .set gUnk_FieldRenderResource_169, gUnk_FieldRenderResource_169 + 4
+    .set gUnk_FieldRenderResource_170, gUnk_FieldRenderResource_170 + 4
+    .set gUnk_FieldRenderResource_173, gUnk_FieldRenderResource_173 + 4
+    .set gUnk_FieldRenderResource_176, gUnk_FieldRenderResource_176 + 4
+    .set gUnk_FieldRenderResource_179, gUnk_FieldRenderResource_179 + 4
+    .set gUnk_FieldRenderResource_182, gUnk_FieldRenderResource_182 + 4
+    .set gUnk_FieldRenderResource_183, gUnk_FieldRenderResource_183 + 4
+    .set gUnk_FieldRenderResource_186, gUnk_FieldRenderResource_186 + 4
+    .set gUnk_FieldRenderResource_187, gUnk_FieldRenderResource_187 + 4
+    .set gUnk_FieldRenderResource_190, gUnk_FieldRenderResource_190 + 4
+    .set gUnk_FieldRenderResource_191, gUnk_FieldRenderResource_191 + 4
+    .set gUnk_FieldRenderResource_194, gUnk_FieldRenderResource_194 + 4
+    .set gUnk_FieldRenderResource_195, gUnk_FieldRenderResource_195 + 4
+    .set gUnk_FieldRenderResource_198, gUnk_FieldRenderResource_198 + 4
+    .set gUnk_FieldRenderResource_199, gUnk_FieldRenderResource_199 + 4
+    .set gUnk_FieldRenderResource_202, gUnk_FieldRenderResource_202 + 4
+    .set gUnk_FieldRenderResource_203, gUnk_FieldRenderResource_203 + 4
+    .set gUnk_FieldRenderResource_206, gUnk_FieldRenderResource_206 + 4
+    .set gUnk_FieldRenderResource_207, gUnk_FieldRenderResource_207 + 4
+    .set gUnk_FieldRenderResource_210, gUnk_FieldRenderResource_210 + 4
+    .set gUnk_FieldRenderResource_211, gUnk_FieldRenderResource_211 + 4
+    .set gUnk_FieldRenderResource_214, gUnk_FieldRenderResource_214 + 4
+    .set gUnk_FieldRenderResource_215, gUnk_FieldRenderResource_215 + 4
+    .set gUnk_FieldRenderResource_218, gUnk_FieldRenderResource_218 + 4
+    .set gUnk_FieldRenderResource_219, gUnk_FieldRenderResource_219 + 4
+    .set gUnk_FieldRenderResource_222, gUnk_FieldRenderResource_222 + 4
+    .set gUnk_FieldRenderResource_223, gUnk_FieldRenderResource_223 + 4
+    .set gUnk_FieldRenderResource_224, gUnk_FieldRenderResource_224 + 4
+    .set gUnk_FieldRenderResource_225, gUnk_FieldRenderResource_225 + 4
+    .set gUnk_FieldRenderResource_226, gUnk_FieldRenderResource_226 + 4
+    .set gUnk_FieldRenderResource_227, gUnk_FieldRenderResource_227 + 4
     .endif

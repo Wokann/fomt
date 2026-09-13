@@ -63,7 +63,11 @@ char const * const gFishingRecordNames[FISHING_RECORD_COUNT] = {
     gText_FishingRecord_Bluegill,
     gText_FishingRecord_CrucianCarp,
     gText_FishingRecord_Greenling,
+#if defined(REGION_DE)
+    gText_FishingRecord_Bonito,
+#else
     gText_FishingRecord_Tuna,
+#endif
     gText_FishingRecord_OceanSunfish,
     gText_FishingRecord_Lionfish,
     gText_FishingRecord_Rockfish,
