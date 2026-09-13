@@ -1,6 +1,4 @@
-#include "horse_race_text.hh"
-
-#if defined(FOMT_TEXT_HORSE_RACE_TICKET_CONTROLS)
+#include "horse_race_data.hh"
 
 // Static Horse Race text.  The text processor converts these UTF-8 strings
 // and named controls into the exact regional ROM bytes during the build.
@@ -161,53 +159,3 @@ char const gText_HorseRace_TicketControls_Buy[] =
 
 char const gText_HorseRace_TicketControls_Cancel[] =
     "Brich ab mit Knopf B.";
-#elif defined(FOMT_TEXT_HORSE_RACE_PRIZE_CATALOG)
-
-HorseRacePrize const gHorseRacePrizeCatalog[] = {
-    { "Wahrheitsjuwel", 1000 },
-    { "Power-Beere", 900 },
-    { "Gesichtsmaske", 42 },
-    { "Hautlotion", 35 },
-    { "Sonnenkreme", 30 },
-    { "Halskette", 20 },
-    { "Brosche", 18 },
-    { "Diamant", 14 },
-    { "Trüffel", 10 },
-    { "Adamantit", 4 },
-    { "Kleid", 250 },
-    { "Parfüm", 150 },
-};
-
-#elif defined(FOMT_TEXT_HORSE_RACE_PRIZE_EXCHANGE)
-
-char const gText_HorseRace_PrizeExchangePrompt[] =
-    "Gegen Preis tauschen?";
-
-char const gText_HorseRace_PrizeExchangeYes[] =
-    "Ja";
-
-char const gText_HorseRace_PrizeExchangeNo[] =
-    "Nein";
-
-char const gText_HorseRace_PrizeExchangeComeAgain[] =
-    "\p"
-    "Komm jederzeit wieder.{Press}";
-
-char const gText_HorseRace_PrizeExchangeTakeYourTime[] =
-    "\p"
-    "Nimm dir jetzt Zeit.{Press}";
-
-char const gText_HorseRace_PrizeSelectionConfirmation[] =
-    "Möchtest du \xFF\x3F";
-
-char const gText_HorseRace_PrizeExchangeLeaveConfirmation[] =
-    "\p"
-    "Du möchtest also gehen?{Press}";
-
-char const gText_HorseRace_PrizeExchangeInsufficientMedals[] =
-    "\p"
-    "Hierfür hast du nicht \r\n"
-    "genug Medaillen. {Press}";
-#else
-#error "Select one horse_race text fragment before including this file."
-#endif

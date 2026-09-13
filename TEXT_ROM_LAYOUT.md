@@ -150,7 +150,7 @@
 | `0x080F9FCC`–`0x080FA1DD` | `data/text/animal_festival.o(.rodata)` | [文本对象] | `data/text/jp/animal_festival.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080FA1DE`–`0x080FA27D` | `src/animal_festival_ranking_livestock_data.o(.rodata)` | [数据] | `src/animal_festival_ranking_livestock_data.cc`<br>`include/animal_festival_ranking_livestock_data.hh` | `gAnimalFestivalLivestockContestantValues` |
 | `0x080FA27E`–`0x080FA27F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FA280`–`0x080FAA5F` | `src/horse_race_data.o(.rodata)` | [嵌入文本] | `data/text/jp/horse_race.cc` | 文本 `44` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gHorseRaceTicketCharacterCodes`, `gHorseRaceTicketControls`, `gHorseRacePrizeCatalog`, `gHorseRacePrizeItemIds`, `gHorseRacePrizeExchangeCharacterCodes` |
+| `0x080FA280`–`0x080FAA5F` | `src/horse_race_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/jp/horse_race_data.cc`、`horse_race_data_1.cc`、`horse_race_data_2.cc`<br>`data/text/common/horse_race_data.cc` → `src/horse_race_data.cc`<br>`include/horse_race_data.hh` | 文本 `44` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`horse_race_data_1`、`_2` 分别位于控制项指针表和奖品 ID 表之后；`gHorseRaceTicketCharacterCodes`, `gHorseRaceTicketControls`, `gHorseRacePrizeCatalog`, `gHorseRacePrizeItemIds`, `gHorseRacePrizeExchangeCharacterCodes` |
 | `0x080FAA60`–`0x080FB119` | `src/intro_scene_data.o(.rodata)` | [嵌入文本 / 数据] | `src/intro_scene_data.cc`<br>`include/intro_scene_data.hh`<br>`data/text/jp/intro_scene_data.cc`<br>`data/text/jp/intro_scene_data_1.cc` | 前缀运行时字符串 `1` 项<br>`gIntroSceneUnpackSources`<br>文本 `28` 项（详见下方索引）<br>尾部运行时字符串 `1` 项；`_1` 表示其物理位置在指针表之后 |
 | `0x080FB11A`–`0x080FB11B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FB11C`–`0x080FB761` | `src/farm_status_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `src/farm_status_screen_data.cc`<br>`data/text/jp/farm_status.cc`<br>`data/text/jp/animal_contest.cc` | 文本 `62` 项（农场状态 `35`、动物参赛 `27`；详见下方索引）<br>对象内 `00` 对齐 `1` 字节<br>`gAnimalStatusScreenPrefixText`、`gAnimalStatusScreenText`<br>运行时字符串 `4` 项<br>`gFarmStatusScreenPreloadedGlyphs`、资源与建筑预览表 |
@@ -1102,50 +1102,50 @@
 | `0x080F9F24` | `gText_Frisbee_FoundItem` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
 | `0x080F9F34` | `gText_Frisbee_FoundNothing` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
 | `0x080F9FD6` | `gText_AnimalFestival_LivestockContestantNames` | `data/text/jp/animal_festival.cc` | `data/text/animal_festival.o(.rodata)` |
-| `0x080FA280` | `gText_HorseRace_BuyTicketDeclined` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA294` | `gText_HorseRace_Yes` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA29C` | `gText_HorseRace_No` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA2A4` | `gText_HorseRace_ComeAgain` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA2B4` | `gText_HorseRace_TakeYourTime` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA2D0` | `gText_HorseRace_TicketPurchaseConfirmation` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA2E4` | `gText_HorseRace_TicketPurchaseApproval` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA30C` | `gText_HorseRace_TicketPurchaseEncouragement` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA330` | `gText_HorseRace_ChangeMind` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA344` | `gText_HorseRace_ExplanationQuestion` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA360` | `gText_HorseRace_ExplanationBasics` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA418` | `gText_HorseRace_ExplanationGreenStamina` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA454` | `gText_HorseRace_ExplanationYellowStamina` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA490` | `gText_HorseRace_ExplanationRedStamina` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA4FC` | `gText_HorseRace_ExplanationStaminaRecovery` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA578` | `gText_HorseRace_ExplanationUnderstoodQuestion` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA588` | `gText_HorseRace_ExplanationUnderstood` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA594` | `gText_HorseRace_ExplanationRepeat` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA5A8` | `gText_HorseRace_StartRace` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA5C0` | `gText_HorseRace_RaceStartAnnouncement` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA608` | `gText_HorseRace_RaceResults` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA658` | `gText_HorseRace_RacePayouts` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA688` | `gText_HorseRace_MedalExchangeExplanation` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA73C` | `gText_HorseRace_TicketPurchaseTitle` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA758` | `gText_HorseRace_TicketPurchaseConfirm` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA764` | `gText_HorseRace_TicketPurchaseMedalsToWin` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA77C` | `gText_HorseRace_TicketControls_DPadUpDown` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA78C` | `gText_HorseRace_TicketControls_SelectHorse` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA7A8` | `gText_HorseRace_TicketControls_DPadLeftRight` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA7B8` | `gText_HorseRace_TicketControls_ChangeQuantity` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA7D4` | `gText_HorseRace_TicketControls_LRButtons` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA7E8` | `gText_HorseRace_TicketControls_ChangeQuantityByTen` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA808` | `gText_HorseRace_TicketControls_ChangeQuantityByTenContinuation` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA80C` | `gText_HorseRace_TicketControls_MoveCursorToConfirm` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA828` | `gText_HorseRace_TicketControls_Buy` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA848` | `gText_HorseRace_TicketControls_Cancel` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA9A0` | `gText_HorseRace_PrizeExchangePrompt` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA9B8` | `gText_HorseRace_PrizeExchangeYes` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA9C0` | `gText_HorseRace_PrizeExchangeNo` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA9C8` | `gText_HorseRace_PrizeExchangeComeAgain` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA9D8` | `gText_HorseRace_PrizeExchangeTakeYourTime` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA9F4` | `gText_HorseRace_PrizeSelectionConfirmation` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAA04` | `gText_HorseRace_PrizeExchangeLeaveConfirmation` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAA18` | `gText_HorseRace_PrizeExchangeInsufficientMedals` | `data/text/jp/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA280` | `gText_HorseRace_BuyTicketDeclined` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA294` | `gText_HorseRace_Yes` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA29C` | `gText_HorseRace_No` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA2A4` | `gText_HorseRace_ComeAgain` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA2B4` | `gText_HorseRace_TakeYourTime` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA2D0` | `gText_HorseRace_TicketPurchaseConfirmation` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA2E4` | `gText_HorseRace_TicketPurchaseApproval` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA30C` | `gText_HorseRace_TicketPurchaseEncouragement` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA330` | `gText_HorseRace_ChangeMind` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA344` | `gText_HorseRace_ExplanationQuestion` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA360` | `gText_HorseRace_ExplanationBasics` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA418` | `gText_HorseRace_ExplanationGreenStamina` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA454` | `gText_HorseRace_ExplanationYellowStamina` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA490` | `gText_HorseRace_ExplanationRedStamina` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA4FC` | `gText_HorseRace_ExplanationStaminaRecovery` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA578` | `gText_HorseRace_ExplanationUnderstoodQuestion` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA588` | `gText_HorseRace_ExplanationUnderstood` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA594` | `gText_HorseRace_ExplanationRepeat` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA5A8` | `gText_HorseRace_StartRace` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA5C0` | `gText_HorseRace_RaceStartAnnouncement` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA608` | `gText_HorseRace_RaceResults` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA658` | `gText_HorseRace_RacePayouts` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA688` | `gText_HorseRace_MedalExchangeExplanation` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA73C` | `gText_HorseRace_TicketPurchaseTitle` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA758` | `gText_HorseRace_TicketPurchaseConfirm` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA764` | `gText_HorseRace_TicketPurchaseMedalsToWin` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA77C` | `gText_HorseRace_TicketControls_DPadUpDown` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA78C` | `gText_HorseRace_TicketControls_SelectHorse` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA7A8` | `gText_HorseRace_TicketControls_DPadLeftRight` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA7B8` | `gText_HorseRace_TicketControls_ChangeQuantity` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA7D4` | `gText_HorseRace_TicketControls_LRButtons` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA7E8` | `gText_HorseRace_TicketControls_ChangeQuantityByTen` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA808` | `gText_HorseRace_TicketControls_ChangeQuantityByTenContinuation` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA80C` | `gText_HorseRace_TicketControls_MoveCursorToConfirm` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA828` | `gText_HorseRace_TicketControls_Buy` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA848` | `gText_HorseRace_TicketControls_Cancel` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA9A0` | `gText_HorseRace_PrizeExchangePrompt` | `data/text/jp/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA9B8` | `gText_HorseRace_PrizeExchangeYes` | `data/text/jp/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA9C0` | `gText_HorseRace_PrizeExchangeNo` | `data/text/jp/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA9C8` | `gText_HorseRace_PrizeExchangeComeAgain` | `data/text/jp/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA9D8` | `gText_HorseRace_PrizeExchangeTakeYourTime` | `data/text/jp/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA9F4` | `gText_HorseRace_PrizeSelectionConfirmation` | `data/text/jp/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAA04` | `gText_HorseRace_PrizeExchangeLeaveConfirmation` | `data/text/jp/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAA18` | `gText_HorseRace_PrizeExchangeInsufficientMedals` | `data/text/jp/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
 | `0x080FAABC` | `gText_IntroScene_MotherName` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
 | `0x080FAAC0` | `gText_IntroScene_MotherTravelGreeting` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
 | `0x080FAB08` | `gText_IntroScene_FatherName` | `data/text/jp/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
@@ -1993,7 +1993,7 @@
 | `0x080FA78C`–`0x080FA99D` | `data/text/animal_festival.o(.rodata)` | [文本对象] | `data/text/us/animal_festival.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080FA99E`–`0x080FAA3D` | `src/animal_festival_ranking_livestock_data.o(.rodata)` | [数据] | `src/animal_festival_ranking_livestock_data.cc`<br>`include/animal_festival_ranking_livestock_data.hh` | `gAnimalFestivalLivestockContestantValues` |
 | `0x080FAA3E`–`0x080FAA3F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FAA40`–`0x080FB1D7` | `src/horse_race_data.o(.rodata)` | [嵌入文本] | `data/text/us/horse_race.cc` | 文本 `43` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gHorseRaceTicketCharacterCodes`, `gHorseRaceTicketControls`, `gHorseRacePrizeCatalog`, `gHorseRacePrizeItemIds`, `gHorseRacePrizeExchangeCharacterCodes` |
+| `0x080FAA40`–`0x080FB1D7` | `src/horse_race_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/us/horse_race_data.cc`、`horse_race_data_1.cc`、`horse_race_data_2.cc`<br>`data/text/common/horse_race_data.cc` → `src/horse_race_data.cc`<br>`include/horse_race_data.hh` | 文本 `43` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`horse_race_data_1`、`_2` 分别位于控制项指针表和奖品 ID 表之后；`gHorseRaceTicketCharacterCodes`, `gHorseRaceTicketControls`, `gHorseRacePrizeCatalog`, `gHorseRacePrizeItemIds`, `gHorseRacePrizeExchangeCharacterCodes` |
 | `0x080FB1D8`–`0x080FB821` | `src/intro_scene_data.o(.rodata)` | [嵌入文本 / 数据] | `src/intro_scene_data.cc`<br>`include/intro_scene_data.hh`<br>`data/text/us/intro_scene_data.cc`<br>`data/text/us/intro_scene_data_1.cc` | 前缀运行时字符串 `1` 项<br>`gIntroSceneUnpackSources`<br>文本 `28` 项（详见下方索引）<br>尾部运行时字符串 `1` 项；`_1` 表示其物理位置在指针表之后 |
 | `0x080FB822`–`0x080FB823` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FB824`–`0x080FBE79` | `src/farm_status_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `src/farm_status_screen_data.cc`<br>`data/text/us/farm_status.cc`<br>`data/text/us/animal_contest.cc` | 文本 `53` 项（农场状态 `29`、动物参赛 `24`；详见下方索引）<br>对象内 `00` 对齐 `1` 字节<br>`gAnimalStatusScreenPrefixText`、`gAnimalStatusScreenText`<br>运行时字符串 `4` 项<br>`gFarmStatusScreenPreloadedGlyphs`、资源与建筑预览表 |
@@ -2937,49 +2937,49 @@
 | `0x080FA6E0` | `gText_Frisbee_FoundItem` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
 | `0x080FA6F4` | `gText_Frisbee_FoundNothing` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
 | `0x080FA796` | `gText_AnimalFestival_LivestockContestantNames` | `data/text/us/animal_festival.cc` | `data/text/animal_festival.o(.rodata)` |
-| `0x080FAA40` | `gText_HorseRace_BuyTicketDeclined` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAA5C` | `gText_HorseRace_Yes` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAA60` | `gText_HorseRace_No` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAA64` | `gText_HorseRace_ComeAgain` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAA74` | `gText_HorseRace_TakeYourTime` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAA88` | `gText_HorseRace_TicketPurchaseConfirmation` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAAA4` | `gText_HorseRace_TicketPurchaseApproval` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAACC` | `gText_HorseRace_ChangeMind` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAAE0` | `gText_HorseRace_ExplanationQuestion` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAAFC` | `gText_HorseRace_ExplanationBasics` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAB94` | `gText_HorseRace_ExplanationGreenStamina` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FABE0` | `gText_HorseRace_ExplanationYellowStamina` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAC24` | `gText_HorseRace_ExplanationRedStamina` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAC8C` | `gText_HorseRace_ExplanationStaminaRecovery` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAD08` | `gText_HorseRace_ExplanationUnderstoodQuestion` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAD20` | `gText_HorseRace_ExplanationUnderstood` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAD28` | `gText_HorseRace_ExplanationRepeat` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAD34` | `gText_HorseRace_StartRace` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAD50` | `gText_HorseRace_RaceStartAnnouncement` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAD94` | `gText_HorseRace_RaceResults` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FADDC` | `gText_HorseRace_RacePayouts` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAE00` | `gText_HorseRace_MedalExchangeExplanation` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAE9C` | `gText_HorseRace_TicketPurchaseTitle` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAEB8` | `gText_HorseRace_TicketPurchaseConfirm` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAEC4` | `gText_HorseRace_TicketPurchaseMedalsToWin` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAEDC` | `gText_HorseRace_TicketControls_DPadUpDown` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAEF4` | `gText_HorseRace_TicketControls_SelectHorse` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAF10` | `gText_HorseRace_TicketControls_DPadLeftRight` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAF28` | `gText_HorseRace_TicketControls_ChangeQuantity` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAF44` | `gText_HorseRace_TicketControls_LRButtons` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAF54` | `gText_HorseRace_TicketControls_ChangeQuantityByTen` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAF70` | `gText_HorseRace_TicketControls_ChangeQuantityByTenContinuation` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAF7C` | `gText_HorseRace_TicketControls_MoveCursorToConfirm` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAF94` | `gText_HorseRace_TicketControls_Buy` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAFAC` | `gText_HorseRace_TicketControls_Cancel` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FB108` | `gText_HorseRace_PrizeExchangePrompt` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FB120` | `gText_HorseRace_PrizeExchangeYes` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FB124` | `gText_HorseRace_PrizeExchangeNo` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FB128` | `gText_HorseRace_PrizeExchangeComeAgain` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FB140` | `gText_HorseRace_PrizeExchangeTakeYourTime` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FB158` | `gText_HorseRace_PrizeSelectionConfirmation` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FB164` | `gText_HorseRace_PrizeExchangeLeaveConfirmation` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FB17C` | `gText_HorseRace_PrizeExchangeInsufficientMedals` | `data/text/us/horse_race.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAA40` | `gText_HorseRace_BuyTicketDeclined` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAA5C` | `gText_HorseRace_Yes` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAA60` | `gText_HorseRace_No` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAA64` | `gText_HorseRace_ComeAgain` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAA74` | `gText_HorseRace_TakeYourTime` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAA88` | `gText_HorseRace_TicketPurchaseConfirmation` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAAA4` | `gText_HorseRace_TicketPurchaseApproval` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAACC` | `gText_HorseRace_ChangeMind` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAAE0` | `gText_HorseRace_ExplanationQuestion` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAAFC` | `gText_HorseRace_ExplanationBasics` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAB94` | `gText_HorseRace_ExplanationGreenStamina` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FABE0` | `gText_HorseRace_ExplanationYellowStamina` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAC24` | `gText_HorseRace_ExplanationRedStamina` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAC8C` | `gText_HorseRace_ExplanationStaminaRecovery` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAD08` | `gText_HorseRace_ExplanationUnderstoodQuestion` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAD20` | `gText_HorseRace_ExplanationUnderstood` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAD28` | `gText_HorseRace_ExplanationRepeat` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAD34` | `gText_HorseRace_StartRace` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAD50` | `gText_HorseRace_RaceStartAnnouncement` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAD94` | `gText_HorseRace_RaceResults` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FADDC` | `gText_HorseRace_RacePayouts` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAE00` | `gText_HorseRace_MedalExchangeExplanation` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAE9C` | `gText_HorseRace_TicketPurchaseTitle` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAEB8` | `gText_HorseRace_TicketPurchaseConfirm` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAEC4` | `gText_HorseRace_TicketPurchaseMedalsToWin` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAEDC` | `gText_HorseRace_TicketControls_DPadUpDown` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAEF4` | `gText_HorseRace_TicketControls_SelectHorse` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAF10` | `gText_HorseRace_TicketControls_DPadLeftRight` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAF28` | `gText_HorseRace_TicketControls_ChangeQuantity` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAF44` | `gText_HorseRace_TicketControls_LRButtons` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAF54` | `gText_HorseRace_TicketControls_ChangeQuantityByTen` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAF70` | `gText_HorseRace_TicketControls_ChangeQuantityByTenContinuation` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAF7C` | `gText_HorseRace_TicketControls_MoveCursorToConfirm` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAF94` | `gText_HorseRace_TicketControls_Buy` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAFAC` | `gText_HorseRace_TicketControls_Cancel` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FB108` | `gText_HorseRace_PrizeExchangePrompt` | `data/text/us/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FB120` | `gText_HorseRace_PrizeExchangeYes` | `data/text/us/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FB124` | `gText_HorseRace_PrizeExchangeNo` | `data/text/us/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FB128` | `gText_HorseRace_PrizeExchangeComeAgain` | `data/text/us/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FB140` | `gText_HorseRace_PrizeExchangeTakeYourTime` | `data/text/us/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FB158` | `gText_HorseRace_PrizeSelectionConfirmation` | `data/text/us/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FB164` | `gText_HorseRace_PrizeExchangeLeaveConfirmation` | `data/text/us/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FB17C` | `gText_HorseRace_PrizeExchangeInsufficientMedals` | `data/text/us/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
 | `0x080FB234` | `gText_IntroScene_MotherName` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
 | `0x080FB23C` | `gText_IntroScene_MotherTravelGreeting` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |
 | `0x080FB27C` | `gText_IntroScene_FatherName` | `data/text/us/intro_scene_data_1.cc` | `src/intro_scene_data.o(.rodata)` |

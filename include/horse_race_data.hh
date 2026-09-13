@@ -1,5 +1,5 @@
-#ifndef HORSE_RACE_TEXT_HH
-#define HORSE_RACE_TEXT_HH
+#ifndef HORSE_RACE_DATA_HH
+#define HORSE_RACE_DATA_HH
 
 #include "prelude.h"
 
@@ -19,7 +19,7 @@ extern char const gText_HorseRace_TicketPurchaseConfirmation[];
 extern char const gText_HorseRace_TicketPurchaseApproval[];
 #if defined(REGION_JP)
 extern char const gText_HorseRace_TicketPurchaseEncouragement[];
-#endif
+#endif // REGION_JP
 extern char const gText_HorseRace_ChangeMind[];
 extern char const gText_HorseRace_ExplanationQuestion[];
 extern char const gText_HorseRace_ExplanationBasics[];
@@ -68,4 +68,4 @@ extern char const * const gHorseRaceTicketControls[];
 extern char const gCppRuntimeBadAlloc_HorseRaceTicketControls[];
 extern HorseRacePrize const gHorseRacePrizeCatalog[];
 
-#endif
+#endif // HORSE_RACE_DATA_HH
