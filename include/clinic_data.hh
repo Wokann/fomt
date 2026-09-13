@@ -1,5 +1,5 @@
-#ifndef CLINIC_TEXT_HH
-#define CLINIC_TEXT_HH
+#ifndef CLINIC_DATA_HH
+#define CLINIC_DATA_HH
 
 #include "prelude.h"
 
@@ -22,4 +22,4 @@ extern char const gText_Clinic_DeliveryPartial[];
 extern char const gText_Clinic_PurchaseComplete[];
 extern char const gCppRuntimeBadAlloc_ClinicTrailer[];
 
-#endif // CLINIC_TEXT_HH
+#endif // CLINIC_DATA_HH

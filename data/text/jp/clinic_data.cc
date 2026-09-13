@@ -1,4 +1,4 @@
-#include "clinic_text.hh"
+#include "clinic_data.hh"
 
 char const gText_Clinic_InventoryFull[] =
     "あら、もう持ち物を持てないみ\r\n"
@@ -39,5 +39,5 @@ char const gText_Clinic_PurchaseComplete[] =
     "はい、これね。\r\n"
     "おだいじに。{Press}";
 
-extern char const gCppRuntimeBadAlloc_ClinicTrailer[] =
+char const gCppRuntimeBadAlloc_ClinicTrailer[] =
     "bad_alloc";

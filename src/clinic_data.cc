@@ -1,4 +1,4 @@
-#include "clinic_text.hh"
+#include "clinic_data.hh"
 
 #include "item.hh"
 
@@ -9,8 +9,4 @@ ClinicCatalogEntry const gClinicCatalog[] = {
     { ITEM_FOOD_TURBOJOLT_XL, 2000 },
 };
 
-#if defined(REGION_JP)
-#include FOMT_TEXT_INCLUDE(clinic.cc)
-#else
-#include FOMT_TEXT_INCLUDE(clinic.cc)
-#endif
+#include FOMT_TEXT_INCLUDE(clinic_data.cc)
