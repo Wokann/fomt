@@ -817,7 +817,7 @@ SECTIONS
         FILL(0x00);
         . = 0xFFE70; src/link_communication_data.o(.rodata);
         . = 0x1005D8; src/cooking_recipe_inventory_page_data.o(.rodata);
-        . = 0x1005EA; data/text/recovery_status.o(.rodata);
+        . = 0x1005EA; src/recovery_status.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         data/text/cooking.o(.rodata);

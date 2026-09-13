@@ -1,4 +1,4 @@
-#include "recovery_status_text.hh"
+#include "recovery_status.hh"
 
 char const gText_StaminaRecoveryStatus[9][29] = {
     "SR: Greatly down",

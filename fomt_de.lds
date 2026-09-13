@@ -740,7 +740,7 @@ SECTIONS
         FILL(0x00);
         . = 0x100EA0; src/link_communication_data.o(.rodata);
         . = 0x1014DC; src/cooking_recipe_inventory_page_data.o(.rodata);
-         data/text/recovery_status.o(.rodata);
+         src/recovery_status.o(.rodata);
          data/text/cooking.o(.rodata);
          src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_mask_entries);
          src/cooking_recipe_inventory_data.o(.rodata);
