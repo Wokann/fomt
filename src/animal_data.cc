@@ -61,8 +61,6 @@ u8 const gUnk_080F0800[] ALIGN(1) = {
     0x02, 0x03, 0x04, 0x08, 0x08, 0x08, 0x00, 0x00,
 };
 
-#include "data/text/common/animal_data_1.cc"
-
 #include FOMT_TEXT_INCLUDE(animal_data_1.cc)
 
 AnimalDataEntry const gUnk_080F0838[2][2][13] ALIGN(1)
@@ -225,4 +223,4 @@ u16 const gUnk_080F0E34[28] = {
     0x0955, 0x0921, 0x0959, 0x095D, 0x0961, 0x0965, 0x0969,
 };
 
-#include "data/text/common/animal_data_2.cc"
+#include FOMT_TEXT_INCLUDE(animal_data_2.cc)
