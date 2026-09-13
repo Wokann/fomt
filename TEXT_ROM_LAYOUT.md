@@ -45,6 +45,8 @@
 | EU | `0x080F0ECC`–`0x080F19BF` | `src/entity_ui.o(.rodata)` | `src/entity_ui.cc`、`include/entity_ui.hh`、`data/text/eu/entity_ui.cc`–`entity_ui_9.cc` | 精确 |
 | EU | `0x080F19C0`–`0x080F1AC9` | `src/common_ui.o(.rodata)` | `src/common_ui.cc`、`include/common_ui.hh`、`data/text/eu/common_ui.cc`–`common_ui_6.cc` | 精确 |
 | EU | `0x080F1ACA`–`0x080F1ACB` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
+| EU | `0x080F1ACC`–`0x080F3401` | `src/data_schedules.o(.rodata)` | `src/data_schedules.cc`、`include/data_schedules.hh`、`data/text/eu/data_schedules.cc`–`data_schedules_6.cc`；7 处运行时字符串与所有日程/路径表按 ROM 顺序嵌入同一对象 | 精确 |
+| EU | `0x080F3402`–`0x080F3403` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080F3404`–`0x080F4339` | `src/entity_ui_resource_selector.o(.rodata)` | `src/entity_ui_resource_selector.cc`、`include/entity_ui_resource_selector.hh`、`data/text/eu/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_3.cc` | 精确 |
 | EU | `0x080FB224`–`0x080FB86D` | `src/intro_scene_data.o(.rodata)` | `src/intro_scene_data.cc`、`include/intro_scene_data.hh`、`data/text/eu/intro_scene_data.cc`、`data/text/eu/intro_scene_data_1.cc` | 精确 |
 | EU | `0x080FECC8`–`0x080FEDD7` | `src/blacksmith_menu_data.o(.rodata)` | `src/blacksmith_menu_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
@@ -68,6 +70,8 @@
 | DE | `0x080F1368`–`0x080F1E5B` | `src/entity_ui.o(.rodata)` | `src/entity_ui.cc`、`include/entity_ui.hh`、`data/text/de/entity_ui.cc`–`entity_ui_9.cc` | 精确 |
 | DE | `0x080F1E5C`–`0x080F1F65` | `src/common_ui.o(.rodata)` | `src/common_ui.cc`、`include/common_ui.hh`、`data/text/de/common_ui.cc`–`common_ui_6.cc` | 精确 |
 | DE | `0x080F1F66`–`0x080F1F67` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
+| DE | `0x080F1F68`–`0x080F389D` | `src/data_schedules.o(.rodata)` | `src/data_schedules.cc`、`include/data_schedules.hh`、`data/text/de/data_schedules.cc`–`data_schedules_6.cc`；7 处运行时字符串与所有日程/路径表按 ROM 顺序嵌入同一对象 | 精确 |
+| DE | `0x080F389E`–`0x080F389F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080F38A0`–`0x080F47D5` | `src/entity_ui_resource_selector.o(.rodata)` | `src/entity_ui_resource_selector.cc`、`include/entity_ui_resource_selector.hh`、`data/text/de/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_3.cc` | 精确 |
 | DE | `0x080F47D8`–`0x080FA3E7` | `asm/data/data_080F1A80.o` 至相邻脚本引擎数据 | `asm/data/data_080F1A80.s`（Mary 管理的剧情脚本原始块）及 `src/script_engine.cc`、`data/text/common/script_engine.cc` | 精确 |
 | DE | `0x080FB77C`–`0x080FBE59` | `src/intro_scene_data.o(.rodata)` | `src/intro_scene_data.cc`、`include/intro_scene_data.hh`、`data/text/de/intro_scene_data.cc`、`data/text/de/intro_scene_data_1.cc` | 精确 |
@@ -120,7 +124,7 @@
 | `0x080F11D2`–`0x080F11D3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F11D4`–`0x080F12D9` | `src/common_ui.o(.rodata)` | [嵌入文本 / 数据] | `src/common_ui.cc`<br>`include/common_ui.hh`<br>`data/text/jp/common_ui.cc`–`common_ui_6.cc` | 文本 `11` 项（详见下方索引）<br>运行时字符串 `6` 项<br>`gFixedLabelsPaddingBeforeUnnamedSetting`、`gUnk_080F19AE`、`gMenuEntryIds`、`gMenuEntryLabels`、`gUnk_080F1A66`<br>所有原始内部对齐零字节均由同一对象中的相邻定义自然保留；下方起点约束此可本地化范围 |
 | `0x080F12DA`–`0x080F12DB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F12DC`–`0x080F2C11` | `src/data_schedules.o(.rodata)` | [数据] | `src/data_schedules.c/.cc` | 运行时字符串 `3` 项<br>`ScheduleInfo_Unk_080F1A80`, `Unk_080F1A80_Schedules`, `Unk_080F1A80_Schedule_1`, `Unk_080F1A80_Schedule_2`, `Unk_080F1A80_Schedule_3`, `Unk_080F1A80_Schedule_4`, … +271 |
+| `0x080F12DC`–`0x080F2C11` | `src/data_schedules.o(.rodata)` | [嵌入文本 / 数据] | `src/data_schedules.cc`<br>`include/data_schedules.hh`<br>`data/text/jp/data_schedules.cc`–`data_schedules_6.cc` | 运行时字符串 `7` 处（`gCppRuntimeBadAllocPrefix_FourthSchedule` 与 `gUnk_080F2DC0` 共同保持原 JP 的可重定位分界）<br>`ScheduleInfo_Unk_080F1A80`、`Unk_080F1A80_Schedules`、`Unk_080F1A80_Schedule_1`、`Unk_080F1A80_Schedule_2`、`Unk_080F1A80_Schedule_3`、`Unk_080F1A80_Schedule_4`，… +271<br>所有表和路径指针均为符号重定位；下一对象起点限制此连续块 |
 | `0x080F2C12`–`0x080F2C13` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F2C14`–`0x080F3B49` | `src/entity_ui_resource_selector.o(.rodata)` | [嵌入文本 / 数据] | `src/entity_ui_resource_selector.cc`<br>`include/entity_ui_resource_selector.hh`<br>`data/text/jp/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_3.cc` | 运行时字符串 `4` 项<br>`gUnk_080F33B8`, `gUnk_080F3408`, `gUnk_080F35E4`, `gUnk_080F3FD8` |
 | `0x080F3B4A`–`0x080F3B4B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1973,7 +1977,7 @@
 | `0x080F1972`–`0x080F1973` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F1974`–`0x080F1A7D` | `src/common_ui.o(.rodata)` | [嵌入文本 / 数据] | `src/common_ui.cc`<br>`include/common_ui.hh`<br>`data/text/us/common_ui.cc`–`common_ui_6.cc` | 文本 `11` 项（详见下方索引）<br>运行时字符串 `6` 项<br>`gFixedLabelsPaddingBeforeUnnamedSetting`、`gUnk_080F19AE`、`gMenuEntryIds`、`gMenuEntryLabels`、`gUnk_080F1A66`<br>所有原始内部对齐零字节均由同一对象中的相邻定义自然保留；下方起点约束此可本地化范围 |
 | `0x080F1A7E`–`0x080F1A7F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F1A80`–`0x080F33B5` | `src/data_schedules.o(.rodata)` | [数据] | `src/data_schedules.c/.cc` | 运行时字符串 `1` 项<br>`ScheduleInfo_Unk_080F1A80`, `Unk_080F1A80_Schedules`, `Unk_080F1A80_Schedule_1`, `Unk_080F1A80_Schedule_2`, `Unk_080F1A80_Schedule_3`, `Unk_080F1A80_Schedule_4`, … +271 |
+| `0x080F1A80`–`0x080F33B5` | `src/data_schedules.o(.rodata)` | [嵌入文本 / 数据] | `src/data_schedules.cc`<br>`include/data_schedules.hh`<br>`data/text/us/data_schedules.cc`–`data_schedules_6.cc` | 运行时字符串 `7` 处<br>`ScheduleInfo_Unk_080F1A80`、`Unk_080F1A80_Schedules`、`Unk_080F1A80_Schedule_1`、`Unk_080F1A80_Schedule_2`、`Unk_080F1A80_Schedule_3`、`Unk_080F1A80_Schedule_4`，… +271<br>所有表和路径指针均为符号重定位；下一对象起点限制此连续块 |
 | `0x080F33B6`–`0x080F33B7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F33B8`–`0x080F42ED` | `src/entity_ui_resource_selector.o(.rodata)` | [嵌入文本 / 数据] | `src/entity_ui_resource_selector.cc`<br>`include/entity_ui_resource_selector.hh`<br>`data/text/us/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_3.cc` | 运行时字符串 `4` 项<br>`gUnk_080F33B8`, `gUnk_080F3408`, `gUnk_080F35E4`, `gUnk_080F3FD8` |
 | `0x080F42EE`–`0x080F42EF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |

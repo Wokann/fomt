@@ -6,6 +6,7 @@ Regional text belongs under this directory by its owning data structure:
         tool.cc, food.cc, article.cc
         game_state.cc, help_menu.cc, animal_data.cc
         common_ui.cc through common_ui_6.cc
+        data_schedules.cc through data_schedules_6.cc
         new_game_menu.cc, new_game_status.cc, new_game_help.cc
         new_game_save.cc, new_game_identity.cc
         new_game_name_entry.cc, new_game_name_entry_ui.cc

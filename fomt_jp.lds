@@ -731,8 +731,7 @@ SECTIONS
         /* Common UI labels, fallback text, menu data, and pointer table. */
         . = 0xF11D4; src/common_ui.o(.rodata);
         FILL(0x00);
-        . = 0xF12DC; /* JP schedule table block. */
-        src/data_schedules.o(.rodata);
+        . = 0xF12DC; src/data_schedules.o(.rodata);
         /* Entity UI resource-selector data follows schedule data. */
         . = ALIGN(4); src/entity_ui_resource_selector.o(.rodata);
         FILL(0x00);
