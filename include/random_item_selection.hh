@@ -1,5 +1,5 @@
-#ifndef RANDOM_ITEM_HH
-#define RANDOM_ITEM_HH
+#ifndef RANDOM_ITEM_SELECTION_HH
+#define RANDOM_ITEM_SELECTION_HH
 
 #include "prelude.h"
 
@@ -23,4 +23,4 @@ extern RandomItemCandidateConfiguration const
     gRandomItemCandidateConfigurations[RANDOM_ITEM_CANDIDATE_COUNT];
 extern char const gCppRuntimeBadAlloc_RandomItemCandidateConfigurations[];
 
-#endif // RANDOM_ITEM_HH
+#endif // RANDOM_ITEM_SELECTION_HH

@@ -1,6 +1,6 @@
-#include "random_item.hh"
+#include "random_item_selection.hh"
 
-u8 const gRandomItemSelectionWeights[7][5] SECTION(".rodata.random_item_selection_weights") = {
+u8 const gRandomItemSelectionWeights[7][5] = {
     { 0x08, 0x00, 0x05, 0x54, 0x03 },
     { 0x0A, 0x00, 0x0A, 0x50, 0x00 },
     { 0x0A, 0x00, 0x0A, 0x50, 0x00 },
@@ -10,7 +10,7 @@ u8 const gRandomItemSelectionWeights[7][5] SECTION(".rodata.random_item_selectio
     { 0x61, 0x00, 0x00, 0x00, 0x03 },
 };
 
-RandomItemCandidateConfiguration const gRandomItemCandidateConfigurations[RANDOM_ITEM_CANDIDATE_COUNT] SECTION(".rodata.random_item_candidate_configurations") = {
+RandomItemCandidateConfiguration const gRandomItemCandidateConfigurations[RANDOM_ITEM_CANDIDATE_COUNT] = {
     { 0x00, 0x00, {
         { 0, 0, 0, 0, 0, 0, 0 },
         { 0, 0, 0, 0, 6, 0, 0 },
@@ -367,5 +367,4 @@ RandomItemCandidateConfiguration const gRandomItemCandidateConfigurations[RANDOM
     }, 0x00, 0x00 },
 };
 
-char const gCppRuntimeBadAlloc_RandomItemCandidateConfigurations[] =
-    "bad_alloc";
+#include "data/text/common/random_item_selection.cc"

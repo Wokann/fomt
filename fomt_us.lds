@@ -750,12 +750,10 @@ SECTIONS
         . = ALIGN(4);
         . = 0x104938; src/calendar_events.o(.rodata);
         . = 0x104E0C; src/possessive_labels.o(.rodata);
-        . = 0x104E4C; data/text/random_item.o(.rodata);
+        . = 0x104E4C; src/random_item_unavailable.o(.rodata);
         . = 0x104E54; src/fishing_record_article_ids.o(.rodata);
         . = 0x104E74; src/field_plot_position_values.o(.rodata);
-        . = 0x104EAC; src/random_item.o(.rodata.random_item_selection_weights);
-        . = 0x104ED0; src/random_item.o(.rodata.random_item_candidate_configurations);
-        . = 0x105630; src/random_item.o(.rodata);
+        . = 0x104EAC; src/random_item_selection.o(.rodata);
         . = 0x10563C; src/field_plot_position_rules.o(.rodata);
         . = 0x105708; src/code_0800E2E4.o(.rodata.time_of_day_transition_table);
         . = 0x105748; src/code_0800E2E4.o(.rodata.time_of_day_transition_records);

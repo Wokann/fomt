@@ -760,12 +760,10 @@ SECTIONS
         . = ALIGN(4);
         . = 0x105390; src/calendar_events.o(.rodata);
          src/possessive_labels.o(.rodata);
-         data/text/random_item.o(.rodata);
+         src/random_item_unavailable.o(.rodata);
          src/fishing_record_article_ids.o(.rodata);
         src/field_plot_position_values.o(.rodata);
-         src/random_item.o(.rodata.random_item_selection_weights);
-         src/random_item.o(.rodata.random_item_candidate_configurations);
-         src/random_item.o(.rodata);
+         src/random_item_selection.o(.rodata);
         src/field_plot_position_rules.o(.rodata);
         src/code_0800E2E4.o(.rodata.time_of_day_transition_table);
          src/code_0800E2E4.o(.rodata.time_of_day_transition_records);
