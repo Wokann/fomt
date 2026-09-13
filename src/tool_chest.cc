@@ -8,16 +8,16 @@ ToolChest::ToolChest()
     ToolStack * row;
 
     row = contents + 0;
-    row[0] = ToolStack(Tool(TOOL_IRON_SICKLE), 1);
-    row[1] = ToolStack(Tool(TOOL_IRON_AXE), 1);
+    row[0] = ToolStack(Tool(ITEM_TOOL_SICKLE_IRON), 1);
+    row[1] = ToolStack(Tool(ITEM_TOOL_AXE_IRON), 1);
 
     row = contents + 2;
-    row[0] = ToolStack(Tool(TOOL_IRON_HOE), 1);
-    row[1] = ToolStack(Tool(TOOL_IRON_HAMMER), 1);
+    row[0] = ToolStack(Tool(ITEM_TOOL_HOE_IRON), 1);
+    row[1] = ToolStack(Tool(ITEM_TOOL_HAMMER_IRON), 1);
 
     row = contents + 4;
-    row[0] = ToolStack(Tool(TOOL_WATERING_CAN), 1);
-    row[1] = ToolStack(Tool(TOOL_PEDOMETER), 1);
+    row[0] = ToolStack(Tool(ITEM_TOOL_WATERING_CAN_IRON), 1);
+    row[1] = ToolStack(Tool(ITEM_TOOL_PEDOMETER), 1);
 }
 
 ToolStack const * ToolChest::GetToolStackAt(u32 idx) const
@@ -132,7 +132,7 @@ ToolStack * ToolChest::GetToolStackAt(u32 idx)
 
 u32 ToolChest::AddAmountOf(u32 tool_id, u32 amount)
 {
-    if ((int)tool_id >= TOOL_NONE)
+    if ((int)tool_id >= ITEM_TOOL_NONE)
         return amount;
 
     ToolStack * beg = contents;

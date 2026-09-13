@@ -3,8 +3,8 @@
 #include "item.hh"
 
 WineryShopCatalogEntry const gWineryShopCatalog[] = {
-    { FOOD_WINE, 300 },
-    { FOOD_GRAPE_JUICE, 200 },
+    { ITEM_FOOD_WINE, 300 },
+    { ITEM_FOOD_GRAPE_JUICE, 200 },
 };
 
 #if defined(REGION_JP)

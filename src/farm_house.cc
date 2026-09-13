@@ -20,11 +20,11 @@ FarmHouse::FarmHouse()
       has_large_bed(false),
       has_carpet(false),
       has_vase(false),
-      vase_article_id(ARTICLE_NONE),
+      vase_article_id(ITEM_ARTICLE_NONE),
       has_mirror(false),
       has_clock(false),
       has_stocking(false),
-      stocking_article_id(ARTICLE_NONE),
+      stocking_article_id(ITEM_ARTICLE_NONE),
       fireplace_lighted(false),
       has_kitchen(false),
       has_kitchen_knife(false),
@@ -257,17 +257,17 @@ void FarmHouse::SetVaseArticleId(u32 article_id)
             vase_article_lifespan = 0;
             break;
 
-        case ARTICLE_MOON_DROP_GRASS:
+        case ITEM_ARTICLE_FLOWER_MOON_DROP:
             vase_article_lifespan = 7;
             break;
 
-        case ARTICLE_BLUE_MAGIC_GRASS:
+        case ITEM_ARTICLE_FLOWER_MAGIC_BLUE:
             vase_article_lifespan = 10;
             break;
 
-        case ARTICLE_PINK_CAT_GRASS:
-        case ARTICLE_RED_MAGIC_GRASS:
-        case ARTICLE_TOY_FLOWER:
+        case ITEM_ARTICLE_FLOWER_PINK_CAT:
+        case ITEM_ARTICLE_FLOWER_MAGIC_RED:
+        case ITEM_ARTICLE_FLOWER_TOY:
             vase_article_lifespan = 5;
             break;
     }
@@ -362,7 +362,7 @@ void FarmHouse::DayUpdate(Season season)
 {
     fireplace_lighted = false;
 
-    if (!has_vase || (u8)vase_article_id == ARTICLE_NONE)
+    if (!has_vase || (u8)vase_article_id == ITEM_ARTICLE_NONE)
         return;
 
     if (vase_article_lifespan)
@@ -370,29 +370,29 @@ void FarmHouse::DayUpdate(Season season)
 
     switch (vase_article_id)
     {
-        case ARTICLE_MOON_DROP_GRASS:
-        case ARTICLE_TOY_FLOWER:
+        case ITEM_ARTICLE_FLOWER_MOON_DROP:
+        case ITEM_ARTICLE_FLOWER_TOY:
             if (season != SEASON_SPRING)
-                vase_article_id = ARTICLE_NONE;
+                vase_article_id = ITEM_ARTICLE_NONE;
 
             break;
 
-        case ARTICLE_PINK_CAT_GRASS:
+        case ITEM_ARTICLE_FLOWER_PINK_CAT:
             if (season != SEASON_SUMMER)
-                vase_article_id = ARTICLE_NONE;
+                vase_article_id = ITEM_ARTICLE_NONE;
 
             break;
 
-        case ARTICLE_BLUE_MAGIC_GRASS:
-        case ARTICLE_RED_MAGIC_GRASS:
-            if (season != SEASON_AUTUMN)
-                vase_article_id = ARTICLE_NONE;
+        case ITEM_ARTICLE_FLOWER_MAGIC_BLUE:
+        case ITEM_ARTICLE_FLOWER_MAGIC_RED:
+            if (season != SEASON_FALL)
+                vase_article_id = ITEM_ARTICLE_NONE;
 
             break;
     }
 
     if (vase_article_lifespan == 0 && (rand() & 0xFF) <= 100)
-        vase_article_id = ARTICLE_NONE;
+        vase_article_id = ITEM_ARTICLE_NONE;
 }
 
 // These source payloads remain in the regional asset container.  The table

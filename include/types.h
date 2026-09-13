@@ -29,10 +29,5 @@ typedef int bool;
 #endif
 #endif
 
-enum
-{
-    FALSE = 0,
-    TRUE = 1,
-};
 
 #endif // TYPES_H

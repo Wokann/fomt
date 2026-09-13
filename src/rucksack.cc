@@ -680,7 +680,7 @@ u32 Rucksack::AddAmountOfFood(u32 food_id, u32 amount)
 {
     typedef FixedVec<RucksackItem, 8>::iterator It;
 
-    if ((int)food_id >= FOOD_NONE)
+    if ((int)food_id >= ITEM_FOOD_NONE)
         return amount;
 
     It begin = items.begin();
@@ -702,7 +702,7 @@ u32 Rucksack::AddAmountOfArticle(u32 article_id, u32 amount)
 {
     typedef FixedVec<RucksackItem, 8>::iterator It;
 
-    if ((int)article_id >= ARTICLE_NONE)
+    if ((int)article_id >= ITEM_ARTICLE_NONE)
         return amount;
 
     It begin = items.begin();
@@ -751,7 +751,7 @@ u32 Rucksack::AddAmountOfTool(u32 tool_id, u32 amount)
 {
     typedef FixedVec<ToolStack, 8>::iterator It;
 
-    if ((int)tool_id >= TOOL_NONE)
+    if ((int)tool_id >= ITEM_TOOL_NONE)
         return amount;
 
     It begin = tools.begin();

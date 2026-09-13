@@ -76,104 +76,104 @@ EC Tool func_0800E550(Farmer const & self, Tool tool)
 
     switch (result.GetId())
     {
-        case TOOL_IRON_SICKLE:
+        case ITEM_TOOL_SICKLE_IRON:
             switch (func_0800EF6C(self.unk_2C[1]))
             {
                 case Farmer::ToolLevel::LEVEL_1:
-                    return Tool(TOOL_COPPER_SICKLE);
+                    return Tool(ITEM_TOOL_SICKLE_COPPER);
                 case Farmer::ToolLevel::LEVEL_2:
-                    return Tool(TOOL_SILVER_SICKLE);
+                    return Tool(ITEM_TOOL_SICKLE_SILVER);
                 case Farmer::ToolLevel::LEVEL_3:
-                    return Tool(TOOL_GOLD_SICKLE);
+                    return Tool(ITEM_TOOL_SICKLE_GOLD);
                 case Farmer::ToolLevel::LEVEL_4:
-                    return Tool(TOOL_MYSTRILE_SICKLE);
+                    return Tool(ITEM_TOOL_SICKLE_MYSTRILE);
                 case Farmer::ToolLevel::LEVEL_5:
-                    return Tool(TOOL_MYTHIC_SICKLE);
+                    return Tool(ITEM_TOOL_SICKLE_MYTHIC);
             }
 
             break;
 
-        case TOOL_IRON_HOE:
+        case ITEM_TOOL_HOE_IRON:
             switch (func_0800EF6C(self.unk_2C[0]))
             {
                 case Farmer::ToolLevel::LEVEL_1:
-                    return Tool(TOOL_COPPER_HOE);
+                    return Tool(ITEM_TOOL_HOE_COPPER);
                 case Farmer::ToolLevel::LEVEL_2:
-                    return Tool(TOOL_SILVER_HOE);
+                    return Tool(ITEM_TOOL_HOE_SILVER);
                 case Farmer::ToolLevel::LEVEL_3:
-                    return Tool(TOOL_GOLD_HOE);
+                    return Tool(ITEM_TOOL_HOE_GOLD);
                 case Farmer::ToolLevel::LEVEL_4:
-                    return Tool(TOOL_MYSTRILE_HOE);
+                    return Tool(ITEM_TOOL_HOE_MYSTRILE);
                 case Farmer::ToolLevel::LEVEL_5:
-                    return Tool(TOOL_MYTHIC_HOE);
+                    return Tool(ITEM_TOOL_HOE_MYTHIC);
             }
 
             break;
 
-        case TOOL_IRON_AXE:
+        case ITEM_TOOL_AXE_IRON:
             switch (func_0800EF6C(self.unk_2C[2]))
             {
                 case Farmer::ToolLevel::LEVEL_1:
-                    return Tool(TOOL_COPPER_AXE);
+                    return Tool(ITEM_TOOL_AXE_COPPER);
                 case Farmer::ToolLevel::LEVEL_2:
-                    return Tool(TOOL_SILVER_AXE);
+                    return Tool(ITEM_TOOL_AXE_SILVER);
                 case Farmer::ToolLevel::LEVEL_3:
-                    return Tool(TOOL_GOLD_AXE);
+                    return Tool(ITEM_TOOL_AXE_GOLD);
                 case Farmer::ToolLevel::LEVEL_4:
-                    return Tool(TOOL_MYSTRILE_AXE);
+                    return Tool(ITEM_TOOL_AXE_MYSTRILE);
                 case Farmer::ToolLevel::LEVEL_5:
-                    return Tool(TOOL_MYTHIC_AXE);
+                    return Tool(ITEM_TOOL_AXE_MYTHIC);
             }
 
             break;
 
-        case TOOL_IRON_HAMMER:
+        case ITEM_TOOL_HAMMER_IRON:
             switch (func_0800EF6C(self.unk_2C[3]))
             {
                 case Farmer::ToolLevel::LEVEL_1:
-                    return Tool(TOOL_COPPER_HAMMER);
+                    return Tool(ITEM_TOOL_HAMMER_COPPER);
                 case Farmer::ToolLevel::LEVEL_2:
-                    return Tool(TOOL_SILVER_HAMMER);
+                    return Tool(ITEM_TOOL_HAMMER_SILVER);
                 case Farmer::ToolLevel::LEVEL_3:
-                    return Tool(TOOL_GOLD_HAMMER);
+                    return Tool(ITEM_TOOL_HAMMER_GOLD);
                 case Farmer::ToolLevel::LEVEL_4:
-                    return Tool(TOOL_MYSTRILE_HAMMER);
+                    return Tool(ITEM_TOOL_HAMMER_MYSTRILE);
                 case Farmer::ToolLevel::LEVEL_5:
-                    return Tool(TOOL_MYTHIC_HAMMER);
+                    return Tool(ITEM_TOOL_HAMMER_MYTHIC);
             }
 
             break;
 
-        case TOOL_WATERING_CAN:
+        case ITEM_TOOL_WATERING_CAN_IRON:
             switch (func_0800EF6C(self.unk_2C[4]))
             {
                 case Farmer::ToolLevel::LEVEL_1:
-                    return Tool(TOOL_COPPER_WATERING_CAN);
+                    return Tool(ITEM_TOOL_WATERING_CAN_COPPER);
                 case Farmer::ToolLevel::LEVEL_2:
-                    return Tool(TOOL_SILVER_WATERING_CAN);
+                    return Tool(ITEM_TOOL_WATERING_CAN_SILVER);
                 case Farmer::ToolLevel::LEVEL_3:
-                    return Tool(TOOL_GOLD_WATERING_CAN);
+                    return Tool(ITEM_TOOL_WATERING_CAN_GOLD);
                 case Farmer::ToolLevel::LEVEL_4:
-                    return Tool(TOOL_MYSTRILE_WATERING_CAN);
+                    return Tool(ITEM_TOOL_WATERING_CAN_MYSTRILE);
                 case Farmer::ToolLevel::LEVEL_5:
-                    return Tool(TOOL_MYTHIC_WATERING_CAN);
+                    return Tool(ITEM_TOOL_WATERING_CAN_MYTHIC);
             }
 
             break;
 
-        case TOOL_FISHING_ROD:
+        case ITEM_TOOL_FISHING_ROD_IRON:
             switch (func_0800EF6C(self.unk_2C[5]))
             {
                 case Farmer::ToolLevel::LEVEL_1:
-                    return Tool(TOOL_COPPER_FISHING_ROD);
+                    return Tool(ITEM_TOOL_FISHING_ROD_COPPER);
                 case Farmer::ToolLevel::LEVEL_2:
-                    return Tool(TOOL_SILVER_FISHING_ROD);
+                    return Tool(ITEM_TOOL_FISHING_ROD_SILVER);
                 case Farmer::ToolLevel::LEVEL_3:
-                    return Tool(TOOL_GOLD_FISHING_ROD);
+                    return Tool(ITEM_TOOL_FISHING_ROD_GOLD);
                 case Farmer::ToolLevel::LEVEL_4:
-                    return Tool(TOOL_MYSTRILE_FISHING_ROD);
+                    return Tool(ITEM_TOOL_FISHING_ROD_MYSTRILE);
                 case Farmer::ToolLevel::LEVEL_5:
-                    return Tool(TOOL_MYTHIC_FISHING_ROD);
+                    return Tool(ITEM_TOOL_FISHING_ROD_MYTHIC);
             }
 
             break;
@@ -449,7 +449,7 @@ EC void func_0800ED8C(Farmer & self)
     if (self.step_count < Farmer::MAX_COUNT_STEPS)
     {
         bool has_pedometer =
-            (!self.unk_5C.IsEmpty() && self.unk_5C.GetTool().GetId() == TOOL_PEDOMETER) || self.rucksack.GetFirstSlotWithTool(TOOL_PEDOMETER) != -1;
+            (!self.unk_5C.IsEmpty() && self.unk_5C.GetTool().GetId() == ITEM_TOOL_PEDOMETER) || self.rucksack.GetFirstSlotWithTool(ITEM_TOOL_PEDOMETER) != -1;
 
         if (has_pedometer)
         {

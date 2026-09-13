@@ -485,10 +485,10 @@ bool FieldPlot::method_0800A6C8(Article const & article) const
     {
         switch (article.GetId())
         {
-            case ARTICLE_STONES:
-            case ARTICLE_BRANCHES:
-            case ARTICLE_LUMBER:
-            case ARTICLE_GOLDEN_LUMBER:
+            case ITEM_ARTICLE_STONES:
+            case ITEM_ARTICLE_BRANCHES:
+            case ITEM_ARTICLE_LUMBER:
+            case ITEM_ARTICLE_GOLDEN_LUMBER:
                 return true;
         }
     }
@@ -502,19 +502,19 @@ void FieldPlot::method_0800A6F4(Article const & article)
     {
         switch (article.GetId())
         {
-            case ARTICLE_STONES:
+            case ITEM_ARTICLE_STONES:
                 unk_00_02 = 0x16;
                 break;
 
-            case ARTICLE_LUMBER:
+            case ITEM_ARTICLE_LUMBER:
                 unk_00_02 = 0x18;
                 break;
 
-            case ARTICLE_GOLDEN_LUMBER:
+            case ITEM_ARTICLE_GOLDEN_LUMBER:
                 unk_00_02 = 0x1A;
                 break;
 
-            case ARTICLE_BRANCHES:
+            case ITEM_ARTICLE_BRANCHES:
                 unk_00_02 = 0x17;
                 break;
 

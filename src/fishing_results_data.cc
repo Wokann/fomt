@@ -86,14 +86,14 @@ extern char const gCppRuntimeBadAlloc_FishingResultsTrailer[] =
     "bad_alloc";
 
 // The Power Berry result follows the native UI's dedicated branch.  Its table
-// slot deliberately preserves the original ARTICLE_WEEDS placeholder.
+// slot deliberately preserves the original ITEM_ARTICLE_WEEDS placeholder.
 u32 const gFishingRecordArticleIds[] SECTION(".rodata.fishing_record_article_ids") = {
-    ARTICLE_PIRATE_TREASURE,
-    ARTICLE_FOSSIL_OF_FISH,
-    ARTICLE_WEEDS,
-    ARTICLE_MESSAGE_IN_A_BOTTLE,
-    ARTICLE_EMPTY_CAN,
-    ARTICLE_BRANCHES,
-    ARTICLE_FISH_BONES,
-    ARTICLE_BOOTS,
+    ITEM_ARTICLE_PIRATE_TREASURE,
+    ITEM_ARTICLE_FOSSIL_OF_FISH,
+    ITEM_ARTICLE_WEEDS,
+    ITEM_ARTICLE_MESSAGE_IN_A_BOTTLE,
+    ITEM_ARTICLE_EMPTY_CAN,
+    ITEM_ARTICLE_BRANCHES,
+    ITEM_ARTICLE_FISH_BONES,
+    ITEM_ARTICLE_BOOTS,
 };

@@ -117,7 +117,7 @@ FoodStack * Fridge::GetFoodStackAt(u32 idx)
 
 u32 Fridge::AddAmountOf(u32 food_id, u32 amount)
 {
-    if ((int)food_id >= FOOD_NONE)
+    if ((int)food_id >= ITEM_FOOD_NONE)
         return amount;
 
     FoodStack * beg = contents;

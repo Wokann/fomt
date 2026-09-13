@@ -3,19 +3,19 @@
 #include "item.hh"
 
 SupermarketCatalogEntry const gSupermarketCropSeedCatalog[] = {
-    { TOOL_TURNIP_SEEDS, 120 },
-    { TOOL_POTATO_SEEDS, 150 },
-    { TOOL_CUCUMBER_SEEDS, 200 },
-    { TOOL_STRAWBERRY_SEEDS, 150 },
-    { TOOL_TOMATO_SEEDS, 200 },
-    { TOOL_CORN_SEEDS, 300 },
-    { TOOL_ONION_SEEDS, 150 },
-    { TOOL_PUMPKIN_SEEDS, 500 },
-    { TOOL_EGGPLANT_SEEDS, 120 },
-    { TOOL_CARROT_SEEDS, 300 },
-    { TOOL_SWEET_POTATO_SEEDS, 300 },
-    { TOOL_SPINACH_SEEDS, 200 },
-    { TOOL_GRASS_SEEDS, 500 },
+    { ITEM_TOOL_SEEDS_TURNIP, 120 },
+    { ITEM_TOOL_SEEDS_POTATO, 150 },
+    { ITEM_TOOL_SEEDS_CUCUMBER, 200 },
+    { ITEM_TOOL_SEEDS_STRAWBERRY, 150 },
+    { ITEM_TOOL_SEEDS_TOMATO, 200 },
+    { ITEM_TOOL_SEEDS_CORN, 300 },
+    { ITEM_TOOL_SEEDS_ONION, 150 },
+    { ITEM_TOOL_SEEDS_PUMPKIN, 500 },
+    { ITEM_TOOL_SEEDS_EGGPLANT, 120 },
+    { ITEM_TOOL_SEEDS_CARROT, 300 },
+    { ITEM_TOOL_SEEDS_SWEET_POTATO, 300 },
+    { ITEM_TOOL_SEEDS_SPINACH, 200 },
+    { ITEM_TOOL_SEEDS_GRASS, 500 },
 };
 
 #if defined(REGION_JP)
@@ -29,13 +29,13 @@ SupermarketCatalogEntry const gSupermarketCropSeedCatalog[] = {
 #endif
 
 SupermarketCatalogEntry const gSupermarketAdditionalSeedCatalog[] = {
-    { TOOL_SPINACH_SEEDS, 100 },
-    { TOOL_GREEN_PEPPER_SEEDS, 100 },
-    { TOOL_GRASS_SEEDS, 50 },
-    { TOOL_MOON_DROP_SEEDS, 50 },
-    { TOOL_PINK_CAT_SEEDS, 50 },
-    { TOOL_MAGIC_SEEDS, 100 },
-    { TOOL_TOY_FLOWER_SEEDS, 100 },
+    { ITEM_TOOL_SEEDS_SPINACH, 100 },
+    { ITEM_TOOL_SEEDS_GREEN_PEPPER, 100 },
+    { ITEM_TOOL_SEEDS_GRASS, 50 },
+    { ITEM_TOOL_SEEDS_MOON_DROP, 50 },
+    { ITEM_TOOL_SEEDS_PINK_CAT, 50 },
+    { ITEM_TOOL_SEEDS_MAGIC, 100 },
+    { ITEM_TOOL_SEEDS_TOY_FLOWER, 100 },
     { 0, 0 },
 };
 

@@ -2,12 +2,12 @@
 
 static inline bool IsValidFoodId(u8 id)
 {
-    return id < NUM_FOODS;
+    return id < ITEM_FOOD_NONE;
 }
 
 static inline bool IsValidArticleId(u8 id)
 {
-    return id < NUM_ARTICLES;
+    return id < ITEM_ARTICLE_NONE;
 }
 
 static inline bool IsValidProductId(u8 id)
@@ -17,7 +17,7 @@ static inline bool IsValidProductId(u8 id)
 
 static inline bool IsValidToolId(u8 id)
 {
-    return id < NUM_TOOLS;
+    return id < ITEM_TOOL_NONE;
 }
 
 Tool::Tool(u32 a_id)
@@ -76,7 +76,7 @@ char const * Tool::GetDesc() const
 }
 
 ToolStack::ToolStack()
-    : Tool(TOOL_NONE)
+    : Tool(ITEM_TOOL_NONE)
 {
     amount = 0;
 }
@@ -100,7 +100,7 @@ Tool ToolStack::GetTool() const
     if (amount != 0)
         return *this;
 
-    return Tool(TOOL_NONE);
+    return Tool(ITEM_TOOL_NONE);
 }
 
 bool ToolStack::IsEmpty() const
@@ -249,7 +249,7 @@ void Food::AddBonuses(i8 stamina_amount, i8 fatigue_amount)
 }
 
 FoodStack::FoodStack()
-    : Food(FOOD_NONE)
+    : Food(ITEM_FOOD_NONE)
 {
     amount = 0;
 }
@@ -275,7 +275,7 @@ Food FoodStack::GetFood() const
     if (amount > 0)
         return *this;
 
-    return Food(FOOD_NONE);
+    return Food(ITEM_FOOD_NONE);
 }
 
 bool FoodStack::IsEmpty() const
@@ -345,15 +345,15 @@ bool Article::CanBeDiscarded() const
         default:
             return true;
 
-        case ARTICLE_HARVEST_GODDESS_JEWEL:
-        case ARTICLE_KAPPA_JEWEL:
-        case ARTICLE_JEWEL_OF_TRUTH:
-        case ARTICLE_KARENS_WINE:
-        case ARTICLE_POPURIS_MUD_BALL:
-        case ARTICLE_ANNS_MUSIC_BOX:
-        case ARTICLE_MARYS_GREAT_BOOK:
-        case ARTICLE_ELLIS_PRESSED_FLOWER:
-        case ARTICLE_FRISBEE:
+        case ITEM_ARTICLE_HARVEST_GODDESS_JEWEL:
+        case ITEM_ARTICLE_KAPPA_JEWEL:
+        case ITEM_ARTICLE_JEWEL_OF_TRUTH:
+        case ITEM_ARTICLE_KARENS_WINE:
+        case ITEM_ARTICLE_POPURIS_MUD_BALL:
+        case ITEM_ARTICLE_ANNS_MUSIC_BOX:
+        case ITEM_ARTICLE_MARYS_GREAT_BOOK:
+        case ITEM_ARTICLE_ELLIS_PRESSED_FLOWER:
+        case ITEM_ARTICLE_FRISBEE:
             return false;
     }
 }
@@ -375,7 +375,7 @@ char const * Article::GetDesc() const
 }
 
 ArticleStack::ArticleStack()
-    : Article(ARTICLE_NONE)
+    : Article(ITEM_ARTICLE_NONE)
 {
     amount = 0;
 }
@@ -399,7 +399,7 @@ Article ArticleStack::GetArticle() const
     if (amount != 0)
         return *this;
 
-    return Article(ARTICLE_NONE);
+    return Article(ITEM_ARTICLE_NONE);
 }
 
 bool ArticleStack::IsEmpty() const
@@ -533,28 +533,24 @@ u16 Product::GetIconId() const
 
 Tool ItemVariant::AsTool() const
 {
-    return (kind == KIND_TOOL) ? Tool(id) : Tool(TOOL_NONE);
+    return (kind == KIND_TOOL) ? Tool(id) : Tool(ITEM_TOOL_NONE);
 }
 
 Food ItemVariant::AsFood() const
 {
-    return (kind == KIND_FOOD) ? Food(id) : Food(FOOD_NONE);
+    return (kind == KIND_FOOD) ? Food(id) : Food(ITEM_FOOD_NONE);
 }
 
 Article ItemVariant::AsArticle() const
 {
-    return (kind == KIND_ARTICLE) ? Article(id) : Article(ARTICLE_NONE);
+    return (kind == KIND_ARTICLE) ? Article(id) : Article(ITEM_ARTICLE_NONE);
 }
 
 // Item Info tables
 
 // Keep each selected text run immediately before its owning catalog in this
 // single physical item-data object.
-#if defined(REGION_JP)
 #include FOMT_TEXT_INCLUDE(item_tool.cc)
-#else
-#include FOMT_TEXT_INCLUDE(item_tool.cc)
-#endif
 
 ToolInfo const gToolInfo[] = {
     /* 0x00 */ { gText_Item_Tool_IronSickle_Name, 403, gText_Item_Tool_IronSickle_Description },
@@ -640,11 +636,7 @@ ToolInfo const gToolInfo[] = {
     /* 0x50 */ { gText_Item_Tool_GemOfTruth_Name, 456, gText_Item_Tool_GemOfTruth_Description },
 };
 
-#if defined(REGION_JP)
 #include FOMT_TEXT_INCLUDE(item_food.cc)
-#else
-#include FOMT_TEXT_INCLUDE(item_food.cc)
-#endif
 
 FoodInfo const gFoodInfo[] = {
     /* 0x00 */ { gText_Item_Food_Turnip_Name, false, 3, -1, 457, gText_Item_Food_Turnip_Description },
@@ -841,11 +833,7 @@ FoodInfo const gFoodInfo[] = {
     /* 0xAA */ { gText_Item_Food_PotatoPancakes_Name, false, 20, -2, 112, gText_Item_Food_PotatoPancakes_Description },
 };
 
-#if defined(REGION_JP)
 #include FOMT_TEXT_INCLUDE(item_article.cc)
-#else
-#include FOMT_TEXT_INCLUDE(item_article.cc)
-#endif
 
 ArticleInfo const gArticleInfo[] = {
     /* 0x00 */ { gText_Item_Article_MoonDropGrass_Name, 303, gText_Item_Article_MoonDropGrass_Description },
@@ -961,125 +949,125 @@ ArticleInfo const gArticleInfo[] = {
 };
 
 ProductInfo const gProductInfo[] = {
-    /* 0x00 */ { 60, ProductInfo::KIND_FOOD, FOOD_TURNIP },
-    /* 0x01 */ { 80, ProductInfo::KIND_FOOD, FOOD_POTATO },
-    /* 0x02 */ { 60, ProductInfo::KIND_FOOD, FOOD_CUCUMBER },
-    /* 0x03 */ { 250, ProductInfo::KIND_FOOD, FOOD_CABBAGE },
-    /* 0x04 */ { 30, ProductInfo::KIND_FOOD, FOOD_STRAWBERRY },
-    /* 0x05 */ { 60, ProductInfo::KIND_FOOD, FOOD_TOMATO },
-    /* 0x06 */ { 100, ProductInfo::KIND_FOOD, FOOD_CORN },
-    /* 0x07 */ { 80, ProductInfo::KIND_FOOD, FOOD_ONION },
-    /* 0x08 */ { 500, ProductInfo::KIND_FOOD, FOOD_PINEAPPLE },
-    /* 0x09 */ { 250, ProductInfo::KIND_FOOD, FOOD_PUMPKIN },
-    /* 0x0A */ { 80, ProductInfo::KIND_FOOD, FOOD_EGGPLANT },
-    /* 0x0B */ { 120, ProductInfo::KIND_FOOD, FOOD_CARROT },
-    /* 0x0C */ { 120, ProductInfo::KIND_FOOD, FOOD_SWEET_POTATO },
-    /* 0x0D */ { 40, ProductInfo::KIND_FOOD, FOOD_GREEN_PEPPER },
-    /* 0x0E */ { 80, ProductInfo::KIND_FOOD, FOOD_SPINACH },
-    /* 0x0F */ { 50, ProductInfo::KIND_FOOD, FOOD_REGULAR_QUALITY_EGG },
-    /* 0x10 */ { 60, ProductInfo::KIND_FOOD, FOOD_GOOD_QUALITY_EGG },
-    /* 0x11 */ { 80, ProductInfo::KIND_FOOD, FOOD_HIGH_QUALITY_EGG },
-    /* 0x12 */ { 100, ProductInfo::KIND_FOOD, FOOD_GOLDEN_EGG },
-    /* 0x13 */ { 180, ProductInfo::KIND_FOOD, FOOD_P_EGG },
-    /* 0x14 */ { 350, ProductInfo::KIND_FOOD, FOOD_X_EGG },
-    /* 0x15 */ { 80, ProductInfo::KIND_FOOD, FOOD_SPABOILED_EGG },
-    /* 0x16 */ { 100, ProductInfo::KIND_FOOD, FOOD_MAYONNAISE_S },
-    /* 0x17 */ { 150, ProductInfo::KIND_FOOD, FOOD_MAYONNAISE_M },
-    /* 0x18 */ { 200, ProductInfo::KIND_FOOD, FOOD_MAYONNAISE_L },
-    /* 0x19 */ { 300, ProductInfo::KIND_FOOD, FOOD_MAYONNAISE_G },
-    /* 0x1A */ { 450, ProductInfo::KIND_FOOD, FOOD_MAYONNAISE_P },
-    /* 0x1B */ { 800, ProductInfo::KIND_FOOD, FOOD_MAYONNAISE_X },
-    /* 0x1C */ { 100, ProductInfo::KIND_FOOD, FOOD_MILK_S },
-    /* 0x1D */ { 150, ProductInfo::KIND_FOOD, FOOD_MILK_M },
-    /* 0x1E */ { 200, ProductInfo::KIND_FOOD, FOOD_MILK_L },
-    /* 0x1F */ { 300, ProductInfo::KIND_FOOD, FOOD_MILK_G },
-    /* 0x20 */ { 500, ProductInfo::KIND_FOOD, FOOD_MILK_P },
-    /* 0x21 */ { 800, ProductInfo::KIND_FOOD, FOOD_MILK_X },
-    /* 0x22 */ { 300, ProductInfo::KIND_FOOD, FOOD_CHEESE_S },
-    /* 0x23 */ { 400, ProductInfo::KIND_FOOD, FOOD_CHEESE_M },
-    /* 0x24 */ { 500, ProductInfo::KIND_FOOD, FOOD_CHEESE_L },
-    /* 0x25 */ { 600, ProductInfo::KIND_FOOD, FOOD_CHEESE_G },
-    /* 0x26 */ { 750, ProductInfo::KIND_FOOD, FOOD_CHEESE_P },
-    /* 0x27 */ { 1500, ProductInfo::KIND_FOOD, FOOD_CHEESE_X },
-    /* 0x28 */ { 50, ProductInfo::KIND_FOOD, FOOD_APPLE },
-    /* 0x29 */ { 50, ProductInfo::KIND_FOOD, FOOD_SUGDW_APPLE },
-    /* 0x2A */ { 50, ProductInfo::KIND_FOOD, FOOD_HMSGB_APPLE },
-    /* 0x2B */ { 50, ProductInfo::KIND_FOOD, FOOD_AEPFE_APPLE },
-    /* 0x2C */ { 50, ProductInfo::KIND_FOOD, FOOD_HONEY },
-    /* 0x2D */ { 50, ProductInfo::KIND_FOOD, FOOD_BAMBOO_SHOOT },
-    /* 0x2E */ { 50, ProductInfo::KIND_FOOD, FOOD_WILD_GRAPES },
-    /* 0x2F */ { 70, ProductInfo::KIND_FOOD, FOOD_MUSHROOM },
-    /* 0x30 */ { 100, ProductInfo::KIND_FOOD, FOOD_POISONOUS_MUSHROOM },
-    /* 0x31 */ { 500, ProductInfo::KIND_FOOD, FOOD_TRUFFLE },
-    /* 0x32 */ { 100, ProductInfo::KIND_FOOD, FOOD_BLUE_GRASS },
-    /* 0x33 */ { 100, ProductInfo::KIND_FOOD, FOOD_GREEN_GRASS },
-    /* 0x34 */ { 110, ProductInfo::KIND_FOOD, FOOD_RED_GRASS },
-    /* 0x35 */ { 120, ProductInfo::KIND_FOOD, FOOD_YELLOW_GRASS },
-    /* 0x36 */ { 100, ProductInfo::KIND_FOOD, FOOD_ORANGE_GRASS },
-    /* 0x37 */ { 120, ProductInfo::KIND_FOOD, FOOD_PURPLE_GRASS },
-    /* 0x38 */ { 100, ProductInfo::KIND_FOOD, FOOD_INDIGO_GRASS },
-    /* 0x39 */ { 10, ProductInfo::KIND_FOOD, FOOD_BLACK_GRASS },
-    /* 0x3A */ { 150, ProductInfo::KIND_FOOD, FOOD_WHITE_GRASS },
-    /* 0x3B */ { 100, ProductInfo::KIND_FOOD, FOOD_CHOCOLATE },
-    /* 0x3C */ { 1000, ProductInfo::KIND_FOOD, FOOD_RELAX_TEA_LEAVES },
+    /* 0x00 */ { 60, ProductInfo::KIND_FOOD, ITEM_FOOD_TURNIP },
+    /* 0x01 */ { 80, ProductInfo::KIND_FOOD, ITEM_FOOD_POTATO },
+    /* 0x02 */ { 60, ProductInfo::KIND_FOOD, ITEM_FOOD_CUCUMBER },
+    /* 0x03 */ { 250, ProductInfo::KIND_FOOD, ITEM_FOOD_CABBAGE },
+    /* 0x04 */ { 30, ProductInfo::KIND_FOOD, ITEM_FOOD_STRAWBERRY },
+    /* 0x05 */ { 60, ProductInfo::KIND_FOOD, ITEM_FOOD_TOMATO },
+    /* 0x06 */ { 100, ProductInfo::KIND_FOOD, ITEM_FOOD_CORN },
+    /* 0x07 */ { 80, ProductInfo::KIND_FOOD, ITEM_FOOD_ONION },
+    /* 0x08 */ { 500, ProductInfo::KIND_FOOD, ITEM_FOOD_PINEAPPLE },
+    /* 0x09 */ { 250, ProductInfo::KIND_FOOD, ITEM_FOOD_PUMPKIN },
+    /* 0x0A */ { 80, ProductInfo::KIND_FOOD, ITEM_FOOD_EGGPLANT },
+    /* 0x0B */ { 120, ProductInfo::KIND_FOOD, ITEM_FOOD_CARROT },
+    /* 0x0C */ { 120, ProductInfo::KIND_FOOD, ITEM_FOOD_SWEET_POTATO },
+    /* 0x0D */ { 40, ProductInfo::KIND_FOOD, ITEM_FOOD_GREEN_PEPPER },
+    /* 0x0E */ { 80, ProductInfo::KIND_FOOD, ITEM_FOOD_SPINACH },
+    /* 0x0F */ { 50, ProductInfo::KIND_FOOD, ITEM_FOOD_REGULAR_QUALITY_EGG },
+    /* 0x10 */ { 60, ProductInfo::KIND_FOOD, ITEM_FOOD_GOOD_QUALITY_EGG },
+    /* 0x11 */ { 80, ProductInfo::KIND_FOOD, ITEM_FOOD_HIGH_QUALITY_EGG },
+    /* 0x12 */ { 100, ProductInfo::KIND_FOOD, ITEM_FOOD_GOLDEN_EGG },
+    /* 0x13 */ { 180, ProductInfo::KIND_FOOD, ITEM_FOOD_P_EGG },
+    /* 0x14 */ { 350, ProductInfo::KIND_FOOD, ITEM_FOOD_X_EGG },
+    /* 0x15 */ { 80, ProductInfo::KIND_FOOD, ITEM_FOOD_SPA_BOILED_EGG },
+    /* 0x16 */ { 100, ProductInfo::KIND_FOOD, ITEM_FOOD_MAYONNAISE_S },
+    /* 0x17 */ { 150, ProductInfo::KIND_FOOD, ITEM_FOOD_MAYONNAISE_M },
+    /* 0x18 */ { 200, ProductInfo::KIND_FOOD, ITEM_FOOD_MAYONNAISE_L },
+    /* 0x19 */ { 300, ProductInfo::KIND_FOOD, ITEM_FOOD_MAYONNAISE_G },
+    /* 0x1A */ { 450, ProductInfo::KIND_FOOD, ITEM_FOOD_MAYONNAISE_P },
+    /* 0x1B */ { 800, ProductInfo::KIND_FOOD, ITEM_FOOD_MAYONNAISE_X },
+    /* 0x1C */ { 100, ProductInfo::KIND_FOOD, ITEM_FOOD_MILK_S },
+    /* 0x1D */ { 150, ProductInfo::KIND_FOOD, ITEM_FOOD_MILK_M },
+    /* 0x1E */ { 200, ProductInfo::KIND_FOOD, ITEM_FOOD_MILK_L },
+    /* 0x1F */ { 300, ProductInfo::KIND_FOOD, ITEM_FOOD_MILK_G },
+    /* 0x20 */ { 500, ProductInfo::KIND_FOOD, ITEM_FOOD_MILK_P },
+    /* 0x21 */ { 800, ProductInfo::KIND_FOOD, ITEM_FOOD_MILK_X },
+    /* 0x22 */ { 300, ProductInfo::KIND_FOOD, ITEM_FOOD_CHEESE_S },
+    /* 0x23 */ { 400, ProductInfo::KIND_FOOD, ITEM_FOOD_CHEESE_M },
+    /* 0x24 */ { 500, ProductInfo::KIND_FOOD, ITEM_FOOD_CHEESE_L },
+    /* 0x25 */ { 600, ProductInfo::KIND_FOOD, ITEM_FOOD_CHEESE_G },
+    /* 0x26 */ { 750, ProductInfo::KIND_FOOD, ITEM_FOOD_CHEESE_P },
+    /* 0x27 */ { 1500, ProductInfo::KIND_FOOD, ITEM_FOOD_CHEESE_X },
+    /* 0x28 */ { 50, ProductInfo::KIND_FOOD, ITEM_FOOD_APPLE },
+    /* 0x29 */ { 50, ProductInfo::KIND_FOOD, ITEM_FOOD_SUGDW_APPLE },
+    /* 0x2A */ { 50, ProductInfo::KIND_FOOD, ITEM_FOOD_HMSGB_APPLE },
+    /* 0x2B */ { 50, ProductInfo::KIND_FOOD, ITEM_FOOD_AEPFE_APPLE },
+    /* 0x2C */ { 50, ProductInfo::KIND_FOOD, ITEM_FOOD_HONEY },
+    /* 0x2D */ { 50, ProductInfo::KIND_FOOD, ITEM_FOOD_BAMBOO_SHOOT },
+    /* 0x2E */ { 50, ProductInfo::KIND_FOOD, ITEM_FOOD_WILD_GRAPES },
+    /* 0x2F */ { 70, ProductInfo::KIND_FOOD, ITEM_FOOD_MUSHROOM },
+    /* 0x30 */ { 100, ProductInfo::KIND_FOOD, ITEM_FOOD_POISONOUS_MUSHROOM },
+    /* 0x31 */ { 500, ProductInfo::KIND_FOOD, ITEM_FOOD_TRUFFLE },
+    /* 0x32 */ { 100, ProductInfo::KIND_FOOD, ITEM_FOOD_BLUE_GRASS },
+    /* 0x33 */ { 100, ProductInfo::KIND_FOOD, ITEM_FOOD_GREEN_GRASS },
+    /* 0x34 */ { 110, ProductInfo::KIND_FOOD, ITEM_FOOD_RED_GRASS },
+    /* 0x35 */ { 120, ProductInfo::KIND_FOOD, ITEM_FOOD_YELLOW_GRASS },
+    /* 0x36 */ { 100, ProductInfo::KIND_FOOD, ITEM_FOOD_ORANGE_GRASS },
+    /* 0x37 */ { 120, ProductInfo::KIND_FOOD, ITEM_FOOD_PURPLE_GRASS },
+    /* 0x38 */ { 100, ProductInfo::KIND_FOOD, ITEM_FOOD_INDIGO_GRASS },
+    /* 0x39 */ { 10, ProductInfo::KIND_FOOD, ITEM_FOOD_BLACK_GRASS },
+    /* 0x3A */ { 150, ProductInfo::KIND_FOOD, ITEM_FOOD_WHITE_GRASS },
+    /* 0x3B */ { 100, ProductInfo::KIND_FOOD, ITEM_FOOD_CHOCOLATE },
+    /* 0x3C */ { 1000, ProductInfo::KIND_FOOD, ITEM_FOOD_RELAX_TEA_LEAVES },
     // Regional product-price difference -- BUG (JP product-price data): the
     // JP v0 baseline swaps the small- and large-fish prices (200/50); documented
     // JP values and the US table use 50/200.  Preserve the erroneous JP values
     // for byte-exact reconstruction.
     /* 0x3D */ {
 #if defined(REGION_JP)
-        200, ProductInfo::KIND_FOOD, FOOD_SMALL_FISH
+        200, ProductInfo::KIND_FOOD, ITEM_FOOD_SMALL_FISH
 #else
-        50, ProductInfo::KIND_FOOD, FOOD_SMALL_FISH
+        50, ProductInfo::KIND_FOOD, ITEM_FOOD_SMALL_FISH
 #endif
     },
-    /* 0x3E */ { 120, ProductInfo::KIND_FOOD, FOOD_MEDIUM_FISH },
+    /* 0x3E */ { 120, ProductInfo::KIND_FOOD, ITEM_FOOD_MEDIUM_FISH },
     /* 0x3F */ {
 #if defined(REGION_JP)
-        50, ProductInfo::KIND_FOOD, FOOD_LARGE_FISH
+        50, ProductInfo::KIND_FOOD, ITEM_FOOD_LARGE_FISH
 #else
-        200, ProductInfo::KIND_FOOD, FOOD_LARGE_FISH
+        200, ProductInfo::KIND_FOOD, ITEM_FOOD_LARGE_FISH
 #endif
     },
-    /* 0x40 */ { 10000, ProductInfo::KIND_ARTICLE, ARTICLE_PIRATE_TREASURE },
-    /* 0x41 */ { 5000, ProductInfo::KIND_ARTICLE, ARTICLE_FOSSIL_OF_FISH },
-    /* 0x42 */ { 200, ProductInfo::KIND_ARTICLE, ARTICLE_RED_MAGIC_GRASS },
-    /* 0x43 */ { 100, ProductInfo::KIND_ARTICLE, ARTICLE_WOOL_S },
-    /* 0x44 */ { 400, ProductInfo::KIND_ARTICLE, ARTICLE_WOOL_M },
-    /* 0x45 */ { 500, ProductInfo::KIND_ARTICLE, ARTICLE_WOOL_L },
-    /* 0x46 */ { 600, ProductInfo::KIND_ARTICLE, ARTICLE_WOOL_G },
-    /* 0x47 */ { 1000, ProductInfo::KIND_ARTICLE, ARTICLE_WOOL_P },
-    /* 0x48 */ { 2000, ProductInfo::KIND_ARTICLE, ARTICLE_WOOL_X },
-    /* 0x49 */ { 300, ProductInfo::KIND_ARTICLE, ARTICLE_YARN_S },
-    /* 0x4A */ { 700, ProductInfo::KIND_ARTICLE, ARTICLE_YARN_M },
-    /* 0x4B */ { 800, ProductInfo::KIND_ARTICLE, ARTICLE_YARN_L },
-    /* 0x4C */ { 1000, ProductInfo::KIND_ARTICLE, ARTICLE_YARN_G },
-    /* 0x4D */ { 1500, ProductInfo::KIND_ARTICLE, ARTICLE_YARN_P },
-    /* 0x4E */ { 4000, ProductInfo::KIND_ARTICLE, ARTICLE_YARN_X },
-    /* 0x4F */ { 2000, ProductInfo::KIND_ARTICLE, ARTICLE_BRACELET },
-    /* 0x50 */ { 2000, ProductInfo::KIND_ARTICLE, ARTICLE_NECKLACE },
-    /* 0x51 */ { 2000, ProductInfo::KIND_ARTICLE, ARTICLE_EARRINGS },
-    /* 0x52 */ { 2000, ProductInfo::KIND_ARTICLE, ARTICLE_BROACH },
-    /* 0x53 */ { 1, ProductInfo::KIND_ARTICLE, ARTICLE_JUNK_ORE },
-    /* 0x54 */ { 15, ProductInfo::KIND_ARTICLE, ARTICLE_COPPER },
-    /* 0x55 */ { 20, ProductInfo::KIND_ARTICLE, ARTICLE_SILVER },
-    /* 0x56 */ { 25, ProductInfo::KIND_ARTICLE, ARTICLE_GOLD },
-    /* 0x57 */ { 40, ProductInfo::KIND_ARTICLE, ARTICLE_MYSTRILE },
-    /* 0x58 */ { 50, ProductInfo::KIND_ARTICLE, ARTICLE_ORICHALC },
-    /* 0x59 */ { 50, ProductInfo::KIND_ARTICLE, ARTICLE_ADAMANTITE },
-    /* 0x5A */ { 20000, ProductInfo::KIND_ARTICLE, ARTICLE_MYTHIC_STONE },
-    /* 0x5B */ { 10000, ProductInfo::KIND_ARTICLE, ARTICLE_PINK_DIAMOND },
-    /* 0x5C */ { 10000, ProductInfo::KIND_ARTICLE, ARTICLE_ALEXANDRITE },
-    /* 0x5D */ { 55, ProductInfo::KIND_ARTICLE, ARTICLE_MOON_STONE },
-    /* 0x5E */ { 60, ProductInfo::KIND_ARTICLE, ARTICLE_SAND_ROSE },
-    /* 0x5F */ { 100, ProductInfo::KIND_ARTICLE, ARTICLE_DIAMOND },
-    /* 0x60 */ { 80, ProductInfo::KIND_ARTICLE, ARTICLE_EMERALD },
-    /* 0x61 */ { 75, ProductInfo::KIND_ARTICLE, ARTICLE_RUBY },
-    /* 0x62 */ { 70, ProductInfo::KIND_ARTICLE, ARTICLE_TOPAZ },
-    /* 0x63 */ { 68, ProductInfo::KIND_ARTICLE, ARTICLE_PERIDOT },
-    /* 0x64 */ { 65, ProductInfo::KIND_ARTICLE, ARTICLE_FLUORITE },
-    /* 0x65 */ { 62, ProductInfo::KIND_ARTICLE, ARTICLE_AGATE },
-    /* 0x66 */ { 60, ProductInfo::KIND_ARTICLE, ARTICLE_AMETHYST },
+    /* 0x40 */ { 10000, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_PIRATE_TREASURE },
+    /* 0x41 */ { 5000, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_FOSSIL_OF_FISH },
+    /* 0x42 */ { 200, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_FLOWER_MAGIC_RED },
+    /* 0x43 */ { 100, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_WOOL_S },
+    /* 0x44 */ { 400, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_WOOL_M },
+    /* 0x45 */ { 500, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_WOOL_L },
+    /* 0x46 */ { 600, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_WOOL_G },
+    /* 0x47 */ { 1000, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_WOOL_P },
+    /* 0x48 */ { 2000, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_WOOL_X },
+    /* 0x49 */ { 300, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_YARN_S },
+    /* 0x4A */ { 700, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_YARN_M },
+    /* 0x4B */ { 800, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_YARN_L },
+    /* 0x4C */ { 1000, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_YARN_G },
+    /* 0x4D */ { 1500, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_YARN_P },
+    /* 0x4E */ { 4000, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_YARN_X },
+    /* 0x4F */ { 2000, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_BRACELET },
+    /* 0x50 */ { 2000, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_NECKLACE },
+    /* 0x51 */ { 2000, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_EARRINGS },
+    /* 0x52 */ { 2000, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_BROOCH },
+    /* 0x53 */ { 1, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_JUNK_ORE },
+    /* 0x54 */ { 15, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_COPPER },
+    /* 0x55 */ { 20, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_SILVER },
+    /* 0x56 */ { 25, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_GOLD },
+    /* 0x57 */ { 40, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_MYSTRILE },
+    /* 0x58 */ { 50, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_ORICHALC },
+    /* 0x59 */ { 50, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_ADAMANTITE },
+    /* 0x5A */ { 20000, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_MYTHIC_STONE },
+    /* 0x5B */ { 10000, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_PINK_DIAMOND },
+    /* 0x5C */ { 10000, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_ALEXANDRITE },
+    /* 0x5D */ { 55, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_MOON_STONE },
+    /* 0x5E */ { 60, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_SAND_ROSE },
+    /* 0x5F */ { 100, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_DIAMOND },
+    /* 0x60 */ { 80, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_EMERALD },
+    /* 0x61 */ { 75, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_RUBY },
+    /* 0x62 */ { 70, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_TOPAZ },
+    /* 0x63 */ { 68, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_PERIDOT },
+    /* 0x64 */ { 65, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_FLUORITE },
+    /* 0x65 */ { 62, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_AGATE },
+    /* 0x66 */ { 60, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_AMETHYST },
 };
 
 #include "data/text/common/item_fallback.cc"

@@ -5,7 +5,7 @@ RucksackItem::RucksackItem()
     kind = KIND_FOOD;
     wrapped = false;
 
-    inner.item_id = FOOD_NONE;
+    inner.item_id = ITEM_FOOD_NONE;
 }
 
 RucksackItem::RucksackItem(Food food)
@@ -34,10 +34,10 @@ bool RucksackItem::IsEmpty() const
             return true;
 
         case KIND_FOOD:
-            return inner.item_id >= FOOD_NONE;
+            return inner.item_id >= ITEM_FOOD_NONE;
 
         case KIND_ARTICLE:
-            return inner.item_id >= ARTICLE_NONE;
+            return inner.item_id >= ITEM_ARTICLE_NONE;
     }
 }
 
@@ -56,7 +56,7 @@ Food RucksackItem::GetFood() const
     }
     else
     {
-        return Food(FOOD_NONE);
+        return Food(ITEM_FOOD_NONE);
     }
 }
 
@@ -68,7 +68,7 @@ Article RucksackItem::GetArticle() const
     }
     else
     {
-        return Article(ARTICLE_NONE);
+        return Article(ITEM_ARTICLE_NONE);
     }
 }
 

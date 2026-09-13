@@ -3,6 +3,8 @@
 
 #include "prelude.h"
 
+#include "fomt_constants.hh"
+
 // TODO: move elsewhere
 struct UnkBarnAnimal2C
 {
@@ -158,16 +160,6 @@ struct UnknownEntityThing : public UnknownEntityThingBase
     /* +8A */ u8 unk_8A_0 : 2;
     /* +8A */ u8 unk_8A_2 : 6;
 };
-
-enum Season
-{
-    SEASON_SPRING,
-    SEASON_SUMMER,
-    SEASON_AUTUMN,
-    SEASON_WINTER,
-};
-
-#define NUM_SEASONS 4u
 
 // Calendar day values. Shift these left by two bits when forming a GameDate
 // byte, whose low two bits hold a Season.

@@ -117,7 +117,7 @@ ArticleStack * Shelf::GetArticleStackAt(u32 idx)
 
 u32 Shelf::AddAmountOf(u32 article_id, u32 amount)
 {
-    if ((int)article_id >= ARTICLE_NONE)
+    if ((int)article_id >= ITEM_ARTICLE_NONE)
         return amount;
 
     ArticleStack * beg = contents;

@@ -15,10 +15,10 @@ EC bool func_0800F190(HeldItem const * self)
             return true;
 
         case HeldItem::KIND_FOOD:
-            return self->inner.food.id >= FOOD_NONE;
+            return self->inner.food.id >= ITEM_FOOD_NONE;
 
         case HeldItem::KIND_ARTICLE:
-            return self->inner.article.id >= ARTICLE_NONE;
+            return self->inner.article.id >= ITEM_ARTICLE_NONE;
 
         case HeldItem::KIND_2:
             return false;
@@ -41,7 +41,7 @@ EC HeldItem::Kind func_0800F204(HeldItem const * self)
 
 EC Food func_0800F20C(HeldItem const * self)
 {
-    if (self->kind == HeldItem::KIND_FOOD && self->inner.food.id < FOOD_NONE)
+    if (self->kind == HeldItem::KIND_FOOD && self->inner.food.id < ITEM_FOOD_NONE)
     {
         Food food(self->inner.food.id);
 
@@ -50,22 +50,22 @@ EC Food func_0800F20C(HeldItem const * self)
         return food;
     }
 
-    return Food(FOOD_NONE);
+    return Food(ITEM_FOOD_NONE);
 }
 
 EC Article func_0800F258(HeldItem const * self)
 {
-    if (self->kind == HeldItem::KIND_ARTICLE && self->inner.article.id < ARTICLE_NONE)
+    if (self->kind == HeldItem::KIND_ARTICLE && self->inner.article.id < ITEM_ARTICLE_NONE)
     {
         return Article(self->inner.article.id);
     }
 
-    return Article(ARTICLE_NONE);
+    return Article(ITEM_ARTICLE_NONE);
 }
 
 EC RucksackItem func_0800F294(HeldItem const * self)
 {
-    if (self->kind == HeldItem::KIND_FOOD && self->inner.food.id < FOOD_NONE)
+    if (self->kind == HeldItem::KIND_FOOD && self->inner.food.id < ITEM_FOOD_NONE)
     {
         Food food(self->inner.food.id);
 
@@ -81,7 +81,7 @@ EC RucksackItem func_0800F294(HeldItem const * self)
         return rucksack_item;
     }
 
-    if (self->kind == HeldItem::KIND_ARTICLE && self->inner.food.id < ARTICLE_NONE)
+    if (self->kind == HeldItem::KIND_ARTICLE && self->inner.food.id < ITEM_ARTICLE_NONE)
     {
         Article article(self->inner.article.id);
 

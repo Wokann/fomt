@@ -78,14 +78,14 @@ extern u8 const gAnimalFestivalRewardChanceWeights[]
 
 extern u32 const gAnimalFestivalRewardArticleIds[]
     SECTION(".rodata.animal_festival_ranking_reward_article_ids") ALIGN(4) = {
-    ARTICLE_FOSSIL_OF_FISH,
-    ARTICLE_AGATE,
-    ARTICLE_GOLD,
-    ARTICLE_SILVER,
-    ARTICLE_COPPER,
-    ARTICLE_BRANCHES,
-    ARTICLE_FISH_BONES,
-    ARTICLE_EMPTY_CAN,
+    ITEM_ARTICLE_FOSSIL_OF_FISH,
+    ITEM_ARTICLE_AGATE,
+    ITEM_ARTICLE_GOLD,
+    ITEM_ARTICLE_SILVER,
+    ITEM_ARTICLE_COPPER,
+    ITEM_ARTICLE_BRANCHES,
+    ITEM_ARTICLE_FISH_BONES,
+    ITEM_ARTICLE_EMPTY_CAN,
 };
 
 extern AnimalFestivalRandomRangePair const gAnimalFestivalRandomRangePairs[]

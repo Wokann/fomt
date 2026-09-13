@@ -1,10 +1,8 @@
 #ifndef ACTOR_HH
 #define ACTOR_HH
 
+#include "fomt_constants.hh"
 #include "prelude.h"
-
-/* TODO: move elsewhere */
-#define MAP_NONE 0x234
 
 struct PACKED ALIGN(2) Location
 {

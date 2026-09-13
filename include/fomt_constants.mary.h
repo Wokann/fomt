@@ -7041,6 +7041,7 @@ typedef enum MaryAnimalSheepGrowthStage
  *
  * 四个目标版本共用 VAR_SEASON 的取值。FoMT 引擎 Season 枚举和各 ROM 的
  * 日历格式化脚本分别确认了这一顺序。 */
+#if defined(MARY_C)
 typedef enum MarySeason
 {
     SEASON_SPRING = 0,
@@ -7048,6 +7049,22 @@ typedef enum MarySeason
     SEASON_FALL = 2,
     SEASON_WINTER = 3,
 } MarySeason;
+
+typedef enum MarySeasonCount
+{
+    NUM_SEASONS = 4,
+} MarySeasonCount;
+#else
+enum Season
+{
+    SEASON_SPRING = 0,
+    SEASON_SUMMER = 1,
+    SEASON_FALL = 2,
+    SEASON_WINTER = 3,
+};
+
+#define NUM_SEASONS 4u
+#endif
 
 /* VAR_DAY is the one-based day within the current 30-day season. In this
  * game each season is also the calendar equivalent of a month; there is no
@@ -7467,7 +7484,13 @@ typedef enum MaryProductId
     PRODUCT_FLUORITE = 0x64,
     PRODUCT_AGATE = 0x65,
     PRODUCT_AMETHYST = 0x66,
+    PRODUCT_NONE = 0x67,
 } MaryProductId;
+
+typedef enum MaryProductCount
+{
+    NUM_PRODUCTS = 0x67,
+} MaryProductCount;
 
 /* Complete physical food-ID table. ITEM_FOOD_NOT_PRESENT is the separate -1 value
  * returned by the held-food VM wrapper when the current object is absent or
@@ -7976,6 +7999,7 @@ typedef enum MaryFishingRecordId
     FISHING_RECORD_CARP = 56,
     FISHING_RECORD_COELACANTH = 57,
     FISHING_RECORD_SQUID = 58,
+    FISHING_RECORD_COUNT = 59,
 } MaryFishingRecordId;
 
 /* Complete physical map selector domains for the four targets. FoMT uses
