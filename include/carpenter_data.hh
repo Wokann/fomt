@@ -1,5 +1,5 @@
-#ifndef CARPENTER_TEXT_HH
-#define CARPENTER_TEXT_HH
+#ifndef CARPENTER_DATA_HH
+#define CARPENTER_DATA_HH
 
 #include "prelude.h"
 
@@ -78,4 +78,4 @@ extern char const gCppRuntimeBadAlloc_Carpenter[];
 
 extern CarpenterCatalogEntry const gCarpenterCatalog[];
 
-#endif // CARPENTER_TEXT_HH
+#endif // CARPENTER_DATA_HH

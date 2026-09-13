@@ -1,14 +1,6 @@
-#include "carpenter_text.hh"
+#include "carpenter_data.hh"
 
-#if defined(REGION_JP)
-#define FOMT_TEXT_CARPENTER_MENU
-#include FOMT_TEXT_INCLUDE(carpenter.cc)
-#undef FOMT_TEXT_CARPENTER_MENU
-#else
-#define FOMT_TEXT_CARPENTER_MENU
-#include FOMT_TEXT_INCLUDE(carpenter.cc)
-#undef FOMT_TEXT_CARPENTER_MENU
-#endif
+#include FOMT_TEXT_INCLUDE(carpenter_data.cc)
 
 CarpenterCatalogEntry const gCarpenterCatalog[] = {
     { gText_Carpenter_Lumber, 50, 0, 0, nullptr },
@@ -37,17 +29,4 @@ CarpenterCatalogEntry const gCarpenterCatalog[] = {
     { gText_Carpenter_StrangeMailbox, 10000, 200, 10, gText_Carpenter_MailboxCost },
 };
 
-#include "data/text/common/carpenter.cc"
-
-#if defined(REGION_JP)
-#define FOMT_TEXT_CARPENTER_DIALOGUE
-#include FOMT_TEXT_INCLUDE(carpenter.cc)
-#undef FOMT_TEXT_CARPENTER_DIALOGUE
-#else
-#define FOMT_TEXT_CARPENTER_DIALOGUE
-#include FOMT_TEXT_INCLUDE(carpenter.cc)
-#undef FOMT_TEXT_CARPENTER_DIALOGUE
-#endif
-
-char const gCppRuntimeBadAlloc_Carpenter[] ALIGN(4) =
-    "bad_alloc";
+#include FOMT_TEXT_INCLUDE(carpenter_data_1.cc)

@@ -79,6 +79,7 @@
 | EU | `0x080FECC6`–`0x080FECC7` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FECC8`–`0x080FEDD7` | `src/blacksmith_menu_data.o(.rodata)` | `src/blacksmith_menu_data.cc`、`include/blacksmith_menu_data.hh` 与 `data/text/eu/blacksmith_menu_data.cc` | 精确 |
 | EU | `0x080FEDD8`–`0x080FF3AF` | `src/blacksmith_data.o(.rodata)` | `src/blacksmith_data.cc`、`include/blacksmith_data.hh` 与 `data/text/eu/blacksmith_data.cc` | 精确 |
+| EU | `0x080FF3B0`–`0x080FFBB3` | `src/carpenter_data.o(.rodata)` | `src/carpenter_data.cc`、`include/carpenter_data.hh`、`data/text/eu/carpenter_data.cc`、`data/text/eu/carpenter_data_1.cc`；菜单文本、20 项目录表、翻页控制符、对白与运行时尾串按 ROM 顺序同属该对象 | 精确 |
 | EU | `0x08100534`–`0x08100B17` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc` 与 `data/text/eu/link_communication.cc` | 精确 |
 | EU | `0x081082E4`–`0x08117843` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 EU 指南源文件；主目录只收录 `PAGE_1`，`tool_and_item_controls_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 | DE | `0x080E8574`–`0x080E858D` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0.hh`、`data/text/de/crt0_data.cc` | 精确 |
@@ -130,6 +131,7 @@
 | DE | `0x080FF31A`–`0x080FF31B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080FF31C`–`0x080FF4A9` | `src/beach_cafe_shop_data.o(.rodata)` | `src/beach_cafe_shop_data.cc`、`include/beach_cafe_shop_data.hh`、`data/text/de/beach_cafe_shop_data.cc`、`data/text/de/beach_cafe_shop_data_1.cc`；说明文本、菜单表、对话与运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
 | DE | `0x080FF4AA`–`0x080FF4AB` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
+| DE | `0x080FFB98`–`0x0810043B` | `src/carpenter_data.o(.rodata)` | `src/carpenter_data.cc`、`include/carpenter_data.hh`、`data/text/de/carpenter_data.cc`、`data/text/de/carpenter_data_1.cc`；菜单文本、20 项目录表、翻页控制符、对白与运行时尾串按 ROM 顺序同属该对象 | 精确 |
 | DE | `0x08100938`–`0x08100A93` | `data/text/home_storage.o(.rodata)` | `data/text/de/home_storage.cc` | 精确 |
 | DE | `0x081014EE`–`0x081017FA` | `data/text/recovery_status.o(.rodata)` | `data/text/de/recovery_status.cc` | 精确 |
 | DE | `0x08101800`–`0x08101B29` | `data/text/cooking.o(.rodata)` | `data/text/de/cooking.cc` | 精确 |
@@ -223,7 +225,7 @@
 | `0x080FE69F`–`0x080FE6A3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 5 字节 |
 | `0x080FE6A4`–`0x080FEC8D` | `src/blacksmith_data.o(.rodata)` | [目录表 / 嵌入文本] | `src/blacksmith_data.cc`<br>`include/blacksmith_data.hh`<br>`data/text/jp/blacksmith_data.cc` | `gBlacksmithMenuHeader`（JP）<br>`gBlacksmithCatalog`<br>文本 `20` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080FEC8E`–`0x080FEC8F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FEC90`–`0x080FF505` | `src/carpenter_data.o(.rodata)` | [嵌入文本] | `data/text/common/carpenter.cc`<br>`data/text/jp/carpenter.cc` | 文本 `52` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gCarpenterCatalog` |
+| `0x080FEC90`–`0x080FF505` | `src/carpenter_data.o(.rodata)` | [嵌入文本] | `data/text/jp/carpenter_data.cc`<br>`data/text/jp/carpenter_data_1.cc` | 文本 `52` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gCarpenterCatalog` |
 | `0x080FF506`–`0x080FF507` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FF508`–`0x080FF9A1` | `src/livestock_shop.o(.rodata)` | [嵌入文本] | `data/text/jp/livestock_shop.cc` | 文本 `39` 项（详见下方索引）<br>`gLivestockShopCatalog` |
 | `0x080FF9A2`–`0x080FF9A3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1558,58 +1560,58 @@
 | `0x080FEBB0` | `gText_Blacksmith_CannotChangeMind` | `data/text/jp/blacksmith_data.cc` | `src/blacksmith_data.o(.rodata)` |
 | `0x080FEBE4` | `gText_Blacksmith_NoToolToUpgrade` | `data/text/jp/blacksmith_data.cc` | `src/blacksmith_data.o(.rodata)` |
 | `0x080FEC2C` | `gText_Blacksmith_NoOreToUpgrade` | `data/text/jp/blacksmith_data.cc` | `src/blacksmith_data.o(.rodata)` |
-| `0x080FEC90` | `gText_Carpenter_Lumber` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FEC98` | `gText_Carpenter_GoldenLumber` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FECA4` | `gText_Carpenter_HouseExtension` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FECB4` | `gText_Carpenter_HouseExtensionFirstCost` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FED08` | `gText_Carpenter_HouseExtensionSecondCost` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FED5C` | `gText_Carpenter_AddBathtub` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FED70` | `gText_Carpenter_BathtubCost` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FEDC4` | `gText_Carpenter_ExpandChickenCoop` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FEDD8` | `gText_Carpenter_ChickenCoopCost` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FEE2C` | `gText_Carpenter_ExpandBarn` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FEE40` | `gText_Carpenter_BarnCost` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FEE98` | `gText_Carpenter_BuildVacationHouse` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FEEA8` | `gText_Carpenter_VacationHouseCost` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FEF00` | `gText_Carpenter_RemodelWindow` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FEF14` | `gText_Carpenter_Rebuild` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FEF20` | `gText_Carpenter_RemodelDoghouse` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FEF34` | `gText_Carpenter_RemodelMailbox` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FEF48` | `gText_Carpenter_SquareWindowWithShutters` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FEF5C` | `gText_Carpenter_WindowCost` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FEF98` | `gText_Carpenter_SquareWindowWithoutShutters` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FEFAC` | `gText_Carpenter_RoundWindow` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FEFB4` | `gText_Carpenter_RedDoghouse` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FEFC0` | `gText_Carpenter_DoghouseCost` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FEFFC` | `gText_Carpenter_BlueDoghouse` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF008` | `gText_Carpenter_StrangeDoghouse` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF01C` | `gText_Carpenter_RedMailbox` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF028` | `gText_Carpenter_MailboxCost` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF064` | `gText_Carpenter_BlueMailbox` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF070` | `gText_Carpenter_StrangeMailbox` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF214` | `gText_Carpenter_InitialPageBreak` | `data/text/common/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF218` | `gText_Carpenter_RebuildRequirements` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF238` | `gText_Carpenter_InsufficientGold` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF250` | `gText_Carpenter_LumberBinFull` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF27C` | `gText_Carpenter_LumberHeader` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF288` | `gText_Carpenter_EquipmentFull` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF2B0` | `gText_Carpenter_GoldenLumberHeader` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF2C0` | `gText_Carpenter_CannotAcceptAnotherJob` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF30C` | `gText_Carpenter_InsufficientLumber` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF328` | `gText_Carpenter_ThreeDayConfirmation` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF35C` | `gText_Carpenter_NeedAnythingElse` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF378` | `gText_Carpenter_AreYouSureNow` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF390` | `gText_Carpenter_SameCurrentShape` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF3AC` | `gText_Carpenter_StoreLumber` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF3E0` | `gText_Carpenter_DeliveryAll` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF430` | `gText_Carpenter_DeliverySome` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF480` | `gText_Carpenter_PurchaseComplete` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF490` | `gText_Carpenter_Build` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF498` | `gText_Carpenter_DontBuild` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF4A4` | `gText_Carpenter_Upgrade` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF4B0` | `gText_Carpenter_DontUpgrade` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF4BC` | `gText_Carpenter_StartUpgradeTomorrow` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF4E8` | `gText_Carpenter_NeedAnythingMore` | `data/text/jp/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FEC90` | `gText_Carpenter_Lumber` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FEC98` | `gText_Carpenter_GoldenLumber` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FECA4` | `gText_Carpenter_HouseExtension` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FECB4` | `gText_Carpenter_HouseExtensionFirstCost` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FED08` | `gText_Carpenter_HouseExtensionSecondCost` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FED5C` | `gText_Carpenter_AddBathtub` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FED70` | `gText_Carpenter_BathtubCost` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FEDC4` | `gText_Carpenter_ExpandChickenCoop` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FEDD8` | `gText_Carpenter_ChickenCoopCost` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FEE2C` | `gText_Carpenter_ExpandBarn` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FEE40` | `gText_Carpenter_BarnCost` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FEE98` | `gText_Carpenter_BuildVacationHouse` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FEEA8` | `gText_Carpenter_VacationHouseCost` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FEF00` | `gText_Carpenter_RemodelWindow` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FEF14` | `gText_Carpenter_Rebuild` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FEF20` | `gText_Carpenter_RemodelDoghouse` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FEF34` | `gText_Carpenter_RemodelMailbox` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FEF48` | `gText_Carpenter_SquareWindowWithShutters` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FEF5C` | `gText_Carpenter_WindowCost` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FEF98` | `gText_Carpenter_SquareWindowWithoutShutters` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FEFAC` | `gText_Carpenter_RoundWindow` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FEFB4` | `gText_Carpenter_RedDoghouse` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FEFC0` | `gText_Carpenter_DoghouseCost` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FEFFC` | `gText_Carpenter_BlueDoghouse` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF008` | `gText_Carpenter_StrangeDoghouse` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF01C` | `gText_Carpenter_RedMailbox` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF028` | `gText_Carpenter_MailboxCost` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF064` | `gText_Carpenter_BlueMailbox` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF070` | `gText_Carpenter_StrangeMailbox` | `data/text/jp/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF214` | `gText_Carpenter_InitialPageBreak` | `data/text/jp/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF218` | `gText_Carpenter_RebuildRequirements` | `data/text/jp/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF238` | `gText_Carpenter_InsufficientGold` | `data/text/jp/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF250` | `gText_Carpenter_LumberBinFull` | `data/text/jp/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF27C` | `gText_Carpenter_LumberHeader` | `data/text/jp/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF288` | `gText_Carpenter_EquipmentFull` | `data/text/jp/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF2B0` | `gText_Carpenter_GoldenLumberHeader` | `data/text/jp/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF2C0` | `gText_Carpenter_CannotAcceptAnotherJob` | `data/text/jp/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF30C` | `gText_Carpenter_InsufficientLumber` | `data/text/jp/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF328` | `gText_Carpenter_ThreeDayConfirmation` | `data/text/jp/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF35C` | `gText_Carpenter_NeedAnythingElse` | `data/text/jp/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF378` | `gText_Carpenter_AreYouSureNow` | `data/text/jp/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF390` | `gText_Carpenter_SameCurrentShape` | `data/text/jp/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF3AC` | `gText_Carpenter_StoreLumber` | `data/text/jp/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF3E0` | `gText_Carpenter_DeliveryAll` | `data/text/jp/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF430` | `gText_Carpenter_DeliverySome` | `data/text/jp/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF480` | `gText_Carpenter_PurchaseComplete` | `data/text/jp/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF490` | `gText_Carpenter_Build` | `data/text/jp/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF498` | `gText_Carpenter_DontBuild` | `data/text/jp/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF4A4` | `gText_Carpenter_Upgrade` | `data/text/jp/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF4B0` | `gText_Carpenter_DontUpgrade` | `data/text/jp/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF4BC` | `gText_Carpenter_StartUpgradeTomorrow` | `data/text/jp/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF4E8` | `gText_Carpenter_NeedAnythingMore` | `data/text/jp/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
 | `0x080FF508` | `gText_LivestockShop_Empty` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
 | `0x080FF50C` | `gText_LivestockShop_BuyCow` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
 | `0x080FF518` | `gText_LivestockShop_BuySheep` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
@@ -2059,7 +2061,7 @@
 | `0x080FEC7C`–`0x080FED8B` | `src/blacksmith_menu_data.o(.rodata)` | [嵌入文本] | `src/blacksmith_menu_data.cc`<br>`include/blacksmith_menu_data.hh`<br>`data/text/us/blacksmith_menu_data.cc` | 文本 `12` 项（详见下方索引） |
 | `0x080FED8C`–`0x080FF359` | `src/blacksmith_data.o(.rodata)` | [目录表 / 嵌入文本] | `src/blacksmith_data.cc`<br>`include/blacksmith_data.hh`<br>`data/text/us/blacksmith_data.cc` | `gBlacksmithCatalog`<br>文本 `20` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080FF35A`–`0x080FF35B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FF35C`–`0x080FFB5D` | `src/carpenter_data.o(.rodata)` | [嵌入文本] | `data/text/common/carpenter.cc`<br>`data/text/us/carpenter.cc` | 文本 `53` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gCarpenterCatalog` |
+| `0x080FF35C`–`0x080FFB5D` | `src/carpenter_data.o(.rodata)` | [嵌入文本] | `data/text/us/carpenter_data.cc`<br>`data/text/us/carpenter_data_1.cc` | 文本 `53` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gCarpenterCatalog` |
 | `0x080FFB5E`–`0x080FFB5F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FFB60`–`0x08100023` | `src/livestock_shop.o(.rodata)` | [嵌入文本] | `data/text/us/livestock_shop.cc` | 文本 `42` 项（详见下方索引）<br>`gLivestockShopCatalog` |
 | `0x08100024`–`0x08100165` | `data/text/home_storage.o(.rodata)` | [文本对象] | `data/text/us/home_storage.cc` | 文本 `20` 项（详见下方索引）<br>运行时字符串 `5` 项 |
@@ -3379,59 +3381,59 @@
 | `0x080FF270` | `gText_Blacksmith_CannotChangeMind` | `data/text/us/blacksmith_data.cc` | `src/blacksmith_data.o(.rodata)` |
 | `0x080FF29C` | `gText_Blacksmith_NoToolToUpgrade` | `data/text/us/blacksmith_data.cc` | `src/blacksmith_data.o(.rodata)` |
 | `0x080FF2EC` | `gText_Blacksmith_NoOreToUpgrade` | `data/text/us/blacksmith_data.cc` | `src/blacksmith_data.o(.rodata)` |
-| `0x080FF35C` | `gText_Carpenter_Lumber` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF364` | `gText_Carpenter_GoldenLumber` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF374` | `gText_Carpenter_HouseExtension` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF384` | `gText_Carpenter_HouseExtensionFirstCost` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF3CC` | `gText_Carpenter_HouseExtensionSecondCost` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF410` | `gText_Carpenter_AddBathtub` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF420` | `gText_Carpenter_BathtubCost` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF464` | `gText_Carpenter_ExpandChickenCoop` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF474` | `gText_Carpenter_ChickenCoopCost` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF4C0` | `gText_Carpenter_ExpandBarn` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF4D0` | `gText_Carpenter_BarnCost` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF510` | `gText_Carpenter_BuildVacationHouse` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF520` | `gText_Carpenter_VacationHouseCost` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF568` | `gText_Carpenter_RemodelWindow` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF578` | `gText_Carpenter_Rebuild` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF584` | `gText_Carpenter_RemodelDoghouse` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF598` | `gText_Carpenter_RemodelMailbox` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF5A4` | `gText_Carpenter_SquareWindowWithShutters` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF5B8` | `gText_Carpenter_WindowCost` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF5DC` | `gText_Carpenter_SquareWindowWithoutShutters` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF5F0` | `gText_Carpenter_RoundWindow` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF600` | `gText_Carpenter_RedDoghouse` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF610` | `gText_Carpenter_DoghouseCost` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF634` | `gText_Carpenter_BlueDoghouse` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF644` | `gText_Carpenter_StrangeDoghouse` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF658` | `gText_Carpenter_RedMailbox` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF664` | `gText_Carpenter_MailboxCost` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF688` | `gText_Carpenter_BlueMailbox` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF698` | `gText_Carpenter_StrangeMailbox` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF838` | `gText_Carpenter_InitialPageBreak` | `data/text/common/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF83C` | `gText_Carpenter_RebuildRequirements` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF858` | `gText_Carpenter_InsufficientGold` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF878` | `gText_Carpenter_LumberBinFull` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF8A4` | `gText_Carpenter_LumberHeader` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF8B0` | `gText_Carpenter_EquipmentFull` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF8DC` | `gText_Carpenter_GoldenLumberHeader` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF8F0` | `gText_Carpenter_CannotAcceptAnotherJob` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF944` | `gText_Carpenter_InsufficientLumber` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF968` | `gText_Carpenter_ThreeDayConfirmation` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF998` | `gText_Carpenter_NeedAnythingElse` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF9B8` | `gText_Carpenter_AreYouSureNow` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF9CC` | `gText_Carpenter_SameCurrentShape` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FF9F4` | `gText_Carpenter_StoreLumber` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FFA24` | `gText_Carpenter_DeliveryAll` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FFA70` | `gText_Carpenter_DeliverySome` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FFABC` | `gText_Carpenter_PurchaseComplete` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FFACC` | `gText_Carpenter_Build` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FFAD4` | `gText_Carpenter_DontBuild` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FFAE0` | `gText_Carpenter_Upgrade` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FFAE8` | `gText_Carpenter_DontUpgrade` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FFAF8` | `gText_Carpenter_StartUpgradeTomorrow` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FFB2C` | `gText_Carpenter_ConfirmUpgrade` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
-| `0x080FFB3C` | `gText_Carpenter_NeedAnythingMore` | `data/text/us/carpenter.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF35C` | `gText_Carpenter_Lumber` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF364` | `gText_Carpenter_GoldenLumber` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF374` | `gText_Carpenter_HouseExtension` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF384` | `gText_Carpenter_HouseExtensionFirstCost` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF3CC` | `gText_Carpenter_HouseExtensionSecondCost` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF410` | `gText_Carpenter_AddBathtub` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF420` | `gText_Carpenter_BathtubCost` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF464` | `gText_Carpenter_ExpandChickenCoop` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF474` | `gText_Carpenter_ChickenCoopCost` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF4C0` | `gText_Carpenter_ExpandBarn` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF4D0` | `gText_Carpenter_BarnCost` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF510` | `gText_Carpenter_BuildVacationHouse` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF520` | `gText_Carpenter_VacationHouseCost` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF568` | `gText_Carpenter_RemodelWindow` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF578` | `gText_Carpenter_Rebuild` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF584` | `gText_Carpenter_RemodelDoghouse` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF598` | `gText_Carpenter_RemodelMailbox` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF5A4` | `gText_Carpenter_SquareWindowWithShutters` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF5B8` | `gText_Carpenter_WindowCost` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF5DC` | `gText_Carpenter_SquareWindowWithoutShutters` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF5F0` | `gText_Carpenter_RoundWindow` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF600` | `gText_Carpenter_RedDoghouse` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF610` | `gText_Carpenter_DoghouseCost` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF634` | `gText_Carpenter_BlueDoghouse` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF644` | `gText_Carpenter_StrangeDoghouse` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF658` | `gText_Carpenter_RedMailbox` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF664` | `gText_Carpenter_MailboxCost` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF688` | `gText_Carpenter_BlueMailbox` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF698` | `gText_Carpenter_StrangeMailbox` | `data/text/us/carpenter_data.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF838` | `gText_Carpenter_InitialPageBreak` | `data/text/us/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF83C` | `gText_Carpenter_RebuildRequirements` | `data/text/us/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF858` | `gText_Carpenter_InsufficientGold` | `data/text/us/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF878` | `gText_Carpenter_LumberBinFull` | `data/text/us/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF8A4` | `gText_Carpenter_LumberHeader` | `data/text/us/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF8B0` | `gText_Carpenter_EquipmentFull` | `data/text/us/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF8DC` | `gText_Carpenter_GoldenLumberHeader` | `data/text/us/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF8F0` | `gText_Carpenter_CannotAcceptAnotherJob` | `data/text/us/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF944` | `gText_Carpenter_InsufficientLumber` | `data/text/us/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF968` | `gText_Carpenter_ThreeDayConfirmation` | `data/text/us/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF998` | `gText_Carpenter_NeedAnythingElse` | `data/text/us/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF9B8` | `gText_Carpenter_AreYouSureNow` | `data/text/us/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF9CC` | `gText_Carpenter_SameCurrentShape` | `data/text/us/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FF9F4` | `gText_Carpenter_StoreLumber` | `data/text/us/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FFA24` | `gText_Carpenter_DeliveryAll` | `data/text/us/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FFA70` | `gText_Carpenter_DeliverySome` | `data/text/us/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FFABC` | `gText_Carpenter_PurchaseComplete` | `data/text/us/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FFACC` | `gText_Carpenter_Build` | `data/text/us/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FFAD4` | `gText_Carpenter_DontBuild` | `data/text/us/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FFAE0` | `gText_Carpenter_Upgrade` | `data/text/us/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FFAE8` | `gText_Carpenter_DontUpgrade` | `data/text/us/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FFAF8` | `gText_Carpenter_StartUpgradeTomorrow` | `data/text/us/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FFB2C` | `gText_Carpenter_ConfirmUpgrade` | `data/text/us/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
+| `0x080FFB3C` | `gText_Carpenter_NeedAnythingMore` | `data/text/us/carpenter_data_1.cc` | `src/carpenter_data.o(.rodata)` |
 | `0x080FFB60` | `gText_LivestockShop_Empty` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
 | `0x080FFB64` | `gText_LivestockShop_BuyCow` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
 | `0x080FFB6C` | `gText_LivestockShop_BuySheep` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
