@@ -107,6 +107,7 @@
 | EU | `0x08104F04`–`0x08105691` | `src/random_item_selection.o(.rodata)` | `src/random_item_selection.cc`、`include/random_item_selection.hh`、`data/text/common/random_item_selection.cc` | `gRandomItemSelectionWeights`、`gRandomItemCandidateConfigurations`、运行时字符串 `1` 项 |
 | EU | `0x08105694`–`0x0810575D` | `src/field_plot_position_rules.o(.rodata)` | `src/field_plot_position_rules.cc`、`include/field_plot_position_rules.hh`、`data/text/common/field_plot_position_rules.cc` | `gFieldPlotPositionRules`、运行时字符串 `1` 项 |
 | EU | `0x08105760`–`0x08105F33` | `src/time_of_day.o(.rodata)` | `src/time_of_day.cc`、`include/time_of_day.hh` | `gTimeOfDayTransitionTables`、16 张季节/时段转换记录表 |
+| EU | `0x08105F34`–`0x08106983` | `src/map_data.o(.rodata)` | `src/map_data.cc`、`include/map_data.hh` | `gMapData`；全部资源字段均为原始资产标签的符号重定位 |
 | EU | `0x08107490`–`0x081074A7` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
 | EU | `0x081082E4`–`0x08117843` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 EU 指南源文件；主目录只收录 `PAGE_1`，`tool_and_item_controls_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 | DE | `0x080E8574`–`0x080E858D` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0.hh`、`data/text/de/crt0_data.cc` | 精确 |
@@ -186,6 +187,7 @@
 | DE | `0x081058D0`–`0x0810605D` | `src/random_item_selection.o(.rodata)` | `src/random_item_selection.cc`、`include/random_item_selection.hh`、`data/text/common/random_item_selection.cc` | `gRandomItemSelectionWeights`、`gRandomItemCandidateConfigurations`、运行时字符串 `1` 项 |
 | DE | `0x08106060`–`0x08106129` | `src/field_plot_position_rules.o(.rodata)` | `src/field_plot_position_rules.cc`、`include/field_plot_position_rules.hh`、`data/text/common/field_plot_position_rules.cc` | `gFieldPlotPositionRules`、运行时字符串 `1` 项 |
 | DE | `0x0810612C`–`0x081068FF` | `src/time_of_day.o(.rodata)` | `src/time_of_day.cc`、`include/time_of_day.hh` | `gTimeOfDayTransitionTables`、16 张季节/时段转换记录表 |
+| DE | `0x08106900`–`0x0810734F` | `src/map_data.o(.rodata)` | `src/map_data.cc`、`include/map_data.hh` | `gMapData`；全部资源字段均为原始资产标签的符号重定位 |
 | DE | `0x08107E5C`–`0x08107E73` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
 | DE | `0x08107FD4`–`0x08108DB3` | `src/harvest_sprite.o(.rodata)` | `src/harvest_sprite.cc` 与 `data/text/de/harvest_sprite_*.cc` | 精确 |
 | DE | `0x08108DB4`–`0x081197FF` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 DE 指南源文件；主目录只收录 `PAGE_1`，`using_tools_2` 与 `newborn_congratulations_cliff_and_ann_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
@@ -328,7 +330,7 @@
 | `0x0810524E`–`0x0810524F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08105250`–`0x0810528F` | `src/time_of_day.o(.rodata)` | [数据] | `src/time_of_day.cc`<br>`include/time_of_day.hh` | `gTimeOfDayTransitionTables` |
 | `0x08105290`–`0x08105A23` | `src/time_of_day.o(.rodata)` | [数据] | `src/time_of_day.cc`<br>`include/time_of_day.hh` | `gTimeOfDayTransitionRecords_Spring_Morning`, `gTimeOfDayTransitionRecords_Spring_Afternoon`, `gTimeOfDayTransitionRecords_Spring_Evening`, `gTimeOfDayTransitionRecords_Spring_Night`, `gTimeOfDayTransitionRecords_Summer_Morning`, `gTimeOfDayTransitionRecords_Summer_Afternoon`, … +10 |
-| `0x08105A24`–`0x08106473` | `src/map_data.o(.rodata.map_data)` | [数据] | `src/map_data.c/.cc` | `gMapData` |
+| `0x08105A24`–`0x08106473` | `src/map_data.o(.rodata)` | [数据] | `src/map_data.cc`<br>`include/map_data.hh` | `gMapData`；所有资源字段均为对应原始资产标签的符号重定位 |
 | `0x08106474`–`0x08106C23` | `src/field_data.o(.rodata.field_render_rect_descriptors)` | [数据] | `src/field_data.c/.cc` | `gFieldRenderRectDescriptors` |
 | `0x08106C24`–`0x08106E97` | `src/field_render_farm_house_data.o(.rodata)` | [数据] | `src/field_render_farm_house_data.cc`<br>`include/field_render_farm_house_data.hh` | `gFarmHouseTilePatchData`、`gFarmHouseVisualDescriptors`、`gFarmHouseTilePatchAnimations`；按同一对象内的 ROM 顺序排列 |
 | `0x08106E98`–`0x08106E9F` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gUnk_FieldRenderResource_158`, `gUnk_FieldRenderResource_159` |
@@ -2159,7 +2161,7 @@
 | `0x08105706`–`0x08105707` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08105708`–`0x08105747` | `src/time_of_day.o(.rodata)` | [数据] | `src/time_of_day.cc`<br>`include/time_of_day.hh` | `gTimeOfDayTransitionTables` |
 | `0x08105748`–`0x08105EDB` | `src/time_of_day.o(.rodata)` | [数据] | `src/time_of_day.cc`<br>`include/time_of_day.hh` | `gTimeOfDayTransitionRecords_Spring_Morning`, `gTimeOfDayTransitionRecords_Spring_Afternoon`, `gTimeOfDayTransitionRecords_Spring_Evening`, `gTimeOfDayTransitionRecords_Spring_Night`, `gTimeOfDayTransitionRecords_Summer_Morning`, `gTimeOfDayTransitionRecords_Summer_Afternoon`, … +10 |
-| `0x08105EDC`–`0x0810692B` | `src/map_data.o(.rodata.map_data)` | [数据] | `src/map_data.c/.cc` | `gMapData` |
+| `0x08105EDC`–`0x0810692B` | `src/map_data.o(.rodata)` | [数据] | `src/map_data.cc`<br>`include/map_data.hh` | `gMapData`；所有资源字段均为对应原始资产标签的符号重定位 |
 | `0x0810692C`–`0x081070DB` | `src/field_data.o(.rodata.field_render_rect_descriptors)` | [数据] | `src/field_data.c/.cc` | `gFieldRenderRectDescriptors` |
 | `0x081070DC`–`0x0810734F` | `src/field_render_farm_house_data.o(.rodata)` | [数据] | `src/field_render_farm_house_data.cc`<br>`include/field_render_farm_house_data.hh` | `gFarmHouseTilePatchData`、`gFarmHouseVisualDescriptors`、`gFarmHouseTilePatchAnimations`；按同一对象内的 ROM 顺序排列 |
 | `0x08107350`–`0x08107357` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gUnk_FieldRenderResource_158`, `gUnk_FieldRenderResource_159` |

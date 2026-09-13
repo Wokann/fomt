@@ -754,7 +754,7 @@ SECTIONS
         . = 0x104F04; src/random_item_selection.o(.rodata);
         . = 0x105694; src/field_plot_position_rules.o(.rodata);
         . = 0x105760; src/time_of_day.o(.rodata);
-        . = 0x105F34; src/map_data.o(.rodata.map_data);
+        . = 0x105F34; src/map_data.o(.rodata);
         . = 0x106984; src/field_render_rect_descriptors.o(.rodata);
         . = 0x107134; src/field_render_farm_house_data.o(.rodata);
         . = 0x1073A8; src/field_render_resource_data.o(.rodata);

@@ -385,7 +385,7 @@ extern u8 const gUnk_MapDataResource_378[];
 extern u8 const gUnk_MapDataResource_379[];
 
 // Each layer resource label names its payload, not an EU-only archive header.
-MapData const gMapData[MAP_DATA_COUNT] SECTION(".rodata.map_data") = {
+MapData const gMapData[MAP_DATA_COUNT] = {
     /* 0x00 */ {
         {
             gUnk_MapDataResource_000, gUnk_MapDataResource_001,
