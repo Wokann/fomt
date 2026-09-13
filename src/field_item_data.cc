@@ -3,7 +3,7 @@
 // func_080A1B38, func_080A1CBC, and func_080A1D20 all use this physical
 // record order.  Entries 0x00-0x5F are selected by the seasonal ranges above;
 // entries 0x60-0x73 are the shared trailing range scanned by func_080A1D20.
-extern Unk_081043BCRecord const gUnk_081043BC[] = {
+Unk_081043BCRecord const gUnk_081043BC[] = {
         /* 0x00 */ { 0x0E, 0x00,  232, 136 },
         /* 0x01 */ { 0x0E, 0x00,  248, 168 },
         /* 0x02 */ { 0x0E, 0x00,  248, 200 },
@@ -122,5 +122,4 @@ extern Unk_081043BCRecord const gUnk_081043BC[] = {
         /* 0x73 */ { 0x12, 0x00,  576, 592 },
     };
 
-extern char const gCppRuntimeBadAlloc_FieldItemRecordsTrailer[] =
-        "bad_alloc";
+#include "data/text/common/field_item_data.cc"

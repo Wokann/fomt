@@ -97,6 +97,7 @@
 | EU | `0x08104160`–`0x08104160` | `src/character_names_empty.o(.rodata)` | `src/character_names_empty.cc`、`include/character_names_empty.hh`、`data/text/eu/character_names_empty.cc` | `gText_CharacterName_Empty` |
 | EU | `0x08104161`–`0x0810417E` | `src/bachelorette.o(.rodata)` | `src/bachelorette.cc`、`include/bachelorette.hh` | 6 个婚姻候选人好感度阈值 |
 | EU | `0x08104180`–`0x08104411` | `src/character_names_data.o(.rodata)` | `src/character_names_data.cc`、`include/character_names_data.hh`、`data/text/eu/character_names.cc`、`data/text/eu/character_names_1.cc` | 文本 `41` 项、`gCharacterNameEntries`、运行时字符串 `1` 项 |
+| EU | `0x08104414`–`0x0810498D` | `src/field_item_data.o(.rodata)` | `src/field_item_data.cc`、`include/field_item_data.hh`、`data/text/common/field_item_data.cc` | `gUnk_081043BC`、运行时字符串 `1` 项 |
 | EU | `0x08104EAC`–`0x08104ECB` | `src/fishing_record_article_ids.o(.rodata)` | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | `gFishingRecordArticleIds` |
 | EU | `0x08107490`–`0x081074A7` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
 | EU | `0x081082E4`–`0x08117843` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 EU 指南源文件；主目录只收录 `PAGE_1`，`tool_and_item_controls_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
@@ -167,6 +168,7 @@
 | DE | `0x08104B60`–`0x08104B60` | `src/character_names_empty.o(.rodata)` | `src/character_names_empty.cc`、`include/character_names_empty.hh`、`data/text/de/character_names_empty.cc` | `gText_CharacterName_Empty` |
 | DE | `0x08104B61`–`0x08104B7E` | `src/bachelorette.o(.rodata)` | `src/bachelorette.cc`、`include/bachelorette.hh` | 6 个婚姻候选人好感度阈值 |
 | DE | `0x08104B80`–`0x08104E11` | `src/character_names_data.o(.rodata)` | `src/character_names_data.cc`、`include/character_names_data.hh`、`data/text/de/character_names.cc`、`data/text/de/character_names_1.cc` | 文本 `41` 项、`gCharacterNameEntries`、运行时字符串 `1` 项 |
+| DE | `0x08104E14`–`0x0810538D` | `src/field_item_data.o(.rodata)` | `src/field_item_data.cc`、`include/field_item_data.hh`、`data/text/common/field_item_data.cc` | `gUnk_081043BC`、运行时字符串 `1` 项 |
 | DE | `0x08105878`–`0x08105897` | `src/fishing_record_article_ids.o(.rodata)` | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | `gFishingRecordArticleIds` |
 | DE | `0x08107E5C`–`0x08107E73` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
 | DE | `0x08107FD4`–`0x08108DB3` | `src/harvest_sprite.o(.rodata)` | `src/harvest_sprite.cc` 与 `data/text/de/harvest_sprite_*.cc` | 精确 |
@@ -290,7 +292,7 @@
 | `0x08103C1B`–`0x08103C1B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x08103C1C`–`0x08103EFD` | `src/character_names_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/character_names_data.cc`、`include/character_names_data.hh`<br>`data/text/jp/character_names.cc`、`data/text/jp/character_names_1.cc` | 文本 `41` 项（详见下方索引）<br>文本后对象内 `00` 对齐 `1` 字节<br>`gCharacterNameEntries`<br>运行时字符串 `1` 项 |
 | `0x08103EFE`–`0x08103EFF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08103F00`–`0x08104479` | `src/field_data.o(.rodata.field_item_records)` | [数据] | `src/field_data.c/.cc` | 运行时字符串 `1` 项<br>`gUnk_081043BC` |
+| `0x08103F00`–`0x08104479` | `src/field_item_data.o(.rodata)` | [数据 / 嵌入文本] | `src/field_item_data.cc`、`include/field_item_data.hh`<br>`data/text/common/field_item_data.cc` | `gUnk_081043BC`<br>运行时字符串 `1` 项 |
 | `0x0810447A`–`0x0810447B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x0810447C`–`0x08104955` | `data/text/calendar_events.o(.rodata)` | [文本对象] | `data/text/jp/calendar_events.cc` | 文本 `22` 项（详见下方索引）<br>运行时字符串 `2` 项 |
 | `0x08104956`–`0x08104957` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -2121,7 +2123,7 @@
 | `0x08104127`–`0x08104127` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x08104128`–`0x081043B9` | `src/character_names_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/character_names_data.cc`、`include/character_names_data.hh`<br>`data/text/us/character_names.cc`、`data/text/us/character_names_1.cc` | 文本 `41` 项（详见下方索引）<br>文本后对象内 `00` 对齐 `2` 字节<br>`gCharacterNameEntries`<br>运行时字符串 `1` 项 |
 | `0x081043BA`–`0x081043BB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x081043BC`–`0x08104935` | `src/field_data.o(.rodata.field_item_records)` | [数据] | `src/field_data.c/.cc` | 运行时字符串 `1` 项<br>`gUnk_081043BC` |
+| `0x081043BC`–`0x08104935` | `src/field_item_data.o(.rodata)` | [数据 / 嵌入文本] | `src/field_item_data.cc`、`include/field_item_data.hh`<br>`data/text/common/field_item_data.cc` | `gUnk_081043BC`<br>运行时字符串 `1` 项 |
 | `0x08104936`–`0x08104937` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08104938`–`0x08104E09` | `data/text/calendar_events.o(.rodata)` | [文本对象] | `data/text/us/calendar_events.cc` | 文本 `22` 项（详见下方索引）<br>运行时字符串 `2` 项 |
 | `0x08104E0A`–`0x08104E0B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
