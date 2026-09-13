@@ -1,4 +1,4 @@
-#include "blacksmith_text.hh"
+#include "blacksmith_data.hh"
 
 #include "blacksmith_menu_data.hh"
 
@@ -31,12 +31,4 @@ BlacksmithCatalogEntry const gBlacksmithCatalog[] = {
     { ITEM_ARTICLE_BROOCH, gText_Blacksmith_MakeBroach, 1000, 2, gText_Blacksmith_CostOrichalc },
 };
 
-#if defined(REGION_JP)
-#define FOMT_TEXT_BLACKSMITH_DIALOGUE
-#include FOMT_TEXT_INCLUDE(blacksmith.cc)
-#undef FOMT_TEXT_BLACKSMITH_DIALOGUE
-#else
-#define FOMT_TEXT_BLACKSMITH_DIALOGUE
-#include FOMT_TEXT_INCLUDE(blacksmith.cc)
-#undef FOMT_TEXT_BLACKSMITH_DIALOGUE
-#endif
+#include FOMT_TEXT_INCLUDE(blacksmith_data.cc)

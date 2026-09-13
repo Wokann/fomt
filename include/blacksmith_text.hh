@@ -3,50 +3,6 @@
 
 #include "prelude.h"
 
-// The original directory is eleven contiguous 20-byte entries.  Selection
-// identifiers are interpreted by entry_kind: only kind 1 is passed to ToolUi;
-// the maker codes 4–6 are intentionally retained as their original values.
-struct BlacksmithCatalogEntry
-{
-    u32 selection_id;
-    char const * menu_text;
-    u32 price;
-    u32 entry_kind;
-    char const * detail_text;
-};
-
-// JP stores its initial menu label as a distinct four-word header before the
-// ten catalog entries.  US instead encodes the same data as catalog entry 0.
-struct BlacksmithMenuHeader
-{
-    char const * menu_text;
-    u32 unknown_04;
-    u32 unknown_08;
-    char const * title_text;
-};
-
-extern char const gText_Blacksmith_InsufficientGoldAdamantite[];
-extern char const gText_Blacksmith_InsufficientGoldOrichalc[];
-extern char const gText_Blacksmith_MakerFiveDays[];
-extern char const gText_Blacksmith_MakerOneDay[];
-extern char const gText_Blacksmith_InsufficientOreAdamantite[];
-extern char const gText_Blacksmith_InsufficientOreOrichalc[];
-extern char const gText_Blacksmith_SelectToolAndOre[];
-extern char const gText_Blacksmith_InsufficientGold[];
-extern char const gText_Blacksmith_EquipmentFull[];
-extern char const gText_Blacksmith_NeedAnythingElse[];
-extern char const gText_Blacksmith_NothingElse[];
-extern char const gText_Blacksmith_PurchaseComplete[];
-extern char const gText_Blacksmith_Delivery[];
-extern char const gText_Blacksmith_PurchaseMore[];
-extern char const gText_Blacksmith_MakeIt[];
-extern char const gText_Blacksmith_DontMakeIt[];
-extern char const gText_Blacksmith_StartWork[];
-extern char const gText_Blacksmith_CannotChangeMind[];
-extern char const gText_Blacksmith_NoToolToUpgrade[];
-extern char const gText_Blacksmith_NoOreToUpgrade[];
-extern char const gCppRuntimeBadAlloc_BlacksmithDialogueTrailer[];
-
 extern char const gText_BlacksmithUpgrade_Tools[];
 extern char const gText_BlacksmithUpgrade_Items[];
 extern char const gText_BlacksmithUpgrade_SelectTool[];
@@ -72,10 +28,5 @@ extern char const gText_BlacksmithUpgrade_InsufficientGoldPageBreak[];
 extern char const gText_BlacksmithUpgrade_InsufficientGold[];
 extern char const gText_BlacksmithUpgrade_ResultYes[];
 extern char const gText_BlacksmithUpgrade_ResultNo[];
-
-#if defined(REGION_JP)
-extern BlacksmithMenuHeader const gBlacksmithMenuHeader;
-#endif
-extern BlacksmithCatalogEntry const gBlacksmithCatalog[];
 
 #endif // BLACKSMITH_TEXT_HH
