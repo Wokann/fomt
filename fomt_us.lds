@@ -689,13 +689,10 @@ SECTIONS
         . = ALIGN(4); src/staff_credits.o(.rodata);
         /* Bounded Town Map localization island: labels, hotspots, and lookup. */
         . = 0xFC6C2; src/town_map_data.o(.rodata);
-        . = 0xFD550; src/library_data.o(.rodata.library_opening_hours);
+        . = 0xFD550; src/library_opening_hours_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/town_map_area_data.o(.rodata);
-        src/library_data.o(.rodata.library_info);
-        FILL(0x00);
-        . = ALIGN(4); src/library_data.o(.rodata.library_initial_entry_ids);
-        . = 0xFD940; src/library_data.o(.rodata.library_menu);
+        src/library_data.o(.rodata);
         . = 0xFD964; src/poultry_shop_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/supermarket_data.o(.rodata);

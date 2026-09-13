@@ -56,9 +56,11 @@
 | EU | `0x080FC0EE`–`0x080FC0EF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FC0F0`–`0x080FC70D` | `src/staff_credits.o(.rodata)` | `src/staff_credits.cc`、`include/staff_credits.hh`、`data/text/eu/staff_credits.cc`、`data/text/eu/staff_credits_1.cc`；名单文本、行指针表与运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
 | EU | `0x080FC70E`–`0x080FD59B` | `src/town_map_data.o(.rodata)` | `src/town_map_data.cc`、`include/town_map.hh`、`data/text/eu/town_map.cc`；资源 ID、文本、热点和区域查询表按 ROM 顺序同属该对象 | 精确 |
-| EU | `0x080FD59C`–`0x080FD5CE` | `src/library_data.o(.rodata.library_opening_hours)` | `src/library_data.cc`、`data/text/eu/library.cc` | 精确 |
+| EU | `0x080FD59C`–`0x080FD5CE` | `src/library_opening_hours_data.o(.rodata)` | `src/library_opening_hours_data.cc`、`include/library_opening_hours_data.hh`、`data/text/eu/library_opening_hours_data.cc` | 精确 |
 | EU | `0x080FD5CF`–`0x080FD5CF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FD5D0`–`0x080FD95F` | `src/town_map_area_data.o(.rodata)` | `src/town_map_area_data.cc`、`include/town_map_area_data.hh`；`gTownMapAreaBounds` | 精确 |
+| EU | `0x080FD960`–`0x080FD9AD` | `src/library_data.o(.rodata)` | `src/library_data.cc`、`include/library_data.hh`、`data/text/eu/library_data.cc`、`data/text/eu/library_data_1.cc`；运行时字符串、初始条目表和菜单按 ROM 顺序同属该对象 | 精确 |
+| EU | `0x080FD9AE`–`0x080FD9AF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FECC8`–`0x080FEDD7` | `src/blacksmith_menu_data.o(.rodata)` | `src/blacksmith_menu_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
 | EU | `0x080FEDD8`–`0x080FF3AF` | `src/blacksmith_data.o(.rodata)` | `src/blacksmith_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
 | EU | `0x08100534`–`0x08100B17` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc` 与 `data/text/eu/link_communication.cc` | 精确 |
@@ -91,9 +93,11 @@
 | DE | `0x080FC7AE`–`0x080FC7AF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080FC7B0`–`0x080FCDCD` | `src/staff_credits.o(.rodata)` | `src/staff_credits.cc`、`include/staff_credits.hh`、`data/text/de/staff_credits.cc`、`data/text/de/staff_credits_1.cc`；名单文本、行指针表与运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
 | DE | `0x080FCDCE`–`0x080FDC8F` | `src/town_map_data.o(.rodata)` | `src/town_map_data.cc`、`include/town_map.hh`、`data/text/de/town_map.cc`；资源 ID、文本、热点和区域查询表按 ROM 顺序同属该对象 | 精确 |
-| DE | `0x080FDC90`–`0x080FDCD7` | `src/library_data.o(.rodata.library_opening_hours)` | `src/library_data.cc`、`data/text/de/library.cc` | 精确 |
+| DE | `0x080FDC90`–`0x080FDCD5` | `src/library_opening_hours_data.o(.rodata)` | `src/library_opening_hours_data.cc`、`include/library_opening_hours_data.hh`、`data/text/de/library_opening_hours_data.cc` | 精确 |
+| DE | `0x080FDCD6`–`0x080FDCD7` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080FDCD8`–`0x080FE067` | `src/town_map_area_data.o(.rodata)` | `src/town_map_area_data.cc`、`include/town_map_area_data.hh`；`gTownMapAreaBounds` | 精确 |
-| DE | `0x080FE094`–`0x080FE0B7` | 图书馆菜单 | `src/library_data.cc` 与 `data/text/de/library.cc` | 精确 |
+| DE | `0x080FE068`–`0x080FE0B5` | `src/library_data.o(.rodata)` | `src/library_data.cc`、`include/library_data.hh`、`data/text/de/library_data.cc`、`data/text/de/library_data_1.cc`；运行时字符串、初始条目表和菜单按 ROM 顺序同属该对象 | 精确 |
+| DE | `0x080FE0B6`–`0x080FE0B7` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080FE0B8`–`0x080FE5E3` | `src/poultry_shop_data.o(.rodata)` | `src/poultry_shop_data.cc` 与 `data/text/de/poultry_shop.cc` | 精确 |
 | DE | `0x080FE5E4`–`0x080FE7FB` | `src/supermarket_data.o(.rodata)` | `src/supermarket_data.cc` 与 `data/text/de/supermarket.cc` | 精确 |
 | DE | `0x080FE7FC`–`0x080FEA23` | `src/clinic_data.o(.rodata)` | `src/clinic_data.cc` 与 `data/text/de/clinic.cc` | 精确 |
@@ -170,13 +174,10 @@
 | `0x080FB936`–`0x080FB937` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FB938`–`0x080FBE91` | `src/staff_credits.o(.rodata)` | [嵌入文本 / 指针表] | `src/staff_credits.cc`<br>`include/staff_credits.hh`<br>`data/text/jp/staff_credits.cc`<br>`data/text/jp/staff_credits_1.cc` | 文本 `59` 项（详见下方索引）<br>`gStaffCreditsLines`<br>`gCppRuntimeBadAlloc_StaffCredits` |
 | `0x080FBE92`–`0x080FCCB7` | `src/town_map_data.o(.rodata)` | [嵌入文本 / 数据] | `src/town_map_data.cc`<br>`include/town_map.hh`<br>`data/text/jp/town_map.cc` | `gTownMapResourceIds`<br>文本 `65` 项（详见下方索引）<br>`gTownMapHotspots`<br>`gTownMapAreaLookup`, `gTownMapAreaLookupFallback_034To133`, `gTownMapAreaLookupFallback_134To233` |
-| `0x080FCCB8`–`0x080FCCF2` | `src/library_data.o(.rodata.library_opening_hours)` | [嵌入文本] | `data/text/jp/library.cc` | 文本 `1` 项（详见下方索引） |
+| `0x080FCCB8`–`0x080FCCF2` | `src/library_opening_hours_data.o(.rodata)` | [嵌入文本] | `src/library_opening_hours_data.cc`<br>`include/library_opening_hours_data.hh`<br>`data/text/jp/library_opening_hours_data.cc` | 文本 `1` 项（详见下方索引） |
 | `0x080FCCF3`–`0x080FCCF3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x080FCCF4`–`0x080FD083` | `src/town_map_area_data.o(.rodata)` | [数据] | `src/town_map_area_data.cc`<br>`include/town_map_area_data.hh` | `gTownMapAreaBounds` |
-| `0x080FD084`–`0x080FD08D` | `src/library_data.o(.rodata.library_info)` | [数据] | `data/text/jp/library.cc` | 运行时字符串 `1` 项 |
-| `0x080FD08E`–`0x080FD08F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FD090`–`0x080FD0AF` | `src/library_data.o(.rodata.library_initial_entry_ids)` | [数据] | `data/text/jp/library.cc` | `gLibraryInitialEntryIds` |
-| `0x080FD0B0`–`0x080FD0CD` | `src/library_data.o(.rodata.library_menu)` | [嵌入文本] | `data/text/jp/library.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项 |
+| `0x080FD084`–`0x080FD0CD` | `src/library_data.o(.rodata)` | [嵌入文本 / 数据] | `src/library_data.cc`<br>`include/library_data.hh`<br>`data/text/jp/library_data.cc`<br>`data/text/jp/library_data_1.cc` | `gCppRuntimeBadAlloc_LibraryInfo`<br>对象内 `00` 对齐 `2` 字节<br>`gLibraryInitialEntryIds`<br>`gText_Library_Menu`<br>`gCppRuntimeBadAlloc_LibraryMenu` |
 | `0x080FD0CE`–`0x080FD0CF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FD0D0`–`0x080FD55D` | `src/poultry_shop_data.o(.rodata)` | [嵌入文本] | `data/text/jp/poultry_shop.cc` | 文本 `34` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gPoultryShopCatalog` |
 | `0x080FD55E`–`0x080FD55F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1401,8 +1402,8 @@
 | `0x080FC790` | `gText_TownMap_MothersHillPeakLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
 | `0x080FC7A4` | `gText_TownMap_MothersHillDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
 | `0x080FC7D8` | `gText_TownMap_MothersHillLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
-| `0x080FCCB8` | `gText_Library_OpeningHours` | `data/text/jp/library.cc` | `src/library_data.o(.rodata.library_opening_hours)` |
-| `0x080FD0B0` | `gText_Library_Menu` | `data/text/jp/library.cc` | `src/library_data.o(.rodata.library_menu)` |
+| `0x080FCCB8` | `gText_Library_OpeningHours` | `data/text/jp/library_opening_hours_data.cc` | `src/library_opening_hours_data.o(.rodata)` |
+| `0x080FD0B0` | `gText_Library_Menu` | `data/text/jp/library_data_1.cc` | `src/library_data.o(.rodata)` |
 | `0x080FD0D0` | `gText_PoultryShop_Empty` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
 | `0x080FD0D4` | `gText_PoultryShop_BuyChicken` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
 | `0x080FD0E0` | `gText_PoultryShop_SellChicken` | `data/text/jp/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
@@ -2010,13 +2011,10 @@
 | `0x080FC0A2`–`0x080FC0A3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FC0A4`–`0x080FC6C1` | `src/staff_credits.o(.rodata)` | [嵌入文本 / 指针表] | `src/staff_credits.cc`<br>`include/staff_credits.hh`<br>`data/text/us/staff_credits.cc`<br>`data/text/us/staff_credits_1.cc` | 文本 `65` 项（详见下方索引）<br>`gStaffCreditsLines`<br>`gCppRuntimeBadAlloc_StaffCredits` |
 | `0x080FC6C2`–`0x080FD54F` | `src/town_map_data.o(.rodata)` | [嵌入文本 / 数据] | `src/town_map_data.cc`<br>`include/town_map.hh`<br>`data/text/us/town_map.cc` | `gTownMapResourceIds`<br>文本 `65` 项（详见下方索引）<br>`gTownMapHotspots`<br>`gTownMapAreaLookup`, `gTownMapAreaLookupFallback_034To133`, `gTownMapAreaLookupFallback_134To233` |
-| `0x080FD550`–`0x080FD582` | `src/library_data.o(.rodata.library_opening_hours)` | [嵌入文本] | `data/text/us/library.cc` | 文本 `1` 项（详见下方索引） |
+| `0x080FD550`–`0x080FD582` | `src/library_opening_hours_data.o(.rodata)` | [嵌入文本] | `src/library_opening_hours_data.cc`<br>`include/library_opening_hours_data.hh`<br>`data/text/us/library_opening_hours_data.cc` | 文本 `1` 项（详见下方索引） |
 | `0x080FD583`–`0x080FD583` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x080FD584`–`0x080FD913` | `src/town_map_area_data.o(.rodata)` | [数据] | `src/town_map_area_data.cc`<br>`include/town_map_area_data.hh` | `gTownMapAreaBounds` |
-| `0x080FD914`–`0x080FD91D` | `src/library_data.o(.rodata.library_info)` | [数据] | `data/text/us/library.cc` | 运行时字符串 `1` 项 |
-| `0x080FD91E`–`0x080FD91F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FD920`–`0x080FD93F` | `src/library_data.o(.rodata.library_initial_entry_ids)` | [数据] | `data/text/us/library.cc` | `gLibraryInitialEntryIds` |
-| `0x080FD940`–`0x080FD961` | `src/library_data.o(.rodata.library_menu)` | [嵌入文本] | `data/text/us/library.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项 |
+| `0x080FD914`–`0x080FD961` | `src/library_data.o(.rodata)` | [嵌入文本 / 数据] | `src/library_data.cc`<br>`include/library_data.hh`<br>`data/text/us/library_data.cc`<br>`data/text/us/library_data_1.cc` | `gCppRuntimeBadAlloc_LibraryInfo`<br>对象内 `00` 对齐 `2` 字节<br>`gLibraryInitialEntryIds`<br>`gText_Library_Menu`<br>`gCppRuntimeBadAlloc_LibraryMenu` |
 | `0x080FD962`–`0x080FD963` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FD964`–`0x080FDDD5` | `src/poultry_shop_data.o(.rodata)` | [嵌入文本] | `data/text/us/poultry_shop.cc` | 文本 `34` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gPoultryShopCatalog` |
 | `0x080FDDD6`–`0x080FDDD7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -3229,8 +3227,8 @@
 | `0x080FD014` | `gText_TownMap_MothersHillPeakLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
 | `0x080FD02C` | `gText_TownMap_MothersHillDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
 | `0x080FD070` | `gText_TownMap_MothersHillLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
-| `0x080FD550` | `gText_Library_OpeningHours` | `data/text/us/library.cc` | `src/library_data.o(.rodata.library_opening_hours)` |
-| `0x080FD940` | `gText_Library_Menu` | `data/text/us/library.cc` | `src/library_data.o(.rodata.library_menu)` |
+| `0x080FD550` | `gText_Library_OpeningHours` | `data/text/us/library_opening_hours_data.cc` | `src/library_opening_hours_data.o(.rodata)` |
+| `0x080FD940` | `gText_Library_Menu` | `data/text/us/library_data_1.cc` | `src/library_data.o(.rodata)` |
 | `0x080FD964` | `gText_PoultryShop_Empty` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
 | `0x080FD968` | `gText_PoultryShop_BuyChicken` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |
 | `0x080FD978` | `gText_PoultryShop_SellChicken` | `data/text/us/poultry_shop.cc` | `src/poultry_shop_data.o(.rodata)` |

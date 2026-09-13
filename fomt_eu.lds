@@ -687,13 +687,10 @@ SECTIONS
         . = ALIGN(4); src/staff_credits.o(.rodata);
         /* Town Map regional data: labels, hotspots, and lookup. */
         . = 0xFC70E; src/town_map_data.o(.rodata);
-        . = 0xFD59C; src/library_data.o(.rodata.library_opening_hours);
+        . = 0xFD59C; src/library_opening_hours_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/town_map_area_data.o(.rodata);
-        src/library_data.o(.rodata.library_info);
-        FILL(0x00);
-        . = ALIGN(4); src/library_data.o(.rodata.library_initial_entry_ids);
-        . = 0xFD98C; src/library_data.o(.rodata.library_menu);
+        src/library_data.o(.rodata);
         . = 0xFD9B0; src/poultry_shop_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/supermarket_data.o(.rodata);
