@@ -115,6 +115,7 @@
 | EU | `0x081074A8`–`0x08107607` | `src/field_render_runtime_data.o(.rodata)` | `src/field_render_runtime_data.cc`、`include/field_render_runtime_data.hh`、`data/text/eu/field_render_runtime_data.cc`、`data/text/common/field_render_runtime_data_1.cc`、`data/text/eu/field_render_runtime_data_2.cc` | 季节记录范围、查找/排序/布局表与三段按物理断点嵌入的文本；全部外部引用均为符号重定位 |
 | EU | `0x081082E4`–`0x08117843` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 EU 指南源文件；主目录只收录 `PAGE_1`，`tool_and_item_controls_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 | EU | `0x08117844`–`0x08117B6B` | `src/shop_common.o(.rodata)` | `src/shop_common.cc`、`include/shop_common.hh`、`data/text/eu/shop_common.cc`–`shop_common_8.cc`；运行时字符串、数字字形、商店通用文本、状态文本、指针与数值表按 ROM 顺序同属该对象 | 精确 |
+| EU | `0x08117B6C`–`0x08117C2B` | `src/font.o(.rodata)` | `src/font.cc`、`include/font.hh`、`data/text/common/font.cc`；运行时字符串与区域字形表按 ROM 顺序同属该对象 | 精确 |
 | DE | `0x080E8574`–`0x080E858D` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0.hh`、`data/text/de/crt0_data.cc` | 精确 |
 | DE | `0x080E858E`–`0x080E858F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080E8590`–`0x080E85E4` | `src/sram_proxy_1.o(.rodata)` | `src/sram_proxy_1.c`、`include/sram_proxy.hh`、`data/text/de/sram_proxy_1.cc` | 精确 |
@@ -201,6 +202,7 @@
 | DE | `0x08107FD4`–`0x08108DB3` | `src/harvest_sprite.o(.rodata)` | `src/harvest_sprite.cc` 与 `data/text/de/harvest_sprite_*.cc` | 精确 |
 | DE | `0x08108DB4`–`0x081197FF` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 DE 指南源文件；主目录只收录 `PAGE_1`，`using_tools_2` 与 `newborn_congratulations_cliff_and_ann_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 | DE | `0x0811984C`–`0x08119B93` | `src/shop_common.o(.rodata)` | `src/shop_common.cc`、`include/shop_common.hh`、`data/text/de/shop_common.cc`–`shop_common_8.cc`；运行时字符串、数字字形、商店通用文本、状态文本、指针与数值表按 ROM 顺序同属该对象 | 精确 |
+| DE | `0x08119B94`–`0x08119C53` | `src/font.o(.rodata)` | `src/font.cc`、`include/font.hh`、`data/text/common/font.cc`；运行时字符串与区域字形表按 ROM 顺序同属该对象 | 精确 |
 
 ## JP：物理 `.rodata` 顺序
 
@@ -400,7 +402,7 @@
 | `0x081189F4`–`0x08118A13` | `src/shop_common.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/jp/shop_common_1.cc`<br>`data/text/jp/shop_common_2.cc` | 文本 `3` 项（详见下方索引）<br>`gShopCommonQuantitySuffixTextRef`, `gShopCommonOwnedQuantityLabelTextRef` |
 | `0x08118A14`–`0x08118B93` | `src/shop_common.o(.rodata)` | [嵌入文本与数据] | `src/shop_common.cc`<br>`data/text/jp/shop_common_3.cc`<br>`data/text/jp/shop_common_4.cc` | 运行时字符串 `2` 项<br>`gUnk_08117838`, `gUnk_0811783C`, `gUnk_0811785C`, `gUnk_08117860`, `gUnk_0811788C` |
 | `0x08118B94`–`0x08118CF3` | `src/shop_common.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/jp/shop_common_5.cc`–`shop_common_8.cc` | 文本 `26` 项（详见下方索引）<br>`gItemStatusWrappedAsPresentTextRef`, `gItemDiscardConfirmTextRef`, `gItemDiscardCannotDiscardTextRef`, `gItemDiscardCursedTextRef` |
-| `0x08118CF4`–`0x08118D17` | `src/font.o(.rodata)` | [数据] | `src/font.c/.cc` | 运行时字符串 `1` 项<br>`gFontSpecialGlyph81CD` |
+| `0x08118CF4`–`0x08118D17` | `src/font.o(.rodata)` | [嵌入文本 / 数据] | `src/font.cc`<br>`include/font.hh`<br>`data/text/common/font.cc` | 运行时字符串 `1` 项<br>`gFontSpecialGlyph81CD` |
 | `0x08118D18`–`0x0813ABCB` | `asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard)` | [原始 incbin] | `asm/data/data_080F9EB8.s` | `gUnk_FieldRenderResource_146`, `gUnk_FieldRenderResource_147`, `gUnk_MapDataResource_098`, `gUnk_MapDataResource_099`, `gUnk_FieldRenderResource_120`, `gUnk_FieldRenderResource_121`, … +214 |
 
 ## JP：文本地址索引
@@ -2238,7 +2240,7 @@
 | `0x0811780C`–`0x0811782B` | `src/shop_common.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/us/shop_common_1.cc`<br>`data/text/us/shop_common_2.cc` | 文本 `3` 项（详见下方索引）<br>`gShopCommonQuantitySuffixTextRef`, `gShopCommonOwnedQuantityLabelTextRef` |
 | `0x0811782C`–`0x081179AB` | `src/shop_common.o(.rodata)` | [嵌入文本与数据] | `src/shop_common.cc`<br>`data/text/us/shop_common_3.cc`<br>`data/text/us/shop_common_4.cc` | 运行时字符串 `2` 项<br>`gUnk_08117838`, `gUnk_0811783C`, `gUnk_0811785C`, `gUnk_08117860`, `gUnk_0811788C` |
 | `0x081179AC`–`0x08117B13` | `src/shop_common.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/us/shop_common_5.cc`–`shop_common_8.cc` | 文本 `25` 项（详见下方索引）<br>`gItemStatusWrappedAsPresentTextRef`, `gItemDiscardConfirmTextRef`, `gItemDiscardCannotDiscardTextRef`, `gItemDiscardCursedTextRef` |
-| `0x08117B14`–`0x08117BD3` | `src/font.o(.rodata)` | [数据] | `src/font.c/.cc` | 运行时字符串 `1` 项<br>`gFontSpecialGlyphBlocks`, `gFontSpecialGlyphC3` |
+| `0x08117B14`–`0x08117BD3` | `src/font.o(.rodata)` | [嵌入文本 / 数据] | `src/font.cc`<br>`include/font.hh`<br>`data/text/common/font.cc` | 运行时字符串 `1` 项<br>`gFontSpecialGlyphBlocks`, `gFontSpecialGlyphC3` |
 | `0x08117BD4`–`0x08139A87` | `asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard)` | [原始 incbin] | `asm/data/data_080F9EB8.s` | `gUnk_FieldRenderResource_146`, `gUnk_FieldRenderResource_147`, `gUnk_MapDataResource_098`, `gUnk_MapDataResource_099`, `gUnk_FieldRenderResource_120`, `gUnk_FieldRenderResource_121`, … +214 |
 
 ## US：文本地址索引

@@ -34,10 +34,7 @@ i32 GetShiftJisGlyphMapIndex(i32 character)
     return (row << 6) - row + low_byte;
 }
 
-// This is an ordinary terminated C string. Its two additional trailing zero
-// bytes arise from the four-byte alignment of the following object.
-extern char const gCppRuntimeBadAlloc_Font[] ALIGN(4) =
-    "bad_alloc";
+#include "data/text/common/font.cc"
 
 #if defined(REGION_WESTERN)
 // The US glyph resolver selects these contiguous 12-byte glyph bitmaps and
