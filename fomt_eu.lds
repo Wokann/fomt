@@ -649,8 +649,6 @@ SECTIONS
         . = 0xF1ACC; src/data_schedules.o(.rodata);
         /* Entity UI resource-selector data follows schedule data. */
         . = ALIGN(4); src/entity_ui_resource_selector.o(.rodata);
-        FILL(0x00);
-        . = 0xF433C; asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix);
         . = 0xF8A20; data/scripts/script_table.o(.rodata.mary_script_table);
         . = ALIGN(4); src/script_engine.o(.rodata);
         . = 0xF9F11; src/cooking_festival_data.o(.rodata);

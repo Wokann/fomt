@@ -23,11 +23,109 @@ func_0803A8A4:
 
     .section .text.code_0803C54C
 .Lcode_0803C54C:
-    .incbin "baserom_jp.gba", 0x3C2E0, 0x1DA0
+    .incbin "baserom_jp.gba", 0x3C2E0, 0x1B90
+
+    .global func_0803DE70
+    .thumb_func
+func_0803DE70:
+    .incbin "baserom_jp.gba", 0x3DE70, 0x68
+
+    .global func_0803DED8
+    .thumb_func
+func_0803DED8:
+    .incbin "baserom_jp.gba", 0x3DED8, 0x1A8
 
     .section .text.code_0803E448
 .Lcode_0803E448:
-    .incbin "baserom_jp.gba", 0x3E0BC, 0xA4C
+    .global func_0803E0BC
+    .thumb_func
+func_0803E0BC:
+    .incbin "baserom_jp.gba", 0x3E0BC, 0x58
+
+    .global func_0803E114
+    .thumb_func
+func_0803E114:
+    .incbin "baserom_jp.gba", 0x3E114, 0x180
+
+    .global func_0803E294
+    .thumb_func
+func_0803E294:
+    .incbin "baserom_jp.gba", 0x3E294, 0x64
+
+    .global func_0803E2F8
+    .thumb_func
+func_0803E2F8:
+    .incbin "baserom_jp.gba", 0x3E2F8, 0x68
+
+    .global func_0803E360
+    .thumb_func
+func_0803E360:
+    .incbin "baserom_jp.gba", 0x3E360, 0x94
+
+    .global func_0803E3F4
+    .thumb_func
+func_0803E3F4:
+    .incbin "baserom_jp.gba", 0x3E3F4, 0x168
+
+    .global func_0803E55C
+    .thumb_func
+func_0803E55C:
+    .incbin "baserom_jp.gba", 0x3E55C, 0x88
+
+    .global func_0803E5E4
+    .thumb_func
+func_0803E5E4:
+    .incbin "baserom_jp.gba", 0x3E5E4, 0x74
+
+    .global func_0803E658
+    .thumb_func
+func_0803E658:
+    .incbin "baserom_jp.gba", 0x3E658, 0x78
+
+    .global func_0803E6D0
+    .thumb_func
+func_0803E6D0:
+    .incbin "baserom_jp.gba", 0x3E6D0, 0x3C
+
+    .global func_0803E70C
+    .thumb_func
+func_0803E70C:
+    .incbin "baserom_jp.gba", 0x3E70C, 0x44
+
+    .global func_0803E750
+    .thumb_func
+func_0803E750:
+    .incbin "baserom_jp.gba", 0x3E750, 0x64
+
+    .global func_0803E7B4
+    .thumb_func
+func_0803E7B4:
+    .incbin "baserom_jp.gba", 0x3E7B4, 0x5C
+
+    .global func_0803E810
+    .thumb_func
+func_0803E810:
+    .incbin "baserom_jp.gba", 0x3E810, 0xA8
+
+    .global func_0803E8B8
+    .thumb_func
+func_0803E8B8:
+    .incbin "baserom_jp.gba", 0x3E8B8, 0x7C
+
+    .global func_0803E934
+    .thumb_func
+func_0803E934:
+    .incbin "baserom_jp.gba", 0x3E934, 0x10C
+
+    .global func_0803EA40
+    .thumb_func
+func_0803EA40:
+    .incbin "baserom_jp.gba", 0x3EA40, 0x84
+
+    .global func_0803EAC4
+    .thumb_func
+func_0803EAC4:
+    .incbin "baserom_jp.gba", 0x3EAC4, 0x44
 
     .global func_0803AB30
     .thumb_set func_0803AB30, func_0803A8A4 + 0x3AC
