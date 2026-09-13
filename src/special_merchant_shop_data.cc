@@ -1,4 +1,4 @@
-#include "special_merchant_shop_text.hh"
+#include "special_merchant_shop_data.hh"
 
 #include "item.hh"
 
@@ -20,8 +20,4 @@ SpecialMerchantShopCatalogEntry const gSpecialMerchantShopCatalog[] = {
     { ITEM_ARTICLE_MYSTRILE, 400 },
 };
 
-#if defined(REGION_JP)
-#include FOMT_TEXT_INCLUDE(special_merchant_shop.cc)
-#else
-#include FOMT_TEXT_INCLUDE(special_merchant_shop.cc)
-#endif
+#include FOMT_TEXT_INCLUDE(special_merchant_shop_data.cc)

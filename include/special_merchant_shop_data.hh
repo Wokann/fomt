@@ -1,5 +1,5 @@
-#ifndef SPECIAL_MERCHANT_SHOP_TEXT_HH
-#define SPECIAL_MERCHANT_SHOP_TEXT_HH
+#ifndef SPECIAL_MERCHANT_SHOP_DATA_HH
+#define SPECIAL_MERCHANT_SHOP_DATA_HH
 
 #include "prelude.h"
 
@@ -29,4 +29,4 @@ extern char const gText_SpecialMerchantShop_ArticleDelivery[];
 extern char const gText_SpecialMerchantShop_PurchaseMorePrompt[];
 extern char const gCppRuntimeBadAlloc_SpecialMerchantShopTrailer[];
 
-#endif // SPECIAL_MERCHANT_SHOP_TEXT_HH
+#endif // SPECIAL_MERCHANT_SHOP_DATA_HH

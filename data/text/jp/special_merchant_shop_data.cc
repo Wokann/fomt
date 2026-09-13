@@ -1,4 +1,4 @@
-#include "special_merchant_shop_text.hh"
+#include "special_merchant_shop_data.hh"
 
 char const gText_SpecialMerchantShop_RecordPlayerDescription[] =
     "レコードプレイヤー\r\n"
