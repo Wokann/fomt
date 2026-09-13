@@ -767,9 +767,7 @@ SECTIONS
         . = 0x10828C; src/reference_guide.o(.rodata.reference_guide);
         . = 0x1177EC; src/shop_common.o(.rodata);
         . = 0x117B14; src/font.o(.rodata);
-        FILL(0x00);
-        . = ALIGN(4);
-        asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard);
+        . = 0x117BD4; asm/data/static_resources.o(.rodata);
         . = 0x139A88; src/m4a.o(.rodata);
         . = 0x139D60; src/m4a.o(.rodata.gM4aVoiceGroups);
         . = 0x13ABB4; src/m4a.o(.rodata.gMusicPlayerTable);

@@ -856,8 +856,7 @@ SECTIONS
         . = 0x107DAC; src/reference_guide.o(.rodata.reference_guide);
         . = 0x1189D4; src/shop_common.o(.rodata);
         . = 0x118CF4; src/font.o(.rodata);
-        . = 0x118D18; /* Static resources after font-owned data. */
-        asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard);
+        . = 0x118D18; asm/data/static_resources.o(.rodata);
         . = 0x13ABCC; src/m4a.o(.rodata);
         . = 0x13AEA4; src/m4a.o(.rodata.gM4aVoiceGroups);
         . = 0x13BCF8; src/m4a.o(.rodata.gMusicPlayerTable);

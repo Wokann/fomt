@@ -116,6 +116,7 @@
 | EU | `0x081082E4`–`0x08117843` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 EU 指南源文件；主目录只收录 `PAGE_1`，`tool_and_item_controls_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 | EU | `0x08117844`–`0x08117B6B` | `src/shop_common.o(.rodata)` | `src/shop_common.cc`、`include/shop_common.hh`、`data/text/eu/shop_common.cc`–`shop_common_8.cc`；运行时字符串、数字字形、商店通用文本、状态文本、指针与数值表按 ROM 顺序同属该对象 | 精确 |
 | EU | `0x08117B6C`–`0x08117C2B` | `src/font.o(.rodata)` | `src/font.cc`、`include/font.hh`、`data/text/common/font.cc`；运行时字符串与区域字形表按 ROM 顺序同属该对象 | 精确 |
+| EU | `0x08117C2C`–`0x08139ADF` | `asm/data/static_resources.o(.rodata)` | `asm/data/static_resources.s`、`include/static_resources.hh`；220 个地图、场景渲染和农舍原始资源以直接标签按物理顺序发射 | 精确 |
 | DE | `0x080E8574`–`0x080E858D` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0.hh`、`data/text/de/crt0_data.cc` | 精确 |
 | DE | `0x080E858E`–`0x080E858F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080E8590`–`0x080E85E4` | `src/sram_proxy_1.o(.rodata)` | `src/sram_proxy_1.c`、`include/sram_proxy.hh`、`data/text/de/sram_proxy_1.cc` | 精确 |
@@ -203,6 +204,7 @@
 | DE | `0x08108DB4`–`0x081197FF` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 DE 指南源文件；主目录只收录 `PAGE_1`，`using_tools_2` 与 `newborn_congratulations_cliff_and_ann_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 | DE | `0x0811984C`–`0x08119B93` | `src/shop_common.o(.rodata)` | `src/shop_common.cc`、`include/shop_common.hh`、`data/text/de/shop_common.cc`–`shop_common_8.cc`；运行时字符串、数字字形、商店通用文本、状态文本、指针与数值表按 ROM 顺序同属该对象 | 精确 |
 | DE | `0x08119B94`–`0x08119C53` | `src/font.o(.rodata)` | `src/font.cc`、`include/font.hh`、`data/text/common/font.cc`；运行时字符串与区域字形表按 ROM 顺序同属该对象 | 精确 |
+| DE | `0x08119C54`–`0x0813BB07` | `asm/data/static_resources.o(.rodata)` | `asm/data/static_resources.s`、`include/static_resources.hh`；220 个地图、场景渲染和农舍原始资源以直接标签按物理顺序发射 | 精确 |
 
 ## JP：物理 `.rodata` 顺序
 
@@ -403,7 +405,7 @@
 | `0x08118A14`–`0x08118B93` | `src/shop_common.o(.rodata)` | [嵌入文本与数据] | `src/shop_common.cc`<br>`data/text/jp/shop_common_3.cc`<br>`data/text/jp/shop_common_4.cc` | 运行时字符串 `2` 项<br>`gUnk_08117838`, `gUnk_0811783C`, `gUnk_0811785C`, `gUnk_08117860`, `gUnk_0811788C` |
 | `0x08118B94`–`0x08118CF3` | `src/shop_common.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/jp/shop_common_5.cc`–`shop_common_8.cc` | 文本 `26` 项（详见下方索引）<br>`gItemStatusWrappedAsPresentTextRef`, `gItemDiscardConfirmTextRef`, `gItemDiscardCannotDiscardTextRef`, `gItemDiscardCursedTextRef` |
 | `0x08118CF4`–`0x08118D17` | `src/font.o(.rodata)` | [嵌入文本 / 数据] | `src/font.cc`<br>`include/font.hh`<br>`data/text/common/font.cc` | 运行时字符串 `1` 项<br>`gFontSpecialGlyph81CD` |
-| `0x08118D18`–`0x0813ABCB` | `asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard)` | [原始 incbin] | `asm/data/data_080F9EB8.s` | `gUnk_FieldRenderResource_146`, `gUnk_FieldRenderResource_147`, `gUnk_MapDataResource_098`, `gUnk_MapDataResource_099`, `gUnk_FieldRenderResource_120`, `gUnk_FieldRenderResource_121`, … +214 |
+| `0x08118D18`–`0x0813ABCB` | `asm/data/static_resources.o(.rodata)` | [直接标签的原始资源] | `asm/data/static_resources.s`<br>`include/static_resources.hh` | 地图、场景渲染与农舍资源共 220 项；每项均为实际标签和独立区域 `incbin`，没有 `.set` 偏移别名 |
 
 ## JP：文本地址索引
 
@@ -2241,7 +2243,7 @@
 | `0x0811782C`–`0x081179AB` | `src/shop_common.o(.rodata)` | [嵌入文本与数据] | `src/shop_common.cc`<br>`data/text/us/shop_common_3.cc`<br>`data/text/us/shop_common_4.cc` | 运行时字符串 `2` 项<br>`gUnk_08117838`, `gUnk_0811783C`, `gUnk_0811785C`, `gUnk_08117860`, `gUnk_0811788C` |
 | `0x081179AC`–`0x08117B13` | `src/shop_common.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/us/shop_common_5.cc`–`shop_common_8.cc` | 文本 `25` 项（详见下方索引）<br>`gItemStatusWrappedAsPresentTextRef`, `gItemDiscardConfirmTextRef`, `gItemDiscardCannotDiscardTextRef`, `gItemDiscardCursedTextRef` |
 | `0x08117B14`–`0x08117BD3` | `src/font.o(.rodata)` | [嵌入文本 / 数据] | `src/font.cc`<br>`include/font.hh`<br>`data/text/common/font.cc` | 运行时字符串 `1` 项<br>`gFontSpecialGlyphBlocks`, `gFontSpecialGlyphC3` |
-| `0x08117BD4`–`0x08139A87` | `asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard)` | [原始 incbin] | `asm/data/data_080F9EB8.s` | `gUnk_FieldRenderResource_146`, `gUnk_FieldRenderResource_147`, `gUnk_MapDataResource_098`, `gUnk_MapDataResource_099`, `gUnk_FieldRenderResource_120`, `gUnk_FieldRenderResource_121`, … +214 |
+| `0x08117BD4`–`0x08139A87` | `asm/data/static_resources.o(.rodata)` | [直接标签的原始资源] | `asm/data/static_resources.s`<br>`include/static_resources.hh` | 地图、场景渲染与农舍资源共 220 项；每项均为实际标签和独立区域 `incbin`，没有 `.set` 偏移别名 |
 
 ## US：文本地址索引
 

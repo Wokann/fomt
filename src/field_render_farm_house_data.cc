@@ -1,4 +1,5 @@
 #include "field_render_farm_house_data.hh"
+#include "static_resources.hh"
 
 // These source payloads remain in the regional asset container.  The tables
 // below keep real relocations to those raw resources rather than embedding ROM
@@ -37,14 +38,10 @@ extern u8 const gUnk_FarmHouseTilePatchAnimationResource_001[];
 
 extern u8 const gUnk_FarmHouseVisualResource_000[];
 extern u8 const gUnk_FarmHouseVisualResource_001[];
-extern u8 const gUnk_FarmHouseVisualResource_002[];
-extern u8 const gUnk_FarmHouseVisualResource_003[];
 extern u8 const gUnk_FarmHouseVisualResource_004[];
 extern u8 const gUnk_FarmHouseVisualResource_005[];
 extern u8 const gUnk_FarmHouseVisualResource_006[];
 extern u8 const gUnk_FarmHouseVisualResource_007[];
-extern u8 const gUnk_FarmHouseVisualResource_008[];
-extern u8 const gUnk_FarmHouseVisualResource_009[];
 extern u8 const gUnk_FarmHouseVisualResource_010[];
 extern u8 const gUnk_FarmHouseVisualResource_011[];
 extern u8 const gUnk_FarmHouseVisualResource_012[];
@@ -55,27 +52,19 @@ extern u8 const gUnk_FarmHouseVisualResource_016[];
 extern u8 const gUnk_FarmHouseVisualResource_017[];
 extern u8 const gUnk_FarmHouseVisualResource_018[];
 extern u8 const gUnk_FarmHouseVisualResource_019[];
-extern u8 const gUnk_FarmHouseVisualResource_020[];
-extern u8 const gUnk_FarmHouseVisualResource_021[];
 extern u8 const gUnk_FarmHouseVisualResource_022[];
 extern u8 const gUnk_FarmHouseVisualResource_023[];
 extern u8 const gUnk_FarmHouseVisualResource_024[];
 extern u8 const gUnk_FarmHouseVisualResource_025[];
-extern u8 const gUnk_FarmHouseVisualResource_026[];
-extern u8 const gUnk_FarmHouseVisualResource_027[];
 extern u8 const gUnk_FarmHouseVisualResource_028[];
 extern u8 const gUnk_FarmHouseVisualResource_029[];
 extern u8 const gUnk_FarmHouseVisualResource_030[];
 extern u8 const gUnk_FarmHouseVisualResource_031[];
-extern u8 const gUnk_FarmHouseVisualResource_032[];
-extern u8 const gUnk_FarmHouseVisualResource_033[];
 extern u8 const gUnk_FarmHouseVisualResource_034[];
 extern u8 const gUnk_FarmHouseVisualResource_035[];
 extern u8 const gUnk_FarmHouseVisualResource_036[];
 extern u8 const gUnk_FarmHouseVisualResource_037[];
 extern u8 const gUnk_FarmHouseVisualResource_038[];
-extern u8 const gUnk_FarmHouseVisualResource_039[];
-extern u8 const gUnk_FarmHouseVisualResource_040[];
 extern u8 const gUnk_FarmHouseVisualResource_041[];
 extern u8 const gUnk_FarmHouseVisualResource_042[];
 
