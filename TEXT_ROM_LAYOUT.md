@@ -75,6 +75,8 @@
 | EU | `0x080FE946`–`0x080FE947` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FE948`–`0x080FEB3D` | `src/special_merchant_shop_data.o(.rodata)` | `src/special_merchant_shop_data.cc`、`include/special_merchant_shop_data.hh`、`data/text/eu/special_merchant_shop_data.cc`；目录表、全部店铺文本与运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
 | EU | `0x080FEB3E`–`0x080FEB3F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
+| EU | `0x080FEB40`–`0x080FECC5` | `src/beach_cafe_shop_data.o(.rodata)` | `src/beach_cafe_shop_data.cc`、`include/beach_cafe_shop_data.hh`、`data/text/eu/beach_cafe_shop_data.cc`、`data/text/eu/beach_cafe_shop_data_1.cc`；说明文本、菜单表、对话与运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
+| EU | `0x080FECC6`–`0x080FECC7` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FECC8`–`0x080FEDD7` | `src/blacksmith_menu_data.o(.rodata)` | `src/blacksmith_menu_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
 | EU | `0x080FEDD8`–`0x080FF3AF` | `src/blacksmith_data.o(.rodata)` | `src/blacksmith_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
 | EU | `0x08100534`–`0x08100B17` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc` 与 `data/text/eu/link_communication.cc` | 精确 |
@@ -126,7 +128,8 @@
 | DE | `0x080FF12E`–`0x080FF12F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080FF130`–`0x080FF319` | `src/special_merchant_shop_data.o(.rodata)` | `src/special_merchant_shop_data.cc`、`include/special_merchant_shop_data.hh`、`data/text/de/special_merchant_shop_data.cc`；目录表、全部店铺文本与运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
 | DE | `0x080FF31A`–`0x080FF31B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| DE | `0x080FF2AC`–`0x080FF4AB` | `src/beach_cafe_shop_data.o(.rodata)` | `src/beach_cafe_shop_data.cc` 与 `data/text/de/beach_cafe_shop.cc` | 精确 |
+| DE | `0x080FF31C`–`0x080FF4A9` | `src/beach_cafe_shop_data.o(.rodata)` | `src/beach_cafe_shop_data.cc`、`include/beach_cafe_shop_data.hh`、`data/text/de/beach_cafe_shop_data.cc`、`data/text/de/beach_cafe_shop_data_1.cc`；说明文本、菜单表、对话与运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
+| DE | `0x080FF4AA`–`0x080FF4AB` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x08100938`–`0x08100A93` | `data/text/home_storage.o(.rodata)` | `data/text/de/home_storage.cc` | 精确 |
 | DE | `0x081014EE`–`0x081017FA` | `data/text/recovery_status.o(.rodata)` | `data/text/de/recovery_status.cc` | 精确 |
 | DE | `0x08101800`–`0x08101B29` | `data/text/cooking.o(.rodata)` | `data/text/de/cooking.cc` | 精确 |
@@ -214,7 +217,7 @@
 | `0x080FE182`–`0x080FE183` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FE184`–`0x080FE39D` | `src/special_merchant_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/special_merchant_shop_data.cc`<br>`include/special_merchant_shop_data.hh`<br>`data/text/jp/special_merchant_shop_data.cc` | `gSpecialMerchantShopCatalog`<br>文本 `9` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080FE39E`–`0x080FE39F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FE3A0`–`0x080FE539` | `src/beach_cafe_shop_data.o(.rodata)` | [嵌入文本] | `data/text/jp/beach_cafe_shop.cc` | 文本 `7` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gBeachCafeShopMenu` |
+| `0x080FE3A0`–`0x080FE539` | `src/beach_cafe_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/beach_cafe_shop_data.cc`<br>`include/beach_cafe_shop_data.hh`<br>`data/text/jp/beach_cafe_shop_data.cc`<br>`data/text/jp/beach_cafe_shop_data_1.cc` | 说明文本 `4` 项<br>`gBeachCafeShopMenu`<br>对话文本 `3` 项<br>运行时字符串 `1` 项 |
 | `0x080FE53A`–`0x080FE53B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FE53C`–`0x080FE69E` | `src/blacksmith_menu_data.o(.rodata)` | [嵌入文本] | `data/text/jp/blacksmith.cc` | 文本 `12` 项（详见下方索引） |
 | `0x080FE69F`–`0x080FE6A3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 5 字节 |
@@ -1516,13 +1519,13 @@
 | `0x080FE310` | `gText_SpecialMerchantShop_PurchaseCompleteShort` | `data/text/jp/special_merchant_shop_data.cc` | `src/special_merchant_shop_data.o(.rodata)` |
 | `0x080FE328` | `gText_SpecialMerchantShop_ArticleDelivery` | `data/text/jp/special_merchant_shop_data.cc` | `src/special_merchant_shop_data.o(.rodata)` |
 | `0x080FE37C` | `gText_SpecialMerchantShop_PurchaseMorePrompt` | `data/text/jp/special_merchant_shop_data.cc` | `src/special_merchant_shop_data.o(.rodata)` |
-| `0x080FE3A0` | `gText_BeachCafeShop_WaterDescription` | `data/text/jp/beach_cafe_shop.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
-| `0x080FE3C0` | `gText_BeachCafeShop_EmptyDescription` | `data/text/jp/beach_cafe_shop.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
-| `0x080FE3C4` | `gText_BeachCafeShop_SpaghettiDescription` | `data/text/jp/beach_cafe_shop.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
-| `0x080FE3E8` | `gText_BeachCafeShop_SnowConeDescription` | `data/text/jp/beach_cafe_shop.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
-| `0x080FE4A0` | `gText_BeachCafeShop_InsufficientGold` | `data/text/jp/beach_cafe_shop.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
-| `0x080FE4B8` | `gText_BeachCafeShop_NoOrder` | `data/text/jp/beach_cafe_shop.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
-| `0x080FE4F4` | `gText_BeachCafeShop_OrderComplete` | `data/text/jp/beach_cafe_shop.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
+| `0x080FE3A0` | `gText_BeachCafeShop_WaterDescription` | `data/text/jp/beach_cafe_shop_data.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
+| `0x080FE3C0` | `gText_BeachCafeShop_EmptyDescription` | `data/text/jp/beach_cafe_shop_data.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
+| `0x080FE3C4` | `gText_BeachCafeShop_SpaghettiDescription` | `data/text/jp/beach_cafe_shop_data.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
+| `0x080FE3E8` | `gText_BeachCafeShop_SnowConeDescription` | `data/text/jp/beach_cafe_shop_data.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
+| `0x080FE4A0` | `gText_BeachCafeShop_InsufficientGold` | `data/text/jp/beach_cafe_shop_data_1.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
+| `0x080FE4B8` | `gText_BeachCafeShop_NoOrder` | `data/text/jp/beach_cafe_shop_data_1.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
+| `0x080FE4F4` | `gText_BeachCafeShop_OrderComplete` | `data/text/jp/beach_cafe_shop_data_1.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
 | `0x080FE53C` | `gText_Blacksmith_ToolUpgradeMenuLabel` | `data/text/jp/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
 | `0x080FE550` | `gText_Blacksmith_ToolUpgradeTitle` | `data/text/jp/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
 | `0x080FE55C` | `gText_Blacksmith_Empty` | `data/text/jp/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
@@ -2051,7 +2054,7 @@
 | `0x080FE8FA`–`0x080FE8FB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FE8FC`–`0x080FEAF1` | `src/special_merchant_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/special_merchant_shop_data.cc`<br>`include/special_merchant_shop_data.hh`<br>`data/text/us/special_merchant_shop_data.cc` | `gSpecialMerchantShopCatalog`<br>文本 `9` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080FEAF2`–`0x080FEAF3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FEAF4`–`0x080FEC79` | `src/beach_cafe_shop_data.o(.rodata)` | [嵌入文本] | `data/text/us/beach_cafe_shop.cc` | 文本 `7` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gBeachCafeShopMenu` |
+| `0x080FEAF4`–`0x080FEC79` | `src/beach_cafe_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/beach_cafe_shop_data.cc`<br>`include/beach_cafe_shop_data.hh`<br>`data/text/us/beach_cafe_shop_data.cc`<br>`data/text/us/beach_cafe_shop_data_1.cc` | 说明文本 `4` 项<br>`gBeachCafeShopMenu`<br>对话文本 `3` 项<br>运行时字符串 `1` 项 |
 | `0x080FEC7A`–`0x080FEC7B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FEC7C`–`0x080FED8B` | `src/blacksmith_menu_data.o(.rodata)` | [嵌入文本] | `data/text/us/blacksmith.cc` | 文本 `12` 项（详见下方索引） |
 | `0x080FED8C`–`0x080FF359` | `src/blacksmith_data.o(.rodata)` | [嵌入文本] | `data/text/us/blacksmith.cc` | 文本 `20` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gBlacksmithCatalog` |
@@ -3337,13 +3340,13 @@
 | `0x080FEA4C` | `gText_SpecialMerchantShop_PurchaseCompleteShort` | `data/text/us/special_merchant_shop_data.cc` | `src/special_merchant_shop_data.o(.rodata)` |
 | `0x080FEA5C` | `gText_SpecialMerchantShop_ArticleDelivery` | `data/text/us/special_merchant_shop_data.cc` | `src/special_merchant_shop_data.o(.rodata)` |
 | `0x080FEAC0` | `gText_SpecialMerchantShop_PurchaseMorePrompt` | `data/text/us/special_merchant_shop_data.cc` | `src/special_merchant_shop_data.o(.rodata)` |
-| `0x080FEAF4` | `gText_BeachCafeShop_WaterDescription` | `data/text/us/beach_cafe_shop.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
-| `0x080FEB14` | `gText_BeachCafeShop_EmptyDescription` | `data/text/us/beach_cafe_shop.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
-| `0x080FEB18` | `gText_BeachCafeShop_SpaghettiDescription` | `data/text/us/beach_cafe_shop.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
-| `0x080FEB3C` | `gText_BeachCafeShop_SnowConeDescription` | `data/text/us/beach_cafe_shop.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
-| `0x080FEBEC` | `gText_BeachCafeShop_InsufficientGold` | `data/text/us/beach_cafe_shop.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
-| `0x080FEC14` | `gText_BeachCafeShop_NoOrder` | `data/text/us/beach_cafe_shop.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
-| `0x080FEC44` | `gText_BeachCafeShop_OrderComplete` | `data/text/us/beach_cafe_shop.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
+| `0x080FEAF4` | `gText_BeachCafeShop_WaterDescription` | `data/text/us/beach_cafe_shop_data.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
+| `0x080FEB14` | `gText_BeachCafeShop_EmptyDescription` | `data/text/us/beach_cafe_shop_data.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
+| `0x080FEB18` | `gText_BeachCafeShop_SpaghettiDescription` | `data/text/us/beach_cafe_shop_data.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
+| `0x080FEB3C` | `gText_BeachCafeShop_SnowConeDescription` | `data/text/us/beach_cafe_shop_data.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
+| `0x080FEBEC` | `gText_BeachCafeShop_InsufficientGold` | `data/text/us/beach_cafe_shop_data_1.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
+| `0x080FEC14` | `gText_BeachCafeShop_NoOrder` | `data/text/us/beach_cafe_shop_data_1.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
+| `0x080FEC44` | `gText_BeachCafeShop_OrderComplete` | `data/text/us/beach_cafe_shop_data_1.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
 | `0x080FEC7C` | `gText_Blacksmith_ToolUpgradeMenuLabel` | `data/text/us/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
 | `0x080FEC94` | `gText_Blacksmith_ToolUpgradeTitle` | `data/text/us/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
 | `0x080FECA4` | `gText_Blacksmith_Empty` | `data/text/us/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |

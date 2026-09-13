@@ -1,5 +1,5 @@
-#ifndef BEACH_CAFE_SHOP_TEXT_HH
-#define BEACH_CAFE_SHOP_TEXT_HH
+#ifndef BEACH_CAFE_SHOP_DATA_HH
+#define BEACH_CAFE_SHOP_DATA_HH
 
 #include "prelude.h"
 
@@ -29,4 +29,4 @@ extern char const gText_BeachCafeShop_NoOrder[];
 extern char const gText_BeachCafeShop_OrderComplete[];
 extern char const gCppRuntimeBadAlloc_BeachCafeShopTrailer[];
 
-#endif // BEACH_CAFE_SHOP_TEXT_HH
+#endif // BEACH_CAFE_SHOP_DATA_HH

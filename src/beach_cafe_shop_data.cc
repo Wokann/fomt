@@ -1,14 +1,6 @@
-#include "beach_cafe_shop_text.hh"
+#include "beach_cafe_shop_data.hh"
 
-#if defined(REGION_JP)
-#define FOMT_TEXT_BEACH_CAFE_SHOP_DESCRIPTIONS
-#include FOMT_TEXT_INCLUDE(beach_cafe_shop.cc)
-#undef FOMT_TEXT_BEACH_CAFE_SHOP_DESCRIPTIONS
-#else
-#define FOMT_TEXT_BEACH_CAFE_SHOP_DESCRIPTIONS
-#include FOMT_TEXT_INCLUDE(beach_cafe_shop.cc)
-#undef FOMT_TEXT_BEACH_CAFE_SHOP_DESCRIPTIONS
-#endif
+#include FOMT_TEXT_INCLUDE(beach_cafe_shop_data.cc)
 
 BeachCafeShopMenuEntry const gBeachCafeShopMenu[] = {
     { 0x1CD, 0, gText_BeachCafeShop_WaterDescription, 1, 1, 0, 1 },
@@ -18,12 +10,4 @@ BeachCafeShopMenuEntry const gBeachCafeShopMenu[] = {
     { 0xF7, 300, gText_BeachCafeShop_SnowConeDescription, 1, 1, -20, 0 },
 };
 
-#if defined(REGION_JP)
-#define FOMT_TEXT_BEACH_CAFE_SHOP_DIALOGUE
-#include FOMT_TEXT_INCLUDE(beach_cafe_shop.cc)
-#undef FOMT_TEXT_BEACH_CAFE_SHOP_DIALOGUE
-#else
-#define FOMT_TEXT_BEACH_CAFE_SHOP_DIALOGUE
-#include FOMT_TEXT_INCLUDE(beach_cafe_shop.cc)
-#undef FOMT_TEXT_BEACH_CAFE_SHOP_DIALOGUE
-#endif
+#include FOMT_TEXT_INCLUDE(beach_cafe_shop_data_1.cc)
