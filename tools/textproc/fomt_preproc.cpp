@@ -793,6 +793,107 @@ std::vector<std::string> FindDefinedCharArrays(const std::string &source)
     return result;
 }
 
+bool IsAssemblySymbolCharacter(char value)
+{
+    return std::isalnum(static_cast<unsigned char>(value)) != 0
+        || value == '_'
+        || value == '.';
+}
+
+bool HasAssemblySymbolReferenceOutsideRange(const std::vector<std::string> &lines,
+    const std::string &symbol, std::size_t excluded_begin, std::size_t excluded_end)
+{
+    for (std::size_t line_index = 0; line_index < lines.size(); ++line_index) {
+        if (line_index >= excluded_begin && line_index < excluded_end)
+            continue;
+
+        const std::string &line = lines[line_index];
+        for (std::size_t at = line.find(symbol); at != std::string::npos;
+             at = line.find(symbol, at + symbol.size())) {
+            const bool has_left_symbol_character = at != 0
+                && IsAssemblySymbolCharacter(line[at - 1]);
+            const std::size_t after = at + symbol.size();
+            const bool has_right_symbol_character = after < line.size()
+                && IsAssemblySymbolCharacter(line[after]);
+            if (!has_left_symbol_character && !has_right_symbol_character)
+                return true;
+        }
+    }
+    return false;
+}
+
+bool IsBeforeFirstExecutableSection(const std::vector<std::string> &lines,
+    std::size_t line_index)
+{
+    for (std::size_t index = 0; index < line_index; ++index) {
+        if (Trim(lines[index]) == ".text" || IsExecutableSectionDirective(lines[index]))
+            return false;
+    }
+    return true;
+}
+
+void RemoveUnreferencedPrologueStringDuplicate(std::vector<std::string> &lines,
+    const std::vector<std::string> &definition_order,
+    std::vector<std::pair<std::size_t, std::size_t>> &removals,
+    std::set<std::string> &removed_local_constants)
+{
+    // agbcp 2.9 can emit an unreferenced local string in the initial .rodata
+    // section before it emits any code. When an ordinary first char-array
+    // definition has exactly the same bytes, retaining both objects changes
+    // the ROM layout even though the local label has no consumer. The source
+    // declaration order identifies the named replacement; no symbol name,
+    // function, or ROM address is special-cased here.
+    if (definition_order.empty())
+        return;
+
+    const std::string &target_name = definition_order.front();
+    const std::size_t target_label = FindAssemblyLabel(lines, target_name);
+    if (target_label == std::string::npos)
+        return;
+    const std::vector<std::string> target_payload =
+        AssemblyStringPayloadAfter(lines, target_label);
+    if (target_payload.empty())
+        return;
+
+    for (std::size_t local_label = 0; local_label < lines.size(); ++local_label) {
+        const std::string label_line = Trim(lines[local_label]);
+        if (label_line.size() < 5 || label_line.back() != ':'
+            || label_line.rfind(".LC", 0) != 0
+            || !IsBeforeFirstExecutableSection(lines, local_label)) {
+            continue;
+        }
+
+        const std::string local_constant = label_line.substr(0,
+            label_line.size() - 1);
+        if (removed_local_constants.count(local_constant) != 0
+            || target_label <= local_label) {
+            continue;
+        }
+
+        const std::vector<std::string> local_payload =
+            AssemblyStringPayloadAfter(lines, local_label);
+        const std::size_t local_end = local_label + 1 + local_payload.size();
+        std::size_t executable_transition = local_end;
+        while (executable_transition < lines.size()
+            && IsCompilerDataTailAlignment(lines[executable_transition])) {
+            ++executable_transition;
+        }
+        if (local_payload.empty() || local_payload != target_payload
+            || local_end == lines.size()
+            || executable_transition == lines.size()
+            || (!IsExecutableSectionDirective(lines[executable_transition])
+                && Trim(lines[executable_transition]) != ".text")
+            || HasAssemblySymbolReferenceOutsideRange(lines, local_constant,
+                local_label, local_end)) {
+            continue;
+        }
+
+        removed_local_constants.insert(local_constant);
+        removals.emplace_back(local_label, local_end);
+        return;
+    }
+}
+
 std::size_t FindAssemblyObjectPreambleBegin(const std::vector<std::string> &lines,
     std::size_t label_index, const std::string &label)
 {
@@ -968,7 +1069,7 @@ std::string FixupSameUnitConstCharReferences(const std::string &source,
     const std::set<std::string> expression_targets =
         FindExpressionReferencedCharArrays(source);
     if (references.empty() && arrays.empty() && aggregates.empty()
-        && expression_targets.empty()) {
+        && expression_targets.empty() && defined_char_arrays.empty()) {
         return assembly;
     }
 
@@ -1174,6 +1275,8 @@ std::string FixupSameUnitConstCharReferences(const std::string &source,
 
     FixupExpressionStringLiteralReferences(lines, expression_targets, removals,
         removed_local_constants);
+    RemoveUnreferencedPrologueStringDuplicate(lines, defined_char_arrays,
+        removals, removed_local_constants);
 
     std::sort(removals.rbegin(), removals.rend());
     for (const auto &[begin, end] : removals)
@@ -2219,6 +2322,58 @@ void SelfTest()
             && expression_output.find("\t.word\tgFunctionText")
                 != std::string::npos,
         "function-expression compiler string relocation was not restored");
+
+    const std::string prologue_duplicate_source =
+        "extern char const gPrologueText[];\n"
+        "extern char const gLaterEquivalentText[];\n"
+        "char const gPrologueText[] = \"bad_alloc\";\n"
+        "char const gLaterEquivalentText[] = \"bad_alloc\";\n";
+    Require(FindDefinedCharArrays(prologue_duplicate_source)
+                == std::vector<std::string>({ "gPrologueText", "gLaterEquivalentText" }),
+        "named prologue text definition order was not recognized");
+    const std::string prologue_duplicate_assembly =
+        "\t.section .rodata\n"
+        "\t.align\t2, 0\n"
+        ".LC6:\n"
+        "\t.ascii\t\"bad_alloc\\000\"\n"
+        "\t.align\t2, 0\n"
+        "\t.text\n"
+        "prologue_sample_function:\n"
+        "\tbx\tlr\n"
+        "\t.section .rodata.gPrologueText,\"a\"\n"
+        "\t.align\t2, 0\n"
+        "gPrologueText:\n"
+        "\t.ascii\t\"bad_alloc\\000\"\n"
+        "\t.section .rodata.gLaterEquivalentText,\"a\"\n"
+        "\t.align\t2, 0\n"
+        "gLaterEquivalentText:\n"
+        "\t.ascii\t\"bad_alloc\\000\"\n";
+    const std::string prologue_duplicate_output = PreprocessAssembly(
+        prologue_duplicate_source, prologue_duplicate_assembly);
+    Require(prologue_duplicate_output.find(".LC6:") == std::string::npos
+            && prologue_duplicate_output.find("gPrologueText:") != std::string::npos
+            && prologue_duplicate_output.find("gLaterEquivalentText:") != std::string::npos,
+        "unreferenced prologue string duplicate was retained");
+
+    const std::string referenced_prologue_assembly =
+        "\t.section .rodata\n"
+        "\t.align\t2, 0\n"
+        ".LC6:\n"
+        "\t.ascii\t\"bad_alloc\\000\"\n"
+        "\t.align\t2, 0\n"
+        "\t.text\n"
+        "prologue_reference:\n"
+        "\t.word\t.LC6\n"
+        "\t.section .rodata.gPrologueText,\"a\"\n"
+        "\t.align\t2, 0\n"
+        "gPrologueText:\n"
+        "\t.ascii\t\"bad_alloc\\000\"\n";
+    const std::string referenced_prologue_output = PreprocessAssembly(
+        "char const gPrologueText[] = \"bad_alloc\";\n",
+        referenced_prologue_assembly);
+    Require(referenced_prologue_output.find(".LC6:") != std::string::npos
+            && referenced_prologue_output.find(".word\t.LC6") != std::string::npos,
+        "referenced prologue string was removed");
 
     const std::string stacked_setup_assembly =
         "\t.text\n"
