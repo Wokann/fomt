@@ -1,5 +1,5 @@
-#ifndef HOME_STORAGE_TEXT_HH
-#define HOME_STORAGE_TEXT_HH
+#ifndef HOME_STORAGE_HH
+#define HOME_STORAGE_HH
 
 #include "prelude.h"
 
@@ -36,4 +36,4 @@ extern char const gText_ToolChest_HeaderTools[];
 extern char const gText_ToolChest_Title[];
 extern char const gText_ToolChest_EmptyDescription[];
 
-#endif // HOME_STORAGE_TEXT_HH
+#endif // HOME_STORAGE_HH

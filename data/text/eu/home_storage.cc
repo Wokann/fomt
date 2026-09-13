@@ -1,4 +1,4 @@
-#include "home_storage_text.hh"
+#include "home_storage.hh"
 
 char const gCppRuntimeBadAlloc_HomeStoragePrefix[] =
     "bad_alloc";

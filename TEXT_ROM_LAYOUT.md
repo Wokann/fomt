@@ -81,6 +81,7 @@
 | EU | `0x080FEDD8`–`0x080FF3AF` | `src/blacksmith_data.o(.rodata)` | `src/blacksmith_data.cc`、`include/blacksmith_data.hh` 与 `data/text/eu/blacksmith_data.cc` | 精确 |
 | EU | `0x080FF3B0`–`0x080FFBB3` | `src/carpenter_data.o(.rodata)` | `src/carpenter_data.cc`、`include/carpenter_data.hh`、`data/text/eu/carpenter_data.cc`、`data/text/eu/carpenter_data_1.cc`；菜单文本、20 项目录表、翻页控制符、对白与运行时尾串按 ROM 顺序同属该对象 | 精确 |
 | EU | `0x080FFBB4`–`0x08100077` | `src/livestock_shop.o(.rodata)` | `src/livestock_shop.cc`、`include/livestock_shop.hh`、`data/text/eu/livestock_shop.cc`、`data/text/eu/livestock_shop_1.cc`；菜单文本、11 项目录表、状态与对白文本按 ROM 顺序同属该对象 | 精确 |
+| EU | `0x08100078`–`0x081001BB` | `src/home_storage.o(.rodata)` | `src/home_storage.cc`、`include/home_storage.hh`、`data/text/eu/home_storage.cc`；冰箱、置物架、工具箱文本与运行时尾串按 ROM 顺序同属该对象 | 精确 |
 | EU | `0x08100534`–`0x08100B17` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc` 与 `data/text/eu/link_communication.cc` | 精确 |
 | EU | `0x081082E4`–`0x08117843` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 EU 指南源文件；主目录只收录 `PAGE_1`，`tool_and_item_controls_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 | DE | `0x080E8574`–`0x080E858D` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0.hh`、`data/text/de/crt0_data.cc` | 精确 |
@@ -134,7 +135,7 @@
 | DE | `0x080FF4AA`–`0x080FF4AB` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080FFB98`–`0x0810043B` | `src/carpenter_data.o(.rodata)` | `src/carpenter_data.cc`、`include/carpenter_data.hh`、`data/text/de/carpenter_data.cc`、`data/text/de/carpenter_data_1.cc`；菜单文本、20 项目录表、翻页控制符、对白与运行时尾串按 ROM 顺序同属该对象 | 精确 |
 | DE | `0x0810043C`–`0x08100937` | `src/livestock_shop.o(.rodata)` | `src/livestock_shop.cc`、`include/livestock_shop.hh`、`data/text/de/livestock_shop.cc`、`data/text/de/livestock_shop_1.cc`；菜单文本、11 项目录表、状态与对白文本按 ROM 顺序同属该对象 | 精确 |
-| DE | `0x08100938`–`0x08100A93` | `data/text/home_storage.o(.rodata)` | `data/text/de/home_storage.cc` | 精确 |
+| DE | `0x08100938`–`0x08100A93` | `src/home_storage.o(.rodata)` | `src/home_storage.cc`、`include/home_storage.hh`、`data/text/de/home_storage.cc` | 精确 |
 | DE | `0x081014EE`–`0x081017FA` | `data/text/recovery_status.o(.rodata)` | `data/text/de/recovery_status.cc` | 精确 |
 | DE | `0x08101800`–`0x08101B29` | `data/text/cooking.o(.rodata)` | `data/text/de/cooking.cc` | 精确 |
 | DE | `0x08107FD4`–`0x08108DB3` | `src/harvest_sprite.o(.rodata)` | `src/harvest_sprite.cc` 与 `data/text/de/harvest_sprite_*.cc` | 精确 |
@@ -231,7 +232,7 @@
 | `0x080FF506`–`0x080FF507` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FF508`–`0x080FF9A1` | `src/livestock_shop.o(.rodata)` | [嵌入文本] | `data/text/jp/livestock_shop.cc`<br>`data/text/jp/livestock_shop_1.cc` | 文本 `39` 项（详见下方索引）<br>`gLivestockShopCatalog` |
 | `0x080FF9A2`–`0x080FF9A3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FF9A4`–`0x080FFADD` | `data/text/home_storage.o(.rodata)` | [文本对象] | `data/text/jp/home_storage.cc` | 文本 `20` 项（详见下方索引）<br>运行时字符串 `5` 项 |
+| `0x080FF9A4`–`0x080FFADD` | `src/home_storage.o(.rodata)` | [嵌入文本] | `src/home_storage.cc`、`include/home_storage.hh`、`data/text/jp/home_storage.cc` | 文本 `20` 项（详见下方索引）<br>运行时字符串 `5` 项 |
 | `0x080FFADE`–`0x080FFADF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FFAE0`–`0x080FFD52` | `src/blacksmith_upgrade_data.o(.rodata)` | [嵌入文本] | `data/text/jp/blacksmith.cc` | 文本 `19` 项（详见下方索引） |
 | `0x080FFD53`–`0x080FFD53` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
@@ -1653,26 +1654,26 @@
 | `0x080FF944` | `gText_LivestockShop_PurchaseMorePrompt` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
 | `0x080FF960` | `gText_LivestockShop_PurchaseDeclinedPrefix` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
 | `0x080FF974` | `gText_LivestockShop_AnimalDelivery` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF9B0` | `gText_Fridge_EmptyDescription` | `data/text/jp/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x080FF9B4` | `gText_Fridge_WrappedGiftWarning` | `data/text/jp/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x080FF9F4` | `gText_Fridge_Yes` | `data/text/jp/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x080FF9FC` | `gText_Fridge_No` | `data/text/jp/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x080FFA04` | `gText_Fridge_Items` | `data/text/jp/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x080FFA0C` | `gText_Fridge_Title` | `data/text/jp/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x080FFA20` | `gText_HomeStorage_ConfirmationYes` | `data/text/jp/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x080FFA28` | `gText_HomeStorage_ConfirmationNo` | `data/text/jp/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x080FFA30` | `gText_HomeStorage_EmptyDescription` | `data/text/jp/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x080FFA34` | `gText_HomeStorage_CategoryTools` | `data/text/jp/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x080FFA3C` | `gText_HomeStorage_CategoryItems` | `data/text/jp/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x080FFA50` | `gText_Shelf_EmptyDescription` | `data/text/jp/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x080FFA54` | `gText_Shelf_WrappedGiftWarning` | `data/text/jp/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x080FFA94` | `gText_Shelf_Yes` | `data/text/jp/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x080FFA9C` | `gText_Shelf_No` | `data/text/jp/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x080FFAA4` | `gText_Shelf_Items` | `data/text/jp/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x080FFAAC` | `gText_Shelf_Title` | `data/text/jp/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x080FFAC0` | `gText_ToolChest_EmptyDescription` | `data/text/jp/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x080FFAC4` | `gText_ToolChest_HeaderTools` | `data/text/jp/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x080FFACC` | `gText_ToolChest_Title` | `data/text/jp/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
+| `0x080FF9B0` | `gText_Fridge_EmptyDescription` | `data/text/jp/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x080FF9B4` | `gText_Fridge_WrappedGiftWarning` | `data/text/jp/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x080FF9F4` | `gText_Fridge_Yes` | `data/text/jp/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x080FF9FC` | `gText_Fridge_No` | `data/text/jp/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x080FFA04` | `gText_Fridge_Items` | `data/text/jp/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x080FFA0C` | `gText_Fridge_Title` | `data/text/jp/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x080FFA20` | `gText_HomeStorage_ConfirmationYes` | `data/text/jp/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x080FFA28` | `gText_HomeStorage_ConfirmationNo` | `data/text/jp/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x080FFA30` | `gText_HomeStorage_EmptyDescription` | `data/text/jp/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x080FFA34` | `gText_HomeStorage_CategoryTools` | `data/text/jp/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x080FFA3C` | `gText_HomeStorage_CategoryItems` | `data/text/jp/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x080FFA50` | `gText_Shelf_EmptyDescription` | `data/text/jp/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x080FFA54` | `gText_Shelf_WrappedGiftWarning` | `data/text/jp/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x080FFA94` | `gText_Shelf_Yes` | `data/text/jp/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x080FFA9C` | `gText_Shelf_No` | `data/text/jp/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x080FFAA4` | `gText_Shelf_Items` | `data/text/jp/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x080FFAAC` | `gText_Shelf_Title` | `data/text/jp/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x080FFAC0` | `gText_ToolChest_EmptyDescription` | `data/text/jp/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x080FFAC4` | `gText_ToolChest_HeaderTools` | `data/text/jp/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x080FFACC` | `gText_ToolChest_Title` | `data/text/jp/home_storage.cc` | `src/home_storage.o(.rodata)` |
 | `0x080FFAE0` | `gText_BlacksmithUpgrade_EmptyDescription` | `data/text/jp/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
 | `0x080FFAE4` | `gText_BlacksmithUpgrade_Tools` | `data/text/jp/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
 | `0x080FFAEC` | `gText_BlacksmithUpgrade_Items` | `data/text/jp/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
@@ -2066,7 +2067,7 @@
 | `0x080FF35C`–`0x080FFB5D` | `src/carpenter_data.o(.rodata)` | [嵌入文本] | `data/text/us/carpenter_data.cc`<br>`data/text/us/carpenter_data_1.cc` | 文本 `53` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gCarpenterCatalog` |
 | `0x080FFB5E`–`0x080FFB5F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FFB60`–`0x08100023` | `src/livestock_shop.o(.rodata)` | [嵌入文本] | `data/text/us/livestock_shop.cc`<br>`data/text/us/livestock_shop_1.cc` | 文本 `42` 项（详见下方索引）<br>`gLivestockShopCatalog` |
-| `0x08100024`–`0x08100165` | `data/text/home_storage.o(.rodata)` | [文本对象] | `data/text/us/home_storage.cc` | 文本 `20` 项（详见下方索引）<br>运行时字符串 `5` 项 |
+| `0x08100024`–`0x08100165` | `src/home_storage.o(.rodata)` | [嵌入文本] | `src/home_storage.cc`、`include/home_storage.hh`、`data/text/us/home_storage.cc` | 文本 `20` 项（详见下方索引）<br>运行时字符串 `5` 项 |
 | `0x08100166`–`0x08100167` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08100168`–`0x081003E2` | `src/blacksmith_upgrade_data.o(.rodata)` | [嵌入文本] | `data/text/us/blacksmith.cc` | 文本 `21` 项（详见下方索引） |
 | `0x081003E3`–`0x081003E3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
@@ -3478,26 +3479,26 @@
 | `0x080FFFC4` | `gText_LivestockShop_PurchaseMorePrompt` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
 | `0x080FFFE8` | `gText_LivestockShop_PurchaseDeclinedPrefix` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
 | `0x080FFFFC` | `gText_LivestockShop_AnimalDelivery` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x08100030` | `gText_Fridge_EmptyDescription` | `data/text/us/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x08100034` | `gText_Fridge_WrappedGiftWarning` | `data/text/us/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x08100084` | `gText_Fridge_Yes` | `data/text/us/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x08100088` | `gText_Fridge_No` | `data/text/us/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x0810008C` | `gText_Fridge_Items` | `data/text/us/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x08100094` | `gText_Fridge_Title` | `data/text/us/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x081000A8` | `gText_HomeStorage_ConfirmationYes` | `data/text/us/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x081000AC` | `gText_HomeStorage_ConfirmationNo` | `data/text/us/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x081000B0` | `gText_HomeStorage_EmptyDescription` | `data/text/us/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x081000B4` | `gText_HomeStorage_CategoryTools` | `data/text/us/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x081000BC` | `gText_HomeStorage_CategoryItems` | `data/text/us/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x081000D0` | `gText_Shelf_EmptyDescription` | `data/text/us/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x081000D4` | `gText_Shelf_WrappedGiftWarning` | `data/text/us/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x08100120` | `gText_Shelf_Yes` | `data/text/us/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x08100124` | `gText_Shelf_No` | `data/text/us/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x08100128` | `gText_Shelf_Items` | `data/text/us/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x08100130` | `gText_Shelf_Title` | `data/text/us/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x08100144` | `gText_ToolChest_EmptyDescription` | `data/text/us/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x08100148` | `gText_ToolChest_HeaderTools` | `data/text/us/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
-| `0x08100150` | `gText_ToolChest_Title` | `data/text/us/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
+| `0x08100030` | `gText_Fridge_EmptyDescription` | `data/text/us/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x08100034` | `gText_Fridge_WrappedGiftWarning` | `data/text/us/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x08100084` | `gText_Fridge_Yes` | `data/text/us/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x08100088` | `gText_Fridge_No` | `data/text/us/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x0810008C` | `gText_Fridge_Items` | `data/text/us/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x08100094` | `gText_Fridge_Title` | `data/text/us/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x081000A8` | `gText_HomeStorage_ConfirmationYes` | `data/text/us/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x081000AC` | `gText_HomeStorage_ConfirmationNo` | `data/text/us/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x081000B0` | `gText_HomeStorage_EmptyDescription` | `data/text/us/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x081000B4` | `gText_HomeStorage_CategoryTools` | `data/text/us/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x081000BC` | `gText_HomeStorage_CategoryItems` | `data/text/us/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x081000D0` | `gText_Shelf_EmptyDescription` | `data/text/us/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x081000D4` | `gText_Shelf_WrappedGiftWarning` | `data/text/us/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x08100120` | `gText_Shelf_Yes` | `data/text/us/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x08100124` | `gText_Shelf_No` | `data/text/us/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x08100128` | `gText_Shelf_Items` | `data/text/us/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x08100130` | `gText_Shelf_Title` | `data/text/us/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x08100144` | `gText_ToolChest_EmptyDescription` | `data/text/us/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x08100148` | `gText_ToolChest_HeaderTools` | `data/text/us/home_storage.cc` | `src/home_storage.o(.rodata)` |
+| `0x08100150` | `gText_ToolChest_Title` | `data/text/us/home_storage.cc` | `src/home_storage.o(.rodata)` |
 | `0x08100168` | `gText_BlacksmithUpgrade_EmptyDescription` | `data/text/us/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
 | `0x0810016C` | `gText_BlacksmithUpgrade_Tools` | `data/text/us/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
 | `0x08100174` | `gText_BlacksmithUpgrade_Items` | `data/text/us/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |

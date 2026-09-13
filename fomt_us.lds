@@ -720,7 +720,7 @@ SECTIONS
         . = ALIGN(4);
         FILL(0x00);
         . = 0xFFB60; src/livestock_shop.o(.rodata);
-        . = 0x100024; data/text/home_storage.o(.rodata);
+        . = 0x100024; src/home_storage.o(.rodata);
         FILL(0x00);
         . = 0x100168; src/blacksmith_upgrade_data.o(.rodata);
         . = 0x1003E4; data/text/gift_wrap.o(.rodata);
