@@ -1604,7 +1604,12 @@ gActorStateGridCellType3Data:
 jp_data_08462550_start:
     .global gActorStateGridCellType4Data
 gActorStateGridCellType4Data:
-    .incbin "baserom_jp.gba", 0x462550, (0x77F610 - 0x462550)
+    .incbin "baserom_jp.gba", 0x462550, (0x4E0CE0 - 0x462550)
+
+    @ The packed Mary stream occupies the original JP interval
+    @ 0x084E0CE0..0x087515A8.  Resume the raw asset container after it.
+    .section .rodata.mary_scripts_tail
+    .incbin "baserom_jp.gba", 0x7515A8, (0x77F610 - 0x7515A8)
 
     @ Font renderer payloads. The byte layouts remain raw assets, while
     @ src/font.cc owns the typed references used by the glyph resolver.
@@ -1691,15 +1696,11 @@ gActorStateGridCellType4Data:
     .endm
 
     .ifdef REGION_EU
-    @ EU keeps this asset stream as an intact regional block.  It includes
-    @ Mary-managed script payloads, which are intentionally not split here.
+    @ The Mary stream starts at 0x082AC108 in the EU asset container.
     .LDATA_BEG = 0x13B2E0
 
 us_data_0813b288_start:
-	.incbin "baserom_eu.gba", (.LDATA_BEG), (0x4F9128 - .LDATA_BEG)
-	.global gFontSingleWidthGlyphData
-gFontSingleWidthGlyphData:
-	.incbin "baserom_eu.gba", 0x4F9128, (0x4F9130 - 0x4F9128)
+	.incbin "baserom_eu.gba", (.LDATA_BEG), (0x2AC108 - .LDATA_BEG)
     .else
     .ifdef REGION_DE
     .LDATA_BEG = 0x13D308
@@ -1710,7 +1711,7 @@ us_data_0813b288_start:
     .LDATA_BEG = 0x13B288
 
 us_data_0813b288_start:
-	.incbin "baserom_us.gba", (.LDATA_BEG), (0x4F90CC - .LDATA_BEG)
+	.incbin "baserom_us.gba", (.LDATA_BEG), (0x2AC0B0 - .LDATA_BEG)
     .endif
     .endif
 
@@ -4045,6 +4046,20 @@ us_data_0813b288_start:
 	.endm
 
 	@ FOMT_REGION_ASSET_STREAM_BEGIN
+	@ The US and EU streams resume immediately after their packed Mary blocks.
+	.section .rodata.mary_scripts_tail
+	.macro non_de_asset_label name
+	.ifndef REGION_DE
+	.global \name
+\name:
+	.endif
+	.endm
+	.ifndef REGION_DE
+	.ifdef REGION_EU
+	.global gFontSingleWidthGlyphData
+gFontSingleWidthGlyphData:
+	.incbin "baserom_eu.gba", 0x4F9128, (0x4F9130 - 0x4F9128)
+	.endif
 
 	.global gUnk_084F90CC
 gUnk_084F90CC:
@@ -4122,13 +4137,6 @@ gUnk_08527294:
 	.else
 	eu_post_script_incbin 0x527094, 0x1A4
 	.endif
-
-	.macro non_de_asset_label name
-	.ifndef REGION_DE
-	.global \name
-\name:
-	.endif
-	.endm
 
 	non_de_asset_label gUnk_08527238
 	.ifdef REGION_EU
@@ -4522,8 +4530,8 @@ gUnk_086D6368:
 	FOMT_REGION_ASSET_INCBIN 0x716F84, 0x134
 
 	non_de_asset_label gUnk_087170B8
+	.endif
 	.ifdef REGION_DE
-	.incbin "baserom_de.gba", 0x719138, 0x4C9C
 	.global gFontSingleWidthGlyphData
 gFontSingleWidthGlyphData:
 	.incbin "baserom_de.gba", 0x71DDD4, 0x16D4

@@ -1,0 +1,84 @@
+#define MARY_FOMT_US
+#include "fomt_constants.mary.h"
+#include "fomt_callables.mary.h"
+#include "fomt_scripts.mary.h"
+
+mary_text_table
+{
+    const char gText_RivalMarriageEvent_MaryAndGray_05_Wedding_AttendanceAfterWorkChoice_CarterAsksWhetherPlayerFinishedWork[] =
+        "Are you done with work? {Press}";
+
+    const char gText_RivalMarriageEvent_MaryAndGray_05_Wedding_AttendanceAfterWorkChoice_ChoiceFinishedWork[] =
+        "Yes.";
+
+    const char gText_RivalMarriageEvent_MaryAndGray_05_Wedding_AttendanceAfterWorkChoice_ChoiceStillWorking[] =
+        "Not yet.";
+
+    const char gText_RivalMarriageEvent_MaryAndGray_05_Wedding_AttendanceAfterWorkChoice_CarterWelcomesPlayerToCelebration[] =
+        "Let's celebrate! {Press}";
+
+    const char gText_RivalMarriageEvent_MaryAndGray_05_Wedding_AttendanceAfterWorkChoice_GuestsToastNewlyweds[] =
+        "To the young couple!! {Press}";
+
+    const char gText_RivalMarriageEvent_MaryAndGray_05_Wedding_AttendanceAfterWorkChoice_CarterInvitesPlayerToJoinWhenFree[] =
+        "Well, come join us if you \r\n"
+        "have the time. {Press}";
+};
+
+void EventScript_RivalMarriageEvent_MaryAndGray_05_Wedding_AttendanceAfterWorkChoice(void)
+{
+    int var_0;
+    SetEntityFacing(ENTITY_CARTER, GetOppositeFacing(GetEntityFacing(ENTITY_PLAYER)));
+    TalkOpen();
+    SetTalkPortrait(TALK_PORTRAIT_CARTER_NORMAL);
+    SetTalkNameplateCharacter(CHARACTER_CARTER);
+    TalkMessage(gText_RivalMarriageEvent_MaryAndGray_05_Wedding_AttendanceAfterWorkChoice_CarterAsksWhetherPlayerFinishedWork);
+    TalkClose();
+    TalkOpen();
+    var_0 = TalkChoice2(gText_RivalMarriageEvent_MaryAndGray_05_Wedding_AttendanceAfterWorkChoice_ChoiceFinishedWork, gText_RivalMarriageEvent_MaryAndGray_05_Wedding_AttendanceAfterWorkChoice_ChoiceStillWorking);
+    switch (var_0)
+    {
+        case CHOICE_OPTION_1:
+            AddNpcFriendship(CHARACTER_CARTER, 20);
+            AddNpcFriendship(CHARACTER_SAIBARA, 20);
+            AddNpcFriendship(CHARACTER_ANNA, 20);
+            AddNpcFriendship(CHARACTER_BASIL, 20);
+            SetNpcFriendship(CHARACTER_MARY, 200);
+            SetNpcFriendship(CHARACTER_GRAY, 200);
+            TalkClose();
+            TalkOpen();
+            SetTalkPortrait(TALK_PORTRAIT_CARTER_HAPPY);
+            SetTalkNameplateCharacter(CHARACTER_CARTER);
+            TalkMessage(gText_RivalMarriageEvent_MaryAndGray_05_Wedding_AttendanceAfterWorkChoice_CarterWelcomesPlayerToCelebration);
+            TalkClose();
+            FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
+            TalkOpen();
+            TalkMessage(gText_RivalMarriageEvent_MaryAndGray_05_Wedding_AttendanceAfterWorkChoice_GuestsToastNewlyweds);
+            TalkClose();
+            MarkNpcSpokenTo(CHARACTER_CARTER);
+            DisableScriptedNpcControl();
+            ClearEntityEventScript(ENTITY_BASIL);
+            ClearEntityEventScript(ENTITY_MARY);
+            ClearEntityEventScript(ENTITY_ANNA);
+            ClearEntityEventScript(ENTITY_CARTER);
+            ClearEntityEventScript(ENTITY_GRAY);
+            ClearEntityEventScript(ENTITY_SAIBARA);
+            VarSet(VAR_MARY_GRAY_RIVAL_MARRIAGE_STATE, MARRIAGE_STATE_MARRIED);
+            VarSet(VAR_MARY_GRAY_WEDDING_MISSED, FALSE);
+            VarSet(VAR_MARY_AND_GRAY_RIVAL_WEDDING_ROUTING_STATE, FALSE);
+            CallScript(EventScript_SystemEvent_PreserveLocationAndAdvanceToNextDay);
+            break;
+        case CHOICE_OPTION_2:
+            VarSet(VAR_MARY_GRAY_WEDDING_ATTENDANCE_DEFERRED, TRUE);
+            TalkClose();
+            TalkOpen();
+            SetTalkPortrait(TALK_PORTRAIT_CARTER_NORMAL);
+            SetTalkNameplateCharacter(CHARACTER_CARTER);
+            TalkMessage(gText_RivalMarriageEvent_MaryAndGray_05_Wedding_AttendanceAfterWorkChoice_CarterInvitesPlayerToJoinWhenFree);
+            TalkClose();
+            SetEntityFacing(ENTITY_CARTER, FACING_RIGHT);
+            MarkNpcSpokenTo(CHARACTER_CARTER);
+            VarSet(VAR_MARY_GRAY_RIVAL_MARRIAGE_STATE, MARRIAGE_STATE_WEDDING_IN_PROGRESS);
+            break;
+    }
+}

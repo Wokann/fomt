@@ -741,6 +741,7 @@ SECTIONS
         . = ALIGN(4); src/entity_ui.o(.rodata.entity_ui_resource_selector);
         FILL(0x00);
         . = ALIGN(4); asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix);
+        . = 0xF8230; data/scripts/script_table.o(.rodata.mary_script_table);
         . = 0xF96F4; /* JP ScriptEngine string-object prefix. */
         src/script_engine.o(.rodata.script_engine_string_error_prefix);
         . = 0xF9700; data/text/common/script_engine.o(.rodata);
@@ -904,6 +905,8 @@ SECTIONS
         src/m4a.o(.rodata.gSongTable);
         . = 0x13C3CC; /* JP asset container, independently matched. */
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
+        . = 0x4E0CE0; data/scripts/scripts.o(.rodata.mary_scripts);
+        . = 0x7515A8; asm/data/data_0813B288.o(.rodata.mary_scripts_tail);
     } > ROM = 0xFF
 
     .iwram : ALIGN(4)

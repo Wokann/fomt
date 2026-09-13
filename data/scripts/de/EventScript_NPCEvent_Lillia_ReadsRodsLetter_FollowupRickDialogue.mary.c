@@ -1,0 +1,25 @@
+#define MARY_FOMT_DE
+#include "fomt_constants.mary.h"
+#include "fomt_callables.mary.h"
+#include "fomt_scripts.mary.h"
+
+mary_text_table
+{
+    const char gText_NPCEvent_Lillia_ReadsRodsLetter_RickWantsRodToReturnHome[] =
+        "Briefe sind schön...\r\n"
+        "Aber ich will, dass er jetzt\r\n"
+        "nach Hause kommt!...{Press}";
+};
+
+void EventScript_NPCEvent_Lillia_ReadsRodsLetter_FollowupRickDialogue(void)
+{
+    SetEntityFacing(ENTITY_RICK, GetOppositeFacing(GetEntityFacing(ENTITY_PLAYER)));
+    TalkOpen();
+    SetTalkNameplateCharacter(CHARACTER_RICK);
+    SetTalkPortrait(TALK_PORTRAIT_RICK_SURPRISED);
+    TalkMessage(gText_NPCEvent_Lillia_ReadsRodsLetter_RickWantsRodToReturnHome);
+    TalkClose();
+    MarkNpcSpokenTo(CHARACTER_RICK);
+    SetEntityFacing(ENTITY_RICK, FACING_DOWN);
+    return;
+}

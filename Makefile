@@ -178,13 +178,47 @@ GUIDE_GENERATED_SOURCE := $(BUILD_DIR)/src/reference_guide.cc
 GUIDE_GENERATED_OBJ := $(BUILD_DIR)/src/reference_guide.o
 GUIDE_GENERATED_DEP := $(BUILD_DIR)/src/reference_guide.d
 
-ALL_OBJS += $(REGION_TEXT_OBJS) $(COMMON_TEXT_OBJS) $(STAFF_CREDITS_GENERATED_OBJ) $(GUIDE_GENERATED_OBJ)
-ALL_DEPS += $(REGION_TEXT_DEPS) $(COMMON_TEXT_DEPS) $(STAFF_CREDITS_GENERATED_DEP) $(GUIDE_GENERATED_DEP)
+MARY_TOOL := tools/mary/mary.exe
+MARY_SOURCE_DIR := data/scripts/$(REGION_DIR)
+MARY_OUTPUT_DIR := $(BUILD_DIR)/data/scripts
+MARY_LIBRARY := $(MARY_SOURCE_DIR)/fomt_callables.mary.h
+MARY_SCRIPT_TABLE := $(MARY_SOURCE_DIR)/fomt_scripts.mary.h
+MARY_CONSTANTS := include/fomt_constants.mary.h
+MARY_SOURCES := $(wildcard $(MARY_SOURCE_DIR)/*.mary.c)
+MARY_BUNDLE_STAMP := $(MARY_OUTPUT_DIR)/.mary-bundle.stamp
+MARY_SCRIPTS_ASM := $(MARY_OUTPUT_DIR)/scripts.s
+MARY_SCRIPT_TABLE_ASM := $(MARY_OUTPUT_DIR)/script_table.s
+MARY_SCRIPTS_BIN := $(MARY_OUTPUT_DIR)/scripts.bin
+MARY_BUNDLE_DEP := $(MARY_OUTPUT_DIR)/scripts.d
+MARY_BUNDLE_OUTPUTS := $(MARY_SCRIPTS_ASM) $(MARY_SCRIPT_TABLE_ASM) $(MARY_SCRIPTS_BIN) $(MARY_BUNDLE_DEP)
+MARY_SCRIPTS_OBJ := $(MARY_OUTPUT_DIR)/scripts.o
+MARY_SCRIPT_TABLE_OBJ := $(MARY_OUTPUT_DIR)/script_table.o
 
-.SECONDARY: $(GUIDE_GENERATED_SOURCE) $(STAFF_CREDITS_GENERATED_SOURCE)
+ALL_OBJS += $(REGION_TEXT_OBJS) $(COMMON_TEXT_OBJS) $(STAFF_CREDITS_GENERATED_OBJ) $(GUIDE_GENERATED_OBJ) $(MARY_SCRIPTS_OBJ) $(MARY_SCRIPT_TABLE_OBJ)
+ALL_DEPS += $(REGION_TEXT_DEPS) $(COMMON_TEXT_DEPS) $(STAFF_CREDITS_GENERATED_DEP) $(GUIDE_GENERATED_DEP) $(MARY_BUNDLE_DEP)
+
+.SECONDARY: $(GUIDE_GENERATED_SOURCE) $(STAFF_CREDITS_GENERATED_SOURCE) $(MARY_BUNDLE_OUTPUTS)
 
 $(TEXT_TOOLS): $(TEXT_TOOL_DIR)/fomt_text.cpp $(TEXT_TOOL_DIR)/fomt_preproc.cpp $(TEXT_TOOL_DIR)/Makefile
 	@$(MAKE) -C $(TEXT_TOOL_DIR) $(notdir $@)
+
+# Mary owns the complete packed RIFF script stream.  Its three headers remain
+# explicit inputs: callables and slot names live with the selected scripts,
+# while the C/C++-shared constant table lives in include/.
+$(MARY_BUNDLE_STAMP): $(MARY_TOOL) $(MARY_SOURCES) $(MARY_LIBRARY) $(MARY_SCRIPT_TABLE) $(MARY_CONSTANTS) charmap.txt
+	@mkdir -p $(MARY_OUTPUT_DIR)
+	@$(MARY_TOOL) bundle $(MARY_SOURCE_DIR) -o $(MARY_OUTPUT_DIR) --layout packed --library $(MARY_LIBRARY) --script-table $(MARY_SCRIPT_TABLE) --constants $(MARY_CONSTANTS) --charmap charmap.txt -D MARY_FOMT_$(GAME_REGION)
+	@touch $@
+
+$(MARY_BUNDLE_OUTPUTS): $(MARY_BUNDLE_STAMP)
+
+$(MARY_SCRIPTS_OBJ): $(MARY_SCRIPTS_ASM)
+	@echo "AS $<"
+	@$(AS) $(ASFLAGS) $< -o $@
+
+$(MARY_SCRIPT_TABLE_OBJ): $(MARY_SCRIPT_TABLE_ASM)
+	@echo "AS $<"
+	@$(AS) $(ASFLAGS) $< -o $@
 
 # Every ordinary C/C++ unit first becomes a normal preprocessed source file.
 # fomt-text then lowers only its quoted game text to FOMT byte literals; it

@@ -2,7 +2,7 @@
     @ JP revision 0 script-adjacent data.
     .section .rodata.data_080f1a80_suffix
 jp_data_080f1a80_suffix_start:
-    .incbin "baserom_jp.gba", 0xF3B4C, (0xF96F4 - 0xF3B4C)
+    .incbin "baserom_jp.gba", 0xF3B4C, (0xF8230 - 0xF3B4C)
 
     .global gUnk_080F42F0
 gUnk_080F42F0 = jp_data_080f1a80_suffix_start + 0x000
@@ -46,12 +46,11 @@ gUnk_080F7B40 = jp_data_080f1a80_suffix_start + 0x3844
 gUnk_080F81BC = jp_data_080f1a80_suffix_start + 0x3ECC
     .global gUnk_080F8678
 gUnk_080F8678 = jp_data_080f1a80_suffix_start + 0x4588
-    .global gUnk_080F89D4
-gUnk_080F89D4 = jp_data_080f1a80_suffix_start + 0x48E4
     .else
     @ The western revisions preserve this raw object's internal layout, but
     @ relocate every ROM pointer stored in it. Keep the labels and emitted
     @ lengths shared while selecting the independently matched source range.
+    @ The following Mary script table is emitted as relocatable .word entries.
     .macro FOMT_REGION_INCBIN offset, length
     .ifdef REGION_EU
         .incbin "baserom_eu.gba", \offset + 0x4C, \length
@@ -149,7 +148,4 @@ gUnk_080F81BC:
 gUnk_080F8678:
 	FOMT_REGION_INCBIN 0xF8678, 0x35C
 
-	.global gUnk_080F89D4 @ script table
-gUnk_080F89D4:
-	FOMT_REGION_INCBIN 0xF89D4, 0x14C4
     .endif

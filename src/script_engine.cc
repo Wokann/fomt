@@ -691,12 +691,9 @@ ScriptEngine::ScriptEngine(void * arg_r1, void * arg_r2)
     unk_358 = 0;
 }
 
-// TODO: move and dump
-extern void const * const gUnk_080F89D4[]; // event scripts
-
 void ScriptEngine::LoadById(int id, int arg_r2)
 {
-    Load(gUnk_080F89D4[id]);
+    Load(gMaryScriptTable[id]);
     unk_358 = arg_r2;
 }
 

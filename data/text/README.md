@@ -66,7 +66,10 @@ fragments. The non-display fixed SRAM signature is kept with its owning
 `src/sram_proxy_1.c` save-verifier module.
 
 Game scripts are deliberately outside this directory and remain independently
-managed by Mary.  Do not add a script build or link step here.
+managed by Mary.  The top-level build invokes Mary for the selected
+`data/scripts/<region>` directory, then links its generated packed script body
+and relocatable pointer table through the regional linker script.  Do not add
+scripts to this directory's text-object lists.
 
 Do not embed item-text literals in C/C++ info-table initializers.  Every
 name/description pointer field must reference a gText_* symbol defined by the

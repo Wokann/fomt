@@ -2468,4 +2468,4 @@ gUnk_UiSharedResourceData_000:
 	.incbin "baserom_de.gba", 0x4E2D34, 0x120
 	.global gUnk_UiSharedResourceData_001
 gUnk_UiSharedResourceData_001:
-	.incbin "baserom_de.gba", 0x4E2E54, 0x182F8
+	.incbin "baserom_de.gba", 0x4E2E54, 0x20

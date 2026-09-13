@@ -53,9 +53,13 @@ and other future regional assets in the same `data/<domain>/<region>` form; do
 not split executable code that way.
 
 Script bytecode and its referenced text are treated as one region-specific
-block when the text differs substantially. `data/scripts.inc` is the shared
-selector for complete Mary-managed RIFF blocks under `data/scripts/<region>`;
-matching opcodes alone are not enough to share a script block.
+block when the text differs substantially.  Mary compiles every
+`data/scripts/<region>/*.mary.c` source into one packed RIFF stream and a
+relocatable script-pointer table.  Each regional directory keeps its callable
+and slot-table headers beside the scripts; the C/C++-shared
+`include/fomt_constants.mary.h` is passed to Mary explicitly.  The generated
+assembly is linked by the regional LDS files, so matching opcodes alone are
+not used to share a script block.
 
 JP revision 0 has a verified linker layout and an exact build target.  The JP
 ROM remains an ignored local comparison baseline: use only bounded,

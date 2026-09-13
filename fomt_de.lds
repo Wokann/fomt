@@ -667,6 +667,7 @@ SECTIONS
         . = ALIGN(4); src/entity_ui.o(.rodata.entity_ui_resource_selector);
         FILL(0x00);
         . = 0xF47D8; asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix);
+        . = 0xF8EBC; data/scripts/script_table.o(.rodata.mary_script_table);
         . = ALIGN(4); src/script_engine.o(.rodata);
         . = 0xFA38C; data/text/common/script_engine.o(.rodata);
          src/cooking_festival_data.o(.rodata);
@@ -816,6 +817,8 @@ SECTIONS
         . = 0x13CC34; src/m4a.o(.rodata.gMusicPlayerTable);
         . = ALIGN(4); src/m4a.o(.rodata.gSongTable);
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
+        . = 0x4E2E74; data/scripts/scripts.o(.rodata.mary_scripts);
+        . = 0x71DDD4; asm/data/data_0813B288.o(.rodata.mary_scripts_tail);
     } > ROM = 0xFF
 
     .iwram : ALIGN(4)

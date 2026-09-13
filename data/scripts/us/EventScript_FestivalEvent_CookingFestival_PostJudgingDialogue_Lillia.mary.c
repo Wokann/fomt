@@ -1,0 +1,31 @@
+#define MARY_FOMT_US
+#include "fomt_constants.mary.h"
+#include "fomt_callables.mary.h"
+#include "fomt_scripts.mary.h"
+
+mary_text_table
+{
+    const char gText_FestivalEvent_CookingFestival_PostJudgingDialogue_Lillia[] =
+        "I hope lots of \r\n"
+        "people come!{Press}";
+};
+
+void EventScript_FestivalEvent_CookingFestival_PostJudgingDialogue_Lillia(void)
+{
+    if (HasMetNpc(CHARACTER_LILLIA) == FALSE)
+    {
+        MarkNpcSpokenTo(CHARACTER_LILLIA);
+    }
+    SetEntityFacing(ENTITY_LILLIA, GetOppositeFacing(GetEntityFacing(ENTITY_PLAYER)));
+    TalkOpen();
+    SetTalkPortrait(TALK_PORTRAIT_LILLIA_HAPPY);
+    SetTalkNameplateCharacter(CHARACTER_LILLIA);
+    TalkMessage(gText_FestivalEvent_CookingFestival_PostJudgingDialogue_Lillia);
+    TalkClose();
+    if (WasNpcSpokenToToday(CHARACTER_LILLIA) == FALSE)
+    {
+        AddNpcFriendship(CHARACTER_LILLIA, 5);
+    }
+    SetEntityFacing(ENTITY_LILLIA, FACING_LEFT);
+    MarkNpcSpokenTo(CHARACTER_LILLIA);
+}

@@ -1,0 +1,27 @@
+#define MARY_FOMT_DE
+#include "fomt_constants.mary.h"
+#include "fomt_callables.mary.h"
+#include "fomt_scripts.mary.h"
+
+mary_text_table
+{
+    const char gText_RivalEvent_AnnAndCliff_03_GreenHeart_InnResidencyInvitation_FollowupAnnDialogue_AnnSaysCliffBeginsLivingAtTheInnToday[] =
+        "Cliff wird ab heute \r\n"
+        "hier leben.{Press}";
+};
+
+void EventScript_RivalEvent_AnnAndCliff_03_GreenHeart_InnResidencyInvitation_FollowupAnnDialogue(void)
+{
+    SetEntityFacing(ENTITY_ANN, GetOppositeFacing(GetEntityFacing(ENTITY_PLAYER)));
+    TalkOpen();
+    SetTalkPortrait(TALK_PORTRAIT_ANN_HAPPY);
+    SetTalkNameplateCharacter(CHARACTER_ANN);
+    if (!(VarGet(VAR_KAREN_MARRIAGE_STATE) == MARRIAGE_STATE_MARRIED || VarGet(VAR_POPURI_MARRIAGE_STATE) == MARRIAGE_STATE_MARRIED || VarGet(VAR_MARY_MARRIAGE_STATE) == MARRIAGE_STATE_MARRIED || VarGet(VAR_ELLI_MARRIAGE_STATE) == MARRIAGE_STATE_MARRIED || VarGet(VAR_HARVEST_GODDESS_WEDDING_AND_NICKNAME_EVENT_STATE) == EVENT_LIFECYCLE_COMPLETED || VarGet(VAR_ANN_CLIFF_WEDDING_EVENT_STATE) == EVENT_LIFECYCLE_COMPLETED || VarGet(VAR_ANN_CLIFF_RIVAL_MARRIAGE_STATE) == MARRIAGE_STATE_MARRIED))
+    {
+        ShowTalkHeartIndicator(CHARACTER_ANN);
+    }
+    TalkMessage(gText_RivalEvent_AnnAndCliff_03_GreenHeart_InnResidencyInvitation_FollowupAnnDialogue_AnnSaysCliffBeginsLivingAtTheInnToday);
+    TalkClose();
+    SetEntityFacing(ENTITY_ANN, FACING_DOWN);
+    MarkNpcSpokenTo(CHARACTER_ANN);
+}

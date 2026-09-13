@@ -1,0 +1,26 @@
+#define MARY_FOMT_EU
+#include "fomt_constants.mary.h"
+#include "fomt_callables.mary.h"
+#include "fomt_scripts.mary.h"
+
+mary_text_table
+{
+    const char gText_NPCEvent_WonAndKaren_FirstMeetingAtZacksHouse_Won_Followup_WonRemindsPlayerWaresAreNotFree[] =
+        "Not everything is for \r\n"
+        "free, you know! Pay up!{Press}";
+};
+
+void EventScript_NPCEvent_WonAndKaren_FirstMeetingAtZacksHouse_FollowupWonDialogue(void)
+{
+    if (VarGet(VAR_WON_AND_KAREN_FIRST_MEETING_AT_ZACKS_HOUSE_EVENT_STATE) == EVENT_LIFECYCLE_IN_PROGRESS)
+    {
+        SetEntityFacing(ENTITY_WON, GetOppositeFacing(GetEntityFacing(ENTITY_PLAYER)));
+        TalkOpen();
+        SetTalkPortrait(TALK_PORTRAIT_WON_NORMAL);
+        SetTalkNameplateCharacter(CHARACTER_WON);
+        TalkMessage(gText_NPCEvent_WonAndKaren_FirstMeetingAtZacksHouse_Won_Followup_WonRemindsPlayerWaresAreNotFree);
+        TalkClose();
+        MarkNpcSpokenTo(CHARACTER_WON);
+        SetEntityFacing(ENTITY_WON, FACING_LEFT);
+    }
+}

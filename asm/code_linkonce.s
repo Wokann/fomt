@@ -24423,14 +24423,14 @@ func_080DE298: @ 0x080DE298
 .L080DFD0C:
 	mov r0, r8
 	adds r0, #0xc
-	ldr r2, .L080DFD20 @ =gUnk_080F89D4
+	ldr r2, .L080DFD20 @ =gMaryScriptTable
 	lsls r1, r1, #2
 	adds r1, r1, r2
 	ldr r1, [r1]
 	bl Load__13AScriptEnginePCv
 	b .L080E0080
 	.align 2, 0
-.L080DFD20: .4byte gUnk_080F89D4
+.L080DFD20: .4byte gMaryScriptTable
 .L080DFD24:
 	movs r0, #0xda
 	lsls r0, r0, #2
@@ -25316,7 +25316,7 @@ func_080E0094: @ 0x080E0094
 	str r4, [r5, #4]
 	str r0, [r5, #0xc]
 .L080E03AE:
-	ldr r2, .L080E0534 @ =gUnk_080F89D4
+	ldr r2, .L080E0534 @ =gMaryScriptTable
 	ldr r1, .L080E0538 @ =gUnk_080F19AE
 	movs r3, #0xd8
 	lsls r3, r3, #2
@@ -25498,7 +25498,7 @@ func_080E0094: @ 0x080E0094
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-.L080E0534: .4byte gUnk_080F89D4
+.L080E0534: .4byte gMaryScriptTable
 .L080E0538: .4byte gUnk_080F19AE
 .L080E053C: .4byte 0x00000889
 .L080E0540: .4byte 0xFFFFFF00
