@@ -6,7 +6,52 @@
 
     .section .rodata
 jp_data_0813b288_start:
-    .incbin "baserom_jp.gba", 0x13C3CC, (0x45C5B4 - 0x13C3CC)
+    .incbin "baserom_jp.gba", 0x13C3CC, (0x2AFC74 - 0x13C3CC)
+
+    @ Farm Status preview resource labels. Their asset roles remain unknown,
+    @ but the screen's C++ preview tables require direct relocatable targets.
+    .global gUnk_082AFC74
+gUnk_082AFC74:
+    .incbin "baserom_jp.gba", 0x2AFC74, (0x2AFCD4 - 0x2AFC74)
+    .global gUnk_082AFCD4
+gUnk_082AFCD4:
+    .incbin "baserom_jp.gba", 0x2AFCD4, (0x2AFDC8 - 0x2AFCD4)
+    .global gUnk_082AFDC8
+gUnk_082AFDC8:
+    .incbin "baserom_jp.gba", 0x2AFDC8, (0x2AFE70 - 0x2AFDC8)
+    .global gUnk_082AFE70
+gUnk_082AFE70:
+    .incbin "baserom_jp.gba", 0x2AFE70, (0x2AFED0 - 0x2AFE70)
+    .global gUnk_082AFED0
+gUnk_082AFED0:
+    .incbin "baserom_jp.gba", 0x2AFED0, (0x2B0744 - 0x2AFED0)
+    .global gUnk_082B0744
+gUnk_082B0744:
+    .incbin "baserom_jp.gba", 0x2B0744, (0x2B07E0 - 0x2B0744)
+    .global gUnk_082B07E0
+gUnk_082B07E0:
+    .incbin "baserom_jp.gba", 0x2B07E0, (0x2B2F20 - 0x2B07E0)
+    .global gUnk_082B2F20
+gUnk_082B2F20:
+    .incbin "baserom_jp.gba", 0x2B2F20, (0x2B2F80 - 0x2B2F20)
+    .global gUnk_082B2F80
+gUnk_082B2F80:
+    .incbin "baserom_jp.gba", 0x2B2F80, (0x2B3074 - 0x2B2F80)
+    .global gUnk_082B3074
+gUnk_082B3074:
+    .incbin "baserom_jp.gba", 0x2B3074, (0x2B311C - 0x2B3074)
+    .global gUnk_082B311C
+gUnk_082B311C:
+    .incbin "baserom_jp.gba", 0x2B311C, (0x2B317C - 0x2B311C)
+    .global gUnk_082B317C
+gUnk_082B317C:
+    .incbin "baserom_jp.gba", 0x2B317C, (0x2B39F0 - 0x2B317C)
+    .global gUnk_082B39F0
+gUnk_082B39F0:
+    .incbin "baserom_jp.gba", 0x2B39F0, (0x2B3A8C - 0x2B39F0)
+    .global gUnk_082B3A8C
+gUnk_082B3A8C:
+    .incbin "baserom_jp.gba", 0x2B3A8C, (0x45C5B4 - 0x2B3A8C)
 
     @ Song header labels recovered from gSongTable.  The raw M4A payloads
     @ remain in this regional asset container; the C table uses these labels.
@@ -1460,36 +1505,6 @@ jp_data_0813b288_start:
     .set gUnk_FieldRenderResource_126, jp_data_0813b288_start + 0x342C0C
     .global gUnk_FieldRenderResource_127
     .set gUnk_FieldRenderResource_127, jp_data_0813b288_start + 0x342DCC
-
-    @ Farm Status preview resource labels.  The asset roles remain unknown.
-    .global gUnk_082AFC74
-    .set gUnk_082AFC74, jp_data_0813b288_start + 0x1738A8
-    .global gUnk_082AFCD4
-    .set gUnk_082AFCD4, jp_data_0813b288_start + 0x173908
-    .global gUnk_082AFDC8
-    .set gUnk_082AFDC8, jp_data_0813b288_start + 0x1739FC
-    .global gUnk_082AFE70
-    .set gUnk_082AFE70, jp_data_0813b288_start + 0x173AA4
-    .global gUnk_082AFED0
-    .set gUnk_082AFED0, jp_data_0813b288_start + 0x173B04
-    .global gUnk_082B0744
-    .set gUnk_082B0744, jp_data_0813b288_start + 0x174378
-    .global gUnk_082B07E0
-    .set gUnk_082B07E0, jp_data_0813b288_start + 0x174414
-    .global gUnk_082B2F20
-    .set gUnk_082B2F20, jp_data_0813b288_start + 0x176B54
-    .global gUnk_082B2F80
-    .set gUnk_082B2F80, jp_data_0813b288_start + 0x176BB4
-    .global gUnk_082B3074
-    .set gUnk_082B3074, jp_data_0813b288_start + 0x176CA8
-    .global gUnk_082B311C
-    .set gUnk_082B311C, jp_data_0813b288_start + 0x176D50
-    .global gUnk_082B317C
-    .set gUnk_082B317C, jp_data_0813b288_start + 0x176DB0
-    .global gUnk_082B39F0
-    .set gUnk_082B39F0, jp_data_0813b288_start + 0x177624
-    .global gUnk_082B3A8C
-    .set gUnk_082B3A8C, jp_data_0813b288_start + 0x1776C0
 
     @ Additional region-neutral labels for later gFieldRenderRectDescriptors entries.
     @ Their payload types are not known yet.
@@ -4314,13 +4329,34 @@ gUnk_0852D984:
 	eu_post_script_incbin 0x529794, 0x200
 
 	non_de_asset_label gUnk_08529994
-	eu_post_script_incbin 0x529994, 0x214
+	eu_post_script_incbin 0x529994, (0x529B18 - 0x529994)
+	.global gUnk_08529B18
+gUnk_08529B18:
+	eu_post_script_incbin 0x529B18, (0x529B78 - 0x529B18)
+	.global gUnk_08529B78
+gUnk_08529B78:
+	eu_post_script_incbin 0x529B78, (0x529BA8 - 0x529B78)
 
 	non_de_asset_label gUnk_08529BA8
-	eu_post_script_incbin 0x529BA8, 0x1FC
+	eu_post_script_incbin 0x529BA8, (0x529C6C - 0x529BA8)
+	.global gUnk_08529C6C
+gUnk_08529C6C:
+	eu_post_script_incbin 0x529C6C, (0x529D14 - 0x529C6C)
+	.global gUnk_08529D14
+gUnk_08529D14:
+	eu_post_script_incbin 0x529D14, (0x529D74 - 0x529D14)
+	.global gUnk_08529D74
+gUnk_08529D74:
+	eu_post_script_incbin 0x529D74, (0x529DA4 - 0x529D74)
 
 	non_de_asset_label gUnk_08529DA4
-	eu_post_script_incbin 0x529DA4, 0x934
+	eu_post_script_incbin 0x529DA4, (0x52A5E8 - 0x529DA4)
+	.global gUnk_0852A5E8
+gUnk_0852A5E8:
+	eu_post_script_incbin 0x52A5E8, (0x52A684 - 0x52A5E8)
+	.global gUnk_0852A684
+gUnk_0852A684:
+	eu_post_script_incbin 0x52A684, (0x52A6D8 - 0x52A684)
 
 	non_de_asset_label gUnk_0852A6D8
 	eu_post_script_incbin 0x52A6D8, 0x114
@@ -4338,51 +4374,40 @@ gUnk_0852D984:
 	eu_post_script_incbin 0x52CA40, 0x200
 
 	non_de_asset_label gUnk_0852CC40
-	eu_post_script_incbin 0x52CC40, 0x214
+	eu_post_script_incbin 0x52CC40, (0x52CDC4 - 0x52CC40)
+	.global gUnk_0852CDC4
+gUnk_0852CDC4:
+	eu_post_script_incbin 0x52CDC4, (0x52CE24 - 0x52CDC4)
+	.global gUnk_0852CE24
+gUnk_0852CE24:
+	eu_post_script_incbin 0x52CE24, (0x52CE54 - 0x52CE24)
 
 	non_de_asset_label gUnk_0852CE54
-	eu_post_script_incbin 0x52CE54, 0x1FC
+	eu_post_script_incbin 0x52CE54, (0x52CF18 - 0x52CE54)
+	.global gUnk_0852CF18
+gUnk_0852CF18:
+	eu_post_script_incbin 0x52CF18, (0x52CFC0 - 0x52CF18)
+	.global gUnk_0852CFC0
+gUnk_0852CFC0:
+	eu_post_script_incbin 0x52CFC0, (0x52D020 - 0x52CFC0)
+	.global gUnk_0852D020
+gUnk_0852D020:
+	eu_post_script_incbin 0x52D020, (0x52D050 - 0x52D020)
 
 	non_de_asset_label gUnk_0852D050
-	eu_post_script_incbin 0x52D050, 0x934
+	eu_post_script_incbin 0x52D050, (0x52D894 - 0x52D050)
+	.global gUnk_0852D894
+gUnk_0852D894:
+	eu_post_script_incbin 0x52D894, (0x52D930 - 0x52D894)
+	.global gUnk_0852D930
+gUnk_0852D930:
+	eu_post_script_incbin 0x52D930, (0x52D984 - 0x52D930)
 
 	.ifndef REGION_DE
 	.global gUnk_0852D984
 gUnk_0852D984:
 	.endif
 	FOMT_REGION_ASSET_INCBIN 0x52D984, 0x5E0A4
-	.endif
-
-	@ Farm Status preview resource labels.  The asset roles remain unknown.
-	.ifndef REGION_EU
-	.global gUnk_08529B18
-	.set gUnk_08529B18, gUnk_08529994 + 0x184
-	.global gUnk_08529B78
-	.set gUnk_08529B78, gUnk_08529994 + 0x1E4
-	.global gUnk_08529C6C
-	.set gUnk_08529C6C, gUnk_08529BA8 + 0xC4
-	.global gUnk_08529D14
-	.set gUnk_08529D14, gUnk_08529BA8 + 0x16C
-	.global gUnk_08529D74
-	.set gUnk_08529D74, gUnk_08529BA8 + 0x1CC
-	.global gUnk_0852A5E8
-	.set gUnk_0852A5E8, gUnk_08529DA4 + 0x844
-	.global gUnk_0852A684
-	.set gUnk_0852A684, gUnk_08529DA4 + 0x8E0
-	.global gUnk_0852CDC4
-	.set gUnk_0852CDC4, gUnk_0852CC40 + 0x184
-	.global gUnk_0852CE24
-	.set gUnk_0852CE24, gUnk_0852CC40 + 0x1E4
-	.global gUnk_0852CF18
-	.set gUnk_0852CF18, gUnk_0852CE54 + 0xC4
-	.global gUnk_0852CFC0
-	.set gUnk_0852CFC0, gUnk_0852CE54 + 0x16C
-	.global gUnk_0852D020
-	.set gUnk_0852D020, gUnk_0852CE54 + 0x1CC
-	.global gUnk_0852D894
-	.set gUnk_0852D894, gUnk_0852D050 + 0x844
-	.global gUnk_0852D930
-	.set gUnk_0852D930, gUnk_0852D050 + 0x8E0
 	.endif
 
 	.ifndef REGION_DE

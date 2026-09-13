@@ -2,27 +2,70 @@
 
 // These regional text groups occupy the native Farm Status ROM run immediately
 // before the screen's lookup and preview data.
-#if defined(REGION_JP)
-#include FOMT_TEXT_INCLUDE(farm_status.cc)
-#include FOMT_TEXT_INCLUDE(animal_contest.cc)
-#else
-#include FOMT_TEXT_INCLUDE(farm_status.cc)
-#include FOMT_TEXT_INCLUDE(animal_contest.cc)
-#endif
+#include FOMT_TEXT_INCLUDE(farm_status_screen_data.cc)
+#include "data/text/common/farm_status_screen_data.cc"
 
+// These packed labels are fields of the status-screen structures, not
+// standalone string objects. Keeping their typed aggregates here preserves
+// the original field layout while the text preprocessor encodes each literal.
+AnimalStatusScreenPrefixText const gAnimalStatusScreenPrefixText = {
 #if defined(REGION_JP)
-u16 const gFarmStatusScreenPreloadedGlyphs[] =
-    FOMT_GLYPH_SEQUENCE("０１２３４５６７８９春夏秋冬誕生日の月＿　");
+    "なし",
+    "O１２３４５６７８９\x82",
+#else
+    "N/A ",
+    {
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+    },
+#endif
+};
+
+AnimalStatusScreenText const gAnimalStatusScreenText = {
+#if defined(REGION_JP)
+    "健康",
+    "不機嫌",
+    "病気",
+    "春",
+    "夏",
+    "秋",
+    "冬",
+    "才",
+    "日",
 #elif defined(REGION_DE)
-u16 const gFarmStatusScreenPreloadedGlyphs[] =
-    FOMT_GLYPH_SEQUENCE("0123456789Frühl.SommerHerbstWinter_Geburtstag ");
+    "Gesund  ",
+    "Traurig ",
+    "Krank   ",
+    "Frühl.",
+    "Sommer",
+    "Herbst",
+    "Winter",
+    "J ",
+    "T ",
 #else
-u16 const gFarmStatusScreenPreloadedGlyphs[] =
-    FOMT_GLYPH_SEQUENCE("0123456789SpringSummerFall  Winter_Birthday");
+    "Healthy ",
+    "Unhappy ",
+    "Sick    ",
+    "Spring",
+    "Summer",
+    "Fall  ",
+    "Winter",
+    "Y ",
+    "D ",
 #endif
+};
 
-char const gCppRuntimeBadAlloc_FarmStatusScreenGlyphs[] =
-    "bad_alloc";
+#include FOMT_TEXT_INCLUDE(farm_status_screen_data_1.cc)
+
+#include "data/text/common/farm_status_screen_data_1.cc"
 
 FarmStatusScreenResourceDescriptor const gFarmStatusScreenResourceDescriptors[] = {
     { 0x0078, 0x0010 },
@@ -101,5 +144,4 @@ FarmStatusScreenExteriorStyleData const gFarmStatusScreenExteriorStyleData = {
     },
 };
 
-char const gCppRuntimeBadAlloc_FarmStatusScreenTrailer[] =
-    "bad_alloc";
+#include "data/text/common/farm_status_screen_data_2.cc"

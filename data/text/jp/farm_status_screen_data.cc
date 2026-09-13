@@ -1,4 +1,4 @@
-#include "farm_status_text.hh"
+#include "farm_status_screen_data.hh"
 
 char const gText_FarmStatus_OverviewTitle[] =
     "牧場資産表";
@@ -104,23 +104,3 @@ char const gText_FarmStatus_ToolUpgradeAvailable[] =
 
 char const gText_FarmStatus_PercentSign[] =
     "％";
-
-extern char const gCppRuntimeBadAlloc_FarmStatus[] =
-    "bad_alloc";
-
-extern AnimalStatusScreenPrefixText const gAnimalStatusScreenPrefixText = {
-    "なし",
-    "O１２３４５６７８９\x82",
-};
-
-extern AnimalStatusScreenText const gAnimalStatusScreenText = {
-    "健康",
-    "不機嫌",
-    "病気",
-    "春",
-    "夏",
-    "秋",
-    "冬",
-    "才",
-    "日",
-};

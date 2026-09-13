@@ -767,9 +767,8 @@ SECTIONS
         /* Intro-scene resource table, dialogue, and runtime tail. */
         . = 0xFAA60; src/intro_scene_data.o(.rodata);
         FILL(0x00);
-        /* Bounded Farm Status localization island: two text groups and UI data. */
+        /* Farm Status screen data. */
         . = 0xFB11C; src/farm_status_screen_data.o(.rodata);
-        ASSERT(. <= 0xFB764, "JP Farm Status localization island overflow");
         FILL(0x00);
         . = 0xFB764; src/records_screen_data.o(.rodata);
         . = ALIGN(4); data/text/staff_credits.o(.rodata);

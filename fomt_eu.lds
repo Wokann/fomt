@@ -680,7 +680,7 @@ SECTIONS
         /* Intro-scene resource table, dialogue, and runtime tail. */
         . = 0xFB224; src/intro_scene_data.o(.rodata);
         FILL(0x00);
-        /* Farm Status regional data: two text groups and UI data. */
+        /* Farm Status screen data. */
         . = 0xFB870; src/farm_status_screen_data.o(.rodata);
         FILL(0x00);
         . = 0xFBEC8; src/records_screen_data.o(.rodata);

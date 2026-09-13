@@ -1,4 +1,4 @@
-#include "animal_contest_text.hh"
+#include "farm_status_screen_data.hh"
 
 char const gText_AnimalContest_ChickenConfirmation[] =
     "その鶏でいいんだね？";
@@ -100,3 +100,6 @@ char const gText_AnimalContest_FinalYes[] =
 
 char const gText_AnimalContest_FinalNo[] =
     "いいえ";
+
+u16 const gFarmStatusScreenPreloadedGlyphs[] =
+    FOMT_GLYPH_SEQUENCE("０１２３４５６７８９春夏秋冬誕生日の月＿　");

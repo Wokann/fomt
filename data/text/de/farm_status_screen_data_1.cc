@@ -1,4 +1,4 @@
-#include "animal_contest_text.hh"
+#include "farm_status_screen_data.hh"
 
 char const gText_AnimalContest_ChickenConfirmation[] =
     "Ist dieses Huhn OK?";
@@ -98,3 +98,6 @@ char const gText_AnimalContest_FinalYes[] =
 
 char const gText_AnimalContest_FinalNo[] =
     "Nein";
+
+u16 const gFarmStatusScreenPreloadedGlyphs[] =
+    FOMT_GLYPH_SEQUENCE("0123456789Frühl.SommerHerbstWinter_Geburtstag ");
