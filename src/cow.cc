@@ -1,4 +1,5 @@
 #include "cow.hh"
+#include "livestock_day_update_data.hh"
 
 #include <cstdlib>
 

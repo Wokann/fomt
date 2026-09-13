@@ -1,4 +1,5 @@
 #include "chicken.hh"
+#include "livestock_day_update_data.hh"
 
 #include <stdlib.h> // rand
 

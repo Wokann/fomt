@@ -744,7 +744,7 @@ SECTIONS
          src/cooking.o(.rodata);
          src/cooking_recipe_inventory_data.o(.rodata);
         src/animal.o(.rodata);
-         src/livestock.o(.rodata.livestock_day_update);
+         src/livestock_day_update_data.o(.rodata);
          src/code_actor_0809C3E0.o(.rodata.actor_state_max_values);
          src/code_actor_0809C3E0.o(.rodata);
         /* Fishing-record regional data: names, lookup, trailer. */

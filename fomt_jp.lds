@@ -823,7 +823,7 @@ SECTIONS
         src/cooking.o(.rodata);
         . = 0x100C24; src/cooking_recipe_inventory_data.o(.rodata);
         src/animal.o(.rodata);
-        . = 0x10319C; src/livestock.o(.rodata.livestock_day_update);
+        . = 0x10319C; src/livestock_day_update_data.o(.rodata);
         . = 0x1031FC; src/code_actor_0809C3E0.o(.rodata.actor_state_max_values);
         . = 0x103204; src/code_actor_0809C3E0.o(.rodata);
         /* Bounded fishing-record localization island: names, lookup, trailer. */
