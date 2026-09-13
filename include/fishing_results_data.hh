@@ -1,5 +1,5 @@
-#ifndef FISHING_RESULTS_TEXT_HH
-#define FISHING_RESULTS_TEXT_HH
+#ifndef FISHING_RESULTS_DATA_HH
+#define FISHING_RESULTS_DATA_HH
 
 #include "prelude.h"
 
@@ -69,6 +69,6 @@ extern char const gText_FishingRecord_Coelacanth[];
 extern char const gText_FishingRecord_Squid[];
 
 extern char const * const gFishingRecordNames[FISHING_RECORD_COUNT];
-extern u32 const gFishingRecordArticleIds[];
+extern char const gCppRuntimeBadAlloc_FishingResultsTrailer[];
 
-#endif // FISHING_RESULTS_TEXT_HH
+#endif // FISHING_RESULTS_DATA_HH

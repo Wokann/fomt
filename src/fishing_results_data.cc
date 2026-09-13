@@ -1,13 +1,6 @@
-#include "fishing_results_text.hh"
-#include "item.hh"
+#include "fishing_results_data.hh"
 
-// The selected regional record names directly precede their native pointer
-// table and runtime trailer in both ROMs.
-#if defined(REGION_JP)
-#include FOMT_TEXT_INCLUDE(fishing_results.cc)
-#else
-#include FOMT_TEXT_INCLUDE(fishing_results.cc)
-#endif
+#include FOMT_TEXT_INCLUDE(fishing_results_data.cc)
 
 // Indexed directly by the native FishingRecordId domain.  When a regional
 // ROM uses one physical string for multiple records, the table repeats that
@@ -82,18 +75,4 @@ char const * const gFishingRecordNames[FISHING_RECORD_COUNT] = {
     gText_FishingRecord_Squid,
 };
 
-extern char const gCppRuntimeBadAlloc_FishingResultsTrailer[] =
-    "bad_alloc";
-
-// The Power Berry result follows the native UI's dedicated branch.  Its table
-// slot deliberately preserves the original ITEM_ARTICLE_WEEDS placeholder.
-u32 const gFishingRecordArticleIds[] SECTION(".rodata.fishing_record_article_ids") = {
-    ITEM_ARTICLE_PIRATE_TREASURE,
-    ITEM_ARTICLE_FOSSIL_OF_FISH,
-    ITEM_ARTICLE_WEEDS,
-    ITEM_ARTICLE_MESSAGE_IN_A_BOTTLE,
-    ITEM_ARTICLE_EMPTY_CAN,
-    ITEM_ARTICLE_BRANCHES,
-    ITEM_ARTICLE_FISH_BONES,
-    ITEM_ARTICLE_BOOTS,
-};
+#include FOMT_TEXT_INCLUDE(fishing_results_data_1.cc)

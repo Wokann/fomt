@@ -1,4 +1,4 @@
-#include "fishing_results_text.hh"
+#include "fishing_results_data.hh"
 
 EC char const * func_0809CE7C(u32 unused, u32 index)
 {

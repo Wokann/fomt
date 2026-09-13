@@ -825,9 +825,8 @@ SECTIONS
         src/animal.o(.rodata);
         . = 0x10319C; src/livestock_day_update_data.o(.rodata);
         . = 0x1031FC; src/actor_state.o(.rodata);
-        /* Bounded fishing-record localization island: names, lookup, trailer. */
+        /* Fishing-record regional data: names, lookup, trailer. */
         . = 0x1032C4; src/fishing_results_data.o(.rodata);
-        ASSERT(. <= 0x103604, "JP fishing-record localization island overflow");
         FILL(0x00);
         . = 0x103604; src/code_actor_0809BFE8.o(.rodata);
         . = 0x103BFC; src/character_names_data.o(.rodata.character_names_empty);
@@ -842,7 +841,7 @@ SECTIONS
         . = 0x10447C; data/text/calendar_events.o(.rodata);
         . = 0x104958; data/text/possessive_labels.o(.rodata);
         . = 0x104994; data/text/random_item.o(.rodata);
-        . = 0x10499C; src/fishing_results_data.o(.rodata.fishing_record_article_ids);
+        . = 0x10499C; src/fishing_record_article_ids.o(.rodata);
         . = 0x1049BC; src/field_plot_position_values.o(.rodata);
         . = 0x1049F4; src/random_item.o(.rodata.random_item_selection_weights);
         . = 0x104A18; src/random_item.o(.rodata.random_item_candidate_configurations);

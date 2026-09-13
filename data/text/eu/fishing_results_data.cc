@@ -1,181 +1,178 @@
-#include "fishing_results_text.hh"
+#include "fishing_results_data.hh"
 
 // Text storage selected by gFishingRecordNames.  Each independent string is
 // compiler-aligned to four bytes; the linker places this object as one ROM region.
 
 char const gText_FishingRecord_PirateFortune[] =
-    "海賊の宝";
+    "Pirate Fortune";
 
 char const gText_FishingRecord_FossilOfFish[] =
-    "古代魚の化石";
+    "Fossil of Fish";
 
 char const gText_FishingRecord_PowerBerry[] =
-    "力の木の実";
+    "Power Berry";
 
 char const gText_FishingRecord_MessageBottle[] =
-    "手紙入りのビン";
+    "Message Bottle";
 
 char const gText_FishingRecord_EmptyCan[] =
-    "空き缶";
+    "Empty Can";
 
 char const gText_FishingRecord_Branch[] =
-    "枝";
+    "Branch";
 
 char const gText_FishingRecord_FishBones[] =
-    "魚の骨";
+    "Fish Bones";
 
 char const gText_FishingRecord_Boots[] =
-    "長靴";
+    "Boots";
 
 char const gText_FishingRecord_RockTrout[] =
-    "アイナメ";
+    "Rock Trout";
 
 char const gText_FishingRecord_Scad[] =
-    "アジ";
+    "Scad";
 
 char const gText_FishingRecord_Fatminnow[] =
-    "アブラハヤ";
+    "Fatminnow";
 
 char const gText_FishingRecord_CherrySalmon[] =
-    "アマゴ";
+    "Cherry Salmon";
 
 char const gText_FishingRecord_Pigfish[] =
-    "イサキ";
+    "Pigfish";
 
 char const gText_FishingRecord_Sardine[] =
-    "イワシ";
+    "Sardine";
 
 char const gText_FishingRecord_MountainTrout[] =
-    "イワナ";
+    "Mountain Trout";
 
 char const gText_FishingRecord_Whitefish[] =
-    "ウグイ";
+    "Whitefish";
 
 char const gText_FishingRecord_Eel[] =
-    "ウナギ";
+    "Eel";
 
 char const gText_FishingRecord_Bitterling[] =
-    "オイカワ";
+    "Bitterling";
 
 char const gText_FishingRecord_Bonito[] =
-    "カツオ";
+    "Bonito";
 
 char const gText_FishingRecord_Fluke[] =
-    "カレイ";
+    "Fluke";
 
 char const gText_FishingRecord_Filefish[] =
-    "カワハギ";
+    "Filefish";
 
 char const gText_FishingRecord_GoldenCarp[] =
-    "キンブナ";
+    "Golden Carp";
 
 char const gText_FishingRecord_SilverCarp22[] =
-    "ギンブナ";
+    "Silver Carp";
 
 char const gText_FishingRecord_KelpBass[] =
-    "クエ";
+    "Kelp Bass";
 
 char const gText_FishingRecord_Bighead[] =
-    "コクレン";
+    "Bighead";
 
 char const gText_FishingRecord_Salmon[] =
-    "サケ";
+    "Salmon";
 
 char const gText_FishingRecord_Mackerel[] =
-    "サバ";
+    "Mackerel";
 
 char const gText_FishingRecord_Needlefish[] =
-    "サヨリ";
+    "Needlefish";
 
 char const gText_FishingRecord_SpanishMackerel[] =
-    "サワラ";
+    "Sp. Mackerel";
 
 char const gText_FishingRecord_SauryPike[] =
-    "サンマ";
+    "Saury Pike";
 
 char const gText_FishingRecord_Dorado[] =
-    "シイラ";
+    "Dorado";
 
 char const gText_FishingRecord_RedSnapper[] =
-    "タイ";
+    "Red Snapper";
 
 char const gText_FishingRecord_Cod[] =
-    "タラ";
+    "Cod";
 
 char const gText_FishingRecord_Roach[] =
-    "ドジョウ";
+    "Roach";
 
 char const gText_FishingRecord_BrownHakeling[] =
-    "ドンコ";
+    "Brown Hakeling";
 
 char const gText_FishingRecord_RainbowTrout[] =
-    "ニジマス";
+    "Rainbow Trout";
 
 char const gText_FishingRecord_Herring[] =
-    "ニシン";
-
-char const gText_FishingRecord_SilverCarp37[] =
-    "ハクレン";
+    "Herring";
 
 char const gText_FishingRecord_Sandfish[] =
-    "ハタハタ";
+    "Sandfish";
 
 char const gText_FishingRecord_Flounder[] =
-    "ヒラメ";
+    "Flounder";
 
 char const gText_FishingRecord_Blowfish[] =
-    "フグ";
+    "Blowfish";
 
 char const gText_FishingRecord_BlackBass[] =
-    "ブラックバス";
+    "Black Bass";
 
 char const gText_FishingRecord_Yellowtail[] =
-    "ブリ";
+    "Yellowtail";
 
 char const gText_FishingRecord_Bluegill[] =
-    "ブルーギル";
+    "Bluegill";
 
 char const gText_FishingRecord_CrucianCarp[] =
-    "ヘラブナ";
+    "Crucian Carp";
 
 char const gText_FishingRecord_Greenling[] =
-    "ホッケ";
+    "Greenling";
 
 char const gText_FishingRecord_Tuna[] =
-    "マグロ";
+    "Tuna";
 
 char const gText_FishingRecord_OceanSunfish[] =
-    "マンボウ";
+    "Ocean Sunfish";
 
 char const gText_FishingRecord_Lionfish[] =
-    "ミノカサゴ";
+    "Lionfish";
 
 char const gText_FishingRecord_Rockfish[] =
-    "メバル";
+    "Rockfish";
 
 char const gText_FishingRecord_LargeSalmon[] =
-    "ヤマメ";
+    "L. Salmon";
 
 char const gText_FishingRecord_Snakehead[] =
-    "ライギョ";
+    "Snakehead";
 
 char const gText_FishingRecord_LakeSmelt[] =
-    "ワカサギ";
+    "Lake smelt";
 
 char const gText_FishingRecord_JapaneseHuchen[] =
-    "イトウ";
+    "Jp. Huchen";
 
 char const gText_FishingRecord_Monkfish[] =
-    "アンコウ";
+    "Monkfish";
 
 char const gText_FishingRecord_Catfish[] =
-    "温泉ナマズ";
+    "Catfish";
 
 char const gText_FishingRecord_Carp[] =
-    "コイ";
+    "Carp";
 
 char const gText_FishingRecord_Coelacanth[] =
-    "シーラカンス";
+    "Coelacanth";
 
 char const gText_FishingRecord_Squid[] =
-    "イカ";
+    "Squid";

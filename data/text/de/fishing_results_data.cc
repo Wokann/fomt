@@ -1,178 +1,175 @@
-#include "fishing_results_text.hh"
+#include "fishing_results_data.hh"
 
 // Text storage selected by gFishingRecordNames.  Each independent string is
 // compiler-aligned to four bytes; the linker places this object as one ROM region.
 
 char const gText_FishingRecord_PirateFortune[] =
-    "Pirate Fortune";
+    "Piratenglück";
 
 char const gText_FishingRecord_FossilOfFish[] =
-    "Fossil of Fish";
+    "Fischfossil";
 
 char const gText_FishingRecord_PowerBerry[] =
-    "Power Berry";
+    "Power-Beere";
 
 char const gText_FishingRecord_MessageBottle[] =
-    "Message Bottle";
+    "Flaschenpost";
 
 char const gText_FishingRecord_EmptyCan[] =
-    "Empty Can";
+    "Leere Dose";
 
 char const gText_FishingRecord_Branch[] =
-    "Branch";
+    "Ast";
 
 char const gText_FishingRecord_FishBones[] =
-    "Fish Bones";
+    "Fischgräten";
 
 char const gText_FishingRecord_Boots[] =
-    "Boots";
+    "Stiefel";
 
 char const gText_FishingRecord_RockTrout[] =
-    "Rock Trout";
+    "Gebirgsforelle";
 
 char const gText_FishingRecord_Scad[] =
-    "Scad";
+    "Stöcker";
 
 char const gText_FishingRecord_Fatminnow[] =
-    "Fatminnow";
+    "Fette Elritze";
 
 char const gText_FishingRecord_CherrySalmon[] =
-    "Cherry Salmon";
+    "Kirschlachs";
 
 char const gText_FishingRecord_Pigfish[] =
-    "Pigfish";
+    "Schweinefisch";
 
 char const gText_FishingRecord_Sardine[] =
     "Sardine";
 
 char const gText_FishingRecord_MountainTrout[] =
-    "Mountain Trout";
+    "Bergforelle";
 
 char const gText_FishingRecord_Whitefish[] =
-    "Whitefish";
+    "Weißfisch";
 
 char const gText_FishingRecord_Eel[] =
-    "Eel";
+    "Aal";
 
 char const gText_FishingRecord_Bitterling[] =
     "Bitterling";
 
 char const gText_FishingRecord_Bonito[] =
-    "Bonito";
+    "Thunfisch";
 
 char const gText_FishingRecord_Fluke[] =
-    "Fluke";
+    "Angelhaken";
 
 char const gText_FishingRecord_Filefish[] =
-    "Filefish";
+    "Filefisch";
 
 char const gText_FishingRecord_GoldenCarp[] =
-    "Golden Carp";
+    "Goldkarpfen";
 
 char const gText_FishingRecord_SilverCarp22[] =
-    "Silver Carp";
+    "Silberkarpfen";
 
 char const gText_FishingRecord_KelpBass[] =
-    "Kelp Bass";
+    "Seetang-Barsch";
 
 char const gText_FishingRecord_Bighead[] =
-    "Bighead";
+    "Riesenkopf";
 
 char const gText_FishingRecord_Salmon[] =
-    "Salmon";
+    "Lachs";
 
 char const gText_FishingRecord_Mackerel[] =
-    "Mackerel";
+    "Makrele";
 
 char const gText_FishingRecord_Needlefish[] =
-    "Needlefish";
+    "Nadelfisch";
 
 char const gText_FishingRecord_SpanishMackerel[] =
-    "Sp. Mackerel";
+    "Sp. Makrele";
 
 char const gText_FishingRecord_SauryPike[] =
-    "Saury Pike";
+    "Zander";
 
 char const gText_FishingRecord_Dorado[] =
     "Dorado";
 
 char const gText_FishingRecord_RedSnapper[] =
-    "Red Snapper";
+    "Schnapperfisch";
 
 char const gText_FishingRecord_Cod[] =
-    "Cod";
+    "Dorsch";
 
 char const gText_FishingRecord_Roach[] =
-    "Roach";
+    "Bachschmerle";
 
 char const gText_FishingRecord_BrownHakeling[] =
-    "Brown Hakeling";
+    "Seehecht";
 
 char const gText_FishingRecord_RainbowTrout[] =
-    "Rainbow Trout";
+    "Forelle";
 
 char const gText_FishingRecord_Herring[] =
-    "Herring";
+    "Hering";
 
 char const gText_FishingRecord_Sandfish[] =
-    "Sandfish";
+    "Sandfisch";
 
 char const gText_FishingRecord_Flounder[] =
-    "Flounder";
+    "Flunder";
 
 char const gText_FishingRecord_Blowfish[] =
-    "Blowfish";
+    "Kugelfisch";
 
 char const gText_FishingRecord_BlackBass[] =
-    "Black Bass";
+    "Schwarzbarsch";
 
 char const gText_FishingRecord_Yellowtail[] =
-    "Yellowtail";
+    "Gelbflunder";
 
 char const gText_FishingRecord_Bluegill[] =
-    "Bluegill";
+    "Sonnenfisch";
 
 char const gText_FishingRecord_CrucianCarp[] =
-    "Crucian Carp";
+    "Karausche";
 
 char const gText_FishingRecord_Greenling[] =
-    "Greenling";
-
-char const gText_FishingRecord_Tuna[] =
-    "Tuna";
+    "Grünling";
 
 char const gText_FishingRecord_OceanSunfish[] =
-    "Ocean Sunfish";
+    "Sonnenbarsch";
 
 char const gText_FishingRecord_Lionfish[] =
-    "Lionfish";
+    "Rotfeuerfisch";
 
 char const gText_FishingRecord_Rockfish[] =
-    "Rockfish";
+    "Bergfisch";
 
 char const gText_FishingRecord_LargeSalmon[] =
-    "L. Salmon";
+    "L. Lachs";
 
 char const gText_FishingRecord_Snakehead[] =
-    "Snakehead";
+    "Schlangenkopf";
 
 char const gText_FishingRecord_LakeSmelt[] =
-    "Lake smelt";
+    "Seestilt";
 
 char const gText_FishingRecord_JapaneseHuchen[] =
     "Jp. Huchen";
 
 char const gText_FishingRecord_Monkfish[] =
-    "Monkfish";
+    "Seeteufel";
 
 char const gText_FishingRecord_Catfish[] =
-    "Catfish";
+    "Katzenfisch";
 
 char const gText_FishingRecord_Carp[] =
-    "Carp";
+    "Karpfen";
 
 char const gText_FishingRecord_Coelacanth[] =
-    "Coelacanth";
+    "Quastenflosser";
 
 char const gText_FishingRecord_Squid[] =
-    "Squid";
+    "Tintenfisch";
