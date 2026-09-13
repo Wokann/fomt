@@ -105,6 +105,7 @@
 | EU | `0x08104EA9`–`0x08104EAB` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x08104EAC`–`0x08104ECB` | `src/fishing_record_article_ids.o(.rodata)` | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | `gFishingRecordArticleIds` |
 | EU | `0x08104F04`–`0x08105691` | `src/random_item_selection.o(.rodata)` | `src/random_item_selection.cc`、`include/random_item_selection.hh`、`data/text/common/random_item_selection.cc` | `gRandomItemSelectionWeights`、`gRandomItemCandidateConfigurations`、运行时字符串 `1` 项 |
+| EU | `0x08105694`–`0x0810575D` | `src/field_plot_position_rules.o(.rodata)` | `src/field_plot_position_rules.cc`、`include/field_plot_position_rules.hh`、`data/text/common/field_plot_position_rules.cc` | `gFieldPlotPositionRules`、运行时字符串 `1` 项 |
 | EU | `0x08107490`–`0x081074A7` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
 | EU | `0x081082E4`–`0x08117843` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 EU 指南源文件；主目录只收录 `PAGE_1`，`tool_and_item_controls_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 | DE | `0x080E8574`–`0x080E858D` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0.hh`、`data/text/de/crt0_data.cc` | 精确 |
@@ -182,6 +183,7 @@
 | DE | `0x08105875`–`0x08105877` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x08105878`–`0x08105897` | `src/fishing_record_article_ids.o(.rodata)` | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | `gFishingRecordArticleIds` |
 | DE | `0x081058D0`–`0x0810605D` | `src/random_item_selection.o(.rodata)` | `src/random_item_selection.cc`、`include/random_item_selection.hh`、`data/text/common/random_item_selection.cc` | `gRandomItemSelectionWeights`、`gRandomItemCandidateConfigurations`、运行时字符串 `1` 项 |
+| DE | `0x08106060`–`0x08106129` | `src/field_plot_position_rules.o(.rodata)` | `src/field_plot_position_rules.cc`、`include/field_plot_position_rules.hh`、`data/text/common/field_plot_position_rules.cc` | `gFieldPlotPositionRules`、运行时字符串 `1` 项 |
 | DE | `0x08107E5C`–`0x08107E73` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
 | DE | `0x08107FD4`–`0x08108DB3` | `src/harvest_sprite.o(.rodata)` | `src/harvest_sprite.cc` 与 `data/text/de/harvest_sprite_*.cc` | 精确 |
 | DE | `0x08108DB4`–`0x081197FF` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 DE 指南源文件；主目录只收录 `PAGE_1`，`using_tools_2` 与 `newborn_congratulations_cliff_and_ann_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
@@ -319,8 +321,8 @@
 | `0x08104A18`–`0x08105177` | `src/random_item_selection.o(.rodata)` | [数据] | `src/random_item_selection.cc`、`include/random_item_selection.hh` | `gRandomItemCandidateConfigurations` |
 | `0x08105178`–`0x08105181` | `src/random_item_selection.o(.rodata)` | [嵌入文本] | `src/random_item_selection.cc`<br>`data/text/common/random_item_selection.cc` | 运行时字符串 `1` 项 |
 | `0x08105182`–`0x08105183` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08105184`–`0x08105243` | `src/field_data.o(.rodata.field_plot_position_rules)` | [数据] | `src/field_data.c/.cc` | `gFieldPlotPositionRules` |
-| `0x08105244`–`0x0810524D` | `src/field_data.o(.rodata)` | [数据] | `src/field_data.c/.cc` | 运行时字符串 `1` 项 |
+| `0x08105184`–`0x08105243` | `src/field_plot_position_rules.o(.rodata)` | [数据] | `src/field_plot_position_rules.cc`<br>`include/field_plot_position_rules.hh` | `gFieldPlotPositionRules` |
+| `0x08105244`–`0x0810524D` | `src/field_plot_position_rules.o(.rodata)` | [嵌入文本] | `src/field_plot_position_rules.cc`<br>`data/text/common/field_plot_position_rules.cc` | 运行时字符串 `1` 项 |
 | `0x0810524E`–`0x0810524F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08105250`–`0x0810528F` | `src/code_0800E2E4.o(.rodata.time_of_day_transition_table)` | [数据] | `src/code_0800E2E4.c/.cc` | `gTimeOfDayTransitionTables` |
 | `0x08105290`–`0x08105A23` | `src/code_0800E2E4.o(.rodata.time_of_day_transition_records)` | [数据] | `src/code_0800E2E4.c/.cc` | `gTimeOfDayTransitionRecords_Spring_Morning`, `gTimeOfDayTransitionRecords_Spring_Afternoon`, `gTimeOfDayTransitionRecords_Spring_Evening`, `gTimeOfDayTransitionRecords_Spring_Night`, `gTimeOfDayTransitionRecords_Summer_Morning`, `gTimeOfDayTransitionRecords_Summer_Afternoon`, … +10 |
@@ -2150,8 +2152,8 @@
 | `0x08104ED0`–`0x0810562F` | `src/random_item_selection.o(.rodata)` | [数据] | `src/random_item_selection.cc`、`include/random_item_selection.hh` | `gRandomItemCandidateConfigurations` |
 | `0x08105630`–`0x08105639` | `src/random_item_selection.o(.rodata)` | [嵌入文本] | `src/random_item_selection.cc`<br>`data/text/common/random_item_selection.cc` | 运行时字符串 `1` 项 |
 | `0x0810563A`–`0x0810563B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x0810563C`–`0x081056FB` | `src/field_data.o(.rodata.field_plot_position_rules)` | [数据] | `src/field_data.c/.cc` | `gFieldPlotPositionRules` |
-| `0x081056FC`–`0x08105705` | `src/field_data.o(.rodata)` | [数据] | `src/field_data.c/.cc` | 运行时字符串 `1` 项 |
+| `0x0810563C`–`0x081056FB` | `src/field_plot_position_rules.o(.rodata)` | [数据] | `src/field_plot_position_rules.cc`<br>`include/field_plot_position_rules.hh` | `gFieldPlotPositionRules` |
+| `0x081056FC`–`0x08105705` | `src/field_plot_position_rules.o(.rodata)` | [嵌入文本] | `src/field_plot_position_rules.cc`<br>`data/text/common/field_plot_position_rules.cc` | 运行时字符串 `1` 项 |
 | `0x08105706`–`0x08105707` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08105708`–`0x08105747` | `src/code_0800E2E4.o(.rodata.time_of_day_transition_table)` | [数据] | `src/code_0800E2E4.c/.cc` | `gTimeOfDayTransitionTables` |
 | `0x08105748`–`0x08105EDB` | `src/code_0800E2E4.o(.rodata.time_of_day_transition_records)` | [数据] | `src/code_0800E2E4.c/.cc` | `gTimeOfDayTransitionRecords_Spring_Morning`, `gTimeOfDayTransitionRecords_Spring_Afternoon`, `gTimeOfDayTransitionRecords_Spring_Evening`, `gTimeOfDayTransitionRecords_Spring_Night`, `gTimeOfDayTransitionRecords_Summer_Morning`, `gTimeOfDayTransitionRecords_Summer_Afternoon`, … +10 |
