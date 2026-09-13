@@ -655,7 +655,6 @@ SECTIONS
         . = ALIGN(4); asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix);
         . = 0xF89D4; data/scripts/script_table.o(.rodata.mary_script_table);
         . = ALIGN(4); src/script_engine.o(.rodata);
-        . = 0xF9EA4; data/text/common/script_engine.o(.rodata);
         . = 0xF9EC5; src/cooking_festival_data.o(.rodata);
         src/thomas_stocking_data.o(.rodata);
         FILL(0x00);

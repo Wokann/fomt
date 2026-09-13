@@ -48,6 +48,8 @@
 | EU | `0x080F1ACC`–`0x080F3401` | `src/data_schedules.o(.rodata)` | `src/data_schedules.cc`、`include/data_schedules.hh`、`data/text/eu/data_schedules.cc`–`data_schedules_6.cc`；7 处运行时字符串与所有日程/路径表按 ROM 顺序嵌入同一对象 | 精确 |
 | EU | `0x080F3402`–`0x080F3403` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080F3404`–`0x080F4339` | `src/entity_ui_resource_selector.o(.rodata)` | `src/entity_ui_resource_selector.cc`、`include/entity_ui_resource_selector.hh`、`data/text/eu/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_3.cc` | 精确 |
+| EU | `0x080F433C`–`0x080F9EE3` | `asm/data/data_080F1A80.o` 至 `data/scripts/script_table.o` | `asm/data/data_080F1A80.s`（Mary 管理的连续剧情脚本块及脚本表） | 精确 |
+| EU | `0x080F9EE4`–`0x080F9F10` | `src/script_engine.o(.rodata)` | `src/script_engine.cc`、`include/script_engine.hh`、`data/text/eu/script_engine.cc`；运行时 `bad_alloc` 与 3 项 UI 字符串按原 ROM 顺序同属该对象 | 精确 |
 | EU | `0x080FB224`–`0x080FB86D` | `src/intro_scene_data.o(.rodata)` | `src/intro_scene_data.cc`、`include/intro_scene_data.hh`、`data/text/eu/intro_scene_data.cc`、`data/text/eu/intro_scene_data_1.cc` | 精确 |
 | EU | `0x080FECC8`–`0x080FEDD7` | `src/blacksmith_menu_data.o(.rodata)` | `src/blacksmith_menu_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
 | EU | `0x080FEDD8`–`0x080FF3AF` | `src/blacksmith_data.o(.rodata)` | `src/blacksmith_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
@@ -73,7 +75,8 @@
 | DE | `0x080F1F68`–`0x080F389D` | `src/data_schedules.o(.rodata)` | `src/data_schedules.cc`、`include/data_schedules.hh`、`data/text/de/data_schedules.cc`–`data_schedules_6.cc`；7 处运行时字符串与所有日程/路径表按 ROM 顺序嵌入同一对象 | 精确 |
 | DE | `0x080F389E`–`0x080F389F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080F38A0`–`0x080F47D5` | `src/entity_ui_resource_selector.o(.rodata)` | `src/entity_ui_resource_selector.cc`、`include/entity_ui_resource_selector.hh`、`data/text/de/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_3.cc` | 精确 |
-| DE | `0x080F47D8`–`0x080FA3E7` | `asm/data/data_080F1A80.o` 至相邻脚本引擎数据 | `asm/data/data_080F1A80.s`（Mary 管理的剧情脚本原始块）及 `src/script_engine.cc`、`data/text/common/script_engine.cc` | 精确 |
+| DE | `0x080F47D8`–`0x080FA37F` | `asm/data/data_080F1A80.o` 至 `data/scripts/script_table.o` | `asm/data/data_080F1A80.s`（Mary 管理的连续剧情脚本块及脚本表） | 精确 |
+| DE | `0x080FA380`–`0x080FA3AC` | `src/script_engine.o(.rodata)` | `src/script_engine.cc`、`include/script_engine.hh`、`data/text/de/script_engine.cc`；运行时 `bad_alloc` 与 3 项 UI 字符串按原 ROM 顺序同属该对象 | 精确 |
 | DE | `0x080FB77C`–`0x080FBE59` | `src/intro_scene_data.o(.rodata)` | `src/intro_scene_data.cc`、`include/intro_scene_data.hh`、`data/text/de/intro_scene_data.cc`、`data/text/de/intro_scene_data_1.cc` | 精确 |
 | DE | `0x080FBE5C`–`0x080FC4F7` | `src/farm_status_screen_data.o(.rodata)` | `src/farm_status_screen_data.cc`、`data/text/de/farm_status.cc`、`data/text/de/animal_contest.cc` | 精确 |
 | DE | `0x080FC580`–`0x080FC72F` | `src/records_screen_data.o(.rodata)` | `src/records_screen_data.cc` 与 `data/text/de/records.cc` | 精确 |
@@ -129,8 +132,7 @@
 | `0x080F2C14`–`0x080F3B49` | `src/entity_ui_resource_selector.o(.rodata)` | [嵌入文本 / 数据] | `src/entity_ui_resource_selector.cc`<br>`include/entity_ui_resource_selector.hh`<br>`data/text/jp/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_3.cc` | 运行时字符串 `4` 项<br>`gUnk_080F33B8`, `gUnk_080F3408`, `gUnk_080F35E4`, `gUnk_080F3FD8` |
 | `0x080F3B4A`–`0x080F3B4B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F3B4C`–`0x080F96F3` | `asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix)` | [Mary 脚本连续块] | `asm/data/data_080F1A80.s`<br>Mary 独立管理的连续剧情脚本区域（含脚本表入口）；按维护规则不展开内部内容 | 连续脚本相关原始区域；按维护规则不展开内部标签或表 |
-| `0x080F96F4`–`0x080F96FF` | `src/script_engine.o(.rodata.script_engine_string_error_prefix)` | [数据] | `src/script_engine.c/.cc` | 无全局符号 |
-| `0x080F9700`–`0x080F9720` | `data/text/common/script_engine.o(.rodata)` | [文本对象] | `data/text/common/script_engine.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `1` 项 |
+| `0x080F96F4`–`0x080F9720` | `src/script_engine.o(.rodata)` | [嵌入文本] | `src/script_engine.cc`<br>`include/script_engine.hh`<br>`data/text/jp/script_engine.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `2` 项；原始 JP 前缀现为普通命名文本 `gCppRuntimeBadAlloc_ScriptEngine`，对象内四字节对齐零填充保持原字节布局 |
 | `0x080F9721`–`0x080F9734` | `src/cooking_festival_data.o(.rodata)` | [数据] | `src/cooking_festival_data.c/.cc` | `gCookingFestivalDishCategoryRatingThresholds` |
 | `0x080F9735`–`0x080F9739` | `src/thomas_stocking_data.o(.rodata)` | [数据] | `src/thomas_stocking_data.c/.cc` | `gThomasStockingGiftSelectionWeights` |
 | `0x080F973A`–`0x080F973B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1087,9 +1089,9 @@
 | `0x080F1274` | `gText_Menu_Earnings` | `data/text/jp/common_ui_4.cc` | `src/common_ui.o(.rodata)` |
 | `0x080F127C` | `gText_Menu_Memo` | `data/text/jp/common_ui_4.cc` | `src/common_ui.o(.rodata)` |
 | `0x080F1288` | `gText_Menu_Tutorial` | `data/text/jp/common_ui_4.cc` | `src/common_ui.o(.rodata)` |
-| `0x080F9700` | `gText_AScriptEngine_InvalidStringId` | `data/text/common/script_engine.cc` | `data/text/common/script_engine.o(.rodata)` |
-| `0x080F9714` | `gText_ScriptEngineUi_Error` | `data/text/common/script_engine.cc` | `data/text/common/script_engine.o(.rodata)` |
-| `0x080F971C` | `gText_ScriptEngineUi_FallbackNone` | `data/text/common/script_engine.cc` | `data/text/common/script_engine.o(.rodata)` |
+| `0x080F9700` | `gText_AScriptEngine_InvalidStringId` | `data/text/jp/script_engine.cc` | `src/script_engine.o(.rodata)` |
+| `0x080F9714` | `gText_ScriptEngineUi_Error` | `data/text/jp/script_engine.cc` | `src/script_engine.o(.rodata)` |
+| `0x080F971C` | `gText_ScriptEngineUi_FallbackNone` | `data/text/jp/script_engine.cc` | `src/script_engine.o(.rodata)` |
 | `0x080F97E6` | `gText_NameEntry_PresetAnimalNames` | `data/text/jp/new_game_preset.cc` | `data/text/new_game_preset.o(.rodata)` |
 | `0x080F9994` | `gText_Frisbee_TournamentScoreboard` | `data/text/jp/frisbee.cc` | `data/text/frisbee_scoreboard.o(.rodata)` |
 | `0x080F9BD4` | `gText_Frisbee_ExplanationQuestion` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
@@ -1982,9 +1984,7 @@
 | `0x080F33B8`–`0x080F42ED` | `src/entity_ui_resource_selector.o(.rodata)` | [嵌入文本 / 数据] | `src/entity_ui_resource_selector.cc`<br>`include/entity_ui_resource_selector.hh`<br>`data/text/us/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_3.cc` | 运行时字符串 `4` 项<br>`gUnk_080F33B8`, `gUnk_080F3408`, `gUnk_080F35E4`, `gUnk_080F3FD8` |
 | `0x080F42EE`–`0x080F42EF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F42F0`–`0x080F9E97` | `asm/data/data_080F1A80.o(.rodata.data_080f1a80_suffix)` | [Mary 脚本连续块] | `asm/data/data_080F1A80.s`<br>Mary 独立管理的连续剧情脚本区域（含脚本表入口）；按维护规则不展开内部内容 | 连续脚本相关原始区域；按维护规则不展开内部标签或表 |
-| `0x080F9E98`–`0x080F9EA1` | `src/script_engine.o(.rodata)` | [数据] | `src/script_engine.c/.cc` | 无全局符号 |
-| `0x080F9EA2`–`0x080F9EA3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F9EA4`–`0x080F9EC4` | `data/text/common/script_engine.o(.rodata)` | [文本对象] | `data/text/common/script_engine.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `1` 项 |
+| `0x080F9E98`–`0x080F9EC4` | `src/script_engine.o(.rodata)` | [嵌入文本] | `src/script_engine.cc`<br>`include/script_engine.hh`<br>`data/text/us/script_engine.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `2` 项；首项是旧 `agbcp` 自动发出的未命名 `bad_alloc` 常量，随后对象内两字节对齐填充与区域文本保持原字节布局 |
 | `0x080F9EC5`–`0x080F9ED8` | `src/cooking_festival_data.o(.rodata)` | [数据] | `src/cooking_festival_data.c/.cc` | `gCookingFestivalDishCategoryRatingThresholds` |
 | `0x080F9ED9`–`0x080F9EDD` | `src/thomas_stocking_data.o(.rodata)` | [数据] | `src/thomas_stocking_data.c/.cc` | `gThomasStockingGiftSelectionWeights` |
 | `0x080F9EDE`–`0x080F9EDF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -2932,9 +2932,9 @@
 | `0x080F1A14` | `gText_Menu_Earnings` | `data/text/us/common_ui_4.cc` | `src/common_ui.o(.rodata)` |
 | `0x080F1A20` | `gText_Menu_Memo` | `data/text/us/common_ui_4.cc` | `src/common_ui.o(.rodata)` |
 | `0x080F1A28` | `gText_Menu_Tutorial` | `data/text/us/common_ui_4.cc` | `src/common_ui.o(.rodata)` |
-| `0x080F9EA4` | `gText_AScriptEngine_InvalidStringId` | `data/text/common/script_engine.cc` | `data/text/common/script_engine.o(.rodata)` |
-| `0x080F9EB8` | `gText_ScriptEngineUi_Error` | `data/text/common/script_engine.cc` | `data/text/common/script_engine.o(.rodata)` |
-| `0x080F9EC0` | `gText_ScriptEngineUi_FallbackNone` | `data/text/common/script_engine.cc` | `data/text/common/script_engine.o(.rodata)` |
+| `0x080F9EA4` | `gText_AScriptEngine_InvalidStringId` | `data/text/us/script_engine.cc` | `src/script_engine.o(.rodata)` |
+| `0x080F9EB8` | `gText_ScriptEngineUi_Error` | `data/text/us/script_engine.cc` | `src/script_engine.o(.rodata)` |
+| `0x080F9EC0` | `gText_ScriptEngineUi_FallbackNone` | `data/text/us/script_engine.cc` | `src/script_engine.o(.rodata)` |
 | `0x080F9F8A` | `gText_NameEntry_PresetAnimalNames` | `data/text/us/new_game_preset.cc` | `data/text/new_game_preset.o(.rodata)` |
 | `0x080FA158` | `gText_Frisbee_TournamentScoreboard` | `data/text/us/frisbee.cc` | `data/text/frisbee_scoreboard.o(.rodata)` |
 | `0x080FA39C` | `gText_Frisbee_ExplanationQuestion` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |

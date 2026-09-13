@@ -55,11 +55,6 @@ asm(
     "__lower_bound__H4ZPC12JumpTableEntZiZ28ScriptJumpTableSearchCompareZl_X01T0RCX11X21PX31_X01:\n"
     "    .incbin \"baserom_jp.gba\", 0xE0654, 0x3C\n"
     "\n"
-    "    @ Keep the compiler's bad_alloc object raw; the following Error field is\n"
-    "    @ emitted by an ordinary ScriptEngine text object at its original ROM address.\n"
-    "    .section .rodata.script_engine_string_error_prefix\n"
-    "    .incbin \"baserom_jp.gba\", 0xF96F4, (0xF9700 - 0xF96F4)\n"
-    "\n"
     "    @ Keep later shared C++ emission in agbcp's default syntax mode.\n"
     "    .syntax divided\n"
 );
@@ -715,3 +710,5 @@ void ScriptEngine::Push(i32 value)
 // next up: int OnCall(int id);
 
 #endif // REGION_JP
+
+#include FOMT_TEXT_INCLUDE(script_engine.cc)

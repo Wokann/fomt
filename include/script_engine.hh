@@ -9,8 +9,16 @@
 #define SCRIPT_VMMEM_MAX 100
 
 // Error text objects physically owned by the Script Engine data block.
+#if defined(REGION_JP)
+// This declaration gives the included JP object external linkage.  The old
+// agbcp otherwise discards an unreferenced namespace-scope const object.
+extern char const gCppRuntimeBadAlloc_ScriptEngine[];
+#endif
 extern char const gText_AScriptEngine_InvalidStringId[];
 extern char const gText_ScriptEngineUi_Error[];
+// These two physical runtime objects are intentionally retained even though
+// no recovered C++ call site currently names them; their declarations prevent
+// old agbcp from folding them away during compilation.
 extern char const gCppRuntimeBadAlloc_ScriptEngineUiPrefix[];
 extern char const gText_ScriptEngineUi_FallbackNone[];
 

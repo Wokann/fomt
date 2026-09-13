@@ -10,8 +10,4 @@ char const gText_ScriptEngineUi_Error[] ALIGN(4) =
     "Error";
 
 char const gText_ScriptEngineUi_FallbackNone[] ALIGN(4) =
-#if defined(REGION_JP)
-    "なし";
-#else
     "N/A ";
-#endif
