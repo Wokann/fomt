@@ -1604,7 +1604,22 @@ gActorStateGridCellType3Data:
 jp_data_08462550_start:
     .global gActorStateGridCellType4Data
 gActorStateGridCellType4Data:
-    .incbin "baserom_jp.gba", 0x462550, (0x4E0CE0 - 0x462550)
+    .incbin "baserom_jp.gba", 0x462550, (0x4D096C - 0x462550)
+
+    @ Four resources unpacked by the earlier Intro Scene startup path.
+    @ Their payload formats remain raw in this region-specific asset range.
+    .global gUnk_IntroSceneStartupUnpackSource_000
+gUnk_IntroSceneStartupUnpackSource_000:
+    .incbin "baserom_jp.gba", 0x4D096C, (0x4D0D48 - 0x4D096C)
+    .global gUnk_IntroSceneStartupUnpackSource_001
+gUnk_IntroSceneStartupUnpackSource_001:
+    .incbin "baserom_jp.gba", 0x4D0D48, (0x4D0F64 - 0x4D0D48)
+    .global gUnk_IntroSceneStartupUnpackSource_002
+gUnk_IntroSceneStartupUnpackSource_002:
+    .incbin "baserom_jp.gba", 0x4D0F64, (0x4D1058 - 0x4D0F64)
+    .global gUnk_IntroSceneStartupUnpackSource_003
+gUnk_IntroSceneStartupUnpackSource_003:
+    .incbin "baserom_jp.gba", 0x4D1058, (0x4E0CE0 - 0x4D1058)
 
     @ The packed Mary stream occupies the original JP interval
     @ 0x084E0CE0..0x087515A8.  Resume the raw asset container after it.
@@ -1664,17 +1679,6 @@ gActorStateGridCellType4Data:
     .set gUnk_IntroSceneUnpackSource_018, jp_data_08462550_start + 0x668FC
     .global gUnk_IntroSceneUnpackSource_019
     .set gUnk_IntroSceneUnpackSource_019, jp_data_08462550_start + 0x66C08
-
-    @ Four resources unpacked by the earlier Intro Scene startup path.
-    @ Their payload formats remain raw in this region-specific asset range.
-    .global gUnk_IntroSceneStartupUnpackSource_000
-    .set gUnk_IntroSceneStartupUnpackSource_000, jp_data_08462550_start + 0x6E41C
-    .global gUnk_IntroSceneStartupUnpackSource_001
-    .set gUnk_IntroSceneStartupUnpackSource_001, jp_data_08462550_start + 0x6E7F8
-    .global gUnk_IntroSceneStartupUnpackSource_002
-    .set gUnk_IntroSceneStartupUnpackSource_002, jp_data_08462550_start + 0x6EA14
-    .global gUnk_IntroSceneStartupUnpackSource_003
-    .set gUnk_IntroSceneStartupUnpackSource_003, jp_data_08462550_start + 0x6EB08
 
     @ Shared UI resource payloads.  Their internal encodings remain raw.
     .global gUnk_UiSharedResourceData_000
@@ -4844,19 +4848,6 @@ us_data_087409e4_start:
 	.set gUnk_IntroSceneUnpackSource_019, us_data_087409e4_start + 0x260C
 	.endif
 
-	@ Four resources unpacked by the earlier Intro Scene startup path.
-	@ Their payload formats remain raw in this region-specific asset range.
-	.ifndef REGION_DE
-	.global gUnk_IntroSceneStartupUnpackSource_000
-	.set gUnk_IntroSceneStartupUnpackSource_000, us_data_087409e4_start + 0x97F4
-	.global gUnk_IntroSceneStartupUnpackSource_001
-	.set gUnk_IntroSceneStartupUnpackSource_001, us_data_087409e4_start + 0x9BD0
-	.global gUnk_IntroSceneStartupUnpackSource_002
-	.set gUnk_IntroSceneStartupUnpackSource_002, us_data_087409e4_start + 0x9DEC
-	.global gUnk_IntroSceneStartupUnpackSource_003
-	.set gUnk_IntroSceneStartupUnpackSource_003, us_data_087409e4_start + 0x9EE0
-	.endif
-
 	non_de_asset_label gUnk_08743058
 	.ifdef REGION_DE
 	.incbin "baserom_de.gba", 0x7450D8, 0x2EC0
@@ -4878,7 +4869,22 @@ gFontShiftJisGlyphIndices:
 	.else
 	.global gUnk_08747A74
 gUnk_08747A74:
-	FOMT_REGION_ASSET_INCBIN 0x747A74, 0x2F4C
+	FOMT_REGION_ASSET_INCBIN 0x747A74, (0x74A1D8 - 0x747A74)
+
+	@ Four resources unpacked by the earlier Intro Scene startup path.
+	@ Their payload formats remain raw in this region-specific asset range.
+	.global gUnk_IntroSceneStartupUnpackSource_000
+gUnk_IntroSceneStartupUnpackSource_000:
+	FOMT_REGION_ASSET_INCBIN 0x74A1D8, (0x74A5B4 - 0x74A1D8)
+	.global gUnk_IntroSceneStartupUnpackSource_001
+gUnk_IntroSceneStartupUnpackSource_001:
+	FOMT_REGION_ASSET_INCBIN 0x74A5B4, (0x74A7D0 - 0x74A5B4)
+	.global gUnk_IntroSceneStartupUnpackSource_002
+gUnk_IntroSceneStartupUnpackSource_002:
+	FOMT_REGION_ASSET_INCBIN 0x74A7D0, (0x74A8C4 - 0x74A7D0)
+	.global gUnk_IntroSceneStartupUnpackSource_003
+gUnk_IntroSceneStartupUnpackSource_003:
+	FOMT_REGION_ASSET_INCBIN 0x74A8C4, (0x74A9C0 - 0x74A8C4)
 
 	.global gUnk_0874A9C0
 gUnk_0874A9C0:
