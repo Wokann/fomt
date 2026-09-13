@@ -1,5 +1,7 @@
 #include "blacksmith_text.hh"
 
+#include "blacksmith_menu_data.hh"
+
 #include "item.hh"
 
 // JP and US encode the tool-upgrade header differently.  Keep their native

@@ -77,7 +77,7 @@
 | EU | `0x080FEB3E`–`0x080FEB3F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FEB40`–`0x080FECC5` | `src/beach_cafe_shop_data.o(.rodata)` | `src/beach_cafe_shop_data.cc`、`include/beach_cafe_shop_data.hh`、`data/text/eu/beach_cafe_shop_data.cc`、`data/text/eu/beach_cafe_shop_data_1.cc`；说明文本、菜单表、对话与运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
 | EU | `0x080FECC6`–`0x080FECC7` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| EU | `0x080FECC8`–`0x080FEDD7` | `src/blacksmith_menu_data.o(.rodata)` | `src/blacksmith_menu_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
+| EU | `0x080FECC8`–`0x080FEDD7` | `src/blacksmith_menu_data.o(.rodata)` | `src/blacksmith_menu_data.cc`、`include/blacksmith_menu_data.hh` 与 `data/text/eu/blacksmith_menu_data.cc` | 精确 |
 | EU | `0x080FEDD8`–`0x080FF3AF` | `src/blacksmith_data.o(.rodata)` | `src/blacksmith_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
 | EU | `0x08100534`–`0x08100B17` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc` 与 `data/text/eu/link_communication.cc` | 精确 |
 | EU | `0x081082E4`–`0x08117843` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 EU 指南源文件；主目录只收录 `PAGE_1`，`tool_and_item_controls_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
@@ -219,7 +219,7 @@
 | `0x080FE39E`–`0x080FE39F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FE3A0`–`0x080FE539` | `src/beach_cafe_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/beach_cafe_shop_data.cc`<br>`include/beach_cafe_shop_data.hh`<br>`data/text/jp/beach_cafe_shop_data.cc`<br>`data/text/jp/beach_cafe_shop_data_1.cc` | 说明文本 `4` 项<br>`gBeachCafeShopMenu`<br>对话文本 `3` 项<br>运行时字符串 `1` 项 |
 | `0x080FE53A`–`0x080FE53B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FE53C`–`0x080FE69E` | `src/blacksmith_menu_data.o(.rodata)` | [嵌入文本] | `data/text/jp/blacksmith.cc` | 文本 `12` 项（详见下方索引） |
+| `0x080FE53C`–`0x080FE69E` | `src/blacksmith_menu_data.o(.rodata)` | [嵌入文本] | `src/blacksmith_menu_data.cc`<br>`include/blacksmith_menu_data.hh`<br>`data/text/jp/blacksmith_menu_data.cc` | 文本 `12` 项（详见下方索引） |
 | `0x080FE69F`–`0x080FE6A3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 5 字节 |
 | `0x080FE6A4`–`0x080FEC8D` | `src/blacksmith_data.o(.rodata)` | [嵌入文本] | `data/text/jp/blacksmith.cc` | 文本 `20` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gBlacksmithMenuHeader`, `gBlacksmithCatalog` |
 | `0x080FEC8E`–`0x080FEC8F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1526,18 +1526,18 @@
 | `0x080FE4A0` | `gText_BeachCafeShop_InsufficientGold` | `data/text/jp/beach_cafe_shop_data_1.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
 | `0x080FE4B8` | `gText_BeachCafeShop_NoOrder` | `data/text/jp/beach_cafe_shop_data_1.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
 | `0x080FE4F4` | `gText_BeachCafeShop_OrderComplete` | `data/text/jp/beach_cafe_shop_data_1.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
-| `0x080FE53C` | `gText_Blacksmith_ToolUpgradeMenuLabel` | `data/text/jp/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
-| `0x080FE550` | `gText_Blacksmith_ToolUpgradeTitle` | `data/text/jp/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
-| `0x080FE55C` | `gText_Blacksmith_Empty` | `data/text/jp/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
-| `0x080FE560` | `gText_Blacksmith_MakeMayonnaiseMaker` | `data/text/jp/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
-| `0x080FE57C` | `gText_Blacksmith_CostAdamantite` | `data/text/jp/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
-| `0x080FE5D0` | `gText_Blacksmith_MakeCheeseMaker` | `data/text/jp/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
-| `0x080FE5E8` | `gText_Blacksmith_MakeYarnMaker` | `data/text/jp/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
-| `0x080FE600` | `gText_Blacksmith_MakeNecklace` | `data/text/jp/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
-| `0x080FE614` | `gText_Blacksmith_CostOrichalc` | `data/text/jp/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
-| `0x080FE668` | `gText_Blacksmith_MakeEarrings` | `data/text/jp/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
-| `0x080FE67C` | `gText_Blacksmith_MakeBracelet` | `data/text/jp/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
-| `0x080FE690` | `gText_Blacksmith_MakeBroach` | `data/text/jp/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
+| `0x080FE53C` | `gText_Blacksmith_ToolUpgradeMenuLabel` | `data/text/jp/blacksmith_menu_data.cc` | `src/blacksmith_menu_data.o(.rodata)` |
+| `0x080FE550` | `gText_Blacksmith_ToolUpgradeTitle` | `data/text/jp/blacksmith_menu_data.cc` | `src/blacksmith_menu_data.o(.rodata)` |
+| `0x080FE55C` | `gText_Blacksmith_Empty` | `data/text/jp/blacksmith_menu_data.cc` | `src/blacksmith_menu_data.o(.rodata)` |
+| `0x080FE560` | `gText_Blacksmith_MakeMayonnaiseMaker` | `data/text/jp/blacksmith_menu_data.cc` | `src/blacksmith_menu_data.o(.rodata)` |
+| `0x080FE57C` | `gText_Blacksmith_CostAdamantite` | `data/text/jp/blacksmith_menu_data.cc` | `src/blacksmith_menu_data.o(.rodata)` |
+| `0x080FE5D0` | `gText_Blacksmith_MakeCheeseMaker` | `data/text/jp/blacksmith_menu_data.cc` | `src/blacksmith_menu_data.o(.rodata)` |
+| `0x080FE5E8` | `gText_Blacksmith_MakeYarnMaker` | `data/text/jp/blacksmith_menu_data.cc` | `src/blacksmith_menu_data.o(.rodata)` |
+| `0x080FE600` | `gText_Blacksmith_MakeNecklace` | `data/text/jp/blacksmith_menu_data.cc` | `src/blacksmith_menu_data.o(.rodata)` |
+| `0x080FE614` | `gText_Blacksmith_CostOrichalc` | `data/text/jp/blacksmith_menu_data.cc` | `src/blacksmith_menu_data.o(.rodata)` |
+| `0x080FE668` | `gText_Blacksmith_MakeEarrings` | `data/text/jp/blacksmith_menu_data.cc` | `src/blacksmith_menu_data.o(.rodata)` |
+| `0x080FE67C` | `gText_Blacksmith_MakeBracelet` | `data/text/jp/blacksmith_menu_data.cc` | `src/blacksmith_menu_data.o(.rodata)` |
+| `0x080FE690` | `gText_Blacksmith_MakeBroach` | `data/text/jp/blacksmith_menu_data.cc` | `src/blacksmith_menu_data.o(.rodata)` |
 | `0x080FE77C` | `gText_Blacksmith_InsufficientGoldAdamantite` | `data/text/jp/blacksmith.cc` | `src/blacksmith_data.o(.rodata)` |
 | `0x080FE7EC` | `gText_Blacksmith_InsufficientGoldOrichalc` | `data/text/jp/blacksmith.cc` | `src/blacksmith_data.o(.rodata)` |
 | `0x080FE858` | `gText_Blacksmith_MakerFiveDays` | `data/text/jp/blacksmith.cc` | `src/blacksmith_data.o(.rodata)` |
@@ -2056,7 +2056,7 @@
 | `0x080FEAF2`–`0x080FEAF3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FEAF4`–`0x080FEC79` | `src/beach_cafe_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/beach_cafe_shop_data.cc`<br>`include/beach_cafe_shop_data.hh`<br>`data/text/us/beach_cafe_shop_data.cc`<br>`data/text/us/beach_cafe_shop_data_1.cc` | 说明文本 `4` 项<br>`gBeachCafeShopMenu`<br>对话文本 `3` 项<br>运行时字符串 `1` 项 |
 | `0x080FEC7A`–`0x080FEC7B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FEC7C`–`0x080FED8B` | `src/blacksmith_menu_data.o(.rodata)` | [嵌入文本] | `data/text/us/blacksmith.cc` | 文本 `12` 项（详见下方索引） |
+| `0x080FEC7C`–`0x080FED8B` | `src/blacksmith_menu_data.o(.rodata)` | [嵌入文本] | `src/blacksmith_menu_data.cc`<br>`include/blacksmith_menu_data.hh`<br>`data/text/us/blacksmith_menu_data.cc` | 文本 `12` 项（详见下方索引） |
 | `0x080FED8C`–`0x080FF359` | `src/blacksmith_data.o(.rodata)` | [嵌入文本] | `data/text/us/blacksmith.cc` | 文本 `20` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gBlacksmithCatalog` |
 | `0x080FF35A`–`0x080FF35B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FF35C`–`0x080FFB5D` | `src/carpenter_data.o(.rodata)` | [嵌入文本] | `data/text/common/carpenter.cc`<br>`data/text/us/carpenter.cc` | 文本 `53` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gCarpenterCatalog` |
@@ -3347,18 +3347,18 @@
 | `0x080FEBEC` | `gText_BeachCafeShop_InsufficientGold` | `data/text/us/beach_cafe_shop_data_1.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
 | `0x080FEC14` | `gText_BeachCafeShop_NoOrder` | `data/text/us/beach_cafe_shop_data_1.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
 | `0x080FEC44` | `gText_BeachCafeShop_OrderComplete` | `data/text/us/beach_cafe_shop_data_1.cc` | `src/beach_cafe_shop_data.o(.rodata)` |
-| `0x080FEC7C` | `gText_Blacksmith_ToolUpgradeMenuLabel` | `data/text/us/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
-| `0x080FEC94` | `gText_Blacksmith_ToolUpgradeTitle` | `data/text/us/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
-| `0x080FECA4` | `gText_Blacksmith_Empty` | `data/text/us/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
-| `0x080FECA8` | `gText_Blacksmith_MakeMayonnaiseMaker` | `data/text/us/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
-| `0x080FECC0` | `gText_Blacksmith_CostAdamantite` | `data/text/us/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
-| `0x080FECF8` | `gText_Blacksmith_MakeCheeseMaker` | `data/text/us/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
-| `0x080FED0C` | `gText_Blacksmith_MakeYarnMaker` | `data/text/us/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
-| `0x080FED1C` | `gText_Blacksmith_MakeNecklace` | `data/text/us/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
-| `0x080FED2C` | `gText_Blacksmith_CostOrichalc` | `data/text/us/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
-| `0x080FED60` | `gText_Blacksmith_MakeEarrings` | `data/text/us/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
-| `0x080FED70` | `gText_Blacksmith_MakeBracelet` | `data/text/us/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
-| `0x080FED80` | `gText_Blacksmith_MakeBroach` | `data/text/us/blacksmith.cc` | `src/blacksmith_menu_data.o(.rodata)` |
+| `0x080FEC7C` | `gText_Blacksmith_ToolUpgradeMenuLabel` | `data/text/us/blacksmith_menu_data.cc` | `src/blacksmith_menu_data.o(.rodata)` |
+| `0x080FEC94` | `gText_Blacksmith_ToolUpgradeTitle` | `data/text/us/blacksmith_menu_data.cc` | `src/blacksmith_menu_data.o(.rodata)` |
+| `0x080FECA4` | `gText_Blacksmith_Empty` | `data/text/us/blacksmith_menu_data.cc` | `src/blacksmith_menu_data.o(.rodata)` |
+| `0x080FECA8` | `gText_Blacksmith_MakeMayonnaiseMaker` | `data/text/us/blacksmith_menu_data.cc` | `src/blacksmith_menu_data.o(.rodata)` |
+| `0x080FECC0` | `gText_Blacksmith_CostAdamantite` | `data/text/us/blacksmith_menu_data.cc` | `src/blacksmith_menu_data.o(.rodata)` |
+| `0x080FECF8` | `gText_Blacksmith_MakeCheeseMaker` | `data/text/us/blacksmith_menu_data.cc` | `src/blacksmith_menu_data.o(.rodata)` |
+| `0x080FED0C` | `gText_Blacksmith_MakeYarnMaker` | `data/text/us/blacksmith_menu_data.cc` | `src/blacksmith_menu_data.o(.rodata)` |
+| `0x080FED1C` | `gText_Blacksmith_MakeNecklace` | `data/text/us/blacksmith_menu_data.cc` | `src/blacksmith_menu_data.o(.rodata)` |
+| `0x080FED2C` | `gText_Blacksmith_CostOrichalc` | `data/text/us/blacksmith_menu_data.cc` | `src/blacksmith_menu_data.o(.rodata)` |
+| `0x080FED60` | `gText_Blacksmith_MakeEarrings` | `data/text/us/blacksmith_menu_data.cc` | `src/blacksmith_menu_data.o(.rodata)` |
+| `0x080FED70` | `gText_Blacksmith_MakeBracelet` | `data/text/us/blacksmith_menu_data.cc` | `src/blacksmith_menu_data.o(.rodata)` |
+| `0x080FED80` | `gText_Blacksmith_MakeBroach` | `data/text/us/blacksmith_menu_data.cc` | `src/blacksmith_menu_data.o(.rodata)` |
 | `0x080FEE68` | `gText_Blacksmith_InsufficientGoldAdamantite` | `data/text/us/blacksmith.cc` | `src/blacksmith_data.o(.rodata)` |
 | `0x080FEED8` | `gText_Blacksmith_InsufficientGoldOrichalc` | `data/text/us/blacksmith.cc` | `src/blacksmith_data.o(.rodata)` |
 | `0x080FEF44` | `gText_Blacksmith_MakerFiveDays` | `data/text/us/blacksmith.cc` | `src/blacksmith_data.o(.rodata)` |

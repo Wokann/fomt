@@ -1,13 +1,3 @@
-#include "blacksmith_text.hh"
+#include "blacksmith_menu_data.hh"
 
-// JP stores a native four-byte zero gap between this menu block and the
-// catalog that begins in blacksmith_data.cc.
-#if defined(REGION_JP)
-#define FOMT_TEXT_BLACKSMITH_MENU
-#include FOMT_TEXT_INCLUDE(blacksmith.cc)
-#undef FOMT_TEXT_BLACKSMITH_MENU
-#else
-#define FOMT_TEXT_BLACKSMITH_MENU
-#include FOMT_TEXT_INCLUDE(blacksmith.cc)
-#undef FOMT_TEXT_BLACKSMITH_MENU
-#endif
+#include FOMT_TEXT_INCLUDE(blacksmith_menu_data.cc)
