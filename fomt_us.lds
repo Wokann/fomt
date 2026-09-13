@@ -627,7 +627,7 @@ SECTIONS
         . = ALIGN(4);
         src/sram_proxy_1.o(.rodata);
         src/intro_scene_startup.o(.rodata);
-        . = 0xE86A8; src/new_game_menu_data.o(.rodata);
+        . = 0xE86A8; src/new_game_data.o(.rodata);
         . = 0xE8CC4; src/field_data.o(.rodata);
         src/shipping_bin.o(.rodata);
         src/record_player.o(.rodata);

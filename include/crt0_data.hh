@@ -1,5 +1,5 @@
-#ifndef CRT0_HH
-#define CRT0_HH
+#ifndef CRT0_DATA_HH
+#define CRT0_DATA_HH
 
 #include "prelude.h"
 
@@ -14,4 +14,4 @@ extern char const gCppRuntimeBadAlloc_Crt0[];
 
 EXTERN_C_END
 
-#endif // CRT0_HH
+#endif // CRT0_DATA_HH

@@ -1,4 +1,4 @@
-#include "new_game.hh"
+#include "new_game_data.hh"
 
 char const gText_NewGameMenu_Diary[] =
     "日記";

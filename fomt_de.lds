@@ -638,7 +638,7 @@ SECTIONS
         src/sram_proxy_1.o(.rodata);
         src/intro_scene_startup.o(.rodata);
         . = 0xE860C; /* DE ROM 0x080E860C, new-game regional text and tables. */
-        src/new_game_menu_data.o(.rodata);
+        src/new_game_data.o(.rodata);
         . = 0xE8CD0; /* DE ROM 0x080E8CD0, following field data. */
         src/field_data.o(.rodata);
         . = 0xE95D8; src/shipping_bin.o(.rodata);

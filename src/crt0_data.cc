@@ -1,4 +1,4 @@
-#include "crt0.hh"
+#include "crt0_data.hh"
 
 EXTERN_C
 

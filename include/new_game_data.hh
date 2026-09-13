@@ -1,5 +1,5 @@
-#ifndef NEW_GAME_HH
-#define NEW_GAME_HH
+#ifndef NEW_GAME_DATA_HH
+#define NEW_GAME_DATA_HH
 
 #include "prelude.h"
 
@@ -116,4 +116,4 @@ extern char const gText_NewGameNameEntry_EndLatin[];
 extern char const gText_NewGameNameEntry_EndFullWidth[];
 #endif
 
-#endif // NEW_GAME_HH
+#endif // NEW_GAME_DATA_HH
