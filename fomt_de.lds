@@ -655,10 +655,8 @@ SECTIONS
         /* Entity UI labels and native UI data. */
         . = 0xF1368; src/entity_ui.o(.rodata);
         FILL(0x00);
-        /* Common UI regional data: labels, errors, menu table. */
-        . = 0xF1E5C; src/fixed_labels.o(.rodata);
-        src/ui_error.o(.rodata);
-        src/menu_data.o(.rodata);
+        /* Common UI labels, fallback text, menu data, and pointer table. */
+        . = 0xF1E5C; src/common_ui.o(.rodata);
         FILL(0x00);
         . = 0xF1F68; src/data_schedules.o(.rodata);
         /* Entity UI resource-selector data follows schedule data. */

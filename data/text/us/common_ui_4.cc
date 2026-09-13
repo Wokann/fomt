@@ -1,22 +1,22 @@
-#include "menu_data.hh"
-
-#if defined(FOMT_MENU_TEXT_LABELS)
+#include "common_ui.hh"
 
 char const gText_Menu_Diary[] =
-    "Tagebuch";
+    "Diary";
+
 char const gText_Menu_Rucksack[] =
     "Rucksack";
+
 char const gText_Menu_WorldMap[] =
-    "Weltkarte";
+    "World Map";
+
 char const gText_Menu_FarmMap[] =
-    "Farmkarte";
+    "Farm Map";
+
 char const gText_Menu_Earnings[] =
-    "Erträge";
+    "Earnings";
+
 char const gText_Menu_Memo[] =
     "Memo";
-char const gText_Menu_Tutorial[] =
-    "Anleitung";
 
-#else
-#error "Include this file through src/menu_data.cc with a text partition."
-#endif
+char const gText_Menu_Tutorial[] =
+    "Tutorial";

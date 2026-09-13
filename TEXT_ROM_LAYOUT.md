@@ -43,7 +43,8 @@
 | EU | `0x080F05D8`–`0x080F069F` | `src/help_menu.o(.rodata)` | `src/help_menu.cc`、`include/help_menu.hh` 与 `data/text/eu/help_menu.cc` | 精确 |
 | EU | `0x080F06A0`–`0x080F0ECB` | `src/animal_data.o(.rodata)` | `src/animal_data.cc`、`include/animal_data.hh`、`data/text/eu/animal_data.cc`、`data/text/eu/animal_data_1.cc`、`data/text/eu/animal_data_2.cc` | 精确 |
 | EU | `0x080F0ECC`–`0x080F19BF` | `src/entity_ui.o(.rodata)` | `src/entity_ui.cc`、`include/entity_ui.hh`、`data/text/eu/entity_ui.cc`–`entity_ui_9.cc` | 精确 |
-| EU | `0x080F19C0`–`0x080F1ACB` | `src/fixed_labels.o` 至 `src/menu_data.o` | 对应 `data/text/eu/*.cc` | 精确 |
+| EU | `0x080F19C0`–`0x080F1AC9` | `src/common_ui.o(.rodata)` | `src/common_ui.cc`、`include/common_ui.hh`、`data/text/eu/common_ui.cc`–`common_ui_6.cc` | 精确 |
+| EU | `0x080F1ACA`–`0x080F1ACB` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080F3404`–`0x080F4339` | `src/entity_ui_resource_selector.o(.rodata)` | `src/entity_ui_resource_selector.cc`、`include/entity_ui_resource_selector.hh`、`data/text/eu/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_3.cc` | 精确 |
 | EU | `0x080FB224`–`0x080FB86D` | `src/intro_scene_data.o(.rodata)` | `src/intro_scene_data.cc`、`include/intro_scene_data.hh`、`data/text/eu/intro_scene_data.cc`、`data/text/eu/intro_scene_data_1.cc` | 精确 |
 | EU | `0x080FECC8`–`0x080FEDD7` | `src/blacksmith_menu_data.o(.rodata)` | `src/blacksmith_menu_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
@@ -65,7 +66,8 @@
 | DE | `0x080F0A50`–`0x080F0B17` | `src/help_menu.o(.rodata)` | `src/help_menu.cc`、`include/help_menu.hh` 与 `data/text/de/help_menu.cc` | 精确 |
 | DE | `0x080F0B18`–`0x080F1367` | `src/animal_data.o(.rodata)` | `src/animal_data.cc`、`include/animal_data.hh`、`data/text/de/animal_data.cc`、`data/text/de/animal_data_1.cc`、`data/text/de/animal_data_2.cc` | 精确 |
 | DE | `0x080F1368`–`0x080F1E5B` | `src/entity_ui.o(.rodata)` | `src/entity_ui.cc`、`include/entity_ui.hh`、`data/text/de/entity_ui.cc`–`entity_ui_9.cc` | 精确 |
-| DE | `0x080F1E5C`–`0x080F1F67` | `src/fixed_labels.o` 至 `src/menu_data.o` | 对应 `data/text/de/*.cc` | 精确 |
+| DE | `0x080F1E5C`–`0x080F1F65` | `src/common_ui.o(.rodata)` | `src/common_ui.cc`、`include/common_ui.hh`、`data/text/de/common_ui.cc`–`common_ui_6.cc` | 精确 |
+| DE | `0x080F1F66`–`0x080F1F67` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080F38A0`–`0x080F47D5` | `src/entity_ui_resource_selector.o(.rodata)` | `src/entity_ui_resource_selector.cc`、`include/entity_ui_resource_selector.hh`、`data/text/de/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_3.cc` | 精确 |
 | DE | `0x080F47D8`–`0x080FA3E7` | `asm/data/data_080F1A80.o` 至相邻脚本引擎数据 | `asm/data/data_080F1A80.s`（Mary 管理的剧情脚本原始块）及 `src/script_engine.cc`、`data/text/common/script_engine.cc` | 精确 |
 | DE | `0x080FB77C`–`0x080FBE59` | `src/intro_scene_data.o(.rodata)` | `src/intro_scene_data.cc`、`include/intro_scene_data.hh`、`data/text/de/intro_scene_data.cc`、`data/text/de/intro_scene_data_1.cc` | 精确 |
@@ -114,13 +116,9 @@
 | `0x080EFEA3`–`0x080EFEA3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x080EFEA4`–`0x080F06DD` | `src/animal_data.o(.rodata)` | [嵌入文本 / 数据] | `src/animal_data.cc`<br>`include/animal_data.hh`<br>`data/text/jp/animal_data.cc`<br>`data/text/jp/animal_data_1.cc`<br>`data/text/jp/animal_data_2.cc` | 文本 `12` 项（动物纪念 `11`、动物数据回退 `1`；详见下方索引）<br>运行时字符串 `7` 项<br>`gUnk_080F06FD`, `gUnk_080F0704`, `gUnk_080F0718`, `gUnk_080F0730`, `gUnk_080F0748`, `gUnk_080F0770`, … +11<br>单一 Animal Data 模块，文本、普通数组与表按 ROM 物理顺序嵌入 |
 | `0x080F06DE`–`0x080F06DF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F06E0`–`0x080F11D1` | `src/entity_ui.o(.rodata)` | [嵌入文本 / 数据] | `src/entity_ui.cc`<br>`include/entity_ui.hh`<br>`data/text/jp/entity_ui.cc`–`entity_ui_9.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `18` 项<br>`gUnk_080F0E88`, `gUnk_080F0F78`, `gUnk_080F0FCC`, `gUnk_080F1020`, `gUnk_080F1170`, `gUnk_080F1178`, … +41<br>单一主 UI 模块；终点由后续 `src/fixed_labels.o(.rodata)` 起点自然限制 |
+| `0x080F06E0`–`0x080F11D1` | `src/entity_ui.o(.rodata)` | [嵌入文本 / 数据] | `src/entity_ui.cc`<br>`include/entity_ui.hh`<br>`data/text/jp/entity_ui.cc`–`entity_ui_9.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `18` 项<br>`gUnk_080F0E88`, `gUnk_080F0F78`, `gUnk_080F0FCC`, `gUnk_080F1020`, `gUnk_080F1170`, `gUnk_080F1178`, … +41<br>单一主 UI 模块；终点由后续 `src/common_ui.o(.rodata)` 起点自然限制 |
 | `0x080F11D2`–`0x080F11D3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F11D4`–`0x080F11F9` | `src/fixed_labels.o(.rodata)` | [嵌入文本 / 数据] | `data/text/common/fixed_labels.cc`<br>`data/text/jp/fixed_labels.cc` | 文本 `2` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gFixedLabelsPaddingBeforeUnnamedSetting`<br>公共 UI 本地化岛首段：固定标签、错误回退和菜单表共同受 LD 上界保护 |
-| `0x080F11FA`–`0x080F11FB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F11FC`–`0x080F1225` | `src/ui_error.o(.rodata)` | [嵌入文本 / 数据] | `data/text/common/ui_error.cc`<br>`data/text/jp/ui_error.cc` | 文本 `2` 项（详见下方索引）<br>运行时字符串 `2` 项<br>`gUnk_080F19AE` |
-| `0x080F1226`–`0x080F1227` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F1228`–`0x080F12D9` | `src/menu_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/common/menu.cc`<br>`data/text/jp/menu.cc` | 文本 `7` 项（详见下方索引）<br>运行时字符串 `3` 项<br>`gMenuEntryIds`, `gMenuEntryLabels`, `gUnk_080F1A66`<br>公共 UI 本地化岛末段：下方为固定的排程数据块 |
+| `0x080F11D4`–`0x080F12D9` | `src/common_ui.o(.rodata)` | [嵌入文本 / 数据] | `src/common_ui.cc`<br>`include/common_ui.hh`<br>`data/text/jp/common_ui.cc`–`common_ui_6.cc` | 文本 `11` 项（详见下方索引）<br>运行时字符串 `6` 项<br>`gFixedLabelsPaddingBeforeUnnamedSetting`、`gUnk_080F19AE`、`gMenuEntryIds`、`gMenuEntryLabels`、`gUnk_080F1A66`<br>所有原始内部对齐零字节均由同一对象中的相邻定义自然保留；下方起点约束此可本地化范围 |
 | `0x080F12DA`–`0x080F12DB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F12DC`–`0x080F2C11` | `src/data_schedules.o(.rodata)` | [数据] | `src/data_schedules.c/.cc` | 运行时字符串 `3` 项<br>`ScheduleInfo_Unk_080F1A80`, `Unk_080F1A80_Schedules`, `Unk_080F1A80_Schedule_1`, `Unk_080F1A80_Schedule_2`, `Unk_080F1A80_Schedule_3`, `Unk_080F1A80_Schedule_4`, … +271 |
 | `0x080F2C12`–`0x080F2C13` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1074,17 +1072,17 @@
 | `0x080EFF58` | `gText_AnimalMemorialFallbackNone` | `data/text/jp/animal_data.cc` | `src/animal_data.o(.rodata)` |
 | `0x080F0090` | `gText_AnimalDataFallbackNone` | `data/text/jp/animal_data_1.cc` | `src/animal_data.o(.rodata)` |
 | `0x080F06E0` | `gText_NotAvailable` | `data/text/jp/entity_ui.cc` | `src/entity_ui.o(.rodata)` |
-| `0x080F11D4` | `gText_Moneybags` | `data/text/jp/fixed_labels.cc` | `src/fixed_labels.o(.rodata)` |
-| `0x080F11E4` | `gText_UnnamedSetting` | `data/text/jp/fixed_labels.cc` | `src/fixed_labels.o(.rodata)` |
-| `0x080F11FC` | `gText_Fallback_Error` | `data/text/common/ui_error.cc` | `src/ui_error.o(.rodata)` |
-| `0x080F1204` | `gText_Fallback_None` | `data/text/jp/ui_error.cc` | `src/ui_error.o(.rodata)` |
-| `0x080F1244` | `gText_Menu_Diary` | `data/text/jp/menu.cc` | `src/menu_data.o(.rodata)` |
-| `0x080F124C` | `gText_Menu_Rucksack` | `data/text/jp/menu.cc` | `src/menu_data.o(.rodata)` |
-| `0x080F125C` | `gText_Menu_WorldMap` | `data/text/jp/menu.cc` | `src/menu_data.o(.rodata)` |
-| `0x080F1268` | `gText_Menu_FarmMap` | `data/text/jp/menu.cc` | `src/menu_data.o(.rodata)` |
-| `0x080F1274` | `gText_Menu_Earnings` | `data/text/jp/menu.cc` | `src/menu_data.o(.rodata)` |
-| `0x080F127C` | `gText_Menu_Memo` | `data/text/jp/menu.cc` | `src/menu_data.o(.rodata)` |
-| `0x080F1288` | `gText_Menu_Tutorial` | `data/text/jp/menu.cc` | `src/menu_data.o(.rodata)` |
+| `0x080F11D4` | `gText_Moneybags` | `data/text/jp/common_ui.cc` | `src/common_ui.o(.rodata)` |
+| `0x080F11E4` | `gText_UnnamedSetting` | `data/text/jp/common_ui_1.cc` | `src/common_ui.o(.rodata)` |
+| `0x080F11FC` | `gText_Fallback_Error` | `data/text/jp/common_ui_2.cc` | `src/common_ui.o(.rodata)` |
+| `0x080F1204` | `gText_Fallback_None` | `data/text/jp/common_ui_2.cc` | `src/common_ui.o(.rodata)` |
+| `0x080F1244` | `gText_Menu_Diary` | `data/text/jp/common_ui_4.cc` | `src/common_ui.o(.rodata)` |
+| `0x080F124C` | `gText_Menu_Rucksack` | `data/text/jp/common_ui_4.cc` | `src/common_ui.o(.rodata)` |
+| `0x080F125C` | `gText_Menu_WorldMap` | `data/text/jp/common_ui_4.cc` | `src/common_ui.o(.rodata)` |
+| `0x080F1268` | `gText_Menu_FarmMap` | `data/text/jp/common_ui_4.cc` | `src/common_ui.o(.rodata)` |
+| `0x080F1274` | `gText_Menu_Earnings` | `data/text/jp/common_ui_4.cc` | `src/common_ui.o(.rodata)` |
+| `0x080F127C` | `gText_Menu_Memo` | `data/text/jp/common_ui_4.cc` | `src/common_ui.o(.rodata)` |
+| `0x080F1288` | `gText_Menu_Tutorial` | `data/text/jp/common_ui_4.cc` | `src/common_ui.o(.rodata)` |
 | `0x080F9700` | `gText_AScriptEngine_InvalidStringId` | `data/text/common/script_engine.cc` | `data/text/common/script_engine.o(.rodata)` |
 | `0x080F9714` | `gText_ScriptEngineUi_Error` | `data/text/common/script_engine.cc` | `data/text/common/script_engine.o(.rodata)` |
 | `0x080F971C` | `gText_ScriptEngineUi_FallbackNone` | `data/text/common/script_engine.cc` | `data/text/common/script_engine.o(.rodata)` |
@@ -1971,13 +1969,9 @@
 | `0x080F0651`–`0x080F0653` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
 | `0x080F0654`–`0x080F0E7D` | `src/animal_data.o(.rodata)` | [嵌入文本 / 数据] | `src/animal_data.cc`<br>`include/animal_data.hh`<br>`data/text/us/animal_data.cc`<br>`data/text/us/animal_data_1.cc`<br>`data/text/us/animal_data_2.cc` | 文本 `12` 项（动物纪念 `11`、动物数据回退 `1`；详见下方索引）<br>运行时字符串 `7` 项<br>`gUnk_080F06FD`, `gUnk_080F0704`, `gUnk_080F0718`, `gUnk_080F0730`, `gUnk_080F0748`, `gUnk_080F0770`, … +11<br>单一 Animal Data 模块，文本、普通数组与表按 ROM 物理顺序嵌入 |
 | `0x080F0E7E`–`0x080F0E7F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F0E80`–`0x080F1971` | `src/entity_ui.o(.rodata)` | [嵌入文本 / 数据] | `src/entity_ui.cc`<br>`include/entity_ui.hh`<br>`data/text/us/entity_ui.cc`–`entity_ui_9.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `18` 项<br>`gUnk_080F0E88`, `gUnk_080F0F78`, `gUnk_080F0FCC`, `gUnk_080F1020`, `gUnk_080F1170`, `gUnk_080F1178`, … +41<br>单一主 UI 模块；终点由后续 `src/fixed_labels.o(.rodata)` 起点自然限制 |
+| `0x080F0E80`–`0x080F1971` | `src/entity_ui.o(.rodata)` | [嵌入文本 / 数据] | `src/entity_ui.cc`<br>`include/entity_ui.hh`<br>`data/text/us/entity_ui.cc`–`entity_ui_9.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `18` 项<br>`gUnk_080F0E88`, `gUnk_080F0F78`, `gUnk_080F0FCC`, `gUnk_080F1020`, `gUnk_080F1170`, `gUnk_080F1178`, … +41<br>单一主 UI 模块；终点由后续 `src/common_ui.o(.rodata)` 起点自然限制 |
 | `0x080F1972`–`0x080F1973` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F1974`–`0x080F199D` | `src/fixed_labels.o(.rodata)` | [嵌入文本 / 数据] | `data/text/common/fixed_labels.cc`<br>`data/text/us/fixed_labels.cc` | 文本 `2` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gFixedLabelsPaddingBeforeUnnamedSetting`<br>公共 UI 本地化岛首段：固定标签、错误回退和菜单表共同受 LD 上界保护 |
-| `0x080F199E`–`0x080F199F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F19A0`–`0x080F19C9` | `src/ui_error.o(.rodata)` | [嵌入文本 / 数据] | `data/text/common/ui_error.cc`<br>`data/text/us/ui_error.cc` | 文本 `2` 项（详见下方索引）<br>运行时字符串 `2` 项<br>`gUnk_080F19AE` |
-| `0x080F19CA`–`0x080F19CB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F19CC`–`0x080F1A7D` | `src/menu_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/common/menu.cc`<br>`data/text/us/menu.cc` | 文本 `7` 项（详见下方索引）<br>运行时字符串 `3` 项<br>`gMenuEntryIds`, `gMenuEntryLabels`, `gUnk_080F1A66`<br>公共 UI 本地化岛末段：下方为固定的排程数据块 |
+| `0x080F1974`–`0x080F1A7D` | `src/common_ui.o(.rodata)` | [嵌入文本 / 数据] | `src/common_ui.cc`<br>`include/common_ui.hh`<br>`data/text/us/common_ui.cc`–`common_ui_6.cc` | 文本 `11` 项（详见下方索引）<br>运行时字符串 `6` 项<br>`gFixedLabelsPaddingBeforeUnnamedSetting`、`gUnk_080F19AE`、`gMenuEntryIds`、`gMenuEntryLabels`、`gUnk_080F1A66`<br>所有原始内部对齐零字节均由同一对象中的相邻定义自然保留；下方起点约束此可本地化范围 |
 | `0x080F1A7E`–`0x080F1A7F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F1A80`–`0x080F33B5` | `src/data_schedules.o(.rodata)` | [数据] | `src/data_schedules.c/.cc` | 运行时字符串 `1` 项<br>`ScheduleInfo_Unk_080F1A80`, `Unk_080F1A80_Schedules`, `Unk_080F1A80_Schedule_1`, `Unk_080F1A80_Schedule_2`, `Unk_080F1A80_Schedule_3`, `Unk_080F1A80_Schedule_4`, … +271 |
 | `0x080F33B6`–`0x080F33B7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -2923,17 +2917,17 @@
 | `0x080F06F8` | `gText_AnimalMemorialFallbackNone` | `data/text/us/animal_data.cc` | `src/animal_data.o(.rodata)` |
 | `0x080F0830` | `gText_AnimalDataFallbackNone` | `data/text/us/animal_data_1.cc` | `src/animal_data.o(.rodata)` |
 | `0x080F0E80` | `gText_NotAvailable` | `data/text/us/entity_ui.cc` | `src/entity_ui.o(.rodata)` |
-| `0x080F1974` | `gText_Moneybags` | `data/text/us/fixed_labels.cc` | `src/fixed_labels.o(.rodata)` |
-| `0x080F1984` | `gText_UnnamedSetting` | `data/text/us/fixed_labels.cc` | `src/fixed_labels.o(.rodata)` |
-| `0x080F19A0` | `gText_Fallback_Error` | `data/text/common/ui_error.cc` | `src/ui_error.o(.rodata)` |
-| `0x080F19A8` | `gText_Fallback_None` | `data/text/us/ui_error.cc` | `src/ui_error.o(.rodata)` |
-| `0x080F19E8` | `gText_Menu_Diary` | `data/text/us/menu.cc` | `src/menu_data.o(.rodata)` |
-| `0x080F19F0` | `gText_Menu_Rucksack` | `data/text/us/menu.cc` | `src/menu_data.o(.rodata)` |
-| `0x080F19FC` | `gText_Menu_WorldMap` | `data/text/us/menu.cc` | `src/menu_data.o(.rodata)` |
-| `0x080F1A08` | `gText_Menu_FarmMap` | `data/text/us/menu.cc` | `src/menu_data.o(.rodata)` |
-| `0x080F1A14` | `gText_Menu_Earnings` | `data/text/us/menu.cc` | `src/menu_data.o(.rodata)` |
-| `0x080F1A20` | `gText_Menu_Memo` | `data/text/us/menu.cc` | `src/menu_data.o(.rodata)` |
-| `0x080F1A28` | `gText_Menu_Tutorial` | `data/text/us/menu.cc` | `src/menu_data.o(.rodata)` |
+| `0x080F1974` | `gText_Moneybags` | `data/text/us/common_ui.cc` | `src/common_ui.o(.rodata)` |
+| `0x080F1984` | `gText_UnnamedSetting` | `data/text/us/common_ui_1.cc` | `src/common_ui.o(.rodata)` |
+| `0x080F19A0` | `gText_Fallback_Error` | `data/text/us/common_ui_2.cc` | `src/common_ui.o(.rodata)` |
+| `0x080F19A8` | `gText_Fallback_None` | `data/text/us/common_ui_2.cc` | `src/common_ui.o(.rodata)` |
+| `0x080F19E8` | `gText_Menu_Diary` | `data/text/us/common_ui_4.cc` | `src/common_ui.o(.rodata)` |
+| `0x080F19F0` | `gText_Menu_Rucksack` | `data/text/us/common_ui_4.cc` | `src/common_ui.o(.rodata)` |
+| `0x080F19FC` | `gText_Menu_WorldMap` | `data/text/us/common_ui_4.cc` | `src/common_ui.o(.rodata)` |
+| `0x080F1A08` | `gText_Menu_FarmMap` | `data/text/us/common_ui_4.cc` | `src/common_ui.o(.rodata)` |
+| `0x080F1A14` | `gText_Menu_Earnings` | `data/text/us/common_ui_4.cc` | `src/common_ui.o(.rodata)` |
+| `0x080F1A20` | `gText_Menu_Memo` | `data/text/us/common_ui_4.cc` | `src/common_ui.o(.rodata)` |
+| `0x080F1A28` | `gText_Menu_Tutorial` | `data/text/us/common_ui_4.cc` | `src/common_ui.o(.rodata)` |
 | `0x080F9EA4` | `gText_AScriptEngine_InvalidStringId` | `data/text/common/script_engine.cc` | `data/text/common/script_engine.o(.rodata)` |
 | `0x080F9EB8` | `gText_ScriptEngineUi_Error` | `data/text/common/script_engine.cc` | `data/text/common/script_engine.o(.rodata)` |
 | `0x080F9EC0` | `gText_ScriptEngineUi_FallbackNone` | `data/text/common/script_engine.cc` | `data/text/common/script_engine.o(.rodata)` |

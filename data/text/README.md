@@ -2,10 +2,10 @@
 
 Regional text belongs under this directory by its owning data structure:
 
-    data/text/us/ and data/text/jp/
+    data/text/jp/, data/text/us/, data/text/eu/, and data/text/de/
         tool.cc, food.cc, article.cc
         game_state.cc, help_menu.cc, animal_data.cc
-        menu.cc, fixed_labels.cc, ui_error.cc
+        common_ui.cc through common_ui_6.cc
         new_game_menu.cc, new_game_status.cc, new_game_help.cc
         new_game_save.cc, new_game_identity.cc
         new_game_name_entry.cc, new_game_name_entry_ui.cc
@@ -17,8 +17,6 @@ Regional text belongs under this directory by its owning data structure:
 
     data/text/common/
         fallback.cc       item fallbacks compiled with src/item.cc
-        menu.cc           runtime strings compiled with src/menu_data.cc
-        ui_error.cc       fallback/runtime strings compiled with src/ui_error.cc
         script_engine.cc  non-script error strings compiled with src/script_engine.cc
 
 Keep categories separate even when their entries are linked beside one another:
@@ -60,10 +58,11 @@ zero-initializes any remaining field capacity.
 `common/fallback.cc` is included directly by `src/item.cc` because its small
 item fallback strings are byte-identical in both regions.
 
-`common/ui_error.cc` is included at its owning module's physical ROM
-position. `common/script_engine_*.cc` are linked as ordinary physical text
-fragments. The non-display fixed SRAM signature is kept with its owning
-`src/sram_proxy_1.c` save-verifier module.
+`<region>/common_ui.cc` through `common_ui_6.cc` are included at their owning
+module's physical ROM positions; each region owns even byte-identical runtime
+strings so the main module has no auxiliary text object. `common/script_engine_*.cc`
+are linked as ordinary physical text fragments. The non-display fixed SRAM
+signature is kept with its owning `src/sram_proxy_1.c` save-verifier module.
 
 Game scripts are deliberately outside this directory and remain independently
 managed by Mary.  The top-level build invokes Mary for the selected

@@ -728,11 +728,8 @@ SECTIONS
         /* Entity UI labels and native UI data. */
         . = 0xF06E0; src/entity_ui.o(.rodata);
         FILL(0x00);
-        /* Bounded Common UI localization island: labels, errors, menu table. */
-        . = 0xF11D4; src/fixed_labels.o(.rodata);
-        src/ui_error.o(.rodata);
-        src/menu_data.o(.rodata);
-        ASSERT(. <= 0xF12DC, "JP Common UI localization island overflow");
+        /* Common UI labels, fallback text, menu data, and pointer table. */
+        . = 0xF11D4; src/common_ui.o(.rodata);
         FILL(0x00);
         . = 0xF12DC; /* JP schedule table block. */
         src/data_schedules.o(.rodata);
