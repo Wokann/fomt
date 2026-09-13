@@ -251,7 +251,7 @@ SECTIONS
         . = 0x9C3BC; /* US ROM 0x0809C3BC, shared state initializer */
         src/code_actor_0809C3BC.o(.text);
         . = 0x9C3E0; /* US ROM 0x0809C3E0, shared state advancement */
-        src/code_actor_0809C3E0.o(.text);
+        src/actor_state.o(.text);
         . = 0x9C420; /* US ROM 0x0809C420, shared state reset */
         src/code_actor_0809C420.o(.text);
         . = 0x9C444; /* US ROM 0x0809C444, shared conditional state advance */
@@ -735,8 +735,7 @@ SECTIONS
         . = 0x1010E8; src/cooking_recipe_inventory_data.o(.rodata);
         src/animal.o(.rodata);
         . = 0x103660; src/livestock_day_update_data.o(.rodata);
-        . = 0x1036C0; src/code_actor_0809C3E0.o(.rodata.actor_state_max_values);
-        . = 0x1036C8; src/code_actor_0809C3E0.o(.rodata);
+        . = 0x1036C0; src/actor_state.o(.rodata);
         /* Bounded fishing-record localization island: names, lookup, trailer. */
         . = 0x103788; src/fishing_results_data.o(.rodata);
         ASSERT(. <= 0x103B10, "US fishing-record localization island overflow");

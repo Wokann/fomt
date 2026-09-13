@@ -12,6 +12,7 @@ struct ActorStateSlots
 };
 
 extern u8 const gActorStateMaxValues[];
+extern char const gCppRuntimeBadAlloc_ActorDataSelectionPrefix[];
 
 // func_0809C510 selects one of the two unknown data pointers in each row and
 // copies unk_08 and unk_09 into its three-word output.  The pointed-to data
@@ -26,6 +27,7 @@ struct ActorDataSelectionEntry
 };
 
 extern ActorDataSelectionEntry const gActorDataSelectionEntries[];
+extern char const gCppRuntimeBadAlloc_ActorDataSelectionTrailer[];
 
 // Known bit positions in an otherwise not-yet-modeled actor-state object.
 struct ActorStateFlagBits

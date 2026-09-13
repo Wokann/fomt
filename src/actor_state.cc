@@ -3,12 +3,11 @@
 #include "actor_state.hh"
 #include "field_render_rect_descriptors.hh"
 
-u8 const gActorStateMaxValues[] SECTION(".rodata.actor_state_max_values") = {
+u8 const gActorStateMaxValues[] = {
     10, 10, 255, 10, 10, 255,
 };
 
-extern char const gCppRuntimeBadAlloc_ActorDataSelectionPrefix[] =
-    "bad_alloc";
+#include FOMT_TEXT_INCLUDE(actor_state.cc)
 
 ActorDataSelectionEntry const gActorDataSelectionEntries[] = {
     { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 53), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 54), 0x15, 0x0C, 0x0000 },
@@ -27,8 +26,7 @@ ActorDataSelectionEntry const gActorDataSelectionEntries[] = {
     { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 77), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 78), 0x69, 0x3E, 0x0000 },
 };
 
-extern char const gCppRuntimeBadAlloc_ActorDataSelectionTrailer[] =
-    "bad_alloc";
+#include FOMT_TEXT_INCLUDE(actor_state_1.cc)
 
 EC u32 func_0809C3E0(ActorStateSlots & self, u32 index)
 {

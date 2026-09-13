@@ -260,7 +260,7 @@ SECTIONS
         . = 0x9C31C; /* DE ROM 0x0809C31C, shared state initializer */
         src/code_actor_0809C3BC.o(.text);
         . = 0x9C340; /* DE ROM 0x0809C340, shared state advancement */
-        src/code_actor_0809C3E0.o(.text);
+        src/actor_state.o(.text);
         . = 0x9C380; /* DE ROM 0x0809C380, shared state reset */
         src/code_actor_0809C420.o(.text);
         . = 0x9C3A4; /* DE ROM 0x0809C3A4, shared conditional state advance */
@@ -745,8 +745,7 @@ SECTIONS
          src/cooking_recipe_inventory_data.o(.rodata);
         src/animal.o(.rodata);
          src/livestock_day_update_data.o(.rodata);
-         src/code_actor_0809C3E0.o(.rodata.actor_state_max_values);
-         src/code_actor_0809C3E0.o(.rodata);
+         src/actor_state.o(.rodata);
         /* Fishing-record regional data: names, lookup, trailer. */
          src/fishing_results_data.o(.rodata);
         FILL(0x00);
