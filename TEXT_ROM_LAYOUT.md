@@ -34,6 +34,7 @@
 | EU | `0x080E86CD`–`0x080E86CF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080E86D0`–`0x080E86F1` | `src/intro_scene_startup.o(.rodata)` | `src/intro_scene_startup.cc`、`include/intro_scene_startup.hh`、`data/text/eu/intro_scene_startup.cc` | 精确 |
 | EU | `0x080E86F2`–`0x080E86F3` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
+| EU | `0x080E86F4`–`0x080E8D0F` | `src/new_game_menu_data.o(.rodata)` | `src/new_game_menu_data.cc`、`include/new_game.hh`、`data/text/eu/new_game.cc` | 精确 |
 | EU | `0x080E9660`–`0x080F0539` | `src/item.o(.rodata)` | `src/item.cc` 与 `data/text/eu/item_*.cc` | 精确 |
 | EU | `0x080F053A`–`0x080F05D7` | `src/game_state.o(.rodata)` | `src/game_state.cc` 与 `data/text/eu/game_state.cc` | 精确 |
 | EU | `0x080F05D8`–`0x080F069F` | `src/help_menu.o(.rodata)` | `src/help_menu.cc` 与 `data/text/eu/help_menu.cc` | 精确 |
@@ -51,6 +52,7 @@
 | DE | `0x080E85E5`–`0x080E85E7` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080E85E8`–`0x080E8609` | `src/intro_scene_startup.o(.rodata)` | `src/intro_scene_startup.cc`、`include/intro_scene_startup.hh`、`data/text/de/intro_scene_startup.cc` | 精确 |
 | DE | `0x080E860A`–`0x080E860B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
+| DE | `0x080E860C`–`0x080E8CCF` | `src/new_game_menu_data.o(.rodata)` | `src/new_game_menu_data.cc`、`include/new_game.hh`、`data/text/de/new_game.cc` | 精确 |
 | DE | `0x080E9620`–`0x080F09B1` | `src/item.o(.rodata)` | `src/item.cc` 与 `data/text/de/item_*.cc` | 精确 |
 | DE | `0x080F09B2`–`0x080F0A4F` | `src/game_state.o(.rodata)` | `src/game_state.cc` 与 `data/text/de/game_state.cc` | 精确 |
 | DE | `0x080F0A50`–`0x080F0B17` | `src/help_menu.o(.rodata)` | `src/help_menu.cc` 与 `data/text/de/help_menu.cc` | 精确 |
@@ -90,7 +92,7 @@
 | `0x080E7AA2`–`0x080E7AA3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080E7AA4`–`0x080E7AC5` | `src/intro_scene_startup.o(.rodata)` | [嵌入文本 / 数据] | `src/intro_scene_startup.cc`<br>`include/intro_scene_startup.hh`<br>`data/text/jp/intro_scene_startup.cc` | `gIntroSceneStartupUnpackSources`<br>运行时字符串 `2` 项 |
 | `0x080E7AC6`–`0x080E7AC7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080E7AC8`–`0x080E8161` | `src/new_game_menu_data.o(.rodata)` | [嵌入文本 / 数据] | `src/new_game_menu_data.cc`<br>`data/text/jp/new_game.cc` | 文本 `51` 项（菜单 `12`、状态/帮助/保存/身份/姓名输入 `39`；详见下方索引）<br>`gNewGameMenuLabels`<br>运行时字符串 `14` 项<br>`gNewGameNameEntryCharacterRows` |
+| `0x080E7AC8`–`0x080E8161` | `src/new_game_menu_data.o(.rodata)` | [嵌入文本 / 数据] | `src/new_game_menu_data.cc`<br>`include/new_game.hh`<br>`data/text/jp/new_game.cc` | 文本 `51` 项（菜单 `12`、状态/帮助/保存/身份/姓名输入 `39`；详见下方索引）<br>`gNewGameMenuLabels`（JP 直接重复 `Data1` / `Data2` 指针）<br>运行时字符串 `14` 项<br>`gNewGameNameEntryCharacterRows` |
 | `0x080E8162`–`0x080E8163` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080E8164`–`0x080E81A3` | `src/field_data.o(.rodata.field_plot_weather_ordinary)` | [数据] | `src/field_data.c/.cc` | `gFieldPlotOrdinaryWeatherRules` |
 | `0x080E81A4`–`0x080E81AB` | `src/field_data.o(.rodata.field_plot_weather_special_3)` | [数据] | `src/field_data.c/.cc` | `gFieldPlotSpecialWeatherRule3` |
@@ -1951,7 +1953,7 @@
 | `0x080E8681`–`0x080E8683` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
 | `0x080E8684`–`0x080E86A5` | `src/intro_scene_startup.o(.rodata)` | [嵌入文本 / 数据] | `src/intro_scene_startup.cc`<br>`include/intro_scene_startup.hh`<br>`data/text/us/intro_scene_startup.cc` | `gIntroSceneStartupUnpackSources`<br>运行时字符串 `2` 项 |
 | `0x080E86A6`–`0x080E86A7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080E86A8`–`0x080E8CC1` | `src/new_game_menu_data.o(.rodata)` | [嵌入文本 / 数据] | `src/new_game_menu_data.cc`<br>`data/text/us/new_game.cc` | 文本 `48` 项（菜单 `14`、状态/帮助/保存/身份/姓名输入 `34`；详见下方索引）<br>`gNewGameMenuLabels`<br>运行时字符串 `14` 项<br>`gNewGameNameEntryCharacterRows` |
+| `0x080E86A8`–`0x080E8CC1` | `src/new_game_menu_data.o(.rodata)` | [嵌入文本 / 数据] | `src/new_game_menu_data.cc`<br>`include/new_game.hh`<br>`data/text/us/new_game.cc` | 文本 `48` 项（菜单 `14`、状态/帮助/保存/身份/姓名输入 `34`；详见下方索引）<br>`gNewGameMenuLabels`<br>运行时字符串 `14` 项<br>`gNewGameNameEntryCharacterRows` |
 | `0x080E8CC2`–`0x080E8CC3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080E8CC4`–`0x080E8D03` | `src/field_data.o(.rodata.field_plot_weather_ordinary)` | [数据] | `src/field_data.c/.cc` | `gFieldPlotOrdinaryWeatherRules` |
 | `0x080E8D04`–`0x080E8D0B` | `src/field_data.o(.rodata.field_plot_weather_special_3)` | [数据] | `src/field_data.c/.cc` | `gFieldPlotSpecialWeatherRule3` |

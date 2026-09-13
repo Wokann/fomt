@@ -36,8 +36,8 @@ char const gText_NewGameMenu_FaceDisplay[] ALIGN(4) =
 char const gText_NewGameMenu_NameDisplay[] ALIGN(4) =
     "名前の表示";
 
-// Native menu order: the JP control-option names are source-level aliases for
-// Data1 and Data2, so this table keeps the original repeated pointers.
+// Native menu order: JP reuses its two data-label pointers for the two
+// control-choice positions.
 char const * const gNewGameMenuLabels[18] = {
     gText_NewGameMenu_Diary,
     gText_NewGameMenu_Save,
@@ -46,8 +46,8 @@ char const * const gNewGameMenuLabels[18] = {
     gText_NewGameMenu_Data1,
     gText_NewGameMenu_Data2,
     gText_NewGameMenu_ControlSettings,
-    gText_NewGameMenu_ControlOption1,
-    gText_NewGameMenu_ControlOption2,
+    gText_NewGameMenu_Data1,
+    gText_NewGameMenu_Data2,
     gText_NewGameMenu_ClockDisplay,
     gText_NewGameMenu_Yes,
     gText_NewGameMenu_No,
