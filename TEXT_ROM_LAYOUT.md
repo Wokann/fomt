@@ -112,6 +112,7 @@
 | EU | `0x08107134`–`0x081073A7` | `src/field_render_farm_house_data.o(.rodata)` | `src/field_render_farm_house_data.cc`、`include/field_render_farm_house_data.hh` | `gFarmHouseTilePatchData`、`gFarmHouseVisualDescriptors`、`gFarmHouseTilePatchAnimations`；按同一对象内的 ROM 顺序排列 |
 | EU | `0x081073A8`–`0x0810748E` | `src/field_render_resource_data.o(.rodata)` | `src/field_render_resource_data.cc`、`include/field_render_resource_data.hh`、`data/text/common/field_render_resource_data.cc`、`data/text/common/field_render_resource_data_1.cc` | 原始资源标签、3 条运行时文本、并行表、参数表和三组三字节样式表；未标号零字节归入相邻原始对象，不导出伪填充数组 |
 | EU | `0x08107490`–`0x081074A7` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
+| EU | `0x081074A8`–`0x08107607` | `src/field_render_runtime_data.o(.rodata)` | `src/field_render_runtime_data.cc`、`include/field_render_runtime_data.hh`、`data/text/eu/field_render_runtime_data.cc`、`data/text/common/field_render_runtime_data_1.cc`、`data/text/eu/field_render_runtime_data_2.cc` | 季节记录范围、查找/排序/布局表与三段按物理断点嵌入的文本；全部外部引用均为符号重定位 |
 | EU | `0x081082E4`–`0x08117843` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 EU 指南源文件；主目录只收录 `PAGE_1`，`tool_and_item_controls_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 | DE | `0x080E8574`–`0x080E858D` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0.hh`、`data/text/de/crt0_data.cc` | 精确 |
 | DE | `0x080E858E`–`0x080E858F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -195,6 +196,7 @@
 | DE | `0x08107B00`–`0x08107D73` | `src/field_render_farm_house_data.o(.rodata)` | `src/field_render_farm_house_data.cc`、`include/field_render_farm_house_data.hh` | `gFarmHouseTilePatchData`、`gFarmHouseVisualDescriptors`、`gFarmHouseTilePatchAnimations`；按同一对象内的 ROM 顺序排列 |
 | DE | `0x08107D74`–`0x08107E5A` | `src/field_render_resource_data.o(.rodata)` | `src/field_render_resource_data.cc`、`include/field_render_resource_data.hh`、`data/text/common/field_render_resource_data.cc`、`data/text/common/field_render_resource_data_1.cc` | 原始资源标签、3 条运行时文本、并行表、参数表和三组三字节样式表；未标号零字节归入相邻原始对象，不导出伪填充数组 |
 | DE | `0x08107E5C`–`0x08107E73` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
+| DE | `0x08107E74`–`0x08107FD3` | `src/field_render_runtime_data.o(.rodata)` | `src/field_render_runtime_data.cc`、`include/field_render_runtime_data.hh`、`data/text/de/field_render_runtime_data.cc`、`data/text/common/field_render_runtime_data_1.cc`、`data/text/de/field_render_runtime_data_2.cc` | 季节记录范围、查找/排序/布局表与三段按物理断点嵌入的文本；全部外部引用均为符号重定位 |
 | DE | `0x08107FD4`–`0x08108DB3` | `src/harvest_sprite.o(.rodata)` | `src/harvest_sprite.cc` 与 `data/text/de/harvest_sprite_*.cc` | 精确 |
 | DE | `0x08108DB4`–`0x081197FF` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 DE 指南源文件；主目录只收录 `PAGE_1`，`using_tools_2` 与 `newborn_congratulations_cliff_and_ann_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 
@@ -349,18 +351,18 @@
 | `0x08106F76`–`0x08106F7E` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFarmHouseStyleNibbleLookupData` |
 | `0x08106F7F`–`0x08106F7F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x08106F80`–`0x08106F97` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | [数据] | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
-| `0x08106F98`–`0x08106F9F` | `src/field_data.o(.rodata.field_render_seasonal_record_ranges)` | [数据] | `src/field_data.c/.cc` | `gFieldRenderSeasonalRecordRanges` |
-| `0x08106FA0`–`0x08106FE7` | `src/field_data.o(.rodata.field_render_lookup_values)` | [数据] | `src/field_data.c/.cc` | `gUnk_FieldRenderLookupValues` |
-| `0x08106FE8`–`0x0810703D` | `src/field_data.o(.rodata.field_render_runtime_strings)` | [嵌入文本] | `src/field_data.c/.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `7` 项 |
-| `0x0810703E`–`0x08107056` | `src/field_data.o(.rodata.field_render_sorted_values)` | [数据] | `src/field_data.c/.cc` | `gUnk_FieldRenderSortedValues` |
+| `0x08106F98`–`0x08106F9F` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gFieldRenderSeasonalRecordRanges` |
+| `0x08106FA0`–`0x08106FE7` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_FieldRenderLookupValues` |
+| `0x08106FE8`–`0x0810703D` | `src/field_render_runtime_data.o(.rodata)` | [嵌入文本] | `src/field_render_runtime_data.cc`<br>`data/text/jp/field_render_runtime_data.cc` | `gText_FieldRenderFallbackNone`、运行时字符串 `7` 项 |
+| `0x0810703E`–`0x08107056` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_FieldRenderSortedValues` |
 | `0x08107057`–`0x08107057` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x08107058`–`0x0810706D` | `src/field_data.o(.rodata.field_render_sorted_values_runtime_strings)` | [数据] | `src/field_data.c/.cc` | 运行时字符串 `2` 项 |
+| `0x08107058`–`0x0810706D` | `src/field_render_runtime_data.o(.rodata)` | [嵌入文本] | `src/field_render_runtime_data.cc`<br>`data/text/common/field_render_runtime_data_1.cc` | 运行时字符串 `2` 项 |
 | `0x0810706E`–`0x0810706F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08107070`–`0x081070AB` | `src/field_data.o(.rodata.unk_080AE894_values)` | [数据] | `src/field_data.c/.cc` | `gUnk_080AE894InitialValues`, `gUnk_080AE894LayoutValues` |
-| `0x081070AC`–`0x081070AE` | `src/field_data.o(.rodata.unk_080B0708_default_glyph)` | [嵌入文本] | `src/field_data.c/.cc` | 文本 `1` 项（详见下方索引） |
+| `0x08107070`–`0x081070AB` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_080AE894InitialValues`, `gUnk_080AE894LayoutValues` |
+| `0x081070AC`–`0x081070AE` | `src/field_render_runtime_data.o(.rodata)` | [嵌入文本] | `src/field_render_runtime_data.cc`<br>`data/text/jp/field_render_runtime_data_2.cc` | `gText_080B0708DefaultGlyph` |
 | `0x081070AF`–`0x081070AF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x081070B0`–`0x081070CB` | `src/field_data.o(.rodata.unk_080B09B0_index_values)` | [数据] | `src/field_data.c/.cc` | `gUnk_080B09B0IndexValues` |
-| `0x081070CC`–`0x081070F3` | `src/field_data.o(.rodata.unk_080B0BB8_values)` | [数据] | `src/field_data.c/.cc` | `gUnk_080B0BB8FirstValues`, `gUnk_080B0BB8SecondValues` |
+| `0x081070B0`–`0x081070CB` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_080B09B0IndexValues` |
+| `0x081070CC`–`0x081070F3` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_080B0BB8FirstValues`, `gUnk_080B0BB8SecondValues` |
 | `0x081070F4`–`0x0810737A` | `src/harvest_sprite.o(.rodata)` | [文本对象] | `data/text/jp/harvest_sprite_1.cc` | 文本 `14` 项（详见下方索引） |
 | `0x0810737B`–`0x0810737F` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc` | `gUnk_HarvestSpriteMiniGameAnimalHusbandryMatchValues` |
 | `0x08107380`–`0x081073AB` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc` | `gUnk_HarvestSpriteMiniGameAnimalHusbandrySelectionValues`, `gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues0`, `gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues1`, `gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues2`, `gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues3` |
@@ -1934,8 +1936,8 @@
 | `0x08104978` | `gText_Possessive_Child` | `data/text/jp/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
 | `0x08104980` | `gText_Possessive_Player` | `data/text/jp/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
 | `0x08104994` | `gText_RandomItem_NotAvailable` | `data/text/jp/random_item_unavailable.cc` | `src/random_item_unavailable.o(.rodata)` |
-| `0x0810702C` | `gText_FieldRenderFallbackNone` | 未在 `data/text` 源中直接命名；请以宿主对象核对 | `src/field_data.o(.rodata.field_render_runtime_strings)` |
-| `0x081070AC` | `gText_080B0708DefaultGlyph` | 未在 `data/text` 源中直接命名；请以宿主对象核对 | `src/field_data.o(.rodata.unk_080B0708_default_glyph)` |
+| `0x0810702C` | `gText_FieldRenderFallbackNone` | `data/text/jp/field_render_runtime_data.cc` | `src/field_render_runtime_data.o(.rodata)` |
+| `0x081070AC` | `gText_080B0708DefaultGlyph` | `data/text/jp/field_render_runtime_data_2.cc` | `src/field_render_runtime_data.o(.rodata)` |
 | `0x081070F4` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_ExplanationQuestion` | `data/text/jp/harvest_sprite_1.cc` | `src/harvest_sprite.o(.rodata)` |
 | `0x08107108` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_Yes` | `data/text/jp/harvest_sprite_1.cc` | `src/harvest_sprite.o(.rodata)` |
 | `0x08107110` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_No` | `data/text/jp/harvest_sprite_1.cc` | `src/harvest_sprite.o(.rodata)` |
@@ -2178,18 +2180,18 @@
 | `0x0810742E`–`0x08107436` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFarmHouseStyleNibbleLookupData` |
 | `0x08107437`–`0x08107437` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x08107438`–`0x0810744F` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | [数据] | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
-| `0x08107450`–`0x08107457` | `src/field_data.o(.rodata.field_render_seasonal_record_ranges)` | [数据] | `src/field_data.c/.cc` | `gFieldRenderSeasonalRecordRanges` |
-| `0x08107458`–`0x0810749F` | `src/field_data.o(.rodata.field_render_lookup_values)` | [数据] | `src/field_data.c/.cc` | `gUnk_FieldRenderLookupValues` |
-| `0x081074A0`–`0x081074F5` | `src/field_data.o(.rodata.field_render_runtime_strings)` | [嵌入文本] | `src/field_data.c/.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `7` 项 |
-| `0x081074F6`–`0x08107510` | `src/field_data.o(.rodata.field_render_sorted_values)` | [数据] | `src/field_data.c/.cc` | `gUnk_FieldRenderSortedValues` |
+| `0x08107450`–`0x08107457` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gFieldRenderSeasonalRecordRanges` |
+| `0x08107458`–`0x0810749F` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_FieldRenderLookupValues` |
+| `0x081074A0`–`0x081074F5` | `src/field_render_runtime_data.o(.rodata)` | [嵌入文本] | `src/field_render_runtime_data.cc`<br>`data/text/us/field_render_runtime_data.cc` | `gText_FieldRenderFallbackNone`、运行时字符串 `7` 项 |
+| `0x081074F6`–`0x08107510` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_FieldRenderSortedValues` |
 | `0x08107511`–`0x08107513` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
-| `0x08107514`–`0x08107529` | `src/field_data.o(.rodata.field_render_sorted_values_runtime_strings)` | [数据] | `src/field_data.c/.cc` | 运行时字符串 `2` 项 |
+| `0x08107514`–`0x08107529` | `src/field_render_runtime_data.o(.rodata)` | [嵌入文本] | `src/field_render_runtime_data.cc`<br>`data/text/common/field_render_runtime_data_1.cc` | 运行时字符串 `2` 项 |
 | `0x0810752A`–`0x0810752B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x0810752C`–`0x08107567` | `src/field_data.o(.rodata.unk_080AE894_values)` | [数据] | `src/field_data.c/.cc` | `gUnk_080AE894InitialValues`, `gUnk_080AE894LayoutValues` |
-| `0x08107568`–`0x08107569` | `src/field_data.o(.rodata.unk_080B0708_default_glyph)` | [嵌入文本] | `src/field_data.c/.cc` | 文本 `1` 项（详见下方索引） |
+| `0x0810752C`–`0x08107567` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_080AE894InitialValues`, `gUnk_080AE894LayoutValues` |
+| `0x08107568`–`0x08107569` | `src/field_render_runtime_data.o(.rodata)` | [嵌入文本] | `src/field_render_runtime_data.cc`<br>`data/text/us/field_render_runtime_data_2.cc` | `gText_080B0708DefaultGlyph` |
 | `0x0810756A`–`0x0810756B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x0810756C`–`0x08107587` | `src/field_data.o(.rodata.unk_080B09B0_index_values)` | [数据] | `src/field_data.c/.cc` | `gUnk_080B09B0IndexValues` |
-| `0x08107588`–`0x081075AF` | `src/field_data.o(.rodata.unk_080B0BB8_values)` | [数据] | `src/field_data.c/.cc` | `gUnk_080B0BB8FirstValues`, `gUnk_080B0BB8SecondValues` |
+| `0x0810756C`–`0x08107587` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_080B09B0IndexValues` |
+| `0x08107588`–`0x081075AF` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_080B0BB8FirstValues`, `gUnk_080B0BB8SecondValues` |
 | `0x081075B0`–`0x0810787B` | `src/harvest_sprite.o(.rodata)` | [文本对象] | `data/text/us/harvest_sprite_1.cc` | 文本 `15` 项（详见下方索引） |
 | `0x0810787C`–`0x08107880` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc` | `gUnk_HarvestSpriteMiniGameAnimalHusbandryMatchValues` |
 | `0x08107881`–`0x08107881` | `src/harvest_sprite.o(.rodata)` | [对象内填充] | `src/harvest_sprite.cc` | 对象内对齐填充字节 `00`，1 字节 |
@@ -3754,8 +3756,8 @@
 | `0x08104E30` | `gText_Possessive_Child` | `data/text/us/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
 | `0x08104E38` | `gText_Possessive_Player` | `data/text/us/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
 | `0x08104E4C` | `gText_RandomItem_NotAvailable` | `data/text/us/random_item_unavailable.cc` | `src/random_item_unavailable.o(.rodata)` |
-| `0x081074E4` | `gText_FieldRenderFallbackNone` | 未在 `data/text` 源中直接命名；请以宿主对象核对 | `src/field_data.o(.rodata.field_render_runtime_strings)` |
-| `0x08107568` | `gText_080B0708DefaultGlyph` | 未在 `data/text` 源中直接命名；请以宿主对象核对 | `src/field_data.o(.rodata.unk_080B0708_default_glyph)` |
+| `0x081074E4` | `gText_FieldRenderFallbackNone` | `data/text/us/field_render_runtime_data.cc` | `src/field_render_runtime_data.o(.rodata)` |
+| `0x08107568` | `gText_080B0708DefaultGlyph` | `data/text/us/field_render_runtime_data_2.cc` | `src/field_render_runtime_data.o(.rodata)` |
 | `0x081075B0` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_ExplanationQuestion` | `data/text/us/harvest_sprite_1.cc` | `src/harvest_sprite.o(.rodata)` |
 | `0x081075CC` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_Yes` | `data/text/us/harvest_sprite_1.cc` | `src/harvest_sprite.o(.rodata)` |
 | `0x081075D0` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_No` | `data/text/us/harvest_sprite_1.cc` | `src/harvest_sprite.o(.rodata)` |

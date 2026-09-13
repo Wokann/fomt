@@ -32,29 +32,7 @@ u16 const gUnk_FieldRenderLookupValues[18][2] = {
         { 0x01C4, 0x01C5 },
     };
 
-// These are distinct compiler-runtime objects in the original layout.  Their
-// ordinal names describe physical order only; no owning native C++ object has
-// been recovered yet.
-char const gCppRuntimeBadAlloc_FieldRenderRuntime00[] =
-        "bad_alloc";
-char const gCppRuntimeBadAlloc_FieldRenderRuntime01[] =
-        "bad_alloc";
-char const gCppRuntimeBadAlloc_FieldRenderRuntime02[] =
-        "bad_alloc";
-char const gCppRuntimeBadAlloc_FieldRenderRuntime03[] =
-        "bad_alloc";
-char const gCppRuntimeBadAlloc_FieldRenderRuntime04[] =
-        "bad_alloc";
-char const gCppRuntimeError_FieldRenderRuntime[] =
-        "Error";
-char const gText_FieldRenderFallbackNone[] =
-#if defined(REGION_JP)
-        "なし";
-#else
-        "N/A ";
-#endif
-char const gCppRuntimeBadAlloc_FieldRenderRuntime05[] =
-        "bad_alloc";
+#include FOMT_TEXT_INCLUDE(field_render_runtime_data.cc)
 
 // func_080ADBB4 uses this as a sorted lower-bound range.  Its key is derived
 // from a packed native field value; the values' gameplay role is not decoded
@@ -71,10 +49,7 @@ u8 const gUnk_FieldRenderSortedValues[] = {
 #endif
     };
 
-char const gCppRuntimeBadAlloc_FieldRenderSortedValuesFirst[] =
-        "bad_alloc";
-char const gCppRuntimeBadAlloc_FieldRenderSortedValuesSecond[] =
-        "bad_alloc";
+#include "data/text/common/field_render_runtime_data_1.cc"
 
 // These value groups are copied directly by still-native callers.  Their
 // high-level gameplay roles remain unknown, so the names identify only the
@@ -87,15 +62,7 @@ u32 const gUnk_080AE894LayoutValues[10] = {
         0x5E, 0x90, 0x5E, 0xA8, 0x5E,
     };
 
-// func_080B0708 copies exactly two bytes from this object.  The selected
-// region stores its original single glyph: ASCII zero in US and full-width
-// zero in JP.
-char const gText_080B0708DefaultGlyph[] =
-#if defined(REGION_JP)
-        "０";
-#else
-        "0";
-#endif
+#include FOMT_TEXT_INCLUDE(field_render_runtime_data_2.cc)
 
 u32 const gUnk_080B09B0IndexValues[7] = {
         4, 0, 1, 6, 3, 2, 5,
