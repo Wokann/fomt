@@ -1,4 +1,4 @@
-#include "new_game_preset.hh"
+#include "new_game_name_entry_ui_data.hh"
 
 // The JP name-entry screen indexes this one-indexed table with index × 13.
 // Keeping the rows fixed-width preserves the original full-width padding and
@@ -43,3 +43,6 @@ char const gText_NameEntry_PresetAnimalNames
     "リヴァイアン",
     "ロケッツ　　",
 };
+
+u16 const gNewGameNameEntryUiCharacterCodes[20] =
+    FOMT_GLYPH_SEQUENCE("０１２３４５６７８９．ｍ位");

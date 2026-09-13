@@ -663,8 +663,7 @@ SECTIONS
         . = ALIGN(4);
         src/ui_state.o(.rodata);
         /* New Game preset regional data: names and UI glyphs. */
-        . = 0xF9FC8; data/text/new_game_preset.o(.rodata);
-        . = 0xFA17A; src/new_game_name_entry_ui_data.o(.rodata);
+        . = 0xF9FC8; src/new_game_name_entry_ui_data.o(.rodata);
         FILL(0x00);
         . = 0xFA1A4; data/text/frisbee_scoreboard.o(.rodata);
         . = 0xFA1C0; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_score_table);

@@ -1,4 +1,4 @@
-#include "new_game_preset.hh"
+#include "new_game_name_entry_ui_data.hh"
 
 // The US animal-name selection is a one-indexed, fixed-stride list. Each
 // string remains in its original 14-byte row so the native index × 14 lookup
@@ -43,3 +43,6 @@ char const gText_NameEntry_PresetAnimalNames
     "Betty",
     "Gertrude　",
 };
+
+u16 const gNewGameNameEntryUiCharacterCodes[21] =
+    FOMT_GLYPH_SEQUENCE("0123456789.m#");
