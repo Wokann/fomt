@@ -1,3 +1,19 @@
+// Default display text for invalid Item data.
+
+static char const gBrokenToolName[] =
+    "Broken Tool";
+
+static char const gNoExplanation[] =
+    "No Explanation";
+
+static char const gBrokenFoodName[] =
+    "Broken Food";
+
+static char const gBrokenArticleName[] =
+    "Broken Article";
+
+static char const gBrokenShipmentName[] =
+    "Broken Shipment";
 #include "item.hh"
 
 // US tool text. Keep entry order and four-byte alignment to preserve ROM layout.

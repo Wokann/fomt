@@ -1,618 +1,664 @@
+// Default display text for invalid Item data.
+
+static char const gBrokenToolName[] =
+    "Broken Tool";
+
+static char const gNoExplanation[] =
+    "No Explanation";
+
+static char const gBrokenFoodName[] =
+    "Broken Food";
+
+static char const gBrokenArticleName[] =
+    "Broken Article";
+
+static char const gBrokenShipmentName[] =
+    "Broken Shipment";
 #include "item.hh"
 
-// German tool text. Keep declaration order synchronized with its catalog.
+// US tool text. Keep entry order and four-byte alignment to preserve ROM layout.
 
 char const gText_Item_Tool_IronSickle_Name[] =
-    "Eisensichel";
+    "Iron Sickle";
 
 char const gText_Item_Tool_IronSickle_Description[] =
-    "Sichel\r\n"
-    "Gras, Unkraut oder\r\n"
-    "Feldfrüchte schneiden.";
+    "Sickle\r\n"
+    "Good for cutting grass or\r\n"
+    "weeds. Also cuts crops!";
 
 char const gText_Item_Tool_CopperSickle_Name[] =
-    "Kupfersichel";
+    "Copper Sickle";
 
 char const gText_Item_Tool_CopperSickle_Description[] =
-    "Kupfersichel\r\n"
-    "Gras, Unkraut oder\r\n"
-    "Feldfrüchte schneiden.";
+    "Copper Sickle\r\n"
+    "Good for cutting grass or\r\n"
+    "weeds. Also cuts crops!";
 
 char const gText_Item_Tool_SilverSickle_Name[] =
-    "Silbersichel";
+    "Silver Sickle";
 
 char const gText_Item_Tool_SilverSickle_Description[] =
-    "Silbersichel\r\n"
-    "Gras, Unkraut oder\r\n"
-    "Feldfrüchte schneiden.";
+    "Silver Sickle\r\n"
+    "Good for cutting grass or\r\n"
+    "weeds. Also cuts crops!";
 
 char const gText_Item_Tool_GoldSickle_Name[] =
-    "Goldsichel";
+    "Gold Sickle";
 
 char const gText_Item_Tool_GoldSickle_Description[] =
-    "Goldsichel\r\n"
-    "Gras, Unkraut oder\r\n"
-    "Feldfrüchte schneiden.";
+    "Gold Sickle\r\n"
+    "Good for cutting grass or\r\n"
+    "weeds. Also cuts crops!";
 
 char const gText_Item_Tool_MystrileSickle_Name[] =
-    "Mythrilsichel";
+    "Mystrile Sickle";
 
 char const gText_Item_Tool_MystrileSickle_Description[] =
-    "Mythrilsichel\r\n"
-    "Gras, Unkraut oder\r\n"
-    "Feldfrüchte schneiden.";
+    "Mystrile Sickle\r\n"
+    "Good for cutting grass or\r\n"
+    "weeds. Also cuts crops!";
 
 char const gText_Item_Tool_CursedSickle_Name[] =
-    "Verwünschte Sichel";
+    "Cursed Sickle";
 
 char const gText_Item_Tool_CursedSickle_Description[] =
-    "Verwünschte Sichel\r\n"
-    "Gehe damit zur Kirche,\r\n"
-    "um den Fluch aufzuheben.";
+    "Cursed Sickle\r\n"
+    "Once equipped, go to church\r\n"
+    "to remove it.";
 
 char const gText_Item_Tool_BlessedSickle_Name[] =
-    "Gesegnete Sichel";
+    "Blessed Sickle";
 
 char const gText_Item_Tool_BlessedSickle_Description[] =
-    "Gesegnete Sichel\r\n"
-    "Eine Sichel, deren Fluch\r\n"
-    "aufgehoben wurde!";
+    "Blessed Sickle\r\n"
+    "A Sickle whose curse has\r\n"
+    "been removed!";
 
 char const gText_Item_Tool_MythicSickle_Name[] =
-    "Mythische Sichel";
+    "Mythic Sickle";
 
 char const gText_Item_Tool_MythicSickle_Description[] =
-    "Mythische Sichel\r\n"
-    "Für Gras oder Unkraut.\r\n"
-    "Schneidet auch Feldfrüchte!";
+    "Mythic Sickle\r\n"
+    "Good for cutting grass or\r\n"
+    "weeds. Also cuts crops!";
 
 char const gText_Item_Tool_IronHoe_Name[] =
-    "Eisenhacke";
+    "Iron Hoe";
 
 char const gText_Item_Tool_IronHoe_Description[] =
-    "Hacke\r\n"
-    "Pflügt Erde, gesäte Felder\r\n"
-    "oder Gras nach Mähen.";
+    "Hoe\r\n"
+    "Till earth, sown fields,\r\n"
+    "or grass right after mown.";
 
 char const gText_Item_Tool_CopperHoe_Name[] =
-    "Kupferhacke";
+    "Copper Hoe";
 
 char const gText_Item_Tool_CopperHoe_Description[] =
-    "Kupferhacke\r\n"
-    "Pflügt Erde, gesäte Felder\r\n"
-    "oder Gras nach Mähen.";
+    "Copper Hoe\r\n"
+    "Till earth, sown fields,\r\n"
+    "or grass right after mown.";
 
 char const gText_Item_Tool_SilverHoe_Name[] =
-    "Silberhacke";
+    "Silver Hoe";
 
 char const gText_Item_Tool_SilverHoe_Description[] =
-    "Silberhacke\r\n"
-    "Pflügt Erde, gesäte Felder\r\n"
-    "oder Gras nach Mähen.";
+    "Silver Hoe\r\n"
+    "Till earth, sown fields,\r\n"
+    "or grass right after mown.";
 
 char const gText_Item_Tool_GoldHoe_Name[] =
-    "Goldhacke";
+    "Gold Hoe";
 
 char const gText_Item_Tool_GoldHoe_Description[] =
-    "Goldhacke\r\n"
-    "Pflügt Erde, gesäte Felder\r\n"
-    "oder Gras nach Mähen.";
+    "Gold Hoe\r\n"
+    "Till earth, sown fields,\r\n"
+    "or grass right after mown.";
 
 char const gText_Item_Tool_MystrileHoe_Name[] =
-    "Mythrilhacke";
+    "Mystrile Hoe";
 
 char const gText_Item_Tool_MystrileHoe_Description[] =
-    "Mythrilhacke\r\n"
-    "Pflügt Erde, gesäte Felder\r\n"
-    "oder Gras nach Mähen.";
+    "Mystrile Hoe\r\n"
+    "Till earth, sown fields,\r\n"
+    "or grass after mown.";
 
 char const gText_Item_Tool_CursedHoe_Name[] =
-    "Verwünschte Hacke";
+    "Cursed Hoe";
 
 char const gText_Item_Tool_CursedHoe_Description[] =
-    "Verwünschte Hacke\r\n"
-    "Gehe damit zur Kirche,\r\n"
-    "um den Fluch aufzuheben.";
+    "Cursed Hoe\r\n"
+    "Once equipped, go to church\r\n"
+    "to remove it.";
 
 char const gText_Item_Tool_BlessedHoe_Name[] =
-    "Gesegnete Hacke";
+    "Blessed Hoe";
 
 char const gText_Item_Tool_BlessedHoe_Description[] =
-    "Gesegnete Hacke\r\n"
-    "Eine Hacke, deren Fluch\r\n"
-    "aufgehoben wurde!";
+    "Blessed Hoe\r\n"
+    "A Hoe whose curse has\r\n"
+    "been removed!";
 
 char const gText_Item_Tool_MythicHoe_Name[] =
-    "Mythische Hacke";
+    "Mythic Hoe";
 
 char const gText_Item_Tool_MythicHoe_Description[] =
-    "Mythische Hacke\r\n"
-    "Pflügt Erde, gesäte Felder\r\n"
-    "oder Gras nach Mähen.";
+    "Mythic Hoe\r\n"
+    "Till earth, sown fields,\r\n"
+    "or grass after mown.";
 
 char const gText_Item_Tool_IronAxe_Name[] =
-    "Eisenaxt";
+    "Iron Axe";
 
 char const gText_Item_Tool_IronAxe_Description[] =
-    "Axt\r\n"
-    "Zerhackt Äste zu Nutzholz.\r\n"
-    "Nicht für Baumstümpfe.";
+    "Axe\r\n"
+    "Chop Branches into Lumber.\r\n"
+    "Can't break apart Stumps.";
 
 char const gText_Item_Tool_CopperAxe_Name[] =
-    "Kupferaxt";
+    "Copper Axe";
 
 char const gText_Item_Tool_CopperAxe_Description[] =
-    "Kupferaxt\r\n"
-    "Zerhackt Äste oder\r\n"
-    "Baumstümpfe zu Nutzholz.";
+    "Copper Axe\r\n"
+    "Chop Branches\r\n"
+    "or Stumps into Lumber.";
 
 char const gText_Item_Tool_SilverAxe_Name[] =
-    "Silberaxt";
+    "Silver Axe";
 
 char const gText_Item_Tool_SilverAxe_Description[] =
-    "Silberaxt\r\n"
-    "Zerhackt Äste oder\r\n"
-    "Baumstümpfe zu Nutzholz.";
+    "Silver Axe\r\n"
+    "Chop Branches or Stumps \r\n"
+    "into Lumber.";
 
 char const gText_Item_Tool_GoldAxe_Name[] =
-    "Goldaxt";
+    "Gold Axe";
 
 char const gText_Item_Tool_GoldAxe_Description[] =
-    "Goldaxt\r\n"
-    "Zerhackt Äste oder \r\n"
-    "Baumstümpfe zu Nutzholz.";
+    "Gold Axe\r\n"
+    "Chop Branches or Stumps \r\n"
+    "into Lumber.";
 
 char const gText_Item_Tool_MystrileAxe_Name[] =
-    "Mythrilaxt";
+    "Mystrile Axe";
 
 char const gText_Item_Tool_MystrileAxe_Description[] =
-    "Mythrilaxt\r\n"
-    "Zerhackt Äste oder\r\n"
-    "Baumstümpfe zu Nutzholz.";
+    "Mystrile Axe\r\n"
+    "Chop Branches or Stumps \r\n"
+    "into Lumber.";
 
 char const gText_Item_Tool_CursedAxe_Name[] =
-    "Verwünschte Axt";
+    "Cursed Axe";
 
 char const gText_Item_Tool_CursedAxe_Description[] =
-    "Verwünschte Axt\r\n"
-    "Gehe damit zur Kirche,\r\n"
-    "um den Fluch aufzuheben.";
+    "Cursed Axe\r\n"
+    "Once equipped, go to church\r\n"
+    "remove it.";
 
 char const gText_Item_Tool_BlessedAxe_Name[] =
-    "Gesegnete Axt";
+    "Blessed Axe";
 
 char const gText_Item_Tool_BlessedAxe_Description[] =
-    "Gesegnete Axt\r\n"
-    "Eine Axt, deren Fluch\r\n"
-    "aufgehoben wurde!";
+    "Blessed Axe\r\n"
+    "An Axe whose curse has\r\n"
+    "been removed!";
 
 char const gText_Item_Tool_MythicAxe_Name[] =
-    "Mythische Axt";
+    "Mythic Axe";
 
 char const gText_Item_Tool_MythicAxe_Description[] =
-    "Mythische Axt\r\n"
-    "Zerhackt Äste oder\r\n"
-    "Baumstümpfe zu Nutzholz.";
+    "Mythic Axe\r\n"
+    "Chop Branches or Stumps \r\n"
+    "into Lumber.";
 
 char const gText_Item_Tool_IronHammer_Name[] =
-    "Eisenhammer";
+    "Iron Hammer";
 
 char const gText_Item_Tool_IronHammer_Description[] =
     "Hammer\r\n"
-    "Zerschlägt Steine o. Zäune.\r\n"
-    "Bereitet Felder vor.";
+    "Smash Stones or fences.\r\n"
+    "Prepare fields for tilling.";
 
 char const gText_Item_Tool_CopperHammer_Name[] =
-    "Kupferhammer";
+    "Copper Hammer";
 
 char const gText_Item_Tool_CopperHammer_Description[] =
-    "Kupferhammer\r\n"
-    "Für Steine, große Steine,\r\n"
-    "Zäune. Bereitet Felder vor.";
+    "Copper Hammer\r\n"
+    "Smash Stones, large Stones, \r\n"
+    "or fences. Prepare  fields.";
 
 char const gText_Item_Tool_SilverHammer_Name[] =
-    "Silberhammer";
+    "Silver Hammer";
 
 char const gText_Item_Tool_SilverHammer_Description[] =
-    "Silberhammer\r\n"
-    "große und riesige Steine\r\n"
-    "Pflügen vorbereiten.";
+    "Silver Hammer\r\n"
+    "large, huge Stones, or \r\n"
+    "fields for tilling.";
 
 char const gText_Item_Tool_GoldHammer_Name[] =
-    "Goldhammer";
+    "Gold Hammer";
 
 char const gText_Item_Tool_GoldHammer_Description[] =
-    "Goldhammer\r\n"
-    "Zerschlägt Zäune und alle\r\n"
-    "Steine. Bereitet Felder vor.";
+    "Gold Hammer\r\n"
+    "Smash Stones of all sizes\r\n"
+    "and fences. Prepare fields.";
 
 char const gText_Item_Tool_MystrileHammer_Name[] =
-    "Mythrilhammer";
+    "Mystrile Hammer";
 
 char const gText_Item_Tool_MystrileHammer_Description[] =
-    "Mythrilhammer\r\n"
-    "Zerschlägt Zäune und alle\r\n"
-    "Steine. Bereitet Felder vor.";
+    "Mystrile Hammer\r\n"
+    "Smash Stones of all sizes\r\n"
+    "and fences. Prepare fields.";
 
 char const gText_Item_Tool_CursedHammer_Name[] =
-    "Verwünschter  Hammer";
+    "Cursed Hammer";
 
 char const gText_Item_Tool_CursedHammer_Description[] =
-    "Verwünschter  Hammer\r\n"
-    "Gehe damit zur Kirche,\r\n"
-    "um den Fluch zu aufzuheben.";
+    "Cursed Hammer\r\n"
+    "Once equipped, go to Church\r\n"
+    "to remove it.";
 
 char const gText_Item_Tool_BlessedHammer_Name[] =
-    "Gesegneter Hammer";
+    "Blessed Hammer";
 
 char const gText_Item_Tool_BlessedHammer_Description[] =
-    "Gesegneter Hammer\r\n"
-    "Ein Hammer, dessen Fluch\r\n"
-    "aufgehoben wurde!";
+    "Blessed Hammer\r\n"
+    "A Hammer whose curse \r\n"
+    "has been removed!";
 
 char const gText_Item_Tool_MythicHammer_Name[] =
-    "Mythischer Hammer";
+    "Mythic Hammer";
 
 char const gText_Item_Tool_MythicHammer_Description[] =
-    "Mythischer Hammer\r\n"
-    "Zerschlägt Zäune und alle\r\n"
-    "Steine. Bereite Felder vor.";
+    "Mythic Hammer\r\n"
+    "Smash Stones of all sizes\r\n"
+    "and fences. Prepare fields.";
 
 char const gText_Item_Tool_WateringCan_Name[] =
-    "Gießkanne";
+    "Watering Can";
 
 char const gText_Item_Tool_WateringCan_Description[] =
-    "Gießkanne\r\n"
-    "Um Feldfrüchte zu gießen.\r\n";
+    "Watering Can\r\n"
+    "Water crops.\r\n"
+    "";
 
 char const gText_Item_Tool_CopperWateringCan_Name[] =
-    "Kupfer-Gießkanne";
+    "Copper Watering Can";
 
 char const gText_Item_Tool_CopperWateringCan_Description[] =
-    "Kupfer-Gießkanne\r\n"
-    "Um Feldfrüchte zu gießen.\r\n";
+    "Copper Watering Can\r\n"
+    "Water crops.\r\n"
+    "";
 
 char const gText_Item_Tool_SilverWateringCan_Name[] =
-    "Silber Gießkanne";
+    "Silver Watering Can";
 
 char const gText_Item_Tool_SilverWateringCan_Description[] =
-    "Silber Gießkanne\r\n"
-    "Um Feldfrüchte zu gießen.\r\n";
+    "Silver Watering Can\r\n"
+    "Water crops.\r\n"
+    "";
 
 char const gText_Item_Tool_GoldWateringCan_Name[] =
-    "Gold Gießkanne";
+    "Gold Watering Can";
 
 char const gText_Item_Tool_GoldWateringCan_Description[] =
-    "Gold Gießkanne\r\n"
-    "Um Feldfrüchte zu gießen.\r\n";
+    "Gold Watering Can\r\n"
+    "Water crops.\r\n"
+    "";
 
 char const gText_Item_Tool_MystrileWateringCan_Name[] =
-    "Mythril Gießkanne";
+    "Mystrile Watering Can";
 
 char const gText_Item_Tool_MystrileWateringCan_Description[] =
-    "Mythril Gießkanne\r\n"
-    "Um Feldfrüchte zu gießen.\r\n";
+    "Mystrile Watering Can\r\n"
+    "Water crops.\r\n"
+    "";
 
 char const gText_Item_Tool_CursedWateringCan_Name[] =
-    "Verwünschte Gießkanne";
+    "Cursed Watering Can";
 
 char const gText_Item_Tool_CursedWateringCan_Description[] =
-    "Verwünschte Gießkanne\r\n"
-    "Gehe damit zur Kirche,\r\n"
-    "um den Fluch aufzuheben.";
+    "Cursed Watering Can\r\n"
+    "Once equipped, go to Church\r\n"
+    "to remove it.";
 
 char const gText_Item_Tool_BlessedWateringCan_Name[] =
-    "Gesegnete Gießkanne";
+    "Blessed Watering Can";
 
 char const gText_Item_Tool_BlessedWateringCan_Description[] =
-    "Gesegnete Gießkanne\r\n"
-    "Fluch wurde aufgehoben!\r\n";
+    "Blessed Watering Can\r\n"
+    "Curse has been removed!\r\n"
+    "";
 
 char const gText_Item_Tool_MythicWateringCan_Name[] =
-    "Mythische Gießkanne";
+    "Mythic Watering Can";
 
 char const gText_Item_Tool_MythicWateringCan_Description[] =
-    "Mythische Gießkanne\r\n"
-    "Um Feldfrüchte zu gießen.\r\n";
+    "Mythic Watering Can\r\n"
+    "Water crops.\r\n"
+    "";
 
 char const gText_Item_Tool_FishingRod_Name[] =
-    "Angelrute";
+    "Fishing Rod";
 
 char const gText_Item_Tool_FishingRod_Description[] =
-    "Angelrute\r\n"
-    "Zum Fischen.";
+    "Fishing RodFor fishing.";
 
 char const gText_Item_Tool_CopperFishingRod_Name[] =
-    "Kupferangelrute";
+    "Copper Fishing Rod";
 
 char const gText_Item_Tool_CopperFishingRod_Description[] =
-    "Kupferangelrute\r\n"
-    "Zum Fischen.\r\n";
+    "Copper Fishing Rod\r\n"
+    "For fishing.\r\n"
+    "";
 
 char const gText_Item_Tool_SilverFishingRod_Name[] =
-    "Silberangelrute";
+    "Silver Fishing Rod";
 
 char const gText_Item_Tool_SilverFishingRod_Description[] =
-    "Silberangelrute\r\n"
-    "Zum Fischen.\r\n";
+    "Silver Fishing Rod\r\n"
+    "For fishing.\r\n"
+    "";
 
 char const gText_Item_Tool_GoldFishingRod_Name[] =
-    "Goldangelrute";
+    "Gold Fishing Rod";
 
 char const gText_Item_Tool_GoldFishingRod_Description[] =
-    "Goldangelrute\r\n"
-    "Zum Fischen.\r\n";
+    "Gold Fishing Rod\r\n"
+    "For fishing.\r\n"
+    "";
 
 char const gText_Item_Tool_MystrileFishingRod_Name[] =
-    "Mythrilangelrute";
+    "Mystrile Fishing Rod";
 
 char const gText_Item_Tool_MystrileFishingRod_Description[] =
-    "Mythrilangelrute\r\n"
-    "Zum Fischen.\r\n";
+    "Mystrile Fishing Rod\r\n"
+    "For fishing.\r\n"
+    "";
 
 char const gText_Item_Tool_CursedFishingRod_Name[] =
-    "Verwünschte Angelrute";
+    "Cursed Fishing Rod";
 
 char const gText_Item_Tool_CursedFishingRod_Description[] =
-    "Verwünschte Angelrute\r\n"
-    "Gehe damit zur Kirche\r\n"
-    ",um den Fluch aufzuheben.";
+    "Cursed Fishing Rod\r\n"
+    "Once equipped, go to Church\r\n"
+    "to remove it.";
 
 char const gText_Item_Tool_BlessedFishingRod_Name[] =
-    "Gesegnete Angelrute";
+    "Blessed Fishing Rod";
 
 char const gText_Item_Tool_BlessedFishingRod_Description[] =
-    "Gesegnete Angelrute\r\n"
-    "Angelrute, deren Fluch\r\n"
-    "aufgehoben wurde!";
+    "Blessed Fishing Rod\r\n"
+    "A Fishing Rod whose curse \r\n"
+    "has been removed!";
 
 char const gText_Item_Tool_MythicFishingRod_Name[] =
-    "Mythische Angelrute";
+    "Mythic Fishing Rod";
 
 char const gText_Item_Tool_MythicFishingRod_Description[] =
-    "Mythische Angelrute\r\n"
-    "Zum Fischen.\r\n";
+    "Mythic Fishing Rod\r\n"
+    "For fishing.\r\n"
+    "";
 
 char const gText_Item_Tool_CowMiraclePotion_Name[] =
-    "Kuhwundertrank";
+    "Cow Miracle Potion";
 
 char const gText_Item_Tool_CowMiraclePotion_Description[] =
-    "Kuhwundertrank\r\n"
-    "Um ausgewachsene \r\n"
-    "Kühe zu befruchten.";
+    "Cow Miracle Potion\r\n"
+    "Use to impregnate adult \r\n"
+    "Cows.";
 
 char const gText_Item_Tool_SheepMiraclePotion_Name[] =
-    "Schafwundertrank";
+    "Sheep Miracle Potion";
 
 char const gText_Item_Tool_SheepMiraclePotion_Description[] =
-    "Schafwundertrank\r\n"
-    "Um ausgewachsene \r\n"
-    "Schafe zu befruchten.";
+    "Sheep Miracle Potion\r\n"
+    "Use to impregnate adult \r\n"
+    "Sheep.";
 
 char const gText_Item_Tool_TurnipSeeds_Name[] =
-    "Rübensamen";
+    "Turnip Seeds";
 
 char const gText_Item_Tool_TurnipSeeds_Description[] =
-    "Rübensamen\r\n"
-    "Säe sie im Frühling.\r\n";
+    "Turnip Seeds\r\n"
+    "Plant in Spring.\r\n"
+    "";
 
 char const gText_Item_Tool_PotatoSeeds_Name[] =
-    "Kartoffelsamen";
+    "Potato Seeds";
 
 char const gText_Item_Tool_PotatoSeeds_Description[] =
-    "Kartoffelsamen\r\n"
-    "Säe sie im Frühling.\r\n";
+    "Potato Seeds\r\n"
+    "Plant in Spring.\r\n"
+    "";
 
 char const gText_Item_Tool_CucumberSeeds_Name[] =
-    "Gurkensamen";
+    "Cucumber Seeds";
 
 char const gText_Item_Tool_CucumberSeeds_Description[] =
-    "Gurkensamen\r\n"
-    "Säe sie im Frühling.\r\n";
+    "Cucumber Seeds\r\n"
+    "Plant in Spring.\r\n"
+    "";
 
 char const gText_Item_Tool_StrawberrySeeds_Name[] =
-    "Erdbeersamen";
+    "Strawberry Seeds";
 
 char const gText_Item_Tool_StrawberrySeeds_Description[] =
-    "Erdbeersamen\r\n"
-    "Säe sie im Frühling.\r\n";
+    "Strawberry Seeds\r\n"
+    "Plant in Spring.\r\n"
+    "";
 
 char const gText_Item_Tool_CabbageSeeds_Name[] =
-    "Kohlsamen";
+    "Cabbage Seeds";
 
 char const gText_Item_Tool_CabbageSeeds_Description[] =
-    "Kohlsamen\r\n"
-    "Säe sie im Frühling.\r\n";
+    "Cabbage Seeds\r\n"
+    "Plant in Spring.\r\n"
+    "";
 
 char const gText_Item_Tool_TomatoSeeds_Name[] =
-    "Tomatensamen";
+    "Tomato Seeds";
 
 char const gText_Item_Tool_TomatoSeeds_Description[] =
-    "Tomatensamen\r\n"
-    "Säe sie im Sommer.\r\n";
+    "Tomato Seeds\r\n"
+    "Plant in Summer.\r\n"
+    "";
 
 char const gText_Item_Tool_CornSeeds_Name[] =
-    "Getreidesamen";
+    "Corn Seeds";
 
 char const gText_Item_Tool_CornSeeds_Description[] =
-    "Getreidesamen\r\n"
-    "Säe sie im Sommer.\r\n";
+    "Corn Seeds\r\n"
+    "Plant in Summer.\r\n"
+    "";
 
 char const gText_Item_Tool_OnionSeeds_Name[] =
-    "Zwiebelsamen";
+    "Onion Seeds";
 
 char const gText_Item_Tool_OnionSeeds_Description[] =
-    "Zwiebelsamen\r\n"
-    "Säe sie im Sommer.\r\n";
+    "Onion Seeds\r\n"
+    "Plant in Summer.\r\n"
+    "";
 
 char const gText_Item_Tool_PumpkinSeeds_Name[] =
-    "Kürbissamen";
+    "Pumpkin Seeds";
 
 char const gText_Item_Tool_PumpkinSeeds_Description[] =
-    "Kürbissamen\r\n"
-    "Säe sie im Sommer.\r\n";
+    "Pumpkin Seeds\r\n"
+    "Plant in Summer.\r\n"
+    "";
 
 char const gText_Item_Tool_PineappleSeeds_Name[] =
-    "Ananassamen";
+    "Pineapple Seeds";
 
 char const gText_Item_Tool_PineappleSeeds_Description[] =
-    "Ananassamen\r\n"
-    "Säe sie im Sommer.\r\n";
+    "Pineapple Seeds\r\n"
+    "Plant in Summer.\r\n"
+    "";
 
 char const gText_Item_Tool_EggplantSeeds_Name[] =
-    "Auberginensamen";
+    "Eggplant Seeds";
 
 char const gText_Item_Tool_EggplantSeeds_Description[] =
-    "Auberginensamen\r\n"
-    "Säe sie im Herbst.\r\n";
+    "Eggplant Seeds\r\n"
+    "Plant in Fall.\r\n"
+    "";
 
 char const gText_Item_Tool_CarrotSeeds_Name[] =
-    "Karottensamen";
+    "Carrot Seeds";
 
 char const gText_Item_Tool_CarrotSeeds_Description[] =
-    "Karottensamen\r\n"
-    "Säe sie im Herbst.\r\n";
+    "Carrot Seeds\r\n"
+    "Plant in Fall.\r\n"
+    "";
 
 char const gText_Item_Tool_SweetPotatoSeeds_Name[] =
-    "Süßkartoffelsamen";
+    "Sweet Potato Seeds";
 
 char const gText_Item_Tool_SweetPotatoSeeds_Description[] =
-    "Süßkartoffelsamen\r\n"
-    "Säe sie im Herbst.\r\n";
+    "Sweet Potato Seeds\r\n"
+    "Plant in Fall.\r\n"
+    "";
 
 char const gText_Item_Tool_SpinachSeeds_Name[] =
-    "Spinatsamen";
+    "Spinach Seeds";
 
 char const gText_Item_Tool_SpinachSeeds_Description[] =
-    "Spinatsamen\r\n"
-    "Säe sie im Herbst.\r\n";
+    "Spinach Seeds\r\n"
+    "Plant in Fall.\r\n"
+    "";
 
 char const gText_Item_Tool_GreenPepperSeeds_Name[] =
-    "Grüne Paprikasamen";
+    "Green Pepper Seeds";
 
 char const gText_Item_Tool_GreenPepperSeeds_Description[] =
-    "Grüne Paprikasamen\r\n"
-    "Säe sie im Herbst.\r\n";
+    "Green Pepper Seeds\r\n"
+    "Plant in Fall.\r\n"
+    "";
 
 char const gText_Item_Tool_GrassSeeds_Name[] =
-    "Grassamen";
+    "Grass Seeds";
 
 char const gText_Item_Tool_GrassSeeds_Description[] =
-    "Grassamen\r\n"
-    "Säe sie zu jeder Jahreszeit,\r\n"
-    "außer im Winter.";
+    "Grass Seeds\r\n"
+    "Plant any season but Winter.\r\n"
+    "";
 
 char const gText_Item_Tool_MoonDropSeeds_Name[] =
-    "Mondtropfensamen";
+    "Moon Drop Seeds";
 
 char const gText_Item_Tool_MoonDropSeeds_Description[] =
-    "Mondtropfensamen\r\n"
-    "Säe sie im Frühling\r\n"
-    "oder Herbst.";
+    "Moon Drop Seeds\r\n"
+    "Plant in Spring or Fall\r\n"
+    "";
 
 char const gText_Item_Tool_PinkCatSeeds_Name[] =
-    "Pinke Katzensamen";
+    "Pink Cat Seeds";
 
 char const gText_Item_Tool_PinkCatSeeds_Description[] =
-    "Pinke Katzensamen\r\n"
-    "Säe sie im Sommer\r\n"
-    "oder Herbst.";
+    "Pink Cat Seeds\r\n"
+    "Plant in Summer or Fall.\r\n"
+    "";
 
 char const gText_Item_Tool_MagicSeeds_Name[] =
-    "Magische Samen";
+    "Magic Seeds";
 
 char const gText_Item_Tool_MagicSeeds_Description[] =
-    "Magische Samen\r\n"
-    "Säe sie im Herbst.\r\n";
+    "Magic Seeds\r\n"
+    "Plant in Fall.\r\n"
+    "";
 
 char const gText_Item_Tool_ToyFlowerSeeds_Name[] =
-    "Spielblumensamen";
+    "Toy Flower Seeds";
 
 char const gText_Item_Tool_ToyFlowerSeeds_Description[] =
-    "Spielblumensamen\r\n"
-    "Säe sie im Frühling.\r\n";
+    "Toy Flower Seeds\r\n"
+    "Plant in Spring.\r\n"
+    "";
 
 char const gText_Item_Tool_Brush_Name[] =
-    "Bürste";
+    "Brush";
 
 char const gText_Item_Tool_Brush_Description[] =
-    "Bürste\r\n"
-    "Werkzeug, um Kühe, Schafe\r\n"
-    "oder Pferde zu bürsten.";
+    "Brush\r\n"
+    "A Tool for brushing Cows, \r\n"
+    "Sheep, or Horses.";
 
 char const gText_Item_Tool_Milker_Name[] =
-    "Melker";
+    "Milker";
 
 char const gText_Item_Tool_Milker_Description[] =
-    "Melker\r\n"
-    "Ein Werkzeug, um\r\n"
-    "erwachsene Kühe zu melken.";
+    "Milker\r\n"
+    "A Tool for milking adult\r\n"
+    "female cows. ";
 
 char const gText_Item_Tool_Clipper_Name[] =
-    "Schaftrimmer";
+    "Clipper";
 
 char const gText_Item_Tool_Clipper_Description[] =
-    "Werkzeug zum Scheren\r\n"
-    "ausgewachsener Schafe.";
+    "A Tool for shearing Wool\r\n"
+    "from adult Sheep.\r\n"
+    "";
 
 char const gText_Item_Tool_Bell_Name[] =
-    "Glocke";
+    "Bell";
 
 char const gText_Item_Tool_Bell_Description[] =
-    "Glocke\r\n"
-    "Läute die Glocke, um Kühe\r\n"
-    "und Schafe zu dir zu rufen.";
+    "Bell\r\n"
+    "Ring the Bell to call Cows\r\n"
+    "and Sheep to you.";
 
 char const gText_Item_Tool_AnimalMedicine_Name[] =
-    "Tiermedizin";
+    "Animal Medicine";
 
 char const gText_Item_Tool_AnimalMedicine_Description[] =
-    "Tiermedizin\r\n"
-    "Nutze sie, um krankes\r\n"
-    "Vieh zu heilen.";
+    "Animal Medicine\r\n"
+    "Use to cure sick livestock.\r\n"
+    "";
 
 char const gText_Item_Tool_BlueFeather_Name[] =
-    "Blaue Feder";
+    "Blue Feather";
 
 char const gText_Item_Tool_BlueFeather_Description[] =
-    "Blaue Feder\r\n"
-    "Um deinem Mädchen\r\n"
-    "einen Antrag zu machen.";
+    "Blue Feather\r\n"
+    "Use it to propose to that\r\n"
+    "special girl.";
 
 char const gText_Item_Tool_Pedometer_Name[] =
-    "Schrittmesser";
+    "Pedometer";
 
 char const gText_Item_Tool_Pedometer_Description[] =
-    "Schrittmesser\r\n";
+    "Pedometer\r\n"
+    "";
 
 char const gText_Item_Tool_TeleportStone_Name[] =
-    "Teleportier-Stein";
+    "Teleport Stone";
 
 char const gText_Item_Tool_TeleportStone_Description[] =
-    "Teleportier-Stein\r\n"
-    "Teleportiert dich zu einem\r\n"
-    "Ort deiner Wahl.";
+    "Teleport Stone\r\n"
+    "Teleport to a location of\r\n"
+    "your choice.";
 
 char const gText_Item_Tool_GemOfTheGoddess_Name[] =
-    "Juwel der Erntegöttin";
+    "Gem of the Goddess";
 
 char const gText_Item_Tool_GemOfTheGoddess_Description[] =
-    "Juwel der Erntegöttin\r\n"
-    "Rückgewinnung von\r\n"
-    "Ausdauer im Lauf der Zeit.";
+    "Gem of the Goddess\r\n"
+    "Recuperate Stamina \r\n"
+    "over time.";
 
 char const gText_Item_Tool_GemOfTheKappa_Name[] =
-    "Kappa-Juwel";
+    "Gem of the Kappa";
 
 char const gText_Item_Tool_GemOfTheKappa_Description[] =
-    "Kappa-Juwel\r\n"
-    "Wiederherstellung von\r\n"
-    "Energieverlust.";
+    "Gem of the Kappa\r\n"
+    "Recuperate Fatigue \r\n"
+    "over time.";
 
 char const gText_Item_Tool_GemOfTruth_Name[] =
-    "Juwel der Wahrheit";
+    "Gem of Truth";
 
 char const gText_Item_Tool_GemOfTruth_Description[] =
-    "Juwel der Wahrheit\r\n"
-    "Zeigt deine Ausdauer\r\n"
-    "und Energieverlust an.";
+    "Gem of Truth\r\n"
+    "Displays your Stamina\r\n"
+    "and Fatigue.";
