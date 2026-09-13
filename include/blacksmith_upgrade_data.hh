@@ -1,5 +1,5 @@
-#ifndef BLACKSMITH_TEXT_HH
-#define BLACKSMITH_TEXT_HH
+#ifndef BLACKSMITH_UPGRADE_DATA_HH
+#define BLACKSMITH_UPGRADE_DATA_HH
 
 #include "prelude.h"
 
@@ -29,4 +29,4 @@ extern char const gText_BlacksmithUpgrade_InsufficientGold[];
 extern char const gText_BlacksmithUpgrade_ResultYes[];
 extern char const gText_BlacksmithUpgrade_ResultNo[];
 
-#endif // BLACKSMITH_TEXT_HH
+#endif // BLACKSMITH_UPGRADE_DATA_HH

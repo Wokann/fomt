@@ -82,6 +82,7 @@
 | EU | `0x080FF3B0`–`0x080FFBB3` | `src/carpenter_data.o(.rodata)` | `src/carpenter_data.cc`、`include/carpenter_data.hh`、`data/text/eu/carpenter_data.cc`、`data/text/eu/carpenter_data_1.cc`；菜单文本、20 项目录表、翻页控制符、对白与运行时尾串按 ROM 顺序同属该对象 | 精确 |
 | EU | `0x080FFBB4`–`0x08100077` | `src/livestock_shop.o(.rodata)` | `src/livestock_shop.cc`、`include/livestock_shop.hh`、`data/text/eu/livestock_shop.cc`、`data/text/eu/livestock_shop_1.cc`；菜单文本、11 项目录表、状态与对白文本按 ROM 顺序同属该对象 | 精确 |
 | EU | `0x08100078`–`0x081001BB` | `src/home_storage.o(.rodata)` | `src/home_storage.cc`、`include/home_storage.hh`、`data/text/eu/home_storage.cc`；冰箱、置物架、工具箱文本与运行时尾串按 ROM 顺序同属该对象 | 精确 |
+| EU | `0x081001BC`–`0x08100436` | `src/blacksmith_upgrade_data.o(.rodata)` | `src/blacksmith_upgrade_data.cc`、`include/blacksmith_upgrade_data.hh`、`data/text/eu/blacksmith_upgrade_data.cc` | 精确 |
 | EU | `0x08100534`–`0x08100B17` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc` 与 `data/text/eu/link_communication.cc` | 精确 |
 | EU | `0x081082E4`–`0x08117843` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 EU 指南源文件；主目录只收录 `PAGE_1`，`tool_and_item_controls_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 | DE | `0x080E8574`–`0x080E858D` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0.hh`、`data/text/de/crt0_data.cc` | 精确 |
@@ -136,6 +137,7 @@
 | DE | `0x080FFB98`–`0x0810043B` | `src/carpenter_data.o(.rodata)` | `src/carpenter_data.cc`、`include/carpenter_data.hh`、`data/text/de/carpenter_data.cc`、`data/text/de/carpenter_data_1.cc`；菜单文本、20 项目录表、翻页控制符、对白与运行时尾串按 ROM 顺序同属该对象 | 精确 |
 | DE | `0x0810043C`–`0x08100937` | `src/livestock_shop.o(.rodata)` | `src/livestock_shop.cc`、`include/livestock_shop.hh`、`data/text/de/livestock_shop.cc`、`data/text/de/livestock_shop_1.cc`；菜单文本、11 项目录表、状态与对白文本按 ROM 顺序同属该对象 | 精确 |
 | DE | `0x08100938`–`0x08100A93` | `src/home_storage.o(.rodata)` | `src/home_storage.cc`、`include/home_storage.hh`、`data/text/de/home_storage.cc` | 精确 |
+| DE | `0x08100A98`–`0x08100D7C` | `src/blacksmith_upgrade_data.o(.rodata)` | `src/blacksmith_upgrade_data.cc`、`include/blacksmith_upgrade_data.hh`、`data/text/de/blacksmith_upgrade_data.cc` | 精确 |
 | DE | `0x081014EE`–`0x081017FA` | `data/text/recovery_status.o(.rodata)` | `data/text/de/recovery_status.cc` | 精确 |
 | DE | `0x08101800`–`0x08101B29` | `data/text/cooking.o(.rodata)` | `data/text/de/cooking.cc` | 精确 |
 | DE | `0x08107FD4`–`0x08108DB3` | `src/harvest_sprite.o(.rodata)` | `src/harvest_sprite.cc` 与 `data/text/de/harvest_sprite_*.cc` | 精确 |
@@ -234,7 +236,7 @@
 | `0x080FF9A2`–`0x080FF9A3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FF9A4`–`0x080FFADD` | `src/home_storage.o(.rodata)` | [嵌入文本] | `src/home_storage.cc`、`include/home_storage.hh`、`data/text/jp/home_storage.cc` | 文本 `20` 项（详见下方索引）<br>运行时字符串 `5` 项 |
 | `0x080FFADE`–`0x080FFADF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FFAE0`–`0x080FFD52` | `src/blacksmith_upgrade_data.o(.rodata)` | [嵌入文本] | `data/text/jp/blacksmith.cc` | 文本 `19` 项（详见下方索引） |
+| `0x080FFAE0`–`0x080FFD52` | `src/blacksmith_upgrade_data.o(.rodata)` | [嵌入文本] | `data/text/jp/blacksmith_upgrade_data.cc` | 文本 `19` 项（详见下方索引） |
 | `0x080FFD53`–`0x080FFD53` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x080FFD54`–`0x080FFE6D` | `data/text/gift_wrap.o(.rodata)` | [文本对象] | `data/text/jp/gift_wrap.cc` | 文本 `11` 项（详见下方索引）<br>运行时字符串 `2` 项 |
 | `0x080FFE6E`–`0x080FFE6F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1674,25 +1676,25 @@
 | `0x080FFAC0` | `gText_ToolChest_EmptyDescription` | `data/text/jp/home_storage.cc` | `src/home_storage.o(.rodata)` |
 | `0x080FFAC4` | `gText_ToolChest_HeaderTools` | `data/text/jp/home_storage.cc` | `src/home_storage.o(.rodata)` |
 | `0x080FFACC` | `gText_ToolChest_Title` | `data/text/jp/home_storage.cc` | `src/home_storage.o(.rodata)` |
-| `0x080FFAE0` | `gText_BlacksmithUpgrade_EmptyDescription` | `data/text/jp/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x080FFAE4` | `gText_BlacksmithUpgrade_Tools` | `data/text/jp/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x080FFAEC` | `gText_BlacksmithUpgrade_Items` | `data/text/jp/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x080FFAF4` | `gText_BlacksmithUpgrade_SelectTool` | `data/text/jp/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x080FFB1C` | `gText_BlacksmithUpgrade_CursedTool` | `data/text/jp/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x080FFB54` | `gText_BlacksmithUpgrade_SelectOre` | `data/text/jp/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x080FFB80` | `gText_BlacksmithUpgrade_CannotUpgradeTool` | `data/text/jp/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x080FFB98` | `gText_BlacksmithUpgrade_InvalidUpgradeOre` | `data/text/jp/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x080FFBF0` | `gText_BlacksmithUpgrade_CannotChangeMind` | `data/text/jp/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x080FFC24` | `gText_BlacksmithUpgrade_InsufficientExperience` | `data/text/jp/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x080FFC50` | `gText_BlacksmithUpgrade_AlreadyUpgradedWithOre` | `data/text/jp/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x080FFC88` | `gText_BlacksmithUpgrade_DowngradeConfirmation` | `data/text/jp/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x080FFCCC` | `gText_BlacksmithUpgrade_WorkOrderPrefix` | `data/text/jp/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x080FFCDC` | `gText_BlacksmithUpgrade_WorkOrderGoldSuffix` | `data/text/jp/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x080FFCE4` | `gText_BlacksmithUpgrade_WorkOrderDaysSuffix` | `data/text/jp/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x080FFD04` | `gText_BlacksmithUpgrade_InsufficientGoldPageBreak` | `data/text/jp/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x080FFD08` | `gText_BlacksmithUpgrade_InsufficientGold` | `data/text/jp/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x080FFD44` | `gText_BlacksmithUpgrade_ResultYes` | `data/text/jp/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x080FFD4C` | `gText_BlacksmithUpgrade_ResultNo` | `data/text/jp/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x080FFAE0` | `gText_BlacksmithUpgrade_EmptyDescription` | `data/text/jp/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x080FFAE4` | `gText_BlacksmithUpgrade_Tools` | `data/text/jp/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x080FFAEC` | `gText_BlacksmithUpgrade_Items` | `data/text/jp/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x080FFAF4` | `gText_BlacksmithUpgrade_SelectTool` | `data/text/jp/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x080FFB1C` | `gText_BlacksmithUpgrade_CursedTool` | `data/text/jp/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x080FFB54` | `gText_BlacksmithUpgrade_SelectOre` | `data/text/jp/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x080FFB80` | `gText_BlacksmithUpgrade_CannotUpgradeTool` | `data/text/jp/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x080FFB98` | `gText_BlacksmithUpgrade_InvalidUpgradeOre` | `data/text/jp/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x080FFBF0` | `gText_BlacksmithUpgrade_CannotChangeMind` | `data/text/jp/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x080FFC24` | `gText_BlacksmithUpgrade_InsufficientExperience` | `data/text/jp/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x080FFC50` | `gText_BlacksmithUpgrade_AlreadyUpgradedWithOre` | `data/text/jp/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x080FFC88` | `gText_BlacksmithUpgrade_DowngradeConfirmation` | `data/text/jp/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x080FFCCC` | `gText_BlacksmithUpgrade_WorkOrderPrefix` | `data/text/jp/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x080FFCDC` | `gText_BlacksmithUpgrade_WorkOrderGoldSuffix` | `data/text/jp/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x080FFCE4` | `gText_BlacksmithUpgrade_WorkOrderDaysSuffix` | `data/text/jp/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x080FFD04` | `gText_BlacksmithUpgrade_InsufficientGoldPageBreak` | `data/text/jp/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x080FFD08` | `gText_BlacksmithUpgrade_InsufficientGold` | `data/text/jp/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x080FFD44` | `gText_BlacksmithUpgrade_ResultYes` | `data/text/jp/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x080FFD4C` | `gText_BlacksmithUpgrade_ResultNo` | `data/text/jp/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
 | `0x080FFD60` | `gText_GiftWrap_EmptyDescription` | `data/text/jp/gift_wrap.cc` | `data/text/gift_wrap.o(.rodata)` |
 | `0x080FFD64` | `gText_GiftWrap_CannotWrap` | `data/text/jp/gift_wrap.cc` | `data/text/gift_wrap.o(.rodata)` |
 | `0x080FFD9C` | `gText_GiftWrap_Confirm` | `data/text/jp/gift_wrap.cc` | `data/text/gift_wrap.o(.rodata)` |
@@ -2069,7 +2071,7 @@
 | `0x080FFB60`–`0x08100023` | `src/livestock_shop.o(.rodata)` | [嵌入文本] | `data/text/us/livestock_shop.cc`<br>`data/text/us/livestock_shop_1.cc` | 文本 `42` 项（详见下方索引）<br>`gLivestockShopCatalog` |
 | `0x08100024`–`0x08100165` | `src/home_storage.o(.rodata)` | [嵌入文本] | `src/home_storage.cc`、`include/home_storage.hh`、`data/text/us/home_storage.cc` | 文本 `20` 项（详见下方索引）<br>运行时字符串 `5` 项 |
 | `0x08100166`–`0x08100167` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08100168`–`0x081003E2` | `src/blacksmith_upgrade_data.o(.rodata)` | [嵌入文本] | `data/text/us/blacksmith.cc` | 文本 `21` 项（详见下方索引） |
+| `0x08100168`–`0x081003E2` | `src/blacksmith_upgrade_data.o(.rodata)` | [嵌入文本] | `data/text/us/blacksmith_upgrade_data.cc` | 文本 `21` 项（详见下方索引） |
 | `0x081003E3`–`0x081003E3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x081003E4`–`0x081004DD` | `data/text/gift_wrap.o(.rodata)` | [文本对象] | `data/text/us/gift_wrap.cc` | 文本 `11` 项（详见下方索引）<br>运行时字符串 `2` 项 |
 | `0x081004DE`–`0x081004DF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -3499,27 +3501,27 @@
 | `0x08100144` | `gText_ToolChest_EmptyDescription` | `data/text/us/home_storage.cc` | `src/home_storage.o(.rodata)` |
 | `0x08100148` | `gText_ToolChest_HeaderTools` | `data/text/us/home_storage.cc` | `src/home_storage.o(.rodata)` |
 | `0x08100150` | `gText_ToolChest_Title` | `data/text/us/home_storage.cc` | `src/home_storage.o(.rodata)` |
-| `0x08100168` | `gText_BlacksmithUpgrade_EmptyDescription` | `data/text/us/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x0810016C` | `gText_BlacksmithUpgrade_Tools` | `data/text/us/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x08100174` | `gText_BlacksmithUpgrade_Items` | `data/text/us/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x0810017C` | `gText_BlacksmithUpgrade_SelectTool` | `data/text/us/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x081001A4` | `gText_BlacksmithUpgrade_CursedTool` | `data/text/us/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x081001D4` | `gText_BlacksmithUpgrade_SelectOre` | `data/text/us/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x08100208` | `gText_BlacksmithUpgrade_CannotUpgradeTool` | `data/text/us/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x08100224` | `gText_BlacksmithUpgrade_InvalidUpgradeOre` | `data/text/us/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x0810026C` | `gText_BlacksmithUpgrade_CannotChangeMind` | `data/text/us/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x0810029C` | `gText_BlacksmithUpgrade_InsufficientExperience` | `data/text/us/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x081002D8` | `gText_BlacksmithUpgrade_AlreadyUpgradedWithOre` | `data/text/us/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x08100314` | `gText_BlacksmithUpgrade_DowngradeConfirmation` | `data/text/us/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x08100350` | `gText_BlacksmithUpgrade_WorkOrderPrefix` | `data/text/us/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x08100360` | `gText_BlacksmithUpgrade_WorkOrderGoldSuffix` | `data/text/us/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x08100368` | `gText_BlacksmithUpgrade_WorkOrderDaysPrefix` | `data/text/us/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x0810037C` | `gText_BlacksmithUpgrade_WorkOrderDaysSuffix` | `data/text/us/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x08100388` | `gText_BlacksmithUpgrade_WorkOrderQuestion` | `data/text/us/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x08100398` | `gText_BlacksmithUpgrade_InsufficientGoldPageBreak` | `data/text/us/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x0810039C` | `gText_BlacksmithUpgrade_InsufficientGold` | `data/text/us/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x081003DC` | `gText_BlacksmithUpgrade_ResultYes` | `data/text/us/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
-| `0x081003E0` | `gText_BlacksmithUpgrade_ResultNo` | `data/text/us/blacksmith.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x08100168` | `gText_BlacksmithUpgrade_EmptyDescription` | `data/text/us/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x0810016C` | `gText_BlacksmithUpgrade_Tools` | `data/text/us/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x08100174` | `gText_BlacksmithUpgrade_Items` | `data/text/us/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x0810017C` | `gText_BlacksmithUpgrade_SelectTool` | `data/text/us/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x081001A4` | `gText_BlacksmithUpgrade_CursedTool` | `data/text/us/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x081001D4` | `gText_BlacksmithUpgrade_SelectOre` | `data/text/us/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x08100208` | `gText_BlacksmithUpgrade_CannotUpgradeTool` | `data/text/us/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x08100224` | `gText_BlacksmithUpgrade_InvalidUpgradeOre` | `data/text/us/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x0810026C` | `gText_BlacksmithUpgrade_CannotChangeMind` | `data/text/us/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x0810029C` | `gText_BlacksmithUpgrade_InsufficientExperience` | `data/text/us/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x081002D8` | `gText_BlacksmithUpgrade_AlreadyUpgradedWithOre` | `data/text/us/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x08100314` | `gText_BlacksmithUpgrade_DowngradeConfirmation` | `data/text/us/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x08100350` | `gText_BlacksmithUpgrade_WorkOrderPrefix` | `data/text/us/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x08100360` | `gText_BlacksmithUpgrade_WorkOrderGoldSuffix` | `data/text/us/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x08100368` | `gText_BlacksmithUpgrade_WorkOrderDaysPrefix` | `data/text/us/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x0810037C` | `gText_BlacksmithUpgrade_WorkOrderDaysSuffix` | `data/text/us/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x08100388` | `gText_BlacksmithUpgrade_WorkOrderQuestion` | `data/text/us/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x08100398` | `gText_BlacksmithUpgrade_InsufficientGoldPageBreak` | `data/text/us/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x0810039C` | `gText_BlacksmithUpgrade_InsufficientGold` | `data/text/us/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x081003DC` | `gText_BlacksmithUpgrade_ResultYes` | `data/text/us/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
+| `0x081003E0` | `gText_BlacksmithUpgrade_ResultNo` | `data/text/us/blacksmith_upgrade_data.cc` | `src/blacksmith_upgrade_data.o(.rodata)` |
 | `0x081003F0` | `gText_GiftWrap_EmptyDescription` | `data/text/us/gift_wrap.cc` | `data/text/gift_wrap.o(.rodata)` |
 | `0x081003F4` | `gText_GiftWrap_CannotWrap` | `data/text/us/gift_wrap.cc` | `data/text/gift_wrap.o(.rodata)` |
 | `0x08100420` | `gText_GiftWrap_Confirm` | `data/text/us/gift_wrap.cc` | `data/text/gift_wrap.o(.rodata)` |

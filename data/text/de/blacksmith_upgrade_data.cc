@@ -1,6 +1,4 @@
-#include "blacksmith_text.hh"
-
-#if defined(FOMT_TEXT_BLACKSMITH_UPGRADE)
+#include "blacksmith_upgrade_data.hh"
 
 char const gText_BlacksmithUpgrade_EmptyDescription[] =
     "";
@@ -80,7 +78,3 @@ char const gText_BlacksmithUpgrade_ResultYes[] =
 
 char const gText_BlacksmithUpgrade_ResultNo[] =
     "Nein";
-
-#else
-#error "Select one blacksmith text fragment before including this file."
-#endif
