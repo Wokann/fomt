@@ -31,9 +31,9 @@ char const gText_AnimalMemorial_PrayerIntro[] =
 char const gText_AnimalMemorial_PrayerEnding[] =
     "everlasting peace.";
 
-char const gCppRuntimeBadAlloc_AnimalMemorial[] =
+extern char const gCppRuntimeBadAlloc_AnimalMemorial[] =
     "bad_alloc";
-char const gCppRuntimeError_AnimalMemorial[] =
+extern char const gCppRuntimeError_AnimalMemorial[] =
     "Error";
-char const gText_AnimalMemorialFallbackNone[] =
+extern char const gText_AnimalMemorialFallbackNone[] =
     "N/A ";

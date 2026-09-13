@@ -41,7 +41,7 @@
 | EU | `0x080E9660`–`0x080F0539` | `src/item.o(.rodata)` | `src/item.cc` 与 `data/text/eu/item.cc`–`item_3.cc` | 精确 |
 | EU | `0x080F053A`–`0x080F05D7` | `src/game_state.o(.rodata)` | `src/game_state.cc`、`include/game_state.hh` 与 `data/text/eu/game_state.cc`–`game_state_1.cc` | 精确 |
 | EU | `0x080F05D8`–`0x080F069F` | `src/help_menu.o(.rodata)` | `src/help_menu.cc`、`include/help_menu.hh` 与 `data/text/eu/help_menu.cc` | 精确 |
-| EU | `0x080F06A0`–`0x080F0ECB` | `src/animal_data.o(.rodata)` | `src/animal_data.cc` 与 `data/text/eu/animal_data*.cc` | 精确 |
+| EU | `0x080F06A0`–`0x080F0ECB` | `src/animal_data.o(.rodata)` | `src/animal_data.cc`、`include/animal_data.hh`、`data/text/eu/animal_data.cc`、`data/text/common/animal_data_1.cc`、`data/text/eu/animal_data_1.cc`、`data/text/common/animal_data_2.cc` | 精确 |
 | EU | `0x080F0ECC`–`0x080F19BF` | `src/entity_ui.o(.rodata)` | `src/entity_ui.cc` 与 `data/text/eu/entity_ui.cc` | 精确 |
 | EU | `0x080F19C0`–`0x080F1ACB` | `src/fixed_labels.o` 至 `src/menu_data.o` | 对应 `data/text/eu/*.cc` | 精确 |
 | EU | `0x080FB224`–`0x080FB86D` | `src/intro_scene_data.o(.rodata)` | `src/intro_scene_data.cc`、`include/intro_scene_data.hh`、`data/text/eu/intro_scene_data.cc`、`data/text/eu/intro_scene_data_1.cc` | 精确 |
@@ -62,7 +62,7 @@
 | DE | `0x080E9620`–`0x080F09B1` | `src/item.o(.rodata)` | `src/item.cc` 与 `data/text/de/item.cc`–`item_3.cc` | 精确 |
 | DE | `0x080F09B2`–`0x080F0A4F` | `src/game_state.o(.rodata)` | `src/game_state.cc`、`include/game_state.hh` 与 `data/text/de/game_state.cc`–`game_state_1.cc` | 精确 |
 | DE | `0x080F0A50`–`0x080F0B17` | `src/help_menu.o(.rodata)` | `src/help_menu.cc`、`include/help_menu.hh` 与 `data/text/de/help_menu.cc` | 精确 |
-| DE | `0x080F0B18`–`0x080F1367` | `src/animal_data.o(.rodata)` | `src/animal_data.cc`、`data/text/de/animal_data.cc` 与共用片段 | 精确 |
+| DE | `0x080F0B18`–`0x080F1367` | `src/animal_data.o(.rodata)` | `src/animal_data.cc`、`include/animal_data.hh`、`data/text/de/animal_data.cc`、`data/text/common/animal_data_1.cc`、`data/text/de/animal_data_1.cc`、`data/text/common/animal_data_2.cc` | 精确 |
 | DE | `0x080F1368`–`0x080F1E5B` | `src/entity_ui.o(.rodata)` | `src/entity_ui.cc` 与 `data/text/de/entity_ui.cc` | 精确 |
 | DE | `0x080F1E5C`–`0x080F1F67` | `src/fixed_labels.o` 至 `src/menu_data.o` | 对应 `data/text/de/*.cc` | 精确 |
 | DE | `0x080F47D8`–`0x080FA3E7` | `asm/data/data_080F1A80.o` 至相邻脚本引擎数据 | `asm/data/data_080F1A80.s`（Mary 管理的剧情脚本原始块）及 `src/script_engine.cc`、`data/text/common/script_engine.cc` | 精确 |
@@ -110,7 +110,7 @@
 | `0x080EFDCE`–`0x080EFDCF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080EFDD0`–`0x080EFEA2` | `src/help_menu.o(.rodata)` | [嵌入文本 / 数据] | `src/help_menu.cc`<br>`include/help_menu.hh`<br>`data/text/jp/help_menu.cc` | 文本 `6` 项（加载错误 `2`、帮助菜单 `4`；详见下方索引）<br>运行时字符串 `2` 项<br>`gUnk_HelpMenuByteTable` |
 | `0x080EFEA3`–`0x080EFEA3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x080EFEA4`–`0x080F06DD` | `src/animal_data.o(.rodata)` | [嵌入文本 / 数据] | `src/animal_data.cc`<br>`data/text/jp/animal_data.cc`<br>`data/text/common/animal_data_1.cc`<br>`data/text/jp/animal_data_1.cc`<br>`data/text/common/animal_data_2.cc` | 文本 `12` 项（动物纪念 `11`、动物数据回退 `1`；详见下方索引）<br>运行时字符串 `7` 项<br>`gUnk_080F06FD`, `gUnk_080F0704`, `gUnk_080F0718`, `gUnk_080F0730`, `gUnk_080F0748`, `gUnk_080F0770`, … +11<br>单一 Animal Data 模块，文本、普通数组与表按 ROM 物理顺序嵌入 |
+| `0x080EFEA4`–`0x080F06DD` | `src/animal_data.o(.rodata)` | [嵌入文本 / 数据] | `src/animal_data.cc`<br>`include/animal_data.hh`<br>`data/text/jp/animal_data.cc`<br>`data/text/common/animal_data_1.cc`<br>`data/text/jp/animal_data_1.cc`<br>`data/text/common/animal_data_2.cc` | 文本 `12` 项（动物纪念 `11`、动物数据回退 `1`；详见下方索引）<br>运行时字符串 `7` 项<br>`gUnk_080F06FD`, `gUnk_080F0704`, `gUnk_080F0718`, `gUnk_080F0730`, `gUnk_080F0748`, `gUnk_080F0770`, … +11<br>单一 Animal Data 模块，文本、普通数组与表按 ROM 物理顺序嵌入 |
 | `0x080F06DE`–`0x080F06DF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F06E0`–`0x080F11D1` | `src/entity_ui.o(.rodata)` | [嵌入文本 / 数据] | `data/text/common/entity_ui.cc`<br>`data/text/jp/entity_ui.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `18` 项<br>`gUnk_080F0E88`, `gUnk_080F0F78`, `gUnk_080F0FCC`, `gUnk_080F1020`, `gUnk_080F1170`, `gUnk_080F1178`, … +41<br>Entity UI 本地化岛：与本对象内紧邻 UI 数据共同受 LD 上界保护 |
 | `0x080F11D2`–`0x080F11D3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1967,7 +1967,7 @@
 | `0x080F058A`–`0x080F058B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F058C`–`0x080F0650` | `src/help_menu.o(.rodata)` | [嵌入文本 / 数据] | `src/help_menu.cc`<br>`include/help_menu.hh`<br>`data/text/us/help_menu.cc` | 文本 `6` 项（加载错误 `2`、帮助菜单 `4`；详见下方索引）<br>运行时字符串 `2` 项<br>`gUnk_HelpMenuByteTable` |
 | `0x080F0651`–`0x080F0653` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
-| `0x080F0654`–`0x080F0E7D` | `src/animal_data.o(.rodata)` | [嵌入文本 / 数据] | `src/animal_data.cc`<br>`data/text/us/animal_data.cc`<br>`data/text/common/animal_data_1.cc`<br>`data/text/us/animal_data_1.cc`<br>`data/text/common/animal_data_2.cc` | 文本 `12` 项（动物纪念 `11`、动物数据回退 `1`；详见下方索引）<br>运行时字符串 `7` 项<br>`gUnk_080F06FD`, `gUnk_080F0704`, `gUnk_080F0718`, `gUnk_080F0730`, `gUnk_080F0748`, `gUnk_080F0770`, … +11<br>单一 Animal Data 模块，文本、普通数组与表按 ROM 物理顺序嵌入 |
+| `0x080F0654`–`0x080F0E7D` | `src/animal_data.o(.rodata)` | [嵌入文本 / 数据] | `src/animal_data.cc`<br>`include/animal_data.hh`<br>`data/text/us/animal_data.cc`<br>`data/text/common/animal_data_1.cc`<br>`data/text/us/animal_data_1.cc`<br>`data/text/common/animal_data_2.cc` | 文本 `12` 项（动物纪念 `11`、动物数据回退 `1`；详见下方索引）<br>运行时字符串 `7` 项<br>`gUnk_080F06FD`, `gUnk_080F0704`, `gUnk_080F0718`, `gUnk_080F0730`, `gUnk_080F0748`, `gUnk_080F0770`, … +11<br>单一 Animal Data 模块，文本、普通数组与表按 ROM 物理顺序嵌入 |
 | `0x080F0E7E`–`0x080F0E7F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F0E80`–`0x080F1971` | `src/entity_ui.o(.rodata)` | [嵌入文本 / 数据] | `data/text/common/entity_ui.cc`<br>`data/text/us/entity_ui.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `18` 项<br>`gUnk_080F0E88`, `gUnk_080F0F78`, `gUnk_080F0FCC`, `gUnk_080F1020`, `gUnk_080F1170`, `gUnk_080F1178`, … +41<br>Entity UI 本地化岛：与本对象内紧邻 UI 数据共同受 LD 上界保护 |
 | `0x080F1972`–`0x080F1973` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |

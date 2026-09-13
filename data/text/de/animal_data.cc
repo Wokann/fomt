@@ -42,9 +42,9 @@ char const gText_AnimalMemorial_DeathHeader[] =
 char const gText_AnimalMemorial_DeathFarmPrefix[] =
     "Tiere Farm.";
 
-char const gCppRuntimeBadAlloc_AnimalMemorial[] =
+extern char const gCppRuntimeBadAlloc_AnimalMemorial[] =
     "bad_alloc";
-char const gCppRuntimeError_AnimalMemorial[] =
+extern char const gCppRuntimeError_AnimalMemorial[] =
     "Error";
-char const gText_AnimalMemorialFallbackNone[] =
+extern char const gText_AnimalMemorialFallbackNone[] =
     "N/A ";

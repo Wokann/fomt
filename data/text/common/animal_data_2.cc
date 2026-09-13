@@ -1,6 +1,6 @@
 #include "animal_data.hh"
 
-char const gCppRuntimeBadAlloc_AnimalDataThird[] =
+extern char const gCppRuntimeBadAlloc_AnimalDataThird[] =
     "bad_alloc";
-char const gCppRuntimeError_AnimalDataSecond[] =
+extern char const gCppRuntimeError_AnimalDataSecond[] =
     "Error";

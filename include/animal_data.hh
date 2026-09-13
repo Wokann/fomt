@@ -25,12 +25,8 @@ extern char const gText_AnimalMemorial_DeathFarmPrefix[];
 #if defined(REGION_JP)
 extern char const gText_AnimalMemorial_PassedNaturalLife[];
 #endif
-extern char const gCppRuntimeBadAlloc_AnimalMemorial[];
-extern char const gCppRuntimeError_AnimalMemorial[];
-extern char const gText_AnimalMemorialFallbackNone[];
-
-// The labels retain their established US-ROM names.  The same object is
-// positioned at the corresponding JP address by each regional linker script.
+// These raw records remain address-named until their native callers establish
+// their game-level meaning.
 extern u8 const gUnk_080F06FD[];
 extern u8 const gUnk_080F0704[];
 extern u8 const gUnk_080F0718[];
@@ -57,11 +53,4 @@ extern AnimalDataEntry const gUnk_080F0A7C[112];
 extern u16 const gUnk_080F0C3C[28];
 extern AnimalDataEntry const gUnk_080F0C74[112];
 extern u16 const gUnk_080F0E34[28];
-extern char const gCppRuntimeBadAlloc_AnimalDataFirst[];
-extern char const gCppRuntimeBadAlloc_AnimalDataSecond[];
-extern char const gCppRuntimeError_AnimalData[];
-extern char const gText_AnimalDataFallbackNone[];
-extern char const gCppRuntimeBadAlloc_AnimalDataThird[];
-extern char const gCppRuntimeError_AnimalDataSecond[];
-
 #endif // ANIMAL_DATA_HH

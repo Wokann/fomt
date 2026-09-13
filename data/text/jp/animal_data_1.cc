@@ -1,4 +1,4 @@
 #include "animal_data.hh"
 
-char const gText_AnimalDataFallbackNone[] =
+extern char const gText_AnimalDataFallbackNone[] =
     "なし";
