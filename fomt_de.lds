@@ -80,7 +80,7 @@ SECTIONS
         src/coop.o(.text);
         src/barn.o(.text);
         src/item.o(.text);
-        src/code_0800E2E4.o(.text);
+        src/time_of_day.o(.text);
         src/farmer.o(.text);
         src/rucksack_item.o(.text);
         src/held_item.o(.text);
@@ -765,8 +765,7 @@ SECTIONS
         src/field_plot_position_values.o(.rodata);
          src/random_item_selection.o(.rodata);
         src/field_plot_position_rules.o(.rodata);
-        src/code_0800E2E4.o(.rodata.time_of_day_transition_table);
-         src/code_0800E2E4.o(.rodata.time_of_day_transition_records);
+        src/time_of_day.o(.rodata);
          src/map_data.o(.rodata.map_data);
         src/field_render_rect_descriptors.o(.rodata);
          src/field_render_farm_house_data.o(.rodata);

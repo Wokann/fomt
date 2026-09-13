@@ -113,7 +113,7 @@ SECTIONS
         . = 0xDB0C; /* JP ROM 0x0800DB0C, independently matched */
         src/item.o(.text);
         . = 0xE2C4; /* JP ROM 0x0800E2C4, independently matched */
-        src/code_0800E2E4.o(.text);
+        src/time_of_day.o(.text);
         . = 0xE334; /* JP ROM 0x0800E334, independently matched */
         src/farmer.o(.text);
         . = 0xEFCC; /* JP ROM 0x0800EFCC, independently matched */
@@ -844,8 +844,7 @@ SECTIONS
         . = 0x1049BC; src/field_plot_position_values.o(.rodata);
         . = 0x1049F4; src/random_item_selection.o(.rodata);
         . = 0x105184; src/field_plot_position_rules.o(.rodata);
-        . = 0x105250; src/code_0800E2E4.o(.rodata.time_of_day_transition_table);
-        . = 0x105290; src/code_0800E2E4.o(.rodata.time_of_day_transition_records);
+        . = 0x105250; src/time_of_day.o(.rodata);
         . = 0x105A24; src/map_data.o(.rodata.map_data);
         . = 0x106474; src/field_render_rect_descriptors.o(.rodata);
         . = 0x106C24; src/field_render_farm_house_data.o(.rodata);

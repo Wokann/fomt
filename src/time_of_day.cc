@@ -1,7 +1,7 @@
 #include "prelude.h"
 
 #include "game_state.hh"
-#include "time_of_day_data.hh"
+#include "time_of_day.hh"
 #include "unknown_types.hh" // for GameDate and Time
 
 EC char const * func_0800E2E4(Season season)
@@ -46,24 +46,7 @@ EC u32 func_0800E324(Unk_0800E324 const & arg_0)
     return date.GetSeason();
 }
 
-extern TimeOfDayTransition const gTimeOfDayTransitionRecords_Spring_Morning[];
-extern TimeOfDayTransition const gTimeOfDayTransitionRecords_Spring_Afternoon[];
-extern TimeOfDayTransition const gTimeOfDayTransitionRecords_Spring_Evening[];
-extern TimeOfDayTransition const gTimeOfDayTransitionRecords_Spring_Night[];
-extern TimeOfDayTransition const gTimeOfDayTransitionRecords_Summer_Morning[];
-extern TimeOfDayTransition const gTimeOfDayTransitionRecords_Summer_Afternoon[];
-extern TimeOfDayTransition const gTimeOfDayTransitionRecords_Summer_Evening[];
-extern TimeOfDayTransition const gTimeOfDayTransitionRecords_Summer_Night[];
-extern TimeOfDayTransition const gTimeOfDayTransitionRecords_Autumn_Morning[];
-extern TimeOfDayTransition const gTimeOfDayTransitionRecords_Autumn_Afternoon[];
-extern TimeOfDayTransition const gTimeOfDayTransitionRecords_Autumn_Evening[];
-extern TimeOfDayTransition const gTimeOfDayTransitionRecords_Autumn_Night[];
-extern TimeOfDayTransition const gTimeOfDayTransitionRecords_Winter_Morning[];
-extern TimeOfDayTransition const gTimeOfDayTransitionRecords_Winter_Afternoon[];
-extern TimeOfDayTransition const gTimeOfDayTransitionRecords_Winter_Evening[];
-extern TimeOfDayTransition const gTimeOfDayTransitionRecords_Winter_Night[];
-
-TimeOfDayTransition const * const gTimeOfDayTransitionTables[NUM_SEASONS][TIME_OF_DAY_PERIOD_COUNT] SECTION(".rodata.time_of_day_transition_table") = {
+TimeOfDayTransition const * const gTimeOfDayTransitionTables[NUM_SEASONS][TIME_OF_DAY_PERIOD_COUNT] = {
     {
         gTimeOfDayTransitionRecords_Spring_Morning,
         gTimeOfDayTransitionRecords_Spring_Afternoon,
@@ -90,7 +73,7 @@ TimeOfDayTransition const * const gTimeOfDayTransitionTables[NUM_SEASONS][TIME_O
     },
 };
 
-TimeOfDayTransition const gTimeOfDayTransitionRecords_Spring_Morning[] SECTION(".rodata.time_of_day_transition_records") = {
+TimeOfDayTransition const gTimeOfDayTransitionRecords_Spring_Morning[] = {
     { 0x0168, 0x1E },
     { 0x016D, 0x1D },
     { 0x0172, 0x1C },
@@ -125,7 +108,7 @@ TimeOfDayTransition const gTimeOfDayTransitionRecords_Spring_Morning[] SECTION("
     { 0xFFFF, 0x00 },
 };
 
-TimeOfDayTransition const gTimeOfDayTransitionRecords_Spring_Afternoon[] SECTION(".rodata.time_of_day_transition_records") = {
+TimeOfDayTransition const gTimeOfDayTransitionRecords_Spring_Afternoon[] = {
     { 0x02D0, 0x1E },
     { 0x030C, 0x1D },
     { 0x0348, 0x1C },
@@ -160,7 +143,7 @@ TimeOfDayTransition const gTimeOfDayTransitionRecords_Spring_Afternoon[] SECTION
     { 0xFFFF, 0x00 },
 };
 
-TimeOfDayTransition const gTimeOfDayTransitionRecords_Spring_Evening[] SECTION(".rodata.time_of_day_transition_records") = {
+TimeOfDayTransition const gTimeOfDayTransitionRecords_Spring_Evening[] = {
     { 0x0438, 0x1E },
     { 0x043E, 0x1D },
     { 0x0444, 0x1C },
@@ -194,7 +177,7 @@ TimeOfDayTransition const gTimeOfDayTransitionRecords_Spring_Evening[] SECTION("
     { 0xFFFF, 0x00 },
 };
 
-TimeOfDayTransition const gTimeOfDayTransitionRecords_Spring_Night[] SECTION(".rodata.time_of_day_transition_records") = {
+TimeOfDayTransition const gTimeOfDayTransitionRecords_Spring_Night[] = {
     { 0x0000, 0x1E },
     { 0x00B4, 0x1D },
     { 0x00C0, 0x1C },
@@ -229,7 +212,7 @@ TimeOfDayTransition const gTimeOfDayTransitionRecords_Spring_Night[] SECTION(".r
     { 0xFFFF, 0x00 },
 };
 
-TimeOfDayTransition const gTimeOfDayTransitionRecords_Summer_Morning[] SECTION(".rodata.time_of_day_transition_records") = {
+TimeOfDayTransition const gTimeOfDayTransitionRecords_Summer_Morning[] = {
     { 0x0168, 0x14 },
     { 0x016D, 0x13 },
     { 0x0172, 0x12 },
@@ -254,7 +237,7 @@ TimeOfDayTransition const gTimeOfDayTransitionRecords_Summer_Morning[] SECTION("
     { 0xFFFF, 0x00 },
 };
 
-TimeOfDayTransition const gTimeOfDayTransitionRecords_Summer_Afternoon[] SECTION(".rodata.time_of_day_transition_records") = {
+TimeOfDayTransition const gTimeOfDayTransitionRecords_Summer_Afternoon[] = {
     { 0x02D0, 0x1E },
     { 0x0348, 0x1D },
     { 0x0384, 0x1C },
@@ -289,7 +272,7 @@ TimeOfDayTransition const gTimeOfDayTransitionRecords_Summer_Afternoon[] SECTION
     { 0xFFFF, 0x00 },
 };
 
-TimeOfDayTransition const gTimeOfDayTransitionRecords_Summer_Evening[] SECTION(".rodata.time_of_day_transition_records") = {
+TimeOfDayTransition const gTimeOfDayTransitionRecords_Summer_Evening[] = {
     { 0x0438, 0x1E },
     { 0x047A, 0x1D },
     { 0x0480, 0x1C },
@@ -324,7 +307,7 @@ TimeOfDayTransition const gTimeOfDayTransitionRecords_Summer_Evening[] SECTION("
     { 0xFFFF, 0x00 },
 };
 
-TimeOfDayTransition const gTimeOfDayTransitionRecords_Summer_Night[] SECTION(".rodata.time_of_day_transition_records") = {
+TimeOfDayTransition const gTimeOfDayTransitionRecords_Summer_Night[] = {
     { 0x0000, 0x1E },
     { 0x00B9, 0x1D },
     { 0x00BE, 0x1C },
@@ -359,7 +342,7 @@ TimeOfDayTransition const gTimeOfDayTransitionRecords_Summer_Night[] SECTION(".r
     { 0xFFFF, 0x00 },
 };
 
-TimeOfDayTransition const gTimeOfDayTransitionRecords_Autumn_Morning[] SECTION(".rodata.time_of_day_transition_records") = {
+TimeOfDayTransition const gTimeOfDayTransitionRecords_Autumn_Morning[] = {
     { 0x0168, 0x1E },
     { 0x016D, 0x1D },
     { 0x0172, 0x1C },
@@ -394,7 +377,7 @@ TimeOfDayTransition const gTimeOfDayTransitionRecords_Autumn_Morning[] SECTION("
     { 0xFFFF, 0x00 },
 };
 
-TimeOfDayTransition const gTimeOfDayTransitionRecords_Autumn_Afternoon[] SECTION(".rodata.time_of_day_transition_records") = {
+TimeOfDayTransition const gTimeOfDayTransitionRecords_Autumn_Afternoon[] = {
     { 0x02D0, 0x1E },
     { 0x030C, 0x1D },
     { 0x0348, 0x1C },
@@ -429,7 +412,7 @@ TimeOfDayTransition const gTimeOfDayTransitionRecords_Autumn_Afternoon[] SECTION
     { 0xFFFF, 0x00 },
 };
 
-TimeOfDayTransition const gTimeOfDayTransitionRecords_Autumn_Evening[] SECTION(".rodata.time_of_day_transition_records") = {
+TimeOfDayTransition const gTimeOfDayTransitionRecords_Autumn_Evening[] = {
     { 0x0438, 0x1E },
     { 0x043E, 0x1D },
     { 0x0444, 0x1C },
@@ -463,7 +446,7 @@ TimeOfDayTransition const gTimeOfDayTransitionRecords_Autumn_Evening[] SECTION("
     { 0xFFFF, 0x00 },
 };
 
-TimeOfDayTransition const gTimeOfDayTransitionRecords_Autumn_Night[] SECTION(".rodata.time_of_day_transition_records") = {
+TimeOfDayTransition const gTimeOfDayTransitionRecords_Autumn_Night[] = {
     { 0x0000, 0x1E },
     { 0x00B4, 0x1D },
     { 0x00C0, 0x1C },
@@ -498,7 +481,7 @@ TimeOfDayTransition const gTimeOfDayTransitionRecords_Autumn_Night[] SECTION(".r
     { 0xFFFF, 0x00 },
 };
 
-TimeOfDayTransition const gTimeOfDayTransitionRecords_Winter_Morning[] SECTION(".rodata.time_of_day_transition_records") = {
+TimeOfDayTransition const gTimeOfDayTransitionRecords_Winter_Morning[] = {
     { 0x0168, 0x1E },
     { 0x01A4, 0x1D },
     { 0x01A9, 0x1C },
@@ -533,7 +516,7 @@ TimeOfDayTransition const gTimeOfDayTransitionRecords_Winter_Morning[] SECTION("
     { 0xFFFF, 0x00 },
 };
 
-TimeOfDayTransition const gTimeOfDayTransitionRecords_Winter_Afternoon[] SECTION(".rodata.time_of_day_transition_records") = {
+TimeOfDayTransition const gTimeOfDayTransitionRecords_Winter_Afternoon[] = {
     { 0x02D0, 0x1E },
     { 0x02EE, 0x1D },
     { 0x030C, 0x1C },
@@ -568,7 +551,7 @@ TimeOfDayTransition const gTimeOfDayTransitionRecords_Winter_Afternoon[] SECTION
     { 0xFFFF, 0x00 },
 };
 
-TimeOfDayTransition const gTimeOfDayTransitionRecords_Winter_Evening[] SECTION(".rodata.time_of_day_transition_records") = {
+TimeOfDayTransition const gTimeOfDayTransitionRecords_Winter_Evening[] = {
     { 0x0438, 0x1E },
     { 0x043B, 0x1D },
     { 0x043E, 0x1C },
@@ -603,7 +586,7 @@ TimeOfDayTransition const gTimeOfDayTransitionRecords_Winter_Evening[] SECTION("
     { 0xFFFF, 0x00 },
 };
 
-TimeOfDayTransition const gTimeOfDayTransitionRecords_Winter_Night[] SECTION(".rodata.time_of_day_transition_records") = {
+TimeOfDayTransition const gTimeOfDayTransitionRecords_Winter_Night[] = {
     { 0x0000, 0x1E },
     { 0x00B4, 0x1D },
     { 0x00C3, 0x1C },
