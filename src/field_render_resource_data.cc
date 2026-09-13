@@ -4,11 +4,10 @@ u8 const gUnk_FieldRenderResource_158[] = {
         0x01, 0x00, 0x00, 0x00,
     };
 
+// Each raw run ends at the next named object. Keep unlabeled trailing zeroes
+// with the preceding referenced object rather than exporting false padding.
 u8 const gUnk_FieldRenderResource_159[] = {
     0x00, 0x00, 0x00, 0x00,
-};
-
-extern u8 const gFieldRenderResourcePaddingAfterFirstValues[4] = {
     0x00, 0x00, 0x00, 0x00,
 };
 
@@ -18,19 +17,12 @@ u8 const gUnk_FieldRenderResource_177[] = {
 
 u8 const gUnk_FieldRenderResource_178[] = {
     0x00, 0x00, 0x00, 0x00,
-};
-
-extern u8 const gFieldRenderResourcePaddingAfterSecondValues[12] = {
     0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00,
 };
 
-char const gCppRuntimeBadAlloc_FieldRenderResource00[] =
-        "bad_alloc";
-
-char const gCppRuntimeBadAlloc_FieldRenderResource01[] ALIGN(4) =
-        "bad_alloc";
+#include "data/text/common/field_render_resource_data.cc"
 
 FieldRenderParallelTables const gFieldRenderParallelTables = {
         { 0x0000001C, 0x0000001D, 0x0000001E },
@@ -72,8 +64,7 @@ FieldRenderPatchArgumentData const gFieldRenderPatchArgumentData = {
         { 0x14, 0x19, 0x03, 0x00 },
     };
 
-char const gCppRuntimeBadAlloc_FieldRenderPatchArguments[] =
-        "bad_alloc";
+#include "data/text/common/field_render_resource_data_1.cc"
 
 // This packed object follows the field-render resource data directly in ROM.
 // Its one-byte alignment is part of the original data layout.

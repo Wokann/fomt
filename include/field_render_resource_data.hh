@@ -34,10 +34,8 @@ struct PACKED FarmHouseStyleNibbleLookupData
 
 extern u8 const gUnk_FieldRenderResource_158[];
 extern u8 const gUnk_FieldRenderResource_159[];
-extern u8 const gFieldRenderResourcePaddingAfterFirstValues[4];
 extern u8 const gUnk_FieldRenderResource_177[];
 extern u8 const gUnk_FieldRenderResource_178[];
-extern u8 const gFieldRenderResourcePaddingAfterSecondValues[12];
 extern char const gCppRuntimeBadAlloc_FieldRenderResource00[];
 extern char const gCppRuntimeBadAlloc_FieldRenderResource01[];
 extern FieldRenderParallelTables const gFieldRenderParallelTables;

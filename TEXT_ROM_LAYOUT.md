@@ -110,6 +110,7 @@
 | EU | `0x08105F34`–`0x08106983` | `src/map_data.o(.rodata)` | `src/map_data.cc`、`include/map_data.hh` | `gMapData`；全部资源字段均为原始资产标签的符号重定位 |
 | EU | `0x08106984`–`0x08107133` | `src/field_render_rect_descriptors.o(.rodata)` | `src/field_render_rect_descriptors.cc`、`include/field_render_rect_descriptors.hh` | `gFieldRenderRectDescriptors`；82 项描述符，所有资源字段均为原始资产标签的符号重定位 |
 | EU | `0x08107134`–`0x081073A7` | `src/field_render_farm_house_data.o(.rodata)` | `src/field_render_farm_house_data.cc`、`include/field_render_farm_house_data.hh` | `gFarmHouseTilePatchData`、`gFarmHouseVisualDescriptors`、`gFarmHouseTilePatchAnimations`；按同一对象内的 ROM 顺序排列 |
+| EU | `0x081073A8`–`0x0810748E` | `src/field_render_resource_data.o(.rodata)` | `src/field_render_resource_data.cc`、`include/field_render_resource_data.hh`、`data/text/common/field_render_resource_data.cc`、`data/text/common/field_render_resource_data_1.cc` | 原始资源标签、3 条运行时文本、并行表、参数表和三组三字节样式表；未标号零字节归入相邻原始对象，不导出伪填充数组 |
 | EU | `0x08107490`–`0x081074A7` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
 | EU | `0x081082E4`–`0x08117843` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 EU 指南源文件；主目录只收录 `PAGE_1`，`tool_and_item_controls_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 | DE | `0x080E8574`–`0x080E858D` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0.hh`、`data/text/de/crt0_data.cc` | 精确 |
@@ -192,6 +193,7 @@
 | DE | `0x08106900`–`0x0810734F` | `src/map_data.o(.rodata)` | `src/map_data.cc`、`include/map_data.hh` | `gMapData`；全部资源字段均为原始资产标签的符号重定位 |
 | DE | `0x08107350`–`0x08107AFF` | `src/field_render_rect_descriptors.o(.rodata)` | `src/field_render_rect_descriptors.cc`、`include/field_render_rect_descriptors.hh` | `gFieldRenderRectDescriptors`；82 项描述符，所有资源字段均为原始资产标签的符号重定位 |
 | DE | `0x08107B00`–`0x08107D73` | `src/field_render_farm_house_data.o(.rodata)` | `src/field_render_farm_house_data.cc`、`include/field_render_farm_house_data.hh` | `gFarmHouseTilePatchData`、`gFarmHouseVisualDescriptors`、`gFarmHouseTilePatchAnimations`；按同一对象内的 ROM 顺序排列 |
+| DE | `0x08107D74`–`0x08107E5A` | `src/field_render_resource_data.o(.rodata)` | `src/field_render_resource_data.cc`、`include/field_render_resource_data.hh`、`data/text/common/field_render_resource_data.cc`、`data/text/common/field_render_resource_data_1.cc` | 原始资源标签、3 条运行时文本、并行表、参数表和三组三字节样式表；未标号零字节归入相邻原始对象，不导出伪填充数组 |
 | DE | `0x08107E5C`–`0x08107E73` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
 | DE | `0x08107FD4`–`0x08108DB3` | `src/harvest_sprite.o(.rodata)` | `src/harvest_sprite.cc` 与 `data/text/de/harvest_sprite_*.cc` | 精确 |
 | DE | `0x08108DB4`–`0x081197FF` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 DE 指南源文件；主目录只收录 `PAGE_1`，`using_tools_2` 与 `newborn_congratulations_cliff_and_ann_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
@@ -337,15 +339,13 @@
 | `0x08105A24`–`0x08106473` | `src/map_data.o(.rodata)` | [数据] | `src/map_data.cc`<br>`include/map_data.hh` | `gMapData`；所有资源字段均为对应原始资产标签的符号重定位 |
 | `0x08106474`–`0x08106C23` | `src/field_render_rect_descriptors.o(.rodata)` | [数据] | `src/field_render_rect_descriptors.cc`<br>`include/field_render_rect_descriptors.hh` | `gFieldRenderRectDescriptors`；82 项描述符，所有资源字段均为原始资产标签的符号重定位 |
 | `0x08106C24`–`0x08106E97` | `src/field_render_farm_house_data.o(.rodata)` | [数据] | `src/field_render_farm_house_data.cc`<br>`include/field_render_farm_house_data.hh` | `gFarmHouseTilePatchData`、`gFarmHouseVisualDescriptors`、`gFarmHouseTilePatchAnimations`；按同一对象内的 ROM 顺序排列 |
-| `0x08106E98`–`0x08106E9F` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gUnk_FieldRenderResource_158`, `gUnk_FieldRenderResource_159` |
-| `0x08106EA0`–`0x08106EA3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 4 字节 |
-| `0x08106EA4`–`0x08106EAB` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gUnk_FieldRenderResource_177`, `gUnk_FieldRenderResource_178` |
-| `0x08106EAC`–`0x08106EB7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 12 字节 |
-| `0x08106EB8`–`0x08106ECD` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | 运行时字符串 `2` 项 |
+| `0x08106E98`–`0x08106EA3` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gUnk_FieldRenderResource_158`、`gUnk_FieldRenderResource_159`；后者包含至下一命名对象前的 4 个未标号 `00` |
+| `0x08106EA4`–`0x08106EB7` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gUnk_FieldRenderResource_177`、`gUnk_FieldRenderResource_178`；后者包含至下一命名对象前的 12 个未标号 `00` |
+| `0x08106EB8`–`0x08106ECD` | `src/field_render_resource_data.o(.rodata)` | [嵌入文本] | `src/field_render_resource_data.cc`<br>`data/text/common/field_render_resource_data.cc` | 运行时字符串 `2` 项 |
 | `0x08106ECE`–`0x08106ECF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08106ED0`–`0x08106F0B` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFieldRenderParallelTables` |
 | `0x08106F0C`–`0x08106F6B` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFieldRenderPatchArgumentData` |
-| `0x08106F6C`–`0x08106F75` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | 运行时字符串 `1` 项 |
+| `0x08106F6C`–`0x08106F75` | `src/field_render_resource_data.o(.rodata)` | [嵌入文本] | `src/field_render_resource_data.cc`<br>`data/text/common/field_render_resource_data_1.cc` | 运行时字符串 `1` 项 |
 | `0x08106F76`–`0x08106F7E` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFarmHouseStyleNibbleLookupData` |
 | `0x08106F7F`–`0x08106F7F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x08106F80`–`0x08106F97` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | [数据] | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
@@ -2168,15 +2168,13 @@
 | `0x08105EDC`–`0x0810692B` | `src/map_data.o(.rodata)` | [数据] | `src/map_data.cc`<br>`include/map_data.hh` | `gMapData`；所有资源字段均为对应原始资产标签的符号重定位 |
 | `0x0810692C`–`0x081070DB` | `src/field_render_rect_descriptors.o(.rodata)` | [数据] | `src/field_render_rect_descriptors.cc`<br>`include/field_render_rect_descriptors.hh` | `gFieldRenderRectDescriptors`；82 项描述符，所有资源字段均为原始资产标签的符号重定位 |
 | `0x081070DC`–`0x0810734F` | `src/field_render_farm_house_data.o(.rodata)` | [数据] | `src/field_render_farm_house_data.cc`<br>`include/field_render_farm_house_data.hh` | `gFarmHouseTilePatchData`、`gFarmHouseVisualDescriptors`、`gFarmHouseTilePatchAnimations`；按同一对象内的 ROM 顺序排列 |
-| `0x08107350`–`0x08107357` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gUnk_FieldRenderResource_158`, `gUnk_FieldRenderResource_159` |
-| `0x08107358`–`0x0810735B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 4 字节 |
-| `0x0810735C`–`0x08107363` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gUnk_FieldRenderResource_177`, `gUnk_FieldRenderResource_178` |
-| `0x08107364`–`0x0810736F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 12 字节 |
-| `0x08107370`–`0x08107385` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | 运行时字符串 `2` 项 |
+| `0x08107350`–`0x0810735B` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gUnk_FieldRenderResource_158`、`gUnk_FieldRenderResource_159`；后者包含至下一命名对象前的 4 个未标号 `00` |
+| `0x0810735C`–`0x0810736F` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gUnk_FieldRenderResource_177`、`gUnk_FieldRenderResource_178`；后者包含至下一命名对象前的 12 个未标号 `00` |
+| `0x08107370`–`0x08107385` | `src/field_render_resource_data.o(.rodata)` | [嵌入文本] | `src/field_render_resource_data.cc`<br>`data/text/common/field_render_resource_data.cc` | 运行时字符串 `2` 项 |
 | `0x08107386`–`0x08107387` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08107388`–`0x081073C3` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFieldRenderParallelTables` |
 | `0x081073C4`–`0x08107423` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFieldRenderPatchArgumentData` |
-| `0x08107424`–`0x0810742D` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | 运行时字符串 `1` 项 |
+| `0x08107424`–`0x0810742D` | `src/field_render_resource_data.o(.rodata)` | [嵌入文本] | `src/field_render_resource_data.cc`<br>`data/text/common/field_render_resource_data_1.cc` | 运行时字符串 `1` 项 |
 | `0x0810742E`–`0x08107436` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFarmHouseStyleNibbleLookupData` |
 | `0x08107437`–`0x08107437` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x08107438`–`0x0810744F` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | [数据] | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
