@@ -144,18 +144,11 @@ TEXT_FRAGMENT_SOURCES := $(sort $(filter $(TEXT_FRAGMENT_CANDIDATES),$(TEXT_FRAG
 # src/staff_credits.cc unit; guide pages remain a generated aggregate source.
 STAFF_CREDITS_SOURCE := data/text/$(TEXT_REGION)/staff_credits.cc
 
-# Shop-common strings are the first physical block of the unified status UI
-# source. The original shop data remains between this block and the status
-# text block, so compile that branch to its existing object name.
-STATUS_UI_SHOP_COMMON_TEXT_SOURCE := data/text/$(TEXT_REGION)/status_ui.cc
-STATUS_UI_SHOP_COMMON_TEXT_OBJ := $(BUILD_DIR)/data/text/shop_common.o
-STATUS_UI_SHOP_COMMON_TEXT_DEP := $(STATUS_UI_SHOP_COMMON_TEXT_OBJ:.o=.d)
-
 REGION_TEXT_SOURCES := $(filter-out $(TEXT_FRAGMENT_SOURCES) $(STAFF_CREDITS_SOURCE),$(wildcard data/text/$(TEXT_REGION)/*.cc))
 REGION_TEXT_ORDINARY_OBJS := $(patsubst data/text/$(TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.o,$(REGION_TEXT_SOURCES))
 REGION_TEXT_ORDINARY_DEPS := $(REGION_TEXT_ORDINARY_OBJS:.o=.d)
-REGION_TEXT_OBJS := $(REGION_TEXT_ORDINARY_OBJS) $(STATUS_UI_SHOP_COMMON_TEXT_OBJ)
-REGION_TEXT_DEPS := $(REGION_TEXT_ORDINARY_DEPS) $(STATUS_UI_SHOP_COMMON_TEXT_DEP)
+REGION_TEXT_OBJS := $(REGION_TEXT_ORDINARY_OBJS)
+REGION_TEXT_DEPS := $(REGION_TEXT_ORDINARY_DEPS)
 COMMON_TEXT_SOURCES := $(filter-out $(TEXT_FRAGMENT_SOURCES),$(wildcard data/text/common/*.cc))
 COMMON_TEXT_OBJS := $(COMMON_TEXT_SOURCES:%.cc=$(BUILD_DIR)/%.o)
 COMMON_TEXT_DEPS := $(COMMON_TEXT_OBJS:.o=.d)
@@ -257,14 +250,6 @@ $(REGION_TEXT_ORDINARY_DEPS): $(BUILD_DIR)/data/text/%.d: data/text/$(TEXT_REGIO
 $(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGION)/%.cc $(BUILD_DIR)/data/text/%.d $(TEXT_TOOLS) charmap.txt
 	@echo "CP $<"
 	$(call FOMT_COMPILE_CPP,)
-
-$(STATUS_UI_SHOP_COMMON_TEXT_DEP): $(STATUS_UI_SHOP_COMMON_TEXT_SOURCE)
-	@mkdir -p $(dir $@)
-	@$(CPP) $(CPPFLAGS) -DFOMT_TEXT_STATUS_UI_SHOP_COMMON=1 $< -o $@ -MM -MG -MT $@ -MT $(STATUS_UI_SHOP_COMMON_TEXT_OBJ)
-
-$(STATUS_UI_SHOP_COMMON_TEXT_OBJ): $(STATUS_UI_SHOP_COMMON_TEXT_SOURCE) $(STATUS_UI_SHOP_COMMON_TEXT_DEP) $(TEXT_TOOLS) charmap.txt
-	@echo "CP $<"
-	$(call FOMT_COMPILE_CPP,-DFOMT_TEXT_STATUS_UI_SHOP_COMMON=1)
 
 # ROM from ELF
 %.gba: %.elf

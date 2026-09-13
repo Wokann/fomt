@@ -114,6 +114,7 @@
 | EU | `0x08107490`–`0x081074A7` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
 | EU | `0x081074A8`–`0x08107607` | `src/field_render_runtime_data.o(.rodata)` | `src/field_render_runtime_data.cc`、`include/field_render_runtime_data.hh`、`data/text/eu/field_render_runtime_data.cc`、`data/text/common/field_render_runtime_data_1.cc`、`data/text/eu/field_render_runtime_data_2.cc` | 季节记录范围、查找/排序/布局表与三段按物理断点嵌入的文本；全部外部引用均为符号重定位 |
 | EU | `0x081082E4`–`0x08117843` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 EU 指南源文件；主目录只收录 `PAGE_1`，`tool_and_item_controls_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
+| EU | `0x08117844`–`0x08117B6B` | `src/shop_common.o(.rodata)` | `src/shop_common.cc`、`include/shop_common.hh`、`data/text/eu/shop_common.cc`–`shop_common_8.cc`；运行时字符串、数字字形、商店通用文本、状态文本、指针与数值表按 ROM 顺序同属该对象 | 精确 |
 | DE | `0x080E8574`–`0x080E858D` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0.hh`、`data/text/de/crt0_data.cc` | 精确 |
 | DE | `0x080E858E`–`0x080E858F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080E8590`–`0x080E85E4` | `src/sram_proxy_1.o(.rodata)` | `src/sram_proxy_1.c`、`include/sram_proxy.hh`、`data/text/de/sram_proxy_1.cc` | 精确 |
@@ -199,6 +200,7 @@
 | DE | `0x08107E74`–`0x08107FD3` | `src/field_render_runtime_data.o(.rodata)` | `src/field_render_runtime_data.cc`、`include/field_render_runtime_data.hh`、`data/text/de/field_render_runtime_data.cc`、`data/text/common/field_render_runtime_data_1.cc`、`data/text/de/field_render_runtime_data_2.cc` | 季节记录范围、查找/排序/布局表与三段按物理断点嵌入的文本；全部外部引用均为符号重定位 |
 | DE | `0x08107FD4`–`0x08108DB3` | `src/harvest_sprite.o(.rodata)` | `src/harvest_sprite.cc` 与 `data/text/de/harvest_sprite_*.cc` | 精确 |
 | DE | `0x08108DB4`–`0x081197FF` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 DE 指南源文件；主目录只收录 `PAGE_1`，`using_tools_2` 与 `newborn_congratulations_cliff_and_ann_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
+| DE | `0x0811984C`–`0x08119B93` | `src/shop_common.o(.rodata)` | `src/shop_common.cc`、`include/shop_common.hh`、`data/text/de/shop_common.cc`–`shop_common_8.cc`；运行时字符串、数字字形、商店通用文本、状态文本、指针与数值表按 ROM 顺序同属该对象 | 精确 |
 
 ## JP：物理 `.rodata` 顺序
 
@@ -393,11 +395,11 @@
 | `0x08107D89`–`0x08107D89` | `src/harvest_sprite.o(.rodata)` | [对象内填充] | `src/harvest_sprite.cc` | 对象内对齐填充字节 `00`，1 字节 |
 | `0x08107D8A`–`0x08107DAB` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc` | `gUnk_080C7B38Values`, `gUnk_080C7B64Values` |
 | `0x08107DAC`–`0x081189D3` | `src/reference_guide.o(.rodata.reference_guide)` | [指南连续块] | `src/reference_guide.cc`<br>`data/text/jp/reference_guide/*.cc (137 页)`<br>连续生成块；按维护规则不展开页内文本或页指针表 | 连续生成区域；按维护规则仅记录起止 |
-| `0x081189D4`–`0x081189F1` | `src/shop_common.o(.rodata.shop_common_digit_glyphs)` | [数据] | `src/shop_common.c/.cc` | 运行时字符串 `1` 项<br>`gUnk_080C85A0DigitGlyphs` |
+| `0x081189D4`–`0x081189F1` | `src/shop_common.o(.rodata)` | [嵌入文本与数据] | `src/shop_common.cc`<br>`data/text/jp/shop_common.cc` | 运行时字符串 `1` 项<br>`gUnk_080C85A0DigitGlyphs` |
 | `0x081189F2`–`0x081189F3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x081189F4`–`0x08118A13` | `data/text/shop_common.o(.rodata)` | [文本对象] | `data/text/jp/status_ui.cc` | 文本 `3` 项（详见下方索引）<br>`gShopCommonQuantitySuffixTextRef`, `gShopCommonOwnedQuantityLabelTextRef` |
-| `0x08118A14`–`0x08118B93` | `src/shop_common.o(.rodata)` | [数据] | `src/shop_common.c/.cc` | 运行时字符串 `2` 项<br>`gUnk_08117838`, `gUnk_0811783C`, `gUnk_0811785C`, `gUnk_08117860`, `gUnk_0811788C` |
-| `0x08118B94`–`0x08118CF3` | `data/text/status_ui.o(.rodata)` | [文本对象] | `data/text/jp/status_ui.cc` | 文本 `26` 项（详见下方索引）<br>`gItemStatusWrappedAsPresentTextRef`, `gItemDiscardConfirmTextRef`, `gItemDiscardCannotDiscardTextRef`, `gItemDiscardCursedTextRef` |
+| `0x081189F4`–`0x08118A13` | `src/shop_common.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/jp/shop_common_1.cc`<br>`data/text/jp/shop_common_2.cc` | 文本 `3` 项（详见下方索引）<br>`gShopCommonQuantitySuffixTextRef`, `gShopCommonOwnedQuantityLabelTextRef` |
+| `0x08118A14`–`0x08118B93` | `src/shop_common.o(.rodata)` | [嵌入文本与数据] | `src/shop_common.cc`<br>`data/text/jp/shop_common_3.cc`<br>`data/text/jp/shop_common_4.cc` | 运行时字符串 `2` 项<br>`gUnk_08117838`, `gUnk_0811783C`, `gUnk_0811785C`, `gUnk_08117860`, `gUnk_0811788C` |
+| `0x08118B94`–`0x08118CF3` | `src/shop_common.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/jp/shop_common_5.cc`–`shop_common_8.cc` | 文本 `26` 项（详见下方索引）<br>`gItemStatusWrappedAsPresentTextRef`, `gItemDiscardConfirmTextRef`, `gItemDiscardCannotDiscardTextRef`, `gItemDiscardCursedTextRef` |
 | `0x08118CF4`–`0x08118D17` | `src/font.o(.rodata)` | [数据] | `src/font.c/.cc` | 运行时字符串 `1` 项<br>`gFontSpecialGlyph81CD` |
 | `0x08118D18`–`0x0813ABCB` | `asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard)` | [原始 incbin] | `asm/data/data_080F9EB8.s` | `gUnk_FieldRenderResource_146`, `gUnk_FieldRenderResource_147`, `gUnk_MapDataResource_098`, `gUnk_MapDataResource_099`, `gUnk_FieldRenderResource_120`, `gUnk_FieldRenderResource_121`, … +214 |
 
@@ -2010,35 +2012,35 @@
 | `0x08107D38` | `gText_HarvestSpriteMiniGame_Watering_ScorePrefix` | `data/text/jp/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
 | `0x08107D44` | `gText_HarvestSpriteMiniGame_Watering_ScoreResultSuffix` | `data/text/jp/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
 | `0x08107D58` | `gText_HarvestSpriteMiniGame_Watering_ScoreSummary` | `data/text/jp/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x081189F4` | `gText_ShopCommon_GoldUnit` | `data/text/jp/status_ui.cc` | `data/text/shop_common.o(.rodata)` |
-| `0x081189F8` | `gText_ShopCommon_QuantitySuffix` | `data/text/jp/status_ui.cc` | `data/text/shop_common.o(.rodata)` |
-| `0x08118A00` | `gText_ShopCommon_OwnedQuantityLabel` | `data/text/jp/status_ui.cc` | `data/text/shop_common.o(.rodata)` |
-| `0x08118B94` | `gText_ToolStatus_GemOfTruth` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118BA4` | `gText_ToolStatus_EnergyLabel` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118BAC` | `gText_ToolStatus_ValueSeparator` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118BB0` | `gText_ToolStatus_EnergyFatigueLineBreak` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118BB4` | `gText_ToolStatus_FatigueLabel` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118BBC` | `gText_ToolStatus_FatigueMaximum` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118BC8` | `gText_ToolStatus_PedometerLabel` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118BD4` | `gText_ToolStatus_PedometerStepsSuffix` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118BD8` | `gText_ToolStatus_DescriptionQuoteOpen` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118BDC` | `gText_ToolStatus_DescriptionQuoteClose` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118BE0` | `gText_ToolStatus_RemainingSquaresPrefix` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118BE8` | `gText_ToolStatus_RemainingSquaresSuffix` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118BF4` | `gText_AnimalStatus_Dog` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118BFC` | `gText_AnimalStatus_Puppy` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118C04` | `gText_AnimalStatus_Chicken` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118C0C` | `gText_AnimalStatus_Chick` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118C18` | `gText_AnimalStatus_Sick` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118C20` | `gText_AnimalStatus_Unhappy` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118C2C` | `gText_AnimalStatus_Healthy` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118C34` | `gText_ItemStatus_BasketName` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118C3C` | `gText_ItemStatus_BasketDescription` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118C58` | `gText_ItemStatus_BasketHoldingSuffix` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118C68` | `gText_ItemStatus_WrappedAsPresent` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118C98` | `gText_ItemDiscard_Confirm` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118CB4` | `gText_ItemDiscard_CannotDiscard` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08118CD0` | `gText_ItemDiscard_Cursed` | `data/text/jp/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
+| `0x081189F4` | `gText_ShopCommon_GoldUnit` | `data/text/jp/shop_common_1.cc` | `src/shop_common.o(.rodata)` |
+| `0x081189F8` | `gText_ShopCommon_QuantitySuffix` | `data/text/jp/shop_common_1.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118A00` | `gText_ShopCommon_OwnedQuantityLabel` | `data/text/jp/shop_common_2.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118B94` | `gText_ToolStatus_GemOfTruth` | `data/text/jp/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118BA4` | `gText_ToolStatus_EnergyLabel` | `data/text/jp/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118BAC` | `gText_ToolStatus_ValueSeparator` | `data/text/jp/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118BB0` | `gText_ToolStatus_EnergyFatigueLineBreak` | `data/text/jp/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118BB4` | `gText_ToolStatus_FatigueLabel` | `data/text/jp/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118BBC` | `gText_ToolStatus_FatigueMaximum` | `data/text/jp/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118BC8` | `gText_ToolStatus_PedometerLabel` | `data/text/jp/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118BD4` | `gText_ToolStatus_PedometerStepsSuffix` | `data/text/jp/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118BD8` | `gText_ToolStatus_DescriptionQuoteOpen` | `data/text/jp/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118BDC` | `gText_ToolStatus_DescriptionQuoteClose` | `data/text/jp/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118BE0` | `gText_ToolStatus_RemainingSquaresPrefix` | `data/text/jp/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118BE8` | `gText_ToolStatus_RemainingSquaresSuffix` | `data/text/jp/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118BF4` | `gText_AnimalStatus_Dog` | `data/text/jp/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118BFC` | `gText_AnimalStatus_Puppy` | `data/text/jp/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118C04` | `gText_AnimalStatus_Chicken` | `data/text/jp/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118C0C` | `gText_AnimalStatus_Chick` | `data/text/jp/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118C18` | `gText_AnimalStatus_Sick` | `data/text/jp/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118C20` | `gText_AnimalStatus_Unhappy` | `data/text/jp/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118C2C` | `gText_AnimalStatus_Healthy` | `data/text/jp/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118C34` | `gText_ItemStatus_BasketName` | `data/text/jp/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118C3C` | `gText_ItemStatus_BasketDescription` | `data/text/jp/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118C58` | `gText_ItemStatus_BasketHoldingSuffix` | `data/text/jp/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118C68` | `gText_ItemStatus_WrappedAsPresent` | `data/text/jp/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118C98` | `gText_ItemDiscard_Confirm` | `data/text/jp/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118CB4` | `gText_ItemDiscard_CannotDiscard` | `data/text/jp/shop_common_7.cc` | `src/shop_common.o(.rodata)` |
+| `0x08118CD0` | `gText_ItemDiscard_Cursed` | `data/text/jp/shop_common_8.cc` | `src/shop_common.o(.rodata)` |
 
 ## US：物理 `.rodata` 顺序
 
@@ -2231,11 +2233,11 @@
 | `0x08108268`–`0x08108289` | `src/harvest_sprite.o(.rodata)` | [数据] | `src/harvest_sprite.cc` | `gUnk_080C7B38Values`, `gUnk_080C7B64Values` |
 | `0x0810828A`–`0x0810828B` | `src/harvest_sprite.o(.rodata)` | [对象内填充] | `src/harvest_sprite.cc` | 对象内对齐填充字节 `00`，2 字节 |
 | `0x0810828C`–`0x081177EB` | `src/reference_guide.o(.rodata.reference_guide)` | [指南连续块] | `src/reference_guide.cc`<br>`data/text/us/reference_guide/*.cc (138 页)`<br>连续生成块；按维护规则不展开页内文本或页指针表 | 连续生成区域；按维护规则仅记录起止 |
-| `0x081177EC`–`0x08117809` | `src/shop_common.o(.rodata.shop_common_digit_glyphs)` | [数据] | `src/shop_common.c/.cc` | 运行时字符串 `1` 项<br>`gUnk_080C85A0DigitGlyphs` |
+| `0x081177EC`–`0x08117809` | `src/shop_common.o(.rodata)` | [嵌入文本与数据] | `src/shop_common.cc`<br>`data/text/us/shop_common.cc` | 运行时字符串 `1` 项<br>`gUnk_080C85A0DigitGlyphs` |
 | `0x0811780A`–`0x0811780B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x0811780C`–`0x0811782B` | `data/text/shop_common.o(.rodata)` | [文本对象] | `data/text/us/status_ui.cc` | 文本 `3` 项（详见下方索引）<br>`gShopCommonQuantitySuffixTextRef`, `gShopCommonOwnedQuantityLabelTextRef` |
-| `0x0811782C`–`0x081179AB` | `src/shop_common.o(.rodata)` | [数据] | `src/shop_common.c/.cc` | 运行时字符串 `2` 项<br>`gUnk_08117838`, `gUnk_0811783C`, `gUnk_0811785C`, `gUnk_08117860`, `gUnk_0811788C` |
-| `0x081179AC`–`0x08117B13` | `data/text/status_ui.o(.rodata)` | [文本对象] | `data/text/us/status_ui.cc` | 文本 `25` 项（详见下方索引）<br>`gItemStatusWrappedAsPresentTextRef`, `gItemDiscardConfirmTextRef`, `gItemDiscardCannotDiscardTextRef`, `gItemDiscardCursedTextRef` |
+| `0x0811780C`–`0x0811782B` | `src/shop_common.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/us/shop_common_1.cc`<br>`data/text/us/shop_common_2.cc` | 文本 `3` 项（详见下方索引）<br>`gShopCommonQuantitySuffixTextRef`, `gShopCommonOwnedQuantityLabelTextRef` |
+| `0x0811782C`–`0x081179AB` | `src/shop_common.o(.rodata)` | [嵌入文本与数据] | `src/shop_common.cc`<br>`data/text/us/shop_common_3.cc`<br>`data/text/us/shop_common_4.cc` | 运行时字符串 `2` 项<br>`gUnk_08117838`, `gUnk_0811783C`, `gUnk_0811785C`, `gUnk_08117860`, `gUnk_0811788C` |
+| `0x081179AC`–`0x08117B13` | `src/shop_common.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/us/shop_common_5.cc`–`shop_common_8.cc` | 文本 `25` 项（详见下方索引）<br>`gItemStatusWrappedAsPresentTextRef`, `gItemDiscardConfirmTextRef`, `gItemDiscardCannotDiscardTextRef`, `gItemDiscardCursedTextRef` |
 | `0x08117B14`–`0x08117BD3` | `src/font.o(.rodata)` | [数据] | `src/font.c/.cc` | 运行时字符串 `1` 项<br>`gFontSpecialGlyphBlocks`, `gFontSpecialGlyphC3` |
 | `0x08117BD4`–`0x08139A87` | `asm/data/data_080F9EB8.o(.rodata.static_data_after_item_discard)` | [原始 incbin] | `asm/data/data_080F9EB8.s` | `gUnk_FieldRenderResource_146`, `gUnk_FieldRenderResource_147`, `gUnk_MapDataResource_098`, `gUnk_MapDataResource_099`, `gUnk_FieldRenderResource_120`, `gUnk_FieldRenderResource_121`, … +214 |
 
@@ -3842,34 +3844,34 @@
 | `0x08108220` | `gText_HarvestSpriteMiniGame_Watering_ScoreResultPrefix` | `data/text/us/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
 | `0x08108230` | `gText_HarvestSpriteMiniGame_Watering_ScoreResultSuffix` | `data/text/us/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
 | `0x0810823C` | `gText_HarvestSpriteMiniGame_Watering_ScoreSummary` | `data/text/us/harvest_sprite_8.cc` | `src/harvest_sprite.o(.rodata)` |
-| `0x0811780C` | `gText_ShopCommon_GoldUnit` | `data/text/us/status_ui.cc` | `data/text/shop_common.o(.rodata)` |
-| `0x08117810` | `gText_ShopCommon_QuantitySuffix` | `data/text/us/status_ui.cc` | `data/text/shop_common.o(.rodata)` |
-| `0x08117818` | `gText_ShopCommon_OwnedQuantityLabel` | `data/text/us/status_ui.cc` | `data/text/shop_common.o(.rodata)` |
-| `0x081179AC` | `gText_ToolStatus_GemOfTruth` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x081179BC` | `gText_ToolStatus_EnergyLabel` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x081179C4` | `gText_ToolStatus_ValueSeparator` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x081179C8` | `gText_ToolStatus_EnergyFatigueLineBreak` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x081179CC` | `gText_ToolStatus_FatigueLabel` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x081179D8` | `gText_ToolStatus_FatigueMaximum` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x081179E0` | `gText_ToolStatus_PedometerLabel` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x081179F0` | `gText_ToolStatus_PedometerStepsSuffix` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x081179F8` | `gText_ToolStatus_DescriptionQuotePrefix` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x081179FC` | `gText_ToolStatus_RemainingSquaresSuffix` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08117A0C` | `gText_AnimalStatus_Dog` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08117A14` | `gText_AnimalStatus_Puppy` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08117A1C` | `gText_AnimalStatus_Chicken` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08117A28` | `gText_AnimalStatus_Chick` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08117A30` | `gText_AnimalStatus_Sick` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08117A38` | `gText_AnimalStatus_Unhappy` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08117A44` | `gText_AnimalStatus_Healthy` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08117A50` | `gText_ItemStatus_BasketName` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08117A5C` | `gText_ItemStatus_BasketDescription` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08117A78` | `gText_ItemStatus_BasketHoldingPrefix` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08117A84` | `gText_ItemStatus_BasketHoldingSuffix` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08117A8C` | `gText_ItemStatus_WrappedAsPresent` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08117AA8` | `gText_ItemDiscard_Confirm` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08117AC0` | `gText_ItemDiscard_CannotDiscard` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
-| `0x08117AE0` | `gText_ItemDiscard_Cursed` | `data/text/us/status_ui.cc` | `data/text/status_ui.o(.rodata)` |
+| `0x0811780C` | `gText_ShopCommon_GoldUnit` | `data/text/us/shop_common_1.cc` | `src/shop_common.o(.rodata)` |
+| `0x08117810` | `gText_ShopCommon_QuantitySuffix` | `data/text/us/shop_common_1.cc` | `src/shop_common.o(.rodata)` |
+| `0x08117818` | `gText_ShopCommon_OwnedQuantityLabel` | `data/text/us/shop_common_2.cc` | `src/shop_common.o(.rodata)` |
+| `0x081179AC` | `gText_ToolStatus_GemOfTruth` | `data/text/us/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x081179BC` | `gText_ToolStatus_EnergyLabel` | `data/text/us/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x081179C4` | `gText_ToolStatus_ValueSeparator` | `data/text/us/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x081179C8` | `gText_ToolStatus_EnergyFatigueLineBreak` | `data/text/us/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x081179CC` | `gText_ToolStatus_FatigueLabel` | `data/text/us/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x081179D8` | `gText_ToolStatus_FatigueMaximum` | `data/text/us/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x081179E0` | `gText_ToolStatus_PedometerLabel` | `data/text/us/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x081179F0` | `gText_ToolStatus_PedometerStepsSuffix` | `data/text/us/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x081179F8` | `gText_ToolStatus_DescriptionQuotePrefix` | `data/text/us/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x081179FC` | `gText_ToolStatus_RemainingSquaresSuffix` | `data/text/us/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08117A0C` | `gText_AnimalStatus_Dog` | `data/text/us/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08117A14` | `gText_AnimalStatus_Puppy` | `data/text/us/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08117A1C` | `gText_AnimalStatus_Chicken` | `data/text/us/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08117A28` | `gText_AnimalStatus_Chick` | `data/text/us/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08117A30` | `gText_AnimalStatus_Sick` | `data/text/us/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08117A38` | `gText_AnimalStatus_Unhappy` | `data/text/us/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08117A44` | `gText_AnimalStatus_Healthy` | `data/text/us/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08117A50` | `gText_ItemStatus_BasketName` | `data/text/us/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08117A5C` | `gText_ItemStatus_BasketDescription` | `data/text/us/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08117A78` | `gText_ItemStatus_BasketHoldingPrefix` | `data/text/us/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08117A84` | `gText_ItemStatus_BasketHoldingSuffix` | `data/text/us/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08117A8C` | `gText_ItemStatus_WrappedAsPresent` | `data/text/us/shop_common_5.cc` | `src/shop_common.o(.rodata)` |
+| `0x08117AA8` | `gText_ItemDiscard_Confirm` | `data/text/us/shop_common_6.cc` | `src/shop_common.o(.rodata)` |
+| `0x08117AC0` | `gText_ItemDiscard_CannotDiscard` | `data/text/us/shop_common_7.cc` | `src/shop_common.o(.rodata)` |
+| `0x08117AE0` | `gText_ItemDiscard_Cursed` | `data/text/us/shop_common_8.cc` | `src/shop_common.o(.rodata)` |
 
 ## 维护源覆盖检查
 

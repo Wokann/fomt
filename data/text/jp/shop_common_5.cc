@@ -1,23 +1,4 @@
-#include "status_ui_text.hh"
-
-#if defined(FOMT_TEXT_STATUS_UI_SHOP_COMMON)
-
-char const gText_ShopCommon_GoldUnit[] =
-    "Ｇ";
-
-char const gText_ShopCommon_QuantitySuffix[] =
-    "コ";
-
-char const * const gShopCommonQuantitySuffixTextRef =
-    gText_ShopCommon_QuantitySuffix;
-
-char const gText_ShopCommon_OwnedQuantityLabel[] =
-    "持っている数";
-
-char const * const gShopCommonOwnedQuantityLabelTextRef =
-    gText_ShopCommon_OwnedQuantityLabel;
-
-#else
+#include "shop_common.hh"
 
 char const gText_ToolStatus_GemOfTruth[] =
     "真実の秘宝\r\n";
@@ -92,26 +73,3 @@ char const gText_ItemStatus_WrappedAsPresent[] =
     "を\r\n"
     "プレゼント用に包んでもらった\r\n"
     "もの。";
-
-char const * const gItemStatusWrappedAsPresentTextRef =
-    gText_ItemStatus_WrappedAsPresent;
-
-char const gText_ItemDiscard_Confirm[] =
-    "これを捨ててもいい？";
-
-char const * const gItemDiscardConfirmTextRef =
-    gText_ItemDiscard_Confirm;
-
-char const gText_ItemDiscard_CannotDiscard[] =
-    "これは捨てられない。{Press}";
-
-char const * const gItemDiscardCannotDiscardTextRef =
-    gText_ItemDiscard_CannotDiscard;
-
-char const gText_ItemDiscard_Cursed[] =
-    "呪われているのではずせない！{Press}";
-
-char const * const gItemDiscardCursedTextRef =
-    gText_ItemDiscard_Cursed;
-
-#endif // FOMT_TEXT_STATUS_UI_SHOP_COMMON

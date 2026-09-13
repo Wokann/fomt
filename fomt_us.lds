@@ -765,10 +765,7 @@ SECTIONS
         . = 0x107450; src/field_render_runtime_data.o(.rodata);
         . = 0x1075B0; src/harvest_sprite.o(.rodata);
         . = 0x10828C; src/reference_guide.o(.rodata.reference_guide);
-        . = 0x1177EC; src/shop_common.o(.rodata.shop_common_digit_glyphs);
-        . = 0x11780C; data/text/shop_common.o(.rodata);
-        . = 0x11782C; src/shop_common.o(.rodata);
-        . = 0x1179AC; data/text/status_ui.o(.rodata);
+        . = 0x1177EC; src/shop_common.o(.rodata);
         . = 0x117B14; src/font.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);

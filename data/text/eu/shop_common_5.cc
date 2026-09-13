@@ -1,23 +1,4 @@
-#include "status_ui_text.hh"
-
-#if defined(FOMT_TEXT_STATUS_UI_SHOP_COMMON)
-
-char const gText_ShopCommon_GoldUnit[] =
-    "G ";
-
-char const gText_ShopCommon_QuantitySuffix[] =
-    "  ";
-
-char const * const gShopCommonQuantitySuffixTextRef =
-    gText_ShopCommon_QuantitySuffix;
-
-char const gText_ShopCommon_OwnedQuantityLabel[] =
-    "You have    ";
-
-char const * const gShopCommonOwnedQuantityLabelTextRef =
-    gText_ShopCommon_OwnedQuantityLabel;
-
-#else
+#include "shop_common.hh"
 
 char const gText_ToolStatus_GemOfTruth[] =
     "Gem of Truth\r\n";
@@ -87,27 +68,3 @@ char const gText_ItemStatus_BasketHoldingSuffix[] =
 
 char const gText_ItemStatus_WrappedAsPresent[] =
     "\r\nwrapped as a present.";
-
-char const * const gItemStatusWrappedAsPresentTextRef =
-    gText_ItemStatus_WrappedAsPresent;
-
-char const gText_ItemDiscard_Confirm[] =
-    "Throw this away?";
-
-char const * const gItemDiscardConfirmTextRef =
-    gText_ItemDiscard_Confirm;
-
-char const gText_ItemDiscard_CannotDiscard[] =
-    "You can't throw this away.{Press}";
-
-char const * const gItemDiscardCannotDiscardTextRef =
-    gText_ItemDiscard_CannotDiscard;
-
-char const gText_ItemDiscard_Cursed[] =
-    "You can't let go of it\r\n"
-    "because it's cursed!{Press}";
-
-char const * const gItemDiscardCursedTextRef =
-    gText_ItemDiscard_Cursed;
-
-#endif // FOMT_TEXT_STATUS_UI_SHOP_COMMON
