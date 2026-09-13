@@ -1,13 +1,8 @@
-#include "link_communication.hh"
-#include "link_communication_text.hh"
+#include "link_communication_data.hh"
 
-// Keep the selected regional dialog immediately before its native packet
-// tables.  The linker gives this whole source object one bounded ROM island.
-#if defined(REGION_JP)
+// Preserve the physical order of this single ROM block: regional dialog,
+// packet data, character codes, protocol identifiers, then runtime strings.
 #include FOMT_TEXT_INCLUDE(link_communication.cc)
-#else
-#include FOMT_TEXT_INCLUDE(link_communication.cc)
-#endif
 
 EXTERN_C
 

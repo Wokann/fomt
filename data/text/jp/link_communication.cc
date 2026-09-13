@@ -1,4 +1,4 @@
-#include "link_communication_text.hh"
+#include "link_communication_data.hh"
 
 char const gText_LinkCommunication_Waiting[] =
     "通信待機中なのよー。\r\n"

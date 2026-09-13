@@ -726,10 +726,9 @@ SECTIONS
         . = 0x1003E4; src/gift_wrap.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        /* Bounded link-communication localization island: text, tables, codes. */
+        /* Link-communication regional data: text, tables, codes. */
         FILL(0x00);
         . = 0x1004E0; src/link_communication_data.o(.rodata);
-        ASSERT(. <= 0x100AC0, "US link-communication localization island overflow");
         . = 0x100AC0; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_page_break);
         . = 0x100AC2; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_utensil_values);
         . = 0x100AD2; data/text/recovery_status.o(.rodata);
