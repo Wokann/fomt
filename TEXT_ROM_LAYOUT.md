@@ -50,7 +50,7 @@
 | EU | `0x080F3404`–`0x080F4339` | `src/entity_ui_resource_selector.o(.rodata)` | `src/entity_ui_resource_selector.cc`、`include/entity_ui_resource_selector.hh`、`data/text/eu/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_3.cc` | 精确 |
 | EU | `0x080F433C`–`0x080F9EE3` | `asm/data/data_080F1A80.o` 至 `data/scripts/script_table.o` | `asm/data/data_080F1A80.s`（Mary 管理的连续剧情脚本块及脚本表） | 精确 |
 | EU | `0x080F9EE4`–`0x080F9F10` | `src/script_engine.o(.rodata)` | `src/script_engine.cc`、`include/script_engine.hh`、`data/text/eu/script_engine.cc`；运行时 `bad_alloc` 与 3 项 UI 字符串按原 ROM 顺序同属该对象 | 精确 |
-| EU | `0x080FB224`–`0x080FB86D` | `src/intro_scene_data.o(.rodata)` | `src/intro_scene_data.cc`、`include/intro_scene_data.hh`、`data/text/eu/intro_scene_data.cc`、`data/text/eu/intro_scene_data_1.cc` | 精确 |
+| EU | `0x080FB224`–`0x080FB86D` | `src/intro_scene_data.o(.rodata)` | `src/intro_scene_data.cc`、`include/intro_scene_data.hh`、`data/text/eu/intro_scene_data.cc`、`data/text/eu/intro_scene_data_1.cc`；20 个解包资源入口均为资产容器中的直接标签 | 精确 |
 | EU | `0x080FECC8`–`0x080FEDD7` | `src/blacksmith_menu_data.o(.rodata)` | `src/blacksmith_menu_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
 | EU | `0x080FEDD8`–`0x080FF3AF` | `src/blacksmith_data.o(.rodata)` | `src/blacksmith_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
 | EU | `0x08100534`–`0x08100B17` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc` 与 `data/text/eu/link_communication.cc` | 精确 |
@@ -77,7 +77,7 @@
 | DE | `0x080F38A0`–`0x080F47D5` | `src/entity_ui_resource_selector.o(.rodata)` | `src/entity_ui_resource_selector.cc`、`include/entity_ui_resource_selector.hh`、`data/text/de/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_3.cc` | 精确 |
 | DE | `0x080F47D8`–`0x080FA37F` | `asm/data/data_080F1A80.o` 至 `data/scripts/script_table.o` | `asm/data/data_080F1A80.s`（Mary 管理的连续剧情脚本块及脚本表） | 精确 |
 | DE | `0x080FA380`–`0x080FA3AC` | `src/script_engine.o(.rodata)` | `src/script_engine.cc`、`include/script_engine.hh`、`data/text/de/script_engine.cc`；运行时 `bad_alloc` 与 3 项 UI 字符串按原 ROM 顺序同属该对象 | 精确 |
-| DE | `0x080FB77C`–`0x080FBE59` | `src/intro_scene_data.o(.rodata)` | `src/intro_scene_data.cc`、`include/intro_scene_data.hh`、`data/text/de/intro_scene_data.cc`、`data/text/de/intro_scene_data_1.cc` | 精确 |
+| DE | `0x080FB77C`–`0x080FBE59` | `src/intro_scene_data.o(.rodata)` | `src/intro_scene_data.cc`、`include/intro_scene_data.hh`、`data/text/de/intro_scene_data.cc`、`data/text/de/intro_scene_data_1.cc`；20 个解包资源入口均为资产容器中的直接标签 | 精确 |
 | DE | `0x080FBE5C`–`0x080FC4F7` | `src/farm_status_screen_data.o(.rodata)` | `src/farm_status_screen_data.cc`、`data/text/de/farm_status.cc`、`data/text/de/animal_contest.cc` | 精确 |
 | DE | `0x080FC580`–`0x080FC72F` | `src/records_screen_data.o(.rodata)` | `src/records_screen_data.cc` 与 `data/text/de/records.cc` | 精确 |
 | DE | `0x080FC780`–`0x080FCDC3` | 纪录界面尾部至制作人员表 | `src/records_screen_data.cc`、`data/text/de/records.cc`、`data/text/staff_credits.cc` | 精确 |
@@ -151,7 +151,7 @@
 | `0x080FA1DE`–`0x080FA27D` | `src/animal_festival_ranking_livestock_data.o(.rodata)` | [数据] | `src/animal_festival_ranking_livestock_data.cc`<br>`include/animal_festival_ranking_livestock_data.hh` | `gAnimalFestivalLivestockContestantValues` |
 | `0x080FA27E`–`0x080FA27F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FA280`–`0x080FAA5F` | `src/horse_race_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/jp/horse_race_data.cc`、`horse_race_data_1.cc`、`horse_race_data_2.cc`<br>`data/text/common/horse_race_data.cc` → `src/horse_race_data.cc`<br>`include/horse_race_data.hh` | 文本 `44` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`horse_race_data_1`、`_2` 分别位于控制项指针表和奖品 ID 表之后；`gHorseRaceTicketCharacterCodes`, `gHorseRaceTicketControls`, `gHorseRacePrizeCatalog`, `gHorseRacePrizeItemIds`, `gHorseRacePrizeExchangeCharacterCodes` |
-| `0x080FAA60`–`0x080FB119` | `src/intro_scene_data.o(.rodata)` | [嵌入文本 / 数据] | `src/intro_scene_data.cc`<br>`include/intro_scene_data.hh`<br>`data/text/jp/intro_scene_data.cc`<br>`data/text/jp/intro_scene_data_1.cc` | 前缀运行时字符串 `1` 项<br>`gIntroSceneUnpackSources`<br>文本 `28` 项（详见下方索引）<br>尾部运行时字符串 `1` 项；`_1` 表示其物理位置在指针表之后 |
+| `0x080FAA60`–`0x080FB119` | `src/intro_scene_data.o(.rodata)` | [嵌入文本 / 数据] | `src/intro_scene_data.cc`<br>`include/intro_scene_data.hh`<br>`data/text/jp/intro_scene_data.cc`<br>`data/text/jp/intro_scene_data_1.cc` | 前缀运行时字符串 `1` 项<br>`gIntroSceneUnpackSources`（20 个资产容器直接标签，无 `.set` 别名）<br>文本 `28` 项（详见下方索引）<br>尾部运行时字符串 `1` 项；`_1` 表示其物理位置在指针表之后 |
 | `0x080FB11A`–`0x080FB11B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FB11C`–`0x080FB761` | `src/farm_status_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `src/farm_status_screen_data.cc`<br>`data/text/jp/farm_status.cc`<br>`data/text/jp/animal_contest.cc` | 文本 `62` 项（农场状态 `35`、动物参赛 `27`；详见下方索引）<br>对象内 `00` 对齐 `1` 字节<br>`gAnimalStatusScreenPrefixText`、`gAnimalStatusScreenText`<br>运行时字符串 `4` 项<br>`gFarmStatusScreenPreloadedGlyphs`、资源与建筑预览表 |
 | `0x080FB762`–`0x080FB763` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1994,7 +1994,7 @@
 | `0x080FA99E`–`0x080FAA3D` | `src/animal_festival_ranking_livestock_data.o(.rodata)` | [数据] | `src/animal_festival_ranking_livestock_data.cc`<br>`include/animal_festival_ranking_livestock_data.hh` | `gAnimalFestivalLivestockContestantValues` |
 | `0x080FAA3E`–`0x080FAA3F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FAA40`–`0x080FB1D7` | `src/horse_race_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/us/horse_race_data.cc`、`horse_race_data_1.cc`、`horse_race_data_2.cc`<br>`data/text/common/horse_race_data.cc` → `src/horse_race_data.cc`<br>`include/horse_race_data.hh` | 文本 `43` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`horse_race_data_1`、`_2` 分别位于控制项指针表和奖品 ID 表之后；`gHorseRaceTicketCharacterCodes`, `gHorseRaceTicketControls`, `gHorseRacePrizeCatalog`, `gHorseRacePrizeItemIds`, `gHorseRacePrizeExchangeCharacterCodes` |
-| `0x080FB1D8`–`0x080FB821` | `src/intro_scene_data.o(.rodata)` | [嵌入文本 / 数据] | `src/intro_scene_data.cc`<br>`include/intro_scene_data.hh`<br>`data/text/us/intro_scene_data.cc`<br>`data/text/us/intro_scene_data_1.cc` | 前缀运行时字符串 `1` 项<br>`gIntroSceneUnpackSources`<br>文本 `28` 项（详见下方索引）<br>尾部运行时字符串 `1` 项；`_1` 表示其物理位置在指针表之后 |
+| `0x080FB1D8`–`0x080FB821` | `src/intro_scene_data.o(.rodata)` | [嵌入文本 / 数据] | `src/intro_scene_data.cc`<br>`include/intro_scene_data.hh`<br>`data/text/us/intro_scene_data.cc`<br>`data/text/us/intro_scene_data_1.cc` | 前缀运行时字符串 `1` 项<br>`gIntroSceneUnpackSources`（20 个资产容器直接标签，无 `.set` 别名）<br>文本 `28` 项（详见下方索引）<br>尾部运行时字符串 `1` 项；`_1` 表示其物理位置在指针表之后 |
 | `0x080FB822`–`0x080FB823` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FB824`–`0x080FBE79` | `src/farm_status_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `src/farm_status_screen_data.cc`<br>`data/text/us/farm_status.cc`<br>`data/text/us/animal_contest.cc` | 文本 `53` 项（农场状态 `29`、动物参赛 `24`；详见下方索引）<br>对象内 `00` 对齐 `1` 字节<br>`gAnimalStatusScreenPrefixText`、`gAnimalStatusScreenText`<br>运行时字符串 `4` 项<br>`gFarmStatusScreenPreloadedGlyphs`、资源与建筑预览表 |
 | `0x080FBE7A`–`0x080FBE7B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
