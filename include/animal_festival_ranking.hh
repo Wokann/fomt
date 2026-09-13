@@ -6,6 +6,9 @@
 // The score-table axes remain native-code work; the storage order is exact.
 extern u16 const gAnimalFestivalRankingScoreTable[];
 
+// Runtime literal physically following the ranking score table.
+extern char const gCppRuntimeBadAlloc_FrisbeeScoreboard[];
+
 // These native-code tables are kept flat until their axes are decompiled.
 extern u8 const gUnk_080FA246[];
 extern u8 const gUnk_080FA264[];

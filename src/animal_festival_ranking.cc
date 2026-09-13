@@ -1,6 +1,5 @@
 #include "animal_festival_ranking.hh"
 
-#include "frisbee_text.hh"
 #include "item.hh"
 
 // The still-native animal-festival ranking path reads a halfword from this

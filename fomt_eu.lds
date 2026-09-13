@@ -665,7 +665,7 @@ SECTIONS
         /* New Game preset regional data: names and UI glyphs. */
         . = 0xF9FC8; src/new_game_name_entry_ui_data.o(.rodata);
         FILL(0x00);
-        . = 0xFA1A4; data/text/frisbee_scoreboard.o(.rodata);
+        . = 0xFA1A4; src/frisbee_scoreboard.o(.rodata);
         . = 0xFA1C0; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_score_table);
         . = 0xFA288; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_scoreboard_trailer);
         . = 0xFA292; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_data);

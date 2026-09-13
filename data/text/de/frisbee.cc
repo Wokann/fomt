@@ -1,12 +1,5 @@
 #include "frisbee_text.hh"
 
-#if defined(FOMT_FRISBEE_TEXT_SCOREBOARD)
-
-char const gText_Frisbee_TournamentScoreboard[] =
-    "Frisbeeturnier Punktetafel ";
-
-#else
-
 char const gText_Frisbee_ExplanationQuestion[] =
     "Möchtest du eine Erklärung?";
 
@@ -93,5 +86,3 @@ char const gText_Frisbee_FoundNothing[] ALIGN(4) =
 
 char const gCppRuntimeBadAlloc_FrisbeeTextTrailer[] ALIGN(4) =
     "bad_alloc";
-
-#endif

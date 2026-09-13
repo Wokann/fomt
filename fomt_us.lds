@@ -667,7 +667,7 @@ SECTIONS
         /* Bounded New Game preset localization island: names and UI glyphs. */
         . = 0xF9F7C; src/new_game_name_entry_ui_data.o(.rodata);
         FILL(0x00);
-        . = 0xFA158; data/text/frisbee_scoreboard.o(.rodata);
+        . = 0xFA158; src/frisbee_scoreboard.o(.rodata);
         . = 0xFA174; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_score_table);
         . = 0xFA23C; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_scoreboard_trailer);
         . = 0xFA246; src/animal_festival_ranking.o(.rodata.animal_festival_ranking_data);
