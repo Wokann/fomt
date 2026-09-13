@@ -821,8 +821,7 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4);
         src/cooking.o(.rodata);
-        . = 0x100C24; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_mask_entries);
-        . = 0x100C48; src/cooking_recipe_inventory_data.o(.rodata);
+        . = 0x100C24; src/cooking_recipe_inventory_data.o(.rodata);
         src/animal.o(.rodata.animal_unnamed);
         . = 0x10319C; src/livestock.o(.rodata.livestock_day_update);
         . = 0x1031FC; src/code_actor_0809C3E0.o(.rodata.actor_state_max_values);

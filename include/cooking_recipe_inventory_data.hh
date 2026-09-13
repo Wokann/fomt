@@ -318,6 +318,8 @@ extern CookingRecipeInventoryMaskEntry const
     gCookingRecipeInventoryMaskEntries[COOKING_RECIPE_INVENTORY_MASK_ENTRY_COUNT];
 extern CookingRecipeDefinition const gCookingRecipeDefinitions[];
 extern CookingRecipeDefinitionPayload const gCookingRecipeDefinitionPayload;
+extern char const gCppRuntimeBadAlloc_CookingRecipeDefinitionPayload0[];
+extern char const gCppRuntimeBadAlloc_CookingRecipeDefinitionPayload1[];
 
 EXTERN_C_END
 

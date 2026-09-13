@@ -88,6 +88,7 @@
 | EU | `0x08100B18`–`0x08100B29` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | `src/cooking_recipe_inventory_page_data.cc`、`include/cooking_recipe_inventory_page_data.hh`、`data/text/common/cooking_recipe_inventory_page_data.cc` | 精确 |
 | EU | `0x08100B2A`–`0x08100E38` | `src/recovery_status.o(.rodata)` | `src/recovery_status.cc`、`include/recovery_status.hh`、`data/text/eu/recovery_status.cc` | 精确 |
 | EU | `0x08100E3C`–`0x0810113F` | `src/cooking.o(.rodata)` | `src/cooking.cc`、`include/cooking.hh`、`data/text/eu/cooking.cc` | 精确 |
+| EU | `0x08101140`–`0x081036AD` | `src/cooking_recipe_inventory_data.o(.rodata)` | `src/cooking_recipe_inventory_data.cc`、`include/cooking_recipe_inventory_data.hh`、`data/text/common/cooking_recipe_inventory_data.cc` | 精确 |
 | EU | `0x081082E4`–`0x08117843` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 EU 指南源文件；主目录只收录 `PAGE_1`，`tool_and_item_controls_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 | DE | `0x080E8574`–`0x080E858D` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0.hh`、`data/text/de/crt0_data.cc` | 精确 |
 | DE | `0x080E858E`–`0x080E858F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -147,6 +148,7 @@
 | DE | `0x081014DC`–`0x081014ED` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | `src/cooking_recipe_inventory_page_data.cc`、`include/cooking_recipe_inventory_page_data.hh`、`data/text/common/cooking_recipe_inventory_page_data.cc` | 精确 |
 | DE | `0x081014EE`–`0x081017FC` | `src/recovery_status.o(.rodata)` | `src/recovery_status.cc`、`include/recovery_status.hh`、`data/text/de/recovery_status.cc` | 精确 |
 | DE | `0x08101800`–`0x08101B29` | `src/cooking.o(.rodata)` | `src/cooking.cc`、`include/cooking.hh`、`data/text/de/cooking.cc` | 精确 |
+| DE | `0x08101B2C`–`0x08104099` | `src/cooking_recipe_inventory_data.o(.rodata)` | `src/cooking_recipe_inventory_data.cc`、`include/cooking_recipe_inventory_data.hh`、`data/text/common/cooking_recipe_inventory_data.cc` | 精确 |
 | DE | `0x08107FD4`–`0x08108DB3` | `src/harvest_sprite.o(.rodata)` | `src/harvest_sprite.cc` 与 `data/text/de/harvest_sprite_*.cc` | 精确 |
 | DE | `0x08108DB4`–`0x081197FF` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 DE 指南源文件；主目录只收录 `PAGE_1`，`using_tools_2` 与 `newborn_congratulations_cliff_and_ann_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 
@@ -253,8 +255,7 @@
 | `0x081005EA`–`0x081008F8` | `src/recovery_status.o(.rodata)` | [嵌入文本] | `src/recovery_status.cc`、`include/recovery_status.hh`、`data/text/jp/recovery_status.cc` | 文本 `2` 项（详见下方索引） |
 | `0x081008F9`–`0x081008FB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
 | `0x081008FC`–`0x08100C23` | `src/cooking.o(.rodata)` | [嵌入文本] | `src/cooking.cc`、`include/cooking.hh`、`data/text/jp/cooking.cc` | 文本 `28` 项（详见下方索引） |
-| `0x08100C24`–`0x08100C47` | `src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_mask_entries)` | [数据] | `src/cooking_recipe_inventory_data.cc`<br>`include/cooking_recipe_inventory_data.hh` | `gCookingRecipeInventoryMaskEntries` |
-| `0x08100C48`–`0x08103191` | `src/cooking_recipe_inventory_data.o(.rodata)` | [数据] | `src/cooking_recipe_inventory_data.cc`<br>`include/cooking_recipe_inventory_data.hh` | 运行时字符串 `2` 项<br>`gCookingRecipeDefinitions`, `gCookingRecipeDefinitionPayload` |
+| `0x08100C24`–`0x08103191` | `src/cooking_recipe_inventory_data.o(.rodata)` | [数据 / 嵌入文本] | `src/cooking_recipe_inventory_data.cc`<br>`include/cooking_recipe_inventory_data.hh`<br>`data/text/common/cooking_recipe_inventory_data.cc` | `gCookingRecipeInventoryMaskEntries`<br>`gCookingRecipeDefinitions`, `gCookingRecipeDefinitionPayload`<br>运行时字符串 `2` 项 |
 | `0x08103192`–`0x08103193` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08103194`–`0x0810319A` | `src/animal.o(.rodata.animal_unnamed)` | [嵌入文本] | `data/text/common/animal.cc` | 文本 `1` 项（详见下方索引） |
 | `0x0810319B`–`0x0810319B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
@@ -2087,8 +2088,7 @@
 | `0x08100AD2`–`0x08100DE0` | `src/recovery_status.o(.rodata)` | [嵌入文本] | `src/recovery_status.cc`、`include/recovery_status.hh`、`data/text/us/recovery_status.cc` | 文本 `2` 项（详见下方索引） |
 | `0x08100DE1`–`0x08100DE3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
 | `0x08100DE4`–`0x081010E7` | `src/cooking.o(.rodata)` | [嵌入文本] | `src/cooking.cc`、`include/cooking.hh`、`data/text/us/cooking.cc` | 文本 `28` 项（详见下方索引） |
-| `0x081010E8`–`0x0810110B` | `src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_mask_entries)` | [数据] | `src/cooking_recipe_inventory_data.cc`<br>`include/cooking_recipe_inventory_data.hh` | `gCookingRecipeInventoryMaskEntries` |
-| `0x0810110C`–`0x08103655` | `src/cooking_recipe_inventory_data.o(.rodata)` | [数据] | `src/cooking_recipe_inventory_data.cc`<br>`include/cooking_recipe_inventory_data.hh` | 运行时字符串 `2` 项<br>`gCookingRecipeDefinitions`, `gCookingRecipeDefinitionPayload` |
+| `0x081010E8`–`0x08103655` | `src/cooking_recipe_inventory_data.o(.rodata)` | [数据 / 嵌入文本] | `src/cooking_recipe_inventory_data.cc`<br>`include/cooking_recipe_inventory_data.hh`<br>`data/text/common/cooking_recipe_inventory_data.cc` | `gCookingRecipeInventoryMaskEntries`<br>`gCookingRecipeDefinitions`, `gCookingRecipeDefinitionPayload`<br>运行时字符串 `2` 项 |
 | `0x08103656`–`0x08103657` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08103658`–`0x0810365E` | `src/animal.o(.rodata.animal_unnamed)` | [嵌入文本] | `data/text/common/animal.cc` | 文本 `1` 项（详见下方索引） |
 | `0x0810365F`–`0x0810365F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
