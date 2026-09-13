@@ -5,7 +5,7 @@
 
 // Fixed labels at the start of the contiguous Common UI ROM block.
 extern char const gText_Moneybags[];
-extern u8 const gFixedLabelsPaddingBeforeUnnamedSetting[];
+extern char const gText_EmptyUiLabel[];
 extern char const gText_UnnamedSetting[];
 extern char const gCppRuntimeBadAlloc_FixedLabels[];
 

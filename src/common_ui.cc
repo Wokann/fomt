@@ -2,11 +2,6 @@
 
 #include FOMT_TEXT_INCLUDE(common_ui.cc)
 
-// Original ROM padding between the two directly addressed fixed labels.
-u8 const gFixedLabelsPaddingBeforeUnnamedSetting[] = {
-    0, 0, 0, 0,
-};
-
 #include FOMT_TEXT_INCLUDE(common_ui_1.cc)
 #include FOMT_TEXT_INCLUDE(common_ui_2.cc)
 
