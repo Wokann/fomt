@@ -5,13 +5,7 @@
  * dialogue text.  Regional prose lives in data/text; these includes deliberately
  * make one physical source object so the catalog stays between its text groups.
  */
-#define FOMT_LIVESTOCK_SHOP_TEXT_MENU
-#if defined(REGION_JP)
 #include FOMT_TEXT_INCLUDE(livestock_shop.cc)
-#else
-#include FOMT_TEXT_INCLUDE(livestock_shop.cc)
-#endif
-#undef FOMT_LIVESTOCK_SHOP_TEXT_MENU
 
 LivestockShopCatalogEntry const gLivestockShopCatalog[] = {
     { 0x5B, gText_LivestockShop_Empty, 20, gText_LivestockShop_Empty, 0 },
@@ -31,18 +25,4 @@ LivestockShopCatalogEntry const gLivestockShopCatalog[] = {
     { 0x0A, gText_LivestockShop_Empty, 0, gText_LivestockShop_Empty, 4 },
 };
 
-#define FOMT_LIVESTOCK_SHOP_TEXT_STATUS
-#if defined(REGION_JP)
-#include FOMT_TEXT_INCLUDE(livestock_shop.cc)
-#else
-#include FOMT_TEXT_INCLUDE(livestock_shop.cc)
-#endif
-#undef FOMT_LIVESTOCK_SHOP_TEXT_STATUS
-
-#define FOMT_LIVESTOCK_SHOP_TEXT_DIALOGUE
-#if defined(REGION_JP)
-#include FOMT_TEXT_INCLUDE(livestock_shop.cc)
-#else
-#include FOMT_TEXT_INCLUDE(livestock_shop.cc)
-#endif
-#undef FOMT_LIVESTOCK_SHOP_TEXT_DIALOGUE
+#include FOMT_TEXT_INCLUDE(livestock_shop_1.cc)

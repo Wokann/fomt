@@ -80,6 +80,7 @@
 | EU | `0x080FECC8`–`0x080FEDD7` | `src/blacksmith_menu_data.o(.rodata)` | `src/blacksmith_menu_data.cc`、`include/blacksmith_menu_data.hh` 与 `data/text/eu/blacksmith_menu_data.cc` | 精确 |
 | EU | `0x080FEDD8`–`0x080FF3AF` | `src/blacksmith_data.o(.rodata)` | `src/blacksmith_data.cc`、`include/blacksmith_data.hh` 与 `data/text/eu/blacksmith_data.cc` | 精确 |
 | EU | `0x080FF3B0`–`0x080FFBB3` | `src/carpenter_data.o(.rodata)` | `src/carpenter_data.cc`、`include/carpenter_data.hh`、`data/text/eu/carpenter_data.cc`、`data/text/eu/carpenter_data_1.cc`；菜单文本、20 项目录表、翻页控制符、对白与运行时尾串按 ROM 顺序同属该对象 | 精确 |
+| EU | `0x080FFBB4`–`0x08100077` | `src/livestock_shop.o(.rodata)` | `src/livestock_shop.cc`、`include/livestock_shop.hh`、`data/text/eu/livestock_shop.cc`、`data/text/eu/livestock_shop_1.cc`；菜单文本、11 项目录表、状态与对白文本按 ROM 顺序同属该对象 | 精确 |
 | EU | `0x08100534`–`0x08100B17` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc` 与 `data/text/eu/link_communication.cc` | 精确 |
 | EU | `0x081082E4`–`0x08117843` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 EU 指南源文件；主目录只收录 `PAGE_1`，`tool_and_item_controls_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 | DE | `0x080E8574`–`0x080E858D` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0.hh`、`data/text/de/crt0_data.cc` | 精确 |
@@ -132,6 +133,7 @@
 | DE | `0x080FF31C`–`0x080FF4A9` | `src/beach_cafe_shop_data.o(.rodata)` | `src/beach_cafe_shop_data.cc`、`include/beach_cafe_shop_data.hh`、`data/text/de/beach_cafe_shop_data.cc`、`data/text/de/beach_cafe_shop_data_1.cc`；说明文本、菜单表、对话与运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
 | DE | `0x080FF4AA`–`0x080FF4AB` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080FFB98`–`0x0810043B` | `src/carpenter_data.o(.rodata)` | `src/carpenter_data.cc`、`include/carpenter_data.hh`、`data/text/de/carpenter_data.cc`、`data/text/de/carpenter_data_1.cc`；菜单文本、20 项目录表、翻页控制符、对白与运行时尾串按 ROM 顺序同属该对象 | 精确 |
+| DE | `0x0810043C`–`0x08100937` | `src/livestock_shop.o(.rodata)` | `src/livestock_shop.cc`、`include/livestock_shop.hh`、`data/text/de/livestock_shop.cc`、`data/text/de/livestock_shop_1.cc`；菜单文本、11 项目录表、状态与对白文本按 ROM 顺序同属该对象 | 精确 |
 | DE | `0x08100938`–`0x08100A93` | `data/text/home_storage.o(.rodata)` | `data/text/de/home_storage.cc` | 精确 |
 | DE | `0x081014EE`–`0x081017FA` | `data/text/recovery_status.o(.rodata)` | `data/text/de/recovery_status.cc` | 精确 |
 | DE | `0x08101800`–`0x08101B29` | `data/text/cooking.o(.rodata)` | `data/text/de/cooking.cc` | 精确 |
@@ -227,7 +229,7 @@
 | `0x080FEC8E`–`0x080FEC8F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FEC90`–`0x080FF505` | `src/carpenter_data.o(.rodata)` | [嵌入文本] | `data/text/jp/carpenter_data.cc`<br>`data/text/jp/carpenter_data_1.cc` | 文本 `52` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gCarpenterCatalog` |
 | `0x080FF506`–`0x080FF507` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FF508`–`0x080FF9A1` | `src/livestock_shop.o(.rodata)` | [嵌入文本] | `data/text/jp/livestock_shop.cc` | 文本 `39` 项（详见下方索引）<br>`gLivestockShopCatalog` |
+| `0x080FF508`–`0x080FF9A1` | `src/livestock_shop.o(.rodata)` | [嵌入文本] | `data/text/jp/livestock_shop.cc`<br>`data/text/jp/livestock_shop_1.cc` | 文本 `39` 项（详见下方索引）<br>`gLivestockShopCatalog` |
 | `0x080FF9A2`–`0x080FF9A3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FF9A4`–`0x080FFADD` | `data/text/home_storage.o(.rodata)` | [文本对象] | `data/text/jp/home_storage.cc` | 文本 `20` 项（详见下方索引）<br>运行时字符串 `5` 项 |
 | `0x080FFADE`–`0x080FFADF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1617,40 +1619,40 @@
 | `0x080FF518` | `gText_LivestockShop_BuySheep` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
 | `0x080FF524` | `gText_LivestockShop_SellCow` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
 | `0x080FF530` | `gText_LivestockShop_SellSheep` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF618` | `gText_LivestockShop_PageBreak` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF61C` | `gText_LivestockShop_StatusSick` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF634` | `gText_LivestockShop_StatusUnhappy` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF64C` | `gText_LivestockShop_StatusHealthy` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF664` | `gText_LivestockShop_StatusSpacer` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF668` | `gText_LivestockShop_Age` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF680` | `gText_LivestockShop_Spring` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF684` | `gText_LivestockShop_Summer` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF688` | `gText_LivestockShop_Autumn` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF68C` | `gText_LivestockShop_Winter` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF690` | `gText_LivestockShop_DailySellingPrice` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF6A8` | `gText_LivestockShop_Currency` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF6AC` | `gText_LivestockShop_SecondaryDailySellingPrice` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF6C4` | `gText_LivestockShop_InsufficientGold` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF6E4` | `gText_LivestockShop_FeedBinFull` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF70C` | `gText_LivestockShop_BlankLinePair` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF714` | `gText_LivestockShop_InventoryFull` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF740` | `gText_LivestockShop_BarnFull` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF758` | `gText_LivestockShop_NameAnimalPrompt` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF788` | `gText_LivestockShop_NoCowsToSell` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF7A4` | `gText_LivestockShop_NoSheepToSell` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF7C0` | `gText_LivestockShop_ComeAgain` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF7FC` | `gText_LivestockShop_PurchaseConfirmation` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF810` | `gText_LivestockShop_PricePrompt` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF820` | `gText_LivestockShop_Yes` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF828` | `gText_LivestockShop_No` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF830` | `gText_LivestockShop_FeedPurchaseComplete` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF870` | `gText_LivestockShop_PurchaseDeliveryPartial` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF8BC` | `gText_LivestockShop_PurchaseDeliveryAll` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF900` | `gText_LivestockShop_PurchaseComplete` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF910` | `gText_LivestockShop_AnimalPurchaseComplete` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF944` | `gText_LivestockShop_PurchaseMorePrompt` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF960` | `gText_LivestockShop_PurchaseDeclinedPrefix` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FF974` | `gText_LivestockShop_AnimalDelivery` | `data/text/jp/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF618` | `gText_LivestockShop_PageBreak` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF61C` | `gText_LivestockShop_StatusSick` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF634` | `gText_LivestockShop_StatusUnhappy` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF64C` | `gText_LivestockShop_StatusHealthy` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF664` | `gText_LivestockShop_StatusSpacer` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF668` | `gText_LivestockShop_Age` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF680` | `gText_LivestockShop_Spring` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF684` | `gText_LivestockShop_Summer` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF688` | `gText_LivestockShop_Autumn` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF68C` | `gText_LivestockShop_Winter` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF690` | `gText_LivestockShop_DailySellingPrice` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF6A8` | `gText_LivestockShop_Currency` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF6AC` | `gText_LivestockShop_SecondaryDailySellingPrice` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF6C4` | `gText_LivestockShop_InsufficientGold` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF6E4` | `gText_LivestockShop_FeedBinFull` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF70C` | `gText_LivestockShop_BlankLinePair` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF714` | `gText_LivestockShop_InventoryFull` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF740` | `gText_LivestockShop_BarnFull` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF758` | `gText_LivestockShop_NameAnimalPrompt` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF788` | `gText_LivestockShop_NoCowsToSell` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF7A4` | `gText_LivestockShop_NoSheepToSell` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF7C0` | `gText_LivestockShop_ComeAgain` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF7FC` | `gText_LivestockShop_PurchaseConfirmation` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF810` | `gText_LivestockShop_PricePrompt` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF820` | `gText_LivestockShop_Yes` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF828` | `gText_LivestockShop_No` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF830` | `gText_LivestockShop_FeedPurchaseComplete` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF870` | `gText_LivestockShop_PurchaseDeliveryPartial` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF8BC` | `gText_LivestockShop_PurchaseDeliveryAll` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF900` | `gText_LivestockShop_PurchaseComplete` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF910` | `gText_LivestockShop_AnimalPurchaseComplete` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF944` | `gText_LivestockShop_PurchaseMorePrompt` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF960` | `gText_LivestockShop_PurchaseDeclinedPrefix` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FF974` | `gText_LivestockShop_AnimalDelivery` | `data/text/jp/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
 | `0x080FF9B0` | `gText_Fridge_EmptyDescription` | `data/text/jp/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
 | `0x080FF9B4` | `gText_Fridge_WrappedGiftWarning` | `data/text/jp/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
 | `0x080FF9F4` | `gText_Fridge_Yes` | `data/text/jp/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
@@ -2063,7 +2065,7 @@
 | `0x080FF35A`–`0x080FF35B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FF35C`–`0x080FFB5D` | `src/carpenter_data.o(.rodata)` | [嵌入文本] | `data/text/us/carpenter_data.cc`<br>`data/text/us/carpenter_data_1.cc` | 文本 `53` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gCarpenterCatalog` |
 | `0x080FFB5E`–`0x080FFB5F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FFB60`–`0x08100023` | `src/livestock_shop.o(.rodata)` | [嵌入文本] | `data/text/us/livestock_shop.cc` | 文本 `42` 项（详见下方索引）<br>`gLivestockShopCatalog` |
+| `0x080FFB60`–`0x08100023` | `src/livestock_shop.o(.rodata)` | [嵌入文本] | `data/text/us/livestock_shop.cc`<br>`data/text/us/livestock_shop_1.cc` | 文本 `42` 项（详见下方索引）<br>`gLivestockShopCatalog` |
 | `0x08100024`–`0x08100165` | `data/text/home_storage.o(.rodata)` | [文本对象] | `data/text/us/home_storage.cc` | 文本 `20` 项（详见下方索引）<br>运行时字符串 `5` 项 |
 | `0x08100166`–`0x08100167` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08100168`–`0x081003E2` | `src/blacksmith_upgrade_data.o(.rodata)` | [嵌入文本] | `data/text/us/blacksmith.cc` | 文本 `21` 项（详见下方索引） |
@@ -3439,43 +3441,43 @@
 | `0x080FFB6C` | `gText_LivestockShop_BuySheep` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
 | `0x080FFB78` | `gText_LivestockShop_SellCow` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
 | `0x080FFB84` | `gText_LivestockShop_SellSheep` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFC6C` | `gText_LivestockShop_PageBreak` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFC70` | `gText_LivestockShop_StatusSick` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFC80` | `gText_LivestockShop_StatusUnhappy` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFC90` | `gText_LivestockShop_StatusHealthy` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFCA0` | `gText_LivestockShop_StatusSpacer` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFCA4` | `gText_LivestockShop_Age` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFCC0` | `gText_LivestockShop_Spring` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFCC8` | `gText_LivestockShop_Summer` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFCD0` | `gText_LivestockShop_Autumn` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFCD8` | `gText_LivestockShop_Winter` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFCE0` | `gText_LivestockShop_DailySellingPrice` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFCF4` | `gText_LivestockShop_Currency` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFCF8` | `gText_LivestockShop_SecondaryStatusSick` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFD08` | `gText_LivestockShop_SecondaryAge` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFD24` | `gText_LivestockShop_SecondaryDailySellingPrice` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFD3C` | `gText_LivestockShop_InsufficientGold` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFD5C` | `gText_LivestockShop_FeedBinFull` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFD90` | `gText_LivestockShop_BlankLinePair` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFD98` | `gText_LivestockShop_InventoryFull` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFDBC` | `gText_LivestockShop_BarnFull` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFDD4` | `gText_LivestockShop_NameAnimalPrompt` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFDF8` | `gText_LivestockShop_NoCowsToSell` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFE24` | `gText_LivestockShop_NoSheepToSell` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFE50` | `gText_LivestockShop_ComeAgain` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFE88` | `gText_LivestockShop_PurchaseConfirmation` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFE9C` | `gText_LivestockShop_PricePromptPrefix` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFEA8` | `gText_LivestockShop_PricePromptSuffix` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFEAC` | `gText_LivestockShop_Yes` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFEB0` | `gText_LivestockShop_No` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFEB4` | `gText_LivestockShop_FeedPurchaseComplete` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFEEC` | `gText_LivestockShop_PurchaseDeliveryPartial` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFF38` | `gText_LivestockShop_PurchaseDeliveryAll` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFF84` | `gText_LivestockShop_PurchaseComplete` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFF94` | `gText_LivestockShop_AnimalPurchaseComplete` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFFC4` | `gText_LivestockShop_PurchaseMorePrompt` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFFE8` | `gText_LivestockShop_PurchaseDeclinedPrefix` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
-| `0x080FFFFC` | `gText_LivestockShop_AnimalDelivery` | `data/text/us/livestock_shop.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFC6C` | `gText_LivestockShop_PageBreak` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFC70` | `gText_LivestockShop_StatusSick` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFC80` | `gText_LivestockShop_StatusUnhappy` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFC90` | `gText_LivestockShop_StatusHealthy` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFCA0` | `gText_LivestockShop_StatusSpacer` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFCA4` | `gText_LivestockShop_Age` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFCC0` | `gText_LivestockShop_Spring` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFCC8` | `gText_LivestockShop_Summer` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFCD0` | `gText_LivestockShop_Autumn` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFCD8` | `gText_LivestockShop_Winter` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFCE0` | `gText_LivestockShop_DailySellingPrice` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFCF4` | `gText_LivestockShop_Currency` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFCF8` | `gText_LivestockShop_SecondaryStatusSick` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFD08` | `gText_LivestockShop_SecondaryAge` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFD24` | `gText_LivestockShop_SecondaryDailySellingPrice` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFD3C` | `gText_LivestockShop_InsufficientGold` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFD5C` | `gText_LivestockShop_FeedBinFull` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFD90` | `gText_LivestockShop_BlankLinePair` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFD98` | `gText_LivestockShop_InventoryFull` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFDBC` | `gText_LivestockShop_BarnFull` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFDD4` | `gText_LivestockShop_NameAnimalPrompt` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFDF8` | `gText_LivestockShop_NoCowsToSell` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFE24` | `gText_LivestockShop_NoSheepToSell` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFE50` | `gText_LivestockShop_ComeAgain` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFE88` | `gText_LivestockShop_PurchaseConfirmation` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFE9C` | `gText_LivestockShop_PricePromptPrefix` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFEA8` | `gText_LivestockShop_PricePromptSuffix` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFEAC` | `gText_LivestockShop_Yes` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFEB0` | `gText_LivestockShop_No` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFEB4` | `gText_LivestockShop_FeedPurchaseComplete` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFEEC` | `gText_LivestockShop_PurchaseDeliveryPartial` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFF38` | `gText_LivestockShop_PurchaseDeliveryAll` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFF84` | `gText_LivestockShop_PurchaseComplete` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFF94` | `gText_LivestockShop_AnimalPurchaseComplete` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFFC4` | `gText_LivestockShop_PurchaseMorePrompt` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFFE8` | `gText_LivestockShop_PurchaseDeclinedPrefix` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
+| `0x080FFFFC` | `gText_LivestockShop_AnimalDelivery` | `data/text/us/livestock_shop_1.cc` | `src/livestock_shop.o(.rodata)` |
 | `0x08100030` | `gText_Fridge_EmptyDescription` | `data/text/us/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
 | `0x08100034` | `gText_Fridge_WrappedGiftWarning` | `data/text/us/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
 | `0x08100084` | `gText_Fridge_Yes` | `data/text/us/home_storage.cc` | `data/text/home_storage.o(.rodata)` |
