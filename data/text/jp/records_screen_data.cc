@@ -1,100 +1,100 @@
-#include "records_text.hh"
+#include "records_screen_data.hh"
 
 char const gText_Records_NumberShipped[] =
-    "Anzahl versandt ";
+    "出荷数";
 
 char const gText_Records_ShippedCountSuffix[] =
-    "  ";
+    "コ";
 
 char const gText_Records_Fishing[] =
-    "Fischen ";
+    "釣り";
 
 char const gText_Records_Name[] =
-    "Name";
+    "名前";
 
 char const gText_Records_MaximumSize[] =
-    "Maximale Größe";
+    "最大サイズ";
 
 char const gText_Records_Results[] =
-    "Ergebnisse";
+    "釣果";
 
 char const gText_Records_FishUnit[] =
-    "Fisch ";
+    "匹";
 
 char const gText_Records_MeterUnit[] =
-    "m ";
+    "ｍ";
 
 char const gText_Records_CentimeterUnit[] =
-    "cm  ";
+    "ｃｍ";
 
 char const gText_Records_Separator[] =
     " ";
 
 char const gText_Records_Other[] =
-    "Andere";
+    "その他";
 
 char const gText_Records_MiniGameRecords[] =
-    "Mini-Game Rekorde ■■■■";
+    "ミニゲームの最高記録■■■";
 
 char const gText_Records_Harvest[] =
-    "Ernte   ";
+    "収穫";
 
 char const gText_Records_AnimalHusbandry[] =
-    "Tierhaltung     ";
+    "エサやり";
 
 char const gText_Records_Watering[] =
-    "Bewässerung ";
+    "水まき";
 
 char const gText_Records_Frisbee[] =
-    "Frisbee ";
+    "フリスビー";
 
 char const gText_Records_SecondsUnit[] =
-    "sek.";
+    "秒";
 
 char const gText_Records_IncomeExpenses[] =
-    "Einkommen/Ausgaben■■■■";
+    "収入支出■■■■■■■■■";
 
 char const gText_Records_HighestAmount[] =
-    "Höchstbetrag  ";
+    "最高金額";
 
 char const gText_Records_Earned[] =
-    "verdient";
+    "で稼いだ";
 
 char const gText_Records_Used[] =
-    "gebraucht ";
+    "で使った";
 
 char const gText_Records_GoldUnit[] =
-    "G ";
+    "Ｇ";
 
 char const gText_Records_LongestLivingAnimal[] =
-    "Ältestes Tier ■■■■■■";
+    "一番長生きした動物■■■■";
 
 char const gText_Records_Chicken[] =
-    "Huhn    ";
+    "鶏";
 
 char const gText_Records_Cow[] =
-    "Kuh ";
+    "牛";
 
 char const gText_Records_Sheep[] =
-    "Schaf ";
+    "羊";
 
 char const gText_Records_YearsUnit[] =
-    "Jahre ";
+    "年";
 
 char const gText_Records_MonthsUnit[] =
-    "M ";
+    "か月";
 
 char const gText_Records_DaysUnit[] =
-    "T ";
+    "日";
 
 char const gText_Records_MineDepth[] =
-    "Niedrigstes Level der Mine";
-
-char const gText_Records_MineDepthPadding[] =
-    "    ";
+    "鉱石場の最高到達階数■■■";
 
 char const gText_Records_BelowGround[] =
-    "Unterirdische Levels";
+    "地下";
+
+char const gText_Records_FloorUnit[] =
+    "階";
 
 char const gText_Records_MolesWhacked[] =
-    "Zahl geschlag. Maulwürfe";
+    "もぐら叩いた匹数■■■■";

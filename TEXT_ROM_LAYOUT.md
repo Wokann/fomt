@@ -52,6 +52,8 @@
 | EU | `0x080F9EE4`–`0x080F9F10` | `src/script_engine.o(.rodata)` | `src/script_engine.cc`、`include/script_engine.hh`、`data/text/eu/script_engine.cc`；运行时 `bad_alloc` 与 3 项 UI 字符串按原 ROM 顺序同属该对象 | 精确 |
 | EU | `0x080FB224`–`0x080FB86D` | `src/intro_scene_data.o(.rodata)` | `src/intro_scene_data.cc`、`include/intro_scene_data.hh`、`data/text/eu/intro_scene_data.cc`、`data/text/eu/intro_scene_data_1.cc`；20 个解包资源入口均为资产容器中的直接标签 | 精确 |
 | EU | `0x080FB870`–`0x080FBEC5` | `src/farm_status_screen_data.o(.rodata)` | `src/farm_status_screen_data.cc`、`include/farm_status_screen_data.hh`、`data/text/eu/farm_status_screen_data.cc`、`data/text/common/farm_status_screen_data.cc`–`farm_status_screen_data_2.cc`、`data/text/eu/farm_status_screen_data_1.cc`；14 个预览资源入口均为资产容器中的直接标签 | 精确 |
+| EU | `0x080FBEC8`–`0x080FC0ED` | `src/records_screen_data.o(.rodata)` | `src/records_screen_data.cc`、`include/records_screen_data.hh`、`data/text/eu/records_screen_data.cc`、`data/text/common/records_screen_data.cc`–`records_screen_data_2.cc`、`data/text/eu/records_screen_data_1.cc`；14 个资源入口均为资产容器直接标签 | 精确 |
+| EU | `0x080FC0EE`–`0x080FC0EF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FECC8`–`0x080FEDD7` | `src/blacksmith_menu_data.o(.rodata)` | `src/blacksmith_menu_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
 | EU | `0x080FEDD8`–`0x080FF3AF` | `src/blacksmith_data.o(.rodata)` | `src/blacksmith_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
 | EU | `0x08100534`–`0x08100B17` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc` 与 `data/text/eu/link_communication.cc` | 精确 |
@@ -80,8 +82,9 @@
 | DE | `0x080FA380`–`0x080FA3AC` | `src/script_engine.o(.rodata)` | `src/script_engine.cc`、`include/script_engine.hh`、`data/text/de/script_engine.cc`；运行时 `bad_alloc` 与 3 项 UI 字符串按原 ROM 顺序同属该对象 | 精确 |
 | DE | `0x080FB77C`–`0x080FBE59` | `src/intro_scene_data.o(.rodata)` | `src/intro_scene_data.cc`、`include/intro_scene_data.hh`、`data/text/de/intro_scene_data.cc`、`data/text/de/intro_scene_data_1.cc`；20 个解包资源入口均为资产容器中的直接标签 | 精确 |
 | DE | `0x080FBE5C`–`0x080FC4F7` | `src/farm_status_screen_data.o(.rodata)` | `src/farm_status_screen_data.cc`、`include/farm_status_screen_data.hh`、`data/text/de/farm_status_screen_data.cc`、`data/text/common/farm_status_screen_data.cc`–`farm_status_screen_data_2.cc`、`data/text/de/farm_status_screen_data_1.cc`；14 个预览资源入口均为资产容器中的直接标签 | 精确 |
-| DE | `0x080FC580`–`0x080FC72F` | `src/records_screen_data.o(.rodata)` | `src/records_screen_data.cc` 与 `data/text/de/records.cc` | 精确 |
-| DE | `0x080FC780`–`0x080FCDC3` | 纪录界面尾部至制作人员表 | `src/records_screen_data.cc`、`data/text/de/records.cc`、`data/text/staff_credits.cc` | 精确 |
+| DE | `0x080FC580`–`0x080FC7AD` | `src/records_screen_data.o(.rodata)` | `src/records_screen_data.cc`、`include/records_screen_data.hh`、`data/text/de/records_screen_data.cc`、`data/text/common/records_screen_data.cc`–`records_screen_data_2.cc`、`data/text/de/records_screen_data_1.cc`；14 个资源入口均为资产容器直接标签 | 精确 |
+| DE | `0x080FC7AE`–`0x080FC7AF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
+| DE | `0x080FC7B0`–`0x080FCDC3` | 制作人员表 | `data/text/de/staff_credits.cc` | 精确 |
 | DE | `0x080FCDD8`–`0x080FDDC3` | 城镇地图文本、热点表、区域查询及图书馆开放时间 | `src/town_map_data.cc`、`src/library_data.cc`、`data/text/de/town_map.cc`、`data/text/de/library.cc` | 精确 |
 | DE | `0x080FE094`–`0x080FE0B7` | 图书馆菜单 | `src/library_data.cc` 与 `data/text/de/library.cc` | 精确 |
 | DE | `0x080FE0B8`–`0x080FE5E3` | `src/poultry_shop_data.o(.rodata)` | `src/poultry_shop_data.cc` 与 `data/text/de/poultry_shop.cc` | 精确 |
@@ -156,7 +159,7 @@
 | `0x080FB11A`–`0x080FB11B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FB11C`–`0x080FB761` | `src/farm_status_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `src/farm_status_screen_data.cc`<br>`include/farm_status_screen_data.hh`<br>`data/text/jp/farm_status_screen_data.cc`<br>`data/text/common/farm_status_screen_data.cc`–`farm_status_screen_data_2.cc`<br>`data/text/jp/farm_status_screen_data_1.cc` | 文本 `62` 项（农场状态 `35`、动物参赛 `27`；详见下方索引）<br>`farm_status_screen_data_1` 前有 `gAnimalStatusScreenPrefixText`、`gAnimalStatusScreenText` 两张结构表<br>运行时字符串 `4` 项<br>`gFarmStatusScreenPreloadedGlyphs`、资源与建筑预览表；14 个预览资源入口为资产容器直接标签 |
 | `0x080FB762`–`0x080FB763` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FB764`–`0x080FB935` | `src/records_screen_data.o(.rodata)` | [嵌入文本] | `data/text/jp/records.cc` | 文本 `33` 项（详见下方索引）<br>运行时字符串 `4` 项<br>`gRecordsScreenMinigameTaskResources`, `gCodeLinkoncePackedCellSizeLookup`, `gUiPreloadedDigitGlyphCodes` |
+| `0x080FB764`–`0x080FB935` | `src/records_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `src/records_screen_data.cc`<br>`include/records_screen_data.hh`<br>`data/text/jp/records_screen_data.cc`<br>`data/text/common/records_screen_data.cc`–`records_screen_data_2.cc`<br>`data/text/jp/records_screen_data_1.cc` | 文本 `33` 项（详见下方索引）<br>运行时字符串 `4` 项<br>`gRecordsScreenMinigameTaskResources` 的 14 个 JP 资源入口为资产容器直接标签；`gCodeLinkoncePackedCellSizeLookup`、`gUiPreloadedDigitGlyphCodes` 按原顺序嵌入同一对象 |
 | `0x080FB936`–`0x080FB937` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FB938`–`0x080FBE87` | `data/text/staff_credits.o(.rodata)` | [文本对象] | `data/text/jp/staff_credits.cc` | 文本 `59` 项（详见下方索引）<br>`gStaffCreditsLines` |
 | `0x080FBE88`–`0x080FBE91` | `src/town_map_data.o(.rodata.staff_credits_trailer)` | [数据] | `src/town_map_data.c/.cc` | 运行时字符串 `1` 项 |
@@ -1237,39 +1240,39 @@
 | `0x080FB624` | `gText_AnimalContest_FinalConfirmation` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
 | `0x080FB634` | `gText_AnimalContest_FinalYes` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
 | `0x080FB63C` | `gText_AnimalContest_FinalNo` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB764` | `gText_Records_NumberShipped` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB76C` | `gText_Records_ShippedCountSuffix` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB770` | `gText_Records_Fishing` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB778` | `gText_Records_Name` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB780` | `gText_Records_MaximumSize` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB78C` | `gText_Records_Results` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB794` | `gText_Records_FishUnit` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB798` | `gText_Records_MeterUnit` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB79C` | `gText_Records_CentimeterUnit` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB7A4` | `gText_Records_Separator` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB7A8` | `gText_Records_Other` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB7B0` | `gText_Records_MiniGameRecords` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB7CC` | `gText_Records_Harvest` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB7D4` | `gText_Records_AnimalHusbandry` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB7E0` | `gText_Records_Watering` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB7E8` | `gText_Records_Frisbee` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB7F4` | `gText_Records_SecondsUnit` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB7F8` | `gText_Records_IncomeExpenses` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB814` | `gText_Records_HighestAmount` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB820` | `gText_Records_Earned` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB82C` | `gText_Records_Used` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB838` | `gText_Records_GoldUnit` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB83C` | `gText_Records_LongestLivingAnimal` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB858` | `gText_Records_Chicken` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB85C` | `gText_Records_Cow` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB860` | `gText_Records_Sheep` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB864` | `gText_Records_YearsUnit` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB868` | `gText_Records_MonthsUnit` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB870` | `gText_Records_DaysUnit` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB874` | `gText_Records_MineDepth` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB890` | `gText_Records_BelowGround` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB898` | `gText_Records_FloorUnit` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB89C` | `gText_Records_MolesWhacked` | `data/text/jp/records.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB764` | `gText_Records_NumberShipped` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB76C` | `gText_Records_ShippedCountSuffix` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB770` | `gText_Records_Fishing` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB778` | `gText_Records_Name` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB780` | `gText_Records_MaximumSize` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB78C` | `gText_Records_Results` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB794` | `gText_Records_FishUnit` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB798` | `gText_Records_MeterUnit` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB79C` | `gText_Records_CentimeterUnit` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB7A4` | `gText_Records_Separator` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB7A8` | `gText_Records_Other` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB7B0` | `gText_Records_MiniGameRecords` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB7CC` | `gText_Records_Harvest` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB7D4` | `gText_Records_AnimalHusbandry` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB7E0` | `gText_Records_Watering` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB7E8` | `gText_Records_Frisbee` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB7F4` | `gText_Records_SecondsUnit` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB7F8` | `gText_Records_IncomeExpenses` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB814` | `gText_Records_HighestAmount` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB820` | `gText_Records_Earned` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB82C` | `gText_Records_Used` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB838` | `gText_Records_GoldUnit` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB83C` | `gText_Records_LongestLivingAnimal` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB858` | `gText_Records_Chicken` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB85C` | `gText_Records_Cow` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB860` | `gText_Records_Sheep` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB864` | `gText_Records_YearsUnit` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB868` | `gText_Records_MonthsUnit` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB870` | `gText_Records_DaysUnit` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB874` | `gText_Records_MineDepth` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB890` | `gText_Records_BelowGround` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB898` | `gText_Records_FloorUnit` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB89C` | `gText_Records_MolesWhacked` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
 | `0x080FB938` | `gText_StaffCredits_Line000` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
 | `0x080FB944` | `gText_StaffCredits_EmptyLine` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
 | `0x080FB948` | `gText_StaffCredits_Line004` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
@@ -1999,7 +2002,7 @@
 | `0x080FB822`–`0x080FB823` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FB824`–`0x080FBE79` | `src/farm_status_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `src/farm_status_screen_data.cc`<br>`include/farm_status_screen_data.hh`<br>`data/text/us/farm_status_screen_data.cc`<br>`data/text/common/farm_status_screen_data.cc`–`farm_status_screen_data_2.cc`<br>`data/text/us/farm_status_screen_data_1.cc` | 文本 `53` 项（农场状态 `29`、动物参赛 `24`；详见下方索引）<br>`farm_status_screen_data_1` 前有 `gAnimalStatusScreenPrefixText`、`gAnimalStatusScreenText` 两张结构表<br>运行时字符串 `4` 项<br>`gFarmStatusScreenPreloadedGlyphs`、资源与建筑预览表；14 个预览资源入口为资产容器直接标签 |
 | `0x080FBE7A`–`0x080FBE7B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FBE7C`–`0x080FC0A1` | `src/records_screen_data.o(.rodata)` | [嵌入文本] | `data/text/us/records.cc` | 文本 `33` 项（详见下方索引）<br>运行时字符串 `4` 项<br>`gRecordsScreenMinigameTaskResources`, `gCodeLinkoncePackedCellSizeLookup`, `gUiPreloadedDigitGlyphCodes` |
+| `0x080FBE7C`–`0x080FC0A1` | `src/records_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `src/records_screen_data.cc`<br>`include/records_screen_data.hh`<br>`data/text/us/records_screen_data.cc`<br>`data/text/common/records_screen_data.cc`–`records_screen_data_2.cc`<br>`data/text/us/records_screen_data_1.cc` | 文本 `33` 项（详见下方索引）<br>运行时字符串 `4` 项<br>`gRecordsScreenMinigameTaskResources` 的 14 个资源入口为资产容器直接标签；`gCodeLinkoncePackedCellSizeLookup`、`gUiPreloadedDigitGlyphCodes` 按原顺序嵌入同一对象 |
 | `0x080FC0A2`–`0x080FC0A3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FC0A4`–`0x080FC6B7` | `data/text/staff_credits.o(.rodata)` | [文本对象] | `data/text/us/staff_credits.cc` | 文本 `65` 项（详见下方索引）<br>`gStaffCreditsLines` |
 | `0x080FC6B8`–`0x080FC6C1` | `src/town_map_data.o(.rodata.staff_credits_trailer)` | [数据] | `src/town_map_data.c/.cc` | 运行时字符串 `1` 项 |
@@ -3062,39 +3065,39 @@
 | `0x080FBD18` | `gText_AnimalContest_FinalConfirmation` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
 | `0x080FBD28` | `gText_AnimalContest_FinalYes` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
 | `0x080FBD2C` | `gText_AnimalContest_FinalNo` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBE7C` | `gText_Records_NumberShipped` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBE8C` | `gText_Records_ShippedCountSuffix` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBE90` | `gText_Records_Fishing` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBE9C` | `gText_Records_Name` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBEA4` | `gText_Records_MaximumSize` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBEB4` | `gText_Records_Results` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBEC0` | `gText_Records_FishUnit` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBEC8` | `gText_Records_MeterUnit` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBECC` | `gText_Records_CentimeterUnit` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBED4` | `gText_Records_Separator` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBED8` | `gText_Records_Other` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBEE0` | `gText_Records_MiniGameRecords` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBEFC` | `gText_Records_Harvest` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBF08` | `gText_Records_AnimalHusbandry` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBF1C` | `gText_Records_Watering` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBF28` | `gText_Records_Frisbee` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBF34` | `gText_Records_SecondsUnit` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBF3C` | `gText_Records_IncomeExpenses` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBF58` | `gText_Records_HighestAmount` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBF68` | `gText_Records_Earned` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBF74` | `gText_Records_Used` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBF80` | `gText_Records_GoldUnit` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBF84` | `gText_Records_LongestLivingAnimal` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBFA0` | `gText_Records_Chicken` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBFAC` | `gText_Records_Cow` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBFB4` | `gText_Records_Sheep` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBFBC` | `gText_Records_YearsUnit` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBFC4` | `gText_Records_MonthsUnit` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBFC8` | `gText_Records_DaysUnit` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBFCC` | `gText_Records_MineDepth` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBFE8` | `gText_Records_MineDepthPadding` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBFF0` | `gText_Records_BelowGround` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FC008` | `gText_Records_MolesWhacked` | `data/text/us/records.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBE7C` | `gText_Records_NumberShipped` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBE8C` | `gText_Records_ShippedCountSuffix` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBE90` | `gText_Records_Fishing` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBE9C` | `gText_Records_Name` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBEA4` | `gText_Records_MaximumSize` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBEB4` | `gText_Records_Results` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBEC0` | `gText_Records_FishUnit` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBEC8` | `gText_Records_MeterUnit` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBECC` | `gText_Records_CentimeterUnit` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBED4` | `gText_Records_Separator` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBED8` | `gText_Records_Other` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBEE0` | `gText_Records_MiniGameRecords` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBEFC` | `gText_Records_Harvest` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBF08` | `gText_Records_AnimalHusbandry` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBF1C` | `gText_Records_Watering` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBF28` | `gText_Records_Frisbee` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBF34` | `gText_Records_SecondsUnit` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBF3C` | `gText_Records_IncomeExpenses` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBF58` | `gText_Records_HighestAmount` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBF68` | `gText_Records_Earned` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBF74` | `gText_Records_Used` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBF80` | `gText_Records_GoldUnit` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBF84` | `gText_Records_LongestLivingAnimal` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBFA0` | `gText_Records_Chicken` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBFAC` | `gText_Records_Cow` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBFB4` | `gText_Records_Sheep` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBFBC` | `gText_Records_YearsUnit` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBFC4` | `gText_Records_MonthsUnit` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBFC8` | `gText_Records_DaysUnit` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBFCC` | `gText_Records_MineDepth` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBFE8` | `gText_Records_MineDepthPadding` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBFF0` | `gText_Records_BelowGround` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FC008` | `gText_Records_MolesWhacked` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
 | `0x080FC0A4` | `gText_StaffCredits_Line000` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
 | `0x080FC0AC` | `gText_StaffCredits_EmptyLine` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
 | `0x080FC0B0` | `gText_StaffCredits_Line004` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |

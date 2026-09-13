@@ -1698,7 +1698,52 @@ gUnk_IntroSceneStartupUnpackSource_002:
     .incbin "baserom_jp.gba", 0x4D0F64, (0x4D1058 - 0x4D0F64)
     .global gUnk_IntroSceneStartupUnpackSource_003
 gUnk_IntroSceneStartupUnpackSource_003:
-    .incbin "baserom_jp.gba", 0x4D1058, (0x4E0CE0 - 0x4D1058)
+    .incbin "baserom_jp.gba", 0x4D1058, (0x4D7EB8 - 0x4D1058)
+
+    @ Records-screen minigame resource boundaries. The payload formats are
+    @ still unknown; direct labels give the C++ pointer table relocations.
+    .global gUnk_084D7EB8
+gUnk_084D7EB8:
+    .incbin "baserom_jp.gba", 0x4D7EB8, (0x4D7F38 - 0x4D7EB8)
+    .global gUnk_084D7F38
+gUnk_084D7F38:
+    .incbin "baserom_jp.gba", 0x4D7F38, (0x4D7F58 - 0x4D7F38)
+    .global gUnk_084D7F58
+gUnk_084D7F58:
+    .incbin "baserom_jp.gba", 0x4D7F58, (0x4D7FD8 - 0x4D7F58)
+    .global gUnk_084D7FD8
+gUnk_084D7FD8:
+    .incbin "baserom_jp.gba", 0x4D7FD8, (0x4D7FF8 - 0x4D7FD8)
+    .global gUnk_084D7FF8
+gUnk_084D7FF8:
+    .incbin "baserom_jp.gba", 0x4D7FF8, (0x4D8078 - 0x4D7FF8)
+    .global gUnk_084D8078
+gUnk_084D8078:
+    .incbin "baserom_jp.gba", 0x4D8078, (0x4D8098 - 0x4D8078)
+    .global gUnk_084D8098
+gUnk_084D8098:
+    .incbin "baserom_jp.gba", 0x4D8098, (0x4D8118 - 0x4D8098)
+    .global gUnk_084D8118
+gUnk_084D8118:
+    .incbin "baserom_jp.gba", 0x4D8118, (0x4D8138 - 0x4D8118)
+    .global gUnk_084D8138
+gUnk_084D8138:
+    .incbin "baserom_jp.gba", 0x4D8138, (0x4D81B8 - 0x4D8138)
+    .global gUnk_084D81B8
+gUnk_084D81B8:
+    .incbin "baserom_jp.gba", 0x4D81B8, (0x4D81D8 - 0x4D81B8)
+    .global gUnk_084D81D8
+gUnk_084D81D8:
+    .incbin "baserom_jp.gba", 0x4D81D8, (0x4D8258 - 0x4D81D8)
+    .global gUnk_084D8258
+gUnk_084D8258:
+    .incbin "baserom_jp.gba", 0x4D8258, (0x4D8278 - 0x4D8258)
+    .global gUnk_084D8278
+gUnk_084D8278:
+    .incbin "baserom_jp.gba", 0x4D8278, (0x4D82F8 - 0x4D8278)
+    .global gUnk_084D82F8
+gUnk_084D82F8:
+    .incbin "baserom_jp.gba", 0x4D82F8, (0x4E0CE0 - 0x4D82F8)
 
     @ The packed Mary stream occupies the original JP interval
     @ 0x084E0CE0..0x087515A8.  Resume the raw asset container after it.

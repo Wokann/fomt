@@ -1,4 +1,4 @@
-#include "records_text.hh"
+#include "records_screen_data.hh"
 
 char const gText_Records_NumberShipped[] =
     "Number shipped";
