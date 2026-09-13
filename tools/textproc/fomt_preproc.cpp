@@ -1027,6 +1027,16 @@ std::string FixupSameUnitConstCharReferences(const std::string &source,
                 continue;
             }
 
+            // An aggregate may legitimately combine text owned by this
+            // translation unit with a text symbol owned by an earlier physical
+            // ROM block.  A pre-existing named relocation needs no repair and
+            // must not prevent the independently verified local .LC entries
+            // in the same aggregate from being restored.
+            if (operand == target_names[index]) {
+                planned.push_back({ pointer_words[index], target_names[index], "", {}, false });
+                continue;
+            }
+
             // A named string that occurs only through an aggregate pointer can
             // be folded away entirely by agbcp.  It is recoverable only when
             // the source has an actual definition and this exact pointer uses
@@ -2074,6 +2084,34 @@ void SelfTest()
     Require(output.find("gDefaultCompilerPaddedData:\n\t.byte\t0x1\n"
                         "\t.text\n") != std::string::npos,
         "ordinary rodata tail alignment removed data payload");
+
+    const std::string mixed_ownership_source =
+        "extern char const gExternalText[];\n"
+        "char const gLocalText[] = \"A\";\n"
+        "struct MixedOwnershipEntry { char const *first; unsigned int value; "
+        "char const *second; };\n"
+        "MixedOwnershipEntry const gMixedOwnershipEntries[] = {\n"
+        "    { gExternalText, 0, gLocalText },\n"
+        "};\n";
+    const std::string mixed_ownership_assembly =
+        "\t.section .rodata.named,\"a\",%progbits\n"
+        "gLocalText:\n"
+        "\t.ascii\t\"A\\000\"\n"
+        "\t.section .rodata\n"
+        "\t.align\t2, 0\n"
+        ".LC0:\n"
+        "\t.ascii\t\"A\\000\"\n"
+        "\t.align\t2, 0\n"
+        "gMixedOwnershipEntries:\n"
+        "\t.word\tgExternalText\n"
+        "\t.word\t0\n"
+        "\t.word\t.LC0\n";
+    const std::string mixed_ownership_output = PreprocessAssembly(
+        mixed_ownership_source, mixed_ownership_assembly);
+    Require(mixed_ownership_output.find(".LC0:") == std::string::npos
+            && mixed_ownership_output.find("\t.word\tgExternalText") != std::string::npos
+            && mixed_ownership_output.find("\t.word\tgLocalText") != std::string::npos,
+        "mixed local and external aggregate text references were not preserved");
 
     const std::string byte_aligned_text_source =
         "char const gByteAlignedText[] __attribute__((aligned(1))) = \"A\";\n"
