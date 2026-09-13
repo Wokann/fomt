@@ -6,6 +6,9 @@
 #include "utility/fixed_str.hh"
 #include "actor.hh"
 
+// Returned when an animal has no stored name.
+extern char const gText_Animal_Unnamed[];
+
 struct Animal : public Actor
 {
     Animal(char const * name, ActorLocation const & location, u32 age);

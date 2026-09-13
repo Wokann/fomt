@@ -743,7 +743,7 @@ SECTIONS
          src/recovery_status.o(.rodata);
          src/cooking.o(.rodata);
          src/cooking_recipe_inventory_data.o(.rodata);
-        src/animal.o(.rodata.animal_unnamed);
+        src/animal.o(.rodata);
          src/livestock.o(.rodata.livestock_day_update);
          src/code_actor_0809C3E0.o(.rodata.actor_state_max_values);
          src/code_actor_0809C3E0.o(.rodata);

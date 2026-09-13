@@ -89,6 +89,7 @@
 | EU | `0x08100B2A`–`0x08100E38` | `src/recovery_status.o(.rodata)` | `src/recovery_status.cc`、`include/recovery_status.hh`、`data/text/eu/recovery_status.cc` | 精确 |
 | EU | `0x08100E3C`–`0x0810113F` | `src/cooking.o(.rodata)` | `src/cooking.cc`、`include/cooking.hh`、`data/text/eu/cooking.cc` | 精确 |
 | EU | `0x08101140`–`0x081036AD` | `src/cooking_recipe_inventory_data.o(.rodata)` | `src/cooking_recipe_inventory_data.cc`、`include/cooking_recipe_inventory_data.hh`、`data/text/common/cooking_recipe_inventory_data.cc` | 精确 |
+| EU | `0x081036B0`–`0x081036B6` | `src/animal.o(.rodata)` | `src/animal.cc`、`include/animal.hh`、`data/text/common/animal.cc` | 精确 |
 | EU | `0x081082E4`–`0x08117843` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 EU 指南源文件；主目录只收录 `PAGE_1`，`tool_and_item_controls_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 | DE | `0x080E8574`–`0x080E858D` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0.hh`、`data/text/de/crt0_data.cc` | 精确 |
 | DE | `0x080E858E`–`0x080E858F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -149,6 +150,7 @@
 | DE | `0x081014EE`–`0x081017FC` | `src/recovery_status.o(.rodata)` | `src/recovery_status.cc`、`include/recovery_status.hh`、`data/text/de/recovery_status.cc` | 精确 |
 | DE | `0x08101800`–`0x08101B29` | `src/cooking.o(.rodata)` | `src/cooking.cc`、`include/cooking.hh`、`data/text/de/cooking.cc` | 精确 |
 | DE | `0x08101B2C`–`0x08104099` | `src/cooking_recipe_inventory_data.o(.rodata)` | `src/cooking_recipe_inventory_data.cc`、`include/cooking_recipe_inventory_data.hh`、`data/text/common/cooking_recipe_inventory_data.cc` | 精确 |
+| DE | `0x0810409C`–`0x081040A2` | `src/animal.o(.rodata)` | `src/animal.cc`、`include/animal.hh`、`data/text/common/animal.cc` | 精确 |
 | DE | `0x08107FD4`–`0x08108DB3` | `src/harvest_sprite.o(.rodata)` | `src/harvest_sprite.cc` 与 `data/text/de/harvest_sprite_*.cc` | 精确 |
 | DE | `0x08108DB4`–`0x081197FF` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 DE 指南源文件；主目录只收录 `PAGE_1`，`using_tools_2` 与 `newborn_congratulations_cliff_and_ann_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 
@@ -257,7 +259,7 @@
 | `0x081008FC`–`0x08100C23` | `src/cooking.o(.rodata)` | [嵌入文本] | `src/cooking.cc`、`include/cooking.hh`、`data/text/jp/cooking.cc` | 文本 `28` 项（详见下方索引） |
 | `0x08100C24`–`0x08103191` | `src/cooking_recipe_inventory_data.o(.rodata)` | [数据 / 嵌入文本] | `src/cooking_recipe_inventory_data.cc`<br>`include/cooking_recipe_inventory_data.hh`<br>`data/text/common/cooking_recipe_inventory_data.cc` | `gCookingRecipeInventoryMaskEntries`<br>`gCookingRecipeDefinitions`, `gCookingRecipeDefinitionPayload`<br>运行时字符串 `2` 项 |
 | `0x08103192`–`0x08103193` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08103194`–`0x0810319A` | `src/animal.o(.rodata.animal_unnamed)` | [嵌入文本] | `data/text/common/animal.cc` | 文本 `1` 项（详见下方索引） |
+| `0x08103194`–`0x0810319A` | `src/animal.o(.rodata)` | [嵌入文本] | `src/animal.cc`、`include/animal.hh`、`data/text/common/animal.cc` | 文本 `1` 项（详见下方索引） |
 | `0x0810319B`–`0x0810319B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x0810319C`–`0x081031FB` | `src/livestock.o(.rodata.livestock_day_update)` | [数据] | `src/livestock.c/.cc` | `gChickenDayUpdateInfo`, `gCowDayUpdateInfo`, `gSheepDayUpdateInfo` |
 | `0x081031FC`–`0x08103201` | `src/code_actor_0809C3E0.o(.rodata.actor_state_max_values)` | [数据] | `src/code_actor_0809C3E0.c/.cc` | `gActorStateMaxValues` |
@@ -1761,7 +1763,7 @@
 | `0x08100B84` | `gText_Cooking_Recipe_Empty` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
 | `0x08100B88` | `gText_Cooking_Recipe_StorageHeader` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
 | `0x08100B95` | `gText_Cooking_Recipe_SelectionNames` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
-| `0x08103194` | `gText_Animal_Unnamed` | `data/text/common/animal.cc` | `src/animal.o(.rodata.animal_unnamed)` |
+| `0x08103194` | `gText_Animal_Unnamed` | `data/text/common/animal.cc` | `src/animal.o(.rodata)` |
 | `0x081032C4` | `gText_FishingRecord_PirateFortune` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
 | `0x081032D0` | `gText_FishingRecord_FossilOfFish` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
 | `0x081032E0` | `gText_FishingRecord_PowerBerry` | `data/text/jp/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
@@ -2090,7 +2092,7 @@
 | `0x08100DE4`–`0x081010E7` | `src/cooking.o(.rodata)` | [嵌入文本] | `src/cooking.cc`、`include/cooking.hh`、`data/text/us/cooking.cc` | 文本 `28` 项（详见下方索引） |
 | `0x081010E8`–`0x08103655` | `src/cooking_recipe_inventory_data.o(.rodata)` | [数据 / 嵌入文本] | `src/cooking_recipe_inventory_data.cc`<br>`include/cooking_recipe_inventory_data.hh`<br>`data/text/common/cooking_recipe_inventory_data.cc` | `gCookingRecipeInventoryMaskEntries`<br>`gCookingRecipeDefinitions`, `gCookingRecipeDefinitionPayload`<br>运行时字符串 `2` 项 |
 | `0x08103656`–`0x08103657` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08103658`–`0x0810365E` | `src/animal.o(.rodata.animal_unnamed)` | [嵌入文本] | `data/text/common/animal.cc` | 文本 `1` 项（详见下方索引） |
+| `0x08103658`–`0x0810365E` | `src/animal.o(.rodata)` | [嵌入文本] | `src/animal.cc`、`include/animal.hh`、`data/text/common/animal.cc` | 文本 `1` 项（详见下方索引） |
 | `0x0810365F`–`0x0810365F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x08103660`–`0x081036BF` | `src/livestock.o(.rodata.livestock_day_update)` | [数据] | `src/livestock.c/.cc` | `gChickenDayUpdateInfo`, `gCowDayUpdateInfo`, `gSheepDayUpdateInfo` |
 | `0x081036C0`–`0x081036C5` | `src/code_actor_0809C3E0.o(.rodata.actor_state_max_values)` | [数据] | `src/code_actor_0809C3E0.c/.cc` | `gActorStateMaxValues` |
@@ -3586,7 +3588,7 @@
 | `0x08101044` | `gText_Cooking_Recipe_Empty` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
 | `0x08101048` | `gText_Cooking_Recipe_StorageHeader` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
 | `0x08101059` | `gText_Cooking_Recipe_SelectionNames` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
-| `0x08103658` | `gText_Animal_Unnamed` | `data/text/common/animal.cc` | `src/animal.o(.rodata.animal_unnamed)` |
+| `0x08103658` | `gText_Animal_Unnamed` | `data/text/common/animal.cc` | `src/animal.o(.rodata)` |
 | `0x08103788` | `gText_FishingRecord_PirateFortune` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
 | `0x08103798` | `gText_FishingRecord_FossilOfFish` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
 | `0x081037A8` | `gText_FishingRecord_PowerBerry` | `data/text/us/fishing_results.cc` | `src/fishing_results_data.o(.rodata)` |
