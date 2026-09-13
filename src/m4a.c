@@ -360,6 +360,7 @@ extern struct WaveData gM4aWaveData_105;
 extern u8 const gM4aCgbWaveData[];
 extern struct ToneData const gM4aSfxVoiceGroup[];
 
+SECTION(".rodata.gM4aVoiceGroups")
 struct ToneData const gM4aBgmVoiceGroup[] = {
     /* 000 */ { 0x00, 0x3C, 0x00, 0x00, &gM4aWaveData_000, 0x33, 0x00, 0xFF, 0x00 },
     /* 001 */ { 0x00, 0x3C, 0x00, 0x00, &gM4aWaveData_001, 0xFF, 0x00, 0xFF, 0x00 },
@@ -491,6 +492,7 @@ struct ToneData const gM4aBgmVoiceGroup[] = {
     /* 127 */ { 0x09, 0x3C, 0x00, 0x00, (struct WaveData *)0x2, 0x00, 0x03, 0x00, 0x00 },
 };
 
+SECTION(".rodata.gM4aVoiceGroups")
 struct ToneData const gM4aSfxVoiceGroup[] = {
     /* 000 */ { 0x08, 0x3C, 0x00, 0x00, &gM4aWaveData_034, 0xFF, 0x00, 0xFF, 0x00 },
     /* 001 */ { 0x00, 0x3C, 0x00, 0x00, &gM4aWaveData_035, 0xFF, 0x00, 0xFF, 0xA5 },
@@ -625,6 +627,7 @@ struct ToneData const gM4aSfxVoiceGroup[] = {
 // These seven valid ToneData records follow the two referenced voice groups,
 // but no owner table has been recovered yet.  Keep their unknown identity
 // explicit while preserving their typed layout and raw-asset relocations.
+SECTION(".rodata.gM4aVoiceGroups")
 struct ToneData const gUnk_M4aToneDataTail[] = {
     /* 000 */ { 0x00, 0x3C, 0x00, 0x00, &gM4aWaveData_099, 0xFF, 0x00, 0xFF, 0x00 },
     /* 001 */ { 0x00, 0x3C, 0x00, 0x00, &gM4aWaveData_100, 0xFF, 0x00, 0xFF, 0x00 },
@@ -637,6 +640,7 @@ struct ToneData const gUnk_M4aToneDataTail[] = {
 
 // This common 0x200-byte CGB waveform bank is addressed by the
 // recovered ToneData records at the offsets used above.
+SECTION(".rodata.gM4aVoiceGroups")
 u8 const gM4aCgbWaveData[] = {
     0x00, 0x11, 0x23, 0x56, 0x89, 0xAC, 0xDE, 0xEF, 0xFF, 0xEE, 0xDC, 0xA9, 0x86, 0x53, 0x21, 0x10,
     0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF, 0xFE, 0xDC, 0xBA, 0x98, 0x76, 0x54, 0x32, 0x10,
@@ -671,8 +675,9 @@ u8 const gM4aCgbWaveData[] = {
     0x01, 0x23, 0x56, 0x78, 0x9A, 0xBC, 0x79, 0xC8, 0xCF, 0xCE, 0xBA, 0x98, 0x76, 0x54, 0x32, 0x13,
     0x13, 0x56, 0x78, 0x9A, 0xBC, 0xDE, 0xFF, 0xF9, 0x9F, 0xFF, 0xED, 0xCB, 0xA9, 0x87, 0x64, 0x20,
 };
-// This table follows the voice/sample configuration data in physical ROM
-// order.  Its placement follows the ordinary source order of this object.
+// This table follows the still-raw M4A voice/sample configuration block in
+// ROM, so it has a distinct output section despite sharing this driver source.
+SECTION(".rodata.gMusicPlayerTable")
 struct MusicPlayerEnt const gMusicPlayerTable[] = {
     { &gMusicPlayerA, gMusicPlayerTrackA, 8, 0 },
     { &gMusicPlayerB, gMusicPlayerTrackB, 8, 0 },
@@ -829,6 +834,7 @@ extern struct Song gSong_Audio208;
 extern struct Song gSong_Audio209;
 extern struct Song gSong_Audio210;
 
+SECTION(".rodata.gSongTable")
 struct SongEnt const gSongTable[] = {
     /* 000: AUDIO_UNUSED_SLOT_000 */ { &gSong_Unused, 0, 0 },
     /* 001: AUDIO_BGM_SPRING */ { &gSong_Audio001, 0, 0 },

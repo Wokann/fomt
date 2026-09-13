@@ -858,6 +858,9 @@ SECTIONS
         . = 0x118CF4; src/font.o(.rodata);
         . = 0x118D18; asm/data/static_resources.o(.rodata);
         . = 0x13ABCC; src/m4a.o(.rodata);
+        . = 0x13AEA4; src/m4a.o(.rodata.gM4aVoiceGroups);
+        . = 0x13BCF8; src/m4a.o(.rodata.gMusicPlayerTable);
+        src/m4a.o(.rodata.gSongTable);
         . = 0x13C3CC; /* JP asset container, independently matched. */
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
         . = 0x4E0CE0; data/scripts/scripts.o(.rodata.mary_scripts);
