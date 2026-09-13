@@ -375,6 +375,8 @@ struct SongEnt
 
 extern struct MusicPlayerEnt const gMusicPlayerTable[];
 extern struct SongEnt const gSongTable[];
+extern MPlayFunc const gMPlayJumpTableTemplate[];
+extern u8 const gClockTable[];
 
 void m4aSoundInit(void);
 void m4aSoundMode(u32 mode);

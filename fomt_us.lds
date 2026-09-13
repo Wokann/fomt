@@ -769,10 +769,7 @@ SECTIONS
         . = 0x117B14; src/font.o(.rodata);
         . = 0x117BD4; asm/data/static_resources.o(.rodata);
         . = 0x139A88; src/m4a.o(.rodata);
-        . = 0x139D60; src/m4a.o(.rodata.gM4aVoiceGroups);
-        . = 0x13ABB4; src/m4a.o(.rodata.gMusicPlayerTable);
-        . = ALIGN(4); src/m4a.o(.rodata.gSongTable);
-        . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
+        . = 0x13B288; asm/data/data_0813B288.o(.rodata);
         . = 0x2AC0B0; data/scripts/scripts.o(.rodata.mary_scripts);
         . = 0x4F90CC; asm/data/data_0813B288.o(.rodata.mary_scripts_tail);
     } > ROM = 0xFF
