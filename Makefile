@@ -140,8 +140,8 @@ TEXT_FRAGMENT_INCLUDES := $(sort $(TEXT_FRAGMENT_LITERAL_INCLUDES) $(TEXT_FRAGME
 TEXT_FRAGMENT_SOURCES := $(sort $(filter $(TEXT_FRAGMENT_CANDIDATES),$(TEXT_FRAGMENT_INCLUDES)))
 
 # The staff-credit source and the Reference Guide pages use their own visible
-# authoring formats.  They are the only inputs that must be lowered to a
-# normal .cc source before entering the shared compilation channel.
+# authoring formats.  The staff source is lowered in-place by its owning
+# src/staff_credits.cc unit; guide pages remain a generated aggregate source.
 STAFF_CREDITS_SOURCE := data/text/$(TEXT_REGION)/staff_credits.cc
 
 # Shop-common strings are the first physical block of the unified status UI
@@ -164,9 +164,6 @@ COMMON_TEXT_DEPS := $(COMMON_TEXT_OBJS:.o=.d)
 # an auxiliary page participates in the master directory.
 GUIDE_COLLECTION_MANIFEST := src/reference_guide.cc
 GUIDE_PAGE_SOURCES := $(wildcard data/text/$(TEXT_REGION)/reference_guide/*.cc)
-STAFF_CREDITS_GENERATED_SOURCE := $(BUILD_DIR)/data/text/$(TEXT_REGION)/staff_credits.cc
-STAFF_CREDITS_GENERATED_OBJ := $(BUILD_DIR)/data/text/staff_credits.o
-STAFF_CREDITS_GENERATED_DEP := $(BUILD_DIR)/data/text/staff_credits.d
 GUIDE_GENERATED_SOURCE := $(BUILD_DIR)/src/reference_guide.cc
 GUIDE_GENERATED_OBJ := $(BUILD_DIR)/src/reference_guide.o
 GUIDE_GENERATED_DEP := $(BUILD_DIR)/src/reference_guide.d
@@ -187,10 +184,10 @@ MARY_BUNDLE_OUTPUTS := $(MARY_SCRIPTS_ASM) $(MARY_SCRIPT_TABLE_ASM) $(MARY_SCRIP
 MARY_SCRIPTS_OBJ := $(MARY_OUTPUT_DIR)/scripts.o
 MARY_SCRIPT_TABLE_OBJ := $(MARY_OUTPUT_DIR)/script_table.o
 
-ALL_OBJS += $(REGION_TEXT_OBJS) $(COMMON_TEXT_OBJS) $(STAFF_CREDITS_GENERATED_OBJ) $(GUIDE_GENERATED_OBJ) $(MARY_SCRIPTS_OBJ) $(MARY_SCRIPT_TABLE_OBJ)
-ALL_DEPS += $(REGION_TEXT_DEPS) $(COMMON_TEXT_DEPS) $(STAFF_CREDITS_GENERATED_DEP) $(GUIDE_GENERATED_DEP) $(MARY_BUNDLE_DEP)
+ALL_OBJS += $(REGION_TEXT_OBJS) $(COMMON_TEXT_OBJS) $(GUIDE_GENERATED_OBJ) $(MARY_SCRIPTS_OBJ) $(MARY_SCRIPT_TABLE_OBJ)
+ALL_DEPS += $(REGION_TEXT_DEPS) $(COMMON_TEXT_DEPS) $(GUIDE_GENERATED_DEP) $(MARY_BUNDLE_DEP)
 
-.SECONDARY: $(GUIDE_GENERATED_SOURCE) $(STAFF_CREDITS_GENERATED_SOURCE) $(MARY_BUNDLE_OUTPUTS)
+.SECONDARY: $(GUIDE_GENERATED_SOURCE) $(MARY_BUNDLE_OUTPUTS)
 
 $(TEXT_TOOLS): $(TEXT_TOOL_DIR)/fomt_text.cpp $(TEXT_TOOL_DIR)/fomt_preproc.cpp $(TEXT_TOOL_DIR)/Makefile
 	@$(MAKE) -C $(TEXT_TOOL_DIR) $(notdir $@)
@@ -250,14 +247,6 @@ $(BUILD_DIR)/src/reference_guide.o: $(GUIDE_GENERATED_SOURCE) $(BUILD_DIR)/src/r
 	@echo "CP $<"
 	$(call FOMT_COMPILE_CPP,)
 
-# Staff credits are one visible scrolling sequence.  fomt-text recovers the
-# original text-field layout and row-pointer sharing from the selected ROM,
-# then emits standard C++ which immediately enters the shared channel below.
-$(STAFF_CREDITS_GENERATED_SOURCE): $(STAFF_CREDITS_SOURCE) $(TEXT_TOOL) charmap.txt baserom_$(TEXT_REGION).gba
-	@mkdir -p $(dir $@)
-	$(TEXT_TOOL) staff-credits charmap.txt $(GAME_REGION) baserom_$(TEXT_REGION).gba $< $@
-
-
 # The selected regional .cc sources map to the region-neutral object paths
 # used by the linker scripts.  Their recipe is the same universal pipeline as
 # every other C++ translation unit; no text-specific staging source is made.
@@ -276,17 +265,6 @@ $(STATUS_UI_SHOP_COMMON_TEXT_DEP): $(STATUS_UI_SHOP_COMMON_TEXT_SOURCE)
 $(STATUS_UI_SHOP_COMMON_TEXT_OBJ): $(STATUS_UI_SHOP_COMMON_TEXT_SOURCE) $(STATUS_UI_SHOP_COMMON_TEXT_DEP) $(TEXT_TOOLS) charmap.txt
 	@echo "CP $<"
 	$(call FOMT_COMPILE_CPP,-DFOMT_TEXT_STATUS_UI_SHOP_COMMON=1)
-
-# The generated staff-credit source follows the same C++ text pipeline as any
-# other data/text translation unit.  Its ROM-neutral object name is the one
-# referenced by both linker scripts.
-$(STAFF_CREDITS_GENERATED_DEP): $(STAFF_CREDITS_GENERATED_SOURCE)
-	@mkdir -p $(dir $@)
-	@$(CPP) -iquote $(BUILD_DIR) $(CPPFLAGS) $< -o $@ -MM -MG -MT $(STAFF_CREDITS_GENERATED_OBJ)
-
-$(STAFF_CREDITS_GENERATED_OBJ): $(STAFF_CREDITS_GENERATED_SOURCE) $(STAFF_CREDITS_GENERATED_DEP) $(TEXT_TOOLS) charmap.txt
-	@echo "CP $<"
-	$(call FOMT_COMPILE_CPP,)
 
 # ROM from ELF
 %.gba: %.elf
@@ -317,6 +295,11 @@ $(BUILD_DIR)/%.d: %.cc
 $(BUILD_DIR)/%.o: %.cc $(BUILD_DIR)/%.d $(TEXT_TOOLS) charmap.txt
 	@echo "CP $<"
 	$(call FOMT_COMPILE_CPP,)
+
+# This remains the ordinary C++ rule above.  Only its explicit authoring
+# marker needs the selected visible-credit input and baseline field layout.
+$(BUILD_DIR)/src/staff_credits.o: FOMT_TEXT_SOURCE_ARGS := $(STAFF_CREDITS_SOURCE) baserom_$(TEXT_REGION).gba
+$(BUILD_DIR)/src/staff_credits.o: $(STAFF_CREDITS_SOURCE) baserom_$(TEXT_REGION).gba
 
 # ASM dependency file (dummy, generated with the object)
 $(BUILD_DIR)/%.d: $(BUILD_DIR)/%.o

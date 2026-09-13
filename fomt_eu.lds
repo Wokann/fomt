@@ -684,8 +684,8 @@ SECTIONS
         . = 0xFB870; src/farm_status_screen_data.o(.rodata);
         FILL(0x00);
         . = 0xFBEC8; src/records_screen_data.o(.rodata);
-        . = ALIGN(4); data/text/staff_credits.o(.rodata);
-        . = 0xFC704; src/town_map_data.o(.rodata.staff_credits_trailer);
+        . = ALIGN(4); src/staff_credits.o(.rodata);
+        . = 0xFC70E;
         src/town_map_data.o(.rodata.town_map_resource_ids);
         /* Town Map regional data: labels, hotspots, and lookup. */
         FILL(0x00);

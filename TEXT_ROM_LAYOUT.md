@@ -54,6 +54,7 @@
 | EU | `0x080FB870`–`0x080FBEC5` | `src/farm_status_screen_data.o(.rodata)` | `src/farm_status_screen_data.cc`、`include/farm_status_screen_data.hh`、`data/text/eu/farm_status_screen_data.cc`、`data/text/common/farm_status_screen_data.cc`–`farm_status_screen_data_2.cc`、`data/text/eu/farm_status_screen_data_1.cc`；14 个预览资源入口均为资产容器中的直接标签 | 精确 |
 | EU | `0x080FBEC8`–`0x080FC0ED` | `src/records_screen_data.o(.rodata)` | `src/records_screen_data.cc`、`include/records_screen_data.hh`、`data/text/eu/records_screen_data.cc`、`data/text/common/records_screen_data.cc`–`records_screen_data_2.cc`、`data/text/eu/records_screen_data_1.cc`；14 个资源入口均为资产容器直接标签 | 精确 |
 | EU | `0x080FC0EE`–`0x080FC0EF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
+| EU | `0x080FC0F0`–`0x080FC70D` | `src/staff_credits.o(.rodata)` | `src/staff_credits.cc`、`include/staff_credits.hh`、`data/text/eu/staff_credits.cc`、`data/text/eu/staff_credits_1.cc`；名单文本、行指针表与运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
 | EU | `0x080FECC8`–`0x080FEDD7` | `src/blacksmith_menu_data.o(.rodata)` | `src/blacksmith_menu_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
 | EU | `0x080FEDD8`–`0x080FF3AF` | `src/blacksmith_data.o(.rodata)` | `src/blacksmith_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
 | EU | `0x08100534`–`0x08100B17` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc` 与 `data/text/eu/link_communication.cc` | 精确 |
@@ -84,7 +85,7 @@
 | DE | `0x080FBE5C`–`0x080FC4F7` | `src/farm_status_screen_data.o(.rodata)` | `src/farm_status_screen_data.cc`、`include/farm_status_screen_data.hh`、`data/text/de/farm_status_screen_data.cc`、`data/text/common/farm_status_screen_data.cc`–`farm_status_screen_data_2.cc`、`data/text/de/farm_status_screen_data_1.cc`；14 个预览资源入口均为资产容器中的直接标签 | 精确 |
 | DE | `0x080FC580`–`0x080FC7AD` | `src/records_screen_data.o(.rodata)` | `src/records_screen_data.cc`、`include/records_screen_data.hh`、`data/text/de/records_screen_data.cc`、`data/text/common/records_screen_data.cc`–`records_screen_data_2.cc`、`data/text/de/records_screen_data_1.cc`；14 个资源入口均为资产容器直接标签 | 精确 |
 | DE | `0x080FC7AE`–`0x080FC7AF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| DE | `0x080FC7B0`–`0x080FCDC3` | 制作人员表 | `data/text/de/staff_credits.cc` | 精确 |
+| DE | `0x080FC7B0`–`0x080FCDCD` | `src/staff_credits.o(.rodata)` | `src/staff_credits.cc`、`include/staff_credits.hh`、`data/text/de/staff_credits.cc`、`data/text/de/staff_credits_1.cc`；名单文本、行指针表与运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
 | DE | `0x080FCDD8`–`0x080FDDC3` | 城镇地图文本、热点表、区域查询及图书馆开放时间 | `src/town_map_data.cc`、`src/library_data.cc`、`data/text/de/town_map.cc`、`data/text/de/library.cc` | 精确 |
 | DE | `0x080FE094`–`0x080FE0B7` | 图书馆菜单 | `src/library_data.cc` 与 `data/text/de/library.cc` | 精确 |
 | DE | `0x080FE0B8`–`0x080FE5E3` | `src/poultry_shop_data.o(.rodata)` | `src/poultry_shop_data.cc` 与 `data/text/de/poultry_shop.cc` | 精确 |
@@ -161,8 +162,7 @@
 | `0x080FB762`–`0x080FB763` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FB764`–`0x080FB935` | `src/records_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `src/records_screen_data.cc`<br>`include/records_screen_data.hh`<br>`data/text/jp/records_screen_data.cc`<br>`data/text/common/records_screen_data.cc`–`records_screen_data_2.cc`<br>`data/text/jp/records_screen_data_1.cc` | 文本 `33` 项（详见下方索引）<br>运行时字符串 `4` 项<br>`gRecordsScreenMinigameTaskResources` 的 14 个 JP 资源入口为资产容器直接标签；`gCodeLinkoncePackedCellSizeLookup`、`gUiPreloadedDigitGlyphCodes` 按原顺序嵌入同一对象 |
 | `0x080FB936`–`0x080FB937` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FB938`–`0x080FBE87` | `data/text/staff_credits.o(.rodata)` | [文本对象] | `data/text/jp/staff_credits.cc` | 文本 `59` 项（详见下方索引）<br>`gStaffCreditsLines` |
-| `0x080FBE88`–`0x080FBE91` | `src/town_map_data.o(.rodata.staff_credits_trailer)` | [数据] | `src/town_map_data.c/.cc` | 运行时字符串 `1` 项 |
+| `0x080FB938`–`0x080FBE91` | `src/staff_credits.o(.rodata)` | [嵌入文本 / 指针表] | `src/staff_credits.cc`<br>`include/staff_credits.hh`<br>`data/text/jp/staff_credits.cc`<br>`data/text/jp/staff_credits_1.cc` | 文本 `59` 项（详见下方索引）<br>`gStaffCreditsLines`<br>`gCppRuntimeBadAlloc_StaffCredits` |
 | `0x080FBE92`–`0x080FBE99` | `src/town_map_data.o(.rodata.town_map_resource_ids)` | [数据] | `src/town_map_data.c/.cc` | `gTownMapResourceIds` |
 | `0x080FBE9A`–`0x080FBE9B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FBE9C`–`0x080FCCB7` | `src/town_map_data.o(.rodata)` | [嵌入文本 / 数据] | `src/town_map_data.cc`<br>`data/text/jp/town_map.cc` | 文本 `65` 项（详见下方索引）<br>文本后对象内 `00` 对齐 `3` 字节<br>`gTownMapHotspots`<br>`gTownMapAreaLookup`, `gTownMapAreaLookupFallback_034To133`, `gTownMapAreaLookupFallback_134To233` |
@@ -1273,65 +1273,65 @@
 | `0x080FB890` | `gText_Records_BelowGround` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
 | `0x080FB898` | `gText_Records_FloorUnit` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
 | `0x080FB89C` | `gText_Records_MolesWhacked` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB938` | `gText_StaffCredits_Line000` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FB944` | `gText_StaffCredits_EmptyLine` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FB948` | `gText_StaffCredits_Line004` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FB95C` | `gText_StaffCredits_Line006` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FB968` | `gText_StaffCredits_Line007` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FB974` | `gText_StaffCredits_Line008` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FB980` | `gText_StaffCredits_Line009` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FB98C` | `gText_StaffCredits_Line010` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FB998` | `gText_StaffCredits_Line011` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FB9A4` | `gText_StaffCredits_Line015` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FB9B0` | `gText_StaffCredits_Line017` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FB9C0` | `gText_StaffCredits_Line018` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FB9D4` | `gText_StaffCredits_Line019` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FB9E0` | `gText_StaffCredits_Line020` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FB9EC` | `gText_StaffCredits_Line021` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FB9FC` | `gText_StaffCredits_Line022` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBA0C` | `gText_StaffCredits_Line026` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBA18` | `gText_StaffCredits_Line028` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBA24` | `gText_StaffCredits_Line032` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBA34` | `gText_StaffCredits_Line034` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBA40` | `gText_StaffCredits_Line035` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBA4C` | `gText_StaffCredits_Line036` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBA58` | `gText_StaffCredits_Line037` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBA64` | `gText_StaffCredits_Line038` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBA70` | `gText_StaffCredits_Line039` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBA7C` | `gText_StaffCredits_Line043` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBA88` | `gText_StaffCredits_Line045` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBA94` | `gText_StaffCredits_Line046` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBAA0` | `gText_StaffCredits_Line047` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBAAC` | `gText_StaffCredits_Line051` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBAC0` | `gText_StaffCredits_Line053` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBACC` | `gText_StaffCredits_Line054` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBAD8` | `gText_StaffCredits_Line055` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBAE4` | `gText_StaffCredits_Line056` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBAF0` | `gText_StaffCredits_Line057` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBAFC` | `gText_StaffCredits_Line058` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBB04` | `gText_StaffCredits_Line059` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBB10` | `gText_StaffCredits_Line063` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBB20` | `gText_StaffCredits_Line065` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBB2C` | `gText_StaffCredits_Line069` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBB3C` | `gText_StaffCredits_Line071` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBB48` | `gText_StaffCredits_Line075` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBB58` | `gText_StaffCredits_Line077` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBB64` | `gText_StaffCredits_Line081` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBB80` | `gText_StaffCredits_Line082` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBB9C` | `gText_StaffCredits_Line084` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBBA4` | `gText_StaffCredits_Line088` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBBBC` | `gText_StaffCredits_Line090` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBBD4` | `gText_StaffCredits_Line094` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBBF0` | `gText_StaffCredits_Line096` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBBFC` | `gText_StaffCredits_Line097` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBC08` | `gText_StaffCredits_Line101` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBC20` | `gText_StaffCredits_Line103` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBC2C` | `gText_StaffCredits_Line104` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBC38` | `gText_StaffCredits_Line108` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBC50` | `gText_StaffCredits_Line110` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBC60` | `gText_StaffCredits_Line114` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBC74` | `gText_StaffCredits_Line116` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FBC80` | `gText_StaffCredits_Line126` | `data/text/jp/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
+| `0x080FB938` | `gText_StaffCredits_Line000` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB944` | `gText_StaffCredits_EmptyLine` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB948` | `gText_StaffCredits_Line004` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB95C` | `gText_StaffCredits_Line006` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB968` | `gText_StaffCredits_Line007` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB974` | `gText_StaffCredits_Line008` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB980` | `gText_StaffCredits_Line009` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB98C` | `gText_StaffCredits_Line010` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB998` | `gText_StaffCredits_Line011` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB9A4` | `gText_StaffCredits_Line015` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB9B0` | `gText_StaffCredits_Line017` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB9C0` | `gText_StaffCredits_Line018` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB9D4` | `gText_StaffCredits_Line019` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB9E0` | `gText_StaffCredits_Line020` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB9EC` | `gText_StaffCredits_Line021` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB9FC` | `gText_StaffCredits_Line022` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBA0C` | `gText_StaffCredits_Line026` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBA18` | `gText_StaffCredits_Line028` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBA24` | `gText_StaffCredits_Line032` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBA34` | `gText_StaffCredits_Line034` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBA40` | `gText_StaffCredits_Line035` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBA4C` | `gText_StaffCredits_Line036` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBA58` | `gText_StaffCredits_Line037` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBA64` | `gText_StaffCredits_Line038` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBA70` | `gText_StaffCredits_Line039` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBA7C` | `gText_StaffCredits_Line043` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBA88` | `gText_StaffCredits_Line045` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBA94` | `gText_StaffCredits_Line046` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBAA0` | `gText_StaffCredits_Line047` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBAAC` | `gText_StaffCredits_Line051` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBAC0` | `gText_StaffCredits_Line053` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBACC` | `gText_StaffCredits_Line054` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBAD8` | `gText_StaffCredits_Line055` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBAE4` | `gText_StaffCredits_Line056` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBAF0` | `gText_StaffCredits_Line057` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBAFC` | `gText_StaffCredits_Line058` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBB04` | `gText_StaffCredits_Line059` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBB10` | `gText_StaffCredits_Line063` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBB20` | `gText_StaffCredits_Line065` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBB2C` | `gText_StaffCredits_Line069` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBB3C` | `gText_StaffCredits_Line071` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBB48` | `gText_StaffCredits_Line075` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBB58` | `gText_StaffCredits_Line077` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBB64` | `gText_StaffCredits_Line081` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBB80` | `gText_StaffCredits_Line082` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBB9C` | `gText_StaffCredits_Line084` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBBA4` | `gText_StaffCredits_Line088` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBBBC` | `gText_StaffCredits_Line090` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBBD4` | `gText_StaffCredits_Line094` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBBF0` | `gText_StaffCredits_Line096` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBBFC` | `gText_StaffCredits_Line097` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBC08` | `gText_StaffCredits_Line101` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBC20` | `gText_StaffCredits_Line103` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBC2C` | `gText_StaffCredits_Line104` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBC38` | `gText_StaffCredits_Line108` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBC50` | `gText_StaffCredits_Line110` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBC60` | `gText_StaffCredits_Line114` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBC74` | `gText_StaffCredits_Line116` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBC80` | `gText_StaffCredits_Line126` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
 | `0x080FBE9C` | `gText_TownMap_PlayerFarmNameSuffix` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
 | `0x080FBEA4` | `gText_TownMap_PlayerFarmDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
 | `0x080FBEB8` | `gText_TownMap_PlayerFarmLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
@@ -2004,8 +2004,7 @@
 | `0x080FBE7A`–`0x080FBE7B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FBE7C`–`0x080FC0A1` | `src/records_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `src/records_screen_data.cc`<br>`include/records_screen_data.hh`<br>`data/text/us/records_screen_data.cc`<br>`data/text/common/records_screen_data.cc`–`records_screen_data_2.cc`<br>`data/text/us/records_screen_data_1.cc` | 文本 `33` 项（详见下方索引）<br>运行时字符串 `4` 项<br>`gRecordsScreenMinigameTaskResources` 的 14 个资源入口为资产容器直接标签；`gCodeLinkoncePackedCellSizeLookup`、`gUiPreloadedDigitGlyphCodes` 按原顺序嵌入同一对象 |
 | `0x080FC0A2`–`0x080FC0A3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FC0A4`–`0x080FC6B7` | `data/text/staff_credits.o(.rodata)` | [文本对象] | `data/text/us/staff_credits.cc` | 文本 `65` 项（详见下方索引）<br>`gStaffCreditsLines` |
-| `0x080FC6B8`–`0x080FC6C1` | `src/town_map_data.o(.rodata.staff_credits_trailer)` | [数据] | `src/town_map_data.c/.cc` | 运行时字符串 `1` 项 |
+| `0x080FC0A4`–`0x080FC6C1` | `src/staff_credits.o(.rodata)` | [嵌入文本 / 指针表] | `src/staff_credits.cc`<br>`include/staff_credits.hh`<br>`data/text/us/staff_credits.cc`<br>`data/text/us/staff_credits_1.cc` | 文本 `65` 项（详见下方索引）<br>`gStaffCreditsLines`<br>`gCppRuntimeBadAlloc_StaffCredits` |
 | `0x080FC6C2`–`0x080FC6C9` | `src/town_map_data.o(.rodata.town_map_resource_ids)` | [数据] | `src/town_map_data.c/.cc` | `gTownMapResourceIds` |
 | `0x080FC6CA`–`0x080FC6CB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FC6CC`–`0x080FD54F` | `src/town_map_data.o(.rodata)` | [嵌入文本 / 数据] | `src/town_map_data.cc`<br>`data/text/us/town_map.cc` | 文本 `65` 项（详见下方索引）<br>文本后对象内 `00` 对齐 `2` 字节<br>`gTownMapHotspots`<br>`gTownMapAreaLookup`, `gTownMapAreaLookupFallback_034To133`, `gTownMapAreaLookupFallback_134To233` |
@@ -3098,71 +3097,71 @@
 | `0x080FBFE8` | `gText_Records_MineDepthPadding` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
 | `0x080FBFF0` | `gText_Records_BelowGround` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
 | `0x080FC008` | `gText_Records_MolesWhacked` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FC0A4` | `gText_StaffCredits_Line000` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC0AC` | `gText_StaffCredits_EmptyLine` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC0B0` | `gText_StaffCredits_Line004` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC0C0` | `gText_StaffCredits_Line006` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC0D0` | `gText_StaffCredits_Line007` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC0E0` | `gText_StaffCredits_Line008` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC0F0` | `gText_StaffCredits_Line009` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC100` | `gText_StaffCredits_Line010` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC110` | `gText_StaffCredits_Line011` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC120` | `gText_StaffCredits_Line015` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC12C` | `gText_StaffCredits_Line017` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC13C` | `gText_StaffCredits_Line018` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC14C` | `gText_StaffCredits_Line019` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC158` | `gText_StaffCredits_Line020` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC16C` | `gText_StaffCredits_Line021` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC17C` | `gText_StaffCredits_Line022` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC18C` | `gText_StaffCredits_Line026` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC194` | `gText_StaffCredits_Line028` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC1A4` | `gText_StaffCredits_Line032` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC1B0` | `gText_StaffCredits_Line034` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC1C4` | `gText_StaffCredits_Line035` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC1D4` | `gText_StaffCredits_Line036` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC1E4` | `gText_StaffCredits_Line037` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC1F0` | `gText_StaffCredits_Line038` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC1F8` | `gText_StaffCredits_Line039` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC204` | `gText_StaffCredits_Line040` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC210` | `gText_StaffCredits_Line044` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC21C` | `gText_StaffCredits_Line046` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC228` | `gText_StaffCredits_Line047` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC238` | `gText_StaffCredits_Line048` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC248` | `gText_StaffCredits_Line052` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC258` | `gText_StaffCredits_Line054` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC264` | `gText_StaffCredits_Line055` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC278` | `gText_StaffCredits_Line056` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC28C` | `gText_StaffCredits_Line057` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC29C` | `gText_StaffCredits_Line058` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC2B0` | `gText_StaffCredits_Line059` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC2C4` | `gText_StaffCredits_Line060` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC2D4` | `gText_StaffCredits_Line064` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC2E0` | `gText_StaffCredits_Line066` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC2F0` | `gText_StaffCredits_Line070` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC2F8` | `gText_StaffCredits_Line072` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC304` | `gText_StaffCredits_Line076` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC310` | `gText_StaffCredits_Line078` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC320` | `gText_StaffCredits_Line082` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC334` | `gText_StaffCredits_Line084` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC344` | `gText_StaffCredits_Line088` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC350` | `gText_StaffCredits_Line090` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC360` | `gText_StaffCredits_Line094` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC378` | `gText_StaffCredits_Line096` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC38C` | `gText_StaffCredits_Line097` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC39C` | `gText_StaffCredits_Line101` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC3B0` | `gText_StaffCredits_Line103` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC3C4` | `gText_StaffCredits_Line104` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC3D4` | `gText_StaffCredits_Line108` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC3E8` | `gText_StaffCredits_Line110` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC3F8` | `gText_StaffCredits_Line113` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC418` | `gText_StaffCredits_Line115` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC428` | `gText_StaffCredits_Line117` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC440` | `gText_StaffCredits_Line118` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC450` | `gText_StaffCredits_Line119` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC460` | `gText_StaffCredits_Line121` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC478` | `gText_StaffCredits_Line122` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC488` | `gText_StaffCredits_Line125` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
-| `0x080FC4A0` | `gText_StaffCredits_Line126` | `data/text/us/staff_credits.cc` | `data/text/staff_credits.o(.rodata)` |
+| `0x080FC0A4` | `gText_StaffCredits_Line000` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC0AC` | `gText_StaffCredits_EmptyLine` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC0B0` | `gText_StaffCredits_Line004` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC0C0` | `gText_StaffCredits_Line006` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC0D0` | `gText_StaffCredits_Line007` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC0E0` | `gText_StaffCredits_Line008` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC0F0` | `gText_StaffCredits_Line009` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC100` | `gText_StaffCredits_Line010` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC110` | `gText_StaffCredits_Line011` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC120` | `gText_StaffCredits_Line015` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC12C` | `gText_StaffCredits_Line017` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC13C` | `gText_StaffCredits_Line018` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC14C` | `gText_StaffCredits_Line019` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC158` | `gText_StaffCredits_Line020` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC16C` | `gText_StaffCredits_Line021` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC17C` | `gText_StaffCredits_Line022` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC18C` | `gText_StaffCredits_Line026` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC194` | `gText_StaffCredits_Line028` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC1A4` | `gText_StaffCredits_Line032` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC1B0` | `gText_StaffCredits_Line034` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC1C4` | `gText_StaffCredits_Line035` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC1D4` | `gText_StaffCredits_Line036` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC1E4` | `gText_StaffCredits_Line037` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC1F0` | `gText_StaffCredits_Line038` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC1F8` | `gText_StaffCredits_Line039` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC204` | `gText_StaffCredits_Line040` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC210` | `gText_StaffCredits_Line044` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC21C` | `gText_StaffCredits_Line046` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC228` | `gText_StaffCredits_Line047` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC238` | `gText_StaffCredits_Line048` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC248` | `gText_StaffCredits_Line052` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC258` | `gText_StaffCredits_Line054` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC264` | `gText_StaffCredits_Line055` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC278` | `gText_StaffCredits_Line056` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC28C` | `gText_StaffCredits_Line057` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC29C` | `gText_StaffCredits_Line058` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC2B0` | `gText_StaffCredits_Line059` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC2C4` | `gText_StaffCredits_Line060` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC2D4` | `gText_StaffCredits_Line064` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC2E0` | `gText_StaffCredits_Line066` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC2F0` | `gText_StaffCredits_Line070` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC2F8` | `gText_StaffCredits_Line072` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC304` | `gText_StaffCredits_Line076` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC310` | `gText_StaffCredits_Line078` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC320` | `gText_StaffCredits_Line082` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC334` | `gText_StaffCredits_Line084` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC344` | `gText_StaffCredits_Line088` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC350` | `gText_StaffCredits_Line090` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC360` | `gText_StaffCredits_Line094` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC378` | `gText_StaffCredits_Line096` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC38C` | `gText_StaffCredits_Line097` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC39C` | `gText_StaffCredits_Line101` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC3B0` | `gText_StaffCredits_Line103` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC3C4` | `gText_StaffCredits_Line104` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC3D4` | `gText_StaffCredits_Line108` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC3E8` | `gText_StaffCredits_Line110` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC3F8` | `gText_StaffCredits_Line113` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC418` | `gText_StaffCredits_Line115` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC428` | `gText_StaffCredits_Line117` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC440` | `gText_StaffCredits_Line118` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC450` | `gText_StaffCredits_Line119` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC460` | `gText_StaffCredits_Line121` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC478` | `gText_StaffCredits_Line122` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC488` | `gText_StaffCredits_Line125` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC4A0` | `gText_StaffCredits_Line126` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
 | `0x080FC6CC` | `gText_TownMap_PlayerFarmNameSuffix` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
 | `0x080FC6D4` | `gText_TownMap_PlayerFarmDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
 | `0x080FC6E8` | `gText_TownMap_PlayerFarmLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
