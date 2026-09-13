@@ -1,6 +1,4 @@
-#include "supermarket_text.hh"
-
-#if defined(FOMT_TEXT_SUPERMARKET_PRIMARY)
+#include "supermarket_data.hh"
 
 char const gText_Supermarket_EquipmentCapacityFull[] =
     "Ich fürchte du kannst\r\n"
@@ -35,21 +33,3 @@ char const gText_Supermarket_DeliveryPartial[] =
     "Warte.\r\n"
     "Du kannst nicht mehr tragen.\r\n"
     "Ich lasse es liefern.{Press}";
-
-#elif defined(FOMT_TEXT_SUPERMARKET_SECONDARY)
-
-char const gText_Supermarket_SeedDelivery[] =
-    "Vielen Dank.{Press}\p"
-    "Warte.\r\n"
-    "Dein Rucksack ist voll.\r\n"
-    "Ich lasse es liefern.{Press}";
-
-char const gText_Supermarket_SeedPurchaseConfirmation[] =
-    "Bist du sicher?{Press}";
-
-extern char const gCppRuntimeBadAlloc_SupermarketTrailer[] =
-    "bad_alloc";
-
-#else
-#error "Select one supermarket text fragment before including this file."
-#endif

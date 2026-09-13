@@ -1,10 +1,10 @@
-#ifndef SUPERMARKET_TEXT_HH
-#define SUPERMARKET_TEXT_HH
+#ifndef SUPERMARKET_DATA_HH
+#define SUPERMARKET_DATA_HH
 
 #include "prelude.h"
 
 // The two shop directories are contiguous pairs of a tool identifier and its
-// price.  The final zero pair in the additional directory is an original
+// price. The final zero pair in the additional directory is an original
 // sentinel and remains part of the table.
 struct SupermarketCatalogEntry
 {
@@ -30,8 +30,8 @@ extern char const gCppRuntimeBadAlloc_SupermarketTrailer[];
 extern char const gText_Supermarket_EquipmentDeliveryPartial[];
 extern char const gText_Supermarket_SeedDeliveryPartial[];
 #else
-// The US ROM reuses this one object for both shop flows.
+// The US-family ROMs reuse this one object for both shop flows.
 extern char const gText_Supermarket_DeliveryPartial[];
 #endif
 
-#endif // SUPERMARKET_TEXT_HH
+#endif // SUPERMARKET_DATA_HH

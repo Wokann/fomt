@@ -63,6 +63,8 @@
 | EU | `0x080FD9AE`–`0x080FD9AF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FD9B0`–`0x080FDE21` | `src/poultry_shop_data.o(.rodata)` | `src/poultry_shop_data.cc`、`include/poultry_shop_data.hh`、`data/text/eu/poultry_shop_data.cc`、`data/text/eu/poultry_shop_data_1.cc`；菜单文本、目录表、状态与对话文本按 ROM 顺序同属该对象 | 精确 |
 | EU | `0x080FDE22`–`0x080FDE23` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
+| EU | `0x080FDE24`–`0x080FE099` | `src/supermarket_data.o(.rodata)` | `src/supermarket_data.cc`、`include/supermarket_data.hh`、`data/text/eu/supermarket_data.cc`、`data/text/eu/supermarket_data_1.cc`；两张目录表与前后两段文本按 ROM 顺序同属该对象 | 精确 |
+| EU | `0x080FE09A`–`0x080FE09B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FECC8`–`0x080FEDD7` | `src/blacksmith_menu_data.o(.rodata)` | `src/blacksmith_menu_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
 | EU | `0x080FEDD8`–`0x080FF3AF` | `src/blacksmith_data.o(.rodata)` | `src/blacksmith_data.cc` 与 `data/text/eu/blacksmith.cc` | 精确 |
 | EU | `0x08100534`–`0x08100B17` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc` 与 `data/text/eu/link_communication.cc` | 精确 |
@@ -102,7 +104,8 @@
 | DE | `0x080FE0B6`–`0x080FE0B7` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080FE0B8`–`0x080FE579` | `src/poultry_shop_data.o(.rodata)` | `src/poultry_shop_data.cc`、`include/poultry_shop_data.hh`、`data/text/de/poultry_shop_data.cc`、`data/text/de/poultry_shop_data_1.cc`；菜单文本、目录表、状态与对话文本按 ROM 顺序同属该对象 | 精确 |
 | DE | `0x080FE57A`–`0x080FE57B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| DE | `0x080FE5E4`–`0x080FE7FB` | `src/supermarket_data.o(.rodata)` | `src/supermarket_data.cc` 与 `data/text/de/supermarket.cc` | 精确 |
+| DE | `0x080FE57C`–`0x080FE7D9` | `src/supermarket_data.o(.rodata)` | `src/supermarket_data.cc`、`include/supermarket_data.hh`、`data/text/de/supermarket_data.cc`、`data/text/de/supermarket_data_1.cc`；两张目录表与前后两段文本按 ROM 顺序同属该对象 | 精确 |
+| DE | `0x080FE7DA`–`0x080FE7DB` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080FE7FC`–`0x080FEA23` | `src/clinic_data.o(.rodata)` | `src/clinic_data.cc` 与 `data/text/de/clinic.cc` | 精确 |
 | DE | `0x080FEA24`–`0x080FEC8B` | `src/inn_shop_data.o(.rodata)` | `src/inn_shop_data.cc` 与 `data/text/de/inn_shop.cc` | 精确 |
 | DE | `0x080FEC8C`–`0x080FEF1F` | `src/won_shop_data.o(.rodata)` | `src/won_shop_data.cc` 与 `data/text/de/won_shop.cc` | 精确 |
@@ -184,7 +187,7 @@
 | `0x080FD0CE`–`0x080FD0CF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FD0D0`–`0x080FD55D` | `src/poultry_shop_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/poultry_shop_data.cc`<br>`include/poultry_shop_data.hh`<br>`data/text/jp/poultry_shop_data.cc`<br>`data/text/jp/poultry_shop_data_1.cc` | 菜单文本 `3` 项<br>`gPoultryShopCatalog`<br>状态与对话文本 `31` 项<br>运行时字符串 `1` 项 |
 | `0x080FD55E`–`0x080FD55F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FD560`–`0x080FD80D` | `src/supermarket_data.o(.rodata)` | [嵌入文本] | `data/text/jp/supermarket.cc` | 文本 `11` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gSupermarketCropSeedCatalog`, `gSupermarketAdditionalSeedCatalog` |
+| `0x080FD560`–`0x080FD80D` | `src/supermarket_data.o(.rodata)` | [嵌入文本 / 数据] | `src/supermarket_data.cc`<br>`include/supermarket_data.hh`<br>`data/text/jp/supermarket_data.cc`<br>`data/text/jp/supermarket_data_1.cc` | `gSupermarketCropSeedCatalog`<br>主文本 `8` 项<br>`gSupermarketAdditionalSeedCatalog`<br>后续文本 `3` 项<br>运行时字符串 `1` 项 |
 | `0x080FD80E`–`0x080FD80F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FD810`–`0x080FD9E1` | `src/clinic_data.o(.rodata)` | [嵌入文本] | `data/text/jp/clinic.cc` | 文本 `9` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gClinicCatalog` |
 | `0x080FD9E2`–`0x080FD9E3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1441,17 +1444,17 @@
 | `0x080FD498` | `gText_PoultryShop_ChickenPurchaseComplete` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
 | `0x080FD4EC` | `gText_PoultryShop_PurchaseMorePrompt` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
 | `0x080FD500` | `gText_PoultryShop_ChickenSold` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD5C8` | `gText_Supermarket_EquipmentCapacityFull` | `data/text/jp/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FD5F0` | `gText_Supermarket_BlankLinePair` | `data/text/jp/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FD5F8` | `gText_Supermarket_InsufficientGold` | `data/text/jp/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FD620` | `gText_Supermarket_ThankYou` | `data/text/jp/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FD63C` | `gText_Supermarket_PurchaseConfirmation` | `data/text/jp/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FD650` | `gText_Supermarket_PurchaseMorePrompt` | `data/text/jp/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FD664` | `gText_Supermarket_EquipmentDelivery` | `data/text/jp/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FD6B0` | `gText_Supermarket_EquipmentDeliveryPartial` | `data/text/jp/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FD748` | `gText_Supermarket_SeedDelivery` | `data/text/jp/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FD798` | `gText_Supermarket_SeedDeliveryPartial` | `data/text/jp/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FD7F4` | `gText_Supermarket_SeedPurchaseConfirmation` | `data/text/jp/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FD5C8` | `gText_Supermarket_EquipmentCapacityFull` | `data/text/jp/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FD5F0` | `gText_Supermarket_BlankLinePair` | `data/text/jp/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FD5F8` | `gText_Supermarket_InsufficientGold` | `data/text/jp/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FD620` | `gText_Supermarket_ThankYou` | `data/text/jp/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FD63C` | `gText_Supermarket_PurchaseConfirmation` | `data/text/jp/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FD650` | `gText_Supermarket_PurchaseMorePrompt` | `data/text/jp/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FD664` | `gText_Supermarket_EquipmentDelivery` | `data/text/jp/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FD6B0` | `gText_Supermarket_EquipmentDeliveryPartial` | `data/text/jp/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FD748` | `gText_Supermarket_SeedDelivery` | `data/text/jp/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FD798` | `gText_Supermarket_SeedDeliveryPartial` | `data/text/jp/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FD7F4` | `gText_Supermarket_SeedPurchaseConfirmation` | `data/text/jp/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
 | `0x080FD830` | `gText_Clinic_InventoryFull` | `data/text/jp/clinic.cc` | `src/clinic_data.o(.rodata)` |
 | `0x080FD878` | `gText_Clinic_BlankLinePair` | `data/text/jp/clinic.cc` | `src/clinic_data.o(.rodata)` |
 | `0x080FD880` | `gText_Clinic_InsufficientGold` | `data/text/jp/clinic.cc` | `src/clinic_data.o(.rodata)` |
@@ -2021,7 +2024,7 @@
 | `0x080FD962`–`0x080FD963` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FD964`–`0x080FDDD5` | `src/poultry_shop_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/poultry_shop_data.cc`<br>`include/poultry_shop_data.hh`<br>`data/text/us/poultry_shop_data.cc`<br>`data/text/us/poultry_shop_data_1.cc` | 菜单文本 `3` 项<br>`gPoultryShopCatalog`<br>状态与对话文本 `31` 项<br>运行时字符串 `1` 项 |
 | `0x080FDDD6`–`0x080FDDD7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FDDD8`–`0x080FE04D` | `src/supermarket_data.o(.rodata)` | [嵌入文本] | `data/text/us/supermarket.cc` | 文本 `10` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gSupermarketCropSeedCatalog`, `gSupermarketAdditionalSeedCatalog` |
+| `0x080FDDD8`–`0x080FE04D` | `src/supermarket_data.o(.rodata)` | [嵌入文本 / 数据] | `src/supermarket_data.cc`<br>`include/supermarket_data.hh`<br>`data/text/us/supermarket_data.cc`<br>`data/text/us/supermarket_data_1.cc` | `gSupermarketCropSeedCatalog`<br>主文本 `8` 项<br>`gSupermarketAdditionalSeedCatalog`<br>后续文本 `2` 项<br>运行时字符串 `1` 项 |
 | `0x080FE04E`–`0x080FE04F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FE050`–`0x080FE261` | `src/clinic_data.o(.rodata)` | [嵌入文本] | `data/text/us/clinic.cc` | 文本 `9` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`gClinicCatalog` |
 | `0x080FE262`–`0x080FE263` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -3266,16 +3269,16 @@
 | `0x080FDD1C` | `gText_PoultryShop_ChickenPurchaseComplete` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
 | `0x080FDD68` | `gText_PoultryShop_PurchaseMorePrompt` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
 | `0x080FDD84` | `gText_PoultryShop_ChickenSold` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDE40` | `gText_Supermarket_EquipmentCapacityFull` | `data/text/us/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FDE70` | `gText_Supermarket_BlankLinePair` | `data/text/us/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FDE78` | `gText_Supermarket_InsufficientGold` | `data/text/us/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FDEAC` | `gText_Supermarket_ThankYou` | `data/text/us/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FDEC4` | `gText_Supermarket_PurchaseConfirmation` | `data/text/us/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FDEDC` | `gText_Supermarket_PurchaseMorePrompt` | `data/text/us/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FDEF8` | `gText_Supermarket_EquipmentDelivery` | `data/text/us/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FDF50` | `gText_Supermarket_DeliveryPartial` | `data/text/us/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FDFE4` | `gText_Supermarket_SeedDelivery` | `data/text/us/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FE034` | `gText_Supermarket_SeedPurchaseConfirmation` | `data/text/us/supermarket.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FDE40` | `gText_Supermarket_EquipmentCapacityFull` | `data/text/us/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FDE70` | `gText_Supermarket_BlankLinePair` | `data/text/us/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FDE78` | `gText_Supermarket_InsufficientGold` | `data/text/us/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FDEAC` | `gText_Supermarket_ThankYou` | `data/text/us/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FDEC4` | `gText_Supermarket_PurchaseConfirmation` | `data/text/us/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FDEDC` | `gText_Supermarket_PurchaseMorePrompt` | `data/text/us/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FDEF8` | `gText_Supermarket_EquipmentDelivery` | `data/text/us/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FDF50` | `gText_Supermarket_DeliveryPartial` | `data/text/us/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FDFE4` | `gText_Supermarket_SeedDelivery` | `data/text/us/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FE034` | `gText_Supermarket_SeedPurchaseConfirmation` | `data/text/us/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
 | `0x080FE070` | `gText_Clinic_InventoryFull` | `data/text/us/clinic.cc` | `src/clinic_data.o(.rodata)` |
 | `0x080FE0BC` | `gText_Clinic_BlankLinePair` | `data/text/us/clinic.cc` | `src/clinic_data.o(.rodata)` |
 | `0x080FE0C4` | `gText_Clinic_InsufficientGold` | `data/text/us/clinic.cc` | `src/clinic_data.o(.rodata)` |

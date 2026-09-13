@@ -1,4 +1,4 @@
-#include "supermarket_text.hh"
+#include "supermarket_data.hh"
 
 #include "item.hh"
 
@@ -18,15 +18,7 @@ SupermarketCatalogEntry const gSupermarketCropSeedCatalog[] = {
     { ITEM_TOOL_SEEDS_GRASS, 500 },
 };
 
-#if defined(REGION_JP)
-#define FOMT_TEXT_SUPERMARKET_PRIMARY
-#include FOMT_TEXT_INCLUDE(supermarket.cc)
-#undef FOMT_TEXT_SUPERMARKET_PRIMARY
-#else
-#define FOMT_TEXT_SUPERMARKET_PRIMARY
-#include FOMT_TEXT_INCLUDE(supermarket.cc)
-#undef FOMT_TEXT_SUPERMARKET_PRIMARY
-#endif
+#include FOMT_TEXT_INCLUDE(supermarket_data.cc)
 
 SupermarketCatalogEntry const gSupermarketAdditionalSeedCatalog[] = {
     { ITEM_TOOL_SEEDS_SPINACH, 100 },
@@ -39,12 +31,4 @@ SupermarketCatalogEntry const gSupermarketAdditionalSeedCatalog[] = {
     { 0, 0 },
 };
 
-#if defined(REGION_JP)
-#define FOMT_TEXT_SUPERMARKET_SECONDARY
-#include FOMT_TEXT_INCLUDE(supermarket.cc)
-#undef FOMT_TEXT_SUPERMARKET_SECONDARY
-#else
-#define FOMT_TEXT_SUPERMARKET_SECONDARY
-#include FOMT_TEXT_INCLUDE(supermarket.cc)
-#undef FOMT_TEXT_SUPERMARKET_SECONDARY
-#endif
+#include FOMT_TEXT_INCLUDE(supermarket_data_1.cc)
