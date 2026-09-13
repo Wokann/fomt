@@ -1,5 +1,5 @@
-#ifndef POSSESSIVE_LABELS_TEXT_HH
-#define POSSESSIVE_LABELS_TEXT_HH
+#ifndef POSSESSIVE_LABELS_HH
+#define POSSESSIVE_LABELS_HH
 
 #include "prelude.h"
 
@@ -13,4 +13,4 @@ extern char const gText_Possessive_Child[];
 extern char const gText_Possessive_Player[];
 extern char const gCppRuntimeBadAlloc_PossessiveLabelsTrailer[];
 
-#endif // POSSESSIVE_LABELS_TEXT_HH
+#endif // POSSESSIVE_LABELS_HH

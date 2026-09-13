@@ -99,6 +99,7 @@
 | EU | `0x08104180`–`0x08104411` | `src/character_names_data.o(.rodata)` | `src/character_names_data.cc`、`include/character_names_data.hh`、`data/text/eu/character_names.cc`、`data/text/eu/character_names_1.cc` | 文本 `41` 项、`gCharacterNameEntries`、运行时字符串 `1` 项 |
 | EU | `0x08104414`–`0x0810498D` | `src/field_item_data.o(.rodata)` | `src/field_item_data.cc`、`include/field_item_data.hh`、`data/text/common/field_item_data.cc` | `gUnk_081043BC`、运行时字符串 `1` 项 |
 | EU | `0x08104990`–`0x08104E61` | `src/calendar_events.o(.rodata)` | `src/calendar_events.cc`、`include/calendar_events.hh`、`data/text/eu/calendar_events.cc` | `gText_Calendar_DynamicSeasonNames`、节日文本 `21` 项、回退文本 `1` 项、运行时字符串 `2` 项 |
+| EU | `0x08104E64`–`0x08104EA1` | `src/possessive_labels.o(.rodata)` | `src/possessive_labels.cc`、`include/possessive_labels.hh`、`data/text/eu/possessive_labels.cc` | 文本 `6` 项、运行时字符串 `1` 项 |
 | EU | `0x08104EAC`–`0x08104ECB` | `src/fishing_record_article_ids.o(.rodata)` | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | `gFishingRecordArticleIds` |
 | EU | `0x08107490`–`0x081074A7` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
 | EU | `0x081082E4`–`0x08117843` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 EU 指南源文件；主目录只收录 `PAGE_1`，`tool_and_item_controls_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
@@ -171,6 +172,7 @@
 | DE | `0x08104B80`–`0x08104E11` | `src/character_names_data.o(.rodata)` | `src/character_names_data.cc`、`include/character_names_data.hh`、`data/text/de/character_names.cc`、`data/text/de/character_names_1.cc` | 文本 `41` 项、`gCharacterNameEntries`、运行时字符串 `1` 项 |
 | DE | `0x08104E14`–`0x0810538D` | `src/field_item_data.o(.rodata)` | `src/field_item_data.cc`、`include/field_item_data.hh`、`data/text/common/field_item_data.cc` | `gUnk_081043BC`、运行时字符串 `1` 项 |
 | DE | `0x08105390`–`0x08105821` | `src/calendar_events.o(.rodata)` | `src/calendar_events.cc`、`include/calendar_events.hh`、`data/text/de/calendar_events.cc` | `gText_Calendar_DynamicSeasonNames`、节日文本 `21` 项、回退文本 `1` 项、运行时字符串 `2` 项 |
+| DE | `0x08105824`–`0x0810586D` | `src/possessive_labels.o(.rodata)` | `src/possessive_labels.cc`、`include/possessive_labels.hh`、`data/text/de/possessive_labels.cc` | 文本 `6` 项、运行时字符串 `1` 项 |
 | DE | `0x08105878`–`0x08105897` | `src/fishing_record_article_ids.o(.rodata)` | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | `gFishingRecordArticleIds` |
 | DE | `0x08107E5C`–`0x08107E73` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
 | DE | `0x08107FD4`–`0x08108DB3` | `src/harvest_sprite.o(.rodata)` | `src/harvest_sprite.cc` 与 `data/text/de/harvest_sprite_*.cc` | 精确 |
@@ -298,7 +300,7 @@
 | `0x0810447A`–`0x0810447B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x0810447C`–`0x08104955` | `src/calendar_events.o(.rodata)` | [数据 / 嵌入文本] | `src/calendar_events.cc`、`include/calendar_events.hh`<br>`data/text/jp/calendar_events.cc` | `gText_Calendar_DynamicSeasonNames`<br>文本 `22` 项（详见下方索引）<br>运行时字符串 `2` 项 |
 | `0x08104956`–`0x08104957` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08104958`–`0x08104991` | `data/text/possessive_labels.o(.rodata)` | [文本对象] | `data/text/jp/possessive_labels.cc` | 文本 `6` 项（详见下方索引）<br>运行时字符串 `1` 项 |
+| `0x08104958`–`0x08104991` | `src/possessive_labels.o(.rodata)` | [嵌入文本] | `src/possessive_labels.cc`、`include/possessive_labels.hh`<br>`data/text/jp/possessive_labels.cc` | 文本 `6` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x08104992`–`0x08104993` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08104994`–`0x08104998` | `data/text/random_item.o(.rodata)` | [文本对象] | `data/text/jp/random_item.cc` | 文本 `1` 项（详见下方索引） |
 | `0x08104999`–`0x0810499B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
@@ -1907,12 +1909,12 @@
 | `0x081048FC` | `gText_Calendar_Festival_WeddingAnniversary` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
 | `0x0810491C` | `gText_Calendar_Festival_NoPlans` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
 | `0x08104944` | `gText_Calendar_FallbackNone` | `data/text/jp/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x08104958` | `gText_Possessive_Horse` | `data/text/jp/possessive_labels.cc` | `data/text/possessive_labels.o(.rodata)` |
-| `0x08104960` | `gText_Possessive_Cow` | `data/text/jp/possessive_labels.cc` | `data/text/possessive_labels.o(.rodata)` |
-| `0x08104968` | `gText_Possessive_Sheep` | `data/text/jp/possessive_labels.cc` | `data/text/possessive_labels.o(.rodata)` |
-| `0x08104970` | `gText_Possessive_Chicken` | `data/text/jp/possessive_labels.cc` | `data/text/possessive_labels.o(.rodata)` |
-| `0x08104978` | `gText_Possessive_Child` | `data/text/jp/possessive_labels.cc` | `data/text/possessive_labels.o(.rodata)` |
-| `0x08104980` | `gText_Possessive_Player` | `data/text/jp/possessive_labels.cc` | `data/text/possessive_labels.o(.rodata)` |
+| `0x08104958` | `gText_Possessive_Horse` | `data/text/jp/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
+| `0x08104960` | `gText_Possessive_Cow` | `data/text/jp/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
+| `0x08104968` | `gText_Possessive_Sheep` | `data/text/jp/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
+| `0x08104970` | `gText_Possessive_Chicken` | `data/text/jp/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
+| `0x08104978` | `gText_Possessive_Child` | `data/text/jp/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
+| `0x08104980` | `gText_Possessive_Player` | `data/text/jp/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
 | `0x08104994` | `gText_RandomItem_NotAvailable` | `data/text/jp/random_item.cc` | `data/text/random_item.o(.rodata)` |
 | `0x0810702C` | `gText_FieldRenderFallbackNone` | 未在 `data/text` 源中直接命名；请以宿主对象核对 | `src/field_data.o(.rodata.field_render_runtime_strings)` |
 | `0x081070AC` | `gText_080B0708DefaultGlyph` | 未在 `data/text` 源中直接命名；请以宿主对象核对 | `src/field_data.o(.rodata.unk_080B0708_default_glyph)` |
@@ -2129,7 +2131,7 @@
 | `0x08104936`–`0x08104937` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08104938`–`0x08104E09` | `src/calendar_events.o(.rodata)` | [数据 / 嵌入文本] | `src/calendar_events.cc`、`include/calendar_events.hh`<br>`data/text/us/calendar_events.cc` | `gText_Calendar_DynamicSeasonNames`<br>文本 `22` 项（详见下方索引）<br>运行时字符串 `2` 项 |
 | `0x08104E0A`–`0x08104E0B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08104E0C`–`0x08104E49` | `data/text/possessive_labels.o(.rodata)` | [文本对象] | `data/text/us/possessive_labels.cc` | 文本 `6` 项（详见下方索引）<br>运行时字符串 `1` 项 |
+| `0x08104E0C`–`0x08104E49` | `src/possessive_labels.o(.rodata)` | [嵌入文本] | `src/possessive_labels.cc`、`include/possessive_labels.hh`<br>`data/text/us/possessive_labels.cc` | 文本 `6` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x08104E4A`–`0x08104E4B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08104E4C`–`0x08104E50` | `data/text/random_item.o(.rodata)` | [文本对象] | `data/text/us/random_item.cc` | 文本 `1` 项（详见下方索引） |
 | `0x08104E51`–`0x08104E53` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
@@ -3729,12 +3731,12 @@
 | `0x08104DB8` | `gText_Calendar_Festival_WeddingAnniversary` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
 | `0x08104DDC` | `gText_Calendar_Festival_NoPlans` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
 | `0x08104DF8` | `gText_Calendar_FallbackNone` | `data/text/us/calendar_events.cc` | `src/calendar_events.o(.rodata)` |
-| `0x08104E0C` | `gText_Possessive_Horse` | `data/text/us/possessive_labels.cc` | `data/text/possessive_labels.o(.rodata)` |
-| `0x08104E14` | `gText_Possessive_Cow` | `data/text/us/possessive_labels.cc` | `data/text/possessive_labels.o(.rodata)` |
-| `0x08104E1C` | `gText_Possessive_Sheep` | `data/text/us/possessive_labels.cc` | `data/text/possessive_labels.o(.rodata)` |
-| `0x08104E24` | `gText_Possessive_Chicken` | `data/text/us/possessive_labels.cc` | `data/text/possessive_labels.o(.rodata)` |
-| `0x08104E30` | `gText_Possessive_Child` | `data/text/us/possessive_labels.cc` | `data/text/possessive_labels.o(.rodata)` |
-| `0x08104E38` | `gText_Possessive_Player` | `data/text/us/possessive_labels.cc` | `data/text/possessive_labels.o(.rodata)` |
+| `0x08104E0C` | `gText_Possessive_Horse` | `data/text/us/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
+| `0x08104E14` | `gText_Possessive_Cow` | `data/text/us/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
+| `0x08104E1C` | `gText_Possessive_Sheep` | `data/text/us/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
+| `0x08104E24` | `gText_Possessive_Chicken` | `data/text/us/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
+| `0x08104E30` | `gText_Possessive_Child` | `data/text/us/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
+| `0x08104E38` | `gText_Possessive_Player` | `data/text/us/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
 | `0x08104E4C` | `gText_RandomItem_NotAvailable` | `data/text/us/random_item.cc` | `data/text/random_item.o(.rodata)` |
 | `0x081074E4` | `gText_FieldRenderFallbackNone` | 未在 `data/text` 源中直接命名；请以宿主对象核对 | `src/field_data.o(.rodata.field_render_runtime_strings)` |
 | `0x08107568` | `gText_080B0708DefaultGlyph` | 未在 `data/text` 源中直接命名；请以宿主对象核对 | `src/field_data.o(.rodata.unk_080B0708_default_glyph)` |

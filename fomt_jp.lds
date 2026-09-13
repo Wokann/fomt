@@ -838,7 +838,7 @@ SECTIONS
         FILL(0x00);
         . = ALIGN(4);
         . = 0x10447C; src/calendar_events.o(.rodata);
-        . = 0x104958; data/text/possessive_labels.o(.rodata);
+        . = 0x104958; src/possessive_labels.o(.rodata);
         . = 0x104994; data/text/random_item.o(.rodata);
         . = 0x10499C; src/fishing_record_article_ids.o(.rodata);
         . = 0x1049BC; src/field_plot_position_values.o(.rodata);

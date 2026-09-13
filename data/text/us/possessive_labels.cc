@@ -1,5 +1,3 @@
-#include "possessive_labels_text.hh"
-
 char const gText_Possessive_Horse[] =
     "Horse's";
 
