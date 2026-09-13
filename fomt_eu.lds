@@ -774,11 +774,8 @@ SECTIONS
         . = 0x1057A0; src/code_0800E2E4.o(.rodata.time_of_day_transition_records);
         . = 0x105F34; src/map_data.o(.rodata.map_data);
         . = 0x106984; src/field_render_rect_descriptors.o(.rodata);
-        . = 0x107134; src/farm_house.o(.rodata.farm_house_tile_patches);
-        . = 0x10725C; src/farm_house.o(.rodata.farm_house_visual_descriptors);
-        . = 0x107390; src/farm_house.o(.rodata.farm_house_tile_patch_animations);
+        . = 0x107134; src/field_render_farm_house_data.o(.rodata);
         . = 0x1073A8; src/field_render_resource_data.o(.rodata);
-        . = 0x107486; src/farm_house.o(.rodata.farm_house_style_nibble_lookup);
         FILL(0x00);
         . = 0x107490; src/bachelorette.o(.rodata.bachelorette_marriage_candidate_character_ids);
         . = 0x1074A8; src/field_render_runtime_data.o(.rodata);

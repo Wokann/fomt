@@ -74,3 +74,11 @@ FieldRenderPatchArgumentData const gFieldRenderPatchArgumentData = {
 
 char const gCppRuntimeBadAlloc_FieldRenderPatchArguments[] =
         "bad_alloc";
+
+// This packed object follows the field-render resource data directly in ROM.
+// Its one-byte alignment is part of the original data layout.
+FarmHouseStyleNibbleLookupData const gFarmHouseStyleNibbleLookupData ALIGN(1) = {
+    { 0x05, 0x06, 0x08 },
+    { 0x05, 0x06, 0x05 },
+    { 0x05, 0x01, 0x01 },
+};

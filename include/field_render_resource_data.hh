@@ -21,6 +21,17 @@ struct FieldRenderPatchArgumentData
     u8 values_5C[4];
 };
 
+// Native setup indexes these three-byte tables with the selected exterior
+// style, then writes the result into a tile attribute's high nibble.  The
+// table names retain physical offsets because the three concrete display
+// groups are not fully named yet.
+struct PACKED FarmHouseStyleNibbleLookupData
+{
+    u8 values_00[3];
+    u8 values_03[3];
+    u8 values_06[3];
+};
+
 extern u8 const gUnk_FieldRenderResource_158[];
 extern u8 const gUnk_FieldRenderResource_159[];
 extern u8 const gFieldRenderResourcePaddingAfterFirstValues[4];
@@ -32,5 +43,6 @@ extern char const gCppRuntimeBadAlloc_FieldRenderResource01[];
 extern FieldRenderParallelTables const gFieldRenderParallelTables;
 extern FieldRenderPatchArgumentData const gFieldRenderPatchArgumentData;
 extern char const gCppRuntimeBadAlloc_FieldRenderPatchArguments[];
+extern FarmHouseStyleNibbleLookupData const gFarmHouseStyleNibbleLookupData;
 
 #endif // FIELD_RENDER_RESOURCE_DATA_HH

@@ -787,11 +787,8 @@ SECTIONS
          src/code_0800E2E4.o(.rodata.time_of_day_transition_records);
          src/map_data.o(.rodata.map_data);
         src/field_render_rect_descriptors.o(.rodata);
-         src/farm_house.o(.rodata.farm_house_tile_patches);
-         src/farm_house.o(.rodata.farm_house_visual_descriptors);
-         src/farm_house.o(.rodata.farm_house_tile_patch_animations);
+         src/field_render_farm_house_data.o(.rodata);
         src/field_render_resource_data.o(.rodata);
-         src/farm_house.o(.rodata.farm_house_style_nibble_lookup);
         FILL(0x00);
          src/bachelorette.o(.rodata.bachelorette_marriage_candidate_character_ids);
         src/field_render_runtime_data.o(.rodata);

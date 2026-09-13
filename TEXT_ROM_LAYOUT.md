@@ -253,19 +253,17 @@
 | `0x08105290`–`0x08105A23` | `src/code_0800E2E4.o(.rodata.time_of_day_transition_records)` | [数据] | `src/code_0800E2E4.c/.cc` | `gTimeOfDayTransitionRecords_Spring_Morning`, `gTimeOfDayTransitionRecords_Spring_Afternoon`, `gTimeOfDayTransitionRecords_Spring_Evening`, `gTimeOfDayTransitionRecords_Spring_Night`, `gTimeOfDayTransitionRecords_Summer_Morning`, `gTimeOfDayTransitionRecords_Summer_Afternoon`, … +10 |
 | `0x08105A24`–`0x08106473` | `src/map_data.o(.rodata.map_data)` | [数据] | `src/map_data.c/.cc` | `gMapData` |
 | `0x08106474`–`0x08106C23` | `src/field_data.o(.rodata.field_render_rect_descriptors)` | [数据] | `src/field_data.c/.cc` | `gFieldRenderRectDescriptors` |
-| `0x08106C24`–`0x08106D4B` | `src/farm_house.o(.rodata.farm_house_tile_patches)` | [数据] | `src/farm_house.c/.cc` | `gFarmHouseTilePatchData` |
-| `0x08106D4C`–`0x08106E7F` | `src/farm_house.o(.rodata.farm_house_visual_descriptors)` | [数据] | `src/farm_house.c/.cc` | `gFarmHouseVisualDescriptors` |
-| `0x08106E80`–`0x08106E97` | `src/farm_house.o(.rodata.farm_house_tile_patch_animations)` | [数据] | `src/farm_house.c/.cc` | `gFarmHouseTilePatchAnimations` |
-| `0x08106E98`–`0x08106E9F` | `src/field_data.o(.rodata.field_render_resource_first_values)` | [数据] | `src/field_data.c/.cc` | `gUnk_FieldRenderResource_158`, `gUnk_FieldRenderResource_159` |
+| `0x08106C24`–`0x08106E97` | `src/field_render_farm_house_data.o(.rodata)` | [数据] | `src/field_render_farm_house_data.cc`<br>`include/field_render_farm_house_data.hh` | `gFarmHouseTilePatchData`、`gFarmHouseVisualDescriptors`、`gFarmHouseTilePatchAnimations`；按同一对象内的 ROM 顺序排列 |
+| `0x08106E98`–`0x08106E9F` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gUnk_FieldRenderResource_158`, `gUnk_FieldRenderResource_159` |
 | `0x08106EA0`–`0x08106EA3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 4 字节 |
-| `0x08106EA4`–`0x08106EAB` | `src/field_data.o(.rodata.field_render_resource_second_values)` | [数据] | `src/field_data.c/.cc` | `gUnk_FieldRenderResource_177`, `gUnk_FieldRenderResource_178` |
+| `0x08106EA4`–`0x08106EAB` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gUnk_FieldRenderResource_177`, `gUnk_FieldRenderResource_178` |
 | `0x08106EAC`–`0x08106EB7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 12 字节 |
-| `0x08106EB8`–`0x08106ECD` | `src/field_data.o(.rodata.field_render_resource_runtime_strings)` | [数据] | `src/field_data.c/.cc` | 运行时字符串 `2` 项 |
+| `0x08106EB8`–`0x08106ECD` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | 运行时字符串 `2` 项 |
 | `0x08106ECE`–`0x08106ECF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08106ED0`–`0x08106F0B` | `src/field_data.o(.rodata.field_render_parallel_tables)` | [数据] | `src/field_data.c/.cc` | `gFieldRenderParallelTables` |
-| `0x08106F0C`–`0x08106F6B` | `src/field_data.o(.rodata.field_render_patch_arguments)` | [数据] | `src/field_data.c/.cc` | `gFieldRenderPatchArgumentData` |
-| `0x08106F6C`–`0x08106F75` | `src/field_data.o(.rodata.field_render_patch_arguments_after)` | [数据] | `src/field_data.c/.cc` | 运行时字符串 `1` 项 |
-| `0x08106F76`–`0x08106F7E` | `src/farm_house.o(.rodata.farm_house_style_nibble_lookup)` | [数据] | `src/farm_house.c/.cc` | `gFarmHouseStyleNibbleLookupData` |
+| `0x08106ED0`–`0x08106F0B` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFieldRenderParallelTables` |
+| `0x08106F0C`–`0x08106F6B` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFieldRenderPatchArgumentData` |
+| `0x08106F6C`–`0x08106F75` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | 运行时字符串 `1` 项 |
+| `0x08106F76`–`0x08106F7E` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFarmHouseStyleNibbleLookupData` |
 | `0x08106F7F`–`0x08106F7F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x08106F80`–`0x08106F97` | `src/bachelorette.o(.rodata.bachelorette_marriage_candidate_character_ids)` | [数据] | `src/bachelorette.c/.cc` | `gMarriageCandidateCharacterIds` |
 | `0x08106F98`–`0x08106F9F` | `src/field_data.o(.rodata.field_render_seasonal_record_ranges)` | [数据] | `src/field_data.c/.cc` | `gFieldRenderSeasonalRecordRanges` |
@@ -2102,19 +2100,17 @@
 | `0x08105748`–`0x08105EDB` | `src/code_0800E2E4.o(.rodata.time_of_day_transition_records)` | [数据] | `src/code_0800E2E4.c/.cc` | `gTimeOfDayTransitionRecords_Spring_Morning`, `gTimeOfDayTransitionRecords_Spring_Afternoon`, `gTimeOfDayTransitionRecords_Spring_Evening`, `gTimeOfDayTransitionRecords_Spring_Night`, `gTimeOfDayTransitionRecords_Summer_Morning`, `gTimeOfDayTransitionRecords_Summer_Afternoon`, … +10 |
 | `0x08105EDC`–`0x0810692B` | `src/map_data.o(.rodata.map_data)` | [数据] | `src/map_data.c/.cc` | `gMapData` |
 | `0x0810692C`–`0x081070DB` | `src/field_data.o(.rodata.field_render_rect_descriptors)` | [数据] | `src/field_data.c/.cc` | `gFieldRenderRectDescriptors` |
-| `0x081070DC`–`0x08107203` | `src/farm_house.o(.rodata.farm_house_tile_patches)` | [数据] | `src/farm_house.c/.cc` | `gFarmHouseTilePatchData` |
-| `0x08107204`–`0x08107337` | `src/farm_house.o(.rodata.farm_house_visual_descriptors)` | [数据] | `src/farm_house.c/.cc` | `gFarmHouseVisualDescriptors` |
-| `0x08107338`–`0x0810734F` | `src/farm_house.o(.rodata.farm_house_tile_patch_animations)` | [数据] | `src/farm_house.c/.cc` | `gFarmHouseTilePatchAnimations` |
-| `0x08107350`–`0x08107357` | `src/field_data.o(.rodata.field_render_resource_first_values)` | [数据] | `src/field_data.c/.cc` | `gUnk_FieldRenderResource_158`, `gUnk_FieldRenderResource_159` |
+| `0x081070DC`–`0x0810734F` | `src/field_render_farm_house_data.o(.rodata)` | [数据] | `src/field_render_farm_house_data.cc`<br>`include/field_render_farm_house_data.hh` | `gFarmHouseTilePatchData`、`gFarmHouseVisualDescriptors`、`gFarmHouseTilePatchAnimations`；按同一对象内的 ROM 顺序排列 |
+| `0x08107350`–`0x08107357` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gUnk_FieldRenderResource_158`, `gUnk_FieldRenderResource_159` |
 | `0x08107358`–`0x0810735B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 4 字节 |
-| `0x0810735C`–`0x08107363` | `src/field_data.o(.rodata.field_render_resource_second_values)` | [数据] | `src/field_data.c/.cc` | `gUnk_FieldRenderResource_177`, `gUnk_FieldRenderResource_178` |
+| `0x0810735C`–`0x08107363` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gUnk_FieldRenderResource_177`, `gUnk_FieldRenderResource_178` |
 | `0x08107364`–`0x0810736F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 12 字节 |
-| `0x08107370`–`0x08107385` | `src/field_data.o(.rodata.field_render_resource_runtime_strings)` | [数据] | `src/field_data.c/.cc` | 运行时字符串 `2` 项 |
+| `0x08107370`–`0x08107385` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | 运行时字符串 `2` 项 |
 | `0x08107386`–`0x08107387` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08107388`–`0x081073C3` | `src/field_data.o(.rodata.field_render_parallel_tables)` | [数据] | `src/field_data.c/.cc` | `gFieldRenderParallelTables` |
-| `0x081073C4`–`0x08107423` | `src/field_data.o(.rodata.field_render_patch_arguments)` | [数据] | `src/field_data.c/.cc` | `gFieldRenderPatchArgumentData` |
-| `0x08107424`–`0x0810742D` | `src/field_data.o(.rodata.field_render_patch_arguments_after)` | [数据] | `src/field_data.c/.cc` | 运行时字符串 `1` 项 |
-| `0x0810742E`–`0x08107436` | `src/farm_house.o(.rodata.farm_house_style_nibble_lookup)` | [数据] | `src/farm_house.c/.cc` | `gFarmHouseStyleNibbleLookupData` |
+| `0x08107388`–`0x081073C3` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFieldRenderParallelTables` |
+| `0x081073C4`–`0x08107423` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFieldRenderPatchArgumentData` |
+| `0x08107424`–`0x0810742D` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | 运行时字符串 `1` 项 |
+| `0x0810742E`–`0x08107436` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFarmHouseStyleNibbleLookupData` |
 | `0x08107437`–`0x08107437` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x08107438`–`0x0810744F` | `src/bachelorette.o(.rodata.bachelorette_marriage_candidate_character_ids)` | [数据] | `src/bachelorette.c/.cc` | `gMarriageCandidateCharacterIds` |
 | `0x08107450`–`0x08107457` | `src/field_data.o(.rodata.field_render_seasonal_record_ranges)` | [数据] | `src/field_data.c/.cc` | `gFieldRenderSeasonalRecordRanges` |
