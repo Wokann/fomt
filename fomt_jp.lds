@@ -810,7 +810,7 @@ SECTIONS
         . = 0xFF9A4; src/home_storage.o(.rodata);
         FILL(0x00);
         . = 0xFFAE0; src/blacksmith_upgrade_data.o(.rodata);
-        . = 0xFFD54; data/text/gift_wrap.o(.rodata);
+        . = 0xFFD54; src/gift_wrap.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         /* Bounded link-communication localization island: text, tables, codes. */

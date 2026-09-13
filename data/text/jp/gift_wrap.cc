@@ -1,4 +1,4 @@
-#include "gift_wrap_text.hh"
+#include "gift_wrap.hh"
 
 char const gCppRuntimeBadAlloc_GiftWrapPrefix[] =
     "bad_alloc";

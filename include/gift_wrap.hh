@@ -1,5 +1,5 @@
-#ifndef GIFT_WRAP_TEXT_HH
-#define GIFT_WRAP_TEXT_HH
+#ifndef GIFT_WRAP_HH
+#define GIFT_WRAP_HH
 
 #include "prelude.h"
 
@@ -17,4 +17,4 @@ extern char const gText_GiftWrap_Complete[];
 extern char const gText_GiftWrap_SelectItem[];
 extern char const gCppRuntimeBadAlloc_GiftWrapTrailer[];
 
-#endif // GIFT_WRAP_TEXT_HH
+#endif // GIFT_WRAP_HH

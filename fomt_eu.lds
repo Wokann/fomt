@@ -721,7 +721,7 @@ SECTIONS
         . = 0x100078; src/home_storage.o(.rodata);
         FILL(0x00);
         . = 0x1001BC; src/blacksmith_upgrade_data.o(.rodata);
-        . = 0x100438; data/text/gift_wrap.o(.rodata);
+        . = 0x100438; src/gift_wrap.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         /* Link-communication regional data: text, tables, codes. */
