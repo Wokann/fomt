@@ -727,8 +727,7 @@ SECTIONS
         /* Link-communication regional data: text, tables, codes. */
         FILL(0x00);
         . = 0x100534; src/link_communication_data.o(.rodata);
-        . = 0x100B18; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_page_break);
-        . = 0x100B1A; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_utensil_values);
+        . = 0x100B18; src/cooking_recipe_inventory_page_data.o(.rodata);
         . = 0x100B2A; data/text/recovery_status.o(.rodata);
         . = 0x100E3C; data/text/cooking.o(.rodata);
         . = 0x101140; src/cooking_recipe_inventory_data.o(.rodata.cooking_recipe_inventory_mask_entries);

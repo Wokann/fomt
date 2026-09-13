@@ -1,5 +1,5 @@
-#ifndef COOKING_RECIPE_INVENTORY_HH
-#define COOKING_RECIPE_INVENTORY_HH
+#ifndef COOKING_RECIPE_INVENTORY_DATA_HH
+#define COOKING_RECIPE_INVENTORY_DATA_HH
 
 #include "prelude.h"
 
@@ -311,12 +311,9 @@ struct ALIGN(4) CookingRecipeDefinitionPayload
 };
 enum
 {
-    COOKING_RECIPE_INVENTORY_UTENSIL_VALUE_COUNT = 8,
     COOKING_RECIPE_INVENTORY_MASK_ENTRY_COUNT = 9,
 };
 
-extern u16 const
-    gCookingRecipeInventoryUtensilValues[COOKING_RECIPE_INVENTORY_UTENSIL_VALUE_COUNT];
 extern CookingRecipeInventoryMaskEntry const
     gCookingRecipeInventoryMaskEntries[COOKING_RECIPE_INVENTORY_MASK_ENTRY_COUNT];
 extern CookingRecipeDefinition const gCookingRecipeDefinitions[];
@@ -324,4 +321,4 @@ extern CookingRecipeDefinitionPayload const gCookingRecipeDefinitionPayload;
 
 EXTERN_C_END
 
-#endif // COOKING_RECIPE_INVENTORY_HH
+#endif // COOKING_RECIPE_INVENTORY_DATA_HH
