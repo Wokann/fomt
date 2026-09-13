@@ -1,7 +1,7 @@
-#include "furniture.hh"
+#include "record_player.hh"
 
-// are those song ids?
-u8 const unk_080E9605[] = {
+// Album 1 through Album 15 select audio sequence IDs 18 through 32.
+static u8 const sRecordPlayerAlbumAudioSequenceIds[] = {
     18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32,
 };
 
@@ -21,7 +21,7 @@ u32 RecordPlayer::GetUnknown() const
     if (!HasAlbum())
         return 199;
 
-    return unk_080E9605[album_id];
+    return sRecordPlayerAlbumAudioSequenceIds[album_id];
 }
 
 ArticleStack RecordPlayer::RemoveAlbum()

@@ -5,6 +5,7 @@
 
 #include "utility/bit_array.hh"
 #include "item.hh"
+#include "record_player.hh"
 
 struct ToolChest
 {
@@ -70,19 +71,6 @@ struct Shelf
     u32 AddAmountOf(u32 article_id, u32 amount);
 
     /* +00 */ ArticleStack contents[CAPACITY];
-};
-
-struct RecordPlayer
-{
-    RecordPlayer();
-
-    bool HasAlbum() const;
-    u32 GetUnknown() const;
-    ArticleStack RemoveAlbum();
-    ArticleStack SetAlbum(Article const & album_article);
-
-    /* +00 */ bool has_album : 1;
-    /* +00 */ u32 album_id : 4;
 };
 
 struct Unk_0800BC58
