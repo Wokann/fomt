@@ -3,7 +3,7 @@
 EXTERN_C
 
 // The native scoring path indexes this table with category * 4 and byte
-// loads.  Its original physical location is byte-aligned in both regions.
+// loads. Its original physical location is byte-aligned in every region.
 u8 const gCookingFestivalDishCategoryRatingThresholds[5][4] ALIGN(1) = {
     { 100, 80, 50, 30 },
     { 80, 60, 30, 10 },

@@ -651,7 +651,7 @@ SECTIONS
         . = ALIGN(4); src/entity_ui_resource_selector.o(.rodata);
         . = 0xF8A20; data/scripts/script_table.o(.rodata.mary_script_table);
         . = ALIGN(4); src/script_engine.o(.rodata);
-        . = 0xF9F11; src/cooking_festival_data.o(.rodata);
+        . = 0xF9F11; src/cooking_festival.o(.rodata);
         src/thomas_stocking_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
