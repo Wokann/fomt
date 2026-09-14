@@ -171,24 +171,24 @@ EXTERN_C
 // use byte-wise constants instead of the regional charmap pipeline.
 LinkCommunicationGameCode const gLinkCommunicationGameCodeA4N = {
 #if defined(REGION_JP)
-    FOMT_ASCII_FOURCC_LE('A', '4', 'N', 'J'),
+    (u32)'A' | ((u32)'4' << 8) | ((u32)'N' << 16) | ((u32)'J' << 24),
 #elif defined(REGION_EU)
-    FOMT_ASCII_FOURCC_LE('A', '4', 'N', 'P'),
+    (u32)'A' | ((u32)'4' << 8) | ((u32)'N' << 16) | ((u32)'P' << 24),
 #elif defined(REGION_DE)
-    FOMT_ASCII_FOURCC_LE('A', '4', 'N', 'D'),
+    (u32)'A' | ((u32)'4' << 8) | ((u32)'N' << 16) | ((u32)'D' << 24),
 #else
-    FOMT_ASCII_FOURCC_LE('A', '4', 'N', 'E'),
+    (u32)'A' | ((u32)'4' << 8) | ((u32)'N' << 16) | ((u32)'E' << 24),
 #endif
     0x00000000,
 };
 
 LinkCommunicationGameCode const gLinkCommunicationGameCodeGYW = {
 #if defined(REGION_JP)
-    FOMT_ASCII_FOURCC_LE('G', 'Y', 'W', 'J'),
+    (u32)'G' | ((u32)'Y' << 8) | ((u32)'W' << 16) | ((u32)'J' << 24),
 #elif defined(REGION_EU) || defined(REGION_DE)
-    FOMT_ASCII_FOURCC_LE('G', 'Y', 'W', 'P'),
+    (u32)'G' | ((u32)'Y' << 8) | ((u32)'W' << 16) | ((u32)'P' << 24),
 #else
-    FOMT_ASCII_FOURCC_LE('G', 'Y', 'W', 'E'),
+    (u32)'G' | ((u32)'Y' << 8) | ((u32)'W' << 16) | ((u32)'E' << 24),
 #endif
     0x00000000,
 };
