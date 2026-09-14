@@ -1,14 +1,10 @@
 #include "new_game_name_entry_ui_data.hh"
 
-// The JP name-entry screen indexes this one-indexed table with index × 13.
-// Keeping the rows fixed-width preserves the original full-width padding and
-// the metadata lookup base located 14 bytes before the first valid entry.
-u32 const gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue =
-    0x20;
-
 char const gCppRuntimeBadAlloc_NewGameNameEntryPresetNames[] =
     "bad_alloc";
 
+// The JP name-entry screen indexes this one-indexed table with index × 13.
+// Keeping the rows fixed-width preserves the original full-width padding.
 char const gText_NameEntry_PresetAnimalNames
     [NEW_GAME_NAME_ENTRY_PRESET_ANIMAL_NAME_COUNT]
     [NEW_GAME_NAME_ENTRY_PRESET_ANIMAL_NAME_WIDTH] ALIGN(1) = {
@@ -43,6 +39,3 @@ char const gText_NameEntry_PresetAnimalNames
     "リヴァイアン",
     "ロケッツ　　",
 };
-
-u16 const gNewGameNameEntryUiCharacterCodes[20] =
-    FOMT_GLYPH_SEQUENCE("０１２３４５６７８９．ｍ位");
