@@ -1,5 +1,5 @@
-#ifndef ANIMAL_FESTIVAL_TEXT_HH
-#define ANIMAL_FESTIVAL_TEXT_HH
+#ifndef ANIMAL_FESTIVAL_HH
+#define ANIMAL_FESTIVAL_HH
 
 #include "prelude.h"
 
@@ -13,4 +13,4 @@ enum
 extern char const gCppRuntimeBadAlloc_AnimalFestivalLivestockContestantNames[];
 extern char const gText_AnimalFestival_LivestockContestantNames[ANIMAL_FESTIVAL_LIVESTOCK_CONTESTANT_NAME_COUNT][ANIMAL_FESTIVAL_LIVESTOCK_CONTESTANT_NAME_WIDTH];
 
-#endif // ANIMAL_FESTIVAL_TEXT_HH
+#endif // ANIMAL_FESTIVAL_HH

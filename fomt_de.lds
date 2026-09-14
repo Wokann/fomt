@@ -680,7 +680,7 @@ SECTIONS
         src/frisbee.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/animal_festival_ranking_random_data.o(.rodata);
-         data/text/animal_festival.o(.rodata);
+         src/animal_festival.o(.rodata);
         src/animal_festival_ranking_livestock_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
