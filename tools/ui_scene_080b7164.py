@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Manage the three verified BG streams loaded by ``func_080B7164``.
+"""Manage profiles of verified three-stream native BG scene resources.
 
 The code loads two 32-by-32 background tilemaps and one native 4bpp tile
 stream.  A nearby 0x200-byte palette-memory copy crosses an existing assembly
@@ -31,17 +31,42 @@ class Stream:
     ladder: str
 
 
-STARTS = {
-    "jp": 0x4B3734,
-    "us": 0x72D5CC,
-    "eu": 0x72D628,
-    "de": 0x4B48A0,
+PROFILES = {
+    "080b7164": (
+        {
+            "jp": 0x4B3734, "us": 0x72D5CC,
+            "eu": 0x72D628, "de": 0x4B48A0,
+        },
+        (
+            ("layer_0.tilemap", 0x64, 0x800, "030", "357"),
+            ("layer_1.tilemap", 0xA8, 0x800, "030", "159"),
+            ("tiles.4bpp", 0x70C, 0xEC0, "020", "2578101112"),
+        ),
+    ),
+    "080c160c": (
+        {
+            "jp": 0x4C5530, "us": 0x73F3C8,
+            "eu": 0x73F424, "de": 0x4C683C,
+        },
+        (
+            ("layer_0.tilemap", 0x20C, 0x800, "020", "236791011"),
+            ("layer_1.tilemap", 0xD8, 0x800, "030", "379"),
+            ("tiles.4bpp", 0xA38, 0xE80, "020", "246781012"),
+        ),
+    ),
 }
-SPECS = (
-    ("layer_0.tilemap", 0x64, 0x800, "030", "357"),
-    ("layer_1.tilemap", 0xA8, 0x800, "030", "159"),
-    ("tiles.4bpp", 0x70C, 0xEC0, "020", "2578101112"),
-)
+PROFILE = "080b7164"
+STARTS, SPECS = PROFILES[PROFILE]
+
+
+def configure(profile: str) -> None:
+    global PROFILE, STARTS, SPECS
+    PROFILE = profile
+    STARTS, SPECS = PROFILES[profile]
+
+
+def scene_name() -> str:
+    return f"func_{PROFILE.upper()}"
 
 
 def streams(region: str) -> tuple[Stream, ...]:
@@ -79,7 +104,7 @@ def output_path(output_dir: Path, stream: Stream) -> Path:
 
 
 def region_output_dir(output_root: Path, region: str) -> Path:
-    return output_root / region / "graphics" / "ui" / "scene_080b7164"
+    return output_root / region / "graphics" / "ui" / f"scene_{PROFILE}"
 
 
 def export(arguments: argparse.Namespace) -> None:
@@ -97,7 +122,7 @@ def export(arguments: argparse.Namespace) -> None:
         if output.exists() and not arguments.replace:
             raise ValueError(f"{output} exists; use --replace to refresh it")
         output.write_bytes(payloads["jp"])
-    print(f"exported {len(SPECS)} shared native sources for func_080B7164")
+    print(f"exported {len(SPECS)} shared native sources for {scene_name()}")
 
 
 def rebuild(source: bytes, baseline: bytes, stream: Stream) -> bytes:
@@ -126,7 +151,7 @@ def build(arguments: argparse.Namespace) -> None:
         if len(source) != stream.decoded_size:
             raise ValueError(f"{source_path(arguments.source_dir, stream)} must be exactly {stream.decoded_size:#x} bytes")
         output_path(arguments.output_dir, stream).write_bytes(rebuild(source, packed(rom, stream), stream))
-    print(f"rebuilt {len(SPECS)} func_080B7164 streams for {arguments.region.upper()}")
+    print(f"rebuilt {len(SPECS)} {scene_name()} streams for {arguments.region.upper()}")
 
 
 def verify(arguments: argparse.Namespace) -> None:
@@ -139,7 +164,7 @@ def verify(arguments: argparse.Namespace) -> None:
             raise AssertionError(f"{stream.name} no longer matches retail {arguments.region.upper()} bytes")
         if arguments.output_dir is not None and output_path(arguments.output_dir, stream).read_bytes() != baseline:
             raise AssertionError(f"built {stream.name} does not match retail {arguments.region.upper()} bytes")
-    print(f"verified {len(SPECS)} func_080B7164 streams against {arguments.region.upper()} ROM")
+    print(f"verified {len(SPECS)} {scene_name()} streams against {arguments.region.upper()} ROM")
 
 
 def apply(target: bytes, baseline: bytes, outputs: Path, region: str) -> bytes:
@@ -161,7 +186,7 @@ def patch(arguments: argparse.Namespace) -> None:
     target_path.write_bytes(apply(
         target_path.read_bytes(), arguments.baseline.read_bytes(), arguments.output_dir, arguments.region
     ))
-    print(f"patched {len(SPECS)} func_080B7164 streams into {target_path} for {arguments.region.upper()}")
+    print(f"patched {len(SPECS)} {scene_name()} streams into {target_path} for {arguments.region.upper()}")
 
 
 def patch_test(arguments: argparse.Namespace) -> None:
@@ -169,8 +194,8 @@ def patch_test(arguments: argparse.Namespace) -> None:
         baseline = Path(path).read_bytes()
         result = apply(baseline, baseline, region_output_dir(arguments.output_root, region), region)
         if result != baseline:
-            raise AssertionError(f"unchanged func_080B7164 patch differs from retail {region.upper()} ROM")
-    print("verified unchanged func_080B7164 post-link patches against all four retail ROMs")
+            raise AssertionError(f"unchanged {scene_name()} patch differs from retail {region.upper()} ROM")
+    print(f"verified unchanged {scene_name()} post-link patches against all four retail ROMs")
 
 
 def edit_test(arguments: argparse.Namespace) -> None:
@@ -187,14 +212,15 @@ def edit_test(arguments: argparse.Namespace) -> None:
                     continue
                 payload, _format, _ladder = unpack(rebuilt)
                 if bytes(payload) != bytes(edited) or rebuilt == packed(rom, stream):
-                    raise AssertionError("edited func_080B7164 stream did not strictly round-trip")
-                print(f"func_080B7164 edit test: {stream.name} byte {index:#x} xor {mask:#x}; packed {len(rebuilt):#x} bytes")
+                    raise AssertionError(f"edited {scene_name()} stream did not strictly round-trip")
+                print(f"{scene_name()} edit test: {stream.name} byte {index:#x} xor {mask:#x}; packed {len(rebuilt):#x} bytes")
                 return
-    raise AssertionError("no deterministic in-place edit fits any func_080B7164 stream")
+    raise AssertionError(f"no deterministic in-place edit fits any {scene_name()} stream")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--profile", choices=tuple(PROFILES), default=PROFILE)
     commands = parser.add_subparsers(dest="command", required=True)
     export_parser = commands.add_parser("export")
     export_parser.add_argument("--source-dir", type=Path, required=True)
@@ -222,6 +248,7 @@ def main() -> None:
     edit_parser.add_argument("--region", choices=tuple(STARTS), required=True)
     edit_parser.add_argument("--rom", type=Path, required=True)
     arguments = parser.parse_args()
+    configure(arguments.profile)
     if arguments.command == "export":
         export(arguments)
     elif arguments.command == "build":
