@@ -1815,7 +1815,11 @@ gUnk_UiSharedResourceData_001:
     @ The packed Mary stream occupies the original JP interval
     @ 0x084E0CE0..0x087515A8.  Resume the raw asset container after it.
     .section .rodata.mary_scripts_tail
-    .incbin "baserom_jp.gba", 0x7515A8, (0x77F610 - 0x7515A8)
+    @ FoMT's 487 single-width glyphs are 8x12/1bpp records.  The authored
+    @ PNG is rebuilt through gbagfx plus tools/fontpad; the emitted 0x16D4
+    @ bytes were verified identical to the original JP ROM before this split.
+    .incbin "build/jp/graphics/font/jp/single_width_font.1bpp"
+    .incbin "baserom_jp.gba", 0x752C7C, (0x77F610 - 0x752C7C)
 
     @ Font renderer payloads. The byte layouts remain raw assets, while
     @ src/font.cc owns the typed references used by the glyph resolver.
