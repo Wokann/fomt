@@ -47,13 +47,17 @@ Generate a current list with:
 ```console
 python tools/gfx_incbin_inventory.py . --csv build/gfx_incbin_inventory.csv
 python tools/gfx_compression_inventory.py . --csv build/gfx_compression_inventory.csv
+python tools/unpack_vram_inventory.py . --csv build/unpack_vram_inventory.csv
 ```
 
-Both generated CSV files are local audit artifacts, not source artwork. The
+All generated CSV files are local audit artifacts, not source artwork. The
 compression inventory records only direct ranges that begin with a strictly
 decodable `0x70` stream. Its enclosing `incbin` boundary is not automatically
 the compressed stream's boundary, and a decoded stream is not automatically a
-graphics resource.
+graphics resource. The Unpack-to-VRAM inventory follows only simple literal
+and register data flow in assembly, so its rows are code-backed resource leads,
+not assertions about tile, palette, or OAM format. Run it with
+`make unpack-vram-inventory`; the current assembly yields 30 such calls.
 
 ## Next audit queue
 
