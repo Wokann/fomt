@@ -3,7 +3,9 @@
 
 #include "prelude.h"
 
-EXTERN_C
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 struct WaveData;
 struct ToneData;
@@ -400,6 +402,8 @@ void m4aMPlayPanpotControl(struct MusicPlayer * music_player, u16 track_bits, i8
 void m4aMPlayModDepthSet(struct MusicPlayer * music_player, u16 track_bits, u8 mod_depth);
 void m4aMPlayLFOSpeedSet(struct MusicPlayer * music_player, u16 track_bits, u8 lfo_speed);
 
-EXTERN_C_END
+#ifdef __cplusplus
+}
+#endif
 
 #endif // M4A_H

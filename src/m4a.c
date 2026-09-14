@@ -5,10 +5,6 @@
 
 #include "data/m4a_config.h"
 
-#define SOUND_INFO_PTR (*(struct SoundInfo **)0x3007FF0)
-
-#define MPLAY_JUMP_TABLE_FUNC(n) (*(gMPlayJumpTable + (n)))
-
 // m4a_1
 extern u32 MultByQ32(u32 multiplier, u32 multiplicand);
 extern void SoundMain(void);
@@ -1280,7 +1276,7 @@ void MPlayExtender(struct CgbChannel * cgb_channels)
     REG_NR30 = 0;
     REG_NR50 = 0x77;
 
-    sound_info = SOUND_INFO_PTR;
+    sound_info = *(struct SoundInfo **)0x3007FF0;
 
     ident = sound_info->ident;
 
@@ -1326,13 +1322,13 @@ void MusicPlayerJumpTableCopy(void)
 
 void ClearChain(void * x)
 {
-    void (*func)(void *) = MPLAY_JUMP_TABLE_FUNC(34);
+    void (*func)(void *) = *(gMPlayJumpTable + 34);
     func(x);
 }
 
 void Clear64byte(void * x)
 {
-    void (*func)(void *) = MPLAY_JUMP_TABLE_FUNC(35);
+    void (*func)(void *) = *(gMPlayJumpTable + 35);
     func(x);
 }
 
@@ -1358,7 +1354,7 @@ void SoundInit(struct SoundInfo * sound_info)
     REG_DMA2SAD = (uptr)sound_info->pcm_buffer + PCM_DMA_BUF_SIZE;
     REG_DMA2DAD = (uptr)&REG_FIFO_B;
 
-    SOUND_INFO_PTR = sound_info;
+    *(struct SoundInfo **)0x3007FF0 = sound_info;
     CpuFill32(0, sound_info, sizeof(struct SoundInfo));
 
     sound_info->max_channels = 8;
@@ -1380,7 +1376,7 @@ void SoundInit(struct SoundInfo * sound_info)
 
 void SampleFreqSet(u32 freq)
 {
-    struct SoundInfo * sound_info = SOUND_INFO_PTR;
+    struct SoundInfo * sound_info = *(struct SoundInfo **)0x3007FF0;
 
     freq = (freq & 0xF0000) >> 16;
     sound_info->freq = freq;
@@ -1412,7 +1408,7 @@ void SampleFreqSet(u32 freq)
 
 void m4aSoundMode(u32 mode)
 {
-    struct SoundInfo * sound_info = SOUND_INFO_PTR;
+    struct SoundInfo * sound_info = *(struct SoundInfo **)0x3007FF0;
     u32 temp;
 
     if (sound_info->ident != ID_NUMBER)
@@ -1470,7 +1466,7 @@ void m4aSoundMode(u32 mode)
 
 void SoundClear(void)
 {
-    struct SoundInfo * sound_info = SOUND_INFO_PTR;
+    struct SoundInfo * sound_info = *(struct SoundInfo **)0x3007FF0;
     int i;
     void * chan;
 
@@ -1509,7 +1505,7 @@ void SoundClear(void)
 
 void m4aSoundVSyncOff(void)
 {
-    struct SoundInfo * sound_info = SOUND_INFO_PTR;
+    struct SoundInfo * sound_info = *(struct SoundInfo **)0x3007FF0;
 
     if (sound_info->ident >= ID_NUMBER && sound_info->ident <= ID_NUMBER + 1)
     {
@@ -1530,7 +1526,7 @@ void m4aSoundVSyncOff(void)
 
 void m4aSoundVSyncOn(void)
 {
-    struct SoundInfo * sound_info = SOUND_INFO_PTR;
+    struct SoundInfo * sound_info = *(struct SoundInfo **)0x3007FF0;
     u32 ident = sound_info->ident;
 
     if (ident == ID_NUMBER)
@@ -1553,7 +1549,7 @@ void MPlayOpen(struct MusicPlayer * music_player, struct MusicPlayerTrack * trac
     if (track_count > MAX_MUSICPLAYER_TRACKS)
         track_count = MAX_MUSICPLAYER_TRACKS;
 
-    sound_info = SOUND_INFO_PTR;
+    sound_info = *(struct SoundInfo **)0x3007FF0;
 
     if (sound_info->ident != ID_NUMBER)
         return;
@@ -1878,7 +1874,7 @@ static inline int CgbPan(struct CgbChannel * chan)
 
 void CgbModVol(struct CgbChannel * chan)
 {
-    struct SoundInfo * sound_info = SOUND_INFO_PTR;
+    struct SoundInfo * sound_info = *(struct SoundInfo **)0x3007FF0;
 
     if (!CgbPan(chan))
     {
@@ -1903,7 +1899,7 @@ void CgbSound(void)
     int ch;
     struct CgbChannel * channels;
     int prev_c15;
-    struct SoundInfo * sound_info = SOUND_INFO_PTR;
+    struct SoundInfo * sound_info = *(struct SoundInfo **)0x3007FF0;
     volatile u8 * nrx0ptr;
     volatile u8 * nrx1ptr;
     volatile u8 * nrx2ptr;
@@ -2488,7 +2484,7 @@ void ply_memacc(struct MusicPlayer * music_player, struct MusicPlayerTrack * tra
 cond_true:
 {
     // *& is required for matching
-    (MPLAY_JUMP_TABLE_FUNC(1))(music_player, track);
+    (*(gMPlayJumpTable + 1))(music_player, track);
     return;
 }
 

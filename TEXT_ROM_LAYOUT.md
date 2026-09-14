@@ -19,6 +19,20 @@
 - `[Mary 脚本表]`：Mary 生成的脚本入口指针表；它与脚本本体由 Mary 单独维护，只记录该表的连续边界。
 - `[填充]`：链接映射中实际存在的 `*fill*` 字节，显示字节值。
 
+## m4a 音频运行时数据
+
+`m4a` 的基础查找表、音色组、播放器表和曲目表在每个 ROM 中物理连续，但
+旧工具链必须将后三类分别发射到对应输入节，才能在其后的原始音频资产前保持
+原始顺序。因此这里保留三处真实物理节边界；它们不是为了逐项定位而新增的
+伪 section。
+
+| 地区 | 地址范围 | 链接输入 | 维护源 | 核验结果 |
+| --- | --- | --- | --- | --- |
+| JP | `0x0813ABCC`–`0x0813C3CB` | `src/m4a.o(.rodata)` → `.rodata.gM4aVoiceGroups` → `.rodata.gMusicPlayerTable` → `.rodata.gSongTable` | `src/m4a.c`、`include/m4a.h`；基础频率/音量表、音色组、播放器表与曲目表 | 精确 |
+| US | `0x08139A88`–`0x0813B287` | `src/m4a.o(.rodata)` → `.rodata.gM4aVoiceGroups` → `.rodata.gMusicPlayerTable` → `.rodata.gSongTable` | `src/m4a.c`、`include/m4a.h`；基础频率/音量表、音色组、播放器表与曲目表 | 精确 |
+| EU | `0x08139AE0`–`0x0813B2DF` | `src/m4a.o(.rodata)` → `.rodata.gM4aVoiceGroups` → `.rodata.gMusicPlayerTable` → `.rodata.gSongTable` | `src/m4a.c`、`include/m4a.h`；基础频率/音量表、音色组、播放器表与曲目表 | 精确 |
+| DE | `0x0813BB08`–`0x0813D307` | `src/m4a.o(.rodata)` → `.rodata.gM4aVoiceGroups` → `.rodata.gMusicPlayerTable` → `.rodata.gSongTable` | `src/m4a.c`、`include/m4a.h`；基础频率/音量表、音色组、播放器表与曲目表 | 精确 |
+
 ## EU / DE：已验证本地化块
 
 下表补充 EU、DE 已按原 ROM 地址核验的区域文本块。每行的起止地址
