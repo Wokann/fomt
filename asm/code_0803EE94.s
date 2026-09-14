@@ -5805,9 +5805,164 @@ func_0807549C: @ 0x080750F8
     .4byte 0x0000816C
 .Ljp_080751B4:
     .4byte 0x000005B4
-    jp_code_0803ee_func func_080751B8, 0x751B8, 0x75278
-    jp_code_0803ee_func func_08075278, 0x75278, 0x752B8
-    jp_code_0803ee_func func_080752B8, 0x752B8, 0x7532C
+    .global func_0807555C
+    .thumb_func
+func_0807555C: @ 0x080751B8
+    push {r4, r5, r6, r7, lr}
+    mov r7, r8
+    push {r7}
+    adds r6, r0, #0
+    adds r7, r1, #0
+    movs r0, #0x92
+    lsls r0, r0, #1
+    adds r0, r0, r6
+    mov r8, r0
+    movs r1, #0xBC
+    lsls r1, r1, #1
+    adds r5, r6, r1
+    ldr r4, [r5]
+    lsls r4, r4, #3
+    adds r4, #4
+    add r4, r8
+    adds r0, r6, #0
+    bl GetSelectionIndex
+    strh r0, [r4, #4]
+    adds r0, r6, #0
+    bl func_08076B64
+    cmp r7, #0
+    beq .Ljp_080751F0
+    cmp r7, #1
+    beq .Ljp_08075202
+    b .Ljp_08075210
+.Ljp_080751F0:
+    ldr r0, [r5]
+    adds r0, #1
+    str r0, [r5]
+    mov r2, r8
+    ldr r1, [r2]
+    cmp r0, r1
+    bne .Ljp_08075210
+    str r7, [r5]
+    b .Ljp_08075210
+.Ljp_08075202:
+    ldr r0, [r5]
+    cmp r0, #0
+    bne .Ljp_0807520C
+    mov r1, r8
+    ldr r0, [r1]
+.Ljp_0807520C:
+    subs r0, #1
+    str r0, [r5]
+.Ljp_08075210:
+    movs r2, #0x92
+    lsls r2, r2, #1
+    adds r4, r6, r2
+    movs r0, #0xBC
+    lsls r0, r0, #1
+    adds r5, r6, r0
+    ldr r0, [r5]
+    lsls r0, r0, #3
+    adds r0, #4
+    adds r0, r4, r0
+    ldr r1, [r0]
+    adds r0, r6, #0
+    bl func_0807549C
+    ldr r0, [r5]
+    lsls r0, r0, #3
+    adds r0, #4
+    adds r4, r4, r0
+    movs r2, #4
+    ldrsh r1, [r4, r2]
+    adds r0, r6, #0
+    bl SetSelectionIndex
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+
+    .global func_080755EC
+    .thumb_func
+func_080755EC: @ 0x08075248
+    push {r4, r5, r6, lr}
+    adds r4, r0, #0
+    adds r6, r1, #0
+    adds r5, r2, #0
+    ldr r0, .Ljp_08075274 @ =vtable_unk_080E7B3C
+    str r0, [r4]
+    movs r0, #0xBE
+    lsls r0, r0, #1
+    bl __builtin_new
+    adds r1, r5, #0
+    bl func_08070B70
+    str r0, [r4, #4]
+    ldr r1, [r6]
+    movs r0, #0
+    str r0, [r6]
+    str r1, [r4, #8]
+    adds r0, r4, #0
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_08075274:
+    .4byte vtable_unk_080E7B3C
+
+    .global func_0807561C
+    .thumb_func
+func_0807561C: @ 0x08075278
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    ldr r0, .Ljp_080752B4 @ =vtable_unk_080E7B3C
+    str r0, [r4]
+    ldr r1, [r4, #8]
+    cmp r1, #0
+    beq .Ljp_08075294
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08075294:
+    ldr r1, [r4, #4]
+    cmp r1, #0
+    beq .Ljp_080752A6
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_080752A6:
+    adds r0, r4, #0
+    adds r1, r5, #0
+    bl func_080007EC
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_080752B4:
+    .4byte vtable_unk_080E7B3C
+
+    .global func_0807565C
+    .thumb_func
+func_0807565C: @ 0x080752B8
+    push {r4, r5, lr}
+    adds r5, r0, #0
+    adds r4, r1, #0
+    ldr r0, [r4, #4]
+    bl func_080769A0
+    ldr r1, [r4, #8]
+    movs r0, #0
+    str r0, [r4, #8]
+    str r1, [r5]
+    adds r0, r5, #0
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+
+    @ The following physical entries are still shared raw code in all regions.
+    jp_code_0803ee_func func_080752D4, 0x752D4, 0x7532C
     jp_code_0803ee_func func_0807532C, 0x7532C, 0x75824
     jp_code_0803ee_func func_08075BC8, 0x75824, 0x758E4
     jp_code_0803ee_func func_08075C88, 0x758E4, 0x75A14
