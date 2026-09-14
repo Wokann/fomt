@@ -86,7 +86,7 @@
 | EU | `0x08100534`–`0x08100B17` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc`、`include/link_communication_data.hh`、`data/text/eu/link_communication_data.cc`；区域文本、16 组五项记录、字符码表和两项 ASCII 协议码按 ROM 顺序同属对象；所有已知汇编调用均为符号重定位 | 精确 |
 | EU | `0x08100B18`–`0x08100B29` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | `src/cooking_recipe_inventory_page_data.cc`、`include/cooking_recipe_inventory_page_data.hh`、`data/text/eu/cooking_recipe_inventory_page_data.cc`；页切换控制符与八项餐具值按 ROM 顺序同属对象；所有已知汇编调用均为符号重定位 | 精确 |
 | EU | `0x08100B2A`–`0x08100E38` | `src/recovery_status.o(.rodata)` | `src/recovery_status.cc`、`include/recovery_status.hh`、`data/text/eu/recovery_status.cc`；`9×29` 与 `18×29` 的固定行宽状态矩阵按 ROM 顺序同属对象；所有已知汇编调用均为符号重定位 | 精确 |
-| EU | `0x08100E3C`–`0x0810113F` | `src/cooking.o(.rodata)` | `src/cooking.cc`、`include/cooking.hh`、`data/text/eu/cooking.cc` | 精确 |
+| EU | `0x08100E3C`–`0x0810113F` | `src/cooking.o(.rodata)` | `src/cooking.cc`、`include/cooking.hh`、`data/text/eu/cooking.cc`；28 条烹饪文本和 `13×11` 字节选择名矩阵按 ROM 顺序同属对象；矩阵行宽由调用方的 `symbol + 0xB` 读取确定，所有已知调用均为符号重定位 | 精确 |
 | EU | `0x08101140`–`0x081036AD` | `src/cooking_recipe_inventory_data.o(.rodata)` | `src/cooking_recipe_inventory_data.cc`、`include/cooking_recipe_inventory_data.hh`、`data/text/eu/cooking_recipe_inventory_data.cc` | 精确 |
 | EU | `0x081036B0`–`0x081036B6` | `src/animal.o(.rodata)` | `src/animal.cc`、`include/animal.hh`、`data/text/eu/animal.cc` | 精确 |
 | EU | `0x081036B8`–`0x08103717` | `src/livestock_day_update_data.o(.rodata)` | `src/livestock_day_update_data.cc`、`include/livestock_day_update_data.hh` | 精确 |
@@ -175,7 +175,7 @@
 | DE | `0x08100EA0`–`0x081014DB` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc`、`include/link_communication_data.hh`、`data/text/de/link_communication_data.cc`；区域文本、16 组五项记录、字符码表和两项 ASCII 协议码按 ROM 顺序同属对象；所有已知汇编调用均为符号重定位 | 精确 |
 | DE | `0x081014DC`–`0x081014ED` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | `src/cooking_recipe_inventory_page_data.cc`、`include/cooking_recipe_inventory_page_data.hh`、`data/text/de/cooking_recipe_inventory_page_data.cc`；页切换控制符与八项餐具值按 ROM 顺序同属对象；所有已知汇编调用均为符号重定位 | 精确 |
 | DE | `0x081014EE`–`0x081017FC` | `src/recovery_status.o(.rodata)` | `src/recovery_status.cc`、`include/recovery_status.hh`、`data/text/de/recovery_status.cc`；`9×29` 与 `18×29` 的固定行宽状态矩阵按 ROM 顺序同属对象；所有已知汇编调用均为符号重定位 | 精确 |
-| DE | `0x08101800`–`0x08101B29` | `src/cooking.o(.rodata)` | `src/cooking.cc`、`include/cooking.hh`、`data/text/de/cooking.cc` | 精确 |
+| DE | `0x08101800`–`0x08101B29` | `src/cooking.o(.rodata)` | `src/cooking.cc`、`include/cooking.hh`、`data/text/de/cooking.cc`；28 条烹饪文本和 `13×11` 字节选择名矩阵按 ROM 顺序同属对象；矩阵行宽由调用方的 `symbol + 0xB` 读取确定，所有已知调用均为符号重定位 | 精确 |
 | DE | `0x08101B2C`–`0x08104099` | `src/cooking_recipe_inventory_data.o(.rodata)` | `src/cooking_recipe_inventory_data.cc`、`include/cooking_recipe_inventory_data.hh`、`data/text/de/cooking_recipe_inventory_data.cc` | 精确 |
 | DE | `0x0810409C`–`0x081040A2` | `src/animal.o(.rodata)` | `src/animal.cc`、`include/animal.hh`、`data/text/de/animal.cc` | 精确 |
 | DE | `0x081040A4`–`0x08104103` | `src/livestock_day_update_data.o(.rodata)` | `src/livestock_day_update_data.cc`、`include/livestock_day_update_data.hh` | 精确 |
@@ -304,7 +304,7 @@
 | `0x081005D8`–`0x081005E9` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | [嵌入文本 / 数据] | `src/cooking_recipe_inventory_page_data.cc`<br>`include/cooking_recipe_inventory_page_data.hh`<br>`data/text/jp/cooking_recipe_inventory_page_data.cc` | `gText_Cooking_Recipe_PageBreak`<br>`gCookingRecipeInventoryUtensilValues`；页切换控制符先于八项餐具值，所有已知汇编调用均为符号重定位 |
 | `0x081005EA`–`0x081008F8` | `src/recovery_status.o(.rodata)` | [嵌入文本] | `src/recovery_status.cc`、`include/recovery_status.hh`、`data/text/jp/recovery_status.cc` | `gText_StaminaRecoveryStatus` 为 `9×29`、`gText_FatigueRecoveryStatus` 为 `18×29`；行宽是调用方按行偏移读取的真实布局，所有已知汇编调用均为符号重定位 |
 | `0x081008F9`–`0x081008FB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
-| `0x081008FC`–`0x08100C23` | `src/cooking.o(.rodata)` | [嵌入文本] | `src/cooking.cc`、`include/cooking.hh`、`data/text/jp/cooking.cc` | 文本 `28` 项（详见下方索引） |
+| `0x081008FC`–`0x08100C23` | `src/cooking.o(.rodata)` | [嵌入文本] | `src/cooking.cc`、`include/cooking.hh`、`data/text/jp/cooking.cc` | 文本 `28` 项（详见下方索引）<br>`gText_Cooking_Recipe_SelectionNames` 为 `13×11` 字节的固定行宽矩阵；调用方有 `gText_Cooking_Recipe_SelectionNames + 0xB`，故长度不可省略；所有已知调用均为符号重定位 |
 | `0x08100C24`–`0x08103191` | `src/cooking_recipe_inventory_data.o(.rodata)` | [数据 / 嵌入文本] | `src/cooking_recipe_inventory_data.cc`<br>`include/cooking_recipe_inventory_data.hh`<br>`data/text/jp/cooking_recipe_inventory_data.cc` | `gCookingRecipeInventoryMaskEntries`<br>`gCookingRecipeDefinitions`, `gCookingRecipeDefinitionPayload`<br>运行时字符串 `2` 项 |
 | `0x08103192`–`0x08103193` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08103194`–`0x0810319A` | `src/animal.o(.rodata)` | [嵌入文本] | `src/animal.cc`、`include/animal.hh`、`data/text/jp/animal.cc` | 文本 `1` 项（详见下方索引） |
@@ -2138,7 +2138,7 @@
 | `0x08100AC0`–`0x08100AD1` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | [嵌入文本 / 数据] | `src/cooking_recipe_inventory_page_data.cc`<br>`include/cooking_recipe_inventory_page_data.hh`<br>`data/text/us/cooking_recipe_inventory_page_data.cc` | `gText_Cooking_Recipe_PageBreak`<br>`gCookingRecipeInventoryUtensilValues`；页切换控制符先于八项餐具值，所有已知汇编调用均为符号重定位 |
 | `0x08100AD2`–`0x08100DE0` | `src/recovery_status.o(.rodata)` | [嵌入文本] | `src/recovery_status.cc`、`include/recovery_status.hh`、`data/text/us/recovery_status.cc` | `gText_StaminaRecoveryStatus` 为 `9×29`、`gText_FatigueRecoveryStatus` 为 `18×29`；行宽是调用方按行偏移读取的真实布局，所有已知汇编调用均为符号重定位 |
 | `0x08100DE1`–`0x08100DE3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
-| `0x08100DE4`–`0x081010E7` | `src/cooking.o(.rodata)` | [嵌入文本] | `src/cooking.cc`、`include/cooking.hh`、`data/text/us/cooking.cc` | 文本 `28` 项（详见下方索引） |
+| `0x08100DE4`–`0x081010E7` | `src/cooking.o(.rodata)` | [嵌入文本] | `src/cooking.cc`、`include/cooking.hh`、`data/text/us/cooking.cc` | 文本 `28` 项（详见下方索引）<br>`gText_Cooking_Recipe_SelectionNames` 为 `13×11` 字节的固定行宽矩阵；调用方有 `gText_Cooking_Recipe_SelectionNames + 0xB`，故长度不可省略；所有已知调用均为符号重定位 |
 | `0x081010E8`–`0x08103655` | `src/cooking_recipe_inventory_data.o(.rodata)` | [数据 / 嵌入文本] | `src/cooking_recipe_inventory_data.cc`<br>`include/cooking_recipe_inventory_data.hh`<br>`data/text/us/cooking_recipe_inventory_data.cc` | `gCookingRecipeInventoryMaskEntries`<br>`gCookingRecipeDefinitions`, `gCookingRecipeDefinitionPayload`<br>运行时字符串 `2` 项 |
 | `0x08103656`–`0x08103657` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08103658`–`0x0810365E` | `src/animal.o(.rodata)` | [嵌入文本] | `src/animal.cc`、`include/animal.hh`、`data/text/us/animal.cc` | 文本 `1` 项（详见下方索引） |
