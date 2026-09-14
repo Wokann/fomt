@@ -5,7 +5,7 @@
 char const gText_Carpenter_InitialPageBreak[] =
     "\p";
 
-char const gText_Carpenter_RebuildRequirements[] ALIGN(4) =
+char const gText_Carpenter_RebuildRequirements[] =
     "Für den Neuaufbau\r\n";
 
 char const gText_Carpenter_InsufficientGold[] =
@@ -89,5 +89,5 @@ char const gText_Carpenter_StartUpgradeTomorrow[] =
 char const gText_Carpenter_NeedAnythingMore[] =
     "Noch etwas anderes?{Press}";
 
-char const gCppRuntimeBadAlloc_Carpenter[] ALIGN(4) =
+char const gCppRuntimeBadAlloc_Carpenter[] =
     "bad_alloc";
