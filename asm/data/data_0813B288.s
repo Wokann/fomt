@@ -2034,20 +2034,21 @@ gUnk_IntroSceneUnpackSource_019:
 gUnk_084CDBDC:
     .incbin "baserom_jp.gba", 0x4CDBDC, (0x4D096C - 0x4CDBDC)
 
-    @ Four resources unpacked by the earlier Intro Scene startup path.
-    @ Their payload formats remain raw in this region-specific asset range.
+    @ Four Huffman-4/LZ3 streams unpacked by the earlier Intro Scene startup
+    @ path.  Each source is an interleaved pair of 32-by-32 BG tilemaps.
     .global gUnk_IntroSceneStartupUnpackSource_000
 gUnk_IntroSceneStartupUnpackSource_000:
-    .incbin "baserom_jp.gba", 0x4D096C, (0x4D0D48 - 0x4D096C)
+    .incbin "build/jp/graphics/intro_scene/startup_tilemaps/startup_00.0x70"
     .global gUnk_IntroSceneStartupUnpackSource_001
 gUnk_IntroSceneStartupUnpackSource_001:
-    .incbin "baserom_jp.gba", 0x4D0D48, (0x4D0F64 - 0x4D0D48)
+    .incbin "build/jp/graphics/intro_scene/startup_tilemaps/startup_01.0x70"
     .global gUnk_IntroSceneStartupUnpackSource_002
 gUnk_IntroSceneStartupUnpackSource_002:
-    .incbin "baserom_jp.gba", 0x4D0F64, (0x4D1058 - 0x4D0F64)
+    .incbin "build/jp/graphics/intro_scene/startup_tilemaps/startup_02.0x70"
     .global gUnk_IntroSceneStartupUnpackSource_003
 gUnk_IntroSceneStartupUnpackSource_003:
-    .incbin "baserom_jp.gba", 0x4D1058, (0x4D4AC4 - 0x4D1058)
+    .incbin "build/jp/graphics/intro_scene/startup_tilemaps/startup_03.0x70"
+    .incbin "baserom_jp.gba", 0x4D1154, (0x4D4AC4 - 0x4D1154)
     .global gUnk_084D4AC4
 gUnk_084D4AC4:
     .incbin "baserom_jp.gba", 0x4D4AC4, (0x4D4CC4 - 0x4D4AC4)
@@ -5404,20 +5405,27 @@ gFontShiftJisGlyphIndices:
 gUnk_08747A74:
 	FOMT_REGION_ASSET_INCBIN 0x747A74, (0x74A1D8 - 0x747A74)
 
-	@ Four resources unpacked by the earlier Intro Scene startup path.
-	@ Their payload formats remain raw in this region-specific asset range.
+	@ Four Huffman-4/LZ3 streams unpacked by the earlier Intro Scene startup
+	@ path. Each source is an interleaved pair of 32-by-32 BG tilemaps.
+	.macro FOMT_INTRO_SCENE_STARTUP_TILEMAP source
+	.ifdef REGION_EU
+	.incbin "build/eu/graphics/intro_scene/startup_tilemaps/startup_\source\().0x70"
+	.else
+	.incbin "build/us/graphics/intro_scene/startup_tilemaps/startup_\source\().0x70"
+	.endif
+	.endm
 	.global gUnk_IntroSceneStartupUnpackSource_000
 gUnk_IntroSceneStartupUnpackSource_000:
-	FOMT_REGION_ASSET_INCBIN 0x74A1D8, (0x74A5B4 - 0x74A1D8)
+	FOMT_INTRO_SCENE_STARTUP_TILEMAP 00
 	.global gUnk_IntroSceneStartupUnpackSource_001
 gUnk_IntroSceneStartupUnpackSource_001:
-	FOMT_REGION_ASSET_INCBIN 0x74A5B4, (0x74A7D0 - 0x74A5B4)
+	FOMT_INTRO_SCENE_STARTUP_TILEMAP 01
 	.global gUnk_IntroSceneStartupUnpackSource_002
 gUnk_IntroSceneStartupUnpackSource_002:
-	FOMT_REGION_ASSET_INCBIN 0x74A7D0, (0x74A8C4 - 0x74A7D0)
+	FOMT_INTRO_SCENE_STARTUP_TILEMAP 02
 	.global gUnk_IntroSceneStartupUnpackSource_003
 gUnk_IntroSceneStartupUnpackSource_003:
-	FOMT_REGION_ASSET_INCBIN 0x74A8C4, (0x74A9C0 - 0x74A8C4)
+	FOMT_INTRO_SCENE_STARTUP_TILEMAP 03
 
 	.global gUnk_0874A9C0
 gUnk_0874A9C0:

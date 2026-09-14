@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""Encode a verified FoMT ``0x70`` stream variant for editable graphics.
+"""Encode verified FoMT ``0x70`` stream variants for editable graphics.
 
 The ROM's native ``Unpack`` routine at 0x080D102C selects an atom reader, an
 LZ mode and an optional differential filter from the byte following the 0x70
-header.  This encoder writes the ``0x13`` combination (Huffman-8 atoms,
-pair-oriented LZ mode 3, no differential filter).  It is deliberately a
+header.  The managed formats currently include Raw/LZ3, Huffman-8/LZ3 and
+Huffman-4/LZ3, all without a differential filter.  This is deliberately a
 deterministic, valid encoder rather than a claim to reproduce the original
 publisher's exact bit stream.  An unchanged asset must retain its original
-stream; this encoder is for a deliberately edited payload and callers must
-check that the result fits the allocated ROM interval.
+stream; these encoders are for deliberately edited payloads, and callers must
+check that a result fits the allocated ROM interval.
 """
 
 from __future__ import annotations
@@ -20,6 +20,7 @@ import heapq
 import struct
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Callable
 
 
 class BitWriter:
@@ -59,7 +60,7 @@ class HuffmanCode:
     bits: int
 
 
-def huffman_codes(data: bytes) -> tuple[dict[int, HuffmanCode], list[list[int]]]:
+def huffman_codes(data: bytes, symbol_bits: int = 8) -> tuple[dict[int, HuffmanCode], list[list[int]]]:
     """Build a canonical binary Huffman code compatible with ReadHuff8."""
     frequencies = collections.Counter(data)
     if not frequencies:
@@ -67,7 +68,7 @@ def huffman_codes(data: bytes) -> tuple[dict[int, HuffmanCode], list[list[int]]]
     if len(frequencies) == 1:
         # The native decoder requires a complete tree, so add a harmless leaf.
         only = next(iter(frequencies))
-        frequencies[(only + 1) & 0xFF] = 1
+        frequencies[(only + 1) & ((1 << symbol_bits) - 1)] = 1
 
     serial = 0
     heap: list[tuple[int, int, object]] = []
@@ -92,14 +93,21 @@ def huffman_codes(data: bytes) -> tuple[dict[int, HuffmanCode], list[list[int]]]
         walk(right, depth + 1)
 
     walk(heap[0][2], 0)
-    if max(lengths.values()) > 16:
-        raise ValueError("Huffman tree exceeds the native 16-bit code-depth limit")
+    if max(lengths.values()) > symbol_bits * 2:
+        return balanced_huffman_codes(frequencies, symbol_bits)
 
-    by_length: list[list[int]] = [[] for _ in range(16)]
+    by_length: list[list[int]] = [[] for _ in range(symbol_bits * 2)]
     for symbol, length in lengths.items():
         by_length[length - 1].append(symbol)
     for symbols in by_length:
         symbols.sort()
+
+    # The native format stores the count at each depth in one atom.  A
+    # perfectly balanced 16-symbol Huffman-4 tree would require a count of
+    # 16, which cannot be represented in a four-bit count field.  Fall back
+    # to a complete, near-balanced tree whose per-depth counts are encodable.
+    if any(len(symbols) >= (1 << symbol_bits) for symbols in by_length):
+        return balanced_huffman_codes(frequencies, symbol_bits)
 
     code = 0
     previous_length = 0
@@ -113,19 +121,57 @@ def huffman_codes(data: bytes) -> tuple[dict[int, HuffmanCode], list[list[int]]]
     return result, by_length
 
 
-def emit_huffman_tree(writer: BitWriter, by_length: list[list[int]]) -> None:
+def balanced_huffman_codes(
+    frequencies: collections.Counter[int], symbol_bits: int,
+) -> tuple[dict[int, HuffmanCode], list[list[int]]]:
+    """Build a bounded complete tree when raw Huffman lengths are unencodable."""
+    symbols = sorted(frequencies, key=lambda symbol: (-frequencies[symbol], symbol))
+    count = len(symbols)
+    if count < 2:
+        raise ValueError("Huffman tree needs at least two leaves")
+    if count > (1 << symbol_bits):
+        raise ValueError("Huffman alphabet exceeds atom size")
+
+    if count == 1 << symbol_bits:
+        # 1×3-bit, 13×4-bit and 2×5-bit leaves are a complete 16-leaf tree
+        # while every depth count fits in the format's four-bit field.
+        lengths = [symbol_bits - 1, *([symbol_bits] * (count - 3)), symbol_bits + 1, symbol_bits + 1]
+    else:
+        shallow = count.bit_length() - 1
+        shallow_count = (1 << (shallow + 1)) - count
+        lengths = [shallow] * shallow_count + [shallow + 1] * (count - shallow_count)
+
+    by_length: list[list[int]] = [[] for _ in range(symbol_bits * 2)]
+    for symbol, length in zip(symbols, lengths, strict=True):
+        by_length[length - 1].append(symbol)
+    for values in by_length:
+        values.sort()
+
+    code = 0
+    previous_length = 0
+    result: dict[int, HuffmanCode] = {}
+    for length, values in enumerate(by_length, 1):
+        code <<= length - previous_length
+        for symbol in values:
+            result[symbol] = HuffmanCode(code, length)
+            code += 1
+        previous_length = length
+    return result, by_length
+
+
+def emit_huffman_tree(writer: BitWriter, by_length: list[list[int]], symbol_bits: int = 8) -> None:
     for symbols in by_length:
-        writer.write(len(symbols), 8)
+        writer.write(len(symbols), symbol_bits)
         for symbol in symbols:
-            writer.write(symbol, 8)
+            writer.write(symbol, symbol_bits)
 
 
 LADDER = ((1, 4), (17, 8), (273, 13))
 MAX_LOOKUP_PAIRS = 512
 
 
-def ladder_entry(distance: int) -> tuple[int, int, int]:
-    for index, (start, bits) in enumerate(LADDER):
+def ladder_entry(distance: int, entries: tuple[tuple[int, int], ...] | list[tuple[int, int]] = LADDER) -> tuple[int, int, int]:
+    for index, (start, bits) in enumerate(entries):
         if distance < start + (1 << bits):
             return index, start, bits
     raise ValueError(f"LZ distance {distance} exceeds native mode-3 ladder")
@@ -145,9 +191,14 @@ def emit_vli(writer: BitWriter, value: int, bits_per_atom: int) -> None:
         writer.write((digit << 1) | int(index + 1 < len(digits)), bits_per_atom)
 
 
-def match_options(data: bytes, position: int, candidates: list[int]) -> list[tuple[int, int, int]]:
+def match_options(
+    data: bytes,
+    position: int,
+    candidates: list[int],
+    entries: tuple[tuple[int, int], ...] | list[tuple[int, int]] = LADDER,
+) -> list[tuple[int, int, int]]:
     """Return the longest usable pair match in each native distance ladder."""
-    best = [(0, 0) for _ in LADDER]
+    best = [(0, 0) for _ in entries]
     maximum = min(MAX_LOOKUP_PAIRS * 2, len(data) - position)
     maximum &= ~1
     # Keep a bounded suffix for practical build times.  The caller preserves
@@ -155,14 +206,15 @@ def match_options(data: bytes, position: int, candidates: list[int]) -> list[tup
     # their useful match among the most recent positions.
     for candidate in reversed(candidates[-96:]):
         distance = position - candidate
-        if distance > 8464 * 2:
+        maximum_distance = entries[-1][0] + (1 << entries[-1][1]) - 1
+        if distance > maximum_distance * 2:
             continue
         length = 0
         while length < maximum and data[candidate + length] == data[position + length]:
             length += 1
         length -= length % 2
         if length >= 4:
-            index, _start, _bits = ladder_entry(distance // 2)
+            index, _start, _bits = ladder_entry(distance // 2, entries)
             if length > best[index][0]:
                 best[index] = (length, distance)
     return [(index, length // 2, distance // 2) for index, (length, distance) in enumerate(best) if length]
@@ -177,7 +229,11 @@ def vli_cost(value: int, bits_per_atom: int) -> int:
     return digits * bits_per_atom
 
 
-def plan_lz3(data: bytes, codes: dict[int, HuffmanCode]) -> list[tuple[str, int, int]]:
+def plan_lz3(
+    data: bytes,
+    literal_bits: Callable[[int, int], int],
+    entries: tuple[tuple[int, int], ...] | list[tuple[int, int]] = LADDER,
+) -> list[tuple[str, int, int]]:
     """Choose a minimum-bit sequence of literal pairs and native LZ lookups."""
     pair_count = len(data) // 2
     infinity = 1 << 60
@@ -188,14 +244,14 @@ def plan_lz3(data: bytes, codes: dict[int, HuffmanCode]) -> list[tuple[str, int,
 
     for pair_position in range(pair_count):
         position = pair_position * 2
-        literal_cost = 1 + codes[data[position]].bits + codes[data[position + 1]].bits
+        literal_cost = 1 + literal_bits(data[position], data[position + 1])
         if costs[pair_position] + literal_cost < costs[pair_position + 1]:
             costs[pair_position + 1] = costs[pair_position] + literal_cost
             choices[pair_position + 1] = ("literal", 1, 0)
 
         key = data[position:position + 4]
-        for index, maximum_pairs, distance in match_options(data, position, candidates.get(key, [])):
-            _start, distance_bits = LADDER[index]
+        for index, maximum_pairs, distance in match_options(data, position, candidates.get(key, []), entries):
+            _start, distance_bits = entries[index]
             for pairs in range(2, min(9, maximum_pairs) + 1):
                 candidate_cost = costs[pair_position] + 1 + 2 + distance_bits + 3
                 target = pair_position + pairs
@@ -213,7 +269,8 @@ def plan_lz3(data: bytes, codes: dict[int, HuffmanCode]) -> list[tuple[str, int,
         if position + 4 <= len(data):
             values = candidates[key]
             values.append(position)
-            while values and values[0] < position - 8464 * 2:
+            maximum_distance = entries[-1][0] + (1 << entries[-1][1]) - 1
+            while values and values[0] < position - maximum_distance * 2:
                 values.pop(0)
 
     operations: list[tuple[str, int, int]] = []
@@ -246,6 +303,18 @@ def literal_payload(data: bytes, operations: list[tuple[str, int, int]]) -> byte
     return bytes(result)
 
 
+def huff4_symbols(data: bytes) -> bytes:
+    """Expand bytes to the high/low four-bit atoms read by ``ReadHuff4``."""
+    return bytes(component for value in data for component in (value >> 4, value & 0x0F))
+
+
+def write_huff4_byte(writer: BitWriter, value: int, codes: dict[int, HuffmanCode]) -> None:
+    high = codes[value >> 4]
+    low = codes[value & 0x0F]
+    writer.write(high.value, high.bits)
+    writer.write(low.value, low.bits)
+
+
 def encode_huff8_lz3(data: bytes) -> bytes:
     """Encode an even-length payload using the retail screen-art format 0x13."""
     data = bytes(data)
@@ -256,13 +325,13 @@ def encode_huff8_lz3(data: bytes) -> bytes:
     # A handful of iterations is deterministic and normally converges quickly.
     operations: list[tuple[str, int, int]] = []
     for _ in range(8):
-        operations = plan_lz3(data, codes)
+        operations = plan_lz3(data, lambda first, second: codes[first].bits + codes[second].bits)
         next_codes, next_by_length = huffman_codes(literal_payload(data, operations))
         if next_codes == codes:
             break
         codes, by_length = next_codes, next_by_length
     else:
-        operations = plan_lz3(data, codes)
+        operations = plan_lz3(data, lambda first, second: codes[first].bits + codes[second].bits)
     writer = BitWriter()
     writer.write((len(data) << 8) | 0x70, 32)
     writer.write(0x13, 8)  # Huffman-8, LZ mode 3, no differential filter.
@@ -316,6 +385,91 @@ def encode_huff8_lz3(data: bytes) -> bytes:
             writer.write(0, 1)
             writer.write(codes[data[position]].value, codes[data[position]].bits)
             writer.write(codes[data[position + 1]].value, codes[data[position + 1]].bits)
+        position += pairs * 2
+        operation_index += 1
+    return writer.finish()
+
+
+def encode_huff4_lz3(data: bytes, ladder_spec: str) -> bytes:
+    """Encode a Huffman-4 / LZ3 stream used by Intro Scene tilemaps.
+
+    The original packed bytes are retained whenever a source is unchanged.
+    This routine is only used after an intentional edit, and callers still
+    enforce the immutable ROM-slot length before accepting its result.
+    """
+    data = bytes(data)
+    if not data or len(data) & 1:
+        raise ValueError("Huffman-4 LZ3 payloads must be non-empty and even-sized")
+    entries = ladder_entries(ladder_spec, 3)
+    codes, by_length = huffman_codes(huff4_symbols(data), 4)
+    operations: list[tuple[str, int, int]] = []
+    for _ in range(8):
+        operations = plan_lz3(
+            data,
+            lambda first, second: (
+                codes[first >> 4].bits + codes[first & 0x0F].bits
+                + codes[second >> 4].bits + codes[second & 0x0F].bits
+            ),
+            entries,
+        )
+        next_codes, next_by_length = huffman_codes(huff4_symbols(literal_payload(data, operations)), 4)
+        if next_codes == codes:
+            break
+        codes, by_length = next_codes, next_by_length
+    else:
+        operations = plan_lz3(
+            data,
+            lambda first, second: (
+                codes[first >> 4].bits + codes[first & 0x0F].bits
+                + codes[second >> 4].bits + codes[second & 0x0F].bits
+            ),
+            entries,
+        )
+
+    writer = BitWriter()
+    writer.write((len(data) << 8) | 0x70, 32)
+    writer.write(0x0B, 8)  # Huffman-4 atoms, LZ mode 3, no differential filter.
+    emit_huffman_tree(writer, by_length, 4)
+    emit_ladder(writer, entries)
+
+    position = 0
+    operation_index = 0
+    while operation_index < len(operations):
+        kind, pairs, argument = operations[operation_index]
+        if kind == "literal":
+            run_pairs = pairs
+            following = operation_index + 1
+            while following < len(operations) and operations[following][0] == "literal":
+                run_pairs += operations[following][1]
+                following += 1
+            extended_cost = 1 + 2 + vli_cost(run_pairs - 1, 3) + 1
+            if extended_cost < run_pairs:
+                writer.write(1, 1)
+                writer.write(3, 2)
+                emit_vli(writer, run_pairs - 1, 3)
+                writer.write(0, 1)
+                for offset in range(run_pairs * 2):
+                    write_huff4_byte(writer, data[position + offset], codes)
+                position += run_pairs * 2
+                operation_index = following
+                continue
+        if kind == "lookup":
+            index, pair_distance = argument >> 16, argument & 0xFFFF
+            start, bits = entries[index]
+            writer.write(1, 1)
+            if pairs <= 9:
+                writer.write(index, 2)
+            else:
+                writer.write(3, 2)
+                emit_vli(writer, (pairs - 2) >> 3, 3)
+                writer.write(1, 1)
+                writer.write(index, 2)
+            writer.write(pair_distance - start, bits)
+            writer.write((pairs - 2) & 7, 3)
+        else:
+            writer.write(0, 1)
+            write_huff4_byte(writer, data[position], codes)
+            write_huff4_byte(writer, data[position + 1], codes)
         position += pairs * 2
         operation_index += 1
     return writer.finish()

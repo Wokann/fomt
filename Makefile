@@ -245,6 +245,19 @@ INTRO_OBJECTS_OUTPUTS := $(foreach object,$(INTRO_OBJECTS),$(INTRO_OBJECTS_OUTPU
 INTRO_OBJECTS_STAMP := $(INTRO_OBJECTS_OUTPUT_DIR)/.objects.stamp
 INTRO_OBJECTS_REGION := $(shell echo "$(GAME_REGION)" | tr '[:upper:]' '[:lower:]')
 
+# The earlier Intro Scene setup function creates two interleaved 32-by-32 BG
+# tilemaps from each 0x1000-byte Huffman-4/LZ3 source.  Keep the native
+# interleaving as editable source until the compositor's palette/layout rules
+# are proven.
+INTRO_STARTUP_TILEMAPS_TOOL := tools/intro_scene_startup_tilemaps.py
+INTRO_STARTUP_TILEMAPS_SOURCE_DIR := graphics/intro_scene/shared/startup_tilemaps
+INTRO_STARTUP_TILEMAPS := 00 01 02 03
+INTRO_STARTUP_TILEMAPS_SOURCES := $(foreach map,$(INTRO_STARTUP_TILEMAPS),$(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_$(map).tilemap)
+INTRO_STARTUP_TILEMAPS_OUTPUT_DIR := $(BUILD_DIR)/graphics/intro_scene/startup_tilemaps
+INTRO_STARTUP_TILEMAPS_OUTPUTS := $(foreach map,$(INTRO_STARTUP_TILEMAPS),$(INTRO_STARTUP_TILEMAPS_OUTPUT_DIR)/startup_$(map).0x70)
+INTRO_STARTUP_TILEMAPS_STAMP := $(INTRO_STARTUP_TILEMAPS_OUTPUT_DIR)/.startup-tilemaps.stamp
+INTRO_STARTUP_TILEMAPS_REGION := $(INTRO_OBJECTS_REGION)
+
 # The Records Screen uses seven independently selected, raw 16x16 4bpp task
 # icons.  Each source PNG retains the physical icon's own 16-colour BGR555
 # palette; the C++ pointer table determines presentation order at runtime.
@@ -437,6 +450,13 @@ $(INTRO_OBJECTS_STAMP): $(INTRO_OBJECTS_SOURCES) $(INTRO_OBJECTS_TOOL) $(FARM_ST
 
 $(INTRO_OBJECTS_OUTPUTS): $(INTRO_OBJECTS_STAMP)
 
+$(INTRO_STARTUP_TILEMAPS_STAMP): $(INTRO_STARTUP_TILEMAPS_SOURCES) $(INTRO_STARTUP_TILEMAPS_TOOL) $(FARM_STATUS_CODEC) $(BASE_ROM)
+	@$(PYTHON) $(INTRO_STARTUP_TILEMAPS_TOOL) build --region $(INTRO_STARTUP_TILEMAPS_REGION) --rom $(BASE_ROM) \
+	  --source-dir $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR) --output-dir $(INTRO_STARTUP_TILEMAPS_OUTPUT_DIR)
+	@touch $@
+
+$(INTRO_STARTUP_TILEMAPS_OUTPUTS): $(INTRO_STARTUP_TILEMAPS_STAMP)
+
 $(RECORDS_MINIGAME_OUTPUTS): $(RECORDS_MINIGAME_SOURCES) $(RECORDS_MINIGAME_TOOL)
 	@$(PYTHON) $(RECORDS_MINIGAME_TOOL) build --source-dir $(RECORDS_MINIGAME_SOURCE_DIR) --output-dir $(RECORDS_MINIGAME_OUTPUT_DIR)
 
@@ -444,7 +464,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-background-edit-test gfx-intro-objects gfx-intro-objects-test gfx-intro-objects-all gfx-intro-objects-edit-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
+.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-background-edit-test gfx-intro-objects gfx-intro-objects-test gfx-intro-objects-all gfx-intro-objects-edit-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-tilemaps-edit-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
 oam-pack: $(OAM_PACK)
 oam-pack-test: $(OAM_PACK) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba $(PORTRAIT_SOURCE_DIR)/full/000_TALK_PORTRAIT_RICK_NORMAL.png
 	@mkdir -p $(BUILD_DIR)/graphics/oam_pack
@@ -550,6 +570,17 @@ gfx-intro-objects-all:
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-intro-objects-test
 gfx-intro-objects-edit-test: $(INTRO_OBJECTS_TOOL) baserom_jp.gba
 	@$(PYTHON) $(INTRO_OBJECTS_TOOL) edit-test --region jp --rom baserom_jp.gba
+gfx-intro-startup-tilemaps: $(INTRO_STARTUP_TILEMAPS_STAMP)
+gfx-intro-startup-tilemaps-test: gfx-intro-startup-tilemaps $(BASE_ROM) $(INTRO_STARTUP_TILEMAPS_TOOL)
+	@$(PYTHON) $(INTRO_STARTUP_TILEMAPS_TOOL) verify --region $(INTRO_STARTUP_TILEMAPS_REGION) --rom $(BASE_ROM) \
+	  --source-dir $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR) --output-dir $(INTRO_STARTUP_TILEMAPS_OUTPUT_DIR)
+gfx-intro-startup-tilemaps-all:
+	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-intro-startup-tilemaps-test
+	@$(MAKE) --no-print-directory GAME_REGION=US gfx-intro-startup-tilemaps-test
+	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-intro-startup-tilemaps-test
+	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-intro-startup-tilemaps-test
+gfx-intro-startup-tilemaps-edit-test: $(INTRO_STARTUP_TILEMAPS_TOOL) baserom_jp.gba
+	@$(PYTHON) $(INTRO_STARTUP_TILEMAPS_TOOL) edit-test --region jp --rom baserom_jp.gba
 gfx-records-minigame: $(RECORDS_MINIGAME_OUTPUTS)
 gfx-records-minigame-test: gfx-records-minigame $(RECORDS_MINIGAME_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(RECORDS_MINIGAME_TOOL) verify --source-dir $(RECORDS_MINIGAME_SOURCE_DIR) \
@@ -574,7 +605,7 @@ tile-grid-test:
 	@$(MAKE) --no-print-directory GAME_REGION=EU tile-grid-region-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE tile-grid-region-test
 
-gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui gfx-farm-status gfx-farm-status-tilemaps gfx-intro-background gfx-intro-objects gfx-records-minigame
+gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui gfx-farm-status gfx-farm-status-tilemaps gfx-intro-background gfx-intro-objects gfx-intro-startup-tilemaps gfx-records-minigame
 
 # Full graphics gate for assets that have an authoritative source/rebuild
 # path.  It intentionally does not link a ROM: the project-wide link is
@@ -592,12 +623,14 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-intro-background-edit-test
 	@$(MAKE) --no-print-directory gfx-intro-objects-all
 	@$(MAKE) --no-print-directory gfx-intro-objects-edit-test
+	@$(MAKE) --no-print-directory gfx-intro-startup-tilemaps-all
+	@$(MAKE) --no-print-directory gfx-intro-startup-tilemaps-edit-test
 	@$(MAKE) --no-print-directory gfx-records-minigame-all
 	@$(MAKE) --no-print-directory tile-grid-test
 	@$(MAKE) --no-print-directory oam-pack-test
 	@$(MAKE) --no-print-directory oam-pack-audit
 
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN) $(PORTRAIT_TILE_BIN) $(ACTOR_TILE_BIN) $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN) $(FARM_STATUS_PACKED_BIN) $(FARM_STATUS_PALETTE_BIN) $(FARM_STATUS_TILEMAP_BIN) $(INTRO_BACKGROUND_PACKED_BIN) $(INTRO_BACKGROUND_PALETTE_BIN) $(INTRO_OBJECTS_STAMP) $(RECORDS_MINIGAME_OUTPUTS)
+$(BUILD_DIR)/asm/data/data_0813B288.o: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN) $(PORTRAIT_TILE_BIN) $(ACTOR_TILE_BIN) $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN) $(FARM_STATUS_PACKED_BIN) $(FARM_STATUS_PALETTE_BIN) $(FARM_STATUS_TILEMAP_BIN) $(INTRO_BACKGROUND_PACKED_BIN) $(INTRO_BACKGROUND_PALETTE_BIN) $(INTRO_OBJECTS_STAMP) $(INTRO_STARTUP_TILEMAPS_STAMP) $(RECORDS_MINIGAME_OUTPUTS)
 
 # Mary owns the complete packed RIFF script stream.  Its three headers remain
 # explicit inputs: callables and slot names live with the selected scripts,

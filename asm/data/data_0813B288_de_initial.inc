@@ -2025,16 +2025,16 @@ gUnk_08747A74:
 	.incbin "baserom_de.gba", 0x4CEEE8, 0x275C
 	.global gUnk_IntroSceneStartupUnpackSource_000
 gUnk_IntroSceneStartupUnpackSource_000:
-	.incbin "baserom_de.gba", 0x4D1644, 0x3DC
+	.incbin "build/de/graphics/intro_scene/startup_tilemaps/startup_00.0x70"
 	.global gUnk_IntroSceneStartupUnpackSource_001
 gUnk_IntroSceneStartupUnpackSource_001:
-	.incbin "baserom_de.gba", 0x4D1A20, 0x21C
+	.incbin "build/de/graphics/intro_scene/startup_tilemaps/startup_01.0x70"
 	.global gUnk_IntroSceneStartupUnpackSource_002
 gUnk_IntroSceneStartupUnpackSource_002:
-	.incbin "baserom_de.gba", 0x4D1C3C, 0xF4
+	.incbin "build/de/graphics/intro_scene/startup_tilemaps/startup_02.0x70"
 	.global gUnk_IntroSceneStartupUnpackSource_003
 gUnk_IntroSceneStartupUnpackSource_003:
-	.incbin "baserom_de.gba", 0x4D1D30, 0xFC
+	.incbin "build/de/graphics/intro_scene/startup_tilemaps/startup_03.0x70"
 	.global gUnk_0874A9C0
 gUnk_0874A9C0:
 	.incbin "baserom_de.gba", 0x4D1E2C, 0x3970
