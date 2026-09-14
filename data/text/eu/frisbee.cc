@@ -1,4 +1,4 @@
-#include "frisbee_text.hh"
+#include "frisbee.hh"
 
 // Static Frisbee UI text.  The text processor converts these UTF-8 strings
 // and named controls into the exact regional ROM bytes during the build.

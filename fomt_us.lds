@@ -667,7 +667,7 @@ SECTIONS
         FILL(0x00);
         . = 0xFA158; src/frisbee_scoreboard.o(.rodata);
         . = 0xFA174; src/animal_festival_ranking_score_data.o(.rodata);
-        . = 0xFA39C; data/text/frisbee.o(.rodata);
+        . = 0xFA39C; src/frisbee.o(.rodata);
         FILL(0x00);
         . = ALIGN(4); src/animal_festival_ranking_random_data.o(.rodata);
         . = 0xFA78C; data/text/animal_festival.o(.rodata);

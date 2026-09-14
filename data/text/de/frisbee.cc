@@ -1,4 +1,4 @@
-#include "frisbee_text.hh"
+#include "frisbee.hh"
 
 char const gText_Frisbee_ExplanationQuestion[] =
     "Möchtest du eine Erklärung?";

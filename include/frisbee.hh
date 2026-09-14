@@ -1,12 +1,9 @@
-#ifndef FRISBEE_TEXT_HH
-#define FRISBEE_TEXT_HH
+#ifndef FRISBEE_HH
+#define FRISBEE_HH
 
 #include "prelude.h"
 
-
 // Static UI text used by the Frisbee practice and tournament flow.
-// The regional source files define the same semantic labels at their
-// independently matched ROM locations.
 extern char const gText_Frisbee_ExplanationQuestion[];
 extern char const gText_Frisbee_Yes[];
 extern char const gText_Frisbee_No[];
@@ -24,4 +21,4 @@ extern char const gText_Frisbee_FoundItem[];
 extern char const gText_Frisbee_FoundNothing[];
 extern char const gCppRuntimeBadAlloc_FrisbeeTextTrailer[];
 
-#endif // FRISBEE_TEXT_HH
+#endif // FRISBEE_HH

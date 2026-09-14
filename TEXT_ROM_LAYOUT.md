@@ -252,7 +252,7 @@
 | `0x080F9994`–`0x080F99AA` | `src/frisbee_scoreboard.o(.rodata)` | [嵌入文本] | `data/text/jp/frisbee_scoreboard.cc` → `src/frisbee_scoreboard.cc`<br>`include/frisbee_scoreboard.hh` | `gText_Frisbee_TournamentScoreboard`；唯一汇编调用为符号重定位<br>后续飞盘文本与本对象之间夹有动物节数据，故保持独立模块 |
 | `0x080F99AB`–`0x080F99AB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x080F99AC`–`0x080F9BD3` | `src/animal_festival_ranking_score_data.o(.rodata)` | [文本与数据] | `data/text/common/animal_festival_ranking_score_data.cc` → `src/animal_festival_ranking_score_data.cc`<br>`include/animal_festival_ranking_score_data.hh` | `gAnimalFestivalRankingScoreTable`、运行时字符串 `1` 项、`gUnk_080FA246`、`gUnk_080FA264`、`gUnk_080FA2E8`、`gUnk_080FA36C`、`gAnimalFestivalRewardChanceWeights`、`gAnimalFestivalRewardArticleIds`<br>对象内 `00` 对齐 `2` 字节；所有已知汇编读取均为符号重定位，未证实含义的原始表保留 `gUnk` 名称 |
-| `0x080F9BD4`–`0x080F9F59` | `data/text/frisbee.o(.rodata)` | [文本对象] | `data/text/jp/frisbee.cc` | 文本 `15` 项（详见下方索引）<br>运行时字符串 `1` 项 |
+| `0x080F9BD4`–`0x080F9F59` | `src/frisbee.o(.rodata)` | [嵌入文本] | `data/text/jp/frisbee.cc` → `src/frisbee.cc`<br>`include/frisbee.hh` | 文本 `15` 项（详见下方索引）<br>运行时字符串 `1` 项；所有已知汇编读取为符号重定位 |
 | `0x080F9F5A`–`0x080F9F5B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F9F5C`–`0x080F9FCB` | `src/animal_festival_ranking_random_data.o(.rodata)` | [数据] | `src/animal_festival_ranking_random_data.cc`<br>`include/animal_festival_ranking_random_data.hh` | `gAnimalFestivalRandomRangePairs` |
 | `0x080F9FCC`–`0x080FA1DD` | `data/text/animal_festival.o(.rodata)` | [文本对象] | `data/text/jp/animal_festival.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项 |
@@ -1191,21 +1191,21 @@
 | `0x080F971C` | `gText_ScriptEngineUi_FallbackNone` | `data/text/jp/script_engine.cc` | `src/script_engine.o(.rodata)` |
 | `0x080F97E6` | `gText_NameEntry_PresetAnimalNames` | `data/text/jp/new_game_name_entry_ui_data.cc` | `src/new_game_name_entry_ui_data.o(.rodata)` |
 | `0x080F9994` | `gText_Frisbee_TournamentScoreboard` | `data/text/jp/frisbee_scoreboard.cc` | `src/frisbee_scoreboard.o(.rodata)` |
-| `0x080F9BD4` | `gText_Frisbee_ExplanationQuestion` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080F9BF0` | `gText_Frisbee_Yes` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080F9BF8` | `gText_Frisbee_No` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080F9C00` | `gText_Frisbee_ExplanationCursorTiming` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080F9C84` | `gText_Frisbee_ExplanationGreenZone` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080F9CCC` | `gText_Frisbee_ExplanationRedZone` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080F9D48` | `gText_Frisbee_ExplanationPractice` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080F9E48` | `gText_Frisbee_ExplanationTournament` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080F9E8C` | `gText_Frisbee_ExplainAgain` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080F9EA8` | `gText_Frisbee_ThrowAgain` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080F9EC4` | `gText_Frisbee_TournamentFinished` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080F9EDC` | `gText_Frisbee_PlayAgain` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080F9EF4` | `gText_Frisbee_DogNoLongerWantsToPlay` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080F9F24` | `gText_Frisbee_FoundItem` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080F9F34` | `gText_Frisbee_FoundNothing` | `data/text/jp/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
+| `0x080F9BD4` | `gText_Frisbee_ExplanationQuestion` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080F9BF0` | `gText_Frisbee_Yes` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080F9BF8` | `gText_Frisbee_No` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080F9C00` | `gText_Frisbee_ExplanationCursorTiming` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080F9C84` | `gText_Frisbee_ExplanationGreenZone` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080F9CCC` | `gText_Frisbee_ExplanationRedZone` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080F9D48` | `gText_Frisbee_ExplanationPractice` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080F9E48` | `gText_Frisbee_ExplanationTournament` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080F9E8C` | `gText_Frisbee_ExplainAgain` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080F9EA8` | `gText_Frisbee_ThrowAgain` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080F9EC4` | `gText_Frisbee_TournamentFinished` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080F9EDC` | `gText_Frisbee_PlayAgain` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080F9EF4` | `gText_Frisbee_DogNoLongerWantsToPlay` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080F9F24` | `gText_Frisbee_FoundItem` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080F9F34` | `gText_Frisbee_FoundNothing` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
 | `0x080F9FD6` | `gText_AnimalFestival_LivestockContestantNames` | `data/text/jp/animal_festival.cc` | `data/text/animal_festival.o(.rodata)` |
 | `0x080FA280` | `gText_HorseRace_BuyTicketDeclined` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
 | `0x080FA294` | `gText_HorseRace_Yes` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
@@ -2091,7 +2091,7 @@
 | `0x080F9F7C`–`0x080FA157` | `src/new_game_name_entry_ui_data.o(.rodata)` | [文本与数据] | `data/text/us/new_game_name_entry_ui_data.cc` → `src/new_game_name_entry_ui_data.cc`<br>`include/new_game_name_entry_ui_data.hh` | `gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue`、运行时字符串 `1` 项、30 行固定宽度 `gText_NameEntry_PresetAnimalNames`、`gNewGameNameEntryUiCharacterCodes`<br>前缀、文本和字形表在同一对象中按 ROM 顺序排列；所有已知汇编读取为符号重定位 |
 | `0x080FA158`–`0x080FA173` | `src/frisbee_scoreboard.o(.rodata)` | [嵌入文本] | `data/text/us/frisbee_scoreboard.cc` → `src/frisbee_scoreboard.cc`<br>`include/frisbee_scoreboard.hh` | `gText_Frisbee_TournamentScoreboard`；唯一汇编调用为符号重定位<br>后续飞盘文本与本对象之间夹有动物节数据，故保持独立模块 |
 | `0x080FA174`–`0x080FA39B` | `src/animal_festival_ranking_score_data.o(.rodata)` | [文本与数据] | `data/text/common/animal_festival_ranking_score_data.cc` → `src/animal_festival_ranking_score_data.cc`<br>`include/animal_festival_ranking_score_data.hh` | `gAnimalFestivalRankingScoreTable`、运行时字符串 `1` 项、`gUnk_080FA246`、`gUnk_080FA264`、`gUnk_080FA2E8`、`gUnk_080FA36C`、`gAnimalFestivalRewardChanceWeights`、`gAnimalFestivalRewardArticleIds`<br>对象内 `00` 对齐 `2` 字节；所有已知汇编读取均为符号重定位，未证实含义的原始表保留 `gUnk` 名称 |
-| `0x080FA39C`–`0x080FA719` | `data/text/frisbee.o(.rodata)` | [文本对象] | `data/text/us/frisbee.cc` | 文本 `15` 项（详见下方索引）<br>运行时字符串 `1` 项 |
+| `0x080FA39C`–`0x080FA719` | `src/frisbee.o(.rodata)` | [嵌入文本] | `data/text/us/frisbee.cc` → `src/frisbee.cc`<br>`include/frisbee.hh` | 文本 `15` 项（详见下方索引）<br>运行时字符串 `1` 项；所有已知汇编读取为符号重定位 |
 | `0x080FA71A`–`0x080FA71B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FA71C`–`0x080FA78B` | `src/animal_festival_ranking_random_data.o(.rodata)` | [数据] | `src/animal_festival_ranking_random_data.cc`<br>`include/animal_festival_ranking_random_data.hh` | `gAnimalFestivalRandomRangePairs` |
 | `0x080FA78C`–`0x080FA99D` | `data/text/animal_festival.o(.rodata)` | [文本对象] | `data/text/us/animal_festival.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项 |
@@ -3022,21 +3022,21 @@
 | `0x080F9EC0` | `gText_ScriptEngineUi_FallbackNone` | `data/text/us/script_engine.cc` | `src/script_engine.o(.rodata)` |
 | `0x080F9F8A` | `gText_NameEntry_PresetAnimalNames` | `data/text/us/new_game_name_entry_ui_data.cc` | `src/new_game_name_entry_ui_data.o(.rodata)` |
 | `0x080FA158` | `gText_Frisbee_TournamentScoreboard` | `data/text/us/frisbee_scoreboard.cc` | `src/frisbee_scoreboard.o(.rodata)` |
-| `0x080FA39C` | `gText_Frisbee_ExplanationQuestion` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080FA3B8` | `gText_Frisbee_Yes` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080FA3BC` | `gText_Frisbee_No` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080FA3C0` | `gText_Frisbee_ExplanationCursorTiming` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080FA458` | `gText_Frisbee_ExplanationGreenZone` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080FA49C` | `gText_Frisbee_ExplanationRedZone` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080FA510` | `gText_Frisbee_ExplanationPractice` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080FA614` | `gText_Frisbee_ExplanationTournament` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080FA660` | `gText_Frisbee_ExplainAgain` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080FA670` | `gText_Frisbee_ThrowAgain` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080FA684` | `gText_Frisbee_TournamentFinished` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080FA6A0` | `gText_Frisbee_PlayAgain` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080FA6AC` | `gText_Frisbee_DogNoLongerWantsToPlay` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080FA6E0` | `gText_Frisbee_FoundItem` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
-| `0x080FA6F4` | `gText_Frisbee_FoundNothing` | `data/text/us/frisbee.cc` | `data/text/frisbee.o(.rodata)` |
+| `0x080FA39C` | `gText_Frisbee_ExplanationQuestion` | `data/text/us/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080FA3B8` | `gText_Frisbee_Yes` | `data/text/us/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080FA3BC` | `gText_Frisbee_No` | `data/text/us/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080FA3C0` | `gText_Frisbee_ExplanationCursorTiming` | `data/text/us/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080FA458` | `gText_Frisbee_ExplanationGreenZone` | `data/text/us/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080FA49C` | `gText_Frisbee_ExplanationRedZone` | `data/text/us/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080FA510` | `gText_Frisbee_ExplanationPractice` | `data/text/us/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080FA614` | `gText_Frisbee_ExplanationTournament` | `data/text/us/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080FA660` | `gText_Frisbee_ExplainAgain` | `data/text/us/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080FA670` | `gText_Frisbee_ThrowAgain` | `data/text/us/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080FA684` | `gText_Frisbee_TournamentFinished` | `data/text/us/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080FA6A0` | `gText_Frisbee_PlayAgain` | `data/text/us/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080FA6AC` | `gText_Frisbee_DogNoLongerWantsToPlay` | `data/text/us/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080FA6E0` | `gText_Frisbee_FoundItem` | `data/text/us/frisbee.cc` | `src/frisbee.o(.rodata)` |
+| `0x080FA6F4` | `gText_Frisbee_FoundNothing` | `data/text/us/frisbee.cc` | `src/frisbee.o(.rodata)` |
 | `0x080FA796` | `gText_AnimalFestival_LivestockContestantNames` | `data/text/us/animal_festival.cc` | `data/text/animal_festival.o(.rodata)` |
 | `0x080FAA40` | `gText_HorseRace_BuyTicketDeclined` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
 | `0x080FAA5C` | `gText_HorseRace_Yes` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
