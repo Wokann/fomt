@@ -11,7 +11,6 @@ from __future__ import annotations
 
 import argparse
 import hashlib
-import json
 import re
 import struct
 import zlib
@@ -76,21 +75,6 @@ def load_archive(path: Path, offset: int, length: int) -> Archive:
             f"archive has {len(data) - cursor} unexpected bytes after the seventh table"
         )
     return Archive(data, tuple(table_offsets), tuple(counts), cursor)
-
-
-def manifest_location(manifest_path: Path, region: str) -> tuple[int, int, str]:
-    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    sources = manifest.get("sources")
-    if not isinstance(sources, dict):
-        raise ValueError("portrait manifest does not declare regional sources")
-    source = sources.get(region.upper())
-    if not isinstance(source, dict):
-        available = ", ".join(sorted(sources))
-        raise ValueError(f"portrait manifest has no {region.upper()} source; available: {available}")
-    try:
-        return int(source["rom_offset"], 0), int(source["length"], 0), str(source["sha256"]).lower()
-    except (KeyError, TypeError, ValueError) as error:
-        raise ValueError(f"portrait manifest has invalid {region.upper()} source metadata") from error
 
 
 def portrait_descriptor(archive: Archive, portrait_id: int) -> tuple[int, int, int, int, int]:
@@ -170,6 +154,22 @@ def parse_names(path: Path | None) -> dict[int, str]:
 
 def display_name(portrait_id: int, names: dict[int, str]) -> str:
     return names.get(portrait_id, f"TALK_PORTRAIT_{portrait_id:03d}")
+
+
+def portrait_source_file(source_directory: Path, kind: str, portrait_id: int) -> Path:
+    """Resolve a source by its stable numeric filename prefix.
+
+    The suffix is descriptive only.  This keeps a renamed enum or a better
+    human label from changing the physical portrait binding, and avoids a
+    second manifest that mirrors the files already present on disk.
+    """
+    matches = sorted((source_directory / kind).glob(f"{portrait_id:03d}_*.png"))
+    if len(matches) == 1:
+        return matches[0]
+    if not matches:
+        raise ValueError(f"missing {kind} PNG for portrait {portrait_id:03d}")
+    names = ", ".join(path.name for path in matches)
+    raise ValueError(f"multiple {kind} PNGs claim portrait {portrait_id:03d}: {names}")
 
 
 def palette(archive: Archive, palette_id: int) -> tuple[tuple[int, int, int, int], ...]:
@@ -425,12 +425,9 @@ def render_preview(archive: Archive, portrait_id: int,
 
 def export(archive: Archive, output: Path, names: dict[int, str]) -> None:
     audit(archive)
-    metadata: list[dict[str, int | str]] = []
-    layout_metadata: list[dict[str, object]] = []
     for portrait_id in range(archive.counts[0]):
         symbol = display_name(portrait_id, names)
         _, _, tile_count, tile_start, palette_id = portrait_descriptor(archive, portrait_id)
-        origin_x, origin_y, canvas_width, canvas_height, entries = portrait_canvas(archive, portrait_id)
         colors = palette(archive, palette_id)
         grid = render_tile_grid(archive, tile_start, tile_count, colors)
         preview = render_preview(archive, portrait_id, colors)
@@ -439,56 +436,8 @@ def export(archive: Archive, output: Path, names: dict[int, str]) -> None:
         write_png_indexed(output / "tiles" / f"{filename}.png", *grid, colors)
         write_png_indexed(output / "full" / f"{filename}.png", *full, colors)
         write_png_rgba(output / "preview" / f"{filename}.png", *preview)
-        metadata.append({
-            "id": portrait_id,
-            "symbol": symbol,
-            "tile_start": tile_start,
-            "tile_count": tile_count,
-            "palette_id": palette_id,
-            "tile_image": f"tiles/{filename}.png",
-            "full_image": f"full/{filename}.png",
-            "preview": f"preview/{filename}.png",
-        })
-        layout_metadata.append({
-            "id": portrait_id,
-            "symbol": symbol,
-            "canvas": {
-                "origin_x": origin_x,
-                "origin_y": origin_y,
-                "width": canvas_width,
-                "height": canvas_height,
-            },
-            "oam_entries": [
-                {
-                    "x": x,
-                    "y": y,
-                    "width": sprite_width,
-                    "height": sprite_height,
-                    "tile_start": entry_tile_start,
-                    "tile_count": sprite_width * sprite_height // 64,
-                }
-                for x, y, sprite_width, sprite_height, entry_tile_start in entries
-            ],
-        })
-    (output / "manifest.json").write_text(
-        json.dumps({"archive_sha256": hashlib.sha256(archive.data).hexdigest(), "portraits": metadata}, indent=2)
-        + "\n",
-        encoding="utf-8",
-    )
-    (output / "layout.json").write_text(
-        json.dumps(
-            {
-                "archive_sha256": hashlib.sha256(archive.data).hexdigest(),
-                "coordinate_system": "GBA object pixels; full PNG coordinates equal OAM coordinates minus canvas origin",
-                "portraits": layout_metadata,
-            },
-            indent=2,
-        )
-        + "\n",
-        encoding="utf-8",
-    )
     print(
-        f"exported {len(metadata)} full indexed portraits, rendered previews, "
+        f"exported {archive.counts[0]} full indexed portraits, rendered previews, "
         f"and editable tile groups to {output}"
     )
 
@@ -503,16 +452,14 @@ def encode_tile(indexes: bytes, width: int, tile_x: int, tile_y: int) -> bytes:
     return bytes(encoded)
 
 
-def rebuild(archive: Archive, source_directory: Path, output: Path,
-            names: dict[int, str]) -> None:
+def rebuild(archive: Archive, source_directory: Path, output: Path) -> None:
     audit(archive)
     t4_offset = archive.table_offsets[3]
     native = bytearray(archive.data[t4_offset:t4_offset + archive.counts[3] * 32])
     assigned: dict[int, bytes] = {}
     for portrait_id in range(archive.counts[0]):
-        symbol = display_name(portrait_id, names)
         _, _, tile_count, tile_start, palette_id = portrait_descriptor(archive, portrait_id)
-        filename = source_directory / "tiles" / f"{portrait_id:03d}_{symbol}.png"
+        filename = portrait_source_file(source_directory, "tiles", portrait_id)
         width, height, indexes, source_palette = read_png_indexed(filename)
         expected_width = 32 * 8
         expected_height = ((tile_count + 31) // 32) * 8
@@ -584,17 +531,15 @@ def assign_native_pixel(native: bytearray, assignments: dict[tuple[int, int], in
         native[offset] = (native[offset] & 0xF0) | value
 
 
-def rebuild_full_data(archive: Archive, source_directory: Path,
-                      names: dict[int, str]) -> tuple[bytes, int]:
+def rebuild_full_data(archive: Archive, source_directory: Path) -> tuple[bytes, int]:
     audit(archive)
     t4_offset = archive.table_offsets[3]
     native = bytearray(archive.data[t4_offset:t4_offset + archive.counts[3] * 32])
     assignments: dict[tuple[int, int], int] = {}
     changed_pixels = 0
     for portrait_id in range(archive.counts[0]):
-        symbol = display_name(portrait_id, names)
         _, _, _, _, palette_id = portrait_descriptor(archive, portrait_id)
-        filename = source_directory / "full" / f"{portrait_id:03d}_{symbol}.png"
+        filename = portrait_source_file(source_directory, "full", portrait_id)
         width, height, source, source_palette = read_png_indexed(filename)
         expected_width, expected_height, baseline, layers = rendered_pixel_layers(archive, portrait_id)
         if (width, height) != (expected_width, expected_height):
@@ -620,24 +565,22 @@ def rebuild_full_data(archive: Archive, source_directory: Path,
     return bytes(native), changed_pixels
 
 
-def rebuild_full(archive: Archive, source_directory: Path, output: Path,
-                 names: dict[int, str]) -> None:
-    native, changed_pixels = rebuild_full_data(archive, source_directory, names)
+def rebuild_full(archive: Archive, source_directory: Path, output: Path) -> None:
+    native, changed_pixels = rebuild_full_data(archive, source_directory)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_bytes(native)
     print(f"rebuilt {len(native)} bytes from {source_directory}/full with {changed_pixels} visible pixel changes")
     print(f"portrait tile SHA-256: {hashlib.sha256(native).hexdigest()}")
 
 
-def render_full_previews(archive: Archive, source_directory: Path,
-                         names: dict[int, str]) -> None:
+def render_full_previews(archive: Archive, source_directory: Path) -> None:
     """Render preview PNGs from the current complete-image authoring sources.
 
     This deliberately reuses rebuild_full_data instead of trusting an editor's
     visible compositing. The preview therefore shows exactly the tile bytes a
     build would emit, including OAM overlap and palette-index semantics.
     """
-    native, changed_pixels = rebuild_full_data(archive, source_directory, names)
+    native, changed_pixels = rebuild_full_data(archive, source_directory)
     t4_offset = archive.table_offsets[3]
     archive_data = bytearray(archive.data)
     archive_data[t4_offset:t4_offset + len(native)] = native
@@ -645,10 +588,10 @@ def render_full_previews(archive: Archive, source_directory: Path,
         bytes(archive_data), archive.table_offsets, archive.counts, archive.trailing_offset
     )
     for portrait_id in range(rebuilt_archive.counts[0]):
-        symbol = display_name(portrait_id, names)
         _, _, _, _, palette_id = portrait_descriptor(rebuilt_archive, portrait_id)
         preview = render_preview(rebuilt_archive, portrait_id, palette(rebuilt_archive, palette_id))
-        write_png_rgba(source_directory / "preview" / f"{portrait_id:03d}_{symbol}.png", *preview)
+        filename = portrait_source_file(source_directory, "full", portrait_id)
+        write_png_rgba(source_directory / "preview" / filename.name, *preview)
     print(
         f"rendered {rebuilt_archive.counts[0]} previews from {source_directory}/full "
         f"with {changed_pixels} visible pixel changes"
@@ -658,10 +601,9 @@ def render_full_previews(archive: Archive, source_directory: Path,
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("rom", type=Path, help="retail ROM containing the portrait archive")
-    parser.add_argument("--offset", type=lambda text: int(text, 0), help="archive ROM offset")
-    parser.add_argument("--length", type=lambda text: int(text, 0), help="full archive length")
-    parser.add_argument("--manifest", type=Path, help="regional archive metadata JSON")
-    parser.add_argument("--region", choices=("JP", "US", "EU", "DE", "jp", "us", "eu", "de"), help="region selected from --manifest")
+    parser.add_argument("--offset", required=True, type=lambda text: int(text, 0), help="archive ROM offset")
+    parser.add_argument("--length", default=0x5E0A4, type=lambda text: int(text, 0), help="full archive length")
+    parser.add_argument("--sha256", help="expected full-archive SHA-256")
     parser.add_argument("--names-header", type=Path, help="Mary-C portrait enum used only for output names")
     subparsers = parser.add_subparsers(dest="command", required=True)
     subparsers.add_parser("audit", help="verify archive table and OAM relationships")
@@ -678,36 +620,24 @@ def main() -> int:
     )
     preview_parser.add_argument("--source", required=True, type=Path)
     args = parser.parse_args()
-    expected_hash: str | None = None
-    if args.manifest is not None:
-        if args.offset is not None or args.length is not None:
-            parser.error("--manifest cannot be combined with --offset or --length")
-        if args.region is None:
-            parser.error("--manifest requires --region")
-        offset, length, expected_hash = manifest_location(args.manifest, args.region)
-    else:
-        if args.offset is None:
-            parser.error("one of --offset or --manifest is required")
-        offset = args.offset
-        length = args.length if args.length is not None else 0x5E0A4
-    archive = load_archive(args.rom, offset, length)
+    expected_hash = args.sha256.lower() if args.sha256 else None
+    archive = load_archive(args.rom, args.offset, args.length)
     actual_hash = hashlib.sha256(archive.data).hexdigest()
     if expected_hash is not None and actual_hash != expected_hash:
         raise ValueError(
             f"archive SHA-256 mismatch: expected {expected_hash}, got {actual_hash}; refusing to process a different archive"
         )
     print(f"archive SHA-256: {actual_hash}")
-    names = parse_names(args.names_header)
     if args.command == "audit":
         audit(archive)
     elif args.command == "export":
-        export(archive, args.output, names)
+        export(archive, args.output, parse_names(args.names_header))
     elif args.command == "rebuild":
-        rebuild(archive, args.source, args.output, names)
+        rebuild(archive, args.source, args.output)
     elif args.command == "rebuild-full":
-        rebuild_full(archive, args.source, args.output, names)
+        rebuild_full(archive, args.source, args.output)
     elif args.command == "render-full-preview":
-        render_full_previews(archive, args.source, names)
+        render_full_previews(archive, args.source)
     else:
         raise AssertionError("unreachable")
     return 0

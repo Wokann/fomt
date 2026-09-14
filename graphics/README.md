@@ -39,25 +39,30 @@ build paths. The single-width output is 0x16D4 bytes and hashes to
 The double-width output is 0x288F0 bytes and hashes to
 `bb7ffb1ed47acb9a05d2789eae9f3236945a4892df746c5a4f9f1dde706c4d3e`.
 
-The adjacent JSON manifests are the authoritative resource metadata: physical
-ROM intervals per region, image layout, assembler symbol, and source hashes.
-Regenerate a shared PNG from a verified retail ROM with only Python's standard
-library plus the two locally built graphics tools:
+The PNG file itself is the authored resource; no JSON manifest controls its
+name, layout, or conversion. The verified regional ROM interval is supplied
+explicitly when regenerating a source image. For the single-width font the JP
+interval is `0x7515A8`, length `0x16D4`; all four regions have the same
+payload hash. Regenerate it with only Python's standard library plus the two
+locally built graphics tools:
 
 ```console
 python tools/extract_gfx.py font-1bpp \
-  --manifest graphics/font/shared/single_width_font.json \
-  --region JP \
   --rom baserom_jp.gba \
+  --offset 0x7515A8 --length 0x16D4 \
+  --sha256 92bc2a39dd9caf5e0f02a8ce7518f223eabe6c491bc4e05b8d1d2104f731754c \
+  --glyph-count 487 --glyph-width 8 --grid-columns 16 \
+  --output graphics/font/shared/single_width_font.png \
   --gbagfx tools/gbagfx/gbagfx \
   --fontpad tools/fontpad/fontpad
 ```
 
-Use `--region US`, `EU`, or `DE` with the matching ROM to independently audit
-the other localizations. On Windows, use the corresponding `.exe` paths (or
-invoke the script through `py -3`). The extractor verifies the selected ROM
-range hash before touching the PNG; it refuses an unverified or mismatched ROM
-instead of silently producing a plausible but incorrect asset.
+For US / EU / DE the corresponding offsets are `0x4F90CC` / `0x4F9128` /
+`0x71DDD4`; keep the remaining arguments identical. On Windows, use the
+corresponding `.exe` paths (or invoke the script through `py -3`). The
+extractor verifies the selected ROM range hash before touching the PNG; it
+refuses an unverified or mismatched ROM instead of silently producing a
+plausible but incorrect asset.
 
 ## Shared dialogue portraits
 
@@ -68,16 +73,14 @@ indexed-color source, not merely an RGBA screenshot: preserving the palette
 index is necessary because some native palettes contain visually identical
 colors at different indexes. The `preview/` directory is a rendered reference
 copy. `tiles/` preserves each descriptor's separate tile group for advanced
-edits that must touch hidden OAM pixels directly. `layout.json` is generated
-from the verified archive and records the canvas origin and ordered OAM pieces
-behind every complete image. It is an inspection contract, not a hand-edited
-source: ordinary art changes belong in `full/`; an OAM layout change requires
-a separate audited layout/repack step.
+edits that must touch hidden OAM pixels directly. Ordinary art changes belong
+only in `full/`; the verified native archive remains the single source for its
+OAM layout and is not duplicated as editable metadata.
 
 The 184 descriptors reference 1,037 OAM entries, 11,586 4bpp tiles and 52
 palettes. The complete archive is byte-identical in JP, US, EU, and DE, even
-though each ROM places it at a different address. `portrait_archive.json`
-records every interval and the common full-archive SHA-256:
+though each ROM places it at a different address. The build rules declare
+those physical positions directly; the common full-archive SHA-256 is:
 `34c23aced1a4f23ba80d1429a87f4c8a7ca11b0458c61a37a6eb48731440bbd2`.
 
 ```console
@@ -101,9 +104,8 @@ same in-memory rebuild and OAM compositor used by the build:
 
 ```console
 python tools/portrait_archive.py baserom_jp.gba \
-  --manifest graphics/portraits/shared/portrait_archive.json \
-  --region JP \
-  --names-header include/fomt_constants.mary.h \
+  --offset 0x2B3AE0 --length 0x5E0A4 \
+  --sha256 34c23aced1a4f23ba80d1429a87f4c8a7ca11b0458c61a37a6eb48731440bbd2 \
   render-full-preview --source graphics/portraits/shared
 ```
 
@@ -114,14 +116,13 @@ Regenerate the source image from any verified retail ROM:
 
 ```console
 python tools/portrait_archive.py baserom_jp.gba \
-  --manifest graphics/portraits/shared/portrait_archive.json \
-  --region JP \
-  --names-header include/fomt_constants.mary.h \
+  --offset 0x2B3AE0 --length 0x5E0A4 \
+  --sha256 34c23aced1a4f23ba80d1429a87f4c8a7ca11b0458c61a37a6eb48731440bbd2 \
   audit
 
 python tools/portrait_archive.py baserom_jp.gba \
-  --manifest graphics/portraits/shared/portrait_archive.json \
-  --region JP \
+  --offset 0x2B3AE0 --length 0x5E0A4 \
+  --sha256 34c23aced1a4f23ba80d1429a87f4c8a7ca11b0458c61a37a6eb48731440bbd2 \
   --names-header include/fomt_constants.mary.h \
   export --output graphics/portraits/shared
 ```

@@ -103,11 +103,16 @@ FONT_SHARED_DOUBLE_BIN := $(BUILD_DIR)/graphics/font/shared/double_width_font.1b
 # four and detects shared-tile conflicts. Per-descriptor tile groups remain as
 # an advanced exact-edit fallback.
 PORTRAIT_SOURCE_DIR := graphics/portraits/shared
-PORTRAIT_SOURCE_MANIFEST := $(PORTRAIT_SOURCE_DIR)/portrait_archive.json
 PORTRAIT_FULL_IMAGES := $(wildcard $(PORTRAIT_SOURCE_DIR)/full/*.png)
-PORTRAIT_TILE_IMAGES := $(wildcard $(PORTRAIT_SOURCE_DIR)/tiles/*.png)
 PORTRAIT_ARCHIVE_TOOL := tools/portrait_archive.py
 PORTRAIT_TILE_BIN := $(BUILD_DIR)/graphics/portraits/shared/portrait_tiles.4bpp
+PORTRAIT_ARCHIVE_LENGTH := 0x5E0A4
+PORTRAIT_ARCHIVE_SHA256 := 34c23aced1a4f23ba80d1429a87f4c8a7ca11b0458c61a37a6eb48731440bbd2
+PORTRAIT_ARCHIVE_OFFSET_JP := 0x2B3AE0
+PORTRAIT_ARCHIVE_OFFSET_US := 0x52D984
+PORTRAIT_ARCHIVE_OFFSET_EU := 0x52D9E0
+PORTRAIT_ARCHIVE_OFFSET_DE := 0x2B4A20
+PORTRAIT_ARCHIVE_OFFSET := $(PORTRAIT_ARCHIVE_OFFSET_$(GAME_REGION))
 
 SUBDIRS := $(sort $(dir $(ALL_OBJS)))
 $(shell mkdir -p $(SUBDIRS))
@@ -236,9 +241,9 @@ $(FONT_SHARED_DOUBLE_BIN): $(FONT_SHARED_DOUBLE_PADDED) $(FONT_PAD)
 	@mkdir -p $(dir $@)
 	@$(FONT_PAD) trim-grid-16x12-from-16x16 $< $@ 32 6922
 
-$(PORTRAIT_TILE_BIN): $(PORTRAIT_ARCHIVE_TOOL) $(PORTRAIT_SOURCE_MANIFEST) $(PORTRAIT_FULL_IMAGES) $(PORTRAIT_TILE_IMAGES) $(BASE_ROM) include/fomt_constants.mary.h
+$(PORTRAIT_TILE_BIN): $(PORTRAIT_ARCHIVE_TOOL) $(PORTRAIT_FULL_IMAGES) $(BASE_ROM)
 	@mkdir -p $(dir $@)
-	@$(PYTHON) $(PORTRAIT_ARCHIVE_TOOL) $(BASE_ROM) --manifest $(PORTRAIT_SOURCE_MANIFEST) --region $(GAME_REGION) --names-header include/fomt_constants.mary.h rebuild-full --source $(PORTRAIT_SOURCE_DIR) --output $@
+	@$(PYTHON) $(PORTRAIT_ARCHIVE_TOOL) $(BASE_ROM) --offset $(PORTRAIT_ARCHIVE_OFFSET) --length $(PORTRAIT_ARCHIVE_LENGTH) --sha256 $(PORTRAIT_ARCHIVE_SHA256) rebuild-full --source $(PORTRAIT_SOURCE_DIR) --output $@
 
 FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
