@@ -39,7 +39,7 @@ extern char const gText_LivestockShop_DailySellingPrice[];
 extern char const gText_LivestockShop_Currency[];
 extern char const gText_LivestockShop_SecondaryDailySellingPrice[];
 
-#if defined(REGION_WESTERN)
+#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 extern char const gText_LivestockShop_SecondaryStatusSick[];
 extern char const gText_LivestockShop_SecondaryAge[];
 #endif

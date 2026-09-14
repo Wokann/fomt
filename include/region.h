@@ -6,18 +6,15 @@
 #endif
 
 #if defined(REGION_US)
-#define REGION_WESTERN 1
 #define FOMT_TEXT_REGION_DIR us
 #include "layout/us/rom_layout.h"
 #elif defined(REGION_JP)
 #define FOMT_TEXT_REGION_DIR jp
 #include "layout/jp/rom_layout.h"
 #elif defined(REGION_EU)
-#define REGION_WESTERN 1
 #define FOMT_TEXT_REGION_DIR eu
 #include "layout/eu/rom_layout.h"
 #else
-#define REGION_WESTERN 1
 #define FOMT_TEXT_REGION_DIR de
 #include "layout/de/rom_layout.h"
 #endif

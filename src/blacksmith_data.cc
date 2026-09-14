@@ -16,7 +16,7 @@ BlacksmithMenuHeader const gBlacksmithMenuHeader = {
 #endif
 
 BlacksmithCatalogEntry const gBlacksmithCatalog[] = {
-#if defined(REGION_WESTERN)
+#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     { 0, gText_Blacksmith_ToolUpgradeMenuLabel, 0, 0, gText_Blacksmith_ToolUpgradeTitle },
 #endif
     { ITEM_TOOL_BRUSH, gText_Blacksmith_Empty, 800, 1, gText_Blacksmith_Empty },
