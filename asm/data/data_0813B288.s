@@ -1815,11 +1815,18 @@ gUnk_UiSharedResourceData_001:
     @ The packed Mary stream occupies the original JP interval
     @ 0x084E0CE0..0x087515A8.  Resume the raw asset container after it.
     .section .rodata.mary_scripts_tail
-    @ FoMT's 487 single-width glyphs are 8x12/1bpp records.  The authored
-    @ PNG is rebuilt through gbagfx plus tools/fontpad; the emitted 0x16D4
-    @ bytes were verified identical to the original JP ROM before this split.
-    .incbin "build/jp/graphics/font/jp/single_width_font.1bpp"
-    .incbin "baserom_jp.gba", 0x752C7C, (0x77F610 - 0x752C7C)
+    @ FoMT's 487 single-width glyphs are 8x12/1bpp records shared byte-for-
+    @ byte by all four retail localizations. The authored PNG is rebuilt
+    @ through gbagfx plus tools/fontpad; the emitted 0x16D4 bytes are verified
+    @ against each regional ROM before this split.
+    .incbin "build/jp/graphics/font/shared/single_width_font.1bpp"
+    .incbin "baserom_jp.gba", 0x752C7C, (0x752E7C - 0x752C7C)
+    @ The 6,922 double-width glyphs use 16x12/1bpp records and are likewise
+    @ shared byte-for-byte by JP, US, EU, and DE. Their source PNG has the
+    @ same lossless gbagfx/fontpad round-trip guarantees as the single-width
+    @ font above.
+    .incbin "build/jp/graphics/font/shared/double_width_font.1bpp"
+    .incbin "baserom_jp.gba", 0x77B76C, (0x77F610 - 0x77B76C)
 
     @ Font renderer payloads. The byte layouts remain raw assets, while
     @ src/font.cc owns the typed references used by the glyph resolver.
@@ -4133,13 +4140,13 @@ us_data_0813b288_start:
 	.ifdef REGION_EU
 	.global gFontSingleWidthGlyphData
 gFontSingleWidthGlyphData:
-	.incbin "baserom_eu.gba", 0x4F9128, (0x4F9130 - 0x4F9128)
+	.incbin "build/eu/graphics/font/shared/single_width_font.1bpp", 0, 8
 	.endif
 
 	.global gUnk_084F90CC
 gUnk_084F90CC:
 	.ifdef REGION_EU
-	.incbin "baserom_eu.gba", 0x4F9130, (0x4FA7FC - 0x4F9130)
+	.incbin "build/eu/graphics/font/shared/single_width_font.1bpp", 8, (0x16D4 - 8)
 	.global gFontSingleByteGlyphIndices
 gFontSingleByteGlyphIndices:
 	.incbin "baserom_eu.gba", 0x4FA7FC, (0x4FA804 - 0x4FA7FC)
@@ -4148,7 +4155,7 @@ gFontSingleByteGlyphIndices:
 	.global gFontSingleWidthGlyphData
 	gFontSingleWidthGlyphData:
 	.endif
-	eu_post_script_incbin 0x4F90CC, 0x16D4
+	.incbin "build/us/graphics/font/shared/single_width_font.1bpp"
 	.endif
 
 	.global gUnk_084FA7A0
@@ -4157,7 +4164,7 @@ gUnk_084FA7A0:
 	.incbin "baserom_eu.gba", 0x4FA804, (0x4FA9FC - 0x4FA804)
 	.global gFontDoubleWidthGlyphData
 gFontDoubleWidthGlyphData:
-	.incbin "baserom_eu.gba", 0x4FA9FC, (0x4FAA04 - 0x4FA9FC)
+	.incbin "build/eu/graphics/font/shared/double_width_font.1bpp", 0, 8
 	.else
 	.ifndef REGION_DE
 	.global gFontSingleByteGlyphIndices
@@ -4169,7 +4176,7 @@ gFontDoubleWidthGlyphData:
 	.global gUnk_084FA9A0
 gUnk_084FA9A0:
 	.ifdef REGION_EU
-	.incbin "baserom_eu.gba", 0x4FAA04, (0x5232EC - 0x4FAA04)
+	.incbin "build/eu/graphics/font/shared/double_width_font.1bpp", 8, (0x288F0 - 8)
 	.global gFontShiftJisGlyphIndices
 gFontShiftJisGlyphIndices:
 	.incbin "baserom_eu.gba", 0x5232EC, (0x5232F4 - 0x5232EC)
@@ -4178,7 +4185,7 @@ gFontShiftJisGlyphIndices:
 	.global gFontDoubleWidthGlyphData
 	gFontDoubleWidthGlyphData:
 	.endif
-	eu_post_script_incbin 0x4FA9A0, 0x288F0
+	.incbin "build/us/graphics/font/shared/double_width_font.1bpp"
 	.endif
 
 	.global gUnk_08523290
@@ -4690,7 +4697,7 @@ gUnk_086D6368:
 	.ifdef REGION_DE
 	.global gFontSingleWidthGlyphData
 gFontSingleWidthGlyphData:
-	.incbin "baserom_de.gba", 0x71DDD4, 0x16D4
+	.incbin "build/de/graphics/font/shared/single_width_font.1bpp"
 	.global gFontSingleByteGlyphIndices
 gFontSingleByteGlyphIndices:
 	.incbin "baserom_de.gba", 0x71F4A8, 0xF4
@@ -4706,11 +4713,15 @@ gUnk_0871D51C:
 	.incbin "baserom_de.gba", 0x71F59C, 0x10C
 	.global gFontDoubleWidthGlyphData
 gFontDoubleWidthGlyphData:
-	.incbin "baserom_de.gba", 0x71F6A8, 0x1180
+	.incbin "build/de/graphics/font/shared/double_width_font.1bpp"
+	.global gFontShiftJisGlyphIndices
+gFontShiftJisGlyphIndices:
+	.incbin "baserom_de.gba", 0x747F98, 0x1AFC
 	.else
 	FOMT_REGION_ASSET_INCBIN 0x71D51C, 0x128C
 	.endif
 
+	.ifndef REGION_DE
 	non_de_asset_label gUnk_0871E7A8
 	FOMT_REGION_ASSET_INCBIN 0x71E7A8, 0x504
 
@@ -5028,6 +5039,7 @@ gFontShiftJisGlyphIndices:
 	.incbin "baserom_de.gba", 0x747F98, 0x1AFC
 	.else
 	FOMT_REGION_ASSET_INCBIN 0x743058, 0x49BC
+	.endif
 	.endif
 
 	non_de_asset_label gUnk_08747A14

@@ -1,9 +1,10 @@
 /*
- * FoMT 8x12 font record bridge for gbagfx.
+ * FoMT 8x12/16x12 font record bridge for gbagfx.
  *
- * gbagfx operates on whole 8x8 tiles.  FoMT's single-width glyphs are one
- * byte per row for twelve rows, so this tool appends or verifies four blank
- * rows per glyph while keeping the actual font bytes lossless.
+ * gbagfx operates on whole 8x8 tiles. FoMT glyphs have twelve active rows,
+ * so this tool appends or verifies four blank rows per glyph while keeping
+ * the actual font bytes lossless. It also bridges FoMT's bit-7-first row
+ * order to gbagfx's bit-0-first 1bpp PNG mapping.
  */
 #include <stdint.h>
 #include <stdio.h>
@@ -11,6 +12,17 @@
 #include <string.h>
 
 enum { NATIVE_RECORD_SIZE = 12, PADDED_RECORD_SIZE = 16 };
+
+/* gbagfx's generic 1bpp PNG conversion maps bit 0 to the left-most pixel.
+ * FoMT's text renderer consumes bit 7 first, so font rows cross this bridge
+ * with their bit order reversed.  Applying this operation on both sides
+ * preserves the native byte stream exactly. */
+static uint8_t ReverseBits(uint8_t value)
+{
+    value = (uint8_t)(((value & 0x55) << 1) | ((value >> 1) & 0x55));
+    value = (uint8_t)(((value & 0x33) << 2) | ((value >> 2) & 0x33));
+    return (uint8_t)((value << 4) | (value >> 4));
+}
 
 static void Fail(const char *message)
 {
@@ -79,7 +91,8 @@ static void PackGrid(const uint8_t *input, size_t glyphCount, size_t columns,
                 uint8_t *destination = output
                     + ((row * 2 + tileRow) * columns + column) * 8;
                 size_t copySize = tileRow == 0 ? 8 : 4;
-                memcpy(destination, source + tileRow * 8, copySize);
+                for (size_t pixelRow = 0; pixelRow < copySize; pixelRow++)
+                    destination[pixelRow] = ReverseBits(source[tileRow * 8 + pixelRow]);
             }
         }
     }
@@ -114,12 +127,88 @@ static void TrimGrid(const uint8_t *input, size_t inputSize, size_t columns,
             if (bottom[4] != 0 || bottom[5] != 0 || bottom[6] != 0 || bottom[7] != 0)
                 Fail("PNG changed the four padding rows of an 8x12 glyph");
             uint8_t *destination = output + glyph * NATIVE_RECORD_SIZE;
-            memcpy(destination, top, 8);
-            memcpy(destination + 8, bottom, 4);
+            for (size_t pixelRow = 0; pixelRow < 8; pixelRow++)
+                destination[pixelRow] = ReverseBits(top[pixelRow]);
+            for (size_t pixelRow = 0; pixelRow < 4; pixelRow++)
+                destination[pixelRow + 8] = ReverseBits(bottom[pixelRow]);
         }
     }
 
     WriteFile(outputPath, output, glyphCount * NATIVE_RECORD_SIZE);
+    free(output);
+}
+
+static void PackWideGrid(const uint8_t *input, size_t glyphCount, size_t columns,
+                         const char *outputPath)
+{
+    size_t rows = (glyphCount + columns - 1) / columns;
+    size_t tileColumns = columns * 2;
+    size_t outputSize = rows * 2 * tileColumns * 8;
+    uint8_t *output = calloc(outputSize == 0 ? 1 : outputSize, 1);
+    if (output == NULL)
+        Fail("out of memory");
+
+    for (size_t row = 0; row < rows; row++) {
+        for (size_t tileRow = 0; tileRow < 2; tileRow++) {
+            for (size_t column = 0; column < columns; column++) {
+                size_t glyph = row * columns + column;
+                if (glyph >= glyphCount)
+                    continue;
+                const uint8_t *source = input + glyph * 24;
+                for (size_t tileColumn = 0; tileColumn < 2; tileColumn++) {
+                    uint8_t *destination = output
+                        + ((row * 2 + tileRow) * tileColumns + column * 2 + tileColumn) * 8;
+                    size_t copyRows = tileRow == 0 ? 8 : 4;
+                    for (size_t pixelRow = 0; pixelRow < copyRows; pixelRow++)
+                        destination[pixelRow] = ReverseBits(source[(tileRow * 8 + pixelRow) * 2 + tileColumn]);
+                }
+            }
+        }
+    }
+
+    WriteFile(outputPath, output, outputSize);
+    free(output);
+}
+
+static void TrimWideGrid(const uint8_t *input, size_t inputSize, size_t columns,
+                         size_t glyphCount, const char *outputPath)
+{
+    size_t rows = (glyphCount + columns - 1) / columns;
+    size_t tileColumns = columns * 2;
+    size_t expectedSize = rows * 2 * tileColumns * 8;
+    if (inputSize != expectedSize)
+        Fail("PNG tile data has an unexpected 16x12 font grid size");
+    uint8_t *output = malloc(glyphCount == 0 ? 1 : glyphCount * 24);
+    if (output == NULL)
+        Fail("out of memory");
+
+    for (size_t row = 0; row < rows; row++) {
+        for (size_t column = 0; column < columns; column++) {
+            size_t glyph = row * columns + column;
+            for (size_t tileColumn = 0; tileColumn < 2; tileColumn++) {
+                const uint8_t *top = input
+                    + (row * 2 * tileColumns + column * 2 + tileColumn) * 8;
+                const uint8_t *bottom = input
+                    + ((row * 2 + 1) * tileColumns + column * 2 + tileColumn) * 8;
+                if (glyph >= glyphCount) {
+                    for (size_t byte = 0; byte < 8; byte++) {
+                        if (top[byte] != 0 || bottom[byte] != 0)
+                            Fail("PNG changed a 16x12 font grid padding tile");
+                    }
+                    continue;
+                }
+                if (bottom[4] != 0 || bottom[5] != 0 || bottom[6] != 0 || bottom[7] != 0)
+                    Fail("PNG changed the four padding rows of a 16x12 glyph");
+                uint8_t *destination = output + glyph * 24;
+                for (size_t pixelRow = 0; pixelRow < 8; pixelRow++)
+                    destination[pixelRow * 2 + tileColumn] = ReverseBits(top[pixelRow]);
+                for (size_t pixelRow = 0; pixelRow < 4; pixelRow++)
+                    destination[(pixelRow + 8) * 2 + tileColumn] = ReverseBits(bottom[pixelRow]);
+            }
+        }
+    }
+
+    WriteFile(outputPath, output, glyphCount * 24);
     free(output);
 }
 
@@ -144,11 +233,32 @@ int main(int argc, char **argv)
         free(input);
         return EXIT_SUCCESS;
     }
+    if (argc == 5 && strcmp(argv[1], "pack-grid-16x12-to-16x16") == 0) {
+        size_t inputSize;
+        uint8_t *input = ReadFile(argv[2], &inputSize);
+        if (inputSize % 24 != 0)
+            Fail("input does not contain complete 16x12 glyph records");
+        PackWideGrid(input, inputSize / 24,
+                     ParsePositive(argv[4], "grid column count must be positive"), argv[3]);
+        free(input);
+        return EXIT_SUCCESS;
+    }
+    if (argc == 6 && strcmp(argv[1], "trim-grid-16x12-from-16x16") == 0) {
+        size_t inputSize;
+        uint8_t *input = ReadFile(argv[2], &inputSize);
+        TrimWideGrid(input, inputSize,
+                     ParsePositive(argv[4], "grid column count must be positive"),
+                     ParsePositive(argv[5], "glyph count must be positive"), argv[3]);
+        free(input);
+        return EXIT_SUCCESS;
+    }
     if (argc != 4 || (strcmp(argv[1], "pad-12-to-16") != 0 && strcmp(argv[1], "trim-12-from-16") != 0)) {
         fprintf(stderr, "Usage: %s pad-12-to-16 INPUT OUTPUT\n", argv[0]);
         fprintf(stderr, "       %s trim-12-from-16 INPUT OUTPUT\n", argv[0]);
         fprintf(stderr, "       %s pack-grid-12-to-16 INPUT OUTPUT COLUMNS\n", argv[0]);
         fprintf(stderr, "       %s trim-grid-12-from-16 INPUT OUTPUT COLUMNS GLYPHS\n", argv[0]);
+        fprintf(stderr, "       %s pack-grid-16x12-to-16x16 INPUT OUTPUT COLUMNS\n", argv[0]);
+        fprintf(stderr, "       %s trim-grid-16x12-from-16x16 INPUT OUTPUT COLUMNS GLYPHS\n", argv[0]);
         return EXIT_FAILURE;
     }
 

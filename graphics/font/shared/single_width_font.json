@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "id": "fomt-shared-single-width-font",
+  "image": "single_width_font.png",
+  "sources": {
+    "JP": { "rom_offset": "0x7515A8", "length": "0x16D4", "sha256": "92bc2a39dd9caf5e0f02a8ce7518f223eabe6c491bc4e05b8d1d2104f731754c" },
+    "US": { "rom_offset": "0x4F90CC", "length": "0x16D4", "sha256": "92bc2a39dd9caf5e0f02a8ce7518f223eabe6c491bc4e05b8d1d2104f731754c" },
+    "EU": { "rom_offset": "0x4F9128", "length": "0x16D4", "sha256": "92bc2a39dd9caf5e0f02a8ce7518f223eabe6c491bc4e05b8d1d2104f731754c" },
+    "DE": { "rom_offset": "0x71DDD4", "length": "0x16D4", "sha256": "92bc2a39dd9caf5e0f02a8ce7518f223eabe6c491bc4e05b8d1d2104f731754c" }
+  },
+  "format": {
+    "kind": "font_1bpp_8x12",
+    "glyph_count": 487,
+    "native_glyph_width": 8,
+    "native_glyph_height": 12,
+    "native_record_bytes": 12,
+    "grid_columns": 16,
+    "png_glyph_height": 16,
+    "padding_rows": 4
+  },
+  "symbols": [
+    "gFontSingleWidthGlyphData"
+  ],
+  "regions": [
+    "JP",
+    "US",
+    "EU",
+    "DE"
+  ]
+}

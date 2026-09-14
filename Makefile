@@ -85,12 +85,15 @@ DATA_ASM_OBJS := $(DATA_ASM_SRCS:%.s=$(BUILD_DIR)/%.o)
 ALL_OBJS := $(C_OBJS) $(CXX_OBJS) $(ASM_OBJS) $(DATA_ASM_OBJS)
 ALL_DEPS := $(ALL_OBJS:%.o=%.d)
 
-# The first managed image asset is the Japanese single-width font.  Its native
-# record is 8x12/1bpp (12 bytes); it is padded to 8x16 for gbagfx, then trimmed
-# back to exactly the original 12-byte records for the assembler.
-JP_FONT_SINGLE_PNG := graphics/font/jp/single_width_font.png
-JP_FONT_SINGLE_PADDED := $(BUILD_DIR)/graphics/font/jp/single_width_font.padded.1bpp
-JP_FONT_SINGLE_BIN := $(BUILD_DIR)/graphics/font/jp/single_width_font.1bpp
+# Both font streams are physically identical in all four retail FoMT
+# localizations. Native records have twelve active rows and are padded only
+# for gbagfx's 8x8 tile conversion.
+FONT_SHARED_SINGLE_PNG := graphics/font/shared/single_width_font.png
+FONT_SHARED_SINGLE_PADDED := $(BUILD_DIR)/graphics/font/shared/single_width_font.padded.1bpp
+FONT_SHARED_SINGLE_BIN := $(BUILD_DIR)/graphics/font/shared/single_width_font.1bpp
+FONT_SHARED_DOUBLE_PNG := graphics/font/shared/double_width_font.png
+FONT_SHARED_DOUBLE_PADDED := $(BUILD_DIR)/graphics/font/shared/double_width_font.padded.1bpp
+FONT_SHARED_DOUBLE_BIN := $(BUILD_DIR)/graphics/font/shared/double_width_font.1bpp
 
 SUBDIRS := $(sort $(dir $(ALL_OBJS)))
 $(shell mkdir -p $(SUBDIRS))
@@ -203,22 +206,36 @@ $(GFX_TOOL):
 $(FONT_PAD): $(FONT_PAD_DIR)/fontpad.c $(FONT_PAD_DIR)/Makefile
 	@$(MAKE) -C $(FONT_PAD_DIR)
 
-$(JP_FONT_SINGLE_PADDED): $(JP_FONT_SINGLE_PNG) $(GFX_TOOL)
+$(FONT_SHARED_SINGLE_PADDED): $(FONT_SHARED_SINGLE_PNG) $(GFX_TOOL)
 	@mkdir -p $(dir $@)
 	@$(GFX_TOOL) $< $@
 
-$(JP_FONT_SINGLE_BIN): $(JP_FONT_SINGLE_PADDED) $(FONT_PAD)
+$(FONT_SHARED_SINGLE_BIN): $(FONT_SHARED_SINGLE_PADDED) $(FONT_PAD)
 	@mkdir -p $(dir $@)
 	@$(FONT_PAD) trim-grid-12-from-16 $< $@ 16 487
 
-# Rebuild the first image asset without causing GNU make to update every
-# optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-jp-font
-gfx-jp-font: $(JP_FONT_SINGLE_BIN)
+$(FONT_SHARED_DOUBLE_PADDED): $(FONT_SHARED_DOUBLE_PNG) $(GFX_TOOL)
+	@mkdir -p $(dir $@)
+	@$(GFX_TOOL) $< $@
 
-ifeq ($(GAME_REGION),JP)
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(JP_FONT_SINGLE_BIN)
-endif
+$(FONT_SHARED_DOUBLE_BIN): $(FONT_SHARED_DOUBLE_PADDED) $(FONT_PAD)
+	@mkdir -p $(dir $@)
+	@$(FONT_PAD) trim-grid-16x12-from-16x16 $< $@ 32 6922
+
+FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
+
+# Rebuild the active localization's verified font payloads without causing GNU
+# make to update every optional assembler dependency file in a fresh worktree.
+.PHONY: gfx-font gfx-jp-font gfx-fonts
+gfx-font: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN)
+gfx-jp-font: gfx-font
+gfx-fonts:
+	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-font
+	@$(MAKE) --no-print-directory GAME_REGION=US gfx-font
+	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-font
+	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-font
+
+$(BUILD_DIR)/asm/data/data_0813B288.o: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN)
 
 # Mary owns the complete packed RIFF script stream.  Its three headers remain
 # explicit inputs: callables and slot names live with the selected scripts,
@@ -341,7 +358,7 @@ clean:
 .PHONY: clean
 
 ifneq (clean,$(MAKECMDGOALS))
-ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-jp-font,$(MAKECMDGOALS)))
+ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts,$(MAKECMDGOALS)))
 -include $(ALL_DEPS)
 endif
 .PRECIOUS: $(BUILD_DIR)/%.d
