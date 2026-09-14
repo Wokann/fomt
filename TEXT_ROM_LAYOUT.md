@@ -115,7 +115,7 @@
 | EU | `0x081074A8`–`0x08107607` | `src/field_render_runtime_data.o(.rodata)` | `src/field_render_runtime_data.cc`、`include/field_render_runtime_data.hh`、`data/text/eu/field_render_runtime_data_1.cc`、`data/text/eu/field_render_runtime_data_2.cc`、`data/text/eu/field_render_runtime_data_3.cc` | 季节记录范围、查找/排序/布局表与三段按物理断点嵌入的文本均按源码顺序排列；所有外部访问均为符号重定位，季节范围仅以直写 packed 属性维持 ROM 的每项 2 字节布局 |
 | EU | `0x081082E4`–`0x08117843` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 EU 指南源文件；主目录只收录 `PAGE_1`，`tool_and_item_controls_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 | EU | `0x08117844`–`0x08117B6B` | `src/shop_common.o(.rodata)` | `src/shop_common.cc`、`include/shop_common.hh`、`data/text/eu/shop_common_1.cc`–`shop_common_9.cc`；运行时字符串、数字字形、商店通用文本、状态文本、指针与数值表按 ROM 顺序同属该对象 | 精确 |
-| EU | `0x08117B6C`–`0x08117C2B` | `src/font.o(.rodata)` | `src/font.cc`、`include/font.hh`、`data/text/eu/font.cc`；运行时字符串与区域字形表按 ROM 顺序同属该对象 | 精确 |
+| EU | `0x08117B6C`–`0x08117C2B` | `src/font.o(.rodata)` | `src/font.cc`、`include/font.hh`、`data/text/eu/font.cc`；运行时字符串与区域字形表按 ROM 顺序同属该对象；文本为普通 C 字符串，后续字形以直写 4 字节对齐属性定位 | 精确 |
 | EU | `0x08117C2C`–`0x08139ADF` | `asm/data/static_resources.o(.rodata)` | `asm/data/static_resources.s`、`include/static_resources.hh`；220 个地图、场景渲染和农舍原始资源以直接标签按物理顺序发射 | 精确 |
 | DE | `0x080E8574`–`0x080E858D` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0_data.hh`、`data/text/de/crt0_data.cc` | 精确 |
 | DE | `0x080E858E`–`0x080E858F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -206,7 +206,7 @@
 | DE | `0x08107FD4`–`0x08108DB3` | `src/harvest_sprite.o(.rodata)` | `src/harvest_sprite.cc` 与 `data/text/de/harvest_sprite_*.cc` | 精确 |
 | DE | `0x08108DB4`–`0x081197FF` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 DE 指南源文件；主目录只收录 `PAGE_1`，`using_tools_2` 与 `newborn_congratulations_cliff_and_ann_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 | DE | `0x0811984C`–`0x08119B93` | `src/shop_common.o(.rodata)` | `src/shop_common.cc`、`include/shop_common.hh`、`data/text/de/shop_common_1.cc`–`shop_common_9.cc`；运行时字符串、数字字形、商店通用文本、状态文本、指针与数值表按 ROM 顺序同属该对象 | 精确 |
-| DE | `0x08119B94`–`0x08119C53` | `src/font.o(.rodata)` | `src/font.cc`、`include/font.hh`、`data/text/de/font.cc`；运行时字符串与区域字形表按 ROM 顺序同属该对象 | 精确 |
+| DE | `0x08119B94`–`0x08119C53` | `src/font.o(.rodata)` | `src/font.cc`、`include/font.hh`、`data/text/de/font.cc`；运行时字符串与区域字形表按 ROM 顺序同属该对象；文本为普通 C 字符串，后续字形以直写 4 字节对齐属性定位 | 精确 |
 | DE | `0x08119C54`–`0x0813BB07` | `asm/data/static_resources.o(.rodata)` | `asm/data/static_resources.s`、`include/static_resources.hh`；220 个地图、场景渲染和农舍原始资源以直接标签按物理顺序发射 | 精确 |
 
 ## JP：物理 `.rodata` 顺序
@@ -402,7 +402,7 @@
 | `0x081189F4`–`0x08118A13` | `src/shop_common.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/jp/shop_common_2.cc`<br>`data/text/jp/shop_common_3.cc` | 文本 `3` 项（详见下方索引）<br>`gShopCommonQuantitySuffixTextRef`, `gShopCommonOwnedQuantityLabelTextRef` |
 | `0x08118A14`–`0x08118B93` | `src/shop_common.o(.rodata)` | [嵌入文本与数据] | `src/shop_common.cc`<br>`data/text/jp/shop_common_4.cc`<br>`data/text/jp/shop_common_5.cc` | 运行时字符串 `2` 项<br>`gUnk_08117838`, `gUnk_0811783C`, `gUnk_0811785C`, `gUnk_08117860`, `gUnk_0811788C` |
 | `0x08118B94`–`0x08118CF3` | `src/shop_common.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/jp/shop_common_6.cc`–`shop_common_9.cc` | 文本 `26` 项（详见下方索引）<br>`gItemStatusWrappedAsPresentTextRef`, `gItemDiscardConfirmTextRef`, `gItemDiscardCannotDiscardTextRef`, `gItemDiscardCursedTextRef` |
-| `0x08118CF4`–`0x08118D17` | `src/font.o(.rodata)` | [嵌入文本 / 数据] | `src/font.cc`<br>`include/font.hh`<br>`data/text/jp/font.cc` | 运行时字符串 `1` 项<br>`gFontSpecialGlyph81CD` |
+| `0x08118CF4`–`0x08118D17` | `src/font.o(.rodata)` | [嵌入文本 / 数据] | `src/font.cc`<br>`include/font.hh`<br>`data/text/jp/font.cc` | 普通 C 字符串 `gCppRuntimeBadAlloc_Font`（`0x0C`，含后续字形对齐填充）<br>`gFontSpecialGlyph81CD`（`0x18`，直写 4 字节对齐属性） |
 | `0x08118D18`–`0x0813ABCB` | `asm/data/static_resources.o(.rodata)` | [直接标签的原始资源] | `asm/data/static_resources.s`<br>`include/static_resources.hh` | 地图、场景渲染与农舍资源共 220 项；每项均为实际标签和独立区域 `incbin`，没有 `.set` 偏移别名 |
 
 ## JP：文本地址索引
@@ -2237,7 +2237,7 @@
 | `0x0811780C`–`0x0811782B` | `src/shop_common.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/us/shop_common_2.cc`<br>`data/text/us/shop_common_3.cc` | 文本 `3` 项（详见下方索引）<br>`gShopCommonQuantitySuffixTextRef`, `gShopCommonOwnedQuantityLabelTextRef` |
 | `0x0811782C`–`0x081179AB` | `src/shop_common.o(.rodata)` | [嵌入文本与数据] | `src/shop_common.cc`<br>`data/text/us/shop_common_4.cc`<br>`data/text/us/shop_common_5.cc` | 运行时字符串 `2` 项<br>`gUnk_08117838`, `gUnk_0811783C`, `gUnk_0811785C`, `gUnk_08117860`, `gUnk_0811788C` |
 | `0x081179AC`–`0x08117B13` | `src/shop_common.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/us/shop_common_6.cc`–`shop_common_9.cc` | 文本 `25` 项（详见下方索引）<br>`gItemStatusWrappedAsPresentTextRef`, `gItemDiscardConfirmTextRef`, `gItemDiscardCannotDiscardTextRef`, `gItemDiscardCursedTextRef` |
-| `0x08117B14`–`0x08117BD3` | `src/font.o(.rodata)` | [嵌入文本 / 数据] | `src/font.cc`<br>`include/font.hh`<br>`data/text/us/font.cc` | 运行时字符串 `1` 项<br>`gFontSpecialGlyphBlocks`, `gFontSpecialGlyphC3` |
+| `0x08117B14`–`0x08117BD3` | `src/font.o(.rodata)` | [嵌入文本 / 数据] | `src/font.cc`<br>`include/font.hh`<br>`data/text/us/font.cc` | 普通 C 字符串 `gCppRuntimeBadAlloc_Font`（`0x0C`，含后续字形对齐填充）<br>`gFontSpecialGlyphBlocks`（`0xA8`）→ `gFontSpecialGlyphC3`（`0x0C`，均直写 4 字节对齐属性） |
 | `0x08117BD4`–`0x08139A87` | `asm/data/static_resources.o(.rodata)` | [直接标签的原始资源] | `asm/data/static_resources.s`<br>`include/static_resources.hh` | 地图、场景渲染与农舍资源共 220 项；每项均为实际标签和独立区域 `incbin`，没有 `.set` 偏移别名 |
 
 ## US：文本地址索引

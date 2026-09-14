@@ -2,7 +2,7 @@
 
 #include <string.h>
 
-EXTERN_C
+extern "C" {
 
 // Converts one Shift-JIS two-byte code to the index used by the font's
 // double-width glyph map. Returns -1 for a code outside that map.
@@ -39,7 +39,7 @@ i32 GetShiftJisGlyphMapIndex(i32 character)
 #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 // The US glyph resolver selects these contiguous 12-byte glyph bitmaps and
 // passes them to func_0300085C. Their individual display meanings remain unknown.
-extern u8 const gFontSpecialGlyphBlocks[14][12] ALIGN(4) = {
+extern u8 const gFontSpecialGlyphBlocks[14][12] __attribute__((aligned(4))) = {
     { 0x00, 0x00, 0x00, 0x48, 0xB4, 0x84, 0x84, 0x48, 0x30, 0x00, 0x00, 0x00 },
     { 0x10, 0x10, 0x10, 0x28, 0x44, 0x28, 0x28, 0x28, 0x54, 0x6C, 0x44, 0x00 },
     { 0x10, 0x10, 0x10, 0x38, 0x7C, 0x38, 0x38, 0x38, 0x7C, 0x6C, 0x44, 0x00 },
@@ -57,13 +57,13 @@ extern u8 const gFontSpecialGlyphBlocks[14][12] ALIGN(4) = {
 };
 
 // Input code 0x00C3 selects this final single-width glyph.
-extern u8 const gFontSpecialGlyphC3[12] ALIGN(4) = {
+extern u8 const gFontSpecialGlyphC3[12] __attribute__((aligned(4))) = {
     0x28, 0x28, 0x00, 0x44, 0x44, 0x44,
     0x44, 0x44, 0x44, 0x38, 0x00, 0x00,
 };
 #else
 // Input code 0x81CD selects this double-width Shift-JIS glyph.
-extern u8 const gFontSpecialGlyph81CD[24] ALIGN(4) = {
+extern u8 const gFontSpecialGlyph81CD[24] __attribute__((aligned(4))) = {
     0x18, 0xC0, 0x25, 0x20, 0x42, 0x10,
     0x40, 0x10, 0x40, 0x10, 0x40, 0x10,
     0x20, 0x20, 0x10, 0x40, 0x08, 0x80,
@@ -186,4 +186,4 @@ i32 DrawCharacterGlyph(void *destination, i32 character)
     return result;
 }
 
-EXTERN_C_END
+}

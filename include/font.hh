@@ -3,7 +3,9 @@
 
 #include "prelude.h"
 
-EXTERN_C
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 // Converts one Shift-JIS two-byte code to the index used by the font's
 // double-width glyph map. Returns -1 for a code outside that map.
@@ -77,6 +79,8 @@ extern u8 const gFontSpecialGlyphC3[12];
 extern u8 const gFontSpecialGlyph81CD[24];
 #endif
 
-EXTERN_C_END
+#ifdef __cplusplus
+}
+#endif
 
 #endif // FONT_HH
