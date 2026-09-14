@@ -205,6 +205,30 @@ FARM_STATUS_PALETTE_OFFSET_DE := 0x2B0830
 FARM_STATUS_STREAM_OFFSET := $(FARM_STATUS_STREAM_OFFSET_$(GAME_REGION))
 FARM_STATUS_PALETTE_OFFSET := $(FARM_STATUS_PALETTE_OFFSET_$(GAME_REGION))
 
+# Intro Scene loading sends this 0x70 output straight to VRAM. The decoded
+# 0x6E00-byte resource is a 40-by-22 linear 4bpp tile image (320 by 176
+# pixels) and the immediately following 0x60 bytes are three palette banks.
+# The stream and palette are byte-identical in JP, US, EU and DE.
+INTRO_BACKGROUND_TILES_SOURCE := graphics/intro_scene/shared/background_tiles.png
+INTRO_BACKGROUND_PALETTE_SOURCE := graphics/intro_scene/shared/background_palettes.png
+INTRO_BACKGROUND_TILES_BIN := $(BUILD_DIR)/graphics/intro_scene/background_tiles.4bpp
+INTRO_BACKGROUND_PALETTE_BIN := $(BUILD_DIR)/graphics/intro_scene/background_palettes.gbapal
+INTRO_BACKGROUND_PACKED_BIN := $(BUILD_DIR)/graphics/intro_scene/background_tiles.0x70
+INTRO_BACKGROUND_STREAM_LENGTH := 0x49BC
+INTRO_BACKGROUND_STREAM_SHA256 := f0c828f16cafc75c3b277841bca74d1b7f62bbdf3551c9b591103c0f46213d4f
+INTRO_BACKGROUND_TILES_SHA256 := ee0ea9e581dab0baad7a55f2eed3c44dbc63518a2a5b8da5f79d4ef03d0b91c7
+INTRO_BACKGROUND_PALETTE_SHA256 := 9d372a163a837204d61a996f95b8f894912cd6d7e4f49342fd07b810c2751d8e
+INTRO_BACKGROUND_STREAM_OFFSET_JP := 0x4C91C0
+INTRO_BACKGROUND_STREAM_OFFSET_US := 0x743058
+INTRO_BACKGROUND_STREAM_OFFSET_EU := 0x7430B4
+INTRO_BACKGROUND_STREAM_OFFSET_DE := 0x4CA4CC
+INTRO_BACKGROUND_PALETTE_OFFSET_JP := 0x4CDB7C
+INTRO_BACKGROUND_PALETTE_OFFSET_US := 0x747A14
+INTRO_BACKGROUND_PALETTE_OFFSET_EU := 0x747A70
+INTRO_BACKGROUND_PALETTE_OFFSET_DE := 0x4CEE88
+INTRO_BACKGROUND_STREAM_OFFSET := $(INTRO_BACKGROUND_STREAM_OFFSET_$(GAME_REGION))
+INTRO_BACKGROUND_PALETTE_OFFSET := $(INTRO_BACKGROUND_PALETTE_OFFSET_$(GAME_REGION))
+
 SUBDIRS := $(sort $(dir $(ALL_OBJS)))
 $(shell mkdir -p $(SUBDIRS))
 
@@ -361,11 +385,25 @@ $(FARM_STATUS_PACKED_BIN): $(FARM_STATUS_TILES_BIN) $(FARM_STATUS_CODEC) $(BASE_
 	  --baseline-rom $(BASE_ROM) --baseline-offset $(FARM_STATUS_STREAM_OFFSET) \
 	  --baseline-length $(FARM_STATUS_STREAM_LENGTH) --baseline-sha256 $(FARM_STATUS_STREAM_SHA256)
 
+$(INTRO_BACKGROUND_TILES_BIN): $(INTRO_BACKGROUND_TILES_SOURCE) $(TILE_GRID_TOOL)
+	@mkdir -p $(dir $@)
+	@$(PYTHON) $(TILE_GRID_TOOL) build --source $(INTRO_BACKGROUND_TILES_SOURCE) --tiles $@ --palette $(BUILD_DIR)/graphics/intro_scene/background_palette0.gbapal
+
+$(INTRO_BACKGROUND_PALETTE_BIN): $(INTRO_BACKGROUND_PALETTE_SOURCE) $(FARM_STATUS_PALETTE_TOOL)
+	@mkdir -p $(dir $@)
+	@$(PYTHON) $(FARM_STATUS_PALETTE_TOOL) build --source $< --banks 3 --output $@
+
+$(INTRO_BACKGROUND_PACKED_BIN): $(INTRO_BACKGROUND_TILES_BIN) $(FARM_STATUS_CODEC) $(BASE_ROM)
+	@mkdir -p $(dir $@)
+	@$(PYTHON) $(FARM_STATUS_CODEC) $(INTRO_BACKGROUND_TILES_BIN) $@ \
+	  --baseline-rom $(BASE_ROM) --baseline-offset $(INTRO_BACKGROUND_STREAM_OFFSET) \
+	  --baseline-length $(INTRO_BACKGROUND_STREAM_LENGTH) --baseline-sha256 $(INTRO_BACKGROUND_STREAM_SHA256)
+
 FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-previews gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
+.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-previews gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-background-edit-test gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
 oam-pack: $(OAM_PACK)
 oam-pack-test: $(OAM_PACK) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba $(PORTRAIT_SOURCE_DIR)/full/000_TALK_PORTRAIT_RICK_NORMAL.png
 	@mkdir -p $(BUILD_DIR)/graphics/oam_pack
@@ -439,6 +477,17 @@ gfx-farm-status-edit-test: $(FARM_STATUS_TILES_SOURCE) $(FARM_STATUS_PALETTE_SOU
 	@$(PYTHON) tools/farm_status_edit_test.py baserom_us.gba $(FARM_STATUS_TILES_SOURCE) $(FARM_STATUS_PALETTE_SOURCE)
 gfx-farm-status-previews: $(FARM_STATUS_TILES_SOURCE) $(FARM_STATUS_PALETTE_SOURCE) $(FARM_STATUS_PREVIEW_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(FARM_STATUS_PREVIEW_TOOL) --tiles-source $(FARM_STATUS_TILES_SOURCE) --palettes-source $(FARM_STATUS_PALETTE_SOURCE) --rom baserom_us.gba --region us --output $(FARM_STATUS_REFERENCE_DIR) --replace --verify-jp baserom_jp.gba --verify-us baserom_us.gba --verify-eu baserom_eu.gba --verify-de baserom_de.gba
+gfx-intro-background: $(INTRO_BACKGROUND_TILES_BIN) $(INTRO_BACKGROUND_PALETTE_BIN) $(INTRO_BACKGROUND_PACKED_BIN)
+gfx-intro-background-test: gfx-intro-background $(BASE_ROM) $(GFX_RANGE_VERIFY)
+	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(INTRO_BACKGROUND_STREAM_OFFSET) --input $(INTRO_BACKGROUND_PACKED_BIN) --sha256 $(INTRO_BACKGROUND_STREAM_SHA256)
+	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(INTRO_BACKGROUND_PALETTE_OFFSET) --input $(INTRO_BACKGROUND_PALETTE_BIN) --sha256 $(INTRO_BACKGROUND_PALETTE_SHA256)
+gfx-intro-background-all:
+	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-intro-background-test
+	@$(MAKE) --no-print-directory GAME_REGION=US gfx-intro-background-test
+	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-intro-background-test
+	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-intro-background-test
+gfx-intro-background-edit-test: $(INTRO_BACKGROUND_TILES_SOURCE) $(INTRO_BACKGROUND_PALETTE_SOURCE) $(FARM_STATUS_CODEC) $(TILE_GRID_TOOL) $(FARM_STATUS_PALETTE_TOOL) baserom_us.gba
+	@$(PYTHON) tools/intro_background_edit_test.py baserom_us.gba $(INTRO_BACKGROUND_TILES_SOURCE) $(INTRO_BACKGROUND_PALETTE_SOURCE)
 # Generic linear 4bpp grid regression using a verified UI resource. Unlike
 # character sprites, this payload has no OAM or tile-map indirection.
 TILE_GRID_TEST_DIR := $(BUILD_DIR)/graphics/tile_grid_test
@@ -453,7 +502,7 @@ tile-grid-test:
 	@$(MAKE) --no-print-directory GAME_REGION=EU tile-grid-region-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE tile-grid-region-test
 
-gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui gfx-farm-status
+gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui gfx-farm-status gfx-intro-background
 
 # Full graphics gate for assets that have an authoritative source/rebuild
 # path.  It intentionally does not link a ROM: the project-wide link is
@@ -466,11 +515,13 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-ui-all
 	@$(MAKE) --no-print-directory gfx-farm-status-all
 	@$(MAKE) --no-print-directory gfx-farm-status-edit-test
+	@$(MAKE) --no-print-directory gfx-intro-background-all
+	@$(MAKE) --no-print-directory gfx-intro-background-edit-test
 	@$(MAKE) --no-print-directory tile-grid-test
 	@$(MAKE) --no-print-directory oam-pack-test
 	@$(MAKE) --no-print-directory oam-pack-audit
 
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN) $(PORTRAIT_TILE_BIN) $(ACTOR_TILE_BIN) $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN) $(FARM_STATUS_PACKED_BIN) $(FARM_STATUS_PALETTE_BIN)
+$(BUILD_DIR)/asm/data/data_0813B288.o: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN) $(PORTRAIT_TILE_BIN) $(ACTOR_TILE_BIN) $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN) $(FARM_STATUS_PACKED_BIN) $(FARM_STATUS_PALETTE_BIN) $(INTRO_BACKGROUND_PACKED_BIN) $(INTRO_BACKGROUND_PALETTE_BIN)
 
 # Mary owns the complete packed RIFF script stream.  Its three headers remain
 # explicit inputs: callables and slot names live with the selected scripts,
@@ -593,7 +644,7 @@ clean:
 .PHONY: clean
 
 ifneq (clean,$(MAKECMDGOALS))
-ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-previews gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit,$(MAKECMDGOALS)))
+ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-previews gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-background-edit-test gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit,$(MAKECMDGOALS)))
 -include $(ALL_DEPS)
 endif
 .PRECIOUS: $(BUILD_DIR)/%.d

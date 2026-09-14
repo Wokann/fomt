@@ -195,6 +195,51 @@ python tools/tile_grid.py export baserom_us.gba \
   --output graphics/ui/shared_resource/shared_resource.png --replace
 ```
 
+## Intro Scene background
+
+`intro_scene/shared/background_tiles.png` is the original linear order of the
+Intro Scene's 0x6E00-byte VRAM payload: 40 by 22 4bpp tiles (320 by 176
+pixels). It is intentionally preserved as a tile source, rather than claimed
+to be a final screen capture. The runtime loads it directly to VRAM in
+`func_0805FBB8`; its display registers and later scene composition may crop or
+combine it with other layers.
+
+`background_palettes.png` is the immediately following three-bank BGR555
+palette source. The swatch rows retain all 48 native palette indices. The
+packed stream and all three palette banks are byte-identical in JP, US, EU,
+and DE: stream locations are JP `0x4C91C0`, US `0x743058`, EU `0x7430B4`, DE
+`0x4CA4CC`; palette locations are JP `0x4CDB7C`, US `0x747A14`, EU `0x747A70`,
+DE `0x4CEE88`.
+
+```console
+make gfx-intro-background-all
+make gfx-intro-background-edit-test
+```
+
+Unchanged source preserves the retail `0x70` stream. An edited source is
+repacked with the strict native-compatible encoder and must fit the original
+`0x49BC`-byte allocation. The encoder's output need not reproduce the
+publisher's compressed bitstream after an edit, but it is strictly unpacked
+and tested before use. The other twenty Intro Scene 0x500-byte unpack inputs
+remain unexported until their palette and display layout are independently
+proven.
+
+Regenerate the editable sources from a verified US ROM with:
+
+```console
+python tools/tile_grid.py export-unpacked baserom_us.gba \
+  --stream-offset 0x743058 --stream-length 0x49BC \
+  --stream-sha256 f0c828f16cafc75c3b277841bca74d1b7f62bbdf3551c9b591103c0f46213d4f \
+  --tiles-length 0x6E00 --palette-offset 0x747A14 --width 320 --bpp 4 \
+  --sha256 ee0ea9e581dab0baad7a55f2eed3c44dbc63518a2a5b8da5f79d4ef03d0b91c7 \
+  --palette-sha256 7b7ceecd51340e503d145875c32b894e8ddfe22dd4d690820664e117fcc27ba3 \
+  --output graphics/intro_scene/shared/background_tiles.png --replace
+
+python tools/palette_banks.py export baserom_us.gba --offset 0x747A14 --banks 3 \
+  --sha256 9d372a163a837204d61a996f95b8f894912cd6d7e4f49342fd07b810c2751d8e \
+  --output graphics/intro_scene/shared/background_palettes.png --replace
+```
+
 ## Farm-status screen background tiles
 
 `ui/farm_status/shared/base_tiles.png` is the 256x144 indexed 4bpp tile grid

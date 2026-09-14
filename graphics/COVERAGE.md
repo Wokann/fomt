@@ -38,9 +38,14 @@ Generate a current list with:
 
 ```console
 python tools/gfx_incbin_inventory.py . --csv build/gfx_incbin_inventory.csv
+python tools/gfx_compression_inventory.py . --csv build/gfx_compression_inventory.csv
 ```
 
-The generated CSV is a local audit artifact and is not source artwork.
+Both generated CSV files are local audit artifacts, not source artwork. The
+compression inventory records only direct ranges that begin with a strictly
+decodable `0x70` stream. Its enclosing `incbin` boundary is not automatically
+the compressed stream's boundary, and a decoded stream is not automatically a
+graphics resource.
 
 ## Next audit queue
 

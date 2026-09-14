@@ -1751,7 +1751,8 @@ gUnk_IntroSceneUnpackSource_018:
     .global gUnk_IntroSceneUnpackSource_019
 gUnk_IntroSceneUnpackSource_019:
     .incbin "baserom_jp.gba", 0x4C9158, (0x4C91C0 - 0x4C9158)
-    .incbin "baserom_jp.gba", 0x4C91C0, (0x4CDBDC - 0x4C91C0)
+    .incbin "build/jp/graphics/intro_scene/background_tiles.0x70"
+    .incbin "build/jp/graphics/intro_scene/background_palettes.gbapal"
     .global gUnk_084CDBDC
 gUnk_084CDBDC:
     .incbin "baserom_jp.gba", 0x4CDBDC, (0x4D096C - 0x4CDBDC)
@@ -5085,12 +5086,24 @@ gUnk_IntroSceneUnpackSource_019:
 gFontShiftJisGlyphIndices:
 	.incbin "baserom_de.gba", 0x747F98, 0x1AFC
 	.else
-	FOMT_REGION_ASSET_INCBIN 0x743058, 0x49BC
+	.ifdef REGION_EU
+	.incbin "build/eu/graphics/intro_scene/background_tiles.0x70"
+	.else
+	.incbin "build/us/graphics/intro_scene/background_tiles.0x70"
+	.endif
 	.endif
 	.endif
 
 	non_de_asset_label gUnk_08747A14
+	.ifdef REGION_DE
 	FOMT_REGION_ASSET_INCBIN 0x747A14, 0x60
+	.else
+	.ifdef REGION_EU
+	.incbin "build/eu/graphics/intro_scene/background_palettes.gbapal"
+	.else
+	.incbin "build/us/graphics/intro_scene/background_palettes.gbapal"
+	.endif
+	.endif
 
 	.ifdef REGION_DE
 	@ Preserve the verified final DE bytes immediately before the IWRAM LMA.

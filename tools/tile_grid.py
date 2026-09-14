@@ -23,10 +23,21 @@ def chunk(kind: bytes, payload: bytes) -> bytes:
     return struct.pack(">I", len(payload)) + kind + payload + struct.pack(">I", zlib.crc32(kind + payload) & 0xFFFFFFFF)
 
 
-def colors_from_bgr555(data: bytes, bpp: int) -> tuple[tuple[int, int, int, int], ...]:
-    color_count = 1 << bpp
+def palette_color_count(bpp: int | None, color_count: int | None) -> int:
+    if (bpp is None) == (color_count is None):
+        raise ValueError("supply exactly one of bpp or color_count")
+    if color_count is not None:
+        if not 1 <= color_count <= 256:
+            raise ValueError("palette color_count must be between 1 and 256")
+        return color_count
+    assert bpp is not None
+    return 1 << bpp
+
+
+def colors_from_bgr555(data: bytes, bpp: int | None = None, *, color_count: int | None = None) -> tuple[tuple[int, int, int, int], ...]:
+    color_count = palette_color_count(bpp, color_count)
     if len(data) != color_count * 2:
-        raise ValueError(f"a {bpp}bpp palette must be {color_count * 2} bytes")
+        raise ValueError(f"a {color_count}-colour palette must be {color_count * 2} bytes")
     colors = []
     for index in range(color_count):
         value = struct.unpack_from("<H", data, index * 2)[0]
@@ -39,9 +50,10 @@ def colors_from_bgr555(data: bytes, bpp: int) -> tuple[tuple[int, int, int, int]
     return tuple(colors)
 
 
-def bgr555_from_colors(colors: tuple[tuple[int, int, int, int], ...], bpp: int) -> bytes:
-    if len(colors) != 1 << bpp:
-        raise ValueError(f"the indexed PNG must retain exactly {1 << bpp} palette entries")
+def bgr555_from_colors(colors: tuple[tuple[int, int, int, int], ...], bpp: int | None = None, *, color_count: int | None = None) -> bytes:
+    expected_count = palette_color_count(bpp, color_count)
+    if len(colors) != expected_count:
+        raise ValueError(f"the indexed PNG must retain exactly {expected_count} palette entries")
     return b"".join(struct.pack("<H", (red * 31 + 127) // 255 | ((green * 31 + 127) // 255 << 5) | ((blue * 31 + 127) // 255 << 10))
                     for red, green, blue, _ in colors)
 
@@ -59,7 +71,7 @@ def write_png(path: Path, pixels: bytes, width: int, height: int, colors: tuple[
     path.write_bytes(png)
 
 
-def read_png(path: Path, bpp: int) -> tuple[bytes, int, int, tuple[tuple[int, int, int, int], ...]]:
+def read_png(path: Path, bpp: int | None = None, *, color_count: int | None = None) -> tuple[bytes, int, int, tuple[tuple[int, int, int, int], ...]]:
     data = path.read_bytes()
     if not data.startswith(b"\x89PNG\r\n\x1a\n"):
         raise ValueError(f"{path} is not a PNG")
@@ -85,7 +97,7 @@ def read_png(path: Path, bpp: int) -> tuple[bytes, int, int, tuple[tuple[int, in
         cursor += size + 12
     if width <= 0 or height <= 0 or width % 8 or height % 8:
         raise ValueError(f"{path} dimensions must be positive multiples of 8")
-    color_count = 1 << bpp
+    color_count = palette_color_count(bpp, color_count)
     if len(palette) != color_count * 3 or len(alpha) != color_count:
         raise ValueError(f"{path} must retain a native {color_count}-colour palette")
     decoded = zlib.decompress(compressed)

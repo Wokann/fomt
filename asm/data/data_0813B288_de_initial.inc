@@ -2015,10 +2015,10 @@ gUnk_IntroSceneUnpackSource_019:
 	.incbin "baserom_de.gba", 0x4CA464, 0x68
 	.global gUnk_08743058
 gUnk_08743058:
-	.incbin "baserom_de.gba", 0x4CA4CC, 0x49BC
+	.incbin "build/de/graphics/intro_scene/background_tiles.0x70"
 	.global gUnk_08747A14
 gUnk_08747A14:
-	.incbin "baserom_de.gba", 0x4CEE88, 0x60
+	.incbin "build/de/graphics/intro_scene/background_palettes.gbapal"
 	.global gUnk_08747A74
 gUnk_08747A74:
 	.incbin "baserom_de.gba", 0x4CEEE8, 0x275C
