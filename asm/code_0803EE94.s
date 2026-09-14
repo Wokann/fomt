@@ -4587,7 +4587,101 @@ func_08050C2C: @ 0x080509B8
     bx r0
     .align 2, 0
 .Ljp_080509EC: .4byte 0x00000534
-    jp_code_0803ee_func func_08050C64, 0x509F0, 0x50A98
+    .global func_08050C64
+    .thumb_func
+func_08050C64: @ 0x080509F0
+    movs r1, #0xa0
+    lsls r1, r1, #3
+    adds r0, r0, r1
+    movs r1, #0
+    strb r1, [r0]
+    bx lr
+
+    .global func_08050C70
+    .thumb_func
+func_08050C70: @ 0x080509FC
+    push {r4, lr}
+    sub sp, #0xc
+    adds r4, r0, #0
+    add r2, sp, #8
+    movs r0, #0
+    strb r0, [r2]
+    mov r0, sp
+    subs r2, r2, r0
+    movs r1, #0
+    bl memset
+    mov r0, sp
+    adds r0, #2
+    movs r2, #1
+    strb r2, [r0]
+    mov r1, sp
+    adds r1, #3
+    movs r0, #0x15
+    strb r0, [r1]
+    mov r0, sp
+    adds r0, #7
+    strb r2, [r0]
+    adds r1, r4, #0
+    mov r0, sp
+    ldmia r0!, {r2, r3}
+    stmia r1!, {r2, r3}
+    adds r0, r4, #0
+    add sp, #0xc
+    pop {r4}
+    pop {r1}
+    bx r1
+    .align 2, 0
+
+    .global func_08050CB0
+    .thumb_func
+func_08050CB0: @ 0x08050A3C
+    movs r1, #3
+    ldr r0, .Ljp_08050A48
+    ands r2, r0
+    orrs r2, r1
+    adds r0, r2, #0
+    bx lr
+    .align 2, 0
+.Ljp_08050A48: .4byte 0xFFFFFF00
+
+    .global func_08050CC0
+    .thumb_func
+func_08050CC0: @ 0x08050A4C
+    push {r4, r5, r6, r7, lr}
+    mov r7, sl
+    mov r6, r9
+    mov r5, r8
+    push {r5, r6, r7}
+    sub sp, #0xc
+    mov r8, r0
+    mov r9, r1
+    mov sl, r2
+    adds r7, r3, #0
+    ldr r4, [sp, #0x2c]
+    ldr r5, [sp, #0x30]
+    ldr r6, [sp, #0x34]
+    ldr r0, .Ljp_08050A94 @ =0x00000554
+    bl __builtin_new
+    str r4, [sp]
+    str r5, [sp, #4]
+    str r6, [sp, #8]
+    mov r1, r9
+    mov r2, sl
+    adds r3, r7, #0
+    bl func_0804F288
+    mov r1, r8
+    str r0, [r1]
+    mov r0, r8
+    add sp, #0xc
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov r9, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_08050A94: .4byte 0x00000554
     jp_code_0803ee_func func_08050D0C, 0x50A98, 0x50AC0
     jp_code_0803ee_func func_08050D34, 0x50AC0, 0x50AE8
     .section .text.code_08050E50
