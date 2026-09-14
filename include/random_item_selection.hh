@@ -3,9 +3,12 @@
 
 #include "prelude.h"
 
-#define RANDOM_ITEM_CANDIDATE_COUNT 59
-#define RANDOM_ITEM_SELECTION_CONTEXT_COUNT 4
-#define RANDOM_ITEM_SELECTION_SLOT_COUNT 7
+enum
+{
+    RANDOM_ITEM_CANDIDATE_COUNT = 59,
+    RANDOM_ITEM_SELECTION_CONTEXT_COUNT = 4,
+    RANDOM_ITEM_SELECTION_SLOT_COUNT = 7,
+};
 
 // Native selection reads a signed slot from the selected context and uses the
 // first two bytes as an inclusive random range.

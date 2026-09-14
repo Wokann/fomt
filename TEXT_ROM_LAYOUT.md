@@ -104,7 +104,7 @@
 | EU | `0x08104EA9`–`0x08104EAB` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x08104EAC`–`0x08104ECB` | `src/fishing_record_article_ids.o(.rodata)` | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh`；8 项 `u32` 文章 ID，唯一汇编读取为命名表符号 | `gFishingRecordArticleIds` |
 | EU | `0x08104ECC`–`0x08104F03` | `src/field_plot_position_values.o(.rodata)` | `src/field_plot_position_values.cc`、`include/field_plot_position_values.hh`；7×4 个 `u16` 位置值，汇编按行/列偏移从命名表读取 | `gFieldPlotPositionValues` |
-| EU | `0x08104F04`–`0x08105691` | `src/random_item_selection.o(.rodata)` | `src/random_item_selection.cc`、`include/random_item_selection.hh`、`data/text/eu/random_item_selection.cc` | `gRandomItemSelectionWeights`、`gRandomItemCandidateConfigurations`、运行时字符串 `1` 项 |
+| EU | `0x08104F04`–`0x08105691` | `src/random_item_selection.o(.rodata)` | `src/random_item_selection.cc`、`include/random_item_selection.hh`、`data/text/eu/random_item_selection.cc`；7×5 权重、59×32 候选配置和尾部运行时文本按物理顺序排列，汇编均为表符号或表符号加结构内偏移 | `gRandomItemSelectionWeights`、`gRandomItemCandidateConfigurations`、运行时字符串 `1` 项 |
 | EU | `0x08105694`–`0x0810575D` | `src/field_plot_position_rules.o(.rodata)` | `src/field_plot_position_rules.cc`、`include/field_plot_position_rules.hh`、`data/text/eu/field_plot_position_rules.cc` | `gFieldPlotPositionRules`、运行时字符串 `1` 项 |
 | EU | `0x08105760`–`0x08105F33` | `src/time_of_day.o(.rodata)` | `src/time_of_day.cc`、`include/time_of_day.hh` | `gTimeOfDayTransitionTables`、16 张季节/时段转换记录表 |
 | EU | `0x08105F34`–`0x08106983` | `src/map_data.o(.rodata)` | `src/map_data.cc`、`include/map_data.hh` | `gMapData`；全部资源字段均为原始资产标签的符号重定位 |
@@ -194,7 +194,7 @@
 | DE | `0x08105875`–`0x08105877` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x08105878`–`0x08105897` | `src/fishing_record_article_ids.o(.rodata)` | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh`；8 项 `u32` 文章 ID，唯一汇编读取为命名表符号 | `gFishingRecordArticleIds` |
 | DE | `0x08105898`–`0x081058CF` | `src/field_plot_position_values.o(.rodata)` | `src/field_plot_position_values.cc`、`include/field_plot_position_values.hh`；7×4 个 `u16` 位置值，汇编按行/列偏移从命名表读取 | `gFieldPlotPositionValues` |
-| DE | `0x081058D0`–`0x0810605D` | `src/random_item_selection.o(.rodata)` | `src/random_item_selection.cc`、`include/random_item_selection.hh`、`data/text/de/random_item_selection.cc` | `gRandomItemSelectionWeights`、`gRandomItemCandidateConfigurations`、运行时字符串 `1` 项 |
+| DE | `0x081058D0`–`0x0810605D` | `src/random_item_selection.o(.rodata)` | `src/random_item_selection.cc`、`include/random_item_selection.hh`、`data/text/de/random_item_selection.cc`；7×5 权重、59×32 候选配置和尾部运行时文本按物理顺序排列，汇编均为表符号或表符号加结构内偏移 | `gRandomItemSelectionWeights`、`gRandomItemCandidateConfigurations`、运行时字符串 `1` 项 |
 | DE | `0x08106060`–`0x08106129` | `src/field_plot_position_rules.o(.rodata)` | `src/field_plot_position_rules.cc`、`include/field_plot_position_rules.hh`、`data/text/de/field_plot_position_rules.cc` | `gFieldPlotPositionRules`、运行时字符串 `1` 项 |
 | DE | `0x0810612C`–`0x081068FF` | `src/time_of_day.o(.rodata)` | `src/time_of_day.cc`、`include/time_of_day.hh` | `gTimeOfDayTransitionTables`、16 张季节/时段转换记录表 |
 | DE | `0x08106900`–`0x0810734F` | `src/map_data.o(.rodata)` | `src/map_data.cc`、`include/map_data.hh` | `gMapData`；全部资源字段均为原始资产标签的符号重定位 |
@@ -332,9 +332,9 @@
 | `0x08104999`–`0x0810499B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
 | `0x0810499C`–`0x081049BB` | `src/fishing_record_article_ids.o(.rodata)` | [数据] | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | 8 项 `u32` 文章 ID；唯一汇编读取为命名表符号 `gFishingRecordArticleIds` |
 | `0x081049BC`–`0x081049F3` | `src/field_plot_position_values.o(.rodata)` | [数据] | `src/field_plot_position_values.cc`、`include/field_plot_position_values.hh` | 7×4 个 `u16` 位置值；汇编按行/列偏移从命名表 `gFieldPlotPositionValues` 读取 |
-| `0x081049F4`–`0x08104A16` | `src/random_item_selection.o(.rodata)` | [数据] | `src/random_item_selection.cc`、`include/random_item_selection.hh` | `gRandomItemSelectionWeights` |
+| `0x081049F4`–`0x08104A16` | `src/random_item_selection.o(.rodata)` | [数据] | `src/random_item_selection.cc`、`include/random_item_selection.hh` | `gRandomItemSelectionWeights`（7×5 个 `u8`；汇编为表符号引用） |
 | `0x08104A17`–`0x08104A17` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x08104A18`–`0x08105177` | `src/random_item_selection.o(.rodata)` | [数据] | `src/random_item_selection.cc`、`include/random_item_selection.hh` | `gRandomItemCandidateConfigurations` |
+| `0x08104A18`–`0x08105177` | `src/random_item_selection.o(.rodata)` | [数据] | `src/random_item_selection.cc`、`include/random_item_selection.hh` | `gRandomItemCandidateConfigurations`（59×32 字节；汇编为表符号或 `symbol + 2/9/16/23` 的结构内偏移引用） |
 | `0x08105178`–`0x08105181` | `src/random_item_selection.o(.rodata)` | [嵌入文本] | `src/random_item_selection.cc`<br>`data/text/jp/random_item_selection.cc` | 运行时字符串 `1` 项 |
 | `0x08105182`–`0x08105183` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08105184`–`0x08105243` | `src/field_plot_position_rules.o(.rodata)` | [数据] | `src/field_plot_position_rules.cc`<br>`include/field_plot_position_rules.hh` | `gFieldPlotPositionRules` |
@@ -2166,9 +2166,9 @@
 | `0x08104E51`–`0x08104E53` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
 | `0x08104E54`–`0x08104E73` | `src/fishing_record_article_ids.o(.rodata)` | [数据] | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | 8 项 `u32` 文章 ID；唯一汇编读取为命名表符号 `gFishingRecordArticleIds` |
 | `0x08104E74`–`0x08104EAB` | `src/field_plot_position_values.o(.rodata)` | [数据] | `src/field_plot_position_values.cc`、`include/field_plot_position_values.hh` | 7×4 个 `u16` 位置值；汇编按行/列偏移从命名表 `gFieldPlotPositionValues` 读取 |
-| `0x08104EAC`–`0x08104ECE` | `src/random_item_selection.o(.rodata)` | [数据] | `src/random_item_selection.cc`、`include/random_item_selection.hh` | `gRandomItemSelectionWeights` |
+| `0x08104EAC`–`0x08104ECE` | `src/random_item_selection.o(.rodata)` | [数据] | `src/random_item_selection.cc`、`include/random_item_selection.hh` | `gRandomItemSelectionWeights`（7×5 个 `u8`；汇编为表符号引用） |
 | `0x08104ECF`–`0x08104ECF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x08104ED0`–`0x0810562F` | `src/random_item_selection.o(.rodata)` | [数据] | `src/random_item_selection.cc`、`include/random_item_selection.hh` | `gRandomItemCandidateConfigurations` |
+| `0x08104ED0`–`0x0810562F` | `src/random_item_selection.o(.rodata)` | [数据] | `src/random_item_selection.cc`、`include/random_item_selection.hh` | `gRandomItemCandidateConfigurations`（59×32 字节；汇编为表符号或 `symbol + 2/9/16/23` 的结构内偏移引用） |
 | `0x08105630`–`0x08105639` | `src/random_item_selection.o(.rodata)` | [嵌入文本] | `src/random_item_selection.cc`<br>`data/text/us/random_item_selection.cc` | 运行时字符串 `1` 项 |
 | `0x0810563A`–`0x0810563B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x0810563C`–`0x081056FB` | `src/field_plot_position_rules.o(.rodata)` | [数据] | `src/field_plot_position_rules.cc`<br>`include/field_plot_position_rules.hh` | `gFieldPlotPositionRules` |
