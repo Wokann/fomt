@@ -63,7 +63,7 @@
 | EU | `0x080FD9AE`–`0x080FD9AF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FD9B0`–`0x080FDE21` | `src/poultry_shop_data.o(.rodata)` | `data/text/eu/poultry_shop_data.cc`（菜单文本）→ `src/poultry_shop_data.cc`（五项目录表）→ `data/text/eu/poultry_shop_data_1.cc`（状态与对话文本）→ `data/text/common/poultry_shop_data_1.cc`（尾部运行时字符串）<br>`include/poultry_shop_data.hh`；所有目录内及跨块引用均为符号重定位 | 精确 |
 | EU | `0x080FDE22`–`0x080FDE23` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| EU | `0x080FDE24`–`0x080FE099` | `src/supermarket_data.o(.rodata)` | `src/supermarket_data.cc`、`include/supermarket_data.hh`、`data/text/eu/supermarket_data.cc`、`data/text/eu/supermarket_data_1.cc`；两张目录表与前后两段文本按 ROM 顺序同属该对象 | 精确 |
+| EU | `0x080FDE24`–`0x080FE099` | `src/supermarket_data.o(.rodata)` | `src/supermarket_data.cc`（作物种子目录）→ `data/text/eu/supermarket_data.cc`（前段文本）→ `src/supermarket_data.cc`（补充种子目录）→ `data/text/eu/supermarket_data_1.cc`（后段文本）→ `data/text/common/supermarket_data_1.cc`（尾部运行时字符串）<br>`include/supermarket_data.hh`；所有目录与文本读取均为符号重定位 | 精确 |
 | EU | `0x080FE09A`–`0x080FE09B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FE09C`–`0x080FE2AD` | `src/clinic_data.o(.rodata)` | `src/clinic_data.cc`、`include/clinic_data.hh`、`data/text/eu/clinic_data.cc`；目录表、9 项文本及运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
 | EU | `0x080FE2AE`–`0x080FE2AF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -152,7 +152,7 @@
 | DE | `0x080FE0B6`–`0x080FE0B7` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080FE0B8`–`0x080FE579` | `src/poultry_shop_data.o(.rodata)` | `data/text/de/poultry_shop_data.cc`（菜单文本）→ `src/poultry_shop_data.cc`（五项目录表）→ `data/text/de/poultry_shop_data_1.cc`（状态与对话文本）→ `data/text/common/poultry_shop_data_1.cc`（尾部运行时字符串）<br>`include/poultry_shop_data.hh`；所有目录内及跨块引用均为符号重定位 | 精确 |
 | DE | `0x080FE57A`–`0x080FE57B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| DE | `0x080FE57C`–`0x080FE7D9` | `src/supermarket_data.o(.rodata)` | `src/supermarket_data.cc`、`include/supermarket_data.hh`、`data/text/de/supermarket_data.cc`、`data/text/de/supermarket_data_1.cc`；两张目录表与前后两段文本按 ROM 顺序同属该对象 | 精确 |
+| DE | `0x080FE57C`–`0x080FE7D9` | `src/supermarket_data.o(.rodata)` | `src/supermarket_data.cc`（作物种子目录）→ `data/text/de/supermarket_data.cc`（前段文本）→ `src/supermarket_data.cc`（补充种子目录）→ `data/text/de/supermarket_data_1.cc`（后段文本）→ `data/text/common/supermarket_data_1.cc`（尾部运行时字符串）<br>`include/supermarket_data.hh`；所有目录与文本读取均为符号重定位 | 精确 |
 | DE | `0x080FE7DA`–`0x080FE7DB` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080FE7DC`–`0x080FEA21` | `src/clinic_data.o(.rodata)` | `src/clinic_data.cc`、`include/clinic_data.hh`、`data/text/de/clinic_data.cc`；目录表、9 项文本及运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
 | DE | `0x080FEA22`–`0x080FEA23` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -274,7 +274,7 @@
 | `0x080FD0CE`–`0x080FD0CF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FD0D0`–`0x080FD55D` | `src/poultry_shop_data.o(.rodata)` | [嵌入文本 / 指针表] | `data/text/jp/poultry_shop_data.cc`（菜单文本）→ `src/poultry_shop_data.cc`（五项目录表）→ `data/text/jp/poultry_shop_data_1.cc`（状态与对话文本）→ `data/text/common/poultry_shop_data_1.cc`（尾部运行时字符串）<br>`include/poultry_shop_data.hh` | 菜单文本 `3` 项<br>`gPoultryShopCatalog`（五个 20 字节记录；内部文本字段均为符号）<br>状态与对话文本 `31` 项<br>运行时字符串 `1` 项<br>全部 `54` 个指针引用均为精确符号重定位 |
 | `0x080FD55E`–`0x080FD55F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FD560`–`0x080FD80D` | `src/supermarket_data.o(.rodata)` | [嵌入文本 / 数据] | `src/supermarket_data.cc`<br>`include/supermarket_data.hh`<br>`data/text/jp/supermarket_data.cc`<br>`data/text/jp/supermarket_data_1.cc` | `gSupermarketCropSeedCatalog`<br>主文本 `8` 项<br>`gSupermarketAdditionalSeedCatalog`<br>后续文本 `3` 项<br>运行时字符串 `1` 项 |
+| `0x080FD560`–`0x080FD80D` | `src/supermarket_data.o(.rodata)` | [嵌入文本 / 数据] | `src/supermarket_data.cc`（作物种子目录）→ `data/text/jp/supermarket_data.cc`（主文本）→ `src/supermarket_data.cc`（补充种子目录）→ `data/text/jp/supermarket_data_1.cc`（后续文本）→ `data/text/common/supermarket_data_1.cc`（尾部运行时字符串）<br>`include/supermarket_data.hh` | `gSupermarketCropSeedCatalog`（13 个记录）<br>主文本 `8` 项<br>`gSupermarketAdditionalSeedCatalog`（7 个记录与原始零哨兵）<br>后续文本 `3` 项<br>运行时字符串 `1` 项<br>全部 `20` 个指针引用均为精确符号重定位 |
 | `0x080FD80E`–`0x080FD80F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FD810`–`0x080FD9E1` | `src/clinic_data.o(.rodata)` | [嵌入文本 / 数据] | `src/clinic_data.cc`<br>`include/clinic_data.hh`<br>`data/text/jp/clinic_data.cc` | `gClinicCatalog`<br>文本 `9` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080FD9E2`–`0x080FD9E3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -2113,7 +2113,7 @@
 | `0x080FD962`–`0x080FD963` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FD964`–`0x080FDDD5` | `src/poultry_shop_data.o(.rodata)` | [嵌入文本 / 指针表] | `data/text/us/poultry_shop_data.cc`（菜单文本）→ `src/poultry_shop_data.cc`（五项目录表）→ `data/text/us/poultry_shop_data_1.cc`（状态与对话文本）→ `data/text/common/poultry_shop_data_1.cc`（尾部运行时字符串）<br>`include/poultry_shop_data.hh` | 菜单文本 `3` 项<br>`gPoultryShopCatalog`（五个 20 字节记录；内部文本字段均为符号）<br>状态与对话文本 `31` 项<br>运行时字符串 `1` 项<br>全部 `55` 个指针引用均为精确符号重定位 |
 | `0x080FDDD6`–`0x080FDDD7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FDDD8`–`0x080FE04D` | `src/supermarket_data.o(.rodata)` | [嵌入文本 / 数据] | `src/supermarket_data.cc`<br>`include/supermarket_data.hh`<br>`data/text/us/supermarket_data.cc`<br>`data/text/us/supermarket_data_1.cc` | `gSupermarketCropSeedCatalog`<br>主文本 `8` 项<br>`gSupermarketAdditionalSeedCatalog`<br>后续文本 `2` 项<br>运行时字符串 `1` 项 |
+| `0x080FDDD8`–`0x080FE04D` | `src/supermarket_data.o(.rodata)` | [嵌入文本 / 数据] | `src/supermarket_data.cc`（作物种子目录）→ `data/text/us/supermarket_data.cc`（主文本）→ `src/supermarket_data.cc`（补充种子目录）→ `data/text/us/supermarket_data_1.cc`（后续文本）→ `data/text/common/supermarket_data_1.cc`（尾部运行时字符串）<br>`include/supermarket_data.hh` | `gSupermarketCropSeedCatalog`（13 个记录）<br>主文本 `8` 项<br>`gSupermarketAdditionalSeedCatalog`（7 个记录与原始零哨兵）<br>后续文本 `2` 项<br>运行时字符串 `1` 项<br>全部 `20` 个指针引用均为精确符号重定位 |
 | `0x080FE04E`–`0x080FE04F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FE050`–`0x080FE261` | `src/clinic_data.o(.rodata)` | [嵌入文本 / 数据] | `src/clinic_data.cc`<br>`include/clinic_data.hh`<br>`data/text/us/clinic_data.cc` | `gClinicCatalog`<br>文本 `9` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080FE262`–`0x080FE263` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |

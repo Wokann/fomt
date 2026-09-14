@@ -8,6 +8,3 @@ char const gText_Supermarket_SeedDelivery[] =
 
 char const gText_Supermarket_SeedPurchaseConfirmation[] =
     "Are you sure?{Press}";
-
-char const gCppRuntimeBadAlloc_SupermarketTrailer[] =
-    "bad_alloc";

@@ -32,3 +32,4 @@ SupermarketCatalogEntry const gSupermarketAdditionalSeedCatalog[] = {
 };
 
 #include FOMT_TEXT_INCLUDE(supermarket_data_1.cc)
+#include "data/text/common/supermarket_data_1.cc"
