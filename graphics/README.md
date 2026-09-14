@@ -191,6 +191,36 @@ python tools/tile_grid.py build \
 The Rick stream is used only as a known byte-identical fixture; for normal
 Rick editing, use the higher-level six-tile full-frame source instead.
 
+## Shared UI tile grid
+
+`ui/shared_resource/shared_resource.png` is the first production use of the
+linear-grid converter. `UiSharedResourceData` identifies the resource as a
+0x120-byte (24x24 pixel) VRAM tile grid followed by one 16-colour BGR555
+palette. The exact tile and palette bytes are common to all four retail FoMT
+localizations, while their locations differ: JP `0x4E0BA0` / `0x4E0CC0`, US
+`0x75B818` / `0x75B938`, EU `0x75B874` / `0x75B994`, and DE `0x4E2D34` /
+`0x4E2E54`. Their SHA-256 values are respectively
+`0ccf3327b9f4b30e2b1e47d763f56c9a15d8dff94ff3e44c79b8e87c89a8992c` and
+`4c62773b262255ca7aa361ffb127e7d1a36397b9057ab59ff44ba4d5ac357a2c`.
+
+```console
+make GAME_REGION=JP gfx-ui-test
+make gfx-ui-all
+```
+
+The assembler consumes only the generated `shared_resource.4bpp` and
+`shared_resource.gbapal` files for the selected localization. The original
+surrounding archive bytes and its typed C++ table remain in place. Regenerate
+the authored indexed PNG from a verified US ROM with:
+
+```console
+python tools/tile_grid.py export baserom_us.gba \
+  --tiles-offset 0x75B818 --tiles-length 0x120 \
+  --palette-offset 0x75B938 --width 24 \
+  --sha256 0ccf3327b9f4b30e2b1e47d763f56c9a15d8dff94ff3e44c79b8e87c89a8992c \
+  --output graphics/ui/shared_resource/shared_resource.png --replace
+```
+
 ## Experimental forward OAM compiler
 
 `tools/oam_pack/oam_pack.c` is the separate C implementation used to recover

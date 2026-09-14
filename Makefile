@@ -131,6 +131,25 @@ PORTRAIT_ARCHIVE_OFFSET_EU := 0x52D9E0
 PORTRAIT_ARCHIVE_OFFSET_DE := 0x2B4A20
 PORTRAIT_ARCHIVE_OFFSET := $(PORTRAIT_ARCHIVE_OFFSET_$(GAME_REGION))
 
+# UiSharedResourceData explicitly identifies this 0x120-byte VRAM payload and
+# its immediately following 32-byte palette.  It is a simple 24x24 linear
+# 4bpp grid, common to every retail localization.
+UI_SHARED_RESOURCE_SOURCE := graphics/ui/shared_resource/shared_resource.png
+UI_SHARED_RESOURCE_TILE_BIN := $(BUILD_DIR)/graphics/ui/shared_resource/shared_resource.4bpp
+UI_SHARED_RESOURCE_PALETTE_BIN := $(BUILD_DIR)/graphics/ui/shared_resource/shared_resource.gbapal
+UI_SHARED_RESOURCE_TILE_SHA256 := 0ccf3327b9f4b30e2b1e47d763f56c9a15d8dff94ff3e44c79b8e87c89a8992c
+UI_SHARED_RESOURCE_PALETTE_SHA256 := 4c62773b262255ca7aa361ffb127e7d1a36397b9057ab59ff44ba4d5ac357a2c
+UI_SHARED_RESOURCE_TILE_OFFSET_JP := 0x4E0BA0
+UI_SHARED_RESOURCE_TILE_OFFSET_US := 0x75B818
+UI_SHARED_RESOURCE_TILE_OFFSET_EU := 0x75B874
+UI_SHARED_RESOURCE_TILE_OFFSET_DE := 0x4E2D34
+UI_SHARED_RESOURCE_PALETTE_OFFSET_JP := 0x4E0CC0
+UI_SHARED_RESOURCE_PALETTE_OFFSET_US := 0x75B938
+UI_SHARED_RESOURCE_PALETTE_OFFSET_EU := 0x75B994
+UI_SHARED_RESOURCE_PALETTE_OFFSET_DE := 0x4E2E54
+UI_SHARED_RESOURCE_TILE_OFFSET := $(UI_SHARED_RESOURCE_TILE_OFFSET_$(GAME_REGION))
+UI_SHARED_RESOURCE_PALETTE_OFFSET := $(UI_SHARED_RESOURCE_PALETTE_OFFSET_$(GAME_REGION))
+
 # Rick's daily overworld animation is a fixed six-tile frame class: a 16x16
 # upper body followed by a centred 8x16 lower strip. The 26 full PNG frames
 # and their native 4bpp/BGR555 rebuild are shared byte-for-byte by all four
@@ -375,6 +394,10 @@ $(PORTRAIT_TILE_BIN): $(PORTRAIT_ARCHIVE_TOOL) $(PORTRAIT_FULL_IMAGES) $(BASE_RO
 	@mkdir -p $(dir $@)
 	@$(PYTHON) $(PORTRAIT_ARCHIVE_TOOL) $(BASE_ROM) --offset $(PORTRAIT_ARCHIVE_OFFSET) --length $(PORTRAIT_ARCHIVE_LENGTH) --sha256 $(PORTRAIT_ARCHIVE_SHA256) rebuild-full --source $(PORTRAIT_SOURCE_DIR) --output $@
 
+$(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN): $(UI_SHARED_RESOURCE_SOURCE) $(TILE_GRID_TOOL)
+	@mkdir -p $(dir $(UI_SHARED_RESOURCE_TILE_BIN))
+	@$(PYTHON) $(TILE_GRID_TOOL) build --source $(UI_SHARED_RESOURCE_SOURCE) --tiles $(UI_SHARED_RESOURCE_TILE_BIN) --palette $(UI_SHARED_RESOURCE_PALETTE_BIN)
+
 $(OVERWORLD_RICK_BUILD_STAMP): $(OVERWORLD_SPRITE_TOOL) $(OVERWORLD_RICK_FRAMES)
 	@mkdir -p $(dir $@)
 	@$(PYTHON) $(OVERWORLD_SPRITE_TOOL) build --source $(OVERWORLD_RICK_SOURCE_DIR) --tiles $(OVERWORLD_RICK_TILE_BIN) --palette $(OVERWORLD_RICK_PALETTE_BIN)
@@ -393,7 +416,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-overworld-rick gfx-overworld-rick-test gfx-overworld-rick-all gfx-overworld-actors gfx-overworld-actors-test gfx-overworld-actors-all gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
+.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-ui gfx-ui-test gfx-ui-all gfx-overworld-rick gfx-overworld-rick-test gfx-overworld-rick-all gfx-overworld-actors gfx-overworld-actors-test gfx-overworld-actors-all gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
 oam-pack: $(OAM_PACK)
 oam-pack-test: $(OAM_PACK) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba $(PORTRAIT_SOURCE_DIR)/full/000_TALK_PORTRAIT_RICK_NORMAL.png
 	@mkdir -p $(BUILD_DIR)/graphics/oam_pack
@@ -435,6 +458,15 @@ gfx-portraits-all:
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-portraits
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-portraits
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-portraits
+gfx-ui: $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN)
+gfx-ui-test: gfx-ui $(BASE_ROM) $(GFX_RANGE_VERIFY)
+	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(UI_SHARED_RESOURCE_TILE_OFFSET) --input $(UI_SHARED_RESOURCE_TILE_BIN) --sha256 $(UI_SHARED_RESOURCE_TILE_SHA256)
+	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(UI_SHARED_RESOURCE_PALETTE_OFFSET) --input $(UI_SHARED_RESOURCE_PALETTE_BIN) --sha256 $(UI_SHARED_RESOURCE_PALETTE_SHA256)
+gfx-ui-all:
+	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-ui-test
+	@$(MAKE) --no-print-directory GAME_REGION=US gfx-ui-test
+	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-ui-test
+	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-ui-test
 gfx-overworld-rick: $(OVERWORLD_RICK_TILE_BIN) $(OVERWORLD_RICK_PALETTE_BIN) $(OVERWORLD_RICK_WEDDING_TILE_BIN) $(OVERWORLD_RICK_WEDDING_PALETTE_BIN)
 gfx-overworld-rick-test: gfx-overworld-rick $(BASE_ROM)
 	@$(PYTHON) $(OVERWORLD_SPRITE_TOOL) verify $(BASE_ROM) --tiles-offset $(OVERWORLD_RICK_TILE_OFFSET) --palette-offset $(OVERWORLD_RICK_PALETTE_OFFSET) --tiles $(OVERWORLD_RICK_TILE_BIN) --palette $(OVERWORLD_RICK_PALETTE_BIN) --sha256 $(OVERWORLD_RICK_TILE_SHA256)
@@ -474,7 +506,7 @@ gfx-overworld-actors-all:
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-overworld-actors-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-overworld-actors-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-overworld-actors-test
-gfx-assets: gfx-font gfx-portraits gfx-overworld-actors
+gfx-assets: gfx-font gfx-portraits gfx-ui gfx-overworld-actors
 
 # Full graphics gate for assets that have an authoritative source/rebuild
 # path.  It intentionally does not link a ROM: the project-wide link is
@@ -482,12 +514,13 @@ gfx-assets: gfx-font gfx-portraits gfx-overworld-actors
 gfx-verify:
 	@$(MAKE) --no-print-directory gfx-fonts-test
 	@$(MAKE) --no-print-directory gfx-portraits-all
+	@$(MAKE) --no-print-directory gfx-ui-all
 	@$(MAKE) --no-print-directory gfx-overworld-actors-all
 	@$(MAKE) --no-print-directory tile-grid-test
 	@$(MAKE) --no-print-directory oam-pack-test
 	@$(MAKE) --no-print-directory oam-pack-audit
 
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN) $(PORTRAIT_TILE_BIN) $(OVERWORLD_RICK_TILE_BIN) $(OVERWORLD_RICK_PALETTE_BIN) $(OVERWORLD_RICK_WEDDING_TILE_BIN) $(OVERWORLD_RICK_WEDDING_PALETTE_BIN) $(OVERWORLD_FIXED_SIX_TILE_BINS)
+$(BUILD_DIR)/asm/data/data_0813B288.o: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN) $(PORTRAIT_TILE_BIN) $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN) $(OVERWORLD_RICK_TILE_BIN) $(OVERWORLD_RICK_PALETTE_BIN) $(OVERWORLD_RICK_WEDDING_TILE_BIN) $(OVERWORLD_RICK_WEDDING_PALETTE_BIN) $(OVERWORLD_FIXED_SIX_TILE_BINS)
 
 # Mary owns the complete packed RIFF script stream.  Its three headers remain
 # explicit inputs: callables and slot names live with the selected scripts,
@@ -610,7 +643,7 @@ clean:
 .PHONY: clean
 
 ifneq (clean,$(MAKECMDGOALS))
-ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-overworld-rick gfx-overworld-rick-test gfx-overworld-rick-all gfx-overworld-actors gfx-overworld-actors-test gfx-overworld-actors-all gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit,$(MAKECMDGOALS)))
+ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-ui gfx-ui-test gfx-ui-all gfx-overworld-rick gfx-overworld-rick-test gfx-overworld-rick-all gfx-overworld-actors gfx-overworld-actors-test gfx-overworld-actors-all gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit,$(MAKECMDGOALS)))
 -include $(ALL_DEPS)
 endif
 .PRECIOUS: $(BUILD_DIR)/%.d

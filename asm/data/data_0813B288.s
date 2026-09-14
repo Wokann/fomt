@@ -1824,10 +1824,10 @@ gUnk_084D82F8:
     @ alias.  The first payload is 0x120 bytes by its typed table entry.
     .global gUnk_UiSharedResourceData_000
 gUnk_UiSharedResourceData_000:
-    .incbin "baserom_jp.gba", 0x4E0BA0, 0x120
+    .incbin "build/jp/graphics/ui/shared_resource/shared_resource.4bpp"
     .global gUnk_UiSharedResourceData_001
 gUnk_UiSharedResourceData_001:
-    .incbin "baserom_jp.gba", 0x4E0CC0, (0x4E0CE0 - 0x4E0CC0)
+    .incbin "build/jp/graphics/ui/shared_resource/shared_resource.gbapal"
 
     @ The packed Mary stream occupies the original JP interval
     @ 0x084E0CE0..0x087515A8.  Resume the raw asset container after it.
@@ -5701,10 +5701,26 @@ gUnk_0875B444:
 	@ ui_state table.  Do not replace them with base-plus-offset aliases.
 	.global gUnk_UiSharedResourceData_000
 gUnk_UiSharedResourceData_000:
-	FOMT_REGION_ASSET_INCBIN 0x75B818, 0x120
+	.ifdef REGION_EU
+	.incbin "build/eu/graphics/ui/shared_resource/shared_resource.4bpp"
+	.else
+	.ifdef REGION_DE
+	.incbin "build/de/graphics/ui/shared_resource/shared_resource.4bpp"
+	.else
+	.incbin "build/us/graphics/ui/shared_resource/shared_resource.4bpp"
+	.endif
+	.endif
 	.global gUnk_UiSharedResourceData_001
 gUnk_UiSharedResourceData_001:
-	FOMT_REGION_ASSET_INCBIN 0x75B938, (0x75B964 - 0x75B938)
+	.ifdef REGION_EU
+	.incbin "build/eu/graphics/ui/shared_resource/shared_resource.gbapal"
+	.else
+	.ifdef REGION_DE
+	.incbin "build/de/graphics/ui/shared_resource/shared_resource.gbapal"
+	.else
+	.incbin "build/us/graphics/ui/shared_resource/shared_resource.gbapal"
+	.endif
+	.endif
 
 	@ Thumb function dispatch table.  Keep these as relocations so regional
 	@ code-layout differences update the function pointers automatically.

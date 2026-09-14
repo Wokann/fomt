@@ -2482,7 +2482,7 @@ gUnk_0875B444:
 	.incbin "baserom_de.gba", 0x4E2960, 0x3D4
 	.global gUnk_UiSharedResourceData_000
 gUnk_UiSharedResourceData_000:
-	.incbin "baserom_de.gba", 0x4E2D34, 0x120
+	.incbin "build/de/graphics/ui/shared_resource/shared_resource.4bpp"
 	.global gUnk_UiSharedResourceData_001
 gUnk_UiSharedResourceData_001:
-	.incbin "baserom_de.gba", 0x4E2E54, 0x20
+	.incbin "build/de/graphics/ui/shared_resource/shared_resource.gbapal"
