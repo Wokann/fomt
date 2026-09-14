@@ -112,19 +112,16 @@ trailing byte around it.
 ## Shared overworld frames
 
 `sprites/rick_daily/shared/frames` contains the 26 ordinary Rick overworld
-animation frames; `sprites/rick_wedding/shared/frames` contains his 18 wedding
-frames. Each numbered PNG is a complete 16x32 indexed image: its 16x16 upper
-body uses the first four physical tiles, and its centred 8x16 lower body uses
-the final two. This is a fixed six-tile resource class, not an OAM layout; the
-converter restores that native tile order directly.
+animation frames. Each `000.png` through `025.png` is a complete 16x32 indexed
+PNG: its 16x16 upper body uses the first four physical tiles, and its centred
+8x16 lower body uses the final two. This is a fixed six-tile resource class,
+not an OAM layout; the converter restores that native tile order directly.
 
 The 0x1380-byte tile stream and its 32-byte BGR555 palette are byte-identical
 in JP, US, EU, and DE. Their physical locations are respectively
 `0x380898/0x3E859C`, `0x5FA73C/0x662440`, `0x5FA798/0x66249C`, and
 `0x3817D8/0x3E94DC` (tile/palette). The shared tile SHA-256 is
 `a3b557ebe746ce6b2a7d1f5d0ea522837a99283c2dd05879f787dba2c733bf71`.
-The adjacent wedding stream uses 18 frames and its own shared tile SHA-256:
-`2288b1caca41144453cc9c73fe9ee209cb356345f4f462fb961f0858300b0d8c`.
 
 ```console
 make GAME_REGION=JP gfx-overworld-rick

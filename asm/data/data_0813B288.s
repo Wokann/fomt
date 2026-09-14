@@ -58,11 +58,9 @@ gUnk_082B3A8C:
 gUnk_08311B84:
     .incbin "baserom_jp.gba", 0x311B84, (0x380898 - 0x311B84)
     .incbin "build/jp/graphics/sprites/rick_daily/rick_daily.4bpp"
-    .incbin "build/jp/graphics/sprites/rick_wedding/rick_wedding.4bpp"
-    .incbin "baserom_jp.gba", 0x382998, (0x3E859C - 0x382998)
+    .incbin "baserom_jp.gba", 0x381C18, (0x3E859C - 0x381C18)
     .incbin "build/jp/graphics/sprites/rick_daily/rick_daily.gbapal"
-    .incbin "build/jp/graphics/sprites/rick_wedding/rick_wedding.gbapal"
-    .incbin "baserom_jp.gba", 0x3E85DC, (0x41ECDC - 0x3E85DC)
+    .incbin "baserom_jp.gba", 0x3E85BC, (0x41ECDC - 0x3E85BC)
     .global gUnk_FieldPlotRenderRecord_004
 gUnk_FieldPlotRenderRecord_004:
     .incbin "baserom_jp.gba", 0x41ECDC, 0x30
@@ -4475,22 +4473,18 @@ gUnk_0858BA28:
 	.ifdef REGION_EU
 	.incbin "baserom_eu.gba", 0x58BA84, (0x5FA798 - 0x58BA84)
 	.incbin "build/eu/graphics/sprites/rick_daily/rick_daily.4bpp"
-	.incbin "build/eu/graphics/sprites/rick_wedding/rick_wedding.4bpp"
-	.incbin "baserom_eu.gba", 0x5FC898, (0x66249C - 0x5FC898)
+	.incbin "baserom_eu.gba", 0x5FBB18, (0x66249C - 0x5FBB18)
 	.incbin "build/eu/graphics/sprites/rick_daily/rick_daily.gbapal"
-	.incbin "build/eu/graphics/sprites/rick_wedding/rick_wedding.gbapal"
-	.incbin "baserom_eu.gba", 0x6624DC, (0x6670BC - 0x6624DC)
+	.incbin "baserom_eu.gba", 0x6624BC, (0x6670BC - 0x6624BC)
 	.else
 	.ifdef REGION_DE
 	FOMT_REGION_ASSET_INCBIN 0x58BA28, 0xDB638
 	.else
 	.incbin "baserom_us.gba", 0x58BA28, (0x5FA73C - 0x58BA28)
 	.incbin "build/us/graphics/sprites/rick_daily/rick_daily.4bpp"
-	.incbin "build/us/graphics/sprites/rick_wedding/rick_wedding.4bpp"
-	.incbin "baserom_us.gba", 0x5FC83C, (0x662440 - 0x5FC83C)
+	.incbin "baserom_us.gba", 0x5FBABC, (0x662440 - 0x5FBABC)
 	.incbin "build/us/graphics/sprites/rick_daily/rick_daily.gbapal"
-	.incbin "build/us/graphics/sprites/rick_wedding/rick_wedding.gbapal"
-	.incbin "baserom_us.gba", 0x662480, (0x667060 - 0x662480)
+	.incbin "baserom_us.gba", 0x662460, (0x667060 - 0x662460)
 	.endif
 	.endif
 
