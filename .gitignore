@@ -8,4 +8,5 @@
 *.sav
 
 build/
+__pycache__/
 tools/textproc/fomt-*

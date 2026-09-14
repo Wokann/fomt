@@ -51,7 +51,9 @@ gUnk_082B39F0:
     .incbin "baserom_jp.gba", 0x2B39F0, (0x2B3A8C - 0x2B39F0)
     .global gUnk_082B3A8C
 gUnk_082B3A8C:
-    .incbin "baserom_jp.gba", 0x2B3A8C, (0x311B84 - 0x2B3A8C)
+    .incbin "baserom_jp.gba", 0x2B3A8C, (0x2B69B8 - 0x2B3A8C)
+    .incbin "build/jp/graphics/portraits/shared/portrait_tiles.4bpp"
+    .incbin "baserom_jp.gba", 0x3111F8, (0x311B84 - 0x3111F8)
     .global gUnk_08311B84
 gUnk_08311B84:
     .incbin "baserom_jp.gba", 0x311B84, (0x41ECDC - 0x311B84)
@@ -4365,7 +4367,9 @@ gUnk_0852D930:
 	.global gUnk_0852D984
 gUnk_0852D984:
 	.incbin "baserom_eu.gba", 0x52D9E0, 0x8
-	.incbin "baserom_eu.gba", 0x52D9E8, 0x5E09C
+	.incbin "baserom_eu.gba", 0x52D9E8, (0x5308B8 - 0x52D9E8)
+	.incbin "build/eu/graphics/portraits/shared/portrait_tiles.4bpp"
+	.incbin "baserom_eu.gba", 0x58B0F8, (0x58BA84 - 0x58B0F8)
 	.else
 	non_de_asset_label gUnk_08529794
 	eu_post_script_incbin 0x529794, 0x200
@@ -4449,7 +4453,13 @@ gUnk_0852D930:
 	.global gUnk_0852D984
 gUnk_0852D984:
 	.endif
+	.ifdef REGION_DE
 	FOMT_REGION_ASSET_INCBIN 0x52D984, 0x5E0A4
+	.else
+	.incbin "baserom_us.gba", 0x52D984, (0x53085C - 0x52D984)
+	.incbin "build/us/graphics/portraits/shared/portrait_tiles.4bpp"
+	.incbin "baserom_us.gba", 0x58B09C, (0x58BA28 - 0x58B09C)
+	.endif
 	.endif
 
 	.ifndef REGION_DE

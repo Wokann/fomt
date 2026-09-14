@@ -212,6 +212,26 @@ static void TrimWideGrid(const uint8_t *input, size_t inputSize, size_t columns,
     free(output);
 }
 
+/* gbagfx must complete the final visual row of a tiled PNG. For a raw tile
+ * stream whose count is not a multiple of the requested row width, it emits
+ * 0xFF-filled 4bpp padding tiles on PNG -> GBA conversion. These tiles are
+ * not part of FoMT's native asset and must not leak into the assembled ROM. */
+static void Trim4BppGrid(const uint8_t *input, size_t inputSize, size_t columns,
+                         size_t tileCount, const char *outputPath)
+{
+    const size_t tileBytes = 32;
+    size_t rows = (tileCount + columns - 1) / columns;
+    size_t expectedSize = rows * columns * tileBytes;
+    size_t nativeSize = tileCount * tileBytes;
+    if (inputSize != expectedSize)
+        Fail("PNG tile data has an unexpected 4bpp grid size");
+    for (size_t index = nativeSize; index < expectedSize; index++) {
+        if (input[index] != 0xFF)
+            Fail("PNG changed a 4bpp grid padding tile");
+    }
+    WriteFile(outputPath, input, nativeSize);
+}
+
 int main(int argc, char **argv)
 {
     if (argc == 5 && strcmp(argv[1], "pack-grid-12-to-16") == 0) {
@@ -252,6 +272,15 @@ int main(int argc, char **argv)
         free(input);
         return EXIT_SUCCESS;
     }
+    if (argc == 6 && strcmp(argv[1], "trim-grid-4bpp") == 0) {
+        size_t inputSize;
+        uint8_t *input = ReadFile(argv[2], &inputSize);
+        Trim4BppGrid(input, inputSize,
+                     ParsePositive(argv[4], "grid column count must be positive"),
+                     ParsePositive(argv[5], "tile count must be positive"), argv[3]);
+        free(input);
+        return EXIT_SUCCESS;
+    }
     if (argc != 4 || (strcmp(argv[1], "pad-12-to-16") != 0 && strcmp(argv[1], "trim-12-from-16") != 0)) {
         fprintf(stderr, "Usage: %s pad-12-to-16 INPUT OUTPUT\n", argv[0]);
         fprintf(stderr, "       %s trim-12-from-16 INPUT OUTPUT\n", argv[0]);
@@ -259,6 +288,7 @@ int main(int argc, char **argv)
         fprintf(stderr, "       %s trim-grid-12-from-16 INPUT OUTPUT COLUMNS GLYPHS\n", argv[0]);
         fprintf(stderr, "       %s pack-grid-16x12-to-16x16 INPUT OUTPUT COLUMNS\n", argv[0]);
         fprintf(stderr, "       %s trim-grid-16x12-from-16x16 INPUT OUTPUT COLUMNS GLYPHS\n", argv[0]);
+        fprintf(stderr, "       %s trim-grid-4bpp INPUT OUTPUT COLUMNS TILES\n", argv[0]);
         return EXIT_FAILURE;
     }
 

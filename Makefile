@@ -95,6 +95,14 @@ FONT_SHARED_DOUBLE_PNG := graphics/font/shared/double_width_font.png
 FONT_SHARED_DOUBLE_PADDED := $(BUILD_DIR)/graphics/font/shared/double_width_font.padded.1bpp
 FONT_SHARED_DOUBLE_BIN := $(BUILD_DIR)/graphics/font/shared/double_width_font.1bpp
 
+# The dialogue-portrait archive has a shared 4bpp tile pool in every retail
+# localization.  The archive's OAM records and its 52 palettes remain binary
+# data for now; only the independently verified, editable tile stream passes
+# through gbagfx.
+PORTRAIT_TILE_PNG := graphics/portraits/shared/portrait_tiles.png
+PORTRAIT_TILE_PADDED := $(BUILD_DIR)/graphics/portraits/shared/portrait_tiles.padded.4bpp
+PORTRAIT_TILE_BIN := $(BUILD_DIR)/graphics/portraits/shared/portrait_tiles.4bpp
+
 SUBDIRS := $(sort $(dir $(ALL_OBJS)))
 $(shell mkdir -p $(SUBDIRS))
 
@@ -222,11 +230,19 @@ $(FONT_SHARED_DOUBLE_BIN): $(FONT_SHARED_DOUBLE_PADDED) $(FONT_PAD)
 	@mkdir -p $(dir $@)
 	@$(FONT_PAD) trim-grid-16x12-from-16x16 $< $@ 32 6922
 
+$(PORTRAIT_TILE_PADDED): $(PORTRAIT_TILE_PNG) $(GFX_TOOL)
+	@mkdir -p $(dir $@)
+	@$(GFX_TOOL) $< $@
+
+$(PORTRAIT_TILE_BIN): $(PORTRAIT_TILE_PADDED) $(FONT_PAD)
+	@mkdir -p $(dir $@)
+	@$(FONT_PAD) trim-grid-4bpp $< $@ 32 11586
+
 FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-font gfx-jp-font gfx-fonts
+.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-portraits gfx-portraits-all gfx-assets
 gfx-font: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN)
 gfx-jp-font: gfx-font
 gfx-fonts:
@@ -234,8 +250,15 @@ gfx-fonts:
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-font
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-font
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-font
+gfx-portraits: $(PORTRAIT_TILE_BIN)
+gfx-portraits-all:
+	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-portraits
+	@$(MAKE) --no-print-directory GAME_REGION=US gfx-portraits
+	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-portraits
+	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-portraits
+gfx-assets: gfx-font gfx-portraits
 
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN)
+$(BUILD_DIR)/asm/data/data_0813B288.o: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN) $(PORTRAIT_TILE_BIN)
 
 # Mary owns the complete packed RIFF script stream.  Its three headers remain
 # explicit inputs: callables and slot names live with the selected scripts,
@@ -358,7 +381,7 @@ clean:
 .PHONY: clean
 
 ifneq (clean,$(MAKECMDGOALS))
-ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts,$(MAKECMDGOALS)))
+ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-portraits gfx-portraits-all gfx-assets,$(MAKECMDGOALS)))
 -include $(ALL_DEPS)
 endif
 .PRECIOUS: $(BUILD_DIR)/%.d

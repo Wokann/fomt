@@ -99,7 +99,9 @@ gUnk_082B49CC:
 	.incbin "baserom_de.gba", 0x2B49CC, 0x54
 	.global gUnk_0852D984
 gUnk_0852D984:
-	.incbin "baserom_de.gba", 0x2B4A20, 0x5E0A4
+	.incbin "baserom_de.gba", 0x2B4A20, (0x2B78F8 - 0x2B4A20)
+	.incbin "build/de/graphics/portraits/shared/portrait_tiles.4bpp"
+	.incbin "baserom_de.gba", 0x312140, (0x314AC4 - 0x312140)
 
 	@ DE places these archive payloads earlier than the corresponding US stream.
 	@ Keep their common symbols on the physical DE bytes rather than aliases.

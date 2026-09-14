@@ -58,3 +58,39 @@ the other localizations. On Windows, use the corresponding `.exe` paths (or
 invoke the script through `py -3`). The extractor verifies the selected ROM
 range hash before touching the PNG; it refuses an unverified or mismatched ROM
 instead of silently producing a plausible but incorrect asset.
+
+## Shared portrait tile pool
+
+`portraits/shared/portrait_tiles.png` is the raw 4bpp tile pool used by the
+dialogue portrait archive. It is deliberately a palette-neutral tile sheet,
+not a pre-composed portrait gallery: the archive separately supplies layout
+records and 52 palettes. Keeping those unverified layers as original binary
+data avoids treating an attractive preview as proof of the game-facing format.
+
+The archive has 184 portrait records and 11,586 tiles. Its tile stream is
+byte-identical in JP, US, EU, and DE, even though each ROM places the archive
+at a different address. `portrait_tiles.json` records every interval and the
+common native SHA-256:
+`6942f24a976b16f83e2ae30b012f55a8c7d033e9b51b1cc2fb7bb21887652f63`.
+
+```console
+make GAME_REGION=JP gfx-portraits
+make gfx-portraits-all
+```
+
+gbagfx completes the last PNG row to a 32-tile grid. The final 30 cells are
+required `0xFF` conversion padding, never native archive data. `fontpad`
+validates and removes precisely that padding before assembly, restoring the
+native 0x5A840-byte stream. The four regional assembly paths split their
+original archive at that stream and retain every header, layout record, and
+palette byte around it.
+
+Regenerate the source image from any verified retail ROM:
+
+```console
+python tools/extract_gfx.py tiles-4bpp \
+  --manifest graphics/portraits/shared/portrait_tiles.json \
+  --region JP \
+  --rom baserom_jp.gba \
+  --gbagfx tools/gbagfx/gbagfx
+```
