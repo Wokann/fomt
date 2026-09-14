@@ -4784,7 +4784,40 @@ func_08050EE4: @ 0x08050C70
 .Ljp_08050CCC: .4byte 0x000003FF
 .Ljp_08050CD0: .4byte 0xFFFF801F
 .Ljp_08050CD4: .4byte 0xFFF87FFF
-    jp_code_0803ee_func func_08050F4C, 0x50CD8, 0x510AC
+    .global func_08050F4C
+    .thumb_func
+func_08050F4C: @ 0x08050CD8
+    push {lr}
+    ldrb r0, [r0, #4]
+    adds r1, r0, #0
+    cmp r0, #0
+    beq .Ljp_08050CE4
+    movs r1, #1
+.Ljp_08050CE4:
+    adds r0, r1, #0
+    pop {r1}
+    bx r1
+    .align 2, 0
+
+    .global func_08050F60
+    .thumb_func
+func_08050F60: @ 0x08050CEC
+    ldr r3, .Ljp_08050CF8
+    str r3, [r0]
+    ldr r1, [r1]
+    str r1, [r0, #4]
+    strb r2, [r0, #8]
+    bx lr
+    .align 2, 0
+.Ljp_08050CF8: .4byte vtable_unk_080E7898
+
+    .global func_08050F70
+    .thumb_func
+func_08050F70: @ 0x08050CFC
+    ldrb r0, [r0, #0x1a]
+    bx lr
+
+    jp_code_0803ee_func func_08050F74, 0x50D00, 0x510AC
     jp_code_0803ee_func func_08051320, 0x510AC, 0x511C8
     jp_code_0803ee_func func_0805143C, 0x511C8, 0x51F4C
     jp_code_0803ee_func func_08051F4C, 0x51F4C, 0x51F8C
