@@ -104,3 +104,6 @@ char const gText_FarmStatus_ToolUpgradeAvailable[] =
 
 char const gText_FarmStatus_PercentSign[] =
     "％";
+
+char const gCppRuntimeBadAlloc_FarmStatus[] =
+    "bad_alloc";

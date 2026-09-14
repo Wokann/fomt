@@ -3,7 +3,6 @@
 // These regional text groups occupy the native Farm Status ROM run immediately
 // before the screen's lookup and preview data.
 #include FOMT_TEXT_INCLUDE(farm_status_screen_data_1.cc)
-#include FOMT_TEXT_INCLUDE(farm_status_screen_data_2.cc)
 
 // These packed labels are fields of the status-screen structures, not
 // standalone string objects. Keeping their typed aggregates here preserves
@@ -63,22 +62,24 @@ AnimalStatusScreenText const gAnimalStatusScreenText = {
 #endif
 };
 
-#include FOMT_TEXT_INCLUDE(farm_status_screen_data_3.cc)
-
-// This runtime literal is physically between the two animal-contest text runs.
-#include FOMT_TEXT_INCLUDE(farm_status_screen_data_4.cc)
-
-// The final confirmation strings follow that runtime literal.
-#include FOMT_TEXT_INCLUDE(farm_status_screen_data_5.cc)
+#include FOMT_TEXT_INCLUDE(farm_status_screen_data_2.cc)
 
 // The renderer consumes this preloaded glyph-code array directly.  The
 // selected regional text is encoded by the ordinary text channel.
 u16 const gFarmStatusScreenPreloadedGlyphs[] = {
-#include FOMT_TEXT_INCLUDE(farm_status_screen_data_6.cc)
+#if defined(REGION_JP)
+    "０１２３４５６７８９春夏秋冬誕生日の月＿　",
+#elif defined(REGION_EU)
+    "0123456789SpringSummerFall  Winter_Birthday",
+#elif defined(REGION_DE)
+    "0123456789Frühl.SommerHerbstWinter_Geburtstag ",
+#else
+    "0123456789SpringSummerFall  Winter_Birthday",
+#endif
 };
 
 // This runtime literal immediately follows the glyph array.
-#include FOMT_TEXT_INCLUDE(farm_status_screen_data_7.cc)
+#include FOMT_TEXT_INCLUDE(farm_status_screen_data_3.cc)
 
 FarmStatusScreenResourceDescriptor const gFarmStatusScreenResourceDescriptors[] = {
     { 0x0078, 0x0010 },
@@ -158,4 +159,4 @@ FarmStatusScreenExteriorStyleData const gFarmStatusScreenExteriorStyleData = {
 };
 
 // This runtime literal is the final object in the native status-screen run.
-#include FOMT_TEXT_INCLUDE(farm_status_screen_data_8.cc)
+#include FOMT_TEXT_INCLUDE(farm_status_screen_data_4.cc)
