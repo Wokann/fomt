@@ -3,7 +3,9 @@
 
 #include "field.hh"
 
-struct PACKED FieldRenderSeasonalRecordRange
+// agbcp pads an ordinary two-u8 aggregate. The ROM stores each range in two
+// bytes, so keep the necessary layout constraint directly at the type.
+struct __attribute__((packed)) FieldRenderSeasonalRecordRange
 {
     u8 first_record_index;
     u8 past_last_record_index;
