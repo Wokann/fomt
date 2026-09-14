@@ -4952,18 +4952,28 @@ extern RawVTableFunction const vtable_unk_080E78F0[]
 #endif
     };
 
+// JP has a real secondary dispatch-table entry at the fifth word of this
+// physical block.  Keep it as its own object so callers can relocate to the
+// actual label instead of a synthetic symbol-plus-offset expression.
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7908[]
     SECTION(".rodata.vtable_script_engine_adjacent") = {
-#if defined(REGION_JP)
         func_080E08C4,
         func_080E08C0,
         func_080E08BC,
         func_080E08B8,
+    };
+
+extern RawVTableFunction const vtable_unk_080E7918[]
+    SECTION(".rodata.vtable_script_engine_adjacent") = {
         nullptr,
         nullptr,
         func_080E1148,
         nullptr,
+    };
 #else
+extern RawVTableFunction const vtable_unk_080E7908[]
+    SECTION(".rodata.vtable_script_engine_adjacent") = {
         nullptr,
         nullptr,
         func_080E1128,
@@ -4972,8 +4982,8 @@ extern RawVTableFunction const vtable_unk_080E7908[]
         func_080E1120,
         func_080E111C,
         func_080E1118,
-#endif
     };
+#endif
 
 #if defined(REGION_JP)
 extern void func_08051F4C(void);

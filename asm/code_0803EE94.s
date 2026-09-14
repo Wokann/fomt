@@ -4998,7 +4998,101 @@ func_08051320: @ 0x080510AC
     .align 2, 0
 .Ljp_080511C4: .4byte 0x000003FF
 
-    jp_code_0803ee_func func_0805143C, 0x511C8, 0x51F4C
+    .global func_0805143C
+    .thumb_func
+func_0805143C: @ 0x080511C8
+    push {r4, r5, r6, r7, lr}
+    sub sp, #4
+    adds r7, r0, #0
+    adds r4, r1, #0
+    mov r3, sp
+    movs r1, #0x1e
+    movs r2, #1
+    movs r6, #0
+    movs r5, #0
+    mov r0, sp
+    strh r1, [r0]
+    strh r2, [r3, #2]
+    adds r0, r7, #0
+    mov r1, sp
+    bl func_080084DC
+    ldr r0, .Ljp_08051284
+    str r0, [r7, #4]
+    str r4, [r7, #8]
+    adds r0, r7, #0
+    adds r0, #0xc
+    movs r1, #2
+    bl func_08008B54
+    adds r4, r7, #0
+    adds r4, #0x10
+    ldr r1, .Ljp_08051288
+    adds r0, r4, #0
+    bl __22IndexedResourceArchivePCUc
+    adds r0, r7, #0
+    adds r0, #0x40
+    adds r1, r4, #0
+    movs r2, #0
+    movs r3, #0x80
+    lsls r3, r3, #1
+    bl __21IndexedResourceHandleP23IndexedResourceProviderUii
+    adds r0, r7, #0
+    adds r0, #0x54
+    strh r5, [r0]
+    strh r5, [r0, #2]
+    strh r5, [r0, #4]
+    strh r5, [r0, #6]
+    strh r5, [r0, #8]
+    str r5, [r0, #0xc]
+    strb r6, [r0, #0x10]
+    strb r6, [r0, #0x11]
+    str r5, [r0, #0x14]
+    strb r6, [r0, #0x18]
+    adds r0, #0x20
+    adds r1, r4, #0
+    movs r2, #1
+    movs r3, #0x80
+    lsls r3, r3, #1
+    bl __21IndexedResourceHandleP23IndexedResourceProviderUii
+    adds r0, r7, #0
+    adds r0, #0x88
+    strh r5, [r0]
+    strh r5, [r0, #2]
+    strh r5, [r0, #4]
+    strh r5, [r0, #6]
+    strh r5, [r0, #8]
+    str r5, [r0, #0xc]
+    strb r6, [r0, #0x10]
+    strb r6, [r0, #0x11]
+    str r5, [r0, #0x14]
+    strb r6, [r0, #0x18]
+    adds r4, #0x98
+    adds r0, r4, #0
+    bl func_08007874
+    adds r0, r4, #0
+    movs r1, #4
+    bl func_08007B54
+    str r0, [r4, #4]
+    adds r4, #8
+    adds r0, r4, #0
+    bl func_08007128
+    adds r0, r4, #0
+    bl func_0800736C
+    str r0, [r4, #4]
+    ldr r1, .Ljp_0805128C
+    adds r0, r7, r1
+    strh r5, [r0]
+    adds r0, r7, #0
+    add sp, #4
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_08051284: .4byte vtable_unk_080E7918
+.Ljp_08051288: .4byte gUnk_082AD1F0
+.Ljp_0805128C: .4byte 0x000008B8
+
+    @ The next physical entry has not yet received a recovered shared name.
+    jp_code_0803ee_func func_08051290, 0x51290, 0x51F4C
     jp_code_0803ee_func func_08051F4C, 0x51F4C, 0x51F8C
     jp_code_0803ee_func func_08051F8C, 0x51F8C, 0x51FC0
     jp_code_0803ee_func func_08051FC0, 0x51FC0, 0x52068

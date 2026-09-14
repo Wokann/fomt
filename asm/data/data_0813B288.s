@@ -278,7 +278,14 @@
 
     .section .rodata
 jp_data_0813b288_start:
-    .incbin "baserom_jp.gba", 0x13C3CC, (0x2AD72C - 0x13C3CC)
+    .incbin "baserom_jp.gba", 0x13C3CC, (0x2AD1F0 - 0x13C3CC)
+
+    @ Resource archive referenced by the JP UI resource constructor.
+    @ This is a physical label inside the otherwise still-raw asset stream,
+    @ so code can retain a genuine relocation instead of an absolute word.
+    .global gUnk_082AD1F0
+gUnk_082AD1F0:
+    .incbin "baserom_jp.gba", 0x2AD1F0, (0x2AD72C - 0x2AD1F0)
 
     @ Farm-status screen: the native stream expands to an 8bpp tile grid and
     @ is paired with its 256-colour background palette.  Keep these labels
