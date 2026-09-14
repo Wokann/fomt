@@ -740,7 +740,7 @@ SECTIONS
         src/thomas_stocking.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        src/spouse_gift_data.o(.rodata);
+        src/spouse_gift.o(.rodata);
         . = 0xF9750; src/farm_house.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
