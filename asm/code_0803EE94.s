@@ -5962,7 +5962,27 @@ func_0807565C: @ 0x080752B8
     bx r1
 
     @ The following physical entries are still shared raw code in all regions.
-    jp_code_0803ee_func func_080752D4, 0x752D4, 0x7532C
+    jp_code_0803ee_func func_080752D4, 0x752D4, 0x7530C
+
+    .global func_080756B0
+    .thumb_func
+func_080756B0: @ 0x0807530C
+    push {r4, lr}
+    adds r4, r0, #0
+    ldr r0, .Ljp_08075328 @ =vtable_unk_080E7B4C
+    str r0, [r4, #4]
+    movs r0, #0x28
+    bl __builtin_new
+    bl func_080E2568
+    str r0, [r4]
+    adds r0, r4, #0
+    pop {r4}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_08075328:
+    .4byte vtable_unk_080E7B4C
+
     jp_code_0803ee_func func_0807532C, 0x7532C, 0x75824
     jp_code_0803ee_func func_08075BC8, 0x75824, 0x758E4
     jp_code_0803ee_func func_08075C88, 0x758E4, 0x75A14
