@@ -102,7 +102,7 @@
 | EU | `0x08104EA2`–`0x08104EA3` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x08104EA4`–`0x08104EA8` | `src/random_item_unavailable.o(.rodata)` | `src/random_item_unavailable.cc`、`include/random_item_unavailable.hh`、`data/text/eu/random_item_unavailable.cc`；唯一调用为命名符号 `gText_RandomItem_NotAvailable` | `gText_RandomItem_NotAvailable` |
 | EU | `0x08104EA9`–`0x08104EAB` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| EU | `0x08104EAC`–`0x08104ECB` | `src/fishing_record_article_ids.o(.rodata)` | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | `gFishingRecordArticleIds` |
+| EU | `0x08104EAC`–`0x08104ECB` | `src/fishing_record_article_ids.o(.rodata)` | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh`；8 项 `u32` 文章 ID，唯一汇编读取为命名表符号 | `gFishingRecordArticleIds` |
 | EU | `0x08104F04`–`0x08105691` | `src/random_item_selection.o(.rodata)` | `src/random_item_selection.cc`、`include/random_item_selection.hh`、`data/text/eu/random_item_selection.cc` | `gRandomItemSelectionWeights`、`gRandomItemCandidateConfigurations`、运行时字符串 `1` 项 |
 | EU | `0x08105694`–`0x0810575D` | `src/field_plot_position_rules.o(.rodata)` | `src/field_plot_position_rules.cc`、`include/field_plot_position_rules.hh`、`data/text/eu/field_plot_position_rules.cc` | `gFieldPlotPositionRules`、运行时字符串 `1` 项 |
 | EU | `0x08105760`–`0x08105F33` | `src/time_of_day.o(.rodata)` | `src/time_of_day.cc`、`include/time_of_day.hh` | `gTimeOfDayTransitionTables`、16 张季节/时段转换记录表 |
@@ -191,7 +191,7 @@
 | DE | `0x0810586E`–`0x0810586F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x08105870`–`0x08105874` | `src/random_item_unavailable.o(.rodata)` | `src/random_item_unavailable.cc`、`include/random_item_unavailable.hh`、`data/text/de/random_item_unavailable.cc`；唯一调用为命名符号 `gText_RandomItem_NotAvailable` | `gText_RandomItem_NotAvailable` |
 | DE | `0x08105875`–`0x08105877` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| DE | `0x08105878`–`0x08105897` | `src/fishing_record_article_ids.o(.rodata)` | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | `gFishingRecordArticleIds` |
+| DE | `0x08105878`–`0x08105897` | `src/fishing_record_article_ids.o(.rodata)` | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh`；8 项 `u32` 文章 ID，唯一汇编读取为命名表符号 | `gFishingRecordArticleIds` |
 | DE | `0x081058D0`–`0x0810605D` | `src/random_item_selection.o(.rodata)` | `src/random_item_selection.cc`、`include/random_item_selection.hh`、`data/text/de/random_item_selection.cc` | `gRandomItemSelectionWeights`、`gRandomItemCandidateConfigurations`、运行时字符串 `1` 项 |
 | DE | `0x08106060`–`0x08106129` | `src/field_plot_position_rules.o(.rodata)` | `src/field_plot_position_rules.cc`、`include/field_plot_position_rules.hh`、`data/text/de/field_plot_position_rules.cc` | `gFieldPlotPositionRules`、运行时字符串 `1` 项 |
 | DE | `0x0810612C`–`0x081068FF` | `src/time_of_day.o(.rodata)` | `src/time_of_day.cc`、`include/time_of_day.hh` | `gTimeOfDayTransitionTables`、16 张季节/时段转换记录表 |
@@ -328,7 +328,7 @@
 | `0x08104992`–`0x08104993` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08104994`–`0x08104998` | `src/random_item_unavailable.o(.rodata)` | [嵌入文本] | `src/random_item_unavailable.cc`、`include/random_item_unavailable.hh`<br>`data/text/jp/random_item_unavailable.cc` | `gText_RandomItem_NotAvailable`；唯一调用为该命名符号 |
 | `0x08104999`–`0x0810499B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
-| `0x0810499C`–`0x081049BB` | `src/fishing_record_article_ids.o(.rodata)` | [数据] | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | `gFishingRecordArticleIds` |
+| `0x0810499C`–`0x081049BB` | `src/fishing_record_article_ids.o(.rodata)` | [数据] | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | 8 项 `u32` 文章 ID；唯一汇编读取为命名表符号 `gFishingRecordArticleIds` |
 | `0x081049BC`–`0x081049F3` | `src/field_data.o(.rodata.field_plot_position_values)` | [数据] | `src/field_data.c/.cc` | `gFieldPlotPositionValues` |
 | `0x081049F4`–`0x08104A16` | `src/random_item_selection.o(.rodata)` | [数据] | `src/random_item_selection.cc`、`include/random_item_selection.hh` | `gRandomItemSelectionWeights` |
 | `0x08104A17`–`0x08104A17` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
@@ -2162,7 +2162,7 @@
 | `0x08104E4A`–`0x08104E4B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08104E4C`–`0x08104E50` | `src/random_item_unavailable.o(.rodata)` | [嵌入文本] | `src/random_item_unavailable.cc`、`include/random_item_unavailable.hh`<br>`data/text/us/random_item_unavailable.cc` | `gText_RandomItem_NotAvailable`；唯一调用为该命名符号 |
 | `0x08104E51`–`0x08104E53` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
-| `0x08104E54`–`0x08104E73` | `src/fishing_record_article_ids.o(.rodata)` | [数据] | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | `gFishingRecordArticleIds` |
+| `0x08104E54`–`0x08104E73` | `src/fishing_record_article_ids.o(.rodata)` | [数据] | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | 8 项 `u32` 文章 ID；唯一汇编读取为命名表符号 `gFishingRecordArticleIds` |
 | `0x08104E74`–`0x08104EAB` | `src/field_data.o(.rodata.field_plot_position_values)` | [数据] | `src/field_data.c/.cc` | `gFieldPlotPositionValues` |
 | `0x08104EAC`–`0x08104ECE` | `src/random_item_selection.o(.rodata)` | [数据] | `src/random_item_selection.cc`、`include/random_item_selection.hh` | `gRandomItemSelectionWeights` |
 | `0x08104ECF`–`0x08104ECF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
