@@ -59,19 +59,10 @@ gUnk_08311B84:
     .incbin "baserom_jp.gba", 0x311B84, (0x380898 - 0x311B84)
     .incbin "build/jp/graphics/sprites/rick_daily/rick_daily.4bpp"
     .incbin "build/jp/graphics/sprites/rick_wedding/rick_wedding.4bpp"
-    .incbin "build/jp/graphics/sprites/popuri_daily/popuri_daily.4bpp"
-    .incbin "build/jp/graphics/sprites/popuri_sleeping/popuri_sleeping.4bpp"
-    .incbin "build/jp/graphics/sprites/popuri_baby/popuri_baby.4bpp"
-    .incbin "build/jp/graphics/sprites/popuri_wedding/popuri_wedding.4bpp"
-    .incbin "build/jp/graphics/sprites/lillia_daily/lillia_daily.4bpp"
-    .incbin "baserom_jp.gba", 0x386E98, (0x3E859C - 0x386E98)
+    .incbin "baserom_jp.gba", 0x382998, (0x3E859C - 0x382998)
     .incbin "build/jp/graphics/sprites/rick_daily/rick_daily.gbapal"
     .incbin "build/jp/graphics/sprites/rick_wedding/rick_wedding.gbapal"
-    .incbin "build/jp/graphics/sprites/popuri_daily/popuri_daily.gbapal"
-    .incbin "build/jp/graphics/sprites/popuri_sleeping/popuri_sleeping.gbapal"
-    .incbin "build/jp/graphics/sprites/popuri_wedding/popuri_wedding.gbapal"
-    .incbin "build/jp/graphics/sprites/lillia_daily/lillia_daily.gbapal"
-    .incbin "baserom_jp.gba", 0x3E865C, (0x41ECDC - 0x3E865C)
+    .incbin "baserom_jp.gba", 0x3E85DC, (0x41ECDC - 0x3E85DC)
     .global gUnk_FieldPlotRenderRecord_004
 gUnk_FieldPlotRenderRecord_004:
     .incbin "baserom_jp.gba", 0x41ECDC, 0x30
@@ -4485,19 +4476,10 @@ gUnk_0858BA28:
 	.incbin "baserom_eu.gba", 0x58BA84, (0x5FA798 - 0x58BA84)
 	.incbin "build/eu/graphics/sprites/rick_daily/rick_daily.4bpp"
 	.incbin "build/eu/graphics/sprites/rick_wedding/rick_wedding.4bpp"
-	.incbin "build/eu/graphics/sprites/popuri_daily/popuri_daily.4bpp"
-	.incbin "build/eu/graphics/sprites/popuri_sleeping/popuri_sleeping.4bpp"
-	.incbin "build/eu/graphics/sprites/popuri_baby/popuri_baby.4bpp"
-	.incbin "build/eu/graphics/sprites/popuri_wedding/popuri_wedding.4bpp"
-	.incbin "build/eu/graphics/sprites/lillia_daily/lillia_daily.4bpp"
-	.incbin "baserom_eu.gba", 0x600D98, (0x66249C - 0x600D98)
+	.incbin "baserom_eu.gba", 0x5FC898, (0x66249C - 0x5FC898)
 	.incbin "build/eu/graphics/sprites/rick_daily/rick_daily.gbapal"
 	.incbin "build/eu/graphics/sprites/rick_wedding/rick_wedding.gbapal"
-	.incbin "build/eu/graphics/sprites/popuri_daily/popuri_daily.gbapal"
-	.incbin "build/eu/graphics/sprites/popuri_sleeping/popuri_sleeping.gbapal"
-	.incbin "build/eu/graphics/sprites/popuri_wedding/popuri_wedding.gbapal"
-	.incbin "build/eu/graphics/sprites/lillia_daily/lillia_daily.gbapal"
-	.incbin "baserom_eu.gba", 0x66255C, (0x6670BC - 0x66255C)
+	.incbin "baserom_eu.gba", 0x6624DC, (0x6670BC - 0x6624DC)
 	.else
 	.ifdef REGION_DE
 	FOMT_REGION_ASSET_INCBIN 0x58BA28, 0xDB638
@@ -4505,19 +4487,10 @@ gUnk_0858BA28:
 	.incbin "baserom_us.gba", 0x58BA28, (0x5FA73C - 0x58BA28)
 	.incbin "build/us/graphics/sprites/rick_daily/rick_daily.4bpp"
 	.incbin "build/us/graphics/sprites/rick_wedding/rick_wedding.4bpp"
-	.incbin "build/us/graphics/sprites/popuri_daily/popuri_daily.4bpp"
-	.incbin "build/us/graphics/sprites/popuri_sleeping/popuri_sleeping.4bpp"
-	.incbin "build/us/graphics/sprites/popuri_baby/popuri_baby.4bpp"
-	.incbin "build/us/graphics/sprites/popuri_wedding/popuri_wedding.4bpp"
-	.incbin "build/us/graphics/sprites/lillia_daily/lillia_daily.4bpp"
-	.incbin "baserom_us.gba", 0x600D3C, (0x662440 - 0x600D3C)
+	.incbin "baserom_us.gba", 0x5FC83C, (0x662440 - 0x5FC83C)
 	.incbin "build/us/graphics/sprites/rick_daily/rick_daily.gbapal"
 	.incbin "build/us/graphics/sprites/rick_wedding/rick_wedding.gbapal"
-	.incbin "build/us/graphics/sprites/popuri_daily/popuri_daily.gbapal"
-	.incbin "build/us/graphics/sprites/popuri_sleeping/popuri_sleeping.gbapal"
-	.incbin "build/us/graphics/sprites/popuri_wedding/popuri_wedding.gbapal"
-	.incbin "build/us/graphics/sprites/lillia_daily/lillia_daily.gbapal"
-	.incbin "baserom_us.gba", 0x662500, (0x667060 - 0x662500)
+	.incbin "baserom_us.gba", 0x662480, (0x667060 - 0x662480)
 	.endif
 	.endif
 

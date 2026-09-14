@@ -110,19 +110,10 @@ gUnk_0858BA28:
 	.incbin "baserom_de.gba", 0x312AC4, (0x3817D8 - 0x312AC4)
 	.incbin "build/de/graphics/sprites/rick_daily/rick_daily.4bpp"
 	.incbin "build/de/graphics/sprites/rick_wedding/rick_wedding.4bpp"
-	.incbin "build/de/graphics/sprites/popuri_daily/popuri_daily.4bpp"
-	.incbin "build/de/graphics/sprites/popuri_sleeping/popuri_sleeping.4bpp"
-	.incbin "build/de/graphics/sprites/popuri_baby/popuri_baby.4bpp"
-	.incbin "build/de/graphics/sprites/popuri_wedding/popuri_wedding.4bpp"
-	.incbin "build/de/graphics/sprites/lillia_daily/lillia_daily.4bpp"
-	.incbin "baserom_de.gba", 0x387DD8, (0x3E94DC - 0x387DD8)
+	.incbin "baserom_de.gba", 0x3838D8, (0x3E94DC - 0x3838D8)
 	.incbin "build/de/graphics/sprites/rick_daily/rick_daily.gbapal"
 	.incbin "build/de/graphics/sprites/rick_wedding/rick_wedding.gbapal"
-	.incbin "build/de/graphics/sprites/popuri_daily/popuri_daily.gbapal"
-	.incbin "build/de/graphics/sprites/popuri_sleeping/popuri_sleeping.gbapal"
-	.incbin "build/de/graphics/sprites/popuri_wedding/popuri_wedding.gbapal"
-	.incbin "build/de/graphics/sprites/lillia_daily/lillia_daily.gbapal"
-	.incbin "baserom_de.gba", 0x3E959C, (0x3EE0FC - 0x3E959C)
+	.incbin "baserom_de.gba", 0x3E951C, (0x3EE0FC - 0x3E951C)
 	.global gUnk_08667060
 gUnk_08667060:
 	.incbin "baserom_de.gba", 0x3EE0FC, 0x840
