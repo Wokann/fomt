@@ -78,7 +78,7 @@ extern "C" bool TownMapHotspotContains(
 
 // func_0807865C copies these four IDs then resolves each from the Town Map
 // indexed resource archive before its UI is created.
-u16 const gTownMapResourceIds[] ALIGN(2) = {
+u16 const gTownMapResourceIds[] = {
         0x0000,
         0x0001,
         0x0003,
