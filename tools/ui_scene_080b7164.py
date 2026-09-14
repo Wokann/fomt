@@ -85,6 +85,15 @@ PROFILES = {
             ("tiles.4bpp", 0xCA8, 0x2900, "020", "2578101314"),
         ),
     ),
+    "0805ab08_tiles": (
+        {
+            "jp": 0x4B5384, "us": 0x72F21C,
+            "eu": 0x72F278, "de": 0x4B6588,
+        },
+        (
+            ("tiles.4bpp", 0x880, 0x2CC0, "020", "35710111214"),
+        ),
+    ),
 }
 PROFILE = "080b7164"
 STARTS, SPECS = PROFILES[PROFILE]

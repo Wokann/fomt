@@ -23,7 +23,8 @@ next graphics families.
 | `func_080BCFAC` | `0873BE24`, `0873BF48`, `0873BFF0` | Every packed and decoded stream is identical | Managed: two 32-by-32 tilemaps and one exact 4bpp native tile buffer; the adjoining unbounded palette copy remains excluded. |
 | `func_080C160C` | `0873F3C8`, `0873F5D4`, `0873F6AC` | Every packed and decoded stream is identical | Managed: two 32-by-32 tilemaps and one 4bpp tile stream; the adjacent unbounded palette copy remains excluded. |
 | `func_08054F40` | `08738D1C` | Packed and decoded stream identical in all four regions | Managed: exact 328-tile 4bpp OBJ buffer; its related palette copy remains excluded because it crosses a label boundary. |
-| `asm/code_0803EE94.s` remaining isolated consumers | `0872F21C`, `08743058`, `0852AA6C`, `0874E648`, `0874ECCC`, `0875822C` | Most full labelled ranges are shared; `0874E648` and `0874ECCC` are not byte-identical with JP | Unclassified. Two ranges have no valid `Unpack` header at their assembly boundary; other ranges use either unproven format `230` or need consumer/layout analysis. |
+| `func_0805AB08` | `0872F21C` | Packed and decoded stream identical in all four regions | Managed: exact 358-tile 4bpp OBJ buffer; staged map data and an unbounded palette copy remain excluded. |
+| `asm/code_0803EE94.s` remaining isolated consumers | `08743058`, `0852AA6C`, `0874E648`, `0874ECCC`, `0875822C` | Most full labelled ranges are shared; `0874E648` and `0874ECCC` are not byte-identical with JP | Unclassified. Two ranges have no valid `Unpack` header at their assembly-label boundary; other ranges use either unproven format `230` or need consumer/layout analysis. |
 | `asm/intro_scene.s` direct consumers | `0874E648`, `0874EB60`, `0874A9C0` | `0874E648`/`0874EB60` differ from JP; `0874A9C0` is shared | Unclassified by this audit. Existing Intro Scene pipelines cover other proven object/background streams separately. |
 
 ## Native-format evidence
