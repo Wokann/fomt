@@ -4682,7 +4682,29 @@ func_08050CC0: @ 0x08050A4C
     bx r1
     .align 2, 0
 .Ljp_08050A94: .4byte 0x00000554
-    jp_code_0803ee_func func_08050D0C, 0x50A98, 0x50AC0
+    .global func_08050D0C
+    .thumb_func
+func_08050D0C: @ 0x08050A98
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    ldr r0, [r4]
+    cmp r0, #0
+    beq .Ljp_08050AAA
+    movs r1, #3
+    bl func_0804F69C
+.Ljp_08050AAA:
+    movs r0, #1
+    ands r0, r5
+    cmp r0, #0
+    beq .Ljp_08050AB8
+    adds r0, r4, #0
+    bl __builtin_delete
+.Ljp_08050AB8:
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
     jp_code_0803ee_func func_08050D34, 0x50AC0, 0x50AE8
     .section .text.code_08050E50
     jp_code_0803ee_func func_08050EE4, 0x50C70, 0x510AC
