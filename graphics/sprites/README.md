@@ -49,6 +49,11 @@ binary. `gfx-actors-all` verifies JP, US, EU and DE independently by comparing
 the rebuilt byte range at its real regional ROM address. A source set that has
 not been edited must reproduce the original tile payload exactly.
 
+`gfx-actors-edit-test` additionally copies the Rick test frames into a
+temporary directory, changes one visible indexed pixel, and verifies that the
+rebuilt payload changes only inside the selected frames' owned native tile
+ranges. It never modifies a committed PNG.
+
 To run every established graphics verifier—fonts, portrait archives, actor
 archive, UI grids and OAM packing—use:
 

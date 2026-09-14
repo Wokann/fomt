@@ -135,6 +135,7 @@ PORTRAIT_ARCHIVE_OFFSET := $(PORTRAIT_ARCHIVE_OFFSET_$(GAME_REGION))
 # OAM-composited PNGs, not guessed linear tile sheets.  Rebuild preserves the
 # original archive tables and patches only table four's native 4bpp tile data.
 ACTOR_ARCHIVE_TOOL := tools/actor_archive.py
+ACTOR_ARCHIVE_EDIT_TEST := tools/actor_archive_edit_test.py
 ACTOR_SOURCE_DIRS := graphics/sprites/rick/overworld graphics/sprites/popuri/overworld graphics/sprites/lillia/overworld graphics/sprites/child/overworld graphics/sprites/cliff/overworld graphics/sprites/cow/overworld graphics/sprites/calf/overworld graphics/sprites/zack/overworld graphics/sprites/doctor/overworld graphics/sprites/farm_dog/overworld
 ACTOR_FULL_IMAGES := $(foreach directory,$(ACTOR_SOURCE_DIRS),$(wildcard $(directory)/full/*.png))
 # The first interval spans Rick, Popuri, Lillia, Child, Cliff and the confirmed
@@ -323,7 +324,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-ui gfx-ui-test gfx-ui-all gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
+.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
 oam-pack: $(OAM_PACK)
 oam-pack-test: $(OAM_PACK) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba $(PORTRAIT_SOURCE_DIR)/full/000_TALK_PORTRAIT_RICK_NORMAL.png
 	@mkdir -p $(BUILD_DIR)/graphics/oam_pack
@@ -373,6 +374,8 @@ gfx-actors-all:
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-actors-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-actors-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-actors-test
+gfx-actors-edit-test: $(ACTOR_ARCHIVE_EDIT_TEST) $(ACTOR_ARCHIVE_TOOL) $(PORTRAIT_ARCHIVE_TOOL) baserom_us.gba $(ACTOR_SOURCE_DIRS)
+	@$(PYTHON) $(ACTOR_ARCHIVE_EDIT_TEST) baserom_us.gba --offset $(ACTOR_ARCHIVE_OFFSET_US) --length $(ACTOR_ARCHIVE_LENGTH) --source graphics/sprites/rick/overworld
 gfx-ui: $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN)
 gfx-ui-test: gfx-ui $(BASE_ROM) $(GFX_RANGE_VERIFY)
 	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(UI_SHARED_RESOURCE_TILE_OFFSET) --input $(UI_SHARED_RESOURCE_TILE_BIN) --sha256 $(UI_SHARED_RESOURCE_TILE_SHA256)
@@ -405,6 +408,7 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-fonts-test
 	@$(MAKE) --no-print-directory gfx-portraits-all
 	@$(MAKE) --no-print-directory gfx-actors-all
+	@$(MAKE) --no-print-directory gfx-actors-edit-test
 	@$(MAKE) --no-print-directory gfx-ui-all
 	@$(MAKE) --no-print-directory tile-grid-test
 	@$(MAKE) --no-print-directory oam-pack-test
