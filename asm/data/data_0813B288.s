@@ -270,6 +270,25 @@
     .endif
     .endm
 
+    @ func_0806EC94 selects one of two three-layer 64x44 BG layouts.  Keep
+    @ the native compressed streams separate because EU exposes header labels
+    @ eight bytes before several payload labels.
+    .macro FOMT_FARM_STATUS_SECONDARY_TILEMAP index, offset, length
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/farm_status/secondary_tilemaps/secondary_\index\().0x70", \offset, \length
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/farm_status/secondary_tilemaps/secondary_\index\().0x70", \offset, \length
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/farm_status/secondary_tilemaps/secondary_\index\().0x70", \offset, \length
+    .else
+    .incbin "build/us/graphics/ui/farm_status/secondary_tilemaps/secondary_\index\().0x70", \offset, \length
+    .endif
+    .endif
+    .endif
+    .endm
+
     .ifdef REGION_JP
     @ JP revision 0 counterpart of data_0813B288.s.
     @
@@ -285,7 +304,10 @@ jp_data_0813b288_start:
     @ so code can retain a genuine relocation instead of an absolute word.
     .global gUnk_082AD1F0
 gUnk_082AD1F0:
-    .incbin "baserom_jp.gba", 0x2AD1F0, (0x2AD72C - 0x2AD1F0)
+    .incbin "baserom_jp.gba", 0x2AD1F0, (0x2AD394 - 0x2AD1F0)
+    FOMT_FARM_STATUS_SECONDARY_TILEMAP 00, 0, 0x110
+    FOMT_FARM_STATUS_SECONDARY_TILEMAP 01, 0, 0x1D8
+    FOMT_FARM_STATUS_SECONDARY_TILEMAP 02, 0, 0xB0
 
     @ Farm-status screen: the native stream expands to an 8bpp tile grid and
     @ is paired with its 256-colour background palette.  Keep these labels
@@ -325,7 +347,10 @@ gUnk_082B0744:
     .global gUnk_082B07E0
 gUnk_082B07E0:
     FOMT_FARM_STATUS_TILEMAP 0x390, 0x54
-    .incbin "baserom_jp.gba", 0x2B0834, (0x2B2F20 - 0x2B0834)
+    FOMT_FARM_STATUS_SECONDARY_TILEMAP 03, 0, 0x114
+    FOMT_FARM_STATUS_SECONDARY_TILEMAP 04, 0, 0x1D0
+    FOMT_FARM_STATUS_SECONDARY_TILEMAP 05, 0, 0xB0
+    .incbin "baserom_jp.gba", 0x2B0BC8, (0x2B2F20 - 0x2B0BC8)
     .global gUnk_082B2F20
 gUnk_082B2F20:
     FOMT_FARM_STATUS_TILEMAP 0x330, 0x60
@@ -4541,32 +4566,32 @@ gUnk_08527294:
 
 	non_de_asset_label gUnk_08527238
 	.ifdef REGION_EU
-	.incbin "baserom_eu.gba", 0x52729C, 0x108
+	FOMT_FARM_STATUS_SECONDARY_TILEMAP 00, 0x8, 0x108
 	.global gUnk_085273A4
 gUnk_085273A4:
 	.incbin "baserom_eu.gba", 0x5273A4, 0x8
 	.else
-	eu_post_script_incbin 0x527238, 0x110
+	FOMT_FARM_STATUS_SECONDARY_TILEMAP 00, 0, 0x110
 	.endif
 
 	non_de_asset_label gUnk_08527348
 	.ifdef REGION_EU
-	.incbin "baserom_eu.gba", 0x5273AC, 0x1D0
+	FOMT_FARM_STATUS_SECONDARY_TILEMAP 01, 0x8, 0x1D0
 	.global gUnk_0852757C
 gUnk_0852757C:
 	.incbin "baserom_eu.gba", 0x52757C, 0x8
 	.else
-	eu_post_script_incbin 0x527348, 0x1D8
+	FOMT_FARM_STATUS_SECONDARY_TILEMAP 01, 0, 0x1D8
 	.endif
 
 	non_de_asset_label gUnk_08527520
 	.ifdef REGION_EU
-	.incbin "baserom_eu.gba", 0x527584, 0xA8
+	FOMT_FARM_STATUS_SECONDARY_TILEMAP 02, 0x8, 0xA8
 	.global gUnk_0852762C
 gUnk_0852762C:
 	.incbin "build/eu/graphics/ui/farm_status/base_tiles.0x70", 0, 0x8
 	.else
-	eu_post_script_incbin 0x527520, 0xB0
+	FOMT_FARM_STATUS_SECONDARY_TILEMAP 02, 0, 0xB0
 	.endif
 
 	.ifdef REGION_EU
@@ -4624,20 +4649,20 @@ gUnk_0852A684:
 gUnk_0852A734:
 	.incbin "baserom_eu.gba", 0x52A734, 0x8
 	.global gUnk_0852A6D8
-gUnk_0852A6D8:
-	.incbin "baserom_eu.gba", 0x52A73C, 0x10C
+	gUnk_0852A6D8:
+	FOMT_FARM_STATUS_SECONDARY_TILEMAP 03, 0x8, 0x10C
 	.global gUnk_0852A848
 gUnk_0852A848:
 	.incbin "baserom_eu.gba", 0x52A848, 0x8
 	.global gUnk_0852A7EC
-gUnk_0852A7EC:
-	.incbin "baserom_eu.gba", 0x52A850, 0x1C8
+	gUnk_0852A7EC:
+	FOMT_FARM_STATUS_SECONDARY_TILEMAP 04, 0x8, 0x1C8
 	.global gUnk_0852AA18
 gUnk_0852AA18:
 	.incbin "baserom_eu.gba", 0x52AA18, 0x8
 	.global gUnk_0852A9BC
-gUnk_0852A9BC:
-	.incbin "baserom_eu.gba", 0x52AA20, 0xA8
+	gUnk_0852A9BC:
+	FOMT_FARM_STATUS_SECONDARY_TILEMAP 05, 0x8, 0xA8
 	.global gUnk_0852AAC8
 gUnk_0852AAC8:
 	.incbin "baserom_eu.gba", 0x52AAC8, 0x8
@@ -4727,13 +4752,13 @@ gUnk_0852A684:
 	FOMT_FARM_STATUS_TILEMAP 0x390, 0x54
 
 	non_de_asset_label gUnk_0852A6D8
-	eu_post_script_incbin 0x52A6D8, 0x114
+	FOMT_FARM_STATUS_SECONDARY_TILEMAP 03, 0, 0x114
 
 	non_de_asset_label gUnk_0852A7EC
-	eu_post_script_incbin 0x52A7EC, 0x1D0
+	FOMT_FARM_STATUS_SECONDARY_TILEMAP 04, 0, 0x1D0
 
 	non_de_asset_label gUnk_0852A9BC
-	eu_post_script_incbin 0x52A9BC, 0xB0
+	FOMT_FARM_STATUS_SECONDARY_TILEMAP 05, 0, 0xB0
 
 	non_de_asset_label gUnk_0852AA6C
 	eu_post_script_incbin 0x52AA6C, 0x1FD4

@@ -8,13 +8,13 @@ gUnk_08527094:
 	.incbin "baserom_de.gba", 0x2AE130, 0x1A4
 	.global gUnk_08527238
 gUnk_08527238:
-	.incbin "baserom_de.gba", 0x2AE2D4, 0x110
+	FOMT_FARM_STATUS_SECONDARY_TILEMAP 00, 0, 0x110
 	.global gUnk_08527348
 gUnk_08527348:
-	.incbin "baserom_de.gba", 0x2AE3E4, 0x1D8
+	FOMT_FARM_STATUS_SECONDARY_TILEMAP 01, 0, 0x1D8
 	.global gUnk_08527520
 gUnk_08527520:
-	.incbin "baserom_de.gba", 0x2AE5BC, 0xB0
+	FOMT_FARM_STATUS_SECONDARY_TILEMAP 02, 0, 0xB0
 	.global gUnk_085275D0
 gUnk_085275D0:
 	.incbin "build/de/graphics/ui/farm_status/base_tiles.0x70"
@@ -54,13 +54,13 @@ gUnk_082B1720:
 	FOMT_FARM_STATUS_TILEMAP 0x390, 0x54
 	.global gUnk_0852A6D8
 gUnk_0852A6D8:
-	.incbin "baserom_de.gba", 0x2B1774, 0x114
+	FOMT_FARM_STATUS_SECONDARY_TILEMAP 03, 0, 0x114
 	.global gUnk_0852A7EC
 gUnk_0852A7EC:
-	.incbin "baserom_de.gba", 0x2B1888, 0x1D0
+	FOMT_FARM_STATUS_SECONDARY_TILEMAP 04, 0, 0x1D0
 	.global gUnk_0852A9BC
 gUnk_0852A9BC:
-	.incbin "baserom_de.gba", 0x2B1A58, 0xB0
+	FOMT_FARM_STATUS_SECONDARY_TILEMAP 05, 0, 0xB0
 	.global gUnk_0852AA6C
 gUnk_0852AA6C:
 	.incbin "baserom_de.gba", 0x2B1B08, 0x1FD4

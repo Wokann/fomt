@@ -194,6 +194,12 @@ FARM_STATUS_REFERENCE_DIR := graphics/ui/farm_status/reference
 FARM_STATUS_TILEMAP_SOURCE_DIR := graphics/ui/farm_status/shared/tilemaps
 FARM_STATUS_TILEMAP_SOURCES := $(wildcard $(FARM_STATUS_TILEMAP_SOURCE_DIR)/*.tilemap)
 FARM_STATUS_TILEMAP_BIN := $(BUILD_DIR)/graphics/ui/farm_status/preview_tilemaps.bin
+FARM_STATUS_SECONDARY_TILEMAP_TOOL := tools/farm_status_secondary_tilemaps.py
+FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR := graphics/ui/farm_status/shared/secondary_tilemaps
+FARM_STATUS_SECONDARY_TILEMAP_SOURCES := $(wildcard $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/*.tilemap)
+FARM_STATUS_SECONDARY_TILEMAP_OUTPUT_DIR := $(BUILD_DIR)/graphics/ui/farm_status/secondary_tilemaps
+FARM_STATUS_SECONDARY_TILEMAP_STAMP := $(FARM_STATUS_SECONDARY_TILEMAP_OUTPUT_DIR)/.secondary-tilemaps.stamp
+FARM_STATUS_SECONDARY_TILEMAP_REGION := $(shell echo "$(GAME_REGION)" | tr '[:upper:]' '[:lower:]')
 FARM_STATUS_STREAM_LENGTH := 0x21C4
 FARM_STATUS_STREAM_SHA256 := 669dec9d78bbe0d2ceb08383495eea9da863086b00c7dbd4687d90e5c01cddc5
 FARM_STATUS_TILES_SHA256 := 0039e4aa2bb252d5ae17cb2028406e47a79c4461990ad6c1e7e384a962b719e8
@@ -442,6 +448,11 @@ $(FARM_STATUS_PACKED_BIN): $(FARM_STATUS_TILES_BIN) $(FARM_STATUS_CODEC) $(BASE_
 $(FARM_STATUS_TILEMAP_BIN): $(FARM_STATUS_TILEMAP_SOURCES) $(FARM_STATUS_TILEMAP_TOOL) $(FARM_STATUS_PREVIEW_TOOL)
 	@$(PYTHON) $(FARM_STATUS_TILEMAP_TOOL) build --source-dir $(FARM_STATUS_TILEMAP_SOURCE_DIR) --output $@
 
+$(FARM_STATUS_SECONDARY_TILEMAP_STAMP): $(FARM_STATUS_SECONDARY_TILEMAP_SOURCES) $(FARM_STATUS_SECONDARY_TILEMAP_TOOL) $(FARM_STATUS_CODEC) $(BASE_ROM)
+	@$(PYTHON) $(FARM_STATUS_SECONDARY_TILEMAP_TOOL) build --region $(FARM_STATUS_SECONDARY_TILEMAP_REGION) --rom $(BASE_ROM) \
+	  --source-dir $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR) --output-dir $(FARM_STATUS_SECONDARY_TILEMAP_OUTPUT_DIR)
+	@touch $@
+
 $(INTRO_BACKGROUND_TILES_BIN): $(INTRO_BACKGROUND_TILES_SOURCE) $(TILE_GRID_TOOL)
 	@mkdir -p $(dir $@)
 	@$(PYTHON) $(TILE_GRID_TOOL) build --source $(INTRO_BACKGROUND_TILES_SOURCE) --tiles $@ --palette $(BUILD_DIR)/graphics/intro_scene/background_palette0.gbapal
@@ -482,7 +493,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-background-edit-test gfx-intro-objects gfx-intro-objects-test gfx-intro-objects-all gfx-intro-objects-edit-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-tilemaps-edit-test gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
+.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-test gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-edit-test gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-background-edit-test gfx-intro-objects gfx-intro-objects-test gfx-intro-objects-all gfx-intro-objects-edit-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-tilemaps-edit-test gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
 oam-pack: $(OAM_PACK)
 oam-pack-test: $(OAM_PACK) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba $(PORTRAIT_SOURCE_DIR)/full/000_TALK_PORTRAIT_RICK_NORMAL.png
 	@mkdir -p $(BUILD_DIR)/graphics/oam_pack
@@ -566,6 +577,17 @@ gfx-farm-status-tilemaps-all:
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-farm-status-tilemaps
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-farm-status-tilemaps
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-farm-status-tilemaps-test
+gfx-farm-status-secondary-tilemaps: $(FARM_STATUS_SECONDARY_TILEMAP_STAMP)
+gfx-farm-status-secondary-tilemaps-test: gfx-farm-status-secondary-tilemaps $(BASE_ROM) $(FARM_STATUS_SECONDARY_TILEMAP_TOOL)
+	@$(PYTHON) $(FARM_STATUS_SECONDARY_TILEMAP_TOOL) verify --region $(FARM_STATUS_SECONDARY_TILEMAP_REGION) --rom $(BASE_ROM) \
+	  --source-dir $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR) --output-dir $(FARM_STATUS_SECONDARY_TILEMAP_OUTPUT_DIR)
+gfx-farm-status-secondary-tilemaps-all:
+	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-farm-status-secondary-tilemaps-test
+	@$(MAKE) --no-print-directory GAME_REGION=US gfx-farm-status-secondary-tilemaps-test
+	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-farm-status-secondary-tilemaps-test
+	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-farm-status-secondary-tilemaps-test
+gfx-farm-status-secondary-tilemaps-edit-test: $(FARM_STATUS_SECONDARY_TILEMAP_TOOL) baserom_jp.gba
+	@$(PYTHON) $(FARM_STATUS_SECONDARY_TILEMAP_TOOL) edit-test --region jp --rom baserom_jp.gba
 gfx-intro-background: $(INTRO_BACKGROUND_TILES_BIN) $(INTRO_BACKGROUND_PALETTE_BIN) $(INTRO_BACKGROUND_PACKED_BIN)
 gfx-intro-background-test: gfx-intro-background $(BASE_ROM) $(GFX_RANGE_VERIFY)
 	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(INTRO_BACKGROUND_STREAM_OFFSET) --input $(INTRO_BACKGROUND_PACKED_BIN) --sha256 $(INTRO_BACKGROUND_STREAM_SHA256)
@@ -634,7 +656,7 @@ tile-grid-test:
 	@$(MAKE) --no-print-directory GAME_REGION=EU tile-grid-region-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE tile-grid-region-test
 
-gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui gfx-farm-status gfx-farm-status-tilemaps gfx-intro-background gfx-intro-objects gfx-intro-startup-tilemaps gfx-map-resources gfx-records-minigame
+gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui gfx-farm-status gfx-farm-status-tilemaps gfx-farm-status-secondary-tilemaps gfx-intro-background gfx-intro-objects gfx-intro-startup-tilemaps gfx-map-resources gfx-records-minigame
 
 # Full graphics gate for assets that have an authoritative source/rebuild
 # path.  It intentionally does not link a ROM: the project-wide link is
@@ -648,6 +670,8 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-farm-status-all
 	@$(MAKE) --no-print-directory gfx-farm-status-edit-test
 	@$(MAKE) --no-print-directory gfx-farm-status-tilemaps-all
+	@$(MAKE) --no-print-directory gfx-farm-status-secondary-tilemaps-all
+	@$(MAKE) --no-print-directory gfx-farm-status-secondary-tilemaps-edit-test
 	@$(MAKE) --no-print-directory gfx-intro-background-all
 	@$(MAKE) --no-print-directory gfx-intro-background-edit-test
 	@$(MAKE) --no-print-directory gfx-intro-objects-all
@@ -661,7 +685,7 @@ gfx-verify:
 	@$(MAKE) --no-print-directory oam-pack-test
 	@$(MAKE) --no-print-directory oam-pack-audit
 
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN) $(PORTRAIT_TILE_BIN) $(ACTOR_TILE_BIN) $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN) $(FARM_STATUS_PACKED_BIN) $(FARM_STATUS_PALETTE_BIN) $(FARM_STATUS_TILEMAP_BIN) $(INTRO_BACKGROUND_PACKED_BIN) $(INTRO_BACKGROUND_PALETTE_BIN) $(INTRO_OBJECTS_STAMP) $(INTRO_STARTUP_TILEMAPS_STAMP) $(MAP_RESOURCES_STAMP) $(RECORDS_MINIGAME_OUTPUTS)
+$(BUILD_DIR)/asm/data/data_0813B288.o: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN) $(PORTRAIT_TILE_BIN) $(ACTOR_TILE_BIN) $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN) $(FARM_STATUS_PACKED_BIN) $(FARM_STATUS_PALETTE_BIN) $(FARM_STATUS_TILEMAP_BIN) $(FARM_STATUS_SECONDARY_TILEMAP_STAMP) $(INTRO_BACKGROUND_PACKED_BIN) $(INTRO_BACKGROUND_PALETTE_BIN) $(INTRO_OBJECTS_STAMP) $(INTRO_STARTUP_TILEMAPS_STAMP) $(MAP_RESOURCES_STAMP) $(RECORDS_MINIGAME_OUTPUTS)
 
 # Mary owns the complete packed RIFF script stream.  Its three headers remain
 # explicit inputs: callables and slot names live with the selected scripts,
@@ -786,7 +810,7 @@ clean:
 .PHONY: clean
 
 ifneq (clean,$(MAKECMDGOALS))
-ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-background-edit-test gfx-intro-objects gfx-intro-objects-test gfx-intro-objects-all gfx-intro-objects-edit-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-tilemaps-edit-test gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit,$(MAKECMDGOALS)))
+ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-test gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-edit-test gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-background-edit-test gfx-intro-objects gfx-intro-objects-test gfx-intro-objects-all gfx-intro-objects-edit-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-tilemaps-edit-test gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit,$(MAKECMDGOALS)))
 -include $(ALL_DEPS)
 endif
 .PRECIOUS: $(BUILD_DIR)/%.d

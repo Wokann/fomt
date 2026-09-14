@@ -14,9 +14,11 @@ image, nor that all game graphics have been extracted.
 | Actor archive, every referenced descriptor | `graphics/sprites/actor_archive/full/*.png` | actor tile stream | Yes |
 | Located UI tile grid | `graphics/ui/shared_resource/shared_resource.png` | 4bpp tiles plus BGR555 palette | Yes |
 | Farm-status background and building previews | `graphics/ui/farm_status/shared/base_tiles.png`, `base_palettes.png`, and `tilemaps/*.tilemap` | packed 4bpp tile stream, sixteen BGR555 palette banks, and fourteen BG tilemaps | Yes |
+| Farm-status secondary layouts | `graphics/ui/farm_status/shared/secondary_tilemaps/*.tilemap` | six native Huffman-4/LZ3 64-by-44 BG tilemap streams | Yes |
 | Intro-scene object tile sources | `graphics/intro_scene/shared/object_tiles/*.4bpp` | twenty native Raw-LZ object-tile streams | Yes |
 | Intro-scene startup tilemaps | `graphics/intro_scene/shared/startup_tilemaps/*.tilemap` | four native Huffman-4/LZ3 streams | Yes |
 | Records Screen task icons | `graphics/ui/records_minigame/shared/task_00.png` through `task_06.png` | seven raw 16x16 4bpp grids with individual BGR555 palettes | Yes |
+| MapData visual layers | `graphics/maps/shared/map_XX/layer_N.*` | 272 native packed streams, post-link patched at their original ROM ranges | Yes |
 
 The actor archive has 3,009 frame descriptors, of which 2,963 are referenced
 by the retail animation tables.  Every referenced descriptor has a checked-in
@@ -25,10 +27,13 @@ caller and remain preserved native data rather than invented source images.
 
 ## Build linkage
 
-Every managed family is included from `asm/data/data_0813B288.s` through a
-regional `build/<region>/graphics/...` output.  The surrounding archive headers,
-OAM records, palettes, tables, and unhandled bytes remain direct ROM data until
-they have a corresponding verified source/rebuild path.
+Most managed families are included from `asm/data/data_0813B288.s` through a
+regional `build/<region>/graphics/...` output. MapData visual layers preserve
+their original continuous archive position through a post-link replacement
+step, because their 272 pointer-bearing streams are not a single assembly
+incbin block. The surrounding archive headers, OAM records, palettes, tables,
+and unhandled bytes remain direct ROM data until they have a corresponding
+verified source/rebuild path.
 
 ## Unclassified ROM ranges
 
@@ -54,8 +59,8 @@ graphics resource.
 
 | Candidate family | Evidence | Current conclusion |
 | --- | --- | --- |
-| Farm-status secondary screen data | `FarmStatusScreenResourceDescriptor`, native tile lookup and the other direct ranges around the preview maps. | The common tile grid, full palette-bank set and all fourteen building-preview BG tilemaps are now managed; surrounding resource classes still need separate format analysis. |
+| Farm-status remaining screen data | `FarmStatusScreenResourceDescriptor` and direct ranges adjacent to the managed layouts. | The common tile grid, full palette-bank set, fourteen building-preview tilemaps and six secondary layouts are now managed; surrounding resource classes still need separate format analysis. |
 | Intro-scene OAM composition and palettes | `gUnk_IntroSceneUnpackSource_*` labels decode to twenty managed native 0x500-byte tile sources; `func_0805FBB8` stages them for OBJ use. | The streams are managed, but their full-image OAM composition and per-object palette selectors remain runtime data. No guessed full PNG is treated as source. |
 | Intro-scene startup tilemap presentation | `func_08001A90` decodes four managed 0x1000-byte streams and copies each as two interleaved 32-by-32 BG tilemaps. | Native interleaved tilemaps are managed; their tile-sheet, palette-bank and screen-selection rules still require a separate compositor audit. |
 | Other Records-screen resources | Raw ranges adjacent to the task-icon records, plus page-specific data pointers in the Records Screen code. | The seven direct task icon/palette pairs are now managed; the remaining ranges still need independent consumer and format analysis. |
-| Field/map payloads | The large raw ranges around `FieldPlotRenderRecord_*` and map-resource labels are used by field rendering. | May contain tiles, maps, collision and/or animation data together.  They require per-record boundaries and runtime format analysis, not a bulk linear-tile export. |
+| MapData non-visual payloads | MapData fields 1 and 2 plus field-render records are used by field rendering. | The six visual pointer layers are managed as 272 verified streams. The remaining payloads may contain collision, terrain and animation data and require separate runtime format analysis. |

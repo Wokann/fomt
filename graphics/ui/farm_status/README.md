@@ -31,3 +31,22 @@ make gfx-farm-status-previews
 The tilemap build verifies all fourteen payloads are byte-identical in JP, US,
 EU, and DE. The assembler then includes the selected regional bundle at each
 original table label, preserving the C++ pointer table without relocation.
+
+`shared/secondary_tilemaps/` contains the six other native 64-by-44 BG
+tilemaps selected by `func_0806EC94`: two layouts, each containing three
+screen-block layers. They are source-order arrays of 16-bit BG entries, not
+rendered artwork or a sidecar layout description. The stream headers and the
+EU-only eight-byte labels remain in the assembly source; the actual compressed
+payload is rebuilt from the selected region's `.tilemap` source and is included
+at its original runtime label.
+
+Rebuild and compare these six streams across all four ROMs with:
+
+```console
+make gfx-farm-status-secondary-tilemaps-all
+```
+
+Their native packed slots are deliberately fixed. A source edit that expands
+past its original compressed slot is rejected rather than overwriting the next
+resource; `make gfx-farm-status-secondary-tilemaps-edit-test` exercises that
+capacity guard.
