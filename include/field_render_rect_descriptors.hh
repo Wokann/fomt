@@ -12,7 +12,10 @@ struct FieldRenderRectDescriptor
     void const * lookup_indices;
 };
 
-#define FIELD_RENDER_RECT_DESCRIPTOR_COUNT 82
+enum
+{
+    FIELD_RENDER_RECT_DESCRIPTOR_COUNT = 82,
+};
 
 extern FieldRenderRectDescriptor const gFieldRenderRectDescriptors[FIELD_RENDER_RECT_DESCRIPTOR_COUNT];
 
