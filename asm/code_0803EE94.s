@@ -3794,7 +3794,194 @@ func_08050478: @ 0x08050204
     pop {r0}
     bx r0
     .align 2, 0
-    jp_code_0803ee_func func_08050664, 0x503F0, 0x5055C
+    .global func_08050664
+    .thumb_func
+func_08050664: @ 0x080503F0
+    push {r4, r5, r6, r7, lr}
+    mov r7, sl
+    mov r6, sb
+    mov r5, r8
+    push {r5, r6, r7}
+    sub sp, #0xc
+    adds r5, r0, #0
+    adds r7, r1, #0
+    str r2, [sp, #8]
+    mov sl, r3
+    ldr r0, [sp, #0x2c]
+    mov sb, r0
+    ldr r6, [sp, #0x30]
+    cmp r7, #0
+    beq .Ljp_08050418
+    adds r0, r7, #0
+    bl strlen
+    cmp r0, #0x1c
+    bls .Ljp_0805041A
+.Ljp_08050418:
+    ldr r7, .Ljp_08050440 @ =gUiTextLayoutPositionTable
+.Ljp_0805041A:
+    movs r4, #7
+    movs r1, #0xc
+    mov r8, r1
+    cmp r6, #0
+    bne .Ljp_08050432
+    movs r4, #6
+    mov r2, sb
+    cmp r2, #0
+    bne .Ljp_08050432
+    movs r0, #0x1a
+    mov r8, r0
+    movs r4, #5
+.Ljp_08050432:
+    cmp r4, #6
+    beq .Ljp_0805045A
+    cmp r4, #6
+    bgt .Ljp_08050444
+    cmp r4, #5
+    beq .Ljp_0805046E
+    b .Ljp_08050448
+    .align 2, 0
+.Ljp_08050440: .4byte gUiTextLayoutPositionTable
+.Ljp_08050444:
+    cmp r4, #7
+    beq .Ljp_0805044A
+.Ljp_08050448:
+    movs r4, #5
+.Ljp_0805044A:
+    cmp r6, #0
+    beq .Ljp_08050458
+    adds r0, r6, #0
+    bl strlen
+    cmp r0, r8
+    bls .Ljp_0805045A
+.Ljp_08050458:
+    ldr r6, .Ljp_080504BC @ =gUiTextLayoutPositionTable
+.Ljp_0805045A:
+    mov r1, sb
+    cmp r1, #0
+    beq .Ljp_0805046A
+    mov r0, sb
+    bl strlen
+    cmp r0, r8
+    bls .Ljp_0805046E
+.Ljp_0805046A:
+    ldr r2, .Ljp_080504BC @ =gUiTextLayoutPositionTable
+    mov sb, r2
+.Ljp_0805046E:
+    mov r0, sl
+    cmp r0, #0
+    beq .Ljp_0805047C
+    bl strlen
+    cmp r0, r8
+    bls .Ljp_08050480
+.Ljp_0805047C:
+    ldr r1, .Ljp_080504BC @ =gUiTextLayoutPositionTable
+    mov sl, r1
+.Ljp_08050480:
+    ldr r2, [sp, #8]
+    cmp r2, #0
+    beq .Ljp_08050490
+    adds r0, r2, #0
+    bl strlen
+    cmp r0, r8
+    bls .Ljp_08050494
+.Ljp_08050490:
+    ldr r0, .Ljp_080504BC @ =gUiTextLayoutPositionTable
+    str r0, [sp, #8]
+.Ljp_08050494:
+    adds r0, r5, #0
+    adds r0, #0xd0
+    bl func_0804EE6C
+    movs r1, #0
+    mov r0, sp
+    strb r1, [r0]
+    adds r0, r5, #0
+    mov r1, sp
+    adds r2, r7, #0
+    ldr r3, [sp, #0x34]
+    bl func_080507F8
+    cmp r4, #6
+    beq .Ljp_080504DC
+    cmp r4, #6
+    bgt .Ljp_080504C0
+    cmp r4, #5
+    beq .Ljp_080504F4
+    b .Ljp_08050524
+    .align 2, 0
+.Ljp_080504BC: .4byte gUiTextLayoutPositionTable
+.Ljp_080504C0:
+    cmp r4, #7
+    bne .Ljp_08050524
+    movs r0, #7
+    movs r1, #4
+    bl func_080507D0
+    mov r1, sp
+    adds r1, #1
+    strb r0, [r1]
+    adds r0, r5, #0
+    adds r2, r6, #0
+    ldr r3, [sp, #0x34]
+    bl func_080507F8
+.Ljp_080504DC:
+    adds r0, r4, #0
+    movs r1, #3
+    bl func_080507D0
+    mov r1, sp
+    adds r1, #2
+    strb r0, [r1]
+    adds r0, r5, #0
+    mov r2, sb
+    ldr r3, [sp, #0x34]
+    bl func_080507F8
+.Ljp_080504F4:
+    adds r0, r4, #0
+    movs r1, #2
+    bl func_080507D0
+    mov r1, sp
+    adds r1, #3
+    strb r0, [r1]
+    adds r0, r5, #0
+    mov r2, sl
+    ldr r3, [sp, #0x34]
+    bl func_080507F8
+    adds r0, r4, #0
+    movs r1, #1
+    bl func_080507D0
+    add r1, sp, #4
+    strb r0, [r1]
+    adds r0, r5, #0
+    ldr r2, [sp, #8]
+    ldr r3, [sp, #0x34]
+    bl func_080507F8
+    b .Ljp_08050526
+.Ljp_08050524:
+    movs r4, #5
+.Ljp_08050526:
+    movs r1, #0xae
+    lsls r1, r1, #1
+    adds r0, r5, r1
+    str r4, [r0]
+    movs r2, #0xac
+    lsls r2, r2, #1
+    adds r1, r5, r2
+    movs r0, #1
+    str r0, [r1]
+    movs r0, #6
+    str r0, [r5, #8]
+    movs r1, #0xe0
+    lsls r1, r1, #1
+    adds r0, r5, r1
+    adds r2, #8
+    adds r1, r5, r2
+    movs r2, #0
+    bl InitializeIndexedResourceHandle
+    add sp, #0xc
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
     jp_code_0803ee_func func_080507D0, 0x5055C, 0x50584
     jp_code_0803ee_func func_080507F8, 0x50584, 0x505F4
     jp_code_0803ee_func func_08050868, 0x505F4, 0x50864
