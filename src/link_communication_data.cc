@@ -4,7 +4,7 @@
 // packet data, character codes, protocol identifiers, then runtime strings.
 #include FOMT_TEXT_INCLUDE(link_communication_data.cc)
 
-EXTERN_C
+extern "C" {
 
 LinkCommunicationDataRecord const gUnk_081007AC[] = {
     { 0x0000, 0x001A, 0x00000000 },
@@ -137,10 +137,10 @@ LinkCommunicationDataRecord const gUnk_08100A04[] = {
 char const gCppRuntimeBadAlloc_LinkCommunication[] =
     "bad_alloc";
 
-EXTERN_C_END
+}
 
 #if defined(REGION_JP)
-u16 const gLinkCommunicationCharacterCodeTable[] ALIGN(2) = {
+u16 const gLinkCommunicationCharacterCodeTable[] = {
         "　あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほま"
         "みむめもやゆよらりるれろわをんぁぃぅぇぉっゃゅょがぎぐげござじず"
         "ぜぞだぢづでどばびぶべぼぱぴぷぺぽアイウエオカキクケコサシスセソ"
@@ -155,7 +155,7 @@ u16 const gLinkCommunicationCharacterCodeTable[] ALIGN(2) = {
 #else
 // The extended single-byte game-font glyphs have no independently verified
 // Unicode names yet, so keep their proven ROM codes explicit.
-u8 const gLinkCommunicationCharacterCodeTable[] ALIGN(2) = {
+u8 const gLinkCommunicationCharacterCodeTable[] = {
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         "abcdefghijklmnopqrstuvwxyz"
         "0123456789!%&\xBF()~\xA2\xA3<>.?\xA5+-x*/o\xB6\xB7\xB3\xB2\xB1\xC0"
@@ -164,7 +164,7 @@ u8 const gLinkCommunicationCharacterCodeTable[] ALIGN(2) = {
 };
 #endif
 
-EXTERN_C
+extern "C" {
 
 // The native link packet constructors load the first word of each object.
 // These are ASCII protocol identifiers, not display text.  They deliberately
@@ -198,4 +198,4 @@ char const gCppRuntimeBadAlloc_LinkCommunicationA4N[] =
 char const gCppRuntimeBadAlloc_LinkCommunicationGYW[] =
     "bad_alloc";
 
-EXTERN_C_END
+}
