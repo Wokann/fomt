@@ -53,9 +53,24 @@ class OamPiece:
 
 
 def parse_ids(text: str) -> list[int]:
-    values = [int(part.strip(), 0) for part in text.split(",") if part.strip()]
+    values: list[int] = []
+    for raw_part in text.split(","):
+        part = raw_part.strip()
+        if not part:
+            continue
+        if "-" not in part:
+            values.append(int(part, 0))
+            continue
+        start_text, end_text = part.split("-", 1)
+        start = int(start_text.strip(), 0)
+        end = int(end_text.strip(), 0)
+        if end < start:
+            raise argparse.ArgumentTypeError(
+                f"animation range must ascend, got {part}"
+            )
+        values.extend(range(start, end + 1))
     if not values:
-        raise argparse.ArgumentTypeError("at least one animation ID is required")
+        raise argparse.ArgumentTypeError("at least one animation ID or range is required")
     return values
 
 
@@ -271,11 +286,17 @@ def main() -> int:
     subparsers = parser.add_subparsers(dest="command", required=True)
     subparsers.add_parser("audit", help="validate native actor archive relationships")
     export_parser = subparsers.add_parser("export", help="write complete indexed actor frame PNGs")
-    export_parser.add_argument("--animations", required=True, type=parse_ids, help="comma-separated animation IDs")
+    export_parser.add_argument(
+        "--animations", required=True, type=parse_ids,
+        help="comma-separated animation IDs or inclusive ranges (for example 0x212-0x216)",
+    )
     export_parser.add_argument("--output", required=True, type=Path)
     export_parser.add_argument("--replace", action="store_true", help="replace existing authored PNGs")
     rebuild_parser = subparsers.add_parser("rebuild", help="rebuild native actor table-four tiles from complete PNGs")
-    rebuild_parser.add_argument("--animations", required=True, type=parse_ids, help="comma-separated animation IDs")
+    rebuild_parser.add_argument(
+        "--animations", required=True, type=parse_ids,
+        help="comma-separated animation IDs or inclusive ranges (for example 0x212-0x216)",
+    )
     rebuild_parser.add_argument(
         "--source", required=True, nargs="+", type=Path,
         help="one or more actor source directories; each frame may occur in only one",
