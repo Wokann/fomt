@@ -24,7 +24,8 @@ next graphics families.
 | `func_080C160C` | `0873F3C8`, `0873F5D4`, `0873F6AC` | Every packed and decoded stream is identical | Managed: two 32-by-32 tilemaps and one 4bpp tile stream; the adjacent unbounded palette copy remains excluded. |
 | `func_08054F40` | `08738D1C` | Packed and decoded stream identical in all four regions | Managed: exact 328-tile 4bpp OBJ buffer; its related palette copy remains excluded because it crosses a label boundary. |
 | `func_0805AB08` | `0872F21C` | Packed and decoded stream identical in all four regions | Managed: exact 358-tile 4bpp OBJ buffer; staged map data and an unbounded palette copy remain excluded. |
-| `asm/code_0803EE94.s` remaining isolated consumers | `08743058`, `0852AA6C`, `0874E648`, `0874ECCC`, `0875822C` | Most full labelled ranges are shared; `0874E648` and `0874ECCC` are not byte-identical with JP | Unclassified. Two ranges have no valid `Unpack` header at their assembly-label boundary; other ranges use either unproven format `230` or need consumer/layout analysis. |
+| `func_0805FBB8` | `08743058` | Packed stream, decoded 4bpp tiles, and adjacent three palette banks identical in all four regions | Managed by the existing Intro Scene background PNG pipeline. The assembly symbol maps to regional physical locations, so it is not an invalid stream boundary. |
+| `asm/code_0803EE94.s` remaining isolated consumers | `0852AA6C`, `0874E648`, `0874ECCC`, `0875822C` | Most full labelled ranges are shared; `0874E648` and `0874ECCC` are not byte-identical with JP | Unclassified. The first label is not a standalone `Unpack` stream in the selected data layout; other ranges use either unproven format `230` or need consumer/layout analysis. |
 | `asm/intro_scene.s` direct consumers | `0874E648`, `0874EB60`, `0874A9C0` | `0874E648`/`0874EB60` differ from JP; `0874A9C0` is shared | Unclassified by this audit. Existing Intro Scene pipelines cover other proven object/background streams separately. |
 
 ## Native-format evidence
@@ -37,7 +38,7 @@ stream, these were observed:
 | --- | --- | --- |
 | `020` / `030` Raw-LZ | all three managed UI groups; several remaining tilemap candidates | `tools/marvelous_codec.py` has a strict checked encoder. Edited data remains subject to its fixed original slot size. |
 | `230` | `086FB004`, `0875822C`, `0874A9C0` | The generic Huffman-8/LZ3 encoder strictly decodes, but its `086FB004` output is `0x21C0`, exceeding the `0x2198` retail slot even without an edit. No fixed-slot encoder has been verified, so these are not presented as editable source assets. |
-| invalid header at assembly-label boundary | `08743058`, `0852AA6C` | The label range is not itself a standalone `Unpack` stream. It must be split from its real runtime consumer before any extraction. |
+| invalid header at assembly-label boundary | `0852AA6C` | The selected label range is not itself a standalone `Unpack` stream. It must be split from its real runtime consumer before any extraction. |
 
 ## Verification rule
 
