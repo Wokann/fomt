@@ -66,9 +66,8 @@ FieldRenderPatchArgumentData const gFieldRenderPatchArgumentData = {
 
 #include FOMT_TEXT_INCLUDE(field_render_resource_data_2.cc)
 
-// This packed object follows the field-render resource data directly in ROM.
-// Its one-byte alignment is part of the original data layout.
-FarmHouseStyleNibbleLookupData const gFarmHouseStyleNibbleLookupData ALIGN(1) = {
+// This packed nine-byte object follows the field-render resource data directly in ROM.
+FarmHouseStyleNibbleLookupData const gFarmHouseStyleNibbleLookupData = {
     { 0x05, 0x06, 0x08 },
     { 0x05, 0x06, 0x05 },
     { 0x05, 0x01, 0x01 },

@@ -25,7 +25,9 @@ struct FieldRenderPatchArgumentData
 // style, then writes the result into a tile attribute's high nibble.  The
 // table names retain physical offsets because the three concrete display
 // groups are not fully named yet.
-struct PACKED FarmHouseStyleNibbleLookupData
+// agbcp otherwise gives this all-u8 aggregate four-byte trailing padding.
+// Keep the compiler attribute directly: the original object is exactly 9 bytes.
+struct __attribute__((packed)) FarmHouseStyleNibbleLookupData
 {
     u8 values_00[3];
     u8 values_03[3];
