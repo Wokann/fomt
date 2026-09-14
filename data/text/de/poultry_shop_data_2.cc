@@ -118,3 +118,6 @@ char const gText_PoultryShop_ChickenSold[] =
     "Ich bitte Rick, die Hühner,\r\n"
     "die du verkauft hast, aus\r\n"
     "deinem Stall zu holen.{Press}";
+
+char const gCppRuntimeBadAlloc_PoultryShopTrailer[] =
+    "bad_alloc";
