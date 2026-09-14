@@ -2187,46 +2187,46 @@ gUnk_08751EEC:
 	.incbin "baserom_de.gba", 0x4D9408, 0x20
 	.global gUnk_08751F0C
 gUnk_08751F0C:
-	.incbin "baserom_de.gba", 0x4D9428, 0x80
+	FOMT_RECORDS_TASK_TILES 00
 	.global gUnk_08751F8C
 gUnk_08751F8C:
-	.incbin "baserom_de.gba", 0x4D94A8, 0x20
+	FOMT_RECORDS_TASK_PALETTE 00
 	.global gUnk_08751FAC
 gUnk_08751FAC:
-	.incbin "baserom_de.gba", 0x4D94C8, 0x80
+	FOMT_RECORDS_TASK_TILES 01
 	.global gUnk_0875202C
 gUnk_0875202C:
-	.incbin "baserom_de.gba", 0x4D9548, 0x20
+	FOMT_RECORDS_TASK_PALETTE 01
 	.global gUnk_0875204C
 gUnk_0875204C:
-	.incbin "baserom_de.gba", 0x4D9568, 0x80
+	FOMT_RECORDS_TASK_TILES 02
 	.global gUnk_087520CC
 gUnk_087520CC:
-	.incbin "baserom_de.gba", 0x4D95E8, 0x20
+	FOMT_RECORDS_TASK_PALETTE 02
 	.global gUnk_087520EC
 gUnk_087520EC:
-	.incbin "baserom_de.gba", 0x4D9608, 0x80
+	FOMT_RECORDS_TASK_TILES 03
 	.global gUnk_0875216C
 gUnk_0875216C:
-	.incbin "baserom_de.gba", 0x4D9688, 0x20
+	FOMT_RECORDS_TASK_PALETTE 03
 	.global gUnk_0875218C
 gUnk_0875218C:
-	.incbin "baserom_de.gba", 0x4D96A8, 0x80
+	FOMT_RECORDS_TASK_TILES 04
 	.global gUnk_0875220C
 gUnk_0875220C:
-	.incbin "baserom_de.gba", 0x4D9728, 0x20
+	FOMT_RECORDS_TASK_PALETTE 04
 	.global gUnk_0875222C
 gUnk_0875222C:
-	.incbin "baserom_de.gba", 0x4D9748, 0x80
+	FOMT_RECORDS_TASK_TILES 05
 	.global gUnk_087522AC
 gUnk_087522AC:
-	.incbin "baserom_de.gba", 0x4D97C8, 0x20
+	FOMT_RECORDS_TASK_PALETTE 05
 	.global gUnk_087522CC
 gUnk_087522CC:
-	.incbin "baserom_de.gba", 0x4D97E8, 0x80
+	FOMT_RECORDS_TASK_TILES 06
 	.global gUnk_0875234C
 gUnk_0875234C:
-	.incbin "baserom_de.gba", 0x4D9868, 0x20
+	FOMT_RECORDS_TASK_PALETTE 06
 	.global gUnk_0875236C
 gUnk_0875236C:
 	.incbin "baserom_de.gba", 0x4D9888, 0x80

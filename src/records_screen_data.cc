@@ -3,8 +3,9 @@
 #include FOMT_TEXT_INCLUDE(records_screen_data_1.cc)
 
 // Records-screen callers select entries from this two-word resource table.
-// The pointed-to payload format and the roles of its two fields are not yet
-// decoded, so their member names intentionally remain address-based.
+// Every row points to a raw 16x16 4bpp icon and its immediately associated
+// sixteen-colour BGR555 palette.  The physical resource order remains in ROM
+// order; this table is the runtime presentation order.
 RecordsScreenTaskResourcePair const gRecordsScreenMinigameTaskResources[] = {
 #if defined(REGION_JP)
     { gUnk_084D7EB8, gUnk_084D7F38 },

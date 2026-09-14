@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Encode the verified FoMT ``0x70`` stream variant used by 8bpp screen art.
+"""Encode a verified FoMT ``0x70`` stream variant for editable graphics.
 
 The ROM's native ``Unpack`` routine at 0x080D102C selects an atom reader, an
 LZ mode and an optional differential filter from the byte following the 0x70

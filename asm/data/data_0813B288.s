@@ -1,3 +1,255 @@
+    @ The Records Screen task resources are seven raw 16x16 4bpp grids and
+    @ matching 16-colour palettes.  All four retail localizations contain
+    @ identical payloads; keep the region-specific build paths explicit.
+    .macro FOMT_RECORDS_TASK_TILES_00
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/records_minigame/task_00.4bpp"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/records_minigame/task_00.4bpp"
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/records_minigame/task_00.4bpp"
+    .else
+    .incbin "build/us/graphics/ui/records_minigame/task_00.4bpp"
+    .endif
+    .endif
+    .endif
+    .endm
+    .macro FOMT_RECORDS_TASK_TILES_01
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/records_minigame/task_01.4bpp"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/records_minigame/task_01.4bpp"
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/records_minigame/task_01.4bpp"
+    .else
+    .incbin "build/us/graphics/ui/records_minigame/task_01.4bpp"
+    .endif
+    .endif
+    .endif
+    .endm
+    .macro FOMT_RECORDS_TASK_TILES_02
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/records_minigame/task_02.4bpp"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/records_minigame/task_02.4bpp"
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/records_minigame/task_02.4bpp"
+    .else
+    .incbin "build/us/graphics/ui/records_minigame/task_02.4bpp"
+    .endif
+    .endif
+    .endif
+    .endm
+    .macro FOMT_RECORDS_TASK_TILES_03
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/records_minigame/task_03.4bpp"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/records_minigame/task_03.4bpp"
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/records_minigame/task_03.4bpp"
+    .else
+    .incbin "build/us/graphics/ui/records_minigame/task_03.4bpp"
+    .endif
+    .endif
+    .endif
+    .endm
+    .macro FOMT_RECORDS_TASK_TILES_04
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/records_minigame/task_04.4bpp"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/records_minigame/task_04.4bpp"
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/records_minigame/task_04.4bpp"
+    .else
+    .incbin "build/us/graphics/ui/records_minigame/task_04.4bpp"
+    .endif
+    .endif
+    .endif
+    .endm
+    .macro FOMT_RECORDS_TASK_TILES_05
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/records_minigame/task_05.4bpp"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/records_minigame/task_05.4bpp"
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/records_minigame/task_05.4bpp"
+    .else
+    .incbin "build/us/graphics/ui/records_minigame/task_05.4bpp"
+    .endif
+    .endif
+    .endif
+    .endm
+    .macro FOMT_RECORDS_TASK_TILES_06
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/records_minigame/task_06.4bpp"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/records_minigame/task_06.4bpp"
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/records_minigame/task_06.4bpp"
+    .else
+    .incbin "build/us/graphics/ui/records_minigame/task_06.4bpp"
+    .endif
+    .endif
+    .endif
+    .endm
+    .macro FOMT_RECORDS_TASK_TILES index
+    .if \index == 0
+    FOMT_RECORDS_TASK_TILES_00
+    .elseif \index == 1
+    FOMT_RECORDS_TASK_TILES_01
+    .elseif \index == 2
+    FOMT_RECORDS_TASK_TILES_02
+    .elseif \index == 3
+    FOMT_RECORDS_TASK_TILES_03
+    .elseif \index == 4
+    FOMT_RECORDS_TASK_TILES_04
+    .elseif \index == 5
+    FOMT_RECORDS_TASK_TILES_05
+    .elseif \index == 6
+    FOMT_RECORDS_TASK_TILES_06
+    .else
+    .error "invalid Records Screen task icon index"
+    .endif
+    .endm
+    .macro FOMT_RECORDS_TASK_PALETTE_00
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/records_minigame/task_00.gbapal"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/records_minigame/task_00.gbapal"
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/records_minigame/task_00.gbapal"
+    .else
+    .incbin "build/us/graphics/ui/records_minigame/task_00.gbapal"
+    .endif
+    .endif
+    .endif
+    .endm
+    .macro FOMT_RECORDS_TASK_PALETTE_01
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/records_minigame/task_01.gbapal"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/records_minigame/task_01.gbapal"
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/records_minigame/task_01.gbapal"
+    .else
+    .incbin "build/us/graphics/ui/records_minigame/task_01.gbapal"
+    .endif
+    .endif
+    .endif
+    .endm
+    .macro FOMT_RECORDS_TASK_PALETTE_02
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/records_minigame/task_02.gbapal"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/records_minigame/task_02.gbapal"
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/records_minigame/task_02.gbapal"
+    .else
+    .incbin "build/us/graphics/ui/records_minigame/task_02.gbapal"
+    .endif
+    .endif
+    .endif
+    .endm
+    .macro FOMT_RECORDS_TASK_PALETTE_03
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/records_minigame/task_03.gbapal"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/records_minigame/task_03.gbapal"
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/records_minigame/task_03.gbapal"
+    .else
+    .incbin "build/us/graphics/ui/records_minigame/task_03.gbapal"
+    .endif
+    .endif
+    .endif
+    .endm
+    .macro FOMT_RECORDS_TASK_PALETTE_04
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/records_minigame/task_04.gbapal"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/records_minigame/task_04.gbapal"
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/records_minigame/task_04.gbapal"
+    .else
+    .incbin "build/us/graphics/ui/records_minigame/task_04.gbapal"
+    .endif
+    .endif
+    .endif
+    .endm
+    .macro FOMT_RECORDS_TASK_PALETTE_05
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/records_minigame/task_05.gbapal"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/records_minigame/task_05.gbapal"
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/records_minigame/task_05.gbapal"
+    .else
+    .incbin "build/us/graphics/ui/records_minigame/task_05.gbapal"
+    .endif
+    .endif
+    .endif
+    .endm
+    .macro FOMT_RECORDS_TASK_PALETTE_06
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/records_minigame/task_06.gbapal"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/records_minigame/task_06.gbapal"
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/records_minigame/task_06.gbapal"
+    .else
+    .incbin "build/us/graphics/ui/records_minigame/task_06.gbapal"
+    .endif
+    .endif
+    .endif
+    .endm
+    .macro FOMT_RECORDS_TASK_PALETTE index
+    .if \index == 0
+    FOMT_RECORDS_TASK_PALETTE_00
+    .elseif \index == 1
+    FOMT_RECORDS_TASK_PALETTE_01
+    .elseif \index == 2
+    FOMT_RECORDS_TASK_PALETTE_02
+    .elseif \index == 3
+    FOMT_RECORDS_TASK_PALETTE_03
+    .elseif \index == 4
+    FOMT_RECORDS_TASK_PALETTE_04
+    .elseif \index == 5
+    FOMT_RECORDS_TASK_PALETTE_05
+    .elseif \index == 6
+    FOMT_RECORDS_TASK_PALETTE_06
+    .else
+    .error "invalid Records Screen task palette index"
+    .endif
+    .endm
+
     .ifdef REGION_JP
     @ JP revision 0 counterpart of data_0813B288.s.
     @
@@ -1787,50 +2039,51 @@ gUnk_084D529C:
 gUnk_084D52BC:
     .incbin "baserom_jp.gba", 0x4D52BC, (0x4D7EB8 - 0x4D52BC)
 
-    @ Records-screen minigame resource boundaries. The payload formats are
-    @ still unknown; direct labels give the C++ pointer table relocations.
+    @ Records-screen minigame icon/palette boundaries.  The paired labels are
+    @ preserved because records_screen_data.cc uses ordinary relocations.
     .global gUnk_084D7EB8
 gUnk_084D7EB8:
-    .incbin "baserom_jp.gba", 0x4D7EB8, (0x4D7F38 - 0x4D7EB8)
+    FOMT_RECORDS_TASK_TILES 00
     .global gUnk_084D7F38
 gUnk_084D7F38:
-    .incbin "baserom_jp.gba", 0x4D7F38, (0x4D7F58 - 0x4D7F38)
+    FOMT_RECORDS_TASK_PALETTE 00
     .global gUnk_084D7F58
 gUnk_084D7F58:
-    .incbin "baserom_jp.gba", 0x4D7F58, (0x4D7FD8 - 0x4D7F58)
+    FOMT_RECORDS_TASK_TILES 01
     .global gUnk_084D7FD8
 gUnk_084D7FD8:
-    .incbin "baserom_jp.gba", 0x4D7FD8, (0x4D7FF8 - 0x4D7FD8)
+    FOMT_RECORDS_TASK_PALETTE 01
     .global gUnk_084D7FF8
 gUnk_084D7FF8:
-    .incbin "baserom_jp.gba", 0x4D7FF8, (0x4D8078 - 0x4D7FF8)
+    FOMT_RECORDS_TASK_TILES 02
     .global gUnk_084D8078
 gUnk_084D8078:
-    .incbin "baserom_jp.gba", 0x4D8078, (0x4D8098 - 0x4D8078)
+    FOMT_RECORDS_TASK_PALETTE 02
     .global gUnk_084D8098
 gUnk_084D8098:
-    .incbin "baserom_jp.gba", 0x4D8098, (0x4D8118 - 0x4D8098)
+    FOMT_RECORDS_TASK_TILES 03
     .global gUnk_084D8118
 gUnk_084D8118:
-    .incbin "baserom_jp.gba", 0x4D8118, (0x4D8138 - 0x4D8118)
+    FOMT_RECORDS_TASK_PALETTE 03
     .global gUnk_084D8138
 gUnk_084D8138:
-    .incbin "baserom_jp.gba", 0x4D8138, (0x4D81B8 - 0x4D8138)
+    FOMT_RECORDS_TASK_TILES 04
     .global gUnk_084D81B8
 gUnk_084D81B8:
-    .incbin "baserom_jp.gba", 0x4D81B8, (0x4D81D8 - 0x4D81B8)
+    FOMT_RECORDS_TASK_PALETTE 04
     .global gUnk_084D81D8
 gUnk_084D81D8:
-    .incbin "baserom_jp.gba", 0x4D81D8, (0x4D8258 - 0x4D81D8)
+    FOMT_RECORDS_TASK_TILES 05
     .global gUnk_084D8258
 gUnk_084D8258:
-    .incbin "baserom_jp.gba", 0x4D8258, (0x4D8278 - 0x4D8258)
+    FOMT_RECORDS_TASK_PALETTE 05
     .global gUnk_084D8278
 gUnk_084D8278:
-    .incbin "baserom_jp.gba", 0x4D8278, (0x4D82F8 - 0x4D8278)
+    FOMT_RECORDS_TASK_TILES 06
     .global gUnk_084D82F8
 gUnk_084D82F8:
-    .incbin "baserom_jp.gba", 0x4D82F8, (0x4E0BA0 - 0x4D82F8)
+    FOMT_RECORDS_TASK_PALETTE 06
+    .incbin "baserom_jp.gba", 0x4D8318, (0x4E0BA0 - 0x4D8318)
 
     @ Shared UI resource payloads.  These direct labels let the ui_state
     @ table retain ordinary relocations without a synthetic base-plus-offset
@@ -5332,59 +5585,59 @@ gUnk_08751EEC:
 
 	.global gUnk_08751F0C
 gUnk_08751F0C:
-	FOMT_REGION_ASSET_INCBIN 0x751F0C, 0x80
+	FOMT_RECORDS_TASK_TILES 00
 
 	.global gUnk_08751F8C
 gUnk_08751F8C:
-	FOMT_REGION_ASSET_INCBIN 0x751F8C, 0x20
+	FOMT_RECORDS_TASK_PALETTE 00
 
 	.global gUnk_08751FAC
 gUnk_08751FAC:
-	FOMT_REGION_ASSET_INCBIN 0x751FAC, 0x80
+	FOMT_RECORDS_TASK_TILES 01
 
 	.global gUnk_0875202C
 gUnk_0875202C:
-	FOMT_REGION_ASSET_INCBIN 0x75202C, 0x20
+	FOMT_RECORDS_TASK_PALETTE 01
 
 	.global gUnk_0875204C
 gUnk_0875204C:
-	FOMT_REGION_ASSET_INCBIN 0x75204C, 0x80
+	FOMT_RECORDS_TASK_TILES 02
 
 	.global gUnk_087520CC
 gUnk_087520CC:
-	FOMT_REGION_ASSET_INCBIN 0x7520CC, 0x20
+	FOMT_RECORDS_TASK_PALETTE 02
 
 	.global gUnk_087520EC
 gUnk_087520EC:
-	FOMT_REGION_ASSET_INCBIN 0x7520EC, 0x80
+	FOMT_RECORDS_TASK_TILES 03
 
 	.global gUnk_0875216C
 gUnk_0875216C:
-	FOMT_REGION_ASSET_INCBIN 0x75216C, 0x20
+	FOMT_RECORDS_TASK_PALETTE 03
 
 	.global gUnk_0875218C
 gUnk_0875218C:
-	FOMT_REGION_ASSET_INCBIN 0x75218C, 0x80
+	FOMT_RECORDS_TASK_TILES 04
 
 	.global gUnk_0875220C
 gUnk_0875220C:
-	FOMT_REGION_ASSET_INCBIN 0x75220C, 0x20
+	FOMT_RECORDS_TASK_PALETTE 04
 
 	.global gUnk_0875222C
 gUnk_0875222C:
-	FOMT_REGION_ASSET_INCBIN 0x75222C, 0x80
+	FOMT_RECORDS_TASK_TILES 05
 
 	.global gUnk_087522AC
 gUnk_087522AC:
-	FOMT_REGION_ASSET_INCBIN 0x7522AC, 0x20
+	FOMT_RECORDS_TASK_PALETTE 05
 
 	.global gUnk_087522CC
 gUnk_087522CC:
-	FOMT_REGION_ASSET_INCBIN 0x7522CC, 0x80
+	FOMT_RECORDS_TASK_TILES 06
 
 	.global gUnk_0875234C
 gUnk_0875234C:
-	FOMT_REGION_ASSET_INCBIN 0x75234C, 0x20
+	FOMT_RECORDS_TASK_PALETTE 06
 
 	.global gUnk_0875236C
 gUnk_0875236C:

@@ -240,6 +240,30 @@ python tools/palette_banks.py export baserom_us.gba --offset 0x747A14 --banks 3 
   --output graphics/intro_scene/shared/background_palettes.png --replace
 ```
 
+## Records Screen task icons
+
+`ui/records_minigame/shared/task_00.png` through `task_06.png` are seven
+standalone 16x16 indexed 4bpp icon records.  Unlike a screen background,
+each PNG retains the exact sixteen-colour palette attached to that individual
+icon, and the Records Screen's C++ pointer table selects the display order.
+The source files therefore use stable physical record indices rather than
+invented gameplay labels.
+
+The seven `0x80`-byte tile streams and immediately following `0x20`-byte
+palettes are byte-identical in JP, US, EU and DE.  Their regional first tile
+offsets are JP `0x4D7EB8`, US `0x751F0C`, EU `0x751F68`, DE `0x4D9428`, with
+`0xA0` bytes per record.  The assembler replaces every one of these fourteen
+pointer-table targets with a generated file for the selected region.
+
+```console
+make gfx-records-minigame-all
+```
+
+This command rebuilds all four output directories and verifies each of the
+fourteen generated ranges against all four ROMs.  See
+`ui/records_minigame/README.md` for the exact source-regeneration command and
+the reason no OAM or JSON sidecar is involved.
+
 ## Farm-status screen background tiles
 
 `ui/farm_status/shared/base_tiles.png` is the 256x144 indexed 4bpp tile grid

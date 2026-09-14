@@ -5,8 +5,8 @@
 
 struct RecordsScreenTaskResourcePair
 {
-    u8 const *unk_00;
-    u8 const *unk_04;
+    u8 const *tiles;
+    u8 const *palette;
 };
 
 #if defined(REGION_JP)
