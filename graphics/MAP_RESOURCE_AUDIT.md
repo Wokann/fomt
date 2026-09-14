@@ -71,15 +71,26 @@ format-specific error rather than silently emitting a guessed encoding.  The
 four-region `gfx-map-resources-all` target verifies every generated packed
 stream byte-for-byte against the appropriate retail ROM.
 
+The normal `%.gba` link rule then invokes `map_resources.py patch` after
+`objcopy`.  It writes the selected region's generated archive back to the
+same original physical interval, so existing MapData pointers and all C/C++ /
+assembly symbols retain their retail addresses.  Before writing, the patcher
+accepts the target range only when it equals either the matching retail
+baseline or the same generated archive; any third-party bytes in that range
+are a hard error.  `gfx-map-resources-patch-test` exercises this final-ROM
+step against all four retail images and proves that unchanged sources leave
+each complete image byte-identical.
+
 ## Current status
 
 * The six packed layer ranges, terrain-record table and terrain-index grid are
   all physically labelled in `asm/data/data_0813B288*.s` and referenced by
   `src/map_data.cc`.
 * All 272 unique visual layer streams are now a managed, source-backed
-  graphics family with four-region byte-range verification.  They are not yet
-  wired into the aggregate assembly archive: that replacement must preserve
-  existing direct labels inside the archive as well as the source bytes.
+  graphics family with four-region byte-range verification and a post-link
+  ROM integration step.  It preserves all existing direct assembly labels,
+  rather than risking a refactor of the aggregate archive before every
+  embedded label has been independently recovered.
 * Layer 0 and layers 3–5 have verified graphics/tilemap roles; layers 1–2
   still require exact tile/palette destination analysis.
 * The earlier `unknown_types.hh::MapData` sketch has a speculative

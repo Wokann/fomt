@@ -160,6 +160,34 @@ def ordered_for(region: str, resources: tuple[Resource, ...]) -> tuple[Resource,
     return tuple(sorted(resources, key=lambda resource: resource.offsets[region]))
 
 
+def archive_bounds(region: str, resources: tuple[Resource, ...]) -> tuple[int, int]:
+    ordered = ordered_for(region, resources)
+    return ordered[0].offsets[region], ordered[-1].offsets[region] + ordered[-1].length
+
+
+def apply_archive(target: bytes, baseline: bytes, archive: bytes, region: str, resources: tuple[Resource, ...]) -> bytes:
+    """Replace only the proven continuous MapData visual archive range.
+
+    The existing ROM code and its C/C++ pointer tables continue to address the
+    original physical offsets.  Accepting only a baseline or already-patched
+    target range prevents this post-link stage from silently overwriting data
+    owned by another pipeline.
+    """
+    first, last = archive_bounds(region, resources)
+    expected = baseline[first:last]
+    if len(archive) != last - first:
+        raise ValueError(f"MapData archive is {len(archive):#x} bytes; expected {last - first:#x}")
+    current = target[first:last]
+    if current != expected and current != archive:
+        raise ValueError(
+            f"target ROM MapData range {first:#x}-{last:#x} differs from both the retail baseline "
+            "and this generated archive; refusing to overwrite it"
+        )
+    patched = bytearray(target)
+    patched[first:last] = archive
+    return bytes(patched)
+
+
 def payload_for(inputs: dict[str, bytes], resource: Resource, region: str) -> bytes:
     packed, payload, _format, _ladder = retail_stream(inputs[region], resource.offsets[region], resource.length)
     if len(packed) != resource.length:
@@ -221,13 +249,33 @@ def verify(arguments: argparse.Namespace) -> None:
             if output.read_bytes() != baseline:
                 raise AssertionError(f"{output} does not match retail {arguments.region.upper()} bytes")
     if arguments.output_dir is not None:
-        ordered = ordered_for(arguments.region, resources)
-        first = ordered[0].offsets[arguments.region]
-        last = ordered[-1].offsets[arguments.region] + ordered[-1].length
+        first, last = archive_bounds(arguments.region, resources)
         baseline_archive = inputs[arguments.region][first:last]
         if archive_path(arguments.output_dir).read_bytes() != baseline_archive:
             raise AssertionError(f"MapData archive does not match retail {arguments.region.upper()} bytes")
     print(f"verified {len(resources)} MapData streams against {arguments.region.upper()} ROM")
+
+
+def patch(arguments: argparse.Namespace) -> None:
+    inputs = {region: Path(path).read_bytes() for region, path in arguments.all_rom}
+    resources = catalog(inputs)
+    target_path = arguments.rom
+    target = target_path.read_bytes()
+    archive = arguments.archive.read_bytes()
+    target_path.write_bytes(apply_archive(target, inputs[arguments.region], archive, arguments.region, resources))
+    first, last = archive_bounds(arguments.region, resources)
+    print(f"patched {target_path} MapData range {first:#x}-{last:#x} for {arguments.region.upper()}")
+
+
+def patch_test(arguments: argparse.Namespace) -> None:
+    inputs = {region: Path(path).read_bytes() for region, path in arguments.rom}
+    resources = catalog(inputs)
+    for region, baseline in inputs.items():
+        archive = archive_path(arguments.output_root / region / "graphics" / "maps").read_bytes()
+        patched = apply_archive(baseline, baseline, archive, region, resources)
+        if patched != baseline:
+            raise AssertionError(f"unmodified MapData archive changes retail {region.upper()} ROM bytes")
+    print("verified post-link MapData archive patching against JP, US, EU and DE ROMs")
 
 
 def audit(arguments: argparse.Namespace) -> None:
@@ -263,6 +311,14 @@ def main() -> None:
     verify_parser.add_argument("--source-dir", type=Path, required=True)
     verify_parser.add_argument("--output-dir", type=Path)
     add_roms(verify_parser)
+    patch_parser = commands.add_parser("patch")
+    patch_parser.add_argument("--region", choices=tuple(MAP_TABLES), required=True)
+    patch_parser.add_argument("--rom", type=Path, required=True)
+    patch_parser.add_argument("--archive", type=Path, required=True)
+    add_roms(patch_parser, "all-rom")
+    patch_test_parser = commands.add_parser("patch-test")
+    patch_test_parser.add_argument("--output-root", type=Path, required=True)
+    add_roms(patch_test_parser)
     audit_parser = commands.add_parser("audit")
     add_roms(audit_parser)
     arguments = parser.parse_args()
@@ -272,6 +328,10 @@ def main() -> None:
         build(arguments)
     elif arguments.command == "verify":
         verify(arguments)
+    elif arguments.command == "patch":
+        patch(arguments)
+    elif arguments.command == "patch-test":
+        patch_test(arguments)
     else:
         audit(arguments)
 
