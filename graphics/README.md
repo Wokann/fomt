@@ -62,13 +62,13 @@ instead of silently producing a plausible but incorrect asset.
 ## Shared dialogue portraits
 
 `portraits/shared` contains a complete indexed-resource archive for the 184
-dialogue portraits. Each item is exported separately under `tiles/` using its
-actual 16-color BGR555 palette, for example
-`000_TALK_PORTRAIT_RICK_NORMAL.png`. Those PNGs are indexed-color sources,
-not merely RGBA screenshots: preserving the palette index is necessary because
-some native palettes contain visually identical colors at different indexes.
-The `preview/` directory holds the corresponding OAM-composed, colored portrait
-for convenient inspection.
+dialogue portraits. The normal authoring input is the fully composed colored
+image in `full/`, for example `000_TALK_PORTRAIT_RICK_NORMAL.png`. It is an
+indexed-color source, not merely an RGBA screenshot: preserving the palette
+index is necessary because some native palettes contain visually identical
+colors at different indexes. The `preview/` directory is a rendered reference
+copy. `tiles/` preserves each descriptor's separate tile group for advanced
+edits that must touch hidden OAM pixels directly.
 
 The 184 descriptors reference 1,037 OAM entries, 11,586 4bpp tiles and 52
 palettes. The complete archive is byte-identical in JP, US, EU, and DE, even
@@ -81,13 +81,16 @@ make GAME_REGION=JP gfx-portraits
 make gfx-portraits-all
 ```
 
-`portrait_archive.py` rebuilds the native 0x5A840-byte tile stream from every
-separate source PNG. It verifies every descriptor, OAM range, palette and PNG
-dimension. Sixty-eight tile slots are intentionally shared between descriptors;
-if two edited source images assign different bytes to such a slot, the build
-fails rather than arbitrarily selecting one edit. The four regional assembly
-paths split their original archive at the tile stream and retain every header,
-layout record, palette and trailing bytes around it.
+`portrait_archive.py` rebuilds the native 0x5A840-byte tile stream from the
+full source PNGs. It first renders the original archive, then writes only a
+visible pixel that actually changed in `full/`; hidden OAM pixels therefore
+remain untouched and an unedited source round-trips byte-for-byte. It verifies
+every descriptor, OAM range, palette and PNG dimension. Sixty-eight tile slots
+are intentionally shared between descriptors; if two edited source images
+assign different values to such a slot, the build fails rather than arbitrarily
+selecting one edit. The four regional assembly paths split their original
+archive at the tile stream and retain every header, layout record, palette and
+trailing byte around it.
 
 Regenerate the source image from any verified retail ROM:
 

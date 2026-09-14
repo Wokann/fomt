@@ -8,6 +8,7 @@
       "tile_count": 54,
       "palette_id": 0,
       "tile_image": "tiles/000_TALK_PORTRAIT_RICK_NORMAL.png",
+      "full_image": "full/000_TALK_PORTRAIT_RICK_NORMAL.png",
       "preview": "preview/000_TALK_PORTRAIT_RICK_NORMAL.png"
     },
     {
@@ -17,6 +18,7 @@
       "tile_count": 62,
       "palette_id": 0,
       "tile_image": "tiles/001_TALK_PORTRAIT_RICK_HAPPY.png",
+      "full_image": "full/001_TALK_PORTRAIT_RICK_HAPPY.png",
       "preview": "preview/001_TALK_PORTRAIT_RICK_HAPPY.png"
     },
     {
@@ -26,6 +28,7 @@
       "tile_count": 69,
       "palette_id": 0,
       "tile_image": "tiles/002_TALK_PORTRAIT_RICK_ANGRY.png",
+      "full_image": "full/002_TALK_PORTRAIT_RICK_ANGRY.png",
       "preview": "preview/002_TALK_PORTRAIT_RICK_ANGRY.png"
     },
     {
@@ -35,6 +38,7 @@
       "tile_count": 54,
       "palette_id": 0,
       "tile_image": "tiles/003_TALK_PORTRAIT_RICK_AFRAID.png",
+      "full_image": "full/003_TALK_PORTRAIT_RICK_AFRAID.png",
       "preview": "preview/003_TALK_PORTRAIT_RICK_AFRAID.png"
     },
     {
@@ -44,6 +48,7 @@
       "tile_count": 54,
       "palette_id": 0,
       "tile_image": "tiles/004_TALK_PORTRAIT_RICK_SURPRISED.png",
+      "full_image": "full/004_TALK_PORTRAIT_RICK_SURPRISED.png",
       "preview": "preview/004_TALK_PORTRAIT_RICK_SURPRISED.png"
     },
     {
@@ -53,6 +58,7 @@
       "tile_count": 82,
       "palette_id": 0,
       "tile_image": "tiles/005_TALK_PORTRAIT_RICK_BLUSHING.png",
+      "full_image": "full/005_TALK_PORTRAIT_RICK_BLUSHING.png",
       "preview": "preview/005_TALK_PORTRAIT_RICK_BLUSHING.png"
     },
     {
@@ -62,6 +68,7 @@
       "tile_count": 54,
       "palette_id": 1,
       "tile_image": "tiles/006_TALK_PORTRAIT_RICK_WEDDING.png",
+      "full_image": "full/006_TALK_PORTRAIT_RICK_WEDDING.png",
       "preview": "preview/006_TALK_PORTRAIT_RICK_WEDDING.png"
     },
     {
@@ -71,6 +78,7 @@
       "tile_count": 77,
       "palette_id": 2,
       "tile_image": "tiles/007_TALK_PORTRAIT_POPURI_NORMAL.png",
+      "full_image": "full/007_TALK_PORTRAIT_POPURI_NORMAL.png",
       "preview": "preview/007_TALK_PORTRAIT_POPURI_NORMAL.png"
     },
     {
@@ -80,6 +88,7 @@
       "tile_count": 77,
       "palette_id": 2,
       "tile_image": "tiles/008_TALK_PORTRAIT_POPURI_HAPPY.png",
+      "full_image": "full/008_TALK_PORTRAIT_POPURI_HAPPY.png",
       "preview": "preview/008_TALK_PORTRAIT_POPURI_HAPPY.png"
     },
     {
@@ -89,6 +98,7 @@
       "tile_count": 68,
       "palette_id": 2,
       "tile_image": "tiles/009_TALK_PORTRAIT_POPURI_ANGRY.png",
+      "full_image": "full/009_TALK_PORTRAIT_POPURI_ANGRY.png",
       "preview": "preview/009_TALK_PORTRAIT_POPURI_ANGRY.png"
     },
     {
@@ -98,6 +108,7 @@
       "tile_count": 75,
       "palette_id": 2,
       "tile_image": "tiles/010_TALK_PORTRAIT_POPURI_AFRAID.png",
+      "full_image": "full/010_TALK_PORTRAIT_POPURI_AFRAID.png",
       "preview": "preview/010_TALK_PORTRAIT_POPURI_AFRAID.png"
     },
     {
@@ -107,6 +118,7 @@
       "tile_count": 77,
       "palette_id": 2,
       "tile_image": "tiles/011_TALK_PORTRAIT_POPURI_SURPRISED.png",
+      "full_image": "full/011_TALK_PORTRAIT_POPURI_SURPRISED.png",
       "preview": "preview/011_TALK_PORTRAIT_POPURI_SURPRISED.png"
     },
     {
@@ -116,6 +128,7 @@
       "tile_count": 72,
       "palette_id": 2,
       "tile_image": "tiles/012_TALK_PORTRAIT_POPURI_BLUSHING.png",
+      "full_image": "full/012_TALK_PORTRAIT_POPURI_BLUSHING.png",
       "preview": "preview/012_TALK_PORTRAIT_POPURI_BLUSHING.png"
     },
     {
@@ -125,6 +138,7 @@
       "tile_count": 94,
       "palette_id": 3,
       "tile_image": "tiles/013_TALK_PORTRAIT_POPURI_WEDDING.png",
+      "full_image": "full/013_TALK_PORTRAIT_POPURI_WEDDING.png",
       "preview": "preview/013_TALK_PORTRAIT_POPURI_WEDDING.png"
     },
     {
@@ -134,6 +148,7 @@
       "tile_count": 72,
       "palette_id": 4,
       "tile_image": "tiles/014_TALK_PORTRAIT_LILLIA_NORMAL.png",
+      "full_image": "full/014_TALK_PORTRAIT_LILLIA_NORMAL.png",
       "preview": "preview/014_TALK_PORTRAIT_LILLIA_NORMAL.png"
     },
     {
@@ -143,6 +158,7 @@
       "tile_count": 72,
       "palette_id": 4,
       "tile_image": "tiles/015_TALK_PORTRAIT_LILLIA_HAPPY.png",
+      "full_image": "full/015_TALK_PORTRAIT_LILLIA_HAPPY.png",
       "preview": "preview/015_TALK_PORTRAIT_LILLIA_HAPPY.png"
     },
     {
@@ -152,6 +168,7 @@
       "tile_count": 69,
       "palette_id": 4,
       "tile_image": "tiles/016_TALK_PORTRAIT_LILLIA_ANGRY.png",
+      "full_image": "full/016_TALK_PORTRAIT_LILLIA_ANGRY.png",
       "preview": "preview/016_TALK_PORTRAIT_LILLIA_ANGRY.png"
     },
     {
@@ -161,6 +178,7 @@
       "tile_count": 73,
       "palette_id": 4,
       "tile_image": "tiles/017_TALK_PORTRAIT_LILLIA_AFRAID.png",
+      "full_image": "full/017_TALK_PORTRAIT_LILLIA_AFRAID.png",
       "preview": "preview/017_TALK_PORTRAIT_LILLIA_AFRAID.png"
     },
     {
@@ -170,6 +188,7 @@
       "tile_count": 40,
       "palette_id": 5,
       "tile_image": "tiles/018_TALK_PORTRAIT_BABY_NORMAL.png",
+      "full_image": "full/018_TALK_PORTRAIT_BABY_NORMAL.png",
       "preview": "preview/018_TALK_PORTRAIT_BABY_NORMAL.png"
     },
     {
@@ -179,6 +198,7 @@
       "tile_count": 41,
       "palette_id": 5,
       "tile_image": "tiles/019_TALK_PORTRAIT_BABY_HAPPY.png",
+      "full_image": "full/019_TALK_PORTRAIT_BABY_HAPPY.png",
       "preview": "preview/019_TALK_PORTRAIT_BABY_HAPPY.png"
     },
     {
@@ -188,6 +208,7 @@
       "tile_count": 35,
       "palette_id": 5,
       "tile_image": "tiles/020_TALK_PORTRAIT_BABY_ANGRY.png",
+      "full_image": "full/020_TALK_PORTRAIT_BABY_ANGRY.png",
       "preview": "preview/020_TALK_PORTRAIT_BABY_ANGRY.png"
     },
     {
@@ -197,6 +218,7 @@
       "tile_count": 42,
       "palette_id": 5,
       "tile_image": "tiles/021_TALK_PORTRAIT_BABY_CRYING.png",
+      "full_image": "full/021_TALK_PORTRAIT_BABY_CRYING.png",
       "preview": "preview/021_TALK_PORTRAIT_BABY_CRYING.png"
     },
     {
@@ -206,6 +228,7 @@
       "tile_count": 38,
       "palette_id": 5,
       "tile_image": "tiles/022_TALK_PORTRAIT_BABY_INDIGNATED.png",
+      "full_image": "full/022_TALK_PORTRAIT_BABY_INDIGNATED.png",
       "preview": "preview/022_TALK_PORTRAIT_BABY_INDIGNATED.png"
     },
     {
@@ -215,6 +238,7 @@
       "tile_count": 76,
       "palette_id": 6,
       "tile_image": "tiles/023_TALK_PORTRAIT_CLIFF_NORMAL.png",
+      "full_image": "full/023_TALK_PORTRAIT_CLIFF_NORMAL.png",
       "preview": "preview/023_TALK_PORTRAIT_CLIFF_NORMAL.png"
     },
     {
@@ -224,6 +248,7 @@
       "tile_count": 76,
       "palette_id": 6,
       "tile_image": "tiles/024_TALK_PORTRAIT_CLIFF_HAPPY.png",
+      "full_image": "full/024_TALK_PORTRAIT_CLIFF_HAPPY.png",
       "preview": "preview/024_TALK_PORTRAIT_CLIFF_HAPPY.png"
     },
     {
@@ -233,6 +258,7 @@
       "tile_count": 76,
       "palette_id": 6,
       "tile_image": "tiles/025_TALK_PORTRAIT_CLIFF_ANGRY.png",
+      "full_image": "full/025_TALK_PORTRAIT_CLIFF_ANGRY.png",
       "preview": "preview/025_TALK_PORTRAIT_CLIFF_ANGRY.png"
     },
     {
@@ -242,6 +268,7 @@
       "tile_count": 64,
       "palette_id": 6,
       "tile_image": "tiles/026_TALK_PORTRAIT_CLIFF_AFRAID.png",
+      "full_image": "full/026_TALK_PORTRAIT_CLIFF_AFRAID.png",
       "preview": "preview/026_TALK_PORTRAIT_CLIFF_AFRAID.png"
     },
     {
@@ -251,6 +278,7 @@
       "tile_count": 74,
       "palette_id": 6,
       "tile_image": "tiles/027_TALK_PORTRAIT_CLIFF_SURPRISED.png",
+      "full_image": "full/027_TALK_PORTRAIT_CLIFF_SURPRISED.png",
       "preview": "preview/027_TALK_PORTRAIT_CLIFF_SURPRISED.png"
     },
     {
@@ -260,6 +288,7 @@
       "tile_count": 84,
       "palette_id": 6,
       "tile_image": "tiles/028_TALK_PORTRAIT_CLIFF_BLUSHING.png",
+      "full_image": "full/028_TALK_PORTRAIT_CLIFF_BLUSHING.png",
       "preview": "preview/028_TALK_PORTRAIT_CLIFF_BLUSHING.png"
     },
     {
@@ -269,6 +298,7 @@
       "tile_count": 76,
       "palette_id": 7,
       "tile_image": "tiles/029_TALK_PORTRAIT_CLIFF_WEDDING.png",
+      "full_image": "full/029_TALK_PORTRAIT_CLIFF_WEDDING.png",
       "preview": "preview/029_TALK_PORTRAIT_CLIFF_WEDDING.png"
     },
     {
@@ -278,6 +308,7 @@
       "tile_count": 72,
       "palette_id": 6,
       "tile_image": "tiles/030_TALK_PORTRAIT_CLIFF_COLLAPSED.png",
+      "full_image": "full/030_TALK_PORTRAIT_CLIFF_COLLAPSED.png",
       "preview": "preview/030_TALK_PORTRAIT_CLIFF_COLLAPSED.png"
     },
     {
@@ -287,6 +318,7 @@
       "tile_count": 82,
       "palette_id": 8,
       "tile_image": "tiles/031_TALK_PORTRAIT_ZACK_NORMAL.png",
+      "full_image": "full/031_TALK_PORTRAIT_ZACK_NORMAL.png",
       "preview": "preview/031_TALK_PORTRAIT_ZACK_NORMAL.png"
     },
     {
@@ -296,6 +328,7 @@
       "tile_count": 84,
       "palette_id": 8,
       "tile_image": "tiles/032_TALK_PORTRAIT_ZACK_HAPPY.png",
+      "full_image": "full/032_TALK_PORTRAIT_ZACK_HAPPY.png",
       "preview": "preview/032_TALK_PORTRAIT_ZACK_HAPPY.png"
     },
     {
@@ -305,6 +338,7 @@
       "tile_count": 80,
       "palette_id": 8,
       "tile_image": "tiles/033_TALK_PORTRAIT_ZACK_ANGRY.png",
+      "full_image": "full/033_TALK_PORTRAIT_ZACK_ANGRY.png",
       "preview": "preview/033_TALK_PORTRAIT_ZACK_ANGRY.png"
     },
     {
@@ -314,6 +348,7 @@
       "tile_count": 80,
       "palette_id": 8,
       "tile_image": "tiles/034_TALK_PORTRAIT_ZACK_AFRAID.png",
+      "full_image": "full/034_TALK_PORTRAIT_ZACK_AFRAID.png",
       "preview": "preview/034_TALK_PORTRAIT_ZACK_AFRAID.png"
     },
     {
@@ -323,6 +358,7 @@
       "tile_count": 72,
       "palette_id": 9,
       "tile_image": "tiles/035_TALK_PORTRAIT_DOCTOR_NORMAL.png",
+      "full_image": "full/035_TALK_PORTRAIT_DOCTOR_NORMAL.png",
       "preview": "preview/035_TALK_PORTRAIT_DOCTOR_NORMAL.png"
     },
     {
@@ -332,6 +368,7 @@
       "tile_count": 72,
       "palette_id": 9,
       "tile_image": "tiles/036_TALK_PORTRAIT_DOCTOR_HAPPY.png",
+      "full_image": "full/036_TALK_PORTRAIT_DOCTOR_HAPPY.png",
       "preview": "preview/036_TALK_PORTRAIT_DOCTOR_HAPPY.png"
     },
     {
@@ -341,6 +378,7 @@
       "tile_count": 79,
       "palette_id": 9,
       "tile_image": "tiles/037_TALK_PORTRAIT_DOCTOR_ANGRY.png",
+      "full_image": "full/037_TALK_PORTRAIT_DOCTOR_ANGRY.png",
       "preview": "preview/037_TALK_PORTRAIT_DOCTOR_ANGRY.png"
     },
     {
@@ -350,6 +388,7 @@
       "tile_count": 72,
       "palette_id": 9,
       "tile_image": "tiles/038_TALK_PORTRAIT_DOCTOR_AFRAID.png",
+      "full_image": "full/038_TALK_PORTRAIT_DOCTOR_AFRAID.png",
       "preview": "preview/038_TALK_PORTRAIT_DOCTOR_AFRAID.png"
     },
     {
@@ -359,6 +398,7 @@
       "tile_count": 72,
       "palette_id": 9,
       "tile_image": "tiles/039_TALK_PORTRAIT_DOCTOR_SURPRISED.png",
+      "full_image": "full/039_TALK_PORTRAIT_DOCTOR_SURPRISED.png",
       "preview": "preview/039_TALK_PORTRAIT_DOCTOR_SURPRISED.png"
     },
     {
@@ -368,6 +408,7 @@
       "tile_count": 73,
       "palette_id": 9,
       "tile_image": "tiles/040_TALK_PORTRAIT_DOCTOR_BLUSHING.png",
+      "full_image": "full/040_TALK_PORTRAIT_DOCTOR_BLUSHING.png",
       "preview": "preview/040_TALK_PORTRAIT_DOCTOR_BLUSHING.png"
     },
     {
@@ -377,6 +418,7 @@
       "tile_count": 72,
       "palette_id": 10,
       "tile_image": "tiles/041_TALK_PORTRAIT_DOCTOR_WEDDING.png",
+      "full_image": "full/041_TALK_PORTRAIT_DOCTOR_WEDDING.png",
       "preview": "preview/041_TALK_PORTRAIT_DOCTOR_WEDDING.png"
     },
     {
@@ -386,6 +428,7 @@
       "tile_count": 34,
       "palette_id": 11,
       "tile_image": "tiles/042_TALK_PORTRAIT_STAID_NORMAL.png",
+      "full_image": "full/042_TALK_PORTRAIT_STAID_NORMAL.png",
       "preview": "preview/042_TALK_PORTRAIT_STAID_NORMAL.png"
     },
     {
@@ -395,6 +438,7 @@
       "tile_count": 34,
       "palette_id": 11,
       "tile_image": "tiles/043_TALK_PORTRAIT_STAID_SCARED.png",
+      "full_image": "full/043_TALK_PORTRAIT_STAID_SCARED.png",
       "preview": "preview/043_TALK_PORTRAIT_STAID_SCARED.png"
     },
     {
@@ -404,6 +448,7 @@
       "tile_count": 34,
       "palette_id": 12,
       "tile_image": "tiles/044_TALK_PORTRAIT_NAPPY_NORMAL.png",
+      "full_image": "full/044_TALK_PORTRAIT_NAPPY_NORMAL.png",
       "preview": "preview/044_TALK_PORTRAIT_NAPPY_NORMAL.png"
     },
     {
@@ -413,6 +458,7 @@
       "tile_count": 34,
       "palette_id": 12,
       "tile_image": "tiles/045_TALK_PORTRAIT_NAPPY_SCARED.png",
+      "full_image": "full/045_TALK_PORTRAIT_NAPPY_SCARED.png",
       "preview": "preview/045_TALK_PORTRAIT_NAPPY_SCARED.png"
     },
     {
@@ -422,6 +468,7 @@
       "tile_count": 34,
       "palette_id": 13,
       "tile_image": "tiles/046_TALK_PORTRAIT_BOLD_NORMAL.png",
+      "full_image": "full/046_TALK_PORTRAIT_BOLD_NORMAL.png",
       "preview": "preview/046_TALK_PORTRAIT_BOLD_NORMAL.png"
     },
     {
@@ -431,6 +478,7 @@
       "tile_count": 34,
       "palette_id": 13,
       "tile_image": "tiles/047_TALK_PORTRAIT_BOLD_SCARED.png",
+      "full_image": "full/047_TALK_PORTRAIT_BOLD_SCARED.png",
       "preview": "preview/047_TALK_PORTRAIT_BOLD_SCARED.png"
     },
     {
@@ -440,6 +488,7 @@
       "tile_count": 34,
       "palette_id": 14,
       "tile_image": "tiles/048_TALK_PORTRAIT_CHEF_NORMAL.png",
+      "full_image": "full/048_TALK_PORTRAIT_CHEF_NORMAL.png",
       "preview": "preview/048_TALK_PORTRAIT_CHEF_NORMAL.png"
     },
     {
@@ -449,6 +498,7 @@
       "tile_count": 34,
       "palette_id": 14,
       "tile_image": "tiles/049_TALK_PORTRAIT_CHEF_SCARED.png",
+      "full_image": "full/049_TALK_PORTRAIT_CHEF_SCARED.png",
       "preview": "preview/049_TALK_PORTRAIT_CHEF_SCARED.png"
     },
     {
@@ -458,6 +508,7 @@
       "tile_count": 34,
       "palette_id": 15,
       "tile_image": "tiles/050_TALK_PORTRAIT_AQUA_NORMAL.png",
+      "full_image": "full/050_TALK_PORTRAIT_AQUA_NORMAL.png",
       "preview": "preview/050_TALK_PORTRAIT_AQUA_NORMAL.png"
     },
     {
@@ -467,6 +518,7 @@
       "tile_count": 34,
       "palette_id": 15,
       "tile_image": "tiles/051_TALK_PORTRAIT_AQUA_SCARED.png",
+      "full_image": "full/051_TALK_PORTRAIT_AQUA_SCARED.png",
       "preview": "preview/051_TALK_PORTRAIT_AQUA_SCARED.png"
     },
     {
@@ -476,6 +528,7 @@
       "tile_count": 34,
       "palette_id": 16,
       "tile_image": "tiles/052_TALK_PORTRAIT_HOGGY_NORMAL.png",
+      "full_image": "full/052_TALK_PORTRAIT_HOGGY_NORMAL.png",
       "preview": "preview/052_TALK_PORTRAIT_HOGGY_NORMAL.png"
     },
     {
@@ -485,6 +538,7 @@
       "tile_count": 34,
       "palette_id": 16,
       "tile_image": "tiles/053_TALK_PORTRAIT_HOGGY_SCARED.png",
+      "full_image": "full/053_TALK_PORTRAIT_HOGGY_SCARED.png",
       "preview": "preview/053_TALK_PORTRAIT_HOGGY_SCARED.png"
     },
     {
@@ -494,6 +548,7 @@
       "tile_count": 34,
       "palette_id": 17,
       "tile_image": "tiles/054_TALK_PORTRAIT_TIMID_NORMAL.png",
+      "full_image": "full/054_TALK_PORTRAIT_TIMID_NORMAL.png",
       "preview": "preview/054_TALK_PORTRAIT_TIMID_NORMAL.png"
     },
     {
@@ -503,6 +558,7 @@
       "tile_count": 34,
       "palette_id": 17,
       "tile_image": "tiles/055_TALK_PORTRAIT_TIMID_SCARED.png",
+      "full_image": "full/055_TALK_PORTRAIT_TIMID_SCARED.png",
       "preview": "preview/055_TALK_PORTRAIT_TIMID_SCARED.png"
     },
     {
@@ -512,6 +568,7 @@
       "tile_count": 71,
       "palette_id": 18,
       "tile_image": "tiles/056_TALK_PORTRAIT_HARVEST_GODDESS_NORMAL.png",
+      "full_image": "full/056_TALK_PORTRAIT_HARVEST_GODDESS_NORMAL.png",
       "preview": "preview/056_TALK_PORTRAIT_HARVEST_GODDESS_NORMAL.png"
     },
     {
@@ -521,6 +578,7 @@
       "tile_count": 71,
       "palette_id": 18,
       "tile_image": "tiles/057_TALK_PORTRAIT_HARVEST_GODDESS_HAPPY.png",
+      "full_image": "full/057_TALK_PORTRAIT_HARVEST_GODDESS_HAPPY.png",
       "preview": "preview/057_TALK_PORTRAIT_HARVEST_GODDESS_HAPPY.png"
     },
     {
@@ -530,6 +588,7 @@
       "tile_count": 69,
       "palette_id": 18,
       "tile_image": "tiles/058_TALK_PORTRAIT_HARVEST_GODDESS_ANGRY.png",
+      "full_image": "full/058_TALK_PORTRAIT_HARVEST_GODDESS_ANGRY.png",
       "preview": "preview/058_TALK_PORTRAIT_HARVEST_GODDESS_ANGRY.png"
     },
     {
@@ -539,6 +598,7 @@
       "tile_count": 80,
       "palette_id": 19,
       "tile_image": "tiles/059_TALK_PORTRAIT_GOURMET_NORMAL.png",
+      "full_image": "full/059_TALK_PORTRAIT_GOURMET_NORMAL.png",
       "preview": "preview/059_TALK_PORTRAIT_GOURMET_NORMAL.png"
     },
     {
@@ -548,6 +608,7 @@
       "tile_count": 80,
       "palette_id": 19,
       "tile_image": "tiles/060_TALK_PORTRAIT_GOURMET_HAPPY.png",
+      "full_image": "full/060_TALK_PORTRAIT_GOURMET_HAPPY.png",
       "preview": "preview/060_TALK_PORTRAIT_GOURMET_HAPPY.png"
     },
     {
@@ -557,6 +618,7 @@
       "tile_count": 80,
       "palette_id": 19,
       "tile_image": "tiles/061_TALK_PORTRAIT_GOURMET_ANGRY.png",
+      "full_image": "full/061_TALK_PORTRAIT_GOURMET_ANGRY.png",
       "preview": "preview/061_TALK_PORTRAIT_GOURMET_ANGRY.png"
     },
     {
@@ -566,6 +628,7 @@
       "tile_count": 80,
       "palette_id": 19,
       "tile_image": "tiles/062_TALK_PORTRAIT_GOURMET_AFRAID.png",
+      "full_image": "full/062_TALK_PORTRAIT_GOURMET_AFRAID.png",
       "preview": "preview/062_TALK_PORTRAIT_GOURMET_AFRAID.png"
     },
     {
@@ -575,6 +638,7 @@
       "tile_count": 70,
       "palette_id": 20,
       "tile_image": "tiles/063_TALK_PORTRAIT_ELLEN_NORMAL.png",
+      "full_image": "full/063_TALK_PORTRAIT_ELLEN_NORMAL.png",
       "preview": "preview/063_TALK_PORTRAIT_ELLEN_NORMAL.png"
     },
     {
@@ -584,6 +648,7 @@
       "tile_count": 68,
       "palette_id": 20,
       "tile_image": "tiles/064_TALK_PORTRAIT_ELLEN_HAPPY.png",
+      "full_image": "full/064_TALK_PORTRAIT_ELLEN_HAPPY.png",
       "preview": "preview/064_TALK_PORTRAIT_ELLEN_HAPPY.png"
     },
     {
@@ -593,6 +658,7 @@
       "tile_count": 76,
       "palette_id": 20,
       "tile_image": "tiles/065_TALK_PORTRAIT_ELLEN_ANGRY.png",
+      "full_image": "full/065_TALK_PORTRAIT_ELLEN_ANGRY.png",
       "preview": "preview/065_TALK_PORTRAIT_ELLEN_ANGRY.png"
     },
     {
@@ -602,6 +668,7 @@
       "tile_count": 64,
       "palette_id": 20,
       "tile_image": "tiles/066_TALK_PORTRAIT_ELLEN_AFRAID.png",
+      "full_image": "full/066_TALK_PORTRAIT_ELLEN_AFRAID.png",
       "preview": "preview/066_TALK_PORTRAIT_ELLEN_AFRAID.png"
     },
     {
@@ -611,6 +678,7 @@
       "tile_count": 61,
       "palette_id": 21,
       "tile_image": "tiles/067_TALK_PORTRAIT_JEFF_NORMAL.png",
+      "full_image": "full/067_TALK_PORTRAIT_JEFF_NORMAL.png",
       "preview": "preview/067_TALK_PORTRAIT_JEFF_NORMAL.png"
     },
     {
@@ -620,6 +688,7 @@
       "tile_count": 58,
       "palette_id": 21,
       "tile_image": "tiles/068_TALK_PORTRAIT_JEFF_HAPPY.png",
+      "full_image": "full/068_TALK_PORTRAIT_JEFF_HAPPY.png",
       "preview": "preview/068_TALK_PORTRAIT_JEFF_HAPPY.png"
     },
     {
@@ -629,6 +698,7 @@
       "tile_count": 53,
       "palette_id": 21,
       "tile_image": "tiles/069_TALK_PORTRAIT_JEFF_ANGRY.png",
+      "full_image": "full/069_TALK_PORTRAIT_JEFF_ANGRY.png",
       "preview": "preview/069_TALK_PORTRAIT_JEFF_ANGRY.png"
     },
     {
@@ -638,6 +708,7 @@
       "tile_count": 57,
       "palette_id": 21,
       "tile_image": "tiles/070_TALK_PORTRAIT_JEFF_AFRAID.png",
+      "full_image": "full/070_TALK_PORTRAIT_JEFF_AFRAID.png",
       "preview": "preview/070_TALK_PORTRAIT_JEFF_AFRAID.png"
     },
     {
@@ -647,6 +718,7 @@
       "tile_count": 53,
       "palette_id": 21,
       "tile_image": "tiles/071_TALK_PORTRAIT_JEFF_HURT.png",
+      "full_image": "full/071_TALK_PORTRAIT_JEFF_HURT.png",
       "preview": "preview/071_TALK_PORTRAIT_JEFF_HURT.png"
     },
     {
@@ -656,6 +728,7 @@
       "tile_count": 73,
       "palette_id": 22,
       "tile_image": "tiles/072_TALK_PORTRAIT_KAREN_NORMAL.png",
+      "full_image": "full/072_TALK_PORTRAIT_KAREN_NORMAL.png",
       "preview": "preview/072_TALK_PORTRAIT_KAREN_NORMAL.png"
     },
     {
@@ -665,6 +738,7 @@
       "tile_count": 73,
       "palette_id": 22,
       "tile_image": "tiles/073_TALK_PORTRAIT_KAREN_HAPPY.png",
+      "full_image": "full/073_TALK_PORTRAIT_KAREN_HAPPY.png",
       "preview": "preview/073_TALK_PORTRAIT_KAREN_HAPPY.png"
     },
     {
@@ -674,6 +748,7 @@
       "tile_count": 65,
       "palette_id": 22,
       "tile_image": "tiles/074_TALK_PORTRAIT_KAREN_ANGRY.png",
+      "full_image": "full/074_TALK_PORTRAIT_KAREN_ANGRY.png",
       "preview": "preview/074_TALK_PORTRAIT_KAREN_ANGRY.png"
     },
     {
@@ -683,6 +758,7 @@
       "tile_count": 56,
       "palette_id": 22,
       "tile_image": "tiles/075_TALK_PORTRAIT_KAREN_AFRAID.png",
+      "full_image": "full/075_TALK_PORTRAIT_KAREN_AFRAID.png",
       "preview": "preview/075_TALK_PORTRAIT_KAREN_AFRAID.png"
     },
     {
@@ -692,6 +768,7 @@
       "tile_count": 73,
       "palette_id": 22,
       "tile_image": "tiles/076_TALK_PORTRAIT_KAREN_SURPRISED.png",
+      "full_image": "full/076_TALK_PORTRAIT_KAREN_SURPRISED.png",
       "preview": "preview/076_TALK_PORTRAIT_KAREN_SURPRISED.png"
     },
     {
@@ -701,6 +778,7 @@
       "tile_count": 65,
       "palette_id": 22,
       "tile_image": "tiles/077_TALK_PORTRAIT_KAREN_BLUSHING.png",
+      "full_image": "full/077_TALK_PORTRAIT_KAREN_BLUSHING.png",
       "preview": "preview/077_TALK_PORTRAIT_KAREN_BLUSHING.png"
     },
     {
@@ -710,6 +788,7 @@
       "tile_count": 76,
       "palette_id": 23,
       "tile_image": "tiles/078_TALK_PORTRAIT_KAREN_WEDDING.png",
+      "full_image": "full/078_TALK_PORTRAIT_KAREN_WEDDING.png",
       "preview": "preview/078_TALK_PORTRAIT_KAREN_WEDDING.png"
     },
     {
@@ -719,6 +798,7 @@
       "tile_count": 57,
       "palette_id": 24,
       "tile_image": "tiles/079_TALK_PORTRAIT_SASHA_NORMAL.png",
+      "full_image": "full/079_TALK_PORTRAIT_SASHA_NORMAL.png",
       "preview": "preview/079_TALK_PORTRAIT_SASHA_NORMAL.png"
     },
     {
@@ -728,6 +808,7 @@
       "tile_count": 57,
       "palette_id": 24,
       "tile_image": "tiles/080_TALK_PORTRAIT_SASHA_HAPPY.png",
+      "full_image": "full/080_TALK_PORTRAIT_SASHA_HAPPY.png",
       "preview": "preview/080_TALK_PORTRAIT_SASHA_HAPPY.png"
     },
     {
@@ -737,6 +818,7 @@
       "tile_count": 57,
       "palette_id": 24,
       "tile_image": "tiles/081_TALK_PORTRAIT_SASHA_ANGRY.png",
+      "full_image": "full/081_TALK_PORTRAIT_SASHA_ANGRY.png",
       "preview": "preview/081_TALK_PORTRAIT_SASHA_ANGRY.png"
     },
     {
@@ -746,6 +828,7 @@
       "tile_count": 54,
       "palette_id": 24,
       "tile_image": "tiles/082_TALK_PORTRAIT_SASHA_AFRAID.png",
+      "full_image": "full/082_TALK_PORTRAIT_SASHA_AFRAID.png",
       "preview": "preview/082_TALK_PORTRAIT_SASHA_AFRAID.png"
     },
     {
@@ -755,6 +838,7 @@
       "tile_count": 69,
       "palette_id": 25,
       "tile_image": "tiles/083_TALK_PORTRAIT_DOUG_NORMAL.png",
+      "full_image": "full/083_TALK_PORTRAIT_DOUG_NORMAL.png",
       "preview": "preview/083_TALK_PORTRAIT_DOUG_NORMAL.png"
     },
     {
@@ -764,6 +848,7 @@
       "tile_count": 65,
       "palette_id": 25,
       "tile_image": "tiles/084_TALK_PORTRAIT_DOUG_HAPPY.png",
+      "full_image": "full/084_TALK_PORTRAIT_DOUG_HAPPY.png",
       "preview": "preview/084_TALK_PORTRAIT_DOUG_HAPPY.png"
     },
     {
@@ -773,6 +858,7 @@
       "tile_count": 69,
       "palette_id": 25,
       "tile_image": "tiles/085_TALK_PORTRAIT_DOUG_ANGRY.png",
+      "full_image": "full/085_TALK_PORTRAIT_DOUG_ANGRY.png",
       "preview": "preview/085_TALK_PORTRAIT_DOUG_ANGRY.png"
     },
     {
@@ -782,6 +868,7 @@
       "tile_count": 73,
       "palette_id": 25,
       "tile_image": "tiles/086_TALK_PORTRAIT_DOUG_AFRAID.png",
+      "full_image": "full/086_TALK_PORTRAIT_DOUG_AFRAID.png",
       "preview": "preview/086_TALK_PORTRAIT_DOUG_AFRAID.png"
     },
     {
@@ -791,6 +878,7 @@
       "tile_count": 74,
       "palette_id": 26,
       "tile_image": "tiles/087_TALK_PORTRAIT_ANN_NORMAL.png",
+      "full_image": "full/087_TALK_PORTRAIT_ANN_NORMAL.png",
       "preview": "preview/087_TALK_PORTRAIT_ANN_NORMAL.png"
     },
     {
@@ -800,6 +888,7 @@
       "tile_count": 70,
       "palette_id": 26,
       "tile_image": "tiles/088_TALK_PORTRAIT_ANN_HAPPY.png",
+      "full_image": "full/088_TALK_PORTRAIT_ANN_HAPPY.png",
       "preview": "preview/088_TALK_PORTRAIT_ANN_HAPPY.png"
     },
     {
@@ -809,6 +898,7 @@
       "tile_count": 72,
       "palette_id": 26,
       "tile_image": "tiles/089_TALK_PORTRAIT_ANN_ANGRY.png",
+      "full_image": "full/089_TALK_PORTRAIT_ANN_ANGRY.png",
       "preview": "preview/089_TALK_PORTRAIT_ANN_ANGRY.png"
     },
     {
@@ -818,6 +908,7 @@
       "tile_count": 76,
       "palette_id": 26,
       "tile_image": "tiles/090_TALK_PORTRAIT_ANN_AFRAID.png",
+      "full_image": "full/090_TALK_PORTRAIT_ANN_AFRAID.png",
       "preview": "preview/090_TALK_PORTRAIT_ANN_AFRAID.png"
     },
     {
@@ -827,6 +918,7 @@
       "tile_count": 69,
       "palette_id": 26,
       "tile_image": "tiles/091_TALK_PORTRAIT_ANN_SURPRISED.png",
+      "full_image": "full/091_TALK_PORTRAIT_ANN_SURPRISED.png",
       "preview": "preview/091_TALK_PORTRAIT_ANN_SURPRISED.png"
     },
     {
@@ -836,6 +928,7 @@
       "tile_count": 70,
       "palette_id": 26,
       "tile_image": "tiles/092_TALK_PORTRAIT_ANN_BLUSHING.png",
+      "full_image": "full/092_TALK_PORTRAIT_ANN_BLUSHING.png",
       "preview": "preview/092_TALK_PORTRAIT_ANN_BLUSHING.png"
     },
     {
@@ -845,6 +938,7 @@
       "tile_count": 74,
       "palette_id": 27,
       "tile_image": "tiles/093_TALK_PORTRAIT_ANN_WEDDING.png",
+      "full_image": "full/093_TALK_PORTRAIT_ANN_WEDDING.png",
       "preview": "preview/093_TALK_PORTRAIT_ANN_WEDDING.png"
     },
     {
@@ -854,6 +948,7 @@
       "tile_count": 58,
       "palette_id": 28,
       "tile_image": "tiles/094_TALK_PORTRAIT_LOU_OR_RUBY_NORMAL.png",
+      "full_image": "full/094_TALK_PORTRAIT_LOU_OR_RUBY_NORMAL.png",
       "preview": "preview/094_TALK_PORTRAIT_LOU_OR_RUBY_NORMAL.png"
     },
     {
@@ -863,6 +958,7 @@
       "tile_count": 60,
       "palette_id": 28,
       "tile_image": "tiles/095_TALK_PORTRAIT_LOU_OR_RUBY_HAPPY.png",
+      "full_image": "full/095_TALK_PORTRAIT_LOU_OR_RUBY_HAPPY.png",
       "preview": "preview/095_TALK_PORTRAIT_LOU_OR_RUBY_HAPPY.png"
     },
     {
@@ -872,6 +968,7 @@
       "tile_count": 60,
       "palette_id": 28,
       "tile_image": "tiles/096_TALK_PORTRAIT_LOU_OR_RUBY_ANGRY.png",
+      "full_image": "full/096_TALK_PORTRAIT_LOU_OR_RUBY_ANGRY.png",
       "preview": "preview/096_TALK_PORTRAIT_LOU_OR_RUBY_ANGRY.png"
     },
     {
@@ -881,6 +978,7 @@
       "tile_count": 56,
       "palette_id": 28,
       "tile_image": "tiles/097_TALK_PORTRAIT_LOU_OR_RUBY_AFRAID.png",
+      "full_image": "full/097_TALK_PORTRAIT_LOU_OR_RUBY_AFRAID.png",
       "preview": "preview/097_TALK_PORTRAIT_LOU_OR_RUBY_AFRAID.png"
     },
     {
@@ -890,6 +988,7 @@
       "tile_count": 70,
       "palette_id": 29,
       "tile_image": "tiles/098_TALK_PORTRAIT_KAPPA_NORMAL.png",
+      "full_image": "full/098_TALK_PORTRAIT_KAPPA_NORMAL.png",
       "preview": "preview/098_TALK_PORTRAIT_KAPPA_NORMAL.png"
     },
     {
@@ -899,6 +998,7 @@
       "tile_count": 82,
       "palette_id": 30,
       "tile_image": "tiles/099_TALK_PORTRAIT_BASIL_NORMAL.png",
+      "full_image": "full/099_TALK_PORTRAIT_BASIL_NORMAL.png",
       "preview": "preview/099_TALK_PORTRAIT_BASIL_NORMAL.png"
     },
     {
@@ -908,6 +1008,7 @@
       "tile_count": 89,
       "palette_id": 30,
       "tile_image": "tiles/100_TALK_PORTRAIT_BASIL_HAPPY.png",
+      "full_image": "full/100_TALK_PORTRAIT_BASIL_HAPPY.png",
       "preview": "preview/100_TALK_PORTRAIT_BASIL_HAPPY.png"
     },
     {
@@ -917,6 +1018,7 @@
       "tile_count": 86,
       "palette_id": 30,
       "tile_image": "tiles/101_TALK_PORTRAIT_BASIL_ANGRY.png",
+      "full_image": "full/101_TALK_PORTRAIT_BASIL_ANGRY.png",
       "preview": "preview/101_TALK_PORTRAIT_BASIL_ANGRY.png"
     },
     {
@@ -926,6 +1028,7 @@
       "tile_count": 84,
       "palette_id": 30,
       "tile_image": "tiles/102_TALK_PORTRAIT_BASIL_AFRAID.png",
+      "full_image": "full/102_TALK_PORTRAIT_BASIL_AFRAID.png",
       "preview": "preview/102_TALK_PORTRAIT_BASIL_AFRAID.png"
     },
     {
@@ -935,6 +1038,7 @@
       "tile_count": 62,
       "palette_id": 31,
       "tile_image": "tiles/103_TALK_PORTRAIT_MARY_NORMAL.png",
+      "full_image": "full/103_TALK_PORTRAIT_MARY_NORMAL.png",
       "preview": "preview/103_TALK_PORTRAIT_MARY_NORMAL.png"
     },
     {
@@ -944,6 +1048,7 @@
       "tile_count": 60,
       "palette_id": 31,
       "tile_image": "tiles/104_TALK_PORTRAIT_MARY_HAPPY.png",
+      "full_image": "full/104_TALK_PORTRAIT_MARY_HAPPY.png",
       "preview": "preview/104_TALK_PORTRAIT_MARY_HAPPY.png"
     },
     {
@@ -953,6 +1058,7 @@
       "tile_count": 65,
       "palette_id": 31,
       "tile_image": "tiles/105_TALK_PORTRAIT_MARY_ANGRY.png",
+      "full_image": "full/105_TALK_PORTRAIT_MARY_ANGRY.png",
       "preview": "preview/105_TALK_PORTRAIT_MARY_ANGRY.png"
     },
     {
@@ -962,6 +1068,7 @@
       "tile_count": 61,
       "palette_id": 31,
       "tile_image": "tiles/106_TALK_PORTRAIT_MARY_AFRAID.png",
+      "full_image": "full/106_TALK_PORTRAIT_MARY_AFRAID.png",
       "preview": "preview/106_TALK_PORTRAIT_MARY_AFRAID.png"
     },
     {
@@ -971,6 +1078,7 @@
       "tile_count": 61,
       "palette_id": 31,
       "tile_image": "tiles/107_TALK_PORTRAIT_MARY_SURPRISED.png",
+      "full_image": "full/107_TALK_PORTRAIT_MARY_SURPRISED.png",
       "preview": "preview/107_TALK_PORTRAIT_MARY_SURPRISED.png"
     },
     {
@@ -980,6 +1088,7 @@
       "tile_count": 61,
       "palette_id": 31,
       "tile_image": "tiles/108_TALK_PORTRAIT_MARY_BLUSHING.png",
+      "full_image": "full/108_TALK_PORTRAIT_MARY_BLUSHING.png",
       "preview": "preview/108_TALK_PORTRAIT_MARY_BLUSHING.png"
     },
     {
@@ -989,6 +1098,7 @@
       "tile_count": 59,
       "palette_id": 32,
       "tile_image": "tiles/109_TALK_PORTRAIT_MARY_WEDDING.png",
+      "full_image": "full/109_TALK_PORTRAIT_MARY_WEDDING.png",
       "preview": "preview/109_TALK_PORTRAIT_MARY_WEDDING.png"
     },
     {
@@ -998,6 +1108,7 @@
       "tile_count": 80,
       "palette_id": 33,
       "tile_image": "tiles/110_TALK_PORTRAIT_ANNA_NORMAL.png",
+      "full_image": "full/110_TALK_PORTRAIT_ANNA_NORMAL.png",
       "preview": "preview/110_TALK_PORTRAIT_ANNA_NORMAL.png"
     },
     {
@@ -1007,6 +1118,7 @@
       "tile_count": 76,
       "palette_id": 33,
       "tile_image": "tiles/111_TALK_PORTRAIT_ANNA_HAPPY.png",
+      "full_image": "full/111_TALK_PORTRAIT_ANNA_HAPPY.png",
       "preview": "preview/111_TALK_PORTRAIT_ANNA_HAPPY.png"
     },
     {
@@ -1016,6 +1128,7 @@
       "tile_count": 70,
       "palette_id": 33,
       "tile_image": "tiles/112_TALK_PORTRAIT_ANNA_ANGRY.png",
+      "full_image": "full/112_TALK_PORTRAIT_ANNA_ANGRY.png",
       "preview": "preview/112_TALK_PORTRAIT_ANNA_ANGRY.png"
     },
     {
@@ -1025,6 +1138,7 @@
       "tile_count": 78,
       "palette_id": 33,
       "tile_image": "tiles/113_TALK_PORTRAIT_ANNA_AFRAID.png",
+      "full_image": "full/113_TALK_PORTRAIT_ANNA_AFRAID.png",
       "preview": "preview/113_TALK_PORTRAIT_ANNA_AFRAID.png"
     },
     {
@@ -1034,6 +1148,7 @@
       "tile_count": 77,
       "palette_id": 34,
       "tile_image": "tiles/114_TALK_PORTRAIT_WON_NORMAL.png",
+      "full_image": "full/114_TALK_PORTRAIT_WON_NORMAL.png",
       "preview": "preview/114_TALK_PORTRAIT_WON_NORMAL.png"
     },
     {
@@ -1043,6 +1158,7 @@
       "tile_count": 82,
       "palette_id": 34,
       "tile_image": "tiles/115_TALK_PORTRAIT_WON_HAPPY.png",
+      "full_image": "full/115_TALK_PORTRAIT_WON_HAPPY.png",
       "preview": "preview/115_TALK_PORTRAIT_WON_HAPPY.png"
     },
     {
@@ -1052,6 +1168,7 @@
       "tile_count": 69,
       "palette_id": 34,
       "tile_image": "tiles/116_TALK_PORTRAIT_WON_ANGRY.png",
+      "full_image": "full/116_TALK_PORTRAIT_WON_ANGRY.png",
       "preview": "preview/116_TALK_PORTRAIT_WON_ANGRY.png"
     },
     {
@@ -1061,6 +1178,7 @@
       "tile_count": 72,
       "palette_id": 35,
       "tile_image": "tiles/117_TALK_PORTRAIT_THOMAS_NORMAL.png",
+      "full_image": "full/117_TALK_PORTRAIT_THOMAS_NORMAL.png",
       "preview": "preview/117_TALK_PORTRAIT_THOMAS_NORMAL.png"
     },
     {
@@ -1070,6 +1188,7 @@
       "tile_count": 62,
       "palette_id": 35,
       "tile_image": "tiles/118_TALK_PORTRAIT_THOMAS_HAPPY.png",
+      "full_image": "full/118_TALK_PORTRAIT_THOMAS_HAPPY.png",
       "preview": "preview/118_TALK_PORTRAIT_THOMAS_HAPPY.png"
     },
     {
@@ -1079,6 +1198,7 @@
       "tile_count": 64,
       "palette_id": 35,
       "tile_image": "tiles/119_TALK_PORTRAIT_THOMAS_ANGRY.png",
+      "full_image": "full/119_TALK_PORTRAIT_THOMAS_ANGRY.png",
       "preview": "preview/119_TALK_PORTRAIT_THOMAS_ANGRY.png"
     },
     {
@@ -1088,6 +1208,7 @@
       "tile_count": 64,
       "palette_id": 35,
       "tile_image": "tiles/120_TALK_PORTRAIT_THOMAS_AFRAID.png",
+      "full_image": "full/120_TALK_PORTRAIT_THOMAS_AFRAID.png",
       "preview": "preview/120_TALK_PORTRAIT_THOMAS_AFRAID.png"
     },
     {
@@ -1097,6 +1218,7 @@
       "tile_count": 66,
       "palette_id": 36,
       "tile_image": "tiles/121_TALK_PORTRAIT_ELLI_NORMAL.png",
+      "full_image": "full/121_TALK_PORTRAIT_ELLI_NORMAL.png",
       "preview": "preview/121_TALK_PORTRAIT_ELLI_NORMAL.png"
     },
     {
@@ -1106,6 +1228,7 @@
       "tile_count": 58,
       "palette_id": 36,
       "tile_image": "tiles/122_TALK_PORTRAIT_ELLI_HAPPY.png",
+      "full_image": "full/122_TALK_PORTRAIT_ELLI_HAPPY.png",
       "preview": "preview/122_TALK_PORTRAIT_ELLI_HAPPY.png"
     },
     {
@@ -1115,6 +1238,7 @@
       "tile_count": 69,
       "palette_id": 36,
       "tile_image": "tiles/123_TALK_PORTRAIT_ELLI_ANGRY.png",
+      "full_image": "full/123_TALK_PORTRAIT_ELLI_ANGRY.png",
       "preview": "preview/123_TALK_PORTRAIT_ELLI_ANGRY.png"
     },
     {
@@ -1124,6 +1248,7 @@
       "tile_count": 64,
       "palette_id": 36,
       "tile_image": "tiles/124_TALK_PORTRAIT_ELLI_AFRAID.png",
+      "full_image": "full/124_TALK_PORTRAIT_ELLI_AFRAID.png",
       "preview": "preview/124_TALK_PORTRAIT_ELLI_AFRAID.png"
     },
     {
@@ -1133,6 +1258,7 @@
       "tile_count": 66,
       "palette_id": 36,
       "tile_image": "tiles/125_TALK_PORTRAIT_ELLI_SURPRISED.png",
+      "full_image": "full/125_TALK_PORTRAIT_ELLI_SURPRISED.png",
       "preview": "preview/125_TALK_PORTRAIT_ELLI_SURPRISED.png"
     },
     {
@@ -1142,6 +1268,7 @@
       "tile_count": 62,
       "palette_id": 36,
       "tile_image": "tiles/126_TALK_PORTRAIT_ELLI_BLUSHING.png",
+      "full_image": "full/126_TALK_PORTRAIT_ELLI_BLUSHING.png",
       "preview": "preview/126_TALK_PORTRAIT_ELLI_BLUSHING.png"
     },
     {
@@ -1151,6 +1278,7 @@
       "tile_count": 64,
       "palette_id": 37,
       "tile_image": "tiles/127_TALK_PORTRAIT_ELLI_WEDDING.png",
+      "full_image": "full/127_TALK_PORTRAIT_ELLI_WEDDING.png",
       "preview": "preview/127_TALK_PORTRAIT_ELLI_WEDDING.png"
     },
     {
@@ -1160,6 +1288,7 @@
       "tile_count": 42,
       "palette_id": 38,
       "tile_image": "tiles/128_TALK_PORTRAIT_STU_NORMAL.png",
+      "full_image": "full/128_TALK_PORTRAIT_STU_NORMAL.png",
       "preview": "preview/128_TALK_PORTRAIT_STU_NORMAL.png"
     },
     {
@@ -1169,6 +1298,7 @@
       "tile_count": 42,
       "palette_id": 38,
       "tile_image": "tiles/129_TALK_PORTRAIT_STU_HAPPY.png",
+      "full_image": "full/129_TALK_PORTRAIT_STU_HAPPY.png",
       "preview": "preview/129_TALK_PORTRAIT_STU_HAPPY.png"
     },
     {
@@ -1178,6 +1308,7 @@
       "tile_count": 42,
       "palette_id": 38,
       "tile_image": "tiles/130_TALK_PORTRAIT_STU_ANGRY.png",
+      "full_image": "full/130_TALK_PORTRAIT_STU_ANGRY.png",
       "preview": "preview/130_TALK_PORTRAIT_STU_ANGRY.png"
     },
     {
@@ -1187,6 +1318,7 @@
       "tile_count": 34,
       "palette_id": 38,
       "tile_image": "tiles/131_TALK_PORTRAIT_STU_AFRAID.png",
+      "full_image": "full/131_TALK_PORTRAIT_STU_AFRAID.png",
       "preview": "preview/131_TALK_PORTRAIT_STU_AFRAID.png"
     },
     {
@@ -1196,6 +1328,7 @@
       "tile_count": 50,
       "palette_id": 38,
       "tile_image": "tiles/132_TALK_PORTRAIT_STU_CRYING.png",
+      "full_image": "full/132_TALK_PORTRAIT_STU_CRYING.png",
       "preview": "preview/132_TALK_PORTRAIT_STU_CRYING.png"
     },
     {
@@ -1205,6 +1338,7 @@
       "tile_count": 76,
       "palette_id": 39,
       "tile_image": "tiles/133_TALK_PORTRAIT_DUKE_NORMAL.png",
+      "full_image": "full/133_TALK_PORTRAIT_DUKE_NORMAL.png",
       "preview": "preview/133_TALK_PORTRAIT_DUKE_NORMAL.png"
     },
     {
@@ -1214,6 +1348,7 @@
       "tile_count": 78,
       "palette_id": 39,
       "tile_image": "tiles/134_TALK_PORTRAIT_DUKE_HAPPY.png",
+      "full_image": "full/134_TALK_PORTRAIT_DUKE_HAPPY.png",
       "preview": "preview/134_TALK_PORTRAIT_DUKE_HAPPY.png"
     },
     {
@@ -1223,6 +1358,7 @@
       "tile_count": 76,
       "palette_id": 39,
       "tile_image": "tiles/135_TALK_PORTRAIT_DUKE_ANGRY.png",
+      "full_image": "full/135_TALK_PORTRAIT_DUKE_ANGRY.png",
       "preview": "preview/135_TALK_PORTRAIT_DUKE_ANGRY.png"
     },
     {
@@ -1232,6 +1368,7 @@
       "tile_count": 76,
       "palette_id": 39,
       "tile_image": "tiles/136_TALK_PORTRAIT_DUKE_AFRAID.png",
+      "full_image": "full/136_TALK_PORTRAIT_DUKE_AFRAID.png",
       "preview": "preview/136_TALK_PORTRAIT_DUKE_AFRAID.png"
     },
     {
@@ -1241,6 +1378,7 @@
       "tile_count": 65,
       "palette_id": 40,
       "tile_image": "tiles/137_TALK_PORTRAIT_MANNA_NORMAL.png",
+      "full_image": "full/137_TALK_PORTRAIT_MANNA_NORMAL.png",
       "preview": "preview/137_TALK_PORTRAIT_MANNA_NORMAL.png"
     },
     {
@@ -1250,6 +1388,7 @@
       "tile_count": 65,
       "palette_id": 40,
       "tile_image": "tiles/138_TALK_PORTRAIT_MANNA_HAPPY.png",
+      "full_image": "full/138_TALK_PORTRAIT_MANNA_HAPPY.png",
       "preview": "preview/138_TALK_PORTRAIT_MANNA_HAPPY.png"
     },
     {
@@ -1259,6 +1398,7 @@
       "tile_count": 61,
       "palette_id": 40,
       "tile_image": "tiles/139_TALK_PORTRAIT_MANNA_ANGRY.png",
+      "full_image": "full/139_TALK_PORTRAIT_MANNA_ANGRY.png",
       "preview": "preview/139_TALK_PORTRAIT_MANNA_ANGRY.png"
     },
     {
@@ -1268,6 +1408,7 @@
       "tile_count": 65,
       "palette_id": 40,
       "tile_image": "tiles/140_TALK_PORTRAIT_MANNA_AFRAID.png",
+      "full_image": "full/140_TALK_PORTRAIT_MANNA_AFRAID.png",
       "preview": "preview/140_TALK_PORTRAIT_MANNA_AFRAID.png"
     },
     {
@@ -1277,6 +1418,7 @@
       "tile_count": 73,
       "palette_id": 41,
       "tile_image": "tiles/141_TALK_PORTRAIT_VAN_NORMAL.png",
+      "full_image": "full/141_TALK_PORTRAIT_VAN_NORMAL.png",
       "preview": "preview/141_TALK_PORTRAIT_VAN_NORMAL.png"
     },
     {
@@ -1286,6 +1428,7 @@
       "tile_count": 77,
       "palette_id": 41,
       "tile_image": "tiles/142_TALK_PORTRAIT_VAN_HAPPY.png",
+      "full_image": "full/142_TALK_PORTRAIT_VAN_HAPPY.png",
       "preview": "preview/142_TALK_PORTRAIT_VAN_HAPPY.png"
     },
     {
@@ -1295,6 +1438,7 @@
       "tile_count": 96,
       "palette_id": 41,
       "tile_image": "tiles/143_TALK_PORTRAIT_VAN_ANGRY.png",
+      "full_image": "full/143_TALK_PORTRAIT_VAN_ANGRY.png",
       "preview": "preview/143_TALK_PORTRAIT_VAN_ANGRY.png"
     },
     {
@@ -1304,6 +1448,7 @@
       "tile_count": 76,
       "palette_id": 41,
       "tile_image": "tiles/144_TALK_PORTRAIT_VAN_AFRAID.png",
+      "full_image": "full/144_TALK_PORTRAIT_VAN_AFRAID.png",
       "preview": "preview/144_TALK_PORTRAIT_VAN_AFRAID.png"
     },
     {
@@ -1313,6 +1458,7 @@
       "tile_count": 74,
       "palette_id": 42,
       "tile_image": "tiles/145_TALK_PORTRAIT_HARRIS_NORMAL.png",
+      "full_image": "full/145_TALK_PORTRAIT_HARRIS_NORMAL.png",
       "preview": "preview/145_TALK_PORTRAIT_HARRIS_NORMAL.png"
     },
     {
@@ -1322,6 +1468,7 @@
       "tile_count": 73,
       "palette_id": 42,
       "tile_image": "tiles/146_TALK_PORTRAIT_HARRIS_HAPPY.png",
+      "full_image": "full/146_TALK_PORTRAIT_HARRIS_HAPPY.png",
       "preview": "preview/146_TALK_PORTRAIT_HARRIS_HAPPY.png"
     },
     {
@@ -1331,6 +1478,7 @@
       "tile_count": 80,
       "palette_id": 42,
       "tile_image": "tiles/147_TALK_PORTRAIT_HARRIS_ANGRY.png",
+      "full_image": "full/147_TALK_PORTRAIT_HARRIS_ANGRY.png",
       "preview": "preview/147_TALK_PORTRAIT_HARRIS_ANGRY.png"
     },
     {
@@ -1340,6 +1488,7 @@
       "tile_count": 70,
       "palette_id": 42,
       "tile_image": "tiles/148_TALK_PORTRAIT_HARRIS_AFRAID.png",
+      "full_image": "full/148_TALK_PORTRAIT_HARRIS_AFRAID.png",
       "preview": "preview/148_TALK_PORTRAIT_HARRIS_AFRAID.png"
     },
     {
@@ -1349,6 +1498,7 @@
       "tile_count": 65,
       "palette_id": 43,
       "tile_image": "tiles/149_TALK_PORTRAIT_CARTER_NORMAL.png",
+      "full_image": "full/149_TALK_PORTRAIT_CARTER_NORMAL.png",
       "preview": "preview/149_TALK_PORTRAIT_CARTER_NORMAL.png"
     },
     {
@@ -1358,6 +1508,7 @@
       "tile_count": 63,
       "palette_id": 43,
       "tile_image": "tiles/150_TALK_PORTRAIT_CARTER_HAPPY.png",
+      "full_image": "full/150_TALK_PORTRAIT_CARTER_HAPPY.png",
       "preview": "preview/150_TALK_PORTRAIT_CARTER_HAPPY.png"
     },
     {
@@ -1367,6 +1518,7 @@
       "tile_count": 61,
       "palette_id": 43,
       "tile_image": "tiles/151_TALK_PORTRAIT_CARTER_ANGRY.png",
+      "full_image": "full/151_TALK_PORTRAIT_CARTER_ANGRY.png",
       "preview": "preview/151_TALK_PORTRAIT_CARTER_ANGRY.png"
     },
     {
@@ -1376,6 +1528,7 @@
       "tile_count": 65,
       "palette_id": 43,
       "tile_image": "tiles/152_TALK_PORTRAIT_CARTER_AFRAID.png",
+      "full_image": "full/152_TALK_PORTRAIT_CARTER_AFRAID.png",
       "preview": "preview/152_TALK_PORTRAIT_CARTER_AFRAID.png"
     },
     {
@@ -1385,6 +1538,7 @@
       "tile_count": 63,
       "palette_id": 44,
       "tile_image": "tiles/153_TALK_PORTRAIT_KAI_NORMAL.png",
+      "full_image": "full/153_TALK_PORTRAIT_KAI_NORMAL.png",
       "preview": "preview/153_TALK_PORTRAIT_KAI_NORMAL.png"
     },
     {
@@ -1394,6 +1548,7 @@
       "tile_count": 72,
       "palette_id": 44,
       "tile_image": "tiles/154_TALK_PORTRAIT_KAI_HAPPY.png",
+      "full_image": "full/154_TALK_PORTRAIT_KAI_HAPPY.png",
       "preview": "preview/154_TALK_PORTRAIT_KAI_HAPPY.png"
     },
     {
@@ -1403,6 +1558,7 @@
       "tile_count": 70,
       "palette_id": 44,
       "tile_image": "tiles/155_TALK_PORTRAIT_KAI_ANGRY.png",
+      "full_image": "full/155_TALK_PORTRAIT_KAI_ANGRY.png",
       "preview": "preview/155_TALK_PORTRAIT_KAI_ANGRY.png"
     },
     {
@@ -1412,6 +1568,7 @@
       "tile_count": 66,
       "palette_id": 44,
       "tile_image": "tiles/156_TALK_PORTRAIT_KAI_AFRAID.png",
+      "full_image": "full/156_TALK_PORTRAIT_KAI_AFRAID.png",
       "preview": "preview/156_TALK_PORTRAIT_KAI_AFRAID.png"
     },
     {
@@ -1421,6 +1578,7 @@
       "tile_count": 64,
       "palette_id": 44,
       "tile_image": "tiles/157_TALK_PORTRAIT_KAI_SURPRISED.png",
+      "full_image": "full/157_TALK_PORTRAIT_KAI_SURPRISED.png",
       "preview": "preview/157_TALK_PORTRAIT_KAI_SURPRISED.png"
     },
     {
@@ -1430,6 +1588,7 @@
       "tile_count": 66,
       "palette_id": 44,
       "tile_image": "tiles/158_TALK_PORTRAIT_KAI_BLUSHING.png",
+      "full_image": "full/158_TALK_PORTRAIT_KAI_BLUSHING.png",
       "preview": "preview/158_TALK_PORTRAIT_KAI_BLUSHING.png"
     },
     {
@@ -1439,6 +1598,7 @@
       "tile_count": 63,
       "palette_id": 45,
       "tile_image": "tiles/159_TALK_PORTRAIT_KAI_WEDDING.png",
+      "full_image": "full/159_TALK_PORTRAIT_KAI_WEDDING.png",
       "preview": "preview/159_TALK_PORTRAIT_KAI_WEDDING.png"
     },
     {
@@ -1448,6 +1608,7 @@
       "tile_count": 76,
       "palette_id": 46,
       "tile_image": "tiles/160_TALK_PORTRAIT_GRAY_NORMAL.png",
+      "full_image": "full/160_TALK_PORTRAIT_GRAY_NORMAL.png",
       "preview": "preview/160_TALK_PORTRAIT_GRAY_NORMAL.png"
     },
     {
@@ -1457,6 +1618,7 @@
       "tile_count": 72,
       "palette_id": 46,
       "tile_image": "tiles/161_TALK_PORTRAIT_GRAY_HAPPY.png",
+      "full_image": "full/161_TALK_PORTRAIT_GRAY_HAPPY.png",
       "preview": "preview/161_TALK_PORTRAIT_GRAY_HAPPY.png"
     },
     {
@@ -1466,6 +1628,7 @@
       "tile_count": 76,
       "palette_id": 46,
       "tile_image": "tiles/162_TALK_PORTRAIT_GRAY_ANGRY.png",
+      "full_image": "full/162_TALK_PORTRAIT_GRAY_ANGRY.png",
       "preview": "preview/162_TALK_PORTRAIT_GRAY_ANGRY.png"
     },
     {
@@ -1475,6 +1638,7 @@
       "tile_count": 72,
       "palette_id": 46,
       "tile_image": "tiles/163_TALK_PORTRAIT_GRAY_AFRAID.png",
+      "full_image": "full/163_TALK_PORTRAIT_GRAY_AFRAID.png",
       "preview": "preview/163_TALK_PORTRAIT_GRAY_AFRAID.png"
     },
     {
@@ -1484,6 +1648,7 @@
       "tile_count": 80,
       "palette_id": 46,
       "tile_image": "tiles/164_TALK_PORTRAIT_GRAY_SURPRISED.png",
+      "full_image": "full/164_TALK_PORTRAIT_GRAY_SURPRISED.png",
       "preview": "preview/164_TALK_PORTRAIT_GRAY_SURPRISED.png"
     },
     {
@@ -1493,6 +1658,7 @@
       "tile_count": 70,
       "palette_id": 46,
       "tile_image": "tiles/165_TALK_PORTRAIT_GRAY_SHY.png",
+      "full_image": "full/165_TALK_PORTRAIT_GRAY_SHY.png",
       "preview": "preview/165_TALK_PORTRAIT_GRAY_SHY.png"
     },
     {
@@ -1502,6 +1668,7 @@
       "tile_count": 70,
       "palette_id": 46,
       "tile_image": "tiles/166_TALK_PORTRAIT_GRAY_BLUSHING.png",
+      "full_image": "full/166_TALK_PORTRAIT_GRAY_BLUSHING.png",
       "preview": "preview/166_TALK_PORTRAIT_GRAY_BLUSHING.png"
     },
     {
@@ -1511,6 +1678,7 @@
       "tile_count": 76,
       "palette_id": 47,
       "tile_image": "tiles/167_TALK_PORTRAIT_GRAY_WEDDING.png",
+      "full_image": "full/167_TALK_PORTRAIT_GRAY_WEDDING.png",
       "preview": "preview/167_TALK_PORTRAIT_GRAY_WEDDING.png"
     },
     {
@@ -1520,6 +1688,7 @@
       "tile_count": 72,
       "palette_id": 48,
       "tile_image": "tiles/168_TALK_PORTRAIT_SAIBARA_NORMAL.png",
+      "full_image": "full/168_TALK_PORTRAIT_SAIBARA_NORMAL.png",
       "preview": "preview/168_TALK_PORTRAIT_SAIBARA_NORMAL.png"
     },
     {
@@ -1529,6 +1698,7 @@
       "tile_count": 72,
       "palette_id": 48,
       "tile_image": "tiles/169_TALK_PORTRAIT_SAIBARA_HAPPY.png",
+      "full_image": "full/169_TALK_PORTRAIT_SAIBARA_HAPPY.png",
       "preview": "preview/169_TALK_PORTRAIT_SAIBARA_HAPPY.png"
     },
     {
@@ -1538,6 +1708,7 @@
       "tile_count": 72,
       "palette_id": 48,
       "tile_image": "tiles/170_TALK_PORTRAIT_SAIBARA_ANGRY.png",
+      "full_image": "full/170_TALK_PORTRAIT_SAIBARA_ANGRY.png",
       "preview": "preview/170_TALK_PORTRAIT_SAIBARA_ANGRY.png"
     },
     {
@@ -1547,6 +1718,7 @@
       "tile_count": 72,
       "palette_id": 48,
       "tile_image": "tiles/171_TALK_PORTRAIT_SAIBARA_AFRAID.png",
+      "full_image": "full/171_TALK_PORTRAIT_SAIBARA_AFRAID.png",
       "preview": "preview/171_TALK_PORTRAIT_SAIBARA_AFRAID.png"
     },
     {
@@ -1556,6 +1728,7 @@
       "tile_count": 79,
       "palette_id": 49,
       "tile_image": "tiles/172_TALK_PORTRAIT_GOTZ_NORMAL.png",
+      "full_image": "full/172_TALK_PORTRAIT_GOTZ_NORMAL.png",
       "preview": "preview/172_TALK_PORTRAIT_GOTZ_NORMAL.png"
     },
     {
@@ -1565,6 +1738,7 @@
       "tile_count": 85,
       "palette_id": 49,
       "tile_image": "tiles/173_TALK_PORTRAIT_GOTZ_HAPPY.png",
+      "full_image": "full/173_TALK_PORTRAIT_GOTZ_HAPPY.png",
       "preview": "preview/173_TALK_PORTRAIT_GOTZ_HAPPY.png"
     },
     {
@@ -1574,6 +1748,7 @@
       "tile_count": 85,
       "palette_id": 49,
       "tile_image": "tiles/174_TALK_PORTRAIT_GOTZ_ANGRY.png",
+      "full_image": "full/174_TALK_PORTRAIT_GOTZ_ANGRY.png",
       "preview": "preview/174_TALK_PORTRAIT_GOTZ_ANGRY.png"
     },
     {
@@ -1583,6 +1758,7 @@
       "tile_count": 80,
       "palette_id": 49,
       "tile_image": "tiles/175_TALK_PORTRAIT_GOTZ_AFRAID.png",
+      "full_image": "full/175_TALK_PORTRAIT_GOTZ_AFRAID.png",
       "preview": "preview/175_TALK_PORTRAIT_GOTZ_AFRAID.png"
     },
     {
@@ -1592,6 +1768,7 @@
       "tile_count": 42,
       "palette_id": 50,
       "tile_image": "tiles/176_TALK_PORTRAIT_MAY_NORMAL.png",
+      "full_image": "full/176_TALK_PORTRAIT_MAY_NORMAL.png",
       "preview": "preview/176_TALK_PORTRAIT_MAY_NORMAL.png"
     },
     {
@@ -1601,6 +1778,7 @@
       "tile_count": 42,
       "palette_id": 50,
       "tile_image": "tiles/177_TALK_PORTRAIT_MAY_HAPPY.png",
+      "full_image": "full/177_TALK_PORTRAIT_MAY_HAPPY.png",
       "preview": "preview/177_TALK_PORTRAIT_MAY_HAPPY.png"
     },
     {
@@ -1610,6 +1788,7 @@
       "tile_count": 42,
       "palette_id": 50,
       "tile_image": "tiles/178_TALK_PORTRAIT_MAY_ANGRY.png",
+      "full_image": "full/178_TALK_PORTRAIT_MAY_ANGRY.png",
       "preview": "preview/178_TALK_PORTRAIT_MAY_ANGRY.png"
     },
     {
@@ -1619,6 +1798,7 @@
       "tile_count": 42,
       "palette_id": 50,
       "tile_image": "tiles/179_TALK_PORTRAIT_MAY_AFRAID.png",
+      "full_image": "full/179_TALK_PORTRAIT_MAY_AFRAID.png",
       "preview": "preview/179_TALK_PORTRAIT_MAY_AFRAID.png"
     },
     {
@@ -1628,6 +1808,7 @@
       "tile_count": 61,
       "palette_id": 51,
       "tile_image": "tiles/180_TALK_PORTRAIT_BARLEY_NORMAL.png",
+      "full_image": "full/180_TALK_PORTRAIT_BARLEY_NORMAL.png",
       "preview": "preview/180_TALK_PORTRAIT_BARLEY_NORMAL.png"
     },
     {
@@ -1637,6 +1818,7 @@
       "tile_count": 64,
       "palette_id": 51,
       "tile_image": "tiles/181_TALK_PORTRAIT_BARLEY_HAPPY.png",
+      "full_image": "full/181_TALK_PORTRAIT_BARLEY_HAPPY.png",
       "preview": "preview/181_TALK_PORTRAIT_BARLEY_HAPPY.png"
     },
     {
@@ -1646,6 +1828,7 @@
       "tile_count": 65,
       "palette_id": 51,
       "tile_image": "tiles/182_TALK_PORTRAIT_BARLEY_ANGRY.png",
+      "full_image": "full/182_TALK_PORTRAIT_BARLEY_ANGRY.png",
       "preview": "preview/182_TALK_PORTRAIT_BARLEY_ANGRY.png"
     },
     {
@@ -1655,6 +1838,7 @@
       "tile_count": 60,
       "palette_id": 51,
       "tile_image": "tiles/183_TALK_PORTRAIT_BARLEY_AFRAID.png",
+      "full_image": "full/183_TALK_PORTRAIT_BARLEY_AFRAID.png",
       "preview": "preview/183_TALK_PORTRAIT_BARLEY_AFRAID.png"
     }
   ]

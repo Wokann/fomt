@@ -384,15 +384,18 @@ def portrait_oam(archive: Archive, portrait_id: int) -> list[tuple[int, int, int
     return entries
 
 
-def render_preview(archive: Archive, portrait_id: int,
-                   colors: tuple[tuple[int, int, int, int], ...]) -> tuple[int, int, bytes]:
+def portrait_canvas(archive: Archive, portrait_id: int) -> tuple[int, int, int, int, list[tuple[int, int, int, int, int]]]:
     entries = portrait_oam(archive, portrait_id)
     min_x = min(entry[0] for entry in entries)
     min_y = min(entry[1] for entry in entries)
     max_x = max(entry[0] + entry[2] for entry in entries)
     max_y = max(entry[1] + entry[3] for entry in entries)
-    width, height = max_x - min_x, max_y - min_y
-    pixels = bytearray(width * height * 4)
+    return min_x, min_y, max_x - min_x, max_y - min_y, entries
+
+
+def render_preview_indexes(archive: Archive, portrait_id: int) -> tuple[int, int, bytes]:
+    min_x, min_y, width, height, entries = portrait_canvas(archive, portrait_id)
+    indexes = bytearray(width * height)
     for x, y, sprite_width, sprite_height, tile_start in entries:
         tiles_wide = sprite_width // 8
         for tile_y in range(sprite_height // 8):
@@ -400,13 +403,23 @@ def render_preview(archive: Archive, portrait_id: int,
                 values = tile_pixels(archive, tile_start + tile_y * tiles_wide + tile_x)
                 for pixel_y in range(8):
                     for pixel_x in range(8):
-                        color = colors[values[pixel_y * 8 + pixel_x]]
-                        if color[3] == 0:
+                        value = values[pixel_y * 8 + pixel_x]
+                        if value == 0:
                             continue
                         target_x = x - min_x + tile_x * 8 + pixel_x
                         target_y = y - min_y + tile_y * 8 + pixel_y
-                        target = (target_y * width + target_x) * 4
-                        pixels[target:target + 4] = bytes(color)
+                        indexes[target_y * width + target_x] = value
+    return width, height, bytes(indexes)
+
+
+def render_preview(archive: Archive, portrait_id: int,
+                   colors: tuple[tuple[int, int, int, int], ...]) -> tuple[int, int, bytes]:
+    width, height, indexes = render_preview_indexes(archive, portrait_id)
+    pixels = bytearray(width * height * 4)
+    for index, color_index in enumerate(indexes):
+        if color_index == 0:
+            continue
+        pixels[index * 4:(index + 1) * 4] = bytes(colors[color_index])
     return width, height, bytes(pixels)
 
 
@@ -419,8 +432,10 @@ def export(archive: Archive, output: Path, names: dict[int, str]) -> None:
         colors = palette(archive, palette_id)
         grid = render_tile_grid(archive, tile_start, tile_count, colors)
         preview = render_preview(archive, portrait_id, colors)
+        full = render_preview_indexes(archive, portrait_id)
         filename = f"{portrait_id:03d}_{symbol}"
         write_png_indexed(output / "tiles" / f"{filename}.png", *grid, colors)
+        write_png_indexed(output / "full" / f"{filename}.png", *full, colors)
         write_png_rgba(output / "preview" / f"{filename}.png", *preview)
         metadata.append({
             "id": portrait_id,
@@ -429,6 +444,7 @@ def export(archive: Archive, output: Path, names: dict[int, str]) -> None:
             "tile_count": tile_count,
             "palette_id": palette_id,
             "tile_image": f"tiles/{filename}.png",
+            "full_image": f"full/{filename}.png",
             "preview": f"preview/{filename}.png",
         })
     (output / "manifest.json").write_text(
@@ -436,7 +452,10 @@ def export(archive: Archive, output: Path, names: dict[int, str]) -> None:
         + "\n",
         encoding="utf-8",
     )
-    print(f"exported {len(metadata)} colored portrait previews and editable tile groups to {output}")
+    print(
+        f"exported {len(metadata)} full indexed portraits, rendered previews, "
+        f"and editable tile groups to {output}"
+    )
 
 
 def encode_tile(indexes: bytes, width: int, tile_x: int, tile_y: int) -> bytes:
@@ -485,6 +504,90 @@ def rebuild(archive: Archive, source_directory: Path, output: Path,
     print(f"portrait tile SHA-256: {hashlib.sha256(native).hexdigest()}")
 
 
+def rendered_pixel_layers(archive: Archive, portrait_id: int) -> tuple[int, int, bytes, list[list[tuple[int, int]]]]:
+    """Return the visible baseline and every native OAM pixel behind it.
+
+    Full portrait PNGs intentionally describe what an artist sees, not hidden
+    pixels under later OAM pieces.  The layer lists retain the physical mapping
+    so a changed visible pixel can be written safely while an unchanged source
+    preserves every hidden base-ROM nibble byte-for-byte.
+    """
+    min_x, min_y, width, height, entries = portrait_canvas(archive, portrait_id)
+    baseline = bytearray(width * height)
+    layers: list[list[tuple[int, int]]] = [[] for _ in range(width * height)]
+    for x, y, sprite_width, sprite_height, tile_start in entries:
+        tiles_wide = sprite_width // 8
+        for tile_y in range(sprite_height // 8):
+            for tile_x in range(tiles_wide):
+                global_tile = tile_start + tile_y * tiles_wide + tile_x
+                values = tile_pixels(archive, global_tile)
+                for pixel_y in range(8):
+                    for pixel_x in range(8):
+                        target_x = x - min_x + tile_x * 8 + pixel_x
+                        target_y = y - min_y + tile_y * 8 + pixel_y
+                        target = target_y * width + target_x
+                        native_pixel = pixel_y * 8 + pixel_x
+                        layers[target].append((global_tile, native_pixel))
+                        value = values[native_pixel]
+                        if value != 0:
+                            baseline[target] = value
+    return width, height, bytes(baseline), layers
+
+
+def assign_native_pixel(native: bytearray, assignments: dict[tuple[int, int], int],
+                        global_tile: int, native_pixel: int, value: int) -> None:
+    key = (global_tile, native_pixel)
+    previous = assignments.setdefault(key, value)
+    if previous != value:
+        raise ValueError(
+            f"full portrait sources disagree over shared native tile {global_tile}, pixel {native_pixel}"
+        )
+    offset = global_tile * 32 + native_pixel // 2
+    if native_pixel & 1:
+        native[offset] = (native[offset] & 0x0F) | (value << 4)
+    else:
+        native[offset] = (native[offset] & 0xF0) | value
+
+
+def rebuild_full(archive: Archive, source_directory: Path, output: Path,
+                 names: dict[int, str]) -> None:
+    audit(archive)
+    t4_offset = archive.table_offsets[3]
+    native = bytearray(archive.data[t4_offset:t4_offset + archive.counts[3] * 32])
+    assignments: dict[tuple[int, int], int] = {}
+    changed_pixels = 0
+    for portrait_id in range(archive.counts[0]):
+        symbol = display_name(portrait_id, names)
+        _, _, _, _, palette_id = portrait_descriptor(archive, portrait_id)
+        filename = source_directory / "full" / f"{portrait_id:03d}_{symbol}.png"
+        width, height, source, source_palette = read_png_indexed(filename)
+        expected_width, expected_height, baseline, layers = rendered_pixel_layers(archive, portrait_id)
+        if (width, height) != (expected_width, expected_height):
+            raise ValueError(
+                f"{filename} must remain {expected_width}x{expected_height}, got {width}x{height}"
+            )
+        if source_palette != palette(archive, palette_id):
+            raise ValueError(f"{filename} has changed its native 16-color palette")
+        for target, value in enumerate(source):
+            if value == baseline[target]:
+                continue
+            changed_pixels += 1
+            if not layers[target]:
+                if value != 0:
+                    raise ValueError(f"{filename} draws outside its OAM layout at pixel {target}")
+                continue
+            if value == 0:
+                for global_tile, native_pixel in layers[target]:
+                    assign_native_pixel(native, assignments, global_tile, native_pixel, 0)
+            else:
+                global_tile, native_pixel = layers[target][-1]
+                assign_native_pixel(native, assignments, global_tile, native_pixel, value)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_bytes(native)
+    print(f"rebuilt {len(native)} bytes from {source_directory}/full with {changed_pixels} visible pixel changes")
+    print(f"portrait tile SHA-256: {hashlib.sha256(native).hexdigest()}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("rom", type=Path, help="retail ROM containing the portrait archive")
@@ -500,6 +603,9 @@ def main() -> int:
     rebuild_parser = subparsers.add_parser("rebuild", help="rebuild native 4bpp table four from tile group PNGs")
     rebuild_parser.add_argument("--source", required=True, type=Path)
     rebuild_parser.add_argument("--output", required=True, type=Path)
+    rebuild_full_parser = subparsers.add_parser("rebuild-full", help="patch native 4bpp table four from full portrait PNGs")
+    rebuild_full_parser.add_argument("--source", required=True, type=Path)
+    rebuild_full_parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args()
     expected_hash: str | None = None
     if args.manifest is not None:
@@ -527,6 +633,8 @@ def main() -> int:
         export(archive, args.output, names)
     elif args.command == "rebuild":
         rebuild(archive, args.source, args.output, names)
+    elif args.command == "rebuild-full":
+        rebuild_full(archive, args.source, args.output, names)
     else:
         raise AssertionError("unreachable")
     return 0

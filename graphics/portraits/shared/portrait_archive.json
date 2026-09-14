@@ -2,8 +2,9 @@
   "schema_version": 2,
   "id": "fomt-shared-dialogue-portrait-archive",
   "source_layout": {
+    "editable_full_portraits": "full/NNN_TALK_PORTRAIT_*.png",
     "editable_tiles": "tiles/NNN_TALK_PORTRAIT_*.png",
-    "colored_previews": "preview/NNN_TALK_PORTRAIT_*.png",
+    "rendered_baseline_previews": "preview/NNN_TALK_PORTRAIT_*.png",
     "generated_index": "manifest.json"
   },
   "sources": {

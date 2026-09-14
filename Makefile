@@ -98,11 +98,13 @@ FONT_SHARED_DOUBLE_PADDED := $(BUILD_DIR)/graphics/font/shared/double_width_font
 FONT_SHARED_DOUBLE_BIN := $(BUILD_DIR)/graphics/font/shared/double_width_font.1bpp
 
 # The dialogue-portrait archive has a shared tile/OAM/palette layout in every
-# retail localization.  Each native descriptor is authored as a separate,
-# palette-indexed color PNG; portrait_archive.py detects shared tile conflicts
-# before rebuilding the exact table-four tile stream used by assembly.
+# retail localization. Full portraits are the normal palette-indexed authoring
+# source; portrait_archive.py patches only their visible changes into table
+# four and detects shared-tile conflicts. Per-descriptor tile groups remain as
+# an advanced exact-edit fallback.
 PORTRAIT_SOURCE_DIR := graphics/portraits/shared
 PORTRAIT_SOURCE_MANIFEST := $(PORTRAIT_SOURCE_DIR)/portrait_archive.json
+PORTRAIT_FULL_IMAGES := $(wildcard $(PORTRAIT_SOURCE_DIR)/full/*.png)
 PORTRAIT_TILE_IMAGES := $(wildcard $(PORTRAIT_SOURCE_DIR)/tiles/*.png)
 PORTRAIT_ARCHIVE_TOOL := tools/portrait_archive.py
 PORTRAIT_TILE_BIN := $(BUILD_DIR)/graphics/portraits/shared/portrait_tiles.4bpp
@@ -165,7 +167,7 @@ FOMT_TEXT_INCLUDE_LPAREN := (
 FOMT_TEXT_INCLUDE_RPAREN := )
 FOMT_TEXT_INCLUDE_REGEX_LPAREN := \(
 FOMT_TEXT_INCLUDE_REGEX_RPAREN := \)
-TEXT_FRAGMENT_REGION_INCLUDES := $(shell grep -RhoE '^#include FOMT_TEXT_INCLUDE$(FOMT_TEXT_INCLUDE_REGEX_LPAREN)[[:alnum:]_]+\.cc$(FOMT_TEXT_INCLUDE_REGEX_RPAREN)' $(SRC_DIR) | cut -d '$(FOMT_TEXT_INCLUDE_LPAREN)' -f2 | tr -d '$(FOMT_TEXT_INCLUDE_RPAREN)' | sed 's|^|data/text/$(TEXT_REGION)/|' | sort -u)
+TEXT_FRAGMENT_REGION_INCLUDES := $(shell grep -RhoE '^#include FOMT_TEXT_INCLUDE$(FOMT_TEXT_INCLUDE_REGEX_LPAREN)[[:alnum:]_]+\.cc$(FOMT_TEXT_INCLUDE_REGEX_RPAREN)' $(SRC_DIR) | cut -d '$(FOMT_TEXT_INCLUDE_LPAREN)' -f2 | tr -d '$(FOMT_TEXT_INCLUDE_RPAREN)' | sed 's|^|data/text/$(TEXT_REGION)/|' | sort | uniq)
 TEXT_FRAGMENT_INCLUDES := $(TEXT_FRAGMENT_REGION_INCLUDES)
 TEXT_FRAGMENT_SOURCES := $(sort $(filter $(TEXT_FRAGMENT_CANDIDATES),$(TEXT_FRAGMENT_INCLUDES)))
 
@@ -234,9 +236,9 @@ $(FONT_SHARED_DOUBLE_BIN): $(FONT_SHARED_DOUBLE_PADDED) $(FONT_PAD)
 	@mkdir -p $(dir $@)
 	@$(FONT_PAD) trim-grid-16x12-from-16x16 $< $@ 32 6922
 
-$(PORTRAIT_TILE_BIN): $(PORTRAIT_ARCHIVE_TOOL) $(PORTRAIT_SOURCE_MANIFEST) $(PORTRAIT_TILE_IMAGES) $(BASE_ROM) include/fomt_constants.mary.h
+$(PORTRAIT_TILE_BIN): $(PORTRAIT_ARCHIVE_TOOL) $(PORTRAIT_SOURCE_MANIFEST) $(PORTRAIT_FULL_IMAGES) $(PORTRAIT_TILE_IMAGES) $(BASE_ROM) include/fomt_constants.mary.h
 	@mkdir -p $(dir $@)
-	@$(PYTHON) $(PORTRAIT_ARCHIVE_TOOL) $(BASE_ROM) --manifest $(PORTRAIT_SOURCE_MANIFEST) --region $(GAME_REGION) --names-header include/fomt_constants.mary.h rebuild --source $(PORTRAIT_SOURCE_DIR) --output $@
+	@$(PYTHON) $(PORTRAIT_ARCHIVE_TOOL) $(BASE_ROM) --manifest $(PORTRAIT_SOURCE_MANIFEST) --region $(GAME_REGION) --names-header include/fomt_constants.mary.h rebuild-full --source $(PORTRAIT_SOURCE_DIR) --output $@
 
 FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
