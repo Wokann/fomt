@@ -584,8 +584,8 @@ def assign_native_pixel(native: bytearray, assignments: dict[tuple[int, int], in
         native[offset] = (native[offset] & 0xF0) | value
 
 
-def rebuild_full(archive: Archive, source_directory: Path, output: Path,
-                 names: dict[int, str]) -> None:
+def rebuild_full_data(archive: Archive, source_directory: Path,
+                      names: dict[int, str]) -> tuple[bytes, int]:
     audit(archive)
     t4_offset = archive.table_offsets[3]
     native = bytearray(archive.data[t4_offset:t4_offset + archive.counts[3] * 32])
@@ -617,10 +617,42 @@ def rebuild_full(archive: Archive, source_directory: Path, output: Path,
             else:
                 global_tile, native_pixel = layers[target][-1]
                 assign_native_pixel(native, assignments, global_tile, native_pixel, value)
+    return bytes(native), changed_pixels
+
+
+def rebuild_full(archive: Archive, source_directory: Path, output: Path,
+                 names: dict[int, str]) -> None:
+    native, changed_pixels = rebuild_full_data(archive, source_directory, names)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_bytes(native)
     print(f"rebuilt {len(native)} bytes from {source_directory}/full with {changed_pixels} visible pixel changes")
     print(f"portrait tile SHA-256: {hashlib.sha256(native).hexdigest()}")
+
+
+def render_full_previews(archive: Archive, source_directory: Path,
+                         names: dict[int, str]) -> None:
+    """Render preview PNGs from the current complete-image authoring sources.
+
+    This deliberately reuses rebuild_full_data instead of trusting an editor's
+    visible compositing. The preview therefore shows exactly the tile bytes a
+    build would emit, including OAM overlap and palette-index semantics.
+    """
+    native, changed_pixels = rebuild_full_data(archive, source_directory, names)
+    t4_offset = archive.table_offsets[3]
+    archive_data = bytearray(archive.data)
+    archive_data[t4_offset:t4_offset + len(native)] = native
+    rebuilt_archive = Archive(
+        bytes(archive_data), archive.table_offsets, archive.counts, archive.trailing_offset
+    )
+    for portrait_id in range(rebuilt_archive.counts[0]):
+        symbol = display_name(portrait_id, names)
+        _, _, _, _, palette_id = portrait_descriptor(rebuilt_archive, portrait_id)
+        preview = render_preview(rebuilt_archive, portrait_id, palette(rebuilt_archive, palette_id))
+        write_png_rgba(source_directory / "preview" / f"{portrait_id:03d}_{symbol}.png", *preview)
+    print(
+        f"rendered {rebuilt_archive.counts[0]} previews from {source_directory}/full "
+        f"with {changed_pixels} visible pixel changes"
+    )
 
 
 def main() -> int:
@@ -641,6 +673,10 @@ def main() -> int:
     rebuild_full_parser = subparsers.add_parser("rebuild-full", help="patch native 4bpp table four from full portrait PNGs")
     rebuild_full_parser.add_argument("--source", required=True, type=Path)
     rebuild_full_parser.add_argument("--output", required=True, type=Path)
+    preview_parser = subparsers.add_parser(
+        "render-full-preview", help="render preview PNGs from current full portrait PNGs"
+    )
+    preview_parser.add_argument("--source", required=True, type=Path)
     args = parser.parse_args()
     expected_hash: str | None = None
     if args.manifest is not None:
@@ -670,6 +706,8 @@ def main() -> int:
         rebuild(archive, args.source, args.output, names)
     elif args.command == "rebuild-full":
         rebuild_full(archive, args.source, args.output, names)
+    elif args.command == "render-full-preview":
+        render_full_previews(archive, args.source, names)
     else:
         raise AssertionError("unreachable")
     return 0

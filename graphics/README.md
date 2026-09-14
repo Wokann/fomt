@@ -96,6 +96,20 @@ selecting one edit. The four regional assembly paths split their original
 archive at the tile stream and retain every header, layout record, palette and
 trailing byte around it.
 
+After editing `full/`, refresh the convenient RGBA reference images with the
+same in-memory rebuild and OAM compositor used by the build:
+
+```console
+python tools/portrait_archive.py baserom_jp.gba \
+  --manifest graphics/portraits/shared/portrait_archive.json \
+  --region JP \
+  --names-header include/fomt_constants.mary.h \
+  render-full-preview --source graphics/portraits/shared
+```
+
+This only rewrites `preview/`; it does not modify the ROM, `full/`, OAM layout,
+or `tiles/`.
+
 Regenerate the source image from any verified retail ROM:
 
 ```console
