@@ -4860,37 +4860,55 @@ extern RawVTableFunction const vtable_unk_080E7898[]
 
 // The next dispatch blocks have region-specific slot layouts. Keep their
 // real pointer order without assigning unsupported class or ABI semantics.
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E78A8[]
     SECTION(".rodata.vtable_script_engine_adjacent") = {
-#if defined(REGION_JP)
         func_0804F174,
         func_0804F178,
+    };
+
+// JP code constructs an object with this inner dispatch table directly.
+// Keep it as a physical object instead of expressing its address as A8 + 8.
+extern RawVTableFunction const vtable_unk_080E78B0[]
+    SECTION(".rodata.vtable_script_engine_adjacent") = {
         nullptr,
         nullptr,
         func_080E105C,
         func_0804ED38,
+    };
 #else
+extern RawVTableFunction const vtable_unk_080E78A8[]
+    SECTION(".rodata.vtable_script_engine_adjacent") = {
         nullptr,
         nullptr,
         func_080E103C,
         func_0804F160,
         func_0804F174,
         func_0804F178,
-#endif
     };
+#endif
 
+// The JP constructor likewise uses the second half of this block as a
+// separate dispatch table.  Splitting it preserves its native address.
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E78C0[]
     SECTION(".rodata.vtable_script_engine_adjacent") = {
-#if defined(REGION_JP)
         func_0804EDE4,
         func_0804F060,
         func_0804EE6C,
         func_0804F15C,
+    };
+
+extern RawVTableFunction const vtable_unk_080E78D0[]
+    SECTION(".rodata.vtable_script_engine_adjacent") = {
         nullptr,
         nullptr,
         func_0804EF20,
         func_080E0880,
+    };
 #else
+extern RawVTableFunction const vtable_unk_080E78C0[]
+    SECTION(".rodata.vtable_script_engine_adjacent") = {
         nullptr,
         nullptr,
         func_080E105C,
@@ -4899,8 +4917,8 @@ extern RawVTableFunction const vtable_unk_080E78C0[]
         func_0804F060,
         func_0804F0E0,
         func_0804F15C,
-#endif
     };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E78E0[]
     SECTION(".rodata.vtable_script_engine_adjacent") = {

@@ -1674,7 +1674,20 @@ gActorStateGridCellType3Data:
 jp_data_08462550_start:
     .global gActorStateGridCellType4Data
 gActorStateGridCellType4Data:
-    .incbin "baserom_jp.gba", 0x462550, (0x4C7B5C - 0x462550)
+    .incbin "baserom_jp.gba", 0x462550, (0x4AE370 - 0x462550)
+
+    @ UI resource archive payloads referenced directly by the JP UI constructor.
+    @ The formats remain undecoded, but each label names byte zero of its
+    @ physical JP record so callers use ordinary relocations.
+    .global gUnk_084AE370
+gUnk_084AE370:
+    .incbin "baserom_jp.gba", 0x4AE370, (0x4AE488 - 0x4AE370)
+    .global gUnk_084AE488
+gUnk_084AE488:
+    .incbin "baserom_jp.gba", 0x4AE488, (0x4AF4E4 - 0x4AE488)
+    .global gUnk_084AF4E4
+gUnk_084AF4E4:
+    .incbin "baserom_jp.gba", 0x4AF4E4, (0x4C7B5C - 0x4AF4E4)
 
     @ Intro Scene resources unpacked in order by func_0805FBB8.
     @ Their individual payload formats are not decoded yet.
