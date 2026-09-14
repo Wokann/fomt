@@ -54,7 +54,9 @@ GFX_TOOL_DIR := tools/gbagfx
 GFX_TOOL := $(GFX_TOOL_DIR)/gbagfx$(EXE)
 FONT_PAD_DIR := tools/fontpad
 FONT_PAD := $(FONT_PAD_DIR)/fontpad$(EXE)
-.PHONY: $(GFX_TOOL) $(FONT_PAD)
+OAM_PACK_DIR := tools/oam_pack
+OAM_PACK := $(OAM_PACK_DIR)/oam_pack$(EXE)
+.PHONY: $(GFX_TOOL) $(FONT_PAD) $(OAM_PACK)
 
 # ================
 # = BUILD CONFIG =
@@ -225,6 +227,9 @@ $(GFX_TOOL):
 $(FONT_PAD): $(FONT_PAD_DIR)/fontpad.c $(FONT_PAD_DIR)/Makefile
 	@$(MAKE) -C $(FONT_PAD_DIR)
 
+$(OAM_PACK): $(OAM_PACK_DIR)/oam_pack.c $(OAM_PACK_DIR)/Makefile
+	@$(MAKE) -C $(OAM_PACK_DIR)
+
 $(FONT_SHARED_SINGLE_PADDED): $(FONT_SHARED_SINGLE_PNG) $(GFX_TOOL)
 	@mkdir -p $(dir $@)
 	@$(GFX_TOOL) $< $@
@@ -249,7 +254,16 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-portraits gfx-portraits-all gfx-assets
+.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-portraits gfx-portraits-all gfx-assets oam-pack oam-pack-test
+oam-pack: $(OAM_PACK)
+oam-pack-test: $(OAM_PACK) baserom_jp.gba $(PORTRAIT_SOURCE_DIR)/full/000_TALK_PORTRAIT_RICK_NORMAL.png
+	@mkdir -p $(BUILD_DIR)/graphics/oam_pack
+	@$(OAM_PACK) $(PORTRAIT_SOURCE_DIR)/full/000_TALK_PORTRAIT_RICK_NORMAL.png \
+	  --tiles $(BUILD_DIR)/graphics/oam_pack/rick_normal.4bpp \
+	  --palette $(BUILD_DIR)/graphics/oam_pack/rick_normal.gbapal \
+	  --oam $(BUILD_DIR)/graphics/oam_pack/rick_normal.oam \
+	  --origin-x -24 --origin-y -72 --strategy canvas \
+	  --reference-rom baserom_jp.gba --reference-offset $(PORTRAIT_ARCHIVE_OFFSET_JP) --portrait-id 0
 gfx-font: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN)
 gfx-jp-font: gfx-font
 gfx-fonts:
@@ -388,7 +402,7 @@ clean:
 .PHONY: clean
 
 ifneq (clean,$(MAKECMDGOALS))
-ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-portraits gfx-portraits-all gfx-assets,$(MAKECMDGOALS)))
+ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-portraits gfx-portraits-all gfx-assets oam-pack oam-pack-test,$(MAKECMDGOALS)))
 -include $(ALL_DEPS)
 endif
 .PRECIOUS: $(BUILD_DIR)/%.d

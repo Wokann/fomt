@@ -99,6 +99,40 @@ selecting one edit. The four regional assembly paths split their original
 archive at the tile stream and retain every header, layout record, palette and
 trailing byte around it.
 
+## Experimental forward OAM compiler
+
+`tools/oam_pack/oam_pack.c` is the separate C implementation used to recover
+the original game's OAM-packing rules. It takes one indexed full PNG as the
+only authored image input, emits 4bpp tile bytes, one 16-colour BGR555 palette,
+and eight-byte GBA OAM templates, then renders the generated tile/OAM bytes
+back to require an exact indexed-pixel match. It can also compare every emitted
+stream with a selected portrait in a retail ROM. The ROM is a regression oracle
+only; it is not read by the normal image build and no JSON layout is involved.
+
+```console
+make oam-pack
+make oam-pack-test
+tools/oam_pack/oam_pack.exe graphics/portraits/shared/full/000_TALK_PORTRAIT_RICK_NORMAL.png \
+  --tiles build/jp/graphics/portrait_000.4bpp \
+  --palette build/jp/graphics/portrait_000.gbapal \
+  --oam build/jp/graphics/portrait_000.oam \
+  --origin-x -24 --origin-y -72 --strategy canvas \
+  --reference-rom baserom_jp.gba --reference-offset 0x2B3AE0 --portrait-id 0 \
+  --reference-dump
+```
+
+The `canvas` profile has already reproduced the original tile stream, palette,
+and six OAM entries for the Rick normal, surprised, and wedding portraits
+byte-for-byte. It deliberately retains transparent tiles in its stable canvas.
+Other portraits demonstrate that the retail asset compiler also varies its
+per-asset canvas anchor and rectangle partition. `dense` is a visible-tile
+packing baseline; `opaque` avoids overlapping generated rectangles while still
+covering every visible tile; and `canvas` preserves a declared complete canvas.
+Only a profile that passes the ROM comparison is eligible for a production
+resource class. The tool reports the descriptor/OAM fields for each
+non-matching comparison, so new C packing profiles can be added and validated
+without relying on a JSON layout file.
+
 After editing `full/`, refresh the convenient RGBA reference images with the
 same in-memory rebuild and OAM compositor used by the build:
 
