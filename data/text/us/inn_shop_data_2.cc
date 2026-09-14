@@ -13,3 +13,6 @@ char const gText_InnShop_OrderComplete[] =
     "Thanks!\r\n"
     "Wait one moment...\r\n"
     "OK, here you are!{Press}";
+
+char const gCppRuntimeBadAlloc_InnShopTrailer[] =
+    "bad_alloc";
