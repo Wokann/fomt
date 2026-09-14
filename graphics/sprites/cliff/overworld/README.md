@@ -17,6 +17,7 @@ or raw linear tile sheet participates in the build.
 | `0x293`-`0x296` | `ANIMATION_CLIFF_HOSPITAL_BED_IDLE` | 1041 |
 | `0x297`-`0x29A` | `ANIMATION_CLIFF_HOSPITAL_BED_REACT` | 1042, 1043 |
 | `0x29B`-`0x29E` | `ANIMATION_CLIFF_COLLAPSE_FORWARD` | 1013, 1044-1046 |
+| `0x29F`-`0x2AB` | Adjacent selectors; no semantic name claimed | 1041, 1042, 1047, 1048, 1051-1053 |
 
 The four retail localizations share these archive bytes; only their ROM
 offsets differ. To regenerate from a verified US ROM:
