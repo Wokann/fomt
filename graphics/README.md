@@ -4,6 +4,16 @@ This directory contains image resources that replace verified raw ROM ranges.
 Source images are edited here; `make` rebuilds their GBA-native binary payloads
 under `build/<region>/graphics/` before assembly.
 
+Run the complete managed-graphics verification gate with:
+
+```console
+make gfx-verify
+```
+
+It checks every currently managed payload against the appropriate retail ROM
+range in JP, US, EU, and DE. It stops before a full ROM link; the project has
+an unrelated C-source build failure outside the graphics path.
+
 `tools/gbagfx` is vendored from pokeemerald and performs PNG/indexed-GBA tile
 and palette conversion. FoMT fonts are 1bpp records with twelve active rows,
 whereas GBA tile tools operate in 8x8 units. `tools/fontpad` adds four blank
@@ -29,8 +39,8 @@ one editable PNG per stream rather than four redundant copies.
 Rebuild and verify this asset without linking the whole ROM:
 
 ```console
-make GAME_REGION=JP gfx-font
-make gfx-fonts
+make GAME_REGION=JP gfx-font-test
+make gfx-fonts-test
 ```
 
 `gfx-font` rebuilds the active region; `gfx-fonts` verifies all four regional

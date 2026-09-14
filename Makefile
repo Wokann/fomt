@@ -57,6 +57,7 @@ FONT_PAD := $(FONT_PAD_DIR)/fontpad$(EXE)
 OAM_PACK_DIR := tools/oam_pack
 OAM_PACK := $(OAM_PACK_DIR)/oam_pack$(EXE)
 OAM_PACK_AUDIT := $(OAM_PACK_DIR)/audit_portraits.py
+GFX_RANGE_VERIFY := tools/verify_gfx_range.py
 .PHONY: $(GFX_TOOL) $(FONT_PAD) $(OAM_PACK)
 
 # ================
@@ -99,6 +100,18 @@ FONT_SHARED_SINGLE_BIN := $(BUILD_DIR)/graphics/font/shared/single_width_font.1b
 FONT_SHARED_DOUBLE_PNG := graphics/font/shared/double_width_font.png
 FONT_SHARED_DOUBLE_PADDED := $(BUILD_DIR)/graphics/font/shared/double_width_font.padded.1bpp
 FONT_SHARED_DOUBLE_BIN := $(BUILD_DIR)/graphics/font/shared/double_width_font.1bpp
+FONT_SHARED_SINGLE_SHA256 := 92bc2a39dd9caf5e0f02a8ce7518f223eabe6c491bc4e05b8d1d2104f731754c
+FONT_SHARED_DOUBLE_SHA256 := bb7ffb1ed47acb9a05d2789eae9f3236945a4892df746c5a4f9f1dde706c4d3e
+FONT_SHARED_SINGLE_OFFSET_JP := 0x7515A8
+FONT_SHARED_SINGLE_OFFSET_US := 0x4F90CC
+FONT_SHARED_SINGLE_OFFSET_EU := 0x4F9128
+FONT_SHARED_SINGLE_OFFSET_DE := 0x71DDD4
+FONT_SHARED_DOUBLE_OFFSET_JP := 0x752E7C
+FONT_SHARED_DOUBLE_OFFSET_US := 0x4FA9A0
+FONT_SHARED_DOUBLE_OFFSET_EU := 0x4FA9FC
+FONT_SHARED_DOUBLE_OFFSET_DE := 0x71F6A8
+FONT_SHARED_SINGLE_OFFSET := $(FONT_SHARED_SINGLE_OFFSET_$(GAME_REGION))
+FONT_SHARED_DOUBLE_OFFSET := $(FONT_SHARED_DOUBLE_OFFSET_$(GAME_REGION))
 
 # The dialogue-portrait archive has a shared tile/OAM/palette layout in every
 # retail localization. Full portraits are the normal palette-indexed authoring
@@ -378,7 +391,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-portraits gfx-portraits-all gfx-overworld-rick gfx-overworld-rick-test gfx-overworld-rick-all gfx-overworld-actors gfx-overworld-actors-test gfx-overworld-actors-all gfx-assets oam-pack oam-pack-test oam-pack-audit
+.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-overworld-rick gfx-overworld-rick-test gfx-overworld-rick-all gfx-overworld-actors gfx-overworld-actors-test gfx-overworld-actors-all gfx-assets gfx-verify oam-pack oam-pack-test oam-pack-audit
 oam-pack: $(OAM_PACK)
 oam-pack-test: $(OAM_PACK) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba $(PORTRAIT_SOURCE_DIR)/full/000_TALK_PORTRAIT_RICK_NORMAL.png
 	@mkdir -p $(BUILD_DIR)/graphics/oam_pack
@@ -406,6 +419,14 @@ gfx-fonts:
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-font
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-font
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-font
+gfx-font-test: gfx-font $(BASE_ROM) $(GFX_RANGE_VERIFY)
+	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FONT_SHARED_SINGLE_OFFSET) --input $(FONT_SHARED_SINGLE_BIN) --sha256 $(FONT_SHARED_SINGLE_SHA256)
+	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FONT_SHARED_DOUBLE_OFFSET) --input $(FONT_SHARED_DOUBLE_BIN) --sha256 $(FONT_SHARED_DOUBLE_SHA256)
+gfx-fonts-test:
+	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-font-test
+	@$(MAKE) --no-print-directory GAME_REGION=US gfx-font-test
+	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-font-test
+	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-font-test
 gfx-portraits: $(PORTRAIT_TILE_BIN)
 gfx-portraits-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-portraits
@@ -437,6 +458,16 @@ gfx-overworld-actors-all:
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-overworld-actors-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-overworld-actors-test
 gfx-assets: gfx-font gfx-portraits gfx-overworld-actors
+
+# Full graphics gate for assets that have an authoritative source/rebuild
+# path.  It intentionally does not link a ROM: the project-wide link is
+# currently blocked independently by non-graphics C sources.
+gfx-verify:
+	@$(MAKE) --no-print-directory gfx-fonts-test
+	@$(MAKE) --no-print-directory gfx-portraits-all
+	@$(MAKE) --no-print-directory gfx-overworld-actors-all
+	@$(MAKE) --no-print-directory oam-pack-test
+	@$(MAKE) --no-print-directory oam-pack-audit
 
 $(BUILD_DIR)/asm/data/data_0813B288.o: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN) $(PORTRAIT_TILE_BIN) $(OVERWORLD_RICK_TILE_BIN) $(OVERWORLD_RICK_PALETTE_BIN) $(OVERWORLD_RICK_WEDDING_TILE_BIN) $(OVERWORLD_RICK_WEDDING_PALETTE_BIN) $(OVERWORLD_FIXED_SIX_TILE_BINS)
 
@@ -561,7 +592,7 @@ clean:
 .PHONY: clean
 
 ifneq (clean,$(MAKECMDGOALS))
-ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-portraits gfx-portraits-all gfx-overworld-rick gfx-overworld-rick-test gfx-overworld-rick-all gfx-overworld-actors gfx-overworld-actors-test gfx-overworld-actors-all gfx-assets oam-pack oam-pack-test oam-pack-audit,$(MAKECMDGOALS)))
+ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-overworld-rick gfx-overworld-rick-test gfx-overworld-rick-all gfx-overworld-actors gfx-overworld-actors-test gfx-overworld-actors-all gfx-assets gfx-verify oam-pack oam-pack-test oam-pack-audit,$(MAKECMDGOALS)))
 -include $(ALL_DEPS)
 endif
 .PRECIOUS: $(BUILD_DIR)/%.d
