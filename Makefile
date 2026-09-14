@@ -150,116 +150,6 @@ UI_SHARED_RESOURCE_PALETTE_OFFSET_DE := 0x4E2E54
 UI_SHARED_RESOURCE_TILE_OFFSET := $(UI_SHARED_RESOURCE_TILE_OFFSET_$(GAME_REGION))
 UI_SHARED_RESOURCE_PALETTE_OFFSET := $(UI_SHARED_RESOURCE_PALETTE_OFFSET_$(GAME_REGION))
 
-# Rick's daily overworld animation is a fixed six-tile frame class: a 16x16
-# upper body followed by a centred 8x16 lower strip. The 26 full PNG frames
-# and their native 4bpp/BGR555 rebuild are shared byte-for-byte by all four
-# retail localizations, although each ROM stores the data elsewhere.
-OVERWORLD_SPRITE_TOOL := tools/overworld_sprite.py
-OVERWORLD_RICK_SOURCE_DIR := graphics/sprites/rick_daily/shared/frames
-OVERWORLD_RICK_FRAMES := $(wildcard $(OVERWORLD_RICK_SOURCE_DIR)/*.png)
-OVERWORLD_RICK_TILE_BIN := $(BUILD_DIR)/graphics/sprites/rick_daily/rick_daily.4bpp
-OVERWORLD_RICK_PALETTE_BIN := $(BUILD_DIR)/graphics/sprites/rick_daily/rick_daily.gbapal
-OVERWORLD_RICK_BUILD_STAMP := $(BUILD_DIR)/graphics/sprites/rick_daily/.build.stamp
-OVERWORLD_RICK_TILE_SHA256 := a3b557ebe746ce6b2a7d1f5d0ea522837a99283c2dd05879f787dba2c733bf71
-OVERWORLD_RICK_PALETTE_SHA256 := 7023974d0e32aaee06e1da906644414117f4c5745c83e0a6ae73895136282b10
-OVERWORLD_RICK_TILE_OFFSET_JP := 0x380898
-OVERWORLD_RICK_TILE_OFFSET_US := 0x5FA73C
-OVERWORLD_RICK_TILE_OFFSET_EU := 0x5FA798
-OVERWORLD_RICK_TILE_OFFSET_DE := 0x3817D8
-OVERWORLD_RICK_PALETTE_OFFSET_JP := 0x3E859C
-OVERWORLD_RICK_PALETTE_OFFSET_US := 0x662440
-OVERWORLD_RICK_PALETTE_OFFSET_EU := 0x66249C
-OVERWORLD_RICK_PALETTE_OFFSET_DE := 0x3E94DC
-OVERWORLD_RICK_TILE_OFFSET := $(OVERWORLD_RICK_TILE_OFFSET_$(GAME_REGION))
-OVERWORLD_RICK_PALETTE_OFFSET := $(OVERWORLD_RICK_PALETTE_OFFSET_$(GAME_REGION))
-
-OVERWORLD_RICK_WEDDING_SOURCE_DIR := graphics/sprites/rick_wedding/shared/frames
-OVERWORLD_RICK_WEDDING_FRAMES := $(wildcard $(OVERWORLD_RICK_WEDDING_SOURCE_DIR)/*.png)
-OVERWORLD_RICK_WEDDING_TILE_BIN := $(BUILD_DIR)/graphics/sprites/rick_wedding/rick_wedding.4bpp
-OVERWORLD_RICK_WEDDING_PALETTE_BIN := $(BUILD_DIR)/graphics/sprites/rick_wedding/rick_wedding.gbapal
-OVERWORLD_RICK_WEDDING_BUILD_STAMP := $(BUILD_DIR)/graphics/sprites/rick_wedding/.build.stamp
-OVERWORLD_RICK_WEDDING_TILE_SHA256 := 2288b1caca41144453cc9c73fe9ee209cb356345f4f462fb961f0858300b0d8c
-OVERWORLD_RICK_WEDDING_TILE_OFFSET_JP := 0x381C18
-OVERWORLD_RICK_WEDDING_TILE_OFFSET_US := 0x5FBABC
-OVERWORLD_RICK_WEDDING_TILE_OFFSET_EU := 0x5FBB18
-OVERWORLD_RICK_WEDDING_TILE_OFFSET_DE := 0x382B58
-OVERWORLD_RICK_WEDDING_PALETTE_OFFSET_JP := 0x3E85BC
-OVERWORLD_RICK_WEDDING_PALETTE_OFFSET_US := 0x662460
-OVERWORLD_RICK_WEDDING_PALETTE_OFFSET_EU := 0x6624BC
-OVERWORLD_RICK_WEDDING_PALETTE_OFFSET_DE := 0x3E94FC
-OVERWORLD_RICK_WEDDING_TILE_OFFSET := $(OVERWORLD_RICK_WEDDING_TILE_OFFSET_$(GAME_REGION))
-OVERWORLD_RICK_WEDDING_PALETTE_OFFSET := $(OVERWORLD_RICK_WEDDING_PALETTE_OFFSET_$(GAME_REGION))
-
-# The next adjacent character resources use the exact same fixed six-tile
-# frame format as Rick.  Their source frames are shared by every retail
-# localization; only the physical ROM ranges differ.  Popuri's baby frames
-# intentionally reuse the Popuri daily palette in the native data stream.
-OVERWORLD_FIXED_SIX_TILE_ASSETS := popuri_daily popuri_sleeping popuri_baby popuri_wedding lillia_daily
-OVERWORLD_FIXED_SIX_TILE_BINS := $(foreach asset,$(OVERWORLD_FIXED_SIX_TILE_ASSETS),$(BUILD_DIR)/graphics/sprites/$(asset)/$(asset).4bpp $(BUILD_DIR)/graphics/sprites/$(asset)/$(asset).gbapal)
-
-define DEFINE_FIXED_SIX_TILE_ASSET
-$(BUILD_DIR)/graphics/sprites/$(1)/.build.stamp: $(OVERWORLD_SPRITE_TOOL) $$(wildcard graphics/sprites/$(1)/shared/frames/*.png)
-	@mkdir -p $$(dir $$@)
-	@$(PYTHON) $(OVERWORLD_SPRITE_TOOL) build --source graphics/sprites/$(1)/shared/frames --tiles $(BUILD_DIR)/graphics/sprites/$(1)/$(1).4bpp --palette $(BUILD_DIR)/graphics/sprites/$(1)/$(1).gbapal
-	@touch $$@
-
-$(BUILD_DIR)/graphics/sprites/$(1)/$(1).4bpp $(BUILD_DIR)/graphics/sprites/$(1)/$(1).gbapal: $(BUILD_DIR)/graphics/sprites/$(1)/.build.stamp
-endef
-$(foreach asset,$(OVERWORLD_FIXED_SIX_TILE_ASSETS),$(eval $(call DEFINE_FIXED_SIX_TILE_ASSET,$(asset))))
-
-OVERWORLD_POPURI_DAILY_TILE_SHA256 := 4e72631235ce49c3c2fa19e88cc683d8ffba919411c59db6354396b1107f7d6e
-OVERWORLD_POPURI_SLEEPING_TILE_SHA256 := 7465adbf16179ba88480972cd0f6f955c8f5361c08f967285df79df89dbeee06
-OVERWORLD_POPURI_BABY_TILE_SHA256 := 3bbf1d5a752264f56445dfcef307b3b61aec9a5525254fe488831f8d1bd68678
-OVERWORLD_POPURI_WEDDING_TILE_SHA256 := 29c1c944edeb26507edd82603792e2c2c5a979a10e9fe3e507be5ae6a3b675f0
-OVERWORLD_LILLIA_DAILY_TILE_SHA256 := 70e62a16e4f4df4e77cd13a91d7a6d63e9d0247dd304855f39cc325f3454c703
-
-OVERWORLD_POPURI_DAILY_TILE_OFFSET_JP := 0x382998
-OVERWORLD_POPURI_DAILY_TILE_OFFSET_US := 0x5FC83C
-OVERWORLD_POPURI_DAILY_TILE_OFFSET_EU := 0x5FC898
-OVERWORLD_POPURI_DAILY_TILE_OFFSET_DE := 0x3838D8
-OVERWORLD_POPURI_DAILY_PALETTE_OFFSET_JP := 0x3E85DC
-OVERWORLD_POPURI_DAILY_PALETTE_OFFSET_US := 0x662480
-OVERWORLD_POPURI_DAILY_PALETTE_OFFSET_EU := 0x6624DC
-OVERWORLD_POPURI_DAILY_PALETTE_OFFSET_DE := 0x3E951C
-
-OVERWORLD_POPURI_SLEEPING_TILE_OFFSET_JP := 0x383D18
-OVERWORLD_POPURI_SLEEPING_TILE_OFFSET_US := 0x5FDBBC
-OVERWORLD_POPURI_SLEEPING_TILE_OFFSET_EU := 0x5FDC18
-OVERWORLD_POPURI_SLEEPING_TILE_OFFSET_DE := 0x384C58
-OVERWORLD_POPURI_SLEEPING_PALETTE_OFFSET_JP := 0x3E85FC
-OVERWORLD_POPURI_SLEEPING_PALETTE_OFFSET_US := 0x6624A0
-OVERWORLD_POPURI_SLEEPING_PALETTE_OFFSET_EU := 0x6624FC
-OVERWORLD_POPURI_SLEEPING_PALETTE_OFFSET_DE := 0x3E953C
-
-OVERWORLD_POPURI_BABY_TILE_OFFSET_JP := 0x384318
-OVERWORLD_POPURI_BABY_TILE_OFFSET_US := 0x5FE1BC
-OVERWORLD_POPURI_BABY_TILE_OFFSET_EU := 0x5FE218
-OVERWORLD_POPURI_BABY_TILE_OFFSET_DE := 0x385258
-
-OVERWORLD_POPURI_WEDDING_TILE_OFFSET_JP := 0x385518
-OVERWORLD_POPURI_WEDDING_TILE_OFFSET_US := 0x5FF3BC
-OVERWORLD_POPURI_WEDDING_TILE_OFFSET_EU := 0x5FF418
-OVERWORLD_POPURI_WEDDING_TILE_OFFSET_DE := 0x386458
-OVERWORLD_POPURI_WEDDING_PALETTE_OFFSET_JP := 0x3E861C
-OVERWORLD_POPURI_WEDDING_PALETTE_OFFSET_US := 0x6624C0
-OVERWORLD_POPURI_WEDDING_PALETTE_OFFSET_EU := 0x66251C
-OVERWORLD_POPURI_WEDDING_PALETTE_OFFSET_DE := 0x3E955C
-
-OVERWORLD_LILLIA_DAILY_TILE_OFFSET_JP := 0x386118
-OVERWORLD_LILLIA_DAILY_TILE_OFFSET_US := 0x5FFFBC
-OVERWORLD_LILLIA_DAILY_TILE_OFFSET_EU := 0x600018
-OVERWORLD_LILLIA_DAILY_TILE_OFFSET_DE := 0x387058
-OVERWORLD_LILLIA_DAILY_PALETTE_OFFSET_JP := 0x3E863C
-OVERWORLD_LILLIA_DAILY_PALETTE_OFFSET_US := 0x6624E0
-OVERWORLD_LILLIA_DAILY_PALETTE_OFFSET_EU := 0x66253C
-OVERWORLD_LILLIA_DAILY_PALETTE_OFFSET_DE := 0x3E957C
-
-define SELECT_OVERWORLD_OFFSETS
-OVERWORLD_$(1)_TILE_OFFSET := $$(OVERWORLD_$(1)_TILE_OFFSET_$$(GAME_REGION))
-OVERWORLD_$(1)_PALETTE_OFFSET := $$(OVERWORLD_$(1)_PALETTE_OFFSET_$$(GAME_REGION))
-endef
-$(foreach asset,POPURI_DAILY POPURI_SLEEPING POPURI_BABY POPURI_WEDDING LILLIA_DAILY,$(eval $(call SELECT_OVERWORLD_OFFSETS,$(asset))))
-
 SUBDIRS := $(sort $(dir $(ALL_OBJS)))
 $(shell mkdir -p $(SUBDIRS))
 
@@ -398,25 +288,11 @@ $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN): $(UI_SHARED_RE
 	@mkdir -p $(dir $(UI_SHARED_RESOURCE_TILE_BIN))
 	@$(PYTHON) $(TILE_GRID_TOOL) build --source $(UI_SHARED_RESOURCE_SOURCE) --tiles $(UI_SHARED_RESOURCE_TILE_BIN) --palette $(UI_SHARED_RESOURCE_PALETTE_BIN)
 
-$(OVERWORLD_RICK_BUILD_STAMP): $(OVERWORLD_SPRITE_TOOL) $(OVERWORLD_RICK_FRAMES)
-	@mkdir -p $(dir $@)
-	@$(PYTHON) $(OVERWORLD_SPRITE_TOOL) build --source $(OVERWORLD_RICK_SOURCE_DIR) --tiles $(OVERWORLD_RICK_TILE_BIN) --palette $(OVERWORLD_RICK_PALETTE_BIN)
-	@touch $@
-
-$(OVERWORLD_RICK_TILE_BIN) $(OVERWORLD_RICK_PALETTE_BIN): $(OVERWORLD_RICK_BUILD_STAMP)
-
-$(OVERWORLD_RICK_WEDDING_BUILD_STAMP): $(OVERWORLD_SPRITE_TOOL) $(OVERWORLD_RICK_WEDDING_FRAMES)
-	@mkdir -p $(dir $@)
-	@$(PYTHON) $(OVERWORLD_SPRITE_TOOL) build --source $(OVERWORLD_RICK_WEDDING_SOURCE_DIR) --tiles $(OVERWORLD_RICK_WEDDING_TILE_BIN) --palette $(OVERWORLD_RICK_WEDDING_PALETTE_BIN)
-	@touch $@
-
-$(OVERWORLD_RICK_WEDDING_TILE_BIN) $(OVERWORLD_RICK_WEDDING_PALETTE_BIN): $(OVERWORLD_RICK_WEDDING_BUILD_STAMP)
-
 FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-ui gfx-ui-test gfx-ui-all gfx-overworld-rick gfx-overworld-rick-test gfx-overworld-rick-all gfx-overworld-actors gfx-overworld-actors-test gfx-overworld-actors-all gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
+.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-ui gfx-ui-test gfx-ui-all gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
 oam-pack: $(OAM_PACK)
 oam-pack-test: $(OAM_PACK) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba $(PORTRAIT_SOURCE_DIR)/full/000_TALK_PORTRAIT_RICK_NORMAL.png
 	@mkdir -p $(BUILD_DIR)/graphics/oam_pack
@@ -467,46 +343,21 @@ gfx-ui-all:
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-ui-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-ui-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-ui-test
-gfx-overworld-rick: $(OVERWORLD_RICK_TILE_BIN) $(OVERWORLD_RICK_PALETTE_BIN) $(OVERWORLD_RICK_WEDDING_TILE_BIN) $(OVERWORLD_RICK_WEDDING_PALETTE_BIN)
-gfx-overworld-rick-test: gfx-overworld-rick $(BASE_ROM)
-	@$(PYTHON) $(OVERWORLD_SPRITE_TOOL) verify $(BASE_ROM) --tiles-offset $(OVERWORLD_RICK_TILE_OFFSET) --palette-offset $(OVERWORLD_RICK_PALETTE_OFFSET) --tiles $(OVERWORLD_RICK_TILE_BIN) --palette $(OVERWORLD_RICK_PALETTE_BIN) --sha256 $(OVERWORLD_RICK_TILE_SHA256)
-	@$(PYTHON) $(OVERWORLD_SPRITE_TOOL) verify $(BASE_ROM) --tiles-offset $(OVERWORLD_RICK_WEDDING_TILE_OFFSET) --palette-offset $(OVERWORLD_RICK_WEDDING_PALETTE_OFFSET) --tiles $(OVERWORLD_RICK_WEDDING_TILE_BIN) --palette $(OVERWORLD_RICK_WEDDING_PALETTE_BIN) --sha256 $(OVERWORLD_RICK_WEDDING_TILE_SHA256)
-gfx-overworld-rick-all:
-	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-overworld-rick-test
-	@$(MAKE) --no-print-directory GAME_REGION=US gfx-overworld-rick-test
-	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-overworld-rick-test
-	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-overworld-rick-test
-
-# Generic linear 4bpp grid regression.  Rick's native stream is intentionally
-# viewed here as a 48-pixel-wide tile grid, not as the six-tile authored-frame
-# class, so this tests the generic conversion path independently.
+# Generic linear 4bpp grid regression using a verified UI resource. Unlike
+# character sprites, this payload has no OAM or tile-map indirection.
 TILE_GRID_TEST_DIR := $(BUILD_DIR)/graphics/tile_grid_test
 tile-grid-region-test: $(TILE_GRID_TOOL) $(GFX_RANGE_VERIFY) $(BASE_ROM)
-	@$(PYTHON) $(TILE_GRID_TOOL) export $(BASE_ROM) --tiles-offset $(OVERWORLD_RICK_TILE_OFFSET) --tiles-length 0x1380 --palette-offset $(OVERWORLD_RICK_PALETTE_OFFSET) --width 48 --sha256 $(OVERWORLD_RICK_TILE_SHA256) --output $(TILE_GRID_TEST_DIR)/rick.png --replace
-	@$(PYTHON) $(TILE_GRID_TOOL) build --source $(TILE_GRID_TEST_DIR)/rick.png --tiles $(TILE_GRID_TEST_DIR)/rick.4bpp --palette $(TILE_GRID_TEST_DIR)/rick.gbapal
-	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(OVERWORLD_RICK_TILE_OFFSET) --input $(TILE_GRID_TEST_DIR)/rick.4bpp --sha256 $(OVERWORLD_RICK_TILE_SHA256)
-	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(OVERWORLD_RICK_PALETTE_OFFSET) --input $(TILE_GRID_TEST_DIR)/rick.gbapal --sha256 $(OVERWORLD_RICK_PALETTE_SHA256)
+	@$(PYTHON) $(TILE_GRID_TOOL) export $(BASE_ROM) --tiles-offset $(UI_SHARED_RESOURCE_TILE_OFFSET) --tiles-length 0x120 --palette-offset $(UI_SHARED_RESOURCE_PALETTE_OFFSET) --width 24 --sha256 $(UI_SHARED_RESOURCE_TILE_SHA256) --output $(TILE_GRID_TEST_DIR)/ui_shared_resource.png --replace
+	@$(PYTHON) $(TILE_GRID_TOOL) build --source $(TILE_GRID_TEST_DIR)/ui_shared_resource.png --tiles $(TILE_GRID_TEST_DIR)/ui_shared_resource.4bpp --palette $(TILE_GRID_TEST_DIR)/ui_shared_resource.gbapal
+	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(UI_SHARED_RESOURCE_TILE_OFFSET) --input $(TILE_GRID_TEST_DIR)/ui_shared_resource.4bpp --sha256 $(UI_SHARED_RESOURCE_TILE_SHA256)
+	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(UI_SHARED_RESOURCE_PALETTE_OFFSET) --input $(TILE_GRID_TEST_DIR)/ui_shared_resource.gbapal --sha256 $(UI_SHARED_RESOURCE_PALETTE_SHA256)
 tile-grid-test:
 	@$(MAKE) --no-print-directory GAME_REGION=JP tile-grid-region-test
 	@$(MAKE) --no-print-directory GAME_REGION=US tile-grid-region-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU tile-grid-region-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE tile-grid-region-test
 
-# This target deliberately keeps each source family independently addressable:
-# an artist can rebuild Popuri without needing to touch Rick or Lillia.
-gfx-overworld-actors: gfx-overworld-rick $(OVERWORLD_FIXED_SIX_TILE_BINS)
-gfx-overworld-actors-test: gfx-overworld-actors $(BASE_ROM)
-	@$(PYTHON) $(OVERWORLD_SPRITE_TOOL) verify $(BASE_ROM) --tiles-offset $(OVERWORLD_POPURI_DAILY_TILE_OFFSET) --palette-offset $(OVERWORLD_POPURI_DAILY_PALETTE_OFFSET) --tiles $(BUILD_DIR)/graphics/sprites/popuri_daily/popuri_daily.4bpp --palette $(BUILD_DIR)/graphics/sprites/popuri_daily/popuri_daily.gbapal --sha256 $(OVERWORLD_POPURI_DAILY_TILE_SHA256)
-	@$(PYTHON) $(OVERWORLD_SPRITE_TOOL) verify $(BASE_ROM) --tiles-offset $(OVERWORLD_POPURI_SLEEPING_TILE_OFFSET) --palette-offset $(OVERWORLD_POPURI_SLEEPING_PALETTE_OFFSET) --tiles $(BUILD_DIR)/graphics/sprites/popuri_sleeping/popuri_sleeping.4bpp --palette $(BUILD_DIR)/graphics/sprites/popuri_sleeping/popuri_sleeping.gbapal --sha256 $(OVERWORLD_POPURI_SLEEPING_TILE_SHA256)
-	@$(PYTHON) $(OVERWORLD_SPRITE_TOOL) verify $(BASE_ROM) --tiles-offset $(OVERWORLD_POPURI_BABY_TILE_OFFSET) --palette-offset $(OVERWORLD_POPURI_DAILY_PALETTE_OFFSET) --tiles $(BUILD_DIR)/graphics/sprites/popuri_baby/popuri_baby.4bpp --palette $(BUILD_DIR)/graphics/sprites/popuri_baby/popuri_baby.gbapal --sha256 $(OVERWORLD_POPURI_BABY_TILE_SHA256)
-	@$(PYTHON) $(OVERWORLD_SPRITE_TOOL) verify $(BASE_ROM) --tiles-offset $(OVERWORLD_POPURI_WEDDING_TILE_OFFSET) --palette-offset $(OVERWORLD_POPURI_WEDDING_PALETTE_OFFSET) --tiles $(BUILD_DIR)/graphics/sprites/popuri_wedding/popuri_wedding.4bpp --palette $(BUILD_DIR)/graphics/sprites/popuri_wedding/popuri_wedding.gbapal --sha256 $(OVERWORLD_POPURI_WEDDING_TILE_SHA256)
-	@$(PYTHON) $(OVERWORLD_SPRITE_TOOL) verify $(BASE_ROM) --tiles-offset $(OVERWORLD_LILLIA_DAILY_TILE_OFFSET) --palette-offset $(OVERWORLD_LILLIA_DAILY_PALETTE_OFFSET) --tiles $(BUILD_DIR)/graphics/sprites/lillia_daily/lillia_daily.4bpp --palette $(BUILD_DIR)/graphics/sprites/lillia_daily/lillia_daily.gbapal --sha256 $(OVERWORLD_LILLIA_DAILY_TILE_SHA256)
-gfx-overworld-actors-all:
-	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-overworld-actors-test
-	@$(MAKE) --no-print-directory GAME_REGION=US gfx-overworld-actors-test
-	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-overworld-actors-test
-	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-overworld-actors-test
-gfx-assets: gfx-font gfx-portraits gfx-ui gfx-overworld-actors
+gfx-assets: gfx-font gfx-portraits gfx-ui
 
 # Full graphics gate for assets that have an authoritative source/rebuild
 # path.  It intentionally does not link a ROM: the project-wide link is
@@ -515,12 +366,11 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-fonts-test
 	@$(MAKE) --no-print-directory gfx-portraits-all
 	@$(MAKE) --no-print-directory gfx-ui-all
-	@$(MAKE) --no-print-directory gfx-overworld-actors-all
 	@$(MAKE) --no-print-directory tile-grid-test
 	@$(MAKE) --no-print-directory oam-pack-test
 	@$(MAKE) --no-print-directory oam-pack-audit
 
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN) $(PORTRAIT_TILE_BIN) $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN) $(OVERWORLD_RICK_TILE_BIN) $(OVERWORLD_RICK_PALETTE_BIN) $(OVERWORLD_RICK_WEDDING_TILE_BIN) $(OVERWORLD_RICK_WEDDING_PALETTE_BIN) $(OVERWORLD_FIXED_SIX_TILE_BINS)
+$(BUILD_DIR)/asm/data/data_0813B288.o: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN) $(PORTRAIT_TILE_BIN) $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN)
 
 # Mary owns the complete packed RIFF script stream.  Its three headers remain
 # explicit inputs: callables and slot names live with the selected scripts,
@@ -643,7 +493,7 @@ clean:
 .PHONY: clean
 
 ifneq (clean,$(MAKECMDGOALS))
-ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-ui gfx-ui-test gfx-ui-all gfx-overworld-rick gfx-overworld-rick-test gfx-overworld-rick-all gfx-overworld-actors gfx-overworld-actors-test gfx-overworld-actors-all gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit,$(MAKECMDGOALS)))
+ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-ui gfx-ui-test gfx-ui-all gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit,$(MAKECMDGOALS)))
 -include $(ALL_DEPS)
 endif
 .PRECIOUS: $(BUILD_DIR)/%.d

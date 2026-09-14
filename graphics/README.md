@@ -109,41 +109,12 @@ selecting one edit. The four regional assembly paths split their original
 archive at the tile stream and retain every header, layout record, palette and
 trailing byte around it.
 
-## Shared overworld frames
+Overworld character animation streams are not exposed as editable images yet:
+their raw tile order still requires an OAM and animation-mapping audit. Until
+that is complete, those bytes remain untouched in their original `incbin`
+ranges.
 
-`sprites/rick_daily/shared/frames` contains the 26 ordinary Rick overworld
-animation frames. Each `000.png` through `025.png` is a complete 16x32 indexed
-PNG: its 16x16 upper body uses the first four physical tiles, and its centred
-8x16 lower body uses the final two. This is a fixed six-tile resource class,
-not an OAM layout; the converter restores that native tile order directly.
 
-The 0x1380-byte tile stream and its 32-byte BGR555 palette are byte-identical
-in JP, US, EU, and DE. Their physical locations are respectively
-`0x380898/0x3E859C`, `0x5FA73C/0x662440`, `0x5FA798/0x66249C`, and
-`0x3817D8/0x3E94DC` (tile/palette). The shared tile SHA-256 is
-`a3b557ebe746ce6b2a7d1f5d0ea522837a99283c2dd05879f787dba2c733bf71`.
-
-```console
-make GAME_REGION=JP gfx-overworld-rick
-make gfx-overworld-rick-all
-```
-
-`tools/overworld_sprite.py` is intentionally a fixed-format converter, rather
-than a generic tile-sheet guesser. It verifies that all numbered source frames
-exist consecutively, retain one common 16-colour indexed palette, and rebuild
-the exact six native tiles per frame. `gfx-overworld-rick-all` compares the
-rebuilt tile and palette streams with all four base ROMs. No JSON manifest is
-used: frame order is the numeric file order and the resource-class layout is
-defined by the converter itself. To regenerate the checked-in source from a
-verified ROM, use `export` with the explicit replacement guard:
-
-```console
-python tools/overworld_sprite.py export baserom_us.gba \
-  --tiles-offset 0x5FA73C --tiles-length 0x1380 --palette-offset 0x662440 \
-  --output graphics/sprites/rick_daily/shared/frames --replace
-```
-
-Without `--replace`, the exporter refuses to overwrite existing authored PNGs.
 
 ## Linear 4bpp tile grids
 
@@ -155,19 +126,17 @@ a ROM, so an incorrect offset cannot silently become authored art.
 
 ```console
 python tools/tile_grid.py export baserom_us.gba \
-  --tiles-offset 0x5FA73C --tiles-length 0x1380 \
-  --palette-offset 0x662440 --width 48 \
-  --sha256 a3b557ebe746ce6b2a7d1f5d0ea522837a99283c2dd05879f787dba2c733bf71 \
-  --output build/tile_grid_probe/rick.png
+  --tiles-offset 0x75B818 --tiles-length 0x120 \
+  --palette-offset 0x75B938 --width 24 \
+  --sha256 0ccf3327b9f4b30e2b1e47d763f56c9a15d8dff94ff3e44c79b8e87c89a8992c \
+  --output build/tile_grid_probe/ui_shared_resource.png
 python tools/tile_grid.py build \
-  --source build/tile_grid_probe/rick.png \
-  --tiles build/tile_grid_probe/rick.4bpp \
-  --palette build/tile_grid_probe/rick.gbapal
+  --source build/tile_grid_probe/ui_shared_resource.png \
+  --tiles build/tile_grid_probe/ui_shared_resource.4bpp \
+  --palette build/tile_grid_probe/ui_shared_resource.gbapal
 ```
 
 `make tile-grid-test` runs that generic route against all four retail ROMs.
-The Rick stream is used only as a known byte-identical fixture; for normal
-Rick editing, use the higher-level six-tile full-frame source instead.
 
 ## Shared UI tile grid
 
