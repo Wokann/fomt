@@ -3552,7 +3552,248 @@ func_08050424: @ 0x080501B0
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    jp_code_0803ee_func func_08050478, 0x50204, 0x503F0
+    .global func_08050478
+    .thumb_func
+func_08050478: @ 0x08050204
+    push {r4, r5, r6, r7, lr}
+    mov r7, sl
+    mov r6, sb
+    mov r5, r8
+    push {r5, r6, r7}
+    sub sp, #0x10
+    adds r4, r0, #0
+    str r1, [sp, #8]
+    str r2, [sp, #0xc]
+    mov sb, r3
+    ldr r0, [sp, #0x30]
+    mov sl, r0
+    ldr r1, [sp, #0x34]
+    mov r8, r1
+    ldr r7, [sp, #0x38]
+    ldr r0, [r4, #8]
+    cmp r0, #0
+    blt .Ljp_08050240
+    cmp r0, #2
+    bgt .Ljp_08050234
+    adds r0, r4, #0
+    bl func_080503E4
+    b .Ljp_08050240
+.Ljp_08050234:
+    cmp r0, #6
+    bgt .Ljp_08050240
+    adds r0, r4, #0
+    adds r0, #0xd0
+    bl func_0804EE6C
+.Ljp_08050240:
+    movs r5, #4
+    movs r6, #0xc
+    cmp r7, #0
+    bne .Ljp_08050262
+    movs r5, #3
+    mov r2, r8
+    cmp r2, #0
+    bne .Ljp_08050262
+    movs r5, #2
+    mov r0, sl
+    cmp r0, #0
+    bne .Ljp_08050262
+    movs r6, #0x1a
+    mov r1, sb
+    rsbs r0, r1, #0
+    orrs r0, r1
+    lsrs r5, r0, #0x1f
+.Ljp_08050262:
+    cmp r5, #4
+    bhi .Ljp_08050288
+    lsls r0, r5, #2
+    ldr r1, .Ljp_08050270 @ =.Ljp_08050274
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+    .align 2, 0
+.Ljp_08050270: .4byte .Ljp_08050274
+.Ljp_08050274: @ jump table
+    .4byte .Ljp_080502D4 @ case 0
+    .4byte .Ljp_080502C2 @ case 1
+    .4byte .Ljp_080502AE @ case 2
+    .4byte .Ljp_0805029A @ case 3
+    .4byte .Ljp_0805028A @ case 4
+.Ljp_08050288:
+    movs r5, #0
+.Ljp_0805028A:
+    cmp r7, #0
+    beq .Ljp_08050298
+    adds r0, r7, #0
+    bl strlen
+    cmp r0, r6
+    bls .Ljp_0805029A
+.Ljp_08050298:
+    ldr r7, .Ljp_0805030C @ =gUiTextLayoutPositionTable
+.Ljp_0805029A:
+    mov r2, r8
+    cmp r2, #0
+    beq .Ljp_080502AA
+    mov r0, r8
+    bl strlen
+    cmp r0, r6
+    bls .Ljp_080502AE
+.Ljp_080502AA:
+    ldr r0, .Ljp_0805030C @ =gUiTextLayoutPositionTable
+    mov r8, r0
+.Ljp_080502AE:
+    mov r1, sl
+    cmp r1, #0
+    beq .Ljp_080502BE
+    mov r0, sl
+    bl strlen
+    cmp r0, r6
+    bls .Ljp_080502C2
+.Ljp_080502BE:
+    ldr r2, .Ljp_0805030C @ =gUiTextLayoutPositionTable
+    mov sl, r2
+.Ljp_080502C2:
+    mov r0, sb
+    cmp r0, #0
+    beq .Ljp_080502D0
+    bl strlen
+    cmp r0, r6
+    bls .Ljp_080502D4
+.Ljp_080502D0:
+    ldr r1, .Ljp_0805030C @ =gUiTextLayoutPositionTable
+    mov sb, r1
+.Ljp_080502D4:
+    ldr r2, [sp, #0xc]
+    cmp r2, #0
+    beq .Ljp_080502E4
+    adds r0, r2, #0
+    bl strlen
+    cmp r0, r6
+    bls .Ljp_080502E8
+.Ljp_080502E4:
+    ldr r0, .Ljp_0805030C @ =gUiTextLayoutPositionTable
+    str r0, [sp, #0xc]
+.Ljp_080502E8:
+    ldr r1, [sp, #8]
+    cmp r1, #0
+    beq .Ljp_080502F8
+    adds r0, r1, #0
+    bl strlen
+    cmp r0, r6
+    bls .Ljp_080502FC
+.Ljp_080502F8:
+    ldr r2, .Ljp_0805030C @ =gUiTextLayoutPositionTable
+    str r2, [sp, #8]
+.Ljp_080502FC:
+    cmp r5, #4
+    bhi .Ljp_080503B6
+    lsls r0, r5, #2
+    ldr r1, .Ljp_08050310 @ =.Ljp_08050314
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+    .align 2, 0
+.Ljp_0805030C: .4byte gUiTextLayoutPositionTable
+.Ljp_08050310: .4byte .Ljp_08050314
+.Ljp_08050314: @ jump table
+    .4byte .Ljp_08050386 @ case 0
+    .4byte .Ljp_0805036E @ case 1
+    .4byte .Ljp_08050356 @ case 2
+    .4byte .Ljp_0805033E @ case 3
+    .4byte .Ljp_08050328 @ case 4
+.Ljp_08050328:
+    adds r0, r5, #0
+    movs r1, #6
+    bl func_080507D0
+    mov r1, sp
+    strb r0, [r1]
+    adds r0, r4, #0
+    adds r2, r7, #0
+    ldr r3, [sp, #0x3c]
+    bl func_080507F8
+.Ljp_0805033E:
+    adds r0, r5, #0
+    movs r1, #5
+    bl func_080507D0
+    mov r1, sp
+    adds r1, #1
+    strb r0, [r1]
+    adds r0, r4, #0
+    mov r2, r8
+    ldr r3, [sp, #0x3c]
+    bl func_080507F8
+.Ljp_08050356:
+    adds r0, r5, #0
+    movs r1, #4
+    bl func_080507D0
+    mov r1, sp
+    adds r1, #2
+    strb r0, [r1]
+    adds r0, r4, #0
+    mov r2, sl
+    ldr r3, [sp, #0x3c]
+    bl func_080507F8
+.Ljp_0805036E:
+    adds r0, r5, #0
+    movs r1, #3
+    bl func_080507D0
+    mov r1, sp
+    adds r1, #3
+    strb r0, [r1]
+    adds r0, r4, #0
+    mov r2, sb
+    ldr r3, [sp, #0x3c]
+    bl func_080507F8
+.Ljp_08050386:
+    adds r0, r5, #0
+    movs r1, #2
+    bl func_080507D0
+    add r1, sp, #4
+    strb r0, [r1]
+    adds r0, r4, #0
+    ldr r2, [sp, #0xc]
+    ldr r3, [sp, #0x3c]
+    bl func_080507F8
+    adds r0, r5, #0
+    movs r1, #1
+    bl func_080507D0
+    mov r1, sp
+    adds r1, #5
+    strb r0, [r1]
+    adds r0, r4, #0
+    ldr r2, [sp, #8]
+    ldr r3, [sp, #0x3c]
+    bl func_080507F8
+    b .Ljp_080503B8
+.Ljp_080503B6:
+    movs r5, #0
+.Ljp_080503B8:
+    movs r1, #0xae
+    lsls r1, r1, #1
+    adds r0, r4, r1
+    str r5, [r0]
+    movs r2, #0xac
+    lsls r2, r2, #1
+    adds r1, r4, r2
+    movs r0, #1
+    str r0, [r1]
+    movs r0, #6
+    str r0, [r4, #8]
+    movs r1, #0xe0
+    lsls r1, r1, #1
+    adds r0, r4, r1
+    adds r2, #8
+    adds r1, r4, r2
+    movs r2, #0
+    bl InitializeIndexedResourceHandle
+    add sp, #0x10
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
     jp_code_0803ee_func func_08050664, 0x503F0, 0x5055C
     jp_code_0803ee_func func_080507D0, 0x5055C, 0x50584
     jp_code_0803ee_func func_080507F8, 0x50584, 0x505F4
