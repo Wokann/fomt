@@ -14,3 +14,6 @@ char const gText_Supermarket_SeedDeliveryPartial[] =
 
 char const gText_Supermarket_SeedPurchaseConfirmation[] =
     "あれ…いいの？{Press}";
+
+char const gCppRuntimeBadAlloc_SupermarketTrailer[] =
+    "bad_alloc";
