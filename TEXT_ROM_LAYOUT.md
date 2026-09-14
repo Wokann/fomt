@@ -58,7 +58,7 @@
 | EU | `0x080FC70E`–`0x080FD59B` | `src/town_map_data.o(.rodata)` | `src/town_map_data.cc`（`gTownMapResourceIds`）→ `data/text/eu/town_map.cc` → `src/town_map_data.cc`（热点表、区域查询表与两个回退项）<br>`include/town_map.hh`；所有文本/表引用均为符号重定位，两个已验证的热点字段引用使用 `gTownMapHotspots + offset` | 精确 |
 | EU | `0x080FD59C`–`0x080FD5CE` | `src/library_opening_hours_data.o(.rodata)` | `data/text/eu/library_opening_hours_data.cc` → `src/library_opening_hours_data.cc`<br>`include/library_opening_hours_data.hh`；唯一文本 `gText_Library_OpeningHours` 的汇编读取为符号重定位 | 精确 |
 | EU | `0x080FD5CF`–`0x080FD5CF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| EU | `0x080FD5D0`–`0x080FD95F` | `src/town_map_area_data.o(.rodata)` | `src/town_map_area_data.cc`、`include/town_map_area_data.hh`；`gTownMapAreaBounds` | 精确 |
+| EU | `0x080FD5D0`–`0x080FD95F` | `src/town_map_area_data.o(.rodata)` | `src/town_map_area_data.cc`（`gTownMapAreaBounds` 的五个按地图编号排列的子表）<br>`include/town_map_area_data.hh`；来自 Town Map 查询表的 5 个引用均为对象或命名子数组的符号重定位 | 精确 |
 | EU | `0x080FD960`–`0x080FD9AD` | `src/library_data.o(.rodata)` | `src/library_data.cc`、`include/library_data.hh`、`data/text/eu/library_data.cc`、`data/text/eu/library_data_1.cc`；运行时字符串、初始条目表和菜单按 ROM 顺序同属该对象 | 精确 |
 | EU | `0x080FD9AE`–`0x080FD9AF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FD9B0`–`0x080FDE21` | `src/poultry_shop_data.o(.rodata)` | `src/poultry_shop_data.cc`、`include/poultry_shop_data.hh`、`data/text/eu/poultry_shop_data.cc`、`data/text/eu/poultry_shop_data_1.cc`；菜单文本、目录表、状态与对话文本按 ROM 顺序同属该对象 | 精确 |
@@ -147,7 +147,7 @@
 | DE | `0x080FCDCE`–`0x080FDC8F` | `src/town_map_data.o(.rodata)` | `src/town_map_data.cc`（`gTownMapResourceIds`）→ `data/text/de/town_map.cc` → `src/town_map_data.cc`（热点表、区域查询表与两个回退项）<br>`include/town_map.hh`；所有文本/表引用均为符号重定位，两个已验证的热点字段引用使用 `gTownMapHotspots + offset` | 精确 |
 | DE | `0x080FDC90`–`0x080FDCD5` | `src/library_opening_hours_data.o(.rodata)` | `data/text/de/library_opening_hours_data.cc` → `src/library_opening_hours_data.cc`<br>`include/library_opening_hours_data.hh`；唯一文本 `gText_Library_OpeningHours` 的汇编读取为符号重定位 | 精确 |
 | DE | `0x080FDCD6`–`0x080FDCD7` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| DE | `0x080FDCD8`–`0x080FE067` | `src/town_map_area_data.o(.rodata)` | `src/town_map_area_data.cc`、`include/town_map_area_data.hh`；`gTownMapAreaBounds` | 精确 |
+| DE | `0x080FDCD8`–`0x080FE067` | `src/town_map_area_data.o(.rodata)` | `src/town_map_area_data.cc`（`gTownMapAreaBounds` 的五个按地图编号排列的子表）<br>`include/town_map_area_data.hh`；来自 Town Map 查询表的 5 个引用均为对象或命名子数组的符号重定位 | 精确 |
 | DE | `0x080FE068`–`0x080FE0B5` | `src/library_data.o(.rodata)` | `src/library_data.cc`、`include/library_data.hh`、`data/text/de/library_data.cc`、`data/text/de/library_data_1.cc`；运行时字符串、初始条目表和菜单按 ROM 顺序同属该对象 | 精确 |
 | DE | `0x080FE0B6`–`0x080FE0B7` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080FE0B8`–`0x080FE579` | `src/poultry_shop_data.o(.rodata)` | `src/poultry_shop_data.cc`、`include/poultry_shop_data.hh`、`data/text/de/poultry_shop_data.cc`、`data/text/de/poultry_shop_data_1.cc`；菜单文本、目录表、状态与对话文本按 ROM 顺序同属该对象 | 精确 |
@@ -269,7 +269,7 @@
 | `0x080FBE92`–`0x080FCCB7` | `src/town_map_data.o(.rodata)` | [嵌入文本 / 数据] | `src/town_map_data.cc`（`gTownMapResourceIds`）→ `data/text/jp/town_map.cc` → `src/town_map_data.cc`（热点表、区域查询表与两个回退项）<br>`include/town_map.hh` | 文本 `65` 项（详见下方索引）<br>`gTownMapHotspots`、`gTownMapAreaLookup`、`gTownMapAreaLookupFallback_034To133`、`gTownMapAreaLookupFallback_134To233`<br>所有文本/表引用均为符号重定位；两个热点字段引用为 `gTownMapHotspots + offset` |
 | `0x080FCCB8`–`0x080FCCF2` | `src/library_opening_hours_data.o(.rodata)` | [嵌入文本] | `data/text/jp/library_opening_hours_data.cc` → `src/library_opening_hours_data.cc`<br>`include/library_opening_hours_data.hh` | 文本 `1` 项（详见下方索引）；唯一汇编读取为 `gText_Library_OpeningHours` 符号 |
 | `0x080FCCF3`–`0x080FCCF3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x080FCCF4`–`0x080FD083` | `src/town_map_area_data.o(.rodata)` | [数据] | `src/town_map_area_data.cc`<br>`include/town_map_area_data.hh` | `gTownMapAreaBounds` |
+| `0x080FCCF4`–`0x080FD083` | `src/town_map_area_data.o(.rodata)` | [数据] | `src/town_map_area_data.cc`（`gTownMapAreaBounds` 的五个按地图编号排列的子表）<br>`include/town_map_area_data.hh` | 5 个跨块引用：对象起始 1 个、`map_000`/`map_003`/`map_005`/`map_007` 子数组 4 个，均为符号重定位 |
 | `0x080FD084`–`0x080FD0CD` | `src/library_data.o(.rodata)` | [嵌入文本 / 数据] | `src/library_data.cc`<br>`include/library_data.hh`<br>`data/text/jp/library_data.cc`<br>`data/text/jp/library_data_1.cc` | `gCppRuntimeBadAlloc_LibraryInfo`<br>对象内 `00` 对齐 `2` 字节<br>`gLibraryInitialEntryIds`<br>`gText_Library_Menu`<br>`gCppRuntimeBadAlloc_LibraryMenu` |
 | `0x080FD0CE`–`0x080FD0CF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FD0D0`–`0x080FD55D` | `src/poultry_shop_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/poultry_shop_data.cc`<br>`include/poultry_shop_data.hh`<br>`data/text/jp/poultry_shop_data.cc`<br>`data/text/jp/poultry_shop_data_1.cc` | 菜单文本 `3` 项<br>`gPoultryShopCatalog`<br>状态与对话文本 `31` 项<br>运行时字符串 `1` 项 |
@@ -2108,7 +2108,7 @@
 | `0x080FC6C2`–`0x080FD54F` | `src/town_map_data.o(.rodata)` | [嵌入文本 / 数据] | `src/town_map_data.cc`（`gTownMapResourceIds`）→ `data/text/us/town_map.cc` → `src/town_map_data.cc`（热点表、区域查询表与两个回退项）<br>`include/town_map.hh` | 文本 `65` 项（详见下方索引）<br>`gTownMapHotspots`、`gTownMapAreaLookup`、`gTownMapAreaLookupFallback_034To133`、`gTownMapAreaLookupFallback_134To233`<br>所有文本/表引用均为符号重定位；两个热点字段引用为 `gTownMapHotspots + offset` |
 | `0x080FD550`–`0x080FD582` | `src/library_opening_hours_data.o(.rodata)` | [嵌入文本] | `data/text/us/library_opening_hours_data.cc` → `src/library_opening_hours_data.cc`<br>`include/library_opening_hours_data.hh` | 文本 `1` 项（详见下方索引）；唯一汇编读取为 `gText_Library_OpeningHours` 符号 |
 | `0x080FD583`–`0x080FD583` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x080FD584`–`0x080FD913` | `src/town_map_area_data.o(.rodata)` | [数据] | `src/town_map_area_data.cc`<br>`include/town_map_area_data.hh` | `gTownMapAreaBounds` |
+| `0x080FD584`–`0x080FD913` | `src/town_map_area_data.o(.rodata)` | [数据] | `src/town_map_area_data.cc`（`gTownMapAreaBounds` 的五个按地图编号排列的子表）<br>`include/town_map_area_data.hh` | 5 个跨块引用：对象起始 1 个、`map_000`/`map_003`/`map_005`/`map_007` 子数组 4 个，均为符号重定位 |
 | `0x080FD914`–`0x080FD961` | `src/library_data.o(.rodata)` | [嵌入文本 / 数据] | `src/library_data.cc`<br>`include/library_data.hh`<br>`data/text/us/library_data.cc`<br>`data/text/us/library_data_1.cc` | `gCppRuntimeBadAlloc_LibraryInfo`<br>对象内 `00` 对齐 `2` 字节<br>`gLibraryInitialEntryIds`<br>`gText_Library_Menu`<br>`gCppRuntimeBadAlloc_LibraryMenu` |
 | `0x080FD962`–`0x080FD963` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FD964`–`0x080FDDD5` | `src/poultry_shop_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/poultry_shop_data.cc`<br>`include/poultry_shop_data.hh`<br>`data/text/us/poultry_shop_data.cc`<br>`data/text/us/poultry_shop_data_1.cc` | 菜单文本 `3` 项<br>`gPoultryShopCatalog`<br>状态与对话文本 `31` 项<br>运行时字符串 `1` 项 |
