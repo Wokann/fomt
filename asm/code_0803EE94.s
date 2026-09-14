@@ -4845,7 +4845,159 @@ func_08050F74: @ 0x08050D00
 
     @ The next physical entry has no recovered cross-region name yet.
     jp_code_0803ee_func func_08050D2C, 0x50D2C, 0x510AC
-    jp_code_0803ee_func func_08051320, 0x510AC, 0x511C8
+
+    .global func_08051320
+    .thumb_func
+func_08051320: @ 0x080510AC
+    push {r4, r5, r6, r7, lr}
+    mov r7, sl
+    mov r6, sb
+    mov r5, r8
+    push {r5, r6, r7}
+    sub sp, #0xc
+    mov sl, r0
+    adds r6, r1, #0
+    adds r7, r2, #0
+    mov ip, r3
+    movs r1, #0x1f
+    ands r6, r1
+    adds r0, r6, r3
+    cmp r0, #0x20
+    bls .Ljp_080510D0
+    movs r0, #0x20
+    subs r0, r0, r6
+    mov ip, r0
+.Ljp_080510D0:
+    ands r7, r1
+    ldr r1, [sp, #0x2c]
+    adds r0, r7, r1
+    cmp r0, #0x20
+    bls .Ljp_080510E0
+    movs r0, #0x20
+    subs r0, r0, r7
+    str r0, [sp, #0x2c]
+.Ljp_080510E0:
+    ldr r2, .Ljp_080511C4
+    adds r1, r2, #0
+    ldr r0, [sp, #0x30]
+    adds r4, r0, #0
+    ands r4, r1
+    ldr r0, [sp, #0x34]
+    lsls r0, r0, #0xc
+    movs r2, #0xf0
+    lsls r2, r2, #8
+    adds r1, r2, #0
+    ands r0, r1
+    orrs r4, r0
+    lsls r0, r7, #6
+    mov r1, sl
+    adds r5, r1, r0
+    adds r0, r4, #1
+    lsls r0, r0, #0x10
+    lsrs r0, r0, #0x10
+    mov r8, r0
+    adds r0, r4, #4
+    lsls r0, r0, #0x10
+    lsrs r0, r0, #0x10
+    mov sb, r0
+    lsls r2, r6, #1
+    adds r3, r5, r2
+    strh r4, [r3]
+    adds r3, #2
+    mov r0, ip
+    adds r1, r6, r0
+    lsls r0, r1, #1
+    subs r0, #2
+    adds r0, r5, r0
+    str r1, [sp, #8]
+    ldr r1, [sp, #0x2c]
+    adds r7, r7, r1
+    str r2, [sp]
+.Ljp_08051128:
+    mov r2, r8
+    strh r2, [r3]
+    adds r3, #2
+    cmp r3, r0
+    bne .Ljp_08051128
+    mov r0, sb
+    strh r0, [r3]
+    adds r5, #0x40
+    adds r0, r4, #2
+    lsls r0, r0, #0x10
+    lsrs r0, r0, #0x10
+    mov sb, r0
+    adds r0, r4, #3
+    lsls r0, r0, #0x10
+    lsrs r6, r0, #0x10
+    adds r0, r4, #0
+    adds r0, #8
+    lsls r0, r0, #0x10
+    lsrs r0, r0, #0x10
+    mov r8, r0
+    lsls r0, r7, #6
+    subs r0, #0x40
+    mov r1, sl
+    adds r2, r1, r0
+    adds r0, r4, #5
+    mov ip, r0
+    adds r1, r4, #7
+    mov sl, r1
+    adds r4, #6
+    str r4, [sp, #4]
+    ldr r7, [sp]
+    ldr r1, [sp, #8]
+    lsls r0, r1, #1
+    subs r4, r0, #2
+.Ljp_0805116C:
+    adds r0, r5, r7
+    mov r1, sb
+    strh r1, [r0]
+    adds r0, #2
+    adds r1, r5, r4
+    adds r3, r5, #0
+    adds r3, #0x40
+.Ljp_0805117A:
+    strh r6, [r0]
+    adds r0, #2
+    cmp r0, r1
+    bne .Ljp_0805117A
+    mov r1, r8
+    strh r1, [r0]
+    adds r5, r3, #0
+    cmp r3, r2
+    bne .Ljp_0805116C
+    mov r2, sl
+    lsls r0, r2, #0x10
+    lsrs r4, r0, #0x10
+    ldr r1, [sp, #4]
+    lsls r0, r1, #0x10
+    lsrs r5, r0, #0x10
+    ldr r0, [sp]
+    adds r2, r3, r0
+    mov r1, ip
+    strh r1, [r2]
+    adds r2, #2
+    ldr r1, [sp, #8]
+    lsls r0, r1, #1
+    subs r0, #2
+    adds r0, r3, r0
+.Ljp_080511AA:
+    strh r4, [r2]
+    adds r2, #2
+    cmp r2, r0
+    bne .Ljp_080511AA
+    strh r5, [r2]
+    add sp, #0xc
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_080511C4: .4byte 0x000003FF
+
     jp_code_0803ee_func func_0805143C, 0x511C8, 0x51F4C
     jp_code_0803ee_func func_08051F4C, 0x51F4C, 0x51F8C
     jp_code_0803ee_func func_08051F8C, 0x51F8C, 0x51FC0
