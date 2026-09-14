@@ -5721,6 +5721,14 @@ gUnk_UiSharedResourceData_001:
 	.incbin "build/us/graphics/ui/shared_resource/shared_resource.gbapal"
 	.endif
 	.endif
+	@ US and EU store twelve non-palette bytes between this typed 16-colour
+	@ palette and the following function table.  Keep them raw: UiSharedResourceData
+	@ points to exactly 0x20 palette bytes, not to this adjacent metadata.
+	.ifdef REGION_EU
+	.incbin "baserom_eu.gba", 0x75B9B4, 0xC
+	.else
+	.incbin "baserom_us.gba", 0x75B958, 0xC
+	.endif
 
 	@ Thumb function dispatch table.  Keep these as relocations so regional
 	@ code-layout differences update the function pointers automatically.
