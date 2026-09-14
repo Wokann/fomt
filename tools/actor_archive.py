@@ -173,11 +173,16 @@ def selected_frame_ids(archive: Archive, animation_ids: list[int]) -> list[int]:
     return sorted(result)
 
 
-def source_file(source: Path, frame_id: int) -> Path:
-    filename = source / "full" / f"frame_{frame_id:04d}.png"
-    if not filename.is_file():
-        raise ValueError(f"missing authored frame {filename}")
-    return filename
+def source_file(sources: list[Path], frame_id: int) -> Path:
+    matches = [source / "full" / f"frame_{frame_id:04d}.png" for source in sources]
+    matches = [filename for filename in matches if filename.is_file()]
+    if not matches:
+        locations = ", ".join(str(source / "full") for source in sources)
+        raise ValueError(f"missing authored frame {frame_id:04d} in: {locations}")
+    if len(matches) != 1:
+        locations = ", ".join(map(str, matches))
+        raise ValueError(f"frame {frame_id:04d} occurs in multiple actor sources: {locations}")
+    return matches[0]
 
 
 def audit(archive: Archive) -> None:
@@ -220,7 +225,7 @@ def export_frames(archive: Archive, animation_ids: list[int], output: Path, repl
     )
 
 
-def rebuild_frames(archive: Archive, animation_ids: list[int], source: Path, output: Path) -> None:
+def rebuild_frames(archive: Archive, animation_ids: list[int], sources: list[Path], output: Path) -> None:
     audit(archive)
     tile_offset = archive.table_offsets[3]
     native = bytearray(archive.data[tile_offset:tile_offset + archive.counts[3] * 32])
@@ -228,7 +233,7 @@ def rebuild_frames(archive: Archive, animation_ids: list[int], source: Path, out
     changed_pixels = 0
     for frame_id in selected_frame_ids(archive, animation_ids):
         frame = frame_descriptor(archive, frame_id)
-        filename = source_file(source, frame_id)
+        filename = source_file(sources, frame_id)
         width, height, source_indexes, source_palette = read_png_indexed(filename)
         expected_width, expected_height, baseline, layers = rendered_pixel_layers(archive, frame_id)
         if (width, height) != (expected_width, expected_height):
@@ -271,7 +276,10 @@ def main() -> int:
     export_parser.add_argument("--replace", action="store_true", help="replace existing authored PNGs")
     rebuild_parser = subparsers.add_parser("rebuild", help="rebuild native actor table-four tiles from complete PNGs")
     rebuild_parser.add_argument("--animations", required=True, type=parse_ids, help="comma-separated animation IDs")
-    rebuild_parser.add_argument("--source", required=True, type=Path)
+    rebuild_parser.add_argument(
+        "--source", required=True, nargs="+", type=Path,
+        help="one or more actor source directories; each frame may occur in only one",
+    )
     rebuild_parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args()
 

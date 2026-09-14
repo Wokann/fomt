@@ -135,13 +135,12 @@ PORTRAIT_ARCHIVE_OFFSET := $(PORTRAIT_ARCHIVE_OFFSET_$(GAME_REGION))
 # OAM-composited PNGs, not guessed linear tile sheets.  Rebuild preserves the
 # original archive tables and patches only table four's native 4bpp tile data.
 ACTOR_ARCHIVE_TOOL := tools/actor_archive.py
-ACTOR_SOURCE_DIR := graphics/sprites/rick/overworld
-ACTOR_FULL_IMAGES := $(wildcard $(ACTOR_SOURCE_DIR)/full/*.png)
-# This is the complete currently audited Rick interval.  It includes the
-# neighbouring transition/gesture selectors because their frames share the
-# same native archive and must be considered when detecting edited-pixel
-# conflicts.
-ACTOR_ANIMATIONS := 0x212,0x213,0x214,0x215,0x216,0x217,0x218,0x219,0x21A,0x21B,0x21C,0x21D,0x21E,0x21F,0x220,0x221,0x222,0x223,0x224,0x225,0x226,0x227,0x228,0x229,0x22A,0x22B,0x22C,0x22D
+ACTOR_SOURCE_DIRS := graphics/sprites/rick/overworld graphics/sprites/popuri/overworld
+ACTOR_FULL_IMAGES := $(foreach directory,$(ACTOR_SOURCE_DIRS),$(wildcard $(directory)/full/*.png))
+# These are the complete currently audited Rick and Popuri intervals. Each
+# includes adjoining transition/gesture selectors so shared native pixels are
+# checked across the entire usable character set.
+ACTOR_ANIMATIONS := 0x212,0x213,0x214,0x215,0x216,0x217,0x218,0x219,0x21A,0x21B,0x21C,0x21D,0x21E,0x21F,0x220,0x221,0x222,0x223,0x224,0x225,0x226,0x227,0x228,0x229,0x22A,0x22B,0x22C,0x22D,0x22E,0x22F,0x230,0x231,0x232,0x233,0x234,0x235,0x236,0x237,0x238,0x239,0x23A,0x23B,0x23C,0x23D,0x23E,0x23F,0x240,0x241,0x242,0x243,0x244,0x245,0x246,0x247,0x248,0x249,0x24A,0x24B,0x24C,0x24D,0x24E,0x24F,0x250,0x251,0x252,0x253,0x254,0x255,0x256,0x257,0x258,0x259,0x25A,0x25B,0x25C,0x25D,0x25E
 ACTOR_TILE_BIN := $(BUILD_DIR)/graphics/sprites/shared/actor_tiles.4bpp
 ACTOR_ARCHIVE_LENGTH := 0xDB638
 ACTOR_ARCHIVE_SHA256 := 19a8733e132573478713e9b6e48e9650a702e62516209159787d26f270933736
@@ -312,7 +311,7 @@ $(PORTRAIT_TILE_BIN): $(PORTRAIT_ARCHIVE_TOOL) $(PORTRAIT_FULL_IMAGES) $(BASE_RO
 
 $(ACTOR_TILE_BIN): $(ACTOR_ARCHIVE_TOOL) $(PORTRAIT_ARCHIVE_TOOL) $(ACTOR_FULL_IMAGES) $(BASE_ROM)
 	@mkdir -p $(dir $@)
-	@$(PYTHON) $(ACTOR_ARCHIVE_TOOL) $(BASE_ROM) --offset $(ACTOR_ARCHIVE_OFFSET) --length $(ACTOR_ARCHIVE_LENGTH) --sha256 $(ACTOR_ARCHIVE_SHA256) rebuild --animations $(ACTOR_ANIMATIONS) --source $(ACTOR_SOURCE_DIR) --output $@
+	@$(PYTHON) $(ACTOR_ARCHIVE_TOOL) $(BASE_ROM) --offset $(ACTOR_ARCHIVE_OFFSET) --length $(ACTOR_ARCHIVE_LENGTH) --sha256 $(ACTOR_ARCHIVE_SHA256) rebuild --animations $(ACTOR_ANIMATIONS) --source $(ACTOR_SOURCE_DIRS) --output $@
 
 $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN): $(UI_SHARED_RESOURCE_SOURCE) $(TILE_GRID_TOOL)
 	@mkdir -p $(dir $(UI_SHARED_RESOURCE_TILE_BIN))
