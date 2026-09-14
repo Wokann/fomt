@@ -1,4 +1,4 @@
 #include "character_names_empty.hh"
 
-char const gText_CharacterName_Empty[] ALIGN(1) =
+char const gText_CharacterName_Empty[] =
     "";
