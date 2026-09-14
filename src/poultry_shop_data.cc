@@ -13,3 +13,4 @@ PoultryShopCatalogEntry const gPoultryShopCatalog[] = {
 };
 
 #include FOMT_TEXT_INCLUDE(poultry_shop_data_1.cc)
+#include "data/text/common/poultry_shop_data_1.cc"

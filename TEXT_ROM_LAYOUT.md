@@ -61,7 +61,7 @@
 | EU | `0x080FD5D0`–`0x080FD95F` | `src/town_map_area_data.o(.rodata)` | `src/town_map_area_data.cc`（`gTownMapAreaBounds` 的五个按地图编号排列的子表）<br>`include/town_map_area_data.hh`；来自 Town Map 查询表的 5 个引用均为对象或命名子数组的符号重定位 | 精确 |
 | EU | `0x080FD960`–`0x080FD9AD` | `src/library_data.o(.rodata)` | `data/text/common/library_data.cc`（首个运行时字符串）→ `src/library_data.cc`（初始条目表）→ `data/text/eu/library_data_1.cc`（两项固定 12 字节菜单字段）→ `data/text/common/library_data_1.cc`（尾部运行时字符串）<br>`include/library_data.hh`；条目表与菜单的所有 ROM 指针均为汇编符号重定位 | 精确 |
 | EU | `0x080FD9AE`–`0x080FD9AF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| EU | `0x080FD9B0`–`0x080FDE21` | `src/poultry_shop_data.o(.rodata)` | `src/poultry_shop_data.cc`、`include/poultry_shop_data.hh`、`data/text/eu/poultry_shop_data.cc`、`data/text/eu/poultry_shop_data_1.cc`；菜单文本、目录表、状态与对话文本按 ROM 顺序同属该对象 | 精确 |
+| EU | `0x080FD9B0`–`0x080FDE21` | `src/poultry_shop_data.o(.rodata)` | `data/text/eu/poultry_shop_data.cc`（菜单文本）→ `src/poultry_shop_data.cc`（五项目录表）→ `data/text/eu/poultry_shop_data_1.cc`（状态与对话文本）→ `data/text/common/poultry_shop_data_1.cc`（尾部运行时字符串）<br>`include/poultry_shop_data.hh`；所有目录内及跨块引用均为符号重定位 | 精确 |
 | EU | `0x080FDE22`–`0x080FDE23` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FDE24`–`0x080FE099` | `src/supermarket_data.o(.rodata)` | `src/supermarket_data.cc`、`include/supermarket_data.hh`、`data/text/eu/supermarket_data.cc`、`data/text/eu/supermarket_data_1.cc`；两张目录表与前后两段文本按 ROM 顺序同属该对象 | 精确 |
 | EU | `0x080FE09A`–`0x080FE09B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -150,7 +150,7 @@
 | DE | `0x080FDCD8`–`0x080FE067` | `src/town_map_area_data.o(.rodata)` | `src/town_map_area_data.cc`（`gTownMapAreaBounds` 的五个按地图编号排列的子表）<br>`include/town_map_area_data.hh`；来自 Town Map 查询表的 5 个引用均为对象或命名子数组的符号重定位 | 精确 |
 | DE | `0x080FE068`–`0x080FE0B5` | `src/library_data.o(.rodata)` | `data/text/common/library_data.cc`（首个运行时字符串）→ `src/library_data.cc`（初始条目表）→ `data/text/de/library_data_1.cc`（两项固定 12 字节菜单字段）→ `data/text/common/library_data_1.cc`（尾部运行时字符串）<br>`include/library_data.hh`；条目表与菜单的所有 ROM 指针均为汇编符号重定位 | 精确 |
 | DE | `0x080FE0B6`–`0x080FE0B7` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| DE | `0x080FE0B8`–`0x080FE579` | `src/poultry_shop_data.o(.rodata)` | `src/poultry_shop_data.cc`、`include/poultry_shop_data.hh`、`data/text/de/poultry_shop_data.cc`、`data/text/de/poultry_shop_data_1.cc`；菜单文本、目录表、状态与对话文本按 ROM 顺序同属该对象 | 精确 |
+| DE | `0x080FE0B8`–`0x080FE579` | `src/poultry_shop_data.o(.rodata)` | `data/text/de/poultry_shop_data.cc`（菜单文本）→ `src/poultry_shop_data.cc`（五项目录表）→ `data/text/de/poultry_shop_data_1.cc`（状态与对话文本）→ `data/text/common/poultry_shop_data_1.cc`（尾部运行时字符串）<br>`include/poultry_shop_data.hh`；所有目录内及跨块引用均为符号重定位 | 精确 |
 | DE | `0x080FE57A`–`0x080FE57B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080FE57C`–`0x080FE7D9` | `src/supermarket_data.o(.rodata)` | `src/supermarket_data.cc`、`include/supermarket_data.hh`、`data/text/de/supermarket_data.cc`、`data/text/de/supermarket_data_1.cc`；两张目录表与前后两段文本按 ROM 顺序同属该对象 | 精确 |
 | DE | `0x080FE7DA`–`0x080FE7DB` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -272,7 +272,7 @@
 | `0x080FCCF4`–`0x080FD083` | `src/town_map_area_data.o(.rodata)` | [数据] | `src/town_map_area_data.cc`（`gTownMapAreaBounds` 的五个按地图编号排列的子表）<br>`include/town_map_area_data.hh` | 5 个跨块引用：对象起始 1 个、`map_000`/`map_003`/`map_005`/`map_007` 子数组 4 个，均为符号重定位 |
 | `0x080FD084`–`0x080FD0CD` | `src/library_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/common/library_data.cc`（首个运行时字符串）→ `src/library_data.cc`（初始条目表）→ `data/text/jp/library_data_1.cc`（两项固定 12 字节菜单字段）→ `data/text/common/library_data_1.cc`（尾部运行时字符串）<br>`include/library_data.hh` | `gCppRuntimeBadAlloc_LibraryInfo`<br>对象内 `00` 对齐 `2` 字节<br>`gLibraryInitialEntryIds`<br>`gText_Library_Menu`（中间 `00` 是两项菜单字段分隔符）<br>`gCppRuntimeBadAlloc_LibraryMenu`<br>条目表与菜单的全部 ROM 指针均为汇编符号重定位 |
 | `0x080FD0CE`–`0x080FD0CF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FD0D0`–`0x080FD55D` | `src/poultry_shop_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/poultry_shop_data.cc`<br>`include/poultry_shop_data.hh`<br>`data/text/jp/poultry_shop_data.cc`<br>`data/text/jp/poultry_shop_data_1.cc` | 菜单文本 `3` 项<br>`gPoultryShopCatalog`<br>状态与对话文本 `31` 项<br>运行时字符串 `1` 项 |
+| `0x080FD0D0`–`0x080FD55D` | `src/poultry_shop_data.o(.rodata)` | [嵌入文本 / 指针表] | `data/text/jp/poultry_shop_data.cc`（菜单文本）→ `src/poultry_shop_data.cc`（五项目录表）→ `data/text/jp/poultry_shop_data_1.cc`（状态与对话文本）→ `data/text/common/poultry_shop_data_1.cc`（尾部运行时字符串）<br>`include/poultry_shop_data.hh` | 菜单文本 `3` 项<br>`gPoultryShopCatalog`（五个 20 字节记录；内部文本字段均为符号）<br>状态与对话文本 `31` 项<br>运行时字符串 `1` 项<br>全部 `54` 个指针引用均为精确符号重定位 |
 | `0x080FD55E`–`0x080FD55F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FD560`–`0x080FD80D` | `src/supermarket_data.o(.rodata)` | [嵌入文本 / 数据] | `src/supermarket_data.cc`<br>`include/supermarket_data.hh`<br>`data/text/jp/supermarket_data.cc`<br>`data/text/jp/supermarket_data_1.cc` | `gSupermarketCropSeedCatalog`<br>主文本 `8` 项<br>`gSupermarketAdditionalSeedCatalog`<br>后续文本 `3` 项<br>运行时字符串 `1` 项 |
 | `0x080FD80E`–`0x080FD80F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -2111,7 +2111,7 @@
 | `0x080FD584`–`0x080FD913` | `src/town_map_area_data.o(.rodata)` | [数据] | `src/town_map_area_data.cc`（`gTownMapAreaBounds` 的五个按地图编号排列的子表）<br>`include/town_map_area_data.hh` | 5 个跨块引用：对象起始 1 个、`map_000`/`map_003`/`map_005`/`map_007` 子数组 4 个，均为符号重定位 |
 | `0x080FD914`–`0x080FD961` | `src/library_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/common/library_data.cc`（首个运行时字符串）→ `src/library_data.cc`（初始条目表）→ `data/text/us/library_data_1.cc`（两项固定 12 字节菜单字段）→ `data/text/common/library_data_1.cc`（尾部运行时字符串）<br>`include/library_data.hh` | `gCppRuntimeBadAlloc_LibraryInfo`<br>对象内 `00` 对齐 `2` 字节<br>`gLibraryInitialEntryIds`<br>`gText_Library_Menu`（中间 `00` 是两项菜单字段分隔符）<br>`gCppRuntimeBadAlloc_LibraryMenu`<br>条目表与菜单的全部 ROM 指针均为汇编符号重定位 |
 | `0x080FD962`–`0x080FD963` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FD964`–`0x080FDDD5` | `src/poultry_shop_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/poultry_shop_data.cc`<br>`include/poultry_shop_data.hh`<br>`data/text/us/poultry_shop_data.cc`<br>`data/text/us/poultry_shop_data_1.cc` | 菜单文本 `3` 项<br>`gPoultryShopCatalog`<br>状态与对话文本 `31` 项<br>运行时字符串 `1` 项 |
+| `0x080FD964`–`0x080FDDD5` | `src/poultry_shop_data.o(.rodata)` | [嵌入文本 / 指针表] | `data/text/us/poultry_shop_data.cc`（菜单文本）→ `src/poultry_shop_data.cc`（五项目录表）→ `data/text/us/poultry_shop_data_1.cc`（状态与对话文本）→ `data/text/common/poultry_shop_data_1.cc`（尾部运行时字符串）<br>`include/poultry_shop_data.hh` | 菜单文本 `3` 项<br>`gPoultryShopCatalog`（五个 20 字节记录；内部文本字段均为符号）<br>状态与对话文本 `31` 项<br>运行时字符串 `1` 项<br>全部 `55` 个指针引用均为精确符号重定位 |
 | `0x080FDDD6`–`0x080FDDD7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FDDD8`–`0x080FE04D` | `src/supermarket_data.o(.rodata)` | [嵌入文本 / 数据] | `src/supermarket_data.cc`<br>`include/supermarket_data.hh`<br>`data/text/us/supermarket_data.cc`<br>`data/text/us/supermarket_data_1.cc` | `gSupermarketCropSeedCatalog`<br>主文本 `8` 项<br>`gSupermarketAdditionalSeedCatalog`<br>后续文本 `2` 项<br>运行时字符串 `1` 项 |
 | `0x080FE04E`–`0x080FE04F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
