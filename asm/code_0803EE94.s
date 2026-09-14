@@ -3453,8 +3453,61 @@ sub_080500CE: @ 0x080500CE
     bx r1
     .align 2, 0
 .Ljp_08050124: .4byte vtable_unk_080E78E0
-    jp_code_0803ee_func func_0805039C, 0x50128, 0x50170
-    jp_code_0803ee_func func_080503E4, 0x50170, 0x50188
+    .global func_0805039C
+    .thumb_func
+func_0805039C: @ 0x08050128
+    push {r4, r5, r6, lr}
+    adds r4, r0, #0
+    ldr r6, [r4, #8]
+    cmp r6, #0
+    bne .Ljp_0805015C
+    adds r0, #0xd0
+    bl func_0804EE6C
+    ldr r0, [r4, #4]
+    adds r5, r4, #0
+    adds r5, #0x20
+    cmp r0, #1
+    beq .Ljp_0805014E
+    movs r0, #0x98
+    lsls r0, r0, #1
+    adds r1, r4, r0
+    adds r0, r5, #0
+    bl func_08009940
+.Ljp_0805014E:
+    movs r0, #0xa4
+    lsls r0, r0, #1
+    adds r1, r4, r0
+    adds r0, r5, #0
+    bl func_08009940
+    strb r6, [r4, #0xc]
+.Ljp_0805015C:
+    ldr r0, [r4, #8]
+    cmp r0, #0
+    blt .Ljp_0805016A
+    cmp r0, #2
+    bgt .Ljp_0805016A
+    movs r0, #1
+    str r0, [r4, #8]
+.Ljp_0805016A:
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+
+
+    .global func_080503E4
+    .thumb_func
+func_080503E4: @ 0x08050170
+    push {r4, lr}
+    adds r4, r0, #0
+    bl func_0805039C
+    movs r0, #3
+    str r0, [r4, #8]
+    movs r0, #9
+    strb r0, [r4, #0xc]
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
     .section .text.ui_object_state_after
     jp_code_0803ee_func func_08050424, 0x501B0, 0x50204
     jp_code_0803ee_func func_08050478, 0x50204, 0x503F0
