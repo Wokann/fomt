@@ -51,7 +51,10 @@ gUnk_082B39F0:
     .incbin "baserom_jp.gba", 0x2B39F0, (0x2B3A8C - 0x2B39F0)
     .global gUnk_082B3A8C
 gUnk_082B3A8C:
-    .incbin "baserom_jp.gba", 0x2B3A8C, 0x16B250
+    .incbin "baserom_jp.gba", 0x2B3A8C, (0x311B84 - 0x2B3A8C)
+    .global gUnk_08311B84
+gUnk_08311B84:
+    .incbin "baserom_jp.gba", 0x311B84, (0x41ECDC - 0x311B84)
     .global gUnk_FieldPlotRenderRecord_004
 gUnk_FieldPlotRenderRecord_004:
     .incbin "baserom_jp.gba", 0x41ECDC, 0x30
@@ -1719,7 +1722,10 @@ gUnk_IntroSceneUnpackSource_018:
     .global gUnk_IntroSceneUnpackSource_019
 gUnk_IntroSceneUnpackSource_019:
     .incbin "baserom_jp.gba", 0x4C9158, (0x4C91C0 - 0x4C9158)
-    .incbin "baserom_jp.gba", 0x4C91C0, (0x4D096C - 0x4C91C0)
+    .incbin "baserom_jp.gba", 0x4C91C0, (0x4CDBDC - 0x4C91C0)
+    .global gUnk_084CDBDC
+gUnk_084CDBDC:
+    .incbin "baserom_jp.gba", 0x4CDBDC, (0x4D096C - 0x4CDBDC)
 
     @ Four resources unpacked by the earlier Intro Scene startup path.
     @ Their payload formats remain raw in this region-specific asset range.
@@ -1734,7 +1740,22 @@ gUnk_IntroSceneStartupUnpackSource_002:
     .incbin "baserom_jp.gba", 0x4D0F64, (0x4D1058 - 0x4D0F64)
     .global gUnk_IntroSceneStartupUnpackSource_003
 gUnk_IntroSceneStartupUnpackSource_003:
-    .incbin "baserom_jp.gba", 0x4D1058, (0x4D7EB8 - 0x4D1058)
+    .incbin "baserom_jp.gba", 0x4D1058, (0x4D4AC4 - 0x4D1058)
+    .global gUnk_084D4AC4
+gUnk_084D4AC4:
+    .incbin "baserom_jp.gba", 0x4D4AC4, (0x4D4CC4 - 0x4D4AC4)
+    .global gUnk_084D4CC4
+gUnk_084D4CC4:
+    .incbin "baserom_jp.gba", 0x4D4CC4, (0x4D4DDC - 0x4D4CC4)
+    .global gUnk_084D4DDC
+gUnk_084D4DDC:
+    .incbin "baserom_jp.gba", 0x4D4DDC, (0x4D529C - 0x4D4DDC)
+    .global gUnk_084D529C
+gUnk_084D529C:
+    .incbin "baserom_jp.gba", 0x4D529C, (0x4D52BC - 0x4D529C)
+    .global gUnk_084D52BC
+gUnk_084D52BC:
+    .incbin "baserom_jp.gba", 0x4D52BC, (0x4D7EB8 - 0x4D52BC)
 
     @ Records-screen minigame resource boundaries. The payload formats are
     @ still unknown; direct labels give the C++ pointer table relocations.
