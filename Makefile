@@ -45,6 +45,15 @@ CC1PLUS  := tools/agbcc/bin/agbcp$(EXE)
 
 OLD_CC1  := tools/agbcc/bin/old_agbcc$(EXE)
 
+# Host-side graphics tools.  gbagfx is vendored from pokeemerald under its
+# original licence; fontpad only bridges FoMT's 8x12 1bpp glyph records to
+# gbagfx's 8x8-tile input without changing the authored PNG workflow.
+GFX_TOOL_DIR := tools/gbagfx
+GFX_TOOL := $(GFX_TOOL_DIR)/gbagfx$(EXE)
+FONT_PAD_DIR := tools/fontpad
+FONT_PAD := $(FONT_PAD_DIR)/fontpad$(EXE)
+.PHONY: $(GFX_TOOL) $(FONT_PAD)
+
 # ================
 # = BUILD CONFIG =
 # ================
@@ -75,6 +84,13 @@ DATA_ASM_OBJS := $(DATA_ASM_SRCS:%.s=$(BUILD_DIR)/%.o)
 
 ALL_OBJS := $(C_OBJS) $(CXX_OBJS) $(ASM_OBJS) $(DATA_ASM_OBJS)
 ALL_DEPS := $(ALL_OBJS:%.o=%.d)
+
+# The first managed image asset is the Japanese single-width font.  Its native
+# record is 8x12/1bpp (12 bytes); it is padded to 8x16 for gbagfx, then trimmed
+# back to exactly the original 12-byte records for the assembler.
+JP_FONT_SINGLE_PNG := graphics/font/jp/single_width_font.png
+JP_FONT_SINGLE_PADDED := $(BUILD_DIR)/graphics/font/jp/single_width_font.padded.1bpp
+JP_FONT_SINGLE_BIN := $(BUILD_DIR)/graphics/font/jp/single_width_font.1bpp
 
 SUBDIRS := $(sort $(dir $(ALL_OBJS)))
 $(shell mkdir -p $(SUBDIRS))
@@ -180,6 +196,29 @@ ALL_DEPS += $(REGION_TEXT_DEPS) $(GUIDE_GENERATED_DEP) $(MARY_BUNDLE_DEP)
 
 $(TEXT_TOOLS): $(TEXT_TOOL_DIR)/fomt_text.cpp $(TEXT_TOOL_DIR)/fomt_preproc.cpp $(TEXT_TOOL_DIR)/Makefile
 	@$(MAKE) -C $(TEXT_TOOL_DIR) $(notdir $@)
+
+$(GFX_TOOL):
+	@$(MAKE) -C $(GFX_TOOL_DIR)
+
+$(FONT_PAD): $(FONT_PAD_DIR)/fontpad.c $(FONT_PAD_DIR)/Makefile
+	@$(MAKE) -C $(FONT_PAD_DIR)
+
+$(JP_FONT_SINGLE_PADDED): $(JP_FONT_SINGLE_PNG) $(GFX_TOOL)
+	@mkdir -p $(dir $@)
+	@$(GFX_TOOL) $< $@
+
+$(JP_FONT_SINGLE_BIN): $(JP_FONT_SINGLE_PADDED) $(FONT_PAD)
+	@mkdir -p $(dir $@)
+	@$(FONT_PAD) trim-12-from-16 $< $@
+
+# Rebuild the first image asset without causing GNU make to update every
+# optional assembler dependency file in a fresh worktree.
+.PHONY: gfx-jp-font
+gfx-jp-font: $(JP_FONT_SINGLE_BIN)
+
+ifeq ($(GAME_REGION),JP)
+$(BUILD_DIR)/asm/data/data_0813B288.o: $(JP_FONT_SINGLE_BIN)
+endif
 
 # Mary owns the complete packed RIFF script stream.  Its three headers remain
 # explicit inputs: callables and slot names live with the selected scripts,
@@ -302,7 +341,7 @@ clean:
 .PHONY: clean
 
 ifneq (clean,$(MAKECMDGOALS))
-ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare_eu compare_de,$(MAKECMDGOALS)))
+ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-jp-font,$(MAKECMDGOALS)))
 -include $(ALL_DEPS)
 endif
 .PRECIOUS: $(BUILD_DIR)/%.d
