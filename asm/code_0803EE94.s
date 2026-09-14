@@ -160,7 +160,378 @@ sub_08048FEC:
     bx r1
     .align 2, 0
     jp_code_0803ee_func VarSet__12ScriptEngineUii, 0x48E24, 0x4DF20
-    jp_code_0803ee_func func_0804E0F8, 0x4DF20, 0x4E200
+    .global func_0804E0F8
+    .thumb_func
+func_0804E0F8: @ 0x0804DF20
+    push {r4, r5, r6, r7, lr}
+    sub sp, #4
+    adds r6, r1, #0
+    movs r1, #0xd4
+    lsls r1, r1, #2
+    adds r5, r0, r1
+    ldr r0, [r5]
+    ldr r1, .Ljp_0804DF90 @ =0x00001C34
+    adds r0, r0, r1
+    adds r4, r0, #0
+    bl IsEmpty__C9ToolStack
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Ljp_0804DF98
+    movs r7, #0
+    adds r0, r4, #0
+    bl GetTool__C9ToolStack
+    mov r1, sp
+    strb r0, [r1]
+    mov r0, sp
+    bl GetId__C4Tool
+    cmp r0, r6
+    bne .Ljp_0804DF64
+    adds r0, r4, #0
+    bl GetAmount__C9ToolStack
+    movs r1, #0x63
+    eors r0, r1
+    rsbs r1, r0, #0
+    orrs r1, r0
+    lsrs r7, r1, #0x1f
+.Ljp_0804DF64:
+    cmp r7, #0
+    bne .Ljp_0804DF98
+    ldr r0, [r5]
+    ldr r1, .Ljp_0804DF94 @ =0x00001C38
+    adds r0, r0, r1
+    adds r1, r6, #0
+    bl GetAvailableSpaceForTool__C8RucksackUi
+    cmp r0, #0
+    bne .Ljp_0804DF98
+    ldr r0, [r5]
+    movs r1, #0xe0
+    lsls r1, r1, #2
+    adds r0, r0, r1
+    adds r1, r6, #0
+    bl GetAvailableSpaceFor__C9ToolChestUi
+    cmp r0, #0
+    bne .Ljp_0804DF98
+    movs r0, #0
+    b .Ljp_0804DF9A
+    .align 2, 0
+.Ljp_0804DF90: .4byte 0x00001C34
+.Ljp_0804DF94: .4byte 0x00001C38
+.Ljp_0804DF98:
+    movs r0, #1
+.Ljp_0804DF9A:
+    add sp, #4
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
+
+    .global func_0804E17C
+    .thumb_func
+func_0804E17C: @ 0x0804DFA4
+    push {r4, r5, lr}
+    adds r5, r1, #0
+    movs r1, #0xd4
+    lsls r1, r1, #2
+    adds r4, r0, r1
+    ldr r0, [r4]
+    ldr r1, .Ljp_0804DFEC @ =0x00001C2C
+    adds r0, r0, r1
+    bl func_0800F190
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Ljp_0804DFE6
+    ldr r0, [r4]
+    ldr r1, .Ljp_0804DFF0 @ =0x00001C38
+    adds r0, r0, r1
+    bl GetEmptyItemSlotCount__C8Rucksack
+    cmp r0, #0
+    bne .Ljp_0804DFE6
+    ldr r0, [r4]
+    movs r1, #0xfa
+    lsls r1, r1, #1
+    adds r0, r0, r1
+    bl GetFridge__9FarmHouse
+    cmp r0, #0
+    beq .Ljp_0804DFF4
+    adds r1, r5, #0
+    bl GetAvailableSpaceFor__C6FridgeUi
+    cmp r0, #0
+    beq .Ljp_0804DFF4
+.Ljp_0804DFE6:
+    movs r0, #1
+    b .Ljp_0804DFF6
+    .align 2, 0
+.Ljp_0804DFEC: .4byte 0x00001C2C
+.Ljp_0804DFF0: .4byte 0x00001C38
+.Ljp_0804DFF4:
+    movs r0, #0
+.Ljp_0804DFF6:
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+
+    .global func_0804E1D4
+    .thumb_func
+func_0804E1D4: @ 0x0804DFFC
+    push {r4, r5, lr}
+    adds r5, r1, #0
+    movs r1, #0xd4
+    lsls r1, r1, #2
+    adds r4, r0, r1
+    ldr r0, [r4]
+    ldr r1, .Ljp_0804E044 @ =0x00001C2C
+    adds r0, r0, r1
+    bl func_0800F190
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Ljp_0804E03E
+    ldr r0, [r4]
+    ldr r1, .Ljp_0804E048 @ =0x00001C38
+    adds r0, r0, r1
+    bl GetEmptyItemSlotCount__C8Rucksack
+    cmp r0, #0
+    bne .Ljp_0804E03E
+    ldr r0, [r4]
+    movs r1, #0xfa
+    lsls r1, r1, #1
+    adds r0, r0, r1
+    bl GetShelf__9FarmHouse
+    cmp r0, #0
+    beq .Ljp_0804E04C
+    adds r1, r5, #0
+    bl GetAvailableSpaceFor__C5ShelfUi
+    cmp r0, #0
+    beq .Ljp_0804E04C
+.Ljp_0804E03E:
+    movs r0, #1
+    b .Ljp_0804E04E
+    .align 2, 0
+.Ljp_0804E044: .4byte 0x00001C2C
+.Ljp_0804E048: .4byte 0x00001C38
+.Ljp_0804E04C:
+    movs r0, #0
+.Ljp_0804E04E:
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+
+    .global func_0804E22C
+    .thumb_func
+func_0804E22C: @ 0x0804E054
+    push {r4, r5, r6, lr}
+    sub sp, #4
+    adds r5, r0, #0
+    adds r6, r1, #0
+    movs r1, #0xd4
+    lsls r1, r1, #2
+    adds r0, r5, r1
+    ldr r0, [r0]
+    ldr r1, .Ljp_0804E0D4 @ =0x00001C2C
+    adds r4, r0, r1
+    adds r0, r4, #0
+    bl func_0800F190
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Ljp_0804E09A
+    adds r0, r4, #0
+    bl func_0800F204
+    cmp r0, #1
+    bne .Ljp_0804E09A
+    adds r0, r4, #0
+    bl func_0800F258
+    mov r1, sp
+    strb r0, [r1]
+    mov r0, sp
+    bl GetId__C7Article
+    movs r1, #0
+    cmp r0, r6
+    bne .Ljp_0804E096
+    movs r1, #1
+.Ljp_0804E096:
+    cmp r1, #0
+    bne .Ljp_0804E0D0
+.Ljp_0804E09A:
+    movs r0, #0xd4
+    lsls r0, r0, #2
+    adds r4, r5, r0
+    ldr r0, [r4]
+    ldr r1, .Ljp_0804E0D8 @ =0x00001C38
+    adds r0, r0, r1
+    adds r1, r6, #0
+    bl GetFirstSlotWithArticle__C8RucksackUi
+    adds r5, r0, #0
+    movs r0, #1
+    rsbs r0, r0, #0
+    cmp r5, r0
+    bne .Ljp_0804E0D0
+    ldr r0, [r4]
+    movs r1, #0xfa
+    lsls r1, r1, #1
+    adds r0, r0, r1
+    bl GetShelf__9FarmHouse
+    cmp r0, #0
+    beq .Ljp_0804E0DC
+    adds r1, r6, #0
+    bl GetFirstSlotWith__C5ShelfUi
+    cmp r0, r5
+    beq .Ljp_0804E0DC
+.Ljp_0804E0D0:
+    movs r0, #1
+    b .Ljp_0804E0DE
+    .align 2, 0
+.Ljp_0804E0D4: .4byte 0x00001C2C
+.Ljp_0804E0D8: .4byte 0x00001C38
+.Ljp_0804E0DC:
+    movs r0, #0
+.Ljp_0804E0DE:
+    add sp, #4
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
+
+    .global func_0804E2C0
+    .thumb_func
+func_0804E2C0: @ 0x0804E0E8
+    push {r4, r5, r6, lr}
+    sub sp, #4
+    adds r5, r0, #0
+    adds r6, r1, #0
+    movs r1, #0xd4
+    lsls r1, r1, #2
+    adds r0, r5, r1
+    ldr r0, [r0]
+    ldr r1, .Ljp_0804E168 @ =0x00001C2C
+    adds r4, r0, r1
+    adds r0, r4, #0
+    bl func_0800F190
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Ljp_0804E12C
+    adds r0, r4, #0
+    bl func_0800F204
+    cmp r0, #0
+    bne .Ljp_0804E12C
+    mov r0, sp
+    adds r1, r4, #0
+    bl func_0800F20C
+    mov r0, sp
+    bl GetId__C4Food
+    movs r1, #0
+    cmp r0, r6
+    bne .Ljp_0804E128
+    movs r1, #1
+.Ljp_0804E128:
+    cmp r1, #0
+    bne .Ljp_0804E162
+.Ljp_0804E12C:
+    movs r0, #0xd4
+    lsls r0, r0, #2
+    adds r4, r5, r0
+    ldr r0, [r4]
+    ldr r1, .Ljp_0804E16C @ =0x00001C38
+    adds r0, r0, r1
+    adds r1, r6, #0
+    bl GetFirstSlotWithFood__C8RucksackUi
+    adds r5, r0, #0
+    movs r0, #1
+    rsbs r0, r0, #0
+    cmp r5, r0
+    bne .Ljp_0804E162
+    ldr r0, [r4]
+    movs r1, #0xfa
+    lsls r1, r1, #1
+    adds r0, r0, r1
+    bl GetFridge__9FarmHouse
+    cmp r0, #0
+    beq .Ljp_0804E170
+    adds r1, r6, #0
+    bl GetFirstSlotWith__C6FridgeUi
+    cmp r0, r5
+    beq .Ljp_0804E170
+.Ljp_0804E162:
+    movs r0, #1
+    b .Ljp_0804E172
+    .align 2, 0
+.Ljp_0804E168: .4byte 0x00001C2C
+.Ljp_0804E16C: .4byte 0x00001C38
+.Ljp_0804E170:
+    movs r0, #0
+.Ljp_0804E172:
+    add sp, #4
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
+
+    .global func_0804E354
+    .thumb_func
+func_0804E354: @ 0x0804E17C
+    push {r4, r5, r6, lr}
+    sub sp, #4
+    adds r5, r0, #0
+    adds r6, r1, #0
+    movs r1, #0xd4
+    lsls r1, r1, #2
+    adds r0, r5, r1
+    ldr r0, [r0]
+    ldr r1, .Ljp_0804E1EC @ =0x00001C34
+    adds r4, r0, r1
+    adds r0, r4, #0
+    bl IsEmpty__C9ToolStack
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Ljp_0804E1B8
+    adds r0, r4, #0
+    bl GetTool__C9ToolStack
+    mov r1, sp
+    strb r0, [r1]
+    mov r0, sp
+    bl GetId__C4Tool
+    movs r1, #0
+    cmp r0, r6
+    bne .Ljp_0804E1B4
+    movs r1, #1
+.Ljp_0804E1B4:
+    cmp r1, #0
+    bne .Ljp_0804E1F4
+.Ljp_0804E1B8:
+    movs r0, #0xd4
+    lsls r0, r0, #2
+    adds r4, r5, r0
+    ldr r0, [r4]
+    ldr r1, .Ljp_0804E1F0 @ =0x00001C38
+    adds r0, r0, r1
+    adds r1, r6, #0
+    bl GetFirstSlotWithTool__C8RucksackUi
+    adds r5, r0, #0
+    movs r0, #1
+    rsbs r0, r0, #0
+    cmp r5, r0
+    bne .Ljp_0804E1F4
+    ldr r0, [r4]
+    movs r1, #0xe0
+    lsls r1, r1, #2
+    adds r0, r0, r1
+    adds r1, r6, #0
+    bl GetFirstSlotWith__C9ToolChestUi
+    cmp r0, r5
+    bne .Ljp_0804E1F4
+    movs r0, #0
+    b .Ljp_0804E1F6
+    .align 2, 0
+.Ljp_0804E1EC: .4byte 0x00001C34
+.Ljp_0804E1F0: .4byte 0x00001C38
+.Ljp_0804E1F4:
+    movs r0, #1
+.Ljp_0804E1F6:
+    add sp, #4
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
+
+
     .global func_0804E3D8
     .thumb_func
 func_0804E3D8:
