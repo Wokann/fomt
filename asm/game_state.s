@@ -14,6 +14,13 @@
         .incbin "baserom_jp.gba", \start, (\end - \start)
     .endm
 
+    .macro jp_game_state_entry name, start, end
+        .global \name
+        .thumb_func
+\name:
+        jp_game_state_chunk \start, \end
+    .endm
+
     .global func_08010348
     .thumb_func
 func_08010348:
@@ -55,9 +62,9 @@ func_08010F04:
     jp_game_state_chunk 0x10EE4, 0x10EEC
     jp_game_state_chunk 0x10EEC, 0x10EFC
     jp_game_state_chunk 0x10EFC, 0x10F04
-    jp_game_state_chunk 0x10F04, 0x10F10
+    jp_game_state_entry func_08010F24, 0x10F04, 0x10F10
     jp_game_state_chunk 0x10F10, 0x10F1C
-    jp_game_state_chunk 0x10F1C, 0x10F28
+    jp_game_state_entry func_08010F3C, 0x10F1C, 0x10F28
     jp_game_state_chunk 0x10F28, 0x10F34
     jp_game_state_chunk 0x10F34, 0x110CC
     .4byte gUnk_080F0566
@@ -80,10 +87,13 @@ func_08011498:
 func_080114C8:
     jp_game_state_chunk 0x114A8, 0x114D8
     jp_game_state_chunk 0x114D8, 0x114F0
-    jp_game_state_chunk 0x114F0, 0x11504
-    jp_game_state_chunk 0x11504, 0x11524
-    jp_game_state_chunk 0x11524, 0x11530
-    jp_game_state_chunk 0x11530, 0x11548
+    jp_game_state_chunk 0x114F0, 0x114FC
+    jp_game_state_entry func_0801151C, 0x114FC, 0x11500
+    jp_game_state_entry func_08011520, 0x11500, 0x11504
+    jp_game_state_entry func_08011524, 0x11504, 0x11520
+    jp_game_state_entry func_08011540, 0x11520, 0x11524
+    jp_game_state_entry func_08011544, 0x11524, 0x11530
+    jp_game_state_entry func_08011550, 0x11530, 0x11548
     jp_game_state_chunk 0x11548, 0x11568
     jp_game_state_chunk 0x11568, 0x11590
     jp_game_state_chunk 0x11590, 0x11914
@@ -113,73 +123,124 @@ func_08011CD8:
     .thumb_func
 func_08011DC4:
     jp_game_state_chunk 0x11DA4, 0x11EB8
-    jp_game_state_chunk 0x11EB8, 0x11F34
-    jp_game_state_chunk 0x11F34, 0x12094
-    jp_game_state_chunk 0x12094, 0x1210C
-    jp_game_state_chunk 0x1210C, 0x12144
-    jp_game_state_chunk 0x12144, 0x1225C
-    jp_game_state_chunk 0x1225C, 0x1229C
-    jp_game_state_chunk 0x1229C, 0x12334
-    jp_game_state_chunk 0x12334, 0x123A0
-    jp_game_state_chunk 0x123A0, 0x124BC
-    jp_game_state_chunk 0x124BC, 0x1255C
-    jp_game_state_chunk 0x1255C, 0x1258C
-    jp_game_state_chunk 0x1258C, 0x125B4
-    jp_game_state_chunk 0x125B4, 0x12730
-    jp_game_state_chunk 0x12730, 0x127A0
-    jp_game_state_chunk 0x127A0, 0x1284C
-    jp_game_state_chunk 0x1284C, 0x129D4
+    jp_game_state_entry func_08011FE8, 0x11EB8, 0x11EF8
+    jp_game_state_entry func_08012028, 0x11EF8, 0x11F34
+    jp_game_state_entry func_08012064, 0x11F34, 0x11F74
+    jp_game_state_entry func_080120A4, 0x11F74, 0x11F94
+    jp_game_state_entry func_080120C4, 0x11F94, 0x11FB4
+    jp_game_state_entry func_080120E4, 0x11FB4, 0x11FE4
+    jp_game_state_entry func_08012114, 0x11FE4, 0x12024
+    jp_game_state_entry func_08012154, 0x12024, 0x12044
+    jp_game_state_entry func_08012174, 0x12044, 0x1206C
+    jp_game_state_entry func_0801219C, 0x1206C, 0x12094
+    jp_game_state_entry func_080121C4, 0x12094, 0x120BC
+    jp_game_state_entry func_080121EC, 0x120BC, 0x120E8
+    jp_game_state_entry func_08012218, 0x120E8, 0x120EC
+    jp_game_state_entry func_0801221C, 0x120EC, 0x1210C
+    jp_game_state_entry func_0801223C, 0x1210C, 0x12144
+    jp_game_state_entry func_08012274, 0x12144, 0x12170
+    jp_game_state_entry func_080122A0, 0x12170, 0x1218C
+    jp_game_state_entry func_080122BC, 0x1218C, 0x121B0
+    jp_game_state_entry func_080122E0, 0x121B0, 0x1225C
+    jp_game_state_entry func_0801238C, 0x1225C, 0x12274
+    jp_game_state_entry func_080123A4, 0x12274, 0x1229C
+    jp_game_state_entry func_080123CC, 0x1229C, 0x12324
+    jp_game_state_entry func_08012454, 0x12324, 0x12334
+    jp_game_state_entry func_08012464, 0x12334, 0x12394
+    jp_game_state_entry func_080124C4, 0x12394, 0x123A0
+    jp_game_state_entry func_080124D0, 0x123A0, 0x124BC
+    jp_game_state_entry func_080125EC, 0x124BC, 0x12528
+    jp_game_state_entry func_08012658, 0x12528, 0x1255C
+    jp_game_state_entry func_0801268C, 0x1255C, 0x1258C
+    jp_game_state_entry func_080126BC, 0x1258C, 0x125B4
+    jp_game_state_entry func_080126E4, 0x125B4, 0x125F0
+    jp_game_state_entry func_08012720, 0x125F0, 0x1261C
+    jp_game_state_entry func_0801274C, 0x1261C, 0x12630
+    jp_game_state_entry func_08012760, 0x12630, 0x1265C
+    jp_game_state_entry func_0801278C, 0x1265C, 0x12670
+    jp_game_state_entry func_080127A0, 0x12670, 0x1271C
+    jp_game_state_entry func_0801284C, 0x1271C, 0x12730
+    jp_game_state_entry func_08012860, 0x12730, 0x127A0
+    jp_game_state_entry func_080128D0, 0x127A0, 0x1284C
+    jp_game_state_entry func_0801297C, 0x1284C, 0x1299C
+    jp_game_state_entry func_08012ACC, 0x1299C, 0x129D4
     jp_game_state_chunk 0x129D4, 0x129F4
     jp_game_state_chunk 0x129F4, 0x12A7C
-    jp_game_state_chunk 0x12A7C, 0x12C58
-    jp_game_state_chunk 0x12C58, 0x12CEC
-    jp_game_state_chunk 0x12CEC, 0x12D90
-    jp_game_state_chunk 0x12D90, 0x12E24
-    jp_game_state_chunk 0x12E24, 0x12EB8
-    jp_game_state_chunk 0x12EB8, 0x12F50
-    jp_game_state_chunk 0x12F50, 0x12FE4
-    jp_game_state_chunk 0x12FE4, 0x13078
-    jp_game_state_chunk 0x13078, 0x131A4
-    jp_game_state_chunk 0x131A4, 0x13418
-    jp_game_state_chunk 0x13418, 0x134AC
-    jp_game_state_chunk 0x134AC, 0x13540
-    jp_game_state_chunk 0x13540, 0x135D4
-    jp_game_state_chunk 0x135D4, 0x13668
-    jp_game_state_chunk 0x13668, 0x136FC
-    jp_game_state_chunk 0x136FC, 0x13794
-    jp_game_state_chunk 0x13794, 0x13830
-    jp_game_state_chunk 0x13830, 0x13BD8
-    jp_game_state_chunk 0x13BD8, 0x13DCC
-    jp_game_state_chunk 0x13DCC, 0x13E5C
-    jp_game_state_chunk 0x13E5C, 0x13F08
-    jp_game_state_chunk 0x13F08, 0x13F20
-    jp_game_state_chunk 0x13F20, 0x13F38
-    jp_game_state_chunk 0x13F38, 0x13F50
-    jp_game_state_chunk 0x13F50, 0x13F68
-    jp_game_state_chunk 0x13F68, 0x13F80
-    jp_game_state_chunk 0x13F80, 0x13F98
-    jp_game_state_chunk 0x13F98, 0x13FB0
-    jp_game_state_chunk 0x13FB0, 0x13FC8
-    jp_game_state_chunk 0x13FC8, 0x14038
-    jp_game_state_chunk 0x14038, 0x14108
-    jp_game_state_chunk 0x14108, 0x14120
-    jp_game_state_chunk 0x14120, 0x1418C
-    jp_game_state_chunk 0x1418C, 0x141A8
-    jp_game_state_chunk 0x141A8, 0x141C4
-    jp_game_state_chunk 0x141C4, 0x141D8
-    jp_game_state_chunk 0x141D8, 0x141EC
-    jp_game_state_chunk 0x141EC, 0x14424
-    jp_game_state_chunk 0x14424, 0x14560
+    jp_game_state_chunk 0x12A7C, 0x12A8C
+    jp_game_state_entry func_08012BBC, 0x12A8C, 0x12B20
+    jp_game_state_entry func_08012C50, 0x12B20, 0x12BC4
+    jp_game_state_entry func_08012CF4, 0x12BC4, 0x12C58
+    jp_game_state_entry func_08012D88, 0x12C58, 0x12CEC
+    jp_game_state_entry func_08012E1C, 0x12CEC, 0x12D90
+    jp_game_state_entry func_08012EC0, 0x12D90, 0x12E24
+    jp_game_state_entry func_08012F54, 0x12E24, 0x12EB8
+    jp_game_state_entry func_08012FE8, 0x12EB8, 0x12F50
+    jp_game_state_entry func_08012F50, 0x12F50, 0x12FE4
+    jp_game_state_entry func_08012FE4, 0x12FE4, 0x13078
+    jp_game_state_entry func_08013078, 0x13078, 0x13110
+    jp_game_state_entry func_08013110, 0x13110, 0x131A4
+    jp_game_state_entry func_080131A4, 0x131A4, 0x13238
+    jp_game_state_entry func_08013238, 0x13238, 0x132DC
+    jp_game_state_entry func_080132DC, 0x132DC, 0x13378
+    jp_game_state_entry func_08013378, 0x13378, 0x13418
+    jp_game_state_entry func_08013418, 0x13418, 0x134AC
+    jp_game_state_entry func_080134AC, 0x134AC, 0x13540
+    jp_game_state_entry func_08013540, 0x13540, 0x135D4
+    jp_game_state_entry func_080135D4, 0x135D4, 0x13668
+    jp_game_state_entry func_08013668, 0x13668, 0x136FC
+    jp_game_state_entry func_080136FC, 0x136FC, 0x13794
+    jp_game_state_entry func_08013794, 0x13794, 0x13830
+    jp_game_state_entry func_08013830, 0x13830, 0x138C4
+    jp_game_state_entry func_080138C4, 0x138C4, 0x13968
+    jp_game_state_entry func_08013968, 0x13968, 0x13A0C
+    jp_game_state_entry func_08013A0C, 0x13A0C, 0x13AB0
+    jp_game_state_entry func_08013AB0, 0x13AB0, 0x13B44
+    jp_game_state_entry func_08013B44, 0x13B44, 0x13BD8
+    jp_game_state_entry func_08013BD8, 0x13BD8, 0x13C9C
+    jp_game_state_entry func_08013C9C, 0x13C9C, 0x13D40
+    jp_game_state_entry func_08013D40, 0x13D40, 0x13DCC
+    jp_game_state_entry func_08013DCC, 0x13DCC, 0x13E5C
+    jp_game_state_entry func_08013E5C, 0x13E5C, 0x13F08
+    jp_game_state_entry func_08013F08, 0x13F08, 0x13F20
+    jp_game_state_entry func_08013F20, 0x13F20, 0x13F38
+    jp_game_state_entry func_08013F38, 0x13F38, 0x13F50
+    jp_game_state_entry func_08013F50, 0x13F50, 0x13F68
+    jp_game_state_entry func_08013F68, 0x13F68, 0x13F80
+    jp_game_state_entry func_08013F80, 0x13F80, 0x13F98
+    jp_game_state_entry func_08013F98, 0x13F98, 0x13FB0
+    jp_game_state_entry func_08013FB0, 0x13FB0, 0x13FC8
+    jp_game_state_entry func_08013FC8, 0x13FC8, 0x13FE0
+    jp_game_state_entry func_08013FE0, 0x13FE0, 0x14038
+    jp_game_state_chunk 0x14038, 0x1406C
+    jp_game_state_entry func_0801406C, 0x1406C, 0x14098
+    jp_game_state_entry func_08014098, 0x14098, 0x14108
+    jp_game_state_entry func_08014108, 0x14108, 0x14120
+    jp_game_state_entry func_08014120, 0x14120, 0x14138
+    jp_game_state_entry func_08014138, 0x14138, 0x14164
+    jp_game_state_entry func_08014164, 0x14164, 0x1418C
+    jp_game_state_entry func_0801418C, 0x1418C, 0x141A8
+    jp_game_state_entry func_080141A8, 0x141A8, 0x141C4
+    jp_game_state_entry func_080141C4, 0x141C4, 0x141D8
+    jp_game_state_entry func_080141D8, 0x141D8, 0x141EC
+    jp_game_state_entry func_080141EC, 0x141EC, 0x14250
+    jp_game_state_entry func_08014250, 0x14250, 0x142E4
+    jp_game_state_entry func_080142E4, 0x142E4, 0x14390
+    jp_game_state_entry func_08014390, 0x14390, 0x14424
+    jp_game_state_entry func_08014424, 0x14424, 0x144CC
+    jp_game_state_entry func_080144CC, 0x144CC, 0x14560
     jp_game_state_chunk 0x14560, 0x14568
-    jp_game_state_chunk 0x14568, 0x14584
-    jp_game_state_chunk 0x14584, 0x145A0
-    jp_game_state_chunk 0x145A0, 0x145D0
-    jp_game_state_chunk 0x145D0, 0x149CC
-    jp_game_state_chunk 0x149CC, 0x14AAC
-    jp_game_state_chunk 0x14AAC, 0x14AE0
-    jp_game_state_chunk 0x14AE0, 0x14B08
-    jp_game_state_chunk 0x14B08, 0x14C04
-    jp_game_state_chunk 0x14C04, 0x14FE8
+    jp_game_state_entry func_08014568, 0x14568, 0x14584
+    jp_game_state_entry func_08014584, 0x14584, 0x145A0
+    jp_game_state_entry func_080145A0, 0x145A0, 0x145D0
+    jp_game_state_entry func_080145D0, 0x145D0, 0x149CC
+    jp_game_state_entry func_080149CC, 0x149CC, 0x14AAC
+    jp_game_state_entry func_08014AAC, 0x14AAC, 0x14AE0
+    jp_game_state_entry func_08014AE0, 0x14AE0, 0x14B08
+    jp_game_state_entry func_08014B08, 0x14B08, 0x14C04
+    jp_game_state_entry func_08014C04, 0x14C04, 0x14C30
+    jp_game_state_entry func_08014C30, 0x14C30, 0x14C50
+    jp_game_state_entry func_08014C50, 0x14C50, 0x14C70
+    jp_game_state_entry func_08014C70, 0x14C70, 0x14FE8
     .4byte gText_AnimalMemorial_LineBreak
     .4byte gText_AnimalMemorial_Continue
     .4byte gText_AnimalMemorial_PageBreak
@@ -190,7 +251,9 @@ func_08011DC4:
     .4byte gText_AnimalMemorial_NamesIntro
     .4byte gText_AnimalMemorial_PrayerIntro
     .4byte gText_AnimalMemorial_PrayerEnding
-    jp_game_state_chunk 0x15010, 0x154C8
+    jp_game_state_chunk 0x15010, 0x15044
+    jp_game_state_entry func_08015044, 0x15044, 0x15150
+    jp_game_state_entry func_08015150, 0x15150, 0x154C8
     .4byte gText_AnimalMemorial_LineBreak
     .4byte gText_AnimalMemorial_Continue
     .4byte gText_AnimalMemorial_PageBreak
@@ -201,75 +264,117 @@ func_08011DC4:
     .4byte gText_AnimalMemorial_NamesIntro
     .4byte gText_AnimalMemorial_PrayerIntro
     .4byte gText_AnimalMemorial_PrayerEnding
-    jp_game_state_chunk 0x154F0, 0x15630
-    jp_game_state_chunk 0x15630, 0x156B4
-    jp_game_state_chunk 0x156B4, 0x15744
-    jp_game_state_chunk 0x15744, 0x15BC4
-    jp_game_state_chunk 0x15BC4, 0x16518
-    jp_game_state_chunk 0x16518, 0x16570
-    jp_game_state_chunk 0x16570, 0x165C8
-    jp_game_state_chunk 0x165C8, 0x16668
-    jp_game_state_chunk 0x16668, 0x16890
-    jp_game_state_chunk 0x16890, 0x16938
-    jp_game_state_chunk 0x16938, 0x16954
-    jp_game_state_chunk 0x16954, 0x16970
-    jp_game_state_chunk 0x16970, 0x16988
-    jp_game_state_chunk 0x16988, 0x169A4
-    jp_game_state_chunk 0x169A4, 0x16A80
-    jp_game_state_chunk 0x16A80, 0x16B14
-    jp_game_state_chunk 0x16B14, 0x16B30
-    jp_game_state_chunk 0x16B30, 0x16B44
-    jp_game_state_chunk 0x16B44, 0x16C58
-    jp_game_state_chunk 0x16C58, 0x16C84
-    jp_game_state_chunk 0x16C84, 0x16CA0
-    jp_game_state_chunk 0x16CA0, 0x16CC8
+    jp_game_state_chunk 0x154F0, 0x15524
+    jp_game_state_entry func_08015524, 0x15524, 0x15630
+    jp_game_state_entry func_08015630, 0x15630, 0x15660
+    jp_game_state_entry func_08015660, 0x15660, 0x1568C
+    jp_game_state_entry func_0801568C, 0x1568C, 0x156B4
+    jp_game_state_entry func_080156B4, 0x156B4, 0x156E4
+    jp_game_state_entry func_080156E4, 0x156E4, 0x15704
+    jp_game_state_entry func_08015704, 0x15704, 0x15724
+    jp_game_state_entry func_08015724, 0x15724, 0x15744
+    jp_game_state_entry func_08015744, 0x15744, 0x15BC4
+    jp_game_state_entry func_08015BC4, 0x15BC4, 0x16518
+    jp_game_state_chunk 0x16518, 0x16540
+    jp_game_state_entry func_08016540, 0x16540, 0x16570
+    jp_game_state_entry func_08016570, 0x16570, 0x165C8
+    jp_game_state_entry func_080165C8, 0x165C8, 0x16668
+    jp_game_state_entry func_08016668, 0x16668, 0x16890
+    jp_game_state_entry func_08016890, 0x16890, 0x16938
+    jp_game_state_entry func_08016938, 0x16938, 0x16954
+    jp_game_state_entry func_08016954, 0x16954, 0x16970
+    jp_game_state_entry func_08016970, 0x16970, 0x16988
+    jp_game_state_entry func_08016988, 0x16988, 0x169A4
+    jp_game_state_chunk 0x169A4, 0x169C0
+    jp_game_state_entry func_080169C0, 0x169C0, 0x169DC
+    jp_game_state_entry func_080169DC, 0x169DC, 0x16A00
+    jp_game_state_entry func_08016A00, 0x16A00, 0x16A1C
+    jp_game_state_entry func_08016A1C, 0x16A1C, 0x16A40
+    jp_game_state_entry func_08016A40, 0x16A40, 0x16A60
+    jp_game_state_entry func_08016A60, 0x16A60, 0x16A80
+    jp_game_state_entry func_08016A80, 0x16A80, 0x16ADC
+    jp_game_state_entry func_08016ADC, 0x16ADC, 0x16B14
+    jp_game_state_entry func_08016B14, 0x16B14, 0x16B30
+    jp_game_state_entry func_08016B30, 0x16B30, 0x16B44
+    jp_game_state_entry func_08016B44, 0x16B44, 0x16C10
+    jp_game_state_entry func_08016C10, 0x16C10, 0x16C30
+    jp_game_state_entry func_08016C30, 0x16C30, 0x16C58
+    jp_game_state_entry func_08016C58, 0x16C58, 0x16C84
+    jp_game_state_entry func_08016C84, 0x16C84, 0x16CA0
+    jp_game_state_entry func_08016CA0, 0x16CA0, 0x16CC8
     jp_game_state_chunk 0x16CC8, 0x16CF4
-    jp_game_state_chunk 0x16CF4, 0x16F14
+    jp_game_state_entry func_08016CF4, 0x16CF4, 0x16D38
+    jp_game_state_entry func_08016D38, 0x16D38, 0x16F14
     jp_game_state_chunk 0x16F14, 0x1725C
-    jp_game_state_chunk 0x1725C, 0x17994
-    jp_game_state_chunk 0x17994, 0x1805C
-    jp_game_state_chunk 0x1805C, 0x18D04
+    jp_game_state_chunk 0x1725C, 0x17760
+    jp_game_state_entry func_080179CC, 0x17760, 0x17994
+    jp_game_state_entry func_08017C00, 0x17994, 0x179C4
+    jp_game_state_entry func_08017C30, 0x179C4, 0x1805C
+    jp_game_state_entry func_080182C8, 0x1805C, 0x18D04
     .4byte gUnk_080F06FD
     jp_game_state_chunk 0x18D08, 0x18DF0
     .4byte gUnk_080F06FD
     jp_game_state_chunk 0x18DF4, 0x19924
-    jp_game_state_chunk 0x19924, 0x19980
-    jp_game_state_chunk 0x19980, 0x19CCC
+    jp_game_state_entry func_08019B90, 0x19924, 0x19980
+    jp_game_state_entry func_08019BEC, 0x19980, 0x19CCC
 
     .global func_08019F38
     .thumb_func
 func_08019F38:
-    jp_game_state_chunk 0x19CCC, 0x19DE8
+    jp_game_state_chunk 0x19CCC, 0x19D10
+    jp_game_state_entry func_08019F7C, 0x19D10, 0x19D7C
+    jp_game_state_entry func_08019FE8, 0x19D7C, 0x19DE8
 
     .global func_0801A054
     .thumb_func
 func_0801A054:
     jp_game_state_chunk 0x19DE8, 0x19ED0
     jp_game_state_chunk 0x19ED0, 0x1A654
-    jp_game_state_chunk 0x1A654, 0x1B1F8
-    jp_game_state_chunk 0x1B1F8, 0x1BE8C
+    jp_game_state_chunk 0x1A654, 0x1A674
+    jp_game_state_entry func_0801A8E0, 0x1A674, 0x1B1F8
+    jp_game_state_chunk 0x1B1F8, 0x1B22C
+    jp_game_state_entry func_0801B498, 0x1B22C, 0x1B354
+    jp_game_state_entry func_0801B5C0, 0x1B354, 0x1B77C
+    jp_game_state_entry func_0801B9E8, 0x1B77C, 0x1BE74
+    jp_game_state_entry func_0801C0E0, 0x1BE74, 0x1BE8C
     jp_game_state_chunk 0x1BE8C, 0x1BF2C
     jp_game_state_chunk 0x1BF2C, 0x1C030
-    jp_game_state_chunk 0x1C030, 0x1C608
-    jp_game_state_chunk 0x1C608, 0x1C7F0
+    jp_game_state_entry func_0801C29C, 0x1C030, 0x1C170
+    jp_game_state_entry func_0801C3DC, 0x1C170, 0x1C174
+    jp_game_state_entry func_0801C3E0, 0x1C174, 0x1C230
+    jp_game_state_entry func_0801C49C, 0x1C230, 0x1C2E4
+    jp_game_state_entry func_0801C550, 0x1C2E4, 0x1C430
+    jp_game_state_entry func_0801C69C, 0x1C430, 0x1C608
+    jp_game_state_chunk 0x1C608, 0x1C7B0
+    jp_game_state_entry func_0801CA1C, 0x1C7B0, 0x1C7F0
     .4byte gUnk_080F0800
     jp_game_state_chunk 0x1C7F4, 0x1C824
     .4byte gUnk_080F0800
-    jp_game_state_chunk 0x1C828, 0x1C9A8
+    jp_game_state_chunk 0x1C828, 0x1C86C
+    jp_game_state_entry func_0801CAD8, 0x1C86C, 0x1C944
+    jp_game_state_entry func_0801CBB0, 0x1C944, 0x1C9A8
     .4byte gUnk_080F0800
     jp_game_state_chunk 0x1C9AC, 0x1CA70
     .4byte gUnk_080F0800
     jp_game_state_chunk 0x1CA74, 0x1CB50
-    jp_game_state_chunk 0x1CB50, 0x1CCD0
+    jp_game_state_chunk 0x1CB50, 0x1CC90
+    jp_game_state_entry func_0801CEFC, 0x1CC90, 0x1CCD0
     .4byte gUnk_080F0800 + 7
     jp_game_state_chunk 0x1CCD4, 0x1CD04
     .4byte gUnk_080F0800 + 7
-    jp_game_state_chunk 0x1CD08, 0x1CDCC
+    jp_game_state_chunk 0x1CD08, 0x1CD4C
+    jp_game_state_entry func_0801CFB8, 0x1CD4C, 0x1CDCC
     .4byte gUnk_080F0800 + 7
     jp_game_state_chunk 0x1CDD0, 0x1CE90
     .4byte gUnk_080F0800 + 7
-    jp_game_state_chunk 0x1CE94, 0x1D660
-    jp_game_state_chunk 0x1D660, 0x1D6DC
+    jp_game_state_chunk 0x1CE94, 0x1CFD0
+    jp_game_state_entry func_0801D23C, 0x1CFD0, 0x1D190
+    jp_game_state_entry func_0801D3FC, 0x1D190, 0x1D274
+    jp_game_state_entry func_0801D4E0, 0x1D274, 0x1D350
+    jp_game_state_entry func_0801D5BC, 0x1D350, 0x1D544
+    jp_game_state_entry func_0801D7B0, 0x1D544, 0x1D620
+    jp_game_state_entry func_0801D88C, 0x1D620, 0x1D660
+    jp_game_state_entry func_0801D8CC, 0x1D660, 0x1D6DC
 
     .global func_0801D948
     .thumb_func
@@ -279,12 +384,32 @@ func_0801D948:
     .global func_0801D9A8
     .thumb_func
 func_0801D9A8:
-    jp_game_state_chunk 0x1D73C, 0x1D8EC
+    jp_game_state_chunk 0x1D73C, 0x1D750
+    jp_game_state_entry func_0801D9BC, 0x1D750, 0x1D8D8
+    jp_game_state_entry func_0801DB44, 0x1D8D8, 0x1D8EC
     jp_game_state_chunk 0x1D8EC, 0x1D9B8
-    jp_game_state_chunk 0x1D9B8, 0x1DA3C
-    jp_game_state_chunk 0x1DA3C, 0x1DA68
-    jp_game_state_chunk 0x1DA68, 0x1DC48
-    jp_game_state_chunk 0x1DC48, 0x1E440
+    jp_game_state_entry func_0801DC24, 0x1D9B8, 0x1DA3C
+    jp_game_state_entry func_0801DCA8, 0x1DA3C, 0x1DA68
+    jp_game_state_entry func_0801DCD4, 0x1DA68, 0x1DAAC
+    jp_game_state_entry func_0801DD18, 0x1DAAC, 0x1DAB8
+    jp_game_state_entry func_0801DD24, 0x1DAB8, 0x1DAC4
+    jp_game_state_entry func_0801DD30, 0x1DAC4, 0x1DAD0
+    jp_game_state_entry func_0801DD3C, 0x1DAD0, 0x1DADC
+    jp_game_state_entry func_0801DD48, 0x1DADC, 0x1DAE8
+    jp_game_state_entry func_0801DD54, 0x1DAE8, 0x1DAF4
+    jp_game_state_entry func_0801DD60, 0x1DAF4, 0x1DB00
+    jp_game_state_entry func_0801DD6C, 0x1DB00, 0x1DB0C
+    jp_game_state_entry func_0801DD78, 0x1DB0C, 0x1DB18
+    jp_game_state_entry func_0801DD84, 0x1DB18, 0x1DB60
+    jp_game_state_entry func_0801DDCC, 0x1DB60, 0x1DB8C
+    jp_game_state_entry func_0801DDF8, 0x1DB8C, 0x1DBB8
+    jp_game_state_entry func_0801DE24, 0x1DBB8, 0x1DBC4
+    jp_game_state_entry func_0801DE30, 0x1DBC4, 0x1DBD0
+    jp_game_state_entry func_0801DE3C, 0x1DBD0, 0x1DBDC
+    jp_game_state_entry func_0801DE48, 0x1DBDC, 0x1DBE8
+    jp_game_state_entry func_0801DE54, 0x1DBE8, 0x1DC48
+    jp_game_state_entry func_0801DEB4, 0x1DC48, 0x1DE18
+    jp_game_state_entry func_0801E084, 0x1DE18, 0x1E440
     .4byte gUnk_080F0704
     jp_game_state_chunk 0x1E444, 0x1E448
     .4byte gUnk_080F0718
@@ -292,197 +417,47 @@ func_0801D9A8:
     .4byte gUnk_080F0730
     jp_game_state_chunk 0x1E4A4, 0x1E6A0
     jp_game_state_chunk 0x1E6A0, 0x1E834
-    jp_game_state_chunk 0x1E834, 0x1E950
+    jp_game_state_entry func_0801EAA0, 0x1E834, 0x1E950
     .4byte gUnk_080F0748
     .4byte gUnk_080F0770
-    jp_game_state_chunk 0x1E958, 0x1EEE0
+    jp_game_state_chunk 0x1E958, 0x1EB94
+    jp_game_state_entry func_0801EE00, 0x1EB94, 0x1EEE0
     jp_game_state_chunk 0x1EEE0, 0x1F070
     jp_game_state_chunk 0x1F070, 0x1F178
-    jp_game_state_chunk 0x1F178, 0x1F384
-    jp_game_state_chunk 0x1F384, 0x1F3A8
+    jp_game_state_chunk 0x1F178, 0x1F2AC
+    jp_game_state_entry func_0801F518, 0x1F2AC, 0x1F384
+    jp_game_state_entry func_0801F5F0, 0x1F384, 0x1F3A8
     jp_game_state_chunk 0x1F3A8, 0x1F510
     jp_game_state_chunk 0x1F510, 0x1F6B8
-    jp_game_state_chunk 0x1F6B8, 0x1F85C
+    jp_game_state_entry func_0801F924, 0x1F6B8, 0x1F83C
+    jp_game_state_entry func_0801FAA8, 0x1F83C, 0x1F84C
+    jp_game_state_entry func_0801FAB8, 0x1F84C, 0x1F85C
     jp_game_state_chunk 0x1F85C, 0x1F910
-    jp_game_state_chunk 0x1F910, 0x1FAA0
-    jp_game_state_chunk 0x1FAA0, 0x1FB0C
+    jp_game_state_chunk 0x1F910, 0x1F97C
+    jp_game_state_entry func_0801FBE8, 0x1F97C, 0x1F988
+    jp_game_state_entry func_0801FBF4, 0x1F988, 0x1F994
+    jp_game_state_entry func_0801FC00, 0x1F994, 0x1F9A0
+    jp_game_state_entry func_0801FC0C, 0x1F9A0, 0x1F9D0
+    jp_game_state_entry func_0801FC3C, 0x1F9D0, 0x1F9DC
+    jp_game_state_entry func_0801FC48, 0x1F9DC, 0x1F9E8
+    jp_game_state_entry func_0801FC54, 0x1F9E8, 0x1F9F4
+    jp_game_state_entry func_0801FC60, 0x1F9F4, 0x1FA00
+    jp_game_state_entry func_0801FC6C, 0x1FA00, 0x1FA38
+    jp_game_state_entry func_0801FCA4, 0x1FA38, 0x1FA48
+    jp_game_state_entry func_0801FCB4, 0x1FA48, 0x1FA70
+    jp_game_state_entry func_0801FCDC, 0x1FA70, 0x1FA88
+    jp_game_state_entry func_0801FCF4, 0x1FA88, 0x1FA94
+    jp_game_state_entry func_0801FD00, 0x1FA94, 0x1FAA0
+    jp_game_state_entry func_0801FD0C, 0x1FAA0, 0x1FAC4
+    jp_game_state_entry func_0801FD30, 0x1FAC4, 0x1FAD0
+    jp_game_state_entry func_0801FD3C, 0x1FAD0, 0x1FADC
+    jp_game_state_entry func_0801FD48, 0x1FADC, 0x1FAE4
+    jp_game_state_entry func_0801FD50, 0x1FAE4, 0x1FAEC
+    jp_game_state_entry func_0801FD58, 0x1FAEC, 0x1FAF4
+    jp_game_state_entry func_0801FD60, 0x1FAF4, 0x1FB00
+    jp_game_state_entry func_0801FD6C, 0x1FB00, 0x1FB0C
 
-    @ Verified entries in the retained game-state range used by a virtual table.
-    .global func_08011FE8
-    .thumb_set func_08011FE8, func_08011DC4 + 0x114
-    .global func_08012028
-    .thumb_set func_08012028, func_08011DC4 + 0x154
 
-    @ Verified entries in the game-object virtual table.  Each keeps its
-    @ original US label while resolving to the matching JP code entry.
-    .global func_080179CC
-    .thumb_set func_080179CC, func_08011DC4 + 0x59BC
-    .global func_08017C30
-    .thumb_set func_08017C30, func_08011DC4 + 0x5C20
-    .global func_080182C8
-    .thumb_set func_080182C8, func_08011DC4 + 0x62B8
-    .global func_0801FD58
-    .thumb_set func_0801FD58, func_0801D9A8 + 0x23B0
-    .global func_0801FD50
-    .thumb_set func_0801FD50, func_0801D9A8 + 0x23A8
-    .global func_0801FD48
-    .thumb_set func_0801FD48, func_0801D9A8 + 0x23A0
-    .global func_0801FD6C
-    .thumb_set func_0801FD6C, func_0801D9A8 + 0x23C4
-    .global func_0801FD60
-    .thumb_set func_0801FD60, func_0801D9A8 + 0x23B8
-    .global func_0801FD3C
-    .thumb_set func_0801FD3C, func_0801D9A8 + 0x2394
-    .global func_08019F7C
-    .thumb_set func_08019F7C, func_08019F38 + 0x44
-    .global func_08019FE8
-    .thumb_set func_08019FE8, func_08019F38 + 0xB0
-    .global func_0801A8E0
-    .thumb_set func_0801A8E0, func_0801A054 + 0x88C
-    .global func_0801FD0C
-    .thumb_set func_0801FD0C, func_0801D9A8 + 0x2364
-    .global func_0801FD00
-    .thumb_set func_0801FD00, func_0801D9A8 + 0x2358
-    .global func_0801FCF4
-    .thumb_set func_0801FCF4, func_0801D9A8 + 0x234C
-    .global func_0801B5C0
-    .thumb_set func_0801B5C0, func_0801A054 + 0x156C
-    .global func_0801FCDC
-    .thumb_set func_0801FCDC, func_0801D9A8 + 0x2334
-    .global func_0801FCB4
-    .thumb_set func_0801FCB4, func_0801D9A8 + 0x230C
-    .global func_0801B9E8
-    .thumb_set func_0801B9E8, func_0801A054 + 0x1994
-    .global func_0801FD30
-    .thumb_set func_0801FD30, func_0801D9A8 + 0x2388
-    .global func_0801FC54
-    .thumb_set func_0801FC54, func_0801D9A8 + 0x22AC
-    .global func_0801FC48
-    .thumb_set func_0801FC48, func_0801D9A8 + 0x22A0
-    .global func_0801FC60
-    .thumb_set func_0801FC60, func_0801D9A8 + 0x22B8
-    .global func_0801FC6C
-    .thumb_set func_0801FC6C, func_0801D9A8 + 0x22C4
-    .global func_0801FC3C
-    .thumb_set func_0801FC3C, func_0801D9A8 + 0x2294
-    .global func_0801FC0C
-    .thumb_set func_0801FC0C, func_0801D9A8 + 0x2264
-    .global func_0801FC00
-    .thumb_set func_0801FC00, func_0801D9A8 + 0x2258
-    .global func_0801FBF4
-    .thumb_set func_0801FBF4, func_0801D9A8 + 0x224C
-    .global func_0801FBE8
-    .thumb_set func_0801FBE8, func_0801D9A8 + 0x2240
-    .global func_0801DD78
-    .thumb_set func_0801DD78, func_0801D9A8 + 0x3D0
-    .global func_0801DD18
-    .thumb_set func_0801DD18, func_0801D9A8 + 0x370
-    .global func_0801DD24
-    .thumb_set func_0801DD24, func_0801D9A8 + 0x37C
-    .global func_0801DD30
-    .thumb_set func_0801DD30, func_0801D9A8 + 0x388
-    .global func_0801DD3C
-    .thumb_set func_0801DD3C, func_0801D9A8 + 0x394
-    .global func_0801DD48
-    .thumb_set func_0801DD48, func_0801D9A8 + 0x3A0
-    .global func_0801DD54
-    .thumb_set func_0801DD54, func_0801D9A8 + 0x3AC
-    .global func_0801DD60
-    .thumb_set func_0801DD60, func_0801D9A8 + 0x3B8
-    .global func_0801DD6C
-    .thumb_set func_0801DD6C, func_0801D9A8 + 0x3C4
-    .global func_0801DD84
-    .thumb_set func_0801DD84, func_0801D9A8 + 0x3DC
-    .global func_0801DE54
-    .thumb_set func_0801DE54, func_0801D9A8 + 0x4AC
-    .global func_0801DE24
-    .thumb_set func_0801DE24, func_0801D9A8 + 0x47C
-    .global func_08017C00
-    .thumb_set func_08017C00, func_08011DC4 + 0x5BF0
-    .global func_08019BEC
-    .thumb_set func_08019BEC, func_08011DC4 + 0x7BDC
-    .global func_08019B90
-    .thumb_set func_08019B90, func_08011DC4 + 0x7B80
-    .global func_0801EAA0
-    .thumb_set func_0801EAA0, func_0801D9A8 + 0x10F8
-    .global func_0801C29C
-    .thumb_set func_0801C29C, func_0801A054 + 0x2248
-    .global func_0801CA1C
-    .thumb_set func_0801CA1C, func_0801A054 + 0x29C8
-    .global func_0801C49C
-    .thumb_set func_0801C49C, func_0801A054 + 0x2448
-    .global func_0801CAD8
-    .thumb_set func_0801CAD8, func_0801A054 + 0x2A84
-    .global func_0801CEFC
-    .thumb_set func_0801CEFC, func_0801A054 + 0x2EA8
-    .global func_0801D23C
-    .thumb_set func_0801D23C, func_0801A054 + 0x31E8
-    .global func_0801D3FC
-    .thumb_set func_0801D3FC, func_0801A054 + 0x33A8
-    .global func_0801D4E0
-    .thumb_set func_0801D4E0, func_0801A054 + 0x348C
-    .global func_0801D5BC
-    .thumb_set func_0801D5BC, func_0801A054 + 0x3568
-    .global func_0801D7B0
-    .thumb_set func_0801D7B0, func_0801A054 + 0x375C
-    .global func_0801D88C
-    .thumb_set func_0801D88C, func_0801A054 + 0x3838
-    .global func_0801CBB0
-    .thumb_set func_0801CBB0, func_0801A054 + 0x2B5C
-    .global func_0801CFB8
-    .thumb_set func_0801CFB8, func_0801A054 + 0x2F64
-    .global func_0801C3DC
-    .thumb_set func_0801C3DC, func_0801A054 + 0x2388
-    .global func_0801C3E0
-    .thumb_set func_0801C3E0, func_0801A054 + 0x238C
-    .global func_0801DE30
-    .thumb_set func_0801DE30, func_0801D9A8 + 0x488
-    .global func_0801DE3C
-    .thumb_set func_0801DE3C, func_0801D9A8 + 0x494
-    .global func_0801DE48
-    .thumb_set func_0801DE48, func_0801D9A8 + 0x4A0
-    .global func_0801DEB4
-    .thumb_set func_0801DEB4, func_0801D9A8 + 0x50C
-    .global func_0801DDCC
-    .thumb_set func_0801DDCC, func_0801D9A8 + 0x424
-    .global func_0801DDF8
-    .thumb_set func_0801DDF8, func_0801D9A8 + 0x450
-    .global func_0801DCD4
-    .thumb_set func_0801DCD4, func_0801D9A8 + 0x32C
-    .global func_0801DC24
-    .thumb_set func_0801DC24, func_0801D9A8 + 0x27C
-    .global func_0801DCA8
-    .thumb_set func_0801DCA8, func_0801D9A8 + 0x300
-    .global func_0801D8CC
-    .thumb_set func_0801D8CC, func_0801A054 + 0x3878
-    .global func_0801FAA8
-    .thumb_set func_0801FAA8, func_0801D9A8 + 0x2100
-    .global func_0801FAB8
-    .thumb_set func_0801FAB8, func_0801D9A8 + 0x2110
-    .global func_0801B498
-    .thumb_set func_0801B498, func_0801A054 + 0x1444
-    .global func_0801E084
-    .thumb_set func_0801E084, func_0801D9A8 + 0x6DC
-    .global func_0801C0E0
-    .thumb_set func_0801C0E0, func_0801A054 + 0x208C
-    .global func_0801FCA4
-    .thumb_set func_0801FCA4, func_0801D9A8 + 0x22FC
-    .global func_0801D9BC
-    .thumb_set func_0801D9BC, func_0801D9A8 + 0x14
-    .global func_0801DB44
-    .thumb_set func_0801DB44, func_0801D9A8 + 0x19C
-    .global func_0801F518
-    .thumb_set func_0801F518, func_0801D9A8 + 0x1B70
-    .global func_0801F5F0
-    .thumb_set func_0801F5F0, func_0801D9A8 + 0x1C48
-    .global func_0801EE00
-    .thumb_set func_0801EE00, func_0801D9A8 + 0x1458
-    .global func_0801F924
-    .thumb_set func_0801F924, func_0801D9A8 + 0x1F7C
-    .global func_0801C550
-    .thumb_set func_0801C550, func_0801A054 + 0x24FC
-    .global func_0801C69C
-    .thumb_set func_0801C69C, func_0801A054 + 0x2648
     .else
 
     .INCLUDE "asm/macro.inc"
