@@ -305,6 +305,13 @@ UI_SCENE_080C160C_OUTPUT_DIR := $(BUILD_DIR)/graphics/ui/scene_080c160c
 UI_SCENE_080C160C_STAMP := $(UI_SCENE_080C160C_OUTPUT_DIR)/.scene-080c160c.stamp
 UI_SCENE_080C160C_REGION := $(INTRO_OBJECTS_REGION)
 
+UI_SCENE_080BCFAC_TOOL := $(UI_SCENE_080B7164_TOOL)
+UI_SCENE_080BCFAC_SOURCE_DIR := graphics/ui/scene_080bcfac/shared
+UI_SCENE_080BCFAC_SOURCES := $(wildcard $(UI_SCENE_080BCFAC_SOURCE_DIR)/*)
+UI_SCENE_080BCFAC_OUTPUT_DIR := $(BUILD_DIR)/graphics/ui/scene_080bcfac
+UI_SCENE_080BCFAC_STAMP := $(UI_SCENE_080BCFAC_OUTPUT_DIR)/.scene-080bcfac.stamp
+UI_SCENE_080BCFAC_REGION := $(INTRO_OBJECTS_REGION)
+
 # MapData owns 66 six-layer map records.  This initial pipeline exports every
 # unique retail visual stream as native decoded source and rebuilds it without
 # changing packed bytes.  A changed source is intentionally rejected until the
@@ -544,6 +551,11 @@ $(UI_SCENE_080C160C_STAMP): $(UI_SCENE_080C160C_SOURCES) $(UI_SCENE_080C160C_TOO
 	  --source-dir $(UI_SCENE_080C160C_SOURCE_DIR) --output-dir $(UI_SCENE_080C160C_OUTPUT_DIR)
 	@touch $@
 
+$(UI_SCENE_080BCFAC_STAMP): $(UI_SCENE_080BCFAC_SOURCES) $(UI_SCENE_080BCFAC_TOOL) $(FARM_STATUS_CODEC) $(BASE_ROM)
+	@$(PYTHON) $(UI_SCENE_080BCFAC_TOOL) --profile 080bcfac build --region $(UI_SCENE_080BCFAC_REGION) --rom $(BASE_ROM) \
+	  --source-dir $(UI_SCENE_080BCFAC_SOURCE_DIR) --output-dir $(UI_SCENE_080BCFAC_OUTPUT_DIR)
+	@touch $@
+
 $(MAP_RESOURCES_STAMP): $(MAP_RESOURCES_SOURCES) $(MAP_RESOURCES_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(MAP_RESOURCES_TOOL) build --region $(MAP_RESOURCES_REGION) --rom $(BASE_ROM) \
 	  --source-dir $(MAP_RESOURCES_SOURCE_DIR) --output-dir $(MAP_RESOURCES_OUTPUT_DIR) $(MAP_RESOURCES_ALL_ROM_ARGS)
@@ -561,6 +573,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 .PHONY: gfx-ui-scene-080ae7d0 gfx-ui-scene-080ae7d0-test gfx-ui-scene-080ae7d0-all gfx-ui-scene-080ae7d0-patch-test gfx-ui-scene-080ae7d0-edit-test
 .PHONY: gfx-ui-scene-080b7164 gfx-ui-scene-080b7164-test gfx-ui-scene-080b7164-all gfx-ui-scene-080b7164-patch-test gfx-ui-scene-080b7164-edit-test
 .PHONY: gfx-ui-scene-080c160c gfx-ui-scene-080c160c-test gfx-ui-scene-080c160c-all gfx-ui-scene-080c160c-patch-test gfx-ui-scene-080c160c-edit-test
+.PHONY: gfx-ui-scene-080bcfac gfx-ui-scene-080bcfac-test gfx-ui-scene-080bcfac-all gfx-ui-scene-080bcfac-patch-test gfx-ui-scene-080bcfac-edit-test
 oam-pack: $(OAM_PACK)
 oam-pack-test: $(OAM_PACK) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba $(PORTRAIT_SOURCE_DIR)/full/000_TALK_PORTRAIT_RICK_NORMAL.png
 	@mkdir -p $(BUILD_DIR)/graphics/oam_pack
@@ -677,6 +690,20 @@ gfx-ui-scene-080c160c-patch-test: gfx-ui-scene-080c160c-all $(UI_SCENE_080C160C_
 	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
 gfx-ui-scene-080c160c-edit-test: $(UI_SCENE_080C160C_TOOL) baserom_jp.gba
 	@$(PYTHON) $(UI_SCENE_080C160C_TOOL) --profile 080c160c edit-test --region jp --rom baserom_jp.gba
+gfx-ui-scene-080bcfac: $(UI_SCENE_080BCFAC_STAMP)
+gfx-ui-scene-080bcfac-test: gfx-ui-scene-080bcfac $(UI_SCENE_080BCFAC_TOOL)
+	@$(PYTHON) $(UI_SCENE_080BCFAC_TOOL) --profile 080bcfac verify --region $(UI_SCENE_080BCFAC_REGION) --rom $(BASE_ROM) \
+	  --source-dir $(UI_SCENE_080BCFAC_SOURCE_DIR) --output-dir $(UI_SCENE_080BCFAC_OUTPUT_DIR)
+gfx-ui-scene-080bcfac-all:
+	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-ui-scene-080bcfac-test
+	@$(MAKE) --no-print-directory GAME_REGION=US gfx-ui-scene-080bcfac-test
+	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-ui-scene-080bcfac-test
+	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-ui-scene-080bcfac-test
+gfx-ui-scene-080bcfac-patch-test: gfx-ui-scene-080bcfac-all $(UI_SCENE_080BCFAC_TOOL)
+	@$(PYTHON) $(UI_SCENE_080BCFAC_TOOL) --profile 080bcfac patch-test --output-root build \
+	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
+gfx-ui-scene-080bcfac-edit-test: $(UI_SCENE_080BCFAC_TOOL) baserom_jp.gba
+	@$(PYTHON) $(UI_SCENE_080BCFAC_TOOL) --profile 080bcfac edit-test --region jp --rom baserom_jp.gba
 gfx-farm-status: $(FARM_STATUS_TILES_BIN) $(FARM_STATUS_PALETTE_BIN) $(FARM_STATUS_PACKED_BIN)
 gfx-farm-status-test: gfx-farm-status $(BASE_ROM) $(GFX_RANGE_VERIFY)
 	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FARM_STATUS_STREAM_OFFSET) --input $(FARM_STATUS_PACKED_BIN) --sha256 $(FARM_STATUS_STREAM_SHA256)
@@ -784,7 +811,7 @@ tile-grid-test:
 	@$(MAKE) --no-print-directory GAME_REGION=EU tile-grid-region-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE tile-grid-region-test
 
-gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui gfx-ui-scene-080a2ba4 gfx-ui-scene-080ae7d0 gfx-ui-scene-080b7164 gfx-ui-scene-080c160c gfx-farm-status gfx-farm-status-tilemaps gfx-farm-status-secondary-tilemaps gfx-intro-background gfx-intro-objects gfx-intro-startup-tilemaps gfx-map-resources gfx-records-minigame
+gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui gfx-ui-scene-080a2ba4 gfx-ui-scene-080ae7d0 gfx-ui-scene-080b7164 gfx-ui-scene-080c160c gfx-ui-scene-080bcfac gfx-farm-status gfx-farm-status-tilemaps gfx-farm-status-secondary-tilemaps gfx-intro-background gfx-intro-objects gfx-intro-startup-tilemaps gfx-map-resources gfx-records-minigame
 
 # Full graphics gate for assets that have an authoritative source/rebuild
 # path.  It intentionally does not link a ROM: the project-wide link is
@@ -807,6 +834,9 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-ui-scene-080c160c-all
 	@$(MAKE) --no-print-directory gfx-ui-scene-080c160c-patch-test
 	@$(MAKE) --no-print-directory gfx-ui-scene-080c160c-edit-test
+	@$(MAKE) --no-print-directory gfx-ui-scene-080bcfac-all
+	@$(MAKE) --no-print-directory gfx-ui-scene-080bcfac-patch-test
+	@$(MAKE) --no-print-directory gfx-ui-scene-080bcfac-edit-test
 	@$(MAKE) --no-print-directory gfx-farm-status-all
 	@$(MAKE) --no-print-directory gfx-farm-status-edit-test
 	@$(MAKE) --no-print-directory gfx-farm-status-tilemaps-all
@@ -895,7 +925,7 @@ $(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGIO
 	$(call FOMT_COMPILE_CPP,)
 
 # ROM from ELF
-%.gba: %.elf $(MAP_RESOURCES_STAMP) $(UI_SCENE_080A2BA4_STAMP) $(UI_SCENE_080AE7D0_STAMP) $(UI_SCENE_080B7164_STAMP) $(UI_SCENE_080C160C_STAMP)
+%.gba: %.elf $(MAP_RESOURCES_STAMP) $(UI_SCENE_080A2BA4_STAMP) $(UI_SCENE_080AE7D0_STAMP) $(UI_SCENE_080B7164_STAMP) $(UI_SCENE_080C160C_STAMP) $(UI_SCENE_080BCFAC_STAMP)
 	$(OBJCOPY) -O binary $< $@
 	@$(PYTHON) $(MAP_RESOURCES_TOOL) patch --region $(MAP_RESOURCES_REGION) --rom $@ \
 	  --archive $(MAP_RESOURCES_OUTPUT_DIR)/map_visual_archive.0x70 $(MAP_RESOURCES_ALL_ROM_ARGS)
@@ -907,6 +937,8 @@ $(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGIO
 	  --rom $@ --output-dir $(UI_SCENE_080B7164_OUTPUT_DIR)
 	@$(PYTHON) $(UI_SCENE_080C160C_TOOL) --profile 080c160c patch --region $(UI_SCENE_080C160C_REGION) --baseline $(BASE_ROM) \
 	  --rom $@ --output-dir $(UI_SCENE_080C160C_OUTPUT_DIR)
+	@$(PYTHON) $(UI_SCENE_080BCFAC_TOOL) --profile 080bcfac patch --region $(UI_SCENE_080BCFAC_REGION) --baseline $(BASE_ROM) \
+	  --rom $@ --output-dir $(UI_SCENE_080BCFAC_OUTPUT_DIR)
 
 # ELF
 $(ELF): $(ALL_OBJS) $(LDS)
@@ -960,6 +992,10 @@ clean:
 
 # Audit/build-only graphics targets do not need C/C++ dependency discovery.
 ifneq (,$(filter gfx-ui-scene-080a2ba4 gfx-ui-scene-080a2ba4-test gfx-ui-scene-080a2ba4-all gfx-ui-scene-080a2ba4-patch-test gfx-ui-scene-080a2ba4-edit-test gfx-ui-scene-080ae7d0 gfx-ui-scene-080ae7d0-test gfx-ui-scene-080ae7d0-all gfx-ui-scene-080ae7d0-patch-test gfx-ui-scene-080ae7d0-edit-test gfx-ui-scene-080b7164 gfx-ui-scene-080b7164-test gfx-ui-scene-080b7164-all gfx-ui-scene-080b7164-patch-test gfx-ui-scene-080b7164-edit-test gfx-ui-scene-080c160c gfx-ui-scene-080c160c-test gfx-ui-scene-080c160c-all gfx-ui-scene-080c160c-patch-test gfx-ui-scene-080c160c-edit-test,$(MAKECMDGOALS)))
+ALL_DEPS :=
+endif
+
+ifneq (,$(filter gfx-ui-scene-080bcfac gfx-ui-scene-080bcfac-test gfx-ui-scene-080bcfac-all gfx-ui-scene-080bcfac-patch-test gfx-ui-scene-080bcfac-edit-test,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 

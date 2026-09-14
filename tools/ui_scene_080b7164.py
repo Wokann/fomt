@@ -54,6 +54,17 @@ PROFILES = {
             ("tiles.4bpp", 0xA38, 0xE80, "020", "246781012"),
         ),
     ),
+    "080bcfac": (
+        {
+            "jp": 0x4C1F8C, "us": 0x73BE24,
+            "eu": 0x73BE80, "de": 0x4C3190,
+        },
+        (
+            ("layer_0.tilemap", 0x124, 0x800, "030", "2610"),
+            ("layer_1.tilemap", 0xA8, 0x800, "030", "169"),
+            ("tiles.4bpp", 0xC04, 0x7BE2, "020", "256791113"),
+        ),
+    ),
 }
 PROFILE = "080b7164"
 STARTS, SPECS = PROFILES[PROFILE]
