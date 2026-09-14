@@ -1779,7 +1779,17 @@ gUnk_084D8278:
     .incbin "baserom_jp.gba", 0x4D8278, (0x4D82F8 - 0x4D8278)
     .global gUnk_084D82F8
 gUnk_084D82F8:
-    .incbin "baserom_jp.gba", 0x4D82F8, (0x4E0CE0 - 0x4D82F8)
+    .incbin "baserom_jp.gba", 0x4D82F8, (0x4E0BA0 - 0x4D82F8)
+
+    @ Shared UI resource payloads.  These direct labels let the ui_state
+    @ table retain ordinary relocations without a synthetic base-plus-offset
+    @ alias.  The first payload is 0x120 bytes by its typed table entry.
+    .global gUnk_UiSharedResourceData_000
+gUnk_UiSharedResourceData_000:
+    .incbin "baserom_jp.gba", 0x4E0BA0, 0x120
+    .global gUnk_UiSharedResourceData_001
+gUnk_UiSharedResourceData_001:
+    .incbin "baserom_jp.gba", 0x4E0CC0, (0x4E0CE0 - 0x4E0CC0)
 
     @ The packed Mary stream occupies the original JP interval
     @ 0x084E0CE0..0x087515A8.  Resume the raw asset container after it.
@@ -1797,11 +1807,6 @@ gUnk_084D82F8:
     .global gFontShiftJisGlyphIndices
     .set gFontShiftJisGlyphIndices, jp_data_08462550_start + 0x31921C
 
-    @ Shared UI resource payloads.  Their internal encodings remain raw.
-    .global gUnk_UiSharedResourceData_000
-    .set gUnk_UiSharedResourceData_000, jp_data_08462550_start + 0x7E650
-    .global gUnk_UiSharedResourceData_001
-    .set gUnk_UiSharedResourceData_001, jp_data_08462550_start + 0x7E770
     .else
     .section .rodata
 
@@ -5594,7 +5599,16 @@ gUnk_0875A440:
 
 	.global gUnk_0875B444
 gUnk_0875B444:
-	FOMT_REGION_ASSET_INCBIN 0x75B444, 0x520
+	FOMT_REGION_ASSET_INCBIN 0x75B444, 0x3D4
+
+	@ These labels designate the exact payload bytes consumed by the typed
+	@ ui_state table.  Do not replace them with base-plus-offset aliases.
+	.global gUnk_UiSharedResourceData_000
+gUnk_UiSharedResourceData_000:
+	FOMT_REGION_ASSET_INCBIN 0x75B818, 0x120
+	.global gUnk_UiSharedResourceData_001
+gUnk_UiSharedResourceData_001:
+	FOMT_REGION_ASSET_INCBIN 0x75B938, (0x75B964 - 0x75B938)
 
 	@ Thumb function dispatch table.  Keep these as relocations so regional
 	@ code-layout differences update the function pointers automatically.
@@ -5605,11 +5619,6 @@ gUnk_0875B444:
 
 	FOMT_REGION_ASSET_INCBIN 0x75B974, 0x84
 
-	@ Shared UI resource payloads.  Their internal encodings remain raw.
-	.global gUnk_UiSharedResourceData_000
-	.set gUnk_UiSharedResourceData_000, gUnk_0875B444 + 0x3D4
-	.global gUnk_UiSharedResourceData_001
-	.set gUnk_UiSharedResourceData_001, gUnk_0875B444 + 0x4F4
 	.endif
     .endif
 
