@@ -354,7 +354,7 @@
 | `0x08106F6C`–`0x08106F75` | `src/field_render_resource_data.o(.rodata)` | [嵌入文本] | `src/field_render_resource_data.cc`<br>`data/text/jp/field_render_resource_data_2.cc` | 运行时字符串 `1` 项 |
 | `0x08106F76`–`0x08106F7E` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFarmHouseStyleNibbleLookupData`（原 ROM 为 9 字节；当前 `agbcp` 会给普通聚合额外尾填充，故以直接 `__attribute__((packed))` 保持物理大小；不使用 `PACKED` 或 `ALIGN(1)` 包装） |
 | `0x08106F7F`–`0x08106F7F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x08106F80`–`0x08106F97` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | [数据] | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
+| `0x08106F80`–`0x08106F97` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | [数据] | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds`（6 项，汇编直接重定位至表首；不保留仅用于声明的数量宏/枚举） |
 | `0x08106F98`–`0x08106F9F` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gFieldRenderSeasonalRecordRanges` |
 | `0x08106FA0`–`0x08106FE7` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_FieldRenderLookupValues` |
 | `0x08106FE8`–`0x0810703D` | `src/field_render_runtime_data.o(.rodata)` | [嵌入文本] | `src/field_render_runtime_data.cc`<br>`data/text/jp/field_render_runtime_data_1.cc` | `gText_FieldRenderFallbackNone`、运行时字符串 `7` 项 |
@@ -2188,7 +2188,7 @@
 | `0x08107424`–`0x0810742D` | `src/field_render_resource_data.o(.rodata)` | [嵌入文本] | `src/field_render_resource_data.cc`<br>`data/text/us/field_render_resource_data_2.cc` | 运行时字符串 `1` 项 |
 | `0x0810742E`–`0x08107436` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFarmHouseStyleNibbleLookupData`（原 ROM 为 9 字节；当前 `agbcp` 会给普通聚合额外尾填充，故以直接 `__attribute__((packed))` 保持物理大小；不使用 `PACKED` 或 `ALIGN(1)` 包装） |
 | `0x08107437`–`0x08107437` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x08107438`–`0x0810744F` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | [数据] | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
+| `0x08107438`–`0x0810744F` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | [数据] | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds`（6 项，汇编直接重定位至表首；不保留仅用于声明的数量宏/枚举） |
 | `0x08107450`–`0x08107457` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gFieldRenderSeasonalRecordRanges` |
 | `0x08107458`–`0x0810749F` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_FieldRenderLookupValues` |
 | `0x081074A0`–`0x081074F5` | `src/field_render_runtime_data.o(.rodata)` | [嵌入文本] | `src/field_render_runtime_data.cc`<br>`data/text/us/field_render_runtime_data_1.cc` | `gText_FieldRenderFallbackNone`、运行时字符串 `7` 项 |

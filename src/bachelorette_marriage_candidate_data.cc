@@ -1,6 +1,6 @@
 #include "bachelorette_marriage_candidate_data.hh"
 
-u32 const gMarriageCandidateCharacterIds[MARRIAGE_CANDIDATE_CHARACTER_COUNT] = {
+u32 const gMarriageCandidateCharacterIds[] = {
     CHARACTER_POPURI,
     CHARACTER_MARY,
     CHARACTER_KAREN,
