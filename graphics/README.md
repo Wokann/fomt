@@ -109,10 +109,34 @@ selecting one edit. The four regional assembly paths split their original
 archive at the tile stream and retain every header, layout record, palette and
 trailing byte around it.
 
-Overworld character animation streams are not exposed as editable images yet:
-their raw tile order still requires an OAM and animation-mapping audit. Until
-that is complete, those bytes remain untouched in their original `incbin`
-ranges.
+## Actor animation frames
+
+`sprites/rick/overworld/full` is the first verified actor-animation source.
+It contains twelve complete indexed PNG frames used by Rick's four idle and
+four walking animation IDs (`0x213` through `0x21A`).  The files are not
+linear tile dumps: each 24x32 frame is composed from the native animation
+entry, frame descriptor, OAM records, 4bpp tiles, and its selected palette.
+
+```console
+make GAME_REGION=JP gfx-actors
+make gfx-actors-all
+```
+
+`tools/actor_archive.py` reads those table relationships directly from the
+retail archive; it has no manually maintained layout JSON.  During a rebuild,
+it starts with the original complete 24,398-tile stream and changes only
+visible pixels that differ from the source PNG.  OAM-covered pixels that are
+not visible in the composited image remain byte-for-byte intact.  The rebuild
+rejects changed PNG dimensions, palettes, OAM-out-of-bounds pixels, invalid
+table references, and conflicting writes to a shared native pixel.  The full
+actor archive and Rick's source frame payload are identical in JP, US, EU, and
+DE; only their physical ROM offsets differ.
+
+This is deliberately a minimal verified actor sample.  Other actor animation
+streams remain raw `incbin` data until their animation IDs, OAM records, tile
+ranges, palettes, and complete-image rebuild behavior have all passed the
+same four-region checks.  Earlier guessed six-tile character-frame exports
+were removed and must not be used as source material.
 
 
 

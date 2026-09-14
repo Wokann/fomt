@@ -46,7 +46,14 @@ def read_u32(data: bytes, offset: int) -> int:
     return struct.unpack_from("<I", data, offset)[0]
 
 
-def load_archive(path: Path, offset: int, length: int) -> Archive:
+def load_archive(path: Path, offset: int, length: int, trailing_bytes: int = 32) -> Archive:
+    """Load one indexed archive with an explicitly declared trailing payload.
+
+    Portrait archives carry one unindexed 32-byte palette after their seven
+    counted tables.  Other users of the same native archive format, such as
+    actor animations, do not.  Keeping the tail size at the call site avoids
+    silently treating unrelated bytes as a palette.
+    """
     with path.open("rb") as stream:
         stream.seek(offset)
         data = stream.read(length)
@@ -67,12 +74,12 @@ def load_archive(path: Path, offset: int, length: int) -> Archive:
             raise ValueError("archive table exceeds declared archive range")
         counts.append(count)
         cursor += count_bytes
-    # Every retail archive carries one 32-byte BGR555 palette immediately after
-    # its count-prefixed tables. IndexedResourceArchive does not enumerate it;
-    # keep it explicit rather than silently folding it into table five.
-    if len(data) - cursor != 32:
+    if trailing_bytes < 0:
+        raise ValueError("archive trailing byte count cannot be negative")
+    if len(data) - cursor != trailing_bytes:
         raise ValueError(
-            f"archive has {len(data) - cursor} unexpected bytes after the seventh table"
+            f"archive has {len(data) - cursor} unexpected bytes after the seventh table "
+            f"(expected {trailing_bytes})"
         )
     return Archive(data, tuple(table_offsets), tuple(counts), cursor)
 

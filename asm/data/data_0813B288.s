@@ -56,7 +56,9 @@ gUnk_082B3A8C:
     .incbin "baserom_jp.gba", 0x3111F8, (0x311B84 - 0x3111F8)
     .global gUnk_08311B84
 gUnk_08311B84:
-    .incbin "baserom_jp.gba", 0x311B84, (0x41ECDC - 0x311B84)
+    .incbin "baserom_jp.gba", 0x311B84, (0x329558 - 0x311B84)
+    .incbin "build/jp/graphics/sprites/shared/actor_tiles.4bpp"
+    .incbin "baserom_jp.gba", 0x3E7F18, (0x41ECDC - 0x3E7F18)
     .global gUnk_FieldPlotRenderRecord_004
 gUnk_FieldPlotRenderRecord_004:
     .incbin "baserom_jp.gba", 0x41ECDC, 0x30
@@ -4467,9 +4469,17 @@ gUnk_0852D984:
 gUnk_0858BA28:
 	.endif
 	.ifdef REGION_EU
-	.incbin "baserom_eu.gba", 0x58BA84, 0xDB638
+	.incbin "baserom_eu.gba", 0x58BA84, (0x5A3458 - 0x58BA84)
+	.incbin "build/eu/graphics/sprites/shared/actor_tiles.4bpp"
+	.incbin "baserom_eu.gba", 0x661E18, (0x6670BC - 0x661E18)
 	.else
+	.ifdef REGION_DE
 	FOMT_REGION_ASSET_INCBIN 0x58BA28, 0xDB638
+	.else
+	.incbin "baserom_us.gba", 0x58BA28, (0x5A33FC - 0x58BA28)
+	.incbin "build/us/graphics/sprites/shared/actor_tiles.4bpp"
+	.incbin "baserom_us.gba", 0x661DBC, (0x667060 - 0x661DBC)
+	.endif
 	.endif
 
 	non_de_asset_label gUnk_08667060

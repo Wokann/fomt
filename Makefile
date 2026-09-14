@@ -52,6 +52,7 @@ OLD_CC1  := tools/agbcc/bin/old_agbcc$(EXE)
 # gbagfx's 8x8-tile input without changing the authored PNG workflow.
 GFX_TOOL_DIR := tools/gbagfx
 GFX_TOOL := $(GFX_TOOL_DIR)/gbagfx$(EXE)
+GFX_TOOL_SOURCES := $(wildcard $(GFX_TOOL_DIR)/*.c $(GFX_TOOL_DIR)/*.h) $(GFX_TOOL_DIR)/Makefile
 FONT_PAD_DIR := tools/fontpad
 FONT_PAD := $(FONT_PAD_DIR)/fontpad$(EXE)
 OAM_PACK_DIR := tools/oam_pack
@@ -59,8 +60,6 @@ OAM_PACK := $(OAM_PACK_DIR)/oam_pack$(EXE)
 OAM_PACK_AUDIT := $(OAM_PACK_DIR)/audit_portraits.py
 GFX_RANGE_VERIFY := tools/verify_gfx_range.py
 TILE_GRID_TOOL := tools/tile_grid.py
-.PHONY: $(GFX_TOOL) $(FONT_PAD) $(OAM_PACK)
-
 # ================
 # = BUILD CONFIG =
 # ================
@@ -130,6 +129,29 @@ PORTRAIT_ARCHIVE_OFFSET_US := 0x52D984
 PORTRAIT_ARCHIVE_OFFSET_EU := 0x52D9E0
 PORTRAIT_ARCHIVE_OFFSET_DE := 0x2B4A20
 PORTRAIT_ARCHIVE_OFFSET := $(PORTRAIT_ARCHIVE_OFFSET_$(GAME_REGION))
+
+# The actor archive is a separate IndexedResourceArchive whose first table
+# selects timed animation frames.  The committed Rick frames are complete
+# OAM-composited PNGs, not guessed linear tile sheets.  Rebuild preserves the
+# original archive tables and patches only table four's native 4bpp tile data.
+ACTOR_ARCHIVE_TOOL := tools/actor_archive.py
+ACTOR_SOURCE_DIR := graphics/sprites/rick/overworld
+ACTOR_FULL_IMAGES := $(wildcard $(ACTOR_SOURCE_DIR)/full/*.png)
+ACTOR_ANIMATIONS := 0x213,0x214,0x215,0x216,0x217,0x218,0x219,0x21A
+ACTOR_TILE_BIN := $(BUILD_DIR)/graphics/sprites/shared/actor_tiles.4bpp
+ACTOR_ARCHIVE_LENGTH := 0xDB638
+ACTOR_ARCHIVE_SHA256 := 19a8733e132573478713e9b6e48e9650a702e62516209159787d26f270933736
+ACTOR_TILE_SHA256 := 5feee08fb08ead63211d9cc17dfc46c5b7f1722599aad36883c10ef3d18334f6
+ACTOR_TILE_OFFSET_JP := 0x329558
+ACTOR_TILE_OFFSET_US := 0x5A33FC
+ACTOR_TILE_OFFSET_EU := 0x5A3458
+ACTOR_TILE_OFFSET_DE := 0x32A498
+ACTOR_ARCHIVE_OFFSET_JP := 0x311B84
+ACTOR_ARCHIVE_OFFSET_US := 0x58BA28
+ACTOR_ARCHIVE_OFFSET_EU := 0x58BA84
+ACTOR_ARCHIVE_OFFSET_DE := 0x312AC4
+ACTOR_TILE_OFFSET := $(ACTOR_TILE_OFFSET_$(GAME_REGION))
+ACTOR_ARCHIVE_OFFSET := $(ACTOR_ARCHIVE_OFFSET_$(GAME_REGION))
 
 # UiSharedResourceData explicitly identifies this 0x120-byte VRAM payload and
 # its immediately following 32-byte palette.  It is a simple 24x24 linear
@@ -255,7 +277,7 @@ ALL_DEPS += $(REGION_TEXT_DEPS) $(GUIDE_GENERATED_DEP) $(MARY_BUNDLE_DEP)
 $(TEXT_TOOLS): $(TEXT_TOOL_DIR)/fomt_text.cpp $(TEXT_TOOL_DIR)/fomt_preproc.cpp $(TEXT_TOOL_DIR)/Makefile
 	@$(MAKE) -C $(TEXT_TOOL_DIR) $(notdir $@)
 
-$(GFX_TOOL):
+$(GFX_TOOL): $(GFX_TOOL_SOURCES)
 	@$(MAKE) -C $(GFX_TOOL_DIR)
 
 $(FONT_PAD): $(FONT_PAD_DIR)/fontpad.c $(FONT_PAD_DIR)/Makefile
@@ -284,6 +306,10 @@ $(PORTRAIT_TILE_BIN): $(PORTRAIT_ARCHIVE_TOOL) $(PORTRAIT_FULL_IMAGES) $(BASE_RO
 	@mkdir -p $(dir $@)
 	@$(PYTHON) $(PORTRAIT_ARCHIVE_TOOL) $(BASE_ROM) --offset $(PORTRAIT_ARCHIVE_OFFSET) --length $(PORTRAIT_ARCHIVE_LENGTH) --sha256 $(PORTRAIT_ARCHIVE_SHA256) rebuild-full --source $(PORTRAIT_SOURCE_DIR) --output $@
 
+$(ACTOR_TILE_BIN): $(ACTOR_ARCHIVE_TOOL) $(PORTRAIT_ARCHIVE_TOOL) $(ACTOR_FULL_IMAGES) $(BASE_ROM)
+	@mkdir -p $(dir $@)
+	@$(PYTHON) $(ACTOR_ARCHIVE_TOOL) $(BASE_ROM) --offset $(ACTOR_ARCHIVE_OFFSET) --length $(ACTOR_ARCHIVE_LENGTH) --sha256 $(ACTOR_ARCHIVE_SHA256) rebuild --animations $(ACTOR_ANIMATIONS) --source $(ACTOR_SOURCE_DIR) --output $@
+
 $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN): $(UI_SHARED_RESOURCE_SOURCE) $(TILE_GRID_TOOL)
 	@mkdir -p $(dir $(UI_SHARED_RESOURCE_TILE_BIN))
 	@$(PYTHON) $(TILE_GRID_TOOL) build --source $(UI_SHARED_RESOURCE_SOURCE) --tiles $(UI_SHARED_RESOURCE_TILE_BIN) --palette $(UI_SHARED_RESOURCE_PALETTE_BIN)
@@ -292,7 +318,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-ui gfx-ui-test gfx-ui-all gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
+.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-ui gfx-ui-test gfx-ui-all gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
 oam-pack: $(OAM_PACK)
 oam-pack-test: $(OAM_PACK) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba $(PORTRAIT_SOURCE_DIR)/full/000_TALK_PORTRAIT_RICK_NORMAL.png
 	@mkdir -p $(BUILD_DIR)/graphics/oam_pack
@@ -334,6 +360,14 @@ gfx-portraits-all:
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-portraits
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-portraits
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-portraits
+gfx-actors: $(ACTOR_TILE_BIN)
+gfx-actors-test: gfx-actors $(BASE_ROM) $(GFX_RANGE_VERIFY)
+	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(ACTOR_TILE_OFFSET) --input $(ACTOR_TILE_BIN) --sha256 $(ACTOR_TILE_SHA256)
+gfx-actors-all:
+	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-actors-test
+	@$(MAKE) --no-print-directory GAME_REGION=US gfx-actors-test
+	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-actors-test
+	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-actors-test
 gfx-ui: $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN)
 gfx-ui-test: gfx-ui $(BASE_ROM) $(GFX_RANGE_VERIFY)
 	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(UI_SHARED_RESOURCE_TILE_OFFSET) --input $(UI_SHARED_RESOURCE_TILE_BIN) --sha256 $(UI_SHARED_RESOURCE_TILE_SHA256)
@@ -357,7 +391,7 @@ tile-grid-test:
 	@$(MAKE) --no-print-directory GAME_REGION=EU tile-grid-region-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE tile-grid-region-test
 
-gfx-assets: gfx-font gfx-portraits gfx-ui
+gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui
 
 # Full graphics gate for assets that have an authoritative source/rebuild
 # path.  It intentionally does not link a ROM: the project-wide link is
@@ -365,12 +399,13 @@ gfx-assets: gfx-font gfx-portraits gfx-ui
 gfx-verify:
 	@$(MAKE) --no-print-directory gfx-fonts-test
 	@$(MAKE) --no-print-directory gfx-portraits-all
+	@$(MAKE) --no-print-directory gfx-actors-all
 	@$(MAKE) --no-print-directory gfx-ui-all
 	@$(MAKE) --no-print-directory tile-grid-test
 	@$(MAKE) --no-print-directory oam-pack-test
 	@$(MAKE) --no-print-directory oam-pack-audit
 
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN) $(PORTRAIT_TILE_BIN) $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN)
+$(BUILD_DIR)/asm/data/data_0813B288.o: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN) $(PORTRAIT_TILE_BIN) $(ACTOR_TILE_BIN) $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN)
 
 # Mary owns the complete packed RIFF script stream.  Its three headers remain
 # explicit inputs: callables and slot names live with the selected scripts,
@@ -493,7 +528,7 @@ clean:
 .PHONY: clean
 
 ifneq (clean,$(MAKECMDGOALS))
-ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-ui gfx-ui-test gfx-ui-all gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit,$(MAKECMDGOALS)))
+ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-ui gfx-ui-test gfx-ui-all gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit,$(MAKECMDGOALS)))
 -include $(ALL_DEPS)
 endif
 .PRECIOUS: $(BUILD_DIR)/%.d
