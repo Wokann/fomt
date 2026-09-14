@@ -5333,8 +5333,70 @@ func_08051504: @ 0x08051290
     @ the decoded state machine above keeps real JP branch relocations.
     jp_code_0803ee_func func_0805147C, 0x5147C, 0x51B00
     jp_code_0803ee_func func_08051B00, 0x51B00, 0x51F4C
-    jp_code_0803ee_func func_08051F4C, 0x51F4C, 0x51F8C
-    jp_code_0803ee_func func_08051F8C, 0x51F8C, 0x51FC0
+    .global func_080521BC
+    .thumb_func
+func_080521BC: @ 0x08051F4C
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    ldr r0, .Ljp_08051F88
+    str r0, [r4]
+    ldr r1, [r4, #8]
+    cmp r1, #0
+    beq .Ljp_08051F68
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08051F68:
+    ldr r1, [r4, #4]
+    cmp r1, #0
+    beq .Ljp_08051F7A
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08051F7A:
+    adds r0, r4, #0
+    adds r1, r5, #0
+    bl func_080007EC
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_08051F88: .4byte gUnk_080E6D64
+
+    .global func_080521FC
+    .thumb_func
+func_080521FC: @ 0x08051F8C
+    push {r4, r5, lr}
+    sub sp, #4
+    adds r5, r0, #0
+    adds r4, r1, #0
+    ldr r1, [r4, #4]
+    mov r0, sp
+    bl func_08051504
+    ldr r1, [sp]
+    cmp r1, #0
+    beq .Ljp_08051FAE
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08051FAE:
+    ldr r1, [r4, #8]
+    movs r0, #0
+    str r0, [r4, #8]
+    str r1, [r5]
+    adds r0, r5, #0
+    add sp, #4
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+
     jp_code_0803ee_func func_08051FC0, 0x51FC0, 0x52068
     @ Exact JP entries referenced by the raw table at 0x080E7928.
     .section .text.animal_festival_ranking_after

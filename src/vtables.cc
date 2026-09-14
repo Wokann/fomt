@@ -4969,6 +4969,13 @@ extern RawVTableFunction const vtable_unk_080E7918[]
         nullptr,
         nullptr,
         func_080E1148,
+    };
+
+// This final physical slot is used directly as a JP object vtable pointer.
+// Its decoded type is not known yet, so retain an address-based unknown name
+// instead of representing it as vtable_unk_080E7918 + 0xC.
+extern RawVTableFunction const gUnk_080E6D64[]
+    SECTION(".rodata.vtable_script_engine_adjacent") = {
         nullptr,
     };
 #else
@@ -4986,8 +4993,8 @@ extern RawVTableFunction const vtable_unk_080E7908[]
 #endif
 
 #if defined(REGION_JP)
-extern void func_08051F4C(void);
-extern void func_08051F8C(void);
+extern void func_080521BC(void);
+extern void func_080521FC(void);
 #else
 extern void func_080E1148(void);
 #endif
@@ -4997,8 +5004,8 @@ extern RawVTableFunction const vtable_unk_080E7928[]
     SECTION(".rodata.vtable_7928") = {
 #if defined(REGION_JP)
         nullptr,
-        func_08051F4C,
-        func_08051F8C,
+        func_080521BC,
+        func_080521FC,
 #else
         nullptr,
         nullptr,
