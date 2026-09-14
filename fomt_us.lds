@@ -640,7 +640,7 @@ SECTIONS
         . = 0xF058C; src/help_menu.o(.rodata);
         FILL(0x00);
         /* Animal memorial text and animal data. */
-        . = 0xF0654; src/animal_data.o(.rodata);
+        . = ALIGN(4); src/animal_data.o(.rodata);
         FILL(0x00);
         /* Entity UI labels and native UI data. */
         . = 0xF0E80; src/entity_ui.o(.rodata);

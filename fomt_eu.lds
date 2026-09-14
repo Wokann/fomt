@@ -639,7 +639,8 @@ SECTIONS
         /* Help-menu text and byte table. */
         . = 0xF05D8; src/help_menu.o(.rodata);
         /* Animal memorial text and animal data. */
-        . = 0xF06A0; src/animal_data.o(.rodata);
+        FILL(0x00);
+        . = ALIGN(4); src/animal_data.o(.rodata);
         /* Entity UI labels and native UI data. */
         . = 0xF0ECC; src/entity_ui.o(.rodata);
         FILL(0x00);
