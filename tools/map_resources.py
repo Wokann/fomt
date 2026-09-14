@@ -152,6 +152,14 @@ def output_path(output_dir: Path, resource: Resource) -> Path:
     return output_dir / resource.output_relative()
 
 
+def archive_path(output_dir: Path) -> Path:
+    return output_dir / "map_visual_archive.0x70"
+
+
+def ordered_for(region: str, resources: tuple[Resource, ...]) -> tuple[Resource, ...]:
+    return tuple(sorted(resources, key=lambda resource: resource.offsets[region]))
+
+
 def payload_for(inputs: dict[str, bytes], resource: Resource, region: str) -> bytes:
     packed, payload, _format, _ladder = retail_stream(inputs[region], resource.offsets[region], resource.length)
     if len(packed) != resource.length:
@@ -175,7 +183,9 @@ def build(arguments: argparse.Namespace) -> None:
     rom = arguments.rom.read_bytes()
     inputs = {region: Path(path).read_bytes() for region, path in arguments.all_rom}
     resources = catalog(inputs)
-    for resource in resources:
+    archive = bytearray()
+    expected_offset: int | None = None
+    for resource in ordered_for(arguments.region, resources):
         source = source_path(arguments.source_dir, resource)
         if not source.exists():
             raise ValueError(f"missing source {source}")
@@ -188,7 +198,13 @@ def build(arguments: argparse.Namespace) -> None:
         output = output_path(arguments.output_dir, resource)
         output.parent.mkdir(parents=True, exist_ok=True)
         offset = resource.offsets[arguments.region]
-        output.write_bytes(rom[offset:offset + resource.length])
+        packed = rom[offset:offset + resource.length]
+        output.write_bytes(packed)
+        if expected_offset is not None and offset != expected_offset:
+            raise AssertionError(f"MapData archive has a gap before {offset:#x}")
+        archive.extend(packed)
+        expected_offset = offset + resource.length
+    archive_path(arguments.output_dir).write_bytes(archive)
     print(f"rebuilt {len(resources)} byte-identical MapData streams for {arguments.region.upper()}")
 
 
@@ -204,6 +220,13 @@ def verify(arguments: argparse.Namespace) -> None:
             baseline = inputs[arguments.region][resource.offsets[arguments.region]:resource.offsets[arguments.region] + resource.length]
             if output.read_bytes() != baseline:
                 raise AssertionError(f"{output} does not match retail {arguments.region.upper()} bytes")
+    if arguments.output_dir is not None:
+        ordered = ordered_for(arguments.region, resources)
+        first = ordered[0].offsets[arguments.region]
+        last = ordered[-1].offsets[arguments.region] + ordered[-1].length
+        baseline_archive = inputs[arguments.region][first:last]
+        if archive_path(arguments.output_dir).read_bytes() != baseline_archive:
+            raise AssertionError(f"MapData archive does not match retail {arguments.region.upper()} bytes")
     print(f"verified {len(resources)} MapData streams against {arguments.region.upper()} ROM")
 
 

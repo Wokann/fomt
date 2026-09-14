@@ -57,7 +57,9 @@ is contiguous in every retail ROM, despite its different base address:
 sets directly from the four `gMapData` tables; it does not use a JSON or other
 checked-in layout sidecar.  The tool exports `graphics/maps/shared/map_XX/`
 native source files and writes corresponding region-specific packed files
-under `build/<region>/graphics/maps/`.  The source classification is strictly
+under `build/<region>/graphics/maps/`.  The latter also contains one
+`map_visual_archive.0x70` file per region: the exact contiguous archive range
+above, assembled from the 272 rebuilt streams.  The source classification is strictly
 evidence-based: 31 layer-0 streams use `.4bpp`, 194 layer-3--5 streams use
 `.tilemap`, and 47 layer-1/2 streams remain neutral `.bin` until their exact
 consumer destination is proven.  All 272 exports total `0x22BE60` decoded
