@@ -4705,7 +4705,32 @@ func_08050D0C: @ 0x08050A98
     pop {r0}
     bx r0
     .align 2, 0
-    jp_code_0803ee_func func_08050D34, 0x50AC0, 0x50AE8
+    .global func_08050D34
+    .thumb_func
+func_08050D34: @ 0x08050AC0
+    ldr r0, [r0]
+    ldr r0, [r0, #8]
+    bx lr
+    .align 2, 0
+
+    .global func_08050D3C
+    .thumb_func
+func_08050D3C: @ 0x08050AC8
+    push {r4, r5, r6, lr}
+    sub sp, #0xc
+    ldr r4, [sp, #0x1c]
+    ldr r5, [sp, #0x20]
+    ldr r6, [sp, #0x24]
+    ldr r0, [r0]
+    str r4, [sp]
+    str r5, [sp, #4]
+    str r6, [sp, #8]
+    bl func_0804F7A4
+    add sp, #0xc
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
     .section .text.code_08050E50
     jp_code_0803ee_func func_08050EE4, 0x50C70, 0x510AC
     jp_code_0803ee_func func_08051320, 0x510AC, 0x511C8
