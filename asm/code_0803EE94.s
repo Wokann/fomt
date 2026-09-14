@@ -4445,7 +4445,116 @@ func_08050AD8: @ 0x08050864
     pop {r0}
     bx r0
     .section .text.clear_ui_action_state_flag_01dc_after
-    jp_code_0803ee_func func_08050B50, 0x508DC, 0x509A4
+    .global func_08050B50
+    .thumb_func
+func_08050B50: @ 0x080508DC
+	push {r4, r5, r6, r7, lr}
+	mov r7, sl
+	mov r6, r9
+	mov r5, r8
+	push {r5, r6, r7}
+	sub sp, #0x18
+	mov r8, r0
+	adds r4, r1, #0
+	cmp r4, #0
+	beq .Ljp_080508FA
+	adds r0, r4, #0
+	bl strlen
+	adds r6, r0, #0
+	b .Ljp_080508FC
+.Ljp_080508FA:
+	movs r6, #0
+.Ljp_080508FC:
+	subs r0, r6, #1
+	cmp r0, #0xb
+	bls .Ljp_0805090A
+	mov r0, r8
+	bl ClearUiActionStateFlag01F0
+	b .Ljp_08050992
+.Ljp_0805090A:
+	adds r7, r4, #0
+	movs r5, #0
+	mov r0, sp
+	adds r0, #0xc
+	str r0, [sp, #0x14]
+	movs r2, #4
+	mov sl, r2
+	movs r0, #2
+	mov r9, r0
+.Ljp_0805091C:
+	lsls r1, r5, #6
+	adds r1, r1, r5
+	lsls r1, r1, #2
+	add r1, r8
+	add r0, sp, #0xc
+	mov r2, sl
+	strh r2, [r0]
+	mov r2, r9
+	ldr r0, [sp, #0x14]
+	strh r2, [r0, #2]
+	ldr r0, [sp, #0xc]
+	movs r2, #0xfc
+	lsls r2, r2, #1
+	adds r4, r1, r2
+	adds r1, r4, #0
+	movs r2, #0
+	bl Clear2DGfxBuffer
+	adds r5, #1
+	cmp r6, #0
+	beq .Ljp_0805097C
+	add r2, sp, #4
+	adds r1, r4, #0
+	add r4, sp, #0x10
+	add r3, sp, #8
+.Ljp_0805094E:
+	ldrb r0, [r7]
+	strb r0, [r2]
+	adds r7, #1
+	adds r2, #1
+	subs r6, #1
+	cmp r6, #0
+	beq .Ljp_08050960
+	cmp r2, r3
+	bne .Ljp_0805094E
+.Ljp_08050960:
+	movs r0, #0
+	strb r0, [r2]
+	add r0, sp, #0x10
+	mov r2, sl
+	strh r2, [r0]
+	mov r0, r9
+	strh r0, [r4, #2]
+	ldr r0, [sp, #0x10]
+	add r2, sp, #4
+	str r2, [sp]
+	movs r2, #0
+	movs r3, #0
+	bl DrawStringTo2DGfxBuffer
+.Ljp_0805097C:
+	cmp r5, #2
+	bls .Ljp_0805091C
+	movs r2, #0xf8
+	lsls r2, r2, #1
+	add r2, r8
+	ldrb r0, [r2]
+	movs r1, #1
+	orrs r0, r1
+	movs r1, #2
+	orrs r0, r1
+	strb r0, [r2]
+.Ljp_08050992:
+	add sp, #0x18
+	pop {r3, r4, r5}
+	mov r8, r3
+	mov r9, r4
+	mov sl, r5
+	pop {r4, r5, r6, r7}
+	pop {r0}
+	bx r0
+	.align 2, 0
+
+	.section .text.clear_ui_action_state_flag_01f0_after
+
     .section .text.clear_ui_action_state_flag_01f0_after
     jp_code_0803ee_func func_08050C2C, 0x509B8, 0x509F0
     jp_code_0803ee_func func_08050C64, 0x509F0, 0x50A98
