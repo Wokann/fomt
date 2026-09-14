@@ -5,14 +5,12 @@ Unk_Actor_0809BFE8::Unk_Actor_0809BFE8()
 {
 }
 
-EC Unk_Actor_0809BFE8 * func_0809BFE8() ALIAS(__18Unk_Actor_0809BFE8);
-
-EC unsigned int func_0809C060(Unk_Actor_0809BFE8 const & self)
+extern "C" unsigned int func_0809C060(Unk_Actor_0809BFE8 const & self)
 {
     return self.unk_08_0;
 }
 
-EC void func_0809C068(Unk_Actor_0809BFE8 & self, int arg_0)
+extern "C" void func_0809C068(Unk_Actor_0809BFE8 & self, int arg_0)
 {
     int val = self.unk_08_0 - arg_0;
 
@@ -24,18 +22,18 @@ EC void func_0809C068(Unk_Actor_0809BFE8 & self, int arg_0)
     self.unk_08_0 = val;
 }
 
-EC void func_0809C098(Unk_Actor_0809BFE8 & self, u32 const &)
+extern "C" void func_0809C098(Unk_Actor_0809BFE8 & self, u32 const &)
 {
     self.unk_0C = 0;
 }
 
-EC void func_0809C0A0(Unk_Actor_0809BFE8 & self, u32 const & value)
+extern "C" void func_0809C0A0(Unk_Actor_0809BFE8 & self, u32 const & value)
 {
     self.unk_10 = value;
     self.unk_0C = 1;
 }
 
-EC void func_0809C0AC(Unk_Actor_0809BFE8 & self, Unk_Actor_0809C0AC const & value)
+extern "C" void func_0809C0AC(Unk_Actor_0809BFE8 & self, Unk_Actor_0809C0AC const & value)
 {
     u32 const unk_04 = value.unk_04;
 
@@ -44,19 +42,19 @@ EC void func_0809C0AC(Unk_Actor_0809BFE8 & self, Unk_Actor_0809C0AC const & valu
     self.unk_0C = 2;
 }
 
-EC void func_0809C0BC(Unk_Actor_0809BFE8 & self, u32 const & value)
+extern "C" void func_0809C0BC(Unk_Actor_0809BFE8 & self, u32 const & value)
 {
     self.unk_10 = value;
     self.unk_0C = 3;
 }
 
-EC void func_0809C0C8(Unk_Actor_0809BFE8 & self, u32 const & value)
+extern "C" void func_0809C0C8(Unk_Actor_0809BFE8 & self, u32 const & value)
 {
     self.unk_10 = value;
     self.unk_0C = 4;
 }
 
-EC void func_0809C0D4(Unk_Actor_0809BFE8 & self)
+extern "C" void func_0809C0D4(Unk_Actor_0809BFE8 & self)
 {
     ActorLocation const location(Location(MAP_NONE, 0, 0), 0);
     u32 unused;
@@ -66,7 +64,7 @@ EC void func_0809C0D4(Unk_Actor_0809BFE8 & self)
     self.unk_08_0 = 100;
 }
 
-EC ActorStateSlots * func_0809C144(ActorStateSlots & self)
+extern "C" ActorStateSlots * func_0809C144(ActorStateSlots & self)
 {
     u32 i = 0;
     u8 zero = 0;
@@ -88,14 +86,14 @@ EC ActorStateSlots * func_0809C144(ActorStateSlots & self)
 // The raw actor routine at func_0809D500 indexes this order table directly.
 // Its element meanings are not decoded yet, so its original ROM label is
 // retained.
-EC u32 const gUnk_08103B10[] = {
+extern "C" u32 const gUnk_08103B10[] = {
     1, 2, 4, 5, 6, 7, 8, 9, 11, 3,
 };
 
 // func_0809D500 selects a 10-byte raw record from this table.  The individual
 // fields have not been decoded, so this keeps the original ROM label and byte
 // representation rather than assigning speculative names.
-EC u8 const gUnk_08103B38[][10] = {
+extern "C" u8 const gUnk_08103B38[][10] = {
     { 0x19, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x19, 0x00 },
     { 0x14, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x17, 0x00 },
     { 0x14, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x15, 0x00 },
@@ -127,7 +125,7 @@ EC u8 const gUnk_08103B38[][10] = {
 // The raw actor routine at func_0809D500 indexes these words directly.  Their
 // values are retained without speculative symbolic names until that routine's
 // data model is decoded.
-EC u32 const gUnk_08103C3C[] = {
+extern "C" u32 const gUnk_08103C3C[] = {
     0x21, 0x0C, 0x15, 0x16, 0x13, 0x14, 0x18,
     0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F,
 };
@@ -135,7 +133,7 @@ EC u32 const gUnk_08103C3C[] = {
 // func_0809D500 uses the 0..0x37 output of func_0809D7D8 as a 14-byte-row
 // index into this table.  The per-byte meanings remain undecoded, so the
 // original ROM label is retained.
-EC u8 const gUnk_08103C74[][14] = {
+extern "C" u8 const gUnk_08103C74[][14] = {
     { 0x01, 0x46, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x05, 0x0A, 0x14, 0x1E },
     { 0x00, 0x46, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x0A, 0x14, 0x1E, 0x32 },
     { 0x00, 0x46, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x05, 0x14, 0x1E, 0x32, 0x1E },
@@ -196,13 +194,13 @@ EC u8 const gUnk_08103C74[][14] = {
 
 // func_0809D168 selects one of these raw values.  Its element semantics have
 // not been decoded, so the original ROM label is kept.
-EC u32 const gUnk_08103F84[] = {
+extern "C" u32 const gUnk_08103F84[] = {
     1, 2, 11, 3, 34,
 };
 
 // func_0809D168 uses the 0..14 result from func_0809D418 to select one
 // five-byte raw row.  The row fields remain intentionally unnamed.
-EC u8 const gUnk_08103F98[][5] = {
+extern "C" u8 const gUnk_08103F98[][5] = {
     { 0x32, 0x28, 0x05, 0x00, 0x00 },
     { 0x32, 0x28, 0x0A, 0x00, 0x00 },
     { 0x19, 0x32, 0x0A, 0x00, 0x00 },
@@ -221,14 +219,14 @@ EC u8 const gUnk_08103F98[][5] = {
 };
 
 // Another raw actor branch indexes these ten words directly.
-EC u32 const gUnk_08103FE4[] = {
+extern "C" u32 const gUnk_08103FE4[] = {
     0x0A, 0x20, 0x0C, 0x0D, 0x0E,
     0x0F, 0x10, 0x11, 0x12, 0x17,
 };
 
 // func_0809D470 yields 0..20, and the raw actor routine uses that result as a
 // 10-byte row index.  The byte fields are not decoded yet.
-EC u8 const gUnk_0810400C[][10] = {
+extern "C" u8 const gUnk_0810400C[][10] = {
     { 0x00, 0x00, 0x32, 0x32, 0x19, 0x00, 0x00, 0x00, 0x00, 0x00 },
     { 0x00, 0x00, 0x32, 0x32, 0x19, 0x00, 0x00, 0x00, 0x00, 0x00 },
     { 0x00, 0x00, 0x32, 0x32, 0x19, 0x00, 0x00, 0x00, 0x00, 0x00 },
@@ -256,7 +254,7 @@ EC u8 const gUnk_0810400C[][10] = {
 
 // func_0809E804 treats these as seven four-byte records and reads their bytes
 // individually; they are not ROM pointers.
-EC u8 const gUnk_081040EC[][4] ALIGN(4) = {
+extern "C" u8 const gUnk_081040EC[][4] ALIGN(4) = {
     { 0xC8, 0x68, 0x02, 0x00 },
     { 0x50, 0x60, 0x00, 0x00 },
     { 0xA0, 0x60, 0x00, 0x00 },
@@ -265,5 +263,3 @@ EC u8 const gUnk_081040EC[][4] ALIGN(4) = {
     { 0xC8, 0x98, 0x02, 0x00 },
     { 0x28, 0x98, 0x03, 0x00 },
 };
-
-/* what follows shouldn't be hard except that to do it well I think there needs to be union/placeholder shenanigans */

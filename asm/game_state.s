@@ -792,7 +792,7 @@ func_08010358: @ 0x08010358
     ldr r6, [sp, #0x48]
     ldr r1, .L0801065C @ =0x000034DC
     adds r0, r6, r1
-    bl func_0809BFE8
+    bl __18Unk_Actor_0809BFE8
     ldr r2, .L08010608 @ =0x00001C70
     adds r0, r6, r2
     movs r1, #0x32
@@ -3152,7 +3152,7 @@ func_08011650: @ 0x08011650
     bl func_0809C4E4
     ldr r3, .L080118CC @ =0x000034DC
     adds r0, r7, r3
-    bl func_0809BFE8
+    bl __18Unk_Actor_0809BFE8
     movs r5, #0
     str r5, [r6]
     str r5, [sp, #0xc]

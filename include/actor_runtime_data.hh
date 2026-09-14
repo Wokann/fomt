@@ -20,15 +20,15 @@ struct Unk_Actor_0809C0AC
     u32 unk_04;
 };
 
-EC u32 const gUnk_08103B10[];
-EC u8 const gUnk_08103B38[][10];
-EC u32 const gUnk_08103C3C[];
-EC u8 const gUnk_08103C74[][14];
-EC u32 const gUnk_08103F84[];
-EC u8 const gUnk_08103F98[][5];
-EC u32 const gUnk_08103FE4[];
-EC u8 const gUnk_0810400C[][10];
+extern "C" u32 const gUnk_08103B10[];
+extern "C" u8 const gUnk_08103B38[][10];
+extern "C" u32 const gUnk_08103C3C[];
+extern "C" u8 const gUnk_08103C74[][14];
+extern "C" u32 const gUnk_08103F84[];
+extern "C" u8 const gUnk_08103F98[][5];
+extern "C" u32 const gUnk_08103FE4[];
+extern "C" u8 const gUnk_0810400C[][10];
 extern char const gCppRuntimeBadAlloc_ActorSelectorTrailer[];
-EC u8 const gUnk_081040EC[][4];
+extern "C" u8 const gUnk_081040EC[][4];
 
 #endif // ACTOR_RUNTIME_DATA_HH
