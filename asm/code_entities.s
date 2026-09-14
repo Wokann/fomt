@@ -15,11 +15,31 @@
     .endm
 
 code_entities_jp_raw_start:
-    jp_code_entities_chunk 0x1FDF4, 0x207E4
+    jp_code_entities_chunk 0x1FDF4, 0x1FE14
+    .global func_0801FE14
+    .thumb_func
+func_0801FE14:
+    jp_code_entities_chunk 0x1FE14, 0x1FE58
+    .global func_0801FE58
+    .thumb_func
+func_0801FE58:
+    jp_code_entities_chunk 0x1FE58, 0x1FF04
+    .global func_0801FF04
+    .thumb_func
+func_0801FF04:
+    jp_code_entities_chunk 0x1FF04, 0x201F4
+    .global func_080201F4
+    .thumb_func
+func_080201F4:
+    jp_code_entities_chunk 0x201F4, 0x207E4
     .4byte gUnk_080F0838
     jp_code_entities_chunk 0x207E8, 0x20EC0
     .4byte gUnk_080F0908
-    jp_code_entities_chunk 0x20EC4, 0x21A18
+    jp_code_entities_chunk 0x20EC4, 0x212B0
+    .global func_080212B0
+    .thumb_func
+func_080212B0:
+    jp_code_entities_chunk 0x212B0, 0x21A18
     .4byte gUnk_080F093C
     jp_code_entities_chunk 0x21A1C, 0x21D3C
     .4byte gUnk_080F09AC
