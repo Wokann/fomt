@@ -96,7 +96,7 @@
 | EU | `0x08104160`–`0x08104160` | `src/character_names_empty.o(.rodata)` | `src/character_names_empty.cc`、`include/character_names_empty.hh`、`data/text/eu/character_names_empty.cc`；唯一空字符串，姓名表和三处汇编均直接引用该符号；它与后续姓名表被 `bachelorette` 数据完整隔开 | 精确 |
 | EU | `0x08104161`–`0x0810417E` | `src/bachelorette.o(.rodata)` | `src/bachelorette.cc`、`include/bachelorette.hh`；6 组连续的 5 字节未知阈值行，所有已知汇编读取均为对应符号引用 | 精确 |
 | EU | `0x08104180`–`0x08104411` | `src/character_names_data.o(.rodata)` | `src/character_names_data.cc`、`include/character_names_data.hh`、`data/text/eu/character_names_data_1.cc`、`data/text/eu/character_names_data_2.cc`；41 条本地姓名文本、43 项 `gCharacterNameEntries` 和尾部运行时文本按物理顺序同属对象；43 个文本字段均为符号重定位，其中两项直接复用前一块的空文本 | 精确 |
-| EU | `0x08104414`–`0x0810498D` | `src/field_item_data.o(.rodata)` | `src/field_item_data.cc`、`include/field_item_data.hh`、`data/text/eu/field_item_data.cc` | `gUnk_081043BC`、运行时字符串 `1` 项 |
+| EU | `0x08104414`–`0x0810498D` | `src/field_item_data.o(.rodata)` | `src/field_item_data.cc`、`include/field_item_data.hh`、`data/text/eu/field_item_data.cc`；`gUnk_081043BC` 为连续 116 项、每项 12 字节的纯数值记录，后接运行时文本；所有已知读取均为表符号引用 | 精确 |
 | EU | `0x08104990`–`0x08104E61` | `src/calendar_events.o(.rodata)` | `src/calendar_events.cc`、`include/calendar_events.hh`、`data/text/eu/calendar_events.cc` | `gText_Calendar_DynamicSeasonNames`、节日文本 `21` 项、回退文本 `1` 项、运行时字符串 `2` 项 |
 | EU | `0x08104E64`–`0x08104EA1` | `src/possessive_labels.o(.rodata)` | `src/possessive_labels.cc`、`include/possessive_labels.hh`、`data/text/eu/possessive_labels.cc` | 文本 `6` 项、运行时字符串 `1` 项 |
 | EU | `0x08104EA2`–`0x08104EA3` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -185,7 +185,7 @@
 | DE | `0x08104B60`–`0x08104B60` | `src/character_names_empty.o(.rodata)` | `src/character_names_empty.cc`、`include/character_names_empty.hh`、`data/text/de/character_names_empty.cc`；唯一空字符串，姓名表和三处汇编均直接引用该符号；它与后续姓名表被 `bachelorette` 数据完整隔开 | 精确 |
 | DE | `0x08104B61`–`0x08104B7E` | `src/bachelorette.o(.rodata)` | `src/bachelorette.cc`、`include/bachelorette.hh`；6 组连续的 5 字节未知阈值行，所有已知汇编读取均为对应符号引用 | 精确 |
 | DE | `0x08104B80`–`0x08104E11` | `src/character_names_data.o(.rodata)` | `src/character_names_data.cc`、`include/character_names_data.hh`、`data/text/de/character_names_data_1.cc`、`data/text/de/character_names_data_2.cc`；41 条本地姓名文本、43 项 `gCharacterNameEntries` 和尾部运行时文本按物理顺序同属对象；43 个文本字段均为符号重定位，其中两项直接复用前一块的空文本 | 精确 |
-| DE | `0x08104E14`–`0x0810538D` | `src/field_item_data.o(.rodata)` | `src/field_item_data.cc`、`include/field_item_data.hh`、`data/text/de/field_item_data.cc` | `gUnk_081043BC`、运行时字符串 `1` 项 |
+| DE | `0x08104E14`–`0x0810538D` | `src/field_item_data.o(.rodata)` | `src/field_item_data.cc`、`include/field_item_data.hh`、`data/text/de/field_item_data.cc`；`gUnk_081043BC` 为连续 116 项、每项 12 字节的纯数值记录，后接运行时文本；所有已知读取均为表符号引用 | 精确 |
 | DE | `0x08105390`–`0x08105821` | `src/calendar_events.o(.rodata)` | `src/calendar_events.cc`、`include/calendar_events.hh`、`data/text/de/calendar_events.cc` | `gText_Calendar_DynamicSeasonNames`、节日文本 `21` 项、回退文本 `1` 项、运行时字符串 `2` 项 |
 | DE | `0x08105824`–`0x0810586D` | `src/possessive_labels.o(.rodata)` | `src/possessive_labels.cc`、`include/possessive_labels.hh`、`data/text/de/possessive_labels.cc` | 文本 `6` 项、运行时字符串 `1` 项 |
 | DE | `0x0810586E`–`0x0810586F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -320,7 +320,7 @@
 | `0x08103C1B`–`0x08103C1B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x08103C1C`–`0x08103EFD` | `src/character_names_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/character_names_data.cc`、`include/character_names_data.hh`<br>`data/text/jp/character_names_data_1.cc`、`data/text/jp/character_names_data_2.cc` | 41 条本地姓名文本（`0x08103C1C`–`0x08103D9B`）<br>`gCharacterNameEntries`（43 项，`0x08103D9C`–`0x08103EF3`；43 个文本字段均为命名符号重定位，ID 0 与 Child 直接引用前一块空文本）<br>尾部 `bad_alloc`（`0x08103EF4`–`0x08103EFD`）；汇编直接引用表符号 |
 | `0x08103EFE`–`0x08103EFF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08103F00`–`0x08104479` | `src/field_item_data.o(.rodata)` | [数据 / 嵌入文本] | `src/field_item_data.cc`、`include/field_item_data.hh`<br>`data/text/jp/field_item_data.cc` | `gUnk_081043BC`<br>运行时字符串 `1` 项 |
+| `0x08103F00`–`0x08104479` | `src/field_item_data.o(.rodata)` | [数据 / 嵌入文本] | `src/field_item_data.cc`、`include/field_item_data.hh`<br>`data/text/jp/field_item_data.cc` | `gUnk_081043BC`（116×12 字节，`0x08103F00`–`0x0810446F`；无指针字段）<br>尾部 `bad_alloc`（`0x08104470`–`0x08104479`）；已知汇编读取均为表符号引用 |
 | `0x0810447A`–`0x0810447B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x0810447C`–`0x08104955` | `src/calendar_events.o(.rodata)` | [数据 / 嵌入文本] | `src/calendar_events.cc`、`include/calendar_events.hh`<br>`data/text/jp/calendar_events.cc` | `gText_Calendar_DynamicSeasonNames`<br>文本 `22` 项（详见下方索引）<br>运行时字符串 `2` 项 |
 | `0x08104956`–`0x08104957` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -2154,7 +2154,7 @@
 | `0x08104127`–`0x08104127` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x08104128`–`0x081043B9` | `src/character_names_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/character_names_data.cc`、`include/character_names_data.hh`<br>`data/text/us/character_names_data_1.cc`、`data/text/us/character_names_data_2.cc` | 41 条本地姓名文本（`0x08104128`–`0x08104257`）<br>`gCharacterNameEntries`（43 项，`0x08104258`–`0x081043AF`；43 个文本字段均为命名符号重定位，ID 0 与 Child 直接引用前一块空文本）<br>尾部 `bad_alloc`（`0x081043B0`–`0x081043B9`）；汇编直接引用表符号 |
 | `0x081043BA`–`0x081043BB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x081043BC`–`0x08104935` | `src/field_item_data.o(.rodata)` | [数据 / 嵌入文本] | `src/field_item_data.cc`、`include/field_item_data.hh`<br>`data/text/us/field_item_data.cc` | `gUnk_081043BC`<br>运行时字符串 `1` 项 |
+| `0x081043BC`–`0x08104935` | `src/field_item_data.o(.rodata)` | [数据 / 嵌入文本] | `src/field_item_data.cc`、`include/field_item_data.hh`<br>`data/text/us/field_item_data.cc` | `gUnk_081043BC`（116×12 字节，`0x081043BC`–`0x0810492B`；无指针字段）<br>尾部 `bad_alloc`（`0x0810492C`–`0x08104935`）；已知汇编读取均为表符号引用 |
 | `0x08104936`–`0x08104937` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08104938`–`0x08104E09` | `src/calendar_events.o(.rodata)` | [数据 / 嵌入文本] | `src/calendar_events.cc`、`include/calendar_events.hh`<br>`data/text/us/calendar_events.cc` | `gText_Calendar_DynamicSeasonNames`<br>文本 `22` 项（详见下方索引）<br>运行时字符串 `2` 项 |
 | `0x08104E0A`–`0x08104E0B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
