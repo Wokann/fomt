@@ -473,8 +473,12 @@ func_080AD638:
     .thumb_func
 func_080AD6BC:
     .incbin "baserom_jp.gba", 0xAD6BC, (0xAD6DC - 0xAD6BC)
-    jp_code_809_func func_080ADCA4, 0xAD6DC, 0xAD740
-    jp_code_809_func func_080ADD08, 0xAD740, 0xAD77C
+    jp_code_809_func func_080AD6DC, 0xAD6DC, 0xAD740
+    jp_code_809_func func_080ADD08, 0xAD740, 0xAD758
+    .global func_080AD758
+    .thumb_func
+func_080AD758:
+    .incbin "baserom_jp.gba", 0xAD758, (0xAD77C - 0xAD758)
     jp_code_809_func func_080ADD44, 0xAD77C, 0xAD794
     jp_code_809_func func_080AD794, 0xAD794, 0xAD7AC
     jp_code_809_func func_080AD7AC, 0xAD7AC, 0xAD7B0

@@ -4389,7 +4389,61 @@ func_08050868: @ 0x080505F4
 	bx r1
 	.align 2, 0
 
-    jp_code_0803ee_func func_08050AD8, 0x50864, 0x508C8
+    .global func_08050AD8
+    .thumb_func
+func_08050AD8: @ 0x08050864
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    cmp r5, #0
+    blo .Ljp_08050876
+    bl func_080AD758
+    cmp r5, r0
+    blo .Ljp_0805087E
+.Ljp_08050876:
+    adds r0, r4, #0
+    bl ClearUiActionStateFlag01DC
+    b .Ljp_080508C2
+.Ljp_0805087E:
+    movs r0, #0xee
+    lsls r0, r0, #1
+    adds r2, r4, r0
+    ldrb r1, [r2]
+    lsls r0, r1, #0x1f
+    cmp r0, #0
+    beq .Ljp_0805089A
+    movs r1, #0xf0
+    lsls r1, r1, #1
+    adds r0, r4, r1
+    ldr r0, [r0]
+    cmp r0, r5
+    beq .Ljp_080508C2
+    b .Ljp_080508A0
+.Ljp_0805089A:
+    movs r0, #1
+    orrs r0, r1
+    strb r0, [r2]
+.Ljp_080508A0:
+    movs r1, #0xf2
+    lsls r1, r1, #1
+    adds r0, r4, r1
+    adds r1, r5, #0
+    bl func_080AD6DC
+    movs r1, #0xf0
+    lsls r1, r1, #1
+    adds r0, r4, r1
+    str r5, [r0]
+    movs r0, #0xee
+    lsls r0, r0, #1
+    adds r2, r4, r0
+    ldrb r0, [r2]
+    movs r1, #2
+    orrs r0, r1
+    strb r0, [r2]
+.Ljp_080508C2:
+    pop {r4, r5}
+    pop {r0}
+    bx r0
     .section .text.clear_ui_action_state_flag_01dc_after
     jp_code_0803ee_func func_08050B50, 0x508DC, 0x509A4
     .section .text.clear_ui_action_state_flag_01f0_after
