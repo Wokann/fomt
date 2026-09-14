@@ -19,4 +19,3 @@ u32 const gLibraryInitialEntryIds[] = {
 // zero or twelve to this sequence. Its embedded NUL is therefore a real
 // field separator, not object-end padding.
 #include FOMT_TEXT_INCLUDE(library_data_2.cc)
-#include FOMT_TEXT_INCLUDE(library_data_3.cc)
