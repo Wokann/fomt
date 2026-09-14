@@ -10,9 +10,11 @@ u32 const gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue =
 // The renderer consumes the first thirteen glyph codes; the explicit array
 // sizes preserve the remaining zero slots present in each regional ROM.
 #if defined(REGION_JP)
-u16 const gNewGameNameEntryUiCharacterCodes[20] =
-    FOMT_GLYPH_SEQUENCE("０１２３４５６７８９．ｍ位");
+u16 const gNewGameNameEntryUiCharacterCodes[20] = {
+    "０１２３４５６７８９．ｍ位"
+};
 #else
-u16 const gNewGameNameEntryUiCharacterCodes[21] =
-    FOMT_GLYPH_SEQUENCE("0123456789.m#");
+u16 const gNewGameNameEntryUiCharacterCodes[21] = {
+    "0123456789.m#"
+};
 #endif

@@ -1167,82 +1167,182 @@ std::vector<std::uint16_t> EncodeCppSourceGlyphLiteral(const std::string &litera
     return output;
 }
 
-std::string EmitGlyphWordInitializer(const std::vector<std::uint16_t> &words)
+std::string EmitGlyphWordElements(const std::vector<std::uint16_t> &words)
 {
     std::ostringstream output;
-    output << "{\n";
-    for (std::size_t at = 0; at < words.size(); at += 8) {
-        output << "    ";
-        const std::size_t end = std::min(at + 8, words.size());
-        for (std::size_t index = at; index < end; ++index) {
-            if (index != at)
-                output << ' ';
-            output << "0x" << HexWord(words[index]) << ',';
-        }
-        output << '\n';
+    for (std::size_t index = 0; index < words.size(); ++index) {
+        if (index != 0)
+            output << ", ";
+        output << "0x" << HexWord(words[index]);
     }
-    output << '}';
     return output.str();
 }
 
-bool TryCompileGlyphTextMacro(const std::string &source, const Charmap &charmap,
+std::string EmitByteElements(const Bytes &bytes)
+{
+    std::ostringstream output;
+    for (std::size_t index = 0; index < bytes.size(); ++index) {
+        if (index != 0)
+            output << ", ";
+        output << "0x" << HexByte(bytes[index]);
+    }
+    return output.str();
+}
+
+// A u8 or u16 array whose braced initializer contains quoted literals is
+// authored as readable regional text.  It is not valid input for agbcp by
+// itself: this generic pass lowers each literal to game-font bytes or words.
+// A literal does not imply a terminator; an owning table writes a normal `0`
+// element when the native data needs one.
+bool TryCompileEncodedArrayInitializer(const std::string &source, const Charmap &charmap,
     std::size_t &at, std::ostringstream &output)
 {
-    static constexpr std::string_view kTerminatedMacroName = "FOMT_GLYPH_TEXT";
-    static constexpr std::string_view kSequenceMacroName = "FOMT_GLYPH_SEQUENCE";
+    constexpr std::string_view kConst = "const";
+    constexpr std::string_view kByteType = "u8";
+    constexpr std::string_view kWordType = "u16";
 
-    std::string_view macro_name;
-    bool append_terminator = false;
-    if (StartsCppIdentifier(source, at, kTerminatedMacroName)) {
-        macro_name = kTerminatedMacroName;
-        append_terminator = true;
-    } else if (StartsCppIdentifier(source, at, kSequenceMacroName)) {
-        macro_name = kSequenceMacroName;
+    std::string_view element_type;
+    if (StartsCppIdentifier(source, at, kByteType)) {
+        element_type = kByteType;
+    } else if (StartsCppIdentifier(source, at, kWordType)) {
+        element_type = kWordType;
     } else {
         return false;
     }
 
-    std::size_t cursor = at + macro_name.size();
+    std::size_t cursor = at + element_type.size();
     while (cursor < source.size() && std::isspace(static_cast<unsigned char>(source[cursor])) != 0)
         ++cursor;
-    if (cursor == source.size() || source[cursor] != '(')
+    if (!StartsCppIdentifier(source, cursor, kConst))
         return false;
-    ++cursor;
+    cursor += kConst.size();
 
-    std::vector<std::uint16_t> words;
-    bool found_literal = false;
-    for (;;) {
+    while (cursor < source.size() && std::isspace(static_cast<unsigned char>(source[cursor])) != 0)
+        ++cursor;
+    if (cursor == source.size()
+        || (std::isalpha(static_cast<unsigned char>(source[cursor])) == 0 && source[cursor] != '_')) {
+        return false;
+    }
+    do {
+        ++cursor;
+    } while (cursor < source.size()
+        && (std::isalnum(static_cast<unsigned char>(source[cursor])) != 0 || source[cursor] == '_'));
+
+    while (cursor < source.size() && std::isspace(static_cast<unsigned char>(source[cursor])) != 0)
+        ++cursor;
+    if (cursor == source.size() || source[cursor] != '[')
+        return false;
+    do {
+        const std::size_t close = source.find(']', cursor + 1);
+        if (close == std::string::npos)
+            throw std::runtime_error("line " + std::to_string(SourceLineNumber(source, cursor))
+                + ": unterminated encoded array dimension");
+        cursor = close + 1;
         while (cursor < source.size() && std::isspace(static_cast<unsigned char>(source[cursor])) != 0)
             ++cursor;
-        if (cursor == source.size() || source[cursor] != '"')
-            break;
+    } while (cursor < source.size() && source[cursor] == '[');
 
-        const std::size_t line_number = SourceLineNumber(source, cursor);
-        const std::size_t end = FindCppQuotedLiteralEnd(source, cursor, line_number);
-        const std::vector<std::uint16_t> literal_words = EncodeCppSourceGlyphLiteral(
-            source.substr(cursor, end - cursor), charmap, line_number);
-        words.insert(words.end(), literal_words.begin(), literal_words.end());
-        cursor = end;
-        found_literal = true;
+    // Attributes may follow the array declarator.  They contain no initializer
+    // braces, so seek only the assignment that starts the direct array body.
+    while (cursor < source.size() && source[cursor] != '=') {
+        if (source[cursor] == ';' || source[cursor] == '{')
+            return false;
+        ++cursor;
     }
-    if (!found_literal) {
-        throw std::runtime_error("line " + std::to_string(SourceLineNumber(source, at))
-            + ": " + std::string(macro_name)
-            + " requires one or more quoted string literals");
-    }
+    if (cursor == source.size())
+        return false;
+    ++cursor;
     while (cursor < source.size() && std::isspace(static_cast<unsigned char>(source[cursor])) != 0)
         ++cursor;
-    if (cursor == source.size() || source[cursor] != ')') {
-        throw std::runtime_error("line " + std::to_string(SourceLineNumber(source, at))
-            + ": " + std::string(macro_name)
-            + " requires only quoted string literals");
+    if (cursor == source.size() || source[cursor] != '{')
+        return false;
+
+    output << source.substr(at, cursor - at + 1);
+    ++cursor;
+    std::size_t brace_depth = 1;
+    while (cursor < source.size()) {
+        if (source.compare(cursor, 2, "//") == 0) {
+            const std::size_t newline = source.find('\n', cursor + 2);
+            const std::size_t end = newline == std::string::npos ? source.size() : newline + 1;
+            output << source.substr(cursor, end - cursor);
+            cursor = end;
+            continue;
+        }
+        if (source.compare(cursor, 2, "/*") == 0) {
+            const std::size_t close = source.find("*/", cursor + 2);
+            if (close == std::string::npos) {
+                throw std::runtime_error("line " + std::to_string(SourceLineNumber(source, cursor))
+                    + ": unterminated C/C++ block comment");
+            }
+            const std::size_t end = close + 2;
+            output << source.substr(cursor, end - cursor);
+            cursor = end;
+            continue;
+        }
+        if (source[cursor] == '\'') {
+            const std::size_t end = FindCppCharacterLiteralEnd(source, cursor,
+                SourceLineNumber(source, cursor));
+            output << source.substr(cursor, end - cursor);
+            cursor = end;
+            continue;
+        }
+        if (source[cursor] == '"') {
+            if (element_type == kWordType) {
+                std::vector<std::uint16_t> words;
+                do {
+                    const std::size_t line_number = SourceLineNumber(source, cursor);
+                    const std::size_t end = FindCppQuotedLiteralEnd(source, cursor, line_number);
+                    const std::vector<std::uint16_t> literal_words = EncodeCppSourceGlyphLiteral(
+                        source.substr(cursor, end - cursor), charmap, line_number);
+                    words.insert(words.end(), literal_words.begin(), literal_words.end());
+                    cursor = end;
+                    while (cursor < source.size()
+                        && std::isspace(static_cast<unsigned char>(source[cursor])) != 0) {
+                        ++cursor;
+                    }
+                } while (cursor < source.size() && source[cursor] == '"');
+                if (words.empty()) {
+                    throw std::runtime_error("line " + std::to_string(SourceLineNumber(source, cursor))
+                        + ": a direct u16 glyph array cannot contain an empty literal");
+                }
+                output << EmitGlyphWordElements(words);
+            } else {
+                Bytes bytes;
+                do {
+                    const std::size_t line_number = SourceLineNumber(source, cursor);
+                    const std::size_t end = FindCppQuotedLiteralEnd(source, cursor, line_number);
+                    const Bytes literal_bytes = EncodeCppSourceStringLiteral(
+                        source.substr(cursor, end - cursor), charmap, line_number);
+                    bytes.insert(bytes.end(), literal_bytes.begin(), literal_bytes.end());
+                    cursor = end;
+                    while (cursor < source.size()
+                        && std::isspace(static_cast<unsigned char>(source[cursor])) != 0) {
+                        ++cursor;
+                    }
+                } while (cursor < source.size() && source[cursor] == '"');
+                if (bytes.empty()) {
+                    throw std::runtime_error("line " + std::to_string(SourceLineNumber(source, cursor))
+                        + ": a direct u8 glyph array cannot contain an empty literal");
+                }
+                output << EmitByteElements(bytes);
+            }
+            continue;
+        }
+        if (source[cursor] == '{') {
+            ++brace_depth;
+        } else if (source[cursor] == '}') {
+            --brace_depth;
+            if (brace_depth == 0) {
+                output << source[cursor++];
+                at = cursor;
+                return true;
+            }
+        }
+        output << source[cursor++];
     }
 
-    if (append_terminator)
-        words.push_back(0);
-    output << EmitGlyphWordInitializer(words);
-    at = cursor + 1;
-    return true;
+    throw std::runtime_error("line " + std::to_string(SourceLineNumber(source, at))
+        + ": unterminated direct encoded array initializer");
 }
 
 // A staff-credit sequence has deliberately non-C++ authoring syntax, but its
@@ -1363,7 +1463,7 @@ std::string CompileCppSourceText(const std::string &source, const Charmap &charm
             at = end;
             continue;
         }
-        if (TryCompileGlyphTextMacro(source, charmap, at, output))
+        if (TryCompileEncodedArrayInitializer(source, charmap, at, output))
             continue;
         if (TryCompileStaffCreditsMarker(source, charmap, staff_credits, at, output))
             continue;
@@ -3221,15 +3321,20 @@ void SelfTest()
     const Charmap glyph_map = Charmap::Parse(
         "20= \n30=0\n824F=\xEF\xBC\x90\n");
     const std::string generated_glyph = CompileCppSourceText(
-        "u16 const gGlyph[] = FOMT_GLYPH_TEXT(\"0 \xEF\xBC\x90\");\n", glyph_map);
-    Require(generated_glyph.find("0x0030, 0x0020, 0x824F, 0x0000,") != std::string::npos,
-        "glyph text source did not become mapped halfword codes");
+        "u16 const gGlyph[] = { \"0 \xEF\xBC\x90\", 0 };\n", glyph_map);
+    Require(generated_glyph.find("0x0030, 0x0020, 0x824F, 0") != std::string::npos,
+        "direct u16 glyph text did not become mapped halfword codes");
 
     const std::string generated_glyph_sequence = CompileCppSourceText(
-        "u16 const gGlyph[] = FOMT_GLYPH_SEQUENCE(\"0 \xEF\xBC\x90\");\n", glyph_map);
-    Require(generated_glyph_sequence.find("0x0030, 0x0020, 0x824F,") != std::string::npos
+        "u16 const gGlyph[] = { \"0 \xEF\xBC\x90\" };\n", glyph_map);
+    Require(generated_glyph_sequence.find("0x0030, 0x0020, 0x824F") != std::string::npos
             && generated_glyph_sequence.find("0x0000") == std::string::npos,
-        "glyph sequence source unexpectedly added a terminator");
+        "direct u16 glyph sequence unexpectedly added a terminator");
+
+    const std::string generated_glyph_bytes = CompileCppSourceText(
+        "u8 const gGlyphBytes[] = { \"0\\xBF\", 0 };\n", glyph_map);
+    Require(generated_glyph_bytes.find("0x30, 0xBF, 0") != std::string::npos,
+        "direct u8 glyph text did not become mapped byte codes");
 
     const std::string generic_section_source =
         "char const gText_Sectioned[] __attribute__((section(\".rodata.example\"))) = \"A\";\n";

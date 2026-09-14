@@ -83,18 +83,25 @@ at its real ROM position after the text it references:
 对齐，使该字符串真正从下一字节开始。此规则按声明形状工作，不依赖标签、地址或
 函数名；未标注和带 `SECTION` 的遗留对象不会改变。
 
-少数 UI 路径逐个读取 `u16` 字符码，而不是读取普通 `char` 文本。此类对象的
-维护源使用显式的非标准标记 `FOMT_GLYPH_TEXT(...)`，以免被误认为普通 C++：
+少数 UI 路径逐个读取 `u8` 或 `u16` 字符码，而不是读取普通 `char` 文本。此类对象仍按
+普通数组的形式维护，直接书写区域文本：
 
-    u16 const gExampleGlyphCodes[] = FOMT_GLYPH_TEXT("0123枚");
+    u16 const gExampleGlyphCodes[] = {
+        "0123枚",
+        0,
+    };
 
-`fomt-text source` 会按当前区域的 charmap 把每个字符变成一个一或双字节的
-`u16` 码值，并自动追加 `0x0000` 结束码。该标记必须经过文本工具转换后才是
-可编译的普通 C/C++ 初始化器；不要手写结束码或对齐填充。
+`fomt-text source` 会按当前区域的 charmap 把 `u8`/`u16` 数组花括号中的字符串变成
+一或双字节的游戏码值。文本工具转换后才是可编译的普通 C/C++ 初始化器；数组末尾的
+`0` 是原生表的显式结束码，不是对齐填充。
 
-若原生代码按固定元素数量读取、而原 ROM 没有结束码，则使用
-`FOMT_GLYPH_SEQUENCE(...)`。它使用相同的 UTF-8 到半字码转换，但绝不追加
-`0x0000`；这不是普通字符串，必须以原始调用方的固定读取长度为依据。
+若原生代码按固定元素数量读取、而原 ROM 没有结束码，只省略数组末尾的 `0`：
+
+    u16 const gExampleGlyphSequence[] = {
+        "0123枚",
+    };
+
+这不是普通字符串，必须以原始调用方的固定读取长度为依据。
 
 Keep a page-break control in the literal that owns it.  For example, write
 `"...{Press}\p"` and start the following text literal on the next source line.

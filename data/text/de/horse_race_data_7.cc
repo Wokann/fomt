@@ -1,1 +1,1 @@
-FOMT_GLYPH_SEQUENCE("0123456789 xGD. Medillen")
+    "0123456789 xGD. Medillen",

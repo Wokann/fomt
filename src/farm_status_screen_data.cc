@@ -72,10 +72,10 @@ AnimalStatusScreenText const gAnimalStatusScreenText = {
 #include FOMT_TEXT_INCLUDE(farm_status_screen_data_5.cc)
 
 // The renderer consumes this preloaded glyph-code array directly.  The
-// selected regional text expression is encoded by the ordinary text channel.
-u16 const gFarmStatusScreenPreloadedGlyphs[] =
+// selected regional text is encoded by the ordinary text channel.
+u16 const gFarmStatusScreenPreloadedGlyphs[] = {
 #include FOMT_TEXT_INCLUDE(farm_status_screen_data_6.cc)
-;
+};
 
 // This runtime literal immediately follows the glyph array.
 #include FOMT_TEXT_INCLUDE(farm_status_screen_data_7.cc)

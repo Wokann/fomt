@@ -1,1 +1,1 @@
-FOMT_GLYPH_TEXT("0123456789 xGYour medals")
+    "0123456789 xGYour medals",
