@@ -792,9 +792,7 @@ SECTIONS
         . = 0xFE3A0; src/beach_cafe_shop_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0xFE53C; src/blacksmith_menu_data.o(.rodata);
-        FILL(0x00);
-        . = 0xFE6A4; src/blacksmith_data.o(.rodata);
+        . = 0xFE53C; src/blacksmith_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         . = 0xFEC90; src/carpenter_data.o(.rodata);

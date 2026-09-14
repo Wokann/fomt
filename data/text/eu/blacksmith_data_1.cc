@@ -1,41 +1,41 @@
-#include "blacksmith_menu_data.hh"
+#include "blacksmith_data.hh"
 
 char const gText_Blacksmith_ToolUpgradeMenuLabel[] =
-    "            Aufrüsten";
+    "            Upgrading ";
 
 char const gText_Blacksmith_ToolUpgradeTitle[] =
-    "Werkzeuge aufrüsten";
+    "Upgrading Tools";
 
 char const gText_Blacksmith_Empty[] =
     "";
 
 char const gText_Blacksmith_MakeMayonnaiseMaker[] =
-    "Mayonnaisemaschine machen";
+    "Make Mayonnaise Maker";
 
 char const gText_Blacksmith_CostAdamantite[] =
-    "Preis für\r\n"
-    "Gold   20.000G\r\n"
-    "Erz     Adamantite";
+    "Cost to make this\r\n"
+    "Gold   20,000G\r\n"
+    "Ore     Adamantite";
 
 char const gText_Blacksmith_MakeCheeseMaker[] =
-    "Käsemaschine machen";
+    "Make Cheese Maker";
 
 char const gText_Blacksmith_MakeYarnMaker[] =
-    "Garnmaschine machen";
+    "Make Yarn Maker";
 
 char const gText_Blacksmith_MakeNecklace[] =
-    "Halskette machen";
+    "Make Necklace";
 
 char const gText_Blacksmith_CostOrichalc[] =
-    "Preis für\r\n"
-    "Gold   1.000G\r\n"
-    "Erz     Orichalc";
+    "Cost to make this\r\n"
+    "Gold   1,000G\r\n"
+    "Ore     Orichalc";
 
 char const gText_Blacksmith_MakeEarrings[] =
-    "Ohrringe machen";
+    "Make Earrings";
 
 char const gText_Blacksmith_MakeBracelet[] =
-    "Armband machen";
+    "Make Bracelet";
 
 char const gText_Blacksmith_MakeBroach[] =
-    "Brosche machen";
+    "Make Broach";

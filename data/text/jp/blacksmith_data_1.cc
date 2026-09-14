@@ -1,4 +1,4 @@
-#include "blacksmith_menu_data.hh"
+#include "blacksmith_data.hh"
 
 char const gText_Blacksmith_ToolUpgradeMenuLabel[] =
     "　　　　　　の改造";
@@ -38,4 +38,4 @@ char const gText_Blacksmith_MakeBracelet[] =
     "ブレスレットを作る";
 
 char const gText_Blacksmith_MakeBroach[] =
-    "ブローチを作る";
+    "ブローチを作る\0\0\0\0";

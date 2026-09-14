@@ -705,8 +705,7 @@ SECTIONS
         . = 0xFEB40; src/beach_cafe_shop_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
-        . = 0xFECC8; src/blacksmith_menu_data.o(.rodata);
-        . = 0xFEDD8; src/blacksmith_data.o(.rodata);
+        . = 0xFECC8; src/blacksmith_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         . = 0xFF3B0; src/carpenter_data.o(.rodata);

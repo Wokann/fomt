@@ -1,4 +1,4 @@
-#include "blacksmith_menu_data.hh"
+#include "blacksmith_data.hh"
 
 char const gText_Blacksmith_ToolUpgradeMenuLabel[] =
     "            Upgrading ";

@@ -1,8 +1,9 @@
 #include "blacksmith_data.hh"
 
-#include "blacksmith_menu_data.hh"
-
 #include "item.hh"
+
+// Menu labels precede the menu header and catalog in the original ROM.
+#include FOMT_TEXT_INCLUDE(blacksmith_data_1.cc)
 
 // JP and US encode the tool-upgrade header differently.  Keep their native
 // layouts rather than adding artificial data solely to make the arrays match.
@@ -31,4 +32,4 @@ BlacksmithCatalogEntry const gBlacksmithCatalog[] = {
     { ITEM_ARTICLE_BROOCH, gText_Blacksmith_MakeBroach, 1000, 2, gText_Blacksmith_CostOrichalc },
 };
 
-#include FOMT_TEXT_INCLUDE(blacksmith_data.cc)
+#include FOMT_TEXT_INCLUDE(blacksmith_data_2.cc)
