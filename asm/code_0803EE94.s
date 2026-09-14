@@ -640,7 +640,164 @@ func_0804E3D8:
     @ The following tilemap rectangle filler is also rebuilt there.
     @ Its adjacent unknown virtual-object initializer is rebuilt there too.
     jp_code_0803ee_func func_0804EA94, 0x4E8BC, 0x4EAAC
-    jp_code_0803ee_func func_0804EC84, 0x4EAAC, 0x4EBC8
+    .global func_0804EC84
+    .thumb_func
+func_0804EC84: @ 0x0804EAAC
+    push {r4, r5, r6, r7, lr}
+    mov r7, sb
+    mov r6, r8
+    push {r6, r7}
+    sub sp, #0xc
+    adds r7, r1, #0
+    mov r8, r2
+    lsrs r1, r0, #0x1f
+    mov sb, r1
+    movs r4, #0
+    adds r5, r0, #0
+    cmp r5, #0
+    bge .Ljp_0804EAC8
+    rsbs r5, r5, #0
+.Ljp_0804EAC8:
+    movs r6, #1
+.Ljp_0804EACA:
+    add r4, sp
+    adds r0, r5, #0
+    movs r1, #0xa
+    bl __modsi3
+    adds r0, #0x30
+    strb r0, [r4]
+    adds r4, r6, #0
+    adds r0, r5, #0
+    movs r1, #0xa
+    bl __divsi3
+    adds r5, r0, #0
+    cmp r5, #0
+    ble .Ljp_0804EAF0
+    adds r0, r4, #1
+    adds r6, r0, #0
+    cmp r6, #0xa
+    bls .Ljp_0804EACA
+.Ljp_0804EAF0:
+    mov r2, r8
+    cmp r2, #0
+    beq .Ljp_0804EB10
+    cmp r8, r4
+    bhs .Ljp_0804EAFE
+    mov r4, r8
+    b .Ljp_0804EB10
+.Ljp_0804EAFE:
+    cmp r8, r4
+    bls .Ljp_0804EB10
+    movs r1, #0x20
+.Ljp_0804EB04:
+    mov r2, sp
+    adds r0, r2, r4
+    strb r1, [r0]
+    adds r4, #1
+    cmp r8, r4
+    bhi .Ljp_0804EB04
+.Ljp_0804EB10:
+    mov r0, sb
+    cmp r0, #0
+    beq .Ljp_0804EB20
+    mov r2, sp
+    adds r1, r2, r4
+    movs r0, #0x2d
+    strb r0, [r1]
+    adds r4, #1
+.Ljp_0804EB20:
+    subs r4, #1
+    movs r0, #1
+    rsbs r0, r0, #0
+    cmp r4, r0
+    beq .Ljp_0804EB3C
+    adds r1, r0, #0
+.Ljp_0804EB2C:
+    mov r2, sp
+    adds r0, r2, r4
+    ldrb r0, [r0]
+    strb r0, [r7]
+    adds r7, #1
+    subs r4, #1
+    cmp r4, r1
+    bne .Ljp_0804EB2C
+.Ljp_0804EB3C:
+    movs r0, #0
+    strb r0, [r7]
+    add sp, #0xc
+    pop {r3, r4}
+    mov r8, r3
+    mov sb, r4
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_0804ED28
+    .thumb_func
+func_0804ED28: @ 0x0804EB50
+    push {r4, r5, r6, r7, lr}
+    adds r4, r0, #0
+    lsls r2, r2, #0x10
+    lsrs r7, r2, #0x10
+    lsls r3, r3, #0x10
+    adds r5, r1, #0
+    lsrs r6, r3, #4
+.Ljp_0804EB5E:
+    adds r0, r4, #0
+    movs r1, #0xa
+    bl __udivsi3
+    lsls r2, r0, #2
+    adds r2, r2, r0
+    lsls r2, r2, #1
+    subs r2, r4, r2
+    lsls r2, r2, #2
+    adds r2, r7, r2
+    adds r1, r2, #1
+    orrs r1, r6
+    strh r1, [r5]
+    subs r3, r5, #2
+    adds r1, r6, #0
+    orrs r1, r2
+    strh r1, [r3]
+    ldr r1, [sp, #0x14]
+    lsls r3, r1, #1
+    adds r3, r3, r5
+    adds r1, r2, #3
+    orrs r1, r6
+    strh r1, [r3]
+    subs r3, #2
+    adds r2, #2
+    orrs r2, r6
+    strh r2, [r3]
+    adds r4, r0, #0
+    subs r5, #4
+    cmp r4, #0
+    bne .Ljp_0804EB5E
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_0804EBA4:
+    push {r4, r5, r6, lr}
+    ldr r5, [sp, #0x10]
+    ldr r6, [sp, #0x14]
+    movs r4, #0
+    str r4, [r0]
+    str r4, [r0, #4]
+    ldr r4, .Ljp_0804EBC4
+    str r4, [r0, #8]
+    str r1, [r0, #0xc]
+    str r2, [r0, #0x10]
+    strh r3, [r0, #0x14]
+    strh r5, [r0, #0x16]
+    str r6, [r0, #0x18]
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_0804EBC4: .4byte vtable_unk_080E7848
+
     jp_code_0803ee_func func_0804EBC8, 0x4EBC8, 0x4EC34
     jp_code_0803ee_func func_0804EC34, 0x4EC34, 0x4EC48
     jp_code_0803ee_func func_0804EC48, 0x4EC48, 0x4EC68
@@ -29435,10 +29592,24 @@ func_0804ED28: @ 0x0804ED28
 	bx r0
 	.align 2, 0
 .L0804ED7C:
-	.byte 0x70, 0xB5, 0x04, 0x9D
-	.byte 0x05, 0x9E, 0x00, 0x24, 0x04, 0x60, 0x44, 0x60, 0x04, 0x4C, 0x84, 0x60, 0xC1, 0x60, 0x02, 0x61
-	.byte 0x83, 0x82, 0xC5, 0x82, 0x86, 0x61, 0x70, 0xBC, 0x02, 0xBC, 0x08, 0x47
-	.4byte vtable_unk_080E7858
+	push {r4, r5, r6, lr}
+	ldr r5, [sp, #0x10]
+	ldr r6, [sp, #0x14]
+	movs r4, #0
+	str r4, [r0]
+	str r4, [r0, #4]
+	ldr r4, .L0804ED9C
+	str r4, [r0, #8]
+	str r1, [r0, #0xc]
+	str r2, [r0, #0x10]
+	strh r3, [r0, #0x14]
+	strh r5, [r0, #0x16]
+	str r6, [r0, #0x18]
+	pop {r4, r5, r6}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.L0804ED9C: .4byte vtable_unk_080E7858
 
 	thumb_func_start func_0804EDA0
 func_0804EDA0: @ 0x0804EDA0
