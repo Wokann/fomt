@@ -107,11 +107,7 @@ gUnk_0852D984:
 	@ Keep their common symbols on the physical DE bytes rather than aliases.
 	.global gUnk_0858BA28
 gUnk_0858BA28:
-	.incbin "baserom_de.gba", 0x312AC4, (0x3817D8 - 0x312AC4)
-	.incbin "build/de/graphics/sprites/rick_daily/rick_daily.4bpp"
-	.incbin "baserom_de.gba", 0x382B58, (0x3E94DC - 0x382B58)
-	.incbin "build/de/graphics/sprites/rick_daily/rick_daily.gbapal"
-	.incbin "baserom_de.gba", 0x3E94FC, (0x3EE0FC - 0x3E94FC)
+	.incbin "baserom_de.gba", 0x312AC4, 0xDB638
 	.global gUnk_08667060
 gUnk_08667060:
 	.incbin "baserom_de.gba", 0x3EE0FC, 0x840
