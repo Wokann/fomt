@@ -367,4 +367,4 @@ RandomItemCandidateConfiguration const gRandomItemCandidateConfigurations[RANDOM
     }, 0x00, 0x00 },
 };
 
-#include "data/text/common/random_item_selection.cc"
+#include FOMT_TEXT_INCLUDE(random_item_selection.cc)

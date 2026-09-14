@@ -1,6 +1,6 @@
 #include "inn_shop_data.hh"
 
-#include FOMT_TEXT_INCLUDE(inn_shop_data.cc)
+#include FOMT_TEXT_INCLUDE(inn_shop_data_1.cc)
 
 InnShopMenuEntry const gInnShopMenu[] = {
     { 0x1CD, 0, gText_InnShop_WaterDescription, 1, 1, 0, 1 },
@@ -14,5 +14,5 @@ InnShopMenuEntry const gInnShopMenu[] = {
     { 0x122, 200, gText_InnShop_MilkDescription, 1, 3, -20, 1 },
 };
 
-#include FOMT_TEXT_INCLUDE(inn_shop_data_1.cc)
-#include "data/text/common/inn_shop_data_1.cc"
+#include FOMT_TEXT_INCLUDE(inn_shop_data_2.cc)
+#include FOMT_TEXT_INCLUDE(inn_shop_data_3.cc)

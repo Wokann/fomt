@@ -50,26 +50,26 @@
 | EU | `0x080F3404`–`0x080F8A1F` | `src/entity_ui_resource_selector.o(.rodata)` | `src/entity_ui_resource_selector.cc`、`include/entity_ui_resource_selector.hh`、`data/text/eu/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_23.cc`；25 个连续选择器描述符、24 个运行时文本和全部内部指针均为同名对象内的符号重定位 | 精确 |
 | EU | `0x080F8A20`–`0x080F9EE3` | `data/scripts/script_table.o(.rodata.mary_script_table)` | Mary 生成的 `gMaryScriptTable`；脚本本体由 Mary 独立管理 | 精确 |
 | EU | `0x080F9EE4`–`0x080F9F10` | `src/script_engine.o(.rodata)` | `src/script_engine.cc`、`include/script_engine.hh`、`data/text/eu/script_engine.cc`；运行时字符串 `2` 项（首项为 `gCppRuntimeBadAlloc_ScriptEngine`）与 3 项 UI 字符串按原 ROM 顺序同属该对象 | 精确 |
-| EU | `0x080FB224`–`0x080FB86D` | `src/intro_scene_data.o(.rodata)` | `data/text/common/intro_scene_data.cc` → `src/intro_scene_data.cc`（解包资源指针表）→ `data/text/eu/intro_scene_data.cc` → `data/text/common/intro_scene_data_1.cc`<br>`include/intro_scene_data.hh`；20 个解包资源入口均为资产容器中的直接标签；所有已知汇编读取为符号重定位 | 精确 |
-| EU | `0x080FB870`–`0x080FBEC5` | `src/farm_status_screen_data.o(.rodata)` | `data/text/eu/farm_status_screen_data.cc` → `data/text/common/farm_status_screen_data.cc` → `src/farm_status_screen_data.cc`（状态结构）→ `data/text/eu/farm_status_screen_data_1.cc` → `data/text/common/farm_status_screen_data_1.cc` → `data/text/eu/farm_status_screen_data_2.cc` → `src/farm_status_screen_data.cc`（`gFarmStatusScreenPreloadedGlyphs`；区域 `_3` 字形表达式）→ `data/text/common/farm_status_screen_data_2.cc` → `src/farm_status_screen_data.cc`（资源/预览表）→ `data/text/common/farm_status_screen_data_3.cc`<br>`include/farm_status_screen_data.hh`；14 个预览资源入口均为资产容器直接标签；所有已知汇编读取为符号重定位 | 精确 |
-| EU | `0x080FBEC8`–`0x080FC0ED` | `src/records_screen_data.o(.rodata)` | `data/text/eu/records_screen_data.cc` → `src/records_screen_data.cc`（小游戏资源指针表）→ `data/text/common/records_screen_data.cc` → `src/records_screen_data.cc`（压缩单元表）→ `data/text/common/records_screen_data_1.cc` → `src/records_screen_data.cc`（`gUiPreloadedDigitGlyphCodes`；区域字形序列）→ `data/text/common/records_screen_data_2.cc`<br>`include/records_screen_data.hh`；14 个资源入口均为资产容器直接标签；所有已知汇编读取为符号重定位 | 精确 |
+| EU | `0x080FB224`–`0x080FB86D` | `src/intro_scene_data.o(.rodata)` | `data/text/eu/intro_scene_data_1.cc` → `src/intro_scene_data.cc`（解包资源指针表）→ `data/text/eu/intro_scene_data_2.cc` → `data/text/eu/intro_scene_data_3.cc`<br>`include/intro_scene_data.hh`；20 个解包资源入口均为资产容器中的直接标签；所有已知汇编读取为符号重定位 | 精确 |
+| EU | `0x080FB870`–`0x080FBEC5` | `src/farm_status_screen_data.o(.rodata)` | `data/text/eu/farm_status_screen_data_1.cc` → `data/text/eu/farm_status_screen_data_2.cc` → `src/farm_status_screen_data.cc`（状态结构）→ `data/text/eu/farm_status_screen_data_3.cc` → `data/text/eu/farm_status_screen_data_4.cc` → `data/text/eu/farm_status_screen_data_5.cc` → `src/farm_status_screen_data.cc`（`gFarmStatusScreenPreloadedGlyphs`；区域 `_3` 字形表达式）→ `data/text/eu/farm_status_screen_data_7.cc` → `src/farm_status_screen_data.cc`（资源/预览表）→ `data/text/eu/farm_status_screen_data_8.cc`<br>`include/farm_status_screen_data.hh`；14 个预览资源入口均为资产容器直接标签；所有已知汇编读取为符号重定位 | 精确 |
+| EU | `0x080FBEC8`–`0x080FC0ED` | `src/records_screen_data.o(.rodata)` | `data/text/eu/records_screen_data_1.cc` → `src/records_screen_data.cc`（小游戏资源指针表）→ `data/text/eu/records_screen_data_2.cc` → `src/records_screen_data.cc`（压缩单元表）→ `data/text/eu/records_screen_data_3.cc` → `src/records_screen_data.cc`（`gUiPreloadedDigitGlyphCodes`；区域字形序列）→ `data/text/eu/records_screen_data_4.cc`<br>`include/records_screen_data.hh`；14 个资源入口均为资产容器直接标签；所有已知汇编读取为符号重定位 | 精确 |
 | EU | `0x080FC0EE`–`0x080FC0EF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| EU | `0x080FC0F0`–`0x080FC70D` | `src/staff_credits.o(.rodata)` | `data/text/eu/staff_credits.cc`（可见名单序列，经 `fomt-text` 在所有者内生成固定字段与行指针表）→ `data/text/common/staff_credits_1.cc`<br>`src/staff_credits.cc`、`include/staff_credits.hh`；名单文本、行指针表与运行时尾部字符串按 ROM 顺序同属该对象；所有已知汇编读取为符号重定位 | 精确 |
+| EU | `0x080FC0F0`–`0x080FC70D` | `src/staff_credits.o(.rodata)` | `data/text/eu/staff_credits_1.cc`（可见名单序列，经 `fomt-text` 在所有者内生成固定字段与行指针表）→ `data/text/eu/staff_credits_2.cc`<br>`src/staff_credits.cc`、`include/staff_credits.hh`；名单文本、行指针表与运行时尾部字符串按 ROM 顺序同属该对象；所有已知汇编读取为符号重定位 | 精确 |
 | EU | `0x080FC70E`–`0x080FD59B` | `src/town_map_data.o(.rodata)` | `src/town_map_data.cc`（`gTownMapResourceIds`）→ `data/text/eu/town_map.cc` → `src/town_map_data.cc`（热点表、区域查询表与两个回退项）<br>`include/town_map.hh`；所有文本/表引用均为符号重定位，两个已验证的热点字段引用使用 `gTownMapHotspots + offset` | 精确 |
 | EU | `0x080FD59C`–`0x080FD5CE` | `src/library_opening_hours_data.o(.rodata)` | `data/text/eu/library_opening_hours_data.cc` → `src/library_opening_hours_data.cc`<br>`include/library_opening_hours_data.hh`；唯一文本 `gText_Library_OpeningHours` 的汇编读取为符号重定位 | 精确 |
 | EU | `0x080FD5CF`–`0x080FD5CF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FD5D0`–`0x080FD95F` | `src/town_map_area_data.o(.rodata)` | `src/town_map_area_data.cc`（`gTownMapAreaBounds` 的五个按地图编号排列的子表）<br>`include/town_map_area_data.hh`；来自 Town Map 查询表的 5 个引用均为对象或命名子数组的符号重定位 | 精确 |
-| EU | `0x080FD960`–`0x080FD9AD` | `src/library_data.o(.rodata)` | `data/text/common/library_data.cc`（首个运行时字符串）→ `src/library_data.cc`（初始条目表）→ `data/text/eu/library_data_1.cc`（两项固定 12 字节菜单字段）→ `data/text/common/library_data_1.cc`（尾部运行时字符串）<br>`include/library_data.hh`；条目表与菜单的所有 ROM 指针均为汇编符号重定位 | 精确 |
+| EU | `0x080FD960`–`0x080FD9AD` | `src/library_data.o(.rodata)` | `data/text/eu/library_data_1.cc`（首个运行时字符串）→ `src/library_data.cc`（初始条目表）→ `data/text/eu/library_data_2.cc`（两项固定 12 字节菜单字段）→ `data/text/eu/library_data_3.cc`（尾部运行时字符串）<br>`include/library_data.hh`；条目表与菜单的所有 ROM 指针均为汇编符号重定位 | 精确 |
 | EU | `0x080FD9AE`–`0x080FD9AF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| EU | `0x080FD9B0`–`0x080FDE21` | `src/poultry_shop_data.o(.rodata)` | `data/text/eu/poultry_shop_data.cc`（菜单文本）→ `src/poultry_shop_data.cc`（五项目录表）→ `data/text/eu/poultry_shop_data_1.cc`（状态与对话文本）→ `data/text/common/poultry_shop_data_1.cc`（尾部运行时字符串）<br>`include/poultry_shop_data.hh`；所有目录内及跨块引用均为符号重定位 | 精确 |
+| EU | `0x080FD9B0`–`0x080FDE21` | `src/poultry_shop_data.o(.rodata)` | `data/text/eu/poultry_shop_data_1.cc`（菜单文本）→ `src/poultry_shop_data.cc`（五项目录表）→ `data/text/eu/poultry_shop_data_2.cc`（状态与对话文本）→ `data/text/eu/poultry_shop_data_3.cc`（尾部运行时字符串）<br>`include/poultry_shop_data.hh`；所有目录内及跨块引用均为符号重定位 | 精确 |
 | EU | `0x080FDE22`–`0x080FDE23` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| EU | `0x080FDE24`–`0x080FE099` | `src/supermarket_data.o(.rodata)` | `src/supermarket_data.cc`（作物种子目录）→ `data/text/eu/supermarket_data.cc`（前段文本）→ `src/supermarket_data.cc`（补充种子目录）→ `data/text/eu/supermarket_data_1.cc`（后段文本）→ `data/text/common/supermarket_data_1.cc`（尾部运行时字符串）<br>`include/supermarket_data.hh`；所有目录与文本读取均为符号重定位 | 精确 |
+| EU | `0x080FDE24`–`0x080FE099` | `src/supermarket_data.o(.rodata)` | `src/supermarket_data.cc`（作物种子目录）→ `data/text/eu/supermarket_data_1.cc`（前段文本）→ `src/supermarket_data.cc`（补充种子目录）→ `data/text/eu/supermarket_data_2.cc`（后段文本）→ `data/text/eu/supermarket_data_3.cc`（尾部运行时字符串）<br>`include/supermarket_data.hh`；所有目录与文本读取均为符号重定位 | 精确 |
 | EU | `0x080FE09A`–`0x080FE09B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| EU | `0x080FE09C`–`0x080FE2AD` | `src/clinic_data.o(.rodata)` | `src/clinic_data.cc`（目录表）→ `data/text/eu/clinic_data.cc`（9 项文本）→ `data/text/common/clinic_data_1.cc`（运行时尾部字符串）<br>`include/clinic_data.hh`；所有诊所目录与文本读取均为符号重定位 | 精确 |
+| EU | `0x080FE09C`–`0x080FE2AD` | `src/clinic_data.o(.rodata)` | `src/clinic_data.cc`（目录表）→ `data/text/eu/clinic_data_1.cc`（9 项文本）→ `data/text/eu/clinic_data_2.cc`（运行时尾部字符串）<br>`include/clinic_data.hh`；所有诊所目录与文本读取均为符号重定位 | 精确 |
 | EU | `0x080FE2AE`–`0x080FE2AF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| EU | `0x080FE2B0`–`0x080FE4CD` | `src/inn_shop_data.o(.rodata)` | `src/inn_shop_data.cc`：`data/text/eu/inn_shop_data.cc`（菜品说明）→ 菜单表 → `data/text/eu/inn_shop_data_1.cc`（对话）→ `data/text/common/inn_shop_data_1.cc`（运行时尾部字符串）<br>`include/inn_shop_data.hh`；全部菜单和对话读取均为符号重定位 | 精确 |
+| EU | `0x080FE2B0`–`0x080FE4CD` | `src/inn_shop_data.o(.rodata)` | `src/inn_shop_data.cc`：`data/text/eu/inn_shop_data_1.cc`（菜品说明）→ 菜单表 → `data/text/eu/inn_shop_data_2.cc`（对话）→ `data/text/eu/inn_shop_data_3.cc`（运行时尾部字符串）<br>`include/inn_shop_data.hh`；全部菜单和对话读取均为符号重定位 | 精确 |
 | EU | `0x080FE4CE`–`0x080FE4CF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| EU | `0x080FE4D0`–`0x080FE789` | `src/won_shop_data.o(.rodata)` | `src/won_shop_data.cc`、`include/won_shop_data.hh`、`data/text/eu/won_shop_data.cc`；目录表、全部店铺文本与运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
+| EU | `0x080FE4D0`–`0x080FE789` | `src/won_shop_data.o(.rodata)` | `src/won_shop_data.cc`（目录表）→ `data/text/eu/won_shop_data_1.cc`（全部店铺文本）→ `data/text/eu/won_shop_data_2.cc`（运行时尾部字符串）<br>`include/won_shop_data.hh`；全部目录和文本读取均为符号重定位 | 精确 |
 | EU | `0x080FE78A`–`0x080FE78B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FE78C`–`0x080FE945` | `src/winery_shop_data.o(.rodata)` | `src/winery_shop_data.cc`、`include/winery_shop_data.hh`、`data/text/eu/winery_shop_data.cc`；目录表、全部店铺文本与运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
 | EU | `0x080FE946`–`0x080FE947` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -85,11 +85,11 @@
 | EU | `0x081001BC`–`0x08100436` | `src/blacksmith_upgrade_data.o(.rodata)` | `src/blacksmith_upgrade_data.cc`、`include/blacksmith_upgrade_data.hh`、`data/text/eu/blacksmith_upgrade_data.cc` | 精确 |
 | EU | `0x08100438`–`0x08100531` | `src/gift_wrap.o(.rodata)` | `src/gift_wrap.cc`、`include/gift_wrap.hh`、`data/text/eu/gift_wrap.cc` | 精确 |
 | EU | `0x08100534`–`0x08100B17` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc`、`include/link_communication_data.hh`、`data/text/eu/link_communication.cc` | 精确 |
-| EU | `0x08100B18`–`0x08100B29` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | `src/cooking_recipe_inventory_page_data.cc`、`include/cooking_recipe_inventory_page_data.hh`、`data/text/common/cooking_recipe_inventory_page_data.cc` | 精确 |
+| EU | `0x08100B18`–`0x08100B29` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | `src/cooking_recipe_inventory_page_data.cc`、`include/cooking_recipe_inventory_page_data.hh`、`data/text/eu/cooking_recipe_inventory_page_data.cc` | 精确 |
 | EU | `0x08100B2A`–`0x08100E38` | `src/recovery_status.o(.rodata)` | `src/recovery_status.cc`、`include/recovery_status.hh`、`data/text/eu/recovery_status.cc` | 精确 |
 | EU | `0x08100E3C`–`0x0810113F` | `src/cooking.o(.rodata)` | `src/cooking.cc`、`include/cooking.hh`、`data/text/eu/cooking.cc` | 精确 |
-| EU | `0x08101140`–`0x081036AD` | `src/cooking_recipe_inventory_data.o(.rodata)` | `src/cooking_recipe_inventory_data.cc`、`include/cooking_recipe_inventory_data.hh`、`data/text/common/cooking_recipe_inventory_data.cc` | 精确 |
-| EU | `0x081036B0`–`0x081036B6` | `src/animal.o(.rodata)` | `src/animal.cc`、`include/animal.hh`、`data/text/common/animal.cc` | 精确 |
+| EU | `0x08101140`–`0x081036AD` | `src/cooking_recipe_inventory_data.o(.rodata)` | `src/cooking_recipe_inventory_data.cc`、`include/cooking_recipe_inventory_data.hh`、`data/text/eu/cooking_recipe_inventory_data.cc` | 精确 |
+| EU | `0x081036B0`–`0x081036B6` | `src/animal.o(.rodata)` | `src/animal.cc`、`include/animal.hh`、`data/text/eu/animal.cc` | 精确 |
 | EU | `0x081036B8`–`0x08103717` | `src/livestock_day_update_data.o(.rodata)` | `src/livestock_day_update_data.cc`、`include/livestock_day_update_data.hh` | 精确 |
 | EU | `0x08103718`–`0x081037DD` | `src/actor_state.o(.rodata)` | `src/actor_state.cc`、`include/actor_state.hh`、`data/text/{jp,us,eu,de}/actor_state.cc`、`data/text/{jp,us,eu,de}/actor_state_1.cc` | 精确 |
 | EU | `0x081037E0`–`0x08103B65` | `src/fishing_results_data.o(.rodata)` | `src/fishing_results_data.cc`、`include/fishing_results_data.hh`、`data/text/eu/fishing_results_data.cc`、`data/text/eu/fishing_results_data_1.cc` | 文本 `58` 项、`gFishingRecordNames`、运行时字符串 `1` 项 |
@@ -97,25 +97,25 @@
 | EU | `0x08104160`–`0x08104160` | `src/character_names_empty.o(.rodata)` | `src/character_names_empty.cc`、`include/character_names_empty.hh`、`data/text/eu/character_names_empty.cc` | `gText_CharacterName_Empty` |
 | EU | `0x08104161`–`0x0810417E` | `src/bachelorette.o(.rodata)` | `src/bachelorette.cc`、`include/bachelorette.hh` | 6 个婚姻候选人好感度阈值 |
 | EU | `0x08104180`–`0x08104411` | `src/character_names_data.o(.rodata)` | `src/character_names_data.cc`、`include/character_names_data.hh`、`data/text/eu/character_names.cc`、`data/text/eu/character_names_1.cc` | 文本 `41` 项、`gCharacterNameEntries`、运行时字符串 `1` 项 |
-| EU | `0x08104414`–`0x0810498D` | `src/field_item_data.o(.rodata)` | `src/field_item_data.cc`、`include/field_item_data.hh`、`data/text/common/field_item_data.cc` | `gUnk_081043BC`、运行时字符串 `1` 项 |
+| EU | `0x08104414`–`0x0810498D` | `src/field_item_data.o(.rodata)` | `src/field_item_data.cc`、`include/field_item_data.hh`、`data/text/eu/field_item_data.cc` | `gUnk_081043BC`、运行时字符串 `1` 项 |
 | EU | `0x08104990`–`0x08104E61` | `src/calendar_events.o(.rodata)` | `src/calendar_events.cc`、`include/calendar_events.hh`、`data/text/eu/calendar_events.cc` | `gText_Calendar_DynamicSeasonNames`、节日文本 `21` 项、回退文本 `1` 项、运行时字符串 `2` 项 |
 | EU | `0x08104E64`–`0x08104EA1` | `src/possessive_labels.o(.rodata)` | `src/possessive_labels.cc`、`include/possessive_labels.hh`、`data/text/eu/possessive_labels.cc` | 文本 `6` 项、运行时字符串 `1` 项 |
 | EU | `0x08104EA2`–`0x08104EA3` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x08104EA4`–`0x08104EA8` | `src/random_item_unavailable.o(.rodata)` | `src/random_item_unavailable.cc`、`include/random_item_unavailable.hh`、`data/text/eu/random_item_unavailable.cc` | `gText_RandomItem_NotAvailable` |
 | EU | `0x08104EA9`–`0x08104EAB` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x08104EAC`–`0x08104ECB` | `src/fishing_record_article_ids.o(.rodata)` | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | `gFishingRecordArticleIds` |
-| EU | `0x08104F04`–`0x08105691` | `src/random_item_selection.o(.rodata)` | `src/random_item_selection.cc`、`include/random_item_selection.hh`、`data/text/common/random_item_selection.cc` | `gRandomItemSelectionWeights`、`gRandomItemCandidateConfigurations`、运行时字符串 `1` 项 |
-| EU | `0x08105694`–`0x0810575D` | `src/field_plot_position_rules.o(.rodata)` | `src/field_plot_position_rules.cc`、`include/field_plot_position_rules.hh`、`data/text/common/field_plot_position_rules.cc` | `gFieldPlotPositionRules`、运行时字符串 `1` 项 |
+| EU | `0x08104F04`–`0x08105691` | `src/random_item_selection.o(.rodata)` | `src/random_item_selection.cc`、`include/random_item_selection.hh`、`data/text/eu/random_item_selection.cc` | `gRandomItemSelectionWeights`、`gRandomItemCandidateConfigurations`、运行时字符串 `1` 项 |
+| EU | `0x08105694`–`0x0810575D` | `src/field_plot_position_rules.o(.rodata)` | `src/field_plot_position_rules.cc`、`include/field_plot_position_rules.hh`、`data/text/eu/field_plot_position_rules.cc` | `gFieldPlotPositionRules`、运行时字符串 `1` 项 |
 | EU | `0x08105760`–`0x08105F33` | `src/time_of_day.o(.rodata)` | `src/time_of_day.cc`、`include/time_of_day.hh` | `gTimeOfDayTransitionTables`、16 张季节/时段转换记录表 |
 | EU | `0x08105F34`–`0x08106983` | `src/map_data.o(.rodata)` | `src/map_data.cc`、`include/map_data.hh` | `gMapData`；全部资源字段均为原始资产标签的符号重定位 |
 | EU | `0x08106984`–`0x08107133` | `src/field_render_rect_descriptors.o(.rodata)` | `src/field_render_rect_descriptors.cc`、`include/field_render_rect_descriptors.hh` | `gFieldRenderRectDescriptors`；82 项描述符，所有资源字段均为原始资产标签的符号重定位 |
 | EU | `0x08107134`–`0x081073A7` | `src/field_render_farm_house_data.o(.rodata)` | `src/field_render_farm_house_data.cc`、`include/field_render_farm_house_data.hh` | `gFarmHouseTilePatchData`、`gFarmHouseVisualDescriptors`、`gFarmHouseTilePatchAnimations`；按同一对象内的 ROM 顺序排列 |
-| EU | `0x081073A8`–`0x0810748E` | `src/field_render_resource_data.o(.rodata)` | `src/field_render_resource_data.cc`、`include/field_render_resource_data.hh`、`data/text/common/field_render_resource_data.cc`、`data/text/common/field_render_resource_data_1.cc` | 原始资源标签、3 条运行时文本、并行表、参数表和三组三字节样式表；未标号零字节归入相邻原始对象，不导出伪填充数组 |
+| EU | `0x081073A8`–`0x0810748E` | `src/field_render_resource_data.o(.rodata)` | `src/field_render_resource_data.cc`、`include/field_render_resource_data.hh`、`data/text/eu/field_render_resource_data_1.cc`、`data/text/eu/field_render_resource_data_2.cc` | 原始资源标签、3 条运行时文本、并行表、参数表和三组三字节样式表；未标号零字节归入相邻原始对象，不导出伪填充数组 |
 | EU | `0x08107490`–`0x081074A7` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
-| EU | `0x081074A8`–`0x08107607` | `src/field_render_runtime_data.o(.rodata)` | `src/field_render_runtime_data.cc`、`include/field_render_runtime_data.hh`、`data/text/eu/field_render_runtime_data.cc`、`data/text/common/field_render_runtime_data_1.cc`、`data/text/eu/field_render_runtime_data_2.cc` | 季节记录范围、查找/排序/布局表与三段按物理断点嵌入的文本；全部外部引用均为符号重定位 |
+| EU | `0x081074A8`–`0x08107607` | `src/field_render_runtime_data.o(.rodata)` | `src/field_render_runtime_data.cc`、`include/field_render_runtime_data.hh`、`data/text/eu/field_render_runtime_data_1.cc`、`data/text/eu/field_render_runtime_data_2.cc`、`data/text/eu/field_render_runtime_data_3.cc` | 季节记录范围、查找/排序/布局表与三段按物理断点嵌入的文本；全部外部引用均为符号重定位 |
 | EU | `0x081082E4`–`0x08117843` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 EU 指南源文件；主目录只收录 `PAGE_1`，`tool_and_item_controls_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 | EU | `0x08117844`–`0x08117B6B` | `src/shop_common.o(.rodata)` | `src/shop_common.cc`、`include/shop_common.hh`、`data/text/eu/shop_common.cc`–`shop_common_8.cc`；运行时字符串、数字字形、商店通用文本、状态文本、指针与数值表按 ROM 顺序同属该对象 | 精确 |
-| EU | `0x08117B6C`–`0x08117C2B` | `src/font.o(.rodata)` | `src/font.cc`、`include/font.hh`、`data/text/common/font.cc`；运行时字符串与区域字形表按 ROM 顺序同属该对象 | 精确 |
+| EU | `0x08117B6C`–`0x08117C2B` | `src/font.o(.rodata)` | `src/font.cc`、`include/font.hh`、`data/text/eu/font.cc`；运行时字符串与区域字形表按 ROM 顺序同属该对象 | 精确 |
 | EU | `0x08117C2C`–`0x08139ADF` | `asm/data/static_resources.o(.rodata)` | `asm/data/static_resources.s`、`include/static_resources.hh`；220 个地图、场景渲染和农舍原始资源以直接标签按物理顺序发射 | 精确 |
 | DE | `0x080E8574`–`0x080E858D` | `src/crt0_data.o(.rodata)` | `src/crt0_data.cc`、`include/crt0_data.hh`、`data/text/de/crt0_data.cc` | 精确 |
 | DE | `0x080E858E`–`0x080E858F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -139,26 +139,26 @@
 | DE | `0x080F38A0`–`0x080F8EBB` | `src/entity_ui_resource_selector.o(.rodata)` | `src/entity_ui_resource_selector.cc`、`include/entity_ui_resource_selector.hh`、`data/text/de/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_23.cc`；25 个连续选择器描述符、24 个运行时文本和全部内部指针均为同名对象内的符号重定位 | 精确 |
 | DE | `0x080F8EBC`–`0x080FA37F` | `data/scripts/script_table.o(.rodata.mary_script_table)` | Mary 生成的 `gMaryScriptTable`；脚本本体由 Mary 独立管理 | 精确 |
 | DE | `0x080FA380`–`0x080FA3AC` | `src/script_engine.o(.rodata)` | `src/script_engine.cc`、`include/script_engine.hh`、`data/text/de/script_engine.cc`；运行时字符串 `2` 项（首项为 `gCppRuntimeBadAlloc_ScriptEngine`）与 3 项 UI 字符串按原 ROM 顺序同属该对象 | 精确 |
-| DE | `0x080FB77C`–`0x080FBE59` | `src/intro_scene_data.o(.rodata)` | `data/text/common/intro_scene_data.cc` → `src/intro_scene_data.cc`（解包资源指针表）→ `data/text/de/intro_scene_data.cc` → `data/text/common/intro_scene_data_1.cc`<br>`include/intro_scene_data.hh`；20 个解包资源入口均为资产容器中的直接标签；所有已知汇编读取为符号重定位 | 精确 |
-| DE | `0x080FBE5C`–`0x080FC4F7` | `src/farm_status_screen_data.o(.rodata)` | `data/text/de/farm_status_screen_data.cc` → `data/text/common/farm_status_screen_data.cc` → `src/farm_status_screen_data.cc`（状态结构）→ `data/text/de/farm_status_screen_data_1.cc` → `data/text/common/farm_status_screen_data_1.cc` → `data/text/de/farm_status_screen_data_2.cc` → `src/farm_status_screen_data.cc`（`gFarmStatusScreenPreloadedGlyphs`；区域 `_3` 字形表达式）→ `data/text/common/farm_status_screen_data_2.cc` → `src/farm_status_screen_data.cc`（资源/预览表）→ `data/text/common/farm_status_screen_data_3.cc`<br>`include/farm_status_screen_data.hh`；14 个预览资源入口均为资产容器直接标签；所有已知汇编读取为符号重定位 | 精确 |
-| DE | `0x080FC580`–`0x080FC7AD` | `src/records_screen_data.o(.rodata)` | `data/text/de/records_screen_data.cc` → `src/records_screen_data.cc`（小游戏资源指针表）→ `data/text/common/records_screen_data.cc` → `src/records_screen_data.cc`（压缩单元表）→ `data/text/common/records_screen_data_1.cc` → `src/records_screen_data.cc`（`gUiPreloadedDigitGlyphCodes`；区域字形序列）→ `data/text/common/records_screen_data_2.cc`<br>`include/records_screen_data.hh`；14 个资源入口均为资产容器直接标签；所有已知汇编读取为符号重定位 | 精确 |
+| DE | `0x080FB77C`–`0x080FBE59` | `src/intro_scene_data.o(.rodata)` | `data/text/de/intro_scene_data_1.cc` → `src/intro_scene_data.cc`（解包资源指针表）→ `data/text/de/intro_scene_data_2.cc` → `data/text/de/intro_scene_data_3.cc`<br>`include/intro_scene_data.hh`；20 个解包资源入口均为资产容器中的直接标签；所有已知汇编读取为符号重定位 | 精确 |
+| DE | `0x080FBE5C`–`0x080FC4F7` | `src/farm_status_screen_data.o(.rodata)` | `data/text/de/farm_status_screen_data_1.cc` → `data/text/de/farm_status_screen_data_2.cc` → `src/farm_status_screen_data.cc`（状态结构）→ `data/text/de/farm_status_screen_data_3.cc` → `data/text/de/farm_status_screen_data_4.cc` → `data/text/de/farm_status_screen_data_5.cc` → `src/farm_status_screen_data.cc`（`gFarmStatusScreenPreloadedGlyphs`；区域 `_3` 字形表达式）→ `data/text/de/farm_status_screen_data_7.cc` → `src/farm_status_screen_data.cc`（资源/预览表）→ `data/text/de/farm_status_screen_data_8.cc`<br>`include/farm_status_screen_data.hh`；14 个预览资源入口均为资产容器直接标签；所有已知汇编读取为符号重定位 | 精确 |
+| DE | `0x080FC580`–`0x080FC7AD` | `src/records_screen_data.o(.rodata)` | `data/text/de/records_screen_data_1.cc` → `src/records_screen_data.cc`（小游戏资源指针表）→ `data/text/de/records_screen_data_2.cc` → `src/records_screen_data.cc`（压缩单元表）→ `data/text/de/records_screen_data_3.cc` → `src/records_screen_data.cc`（`gUiPreloadedDigitGlyphCodes`；区域字形序列）→ `data/text/de/records_screen_data_4.cc`<br>`include/records_screen_data.hh`；14 个资源入口均为资产容器直接标签；所有已知汇编读取为符号重定位 | 精确 |
 | DE | `0x080FC7AE`–`0x080FC7AF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| DE | `0x080FC7B0`–`0x080FCDCD` | `src/staff_credits.o(.rodata)` | `data/text/de/staff_credits.cc`（可见名单序列，经 `fomt-text` 在所有者内生成固定字段与行指针表）→ `data/text/common/staff_credits_1.cc`<br>`src/staff_credits.cc`、`include/staff_credits.hh`；名单文本、行指针表与运行时尾部字符串按 ROM 顺序同属该对象；所有已知汇编读取为符号重定位 | 精确 |
+| DE | `0x080FC7B0`–`0x080FCDCD` | `src/staff_credits.o(.rodata)` | `data/text/de/staff_credits_1.cc`（可见名单序列，经 `fomt-text` 在所有者内生成固定字段与行指针表）→ `data/text/de/staff_credits_2.cc`<br>`src/staff_credits.cc`、`include/staff_credits.hh`；名单文本、行指针表与运行时尾部字符串按 ROM 顺序同属该对象；所有已知汇编读取为符号重定位 | 精确 |
 | DE | `0x080FCDCE`–`0x080FDC8F` | `src/town_map_data.o(.rodata)` | `src/town_map_data.cc`（`gTownMapResourceIds`）→ `data/text/de/town_map.cc` → `src/town_map_data.cc`（热点表、区域查询表与两个回退项）<br>`include/town_map.hh`；所有文本/表引用均为符号重定位，两个已验证的热点字段引用使用 `gTownMapHotspots + offset` | 精确 |
 | DE | `0x080FDC90`–`0x080FDCD5` | `src/library_opening_hours_data.o(.rodata)` | `data/text/de/library_opening_hours_data.cc` → `src/library_opening_hours_data.cc`<br>`include/library_opening_hours_data.hh`；唯一文本 `gText_Library_OpeningHours` 的汇编读取为符号重定位 | 精确 |
 | DE | `0x080FDCD6`–`0x080FDCD7` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080FDCD8`–`0x080FE067` | `src/town_map_area_data.o(.rodata)` | `src/town_map_area_data.cc`（`gTownMapAreaBounds` 的五个按地图编号排列的子表）<br>`include/town_map_area_data.hh`；来自 Town Map 查询表的 5 个引用均为对象或命名子数组的符号重定位 | 精确 |
-| DE | `0x080FE068`–`0x080FE0B5` | `src/library_data.o(.rodata)` | `data/text/common/library_data.cc`（首个运行时字符串）→ `src/library_data.cc`（初始条目表）→ `data/text/de/library_data_1.cc`（两项固定 12 字节菜单字段）→ `data/text/common/library_data_1.cc`（尾部运行时字符串）<br>`include/library_data.hh`；条目表与菜单的所有 ROM 指针均为汇编符号重定位 | 精确 |
+| DE | `0x080FE068`–`0x080FE0B5` | `src/library_data.o(.rodata)` | `data/text/de/library_data_1.cc`（首个运行时字符串）→ `src/library_data.cc`（初始条目表）→ `data/text/de/library_data_2.cc`（两项固定 12 字节菜单字段）→ `data/text/de/library_data_3.cc`（尾部运行时字符串）<br>`include/library_data.hh`；条目表与菜单的所有 ROM 指针均为汇编符号重定位 | 精确 |
 | DE | `0x080FE0B6`–`0x080FE0B7` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| DE | `0x080FE0B8`–`0x080FE579` | `src/poultry_shop_data.o(.rodata)` | `data/text/de/poultry_shop_data.cc`（菜单文本）→ `src/poultry_shop_data.cc`（五项目录表）→ `data/text/de/poultry_shop_data_1.cc`（状态与对话文本）→ `data/text/common/poultry_shop_data_1.cc`（尾部运行时字符串）<br>`include/poultry_shop_data.hh`；所有目录内及跨块引用均为符号重定位 | 精确 |
+| DE | `0x080FE0B8`–`0x080FE579` | `src/poultry_shop_data.o(.rodata)` | `data/text/de/poultry_shop_data_1.cc`（菜单文本）→ `src/poultry_shop_data.cc`（五项目录表）→ `data/text/de/poultry_shop_data_2.cc`（状态与对话文本）→ `data/text/de/poultry_shop_data_3.cc`（尾部运行时字符串）<br>`include/poultry_shop_data.hh`；所有目录内及跨块引用均为符号重定位 | 精确 |
 | DE | `0x080FE57A`–`0x080FE57B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| DE | `0x080FE57C`–`0x080FE7D9` | `src/supermarket_data.o(.rodata)` | `src/supermarket_data.cc`（作物种子目录）→ `data/text/de/supermarket_data.cc`（前段文本）→ `src/supermarket_data.cc`（补充种子目录）→ `data/text/de/supermarket_data_1.cc`（后段文本）→ `data/text/common/supermarket_data_1.cc`（尾部运行时字符串）<br>`include/supermarket_data.hh`；所有目录与文本读取均为符号重定位 | 精确 |
+| DE | `0x080FE57C`–`0x080FE7D9` | `src/supermarket_data.o(.rodata)` | `src/supermarket_data.cc`（作物种子目录）→ `data/text/de/supermarket_data_1.cc`（前段文本）→ `src/supermarket_data.cc`（补充种子目录）→ `data/text/de/supermarket_data_2.cc`（后段文本）→ `data/text/de/supermarket_data_3.cc`（尾部运行时字符串）<br>`include/supermarket_data.hh`；所有目录与文本读取均为符号重定位 | 精确 |
 | DE | `0x080FE7DA`–`0x080FE7DB` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| DE | `0x080FE7DC`–`0x080FEA21` | `src/clinic_data.o(.rodata)` | `src/clinic_data.cc`（目录表）→ `data/text/de/clinic_data.cc`（9 项文本）→ `data/text/common/clinic_data_1.cc`（运行时尾部字符串）<br>`include/clinic_data.hh`；所有诊所目录与文本读取均为符号重定位 | 精确 |
+| DE | `0x080FE7DC`–`0x080FEA21` | `src/clinic_data.o(.rodata)` | `src/clinic_data.cc`（目录表）→ `data/text/de/clinic_data_1.cc`（9 项文本）→ `data/text/de/clinic_data_2.cc`（运行时尾部字符串）<br>`include/clinic_data.hh`；所有诊所目录与文本读取均为符号重定位 | 精确 |
 | DE | `0x080FEA22`–`0x080FEA23` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| DE | `0x080FEA24`–`0x080FEC39` | `src/inn_shop_data.o(.rodata)` | `src/inn_shop_data.cc`：`data/text/de/inn_shop_data.cc`（菜品说明）→ 菜单表 → `data/text/de/inn_shop_data_1.cc`（对话）→ `data/text/common/inn_shop_data_1.cc`（运行时尾部字符串）<br>`include/inn_shop_data.hh`；全部菜单和对话读取均为符号重定位 | 精确 |
+| DE | `0x080FEA24`–`0x080FEC39` | `src/inn_shop_data.o(.rodata)` | `src/inn_shop_data.cc`：`data/text/de/inn_shop_data_1.cc`（菜品说明）→ 菜单表 → `data/text/de/inn_shop_data_2.cc`（对话）→ `data/text/de/inn_shop_data_3.cc`（运行时尾部字符串）<br>`include/inn_shop_data.hh`；全部菜单和对话读取均为符号重定位 | 精确 |
 | DE | `0x080FEC3A`–`0x080FEC3B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| DE | `0x080FEC3C`–`0x080FEF0D` | `src/won_shop_data.o(.rodata)` | `src/won_shop_data.cc`、`include/won_shop_data.hh`、`data/text/de/won_shop_data.cc`；目录表、全部店铺文本与运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
+| DE | `0x080FEC3C`–`0x080FEF0D` | `src/won_shop_data.o(.rodata)` | `src/won_shop_data.cc`（目录表）→ `data/text/de/won_shop_data_1.cc`（全部店铺文本）→ `data/text/de/won_shop_data_2.cc`（运行时尾部字符串）<br>`include/won_shop_data.hh`；全部目录和文本读取均为符号重定位 | 精确 |
 | DE | `0x080FEF0E`–`0x080FEF0F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080FEF10`–`0x080FF12D` | `src/winery_shop_data.o(.rodata)` | `src/winery_shop_data.cc`、`include/winery_shop_data.hh`、`data/text/de/winery_shop_data.cc`；目录表、全部店铺文本与运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
 | DE | `0x080FF12E`–`0x080FF12F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -172,11 +172,11 @@
 | DE | `0x08100A98`–`0x08100D7C` | `src/blacksmith_upgrade_data.o(.rodata)` | `src/blacksmith_upgrade_data.cc`、`include/blacksmith_upgrade_data.hh`、`data/text/de/blacksmith_upgrade_data.cc` | 精确 |
 | DE | `0x08100D80`–`0x08100E9D` | `src/gift_wrap.o(.rodata)` | `src/gift_wrap.cc`、`include/gift_wrap.hh`、`data/text/de/gift_wrap.cc` | 精确 |
 | DE | `0x08100EA0`–`0x081014DB` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc`、`include/link_communication_data.hh`、`data/text/de/link_communication.cc` | 精确 |
-| DE | `0x081014DC`–`0x081014ED` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | `src/cooking_recipe_inventory_page_data.cc`、`include/cooking_recipe_inventory_page_data.hh`、`data/text/common/cooking_recipe_inventory_page_data.cc` | 精确 |
+| DE | `0x081014DC`–`0x081014ED` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | `src/cooking_recipe_inventory_page_data.cc`、`include/cooking_recipe_inventory_page_data.hh`、`data/text/de/cooking_recipe_inventory_page_data.cc` | 精确 |
 | DE | `0x081014EE`–`0x081017FC` | `src/recovery_status.o(.rodata)` | `src/recovery_status.cc`、`include/recovery_status.hh`、`data/text/de/recovery_status.cc` | 精确 |
 | DE | `0x08101800`–`0x08101B29` | `src/cooking.o(.rodata)` | `src/cooking.cc`、`include/cooking.hh`、`data/text/de/cooking.cc` | 精确 |
-| DE | `0x08101B2C`–`0x08104099` | `src/cooking_recipe_inventory_data.o(.rodata)` | `src/cooking_recipe_inventory_data.cc`、`include/cooking_recipe_inventory_data.hh`、`data/text/common/cooking_recipe_inventory_data.cc` | 精确 |
-| DE | `0x0810409C`–`0x081040A2` | `src/animal.o(.rodata)` | `src/animal.cc`、`include/animal.hh`、`data/text/common/animal.cc` | 精确 |
+| DE | `0x08101B2C`–`0x08104099` | `src/cooking_recipe_inventory_data.o(.rodata)` | `src/cooking_recipe_inventory_data.cc`、`include/cooking_recipe_inventory_data.hh`、`data/text/de/cooking_recipe_inventory_data.cc` | 精确 |
+| DE | `0x0810409C`–`0x081040A2` | `src/animal.o(.rodata)` | `src/animal.cc`、`include/animal.hh`、`data/text/de/animal.cc` | 精确 |
 | DE | `0x081040A4`–`0x08104103` | `src/livestock_day_update_data.o(.rodata)` | `src/livestock_day_update_data.cc`、`include/livestock_day_update_data.hh` | 精确 |
 | DE | `0x08104104`–`0x081041C9` | `src/actor_state.o(.rodata)` | `src/actor_state.cc`、`include/actor_state.hh`、`data/text/{jp,us,eu,de}/actor_state.cc`、`data/text/{jp,us,eu,de}/actor_state_1.cc` | 精确 |
 | DE | `0x081041CC`–`0x08104565` | `src/fishing_results_data.o(.rodata)` | `src/fishing_results_data.cc`、`include/fishing_results_data.hh`、`data/text/de/fishing_results_data.cc`、`data/text/de/fishing_results_data_1.cc` | 文本 `58` 项、`gFishingRecordNames`、运行时字符串 `1` 项 |
@@ -184,26 +184,26 @@
 | DE | `0x08104B60`–`0x08104B60` | `src/character_names_empty.o(.rodata)` | `src/character_names_empty.cc`、`include/character_names_empty.hh`、`data/text/de/character_names_empty.cc` | `gText_CharacterName_Empty` |
 | DE | `0x08104B61`–`0x08104B7E` | `src/bachelorette.o(.rodata)` | `src/bachelorette.cc`、`include/bachelorette.hh` | 6 个婚姻候选人好感度阈值 |
 | DE | `0x08104B80`–`0x08104E11` | `src/character_names_data.o(.rodata)` | `src/character_names_data.cc`、`include/character_names_data.hh`、`data/text/de/character_names.cc`、`data/text/de/character_names_1.cc` | 文本 `41` 项、`gCharacterNameEntries`、运行时字符串 `1` 项 |
-| DE | `0x08104E14`–`0x0810538D` | `src/field_item_data.o(.rodata)` | `src/field_item_data.cc`、`include/field_item_data.hh`、`data/text/common/field_item_data.cc` | `gUnk_081043BC`、运行时字符串 `1` 项 |
+| DE | `0x08104E14`–`0x0810538D` | `src/field_item_data.o(.rodata)` | `src/field_item_data.cc`、`include/field_item_data.hh`、`data/text/de/field_item_data.cc` | `gUnk_081043BC`、运行时字符串 `1` 项 |
 | DE | `0x08105390`–`0x08105821` | `src/calendar_events.o(.rodata)` | `src/calendar_events.cc`、`include/calendar_events.hh`、`data/text/de/calendar_events.cc` | `gText_Calendar_DynamicSeasonNames`、节日文本 `21` 项、回退文本 `1` 项、运行时字符串 `2` 项 |
 | DE | `0x08105824`–`0x0810586D` | `src/possessive_labels.o(.rodata)` | `src/possessive_labels.cc`、`include/possessive_labels.hh`、`data/text/de/possessive_labels.cc` | 文本 `6` 项、运行时字符串 `1` 项 |
 | DE | `0x0810586E`–`0x0810586F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x08105870`–`0x08105874` | `src/random_item_unavailable.o(.rodata)` | `src/random_item_unavailable.cc`、`include/random_item_unavailable.hh`、`data/text/de/random_item_unavailable.cc` | `gText_RandomItem_NotAvailable` |
 | DE | `0x08105875`–`0x08105877` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x08105878`–`0x08105897` | `src/fishing_record_article_ids.o(.rodata)` | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | `gFishingRecordArticleIds` |
-| DE | `0x081058D0`–`0x0810605D` | `src/random_item_selection.o(.rodata)` | `src/random_item_selection.cc`、`include/random_item_selection.hh`、`data/text/common/random_item_selection.cc` | `gRandomItemSelectionWeights`、`gRandomItemCandidateConfigurations`、运行时字符串 `1` 项 |
-| DE | `0x08106060`–`0x08106129` | `src/field_plot_position_rules.o(.rodata)` | `src/field_plot_position_rules.cc`、`include/field_plot_position_rules.hh`、`data/text/common/field_plot_position_rules.cc` | `gFieldPlotPositionRules`、运行时字符串 `1` 项 |
+| DE | `0x081058D0`–`0x0810605D` | `src/random_item_selection.o(.rodata)` | `src/random_item_selection.cc`、`include/random_item_selection.hh`、`data/text/de/random_item_selection.cc` | `gRandomItemSelectionWeights`、`gRandomItemCandidateConfigurations`、运行时字符串 `1` 项 |
+| DE | `0x08106060`–`0x08106129` | `src/field_plot_position_rules.o(.rodata)` | `src/field_plot_position_rules.cc`、`include/field_plot_position_rules.hh`、`data/text/de/field_plot_position_rules.cc` | `gFieldPlotPositionRules`、运行时字符串 `1` 项 |
 | DE | `0x0810612C`–`0x081068FF` | `src/time_of_day.o(.rodata)` | `src/time_of_day.cc`、`include/time_of_day.hh` | `gTimeOfDayTransitionTables`、16 张季节/时段转换记录表 |
 | DE | `0x08106900`–`0x0810734F` | `src/map_data.o(.rodata)` | `src/map_data.cc`、`include/map_data.hh` | `gMapData`；全部资源字段均为原始资产标签的符号重定位 |
 | DE | `0x08107350`–`0x08107AFF` | `src/field_render_rect_descriptors.o(.rodata)` | `src/field_render_rect_descriptors.cc`、`include/field_render_rect_descriptors.hh` | `gFieldRenderRectDescriptors`；82 项描述符，所有资源字段均为原始资产标签的符号重定位 |
 | DE | `0x08107B00`–`0x08107D73` | `src/field_render_farm_house_data.o(.rodata)` | `src/field_render_farm_house_data.cc`、`include/field_render_farm_house_data.hh` | `gFarmHouseTilePatchData`、`gFarmHouseVisualDescriptors`、`gFarmHouseTilePatchAnimations`；按同一对象内的 ROM 顺序排列 |
-| DE | `0x08107D74`–`0x08107E5A` | `src/field_render_resource_data.o(.rodata)` | `src/field_render_resource_data.cc`、`include/field_render_resource_data.hh`、`data/text/common/field_render_resource_data.cc`、`data/text/common/field_render_resource_data_1.cc` | 原始资源标签、3 条运行时文本、并行表、参数表和三组三字节样式表；未标号零字节归入相邻原始对象，不导出伪填充数组 |
+| DE | `0x08107D74`–`0x08107E5A` | `src/field_render_resource_data.o(.rodata)` | `src/field_render_resource_data.cc`、`include/field_render_resource_data.hh`、`data/text/de/field_render_resource_data_1.cc`、`data/text/de/field_render_resource_data_2.cc` | 原始资源标签、3 条运行时文本、并行表、参数表和三组三字节样式表；未标号零字节归入相邻原始对象，不导出伪填充数组 |
 | DE | `0x08107E5C`–`0x08107E73` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
-| DE | `0x08107E74`–`0x08107FD3` | `src/field_render_runtime_data.o(.rodata)` | `src/field_render_runtime_data.cc`、`include/field_render_runtime_data.hh`、`data/text/de/field_render_runtime_data.cc`、`data/text/common/field_render_runtime_data_1.cc`、`data/text/de/field_render_runtime_data_2.cc` | 季节记录范围、查找/排序/布局表与三段按物理断点嵌入的文本；全部外部引用均为符号重定位 |
+| DE | `0x08107E74`–`0x08107FD3` | `src/field_render_runtime_data.o(.rodata)` | `src/field_render_runtime_data.cc`、`include/field_render_runtime_data.hh`、`data/text/de/field_render_runtime_data_1.cc`、`data/text/de/field_render_runtime_data_2.cc`、`data/text/de/field_render_runtime_data_3.cc` | 季节记录范围、查找/排序/布局表与三段按物理断点嵌入的文本；全部外部引用均为符号重定位 |
 | DE | `0x08107FD4`–`0x08108DB3` | `src/harvest_sprite.o(.rodata)` | `src/harvest_sprite.cc` 与 `data/text/de/harvest_sprite_*.cc` | 精确 |
 | DE | `0x08108DB4`–`0x081197FF` | `src/reference_guide.o(.rodata.reference_guide)` | `src/reference_guide.cc` 与全部 DE 指南源文件；主目录只收录 `PAGE_1`，`using_tools_2` 与 `newborn_congratulations_cliff_and_ann_2` 仅复现原 ROM 紧邻前表的物理续表，不自行添加运行时翻页行为 | 精确 |
 | DE | `0x0811984C`–`0x08119B93` | `src/shop_common.o(.rodata)` | `src/shop_common.cc`、`include/shop_common.hh`、`data/text/de/shop_common.cc`–`shop_common_8.cc`；运行时字符串、数字字形、商店通用文本、状态文本、指针与数值表按 ROM 顺序同属该对象 | 精确 |
-| DE | `0x08119B94`–`0x08119C53` | `src/font.o(.rodata)` | `src/font.cc`、`include/font.hh`、`data/text/common/font.cc`；运行时字符串与区域字形表按 ROM 顺序同属该对象 | 精确 |
+| DE | `0x08119B94`–`0x08119C53` | `src/font.o(.rodata)` | `src/font.cc`、`include/font.hh`、`data/text/de/font.cc`；运行时字符串与区域字形表按 ROM 顺序同属该对象 | 精确 |
 | DE | `0x08119C54`–`0x0813BB07` | `asm/data/static_resources.o(.rodata)` | `asm/data/static_resources.s`、`include/static_resources.hh`；220 个地图、场景渲染和农舍原始资源以直接标签按物理顺序发射 | 精确 |
 
 ## JP：物理 `.rodata` 顺序
@@ -247,40 +247,40 @@
 | `0x080F973C`–`0x080F974F` | `src/spouse_gift.o(.rodata)` | [数据] | `src/spouse_gift.cc`<br>`include/spouse_gift.hh` | `gSpouseGiftArticleSelectionEntries`；汇编调用为符号重定位 |
 | `0x080F9750`–`0x080F9755` | `src/farm_house.o(.rodata)` | [数据] | `src/farm_house.cc`<br>`include/farm_house.hh` | `gFarmHouseBedXPositions`；唯一汇编调用为符号重定位 |
 | `0x080F9756`–`0x080F9757` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F9758`–`0x080F97D7` | `src/ui_state.o(.rodata)` | [文本与数据] | `data/text/common/ui_state.cc` → `src/ui_state.cc`<br>`include/ui_state.hh` | 运行时字符串 `2` 项<br>`gUnk_PreUiTextLayoutDigitRows`, `gUnk_PreUiTextLayoutFullWidthSpace`, `gUnk_PreUiTextLayoutFullWidthHyphen`, `gUiTextLayoutPositionTable`, `gUiSharedResourceData`<br>两个原始资源入口为 `data_0813B288.s` 中的直接标签，所有已知使用处均为符号重定位 |
+| `0x080F9758`–`0x080F97D7` | `src/ui_state.o(.rodata)` | [文本与数据] | `data/text/jp/ui_state.cc` → `src/ui_state.cc`<br>`include/ui_state.hh` | 运行时字符串 `2` 项<br>`gUnk_PreUiTextLayoutDigitRows`, `gUnk_PreUiTextLayoutFullWidthSpace`, `gUnk_PreUiTextLayoutFullWidthHyphen`, `gUiTextLayoutPositionTable`, `gUiSharedResourceData`<br>两个原始资源入口为 `data_0813B288.s` 中的直接标签，所有已知使用处均为符号重定位 |
 | `0x080F97D8`–`0x080F9993` | `src/new_game_name_entry_ui_data.o(.rodata)` | [文本与数据] | `data/text/jp/new_game_name_entry_ui_data.cc` → `src/new_game_name_entry_ui_data.cc`<br>`include/new_game_name_entry_ui_data.hh` | `gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue`、运行时字符串 `1` 项、30 行固定宽度 `gText_NameEntry_PresetAnimalNames`、`gNewGameNameEntryUiCharacterCodes`<br>前缀、文本和字形表在同一对象中按 ROM 顺序排列；所有已知汇编读取为符号重定位 |
 | `0x080F9994`–`0x080F99AA` | `src/frisbee_scoreboard.o(.rodata)` | [嵌入文本] | `data/text/jp/frisbee_scoreboard.cc` → `src/frisbee_scoreboard.cc`<br>`include/frisbee_scoreboard.hh` | `gText_Frisbee_TournamentScoreboard`；唯一汇编调用为符号重定位<br>后续飞盘文本与本对象之间夹有动物节数据，故保持独立模块 |
 | `0x080F99AB`–`0x080F99AB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x080F99AC`–`0x080F9BD3` | `src/animal_festival_ranking_score_data.o(.rodata)` | [文本与数据] | `data/text/common/animal_festival_ranking_score_data.cc` → `src/animal_festival_ranking_score_data.cc`<br>`include/animal_festival_ranking_score_data.hh` | `gAnimalFestivalRankingScoreTable`、运行时字符串 `1` 项、`gUnk_080FA246`、`gUnk_080FA264`、`gUnk_080FA2E8`、`gUnk_080FA36C`、`gAnimalFestivalRewardChanceWeights`、`gAnimalFestivalRewardArticleIds`<br>对象内 `00` 对齐 `2` 字节；所有已知汇编读取均为符号重定位，未证实含义的原始表保留 `gUnk` 名称 |
+| `0x080F99AC`–`0x080F9BD3` | `src/animal_festival_ranking_score_data.o(.rodata)` | [文本与数据] | `data/text/jp/animal_festival_ranking_score_data.cc` → `src/animal_festival_ranking_score_data.cc`<br>`include/animal_festival_ranking_score_data.hh` | `gAnimalFestivalRankingScoreTable`、运行时字符串 `1` 项、`gUnk_080FA246`、`gUnk_080FA264`、`gUnk_080FA2E8`、`gUnk_080FA36C`、`gAnimalFestivalRewardChanceWeights`、`gAnimalFestivalRewardArticleIds`<br>对象内 `00` 对齐 `2` 字节；所有已知汇编读取均为符号重定位，未证实含义的原始表保留 `gUnk` 名称 |
 | `0x080F9BD4`–`0x080F9F59` | `src/frisbee.o(.rodata)` | [嵌入文本] | `data/text/jp/frisbee.cc` → `src/frisbee.cc`<br>`include/frisbee.hh` | 文本 `15` 项（详见下方索引）<br>运行时字符串 `1` 项；所有已知汇编读取为符号重定位 |
 | `0x080F9F5A`–`0x080F9F5B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F9F5C`–`0x080F9FCB` | `src/animal_festival_ranking_random_data.o(.rodata)` | [数据] | `src/animal_festival_ranking_random_data.cc`<br>`include/animal_festival_ranking_random_data.hh` | `gAnimalFestivalRandomRangePairs`；基址及 `second_maximum + 12` 均为符号重定位 |
-| `0x080F9FCC`–`0x080FA1DD` | `src/animal_festival.o(.rodata)` | [嵌入文本] | `data/text/common/animal_festival.cc` → `data/text/jp/animal_festival.cc` → `src/animal_festival.cc`<br>`include/animal_festival.hh` | 固定宽度参赛者名字 `40` 行、运行时字符串 `1` 项；所有已知汇编读取为符号重定位 |
+| `0x080F9FCC`–`0x080FA1DD` | `src/animal_festival.o(.rodata)` | [嵌入文本] | `data/text/jp/animal_festival_1.cc` → `data/text/jp/animal_festival_2.cc` → `src/animal_festival.cc`<br>`include/animal_festival.hh` | 固定宽度参赛者名字 `40` 行、运行时字符串 `1` 项；所有已知汇编读取为符号重定位 |
 | `0x080FA1DE`–`0x080FA27D` | `src/animal_festival_ranking_livestock_data.o(.rodata)` | [数据] | `src/animal_festival_ranking_livestock_data.cc`<br>`include/animal_festival_ranking_livestock_data.hh` | `gAnimalFestivalLivestockContestantValues`；所有已知汇编读取为符号重定位 |
 | `0x080FA27E`–`0x080FA27F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FA280`–`0x080FAA5F` | `src/horse_race_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/jp/horse_race_data.cc`、`horse_race_data_1.cc`–`horse_race_data_5.cc`<br>`data/text/common/horse_race_data.cc` → `src/horse_race_data.cc`<br>`include/horse_race_data.hh` | 文本 `44` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`horse_race_data_1` 为首段文本后的票券字形码表内容，`_2` 为其后的票券 UI 文本，`_3` 为控制项指针表及公共运行时文本之后的内嵌奖品名，`_4` 为奖品 ID 表后的兑换 UI 文本，`_5` 为其后的兑换字形码表；所有已知汇编读取为符号重定位；`gHorseRaceTicketCharacterCodes`, `gHorseRaceTicketControls`, `gHorseRacePrizeCatalog`, `gHorseRacePrizeItemIds`, `gHorseRacePrizeExchangeCharacterCodes` |
-| `0x080FAA60`–`0x080FB119` | `src/intro_scene_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/common/intro_scene_data.cc` → `src/intro_scene_data.cc`（`gIntroSceneUnpackSources`）→ `data/text/jp/intro_scene_data.cc` → `data/text/common/intro_scene_data_1.cc`<br>`include/intro_scene_data.hh` | 前缀运行时字符串 `1` 项<br>`gIntroSceneUnpackSources`（20 个资产容器直接标签，无 `.set` 别名）<br>文本 `28` 项（详见下方索引）<br>尾部运行时字符串 `1` 项；公共 `_1` 位于对话末尾；所有已知汇编读取为符号重定位 |
+| `0x080FA280`–`0x080FAA5F` | `src/horse_race_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/jp/horse_race_data_1.cc`、`horse_race_data_1.cc`–`horse_race_data_5.cc`<br>`data/text/jp/horse_race_data_4.cc` → `src/horse_race_data.cc`<br>`include/horse_race_data.hh` | 文本 `44` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`horse_race_data_1` 为首段文本后的票券字形码表内容，`_2` 为其后的票券 UI 文本，`_3` 为控制项指针表及公共运行时文本之后的内嵌奖品名，`_4` 为奖品 ID 表后的兑换 UI 文本，`_5` 为其后的兑换字形码表；所有已知汇编读取为符号重定位；`gHorseRaceTicketCharacterCodes`, `gHorseRaceTicketControls`, `gHorseRacePrizeCatalog`, `gHorseRacePrizeItemIds`, `gHorseRacePrizeExchangeCharacterCodes` |
+| `0x080FAA60`–`0x080FB119` | `src/intro_scene_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/jp/intro_scene_data_1.cc` → `src/intro_scene_data.cc`（`gIntroSceneUnpackSources`）→ `data/text/jp/intro_scene_data_2.cc` → `data/text/jp/intro_scene_data_3.cc`<br>`include/intro_scene_data.hh` | 前缀运行时字符串 `1` 项<br>`gIntroSceneUnpackSources`（20 个资产容器直接标签，无 `.set` 别名）<br>文本 `28` 项（详见下方索引）<br>尾部运行时字符串 `1` 项；公共 `_1` 位于对话末尾；所有已知汇编读取为符号重定位 |
 | `0x080FB11A`–`0x080FB11B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FB11C`–`0x080FB761` | `src/farm_status_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/jp/farm_status_screen_data.cc` → `data/text/common/farm_status_screen_data.cc` → `src/farm_status_screen_data.cc`（状态结构）→ `data/text/jp/farm_status_screen_data_1.cc` → `data/text/common/farm_status_screen_data_1.cc` → `data/text/jp/farm_status_screen_data_2.cc` → `src/farm_status_screen_data.cc`（`gFarmStatusScreenPreloadedGlyphs`；区域 `_3` 字形表达式）→ `data/text/common/farm_status_screen_data_2.cc` → `src/farm_status_screen_data.cc`（资源/瓦片/预览/外观表）→ `data/text/common/farm_status_screen_data_3.cc`<br>`include/farm_status_screen_data.hh` | 文本 `62` 项（农场状态 `35`、动物参赛 `27`；详见下方索引）<br>运行时字符串 `4` 项<br>`gFarmStatusScreenPreloadedGlyphs`、资源与建筑预览表；14 个预览资源入口为资产容器直接标签；所有已知汇编读取为符号重定位 |
+| `0x080FB11C`–`0x080FB761` | `src/farm_status_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/jp/farm_status_screen_data_1.cc` → `data/text/jp/farm_status_screen_data_2.cc` → `src/farm_status_screen_data.cc`（状态结构）→ `data/text/jp/farm_status_screen_data_3.cc` → `data/text/jp/farm_status_screen_data_4.cc` → `data/text/jp/farm_status_screen_data_5.cc` → `src/farm_status_screen_data.cc`（`gFarmStatusScreenPreloadedGlyphs`；区域 `_3` 字形表达式）→ `data/text/jp/farm_status_screen_data_7.cc` → `src/farm_status_screen_data.cc`（资源/瓦片/预览/外观表）→ `data/text/jp/farm_status_screen_data_8.cc`<br>`include/farm_status_screen_data.hh` | 文本 `62` 项（农场状态 `35`、动物参赛 `27`；详见下方索引）<br>运行时字符串 `4` 项<br>`gFarmStatusScreenPreloadedGlyphs`、资源与建筑预览表；14 个预览资源入口为资产容器直接标签；所有已知汇编读取为符号重定位 |
 | `0x080FB762`–`0x080FB763` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FB764`–`0x080FB935` | `src/records_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/jp/records_screen_data.cc` → `src/records_screen_data.cc`（小游戏资源指针表）→ `data/text/common/records_screen_data.cc` → `src/records_screen_data.cc`（压缩单元表）→ `data/text/common/records_screen_data_1.cc` → `src/records_screen_data.cc`（`gUiPreloadedDigitGlyphCodes`；区域字形序列）→ `data/text/common/records_screen_data_2.cc`<br>`include/records_screen_data.hh` | 文本 `33` 项（详见下方索引）<br>运行时字符串 `4` 项<br>`gRecordsScreenMinigameTaskResources` 的 14 个 JP 资源入口为资产容器直接标签；`gCodeLinkoncePackedCellSizeLookup`、`gUiPreloadedDigitGlyphCodes` 按原顺序嵌入同一对象；所有已知汇编读取为符号重定位 |
+| `0x080FB764`–`0x080FB935` | `src/records_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/jp/records_screen_data_1.cc` → `src/records_screen_data.cc`（小游戏资源指针表）→ `data/text/jp/records_screen_data_2.cc` → `src/records_screen_data.cc`（压缩单元表）→ `data/text/jp/records_screen_data_3.cc` → `src/records_screen_data.cc`（`gUiPreloadedDigitGlyphCodes`；区域字形序列）→ `data/text/jp/records_screen_data_4.cc`<br>`include/records_screen_data.hh` | 文本 `33` 项（详见下方索引）<br>运行时字符串 `4` 项<br>`gRecordsScreenMinigameTaskResources` 的 14 个 JP 资源入口为资产容器直接标签；`gCodeLinkoncePackedCellSizeLookup`、`gUiPreloadedDigitGlyphCodes` 按原顺序嵌入同一对象；所有已知汇编读取为符号重定位 |
 | `0x080FB936`–`0x080FB937` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FB938`–`0x080FBE91` | `src/staff_credits.o(.rodata)` | [嵌入文本 / 指针表] | `data/text/jp/staff_credits.cc`（可见名单序列，经 `fomt-text` 在所有者内生成固定字段与行指针表）→ `data/text/common/staff_credits_1.cc`<br>`src/staff_credits.cc`、`include/staff_credits.hh` | 文本 `59` 项（详见下方索引）<br>`gStaffCreditsLines`<br>`gCppRuntimeBadAlloc_StaffCredits`<br>所有已知汇编读取为符号重定位 |
+| `0x080FB938`–`0x080FBE91` | `src/staff_credits.o(.rodata)` | [嵌入文本 / 指针表] | `data/text/jp/staff_credits_1.cc`（可见名单序列，经 `fomt-text` 在所有者内生成固定字段与行指针表）→ `data/text/jp/staff_credits_2.cc`<br>`src/staff_credits.cc`、`include/staff_credits.hh` | 文本 `59` 项（详见下方索引）<br>`gStaffCreditsLines`<br>`gCppRuntimeBadAlloc_StaffCredits`<br>所有已知汇编读取为符号重定位 |
 | `0x080FBE92`–`0x080FCCB7` | `src/town_map_data.o(.rodata)` | [嵌入文本 / 数据] | `src/town_map_data.cc`（`gTownMapResourceIds`）→ `data/text/jp/town_map.cc` → `src/town_map_data.cc`（热点表、区域查询表与两个回退项）<br>`include/town_map.hh` | 文本 `65` 项（详见下方索引）<br>`gTownMapHotspots`、`gTownMapAreaLookup`、`gTownMapAreaLookupFallback_034To133`、`gTownMapAreaLookupFallback_134To233`<br>所有文本/表引用均为符号重定位；两个热点字段引用为 `gTownMapHotspots + offset` |
 | `0x080FCCB8`–`0x080FCCF2` | `src/library_opening_hours_data.o(.rodata)` | [嵌入文本] | `data/text/jp/library_opening_hours_data.cc` → `src/library_opening_hours_data.cc`<br>`include/library_opening_hours_data.hh` | 文本 `1` 项（详见下方索引）；唯一汇编读取为 `gText_Library_OpeningHours` 符号 |
 | `0x080FCCF3`–`0x080FCCF3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x080FCCF4`–`0x080FD083` | `src/town_map_area_data.o(.rodata)` | [数据] | `src/town_map_area_data.cc`（`gTownMapAreaBounds` 的五个按地图编号排列的子表）<br>`include/town_map_area_data.hh` | 5 个跨块引用：对象起始 1 个、`map_000`/`map_003`/`map_005`/`map_007` 子数组 4 个，均为符号重定位 |
-| `0x080FD084`–`0x080FD0CD` | `src/library_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/common/library_data.cc`（首个运行时字符串）→ `src/library_data.cc`（初始条目表）→ `data/text/jp/library_data_1.cc`（两项固定 12 字节菜单字段）→ `data/text/common/library_data_1.cc`（尾部运行时字符串）<br>`include/library_data.hh` | `gCppRuntimeBadAlloc_LibraryInfo`<br>对象内 `00` 对齐 `2` 字节<br>`gLibraryInitialEntryIds`<br>`gText_Library_Menu`（中间 `00` 是两项菜单字段分隔符）<br>`gCppRuntimeBadAlloc_LibraryMenu`<br>条目表与菜单的全部 ROM 指针均为汇编符号重定位 |
+| `0x080FD084`–`0x080FD0CD` | `src/library_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/jp/library_data_1.cc`（首个运行时字符串）→ `src/library_data.cc`（初始条目表）→ `data/text/jp/library_data_2.cc`（两项固定 12 字节菜单字段）→ `data/text/jp/library_data_3.cc`（尾部运行时字符串）<br>`include/library_data.hh` | `gCppRuntimeBadAlloc_LibraryInfo`<br>对象内 `00` 对齐 `2` 字节<br>`gLibraryInitialEntryIds`<br>`gText_Library_Menu`（中间 `00` 是两项菜单字段分隔符）<br>`gCppRuntimeBadAlloc_LibraryMenu`<br>条目表与菜单的全部 ROM 指针均为汇编符号重定位 |
 | `0x080FD0CE`–`0x080FD0CF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FD0D0`–`0x080FD55D` | `src/poultry_shop_data.o(.rodata)` | [嵌入文本 / 指针表] | `data/text/jp/poultry_shop_data.cc`（菜单文本）→ `src/poultry_shop_data.cc`（五项目录表）→ `data/text/jp/poultry_shop_data_1.cc`（状态与对话文本）→ `data/text/common/poultry_shop_data_1.cc`（尾部运行时字符串）<br>`include/poultry_shop_data.hh` | 菜单文本 `3` 项<br>`gPoultryShopCatalog`（五个 20 字节记录；内部文本字段均为符号）<br>状态与对话文本 `31` 项<br>运行时字符串 `1` 项<br>全部 `54` 个指针引用均为精确符号重定位 |
+| `0x080FD0D0`–`0x080FD55D` | `src/poultry_shop_data.o(.rodata)` | [嵌入文本 / 指针表] | `data/text/jp/poultry_shop_data_1.cc`（菜单文本）→ `src/poultry_shop_data.cc`（五项目录表）→ `data/text/jp/poultry_shop_data_2.cc`（状态与对话文本）→ `data/text/jp/poultry_shop_data_3.cc`（尾部运行时字符串）<br>`include/poultry_shop_data.hh` | 菜单文本 `3` 项<br>`gPoultryShopCatalog`（五个 20 字节记录；内部文本字段均为符号）<br>状态与对话文本 `31` 项<br>运行时字符串 `1` 项<br>全部 `54` 个指针引用均为精确符号重定位 |
 | `0x080FD55E`–`0x080FD55F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FD560`–`0x080FD80D` | `src/supermarket_data.o(.rodata)` | [嵌入文本 / 数据] | `src/supermarket_data.cc`（作物种子目录）→ `data/text/jp/supermarket_data.cc`（主文本）→ `src/supermarket_data.cc`（补充种子目录）→ `data/text/jp/supermarket_data_1.cc`（后续文本）→ `data/text/common/supermarket_data_1.cc`（尾部运行时字符串）<br>`include/supermarket_data.hh` | `gSupermarketCropSeedCatalog`（13 个记录）<br>主文本 `8` 项<br>`gSupermarketAdditionalSeedCatalog`（7 个记录与原始零哨兵）<br>后续文本 `3` 项<br>运行时字符串 `1` 项<br>全部 `20` 个指针引用均为精确符号重定位 |
+| `0x080FD560`–`0x080FD80D` | `src/supermarket_data.o(.rodata)` | [嵌入文本 / 数据] | `src/supermarket_data.cc`（作物种子目录）→ `data/text/jp/supermarket_data_1.cc`（主文本）→ `src/supermarket_data.cc`（补充种子目录）→ `data/text/jp/supermarket_data_2.cc`（后续文本）→ `data/text/jp/supermarket_data_3.cc`（尾部运行时字符串）<br>`include/supermarket_data.hh` | `gSupermarketCropSeedCatalog`（13 个记录）<br>主文本 `8` 项<br>`gSupermarketAdditionalSeedCatalog`（7 个记录与原始零哨兵）<br>后续文本 `3` 项<br>运行时字符串 `1` 项<br>全部 `20` 个指针引用均为精确符号重定位 |
 | `0x080FD80E`–`0x080FD80F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FD810`–`0x080FD9E1` | `src/clinic_data.o(.rodata)` | [嵌入文本 / 数据] | `src/clinic_data.cc`（目录表）→ `data/text/jp/clinic_data.cc`（9 项文本）→ `data/text/common/clinic_data_1.cc`（运行时尾部字符串）<br>`include/clinic_data.hh` | `gClinicCatalog`<br>文本 `9` 项（详见下方索引）<br>运行时字符串 `1` 项<br>全部 `13` 个引用均为精确符号重定位 |
+| `0x080FD810`–`0x080FD9E1` | `src/clinic_data.o(.rodata)` | [嵌入文本 / 数据] | `src/clinic_data.cc`（目录表）→ `data/text/jp/clinic_data_1.cc`（9 项文本）→ `data/text/jp/clinic_data_2.cc`（运行时尾部字符串）<br>`include/clinic_data.hh` | `gClinicCatalog`<br>文本 `9` 项（详见下方索引）<br>运行时字符串 `1` 项<br>全部 `13` 个引用均为精确符号重定位 |
 | `0x080FD9E2`–`0x080FD9E3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FD9E4`–`0x080FDBED` | `src/inn_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/inn_shop_data.cc`：`data/text/jp/inn_shop_data.cc`（菜品说明）→ `gInnShopMenu` → `data/text/jp/inn_shop_data_1.cc`（对话）→ `data/text/common/inn_shop_data_1.cc`（运行时尾部字符串）<br>`include/inn_shop_data.hh` | 菜品说明 `4` 项<br>`gInnShopMenu`<br>对话文本 `3` 项<br>运行时字符串 `1` 项<br>全部 `16` 个指针引用均为精确符号重定位 |
+| `0x080FD9E4`–`0x080FDBED` | `src/inn_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/inn_shop_data.cc`：`data/text/jp/inn_shop_data_1.cc`（菜品说明）→ `gInnShopMenu` → `data/text/jp/inn_shop_data_2.cc`（对话）→ `data/text/jp/inn_shop_data_3.cc`（运行时尾部字符串）<br>`include/inn_shop_data.hh` | 菜品说明 `4` 项<br>`gInnShopMenu`<br>对话文本 `3` 项<br>运行时字符串 `1` 项<br>全部 `16` 个指针引用均为精确符号重定位 |
 | `0x080FDBEE`–`0x080FDBEF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FDBF0`–`0x080FDF99` | `src/won_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/won_shop_data.cc`<br>`include/won_shop_data.hh`<br>`data/text/jp/won_shop_data.cc` | `gWonShopCatalog`<br>文本 `12` 项（详见下方索引）<br>运行时字符串 `1` 项 |
+| `0x080FDBF0`–`0x080FDF99` | `src/won_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/won_shop_data.cc`（目录表）→ `data/text/jp/won_shop_data_1.cc`（12 项店铺文本）→ `data/text/jp/won_shop_data_2.cc`（运行时尾部字符串）<br>`include/won_shop_data.hh` | `gWonShopCatalog`<br>文本 `12` 项（详见下方索引）<br>运行时字符串 `1` 项<br>全部 `18` 个引用均为精确符号重定位 |
 | `0x080FDF9A`–`0x080FDF9B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FDF9C`–`0x080FE181` | `src/winery_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/winery_shop_data.cc`<br>`include/winery_shop_data.hh`<br>`data/text/jp/winery_shop_data.cc` | `gWineryShopCatalog`<br>文本 `9` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080FE182`–`0x080FE183` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -304,13 +304,13 @@
 | `0x080FFE6E`–`0x080FFE6F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FFE70`–`0x081005D5` | `src/link_communication_data.o(.rodata)` | [嵌入文本 / 数据] | `src/link_communication_data.cc`<br>`include/link_communication_data.hh`<br>`data/text/jp/link_communication.cc` | 文本 `17` 项（详见下方索引）<br>运行时字符串 `3` 项<br>`gUnk_081007AC`, `gUnk_081007D4`, `gUnk_081007FC`, `gUnk_08100824`, `gUnk_0810084C`, `gUnk_08100874`, … +11<br>`gLinkCommunicationGameCodeA4N`, `gLinkCommunicationGameCodeGYW` |
 | `0x081005D6`–`0x081005D7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x081005D8`–`0x081005E9` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | [嵌入文本 / 数据] | `src/cooking_recipe_inventory_page_data.cc`<br>`include/cooking_recipe_inventory_page_data.hh`<br>`data/text/common/cooking_recipe_inventory_page_data.cc` | `gText_Cooking_Recipe_PageBreak`<br>`gCookingRecipeInventoryUtensilValues` |
+| `0x081005D8`–`0x081005E9` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | [嵌入文本 / 数据] | `src/cooking_recipe_inventory_page_data.cc`<br>`include/cooking_recipe_inventory_page_data.hh`<br>`data/text/jp/cooking_recipe_inventory_page_data.cc` | `gText_Cooking_Recipe_PageBreak`<br>`gCookingRecipeInventoryUtensilValues` |
 | `0x081005EA`–`0x081008F8` | `src/recovery_status.o(.rodata)` | [嵌入文本] | `src/recovery_status.cc`、`include/recovery_status.hh`、`data/text/jp/recovery_status.cc` | 文本 `2` 项（详见下方索引） |
 | `0x081008F9`–`0x081008FB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
 | `0x081008FC`–`0x08100C23` | `src/cooking.o(.rodata)` | [嵌入文本] | `src/cooking.cc`、`include/cooking.hh`、`data/text/jp/cooking.cc` | 文本 `28` 项（详见下方索引） |
-| `0x08100C24`–`0x08103191` | `src/cooking_recipe_inventory_data.o(.rodata)` | [数据 / 嵌入文本] | `src/cooking_recipe_inventory_data.cc`<br>`include/cooking_recipe_inventory_data.hh`<br>`data/text/common/cooking_recipe_inventory_data.cc` | `gCookingRecipeInventoryMaskEntries`<br>`gCookingRecipeDefinitions`, `gCookingRecipeDefinitionPayload`<br>运行时字符串 `2` 项 |
+| `0x08100C24`–`0x08103191` | `src/cooking_recipe_inventory_data.o(.rodata)` | [数据 / 嵌入文本] | `src/cooking_recipe_inventory_data.cc`<br>`include/cooking_recipe_inventory_data.hh`<br>`data/text/jp/cooking_recipe_inventory_data.cc` | `gCookingRecipeInventoryMaskEntries`<br>`gCookingRecipeDefinitions`, `gCookingRecipeDefinitionPayload`<br>运行时字符串 `2` 项 |
 | `0x08103192`–`0x08103193` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08103194`–`0x0810319A` | `src/animal.o(.rodata)` | [嵌入文本] | `src/animal.cc`、`include/animal.hh`、`data/text/common/animal.cc` | 文本 `1` 项（详见下方索引） |
+| `0x08103194`–`0x0810319A` | `src/animal.o(.rodata)` | [嵌入文本] | `src/animal.cc`、`include/animal.hh`、`data/text/jp/animal.cc` | 文本 `1` 项（详见下方索引） |
 | `0x0810319B`–`0x0810319B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x0810319C`–`0x081031FB` | `src/livestock_day_update_data.o(.rodata)` | [数据] | `src/livestock_day_update_data.cc`、`include/livestock_day_update_data.hh` | `gChickenDayUpdateInfo`, `gCowDayUpdateInfo`, `gSheepDayUpdateInfo` |
 | `0x081031FC`–`0x081032C1` | `src/actor_state.o(.rodata)` | [数据 / 嵌入文本] | `src/actor_state.cc`、`include/actor_state.hh`<br>`data/text/{jp,us,eu,de}/actor_state.cc`、`data/text/{jp,us,eu,de}/actor_state_1.cc` | `gActorStateMaxValues`<br>`gActorDataSelectionEntries`<br>运行时字符串 `2` 项 |
@@ -323,7 +323,7 @@
 | `0x08103C1B`–`0x08103C1B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x08103C1C`–`0x08103EFD` | `src/character_names_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/character_names_data.cc`、`include/character_names_data.hh`<br>`data/text/jp/character_names.cc`、`data/text/jp/character_names_1.cc` | 文本 `41` 项（详见下方索引）<br>文本后对象内 `00` 对齐 `1` 字节<br>`gCharacterNameEntries`<br>运行时字符串 `1` 项 |
 | `0x08103EFE`–`0x08103EFF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08103F00`–`0x08104479` | `src/field_item_data.o(.rodata)` | [数据 / 嵌入文本] | `src/field_item_data.cc`、`include/field_item_data.hh`<br>`data/text/common/field_item_data.cc` | `gUnk_081043BC`<br>运行时字符串 `1` 项 |
+| `0x08103F00`–`0x08104479` | `src/field_item_data.o(.rodata)` | [数据 / 嵌入文本] | `src/field_item_data.cc`、`include/field_item_data.hh`<br>`data/text/jp/field_item_data.cc` | `gUnk_081043BC`<br>运行时字符串 `1` 项 |
 | `0x0810447A`–`0x0810447B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x0810447C`–`0x08104955` | `src/calendar_events.o(.rodata)` | [数据 / 嵌入文本] | `src/calendar_events.cc`、`include/calendar_events.hh`<br>`data/text/jp/calendar_events.cc` | `gText_Calendar_DynamicSeasonNames`<br>文本 `22` 项（详见下方索引）<br>运行时字符串 `2` 项 |
 | `0x08104956`–`0x08104957` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -336,10 +336,10 @@
 | `0x081049F4`–`0x08104A16` | `src/random_item_selection.o(.rodata)` | [数据] | `src/random_item_selection.cc`、`include/random_item_selection.hh` | `gRandomItemSelectionWeights` |
 | `0x08104A17`–`0x08104A17` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x08104A18`–`0x08105177` | `src/random_item_selection.o(.rodata)` | [数据] | `src/random_item_selection.cc`、`include/random_item_selection.hh` | `gRandomItemCandidateConfigurations` |
-| `0x08105178`–`0x08105181` | `src/random_item_selection.o(.rodata)` | [嵌入文本] | `src/random_item_selection.cc`<br>`data/text/common/random_item_selection.cc` | 运行时字符串 `1` 项 |
+| `0x08105178`–`0x08105181` | `src/random_item_selection.o(.rodata)` | [嵌入文本] | `src/random_item_selection.cc`<br>`data/text/jp/random_item_selection.cc` | 运行时字符串 `1` 项 |
 | `0x08105182`–`0x08105183` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08105184`–`0x08105243` | `src/field_plot_position_rules.o(.rodata)` | [数据] | `src/field_plot_position_rules.cc`<br>`include/field_plot_position_rules.hh` | `gFieldPlotPositionRules` |
-| `0x08105244`–`0x0810524D` | `src/field_plot_position_rules.o(.rodata)` | [嵌入文本] | `src/field_plot_position_rules.cc`<br>`data/text/common/field_plot_position_rules.cc` | 运行时字符串 `1` 项 |
+| `0x08105244`–`0x0810524D` | `src/field_plot_position_rules.o(.rodata)` | [嵌入文本] | `src/field_plot_position_rules.cc`<br>`data/text/jp/field_plot_position_rules.cc` | 运行时字符串 `1` 项 |
 | `0x0810524E`–`0x0810524F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08105250`–`0x0810528F` | `src/time_of_day.o(.rodata)` | [数据] | `src/time_of_day.cc`<br>`include/time_of_day.hh` | `gTimeOfDayTransitionTables` |
 | `0x08105290`–`0x08105A23` | `src/time_of_day.o(.rodata)` | [数据] | `src/time_of_day.cc`<br>`include/time_of_day.hh` | `gTimeOfDayTransitionRecords_Spring_Morning`, `gTimeOfDayTransitionRecords_Spring_Afternoon`, `gTimeOfDayTransitionRecords_Spring_Evening`, `gTimeOfDayTransitionRecords_Spring_Night`, `gTimeOfDayTransitionRecords_Summer_Morning`, `gTimeOfDayTransitionRecords_Summer_Afternoon`, … +10 |
@@ -348,23 +348,23 @@
 | `0x08106C24`–`0x08106E97` | `src/field_render_farm_house_data.o(.rodata)` | [数据] | `src/field_render_farm_house_data.cc`<br>`include/field_render_farm_house_data.hh` | `gFarmHouseTilePatchData`、`gFarmHouseVisualDescriptors`、`gFarmHouseTilePatchAnimations`；按同一对象内的 ROM 顺序排列 |
 | `0x08106E98`–`0x08106EA3` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gUnk_FieldRenderResource_158`、`gUnk_FieldRenderResource_159`；后者包含至下一命名对象前的 4 个未标号 `00` |
 | `0x08106EA4`–`0x08106EB7` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gUnk_FieldRenderResource_177`、`gUnk_FieldRenderResource_178`；后者包含至下一命名对象前的 12 个未标号 `00` |
-| `0x08106EB8`–`0x08106ECD` | `src/field_render_resource_data.o(.rodata)` | [嵌入文本] | `src/field_render_resource_data.cc`<br>`data/text/common/field_render_resource_data.cc` | 运行时字符串 `2` 项 |
+| `0x08106EB8`–`0x08106ECD` | `src/field_render_resource_data.o(.rodata)` | [嵌入文本] | `src/field_render_resource_data.cc`<br>`data/text/jp/field_render_resource_data_1.cc` | 运行时字符串 `2` 项 |
 | `0x08106ECE`–`0x08106ECF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08106ED0`–`0x08106F0B` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFieldRenderParallelTables` |
 | `0x08106F0C`–`0x08106F6B` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFieldRenderPatchArgumentData` |
-| `0x08106F6C`–`0x08106F75` | `src/field_render_resource_data.o(.rodata)` | [嵌入文本] | `src/field_render_resource_data.cc`<br>`data/text/common/field_render_resource_data_1.cc` | 运行时字符串 `1` 项 |
+| `0x08106F6C`–`0x08106F75` | `src/field_render_resource_data.o(.rodata)` | [嵌入文本] | `src/field_render_resource_data.cc`<br>`data/text/jp/field_render_resource_data_2.cc` | 运行时字符串 `1` 项 |
 | `0x08106F76`–`0x08106F7E` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFarmHouseStyleNibbleLookupData` |
 | `0x08106F7F`–`0x08106F7F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x08106F80`–`0x08106F97` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | [数据] | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
 | `0x08106F98`–`0x08106F9F` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gFieldRenderSeasonalRecordRanges` |
 | `0x08106FA0`–`0x08106FE7` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_FieldRenderLookupValues` |
-| `0x08106FE8`–`0x0810703D` | `src/field_render_runtime_data.o(.rodata)` | [嵌入文本] | `src/field_render_runtime_data.cc`<br>`data/text/jp/field_render_runtime_data.cc` | `gText_FieldRenderFallbackNone`、运行时字符串 `7` 项 |
+| `0x08106FE8`–`0x0810703D` | `src/field_render_runtime_data.o(.rodata)` | [嵌入文本] | `src/field_render_runtime_data.cc`<br>`data/text/jp/field_render_runtime_data_1.cc` | `gText_FieldRenderFallbackNone`、运行时字符串 `7` 项 |
 | `0x0810703E`–`0x08107056` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_FieldRenderSortedValues` |
 | `0x08107057`–`0x08107057` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x08107058`–`0x0810706D` | `src/field_render_runtime_data.o(.rodata)` | [嵌入文本] | `src/field_render_runtime_data.cc`<br>`data/text/common/field_render_runtime_data_1.cc` | 运行时字符串 `2` 项 |
+| `0x08107058`–`0x0810706D` | `src/field_render_runtime_data.o(.rodata)` | [嵌入文本] | `src/field_render_runtime_data.cc`<br>`data/text/jp/field_render_runtime_data_2.cc` | 运行时字符串 `2` 项 |
 | `0x0810706E`–`0x0810706F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08107070`–`0x081070AB` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_080AE894InitialValues`, `gUnk_080AE894LayoutValues` |
-| `0x081070AC`–`0x081070AE` | `src/field_render_runtime_data.o(.rodata)` | [嵌入文本] | `src/field_render_runtime_data.cc`<br>`data/text/jp/field_render_runtime_data_2.cc` | `gText_080B0708DefaultGlyph` |
+| `0x081070AC`–`0x081070AE` | `src/field_render_runtime_data.o(.rodata)` | [嵌入文本] | `src/field_render_runtime_data.cc`<br>`data/text/jp/field_render_runtime_data_3.cc` | `gText_080B0708DefaultGlyph` |
 | `0x081070AF`–`0x081070AF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x081070B0`–`0x081070CB` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_080B09B0IndexValues` |
 | `0x081070CC`–`0x081070F3` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_080B0BB8FirstValues`, `gUnk_080B0BB8SecondValues` |
@@ -403,7 +403,7 @@
 | `0x081189F4`–`0x08118A13` | `src/shop_common.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/jp/shop_common_1.cc`<br>`data/text/jp/shop_common_2.cc` | 文本 `3` 项（详见下方索引）<br>`gShopCommonQuantitySuffixTextRef`, `gShopCommonOwnedQuantityLabelTextRef` |
 | `0x08118A14`–`0x08118B93` | `src/shop_common.o(.rodata)` | [嵌入文本与数据] | `src/shop_common.cc`<br>`data/text/jp/shop_common_3.cc`<br>`data/text/jp/shop_common_4.cc` | 运行时字符串 `2` 项<br>`gUnk_08117838`, `gUnk_0811783C`, `gUnk_0811785C`, `gUnk_08117860`, `gUnk_0811788C` |
 | `0x08118B94`–`0x08118CF3` | `src/shop_common.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/jp/shop_common_5.cc`–`shop_common_8.cc` | 文本 `26` 项（详见下方索引）<br>`gItemStatusWrappedAsPresentTextRef`, `gItemDiscardConfirmTextRef`, `gItemDiscardCannotDiscardTextRef`, `gItemDiscardCursedTextRef` |
-| `0x08118CF4`–`0x08118D17` | `src/font.o(.rodata)` | [嵌入文本 / 数据] | `src/font.cc`<br>`include/font.hh`<br>`data/text/common/font.cc` | 运行时字符串 `1` 项<br>`gFontSpecialGlyph81CD` |
+| `0x08118CF4`–`0x08118D17` | `src/font.o(.rodata)` | [嵌入文本 / 数据] | `src/font.cc`<br>`include/font.hh`<br>`data/text/jp/font.cc` | 运行时字符串 `1` 项<br>`gFontSpecialGlyph81CD` |
 | `0x08118D18`–`0x0813ABCB` | `asm/data/static_resources.o(.rodata)` | [直接标签的原始资源] | `asm/data/static_resources.s`<br>`include/static_resources.hh` | 地图、场景渲染与农舍资源共 220 项；每项均为实际标签和独立区域 `incbin`，没有 `.set` 偏移别名 |
 
 ## JP：文本地址索引
@@ -1206,233 +1206,233 @@
 | `0x080F9EF4` | `gText_Frisbee_DogNoLongerWantsToPlay` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
 | `0x080F9F24` | `gText_Frisbee_FoundItem` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
 | `0x080F9F34` | `gText_Frisbee_FoundNothing` | `data/text/jp/frisbee.cc` | `src/frisbee.o(.rodata)` |
-| `0x080F9FD6` | `gText_AnimalFestival_LivestockContestantNames` | `data/text/jp/animal_festival.cc` | `src/animal_festival.o(.rodata)` |
-| `0x080FA280` | `gText_HorseRace_BuyTicketDeclined` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA294` | `gText_HorseRace_Yes` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA29C` | `gText_HorseRace_No` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA2A4` | `gText_HorseRace_ComeAgain` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA2B4` | `gText_HorseRace_TakeYourTime` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA2D0` | `gText_HorseRace_TicketPurchaseConfirmation` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA2E4` | `gText_HorseRace_TicketPurchaseApproval` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA30C` | `gText_HorseRace_TicketPurchaseEncouragement` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA330` | `gText_HorseRace_ChangeMind` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA344` | `gText_HorseRace_ExplanationQuestion` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA360` | `gText_HorseRace_ExplanationBasics` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA418` | `gText_HorseRace_ExplanationGreenStamina` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA454` | `gText_HorseRace_ExplanationYellowStamina` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA490` | `gText_HorseRace_ExplanationRedStamina` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA4FC` | `gText_HorseRace_ExplanationStaminaRecovery` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA578` | `gText_HorseRace_ExplanationUnderstoodQuestion` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA588` | `gText_HorseRace_ExplanationUnderstood` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA594` | `gText_HorseRace_ExplanationRepeat` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA5A8` | `gText_HorseRace_StartRace` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA5C0` | `gText_HorseRace_RaceStartAnnouncement` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA608` | `gText_HorseRace_RaceResults` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA658` | `gText_HorseRace_RacePayouts` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA688` | `gText_HorseRace_MedalExchangeExplanation` | `data/text/jp/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA73C` | `gText_HorseRace_TicketPurchaseTitle` | `data/text/jp/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA758` | `gText_HorseRace_TicketPurchaseConfirm` | `data/text/jp/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA764` | `gText_HorseRace_TicketPurchaseMedalsToWin` | `data/text/jp/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA77C` | `gText_HorseRace_TicketControls_DPadUpDown` | `data/text/jp/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA78C` | `gText_HorseRace_TicketControls_SelectHorse` | `data/text/jp/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA7A8` | `gText_HorseRace_TicketControls_DPadLeftRight` | `data/text/jp/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA7B8` | `gText_HorseRace_TicketControls_ChangeQuantity` | `data/text/jp/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA7D4` | `gText_HorseRace_TicketControls_LRButtons` | `data/text/jp/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA7E8` | `gText_HorseRace_TicketControls_ChangeQuantityByTen` | `data/text/jp/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA808` | `gText_HorseRace_TicketControls_ChangeQuantityByTenContinuation` | `data/text/jp/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA80C` | `gText_HorseRace_TicketControls_MoveCursorToConfirm` | `data/text/jp/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA828` | `gText_HorseRace_TicketControls_Buy` | `data/text/jp/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA848` | `gText_HorseRace_TicketControls_Cancel` | `data/text/jp/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA9A0` | `gText_HorseRace_PrizeExchangePrompt` | `data/text/jp/horse_race_data_4.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA9B8` | `gText_HorseRace_PrizeExchangeYes` | `data/text/jp/horse_race_data_4.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA9C0` | `gText_HorseRace_PrizeExchangeNo` | `data/text/jp/horse_race_data_4.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA9C8` | `gText_HorseRace_PrizeExchangeComeAgain` | `data/text/jp/horse_race_data_4.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA9D8` | `gText_HorseRace_PrizeExchangeTakeYourTime` | `data/text/jp/horse_race_data_4.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FA9F4` | `gText_HorseRace_PrizeSelectionConfirmation` | `data/text/jp/horse_race_data_4.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAA04` | `gText_HorseRace_PrizeExchangeLeaveConfirmation` | `data/text/jp/horse_race_data_4.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAA18` | `gText_HorseRace_PrizeExchangeInsufficientMedals` | `data/text/jp/horse_race_data_4.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAABC` | `gText_IntroScene_MotherName` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAAC0` | `gText_IntroScene_MotherTravelGreeting` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAB08` | `gText_IntroScene_FatherName` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAB0C` | `gText_IntroScene_FatherFishingInvitation` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAB5C` | `gText_IntroScene_MotherCannotFindPlayer` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAB94` | `gText_IntroScene_PlayerResponseWhat` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FABA4` | `gText_IntroScene_OldManName` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FABB0` | `gText_IntroScene_OldManFindsPlayer` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAC58` | `gText_IntroScene_MotherThanksOldMan` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAC90` | `gText_IntroScene_FatherExplainsVacation` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FACF8` | `gText_IntroScene_OldManOffersStay` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAD50` | `gText_IntroScene_FatherAsksAboutStay` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAD6C` | `gText_IntroScene_OldManWelcomesFamily` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FADB4` | `gText_IntroScene_MotherTellsPlayerToPlay` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FADF0` | `gText_IntroScene_UnknownName` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FADF8` | `gText_IntroScene_UnknownCallsPlayer` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAE14` | `gText_IntroScene_UnknownFindsPlayer` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAE1C` | `gText_IntroScene_GirlName` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAE24` | `gText_IntroScene_GirlThinksPlayerDead` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAE58` | `gText_IntroScene_GirlInvitesPlayerToPlay` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAEAC` | `gText_IntroScene_GirlAsksPlayerStory` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAF28` | `gText_IntroScene_OldManFarewell` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAFBC` | `gText_IntroScene_OldManRequestsLetter` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FAFF4` | `gText_IntroScene_OldManGivesAddress` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB034` | `gText_IntroScene_GirlSaysGoodbye` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB054` | `gText_IntroScene_GirlAsksPlayerToReturn` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB0B0` | `gText_IntroScene_OldManNotesFriend` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB0F4` | `gText_IntroScene_OldManWaitsForLetter` | `data/text/jp/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB11C` | `gText_FarmStatus_OverviewTitle` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB128` | `gText_FarmStatus_CounterBirds` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB12C` | `gText_FarmStatus_CounterHeads` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB130` | `gText_FarmStatus_CounterAnimals` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB134` | `gText_FarmStatus_CounterSheets` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB138` | `gText_FarmStatus_CounterPieces` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB13C` | `gText_FarmStatus_CounterLongObjects` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB140` | `gText_FarmStatus_GoldUnit` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB144` | `gText_FarmStatus_Healthy` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB14C` | `gText_FarmStatus_Unhappy` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB154` | `gText_FarmStatus_Sick` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB15C` | `gText_FarmStatus_Spring` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB160` | `gText_FarmStatus_Summer` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB164` | `gText_FarmStatus_Autumn` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB168` | `gText_FarmStatus_Winter` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB16C` | `gText_FarmStatus_AgeUnit` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB170` | `gText_FarmStatus_DayUnit` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB174` | `gText_FarmStatus_ChickenList` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB17C` | `gText_FarmStatus_CattleList` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB184` | `gText_FarmStatus_SheepList` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB18C` | `gText_FarmStatus_HarvestSpriteList` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB1A0` | `gText_FarmStatus_DaysRemaining` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB1A8` | `gText_FarmStatus_WorkAssignment` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB1B4` | `gText_FarmStatus_NotAssigned` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB1C4` | `gText_FarmStatus_EarningsReport` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB1D0` | `gText_FarmStatus_PlusSign` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB1D4` | `gText_FarmStatus_MinusSign` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB1D8` | `gText_FarmStatus_MonthSuffix` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB1E0` | `gText_FarmStatus_YearLabel` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB1E8` | `gText_FarmStatus_Income` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB1F0` | `gText_FarmStatus_Expenses` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB1F8` | `gText_FarmStatus_ToolLevelList` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB20C` | `gText_FarmStatus_ToolUpgradeInProgress` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB214` | `gText_FarmStatus_ToolUpgradeAvailable` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB220` | `gText_FarmStatus_PercentSign` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB27C` | `gText_AnimalContest_ChickenConfirmation` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB294` | `gText_AnimalContest_Yes` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB29C` | `gText_AnimalContest_No` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB2A4` | `gText_AnimalContest_CowConfirmation` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB2BC` | `gText_AnimalContest_SheepConfirmation` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB2D4` | `gText_AnimalContest_BabyChickIneligible` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB308` | `gText_AnimalContest_AdultCowIneligible` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB338` | `gText_AnimalContest_AdultSheepIneligible` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB368` | `gText_AnimalContest_SickChickenIneligible` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB39C` | `gText_AnimalContest_SickCowIneligible` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB3CC` | `gText_AnimalContest_SickSheepIneligible` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB3FC` | `gText_AnimalContest_PregnantCowIneligible` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB42C` | `gText_AnimalContest_PregnantSheepIneligible` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB45C` | `gText_AnimalContest_ShornSheepIneligible` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB490` | `gText_AnimalContest_ChickenEntryAccepted` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB4BC` | `gText_AnimalContest_ChickenSelectionPrompt` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB4E4` | `gText_AnimalContest_CowEntryAccepted` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB510` | `gText_AnimalContest_CowSelectionPrompt` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB53C` | `gText_AnimalContest_SheepEntryAccepted` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB568` | `gText_AnimalContest_SheepSelectionPrompt` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB594` | `gText_AnimalContest_ChickenEntryDeclinedQuestion` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB5B0` | `gText_AnimalContest_LivestockEntryDeclinedQuestion` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB5C4` | `gText_AnimalContest_ChickenEntryDeclinedResponse` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB5F0` | `gText_AnimalContest_LivestockEntryDeclinedResponse` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB624` | `gText_AnimalContest_FinalConfirmation` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB634` | `gText_AnimalContest_FinalYes` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB63C` | `gText_AnimalContest_FinalNo` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB764` | `gText_Records_NumberShipped` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB76C` | `gText_Records_ShippedCountSuffix` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB770` | `gText_Records_Fishing` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB778` | `gText_Records_Name` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB780` | `gText_Records_MaximumSize` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB78C` | `gText_Records_Results` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB794` | `gText_Records_FishUnit` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB798` | `gText_Records_MeterUnit` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB79C` | `gText_Records_CentimeterUnit` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB7A4` | `gText_Records_Separator` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB7A8` | `gText_Records_Other` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB7B0` | `gText_Records_MiniGameRecords` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB7CC` | `gText_Records_Harvest` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB7D4` | `gText_Records_AnimalHusbandry` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB7E0` | `gText_Records_Watering` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB7E8` | `gText_Records_Frisbee` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB7F4` | `gText_Records_SecondsUnit` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB7F8` | `gText_Records_IncomeExpenses` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB814` | `gText_Records_HighestAmount` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB820` | `gText_Records_Earned` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB82C` | `gText_Records_Used` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB838` | `gText_Records_GoldUnit` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB83C` | `gText_Records_LongestLivingAnimal` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB858` | `gText_Records_Chicken` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB85C` | `gText_Records_Cow` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB860` | `gText_Records_Sheep` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB864` | `gText_Records_YearsUnit` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB868` | `gText_Records_MonthsUnit` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB870` | `gText_Records_DaysUnit` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB874` | `gText_Records_MineDepth` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB890` | `gText_Records_BelowGround` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB898` | `gText_Records_FloorUnit` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB89C` | `gText_Records_MolesWhacked` | `data/text/jp/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FB938` | `gText_StaffCredits_Line000` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FB944` | `gText_StaffCredits_EmptyLine` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FB948` | `gText_StaffCredits_Line004` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FB95C` | `gText_StaffCredits_Line006` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FB968` | `gText_StaffCredits_Line007` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FB974` | `gText_StaffCredits_Line008` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FB980` | `gText_StaffCredits_Line009` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FB98C` | `gText_StaffCredits_Line010` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FB998` | `gText_StaffCredits_Line011` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FB9A4` | `gText_StaffCredits_Line015` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FB9B0` | `gText_StaffCredits_Line017` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FB9C0` | `gText_StaffCredits_Line018` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FB9D4` | `gText_StaffCredits_Line019` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FB9E0` | `gText_StaffCredits_Line020` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FB9EC` | `gText_StaffCredits_Line021` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FB9FC` | `gText_StaffCredits_Line022` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBA0C` | `gText_StaffCredits_Line026` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBA18` | `gText_StaffCredits_Line028` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBA24` | `gText_StaffCredits_Line032` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBA34` | `gText_StaffCredits_Line034` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBA40` | `gText_StaffCredits_Line035` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBA4C` | `gText_StaffCredits_Line036` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBA58` | `gText_StaffCredits_Line037` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBA64` | `gText_StaffCredits_Line038` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBA70` | `gText_StaffCredits_Line039` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBA7C` | `gText_StaffCredits_Line043` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBA88` | `gText_StaffCredits_Line045` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBA94` | `gText_StaffCredits_Line046` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBAA0` | `gText_StaffCredits_Line047` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBAAC` | `gText_StaffCredits_Line051` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBAC0` | `gText_StaffCredits_Line053` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBACC` | `gText_StaffCredits_Line054` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBAD8` | `gText_StaffCredits_Line055` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBAE4` | `gText_StaffCredits_Line056` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBAF0` | `gText_StaffCredits_Line057` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBAFC` | `gText_StaffCredits_Line058` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBB04` | `gText_StaffCredits_Line059` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBB10` | `gText_StaffCredits_Line063` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBB20` | `gText_StaffCredits_Line065` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBB2C` | `gText_StaffCredits_Line069` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBB3C` | `gText_StaffCredits_Line071` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBB48` | `gText_StaffCredits_Line075` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBB58` | `gText_StaffCredits_Line077` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBB64` | `gText_StaffCredits_Line081` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBB80` | `gText_StaffCredits_Line082` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBB9C` | `gText_StaffCredits_Line084` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBBA4` | `gText_StaffCredits_Line088` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBBBC` | `gText_StaffCredits_Line090` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBBD4` | `gText_StaffCredits_Line094` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBBF0` | `gText_StaffCredits_Line096` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBBFC` | `gText_StaffCredits_Line097` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBC08` | `gText_StaffCredits_Line101` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBC20` | `gText_StaffCredits_Line103` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBC2C` | `gText_StaffCredits_Line104` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBC38` | `gText_StaffCredits_Line108` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBC50` | `gText_StaffCredits_Line110` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBC60` | `gText_StaffCredits_Line114` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBC74` | `gText_StaffCredits_Line116` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FBC80` | `gText_StaffCredits_Line126` | `data/text/jp/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080F9FD6` | `gText_AnimalFestival_LivestockContestantNames` | `data/text/jp/animal_festival_2.cc` | `src/animal_festival.o(.rodata)` |
+| `0x080FA280` | `gText_HorseRace_BuyTicketDeclined` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA294` | `gText_HorseRace_Yes` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA29C` | `gText_HorseRace_No` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA2A4` | `gText_HorseRace_ComeAgain` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA2B4` | `gText_HorseRace_TakeYourTime` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA2D0` | `gText_HorseRace_TicketPurchaseConfirmation` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA2E4` | `gText_HorseRace_TicketPurchaseApproval` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA30C` | `gText_HorseRace_TicketPurchaseEncouragement` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA330` | `gText_HorseRace_ChangeMind` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA344` | `gText_HorseRace_ExplanationQuestion` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA360` | `gText_HorseRace_ExplanationBasics` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA418` | `gText_HorseRace_ExplanationGreenStamina` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA454` | `gText_HorseRace_ExplanationYellowStamina` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA490` | `gText_HorseRace_ExplanationRedStamina` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA4FC` | `gText_HorseRace_ExplanationStaminaRecovery` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA578` | `gText_HorseRace_ExplanationUnderstoodQuestion` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA588` | `gText_HorseRace_ExplanationUnderstood` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA594` | `gText_HorseRace_ExplanationRepeat` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA5A8` | `gText_HorseRace_StartRace` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA5C0` | `gText_HorseRace_RaceStartAnnouncement` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA608` | `gText_HorseRace_RaceResults` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA658` | `gText_HorseRace_RacePayouts` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA688` | `gText_HorseRace_MedalExchangeExplanation` | `data/text/jp/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA73C` | `gText_HorseRace_TicketPurchaseTitle` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA758` | `gText_HorseRace_TicketPurchaseConfirm` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA764` | `gText_HorseRace_TicketPurchaseMedalsToWin` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA77C` | `gText_HorseRace_TicketControls_DPadUpDown` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA78C` | `gText_HorseRace_TicketControls_SelectHorse` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA7A8` | `gText_HorseRace_TicketControls_DPadLeftRight` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA7B8` | `gText_HorseRace_TicketControls_ChangeQuantity` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA7D4` | `gText_HorseRace_TicketControls_LRButtons` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA7E8` | `gText_HorseRace_TicketControls_ChangeQuantityByTen` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA808` | `gText_HorseRace_TicketControls_ChangeQuantityByTenContinuation` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA80C` | `gText_HorseRace_TicketControls_MoveCursorToConfirm` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA828` | `gText_HorseRace_TicketControls_Buy` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA848` | `gText_HorseRace_TicketControls_Cancel` | `data/text/jp/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA9A0` | `gText_HorseRace_PrizeExchangePrompt` | `data/text/jp/horse_race_data_6.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA9B8` | `gText_HorseRace_PrizeExchangeYes` | `data/text/jp/horse_race_data_6.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA9C0` | `gText_HorseRace_PrizeExchangeNo` | `data/text/jp/horse_race_data_6.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA9C8` | `gText_HorseRace_PrizeExchangeComeAgain` | `data/text/jp/horse_race_data_6.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA9D8` | `gText_HorseRace_PrizeExchangeTakeYourTime` | `data/text/jp/horse_race_data_6.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FA9F4` | `gText_HorseRace_PrizeSelectionConfirmation` | `data/text/jp/horse_race_data_6.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAA04` | `gText_HorseRace_PrizeExchangeLeaveConfirmation` | `data/text/jp/horse_race_data_6.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAA18` | `gText_HorseRace_PrizeExchangeInsufficientMedals` | `data/text/jp/horse_race_data_6.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAABC` | `gText_IntroScene_MotherName` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAAC0` | `gText_IntroScene_MotherTravelGreeting` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAB08` | `gText_IntroScene_FatherName` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAB0C` | `gText_IntroScene_FatherFishingInvitation` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAB5C` | `gText_IntroScene_MotherCannotFindPlayer` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAB94` | `gText_IntroScene_PlayerResponseWhat` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FABA4` | `gText_IntroScene_OldManName` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FABB0` | `gText_IntroScene_OldManFindsPlayer` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAC58` | `gText_IntroScene_MotherThanksOldMan` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAC90` | `gText_IntroScene_FatherExplainsVacation` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FACF8` | `gText_IntroScene_OldManOffersStay` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAD50` | `gText_IntroScene_FatherAsksAboutStay` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAD6C` | `gText_IntroScene_OldManWelcomesFamily` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FADB4` | `gText_IntroScene_MotherTellsPlayerToPlay` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FADF0` | `gText_IntroScene_UnknownName` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FADF8` | `gText_IntroScene_UnknownCallsPlayer` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAE14` | `gText_IntroScene_UnknownFindsPlayer` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAE1C` | `gText_IntroScene_GirlName` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAE24` | `gText_IntroScene_GirlThinksPlayerDead` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAE58` | `gText_IntroScene_GirlInvitesPlayerToPlay` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAEAC` | `gText_IntroScene_GirlAsksPlayerStory` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAF28` | `gText_IntroScene_OldManFarewell` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAFBC` | `gText_IntroScene_OldManRequestsLetter` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FAFF4` | `gText_IntroScene_OldManGivesAddress` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB034` | `gText_IntroScene_GirlSaysGoodbye` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB054` | `gText_IntroScene_GirlAsksPlayerToReturn` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB0B0` | `gText_IntroScene_OldManNotesFriend` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB0F4` | `gText_IntroScene_OldManWaitsForLetter` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB11C` | `gText_FarmStatus_OverviewTitle` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB128` | `gText_FarmStatus_CounterBirds` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB12C` | `gText_FarmStatus_CounterHeads` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB130` | `gText_FarmStatus_CounterAnimals` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB134` | `gText_FarmStatus_CounterSheets` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB138` | `gText_FarmStatus_CounterPieces` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB13C` | `gText_FarmStatus_CounterLongObjects` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB140` | `gText_FarmStatus_GoldUnit` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB144` | `gText_FarmStatus_Healthy` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB14C` | `gText_FarmStatus_Unhappy` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB154` | `gText_FarmStatus_Sick` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB15C` | `gText_FarmStatus_Spring` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB160` | `gText_FarmStatus_Summer` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB164` | `gText_FarmStatus_Autumn` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB168` | `gText_FarmStatus_Winter` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB16C` | `gText_FarmStatus_AgeUnit` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB170` | `gText_FarmStatus_DayUnit` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB174` | `gText_FarmStatus_ChickenList` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB17C` | `gText_FarmStatus_CattleList` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB184` | `gText_FarmStatus_SheepList` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB18C` | `gText_FarmStatus_HarvestSpriteList` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB1A0` | `gText_FarmStatus_DaysRemaining` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB1A8` | `gText_FarmStatus_WorkAssignment` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB1B4` | `gText_FarmStatus_NotAssigned` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB1C4` | `gText_FarmStatus_EarningsReport` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB1D0` | `gText_FarmStatus_PlusSign` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB1D4` | `gText_FarmStatus_MinusSign` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB1D8` | `gText_FarmStatus_MonthSuffix` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB1E0` | `gText_FarmStatus_YearLabel` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB1E8` | `gText_FarmStatus_Income` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB1F0` | `gText_FarmStatus_Expenses` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB1F8` | `gText_FarmStatus_ToolLevelList` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB20C` | `gText_FarmStatus_ToolUpgradeInProgress` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB214` | `gText_FarmStatus_ToolUpgradeAvailable` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB220` | `gText_FarmStatus_PercentSign` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB27C` | `gText_AnimalContest_ChickenConfirmation` | `data/text/jp/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB294` | `gText_AnimalContest_Yes` | `data/text/jp/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB29C` | `gText_AnimalContest_No` | `data/text/jp/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB2A4` | `gText_AnimalContest_CowConfirmation` | `data/text/jp/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB2BC` | `gText_AnimalContest_SheepConfirmation` | `data/text/jp/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB2D4` | `gText_AnimalContest_BabyChickIneligible` | `data/text/jp/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB308` | `gText_AnimalContest_AdultCowIneligible` | `data/text/jp/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB338` | `gText_AnimalContest_AdultSheepIneligible` | `data/text/jp/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB368` | `gText_AnimalContest_SickChickenIneligible` | `data/text/jp/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB39C` | `gText_AnimalContest_SickCowIneligible` | `data/text/jp/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB3CC` | `gText_AnimalContest_SickSheepIneligible` | `data/text/jp/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB3FC` | `gText_AnimalContest_PregnantCowIneligible` | `data/text/jp/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB42C` | `gText_AnimalContest_PregnantSheepIneligible` | `data/text/jp/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB45C` | `gText_AnimalContest_ShornSheepIneligible` | `data/text/jp/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB490` | `gText_AnimalContest_ChickenEntryAccepted` | `data/text/jp/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB4BC` | `gText_AnimalContest_ChickenSelectionPrompt` | `data/text/jp/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB4E4` | `gText_AnimalContest_CowEntryAccepted` | `data/text/jp/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB510` | `gText_AnimalContest_CowSelectionPrompt` | `data/text/jp/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB53C` | `gText_AnimalContest_SheepEntryAccepted` | `data/text/jp/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB568` | `gText_AnimalContest_SheepSelectionPrompt` | `data/text/jp/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB594` | `gText_AnimalContest_ChickenEntryDeclinedQuestion` | `data/text/jp/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB5B0` | `gText_AnimalContest_LivestockEntryDeclinedQuestion` | `data/text/jp/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB5C4` | `gText_AnimalContest_ChickenEntryDeclinedResponse` | `data/text/jp/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB5F0` | `gText_AnimalContest_LivestockEntryDeclinedResponse` | `data/text/jp/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB624` | `gText_AnimalContest_FinalConfirmation` | `data/text/jp/farm_status_screen_data_5.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB634` | `gText_AnimalContest_FinalYes` | `data/text/jp/farm_status_screen_data_5.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB63C` | `gText_AnimalContest_FinalNo` | `data/text/jp/farm_status_screen_data_5.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB764` | `gText_Records_NumberShipped` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB76C` | `gText_Records_ShippedCountSuffix` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB770` | `gText_Records_Fishing` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB778` | `gText_Records_Name` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB780` | `gText_Records_MaximumSize` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB78C` | `gText_Records_Results` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB794` | `gText_Records_FishUnit` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB798` | `gText_Records_MeterUnit` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB79C` | `gText_Records_CentimeterUnit` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB7A4` | `gText_Records_Separator` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB7A8` | `gText_Records_Other` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB7B0` | `gText_Records_MiniGameRecords` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB7CC` | `gText_Records_Harvest` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB7D4` | `gText_Records_AnimalHusbandry` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB7E0` | `gText_Records_Watering` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB7E8` | `gText_Records_Frisbee` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB7F4` | `gText_Records_SecondsUnit` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB7F8` | `gText_Records_IncomeExpenses` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB814` | `gText_Records_HighestAmount` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB820` | `gText_Records_Earned` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB82C` | `gText_Records_Used` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB838` | `gText_Records_GoldUnit` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB83C` | `gText_Records_LongestLivingAnimal` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB858` | `gText_Records_Chicken` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB85C` | `gText_Records_Cow` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB860` | `gText_Records_Sheep` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB864` | `gText_Records_YearsUnit` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB868` | `gText_Records_MonthsUnit` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB870` | `gText_Records_DaysUnit` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB874` | `gText_Records_MineDepth` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB890` | `gText_Records_BelowGround` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB898` | `gText_Records_FloorUnit` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB89C` | `gText_Records_MolesWhacked` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FB938` | `gText_StaffCredits_Line000` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB944` | `gText_StaffCredits_EmptyLine` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB948` | `gText_StaffCredits_Line004` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB95C` | `gText_StaffCredits_Line006` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB968` | `gText_StaffCredits_Line007` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB974` | `gText_StaffCredits_Line008` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB980` | `gText_StaffCredits_Line009` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB98C` | `gText_StaffCredits_Line010` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB998` | `gText_StaffCredits_Line011` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB9A4` | `gText_StaffCredits_Line015` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB9B0` | `gText_StaffCredits_Line017` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB9C0` | `gText_StaffCredits_Line018` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB9D4` | `gText_StaffCredits_Line019` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB9E0` | `gText_StaffCredits_Line020` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB9EC` | `gText_StaffCredits_Line021` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FB9FC` | `gText_StaffCredits_Line022` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBA0C` | `gText_StaffCredits_Line026` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBA18` | `gText_StaffCredits_Line028` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBA24` | `gText_StaffCredits_Line032` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBA34` | `gText_StaffCredits_Line034` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBA40` | `gText_StaffCredits_Line035` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBA4C` | `gText_StaffCredits_Line036` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBA58` | `gText_StaffCredits_Line037` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBA64` | `gText_StaffCredits_Line038` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBA70` | `gText_StaffCredits_Line039` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBA7C` | `gText_StaffCredits_Line043` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBA88` | `gText_StaffCredits_Line045` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBA94` | `gText_StaffCredits_Line046` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBAA0` | `gText_StaffCredits_Line047` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBAAC` | `gText_StaffCredits_Line051` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBAC0` | `gText_StaffCredits_Line053` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBACC` | `gText_StaffCredits_Line054` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBAD8` | `gText_StaffCredits_Line055` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBAE4` | `gText_StaffCredits_Line056` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBAF0` | `gText_StaffCredits_Line057` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBAFC` | `gText_StaffCredits_Line058` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBB04` | `gText_StaffCredits_Line059` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBB10` | `gText_StaffCredits_Line063` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBB20` | `gText_StaffCredits_Line065` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBB2C` | `gText_StaffCredits_Line069` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBB3C` | `gText_StaffCredits_Line071` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBB48` | `gText_StaffCredits_Line075` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBB58` | `gText_StaffCredits_Line077` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBB64` | `gText_StaffCredits_Line081` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBB80` | `gText_StaffCredits_Line082` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBB9C` | `gText_StaffCredits_Line084` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBBA4` | `gText_StaffCredits_Line088` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBBBC` | `gText_StaffCredits_Line090` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBBD4` | `gText_StaffCredits_Line094` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBBF0` | `gText_StaffCredits_Line096` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBBFC` | `gText_StaffCredits_Line097` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBC08` | `gText_StaffCredits_Line101` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBC20` | `gText_StaffCredits_Line103` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBC2C` | `gText_StaffCredits_Line104` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBC38` | `gText_StaffCredits_Line108` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBC50` | `gText_StaffCredits_Line110` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBC60` | `gText_StaffCredits_Line114` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBC74` | `gText_StaffCredits_Line116` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FBC80` | `gText_StaffCredits_Line126` | `data/text/jp/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
 | `0x080FBE9C` | `gText_TownMap_PlayerFarmNameSuffix` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
 | `0x080FBEA4` | `gText_TownMap_PlayerFarmDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
 | `0x080FBEB8` | `gText_TownMap_PlayerFarmLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
@@ -1499,80 +1499,80 @@
 | `0x080FC7A4` | `gText_TownMap_MothersHillDescription` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
 | `0x080FC7D8` | `gText_TownMap_MothersHillLabel` | `data/text/jp/town_map.cc` | `src/town_map_data.o(.rodata)` |
 | `0x080FCCB8` | `gText_Library_OpeningHours` | `data/text/jp/library_opening_hours_data.cc` | `src/library_opening_hours_data.o(.rodata)` |
-| `0x080FD0B0` | `gText_Library_Menu` | `data/text/jp/library_data_1.cc` | `src/library_data.o(.rodata)` |
-| `0x080FD0D0` | `gText_PoultryShop_Empty` | `data/text/jp/poultry_shop_data.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD0D4` | `gText_PoultryShop_BuyChicken` | `data/text/jp/poultry_shop_data.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD0E0` | `gText_PoultryShop_SellChicken` | `data/text/jp/poultry_shop_data.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD150` | `gText_PoultryShop_PageBreak` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD154` | `gText_PoultryShop_StatusSick` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD16C` | `gText_PoultryShop_StatusUnhappy` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD184` | `gText_PoultryShop_StatusHealthy` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD19C` | `gText_PoultryShop_StatusSpacer` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD1A0` | `gText_PoultryShop_Age` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD1B8` | `gText_PoultryShop_Spring` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD1BC` | `gText_PoultryShop_Summer` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD1C0` | `gText_PoultryShop_Autumn` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD1C4` | `gText_PoultryShop_Winter` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD1C8` | `gText_PoultryShop_DailySellingPrice` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD1E0` | `gText_PoultryShop_Currency` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD1E4` | `gText_PoultryShop_InsufficientGold` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD20C` | `gText_PoultryShop_FeedBinFull` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD238` | `gText_PoultryShop_BlankLinePair` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD240` | `gText_PoultryShop_InventoryFull` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD264` | `gText_PoultryShop_CoopFull` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD28C` | `gText_PoultryShop_NameChickenPrompt` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD2B8` | `gText_PoultryShop_NoChickensToSell` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD2E0` | `gText_PoultryShop_NotInterested` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD2F4` | `gText_PoultryShop_PurchaseDeclined` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD308` | `gText_PoultryShop_PricePrompt` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD31C` | `gText_PoultryShop_Yes` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD324` | `gText_PoultryShop_No` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD32C` | `gText_PoultryShop_FeedPurchaseComplete` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD3A0` | `gText_PoultryShop_PurchaseDeliveryPartial` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD418` | `gText_PoultryShop_MedicinePurchaseComplete` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD47C` | `gText_PoultryShop_PurchaseComplete` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD498` | `gText_PoultryShop_ChickenPurchaseComplete` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD4EC` | `gText_PoultryShop_PurchaseMorePrompt` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD500` | `gText_PoultryShop_ChickenSold` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD5C8` | `gText_Supermarket_EquipmentCapacityFull` | `data/text/jp/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FD5F0` | `gText_Supermarket_BlankLinePair` | `data/text/jp/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FD5F8` | `gText_Supermarket_InsufficientGold` | `data/text/jp/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FD620` | `gText_Supermarket_ThankYou` | `data/text/jp/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FD63C` | `gText_Supermarket_PurchaseConfirmation` | `data/text/jp/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FD650` | `gText_Supermarket_PurchaseMorePrompt` | `data/text/jp/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FD664` | `gText_Supermarket_EquipmentDelivery` | `data/text/jp/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FD6B0` | `gText_Supermarket_EquipmentDeliveryPartial` | `data/text/jp/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FD748` | `gText_Supermarket_SeedDelivery` | `data/text/jp/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FD798` | `gText_Supermarket_SeedDeliveryPartial` | `data/text/jp/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FD7F4` | `gText_Supermarket_SeedPurchaseConfirmation` | `data/text/jp/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FD830` | `gText_Clinic_InventoryFull` | `data/text/jp/clinic_data.cc` | `src/clinic_data.o(.rodata)` |
-| `0x080FD878` | `gText_Clinic_BlankLinePair` | `data/text/jp/clinic_data.cc` | `src/clinic_data.o(.rodata)` |
-| `0x080FD880` | `gText_Clinic_InsufficientGold` | `data/text/jp/clinic_data.cc` | `src/clinic_data.o(.rodata)` |
-| `0x080FD8C8` | `gText_Clinic_NoAdditionalPurchase` | `data/text/jp/clinic_data.cc` | `src/clinic_data.o(.rodata)` |
-| `0x080FD8E4` | `gText_Clinic_NoPurchaseRestAdvice` | `data/text/jp/clinic_data.cc` | `src/clinic_data.o(.rodata)` |
-| `0x080FD91C` | `gText_Clinic_PurchaseMorePrompt` | `data/text/jp/clinic_data.cc` | `src/clinic_data.o(.rodata)` |
-| `0x080FD930` | `gText_Clinic_Delivery` | `data/text/jp/clinic_data.cc` | `src/clinic_data.o(.rodata)` |
-| `0x080FD970` | `gText_Clinic_DeliveryPartial` | `data/text/jp/clinic_data.cc` | `src/clinic_data.o(.rodata)` |
-| `0x080FD9B8` | `gText_Clinic_PurchaseComplete` | `data/text/jp/clinic_data.cc` | `src/clinic_data.o(.rodata)` |
-| `0x080FD9E4` | `gText_InnShop_WaterDescription` | `data/text/jp/inn_shop_data.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FDA04` | `gText_InnShop_BoxLunchDescription` | `data/text/jp/inn_shop_data.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FDA30` | `gText_InnShop_Empty` | `data/text/jp/inn_shop_data.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FDA34` | `gText_InnShop_MilkDescription` | `data/text/jp/inn_shop_data.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FDB50` | `gText_InnShop_InsufficientGold` | `data/text/jp/inn_shop_data_1.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FDB74` | `gText_InnShop_NoOrder` | `data/text/jp/inn_shop_data_1.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FDBAC` | `gText_InnShop_OrderComplete` | `data/text/jp/inn_shop_data_1.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FDC40` | `gText_WonShop_ToolCapacityFull` | `data/text/jp/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FDC84` | `gText_WonShop_ItemCapacityFull` | `data/text/jp/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FDCC8` | `gText_WonShop_BlankLinePair` | `data/text/jp/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FDCD0` | `gText_WonShop_ArticleDelivery` | `data/text/jp/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FDD4C` | `gText_WonShop_ArticleDeliveryMultiple` | `data/text/jp/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FDDCC` | `gText_WonShop_PurchaseComplete` | `data/text/jp/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FDDEC` | `gText_WonShop_InsufficientGold` | `data/text/jp/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FDE28` | `gText_WonShop_PurchaseMorePrompt` | `data/text/jp/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FDE5C` | `gText_WonShop_NoPurchase` | `data/text/jp/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FDE84` | `gText_WonShop_NoAdditionalPurchase` | `data/text/jp/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FDEA4` | `gText_WonShop_ToolDelivery` | `data/text/jp/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FDF18` | `gText_WonShop_ToolDeliveryMultiple` | `data/text/jp/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FD0B0` | `gText_Library_Menu` | `data/text/jp/library_data_2.cc` | `src/library_data.o(.rodata)` |
+| `0x080FD0D0` | `gText_PoultryShop_Empty` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD0D4` | `gText_PoultryShop_BuyChicken` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD0E0` | `gText_PoultryShop_SellChicken` | `data/text/jp/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD150` | `gText_PoultryShop_PageBreak` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD154` | `gText_PoultryShop_StatusSick` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD16C` | `gText_PoultryShop_StatusUnhappy` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD184` | `gText_PoultryShop_StatusHealthy` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD19C` | `gText_PoultryShop_StatusSpacer` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD1A0` | `gText_PoultryShop_Age` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD1B8` | `gText_PoultryShop_Spring` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD1BC` | `gText_PoultryShop_Summer` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD1C0` | `gText_PoultryShop_Autumn` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD1C4` | `gText_PoultryShop_Winter` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD1C8` | `gText_PoultryShop_DailySellingPrice` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD1E0` | `gText_PoultryShop_Currency` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD1E4` | `gText_PoultryShop_InsufficientGold` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD20C` | `gText_PoultryShop_FeedBinFull` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD238` | `gText_PoultryShop_BlankLinePair` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD240` | `gText_PoultryShop_InventoryFull` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD264` | `gText_PoultryShop_CoopFull` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD28C` | `gText_PoultryShop_NameChickenPrompt` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD2B8` | `gText_PoultryShop_NoChickensToSell` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD2E0` | `gText_PoultryShop_NotInterested` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD2F4` | `gText_PoultryShop_PurchaseDeclined` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD308` | `gText_PoultryShop_PricePrompt` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD31C` | `gText_PoultryShop_Yes` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD324` | `gText_PoultryShop_No` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD32C` | `gText_PoultryShop_FeedPurchaseComplete` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD3A0` | `gText_PoultryShop_PurchaseDeliveryPartial` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD418` | `gText_PoultryShop_MedicinePurchaseComplete` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD47C` | `gText_PoultryShop_PurchaseComplete` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD498` | `gText_PoultryShop_ChickenPurchaseComplete` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD4EC` | `gText_PoultryShop_PurchaseMorePrompt` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD500` | `gText_PoultryShop_ChickenSold` | `data/text/jp/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD5C8` | `gText_Supermarket_EquipmentCapacityFull` | `data/text/jp/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FD5F0` | `gText_Supermarket_BlankLinePair` | `data/text/jp/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FD5F8` | `gText_Supermarket_InsufficientGold` | `data/text/jp/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FD620` | `gText_Supermarket_ThankYou` | `data/text/jp/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FD63C` | `gText_Supermarket_PurchaseConfirmation` | `data/text/jp/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FD650` | `gText_Supermarket_PurchaseMorePrompt` | `data/text/jp/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FD664` | `gText_Supermarket_EquipmentDelivery` | `data/text/jp/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FD6B0` | `gText_Supermarket_EquipmentDeliveryPartial` | `data/text/jp/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FD748` | `gText_Supermarket_SeedDelivery` | `data/text/jp/supermarket_data_2.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FD798` | `gText_Supermarket_SeedDeliveryPartial` | `data/text/jp/supermarket_data_2.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FD7F4` | `gText_Supermarket_SeedPurchaseConfirmation` | `data/text/jp/supermarket_data_2.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FD830` | `gText_Clinic_InventoryFull` | `data/text/jp/clinic_data_1.cc` | `src/clinic_data.o(.rodata)` |
+| `0x080FD878` | `gText_Clinic_BlankLinePair` | `data/text/jp/clinic_data_1.cc` | `src/clinic_data.o(.rodata)` |
+| `0x080FD880` | `gText_Clinic_InsufficientGold` | `data/text/jp/clinic_data_1.cc` | `src/clinic_data.o(.rodata)` |
+| `0x080FD8C8` | `gText_Clinic_NoAdditionalPurchase` | `data/text/jp/clinic_data_1.cc` | `src/clinic_data.o(.rodata)` |
+| `0x080FD8E4` | `gText_Clinic_NoPurchaseRestAdvice` | `data/text/jp/clinic_data_1.cc` | `src/clinic_data.o(.rodata)` |
+| `0x080FD91C` | `gText_Clinic_PurchaseMorePrompt` | `data/text/jp/clinic_data_1.cc` | `src/clinic_data.o(.rodata)` |
+| `0x080FD930` | `gText_Clinic_Delivery` | `data/text/jp/clinic_data_1.cc` | `src/clinic_data.o(.rodata)` |
+| `0x080FD970` | `gText_Clinic_DeliveryPartial` | `data/text/jp/clinic_data_1.cc` | `src/clinic_data.o(.rodata)` |
+| `0x080FD9B8` | `gText_Clinic_PurchaseComplete` | `data/text/jp/clinic_data_1.cc` | `src/clinic_data.o(.rodata)` |
+| `0x080FD9E4` | `gText_InnShop_WaterDescription` | `data/text/jp/inn_shop_data_1.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FDA04` | `gText_InnShop_BoxLunchDescription` | `data/text/jp/inn_shop_data_1.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FDA30` | `gText_InnShop_Empty` | `data/text/jp/inn_shop_data_1.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FDA34` | `gText_InnShop_MilkDescription` | `data/text/jp/inn_shop_data_1.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FDB50` | `gText_InnShop_InsufficientGold` | `data/text/jp/inn_shop_data_2.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FDB74` | `gText_InnShop_NoOrder` | `data/text/jp/inn_shop_data_2.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FDBAC` | `gText_InnShop_OrderComplete` | `data/text/jp/inn_shop_data_2.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FDC40` | `gText_WonShop_ToolCapacityFull` | `data/text/jp/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FDC84` | `gText_WonShop_ItemCapacityFull` | `data/text/jp/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FDCC8` | `gText_WonShop_BlankLinePair` | `data/text/jp/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FDCD0` | `gText_WonShop_ArticleDelivery` | `data/text/jp/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FDD4C` | `gText_WonShop_ArticleDeliveryMultiple` | `data/text/jp/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FDDCC` | `gText_WonShop_PurchaseComplete` | `data/text/jp/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FDDEC` | `gText_WonShop_InsufficientGold` | `data/text/jp/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FDE28` | `gText_WonShop_PurchaseMorePrompt` | `data/text/jp/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FDE5C` | `gText_WonShop_NoPurchase` | `data/text/jp/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FDE84` | `gText_WonShop_NoAdditionalPurchase` | `data/text/jp/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FDEA4` | `gText_WonShop_ToolDelivery` | `data/text/jp/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FDF18` | `gText_WonShop_ToolDeliveryMultiple` | `data/text/jp/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
 | `0x080FDFAC` | `gText_WineryShop_InventoryFull` | `data/text/jp/winery_shop_data.cc` | `src/winery_shop_data.o(.rodata)` |
 | `0x080FDFFC` | `gText_WineryShop_BlankLinePair` | `data/text/jp/winery_shop_data.cc` | `src/winery_shop_data.o(.rodata)` |
 | `0x080FE004` | `gText_WineryShop_InsufficientGold` | `data/text/jp/winery_shop_data.cc` | `src/winery_shop_data.o(.rodata)` |
@@ -1788,7 +1788,7 @@
 | `0x081000D4` | `gText_LinkCommunication_ActionQuestion` | `data/text/jp/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
 | `0x081000F4` | `gText_LinkCommunication_Declined` | `data/text/jp/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
 | `0x08100118` | `gText_LinkCommunication_Complete` | `data/text/jp/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
-| `0x081005D8` | `gText_Cooking_Recipe_PageBreak` | `data/text/common/cooking_recipe_inventory_page_data.cc` | `src/cooking_recipe_inventory_page_data.o(.rodata)` |
+| `0x081005D8` | `gText_Cooking_Recipe_PageBreak` | `data/text/jp/cooking_recipe_inventory_page_data.cc` | `src/cooking_recipe_inventory_page_data.o(.rodata)` |
 | `0x081005EA` | `gText_StaminaRecoveryStatus` | `data/text/jp/recovery_status.cc` | `src/recovery_status.o(.rodata)` |
 | `0x081006EF` | `gText_FatigueRecoveryStatus` | `data/text/jp/recovery_status.cc` | `src/recovery_status.o(.rodata)` |
 | `0x081008FC` | `gText_Cooking_SeasoningSet` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
@@ -1819,7 +1819,7 @@
 | `0x08100B84` | `gText_Cooking_Recipe_Empty` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
 | `0x08100B88` | `gText_Cooking_Recipe_StorageHeader` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
 | `0x08100B95` | `gText_Cooking_Recipe_SelectionNames` | `data/text/jp/cooking.cc` | `src/cooking.o(.rodata)` |
-| `0x08103194` | `gText_Animal_Unnamed` | `data/text/common/animal.cc` | `src/animal.o(.rodata)` |
+| `0x08103194` | `gText_Animal_Unnamed` | `data/text/jp/animal.cc` | `src/animal.o(.rodata)` |
 | `0x081032C4` | `gText_FishingRecord_PirateFortune` | `data/text/jp/fishing_results_data.cc` | `src/fishing_results_data.o(.rodata)` |
 | `0x081032D0` | `gText_FishingRecord_FossilOfFish` | `data/text/jp/fishing_results_data.cc` | `src/fishing_results_data.o(.rodata)` |
 | `0x081032E0` | `gText_FishingRecord_PowerBerry` | `data/text/jp/fishing_results_data.cc` | `src/fishing_results_data.o(.rodata)` |
@@ -1950,8 +1950,8 @@
 | `0x08104978` | `gText_Possessive_Child` | `data/text/jp/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
 | `0x08104980` | `gText_Possessive_Player` | `data/text/jp/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
 | `0x08104994` | `gText_RandomItem_NotAvailable` | `data/text/jp/random_item_unavailable.cc` | `src/random_item_unavailable.o(.rodata)` |
-| `0x0810702C` | `gText_FieldRenderFallbackNone` | `data/text/jp/field_render_runtime_data.cc` | `src/field_render_runtime_data.o(.rodata)` |
-| `0x081070AC` | `gText_080B0708DefaultGlyph` | `data/text/jp/field_render_runtime_data_2.cc` | `src/field_render_runtime_data.o(.rodata)` |
+| `0x0810702C` | `gText_FieldRenderFallbackNone` | `data/text/jp/field_render_runtime_data_1.cc` | `src/field_render_runtime_data.o(.rodata)` |
+| `0x081070AC` | `gText_080B0708DefaultGlyph` | `data/text/jp/field_render_runtime_data_3.cc` | `src/field_render_runtime_data.o(.rodata)` |
 | `0x081070F4` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_ExplanationQuestion` | `data/text/jp/harvest_sprite_1.cc` | `src/harvest_sprite.o(.rodata)` |
 | `0x08107108` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_Yes` | `data/text/jp/harvest_sprite_1.cc` | `src/harvest_sprite.o(.rodata)` |
 | `0x08107110` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_No` | `data/text/jp/harvest_sprite_1.cc` | `src/harvest_sprite.o(.rodata)` |
@@ -2087,39 +2087,39 @@
 | `0x080F9EE0`–`0x080F9EF3` | `src/spouse_gift.o(.rodata)` | [数据] | `src/spouse_gift.cc`<br>`include/spouse_gift.hh` | `gSpouseGiftArticleSelectionEntries`；汇编调用为符号重定位 |
 | `0x080F9EF4`–`0x080F9EF9` | `src/farm_house.o(.rodata)` | [数据] | `src/farm_house.cc`<br>`include/farm_house.hh` | `gFarmHouseBedXPositions`；唯一汇编调用为符号重定位 |
 | `0x080F9EFA`–`0x080F9EFB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F9EFC`–`0x080F9F7B` | `src/ui_state.o(.rodata)` | [文本与数据] | `data/text/common/ui_state.cc` → `src/ui_state.cc`<br>`include/ui_state.hh` | 运行时字符串 `2` 项<br>`gUnk_PreUiTextLayoutDigitRows`, `gUnk_PreUiTextLayoutFullWidthSpace`, `gUnk_PreUiTextLayoutFullWidthHyphen`, `gUiTextLayoutPositionTable`, `gUiSharedResourceData`<br>两个原始资源入口为 `data_0813B288.s` 中的直接标签，所有已知使用处均为符号重定位 |
+| `0x080F9EFC`–`0x080F9F7B` | `src/ui_state.o(.rodata)` | [文本与数据] | `data/text/us/ui_state.cc` → `src/ui_state.cc`<br>`include/ui_state.hh` | 运行时字符串 `2` 项<br>`gUnk_PreUiTextLayoutDigitRows`, `gUnk_PreUiTextLayoutFullWidthSpace`, `gUnk_PreUiTextLayoutFullWidthHyphen`, `gUiTextLayoutPositionTable`, `gUiSharedResourceData`<br>两个原始资源入口为 `data_0813B288.s` 中的直接标签，所有已知使用处均为符号重定位 |
 | `0x080F9F7C`–`0x080FA157` | `src/new_game_name_entry_ui_data.o(.rodata)` | [文本与数据] | `data/text/us/new_game_name_entry_ui_data.cc` → `src/new_game_name_entry_ui_data.cc`<br>`include/new_game_name_entry_ui_data.hh` | `gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue`、运行时字符串 `1` 项、30 行固定宽度 `gText_NameEntry_PresetAnimalNames`、`gNewGameNameEntryUiCharacterCodes`<br>前缀、文本和字形表在同一对象中按 ROM 顺序排列；所有已知汇编读取为符号重定位 |
 | `0x080FA158`–`0x080FA173` | `src/frisbee_scoreboard.o(.rodata)` | [嵌入文本] | `data/text/us/frisbee_scoreboard.cc` → `src/frisbee_scoreboard.cc`<br>`include/frisbee_scoreboard.hh` | `gText_Frisbee_TournamentScoreboard`；唯一汇编调用为符号重定位<br>后续飞盘文本与本对象之间夹有动物节数据，故保持独立模块 |
-| `0x080FA174`–`0x080FA39B` | `src/animal_festival_ranking_score_data.o(.rodata)` | [文本与数据] | `data/text/common/animal_festival_ranking_score_data.cc` → `src/animal_festival_ranking_score_data.cc`<br>`include/animal_festival_ranking_score_data.hh` | `gAnimalFestivalRankingScoreTable`、运行时字符串 `1` 项、`gUnk_080FA246`、`gUnk_080FA264`、`gUnk_080FA2E8`、`gUnk_080FA36C`、`gAnimalFestivalRewardChanceWeights`、`gAnimalFestivalRewardArticleIds`<br>对象内 `00` 对齐 `2` 字节；所有已知汇编读取均为符号重定位，未证实含义的原始表保留 `gUnk` 名称 |
+| `0x080FA174`–`0x080FA39B` | `src/animal_festival_ranking_score_data.o(.rodata)` | [文本与数据] | `data/text/us/animal_festival_ranking_score_data.cc` → `src/animal_festival_ranking_score_data.cc`<br>`include/animal_festival_ranking_score_data.hh` | `gAnimalFestivalRankingScoreTable`、运行时字符串 `1` 项、`gUnk_080FA246`、`gUnk_080FA264`、`gUnk_080FA2E8`、`gUnk_080FA36C`、`gAnimalFestivalRewardChanceWeights`、`gAnimalFestivalRewardArticleIds`<br>对象内 `00` 对齐 `2` 字节；所有已知汇编读取均为符号重定位，未证实含义的原始表保留 `gUnk` 名称 |
 | `0x080FA39C`–`0x080FA719` | `src/frisbee.o(.rodata)` | [嵌入文本] | `data/text/us/frisbee.cc` → `src/frisbee.cc`<br>`include/frisbee.hh` | 文本 `15` 项（详见下方索引）<br>运行时字符串 `1` 项；所有已知汇编读取为符号重定位 |
 | `0x080FA71A`–`0x080FA71B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FA71C`–`0x080FA78B` | `src/animal_festival_ranking_random_data.o(.rodata)` | [数据] | `src/animal_festival_ranking_random_data.cc`<br>`include/animal_festival_ranking_random_data.hh` | `gAnimalFestivalRandomRangePairs`；基址及 `second_maximum + 12` 均为符号重定位 |
-| `0x080FA78C`–`0x080FA99D` | `src/animal_festival.o(.rodata)` | [嵌入文本] | `data/text/common/animal_festival.cc` → `data/text/us/animal_festival.cc` → `src/animal_festival.cc`<br>`include/animal_festival.hh` | 固定宽度参赛者名字 `40` 行、运行时字符串 `1` 项；所有已知汇编读取为符号重定位 |
+| `0x080FA78C`–`0x080FA99D` | `src/animal_festival.o(.rodata)` | [嵌入文本] | `data/text/us/animal_festival_1.cc` → `data/text/us/animal_festival_2.cc` → `src/animal_festival.cc`<br>`include/animal_festival.hh` | 固定宽度参赛者名字 `40` 行、运行时字符串 `1` 项；所有已知汇编读取为符号重定位 |
 | `0x080FA99E`–`0x080FAA3D` | `src/animal_festival_ranking_livestock_data.o(.rodata)` | [数据] | `src/animal_festival_ranking_livestock_data.cc`<br>`include/animal_festival_ranking_livestock_data.hh` | `gAnimalFestivalLivestockContestantValues`；所有已知汇编读取为符号重定位 |
 | `0x080FAA3E`–`0x080FAA3F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FAA40`–`0x080FB1D7` | `src/horse_race_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/us/horse_race_data.cc`、`horse_race_data_1.cc`–`horse_race_data_5.cc`<br>`data/text/common/horse_race_data.cc` → `src/horse_race_data.cc`<br>`include/horse_race_data.hh` | 文本 `43` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`horse_race_data_1` 为首段文本后的票券字形码表内容，`_2` 为其后的票券 UI 文本，`_3` 为控制项指针表及公共运行时文本之后的内嵌奖品名，`_4` 为奖品 ID 表后的兑换 UI 文本，`_5` 为其后的兑换字形码表；所有已知汇编读取为符号重定位；`gHorseRaceTicketCharacterCodes`, `gHorseRaceTicketControls`, `gHorseRacePrizeCatalog`, `gHorseRacePrizeItemIds`, `gHorseRacePrizeExchangeCharacterCodes` |
-| `0x080FB1D8`–`0x080FB821` | `src/intro_scene_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/common/intro_scene_data.cc` → `src/intro_scene_data.cc`（`gIntroSceneUnpackSources`）→ `data/text/us/intro_scene_data.cc` → `data/text/common/intro_scene_data_1.cc`<br>`include/intro_scene_data.hh` | 前缀运行时字符串 `1` 项<br>`gIntroSceneUnpackSources`（20 个资产容器直接标签，无 `.set` 别名）<br>文本 `28` 项（详见下方索引）<br>尾部运行时字符串 `1` 项；公共 `_1` 位于对话末尾；所有已知汇编读取为符号重定位 |
+| `0x080FAA40`–`0x080FB1D7` | `src/horse_race_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/us/horse_race_data_1.cc`、`horse_race_data_1.cc`–`horse_race_data_5.cc`<br>`data/text/us/horse_race_data_4.cc` → `src/horse_race_data.cc`<br>`include/horse_race_data.hh` | 文本 `43` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`horse_race_data_1` 为首段文本后的票券字形码表内容，`_2` 为其后的票券 UI 文本，`_3` 为控制项指针表及公共运行时文本之后的内嵌奖品名，`_4` 为奖品 ID 表后的兑换 UI 文本，`_5` 为其后的兑换字形码表；所有已知汇编读取为符号重定位；`gHorseRaceTicketCharacterCodes`, `gHorseRaceTicketControls`, `gHorseRacePrizeCatalog`, `gHorseRacePrizeItemIds`, `gHorseRacePrizeExchangeCharacterCodes` |
+| `0x080FB1D8`–`0x080FB821` | `src/intro_scene_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/us/intro_scene_data_1.cc` → `src/intro_scene_data.cc`（`gIntroSceneUnpackSources`）→ `data/text/us/intro_scene_data_2.cc` → `data/text/us/intro_scene_data_3.cc`<br>`include/intro_scene_data.hh` | 前缀运行时字符串 `1` 项<br>`gIntroSceneUnpackSources`（20 个资产容器直接标签，无 `.set` 别名）<br>文本 `28` 项（详见下方索引）<br>尾部运行时字符串 `1` 项；公共 `_1` 位于对话末尾；所有已知汇编读取为符号重定位 |
 | `0x080FB822`–`0x080FB823` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FB824`–`0x080FBE79` | `src/farm_status_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/us/farm_status_screen_data.cc` → `data/text/common/farm_status_screen_data.cc` → `src/farm_status_screen_data.cc`（状态结构）→ `data/text/us/farm_status_screen_data_1.cc` → `data/text/common/farm_status_screen_data_1.cc` → `data/text/us/farm_status_screen_data_2.cc` → `src/farm_status_screen_data.cc`（`gFarmStatusScreenPreloadedGlyphs`；区域 `_3` 字形表达式）→ `data/text/common/farm_status_screen_data_2.cc` → `src/farm_status_screen_data.cc`（资源/瓦片/预览/外观表）→ `data/text/common/farm_status_screen_data_3.cc`<br>`include/farm_status_screen_data.hh` | 文本 `53` 项（农场状态 `29`、动物参赛 `24`；详见下方索引）<br>运行时字符串 `4` 项<br>`gFarmStatusScreenPreloadedGlyphs`、资源与建筑预览表；14 个预览资源入口为资产容器直接标签；所有已知汇编读取为符号重定位 |
+| `0x080FB824`–`0x080FBE79` | `src/farm_status_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/us/farm_status_screen_data_1.cc` → `data/text/us/farm_status_screen_data_2.cc` → `src/farm_status_screen_data.cc`（状态结构）→ `data/text/us/farm_status_screen_data_3.cc` → `data/text/us/farm_status_screen_data_4.cc` → `data/text/us/farm_status_screen_data_5.cc` → `src/farm_status_screen_data.cc`（`gFarmStatusScreenPreloadedGlyphs`；区域 `_3` 字形表达式）→ `data/text/us/farm_status_screen_data_7.cc` → `src/farm_status_screen_data.cc`（资源/瓦片/预览/外观表）→ `data/text/us/farm_status_screen_data_8.cc`<br>`include/farm_status_screen_data.hh` | 文本 `53` 项（农场状态 `29`、动物参赛 `24`；详见下方索引）<br>运行时字符串 `4` 项<br>`gFarmStatusScreenPreloadedGlyphs`、资源与建筑预览表；14 个预览资源入口为资产容器直接标签；所有已知汇编读取为符号重定位 |
 | `0x080FBE7A`–`0x080FBE7B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FBE7C`–`0x080FC0A1` | `src/records_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/us/records_screen_data.cc` → `src/records_screen_data.cc`（小游戏资源指针表）→ `data/text/common/records_screen_data.cc` → `src/records_screen_data.cc`（压缩单元表）→ `data/text/common/records_screen_data_1.cc` → `src/records_screen_data.cc`（`gUiPreloadedDigitGlyphCodes`；区域字形序列）→ `data/text/common/records_screen_data_2.cc`<br>`include/records_screen_data.hh` | 文本 `33` 项（详见下方索引）<br>运行时字符串 `4` 项<br>`gRecordsScreenMinigameTaskResources` 的 14 个资源入口为资产容器直接标签；`gCodeLinkoncePackedCellSizeLookup`、`gUiPreloadedDigitGlyphCodes` 按原顺序嵌入同一对象；所有已知汇编读取为符号重定位 |
+| `0x080FBE7C`–`0x080FC0A1` | `src/records_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/us/records_screen_data_1.cc` → `src/records_screen_data.cc`（小游戏资源指针表）→ `data/text/us/records_screen_data_2.cc` → `src/records_screen_data.cc`（压缩单元表）→ `data/text/us/records_screen_data_3.cc` → `src/records_screen_data.cc`（`gUiPreloadedDigitGlyphCodes`；区域字形序列）→ `data/text/us/records_screen_data_4.cc`<br>`include/records_screen_data.hh` | 文本 `33` 项（详见下方索引）<br>运行时字符串 `4` 项<br>`gRecordsScreenMinigameTaskResources` 的 14 个资源入口为资产容器直接标签；`gCodeLinkoncePackedCellSizeLookup`、`gUiPreloadedDigitGlyphCodes` 按原顺序嵌入同一对象；所有已知汇编读取为符号重定位 |
 | `0x080FC0A2`–`0x080FC0A3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FC0A4`–`0x080FC6C1` | `src/staff_credits.o(.rodata)` | [嵌入文本 / 指针表] | `data/text/us/staff_credits.cc`（可见名单序列，经 `fomt-text` 在所有者内生成固定字段与行指针表）→ `data/text/common/staff_credits_1.cc`<br>`src/staff_credits.cc`、`include/staff_credits.hh` | 文本 `65` 项（详见下方索引）<br>`gStaffCreditsLines`<br>`gCppRuntimeBadAlloc_StaffCredits`<br>所有已知汇编读取为符号重定位 |
+| `0x080FC0A4`–`0x080FC6C1` | `src/staff_credits.o(.rodata)` | [嵌入文本 / 指针表] | `data/text/us/staff_credits_1.cc`（可见名单序列，经 `fomt-text` 在所有者内生成固定字段与行指针表）→ `data/text/us/staff_credits_2.cc`<br>`src/staff_credits.cc`、`include/staff_credits.hh` | 文本 `65` 项（详见下方索引）<br>`gStaffCreditsLines`<br>`gCppRuntimeBadAlloc_StaffCredits`<br>所有已知汇编读取为符号重定位 |
 | `0x080FC6C2`–`0x080FD54F` | `src/town_map_data.o(.rodata)` | [嵌入文本 / 数据] | `src/town_map_data.cc`（`gTownMapResourceIds`）→ `data/text/us/town_map.cc` → `src/town_map_data.cc`（热点表、区域查询表与两个回退项）<br>`include/town_map.hh` | 文本 `65` 项（详见下方索引）<br>`gTownMapHotspots`、`gTownMapAreaLookup`、`gTownMapAreaLookupFallback_034To133`、`gTownMapAreaLookupFallback_134To233`<br>所有文本/表引用均为符号重定位；两个热点字段引用为 `gTownMapHotspots + offset` |
 | `0x080FD550`–`0x080FD582` | `src/library_opening_hours_data.o(.rodata)` | [嵌入文本] | `data/text/us/library_opening_hours_data.cc` → `src/library_opening_hours_data.cc`<br>`include/library_opening_hours_data.hh` | 文本 `1` 项（详见下方索引）；唯一汇编读取为 `gText_Library_OpeningHours` 符号 |
 | `0x080FD583`–`0x080FD583` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x080FD584`–`0x080FD913` | `src/town_map_area_data.o(.rodata)` | [数据] | `src/town_map_area_data.cc`（`gTownMapAreaBounds` 的五个按地图编号排列的子表）<br>`include/town_map_area_data.hh` | 5 个跨块引用：对象起始 1 个、`map_000`/`map_003`/`map_005`/`map_007` 子数组 4 个，均为符号重定位 |
-| `0x080FD914`–`0x080FD961` | `src/library_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/common/library_data.cc`（首个运行时字符串）→ `src/library_data.cc`（初始条目表）→ `data/text/us/library_data_1.cc`（两项固定 12 字节菜单字段）→ `data/text/common/library_data_1.cc`（尾部运行时字符串）<br>`include/library_data.hh` | `gCppRuntimeBadAlloc_LibraryInfo`<br>对象内 `00` 对齐 `2` 字节<br>`gLibraryInitialEntryIds`<br>`gText_Library_Menu`（中间 `00` 是两项菜单字段分隔符）<br>`gCppRuntimeBadAlloc_LibraryMenu`<br>条目表与菜单的全部 ROM 指针均为汇编符号重定位 |
+| `0x080FD914`–`0x080FD961` | `src/library_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/us/library_data_1.cc`（首个运行时字符串）→ `src/library_data.cc`（初始条目表）→ `data/text/us/library_data_2.cc`（两项固定 12 字节菜单字段）→ `data/text/us/library_data_3.cc`（尾部运行时字符串）<br>`include/library_data.hh` | `gCppRuntimeBadAlloc_LibraryInfo`<br>对象内 `00` 对齐 `2` 字节<br>`gLibraryInitialEntryIds`<br>`gText_Library_Menu`（中间 `00` 是两项菜单字段分隔符）<br>`gCppRuntimeBadAlloc_LibraryMenu`<br>条目表与菜单的全部 ROM 指针均为汇编符号重定位 |
 | `0x080FD962`–`0x080FD963` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FD964`–`0x080FDDD5` | `src/poultry_shop_data.o(.rodata)` | [嵌入文本 / 指针表] | `data/text/us/poultry_shop_data.cc`（菜单文本）→ `src/poultry_shop_data.cc`（五项目录表）→ `data/text/us/poultry_shop_data_1.cc`（状态与对话文本）→ `data/text/common/poultry_shop_data_1.cc`（尾部运行时字符串）<br>`include/poultry_shop_data.hh` | 菜单文本 `3` 项<br>`gPoultryShopCatalog`（五个 20 字节记录；内部文本字段均为符号）<br>状态与对话文本 `31` 项<br>运行时字符串 `1` 项<br>全部 `55` 个指针引用均为精确符号重定位 |
+| `0x080FD964`–`0x080FDDD5` | `src/poultry_shop_data.o(.rodata)` | [嵌入文本 / 指针表] | `data/text/us/poultry_shop_data_1.cc`（菜单文本）→ `src/poultry_shop_data.cc`（五项目录表）→ `data/text/us/poultry_shop_data_2.cc`（状态与对话文本）→ `data/text/us/poultry_shop_data_3.cc`（尾部运行时字符串）<br>`include/poultry_shop_data.hh` | 菜单文本 `3` 项<br>`gPoultryShopCatalog`（五个 20 字节记录；内部文本字段均为符号）<br>状态与对话文本 `31` 项<br>运行时字符串 `1` 项<br>全部 `55` 个指针引用均为精确符号重定位 |
 | `0x080FDDD6`–`0x080FDDD7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FDDD8`–`0x080FE04D` | `src/supermarket_data.o(.rodata)` | [嵌入文本 / 数据] | `src/supermarket_data.cc`（作物种子目录）→ `data/text/us/supermarket_data.cc`（主文本）→ `src/supermarket_data.cc`（补充种子目录）→ `data/text/us/supermarket_data_1.cc`（后续文本）→ `data/text/common/supermarket_data_1.cc`（尾部运行时字符串）<br>`include/supermarket_data.hh` | `gSupermarketCropSeedCatalog`（13 个记录）<br>主文本 `8` 项<br>`gSupermarketAdditionalSeedCatalog`（7 个记录与原始零哨兵）<br>后续文本 `2` 项<br>运行时字符串 `1` 项<br>全部 `20` 个指针引用均为精确符号重定位 |
+| `0x080FDDD8`–`0x080FE04D` | `src/supermarket_data.o(.rodata)` | [嵌入文本 / 数据] | `src/supermarket_data.cc`（作物种子目录）→ `data/text/us/supermarket_data_1.cc`（主文本）→ `src/supermarket_data.cc`（补充种子目录）→ `data/text/us/supermarket_data_2.cc`（后续文本）→ `data/text/us/supermarket_data_3.cc`（尾部运行时字符串）<br>`include/supermarket_data.hh` | `gSupermarketCropSeedCatalog`（13 个记录）<br>主文本 `8` 项<br>`gSupermarketAdditionalSeedCatalog`（7 个记录与原始零哨兵）<br>后续文本 `2` 项<br>运行时字符串 `1` 项<br>全部 `20` 个指针引用均为精确符号重定位 |
 | `0x080FE04E`–`0x080FE04F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FE050`–`0x080FE261` | `src/clinic_data.o(.rodata)` | [嵌入文本 / 数据] | `src/clinic_data.cc`（目录表）→ `data/text/us/clinic_data.cc`（9 项文本）→ `data/text/common/clinic_data_1.cc`（运行时尾部字符串）<br>`include/clinic_data.hh` | `gClinicCatalog`<br>文本 `9` 项（详见下方索引）<br>运行时字符串 `1` 项<br>全部 `13` 个引用均为精确符号重定位 |
+| `0x080FE050`–`0x080FE261` | `src/clinic_data.o(.rodata)` | [嵌入文本 / 数据] | `src/clinic_data.cc`（目录表）→ `data/text/us/clinic_data_1.cc`（9 项文本）→ `data/text/us/clinic_data_2.cc`（运行时尾部字符串）<br>`include/clinic_data.hh` | `gClinicCatalog`<br>文本 `9` 项（详见下方索引）<br>运行时字符串 `1` 项<br>全部 `13` 个引用均为精确符号重定位 |
 | `0x080FE262`–`0x080FE263` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FE264`–`0x080FE481` | `src/inn_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/inn_shop_data.cc`：`data/text/us/inn_shop_data.cc`（菜品说明）→ `gInnShopMenu` → `data/text/us/inn_shop_data_1.cc`（对话）→ `data/text/common/inn_shop_data_1.cc`（运行时尾部字符串）<br>`include/inn_shop_data.hh` | 菜品说明 `4` 项<br>`gInnShopMenu`<br>对话文本 `3` 项<br>运行时字符串 `1` 项<br>全部 `16` 个指针引用均为精确符号重定位 |
+| `0x080FE264`–`0x080FE481` | `src/inn_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/inn_shop_data.cc`：`data/text/us/inn_shop_data_1.cc`（菜品说明）→ `gInnShopMenu` → `data/text/us/inn_shop_data_2.cc`（对话）→ `data/text/us/inn_shop_data_3.cc`（运行时尾部字符串）<br>`include/inn_shop_data.hh` | 菜品说明 `4` 项<br>`gInnShopMenu`<br>对话文本 `3` 项<br>运行时字符串 `1` 项<br>全部 `16` 个指针引用均为精确符号重定位 |
 | `0x080FE482`–`0x080FE483` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FE484`–`0x080FE73D` | `src/won_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/won_shop_data.cc`<br>`include/won_shop_data.hh`<br>`data/text/us/won_shop_data.cc` | `gWonShopCatalog`<br>文本 `10` 项（详见下方索引）<br>运行时字符串 `1` 项 |
+| `0x080FE484`–`0x080FE73D` | `src/won_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/won_shop_data.cc`（目录表）→ `data/text/us/won_shop_data_1.cc`（10 项店铺文本）→ `data/text/us/won_shop_data_2.cc`（运行时尾部字符串）<br>`include/won_shop_data.hh` | `gWonShopCatalog`<br>文本 `10` 项（详见下方索引）<br>运行时字符串 `1` 项<br>全部 `18` 个引用均为精确符号重定位 |
 | `0x080FE73E`–`0x080FE73F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FE740`–`0x080FE8F9` | `src/winery_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/winery_shop_data.cc`<br>`include/winery_shop_data.hh`<br>`data/text/us/winery_shop_data.cc` | `gWineryShopCatalog`<br>文本 `8` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080FE8FA`–`0x080FE8FB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -2141,13 +2141,13 @@
 | `0x081004DE`–`0x081004DF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x081004E0`–`0x08100ABD` | `src/link_communication_data.o(.rodata)` | [嵌入文本 / 数据] | `src/link_communication_data.cc`<br>`include/link_communication_data.hh`<br>`data/text/us/link_communication.cc` | 文本 `17` 项（详见下方索引）<br>运行时字符串 `3` 项<br>`gUnk_081007AC`, `gUnk_081007D4`, `gUnk_081007FC`, `gUnk_08100824`, `gUnk_0810084C`, `gUnk_08100874`, … +11<br>`gLinkCommunicationGameCodeA4N`, `gLinkCommunicationGameCodeGYW` |
 | `0x08100ABE`–`0x08100ABF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08100AC0`–`0x08100AD1` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | [嵌入文本 / 数据] | `src/cooking_recipe_inventory_page_data.cc`<br>`include/cooking_recipe_inventory_page_data.hh`<br>`data/text/common/cooking_recipe_inventory_page_data.cc` | `gText_Cooking_Recipe_PageBreak`<br>`gCookingRecipeInventoryUtensilValues` |
+| `0x08100AC0`–`0x08100AD1` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | [嵌入文本 / 数据] | `src/cooking_recipe_inventory_page_data.cc`<br>`include/cooking_recipe_inventory_page_data.hh`<br>`data/text/us/cooking_recipe_inventory_page_data.cc` | `gText_Cooking_Recipe_PageBreak`<br>`gCookingRecipeInventoryUtensilValues` |
 | `0x08100AD2`–`0x08100DE0` | `src/recovery_status.o(.rodata)` | [嵌入文本] | `src/recovery_status.cc`、`include/recovery_status.hh`、`data/text/us/recovery_status.cc` | 文本 `2` 项（详见下方索引） |
 | `0x08100DE1`–`0x08100DE3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
 | `0x08100DE4`–`0x081010E7` | `src/cooking.o(.rodata)` | [嵌入文本] | `src/cooking.cc`、`include/cooking.hh`、`data/text/us/cooking.cc` | 文本 `28` 项（详见下方索引） |
-| `0x081010E8`–`0x08103655` | `src/cooking_recipe_inventory_data.o(.rodata)` | [数据 / 嵌入文本] | `src/cooking_recipe_inventory_data.cc`<br>`include/cooking_recipe_inventory_data.hh`<br>`data/text/common/cooking_recipe_inventory_data.cc` | `gCookingRecipeInventoryMaskEntries`<br>`gCookingRecipeDefinitions`, `gCookingRecipeDefinitionPayload`<br>运行时字符串 `2` 项 |
+| `0x081010E8`–`0x08103655` | `src/cooking_recipe_inventory_data.o(.rodata)` | [数据 / 嵌入文本] | `src/cooking_recipe_inventory_data.cc`<br>`include/cooking_recipe_inventory_data.hh`<br>`data/text/us/cooking_recipe_inventory_data.cc` | `gCookingRecipeInventoryMaskEntries`<br>`gCookingRecipeDefinitions`, `gCookingRecipeDefinitionPayload`<br>运行时字符串 `2` 项 |
 | `0x08103656`–`0x08103657` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08103658`–`0x0810365E` | `src/animal.o(.rodata)` | [嵌入文本] | `src/animal.cc`、`include/animal.hh`、`data/text/common/animal.cc` | 文本 `1` 项（详见下方索引） |
+| `0x08103658`–`0x0810365E` | `src/animal.o(.rodata)` | [嵌入文本] | `src/animal.cc`、`include/animal.hh`、`data/text/us/animal.cc` | 文本 `1` 项（详见下方索引） |
 | `0x0810365F`–`0x0810365F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x08103660`–`0x081036BF` | `src/livestock_day_update_data.o(.rodata)` | [数据] | `src/livestock_day_update_data.cc`、`include/livestock_day_update_data.hh` | `gChickenDayUpdateInfo`, `gCowDayUpdateInfo`, `gSheepDayUpdateInfo` |
 | `0x081036C0`–`0x08103785` | `src/actor_state.o(.rodata)` | [数据 / 嵌入文本] | `src/actor_state.cc`、`include/actor_state.hh`<br>`data/text/{jp,us,eu,de}/actor_state.cc`、`data/text/{jp,us,eu,de}/actor_state_1.cc` | `gActorStateMaxValues`<br>`gActorDataSelectionEntries`<br>运行时字符串 `2` 项 |
@@ -2160,7 +2160,7 @@
 | `0x08104127`–`0x08104127` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x08104128`–`0x081043B9` | `src/character_names_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/character_names_data.cc`、`include/character_names_data.hh`<br>`data/text/us/character_names.cc`、`data/text/us/character_names_1.cc` | 文本 `41` 项（详见下方索引）<br>文本后对象内 `00` 对齐 `2` 字节<br>`gCharacterNameEntries`<br>运行时字符串 `1` 项 |
 | `0x081043BA`–`0x081043BB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x081043BC`–`0x08104935` | `src/field_item_data.o(.rodata)` | [数据 / 嵌入文本] | `src/field_item_data.cc`、`include/field_item_data.hh`<br>`data/text/common/field_item_data.cc` | `gUnk_081043BC`<br>运行时字符串 `1` 项 |
+| `0x081043BC`–`0x08104935` | `src/field_item_data.o(.rodata)` | [数据 / 嵌入文本] | `src/field_item_data.cc`、`include/field_item_data.hh`<br>`data/text/us/field_item_data.cc` | `gUnk_081043BC`<br>运行时字符串 `1` 项 |
 | `0x08104936`–`0x08104937` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08104938`–`0x08104E09` | `src/calendar_events.o(.rodata)` | [数据 / 嵌入文本] | `src/calendar_events.cc`、`include/calendar_events.hh`<br>`data/text/us/calendar_events.cc` | `gText_Calendar_DynamicSeasonNames`<br>文本 `22` 项（详见下方索引）<br>运行时字符串 `2` 项 |
 | `0x08104E0A`–`0x08104E0B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -2173,10 +2173,10 @@
 | `0x08104EAC`–`0x08104ECE` | `src/random_item_selection.o(.rodata)` | [数据] | `src/random_item_selection.cc`、`include/random_item_selection.hh` | `gRandomItemSelectionWeights` |
 | `0x08104ECF`–`0x08104ECF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x08104ED0`–`0x0810562F` | `src/random_item_selection.o(.rodata)` | [数据] | `src/random_item_selection.cc`、`include/random_item_selection.hh` | `gRandomItemCandidateConfigurations` |
-| `0x08105630`–`0x08105639` | `src/random_item_selection.o(.rodata)` | [嵌入文本] | `src/random_item_selection.cc`<br>`data/text/common/random_item_selection.cc` | 运行时字符串 `1` 项 |
+| `0x08105630`–`0x08105639` | `src/random_item_selection.o(.rodata)` | [嵌入文本] | `src/random_item_selection.cc`<br>`data/text/us/random_item_selection.cc` | 运行时字符串 `1` 项 |
 | `0x0810563A`–`0x0810563B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x0810563C`–`0x081056FB` | `src/field_plot_position_rules.o(.rodata)` | [数据] | `src/field_plot_position_rules.cc`<br>`include/field_plot_position_rules.hh` | `gFieldPlotPositionRules` |
-| `0x081056FC`–`0x08105705` | `src/field_plot_position_rules.o(.rodata)` | [嵌入文本] | `src/field_plot_position_rules.cc`<br>`data/text/common/field_plot_position_rules.cc` | 运行时字符串 `1` 项 |
+| `0x081056FC`–`0x08105705` | `src/field_plot_position_rules.o(.rodata)` | [嵌入文本] | `src/field_plot_position_rules.cc`<br>`data/text/us/field_plot_position_rules.cc` | 运行时字符串 `1` 项 |
 | `0x08105706`–`0x08105707` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08105708`–`0x08105747` | `src/time_of_day.o(.rodata)` | [数据] | `src/time_of_day.cc`<br>`include/time_of_day.hh` | `gTimeOfDayTransitionTables` |
 | `0x08105748`–`0x08105EDB` | `src/time_of_day.o(.rodata)` | [数据] | `src/time_of_day.cc`<br>`include/time_of_day.hh` | `gTimeOfDayTransitionRecords_Spring_Morning`, `gTimeOfDayTransitionRecords_Spring_Afternoon`, `gTimeOfDayTransitionRecords_Spring_Evening`, `gTimeOfDayTransitionRecords_Spring_Night`, `gTimeOfDayTransitionRecords_Summer_Morning`, `gTimeOfDayTransitionRecords_Summer_Afternoon`, … +10 |
@@ -2185,23 +2185,23 @@
 | `0x081070DC`–`0x0810734F` | `src/field_render_farm_house_data.o(.rodata)` | [数据] | `src/field_render_farm_house_data.cc`<br>`include/field_render_farm_house_data.hh` | `gFarmHouseTilePatchData`、`gFarmHouseVisualDescriptors`、`gFarmHouseTilePatchAnimations`；按同一对象内的 ROM 顺序排列 |
 | `0x08107350`–`0x0810735B` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gUnk_FieldRenderResource_158`、`gUnk_FieldRenderResource_159`；后者包含至下一命名对象前的 4 个未标号 `00` |
 | `0x0810735C`–`0x0810736F` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gUnk_FieldRenderResource_177`、`gUnk_FieldRenderResource_178`；后者包含至下一命名对象前的 12 个未标号 `00` |
-| `0x08107370`–`0x08107385` | `src/field_render_resource_data.o(.rodata)` | [嵌入文本] | `src/field_render_resource_data.cc`<br>`data/text/common/field_render_resource_data.cc` | 运行时字符串 `2` 项 |
+| `0x08107370`–`0x08107385` | `src/field_render_resource_data.o(.rodata)` | [嵌入文本] | `src/field_render_resource_data.cc`<br>`data/text/us/field_render_resource_data_1.cc` | 运行时字符串 `2` 项 |
 | `0x08107386`–`0x08107387` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08107388`–`0x081073C3` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFieldRenderParallelTables` |
 | `0x081073C4`–`0x08107423` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFieldRenderPatchArgumentData` |
-| `0x08107424`–`0x0810742D` | `src/field_render_resource_data.o(.rodata)` | [嵌入文本] | `src/field_render_resource_data.cc`<br>`data/text/common/field_render_resource_data_1.cc` | 运行时字符串 `1` 项 |
+| `0x08107424`–`0x0810742D` | `src/field_render_resource_data.o(.rodata)` | [嵌入文本] | `src/field_render_resource_data.cc`<br>`data/text/us/field_render_resource_data_2.cc` | 运行时字符串 `1` 项 |
 | `0x0810742E`–`0x08107436` | `src/field_render_resource_data.o(.rodata)` | [数据] | `src/field_render_resource_data.cc`<br>`include/field_render_resource_data.hh` | `gFarmHouseStyleNibbleLookupData` |
 | `0x08107437`–`0x08107437` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
 | `0x08107438`–`0x0810744F` | `src/bachelorette_marriage_candidate_data.o(.rodata)` | [数据] | `src/bachelorette_marriage_candidate_data.cc`、`include/bachelorette_marriage_candidate_data.hh` | `gMarriageCandidateCharacterIds` |
 | `0x08107450`–`0x08107457` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gFieldRenderSeasonalRecordRanges` |
 | `0x08107458`–`0x0810749F` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_FieldRenderLookupValues` |
-| `0x081074A0`–`0x081074F5` | `src/field_render_runtime_data.o(.rodata)` | [嵌入文本] | `src/field_render_runtime_data.cc`<br>`data/text/us/field_render_runtime_data.cc` | `gText_FieldRenderFallbackNone`、运行时字符串 `7` 项 |
+| `0x081074A0`–`0x081074F5` | `src/field_render_runtime_data.o(.rodata)` | [嵌入文本] | `src/field_render_runtime_data.cc`<br>`data/text/us/field_render_runtime_data_1.cc` | `gText_FieldRenderFallbackNone`、运行时字符串 `7` 项 |
 | `0x081074F6`–`0x08107510` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_FieldRenderSortedValues` |
 | `0x08107511`–`0x08107513` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
-| `0x08107514`–`0x08107529` | `src/field_render_runtime_data.o(.rodata)` | [嵌入文本] | `src/field_render_runtime_data.cc`<br>`data/text/common/field_render_runtime_data_1.cc` | 运行时字符串 `2` 项 |
+| `0x08107514`–`0x08107529` | `src/field_render_runtime_data.o(.rodata)` | [嵌入文本] | `src/field_render_runtime_data.cc`<br>`data/text/us/field_render_runtime_data_2.cc` | 运行时字符串 `2` 项 |
 | `0x0810752A`–`0x0810752B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x0810752C`–`0x08107567` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_080AE894InitialValues`, `gUnk_080AE894LayoutValues` |
-| `0x08107568`–`0x08107569` | `src/field_render_runtime_data.o(.rodata)` | [嵌入文本] | `src/field_render_runtime_data.cc`<br>`data/text/us/field_render_runtime_data_2.cc` | `gText_080B0708DefaultGlyph` |
+| `0x08107568`–`0x08107569` | `src/field_render_runtime_data.o(.rodata)` | [嵌入文本] | `src/field_render_runtime_data.cc`<br>`data/text/us/field_render_runtime_data_3.cc` | `gText_080B0708DefaultGlyph` |
 | `0x0810756A`–`0x0810756B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x0810756C`–`0x08107587` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_080B09B0IndexValues` |
 | `0x08107588`–`0x081075AF` | `src/field_render_runtime_data.o(.rodata)` | [数据] | `src/field_render_runtime_data.cc`<br>`include/field_render_runtime_data.hh` | `gUnk_080B0BB8FirstValues`, `gUnk_080B0BB8SecondValues` |
@@ -2241,7 +2241,7 @@
 | `0x0811780C`–`0x0811782B` | `src/shop_common.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/us/shop_common_1.cc`<br>`data/text/us/shop_common_2.cc` | 文本 `3` 项（详见下方索引）<br>`gShopCommonQuantitySuffixTextRef`, `gShopCommonOwnedQuantityLabelTextRef` |
 | `0x0811782C`–`0x081179AB` | `src/shop_common.o(.rodata)` | [嵌入文本与数据] | `src/shop_common.cc`<br>`data/text/us/shop_common_3.cc`<br>`data/text/us/shop_common_4.cc` | 运行时字符串 `2` 项<br>`gUnk_08117838`, `gUnk_0811783C`, `gUnk_0811785C`, `gUnk_08117860`, `gUnk_0811788C` |
 | `0x081179AC`–`0x08117B13` | `src/shop_common.o(.rodata)` | [嵌入文本与指针] | `src/shop_common.cc`<br>`data/text/us/shop_common_5.cc`–`shop_common_8.cc` | 文本 `25` 项（详见下方索引）<br>`gItemStatusWrappedAsPresentTextRef`, `gItemDiscardConfirmTextRef`, `gItemDiscardCannotDiscardTextRef`, `gItemDiscardCursedTextRef` |
-| `0x08117B14`–`0x08117BD3` | `src/font.o(.rodata)` | [嵌入文本 / 数据] | `src/font.cc`<br>`include/font.hh`<br>`data/text/common/font.cc` | 运行时字符串 `1` 项<br>`gFontSpecialGlyphBlocks`, `gFontSpecialGlyphC3` |
+| `0x08117B14`–`0x08117BD3` | `src/font.o(.rodata)` | [嵌入文本 / 数据] | `src/font.cc`<br>`include/font.hh`<br>`data/text/us/font.cc` | 运行时字符串 `1` 项<br>`gFontSpecialGlyphBlocks`, `gFontSpecialGlyphC3` |
 | `0x08117BD4`–`0x08139A87` | `asm/data/static_resources.o(.rodata)` | [直接标签的原始资源] | `asm/data/static_resources.s`<br>`include/static_resources.hh` | 地图、场景渲染与农舍资源共 220 项；每项均为实际标签和独立区域 `incbin`，没有 `.set` 偏移别名 |
 
 ## US：文本地址索引
@@ -3037,229 +3037,229 @@
 | `0x080FA6AC` | `gText_Frisbee_DogNoLongerWantsToPlay` | `data/text/us/frisbee.cc` | `src/frisbee.o(.rodata)` |
 | `0x080FA6E0` | `gText_Frisbee_FoundItem` | `data/text/us/frisbee.cc` | `src/frisbee.o(.rodata)` |
 | `0x080FA6F4` | `gText_Frisbee_FoundNothing` | `data/text/us/frisbee.cc` | `src/frisbee.o(.rodata)` |
-| `0x080FA796` | `gText_AnimalFestival_LivestockContestantNames` | `data/text/us/animal_festival.cc` | `src/animal_festival.o(.rodata)` |
-| `0x080FAA40` | `gText_HorseRace_BuyTicketDeclined` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAA5C` | `gText_HorseRace_Yes` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAA60` | `gText_HorseRace_No` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAA64` | `gText_HorseRace_ComeAgain` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAA74` | `gText_HorseRace_TakeYourTime` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAA88` | `gText_HorseRace_TicketPurchaseConfirmation` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAAA4` | `gText_HorseRace_TicketPurchaseApproval` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAACC` | `gText_HorseRace_ChangeMind` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAAE0` | `gText_HorseRace_ExplanationQuestion` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAAFC` | `gText_HorseRace_ExplanationBasics` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAB94` | `gText_HorseRace_ExplanationGreenStamina` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FABE0` | `gText_HorseRace_ExplanationYellowStamina` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAC24` | `gText_HorseRace_ExplanationRedStamina` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAC8C` | `gText_HorseRace_ExplanationStaminaRecovery` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAD08` | `gText_HorseRace_ExplanationUnderstoodQuestion` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAD20` | `gText_HorseRace_ExplanationUnderstood` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAD28` | `gText_HorseRace_ExplanationRepeat` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAD34` | `gText_HorseRace_StartRace` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAD50` | `gText_HorseRace_RaceStartAnnouncement` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAD94` | `gText_HorseRace_RaceResults` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FADDC` | `gText_HorseRace_RacePayouts` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAE00` | `gText_HorseRace_MedalExchangeExplanation` | `data/text/us/horse_race_data.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAE9C` | `gText_HorseRace_TicketPurchaseTitle` | `data/text/us/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAEB8` | `gText_HorseRace_TicketPurchaseConfirm` | `data/text/us/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAEC4` | `gText_HorseRace_TicketPurchaseMedalsToWin` | `data/text/us/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAEDC` | `gText_HorseRace_TicketControls_DPadUpDown` | `data/text/us/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAEF4` | `gText_HorseRace_TicketControls_SelectHorse` | `data/text/us/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAF10` | `gText_HorseRace_TicketControls_DPadLeftRight` | `data/text/us/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAF28` | `gText_HorseRace_TicketControls_ChangeQuantity` | `data/text/us/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAF44` | `gText_HorseRace_TicketControls_LRButtons` | `data/text/us/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAF54` | `gText_HorseRace_TicketControls_ChangeQuantityByTen` | `data/text/us/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAF70` | `gText_HorseRace_TicketControls_ChangeQuantityByTenContinuation` | `data/text/us/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAF7C` | `gText_HorseRace_TicketControls_MoveCursorToConfirm` | `data/text/us/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAF94` | `gText_HorseRace_TicketControls_Buy` | `data/text/us/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FAFAC` | `gText_HorseRace_TicketControls_Cancel` | `data/text/us/horse_race_data_2.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FB108` | `gText_HorseRace_PrizeExchangePrompt` | `data/text/us/horse_race_data_4.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FB120` | `gText_HorseRace_PrizeExchangeYes` | `data/text/us/horse_race_data_4.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FB124` | `gText_HorseRace_PrizeExchangeNo` | `data/text/us/horse_race_data_4.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FB128` | `gText_HorseRace_PrizeExchangeComeAgain` | `data/text/us/horse_race_data_4.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FB140` | `gText_HorseRace_PrizeExchangeTakeYourTime` | `data/text/us/horse_race_data_4.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FB158` | `gText_HorseRace_PrizeSelectionConfirmation` | `data/text/us/horse_race_data_4.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FB164` | `gText_HorseRace_PrizeExchangeLeaveConfirmation` | `data/text/us/horse_race_data_4.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FB17C` | `gText_HorseRace_PrizeExchangeInsufficientMedals` | `data/text/us/horse_race_data_4.cc` | `src/horse_race_data.o(.rodata)` |
-| `0x080FB234` | `gText_IntroScene_MotherName` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB23C` | `gText_IntroScene_MotherTravelGreeting` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB27C` | `gText_IntroScene_FatherName` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB284` | `gText_IntroScene_FatherFishingInvitation` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB2D0` | `gText_IntroScene_MotherCannotFindPlayer` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB2F4` | `gText_IntroScene_PlayerResponseWhat` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB300` | `gText_IntroScene_OldManName` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB308` | `gText_IntroScene_OldManFindsPlayer` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB398` | `gText_IntroScene_MotherThanksOldMan` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB3CC` | `gText_IntroScene_FatherExplainsVacation` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB420` | `gText_IntroScene_OldManOffersStay` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB46C` | `gText_IntroScene_FatherAsksAboutStay` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB484` | `gText_IntroScene_OldManWelcomesFamily` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB4D4` | `gText_IntroScene_MotherTellsPlayerToPlay` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB51C` | `gText_IntroScene_UnknownName` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB520` | `gText_IntroScene_UnknownCallsPlayer` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB534` | `gText_IntroScene_UnknownFindsPlayer` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB53C` | `gText_IntroScene_GirlName` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB544` | `gText_IntroScene_GirlThinksPlayerDead` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB578` | `gText_IntroScene_GirlInvitesPlayerToPlay` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB5D4` | `gText_IntroScene_GirlAsksPlayerStory` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB634` | `gText_IntroScene_OldManFarewell` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB6C0` | `gText_IntroScene_OldManRequestsLetter` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB710` | `gText_IntroScene_OldManGivesAddress` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB738` | `gText_IntroScene_GirlSaysGoodbye` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB754` | `gText_IntroScene_GirlAsksPlayerToReturn` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB7A0` | `gText_IntroScene_OldManNotesFriend` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB7F0` | `gText_IntroScene_OldManWaitsForLetter` | `data/text/us/intro_scene_data.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB824` | `gText_FarmStatus_OverviewTitle` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB830` | `gText_FarmStatus_CountFieldPadding` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB834` | `gText_FarmStatus_GoldUnit` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB838` | `gText_FarmStatus_Healthy` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB844` | `gText_FarmStatus_Unhappy` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB850` | `gText_FarmStatus_Sick` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB85C` | `gText_FarmStatus_Spring` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB864` | `gText_FarmStatus_Summer` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB86C` | `gText_FarmStatus_Autumn` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB874` | `gText_FarmStatus_Winter` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB87C` | `gText_FarmStatus_AgeUnit` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB880` | `gText_FarmStatus_ChickenList` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB894` | `gText_FarmStatus_CattleList` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB8A4` | `gText_FarmStatus_SheepList` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB8B4` | `gText_FarmStatus_HarvestSpriteList` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB8C8` | `gText_FarmStatus_DayAbbreviation` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB8CC` | `gText_FarmStatus_DaysRemaining` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB8D4` | `gText_FarmStatus_WorkAssignment` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB8E0` | `gText_FarmStatus_NotAssigned` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB8F0` | `gText_FarmStatus_EarningsReport` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB904` | `gText_FarmStatus_PlusSign` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB908` | `gText_FarmStatus_MinusSign` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB90C` | `gText_FarmStatus_YearLabel` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB914` | `gText_FarmStatus_Income` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB91C` | `gText_FarmStatus_Expenses` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB928` | `gText_FarmStatus_ToolLevelList` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB93C` | `gText_FarmStatus_ToolShopLabel` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB944` | `gText_FarmStatus_ToolUpgradeQuestion` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB950` | `gText_FarmStatus_PercentSign` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB9C8` | `gText_AnimalContest_ChickenConfirmation` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB9DC` | `gText_AnimalContest_Yes` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB9E0` | `gText_AnimalContest_No` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB9E4` | `gText_AnimalContest_CowConfirmation` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB9F4` | `gText_AnimalContest_SheepConfirmation` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBA08` | `gText_AnimalContest_BabyChickIneligible` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBA3C` | `gText_AnimalContest_AdultCowIneligible` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBA70` | `gText_AnimalContest_AdultSheepIneligible` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBAA8` | `gText_AnimalContest_SickChickenIneligible` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBAE0` | `gText_AnimalContest_SickCowIneligible` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBB14` | `gText_AnimalContest_SickSheepIneligible` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBB4C` | `gText_AnimalContest_PregnantCowIneligible` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBB80` | `gText_AnimalContest_PregnantSheepIneligible` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBBB8` | `gText_AnimalContest_ShornSheepIneligible` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBBEC` | `gText_AnimalContest_EntryAccepted` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBC18` | `gText_AnimalContest_ChickenSelectionPrompt` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBC48` | `gText_AnimalContest_CowSelectionPrompt` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBC70` | `gText_AnimalContest_SheepSelectionPrompt` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBC9C` | `gText_AnimalContest_EntryDeclinedQuestion` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBCB8` | `gText_AnimalContest_ChickenEntryDeclinedResponse` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBCE0` | `gText_AnimalContest_LivestockEntryDeclinedResponse` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBD18` | `gText_AnimalContest_FinalConfirmation` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBD28` | `gText_AnimalContest_FinalYes` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBD2C` | `gText_AnimalContest_FinalNo` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBE7C` | `gText_Records_NumberShipped` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBE8C` | `gText_Records_ShippedCountSuffix` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBE90` | `gText_Records_Fishing` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBE9C` | `gText_Records_Name` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBEA4` | `gText_Records_MaximumSize` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBEB4` | `gText_Records_Results` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBEC0` | `gText_Records_FishUnit` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBEC8` | `gText_Records_MeterUnit` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBECC` | `gText_Records_CentimeterUnit` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBED4` | `gText_Records_Separator` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBED8` | `gText_Records_Other` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBEE0` | `gText_Records_MiniGameRecords` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBEFC` | `gText_Records_Harvest` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBF08` | `gText_Records_AnimalHusbandry` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBF1C` | `gText_Records_Watering` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBF28` | `gText_Records_Frisbee` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBF34` | `gText_Records_SecondsUnit` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBF3C` | `gText_Records_IncomeExpenses` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBF58` | `gText_Records_HighestAmount` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBF68` | `gText_Records_Earned` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBF74` | `gText_Records_Used` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBF80` | `gText_Records_GoldUnit` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBF84` | `gText_Records_LongestLivingAnimal` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBFA0` | `gText_Records_Chicken` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBFAC` | `gText_Records_Cow` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBFB4` | `gText_Records_Sheep` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBFBC` | `gText_Records_YearsUnit` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBFC4` | `gText_Records_MonthsUnit` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBFC8` | `gText_Records_DaysUnit` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBFCC` | `gText_Records_MineDepth` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBFE8` | `gText_Records_MineDepthPadding` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FBFF0` | `gText_Records_BelowGround` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FC008` | `gText_Records_MolesWhacked` | `data/text/us/records_screen_data.cc` | `src/records_screen_data.o(.rodata)` |
-| `0x080FC0A4` | `gText_StaffCredits_Line000` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC0AC` | `gText_StaffCredits_EmptyLine` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC0B0` | `gText_StaffCredits_Line004` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC0C0` | `gText_StaffCredits_Line006` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC0D0` | `gText_StaffCredits_Line007` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC0E0` | `gText_StaffCredits_Line008` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC0F0` | `gText_StaffCredits_Line009` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC100` | `gText_StaffCredits_Line010` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC110` | `gText_StaffCredits_Line011` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC120` | `gText_StaffCredits_Line015` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC12C` | `gText_StaffCredits_Line017` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC13C` | `gText_StaffCredits_Line018` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC14C` | `gText_StaffCredits_Line019` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC158` | `gText_StaffCredits_Line020` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC16C` | `gText_StaffCredits_Line021` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC17C` | `gText_StaffCredits_Line022` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC18C` | `gText_StaffCredits_Line026` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC194` | `gText_StaffCredits_Line028` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC1A4` | `gText_StaffCredits_Line032` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC1B0` | `gText_StaffCredits_Line034` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC1C4` | `gText_StaffCredits_Line035` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC1D4` | `gText_StaffCredits_Line036` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC1E4` | `gText_StaffCredits_Line037` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC1F0` | `gText_StaffCredits_Line038` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC1F8` | `gText_StaffCredits_Line039` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC204` | `gText_StaffCredits_Line040` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC210` | `gText_StaffCredits_Line044` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC21C` | `gText_StaffCredits_Line046` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC228` | `gText_StaffCredits_Line047` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC238` | `gText_StaffCredits_Line048` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC248` | `gText_StaffCredits_Line052` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC258` | `gText_StaffCredits_Line054` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC264` | `gText_StaffCredits_Line055` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC278` | `gText_StaffCredits_Line056` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC28C` | `gText_StaffCredits_Line057` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC29C` | `gText_StaffCredits_Line058` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC2B0` | `gText_StaffCredits_Line059` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC2C4` | `gText_StaffCredits_Line060` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC2D4` | `gText_StaffCredits_Line064` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC2E0` | `gText_StaffCredits_Line066` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC2F0` | `gText_StaffCredits_Line070` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC2F8` | `gText_StaffCredits_Line072` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC304` | `gText_StaffCredits_Line076` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC310` | `gText_StaffCredits_Line078` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC320` | `gText_StaffCredits_Line082` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC334` | `gText_StaffCredits_Line084` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC344` | `gText_StaffCredits_Line088` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC350` | `gText_StaffCredits_Line090` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC360` | `gText_StaffCredits_Line094` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC378` | `gText_StaffCredits_Line096` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC38C` | `gText_StaffCredits_Line097` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC39C` | `gText_StaffCredits_Line101` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC3B0` | `gText_StaffCredits_Line103` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC3C4` | `gText_StaffCredits_Line104` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC3D4` | `gText_StaffCredits_Line108` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC3E8` | `gText_StaffCredits_Line110` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC3F8` | `gText_StaffCredits_Line113` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC418` | `gText_StaffCredits_Line115` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC428` | `gText_StaffCredits_Line117` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC440` | `gText_StaffCredits_Line118` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC450` | `gText_StaffCredits_Line119` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC460` | `gText_StaffCredits_Line121` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC478` | `gText_StaffCredits_Line122` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC488` | `gText_StaffCredits_Line125` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
-| `0x080FC4A0` | `gText_StaffCredits_Line126` | `data/text/us/staff_credits.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FA796` | `gText_AnimalFestival_LivestockContestantNames` | `data/text/us/animal_festival_2.cc` | `src/animal_festival.o(.rodata)` |
+| `0x080FAA40` | `gText_HorseRace_BuyTicketDeclined` | `data/text/us/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAA5C` | `gText_HorseRace_Yes` | `data/text/us/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAA60` | `gText_HorseRace_No` | `data/text/us/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAA64` | `gText_HorseRace_ComeAgain` | `data/text/us/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAA74` | `gText_HorseRace_TakeYourTime` | `data/text/us/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAA88` | `gText_HorseRace_TicketPurchaseConfirmation` | `data/text/us/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAAA4` | `gText_HorseRace_TicketPurchaseApproval` | `data/text/us/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAACC` | `gText_HorseRace_ChangeMind` | `data/text/us/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAAE0` | `gText_HorseRace_ExplanationQuestion` | `data/text/us/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAAFC` | `gText_HorseRace_ExplanationBasics` | `data/text/us/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAB94` | `gText_HorseRace_ExplanationGreenStamina` | `data/text/us/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FABE0` | `gText_HorseRace_ExplanationYellowStamina` | `data/text/us/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAC24` | `gText_HorseRace_ExplanationRedStamina` | `data/text/us/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAC8C` | `gText_HorseRace_ExplanationStaminaRecovery` | `data/text/us/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAD08` | `gText_HorseRace_ExplanationUnderstoodQuestion` | `data/text/us/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAD20` | `gText_HorseRace_ExplanationUnderstood` | `data/text/us/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAD28` | `gText_HorseRace_ExplanationRepeat` | `data/text/us/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAD34` | `gText_HorseRace_StartRace` | `data/text/us/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAD50` | `gText_HorseRace_RaceStartAnnouncement` | `data/text/us/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAD94` | `gText_HorseRace_RaceResults` | `data/text/us/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FADDC` | `gText_HorseRace_RacePayouts` | `data/text/us/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAE00` | `gText_HorseRace_MedalExchangeExplanation` | `data/text/us/horse_race_data_1.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAE9C` | `gText_HorseRace_TicketPurchaseTitle` | `data/text/us/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAEB8` | `gText_HorseRace_TicketPurchaseConfirm` | `data/text/us/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAEC4` | `gText_HorseRace_TicketPurchaseMedalsToWin` | `data/text/us/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAEDC` | `gText_HorseRace_TicketControls_DPadUpDown` | `data/text/us/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAEF4` | `gText_HorseRace_TicketControls_SelectHorse` | `data/text/us/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAF10` | `gText_HorseRace_TicketControls_DPadLeftRight` | `data/text/us/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAF28` | `gText_HorseRace_TicketControls_ChangeQuantity` | `data/text/us/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAF44` | `gText_HorseRace_TicketControls_LRButtons` | `data/text/us/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAF54` | `gText_HorseRace_TicketControls_ChangeQuantityByTen` | `data/text/us/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAF70` | `gText_HorseRace_TicketControls_ChangeQuantityByTenContinuation` | `data/text/us/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAF7C` | `gText_HorseRace_TicketControls_MoveCursorToConfirm` | `data/text/us/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAF94` | `gText_HorseRace_TicketControls_Buy` | `data/text/us/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FAFAC` | `gText_HorseRace_TicketControls_Cancel` | `data/text/us/horse_race_data_3.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FB108` | `gText_HorseRace_PrizeExchangePrompt` | `data/text/us/horse_race_data_6.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FB120` | `gText_HorseRace_PrizeExchangeYes` | `data/text/us/horse_race_data_6.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FB124` | `gText_HorseRace_PrizeExchangeNo` | `data/text/us/horse_race_data_6.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FB128` | `gText_HorseRace_PrizeExchangeComeAgain` | `data/text/us/horse_race_data_6.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FB140` | `gText_HorseRace_PrizeExchangeTakeYourTime` | `data/text/us/horse_race_data_6.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FB158` | `gText_HorseRace_PrizeSelectionConfirmation` | `data/text/us/horse_race_data_6.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FB164` | `gText_HorseRace_PrizeExchangeLeaveConfirmation` | `data/text/us/horse_race_data_6.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FB17C` | `gText_HorseRace_PrizeExchangeInsufficientMedals` | `data/text/us/horse_race_data_6.cc` | `src/horse_race_data.o(.rodata)` |
+| `0x080FB234` | `gText_IntroScene_MotherName` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB23C` | `gText_IntroScene_MotherTravelGreeting` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB27C` | `gText_IntroScene_FatherName` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB284` | `gText_IntroScene_FatherFishingInvitation` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB2D0` | `gText_IntroScene_MotherCannotFindPlayer` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB2F4` | `gText_IntroScene_PlayerResponseWhat` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB300` | `gText_IntroScene_OldManName` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB308` | `gText_IntroScene_OldManFindsPlayer` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB398` | `gText_IntroScene_MotherThanksOldMan` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB3CC` | `gText_IntroScene_FatherExplainsVacation` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB420` | `gText_IntroScene_OldManOffersStay` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB46C` | `gText_IntroScene_FatherAsksAboutStay` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB484` | `gText_IntroScene_OldManWelcomesFamily` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB4D4` | `gText_IntroScene_MotherTellsPlayerToPlay` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB51C` | `gText_IntroScene_UnknownName` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB520` | `gText_IntroScene_UnknownCallsPlayer` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB534` | `gText_IntroScene_UnknownFindsPlayer` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB53C` | `gText_IntroScene_GirlName` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB544` | `gText_IntroScene_GirlThinksPlayerDead` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB578` | `gText_IntroScene_GirlInvitesPlayerToPlay` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB5D4` | `gText_IntroScene_GirlAsksPlayerStory` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB634` | `gText_IntroScene_OldManFarewell` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB6C0` | `gText_IntroScene_OldManRequestsLetter` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB710` | `gText_IntroScene_OldManGivesAddress` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB738` | `gText_IntroScene_GirlSaysGoodbye` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB754` | `gText_IntroScene_GirlAsksPlayerToReturn` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB7A0` | `gText_IntroScene_OldManNotesFriend` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB7F0` | `gText_IntroScene_OldManWaitsForLetter` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
+| `0x080FB824` | `gText_FarmStatus_OverviewTitle` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB830` | `gText_FarmStatus_CountFieldPadding` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB834` | `gText_FarmStatus_GoldUnit` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB838` | `gText_FarmStatus_Healthy` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB844` | `gText_FarmStatus_Unhappy` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB850` | `gText_FarmStatus_Sick` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB85C` | `gText_FarmStatus_Spring` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB864` | `gText_FarmStatus_Summer` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB86C` | `gText_FarmStatus_Autumn` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB874` | `gText_FarmStatus_Winter` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB87C` | `gText_FarmStatus_AgeUnit` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB880` | `gText_FarmStatus_ChickenList` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB894` | `gText_FarmStatus_CattleList` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB8A4` | `gText_FarmStatus_SheepList` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB8B4` | `gText_FarmStatus_HarvestSpriteList` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB8C8` | `gText_FarmStatus_DayAbbreviation` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB8CC` | `gText_FarmStatus_DaysRemaining` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB8D4` | `gText_FarmStatus_WorkAssignment` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB8E0` | `gText_FarmStatus_NotAssigned` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB8F0` | `gText_FarmStatus_EarningsReport` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB904` | `gText_FarmStatus_PlusSign` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB908` | `gText_FarmStatus_MinusSign` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB90C` | `gText_FarmStatus_YearLabel` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB914` | `gText_FarmStatus_Income` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB91C` | `gText_FarmStatus_Expenses` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB928` | `gText_FarmStatus_ToolLevelList` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB93C` | `gText_FarmStatus_ToolShopLabel` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB944` | `gText_FarmStatus_ToolUpgradeQuestion` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB950` | `gText_FarmStatus_PercentSign` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB9C8` | `gText_AnimalContest_ChickenConfirmation` | `data/text/us/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB9DC` | `gText_AnimalContest_Yes` | `data/text/us/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB9E0` | `gText_AnimalContest_No` | `data/text/us/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB9E4` | `gText_AnimalContest_CowConfirmation` | `data/text/us/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB9F4` | `gText_AnimalContest_SheepConfirmation` | `data/text/us/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBA08` | `gText_AnimalContest_BabyChickIneligible` | `data/text/us/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBA3C` | `gText_AnimalContest_AdultCowIneligible` | `data/text/us/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBA70` | `gText_AnimalContest_AdultSheepIneligible` | `data/text/us/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBAA8` | `gText_AnimalContest_SickChickenIneligible` | `data/text/us/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBAE0` | `gText_AnimalContest_SickCowIneligible` | `data/text/us/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBB14` | `gText_AnimalContest_SickSheepIneligible` | `data/text/us/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBB4C` | `gText_AnimalContest_PregnantCowIneligible` | `data/text/us/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBB80` | `gText_AnimalContest_PregnantSheepIneligible` | `data/text/us/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBBB8` | `gText_AnimalContest_ShornSheepIneligible` | `data/text/us/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBBEC` | `gText_AnimalContest_EntryAccepted` | `data/text/us/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBC18` | `gText_AnimalContest_ChickenSelectionPrompt` | `data/text/us/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBC48` | `gText_AnimalContest_CowSelectionPrompt` | `data/text/us/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBC70` | `gText_AnimalContest_SheepSelectionPrompt` | `data/text/us/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBC9C` | `gText_AnimalContest_EntryDeclinedQuestion` | `data/text/us/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBCB8` | `gText_AnimalContest_ChickenEntryDeclinedResponse` | `data/text/us/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBCE0` | `gText_AnimalContest_LivestockEntryDeclinedResponse` | `data/text/us/farm_status_screen_data_3.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBD18` | `gText_AnimalContest_FinalConfirmation` | `data/text/us/farm_status_screen_data_5.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBD28` | `gText_AnimalContest_FinalYes` | `data/text/us/farm_status_screen_data_5.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBD2C` | `gText_AnimalContest_FinalNo` | `data/text/us/farm_status_screen_data_5.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBE7C` | `gText_Records_NumberShipped` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBE8C` | `gText_Records_ShippedCountSuffix` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBE90` | `gText_Records_Fishing` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBE9C` | `gText_Records_Name` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBEA4` | `gText_Records_MaximumSize` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBEB4` | `gText_Records_Results` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBEC0` | `gText_Records_FishUnit` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBEC8` | `gText_Records_MeterUnit` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBECC` | `gText_Records_CentimeterUnit` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBED4` | `gText_Records_Separator` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBED8` | `gText_Records_Other` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBEE0` | `gText_Records_MiniGameRecords` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBEFC` | `gText_Records_Harvest` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBF08` | `gText_Records_AnimalHusbandry` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBF1C` | `gText_Records_Watering` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBF28` | `gText_Records_Frisbee` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBF34` | `gText_Records_SecondsUnit` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBF3C` | `gText_Records_IncomeExpenses` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBF58` | `gText_Records_HighestAmount` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBF68` | `gText_Records_Earned` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBF74` | `gText_Records_Used` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBF80` | `gText_Records_GoldUnit` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBF84` | `gText_Records_LongestLivingAnimal` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBFA0` | `gText_Records_Chicken` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBFAC` | `gText_Records_Cow` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBFB4` | `gText_Records_Sheep` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBFBC` | `gText_Records_YearsUnit` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBFC4` | `gText_Records_MonthsUnit` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBFC8` | `gText_Records_DaysUnit` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBFCC` | `gText_Records_MineDepth` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBFE8` | `gText_Records_MineDepthPadding` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FBFF0` | `gText_Records_BelowGround` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FC008` | `gText_Records_MolesWhacked` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
+| `0x080FC0A4` | `gText_StaffCredits_Line000` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC0AC` | `gText_StaffCredits_EmptyLine` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC0B0` | `gText_StaffCredits_Line004` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC0C0` | `gText_StaffCredits_Line006` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC0D0` | `gText_StaffCredits_Line007` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC0E0` | `gText_StaffCredits_Line008` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC0F0` | `gText_StaffCredits_Line009` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC100` | `gText_StaffCredits_Line010` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC110` | `gText_StaffCredits_Line011` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC120` | `gText_StaffCredits_Line015` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC12C` | `gText_StaffCredits_Line017` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC13C` | `gText_StaffCredits_Line018` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC14C` | `gText_StaffCredits_Line019` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC158` | `gText_StaffCredits_Line020` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC16C` | `gText_StaffCredits_Line021` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC17C` | `gText_StaffCredits_Line022` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC18C` | `gText_StaffCredits_Line026` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC194` | `gText_StaffCredits_Line028` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC1A4` | `gText_StaffCredits_Line032` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC1B0` | `gText_StaffCredits_Line034` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC1C4` | `gText_StaffCredits_Line035` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC1D4` | `gText_StaffCredits_Line036` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC1E4` | `gText_StaffCredits_Line037` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC1F0` | `gText_StaffCredits_Line038` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC1F8` | `gText_StaffCredits_Line039` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC204` | `gText_StaffCredits_Line040` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC210` | `gText_StaffCredits_Line044` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC21C` | `gText_StaffCredits_Line046` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC228` | `gText_StaffCredits_Line047` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC238` | `gText_StaffCredits_Line048` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC248` | `gText_StaffCredits_Line052` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC258` | `gText_StaffCredits_Line054` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC264` | `gText_StaffCredits_Line055` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC278` | `gText_StaffCredits_Line056` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC28C` | `gText_StaffCredits_Line057` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC29C` | `gText_StaffCredits_Line058` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC2B0` | `gText_StaffCredits_Line059` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC2C4` | `gText_StaffCredits_Line060` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC2D4` | `gText_StaffCredits_Line064` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC2E0` | `gText_StaffCredits_Line066` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC2F0` | `gText_StaffCredits_Line070` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC2F8` | `gText_StaffCredits_Line072` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC304` | `gText_StaffCredits_Line076` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC310` | `gText_StaffCredits_Line078` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC320` | `gText_StaffCredits_Line082` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC334` | `gText_StaffCredits_Line084` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC344` | `gText_StaffCredits_Line088` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC350` | `gText_StaffCredits_Line090` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC360` | `gText_StaffCredits_Line094` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC378` | `gText_StaffCredits_Line096` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC38C` | `gText_StaffCredits_Line097` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC39C` | `gText_StaffCredits_Line101` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC3B0` | `gText_StaffCredits_Line103` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC3C4` | `gText_StaffCredits_Line104` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC3D4` | `gText_StaffCredits_Line108` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC3E8` | `gText_StaffCredits_Line110` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC3F8` | `gText_StaffCredits_Line113` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC418` | `gText_StaffCredits_Line115` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC428` | `gText_StaffCredits_Line117` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC440` | `gText_StaffCredits_Line118` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC450` | `gText_StaffCredits_Line119` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC460` | `gText_StaffCredits_Line121` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC478` | `gText_StaffCredits_Line122` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC488` | `gText_StaffCredits_Line125` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
+| `0x080FC4A0` | `gText_StaffCredits_Line126` | `data/text/us/staff_credits_1.cc` | `src/staff_credits.o(.rodata)` |
 | `0x080FC6CC` | `gText_TownMap_PlayerFarmNameSuffix` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
 | `0x080FC6D4` | `gText_TownMap_PlayerFarmDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
 | `0x080FC6E8` | `gText_TownMap_PlayerFarmLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
@@ -3326,77 +3326,77 @@
 | `0x080FD02C` | `gText_TownMap_MothersHillDescription` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
 | `0x080FD070` | `gText_TownMap_MothersHillLabel` | `data/text/us/town_map.cc` | `src/town_map_data.o(.rodata)` |
 | `0x080FD550` | `gText_Library_OpeningHours` | `data/text/us/library_opening_hours_data.cc` | `src/library_opening_hours_data.o(.rodata)` |
-| `0x080FD940` | `gText_Library_Menu` | `data/text/us/library_data_1.cc` | `src/library_data.o(.rodata)` |
-| `0x080FD964` | `gText_PoultryShop_Empty` | `data/text/us/poultry_shop_data.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD968` | `gText_PoultryShop_BuyChicken` | `data/text/us/poultry_shop_data.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD978` | `gText_PoultryShop_SellChicken` | `data/text/us/poultry_shop_data.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD9EC` | `gText_PoultryShop_PageBreak` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD9F0` | `gText_PoultryShop_StatusSick` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FD9FC` | `gText_PoultryShop_StatusUnhappy` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDA10` | `gText_PoultryShop_StatusHealthy` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDA20` | `gText_PoultryShop_StatusSpacer` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDA24` | `gText_PoultryShop_Age` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDA40` | `gText_PoultryShop_Spring` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDA48` | `gText_PoultryShop_Summer` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDA50` | `gText_PoultryShop_Autumn` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDA58` | `gText_PoultryShop_Winter` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDA60` | `gText_PoultryShop_DailySellingPrice` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDA78` | `gText_PoultryShop_Currency` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDA7C` | `gText_PoultryShop_InsufficientGold` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDAA8` | `gText_PoultryShop_FeedBinFull` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDAD4` | `gText_PoultryShop_BlankLinePair` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDADC` | `gText_PoultryShop_InventoryFull` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDB0C` | `gText_PoultryShop_CoopFull` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDB38` | `gText_PoultryShop_NameChickenPrompt` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDB6C` | `gText_PoultryShop_NoChickensToSell` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDB9C` | `gText_PoultryShop_NotInterested` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDBC4` | `gText_PoultryShop_PurchaseDeclined` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDBE8` | `gText_PoultryShop_PricePromptPrefix` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDBF8` | `gText_PoultryShop_Yes` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDBFC` | `gText_PoultryShop_No` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDC00` | `gText_PoultryShop_FeedPurchaseComplete` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDC58` | `gText_PoultryShop_PurchaseDeliveryPartial` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDCBC` | `gText_PoultryShop_MedicinePurchaseComplete` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDD04` | `gText_PoultryShop_PurchaseComplete` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDD1C` | `gText_PoultryShop_ChickenPurchaseComplete` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDD68` | `gText_PoultryShop_PurchaseMorePrompt` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDD84` | `gText_PoultryShop_ChickenSold` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
-| `0x080FDE40` | `gText_Supermarket_EquipmentCapacityFull` | `data/text/us/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FDE70` | `gText_Supermarket_BlankLinePair` | `data/text/us/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FDE78` | `gText_Supermarket_InsufficientGold` | `data/text/us/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FDEAC` | `gText_Supermarket_ThankYou` | `data/text/us/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FDEC4` | `gText_Supermarket_PurchaseConfirmation` | `data/text/us/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FDEDC` | `gText_Supermarket_PurchaseMorePrompt` | `data/text/us/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FDEF8` | `gText_Supermarket_EquipmentDelivery` | `data/text/us/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FDF50` | `gText_Supermarket_DeliveryPartial` | `data/text/us/supermarket_data.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FDFE4` | `gText_Supermarket_SeedDelivery` | `data/text/us/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FE034` | `gText_Supermarket_SeedPurchaseConfirmation` | `data/text/us/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
-| `0x080FE070` | `gText_Clinic_InventoryFull` | `data/text/us/clinic_data.cc` | `src/clinic_data.o(.rodata)` |
-| `0x080FE0BC` | `gText_Clinic_BlankLinePair` | `data/text/us/clinic_data.cc` | `src/clinic_data.o(.rodata)` |
-| `0x080FE0C4` | `gText_Clinic_InsufficientGold` | `data/text/us/clinic_data.cc` | `src/clinic_data.o(.rodata)` |
-| `0x080FE10C` | `gText_Clinic_NoAdditionalPurchase` | `data/text/us/clinic_data.cc` | `src/clinic_data.o(.rodata)` |
-| `0x080FE134` | `gText_Clinic_NoPurchaseRestAdvice` | `data/text/us/clinic_data.cc` | `src/clinic_data.o(.rodata)` |
-| `0x080FE180` | `gText_Clinic_PurchaseMorePrompt` | `data/text/us/clinic_data.cc` | `src/clinic_data.o(.rodata)` |
-| `0x080FE19C` | `gText_Clinic_Delivery` | `data/text/us/clinic_data.cc` | `src/clinic_data.o(.rodata)` |
-| `0x080FE1E8` | `gText_Clinic_DeliveryPartial` | `data/text/us/clinic_data.cc` | `src/clinic_data.o(.rodata)` |
-| `0x080FE238` | `gText_Clinic_PurchaseComplete` | `data/text/us/clinic_data.cc` | `src/clinic_data.o(.rodata)` |
-| `0x080FE264` | `gText_InnShop_WaterDescription` | `data/text/us/inn_shop_data.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FE284` | `gText_InnShop_BoxLunchDescription` | `data/text/us/inn_shop_data.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FE2BC` | `gText_InnShop_Empty` | `data/text/us/inn_shop_data.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FE2C0` | `gText_InnShop_MilkDescription` | `data/text/us/inn_shop_data.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FE3D4` | `gText_InnShop_InsufficientGold` | `data/text/us/inn_shop_data_1.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FE404` | `gText_InnShop_NoOrder` | `data/text/us/inn_shop_data_1.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FE448` | `gText_InnShop_OrderComplete` | `data/text/us/inn_shop_data_1.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FE4D4` | `gText_WonShop_ToolCapacityFull` | `data/text/us/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FE50C` | `gText_WonShop_ItemCapacityFull` | `data/text/us/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FE540` | `gText_WonShop_BlankLinePair` | `data/text/us/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FE548` | `gText_WonShop_Delivery` | `data/text/us/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FE5C8` | `gText_WonShop_DeliveryMultiple` | `data/text/us/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FE63C` | `gText_WonShop_PurchaseComplete` | `data/text/us/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FE66C` | `gText_WonShop_InsufficientGold` | `data/text/us/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FE6B0` | `gText_WonShop_PurchaseMorePrompt` | `data/text/us/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FE6E4` | `gText_WonShop_NoPurchase` | `data/text/us/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FE708` | `gText_WonShop_NoAdditionalPurchase` | `data/text/us/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FD940` | `gText_Library_Menu` | `data/text/us/library_data_2.cc` | `src/library_data.o(.rodata)` |
+| `0x080FD964` | `gText_PoultryShop_Empty` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD968` | `gText_PoultryShop_BuyChicken` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD978` | `gText_PoultryShop_SellChicken` | `data/text/us/poultry_shop_data_1.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD9EC` | `gText_PoultryShop_PageBreak` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD9F0` | `gText_PoultryShop_StatusSick` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FD9FC` | `gText_PoultryShop_StatusUnhappy` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDA10` | `gText_PoultryShop_StatusHealthy` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDA20` | `gText_PoultryShop_StatusSpacer` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDA24` | `gText_PoultryShop_Age` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDA40` | `gText_PoultryShop_Spring` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDA48` | `gText_PoultryShop_Summer` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDA50` | `gText_PoultryShop_Autumn` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDA58` | `gText_PoultryShop_Winter` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDA60` | `gText_PoultryShop_DailySellingPrice` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDA78` | `gText_PoultryShop_Currency` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDA7C` | `gText_PoultryShop_InsufficientGold` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDAA8` | `gText_PoultryShop_FeedBinFull` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDAD4` | `gText_PoultryShop_BlankLinePair` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDADC` | `gText_PoultryShop_InventoryFull` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDB0C` | `gText_PoultryShop_CoopFull` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDB38` | `gText_PoultryShop_NameChickenPrompt` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDB6C` | `gText_PoultryShop_NoChickensToSell` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDB9C` | `gText_PoultryShop_NotInterested` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDBC4` | `gText_PoultryShop_PurchaseDeclined` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDBE8` | `gText_PoultryShop_PricePromptPrefix` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDBF8` | `gText_PoultryShop_Yes` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDBFC` | `gText_PoultryShop_No` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDC00` | `gText_PoultryShop_FeedPurchaseComplete` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDC58` | `gText_PoultryShop_PurchaseDeliveryPartial` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDCBC` | `gText_PoultryShop_MedicinePurchaseComplete` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDD04` | `gText_PoultryShop_PurchaseComplete` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDD1C` | `gText_PoultryShop_ChickenPurchaseComplete` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDD68` | `gText_PoultryShop_PurchaseMorePrompt` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDD84` | `gText_PoultryShop_ChickenSold` | `data/text/us/poultry_shop_data_2.cc` | `src/poultry_shop_data.o(.rodata)` |
+| `0x080FDE40` | `gText_Supermarket_EquipmentCapacityFull` | `data/text/us/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FDE70` | `gText_Supermarket_BlankLinePair` | `data/text/us/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FDE78` | `gText_Supermarket_InsufficientGold` | `data/text/us/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FDEAC` | `gText_Supermarket_ThankYou` | `data/text/us/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FDEC4` | `gText_Supermarket_PurchaseConfirmation` | `data/text/us/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FDEDC` | `gText_Supermarket_PurchaseMorePrompt` | `data/text/us/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FDEF8` | `gText_Supermarket_EquipmentDelivery` | `data/text/us/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FDF50` | `gText_Supermarket_DeliveryPartial` | `data/text/us/supermarket_data_1.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FDFE4` | `gText_Supermarket_SeedDelivery` | `data/text/us/supermarket_data_2.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FE034` | `gText_Supermarket_SeedPurchaseConfirmation` | `data/text/us/supermarket_data_2.cc` | `src/supermarket_data.o(.rodata)` |
+| `0x080FE070` | `gText_Clinic_InventoryFull` | `data/text/us/clinic_data_1.cc` | `src/clinic_data.o(.rodata)` |
+| `0x080FE0BC` | `gText_Clinic_BlankLinePair` | `data/text/us/clinic_data_1.cc` | `src/clinic_data.o(.rodata)` |
+| `0x080FE0C4` | `gText_Clinic_InsufficientGold` | `data/text/us/clinic_data_1.cc` | `src/clinic_data.o(.rodata)` |
+| `0x080FE10C` | `gText_Clinic_NoAdditionalPurchase` | `data/text/us/clinic_data_1.cc` | `src/clinic_data.o(.rodata)` |
+| `0x080FE134` | `gText_Clinic_NoPurchaseRestAdvice` | `data/text/us/clinic_data_1.cc` | `src/clinic_data.o(.rodata)` |
+| `0x080FE180` | `gText_Clinic_PurchaseMorePrompt` | `data/text/us/clinic_data_1.cc` | `src/clinic_data.o(.rodata)` |
+| `0x080FE19C` | `gText_Clinic_Delivery` | `data/text/us/clinic_data_1.cc` | `src/clinic_data.o(.rodata)` |
+| `0x080FE1E8` | `gText_Clinic_DeliveryPartial` | `data/text/us/clinic_data_1.cc` | `src/clinic_data.o(.rodata)` |
+| `0x080FE238` | `gText_Clinic_PurchaseComplete` | `data/text/us/clinic_data_1.cc` | `src/clinic_data.o(.rodata)` |
+| `0x080FE264` | `gText_InnShop_WaterDescription` | `data/text/us/inn_shop_data_1.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FE284` | `gText_InnShop_BoxLunchDescription` | `data/text/us/inn_shop_data_1.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FE2BC` | `gText_InnShop_Empty` | `data/text/us/inn_shop_data_1.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FE2C0` | `gText_InnShop_MilkDescription` | `data/text/us/inn_shop_data_1.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FE3D4` | `gText_InnShop_InsufficientGold` | `data/text/us/inn_shop_data_2.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FE404` | `gText_InnShop_NoOrder` | `data/text/us/inn_shop_data_2.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FE448` | `gText_InnShop_OrderComplete` | `data/text/us/inn_shop_data_2.cc` | `src/inn_shop_data.o(.rodata)` |
+| `0x080FE4D4` | `gText_WonShop_ToolCapacityFull` | `data/text/us/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FE50C` | `gText_WonShop_ItemCapacityFull` | `data/text/us/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FE540` | `gText_WonShop_BlankLinePair` | `data/text/us/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FE548` | `gText_WonShop_Delivery` | `data/text/us/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FE5C8` | `gText_WonShop_DeliveryMultiple` | `data/text/us/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FE63C` | `gText_WonShop_PurchaseComplete` | `data/text/us/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FE66C` | `gText_WonShop_InsufficientGold` | `data/text/us/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FE6B0` | `gText_WonShop_PurchaseMorePrompt` | `data/text/us/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FE6E4` | `gText_WonShop_NoPurchase` | `data/text/us/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FE708` | `gText_WonShop_NoAdditionalPurchase` | `data/text/us/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
 | `0x080FE750` | `gText_WineryShop_InventoryFull` | `data/text/us/winery_shop_data.cc` | `src/winery_shop_data.o(.rodata)` |
 | `0x080FE7A0` | `gText_WineryShop_BlankLinePair` | `data/text/us/winery_shop_data.cc` | `src/winery_shop_data.o(.rodata)` |
 | `0x080FE7A8` | `gText_WineryShop_InsufficientGold` | `data/text/us/winery_shop_data.cc` | `src/winery_shop_data.o(.rodata)` |
@@ -3617,7 +3617,7 @@
 | `0x0810073C` | `gText_LinkCommunication_ActionQuestion` | `data/text/us/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
 | `0x08100758` | `gText_LinkCommunication_Declined` | `data/text/us/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
 | `0x08100790` | `gText_LinkCommunication_Complete` | `data/text/us/link_communication.cc` | `src/link_communication_data.o(.rodata)` |
-| `0x08100AC0` | `gText_Cooking_Recipe_PageBreak` | `data/text/common/cooking_recipe_inventory_page_data.cc` | `src/cooking_recipe_inventory_page_data.o(.rodata)` |
+| `0x08100AC0` | `gText_Cooking_Recipe_PageBreak` | `data/text/us/cooking_recipe_inventory_page_data.cc` | `src/cooking_recipe_inventory_page_data.o(.rodata)` |
 | `0x08100AD2` | `gText_StaminaRecoveryStatus` | `data/text/us/recovery_status.cc` | `src/recovery_status.o(.rodata)` |
 | `0x08100BD7` | `gText_FatigueRecoveryStatus` | `data/text/us/recovery_status.cc` | `src/recovery_status.o(.rodata)` |
 | `0x08100DE4` | `gText_Cooking_SeasoningSet` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
@@ -3648,7 +3648,7 @@
 | `0x08101044` | `gText_Cooking_Recipe_Empty` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
 | `0x08101048` | `gText_Cooking_Recipe_StorageHeader` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
 | `0x08101059` | `gText_Cooking_Recipe_SelectionNames` | `data/text/us/cooking.cc` | `src/cooking.o(.rodata)` |
-| `0x08103658` | `gText_Animal_Unnamed` | `data/text/common/animal.cc` | `src/animal.o(.rodata)` |
+| `0x08103658` | `gText_Animal_Unnamed` | `data/text/us/animal.cc` | `src/animal.o(.rodata)` |
 | `0x08103788` | `gText_FishingRecord_PirateFortune` | `data/text/us/fishing_results_data.cc` | `src/fishing_results_data.o(.rodata)` |
 | `0x08103798` | `gText_FishingRecord_FossilOfFish` | `data/text/us/fishing_results_data.cc` | `src/fishing_results_data.o(.rodata)` |
 | `0x081037A8` | `gText_FishingRecord_PowerBerry` | `data/text/us/fishing_results_data.cc` | `src/fishing_results_data.o(.rodata)` |
@@ -3778,8 +3778,8 @@
 | `0x08104E30` | `gText_Possessive_Child` | `data/text/us/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
 | `0x08104E38` | `gText_Possessive_Player` | `data/text/us/possessive_labels.cc` | `src/possessive_labels.o(.rodata)` |
 | `0x08104E4C` | `gText_RandomItem_NotAvailable` | `data/text/us/random_item_unavailable.cc` | `src/random_item_unavailable.o(.rodata)` |
-| `0x081074E4` | `gText_FieldRenderFallbackNone` | `data/text/us/field_render_runtime_data.cc` | `src/field_render_runtime_data.o(.rodata)` |
-| `0x08107568` | `gText_080B0708DefaultGlyph` | `data/text/us/field_render_runtime_data_2.cc` | `src/field_render_runtime_data.o(.rodata)` |
+| `0x081074E4` | `gText_FieldRenderFallbackNone` | `data/text/us/field_render_runtime_data_1.cc` | `src/field_render_runtime_data.o(.rodata)` |
+| `0x08107568` | `gText_080B0708DefaultGlyph` | `data/text/us/field_render_runtime_data_3.cc` | `src/field_render_runtime_data.o(.rodata)` |
 | `0x081075B0` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_ExplanationQuestion` | `data/text/us/harvest_sprite_1.cc` | `src/harvest_sprite.o(.rodata)` |
 | `0x081075CC` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_Yes` | `data/text/us/harvest_sprite_1.cc` | `src/harvest_sprite.o(.rodata)` |
 | `0x081075D0` | `gText_HarvestSpriteMiniGame_AnimalHusbandry_No` | `data/text/us/harvest_sprite_1.cc` | `src/harvest_sprite.o(.rodata)` |

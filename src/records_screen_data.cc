@@ -1,6 +1,6 @@
 #include "records_screen_data.hh"
 
-#include FOMT_TEXT_INCLUDE(records_screen_data.cc)
+#include FOMT_TEXT_INCLUDE(records_screen_data_1.cc)
 
 // Records-screen callers select entries from this two-word resource table.
 // The pointed-to payload format and the roles of its two fields are not yet
@@ -25,7 +25,7 @@ RecordsScreenTaskResourcePair const gRecordsScreenMinigameTaskResources[] = {
 #endif
 };
 
-#include "data/text/common/records_screen_data.cc"
+#include FOMT_TEXT_INCLUDE(records_screen_data_2.cc)
 
 // func_080E2BB4 extracts packed two-bit cell dimensions from these bytes.
 // Its owning high-level type is not decoded yet, so this name states only the
@@ -34,7 +34,7 @@ u8 const gCodeLinkoncePackedCellSizeLookup[] = {
     0x50, 0xFA, 0x21, 0xB6, 0x84, 0xE9,
 };
 
-#include "data/text/common/records_screen_data_1.cc"
+#include FOMT_TEXT_INCLUDE(records_screen_data_3.cc)
 
 // func_08075E7C renders this regional glyph cache in numeric order.
 u16 const gUiPreloadedDigitGlyphCodes[] =
@@ -48,4 +48,4 @@ u16 const gUiPreloadedDigitGlyphCodes[] =
     FOMT_GLYPH_SEQUENCE("0123456789");
 #endif
 
-#include "data/text/common/records_screen_data_2.cc"
+#include FOMT_TEXT_INCLUDE(records_screen_data_4.cc)

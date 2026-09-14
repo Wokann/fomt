@@ -2351,5 +2351,5 @@ CookingRecipeDefinitionPayload const gCookingRecipeDefinitionPayload = {
     },
 };
 
-#include "data/text/common/cooking_recipe_inventory_data.cc"
+#include FOMT_TEXT_INCLUDE(cooking_recipe_inventory_data.cc)
 EXTERN_C_END

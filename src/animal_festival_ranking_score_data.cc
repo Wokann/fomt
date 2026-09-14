@@ -15,7 +15,7 @@ extern u16 const gAnimalFestivalRankingScoreTable[] = {
     850, 800, 790, 750, 740, 710, 690, 680, 650, 630,
 };
 
-#include "data/text/common/animal_festival_ranking_score_data.cc"
+#include FOMT_TEXT_INCLUDE(animal_festival_ranking_score_data.cc)
 
 extern u8 const gUnk_080FA246[] ALIGN(1) = {
     0x00, 0x32, 0x64, 0x64, 0x64, 0x64, 0x00, 0x0A, 0x64, 0x64,

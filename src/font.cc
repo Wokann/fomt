@@ -34,7 +34,7 @@ i32 GetShiftJisGlyphMapIndex(i32 character)
     return (row << 6) - row + low_byte;
 }
 
-#include "data/text/common/font.cc"
+#include FOMT_TEXT_INCLUDE(font.cc)
 
 #if defined(REGION_WESTERN)
 // The US glyph resolver selects these contiguous 12-byte glyph bitmaps and

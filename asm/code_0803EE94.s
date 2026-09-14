@@ -17,6 +17,10 @@
         .incbin "baserom_jp.gba", \start, (\end - \start)
     .endm
 
+    .macro jp_code_0803ee_bytes start, end
+        .incbin "baserom_jp.gba", \start, (\end - \start)
+    .endm
+
     .macro jp_code_0803ee_entry name, base, offset
         .global \name
         .thumb_set \name, \base + \offset
@@ -325,8 +329,52 @@ func_0805EE44:
     jp_code_0803ee_func func_0807F118, 0x7F118, 0x7F158
     jp_code_0803ee_func func_0807F158, 0x7F158, 0x7F1D8
     jp_code_0803ee_func func_0807F1D8, 0x7F1D8, 0x7F1EC
-    jp_code_0803ee_func func_0807F1EC, 0x7F1EC, 0x7F250
-    jp_code_0803ee_func func_0807F250, 0x7F250, 0x7FFF4
+    .global func_0807F1EC
+    .thumb_func
+func_0807F1EC:
+    @ The literal-pool words below reference movable Won shop data.  Keep
+    @ them as direct relocations while preserving the surrounding JP code.
+    jp_code_0803ee_bytes 0x7F1EC, 0x7F220
+    .4byte gWonShopCatalog
+    jp_code_0803ee_bytes 0x7F224, 0x7F24C
+    .4byte gWonShopCatalog
+
+    .global func_0807F250
+    .thumb_func
+func_0807F250:
+    jp_code_0803ee_bytes 0x7F250, 0x7F350
+    .4byte gWonShopCatalog
+    jp_code_0803ee_bytes 0x7F354, 0x7F820
+    .4byte gWonShopCatalog
+    jp_code_0803ee_bytes 0x7F824, 0x7F8F4
+    .4byte gText_WonShop_ToolCapacityFull
+    jp_code_0803ee_bytes 0x7F8F8, 0x7FAF4
+    .4byte gText_WonShop_ItemCapacityFull
+    jp_code_0803ee_bytes 0x7FAF8, 0x7FB04
+    .4byte gText_WonShop_BlankLinePair
+    jp_code_0803ee_bytes 0x7FB08, 0x7FBA4
+    .4byte gText_WonShop_ArticleDelivery
+    jp_code_0803ee_bytes 0x7FBA8, 0x7FBB4
+    .4byte gText_WonShop_ArticleDeliveryMultiple
+    jp_code_0803ee_bytes 0x7FBB8, 0x7FC8C
+    .4byte gText_WonShop_PurchaseComplete
+    jp_code_0803ee_bytes 0x7FC90, 0x7FCC4
+    .4byte gText_WonShop_InsufficientGold
+    jp_code_0803ee_bytes 0x7FCC8, 0x7FCFC
+    .4byte gText_WonShop_PurchaseMorePrompt
+    jp_code_0803ee_bytes 0x7FD00, 0x7FD34
+    .4byte gText_WonShop_NoPurchase
+    jp_code_0803ee_bytes 0x7FD38, 0x7FD68
+    .4byte gText_WonShop_NoAdditionalPurchase
+    jp_code_0803ee_bytes 0x7FD6C, 0x7FE28
+    .4byte gWonShopCatalog
+    jp_code_0803ee_bytes 0x7FE2C, 0x7FECC
+    .4byte gText_WonShop_ToolDelivery
+    jp_code_0803ee_bytes 0x7FED0, 0x7FEDC
+    .4byte gText_WonShop_ToolDeliveryMultiple
+    jp_code_0803ee_bytes 0x7FEE0, 0x7FF08
+    .4byte gText_WonShop_PurchaseComplete
+    jp_code_0803ee_bytes 0x7FF0C, 0x7FFF4
     jp_code_0803ee_func func_0807FFF4, 0x7FFF4, 0x80034
     jp_code_0803ee_func func_08080034, 0x80034, 0x80094
     jp_code_0803ee_func func_08080094, 0x80094, 0x8093C

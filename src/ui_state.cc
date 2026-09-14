@@ -204,7 +204,7 @@ EC void * func_08050DF0(void * const * object)
     return data->result;
 }
 
-#include "data/text/common/ui_state.cc"
+#include FOMT_TEXT_INCLUDE(ui_state.cc)
 
 UiTextLayoutPositionTable const gUiTextLayoutPositionTable = {
     0x00,

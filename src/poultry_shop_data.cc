@@ -2,7 +2,7 @@
 
 #include "item.hh"
 
-#include FOMT_TEXT_INCLUDE(poultry_shop_data.cc)
+#include FOMT_TEXT_INCLUDE(poultry_shop_data_1.cc)
 
 PoultryShopCatalogEntry const gPoultryShopCatalog[] = {
     { ITEM_ARTICLE_CHICKEN_FEED, gText_PoultryShop_Empty, 10, gText_PoultryShop_Empty, 0 },
@@ -12,5 +12,5 @@ PoultryShopCatalogEntry const gPoultryShopCatalog[] = {
     { 4, gText_PoultryShop_Empty, 0, gText_PoultryShop_Empty, 4 },
 };
 
-#include FOMT_TEXT_INCLUDE(poultry_shop_data_1.cc)
-#include "data/text/common/poultry_shop_data_1.cc"
+#include FOMT_TEXT_INCLUDE(poultry_shop_data_2.cc)
+#include FOMT_TEXT_INCLUDE(poultry_shop_data_3.cc)

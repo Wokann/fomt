@@ -129,29 +129,25 @@ endif
 # standalone objects.  Enumerate existing text files with wildcard, then use
 # the actual src include relation to select those fragments.  Renaming or
 # adding an included fragment therefore needs no Makefile update.
-TEXT_FRAGMENT_CANDIDATES := $(wildcard data/text/common/*.cc data/text/$(TEXT_REGION)/*.cc)
-TEXT_FRAGMENT_LITERAL_INCLUDES := $(shell grep -RhoE '^#include "data/text/(common|$(TEXT_REGION))/[^"]+\.cc"' $(SRC_DIR) | sed -E 's/^#include "([^"]+)"/\1/' | sort -u)
+TEXT_FRAGMENT_CANDIDATES := $(wildcard data/text/$(TEXT_REGION)/*.cc)
 FOMT_TEXT_INCLUDE_LPAREN := (
 FOMT_TEXT_INCLUDE_RPAREN := )
 FOMT_TEXT_INCLUDE_REGEX_LPAREN := \(
 FOMT_TEXT_INCLUDE_REGEX_RPAREN := \)
 TEXT_FRAGMENT_REGION_INCLUDES := $(shell grep -RhoE '^#include FOMT_TEXT_INCLUDE$(FOMT_TEXT_INCLUDE_REGEX_LPAREN)[[:alnum:]_]+\.cc$(FOMT_TEXT_INCLUDE_REGEX_RPAREN)' $(SRC_DIR) | cut -d '$(FOMT_TEXT_INCLUDE_LPAREN)' -f2 | tr -d '$(FOMT_TEXT_INCLUDE_RPAREN)' | sed 's|^|data/text/$(TEXT_REGION)/|' | sort -u)
-TEXT_FRAGMENT_INCLUDES := $(sort $(TEXT_FRAGMENT_LITERAL_INCLUDES) $(TEXT_FRAGMENT_REGION_INCLUDES))
+TEXT_FRAGMENT_INCLUDES := $(TEXT_FRAGMENT_REGION_INCLUDES)
 TEXT_FRAGMENT_SOURCES := $(sort $(filter $(TEXT_FRAGMENT_CANDIDATES),$(TEXT_FRAGMENT_INCLUDES)))
 
 # The staff-credit source and the Reference Guide pages use their own visible
 # authoring formats.  The staff source is lowered in-place by its owning
 # src/staff_credits.cc unit; guide pages remain a generated aggregate source.
-STAFF_CREDITS_SOURCE := data/text/$(TEXT_REGION)/staff_credits.cc
+STAFF_CREDITS_SOURCE := data/text/$(TEXT_REGION)/staff_credits_1.cc
 
 REGION_TEXT_SOURCES := $(filter-out $(TEXT_FRAGMENT_SOURCES) $(STAFF_CREDITS_SOURCE),$(wildcard data/text/$(TEXT_REGION)/*.cc))
 REGION_TEXT_ORDINARY_OBJS := $(patsubst data/text/$(TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.o,$(REGION_TEXT_SOURCES))
 REGION_TEXT_ORDINARY_DEPS := $(REGION_TEXT_ORDINARY_OBJS:.o=.d)
 REGION_TEXT_OBJS := $(REGION_TEXT_ORDINARY_OBJS)
 REGION_TEXT_DEPS := $(REGION_TEXT_ORDINARY_DEPS)
-COMMON_TEXT_SOURCES := $(filter-out $(TEXT_FRAGMENT_SOURCES),$(wildcard data/text/common/*.cc))
-COMMON_TEXT_OBJS := $(COMMON_TEXT_SOURCES:%.cc=$(BUILD_DIR)/%.o)
-COMMON_TEXT_DEPS := $(COMMON_TEXT_OBJS:.o=.d)
 
 # The manifest records directory order, physical ROM-group order, and whether
 # an auxiliary page participates in the master directory.
@@ -177,8 +173,8 @@ MARY_BUNDLE_OUTPUTS := $(MARY_SCRIPTS_ASM) $(MARY_SCRIPT_TABLE_ASM) $(MARY_SCRIP
 MARY_SCRIPTS_OBJ := $(MARY_OUTPUT_DIR)/scripts.o
 MARY_SCRIPT_TABLE_OBJ := $(MARY_OUTPUT_DIR)/script_table.o
 
-ALL_OBJS += $(REGION_TEXT_OBJS) $(COMMON_TEXT_OBJS) $(GUIDE_GENERATED_OBJ) $(MARY_SCRIPTS_OBJ) $(MARY_SCRIPT_TABLE_OBJ)
-ALL_DEPS += $(REGION_TEXT_DEPS) $(COMMON_TEXT_DEPS) $(GUIDE_GENERATED_DEP) $(MARY_BUNDLE_DEP)
+ALL_OBJS += $(REGION_TEXT_OBJS) $(GUIDE_GENERATED_OBJ) $(MARY_SCRIPTS_OBJ) $(MARY_SCRIPT_TABLE_OBJ)
+ALL_DEPS += $(REGION_TEXT_DEPS) $(GUIDE_GENERATED_DEP) $(MARY_BUNDLE_DEP)
 
 .SECONDARY: $(GUIDE_GENERATED_SOURCE) $(MARY_BUNDLE_OUTPUTS)
 

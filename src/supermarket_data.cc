@@ -18,7 +18,7 @@ SupermarketCatalogEntry const gSupermarketCropSeedCatalog[] = {
     { ITEM_TOOL_SEEDS_GRASS, 500 },
 };
 
-#include FOMT_TEXT_INCLUDE(supermarket_data.cc)
+#include FOMT_TEXT_INCLUDE(supermarket_data_1.cc)
 
 SupermarketCatalogEntry const gSupermarketAdditionalSeedCatalog[] = {
     { ITEM_TOOL_SEEDS_SPINACH, 100 },
@@ -31,5 +31,5 @@ SupermarketCatalogEntry const gSupermarketAdditionalSeedCatalog[] = {
     { 0, 0 },
 };
 
-#include FOMT_TEXT_INCLUDE(supermarket_data_1.cc)
-#include "data/text/common/supermarket_data_1.cc"
+#include FOMT_TEXT_INCLUDE(supermarket_data_2.cc)
+#include FOMT_TEXT_INCLUDE(supermarket_data_3.cc)

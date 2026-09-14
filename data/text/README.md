@@ -16,14 +16,21 @@ Regional text belongs under this directory by its owning data structure:
             harvest_sprite_minigames.cc
             festival_hints.cc
 
-    data/text/common/
-        fallback.cc       item fallbacks compiled with src/item.cc
-
 Keep categories separate even when their entries are linked beside one another:
 each text source corresponds to the C/C++ structure that owns its text
 pointers. A source-owned text fragment is included at its exact physical point
 inside the owning `src/<module>.cc`; it remains under `data/text` and is listed
 in `TEXT_FRAGMENT_SOURCES` so it does not produce a second object.
+
+There is no `data/text/common/` source directory.  Even byte-identical text is
+stored in each of `jp`, `us`, `eu`, and `de`, because each regional source is
+inserted at a verified physical point in that region's ROM layout.
+
+When one owner has multiple text fragments, the filenames are numbered from
+the first physical fragment onward: `owner_1.cc`, `owner_2.cc`, and so on.
+The numbering follows the order of the `#include` directives in the owning
+`src/owner.cc`, never alphabetical order.  A one-fragment owner uses only
+`owner.cc` (not `owner_1.cc`).
 Reference Guide sources are grouped under each region's `reference_guide/`
 directory, with one source per verified guide category.  Their small pointer
 tables and declarations are centralized in `src/reference_guide.cc` and
@@ -54,9 +61,6 @@ When a verified fixed field contains nonzero bytes after an embedded FOMT
 terminator, express that boundary as `\x00` followed by ordinary mapped text
 or raw `\xNN` bytes. `textproc` retains the explicit terminator while C++ still
 zero-initializes any remaining field capacity.
-
-`common/fallback.cc` is included directly by `src/item.cc` because its small
-item fallback strings are byte-identical in both regions.
 
 `<region>/common_ui.cc` through `common_ui_6.cc` and
 `<region>/script_engine.cc` are included at their owning modules' physical ROM

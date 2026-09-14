@@ -32,7 +32,7 @@ u16 const gUnk_FieldRenderLookupValues[18][2] = {
         { 0x01C4, 0x01C5 },
     };
 
-#include FOMT_TEXT_INCLUDE(field_render_runtime_data.cc)
+#include FOMT_TEXT_INCLUDE(field_render_runtime_data_1.cc)
 
 // func_080ADBB4 uses this as a sorted lower-bound range.  Its key is derived
 // from a packed native field value; the values' gameplay role is not decoded
@@ -49,7 +49,7 @@ u8 const gUnk_FieldRenderSortedValues[] = {
 #endif
     };
 
-#include "data/text/common/field_render_runtime_data_1.cc"
+#include FOMT_TEXT_INCLUDE(field_render_runtime_data_2.cc)
 
 // These value groups are copied directly by still-native callers.  Their
 // high-level gameplay roles remain unknown, so the names identify only the
@@ -62,7 +62,7 @@ u32 const gUnk_080AE894LayoutValues[10] = {
         0x5E, 0x90, 0x5E, 0xA8, 0x5E,
     };
 
-#include FOMT_TEXT_INCLUDE(field_render_runtime_data_2.cc)
+#include FOMT_TEXT_INCLUDE(field_render_runtime_data_3.cc)
 
 u32 const gUnk_080B09B0IndexValues[7] = {
         4, 0, 1, 6, 3, 2, 5,

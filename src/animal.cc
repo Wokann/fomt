@@ -1,6 +1,6 @@
 #include "animal.hh"
 
-#include "data/text/common/animal.cc"
+#include FOMT_TEXT_INCLUDE(animal.cc)
 
 Animal::Animal(char const * a_name, ActorLocation const & location, u32 a_age)
     : Actor(location), name(a_name)

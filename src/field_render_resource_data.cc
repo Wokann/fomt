@@ -22,7 +22,7 @@ u8 const gUnk_FieldRenderResource_178[] = {
     0x00, 0x00, 0x00, 0x00,
 };
 
-#include "data/text/common/field_render_resource_data.cc"
+#include FOMT_TEXT_INCLUDE(field_render_resource_data_1.cc)
 
 FieldRenderParallelTables const gFieldRenderParallelTables = {
         { 0x0000001C, 0x0000001D, 0x0000001E },
@@ -64,7 +64,7 @@ FieldRenderPatchArgumentData const gFieldRenderPatchArgumentData = {
         { 0x14, 0x19, 0x03, 0x00 },
     };
 
-#include "data/text/common/field_render_resource_data_1.cc"
+#include FOMT_TEXT_INCLUDE(field_render_resource_data_2.cc)
 
 // This packed object follows the field-render resource data directly in ROM.
 // Its one-byte alignment is part of the original data layout.

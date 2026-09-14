@@ -7,4 +7,4 @@ FOMT_STAFF_CREDITS();
 
 // This runtime string physically follows the native text fields and pointer
 // table in every regional ROM.
-#include "data/text/common/staff_credits_1.cc"
+#include FOMT_TEXT_INCLUDE(staff_credits_2.cc)

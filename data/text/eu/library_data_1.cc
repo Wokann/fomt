@@ -1,5 +1,4 @@
 #include "library_data.hh"
 
-char const gText_Library_Menu[] =
-    "Books      \x00"
-    "Letters    ";
+char const gCppRuntimeBadAlloc_LibraryInfo[] =
+    "bad_alloc";

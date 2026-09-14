@@ -137,9 +137,12 @@ charmap. Use \xNN for an intentional unmapped raw byte.
 
 Migration target:
 
-1. Put regional text bodies under data/text/us and data/text/jp by owning
-   C/C++ data category. Put byte-identical fallback text under
-   data/text/common.
+1. Put every text body under its regional `data/text/jp`, `data/text/us`,
+   `data/text/eu`, or `data/text/de` directory by owning C/C++ data category.
+   Duplicate byte-identical content into every applicable regional directory;
+   do not create a `data/text/common` source directory.  For multiple physical
+   fragments of one owner, number all fragments from `_1` in physical ROM
+   include order; use the bare owner name only when there is one fragment.
 2. Keep item, menu, and other C/C++ data tables structural: they point to
    gText_* symbols instead of embedding text literals in their initializers.
    If source entries share an identical original pointer, point both fields at

@@ -2,7 +2,7 @@
 
 EXTERN_C
 
-#include "data/text/common/cooking_recipe_inventory_page_data.cc"
+#include FOMT_TEXT_INCLUDE(cooking_recipe_inventory_page_data.cc)
 
 // The recipe screen walks the eight utensil flags in order and passes the
 // corresponding value to its native display helper.

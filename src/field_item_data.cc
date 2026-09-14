@@ -122,4 +122,4 @@ Unk_081043BCRecord const gUnk_081043BC[] = {
         /* 0x73 */ { 0x12, 0x00,  576, 592 },
     };
 
-#include "data/text/common/field_item_data.cc"
+#include FOMT_TEXT_INCLUDE(field_item_data.cc)

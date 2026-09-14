@@ -11,4 +11,4 @@ FieldPlotPositionRule const gFieldPlotPositionRules[8] = {
     { 0x00000007, 0x00000020, 0x0000003A, 0x000000AC, 0x0000003F, 0x00000003 },
 };
 
-#include "data/text/common/field_plot_position_rules.cc"
+#include FOMT_TEXT_INCLUDE(field_plot_position_rules.cc)
