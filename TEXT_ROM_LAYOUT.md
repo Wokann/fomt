@@ -100,7 +100,7 @@
 | EU | `0x08104990`–`0x08104E61` | `src/calendar_events.o(.rodata)` | `src/calendar_events.cc`、`include/calendar_events.hh`、`data/text/eu/calendar_events.cc`；季名存储后连续放置 17 组日期/后续季节字节，所有外部读取均为符号或符号加偏移 | 节日文本 `20` 项（含 `NoPlans`）、回退文本 `1` 项、运行时字符串 `2` 项 |
 | EU | `0x08104E64`–`0x08104EA1` | `src/possessive_labels.o(.rodata)` | `src/possessive_labels.cc`、`include/possessive_labels.hh`、`data/text/eu/possessive_labels.cc`；Horse/Cow/Sheep/Chicken/Child/Player 六条文本后接运行时字符串，六处汇编读取均为命名符号 | 文本 `6` 项、运行时字符串 `1` 项 |
 | EU | `0x08104EA2`–`0x08104EA3` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| EU | `0x08104EA4`–`0x08104EA8` | `src/random_item_unavailable.o(.rodata)` | `src/random_item_unavailable.cc`、`include/random_item_unavailable.hh`、`data/text/eu/random_item_unavailable.cc` | `gText_RandomItem_NotAvailable` |
+| EU | `0x08104EA4`–`0x08104EA8` | `src/random_item_unavailable.o(.rodata)` | `src/random_item_unavailable.cc`、`include/random_item_unavailable.hh`、`data/text/eu/random_item_unavailable.cc`；唯一调用为命名符号 `gText_RandomItem_NotAvailable` | `gText_RandomItem_NotAvailable` |
 | EU | `0x08104EA9`–`0x08104EAB` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x08104EAC`–`0x08104ECB` | `src/fishing_record_article_ids.o(.rodata)` | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | `gFishingRecordArticleIds` |
 | EU | `0x08104F04`–`0x08105691` | `src/random_item_selection.o(.rodata)` | `src/random_item_selection.cc`、`include/random_item_selection.hh`、`data/text/eu/random_item_selection.cc` | `gRandomItemSelectionWeights`、`gRandomItemCandidateConfigurations`、运行时字符串 `1` 项 |
@@ -189,7 +189,7 @@
 | DE | `0x08105390`–`0x08105821` | `src/calendar_events.o(.rodata)` | `src/calendar_events.cc`、`include/calendar_events.hh`、`data/text/de/calendar_events.cc`；季名存储后连续放置 17 组日期/后续季节字节，所有外部读取均为符号或符号加偏移 | 节日文本 `20` 项（含 `NoPlans`）、回退文本 `1` 项、运行时字符串 `2` 项 |
 | DE | `0x08105824`–`0x0810586D` | `src/possessive_labels.o(.rodata)` | `src/possessive_labels.cc`、`include/possessive_labels.hh`、`data/text/de/possessive_labels.cc`；Horse/Cow/Sheep/Chicken/Child/Player 六条文本后接运行时字符串，六处汇编读取均为命名符号 | 文本 `6` 项、运行时字符串 `1` 项 |
 | DE | `0x0810586E`–`0x0810586F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| DE | `0x08105870`–`0x08105874` | `src/random_item_unavailable.o(.rodata)` | `src/random_item_unavailable.cc`、`include/random_item_unavailable.hh`、`data/text/de/random_item_unavailable.cc` | `gText_RandomItem_NotAvailable` |
+| DE | `0x08105870`–`0x08105874` | `src/random_item_unavailable.o(.rodata)` | `src/random_item_unavailable.cc`、`include/random_item_unavailable.hh`、`data/text/de/random_item_unavailable.cc`；唯一调用为命名符号 `gText_RandomItem_NotAvailable` | `gText_RandomItem_NotAvailable` |
 | DE | `0x08105875`–`0x08105877` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x08105878`–`0x08105897` | `src/fishing_record_article_ids.o(.rodata)` | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | `gFishingRecordArticleIds` |
 | DE | `0x081058D0`–`0x0810605D` | `src/random_item_selection.o(.rodata)` | `src/random_item_selection.cc`、`include/random_item_selection.hh`、`data/text/de/random_item_selection.cc` | `gRandomItemSelectionWeights`、`gRandomItemCandidateConfigurations`、运行时字符串 `1` 项 |
@@ -326,7 +326,7 @@
 | `0x08104956`–`0x08104957` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08104958`–`0x08104991` | `src/possessive_labels.o(.rodata)` | [嵌入文本] | `src/possessive_labels.cc`、`include/possessive_labels.hh`<br>`data/text/jp/possessive_labels.cc` | Horse/Cow/Sheep/Chicken/Child/Player 六条文本（详见下方索引）后接运行时字符串；六处汇编读取均为命名符号<br>运行时字符串 `1` 项 |
 | `0x08104992`–`0x08104993` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08104994`–`0x08104998` | `src/random_item_unavailable.o(.rodata)` | [嵌入文本] | `src/random_item_unavailable.cc`、`include/random_item_unavailable.hh`<br>`data/text/jp/random_item_unavailable.cc` | 文本 `1` 项（详见下方索引） |
+| `0x08104994`–`0x08104998` | `src/random_item_unavailable.o(.rodata)` | [嵌入文本] | `src/random_item_unavailable.cc`、`include/random_item_unavailable.hh`<br>`data/text/jp/random_item_unavailable.cc` | `gText_RandomItem_NotAvailable`；唯一调用为该命名符号 |
 | `0x08104999`–`0x0810499B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
 | `0x0810499C`–`0x081049BB` | `src/fishing_record_article_ids.o(.rodata)` | [数据] | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | `gFishingRecordArticleIds` |
 | `0x081049BC`–`0x081049F3` | `src/field_data.o(.rodata.field_plot_position_values)` | [数据] | `src/field_data.c/.cc` | `gFieldPlotPositionValues` |
@@ -2160,7 +2160,7 @@
 | `0x08104E0A`–`0x08104E0B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08104E0C`–`0x08104E49` | `src/possessive_labels.o(.rodata)` | [嵌入文本] | `src/possessive_labels.cc`、`include/possessive_labels.hh`<br>`data/text/us/possessive_labels.cc` | Horse/Cow/Sheep/Chicken/Child/Player 六条文本（详见下方索引）后接运行时字符串；六处汇编读取均为命名符号<br>运行时字符串 `1` 项 |
 | `0x08104E4A`–`0x08104E4B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08104E4C`–`0x08104E50` | `src/random_item_unavailable.o(.rodata)` | [嵌入文本] | `src/random_item_unavailable.cc`、`include/random_item_unavailable.hh`<br>`data/text/us/random_item_unavailable.cc` | 文本 `1` 项（详见下方索引） |
+| `0x08104E4C`–`0x08104E50` | `src/random_item_unavailable.o(.rodata)` | [嵌入文本] | `src/random_item_unavailable.cc`、`include/random_item_unavailable.hh`<br>`data/text/us/random_item_unavailable.cc` | `gText_RandomItem_NotAvailable`；唯一调用为该命名符号 |
 | `0x08104E51`–`0x08104E53` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
 | `0x08104E54`–`0x08104E73` | `src/fishing_record_article_ids.o(.rodata)` | [数据] | `src/fishing_record_article_ids.cc`、`include/fishing_record_article_ids.hh` | `gFishingRecordArticleIds` |
 | `0x08104E74`–`0x08104EAB` | `src/field_data.o(.rodata.field_plot_position_values)` | [数据] | `src/field_data.c/.cc` | `gFieldPlotPositionValues` |
