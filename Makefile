@@ -209,7 +209,7 @@ $(JP_FONT_SINGLE_PADDED): $(JP_FONT_SINGLE_PNG) $(GFX_TOOL)
 
 $(JP_FONT_SINGLE_BIN): $(JP_FONT_SINGLE_PADDED) $(FONT_PAD)
 	@mkdir -p $(dir $@)
-	@$(FONT_PAD) trim-12-from-16 $< $@
+	@$(FONT_PAD) trim-grid-12-from-16 $< $@ 16 487
 
 # Rebuild the first image asset without causing GNU make to update every
 # optional assembler dependency file in a fresh worktree.

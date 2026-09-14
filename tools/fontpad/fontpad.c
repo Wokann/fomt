@@ -51,11 +51,104 @@ static void WriteFile(const char *path, const uint8_t *data, size_t size)
         Fail("cannot close output");
 }
 
+static size_t ParsePositive(const char *text, const char *description)
+{
+    char *end;
+    unsigned long value = strtoul(text, &end, 10);
+    if (*text == '\0' || *end != '\0' || value == 0)
+        Fail(description);
+    return (size_t)value;
+}
+
+static void PackGrid(const uint8_t *input, size_t glyphCount, size_t columns,
+                     const char *outputPath)
+{
+    size_t rows = (glyphCount + columns - 1) / columns;
+    size_t outputSize = rows * columns * PADDED_RECORD_SIZE;
+    uint8_t *output = calloc(outputSize == 0 ? 1 : outputSize, 1);
+    if (output == NULL)
+        Fail("out of memory");
+
+    for (size_t row = 0; row < rows; row++) {
+        for (size_t tileRow = 0; tileRow < 2; tileRow++) {
+            for (size_t column = 0; column < columns; column++) {
+                size_t glyph = row * columns + column;
+                if (glyph >= glyphCount)
+                    continue;
+                const uint8_t *source = input + glyph * NATIVE_RECORD_SIZE;
+                uint8_t *destination = output
+                    + ((row * 2 + tileRow) * columns + column) * 8;
+                size_t copySize = tileRow == 0 ? 8 : 4;
+                memcpy(destination, source + tileRow * 8, copySize);
+            }
+        }
+    }
+
+    WriteFile(outputPath, output, outputSize);
+    free(output);
+}
+
+static void TrimGrid(const uint8_t *input, size_t inputSize, size_t columns,
+                     size_t glyphCount, const char *outputPath)
+{
+    size_t rows = (glyphCount + columns - 1) / columns;
+    size_t expectedSize = rows * columns * PADDED_RECORD_SIZE;
+    if (inputSize != expectedSize)
+        Fail("PNG tile data has an unexpected grid size");
+    uint8_t *output = malloc(glyphCount == 0 ? 1 : glyphCount * NATIVE_RECORD_SIZE);
+    if (output == NULL)
+        Fail("out of memory");
+
+    for (size_t row = 0; row < rows; row++) {
+        for (size_t column = 0; column < columns; column++) {
+            size_t glyph = row * columns + column;
+            const uint8_t *top = input + (row * 2 * columns + column) * 8;
+            const uint8_t *bottom = input + ((row * 2 + 1) * columns + column) * 8;
+            if (glyph >= glyphCount) {
+                for (size_t byte = 0; byte < 8; byte++) {
+                    if (top[byte] != 0 || bottom[byte] != 0)
+                        Fail("PNG changed a grid padding tile");
+                }
+                continue;
+            }
+            if (bottom[4] != 0 || bottom[5] != 0 || bottom[6] != 0 || bottom[7] != 0)
+                Fail("PNG changed the four padding rows of an 8x12 glyph");
+            uint8_t *destination = output + glyph * NATIVE_RECORD_SIZE;
+            memcpy(destination, top, 8);
+            memcpy(destination + 8, bottom, 4);
+        }
+    }
+
+    WriteFile(outputPath, output, glyphCount * NATIVE_RECORD_SIZE);
+    free(output);
+}
+
 int main(int argc, char **argv)
 {
+    if (argc == 5 && strcmp(argv[1], "pack-grid-12-to-16") == 0) {
+        size_t inputSize;
+        uint8_t *input = ReadFile(argv[2], &inputSize);
+        if (inputSize % NATIVE_RECORD_SIZE != 0)
+            Fail("input does not contain complete font records");
+        PackGrid(input, inputSize / NATIVE_RECORD_SIZE,
+                 ParsePositive(argv[4], "grid column count must be positive"), argv[3]);
+        free(input);
+        return EXIT_SUCCESS;
+    }
+    if (argc == 6 && strcmp(argv[1], "trim-grid-12-from-16") == 0) {
+        size_t inputSize;
+        uint8_t *input = ReadFile(argv[2], &inputSize);
+        TrimGrid(input, inputSize,
+                 ParsePositive(argv[4], "grid column count must be positive"),
+                 ParsePositive(argv[5], "glyph count must be positive"), argv[3]);
+        free(input);
+        return EXIT_SUCCESS;
+    }
     if (argc != 4 || (strcmp(argv[1], "pad-12-to-16") != 0 && strcmp(argv[1], "trim-12-from-16") != 0)) {
         fprintf(stderr, "Usage: %s pad-12-to-16 INPUT OUTPUT\n", argv[0]);
         fprintf(stderr, "       %s trim-12-from-16 INPUT OUTPUT\n", argv[0]);
+        fprintf(stderr, "       %s pack-grid-12-to-16 INPUT OUTPUT COLUMNS\n", argv[0]);
+        fprintf(stderr, "       %s trim-grid-12-from-16 INPUT OUTPUT COLUMNS GLYPHS\n", argv[0]);
         return EXIT_FAILURE;
     }
 

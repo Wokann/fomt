@@ -13,7 +13,7 @@ when converting back, so the assembled bytes remain exactly 12 bytes per glyph.
 ## First managed asset
 
 `font/jp/single_width_font.png` is the original FoMT-JP single-width glyph
-stream, displayed as a vertical strip of 487 8x16 tiles.  The bottom four rows
+stream, displayed as a 16-column grid of 487 8x16 tiles. The bottom four rows
 of each 16-pixel block are required padding and must remain transparent/blank.
 The native ROM representation contains only the first twelve rows.
 
