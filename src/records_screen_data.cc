@@ -36,6 +36,16 @@ u8 const gCodeLinkoncePackedCellSizeLookup[] = {
 
 #include "data/text/common/records_screen_data_1.cc"
 
-#include FOMT_TEXT_INCLUDE(records_screen_data_1.cc)
+// func_08075E7C renders this regional glyph cache in numeric order.
+u16 const gUiPreloadedDigitGlyphCodes[] =
+#if defined(REGION_JP)
+    FOMT_GLYPH_SEQUENCE("０１２３４５６７８９");
+#elif defined(REGION_EU)
+    FOMT_GLYPH_SEQUENCE("0123456789");
+#elif defined(REGION_DE)
+    FOMT_GLYPH_SEQUENCE("0123456789");
+#else
+    FOMT_GLYPH_SEQUENCE("0123456789");
+#endif
 
 #include "data/text/common/records_screen_data_2.cc"
