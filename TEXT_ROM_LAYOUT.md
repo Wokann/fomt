@@ -245,7 +245,7 @@
 | `0x080F9735`–`0x080F9739` | `src/thomas_stocking.o(.rodata)` | [数据] | `src/thomas_stocking.cc`<br>`include/thomas_stocking.hh` | `gThomasStockingGiftSelectionWeights`；汇编调用为符号重定位 |
 | `0x080F973A`–`0x080F973B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F973C`–`0x080F974F` | `src/spouse_gift.o(.rodata)` | [数据] | `src/spouse_gift.cc`<br>`include/spouse_gift.hh` | `gSpouseGiftArticleSelectionEntries`；汇编调用为符号重定位 |
-| `0x080F9750`–`0x080F9755` | `src/farm_house.o(.rodata)` | [数据] | `src/farm_house.c/.cc` | `gFarmHouseBedXPositions` |
+| `0x080F9750`–`0x080F9755` | `src/farm_house.o(.rodata)` | [数据] | `src/farm_house.cc`<br>`include/farm_house.hh` | `gFarmHouseBedXPositions`；唯一汇编调用为符号重定位 |
 | `0x080F9756`–`0x080F9757` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F9758`–`0x080F97D7` | `src/ui_state.o(.rodata)` | [文本与数据] | `data/text/common/ui_state.cc` → `src/ui_state.cc`<br>`include/ui_state.hh` | 运行时字符串 `2` 项<br>`gUnk_PreUiTextLayoutDigitRows`, `gUnk_PreUiTextLayoutFullWidthSpace`, `gUnk_PreUiTextLayoutFullWidthHyphen`, `gUiTextLayoutPositionTable`, `gUiSharedResourceData` |
 | `0x080F97D8`–`0x080F9993` | `src/new_game_name_entry_ui_data.o(.rodata)` | [文本与数据] | `data/text/jp/new_game_name_entry_ui_data.cc` → `src/new_game_name_entry_ui_data.cc`<br>`include/new_game_name_entry_ui_data.hh` | `gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue`、运行时字符串 `1` 项、`gText_NameEntry_PresetAnimalNames`、`gNewGameNameEntryUiCharacterCodes`；下方为飞盘记分牌块 |
@@ -2085,7 +2085,7 @@
 | `0x080F9ED9`–`0x080F9EDD` | `src/thomas_stocking.o(.rodata)` | [数据] | `src/thomas_stocking.cc`<br>`include/thomas_stocking.hh` | `gThomasStockingGiftSelectionWeights`；汇编调用为符号重定位 |
 | `0x080F9EDE`–`0x080F9EDF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F9EE0`–`0x080F9EF3` | `src/spouse_gift.o(.rodata)` | [数据] | `src/spouse_gift.cc`<br>`include/spouse_gift.hh` | `gSpouseGiftArticleSelectionEntries`；汇编调用为符号重定位 |
-| `0x080F9EF4`–`0x080F9EF9` | `src/farm_house.o(.rodata)` | [数据] | `src/farm_house.c/.cc` | `gFarmHouseBedXPositions` |
+| `0x080F9EF4`–`0x080F9EF9` | `src/farm_house.o(.rodata)` | [数据] | `src/farm_house.cc`<br>`include/farm_house.hh` | `gFarmHouseBedXPositions`；唯一汇编调用为符号重定位 |
 | `0x080F9EFA`–`0x080F9EFB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F9EFC`–`0x080F9F7B` | `src/ui_state.o(.rodata)` | [文本与数据] | `data/text/common/ui_state.cc` → `src/ui_state.cc`<br>`include/ui_state.hh` | 运行时字符串 `2` 项<br>`gUnk_PreUiTextLayoutDigitRows`, `gUnk_PreUiTextLayoutFullWidthSpace`, `gUnk_PreUiTextLayoutFullWidthHyphen`, `gUiTextLayoutPositionTable`, `gUiSharedResourceData` |
 | `0x080F9F7C`–`0x080FA157` | `src/new_game_name_entry_ui_data.o(.rodata)` | [文本与数据] | `data/text/us/new_game_name_entry_ui_data.cc` → `src/new_game_name_entry_ui_data.cc`<br>`include/new_game_name_entry_ui_data.hh` | `gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue`、运行时字符串 `1` 项、`gText_NameEntry_PresetAnimalNames`、`gNewGameNameEntryUiCharacterCodes`；下方为飞盘记分牌块 |
