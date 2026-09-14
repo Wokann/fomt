@@ -5635,7 +5635,14 @@ func_0806D740:
     jp_code_0803ee_func func_08070C88, 0x708E4, 0x70900
     jp_code_0803ee_func func_08070900, 0x70900, 0x70A40
     jp_code_0803ee_func func_08070DE4, 0x70A40, 0x71008
-    jp_code_0803ee_func func_080713AC, 0x71008, 0x71014
+    .global func_080713AC
+    .thumb_func
+func_080713AC: @ 0x08071008
+    push {lr}
+    bl func_08070900
+    movs r0, #1
+    pop {r1}
+    bx r1
     jp_code_0803ee_func func_080713B8, 0x71014, 0x71F28
     jp_code_0803ee_func func_08071F28, 0x71F28, 0x71F34
     jp_code_0803ee_func func_080722DC, 0x71F34, 0x74F84
