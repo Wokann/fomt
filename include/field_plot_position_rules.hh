@@ -1,7 +1,7 @@
 #ifndef FIELD_PLOT_POSITION_RULES_HH
 #define FIELD_PLOT_POSITION_RULES_HH
 
-#include "field.hh"
+#include "prelude.h"
 
 struct FieldPlotPositionRule
 {
