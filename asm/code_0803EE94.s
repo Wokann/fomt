@@ -5397,7 +5397,93 @@ func_080521FC: @ 0x08051F8C
     pop {r1}
     bx r1
 
-    jp_code_0803ee_func func_08051FC0, 0x51FC0, 0x52068
+    .global func_08052230
+    .thumb_func
+func_08052230: @ 0x08051FC0
+    push {r4, r5, r6, r7, lr}
+    mov r7, sl
+    mov r6, sb
+    mov r5, r8
+    push {r5, r6, r7}
+    sub sp, #0xc
+    adds r7, r0, #0
+    cmp r1, #0
+    beq .Ljp_08051FDC
+    subs r0, r1, #1
+    movs r1, #0x19
+    bl __udivsi3
+    b .Ljp_08051FDE
+.Ljp_08051FDC:
+    movs r0, #0
+.Ljp_08051FDE:
+    mov sl, r0
+    movs r4, #0
+    mov r1, sl
+    lsls r1, r1, #2
+    str r1, [sp]
+.Ljp_08051FE8:
+    lsls r6, r4, #2
+    mov r8, r6
+    lsls r0, r4, #1
+    mov sb, r0
+    adds r1, r4, #1
+    str r1, [sp, #4]
+    adds r5, r7, r6
+    str r5, [sp, #8]
+.Ljp_08051FF8:
+    bl rand
+    asrs r0, r0, #8
+    movs r1, #0x1e
+    bl __modsi3
+    adds r0, #1
+    strb r0, [r5]
+    movs r3, #1
+    movs r2, #0
+    adds r1, r7, #0
+.Ljp_0805200E:
+    cmp r4, r2
+    beq .Ljp_0805201E
+    ldr r6, [sp, #8]
+    ldrb r0, [r6]
+    ldrb r6, [r1]
+    cmp r0, r6
+    bne .Ljp_0805201E
+    movs r3, #0
+.Ljp_0805201E:
+    adds r1, #4
+    adds r2, #1
+    cmp r2, #9
+    ble .Ljp_0805200E
+    cmp r3, #0
+    beq .Ljp_08051FF8
+    bl rand
+    mov r1, r8
+    adds r5, r7, r1
+    ldr r4, [sp]
+    add r4, sl
+    lsls r4, r4, #2
+    add r4, sb
+    ldr r6, .Ljp_08052064
+    adds r4, r4, r6
+    asrs r0, r0, #8
+    movs r1, #0xa
+    bl __modsi3
+    ldrh r1, [r4]
+    adds r1, r1, r0
+    strh r1, [r5, #2]
+    ldr r4, [sp, #4]
+    cmp r4, #9
+    ble .Ljp_08051FE8
+    add sp, #0xc
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_08052064: .4byte gAnimalFestivalRankingScoreTable
     @ Exact JP entries referenced by the raw table at 0x080E7928.
     .section .text.animal_festival_ranking_after
     jp_code_0803ee_func func_080522F8, 0x52088, 0x536F0
