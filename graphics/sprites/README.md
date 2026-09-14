@@ -17,7 +17,8 @@ remains byte-for-byte native data.
 ## Current verified coverage
 
 The Makefile currently rebuilds selector ranges `0x212-0x2BB` and
-`0x2FC-0x33F`, and `0x3AE-0x3B1`. Together they reference 284 distinct frame descriptors. The
+`0x2FC-0x33F`, `0x3AE-0x3B1`, `0x3E0-0x3E3`, `0x3F0-0x3F3`, and
+`0x430-0x433`. Together they reference 293 distinct frame descriptors. The
 following directories own exactly one PNG for each covered descriptor:
 
 | Source directory | Complete frames |
@@ -32,6 +33,7 @@ following directories own exactly one PNG for each covered descriptor:
 | `zack/overworld` | 12 |
 | `doctor/overworld` | 28 |
 | `farm_dog/overworld` | 17 |
+| `staid/overworld` | 9 |
 
 Each directory's README records the authoritative selector groups and any
 neighbouring selector intentionally retained without a guessed semantic name.
