@@ -1,7 +1,7 @@
 #include "common_ui.hh"
 
-char const gText_UnnamedSetting[] =
-    "Unnamed setting";
+char const gCppRuntimeBadAlloc_UiErrorFirst[] =
+    "bad_alloc";
 
-char const gCppRuntimeBadAlloc_FixedLabels[] =
+char const gCppRuntimeBadAlloc_UiErrorSecond[] =
     "bad_alloc";

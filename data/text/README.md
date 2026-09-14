@@ -6,7 +6,7 @@ Regional text belongs under this directory by its owning data structure:
         tool.cc, food.cc, article.cc
         game_state_1.cc, game_state_2.cc, help_menu.cc
         animal_data_1.cc through animal_data_3.cc, script_engine.cc
-        common_ui_1.cc through common_ui_7.cc
+        common_ui_1.cc through common_ui_5.cc
         data_schedules_1.cc through data_schedules_7.cc
         new_game_menu.cc, new_game_status.cc, new_game_help.cc
         new_game_save.cc, new_game_identity.cc
@@ -63,7 +63,7 @@ terminator, express that boundary as `\x00` followed by ordinary mapped text
 or raw `\xNN` bytes. `textproc` retains the explicit terminator while C++ still
 zero-initializes any remaining field capacity.
 
-`<region>/common_ui_1.cc` through `common_ui_7.cc` and
+`<region>/common_ui_1.cc` through `common_ui_5.cc` and
 `<region>/script_engine.cc` are included at their owning modules' physical ROM
 positions; each region owns even byte-identical runtime strings so the main
 module has no auxiliary text object. The non-display fixed SRAM signature is

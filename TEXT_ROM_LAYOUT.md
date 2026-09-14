@@ -43,7 +43,7 @@
 | EU | `0x080F05D8`–`0x080F069F` | `src/help_menu.o(.rodata)` | `src/help_menu.cc`、`include/help_menu.hh` 与 `data/text/eu/help_menu.cc` | 精确 |
 | EU | `0x080F06A0`–`0x080F0ECB` | `src/animal_data.o(.rodata)` | `src/animal_data.cc`、`include/animal_data.hh`、`data/text/eu/animal_data_1.cc`、`data/text/eu/animal_data_2.cc`、`data/text/eu/animal_data_3.cc` | 精确 |
 | EU | `0x080F0ECC`–`0x080F19BF` | `src/entity_ui.o(.rodata)` | `src/entity_ui.cc`、`include/entity_ui.hh`、`data/text/eu/entity_ui_1.cc`–`entity_ui_10.cc`；外部表和运行时文本均在同名头文件声明，汇编读取保持符号重定位 | 精确 |
-| EU | `0x080F19C0`–`0x080F1AC9` | `src/common_ui.o(.rodata)` | `src/common_ui.cc`、`include/common_ui.hh`、`data/text/eu/common_ui_1.cc`–`common_ui_7.cc`；固定文本槽中的空标签以直接符号重定位 | 精确 |
+| EU | `0x080F19C0`–`0x080F1AC9` | `src/common_ui.o(.rodata)` | `src/common_ui.cc`、`include/common_ui.hh`、`data/text/eu/common_ui_1.cc`–`common_ui_5.cc`；固定文本槽中的空标签以直接符号重定位 | 精确 |
 | EU | `0x080F1ACA`–`0x080F1ACB` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080F1ACC`–`0x080F3401` | `src/data_schedules.o(.rodata)` | `src/data_schedules.cc`、`include/data_schedules.hh`、`data/text/eu/data_schedules_1.cc`–`data_schedules_7.cc`；7 处运行时字符串与所有日程/路径表按 ROM 顺序嵌入同一对象，所有外部对象均由同名头文件声明并使用符号重定位 | 精确 |
 | EU | `0x080F3402`–`0x080F3403` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -132,7 +132,7 @@
 | DE | `0x080F0A50`–`0x080F0B17` | `src/help_menu.o(.rodata)` | `src/help_menu.cc`、`include/help_menu.hh` 与 `data/text/de/help_menu.cc` | 精确 |
 | DE | `0x080F0B18`–`0x080F1367` | `src/animal_data.o(.rodata)` | `src/animal_data.cc`、`include/animal_data.hh`、`data/text/de/animal_data_1.cc`、`data/text/de/animal_data_2.cc`、`data/text/de/animal_data_3.cc` | 精确 |
 | DE | `0x080F1368`–`0x080F1E5B` | `src/entity_ui.o(.rodata)` | `src/entity_ui.cc`、`include/entity_ui.hh`、`data/text/de/entity_ui_1.cc`–`entity_ui_10.cc`；外部表和运行时文本均在同名头文件声明，汇编读取保持符号重定位 | 精确 |
-| DE | `0x080F1E5C`–`0x080F1F65` | `src/common_ui.o(.rodata)` | `src/common_ui.cc`、`include/common_ui.hh`、`data/text/de/common_ui_1.cc`–`common_ui_7.cc`；固定文本槽中的空标签以直接符号重定位 | 精确 |
+| DE | `0x080F1E5C`–`0x080F1F65` | `src/common_ui.o(.rodata)` | `src/common_ui.cc`、`include/common_ui.hh`、`data/text/de/common_ui_1.cc`–`common_ui_5.cc`；固定文本槽中的空标签以直接符号重定位 | 精确 |
 | DE | `0x080F1F66`–`0x080F1F67` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080F1F68`–`0x080F389D` | `src/data_schedules.o(.rodata)` | `src/data_schedules.cc`、`include/data_schedules.hh`、`data/text/de/data_schedules_1.cc`–`data_schedules_7.cc`；7 处运行时字符串与所有日程/路径表按 ROM 顺序嵌入同一对象，所有外部对象均由同名头文件声明并使用符号重定位 | 精确 |
 | DE | `0x080F389E`–`0x080F389F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -234,7 +234,7 @@
 | `0x080F06DE`–`0x080F06DF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F06E0`–`0x080F11D1` | `src/entity_ui.o(.rodata)` | [嵌入文本 / 数据] | `src/entity_ui.cc`<br>`include/entity_ui.hh`<br>`data/text/jp/entity_ui_1.cc`–`entity_ui_10.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `18` 项<br>`gUnk_080F0E88`, `gUnk_080F0F78`, `gUnk_080F0FCC`, `gUnk_080F1020`, `gUnk_080F1170`, `gUnk_080F1178`, … +41<br>所有外部表与运行时文本均集中在同名头文件声明；汇编读取保持符号重定位<br>单一主 UI 模块；终点由后续 `src/common_ui.o(.rodata)` 起点自然限制 |
 | `0x080F11D2`–`0x080F11D3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F11D4`–`0x080F12D9` | `src/common_ui.o(.rodata)` | [嵌入文本 / 数据] | `src/common_ui.cc`<br>`include/common_ui.hh`<br>`data/text/jp/common_ui_1.cc`–`common_ui_7.cc` | 文本 `12` 项（详见下方索引）<br>运行时字符串 `6` 项<br>`gText_EmptyUiLabel`、`gUnk_080F19AE`、`gMenuEntryIds`、`gMenuEntryLabels`、`gUnk_080F1A66`<br>固定容量文本槽保留原始字节；所有汇编读取均为直接符号重定位；下方起点约束此可本地化范围 |
+| `0x080F11D4`–`0x080F12D9` | `src/common_ui.o(.rodata)` | [嵌入文本 / 数据] | `src/common_ui.cc`<br>`include/common_ui.hh`<br>`data/text/jp/common_ui_1.cc`–`common_ui_5.cc` | 文本 `12` 项（详见下方索引）<br>运行时字符串 `6` 项<br>`gText_EmptyUiLabel`、`gUnk_080F19AE`、`gMenuEntryIds`、`gMenuEntryLabels`、`gUnk_080F1A66`<br>五段文本严格按物理断点插入：起始固定标签/回退文本 → 半字表 → 两条运行时文本 → 菜单编号表 → 菜单标签 → 指针表 → 两条运行时文本 → 字节表 → 尾部运行时文本<br>固定容量文本槽保留原始字节；所有汇编读取均为直接符号重定位；下方起点约束此可本地化范围 |
 | `0x080F12DA`–`0x080F12DB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F12DC`–`0x080F2C11` | `src/data_schedules.o(.rodata)` | [嵌入文本 / 数据] | `src/data_schedules.cc`<br>`include/data_schedules.hh`<br>`data/text/jp/data_schedules_1.cc`–`data_schedules_7.cc` | 运行时字符串 `7` 处（`gCppRuntimeBadAllocPrefix_FourthSchedule` 与 `gUnk_080F2DC0` 共同保持原 JP 的可重定位分界）<br>`ScheduleInfo_Unk_080F1A80`、`Unk_080F1A80_Schedules`、`Unk_080F1A80_Schedule_1`、`Unk_080F1A80_Schedule_2`、`Unk_080F1A80_Schedule_3`、`Unk_080F1A80_Schedule_4`，… +271<br>所有表、路径和外部声明均集中于同名模块并使用符号重定位；下一对象起点限制此连续块 |
 | `0x080F2C12`–`0x080F2C13` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -2074,7 +2074,7 @@
 | `0x080F0E7E`–`0x080F0E7F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F0E80`–`0x080F1971` | `src/entity_ui.o(.rodata)` | [嵌入文本 / 数据] | `src/entity_ui.cc`<br>`include/entity_ui.hh`<br>`data/text/us/entity_ui_1.cc`–`entity_ui_10.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `18` 项<br>`gUnk_080F0E88`, `gUnk_080F0F78`, `gUnk_080F0FCC`, `gUnk_080F1020`, `gUnk_080F1170`, `gUnk_080F1178`, … +41<br>所有外部表与运行时文本均集中在同名头文件声明；汇编读取保持符号重定位<br>单一主 UI 模块；终点由后续 `src/common_ui.o(.rodata)` 起点自然限制 |
 | `0x080F1972`–`0x080F1973` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F1974`–`0x080F1A7D` | `src/common_ui.o(.rodata)` | [嵌入文本 / 数据] | `src/common_ui.cc`<br>`include/common_ui.hh`<br>`data/text/us/common_ui_1.cc`–`common_ui_7.cc` | 文本 `12` 项（详见下方索引）<br>运行时字符串 `6` 项<br>`gText_EmptyUiLabel`、`gUnk_080F19AE`、`gMenuEntryIds`、`gMenuEntryLabels`、`gUnk_080F1A66`<br>固定容量文本槽保留原始字节；所有汇编读取均为直接符号重定位；下方起点约束此可本地化范围 |
+| `0x080F1974`–`0x080F1A7D` | `src/common_ui.o(.rodata)` | [嵌入文本 / 数据] | `src/common_ui.cc`<br>`include/common_ui.hh`<br>`data/text/us/common_ui_1.cc`–`common_ui_5.cc` | 文本 `12` 项（详见下方索引）<br>运行时字符串 `6` 项<br>`gText_EmptyUiLabel`、`gUnk_080F19AE`、`gMenuEntryIds`、`gMenuEntryLabels`、`gUnk_080F1A66`<br>五段文本严格按物理断点插入：起始固定标签/回退文本 → 半字表 → 两条运行时文本 → 菜单编号表 → 菜单标签 → 指针表 → 两条运行时文本 → 字节表 → 尾部运行时文本<br>固定容量文本槽保留原始字节；所有汇编读取均为直接符号重定位；下方起点约束此可本地化范围 |
 | `0x080F1A7E`–`0x080F1A7F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F1A80`–`0x080F33B5` | `src/data_schedules.o(.rodata)` | [嵌入文本 / 数据] | `src/data_schedules.cc`<br>`include/data_schedules.hh`<br>`data/text/us/data_schedules_1.cc`–`data_schedules_7.cc` | 运行时字符串 `7` 处<br>`ScheduleInfo_Unk_080F1A80`、`Unk_080F1A80_Schedules`、`Unk_080F1A80_Schedule_1`、`Unk_080F1A80_Schedule_2`、`Unk_080F1A80_Schedule_3`、`Unk_080F1A80_Schedule_4`，… +271<br>所有表、路径和外部声明均集中于同名模块并使用符号重定位；下一对象起点限制此连续块 |
 | `0x080F33B6`–`0x080F33B7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
