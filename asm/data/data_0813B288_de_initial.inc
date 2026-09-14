@@ -1956,64 +1956,64 @@ gUnk_087409E4:
 	@ instead of assigning US-stream aliases to the regional data.
 	.global gUnk_IntroSceneUnpackSource_000
 gUnk_IntroSceneUnpackSource_000:
-	.incbin "baserom_de.gba", 0x4C8E68, 0x2FC
+	.incbin "build/de/graphics/intro_scene/objects/object_00.0x70"
 	.global gUnk_IntroSceneUnpackSource_001
 gUnk_IntroSceneUnpackSource_001:
-	.incbin "baserom_de.gba", 0x4C9164, 0x54
+	.incbin "build/de/graphics/intro_scene/objects/object_01.0x70"
 	.global gUnk_IntroSceneUnpackSource_002
 gUnk_IntroSceneUnpackSource_002:
-	.incbin "baserom_de.gba", 0x4C91B8, 0xF4
+	.incbin "build/de/graphics/intro_scene/objects/object_02.0x70"
 	.global gUnk_IntroSceneUnpackSource_003
 gUnk_IntroSceneUnpackSource_003:
-	.incbin "baserom_de.gba", 0x4C92AC, 0x6C
+	.incbin "build/de/graphics/intro_scene/objects/object_03.0x70"
 	.global gUnk_IntroSceneUnpackSource_004
 gUnk_IntroSceneUnpackSource_004:
-	.incbin "baserom_de.gba", 0x4C9318, 0x140
+	.incbin "build/de/graphics/intro_scene/objects/object_04.0x70"
 	.global gUnk_IntroSceneUnpackSource_005
 gUnk_IntroSceneUnpackSource_005:
-	.incbin "baserom_de.gba", 0x4C9458, 0x98
+	.incbin "build/de/graphics/intro_scene/objects/object_05.0x70"
 	.global gUnk_IntroSceneUnpackSource_006
 gUnk_IntroSceneUnpackSource_006:
-	.incbin "baserom_de.gba", 0x4C94F0, 0x120
+	.incbin "build/de/graphics/intro_scene/objects/object_06.0x70"
 	.global gUnk_IntroSceneUnpackSource_007
 gUnk_IntroSceneUnpackSource_007:
-	.incbin "baserom_de.gba", 0x4C9610, 0x78
+	.incbin "build/de/graphics/intro_scene/objects/object_07.0x70"
 	.global gUnk_IntroSceneUnpackSource_008
 gUnk_IntroSceneUnpackSource_008:
-	.incbin "baserom_de.gba", 0x4C9688, 0x94
+	.incbin "build/de/graphics/intro_scene/objects/object_08.0x70"
 	.global gUnk_IntroSceneUnpackSource_009
 gUnk_IntroSceneUnpackSource_009:
-	.incbin "baserom_de.gba", 0x4C971C, 0x60
+	.incbin "build/de/graphics/intro_scene/objects/object_09.0x70"
 	.global gUnk_IntroSceneUnpackSource_010
 gUnk_IntroSceneUnpackSource_010:
-	.incbin "baserom_de.gba", 0x4C977C, 0xD8
+	.incbin "build/de/graphics/intro_scene/objects/object_10.0x70"
 	.global gUnk_IntroSceneUnpackSource_011
 gUnk_IntroSceneUnpackSource_011:
-	.incbin "baserom_de.gba", 0x4C9854, 0x74
+	.incbin "build/de/graphics/intro_scene/objects/object_11.0x70"
 	.global gUnk_IntroSceneUnpackSource_012
 gUnk_IntroSceneUnpackSource_012:
-	.incbin "baserom_de.gba", 0x4C98C8, 0x26C
+	.incbin "build/de/graphics/intro_scene/objects/object_12.0x70"
 	.global gUnk_IntroSceneUnpackSource_013
 gUnk_IntroSceneUnpackSource_013:
-	.incbin "baserom_de.gba", 0x4C9B34, 0x24
+	.incbin "build/de/graphics/intro_scene/objects/object_13.0x70"
 	.global gUnk_IntroSceneUnpackSource_014
 gUnk_IntroSceneUnpackSource_014:
-	.incbin "baserom_de.gba", 0x4C9B58, 0x274
+	.incbin "build/de/graphics/intro_scene/objects/object_14.0x70"
 	.global gUnk_IntroSceneUnpackSource_015
 gUnk_IntroSceneUnpackSource_015:
-	.incbin "baserom_de.gba", 0x4C9DCC, 0x38
+	.incbin "build/de/graphics/intro_scene/objects/object_15.0x70"
 	.global gUnk_IntroSceneUnpackSource_016
 gUnk_IntroSceneUnpackSource_016:
-	.incbin "baserom_de.gba", 0x4C9E04, 0x304
+	.incbin "build/de/graphics/intro_scene/objects/object_16.0x70"
 	.global gUnk_IntroSceneUnpackSource_017
 gUnk_IntroSceneUnpackSource_017:
-	.incbin "baserom_de.gba", 0x4CA108, 0x50
+	.incbin "build/de/graphics/intro_scene/objects/object_17.0x70"
 	.global gUnk_IntroSceneUnpackSource_018
 gUnk_IntroSceneUnpackSource_018:
-	.incbin "baserom_de.gba", 0x4CA158, 0x30C
+	.incbin "build/de/graphics/intro_scene/objects/object_18.0x70"
 	.global gUnk_IntroSceneUnpackSource_019
 gUnk_IntroSceneUnpackSource_019:
-	.incbin "baserom_de.gba", 0x4CA464, 0x68
+	.incbin "build/de/graphics/intro_scene/objects/object_19.0x70"
 	.global gUnk_08743058
 gUnk_08743058:
 	.incbin "build/de/graphics/intro_scene/background_tiles.0x70"

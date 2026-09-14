@@ -321,6 +321,283 @@ def encode_huff8_lz3(data: bytes) -> bytes:
     return writer.finish()
 
 
+def ladder_entries(spec: str, expected_entries: int) -> list[tuple[int, int]]:
+    """Decode the native distance-ladder declaration used by Raw LZ modes.
+
+    ``Unpack`` stores each entry as a four-bit ``width - 1`` value.  The
+    readable compact form returned by the strict decoder is sufficient here:
+    every character is the width of one consecutive distance range.
+    """
+    # The decoder's historical compact representation concatenates decimal
+    # widths (for example ``26810`` means 2, 6, 8, 10), so split it by the
+    # known entry count rather than treating each character as one width.
+    possibilities: list[list[int]] = []
+
+    def split(cursor: int, values: list[int]) -> None:
+        if len(values) == expected_entries:
+            if cursor == len(spec):
+                possibilities.append(values)
+            return
+        for width in range(1, 17):
+            text = str(width)
+            if spec.startswith(text, cursor):
+                split(cursor + len(text), [*values, width])
+
+    split(0, [])
+    if len(possibilities) != 1:
+        raise ValueError(f"expected an unambiguous {expected_entries}-entry Raw-LZ ladder, got {spec!r}")
+    start = 1
+    entries: list[tuple[int, int]] = []
+    for width in possibilities[0]:
+        entries.append((start, width))
+        start += 1 << width
+    return entries
+
+
+def emit_ladder(writer: BitWriter, entries: list[tuple[int, int]]) -> None:
+    for _start, width in entries:
+        writer.write(width - 1, 4)
+
+
+def longest_match(data: bytes, position: int, *, max_distance: int, max_length: int, unit: int = 1) -> tuple[int, int]:
+    """Return the longest legal backwards match at ``position``.
+
+    The original compressor is unknown.  This deliberately deterministic
+    planner only needs to create a valid stream which fits the fixed retail
+    slot; unchanged sources retain their original packed bytes verbatim.
+    """
+    best_length = 0
+    best_distance = 0
+    limit = min(max_distance, position // unit)
+    for distance_units in range(1, limit + 1):
+        distance = distance_units * unit
+        length = 0
+        while length < max_length and position + length < len(data) and data[position + length] == data[position + length - distance]:
+            length += 1
+        length -= length % unit
+        if length > best_length:
+            best_length = length
+            best_distance = distance_units
+            if best_length == max_length:
+                break
+    return best_distance, best_length
+
+
+def raw_lz3_match_options(data: bytes, position: int, entries: list[tuple[int, int]], candidates: list[int]) -> list[tuple[int, int, int]]:
+    """Find the best even-byte match in every LZ3 distance range."""
+    best = [(0, 0) for _ in entries]
+    for candidate in reversed(candidates[-512:]):
+        distance = (position - candidate) // 2
+        entry_index = next((index for index, (start, width) in enumerate(entries)
+                            if start <= distance < start + (1 << width)), None)
+        if entry_index is None:
+            continue
+        length = 0
+        while position + length < len(data) and data[candidate + length] == data[position + length]:
+            length += 1
+        pairs = length // 2
+        if pairs >= 2 and pairs > best[entry_index][0]:
+            best[entry_index] = (pairs, distance)
+    return [(index, pairs, distance) for index, (pairs, distance) in enumerate(best) if pairs]
+
+
+def encode_raw_lz3(data: bytes, entries: list[tuple[int, int]]) -> bytes:
+    """Use dynamic programming to pack Raw LZ3 tile payloads compactly."""
+    pair_count = len(data) // 2
+    infinity = 1 << 60
+    costs = [infinity] * (pair_count + 1)
+    choices: list[tuple[str, int, int, int] | None] = [None] * (pair_count + 1)
+    costs[0] = 0
+    candidates: dict[bytes, list[int]] = collections.defaultdict(list)
+
+    for pair_position in range(pair_count):
+        if costs[pair_position] == infinity:
+            continue
+        position = pair_position * 2
+        literal_cost = costs[pair_position] + 17
+        if literal_cost < costs[pair_position + 1]:
+            costs[pair_position + 1] = literal_cost
+            choices[pair_position + 1] = ("literal", 1, 0, 0)
+
+        # The extended literal form is useful only from eight pairs onward.
+        for pairs in range(8, pair_count - pair_position + 1):
+            cost = costs[pair_position] + 4 + vli_cost(pairs - 1, 3) + pairs * 16
+            target = pair_position + pairs
+            if cost < costs[target]:
+                costs[target] = cost
+                choices[target] = ("literal_extended", pairs, 0, 0)
+
+        key = data[position:position + 4]
+        for entry_index, maximum_pairs, distance in raw_lz3_match_options(data, position, entries, candidates.get(key, [])):
+            _start, distance_bits = entries[entry_index]
+            for pairs in range(2, maximum_pairs + 1):
+                if pairs <= 9:
+                    cost = costs[pair_position] + 1 + 2 + distance_bits + 3
+                else:
+                    cost = costs[pair_position] + 1 + 2 + vli_cost((pairs - 2) >> 3, 3) + 1 + 2 + distance_bits + 3
+                target = pair_position + pairs
+                if cost < costs[target]:
+                    costs[target] = cost
+                    choices[target] = ("lookup", pairs, entry_index, distance)
+        candidates[key].append(position)
+
+    operations: list[tuple[str, int, int, int]] = []
+    cursor = pair_count
+    while cursor:
+        choice = choices[cursor]
+        if choice is None:
+            raise ValueError("Raw LZ3 planner did not cover the payload")
+        operations.append(choice)
+        cursor -= choice[1]
+    operations.reverse()
+
+    writer = BitWriter()
+    writer.write((len(data) << 8) | 0x70, 32)
+    writer.write(3, 8)
+    emit_ladder(writer, entries)
+    position = 0
+    for kind, pairs, entry_index, distance in operations:
+        if kind == "literal":
+            writer.write(0, 1)
+            writer.write((data[position] << 8) | data[position + 1], 16)
+        elif kind == "literal_extended":
+            writer.write(1, 1)
+            writer.write(3, 2)
+            emit_vli(writer, pairs - 1, 3)
+            writer.write(0, 1)
+            for _ in range(pairs):
+                writer.write((data[position] << 8) | data[position + 1], 16)
+                position += 2
+            continue
+        else:
+            start, width = entries[entry_index]
+            writer.write(1, 1)
+            if pairs <= 9:
+                writer.write(entry_index, 2)
+            else:
+                writer.write(3, 2)
+                emit_vli(writer, (pairs - 2) >> 3, 3)
+                writer.write(1, 1)
+                writer.write(entry_index, 2)
+            writer.write(distance - start, width)
+            writer.write((pairs - 2) & 7, 3)
+        position += pairs * 2
+    return writer.finish()
+
+
+def encode_raw_lz(data: bytes, lz_mode: int, ladder_spec: str) -> bytes:
+    """Encode a native Raw-atom LZ stream (formats ``010``, ``020``, ``030``).
+
+    These are the three formats used by the introductory object tiles.  The
+    encoder intentionally uses only their short lookup forms: this keeps the
+    output simple, deterministic, and fully accepted by the retail decoder.
+    """
+    if not data or len(data) > 0x40000:
+        raise ValueError("Raw-LZ payload must be between 1 and 0x40000 bytes")
+    if lz_mode not in (1, 2, 3):
+        raise ValueError(f"unsupported Raw-LZ mode {lz_mode}")
+    if lz_mode == 3 and len(data) & 1:
+        raise ValueError("Raw-LZ mode 3 requires an even-length payload")
+
+    entry_count = {1: 4, 2: 7, 3: 3}[lz_mode]
+    entries = ladder_entries(ladder_spec, entry_count)
+    if lz_mode == 3:
+        return encode_raw_lz3(data, entries)
+    maximum_distance = entries[-1][0] + (1 << entries[-1][1]) - 1
+    unit = 2 if lz_mode == 3 else 1
+    maximum_length = 18 if lz_mode == 1 else len(data)
+
+    writer = BitWriter()
+    writer.write((len(data) << 8) | 0x70, 32)
+    writer.write(lz_mode, 8)  # Raw atoms, selected LZ mode, no differential filter.
+    emit_ladder(writer, entries)
+
+    position = 0
+    while position < len(data):
+        distance, length = longest_match(
+            data,
+            position,
+            max_distance=maximum_distance,
+            max_length=min(maximum_length, len(data) - position),
+            unit=unit,
+        )
+        minimum = 4 if lz_mode == 3 else 3
+        if length < minimum:
+            # Raw LZ mode 2/3 also offers an extended literal form.  Long
+            # unique spans occur frequently in hand-drawn object tiles; using
+            # the form is what lets a one-pixel edit remain inside many of
+            # the retail-sized source intervals.
+            run = unit
+            probe = position + unit
+            while probe < len(data):
+                _distance, probe_length = longest_match(
+                    data,
+                    probe,
+                    max_distance=maximum_distance,
+                    max_length=min(maximum_length, len(data) - probe),
+                    unit=unit,
+                )
+                if probe_length >= minimum:
+                    break
+                run += unit
+                probe += unit
+            atoms = run // unit
+            extended_literal = (lz_mode == 2 and atoms >= 10) or (lz_mode == 3 and atoms >= 8)
+            if extended_literal:
+                writer.write(1, 1)
+                if lz_mode == 2:
+                    writer.write(7, 3)
+                    emit_vli(writer, atoms - 1, 4)
+                else:
+                    writer.write(3, 2)
+                    emit_vli(writer, atoms - 1, 3)
+                writer.write(0, 1)
+                for cursor in range(position, position + run, unit):
+                    if lz_mode == 3:
+                        writer.write((data[cursor] << 8) | data[cursor + 1], 16)
+                    else:
+                        writer.write(data[cursor], 8)
+                position += run
+                continue
+            writer.write(0, 1)
+            if lz_mode == 3:
+                writer.write((data[position] << 8) | data[position + 1], 16)
+                position += 2
+            else:
+                writer.write(data[position], 8)
+                position += 1
+            continue
+
+        entry_index = next(index for index, (start, width) in enumerate(entries)
+                           if start <= distance < start + (1 << width))
+        start, width = entries[entry_index]
+        writer.write(1, 1)
+        if lz_mode == 3 and length // 2 >= 10:
+            pairs = length // 2
+            writer.write(3, 2)
+            emit_vli(writer, (pairs - 2) >> 3, 3)
+            writer.write(1, 1)
+            writer.write(entry_index, 2)
+            writer.write(distance - start, width)
+            writer.write((pairs - 2) & 7, 3)
+        elif lz_mode == 2 and length >= 19:
+            writer.write(7, 3)
+            emit_vli(writer, (length - 3) >> 4, 4)
+            writer.write(1, 1)
+            writer.write(entry_index, 3)
+            writer.write(distance - start, width)
+            writer.write((length - 3) & 15, 4)
+        else:
+            writer.write(entry_index, 2 if lz_mode in (1, 3) else 3)
+            writer.write(distance - start, width)
+            if lz_mode == 3:
+                writer.write(length // 2 - 2, 3)
+            else:
+                writer.write(length - 3, 4)
+        position += length
+    return writer.finish()
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("input", type=Path)
@@ -356,12 +633,15 @@ def main() -> None:
             raise ValueError("baseline ROM ends before the requested packed interval")
         if hashlib.sha256(baseline).hexdigest().lower() != arguments.baseline_sha256.lower():
             raise ValueError("baseline packed range hash mismatch")
-        original_payload, _format, _ladder = unpack(baseline)
+        original_payload, original_format, original_ladder = unpack(baseline)
         if original_payload == source:
             encoded = baseline
             preserved = True
         else:
-            encoded = encode_huff8_lz3(source)
+            if original_format in ("010", "020", "030"):
+                encoded = encode_raw_lz(source, int(original_format[1]), original_ladder)
+            else:
+                encoded = encode_huff8_lz3(source)
             if len(encoded) > len(baseline):
                 raise ValueError(
                     f"edited packed stream is {len(encoded)} bytes but the native interval holds only {len(baseline)} bytes"

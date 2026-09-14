@@ -220,9 +220,32 @@ Unchanged source preserves the retail `0x70` stream. An edited source is
 repacked with the strict native-compatible encoder and must fit the original
 `0x49BC`-byte allocation. The encoder's output need not reproduce the
 publisher's compressed bitstream after an edit, but it is strictly unpacked
-and tested before use. The other twenty Intro Scene 0x500-byte unpack inputs
-remain unexported until their palette and display layout are independently
-proven.
+and tested before use.
+
+## Intro Scene object tiles
+
+`intro_scene/shared/object_tiles/object_00.4bpp` through `object_19.4bpp`
+are the other twenty inputs passed through `Unpack` by `func_0805FBB8`. Every
+source decodes to `0x500` bytes, and the runtime copies each into a fixed
+object-tile staging slot before the later OBJ upload path. Their packed and
+decoded bytes are identical in all four retail FoMT regions, so one shared
+native source set is authoritative.
+
+These files are deliberately **not** linear-grid or completed-sprite PNGs.
+The native OAM layout and palette binding are still runtime data; exporting a
+visually plausible sheet now would repeat the earlier invalid-frame problem.
+The checked-in `.4bpp` files are lossless editable source data with no JSON
+layout sidecar. A future verified OAM tool can build full PNG inputs from them
+without replacing or guessing their native order.
+
+```console
+make gfx-intro-objects-all
+```
+
+The build preserves each original stream byte-for-byte while its source is
+unchanged. After an edit it uses that stream's original Raw-LZ format and
+distance ladder, strictly validates the decoded result, and rejects an edit
+that no longer fits the native packed range.
 
 Regenerate the editable sources from a verified US ROM with:
 

@@ -14,6 +14,7 @@ image, nor that all game graphics have been extracted.
 | Actor archive, every referenced descriptor | `graphics/sprites/actor_archive/full/*.png` | actor tile stream | Yes |
 | Located UI tile grid | `graphics/ui/shared_resource/shared_resource.png` | 4bpp tiles plus BGR555 palette | Yes |
 | Farm-status background and building previews | `graphics/ui/farm_status/shared/base_tiles.png`, `base_palettes.png`, and `tilemaps/*.tilemap` | packed 4bpp tile stream, sixteen BGR555 palette banks, and fourteen BG tilemaps | Yes |
+| Intro-scene object tile sources | `graphics/intro_scene/shared/object_tiles/*.4bpp` | twenty native Raw-LZ object-tile streams | Yes |
 | Records Screen task icons | `graphics/ui/records_minigame/shared/task_00.png` through `task_06.png` | seven raw 16x16 4bpp grids with individual BGR555 palettes | Yes |
 
 The actor archive has 3,009 frame descriptors, of which 2,963 are referenced
@@ -53,6 +54,6 @@ graphics resource.
 | Candidate family | Evidence | Current conclusion |
 | --- | --- | --- |
 | Farm-status secondary screen data | `FarmStatusScreenResourceDescriptor`, native tile lookup and the other direct ranges around the preview maps. | The common tile grid, full palette-bank set and all fourteen building-preview BG tilemaps are now managed; surrounding resource classes still need separate format analysis. |
-| Intro-scene unpack inputs | `gUnk_IntroSceneUnpackSource_*` labels are passed through the native `Unpack` path from the intro code. | Potential compressed graphics/UI resources; no image export until the compression format, output length, palette and destination relationship are proven. |
+| Intro-scene OAM composition and palettes | `gUnk_IntroSceneUnpackSource_*` labels decode to twenty managed native 0x500-byte tile sources; `func_0805FBB8` stages them for OBJ use. | The streams are managed, but their full-image OAM composition and per-object palette selectors remain runtime data. No guessed full PNG is treated as source. |
 | Other Records-screen resources | Raw ranges adjacent to the task-icon records, plus page-specific data pointers in the Records Screen code. | The seven direct task icon/palette pairs are now managed; the remaining ranges still need independent consumer and format analysis. |
 | Field/map payloads | The large raw ranges around `FieldPlotRenderRecord_*` and map-resource labels are used by field rendering. | May contain tiles, maps, collision and/or animation data together.  They require per-record boundaries and runtime format analysis, not a bulk linear-tile export. |

@@ -1966,68 +1966,68 @@ gUnk_084AE488:
 gUnk_084AF4E4:
     .incbin "baserom_jp.gba", 0x4AF4E4, (0x4C7B5C - 0x4AF4E4)
 
-    @ Intro Scene resources unpacked in order by func_0805FBB8.
-    @ Their individual payload formats are not decoded yet.
+    @ Twenty 0x500-byte Raw-LZ object-tile payloads, unpacked in order by
+    @ func_0805FBB8. Their OAM composition remains runtime data.
     .global gUnk_IntroSceneUnpackSource_000
 gUnk_IntroSceneUnpackSource_000:
-    .incbin "baserom_jp.gba", 0x4C7B5C, (0x4C7E58 - 0x4C7B5C)
+    .incbin "build/jp/graphics/intro_scene/objects/object_00.0x70"
     .global gUnk_IntroSceneUnpackSource_001
 gUnk_IntroSceneUnpackSource_001:
-    .incbin "baserom_jp.gba", 0x4C7E58, (0x4C7EAC - 0x4C7E58)
+    .incbin "build/jp/graphics/intro_scene/objects/object_01.0x70"
     .global gUnk_IntroSceneUnpackSource_002
 gUnk_IntroSceneUnpackSource_002:
-    .incbin "baserom_jp.gba", 0x4C7EAC, (0x4C7FA0 - 0x4C7EAC)
+    .incbin "build/jp/graphics/intro_scene/objects/object_02.0x70"
     .global gUnk_IntroSceneUnpackSource_003
 gUnk_IntroSceneUnpackSource_003:
-    .incbin "baserom_jp.gba", 0x4C7FA0, (0x4C800C - 0x4C7FA0)
+    .incbin "build/jp/graphics/intro_scene/objects/object_03.0x70"
     .global gUnk_IntroSceneUnpackSource_004
 gUnk_IntroSceneUnpackSource_004:
-    .incbin "baserom_jp.gba", 0x4C800C, (0x4C814C - 0x4C800C)
+    .incbin "build/jp/graphics/intro_scene/objects/object_04.0x70"
     .global gUnk_IntroSceneUnpackSource_005
 gUnk_IntroSceneUnpackSource_005:
-    .incbin "baserom_jp.gba", 0x4C814C, (0x4C81E4 - 0x4C814C)
+    .incbin "build/jp/graphics/intro_scene/objects/object_05.0x70"
     .global gUnk_IntroSceneUnpackSource_006
 gUnk_IntroSceneUnpackSource_006:
-    .incbin "baserom_jp.gba", 0x4C81E4, (0x4C8304 - 0x4C81E4)
+    .incbin "build/jp/graphics/intro_scene/objects/object_06.0x70"
     .global gUnk_IntroSceneUnpackSource_007
 gUnk_IntroSceneUnpackSource_007:
-    .incbin "baserom_jp.gba", 0x4C8304, (0x4C837C - 0x4C8304)
+    .incbin "build/jp/graphics/intro_scene/objects/object_07.0x70"
     .global gUnk_IntroSceneUnpackSource_008
 gUnk_IntroSceneUnpackSource_008:
-    .incbin "baserom_jp.gba", 0x4C837C, (0x4C8410 - 0x4C837C)
+    .incbin "build/jp/graphics/intro_scene/objects/object_08.0x70"
     .global gUnk_IntroSceneUnpackSource_009
 gUnk_IntroSceneUnpackSource_009:
-    .incbin "baserom_jp.gba", 0x4C8410, (0x4C8470 - 0x4C8410)
+    .incbin "build/jp/graphics/intro_scene/objects/object_09.0x70"
     .global gUnk_IntroSceneUnpackSource_010
 gUnk_IntroSceneUnpackSource_010:
-    .incbin "baserom_jp.gba", 0x4C8470, (0x4C8548 - 0x4C8470)
+    .incbin "build/jp/graphics/intro_scene/objects/object_10.0x70"
     .global gUnk_IntroSceneUnpackSource_011
 gUnk_IntroSceneUnpackSource_011:
-    .incbin "baserom_jp.gba", 0x4C8548, (0x4C85BC - 0x4C8548)
+    .incbin "build/jp/graphics/intro_scene/objects/object_11.0x70"
     .global gUnk_IntroSceneUnpackSource_012
 gUnk_IntroSceneUnpackSource_012:
-    .incbin "baserom_jp.gba", 0x4C85BC, (0x4C8828 - 0x4C85BC)
+    .incbin "build/jp/graphics/intro_scene/objects/object_12.0x70"
     .global gUnk_IntroSceneUnpackSource_013
 gUnk_IntroSceneUnpackSource_013:
-    .incbin "baserom_jp.gba", 0x4C8828, (0x4C884C - 0x4C8828)
+    .incbin "build/jp/graphics/intro_scene/objects/object_13.0x70"
     .global gUnk_IntroSceneUnpackSource_014
 gUnk_IntroSceneUnpackSource_014:
-    .incbin "baserom_jp.gba", 0x4C884C, (0x4C8AC0 - 0x4C884C)
+    .incbin "build/jp/graphics/intro_scene/objects/object_14.0x70"
     .global gUnk_IntroSceneUnpackSource_015
 gUnk_IntroSceneUnpackSource_015:
-    .incbin "baserom_jp.gba", 0x4C8AC0, (0x4C8AF8 - 0x4C8AC0)
+    .incbin "build/jp/graphics/intro_scene/objects/object_15.0x70"
     .global gUnk_IntroSceneUnpackSource_016
 gUnk_IntroSceneUnpackSource_016:
-    .incbin "baserom_jp.gba", 0x4C8AF8, (0x4C8DFC - 0x4C8AF8)
+    .incbin "build/jp/graphics/intro_scene/objects/object_16.0x70"
     .global gUnk_IntroSceneUnpackSource_017
 gUnk_IntroSceneUnpackSource_017:
-    .incbin "baserom_jp.gba", 0x4C8DFC, (0x4C8E4C - 0x4C8DFC)
+    .incbin "build/jp/graphics/intro_scene/objects/object_17.0x70"
     .global gUnk_IntroSceneUnpackSource_018
 gUnk_IntroSceneUnpackSource_018:
-    .incbin "baserom_jp.gba", 0x4C8E4C, (0x4C9158 - 0x4C8E4C)
+    .incbin "build/jp/graphics/intro_scene/objects/object_18.0x70"
     .global gUnk_IntroSceneUnpackSource_019
 gUnk_IntroSceneUnpackSource_019:
-    .incbin "baserom_jp.gba", 0x4C9158, (0x4C91C0 - 0x4C9158)
+    .incbin "build/jp/graphics/intro_scene/objects/object_19.0x70"
     .incbin "build/jp/graphics/intro_scene/background_tiles.0x70"
     .incbin "build/jp/graphics/intro_scene/background_palettes.gbapal"
     .global gUnk_084CDBDC
@@ -5295,70 +5295,77 @@ gUnk_087405A0:
 	.ifdef REGION_DE
 	FOMT_REGION_ASSET_INCBIN 0x7409E4, 0x2674
 	.else
-	@ Intro Scene resources unpacked in order by func_0805FBB8.
-	@ Their individual payload formats are not decoded yet.
+	@ Twenty 0x500-byte Raw-LZ object-tile payloads, unpacked in order by
+	@ func_0805FBB8.  Their OAM composition remains runtime data.
+	.macro FOMT_INTRO_SCENE_OBJECT source
+	.ifdef REGION_EU
+	.incbin "build/eu/graphics/intro_scene/objects/object_\source\().0x70"
+	.else
+	.incbin "build/us/graphics/intro_scene/objects/object_\source\().0x70"
+	.endif
+	.endm
 	non_de_asset_label gUnk_087409E4
 	FOMT_REGION_ASSET_INCBIN 0x7409E4, (0x7419F4 - 0x7409E4)
 	.global gUnk_IntroSceneUnpackSource_000
 gUnk_IntroSceneUnpackSource_000:
-	FOMT_REGION_ASSET_INCBIN 0x7419F4, (0x741CF0 - 0x7419F4)
+	FOMT_INTRO_SCENE_OBJECT 00
 	.global gUnk_IntroSceneUnpackSource_001
 gUnk_IntroSceneUnpackSource_001:
-	FOMT_REGION_ASSET_INCBIN 0x741CF0, (0x741D44 - 0x741CF0)
+	FOMT_INTRO_SCENE_OBJECT 01
 	.global gUnk_IntroSceneUnpackSource_002
 gUnk_IntroSceneUnpackSource_002:
-	FOMT_REGION_ASSET_INCBIN 0x741D44, (0x741E38 - 0x741D44)
+	FOMT_INTRO_SCENE_OBJECT 02
 	.global gUnk_IntroSceneUnpackSource_003
 gUnk_IntroSceneUnpackSource_003:
-	FOMT_REGION_ASSET_INCBIN 0x741E38, (0x741EA4 - 0x741E38)
+	FOMT_INTRO_SCENE_OBJECT 03
 	.global gUnk_IntroSceneUnpackSource_004
 gUnk_IntroSceneUnpackSource_004:
-	FOMT_REGION_ASSET_INCBIN 0x741EA4, (0x741FE4 - 0x741EA4)
+	FOMT_INTRO_SCENE_OBJECT 04
 	.global gUnk_IntroSceneUnpackSource_005
 gUnk_IntroSceneUnpackSource_005:
-	FOMT_REGION_ASSET_INCBIN 0x741FE4, (0x74207C - 0x741FE4)
+	FOMT_INTRO_SCENE_OBJECT 05
 	.global gUnk_IntroSceneUnpackSource_006
 gUnk_IntroSceneUnpackSource_006:
-	FOMT_REGION_ASSET_INCBIN 0x74207C, (0x74219C - 0x74207C)
+	FOMT_INTRO_SCENE_OBJECT 06
 	.global gUnk_IntroSceneUnpackSource_007
 gUnk_IntroSceneUnpackSource_007:
-	FOMT_REGION_ASSET_INCBIN 0x74219C, (0x742214 - 0x74219C)
+	FOMT_INTRO_SCENE_OBJECT 07
 	.global gUnk_IntroSceneUnpackSource_008
 gUnk_IntroSceneUnpackSource_008:
-	FOMT_REGION_ASSET_INCBIN 0x742214, (0x7422A8 - 0x742214)
+	FOMT_INTRO_SCENE_OBJECT 08
 	.global gUnk_IntroSceneUnpackSource_009
 gUnk_IntroSceneUnpackSource_009:
-	FOMT_REGION_ASSET_INCBIN 0x7422A8, (0x742308 - 0x7422A8)
+	FOMT_INTRO_SCENE_OBJECT 09
 	.global gUnk_IntroSceneUnpackSource_010
 gUnk_IntroSceneUnpackSource_010:
-	FOMT_REGION_ASSET_INCBIN 0x742308, (0x7423E0 - 0x742308)
+	FOMT_INTRO_SCENE_OBJECT 10
 	.global gUnk_IntroSceneUnpackSource_011
 gUnk_IntroSceneUnpackSource_011:
-	FOMT_REGION_ASSET_INCBIN 0x7423E0, (0x742454 - 0x7423E0)
+	FOMT_INTRO_SCENE_OBJECT 11
 	.global gUnk_IntroSceneUnpackSource_012
 gUnk_IntroSceneUnpackSource_012:
-	FOMT_REGION_ASSET_INCBIN 0x742454, (0x7426C0 - 0x742454)
+	FOMT_INTRO_SCENE_OBJECT 12
 	.global gUnk_IntroSceneUnpackSource_013
 gUnk_IntroSceneUnpackSource_013:
-	FOMT_REGION_ASSET_INCBIN 0x7426C0, (0x7426E4 - 0x7426C0)
+	FOMT_INTRO_SCENE_OBJECT 13
 	.global gUnk_IntroSceneUnpackSource_014
 gUnk_IntroSceneUnpackSource_014:
-	FOMT_REGION_ASSET_INCBIN 0x7426E4, (0x742958 - 0x7426E4)
+	FOMT_INTRO_SCENE_OBJECT 14
 	.global gUnk_IntroSceneUnpackSource_015
 gUnk_IntroSceneUnpackSource_015:
-	FOMT_REGION_ASSET_INCBIN 0x742958, (0x742990 - 0x742958)
+	FOMT_INTRO_SCENE_OBJECT 15
 	.global gUnk_IntroSceneUnpackSource_016
 gUnk_IntroSceneUnpackSource_016:
-	FOMT_REGION_ASSET_INCBIN 0x742990, (0x742C94 - 0x742990)
+	FOMT_INTRO_SCENE_OBJECT 16
 	.global gUnk_IntroSceneUnpackSource_017
 gUnk_IntroSceneUnpackSource_017:
-	FOMT_REGION_ASSET_INCBIN 0x742C94, (0x742CE4 - 0x742C94)
+	FOMT_INTRO_SCENE_OBJECT 17
 	.global gUnk_IntroSceneUnpackSource_018
 gUnk_IntroSceneUnpackSource_018:
-	FOMT_REGION_ASSET_INCBIN 0x742CE4, (0x742FF0 - 0x742CE4)
+	FOMT_INTRO_SCENE_OBJECT 18
 	.global gUnk_IntroSceneUnpackSource_019
 gUnk_IntroSceneUnpackSource_019:
-	FOMT_REGION_ASSET_INCBIN 0x742FF0, (0x743058 - 0x742FF0)
+	FOMT_INTRO_SCENE_OBJECT 19
 	.endif
 
 	non_de_asset_label gUnk_08743058

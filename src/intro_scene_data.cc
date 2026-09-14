@@ -4,9 +4,9 @@ EXTERN_C
 
 #include FOMT_TEXT_INCLUDE(intro_scene_data_1.cc)
 
-// The concrete graphics payload formats remain raw. These labels retain the
-// original region-specific relocations while the loading order is expressed
-// as ordinary C++ data.
+// These twenty labels identify managed Raw-LZ object-tile streams.  Their
+// native OAM composition stays in the runtime object code; this table only
+// expresses the fixed loading order.
 extern u8 const gUnk_IntroSceneUnpackSource_000[];
 extern u8 const gUnk_IntroSceneUnpackSource_001[];
 extern u8 const gUnk_IntroSceneUnpackSource_002[];
