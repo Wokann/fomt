@@ -5,7 +5,7 @@
 // This fixed-width season-name storage is immediately followed by the native
 // calendar date bytes.  Its final NUL is the first logical season byte; every
 // following pair stores a day and the next logical season byte.
-CalendarDynamicSeasonData const gText_Calendar_DynamicSeasonNames ALIGN(1) = {
+CalendarDynamicSeasonData const gText_Calendar_DynamicSeasonNames = {
 #if defined(REGION_JP)
     {
         "春",

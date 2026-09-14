@@ -7,14 +7,14 @@
 // The native calendar scan begins with the last NUL in season_names, then
 // reads a day and the following entry's season byte.  Keep this physical
 // storage adjacent to the names rather than inventing an overlapping object.
-struct PACKED CalendarFestivalDateStorage
+struct __attribute__((packed)) CalendarFestivalDateStorage
 {
     u8 day;
     u8 following_season;
 };
 
 #if defined(REGION_JP)
-struct PACKED CalendarDynamicSeasonData
+struct __attribute__((packed)) CalendarDynamicSeasonData
 {
     char season_names[4][4];
     CalendarFestivalDateStorage festival_dates[17];
@@ -24,9 +24,9 @@ extern CalendarDynamicSeasonData const gText_Calendar_DynamicSeasonNames;
 #elif defined(REGION_DE)
 // The German executable indexes these four native fields at 0x00, 0x0C,
 // 0x14, and 0x1C.  German "Frühling" needs the larger first storage field.
-struct PACKED CalendarDynamicSeasonData
+struct __attribute__((packed)) CalendarDynamicSeasonData
 {
-    struct PACKED
+    struct __attribute__((packed))
     {
         char spring[12];
         char summer[8];
@@ -38,7 +38,7 @@ struct PACKED CalendarDynamicSeasonData
 
 extern CalendarDynamicSeasonData const gText_Calendar_DynamicSeasonNames;
 #else
-struct PACKED CalendarDynamicSeasonData
+struct __attribute__((packed)) CalendarDynamicSeasonData
 {
     char season_names[4][8];
     CalendarFestivalDateStorage festival_dates[17];
