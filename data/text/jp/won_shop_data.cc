@@ -61,3 +61,6 @@ char const gText_WonShop_ToolDeliveryMultiple[] =
     "らないあるねぇ～。{Press}\p"
     "家に送ってあげるある。\r\n"
     "サービス、サービスね。{Press}";
+
+char const gCppRuntimeBadAlloc_WonShopTrailer[] =
+    "bad_alloc";

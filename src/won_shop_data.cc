@@ -15,5 +15,4 @@ WonShopCatalogEntry const gWonShopCatalog[] = {
     { ITEM_TOOL_SEEDS_TOY_FLOWER, 400 },
 };
 
-#include FOMT_TEXT_INCLUDE(won_shop_data_1.cc)
-#include FOMT_TEXT_INCLUDE(won_shop_data_2.cc)
+#include FOMT_TEXT_INCLUDE(won_shop_data.cc)

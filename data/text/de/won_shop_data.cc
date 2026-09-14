@@ -50,3 +50,6 @@ char const gText_WonShop_NoPurchase[] =
 char const gText_WonShop_NoAdditionalPurchase[] =
     "Sicher, dass du nichts\r\n"
     "anderes kaufen willst?{Press}";
+
+char const gCppRuntimeBadAlloc_WonShopTrailer[] =
+    "bad_alloc";

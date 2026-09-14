@@ -69,7 +69,7 @@
 | EU | `0x080FE2AE`–`0x080FE2AF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FE2B0`–`0x080FE4CD` | `src/inn_shop_data.o(.rodata)` | `src/inn_shop_data.cc`：`data/text/eu/inn_shop_data_1.cc`（菜品说明）→ 菜单表 → `data/text/eu/inn_shop_data_2.cc`（对话与运行时尾部字符串）<br>`include/inn_shop_data.hh`；全部菜单和对话读取均为符号重定位 | 精确 |
 | EU | `0x080FE4CE`–`0x080FE4CF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| EU | `0x080FE4D0`–`0x080FE789` | `src/won_shop_data.o(.rodata)` | `src/won_shop_data.cc`（目录表）→ `data/text/eu/won_shop_data_1.cc`（全部店铺文本）→ `data/text/eu/won_shop_data_2.cc`（运行时尾部字符串）<br>`include/won_shop_data.hh`；全部目录和文本读取均为符号重定位 | 精确 |
+| EU | `0x080FE4D0`–`0x080FE789` | `src/won_shop_data.o(.rodata)` | `src/won_shop_data.cc`（目录表）→ `data/text/eu/won_shop_data.cc`（全部店铺文本与运行时尾部字符串）<br>`include/won_shop_data.hh`；全部目录和文本读取均为符号重定位 | 精确 |
 | EU | `0x080FE78A`–`0x080FE78B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FE78C`–`0x080FE945` | `src/winery_shop_data.o(.rodata)` | `src/winery_shop_data.cc`、`include/winery_shop_data.hh`、`data/text/eu/winery_shop_data.cc`；目录表、全部店铺文本与运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
 | EU | `0x080FE946`–`0x080FE947` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -158,7 +158,7 @@
 | DE | `0x080FEA22`–`0x080FEA23` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080FEA24`–`0x080FEC39` | `src/inn_shop_data.o(.rodata)` | `src/inn_shop_data.cc`：`data/text/de/inn_shop_data_1.cc`（菜品说明）→ 菜单表 → `data/text/de/inn_shop_data_2.cc`（对话与运行时尾部字符串）<br>`include/inn_shop_data.hh`；全部菜单和对话读取均为符号重定位 | 精确 |
 | DE | `0x080FEC3A`–`0x080FEC3B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| DE | `0x080FEC3C`–`0x080FEF0D` | `src/won_shop_data.o(.rodata)` | `src/won_shop_data.cc`（目录表）→ `data/text/de/won_shop_data_1.cc`（全部店铺文本）→ `data/text/de/won_shop_data_2.cc`（运行时尾部字符串）<br>`include/won_shop_data.hh`；全部目录和文本读取均为符号重定位 | 精确 |
+| DE | `0x080FEC3C`–`0x080FEF0D` | `src/won_shop_data.o(.rodata)` | `src/won_shop_data.cc`（目录表）→ `data/text/de/won_shop_data.cc`（全部店铺文本与运行时尾部字符串）<br>`include/won_shop_data.hh`；全部目录和文本读取均为符号重定位 | 精确 |
 | DE | `0x080FEF0E`–`0x080FEF0F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080FEF10`–`0x080FF12D` | `src/winery_shop_data.o(.rodata)` | `src/winery_shop_data.cc`、`include/winery_shop_data.hh`、`data/text/de/winery_shop_data.cc`；目录表、全部店铺文本与运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
 | DE | `0x080FF12E`–`0x080FF12F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -278,7 +278,7 @@
 | `0x080FD9E2`–`0x080FD9E3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FD9E4`–`0x080FDBED` | `src/inn_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/inn_shop_data.cc`：`data/text/jp/inn_shop_data_1.cc`（菜品说明）→ `gInnShopMenu` → `data/text/jp/inn_shop_data_2.cc`（对话与运行时尾部字符串）<br>`include/inn_shop_data.hh` | 菜品说明 `4` 项<br>`gInnShopMenu`<br>对话文本 `3` 项<br>运行时字符串 `1` 项<br>全部 `16` 个指针引用均为精确符号重定位 |
 | `0x080FDBEE`–`0x080FDBEF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FDBF0`–`0x080FDF99` | `src/won_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/won_shop_data.cc`（目录表）→ `data/text/jp/won_shop_data_1.cc`（12 项店铺文本）→ `data/text/jp/won_shop_data_2.cc`（运行时尾部字符串）<br>`include/won_shop_data.hh` | `gWonShopCatalog`<br>文本 `12` 项（详见下方索引）<br>运行时字符串 `1` 项<br>全部 `18` 个引用均为精确符号重定位 |
+| `0x080FDBF0`–`0x080FDF99` | `src/won_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/won_shop_data.cc`（目录表）→ `data/text/jp/won_shop_data.cc`（12 项店铺文本与运行时尾部字符串）<br>`include/won_shop_data.hh` | `gWonShopCatalog`<br>文本 `12` 项（详见下方索引）<br>运行时字符串 `1` 项<br>全部 `18` 个引用均为精确符号重定位 |
 | `0x080FDF9A`–`0x080FDF9B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FDF9C`–`0x080FE181` | `src/winery_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/winery_shop_data.cc`<br>`include/winery_shop_data.hh`<br>`data/text/jp/winery_shop_data.cc` | `gWineryShopCatalog`<br>文本 `9` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080FE182`–`0x080FE183` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1559,18 +1559,18 @@
 | `0x080FDB50` | `gText_InnShop_InsufficientGold` | `data/text/jp/inn_shop_data_2.cc` | `src/inn_shop_data.o(.rodata)` |
 | `0x080FDB74` | `gText_InnShop_NoOrder` | `data/text/jp/inn_shop_data_2.cc` | `src/inn_shop_data.o(.rodata)` |
 | `0x080FDBAC` | `gText_InnShop_OrderComplete` | `data/text/jp/inn_shop_data_2.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FDC40` | `gText_WonShop_ToolCapacityFull` | `data/text/jp/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FDC84` | `gText_WonShop_ItemCapacityFull` | `data/text/jp/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FDCC8` | `gText_WonShop_BlankLinePair` | `data/text/jp/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FDCD0` | `gText_WonShop_ArticleDelivery` | `data/text/jp/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FDD4C` | `gText_WonShop_ArticleDeliveryMultiple` | `data/text/jp/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FDDCC` | `gText_WonShop_PurchaseComplete` | `data/text/jp/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FDDEC` | `gText_WonShop_InsufficientGold` | `data/text/jp/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FDE28` | `gText_WonShop_PurchaseMorePrompt` | `data/text/jp/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FDE5C` | `gText_WonShop_NoPurchase` | `data/text/jp/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FDE84` | `gText_WonShop_NoAdditionalPurchase` | `data/text/jp/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FDEA4` | `gText_WonShop_ToolDelivery` | `data/text/jp/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FDF18` | `gText_WonShop_ToolDeliveryMultiple` | `data/text/jp/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FDC40` | `gText_WonShop_ToolCapacityFull` | `data/text/jp/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FDC84` | `gText_WonShop_ItemCapacityFull` | `data/text/jp/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FDCC8` | `gText_WonShop_BlankLinePair` | `data/text/jp/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FDCD0` | `gText_WonShop_ArticleDelivery` | `data/text/jp/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FDD4C` | `gText_WonShop_ArticleDeliveryMultiple` | `data/text/jp/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FDDCC` | `gText_WonShop_PurchaseComplete` | `data/text/jp/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FDDEC` | `gText_WonShop_InsufficientGold` | `data/text/jp/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FDE28` | `gText_WonShop_PurchaseMorePrompt` | `data/text/jp/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FDE5C` | `gText_WonShop_NoPurchase` | `data/text/jp/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FDE84` | `gText_WonShop_NoAdditionalPurchase` | `data/text/jp/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FDEA4` | `gText_WonShop_ToolDelivery` | `data/text/jp/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FDF18` | `gText_WonShop_ToolDeliveryMultiple` | `data/text/jp/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
 | `0x080FDFAC` | `gText_WineryShop_InventoryFull` | `data/text/jp/winery_shop_data.cc` | `src/winery_shop_data.o(.rodata)` |
 | `0x080FDFFC` | `gText_WineryShop_BlankLinePair` | `data/text/jp/winery_shop_data.cc` | `src/winery_shop_data.o(.rodata)` |
 | `0x080FE004` | `gText_WineryShop_InsufficientGold` | `data/text/jp/winery_shop_data.cc` | `src/winery_shop_data.o(.rodata)` |
@@ -2115,7 +2115,7 @@
 | `0x080FE262`–`0x080FE263` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FE264`–`0x080FE481` | `src/inn_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/inn_shop_data.cc`：`data/text/us/inn_shop_data_1.cc`（菜品说明）→ `gInnShopMenu` → `data/text/us/inn_shop_data_2.cc`（对话与运行时尾部字符串）<br>`include/inn_shop_data.hh` | 菜品说明 `4` 项<br>`gInnShopMenu`<br>对话文本 `3` 项<br>运行时字符串 `1` 项<br>全部 `16` 个指针引用均为精确符号重定位 |
 | `0x080FE482`–`0x080FE483` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FE484`–`0x080FE73D` | `src/won_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/won_shop_data.cc`（目录表）→ `data/text/us/won_shop_data_1.cc`（10 项店铺文本）→ `data/text/us/won_shop_data_2.cc`（运行时尾部字符串）<br>`include/won_shop_data.hh` | `gWonShopCatalog`<br>文本 `10` 项（详见下方索引）<br>运行时字符串 `1` 项<br>全部 `18` 个引用均为精确符号重定位 |
+| `0x080FE484`–`0x080FE73D` | `src/won_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/won_shop_data.cc`（目录表）→ `data/text/us/won_shop_data.cc`（10 项店铺文本与运行时尾部字符串）<br>`include/won_shop_data.hh` | `gWonShopCatalog`<br>文本 `10` 项（详见下方索引）<br>运行时字符串 `1` 项<br>全部 `18` 个引用均为精确符号重定位 |
 | `0x080FE73E`–`0x080FE73F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FE740`–`0x080FE8F9` | `src/winery_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/winery_shop_data.cc`<br>`include/winery_shop_data.hh`<br>`data/text/us/winery_shop_data.cc` | `gWineryShopCatalog`<br>文本 `8` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080FE8FA`–`0x080FE8FB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -3383,16 +3383,16 @@
 | `0x080FE3D4` | `gText_InnShop_InsufficientGold` | `data/text/us/inn_shop_data_2.cc` | `src/inn_shop_data.o(.rodata)` |
 | `0x080FE404` | `gText_InnShop_NoOrder` | `data/text/us/inn_shop_data_2.cc` | `src/inn_shop_data.o(.rodata)` |
 | `0x080FE448` | `gText_InnShop_OrderComplete` | `data/text/us/inn_shop_data_2.cc` | `src/inn_shop_data.o(.rodata)` |
-| `0x080FE4D4` | `gText_WonShop_ToolCapacityFull` | `data/text/us/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FE50C` | `gText_WonShop_ItemCapacityFull` | `data/text/us/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FE540` | `gText_WonShop_BlankLinePair` | `data/text/us/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FE548` | `gText_WonShop_Delivery` | `data/text/us/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FE5C8` | `gText_WonShop_DeliveryMultiple` | `data/text/us/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FE63C` | `gText_WonShop_PurchaseComplete` | `data/text/us/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FE66C` | `gText_WonShop_InsufficientGold` | `data/text/us/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FE6B0` | `gText_WonShop_PurchaseMorePrompt` | `data/text/us/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FE6E4` | `gText_WonShop_NoPurchase` | `data/text/us/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
-| `0x080FE708` | `gText_WonShop_NoAdditionalPurchase` | `data/text/us/won_shop_data_1.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FE4D4` | `gText_WonShop_ToolCapacityFull` | `data/text/us/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FE50C` | `gText_WonShop_ItemCapacityFull` | `data/text/us/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FE540` | `gText_WonShop_BlankLinePair` | `data/text/us/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FE548` | `gText_WonShop_Delivery` | `data/text/us/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FE5C8` | `gText_WonShop_DeliveryMultiple` | `data/text/us/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FE63C` | `gText_WonShop_PurchaseComplete` | `data/text/us/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FE66C` | `gText_WonShop_InsufficientGold` | `data/text/us/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FE6B0` | `gText_WonShop_PurchaseMorePrompt` | `data/text/us/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FE6E4` | `gText_WonShop_NoPurchase` | `data/text/us/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
+| `0x080FE708` | `gText_WonShop_NoAdditionalPurchase` | `data/text/us/won_shop_data.cc` | `src/won_shop_data.o(.rodata)` |
 | `0x080FE750` | `gText_WineryShop_InventoryFull` | `data/text/us/winery_shop_data.cc` | `src/winery_shop_data.o(.rodata)` |
 | `0x080FE7A0` | `gText_WineryShop_BlankLinePair` | `data/text/us/winery_shop_data.cc` | `src/winery_shop_data.o(.rodata)` |
 | `0x080FE7A8` | `gText_WineryShop_InsufficientGold` | `data/text/us/winery_shop_data.cc` | `src/winery_shop_data.o(.rodata)` |
