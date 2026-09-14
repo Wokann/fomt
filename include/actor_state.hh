@@ -12,6 +12,7 @@ struct ActorStateSlots
 };
 
 extern u8 const gActorStateMaxValues[];
+extern "C" u32 func_0809C3E0(ActorStateSlots & self, u32 index);
 extern char const gCppRuntimeBadAlloc_ActorDataSelectionPrefix[];
 
 // func_0809C510 selects one of the two unknown data pointers in each row and

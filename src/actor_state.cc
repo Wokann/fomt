@@ -28,7 +28,7 @@ ActorDataSelectionEntry const gActorDataSelectionEntries[] = {
 
 #include FOMT_TEXT_INCLUDE(actor_state_2.cc)
 
-EC u32 func_0809C3E0(ActorStateSlots & self, u32 index)
+extern "C" u32 func_0809C3E0(ActorStateSlots & self, u32 index)
 {
     u32 result = 0;
 
