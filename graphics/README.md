@@ -195,6 +195,46 @@ python tools/tile_grid.py export baserom_us.gba \
   --output graphics/ui/shared_resource/shared_resource.png --replace
 ```
 
+## Farm-status screen background tiles
+
+`ui/farm_status/shared/base_tiles.png` is the 128x144 indexed, 256-colour tile
+grid loaded by `func_0806EC94` before the Farm Status screen writes its building
+preview tilemaps.  It represents the native linear tile order rather than a
+guessed complete screenshot: the seven building previews still use separate
+tilemap records and will receive their own renderer/source format later.
+
+The packed 0x70 stream and the 0x200-byte BGR555 palette are identical in all
+four retail FoMT regions.  Their physical locations are JP `0x2AD72C` /
+`0x2AF8F0`, US `0x5275D0` / `0x529794`, EU `0x52762C` / `0x5297F0`, and DE
+`0x2AE66C` / `0x2B0830`.  `tile_grid.py` validates the compressed stream,
+strictly unpacks its 0x4800-byte 8bpp payload, and preserves the palette index
+of every pixel.
+
+```console
+make gfx-farm-status-all
+make gfx-farm-status-edit-test
+```
+
+The first command verifies both generated ranges byte-for-byte against every
+retail ROM.  An unchanged PNG deliberately reuses the original compressed
+stream, so this verification stays exact.  An edited PNG is rebuilt to 8bpp
+then encoded through `marvelous_codec.py`; the strict unpacker checks it again
+and the build fails if it exceeds the original 0x21C4-byte allocation.  The
+edit test changes one temporary source pixel and proves that a non-identical,
+valid stream still fits.  No JSON layout sidecar participates in either path.
+
+Regenerate the source from a verified US ROM with:
+
+```console
+python tools/tile_grid.py export-unpacked baserom_us.gba \
+  --stream-offset 0x5275D0 --stream-length 0x21C4 \
+  --stream-sha256 669dec9d78bbe0d2ceb08383495eea9da863086b00c7dbd4687d90e5c01cddc5 \
+  --tiles-length 0x4800 --palette-offset 0x529794 --width 128 --bpp 8 \
+  --sha256 0039e4aa2bb252d5ae17cb2028406e47a79c4461990ad6c1e7e384a962b719e8 \
+  --palette-sha256 8d2885512b1f0a453e45d632c61a41be90d978f8614aa07109202a955da61303 \
+  --output graphics/ui/farm_status/shared/base_tiles.png --replace
+```
+
 ## Experimental forward OAM compiler
 
 `tools/oam_pack/oam_pack.c` is the separate C implementation used to recover

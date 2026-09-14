@@ -17,10 +17,10 @@ gUnk_08527520:
 	.incbin "baserom_de.gba", 0x2AE5BC, 0xB0
 	.global gUnk_085275D0
 gUnk_085275D0:
-	.incbin "baserom_de.gba", 0x2AE66C, 0x21C4
+	.incbin "build/de/graphics/ui/farm_status/base_tiles.0x70"
 	.global gUnk_08529794
 gUnk_08529794:
-	.incbin "baserom_de.gba", 0x2B0830, 0x200
+	.incbin "build/de/graphics/ui/farm_status/base_tiles.gbapal"
 	.global gUnk_08529994
 gUnk_08529994:
 	.incbin "baserom_de.gba", 0x2B0A30, 0x184

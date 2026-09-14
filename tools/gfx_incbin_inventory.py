@@ -21,6 +21,7 @@ INCBIN_RE = re.compile(
     r'^\s*\.incbin\s+"(?P<rom>baserom_[a-z]+\.gba)"'
     r'(?:\s*,\s*(?P<offset>[^,]+?)\s*,\s*(?P<length>.+?))?\s*(?:@.*)?$'
 )
+GLOBAL_LABEL_RE = re.compile(r"^(?P<label>g[A-Za-z0-9_]+):\s*(?:@.*)?$")
 
 
 @dataclass(frozen=True)
@@ -28,6 +29,7 @@ class Range:
     source: Path
     line: int
     rom: str
+    symbol: str | None
     offset: int | None
     length: int | None
     offset_expression: str | None
@@ -66,7 +68,11 @@ def iter_ranges(root: Path) -> Iterable[Range]:
         if source.is_file() and source.suffix.lower() in {".s", ".inc"}
     )
     for source in sources:
+        current_symbol: str | None = None
         for line_number, line in enumerate(source.read_text(encoding="utf-8").splitlines(), 1):
+            label = GLOBAL_LABEL_RE.match(line)
+            if label:
+                current_symbol = label.group("label")
             match = INCBIN_RE.match(line)
             if not match:
                 continue
@@ -76,11 +82,15 @@ def iter_ranges(root: Path) -> Iterable[Range]:
                 source=source,
                 line=line_number,
                 rom=match.group("rom"),
+                symbol=current_symbol,
                 offset=integer_expression(offset_expression) if offset_expression else None,
                 length=integer_expression(length_expression) if length_expression else None,
                 offset_expression=offset_expression,
                 length_expression=length_expression,
             )
+            # A label names the immediately following ROM payload.  Do not
+            # let it leak into an adjacent anonymous range in the same stream.
+            current_symbol = None
 
 
 def main() -> None:
@@ -94,12 +104,13 @@ def main() -> None:
     if args.csv:
         with args.csv.open("w", encoding="utf-8", newline="") as handle:
             writer = csv.writer(handle)
-            writer.writerow(("rom", "source", "line", "offset", "length", "offset_expression", "length_expression"))
+            writer.writerow(("rom", "source", "line", "symbol", "offset", "length", "offset_expression", "length_expression"))
             for row in rows:
                 writer.writerow((
                     row.rom,
                     row.source.relative_to(root).as_posix(),
                     row.line,
+                    row.symbol or "",
                     f"0x{row.offset:X}" if row.offset is not None else "",
                     f"0x{row.length:X}" if row.length is not None else "",
                     row.offset_expression or "",
@@ -112,9 +123,9 @@ def main() -> None:
     for row in rows:
         location = row.source.relative_to(root).as_posix()
         if row.offset is None or row.length is None:
-            print(f"{row.rom:15} {location}:{row.line}: unresolved {row.offset_expression!r}, {row.length_expression!r}")
+            print(f"{row.rom:15} {location}:{row.line} {row.symbol or '-'}: unresolved {row.offset_expression!r}, {row.length_expression!r}")
         else:
-            print(f"{row.rom:15} {location}:{row.line}: 0x{row.offset:08X}-0x{row.offset + row.length:08X} ({row.length:#x})")
+            print(f"{row.rom:15} {location}:{row.line} {row.symbol or '-'}: 0x{row.offset:08X}-0x{row.offset + row.length:08X} ({row.length:#x})")
 
 
 if __name__ == "__main__":

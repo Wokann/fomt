@@ -6,7 +6,19 @@
 
     .section .rodata
 jp_data_0813b288_start:
-    .incbin "baserom_jp.gba", 0x13C3CC, (0x2AFC74 - 0x13C3CC)
+    .incbin "baserom_jp.gba", 0x13C3CC, (0x2AD72C - 0x13C3CC)
+
+    @ Farm-status screen: the native stream expands to an 8bpp tile grid and
+    @ is paired with its 256-colour background palette.  Keep these labels
+    @ stable for the common screen code while sourcing their payloads from the
+    @ verified editable graphics path.
+    .global gUnk_085275D0
+gUnk_085275D0:
+    .incbin "build/jp/graphics/ui/farm_status/base_tiles.0x70"
+    .global gUnk_08529794
+gUnk_08529794:
+    .incbin "build/jp/graphics/ui/farm_status/base_tiles.gbapal"
+    .incbin "baserom_jp.gba", 0x2AFAF0, (0x2AFC74 - 0x2AFAF0)
 
     @ Farm Status preview resource labels. Their asset roles remain unknown,
     @ but the screen's C++ preview tables require direct relocatable targets.
@@ -4249,19 +4261,20 @@ gUnk_0852757C:
 	.incbin "baserom_eu.gba", 0x527584, 0xA8
 	.global gUnk_0852762C
 gUnk_0852762C:
-	.incbin "baserom_eu.gba", 0x52762C, 0x8
+	.incbin "build/eu/graphics/ui/farm_status/base_tiles.0x70", 0, 0x8
 	.else
 	eu_post_script_incbin 0x527520, 0xB0
 	.endif
 
-	non_de_asset_label gUnk_085275D0
 	.ifdef REGION_EU
-	.incbin "baserom_eu.gba", 0x527634, 0x21BC
+	.incbin "build/eu/graphics/ui/farm_status/base_tiles.0x70", 0x8, 0x21BC
 	.global gUnk_085297F0
 gUnk_085297F0:
-	.incbin "baserom_eu.gba", 0x5297F0, 0x8
+	.incbin "build/eu/graphics/ui/farm_status/base_tiles.gbapal", 0, 0x8
 	.else
-	eu_post_script_incbin 0x5275D0, 0x21C4
+	.global gUnk_085275D0
+gUnk_085275D0:
+	.incbin "build/us/graphics/ui/farm_status/base_tiles.0x70"
 	.endif
 
 	.ifdef REGION_EU
@@ -4269,7 +4282,7 @@ gUnk_085297F0:
 	@ Bind every resource name directly to those physical bytes.
 	.global gUnk_08529794
 gUnk_08529794:
-	.incbin "baserom_eu.gba", 0x5297F8, 0x1F8
+	.incbin "build/eu/graphics/ui/farm_status/base_tiles.gbapal", 0x8, 0x1F8
 	.global gUnk_08529994
 gUnk_08529994:
 	.incbin "baserom_eu.gba", 0x5299F0, 0x8
@@ -4373,8 +4386,9 @@ gUnk_0852D984:
 	.incbin "build/eu/graphics/portraits/shared/portrait_tiles.4bpp"
 	.incbin "baserom_eu.gba", 0x58B0F8, (0x58BA84 - 0x58B0F8)
 	.else
-	non_de_asset_label gUnk_08529794
-	eu_post_script_incbin 0x529794, 0x200
+	.global gUnk_08529794
+gUnk_08529794:
+	.incbin "build/us/graphics/ui/farm_status/base_tiles.gbapal"
 
 	non_de_asset_label gUnk_08529994
 	eu_post_script_incbin 0x529994, (0x529B18 - 0x529994)

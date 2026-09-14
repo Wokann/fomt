@@ -177,6 +177,30 @@ UI_SHARED_RESOURCE_PALETTE_OFFSET_DE := 0x4E2E54
 UI_SHARED_RESOURCE_TILE_OFFSET := $(UI_SHARED_RESOURCE_TILE_OFFSET_$(GAME_REGION))
 UI_SHARED_RESOURCE_PALETTE_OFFSET := $(UI_SHARED_RESOURCE_PALETTE_OFFSET_$(GAME_REGION))
 
+# Farm-status background tiles are a 256-colour, linear 8bpp grid.  The
+# native stream is a shared 0x70/Huffman/LZ payload.  The compressor keeps the
+# original packed bytes when the editable PNG has not changed; edited tiles
+# are strictly decompressed and must still fit the original 0x21C4-byte slot.
+FARM_STATUS_TILES_SOURCE := graphics/ui/farm_status/shared/base_tiles.png
+FARM_STATUS_TILES_BIN := $(BUILD_DIR)/graphics/ui/farm_status/base_tiles.8bpp
+FARM_STATUS_PALETTE_BIN := $(BUILD_DIR)/graphics/ui/farm_status/base_tiles.gbapal
+FARM_STATUS_PACKED_BIN := $(BUILD_DIR)/graphics/ui/farm_status/base_tiles.0x70
+FARM_STATUS_CODEC := tools/marvelous_codec.py
+FARM_STATUS_STREAM_LENGTH := 0x21C4
+FARM_STATUS_STREAM_SHA256 := 669dec9d78bbe0d2ceb08383495eea9da863086b00c7dbd4687d90e5c01cddc5
+FARM_STATUS_TILES_SHA256 := 0039e4aa2bb252d5ae17cb2028406e47a79c4461990ad6c1e7e384a962b719e8
+FARM_STATUS_PALETTE_SHA256 := 8d2885512b1f0a453e45d632c61a41be90d978f8614aa07109202a955da61303
+FARM_STATUS_STREAM_OFFSET_JP := 0x2AD72C
+FARM_STATUS_STREAM_OFFSET_US := 0x5275D0
+FARM_STATUS_STREAM_OFFSET_EU := 0x52762C
+FARM_STATUS_STREAM_OFFSET_DE := 0x2AE66C
+FARM_STATUS_PALETTE_OFFSET_JP := 0x2AF8F0
+FARM_STATUS_PALETTE_OFFSET_US := 0x529794
+FARM_STATUS_PALETTE_OFFSET_EU := 0x5297F0
+FARM_STATUS_PALETTE_OFFSET_DE := 0x2B0830
+FARM_STATUS_STREAM_OFFSET := $(FARM_STATUS_STREAM_OFFSET_$(GAME_REGION))
+FARM_STATUS_PALETTE_OFFSET := $(FARM_STATUS_PALETTE_OFFSET_$(GAME_REGION))
+
 SUBDIRS := $(sort $(dir $(ALL_OBJS)))
 $(shell mkdir -p $(SUBDIRS))
 
@@ -319,11 +343,21 @@ $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN): $(UI_SHARED_RE
 	@mkdir -p $(dir $(UI_SHARED_RESOURCE_TILE_BIN))
 	@$(PYTHON) $(TILE_GRID_TOOL) build --source $(UI_SHARED_RESOURCE_SOURCE) --tiles $(UI_SHARED_RESOURCE_TILE_BIN) --palette $(UI_SHARED_RESOURCE_PALETTE_BIN)
 
+$(FARM_STATUS_TILES_BIN) $(FARM_STATUS_PALETTE_BIN): $(FARM_STATUS_TILES_SOURCE) $(TILE_GRID_TOOL)
+	@mkdir -p $(dir $(FARM_STATUS_TILES_BIN))
+	@$(PYTHON) $(TILE_GRID_TOOL) build --source $(FARM_STATUS_TILES_SOURCE) --tiles $(FARM_STATUS_TILES_BIN) --palette $(FARM_STATUS_PALETTE_BIN) --bpp 8
+
+$(FARM_STATUS_PACKED_BIN): $(FARM_STATUS_TILES_BIN) $(FARM_STATUS_CODEC) $(BASE_ROM)
+	@mkdir -p $(dir $@)
+	@$(PYTHON) $(FARM_STATUS_CODEC) $(FARM_STATUS_TILES_BIN) $@ \
+	  --baseline-rom $(BASE_ROM) --baseline-offset $(FARM_STATUS_STREAM_OFFSET) \
+	  --baseline-length $(FARM_STATUS_STREAM_LENGTH) --baseline-sha256 $(FARM_STATUS_STREAM_SHA256)
+
 FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
+.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
 oam-pack: $(OAM_PACK)
 oam-pack-test: $(OAM_PACK) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba $(PORTRAIT_SOURCE_DIR)/full/000_TALK_PORTRAIT_RICK_NORMAL.png
 	@mkdir -p $(BUILD_DIR)/graphics/oam_pack
@@ -384,6 +418,17 @@ gfx-ui-all:
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-ui-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-ui-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-ui-test
+gfx-farm-status: $(FARM_STATUS_TILES_BIN) $(FARM_STATUS_PALETTE_BIN) $(FARM_STATUS_PACKED_BIN)
+gfx-farm-status-test: gfx-farm-status $(BASE_ROM) $(GFX_RANGE_VERIFY)
+	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FARM_STATUS_STREAM_OFFSET) --input $(FARM_STATUS_PACKED_BIN) --sha256 $(FARM_STATUS_STREAM_SHA256)
+	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FARM_STATUS_PALETTE_OFFSET) --input $(FARM_STATUS_PALETTE_BIN) --sha256 $(FARM_STATUS_PALETTE_SHA256)
+gfx-farm-status-all:
+	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-farm-status-test
+	@$(MAKE) --no-print-directory GAME_REGION=US gfx-farm-status-test
+	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-farm-status-test
+	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-farm-status-test
+gfx-farm-status-edit-test: $(FARM_STATUS_TILES_SOURCE) $(FARM_STATUS_CODEC) $(TILE_GRID_TOOL) baserom_us.gba
+	@$(PYTHON) tools/farm_status_edit_test.py baserom_us.gba $(FARM_STATUS_TILES_SOURCE)
 # Generic linear 4bpp grid regression using a verified UI resource. Unlike
 # character sprites, this payload has no OAM or tile-map indirection.
 TILE_GRID_TEST_DIR := $(BUILD_DIR)/graphics/tile_grid_test
@@ -398,7 +443,7 @@ tile-grid-test:
 	@$(MAKE) --no-print-directory GAME_REGION=EU tile-grid-region-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE tile-grid-region-test
 
-gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui
+gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui gfx-farm-status
 
 # Full graphics gate for assets that have an authoritative source/rebuild
 # path.  It intentionally does not link a ROM: the project-wide link is
@@ -409,11 +454,13 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-actors-all
 	@$(MAKE) --no-print-directory gfx-actors-edit-test
 	@$(MAKE) --no-print-directory gfx-ui-all
+	@$(MAKE) --no-print-directory gfx-farm-status-all
+	@$(MAKE) --no-print-directory gfx-farm-status-edit-test
 	@$(MAKE) --no-print-directory tile-grid-test
 	@$(MAKE) --no-print-directory oam-pack-test
 	@$(MAKE) --no-print-directory oam-pack-audit
 
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN) $(PORTRAIT_TILE_BIN) $(ACTOR_TILE_BIN) $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN)
+$(BUILD_DIR)/asm/data/data_0813B288.o: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN) $(PORTRAIT_TILE_BIN) $(ACTOR_TILE_BIN) $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN) $(FARM_STATUS_PACKED_BIN) $(FARM_STATUS_PALETTE_BIN)
 
 # Mary owns the complete packed RIFF script stream.  Its three headers remain
 # explicit inputs: callables and slot names live with the selected scripts,
