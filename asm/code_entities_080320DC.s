@@ -89,7 +89,9 @@ func_08034260:
     .global func_08034C64
     .thumb_func
 func_08034C64:
-    .incbin "baserom_jp.gba", 0x349F8, 0x88
+    .incbin "baserom_jp.gba", 0x349F8, 0x78
+    .4byte gUnk_080F221C
+    .incbin "baserom_jp.gba", 0x34A74, 0xC
 
     .global func_08032560
     .thumb_set func_08032560, func_0803242C + 0x134

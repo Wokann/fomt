@@ -23,7 +23,19 @@ func_0803A8A4:
 
     .section .text.code_0803C54C
 .Lcode_0803C54C:
-    .incbin "baserom_jp.gba", 0x3C2E0, 0x1B90
+    .incbin "baserom_jp.gba", 0x3C2E0, 0x1338
+    .4byte gUnk_080F2068
+    .4byte ScheduleInfo_Unk_080F1A80
+    .4byte gUnk_080F1FC0
+    .incbin "baserom_jp.gba", 0x3D624, 0x40
+    .4byte ScheduleInfo_Unk_080F286C
+    .incbin "baserom_jp.gba", 0x3D668, 0x8
+    .4byte ScheduleInfo_Unk_080F2354
+    .incbin "baserom_jp.gba", 0x3D674, 0x10
+    .4byte ScheduleInfo_Unk_080F261C
+    .incbin "baserom_jp.gba", 0x3D688, 0xC
+    .4byte gUnk_080F221C
+    .incbin "baserom_jp.gba", 0x3D698, 0x7D8
 
     .global func_0803DE70
     .thumb_func
