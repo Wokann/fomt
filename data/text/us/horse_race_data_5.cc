@@ -1,3 +1,7 @@
+#include "horse_race_data.hh"
+
+// Prize names are inline fields of the native catalog, not a pointer table.
+HorseRacePrize const gHorseRacePrizeCatalog[] = {
     { "Jewel of Truth", 1000 },
     { "Power Berry", 900 },
     { "Facial Pack", 42 },
@@ -10,3 +14,4 @@
     { "Adamantite", 4 },
     { "Dress", 250 },
     { "Perfume", 150 },
+};

@@ -4,14 +4,7 @@
 
 #include FOMT_TEXT_INCLUDE(horse_race_data_1.cc)
 
-// This renderer walks a preloaded glyph-code list rather than a normal text
-// byte stream. The final zero is the native table terminator.
-u16 const gHorseRaceTicketCharacterCodes[] = {
 #include FOMT_TEXT_INCLUDE(horse_race_data_2.cc)
-#if !defined(REGION_DE)
-    0,
-#endif
-};
 
 #include FOMT_TEXT_INCLUDE(horse_race_data_3.cc)
 
@@ -31,10 +24,7 @@ char const * const gHorseRaceTicketControls[] = {
 
 #include FOMT_TEXT_INCLUDE(horse_race_data_4.cc)
 
-// Prize names are inline fields of the native catalog, not a pointer table.
-HorseRacePrize const gHorseRacePrizeCatalog[] = {
 #include FOMT_TEXT_INCLUDE(horse_race_data_5.cc)
-};
 
 u16 const gHorseRacePrizeItemIds[] = {
     ITEM_ARTICLE_JEWEL_OF_TRUTH,
@@ -53,10 +43,4 @@ u16 const gHorseRacePrizeItemIds[] = {
 
 #include FOMT_TEXT_INCLUDE(horse_race_data_6.cc)
 
-// The native renderer reads this preloaded glyph-code list directly.
-u16 const gHorseRacePrizeExchangeCharacterCodes[] = {
 #include FOMT_TEXT_INCLUDE(horse_race_data_7.cc)
-#if defined(REGION_US) || defined(REGION_EU)
-    0,
-#endif
-};
