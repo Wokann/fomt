@@ -4556,7 +4556,37 @@ func_08050B50: @ 0x080508DC
 	.section .text.clear_ui_action_state_flag_01f0_after
 
     .section .text.clear_ui_action_state_flag_01f0_after
-    jp_code_0803ee_func func_08050C2C, 0x509B8, 0x509F0
+    .global func_08050C2C
+    .thumb_func
+func_08050C2C: @ 0x080509B8
+    push {lr}
+    adds r2, r0, #0
+    adds r3, r1, #0
+    ldr r1, .Ljp_080509D0 @ =0x00000504
+    adds r0, r2, r1
+    ldrh r0, [r0, #0x20]
+    cmp r3, r0
+    blo .Ljp_080509D4
+    adds r0, r2, #0
+    bl func_08050C64
+    b .Ljp_080509E8
+    .align 2, 0
+.Ljp_080509D0: .4byte 0x00000504
+.Ljp_080509D4:
+    movs r1, #0xa0
+    lsls r1, r1, #3
+    adds r0, r2, r1
+    movs r1, #1
+    strb r1, [r0]
+    ldr r1, .Ljp_080509EC @ =0x00000534
+    adds r0, r2, r1
+    adds r1, r3, #0
+    bl ResolveIndexedResourceHandle
+.Ljp_080509E8:
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_080509EC: .4byte 0x00000534
     jp_code_0803ee_func func_08050C64, 0x509F0, 0x50A98
     jp_code_0803ee_func func_08050D0C, 0x50A98, 0x50AC0
     jp_code_0803ee_func func_08050D34, 0x50AC0, 0x50AE8
