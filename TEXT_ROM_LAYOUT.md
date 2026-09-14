@@ -254,7 +254,7 @@
 | `0x080F99AC`–`0x080F9BD3` | `src/animal_festival_ranking_score_data.o(.rodata)` | [文本与数据] | `data/text/common/animal_festival_ranking_score_data.cc` → `src/animal_festival_ranking_score_data.cc`<br>`include/animal_festival_ranking_score_data.hh` | `gAnimalFestivalRankingScoreTable`、运行时字符串 `1` 项、`gUnk_080FA246`、`gUnk_080FA264`、`gUnk_080FA2E8`、`gUnk_080FA36C`、`gAnimalFestivalRewardChanceWeights`、`gAnimalFestivalRewardArticleIds`<br>对象内 `00` 对齐 `2` 字节；所有已知汇编读取均为符号重定位，未证实含义的原始表保留 `gUnk` 名称 |
 | `0x080F9BD4`–`0x080F9F59` | `src/frisbee.o(.rodata)` | [嵌入文本] | `data/text/jp/frisbee.cc` → `src/frisbee.cc`<br>`include/frisbee.hh` | 文本 `15` 项（详见下方索引）<br>运行时字符串 `1` 项；所有已知汇编读取为符号重定位 |
 | `0x080F9F5A`–`0x080F9F5B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080F9F5C`–`0x080F9FCB` | `src/animal_festival_ranking_random_data.o(.rodata)` | [数据] | `src/animal_festival_ranking_random_data.cc`<br>`include/animal_festival_ranking_random_data.hh` | `gAnimalFestivalRandomRangePairs` |
+| `0x080F9F5C`–`0x080F9FCB` | `src/animal_festival_ranking_random_data.o(.rodata)` | [数据] | `src/animal_festival_ranking_random_data.cc`<br>`include/animal_festival_ranking_random_data.hh` | `gAnimalFestivalRandomRangePairs`；基址及 `second_maximum + 12` 均为符号重定位 |
 | `0x080F9FCC`–`0x080FA1DD` | `data/text/animal_festival.o(.rodata)` | [文本对象] | `data/text/jp/animal_festival.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080FA1DE`–`0x080FA27D` | `src/animal_festival_ranking_livestock_data.o(.rodata)` | [数据] | `src/animal_festival_ranking_livestock_data.cc`<br>`include/animal_festival_ranking_livestock_data.hh` | `gAnimalFestivalLivestockContestantValues` |
 | `0x080FA27E`–`0x080FA27F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -2093,7 +2093,7 @@
 | `0x080FA174`–`0x080FA39B` | `src/animal_festival_ranking_score_data.o(.rodata)` | [文本与数据] | `data/text/common/animal_festival_ranking_score_data.cc` → `src/animal_festival_ranking_score_data.cc`<br>`include/animal_festival_ranking_score_data.hh` | `gAnimalFestivalRankingScoreTable`、运行时字符串 `1` 项、`gUnk_080FA246`、`gUnk_080FA264`、`gUnk_080FA2E8`、`gUnk_080FA36C`、`gAnimalFestivalRewardChanceWeights`、`gAnimalFestivalRewardArticleIds`<br>对象内 `00` 对齐 `2` 字节；所有已知汇编读取均为符号重定位，未证实含义的原始表保留 `gUnk` 名称 |
 | `0x080FA39C`–`0x080FA719` | `src/frisbee.o(.rodata)` | [嵌入文本] | `data/text/us/frisbee.cc` → `src/frisbee.cc`<br>`include/frisbee.hh` | 文本 `15` 项（详见下方索引）<br>运行时字符串 `1` 项；所有已知汇编读取为符号重定位 |
 | `0x080FA71A`–`0x080FA71B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FA71C`–`0x080FA78B` | `src/animal_festival_ranking_random_data.o(.rodata)` | [数据] | `src/animal_festival_ranking_random_data.cc`<br>`include/animal_festival_ranking_random_data.hh` | `gAnimalFestivalRandomRangePairs` |
+| `0x080FA71C`–`0x080FA78B` | `src/animal_festival_ranking_random_data.o(.rodata)` | [数据] | `src/animal_festival_ranking_random_data.cc`<br>`include/animal_festival_ranking_random_data.hh` | `gAnimalFestivalRandomRangePairs`；基址及 `second_maximum + 12` 均为符号重定位 |
 | `0x080FA78C`–`0x080FA99D` | `data/text/animal_festival.o(.rodata)` | [文本对象] | `data/text/us/animal_festival.cc` | 文本 `1` 项（详见下方索引）<br>运行时字符串 `1` 项 |
 | `0x080FA99E`–`0x080FAA3D` | `src/animal_festival_ranking_livestock_data.o(.rodata)` | [数据] | `src/animal_festival_ranking_livestock_data.cc`<br>`include/animal_festival_ranking_livestock_data.hh` | `gAnimalFestivalLivestockContestantValues` |
 | `0x080FAA3E`–`0x080FAA3F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
