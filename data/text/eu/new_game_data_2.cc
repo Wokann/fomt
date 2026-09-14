@@ -1,80 +1,13 @@
-#include "new_game_data.hh"
-
-char const gText_NewGameMenu_Diary[] =
-    "Tagebuch";
-
-char const gText_NewGameMenu_Save[] ALIGN(4) =
-    "Spch.";
-
-char const gText_NewGameMenu_Load[] ALIGN(4) =
-    "Laden";
-
-char const gText_NewGameMenu_Blank[] ALIGN(4) =
-    "";
-
-char const gText_NewGameMenu_Data1[] ALIGN(4) =
-    "Dat.1";
-
-char const gText_NewGameMenu_Data2[] ALIGN(4) =
-    "Dat.2";
-
-char const gText_NewGameMenu_ControlSettings[] ALIGN(4) =
-    "Knöpfe";
-
-char const gText_NewGameMenu_ControlOption1[] ALIGN(4) =
-    "1";
-
-char const gText_NewGameMenu_ControlOption2[] ALIGN(4) =
-    "2";
-
-char const gText_NewGameMenu_ClockDisplay[] ALIGN(4) =
-    "Uhr";
-
-char const gText_NewGameMenu_Yes[] ALIGN(4) =
-    "Ja";
-
-char const gText_NewGameMenu_No[] ALIGN(4) =
-    "Nein";
-
-char const gText_NewGameMenu_FaceDisplay[] ALIGN(4) =
-    "Gesicht";
-
-char const gText_NewGameMenu_NameDisplay[] ALIGN(4) =
-    "Name";
-
-// Native menu order.  The US ROM stores two dedicated control-option strings,
-// unlike the JP aliases used for the corresponding two entries.
-char const * const gNewGameMenuLabels[18] = {
-    gText_NewGameMenu_Diary,
-    gText_NewGameMenu_Save,
-    gText_NewGameMenu_Load,
-    gText_NewGameMenu_Blank,
-    gText_NewGameMenu_Data1,
-    gText_NewGameMenu_Data2,
-    gText_NewGameMenu_ControlSettings,
-    gText_NewGameMenu_ControlOption1,
-    gText_NewGameMenu_ControlOption2,
-    gText_NewGameMenu_ClockDisplay,
-    gText_NewGameMenu_Yes,
-    gText_NewGameMenu_No,
-    gText_NewGameMenu_FaceDisplay,
-    gText_NewGameMenu_Yes,
-    gText_NewGameMenu_No,
-    gText_NewGameMenu_NameDisplay,
-    gText_NewGameMenu_Yes,
-    gText_NewGameMenu_No,
-};
-
 // Fixed-width fragments copied by the new-game status renderer and its
 // save-data prompts.  C++ array initialization preserves the zero-fill.
 char const gText_NewGameStatus_YearSuffix[] =
-    "Jahre";
+    "Years";
 
 char const gText_NewGameStatus_SeasonSeparator[] ALIGN(4) =
     " ";
 
 char const gText_NewGameStatus_DaySuffix[] ALIGN(4) =
-    " Tag";
+    " Day";
 
 char const gText_NewGameStatus_OpenParen[] ALIGN(4) =
     " (";
@@ -86,47 +19,46 @@ char const gText_NewGameStatus_FarmSuffix[] ALIGN(4) =
     " Farm";
 
 char const gText_NewGameStatus_ReadDiary[] ALIGN(4) =
-    "Tagebuch lesen";
+    "Read diary.";
 
 char const gText_NewGameStatus_WriteDiary[] ALIGN(4) =
-    "Ins Tagebuch schreiben";
+    "Write in diary.";
 
 char const gText_NewGameStatus_NoSavedData[] ALIGN(4) =
-    "Es gibt keine\r\n"
-    "gespeicherten Daten.";
+    "There is no saved data.";
 
 char const gText_NewGameHelp_Controls[] =
-    "Steuerung      1      2\r\n"
-    "Steuerkreuz    Gehen  Rennen\r\n"
-    "Knopf R        Rennen Gehen";
+    "Controls        1       2\r\n"
+    "Control Pad     Walk    Run\r\n"
+    "R Button        Run     Walk";
 
 char const gText_NewGameHelp_ClockDisplay[] ALIGN(4) =
-    "Uhr im Kartenfenster \r\n"
-    "anzeigen oder verbergen{Press}";
+    "Show or hide the Clock \r\n"
+    "in the Map Window";
 
 char const gText_NewGameHelp_FaceDisplay[] ALIGN(4) =
-    "Das Gesicht der Person, mit\r\n"
-    "der du sprichst, im Fenster\r\n"
-    "anzeigen oder verbergen.{Press}";
+    "Show or hide the face of \r\n"
+    "the person you're talking\r\n"
+    "to in the Message Window\x05";
 
 char const gText_NewGameHelp_NameDisplay[] ALIGN(4) =
-    "Den Namen der Person, mit \r\n"
-    "der du sprichst, im Fenster\r\n"
-    "anzeigen oder verbergen.{Press}";
+    "Show or hide the name of \r\n"
+    "the person you're talking\r\n"
+    "to in the Message Window\x05";
 
 char const gText_NewGameSave_SaveFailed[] =
-    "Speichern fehlgeschlagen.{Press}";
+    "Save failed.\x05";
 
 char const gText_NewGameSave_LoadFailed[] ALIGN(4) =
-    "Laden fehlgeschlagen.\r\n"
-    "Die gespeicherten Daten\r\n"
-    "könnten korrupt sein.{Press}";
+    "Load failed.\r\n"
+    "The saved data may\r\n"
+    "be corrupted.\x05";
 
 char const gText_NewGameSave_LoadPrompt[] ALIGN(4) =
-    "Laden?";
+    "Load?";
 
 char const gText_NewGameSave_OverwritePrompt[] ALIGN(4) =
-    "Überschreiben?";
+    "Overwrite?";
 
 char const gCppRuntimeBadAlloc_NewGameSave[] =
     "bad_alloc";
@@ -134,50 +66,49 @@ char const gCppRuntimeError_NewGameSave[] ALIGN(4) =
     "Error";
 
 char const gText_NewGameIdentity_PlayerPrefix[] =
-    "Dein  ";
+    "Your  ";
 
 char const gText_NewGameIdentity_FarmPrefix[] ALIGN(4) =
-    "der Farm";
+    "Farm's";
 
 char const gText_NewGameIdentity_DogPrefix[] ALIGN(4) =
-    "d. Hundes";
+    "Dog's ";
 
 char const gCppRuntimeBadAlloc_NewGameIdentityPrefix[] ALIGN(4) =
     "bad_alloc";
 
 char const gText_NewGameIdentity_PlayerName[] ALIGN(4) =
-    "Dein Name     ";
+    "Your name     ";
 
 char const gText_NewGameIdentity_PlayerBirthday[] ALIGN(4) =
-    "Dein Geburtst.";
+    "Your birthday ";
 
 char const gText_NewGameIdentity_FarmName[] ALIGN(4) =
-    "Name der Farm ";
+    "Farm name     ";
 
 char const gText_NewGameIdentity_DogName[] ALIGN(4) =
-    "Hundname      ";
+    "Dog's name    ";
 
 char const gText_NewGameIdentity_Confirm[] ALIGN(4) =
-    "Ist das OK?";
+    "Is this OK?";
 
 char const gText_NewGameIdentity_Yes[] ALIGN(4) =
-    "Ja";
+    "Yes";
 
 char const gText_NewGameIdentity_No[] ALIGN(4) =
-    "Nein";
+    "No";
 
 char const gCppRuntimeBadAlloc_NewGameIdentityLabels[] ALIGN(4) =
     "bad_alloc";
 
-char const gNewGameNameEntryCharacterRows[21][31] ALIGN(1) = {
+char const gNewGameNameEntryCharacterRows[18][31] ALIGN(1) = {
     // Latin keyboard.
     "A B C D E F G H I J K L M N O ",
     "P Q R S T U V W X Y Z o \xB6 \xB7 % ",
     "a b c d e f g h i j k l m n o ",
     "p q r s t u v w x y z ' . \xA5 * ",
     "0 1 2 3 4 5 6 7 8 9 + - x ~ / ",
-    "< > ( ) \xA2 \xA3 & ! ? \xB1 \xB2 \xB3 \xB4 ä ü ",
-    "ö ß Ä Ö Ü                     ",
+    "< > ( ) \xA2 \xA3 & ! ? \xB1 \xB2 \xB3 \xB4     ",
 
     // Full-width keyboard, retained twice as stored in the US ROM.
     "ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯ",
@@ -186,7 +117,6 @@ char const gNewGameNameEntryCharacterRows[21][31] ALIGN(1) = {
     "ｐｑｒｓｔｕｖｗｘｙｚ’．·＊",
     "０１２３４５６７８９＋－×～／",
     "＜＞（）「」＆！？\x81\x8A\x81\x89\x81\xF4\x81\xCD　　",
-    "",
 
     "ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯ",
     "ＰＱＲＳＴＵＶＷＸＹＺ○☆★％",
@@ -194,7 +124,6 @@ char const gNewGameNameEntryCharacterRows[21][31] ALIGN(1) = {
     "ｐｑｒｓｔｕｖｗｘｙｚ’．·＊",
     "０１２３４５６７８９＋－×～／",
     "＜＞（）「」＆！？\x81\x8A\x81\x89\x81\xF4\x81\xCD　　",
-    "",
 };
 
 char const gText_NewGameNameEntry_Placeholder[] =
@@ -203,20 +132,26 @@ char const gText_NewGameNameEntry_Placeholder[] =
 char const gText_NewGameNameEntry_NameLabel[] ALIGN(4) =
     "Name  ";
 
-// The DE keyboard stores one Latin end label after its three seven-row pages.
+// The two End entries reserve the same twenty on-screen cells for their
+// respective half-width and full-width character pages.
 char const gText_NewGameNameEntry_EndLatin[] ALIGN(4) =
     "          "
     "          "
-    "Ende";
+    "End";
+
+char const gText_NewGameNameEntry_EndFullWidth[] ALIGN(4) =
+    "　　　　　"
+    "　　　　　"
+    "End";
 
 char const gText_NewGameNameEntry_Confirm[] ALIGN(4) =
-    "Ist dieser Name richtig?";
+    "Is this name correct?";
 
 char const gText_NewGameNameEntry_Yes[] ALIGN(4) =
-    "Ja";
+    "Yes";
 
 char const gText_NewGameNameEntry_No[] ALIGN(4) =
-    "Nein";
+    "No";
 
 char const gCppRuntimeBadAlloc_NewGameNameEntryUi00[] =
     "bad_alloc";
