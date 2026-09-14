@@ -5646,7 +5646,17 @@ func_080713AC: @ 0x08071008
     jp_code_0803ee_func func_080713B8, 0x71014, 0x71F28
     jp_code_0803ee_func func_08071F28, 0x71F28, 0x71F34
     jp_code_0803ee_func func_080722DC, 0x71F34, 0x74F84
-    jp_code_0803ee_func func_08075328, 0x74F84, 0x750AC
+    .global func_08075328
+    .thumb_func
+func_08075328: @ 0x08074F84
+    push {lr}
+    bl func_08070900
+    movs r0, #1
+    pop {r1}
+    bx r1
+
+    @ The following physical entry has not yet been matched semantically.
+    jp_code_0803ee_func func_08074F90, 0x74F90, 0x750AC
     jp_code_0803ee_func func_08075450, 0x750AC, 0x750F8
     jp_code_0803ee_func func_0807549C, 0x750F8, 0x751B8
     jp_code_0803ee_func func_080751B8, 0x751B8, 0x75278
