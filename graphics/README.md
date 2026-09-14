@@ -165,6 +165,26 @@ python tools/tile_grid.py build \
 
 `make tile-grid-test` runs that generic route against all four retail ROMs.
 
+## Code-backed UI scene previews
+
+Some scenes consist of a native tile sheet, one or more BG tilemaps, and a
+palette selected by code. The tilemap remains the editable source of truth
+because a PNG alone loses tile IDs, flips and palette-bank information. Where
+the consuming code proves all three inputs, the repository also commits a
+readable rendered PNG. For example,
+`ui/scene_080b7164/shared/palettes.png` contains the sixteen native palette
+banks and `ui/scene_080b7164/reference/` contains the two actual rendered
+256-by-256 layers plus their runtime-priority composition. Regenerate those
+references with:
+
+```console
+make gfx-ui-scene-080b7164-preview
+```
+
+This is not a guessed screenshot and does not use a JSON layout sidecar: the
+renderer reads the same checked-in 4bpp tiles, native tilemap entries and
+code-bounded palette used by the verified rebuild path.
+
 ## Shared UI tile grid
 
 `ui/shared_resource/shared_resource.png` is the first production use of the

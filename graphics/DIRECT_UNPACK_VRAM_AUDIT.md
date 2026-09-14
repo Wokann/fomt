@@ -18,7 +18,7 @@ next graphics families.
 | --- | --- | --- | --- |
 | `func_080A2BA4` | `0874EF14`, `0874EF3C`, `0874EFEC`, `0874F050` | Every packed and decoded stream identical | Managed: four native streams; the adjacent palette/archive overlap is intentionally excluded. |
 | `func_080AE7D0` | `0872FC34`, `0872FE6C`, `0872FEF8` plus adjacent palette | Every packed and decoded stream plus palette identical | Managed: two tilemaps, 4bpp tiles, and 16-bank palette PNG. |
-| `func_080B7164` | `0872D5CC`, `0872D630`, `0872D6D8` | Every packed and decoded stream identical | Managed: two tilemaps and 4bpp tiles; adjacent unproven palette span excluded. |
+| `func_080B7164` | `0872D5CC`, `0872D630`, `0872D6D8` | Every packed and decoded stream identical | Managed: two tilemaps, 4bpp tiles, and the code-bounded 0x200-byte BG palette; generated layer PNGs provide code-backed visual references. |
 | `func_080B55D0` area | `086FB004`, `0872C5D0`, `0872C73C`, `0872C84C` | All labelled ranges are identical | The three later `020`/`030` streams are managed as two tilemaps plus 4bpp tiles. Main `086FB004` uses format `230`; a generic decoder-compatible encoder exists but its `0x21C0` result exceeds this `0x2198` retail slot, so it remains unmanaged. |
 | `func_080BCFAC` | `0873BE24`, `0873BF48`, `0873BFF0` | Every packed and decoded stream is identical | Managed: two 32-by-32 tilemaps and one exact 4bpp native tile buffer; the adjoining unbounded palette copy remains excluded. |
 | `func_080C160C` | `0873F3C8`, `0873F5D4`, `0873F6AC` | Every packed and decoded stream is identical | Managed: two 32-by-32 tilemaps and one 4bpp tile stream; the adjacent unbounded palette copy remains excluded. |

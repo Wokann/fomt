@@ -15,7 +15,7 @@ image, nor that all game graphics have been extracted.
 | Located UI tile grid | `graphics/ui/shared_resource/shared_resource.png` | 4bpp tiles plus BGR555 palette | Yes |
 | Direct `func_080A2BA4` UI-scene BG streams | `graphics/ui/scene_080a2ba4/shared/tiles.4bpp` and `layer_*.tilemap` | four native packed streams, patched back to their original locations after link | Yes |
 | Direct `func_080AE7D0` UI-scene BG streams | `graphics/ui/scene_080ae7d0/shared/tiles.4bpp`, `layer_*.tilemap`, and palette PNG | three native packed streams plus an independently bounded BGR555 palette, patched back after link | Yes |
-| Direct `func_080B7164` UI-scene BG streams | `graphics/ui/scene_080b7164/shared/tiles.4bpp` and `layer_*.tilemap` | three native packed streams, patched back to original locations after link | Yes |
+| Direct `func_080B7164` UI-scene BG streams | `graphics/ui/scene_080b7164/shared/tiles.4bpp`, `layer_*.tilemap`, and `palettes.png`; rendered `reference/layer_*.png` | three native packed streams plus a code-bounded sixteen-bank BGR555 palette, patched back to original locations after link | Yes |
 | Direct `func_080C160C` UI-scene BG streams | `graphics/ui/scene_080c160c/shared/tiles.4bpp` and `layer_*.tilemap` | three native packed streams, patched back to original locations after link | Yes |
 | Direct `func_080BCFAC` UI-scene BG streams | `graphics/ui/scene_080bcfac/shared/tiles.4bpp` and `layer_*.tilemap` | three native packed streams, patched back to original locations after link | Yes |
 | Direct `func_080B55D0` auxiliary BG streams | `graphics/ui/scene_080b55d0_aux/shared/tiles.4bpp` and `layer_*.tilemap` | three native packed streams, patched back to original locations after link | Yes |
