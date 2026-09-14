@@ -669,9 +669,7 @@ SECTIONS
         . = 0xFA174; src/animal_festival_ranking_score_data.o(.rodata);
         . = 0xFA39C; src/frisbee.o(.rodata);
         FILL(0x00);
-        . = ALIGN(4); src/animal_festival_ranking_random_data.o(.rodata);
-        . = 0xFA78C; src/animal_festival.o(.rodata);
-        . = 0xFA99E; src/animal_festival_ranking_livestock_data.o(.rodata);
+        . = ALIGN(4); src/animal_festival.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         . = 0xFAA40; src/horse_race_data.o(.rodata);

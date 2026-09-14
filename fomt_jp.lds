@@ -754,9 +754,7 @@ SECTIONS
         . = 0xF9BD4; src/frisbee.o(.rodata);
         FILL(0x00);
         FILL(0x00);
-        . = ALIGN(4); src/animal_festival_ranking_random_data.o(.rodata);
-        . = 0xF9FCC; src/animal_festival.o(.rodata);
-        . = 0xFA1DE; src/animal_festival_ranking_livestock_data.o(.rodata);
+        . = ALIGN(4); src/animal_festival.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         . = 0xFA280; src/horse_race_data.o(.rodata);
