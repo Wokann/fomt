@@ -65,7 +65,7 @@
 | EU | `0x080F8A20`–`0x080F9EE3` | `data/scripts/script_table.o(.rodata.mary_script_table)` | Mary 生成的 `gMaryScriptTable`；脚本本体由 Mary 独立管理 | 精确 |
 | EU | `0x080F9EE4`–`0x080F9F10` | `src/script_engine.o(.rodata)` | `src/script_engine.cc`、`include/script_engine.hh`、`data/text/eu/script_engine.cc`；运行时字符串 `2` 项（首项为 `gCppRuntimeBadAlloc_ScriptEngine`）与 3 项 UI 字符串按原 ROM 顺序同属该对象 | 精确 |
 | EU | `0x080FB224`–`0x080FB86D` | `src/intro_scene_data.o(.rodata)` | `data/text/eu/intro_scene_data_1.cc` → `src/intro_scene_data.cc`（解包资源指针表）→ `data/text/eu/intro_scene_data_2.cc` → `data/text/eu/intro_scene_data_3.cc`<br>`include/intro_scene_data.hh`；20 个解包资源入口均为资产容器中的直接标签；所有已知汇编读取为符号重定位 | 精确 |
-| EU | `0x080FB870`–`0x080FBEC5` | `src/farm_status_screen_data.o(.rodata)` | `data/text/eu/farm_status_screen_data_1.cc` → `src/farm_status_screen_data.cc`（状态结构）→ `data/text/eu/farm_status_screen_data_2.cc` → `src/farm_status_screen_data.cc`（`gFarmStatusScreenPreloadedGlyphs`；直接区域字符串）→ `data/text/eu/farm_status_screen_data_3.cc` → `src/farm_status_screen_data.cc`（资源/预览表）→ `data/text/eu/farm_status_screen_data_4.cc`<br>`include/farm_status_screen_data.hh`；14 个预览资源入口均为资产容器直接标签；所有已知汇编读取为符号重定位 | 精确 |
+| EU | `0x080FB870`–`0x080FBEC5` | `src/farm_status_screen_data.o(.rodata)` | `data/text/eu/farm_status_screen_data.cc`（首段连续文本、状态结构及预加载字形表）→ `src/farm_status_screen_data.cc`（资源/瓦片/预览/外观表）→ `data/text/eu/farm_status_screen_data_1.cc`（尾部运行时文本）<br>`include/farm_status_screen_data.hh`；14 个预览资源入口均为资产容器直接标签；所有已知汇编读取为符号重定位 | 精确 |
 | EU | `0x080FBEC8`–`0x080FC0ED` | `src/records_screen_data.o(.rodata)` | `data/text/eu/records_screen_data_1.cc` → `src/records_screen_data.cc`（小游戏资源指针表）→ `data/text/eu/records_screen_data_2.cc` → `src/records_screen_data.cc`（压缩单元表）→ `data/text/eu/records_screen_data_3.cc` → `src/records_screen_data.cc`（`gUiPreloadedDigitGlyphCodes`；区域字形序列）→ `data/text/eu/records_screen_data_4.cc`<br>`include/records_screen_data.hh`；14 个资源入口均为资产容器直接标签；所有已知汇编读取为符号重定位 | 精确 |
 | EU | `0x080FC0EE`–`0x080FC0EF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FC0F0`–`0x080FC70D` | `src/staff_credits.o(.rodata)` | `data/text/eu/staff_credits_1.cc`（可见名单序列，经 `fomt-text` 在所有者内生成固定字段与行指针表）→ `data/text/eu/staff_credits_2.cc`<br>`src/staff_credits.cc`、`include/staff_credits.hh`；名单文本、行指针表与运行时尾部字符串按 ROM 顺序同属该对象；所有已知汇编读取为符号重定位 | 精确 |
@@ -154,7 +154,7 @@
 | DE | `0x080F8EBC`–`0x080FA37F` | `data/scripts/script_table.o(.rodata.mary_script_table)` | Mary 生成的 `gMaryScriptTable`；脚本本体由 Mary 独立管理 | 精确 |
 | DE | `0x080FA380`–`0x080FA3AC` | `src/script_engine.o(.rodata)` | `src/script_engine.cc`、`include/script_engine.hh`、`data/text/de/script_engine.cc`；运行时字符串 `2` 项（首项为 `gCppRuntimeBadAlloc_ScriptEngine`）与 3 项 UI 字符串按原 ROM 顺序同属该对象 | 精确 |
 | DE | `0x080FB77C`–`0x080FBE59` | `src/intro_scene_data.o(.rodata)` | `data/text/de/intro_scene_data_1.cc` → `src/intro_scene_data.cc`（解包资源指针表）→ `data/text/de/intro_scene_data_2.cc` → `data/text/de/intro_scene_data_3.cc`<br>`include/intro_scene_data.hh`；20 个解包资源入口均为资产容器中的直接标签；所有已知汇编读取为符号重定位 | 精确 |
-| DE | `0x080FBE5C`–`0x080FC4F7` | `src/farm_status_screen_data.o(.rodata)` | `data/text/de/farm_status_screen_data_1.cc` → `src/farm_status_screen_data.cc`（状态结构）→ `data/text/de/farm_status_screen_data_2.cc` → `src/farm_status_screen_data.cc`（`gFarmStatusScreenPreloadedGlyphs`；直接区域字符串）→ `data/text/de/farm_status_screen_data_3.cc` → `src/farm_status_screen_data.cc`（资源/预览表）→ `data/text/de/farm_status_screen_data_4.cc`<br>`include/farm_status_screen_data.hh`；14 个预览资源入口均为资产容器直接标签；所有已知汇编读取为符号重定位 | 精确 |
+| DE | `0x080FBE5C`–`0x080FC4F7` | `src/farm_status_screen_data.o(.rodata)` | `data/text/de/farm_status_screen_data.cc`（首段连续文本、状态结构及预加载字形表）→ `src/farm_status_screen_data.cc`（资源/瓦片/预览/外观表）→ `data/text/de/farm_status_screen_data_1.cc`（尾部运行时文本）<br>`include/farm_status_screen_data.hh`；14 个预览资源入口均为资产容器直接标签；所有已知汇编读取为符号重定位 | 精确 |
 | DE | `0x080FC580`–`0x080FC7AD` | `src/records_screen_data.o(.rodata)` | `data/text/de/records_screen_data_1.cc` → `src/records_screen_data.cc`（小游戏资源指针表）→ `data/text/de/records_screen_data_2.cc` → `src/records_screen_data.cc`（压缩单元表）→ `data/text/de/records_screen_data_3.cc` → `src/records_screen_data.cc`（`gUiPreloadedDigitGlyphCodes`；区域字形序列）→ `data/text/de/records_screen_data_4.cc`<br>`include/records_screen_data.hh`；14 个资源入口均为资产容器直接标签；所有已知汇编读取为符号重定位 | 精确 |
 | DE | `0x080FC7AE`–`0x080FC7AF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080FC7B0`–`0x080FCDCD` | `src/staff_credits.o(.rodata)` | `data/text/de/staff_credits_1.cc`（可见名单序列，经 `fomt-text` 在所有者内生成固定字段与行指针表）→ `data/text/de/staff_credits_2.cc`<br>`src/staff_credits.cc`、`include/staff_credits.hh`；名单文本、行指针表与运行时尾部字符串按 ROM 顺序同属该对象；所有已知汇编读取为符号重定位 | 精确 |
@@ -276,7 +276,7 @@
 | `0x080FA280`–`0x080FAA5F` | `src/horse_race_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/jp/horse_race_data_1.cc`–`horse_race_data_7.cc`（均由 `src/horse_race_data.cc` 在物理位置 include）<br>`include/horse_race_data.hh` | 文本 `44` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`_1` 为首段 UI 文本，`_2` 为票券字形码表，`_3` 为票券 UI 文本，随后是控制项指针表及运行时文本；`_4` 为奖品名，随后是奖品 ID 表；`_6` 为兑换 UI 文本，`_7` 为兑换字形码表。字形码表和奖品目录均为具名完整对象，不再由无名初始化器片段拼接；所有已知汇编读取为符号重定位；`gHorseRaceTicketCharacterCodes`, `gHorseRaceTicketControls`, `gHorseRacePrizeCatalog`, `gHorseRacePrizeItemIds`, `gHorseRacePrizeExchangeCharacterCodes` |
 | `0x080FAA60`–`0x080FB119` | `src/intro_scene_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/jp/intro_scene_data_1.cc` → `src/intro_scene_data.cc`（`gIntroSceneUnpackSources`）→ `data/text/jp/intro_scene_data_2.cc` → `data/text/jp/intro_scene_data_3.cc`<br>`include/intro_scene_data.hh` | 前缀运行时字符串 `1` 项<br>`gIntroSceneUnpackSources`（20 个资产容器直接标签，无 `.set` 别名）<br>文本 `28` 项（详见下方索引）<br>尾部运行时字符串 `1` 项；公共 `_1` 位于对话末尾；所有已知汇编读取为符号重定位 |
 | `0x080FB11A`–`0x080FB11B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FB11C`–`0x080FB761` | `src/farm_status_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/jp/farm_status_screen_data_1.cc` → `src/farm_status_screen_data.cc`（状态结构）→ `data/text/jp/farm_status_screen_data_2.cc` → `src/farm_status_screen_data.cc`（`gFarmStatusScreenPreloadedGlyphs`；直接区域字符串）→ `data/text/jp/farm_status_screen_data_3.cc` → `src/farm_status_screen_data.cc`（资源/瓦片/预览/外观表）→ `data/text/jp/farm_status_screen_data_4.cc`<br>`include/farm_status_screen_data.hh` | 文本 `62` 项（农场状态 `35`、动物参赛 `27`；详见下方索引）<br>运行时字符串 `4` 项<br>`gFarmStatusScreenPreloadedGlyphs`、资源与建筑预览表；14 个预览资源入口为资产容器直接标签；所有已知汇编读取为符号重定位 |
+| `0x080FB11C`–`0x080FB761` | `src/farm_status_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/jp/farm_status_screen_data.cc`（首段连续文本、状态结构及预加载字形表）→ `src/farm_status_screen_data.cc`（资源/瓦片/预览/外观表）→ `data/text/jp/farm_status_screen_data_1.cc`（尾部运行时文本）<br>`include/farm_status_screen_data.hh` | 文本 `62` 项（农场状态 `35`、动物参赛 `27`；详见下方索引）<br>运行时字符串 `4` 项<br>`gFarmStatusScreenPreloadedGlyphs`、资源与建筑预览表；14 个预览资源入口为资产容器直接标签；所有已知汇编读取为符号重定位 |
 | `0x080FB762`–`0x080FB763` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FB764`–`0x080FB935` | `src/records_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/jp/records_screen_data_1.cc` → `src/records_screen_data.cc`（小游戏资源指针表）→ `data/text/jp/records_screen_data_2.cc` → `src/records_screen_data.cc`（压缩单元表）→ `data/text/jp/records_screen_data_3.cc` → `src/records_screen_data.cc`（`gUiPreloadedDigitGlyphCodes`；区域字形序列）→ `data/text/jp/records_screen_data_4.cc`<br>`include/records_screen_data.hh` | 文本 `33` 项（详见下方索引）<br>运行时字符串 `4` 项<br>`gRecordsScreenMinigameTaskResources` 的 14 个 JP 资源入口为资产容器直接标签；`gCodeLinkoncePackedCellSizeLookup`、`gUiPreloadedDigitGlyphCodes` 按原顺序嵌入同一对象；所有已知汇编读取为符号重定位 |
 | `0x080FB936`–`0x080FB937` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -1292,68 +1292,68 @@
 | `0x080FB054` | `gText_IntroScene_GirlAsksPlayerToReturn` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
 | `0x080FB0B0` | `gText_IntroScene_OldManNotesFriend` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
 | `0x080FB0F4` | `gText_IntroScene_OldManWaitsForLetter` | `data/text/jp/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB11C` | `gText_FarmStatus_OverviewTitle` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB128` | `gText_FarmStatus_CounterBirds` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB12C` | `gText_FarmStatus_CounterHeads` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB130` | `gText_FarmStatus_CounterAnimals` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB134` | `gText_FarmStatus_CounterSheets` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB138` | `gText_FarmStatus_CounterPieces` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB13C` | `gText_FarmStatus_CounterLongObjects` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB140` | `gText_FarmStatus_GoldUnit` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB144` | `gText_FarmStatus_Healthy` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB14C` | `gText_FarmStatus_Unhappy` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB154` | `gText_FarmStatus_Sick` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB15C` | `gText_FarmStatus_Spring` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB160` | `gText_FarmStatus_Summer` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB164` | `gText_FarmStatus_Autumn` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB168` | `gText_FarmStatus_Winter` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB16C` | `gText_FarmStatus_AgeUnit` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB170` | `gText_FarmStatus_DayUnit` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB174` | `gText_FarmStatus_ChickenList` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB17C` | `gText_FarmStatus_CattleList` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB184` | `gText_FarmStatus_SheepList` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB18C` | `gText_FarmStatus_HarvestSpriteList` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB1A0` | `gText_FarmStatus_DaysRemaining` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB1A8` | `gText_FarmStatus_WorkAssignment` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB1B4` | `gText_FarmStatus_NotAssigned` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB1C4` | `gText_FarmStatus_EarningsReport` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB1D0` | `gText_FarmStatus_PlusSign` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB1D4` | `gText_FarmStatus_MinusSign` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB1D8` | `gText_FarmStatus_MonthSuffix` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB1E0` | `gText_FarmStatus_YearLabel` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB1E8` | `gText_FarmStatus_Income` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB1F0` | `gText_FarmStatus_Expenses` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB1F8` | `gText_FarmStatus_ToolLevelList` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB20C` | `gText_FarmStatus_ToolUpgradeInProgress` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB214` | `gText_FarmStatus_ToolUpgradeAvailable` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB220` | `gText_FarmStatus_PercentSign` | `data/text/jp/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB27C` | `gText_AnimalContest_ChickenConfirmation` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB294` | `gText_AnimalContest_Yes` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB29C` | `gText_AnimalContest_No` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB2A4` | `gText_AnimalContest_CowConfirmation` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB2BC` | `gText_AnimalContest_SheepConfirmation` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB2D4` | `gText_AnimalContest_BabyChickIneligible` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB308` | `gText_AnimalContest_AdultCowIneligible` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB338` | `gText_AnimalContest_AdultSheepIneligible` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB368` | `gText_AnimalContest_SickChickenIneligible` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB39C` | `gText_AnimalContest_SickCowIneligible` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB3CC` | `gText_AnimalContest_SickSheepIneligible` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB3FC` | `gText_AnimalContest_PregnantCowIneligible` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB42C` | `gText_AnimalContest_PregnantSheepIneligible` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB45C` | `gText_AnimalContest_ShornSheepIneligible` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB490` | `gText_AnimalContest_ChickenEntryAccepted` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB4BC` | `gText_AnimalContest_ChickenSelectionPrompt` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB4E4` | `gText_AnimalContest_CowEntryAccepted` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB510` | `gText_AnimalContest_CowSelectionPrompt` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB53C` | `gText_AnimalContest_SheepEntryAccepted` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB568` | `gText_AnimalContest_SheepSelectionPrompt` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB594` | `gText_AnimalContest_ChickenEntryDeclinedQuestion` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB5B0` | `gText_AnimalContest_LivestockEntryDeclinedQuestion` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB5C4` | `gText_AnimalContest_ChickenEntryDeclinedResponse` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB5F0` | `gText_AnimalContest_LivestockEntryDeclinedResponse` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB624` | `gText_AnimalContest_FinalConfirmation` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB634` | `gText_AnimalContest_FinalYes` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB63C` | `gText_AnimalContest_FinalNo` | `data/text/jp/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB11C` | `gText_FarmStatus_OverviewTitle` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB128` | `gText_FarmStatus_CounterBirds` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB12C` | `gText_FarmStatus_CounterHeads` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB130` | `gText_FarmStatus_CounterAnimals` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB134` | `gText_FarmStatus_CounterSheets` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB138` | `gText_FarmStatus_CounterPieces` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB13C` | `gText_FarmStatus_CounterLongObjects` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB140` | `gText_FarmStatus_GoldUnit` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB144` | `gText_FarmStatus_Healthy` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB14C` | `gText_FarmStatus_Unhappy` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB154` | `gText_FarmStatus_Sick` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB15C` | `gText_FarmStatus_Spring` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB160` | `gText_FarmStatus_Summer` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB164` | `gText_FarmStatus_Autumn` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB168` | `gText_FarmStatus_Winter` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB16C` | `gText_FarmStatus_AgeUnit` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB170` | `gText_FarmStatus_DayUnit` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB174` | `gText_FarmStatus_ChickenList` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB17C` | `gText_FarmStatus_CattleList` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB184` | `gText_FarmStatus_SheepList` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB18C` | `gText_FarmStatus_HarvestSpriteList` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB1A0` | `gText_FarmStatus_DaysRemaining` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB1A8` | `gText_FarmStatus_WorkAssignment` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB1B4` | `gText_FarmStatus_NotAssigned` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB1C4` | `gText_FarmStatus_EarningsReport` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB1D0` | `gText_FarmStatus_PlusSign` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB1D4` | `gText_FarmStatus_MinusSign` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB1D8` | `gText_FarmStatus_MonthSuffix` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB1E0` | `gText_FarmStatus_YearLabel` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB1E8` | `gText_FarmStatus_Income` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB1F0` | `gText_FarmStatus_Expenses` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB1F8` | `gText_FarmStatus_ToolLevelList` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB20C` | `gText_FarmStatus_ToolUpgradeInProgress` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB214` | `gText_FarmStatus_ToolUpgradeAvailable` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB220` | `gText_FarmStatus_PercentSign` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB27C` | `gText_AnimalContest_ChickenConfirmation` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB294` | `gText_AnimalContest_Yes` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB29C` | `gText_AnimalContest_No` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB2A4` | `gText_AnimalContest_CowConfirmation` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB2BC` | `gText_AnimalContest_SheepConfirmation` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB2D4` | `gText_AnimalContest_BabyChickIneligible` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB308` | `gText_AnimalContest_AdultCowIneligible` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB338` | `gText_AnimalContest_AdultSheepIneligible` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB368` | `gText_AnimalContest_SickChickenIneligible` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB39C` | `gText_AnimalContest_SickCowIneligible` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB3CC` | `gText_AnimalContest_SickSheepIneligible` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB3FC` | `gText_AnimalContest_PregnantCowIneligible` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB42C` | `gText_AnimalContest_PregnantSheepIneligible` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB45C` | `gText_AnimalContest_ShornSheepIneligible` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB490` | `gText_AnimalContest_ChickenEntryAccepted` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB4BC` | `gText_AnimalContest_ChickenSelectionPrompt` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB4E4` | `gText_AnimalContest_CowEntryAccepted` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB510` | `gText_AnimalContest_CowSelectionPrompt` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB53C` | `gText_AnimalContest_SheepEntryAccepted` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB568` | `gText_AnimalContest_SheepSelectionPrompt` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB594` | `gText_AnimalContest_ChickenEntryDeclinedQuestion` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB5B0` | `gText_AnimalContest_LivestockEntryDeclinedQuestion` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB5C4` | `gText_AnimalContest_ChickenEntryDeclinedResponse` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB5F0` | `gText_AnimalContest_LivestockEntryDeclinedResponse` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB624` | `gText_AnimalContest_FinalConfirmation` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB634` | `gText_AnimalContest_FinalYes` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB63C` | `gText_AnimalContest_FinalNo` | `data/text/jp/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
 | `0x080FB764` | `gText_Records_NumberShipped` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
 | `0x080FB76C` | `gText_Records_ShippedCountSuffix` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
 | `0x080FB770` | `gText_Records_Fishing` | `data/text/jp/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
@@ -2111,7 +2111,7 @@
 | `0x080FAA40`–`0x080FB1D7` | `src/horse_race_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/us/horse_race_data_1.cc`–`horse_race_data_7.cc`（均由 `src/horse_race_data.cc` 在物理位置 include）<br>`include/horse_race_data.hh` | 文本 `43` 项（详见下方索引）<br>运行时字符串 `1` 项<br>`_1` 为首段 UI 文本，`_2` 为票券字形码表，`_3` 为票券 UI 文本，随后是控制项指针表及运行时文本；`_4` 为奖品名，随后是奖品 ID 表；`_6` 为兑换 UI 文本，`_7` 为兑换字形码表。字形码表和奖品目录均为具名完整对象，不再由无名初始化器片段拼接；所有已知汇编读取为符号重定位；`gHorseRaceTicketCharacterCodes`, `gHorseRaceTicketControls`, `gHorseRacePrizeCatalog`, `gHorseRacePrizeItemIds`, `gHorseRacePrizeExchangeCharacterCodes` |
 | `0x080FB1D8`–`0x080FB821` | `src/intro_scene_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/us/intro_scene_data_1.cc` → `src/intro_scene_data.cc`（`gIntroSceneUnpackSources`）→ `data/text/us/intro_scene_data_2.cc` → `data/text/us/intro_scene_data_3.cc`<br>`include/intro_scene_data.hh` | 前缀运行时字符串 `1` 项<br>`gIntroSceneUnpackSources`（20 个资产容器直接标签，无 `.set` 别名）<br>文本 `28` 项（详见下方索引）<br>尾部运行时字符串 `1` 项；公共 `_1` 位于对话末尾；所有已知汇编读取为符号重定位 |
 | `0x080FB822`–`0x080FB823` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FB824`–`0x080FBE79` | `src/farm_status_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/us/farm_status_screen_data_1.cc` → `src/farm_status_screen_data.cc`（状态结构）→ `data/text/us/farm_status_screen_data_2.cc` → `src/farm_status_screen_data.cc`（`gFarmStatusScreenPreloadedGlyphs`；直接区域字符串）→ `data/text/us/farm_status_screen_data_3.cc` → `src/farm_status_screen_data.cc`（资源/瓦片/预览/外观表）→ `data/text/us/farm_status_screen_data_4.cc`<br>`include/farm_status_screen_data.hh` | 文本 `53` 项（农场状态 `29`、动物参赛 `24`；详见下方索引）<br>运行时字符串 `4` 项<br>`gFarmStatusScreenPreloadedGlyphs`、资源与建筑预览表；14 个预览资源入口为资产容器直接标签；所有已知汇编读取为符号重定位 |
+| `0x080FB824`–`0x080FBE79` | `src/farm_status_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/us/farm_status_screen_data.cc`（首段连续文本、状态结构及预加载字形表）→ `src/farm_status_screen_data.cc`（资源/瓦片/预览/外观表）→ `data/text/us/farm_status_screen_data_1.cc`（尾部运行时文本）<br>`include/farm_status_screen_data.hh` | 文本 `53` 项（农场状态 `29`、动物参赛 `24`；详见下方索引）<br>运行时字符串 `4` 项<br>`gFarmStatusScreenPreloadedGlyphs`、资源与建筑预览表；14 个预览资源入口为资产容器直接标签；所有已知汇编读取为符号重定位 |
 | `0x080FBE7A`–`0x080FBE7B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FBE7C`–`0x080FC0A1` | `src/records_screen_data.o(.rodata)` | [嵌入文本 / 数据] | `data/text/us/records_screen_data_1.cc` → `src/records_screen_data.cc`（小游戏资源指针表）→ `data/text/us/records_screen_data_2.cc` → `src/records_screen_data.cc`（压缩单元表）→ `data/text/us/records_screen_data_3.cc` → `src/records_screen_data.cc`（`gUiPreloadedDigitGlyphCodes`；区域字形序列）→ `data/text/us/records_screen_data_4.cc`<br>`include/records_screen_data.hh` | 文本 `33` 项（详见下方索引）<br>运行时字符串 `4` 项<br>`gRecordsScreenMinigameTaskResources` 的 14 个资源入口为资产容器直接标签；`gCodeLinkoncePackedCellSizeLookup`、`gUiPreloadedDigitGlyphCodes` 按原顺序嵌入同一对象；所有已知汇编读取为符号重定位 |
 | `0x080FC0A2`–`0x080FC0A3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -3119,59 +3119,59 @@
 | `0x080FB754` | `gText_IntroScene_GirlAsksPlayerToReturn` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
 | `0x080FB7A0` | `gText_IntroScene_OldManNotesFriend` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
 | `0x080FB7F0` | `gText_IntroScene_OldManWaitsForLetter` | `data/text/us/intro_scene_data_2.cc` | `src/intro_scene_data.o(.rodata)` |
-| `0x080FB824` | `gText_FarmStatus_OverviewTitle` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB830` | `gText_FarmStatus_CountFieldPadding` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB834` | `gText_FarmStatus_GoldUnit` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB838` | `gText_FarmStatus_Healthy` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB844` | `gText_FarmStatus_Unhappy` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB850` | `gText_FarmStatus_Sick` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB85C` | `gText_FarmStatus_Spring` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB864` | `gText_FarmStatus_Summer` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB86C` | `gText_FarmStatus_Autumn` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB874` | `gText_FarmStatus_Winter` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB87C` | `gText_FarmStatus_AgeUnit` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB880` | `gText_FarmStatus_ChickenList` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB894` | `gText_FarmStatus_CattleList` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB8A4` | `gText_FarmStatus_SheepList` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB8B4` | `gText_FarmStatus_HarvestSpriteList` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB8C8` | `gText_FarmStatus_DayAbbreviation` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB8CC` | `gText_FarmStatus_DaysRemaining` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB8D4` | `gText_FarmStatus_WorkAssignment` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB8E0` | `gText_FarmStatus_NotAssigned` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB8F0` | `gText_FarmStatus_EarningsReport` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB904` | `gText_FarmStatus_PlusSign` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB908` | `gText_FarmStatus_MinusSign` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB90C` | `gText_FarmStatus_YearLabel` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB914` | `gText_FarmStatus_Income` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB91C` | `gText_FarmStatus_Expenses` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB928` | `gText_FarmStatus_ToolLevelList` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB93C` | `gText_FarmStatus_ToolShopLabel` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB944` | `gText_FarmStatus_ToolUpgradeQuestion` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB950` | `gText_FarmStatus_PercentSign` | `data/text/us/farm_status_screen_data_1.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB9C8` | `gText_AnimalContest_ChickenConfirmation` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB9DC` | `gText_AnimalContest_Yes` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB9E0` | `gText_AnimalContest_No` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB9E4` | `gText_AnimalContest_CowConfirmation` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FB9F4` | `gText_AnimalContest_SheepConfirmation` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBA08` | `gText_AnimalContest_BabyChickIneligible` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBA3C` | `gText_AnimalContest_AdultCowIneligible` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBA70` | `gText_AnimalContest_AdultSheepIneligible` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBAA8` | `gText_AnimalContest_SickChickenIneligible` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBAE0` | `gText_AnimalContest_SickCowIneligible` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBB14` | `gText_AnimalContest_SickSheepIneligible` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBB4C` | `gText_AnimalContest_PregnantCowIneligible` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBB80` | `gText_AnimalContest_PregnantSheepIneligible` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBBB8` | `gText_AnimalContest_ShornSheepIneligible` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBBEC` | `gText_AnimalContest_EntryAccepted` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBC18` | `gText_AnimalContest_ChickenSelectionPrompt` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBC48` | `gText_AnimalContest_CowSelectionPrompt` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBC70` | `gText_AnimalContest_SheepSelectionPrompt` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBC9C` | `gText_AnimalContest_EntryDeclinedQuestion` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBCB8` | `gText_AnimalContest_ChickenEntryDeclinedResponse` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBCE0` | `gText_AnimalContest_LivestockEntryDeclinedResponse` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBD18` | `gText_AnimalContest_FinalConfirmation` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBD28` | `gText_AnimalContest_FinalYes` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
-| `0x080FBD2C` | `gText_AnimalContest_FinalNo` | `data/text/us/farm_status_screen_data_2.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB824` | `gText_FarmStatus_OverviewTitle` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB830` | `gText_FarmStatus_CountFieldPadding` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB834` | `gText_FarmStatus_GoldUnit` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB838` | `gText_FarmStatus_Healthy` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB844` | `gText_FarmStatus_Unhappy` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB850` | `gText_FarmStatus_Sick` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB85C` | `gText_FarmStatus_Spring` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB864` | `gText_FarmStatus_Summer` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB86C` | `gText_FarmStatus_Autumn` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB874` | `gText_FarmStatus_Winter` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB87C` | `gText_FarmStatus_AgeUnit` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB880` | `gText_FarmStatus_ChickenList` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB894` | `gText_FarmStatus_CattleList` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB8A4` | `gText_FarmStatus_SheepList` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB8B4` | `gText_FarmStatus_HarvestSpriteList` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB8C8` | `gText_FarmStatus_DayAbbreviation` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB8CC` | `gText_FarmStatus_DaysRemaining` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB8D4` | `gText_FarmStatus_WorkAssignment` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB8E0` | `gText_FarmStatus_NotAssigned` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB8F0` | `gText_FarmStatus_EarningsReport` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB904` | `gText_FarmStatus_PlusSign` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB908` | `gText_FarmStatus_MinusSign` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB90C` | `gText_FarmStatus_YearLabel` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB914` | `gText_FarmStatus_Income` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB91C` | `gText_FarmStatus_Expenses` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB928` | `gText_FarmStatus_ToolLevelList` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB93C` | `gText_FarmStatus_ToolShopLabel` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB944` | `gText_FarmStatus_ToolUpgradeQuestion` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB950` | `gText_FarmStatus_PercentSign` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB9C8` | `gText_AnimalContest_ChickenConfirmation` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB9DC` | `gText_AnimalContest_Yes` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB9E0` | `gText_AnimalContest_No` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB9E4` | `gText_AnimalContest_CowConfirmation` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FB9F4` | `gText_AnimalContest_SheepConfirmation` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBA08` | `gText_AnimalContest_BabyChickIneligible` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBA3C` | `gText_AnimalContest_AdultCowIneligible` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBA70` | `gText_AnimalContest_AdultSheepIneligible` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBAA8` | `gText_AnimalContest_SickChickenIneligible` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBAE0` | `gText_AnimalContest_SickCowIneligible` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBB14` | `gText_AnimalContest_SickSheepIneligible` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBB4C` | `gText_AnimalContest_PregnantCowIneligible` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBB80` | `gText_AnimalContest_PregnantSheepIneligible` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBBB8` | `gText_AnimalContest_ShornSheepIneligible` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBBEC` | `gText_AnimalContest_EntryAccepted` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBC18` | `gText_AnimalContest_ChickenSelectionPrompt` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBC48` | `gText_AnimalContest_CowSelectionPrompt` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBC70` | `gText_AnimalContest_SheepSelectionPrompt` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBC9C` | `gText_AnimalContest_EntryDeclinedQuestion` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBCB8` | `gText_AnimalContest_ChickenEntryDeclinedResponse` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBCE0` | `gText_AnimalContest_LivestockEntryDeclinedResponse` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBD18` | `gText_AnimalContest_FinalConfirmation` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBD28` | `gText_AnimalContest_FinalYes` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
+| `0x080FBD2C` | `gText_AnimalContest_FinalNo` | `data/text/us/farm_status_screen_data.cc` | `src/farm_status_screen_data.o(.rodata)` |
 | `0x080FBE7C` | `gText_Records_NumberShipped` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
 | `0x080FBE8C` | `gText_Records_ShippedCountSuffix` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |
 | `0x080FBE90` | `gText_Records_Fishing` | `data/text/us/records_screen_data_1.cc` | `src/records_screen_data.o(.rodata)` |

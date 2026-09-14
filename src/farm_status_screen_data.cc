@@ -1,85 +1,7 @@
 #include "farm_status_screen_data.hh"
 
-// These regional text groups occupy the native Farm Status ROM run immediately
-// before the screen's lookup and preview data.
-#include FOMT_TEXT_INCLUDE(farm_status_screen_data_1.cc)
-
-// These packed labels are fields of the status-screen structures, not
-// standalone string objects. Keeping their typed aggregates here preserves
-// the original field layout while the text preprocessor encodes each literal.
-AnimalStatusScreenPrefixText const gAnimalStatusScreenPrefixText = {
-#if defined(REGION_JP)
-    "なし",
-    "O１２３４５６７８９\x82",
-#else
-    "N/A ",
-    {
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-    },
-#endif
-};
-
-AnimalStatusScreenText const gAnimalStatusScreenText = {
-#if defined(REGION_JP)
-    "健康",
-    "不機嫌",
-    "病気",
-    "春",
-    "夏",
-    "秋",
-    "冬",
-    "才",
-    "日",
-#elif defined(REGION_DE)
-    "Gesund  ",
-    "Traurig ",
-    "Krank   ",
-    "Frühl.",
-    "Sommer",
-    "Herbst",
-    "Winter",
-    "J ",
-    "T ",
-#else
-    "Healthy ",
-    "Unhappy ",
-    "Sick    ",
-    "Spring",
-    "Summer",
-    "Fall  ",
-    "Winter",
-    "Y ",
-    "D ",
-#endif
-};
-
-#include FOMT_TEXT_INCLUDE(farm_status_screen_data_2.cc)
-
-// The renderer consumes this preloaded glyph-code array directly.  The
-// selected regional text is encoded by the ordinary text channel.
-u16 const gFarmStatusScreenPreloadedGlyphs[] = {
-#if defined(REGION_JP)
-    "０１２３４５６７８９春夏秋冬誕生日の月＿　",
-#elif defined(REGION_EU)
-    "0123456789SpringSummerFall  Winter_Birthday",
-#elif defined(REGION_DE)
-    "0123456789Frühl.SommerHerbstWinter_Geburtstag ",
-#else
-    "0123456789SpringSummerFall  Winter_Birthday",
-#endif
-};
-
-// This runtime literal immediately follows the glyph array.
-#include FOMT_TEXT_INCLUDE(farm_status_screen_data_3.cc)
+// The first physical run contains all contiguous text-bearing objects.
+#include FOMT_TEXT_INCLUDE(farm_status_screen_data.cc)
 
 FarmStatusScreenResourceDescriptor const gFarmStatusScreenResourceDescriptors[] = {
     { 0x0078, 0x0010 },
@@ -158,5 +80,4 @@ FarmStatusScreenExteriorStyleData const gFarmStatusScreenExteriorStyleData = {
     },
 };
 
-// This runtime literal is the final object in the native status-screen run.
-#include FOMT_TEXT_INCLUDE(farm_status_screen_data_4.cc)
+#include FOMT_TEXT_INCLUDE(farm_status_screen_data_1.cc)
