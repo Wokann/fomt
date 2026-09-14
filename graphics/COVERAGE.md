@@ -63,6 +63,8 @@ graphics resource. The Unpack-to-VRAM inventory follows only simple literal
 and register data flow in assembly, so its rows are code-backed resource leads,
 not assertions about tile, palette, or OAM format. Run it with
 `make unpack-vram-inventory`; the current assembly yields 30 such calls.
+`DIRECT_UNPACK_VRAM_AUDIT.md` records the current code-consumer classification
+and keeps unproven streams out of the managed-resource table.
 
 ## Next audit queue
 
