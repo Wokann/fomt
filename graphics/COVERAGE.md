@@ -14,6 +14,7 @@ image, nor that all game graphics have been extracted.
 | Actor archive, every referenced descriptor | `graphics/sprites/actor_archive/full/*.png` | actor tile stream | Yes |
 | Located UI tile grid | `graphics/ui/shared_resource/shared_resource.png` | 4bpp tiles plus BGR555 palette | Yes |
 | Direct `func_080A2BA4` UI-scene BG streams | `graphics/ui/scene_080a2ba4/shared/tiles.4bpp` and `layer_*.tilemap` | four native packed streams, patched back to their original locations after link | Yes |
+| Direct `func_080AE7D0` UI-scene BG streams | `graphics/ui/scene_080ae7d0/shared/tiles.4bpp`, `layer_*.tilemap`, and palette PNG | three native packed streams plus an independently bounded BGR555 palette, patched back after link | Yes |
 | Farm-status background and building previews | `graphics/ui/farm_status/shared/base_tiles.png`, `base_palettes.png`, and `tilemaps/*.tilemap` | packed 4bpp tile stream, sixteen BGR555 palette banks, and fourteen BG tilemaps | Yes |
 | Farm-status secondary layouts | `graphics/ui/farm_status/shared/secondary_tilemaps/*.tilemap` | six native Huffman-4/LZ3 64-by-44 BG tilemap streams | Yes |
 | Intro-scene object tile sources | `graphics/intro_scene/shared/object_tiles/*.4bpp` | twenty native Raw-LZ object-tile streams | Yes |
@@ -32,7 +33,7 @@ Most managed families are included from `asm/data/data_0813B288.s` through a
 regional `build/<region>/graphics/...` output. MapData visual layers preserve
 their original continuous archive position through a post-link replacement
 step, because their 272 pointer-bearing streams are not a single assembly
-incbin block. The four direct UI-scene streams use the same explicit post-link
+incbin block. The direct UI-scene streams use the same explicit post-link
 replacement rule because their region-specific physical labels are embedded in
 otherwise raw data containers. The surrounding archive headers, OAM records,
 palettes, tables, and unhandled bytes remain direct ROM data until they have a

@@ -1,0 +1,303 @@
+#!/usr/bin/env python3
+"""Manage the verified native resource set loaded by ``func_080AE7D0``.
+
+The routine loads two 32-by-32 background tilemaps, a 928-tile 4bpp character
+stream, and a separate 16-bank BGR555 palette range.  The native map/tile
+sources stay uncomposited: no scene layout, layer order, or preview pixels are
+claimed beyond the VRAM destinations established by the routine itself.
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import sys
+from dataclasses import dataclass
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(Path(__file__).parent / "scripts"))
+
+from decompress import unpack  # type: ignore[import-not-found]
+from marvelous_codec import encode_raw_lz  # type: ignore[import-not-found]
+from tile_grid import bgr555_from_colors, colors_from_bgr555, read_png, write_png
+
+
+@dataclass(frozen=True)
+class Stream:
+    name: str
+    offset: int
+    length: int
+    decoded_size: int
+    format_spec: str
+    ladder: str
+
+
+STARTS = {
+    "jp": 0x4B5D9C,
+    "us": 0x72FC34,
+    "eu": 0x72FC90,
+    "de": 0x4B6FA0,
+}
+SPECS = (
+    ("layer_0.tilemap", 0x238, 0x800, "020", "35678910"),
+    ("layer_1.tilemap", 0x8C, 0x800, "030", "2510"),
+    ("tiles.4bpp", 0x1A48, 0x7400, "020", "25710111315"),
+)
+PALETTE_LENGTH = 0x200
+PALETTE_SOURCE = "palette_banks.png"
+PALETTE_OUTPUT = "palette_banks.gbapal"
+
+
+def streams(region: str) -> tuple[Stream, ...]:
+    cursor = STARTS[region]
+    result: list[Stream] = []
+    for name, length, decoded_size, format_spec, ladder in SPECS:
+        result.append(Stream(name, cursor, length, decoded_size, format_spec, ladder))
+        cursor += length
+    return tuple(result)
+
+
+def palette_offset(region: str) -> int:
+    return STARTS[region] + sum(stream.length for stream in streams(region))
+
+
+def packed(rom: bytes, stream: Stream) -> bytes:
+    result = rom[stream.offset:stream.offset + stream.length]
+    if len(result) != stream.length:
+        raise ValueError(f"{stream.name} exceeds ROM bounds")
+    return result
+
+
+def decoded(rom: bytes, stream: Stream) -> bytes:
+    payload, format_spec, ladder = unpack(packed(rom, stream))
+    if len(payload) != stream.decoded_size or format_spec != stream.format_spec or ladder != stream.ladder:
+        raise ValueError(
+            f"{stream.name}: decoded {len(payload):#x} bytes / {format_spec}/{ladder}; "
+            f"expected {stream.decoded_size:#x} / {stream.format_spec}/{stream.ladder}"
+        )
+    return bytes(payload)
+
+
+def palette(rom: bytes, region: str) -> bytes:
+    offset = palette_offset(region)
+    result = rom[offset:offset + PALETTE_LENGTH]
+    if len(result) != PALETTE_LENGTH:
+        raise ValueError("palette range exceeds ROM bounds")
+    return result
+
+
+def source_path(source_dir: Path, stream: Stream) -> Path:
+    return source_dir / stream.name
+
+
+def output_path(output_dir: Path, stream: Stream) -> Path:
+    return output_dir / f"{stream.name}.0x70"
+
+
+def palette_source_path(source_dir: Path) -> Path:
+    return source_dir / PALETTE_SOURCE
+
+
+def palette_output_path(output_dir: Path) -> Path:
+    return output_dir / PALETTE_OUTPUT
+
+
+def region_output_dir(output_root: Path, region: str) -> Path:
+    return output_root / region / "graphics" / "ui" / "scene_080ae7d0"
+
+
+def write_palette_png(output: Path, raw: bytes) -> None:
+    colors = colors_from_bgr555(raw, color_count=256)
+    write_png(output, bytes(range(256)) * 8, 256, 8, colors)
+
+
+def read_palette_png(source: Path) -> bytes:
+    indexes, width, height, colors = read_png(source, color_count=256)
+    if (width, height) != (256, 8) or indexes != bytes(range(256)) * 8:
+        raise ValueError(f"{source} must be a 256x8 palette swatch PNG with ordered indices")
+    return bgr555_from_colors(colors, color_count=256)
+
+
+def export(arguments: argparse.Namespace) -> None:
+    inputs = {region: Path(path).read_bytes() for region, path in arguments.rom}
+    if set(inputs) != set(STARTS):
+        raise ValueError("export requires jp, us, eu and de ROMs")
+    arguments.source_dir.mkdir(parents=True, exist_ok=True)
+    for index, jp_stream in enumerate(streams("jp")):
+        entries = {region: streams(region)[index] for region in STARTS}
+        packed_hashes = {
+            region: hashlib.sha256(packed(inputs[region], stream)).digest()
+            for region, stream in entries.items()
+        }
+        payloads = {region: decoded(inputs[region], stream) for region, stream in entries.items()}
+        if len(set(packed_hashes.values())) != 1 or len(set(payloads.values())) != 1:
+            raise ValueError(f"{jp_stream.name} differs across retail regions; refusing shared source")
+        output = source_path(arguments.source_dir, jp_stream)
+        if output.exists() and not arguments.replace:
+            raise ValueError(f"{output} exists; use --replace to refresh it")
+        output.write_bytes(payloads["jp"])
+    palettes = {region: palette(inputs[region], region) for region in STARTS}
+    if len({hashlib.sha256(value).digest() for value in palettes.values()}) != 1:
+        raise ValueError("palette range differs across retail regions; refusing shared source")
+    output = palette_source_path(arguments.source_dir)
+    if output.exists() and not arguments.replace:
+        raise ValueError(f"{output} exists; use --replace to refresh it")
+    write_palette_png(output, palettes["jp"])
+    print(f"exported {len(SPECS)} native streams and one shared palette for func_080AE7D0")
+
+
+def rebuild(source: bytes, baseline: bytes, stream: Stream) -> bytes:
+    original, format_spec, ladder = unpack(baseline)
+    if bytes(original) != source:
+        encoded = encode_raw_lz(source, int(format_spec[1]), ladder)
+        if len(encoded) > len(baseline):
+            raise ValueError(
+                f"edited {stream.name} needs {len(encoded):#x} bytes; "
+                f"its native slot holds only {len(baseline):#x}"
+            )
+        result = encoded + bytes(len(baseline) - len(encoded))
+    else:
+        result = baseline
+    payload, checked_format, checked_ladder = unpack(result)
+    if bytes(payload) != source or checked_format != stream.format_spec or checked_ladder != stream.ladder:
+        raise AssertionError(f"{stream.name} failed strict native decode validation")
+    return result
+
+
+def build(arguments: argparse.Namespace) -> None:
+    rom = arguments.rom.read_bytes()
+    arguments.output_dir.mkdir(parents=True, exist_ok=True)
+    for stream in streams(arguments.region):
+        source = source_path(arguments.source_dir, stream).read_bytes()
+        if len(source) != stream.decoded_size:
+            raise ValueError(f"{source_path(arguments.source_dir, stream)} must be exactly {stream.decoded_size:#x} bytes")
+        output_path(arguments.output_dir, stream).write_bytes(rebuild(source, packed(rom, stream), stream))
+    palette_output_path(arguments.output_dir).write_bytes(read_palette_png(palette_source_path(arguments.source_dir)))
+    print(f"rebuilt {len(SPECS)} func_080AE7D0 streams and palette for {arguments.region.upper()}")
+
+
+def verify(arguments: argparse.Namespace) -> None:
+    rom = arguments.rom.read_bytes()
+    for stream in streams(arguments.region):
+        source = source_path(arguments.source_dir, stream).read_bytes()
+        baseline = packed(rom, stream)
+        rebuilt = rebuild(source, baseline, stream)
+        if rebuilt != baseline:
+            raise AssertionError(f"{stream.name} no longer matches retail {arguments.region.upper()} bytes")
+        if arguments.output_dir is not None and output_path(arguments.output_dir, stream).read_bytes() != baseline:
+            raise AssertionError(f"built {stream.name} does not match retail {arguments.region.upper()} bytes")
+    source_palette = read_palette_png(palette_source_path(arguments.source_dir))
+    baseline_palette = palette(rom, arguments.region)
+    if source_palette != baseline_palette:
+        raise AssertionError(f"palette no longer matches retail {arguments.region.upper()} bytes")
+    if arguments.output_dir is not None and palette_output_path(arguments.output_dir).read_bytes() != baseline_palette:
+        raise AssertionError(f"built palette does not match retail {arguments.region.upper()} bytes")
+    print(f"verified {len(SPECS)} func_080AE7D0 streams and palette against {arguments.region.upper()} ROM")
+
+
+def apply(target: bytes, baseline: bytes, outputs: Path, region: str) -> bytes:
+    patched = bytearray(target)
+    for stream in streams(region):
+        generated = output_path(outputs, stream).read_bytes()
+        expected = packed(baseline, stream)
+        current = target[stream.offset:stream.offset + stream.length]
+        if len(generated) != stream.length:
+            raise ValueError(f"generated {stream.name} has incorrect length")
+        if current != expected and current != generated:
+            raise ValueError(f"target {stream.name} differs from both retail baseline and generated bytes")
+        patched[stream.offset:stream.offset + stream.length] = generated
+    offset = palette_offset(region)
+    generated_palette = palette_output_path(outputs).read_bytes()
+    expected_palette = palette(baseline, region)
+    current_palette = target[offset:offset + PALETTE_LENGTH]
+    if len(generated_palette) != PALETTE_LENGTH:
+        raise ValueError("generated palette has incorrect length")
+    if current_palette != expected_palette and current_palette != generated_palette:
+        raise ValueError("target palette differs from both retail baseline and generated bytes")
+    patched[offset:offset + PALETTE_LENGTH] = generated_palette
+    return bytes(patched)
+
+
+def patch(arguments: argparse.Namespace) -> None:
+    target_path = arguments.rom
+    target_path.write_bytes(apply(
+        target_path.read_bytes(), arguments.baseline.read_bytes(), arguments.output_dir, arguments.region
+    ))
+    print(f"patched func_080AE7D0 streams and palette into {target_path} for {arguments.region.upper()}")
+
+
+def patch_test(arguments: argparse.Namespace) -> None:
+    for region, path in arguments.rom:
+        baseline = Path(path).read_bytes()
+        result = apply(baseline, baseline, region_output_dir(arguments.output_root, region), region)
+        if result != baseline:
+            raise AssertionError(f"unchanged func_080AE7D0 patch differs from retail {region.upper()} ROM")
+    print("verified unchanged func_080AE7D0 post-link patches against all four retail ROMs")
+
+
+def edit_test(arguments: argparse.Namespace) -> None:
+    rom = arguments.rom.read_bytes()
+    for stream in streams(arguments.region):
+        source = bytearray(decoded(rom, stream))
+        for index, value in enumerate(source):
+            for mask in (1, 2, 4, 8, 16, 32, 64, 128):
+                edited = bytearray(source)
+                edited[index] = value ^ mask
+                try:
+                    rebuilt = rebuild(bytes(edited), packed(rom, stream), stream)
+                except ValueError:
+                    continue
+                payload, _format, _ladder = unpack(rebuilt)
+                if bytes(payload) != bytes(edited) or rebuilt == packed(rom, stream):
+                    raise AssertionError("edited func_080AE7D0 stream did not strictly round-trip")
+                print(f"func_080AE7D0 edit test: {stream.name} byte {index:#x} xor {mask:#x}; packed {len(rebuilt):#x} bytes")
+                return
+    raise AssertionError("no deterministic in-place edit fits any func_080AE7D0 stream")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    commands = parser.add_subparsers(dest="command", required=True)
+    export_parser = commands.add_parser("export")
+    export_parser.add_argument("--source-dir", type=Path, required=True)
+    export_parser.add_argument("--rom", nargs=2, action="append", metavar=("REGION", "ROM"), required=True)
+    export_parser.add_argument("--replace", action="store_true")
+    build_parser = commands.add_parser("build")
+    build_parser.add_argument("--region", choices=tuple(STARTS), required=True)
+    build_parser.add_argument("--rom", type=Path, required=True)
+    build_parser.add_argument("--source-dir", type=Path, required=True)
+    build_parser.add_argument("--output-dir", type=Path, required=True)
+    verify_parser = commands.add_parser("verify")
+    verify_parser.add_argument("--region", choices=tuple(STARTS), required=True)
+    verify_parser.add_argument("--rom", type=Path, required=True)
+    verify_parser.add_argument("--source-dir", type=Path, required=True)
+    verify_parser.add_argument("--output-dir", type=Path)
+    patch_parser = commands.add_parser("patch")
+    patch_parser.add_argument("--region", choices=tuple(STARTS), required=True)
+    patch_parser.add_argument("--baseline", type=Path, required=True)
+    patch_parser.add_argument("--rom", type=Path, required=True)
+    patch_parser.add_argument("--output-dir", type=Path, required=True)
+    patch_test_parser = commands.add_parser("patch-test")
+    patch_test_parser.add_argument("--output-root", type=Path, required=True)
+    patch_test_parser.add_argument("--rom", nargs=2, action="append", metavar=("REGION", "ROM"), required=True)
+    edit_parser = commands.add_parser("edit-test")
+    edit_parser.add_argument("--region", choices=tuple(STARTS), required=True)
+    edit_parser.add_argument("--rom", type=Path, required=True)
+    arguments = parser.parse_args()
+    if arguments.command == "export":
+        export(arguments)
+    elif arguments.command == "build":
+        build(arguments)
+    elif arguments.command == "verify":
+        verify(arguments)
+    elif arguments.command == "patch":
+        patch(arguments)
+    elif arguments.command == "patch-test":
+        patch_test(arguments)
+    else:
+        edit_test(arguments)
+
+
+if __name__ == "__main__":
+    main()
