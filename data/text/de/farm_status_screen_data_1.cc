@@ -86,18 +86,3 @@ char const gText_AnimalContest_ChickenEntryDeclinedResponse[] =
 char const gText_AnimalContest_LivestockEntryDeclinedResponse[] =
     "Ok. Überlege, ob du nächstes\r\n"
     "Mal mitmachen willst.{Press}";
-
-char const gCppRuntimeBadAlloc_AnimalContestBoundary[] =
-    "bad_alloc";
-
-char const gText_AnimalContest_FinalConfirmation[] =
-    "Bist du sicher?";
-
-char const gText_AnimalContest_FinalYes[] =
-    "Ja";
-
-char const gText_AnimalContest_FinalNo[] =
-    "Nein";
-
-u16 const gFarmStatusScreenPreloadedGlyphs[] =
-    FOMT_GLYPH_SEQUENCE("0123456789Frühl.SommerHerbstWinter_Geburtstag ");

@@ -1,4 +1,4 @@
 #include "farm_status_screen_data.hh"
 
-char const gCppRuntimeBadAlloc_FarmStatusScreenTrailer[] =
+char const gCppRuntimeBadAlloc_FarmStatusScreenGlyphs[] =
     "bad_alloc";

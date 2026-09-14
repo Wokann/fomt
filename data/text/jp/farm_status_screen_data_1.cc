@@ -88,18 +88,3 @@ char const gText_AnimalContest_ChickenEntryDeclinedResponse[] =
 char const gText_AnimalContest_LivestockEntryDeclinedResponse[] =
     "わかった。今回は\r\n"
     "参加しないんじゃな。{Press}";
-
-char const gCppRuntimeBadAlloc_AnimalContestBoundary[] =
-    "bad_alloc";
-
-char const gText_AnimalContest_FinalConfirmation[] =
-    "これでいい？";
-
-char const gText_AnimalContest_FinalYes[] =
-    "はい";
-
-char const gText_AnimalContest_FinalNo[] =
-    "いいえ";
-
-u16 const gFarmStatusScreenPreloadedGlyphs[] =
-    FOMT_GLYPH_SEQUENCE("０１２３４５６７８９春夏秋冬誕生日の月＿　");
