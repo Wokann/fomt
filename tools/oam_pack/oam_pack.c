@@ -172,6 +172,33 @@ static void ReadIndexedPng(const char *path, struct Image *image)
     fclose(file);
 }
 
+/*
+ * Full portrait sources are normally tile-aligned.  A few legacy archive
+ * exports are cropped to their visible bounds instead (for example 78x76).
+ * Treat the omitted right/bottom pixels as transparent rather than rejecting
+ * the artwork: OAM can only encode complete 8x8 tiles, and this padding does
+ * not alter any authored pixel or palette index.
+ */
+static void PadImageToTiles(struct Image *image)
+{
+    int padded_width = (image->width + 7) & ~7;
+    int padded_height = (image->height + 7) & ~7;
+    if (padded_width == image->width && padded_height == image->height)
+        return;
+    uint8_t *pixels = calloc((size_t)padded_width * padded_height, 1);
+    if (pixels == NULL)
+        Fail("out of memory");
+    for (int y = 0; y < image->height; y++)
+        memcpy(pixels + (size_t)y * padded_width,
+               image->pixels + (size_t)y * image->width, image->width);
+    fprintf(stderr, "oam_pack: padded source canvas from %dx%d to %dx%d with transparent tile edges\n",
+            image->width, image->height, padded_width, padded_height);
+    free(image->pixels);
+    image->pixels = pixels;
+    image->width = padded_width;
+    image->height = padded_height;
+}
+
 static bool TileIsActive(const struct Image *image, int tile_x, int tile_y)
 {
     for (int y = 0; y < 8; y++) {
@@ -377,24 +404,6 @@ static void PackOpaque(const struct Image *image, int tile_base, struct Pieces *
         Fail("packed image exceeds GBA attr2's 10-bit tile range");
 }
 
-static int CanvasColumnWidth(int remaining)
-{
-    if (remaining >= 64) return 64;
-    if (remaining >= 32) return 32;
-    if (remaining >= 16) return 16;
-    if (remaining >= 8) return 8;
-    Fail("canvas width cannot be expressed with GBA object widths");
-    return 0;
-}
-
-static int CanvasMaximumHeight(int width)
-{
-    if (width == 32) return 64;
-    if (width == 8 || width == 16 || width == 64) return 32;
-    Fail("unknown GBA object width");
-    return 0;
-}
-
 static bool IsOamDimension(int width, int height)
 {
     for (size_t index = 0; index < sizeof(sDimensions) / sizeof(sDimensions[0]); index++)
@@ -403,13 +412,61 @@ static bool IsOamDimension(int width, int height)
     return false;
 }
 
-static int CanvasRowHeight(int remaining, int maximum)
+/*
+ * A complete source canvas need not have a single column partition: 64x72,
+ * for example, requires a 64-wide 32-pixel row but a narrower top row because
+ * GBA has no 64x8 object.  Partition each row independently.  This is a
+ * deterministic forward rule that uses no ROM layout data and always retains
+ * transparent tiles inside its chosen legal OAM rectangles.
+ */
+static bool CanvasCanPartitionWidth(int width, int height)
+{
+    if (width == 0)
+        return true;
+    if (width < 0 || width % 8)
+        return false;
+    size_t cells = (size_t)width / 8;
+    uint8_t *reachable = calloc(cells + 1, 1);
+    if (reachable == NULL)
+        Fail("out of memory");
+    reachable[0] = 1;
+    for (size_t start = 0; start < cells; start++) {
+        if (!reachable[start])
+            continue;
+        for (size_t index = 0; index < sizeof(sDimensions) / sizeof(sDimensions[0]); index++) {
+            const struct Dimension *dimension = &sDimensions[index];
+            if (dimension->height != height)
+                continue;
+            size_t end = start + (size_t)dimension->width / 8;
+            if (end <= cells)
+                reachable[end] = 1;
+        }
+    }
+    bool result = reachable[cells] != 0;
+    free(reachable);
+    return result;
+}
+
+static int CanvasRowHeight(int remaining, int width)
 {
     static const int heights[] = {64, 32, 16, 8};
     for (size_t index = 0; index < sizeof(heights) / sizeof(heights[0]); index++)
-        if (heights[index] <= remaining && heights[index] <= maximum)
+        if (heights[index] <= remaining && CanvasCanPartitionWidth(width, heights[index]))
             return heights[index];
-    Fail("canvas height cannot be expressed with GBA object heights");
+    Fail("canvas height cannot be expressed with GBA object dimensions");
+    return 0;
+}
+
+static int CanvasPieceWidth(int remaining, int height)
+{
+    static const int widths[] = {64, 32, 16, 8};
+    for (size_t index = 0; index < sizeof(widths) / sizeof(widths[0]); index++) {
+        int width = widths[index];
+        if (width <= remaining && IsOamDimension(width, height)
+         && CanvasCanPartitionWidth(remaining - width, height))
+            return width;
+    }
+    Fail("canvas width cannot be expressed with GBA object dimensions");
     return 0;
 }
 
@@ -417,29 +474,13 @@ static void PackCanvas(const struct Image *image, int tile_base, struct Pieces *
 {
     if (image->width % 8 || image->height % 8)
         Fail("input dimensions must be multiples of 8");
-    int columns[64];
-    int column_count = 0;
-    int remaining_width = image->width;
-    int common_maximum_height = 64;
-    while (remaining_width) {
-        if (column_count == (int)(sizeof(columns) / sizeof(columns[0])))
-            Fail("canvas is too wide for the OAM packer");
-        int width = CanvasColumnWidth(remaining_width);
-        columns[column_count++] = width;
-        int maximum = CanvasMaximumHeight(width);
-        if (maximum < common_maximum_height)
-            common_maximum_height = maximum;
-        remaining_width -= width;
-    }
     int remaining_height = image->height;
     while (remaining_height) {
-        int row_height = CanvasRowHeight(remaining_height, common_maximum_height);
+        int row_height = CanvasRowHeight(remaining_height, image->width);
         int y = remaining_height - row_height;
         int x = 0;
-        for (int column = 0; column < column_count; column++) {
-            int width = columns[column];
-            if (!IsOamDimension(width, row_height))
-                Fail("canvas partition selected a non-GBA OAM rectangle");
+        while (x < image->width) {
+            int width = CanvasPieceWidth(image->width - x, row_height);
             struct Piece piece = {
                 x, y, width, row_height, tile_base + (int)(tiles->size / 32)
             };
@@ -755,6 +796,7 @@ int main(int argc, char **argv)
     struct Bytes palette = {0};
     struct Bytes oam = {0};
     ReadIndexedPng(image_path, &image);
+    PadImageToTiles(&image);
     if (strategy == STRATEGY_CANVAS)
         PackCanvas(&image, tile_base, &pieces, &tiles);
     else if (strategy == STRATEGY_OPAQUE)

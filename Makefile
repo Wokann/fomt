@@ -56,6 +56,7 @@ FONT_PAD_DIR := tools/fontpad
 FONT_PAD := $(FONT_PAD_DIR)/fontpad$(EXE)
 OAM_PACK_DIR := tools/oam_pack
 OAM_PACK := $(OAM_PACK_DIR)/oam_pack$(EXE)
+OAM_PACK_AUDIT := $(OAM_PACK_DIR)/audit_portraits.py
 .PHONY: $(GFX_TOOL) $(FONT_PAD) $(OAM_PACK)
 
 # ================
@@ -377,7 +378,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-portraits gfx-portraits-all gfx-overworld-rick gfx-overworld-rick-test gfx-overworld-rick-all gfx-overworld-actors gfx-overworld-actors-test gfx-overworld-actors-all gfx-assets oam-pack oam-pack-test
+.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-portraits gfx-portraits-all gfx-overworld-rick gfx-overworld-rick-test gfx-overworld-rick-all gfx-overworld-actors gfx-overworld-actors-test gfx-overworld-actors-all gfx-assets oam-pack oam-pack-test oam-pack-audit
 oam-pack: $(OAM_PACK)
 oam-pack-test: $(OAM_PACK) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba $(PORTRAIT_SOURCE_DIR)/full/000_TALK_PORTRAIT_RICK_NORMAL.png
 	@mkdir -p $(BUILD_DIR)/graphics/oam_pack
@@ -394,6 +395,10 @@ oam-pack-test: $(OAM_PACK) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_
 	    --origin-x -24 --origin-y -72 --strategy canvas \
 	    --reference-rom $$1 --reference-offset $$2 --portrait-id 0; \
 	done
+oam-pack-audit: $(OAM_PACK) $(OAM_PACK_AUDIT) baserom_jp.gba $(PORTRAIT_FULL_IMAGES)
+	@$(PYTHON) $(OAM_PACK_AUDIT) $(OAM_PACK) baserom_jp.gba \
+	  --archive-offset $(PORTRAIT_ARCHIVE_OFFSET_JP) \
+	  --source $(PORTRAIT_SOURCE_DIR)/full --output $(BUILD_DIR)/graphics/oam_pack/audit
 gfx-font: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN)
 gfx-jp-font: gfx-font
 gfx-fonts:
@@ -556,7 +561,7 @@ clean:
 .PHONY: clean
 
 ifneq (clean,$(MAKECMDGOALS))
-ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-portraits gfx-portraits-all gfx-overworld-rick gfx-overworld-rick-test gfx-overworld-rick-all gfx-overworld-actors gfx-overworld-actors-test gfx-overworld-actors-all gfx-assets oam-pack oam-pack-test,$(MAKECMDGOALS)))
+ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-portraits gfx-portraits-all gfx-overworld-rick gfx-overworld-rick-test gfx-overworld-rick-all gfx-overworld-actors gfx-overworld-actors-test gfx-overworld-actors-all gfx-assets oam-pack oam-pack-test oam-pack-audit,$(MAKECMDGOALS)))
 -include $(ALL_DEPS)
 endif
 .PRECIOUS: $(BUILD_DIR)/%.d

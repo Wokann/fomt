@@ -158,6 +158,7 @@ only; it is not read by the normal image build and no JSON layout is involved.
 ```console
 make oam-pack
 make oam-pack-test
+make oam-pack-audit
 tools/oam_pack/oam_pack.exe graphics/portraits/shared/full/000_TALK_PORTRAIT_RICK_NORMAL.png \
   --tiles build/jp/graphics/portrait_000.4bpp \
   --palette build/jp/graphics/portrait_000.gbapal \
@@ -170,16 +171,23 @@ tools/oam_pack/oam_pack.exe graphics/portraits/shared/full/000_TALK_PORTRAIT_RIC
 The `canvas` profile has already reproduced the original tile stream, palette,
 and six OAM entries for the Rick normal, surprised, and wedding portraits
 byte-for-byte. `make oam-pack-test` compares the Rick normal profile with all
-four retail localizations. It deliberately retains transparent tiles in its
-stable canvas.
-Other portraits demonstrate that the retail asset compiler also varies its
-per-asset canvas anchor and rectangle partition. `dense` is a visible-tile
+four retail localizations. The generalized `canvas` partitioner now produces
+valid, exact visible indexed-pixel reconstructions for all 184 checked-in
+portraits; `make oam-pack-audit` performs that full regression and reports
+which entries additionally match the legacy tile/OAM bytes exactly. It
+deliberately retains transparent tiles in its stable canvas.
+
+The original asset stream demonstrates why a visible PNG cannot by itself
+uniquely determine every legacy byte sequence: some records use transparent
+padding outside the visible crop, overlapping rectangles, or a different
+anchor/partition despite producing the same pixels. `dense` is a visible-tile
 packing baseline; `opaque` avoids overlapping generated rectangles while still
-covering every visible tile; and `canvas` preserves a declared complete canvas.
-Only a profile that passes the ROM comparison is eligible for a production
-resource class. The tool reports the descriptor/OAM fields for each
-non-matching comparison, so new C packing profiles can be added and validated
-without relying on a JSON layout file.
+covering every visible tile; and `canvas` partitions an entire source canvas
+into legal GBA rectangles, including automatic transparent padding to 8x8
+boundaries. Only a profile that passes the ROM comparison is eligible for a
+byte-identical production resource class. The C tool reports the original
+descriptor/OAM fields for each non-matching comparison, so further common
+profiles can be added and validated without relying on a JSON layout file.
 
 After editing `full/`, refresh the convenient RGBA reference images with the
 same in-memory rebuild and OAM compositor used by the build:
