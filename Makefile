@@ -36,8 +36,10 @@ export STRIP := $(PREFIX)strip
 
 ifeq ($(OS),Windows_NT)
   EXE := .exe
+  PYTHON ?= py -3
 else
   EXE :=
+  PYTHON ?= python3
 endif
 
 CC1      := tools/agbcc/bin/agbcc$(EXE)
@@ -95,12 +97,14 @@ FONT_SHARED_DOUBLE_PNG := graphics/font/shared/double_width_font.png
 FONT_SHARED_DOUBLE_PADDED := $(BUILD_DIR)/graphics/font/shared/double_width_font.padded.1bpp
 FONT_SHARED_DOUBLE_BIN := $(BUILD_DIR)/graphics/font/shared/double_width_font.1bpp
 
-# The dialogue-portrait archive has a shared 4bpp tile pool in every retail
-# localization.  The archive's OAM records and its 52 palettes remain binary
-# data for now; only the independently verified, editable tile stream passes
-# through gbagfx.
-PORTRAIT_TILE_PNG := graphics/portraits/shared/portrait_tiles.png
-PORTRAIT_TILE_PADDED := $(BUILD_DIR)/graphics/portraits/shared/portrait_tiles.padded.4bpp
+# The dialogue-portrait archive has a shared tile/OAM/palette layout in every
+# retail localization.  Each native descriptor is authored as a separate,
+# palette-indexed color PNG; portrait_archive.py detects shared tile conflicts
+# before rebuilding the exact table-four tile stream used by assembly.
+PORTRAIT_SOURCE_DIR := graphics/portraits/shared
+PORTRAIT_SOURCE_MANIFEST := $(PORTRAIT_SOURCE_DIR)/portrait_archive.json
+PORTRAIT_TILE_IMAGES := $(wildcard $(PORTRAIT_SOURCE_DIR)/tiles/*.png)
+PORTRAIT_ARCHIVE_TOOL := tools/portrait_archive.py
 PORTRAIT_TILE_BIN := $(BUILD_DIR)/graphics/portraits/shared/portrait_tiles.4bpp
 
 SUBDIRS := $(sort $(dir $(ALL_OBJS)))
@@ -230,13 +234,9 @@ $(FONT_SHARED_DOUBLE_BIN): $(FONT_SHARED_DOUBLE_PADDED) $(FONT_PAD)
 	@mkdir -p $(dir $@)
 	@$(FONT_PAD) trim-grid-16x12-from-16x16 $< $@ 32 6922
 
-$(PORTRAIT_TILE_PADDED): $(PORTRAIT_TILE_PNG) $(GFX_TOOL)
+$(PORTRAIT_TILE_BIN): $(PORTRAIT_ARCHIVE_TOOL) $(PORTRAIT_SOURCE_MANIFEST) $(PORTRAIT_TILE_IMAGES) $(BASE_ROM) include/fomt_constants.mary.h
 	@mkdir -p $(dir $@)
-	@$(GFX_TOOL) $< $@
-
-$(PORTRAIT_TILE_BIN): $(PORTRAIT_TILE_PADDED) $(FONT_PAD)
-	@mkdir -p $(dir $@)
-	@$(FONT_PAD) trim-grid-4bpp $< $@ 32 11586
+	@$(PYTHON) $(PORTRAIT_ARCHIVE_TOOL) $(BASE_ROM) --manifest $(PORTRAIT_SOURCE_MANIFEST) --region $(GAME_REGION) --names-header include/fomt_constants.mary.h rebuild --source $(PORTRAIT_SOURCE_DIR) --output $@
 
 FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 

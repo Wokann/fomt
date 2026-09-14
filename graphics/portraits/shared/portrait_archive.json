@@ -1,0 +1,23 @@
+{
+  "schema_version": 2,
+  "id": "fomt-shared-dialogue-portrait-archive",
+  "source_layout": {
+    "editable_tiles": "tiles/NNN_TALK_PORTRAIT_*.png",
+    "colored_previews": "preview/NNN_TALK_PORTRAIT_*.png",
+    "generated_index": "manifest.json"
+  },
+  "sources": {
+    "JP": { "rom_offset": "0x2B3AE0", "length": "0x5E0A4", "sha256": "34c23aced1a4f23ba80d1429a87f4c8a7ca11b0458c61a37a6eb48731440bbd2" },
+    "US": { "rom_offset": "0x52D984", "length": "0x5E0A4", "sha256": "34c23aced1a4f23ba80d1429a87f4c8a7ca11b0458c61a37a6eb48731440bbd2" },
+    "EU": { "rom_offset": "0x52D9E0", "length": "0x5E0A4", "sha256": "34c23aced1a4f23ba80d1429a87f4c8a7ca11b0458c61a37a6eb48731440bbd2" },
+    "DE": { "rom_offset": "0x2B4A20", "length": "0x5E0A4", "sha256": "34c23aced1a4f23ba80d1429a87f4c8a7ca11b0458c61a37a6eb48731440bbd2" }
+  },
+  "tables": {
+    "strides": [4, 16, 8, 32, 32, 8, 4],
+    "counts": [184, 184, 1037, 11586, 52, 0, 184],
+    "unindexed_trailing_bytes": 32,
+    "shared_tile_slots": 68
+  },
+  "symbols": ["gUnk_0852D984"],
+  "regions": ["JP", "US", "EU", "DE"]
+}
