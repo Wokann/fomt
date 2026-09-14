@@ -1,5 +1,8 @@
 # Staid actor-animation source
 
+> The canonical editable PNGs now live in `graphics/sprites/actor_archive/full`.
+> This document preserves the verified Staid selector-to-frame mapping only.
+
 This directory contains the currently confirmed complete Staid frames from
 FoMT's native actor archive. Each indexed PNG is composed from actual OAM,
 tile and palette entries; its number identifies the native frame descriptor,

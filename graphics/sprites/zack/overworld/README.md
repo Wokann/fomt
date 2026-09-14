@@ -1,5 +1,8 @@
 # Zack actor-animation source
 
+> The canonical editable PNGs now live in `graphics/sprites/actor_archive/full`.
+> This document preserves the verified Zack selector-to-frame mapping only.
+
 This directory owns the complete indexed Zack frames rendered from FoMT's
 native actor archive. Every `full/frame_NNNN.png` uses the actual OAM pieces,
 tile data, palette and flips from the ROM. Frame IDs are archive descriptor

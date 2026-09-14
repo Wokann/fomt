@@ -111,12 +111,12 @@ trailing byte around it.
 
 ## Actor animation frames
 
-`sprites/rick/overworld/full` is the first verified actor-animation source.
-It contains 32 complete indexed PNG frames used by Rick's full currently
-audited selector interval (`0x212` through `0x22D`): ordinary idle/walk,
-wedding idle/walk/kiss, plus their adjoining transition or gesture selectors.
-`sprites/rick/overworld/README.md` records the exact selector-to-frame mapping.
-The files are not linear tile dumps: every image is composed from the native
+`sprites/actor_archive/full` contains every one of the 2,963 actor frame
+descriptors referenced by the retail animation table.  Each source is named
+`frame_NNNN.png`, where `NNNN` is the stable native frame-descriptor ID; it is
+not a guessed tile position.  The older per-character READMEs retain verified
+selector-to-frame notes for the groups already semantically identified.  The
+files are not linear tile dumps: every image is composed from the native
 animation entry, frame descriptor, OAM records, 4bpp tiles, and its selected
 palette.
 
@@ -135,11 +135,11 @@ table references, and conflicting writes to a shared native pixel.  The full
 actor archive and Rick's source frame payload are identical in JP, US, EU, and
 DE; only their physical ROM offsets differ.
 
-This is deliberately a minimal verified actor sample.  Other actor animation
-streams remain raw `incbin` data until their animation IDs, OAM records, tile
-ranges, palettes, and complete-image rebuild behavior have all passed the
-same four-region checks.  Earlier guessed six-tile character-frame exports
-were removed and must not be used as source material.
+The complete actor animation stream now has one authoritative editable source
+set.  Semantic actor names may be added later as documentation around their
+native selector/frame IDs; they must not introduce duplicate editable PNGs.
+Earlier guessed six-tile character-frame exports were removed and must not be
+used as source material.
 
 
 

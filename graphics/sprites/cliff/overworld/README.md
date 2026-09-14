@@ -1,5 +1,8 @@
 # Cliff actor-animation source
 
+> The canonical editable PNGs now live in `graphics/sprites/actor_archive/full`.
+> This document preserves the verified Cliff selector-to-frame mapping only.
+
 This directory owns complete, indexed OAM-composited Cliff frames from the
 shared native actor archive. `full/frame_NNNN.png` names the native frame
 descriptor rather than a generated tile position. Conversion reads the actual

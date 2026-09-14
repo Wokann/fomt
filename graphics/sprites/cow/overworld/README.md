@@ -1,5 +1,8 @@
 # Cow actor-animation source
 
+> The canonical editable PNGs now live in `graphics/sprites/actor_archive/full`.
+> This document preserves the verified Cow selector-to-frame mapping only.
+
 This directory owns complete indexed Cow frames from FoMT's shared native
 actor archive. Each `full/frame_NNNN.png` is built from real OAM pieces and
 the native palette, not an assumed linear tile layout. The frame number is the

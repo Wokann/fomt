@@ -1,5 +1,8 @@
 # Rick actor animation source
 
+> The canonical editable PNGs now live in `graphics/sprites/actor_archive/full`.
+> This document preserves the verified Rick selector-to-frame mapping only.
+
 This directory contains the currently audited continuous Rick actor-animation
 interval. `full/frame_NNNN.png` is a complete palette-indexed OAM composition;
 the number is the native actor archive frame-descriptor index, not an invented

@@ -131,19 +131,18 @@ PORTRAIT_ARCHIVE_OFFSET_DE := 0x2B4A20
 PORTRAIT_ARCHIVE_OFFSET := $(PORTRAIT_ARCHIVE_OFFSET_$(GAME_REGION))
 
 # The actor archive is a separate IndexedResourceArchive whose first table
-# selects timed animation frames.  The committed Rick frames are complete
+# selects timed animation frames.  Its source frames are complete
 # OAM-composited PNGs, not guessed linear tile sheets.  Rebuild preserves the
 # original archive tables and patches only table four's native 4bpp tile data.
 ACTOR_ARCHIVE_TOOL := tools/actor_archive.py
 ACTOR_ARCHIVE_EDIT_TEST := tools/actor_archive_edit_test.py
-ACTOR_SOURCE_DIRS := graphics/sprites/rick/overworld graphics/sprites/popuri/overworld graphics/sprites/lillia/overworld graphics/sprites/child/overworld graphics/sprites/cliff/overworld graphics/sprites/cow/overworld graphics/sprites/calf/overworld graphics/sprites/zack/overworld graphics/sprites/doctor/overworld graphics/sprites/farm_dog/overworld graphics/sprites/staid/overworld
+ACTOR_SOURCE_DIRS := graphics/sprites/actor_archive
 ACTOR_FULL_IMAGES := $(foreach directory,$(ACTOR_SOURCE_DIRS),$(wildcard $(directory)/full/*.png))
-# The first interval spans Rick, Popuri, Lillia, Child, Cliff and the confirmed
-# Cow idle/walk/sick selector groups. The separate Calf interval intentionally
-# does not claim the still-uncovered Cow selector gap between them.
-# It deliberately includes neighbouring transition/gesture selectors, so edits
-# to shared native pixels are checked across every covered actor source.
-ACTOR_ANIMATIONS := 0x212-0x2BB,0x2FC-0x33F,0x3AE-0x3B1,0x3E0-0x3E3,0x3F0-0x3F3,0x430-0x433
+# Cover every native actor selector.  The archive exporter resolves selectors
+# through the native animation table, producing 2,963 referenced frame
+# descriptors; the 46 unreferenced descriptor slots have no game caller and
+# therefore are deliberately not treated as authored animation frames.
+ACTOR_ANIMATIONS := 0x000-0x9F6
 ACTOR_TILE_BIN := $(BUILD_DIR)/graphics/sprites/shared/actor_tiles.4bpp
 ACTOR_ARCHIVE_LENGTH := 0xDB638
 ACTOR_ARCHIVE_SHA256 := 19a8733e132573478713e9b6e48e9650a702e62516209159787d26f270933736
@@ -375,7 +374,7 @@ gfx-actors-all:
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-actors-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-actors-test
 gfx-actors-edit-test: $(ACTOR_ARCHIVE_EDIT_TEST) $(ACTOR_ARCHIVE_TOOL) $(PORTRAIT_ARCHIVE_TOOL) baserom_us.gba $(ACTOR_SOURCE_DIRS)
-	@$(PYTHON) $(ACTOR_ARCHIVE_EDIT_TEST) baserom_us.gba --offset $(ACTOR_ARCHIVE_OFFSET_US) --length $(ACTOR_ARCHIVE_LENGTH) --source graphics/sprites/rick/overworld
+	@$(PYTHON) $(ACTOR_ARCHIVE_EDIT_TEST) baserom_us.gba --offset $(ACTOR_ARCHIVE_OFFSET_US) --length $(ACTOR_ARCHIVE_LENGTH) --source graphics/sprites/actor_archive
 gfx-ui: $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN)
 gfx-ui-test: gfx-ui $(BASE_ROM) $(GFX_RANGE_VERIFY)
 	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(UI_SHARED_RESOURCE_TILE_OFFSET) --input $(UI_SHARED_RESOURCE_TILE_BIN) --sha256 $(UI_SHARED_RESOURCE_TILE_SHA256)

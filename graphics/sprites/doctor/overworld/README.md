@@ -1,5 +1,8 @@
 # Doctor actor-animation source
 
+> The canonical editable PNGs now live in `graphics/sprites/actor_archive/full`.
+> This document preserves the verified Doctor selector-to-frame mapping only.
+
 This directory owns complete indexed Doctor frames from FoMT's native actor
 archive. The editable PNGs are complete OAM compositions, never linear raw
 tile sheets. Their frame IDs are native archive descriptor IDs; the build

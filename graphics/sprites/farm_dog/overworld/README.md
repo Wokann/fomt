@@ -1,5 +1,8 @@
 # Farm Dog actor-animation source
 
+> The canonical editable PNGs now live in `graphics/sprites/actor_archive/full`.
+> This document preserves the verified Farm Dog selector-to-frame mapping only.
+
 This directory contains complete indexed Farm Dog frames from FoMT's shared
 native actor archive. Each PNG is a true OAM composition with native palette
 data, and each frame number identifies an archive descriptor—not a synthetic

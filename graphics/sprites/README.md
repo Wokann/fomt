@@ -1,7 +1,10 @@
 # Actor graphics pipeline
 
 `tools/actor_archive.py` exposes editable, complete actor-frame PNGs from the
-FoMT `IndexedResourceArchive`. This archive is not a tile sheet: its seven
+FoMT `IndexedResourceArchive`. The sole build source is
+`actor_archive/full/frame_NNNN.png`; individual actor directories retain
+selector notes only, so a frame can never have two competing editable copies.
+This archive is not a tile sheet: its seven
 native tables describe 2,551 animation selectors, 3,009 frame descriptors,
 4,795 OAM pieces, 24,398 four-bit tiles, 162 palettes, an empty reserved
 table, and 3,990 timing entries. The source images deliberately retain native

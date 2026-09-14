@@ -1,5 +1,8 @@
 # Lillia actor-animation source
 
+> The canonical editable PNGs now live in `graphics/sprites/actor_archive/full`.
+> This document preserves the verified Lillia selector-to-frame mapping only.
+
 This directory owns the audited Lillia segment of FoMT's shared actor archive.
 Every `full/frame_NNNN.png` is a complete indexed image composed from native
 OAM entries, not a linear tile dump. Frame numbers are native archive frame

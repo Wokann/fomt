@@ -1,5 +1,8 @@
 # Child actor-animation source
 
+> The canonical editable PNGs now live in `graphics/sprites/actor_archive/full`.
+> This document preserves the verified Child selector-to-frame mapping only.
+
 This directory contains the confirmed Child actor frames from FoMT's shared
 native actor archive. Each `full/frame_NNNN.png` is an indexed, complete
 OAM-composited frame. Descriptor IDs identify ROM structures; they are not

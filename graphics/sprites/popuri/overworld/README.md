@@ -1,5 +1,8 @@
 # Popuri actor-animation source
 
+> The canonical editable PNGs now live in `graphics/sprites/actor_archive/full`.
+> This document preserves the verified Popuri selector-to-frame mapping only.
+
 This directory contains the audited Popuri portion of FoMT's shared native
 actor archive. `full/frame_NNNN.png` is a complete palette-indexed image
 composited from the archive's real OAM records. The number is the archive

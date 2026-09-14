@@ -1,5 +1,8 @@
 # Calf actor-animation source
 
+> The canonical editable PNGs now live in `graphics/sprites/actor_archive/full`.
+> This document preserves the verified Calf selector-to-frame mapping only.
+
 This directory contains complete indexed Calf frames from FoMT's shared actor
 archive. Every `full/frame_NNNN.png` is rendered from the ROM's actual OAM
 records, tile data and palette. Frame IDs identify native descriptors, not a
