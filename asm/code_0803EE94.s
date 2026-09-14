@@ -25,7 +25,88 @@
         .global \name
         .thumb_set \name, \base + \offset
     .endm
-    jp_code_0803ee_func func_0803F8DC, 0x3F704, 0x451F8
+    .global func_0803F8DC
+    .thumb_func
+func_0803F8DC:
+    .incbin "baserom_jp.gba", 0x3F704, (0x401FC - 0x3F704)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x40200, (0x4024C - 0x40200)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x40250, (0x4029C - 0x40250)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x402A0, (0x40318 - 0x402A0)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x4031C, (0x403B0 - 0x4031C)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x403B4, (0x403CC - 0x403B4)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x403D0, (0x403EC - 0x403D0)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x403F0, (0x40480 - 0x403F0)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x40484, (0x4049C - 0x40484)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x404A0, (0x404B8 - 0x404A0)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x404BC, (0x404D8 - 0x404BC)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x404DC, (0x40580 - 0x404DC)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x40584, (0x4059C - 0x40584)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x405A0, (0x405B8 - 0x405A0)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x405BC, (0x405D4 - 0x405BC)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x405D8, (0x405F0 - 0x405D8)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x405F4, (0x4065C - 0x405F4)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x40660, (0x40680 - 0x40660)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x40684, (0x40700 - 0x40684)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x40704, (0x4071C - 0x40704)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x40720, (0x4073C - 0x40720)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x40740, (0x407D0 - 0x40740)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x407D4, (0x407EC - 0x407D4)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x407F0, (0x40808 - 0x407F0)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x4080C, (0x40828 - 0x4080C)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x4082C, (0x408D0 - 0x4082C)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x408D4, (0x408EC - 0x408D4)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x408F0, (0x40908 - 0x408F0)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x4090C, (0x40924 - 0x4090C)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x40928, (0x40944 - 0x40928)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x40948, (0x40A00 - 0x40948)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x40A04, (0x40A18 - 0x40A04)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x40A1C, (0x40A34 - 0x40A1C)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x40A38, (0x40A50 - 0x40A38)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x40A54, (0x40A6C - 0x40A54)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x40A70, (0x40A8C - 0x40A70)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x40A90, (0x40D60 - 0x40A90)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x40D64, (0x43264 - 0x40D64)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x43268, (0x44AAC - 0x43268)
+    .4byte gText_ScriptEngineUi_Error
+    .incbin "baserom_jp.gba", 0x44AB0, (0x451F8 - 0x44AB0)
     jp_code_0803ee_func func_08045584, 0x451F8, 0x4524C
     jp_code_0803ee_func func_080455D8, 0x4524C, 0x45734
     jp_code_0803ee_func VarGet__12ScriptEngineUi, 0x45734, 0x48E14

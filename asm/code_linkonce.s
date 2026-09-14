@@ -8265,8 +8265,19 @@ func_080D7B44: @ 0x080D7B44
     jp_linkonce_d7_func func_080DE134, 0xDD8E8, 0xDD938
     jp_linkonce_d7_func func_080DE184, 0xDD938, 0xDD968
     jp_linkonce_d7_func func_080DE1B4, 0xDD968, 0xDDA4C
-    jp_linkonce_d7_func func_080DE298, 0xDDA4C, 0xDF848
-    jp_linkonce_d7_func func_080E0094, 0xDF848, 0xE00A8
+    .global func_080DE298
+    .thumb_func
+func_080DE298:
+    .incbin "baserom_jp.gba", 0xDDA4C, (0xDF4D4 - 0xDDA4C)
+    .4byte gMaryScriptTable
+    .incbin "baserom_jp.gba", 0xDF4D8, (0xDF848 - 0xDF4D8)
+
+    .global func_080E0094
+    .thumb_func
+func_080E0094:
+    .incbin "baserom_jp.gba", 0xDF848, (0xDFCE0 - 0xDF848)
+    .4byte gMaryScriptTable
+    .incbin "baserom_jp.gba", 0xDFCE4, (0xE00A8 - 0xDFCE4)
     jp_linkonce_d7_func func_080E0908, 0xE00A8, 0xE0184
     jp_linkonce_d7_func func_080E09E4, 0xE0184, 0xE01A8
     jp_linkonce_d7_func func_080E0A08, 0xE01A8, 0xE0620
