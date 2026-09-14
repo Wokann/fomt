@@ -3,17 +3,11 @@
 
 #include "prelude.h"
 
-EXTERN_C
-
-enum
-{
-    COOKING_RECIPE_INVENTORY_UTENSIL_VALUE_COUNT = 8,
-};
+extern "C" {
 
 extern char const gText_Cooking_Recipe_PageBreak[];
-extern u16 const
-    gCookingRecipeInventoryUtensilValues[COOKING_RECIPE_INVENTORY_UTENSIL_VALUE_COUNT];
+extern u16 const gCookingRecipeInventoryUtensilValues[8];
 
-EXTERN_C_END
+}
 
 #endif // COOKING_RECIPE_INVENTORY_PAGE_DATA_HH

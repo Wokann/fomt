@@ -1,6 +1,6 @@
 #include "cooking_recipe_inventory_page_data.hh"
 
-EXTERN_C
+extern "C" {
 
 #include FOMT_TEXT_INCLUDE(cooking_recipe_inventory_page_data.cc)
 
@@ -17,4 +17,4 @@ u16 const gCookingRecipeInventoryUtensilValues[] = {
     0x0190,
 };
 
-EXTERN_C_END
+}

@@ -84,7 +84,7 @@
 | EU | `0x081001BC`–`0x08100436` | `src/blacksmith_upgrade_data.o(.rodata)` | `src/blacksmith_upgrade_data.cc`、`include/blacksmith_upgrade_data.hh`、`data/text/eu/blacksmith_upgrade_data.cc` | 精确 |
 | EU | `0x08100438`–`0x08100531` | `src/gift_wrap.o(.rodata)` | `src/gift_wrap.cc`、`include/gift_wrap.hh`、`data/text/eu/gift_wrap.cc` | 精确 |
 | EU | `0x08100534`–`0x08100B17` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc`、`include/link_communication_data.hh`、`data/text/eu/link_communication_data.cc`；区域文本、16 组五项记录、字符码表和两项 ASCII 协议码按 ROM 顺序同属对象；所有已知汇编调用均为符号重定位 | 精确 |
-| EU | `0x08100B18`–`0x08100B29` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | `src/cooking_recipe_inventory_page_data.cc`、`include/cooking_recipe_inventory_page_data.hh`、`data/text/eu/cooking_recipe_inventory_page_data.cc` | 精确 |
+| EU | `0x08100B18`–`0x08100B29` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | `src/cooking_recipe_inventory_page_data.cc`、`include/cooking_recipe_inventory_page_data.hh`、`data/text/eu/cooking_recipe_inventory_page_data.cc`；页切换控制符与八项餐具值按 ROM 顺序同属对象；所有已知汇编调用均为符号重定位 | 精确 |
 | EU | `0x08100B2A`–`0x08100E38` | `src/recovery_status.o(.rodata)` | `src/recovery_status.cc`、`include/recovery_status.hh`、`data/text/eu/recovery_status.cc` | 精确 |
 | EU | `0x08100E3C`–`0x0810113F` | `src/cooking.o(.rodata)` | `src/cooking.cc`、`include/cooking.hh`、`data/text/eu/cooking.cc` | 精确 |
 | EU | `0x08101140`–`0x081036AD` | `src/cooking_recipe_inventory_data.o(.rodata)` | `src/cooking_recipe_inventory_data.cc`、`include/cooking_recipe_inventory_data.hh`、`data/text/eu/cooking_recipe_inventory_data.cc` | 精确 |
@@ -173,7 +173,7 @@
 | DE | `0x08100A98`–`0x08100D7C` | `src/blacksmith_upgrade_data.o(.rodata)` | `src/blacksmith_upgrade_data.cc`、`include/blacksmith_upgrade_data.hh`、`data/text/de/blacksmith_upgrade_data.cc` | 精确 |
 | DE | `0x08100D80`–`0x08100E9D` | `src/gift_wrap.o(.rodata)` | `src/gift_wrap.cc`、`include/gift_wrap.hh`、`data/text/de/gift_wrap.cc` | 精确 |
 | DE | `0x08100EA0`–`0x081014DB` | `src/link_communication_data.o(.rodata)` | `src/link_communication_data.cc`、`include/link_communication_data.hh`、`data/text/de/link_communication_data.cc`；区域文本、16 组五项记录、字符码表和两项 ASCII 协议码按 ROM 顺序同属对象；所有已知汇编调用均为符号重定位 | 精确 |
-| DE | `0x081014DC`–`0x081014ED` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | `src/cooking_recipe_inventory_page_data.cc`、`include/cooking_recipe_inventory_page_data.hh`、`data/text/de/cooking_recipe_inventory_page_data.cc` | 精确 |
+| DE | `0x081014DC`–`0x081014ED` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | `src/cooking_recipe_inventory_page_data.cc`、`include/cooking_recipe_inventory_page_data.hh`、`data/text/de/cooking_recipe_inventory_page_data.cc`；页切换控制符与八项餐具值按 ROM 顺序同属对象；所有已知汇编调用均为符号重定位 | 精确 |
 | DE | `0x081014EE`–`0x081017FC` | `src/recovery_status.o(.rodata)` | `src/recovery_status.cc`、`include/recovery_status.hh`、`data/text/de/recovery_status.cc` | 精确 |
 | DE | `0x08101800`–`0x08101B29` | `src/cooking.o(.rodata)` | `src/cooking.cc`、`include/cooking.hh`、`data/text/de/cooking.cc` | 精确 |
 | DE | `0x08101B2C`–`0x08104099` | `src/cooking_recipe_inventory_data.o(.rodata)` | `src/cooking_recipe_inventory_data.cc`、`include/cooking_recipe_inventory_data.hh`、`data/text/de/cooking_recipe_inventory_data.cc` | 精确 |
@@ -301,7 +301,7 @@
 | `0x080FFE6E`–`0x080FFE6F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FFE70`–`0x081005D5` | `src/link_communication_data.o(.rodata)` | [嵌入文本 / 数据] | `src/link_communication_data.cc`<br>`include/link_communication_data.hh`<br>`data/text/jp/link_communication_data.cc` | 文本 `17` 项（详见下方索引）<br>运行时字符串 `3` 项<br>`gUnk_081007AC`, `gUnk_081007D4`, `gUnk_081007FC`, `gUnk_08100824`, `gUnk_0810084C`, `gUnk_08100874`, … +11<br>`gLinkCommunicationGameCodeA4N`, `gLinkCommunicationGameCodeGYW`；16 组五项记录、字符码表及 ASCII 协议码均按物理顺序发射，所有已知汇编调用均为符号重定位 |
 | `0x081005D6`–`0x081005D7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x081005D8`–`0x081005E9` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | [嵌入文本 / 数据] | `src/cooking_recipe_inventory_page_data.cc`<br>`include/cooking_recipe_inventory_page_data.hh`<br>`data/text/jp/cooking_recipe_inventory_page_data.cc` | `gText_Cooking_Recipe_PageBreak`<br>`gCookingRecipeInventoryUtensilValues` |
+| `0x081005D8`–`0x081005E9` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | [嵌入文本 / 数据] | `src/cooking_recipe_inventory_page_data.cc`<br>`include/cooking_recipe_inventory_page_data.hh`<br>`data/text/jp/cooking_recipe_inventory_page_data.cc` | `gText_Cooking_Recipe_PageBreak`<br>`gCookingRecipeInventoryUtensilValues`；页切换控制符先于八项餐具值，所有已知汇编调用均为符号重定位 |
 | `0x081005EA`–`0x081008F8` | `src/recovery_status.o(.rodata)` | [嵌入文本] | `src/recovery_status.cc`、`include/recovery_status.hh`、`data/text/jp/recovery_status.cc` | 文本 `2` 项（详见下方索引） |
 | `0x081008F9`–`0x081008FB` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
 | `0x081008FC`–`0x08100C23` | `src/cooking.o(.rodata)` | [嵌入文本] | `src/cooking.cc`、`include/cooking.hh`、`data/text/jp/cooking.cc` | 文本 `28` 项（详见下方索引） |
@@ -2135,7 +2135,7 @@
 | `0x081004DE`–`0x081004DF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x081004E0`–`0x08100ABD` | `src/link_communication_data.o(.rodata)` | [嵌入文本 / 数据] | `src/link_communication_data.cc`<br>`include/link_communication_data.hh`<br>`data/text/us/link_communication_data.cc` | 文本 `17` 项（详见下方索引）<br>运行时字符串 `3` 项<br>`gUnk_081007AC`, `gUnk_081007D4`, `gUnk_081007FC`, `gUnk_08100824`, `gUnk_0810084C`, `gUnk_08100874`, … +11<br>`gLinkCommunicationGameCodeA4N`, `gLinkCommunicationGameCodeGYW`；16 组五项记录、字符码表及 ASCII 协议码均按物理顺序发射，所有已知汇编调用均为符号重定位 |
 | `0x08100ABE`–`0x08100ABF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08100AC0`–`0x08100AD1` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | [嵌入文本 / 数据] | `src/cooking_recipe_inventory_page_data.cc`<br>`include/cooking_recipe_inventory_page_data.hh`<br>`data/text/us/cooking_recipe_inventory_page_data.cc` | `gText_Cooking_Recipe_PageBreak`<br>`gCookingRecipeInventoryUtensilValues` |
+| `0x08100AC0`–`0x08100AD1` | `src/cooking_recipe_inventory_page_data.o(.rodata)` | [嵌入文本 / 数据] | `src/cooking_recipe_inventory_page_data.cc`<br>`include/cooking_recipe_inventory_page_data.hh`<br>`data/text/us/cooking_recipe_inventory_page_data.cc` | `gText_Cooking_Recipe_PageBreak`<br>`gCookingRecipeInventoryUtensilValues`；页切换控制符先于八项餐具值，所有已知汇编调用均为符号重定位 |
 | `0x08100AD2`–`0x08100DE0` | `src/recovery_status.o(.rodata)` | [嵌入文本] | `src/recovery_status.cc`、`include/recovery_status.hh`、`data/text/us/recovery_status.cc` | 文本 `2` 项（详见下方索引） |
 | `0x08100DE1`–`0x08100DE3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
 | `0x08100DE4`–`0x081010E7` | `src/cooking.o(.rodata)` | [嵌入文本] | `src/cooking.cc`、`include/cooking.hh`、`data/text/us/cooking.cc` | 文本 `28` 项（详见下方索引） |
