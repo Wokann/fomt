@@ -42,22 +42,44 @@ and uses the same native format/ladder in all four regions:
 | 4 | 66 of 66 | exactly `width * height * 2` bytes |
 | 5 | 62 of 62 non-null records | exactly `width * height * 2` bytes; four records intentionally have no third map layer |
 
-Thus map assets can use a single shared source tree while retaining
-per-region packed outputs at their original physical ROM locations. The next
-implementation step is a generated assembly include that splits the currently
-aggregate map-data `incbin` ranges at these verified stream boundaries; it
-must preserve every intervening non-map byte and retain the retail packed
-stream verbatim for unchanged sources.
+Thus map assets use a single shared source tree while retaining per-region
+packed outputs at their original physical ROM locations. The physical archive
+is contiguous in every retail ROM, despite its different base address:
+
+| Region | First layer stream | End after last stream | Archive span |
+| --- | ---: | ---: | ---: |
+| JP | `0x400244` | `0x4A3678` | `0x0A3434` |
+| US | `0x67A0E8` | `0x71D51C` | `0x0A3434` |
+| EU | `0x67A144` | `0x71D578` | `0x0A3434` |
+| DE | `0x401184` | `0x4A45B8` | `0x0A3434` |
+
+`tools/map_resources.py` derives all 272 unique stream boundaries and alias
+sets directly from the four `gMapData` tables; it does not use a JSON or other
+checked-in layout sidecar.  The tool exports `graphics/maps/shared/map_XX/`
+native source files and writes corresponding region-specific packed files
+under `build/<region>/graphics/maps/`.  The source classification is strictly
+evidence-based: 31 layer-0 streams use `.4bpp`, 194 layer-3--5 streams use
+`.tilemap`, and 47 layer-1/2 streams remain neutral `.bin` until their exact
+consumer destination is proven.  All 272 exports total `0x22BE60` decoded
+bytes.
+
+The current builder intentionally preserves the original packed bytes only.
+If an edited source uses an unimplemented Marvelous format, it stops with a
+format-specific error rather than silently emitting a guessed encoding.  The
+four-region `gfx-map-resources-all` target verifies every generated packed
+stream byte-for-byte against the appropriate retail ROM.
 
 ## Current status
 
 * The six packed layer ranges, terrain-record table and terrain-index grid are
   all physically labelled in `asm/data/data_0813B288*.s` and referenced by
   `src/map_data.cc`.
-* The labelled resources are not yet a managed graphics family. Across the
-  table they include large `0x70` streams, short auxiliary tables, and raw
-  data. Layer 0 and layers 3–5 now have verified graphics/tilemap roles;
-  layers 1–2 still require exact tile/palette destination analysis.
+* All 272 unique visual layer streams are now a managed, source-backed
+  graphics family with four-region byte-range verification.  They are not yet
+  wired into the aggregate assembly archive: that replacement must preserve
+  existing direct labels inside the archive as well as the source bytes.
+* Layer 0 and layers 3–5 have verified graphics/tilemap roles; layers 1–2
+  still require exact tile/palette destination analysis.
 * The earlier `unknown_types.hh::MapData` sketch has a speculative
   `packed_img`/palette/tile naming scheme.  It is not used as authoritative
   evidence for this pipeline; `map_data.hh` and the runtime access above are

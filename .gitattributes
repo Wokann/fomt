@@ -4,3 +4,4 @@ charmap_jp.txt whitespace=-trailing-space
 # Native GBA tile payloads are opaque binary source resources.
 *.4bpp binary
 *.tilemap binary
+*.bin binary
