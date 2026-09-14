@@ -58,6 +58,7 @@ OAM_PACK_DIR := tools/oam_pack
 OAM_PACK := $(OAM_PACK_DIR)/oam_pack$(EXE)
 OAM_PACK_AUDIT := $(OAM_PACK_DIR)/audit_portraits.py
 GFX_RANGE_VERIFY := tools/verify_gfx_range.py
+TILE_GRID_TOOL := tools/tile_grid.py
 .PHONY: $(GFX_TOOL) $(FONT_PAD) $(OAM_PACK)
 
 # ================
@@ -141,6 +142,7 @@ OVERWORLD_RICK_TILE_BIN := $(BUILD_DIR)/graphics/sprites/rick_daily/rick_daily.4
 OVERWORLD_RICK_PALETTE_BIN := $(BUILD_DIR)/graphics/sprites/rick_daily/rick_daily.gbapal
 OVERWORLD_RICK_BUILD_STAMP := $(BUILD_DIR)/graphics/sprites/rick_daily/.build.stamp
 OVERWORLD_RICK_TILE_SHA256 := a3b557ebe746ce6b2a7d1f5d0ea522837a99283c2dd05879f787dba2c733bf71
+OVERWORLD_RICK_PALETTE_SHA256 := 7023974d0e32aaee06e1da906644414117f4c5745c83e0a6ae73895136282b10
 OVERWORLD_RICK_TILE_OFFSET_JP := 0x380898
 OVERWORLD_RICK_TILE_OFFSET_US := 0x5FA73C
 OVERWORLD_RICK_TILE_OFFSET_EU := 0x5FA798
@@ -391,7 +393,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-overworld-rick gfx-overworld-rick-test gfx-overworld-rick-all gfx-overworld-actors gfx-overworld-actors-test gfx-overworld-actors-all gfx-assets gfx-verify oam-pack oam-pack-test oam-pack-audit
+.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-overworld-rick gfx-overworld-rick-test gfx-overworld-rick-all gfx-overworld-actors gfx-overworld-actors-test gfx-overworld-actors-all gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
 oam-pack: $(OAM_PACK)
 oam-pack-test: $(OAM_PACK) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba $(PORTRAIT_SOURCE_DIR)/full/000_TALK_PORTRAIT_RICK_NORMAL.png
 	@mkdir -p $(BUILD_DIR)/graphics/oam_pack
@@ -443,6 +445,21 @@ gfx-overworld-rick-all:
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-overworld-rick-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-overworld-rick-test
 
+# Generic linear 4bpp grid regression.  Rick's native stream is intentionally
+# viewed here as a 48-pixel-wide tile grid, not as the six-tile authored-frame
+# class, so this tests the generic conversion path independently.
+TILE_GRID_TEST_DIR := $(BUILD_DIR)/graphics/tile_grid_test
+tile-grid-region-test: $(TILE_GRID_TOOL) $(GFX_RANGE_VERIFY) $(BASE_ROM)
+	@$(PYTHON) $(TILE_GRID_TOOL) export $(BASE_ROM) --tiles-offset $(OVERWORLD_RICK_TILE_OFFSET) --tiles-length 0x1380 --palette-offset $(OVERWORLD_RICK_PALETTE_OFFSET) --width 48 --sha256 $(OVERWORLD_RICK_TILE_SHA256) --output $(TILE_GRID_TEST_DIR)/rick.png --replace
+	@$(PYTHON) $(TILE_GRID_TOOL) build --source $(TILE_GRID_TEST_DIR)/rick.png --tiles $(TILE_GRID_TEST_DIR)/rick.4bpp --palette $(TILE_GRID_TEST_DIR)/rick.gbapal
+	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(OVERWORLD_RICK_TILE_OFFSET) --input $(TILE_GRID_TEST_DIR)/rick.4bpp --sha256 $(OVERWORLD_RICK_TILE_SHA256)
+	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(OVERWORLD_RICK_PALETTE_OFFSET) --input $(TILE_GRID_TEST_DIR)/rick.gbapal --sha256 $(OVERWORLD_RICK_PALETTE_SHA256)
+tile-grid-test:
+	@$(MAKE) --no-print-directory GAME_REGION=JP tile-grid-region-test
+	@$(MAKE) --no-print-directory GAME_REGION=US tile-grid-region-test
+	@$(MAKE) --no-print-directory GAME_REGION=EU tile-grid-region-test
+	@$(MAKE) --no-print-directory GAME_REGION=DE tile-grid-region-test
+
 # This target deliberately keeps each source family independently addressable:
 # an artist can rebuild Popuri without needing to touch Rick or Lillia.
 gfx-overworld-actors: gfx-overworld-rick $(OVERWORLD_FIXED_SIX_TILE_BINS)
@@ -466,6 +483,7 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-fonts-test
 	@$(MAKE) --no-print-directory gfx-portraits-all
 	@$(MAKE) --no-print-directory gfx-overworld-actors-all
+	@$(MAKE) --no-print-directory tile-grid-test
 	@$(MAKE) --no-print-directory oam-pack-test
 	@$(MAKE) --no-print-directory oam-pack-audit
 
@@ -592,7 +610,7 @@ clean:
 .PHONY: clean
 
 ifneq (clean,$(MAKECMDGOALS))
-ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-overworld-rick gfx-overworld-rick-test gfx-overworld-rick-all gfx-overworld-actors gfx-overworld-actors-test gfx-overworld-actors-all gfx-assets gfx-verify oam-pack oam-pack-test oam-pack-audit,$(MAKECMDGOALS)))
+ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-overworld-rick gfx-overworld-rick-test gfx-overworld-rick-all gfx-overworld-actors gfx-overworld-actors-test gfx-overworld-actors-all gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit,$(MAKECMDGOALS)))
 -include $(ALL_DEPS)
 endif
 .PRECIOUS: $(BUILD_DIR)/%.d

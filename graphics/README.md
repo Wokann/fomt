@@ -167,6 +167,30 @@ python tools/overworld_sprite.py contact-sheet \
 The contact sheet is diagnostic only; it neither participates in assembly nor
 becomes another source-of-truth format.
 
+## Linear 4bpp tile grids
+
+`tools/tile_grid.py` covers the other common case: a located graphics payload
+whose tiles are stored left-to-right and top-to-bottom with no OAM or tile-map
+indirection. It exports a strict indexed PNG and native BGR555 palette, then
+rebuilds the same raw tile order. It requires an expected SHA-256 when reading
+a ROM, so an incorrect offset cannot silently become authored art.
+
+```console
+python tools/tile_grid.py export baserom_us.gba \
+  --tiles-offset 0x5FA73C --tiles-length 0x1380 \
+  --palette-offset 0x662440 --width 48 \
+  --sha256 a3b557ebe746ce6b2a7d1f5d0ea522837a99283c2dd05879f787dba2c733bf71 \
+  --output build/tile_grid_probe/rick.png
+python tools/tile_grid.py build \
+  --source build/tile_grid_probe/rick.png \
+  --tiles build/tile_grid_probe/rick.4bpp \
+  --palette build/tile_grid_probe/rick.gbapal
+```
+
+`make tile-grid-test` runs that generic route against all four retail ROMs.
+The Rick stream is used only as a known byte-identical fixture; for normal
+Rick editing, use the higher-level six-tile full-frame source instead.
+
 ## Experimental forward OAM compiler
 
 `tools/oam_pack/oam_pack.c` is the separate C implementation used to recover
