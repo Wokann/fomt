@@ -314,6 +314,7 @@ gUnk_082AFED0:
     .global gUnk_082B0744
 gUnk_082B0744:
     FOMT_FARM_STATUS_TILEMAP 0x438, 0x9A
+    .incbin "baserom_jp.gba", 0x2B07DE, 0x2
     .global gUnk_082B07E0
 gUnk_082B07E0:
     FOMT_FARM_STATUS_TILEMAP 0x390, 0x54
@@ -324,6 +325,7 @@ gUnk_082B2F20:
     .global gUnk_082B2F80
 gUnk_082B2F80:
     FOMT_FARM_STATUS_TILEMAP 0x2A0, 0x30
+    .incbin "baserom_jp.gba", 0x2B2FB0, (0x2B3074 - 0x2B2FB0)
     .global gUnk_082B3074
 gUnk_082B3074:
     FOMT_FARM_STATUS_TILEMAP 0x1C8, 0xA8
@@ -337,6 +339,7 @@ gUnk_082B317C:
     .global gUnk_082B39F0
 gUnk_082B39F0:
     FOMT_FARM_STATUS_TILEMAP 0x4D2, 0x9A
+    .incbin "baserom_jp.gba", 0x2B3A8A, 0x2
     .global gUnk_082B3A8C
 gUnk_082B3A8C:
     FOMT_FARM_STATUS_TILEMAP 0x3E4, 0x54
