@@ -1,7 +1,7 @@
 #include "map_data.hh"
 #include "static_resources.hh"
 
-EXTERN_C
+extern "C" {
 
 // These labels point into still-raw map assets.  Their payload types are not decoded yet.
 extern u8 const gUnk_MapDataResource_000[];
@@ -941,9 +941,10 @@ MapData const gMapData[MAP_DATA_COUNT] = {
     },
 };
 
-EXTERN_C_END
+}
 
-extern "C" MapData const * GetMapData(u32 map_id) SECTION(".text.get_map_data");
+extern "C" MapData const * GetMapData(u32 map_id)
+    __attribute__((section(".text.get_map_data")));
 
 extern "C" MapData const * GetMapData(u32 map_id)
 {

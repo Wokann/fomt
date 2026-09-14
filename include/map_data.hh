@@ -3,7 +3,7 @@
 
 #include "prelude.h"
 
-EXTERN_C
+extern "C" {
 
 struct MapData
 {
@@ -16,12 +16,15 @@ struct MapData
     u8 padding[3];
 };
 
-#define MAP_DATA_COUNT 66
+enum
+{
+    MAP_DATA_COUNT = 66,
+};
 
 extern MapData const gMapData[MAP_DATA_COUNT];
 
 MapData const * GetMapData(u32 map_id);
 
-EXTERN_C_END
+}
 
 #endif // MAP_DATA_HH
