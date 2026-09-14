@@ -38,3 +38,6 @@ char const gText_Clinic_DeliveryPartial[] =
 char const gText_Clinic_PurchaseComplete[] =
     "はい、これね。\r\n"
     "おだいじに。{Press}";
+
+char const gCppRuntimeBadAlloc_ClinicTrailer[] =
+    "bad_alloc";

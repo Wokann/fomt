@@ -42,3 +42,6 @@ char const gText_Clinic_DeliveryPartial[] =
 char const gText_Clinic_PurchaseComplete[] =
     "Bitte sehr.\r\n"
     "Pass auf dich auf.{Press}";
+
+char const gCppRuntimeBadAlloc_ClinicTrailer[] =
+    "bad_alloc";
