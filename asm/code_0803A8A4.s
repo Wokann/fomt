@@ -27,13 +27,34 @@ func_0803A8A4:
     .4byte gUnk_080F2068
     .4byte ScheduleInfo_Unk_080F1A80
     .4byte gUnk_080F1FC0
-    .incbin "baserom_jp.gba", 0x3D624, 0x40
+    .4byte gUnk_080F8678
+    .4byte gUnk_080F81BC
+    .4byte gUnk_080F77FC
+    .4byte gUnk_080F7294
+    .4byte gUnk_080F6370
+    .4byte gUnk_080F66C4
+    .4byte gUnk_080F49C0
+    .4byte gUnk_080F5540
+    .4byte gUnk_080F4D74
+    .4byte gUnk_080F59CC
+    .4byte gUnk_080F6B4C
+    .4byte gUnk_080F33B8
+    .4byte gUnk_080F61FC
+    .4byte gUnk_080F3408
+    .4byte gUnk_080F3FD8
+    .4byte gUnk_080F35E4
     .4byte ScheduleInfo_Unk_080F286C
-    .incbin "baserom_jp.gba", 0x3D668, 0x8
+    .4byte gUnk_080F5D94
+    .4byte gUnk_080F6DE8
     .4byte ScheduleInfo_Unk_080F2354
-    .incbin "baserom_jp.gba", 0x3D674, 0x10
+    .4byte gUnk_080F42F0
+    .4byte gUnk_080F43DC
+    .4byte gUnk_080F6FF8
+    .4byte gUnk_080F7B40
     .4byte ScheduleInfo_Unk_080F261C
-    .incbin "baserom_jp.gba", 0x3D688, 0xC
+    .4byte gUnk_080F597C
+    .4byte gUnk_080F6B10
+    .4byte gUnk_080F4974
     .4byte gUnk_080F221C
     .incbin "baserom_jp.gba", 0x3D698, 0x7D8
 

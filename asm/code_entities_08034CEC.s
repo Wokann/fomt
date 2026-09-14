@@ -46,39 +46,119 @@ func_08035BC8:
     jp_code_entity_func func_08035C04, 0x35998, 0x35A4C
     jp_code_entity_func func_08035CB8, 0x35A4C, 0x35A68
     jp_code_entity_func func_08035CD4, 0x35A68, 0x35A98
-    jp_code_entity_func func_08035D04, 0x35A98, 0x35AD4
+    .global func_08035D04
+    .thumb_func
+func_08035D04:
+    .incbin "baserom_jp.gba", 0x35A98, 0x2C
+    .4byte gUnk_080F8678
+    .incbin "baserom_jp.gba", 0x35AC8, 0xC
     jp_code_entity_func func_08035D40, 0x35AD4, 0x35B04
-    jp_code_entity_func func_08035D70, 0x35B04, 0x35B40
+    .global func_08035D70
+    .thumb_func
+func_08035D70:
+    .incbin "baserom_jp.gba", 0x35B04, 0x2C
+    .4byte gUnk_080F81BC
+    .incbin "baserom_jp.gba", 0x35B34, 0xC
     jp_code_entity_func func_08035DAC, 0x35B40, 0x35B6C
-    jp_code_entity_func func_08035DD8, 0x35B6C, 0x35BA8
+    .global func_08035DD8
+    .thumb_func
+func_08035DD8:
+    .incbin "baserom_jp.gba", 0x35B6C, 0x2C
+    .4byte gUnk_080F77FC
+    .incbin "baserom_jp.gba", 0x35B9C, 0xC
     jp_code_entity_func func_08035E14, 0x35BA8, 0x35BD4
-    jp_code_entity_func func_08035E40, 0x35BD4, 0x35C10
+    .global func_08035E40
+    .thumb_func
+func_08035E40:
+    .incbin "baserom_jp.gba", 0x35BD4, 0x2C
+    .4byte gUnk_080F7294
+    .incbin "baserom_jp.gba", 0x35C04, 0xC
     jp_code_entity_func func_08035E7C, 0x35C10, 0x35C40
-    jp_code_entity_func func_08035EAC, 0x35C40, 0x35C78
+    .global func_08035EAC
+    .thumb_func
+func_08035EAC:
+    .incbin "baserom_jp.gba", 0x35C40, 0x30
+    .4byte gUnk_080F6370
+    .incbin "baserom_jp.gba", 0x35C74, 0x4
     jp_code_entity_func func_08035EE4, 0x35C78, 0x35CA4
-    jp_code_entity_func func_08035F10, 0x35CA4, 0x35CDC
+    .global func_08035F10
+    .thumb_func
+func_08035F10:
+    .incbin "baserom_jp.gba", 0x35CA4, 0x2C
+    .4byte gUnk_080F66C4
+    .incbin "baserom_jp.gba", 0x35CD4, 0x8
     jp_code_entity_func func_08035F48, 0x35CDC, 0x35D08
-    jp_code_entity_func func_08035F74, 0x35D08, 0x35D44
+    .global func_08035F74
+    .thumb_func
+func_08035F74:
+    .incbin "baserom_jp.gba", 0x35D08, 0x2C
+    .4byte gUnk_080F49C0
+    .incbin "baserom_jp.gba", 0x35D38, 0xC
     jp_code_entity_func func_08035FB0, 0x35D44, 0x35D74
-    jp_code_entity_func func_08035FE0, 0x35D74, 0x35DB0
+    .global func_08035FE0
+    .thumb_func
+func_08035FE0:
+    .incbin "baserom_jp.gba", 0x35D74, 0x2C
+    .4byte gUnk_080F5540
+    .incbin "baserom_jp.gba", 0x35DA4, 0xC
     jp_code_entity_func func_0803601C, 0x35DB0, 0x35DDC
-    jp_code_entity_func func_08036048, 0x35DDC, 0x35E18
+    .global func_08036048
+    .thumb_func
+func_08036048:
+    .incbin "baserom_jp.gba", 0x35DDC, 0x2C
+    .4byte gUnk_080F4D74
+    .incbin "baserom_jp.gba", 0x35E0C, 0xC
     jp_code_entity_func func_08036084, 0x35E18, 0x35ECC
     jp_code_entity_func func_08036138, 0x35ECC, 0x35EE8
     jp_code_entity_func func_08036154, 0x35EE8, 0x35F18
-    jp_code_entity_func func_08036184, 0x35F18, 0x35F54
+    .global func_08036184
+    .thumb_func
+func_08036184:
+    .incbin "baserom_jp.gba", 0x35F18, 0x2C
+    .4byte gUnk_080F59CC
+    .incbin "baserom_jp.gba", 0x35F48, 0xC
     jp_code_entity_func func_080361C0, 0x35F54, 0x35F80
-    jp_code_entity_func func_080361EC, 0x35F80, 0x35FBC
+    .global func_080361EC
+    .thumb_func
+func_080361EC:
+    .incbin "baserom_jp.gba", 0x35F80, 0x2C
+    .4byte gUnk_080F6B4C
+    .incbin "baserom_jp.gba", 0x35FB0, 0xC
     jp_code_entity_func func_08036228, 0x35FBC, 0x35FEC
-    jp_code_entity_func func_08036258, 0x35FEC, 0x36024
+    .global func_08036258
+    .thumb_func
+func_08036258:
+    .incbin "baserom_jp.gba", 0x35FEC, 0x28
+    .4byte gUnk_080F33B8
+    .incbin "baserom_jp.gba", 0x36018, 0xC
     jp_code_entity_func func_08036290, 0x36024, 0x36054
-    jp_code_entity_func func_080362C0, 0x36054, 0x36090
+    .global func_080362C0
+    .thumb_func
+func_080362C0:
+    .incbin "baserom_jp.gba", 0x36054, 0x2C
+    .4byte gUnk_080F61FC
+    .incbin "baserom_jp.gba", 0x36084, 0xC
     jp_code_entity_func func_080362FC, 0x36090, 0x360BC
-    jp_code_entity_func func_08036328, 0x360BC, 0x360F8
+    .global func_08036328
+    .thumb_func
+func_08036328:
+    .incbin "baserom_jp.gba", 0x360BC, 0x2C
+    .4byte gUnk_080F3408
+    .incbin "baserom_jp.gba", 0x360EC, 0xC
     jp_code_entity_func func_08036364, 0x360F8, 0x36124
-    jp_code_entity_func func_08036390, 0x36124, 0x36160
+    .global func_08036390
+    .thumb_func
+func_08036390:
+    .incbin "baserom_jp.gba", 0x36124, 0x2C
+    .4byte gUnk_080F3FD8
+    .incbin "baserom_jp.gba", 0x36154, 0xC
     jp_code_entity_func func_080363CC, 0x36160, 0x3618C
-    jp_code_entity_func func_080363F8, 0x3618C, 0x361C4
+    .global func_080363F8
+    .thumb_func
+func_080363F8:
+    .incbin "baserom_jp.gba", 0x3618C, 0x2C
+    .4byte gUnk_080F35E4
+    .incbin "baserom_jp.gba", 0x361BC, 0x8
     jp_code_entity_func func_08036430, 0x361C4, 0x36278
     jp_code_entity_func func_080364E4, 0x36278, 0x36294
     jp_code_entity_func func_08036500, 0x36294, 0x362C4
@@ -89,11 +169,21 @@ func_08036530:
     .4byte ScheduleInfo_Unk_080F286C
     .incbin "baserom_jp.gba", 0x362F4, 0x4
     jp_code_entity_func func_08036564, 0x362F8, 0x36324
-    jp_code_entity_func func_08036590, 0x36324, 0x36360
+    .global func_08036590
+    .thumb_func
+func_08036590:
+    .incbin "baserom_jp.gba", 0x36324, 0x2C
+    .4byte gUnk_080F5D94
+    .incbin "baserom_jp.gba", 0x36354, 0xC
     jp_code_entity_func func_080365CC, 0x36360, 0x36414
     jp_code_entity_func func_08036680, 0x36414, 0x36430
     jp_code_entity_func func_0803669C, 0x36430, 0x36460
-    jp_code_entity_func func_080366CC, 0x36460, 0x36498
+    .global func_080366CC
+    .thumb_func
+func_080366CC:
+    .incbin "baserom_jp.gba", 0x36460, 0x2C
+    .4byte gUnk_080F6DE8
+    .incbin "baserom_jp.gba", 0x36490, 0x8
     jp_code_entity_func func_08036704, 0x36498, 0x364C4
     .global func_08036730
     .thumb_func
@@ -104,17 +194,42 @@ func_08036730:
     jp_code_entity_func func_08036768, 0x364FC, 0x36540
     jp_code_entity_func func_080367AC, 0x36540, 0x3655C
     jp_code_entity_func func_080367C8, 0x3655C, 0x3658C
-    jp_code_entity_func func_080367F8, 0x3658C, 0x365C8
+    .global func_080367F8
+    .thumb_func
+func_080367F8:
+    .incbin "baserom_jp.gba", 0x3658C, 0x2C
+    .4byte gUnk_080F42F0
+    .incbin "baserom_jp.gba", 0x365BC, 0xC
     jp_code_entity_func func_08036834, 0x365C8, 0x365F4
-    jp_code_entity_func func_08036860, 0x365F4, 0x3662C
+    .global func_08036860
+    .thumb_func
+func_08036860:
+    .incbin "baserom_jp.gba", 0x365F4, 0x2C
+    .4byte gUnk_080F4974
+    .incbin "baserom_jp.gba", 0x36624, 0x8
     jp_code_entity_func func_08036898, 0x3662C, 0x36658
-    jp_code_entity_func func_080368C4, 0x36658, 0x36694
+    .global func_080368C4
+    .thumb_func
+func_080368C4:
+    .incbin "baserom_jp.gba", 0x36658, 0x2C
+    .4byte gUnk_080F43DC
+    .incbin "baserom_jp.gba", 0x36688, 0xC
     jp_code_entity_func func_08036900, 0x36694, 0x36758
     jp_code_entity_func func_080369C4, 0x36758, 0x36774
     jp_code_entity_func func_080369E0, 0x36774, 0x367A4
-    jp_code_entity_func func_08036A10, 0x367A4, 0x367E0
+    .global func_08036A10
+    .thumb_func
+func_08036A10:
+    .incbin "baserom_jp.gba", 0x367A4, 0x2C
+    .4byte gUnk_080F6FF8
+    .incbin "baserom_jp.gba", 0x367D4, 0xC
     jp_code_entity_func func_08036A4C, 0x367E0, 0x3680C
-    jp_code_entity_func func_08036A78, 0x3680C, 0x36848
+    .global func_08036A78
+    .thumb_func
+func_08036A78:
+    .incbin "baserom_jp.gba", 0x3680C, 0x2C
+    .4byte gUnk_080F7B40
+    .incbin "baserom_jp.gba", 0x3683C, 0xC
     jp_code_entity_func func_08036AB4, 0x36848, 0x36894
     jp_code_entity_func func_08036B00, 0x36894, 0x368B0
     jp_code_entity_func func_08036B1C, 0x368B0, 0x368E0
@@ -127,7 +242,12 @@ func_08036B4C:
     jp_code_entity_func func_08036B80, 0x36914, 0x36944
     jp_code_entity_func func_08036BB0, 0x36944, 0x3698C
     jp_code_entity_func func_08036BF8, 0x3698C, 0x369DC
-    jp_code_entity_func func_08036C48, 0x369DC, 0x36A14
+    .global func_08036C48
+    .thumb_func
+func_08036C48:
+    .incbin "baserom_jp.gba", 0x369DC, 0x2C
+    .4byte gUnk_080F597C
+    .incbin "baserom_jp.gba", 0x36A0C, 0x8
     jp_code_entity_func func_08036C80, 0x36A14, 0x36A40
     jp_code_entity_func func_08036CAC, 0x36A40, 0x36A70
     jp_code_entity_func func_08036CDC, 0x36A70, 0x36AA0
@@ -135,7 +255,12 @@ func_08036B4C:
     jp_code_entity_func func_08036D3C, 0x36AD0, 0x36AFC
     jp_code_entity_func func_08036D68, 0x36AFC, 0x36B2C
     jp_code_entity_func func_08036D98, 0x36B2C, 0x36B58
-    jp_code_entity_func func_08036DC4, 0x36B58, 0x36BC0
+    .global func_08036DC4
+    .thumb_func
+func_08036DC4:
+    .incbin "baserom_jp.gba", 0x36B58, 0x2C
+    .4byte gUnk_080F6B10
+    .incbin "baserom_jp.gba", 0x36B88, 0x38
     .global func_08036E2C
     .thumb_func
 func_08036E2C:
