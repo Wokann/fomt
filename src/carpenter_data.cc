@@ -1,6 +1,6 @@
 #include "carpenter_data.hh"
 
-#include FOMT_TEXT_INCLUDE(carpenter_data.cc)
+#include FOMT_TEXT_INCLUDE(carpenter_data_1.cc)
 
 CarpenterCatalogEntry const gCarpenterCatalog[] = {
     { gText_Carpenter_Lumber, 50, 0, 0, nullptr },
@@ -29,4 +29,4 @@ CarpenterCatalogEntry const gCarpenterCatalog[] = {
     { gText_Carpenter_StrangeMailbox, 10000, 200, 10, gText_Carpenter_MailboxCost },
 };
 
-#include FOMT_TEXT_INCLUDE(carpenter_data_1.cc)
+#include FOMT_TEXT_INCLUDE(carpenter_data_2.cc)

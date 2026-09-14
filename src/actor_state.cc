@@ -7,7 +7,7 @@ u8 const gActorStateMaxValues[] = {
     10, 10, 255, 10, 10, 255,
 };
 
-#include FOMT_TEXT_INCLUDE(actor_state.cc)
+#include FOMT_TEXT_INCLUDE(actor_state_1.cc)
 
 ActorDataSelectionEntry const gActorDataSelectionEntries[] = {
     { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 53), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 54), 0x15, 0x0C, 0x0000 },
@@ -26,7 +26,7 @@ ActorDataSelectionEntry const gActorDataSelectionEntries[] = {
     { reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 77), reinterpret_cast<u8 const *>(gFieldRenderRectDescriptors + 78), 0x69, 0x3E, 0x0000 },
 };
 
-#include FOMT_TEXT_INCLUDE(actor_state_1.cc)
+#include FOMT_TEXT_INCLUDE(actor_state_2.cc)
 
 EC u32 func_0809C3E0(ActorStateSlots & self, u32 index)
 {

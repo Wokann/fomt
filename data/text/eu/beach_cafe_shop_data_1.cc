@@ -1,11 +1,9 @@
 #include "beach_cafe_shop_data.hh"
-char const gText_BeachCafeShop_InsufficientGold[] =
-    "Hey, you don't have \r\n"
-    "enough money!{Press}";
-char const gText_BeachCafeShop_NoOrder[] =
-    "If you get hungry again,\r\n"
-    "just come back, OK?!{Press}";
-char const gText_BeachCafeShop_OrderComplete[] =
-    "Wait one second....\r\n"
-    "There you are. Enjoy!{Press}";
-char const gCppRuntimeBadAlloc_BeachCafeShopTrailer[] = "bad_alloc";
+char const gText_BeachCafeShop_WaterDescription[] = "Water. Just plain old water.";
+char const gText_BeachCafeShop_EmptyDescription[] = "";
+char const gText_BeachCafeShop_SpaghettiDescription[] =
+    "Some delicious-looking\r\n"
+    "spaghetti.";
+char const gText_BeachCafeShop_SnowConeDescription[] =
+    "Snow-cone. Crushed ice\r\n"
+    "with syrup.";

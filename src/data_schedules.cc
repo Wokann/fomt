@@ -390,7 +390,7 @@ PathPointA const Unk_080F1A80_22_Path_Points[7] = {
     { 4, 248, 1 }, { 6, 472, 0 }, { 10, 152, 1 }, { 41, 1248, 0 }, { 42, 128, 1 }, { 43, 1272, 0 }, { 48, 0, 1 },
 };
 
-#include FOMT_TEXT_INCLUDE(data_schedules.cc)
+#include FOMT_TEXT_INCLUDE(data_schedules_1.cc)
 
 // Recovered schedule data at US ROM 0x080F1FC0 (JP 0x080F181C).
 // The two regional payloads differ only in relocated function/data pointers.
@@ -1006,7 +1006,7 @@ PathPointA const gUnk_080F27F0[] = {
     { 10, 228, 0 },
 };
 
-#include FOMT_TEXT_INCLUDE(data_schedules_1.cc)
+#include FOMT_TEXT_INCLUDE(data_schedules_2.cc)
 
 // Recovered schedule data at US ROM 0x080F280C (JP 0x080F2068).
 // The two regional payloads differ only in relocated function/data pointers.
@@ -1156,7 +1156,7 @@ PathPointA const gUnk_080F297C[] = {
     { 47, 227, 1 },
 };
 
-#include FOMT_TEXT_INCLUDE(data_schedules_2.cc)
+#include FOMT_TEXT_INCLUDE(data_schedules_3.cc)
 
 // Recovered schedule data at US ROM 0x080F29C0 (JP 0x080F221C).
 // The two regional payloads differ only in relocated function/data pointers.
@@ -1265,7 +1265,7 @@ PathPointB const gUnk_080F2ACC[] = {
     { 56, 2, 120, 2, 0 },
 };
 
-#include FOMT_TEXT_INCLUDE(data_schedules_3.cc)
+#include FOMT_TEXT_INCLUDE(data_schedules_4.cc)
 
 // Recovered schedule data at US ROM 0x080F2AF8 (JP 0x080F2354).
 // The two regional payloads differ only in relocated function/data pointers.
@@ -1507,7 +1507,7 @@ PathPointA const gUnk_080F2D7C[] = {
     { 44, 488, 1 },
 };
 
-#include FOMT_TEXT_INCLUDE(data_schedules_4.cc)
+#include FOMT_TEXT_INCLUDE(data_schedules_5.cc)
 
 // Recovered schedule data at US ROM 0x080F2DC0 (JP 0x080F261C).
 // The two regional payloads differ only in relocated function/data pointers.
@@ -1744,7 +1744,7 @@ PathPointA const gUnk_080F2FDC[] = {
     { 47, 0, 1 },
 };
 
-#include FOMT_TEXT_INCLUDE(data_schedules_5.cc)
+#include FOMT_TEXT_INCLUDE(data_schedules_6.cc)
 
 // Recovered schedule data at US ROM 0x080F3010 (JP 0x080F286C).
 // The two regional payloads differ only in relocated function/data pointers.
@@ -2041,4 +2041,4 @@ PathPointA const gUnk_080F3394[] = {
     { 19, 164, 1 },
 };
 
-#include FOMT_TEXT_INCLUDE(data_schedules_6.cc)
+#include FOMT_TEXT_INCLUDE(data_schedules_7.cc)

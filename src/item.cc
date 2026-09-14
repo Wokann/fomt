@@ -40,7 +40,7 @@ static inline T const & FomtMin(T const & left, T const & right)
 
 // The leading invalid-item labels and tool text are physically contiguous.
 // Select their regional source here so all item text stays under its region.
-#include FOMT_TEXT_INCLUDE(item.cc)
+#include FOMT_TEXT_INCLUDE(item_1.cc)
 
 char const * Tool::GetName() const
 {
@@ -634,7 +634,7 @@ ToolInfo const gToolInfo[] = {
     /* 0x50 */ { gText_Item_Tool_GemOfTruth_Name, 456, gText_Item_Tool_GemOfTruth_Description },
 };
 
-#include FOMT_TEXT_INCLUDE(item_1.cc)
+#include FOMT_TEXT_INCLUDE(item_2.cc)
 
 FoodInfo const gFoodInfo[] = {
     /* 0x00 */ { gText_Item_Food_Turnip_Name, false, 3, -1, 457, gText_Item_Food_Turnip_Description },
@@ -831,7 +831,7 @@ FoodInfo const gFoodInfo[] = {
     /* 0xAA */ { gText_Item_Food_PotatoPancakes_Name, false, 20, -2, 112, gText_Item_Food_PotatoPancakes_Description },
 };
 
-#include FOMT_TEXT_INCLUDE(item_2.cc)
+#include FOMT_TEXT_INCLUDE(item_3.cc)
 
 ArticleInfo const gArticleInfo[] = {
     /* 0x00 */ { gText_Item_Article_MoonDropGrass_Name, 303, gText_Item_Article_MoonDropGrass_Description },
@@ -1068,4 +1068,4 @@ ProductInfo const gProductInfo[] = {
     /* 0x66 */ { 60, ProductInfo::KIND_ARTICLE, ITEM_ARTICLE_AMETHYST },
 };
 
-#include FOMT_TEXT_INCLUDE(item_3.cc)
+#include FOMT_TEXT_INCLUDE(item_4.cc)

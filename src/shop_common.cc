@@ -1,6 +1,6 @@
 #include "shop_common.hh"
 
-#include FOMT_TEXT_INCLUDE(shop_common.cc)
+#include FOMT_TEXT_INCLUDE(shop_common_1.cc)
 
 #if defined(REGION_JP)
 u16 const gUnk_080C85A0DigitGlyphs[10] = {
@@ -14,17 +14,17 @@ u16 const gUnk_080C85A0DigitGlyphs[10] = {
     };
 #endif
 
-#include FOMT_TEXT_INCLUDE(shop_common_1.cc)
+#include FOMT_TEXT_INCLUDE(shop_common_2.cc)
 
 char const * const gShopCommonQuantitySuffixTextRef =
     gText_ShopCommon_QuantitySuffix;
 
-#include FOMT_TEXT_INCLUDE(shop_common_2.cc)
+#include FOMT_TEXT_INCLUDE(shop_common_3.cc)
 
 char const * const gShopCommonOwnedQuantityLabelTextRef =
     gText_ShopCommon_OwnedQuantityLabel;
 
-#include FOMT_TEXT_INCLUDE(shop_common_3.cc)
+#include FOMT_TEXT_INCLUDE(shop_common_4.cc)
 
 u32 const gUnk_08117838 = 0x00001010;
 
@@ -40,7 +40,7 @@ u32 const gUnk_08117860[8] = {
     0x00000902, 0x00000905, 0x00000908, 0x0000090B,
 };
 
-#include FOMT_TEXT_INCLUDE(shop_common_4.cc)
+#include FOMT_TEXT_INCLUDE(shop_common_5.cc)
 
 u32 const gUnk_0811788C[18][4] = {
     { 0x00000005, 0x00000001, 0x00000009, 0x00000009 },
@@ -63,22 +63,22 @@ u32 const gUnk_0811788C[18][4] = {
     { 0x0000000D, 0x00000009, 0x00000010, 0x00000005 },
 };
 
-#include FOMT_TEXT_INCLUDE(shop_common_5.cc)
+#include FOMT_TEXT_INCLUDE(shop_common_6.cc)
 
 char const * const gItemStatusWrappedAsPresentTextRef =
     gText_ItemStatus_WrappedAsPresent;
 
-#include FOMT_TEXT_INCLUDE(shop_common_6.cc)
+#include FOMT_TEXT_INCLUDE(shop_common_7.cc)
 
 char const * const gItemDiscardConfirmTextRef =
     gText_ItemDiscard_Confirm;
 
-#include FOMT_TEXT_INCLUDE(shop_common_7.cc)
+#include FOMT_TEXT_INCLUDE(shop_common_8.cc)
 
 char const * const gItemDiscardCannotDiscardTextRef =
     gText_ItemDiscard_CannotDiscard;
 
-#include FOMT_TEXT_INCLUDE(shop_common_8.cc)
+#include FOMT_TEXT_INCLUDE(shop_common_9.cc)
 
 char const * const gItemDiscardCursedTextRef =
     gText_ItemDiscard_Cursed;

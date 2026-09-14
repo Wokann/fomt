@@ -1,6 +1,6 @@
 #include "entity_ui.hh"
 
-#include FOMT_TEXT_INCLUDE(entity_ui.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_1.cc)
 
 // This contiguous block immediately precedes the existing Entity-UI data.
 // Native callers establish the widths and offsets below; unresolved fields keep
@@ -176,7 +176,7 @@ extern "C" u8 const gUnk_080F1230[] ALIGN(1) = {
     0xCC, 0xCB, 0xCA, 0xC9, 0xC8, 0xC7, 0xC6, 0xC5, 0xC4, 0x00, 0x00, 0x00,
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_1.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_2.cc)
 
 extern "C" EntityUiScreenOffset const gUnk_080F1328[] ALIGN(1) = {
     { -3, -43 },
@@ -245,7 +245,7 @@ extern "C" EntityUiScreenOffset const gUnk_080F1328[] ALIGN(1) = {
     { 7, -41 },
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_2.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_3.cc)
 
 extern "C" u32 const gUnk_080F143C[] ALIGN(1) = {
     0x00030114, 0x00030132, 0x00030314, 0x0003030A, 0x00000000,
@@ -290,14 +290,14 @@ extern "C" u16 const gUnk_080F14F0[] = {
     0x05D0, 0x0624, 0x0480, 0x0000,
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_3.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_4.cc)
 
 extern "C" u16 const gUnk_080F1514[] ALIGN(4) = {
     0x0032, 0x000C, 0x0014, 0x0008,
     0x0014, 0x0004, 0x000A, 0x0000,
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_4.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_5.cc)
 
 // Native callers read the first byte of each entry; the table's game-level
 // field meanings remain unresolved.
@@ -386,7 +386,7 @@ extern "C" u16 const gUnk_080F1644[] = {
     0x0207, 0x020B, 0x020F, 0x0000,
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_5.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_6.cc)
 
 extern "C" u16 const gUnk_080F165E[] = {
     0x00E8, 0x0068, 0x00A8, 0x00A8, 0x0120,
@@ -407,13 +407,13 @@ extern "C" u16 const gUnk_080F1684[][4] = {
     { 0x0002, 0x0005, 0x00F0, 0x0000 },
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_6.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_7.cc)
 
 extern "C" u16 const gUnk_080F16AE[] = {
     0x09BF, 0x09C3, 0x09C7, 0x09CB, 0x09CF,
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_7.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_8.cc)
 
 extern "C" u16 const gUnk_080F16C2[] = {
     0x00B4, 0x01AC, 0x00A4, 0x028C,
@@ -456,14 +456,14 @@ extern "C" u8 const gUnk_080F1904[] = {
     0x19, 0x00, 0x00, 0x03,
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_8.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_9.cc)
 
 extern "C" u32 const gUnk_080F1948[] = {
     0xFFFFCCCD, 0x00010000, 0x00003333, 0x00010000,
     0xFFFFCCCD, 0x00040000, 0x0000CCCC, 0x00040000,
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_9.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_10.cc)
 
 extern "C" void func_080330F4(EntityUiHarvestSpriteResult * result,
                                void * unknown_3C, GameObject * game_object,

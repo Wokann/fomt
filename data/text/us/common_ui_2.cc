@@ -1,7 +1,7 @@
 #include "common_ui.hh"
 
-char const gText_Fallback_Error[] =
-    "Error";
+char const gText_UnnamedSetting[] =
+    "Unnamed setting";
 
-char const gText_Fallback_None[] =
-    "N/A ";
+char const gCppRuntimeBadAlloc_FixedLabels[] =
+    "bad_alloc";

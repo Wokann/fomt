@@ -2,7 +2,7 @@
 #include "unknown_types.hh"
 
 // Calendar text begins this physical rodata block.
-#include FOMT_TEXT_INCLUDE(game_state.cc)
+#include FOMT_TEXT_INCLUDE(game_state_1.cc)
 
 // func_08010F54 scans the first 25 packed season/day entries.  The final
 // zero is present in the original bytes but is outside that scan.
@@ -36,4 +36,4 @@ u8 const gUnk_080F0566[] ALIGN(1) = {
 };
 
 // The final regional text fragment follows the native byte table.
-#include FOMT_TEXT_INCLUDE(game_state_1.cc)
+#include FOMT_TEXT_INCLUDE(game_state_2.cc)

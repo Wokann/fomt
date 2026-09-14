@@ -2,7 +2,7 @@
 
 // Preserve the physical order of this single ROM block: regional dialog,
 // packet data, character codes, protocol identifiers, then runtime strings.
-#include FOMT_TEXT_INCLUDE(link_communication.cc)
+#include FOMT_TEXT_INCLUDE(link_communication_data.cc)
 
 EXTERN_C
 

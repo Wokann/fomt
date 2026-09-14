@@ -87,7 +87,7 @@ u16 const gTownMapResourceIds[] = {
 
 // The selected regional labels and descriptions immediately precede the
 // native Town Map tables in both ROMs.
-#include FOMT_TEXT_INCLUDE(town_map.cc)
+#include FOMT_TEXT_INCLUDE(town_map_data.cc)
 
 TownMapHotspot const gTownMapHotspots[TOWN_MAP_HOTSPOT_COUNT] = {
     { gText_TownMap_MountainCottageLabel, gText_TownMap_MountainCottageLabel, 0x00000000, 0x0168, 0x0090, 0x02, 0x29, 0x14, 0x37 },

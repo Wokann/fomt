@@ -1,6 +1,6 @@
 #include "beach_cafe_shop_data.hh"
 
-#include FOMT_TEXT_INCLUDE(beach_cafe_shop_data.cc)
+#include FOMT_TEXT_INCLUDE(beach_cafe_shop_data_1.cc)
 
 BeachCafeShopMenuEntry const gBeachCafeShopMenu[] = {
     { 0x1CD, 0, gText_BeachCafeShop_WaterDescription, 1, 1, 0, 1 },
@@ -10,4 +10,4 @@ BeachCafeShopMenuEntry const gBeachCafeShopMenu[] = {
     { 0xF7, 300, gText_BeachCafeShop_SnowConeDescription, 1, 1, -20, 0 },
 };
 
-#include FOMT_TEXT_INCLUDE(beach_cafe_shop_data_1.cc)
+#include FOMT_TEXT_INCLUDE(beach_cafe_shop_data_2.cc)

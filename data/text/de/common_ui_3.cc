@@ -1,7 +1,7 @@
 #include "common_ui.hh"
 
-char const gCppRuntimeBadAlloc_UiErrorFirst[] =
-    "bad_alloc";
+char const gText_Fallback_Error[] =
+    "Error";
 
-char const gCppRuntimeBadAlloc_UiErrorSecond[] =
-    "bad_alloc";
+char const gText_Fallback_None[] =
+    "N/A ";

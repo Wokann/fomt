@@ -4,14 +4,15 @@ Regional text belongs under this directory by its owning data structure:
 
     data/text/jp/, data/text/us/, data/text/eu/, and data/text/de/
         tool.cc, food.cc, article.cc
-        game_state.cc, help_menu.cc, animal_data.cc, script_engine.cc
-        common_ui.cc through common_ui_6.cc
-        data_schedules.cc through data_schedules_6.cc
+        game_state_1.cc, game_state_2.cc, help_menu.cc
+        animal_data_1.cc through animal_data_3.cc, script_engine.cc
+        common_ui_1.cc through common_ui_7.cc
+        data_schedules_1.cc through data_schedules_7.cc
         new_game_menu.cc, new_game_status.cc, new_game_help.cc
         new_game_save.cc, new_game_identity.cc
         new_game_name_entry.cc, new_game_name_entry_ui.cc
-        fishing_results_data.cc
-        character_names.cc
+        fishing_results_data_1.cc, fishing_results_data_2.cc
+        character_names_data_1.cc, character_names_data_2.cc
         reference_guide/
             harvest_sprite_minigames.cc
             festival_hints.cc
@@ -62,7 +63,7 @@ terminator, express that boundary as `\x00` followed by ordinary mapped text
 or raw `\xNN` bytes. `textproc` retains the explicit terminator while C++ still
 zero-initializes any remaining field capacity.
 
-`<region>/common_ui.cc` through `common_ui_6.cc` and
+`<region>/common_ui_1.cc` through `common_ui_7.cc` and
 `<region>/script_engine.cc` are included at their owning modules' physical ROM
 positions; each region owns even byte-identical runtime strings so the main
 module has no auxiliary text object. The non-display fixed SRAM signature is

@@ -1,4 +1,4 @@
 #include "data_schedules.hh"
 
-char const gUnk_080F2AEC[] =
+char const gUnk_080F29B4[] =
     "bad_alloc";

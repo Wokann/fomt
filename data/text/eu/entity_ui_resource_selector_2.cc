@@ -1,4 +1,4 @@
 #include "entity_ui_resource_selector.hh"
 
-extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelectorLarge[] =
+extern "C" char const gCppRuntimeBadAlloc_EntityUiResourceSelectorExtended[] =
     "bad_alloc";

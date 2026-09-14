@@ -1,11 +1,39 @@
 #include "animal_data.hh"
 
-extern char const gCppRuntimeBadAlloc_AnimalDataFirst[] =
-    "bad_alloc";
-extern char const gCppRuntimeBadAlloc_AnimalDataSecond[] =
-    "bad_alloc";
-extern char const gCppRuntimeError_AnimalData[] =
-    "Error";
+// The hard-coded animal memorial message is assembled from these pieces.
+char const gText_AnimalMemorial_LineBreak[] =
+    "\r\n";
 
-extern char const gText_AnimalDataFallbackNone[] =
+char const gText_AnimalMemorial_Continue[] =
+    "{Press}";
+
+char const gText_AnimalMemorial_PageBreak[] =
+    "\p";
+
+char const gText_AnimalMemorial_Header[] =
+    "Today, an animal/animals";
+
+char const gText_AnimalMemorial_FarmPrefix[] =
+    "from ";
+
+char const gText_AnimalMemorial_FarmSuffix[] =
+    " Farm";
+
+char const gText_AnimalMemorial_PassedAway[] =
+    "passed away.";
+
+char const gText_AnimalMemorial_NamesIntro[] =
+    "These are their names.";
+
+char const gText_AnimalMemorial_PrayerIntro[] =
+    "Let us all pray for their";
+
+char const gText_AnimalMemorial_PrayerEnding[] =
+    "everlasting peace.";
+
+extern char const gCppRuntimeBadAlloc_AnimalMemorial[] =
+    "bad_alloc";
+extern char const gCppRuntimeError_AnimalMemorial[] =
+    "Error";
+extern char const gText_AnimalMemorialFallbackNone[] =
     "N/A ";

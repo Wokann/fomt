@@ -1,4 +1,4 @@
 #include "data_schedules.hh"
 
-char const gUnk_080F280C[] =
+char const gCppRuntimeBadAlloc_DataSchedules[] ALIGN(4) =
     "bad_alloc";

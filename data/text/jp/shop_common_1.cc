@@ -1,7 +1,4 @@
 #include "shop_common.hh"
 
-char const gText_ShopCommon_GoldUnit[] =
-    "Ｇ";
-
-char const gText_ShopCommon_QuantitySuffix[] =
-    "コ";
+char const gCppRuntimeBadAlloc_ShopCommonDigitGlyphs[] =
+    "bad_alloc";

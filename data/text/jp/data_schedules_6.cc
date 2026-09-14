@@ -1,4 +1,4 @@
 #include "data_schedules.hh"
 
-char const gUnk_080F33AC[] =
+char const gCppRuntimeBadAlloc_FifthSchedule[] =
     "bad_alloc";

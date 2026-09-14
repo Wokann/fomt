@@ -1,7 +1,8 @@
 #include "common_ui.hh"
 
-char const gText_UnnamedSetting[] =
-    "名称未設定";
+// This fixed twelve-byte slot preserves the original following label address.
+char const gText_Moneybags[12] =
+    "成金やろう";
 
-char const gCppRuntimeBadAlloc_FixedLabels[] =
-    "bad_alloc";
+char const gText_EmptyUiLabel[4] =
+    "";

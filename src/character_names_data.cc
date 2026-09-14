@@ -2,7 +2,7 @@
 #include "character_names_empty.hh"
 
 // The selected regional names directly precede their native lookup table.
-#include FOMT_TEXT_INCLUDE(character_names.cc)
+#include FOMT_TEXT_INCLUDE(character_names_data_1.cc)
 
 // Entries are indexed directly by MaryCharacterId.  ID 0 and the Child entry
 // point at the physically preceding empty-name object.
@@ -52,4 +52,4 @@ CharacterNameEntry const gCharacterNameEntries[CHARACTER_TIMID + 1] = {
     { gText_CharacterName_Timid, 0x00000041 },           // CHARACTER_TIMID
 };
 
-#include FOMT_TEXT_INCLUDE(character_names_1.cc)
+#include FOMT_TEXT_INCLUDE(character_names_data_2.cc)

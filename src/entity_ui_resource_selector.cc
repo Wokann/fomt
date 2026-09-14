@@ -40,7 +40,7 @@ extern "C" EntityUiResourceSelectorStorage const gUnk_080F33B8 = {
 
 // "bad_alloc" has one automatic C terminator. The two subsequent zero bytes
 // are linker alignment before the next raw object, not part of this string.
-#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_1.cc)
 
 #if defined(REGION_JP)
 extern "C" u32 func_0803DC08(void const * state);
@@ -141,7 +141,7 @@ extern "C" EntityUiResourceSelectorExtendedStorage const gUnk_080F3408 = {
         },
     };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_1.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_2.cc)
 
 #if defined(REGION_JP)
 extern "C" u32 func_0803DC5C(void const * state);
@@ -507,7 +507,7 @@ extern "C" EntityUiResourceSelectorLargeStorage const gUnk_080F35E4 = {
         },
     };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_2.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_3.cc)
 
 #if defined(REGION_JP)
 extern "C" u32 func_0803DE18(void const * state);
@@ -634,7 +634,7 @@ extern "C" EntityUiResourceSelectorFiveChoiceStorage const gUnk_080F3FD8 = {
         },
     };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_3.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_4.cc)
 
 // The following selector descriptors were recovered from the contiguous
 // script-adjacent UI resource block.  Their nested C++ objects preserve every
@@ -733,7 +733,7 @@ extern "C" EntityUiResourceSelectorStorage_080F42F0 const gUnk_080F42F0 = {
     },
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_4.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_5.cc)
 
 extern "C" EntityUiResourceSelectorStorage_080F43DC const gUnk_080F43DC = {
     {
@@ -935,7 +935,7 @@ extern "C" EntityUiResourceSelectorStorage_080F43DC const gUnk_080F43DC = {
     },
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_5.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_6.cc)
 
 extern "C" EntityUiResourceSelectorStorage_080F4974 const gUnk_080F4974 = {
     {
@@ -962,7 +962,7 @@ extern "C" EntityUiResourceSelectorStorage_080F4974 const gUnk_080F4974 = {
     },
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_6.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_7.cc)
 
 extern "C" EntityUiResourceSelectorStorage_080F49C0 const gUnk_080F49C0 = {
     {
@@ -1099,7 +1099,7 @@ extern "C" EntityUiResourceSelectorStorage_080F49C0 const gUnk_080F49C0 = {
     },
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_7.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_8.cc)
 
 extern "C" EntityUiResourceSelectorStorage_080F4D74 const gUnk_080F4D74 = {
     {
@@ -1366,7 +1366,7 @@ extern "C" EntityUiResourceSelectorStorage_080F4D74 const gUnk_080F4D74 = {
     },
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_8.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_9.cc)
 
 extern "C" EntityUiResourceSelectorStorage_080F5540 const gUnk_080F5540 = {
     {
@@ -1518,7 +1518,7 @@ extern "C" EntityUiResourceSelectorStorage_080F5540 const gUnk_080F5540 = {
     },
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_9.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_10.cc)
 
 extern "C" EntityUiResourceSelectorStorage_080F597C const gUnk_080F597C = {
     {
@@ -1548,7 +1548,7 @@ extern "C" EntityUiResourceSelectorStorage_080F597C const gUnk_080F597C = {
     },
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_10.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_11.cc)
 
 extern "C" EntityUiResourceSelectorStorage_080F59CC const gUnk_080F59CC = {
     {
@@ -1685,7 +1685,7 @@ extern "C" EntityUiResourceSelectorStorage_080F59CC const gUnk_080F59CC = {
     },
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_11.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_12.cc)
 
 extern "C" EntityUiResourceSelectorStorage_080F5D94 const gUnk_080F5D94 = {
     {
@@ -1848,7 +1848,7 @@ extern "C" EntityUiResourceSelectorStorage_080F5D94 const gUnk_080F5D94 = {
     },
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_12.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_13.cc)
 
 extern "C" EntityUiResourceSelectorStorage_080F61FC const gUnk_080F61FC = {
     {
@@ -1915,7 +1915,7 @@ extern "C" EntityUiResourceSelectorStorage_080F61FC const gUnk_080F61FC = {
     },
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_13.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_14.cc)
 
 extern "C" EntityUiResourceSelectorStorage_080F6370 const gUnk_080F6370 = {
     {
@@ -2039,7 +2039,7 @@ extern "C" EntityUiResourceSelectorStorage_080F6370 const gUnk_080F6370 = {
     },
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_14.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_15.cc)
 
 extern "C" EntityUiResourceSelectorStorage_080F66C4 const gUnk_080F66C4 = {
     {
@@ -2191,7 +2191,7 @@ extern "C" EntityUiResourceSelectorStorage_080F66C4 const gUnk_080F66C4 = {
     },
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_15.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_16.cc)
 
 extern "C" EntityUiResourceSelectorStorage_080F6B10 const gUnk_080F6B10 = {
     {
@@ -2218,7 +2218,7 @@ extern "C" EntityUiResourceSelectorStorage_080F6B10 const gUnk_080F6B10 = {
     },
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_16.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_17.cc)
 
 extern "C" EntityUiResourceSelectorStorage_080F6B4C const gUnk_080F6B4C = {
     {
@@ -2317,7 +2317,7 @@ extern "C" EntityUiResourceSelectorStorage_080F6B4C const gUnk_080F6B4C = {
     },
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_17.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_18.cc)
 
 extern "C" EntityUiResourceSelectorStorage_080F6DE8 const gUnk_080F6DE8 = {
     {
@@ -2404,7 +2404,7 @@ extern "C" EntityUiResourceSelectorStorage_080F6DE8 const gUnk_080F6DE8 = {
     },
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_18.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_19.cc)
 
 extern "C" EntityUiResourceSelectorStorage_080F6FF8 const gUnk_080F6FF8 = {
     {
@@ -2505,7 +2505,7 @@ extern "C" EntityUiResourceSelectorStorage_080F6FF8 const gUnk_080F6FF8 = {
     },
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_19.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_20.cc)
 
 extern "C" EntityUiResourceSelectorStorage_080F7294 const gUnk_080F7294 = {
     {
@@ -2693,7 +2693,7 @@ extern "C" EntityUiResourceSelectorStorage_080F7294 const gUnk_080F7294 = {
     },
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_20.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_21.cc)
 
 extern "C" EntityUiResourceSelectorStorage_080F77FC const gUnk_080F77FC = {
     {
@@ -2814,7 +2814,7 @@ extern "C" EntityUiResourceSelectorStorage_080F77FC const gUnk_080F77FC = {
     },
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_21.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_22.cc)
 
 extern "C" EntityUiResourceSelectorStorage_080F7B40 const gUnk_080F7B40 = {
     {
@@ -3038,7 +3038,7 @@ extern "C" EntityUiResourceSelectorStorage_080F7B40 const gUnk_080F7B40 = {
     },
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_22.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_23.cc)
 
 extern "C" EntityUiResourceSelectorStorage_080F81BC const gUnk_080F81BC = {
     {
@@ -3205,7 +3205,7 @@ extern "C" EntityUiResourceSelectorStorage_080F81BC const gUnk_080F81BC = {
     },
 };
 
-#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_23.cc)
+#include FOMT_TEXT_INCLUDE(entity_ui_resource_selector_24.cc)
 
 extern "C" EntityUiResourceSelectorStorage_080F8678 const gUnk_080F8678 = {
     {

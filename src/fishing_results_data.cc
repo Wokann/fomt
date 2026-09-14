@@ -1,6 +1,6 @@
 #include "fishing_results_data.hh"
 
-#include FOMT_TEXT_INCLUDE(fishing_results_data.cc)
+#include FOMT_TEXT_INCLUDE(fishing_results_data_1.cc)
 
 // Indexed directly by the native FishingRecordId domain.  When a regional
 // ROM uses one physical string for multiple records, the table repeats that
@@ -75,4 +75,4 @@ char const * const gFishingRecordNames[FISHING_RECORD_COUNT] = {
     gText_FishingRecord_Squid,
 };
 
-#include FOMT_TEXT_INCLUDE(fishing_results_data_1.cc)
+#include FOMT_TEXT_INCLUDE(fishing_results_data_2.cc)
