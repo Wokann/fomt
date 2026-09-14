@@ -242,7 +242,7 @@
 | `0x080F8230`–`0x080F96F3` | `data/scripts/script_table.o(.rodata.mary_script_table)` | [Mary 脚本表] | Mary 生成的 `gMaryScriptTable` | 脚本本体继续由 Mary 独立维护；本表是常规源码调用脚本块的唯一入口 |
 | `0x080F96F4`–`0x080F9720` | `src/script_engine.o(.rodata)` | [嵌入文本] | `src/script_engine.cc`<br>`include/script_engine.hh`<br>`data/text/jp/script_engine.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `2` 项；首项为普通命名文本 `gCppRuntimeBadAlloc_ScriptEngine`，对象内四字节对齐零填充保持原字节布局 |
 | `0x080F9721`–`0x080F9734` | `src/cooking_festival.o(.rodata)` | [数据] | `src/cooking_festival.cc`<br>`include/cooking_festival.hh` | `gCookingFestivalDishCategoryRatingThresholds`；汇编调用为符号重定位 |
-| `0x080F9735`–`0x080F9739` | `src/thomas_stocking_data.o(.rodata)` | [数据] | `src/thomas_stocking_data.c/.cc` | `gThomasStockingGiftSelectionWeights` |
+| `0x080F9735`–`0x080F9739` | `src/thomas_stocking.o(.rodata)` | [数据] | `src/thomas_stocking.cc`<br>`include/thomas_stocking.hh` | `gThomasStockingGiftSelectionWeights`；汇编调用为符号重定位 |
 | `0x080F973A`–`0x080F973B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F973C`–`0x080F974F` | `src/spouse_gift_data.o(.rodata)` | [数据] | `src/spouse_gift_data.c/.cc` | `gSpouseGiftArticleSelectionEntries` |
 | `0x080F9750`–`0x080F9755` | `src/farm_house.o(.rodata)` | [数据] | `src/farm_house.c/.cc` | `gFarmHouseBedXPositions` |
@@ -2082,7 +2082,7 @@
 | `0x080F89D4`–`0x080F9E97` | `data/scripts/script_table.o(.rodata.mary_script_table)` | [Mary 脚本表] | Mary 生成的 `gMaryScriptTable` | 脚本本体继续由 Mary 独立维护；本表是常规源码调用脚本块的唯一入口 |
 | `0x080F9E98`–`0x080F9EC4` | `src/script_engine.o(.rodata)` | [嵌入文本] | `src/script_engine.cc`<br>`include/script_engine.hh`<br>`data/text/us/script_engine.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `2` 项；首项为普通命名文本 `gCppRuntimeBadAlloc_ScriptEngine`，随后对象内两字节对齐填充与区域文本保持原字节布局 |
 | `0x080F9EC5`–`0x080F9ED8` | `src/cooking_festival.o(.rodata)` | [数据] | `src/cooking_festival.cc`<br>`include/cooking_festival.hh` | `gCookingFestivalDishCategoryRatingThresholds`；汇编调用为符号重定位 |
-| `0x080F9ED9`–`0x080F9EDD` | `src/thomas_stocking_data.o(.rodata)` | [数据] | `src/thomas_stocking_data.c/.cc` | `gThomasStockingGiftSelectionWeights` |
+| `0x080F9ED9`–`0x080F9EDD` | `src/thomas_stocking.o(.rodata)` | [数据] | `src/thomas_stocking.cc`<br>`include/thomas_stocking.hh` | `gThomasStockingGiftSelectionWeights`；汇编调用为符号重定位 |
 | `0x080F9EDE`–`0x080F9EDF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F9EE0`–`0x080F9EF3` | `src/spouse_gift_data.o(.rodata)` | [数据] | `src/spouse_gift_data.c/.cc` | `gSpouseGiftArticleSelectionEntries` |
 | `0x080F9EF4`–`0x080F9EF9` | `src/farm_house.o(.rodata)` | [数据] | `src/farm_house.c/.cc` | `gFarmHouseBedXPositions` |

@@ -652,7 +652,7 @@ SECTIONS
         . = 0xF8A20; data/scripts/script_table.o(.rodata.mary_script_table);
         . = ALIGN(4); src/script_engine.o(.rodata);
         . = 0xF9F11; src/cooking_festival.o(.rodata);
-        src/thomas_stocking_data.o(.rodata);
+        src/thomas_stocking.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         src/spouse_gift_data.o(.rodata);
