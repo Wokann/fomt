@@ -1,6 +1,6 @@
 #include "animal_festival_ranking_livestock_data.hh"
 
-extern u8 const gAnimalFestivalLivestockContestantValues[][4] ALIGN(1) = {
+extern u8 const gAnimalFestivalLivestockContestantValues[][4] = {
     { 70, 80, 40, 90 },
     { 30, 20, 40, 40 },
     { 20, 20, 20, 20 },
