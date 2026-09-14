@@ -3541,10 +3541,10 @@ func_08050424: @ 0x080501B0
     adds r0, r4, #0
     adds r1, r7, #0
     adds r2, r6, #0
-    bl func_080ADD5C
+    bl func_080AD794
     adds r0, r4, #0
     mov r1, r8
-    bl func_080ADD74
+    bl func_080AD7AC
     movs r0, #4
     str r0, [r5, #8]
     pop {r3}
@@ -3982,8 +3982,89 @@ func_08050664: @ 0x080503F0
     pop {r4, r5, r6, r7}
     pop {r0}
     bx r0
-    jp_code_0803ee_func func_080507D0, 0x5055C, 0x50584
-    jp_code_0803ee_func func_080507F8, 0x50584, 0x505F4
+    .global func_080507D0
+    .thumb_func
+func_080507D0: @ 0x0805055C
+    push {lr}
+    adds r2, r0, #0
+    cmp r2, #7
+    bls .Ljp_08050566
+    movs r2, #0
+.Ljp_08050566:
+    subs r0, r1, #1
+    cmp r0, #5
+    bls .Ljp_0805056E
+    movs r1, #1
+.Ljp_0805056E:
+    lsls r0, r2, #1
+    adds r0, r0, r2
+    lsls r0, r0, #1
+    adds r0, r0, r1
+    ldr r1, .Ljp_08050580 @ =gUiTextLayoutPositionTable
+    adds r0, r0, r1
+    ldrb r0, [r0]
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_08050580: .4byte gUiTextLayoutPositionTable
+
+    .global func_080507F8
+    .thumb_func
+func_080507F8: @ 0x08050584
+    push {r4, r5, r6, r7, lr}
+    mov r7, r8
+    push {r7}
+    sub sp, #4
+    adds r4, r0, #0
+    adds r7, r2, #0
+    mov r8, r3
+    ldrb r0, [r1]
+    lsls r1, r0, #0x19
+    lsrs r6, r1, #0x1b
+    lsls r0, r0, #0x1e
+    adds r5, r4, #0
+    adds r5, #0xd0
+    lsrs r0, r0, #0x1e
+    cmp r0, #2
+    bls .Ljp_080505AA
+    movs r1, #3
+    bl __umodsi3
+.Ljp_080505AA:
+    strh r0, [r5, #0x16]
+    adds r0, r6, #0
+    cmp r0, #0x1b
+    bls .Ljp_080505B8
+    movs r1, #0x1c
+    bl __umodsi3
+.Ljp_080505B8:
+    strh r0, [r5, #0x14]
+    movs r0, #0
+    strb r0, [r5, #0x19]
+    adds r4, #0xec
+    adds r0, r4, #0
+    adds r1, r7, #0
+    mov r2, r8
+    bl func_080AD794
+    adds r6, r5, #0
+    adds r5, r4, #0
+    ldr r4, .Ljp_080505F0 @ =vtable_unk_080E78E0
+.Ljp_080505D0:
+    str r4, [sp]
+    adds r0, r5, #0
+    adds r1, r6, #0
+    mov r2, sp
+    bl func_080AD7B0
+    str r4, [sp]
+    cmp r0, #1
+    beq .Ljp_080505D0
+    add sp, #4
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_080505F0: .4byte vtable_unk_080E78E0
     jp_code_0803ee_func func_08050868, 0x505F4, 0x50864
     jp_code_0803ee_func func_08050AD8, 0x50864, 0x508C8
     .section .text.clear_ui_action_state_flag_01dc_after
