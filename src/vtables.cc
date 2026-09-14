@@ -104,7 +104,7 @@ extern void func_0806E65C(void);
 extern void func_0806E68C(void);
 extern void func_08070634(void);
 extern void func_08070664(void);
-extern void func_08071F28(void);
+extern void func_080722D0(void);
 extern void func_08070900(void);
 extern void func_080751B8(void);
 extern void func_08075278(void);
@@ -5414,7 +5414,7 @@ extern RawVTableFunction const vtable_unk_080E7AFC[]
         nullptr,
 #if defined(REGION_JP)
         func_080E18A4_vtable_target,
-        func_08071F28,
+        func_080722D0,
 #else
         func_080E20F8,
         func_08075328,

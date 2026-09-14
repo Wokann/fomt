@@ -5644,7 +5644,14 @@ func_080713AC: @ 0x08071008
     pop {r1}
     bx r1
     jp_code_0803ee_func func_080713B8, 0x71014, 0x71F28
-    jp_code_0803ee_func func_08071F28, 0x71F28, 0x71F34
+    .global func_080722D0
+    .thumb_func
+func_080722D0: @ 0x08071F28
+    push {lr}
+    bl func_08070900
+    movs r0, #1
+    pop {r1}
+    bx r1
     jp_code_0803ee_func func_080722DC, 0x71F34, 0x74F84
     .global func_08075328
     .thumb_func
