@@ -37,10 +37,8 @@ struct IndexedResourceProvider
 
 #if defined(REGION_JP)
 extern "C" char vtable_unk_080E79B8;
-#define INDEXED_RESOURCE_ARCHIVE_VTABLE vtable_unk_080E79B8
 #else
 extern "C" char vtable_unk_080E79C8;
-#define INDEXED_RESOURCE_ARCHIVE_VTABLE vtable_unk_080E79C8
 #endif
 
 struct IndexedResourceArchiveEntry
@@ -97,7 +95,11 @@ struct IndexedResourceArchive
 
 IndexedResourceArchive::IndexedResourceArchive(u8 const * data)
 {
-    vtable = (IndexedResourceProviderVTable *)&INDEXED_RESOURCE_ARCHIVE_VTABLE;
+#if defined(REGION_JP)
+    vtable = (IndexedResourceProviderVTable *)&vtable_unk_080E79B8;
+#else
+    vtable = (IndexedResourceProviderVTable *)&vtable_unk_080E79C8;
+#endif
 
     if (data != 0)
     {

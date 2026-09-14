@@ -5,8 +5,7 @@
 
 #include "actor.hh"
 
-/* TODO: move */
-#define NO_ANIM (static_cast<u16>(-1))
+u16 const NO_ANIM = static_cast<u16>(-1);
 
 struct Npc
 {
