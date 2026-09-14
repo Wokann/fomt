@@ -49,7 +49,7 @@
 | EU | `0x080F3402`–`0x080F3403` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080F3404`–`0x080F8A1F` | `src/entity_ui_resource_selector.o(.rodata)` | `src/entity_ui_resource_selector.cc`、`include/entity_ui_resource_selector.hh`、`data/text/eu/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_23.cc`；25 个连续选择器描述符、24 个运行时文本和全部内部指针均为同名对象内的符号重定位 | 精确 |
 | EU | `0x080F8A20`–`0x080F9EE3` | `data/scripts/script_table.o(.rodata.mary_script_table)` | Mary 生成的 `gMaryScriptTable`；脚本本体由 Mary 独立管理 | 精确 |
-| EU | `0x080F9EE4`–`0x080F9F10` | `src/script_engine.o(.rodata)` | `src/script_engine.cc`、`include/script_engine.hh`、`data/text/eu/script_engine.cc`；运行时 `bad_alloc` 与 3 项 UI 字符串按原 ROM 顺序同属该对象 | 精确 |
+| EU | `0x080F9EE4`–`0x080F9F10` | `src/script_engine.o(.rodata)` | `src/script_engine.cc`、`include/script_engine.hh`、`data/text/eu/script_engine.cc`；运行时字符串 `2` 项（首项为 `gCppRuntimeBadAlloc_ScriptEngine`）与 3 项 UI 字符串按原 ROM 顺序同属该对象 | 精确 |
 | EU | `0x080FB224`–`0x080FB86D` | `src/intro_scene_data.o(.rodata)` | `src/intro_scene_data.cc`、`include/intro_scene_data.hh`、`data/text/eu/intro_scene_data.cc`、`data/text/eu/intro_scene_data_1.cc`；20 个解包资源入口均为资产容器中的直接标签 | 精确 |
 | EU | `0x080FB870`–`0x080FBEC5` | `src/farm_status_screen_data.o(.rodata)` | `src/farm_status_screen_data.cc`、`include/farm_status_screen_data.hh`、`data/text/eu/farm_status_screen_data.cc`、`data/text/common/farm_status_screen_data.cc`–`farm_status_screen_data_2.cc`、`data/text/eu/farm_status_screen_data_1.cc`；14 个预览资源入口均为资产容器中的直接标签 | 精确 |
 | EU | `0x080FBEC8`–`0x080FC0ED` | `src/records_screen_data.o(.rodata)` | `src/records_screen_data.cc`、`include/records_screen_data.hh`、`data/text/eu/records_screen_data.cc`、`data/text/common/records_screen_data.cc`–`records_screen_data_2.cc`、`data/text/eu/records_screen_data_1.cc`；14 个资源入口均为资产容器直接标签 | 精确 |
@@ -138,7 +138,7 @@
 | DE | `0x080F389E`–`0x080F389F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080F38A0`–`0x080F8EBB` | `src/entity_ui_resource_selector.o(.rodata)` | `src/entity_ui_resource_selector.cc`、`include/entity_ui_resource_selector.hh`、`data/text/de/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_23.cc`；25 个连续选择器描述符、24 个运行时文本和全部内部指针均为同名对象内的符号重定位 | 精确 |
 | DE | `0x080F8EBC`–`0x080FA37F` | `data/scripts/script_table.o(.rodata.mary_script_table)` | Mary 生成的 `gMaryScriptTable`；脚本本体由 Mary 独立管理 | 精确 |
-| DE | `0x080FA380`–`0x080FA3AC` | `src/script_engine.o(.rodata)` | `src/script_engine.cc`、`include/script_engine.hh`、`data/text/de/script_engine.cc`；运行时 `bad_alloc` 与 3 项 UI 字符串按原 ROM 顺序同属该对象 | 精确 |
+| DE | `0x080FA380`–`0x080FA3AC` | `src/script_engine.o(.rodata)` | `src/script_engine.cc`、`include/script_engine.hh`、`data/text/de/script_engine.cc`；运行时字符串 `2` 项（首项为 `gCppRuntimeBadAlloc_ScriptEngine`）与 3 项 UI 字符串按原 ROM 顺序同属该对象 | 精确 |
 | DE | `0x080FB77C`–`0x080FBE59` | `src/intro_scene_data.o(.rodata)` | `src/intro_scene_data.cc`、`include/intro_scene_data.hh`、`data/text/de/intro_scene_data.cc`、`data/text/de/intro_scene_data_1.cc`；20 个解包资源入口均为资产容器中的直接标签 | 精确 |
 | DE | `0x080FBE5C`–`0x080FC4F7` | `src/farm_status_screen_data.o(.rodata)` | `src/farm_status_screen_data.cc`、`include/farm_status_screen_data.hh`、`data/text/de/farm_status_screen_data.cc`、`data/text/common/farm_status_screen_data.cc`–`farm_status_screen_data_2.cc`、`data/text/de/farm_status_screen_data_1.cc`；14 个预览资源入口均为资产容器中的直接标签 | 精确 |
 | DE | `0x080FC580`–`0x080FC7AD` | `src/records_screen_data.o(.rodata)` | `src/records_screen_data.cc`、`include/records_screen_data.hh`、`data/text/de/records_screen_data.cc`、`data/text/common/records_screen_data.cc`–`records_screen_data_2.cc`、`data/text/de/records_screen_data_1.cc`；14 个资源入口均为资产容器直接标签 | 精确 |
@@ -240,7 +240,7 @@
 | `0x080F2C12`–`0x080F2C13` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F2C14`–`0x080F822F` | `src/entity_ui_resource_selector.o(.rodata)` | [嵌入文本 / 数据] | `src/entity_ui_resource_selector.cc`<br>`include/entity_ui_resource_selector.hh`<br>`data/text/jp/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_23.cc` | 运行时字符串 `24` 项<br>25 个连续选择器描述符（由 `gUnk_080F33B8` 至 `gUnk_080F8678` 的物理顺序组成）<br>顶层描述符、表、条目、载荷、详情记录与运行时文本均由同名头文件声明；内部和外部调用均为符号重定位 |
 | `0x080F8230`–`0x080F96F3` | `data/scripts/script_table.o(.rodata.mary_script_table)` | [Mary 脚本表] | Mary 生成的 `gMaryScriptTable` | 脚本本体继续由 Mary 独立维护；本表是常规源码调用脚本块的唯一入口 |
-| `0x080F96F4`–`0x080F9720` | `src/script_engine.o(.rodata)` | [嵌入文本] | `src/script_engine.cc`<br>`include/script_engine.hh`<br>`data/text/jp/script_engine.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `2` 项；原始 JP 前缀现为普通命名文本 `gCppRuntimeBadAlloc_ScriptEngine`，对象内四字节对齐零填充保持原字节布局 |
+| `0x080F96F4`–`0x080F9720` | `src/script_engine.o(.rodata)` | [嵌入文本] | `src/script_engine.cc`<br>`include/script_engine.hh`<br>`data/text/jp/script_engine.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `2` 项；首项为普通命名文本 `gCppRuntimeBadAlloc_ScriptEngine`，对象内四字节对齐零填充保持原字节布局 |
 | `0x080F9721`–`0x080F9734` | `src/cooking_festival_data.o(.rodata)` | [数据] | `src/cooking_festival_data.c/.cc` | `gCookingFestivalDishCategoryRatingThresholds` |
 | `0x080F9735`–`0x080F9739` | `src/thomas_stocking_data.o(.rodata)` | [数据] | `src/thomas_stocking_data.c/.cc` | `gThomasStockingGiftSelectionWeights` |
 | `0x080F973A`–`0x080F973B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -2080,7 +2080,7 @@
 | `0x080F33B6`–`0x080F33B7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080F33B8`–`0x080F89D3` | `src/entity_ui_resource_selector.o(.rodata)` | [嵌入文本 / 数据] | `src/entity_ui_resource_selector.cc`<br>`include/entity_ui_resource_selector.hh`<br>`data/text/us/entity_ui_resource_selector.cc`–`entity_ui_resource_selector_23.cc` | 运行时字符串 `24` 项<br>25 个连续选择器描述符（由 `gUnk_080F33B8` 至 `gUnk_080F8678` 的物理顺序组成）<br>顶层描述符、表、条目、载荷、详情记录与运行时文本均由同名头文件声明；内部和外部调用均为符号重定位 |
 | `0x080F89D4`–`0x080F9E97` | `data/scripts/script_table.o(.rodata.mary_script_table)` | [Mary 脚本表] | Mary 生成的 `gMaryScriptTable` | 脚本本体继续由 Mary 独立维护；本表是常规源码调用脚本块的唯一入口 |
-| `0x080F9E98`–`0x080F9EC4` | `src/script_engine.o(.rodata)` | [嵌入文本] | `src/script_engine.cc`<br>`include/script_engine.hh`<br>`data/text/us/script_engine.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `2` 项；首项是旧 `agbcp` 自动发出的未命名 `bad_alloc` 常量，随后对象内两字节对齐填充与区域文本保持原字节布局 |
+| `0x080F9E98`–`0x080F9EC4` | `src/script_engine.o(.rodata)` | [嵌入文本] | `src/script_engine.cc`<br>`include/script_engine.hh`<br>`data/text/us/script_engine.cc` | 文本 `3` 项（详见下方索引）<br>运行时字符串 `2` 项；首项为普通命名文本 `gCppRuntimeBadAlloc_ScriptEngine`，随后对象内两字节对齐填充与区域文本保持原字节布局 |
 | `0x080F9EC5`–`0x080F9ED8` | `src/cooking_festival_data.o(.rodata)` | [数据] | `src/cooking_festival_data.c/.cc` | `gCookingFestivalDishCategoryRatingThresholds` |
 | `0x080F9ED9`–`0x080F9EDD` | `src/thomas_stocking_data.o(.rodata)` | [数据] | `src/thomas_stocking_data.c/.cc` | `gThomasStockingGiftSelectionWeights` |
 | `0x080F9EDE`–`0x080F9EDF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
