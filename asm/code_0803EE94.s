@@ -148,10 +148,121 @@ func_08045584:
     .align 2, 0
     jp_code_0803ee_func func_080455D8, 0x4524C, 0x45734
     jp_code_0803ee_func VarGet__12ScriptEngineUi, 0x45734, 0x48E14
-    jp_code_0803ee_func sub_08048FEC, 0x48E14, 0x48E24
+    .global sub_08048FEC
+    .thumb_func
+sub_08048FEC:
+    movs r0, #0
+    add sp, #0xc
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+    .align 2, 0
     jp_code_0803ee_func VarSet__12ScriptEngineUii, 0x48E24, 0x4DF20
     jp_code_0803ee_func func_0804E0F8, 0x4DF20, 0x4E200
-    jp_code_0803ee_func func_0804E3D8, 0x4E200, 0x4E2D4
+    .global func_0804E3D8
+    .thumb_func
+func_0804E3D8:
+    push {r4, r5, r6, lr}
+    adds r3, r0, #0
+    adds r5, r2, #0
+    movs r6, #0
+    cmp r1, #4
+    bhi .Ljp_0804E2C6
+    lsls r0, r1, #2
+    ldr r1, .Ljp_0804E218
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+    .align 2, 0
+.Ljp_0804E218: .4byte .Ljp_0804E21C
+.Ljp_0804E21C: @ jump table
+    .4byte .Ljp_0804E230 @ case 0
+    .4byte .Ljp_0804E242 @ case 1
+    .4byte .Ljp_0804E26A @ case 2
+    .4byte .Ljp_0804E292 @ case 3
+    .4byte .Ljp_0804E2BA @ case 4
+.Ljp_0804E230:
+    movs r1, #0xd4
+    lsls r1, r1, #2
+    adds r0, r3, r1
+    ldr r0, [r0]
+    adds r0, #0x14
+    bl GetHorse__4Farm
+    adds r6, r0, #0
+    b .Ljp_0804E2C6
+.Ljp_0804E242:
+    movs r0, #0xd4
+    lsls r0, r0, #2
+    adds r4, r3, r0
+    ldr r0, [r4]
+    movs r1, #0xbe
+    lsls r1, r1, #3
+    adds r0, r0, r1
+    bl GetCapacity__C4Barn
+    cmp r5, r0
+    bge .Ljp_0804E2C6
+    ldr r0, [r4]
+    movs r1, #0xbe
+    lsls r1, r1, #3
+    adds r0, r0, r1
+    adds r1, r5, #0
+    bl GetCow__4BarnUi
+    adds r6, r0, #0
+    b .Ljp_0804E2C6
+.Ljp_0804E26A:
+    movs r0, #0xd4
+    lsls r0, r0, #2
+    adds r4, r3, r0
+    ldr r0, [r4]
+    movs r1, #0xbe
+    lsls r1, r1, #3
+    adds r0, r0, r1
+    bl GetCapacity__C4Barn
+    cmp r5, r0
+    bge .Ljp_0804E2C6
+    ldr r0, [r4]
+    movs r1, #0xbe
+    lsls r1, r1, #3
+    adds r0, r0, r1
+    adds r1, r5, #0
+    bl GetSheep__4BarnUi
+    adds r6, r0, #0
+    b .Ljp_0804E2C6
+.Ljp_0804E292:
+    movs r0, #0xd4
+    lsls r0, r0, #2
+    adds r4, r3, r0
+    ldr r0, [r4]
+    movs r1, #0x82
+    lsls r1, r1, #3
+    adds r0, r0, r1
+    bl GetCapacity__C4Coop
+    cmp r5, r0
+    bge .Ljp_0804E2C6
+    ldr r0, [r4]
+    movs r1, #0x82
+    lsls r1, r1, #3
+    adds r0, r0, r1
+    adds r1, r5, #0
+    bl GetChicken__4CoopUi
+    adds r6, r0, #0
+    b .Ljp_0804E2C6
+.Ljp_0804E2BA:
+    movs r1, #0xd4
+    lsls r1, r1, #2
+    adds r0, r3, r1
+    ldr r0, [r0]
+    ldr r1, .Ljp_0804E2D0
+    adds r6, r0, r1
+.Ljp_0804E2C6:
+    adds r0, r6, #0
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_0804E2D0: .4byte 0x00001C70
     .section .text.font_draw_after
     @ The preceding unaligned no-ops and packed tile-buffer copy helper are
     @ rebuilt from src/font_draw.cc.
