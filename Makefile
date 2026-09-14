@@ -264,6 +264,17 @@ INTRO_STARTUP_TILEMAPS_OUTPUTS := $(foreach map,$(INTRO_STARTUP_TILEMAPS),$(INTR
 INTRO_STARTUP_TILEMAPS_STAMP := $(INTRO_STARTUP_TILEMAPS_OUTPUT_DIR)/.startup-tilemaps.stamp
 INTRO_STARTUP_TILEMAPS_REGION := $(INTRO_OBJECTS_REGION)
 
+# func_080A2BA4 loads three 32-by-20 BG tilemaps and one 160-tile 4bpp
+# character stream into fixed VRAM locations. Its adjacent palette bytes are
+# also part of an indexed archive, so native tile/tilemap sources are kept
+# without inventing an unproven coloured composite.
+UI_SCENE_080A2BA4_TOOL := tools/ui_scene_080a2ba4.py
+UI_SCENE_080A2BA4_SOURCE_DIR := graphics/ui/scene_080a2ba4/shared
+UI_SCENE_080A2BA4_SOURCES := $(wildcard $(UI_SCENE_080A2BA4_SOURCE_DIR)/*)
+UI_SCENE_080A2BA4_OUTPUT_DIR := $(BUILD_DIR)/graphics/ui/scene_080a2ba4
+UI_SCENE_080A2BA4_STAMP := $(UI_SCENE_080A2BA4_OUTPUT_DIR)/.scene-080a2ba4.stamp
+UI_SCENE_080A2BA4_REGION := $(INTRO_OBJECTS_REGION)
+
 # MapData owns 66 six-layer map records.  This initial pipeline exports every
 # unique retail visual stream as native decoded source and rebuilds it without
 # changing packed bytes.  A changed source is intentionally rejected until the
@@ -483,6 +494,11 @@ $(INTRO_STARTUP_TILEMAPS_STAMP): $(INTRO_STARTUP_TILEMAPS_SOURCES) $(INTRO_START
 
 $(INTRO_STARTUP_TILEMAPS_OUTPUTS): $(INTRO_STARTUP_TILEMAPS_STAMP)
 
+$(UI_SCENE_080A2BA4_STAMP): $(UI_SCENE_080A2BA4_SOURCES) $(UI_SCENE_080A2BA4_TOOL) $(FARM_STATUS_CODEC) $(BASE_ROM)
+	@$(PYTHON) $(UI_SCENE_080A2BA4_TOOL) build --region $(UI_SCENE_080A2BA4_REGION) --rom $(BASE_ROM) \
+	  --source-dir $(UI_SCENE_080A2BA4_SOURCE_DIR) --output-dir $(UI_SCENE_080A2BA4_OUTPUT_DIR)
+	@touch $@
+
 $(MAP_RESOURCES_STAMP): $(MAP_RESOURCES_SOURCES) $(MAP_RESOURCES_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(MAP_RESOURCES_TOOL) build --region $(MAP_RESOURCES_REGION) --rom $(BASE_ROM) \
 	  --source-dir $(MAP_RESOURCES_SOURCE_DIR) --output-dir $(MAP_RESOURCES_OUTPUT_DIR) $(MAP_RESOURCES_ALL_ROM_ARGS)
@@ -496,6 +512,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
 .PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-secondary-tilemaps-edit-test gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-background-edit-test gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-objects-edit-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-tilemaps-edit-test gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all resource-archive-audit unpack-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
+.PHONY: gfx-ui-scene-080a2ba4 gfx-ui-scene-080a2ba4-test gfx-ui-scene-080a2ba4-all gfx-ui-scene-080a2ba4-patch-test gfx-ui-scene-080a2ba4-edit-test
 oam-pack: $(OAM_PACK)
 oam-pack-test: $(OAM_PACK) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba $(PORTRAIT_SOURCE_DIR)/full/000_TALK_PORTRAIT_RICK_NORMAL.png
 	@mkdir -p $(BUILD_DIR)/graphics/oam_pack
@@ -556,6 +573,20 @@ gfx-ui-all:
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-ui-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-ui-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-ui-test
+gfx-ui-scene-080a2ba4: $(UI_SCENE_080A2BA4_STAMP)
+gfx-ui-scene-080a2ba4-test: gfx-ui-scene-080a2ba4 $(UI_SCENE_080A2BA4_TOOL)
+	@$(PYTHON) $(UI_SCENE_080A2BA4_TOOL) verify --region $(UI_SCENE_080A2BA4_REGION) --rom $(BASE_ROM) \
+	  --source-dir $(UI_SCENE_080A2BA4_SOURCE_DIR) --output-dir $(UI_SCENE_080A2BA4_OUTPUT_DIR)
+gfx-ui-scene-080a2ba4-all:
+	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-ui-scene-080a2ba4-test
+	@$(MAKE) --no-print-directory GAME_REGION=US gfx-ui-scene-080a2ba4-test
+	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-ui-scene-080a2ba4-test
+	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-ui-scene-080a2ba4-test
+gfx-ui-scene-080a2ba4-patch-test: gfx-ui-scene-080a2ba4-all $(UI_SCENE_080A2BA4_TOOL)
+	@$(PYTHON) $(UI_SCENE_080A2BA4_TOOL) patch-test --output-root build \
+	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
+gfx-ui-scene-080a2ba4-edit-test: $(UI_SCENE_080A2BA4_TOOL) baserom_jp.gba
+	@$(PYTHON) $(UI_SCENE_080A2BA4_TOOL) edit-test --region jp --rom baserom_jp.gba
 gfx-farm-status: $(FARM_STATUS_TILES_BIN) $(FARM_STATUS_PALETTE_BIN) $(FARM_STATUS_PACKED_BIN)
 gfx-farm-status-test: gfx-farm-status $(BASE_ROM) $(GFX_RANGE_VERIFY)
 	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FARM_STATUS_STREAM_OFFSET) --input $(FARM_STATUS_PACKED_BIN) --sha256 $(FARM_STATUS_STREAM_SHA256)
@@ -663,7 +694,7 @@ tile-grid-test:
 	@$(MAKE) --no-print-directory GAME_REGION=EU tile-grid-region-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE tile-grid-region-test
 
-gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui gfx-farm-status gfx-farm-status-tilemaps gfx-farm-status-secondary-tilemaps gfx-intro-background gfx-intro-objects gfx-intro-startup-tilemaps gfx-map-resources gfx-records-minigame
+gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui gfx-ui-scene-080a2ba4 gfx-farm-status gfx-farm-status-tilemaps gfx-farm-status-secondary-tilemaps gfx-intro-background gfx-intro-objects gfx-intro-startup-tilemaps gfx-map-resources gfx-records-minigame
 
 # Full graphics gate for assets that have an authoritative source/rebuild
 # path.  It intentionally does not link a ROM: the project-wide link is
@@ -674,6 +705,9 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-actors-all
 	@$(MAKE) --no-print-directory gfx-actors-edit-test
 	@$(MAKE) --no-print-directory gfx-ui-all
+	@$(MAKE) --no-print-directory gfx-ui-scene-080a2ba4-all
+	@$(MAKE) --no-print-directory gfx-ui-scene-080a2ba4-patch-test
+	@$(MAKE) --no-print-directory gfx-ui-scene-080a2ba4-edit-test
 	@$(MAKE) --no-print-directory gfx-farm-status-all
 	@$(MAKE) --no-print-directory gfx-farm-status-edit-test
 	@$(MAKE) --no-print-directory gfx-farm-status-tilemaps-all
@@ -762,10 +796,12 @@ $(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGIO
 	$(call FOMT_COMPILE_CPP,)
 
 # ROM from ELF
-%.gba: %.elf $(MAP_RESOURCES_STAMP)
+%.gba: %.elf $(MAP_RESOURCES_STAMP) $(UI_SCENE_080A2BA4_STAMP)
 	$(OBJCOPY) -O binary $< $@
 	@$(PYTHON) $(MAP_RESOURCES_TOOL) patch --region $(MAP_RESOURCES_REGION) --rom $@ \
 	  --archive $(MAP_RESOURCES_OUTPUT_DIR)/map_visual_archive.0x70 $(MAP_RESOURCES_ALL_ROM_ARGS)
+	@$(PYTHON) $(UI_SCENE_080A2BA4_TOOL) patch --region $(UI_SCENE_080A2BA4_REGION) --baseline $(BASE_ROM) \
+	  --rom $@ --output-dir $(UI_SCENE_080A2BA4_OUTPUT_DIR)
 
 # ELF
 $(ELF): $(ALL_OBJS) $(LDS)
@@ -816,6 +852,11 @@ clean:
 	@rm -rf $(BUILD_DIR)/
 
 .PHONY: clean
+
+# Audit/build-only graphics targets do not need C/C++ dependency discovery.
+ifneq (,$(filter gfx-ui-scene-080a2ba4 gfx-ui-scene-080a2ba4-test gfx-ui-scene-080a2ba4-all gfx-ui-scene-080a2ba4-patch-test gfx-ui-scene-080a2ba4-edit-test,$(MAKECMDGOALS)))
+ALL_DEPS :=
+endif
 
 ifneq (clean,$(MAKECMDGOALS))
 ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-test gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-edit-test gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-background-edit-test gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-objects-edit-test gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all resource-archive-audit unpack-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit,$(MAKECMDGOALS)))
