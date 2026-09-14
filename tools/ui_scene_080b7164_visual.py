@@ -41,11 +41,21 @@ COMPOSITE_REFERENCE = "scene.png"
 PROFILES = {
     "080b7164": {
         "offsets": {"jp": 0x4B3F4C, "us": 0x72DDE4, "eu": 0x72DE40, "de": 0x4B50B8},
-        "sha256": "27d34fdaddf10393f59fb1f89ad87d10e8d1b3d06176d3870216e36fcf3b0750",
+        "sha256": {"jp": "27d34fdaddf10393f59fb1f89ad87d10e8d1b3d06176d3870216e36fcf3b0750", "us": "27d34fdaddf10393f59fb1f89ad87d10e8d1b3d06176d3870216e36fcf3b0750", "eu": "27d34fdaddf10393f59fb1f89ad87d10e8d1b3d06176d3870216e36fcf3b0750", "de": "27d34fdaddf10393f59fb1f89ad87d10e8d1b3d06176d3870216e36fcf3b0750"},
+        "sources": {"jp": "palettes.png", "us": "palettes.png", "eu": "palettes.png", "de": "palettes.png"},
+        "first_palette_bank": 0,
     },
     "080bcfac": {
         "offsets": {"jp": 0x4C2D5C, "us": 0x73CBF4, "eu": 0x73CC50, "de": 0x4C3F60},
-        "sha256": "f22d1e3fbc046353944f725f6e025ef0148545ac998b3c1268019aff5a090672",
+        "sha256": {"jp": "f22d1e3fbc046353944f725f6e025ef0148545ac998b3c1268019aff5a090672", "us": "f22d1e3fbc046353944f725f6e025ef0148545ac998b3c1268019aff5a090672", "eu": "f22d1e3fbc046353944f725f6e025ef0148545ac998b3c1268019aff5a090672", "de": "f22d1e3fbc046353944f725f6e025ef0148545ac998b3c1268019aff5a090672"},
+        "sources": {"jp": "palettes.png", "us": "palettes.png", "eu": "palettes.png", "de": "palettes.png"},
+        "first_palette_bank": 0,
+    },
+    "080c160c": {
+        "offsets": {"jp": 0x4C624C, "us": 0x7400E4, "eu": 0x740140, "de": 0x4C7558},
+        "sha256": {"jp": "56c55d406a8e778b0f83b672a3b6e0816219c0c9e26527fae77b5f4da550a901", "us": "56c55d406a8e778b0f83b672a3b6e0816219c0c9e26527fae77b5f4da550a901", "eu": "56c55d406a8e778b0f83b672a3b6e0816219c0c9e26527fae77b5f4da550a901", "de": "56c55d406a8e778b0f83b672a3b6e0816219c0c9e26527fae77b5f4da550a901"},
+        "sources": {"jp": "palettes.png", "us": "palettes.png", "eu": "palettes.png", "de": "palettes.png"},
+        "first_palette_bank": 1,
     },
 }
 
@@ -56,7 +66,7 @@ def palette_from_rom(rom: bytes, region: str, profile: str) -> bytes:
     palette = rom[offset:offset + PALETTE_LENGTH]
     if len(palette) != PALETTE_LENGTH:
         raise ValueError(f"{region} ROM ends within the scene palette")
-    if hashlib.sha256(palette).hexdigest() != specification["sha256"]:
+    if hashlib.sha256(palette).hexdigest() != specification["sha256"][region]:
         raise ValueError(f"{region} scene palette does not match the four-region baseline")
     return palette
 
@@ -82,14 +92,19 @@ def palette_from_colors(colors: tuple[tuple[int, int, int, int], ...]) -> bytes:
     return bytes(result)
 
 
-def palette_from_source(source_dir: Path) -> bytes:
-    indexes, width, height, colors = read_png(source_dir / PALETTE_SOURCE, color_count=256)
+def palette_path(source_dir: Path, profile: str, region: str) -> Path:
+    return source_dir / PROFILES[profile]["sources"][region]
+
+
+def palette_from_source(source_dir: Path, profile: str, region: str) -> bytes:
+    source = palette_path(source_dir, profile, region)
+    indexes, width, height, colors = read_png(source, color_count=256)
     if (width, height) != (256, 8) or indexes != bytes(range(256)) * 8:
-        raise ValueError("palettes.png must remain a 256x8 ordered 16-bank palette swatch")
+        raise ValueError(f"{source.name} must remain a 256x8 ordered 16-bank palette swatch")
     return palette_from_colors(colors)
 
 
-def render(tiles: bytes, tilemap: bytes) -> bytes:
+def render(tiles: bytes, tilemap: bytes, first_palette_bank: int) -> bytes:
     if len(tilemap) != 0x800:
         raise ValueError("scene tilemap must be exactly 0x800 bytes (32 by 32 entries)")
     # Native tile buffers can include a short trailing payload outside the
@@ -110,6 +125,8 @@ def render(tiles: bytes, tilemap: bytes) -> bytes:
         flip_x = bool(entry & 0x400)
         flip_y = bool(entry & 0x800)
         palette_bank = entry >> 12 & 0xF
+        if palette_bank < first_palette_bank:
+            raise ValueError(f"tilemap entry {cell:#x} selects palette bank {palette_bank}, below the loaded palette range")
         output_x = cell % 32 * 8
         output_y = cell // 32 * 8
         source_y = tile_id * 8
@@ -118,15 +135,15 @@ def render(tiles: bytes, tilemap: bytes) -> bytes:
             for pixel_x in range(8):
                 read_x = 7 - pixel_x if flip_x else pixel_x
                 color = pixels[(source_y + read_y) * 8 + read_x]
-                output[(output_y + pixel_y) * 256 + output_x + pixel_x] = palette_bank * 16 + color
+                output[(output_y + pixel_y) * 256 + output_x + pixel_x] = (palette_bank - first_palette_bank) * 16 + color
     return bytes(output)
 
 
-def write_references(source_dir: Path, reference_dir: Path) -> None:
-    palette = palette_from_source(source_dir)
+def write_references(source_dir: Path, reference_dir: Path, profile: str, region: str) -> None:
+    palette = palette_from_source(source_dir, profile, region)
     tiles = (source_dir / TILES_SOURCE).read_bytes()
     colors = colors_from_palette(palette)
-    layers = [render(tiles, (source_dir / source).read_bytes()) for source in TILEMAP_SOURCES]
+    layers = [render(tiles, (source_dir / source).read_bytes(), PROFILES[profile]["first_palette_bank"]) for source in TILEMAP_SOURCES]
     for layer, name in zip(layers, REFERENCE_NAMES, strict=True):
         write_png(reference_dir / name, layer, 256, 256, colors)
 
@@ -145,25 +162,31 @@ def export(arguments: argparse.Namespace) -> None:
     if set(roms) != set(PROFILES[arguments.profile]["offsets"]):
         raise ValueError("export requires JP, US, EU and DE ROMs")
     palettes = {region: palette_from_rom(rom, region, arguments.profile) for region, rom in roms.items()}
-    if len(set(palettes.values())) != 1:
-        raise ValueError("scene palette differs by region; refusing a shared source")
-    output = arguments.source_dir / PALETTE_SOURCE
-    if output.exists() and not arguments.replace:
-        raise ValueError(f"{output} already exists; use --replace to refresh it")
-    write_png(output, bytes(range(256)) * 8, 256, 8, colors_from_palette(palettes["jp"]))
-    write_references(arguments.source_dir, arguments.reference_dir)
-    print(f"exported one shared palette and three visual references to {arguments.source_dir}")
+    source_groups: dict[str, list[str]] = {}
+    for region, source in PROFILES[arguments.profile]["sources"].items():
+        source_groups.setdefault(source, []).append(region)
+    for source, regions in source_groups.items():
+        values = {palettes[region] for region in regions}
+        if len(values) != 1:
+            raise ValueError(f"{source} groups non-identical regional palettes")
+        output = arguments.source_dir / source
+        if output.exists() and not arguments.replace:
+            raise ValueError(f"{output} already exists; use --replace to refresh it")
+        write_png(output, bytes(range(256)) * 8, 256, 8, colors_from_palette(next(iter(values))))
+        output_dir = arguments.reference_dir if len(source_groups) == 1 else arguments.reference_dir / source.removesuffix(".png")
+        write_references(arguments.source_dir, output_dir, arguments.profile, regions[0])
+    print(f"exported {len(source_groups)} verified palette source(s) and visual references to {arguments.source_dir}")
 
 
 def build(arguments: argparse.Namespace) -> None:
-    palette = palette_from_source(arguments.source_dir)
+    palette = palette_from_source(arguments.source_dir, arguments.profile, arguments.region)
     arguments.output_dir.mkdir(parents=True, exist_ok=True)
     (arguments.output_dir / PALETTE_OUTPUT).write_bytes(palette)
     print(f"rebuilt scene palette for {arguments.region.upper()}")
 
 
 def verify(arguments: argparse.Namespace) -> None:
-    palette = palette_from_source(arguments.source_dir)
+    palette = palette_from_source(arguments.source_dir, arguments.profile, arguments.region)
     expected = palette_from_rom(arguments.rom.read_bytes(), arguments.region, arguments.profile)
     if palette != expected:
         raise AssertionError(f"scene palette differs from retail {arguments.region.upper()} bytes")
@@ -216,6 +239,7 @@ def main() -> None:
     build_parser.add_argument("--output-dir", type=Path, required=True)
     build_parser.add_argument("--profile", choices=tuple(PROFILES), required=True)
     preview_parser = commands.add_parser("preview")
+    preview_parser.add_argument("--region", choices=("jp", "us", "eu", "de"), required=True)
     preview_parser.add_argument("--source-dir", type=Path, required=True)
     preview_parser.add_argument("--reference-dir", type=Path, required=True)
     preview_parser.add_argument("--profile", choices=tuple(PROFILES), required=True)
@@ -242,7 +266,7 @@ def main() -> None:
     elif arguments.command == "build":
         build(arguments)
     elif arguments.command == "preview":
-        write_references(arguments.source_dir, arguments.reference_dir)
+        write_references(arguments.source_dir, arguments.reference_dir, arguments.profile, arguments.region)
         print(f"rendered three scene references to {arguments.reference_dir}")
     elif arguments.command == "verify":
         verify(arguments)

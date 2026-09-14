@@ -175,12 +175,13 @@ readable rendered PNG. For example,
 `ui/scene_080b7164/shared/palettes.png` contains the sixteen native palette
 banks and `ui/scene_080b7164/reference/` contains the two actual rendered
 256-by-256 layers plus their runtime-priority composition. The same verified
-route now also covers `ui/scene_080bcfac/`. Regenerate either reference set
-with:
+route now also covers `ui/scene_080bcfac/` and `ui/scene_080c160c/` (the last
+loads its palette beginning at BG bank 1). Regenerate a reference set with:
 
 ```console
 make gfx-ui-scene-080b7164-preview
 make gfx-ui-scene-080bcfac-preview
+make gfx-ui-scene-080c160c-preview
 ```
 
 This is not a guessed screenshot and does not use a JSON layout sidecar: the

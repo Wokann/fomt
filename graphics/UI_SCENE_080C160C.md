@@ -21,18 +21,39 @@ regions:
 | EU | `0x73F424` | `0x73F708` |
 | DE | `0x4C683C` | `0x4C6B20` |
 
-The adjoining code copies `0x200` bytes from `gUnk_087400E4` to palette
-memory. Its declared assembly range ends after `0xC0` bytes at
-`gUnk_087401A4`, so that copy crosses an unclassified boundary. It is not yet
-safe to describe the span as one palette source or render it to a PNG. The
-native tile and map sources are still lossless and independently editable.
+Immediately after unpacking, the routine copies exactly `0x200` bytes to
+palette RAM at `0x05000020`, i.e. beginning with BG palette bank 1. Every
+nonblank tilemap entry selects banks 1 through 6, so its entire visible
+palette domain is code-proven. The copy extends beyond BG palette RAM into an
+OBJ palette bank, but the full loaded payload is retained to keep the native
+operation reversible.
+
+The original JP function's literal-pool pointer is `0x084C624C`; this corrects
+an earlier invalid simple-offset estimate (`0x084C61CC`). The JP payload at the
+correct pointer exactly matches US, EU and DE. All four ranges share SHA-256
+`56c55d406a8e778b0f83b672a3b6e0816219c0c9e26527fae77b5f4da550a901`.
+
+| Region | Palette offset | Length |
+| --- | ---: | ---: |
+| JP | `0x4C624C` | `0x200` |
+| US | `0x7400E4` | `0x200` |
+| EU | `0x740140` | `0x200` |
+| DE | `0x4C7558` | `0x200` |
+
+`shared/palettes.png` is the editable indexed representation of the 256 words
+as loaded at bank 1. `reference/layer_0.png`, `layer_1.png`, and `scene.png`
+are code-backed 256-by-256 views; `scene.png` composites the upper BG map over
+the lower one using palette index zero as transparent. The native tilemaps
+remain authoritative for tile IDs, flip flags and actual palette-bank values;
+no JSON layout sidecar is used.
 
 ```console
 make gfx-ui-scene-080c160c-all
+make gfx-ui-scene-080c160c-preview
 make gfx-ui-scene-080c160c-patch-test
 ```
 
-The normal ROM recipe rebuilds the selected region's streams and patches only
-their original intervals after `objcopy`. Unchanged sources reproduce retail
-bytes exactly; changed sources use the proven Raw-LZ encoder and are rejected
-if their fixed native slots are too small.
+The normal ROM recipe rebuilds the selected region's streams and palette, then
+patches only their original intervals after `objcopy`. Unchanged sources
+reproduce retail bytes exactly; changed tile/map sources use the proven Raw-LZ
+encoder and are rejected if their fixed native slots are too small.
