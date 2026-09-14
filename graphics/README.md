@@ -123,7 +123,9 @@ tools/oam_pack/oam_pack.exe graphics/portraits/shared/full/000_TALK_PORTRAIT_RIC
 
 The `canvas` profile has already reproduced the original tile stream, palette,
 and six OAM entries for the Rick normal, surprised, and wedding portraits
-byte-for-byte. It deliberately retains transparent tiles in its stable canvas.
+byte-for-byte. `make oam-pack-test` compares the Rick normal profile with all
+four retail localizations. It deliberately retains transparent tiles in its
+stable canvas.
 Other portraits demonstrate that the retail asset compiler also varies its
 per-asset canvas anchor and rectangle partition. `dense` is a visible-tile
 packing baseline; `opaque` avoids overlapping generated rectangles while still

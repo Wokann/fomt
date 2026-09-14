@@ -256,14 +256,21 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 # make to update every optional assembler dependency file in a fresh worktree.
 .PHONY: gfx-font gfx-jp-font gfx-fonts gfx-portraits gfx-portraits-all gfx-assets oam-pack oam-pack-test
 oam-pack: $(OAM_PACK)
-oam-pack-test: $(OAM_PACK) baserom_jp.gba $(PORTRAIT_SOURCE_DIR)/full/000_TALK_PORTRAIT_RICK_NORMAL.png
+oam-pack-test: $(OAM_PACK) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba $(PORTRAIT_SOURCE_DIR)/full/000_TALK_PORTRAIT_RICK_NORMAL.png
 	@mkdir -p $(BUILD_DIR)/graphics/oam_pack
-	@$(OAM_PACK) $(PORTRAIT_SOURCE_DIR)/full/000_TALK_PORTRAIT_RICK_NORMAL.png \
-	  --tiles $(BUILD_DIR)/graphics/oam_pack/rick_normal.4bpp \
-	  --palette $(BUILD_DIR)/graphics/oam_pack/rick_normal.gbapal \
-	  --oam $(BUILD_DIR)/graphics/oam_pack/rick_normal.oam \
-	  --origin-x -24 --origin-y -72 --strategy canvas \
-	  --reference-rom baserom_jp.gba --reference-offset $(PORTRAIT_ARCHIVE_OFFSET_JP) --portrait-id 0
+	@for reference in \
+	  "baserom_jp.gba $(PORTRAIT_ARCHIVE_OFFSET_JP)" \
+	  "baserom_us.gba $(PORTRAIT_ARCHIVE_OFFSET_US)" \
+	  "baserom_eu.gba $(PORTRAIT_ARCHIVE_OFFSET_EU)" \
+	  "baserom_de.gba $(PORTRAIT_ARCHIVE_OFFSET_DE)"; do \
+	  set -- $$reference; \
+	  $(OAM_PACK) $(PORTRAIT_SOURCE_DIR)/full/000_TALK_PORTRAIT_RICK_NORMAL.png \
+	    --tiles $(BUILD_DIR)/graphics/oam_pack/rick_normal.4bpp \
+	    --palette $(BUILD_DIR)/graphics/oam_pack/rick_normal.gbapal \
+	    --oam $(BUILD_DIR)/graphics/oam_pack/rick_normal.oam \
+	    --origin-x -24 --origin-y -72 --strategy canvas \
+	    --reference-rom $$1 --reference-offset $$2 --portrait-id 0; \
+	done
 gfx-font: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN)
 gfx-jp-font: gfx-font
 gfx-fonts:
