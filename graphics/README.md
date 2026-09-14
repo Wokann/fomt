@@ -144,6 +144,18 @@ python tools/overworld_sprite.py export baserom_us.gba \
 ```
 
 Without `--replace`, the exporter refuses to overwrite existing authored PNGs.
+Before adopting a newly located raw stream as this resource class, generate an
+enlarged indexed preview to confirm that its consecutive six-tile groups are
+actually one coherent animation rather than an adjacent mixed asset table:
+
+```console
+python tools/overworld_sprite.py contact-sheet \
+  --source build/sprite_probe/frames \
+  --output build/sprite_probe/contact_sheet.png
+```
+
+The contact sheet is diagnostic only; it neither participates in assembly nor
+becomes another source-of-truth format.
 
 ## Experimental forward OAM compiler
 

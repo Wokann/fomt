@@ -59,17 +59,18 @@ def chunk(kind: bytes, payload: bytes) -> bytes:
             + struct.pack(">I", zlib.crc32(kind + payload) & 0xFFFFFFFF))
 
 
-def write_indexed_png(path: Path, indexes: bytes, colors: tuple[tuple[int, int, int, int], ...]) -> None:
-    if len(indexes) != FRAME_WIDTH * FRAME_HEIGHT:
-        raise ValueError("invalid frame pixel count")
+def write_indexed_png(path: Path, indexes: bytes, colors: tuple[tuple[int, int, int, int], ...],
+                      width: int = FRAME_WIDTH, height: int = FRAME_HEIGHT) -> None:
+    if len(indexes) != width * height:
+        raise ValueError("invalid indexed PNG pixel count")
     palette = bytes(component for color in colors for component in color[:3])
     alpha = bytes(color[3] for color in colors)
     rows = b"".join(
-        b"\x00" + indexes[row * FRAME_WIDTH:(row + 1) * FRAME_WIDTH]
-        for row in range(FRAME_HEIGHT)
+        b"\x00" + indexes[row * width:(row + 1) * width]
+        for row in range(height)
     )
     output = (b"\x89PNG\r\n\x1a\n"
-              + chunk(b"IHDR", struct.pack(">IIBBBBB", FRAME_WIDTH, FRAME_HEIGHT, 8, 3, 0, 0, 0))
+              + chunk(b"IHDR", struct.pack(">IIBBBBB", width, height, 8, 3, 0, 0, 0))
               + chunk(b"PLTE", palette)
               + chunk(b"tRNS", alpha)
               + chunk(b"IDAT", zlib.compress(rows, level=9))
@@ -244,6 +245,40 @@ def build_frames(source: Path, tiles_path: Path, palette_path: Path) -> None:
     print(f"rebuilt {len(paths)} frames: {len(tiles)} tile bytes and 32 palette bytes")
 
 
+def write_contact_sheet(source: Path, output: Path, columns: int, scale: int) -> None:
+    """Render numbered editable frames as an enlarged palette-indexed preview."""
+    if columns <= 0 or scale <= 0:
+        raise ValueError("contact-sheet columns and scale must be positive")
+    paths = frame_paths(source)
+    frames = []
+    palette: tuple[tuple[int, int, int, int], ...] | None = None
+    for path in paths:
+        indexes, colors = read_indexed_png(path)
+        if palette is None:
+            palette = colors
+        elif colors != palette:
+            raise ValueError(f"{path} has a different palette from the first frame")
+        frames.append(indexes)
+    assert palette is not None
+    rows = (len(frames) + columns - 1) // columns
+    cell_width = FRAME_WIDTH * scale
+    cell_height = FRAME_HEIGHT * scale
+    width = columns * cell_width
+    height = rows * cell_height
+    indexes = bytearray(width * height)
+    for frame_id, frame in enumerate(frames):
+        cell_x = frame_id % columns * cell_width
+        cell_y = frame_id // columns * cell_height
+        for y in range(FRAME_HEIGHT):
+            for x in range(FRAME_WIDTH):
+                value = frame[y * FRAME_WIDTH + x]
+                for scale_y in range(scale):
+                    row = (cell_y + y * scale + scale_y) * width + cell_x + x * scale
+                    indexes[row:row + scale] = bytes((value,)) * scale
+    write_indexed_png(output, bytes(indexes), palette, width, height)
+    print(f"wrote {len(frames)}-frame contact sheet to {output}")
+
+
 def verify(rom_path: Path, tiles_offset: int, palette_offset: int, tiles_path: Path, palette_path: Path, expected_sha256: str | None) -> None:
     tiles = tiles_path.read_bytes()
     palette = palette_path.read_bytes()
@@ -280,6 +315,12 @@ def main() -> None:
     build.add_argument("--tiles", required=True, type=Path)
     build.add_argument("--palette", required=True, type=Path)
 
+    contact_sheet = subparsers.add_parser("contact-sheet", help="write an enlarged indexed preview of numbered source frames")
+    contact_sheet.add_argument("--source", required=True, type=Path)
+    contact_sheet.add_argument("--output", required=True, type=Path)
+    contact_sheet.add_argument("--columns", type=int, default=8)
+    contact_sheet.add_argument("--scale", type=int, default=4)
+
     check = subparsers.add_parser("verify", help="compare rebuilt streams with one ROM")
     check.add_argument("rom", type=Path)
     check.add_argument("--tiles-offset", required=True, type=parse_number)
@@ -294,6 +335,8 @@ def main() -> None:
             export_frames(args.rom, args.tiles_offset, args.tiles_length, args.palette_offset, args.output, args.replace)
         elif args.command == "build":
             build_frames(args.source, args.tiles, args.palette)
+        elif args.command == "contact-sheet":
+            write_contact_sheet(args.source, args.output, args.columns, args.scale)
         else:
             verify(args.rom, args.tiles_offset, args.palette_offset, args.tiles, args.palette, args.sha256)
     except (OSError, ValueError, zlib.error) as error:
