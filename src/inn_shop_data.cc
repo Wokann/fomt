@@ -15,3 +15,4 @@ InnShopMenuEntry const gInnShopMenu[] = {
 };
 
 #include FOMT_TEXT_INCLUDE(inn_shop_data_1.cc)
+#include "data/text/common/inn_shop_data_1.cc"
