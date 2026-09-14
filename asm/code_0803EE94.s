@@ -1797,7 +1797,124 @@ func_0804F288: @ 0x0804F014
 
 
 
-    jp_code_0803ee_func func_0804F69C, 0x4F428, 0x4F530
+    .global func_0804F69C
+    .thumb_func
+func_0804F69C: @ 0x0804F428
+    push {r4, r5, r6, r7, lr}
+    adds r6, r0, #0
+    adds r7, r1, #0
+    movs r0, #0xa9
+    lsls r0, r0, #3
+    adds r4, r6, r0
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
+    bl func_080073E0
+    adds r0, r4, #0
+    movs r1, #2
+    bl func_08007184
+    ldr r1, .Ljp_0804F528 @ =0x00000504
+    adds r0, r6, r1
+    ldr r5, .Ljp_0804F52C @ =vtable_unk_080E5A28
+    str r5, [r0]
+    movs r0, #0xf4
+    lsls r0, r0, #1
+    adds r4, r6, r0
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
+    bl func_080073E0
+    adds r0, r4, #0
+    movs r1, #2
+    bl func_08007184
+    movs r1, #0xf2
+    lsls r1, r1, #1
+    adds r0, r6, r1
+    movs r1, #2
+    bl func_080AD6BC
+    movs r0, #0xea
+    lsls r0, r0, #1
+    adds r4, r6, r0
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
+    bl func_08007C28
+    adds r0, r4, #0
+    movs r1, #2
+    bl func_080079E8
+    movs r1, #0xc8
+    lsls r1, r1, #1
+    adds r0, r6, r1
+    str r5, [r0]
+    subs r1, #0x30
+    adds r0, r6, r1
+    str r5, [r0]
+    subs r1, #0x18
+    adds r0, r6, r1
+    movs r1, #2
+    bl func_080098AC
+    movs r1, #0x98
+    lsls r1, r1, #1
+    adds r0, r6, r1
+    movs r1, #2
+    bl func_080098AC
+    movs r1, #0x90
+    lsls r1, r1, #1
+    adds r0, r6, r1
+    movs r1, #2
+    bl func_080098AC
+    adds r0, r6, #0
+    adds r0, #0xd0
+    movs r1, #2
+    bl func_080E105C
+    adds r0, r6, #0
+    adds r0, #0xc0
+    movs r1, #2
+    bl func_080098AC
+    adds r1, r6, #0
+    adds r1, #0x3c
+    ldr r0, [r6, #0x3c]
+    lsls r0, r0, #4
+    adds r0, #4
+    adds r1, r1, r0
+    adds r0, r6, #0
+    adds r0, #0x40
+    cmp r0, r1
+    beq .Ljp_0804F4E2
+.Ljp_0804F4DC:
+    adds r0, #0x10
+    cmp r0, r1
+    bne .Ljp_0804F4DC
+.Ljp_0804F4E2:
+    adds r0, r6, #0
+    adds r0, #0x20
+    movs r1, #2
+    bl func_080098DC
+    adds r4, r6, #0
+    adds r4, #0x18
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
+    bl func_08007C28
+    adds r0, r4, #0
+    movs r1, #2
+    bl func_080079E8
+    subs r4, #8
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
+    bl func_080073E0
+    adds r0, r4, #0
+    movs r1, #2
+    bl func_08007184
+    movs r0, #1
+    ands r0, r7
+    cmp r0, #0
+    beq .Ljp_0804F520
+    adds r0, r6, #0
+    bl __builtin_delete
+.Ljp_0804F520:
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_0804F528: .4byte 0x00000504
+.Ljp_0804F52C: .4byte vtable_unk_080E5A28
     jp_code_0803ee_func func_0804F7A4, 0x4F530, 0x50128
     jp_code_0803ee_func func_0805039C, 0x50128, 0x50170
     jp_code_0803ee_func func_080503E4, 0x50170, 0x50188
