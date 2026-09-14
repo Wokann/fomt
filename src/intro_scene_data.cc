@@ -2,7 +2,7 @@
 
 EXTERN_C
 
-#include FOMT_TEXT_INCLUDE(intro_scene_data.cc)
+#include "data/text/common/intro_scene_data.cc"
 
 // The concrete graphics payload formats remain raw. These labels retain the
 // original region-specific relocations while the loading order is expressed
@@ -52,6 +52,11 @@ u8 const * const gIntroSceneUnpackSources[] = {
 
 EXTERN_C_END
 
-// The childhood-visit dialogue and trailing runtime literal follow the unpack
-// source table in both ROMs.
-#include FOMT_TEXT_INCLUDE(intro_scene_data_1.cc)
+// The childhood-visit dialogue follows the unpack source table in both ROMs.
+#include FOMT_TEXT_INCLUDE(intro_scene_data.cc)
+
+EXTERN_C
+
+#include "data/text/common/intro_scene_data_1.cc"
+
+EXTERN_C_END
