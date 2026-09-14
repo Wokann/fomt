@@ -53,7 +53,8 @@
     jp_code_809_func func_080A0490, 0x9FEC8, 0x9FF3C
     jp_code_809_func func_080A0504, 0x9FF3C, 0x9FF50
     jp_code_809_func func_080A0518, 0x9FF50, 0xA0020
-    jp_code_809_func func_080A05E8, 0xA0020, 0xA0454
+    jp_code_809_func func_080A05E8, 0xA0020, 0xA02B0
+    jp_code_809_func func_080A0878, 0xA02B0, 0xA0454
     jp_code_809_func func_080A0A1C, 0xA0454, 0xA048C
     jp_code_809_func func_080A0A54, 0xA048C, 0xA04C8
     jp_code_809_func func_080A0A90, 0xA04C8, 0xA0EB0
