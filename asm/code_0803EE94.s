@@ -5091,8 +5091,248 @@ func_0805143C: @ 0x080511C8
 .Ljp_08051288: .4byte gUnk_082AD1F0
 .Ljp_0805128C: .4byte 0x000008B8
 
-    @ The next physical entry has not yet received a recovered shared name.
-    jp_code_0803ee_func func_08051290, 0x51290, 0x51F4C
+    .global func_08051504
+    .thumb_func
+func_08051504: @ 0x08051290
+    push {r4, r5, r6, r7, lr}
+    mov r7, sl
+    mov r6, sb
+    mov r5, r8
+    push {r5, r6, r7}
+    sub sp, #0x14
+    mov sb, r0
+    adds r6, r1, #0
+    adds r0, r6, #0
+    bl func_08008724
+    adds r0, r6, #0
+    bl func_08008918
+    mov r1, sp
+    movs r2, #0x3f
+    strh r2, [r1]
+    adds r0, #0x50
+    strh r2, [r0]
+    movs r0, #0x10
+    bl __builtin_new
+    adds r4, r0, #0
+    adds r0, r6, #0
+    bl func_08008918
+    adds r1, r0, #0
+    movs r5, #0
+    str r5, [r4]
+    str r5, [r4, #4]
+    ldr r0, .Ljp_0805132C
+    str r0, [r4, #8]
+    adds r0, r4, #0
+    adds r0, #0xc
+    bl func_08009300
+    str r4, [sp, #4]
+    adds r0, r6, #0
+    bl func_0805147C
+    ldr r0, [sp, #4]
+    ldr r1, .Ljp_08051330
+    adds r0, #0xc
+    movs r2, #1
+    movs r3, #1
+    bl func_0800934C
+    adds r0, r6, #0
+    bl func_08008940
+    ldr r2, [r0, #8]
+    ldr r1, [sp, #4]
+    ldr r2, [r2, #0x10]
+    bl _call_via_r2
+    ldr r1, .Ljp_08051334
+    adds r0, r6, r1
+    str r5, [r0]
+    movs r7, #0
+    add r3, sp, #8
+    mov r8, r3
+    add r0, sp, #0xc
+    mov sl, r0
+    adds r5, r6, r1
+.Ljp_08051310:
+    adds r0, r6, #0
+    bl func_080087C8
+    adds r0, r6, #0
+    bl func_080088B8
+    ldr r0, [r5]
+    cmp r0, #1
+    beq .Ljp_08051354
+    cmp r0, #1
+    bgt .Ljp_08051338
+    cmp r0, #0
+    beq .Ljp_08051342
+    b .Ljp_08051426
+    .align 2, 0
+.Ljp_0805132C: .4byte vtable_unk_080E5B80
+.Ljp_08051330: .4byte 0x00000889
+.Ljp_08051334: .4byte 0x000008BC
+.Ljp_08051338:
+    cmp r0, #2
+    beq .Ljp_080513F0
+    cmp r0, #3
+    beq .Ljp_08051418
+    b .Ljp_08051426
+.Ljp_08051342:
+    ldr r0, [sp, #4]
+    ldr r1, [r0]
+    rsbs r0, r1, #0
+    orrs r0, r1
+    cmp r0, #0
+    blt .Ljp_08051426
+    movs r0, #1
+    str r0, [r5]
+    b .Ljp_08051426
+.Ljp_08051354:
+    adds r0, r6, #0
+    bl func_080088C4
+    movs r1, #0x80
+    ands r0, r1
+    lsls r0, r0, #0x18
+    lsrs r4, r0, #0x18
+    cmp r4, #0
+    beq .Ljp_08051384
+    ldr r3, .Ljp_08051380
+    adds r1, r6, r3
+    ldrh r0, [r1]
+    adds r0, #4
+    strh r0, [r1]
+    lsls r0, r0, #0x10
+    asrs r0, r0, #0x10
+    cmp r0, #0x20
+    ble .Ljp_080513A4
+    movs r0, #0x20
+    strh r0, [r1]
+    b .Ljp_080513A4
+    .align 2, 0
+.Ljp_08051380: .4byte 0x000008B8
+.Ljp_08051384:
+    adds r0, r6, #0
+    bl func_080088C4
+    movs r1, #0x40
+    ands r0, r1
+    cmp r0, #0
+    beq .Ljp_080513A4
+    ldr r0, .Ljp_080513EC
+    adds r1, r6, r0
+    ldrh r0, [r1]
+    subs r0, #4
+    strh r0, [r1]
+    lsls r0, r0, #0x10
+    cmp r0, #0
+    bge .Ljp_080513A4
+    strh r4, [r1]
+.Ljp_080513A4:
+    movs r4, #0
+    adds r0, r6, #0
+    bl func_080088CC
+    movs r1, #2
+    ands r0, r1
+    cmp r0, #0
+    bne .Ljp_080513C2
+    adds r0, r6, #0
+    bl func_080088CC
+    movs r1, #8
+    ands r0, r1
+    cmp r0, #0
+    beq .Ljp_080513C4
+.Ljp_080513C2:
+    movs r4, #1
+.Ljp_080513C4:
+    cmp r4, #0
+    beq .Ljp_080513D6
+    adds r0, r6, #0
+    adds r0, #0xc
+    movs r1, #0xc6
+    bl func_08008B6C
+    movs r0, #2
+    str r0, [r5]
+.Ljp_080513D6:
+    adds r0, r6, #0
+    bl func_08008918
+    mov r2, sp
+    ldr r3, .Ljp_080513EC
+    adds r1, r6, r3
+    ldrh r1, [r1]
+    strh r1, [r2]
+    strh r1, [r0, #0x16]
+    b .Ljp_08051426
+    .align 2, 0
+.Ljp_080513EC: .4byte 0x000008B8
+.Ljp_080513F0:
+    ldr r0, [sp, #4]
+    adds r0, #0xc
+    ldr r1, .Ljp_08051414
+    movs r2, #1
+    movs r3, #1
+    bl func_08009378
+    adds r0, r6, #0
+    bl func_08008940
+    ldr r2, [r0, #8]
+    ldr r1, [sp, #4]
+    ldr r2, [r2, #0x10]
+    bl _call_via_r2
+    movs r0, #3
+    str r0, [r5]
+    b .Ljp_08051426
+    .align 2, 0
+.Ljp_08051414: .4byte 0x00000889
+.Ljp_08051418:
+    ldr r0, [sp, #4]
+    ldr r1, [r0]
+    rsbs r0, r1, #0
+    orrs r0, r1
+    cmp r0, #0
+    blt .Ljp_08051426
+    movs r7, #1
+.Ljp_08051426:
+    adds r0, r6, #0
+    bl func_08051B00
+    cmp r7, #0
+    bne .Ljp_08051432
+    b .Ljp_08051310
+.Ljp_08051432:
+    movs r0, #0
+    str r0, [sp, #8]
+    mov r1, r8
+    str r1, [sp, #0xc]
+    mov r3, sl
+    str r0, [r3, #4]
+    str r0, [r1]
+    mov r1, sb
+    str r0, [r1]
+    ldr r1, [sp, #8]
+    cmp r1, #0
+    beq .Ljp_08051456
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08051456:
+    ldr r1, [sp, #4]
+    cmp r1, #0
+    beq .Ljp_08051468
+    ldr r0, [r1, #8]
+    ldr r2, [r0, #0xc]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08051468:
+    mov r0, sb
+    add sp, #0x14
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
+
+    @ The following two physical entries are still raw, but are labelled so
+    @ the decoded state machine above keeps real JP branch relocations.
+    jp_code_0803ee_func func_0805147C, 0x5147C, 0x51B00
+    jp_code_0803ee_func func_08051B00, 0x51B00, 0x51F4C
     jp_code_0803ee_func func_08051F4C, 0x51F4C, 0x51F8C
     jp_code_0803ee_func func_08051F8C, 0x51F8C, 0x51FC0
     jp_code_0803ee_func func_08051FC0, 0x51FC0, 0x52068
