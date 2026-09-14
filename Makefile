@@ -135,14 +135,14 @@ PORTRAIT_ARCHIVE_OFFSET := $(PORTRAIT_ARCHIVE_OFFSET_$(GAME_REGION))
 # OAM-composited PNGs, not guessed linear tile sheets.  Rebuild preserves the
 # original archive tables and patches only table four's native 4bpp tile data.
 ACTOR_ARCHIVE_TOOL := tools/actor_archive.py
-ACTOR_SOURCE_DIRS := graphics/sprites/rick/overworld graphics/sprites/popuri/overworld graphics/sprites/lillia/overworld graphics/sprites/child/overworld graphics/sprites/cliff/overworld graphics/sprites/cow/overworld graphics/sprites/calf/overworld
+ACTOR_SOURCE_DIRS := graphics/sprites/rick/overworld graphics/sprites/popuri/overworld graphics/sprites/lillia/overworld graphics/sprites/child/overworld graphics/sprites/cliff/overworld graphics/sprites/cow/overworld graphics/sprites/calf/overworld graphics/sprites/zack/overworld graphics/sprites/doctor/overworld graphics/sprites/farm_dog/overworld
 ACTOR_FULL_IMAGES := $(foreach directory,$(ACTOR_SOURCE_DIRS),$(wildcard $(directory)/full/*.png))
 # The first interval spans Rick, Popuri, Lillia, Child, Cliff and the confirmed
 # Cow idle/walk/sick selector groups. The separate Calf interval intentionally
 # does not claim the still-uncovered Cow selector gap between them.
 # It deliberately includes neighbouring transition/gesture selectors, so edits
 # to shared native pixels are checked across every covered actor source.
-ACTOR_ANIMATIONS := 0x212-0x2BB,0x2FC-0x317
+ACTOR_ANIMATIONS := 0x212-0x2BB,0x2FC-0x33F
 ACTOR_TILE_BIN := $(BUILD_DIR)/graphics/sprites/shared/actor_tiles.4bpp
 ACTOR_ARCHIVE_LENGTH := 0xDB638
 ACTOR_ARCHIVE_SHA256 := 19a8733e132573478713e9b6e48e9650a702e62516209159787d26f270933736
