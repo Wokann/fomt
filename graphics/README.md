@@ -99,6 +99,42 @@ selecting one edit. The four regional assembly paths split their original
 archive at the tile stream and retain every header, layout record, palette and
 trailing byte around it.
 
+## Shared overworld frames
+
+`sprites/rick_daily/shared/frames` contains the 26 ordinary Rick overworld
+animation frames. Each `000.png` through `025.png` is a complete 16x32 indexed
+PNG: its 16x16 upper body uses the first four physical tiles, and its centred
+8x16 lower body uses the final two. This is a fixed six-tile resource class,
+not an OAM layout; the converter restores that native tile order directly.
+
+The 0x1380-byte tile stream and its 32-byte BGR555 palette are byte-identical
+in JP, US, EU, and DE. Their physical locations are respectively
+`0x380898/0x3E859C`, `0x5FA73C/0x662440`, `0x5FA798/0x66249C`, and
+`0x3817D8/0x3E94DC` (tile/palette). The shared tile SHA-256 is
+`a3b557ebe746ce6b2a7d1f5d0ea522837a99283c2dd05879f787dba2c733bf71`.
+
+```console
+make GAME_REGION=JP gfx-overworld-rick
+make gfx-overworld-rick-all
+```
+
+`tools/overworld_sprite.py` is intentionally a fixed-format converter, rather
+than a generic tile-sheet guesser. It verifies that all numbered source frames
+exist consecutively, retain one common 16-colour indexed palette, and rebuild
+the exact six native tiles per frame. `gfx-overworld-rick-all` compares the
+rebuilt tile and palette streams with all four base ROMs. No JSON manifest is
+used: frame order is the numeric file order and the resource-class layout is
+defined by the converter itself. To regenerate the checked-in source from a
+verified ROM, use `export` with the explicit replacement guard:
+
+```console
+python tools/overworld_sprite.py export baserom_us.gba \
+  --tiles-offset 0x5FA73C --tiles-length 0x1380 --palette-offset 0x662440 \
+  --output graphics/sprites/rick_daily/shared/frames --replace
+```
+
+Without `--replace`, the exporter refuses to overwrite existing authored PNGs.
+
 ## Experimental forward OAM compiler
 
 `tools/oam_pack/oam_pack.c` is the separate C implementation used to recover

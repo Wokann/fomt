@@ -116,6 +116,28 @@ PORTRAIT_ARCHIVE_OFFSET_EU := 0x52D9E0
 PORTRAIT_ARCHIVE_OFFSET_DE := 0x2B4A20
 PORTRAIT_ARCHIVE_OFFSET := $(PORTRAIT_ARCHIVE_OFFSET_$(GAME_REGION))
 
+# Rick's daily overworld animation is a fixed six-tile frame class: a 16x16
+# upper body followed by a centred 8x16 lower strip. The 26 full PNG frames
+# and their native 4bpp/BGR555 rebuild are shared byte-for-byte by all four
+# retail localizations, although each ROM stores the data elsewhere.
+OVERWORLD_SPRITE_TOOL := tools/overworld_sprite.py
+OVERWORLD_RICK_SOURCE_DIR := graphics/sprites/rick_daily/shared/frames
+OVERWORLD_RICK_FRAMES := $(wildcard $(OVERWORLD_RICK_SOURCE_DIR)/*.png)
+OVERWORLD_RICK_TILE_BIN := $(BUILD_DIR)/graphics/sprites/rick_daily/rick_daily.4bpp
+OVERWORLD_RICK_PALETTE_BIN := $(BUILD_DIR)/graphics/sprites/rick_daily/rick_daily.gbapal
+OVERWORLD_RICK_BUILD_STAMP := $(BUILD_DIR)/graphics/sprites/rick_daily/.build.stamp
+OVERWORLD_RICK_TILE_SHA256 := a3b557ebe746ce6b2a7d1f5d0ea522837a99283c2dd05879f787dba2c733bf71
+OVERWORLD_RICK_TILE_OFFSET_JP := 0x380898
+OVERWORLD_RICK_TILE_OFFSET_US := 0x5FA73C
+OVERWORLD_RICK_TILE_OFFSET_EU := 0x5FA798
+OVERWORLD_RICK_TILE_OFFSET_DE := 0x3817D8
+OVERWORLD_RICK_PALETTE_OFFSET_JP := 0x3E859C
+OVERWORLD_RICK_PALETTE_OFFSET_US := 0x662440
+OVERWORLD_RICK_PALETTE_OFFSET_EU := 0x66249C
+OVERWORLD_RICK_PALETTE_OFFSET_DE := 0x3E94DC
+OVERWORLD_RICK_TILE_OFFSET := $(OVERWORLD_RICK_TILE_OFFSET_$(GAME_REGION))
+OVERWORLD_RICK_PALETTE_OFFSET := $(OVERWORLD_RICK_PALETTE_OFFSET_$(GAME_REGION))
+
 SUBDIRS := $(sort $(dir $(ALL_OBJS)))
 $(shell mkdir -p $(SUBDIRS))
 
@@ -250,11 +272,18 @@ $(PORTRAIT_TILE_BIN): $(PORTRAIT_ARCHIVE_TOOL) $(PORTRAIT_FULL_IMAGES) $(BASE_RO
 	@mkdir -p $(dir $@)
 	@$(PYTHON) $(PORTRAIT_ARCHIVE_TOOL) $(BASE_ROM) --offset $(PORTRAIT_ARCHIVE_OFFSET) --length $(PORTRAIT_ARCHIVE_LENGTH) --sha256 $(PORTRAIT_ARCHIVE_SHA256) rebuild-full --source $(PORTRAIT_SOURCE_DIR) --output $@
 
+$(OVERWORLD_RICK_BUILD_STAMP): $(OVERWORLD_SPRITE_TOOL) $(OVERWORLD_RICK_FRAMES)
+	@mkdir -p $(dir $@)
+	@$(PYTHON) $(OVERWORLD_SPRITE_TOOL) build --source $(OVERWORLD_RICK_SOURCE_DIR) --tiles $(OVERWORLD_RICK_TILE_BIN) --palette $(OVERWORLD_RICK_PALETTE_BIN)
+	@touch $@
+
+$(OVERWORLD_RICK_TILE_BIN) $(OVERWORLD_RICK_PALETTE_BIN): $(OVERWORLD_RICK_BUILD_STAMP)
+
 FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-portraits gfx-portraits-all gfx-assets oam-pack oam-pack-test
+.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-portraits gfx-portraits-all gfx-overworld-rick gfx-overworld-rick-test gfx-overworld-rick-all gfx-assets oam-pack oam-pack-test
 oam-pack: $(OAM_PACK)
 oam-pack-test: $(OAM_PACK) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba $(PORTRAIT_SOURCE_DIR)/full/000_TALK_PORTRAIT_RICK_NORMAL.png
 	@mkdir -p $(BUILD_DIR)/graphics/oam_pack
@@ -284,9 +313,17 @@ gfx-portraits-all:
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-portraits
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-portraits
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-portraits
-gfx-assets: gfx-font gfx-portraits
+gfx-overworld-rick: $(OVERWORLD_RICK_TILE_BIN) $(OVERWORLD_RICK_PALETTE_BIN)
+gfx-overworld-rick-test: gfx-overworld-rick $(BASE_ROM)
+	@$(PYTHON) $(OVERWORLD_SPRITE_TOOL) verify $(BASE_ROM) --tiles-offset $(OVERWORLD_RICK_TILE_OFFSET) --palette-offset $(OVERWORLD_RICK_PALETTE_OFFSET) --tiles $(OVERWORLD_RICK_TILE_BIN) --palette $(OVERWORLD_RICK_PALETTE_BIN) --sha256 $(OVERWORLD_RICK_TILE_SHA256)
+gfx-overworld-rick-all:
+	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-overworld-rick-test
+	@$(MAKE) --no-print-directory GAME_REGION=US gfx-overworld-rick-test
+	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-overworld-rick-test
+	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-overworld-rick-test
+gfx-assets: gfx-font gfx-portraits gfx-overworld-rick
 
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN) $(PORTRAIT_TILE_BIN)
+$(BUILD_DIR)/asm/data/data_0813B288.o: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN) $(PORTRAIT_TILE_BIN) $(OVERWORLD_RICK_TILE_BIN) $(OVERWORLD_RICK_PALETTE_BIN)
 
 # Mary owns the complete packed RIFF script stream.  Its three headers remain
 # explicit inputs: callables and slot names live with the selected scripts,
@@ -409,7 +446,7 @@ clean:
 .PHONY: clean
 
 ifneq (clean,$(MAKECMDGOALS))
-ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-portraits gfx-portraits-all gfx-assets oam-pack oam-pack-test,$(MAKECMDGOALS)))
+ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-portraits gfx-portraits-all gfx-overworld-rick gfx-overworld-rick-test gfx-overworld-rick-all gfx-assets oam-pack oam-pack-test,$(MAKECMDGOALS)))
 -include $(ALL_DEPS)
 endif
 .PRECIOUS: $(BUILD_DIR)/%.d
