@@ -3509,7 +3509,49 @@ func_080503E4: @ 0x08050170
     bx r0
     .align 2, 0
     .section .text.ui_object_state_after
-    jp_code_0803ee_func func_08050424, 0x501B0, 0x50204
+    .global func_08050424
+    .thumb_func
+func_08050424: @ 0x080501B0
+    push {r4, r5, r6, r7, lr}
+    mov r7, r8
+    push {r7}
+    adds r5, r0, #0
+    adds r7, r1, #0
+    adds r6, r3, #0
+    lsls r2, r2, #0x10
+    lsrs r2, r2, #0x10
+    mov r8, r2
+    ldr r0, [r5, #8]
+    cmp r0, #0
+    blt .Ljp_080501E0
+    cmp r0, #2
+    bgt .Ljp_080501D4
+    adds r0, r5, #0
+    bl func_080503E4
+    b .Ljp_080501E0
+.Ljp_080501D4:
+    cmp r0, #6
+    bgt .Ljp_080501E0
+    adds r0, r5, #0
+    adds r0, #0xd0
+    bl func_0804EE6C
+.Ljp_080501E0:
+    adds r4, r5, #0
+    adds r4, #0xec
+    adds r0, r4, #0
+    adds r1, r7, #0
+    adds r2, r6, #0
+    bl func_080ADD5C
+    adds r0, r4, #0
+    mov r1, r8
+    bl func_080ADD74
+    movs r0, #4
+    str r0, [r5, #8]
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
     jp_code_0803ee_func func_08050478, 0x50204, 0x503F0
     jp_code_0803ee_func func_08050664, 0x503F0, 0x5055C
     jp_code_0803ee_func func_080507D0, 0x5055C, 0x50584
