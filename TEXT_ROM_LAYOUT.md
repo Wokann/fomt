@@ -89,7 +89,7 @@
 | EU | `0x08100E3C`–`0x0810113F` | `src/cooking.o(.rodata)` | `src/cooking.cc`、`include/cooking.hh`、`data/text/eu/cooking.cc`；28 条烹饪文本和 `13×11` 字节选择名矩阵按 ROM 顺序同属对象；矩阵行宽由调用方的 `symbol + 0xB` 读取确定，所有已知调用均为符号重定位 | 精确 |
 | EU | `0x08101140`–`0x081036AD` | `src/cooking_recipe_inventory_data.o(.rodata)` | `src/cooking_recipe_inventory_data.cc`、`include/cooking_recipe_inventory_data.hh`、`data/text/eu/cooking_recipe_inventory_data.cc`；9 项掩码表、117 项配方定义及零终止项、连续配方载荷与两个运行时字符串按 ROM 顺序同属对象；定义中的所有载荷指针和汇编调用均为符号重定位 | 精确 |
 | EU | `0x081036B0`–`0x081036B6` | `src/animal.o(.rodata)` | `src/animal.cc`、`include/animal.hh`、`data/text/eu/animal.cc`；`gText_Animal_Unnamed` 是 `Animal::GetName()` 的唯一回退文本，源码调用保留符号重定位 | 精确 |
-| EU | `0x081036B8`–`0x08103717` | `src/livestock_day_update_data.o(.rodata)` | `src/livestock_day_update_data.cc`、`include/livestock_day_update_data.hh` | 精确 |
+| EU | `0x081036B8`–`0x08103717` | `src/livestock_day_update_data.o(.rodata)` | `src/livestock_day_update_data.cc`、`include/livestock_day_update_data.hh`；鸡、牛、羊三项 `LivestockDayUpdateInfo` 结构按 ROM 顺序同属对象，三个日更新调用均直接取对应符号地址 | 精确 |
 | EU | `0x08103718`–`0x081037DD` | `src/actor_state.o(.rodata)` | `src/actor_state.cc`、`include/actor_state.hh`、`data/text/{jp,us,eu,de}/actor_state_1.cc`、`data/text/{jp,us,eu,de}/actor_state_2.cc` | 精确 |
 | EU | `0x081037E0`–`0x08103B65` | `src/fishing_results_data.o(.rodata)` | `src/fishing_results_data.cc`、`include/fishing_results_data.hh`、`data/text/eu/fishing_results_data_1.cc`、`data/text/eu/fishing_results_data_2.cc` | 文本 `58` 项、`gFishingRecordNames`、运行时字符串 `1` 项 |
 | EU | `0x08103B68`–`0x0810415F` | `src/actor_runtime_data.o(.rodata)` | `src/actor_runtime_data.cc`、`include/actor_runtime_data.hh`、`data/text/eu/actor_runtime_data.cc`；运行时字符串与 9 个已命名数据对象按 ROM 顺序同属该对象 | 精确 |
@@ -178,7 +178,7 @@
 | DE | `0x08101800`–`0x08101B29` | `src/cooking.o(.rodata)` | `src/cooking.cc`、`include/cooking.hh`、`data/text/de/cooking.cc`；28 条烹饪文本和 `13×11` 字节选择名矩阵按 ROM 顺序同属对象；矩阵行宽由调用方的 `symbol + 0xB` 读取确定，所有已知调用均为符号重定位 | 精确 |
 | DE | `0x08101B2C`–`0x08104099` | `src/cooking_recipe_inventory_data.o(.rodata)` | `src/cooking_recipe_inventory_data.cc`、`include/cooking_recipe_inventory_data.hh`、`data/text/de/cooking_recipe_inventory_data.cc`；9 项掩码表、117 项配方定义及零终止项、连续配方载荷与两个运行时字符串按 ROM 顺序同属对象；定义中的所有载荷指针和汇编调用均为符号重定位 | 精确 |
 | DE | `0x0810409C`–`0x081040A2` | `src/animal.o(.rodata)` | `src/animal.cc`、`include/animal.hh`、`data/text/de/animal.cc`；`gText_Animal_Unnamed` 是 `Animal::GetName()` 的唯一回退文本，源码调用保留符号重定位 | 精确 |
-| DE | `0x081040A4`–`0x08104103` | `src/livestock_day_update_data.o(.rodata)` | `src/livestock_day_update_data.cc`、`include/livestock_day_update_data.hh` | 精确 |
+| DE | `0x081040A4`–`0x08104103` | `src/livestock_day_update_data.o(.rodata)` | `src/livestock_day_update_data.cc`、`include/livestock_day_update_data.hh`；鸡、牛、羊三项 `LivestockDayUpdateInfo` 结构按 ROM 顺序同属对象，三个日更新调用均直接取对应符号地址 | 精确 |
 | DE | `0x08104104`–`0x081041C9` | `src/actor_state.o(.rodata)` | `src/actor_state.cc`、`include/actor_state.hh`、`data/text/{jp,us,eu,de}/actor_state_1.cc`、`data/text/{jp,us,eu,de}/actor_state_2.cc` | 精确 |
 | DE | `0x081041CC`–`0x08104565` | `src/fishing_results_data.o(.rodata)` | `src/fishing_results_data.cc`、`include/fishing_results_data.hh`、`data/text/de/fishing_results_data_1.cc`、`data/text/de/fishing_results_data_2.cc` | 文本 `58` 项、`gFishingRecordNames`、运行时字符串 `1` 项 |
 | DE | `0x08104568`–`0x08104B5F` | `src/actor_runtime_data.o(.rodata)` | `src/actor_runtime_data.cc`、`include/actor_runtime_data.hh`、`data/text/de/actor_runtime_data.cc`；运行时字符串与 9 个已命名数据对象按 ROM 顺序同属该对象 | 精确 |
@@ -309,7 +309,7 @@
 | `0x08103192`–`0x08103193` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08103194`–`0x0810319A` | `src/animal.o(.rodata)` | [嵌入文本] | `src/animal.cc`、`include/animal.hh`、`data/text/jp/animal.cc` | `gText_Animal_Unnamed`；`Animal::GetName()` 直接引用该符号，文本随本对象重定位 |
 | `0x0810319B`–`0x0810319B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x0810319C`–`0x081031FB` | `src/livestock_day_update_data.o(.rodata)` | [数据] | `src/livestock_day_update_data.cc`、`include/livestock_day_update_data.hh` | `gChickenDayUpdateInfo`, `gCowDayUpdateInfo`, `gSheepDayUpdateInfo` |
+| `0x0810319C`–`0x081031FB` | `src/livestock_day_update_data.o(.rodata)` | [数据] | `src/livestock_day_update_data.cc`、`include/livestock_day_update_data.hh` | `gChickenDayUpdateInfo`, `gCowDayUpdateInfo`, `gSheepDayUpdateInfo`；三个日更新调用均为对应对象的直接符号引用 |
 | `0x081031FC`–`0x081032C1` | `src/actor_state.o(.rodata)` | [数据 / 嵌入文本] | `src/actor_state.cc`、`include/actor_state.hh`<br>`data/text/{jp,us,eu,de}/actor_state_1.cc`、`data/text/{jp,us,eu,de}/actor_state_2.cc` | `gActorStateMaxValues`<br>`gActorDataSelectionEntries`<br>运行时字符串 `2` 项 |
 | `0x081032C2`–`0x081032C3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x081032C4`–`0x08103601` | `src/fishing_results_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/fishing_results_data.cc`、`include/fishing_results_data.hh`<br>`data/text/jp/fishing_results_data_1.cc`、`data/text/jp/fishing_results_data_2.cc` | 文本 `59` 项（详见下方索引）<br>文本后对象内 `00` 对齐 `3` 字节<br>`gFishingRecordNames`<br>运行时字符串 `1` 项 |
@@ -2143,7 +2143,7 @@
 | `0x08103656`–`0x08103657` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08103658`–`0x0810365E` | `src/animal.o(.rodata)` | [嵌入文本] | `src/animal.cc`、`include/animal.hh`、`data/text/us/animal.cc` | `gText_Animal_Unnamed`；`Animal::GetName()` 直接引用该符号，文本随本对象重定位 |
 | `0x0810365F`–`0x0810365F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 1 字节 |
-| `0x08103660`–`0x081036BF` | `src/livestock_day_update_data.o(.rodata)` | [数据] | `src/livestock_day_update_data.cc`、`include/livestock_day_update_data.hh` | `gChickenDayUpdateInfo`, `gCowDayUpdateInfo`, `gSheepDayUpdateInfo` |
+| `0x08103660`–`0x081036BF` | `src/livestock_day_update_data.o(.rodata)` | [数据] | `src/livestock_day_update_data.cc`、`include/livestock_day_update_data.hh` | `gChickenDayUpdateInfo`, `gCowDayUpdateInfo`, `gSheepDayUpdateInfo`；三个日更新调用均为对应对象的直接符号引用 |
 | `0x081036C0`–`0x08103785` | `src/actor_state.o(.rodata)` | [数据 / 嵌入文本] | `src/actor_state.cc`、`include/actor_state.hh`<br>`data/text/{jp,us,eu,de}/actor_state_1.cc`、`data/text/{jp,us,eu,de}/actor_state_2.cc` | `gActorStateMaxValues`<br>`gActorDataSelectionEntries`<br>运行时字符串 `2` 项 |
 | `0x08103786`–`0x08103787` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08103788`–`0x08103B0D` | `src/fishing_results_data.o(.rodata)` | [嵌入文本 / 指针表] | `src/fishing_results_data.cc`、`include/fishing_results_data.hh`<br>`data/text/us/fishing_results_data_1.cc`、`data/text/us/fishing_results_data_2.cc` | 文本 `58` 项（详见下方索引）<br>文本后对象内 `00` 对齐 `2` 字节<br>`gFishingRecordNames`<br>运行时字符串 `1` 项 |
