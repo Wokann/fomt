@@ -107,7 +107,49 @@ func_0803F8DC:
     .incbin "baserom_jp.gba", 0x43268, (0x44AAC - 0x43268)
     .4byte gText_ScriptEngineUi_Error
     .incbin "baserom_jp.gba", 0x44AB0, (0x451F8 - 0x44AB0)
-    jp_code_0803ee_func func_08045584, 0x451F8, 0x4524C
+    .global func_08045584
+    .thumb_func
+func_08045584:
+    push {r4, r5, lr}
+    lsls r2, r2, #24
+    lsrs r5, r2, #24
+    movs r2, #212
+    lsls r2, r2, #2
+    adds r0, r0, r2
+    ldr r0, [r0]
+    ldr r2, .Ljp_0804522C
+    adds r0, r0, r2
+    bl func_080A0878
+    adds r4, r0, #0
+    cmp r4, #0
+    beq .Ljp_08045242
+    cmp r5, #0
+    bne .Ljp_08045230
+    adds r0, r4, #0
+    bl GetPlayerEventCount__C12Bachelorette
+    cmp r0, #5
+    bne .Ljp_08045242
+    adds r0, r4, #0
+    bl GetDaysSincePlayerEvent_bugged__C12Bachelorette
+    b .Ljp_08045244
+    .align 2, 0
+.Ljp_0804522C:
+    .4byte 0x00001CD4
+.Ljp_08045230:
+    adds r0, r4, #0
+    bl GetRivalEventCount__C12Bachelorette
+    cmp r0, #4
+    bne .Ljp_08045242
+    adds r0, r4, #0
+    bl GetDaysSinceRivalEvent__C12Bachelorette
+    b .Ljp_08045244
+.Ljp_08045242:
+    movs r0, #0
+.Ljp_08045244:
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+    .align 2, 0
     jp_code_0803ee_func func_080455D8, 0x4524C, 0x45734
     jp_code_0803ee_func VarGet__12ScriptEngineUi, 0x45734, 0x48E14
     jp_code_0803ee_func sub_08048FEC, 0x48E14, 0x48E24
