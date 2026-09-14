@@ -98,7 +98,7 @@
 | EU | `0x08104180`–`0x08104411` | `src/character_names_data.o(.rodata)` | `src/character_names_data.cc`、`include/character_names_data.hh`、`data/text/eu/character_names_data_1.cc`、`data/text/eu/character_names_data_2.cc`；41 条本地姓名文本、43 项 `gCharacterNameEntries` 和尾部运行时文本按物理顺序同属对象；43 个文本字段均为符号重定位，其中两项直接复用前一块的空文本 | 精确 |
 | EU | `0x08104414`–`0x0810498D` | `src/field_item_data.o(.rodata)` | `src/field_item_data.cc`、`include/field_item_data.hh`、`data/text/eu/field_item_data.cc`；`gUnk_081043BC` 为连续 116 项、每项 12 字节的纯数值记录，后接运行时文本；所有已知读取均为表符号引用 | 精确 |
 | EU | `0x08104990`–`0x08104E61` | `src/calendar_events.o(.rodata)` | `src/calendar_events.cc`、`include/calendar_events.hh`、`data/text/eu/calendar_events.cc`；季名存储后连续放置 17 组日期/后续季节字节，所有外部读取均为符号或符号加偏移 | 节日文本 `20` 项（含 `NoPlans`）、回退文本 `1` 项、运行时字符串 `2` 项 |
-| EU | `0x08104E64`–`0x08104EA1` | `src/possessive_labels.o(.rodata)` | `src/possessive_labels.cc`、`include/possessive_labels.hh`、`data/text/eu/possessive_labels.cc` | 文本 `6` 项、运行时字符串 `1` 项 |
+| EU | `0x08104E64`–`0x08104EA1` | `src/possessive_labels.o(.rodata)` | `src/possessive_labels.cc`、`include/possessive_labels.hh`、`data/text/eu/possessive_labels.cc`；Horse/Cow/Sheep/Chicken/Child/Player 六条文本后接运行时字符串，六处汇编读取均为命名符号 | 文本 `6` 项、运行时字符串 `1` 项 |
 | EU | `0x08104EA2`–`0x08104EA3` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x08104EA4`–`0x08104EA8` | `src/random_item_unavailable.o(.rodata)` | `src/random_item_unavailable.cc`、`include/random_item_unavailable.hh`、`data/text/eu/random_item_unavailable.cc` | `gText_RandomItem_NotAvailable` |
 | EU | `0x08104EA9`–`0x08104EAB` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -187,7 +187,7 @@
 | DE | `0x08104B80`–`0x08104E11` | `src/character_names_data.o(.rodata)` | `src/character_names_data.cc`、`include/character_names_data.hh`、`data/text/de/character_names_data_1.cc`、`data/text/de/character_names_data_2.cc`；41 条本地姓名文本、43 项 `gCharacterNameEntries` 和尾部运行时文本按物理顺序同属对象；43 个文本字段均为符号重定位，其中两项直接复用前一块的空文本 | 精确 |
 | DE | `0x08104E14`–`0x0810538D` | `src/field_item_data.o(.rodata)` | `src/field_item_data.cc`、`include/field_item_data.hh`、`data/text/de/field_item_data.cc`；`gUnk_081043BC` 为连续 116 项、每项 12 字节的纯数值记录，后接运行时文本；所有已知读取均为表符号引用 | 精确 |
 | DE | `0x08105390`–`0x08105821` | `src/calendar_events.o(.rodata)` | `src/calendar_events.cc`、`include/calendar_events.hh`、`data/text/de/calendar_events.cc`；季名存储后连续放置 17 组日期/后续季节字节，所有外部读取均为符号或符号加偏移 | 节日文本 `20` 项（含 `NoPlans`）、回退文本 `1` 项、运行时字符串 `2` 项 |
-| DE | `0x08105824`–`0x0810586D` | `src/possessive_labels.o(.rodata)` | `src/possessive_labels.cc`、`include/possessive_labels.hh`、`data/text/de/possessive_labels.cc` | 文本 `6` 项、运行时字符串 `1` 项 |
+| DE | `0x08105824`–`0x0810586D` | `src/possessive_labels.o(.rodata)` | `src/possessive_labels.cc`、`include/possessive_labels.hh`、`data/text/de/possessive_labels.cc`；Horse/Cow/Sheep/Chicken/Child/Player 六条文本后接运行时字符串，六处汇编读取均为命名符号 | 文本 `6` 项、运行时字符串 `1` 项 |
 | DE | `0x0810586E`–`0x0810586F` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x08105870`–`0x08105874` | `src/random_item_unavailable.o(.rodata)` | `src/random_item_unavailable.cc`、`include/random_item_unavailable.hh`、`data/text/de/random_item_unavailable.cc` | `gText_RandomItem_NotAvailable` |
 | DE | `0x08105875`–`0x08105877` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -324,7 +324,7 @@
 | `0x0810447A`–`0x0810447B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x0810447C`–`0x08104955` | `src/calendar_events.o(.rodata)` | [数据 / 嵌入文本] | `src/calendar_events.cc`、`include/calendar_events.hh`<br>`data/text/jp/calendar_events.cc` | `gText_Calendar_DynamicSeasonNames`（季名存储后紧接 17 组日期/后续季节字节；外部读取均为符号或符号加偏移）<br>节日文本 `20` 项、回退文本 `1` 项（详见下方索引）<br>运行时字符串 `2` 项 |
 | `0x08104956`–`0x08104957` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08104958`–`0x08104991` | `src/possessive_labels.o(.rodata)` | [嵌入文本] | `src/possessive_labels.cc`、`include/possessive_labels.hh`<br>`data/text/jp/possessive_labels.cc` | 文本 `6` 项（详见下方索引）<br>运行时字符串 `1` 项 |
+| `0x08104958`–`0x08104991` | `src/possessive_labels.o(.rodata)` | [嵌入文本] | `src/possessive_labels.cc`、`include/possessive_labels.hh`<br>`data/text/jp/possessive_labels.cc` | Horse/Cow/Sheep/Chicken/Child/Player 六条文本（详见下方索引）后接运行时字符串；六处汇编读取均为命名符号<br>运行时字符串 `1` 项 |
 | `0x08104992`–`0x08104993` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08104994`–`0x08104998` | `src/random_item_unavailable.o(.rodata)` | [嵌入文本] | `src/random_item_unavailable.cc`、`include/random_item_unavailable.hh`<br>`data/text/jp/random_item_unavailable.cc` | 文本 `1` 项（详见下方索引） |
 | `0x08104999`–`0x0810499B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
@@ -2158,7 +2158,7 @@
 | `0x08104936`–`0x08104937` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08104938`–`0x08104E09` | `src/calendar_events.o(.rodata)` | [数据 / 嵌入文本] | `src/calendar_events.cc`、`include/calendar_events.hh`<br>`data/text/us/calendar_events.cc` | `gText_Calendar_DynamicSeasonNames`（季名存储后紧接 17 组日期/后续季节字节；外部读取均为符号或符号加偏移）<br>节日文本 `20` 项、回退文本 `1` 项（详见下方索引）<br>运行时字符串 `2` 项 |
 | `0x08104E0A`–`0x08104E0B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x08104E0C`–`0x08104E49` | `src/possessive_labels.o(.rodata)` | [嵌入文本] | `src/possessive_labels.cc`、`include/possessive_labels.hh`<br>`data/text/us/possessive_labels.cc` | 文本 `6` 项（详见下方索引）<br>运行时字符串 `1` 项 |
+| `0x08104E0C`–`0x08104E49` | `src/possessive_labels.o(.rodata)` | [嵌入文本] | `src/possessive_labels.cc`、`include/possessive_labels.hh`<br>`data/text/us/possessive_labels.cc` | Horse/Cow/Sheep/Chicken/Child/Player 六条文本（详见下方索引）后接运行时字符串；六处汇编读取均为命名符号<br>运行时字符串 `1` 项 |
 | `0x08104E4A`–`0x08104E4B` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x08104E4C`–`0x08104E50` | `src/random_item_unavailable.o(.rodata)` | [嵌入文本] | `src/random_item_unavailable.cc`、`include/random_item_unavailable.hh`<br>`data/text/us/random_item_unavailable.cc` | 文本 `1` 项（详见下方索引） |
 | `0x08104E51`–`0x08104E53` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 3 字节 |
