@@ -11,8 +11,8 @@ struct FarmStatusScreenResourceDescriptor
 
 struct FarmStatusScreenBuildingPreview
 {
-    u8 const *unk_00;
-    u8 const *unk_04;
+    u8 const *primary_tilemap;
+    u8 const *alternate_tilemap;
     u16 x;
     u16 y;
     u8 width;

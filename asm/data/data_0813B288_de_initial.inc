@@ -26,31 +26,32 @@ gUnk_08529994:
 	.incbin "baserom_de.gba", 0x2B0A30, 0x184
 	.global gUnk_082B0BB4
 gUnk_082B0BB4:
-	.incbin "baserom_de.gba", 0x2B0BB4, 0x60
+	FOMT_FARM_STATUS_TILEMAP 0x2D0, 0x60
 	.global gUnk_082B0C14
 gUnk_082B0C14:
-	.incbin "baserom_de.gba", 0x2B0C14, 0x30
+	FOMT_FARM_STATUS_TILEMAP 0x270, 0x30
 	.global gUnk_08529BA8
 gUnk_08529BA8:
 	.incbin "baserom_de.gba", 0x2B0C44, 0xC4
 	.global gUnk_082B0D08
 gUnk_082B0D08:
-	.incbin "baserom_de.gba", 0x2B0D08, 0xA8
+	FOMT_FARM_STATUS_TILEMAP 0x120, 0xA8
 	.global gUnk_082B0DB0
 gUnk_082B0DB0:
-	.incbin "baserom_de.gba", 0x2B0DB0, 0x60
+	FOMT_FARM_STATUS_TILEMAP 0x060, 0x60
 	.global gUnk_082B0E10
 gUnk_082B0E10:
-	.incbin "baserom_de.gba", 0x2B0E10, 0x30
+	FOMT_FARM_STATUS_TILEMAP 0x000, 0x30
 	.global gUnk_08529DA4
 gUnk_08529DA4:
 	.incbin "baserom_de.gba", 0x2B0E40, 0x844
 	.global gUnk_082B1684
 gUnk_082B1684:
-	.incbin "baserom_de.gba", 0x2B1684, 0x9C
+	FOMT_FARM_STATUS_TILEMAP 0x438, 0x9A
+	.incbin "baserom_de.gba", 0x2B171E, 0x2
 	.global gUnk_082B1720
 gUnk_082B1720:
-	.incbin "baserom_de.gba", 0x2B1720, 0x54
+	FOMT_FARM_STATUS_TILEMAP 0x390, 0x54
 	.global gUnk_0852A6D8
 gUnk_0852A6D8:
 	.incbin "baserom_de.gba", 0x2B1774, 0x114
@@ -71,32 +72,32 @@ gUnk_0852CC40:
 	.incbin "baserom_de.gba", 0x2B3CDC, 0x184
 	.global gUnk_082B3E60
 gUnk_082B3E60:
-	.incbin "baserom_de.gba", 0x2B3E60, 0x60
+	FOMT_FARM_STATUS_TILEMAP 0x330, 0x60
 	.global gUnk_082B3EC0
 gUnk_082B3EC0:
-	.incbin "baserom_de.gba", 0x2B3EC0, 0x30
+	FOMT_FARM_STATUS_TILEMAP 0x2A0, 0x30
 	.global gUnk_0852CE54
 gUnk_0852CE54:
 	.incbin "baserom_de.gba", 0x2B3EF0, 0xC4
 	.global gUnk_082B3FB4
 gUnk_082B3FB4:
-	.incbin "baserom_de.gba", 0x2B3FB4, 0x9C
-	.incbin "baserom_de.gba", 0x2B4050, 0xC
+	FOMT_FARM_STATUS_TILEMAP 0x1C8, 0xA8
 	.global gUnk_082B405C
 gUnk_082B405C:
-	.incbin "baserom_de.gba", 0x2B405C, 0x60
+	FOMT_FARM_STATUS_TILEMAP 0x0C0, 0x60
 	.global gUnk_082B40BC
 gUnk_082B40BC:
-	.incbin "baserom_de.gba", 0x2B40BC, 0x30
+	FOMT_FARM_STATUS_TILEMAP 0x030, 0x30
 	.global gUnk_0852D050
 gUnk_0852D050:
 	.incbin "baserom_de.gba", 0x2B40EC, 0x844
 	.global gUnk_082B4930
 gUnk_082B4930:
-	.incbin "baserom_de.gba", 0x2B4930, 0x9C
+	FOMT_FARM_STATUS_TILEMAP 0x4D2, 0x9A
+	.incbin "baserom_de.gba", 0x2B49CA, 0x2
 	.global gUnk_082B49CC
 gUnk_082B49CC:
-	.incbin "baserom_de.gba", 0x2B49CC, 0x54
+	FOMT_FARM_STATUS_TILEMAP 0x3E4, 0x54
 	.global gUnk_0852D984
 gUnk_0852D984:
 	.incbin "baserom_de.gba", 0x2B4A20, (0x2B78F8 - 0x2B4A20)

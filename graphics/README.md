@@ -273,10 +273,12 @@ BG tilemaps select the actual bank for every tile. This preserves the real
 4-bit pixel indices instead of flattening them into an incorrect 8bpp image.
 
 The seven building levels each have a primary and alternate native tilemap.
-`reference/` contains all fourteen complete rendered previews. They are
-verified derived images, regenerated from the editable tile source, the full
-palette-bank source, and native tilemaps; they are not a second editable layout
-format or a JSON sidecar.
+Their fourteen authoritative sources live in `shared/tilemaps/*.tilemap`.
+These raw BG-entry streams are intentionally source files rather than JSON:
+each `u16` retains the native tile ID, flip flags and palette-bank selector
+that a rendered PNG cannot represent unambiguously. `reference/` contains all
+fourteen convenient generated previews, rebuilt from the editable tile grid,
+full palette-bank source and the checked-in tilemaps.
 
 The packed 0x70 stream and the 0x200-byte BGR555 palette are identical in all
 four retail FoMT regions.  Their physical locations are JP `0x2AD72C` /
@@ -289,6 +291,7 @@ native indices.
 ```console
 make gfx-farm-status-all
 make gfx-farm-status-edit-test
+make gfx-farm-status-tilemaps-all
 ```
 
 The first command verifies both generated ranges byte-for-byte against every
@@ -318,9 +321,19 @@ python tools/palette_banks.py export baserom_us.gba \
 python tools/farm_status_previews.py \
   --tiles-source graphics/ui/farm_status/shared/base_tiles.png \
   --palettes-source graphics/ui/farm_status/shared/base_palettes.png \
+  --tilemaps-source graphics/ui/farm_status/shared/tilemaps \
   --rom baserom_us.gba --region us --output graphics/ui/farm_status/reference --replace \
   --verify-jp baserom_jp.gba --verify-us baserom_us.gba \
   --verify-eu baserom_eu.gba --verify-de baserom_de.gba
+```
+
+Regenerate the native tilemap sources from a verified JP ROM only when
+intentionally restoring the retail layout:
+
+```console
+python tools/farm_status_tilemaps.py export \
+  --rom baserom_jp.gba --region jp \
+  --output-dir graphics/ui/farm_status/shared/tilemaps --replace
 ```
 
 ## Experimental forward OAM compiler

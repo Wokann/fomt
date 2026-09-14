@@ -250,6 +250,26 @@
     .endif
     .endm
 
+    @ The Farm Status previews are native BG tilemaps.  They remain separate
+    @ from the shared 4bpp tile grid because every entry carries a tile ID,
+    @ flip bits and a palette-bank selector.  The generated bundle follows
+    @ PREVIEWS/VARIANTS order in tools/farm_status_tilemaps.py.
+    .macro FOMT_FARM_STATUS_TILEMAP offset, length
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/farm_status/preview_tilemaps.bin", \offset, \length
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/farm_status/preview_tilemaps.bin", \offset, \length
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/farm_status/preview_tilemaps.bin", \offset, \length
+    .else
+    .incbin "build/us/graphics/ui/farm_status/preview_tilemaps.bin", \offset, \length
+    .endif
+    .endif
+    .endif
+    .endm
+
     .ifdef REGION_JP
     @ JP revision 0 counterpart of data_0813B288.s.
     @
@@ -272,50 +292,55 @@ gUnk_08529794:
     .incbin "build/jp/graphics/ui/farm_status/base_tiles.gbapal"
     .incbin "baserom_jp.gba", 0x2AFAF0, (0x2AFC74 - 0x2AFAF0)
 
-    @ Farm Status preview resource labels. Their asset roles remain unknown,
-    @ but the screen's C++ preview tables require direct relocatable targets.
+    @ Farm Status preview tilemap labels.  Every table entry selects one raw
+    @ BG map; the non-map spans between them stay native ROM data.
     .global gUnk_082AFC74
 gUnk_082AFC74:
-    .incbin "baserom_jp.gba", 0x2AFC74, (0x2AFCD4 - 0x2AFC74)
+    FOMT_FARM_STATUS_TILEMAP 0x2D0, 0x60
     .global gUnk_082AFCD4
 gUnk_082AFCD4:
-    .incbin "baserom_jp.gba", 0x2AFCD4, (0x2AFDC8 - 0x2AFCD4)
+    FOMT_FARM_STATUS_TILEMAP 0x270, 0x30
+    .incbin "baserom_jp.gba", 0x2AFD04, (0x2AFDC8 - 0x2AFD04)
     .global gUnk_082AFDC8
 gUnk_082AFDC8:
-    .incbin "baserom_jp.gba", 0x2AFDC8, (0x2AFE70 - 0x2AFDC8)
+    FOMT_FARM_STATUS_TILEMAP 0x120, 0xA8
     .global gUnk_082AFE70
 gUnk_082AFE70:
-    .incbin "baserom_jp.gba", 0x2AFE70, (0x2AFED0 - 0x2AFE70)
+    FOMT_FARM_STATUS_TILEMAP 0x060, 0x60
     .global gUnk_082AFED0
 gUnk_082AFED0:
-    .incbin "baserom_jp.gba", 0x2AFED0, (0x2B0744 - 0x2AFED0)
+    FOMT_FARM_STATUS_TILEMAP 0x000, 0x30
+    .incbin "baserom_jp.gba", 0x2AFF00, (0x2B0744 - 0x2AFF00)
     .global gUnk_082B0744
 gUnk_082B0744:
-    .incbin "baserom_jp.gba", 0x2B0744, (0x2B07E0 - 0x2B0744)
+    FOMT_FARM_STATUS_TILEMAP 0x438, 0x9A
     .global gUnk_082B07E0
 gUnk_082B07E0:
-    .incbin "baserom_jp.gba", 0x2B07E0, (0x2B2F20 - 0x2B07E0)
+    FOMT_FARM_STATUS_TILEMAP 0x390, 0x54
+    .incbin "baserom_jp.gba", 0x2B0834, (0x2B2F20 - 0x2B0834)
     .global gUnk_082B2F20
 gUnk_082B2F20:
-    .incbin "baserom_jp.gba", 0x2B2F20, (0x2B2F80 - 0x2B2F20)
+    FOMT_FARM_STATUS_TILEMAP 0x330, 0x60
     .global gUnk_082B2F80
 gUnk_082B2F80:
-    .incbin "baserom_jp.gba", 0x2B2F80, (0x2B3074 - 0x2B2F80)
+    FOMT_FARM_STATUS_TILEMAP 0x2A0, 0x30
     .global gUnk_082B3074
 gUnk_082B3074:
-    .incbin "baserom_jp.gba", 0x2B3074, (0x2B311C - 0x2B3074)
+    FOMT_FARM_STATUS_TILEMAP 0x1C8, 0xA8
     .global gUnk_082B311C
 gUnk_082B311C:
-    .incbin "baserom_jp.gba", 0x2B311C, (0x2B317C - 0x2B311C)
+    FOMT_FARM_STATUS_TILEMAP 0x0C0, 0x60
     .global gUnk_082B317C
 gUnk_082B317C:
-    .incbin "baserom_jp.gba", 0x2B317C, (0x2B39F0 - 0x2B317C)
+    FOMT_FARM_STATUS_TILEMAP 0x030, 0x30
+    .incbin "baserom_jp.gba", 0x2B31AC, (0x2B39F0 - 0x2B31AC)
     .global gUnk_082B39F0
 gUnk_082B39F0:
-    .incbin "baserom_jp.gba", 0x2B39F0, (0x2B3A8C - 0x2B39F0)
+    FOMT_FARM_STATUS_TILEMAP 0x4D2, 0x9A
     .global gUnk_082B3A8C
 gUnk_082B3A8C:
-    .incbin "baserom_jp.gba", 0x2B3A8C, (0x2B69B8 - 0x2B3A8C)
+    FOMT_FARM_STATUS_TILEMAP 0x3E4, 0x54
+    .incbin "baserom_jp.gba", 0x2B3AE0, (0x2B69B8 - 0x2B3AE0)
     .incbin "build/jp/graphics/portraits/shared/portrait_tiles.4bpp"
     .incbin "baserom_jp.gba", 0x3111F8, (0x311B84 - 0x3111F8)
     .global gUnk_08311B84
@@ -4556,33 +4581,34 @@ gUnk_08529994:
 	.incbin "baserom_eu.gba", 0x5299F8, 0x17C
 	.global gUnk_08529B18
 gUnk_08529B18:
-	.incbin "baserom_eu.gba", 0x529B74, 0x60
+	FOMT_FARM_STATUS_TILEMAP 0x2D0, 0x60
 	.global gUnk_08529B78
 gUnk_08529B78:
-	.incbin "baserom_eu.gba", 0x529BD4, 0x30
+	FOMT_FARM_STATUS_TILEMAP 0x270, 0x30
 	.global gUnk_08529BA8
 gUnk_08529BA8:
 	.incbin "baserom_eu.gba", 0x529C04, 0x8
 	.incbin "baserom_eu.gba", 0x529C0C, 0xBC
 	.global gUnk_08529C6C
 gUnk_08529C6C:
-	.incbin "baserom_eu.gba", 0x529CC8, 0xA8
+	FOMT_FARM_STATUS_TILEMAP 0x120, 0xA8
 	.global gUnk_08529D14
 gUnk_08529D14:
-	.incbin "baserom_eu.gba", 0x529D70, 0x60
+	FOMT_FARM_STATUS_TILEMAP 0x060, 0x60
 	.global gUnk_08529D74
 gUnk_08529D74:
-	.incbin "baserom_eu.gba", 0x529DD0, 0x30
+	FOMT_FARM_STATUS_TILEMAP 0x000, 0x30
 	.global gUnk_08529DA4
 gUnk_08529DA4:
 	.incbin "baserom_eu.gba", 0x529E00, 0x8
 	.incbin "baserom_eu.gba", 0x529E08, 0x83C
 	.global gUnk_0852A5E8
 gUnk_0852A5E8:
-	.incbin "baserom_eu.gba", 0x52A644, 0x9C
+	FOMT_FARM_STATUS_TILEMAP 0x438, 0x9A
+	.incbin "baserom_eu.gba", 0x52A6DE, 0x2
 	.global gUnk_0852A684
 gUnk_0852A684:
-	.incbin "baserom_eu.gba", 0x52A6E0, 0x54
+	FOMT_FARM_STATUS_TILEMAP 0x390, 0x54
 	.global gUnk_0852A734
 gUnk_0852A734:
 	.incbin "baserom_eu.gba", 0x52A734, 0x8
@@ -4619,33 +4645,34 @@ gUnk_0852CC40:
 	.incbin "baserom_eu.gba", 0x52CCA4, 0x17C
 	.global gUnk_0852CDC4
 gUnk_0852CDC4:
-	.incbin "baserom_eu.gba", 0x52CE20, 0x60
+	FOMT_FARM_STATUS_TILEMAP 0x330, 0x60
 	.global gUnk_0852CE24
 gUnk_0852CE24:
-	.incbin "baserom_eu.gba", 0x52CE80, 0x30
+	FOMT_FARM_STATUS_TILEMAP 0x2A0, 0x30
 	.global gUnk_0852CE54
 gUnk_0852CE54:
 	.incbin "baserom_eu.gba", 0x52CEB0, 0x8
 	.incbin "baserom_eu.gba", 0x52CEB8, 0xBC
 	.global gUnk_0852CF18
 gUnk_0852CF18:
-	.incbin "baserom_eu.gba", 0x52CF74, 0xA8
+	FOMT_FARM_STATUS_TILEMAP 0x1C8, 0xA8
 	.global gUnk_0852CFC0
 gUnk_0852CFC0:
-	.incbin "baserom_eu.gba", 0x52D01C, 0x60
+	FOMT_FARM_STATUS_TILEMAP 0x0C0, 0x60
 	.global gUnk_0852D020
 gUnk_0852D020:
-	.incbin "baserom_eu.gba", 0x52D07C, 0x30
+	FOMT_FARM_STATUS_TILEMAP 0x030, 0x30
 	.global gUnk_0852D050
 gUnk_0852D050:
 	.incbin "baserom_eu.gba", 0x52D0AC, 0x8
 	.incbin "baserom_eu.gba", 0x52D0B4, 0x83C
 	.global gUnk_0852D894
 gUnk_0852D894:
-	.incbin "baserom_eu.gba", 0x52D8F0, 0x9C
+	FOMT_FARM_STATUS_TILEMAP 0x4D2, 0x9A
+	.incbin "baserom_eu.gba", 0x52D98A, 0x2
 	.global gUnk_0852D930
 gUnk_0852D930:
-	.incbin "baserom_eu.gba", 0x52D98C, 0x54
+	FOMT_FARM_STATUS_TILEMAP 0x3E4, 0x54
 	.global gUnk_0852D984
 gUnk_0852D984:
 	.incbin "baserom_eu.gba", 0x52D9E0, 0x8
@@ -4661,31 +4688,32 @@ gUnk_08529794:
 	eu_post_script_incbin 0x529994, (0x529B18 - 0x529994)
 	.global gUnk_08529B18
 gUnk_08529B18:
-	eu_post_script_incbin 0x529B18, (0x529B78 - 0x529B18)
+	FOMT_FARM_STATUS_TILEMAP 0x2D0, 0x60
 	.global gUnk_08529B78
 gUnk_08529B78:
-	eu_post_script_incbin 0x529B78, (0x529BA8 - 0x529B78)
+	FOMT_FARM_STATUS_TILEMAP 0x270, 0x30
 
 	non_de_asset_label gUnk_08529BA8
 	eu_post_script_incbin 0x529BA8, (0x529C6C - 0x529BA8)
 	.global gUnk_08529C6C
 gUnk_08529C6C:
-	eu_post_script_incbin 0x529C6C, (0x529D14 - 0x529C6C)
+	FOMT_FARM_STATUS_TILEMAP 0x120, 0xA8
 	.global gUnk_08529D14
 gUnk_08529D14:
-	eu_post_script_incbin 0x529D14, (0x529D74 - 0x529D14)
+	FOMT_FARM_STATUS_TILEMAP 0x060, 0x60
 	.global gUnk_08529D74
 gUnk_08529D74:
-	eu_post_script_incbin 0x529D74, (0x529DA4 - 0x529D74)
+	FOMT_FARM_STATUS_TILEMAP 0x000, 0x30
 
 	non_de_asset_label gUnk_08529DA4
 	eu_post_script_incbin 0x529DA4, (0x52A5E8 - 0x529DA4)
 	.global gUnk_0852A5E8
 gUnk_0852A5E8:
-	eu_post_script_incbin 0x52A5E8, (0x52A684 - 0x52A5E8)
+	FOMT_FARM_STATUS_TILEMAP 0x438, 0x9A
+	eu_post_script_incbin 0x52A682, 0x2
 	.global gUnk_0852A684
 gUnk_0852A684:
-	eu_post_script_incbin 0x52A684, (0x52A6D8 - 0x52A684)
+	FOMT_FARM_STATUS_TILEMAP 0x390, 0x54
 
 	non_de_asset_label gUnk_0852A6D8
 	eu_post_script_incbin 0x52A6D8, 0x114
@@ -4706,31 +4734,32 @@ gUnk_0852A684:
 	eu_post_script_incbin 0x52CC40, (0x52CDC4 - 0x52CC40)
 	.global gUnk_0852CDC4
 gUnk_0852CDC4:
-	eu_post_script_incbin 0x52CDC4, (0x52CE24 - 0x52CDC4)
+	FOMT_FARM_STATUS_TILEMAP 0x330, 0x60
 	.global gUnk_0852CE24
 gUnk_0852CE24:
-	eu_post_script_incbin 0x52CE24, (0x52CE54 - 0x52CE24)
+	FOMT_FARM_STATUS_TILEMAP 0x2A0, 0x30
 
 	non_de_asset_label gUnk_0852CE54
 	eu_post_script_incbin 0x52CE54, (0x52CF18 - 0x52CE54)
 	.global gUnk_0852CF18
 gUnk_0852CF18:
-	eu_post_script_incbin 0x52CF18, (0x52CFC0 - 0x52CF18)
+	FOMT_FARM_STATUS_TILEMAP 0x1C8, 0xA8
 	.global gUnk_0852CFC0
 gUnk_0852CFC0:
-	eu_post_script_incbin 0x52CFC0, (0x52D020 - 0x52CFC0)
+	FOMT_FARM_STATUS_TILEMAP 0x0C0, 0x60
 	.global gUnk_0852D020
 gUnk_0852D020:
-	eu_post_script_incbin 0x52D020, (0x52D050 - 0x52D020)
+	FOMT_FARM_STATUS_TILEMAP 0x030, 0x30
 
 	non_de_asset_label gUnk_0852D050
 	eu_post_script_incbin 0x52D050, (0x52D894 - 0x52D050)
 	.global gUnk_0852D894
 gUnk_0852D894:
-	eu_post_script_incbin 0x52D894, (0x52D930 - 0x52D894)
+	FOMT_FARM_STATUS_TILEMAP 0x4D2, 0x9A
+	eu_post_script_incbin 0x52D92E, 0x2
 	.global gUnk_0852D930
 gUnk_0852D930:
-	eu_post_script_incbin 0x52D930, (0x52D984 - 0x52D930)
+	FOMT_FARM_STATUS_TILEMAP 0x3E4, 0x54
 
 	.ifndef REGION_DE
 	.global gUnk_0852D984

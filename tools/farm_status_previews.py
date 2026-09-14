@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Render verified Farm Status building-preview tilemaps as indexed PNGs.
+"""Render Farm Status building-preview tilemaps as indexed PNG references.
 
-The source is the editable 4bpp background tile grid plus its 16 palette banks. These PNGs are derived
-references: the retail screen selects one of the two BG tilemaps for each
-building level, so their layout remains native ROM data rather than a JSON
-sidecar or a second authored source.
+The source is the editable 4bpp background tile grid, its 16 palette banks,
+and the checked-in native ``.tilemap`` source.  PNG previews are derived
+references: a BG map's tile IDs, flip bits and palette-bank bits cannot be
+losslessly represented by an ordinary image or a JSON layout sidecar.
 """
 
 from __future__ import annotations
@@ -73,6 +73,15 @@ def map_bytes(rom: bytes, preview: Preview, variant: int, region: str) -> bytes:
     return result
 
 
+def source_map_bytes(directory: Path, preview: Preview, variant: int) -> bytes:
+    suffix = ("primary", "alternate")[variant]
+    result = (directory / f"{preview.name}_{suffix}.tilemap").read_bytes()
+    expected = preview.width_tiles * preview.height_tiles * 2
+    if len(result) != expected:
+        raise ValueError(f"{preview.name}_{suffix}.tilemap must be exactly {expected:#x} bytes")
+    return result
+
+
 def render(tile_pixels: bytes, tile_width: int, tile_height: int,
            preview: Preview, tilemap: bytes) -> bytes:
     tile_count = tile_width * tile_height // 64
@@ -119,6 +128,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--tiles-source", type=Path, required=True)
     parser.add_argument("--palettes-source", type=Path, required=True)
+    parser.add_argument("--tilemaps-source", type=Path)
     parser.add_argument("--rom", type=Path, required=True)
     parser.add_argument("--region", choices=("jp", "us", "eu", "de"), default="us")
     parser.add_argument("--output", type=Path, required=True)
@@ -151,7 +161,10 @@ def main() -> None:
             path = arguments.output / f"{preview.name}_{suffix}.png"
             if path.exists() and not arguments.replace:
                 raise ValueError(f"{path} exists; pass --replace to overwrite it")
-            write_png(path, render(pixels, width, height, preview, map_bytes(rom, preview, variant, arguments.region)),
+            tilemap = (source_map_bytes(arguments.tilemaps_source, preview, variant)
+                       if arguments.tilemaps_source is not None
+                       else map_bytes(rom, preview, variant, arguments.region))
+            write_png(path, render(pixels, width, height, preview, tilemap),
                       preview.width_tiles * 8, preview.height_tiles * 8, palette)
     print(f"rendered {len(PREVIEWS) * 2} verified-reference previews to {arguments.output}")
 

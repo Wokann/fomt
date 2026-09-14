@@ -9,14 +9,25 @@ Its 256 by 8 swatch arrangement is part of the source format: every row is
 the indices 0 through 255, so changing a swatch changes that exact native
 palette entry without renumbering any tile indices.
 
-`reference/` contains fourteen generated previews: the primary and alternate
-tilemap for each farm house, coop, and barn level. They are checked reference
-images, not a second editable source or a layout sidecar. Rebuild and verify
-them with:
+`shared/tilemaps/` contains the fourteen authoritative native BG tilemaps:
+the primary and alternate view for each farm house, coop, and barn level. Each
+two-byte entry carries a tile ID, horizontal/vertical flip bits and a palette
+bank, so a rendered PNG cannot losslessly replace it. These `.tilemap` source
+files are deliberately direct native resources rather than a JSON layout
+sidecar. `reference/` contains their convenient generated PNG previews.
+
+Rebuild the tilemap bundle and verify it against all four ROMs with:
+
+```console
+make gfx-farm-status-tilemaps-all
+```
+
+Regenerate the reference PNGs with:
 
 ```console
 make gfx-farm-status-previews
 ```
 
-The command verifies all fourteen tilemap payloads are byte-identical in JP,
-US, EU, and DE before rendering the US reference set.
+The tilemap build verifies all fourteen payloads are byte-identical in JP, US,
+EU, and DE. The assembler then includes the selected regional bundle at each
+original table label, preserving the C++ pointer table without relocation.
