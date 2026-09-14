@@ -5706,7 +5706,105 @@ func_08075450: @ 0x080750AC
     .4byte 0x0000058C
 .Ljp_080750F4:
     .4byte 0x00001CD4
-    jp_code_0803ee_func func_0807549C, 0x750F8, 0x751B8
+    .global func_0807549C
+    .thumb_func
+func_0807549C: @ 0x080750F8
+    push {r4, r5, r6, lr}
+    sub sp, #8
+    adds r4, r0, #0
+    movs r0, #0
+    str r0, [sp]
+    cmp r1, #1
+    beq .Ljp_08075130
+    cmp r1, #1
+    bgt .Ljp_08075110
+    cmp r1, #0
+    beq .Ljp_08075116
+    b .Ljp_08075180
+.Ljp_08075110:
+    cmp r1, #2
+    beq .Ljp_0807514C
+    b .Ljp_08075180
+.Ljp_08075116:
+    ldr r0, .Ljp_0807512C @ =0x000042FC
+    bl __builtin_new
+    movs r2, #0x90
+    lsls r2, r2, #1
+    adds r1, r4, r2
+    ldr r2, [r1]
+    adds r1, r4, #0
+    bl func_08070DE4
+    b .Ljp_08075160
+    .align 2, 0
+.Ljp_0807512C:
+    .4byte 0x000042FC
+.Ljp_08075130:
+    ldr r0, .Ljp_08075148 @ =0x00004994
+    bl __builtin_new
+    movs r2, #0x90
+    lsls r2, r2, #1
+    adds r1, r4, r2
+    ldr r2, [r1]
+    adds r1, r4, #0
+    bl func_080713B8
+    b .Ljp_08075160
+    .align 2, 0
+.Ljp_08075148:
+    .4byte 0x00004994
+.Ljp_0807514C:
+    ldr r0, .Ljp_080751B0 @ =0x0000816C
+    bl __builtin_new
+    movs r2, #0x90
+    lsls r2, r2, #1
+    adds r1, r4, r2
+    ldr r2, [r1]
+    adds r1, r4, #0
+    bl func_080722DC
+.Ljp_08075160:
+    mov r6, sp
+    adds r5, r0, #0
+    ldr r1, [sp]
+    cmp r5, r1
+    beq .Ljp_0807517E
+    cmp r1, #0
+    beq .Ljp_0807517E
+    ldr r2, .Ljp_080751B4 @ =0x000005B4
+    adds r0, r1, r2
+    ldr r0, [r0]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_0807517E:
+    str r5, [r6]
+.Ljp_08075180:
+    ldr r0, [sp]
+    movs r1, #0
+    str r1, [sp]
+    str r0, [sp, #4]
+    add r1, sp, #4
+    adds r0, r4, #0
+    bl func_08076B94
+    ldr r1, [sp]
+    cmp r1, #0
+    beq .Ljp_080751A6
+    ldr r2, .Ljp_080751B4 @ =0x000005B4
+    adds r0, r1, r2
+    ldr r0, [r0]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_080751A6:
+    add sp, #8
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_080751B0:
+    .4byte 0x0000816C
+.Ljp_080751B4:
+    .4byte 0x000005B4
     jp_code_0803ee_func func_080751B8, 0x751B8, 0x75278
     jp_code_0803ee_func func_08075278, 0x75278, 0x752B8
     jp_code_0803ee_func func_080752B8, 0x752B8, 0x7532C
