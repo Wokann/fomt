@@ -319,6 +319,13 @@ UI_SCENE_080B55D0_AUX_OUTPUT_DIR := $(BUILD_DIR)/graphics/ui/scene_080b55d0_aux
 UI_SCENE_080B55D0_AUX_STAMP := $(UI_SCENE_080B55D0_AUX_OUTPUT_DIR)/.scene-080b55d0-aux.stamp
 UI_SCENE_080B55D0_AUX_REGION := $(INTRO_OBJECTS_REGION)
 
+UI_SCENE_08054F40_TILES_TOOL := $(UI_SCENE_080B7164_TOOL)
+UI_SCENE_08054F40_TILES_SOURCE_DIR := graphics/ui/scene_08054f40_tiles/shared
+UI_SCENE_08054F40_TILES_SOURCES := $(wildcard $(UI_SCENE_08054F40_TILES_SOURCE_DIR)/*)
+UI_SCENE_08054F40_TILES_OUTPUT_DIR := $(BUILD_DIR)/graphics/ui/scene_08054f40_tiles
+UI_SCENE_08054F40_TILES_STAMP := $(UI_SCENE_08054F40_TILES_OUTPUT_DIR)/.scene-08054f40-tiles.stamp
+UI_SCENE_08054F40_TILES_REGION := $(INTRO_OBJECTS_REGION)
+
 # MapData owns 66 six-layer map records.  This initial pipeline exports every
 # unique retail visual stream as native decoded source and rebuilds it without
 # changing packed bytes.  A changed source is intentionally rejected until the
@@ -568,6 +575,11 @@ $(UI_SCENE_080B55D0_AUX_STAMP): $(UI_SCENE_080B55D0_AUX_SOURCES) $(UI_SCENE_080B
 	  --source-dir $(UI_SCENE_080B55D0_AUX_SOURCE_DIR) --output-dir $(UI_SCENE_080B55D0_AUX_OUTPUT_DIR)
 	@touch $@
 
+$(UI_SCENE_08054F40_TILES_STAMP): $(UI_SCENE_08054F40_TILES_SOURCES) $(UI_SCENE_08054F40_TILES_TOOL) $(FARM_STATUS_CODEC) $(BASE_ROM)
+	@$(PYTHON) $(UI_SCENE_08054F40_TILES_TOOL) --profile 08054f40_tiles build --region $(UI_SCENE_08054F40_TILES_REGION) --rom $(BASE_ROM) \
+	  --source-dir $(UI_SCENE_08054F40_TILES_SOURCE_DIR) --output-dir $(UI_SCENE_08054F40_TILES_OUTPUT_DIR)
+	@touch $@
+
 $(MAP_RESOURCES_STAMP): $(MAP_RESOURCES_SOURCES) $(MAP_RESOURCES_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(MAP_RESOURCES_TOOL) build --region $(MAP_RESOURCES_REGION) --rom $(BASE_ROM) \
 	  --source-dir $(MAP_RESOURCES_SOURCE_DIR) --output-dir $(MAP_RESOURCES_OUTPUT_DIR) $(MAP_RESOURCES_ALL_ROM_ARGS)
@@ -587,6 +599,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 .PHONY: gfx-ui-scene-080c160c gfx-ui-scene-080c160c-test gfx-ui-scene-080c160c-all gfx-ui-scene-080c160c-patch-test gfx-ui-scene-080c160c-edit-test
 .PHONY: gfx-ui-scene-080bcfac gfx-ui-scene-080bcfac-test gfx-ui-scene-080bcfac-all gfx-ui-scene-080bcfac-patch-test gfx-ui-scene-080bcfac-edit-test
 .PHONY: gfx-ui-scene-080b55d0-aux gfx-ui-scene-080b55d0-aux-test gfx-ui-scene-080b55d0-aux-all gfx-ui-scene-080b55d0-aux-patch-test gfx-ui-scene-080b55d0-aux-edit-test
+.PHONY: gfx-ui-scene-08054f40-tiles gfx-ui-scene-08054f40-tiles-test gfx-ui-scene-08054f40-tiles-all gfx-ui-scene-08054f40-tiles-patch-test gfx-ui-scene-08054f40-tiles-edit-test
 oam-pack: $(OAM_PACK)
 oam-pack-test: $(OAM_PACK) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba $(PORTRAIT_SOURCE_DIR)/full/000_TALK_PORTRAIT_RICK_NORMAL.png
 	@mkdir -p $(BUILD_DIR)/graphics/oam_pack
@@ -731,6 +744,20 @@ gfx-ui-scene-080b55d0-aux-patch-test: gfx-ui-scene-080b55d0-aux-all $(UI_SCENE_0
 	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
 gfx-ui-scene-080b55d0-aux-edit-test: $(UI_SCENE_080B55D0_AUX_TOOL) baserom_jp.gba
 	@$(PYTHON) $(UI_SCENE_080B55D0_AUX_TOOL) --profile 080b55d0_aux edit-test --region jp --rom baserom_jp.gba
+gfx-ui-scene-08054f40-tiles: $(UI_SCENE_08054F40_TILES_STAMP)
+gfx-ui-scene-08054f40-tiles-test: gfx-ui-scene-08054f40-tiles $(UI_SCENE_08054F40_TILES_TOOL)
+	@$(PYTHON) $(UI_SCENE_08054F40_TILES_TOOL) --profile 08054f40_tiles verify --region $(UI_SCENE_08054F40_TILES_REGION) --rom $(BASE_ROM) \
+	  --source-dir $(UI_SCENE_08054F40_TILES_SOURCE_DIR) --output-dir $(UI_SCENE_08054F40_TILES_OUTPUT_DIR)
+gfx-ui-scene-08054f40-tiles-all:
+	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-ui-scene-08054f40-tiles-test
+	@$(MAKE) --no-print-directory GAME_REGION=US gfx-ui-scene-08054f40-tiles-test
+	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-ui-scene-08054f40-tiles-test
+	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-ui-scene-08054f40-tiles-test
+gfx-ui-scene-08054f40-tiles-patch-test: gfx-ui-scene-08054f40-tiles-all $(UI_SCENE_08054F40_TILES_TOOL)
+	@$(PYTHON) $(UI_SCENE_08054F40_TILES_TOOL) --profile 08054f40_tiles patch-test --output-root build \
+	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
+gfx-ui-scene-08054f40-tiles-edit-test: $(UI_SCENE_08054F40_TILES_TOOL) baserom_jp.gba
+	@$(PYTHON) $(UI_SCENE_08054F40_TILES_TOOL) --profile 08054f40_tiles edit-test --region jp --rom baserom_jp.gba
 gfx-farm-status: $(FARM_STATUS_TILES_BIN) $(FARM_STATUS_PALETTE_BIN) $(FARM_STATUS_PACKED_BIN)
 gfx-farm-status-test: gfx-farm-status $(BASE_ROM) $(GFX_RANGE_VERIFY)
 	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FARM_STATUS_STREAM_OFFSET) --input $(FARM_STATUS_PACKED_BIN) --sha256 $(FARM_STATUS_STREAM_SHA256)
@@ -838,7 +865,7 @@ tile-grid-test:
 	@$(MAKE) --no-print-directory GAME_REGION=EU tile-grid-region-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE tile-grid-region-test
 
-gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui gfx-ui-scene-080a2ba4 gfx-ui-scene-080ae7d0 gfx-ui-scene-080b7164 gfx-ui-scene-080c160c gfx-ui-scene-080bcfac gfx-ui-scene-080b55d0-aux gfx-farm-status gfx-farm-status-tilemaps gfx-farm-status-secondary-tilemaps gfx-intro-background gfx-intro-objects gfx-intro-startup-tilemaps gfx-map-resources gfx-records-minigame
+gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui gfx-ui-scene-080a2ba4 gfx-ui-scene-080ae7d0 gfx-ui-scene-080b7164 gfx-ui-scene-080c160c gfx-ui-scene-080bcfac gfx-ui-scene-080b55d0-aux gfx-ui-scene-08054f40-tiles gfx-farm-status gfx-farm-status-tilemaps gfx-farm-status-secondary-tilemaps gfx-intro-background gfx-intro-objects gfx-intro-startup-tilemaps gfx-map-resources gfx-records-minigame
 
 # Full graphics gate for assets that have an authoritative source/rebuild
 # path.  It intentionally does not link a ROM: the project-wide link is
@@ -867,6 +894,9 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-ui-scene-080b55d0-aux-all
 	@$(MAKE) --no-print-directory gfx-ui-scene-080b55d0-aux-patch-test
 	@$(MAKE) --no-print-directory gfx-ui-scene-080b55d0-aux-edit-test
+	@$(MAKE) --no-print-directory gfx-ui-scene-08054f40-tiles-all
+	@$(MAKE) --no-print-directory gfx-ui-scene-08054f40-tiles-patch-test
+	@$(MAKE) --no-print-directory gfx-ui-scene-08054f40-tiles-edit-test
 	@$(MAKE) --no-print-directory gfx-farm-status-all
 	@$(MAKE) --no-print-directory gfx-farm-status-edit-test
 	@$(MAKE) --no-print-directory gfx-farm-status-tilemaps-all
@@ -955,7 +985,7 @@ $(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGIO
 	$(call FOMT_COMPILE_CPP,)
 
 # ROM from ELF
-%.gba: %.elf $(MAP_RESOURCES_STAMP) $(UI_SCENE_080A2BA4_STAMP) $(UI_SCENE_080AE7D0_STAMP) $(UI_SCENE_080B7164_STAMP) $(UI_SCENE_080C160C_STAMP) $(UI_SCENE_080BCFAC_STAMP) $(UI_SCENE_080B55D0_AUX_STAMP)
+%.gba: %.elf $(MAP_RESOURCES_STAMP) $(UI_SCENE_080A2BA4_STAMP) $(UI_SCENE_080AE7D0_STAMP) $(UI_SCENE_080B7164_STAMP) $(UI_SCENE_080C160C_STAMP) $(UI_SCENE_080BCFAC_STAMP) $(UI_SCENE_080B55D0_AUX_STAMP) $(UI_SCENE_08054F40_TILES_STAMP)
 	$(OBJCOPY) -O binary $< $@
 	@$(PYTHON) $(MAP_RESOURCES_TOOL) patch --region $(MAP_RESOURCES_REGION) --rom $@ \
 	  --archive $(MAP_RESOURCES_OUTPUT_DIR)/map_visual_archive.0x70 $(MAP_RESOURCES_ALL_ROM_ARGS)
@@ -971,6 +1001,8 @@ $(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGIO
 	  --rom $@ --output-dir $(UI_SCENE_080BCFAC_OUTPUT_DIR)
 	@$(PYTHON) $(UI_SCENE_080B55D0_AUX_TOOL) --profile 080b55d0_aux patch --region $(UI_SCENE_080B55D0_AUX_REGION) --baseline $(BASE_ROM) \
 	  --rom $@ --output-dir $(UI_SCENE_080B55D0_AUX_OUTPUT_DIR)
+	@$(PYTHON) $(UI_SCENE_08054F40_TILES_TOOL) --profile 08054f40_tiles patch --region $(UI_SCENE_08054F40_TILES_REGION) --baseline $(BASE_ROM) \
+	  --rom $@ --output-dir $(UI_SCENE_08054F40_TILES_OUTPUT_DIR)
 
 # ELF
 $(ELF): $(ALL_OBJS) $(LDS)
@@ -1032,6 +1064,10 @@ ALL_DEPS :=
 endif
 
 ifneq (,$(filter gfx-ui-scene-080b55d0-aux gfx-ui-scene-080b55d0-aux-test gfx-ui-scene-080b55d0-aux-all gfx-ui-scene-080b55d0-aux-patch-test gfx-ui-scene-080b55d0-aux-edit-test,$(MAKECMDGOALS)))
+ALL_DEPS :=
+endif
+
+ifneq (,$(filter gfx-ui-scene-08054f40-tiles gfx-ui-scene-08054f40-tiles-test gfx-ui-scene-08054f40-tiles-all gfx-ui-scene-08054f40-tiles-patch-test gfx-ui-scene-08054f40-tiles-edit-test,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 

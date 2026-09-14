@@ -19,6 +19,7 @@ image, nor that all game graphics have been extracted.
 | Direct `func_080C160C` UI-scene BG streams | `graphics/ui/scene_080c160c/shared/tiles.4bpp` and `layer_*.tilemap` | three native packed streams, patched back to original locations after link | Yes |
 | Direct `func_080BCFAC` UI-scene BG streams | `graphics/ui/scene_080bcfac/shared/tiles.4bpp` and `layer_*.tilemap` | three native packed streams, patched back to original locations after link | Yes |
 | Direct `func_080B55D0` auxiliary BG streams | `graphics/ui/scene_080b55d0_aux/shared/tiles.4bpp` and `layer_*.tilemap` | three native packed streams, patched back to original locations after link | Yes |
+| Direct `func_08054F40` OBJ tile stream | `graphics/ui/scene_08054f40_tiles/shared/tiles.4bpp` | one native packed 4bpp tile stream, patched back to its original location after link | Yes |
 | Farm-status background and building previews | `graphics/ui/farm_status/shared/base_tiles.png`, `base_palettes.png`, and `tilemaps/*.tilemap` | packed 4bpp tile stream, sixteen BGR555 palette banks, and fourteen BG tilemaps | Yes |
 | Farm-status secondary layouts | `graphics/ui/farm_status/shared/secondary_tilemaps/*.tilemap` | six native Huffman-4/LZ3 64-by-44 BG tilemap streams | Yes |
 | Intro-scene object tile sources | `graphics/intro_scene/shared/object_tiles/*.4bpp` | twenty native Raw-LZ object-tile streams | Yes |
