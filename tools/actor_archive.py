@@ -194,14 +194,30 @@ def audit(archive: Archive) -> None:
     print("animation descriptors, frame records, OAM ranges, tile ranges, and palettes verified")
 
 
-def export_frames(archive: Archive, animation_ids: list[int], output: Path) -> None:
+def export_frames(archive: Archive, animation_ids: list[int], output: Path, replace: bool) -> None:
     audit(archive)
     frame_ids = selected_frame_ids(archive, animation_ids)
+    preserved = 0
+    written = 0
     for frame_id in frame_ids:
         frame = frame_descriptor(archive, frame_id)
         width, height, indexes, _layers = rendered_pixel_layers(archive, frame_id)
-        write_png_indexed(output / "full" / f"frame_{frame_id:04d}.png", width, height, indexes, palette(archive, frame.palette_id))
-    print(f"exported {len(frame_ids)} complete OAM-composited frame PNGs to {output / 'full'}")
+        destination = output / "full" / f"frame_{frame_id:04d}.png"
+        source_palette = palette(archive, frame.palette_id)
+        if destination.is_file() and not replace:
+            existing = read_png_indexed(destination)
+            if existing == (width, height, indexes, source_palette):
+                preserved += 1
+                continue
+            raise ValueError(
+                f"{destination} already contains authored pixels; use --replace to overwrite it"
+            )
+        write_png_indexed(destination, width, height, indexes, source_palette)
+        written += 1
+    print(
+        f"exported {written} and preserved {preserved} complete OAM-composited frame PNGs "
+        f"in {output / 'full'}"
+    )
 
 
 def rebuild_frames(archive: Archive, animation_ids: list[int], source: Path, output: Path) -> None:
@@ -252,6 +268,7 @@ def main() -> int:
     export_parser = subparsers.add_parser("export", help="write complete indexed actor frame PNGs")
     export_parser.add_argument("--animations", required=True, type=parse_ids, help="comma-separated animation IDs")
     export_parser.add_argument("--output", required=True, type=Path)
+    export_parser.add_argument("--replace", action="store_true", help="replace existing authored PNGs")
     rebuild_parser = subparsers.add_parser("rebuild", help="rebuild native actor table-four tiles from complete PNGs")
     rebuild_parser.add_argument("--animations", required=True, type=parse_ids, help="comma-separated animation IDs")
     rebuild_parser.add_argument("--source", required=True, type=Path)
@@ -266,7 +283,7 @@ def main() -> int:
     if args.command == "audit":
         audit(archive)
     elif args.command == "export":
-        export_frames(archive, args.animations, args.output)
+        export_frames(archive, args.animations, args.output, args.replace)
     elif args.command == "rebuild":
         rebuild_frames(archive, args.animations, args.source, args.output)
     else:

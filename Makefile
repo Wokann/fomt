@@ -137,7 +137,11 @@ PORTRAIT_ARCHIVE_OFFSET := $(PORTRAIT_ARCHIVE_OFFSET_$(GAME_REGION))
 ACTOR_ARCHIVE_TOOL := tools/actor_archive.py
 ACTOR_SOURCE_DIR := graphics/sprites/rick/overworld
 ACTOR_FULL_IMAGES := $(wildcard $(ACTOR_SOURCE_DIR)/full/*.png)
-ACTOR_ANIMATIONS := 0x213,0x214,0x215,0x216,0x217,0x218,0x219,0x21A
+# This is the complete currently audited Rick interval.  It includes the
+# neighbouring transition/gesture selectors because their frames share the
+# same native archive and must be considered when detecting edited-pixel
+# conflicts.
+ACTOR_ANIMATIONS := 0x212,0x213,0x214,0x215,0x216,0x217,0x218,0x219,0x21A,0x21B,0x21C,0x21D,0x21E,0x21F,0x220,0x221,0x222,0x223,0x224,0x225,0x226,0x227,0x228,0x229,0x22A,0x22B,0x22C,0x22D
 ACTOR_TILE_BIN := $(BUILD_DIR)/graphics/sprites/shared/actor_tiles.4bpp
 ACTOR_ARCHIVE_LENGTH := 0xDB638
 ACTOR_ARCHIVE_SHA256 := 19a8733e132573478713e9b6e48e9650a702e62516209159787d26f270933736

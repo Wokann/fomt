@@ -112,10 +112,13 @@ trailing byte around it.
 ## Actor animation frames
 
 `sprites/rick/overworld/full` is the first verified actor-animation source.
-It contains twelve complete indexed PNG frames used by Rick's four idle and
-four walking animation IDs (`0x213` through `0x21A`).  The files are not
-linear tile dumps: each 24x32 frame is composed from the native animation
-entry, frame descriptor, OAM records, 4bpp tiles, and its selected palette.
+It contains 32 complete indexed PNG frames used by Rick's full currently
+audited selector interval (`0x212` through `0x22D`): ordinary idle/walk,
+wedding idle/walk/kiss, plus their adjoining transition or gesture selectors.
+`sprites/rick/overworld/README.md` records the exact selector-to-frame mapping.
+The files are not linear tile dumps: every image is composed from the native
+animation entry, frame descriptor, OAM records, 4bpp tiles, and its selected
+palette.
 
 ```console
 make GAME_REGION=JP gfx-actors
