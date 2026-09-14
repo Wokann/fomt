@@ -197,18 +197,25 @@ python tools/tile_grid.py export baserom_us.gba \
 
 ## Farm-status screen background tiles
 
-`ui/farm_status/shared/base_tiles.png` is the 128x144 indexed, 256-colour tile
-grid loaded by `func_0806EC94` before the Farm Status screen writes its building
-preview tilemaps.  It represents the native linear tile order rather than a
-guessed complete screenshot: the seven building previews still use separate
-tilemap records and will receive their own renderer/source format later.
+`ui/farm_status/shared/base_tiles.png` is the 256x144 indexed 4bpp tile grid
+loaded by `func_0806EC94`; `base_palettes.png` is its complete sixteen-bank
+palette source. The tile grid deliberately uses palette bank zero only: native
+BG tilemaps select the actual bank for every tile. This preserves the real
+4-bit pixel indices instead of flattening them into an incorrect 8bpp image.
+
+The seven building levels each have a primary and alternate native tilemap.
+`reference/` contains all fourteen complete rendered previews. They are
+verified derived images, regenerated from the editable tile source, the full
+palette-bank source, and native tilemaps; they are not a second editable layout
+format or a JSON sidecar.
 
 The packed 0x70 stream and the 0x200-byte BGR555 palette are identical in all
 four retail FoMT regions.  Their physical locations are JP `0x2AD72C` /
 `0x2AF8F0`, US `0x5275D0` / `0x529794`, EU `0x52762C` / `0x5297F0`, and DE
-`0x2AE66C` / `0x2B0830`.  `tile_grid.py` validates the compressed stream,
-strictly unpacks its 0x4800-byte 8bpp payload, and preserves the palette index
-of every pixel.
+`0x2AE66C` / `0x2B0830`. `tile_grid.py` validates the compressed stream and
+strictly unpacks its 0x4800-byte 4bpp payload. `palette_banks.py` preserves all
+256 BGR555 entries, including palette entries that look alike but have distinct
+native indices.
 
 ```console
 make gfx-farm-status-all
@@ -217,8 +224,8 @@ make gfx-farm-status-edit-test
 
 The first command verifies both generated ranges byte-for-byte against every
 retail ROM.  An unchanged PNG deliberately reuses the original compressed
-stream, so this verification stays exact.  An edited PNG is rebuilt to 8bpp
-then encoded through `marvelous_codec.py`; the strict unpacker checks it again
+stream, so this verification stays exact. An edited tile source is rebuilt to
+4bpp then encoded through `marvelous_codec.py`; the strict unpacker checks it again
 and the build fails if it exceeds the original 0x21C4-byte allocation.  The
 edit test changes one temporary source pixel and proves that a non-identical,
 valid stream still fits.  No JSON layout sidecar participates in either path.
@@ -229,10 +236,22 @@ Regenerate the source from a verified US ROM with:
 python tools/tile_grid.py export-unpacked baserom_us.gba \
   --stream-offset 0x5275D0 --stream-length 0x21C4 \
   --stream-sha256 669dec9d78bbe0d2ceb08383495eea9da863086b00c7dbd4687d90e5c01cddc5 \
-  --tiles-length 0x4800 --palette-offset 0x529794 --width 128 --bpp 8 \
+  --tiles-length 0x4800 --palette-offset 0x529794 --width 256 --bpp 4 \
   --sha256 0039e4aa2bb252d5ae17cb2028406e47a79c4461990ad6c1e7e384a962b719e8 \
-  --palette-sha256 8d2885512b1f0a453e45d632c61a41be90d978f8614aa07109202a955da61303 \
+  --palette-sha256 4538f7889f19367690ca80129ed8a36290924f4defb11261c57f4b095593ca48 \
   --output graphics/ui/farm_status/shared/base_tiles.png --replace
+
+python tools/palette_banks.py export baserom_us.gba \
+  --offset 0x529794 \
+  --sha256 8d2885512b1f0a453e45d632c61a41be90d978f8614aa07109202a955da61303 \
+  --output graphics/ui/farm_status/shared/base_palettes.png --replace
+
+python tools/farm_status_previews.py \
+  --tiles-source graphics/ui/farm_status/shared/base_tiles.png \
+  --palettes-source graphics/ui/farm_status/shared/base_palettes.png \
+  --rom baserom_us.gba --region us --output graphics/ui/farm_status/reference --replace \
+  --verify-jp baserom_jp.gba --verify-us baserom_us.gba \
+  --verify-eu baserom_eu.gba --verify-de baserom_de.gba
 ```
 
 ## Experimental forward OAM compiler

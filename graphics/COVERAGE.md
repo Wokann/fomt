@@ -13,7 +13,7 @@ image, nor that all game graphics have been extracted.
 | Dialogue portraits | `graphics/portraits/shared/full/*.png` | portrait tile stream | Yes |
 | Actor archive, every referenced descriptor | `graphics/sprites/actor_archive/full/*.png` | actor tile stream | Yes |
 | Located UI tile grid | `graphics/ui/shared_resource/shared_resource.png` | 4bpp tiles plus BGR555 palette | Yes |
-| Farm-status background tiles | `graphics/ui/farm_status/shared/base_tiles.png` | packed 8bpp tile stream plus BGR555 palette | Yes |
+| Farm-status background tiles | `graphics/ui/farm_status/shared/base_tiles.png` and `base_palettes.png` | packed 4bpp tile stream plus sixteen BGR555 palette banks | Yes |
 
 The actor archive has 3,009 frame descriptors, of which 2,963 are referenced
 by the retail animation tables.  Every referenced descriptor has a checked-in
@@ -46,7 +46,7 @@ The generated CSV is a local audit artifact and is not source artwork.
 
 | Candidate family | Evidence | Current conclusion |
 | --- | --- | --- |
-| Farm-status building previews | `FarmStatusScreenBuildingPreview` gives seven pairs of ROM pointers, dimensions and screen positions; `func_0806EC28` copies their `u16` values into a background tilemap. | The common 8bpp background tile stream and palette are now managed; these named pointer payloads remain tilemaps and need a separate renderer before exporting complete building-preview PNGs. |
+| Farm-status building previews | `FarmStatusScreenBuildingPreview` gives seven pairs of ROM pointers, dimensions and screen positions; `func_0806EC28` copies their `u16` values into a background tilemap. | Fourteen verified reference PNGs are rendered from the shared 4bpp tiles, palette-bank bits and native tilemaps. The tilemaps remain derived layout data, not duplicate editable source. |
 | Intro-scene unpack inputs | `gUnk_IntroSceneUnpackSource_*` labels are passed through the native `Unpack` path from the intro code. | Potential compressed graphics/UI resources; no image export until the compression format, output length, palette and destination relationship are proven. |
 | Records-screen resources | `records_screen_data.cc` exposes paired raw resource pointers consumed by the records screen. | Candidate screen tile/tilemap resources; format and palettes remain unclassified. |
 | Field/map payloads | The large raw ranges around `FieldPlotRenderRecord_*` and map-resource labels are used by field rendering. | May contain tiles, maps, collision and/or animation data together.  They require per-record boundaries and runtime format analysis, not a bulk linear-tile export. |

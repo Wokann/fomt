@@ -25,7 +25,8 @@ STREAM_SHA256 = "669dec9d78bbe0d2ceb08383495eea9da863086b00c7dbd4687d90e5c01cddc
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("rom", type=Path)
-    parser.add_argument("source", type=Path)
+    parser.add_argument("tiles_source", type=Path)
+    parser.add_argument("palette_source", type=Path)
     arguments = parser.parse_args()
 
     rom = arguments.rom.read_bytes()
@@ -33,11 +34,14 @@ def main() -> None:
     if hashlib.sha256(baseline).hexdigest() != STREAM_SHA256:
         raise ValueError("US farm-status stream hash does not match the verified retail payload")
 
-    pixels, width, height, _colors = read_png(arguments.source, 8)
+    pixels, width, height, _colors = read_png(arguments.tiles_source, 4)
+    palette_indexes, palette_width, palette_height, _palette_colors = read_png(arguments.palette_source, 8)
+    if (palette_width, palette_height) != (256, 8) or palette_indexes != bytes(range(256)) * 8:
+        raise AssertionError("the 16-bank palette source is not in its verified swatch layout")
     edited = bytearray(pixels)
     source_index = next(index for index, value in enumerate(edited) if value not in (0, 255))
     edited[source_index] = (edited[source_index] + 1) & 0xFF
-    native = encode(bytes(edited), width, height, 8)
+    native = encode(bytes(edited), width, height, 4)
     original, _format, _ladder = unpack(baseline)
     if native == original:
         raise AssertionError("the selected pixel edit did not alter the native tile payload")

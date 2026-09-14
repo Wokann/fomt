@@ -248,6 +248,7 @@ def literal_payload(data: bytes, operations: list[tuple[str, int, int]]) -> byte
 
 def encode_huff8_lz3(data: bytes) -> bytes:
     """Encode an even-length payload using the retail screen-art format 0x13."""
+    data = bytes(data)
     if not data or len(data) & 1:
         raise ValueError("mode-3 payloads must be non-empty and an even number of bytes")
     codes, by_length = huffman_codes(data)

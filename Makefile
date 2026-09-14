@@ -177,15 +177,19 @@ UI_SHARED_RESOURCE_PALETTE_OFFSET_DE := 0x4E2E54
 UI_SHARED_RESOURCE_TILE_OFFSET := $(UI_SHARED_RESOURCE_TILE_OFFSET_$(GAME_REGION))
 UI_SHARED_RESOURCE_PALETTE_OFFSET := $(UI_SHARED_RESOURCE_PALETTE_OFFSET_$(GAME_REGION))
 
-# Farm-status background tiles are a 256-colour, linear 8bpp grid.  The
+# Farm-status background tiles are a 16-palette-bank, linear 4bpp grid.  The
 # native stream is a shared 0x70/Huffman/LZ payload.  The compressor keeps the
 # original packed bytes when the editable PNG has not changed; edited tiles
 # are strictly decompressed and must still fit the original 0x21C4-byte slot.
 FARM_STATUS_TILES_SOURCE := graphics/ui/farm_status/shared/base_tiles.png
-FARM_STATUS_TILES_BIN := $(BUILD_DIR)/graphics/ui/farm_status/base_tiles.8bpp
+FARM_STATUS_PALETTE_SOURCE := graphics/ui/farm_status/shared/base_palettes.png
+FARM_STATUS_TILES_BIN := $(BUILD_DIR)/graphics/ui/farm_status/base_tiles.4bpp
 FARM_STATUS_PALETTE_BIN := $(BUILD_DIR)/graphics/ui/farm_status/base_tiles.gbapal
 FARM_STATUS_PACKED_BIN := $(BUILD_DIR)/graphics/ui/farm_status/base_tiles.0x70
 FARM_STATUS_CODEC := tools/marvelous_codec.py
+FARM_STATUS_PALETTE_TOOL := tools/palette_banks.py
+FARM_STATUS_PREVIEW_TOOL := tools/farm_status_previews.py
+FARM_STATUS_REFERENCE_DIR := graphics/ui/farm_status/reference
 FARM_STATUS_STREAM_LENGTH := 0x21C4
 FARM_STATUS_STREAM_SHA256 := 669dec9d78bbe0d2ceb08383495eea9da863086b00c7dbd4687d90e5c01cddc5
 FARM_STATUS_TILES_SHA256 := 0039e4aa2bb252d5ae17cb2028406e47a79c4461990ad6c1e7e384a962b719e8
@@ -343,9 +347,13 @@ $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN): $(UI_SHARED_RE
 	@mkdir -p $(dir $(UI_SHARED_RESOURCE_TILE_BIN))
 	@$(PYTHON) $(TILE_GRID_TOOL) build --source $(UI_SHARED_RESOURCE_SOURCE) --tiles $(UI_SHARED_RESOURCE_TILE_BIN) --palette $(UI_SHARED_RESOURCE_PALETTE_BIN)
 
-$(FARM_STATUS_TILES_BIN) $(FARM_STATUS_PALETTE_BIN): $(FARM_STATUS_TILES_SOURCE) $(TILE_GRID_TOOL)
+$(FARM_STATUS_TILES_BIN): $(FARM_STATUS_TILES_SOURCE) $(TILE_GRID_TOOL)
 	@mkdir -p $(dir $(FARM_STATUS_TILES_BIN))
-	@$(PYTHON) $(TILE_GRID_TOOL) build --source $(FARM_STATUS_TILES_SOURCE) --tiles $(FARM_STATUS_TILES_BIN) --palette $(FARM_STATUS_PALETTE_BIN) --bpp 8
+	@$(PYTHON) $(TILE_GRID_TOOL) build --source $(FARM_STATUS_TILES_SOURCE) --tiles $(FARM_STATUS_TILES_BIN) --palette $(BUILD_DIR)/graphics/ui/farm_status/base_tiles_palette0.gbapal
+
+$(FARM_STATUS_PALETTE_BIN): $(FARM_STATUS_PALETTE_SOURCE) $(FARM_STATUS_PALETTE_TOOL)
+	@mkdir -p $(dir $@)
+	@$(PYTHON) $(FARM_STATUS_PALETTE_TOOL) build --source $(FARM_STATUS_PALETTE_SOURCE) --output $@
 
 $(FARM_STATUS_PACKED_BIN): $(FARM_STATUS_TILES_BIN) $(FARM_STATUS_CODEC) $(BASE_ROM)
 	@mkdir -p $(dir $@)
@@ -357,7 +365,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
+.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-previews gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
 oam-pack: $(OAM_PACK)
 oam-pack-test: $(OAM_PACK) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba $(PORTRAIT_SOURCE_DIR)/full/000_TALK_PORTRAIT_RICK_NORMAL.png
 	@mkdir -p $(BUILD_DIR)/graphics/oam_pack
@@ -427,8 +435,10 @@ gfx-farm-status-all:
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-farm-status-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-farm-status-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-farm-status-test
-gfx-farm-status-edit-test: $(FARM_STATUS_TILES_SOURCE) $(FARM_STATUS_CODEC) $(TILE_GRID_TOOL) baserom_us.gba
-	@$(PYTHON) tools/farm_status_edit_test.py baserom_us.gba $(FARM_STATUS_TILES_SOURCE)
+gfx-farm-status-edit-test: $(FARM_STATUS_TILES_SOURCE) $(FARM_STATUS_PALETTE_SOURCE) $(FARM_STATUS_CODEC) $(TILE_GRID_TOOL) $(FARM_STATUS_PALETTE_TOOL) baserom_us.gba
+	@$(PYTHON) tools/farm_status_edit_test.py baserom_us.gba $(FARM_STATUS_TILES_SOURCE) $(FARM_STATUS_PALETTE_SOURCE)
+gfx-farm-status-previews: $(FARM_STATUS_TILES_SOURCE) $(FARM_STATUS_PALETTE_SOURCE) $(FARM_STATUS_PREVIEW_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
+	@$(PYTHON) $(FARM_STATUS_PREVIEW_TOOL) --tiles-source $(FARM_STATUS_TILES_SOURCE) --palettes-source $(FARM_STATUS_PALETTE_SOURCE) --rom baserom_us.gba --region us --output $(FARM_STATUS_REFERENCE_DIR) --replace --verify-jp baserom_jp.gba --verify-us baserom_us.gba --verify-eu baserom_eu.gba --verify-de baserom_de.gba
 # Generic linear 4bpp grid regression using a verified UI resource. Unlike
 # character sprites, this payload has no OAM or tile-map indirection.
 TILE_GRID_TEST_DIR := $(BUILD_DIR)/graphics/tile_grid_test
@@ -583,7 +593,7 @@ clean:
 .PHONY: clean
 
 ifneq (clean,$(MAKECMDGOALS))
-ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-ui gfx-ui-test gfx-ui-all gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit,$(MAKECMDGOALS)))
+ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-previews gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit,$(MAKECMDGOALS)))
 -include $(ALL_DEPS)
 endif
 .PRECIOUS: $(BUILD_DIR)/%.d
