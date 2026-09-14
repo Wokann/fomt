@@ -143,7 +143,7 @@ ACTOR_FULL_IMAGES := $(foreach directory,$(ACTOR_SOURCE_DIRS),$(wildcard $(direc
 # does not claim the still-uncovered Cow selector gap between them.
 # It deliberately includes neighbouring transition/gesture selectors, so edits
 # to shared native pixels are checked across every covered actor source.
-ACTOR_ANIMATIONS := 0x212-0x2BB,0x2FC-0x33F
+ACTOR_ANIMATIONS := 0x212-0x2BB,0x2FC-0x33F,0x3AE-0x3B1
 ACTOR_TILE_BIN := $(BUILD_DIR)/graphics/sprites/shared/actor_tiles.4bpp
 ACTOR_ARCHIVE_LENGTH := 0xDB638
 ACTOR_ARCHIVE_SHA256 := 19a8733e132573478713e9b6e48e9650a702e62516209159787d26f270933736

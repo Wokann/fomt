@@ -9,6 +9,7 @@ tile-sheet address or manually maintained layout.
 | --- | --- | --- |
 | `0x338`-`0x33B` | `ANIMATION_FARM_DOG_IDLE` | 1243, 1245-1247 |
 | `0x33C`-`0x33F` | `ANIMATION_FARM_DOG_WALK` | 1244-1255 |
+| `0x3AE`-`0x3B1` | `ANIMATION_FARM_DOG_PUPPY_IDLE` | 1406-1409 |
 
 Regenerate from a verified US ROM with:
 
