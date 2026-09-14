@@ -5,9 +5,6 @@
 
 #include "fomt_constants.hh"
 
-// Native code indexes this table directly by the shared 59-value domain.
-typedef MaryFishingRecordId FishingRecordId;
-
 extern char const gText_FishingRecord_PirateFortune[];
 extern char const gText_FishingRecord_FossilOfFish[];
 extern char const gText_FishingRecord_PowerBerry[];
@@ -69,6 +66,7 @@ extern char const gText_FishingRecord_Coelacanth[];
 extern char const gText_FishingRecord_Squid[];
 
 extern char const * const gFishingRecordNames[FISHING_RECORD_COUNT];
+extern "C" char const * func_0809CE7C(u32 unused, u32 index);
 extern char const gCppRuntimeBadAlloc_FishingResultsTrailer[];
 
 #endif // FISHING_RESULTS_DATA_HH

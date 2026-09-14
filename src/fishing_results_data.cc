@@ -2,7 +2,7 @@
 
 #include FOMT_TEXT_INCLUDE(fishing_results_data_1.cc)
 
-// Indexed directly by the native FishingRecordId domain.  When a regional
+// Indexed directly by the native MaryFishingRecordId domain.  When a regional
 // ROM uses one physical string for multiple records, the table repeats that
 // same pointer instead of introducing an assembler alias.
 char const * const gFishingRecordNames[FISHING_RECORD_COUNT] = {
@@ -44,8 +44,10 @@ char const * const gFishingRecordNames[FISHING_RECORD_COUNT] = {
     gText_FishingRecord_RainbowTrout,
     gText_FishingRecord_Herring,
 #if defined(REGION_JP)
+    // The JP ROM has an independent name object for this record.
     gText_FishingRecord_SilverCarp37,
 #else
+    // The US-derived ROMs reuse the record-22 text pointer here.
     gText_FishingRecord_SilverCarp22,
 #endif
     gText_FishingRecord_Sandfish,
@@ -57,6 +59,7 @@ char const * const gFishingRecordNames[FISHING_RECORD_COUNT] = {
     gText_FishingRecord_CrucianCarp,
     gText_FishingRecord_Greenling,
 #if defined(REGION_DE)
+    // The DE ROM reuses the Bonito text pointer for this record.
     gText_FishingRecord_Bonito,
 #else
     gText_FishingRecord_Tuna,
