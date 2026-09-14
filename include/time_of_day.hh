@@ -20,6 +20,19 @@ struct TimeOfDayTransition
     u8 value;
 };
 
+// The callers pass a pointer to this original calendar/time record.  The first
+// byte's meaning is still unconfirmed.
+struct Unk_0800E324
+{
+    u8 unk_00;
+    GameDate date;
+    GameTime time;
+};
+
+extern "C" char const * func_0800E2E4(Season season);
+extern "C" char const * func_0800E304(unsigned int week_day);
+extern "C" u32 func_0800E324(Unk_0800E324 const & arg_0);
+
 extern TimeOfDayTransition const gTimeOfDayTransitionRecords_Spring_Morning[];
 extern TimeOfDayTransition const gTimeOfDayTransitionRecords_Spring_Afternoon[];
 extern TimeOfDayTransition const gTimeOfDayTransitionRecords_Spring_Evening[];

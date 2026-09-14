@@ -4,7 +4,7 @@
 #include "time_of_day.hh"
 #include "unknown_types.hh" // for GameDate and Time
 
-EC char const * func_0800E2E4(Season season)
+extern "C" char const * func_0800E2E4(Season season)
 {
     if (season < NUM_SEASONS)
     {
@@ -14,7 +14,7 @@ EC char const * func_0800E2E4(Season season)
     return gText_Calendar_None;
 }
 
-EC char const * func_0800E304(unsigned int week_day)
+extern "C" char const * func_0800E304(unsigned int week_day)
 {
     if (week_day < 7)
     {
@@ -24,14 +24,7 @@ EC char const * func_0800E304(unsigned int week_day)
     return gText_Calendar_None;
 }
 
-struct Unk_0800E324
-{
-    u8 unk_00; /* year? */
-    GameDate date;
-    GameTime time;
-};
-
-EC u32 func_0800E324(Unk_0800E324 const & arg_0)
+extern "C" u32 func_0800E324(Unk_0800E324 const & arg_0)
 {
     GameDate const & date = arg_0.date;
     GameTime const & time = arg_0.time;
