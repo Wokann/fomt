@@ -1,6 +1,6 @@
 #include "cooking_recipe_inventory_data.hh"
 
-EXTERN_C
+extern "C" {
 
 // func_080977A0 compares a recipe inventory bitfield to required_mask and
 // writes selected_value for the first matching row.
@@ -2352,4 +2352,4 @@ CookingRecipeDefinitionPayload const gCookingRecipeDefinitionPayload = {
 };
 
 #include FOMT_TEXT_INCLUDE(cooking_recipe_inventory_data.cc)
-EXTERN_C_END
+}

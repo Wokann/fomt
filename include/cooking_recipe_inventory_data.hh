@@ -3,7 +3,7 @@
 
 #include "prelude.h"
 
-EXTERN_C
+extern "C" {
 
 struct CookingRecipeInventoryMaskEntry
 {
@@ -309,18 +309,12 @@ struct ALIGN(4) CookingRecipeDefinitionPayload
     u16 recipe_115_values_08[7];
     u16 recipe_116_values_08[8];
 };
-enum
-{
-    COOKING_RECIPE_INVENTORY_MASK_ENTRY_COUNT = 9,
-};
-
-extern CookingRecipeInventoryMaskEntry const
-    gCookingRecipeInventoryMaskEntries[COOKING_RECIPE_INVENTORY_MASK_ENTRY_COUNT];
+extern CookingRecipeInventoryMaskEntry const gCookingRecipeInventoryMaskEntries[9];
 extern CookingRecipeDefinition const gCookingRecipeDefinitions[];
 extern CookingRecipeDefinitionPayload const gCookingRecipeDefinitionPayload;
 extern char const gCppRuntimeBadAlloc_CookingRecipeDefinitionPayload0[];
 extern char const gCppRuntimeBadAlloc_CookingRecipeDefinitionPayload1[];
 
-EXTERN_C_END
+}
 
 #endif // COOKING_RECIPE_INVENTORY_DATA_HH
