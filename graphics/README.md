@@ -68,7 +68,11 @@ indexed-color source, not merely an RGBA screenshot: preserving the palette
 index is necessary because some native palettes contain visually identical
 colors at different indexes. The `preview/` directory is a rendered reference
 copy. `tiles/` preserves each descriptor's separate tile group for advanced
-edits that must touch hidden OAM pixels directly.
+edits that must touch hidden OAM pixels directly. `layout.json` is generated
+from the verified archive and records the canvas origin and ordered OAM pieces
+behind every complete image. It is an inspection contract, not a hand-edited
+source: ordinary art changes belong in `full/`; an OAM layout change requires
+a separate audited layout/repack step.
 
 The 184 descriptors reference 1,037 OAM entries, 11,586 4bpp tiles and 52
 palettes. The complete archive is byte-identical in JP, US, EU, and DE, even

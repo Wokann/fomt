@@ -5,6 +5,7 @@
     "editable_full_portraits": "full/NNN_TALK_PORTRAIT_*.png",
     "editable_tiles": "tiles/NNN_TALK_PORTRAIT_*.png",
     "rendered_baseline_previews": "preview/NNN_TALK_PORTRAIT_*.png",
+    "generated_oam_layout": "layout.json",
     "generated_index": "manifest.json"
   },
   "sources": {

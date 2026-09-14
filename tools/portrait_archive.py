@@ -426,9 +426,11 @@ def render_preview(archive: Archive, portrait_id: int,
 def export(archive: Archive, output: Path, names: dict[int, str]) -> None:
     audit(archive)
     metadata: list[dict[str, int | str]] = []
+    layout_metadata: list[dict[str, object]] = []
     for portrait_id in range(archive.counts[0]):
         symbol = display_name(portrait_id, names)
         _, _, tile_count, tile_start, palette_id = portrait_descriptor(archive, portrait_id)
+        origin_x, origin_y, canvas_width, canvas_height, entries = portrait_canvas(archive, portrait_id)
         colors = palette(archive, palette_id)
         grid = render_tile_grid(archive, tile_start, tile_count, colors)
         preview = render_preview(archive, portrait_id, colors)
@@ -447,8 +449,41 @@ def export(archive: Archive, output: Path, names: dict[int, str]) -> None:
             "full_image": f"full/{filename}.png",
             "preview": f"preview/{filename}.png",
         })
+        layout_metadata.append({
+            "id": portrait_id,
+            "symbol": symbol,
+            "canvas": {
+                "origin_x": origin_x,
+                "origin_y": origin_y,
+                "width": canvas_width,
+                "height": canvas_height,
+            },
+            "oam_entries": [
+                {
+                    "x": x,
+                    "y": y,
+                    "width": sprite_width,
+                    "height": sprite_height,
+                    "tile_start": entry_tile_start,
+                    "tile_count": sprite_width * sprite_height // 64,
+                }
+                for x, y, sprite_width, sprite_height, entry_tile_start in entries
+            ],
+        })
     (output / "manifest.json").write_text(
         json.dumps({"archive_sha256": hashlib.sha256(archive.data).hexdigest(), "portraits": metadata}, indent=2)
+        + "\n",
+        encoding="utf-8",
+    )
+    (output / "layout.json").write_text(
+        json.dumps(
+            {
+                "archive_sha256": hashlib.sha256(archive.data).hexdigest(),
+                "coordinate_system": "GBA object pixels; full PNG coordinates equal OAM coordinates minus canvas origin",
+                "portraits": layout_metadata,
+            },
+            indent=2,
+        )
         + "\n",
         encoding="utf-8",
     )
