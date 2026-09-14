@@ -103,10 +103,12 @@ trailing byte around it.
 
 `sprites/rick_daily/shared/frames` contains the 26 ordinary Rick overworld
 animation frames; `sprites/rick_wedding/shared/frames` contains his 18 wedding
-frames. Each numbered PNG is a complete 16x32 indexed image: its 16x16 upper
-body uses the first four physical tiles, and its centred 8x16 lower body uses
-the final two. This is a fixed six-tile resource class, not an OAM layout; the
-converter restores that native tile order directly.
+frames. The same verified fixed-frame class now also covers Popuri's daily
+(26), sleeping (8), baby (24), and wedding (16) frames, plus Lillia's daily
+18 frames. Each numbered PNG is a complete 16x32 indexed image: its 16x16
+upper body uses the first four physical tiles, and its centred 8x16 lower body
+uses the final two. This is a fixed six-tile resource class, not an OAM layout;
+the converter restores that native tile order directly.
 
 The 0x1380-byte tile stream and its 32-byte BGR555 palette are byte-identical
 in JP, US, EU, and DE. Their physical locations are respectively
@@ -119,16 +121,21 @@ The adjacent wedding stream uses 18 frames and its own shared tile SHA-256:
 ```console
 make GAME_REGION=JP gfx-overworld-rick
 make gfx-overworld-rick-all
+make gfx-overworld-actors-all
 ```
 
 `tools/overworld_sprite.py` is intentionally a fixed-format converter, rather
 than a generic tile-sheet guesser. It verifies that all numbered source frames
 exist consecutively, retain one common 16-colour indexed palette, and rebuild
 the exact six native tiles per frame. `gfx-overworld-rick-all` compares the
-rebuilt tile and palette streams with all four base ROMs. No JSON manifest is
-used: frame order is the numeric file order and the resource-class layout is
-defined by the converter itself. To regenerate the checked-in source from a
-verified ROM, use `export` with the explicit replacement guard:
+two Rick streams with all four base ROMs; `gfx-overworld-actors-all` verifies
+the full currently managed character set. Popuri's baby resource independently
+rebuilds and verifies its palette, but its ROM pointer deliberately shares the
+daily Popuri palette, so assembly emits that identical 32-byte palette only
+once. No JSON manifest is used: frame order is the numeric file order and the
+resource-class layout is defined by the converter itself. To regenerate the
+checked-in source from a verified ROM, use `export` with the explicit
+replacement guard:
 
 ```console
 python tools/overworld_sprite.py export baserom_us.gba \
