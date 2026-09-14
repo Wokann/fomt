@@ -5664,7 +5664,48 @@ func_08075328: @ 0x08074F84
 
     @ The following physical entry has not yet been matched semantically.
     jp_code_0803ee_func func_08074F90, 0x74F90, 0x750AC
-    jp_code_0803ee_func func_08075450, 0x750AC, 0x750F8
+    .global func_08075450
+    .thumb_func
+func_08075450: @ 0x080750AC
+    push {r4, r5, r6, r7, lr}
+    mov r7, r8
+    push {r7}
+    mov r8, r0
+    adds r7, r1, #0
+    movs r5, #0
+    movs r6, #0
+    movs r4, #0
+.Ljp_080750BC:
+    ldr r0, .Ljp_080750F0 @ =0x0000058C
+    add r0, r8
+    ldr r0, [r0]
+    ldr r1, .Ljp_080750F4 @ =0x00001CD4
+    adds r0, r0, r1
+    adds r1, r4, #0
+    bl func_080A099C
+    cmp r0, #0
+    beq .Ljp_080750DE
+    adds r1, r7, #0
+    bl GetMinigameExp__C13HarvestSpriteQ213HarvestSprite4Task
+    cmp r5, r0
+    bhs .Ljp_080750DE
+    adds r6, r4, #0
+    adds r5, r0, #0
+.Ljp_080750DE:
+    adds r4, #1
+    cmp r4, #6
+    ble .Ljp_080750BC
+    adds r0, r6, #0
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_080750F0:
+    .4byte 0x0000058C
+.Ljp_080750F4:
+    .4byte 0x00001CD4
     jp_code_0803ee_func func_0807549C, 0x750F8, 0x751B8
     jp_code_0803ee_func func_080751B8, 0x751B8, 0x75278
     jp_code_0803ee_func func_08075278, 0x75278, 0x752B8
