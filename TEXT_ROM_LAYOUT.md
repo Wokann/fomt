@@ -65,7 +65,7 @@
 | EU | `0x080FDE22`–`0x080FDE23` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FDE24`–`0x080FE099` | `src/supermarket_data.o(.rodata)` | `src/supermarket_data.cc`（作物种子目录）→ `data/text/eu/supermarket_data.cc`（前段文本）→ `src/supermarket_data.cc`（补充种子目录）→ `data/text/eu/supermarket_data_1.cc`（后段文本）→ `data/text/common/supermarket_data_1.cc`（尾部运行时字符串）<br>`include/supermarket_data.hh`；所有目录与文本读取均为符号重定位 | 精确 |
 | EU | `0x080FE09A`–`0x080FE09B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| EU | `0x080FE09C`–`0x080FE2AD` | `src/clinic_data.o(.rodata)` | `src/clinic_data.cc`、`include/clinic_data.hh`、`data/text/eu/clinic_data.cc`；目录表、9 项文本及运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
+| EU | `0x080FE09C`–`0x080FE2AD` | `src/clinic_data.o(.rodata)` | `src/clinic_data.cc`（目录表）→ `data/text/eu/clinic_data.cc`（9 项文本）→ `data/text/common/clinic_data_1.cc`（运行时尾部字符串）<br>`include/clinic_data.hh`；所有诊所目录与文本读取均为符号重定位 | 精确 |
 | EU | `0x080FE2AE`–`0x080FE2AF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | EU | `0x080FE2B0`–`0x080FE4CD` | `src/inn_shop_data.o(.rodata)` | `src/inn_shop_data.cc`、`include/inn_shop_data.hh`、`data/text/eu/inn_shop_data.cc`、`data/text/eu/inn_shop_data_1.cc`；菜品说明、菜单表、对话与运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
 | EU | `0x080FE4CE`–`0x080FE4CF` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -154,7 +154,7 @@
 | DE | `0x080FE57A`–`0x080FE57B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080FE57C`–`0x080FE7D9` | `src/supermarket_data.o(.rodata)` | `src/supermarket_data.cc`（作物种子目录）→ `data/text/de/supermarket_data.cc`（前段文本）→ `src/supermarket_data.cc`（补充种子目录）→ `data/text/de/supermarket_data_1.cc`（后段文本）→ `data/text/common/supermarket_data_1.cc`（尾部运行时字符串）<br>`include/supermarket_data.hh`；所有目录与文本读取均为符号重定位 | 精确 |
 | DE | `0x080FE7DA`–`0x080FE7DB` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
-| DE | `0x080FE7DC`–`0x080FEA21` | `src/clinic_data.o(.rodata)` | `src/clinic_data.cc`、`include/clinic_data.hh`、`data/text/de/clinic_data.cc`；目录表、9 项文本及运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
+| DE | `0x080FE7DC`–`0x080FEA21` | `src/clinic_data.o(.rodata)` | `src/clinic_data.cc`（目录表）→ `data/text/de/clinic_data.cc`（9 项文本）→ `data/text/common/clinic_data_1.cc`（运行时尾部字符串）<br>`include/clinic_data.hh`；所有诊所目录与文本读取均为符号重定位 | 精确 |
 | DE | `0x080FEA22`–`0x080FEA23` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
 | DE | `0x080FEA24`–`0x080FEC39` | `src/inn_shop_data.o(.rodata)` | `src/inn_shop_data.cc`、`include/inn_shop_data.hh`、`data/text/de/inn_shop_data.cc`、`data/text/de/inn_shop_data_1.cc`；菜品说明、菜单表、对话与运行时尾部字符串按 ROM 顺序同属该对象 | 精确 |
 | DE | `0x080FEC3A`–`0x080FEC3B` | `*fill*` | 链接脚本填充字节 `00` | 精确 |
@@ -276,7 +276,7 @@
 | `0x080FD55E`–`0x080FD55F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FD560`–`0x080FD80D` | `src/supermarket_data.o(.rodata)` | [嵌入文本 / 数据] | `src/supermarket_data.cc`（作物种子目录）→ `data/text/jp/supermarket_data.cc`（主文本）→ `src/supermarket_data.cc`（补充种子目录）→ `data/text/jp/supermarket_data_1.cc`（后续文本）→ `data/text/common/supermarket_data_1.cc`（尾部运行时字符串）<br>`include/supermarket_data.hh` | `gSupermarketCropSeedCatalog`（13 个记录）<br>主文本 `8` 项<br>`gSupermarketAdditionalSeedCatalog`（7 个记录与原始零哨兵）<br>后续文本 `3` 项<br>运行时字符串 `1` 项<br>全部 `20` 个指针引用均为精确符号重定位 |
 | `0x080FD80E`–`0x080FD80F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FD810`–`0x080FD9E1` | `src/clinic_data.o(.rodata)` | [嵌入文本 / 数据] | `src/clinic_data.cc`<br>`include/clinic_data.hh`<br>`data/text/jp/clinic_data.cc` | `gClinicCatalog`<br>文本 `9` 项（详见下方索引）<br>运行时字符串 `1` 项 |
+| `0x080FD810`–`0x080FD9E1` | `src/clinic_data.o(.rodata)` | [嵌入文本 / 数据] | `src/clinic_data.cc`（目录表）→ `data/text/jp/clinic_data.cc`（9 项文本）→ `data/text/common/clinic_data_1.cc`（运行时尾部字符串）<br>`include/clinic_data.hh` | `gClinicCatalog`<br>文本 `9` 项（详见下方索引）<br>运行时字符串 `1` 项<br>全部 `13` 个引用均为精确符号重定位 |
 | `0x080FD9E2`–`0x080FD9E3` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FD9E4`–`0x080FDBED` | `src/inn_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/inn_shop_data.cc`<br>`include/inn_shop_data.hh`<br>`data/text/jp/inn_shop_data.cc`<br>`data/text/jp/inn_shop_data_1.cc` | 菜品说明 `4` 项<br>`gInnShopMenu`<br>对话文本 `3` 项<br>运行时字符串 `1` 项 |
 | `0x080FDBEE`–`0x080FDBEF` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
@@ -2115,7 +2115,7 @@
 | `0x080FDDD6`–`0x080FDDD7` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FDDD8`–`0x080FE04D` | `src/supermarket_data.o(.rodata)` | [嵌入文本 / 数据] | `src/supermarket_data.cc`（作物种子目录）→ `data/text/us/supermarket_data.cc`（主文本）→ `src/supermarket_data.cc`（补充种子目录）→ `data/text/us/supermarket_data_1.cc`（后续文本）→ `data/text/common/supermarket_data_1.cc`（尾部运行时字符串）<br>`include/supermarket_data.hh` | `gSupermarketCropSeedCatalog`（13 个记录）<br>主文本 `8` 项<br>`gSupermarketAdditionalSeedCatalog`（7 个记录与原始零哨兵）<br>后续文本 `2` 项<br>运行时字符串 `1` 项<br>全部 `20` 个指针引用均为精确符号重定位 |
 | `0x080FE04E`–`0x080FE04F` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
-| `0x080FE050`–`0x080FE261` | `src/clinic_data.o(.rodata)` | [嵌入文本 / 数据] | `src/clinic_data.cc`<br>`include/clinic_data.hh`<br>`data/text/us/clinic_data.cc` | `gClinicCatalog`<br>文本 `9` 项（详见下方索引）<br>运行时字符串 `1` 项 |
+| `0x080FE050`–`0x080FE261` | `src/clinic_data.o(.rodata)` | [嵌入文本 / 数据] | `src/clinic_data.cc`（目录表）→ `data/text/us/clinic_data.cc`（9 项文本）→ `data/text/common/clinic_data_1.cc`（运行时尾部字符串）<br>`include/clinic_data.hh` | `gClinicCatalog`<br>文本 `9` 项（详见下方索引）<br>运行时字符串 `1` 项<br>全部 `13` 个引用均为精确符号重定位 |
 | `0x080FE262`–`0x080FE263` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |
 | `0x080FE264`–`0x080FE481` | `src/inn_shop_data.o(.rodata)` | [嵌入文本 / 数据] | `src/inn_shop_data.cc`<br>`include/inn_shop_data.hh`<br>`data/text/us/inn_shop_data.cc`<br>`data/text/us/inn_shop_data_1.cc` | 菜品说明 `4` 项<br>`gInnShopMenu`<br>对话文本 `3` 项<br>运行时字符串 `1` 项 |
 | `0x080FE482`–`0x080FE483` | `*fill*` | [填充] | 链接脚本填充字节 `00` | 2 字节 |

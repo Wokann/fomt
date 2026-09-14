@@ -10,3 +10,4 @@ ClinicCatalogEntry const gClinicCatalog[] = {
 };
 
 #include FOMT_TEXT_INCLUDE(clinic_data.cc)
+#include "data/text/common/clinic_data_1.cc"
