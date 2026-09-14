@@ -4817,7 +4817,34 @@ func_08050F70: @ 0x08050CFC
     ldrb r0, [r0, #0x1a]
     bx lr
 
-    jp_code_0803ee_func func_08050F74, 0x50D00, 0x510AC
+    .global func_08050F74
+    .thumb_func
+func_08050F74: @ 0x08050D00
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    adds r0, r2, #0
+    cmp r0, #2
+    bls .Ljp_08050D14
+    movs r1, #3
+    bl __umodsi3
+.Ljp_08050D14:
+    strh r0, [r4, #0x16]
+    adds r0, r5, #0
+    cmp r0, #0x1b
+    bls .Ljp_08050D26
+    movs r1, #0x1c
+    bl __umodsi3
+.Ljp_08050D26:
+    strh r0, [r4, #0x14]
+    movs r0, #0
+    strb r0, [r4, #0x19]
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+
+    @ The next physical entry has no recovered cross-region name yet.
+    jp_code_0803ee_func func_08050D2C, 0x50D2C, 0x510AC
     jp_code_0803ee_func func_08051320, 0x510AC, 0x511C8
     jp_code_0803ee_func func_0805143C, 0x511C8, 0x51F4C
     jp_code_0803ee_func func_08051F4C, 0x51F4C, 0x51F8C
