@@ -317,6 +317,10 @@ UI_SCENE_080BCFAC_SOURCES := $(wildcard $(UI_SCENE_080BCFAC_SOURCE_DIR)/*)
 UI_SCENE_080BCFAC_OUTPUT_DIR := $(BUILD_DIR)/graphics/ui/scene_080bcfac
 UI_SCENE_080BCFAC_STAMP := $(UI_SCENE_080BCFAC_OUTPUT_DIR)/.scene-080bcfac.stamp
 UI_SCENE_080BCFAC_REGION := $(INTRO_OBJECTS_REGION)
+UI_SCENE_080BCFAC_VISUAL_TOOL := $(UI_SCENE_080B7164_VISUAL_TOOL)
+UI_SCENE_080BCFAC_PALETTE_SOURCE := $(UI_SCENE_080BCFAC_SOURCE_DIR)/palettes.png
+UI_SCENE_080BCFAC_PALETTE_BIN := $(UI_SCENE_080BCFAC_OUTPUT_DIR)/palettes.gbapal
+UI_SCENE_080BCFAC_REFERENCE_DIR := graphics/ui/scene_080bcfac/reference
 
 UI_SCENE_080B55D0_AUX_TOOL := $(UI_SCENE_080B7164_TOOL)
 UI_SCENE_080B55D0_AUX_SOURCE_DIR := graphics/ui/scene_080b55d0_aux/shared
@@ -574,8 +578,12 @@ $(UI_SCENE_080B7164_STAMP): $(UI_SCENE_080B7164_SOURCES) $(UI_SCENE_080B7164_TOO
 
 $(UI_SCENE_080B7164_PALETTE_BIN): $(UI_SCENE_080B7164_PALETTE_SOURCE) $(UI_SCENE_080B7164_VISUAL_TOOL)
 	@$(PYTHON) $(UI_SCENE_080B7164_VISUAL_TOOL) build --region $(UI_SCENE_080B7164_REGION) \
-	  --source-dir $(UI_SCENE_080B7164_SOURCE_DIR) --output-dir $(UI_SCENE_080B7164_OUTPUT_DIR)
+	  --profile 080b7164 --source-dir $(UI_SCENE_080B7164_SOURCE_DIR) --output-dir $(UI_SCENE_080B7164_OUTPUT_DIR)
 	@touch $@
+
+$(UI_SCENE_080BCFAC_PALETTE_BIN): $(UI_SCENE_080BCFAC_PALETTE_SOURCE) $(UI_SCENE_080BCFAC_VISUAL_TOOL)
+	@$(PYTHON) $(UI_SCENE_080BCFAC_VISUAL_TOOL) build --region $(UI_SCENE_080BCFAC_REGION) \
+	  --profile 080bcfac --source-dir $(UI_SCENE_080BCFAC_SOURCE_DIR) --output-dir $(UI_SCENE_080BCFAC_OUTPUT_DIR)
 
 $(UI_SCENE_080C160C_STAMP): $(UI_SCENE_080C160C_SOURCES) $(UI_SCENE_080C160C_TOOL) $(FARM_STATUS_CODEC) $(BASE_ROM)
 	@$(PYTHON) $(UI_SCENE_080C160C_TOOL) --profile 080c160c build --region $(UI_SCENE_080C160C_REGION) --rom $(BASE_ROM) \
@@ -619,7 +627,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 .PHONY: gfx-ui-scene-080ae7d0 gfx-ui-scene-080ae7d0-test gfx-ui-scene-080ae7d0-all gfx-ui-scene-080ae7d0-patch-test gfx-ui-scene-080ae7d0-edit-test
 .PHONY: gfx-ui-scene-080b7164 gfx-ui-scene-080b7164-preview gfx-ui-scene-080b7164-test gfx-ui-scene-080b7164-all gfx-ui-scene-080b7164-patch-test gfx-ui-scene-080b7164-edit-test
 .PHONY: gfx-ui-scene-080c160c gfx-ui-scene-080c160c-test gfx-ui-scene-080c160c-all gfx-ui-scene-080c160c-patch-test gfx-ui-scene-080c160c-edit-test
-.PHONY: gfx-ui-scene-080bcfac gfx-ui-scene-080bcfac-test gfx-ui-scene-080bcfac-all gfx-ui-scene-080bcfac-patch-test gfx-ui-scene-080bcfac-edit-test
+.PHONY: gfx-ui-scene-080bcfac gfx-ui-scene-080bcfac-preview gfx-ui-scene-080bcfac-test gfx-ui-scene-080bcfac-all gfx-ui-scene-080bcfac-patch-test gfx-ui-scene-080bcfac-edit-test
 .PHONY: gfx-ui-scene-080b55d0-aux gfx-ui-scene-080b55d0-aux-test gfx-ui-scene-080b55d0-aux-all gfx-ui-scene-080b55d0-aux-patch-test gfx-ui-scene-080b55d0-aux-edit-test
 .PHONY: gfx-ui-scene-08054f40-tiles gfx-ui-scene-08054f40-tiles-test gfx-ui-scene-08054f40-tiles-all gfx-ui-scene-08054f40-tiles-patch-test gfx-ui-scene-08054f40-tiles-edit-test
 .PHONY: gfx-ui-scene-0805ab08-tiles gfx-ui-scene-0805ab08-tiles-test gfx-ui-scene-0805ab08-tiles-all gfx-ui-scene-0805ab08-tiles-patch-test gfx-ui-scene-0805ab08-tiles-edit-test
@@ -713,12 +721,12 @@ gfx-ui-scene-080ae7d0-edit-test: $(UI_SCENE_080AE7D0_TOOL) baserom_jp.gba
 	@$(PYTHON) $(UI_SCENE_080AE7D0_TOOL) edit-test --region jp --rom baserom_jp.gba
 gfx-ui-scene-080b7164: $(UI_SCENE_080B7164_STAMP) $(UI_SCENE_080B7164_PALETTE_BIN)
 gfx-ui-scene-080b7164-preview: $(UI_SCENE_080B7164_VISUAL_TOOL) $(UI_SCENE_080B7164_PALETTE_SOURCE) $(UI_SCENE_080B7164_SOURCES)
-	@$(PYTHON) $(UI_SCENE_080B7164_VISUAL_TOOL) preview --source-dir $(UI_SCENE_080B7164_SOURCE_DIR) --reference-dir $(UI_SCENE_080B7164_REFERENCE_DIR)
+	@$(PYTHON) $(UI_SCENE_080B7164_VISUAL_TOOL) preview --profile 080b7164 --source-dir $(UI_SCENE_080B7164_SOURCE_DIR) --reference-dir $(UI_SCENE_080B7164_REFERENCE_DIR)
 gfx-ui-scene-080b7164-test: gfx-ui-scene-080b7164 $(UI_SCENE_080B7164_TOOL) $(UI_SCENE_080B7164_VISUAL_TOOL) $(GFX_RANGE_VERIFY)
 	@$(PYTHON) $(UI_SCENE_080B7164_TOOL) verify --region $(UI_SCENE_080B7164_REGION) --rom $(BASE_ROM) \
 	  --source-dir $(UI_SCENE_080B7164_SOURCE_DIR) --output-dir $(UI_SCENE_080B7164_OUTPUT_DIR)
 	@$(PYTHON) $(UI_SCENE_080B7164_VISUAL_TOOL) verify --region $(UI_SCENE_080B7164_REGION) --rom $(BASE_ROM) \
-	  --source-dir $(UI_SCENE_080B7164_SOURCE_DIR) --output-dir $(UI_SCENE_080B7164_OUTPUT_DIR)
+	  --profile 080b7164 --source-dir $(UI_SCENE_080B7164_SOURCE_DIR) --output-dir $(UI_SCENE_080B7164_OUTPUT_DIR)
 gfx-ui-scene-080b7164-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-ui-scene-080b7164-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-ui-scene-080b7164-test
@@ -728,7 +736,7 @@ gfx-ui-scene-080b7164-patch-test: gfx-ui-scene-080b7164-all $(UI_SCENE_080B7164_
 	@$(PYTHON) $(UI_SCENE_080B7164_TOOL) patch-test --output-root build \
 	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
 	@$(PYTHON) $(UI_SCENE_080B7164_VISUAL_TOOL) patch-test --output-root build \
-	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
+	  --profile 080b7164 --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
 gfx-ui-scene-080b7164-edit-test: $(UI_SCENE_080B7164_TOOL) baserom_jp.gba
 	@$(PYTHON) $(UI_SCENE_080B7164_TOOL) edit-test --region jp --rom baserom_jp.gba
 gfx-ui-scene-080c160c: $(UI_SCENE_080C160C_STAMP)
@@ -745,17 +753,23 @@ gfx-ui-scene-080c160c-patch-test: gfx-ui-scene-080c160c-all $(UI_SCENE_080C160C_
 	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
 gfx-ui-scene-080c160c-edit-test: $(UI_SCENE_080C160C_TOOL) baserom_jp.gba
 	@$(PYTHON) $(UI_SCENE_080C160C_TOOL) --profile 080c160c edit-test --region jp --rom baserom_jp.gba
-gfx-ui-scene-080bcfac: $(UI_SCENE_080BCFAC_STAMP)
-gfx-ui-scene-080bcfac-test: gfx-ui-scene-080bcfac $(UI_SCENE_080BCFAC_TOOL)
+gfx-ui-scene-080bcfac: $(UI_SCENE_080BCFAC_STAMP) $(UI_SCENE_080BCFAC_PALETTE_BIN)
+gfx-ui-scene-080bcfac-preview: $(UI_SCENE_080BCFAC_VISUAL_TOOL) $(UI_SCENE_080BCFAC_PALETTE_SOURCE) $(UI_SCENE_080BCFAC_SOURCES)
+	@$(PYTHON) $(UI_SCENE_080BCFAC_VISUAL_TOOL) preview --profile 080bcfac --source-dir $(UI_SCENE_080BCFAC_SOURCE_DIR) --reference-dir $(UI_SCENE_080BCFAC_REFERENCE_DIR)
+gfx-ui-scene-080bcfac-test: gfx-ui-scene-080bcfac $(UI_SCENE_080BCFAC_TOOL) $(UI_SCENE_080BCFAC_VISUAL_TOOL)
 	@$(PYTHON) $(UI_SCENE_080BCFAC_TOOL) --profile 080bcfac verify --region $(UI_SCENE_080BCFAC_REGION) --rom $(BASE_ROM) \
+	  --source-dir $(UI_SCENE_080BCFAC_SOURCE_DIR) --output-dir $(UI_SCENE_080BCFAC_OUTPUT_DIR)
+	@$(PYTHON) $(UI_SCENE_080BCFAC_VISUAL_TOOL) verify --profile 080bcfac --region $(UI_SCENE_080BCFAC_REGION) --rom $(BASE_ROM) \
 	  --source-dir $(UI_SCENE_080BCFAC_SOURCE_DIR) --output-dir $(UI_SCENE_080BCFAC_OUTPUT_DIR)
 gfx-ui-scene-080bcfac-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-ui-scene-080bcfac-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-ui-scene-080bcfac-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-ui-scene-080bcfac-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-ui-scene-080bcfac-test
-gfx-ui-scene-080bcfac-patch-test: gfx-ui-scene-080bcfac-all $(UI_SCENE_080BCFAC_TOOL)
+gfx-ui-scene-080bcfac-patch-test: gfx-ui-scene-080bcfac-all $(UI_SCENE_080BCFAC_TOOL) $(UI_SCENE_080BCFAC_VISUAL_TOOL)
 	@$(PYTHON) $(UI_SCENE_080BCFAC_TOOL) --profile 080bcfac patch-test --output-root build \
+	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
+	@$(PYTHON) $(UI_SCENE_080BCFAC_VISUAL_TOOL) patch-test --profile 080bcfac --output-root build \
 	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
 gfx-ui-scene-080bcfac-edit-test: $(UI_SCENE_080BCFAC_TOOL) baserom_jp.gba
 	@$(PYTHON) $(UI_SCENE_080BCFAC_TOOL) --profile 080bcfac edit-test --region jp --rom baserom_jp.gba
@@ -1031,7 +1045,7 @@ $(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGIO
 	$(call FOMT_COMPILE_CPP,)
 
 # ROM from ELF
-%.gba: %.elf $(MAP_RESOURCES_STAMP) $(UI_SCENE_080A2BA4_STAMP) $(UI_SCENE_080AE7D0_STAMP) $(UI_SCENE_080B7164_STAMP) $(UI_SCENE_080B7164_PALETTE_BIN) $(UI_SCENE_080C160C_STAMP) $(UI_SCENE_080BCFAC_STAMP) $(UI_SCENE_080B55D0_AUX_STAMP) $(UI_SCENE_08054F40_TILES_STAMP) $(UI_SCENE_0805AB08_TILES_STAMP)
+%.gba: %.elf $(MAP_RESOURCES_STAMP) $(UI_SCENE_080A2BA4_STAMP) $(UI_SCENE_080AE7D0_STAMP) $(UI_SCENE_080B7164_STAMP) $(UI_SCENE_080B7164_PALETTE_BIN) $(UI_SCENE_080C160C_STAMP) $(UI_SCENE_080BCFAC_STAMP) $(UI_SCENE_080BCFAC_PALETTE_BIN) $(UI_SCENE_080B55D0_AUX_STAMP) $(UI_SCENE_08054F40_TILES_STAMP) $(UI_SCENE_0805AB08_TILES_STAMP)
 	$(OBJCOPY) -O binary $< $@
 	@$(PYTHON) $(MAP_RESOURCES_TOOL) patch --region $(MAP_RESOURCES_REGION) --rom $@ \
 	  --archive $(MAP_RESOURCES_OUTPUT_DIR)/map_visual_archive.0x70 $(MAP_RESOURCES_ALL_ROM_ARGS)
@@ -1042,10 +1056,12 @@ $(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGIO
 	@$(PYTHON) $(UI_SCENE_080B7164_TOOL) patch --region $(UI_SCENE_080B7164_REGION) --baseline $(BASE_ROM) \
 	  --rom $@ --output-dir $(UI_SCENE_080B7164_OUTPUT_DIR)
 	@$(PYTHON) $(UI_SCENE_080B7164_VISUAL_TOOL) patch --region $(UI_SCENE_080B7164_REGION) --baseline $(BASE_ROM) \
-	  --rom $@ --output-dir $(UI_SCENE_080B7164_OUTPUT_DIR)
+	  --profile 080b7164 --rom $@ --output-dir $(UI_SCENE_080B7164_OUTPUT_DIR)
 	@$(PYTHON) $(UI_SCENE_080C160C_TOOL) --profile 080c160c patch --region $(UI_SCENE_080C160C_REGION) --baseline $(BASE_ROM) \
 	  --rom $@ --output-dir $(UI_SCENE_080C160C_OUTPUT_DIR)
 	@$(PYTHON) $(UI_SCENE_080BCFAC_TOOL) --profile 080bcfac patch --region $(UI_SCENE_080BCFAC_REGION) --baseline $(BASE_ROM) \
+	  --rom $@ --output-dir $(UI_SCENE_080BCFAC_OUTPUT_DIR)
+	@$(PYTHON) $(UI_SCENE_080BCFAC_VISUAL_TOOL) patch --profile 080bcfac --region $(UI_SCENE_080BCFAC_REGION) --baseline $(BASE_ROM) \
 	  --rom $@ --output-dir $(UI_SCENE_080BCFAC_OUTPUT_DIR)
 	@$(PYTHON) $(UI_SCENE_080B55D0_AUX_TOOL) --profile 080b55d0_aux patch --region $(UI_SCENE_080B55D0_AUX_REGION) --baseline $(BASE_ROM) \
 	  --rom $@ --output-dir $(UI_SCENE_080B55D0_AUX_OUTPUT_DIR)
@@ -1109,7 +1125,7 @@ ifneq (,$(filter gfx-ui-scene-080a2ba4 gfx-ui-scene-080a2ba4-test gfx-ui-scene-0
 ALL_DEPS :=
 endif
 
-ifneq (,$(filter gfx-ui-scene-080bcfac gfx-ui-scene-080bcfac-test gfx-ui-scene-080bcfac-all gfx-ui-scene-080bcfac-patch-test gfx-ui-scene-080bcfac-edit-test,$(MAKECMDGOALS)))
+ifneq (,$(filter gfx-ui-scene-080bcfac gfx-ui-scene-080bcfac-preview gfx-ui-scene-080bcfac-test gfx-ui-scene-080bcfac-all gfx-ui-scene-080bcfac-patch-test gfx-ui-scene-080bcfac-edit-test,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 
