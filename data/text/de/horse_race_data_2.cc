@@ -1,35 +1,40 @@
 #include "horse_race_data.hh"
 
-char const gText_HorseRace_PrizeExchangePrompt[] =
-    "Gegen Preis tauschen?";
+char const gText_HorseRace_TicketPurchaseTitle[] =
+    "Renngewinnticket        ";
 
-char const gText_HorseRace_PrizeExchangeYes[] =
-    "Ja";
+char const gText_HorseRace_TicketPurchaseConfirm[] =
+    "    Mitmach.";
 
-char const gText_HorseRace_PrizeExchangeNo[] =
-    "Nein";
+char const gText_HorseRace_TicketPurchaseMedalsToWin[] =
+    "  Siegermedaillen   ";
 
-char const gText_HorseRace_PrizeExchangeComeAgain[] =
-    "\p"
-    "Komm jederzeit wieder.{Press}";
+char const gText_HorseRace_TicketControls_DPadUpDown[] =
+    "Steuerkreuz nach Oben/Unten:";
 
-char const gText_HorseRace_PrizeExchangeTakeYourTime[] =
-    "\p"
-    "Nimm dir jetzt Zeit.{Press}";
+char const gText_HorseRace_TicketControls_SelectHorse[] =
+    "  Wähle Pferd zum Wetten.";
 
-char const gText_HorseRace_PrizeSelectionConfirmation[] =
-    "Möchtest du \xFF\x3F";
+char const gText_HorseRace_TicketControls_DPadLeftRight[] =
+    "Steuerkreuz nach ";
 
-char const gText_HorseRace_PrizeExchangeLeaveConfirmation[] =
-    "\p"
-    "Du möchtest also gehen?{Press}";
+char const gText_HorseRace_TicketControls_ChangeQuantity[] =
+    "Links/Rechts:";
 
-char const gText_HorseRace_PrizeExchangeInsufficientMedals[] =
-    "\p"
-    "Hierfür hast du nicht \r\n"
-    "genug Medaillen. {Press}";
+char const gText_HorseRace_TicketControls_LRButtons[] =
+    "  Ticketanzahl ändern";
 
-// The German prize-exchange renderer reads this fixed glyph field without a
-// terminator in the original table.
-u16 const gHorseRacePrizeExchangeCharacterCodes[] =
-    FOMT_GLYPH_SEQUENCE("0123456789 xGD. Medillen");
+char const gText_HorseRace_TicketControls_ChangeQuantityByTen[] =
+    "Knöpfe L/R:";
+
+char const gText_HorseRace_TicketControls_ChangeQuantityByTenContinuation[] =
+    "  Ticketanzahl um 10 ändern.";
+
+char const gText_HorseRace_TicketControls_MoveCursorToConfirm[] =
+    "Bewege den Cursor auf OK.";
+
+char const gText_HorseRace_TicketControls_Buy[] =
+    "Kaufe mit Knopf A.";
+
+char const gText_HorseRace_TicketControls_Cancel[] =
+    "Brich ab mit Knopf B.";
