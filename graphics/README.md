@@ -188,6 +188,15 @@ This is not a guessed screenshot and does not use a JSON layout sidecar: the
 renderer reads the same checked-in 4bpp tiles, native tilemap entries and
 code-bounded palette used by the verified rebuild path.
 
+Some code-proven views cannot safely become editable palette sources. For
+`ui/scene_080a2ba4`, the loaded palette range is also consumed as an archive;
+`reference/<region>/screen.png` is consequently a checked read-only rendering,
+not an authoring input. Regenerate and validate all four views with:
+
+```console
+make gfx-ui-scene-080a2ba4-reference
+```
+
 ## Shared UI tile grid
 
 `ui/shared_resource/shared_resource.png` is the first production use of the

@@ -39,14 +39,22 @@ f89eac66fe9bfe4d66b2540a85e31a01b689315178f0e6381a7a3e53357fa2a5
 affe9000551cfe131462a85c89847ac8d7909a7883a8201e3109a5e577fdb54d
 ```
 
-## Deliberate palette boundary
+## Shared palette boundary and read-only preview
 
-The routine copies 0x200 bytes from `gUnk_0874F2EC` to palette memory. The
-existing assembly label boundary after its first 0x60 bytes is
+The routine copies exactly `0x200` bytes from `gUnk_0874F2EC` to BG palette
+RAM. The existing assembly label boundary after its first `0x60` bytes is
 `gUnk_0874F34C`, and that latter label is also constructed as an
-`IndexedResourceArchive` by nearby code. Until the overlap's consumer and
-layout semantics are fully proven, this pipeline must not claim that those
-bytes are an isolated background palette or use them to render a coloured PNG.
+`IndexedResourceArchive` by nearby code. Therefore the range is **not** an
+independently editable palette source: changing it as artwork could damage the
+archive's other consumer.
+
+It is nevertheless the exact palette supplied to this UI routine, so the
+repository contains read-only, code-backed regional previews in
+`reference/jp/`, `reference/us/`, `reference/eu/`, and `reference/de/`. Each
+contains the three 256-by-160 BG layers and a `screen.png` cropped to the GBA's
+actual 240-by-160 viewport. These files are reference output only and have no
+build or patch rule. Their source hashes and each region's copied 0x200-byte
+palette range are checked before rendering.
 
 The four checked-in native sources are editable. Rebuilds preserve each retail
 compressed stream when unchanged; an edited stream is re-encoded with the
@@ -57,6 +65,7 @@ original fixed ROM slot.
 
 ```console
 make gfx-ui-scene-080a2ba4-all
+make gfx-ui-scene-080a2ba4-reference
 make gfx-ui-scene-080a2ba4-patch-test
 ```
 
