@@ -6582,7 +6582,89 @@ func_08076B94: @ 0x080767F4
 .Ljp_0807683C: .4byte 0x000005B4
     .section .text.get_selection_index_after
     jp_code_0803ee_func func_08076BFC, 0x7685C, 0x76A44
-    jp_code_0803ee_func func_08076E0C, 0x76A44, 0x76AE0
+    .global func_08076E0C
+    .thumb_func
+func_08076E0C: @ 0x08076A44
+    push {r4, r5, r6, lr}
+    adds r5, r0, #0
+    adds r6, r1, #0
+    ldr r0, .Ljp_08076AD0
+    adds r1, r5, r0
+    ldr r0, .Ljp_08076AD4
+    str r0, [r1]
+    ldr r1, .Ljp_08076AD8
+    adds r0, r5, r1
+    ldr r2, [r0, #4]
+    ldr r1, [r0]
+    cmp r1, r2
+    beq .Ljp_08076A64
+.Ljp_08076A5E:
+    adds r1, #0x10
+    cmp r1, r2
+    bne .Ljp_08076A5E
+.Ljp_08076A64:
+    ldr r0, [r0]
+    cmp r0, #0
+    beq .Ljp_08076A6E
+    bl free
+.Ljp_08076A6E:
+    ldr r1, .Ljp_08076ADC
+    adds r0, r5, r1
+    ldr r2, [r0, #4]
+    ldr r1, [r0]
+    cmp r1, r2
+    beq .Ljp_08076A80
+.Ljp_08076A7A:
+    adds r1, #0x10
+    cmp r1, r2
+    bne .Ljp_08076A7A
+.Ljp_08076A80:
+    ldr r0, [r0]
+    cmp r0, #0
+    beq .Ljp_08076A8A
+    bl free
+.Ljp_08076A8A:
+    ldr r0, [r5, #4]
+    cmp r0, #0
+    beq .Ljp_08076ABC
+    adds r4, r0, #0
+    adds r0, #0x28
+    movs r1, #2
+    bl func_08075DEC
+    adds r0, r4, #0
+    adds r0, #0x18
+    ldr r2, [r0, #4]
+    ldr r1, [r4, #0x18]
+    cmp r1, r2
+    beq .Ljp_08076AAC
+.Ljp_08076AA6:
+    adds r1, #0x40
+    cmp r1, r2
+    bne .Ljp_08076AA6
+.Ljp_08076AAC:
+    ldr r0, [r0]
+    cmp r0, #0
+    beq .Ljp_08076AB6
+    bl free
+.Ljp_08076AB6:
+    adds r0, r4, #0
+    bl __builtin_delete
+.Ljp_08076ABC:
+    movs r0, #1
+    ands r0, r6
+    cmp r0, #0
+    beq .Ljp_08076ACA
+    adds r0, r5, #0
+    bl __builtin_delete
+.Ljp_08076ACA:
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_08076AD0: .4byte 0x000005B4
+.Ljp_08076AD4: .4byte vtable_unk_080E7B78
+.Ljp_08076AD8: .4byte 0x000005A4
+.Ljp_08076ADC: .4byte 0x00000594
     jp_code_0803ee_func func_08076AE0, 0x76AE0, 0x77020
     jp_code_0803ee_func func_080773E8, 0x77020, 0x7753C
     jp_code_0803ee_func func_080779B4, 0x7753C, 0x775A4
