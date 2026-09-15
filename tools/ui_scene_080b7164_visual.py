@@ -43,19 +43,29 @@ PROFILES = {
         "offsets": {"jp": 0x4B3F4C, "us": 0x72DDE4, "eu": 0x72DE40, "de": 0x4B50B8},
         "sha256": {"jp": "27d34fdaddf10393f59fb1f89ad87d10e8d1b3d06176d3870216e36fcf3b0750", "us": "27d34fdaddf10393f59fb1f89ad87d10e8d1b3d06176d3870216e36fcf3b0750", "eu": "27d34fdaddf10393f59fb1f89ad87d10e8d1b3d06176d3870216e36fcf3b0750", "de": "27d34fdaddf10393f59fb1f89ad87d10e8d1b3d06176d3870216e36fcf3b0750"},
         "sources": {"jp": "palettes.png", "us": "palettes.png", "eu": "palettes.png", "de": "palettes.png"},
+        "palette_source": "palettes.png",
         "first_palette_bank": 0,
     },
     "080bcfac": {
         "offsets": {"jp": 0x4C2D5C, "us": 0x73CBF4, "eu": 0x73CC50, "de": 0x4C3F60},
         "sha256": {"jp": "f22d1e3fbc046353944f725f6e025ef0148545ac998b3c1268019aff5a090672", "us": "f22d1e3fbc046353944f725f6e025ef0148545ac998b3c1268019aff5a090672", "eu": "f22d1e3fbc046353944f725f6e025ef0148545ac998b3c1268019aff5a090672", "de": "f22d1e3fbc046353944f725f6e025ef0148545ac998b3c1268019aff5a090672"},
         "sources": {"jp": "palettes.png", "us": "palettes.png", "eu": "palettes.png", "de": "palettes.png"},
+        "palette_source": "palettes.png",
         "first_palette_bank": 0,
     },
     "080c160c": {
         "offsets": {"jp": 0x4C624C, "us": 0x7400E4, "eu": 0x740140, "de": 0x4C7558},
         "sha256": {"jp": "56c55d406a8e778b0f83b672a3b6e0816219c0c9e26527fae77b5f4da550a901", "us": "56c55d406a8e778b0f83b672a3b6e0816219c0c9e26527fae77b5f4da550a901", "eu": "56c55d406a8e778b0f83b672a3b6e0816219c0c9e26527fae77b5f4da550a901", "de": "56c55d406a8e778b0f83b672a3b6e0816219c0c9e26527fae77b5f4da550a901"},
         "sources": {"jp": "palettes.png", "us": "palettes.png", "eu": "palettes.png", "de": "palettes.png"},
+        "palette_source": "palettes.png",
         "first_palette_bank": 1,
+    },
+    "080ae7d0": {
+        "offsets": {"jp": 0x4B7AA8, "us": 0x731940, "eu": 0x73199C, "de": 0x4B8CAC},
+        "sha256": {"jp": "f00f6c6244f3c5497846998979764889717faf5eb805d1630b36001e60ece437", "us": "f00f6c6244f3c5497846998979764889717faf5eb805d1630b36001e60ece437", "eu": "f00f6c6244f3c5497846998979764889717faf5eb805d1630b36001e60ece437", "de": "f00f6c6244f3c5497846998979764889717faf5eb805d1630b36001e60ece437"},
+        "sources": {"jp": "palette_banks.png", "us": "palette_banks.png", "eu": "palette_banks.png", "de": "palette_banks.png"},
+        "palette_source": "palette_banks.png",
+        "first_palette_bank": 0,
     },
 }
 

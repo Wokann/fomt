@@ -14,9 +14,12 @@ contiguous 0x200-byte BGR555 palette range is copied by the same routine.
 | `palette_banks.png` | raw | `0x200` (16 BGR555 banks) | uncompressed | palette-memory copy |
 
 The tile data and tilemaps intentionally remain native sources. Their shared
-palette is represented by an indexed 256-colour swatch PNG, but no combined
-scene PNG is claimed: the exact screen compositor and its runtime layer order
-have not yet been established.
+palette is represented by an indexed 256-colour swatch PNG. The code proves
+the composition order: `0x1F42` configures layer 0 at screen block `0xF800`
+with priority 2, and `0x1E41` configures layer 1 at `0xF000` with priority 1.
+Accordingly `reference/layer_0.png`, `reference/layer_1.png`, and
+`reference/scene.png` are direct 256-by-256 renderings and their code-backed
+composition; they are readable references, not replacement source formats.
 
 ## Four-region evidence
 
@@ -44,6 +47,7 @@ f00f6c6244f3c5497846998979764889717faf5eb805d1630b36001e60ece437
 ```console
 make gfx-ui-scene-080ae7d0-all
 make gfx-ui-scene-080ae7d0-patch-test
+make gfx-ui-scene-080ae7d0-preview
 ```
 
 The normal `%.gba` recipe regenerates these sources first, then patches only
