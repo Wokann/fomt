@@ -4,6 +4,10 @@ This directory contains image resources that replace verified raw ROM ranges.
 Source images are edited here; `make` rebuilds their GBA-native binary payloads
 under `build/<region>/graphics/` before assembly.
 
+For directly viewable complete images and code-backed static scene references,
+see [VIEWABLE_REFERENCES.md](VIEWABLE_REFERENCES.md). It deliberately keeps
+those readable views distinct from the native source formats used for rebuilds.
+
 Run the complete managed-graphics verification gate with:
 
 ```console

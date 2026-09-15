@@ -1,0 +1,51 @@
+# Viewable graphics references
+
+This index separates readable game imagery from native authoring sources.
+Every image linked below is generated from a code-proven tile/map/palette path
+and has passed its recorded regional verification. A PNG in this page is a
+reference for artists and reviewers; it is not a replacement for the native
+tilemap, tile stream, OAM, or palette source used by the rebuild pipeline.
+
+## Complete resource images
+
+These are already full, editable image resources rather than arbitrary tile
+grids:
+
+- [Dialogue portraits](portraits/shared/full/) — named character portrait and
+  expression PNGs; the portrait tile stream rebuilds from them.
+- [Referenced actor frames](sprites/actor_archive/full/) — OAM-aware full frame
+  PNGs; every retail-referenced descriptor is covered.
+- [Farm-status buildings](ui/farm_status/reference/) — complete building and
+  status-layout renderings backed by their shared tiles, palette banks, and
+  native tilemaps.
+- [Records-screen task icons](ui/records_minigame/shared/) — seven complete
+  16-by-16 icons with their native palettes.
+
+## Code-backed UI views
+
+The following are actual static renderings produced from the exact runtime
+tile, map, palette and priority inputs identified by the consuming assembly.
+They are useful for seeing what a resource is before editing its native
+sources.
+
+| Routine / resource | View | Scope |
+| --- | --- | --- |
+| `func_080A2BA4` | [JP](ui/scene_080a2ba4/reference/jp/screen.png), [US](ui/scene_080a2ba4/reference/us/screen.png), [EU](ui/scene_080a2ba4/reference/eu/screen.png), [DE](ui/scene_080a2ba4/reference/de/screen.png) | Per-region 240-by-160 view; the palette is archive-owned and read-only. |
+| `func_080AE7D0` | [scene](ui/scene_080ae7d0/reference/scene.png) | Two code-priority BG layers; common across all four regions. |
+| `func_080B7164` | [scene](ui/scene_080b7164/reference/scene.png) | Two code-priority BG layers; common across all four regions. |
+| `func_080BCFAC` | [scene](ui/scene_080bcfac/reference/scene.png) | Two code-priority BG layers; common across all four regions. |
+| `func_080C160C` | [scene](ui/scene_080c160c/reference/scene.png) | Two code-priority BG layers; palette begins at BG bank 1. |
+| `func_080B55D0` auxiliary view | [screen](ui/scene_080b55d0_aux/reference/screen.png) | Verified visible auxiliary layers only; not claimed as the full final screen. |
+| `func_08054F40` | [beach base](ui/scene_08054f40_tiles/reference/screen.png) | Static BG3 base only; later dynamic layers are intentionally excluded. |
+| `func_0805AB08` | [three-BG base](ui/scene_0805ab08_tiles/reference/screen.png) | Static BG1/BG2/BG3 initialization result; later state updates are excluded. |
+
+## Native source versus reference
+
+For a scene with an editable/reversible route, work from its `shared/`
+`*.4bpp`, `*.tilemap`, and `*.png` palette files. A reference image may be
+regenerated through the `gfx-ui-scene-*-preview` or
+`gfx-ui-scene-*-reference` Make target listed in that scene's documentation.
+
+Do not treat a linear `*.4bpp` image grid or a raw tilemap dump as a completed
+sprite or background unless this index or the owning scene document explicitly
+identifies a proven layout.
