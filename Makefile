@@ -358,6 +358,8 @@ UI_SCENE_0805AB08_TILES_SOURCES := $(wildcard $(UI_SCENE_0805AB08_TILES_SOURCE_D
 UI_SCENE_0805AB08_TILES_OUTPUT_DIR := $(BUILD_DIR)/graphics/ui/scene_0805ab08_tiles
 UI_SCENE_0805AB08_TILES_STAMP := $(UI_SCENE_0805AB08_TILES_OUTPUT_DIR)/.scene-0805ab08-tiles.stamp
 UI_SCENE_0805AB08_TILES_REGION := $(INTRO_OBJECTS_REGION)
+UI_SCENE_0805AB08_REFERENCE_TOOL := tools/ui_scene_0805ab08_reference.py
+UI_SCENE_0805AB08_REFERENCE_DIR := graphics/ui/scene_0805ab08_tiles/reference
 
 # MapData owns 66 six-layer map records.  This initial pipeline exports every
 # unique retail visual stream as native decoded source and rebuilds it without
@@ -650,7 +652,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 .PHONY: gfx-ui-scene-080bcfac gfx-ui-scene-080bcfac-preview gfx-ui-scene-080bcfac-test gfx-ui-scene-080bcfac-all gfx-ui-scene-080bcfac-patch-test gfx-ui-scene-080bcfac-edit-test
 .PHONY: gfx-ui-scene-080b55d0-aux gfx-ui-scene-080b55d0-aux-reference gfx-ui-scene-080b55d0-aux-test gfx-ui-scene-080b55d0-aux-all gfx-ui-scene-080b55d0-aux-patch-test gfx-ui-scene-080b55d0-aux-edit-test
 .PHONY: gfx-ui-scene-08054f40-tiles gfx-ui-scene-08054f40-reference gfx-ui-scene-08054f40-tiles-test gfx-ui-scene-08054f40-tiles-all gfx-ui-scene-08054f40-tiles-patch-test gfx-ui-scene-08054f40-tiles-edit-test
-.PHONY: gfx-ui-scene-0805ab08-tiles gfx-ui-scene-0805ab08-tiles-test gfx-ui-scene-0805ab08-tiles-all gfx-ui-scene-0805ab08-tiles-patch-test gfx-ui-scene-0805ab08-tiles-edit-test
+.PHONY: gfx-ui-scene-0805ab08-tiles gfx-ui-scene-0805ab08-reference gfx-ui-scene-0805ab08-tiles-test gfx-ui-scene-0805ab08-tiles-all gfx-ui-scene-0805ab08-tiles-patch-test gfx-ui-scene-0805ab08-tiles-edit-test
 oam-pack: $(OAM_PACK)
 oam-pack-test: $(OAM_PACK) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba $(PORTRAIT_SOURCE_DIR)/full/000_TALK_PORTRAIT_RICK_NORMAL.png
 	@mkdir -p $(BUILD_DIR)/graphics/oam_pack
@@ -839,6 +841,9 @@ gfx-ui-scene-08054f40-tiles-patch-test: gfx-ui-scene-08054f40-tiles-all $(UI_SCE
 gfx-ui-scene-08054f40-tiles-edit-test: $(UI_SCENE_08054F40_TILES_TOOL) baserom_jp.gba
 	@$(PYTHON) $(UI_SCENE_08054F40_TILES_TOOL) --profile 08054f40_tiles edit-test --region jp --rom baserom_jp.gba
 gfx-ui-scene-0805ab08-tiles: $(UI_SCENE_0805AB08_TILES_STAMP)
+gfx-ui-scene-0805ab08-reference: $(UI_SCENE_0805AB08_REFERENCE_TOOL) $(UI_SCENE_0805AB08_TILES_SOURCES) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
+	@$(PYTHON) $(UI_SCENE_0805AB08_REFERENCE_TOOL) --source-dir $(UI_SCENE_0805AB08_TILES_SOURCE_DIR) --reference-dir $(UI_SCENE_0805AB08_REFERENCE_DIR) \
+	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
 gfx-ui-scene-0805ab08-tiles-test: gfx-ui-scene-0805ab08-tiles $(UI_SCENE_0805AB08_TILES_TOOL)
 	@$(PYTHON) $(UI_SCENE_0805AB08_TILES_TOOL) --profile 0805ab08_tiles verify --region $(UI_SCENE_0805AB08_TILES_REGION) --rom $(BASE_ROM) \
 	  --source-dir $(UI_SCENE_0805AB08_TILES_SOURCE_DIR) --output-dir $(UI_SCENE_0805AB08_TILES_OUTPUT_DIR)
@@ -1176,7 +1181,7 @@ ifneq (,$(filter gfx-ui-scene-08054f40-tiles gfx-ui-scene-08054f40-reference gfx
 ALL_DEPS :=
 endif
 
-ifneq (,$(filter gfx-ui-scene-0805ab08-tiles gfx-ui-scene-0805ab08-tiles-test gfx-ui-scene-0805ab08-tiles-all gfx-ui-scene-0805ab08-tiles-patch-test gfx-ui-scene-0805ab08-tiles-edit-test,$(MAKECMDGOALS)))
+ifneq (,$(filter gfx-ui-scene-0805ab08-tiles gfx-ui-scene-0805ab08-reference gfx-ui-scene-0805ab08-tiles-test gfx-ui-scene-0805ab08-tiles-all gfx-ui-scene-0805ab08-tiles-patch-test gfx-ui-scene-0805ab08-tiles-edit-test,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 

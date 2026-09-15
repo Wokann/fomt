@@ -219,6 +219,16 @@ for all four retail regions with:
 make gfx-ui-scene-08054f40-reference
 ```
 
+`ui/scene_0805ab08_tiles/reference/` is a further code-backed static view:
+the initializer expands four row templates into three BG maps and configures
+their priorities. Its palette copy also crosses a resource-label boundary, so
+the PNGs are checked references while `tiles.4bpp` remains the editable
+source. Regenerate it with:
+
+```console
+make gfx-ui-scene-0805ab08-reference
+```
+
 ## Shared UI tile grid
 
 `ui/shared_resource/shared_resource.png` is the first production use of the
