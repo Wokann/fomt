@@ -6291,8 +6291,227 @@ func_08075A5C: @ 0x08075A5C
     pop {r4}
     pop {r1}
     bx r1
-    jp_code_0803ee_func func_08075E24, 0x75A80, 0x76600
-    jp_code_0803ee_func func_080769A0, 0x76600, 0x767C4
+    jp_code_0803ee_func func_08075E24, 0x75A80, 0x75EEC
+    jp_code_0803ee_func func_0807628C, 0x75EEC, 0x76600
+    .global func_080769A0
+    .thumb_func
+func_080769A0: @ 0x08076600
+    push {r4, r5, r6, r7, lr}
+    mov r7, sb
+    mov r6, r8
+    push {r6, r7}
+    sub sp, #0x18
+    adds r6, r0, #0
+    bl func_08008918
+    mov r1, sp
+    movs r2, #0x3f
+    strh r2, [r1]
+    adds r0, #0x50
+    strh r2, [r0]
+    adds r0, r6, #0
+    bl func_08008918
+    adds r1, r0, #0
+    add r4, sp, #4
+    movs r0, #0
+    str r0, [sp, #4]
+    str r0, [r4, #4]
+    ldr r0, .Ljp_080766C0
+    str r0, [sp, #0xc]
+    add r0, sp, #0x10
+    bl func_08009300
+    ldr r1, .Ljp_080766C4
+    add r0, sp, #0x10
+    movs r2, #1
+    movs r3, #1
+    bl func_0800934C
+    adds r0, r6, #0
+    bl func_08008940
+    ldr r1, [r0, #8]
+    ldr r2, [r1, #0x10]
+    adds r1, r4, #0
+    bl _call_via_r2
+    movs r0, #0
+    mov r8, r0
+    adds r0, r6, #0
+    bl GetSelectionIndex
+    lsls r5, r0, #4
+    mov sb, r4
+.Ljp_0807665E:
+    adds r0, r6, #0
+    bl func_080087C8
+    adds r0, r6, #0
+    bl func_080088B8
+    adds r0, r6, #0
+    bl func_080088C4
+    str r0, [sp, #0x14]
+    adds r0, r6, #0
+    bl func_080088CC
+    adds r4, r0, #0
+    adds r0, r6, #0
+    bl func_080088D4
+    adds r7, r0, #0
+    ldr r1, [sp, #4]
+    rsbs r0, r1, #0
+    orrs r0, r1
+    cmp r0, #0
+    blt .Ljp_080766FC
+    mov r1, r8
+    cmp r1, #0
+    beq .Ljp_08076694
+    b .Ljp_080767AE
+.Ljp_08076694:
+    movs r0, #2
+    ands r0, r4
+    cmp r0, #0
+    beq .Ljp_080766C8
+    movs r0, #1
+    mov r8, r0
+    add r0, sp, #0x10
+    ldr r1, .Ljp_080766C4
+    movs r2, #1
+    movs r3, #1
+    bl func_08009378
+    adds r0, r6, #0
+    bl func_08008940
+    ldr r1, [r0, #8]
+    ldr r2, [r1, #0x10]
+    mov r1, sb
+    bl _call_via_r2
+    b .Ljp_080766FC
+    .align 2, 0
+.Ljp_080766C0: .4byte vtable_unk_080E5B80
+.Ljp_080766C4: .4byte 0x00000889
+.Ljp_080766C8:
+    movs r1, #0x8e
+    lsls r1, r1, #1
+    adds r0, r6, r1
+    ldrb r0, [r0]
+    cmp r0, #0
+    beq .Ljp_080766FC
+    movs r0, #4
+    ands r0, r4
+    cmp r0, #0
+    beq .Ljp_080766FC
+    movs r0, #1
+    mov r8, r0
+    add r0, sp, #0x10
+    ldr r1, .Ljp_0807671C
+    movs r2, #1
+    movs r3, #1
+    bl func_08009378
+    adds r0, r6, #0
+    bl func_08008940
+    ldr r1, [r0, #8]
+    ldr r2, [r1, #0x10]
+    mov r1, sb
+    bl _call_via_r2
+.Ljp_080766FC:
+    add r3, sp, #0x14
+    ldrb r1, [r3]
+    movs r0, #0x40
+    ands r0, r1
+    adds r2, r3, #0
+    cmp r0, #0
+    beq .Ljp_08076736
+    cmp r5, #0
+    ble .Ljp_0807672E
+    ldrb r1, [r2, #1]
+    movs r0, #1
+    ands r0, r1
+    cmp r0, #0
+    beq .Ljp_08076720
+    subs r5, #0x80
+    b .Ljp_0807672E
+    .align 2, 0
+.Ljp_0807671C: .4byte 0x00000889
+.Ljp_08076720:
+    movs r0, #2
+    ands r0, r1
+    cmp r0, #0
+    beq .Ljp_0807672C
+    subs r5, #8
+    b .Ljp_0807672E
+.Ljp_0807672C:
+    subs r5, #0x40
+.Ljp_0807672E:
+    cmp r5, #0
+    bge .Ljp_08076776
+    movs r5, #0
+    b .Ljp_08076776
+.Ljp_08076736:
+    movs r0, #0x80
+    ands r0, r1
+    cmp r0, #0
+    beq .Ljp_08076780
+    ldr r0, [r6, #8]
+    ldr r0, [r0, #4]
+    movs r1, #0xe
+    ldrsh r0, [r0, r1]
+    subs r0, #0xa0
+    lsls r0, r0, #0x10
+    asrs r2, r0, #0x10
+    asrs r0, r5, #4
+    cmp r0, r2
+    bge .Ljp_0807676E
+    ldrb r1, [r3, #1]
+    movs r0, #1
+    ands r0, r1
+    cmp r0, #0
+    beq .Ljp_08076760
+    adds r5, #0x80
+    b .Ljp_0807676E
+.Ljp_08076760:
+    movs r0, #2
+    ands r0, r1
+    cmp r0, #0
+    beq .Ljp_0807676C
+    adds r5, #8
+    b .Ljp_0807676E
+.Ljp_0807676C:
+    adds r5, #0x40
+.Ljp_0807676E:
+    asrs r0, r5, #4
+    cmp r0, r2
+    ble .Ljp_08076776
+    lsls r5, r2, #4
+.Ljp_08076776:
+    asrs r1, r5, #4
+    adds r0, r6, #0
+    bl SetSelectionIndex
+    b .Ljp_080767A6
+.Ljp_08076780:
+    lsls r1, r7, #0x1b
+    lsls r0, r7, #0x1a
+    lsrs r1, r1, #0x1f
+    lsrs r0, r0, #0x1f
+    cmp r1, r0
+    beq .Ljp_080767A6
+    ldr r2, [r6, #4]
+    lsls r0, r7, #0x18
+    lsrs r0, r0, #0x1c
+    movs r1, #1
+    bics r1, r0
+    ldr r2, [r2, #0xc]
+    adds r0, r6, #0
+    bl _call_via_r2
+    adds r0, r6, #0
+    bl GetSelectionIndex
+    lsls r5, r0, #4
+.Ljp_080767A6:
+    adds r0, r6, #0
+    bl func_0807628C
+    b .Ljp_0807665E
+.Ljp_080767AE:
+    mov r0, sb
+    movs r1, #2
+    bl func_080094B8
+    add sp, #0x18
+    pop {r3, r4}
+    mov r8, r3
+    mov sb, r4
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
     jp_code_0803ee_func func_08076B64, 0x767C4, 0x767F4
     jp_code_0803ee_func func_08076B94, 0x767F4, 0x76840
     .section .text.get_selection_index_after
