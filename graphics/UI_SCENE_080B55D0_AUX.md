@@ -22,12 +22,24 @@ regions:
 | EU | `0x72C62C` | `0x72C8A8` |
 | DE | `0x4B38A4` | `0x4B3B20` |
 
-The code also copies `0x200` bytes beginning at `gUnk_0872D5AC` into palette
-memory, yet its declared assembly range is only `0x20` bytes. This crosses
-multiple unclassified data boundaries, so the palette copy remains unmanaged.
+The full scene also loads a compressed `0x1E0`-byte palette stream at
+`gUnk_086FD19C` to BG palette bank 0, then copies `0x200` bytes beginning at
+`gUnk_0872D5AC` to `0x050000E0` (BG bank 7 through into OBJ palette RAM).
+The auxiliary maps use BG bank 2 and bank 7 respectively, so those two runtime
+operations prove the colours of the visible auxiliary layers. Both ranges
+overlap other resource classes, therefore neither is an independently editable
+palette source.
+
+`reference/layer_0.png`, `layer_1.png`, `scene.png`, and the 240-by-160
+`screen.png` are consequently verified read-only references. The latter is
+only the auxiliary BG composition: the routine's larger unhandled main stream
+and later objects may add further runtime content. Before emitting the PNGs,
+the renderer verifies the two palette operations, their decoded format, and
+all four retail regions. No JSON layout sidecar is used.
 
 ```console
 make gfx-ui-scene-080b55d0-aux-all
+make gfx-ui-scene-080b55d0-aux-reference
 make gfx-ui-scene-080b55d0-aux-patch-test
 ```
 

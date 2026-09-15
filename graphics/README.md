@@ -197,6 +197,15 @@ not an authoring input. Regenerate and validate all four views with:
 make gfx-ui-scene-080a2ba4-reference
 ```
 
+`ui/scene_080b55d0_aux/reference/` follows the same read-only rule. Its two
+visible BG maps depend on palette operations that overlap other resource
+classes; the preview is a verified auxiliary-layer composition, not a claim to
+show the routine's full final screen. Regenerate it with:
+
+```console
+make gfx-ui-scene-080b55d0-aux-reference
+```
+
 ## Shared UI tile grid
 
 `ui/shared_resource/shared_resource.png` is the first production use of the
