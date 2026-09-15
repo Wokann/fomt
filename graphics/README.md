@@ -208,6 +208,17 @@ show the routine's full final screen. Regenerate it with:
 make gfx-ui-scene-080b55d0-aux-reference
 ```
 
+`ui/scene_08054f40_tiles/reference/` similarly exposes the routine's proven
+static beach BG3 base. Its map and palette are runtime inputs rather than
+editable sources: the map's packed encoder has not been independently
+reconstructed and the palette copy crosses the next labelled resource. The
+existing 4bpp tile stream remains reversible. Regenerate the checked preview
+for all four retail regions with:
+
+```console
+make gfx-ui-scene-08054f40-reference
+```
+
 ## Shared UI tile grid
 
 `ui/shared_resource/shared_resource.png` is the first production use of the
