@@ -6271,7 +6271,26 @@ func_08075DEC: @ 0x08075A48
     bx r0
     .align 2, 0
 .Ljp_08075A58: .4byte vtable_unk_080E6F98_Subtable
-    jp_code_0803ee_func func_08075A5C, 0x75A5C, 0x75A80
+    .global func_08075A5C
+    .thumb_func
+func_08075A5C: @ 0x08075A5C
+    push {r4, lr}
+    adds r4, r0, #0
+    ldr r0, [r4, #0xc]
+    ldr r1, [r4, #0x10]
+    ldr r2, [r4, #0x14]
+    bl func_08008E64
+    ldr r1, [r4, #0x1c]
+    cmp r1, #0
+    beq .Ljp_08075A78
+    ldr r0, [r4, #0x18]
+    ldr r2, [r4, #0x20]
+    bl func_08008E64
+.Ljp_08075A78:
+    movs r0, #0
+    pop {r4}
+    pop {r1}
+    bx r1
     jp_code_0803ee_func func_08075E24, 0x75A80, 0x76600
     jp_code_0803ee_func func_080769A0, 0x76600, 0x767C4
     jp_code_0803ee_func func_08076B64, 0x767C4, 0x767F4
@@ -115212,13 +115231,23 @@ func_08075DEC: @ 0x08075DEC
 	.global func_08075E00
 	.thumb_func
 func_08075E00:
-	.byte 0x10, 0xB5, 0x04, 0x1C, 0xE0, 0x68, 0x21, 0x69, 0x62, 0x69
+	push {r4, lr}
+	adds r4, r0, #0
+	ldr r0, [r4, #0xc]
+	ldr r1, [r4, #0x10]
+	ldr r2, [r4, #0x14]
 	bl func_08008E64
-	.byte 0xE1, 0x69
-	.byte 0x00, 0x29, 0x03, 0xD0, 0xA0, 0x69, 0x22, 0x6A
+	ldr r1, [r4, #0x1c]
+	cmp r1, #0
+	beq .L08075E1C
+	ldr r0, [r4, #0x18]
+	ldr r2, [r4, #0x20]
 	bl func_08008E64
-	.byte 0x00, 0x20, 0x10, 0xBC
-	.byte 0x02, 0xBC, 0x08, 0x47
+.L08075E1C:
+	movs r0, #0
+	pop {r4}
+	pop {r1}
+	bx r1
 
 	thumb_func_start func_08075E24
 func_08075E24: @ 0x08075E24
