@@ -6260,7 +6260,17 @@ func_08075C88: @ 0x080758E4
     bx r0
     .align 2, 0
     .section .text.clear_scroll_buffer_after
-    jp_code_0803ee_func func_08075DEC, 0x75A48, 0x75A5C
+    .global func_08075DEC
+    .thumb_func
+func_08075DEC: @ 0x08075A48
+    push {lr}
+    ldr r2, .Ljp_08075A58
+    str r2, [r0, #8]
+    bl func_080098AC
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_08075A58: .4byte vtable_unk_080E6F98_Subtable
     jp_code_0803ee_func func_08075A5C, 0x75A5C, 0x75A80
     jp_code_0803ee_func func_08075E24, 0x75A80, 0x76600
     jp_code_0803ee_func func_080769A0, 0x76600, 0x767C4

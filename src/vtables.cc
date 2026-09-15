@@ -5480,25 +5480,30 @@ extern RawVTableFunction const vtable_unk_080E7B4C[]
         nullptr,
 #if defined(REGION_JP)
         func_0807532C,
-        nullptr,
 #else
         func_0807561C,
         func_0807565C,
 #endif
     };
 
-extern RawVTableFunction const vtable_unk_080E7B5C[]
-    SECTION(".rodata.vtable_7b5c") = {
 #if defined(REGION_JP)
+// This four-slot JP sub-vtable begins at the original physical address
+// 0x080E6F98. It directly follows the three-slot JP prefix above.
+extern RawVTableFunction const vtable_unk_080E6F98_Subtable[]
+    SECTION(".rodata.vtable_7b4c") = {
+        nullptr,
         nullptr,
         func_08075A5C,
         func_08075DEC,
+    };
 #else
+extern RawVTableFunction const vtable_unk_080E7B5C[]
+    SECTION(".rodata.vtable_7b5c") = {
         nullptr,
         nullptr,
         func_080756D0,
-#endif
     };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E7B68[]
     SECTION(".rodata.vtable_7b68") = {
