@@ -14989,9 +14989,57 @@ sub_0807BD78:
 .Ljp_poultry_state_case_0_item_1_inventory_full_text: .4byte gText_PoultryShop_InventoryFull
 .Ljp_poultry_state_case_0_item_1_inventory_state_offset: .4byte 0x000006A4
 .Ljp_poultry_state_case_0_item_1_prepare_amounts:
-    jp_code_0803ee_bytes 0x7C108, 0x7C2B4
+    ldr r0, [r7, #8]
+    ldr r6, .Ljp_poultry_state_case_0_item_1_amount_rucksack_offset
+    adds r0, r0, r6
+    ldr r1, [sp, #0x10]
+    bl GetAmountOfTool__C8RucksackUi
+    adds r6, r0, #0
+    movs r0, #0
+    mov r8, r0
+    ldr r0, [r7, #8]
+    movs r1, #0xe0
+    lsls r1, r1, #2
+    adds r0, r0, r1
+    ldr r1, [sp, #0x10]
+    bl GetAmountOf__C9ToolChestUi
+    adds r4, r0, #0
+    ldr r0, [r7, #8]
+    ldr r5, .Ljp_poultry_state_case_0_item_1_amount_stack_offset
+    adds r0, r0, r5
+    bl IsEmpty__C9ToolStack
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Ljp_poultry_state_case_0_item_1_build_prompt
+    ldr r0, [r7, #8]
+    adds r0, r0, r5
+    bl GetTool__C9ToolStack
+    adds r1, r0, #0
+    mov r0, sp
+    adds r0, #0x7e
+    strb r1, [r0]
+    bl GetId__C4Tool
+    movs r2, #0
+    ldr r1, [sp, #0x10]
+    cmp r0, r1
+    bne .Ljp_poultry_state_case_0_item_1_stack_type_checked
+    movs r2, #1
+.Ljp_poultry_state_case_0_item_1_stack_type_checked:
+    cmp r2, #0
+    beq .Ljp_poultry_state_case_0_item_1_build_prompt
+    ldr r0, [r7, #8]
+    adds r0, r0, r5
+    bl GetAmount__C9ToolStack
+    mov r8, r0
+.Ljp_poultry_state_case_0_item_1_build_prompt:
+    jp_code_0803ee_bytes 0x7C166, 0x7C2B4
 .Ljp_poultry_state_case_0_item_1_continue:
-    jp_code_0803ee_bytes 0x7C2B4, 0x7C2E0
+    jp_code_0803ee_bytes 0x7C2B4, 0x7C2C0
+    .align 2, 0
+.Ljp_poultry_state_case_0_item_1_amount_rucksack_offset: .4byte 0x00001C38
+.Ljp_poultry_state_case_0_item_1_amount_stack_offset: .4byte 0x00001C34
+.Ljp_poultry_state_case_0_item_1_after_amount_literals:
+    jp_code_0803ee_bytes 0x7C2C8, 0x7C2E0
 .Ljp_poultry_state_case_0_item_2:
     jp_code_0803ee_bytes 0x7C2E0, 0x7C3A0
 .Ljp_poultry_state_case_0_item_3:
