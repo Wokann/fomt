@@ -966,7 +966,1836 @@ func_0809EED0: @ 0x0809E908
 .Ljp_0809E91C:
     pop {r1}
     bx r1
-    jp_code_809_func func_0809EEE8, 0x9E920, 0x9F874
+    .global func_0809EEE8
+    .thumb_func
+func_0809EEE8: @ 0x0809E920
+	push {r4, r5, r6, r7, lr}
+	mov r7, sl
+	mov r6, sb
+	mov r5, r8
+	push {r5, r6, r7}
+	ldr r4, .L0809F2DC @ =0xFFFFFD68
+	add sp, r4
+	adds r7, r0, #0
+	ldrb r1, [r7]
+	movs r0, #0x40
+	rsbs r0, r0, #0
+	ands r0, r1
+	strb r0, [r7]
+	ldrh r1, [r7]
+	ldr r0, .L0809F2E0 @ =0xFFFFE03F
+	ands r0, r1
+	strh r0, [r7]
+	ldr r0, [r7]
+	ldr r1, .L0809F2E4 @ =0xFFE01FFF
+	ands r0, r1
+	str r0, [r7]
+	ldrb r1, [r7, #2]
+	movs r0, #0x21
+	rsbs r0, r0, #0
+	ands r0, r1
+	strb r0, [r7, #2]
+	ldrh r1, [r7, #2]
+	ldr r0, .L0809F2E8 @ =0xFFFFFE3F
+	ands r0, r1
+	strh r0, [r7, #2]
+	ldrb r1, [r7, #3]
+	movs r0, #3
+	rsbs r0, r0, #0
+	ands r0, r1
+	movs r1, #0x1d
+	rsbs r1, r1, #0
+	ands r0, r1
+	strb r0, [r7, #3]
+	adds r0, r7, #4
+	bl func_0809E9B8
+	adds r1, r7, #0
+	adds r1, #0x2c
+	movs r0, #0
+	strb r0, [r1]
+	adds r2, r7, #0
+	adds r2, #0x2d
+	ldrb r1, [r2]
+	subs r0, #4
+	ands r0, r1
+	movs r1, #0x7d
+	rsbs r1, r1, #0
+	ands r0, r1
+	strb r0, [r2]
+	adds r0, r7, #0
+	adds r0, #0x30
+	movs r1, #0
+	bl func_080A17A0
+	adds r0, r7, #0
+	adds r0, #0x38
+	movs r1, #1
+	bl func_080A17A0
+	adds r0, r7, #0
+	adds r0, #0x40
+	movs r1, #2
+	bl func_080A17A0
+	adds r0, r7, #0
+	adds r0, #0x48
+	movs r1, #0
+	bl func_080A1890
+	adds r0, r7, #0
+	adds r0, #0x50
+	movs r1, #1
+	bl func_080A1890
+	adds r0, r7, #0
+	adds r0, #0x58
+	movs r1, #2
+	bl func_080A1890
+	adds r0, r7, #0
+	adds r0, #0x60
+	bl func_080A198C
+	adds r0, r7, #0
+	adds r0, #0x68
+	bl func_080A19EC
+	movs r0, #0x70
+	adds r0, r0, r7
+	mov r8, r0
+	add r1, sp, #8
+	ldrh r2, [r1]
+	ldr r5, .L0809F2EC @ =0xFFFFFC00
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	movs r0, #0
+	mov sl, r0
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	mov r4, sp
+	mov r0, sp
+	movs r2, #6
+	bl memcpy
+	mov r1, sl
+	strb r1, [r4, #6]
+	mov r0, sp
+	mov r1, sp
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	mov r1, sp
+	bl __3NpcRC13ActorLocation
+	movs r2, #0x84
+	adds r2, r2, r7
+	mov r8, r2
+	add r1, sp, #0x18
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x10
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, sl
+	strb r0, [r4, #6]
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	adds r1, r4, #0
+	bl __3NpcRC13ActorLocation
+	movs r1, #0x98
+	adds r1, r1, r7
+	mov r8, r1
+	add r1, sp, #0x28
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x20
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, sl
+	strb r0, [r4, #6]
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	adds r1, r4, #0
+	bl __12BacheloretteRC13ActorLocation
+	movs r1, #0xb0
+	adds r1, r1, r7
+	mov r8, r1
+	add r1, sp, #0x38
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x30
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, sl
+	strb r0, [r4, #6]
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	adds r1, r4, #0
+	bl __3NpcRC13ActorLocation
+	movs r1, #0xc4
+	adds r1, r1, r7
+	mov r8, r1
+	add r1, sp, #0x48
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x40
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, sl
+	strb r0, [r4, #6]
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	adds r1, r4, #0
+	bl __3NpcRC13ActorLocation
+	movs r1, #0xd8
+	adds r1, r1, r7
+	mov r8, r1
+	add r1, sp, #0x58
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x50
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, sl
+	strb r0, [r4, #6]
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	adds r1, r4, #0
+	bl func_0809EC90
+	movs r1, #0xf0
+	adds r1, r1, r7
+	mov r8, r1
+	add r1, sp, #0x68
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x60
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, sl
+	strb r0, [r4, #6]
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	adds r1, r4, #0
+	bl __3NpcRC13ActorLocation
+	movs r1, #0x82
+	lsls r1, r1, #1
+	adds r1, r1, r7
+	mov r8, r1
+	add r1, sp, #0x78
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x70
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, sl
+	strb r0, [r4, #6]
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	adds r1, r4, #0
+	bl __3NpcRC13ActorLocation
+	movs r1, #0x8c
+	lsls r1, r1, #1
+	adds r1, r1, r7
+	mov r8, r1
+	add r1, sp, #0x88
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x80
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, sl
+	strb r0, [r4, #6]
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	adds r1, r4, #0
+	bl __3NpcRC13ActorLocation
+	movs r1, #0x96
+	lsls r1, r1, #1
+	adds r1, r1, r7
+	mov r8, r1
+	add r1, sp, #0x98
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	b .L0809F2F0
+	.align 2, 0
+.L0809F2DC: .4byte 0xFFFFFD68
+.L0809F2E0: .4byte 0xFFFFE03F
+.L0809F2E4: .4byte 0xFFE01FFF
+.L0809F2E8: .4byte 0xFFFFFE3F
+.L0809F2EC: .4byte 0xFFFFFC00
+.L0809F2F0:
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x90
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, sl
+	strb r0, [r4, #6]
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	adds r1, r4, #0
+	bl __3NpcRC13ActorLocation
+	movs r1, #0xa0
+	lsls r1, r1, #1
+	adds r1, r1, r7
+	mov r8, r1
+	add r1, sp, #0xa8
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0xa0
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, sl
+	strb r0, [r4, #6]
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	adds r1, r4, #0
+	bl __3NpcRC13ActorLocation
+	movs r1, #0xaa
+	lsls r1, r1, #1
+	adds r1, r1, r7
+	mov r8, r1
+	add r1, sp, #0xb8
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0xb0
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, sl
+	strb r0, [r4, #6]
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	adds r1, r4, #0
+	bl __12BacheloretteRC13ActorLocation
+	movs r1, #0xb6
+	lsls r1, r1, #1
+	adds r1, r1, r7
+	mov r8, r1
+	add r1, sp, #0xc8
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0xc0
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, sl
+	strb r0, [r4, #6]
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	adds r1, r4, #0
+	bl __3NpcRC13ActorLocation
+	movs r1, #0xc0
+	lsls r1, r1, #1
+	adds r1, r1, r7
+	mov r8, r1
+	add r1, sp, #0xd8
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0xd0
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, sl
+	strb r0, [r4, #6]
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	adds r1, r4, #0
+	bl __3NpcRC13ActorLocation
+	movs r1, #0xca
+	lsls r1, r1, #1
+	adds r1, r1, r7
+	mov r8, r1
+	add r1, sp, #0xe8
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0xe0
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, sl
+	strb r0, [r4, #6]
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	adds r1, r4, #0
+	bl __3NpcRC13ActorLocation
+	movs r1, #0xd4
+	lsls r1, r1, #1
+	adds r1, r1, r7
+	mov r8, r1
+	add r1, sp, #0xf8
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0xf0
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, sl
+	strb r0, [r4, #6]
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	adds r1, r4, #0
+	bl __3NpcRC13ActorLocation
+	movs r1, #0xde
+	lsls r1, r1, #1
+	adds r1, r1, r7
+	mov r8, r1
+	add r1, sp, #0x108
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x100
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, sl
+	strb r0, [r4, #6]
+	add r4, sp, #0x100
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	adds r1, r4, #0
+	bl __3NpcRC13ActorLocation
+	movs r1, #0xe8
+	lsls r1, r1, #1
+	adds r1, r1, r7
+	mov r8, r1
+	add r1, sp, #0x118
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x110
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, sl
+	strb r0, [r4, #6]
+	add r4, sp, #0x110
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	adds r1, r4, #0
+	bl __3NpcRC13ActorLocation
+	movs r1, #0xf2
+	lsls r1, r1, #1
+	adds r1, r1, r7
+	mov r8, r1
+	add r1, sp, #0x128
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x120
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, sl
+	strb r0, [r4, #6]
+	add r4, sp, #0x120
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	adds r1, r4, #0
+	bl __12BacheloretteRC13ActorLocation
+	movs r1, #0xfe
+	lsls r1, r1, #1
+	adds r1, r1, r7
+	mov r8, r1
+	add r1, sp, #0x138
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x130
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, sl
+	strb r0, [r4, #6]
+	add r4, sp, #0x130
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	adds r1, r4, #0
+	bl __3NpcRC13ActorLocation
+	movs r1, #0x84
+	lsls r1, r1, #2
+	adds r1, r1, r7
+	mov r8, r1
+	add r1, sp, #0x148
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x140
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, sl
+	strb r0, [r4, #6]
+	add r4, sp, #0x140
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	adds r1, r4, #0
+	bl __12BacheloretteRC13ActorLocation
+	movs r1, #0x8a
+	lsls r1, r1, #2
+	adds r1, r1, r7
+	mov r8, r1
+	add r1, sp, #0x158
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x150
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, sl
+	strb r0, [r4, #6]
+	add r4, sp, #0x150
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	adds r1, r4, #0
+	bl __3NpcRC13ActorLocation
+	movs r1, #0x8f
+	lsls r1, r1, #2
+	adds r1, r1, r7
+	mov r8, r1
+	add r1, sp, #0x168
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x160
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, sl
+	strb r0, [r4, #6]
+	add r4, sp, #0x160
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	adds r1, r4, #0
+	bl __3NpcRC13ActorLocation
+	movs r1, #0x94
+	lsls r1, r1, #2
+	adds r1, r1, r7
+	mov r8, r1
+	add r1, sp, #0x178
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x170
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, sl
+	strb r0, [r4, #6]
+	add r4, sp, #0x170
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	adds r1, r4, #0
+	bl __3NpcRC13ActorLocation
+	movs r1, #0x99
+	lsls r1, r1, #2
+	adds r1, r1, r7
+	mov r8, r1
+	add r1, sp, #0x188
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x180
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, sl
+	strb r0, [r4, #6]
+	add r4, sp, #0x180
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, r8
+	adds r1, r4, #0
+	bl __12BacheloretteRC13ActorLocation
+	movs r1, #0x9f
+	lsls r1, r1, #2
+	adds r1, r1, r7
+	mov sb, r1
+	add r1, sp, #0x198
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	mov r8, r0
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x190
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r1, sl
+	strb r1, [r4, #6]
+	add r4, sp, #0x190
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, sb
+	adds r1, r4, #0
+	bl __3NpcRC13ActorLocation
+	movs r2, #0xa4
+	lsls r2, r2, #2
+	adds r6, r7, r2
+	add r1, sp, #0x1a8
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r0, [r1, #3]
+	movs r2, #3
+	ands r2, r0
+	strb r2, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x1a0
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r1, sl
+	strb r1, [r4, #6]
+	add r4, sp, #0x1a0
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	adds r0, r6, #0
+	adds r1, r4, #0
+	bl func_0809EB4C
+	movs r2, #0xaa
+	lsls r2, r2, #2
+	adds r2, r2, r7
+	mov sl, r2
+	add r1, sp, #0x1b8
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	mov r0, r8
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	mov r0, r8
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x1b0
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	movs r0, #0
+	strb r0, [r4, #6]
+	add r4, sp, #0x1b0
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, sl
+	adds r1, r4, #0
+	bl __3NpcRC13ActorLocation
+	movs r1, #0xaf
+	lsls r1, r1, #2
+	adds r1, r1, r7
+	mov sl, r1
+	add r1, sp, #0x1c8
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	mov r0, r8
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	mov r0, r8
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x1c0
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	movs r0, #0
+	strb r0, [r4, #6]
+	add r4, sp, #0x1c0
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, sl
+	adds r1, r4, #0
+	bl __3NpcRC13ActorLocation
+	movs r1, #0xb4
+	lsls r1, r1, #2
+	adds r1, r1, r7
+	mov sl, r1
+	add r1, sp, #0x1d8
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	mov r0, r8
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	mov r0, r8
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x1d0
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	movs r0, #0
+	strb r0, [r4, #6]
+	add r4, sp, #0x1d0
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, sl
+	adds r1, r4, #0
+	bl __3NpcRC13ActorLocation
+	movs r1, #0xb9
+	lsls r1, r1, #2
+	adds r1, r1, r7
+	mov sl, r1
+	add r1, sp, #0x1e8
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	mov r0, r8
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	mov r0, r8
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x1e0
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	movs r0, #0
+	strb r0, [r4, #6]
+	add r4, sp, #0x1e0
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, sl
+	adds r1, r4, #0
+	bl __12BacheloretteRC13ActorLocation
+	movs r1, #0xbf
+	lsls r1, r1, #2
+	adds r1, r1, r7
+	mov sl, r1
+	add r1, sp, #0x1f8
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	mov r0, r8
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	mov r0, r8
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x1f0
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	movs r0, #0
+	strb r0, [r4, #6]
+	add r4, sp, #0x1f0
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, sl
+	adds r1, r4, #0
+	bl __3NpcRC13ActorLocation
+	movs r1, #0xc4
+	lsls r1, r1, #2
+	adds r1, r1, r7
+	mov sl, r1
+	add r1, sp, #0x208
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	mov r0, r8
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r0, [r1, #3]
+	mov r2, r8
+	ands r2, r0
+	strb r2, [r1, #3]
+	ldrh r0, [r1, #4]
+	ands r5, r0
+	strh r5, [r1, #4]
+	add r4, sp, #0x200
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	movs r0, #0
+	strb r0, [r4, #6]
+	add r4, sp, #0x200
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, sl
+	adds r1, r4, #0
+	bl func_0809EE8C
+	movs r1, #0xca
+	lsls r1, r1, #2
+	adds r1, r1, r7
+	mov sl, r1
+	add r1, sp, #0x218
+	movs r2, #0x8d
+	lsls r2, r2, #2
+	mov r8, r2
+	ldrh r2, [r1]
+	ldr r5, .L0809FE30 @ =0xFFFFFC00
+	adds r0, r5, #0
+	ands r0, r2
+	mov r2, r8
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x210
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	movs r0, #0
+	strb r0, [r4, #6]
+	add r4, sp, #0x210
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, sl
+	adds r1, r4, #0
+	bl __3NpcRC13ActorLocation
+	movs r1, #0xcf
+	lsls r1, r1, #2
+	adds r1, r1, r7
+	mov sl, r1
+	add r1, sp, #0x228
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	mov r2, r8
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x220
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	movs r0, #0
+	strb r0, [r4, #6]
+	add r4, sp, #0x220
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, sl
+	adds r1, r4, #0
+	bl __13HarvestSpriteRC13ActorLocation
+	movs r1, #0xd8
+	lsls r1, r1, #2
+	adds r1, r1, r7
+	mov sl, r1
+	add r1, sp, #0x238
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	mov r2, r8
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x230
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	movs r0, #0
+	strb r0, [r4, #6]
+	add r4, sp, #0x230
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, sl
+	adds r1, r4, #0
+	bl __13HarvestSpriteRC13ActorLocation
+	movs r1, #0xe1
+	lsls r1, r1, #2
+	adds r1, r1, r7
+	mov sl, r1
+	add r1, sp, #0x248
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	mov r2, r8
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x240
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	movs r0, #0
+	strb r0, [r4, #6]
+	add r4, sp, #0x240
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, sl
+	adds r1, r4, #0
+	bl __13HarvestSpriteRC13ActorLocation
+	movs r1, #0xea
+	lsls r1, r1, #2
+	adds r1, r1, r7
+	mov sl, r1
+	add r1, sp, #0x258
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	mov r2, r8
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x250
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	movs r0, #0
+	strb r0, [r4, #6]
+	add r4, sp, #0x250
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, sl
+	adds r1, r4, #0
+	bl __13HarvestSpriteRC13ActorLocation
+	movs r1, #0xf3
+	lsls r1, r1, #2
+	adds r1, r1, r7
+	mov sl, r1
+	add r1, sp, #0x268
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	mov r2, r8
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x260
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	movs r0, #0
+	strb r0, [r4, #6]
+	add r4, sp, #0x260
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, sl
+	adds r1, r4, #0
+	bl __13HarvestSpriteRC13ActorLocation
+	movs r1, #0xfc
+	lsls r1, r1, #2
+	adds r1, r1, r7
+	mov sl, r1
+	add r1, sp, #0x278
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	mov r2, r8
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r2, [r1, #3]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #3]
+	ldrh r2, [r1, #4]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #4]
+	add r4, sp, #0x270
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	movs r0, #0
+	strb r0, [r4, #6]
+	add r4, sp, #0x270
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, sl
+	adds r1, r4, #0
+	bl __13HarvestSpriteRC13ActorLocation
+	ldr r1, .L0809FE34 @ =0x00000414
+	adds r1, r1, r7
+	mov sl, r1
+	add r1, sp, #0x288
+	ldrh r2, [r1]
+	adds r0, r5, #0
+	ands r0, r2
+	mov r2, r8
+	orrs r0, r2
+	strh r0, [r1]
+	ldrb r2, [r1, #1]
+	movs r0, #3
+	ands r0, r2
+	strb r0, [r1, #1]
+	ldrh r2, [r1, #2]
+	adds r0, r5, #0
+	ands r0, r2
+	strh r0, [r1, #2]
+	ldrb r0, [r1, #3]
+	movs r2, #3
+	ands r2, r0
+	strb r2, [r1, #3]
+	ldrh r0, [r1, #4]
+	ands r5, r0
+	strh r5, [r1, #4]
+	add r4, sp, #0x280
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	movs r1, #0
+	strb r1, [r4, #6]
+	add r4, sp, #0x280
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #8
+	bl memcpy
+	mov r0, sl
+	adds r1, r4, #0
+	bl __13HarvestSpriteRC13ActorLocation
+	movs r0, #0x87
+	lsls r0, r0, #3
+	adds r2, r7, r0
+	movs r3, #6
+	movs r5, #0x10
+	rsbs r5, r5, #0
+	movs r4, #1
+	rsbs r4, r4, #0
+.L0809FDFA:
+	ldrb r1, [r2]
+	adds r0, r5, #0
+	ands r0, r1
+	strb r0, [r2]
+	adds r2, #8
+	subs r3, #1
+	cmp r3, r4
+	bne .L0809FDFA
+	movs r1, #0x8e
+	lsls r1, r1, #3
+	adds r0, r7, r1
+	movs r1, #0
+	str r1, [r0]
+	ldr r2, .L0809FE38 @ =0x00000474
+	adds r0, r7, r2
+	strb r1, [r0]
+	adds r0, r7, #0
+	movs r3, #0xa6
+	lsls r3, r3, #2
+	add sp, r3
+	pop {r3, r4, r5}
+	mov r8, r3
+	mov sb, r4
+	mov sl, r5
+	pop {r4, r5, r6, r7}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.L0809FE30: .4byte 0xFFFFFC00
+.L0809FE34: .4byte 0x00000414
+.L0809FE38: .4byte 0x00000474
+
     jp_code_809_func func_0809FE3C, 0x9F874, 0x9F8AC
     jp_code_809_func func_0809FE74, 0x9F8AC, 0x9FC30
     jp_code_809_func func_080A01F8, 0x9FC30, 0x9FD54
