@@ -23,6 +23,14 @@ and DE. The common archive is the data currently exposed under
 `gUnk_086678A0` in non-JP regional assembly; the JP physical match was found
 by the exact complete payload, not by inventing a JP label.
 
+The Farm Status screen constructs a third archive at `0x4D977C` in JP and
+`0x7537D0` in US (with the regional locations recorded by its rebuild tool).
+Town Map uses the same complete `0xEA4` payload. Its consumer path is fully
+bounded: forty group descriptors select valid OAM, 4bpp tile, and BGR555
+palette ranges, and runtime code uploads the latter two ranges to OBJ memory.
+Complete indexed-PNG sources and the fixed-size lossless rebuild are under
+`graphics/ui/farm_status/resource_archive/`.
+
 Recheck the evidence with:
 
 ```console

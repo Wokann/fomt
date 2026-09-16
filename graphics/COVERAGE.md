@@ -24,6 +24,7 @@ image, nor that all game graphics have been extracted.
 | Direct `func_0805AB08` BG tile stream | `graphics/ui/scene_0805ab08_tiles/shared/tiles.4bpp`; read-only `reference/layer_*.png`, `scene.png`, and `screen.png` | one native packed 4bpp tile stream included directly by the original `gUnk_0872F21C` symbol; code-built three-BG maps and crossing palette copy are verified reference inputs | Yes for tile stream; reference inputs only |
 | Farm-status background and building previews | `graphics/ui/farm_status/shared/base_tiles.png`, `base_palettes.png`, and `tilemaps/*.tilemap` | packed 4bpp tile stream, sixteen BGR555 palette banks, and fourteen BG tilemaps | Yes |
 | Farm-status secondary layouts | `graphics/ui/farm_status/shared/secondary_tilemaps/*.tilemap` | six native Huffman-4/LZ3 64-by-44 BG tilemap streams | Yes |
+| Farm Status / Town Map OAM resources | `graphics/ui/farm_status/resource_archive/full/resource_000.png` through `resource_039.png` | one fixed `0xEA4` IndexedResourceArchive, preserving all selection, OAM, palette and descriptor bytes while updating only changed visible 4bpp pixels | Yes |
 | Intro-scene object tile sources | `graphics/intro_scene/shared/object_tiles/*.4bpp` | twenty native Raw-LZ object-tile streams | Yes |
 | Intro-scene startup tilemaps | `graphics/intro_scene/shared/startup_tilemaps/*.tilemap` | four native Huffman-4/LZ3 streams | Yes |
 | Records Screen task icons | `graphics/ui/records_minigame/shared/task_00.png` through `task_06.png` | seven raw 16x16 4bpp grids with individual BGR555 palettes | Yes |
@@ -82,7 +83,6 @@ and keeps unproven streams out of the managed-resource table.
 
 | Candidate family | Evidence | Current conclusion |
 | --- | --- | --- |
-| Farm-status remaining screen data | `FarmStatusScreenResourceDescriptor` and direct ranges adjacent to the managed layouts. | The common tile grid, full palette-bank set, fourteen building-preview tilemaps and six secondary layouts are now managed; surrounding resource classes still need separate format analysis. |
 | Intro-scene OAM composition and palettes | `gUnk_IntroSceneUnpackSource_*` labels decode to twenty managed native 0x500-byte tile sources; `func_0805FBB8` stages them for OBJ use. | The streams are managed, but their full-image OAM composition and per-object palette selectors remain runtime data. No guessed full PNG is treated as source. |
 | Intro-scene startup tilemap presentation | `func_08001A90` decodes four managed 0x1000-byte streams and copies each as two interleaved 32-by-32 BG tilemaps. | Native interleaved tilemaps are managed; their tile-sheet, palette-bank and screen-selection rules still require a separate compositor audit. |
 | Other Records-screen resources | Raw ranges adjacent to the task-icon records, plus page-specific data pointers in the Records Screen code. | The seven direct task icon/palette pairs are now managed; the remaining ranges still need independent consumer and format analysis. |

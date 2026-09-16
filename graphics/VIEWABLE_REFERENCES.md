@@ -18,6 +18,8 @@ grids:
 - [Farm-status buildings](ui/farm_status/reference/) — complete building and
   status-layout renderings backed by their shared tiles, palette banks, and
   native tilemaps.
+- [Farm Status / Town Map OAM resources](ui/farm_status/resource_archive/full/)
+  — complete indexed-PNG authoring sources with native archive descriptors.
 - [Records-screen task icons](ui/records_minigame/shared/) — seven complete
   16-by-16 icons with their native palettes.
 
