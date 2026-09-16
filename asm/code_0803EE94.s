@@ -14686,9 +14686,57 @@ sub_0807BD78:
     .align 2, 0
 .Ljp_poultry_state_case_6_state_offset: .4byte 0x000006A4
 .Ljp_poultry_state_case_7:
-    jp_code_0803ee_bytes 0x7CA3C, 0x7CA9E
+    movs r3, #0xd4
+    lsls r3, r3, #2
+    adds r0, r7, r3
+    ldr r0, [r0]
+    cmp r0, #3
+    beq .Ljp_poultry_state_case_7_confirmed
+    b .Ljp_poultry_state_cleanup
+.Ljp_poultry_state_case_7_confirmed:
+    ldr r0, [r7, #0x1c]
+    bl ClearScrollBuffer
+    adds r0, r7, #0
+    bl func_0807AD2C
+    adds r5, r0, #0
+    movs r4, #0
+    strh r4, [r7, #0xc]
+    movs r6, #0xc9
+    lsls r6, r6, #3
+    adds r1, r7, r6
+    movs r0, #0x28
+    str r0, [r1]
+    ldr r0, [r7, #0x1c]
+    movs r2, #0xc
+    ldrsh r1, [r7, r2]
+    bl ResetScrollPosition
+    ldr r0, [r7, #0x1c]
+    adds r1, r5, #0
+    adds r1, #8
+    lsls r1, r1, #0x13
+    asrs r1, r1, #0x10
+    bl func_08075E24
+    str r4, [r7, #0x10]
+    movs r0, #1
+    rsbs r0, r0, #0
+    str r0, [r7, #0x14]
+    ldr r1, .Ljp_poultry_state_case_7_text
+    adds r0, r7, #0
+    bl func_080CA3B0
+    movs r3, #0xd2
+    lsls r3, r3, #2
+    adds r0, r7, r3
+    movs r1, #0xe
+    bl func_08050E50
+    ldr r4, .Ljp_poultry_state_case_7_state_offset
+    adds r1, r7, r4
 .Ljp_poultry_state_purchase_continue:
-    jp_code_0803ee_bytes 0x7CA9E, 0x7CAAC
+    movs r0, #6
+    str r0, [r1]
+    b .Ljp_poultry_state_cleanup
+    .align 2, 0
+.Ljp_poultry_state_case_7_text: .4byte gText_PoultryShop_PurchaseMorePrompt
+.Ljp_poultry_state_case_7_state_offset: .4byte 0x000006A4
 .Ljp_poultry_state_case_8:
     jp_code_0803ee_bytes 0x7CAAC, 0x7CB54
 .Ljp_poultry_state_case_9:
