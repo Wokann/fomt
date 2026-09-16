@@ -15294,7 +15294,182 @@ sub_0807BD78:
 .Ljp_poultry_state_case_0_item_2_name_prompt_text: .4byte gText_PoultryShop_NameChickenPrompt
 .Ljp_poultry_state_case_0_item_2_name_state_offset: .4byte 0x000006A4
 .Ljp_poultry_state_case_0_item_3:
-    jp_code_0803ee_bytes 0x7C3A0, 0x7C510
+    ldr r0, [r7, #8]
+    movs r1, #0x82
+    lsls r1, r1, #3
+    adds r0, r0, r1
+    bl GetUnkEnt__C4Coop
+    adds r6, r0, #0
+    movs r2, #1
+    rsbs r2, r2, #0
+    movs r1, #7
+    ldr r3, .Ljp_poultry_state_case_0_item_3_selection_offset
+    adds r0, r7, r3
+.Ljp_poultry_state_case_0_item_3_reset_selection:
+    str r2, [r0]
+    subs r0, #8
+    subs r1, #1
+    cmp r1, #0
+    bge .Ljp_poultry_state_case_0_item_3_reset_selection
+    movs r5, #0
+    movs r4, #0x82
+    lsls r4, r4, #3
+    b .Ljp_poultry_state_case_0_item_3_find_chicken_check
+    .align 2, 0
+.Ljp_poultry_state_case_0_item_3_selection_offset: .4byte 0x000006E4
+.Ljp_poultry_state_case_0_item_3_find_chicken_next:
+    adds r5, #1
+.Ljp_poultry_state_case_0_item_3_find_chicken_check:
+    ldr r0, [r7, #8]
+    adds r0, r0, r4
+    bl GetCapacity__C4Coop
+    cmp r5, r0
+    bhs .Ljp_poultry_state_case_0_item_3_no_more_chickens
+    movs r0, #1
+    rsbs r0, r0, #0
+    cmp r6, r0
+    beq .Ljp_poultry_state_case_0_item_3_check_chicken
+    cmp r5, r6
+    beq .Ljp_poultry_state_case_0_item_3_find_chicken_next
+.Ljp_poultry_state_case_0_item_3_check_chicken:
+    ldr r0, [r7, #8]
+    adds r0, r0, r4
+    adds r1, r5, #0
+    bl GetChicken__4CoopUi
+    cmp r0, #0
+    beq .Ljp_poultry_state_case_0_item_3_find_chicken_next
+    bl GetGrowthStage__C7Chicken
+    cmp r0, #1
+    bne .Ljp_poultry_state_case_0_item_3_find_chicken_next
+.Ljp_poultry_state_case_0_item_3_no_more_chickens:
+    ldr r0, [r7, #8]
+    movs r4, #0x82
+    lsls r4, r4, #3
+    adds r0, r0, r4
+    bl GetCapacity__C4Coop
+    cmp r5, r0
+    bne .Ljp_poultry_state_case_0_item_3_prepare_list
+    ldr r1, .Ljp_poultry_state_case_0_item_3_no_chickens_text
+    adds r0, r7, #0
+    bl func_080CA3B0
+    b .Ljp_poultry_state_purchase_prepare
+    .align 2, 0
+.Ljp_poultry_state_case_0_item_3_no_chickens_text: .4byte gText_PoultryShop_NoChickensToSell
+.Ljp_poultry_state_case_0_item_3_prepare_list:
+    ldr r5, .Ljp_poultry_state_case_0_item_3_menu_index_offset
+    adds r2, r7, r5
+    movs r0, #0xde
+    lsls r0, r0, #3
+    adds r1, r7, r0
+    ldr r0, [r2]
+    lsls r0, r0, #2
+    adds r0, #4
+    adds r0, r2, r0
+    subs r0, r0, r1
+    asrs r0, r0, #2
+    ldr r1, [r2]
+    subs r1, r1, r0
+    str r1, [r2]
+    movs r1, #0
+    mov r8, r1
+    movs r5, #0
+    mov sb, r4
+    b .Ljp_poultry_state_case_0_item_3_list_check
+    .align 2, 0
+.Ljp_poultry_state_case_0_item_3_menu_index_offset: .4byte 0x000006EC
+.Ljp_poultry_state_case_0_item_3_list_next:
+    movs r0, #1
+    rsbs r0, r0, #0
+    cmp r6, r0
+    beq .Ljp_poultry_state_case_0_item_3_list_candidate
+    cmp r5, r6
+    beq .Ljp_poultry_state_case_0_item_3_list_skip
+.Ljp_poultry_state_case_0_item_3_list_candidate:
+    ldr r0, [r7, #8]
+    add r0, sb
+    adds r1, r5, #0
+    bl GetChicken__4CoopUi
+    cmp r0, #0
+    beq .Ljp_poultry_state_case_0_item_3_list_skip
+    bl GetGrowthStage__C7Chicken
+    cmp r0, #1
+    bne .Ljp_poultry_state_case_0_item_3_list_skip
+    movs r2, #4
+    ldr r3, .Ljp_poultry_state_case_0_item_3_menu_index_offset_update
+    adds r1, r7, r3
+    ldr r0, [r1]
+    cmp r0, #7
+    bhi .Ljp_poultry_state_case_0_item_3_store_chicken
+    lsls r0, r0, #2
+    adds r0, #4
+    adds r0, r1, r0
+    cmp r0, #0
+    beq .Ljp_poultry_state_case_0_item_3_menu_slot_done
+    str r2, [r0]
+.Ljp_poultry_state_case_0_item_3_menu_slot_done:
+    ldr r0, [r1]
+    adds r0, #1
+    str r0, [r1]
+.Ljp_poultry_state_case_0_item_3_store_chicken:
+    mov r0, r8
+    lsls r4, r0, #3
+    ldr r1, .Ljp_poultry_state_case_0_item_3_entry_offset
+    adds r0, r7, r1
+    adds r0, r0, r4
+    str r5, [r0]
+    adds r0, r7, #0
+    adds r1, r5, #0
+    bl func_0807BE74
+    movs r2, #0xd6
+    lsls r2, r2, #3
+    adds r1, r7, r2
+    adds r1, r1, r4
+    str r0, [r1]
+    movs r3, #1
+    add r8, r3
+.Ljp_poultry_state_case_0_item_3_list_skip:
+    adds r5, #1
+.Ljp_poultry_state_case_0_item_3_list_check:
+    ldr r0, [r7, #8]
+    add r0, sb
+    bl GetCapacity__C4Coop
+    cmp r5, r0
+    blo .Ljp_poultry_state_case_0_item_3_list_next
+    ldr r0, [r7, #0x1c]
+    bl ClearScrollBuffer
+    adds r0, r7, #0
+    bl func_0807AF54
+    adds r5, r0, #0
+    movs r4, #0
+    strh r4, [r7, #0xc]
+    movs r6, #0xc9
+    lsls r6, r6, #3
+    adds r1, r7, r6
+    movs r0, #0x28
+    str r0, [r1]
+    ldr r0, [r7, #0x1c]
+    movs r2, #0xc
+    ldrsh r1, [r7, r2]
+    bl ResetScrollPosition
+    ldr r0, [r7, #0x1c]
+    adds r1, r5, #0
+    adds r1, #8
+    lsls r1, r1, #0x13
+    asrs r1, r1, #0x10
+    bl func_08075E24
+    str r4, [r7, #0x10]
+    movs r0, #1
+    rsbs r0, r0, #0
+    str r0, [r7, #0x14]
+    ldr r3, .Ljp_poultry_state_case_0_item_3_state_offset
+    adds r1, r7, r3
+    movs r0, #1
+    str r0, [r1]
+    b .Ljp_poultry_state_cleanup
+    .align 2, 0
+.Ljp_poultry_state_case_0_item_3_menu_index_offset_update: .4byte 0x000006EC
+.Ljp_poultry_state_case_0_item_3_entry_offset: .4byte 0x000006AC
+.Ljp_poultry_state_case_0_item_3_state_offset: .4byte 0x000006A4
 .Ljp_poultry_state_case_0_no_prompt:
     jp_code_0803ee_bytes 0x7C510, 0x7C570
 .Ljp_poultry_state_case_1:
