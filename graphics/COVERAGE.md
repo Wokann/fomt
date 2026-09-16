@@ -96,6 +96,7 @@ Generate a current list with:
 ```console
 python tools/gfx_incbin_inventory.py . --csv build/gfx_incbin_inventory.csv
 python tools/gfx_compression_inventory.py . --csv build/gfx_compression_inventory.csv
+python tools/unpack_inventory.py . --csv build/unpack_inventory.csv
 python tools/unpack_vram_inventory.py . --csv build/unpack_vram_inventory.csv
 python tools/dma_vram_inventory.py . --csv build/dma_vram_inventory.csv
 ```
@@ -104,12 +105,14 @@ All generated CSV files are local audit artifacts, not source artwork. The
 compression inventory records only direct ranges that begin with a strictly
 decodable `0x70` stream. Its enclosing `incbin` boundary is not automatically
 the compressed stream's boundary, and a decoded stream is not automatically a
-graphics resource. The Unpack-to-VRAM inventory follows only simple literal
-and register data flow in assembly, so its rows are code-backed resource leads,
-not assertions about tile, palette, or OAM format. Run it with
-`make unpack-vram-inventory`; the current assembly yields 30 such calls.
-`DIRECT_UNPACK_VRAM_AUDIT.md` records the current code-consumer classification
-and keeps unproven streams out of the managed-resource table.
+graphics resource. The all-destination `Unpack` inventory and the narrower
+Unpack-to-VRAM inventory follow only simple literal and register data flow in
+assembly, so their rows are code-backed resource leads, not assertions about
+tile, palette, or OAM format. Run them with `make unpack-inventory` and
+`make unpack-vram-inventory`; the current source yields 48 labelled paths in
+the former and 32 direct-VRAM paths in the latter. `DIRECT_UNPACK_VRAM_AUDIT.md`
+records the classification of every direct-VRAM path and keeps unproven streams
+out of the managed-resource table.
 `DIRECT_DMA_VRAM_AUDIT.md` does the same for literal `func_08008F0C` copies;
 it deliberately excludes indirect or runtime-computed DMA descriptors.
 

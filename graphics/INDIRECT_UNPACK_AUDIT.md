@@ -32,6 +32,28 @@ proves their runtime structure and ownership.  Their strict decode bounds are
 nevertheless retained in `build/gfx_compression_inventory.csv` so a future
 consumer analysis can start from exact payload sizes.
 
+## Complete non-VRAM result
+
+The control-flow-aware inventory currently finds sixteen distinct labelled
+`Unpack` sources whose destination is either a caller-owned buffer or palette
+RAM rather than literal VRAM.  The table below classifies every such label.  A
+staging buffer is not an independently editable image source: only the rows
+that already have a complete, verified resource pipeline are linked to one.
+
+| Consumer | Labels | Classification |
+| --- | --- | --- |
+| `func_08000914` | `gUnk_08747A74` | Managed Intro Scene indexed-resource archive. It has verified OAM descriptors, tile ranges and BGR555 palette indices; see `intro_scene/OBJECT_PIPELINE_AUDIT.md`. Its destination is an archive buffer, not a VRAM tile upload. |
+| `func_08054F40` | `gUnk_08738AD8`, `gUnk_08738CC8`, `gUnk_08738CF0`, `gUnk_08739A64` | Runtime staging inputs for the UI scene's maps and related data. They contribute to code-backed reference views, while only the separately direct-VRAM tile stream has a fixed-slot editable graphics pipeline. |
+| `func_0805AB08` | `gUnk_0872F11C`, `gUnk_0872F1BC`, `gUnk_0872F1EC`, `gUnk_0872FBFC` | Runtime map-template staging inputs for the UI scene. Their exact references are useful for inspection, but no replacement layout is inferred from a rendered PNG. |
+| `func_080A95A4` | `gUnk_08714A30`, `gUnk_08714B60`, `gUnk_08714BEC`, `gUnk_08716F84`, `gUnk_087170B8` | Map-state fallback buffers detailed above. No tile/palette/OAM ownership is established. |
+| `func_080B55D0` | `gUnk_086FD240` | Proven field-data stream: `0x590` packed bytes decode to `0x1A40` bytes. Its selected `32x32` view is documented in `DIRECT_UNPACK_VRAM_AUDIT.md`, but a source edit cannot currently remain within the original slot. |
+| `func_080B55D0` | `gUnk_086FD19C` | Direct palette-RAM upload. It provides a read-only palette reference for the auxiliary UI layers, but overlaps neighbouring resource ownership and therefore remains non-editable native data. |
+
+This closes the current static non-VRAM `Unpack` list without converting an
+unproved staging buffer into a made-up image asset.  Future work can expand the
+control-flow model or trace runtime pointer tables; it must retain the same
+evidence boundary.
+
 ## Evidence boundary
 
 The conclusion above comes from the assembly implementation of
