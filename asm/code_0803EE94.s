@@ -14972,7 +14972,35 @@ sub_0807BD78:
 .Ljp_poultry_state_case_2_medicine_purchase_complete_text: .4byte gText_PoultryShop_PurchaseComplete
 .Ljp_poultry_state_case_2_complete_state_offset: .4byte 0x000006A4
 .Ljp_poultry_state_case_2_alternate:
-    jp_code_0803ee_bytes 0x7C878, 0x7C8B8
+    adds r0, r7, #0
+    bl func_080088CC
+    movs r1, #2
+    ands r0, r1
+    cmp r0, #0
+    beq .Ljp_poultry_state_case_2_idle
+    ldr r5, .Ljp_poultry_state_case_2_alternate_widget_offset
+    adds r0, r7, r5
+    bl func_080CAAF4
+    ldr r6, .Ljp_poultry_state_case_2_alternate_state_offset
+    adds r0, r7, r6
+    str r4, [r0]
+    b .Ljp_poultry_state_case_8_finish
+    .align 2, 0
+.Ljp_poultry_state_case_2_alternate_widget_offset: .4byte 0x00000684
+.Ljp_poultry_state_case_2_alternate_state_offset: .4byte 0x000006A4
+.Ljp_poultry_state_case_2_idle:
+    ldr r0, .Ljp_poultry_state_case_2_idle_widget_offset
+    adds r1, r7, r0
+    ldrb r0, [r1, #8]
+    cmp r0, #0
+    bne .Ljp_poultry_state_case_2_idle_close
+    b .Ljp_poultry_state_cleanup
+.Ljp_poultry_state_case_2_idle_close:
+    adds r0, r1, #0
+    bl func_080CA98C
+    b .Ljp_poultry_state_cleanup
+    .align 2, 0
+.Ljp_poultry_state_case_2_idle_widget_offset: .4byte 0x00000684
 .Ljp_poultry_state_case_3:
     movs r1, #0xd4
     lsls r1, r1, #2
