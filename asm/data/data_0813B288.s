@@ -304,6 +304,25 @@
     .endif
     .endm
 
+    @ Four independently bounded inputs of func_080AE7D0.  Keep the source
+    @ name as a macro argument so all regional branches select the same
+    @ verified asset without duplicating the original data symbols.
+    .macro FOMT_UI_SCENE_080AE7D0_ASSET file
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/scene_080ae7d0/\file"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/scene_080ae7d0/\file"
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/scene_080ae7d0/\file"
+    .else
+    .incbin "build/us/graphics/ui/scene_080ae7d0/\file"
+    .endif
+    .endif
+    .endif
+    .endm
+
     @ func_0806EC94 selects one of two three-layer 64x44 BG layouts.  Keep
     @ the native compressed streams separate because EU exposes header labels
     @ eight bytes before several payload labels.
@@ -5222,16 +5241,16 @@ gUnk_0872EE78:
 	FOMT_REGION_ASSET_INCBIN 0x72FBFC, 0x38
 
 	non_de_asset_label gUnk_0872FC34
-	FOMT_REGION_ASSET_INCBIN 0x72FC34, 0x238
+	FOMT_UI_SCENE_080AE7D0_ASSET "layer_0.tilemap.0x70"
 
 	non_de_asset_label gUnk_0872FE6C
-	FOMT_REGION_ASSET_INCBIN 0x72FE6C, 0x8C
+	FOMT_UI_SCENE_080AE7D0_ASSET "layer_1.tilemap.0x70"
 
 	non_de_asset_label gUnk_0872FEF8
-	FOMT_REGION_ASSET_INCBIN 0x72FEF8, 0x1A48
+	FOMT_UI_SCENE_080AE7D0_ASSET "tiles.4bpp.0x70"
 
 	non_de_asset_label gUnk_08731940
-	FOMT_REGION_ASSET_INCBIN 0x731940, 0x200
+	FOMT_UI_SCENE_080AE7D0_ASSET "palette_banks.gbapal"
 
 	non_de_asset_label gUnk_08731B40 @ChickenPortraits
 	FOMT_REGION_ASSET_INCBIN 0x731B40, 0x6604

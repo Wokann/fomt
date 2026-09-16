@@ -235,6 +235,12 @@ it with:
 make gfx-ui-scene-0805ab08-reference
 ```
 
+`ui/scene_080ae7d0/shared/` is fully connected to the original loading code:
+its two tilemaps, tile stream, and sixteen BGR555 palette banks are included at
+`gUnk_0872FC34`, `gUnk_0872FE6C`, `gUnk_0872FEF8`, and `gUnk_08731940`.
+The rendered PNGs remain previews only; the native source files are the
+authoritative editable inputs.
+
 ## Shared UI tile grid
 
 `ui/shared_resource/shared_resource.png` is the first production use of the
