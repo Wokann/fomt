@@ -5749,7 +5749,6 @@ extern RawVTableFunction const vtable_unk_080E7C30[]
         nullptr,
         nullptr,
         func_0807E070,
-        nullptr,
 #else
         nullptr,
         nullptr,
@@ -5757,6 +5756,16 @@ extern RawVTableFunction const vtable_unk_080E7C30[]
         func_0807DDA8,
 #endif
     };
+
+#if defined(REGION_JP)
+// This physical final null word is a separately referenced JP table tail.
+// Keeping it as its own object gives callers a real relocation target at the
+// original address, without a vtable + offset alias.
+extern RawVTableFunction const vtable_unk_080E7C30_NullTail[]
+    SECTION(".rodata.vtable_7c30") = {
+        nullptr,
+    };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E7C40[]
     SECTION(".rodata.vtable_7c40") = {
