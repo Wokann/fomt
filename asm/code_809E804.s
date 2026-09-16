@@ -3262,15 +3262,431 @@ func_080A0030: @ 0x0809FA68
 	.align 2, 0
 .L080A01F4: .4byte 0x00000414
 
-    jp_code_809_func func_080A01F8, 0x9FC30, 0x9FD54
-    jp_code_809_func func_080A099C, 0x9FD54, 0x9FDBC
-    jp_code_809_func func_080A0384, 0x9FDBC, 0x9FDD4
-    jp_code_809_func func_080A039C, 0x9FDD4, 0x9FDDC
-    jp_code_809_func func_080A03A4, 0x9FDDC, 0x9FDF0
-    jp_code_809_func func_080A03B8, 0x9FDF0, 0x9FE54
-    jp_code_809_func func_080A041C, 0x9FE54, 0x9FEC8
-    jp_code_809_func func_080A0490, 0x9FEC8, 0x9FF3C
-    jp_code_809_func func_080A0504, 0x9FF3C, 0x9FF50
+    .global func_080A01F8
+    .thumb_func
+func_080A01F8: @ 0x0809FC30
+	push {lr}
+	adds r2, r0, #0
+	subs r0, r1, #3
+	cmp r0, #0x1c
+	bhi .L080A0284
+	lsls r0, r0, #2
+	ldr r1, .L080A020C @ =.L080A0210
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.L080A020C: .4byte .L080A0210
+.L080A0210: @ jump table
+	.4byte .L080A0288 @ case 0
+	.4byte .L080A0284 @ case 1
+	.4byte .L080A0284 @ case 2
+	.4byte .L080A0284 @ case 3
+	.4byte .L080A0284 @ case 4
+	.4byte .L080A0284 @ case 5
+	.4byte .L080A0284 @ case 6
+	.4byte .L080A0284 @ case 7
+	.4byte .L080A0284 @ case 8
+	.4byte .L080A028E @ case 9
+	.4byte .L080A0284 @ case 10
+	.4byte .L080A0284 @ case 11
+	.4byte .L080A0284 @ case 12
+	.4byte .L080A0284 @ case 13
+	.4byte .L080A0284 @ case 14
+	.4byte .L080A0284 @ case 15
+	.4byte .L080A0294 @ case 16
+	.4byte .L080A0284 @ case 17
+	.4byte .L080A029A @ case 18
+	.4byte .L080A0284 @ case 19
+	.4byte .L080A0284 @ case 20
+	.4byte .L080A0284 @ case 21
+	.4byte .L080A02A0 @ case 22
+	.4byte .L080A0284 @ case 23
+	.4byte .L080A0284 @ case 24
+	.4byte .L080A0284 @ case 25
+	.4byte .L080A0284 @ case 26
+	.4byte .L080A0284 @ case 27
+	.4byte .L080A02A6 @ case 28
+.L080A0284:
+	movs r0, #0
+	b .L080A02AC
+.L080A0288:
+	adds r0, r2, #0
+	adds r0, #0x98
+	b .L080A02AC
+.L080A028E:
+	movs r1, #0xaa
+	lsls r1, r1, #1
+	b .L080A02AA
+.L080A0294:
+	movs r1, #0xf2
+	lsls r1, r1, #1
+	b .L080A02AA
+.L080A029A:
+	movs r1, #0x84
+	lsls r1, r1, #2
+	b .L080A02AA
+.L080A02A0:
+	movs r1, #0x99
+	lsls r1, r1, #2
+	b .L080A02AA
+.L080A02A6:
+	movs r1, #0xb9
+	lsls r1, r1, #2
+.L080A02AA:
+	adds r0, r2, r1
+.L080A02AC:
+	pop {r1}
+	bx r1
+.L080A02B0:
+	push {lr}
+	adds r2, r0, #0
+	adds r0, r1, #0
+	subs r0, #0x24
+	cmp r0, #6
+	bhi .L080A02E8
+	lsls r0, r0, #2
+	ldr r1, .L080A02C8
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.L080A02C8: .4byte .L080A02CC
+.L080A02CC:
+	.4byte .L080A02EC
+	.4byte .L080A02F2
+	.4byte .L080A02F8
+	.4byte .L080A02FE
+	.4byte .L080A0304
+	.4byte .L080A030A
+	.4byte .L080A0310
+.L080A02E8:
+	movs r0, #0
+	b .L080A0314
+.L080A02EC:
+	movs r1, #0xcf
+	lsls r1, r1, #2
+	b .L080A0312
+.L080A02F2:
+	movs r1, #0xd8
+	lsls r1, r1, #2
+	b .L080A0312
+.L080A02F8:
+	movs r1, #0xe1
+	lsls r1, r1, #2
+	b .L080A0312
+.L080A02FE:
+	movs r1, #0xea
+	lsls r1, r1, #2
+	b .L080A0312
+.L080A0304:
+	movs r1, #0xf3
+	lsls r1, r1, #2
+	b .L080A0312
+.L080A030A:
+	movs r1, #0xfc
+	lsls r1, r1, #2
+	b .L080A0312
+.L080A0310:
+	ldr r1, .L080A0318
+.L080A0312:
+	adds r0, r2, r1
+.L080A0314:
+	pop {r1}
+	bx r1
+	.align 2, 0
+.L080A0318: .4byte 0x00000414
+
+    .global func_080A099C
+    .thumb_func
+func_080A099C: @ 0x0809FD54
+	push {lr}
+	adds r2, r0, #0
+	cmp r1, #6
+	bhi .L080A09D0
+	lsls r0, r1, #2
+	ldr r1, .L080A09B0 @ =.L080A09B4
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.L080A09B0: .4byte .L080A09B4
+.L080A09B4: @ jump table
+	.4byte .L080A09D4 @ case 0
+	.4byte .L080A09DA @ case 1
+	.4byte .L080A09E0 @ case 2
+	.4byte .L080A09E6 @ case 3
+	.4byte .L080A09EC @ case 4
+	.4byte .L080A09F2 @ case 5
+	.4byte .L080A09F8 @ case 6
+.L080A09D0:
+	movs r0, #0
+	b .L080A09FC
+.L080A09D4:
+	movs r1, #0xcf
+	lsls r1, r1, #2
+	b .L080A09FA
+.L080A09DA:
+	movs r1, #0xd8
+	lsls r1, r1, #2
+	b .L080A09FA
+.L080A09E0:
+	movs r1, #0xe1
+	lsls r1, r1, #2
+	b .L080A09FA
+.L080A09E6:
+	movs r1, #0xea
+	lsls r1, r1, #2
+	b .L080A09FA
+.L080A09EC:
+	movs r1, #0xf3
+	lsls r1, r1, #2
+	b .L080A09FA
+.L080A09F2:
+	movs r1, #0xfc
+	lsls r1, r1, #2
+	b .L080A09FA
+.L080A09F8:
+	ldr r1, .L080A0A00 @ =0x00000414
+.L080A09FA:
+	adds r0, r2, r1
+.L080A09FC:
+	pop {r1}
+	bx r1
+	.align 2, 0
+.L080A0A00: .4byte 0x00000414
+
+    .global func_080A0384
+    .thumb_func
+func_080A0384: @ 0x0809FDBC
+	push {lr}
+	adds r1, r0, #0
+	ldrb r0, [r1, #3]
+	lsls r0, r0, #0x1e
+	movs r2, #0
+	cmp r0, #0
+	bge .L080A0394
+	adds r2, r1, #4
+.L080A0394:
+	adds r0, r2, #0
+	pop {r1}
+	bx r1
+	.align 2, 0
+
+    .global func_080A039C
+    .thumb_func
+func_080A039C: @ 0x0809FDD4
+	ldrb r0, [r0, #3]
+	lsls r0, r0, #0x1b
+	lsrs r0, r0, #0x1d
+	bx lr
+
+    .global func_080A03A4
+    .thumb_func
+func_080A03A4: @ 0x0809FDDC
+	movs r2, #7
+	ands r1, r2
+	lsls r1, r1, #2
+	ldrb r3, [r0, #3]
+	movs r2, #0x1d
+	rsbs r2, r2, #0
+	ands r2, r3
+	orrs r2, r1
+	strb r2, [r0, #3]
+	bx lr
+
+    .global func_080A03B8
+    .thumb_func
+func_080A03B8: @ 0x0809FDF0
+	push {r4, r5, r6, lr}
+	sub sp, #8
+	adds r6, r0, #0
+	adds r0, r1, #0
+	adds r1, r2, #0
+	bl func_080A0030
+	adds r1, r0, #0
+	cmp r1, #0
+	beq .L080A03D4
+	adds r0, r6, #0
+	bl GetLocation__C3Npc
+	b .L080A040E
+.L080A03D4:
+	mov r1, sp
+	movs r4, #2
+	ldrh r2, [r1]
+	ldr r3, .L080A0418 @ =0xFFFFFC00
+	adds r0, r3, #0
+	ands r0, r2
+	orrs r0, r4
+	strh r0, [r1]
+	movs r5, #0
+	ldrb r4, [r1, #1]
+	movs r2, #3
+	adds r0, r2, #0
+	ands r0, r4
+	strb r0, [r1, #1]
+	ldrh r4, [r1, #2]
+	adds r0, r3, #0
+	ands r0, r4
+	strh r0, [r1, #2]
+	ldrb r0, [r1, #3]
+	ands r2, r0
+	strb r2, [r1, #3]
+	ldrh r0, [r1, #4]
+	ands r3, r0
+	strh r3, [r1, #4]
+	adds r0, r6, #0
+	movs r2, #6
+	bl memcpy
+	strb r5, [r6, #6]
+.L080A040E:
+	adds r0, r6, #0
+	add sp, #8
+	pop {r4, r5, r6}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.L080A0418: .4byte 0xFFFFFC00
+
+    .global func_080A041C
+    .thumb_func
+func_080A041C: @ 0x0809FE54
+	push {r4, lr}
+	adds r4, r0, #0
+	adds r0, #0x98
+	bl GetPlayerEventCount__C12Bachelorette
+	cmp r0, #4
+	bls .L080A042E
+	movs r0, #3
+	b .L080A048A
+.L080A042E:
+	movs r1, #0xaa
+	lsls r1, r1, #1
+	adds r0, r4, r1
+	bl GetPlayerEventCount__C12Bachelorette
+	cmp r0, #4
+	bls .L080A0440
+	movs r0, #0xc
+	b .L080A048A
+.L080A0440:
+	movs r1, #0xf2
+	lsls r1, r1, #1
+	adds r0, r4, r1
+	bl GetPlayerEventCount__C12Bachelorette
+	cmp r0, #4
+	bls .L080A0452
+	movs r0, #0x13
+	b .L080A048A
+.L080A0452:
+	movs r1, #0x84
+	lsls r1, r1, #2
+	adds r0, r4, r1
+	bl GetPlayerEventCount__C12Bachelorette
+	cmp r0, #4
+	bls .L080A0464
+	movs r0, #0x15
+	b .L080A048A
+.L080A0464:
+	movs r1, #0x99
+	lsls r1, r1, #2
+	adds r0, r4, r1
+	bl GetPlayerEventCount__C12Bachelorette
+	cmp r0, #4
+	bls .L080A0476
+	movs r0, #0x19
+	b .L080A048A
+.L080A0476:
+	movs r1, #0xb9
+	lsls r1, r1, #2
+	adds r0, r4, r1
+	bl GetPlayerEventCount__C12Bachelorette
+	cmp r0, #4
+	bhi .L080A0488
+	movs r0, #0
+	b .L080A048A
+.L080A0488:
+	movs r0, #0x1f
+.L080A048A:
+	pop {r4}
+	pop {r1}
+	bx r1
+
+    .global func_080A0490
+    .thumb_func
+func_080A0490: @ 0x0809FEC8
+	push {r4, lr}
+	adds r4, r0, #0
+	adds r0, #0x98
+	bl GetPlayerEventCount__C12Bachelorette
+	cmp r0, #5
+	bls .L080A04A2
+	movs r0, #3
+	b .L080A04FE
+.L080A04A2:
+	movs r1, #0xaa
+	lsls r1, r1, #1
+	adds r0, r4, r1
+	bl GetPlayerEventCount__C12Bachelorette
+	cmp r0, #5
+	bls .L080A04B4
+	movs r0, #0xc
+	b .L080A04FE
+.L080A04B4:
+	movs r1, #0xf2
+	lsls r1, r1, #1
+	adds r0, r4, r1
+	bl GetPlayerEventCount__C12Bachelorette
+	cmp r0, #5
+	bls .L080A04C6
+	movs r0, #0x13
+	b .L080A04FE
+.L080A04C6:
+	movs r1, #0x84
+	lsls r1, r1, #2
+	adds r0, r4, r1
+	bl GetPlayerEventCount__C12Bachelorette
+	cmp r0, #5
+	bls .L080A04D8
+	movs r0, #0x15
+	b .L080A04FE
+.L080A04D8:
+	movs r1, #0x99
+	lsls r1, r1, #2
+	adds r0, r4, r1
+	bl GetPlayerEventCount__C12Bachelorette
+	cmp r0, #5
+	bls .L080A04EA
+	movs r0, #0x19
+	b .L080A04FE
+.L080A04EA:
+	movs r1, #0xb9
+	lsls r1, r1, #2
+	adds r0, r4, r1
+	bl GetPlayerEventCount__C12Bachelorette
+	cmp r0, #5
+	bhi .L080A04FC
+	movs r0, #0
+	b .L080A04FE
+.L080A04FC:
+	movs r0, #0x1f
+.L080A04FE:
+	pop {r4}
+	pop {r1}
+	bx r1
+
+    .global func_080A0504
+    .thumb_func
+func_080A0504: @ 0x0809FF3C
+	push {lr}
+	bl func_080A0490
+	adds r1, r0, #0
+	rsbs r0, r1, #0
+	orrs r0, r1
+	lsrs r0, r0, #0x1f
+	pop {r1}
+	bx r1
+	.align 2, 0
+
     jp_code_809_func func_080A0518, 0x9FF50, 0xA0020
     jp_code_809_func func_080A05E8, 0xA0020, 0xA00E8
     jp_code_809_func func_080A06B0, 0xA00E8, 0xA02B0
