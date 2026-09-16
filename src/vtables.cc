@@ -6001,20 +6001,30 @@ extern RawVTableFunction const vtable_unk_080E7CF4[]
 #endif
     };
 
+#if defined(REGION_JP)
+// The four-byte null tail is directly used as a vtable pointer by
+// func_080850A0.  Keep it as its own named object rather than referring to
+// the preceding table by an address offset.
 extern RawVTableFunction const vtable_unk_080E7D04[]
     SECTION(".rodata.vtable_7d04") = {
-#if defined(REGION_JP)
         nullptr,
         nullptr,
         func_080837C8,
+    };
+
+extern RawVTableFunction const vtable_unk_080E7D04_NullTail[]
+    SECTION(".rodata.vtable_7d04") = {
         nullptr,
+    };
 #else
+extern RawVTableFunction const vtable_unk_080E7D04[]
+    SECTION(".rodata.vtable_7d04") = {
         nullptr,
         nullptr,
         func_08083AEC,
         func_08083B2C,
-#endif
     };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E7D14[]
     SECTION(".rodata.vtable_7d14") = {
