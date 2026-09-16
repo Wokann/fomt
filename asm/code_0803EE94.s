@@ -14893,7 +14893,103 @@ sub_0807BD78:
 .Ljp_poultry_state_case_0_item_0_owned_label_ref: .4byte gShopCommonOwnedQuantityLabelTextRef
 .Ljp_poultry_state_case_0_item_0_quantity_suffix_ref: .4byte gShopCommonQuantitySuffixTextRef
 .Ljp_poultry_state_case_0_item_1:
-    jp_code_0803ee_bytes 0x7C028, 0x7C2B4
+    ldr r3, [r7, #8]
+    ldr r4, .Ljp_poultry_state_case_0_item_1_money_offset
+    adds r0, r3, r4
+    ldr r1, [r0]
+    movs r2, #0
+    ldr r0, [r5, #8]
+    cmp r1, r0
+    bhs .Ljp_poultry_state_case_0_item_1_gold_checked
+    movs r2, #1
+.Ljp_poultry_state_case_0_item_1_gold_checked:
+    cmp r2, #0
+    beq .Ljp_poultry_state_case_0_item_1_check_capacity
+    ldr r1, .Ljp_poultry_state_case_0_item_1_insufficient_gold_text
+    adds r0, r7, #0
+    bl func_080CA3B0
+    movs r5, #0xd2
+    lsls r5, r5, #2
+    adds r0, r7, r5
+    movs r1, #0xe
+    bl func_08050E50
+    ldr r6, .Ljp_poultry_state_case_0_item_1_state_offset
+    adds r1, r7, r6
+    bl .Ljp_poultry_state_purchase_continue
+    .align 2, 0
+.Ljp_poultry_state_case_0_item_1_money_offset: .4byte 0x00001AA8
+.Ljp_poultry_state_case_0_item_1_insufficient_gold_text: .4byte gText_PoultryShop_InsufficientGold
+.Ljp_poultry_state_case_0_item_1_state_offset: .4byte 0x000006A4
+.Ljp_poultry_state_case_0_item_1_check_capacity:
+    movs r5, #0
+    ldr r1, .Ljp_poultry_state_case_0_item_1_rucksack_offset
+    adds r0, r3, r1
+    movs r1, #0x4a
+    bl GetAvailableSpaceForTool__C8RucksackUi
+    adds r6, r0, #0
+    ldr r0, [r7, #8]
+    ldr r4, .Ljp_poultry_state_case_0_item_1_stack_offset
+    adds r0, r0, r4
+    bl IsEmpty__C9ToolStack
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Ljp_poultry_state_case_0_item_1_stack_present
+    movs r5, #0x63
+    b .Ljp_poultry_state_case_0_item_1_stack_space_ready
+    .align 2, 0
+.Ljp_poultry_state_case_0_item_1_rucksack_offset: .4byte 0x00001C38
+.Ljp_poultry_state_case_0_item_1_stack_offset: .4byte 0x00001C34
+.Ljp_poultry_state_case_0_item_1_stack_present:
+    ldr r0, [r7, #8]
+    ldr r2, .Ljp_poultry_state_case_0_item_1_stack_offset_present
+    adds r0, r0, r2
+    bl GetTool__C9ToolStack
+    adds r1, r0, #0
+    mov r0, sp
+    adds r0, #0x7d
+    strb r1, [r0]
+    bl GetId__C4Tool
+    cmp r0, #0x4a
+    bne .Ljp_poultry_state_case_0_item_1_stack_space_ready
+    ldr r0, [r7, #8]
+    adds r0, r0, r4
+    bl GetAmount__C9ToolStack
+    cmp r0, #0x63
+    beq .Ljp_poultry_state_case_0_item_1_stack_space_ready
+    ldr r0, [r7, #8]
+    adds r0, r0, r4
+    bl GetAmount__C9ToolStack
+    movs r1, #0x63
+    subs r5, r1, r0
+.Ljp_poultry_state_case_0_item_1_stack_space_ready:
+    ldr r0, [r7, #8]
+    movs r3, #0xe0
+    lsls r3, r3, #2
+    adds r0, r0, r3
+    movs r1, #0x4a
+    bl GetAvailableSpaceFor__C9ToolChestUi
+    adds r1, r6, r5
+    adds r1, r1, r0
+    str r1, [sp, #0x94]
+    cmp r1, #0
+    bne .Ljp_poultry_state_case_0_item_1_prepare_amounts
+    ldr r1, .Ljp_poultry_state_case_0_item_1_inventory_full_text
+    adds r0, r7, #0
+    bl func_080CA3B0
+    movs r4, #0xd2
+    lsls r4, r4, #2
+    adds r0, r7, r4
+    movs r1, #0xe
+    bl func_08050E50
+    ldr r5, .Ljp_poultry_state_case_0_item_1_inventory_state_offset
+    adds r1, r7, r5
+    bl .Ljp_poultry_state_purchase_continue
+    .align 2, 0
+.Ljp_poultry_state_case_0_item_1_stack_offset_present: .4byte 0x00001C34
+.Ljp_poultry_state_case_0_item_1_inventory_full_text: .4byte gText_PoultryShop_InventoryFull
+.Ljp_poultry_state_case_0_item_1_inventory_state_offset: .4byte 0x000006A4
+.Ljp_poultry_state_case_0_item_1_prepare_amounts:
+    jp_code_0803ee_bytes 0x7C108, 0x7C2B4
 .Ljp_poultry_state_case_0_item_1_continue:
     jp_code_0803ee_bytes 0x7C2B4, 0x7C2E0
 .Ljp_poultry_state_case_0_item_2:
