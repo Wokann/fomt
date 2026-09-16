@@ -20029,7 +20029,107 @@ func_0807EA08: @ 0x0807EA08
 .Ljp_0807EA34: .4byte vtable_unk_080E7C4C
 .Ljp_0807EA38: .4byte 0x000006A4
 
-    jp_code_0803ee_func func_0807EA3C, 0x7EA3C, 0x7F118
+.global func_0807EA3C
+.thumb_func
+func_0807EA3C: @ 0x0807EA3C
+	push {r4, r5, lr}
+	adds r4, r0, #0
+	adds r5, r1, #0
+	ldr r0, .Ljp_0807EA60
+	str r0, [r4, #4]
+	ldr r1, .Ljp_0807EA64
+	adds r0, r4, r1
+	ldr r0, [r0]
+	bl __builtin_delete
+	adds r0, r4, #0
+	adds r1, r5, #0
+	bl func_080C8360
+	pop {r4, r5}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_0807EA60: .4byte vtable_unk_080E7C4C
+.Ljp_0807EA64: .4byte 0x000006AC
+
+.global func_0807EA68
+.thumb_func
+func_0807EA68: @ 0x0807EA68
+	ldr r2, .Ljp_0807EA78
+	adds r1, r1, r2
+	ldr r3, [r1]
+	movs r2, #0
+	str r2, [r1]
+	str r3, [r0]
+	bx lr
+	.align 2, 0
+.Ljp_0807EA78: .4byte 0x000006AC
+
+.global func_0807EA7C
+.thumb_func
+func_0807EA7C: @ 0x0807EA7C
+	push {r4, r5, lr}
+	sub sp, #4
+	adds r4, r0, #0
+	adds r3, r1, #0
+	ldr r5, .Ljp_0807EAD0
+	movs r0, #0xa9
+	lsls r0, r0, #2
+	adds r2, r4, r0
+	ldr r0, [r4, #0x10]
+	lsls r0, r0, #2
+	adds r0, #4
+	adds r0, r2, r0
+	ldr r1, [r0]
+	lsls r0, r1, #3
+	subs r0, r0, r1
+	lsls r0, r0, #2
+	adds r1, r5, #0
+	adds r1, #0xc
+	adds r0, r0, r1
+	ldr r0, [r0]
+	cmp r0, #0
+	bne .Ljp_0807EAD4
+	lsls r0, r3, #2
+	adds r0, #4
+	adds r0, r2, r0
+	ldr r1, [r0]
+	lsls r0, r1, #3
+	subs r0, r0, r1
+	lsls r0, r0, #2
+	adds r0, r0, r5
+	ldr r1, [r0]
+	mov r0, sp
+	bl __4FoodUi
+	mov r0, sp
+	bl GetDesc__C4Food
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl func_080CA3FC
+	b .Ljp_0807EAF0
+	.align 2, 0
+.Ljp_0807EAD0: .4byte gInnShopMenu
+.Ljp_0807EAD4:
+	lsls r0, r3, #2
+	adds r0, #4
+	adds r0, r2, r0
+	ldr r1, [r0]
+	lsls r0, r1, #3
+	subs r0, r0, r1
+	lsls r0, r0, #2
+	adds r1, r5, #0
+	adds r1, #8
+	adds r0, r0, r1
+	ldr r1, [r0]
+	adds r0, r4, #0
+	bl func_080CA3FC
+.Ljp_0807EAF0:
+	add sp, #4
+	pop {r4, r5}
+	pop {r0}
+	bx r0
+
+    jp_code_0803ee_func func_0807EAF8, 0x7EAF8, 0x7F0E8
+    jp_code_0803ee_func func_0807F0E8, 0x7F0E8, 0x7F118
     jp_code_0803ee_func func_0807F118, 0x7F118, 0x7F158
     jp_code_0803ee_func func_0807F158, 0x7F158, 0x7F1D8
     jp_code_0803ee_func func_0807F1D8, 0x7F1D8, 0x7F1EC
