@@ -15471,7 +15471,49 @@ sub_0807BD78:
 .Ljp_poultry_state_case_0_item_3_entry_offset: .4byte 0x000006AC
 .Ljp_poultry_state_case_0_item_3_state_offset: .4byte 0x000006A4
 .Ljp_poultry_state_case_0_no_prompt:
-    jp_code_0803ee_bytes 0x7C510, 0x7C570
+    adds r0, r7, #0
+    bl func_080088CC
+    movs r1, #2
+    ands r0, r1
+    cmp r0, #0
+    bne .Ljp_poultry_state_case_0_prompt_pending
+    b .Ljp_poultry_state_cleanup
+.Ljp_poultry_state_case_0_prompt_pending:
+    movs r4, #0xd5
+    lsls r4, r4, #3
+    adds r0, r7, r4
+    ldrb r0, [r0]
+    cmp r0, #0
+    beq .Ljp_poultry_state_case_0_purchase_declined
+    ldr r1, .Ljp_poultry_state_case_0_not_interested_text
+    adds r0, r7, #0
+    bl func_080CA3B0
+    movs r5, #0xd2
+    lsls r5, r5, #2
+    adds r0, r7, r5
+    movs r1, #0xe
+    bl func_08050E50
+    b .Ljp_poultry_state_case_0_prompt_finished
+    .align 2, 0
+.Ljp_poultry_state_case_0_not_interested_text: .4byte gText_PoultryShop_NotInterested
+.Ljp_poultry_state_case_0_purchase_declined:
+    ldr r1, .Ljp_poultry_state_case_0_purchase_declined_text
+    adds r0, r7, #0
+    bl func_080CA3B0
+    movs r6, #0xd2
+    lsls r6, r6, #2
+    adds r0, r7, r6
+    movs r1, #0x11
+    bl func_08050E50
+.Ljp_poultry_state_case_0_prompt_finished:
+    ldr r0, .Ljp_poultry_state_case_0_prompt_state_offset
+    adds r1, r7, r0
+    movs r0, #9
+    str r0, [r1]
+    b .Ljp_poultry_state_cleanup
+    .align 2, 0
+.Ljp_poultry_state_case_0_purchase_declined_text: .4byte gText_PoultryShop_PurchaseDeclined
+.Ljp_poultry_state_case_0_prompt_state_offset: .4byte 0x000006A4
 .Ljp_poultry_state_case_1:
     ldr r0, [r7, #0x14]
     ldr r1, [r7, #0x10]
