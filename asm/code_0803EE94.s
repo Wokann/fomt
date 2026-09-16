@@ -20155,9 +20155,98 @@ func_0807F0E8: @ 0x0807F0E8
 	bx r1
 	.align 2, 0
 .Ljp_0807F114: .4byte vtable_unk_080E7C4C_NullTail
-    jp_code_0803ee_func func_0807F118, 0x7F118, 0x7F158
-    jp_code_0803ee_func func_0807F158, 0x7F158, 0x7F1D8
-    jp_code_0803ee_func func_0807F1D8, 0x7F1D8, 0x7F1EC
+.global func_0807F118
+.thumb_func
+func_0807F118: @ 0x0807F118
+	push {r4, r5, lr}
+	adds r4, r0, #0
+	adds r5, r1, #0
+	ldr r0, .Ljp_0807F154
+	str r0, [r4]
+	ldr r1, [r4, #8]
+	cmp r1, #0
+	beq .Ljp_0807F134
+	ldr r0, [r1]
+	ldr r2, [r0, #8]
+	adds r0, r1, #0
+	movs r1, #3
+	bl _call_via_r2
+.Ljp_0807F134:
+	ldr r1, [r4, #4]
+	cmp r1, #0
+	beq .Ljp_0807F146
+	ldr r0, [r1, #4]
+	ldr r2, [r0, #8]
+	adds r0, r1, #0
+	movs r1, #3
+	bl _call_via_r2
+.Ljp_0807F146:
+	adds r0, r4, #0
+	adds r1, r5, #0
+	bl func_080007EC
+	pop {r4, r5}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_0807F154: .4byte vtable_unk_080E7C4C_NullTail
+
+.global func_0807F158
+.thumb_func
+func_0807F158: @ 0x0807F158
+	push {r4, r5, lr}
+	adds r5, r0, #0
+	adds r4, r1, #0
+	ldr r0, [r4, #4]
+	bl func_0807EAF8
+	ldr r1, [r4, #8]
+	movs r0, #0
+	str r0, [r4, #8]
+	str r1, [r5]
+	adds r0, r5, #0
+	pop {r4, r5}
+	pop {r1}
+	bx r1
+
+    jp_code_0803ee_func func_0807F174, 0x7F174, 0x7F1A4
+
+.global func_0807F1A4
+.thumb_func
+func_0807F1A4: @ 0x0807F1A4
+	push {r4, lr}
+	adds r4, r0, #0
+	bl func_080C797C
+	ldr r0, .Ljp_0807F1D0
+	str r0, [r4, #4]
+	ldr r1, .Ljp_0807F1D4
+	adds r0, r4, r1
+	movs r1, #0
+	strb r1, [r0]
+	movs r2, #0xe1
+	lsls r2, r2, #3
+	adds r0, r4, r2
+	str r1, [r0]
+	adds r2, #4
+	adds r0, r4, r2
+	strb r1, [r0]
+	adds r0, r4, #0
+	pop {r4}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.Ljp_0807F1D0: .4byte vtable_unk_080E7C68
+.Ljp_0807F1D4: .4byte 0x000006A4
+
+.global func_0807F1D8
+.thumb_func
+func_0807F1D8: @ 0x0807F1D8
+	push {lr}
+	ldr r2, .Ljp_0807F1E8
+	str r2, [r0, #4]
+	bl func_080C8360
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_0807F1E8: .4byte vtable_unk_080E7C68
     .global func_0807F1EC
     .thumb_func
 func_0807F1EC:
