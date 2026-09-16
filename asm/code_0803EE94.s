@@ -12750,7 +12750,720 @@ func_0807AD2C: @ 0x0807AD2C
 .Ljp_0807AF50: .4byte vtable_unk_080E5A28
 
 
-    jp_code_0803ee_func func_0807AF54, 0x7AF54, 0x7B498
+    .global func_0807AF54
+    .thumb_func
+func_0807AF54: @ 0x0807AF54
+	push {r4, r5, r6, r7, lr}
+	mov r7, sl
+	mov r6, sb
+	mov r5, r8
+	push {r5, r6, r7}
+	sub sp, #0x70
+	mov r8, r0
+	movs r0, #4
+	str r0, [sp, #0x4c]
+	mov r4, r8
+	adds r4, #0x20
+	mov r6, r8
+	adds r6, #0x24
+	mov r1, r8
+	ldr r0, [r1, #0x20]
+	lsls r0, r0, #4
+	adds r0, #4
+	adds r0, r4, r0
+	adds r2, r0, #0
+	adds r1, r6, #0
+	ldr r5, [r4]
+	mov r7, r8
+	ldr r3, [r7, #8]
+	cmp r1, r2
+	beq .Ljp_poultry_shop_AF8C
+.Ljp_poultry_shop_AF86:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_poultry_shop_AF86
+.Ljp_poultry_shop_AF8C:
+	subs r0, r0, r6
+	asrs r0, r0, #4
+	subs r0, r5, r0
+	str r0, [r4]
+	movs r0, #0
+	str r0, [sp, #0x54]
+	b .Ljp_poultry_shop_B45C
+.Ljp_poultry_shop_AF9A:
+	mov r2, r8
+	ldr r0, [r2, #8]
+	movs r3, #0x82
+	lsls r3, r3, #3
+	adds r0, r0, r3
+	bl GetChicken__4CoopUi
+	str r0, [sp, #0x50]
+	movs r0, #0x10
+	str r0, [sp, #0x10]
+	add r1, sp, #0xc
+	ldr r4, [sp, #0x4c]
+	lsls r0, r4, #3
+	strh r0, [r1]
+	ldr r0, .Ljp_poultry_shop_B0E8 @ =gUnk_084D8638
+	str r0, [sp, #0x14]
+	ldr r0, .Ljp_poultry_shop_B0EC @ =gUnk_084D86B8
+	str r0, [sp, #0x18]
+	mov r1, r8
+	adds r1, #0x20
+	mov r5, r8
+	ldr r0, [r5, #0x20]
+	adds r4, r1, #0
+	cmp r0, #0x27
+	bhi .Ljp_poultry_shop_AFE8
+	lsls r0, r0, #4
+	adds r0, #4
+	adds r0, r1, r0
+	cmp r0, #0
+	beq .Ljp_poultry_shop_AFE0
+	add r1, sp, #0xc
+	ldm r1!, {r2, r3, r7}
+	stm r0!, {r2, r3, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_poultry_shop_AFE0:
+	mov r5, r8
+	ldr r0, [r5, #0x20]
+	adds r0, #1
+	str r0, [r5, #0x20]
+.Ljp_poultry_shop_AFE8:
+	ldr r0, [sp, #0x50]
+	bl IsFestivalWinner__C6Animal
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_poultry_shop_B024
+	movs r0, #0x20
+	str r0, [sp, #0x10]
+	ldr r0, .Ljp_poultry_shop_B0F0 @ =gUnk_084D7918
+	str r0, [sp, #0x14]
+	ldr r0, .Ljp_poultry_shop_B0F4 @ =gUnk_084D7998
+	str r0, [sp, #0x18]
+	mov r7, r8
+	ldr r0, [r7, #0x20]
+	cmp r0, #0x27
+	bhi .Ljp_poultry_shop_B024
+	lsls r0, r0, #4
+	adds r0, #4
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_poultry_shop_B01C
+	add r1, sp, #0xc
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_poultry_shop_B01C:
+	mov r5, r8
+	ldr r0, [r5, #0x20]
+	adds r0, #1
+	str r0, [r5, #0x20]
+.Ljp_poultry_shop_B024:
+	ldr r7, [sp, #0x54]
+	lsls r4, r7, #1
+	adds r4, r4, r7
+	lsls r4, r4, #6
+	adds r4, r4, r7
+	lsls r4, r4, #2
+	mov r0, r8
+	adds r1, r4, r0
+	movs r2, #0xe2
+	lsls r2, r2, #3
+	adds r1, r1, r2
+	add r0, sp, #0x2c
+	movs r5, #0xc
+	movs r6, #2
+	strh r5, [r0]
+	strh r6, [r0, #2]
+	ldr r0, [sp, #0x2c]
+	adds r1, #4
+	movs r2, #0
+	bl Clear2DGfxBuffer
+	ldr r0, [sp, #0x50]
+	bl GetName__C6Animal
+	adds r2, r0, #0
+	mov r3, r8
+	adds r1, r4, r3
+	movs r7, #0xe2
+	lsls r7, r7, #3
+	adds r1, r1, r7
+	add r0, sp, #0x30
+	strh r5, [r0]
+	strh r6, [r0, #2]
+	ldr r0, [sp, #0x30]
+	adds r1, #4
+	str r2, [sp]
+	movs r2, #0
+	str r2, [sp, #4]
+	movs r3, #1
+	str r3, [sp, #8]
+	movs r3, #0
+	bl DrawStringTo2DGfxBufferExt
+	ldr r1, [sp, #0x54]
+	adds r1, #4
+	lsls r0, r1, #1
+	adds r0, r0, r1
+	lsls r0, r0, #3
+	adds r0, #0xd0
+	mov sb, r0
+	mov r0, r8
+	bl func_08008910
+	add r4, r8
+	adds r4, r4, r7
+	adds r4, #4
+	adds r6, r0, #0
+	mov r5, sb
+	lsls r2, r5, #5
+	movs r7, #0xc0
+	lsls r7, r7, #0x13
+	adds r2, r2, r7
+	add r0, sp, #0x1c
+	adds r1, r4, #0
+	movs r3, #0xc0
+	lsls r3, r3, #2
+	bl func_08008F0C
+	add r0, sp, #0x1c
+	mov sl, r0
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_poultry_shop_B0F8
+	cmp r1, #0
+	beq .Ljp_poultry_shop_B0C8
+	adds r0, r1, #0
+	add r1, sp, #0x1c
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_poultry_shop_B0C8:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	ldr r5, [sp, #0x4c]
+	lsls r5, r5, #6
+	str r5, [sp, #0x60]
+	mov r7, sb
+	lsls r7, r7, #0x10
+	mov sb, r7
+	ldr r0, [sp, #0x4c]
+	adds r0, #2
+	str r0, [sp, #0x5c]
+	ldr r1, [sp, #0x54]
+	adds r1, #1
+	str r1, [sp, #0x58]
+	b .Ljp_poultry_shop_B1D8
+	.align 2, 0
+.Ljp_poultry_shop_B0E8: .4byte gUnk_084D8638
+.Ljp_poultry_shop_B0EC: .4byte gUnk_084D86B8
+.Ljp_poultry_shop_B0F0: .4byte gUnk_084D7918
+.Ljp_poultry_shop_B0F4: .4byte gUnk_084D7998
+.Ljp_poultry_shop_B0F8:
+	str r1, [sp, #0x68]
+	movs r2, #1
+	str r2, [sp, #0x38]
+	ldr r0, [r6]
+	adds r3, r1, #0
+	subs r0, r3, r0
+	asrs r4, r0, #4
+	str r4, [sp, #0x34]
+	add r1, sp, #0x38
+	add r0, sp, #0x34
+	cmp r4, #1
+	bhs .Ljp_poultry_shop_B112
+	adds r0, r1, #0
+.Ljp_poultry_shop_B112:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_poultry_shop_B130
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	str r4, [sp, #0x64]
+	cmp r0, #0
+	bne .Ljp_poultry_shop_B136
+	adds r0, r4, #0
+	bl func_080D3BC0
+	b .Ljp_poultry_shop_B136
+.Ljp_poultry_shop_B130:
+	movs r0, #0
+	movs r4, #0
+	str r4, [sp, #0x64]
+.Ljp_poultry_shop_B136:
+	adds r5, r0, #0
+	str r5, [sp, #0x6c]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	ldr r5, [sp, #0x4c]
+	lsls r5, r5, #6
+	str r5, [sp, #0x60]
+	mov r7, sb
+	lsls r7, r7, #0x10
+	mov sb, r7
+	ldr r0, [sp, #0x4c]
+	adds r0, #2
+	str r0, [sp, #0x5c]
+	ldr r1, [sp, #0x54]
+	adds r1, #1
+	str r1, [sp, #0x58]
+	ldr r4, [sp, #0x68]
+	cmp r2, r4
+	beq .Ljp_poultry_shop_B176
+.Ljp_poultry_shop_B15C:
+	cmp r3, #0
+	beq .Ljp_poultry_shop_B16C
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_poultry_shop_B16C:
+	adds r2, #0x10
+	adds r3, #0x10
+	ldr r5, [sp, #0x68]
+	cmp r2, r5
+	bne .Ljp_poultry_shop_B15C
+.Ljp_poultry_shop_B176:
+	adds r5, r3, #0
+	ldr r0, [sp, #0x38]
+	cmp r0, #1
+	bne .Ljp_poultry_shop_B192
+	cmp r5, #0
+	beq .Ljp_poultry_shop_B18E
+	adds r0, r5, #0
+	mov r1, sl
+	ldm r1!, {r2, r3, r7}
+	stm r0!, {r2, r3, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_poultry_shop_B18E:
+	adds r5, #0x10
+	b .Ljp_poultry_shop_B1B4
+.Ljp_poultry_shop_B192:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_poultry_shop_B1B2
+.Ljp_poultry_shop_B19A:
+	cmp r2, #0
+	beq .Ljp_poultry_shop_B1AA
+	adds r0, r2, #0
+	mov r1, sl
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_poultry_shop_B1AA:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_poultry_shop_B19A
+.Ljp_poultry_shop_B1B2:
+	adds r5, r2, #0
+.Ljp_poultry_shop_B1B4:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_poultry_shop_B1C4
+.Ljp_poultry_shop_B1BE:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_poultry_shop_B1BE
+.Ljp_poultry_shop_B1C4:
+	cmp r0, #0
+	beq .Ljp_poultry_shop_B1CC
+	bl free
+.Ljp_poultry_shop_B1CC:
+	ldr r1, [sp, #0x64]
+	ldr r2, [sp, #0x6c]
+	adds r0, r1, r2
+	str r2, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_poultry_shop_B1D8:
+	mov r3, r8
+	ldr r0, [r3, #0x1c]
+	ldr r0, [r0, #0x18]
+	ldr r4, [sp, #0x60]
+	adds r0, r0, r4
+	adds r0, #0xc
+	mov r5, sb
+	lsrs r1, r5, #0x10
+	movs r7, #0
+	str r7, [sp]
+	movs r2, #0x20
+	str r2, [sp, #4]
+	movs r2, #0xc
+	movs r3, #2
+	bl func_0804E9F4
+	mov r0, r8
+	bl func_08008910
+	adds r6, r0, #0
+	movs r0, #0xf8
+	lsls r0, r0, #1
+	lsls r2, r0, #5
+	add r0, sp, #0x1c
+	ldr r1, .Ljp_poultry_shop_B23C @ =gUnk_084D84F8
+	movs r3, #0xc0
+	lsls r3, r3, #0x13
+	adds r2, r2, r3
+	movs r3, #0x80
+	bl func_08008F0C
+	add r4, sp, #0x1c
+	mov sl, r4
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_poultry_shop_B240
+	cmp r1, #0
+	beq .Ljp_poultry_shop_B232
+	adds r0, r1, #0
+	add r1, sp, #0x1c
+	ldm r1!, {r2, r5, r7}
+	stm r0!, {r2, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_poultry_shop_B232:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_poultry_shop_B30A
+	.align 2, 0
+.Ljp_poultry_shop_B23C: .4byte gUnk_084D84F8
+.Ljp_poultry_shop_B240:
+	str r1, [sp, #0x68]
+	movs r0, #1
+	str r0, [sp, #0x40]
+	ldr r1, [r6]
+	ldr r3, [sp, #0x68]
+	subs r0, r3, r1
+	asrs r4, r0, #4
+	str r4, [sp, #0x3c]
+	add r2, sp, #0x40
+	add r0, sp, #0x3c
+	cmp r4, #1
+	bhs .Ljp_poultry_shop_B25A
+	adds r0, r2, #0
+.Ljp_poultry_shop_B25A:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_poultry_shop_B27A
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov sb, r4
+	cmp r0, #0
+	bne .Ljp_poultry_shop_B276
+	mov r0, sb
+	bl func_080D3BC0
+.Ljp_poultry_shop_B276:
+	ldr r1, [r6]
+	b .Ljp_poultry_shop_B27E
+.Ljp_poultry_shop_B27A:
+	movs r0, #0
+	mov sb, r0
+.Ljp_poultry_shop_B27E:
+	adds r5, r0, #0
+	str r5, [sp, #0x6c]
+	adds r2, r1, #0
+	adds r3, r5, #0
+	ldr r4, [sp, #0x68]
+	cmp r2, r4
+	beq .Ljp_poultry_shop_B2A6
+.Ljp_poultry_shop_B28C:
+	cmp r3, #0
+	beq .Ljp_poultry_shop_B29C
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_poultry_shop_B29C:
+	adds r2, #0x10
+	adds r3, #0x10
+	ldr r5, [sp, #0x68]
+	cmp r2, r5
+	bne .Ljp_poultry_shop_B28C
+.Ljp_poultry_shop_B2A6:
+	adds r5, r3, #0
+	ldr r0, [sp, #0x40]
+	cmp r0, #1
+	bne .Ljp_poultry_shop_B2C2
+	cmp r5, #0
+	beq .Ljp_poultry_shop_B2BE
+	adds r0, r5, #0
+	mov r1, sl
+	ldm r1!, {r2, r3, r7}
+	stm r0!, {r2, r3, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_poultry_shop_B2BE:
+	adds r5, #0x10
+	b .Ljp_poultry_shop_B2E4
+.Ljp_poultry_shop_B2C2:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_poultry_shop_B2E2
+.Ljp_poultry_shop_B2CA:
+	cmp r2, #0
+	beq .Ljp_poultry_shop_B2DA
+	adds r0, r2, #0
+	mov r1, sl
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_poultry_shop_B2DA:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_poultry_shop_B2CA
+.Ljp_poultry_shop_B2E2:
+	adds r5, r2, #0
+.Ljp_poultry_shop_B2E4:
+	ldr r2, [r6, #4]
+	ldr r1, [r6]
+	adds r0, r1, #0
+	cmp r1, r2
+	beq .Ljp_poultry_shop_B2F4
+.Ljp_poultry_shop_B2EE:
+	adds r0, #0x10
+	cmp r0, r2
+	bne .Ljp_poultry_shop_B2EE
+.Ljp_poultry_shop_B2F4:
+	cmp r1, #0
+	beq .Ljp_poultry_shop_B2FE
+	adds r0, r1, #0
+	bl free
+.Ljp_poultry_shop_B2FE:
+	ldr r0, [sp, #0x6c]
+	add r0, sb
+	ldr r1, [sp, #0x6c]
+	str r1, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_poultry_shop_B30A:
+	mov r0, r8
+	bl func_08008910
+	adds r6, r0, #0
+	add r0, sp, #0x1c
+	ldr r1, .Ljp_poultry_shop_B344 @ =gUnk_084D8578
+	ldr r2, .Ljp_poultry_shop_B348 @ =0x05000020
+	movs r3, #0x20
+	bl func_08008F0C
+	add r2, sp, #0x1c
+	mov sl, r2
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_poultry_shop_B34C
+	cmp r1, #0
+	beq .Ljp_poultry_shop_B33A
+	adds r0, r1, #0
+	mov r1, sl
+	ldm r1!, {r3, r4, r5}
+	stm r0!, {r3, r4, r5}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_poultry_shop_B33A:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_poultry_shop_B412
+	.align 2, 0
+.Ljp_poultry_shop_B344: .4byte gUnk_084D8578
+.Ljp_poultry_shop_B348: .4byte 0x05000020
+.Ljp_poultry_shop_B34C:
+	str r1, [sp, #0x68]
+	movs r0, #1
+	str r0, [sp, #0x48]
+	ldr r1, [r6]
+	ldr r7, [sp, #0x68]
+	subs r0, r7, r1
+	asrs r4, r0, #4
+	str r4, [sp, #0x44]
+	add r2, sp, #0x48
+	add r0, sp, #0x44
+	cmp r4, #1
+	bhs .Ljp_poultry_shop_B366
+	adds r0, r2, #0
+.Ljp_poultry_shop_B366:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_poultry_shop_B386
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov sb, r4
+	cmp r0, #0
+	bne .Ljp_poultry_shop_B382
+	mov r0, sb
+	bl func_080D3BC0
+.Ljp_poultry_shop_B382:
+	ldr r1, [r6]
+	b .Ljp_poultry_shop_B38A
+.Ljp_poultry_shop_B386:
+	movs r0, #0
+	mov sb, r0
+.Ljp_poultry_shop_B38A:
+	adds r5, r0, #0
+	str r5, [sp, #0x6c]
+	adds r2, r1, #0
+	adds r3, r5, #0
+	b .Ljp_poultry_shop_B3A8
+.Ljp_poultry_shop_B394:
+	cmp r3, #0
+	beq .Ljp_poultry_shop_B3A4
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_poultry_shop_B3A4:
+	adds r2, #0x10
+	adds r3, #0x10
+.Ljp_poultry_shop_B3A8:
+	ldr r0, [sp, #0x68]
+	cmp r2, r0
+	bne .Ljp_poultry_shop_B394
+	adds r5, r3, #0
+	ldr r0, [sp, #0x48]
+	cmp r0, #1
+	bne .Ljp_poultry_shop_B3CA
+	cmp r5, #0
+	beq .Ljp_poultry_shop_B3C6
+	adds r0, r5, #0
+	mov r1, sl
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_poultry_shop_B3C6:
+	adds r5, #0x10
+	b .Ljp_poultry_shop_B3EC
+.Ljp_poultry_shop_B3CA:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_poultry_shop_B3EA
+.Ljp_poultry_shop_B3D2:
+	cmp r2, #0
+	beq .Ljp_poultry_shop_B3E2
+	adds r0, r2, #0
+	mov r1, sl
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_poultry_shop_B3E2:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_poultry_shop_B3D2
+.Ljp_poultry_shop_B3EA:
+	adds r5, r2, #0
+.Ljp_poultry_shop_B3EC:
+	ldr r2, [r6, #4]
+	ldr r1, [r6]
+	adds r0, r1, #0
+	cmp r1, r2
+	beq .Ljp_poultry_shop_B3FC
+.Ljp_poultry_shop_B3F6:
+	adds r0, #0x10
+	cmp r0, r2
+	bne .Ljp_poultry_shop_B3F6
+.Ljp_poultry_shop_B3FC:
+	cmp r1, #0
+	beq .Ljp_poultry_shop_B406
+	adds r0, r1, #0
+	bl free
+.Ljp_poultry_shop_B406:
+	ldr r0, [sp, #0x6c]
+	add r0, sb
+	ldr r7, [sp, #0x6c]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_poultry_shop_B412:
+	movs r5, #0
+	ldr r0, [sp, #0x4c]
+	adds r0, #1
+	lsls r7, r0, #6
+	movs r4, #0x26
+	movs r0, #0xf8
+	lsls r0, r0, #1
+	lsls r6, r0, #0x10
+	b .Ljp_poultry_shop_B444
+.Ljp_poultry_shop_B424:
+	mov r1, r8
+	ldr r0, [r1, #0x1c]
+	ldr r0, [r0, #0x18]
+	adds r0, r0, r7
+	adds r0, r0, r4
+	movs r1, #1
+	str r1, [sp]
+	movs r1, #0x20
+	str r1, [sp, #4]
+	lsrs r1, r6, #0x10
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r4, #2
+	adds r5, #1
+.Ljp_poultry_shop_B444:
+	mov r0, r8
+	ldr r1, [sp, #0x50]
+	bl func_0807B8F4
+	cmp r5, r0
+	blo .Ljp_poultry_shop_B424
+	ldr r2, [sp, #0x5c]
+	str r2, [sp, #0x4c]
+	ldr r3, [sp, #0x58]
+	str r3, [sp, #0x54]
+	mov r4, r8
+	ldr r3, [r4, #8]
+.Ljp_poultry_shop_B45C:
+	movs r5, #0x82
+	lsls r5, r5, #3
+	adds r0, r3, r5
+	bl GetCapacity__C4Coop
+	ldr r7, [sp, #0x54]
+	cmp r7, r0
+	bhs .Ljp_poultry_shop_B480
+	lsls r0, r7, #3
+	ldr r1, .Ljp_poultry_shop_B494 @ =0x000006AC
+	add r1, r8
+	adds r1, r1, r0
+	ldr r1, [r1]
+	movs r0, #1
+	rsbs r0, r0, #0
+	cmp r1, r0
+	beq .Ljp_poultry_shop_B480
+	b .Ljp_poultry_shop_AF9A
+.Ljp_poultry_shop_B480:
+	ldr r0, [sp, #0x4c]
+	add sp, #0x70
+	pop {r3, r4, r5}
+	mov r8, r3
+	mov sb, r4
+	mov sl, r5
+	pop {r4, r5, r6, r7}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.Ljp_poultry_shop_B494: .4byte 0x000006AC
+
     jp_code_0803ee_func func_0807B8F4, 0x7B498, 0x7BA18
     jp_code_0803ee_func func_0807BE74, 0x7BA18, 0x7CC1C
     jp_code_0803ee_func func_0807CC1C, 0x7CC1C, 0x7CC5C

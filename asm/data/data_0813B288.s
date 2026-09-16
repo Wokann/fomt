@@ -2248,7 +2248,13 @@ gUnk_084D529C:
     .incbin "baserom_jp.gba", 0x4D529C, (0x4D52BC - 0x4D529C)
     .global gUnk_084D52BC
 gUnk_084D52BC:
-    .incbin "baserom_jp.gba", 0x4D52BC, (0x4D7EB8 - 0x4D52BC)
+    .incbin "baserom_jp.gba", 0x4D52BC, (0x4D7918 - 0x4D52BC)
+    .global gUnk_084D7918
+gUnk_084D7918:
+    .incbin "baserom_jp.gba", 0x4D7918, (0x4D7998 - 0x4D7918)
+    .global gUnk_084D7998
+gUnk_084D7998:
+    .incbin "baserom_jp.gba", 0x4D7998, (0x4D7EB8 - 0x4D7998)
 
     @ Records-screen minigame icon/palette boundaries.  The paired labels are
     @ preserved because records_screen_data.cc uses ordinary relocations.
@@ -2294,7 +2300,19 @@ gUnk_084D8278:
     .global gUnk_084D82F8
 gUnk_084D82F8:
     FOMT_RECORDS_TASK_PALETTE 06
-    .incbin "baserom_jp.gba", 0x4D8318, (0x4D977C - 0x4D8318)
+    .incbin "baserom_jp.gba", 0x4D8318, (0x4D84F8 - 0x4D8318)
+    .global gUnk_084D84F8
+gUnk_084D84F8:
+    .incbin "baserom_jp.gba", 0x4D84F8, (0x4D8578 - 0x4D84F8)
+    .global gUnk_084D8578
+gUnk_084D8578:
+    .incbin "baserom_jp.gba", 0x4D8578, (0x4D8638 - 0x4D8578)
+    .global gUnk_084D8638
+gUnk_084D8638:
+    .incbin "baserom_jp.gba", 0x4D8638, (0x4D86B8 - 0x4D8638)
+    .global gUnk_084D86B8
+gUnk_084D86B8:
+    .incbin "baserom_jp.gba", 0x4D86B8, (0x4D977C - 0x4D86B8)
     .global gUnk_084D977C
 gUnk_084D977C:
     .incbin "baserom_jp.gba", 0x4D977C, (0x4DB1DC - 0x4D977C)
