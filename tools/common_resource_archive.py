@@ -31,7 +31,22 @@ from portrait_archive import (
 )
 
 
-EXPECTED_COUNTS = (493, 500, 101, 1624, 342, 0, 532)
+@dataclass(frozen=True)
+class ArchiveProfile:
+    counts: tuple[int, int, int, int, int, int, int]
+    empty_groups: tuple[int, ...]
+    name: str
+
+
+PROFILES = {
+    "common": ArchiveProfile(
+        (493, 500, 101, 1624, 342, 0, 532), (316, 429), "common resource"
+    ),
+    "small-companion": ArchiveProfile(
+        (3, 16, 3, 52, 2, 0, 16), (), "small companion"
+    ),
+}
+ACTIVE_PROFILE = PROFILES["common"]
 
 
 @dataclass(frozen=True)
@@ -67,8 +82,10 @@ def load_checked(path: Path, offset: int, length: int, expected_hash: str | None
             f"archive SHA-256 mismatch: expected {expected_hash}, got {actual_hash}; "
             "refusing to process an unverified range"
         )
-    if archive.counts != EXPECTED_COUNTS:
-        raise ValueError(f"unexpected common archive table counts: {archive.counts}")
+    if archive.counts != ACTIVE_PROFILE.counts:
+        raise ValueError(
+            f"unexpected {ACTIVE_PROFILE.name} archive table counts: {archive.counts}"
+        )
     return archive
 
 
@@ -194,8 +211,10 @@ def audit(archive: Archive) -> None:
         claimed_tiles.update(range(item.tile_start, item.tile_start + item.tile_count))
     if claimed_tiles != set(range(archive.counts[3])):
         raise ValueError("drawable group descriptors do not claim every native tile")
-    if empty != [316, 429]:
-        raise ValueError(f"unexpected common archive non-drawable groups: {empty}")
+    if tuple(empty) != ACTIVE_PROFILE.empty_groups:
+        raise ValueError(
+            f"unexpected {ACTIVE_PROFILE.name} archive non-drawable groups: {empty}"
+        )
     print(f"tables: {', '.join(map(str, archive.counts))}")
     print(
         f"verified {len(entries)} selection entries, {len(drawable_group_ids(archive))} drawable OAM groups, "
@@ -270,15 +289,23 @@ def build(archive: Archive, source_dir: Path, output: Path) -> None:
     data, changed = rebuild_data(archive, source_dir)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_bytes(data)
-    print(f"rebuilt {len(data):#x}-byte common resource archive with {changed} visible pixel changes")
+    print(
+        f"rebuilt {len(data):#x}-byte {ACTIVE_PROFILE.name} archive "
+        f"with {changed} visible pixel changes"
+    )
     print(f"archive SHA-256: {hashlib.sha256(data).hexdigest()}")
 
 
 def verify(source_dir: Path, archive: Archive) -> None:
     rebuilt, changed = rebuild_data(archive, source_dir)
     if changed or rebuilt != archive.data:
-        raise AssertionError("unchanged common OAM PNG sources do not rebuild the retail archive")
-    print("verified unchanged common OAM PNG reconstruction against the retail archive")
+        raise AssertionError(
+            f"unchanged {ACTIVE_PROFILE.name} OAM PNG sources do not rebuild the retail archive"
+        )
+    print(
+        f"verified unchanged {ACTIVE_PROFILE.name} OAM PNG reconstruction "
+        "against the retail archive"
+    )
 
 
 def patch_bytes(target: bytes, baseline: Archive, offset: int, rebuilt: bytes) -> bytes:
@@ -305,12 +332,17 @@ def patch_test(arguments: argparse.Namespace) -> None:
         baseline = load_checked(baseline_path, offset, arguments.length, arguments.sha256)
         original = baseline_path.read_bytes()
         if region not in built or patch_bytes(original, baseline, offset, built[region]) != original:
-            raise AssertionError(f"unchanged {region.upper()} common archive patch changes retail ROM bytes")
-    print("verified unchanged common resource archive post-link patches against all four retail ROMs")
+            raise AssertionError(
+                f"unchanged {region.upper()} {ACTIVE_PROFILE.name} archive patch changes retail ROM bytes"
+            )
+    print(
+        f"verified unchanged {ACTIVE_PROFILE.name} archive post-link patches "
+        "against all four retail ROMs"
+    )
 
 
 def edit_test(archive: Archive, source_dir: Path) -> None:
-    with tempfile.TemporaryDirectory(prefix="fomt_common_archive_") as temporary:
+    with tempfile.TemporaryDirectory(prefix=f"fomt_{ACTIVE_PROFILE.name.replace(' ', '_')}_archive_") as temporary:
         copied = Path(temporary) / "source"
         shutil.copytree(source_dir, copied)
         owners: dict[tuple[int, int], list[tuple[int, int]]] = {}
@@ -321,7 +353,9 @@ def edit_test(archive: Archive, source_dir: Path) -> None:
                     owners.setdefault(native_pixel, []).append((group_id, target))
         shared = next((pixel for pixel, users in owners.items() if len(users) >= 2), None)
         if shared is None:
-            raise AssertionError("common archive unexpectedly has no shared drawable tile pixel")
+            raise AssertionError(
+                f"{ACTIVE_PROFILE.name} archive unexpectedly has no shared drawable tile pixel"
+            )
         users = owners[shared]
         changed_sources: set[int] = set()
         for group_id, target in users:
@@ -337,15 +371,23 @@ def edit_test(archive: Archive, source_dir: Path) -> None:
         tile_offset = archive.table_offsets[3]
         tile_end = tile_offset + archive.counts[3] * 32
         if not changed or rebuilt == archive.data:
-            raise AssertionError("shared OAM pixel edit did not change the common archive")
+            raise AssertionError(
+                f"shared OAM pixel edit did not change the {ACTIVE_PROFILE.name} archive"
+            )
         if rebuilt[:tile_offset] != archive.data[:tile_offset] or rebuilt[tile_end:] != archive.data[tile_end:]:
-            raise AssertionError("common OAM edit changed metadata outside table four")
-    print("verified a shared visible common-OAM edit preserves metadata and fixed archive bounds")
+            raise AssertionError(
+                f"{ACTIVE_PROFILE.name} OAM edit changed metadata outside table four"
+            )
+    print(
+        f"verified a shared visible {ACTIVE_PROFILE.name} OAM edit preserves "
+        "metadata and fixed archive bounds"
+    )
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("rom", type=Path)
+    parser.add_argument("--profile", choices=tuple(PROFILES), default="common")
     parser.add_argument("--offset", required=True, type=lambda text: int(text, 0))
     parser.add_argument("--length", default=0x12848, type=lambda text: int(text, 0))
     parser.add_argument("--sha256")
@@ -367,6 +409,8 @@ def main() -> None:
     edit_parser = commands.add_parser("edit-test")
     edit_parser.add_argument("--source-dir", required=True, type=Path)
     args = parser.parse_args()
+    global ACTIVE_PROFILE
+    ACTIVE_PROFILE = PROFILES[args.profile]
     archive = load_checked(args.rom, args.offset, args.length, args.sha256)
     if args.command == "audit":
         audit(archive)

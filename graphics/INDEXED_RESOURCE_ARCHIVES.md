@@ -31,6 +31,13 @@ and palettes to OBJ memory. Its 498 indexed PNG sources and fixed-size rebuild
 live under `graphics/common_resource_archive/`. The two all-zero groups (`316`,
 `429`) are native non-drawable records and are deliberately not artwork.
 
+The small companion archive follows the same fully bounded group-descriptor
+contract. Its sixteen descriptors select three native GBA OAM records, fifty-
+two 4bpp tiles, and two BGR555 palettes. Every group is drawable; shared OAM
+records intentionally map multiple editable group views onto their native tile
+ranges. Its complete indexed PNG sources and fixed-size rebuild live under
+`graphics/small_companion_archive/`.
+
 The Farm Status screen constructs a third archive at `0x4D977C` in JP and
 `0x7537D0` in US (with the regional locations recorded by its rebuild tool).
 Town Map uses the same complete `0xEA4` payload. Its consumer path is fully
@@ -62,7 +69,6 @@ own continuation syntax elsewhere.
 
 The managed actor tile stream, Records Screen task icon/palette pairs, and
 other confirmed resource payloads retain their existing direct runtime labels.
-The small companion archive remains metadata/selection data rather than a PNG
-export. Any future conversion must preserve the parsed boundary, all descriptor
+Any future archive conversion must preserve its parsed boundary, descriptor
 counts, entry ordering, and every pointer or caller that resolves an archive
 index.
