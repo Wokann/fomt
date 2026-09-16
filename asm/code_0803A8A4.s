@@ -4149,7 +4149,7 @@ func_0803C5B0:
 .Ljp_0803C550:
     .4byte 0x084E07CC
 .Ljp_0803C554:
-    .4byte 0x083ED9FC
+    .4byte gUnk_083ED9FC
 .Ljp_0803C558:
     .4byte vtable_unk_080E77D0
 .Ljp_0803C55C:

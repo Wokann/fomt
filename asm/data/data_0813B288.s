@@ -529,7 +529,10 @@ gUnk_082B3A8C:
 gUnk_08311B84:
     .incbin "baserom_jp.gba", 0x311B84, (0x329558 - 0x311B84)
     .incbin "build/jp/graphics/sprites/shared/actor_tiles.4bpp"
-    .incbin "baserom_jp.gba", 0x3E7F18, (0x41ECDC - 0x3E7F18)
+    .incbin "baserom_jp.gba", 0x3E7F18, (0x3ED9FC - 0x3E7F18)
+    .global gUnk_083ED9FC
+gUnk_083ED9FC:
+    .incbin "baserom_jp.gba", 0x3ED9FC, (0x41ECDC - 0x3ED9FC)
     .global gUnk_FieldPlotRenderRecord_004
 gUnk_FieldPlotRenderRecord_004:
     .incbin "baserom_jp.gba", 0x41ECDC, 0x30
