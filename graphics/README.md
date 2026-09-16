@@ -241,6 +241,17 @@ its two tilemaps, tile stream, and sixteen BGR555 palette banks are included at
 The rendered PNGs remain previews only; the native source files are the
 authoritative editable inputs.
 
+`ui/scene_08077810/shared/layer_0.tilemap` is an overseas-only native 32-by-32
+BG map: US, EU and DE use the exact same Huffman-4/LZ3 stream at their
+respective `gUnk_0874ECCC` locations. It is included directly by that original
+assembly symbol. JP deliberately has no generated counterpart because its
+startup code references a different resource set with different decoded
+lengths. The map is stored as native entries, not a guessed PNG composite:
+
+```console
+make gfx-ui-scene-08077810-patch-test
+```
+
 ## Shared UI tile grid
 
 `ui/shared_resource/shared_resource.png` is the first production use of the

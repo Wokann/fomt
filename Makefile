@@ -275,6 +275,15 @@ UI_SCENE_080A2BA4_OUTPUT_DIR := $(BUILD_DIR)/graphics/ui/scene_080a2ba4
 UI_SCENE_080A2BA4_STAMP := $(UI_SCENE_080A2BA4_OUTPUT_DIR)/.scene-080a2ba4.stamp
 UI_SCENE_080A2BA4_REGION := $(INTRO_OBJECTS_REGION)
 
+# func_08077810 is an overseas-only consumer. Its one 32-by-32 tilemap is
+# byte-identical in US/EU/DE; JP uses a different code/data layout.
+UI_SCENE_08077810_TOOL := tools/ui_scene_08077810.py
+UI_SCENE_08077810_SOURCE_DIR := graphics/ui/scene_08077810/shared
+UI_SCENE_08077810_SOURCES := $(wildcard $(UI_SCENE_08077810_SOURCE_DIR)/*)
+UI_SCENE_08077810_OUTPUT_DIR := $(BUILD_DIR)/graphics/ui/scene_08077810
+UI_SCENE_08077810_STAMP := $(UI_SCENE_08077810_OUTPUT_DIR)/.scene-08077810.stamp
+UI_SCENE_08077810_REGION := $(INTRO_OBJECTS_REGION)
+
 # func_080AE7D0 has two 32-by-32 BG tilemaps, a 928-tile 4bpp character
 # stream and an independently bounded 16-bank palette.  Native sources avoid
 # assigning a visual compositor before the screen's layer logic is proven.
@@ -585,6 +594,11 @@ $(UI_SCENE_080A2BA4_STAMP): $(UI_SCENE_080A2BA4_SOURCES) $(UI_SCENE_080A2BA4_TOO
 	  --source-dir $(UI_SCENE_080A2BA4_SOURCE_DIR) --output-dir $(UI_SCENE_080A2BA4_OUTPUT_DIR)
 	@touch $@
 
+$(UI_SCENE_08077810_STAMP): $(UI_SCENE_08077810_SOURCES) $(UI_SCENE_08077810_TOOL) $(FARM_STATUS_CODEC) $(BASE_ROM)
+	@$(PYTHON) $(UI_SCENE_08077810_TOOL) build --region $(UI_SCENE_08077810_REGION) --rom $(BASE_ROM) \
+	  --source-dir $(UI_SCENE_08077810_SOURCE_DIR) --output-dir $(UI_SCENE_08077810_OUTPUT_DIR)
+	@touch $@
+
 $(UI_SCENE_080AE7D0_STAMP): $(UI_SCENE_080AE7D0_SOURCES) $(UI_SCENE_080AE7D0_TOOL) $(FARM_STATUS_CODEC) $(BASE_ROM)
 	@$(PYTHON) $(UI_SCENE_080AE7D0_TOOL) build --region $(UI_SCENE_080AE7D0_REGION) --rom $(BASE_ROM) \
 	  --source-dir $(UI_SCENE_080AE7D0_SOURCE_DIR) --output-dir $(UI_SCENE_080AE7D0_OUTPUT_DIR)
@@ -647,6 +661,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 # make to update every optional assembler dependency file in a fresh worktree.
 .PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-secondary-tilemaps-edit-test gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-background-edit-test gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-objects-edit-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-tilemaps-edit-test gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all resource-archive-audit unpack-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
 .PHONY: gfx-ui-scene-080a2ba4 gfx-ui-scene-080a2ba4-reference gfx-ui-scene-080a2ba4-test gfx-ui-scene-080a2ba4-all gfx-ui-scene-080a2ba4-patch-test gfx-ui-scene-080a2ba4-edit-test
+.PHONY: gfx-ui-scene-08077810 gfx-ui-scene-08077810-test gfx-ui-scene-08077810-all gfx-ui-scene-08077810-patch-test gfx-ui-scene-08077810-edit-test
 .PHONY: gfx-ui-scene-080ae7d0 gfx-ui-scene-080ae7d0-preview gfx-ui-scene-080ae7d0-test gfx-ui-scene-080ae7d0-all gfx-ui-scene-080ae7d0-patch-test gfx-ui-scene-080ae7d0-edit-test
 .PHONY: gfx-ui-scene-080b7164 gfx-ui-scene-080b7164-preview gfx-ui-scene-080b7164-test gfx-ui-scene-080b7164-all gfx-ui-scene-080b7164-patch-test gfx-ui-scene-080b7164-edit-test
 .PHONY: gfx-ui-scene-080c160c gfx-ui-scene-080c160c-preview gfx-ui-scene-080c160c-test gfx-ui-scene-080c160c-all gfx-ui-scene-080c160c-patch-test gfx-ui-scene-080c160c-edit-test
@@ -731,6 +746,20 @@ gfx-ui-scene-080a2ba4-patch-test: gfx-ui-scene-080a2ba4-all $(UI_SCENE_080A2BA4_
 	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
 gfx-ui-scene-080a2ba4-edit-test: $(UI_SCENE_080A2BA4_TOOL) baserom_jp.gba
 	@$(PYTHON) $(UI_SCENE_080A2BA4_TOOL) edit-test --region jp --rom baserom_jp.gba
+gfx-ui-scene-08077810: $(UI_SCENE_08077810_STAMP)
+gfx-ui-scene-08077810-test: gfx-ui-scene-08077810 $(UI_SCENE_08077810_TOOL)
+	@$(PYTHON) $(UI_SCENE_08077810_TOOL) verify --region $(UI_SCENE_08077810_REGION) --rom $(BASE_ROM) \
+	  --source-dir $(UI_SCENE_08077810_SOURCE_DIR) --output-dir $(UI_SCENE_08077810_OUTPUT_DIR)
+gfx-ui-scene-08077810-all:
+	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-ui-scene-08077810-test
+	@$(MAKE) --no-print-directory GAME_REGION=US gfx-ui-scene-08077810-test
+	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-ui-scene-08077810-test
+	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-ui-scene-08077810-test
+gfx-ui-scene-08077810-patch-test: gfx-ui-scene-08077810-all $(UI_SCENE_08077810_TOOL)
+	@$(PYTHON) $(UI_SCENE_08077810_TOOL) patch-test --output-root build \
+	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
+gfx-ui-scene-08077810-edit-test: $(UI_SCENE_08077810_TOOL) baserom_us.gba
+	@$(PYTHON) $(UI_SCENE_08077810_TOOL) edit-test --rom baserom_us.gba
 gfx-ui-scene-080ae7d0: $(UI_SCENE_080AE7D0_STAMP)
 gfx-ui-scene-080ae7d0-preview: $(UI_SCENE_080AE7D0_VISUAL_TOOL) $(UI_SCENE_080AE7D0_SOURCES)
 	@$(PYTHON) $(UI_SCENE_080AE7D0_VISUAL_TOOL) preview --profile 080ae7d0 --region $(UI_SCENE_080AE7D0_REGION) --source-dir $(UI_SCENE_080AE7D0_SOURCE_DIR) --reference-dir $(UI_SCENE_080AE7D0_REFERENCE_DIR)
@@ -965,7 +994,7 @@ tile-grid-test:
 	@$(MAKE) --no-print-directory GAME_REGION=EU tile-grid-region-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE tile-grid-region-test
 
-gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui gfx-ui-scene-080a2ba4 gfx-ui-scene-080ae7d0 gfx-ui-scene-080b7164 gfx-ui-scene-080c160c gfx-ui-scene-080bcfac gfx-ui-scene-080b55d0-aux gfx-ui-scene-08054f40-tiles gfx-ui-scene-0805ab08-tiles gfx-farm-status gfx-farm-status-tilemaps gfx-farm-status-secondary-tilemaps gfx-intro-background gfx-intro-objects gfx-intro-startup-tilemaps gfx-map-resources gfx-records-minigame
+gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui gfx-ui-scene-080a2ba4 gfx-ui-scene-08077810 gfx-ui-scene-080ae7d0 gfx-ui-scene-080b7164 gfx-ui-scene-080c160c gfx-ui-scene-080bcfac gfx-ui-scene-080b55d0-aux gfx-ui-scene-08054f40-tiles gfx-ui-scene-0805ab08-tiles gfx-farm-status gfx-farm-status-tilemaps gfx-farm-status-secondary-tilemaps gfx-intro-background gfx-intro-objects gfx-intro-startup-tilemaps gfx-map-resources gfx-records-minigame
 
 # Full graphics gate for assets that have an authoritative source/rebuild
 # path.  It intentionally does not link a ROM: the project-wide link is
@@ -979,6 +1008,9 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-ui-scene-080a2ba4-all
 	@$(MAKE) --no-print-directory gfx-ui-scene-080a2ba4-patch-test
 	@$(MAKE) --no-print-directory gfx-ui-scene-080a2ba4-edit-test
+	@$(MAKE) --no-print-directory gfx-ui-scene-08077810-all
+	@$(MAKE) --no-print-directory gfx-ui-scene-08077810-patch-test
+	@$(MAKE) --no-print-directory gfx-ui-scene-08077810-edit-test
 	@$(MAKE) --no-print-directory gfx-ui-scene-080ae7d0-all
 	@$(MAKE) --no-print-directory gfx-ui-scene-080ae7d0-patch-test
 	@$(MAKE) --no-print-directory gfx-ui-scene-080ae7d0-edit-test
@@ -1019,7 +1051,7 @@ gfx-verify:
 	@$(MAKE) --no-print-directory oam-pack-test
 	@$(MAKE) --no-print-directory oam-pack-audit
 
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN) $(PORTRAIT_TILE_BIN) $(ACTOR_TILE_BIN) $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN) $(FARM_STATUS_PACKED_BIN) $(FARM_STATUS_PALETTE_BIN) $(FARM_STATUS_TILEMAP_BIN) $(FARM_STATUS_SECONDARY_TILEMAP_STAMP) $(INTRO_BACKGROUND_PACKED_BIN) $(INTRO_BACKGROUND_PALETTE_BIN) $(INTRO_OBJECTS_STAMP) $(INTRO_STARTUP_TILEMAPS_STAMP) $(UI_SCENE_080A2BA4_STAMP) $(UI_SCENE_080AE7D0_STAMP) $(UI_SCENE_080B7164_STAMP) $(UI_SCENE_080C160C_STAMP) $(UI_SCENE_080BCFAC_STAMP) $(UI_SCENE_080B55D0_AUX_STAMP) $(UI_SCENE_08054F40_TILES_STAMP) $(UI_SCENE_0805AB08_TILES_STAMP) $(MAP_RESOURCES_STAMP) $(RECORDS_MINIGAME_OUTPUTS)
+$(BUILD_DIR)/asm/data/data_0813B288.o: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN) $(PORTRAIT_TILE_BIN) $(ACTOR_TILE_BIN) $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN) $(FARM_STATUS_PACKED_BIN) $(FARM_STATUS_PALETTE_BIN) $(FARM_STATUS_TILEMAP_BIN) $(FARM_STATUS_SECONDARY_TILEMAP_STAMP) $(INTRO_BACKGROUND_PACKED_BIN) $(INTRO_BACKGROUND_PALETTE_BIN) $(INTRO_OBJECTS_STAMP) $(INTRO_STARTUP_TILEMAPS_STAMP) $(UI_SCENE_080A2BA4_STAMP) $(UI_SCENE_08077810_STAMP) $(UI_SCENE_080AE7D0_STAMP) $(UI_SCENE_080B7164_STAMP) $(UI_SCENE_080C160C_STAMP) $(UI_SCENE_080BCFAC_STAMP) $(UI_SCENE_080B55D0_AUX_STAMP) $(UI_SCENE_08054F40_TILES_STAMP) $(UI_SCENE_0805AB08_TILES_STAMP) $(MAP_RESOURCES_STAMP) $(RECORDS_MINIGAME_OUTPUTS)
 
 # Mary owns the complete packed RIFF script stream.  Its three headers remain
 # explicit inputs: callables and slot names live with the selected scripts,

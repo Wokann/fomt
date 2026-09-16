@@ -403,6 +403,20 @@
     .endif
     .endm
 
+    @ This symbol exists only in the overseas code/data layout.  JP has a
+    @ distinct startup implementation and must not consume this asset.
+    .macro FOMT_UI_SCENE_08077810_TILEMAP
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/scene_08077810/layer_0.tilemap.0x70"
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/scene_08077810/layer_0.tilemap.0x70"
+    .else
+    .incbin "build/us/graphics/ui/scene_08077810/layer_0.tilemap.0x70"
+    .endif
+    .endif
+    .endm
+
     @ func_0806EC94 selects one of two three-layer 64x44 BG layouts.  Keep
     @ the native compressed streams separate because EU exposes header labels
     @ eight bytes before several payload labels.
@@ -5621,7 +5635,7 @@ gUnk_0874EB60:
 
 	.global gUnk_0874ECCC
 gUnk_0874ECCC:
-	FOMT_REGION_ASSET_INCBIN 0x74ECCC, 0x16C
+	FOMT_UI_SCENE_08077810_TILEMAP
 
 	.global gUnk_0874EE38
 gUnk_0874EE38:
