@@ -2829,7 +2829,439 @@ func_0809FE3C: @ 0x0809F874
     bx r1
     .align 2, 0
 .Ljp_0809F8A8: .4byte gCharacterNameEntries
-    jp_code_809_func func_0809FE74, 0x9F8AC, 0x9FC30
+    .global func_0809FE74
+    .thumb_func
+func_0809FE74: @ 0x0809F8AC
+	push {r4, r5, r6, r7, lr}
+	mov r7, sl
+	mov r6, sb
+	mov r5, r8
+	push {r5, r6, r7}
+	sub sp, #4
+	adds r4, r0, #0
+	adds r3, r1, #0
+	mov r8, r2
+	movs r0, #0
+	cmp r3, #0x2a
+	bhi .L0809FE8E
+	movs r0, #1
+.L0809FE8E:
+	cmp r0, #0
+	bne .L0809FEA4
+	movs r0, #4
+	rsbs r0, r0, #0
+	ands r0, r6
+	movs r2, #0x3c
+	movs r1, #0x7d
+	rsbs r1, r1, #0
+	ands r0, r1
+	orrs r0, r2
+	b .L080A001C
+.L0809FEA4:
+	cmp r3, #0x23
+	bls .L0809FEAA
+	b .L0809FFE4
+.L0809FEAA:
+	lsls r0, r3, #2
+	ldr r1, .L0809FEB4 @ =.L0809FEB8
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.L0809FEB4: .4byte .L0809FEB8
+.L0809FEB8: @ jump table
+	.4byte .L0809FFE4 @ case 0
+	.4byte .L0809FFE4 @ case 1
+	.4byte .L0809FFE4 @ case 2
+	.4byte .L0809FF48 @ case 3
+	.4byte .L0809FFE4 @ case 4
+	.4byte .L0809FFE4 @ case 5
+	.4byte .L0809FFE4 @ case 6
+	.4byte .L0809FFE4 @ case 7
+	.4byte .L0809FFE4 @ case 8
+	.4byte .L0809FFE4 @ case 9
+	.4byte .L0809FFE4 @ case 10
+	.4byte .L0809FFE4 @ case 11
+	.4byte .L0809FF48 @ case 12
+	.4byte .L0809FFE4 @ case 13
+	.4byte .L0809FFE4 @ case 14
+	.4byte .L0809FFE4 @ case 15
+	.4byte .L0809FFE4 @ case 16
+	.4byte .L0809FFE4 @ case 17
+	.4byte .L0809FFE4 @ case 18
+	.4byte .L0809FF48 @ case 19
+	.4byte .L0809FFE4 @ case 20
+	.4byte .L0809FF48 @ case 21
+	.4byte .L0809FFE4 @ case 22
+	.4byte .L0809FFE4 @ case 23
+	.4byte .L0809FFE4 @ case 24
+	.4byte .L0809FF48 @ case 25
+	.4byte .L0809FFE4 @ case 26
+	.4byte .L0809FFE4 @ case 27
+	.4byte .L0809FFE4 @ case 28
+	.4byte .L0809FFE4 @ case 29
+	.4byte .L0809FFE4 @ case 30
+	.4byte .L0809FF48 @ case 31
+	.4byte .L0809FFE4 @ case 32
+	.4byte .L0809FFE4 @ case 33
+	.4byte .L0809FFE4 @ case 34
+	.4byte .L0809FFDC @ case 35
+.L0809FF48:
+	lsls r0, r3, #3
+	ldr r1, .L0809FFD8 @ =gCharacterNameEntries
+	adds r0, r0, r1
+	adds r6, r0, #0
+	ldrb r0, [r6, #4]
+	lsls r1, r0, #0x1e
+	lsls r0, r0, #0x19
+	lsrs r0, r0, #0x1b
+	movs r7, #3
+	lsrs r1, r1, #0x1e
+	movs r4, #4
+	rsbs r4, r4, #0
+	ands r4, r5
+	orrs r4, r1
+	subs r0, #1
+	cmp r0, #0x1d
+	bls .L0809FF70
+	movs r1, #0x1e
+	bl __umodsi3
+.L0809FF70:
+	movs r1, #0x1f
+	mov sl, r1
+	mov r2, sl
+	ands r0, r2
+	lsls r0, r0, #2
+	movs r3, #0x7d
+	rsbs r3, r3, #0
+	mov sb, r3
+	ands r3, r4
+	orrs r3, r0
+	adds r5, r3, #0
+	mov r0, r8
+	ldrb r2, [r0]
+	lsls r1, r2, #0x1e
+	lsls r0, r3, #0x1e
+	cmp r1, r0
+	bne .L0809FFD4
+	lsls r1, r2, #0x19
+	lsrs r1, r1, #0x1b
+	adds r1, #1
+	lsls r0, r3, #0x19
+	lsrs r0, r0, #0x1b
+	adds r0, #1
+	cmp r1, r0
+	bne .L0809FFD4
+	ldrb r1, [r6, #5]
+	lsls r0, r1, #0x1e
+	lsrs r0, r0, #0x1e
+	lsls r1, r1, #0x19
+	lsrs r1, r1, #0x1b
+	ands r0, r7
+	movs r4, #4
+	rsbs r4, r4, #0
+	mov r2, sp
+	ldrb r2, [r2]
+	ands r4, r2
+	orrs r4, r0
+	subs r0, r1, #1
+	cmp r0, #0x1d
+	bls .L0809FFC6
+	movs r1, #0x1e
+	bl __umodsi3
+.L0809FFC6:
+	mov r3, sl
+	ands r0, r3
+	lsls r0, r0, #2
+	mov r1, sb
+	ands r4, r1
+	adds r5, r4, #0
+	orrs r5, r0
+.L0809FFD4:
+	adds r0, r5, #0
+	b .L080A001C
+	.align 2, 0
+.L0809FFD8: .4byte gCharacterNameEntries
+.L0809FFDC:
+	adds r0, r4, #4
+	bl func_0809EAD0
+	b .L080A001C
+.L0809FFE4:
+	lsls r0, r3, #3
+	ldr r1, .L080A002C @ =gCharacterNameEntries
+	adds r0, r0, r1
+	ldrb r0, [r0, #4]
+	lsls r1, r0, #0x1e
+	lsls r0, r0, #0x19
+	lsrs r0, r0, #0x1b
+	lsrs r1, r1, #0x1e
+	movs r4, #4
+	rsbs r4, r4, #0
+	ands r4, r7
+	orrs r4, r1
+	subs r1, r0, #1
+	cmp r1, #0x1d
+	bls .L080A000C
+	adds r0, r1, #0
+	movs r1, #0x1e
+	bl __umodsi3
+	adds r1, r0, #0
+.L080A000C:
+	movs r0, #0x1f
+	ands r1, r0
+	lsls r1, r1, #2
+	movs r0, #0x7d
+	rsbs r0, r0, #0
+	ands r4, r0
+	orrs r4, r1
+	adds r0, r4, #0
+.L080A001C:
+	add sp, #4
+	pop {r3, r4, r5}
+	mov r8, r3
+	mov sb, r4
+	mov sl, r5
+	pop {r4, r5, r6, r7}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.L080A002C: .4byte gCharacterNameEntries
+
+    .global func_080A0030
+    .thumb_func
+func_080A0030: @ 0x0809FA68
+	push {lr}
+	adds r2, r0, #0
+	subs r0, r1, #1
+	cmp r0, #0x29
+	bhi .L080A00F0
+	lsls r0, r0, #2
+	ldr r1, .L080A0044 @ =.L080A0048
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.L080A0044: .4byte .L080A0048
+.L080A0048: @ jump table
+	.4byte .L080A00FC @ case 0
+	.4byte .L080A0102 @ case 1
+	.4byte .L080A0108 @ case 2
+	.4byte .L080A010E @ case 3
+	.4byte .L080A0114 @ case 4
+	.4byte .L080A011A @ case 5
+	.4byte .L080A0120 @ case 6
+	.4byte .L080A0126 @ case 7
+	.4byte .L080A012C @ case 8
+	.4byte .L080A0132 @ case 9
+	.4byte .L080A0138 @ case 10
+	.4byte .L080A013E @ case 11
+	.4byte .L080A0144 @ case 12
+	.4byte .L080A014A @ case 13
+	.4byte .L080A0150 @ case 14
+	.4byte .L080A0156 @ case 15
+	.4byte .L080A015C @ case 16
+	.4byte .L080A0162 @ case 17
+	.4byte .L080A0168 @ case 18
+	.4byte .L080A016E @ case 19
+	.4byte .L080A0174 @ case 20
+	.4byte .L080A017A @ case 21
+	.4byte .L080A0180 @ case 22
+	.4byte .L080A0186 @ case 23
+	.4byte .L080A018C @ case 24
+	.4byte .L080A0192 @ case 25
+	.4byte .L080A0198 @ case 26
+	.4byte .L080A019E @ case 27
+	.4byte .L080A01A4 @ case 28
+	.4byte .L080A01AA @ case 29
+	.4byte .L080A01B0 @ case 30
+	.4byte .L080A01B6 @ case 31
+	.4byte .L080A01BC @ case 32
+	.4byte .L080A01C2 @ case 33
+	.4byte .L080A00F4 @ case 34
+	.4byte .L080A01C8 @ case 35
+	.4byte .L080A01CE @ case 36
+	.4byte .L080A01D4 @ case 37
+	.4byte .L080A01DA @ case 38
+	.4byte .L080A01E0 @ case 39
+	.4byte .L080A01E6 @ case 40
+	.4byte .L080A01EC @ case 41
+.L080A00F0:
+	movs r0, #0
+	b .L080A01F0
+.L080A00F4:
+	adds r0, r2, #0
+	bl func_080A0384
+	b .L080A01F0
+.L080A00FC:
+	adds r0, r2, #0
+	adds r0, #0x70
+	b .L080A01F0
+.L080A0102:
+	adds r0, r2, #0
+	adds r0, #0x84
+	b .L080A01F0
+.L080A0108:
+	adds r0, r2, #0
+	adds r0, #0x98
+	b .L080A01F0
+.L080A010E:
+	adds r0, r2, #0
+	adds r0, #0xb0
+	b .L080A01F0
+.L080A0114:
+	adds r0, r2, #0
+	adds r0, #0xc4
+	b .L080A01F0
+.L080A011A:
+	adds r0, r2, #0
+	adds r0, #0xd8
+	b .L080A01F0
+.L080A0120:
+	adds r0, r2, #0
+	adds r0, #0xf0
+	b .L080A01F0
+.L080A0126:
+	movs r1, #0x82
+	lsls r1, r1, #1
+	b .L080A01EE
+.L080A012C:
+	movs r1, #0x8c
+	lsls r1, r1, #1
+	b .L080A01EE
+.L080A0132:
+	movs r1, #0x96
+	lsls r1, r1, #1
+	b .L080A01EE
+.L080A0138:
+	movs r1, #0xa0
+	lsls r1, r1, #1
+	b .L080A01EE
+.L080A013E:
+	movs r1, #0xaa
+	lsls r1, r1, #1
+	b .L080A01EE
+.L080A0144:
+	movs r1, #0xb6
+	lsls r1, r1, #1
+	b .L080A01EE
+.L080A014A:
+	movs r1, #0xc0
+	lsls r1, r1, #1
+	b .L080A01EE
+.L080A0150:
+	movs r1, #0xca
+	lsls r1, r1, #1
+	b .L080A01EE
+.L080A0156:
+	movs r1, #0xd4
+	lsls r1, r1, #1
+	b .L080A01EE
+.L080A015C:
+	movs r1, #0xde
+	lsls r1, r1, #1
+	b .L080A01EE
+.L080A0162:
+	movs r1, #0xe8
+	lsls r1, r1, #1
+	b .L080A01EE
+.L080A0168:
+	movs r1, #0xf2
+	lsls r1, r1, #1
+	b .L080A01EE
+.L080A016E:
+	movs r1, #0xfe
+	lsls r1, r1, #1
+	b .L080A01EE
+.L080A0174:
+	movs r1, #0x84
+	lsls r1, r1, #2
+	b .L080A01EE
+.L080A017A:
+	movs r1, #0x8a
+	lsls r1, r1, #2
+	b .L080A01EE
+.L080A0180:
+	movs r1, #0x8f
+	lsls r1, r1, #2
+	b .L080A01EE
+.L080A0186:
+	movs r1, #0x94
+	lsls r1, r1, #2
+	b .L080A01EE
+.L080A018C:
+	movs r1, #0x99
+	lsls r1, r1, #2
+	b .L080A01EE
+.L080A0192:
+	movs r1, #0x9f
+	lsls r1, r1, #2
+	b .L080A01EE
+.L080A0198:
+	movs r1, #0xa4
+	lsls r1, r1, #2
+	b .L080A01EE
+.L080A019E:
+	movs r1, #0xaa
+	lsls r1, r1, #2
+	b .L080A01EE
+.L080A01A4:
+	movs r1, #0xaf
+	lsls r1, r1, #2
+	b .L080A01EE
+.L080A01AA:
+	movs r1, #0xb4
+	lsls r1, r1, #2
+	b .L080A01EE
+.L080A01B0:
+	movs r1, #0xb9
+	lsls r1, r1, #2
+	b .L080A01EE
+.L080A01B6:
+	movs r1, #0xbf
+	lsls r1, r1, #2
+	b .L080A01EE
+.L080A01BC:
+	movs r1, #0xc4
+	lsls r1, r1, #2
+	b .L080A01EE
+.L080A01C2:
+	movs r1, #0xca
+	lsls r1, r1, #2
+	b .L080A01EE
+.L080A01C8:
+	movs r1, #0xcf
+	lsls r1, r1, #2
+	b .L080A01EE
+.L080A01CE:
+	movs r1, #0xd8
+	lsls r1, r1, #2
+	b .L080A01EE
+.L080A01D4:
+	movs r1, #0xe1
+	lsls r1, r1, #2
+	b .L080A01EE
+.L080A01DA:
+	movs r1, #0xea
+	lsls r1, r1, #2
+	b .L080A01EE
+.L080A01E0:
+	movs r1, #0xf3
+	lsls r1, r1, #2
+	b .L080A01EE
+.L080A01E6:
+	movs r1, #0xfc
+	lsls r1, r1, #2
+	b .L080A01EE
+.L080A01EC:
+	ldr r1, .L080A01F4 @ =0x00000414
+.L080A01EE:
+	adds r0, r2, r1
+.L080A01F0:
+	pop {r1}
+	bx r1
+	.align 2, 0
+.L080A01F4: .4byte 0x00000414
+
     jp_code_809_func func_080A01F8, 0x9FC30, 0x9FD54
     jp_code_809_func func_080A099C, 0x9FD54, 0x9FDBC
     jp_code_809_func func_080A0384, 0x9FDBC, 0x9FDD4
