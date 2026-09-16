@@ -22044,9 +22044,183 @@ func_08085EEC: @ 0x08085A64
 .thumb_func
 func_08085F08:
     jp_code_0803ee_bytes 0x85A80, 0x86420
-    jp_code_0803ee_func sub_080868A8, 0x86420, 0x8645C
-    jp_code_0803ee_func func_080868E4, 0x8645C, 0x86518
-    jp_code_0803ee_func func_080869A0, 0x86518, 0x86580
+    .global sub_080868A8
+    .thumb_func
+sub_080868A8: @ 0x08086420
+    mov r0, sl
+    lsls r1, r0, #5
+    add r1, sl
+    lsls r1, r1, #2
+    add r1, r8
+    ldr r2, .Ljp_08086444 @ =0x00003B9C
+    adds r1, r1, r2
+    mov r0, r8
+    bl func_080CA3FC
+
+    .global sub_080868BC
+    .thumb_func
+sub_080868BC: @ 0x08086434
+    add sp, #0x48
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_08086444: .4byte 0x00003B9C
+.Ljp_08086448: .4byte gText_LivestockShop_Winter
+.Ljp_0808644C: .4byte gText_LivestockShop_StatusSpacer
+.Ljp_08086450: .4byte gText_LivestockShop_SecondaryDailySellingPrice
+.Ljp_08086454: .4byte gText_LivestockShop_Currency
+.Ljp_08086458: .4byte 0x00003B98
+
+    .global func_080868E4
+    .thumb_func
+func_080868E4: @ 0x0808645C
+    push {r4, lr}
+    ldr r4, .Ljp_08086484 @ =0x00000BB8
+    cmp r2, #0
+    bne .Ljp_080864B0
+    ldr r0, [r0, #8]
+    movs r2, #0xbe
+    lsls r2, r2, #3
+    adds r0, r0, r2
+    bl GetCow__4BarnUi
+    bl GetProductRank__C9Livestock
+    cmp r0, #4
+    bhi .Ljp_0808650C
+    lsls r0, r0, #2
+    ldr r1, .Ljp_08086488 @ =.Ljp_0808648C
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+    .align 2, 0
+.Ljp_08086484: .4byte 0x00000BB8
+.Ljp_08086488: .4byte .Ljp_0808648C
+.Ljp_0808648C:
+    .4byte .Ljp_080864FC
+    .4byte .Ljp_08086504
+    .4byte .Ljp_0808650A
+    .4byte .Ljp_080864A8
+    .4byte .Ljp_080864A0
+.Ljp_080864A0:
+    ldr r4, .Ljp_080864A4 @ =0x00001770
+    b .Ljp_0808650C
+    .align 2, 0
+.Ljp_080864A4: .4byte 0x00001770
+.Ljp_080864A8:
+    ldr r4, .Ljp_080864AC @ =0x00001B58
+    b .Ljp_0808650C
+    .align 2, 0
+.Ljp_080864AC: .4byte 0x00001B58
+.Ljp_080864B0:
+    cmp r2, #1
+    bne .Ljp_0808650C
+    ldr r0, [r0, #8]
+    movs r2, #0xbe
+    lsls r2, r2, #3
+    adds r0, r0, r2
+    bl GetSheep__4BarnUi
+    bl GetProductRank__C9Livestock
+    cmp r0, #4
+    bhi .Ljp_0808650C
+    lsls r0, r0, #2
+    ldr r1, .Ljp_080864D4 @ =.Ljp_080864D8
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+    .align 2, 0
+.Ljp_080864D4: .4byte .Ljp_080864D8
+.Ljp_080864D8:
+    .4byte .Ljp_080864EC
+    .4byte .Ljp_080864F2
+    .4byte .Ljp_080864FC
+    .4byte .Ljp_0808650A
+    .4byte .Ljp_08086504
+.Ljp_080864EC:
+    movs r4, #0xfa
+    lsls r4, r4, #3
+    b .Ljp_0808650C
+.Ljp_080864F2:
+    ldr r4, .Ljp_080864F8 @ =0x000009C4
+    b .Ljp_0808650C
+    .align 2, 0
+.Ljp_080864F8: .4byte 0x000009C4
+.Ljp_080864FC:
+    ldr r4, .Ljp_08086500 @ =0x00000BB8
+    b .Ljp_0808650C
+    .align 2, 0
+.Ljp_08086500: .4byte 0x00000BB8
+.Ljp_08086504:
+    movs r4, #0xfa
+    lsls r4, r4, #4
+    b .Ljp_0808650C
+.Ljp_0808650A:
+    ldr r4, .Ljp_08086514 @ =0x00001388
+.Ljp_0808650C:
+    adds r0, r4, #0
+    pop {r4}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_08086514: .4byte 0x00001388
+
+    .global func_080869A0
+    .thumb_func
+func_080869A0: @ 0x08086518
+    push {r4, r5, r6, r7, lr}
+    adds r4, r0, #0
+    movs r6, #0
+    movs r5, #0
+    movs r7, #0xbe
+    lsls r7, r7, #3
+    b .Ljp_0808656A
+.Ljp_08086526:
+    ldr r0, [r4, #8]
+    movs r1, #0xbe
+    lsls r1, r1, #3
+    adds r0, r0, r1
+    adds r1, r5, #0
+    bl GetCow__4BarnUi
+    cmp r0, #0
+    beq .Ljp_08086544
+    ldr r0, [r4, #8]
+    adds r0, r0, r7
+    adds r1, r5, #0
+    bl GetCow__4BarnUi
+    b .Ljp_0808655C
+.Ljp_08086544:
+    ldr r0, [r4, #8]
+    adds r0, r0, r7
+    adds r1, r5, #0
+    bl GetSheep__4BarnUi
+    cmp r0, #0
+    beq .Ljp_08086568
+    ldr r0, [r4, #8]
+    adds r0, r0, r7
+    adds r1, r5, #0
+    bl GetSheep__4BarnUi
+.Ljp_0808655C:
+    bl IsPregnant__C10BarnAnimal
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Ljp_08086568
+    adds r6, #1
+.Ljp_08086568:
+    adds r5, #1
+.Ljp_0808656A:
+    ldr r0, [r4, #8]
+    adds r0, r0, r7
+    bl GetCapacity__C4Barn
+    cmp r5, r0
+    blo .Ljp_08086526
+    adds r0, r6, #0
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
     jp_code_0803ee_func func_08086A08, 0x86580, 0x87CEC
     jp_code_0803ee_func func_08087CEC, 0x87CEC, 0x87D2C
     jp_code_0803ee_func func_08087D2C, 0x87D2C, 0x87E44
