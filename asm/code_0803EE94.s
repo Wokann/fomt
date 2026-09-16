@@ -7745,7 +7745,86 @@ func_08076AE0: @ 0x08076AE0
     ldr r0, [r0]
     bx lr
 
-    jp_code_0803ee_func func_080773E8, 0x77020, 0x7753C
+    .global func_080773E8
+    .thumb_func
+func_080773E8: @ 0x08077020
+    push {r4, r5, r6, lr}
+    sub sp, #8
+    adds r4, r0, #0
+    mov r3, sp
+    movs r1, #0x1e
+    movs r2, #1
+    movs r5, #0
+    mov r0, sp
+    strh r1, [r0]
+    movs r6, #1
+    strh r2, [r3, #2]
+    adds r0, r4, #0
+    mov r1, sp
+    bl func_080084DC
+    ldr r0, .Ljp_080770B0
+    str r0, [r4, #4]
+    adds r0, r4, #0
+    adds r0, #8
+    movs r1, #0
+    bl func_08008B54
+    adds r0, r4, #0
+    adds r0, #0xc
+    movs r1, #1
+    bl func_08008B54
+    add r2, sp, #4
+    movs r0, #0x1c
+    movs r1, #2
+    strh r0, [r2]
+    strh r1, [r2, #2]
+    ldr r0, [sp, #4]
+    adds r1, r4, #0
+    adds r1, #0x14
+    movs r2, #0
+    bl Clear2DGfxBuffer
+    ldr r0, .Ljp_080770B4
+    adds r1, r4, r0
+    ldr r0, .Ljp_080770B8
+    strh r0, [r1]
+    ldr r1, .Ljp_080770BC
+    adds r0, r4, r1
+    strh r5, [r0]
+    adds r1, #2
+    adds r0, r4, r1
+    strh r5, [r0]
+    adds r1, #4
+    adds r0, r4, r1
+    str r5, [r0]
+    adds r1, #4
+    adds r0, r4, r1
+    str r5, [r0]
+    adds r1, #4
+    adds r0, r4, r1
+    str r5, [r0]
+    adds r1, #4
+    adds r0, r4, r1
+    strb r6, [r0]
+    adds r1, #2
+    adds r0, r4, r1
+    strh r5, [r0]
+    ldr r0, .Ljp_080770C0
+    adds r1, r4, r0
+    ldr r0, .Ljp_080770C4
+    str r0, [r1]
+    adds r0, r4, #0
+    add sp, #8
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_080770B0: .4byte vtable_unk_080E7B88
+.Ljp_080770B4: .4byte 0x00000714
+.Ljp_080770B8: .4byte 0x0000FFA0
+.Ljp_080770BC: .4byte 0x00000716
+.Ljp_080770C0: .4byte 0x0000072C
+.Ljp_080770C4: .4byte gStaffCreditsLines
+
+    jp_code_0803ee_func func_08077490, 0x770C8, 0x7753C
     jp_code_0803ee_func func_080779B4, 0x7753C, 0x775A4
     jp_code_0803ee_func func_08077A1C, 0x775A4, 0x777C8
     jp_code_0803ee_func func_08077C40, 0x777C8, 0x777F4
