@@ -5613,7 +5613,6 @@ extern RawVTableFunction const vtable_unk_080E7BC0[]
         nullptr,
         nullptr,
         func_080E2B70,
-        nullptr,
 #else
         nullptr,
         nullptr,
@@ -5622,13 +5621,18 @@ extern RawVTableFunction const vtable_unk_080E7BC0[]
 #endif
     };
 
-extern RawVTableFunction const vtable_unk_080E7BD0[]
-    SECTION(".rodata.vtable_7bd0") = {
 #if defined(REGION_JP)
+// The JP table at 0x080E700C shares the preceding table's trailing null.
+// Represent its real start directly instead of referring to an offset alias.
+extern RawVTableFunction const vtable_unk_080E700C[]
+    SECTION(".rodata.vtable_7bd0") = {
+        nullptr,
         nullptr,
         func_0807AC20,
         func_0807AC60,
 #else
+extern RawVTableFunction const vtable_unk_080E7BD0[]
+    SECTION(".rodata.vtable_7bd0") = {
         nullptr,
         nullptr,
         func_080E33D0,
