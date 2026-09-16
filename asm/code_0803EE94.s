@@ -16262,9 +16262,53 @@ sub_0807BD78:
     .align 2, 0
 .Ljp_poultry_state_case_10_result_offset: .4byte 0x00002318
 .Ljp_poultry_state_cleanup:
-    jp_code_0803ee_func sub_0807CBBC, 0x7CBBC, 0x7CBC6
+    adds r0, r7, #0
+    bl func_080C90D0
+    bl sub_0807BD38
 .Ljp_poultry_state_return:
-    jp_code_0803ee_func sub_0807CBC6, 0x7CBC6, 0x7CC1C
+    add sp, #0xa4
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
+    .global func_0807CBD8
+    .thumb_func
+func_0807CBD8:
+    push {r4, r5, r6, lr}
+    mov r6, r8
+    push {r6}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    mov r8, r2
+    adds r6, r3, #0
+    ldr r0, .Ljp_poultry_transition_vtable
+    str r0, [r4]
+    ldr r0, .Ljp_poultry_transition_state_size
+    bl __builtin_new
+    mov r1, r8
+    adds r2, r6, #0
+    bl func_0807AC94
+    str r0, [r4, #4]
+    ldr r1, [r5]
+    movs r0, #0
+    str r0, [r5]
+    str r1, [r4, #8]
+    str r6, [r4, #0xc]
+    mov r0, r8
+    str r0, [r4, #0x10]
+    adds r0, r4, #0
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_poultry_transition_vtable: .4byte gUnk_080E7028
+.Ljp_poultry_transition_state_size: .4byte 0x0000231C
     .global func_0807CC1C
     .thumb_func
 func_0807CC1C:
