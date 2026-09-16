@@ -14738,7 +14738,82 @@ sub_0807BD78:
 .Ljp_poultry_state_case_7_text: .4byte gText_PoultryShop_PurchaseMorePrompt
 .Ljp_poultry_state_case_7_state_offset: .4byte 0x000006A4
 .Ljp_poultry_state_case_8:
-    jp_code_0803ee_bytes 0x7CAAC, 0x7CB54
+    movs r5, #0xd4
+    lsls r5, r5, #2
+    adds r0, r7, r5
+    ldr r0, [r0]
+    cmp r0, #3
+    beq .Ljp_poultry_state_case_8_confirmed
+    b .Ljp_poultry_state_cleanup
+.Ljp_poultry_state_case_8_confirmed:
+    movs r6, #0xd2
+    lsls r6, r6, #2
+    adds r4, r7, r6
+    adds r0, r4, #0
+    bl func_08050DF0
+    adds r5, r0, #0
+    cmp r5, #1
+    beq .Ljp_poultry_state_case_8_sold
+    cmp r5, #2
+    beq .Ljp_poultry_state_case_8_cancelled
+    b .Ljp_poultry_state_cleanup
+.Ljp_poultry_state_case_8_sold:
+    ldr r0, [r7, #0x10]
+    lsls r0, r0, #3
+    adds r0, r0, r7
+    ldr r1, .Ljp_poultry_state_case_8_entry_offset
+    adds r0, r0, r1
+    ldr r1, [r0, #4]
+    ldr r0, [r0]
+    str r0, [sp, #0x84]
+    str r1, [sp, #0x88]
+    ldr r0, [r7, #8]
+    ldr r2, .Ljp_poultry_state_case_8_storage_offset
+    adds r0, r0, r2
+    ldr r1, [sp, #0x88]
+    bl func_0809ABD8
+    adds r0, r7, #0
+    bl func_080C8550
+    ldr r0, [r7, #8]
+    movs r3, #0x82
+    lsls r3, r3, #3
+    adds r0, r0, r3
+    ldr r1, [sp, #0x84]
+    bl Remove__4CoopUi
+    ldr r1, .Ljp_poultry_state_case_8_text
+    adds r0, r7, #0
+    bl func_080CA3B0
+    adds r0, r4, #0
+    movs r1, #0xf
+    bl func_08050E50
+    ldr r4, .Ljp_poultry_state_case_8_state_offset
+    adds r1, r7, r4
+    movs r0, #7
+    str r0, [r1]
+    movs r6, #0xd5
+    lsls r6, r6, #3
+    adds r0, r7, r6
+    strb r5, [r0]
+    b .Ljp_poultry_state_cleanup
+    .align 2, 0
+.Ljp_poultry_state_case_8_entry_offset: .4byte 0x000006AC
+.Ljp_poultry_state_case_8_storage_offset: .4byte 0x00001AA8
+.Ljp_poultry_state_case_8_text: .4byte gText_PoultryShop_ChickenSold
+.Ljp_poultry_state_case_8_state_offset: .4byte 0x000006A4
+.Ljp_poultry_state_case_8_cancelled:
+    adds r0, r4, #0
+    bl func_08050E5C
+    ldr r1, .Ljp_poultry_state_case_8_cancel_state_offset
+    adds r0, r7, r1
+    movs r1, #1
+    str r1, [r0]
+.Ljp_poultry_state_case_8_finish:
+    movs r0, #1
+    rsbs r0, r0, #0
+    str r0, [r7, #0x14]
+    b .Ljp_poultry_state_cleanup
+    .align 2, 0
+.Ljp_poultry_state_case_8_cancel_state_offset: .4byte 0x000006A4
 .Ljp_poultry_state_case_9:
     movs r2, #0xd4
     lsls r2, r2, #2
