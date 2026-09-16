@@ -4348,9 +4348,87 @@ func_080A03D4: @ 0x080A03D4
 	bx r1
 	.align 2, 0
 .Ljp_080A0438: .4byte 0x00000414
-    jp_code_809_func func_080A0A04, 0xA043C, 0xA0454
-    jp_code_809_func func_080A0A1C, 0xA0454, 0xA048C
-    jp_code_809_func func_080A0A54, 0xA048C, 0xA04C8
+    .global func_080A0A04
+    .thumb_func
+func_080A0A04: @ 0x080A043C
+	push {lr}
+	adds r1, r0, #0
+	ldrb r0, [r1, #3]
+	lsls r0, r0, #0x1e
+	movs r2, #0
+	cmp r0, #0
+	bge .L080A0A14
+	adds r2, r1, #4
+.L080A0A14:
+	adds r0, r2, #0
+	pop {r1}
+	bx r1
+	.align 2, 0
+    .global func_080A0A1C
+    .thumb_func
+func_080A0A1C: @ 0x080A0454
+	push {r4, lr}
+	sub sp, #8
+	adds r4, r0, #0
+	ldrb r3, [r4]
+	lsls r2, r3, #0x1a
+	lsrs r2, r2, #0x1a
+	adds r2, r2, r1
+	str r2, [sp]
+	movs r0, #0x3f
+	str r0, [sp, #4]
+	add r0, sp, #4
+	mov r1, sp
+	cmp r2, #0x3f
+	bls .L080A0A3A
+	adds r1, r0, #0
+.L080A0A3A:
+	ldr r1, [r1]
+	movs r0, #0x3f
+	ands r1, r0
+	movs r0, #0x40
+	rsbs r0, r0, #0
+	ands r0, r3
+	orrs r0, r1
+	strb r0, [r4]
+	add sp, #8
+	pop {r4}
+	pop {r0}
+	bx r0
+	.align 2, 0
+    .global func_080A0A54
+    .thumb_func
+func_080A0A54: @ 0x080A048C
+	push {r4, lr}
+	sub sp, #8
+	adds r4, r0, #0
+	ldrh r3, [r4]
+	lsls r2, r3, #0x13
+	lsrs r2, r2, #0x19
+	adds r2, r2, r1
+	str r2, [sp]
+	movs r0, #0x7f
+	str r0, [sp, #4]
+	add r1, sp, #4
+	mov r0, sp
+	cmp r2, #0x7f
+	bls .L080A0A72
+	adds r0, r1, #0
+.L080A0A72:
+	ldr r0, [r0]
+	movs r1, #0x7f
+	ands r0, r1
+	lsls r0, r0, #6
+	ldr r1, .L080A0A8C @ =0xFFFFE03F
+	ands r1, r3
+	orrs r1, r0
+	strh r1, [r4]
+	add sp, #8
+	pop {r4}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.L080A0A8C: .4byte 0xFFFFE03F
     jp_code_809_func func_080A0A90, 0xA04C8, 0xA0EB0
     jp_code_809_func func_080A1478, 0xA0EB0, 0xA0EB8
     jp_code_809_func func_080A1480, 0xA0EB8, 0xA0EBC
