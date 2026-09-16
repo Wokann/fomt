@@ -391,12 +391,143 @@ func_0809EA6C: @ 0x0809E4A4
     .align 2, 0
 .Ljp_0809EAC8: .4byte gText_CharacterName_Empty
     .section .text.npc_runtime_data_after
-    .incbin "baserom_jp.gba", 0x9E530, (0x9E584 - 0x9E530)
-    jp_code_809_func func_0809EB4C, 0x9E584, 0x9E5A0
-    jp_code_809_func func_0809EB68, 0x9E5A0, 0x9E5A8
-    jp_code_809_func func_0809EB70, 0x9E5A8, 0x9E5C4
-    jp_code_809_func func_0809EB8C, 0x9E5C4, 0x9E5E0
-    jp_code_809_func func_0809EBA8, 0x9E5E0, 0x9E60C
+    @ Adjacent NPC location-state helpers and accessors.  Every executable
+    @ entry in this contiguous run is emitted as direct Thumb code.
+    .global func_0809EAF8
+    .thumb_func
+func_0809EAF8: @ 0x0809E530
+    push {r4, lr}
+    adds r4, r0, #0
+    bl rand
+    movs r1, #0x64
+    bl __modsi3
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl DayUpdate__3NpcUi
+    adds r4, #0x25
+    ldrb r0, [r4]
+    cmp r0, #0xfe
+    bhi .Ljp_0809E552
+    adds r0, #1
+    strb r0, [r4]
+.Ljp_0809E552:
+    pop {r4}
+    pop {r0}
+    bx r0
+
+    .global func_0809EB20
+    .thumb_func
+func_0809EB20: @ 0x0809E558
+    push {r4, r5, r6, lr}
+    adds r5, r1, #0
+    adds r6, r0, #0
+    adds r6, #0x14
+    adds r0, r5, #0
+    bl strlen
+    adds r4, r0, #0
+    cmp r4, #0xc
+    bls .Ljp_0809E56E
+    movs r4, #0xc
+.Ljp_0809E56E:
+    adds r0, r6, #0
+    adds r1, r5, #0
+    adds r2, r4, #0
+    bl memcpy
+    adds r1, r6, r4
+    movs r0, #0
+    strb r0, [r1]
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+
+    .global func_0809EB4C
+    .thumb_func
+func_0809EB4C: @ 0x0809E584
+    push {r4, lr}
+    adds r4, r0, #0
+    bl __3NpcRC13ActorLocation
+    movs r0, #0
+    strb r0, [r4, #0x14]
+    ldrb r1, [r4, #0x15]
+    subs r0, #2
+    ands r0, r1
+    strb r0, [r4, #0x15]
+    adds r0, r4, #0
+    pop {r4}
+    pop {r1}
+    bx r1
+
+    .global func_0809EB68
+    .thumb_func
+func_0809EB68: @ 0x0809E5A0
+    ldrb r0, [r0, #0x14]
+    lsls r0, r0, #0x1c
+    lsrs r0, r0, #0x1c
+    bx lr
+
+    .global func_0809EB70
+    .thumb_func
+func_0809EB70: @ 0x0809E5A8
+    push {lr}
+    movs r2, #0
+    ldrb r1, [r0, #0x14]
+    lsls r0, r1, #0x1c
+    cmp r0, #0
+    beq .Ljp_0809EB86
+    movs r0, #0x70
+    ands r0, r1
+    cmp r0, #0
+    bne .Ljp_0809EB86
+    movs r2, #1
+.Ljp_0809EB86:
+    adds r0, r2, #0
+    pop {r1}
+    bx r1
+
+    .global func_0809EB8C
+    .thumb_func
+func_0809EB8C: @ 0x0809E5C4
+    push {lr}
+    movs r2, #0
+    ldrb r1, [r0, #0x14]
+    lsls r0, r1, #0x1c
+    cmp r0, #0
+    beq .Ljp_0809EBA2
+    movs r0, #0x70
+    ands r0, r1
+    cmp r0, #0
+    beq .Ljp_0809EBA2
+    lsrs r2, r1, #7
+.Ljp_0809EBA2:
+    adds r0, r2, #0
+    pop {r1}
+    bx r1
+
+    .global func_0809EBA8
+    .thumb_func
+func_0809EBA8: @ 0x0809E5E0
+    movs r2, #0xf
+    ands r1, r2
+    ldrb r3, [r0, #0x14]
+    movs r2, #0x10
+    rsbs r2, r2, #0
+    ands r2, r3
+    orrs r2, r1
+    movs r1, #0x71
+    rsbs r1, r1, #0
+    ands r2, r1
+    movs r1, #0x30
+    orrs r2, r1
+    movs r1, #0x80
+    orrs r2, r1
+    strb r2, [r0, #0x14]
+    ldrb r2, [r0, #0x15]
+    movs r1, #2
+    rsbs r1, r1, #0
+    ands r1, r2
+    strb r1, [r0, #0x15]
+    bx lr
+    .align 2, 0
     jp_code_809_func func_0809EBD4, 0x9E60C, 0x9E680
     jp_code_809_func func_0809EC48, 0x9E680, 0x9E6C8
     jp_code_809_func func_0809EC90, 0x9E6C8, 0x9E710
