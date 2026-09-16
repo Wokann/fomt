@@ -4154,7 +4154,82 @@ func_080A06B0: @ 0x080A00E8
 	bx r1
 	.align 2, 0
 .L080A0874: .4byte 0x00000414
-    jp_code_809_func func_080A0878, 0xA02B0, 0xA0368
+    .global func_080A0878
+    .thumb_func
+func_080A0878: @ 0x080A02B0
+	push {lr}
+	adds r2, r0, #0
+	subs r0, r1, #3
+	cmp r0, #0x1c
+	bhi .L080A0904
+	lsls r0, r0, #2
+	ldr r1, .L080A088C @ =.L080A0890
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.L080A088C: .4byte .L080A0890
+.L080A0890: @ jump table
+	.4byte .L080A0908 @ case 0
+	.4byte .L080A0904 @ case 1
+	.4byte .L080A0904 @ case 2
+	.4byte .L080A0904 @ case 3
+	.4byte .L080A0904 @ case 4
+	.4byte .L080A0904 @ case 5
+	.4byte .L080A0904 @ case 6
+	.4byte .L080A0904 @ case 7
+	.4byte .L080A0904 @ case 8
+	.4byte .L080A090E @ case 9
+	.4byte .L080A0904 @ case 10
+	.4byte .L080A0904 @ case 11
+	.4byte .L080A0904 @ case 12
+	.4byte .L080A0904 @ case 13
+	.4byte .L080A0904 @ case 14
+	.4byte .L080A0904 @ case 15
+	.4byte .L080A0914 @ case 16
+	.4byte .L080A0904 @ case 17
+	.4byte .L080A091A @ case 18
+	.4byte .L080A0904 @ case 19
+	.4byte .L080A0904 @ case 20
+	.4byte .L080A0904 @ case 21
+	.4byte .L080A0920 @ case 22
+	.4byte .L080A0904 @ case 23
+	.4byte .L080A0904 @ case 24
+	.4byte .L080A0904 @ case 25
+	.4byte .L080A0904 @ case 26
+	.4byte .L080A0904 @ case 27
+	.4byte .L080A0926 @ case 28
+.L080A0904:
+	movs r0, #0
+	b .L080A092C
+.L080A0908:
+	adds r0, r2, #0
+	adds r0, #0x98
+	b .L080A092C
+.L080A090E:
+	movs r1, #0xaa
+	lsls r1, r1, #1
+	b .L080A092A
+.L080A0914:
+	movs r1, #0xf2
+	lsls r1, r1, #1
+	b .L080A092A
+.L080A091A:
+	movs r1, #0x84
+	lsls r1, r1, #2
+	b .L080A092A
+.L080A0920:
+	movs r1, #0x99
+	lsls r1, r1, #2
+	b .L080A092A
+.L080A0926:
+	movs r1, #0xb9
+	lsls r1, r1, #2
+.L080A092A:
+	adds r0, r2, r1
+.L080A092C:
+	pop {r1}
+	bx r1
     jp_code_809_func func_080A0930, 0xA0368, 0xA043C
     jp_code_809_func func_080A0A04, 0xA043C, 0xA0454
     jp_code_809_func func_080A0A1C, 0xA0454, 0xA048C
