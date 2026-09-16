@@ -12329,8 +12329,70 @@ func_0807B038: @ 0x0807B038
 .Ljp_0807B074: .4byte vtable_unk_080E700C
 .Ljp_0807B078: .4byte 0x00000A74
 .Ljp_0807B07C:
-    jp_code_0803ee_func func_0807AC20, 0x7AC20, 0x7AC60
-    jp_code_0803ee_func func_0807AC60, 0x7AC60, 0x7AD18
+    .global func_0807AC20
+    .thumb_func
+func_0807AC20: @ 0x0807AC20
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    ldr r0, .Ljp_0807AC5C
+    str r0, [r4]
+    ldr r1, [r4, #8]
+    cmp r1, #0
+    beq .Ljp_0807AC3C
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_0807AC3C:
+    ldr r1, [r4, #4]
+    cmp r1, #0
+    beq .Ljp_0807AC4E
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_0807AC4E:
+    adds r0, r4, #0
+    adds r1, r5, #0
+    bl _._6AScene
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+.Ljp_0807AC5C: .4byte vtable_unk_080E700C
+
+    .global func_0807AC60
+    .thumb_func
+func_0807AC60: @ 0x0807AC60
+    push {r4, r5, lr}
+    sub sp, #4
+    adds r5, r0, #0
+    adds r4, r1, #0
+    ldr r1, [r4, #4]
+    mov r0, sp
+    bl func_080790E4
+    ldr r1, [sp]
+    cmp r1, #0
+    beq .Ljp_0807AC82
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_0807AC82:
+    ldr r1, [r4, #8]
+    movs r0, #0
+    str r0, [r4, #8]
+    str r1, [r5]
+    adds r0, r5, #0
+    add sp, #4
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+
+    jp_code_0803ee_func func_0807AC94, 0x7AC94, 0x7AD18
     jp_code_0803ee_func func_0807AD18, 0x7AD18, 0x7B498
     jp_code_0803ee_func func_0807B8F4, 0x7B498, 0x7BA18
     jp_code_0803ee_func func_0807BE74, 0x7BA18, 0x7CC1C
