@@ -14321,10 +14321,123 @@ func_0807CCFC:
     .align 2, 0
 .Ljp_poultry_initializer_vtable: .4byte gUnk_080E7044
 .Ljp_poultry_initializer_state_offset: .4byte 0x000006A4
-    jp_code_0803ee_func func_0807CD30, 0x7CD30, 0x7D8D0
-    jp_code_0803ee_func func_0807D8D0, 0x7D8D0, 0x7D910
-    jp_code_0803ee_func func_0807D910, 0x7D910, 0x7D960
-    jp_code_0803ee_func func_0807D960, 0x7D960, 0x7D9A4
+    jp_code_0803ee_func func_0807CD30, 0x7CD30, 0x7CD80
+    jp_code_0803ee_func func_0807CD80, 0x7CD80, 0x7D8D0
+    .global func_0807D8D0
+    .thumb_func
+func_0807D8D0:
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    ldr r0, .Ljp_poultry_transfer_vtable
+    str r0, [r4]
+    ldr r1, [r4, #8]
+    cmp r1, #0
+    beq .Ljp_poultry_transfer_first_done
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_poultry_transfer_first_done:
+    ldr r1, [r4, #4]
+    cmp r1, #0
+    beq .Ljp_poultry_transfer_second_done
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_poultry_transfer_second_done:
+    adds r0, r4, #0
+    adds r1, r5, #0
+    bl _._6AScene
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_poultry_transfer_vtable: .4byte vtable_unk_080E7C20
+
+    .global func_0807D910
+    .thumb_func
+func_0807D910:
+    push {r4, r5, lr}
+    adds r5, r0, #0
+    adds r4, r1, #0
+    ldr r0, [r4, #4]
+    bl func_0807CD80
+    ldr r1, [r4, #8]
+    movs r0, #0
+    str r0, [r4, #8]
+    str r1, [r5]
+    adds r0, r5, #0
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+
+    .global func_0807D92C
+    .thumb_func
+func_0807D92C:
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r2, #0
+    bl func_080C797C
+    ldr r0, .Ljp_poultry_storage_vtable
+    str r0, [r4, #4]
+    ldr r1, .Ljp_poultry_storage_state_offset
+    adds r0, r4, r1
+    str r5, [r0]
+    movs r2, #0xd5
+    lsls r2, r2, #3
+    adds r0, r4, r2
+    movs r1, #0
+    strb r1, [r0]
+    adds r2, #0x64
+    adds r0, r4, r2
+    str r1, [r0]
+    adds r0, r4, #0
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_poultry_storage_vtable: .4byte vtable_unk_080E7BF8
+.Ljp_poultry_storage_state_offset: .4byte 0x000006A4
+
+    .global func_0807D960
+    .thumb_func
+func_0807D960:
+    push {lr}
+    ldr r2, .Ljp_poultry_seed_vtable
+    str r2, [r0, #4]
+    bl func_080C8360
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_poultry_seed_vtable: .4byte vtable_unk_080E7BF8
+
+    .global func_0807D974
+    .thumb_func
+func_0807D974:
+    push {r4, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    ldr r0, .Ljp_poultry_seed_catalog
+    lsls r1, r1, #3
+    adds r1, r1, r0
+    ldr r1, [r1]
+    mov r0, sp
+    bl __4FoodUi
+    mov r0, sp
+    bl GetDesc__C4Food
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl func_080CA3FC
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_poultry_seed_catalog: .4byte gSupermarketAdditionalSeedCatalog
     jp_code_0803ee_func func_0807DE3C, 0x7D9A4, 0x7DFE0
     jp_code_0803ee_func func_0807DFE0, 0x7DFE0, 0x7E020
     jp_code_0803ee_func func_0807E020, 0x7E020, 0x7E070
