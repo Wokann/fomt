@@ -14549,10 +14549,41 @@ func_0807BA6C:
 	movs r5, #0
 	str r5, [sp, #0x90]
 
-    jp_code_0803ee_func sub_0807BD38, 0x7BD38, 0x7BD70
+    .global sub_0807BD38
+    .thumb_func
+sub_0807BD38:
+	adds r0, r7, #0
+	bl func_080087C8
+	adds r0, r7, #0
+	bl func_080088B8
+	ldr r3, [sp, #0xc]
+	ldr r1, [r3]
+	rsbs r0, r1, #0
+	orrs r0, r1
+	cmp r0, #0
+	bge .Ljp_poultry_state_C1B0
+	bl .Ljp_poultry_state_cleanup
+.Ljp_poultry_state_C1B0:
+	ldr r6, [sp, #0x90]
+	cmp r6, #0
+	beq .Ljp_poultry_state_C1D4
+	ldr r0, [r3, #8]
+	ldr r2, [r0, #0xc]
+	adds r0, r3, #0
+	movs r1, #3
+	bl _call_via_r2
+	movs r0, #1
+	rsbs r0, r0, #0
+	bl .Ljp_poultry_state_return
+	.align 2, 0
 .Ljp_poultry_main_C1CC: .4byte vtable_unk_080E5B80
 .Ljp_poultry_main_C1D0: .4byte 0x00000889
-    jp_code_0803ee_func sub_0807BD78, 0x7BD78, 0x7CC1C
+.Ljp_poultry_state_C1D4:
+    jp_code_0803ee_func sub_0807BD78, 0x7BD78, 0x7CBBC
+.Ljp_poultry_state_cleanup:
+    jp_code_0803ee_func sub_0807CBBC, 0x7CBBC, 0x7CBC6
+.Ljp_poultry_state_return:
+    jp_code_0803ee_func sub_0807CBC6, 0x7CBC6, 0x7CC1C
     .global func_0807CC1C
     .thumb_func
 func_0807CC1C:
