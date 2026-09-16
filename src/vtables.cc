@@ -6039,20 +6039,30 @@ extern RawVTableFunction const vtable_unk_080E7D14[]
 #endif
     };
 
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7D20[]
     SECTION(".rodata.vtable_7d20") = {
-#if defined(REGION_JP)
         nullptr,
         nullptr,
         func_080851A4,
+    };
+
+// The JP destructor func_08087CEC stores this final null slot as its vtable
+// pointer. Keep the original four-byte object addressable rather than using
+// an address offset into the preceding table.
+extern RawVTableFunction const vtable_unk_080E7D20_NullTail[]
+    SECTION(".rodata.vtable_7d20") = {
         nullptr,
+    };
 #else
+extern RawVTableFunction const vtable_unk_080E7D20[]
+    SECTION(".rodata.vtable_7d20") = {
         nullptr,
         nullptr,
         func_08085528,
         func_08085568,
-#endif
     };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E7D30[]
     SECTION(".rodata.vtable_7d30") = {
