@@ -14295,7 +14295,32 @@ func_0807CC5C:
     pop {r1}
     bx r1
     .align 2, 0
-    jp_code_0803ee_func func_0807CCFC, 0x7CCFC, 0x7CD30
+    .global func_0807CCFC
+    .thumb_func
+func_0807CCFC:
+    push {r4, lr}
+    adds r4, r0, #0
+    bl func_080C797C
+    ldr r0, .Ljp_poultry_initializer_vtable
+    str r0, [r4, #4]
+    ldr r1, .Ljp_poultry_initializer_state_offset
+    adds r0, r4, r1
+    movs r1, #0
+    strb r1, [r0]
+    movs r2, #0xe1
+    lsls r2, r2, #3
+    adds r0, r4, r2
+    str r1, [r0]
+    adds r2, #4
+    adds r0, r4, r2
+    strb r1, [r0]
+    adds r0, r4, #0
+    pop {r4}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_poultry_initializer_vtable: .4byte gUnk_080E7044
+.Ljp_poultry_initializer_state_offset: .4byte 0x000006A4
     jp_code_0803ee_func func_0807CD30, 0x7CD30, 0x7D8D0
     jp_code_0803ee_func func_0807D8D0, 0x7D8D0, 0x7D910
     jp_code_0803ee_func func_0807D910, 0x7D910, 0x7D960

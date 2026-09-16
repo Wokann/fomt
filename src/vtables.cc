@@ -5675,20 +5675,26 @@ extern RawVTableFunction const vtable_unk_080E7BEC[]
 #endif
     };
 
+// JP's constructor at 0x0807CCFC uses the final null slot directly.
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7BF8[]
     SECTION(".rodata.vtable_7bf8") = {
-#if defined(REGION_JP)
         nullptr,
         nullptr,
         func_0807D960,
-        nullptr,
+    };
+
+extern RawVTableFunction const gUnk_080E7044
+    SECTION(".rodata.vtable_7bf8") = nullptr;
 #else
+extern RawVTableFunction const vtable_unk_080E7BF8[]
+    SECTION(".rodata.vtable_7bf8") = {
         nullptr,
         nullptr,
         func_0807D0B4,
         func_0807D0F4,
-#endif
     };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E7C08[]
     SECTION(".rodata.vtable_7c08") = {
