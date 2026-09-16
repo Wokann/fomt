@@ -98,6 +98,7 @@ python tools/gfx_incbin_inventory.py . --csv build/gfx_incbin_inventory.csv
 python tools/gfx_compression_inventory.py . --csv build/gfx_compression_inventory.csv
 python tools/unpack_inventory.py . --csv build/unpack_inventory.csv
 python tools/unpack_vram_inventory.py . --csv build/unpack_vram_inventory.csv
+python tools/copy_ram_inventory.py . --csv build/copy_ram_inventory.csv
 python tools/dma_vram_inventory.py . --csv build/dma_vram_inventory.csv
 ```
 
@@ -113,6 +114,8 @@ tile, palette, or OAM format. Run them with `make unpack-inventory` and
 the former and 32 direct-VRAM paths in the latter. `DIRECT_UNPACK_VRAM_AUDIT.md`
 records the classification of every direct-VRAM path and keeps unproven streams
 out of the managed-resource table.
+`DIRECT_COPY_RAM_AUDIT.md` records the literal-source `func_08008E64` layer;
+the current scan finds sixteen palette-RAM paths and no literal-VRAM path.
 `DIRECT_DMA_VRAM_AUDIT.md` does the same for literal `func_08008F0C` copies;
 it deliberately excludes indirect or runtime-computed DMA descriptors.
 

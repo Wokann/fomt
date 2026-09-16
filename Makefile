@@ -503,6 +503,7 @@ MAP_RESOURCES_ROM_ARGS := --rom jp baserom_jp.gba --rom us baserom_us.gba --rom 
 INDEXED_RESOURCE_ARCHIVE_TOOL := tools/indexed_resource_archive.py
 UNPACK_VRAM_INVENTORY_TOOL := tools/unpack_vram_inventory.py
 UNPACK_INVENTORY_TOOL := tools/unpack_inventory.py
+COPY_RAM_INVENTORY_TOOL := tools/copy_ram_inventory.py
 DMA_VRAM_INVENTORY_TOOL := tools/dma_vram_inventory.py
 
 # The Records Screen uses seven independently selected, raw 16x16 4bpp task
@@ -832,6 +833,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 .PHONY: gfx-small-companion-archive gfx-small-companion-archive-test gfx-small-companion-archive-all gfx-small-companion-archive-patch-test gfx-small-companion-archive-edit-test
 .PHONY: dma-vram-inventory
 .PHONY: unpack-inventory
+.PHONY: copy-ram-inventory
 .PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-secondary-tilemaps-edit-test gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-background-edit-test gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-objects-edit-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-tilemaps-edit-test gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all resource-archive-audit unpack-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
 .PHONY: gfx-ui-scene-080a2ba4 gfx-ui-scene-080a2ba4-reference gfx-ui-scene-080a2ba4-test gfx-ui-scene-080a2ba4-all gfx-ui-scene-080a2ba4-patch-test gfx-ui-scene-080a2ba4-edit-test
 .PHONY: gfx-ui-scene-08077810 gfx-ui-scene-08077810-test gfx-ui-scene-08077810-all gfx-ui-scene-08077810-patch-test gfx-ui-scene-08077810-edit-test
@@ -1309,6 +1311,8 @@ resource-archive-audit: $(INDEXED_RESOURCE_ARCHIVE_TOOL) $(COMMON_RESOURCE_ARCHI
 	@$(PYTHON) $(FARM_STATUS_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --offset 0x4D977C --length $(FARM_STATUS_RESOURCE_ARCHIVE_LENGTH) --sha256 $(FARM_STATUS_RESOURCE_ARCHIVE_SHA256) audit
 unpack-inventory: $(UNPACK_INVENTORY_TOOL)
 	@$(PYTHON) $(UNPACK_INVENTORY_TOOL) . --csv $(BUILD_DIR)/unpack_inventory.csv
+copy-ram-inventory: $(COPY_RAM_INVENTORY_TOOL)
+	@$(PYTHON) $(COPY_RAM_INVENTORY_TOOL) . --csv $(BUILD_DIR)/copy_ram_inventory.csv
 unpack-vram-inventory: $(UNPACK_VRAM_INVENTORY_TOOL)
 	@$(PYTHON) $(UNPACK_VRAM_INVENTORY_TOOL) . --csv $(BUILD_DIR)/unpack_vram_inventory.csv
 dma-vram-inventory: $(DMA_VRAM_INVENTORY_TOOL)

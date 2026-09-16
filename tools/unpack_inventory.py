@@ -58,6 +58,7 @@ class Call:
     symbol: str
     destination_kind: str
     destination: str
+    byte_count: str
 
 
 def parse_number(value: str) -> int | None:
@@ -153,7 +154,15 @@ def successors(lines: list[str], index: int, labels: dict[str, int]) -> list[int
     return [index + 1] if index + 1 < len(lines) else []
 
 
-def function_calls(source: Path, root: Path, name: str, lines: list[str], start_line: int) -> list[Call]:
+def function_calls(
+    source: Path,
+    root: Path,
+    name: str,
+    lines: list[str],
+    start_line: int,
+    callee: str,
+    include_size: bool,
+) -> list[Call]:
     labels = {
         match.group(1): index
         for index, line in enumerate(lines)
@@ -172,34 +181,42 @@ def function_calls(source: Path, root: Path, name: str, lines: list[str], start_
 
     result: list[Call] = []
     for index, line in enumerate(lines):
-        if not (match := CALL_RE.match(line)) or match.group("symbol") != "Unpack":
+        if not (match := CALL_RE.match(line)) or match.group("symbol") != callee:
             continue
         state = states.get(index, {})
         symbols = sorted(value for value in state.get("r0", frozenset()) if isinstance(value, str) and value.startswith("g"))
         destinations = state.get("r1", frozenset()) or frozenset((None,))
+        sizes = (state.get("r2", frozenset()) or frozenset((None,))) if include_size else frozenset((None,))
         for symbol in symbols:
             for destination_value in destinations:
                 destination_kind, destination = describe_destination(destination_value)
-                result.append(Call(
-                    source=source.relative_to(root).as_posix(),
-                    line=start_line + index,
-                    function=name,
-                    symbol=symbol,
-                    destination_kind=destination_kind,
-                    destination=destination,
-                ))
+                for size_value in sizes:
+                    byte_count = f"0x{size_value:X}" if isinstance(size_value, int) else ""
+                    result.append(Call(
+                        source=source.relative_to(root).as_posix(),
+                        line=start_line + index,
+                        function=name,
+                        symbol=symbol,
+                        destination_kind=destination_kind,
+                        destination=destination,
+                        byte_count=byte_count,
+                    ))
     return result
 
 
-def calls(root: Path) -> list[Call]:
+def calls(root: Path, callee: str = "Unpack", include_size: bool = False) -> list[Call]:
     result: list[Call] = []
     for source in sorted((root / "asm").rglob("*.s")):
         lines = source.read_text(encoding="utf-8", errors="replace").splitlines()
         starts = [(index, match.group("symbol")) for index, line in enumerate(lines) if (match := FUNCTION_RE.match(line))]
         for position, (start, name) in enumerate(starts):
             end = starts[position + 1][0] if position + 1 < len(starts) else len(lines)
-            result.extend(function_calls(source, root, name, lines[start:end], start + 1))
-    return sorted(set(result), key=lambda row: (row.source, row.line, row.symbol, row.destination_kind, row.destination))
+            result.extend(function_calls(
+                source, root, name, lines[start:end], start + 1, callee, include_size
+            ))
+    return sorted(set(result), key=lambda row: (
+        row.source, row.line, row.symbol, row.destination_kind, row.destination, row.byte_count
+    ))
 
 
 def main() -> None:
