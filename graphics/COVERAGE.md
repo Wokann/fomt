@@ -71,6 +71,7 @@ Generate a current list with:
 python tools/gfx_incbin_inventory.py . --csv build/gfx_incbin_inventory.csv
 python tools/gfx_compression_inventory.py . --csv build/gfx_compression_inventory.csv
 python tools/unpack_vram_inventory.py . --csv build/unpack_vram_inventory.csv
+python tools/dma_vram_inventory.py . --csv build/dma_vram_inventory.csv
 ```
 
 All generated CSV files are local audit artifacts, not source artwork. The
@@ -83,6 +84,8 @@ not assertions about tile, palette, or OAM format. Run it with
 `make unpack-vram-inventory`; the current assembly yields 30 such calls.
 `DIRECT_UNPACK_VRAM_AUDIT.md` records the current code-consumer classification
 and keeps unproven streams out of the managed-resource table.
+`DIRECT_DMA_VRAM_AUDIT.md` does the same for literal `func_08008F0C` copies;
+it deliberately excludes indirect or runtime-computed DMA descriptors.
 
 ## Next audit queue
 
