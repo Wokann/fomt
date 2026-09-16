@@ -2,8 +2,9 @@
 """Inventory literal DMA descriptors that copy named ROM data into VRAM.
 
 The scan intentionally recognises only a narrow assembly pattern around
-``func_08008F0C``: a named ``g*`` source loaded into r1, a literal VRAM
-destination loaded into r2, and a simple literal r3 byte count.  Rows are
+``func_08008F0C``: a named ``g*`` source loaded into r1, plus a completely
+literal r2 VRAM destination and r3 byte count.  Literal values may be loaded
+directly or assembled with `movs`, left shifts and additions.  Rows are
 code-backed audit leads, never assertions about image format or ownership.
 """
 
@@ -18,9 +19,18 @@ from pathlib import Path
 
 CALL = "bl func_08008F0C"
 SOURCE = re.compile(r"\bldr\s+r1,\s+[^@]+@\s*=\s*(g[A-Za-z0-9_]+)")
-DESTINATION = re.compile(r"\bldr\s+r2,\s+[^@]+@\s*=\s*(0x060[0-9A-Fa-f]+)")
-MOV_R3 = re.compile(r"\bmovs\s+r3,\s*#(0x[0-9A-Fa-f]+|\d+)")
-SHIFT_R3 = re.compile(r"\blsls\s+r3,\s*(?:r3,\s*)?#(0x[0-9A-Fa-f]+|\d+)")
+LITERAL_LOAD = re.compile(
+    r"\bldr\s+(r[0-3]),\s+[^@]+@\s*=\s*(0x[0-9A-Fa-f]+|\d+)"
+)
+MOV_IMMEDIATE = re.compile(r"\bmovs?\s+(r[0-3]),\s*#(0x[0-9A-Fa-f]+|\d+)")
+SHIFT = re.compile(
+    r"\blsls?\s+(r[0-3]),\s*(r[0-3]),\s*#(0x[0-9A-Fa-f]+|\d+)"
+)
+SHIFT_SELF = re.compile(r"\blsls?\s+(r[0-3]),\s*#(0x[0-9A-Fa-f]+|\d+)")
+ADD_REGISTERS = re.compile(r"\badds?\s+(r[0-3]),\s*(r[0-3]),\s*(r[0-3])")
+ADD_IMMEDIATE = re.compile(r"\badds?\s+(r[0-3]),\s*(r[0-3]),\s*#(0x[0-9A-Fa-f]+|\d+)")
+ADD_SELF_IMMEDIATE = re.compile(r"\badds?\s+(r[0-3]),\s*#(0x[0-9A-Fa-f]+|\d+)")
+WRITES_REGISTER = re.compile(r"^\s*(?:[a-z.]+)\s+(r[0-3])(?:,|\s|$)")
 
 
 @dataclass(frozen=True)
@@ -36,26 +46,85 @@ def literal(value: str) -> int:
     return int(value, 0)
 
 
+def literal_registers(window: list[str]) -> tuple[str | None, int | None, int | None]:
+    """Evaluate only the literal register expressions accepted by this audit."""
+
+    values: dict[str, int | None] = {f"r{index}": None for index in range(4)}
+    source = None
+    for line in window:
+        if match := SOURCE.search(line):
+            source = match.group(1)
+            values["r1"] = None
+            continue
+        if match := LITERAL_LOAD.search(line):
+            register = match.group(1)
+            values[register] = literal(match.group(2))
+            if register == "r1":
+                source = None
+            continue
+        if match := MOV_IMMEDIATE.search(line):
+            register = match.group(1)
+            values[register] = literal(match.group(2))
+            if register == "r1":
+                source = None
+            continue
+        if match := SHIFT.search(line):
+            destination, source_register, shift = match.groups()
+            value = values[source_register]
+            values[destination] = None if value is None else value << literal(shift)
+            if destination == "r1":
+                source = None
+            continue
+        if match := SHIFT_SELF.search(line):
+            destination, shift = match.groups()
+            value = values[destination]
+            values[destination] = None if value is None else value << literal(shift)
+            if destination == "r1":
+                source = None
+            continue
+        if match := ADD_REGISTERS.search(line):
+            destination, left, right = match.groups()
+            left_value, right_value = values[left], values[right]
+            values[destination] = (
+                None if left_value is None or right_value is None else left_value + right_value
+            )
+            if destination == "r1":
+                source = None
+            continue
+        if match := ADD_IMMEDIATE.search(line):
+            destination, source_register, immediate = match.groups()
+            value = values[source_register]
+            values[destination] = None if value is None else value + literal(immediate)
+            if destination == "r1":
+                source = None
+            continue
+        if match := ADD_SELF_IMMEDIATE.search(line):
+            destination, immediate = match.groups()
+            value = values[destination]
+            values[destination] = None if value is None else value + literal(immediate)
+            if destination == "r1":
+                source = None
+            continue
+        # An unrecognised assignment invalidates any earlier literal value.
+        if match := WRITES_REGISTER.search(line):
+            values[match.group(1)] = None
+            if match.group(1) == "r1":
+                source = None
+    return source, values["r2"], values["r3"]
+
+
 def scan_file(path: Path, root: Path) -> list[Row]:
     lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
     rows: list[Row] = []
     for index, line in enumerate(lines):
         if CALL not in line:
             continue
-        window = lines[max(0, index - 12):index]
-        source = next((match.group(1) for item in reversed(window)
-                       if (match := SOURCE.search(item))), None)
-        destination = next((match.group(1) for item in reversed(window)
-                            if (match := DESTINATION.search(item))), None)
-        count = None
-        for item in window:
-            if match := MOV_R3.search(item):
-                count = literal(match.group(1))
-            elif count is not None and (match := SHIFT_R3.search(item)):
-                count <<= literal(match.group(1))
-        if source is not None and destination is not None and count is not None:
+        window = lines[max(0, index - 20):index]
+        source, destination, count = literal_registers(window)
+        if (source is not None and destination is not None and count is not None
+                and 0x06000000 <= destination < 0x06018000):
             rows.append(Row(path.relative_to(root).as_posix(), index + 1,
-                            source, literal(destination), count))
+                            source, destination, count))
     return rows
 
 

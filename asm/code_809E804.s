@@ -2796,7 +2796,39 @@ func_0809EEE8: @ 0x0809E920
 .L0809FE34: .4byte 0x00000414
 .L0809FE38: .4byte 0x00000474
 
-    jp_code_809_func func_0809FE3C, 0x9F874, 0x9F8AC
+    .global func_0809FE3C
+    .thumb_func
+func_0809FE3C: @ 0x0809F874
+    push {lr}
+    movs r2, #0
+    cmp r1, #0x2a
+    bhi .Ljp_0809F87E
+    movs r2, #1
+.Ljp_0809F87E:
+    cmp r2, #0
+    bne .Ljp_0809F88C
+    ldr r0, .Ljp_0809F888
+    b .Ljp_0809F8A4
+    .align 2, 0
+.Ljp_0809F888: .4byte gText_CharacterName_Empty
+.Ljp_0809F88C:
+    cmp r1, #0
+    beq .Ljp_0809F89C
+    cmp r1, #0x23
+    bne .Ljp_0809F89C
+    adds r0, #4
+    bl func_0809EACC
+    b .Ljp_0809F8A4
+.Ljp_0809F89C:
+    ldr r0, .Ljp_0809F8A8
+    lsls r1, r1, #3
+    adds r1, r1, r0
+    ldr r0, [r1]
+.Ljp_0809F8A4:
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_0809F8A8: .4byte gCharacterNameEntries
     jp_code_809_func func_0809FE74, 0x9F8AC, 0x9FC30
     jp_code_809_func func_080A01F8, 0x9FC30, 0x9FD54
     jp_code_809_func func_080A099C, 0x9FD54, 0x9FDBC

@@ -1,12 +1,13 @@
 # Direct DMA-to-VRAM audit
 
 `tools/dma_vram_inventory.py` recognises only calls to `func_08008F0C` where
-the immediate preceding assembly establishes all three values: a named `g*`
-ROM source in `r1`, a literal VRAM destination in `r2`, and a simple literal
-byte count in `r3`.  It does not infer a palette, tile format, OAM layout, or
+the preceding assembly establishes all three values: a named `g*` ROM source
+in `r1`, a literal VRAM destination in `r2`, and a literal byte count in
+`r3`.  Literal values may be loaded directly or formed only by `mov`, left
+shift, and addition.  It does not infer a palette, tile format, OAM layout, or
 screen ownership from the destination.
 
-The current assembly has 17 qualifying calls and 9 distinct source labels.
+The current assembly has 43 qualifying calls and 34 distinct source labels.
 Repeated calls are retained in the CSV because different consumers can copy a
 single source to different VRAM locations.
 
@@ -24,12 +25,24 @@ single source to different VRAM locations.
 | `gUnk_08750C8C` | `0x1A0`, `0x1C0` | Managed complete `0x1C0` raw UI tile record; the shorter caller consumes its leading subrange. |
 | `gUnk_087510AC` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
 | `gUnk_0875166C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
+| `gUnk_087517AC` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
+| `gUnk_08750F8C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
+| `gUnk_08750E4C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
+| `gUnk_087511CC` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
+| `gUnk_0875154C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
+| `gUnk_0875130C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
+| `gUnk_0875142C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
 
-The three icon rows already point at checked-in PNG pipelines.  The four UI
+The three icon rows already point at checked-in PNG pipelines.  The eleven UI
 rows now have verified four-region physical bounds and reversible native-tile
 sources.  No arbitrary tile-grid PNG or JSON layout is treated as a source
 asset: a future visual pipeline must still establish the companion palette and
 tilemap/OAM layout.
+
+The scanner also reports direct dynamic-text transfers and small UI-tile
+candidates that do not yet have a complete source/layout audit.  They remain
+in the CSV as leads only; this document does not promote them to graphics
+assets merely because their destinations are in VRAM.
 
 Generate the machine-readable scan with:
 
