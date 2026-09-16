@@ -20250,12 +20250,54 @@ func_0807F1D8: @ 0x0807F1D8
     .global func_0807F1EC
     .thumb_func
 func_0807F1EC:
-    @ The literal-pool words below reference movable Won shop data.  Keep
-    @ them as direct relocations while preserving the surrounding JP code.
-    jp_code_0803ee_bytes 0x7F1EC, 0x7F220
-    .4byte gWonShopCatalog
-    jp_code_0803ee_bytes 0x7F224, 0x7F24C
-    .4byte gWonShopCatalog
+	push {r4, r5, lr}
+	sub sp, #4
+	adds r5, r0, #0
+	lsls r1, r1, #2
+	adds r1, r1, r5
+	movs r0, #0xaa
+	lsls r0, r0, #2
+	adds r1, r1, r0
+	ldr r2, [r1]
+	movs r0, #0
+	cmp r2, #2
+	bgt .Ljp_0807F206
+	movs r0, #1
+.Ljp_0807F206:
+	cmp r0, #0
+	bne .Ljp_0807F224
+	ldr r0, .Ljp_0807F220
+	lsls r1, r2, #3
+	adds r1, r1, r0
+	ldr r1, [r1]
+	mov r0, sp
+	bl __4ToolUi
+	mov r0, sp
+	bl GetDesc__C4Tool
+	b .Ljp_0807F23C
+	.align 2, 0
+.Ljp_0807F220: .4byte gWonShopCatalog
+.Ljp_0807F224:
+	mov r4, sp
+	adds r4, #1
+	ldr r1, .Ljp_0807F24C
+	lsls r0, r2, #3
+	adds r0, r0, r1
+	ldr r1, [r0]
+	adds r0, r4, #0
+	bl __7ArticleUi
+	adds r0, r4, #0
+	bl GetDesc__C7Article
+.Ljp_0807F23C:
+	adds r1, r0, #0
+	adds r0, r5, #0
+	bl func_080CA3FC
+	add sp, #4
+	pop {r4, r5}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_0807F24C: .4byte gWonShopCatalog
 
     .global func_0807F250
     .thumb_func
