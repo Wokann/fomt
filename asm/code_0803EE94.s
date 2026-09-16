@@ -20419,10 +20419,110 @@ func_08080060: @ 0x08080060
 	.align 2, 0
 .Ljp_0808008C: .4byte vtable_unk_080E7C84
 .Ljp_08080090: .4byte 0x000006A4
-    jp_code_0803ee_func func_08080094, 0x80094, 0x8093C
-    jp_code_0803ee_func func_0808093C, 0x8093C, 0x8097C
-    jp_code_0803ee_func func_0808097C, 0x8097C, 0x809CC
-    jp_code_0803ee_func func_080809CC, 0x809CC, 0x809E0
+.global func_08080094
+.thumb_func
+func_08080094: @ 0x08080094
+	push {lr}
+	ldr r2, .Ljp_080800A4
+	str r2, [r0, #4]
+	bl func_080C8360
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_080800A4: .4byte vtable_unk_080E7C84
+
+    jp_code_0803ee_func func_080800A8, 0x800A8, 0x8093C
+
+.global func_0808093C
+.thumb_func
+func_0808093C: @ 0x0808093C
+	push {r4, r5, lr}
+	adds r4, r0, #0
+	adds r5, r1, #0
+	ldr r0, .Ljp_08080978
+	str r0, [r4]
+	ldr r1, [r4, #8]
+	cmp r1, #0
+	beq .Ljp_08080958
+	ldr r0, [r1]
+	ldr r2, [r0, #8]
+	adds r0, r1, #0
+	movs r1, #3
+	bl _call_via_r2
+.Ljp_08080958:
+	ldr r1, [r4, #4]
+	cmp r1, #0
+	beq .Ljp_0808096A
+	ldr r0, [r1, #4]
+	ldr r2, [r0, #8]
+	adds r0, r1, #0
+	movs r1, #3
+	bl _call_via_r2
+.Ljp_0808096A:
+	adds r0, r4, #0
+	adds r1, r5, #0
+	bl func_080007EC
+	pop {r4, r5}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_08080978: .4byte vtable_unk_080E7C84_NullTail
+
+.global func_0808097C
+.thumb_func
+func_0808097C: @ 0x0808097C
+	push {r4, r5, lr}
+	adds r5, r0, #0
+	adds r4, r1, #0
+	ldr r0, [r4, #4]
+	bl func_080800A8
+	ldr r1, [r4, #8]
+	movs r0, #0
+	str r0, [r4, #8]
+	str r1, [r5]
+	adds r0, r5, #0
+	pop {r4, r5}
+	pop {r1}
+	bx r1
+
+.global func_08080998
+.thumb_func
+func_08080998: @ 0x08080998
+	push {r4, lr}
+	adds r4, r0, #0
+	bl func_080C797C
+	ldr r0, .Ljp_080809C4
+	str r0, [r4, #4]
+	ldr r1, .Ljp_080809C8
+	adds r0, r4, r1
+	movs r1, #0
+	str r1, [r0]
+	movs r2, #0xd5
+	lsls r2, r2, #3
+	adds r0, r4, r2
+	strb r1, [r0]
+	adds r2, #4
+	adds r0, r4, r2
+	strb r1, [r0]
+	adds r0, r4, #0
+	pop {r4}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.Ljp_080809C4: .4byte vtable_unk_080E7CA0
+.Ljp_080809C8: .4byte 0x000006A4
+
+.global func_080809CC
+.thumb_func
+func_080809CC: @ 0x080809CC
+	push {lr}
+	ldr r2, .Ljp_080809DC
+	str r2, [r0, #4]
+	bl func_080C8360
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_080809DC: .4byte vtable_unk_080E7CA0
     jp_code_0803ee_func func_080809E0, 0x809E0, 0x80C80
     jp_code_0803ee_func func_08080C80, 0x80C80, 0x815E8
     jp_code_0803ee_func func_080815E8, 0x815E8, 0x81628
