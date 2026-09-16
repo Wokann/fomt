@@ -438,7 +438,7 @@ RAW_VRAM_TILES_086D6698_REGION := $(INTRO_OBJECTS_REGION)
 # These UI payloads are copied directly into BG or OBJ character VRAM. The
 # consumer proves their fixed raw 4bpp bounds but not a palette or final
 # layout, so preserve each as native tile data instead of fabricating PNGs.
-RAW_VRAM_UI_PROFILES := 08750c4c 08750c8c 087510ac 0875166c 087517ac 08750f8c 08750e4c 087511cc 0875154c 0875130c 0875142c
+RAW_VRAM_UI_PROFILES := 08750c4c 08750c8c 087510ac 0875166c 087517ac 08750f8c 08750e4c 087511cc 0875154c 0875130c 0875142c 08752dcc 08752b4c 087529ac 08752d4c 08752acc 0875290c 08752a2c 08752aac 08752ccc 08752bcc 08752c4c
 define DEFINE_RAW_VRAM_UI_PROFILE
 RAW_VRAM_TILES_$(1)_TOOL := $(RAW_VRAM_TILES_08697920_TOOL)
 RAW_VRAM_TILES_$(1)_SOURCE_DIR := graphics/ui/raw_vram_tiles/$(1)/shared

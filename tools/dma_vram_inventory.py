@@ -19,18 +19,21 @@ from pathlib import Path
 
 CALL = "bl func_08008F0C"
 SOURCE = re.compile(r"\bldr\s+r1,\s+[^@]+@\s*=\s*(g[A-Za-z0-9_]+)")
+REGISTER = r"(?:r[0-3]|r8|sb|sl)"
 LITERAL_LOAD = re.compile(
-    r"\bldr\s+(r[0-3]),\s+[^@]+@\s*=\s*(0x[0-9A-Fa-f]+|\d+)"
+    rf"\bldr\s+({REGISTER}),\s+[^@]+@\s*=\s*(0x[0-9A-Fa-f]+|\d+)"
 )
-MOV_IMMEDIATE = re.compile(r"\bmovs?\s+(r[0-3]),\s*#(0x[0-9A-Fa-f]+|\d+)")
+MOV_IMMEDIATE = re.compile(rf"\bmovs?\s+({REGISTER}),\s*#(0x[0-9A-Fa-f]+|\d+)")
+MOV_REGISTER = re.compile(rf"\bmovs?\s+({REGISTER}),\s*({REGISTER})")
 SHIFT = re.compile(
-    r"\blsls?\s+(r[0-3]),\s*(r[0-3]),\s*#(0x[0-9A-Fa-f]+|\d+)"
+    rf"\blsls?\s+({REGISTER}),\s*({REGISTER}),\s*#(0x[0-9A-Fa-f]+|\d+)"
 )
-SHIFT_SELF = re.compile(r"\blsls?\s+(r[0-3]),\s*#(0x[0-9A-Fa-f]+|\d+)")
-ADD_REGISTERS = re.compile(r"\badds?\s+(r[0-3]),\s*(r[0-3]),\s*(r[0-3])")
-ADD_IMMEDIATE = re.compile(r"\badds?\s+(r[0-3]),\s*(r[0-3]),\s*#(0x[0-9A-Fa-f]+|\d+)")
-ADD_SELF_IMMEDIATE = re.compile(r"\badds?\s+(r[0-3]),\s*#(0x[0-9A-Fa-f]+|\d+)")
-WRITES_REGISTER = re.compile(r"^\s*(?:[a-z.]+)\s+(r[0-3])(?:,|\s|$)")
+SHIFT_SELF = re.compile(rf"\blsls?\s+({REGISTER}),\s*#(0x[0-9A-Fa-f]+|\d+)")
+ADD_REGISTERS = re.compile(rf"\badds?\s+({REGISTER}),\s*({REGISTER}),\s*({REGISTER})")
+ADD_IMMEDIATE = re.compile(rf"\badds?\s+({REGISTER}),\s*({REGISTER}),\s*#(0x[0-9A-Fa-f]+|\d+)")
+ADD_SELF_REGISTER = re.compile(rf"\badds?\s+({REGISTER}),\s*({REGISTER})")
+ADD_SELF_IMMEDIATE = re.compile(rf"\badds?\s+({REGISTER}),\s*#(0x[0-9A-Fa-f]+|\d+)")
+WRITES_REGISTER = re.compile(rf"^\s*(?:[a-z.]+)\s+({REGISTER})(?:,|\s|$)")
 
 
 @dataclass(frozen=True)
@@ -49,7 +52,12 @@ def literal(value: str) -> int:
 def literal_registers(window: list[str]) -> tuple[str | None, int | None, int | None]:
     """Evaluate only the literal register expressions accepted by this audit."""
 
-    values: dict[str, int | None] = {f"r{index}": None for index in range(4)}
+    values: dict[str, int | None] = {
+        **{f"r{index}": None for index in range(4)},
+        "r8": None,
+        "sb": None,
+        "sl": None,
+    }
     source = None
     for line in window:
         if match := SOURCE.search(line):
@@ -66,6 +74,12 @@ def literal_registers(window: list[str]) -> tuple[str | None, int | None, int | 
             register = match.group(1)
             values[register] = literal(match.group(2))
             if register == "r1":
+                source = None
+            continue
+        if match := MOV_REGISTER.search(line):
+            destination, source_register = match.groups()
+            values[destination] = values[source_register]
+            if destination == "r1":
                 source = None
             continue
         if match := SHIFT.search(line):
@@ -98,6 +112,16 @@ def literal_registers(window: list[str]) -> tuple[str | None, int | None, int | 
             if destination == "r1":
                 source = None
             continue
+        if match := ADD_SELF_REGISTER.search(line):
+            destination, source_register = match.groups()
+            destination_value, source_value = values[destination], values[source_register]
+            values[destination] = (
+                None if destination_value is None or source_value is None
+                else destination_value + source_value
+            )
+            if destination == "r1":
+                source = None
+            continue
         if match := ADD_SELF_IMMEDIATE.search(line):
             destination, immediate = match.groups()
             value = values[destination]
@@ -119,7 +143,10 @@ def scan_file(path: Path, root: Path) -> list[Row]:
     for index, line in enumerate(lines):
         if CALL not in line:
             continue
-        window = lines[max(0, index - 20):index]
+        # Several functions establish a reusable literal helper register before
+        # loading the final source and DMA arguments.  Keep a conservative
+        # local window while invalidating every overwritten tracked register.
+        window = lines[max(0, index - 64):index]
         source, destination, count = literal_registers(window)
         if (source is not None and destination is not None and count is not None
                 and 0x06000000 <= destination < 0x06018000):

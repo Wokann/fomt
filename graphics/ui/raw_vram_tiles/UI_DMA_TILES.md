@@ -18,11 +18,24 @@ native `.4bpp` source.
 | `gUnk_0875154C` | `0875154c/shared/tiles.4bpp` | `0x120` | `0x4D74F8` | `0x75154C` | `0x7515A8` | `0x4D8A68` | `acfc397f1fb7813b07fd714a306bb890cc4ccec2b94cee6ff10754408c7cebf6` |
 | `gUnk_0875130C` | `0875130c/shared/tiles.4bpp` | `0x120` | `0x4D72B8` | `0x75130C` | `0x751368` | `0x4D8828` | `b078a388eb2836e81fa338079b4185f05f6a0f635ed977b2e1d8052a72b78777` |
 | `gUnk_0875142C` | `0875142c/shared/tiles.4bpp` | `0x120` | `0x4D73D8` | `0x75142C` | `0x751488` | `0x4D8948` | `aa637cc310aea66cedff57eb3080b430e380c20703184036a73c2f87eba97dbb` |
+| `gUnk_08752DCC` | `08752dcc/shared/tiles.4bpp` | `0x20` | `0x4D8D78` | `0x752DCC` | `0x752E28` | `0x4DA2E8` | `edfe3b0dfa05ba559f7edb9dadc37610f2d68962dee6ebe21f4236e2da72f434` |
+| `gUnk_08752B4C` | `08752b4c/shared/tiles.4bpp` | `0x20` | `0x4D8AF8` | `0x752B4C` | `0x752BA8` | `0x4DA068` | `fd2f2ed59600716e8751a9a95cd3a57e3305878909400c20a0790044862f38fd` |
+| `gUnk_087529AC` | `087529ac/shared/tiles.4bpp` | `0x20` | `0x4D8958` | `0x7529AC` | `0x752A08` | `0x4D9EC8` | `e65a24b3b2280d111ba0d1236b82953023ef8eb4fc099ea4b3af5350d9c27214` |
+| `gUnk_08752D4C` | `08752d4c/shared/tiles.4bpp` | `0x80` | `0x4D8CF8` | `0x752D4C` | `0x752DA8` | `0x4DA268` | `bbed8d40d3b50a112b0044f5cb15532a8373cd3979856ca2d420d71d65ae5dcf` |
+| `gUnk_08752ACC` | `08752acc/shared/tiles.4bpp` | `0x80` | `0x4D8A78` | `0x752ACC` | `0x752B28` | `0x4D9FE8` | `544c753c94d191908294f5db94a19d1cec38b880dbc83c1bd46e53d38a8d7004` |
+| `gUnk_0875290C` | `0875290c/shared/tiles.4bpp` | `0x80` | `0x4D88B8` | `0x75290C` | `0x752968` | `0x4D9E28` | `577830e91675ac0f323c3ed71d780c87f83b4b5a0a209b2c96e93c9d5b5533e3` |
+| `gUnk_08752A2C` | `08752a2c/shared/tiles.4bpp` | `0x20` | `0x4D89D8` | `0x752A2C` | `0x752A88` | `0x4D9F48` | `1eb989f756d8a797e4c33dbb012c7d4f1a3637dab164e4eab9fd867edfd2d532` |
+| `gUnk_08752AAC` | `08752aac/shared/tiles.4bpp` | `0x20` | `0x4D8A58` | `0x752AAC` | `0x752B08` | `0x4D9FC8` | `16651959cfb2129a001de5974a24772259962d7e5d22e88096280f1c57371186` |
+| `gUnk_08752CCC` | `08752ccc/shared/tiles.4bpp` | `0x20` | `0x4D8C78` | `0x752CCC` | `0x752D28` | `0x4DA1E8` | `7ad0e85a313266549b865f289aed4f47dcfbd36e5d28ab1270b3729a86d0f5be` |
+| `gUnk_08752BCC` | `08752bcc/shared/tiles.4bpp` | `0x20` | `0x4D8B78` | `0x752BCC` | `0x752C28` | `0x4DA0E8` | `bd19e0c23ddca6d07e9306ef5a9ba2c4f906e6e5aa6c1b4c45b0db65125e3ae8` |
+| `gUnk_08752C4C` | `08752c4c/shared/tiles.4bpp` | `0x20` | `0x4D8BF8` | `0x752C4C` | `0x752CA8` | `0x4DA168` | `7cfc23dbe168b6540cfde63d355a87a45bcbff5d940529924641f9e1fdddb4c3` |
 
 `gUnk_08750C8C` is copied in both `0x1A0`-byte and `0x1C0`-byte forms.  The
 managed source therefore preserves its complete proven `0x1C0`-byte record;
-the smaller call consumes its leading subrange.  The remaining ten records are
-each consumed in full by a direct DMA call.
+the smaller call consumes its leading subrange.  The remaining twenty-one
+records are each consumed in full by a direct DMA call.  The final eleven are
+used by the Farm Status UI; their direct character-VRAM transfers establish
+only their native tile bounds, not a palette or final arrangement.
 
 The sources are raw character tiles, not composited images.  No palette bank,
 tilemap, OAM layout, or UI ownership is yet proven, so this pipeline

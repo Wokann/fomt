@@ -7,7 +7,9 @@ in `r1`, a literal VRAM destination in `r2`, and a literal byte count in
 shift, and addition.  It does not infer a palette, tile format, OAM layout, or
 screen ownership from the destination.
 
-The current assembly has 43 qualifying calls and 34 distinct source labels.
+The current conservative scanner finds 40 qualifying calls and 31 distinct
+source labels.  A further direct call below uses an untracked high-register
+temporary for its literal destination and is recorded after manual inspection.
 Repeated calls are retained in the CSV because different consumers can copy a
 single source to different VRAM locations.
 
@@ -32,8 +34,19 @@ single source to different VRAM locations.
 | `gUnk_0875154C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
 | `gUnk_0875130C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
 | `gUnk_0875142C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
+| `gUnk_08752DCC` | `0x20` | Managed raw Farm Status UI tile record; palette and layout unproven. |
+| `gUnk_08752B4C` | `0x20` | Managed raw Farm Status UI tile record; palette and layout unproven. |
+| `gUnk_087529AC` | `0x20` | Managed raw Farm Status UI tile record; palette and layout unproven. |
+| `gUnk_08752D4C` | `0x80` | Managed raw Farm Status UI tile record; palette and layout unproven. |
+| `gUnk_08752ACC` | `0x80` | Managed raw Farm Status UI tile record; palette and layout unproven. |
+| `gUnk_0875290C` | `0x80` | Managed raw Farm Status UI tile record; palette and layout unproven. |
+| `gUnk_08752A2C` | `0x20` | Managed raw Farm Status UI tile record; palette and layout unproven. |
+| `gUnk_08752AAC` | `0x20` | Managed raw Farm Status UI tile record; manual direct-DMA audit; palette and layout unproven. |
+| `gUnk_08752CCC` | `0x20` | Managed raw Farm Status UI tile record; palette and layout unproven. |
+| `gUnk_08752BCC` | `0x20` | Managed raw Farm Status UI tile record; palette and layout unproven. |
+| `gUnk_08752C4C` | `0x20` | Managed raw Farm Status UI tile record; palette and layout unproven. |
 
-The three icon rows already point at checked-in PNG pipelines.  The eleven UI
+The three icon rows already point at checked-in PNG pipelines.  The twenty-two UI
 rows now have verified four-region physical bounds and reversible native-tile
 sources.  No arbitrary tile-grid PNG or JSON layout is treated as a source
 asset: a future visual pipeline must still establish the companion palette and
