@@ -216,8 +216,9 @@ make gfx-ui-scene-080b55d0-aux-reference
 static beach BG3 base. Its map and palette are runtime inputs rather than
 editable sources: the map's packed encoder has not been independently
 reconstructed and the palette copy crosses the next labelled resource. The
-existing 4bpp tile stream remains reversible. Regenerate the checked preview
-for all four retail regions with:
+reversible 4bpp tile stream is included directly by the original
+`gUnk_08738D1C` assembly symbol. Regenerate the checked preview for all four
+retail regions with:
 
 ```console
 make gfx-ui-scene-08054f40-reference
@@ -226,8 +227,9 @@ make gfx-ui-scene-08054f40-reference
 `ui/scene_0805ab08_tiles/reference/` is a further code-backed static view:
 the initializer expands four row templates into three BG maps and configures
 their priorities. Its palette copy also crosses a resource-label boundary, so
-the PNGs are checked references while `tiles.4bpp` remains the editable
-source. Regenerate it with:
+the PNGs are checked references while `tiles.4bpp` remains the editable source
+included directly by the original `gUnk_0872F21C` assembly symbol. Regenerate
+it with:
 
 ```console
 make gfx-ui-scene-0805ab08-reference

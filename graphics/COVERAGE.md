@@ -19,8 +19,8 @@ image, nor that all game graphics have been extracted.
 | Direct `func_080C160C` UI-scene BG streams | `graphics/ui/scene_080c160c/shared/tiles.4bpp`, `layer_*.tilemap`, and `palettes.png`; rendered `reference/layer_*.png` and `scene.png` | three native packed streams plus the code-bounded 256-word palette load beginning at BG bank 1, patched back after link | Yes |
 | Direct `func_080BCFAC` UI-scene BG streams | `graphics/ui/scene_080bcfac/shared/tiles.4bpp`, `layer_*.tilemap`, and `palettes.png`; rendered `reference/layer_*.png` and `scene.png` | three native packed streams plus a code-bounded sixteen-bank BGR555 palette, patched back to original locations after link | Yes |
 | Direct `func_080B55D0` auxiliary BG streams | editable `graphics/ui/scene_080b55d0_aux/shared/tiles.4bpp` and `layer_*.tilemap`; read-only `reference/*.png` | three native packed streams, patched back to original locations after link; two overlapping palette operations are reference-only | Yes for streams; palette reference only |
-| Direct `func_08054F40` BG tile stream | `graphics/ui/scene_08054f40_tiles/shared/tiles.4bpp`; read-only `reference/base_layer_3.png` and `screen.png` | one native packed 4bpp tile stream, patched back to its original location after link; static BG3 map and crossing palette copy are verified reference inputs | Yes for tile stream; reference inputs only |
-| Direct `func_0805AB08` BG tile stream | `graphics/ui/scene_0805ab08_tiles/shared/tiles.4bpp`; read-only `reference/layer_*.png`, `scene.png`, and `screen.png` | one native packed 4bpp tile stream, patched back to its original location after link; code-built three-BG maps and crossing palette copy are verified reference inputs | Yes for tile stream; reference inputs only |
+| Direct `func_08054F40` BG tile stream | `graphics/ui/scene_08054f40_tiles/shared/tiles.4bpp`; read-only `reference/base_layer_3.png` and `screen.png` | one native packed 4bpp tile stream included directly by the original `gUnk_08738D1C` symbol; static BG3 map and crossing palette copy are verified reference inputs | Yes for tile stream; reference inputs only |
+| Direct `func_0805AB08` BG tile stream | `graphics/ui/scene_0805ab08_tiles/shared/tiles.4bpp`; read-only `reference/layer_*.png`, `scene.png`, and `screen.png` | one native packed 4bpp tile stream included directly by the original `gUnk_0872F21C` symbol; code-built three-BG maps and crossing palette copy are verified reference inputs | Yes for tile stream; reference inputs only |
 | Farm-status background and building previews | `graphics/ui/farm_status/shared/base_tiles.png`, `base_palettes.png`, and `tilemaps/*.tilemap` | packed 4bpp tile stream, sixteen BGR555 palette banks, and fourteen BG tilemaps | Yes |
 | Farm-status secondary layouts | `graphics/ui/farm_status/shared/secondary_tilemaps/*.tilemap` | six native Huffman-4/LZ3 64-by-44 BG tilemap streams | Yes |
 | Intro-scene object tile sources | `graphics/intro_scene/shared/object_tiles/*.4bpp` | twenty native Raw-LZ object-tile streams | Yes |
@@ -39,10 +39,13 @@ Most managed families are included from `asm/data/data_0813B288.s` through a
 regional `build/<region>/graphics/...` output. MapData visual layers preserve
 their original continuous archive position through a post-link replacement
 step, because their 272 pointer-bearing streams are not a single assembly
-incbin block. The direct UI-scene streams use the same explicit post-link
+incbin block. Most direct UI-scene streams use the same explicit post-link
 replacement rule because their region-specific physical labels are embedded in
-otherwise raw data containers. The surrounding archive headers, OAM records,
-palettes, tables, and unhandled bytes remain direct ROM data until they have a
+otherwise raw data containers. `func_08054F40` and `func_0805AB08` are the
+first exception: their single, independently bounded tile streams are included
+directly at the original symbols `gUnk_08738D1C` and `gUnk_0872F21C`. The
+surrounding archive headers, OAM records, palettes, tables, and unhandled bytes
+remain direct ROM data until they have a
 corresponding verified source/rebuild path.
 
 ## Unclassified ROM ranges

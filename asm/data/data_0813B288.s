@@ -270,6 +270,40 @@
     .endif
     .endm
 
+    @ Code-backed static BG tile streams.  The routines that load these
+    @ symbols consume the assembled payloads, rather than preview-only copies.
+    .macro FOMT_UI_SCENE_08054F40_TILES
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/scene_08054f40_tiles/tiles.4bpp.0x70"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/scene_08054f40_tiles/tiles.4bpp.0x70"
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/scene_08054f40_tiles/tiles.4bpp.0x70"
+    .else
+    .incbin "build/us/graphics/ui/scene_08054f40_tiles/tiles.4bpp.0x70"
+    .endif
+    .endif
+    .endif
+    .endm
+
+    .macro FOMT_UI_SCENE_0805AB08_TILES
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/scene_0805ab08_tiles/tiles.4bpp.0x70"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/scene_0805ab08_tiles/tiles.4bpp.0x70"
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/scene_0805ab08_tiles/tiles.4bpp.0x70"
+    .else
+    .incbin "build/us/graphics/ui/scene_0805ab08_tiles/tiles.4bpp.0x70"
+    .endif
+    .endif
+    .endif
+    .endm
+
     @ func_0806EC94 selects one of two three-layer 64x44 BG layouts.  Keep
     @ the native compressed streams separate because EU exposes header labels
     @ eight bytes before several payload labels.
@@ -5179,7 +5213,7 @@ gUnk_0872EE78:
 	FOMT_REGION_ASSET_INCBIN 0x72F1EC, 0x30
 
 	non_de_asset_label gUnk_0872F21C
-	FOMT_REGION_ASSET_INCBIN 0x72F21C, 0x880
+	FOMT_UI_SCENE_0805AB08_TILES
 
 	non_de_asset_label gUnk_0872FA9C
 	FOMT_REGION_ASSET_INCBIN 0x72FA9C, 0x160
@@ -5215,7 +5249,7 @@ gUnk_0872EE78:
 	FOMT_REGION_ASSET_INCBIN 0x738CF0, 0x2C
 
 	non_de_asset_label gUnk_08738D1C
-	FOMT_REGION_ASSET_INCBIN 0x738D1C, 0xCA8
+	FOMT_UI_SCENE_08054F40_TILES
 
 	non_de_asset_label gUnk_087399C4
 	FOMT_REGION_ASSET_INCBIN 0x7399C4, 0xA0
