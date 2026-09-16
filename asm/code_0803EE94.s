@@ -20129,7 +20129,32 @@ func_0807EA7C: @ 0x0807EA7C
 	bx r0
 
     jp_code_0803ee_func func_0807EAF8, 0x7EAF8, 0x7F0E8
-    jp_code_0803ee_func func_0807F0E8, 0x7F0E8, 0x7F118
+
+.global func_0807F0E8
+.thumb_func
+func_0807F0E8: @ 0x0807F0E8
+	push {r4, r5, r6, lr}
+	adds r4, r0, #0
+	adds r6, r1, #0
+	adds r5, r2, #0
+	ldr r0, .Ljp_0807F114
+	str r0, [r4]
+	movs r0, #0xd6
+	lsls r0, r0, #3
+	bl __builtin_new
+	adds r1, r5, #0
+	bl func_0807EA08
+	str r0, [r4, #4]
+	ldr r1, [r6]
+	movs r0, #0
+	str r0, [r6]
+	str r1, [r4, #8]
+	adds r0, r4, #0
+	pop {r4, r5, r6}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.Ljp_0807F114: .4byte vtable_unk_080E7C4C_NullTail
     jp_code_0803ee_func func_0807F118, 0x7F118, 0x7F158
     jp_code_0803ee_func func_0807F158, 0x7F158, 0x7F1D8
     jp_code_0803ee_func func_0807F1D8, 0x7F1D8, 0x7F1EC
