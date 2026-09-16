@@ -5565,9 +5565,352 @@ func_080A0B18: @ 0x080A0550
 .Ljp_080A146C: .4byte 0x000009C4
 .Ljp_080A1470: .4byte 0xFFFFFE3F
 .Ljp_080A1474: .4byte gUnk_BacheloretteLoveThresholds05
-    jp_code_809_func func_080A1478, 0xA0EB0, 0xA0EB8
-    jp_code_809_func func_080A1480, 0xA0EB8, 0xA0EBC
-    jp_code_809_func func_080A1484, 0xA0EBC, 0xA11D8
+    .global func_080A1478
+    .thumb_func
+func_080A1478: @ 0x080A0EB0
+	ldr r1, [r1]
+	str r1, [r0, #0x2c]
+	bx lr
+	.align 2, 0
+    .global func_080A1480
+    .thumb_func
+func_080A1480: @ 0x080A0EB8
+	adds r0, #0x2c
+	bx lr
+    .global func_080A1484
+    .thumb_func
+func_080A1484: @ 0x080A0EBC
+	push {r4, r5, r6, lr}
+	adds r4, r0, #0
+	adds r6, r2, #0
+	ldrh r0, [r1]
+	lsls r0, r0, #0x16
+	lsrs r0, r0, #0x16
+	cmp r0, #0x2a
+	bls .Ljp_080A1496
+	b .Ljp_080A1798
+.Ljp_080A1496:
+	lsls r0, r0, #2
+	ldr r1, .Ljp_080A14A0 @ =.Ljp_080A14A4
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.Ljp_080A14A0: .4byte .Ljp_080A14A4
+.Ljp_080A14A4: @ jump table
+	.4byte .Ljp_080A1550 @ case 0
+	.4byte .Ljp_080A1550 @ case 1
+	.4byte .Ljp_080A1798 @ case 2
+	.4byte .Ljp_080A1550 @ case 3
+	.4byte .Ljp_080A1550 @ case 4
+	.4byte .Ljp_080A1550 @ case 5
+	.4byte .Ljp_080A1550 @ case 6
+	.4byte .Ljp_080A1550 @ case 7
+	.4byte .Ljp_080A1550 @ case 8
+	.4byte .Ljp_080A1798 @ case 9
+	.4byte .Ljp_080A1636 @ case 10
+	.4byte .Ljp_080A1636 @ case 11
+	.4byte .Ljp_080A164E @ case 12
+	.4byte .Ljp_080A1654 @ case 13
+	.4byte .Ljp_080A165A @ case 14
+	.4byte .Ljp_080A1678 @ case 15
+	.4byte .Ljp_080A1678 @ case 16
+	.4byte .Ljp_080A1798 @ case 17
+	.4byte .Ljp_080A1798 @ case 18
+	.4byte .Ljp_080A1696 @ case 19
+	.4byte .Ljp_080A1696 @ case 20
+	.4byte .Ljp_080A16A8 @ case 21
+	.4byte .Ljp_080A16A8 @ case 22
+	.4byte .Ljp_080A16A8 @ case 23
+	.4byte .Ljp_080A16BA @ case 24
+	.4byte .Ljp_080A16BA @ case 25
+	.4byte .Ljp_080A16BA @ case 26
+	.4byte .Ljp_080A16BA @ case 27
+	.4byte .Ljp_080A16EC @ case 28
+	.4byte .Ljp_080A1798 @ case 29
+	.4byte .Ljp_080A173C @ case 30
+	.4byte .Ljp_080A174E @ case 31
+	.4byte .Ljp_080A174E @ case 32
+	.4byte .Ljp_080A174E @ case 33
+	.4byte .Ljp_080A174E @ case 34
+	.4byte .Ljp_080A1798 @ case 35
+	.4byte .Ljp_080A1760 @ case 36
+	.4byte .Ljp_080A1798 @ case 37
+	.4byte .Ljp_080A1766 @ case 38
+	.4byte .Ljp_080A1798 @ case 39
+	.4byte .Ljp_080A1776 @ case 40
+	.4byte .Ljp_080A1784 @ case 41
+	.4byte .Ljp_080A1784 @ case 42
+.Ljp_080A1550:
+	movs r5, #1
+.Ljp_080A1552:
+	movs r1, #1
+	cmp r5, #0x21
+	beq .Ljp_080A1570
+	cmp r5, #0x21
+	bhi .Ljp_080A1562
+	cmp r5, #0x20
+	beq .Ljp_080A1580
+	b .Ljp_080A1582
+.Ljp_080A1562:
+	cmp r5, #0x22
+	bne .Ljp_080A1582
+	adds r0, r6, #0
+	adds r0, #0x3b
+	ldrb r0, [r0]
+	lsls r0, r0, #0x1b
+	b .Ljp_080A1578
+.Ljp_080A1570:
+	adds r0, r6, #0
+	adds r0, #0x3a
+	ldrb r0, [r0]
+	lsls r0, r0, #0x19
+.Ljp_080A1578:
+	lsrs r0, r0, #0x1e
+	cmp r0, #2
+	beq .Ljp_080A1582
+	b .Ljp_080A1598
+.Ljp_080A1580:
+	movs r1, #0
+.Ljp_080A1582:
+	cmp r1, #0
+	beq .Ljp_080A1598
+	adds r0, r4, #0
+	adds r1, r5, #0
+	bl func_080A06B0
+	cmp r0, #0
+	beq .Ljp_080A1598
+	movs r1, #1
+	bl SubtractFriendship__3Npci
+.Ljp_080A1598:
+	subs r0, r5, #3
+	cmp r0, #0x1c
+	bhi .Ljp_080A162E
+	lsls r0, r0, #2
+	ldr r1, .Ljp_080A15A8 @ =.Ljp_080A15AC
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.Ljp_080A15A8: .4byte .Ljp_080A15AC
+.Ljp_080A15AC: @ jump table
+	.4byte .Ljp_080A1620 @ case 0
+	.4byte .Ljp_080A162E @ case 1
+	.4byte .Ljp_080A162E @ case 2
+	.4byte .Ljp_080A162E @ case 3
+	.4byte .Ljp_080A162E @ case 4
+	.4byte .Ljp_080A162E @ case 5
+	.4byte .Ljp_080A162E @ case 6
+	.4byte .Ljp_080A162E @ case 7
+	.4byte .Ljp_080A162E @ case 8
+	.4byte .Ljp_080A1620 @ case 9
+	.4byte .Ljp_080A162E @ case 10
+	.4byte .Ljp_080A162E @ case 11
+	.4byte .Ljp_080A162E @ case 12
+	.4byte .Ljp_080A162E @ case 13
+	.4byte .Ljp_080A162E @ case 14
+	.4byte .Ljp_080A162E @ case 15
+	.4byte .Ljp_080A1620 @ case 16
+	.4byte .Ljp_080A162E @ case 17
+	.4byte .Ljp_080A1620 @ case 18
+	.4byte .Ljp_080A162E @ case 19
+	.4byte .Ljp_080A162E @ case 20
+	.4byte .Ljp_080A162E @ case 21
+	.4byte .Ljp_080A1620 @ case 22
+	.4byte .Ljp_080A162E @ case 23
+	.4byte .Ljp_080A162E @ case 24
+	.4byte .Ljp_080A162E @ case 25
+	.4byte .Ljp_080A162E @ case 26
+	.4byte .Ljp_080A162E @ case 27
+	.4byte .Ljp_080A1620 @ case 28
+.Ljp_080A1620:
+	adds r0, r4, #0
+	adds r1, r5, #0
+	bl func_080A0878
+	movs r1, #0xc8
+	bl SubtractLove__12Bachelorettei
+.Ljp_080A162E:
+	adds r5, #1
+	cmp r5, #0x2a
+	bls .Ljp_080A1552
+	b .Ljp_080A1798
+.Ljp_080A1636:
+	adds r0, r4, #0
+	adds r0, #0x70
+	movs r1, #5
+	bl SubtractFriendship__3Npci
+	adds r0, r4, #0
+	adds r0, #0x84
+	movs r1, #5
+	bl SubtractFriendship__3Npci
+	adds r4, #0x98
+	b .Ljp_080A16D8
+.Ljp_080A164E:
+	movs r1, #0x8a
+	lsls r1, r1, #2
+	b .Ljp_080A177A
+.Ljp_080A1654:
+	movs r1, #0xaa
+	lsls r1, r1, #2
+	b .Ljp_080A177A
+.Ljp_080A165A:
+	movs r1, #0xca
+	lsls r1, r1, #1
+	adds r0, r4, r1
+	movs r1, #5
+	bl SubtractFriendship__3Npci
+	movs r1, #0xd4
+	lsls r1, r1, #1
+	adds r0, r4, r1
+	movs r1, #5
+	bl SubtractFriendship__3Npci
+	movs r0, #0x84
+	lsls r0, r0, #2
+	b .Ljp_080A16D6
+.Ljp_080A1678:
+	movs r1, #0xde
+	lsls r1, r1, #1
+	adds r0, r4, r1
+	movs r1, #5
+	bl SubtractFriendship__3Npci
+	movs r1, #0xe8
+	lsls r1, r1, #1
+	adds r0, r4, r1
+	movs r1, #5
+	bl SubtractFriendship__3Npci
+	movs r0, #0xf2
+	lsls r0, r0, #1
+	b .Ljp_080A16D6
+.Ljp_080A1696:
+	movs r1, #0xfe
+	lsls r1, r1, #1
+	adds r0, r4, r1
+	movs r1, #5
+	bl SubtractFriendship__3Npci
+	movs r0, #0x84
+	lsls r0, r0, #2
+	b .Ljp_080A16D6
+.Ljp_080A16A8:
+	movs r1, #0x94
+	lsls r1, r1, #2
+	adds r0, r4, r1
+	movs r1, #5
+	bl SubtractFriendship__3Npci
+	movs r0, #0x99
+	lsls r0, r0, #2
+	b .Ljp_080A16D6
+.Ljp_080A16BA:
+	movs r1, #0x96
+	lsls r1, r1, #1
+	adds r0, r4, r1
+	movs r1, #5
+	bl SubtractFriendship__3Npci
+	movs r1, #0xa0
+	lsls r1, r1, #1
+	adds r0, r4, r1
+	movs r1, #5
+	bl SubtractFriendship__3Npci
+	movs r0, #0xaa
+	lsls r0, r0, #1
+.Ljp_080A16D6:
+	adds r4, r4, r0
+.Ljp_080A16D8:
+	adds r0, r4, #0
+	movs r1, #5
+	bl SubtractFriendship__3Npci
+	movs r1, #0xfa
+	lsls r1, r1, #1
+	adds r0, r4, #0
+	bl SubtractLove__12Bachelorettei
+	b .Ljp_080A1798
+.Ljp_080A16EC:
+	movs r1, #0xcf
+	lsls r1, r1, #2
+	adds r0, r4, r1
+	movs r1, #5
+	bl SubtractFriendship__3Npci
+	movs r1, #0xd8
+	lsls r1, r1, #2
+	adds r0, r4, r1
+	movs r1, #5
+	bl SubtractFriendship__3Npci
+	movs r1, #0xe1
+	lsls r1, r1, #2
+	adds r0, r4, r1
+	movs r1, #5
+	bl SubtractFriendship__3Npci
+	movs r1, #0xea
+	lsls r1, r1, #2
+	adds r0, r4, r1
+	movs r1, #5
+	bl SubtractFriendship__3Npci
+	movs r1, #0xf3
+	lsls r1, r1, #2
+	adds r0, r4, r1
+	movs r1, #5
+	bl SubtractFriendship__3Npci
+	movs r1, #0xfc
+	lsls r1, r1, #2
+	adds r0, r4, r1
+	movs r1, #5
+	bl SubtractFriendship__3Npci
+	ldr r1, .Ljp_080A1738 @ =0x00000414
+	b .Ljp_080A177A
+	.align 2, 0
+.Ljp_080A1738: .4byte 0x00000414
+.Ljp_080A173C:
+	movs r1, #0xb6
+	lsls r1, r1, #1
+	adds r0, r4, r1
+	movs r1, #5
+	bl SubtractFriendship__3Npci
+	movs r1, #0xc0
+	lsls r1, r1, #1
+	b .Ljp_080A177A
+.Ljp_080A174E:
+	movs r1, #0x82
+	lsls r1, r1, #1
+	adds r0, r4, r1
+	movs r1, #5
+	bl SubtractFriendship__3Npci
+	movs r1, #0x8c
+	lsls r1, r1, #1
+	b .Ljp_080A177A
+.Ljp_080A1760:
+	movs r1, #0x9f
+	lsls r1, r1, #2
+	b .Ljp_080A177A
+.Ljp_080A1766:
+	adds r0, r4, #0
+	adds r0, #0xd8
+	movs r1, #5
+	bl SubtractFriendship__3Npci
+	adds r0, r4, #0
+	adds r0, #0xf0
+	b .Ljp_080A177C
+.Ljp_080A1776:
+	movs r1, #0xa4
+	lsls r1, r1, #2
+.Ljp_080A177A:
+	adds r0, r4, r1
+.Ljp_080A177C:
+	movs r1, #5
+	bl SubtractFriendship__3Npci
+	b .Ljp_080A1798
+.Ljp_080A1784:
+	adds r0, r4, #0
+	adds r0, #0xb0
+	movs r1, #5
+	bl SubtractFriendship__3Npci
+	adds r0, r4, #0
+	adds r0, #0xc4
+	movs r1, #5
+	bl SubtractFriendship__3Npci
+.Ljp_080A1798:
+	pop {r4, r5, r6}
+	pop {r0}
+	bx r0
+	.align 2, 0
     jp_code_809_func func_080A17A0, 0xA11D8, 0xA12C8
     jp_code_809_func func_080A1890, 0xA12C8, 0xA13C4
     jp_code_809_func func_080A198C, 0xA13C4, 0xA1424
