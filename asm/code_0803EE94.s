@@ -13464,7 +13464,32 @@ func_0807AF54: @ 0x0807AF54
 	.align 2, 0
 .Ljp_poultry_shop_B494: .4byte 0x000006AC
 
-    jp_code_0803ee_func func_0807B8F4, 0x7B498, 0x7BA18
+    .global func_0807B8F4
+    .thumb_func
+func_0807B8F4: @ 0x0807B498
+    push {lr}
+    sub sp, #8
+    adds r0, r1, #0
+    movs r1, #0xa
+    str r1, [sp]
+    bl GetAffection__C6Animal
+    movs r1, #0x19
+    bl __udivsi3
+    str r0, [sp, #4]
+    add r2, sp, #4
+    ldr r1, [sp]
+    mov r3, sp
+    cmp r1, r0
+    bls .Ljp_poultry_affection_max
+    adds r3, r2, #0
+.Ljp_poultry_affection_max:
+    ldr r0, [r3]
+    add sp, #8
+    pop {r1}
+    bx r1
+    .align 2, 0
+
+    jp_code_0803ee_func func_0807B4C4, 0x7B4C4, 0x7BA18
     jp_code_0803ee_func func_0807BE74, 0x7BA18, 0x7CC1C
     jp_code_0803ee_func func_0807CC1C, 0x7CC1C, 0x7CC5C
     jp_code_0803ee_func func_0807CC5C, 0x7CC5C, 0x7CD30
