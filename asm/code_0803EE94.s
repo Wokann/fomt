@@ -22256,7 +22256,146 @@ func_08087CEC: @ 0x08087CEC
     bx r0
     .align 2, 0
 .Ljp_08087D28: .4byte vtable_unk_080E7D20_NullTail
-    jp_code_0803ee_func func_08087D2C, 0x87D2C, 0x87E44
+    .global func_08087D2C
+    .thumb_func
+func_08087D2C: @ 0x08087D2C
+    push {r4, r5, r6, r7, lr}
+    mov r7, sl
+    mov r6, sb
+    mov r5, r8
+    push {r5, r6, r7}
+    sub sp, #0x14
+    mov r8, r0
+    adds r5, r1, #0
+    ldr r0, [r5, #4]
+    bl func_08086A08
+    mov sb, r0
+    movs r0, #1
+    rsbs r0, r0, #0
+    cmp sb, r0
+    beq .Ljp_08087DD0
+    ldr r0, [r5, #4]
+    bl func_08085EEC
+    adds r4, r0, #0
+    movs r0, #1
+    mov sl, r0
+    cmp r4, #0
+    beq .Ljp_08087D60
+    movs r1, #2
+    mov sl, r1
+.Ljp_08087D60:
+    movs r0, #0x10
+    bl __builtin_new
+    adds r2, r0, #0
+    ldr r3, [r5, #8]
+    movs r6, #0
+    str r6, [r5, #8]
+    str r3, [sp, #4]
+    movs r7, #1
+    cmp r4, #0
+    beq .Ljp_08087D78
+    movs r7, #2
+.Ljp_08087D78:
+    add r4, sp, #4
+    ldr r1, [r5, #0x10]
+    ldr r0, .Ljp_08087DC8 @ =vtable_unk_080E5D94
+    str r0, [r2]
+    str r6, [sp, #4]
+    str r3, [r2, #4]
+    str r1, [r2, #8]
+    str r7, [r2, #0xc]
+    str r2, [sp]
+    movs r0, #0x14
+    bl __builtin_new
+    ldr r3, [sp]
+    str r6, [sp]
+    ldr r2, [r5, #0x10]
+    ldr r1, .Ljp_08087DCC @ =vtable_unk_080E5C64
+    str r1, [r0]
+    str r6, [sp, #8]
+    str r3, [r0, #4]
+    str r2, [r0, #8]
+    mov r1, sl
+    str r1, [r0, #0xc]
+    mov r1, sb
+    strb r1, [r0, #0x10]
+    str r4, [sp, #0xc]
+    str r0, [sp, #0x10]
+    str r6, [sp, #4]
+    mov r1, r8
+    str r0, [r1]
+    ldr r1, [sp]
+    cmp r1, #0
+    beq .Ljp_08087DDA
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+    b .Ljp_08087DDA
+    .align 2, 0
+.Ljp_08087DC8: .4byte vtable_unk_080E5D94
+.Ljp_08087DCC: .4byte vtable_unk_080E5C64
+.Ljp_08087DD0:
+    ldr r1, [r5, #8]
+    movs r0, #0
+    str r0, [r5, #8]
+    mov r0, r8
+    str r1, [r0]
+.Ljp_08087DDA:
+    mov r0, r8
+    add sp, #0x14
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+
+    .global func_08087DEC
+    .thumb_func
+func_08087DEC: @ 0x08087DEC
+    push {r4, r5, r6, lr}
+    adds r6, r0, #0
+    bl func_080CE19C
+    ldr r0, .Ljp_08087E3C @ =vtable_unk_080E7D3C
+    str r0, [r6, #4]
+    adds r0, r6, #0
+    adds r0, #0x98
+    movs r5, #0
+    strb r5, [r0]
+    adds r2, r6, #0
+    adds r2, #0xfc
+    ldr r0, [r6, #8]
+    ldr r3, .Ljp_08087E40 @ =0x00001C2C
+    adds r1, r0, r3
+    str r1, [r2]
+    movs r1, #0x80
+    lsls r1, r1, #1
+    adds r2, r6, r1
+    adds r3, #0xc
+    adds r1, r0, r3
+    str r1, [r2]
+    movs r1, #0x82
+    lsls r1, r1, #1
+    adds r4, r6, r1
+    movs r3, #0xfa
+    lsls r3, r3, #1
+    adds r0, r0, r3
+    bl GetFridge__9FarmHouse
+    str r0, [r4]
+    movs r1, #0x84
+    lsls r1, r1, #1
+    adds r0, r6, r1
+    str r5, [r0]
+    adds r0, r6, #0
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_08087E3C: .4byte vtable_unk_080E7D3C
+.Ljp_08087E40: .4byte 0x00001C2C
     jp_code_0803ee_func func_08087E44, 0x87E44, 0x880EC
     .global func_080885AC
     .thumb_func
