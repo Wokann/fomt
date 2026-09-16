@@ -14579,7 +14579,58 @@ sub_0807BD38:
 .Ljp_poultry_main_C1CC: .4byte vtable_unk_080E5B80
 .Ljp_poultry_main_C1D0: .4byte 0x00000889
 .Ljp_poultry_state_C1D4:
-    jp_code_0803ee_func sub_0807BD78, 0x7BD78, 0x7CBBC
+    .global sub_0807BD78
+    .thumb_func
+sub_0807BD78:
+    ldr r1, .Ljp_poultry_state_offset
+    adds r0, r7, r1
+    ldr r0, [r0]
+    cmp r0, #0xa
+    bls .Ljp_poultry_state_dispatch
+    bl .Ljp_poultry_state_cleanup
+.Ljp_poultry_state_dispatch:
+    lsls r0, r0, #2
+    ldr r1, .Ljp_poultry_state_jump_table_pointer
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+    .align 2, 0
+.Ljp_poultry_state_offset: .4byte 0x000006A4
+.Ljp_poultry_state_jump_table_pointer: .4byte .Ljp_poultry_state_jump_table
+.Ljp_poultry_state_jump_table:
+    .4byte .Ljp_poultry_state_case_0
+    .4byte .Ljp_poultry_state_case_1
+    .4byte .Ljp_poultry_state_case_2
+    .4byte .Ljp_poultry_state_case_3
+    .4byte .Ljp_poultry_state_case_4
+    .4byte .Ljp_poultry_state_case_5
+    .4byte .Ljp_poultry_state_case_6
+    .4byte .Ljp_poultry_state_case_7
+    .4byte .Ljp_poultry_state_case_8
+    .4byte .Ljp_poultry_state_case_9
+    .4byte .Ljp_poultry_state_case_10
+.Ljp_poultry_state_case_0:
+    jp_code_0803ee_bytes 0x7BDC4, 0x7C570
+.Ljp_poultry_state_case_1:
+    jp_code_0803ee_bytes 0x7C570, 0x7C6C8
+.Ljp_poultry_state_case_2:
+    jp_code_0803ee_bytes 0x7C6C8, 0x7C8B8
+.Ljp_poultry_state_case_3:
+    jp_code_0803ee_bytes 0x7C8B8, 0x7C9B0
+.Ljp_poultry_state_case_4:
+    jp_code_0803ee_bytes 0x7C9B0, 0x7C9E0
+.Ljp_poultry_state_case_5:
+    jp_code_0803ee_bytes 0x7C9E0, 0x7CA10
+.Ljp_poultry_state_case_6:
+    jp_code_0803ee_bytes 0x7CA10, 0x7CA3C
+.Ljp_poultry_state_case_7:
+    jp_code_0803ee_bytes 0x7CA3C, 0x7CAAC
+.Ljp_poultry_state_case_8:
+    jp_code_0803ee_bytes 0x7CAAC, 0x7CB54
+.Ljp_poultry_state_case_9:
+    jp_code_0803ee_bytes 0x7CB54, 0x7CB94
+.Ljp_poultry_state_case_10:
+    jp_code_0803ee_bytes 0x7CB94, 0x7CBBC
 .Ljp_poultry_state_cleanup:
     jp_code_0803ee_func sub_0807CBBC, 0x7CBBC, 0x7CBC6
 .Ljp_poultry_state_return:
