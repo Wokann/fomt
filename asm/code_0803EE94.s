@@ -14616,7 +14616,116 @@ sub_0807BD78:
 .Ljp_poultry_state_case_2:
     jp_code_0803ee_bytes 0x7C6C8, 0x7C8B8
 .Ljp_poultry_state_case_3:
-    jp_code_0803ee_bytes 0x7C8B8, 0x7C9B0
+    movs r1, #0xd4
+    lsls r1, r1, #2
+    adds r0, r7, r1
+    ldr r6, [r0]
+    cmp r6, #3
+    beq .Ljp_poultry_state_case_3_confirmed
+    b .Ljp_poultry_state_cleanup
+.Ljp_poultry_state_case_3_confirmed:
+    add r3, sp, #0x10
+    ldr r0, [r7, #0x10]
+    lsls r0, r0, #2
+    adds r0, r0, r7
+    movs r2, #0xaa
+    lsls r2, r2, #2
+    adds r0, r0, r2
+    ldr r0, [r0]
+    lsls r1, r0, #2
+    adds r1, r1, r0
+    lsls r1, r1, #2
+    ldr r2, .Ljp_poultry_state_case_3_catalog
+    adds r0, r3, #0
+    adds r1, r1, r2
+    ldm r1!, {r2, r4, r5}
+    stm r0!, {r2, r4, r5}
+    ldm r1!, {r4, r5}
+    stm r0!, {r4, r5}
+    ldr r0, [r7, #8]
+    ldr r1, .Ljp_poultry_state_case_3_storage_offset
+    adds r0, r0, r1
+    ldr r1, [r3, #8]
+    bl func_0809ACC0
+    adds r0, r7, #0
+    bl func_080C8550
+    add r1, sp, #0x2c
+    movs r4, #0x11
+    ldrh r2, [r1]
+    ldr r3, .Ljp_poultry_state_case_3_flag_mask
+    adds r0, r3, #0
+    ands r0, r2
+    orrs r0, r4
+    strh r0, [r1]
+    movs r5, #0x90
+    ldrb r2, [r1, #1]
+    adds r0, r6, #0
+    ands r0, r2
+    orrs r0, r5
+    strb r0, [r1, #1]
+    movs r4, #1
+    ldrh r2, [r1, #2]
+    adds r0, r3, #0
+    ands r0, r2
+    orrs r0, r4
+    strh r0, [r1, #2]
+    ldrb r0, [r1, #3]
+    ands r6, r0
+    orrs r6, r5
+    strb r6, [r1, #3]
+    ldrh r0, [r1, #4]
+    ands r3, r0
+    orrs r3, r4
+    strh r3, [r1, #4]
+    add r4, sp, #0x24
+    movs r5, #0
+    adds r0, r4, #0
+    movs r2, #6
+    bl memcpy
+    strb r5, [r4, #6]
+    add r5, sp, #0x40
+    ldr r1, .Ljp_poultry_state_case_3_empty_text
+    movs r0, #7
+    str r0, [sp]
+    adds r0, r5, #0
+    adds r2, r4, #0
+    movs r3, #7
+    bl __7ChickenPCcRC13ActorLocationUiUi
+    ldr r0, [r7, #8]
+    movs r2, #0x82
+    lsls r2, r2, #3
+    adds r0, r0, r2
+    adds r1, r5, #0
+    bl InsertChicken__4CoopRC7Chicken
+    adds r4, r0, #0
+    ldr r0, [sp, #0xc]
+    ldr r1, .Ljp_poultry_state_case_3_widget_id
+    adds r0, #0xc
+    movs r2, #1
+    movs r3, #1
+    bl func_08009378
+    adds r0, r7, #0
+    bl func_08008940
+    ldr r2, [r0, #8]
+    ldr r1, [sp, #0xc]
+    ldr r2, [r2, #0x10]
+    bl _call_via_r2
+    ldr r3, .Ljp_poultry_state_case_3_state_offset
+    adds r1, r7, r3
+    movs r0, #0xa
+    str r0, [r1]
+    ldr r5, .Ljp_poultry_state_case_3_result_offset
+    adds r0, r7, r5
+    str r4, [r0]
+    b .Ljp_poultry_state_cleanup
+    .align 2, 0
+.Ljp_poultry_state_case_3_catalog: .4byte gPoultryShopCatalog
+.Ljp_poultry_state_case_3_storage_offset: .4byte 0x00001AA8
+.Ljp_poultry_state_case_3_flag_mask: .4byte 0xFFFFFC00
+.Ljp_poultry_state_case_3_empty_text: .4byte gText_PoultryShop_Empty
+.Ljp_poultry_state_case_3_widget_id: .4byte 0x00000889
+.Ljp_poultry_state_case_3_state_offset: .4byte 0x000006A4
+.Ljp_poultry_state_case_3_result_offset: .4byte 0x00002318
 .Ljp_poultry_state_case_4:
     ldr r1, .Ljp_poultry_state_case_4_text
     adds r0, r7, #0
