@@ -16489,7 +16489,32 @@ func_0807CD44:
     bx r0
     .align 2, 0
 .Ljp_poultry_crop_seed_catalog: .4byte gSupermarketCropSeedCatalog
-    jp_code_0803ee_func func_0807CD80, 0x7CD80, 0x7D8D0
+    jp_code_0803ee_func func_0807CD80, 0x7CD80, 0x7D8A0
+    .global func_0807D8A0
+    .thumb_func
+func_0807D8A0:
+    push {r4, r5, r6, lr}
+    adds r4, r0, #0
+    adds r6, r1, #0
+    adds r5, r2, #0
+    ldr r0, .Ljp_poultry_shipping_vtable
+    str r0, [r4]
+    movs r0, #0xe2
+    lsls r0, r0, #3
+    bl __builtin_new
+    adds r1, r5, #0
+    bl func_0807CCFC
+    str r0, [r4, #4]
+    ldr r1, [r6]
+    movs r0, #0
+    str r0, [r6]
+    str r1, [r4, #8]
+    adds r0, r4, #0
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_poultry_shipping_vtable: .4byte vtable_unk_080E7C20
     .global func_0807D8D0
     .thumb_func
 func_0807D8D0:
