@@ -8195,7 +8195,41 @@ func_08077C40: @ 0x080777C8
     .align 2, 0
 .Ljp_080777F0: .4byte vtable_unk_080E6FD4
 
-    jp_code_0803ee_func func_080777F4, 0x777F4, 0x77834
+    .global func_080777F4
+    .thumb_func
+func_080777F4: @ 0x080777F4
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    ldr r0, .Ljp_08077830
+    str r0, [r4]
+    ldr r1, [r4, #8]
+    cmp r1, #0
+    beq .Ljp_08077810
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08077810:
+    ldr r1, [r4, #4]
+    cmp r1, #0
+    beq .Ljp_08077822
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08077822:
+    adds r0, r4, #0
+    adds r1, r5, #0
+    bl _._6AScene
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_08077830: .4byte vtable_unk_080E6FD4
+
     jp_code_0803ee_func func_08077834, 0x77834, 0x77960
     jp_code_0803ee_func func_08077DD8, 0x77960, 0x779BC
 	.section .text.copy_bg_map_rect_after
@@ -121027,17 +121061,37 @@ func_08077C40: @ 0x08077C40
 
 	thumb_func_start func_08077C6C
 func_08077C6C:
-	.byte 0x30, 0xB5, 0x04, 0x1C
-	.byte 0x0D, 0x1C, 0x0D, 0x48, 0x20, 0x60, 0xA1, 0x68, 0x00, 0x29, 0x05, 0xD0, 0x08, 0x68, 0x82, 0x68
-	.byte 0x08, 0x1C, 0x03, 0x21
+	push {r4, r5, lr}
+	adds r4, r0, #0
+	adds r5, r1, #0
+	ldr r0, .L08077CA8
+	str r0, [r4]
+	ldr r1, [r4, #8]
+	cmp r1, #0
+	beq .L08077C88
+	ldr r0, [r1]
+	ldr r2, [r0, #8]
+	adds r0, r1, #0
+	movs r1, #3
 	bl _call_via_r2
-	.byte 0x61, 0x68, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68
-	.byte 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21
+.L08077C88:
+	ldr r1, [r4, #4]
+	cmp r1, #0
+	beq .L08077C9A
+	ldr r0, [r1, #4]
+	ldr r2, [r0, #8]
+	adds r0, r1, #0
+	movs r1, #3
 	bl _call_via_r2
-	.byte 0x20, 0x1C, 0x29, 0x1C
+.L08077C9A:
+	adds r0, r4, #0
+	adds r1, r5, #0
 	bl _._6AScene
-	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
-	.4byte vtable_unk_080E7BA4
+	pop {r4, r5}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.L08077CA8: .4byte vtable_unk_080E7BA4
 
 	thumb_func_start func_08077CAC
 func_08077CAC:
