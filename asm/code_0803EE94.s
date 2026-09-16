@@ -12459,7 +12459,19 @@ func_0807AC94: @ 0x0807AC94
 .Ljp_0807AD10: .4byte 0x00002234
 .Ljp_0807AD14: .4byte 0x000022B4
 
-    jp_code_0803ee_func func_0807AD18, 0x7AD18, 0x7B498
+    .global func_0807AD18
+    .thumb_func
+func_0807AD18: @ 0x0807AD18
+    push {lr}
+    ldr r2, .Ljp_0807AD28
+    str r2, [r0, #4]
+    bl func_080C8360
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_0807AD28: .4byte vtable_unk_080E7BDC
+
+    jp_code_0803ee_func func_0807AD2C, 0x7AD2C, 0x7B498
     jp_code_0803ee_func func_0807B8F4, 0x7B498, 0x7BA18
     jp_code_0803ee_func func_0807BE74, 0x7BA18, 0x7CC1C
     jp_code_0803ee_func func_0807CC1C, 0x7CC1C, 0x7CC5C
