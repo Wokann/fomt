@@ -14828,11 +14828,149 @@ sub_0807BD78:
 .Ljp_poultry_state_case_2_catalog: .4byte gPoultryShopCatalog
 .Ljp_poultry_state_case_2_storage_offset: .4byte 0x00001AA8
 .Ljp_poultry_state_case_2_feed:
-    jp_code_0803ee_bytes 0x7C744, 0x7C76C
+    ldr r0, [r7, #8]
+    movs r3, #0x82
+    lsls r3, r3, #3
+    adds r0, r0, r3
+    mov r1, r8
+    bl AddStoredBushels__4CoopUi
+    ldr r1, .Ljp_poultry_state_case_2_feed_complete_text
+    adds r0, r7, #0
+    bl func_080CA3B0
+    movs r4, #0xd2
+    lsls r4, r4, #2
+    adds r0, r7, r4
+    movs r1, #0xe
+    bl func_08050E50
+    b .Ljp_poultry_state_case_2_complete
+    .align 2, 0
+.Ljp_poultry_state_case_2_feed_complete_text: .4byte gText_PoultryShop_FeedPurchaseComplete
 .Ljp_poultry_state_case_2_medicine:
-    jp_code_0803ee_bytes 0x7C76C, 0x7C860
+    movs r4, #0
+    ldr r0, [r7, #8]
+    ldr r5, .Ljp_poultry_state_case_2_medicine_stack_offset
+    adds r0, r0, r5
+    bl IsEmpty__C9ToolStack
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Ljp_poultry_state_case_2_medicine_existing
+    ldr r5, [r7, #8]
+    ldr r6, .Ljp_poultry_state_case_2_medicine_stack_offset
+    adds r5, r5, r6
+    add r6, sp, #0x24
+    add r4, sp, #0x80
+    adds r0, r4, #0
+    movs r1, #0x4a
+    bl __4ToolUi
+    ldrb r1, [r4]
+    adds r0, r6, #0
+    mov r2, r8
+    bl __9ToolStackG4ToolUi
+    adds r0, r5, #0
+    adds r1, r6, #0
+    movs r2, #2
+    bl memcpy
+    movs r0, #0
+    mov r8, r0
+    b .Ljp_poultry_state_case_2_medicine_set_stack_result
+    .align 2, 0
+.Ljp_poultry_state_case_2_medicine_stack_offset: .4byte 0x00001C34
+.Ljp_poultry_state_case_2_medicine_existing:
+    ldr r0, [r7, #8]
+    ldr r1, .Ljp_poultry_state_case_2_medicine_stack_offset_existing
+    adds r0, r0, r1
+    bl GetTool__C9ToolStack
+    adds r1, r0, #0
+    mov r0, sp
+    adds r0, #0x81
+    strb r1, [r0]
+    bl GetId__C4Tool
+    cmp r0, #0x4a
+    bne .Ljp_poultry_state_case_2_medicine_finish_stack
+    ldr r0, [r7, #8]
+    adds r0, r0, r5
+    bl GetAmount__C9ToolStack
+    cmp r0, #0x63
+    beq .Ljp_poultry_state_case_2_medicine_finish_stack
+    ldr r0, [r7, #8]
+    adds r0, r0, r5
+    bl GetAmount__C9ToolStack
+    movs r1, #0x63
+    subs r4, r1, r0
+    cmp r8, r4
+    bhs .Ljp_poultry_state_case_2_medicine_apply_amount
+    mov r4, r8
+.Ljp_poultry_state_case_2_medicine_apply_amount:
+    ldr r0, [r7, #8]
+    adds r0, r0, r5
+    adds r1, r4, #0
+    bl AddAmount__9ToolStackUi
+    mov r2, r8
+    subs r2, r2, r4
+    mov r8, r2
+.Ljp_poultry_state_case_2_medicine_set_stack_result:
+    movs r4, #1
+.Ljp_poultry_state_case_2_medicine_finish_stack:
+    mov r3, r8
+    cmp r3, #0
+    beq .Ljp_poultry_state_case_2_medicine_complete
+    ldr r0, [r7, #8]
+    ldr r5, .Ljp_poultry_state_case_2_medicine_rucksack_offset
+    adds r0, r0, r5
+    movs r1, #0x4a
+    mov r2, r8
+    bl AddAmountOfTool__8RucksackUiUi
+    adds r2, r0, #0
+    cmp r8, r2
+    beq .Ljp_poultry_state_case_2_medicine_rucksack_done
+    movs r4, #1
+.Ljp_poultry_state_case_2_medicine_rucksack_done:
+    cmp r2, #0
+    beq .Ljp_poultry_state_case_2_medicine_complete
+    ldr r0, [r7, #8]
+    movs r6, #0xe0
+    lsls r6, r6, #2
+    adds r0, r0, r6
+    movs r1, #0x4a
+    bl AddAmountOf__9ToolChestUiUi
+    cmp r4, #0
+    beq .Ljp_poultry_state_case_2_medicine_all_delivered
+    ldr r1, .Ljp_poultry_state_case_2_medicine_partial_text
+    b .Ljp_poultry_state_case_2_medicine_show_result
+    .align 2, 0
+.Ljp_poultry_state_case_2_medicine_stack_offset_existing: .4byte 0x00001C34
+.Ljp_poultry_state_case_2_medicine_rucksack_offset: .4byte 0x00001C38
+.Ljp_poultry_state_case_2_medicine_partial_text: .4byte gText_PoultryShop_PurchaseDeliveryPartial
+.Ljp_poultry_state_case_2_medicine_all_delivered:
+    ldr r1, .Ljp_poultry_state_case_2_medicine_complete_text
+.Ljp_poultry_state_case_2_medicine_show_result:
+    adds r0, r7, #0
+    bl func_080CA3B0
+    b .Ljp_poultry_state_case_2_medicine_after_text
+    .align 2, 0
+.Ljp_poultry_state_case_2_medicine_complete_text: .4byte gText_PoultryShop_MedicinePurchaseComplete
+.Ljp_poultry_state_case_2_medicine_complete:
+    ldr r1, .Ljp_poultry_state_case_2_medicine_purchase_complete_text
+    adds r0, r7, #0
+    bl func_080CA3B0
+.Ljp_poultry_state_case_2_medicine_after_text:
+    movs r1, #0xd2
+    lsls r1, r1, #2
+    adds r0, r7, r1
+    movs r1, #0xf
+    bl func_08050E50
 .Ljp_poultry_state_case_2_complete:
-    jp_code_0803ee_bytes 0x7C860, 0x7C878
+    movs r2, #0xd5
+    lsls r2, r2, #3
+    adds r1, r7, r2
+    movs r0, #1
+    strb r0, [r1]
+    ldr r3, .Ljp_poultry_state_case_2_complete_state_offset
+    adds r1, r7, r3
+    b .Ljp_poultry_state_purchase_continue
+    .align 2, 0
+.Ljp_poultry_state_case_2_medicine_purchase_complete_text: .4byte gText_PoultryShop_PurchaseComplete
+.Ljp_poultry_state_case_2_complete_state_offset: .4byte 0x000006A4
 .Ljp_poultry_state_case_2_alternate:
     jp_code_0803ee_bytes 0x7C878, 0x7C8B8
 .Ljp_poultry_state_case_3:

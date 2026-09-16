@@ -332,5 +332,6 @@ JP `func_0807AFF4` 与内部入口 `func_0807B038` 已提升为普通 Thumb 指�
 | JP 商店状态 case 3；US/EU/DE 对应 case 3 | `0x0807C8B8`–`0x0807C9AF` | `0x0807CD50`–`0x0807CE47` | `0x0807CD64`–`0x0807CE5B` | `0x0807CC44`–`0x0807CD3B` |
 | JP 商店状态 case 1；US/EU/DE 对应 case 1 | `0x0807C570`–`0x0807C6C7` | `0x0807C9D0`–`0x0807CB5F` | `0x0807C9E4`–`0x0807CB73` | `0x0807C8C4`–`0x0807CA53` |
 | JP 商店状态 case 2 的分派与商品目录载入；US/EU/DE 对应前缀 | `0x0807C6C8`–`0x0807C743` | `0x0807CB60`–`0x0807CBDB` | `0x0807CB74`–`0x0807CBEF` | `0x0807CA54`–`0x0807CACF` |
+| JP 商店状态 case 2 的饲料/药品交付与公共收尾；US/EU/DE 对应分支 | `0x0807C744`–`0x0807C877` | `0x0807CBDC`–`0x0807CD0F` | `0x0807CBF0`–`0x0807CD23` | `0x0807CAD0`–`0x0807CC03` |
 
 核验：JP、US、EU、DE 均以 WSL 完整构建，并分别通过各自基准 ROM 的 SHA-1 校验。
