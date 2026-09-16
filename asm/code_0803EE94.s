@@ -8375,7 +8375,49 @@ func_08077D5C: @ 0x080778E4
     bx r0
     .align 2, 0
 
-    jp_code_0803ee_func func_08077DD8, 0x77960, 0x779BC
+    .global func_08077DD8
+    .thumb_func
+func_08077DD8: @ 0x08077960
+    push {r4, r5, r6, lr}
+    mov r6, sb
+    mov r5, r8
+    push {r5, r6}
+    sub sp, #0x30
+    adds r4, r0, #0
+    movs r0, #0
+    mov sb, r0
+    add r0, sp, #0xc
+    movs r1, #0
+    bl func_080091E8
+    adds r0, r4, #0
+    bl func_08008920
+    mov r8, r0
+    adds r0, r4, #0
+    bl func_08008918
+    adds r6, r0, #0
+    adds r0, r4, #0
+    bl func_08008940
+    adds r5, r0, #0
+    adds r0, r4, #0
+    bl func_0800894C
+    adds r4, #0x18
+    str r5, [sp]
+    str r0, [sp, #4]
+    mov r0, sb
+    str r0, [sp, #8]
+    adds r0, r4, #0
+    add r1, sp, #0xc
+    mov r2, r8
+    adds r3, r6, #0
+    bl func_08050D3C
+    add sp, #0x30
+    pop {r3, r4}
+    mov r8, r3
+    mov sb, r4
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+    .align 2, 0
 	.section .text.copy_bg_map_rect_after
 	jp_code_0803ee_func func_08077EC0, 0x77A48, 0x77E4C
     .section .text.town_map_hotspot_contains_after
