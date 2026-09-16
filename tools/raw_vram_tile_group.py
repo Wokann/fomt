@@ -69,6 +69,38 @@ PROFILES = {
         source_name="tiles.4bpp",
         output_name="tiles.4bpp",
     ),
+    "08750c4c": Profile(
+        name="gUnk_08750C4C",
+        offsets={"jp": 0x4D6BF8, "us": 0x750C4C, "eu": 0x750CA8, "de": 0x4D8168},
+        length=0x20,
+        sha256="e98672a456687f9c428628c321ff964b8507028878310d4e3eaebd3cfbe37e49",
+        source_name="tiles.4bpp",
+        output_name="tiles.4bpp",
+    ),
+    "08750c8c": Profile(
+        name="gUnk_08750C8C",
+        offsets={"jp": 0x4D6C38, "us": 0x750C8C, "eu": 0x750CE8, "de": 0x4D81A8},
+        length=0x1C0,
+        sha256="2b7c39eab1900bb410cced0daa2ffd21055045e47ddcf99f318255775e77ec4f",
+        source_name="tiles.4bpp",
+        output_name="tiles.4bpp",
+    ),
+    "087510ac": Profile(
+        name="gUnk_087510AC",
+        offsets={"jp": 0x4D7058, "us": 0x7510AC, "eu": 0x751108, "de": 0x4D85C8},
+        length=0x120,
+        sha256="c477e41b27535552a2455bf44fa3b970cd335c9e5c8fe920f46959f871438583",
+        source_name="tiles.4bpp",
+        output_name="tiles.4bpp",
+    ),
+    "0875166c": Profile(
+        name="gUnk_0875166C",
+        offsets={"jp": 0x4D7618, "us": 0x75166C, "eu": 0x7516C8, "de": 0x4D8B88},
+        length=0x120,
+        sha256="bbf625be269f793c6bbe13c09ac11bc6f851b41588f4439f921255a9cb15ce1a",
+        source_name="tiles.4bpp",
+        output_name="tiles.4bpp",
+    ),
 }
 
 

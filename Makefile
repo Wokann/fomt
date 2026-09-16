@@ -435,6 +435,41 @@ RAW_VRAM_TILES_086D6698_OUTPUT_DIR := $(BUILD_DIR)/graphics/ui/raw_vram_tiles/08
 RAW_VRAM_TILES_086D6698_STAMP := $(RAW_VRAM_TILES_086D6698_OUTPUT_DIR)/.raw-vram-tiles-086d6698.stamp
 RAW_VRAM_TILES_086D6698_REGION := $(INTRO_OBJECTS_REGION)
 
+# These UI payloads are copied directly into BG or OBJ character VRAM. The
+# consumer proves their fixed raw 4bpp bounds but not a palette or final
+# layout, so preserve each as native tile data instead of fabricating PNGs.
+RAW_VRAM_UI_PROFILES := 08750c4c 08750c8c 087510ac 0875166c
+define DEFINE_RAW_VRAM_UI_PROFILE
+RAW_VRAM_TILES_$(1)_TOOL := $(RAW_VRAM_TILES_08697920_TOOL)
+RAW_VRAM_TILES_$(1)_SOURCE_DIR := graphics/ui/raw_vram_tiles/$(1)/shared
+RAW_VRAM_TILES_$(1)_SOURCES := $$(wildcard $$(RAW_VRAM_TILES_$(1)_SOURCE_DIR)/*)
+RAW_VRAM_TILES_$(1)_OUTPUT_DIR := $$(BUILD_DIR)/graphics/ui/raw_vram_tiles/$(1)
+RAW_VRAM_TILES_$(1)_STAMP := $$(RAW_VRAM_TILES_$(1)_OUTPUT_DIR)/.raw-vram-tiles-$(1).stamp
+RAW_VRAM_TILES_$(1)_REGION := $$(INTRO_OBJECTS_REGION)
+
+$$(RAW_VRAM_TILES_$(1)_STAMP): $$(RAW_VRAM_TILES_$(1)_SOURCES) $$(RAW_VRAM_TILES_$(1)_TOOL) $$(BASE_ROM)
+	@$$(PYTHON) $$(RAW_VRAM_TILES_$(1)_TOOL) --profile $(1) build --region $$(RAW_VRAM_TILES_$(1)_REGION) --rom $$(BASE_ROM) \
+	  --source-dir $$(RAW_VRAM_TILES_$(1)_SOURCE_DIR) --output-dir $$(RAW_VRAM_TILES_$(1)_OUTPUT_DIR)
+	@touch $$@
+
+.PHONY: gfx-raw-vram-tiles-$(1) gfx-raw-vram-tiles-$(1)-test gfx-raw-vram-tiles-$(1)-all gfx-raw-vram-tiles-$(1)-patch-test gfx-raw-vram-tiles-$(1)-edit-test
+gfx-raw-vram-tiles-$(1): $$(RAW_VRAM_TILES_$(1)_STAMP)
+gfx-raw-vram-tiles-$(1)-test: gfx-raw-vram-tiles-$(1) $$(RAW_VRAM_TILES_$(1)_TOOL)
+	@$$(PYTHON) $$(RAW_VRAM_TILES_$(1)_TOOL) --profile $(1) verify --region $$(RAW_VRAM_TILES_$(1)_REGION) --rom $$(BASE_ROM) \
+	  --source-dir $$(RAW_VRAM_TILES_$(1)_SOURCE_DIR) --output-dir $$(RAW_VRAM_TILES_$(1)_OUTPUT_DIR)
+gfx-raw-vram-tiles-$(1)-all:
+	@$$(MAKE) --no-print-directory GAME_REGION=JP gfx-raw-vram-tiles-$(1)-test
+	@$$(MAKE) --no-print-directory GAME_REGION=US gfx-raw-vram-tiles-$(1)-test
+	@$$(MAKE) --no-print-directory GAME_REGION=EU gfx-raw-vram-tiles-$(1)-test
+	@$$(MAKE) --no-print-directory GAME_REGION=DE gfx-raw-vram-tiles-$(1)-test
+gfx-raw-vram-tiles-$(1)-patch-test: gfx-raw-vram-tiles-$(1)-all $$(RAW_VRAM_TILES_$(1)_TOOL)
+	@$$(PYTHON) $$(RAW_VRAM_TILES_$(1)_TOOL) --profile $(1) patch-test --output-root build \
+	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
+gfx-raw-vram-tiles-$(1)-edit-test: $$(RAW_VRAM_TILES_$(1)_TOOL) baserom_jp.gba
+	@$$(PYTHON) $$(RAW_VRAM_TILES_$(1)_TOOL) --profile $(1) edit-test --region jp --rom baserom_jp.gba
+endef
+$(foreach profile,$(RAW_VRAM_UI_PROFILES),$(eval $(call DEFINE_RAW_VRAM_UI_PROFILE,$(profile))))
+
 UI_SCENE_08054F40_TILES_TOOL := $(UI_SCENE_080B7164_TOOL)
 UI_SCENE_08054F40_TILES_SOURCE_DIR := graphics/ui/scene_08054f40_tiles/shared
 UI_SCENE_08054F40_TILES_SOURCES := $(wildcard $(UI_SCENE_08054F40_TILES_SOURCE_DIR)/*)
@@ -809,6 +844,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 .PHONY: gfx-raw-vram-tiles-field
 .PHONY: gfx-raw-vram-tiles-086d5508 gfx-raw-vram-tiles-086d5508-test gfx-raw-vram-tiles-086d5508-all gfx-raw-vram-tiles-086d5508-patch-test gfx-raw-vram-tiles-086d5508-edit-test
 .PHONY: gfx-raw-vram-tiles-086d6698 gfx-raw-vram-tiles-086d6698-test gfx-raw-vram-tiles-086d6698-all gfx-raw-vram-tiles-086d6698-patch-test gfx-raw-vram-tiles-086d6698-edit-test gfx-raw-vram-tiles-field-leading
+.PHONY: gfx-raw-vram-tiles-ui
 .PHONY: gfx-ui-scene-08054f40-tiles gfx-ui-scene-08054f40-reference gfx-ui-scene-08054f40-tiles-test gfx-ui-scene-08054f40-tiles-all gfx-ui-scene-08054f40-tiles-patch-test gfx-ui-scene-08054f40-tiles-edit-test
 .PHONY: gfx-ui-scene-0805ab08-tiles gfx-ui-scene-0805ab08-reference gfx-ui-scene-0805ab08-tiles-test gfx-ui-scene-0805ab08-tiles-all gfx-ui-scene-0805ab08-tiles-patch-test gfx-ui-scene-0805ab08-tiles-edit-test
 oam-pack: $(OAM_PACK)
@@ -1063,6 +1099,7 @@ gfx-raw-vram-tiles-086d6698-patch-test: gfx-raw-vram-tiles-086d6698-all
 gfx-raw-vram-tiles-086d6698-edit-test:
 	@$(PYTHON) $(RAW_VRAM_TILES_086D6698_TOOL) --profile 086d6698 edit-test --region jp --rom baserom_jp.gba
 gfx-raw-vram-tiles-field-leading: gfx-raw-vram-tiles-086d5508-all gfx-raw-vram-tiles-086d5508-patch-test gfx-raw-vram-tiles-086d5508-edit-test gfx-raw-vram-tiles-086d6698-all gfx-raw-vram-tiles-086d6698-patch-test gfx-raw-vram-tiles-086d6698-edit-test
+gfx-raw-vram-tiles-ui: $(foreach profile,$(RAW_VRAM_UI_PROFILES),gfx-raw-vram-tiles-$(profile)-all gfx-raw-vram-tiles-$(profile)-patch-test gfx-raw-vram-tiles-$(profile)-edit-test)
 gfx-ui-scene-08054f40-tiles: $(UI_SCENE_08054F40_TILES_STAMP)
 gfx-ui-scene-08054f40-reference: $(UI_SCENE_08054F40_REFERENCE_TOOL) $(UI_SCENE_08054F40_TILES_SOURCES) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(UI_SCENE_08054F40_REFERENCE_TOOL) --source-dir $(UI_SCENE_08054F40_TILES_SOURCE_DIR) --reference-dir $(UI_SCENE_08054F40_REFERENCE_DIR) \
@@ -1296,7 +1333,7 @@ tile-grid-test:
 	@$(MAKE) --no-print-directory GAME_REGION=EU tile-grid-region-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE tile-grid-region-test
 
-gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui gfx-ui-scene-080a2ba4 gfx-ui-scene-08077810 gfx-ui-scene-080ae7d0 gfx-ui-scene-080b7164 gfx-ui-scene-080c160c gfx-ui-scene-080bcfac gfx-ui-scene-080b55d0-aux gfx-raw-vram-tiles-08697920 gfx-raw-vram-tiles-field gfx-raw-vram-tiles-field-leading gfx-ui-scene-08054f40-tiles gfx-ui-scene-0805ab08-tiles gfx-farm-status gfx-farm-status-resource-archive gfx-common-resource-archive gfx-small-companion-archive gfx-farm-status-tilemaps gfx-farm-status-secondary-tilemaps gfx-intro-background gfx-intro-objects gfx-intro-startup-tilemaps gfx-map-resources gfx-records-minigame
+gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui gfx-ui-scene-080a2ba4 gfx-ui-scene-08077810 gfx-ui-scene-080ae7d0 gfx-ui-scene-080b7164 gfx-ui-scene-080c160c gfx-ui-scene-080bcfac gfx-ui-scene-080b55d0-aux gfx-raw-vram-tiles-08697920 gfx-raw-vram-tiles-field gfx-raw-vram-tiles-field-leading gfx-raw-vram-tiles-ui gfx-ui-scene-08054f40-tiles gfx-ui-scene-0805ab08-tiles gfx-farm-status gfx-farm-status-resource-archive gfx-common-resource-archive gfx-small-companion-archive gfx-farm-status-tilemaps gfx-farm-status-secondary-tilemaps gfx-intro-background gfx-intro-objects gfx-intro-startup-tilemaps gfx-map-resources gfx-records-minigame
 
 # Full graphics gate for assets that have an authoritative source/rebuild
 # path.  It intentionally does not link a ROM: the project-wide link is
@@ -1333,6 +1370,7 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-raw-vram-tiles-08697920-edit-test
 	@$(MAKE) --no-print-directory gfx-raw-vram-tiles-field
 	@$(MAKE) --no-print-directory gfx-raw-vram-tiles-field-leading
+	@$(MAKE) --no-print-directory gfx-raw-vram-tiles-ui
 	@$(MAKE) --no-print-directory gfx-ui-scene-08054f40-tiles-all
 	@$(MAKE) --no-print-directory gfx-ui-scene-08054f40-tiles-patch-test
 	@$(MAKE) --no-print-directory gfx-ui-scene-08054f40-tiles-edit-test
@@ -1436,7 +1474,7 @@ $(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGIO
 	$(call FOMT_COMPILE_CPP,)
 
 # ROM from ELF
-%.gba: %.elf $(MAP_RESOURCES_STAMP) $(UI_SCENE_080A2BA4_STAMP) $(UI_SCENE_080AE7D0_STAMP) $(UI_SCENE_080B7164_STAMP) $(UI_SCENE_080B7164_PALETTE_BIN) $(UI_SCENE_080C160C_STAMP) $(UI_SCENE_080C160C_PALETTE_BIN) $(UI_SCENE_080BCFAC_STAMP) $(UI_SCENE_080BCFAC_PALETTE_BIN) $(UI_SCENE_080B55D0_AUX_STAMP) $(RAW_VRAM_TILES_08697920_STAMP) $(RAW_VRAM_TILES_08698E14_STAMP) $(RAW_VRAM_TILES_0869A0A4_STAMP) $(RAW_VRAM_TILES_086D5508_STAMP) $(RAW_VRAM_TILES_086D6698_STAMP) $(UI_SCENE_08054F40_TILES_STAMP) $(UI_SCENE_0805AB08_TILES_STAMP) $(FARM_STATUS_RESOURCE_ARCHIVE_OUTPUT) $(COMMON_RESOURCE_ARCHIVE_OUTPUT) $(SMALL_COMPANION_ARCHIVE_OUTPUT)
+%.gba: %.elf $(MAP_RESOURCES_STAMP) $(UI_SCENE_080A2BA4_STAMP) $(UI_SCENE_080AE7D0_STAMP) $(UI_SCENE_080B7164_STAMP) $(UI_SCENE_080B7164_PALETTE_BIN) $(UI_SCENE_080C160C_STAMP) $(UI_SCENE_080C160C_PALETTE_BIN) $(UI_SCENE_080BCFAC_STAMP) $(UI_SCENE_080BCFAC_PALETTE_BIN) $(UI_SCENE_080B55D0_AUX_STAMP) $(RAW_VRAM_TILES_08697920_STAMP) $(RAW_VRAM_TILES_08698E14_STAMP) $(RAW_VRAM_TILES_0869A0A4_STAMP) $(RAW_VRAM_TILES_086D5508_STAMP) $(RAW_VRAM_TILES_086D6698_STAMP) $(foreach profile,$(RAW_VRAM_UI_PROFILES),$(RAW_VRAM_TILES_$(profile)_STAMP)) $(UI_SCENE_08054F40_TILES_STAMP) $(UI_SCENE_0805AB08_TILES_STAMP) $(FARM_STATUS_RESOURCE_ARCHIVE_OUTPUT) $(COMMON_RESOURCE_ARCHIVE_OUTPUT) $(SMALL_COMPANION_ARCHIVE_OUTPUT)
 	$(OBJCOPY) -O binary $< $@
 	@$(PYTHON) $(MAP_RESOURCES_TOOL) patch --region $(MAP_RESOURCES_REGION) --rom $@ \
 	  --archive $(MAP_RESOURCES_OUTPUT_DIR)/map_visual_archive.0x70 $(MAP_RESOURCES_ALL_ROM_ARGS)
@@ -1468,6 +1506,14 @@ $(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGIO
 	  --rom $@ --output-dir $(RAW_VRAM_TILES_086D5508_OUTPUT_DIR)
 	@$(PYTHON) $(RAW_VRAM_TILES_086D6698_TOOL) --profile 086d6698 patch --region $(RAW_VRAM_TILES_086D6698_REGION) --baseline $(BASE_ROM) \
 	  --rom $@ --output-dir $(RAW_VRAM_TILES_086D6698_OUTPUT_DIR)
+	@$(PYTHON) $(RAW_VRAM_TILES_08750c4c_TOOL) --profile 08750c4c patch --region $(RAW_VRAM_TILES_08750c4c_REGION) --baseline $(BASE_ROM) \
+	  --rom $@ --output-dir $(RAW_VRAM_TILES_08750c4c_OUTPUT_DIR)
+	@$(PYTHON) $(RAW_VRAM_TILES_08750c8c_TOOL) --profile 08750c8c patch --region $(RAW_VRAM_TILES_08750c8c_REGION) --baseline $(BASE_ROM) \
+	  --rom $@ --output-dir $(RAW_VRAM_TILES_08750c8c_OUTPUT_DIR)
+	@$(PYTHON) $(RAW_VRAM_TILES_087510ac_TOOL) --profile 087510ac patch --region $(RAW_VRAM_TILES_087510ac_REGION) --baseline $(BASE_ROM) \
+	  --rom $@ --output-dir $(RAW_VRAM_TILES_087510ac_OUTPUT_DIR)
+	@$(PYTHON) $(RAW_VRAM_TILES_0875166c_TOOL) --profile 0875166c patch --region $(RAW_VRAM_TILES_0875166c_REGION) --baseline $(BASE_ROM) \
+	  --rom $@ --output-dir $(RAW_VRAM_TILES_0875166c_OUTPUT_DIR)
 	@$(PYTHON) $(UI_SCENE_08054F40_TILES_TOOL) --profile 08054f40_tiles patch --region $(UI_SCENE_08054F40_TILES_REGION) --baseline $(BASE_ROM) \
 	  --rom $@ --output-dir $(UI_SCENE_08054F40_TILES_OUTPUT_DIR)
 	@$(PYTHON) $(UI_SCENE_0805AB08_TILES_TOOL) --profile 0805ab08_tiles patch --region $(UI_SCENE_0805AB08_TILES_REGION) --baseline $(BASE_ROM) \
@@ -1560,6 +1606,10 @@ ALL_DEPS :=
 endif
 
 ifneq (,$(filter gfx-raw-vram-tiles-086d5508 gfx-raw-vram-tiles-086d5508-test gfx-raw-vram-tiles-086d5508-all gfx-raw-vram-tiles-086d5508-patch-test gfx-raw-vram-tiles-086d5508-edit-test gfx-raw-vram-tiles-086d6698 gfx-raw-vram-tiles-086d6698-test gfx-raw-vram-tiles-086d6698-all gfx-raw-vram-tiles-086d6698-patch-test gfx-raw-vram-tiles-086d6698-edit-test gfx-raw-vram-tiles-field-leading,$(MAKECMDGOALS)))
+ALL_DEPS :=
+endif
+
+ifneq (,$(filter gfx-raw-vram-tiles-08750c4c gfx-raw-vram-tiles-08750c4c-test gfx-raw-vram-tiles-08750c4c-all gfx-raw-vram-tiles-08750c4c-patch-test gfx-raw-vram-tiles-08750c4c-edit-test gfx-raw-vram-tiles-08750c8c gfx-raw-vram-tiles-08750c8c-test gfx-raw-vram-tiles-08750c8c-all gfx-raw-vram-tiles-08750c8c-patch-test gfx-raw-vram-tiles-08750c8c-edit-test gfx-raw-vram-tiles-087510ac gfx-raw-vram-tiles-087510ac-test gfx-raw-vram-tiles-087510ac-all gfx-raw-vram-tiles-087510ac-patch-test gfx-raw-vram-tiles-087510ac-edit-test gfx-raw-vram-tiles-0875166c gfx-raw-vram-tiles-0875166c-test gfx-raw-vram-tiles-0875166c-all gfx-raw-vram-tiles-0875166c-patch-test gfx-raw-vram-tiles-0875166c-edit-test gfx-raw-vram-tiles-ui,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 

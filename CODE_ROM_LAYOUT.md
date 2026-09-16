@@ -448,3 +448,14 @@ JP `func_0807AFF4` 与内部入口 `func_0807B038` 已提升为普通 Thumb 指�
 JP `func_08087CEC` 是普通区域 `func_080881AC` 的析构对应体。它实际写入的是 `vtable_unk_080E7D20` 的末尾空槽；该槽现作为 `vtable_unk_080E7D20_NullTail` 的真实对象导出并直接重定位，不保留固定地址或 `vtable + 0xC`。
 
 紧随其后的 JP `func_08087D2C` 与 `func_08087DEC` 也已按实际函数边界拆开。前者分配两层牲畜 UI 对象，并直接使用 `vtable_unk_080E5D94`、`vtable_unk_080E5C64` 及已有的对象清理入口；后者初始化农舍相关的 UI 字段、真实 `vtable_unk_080E7D3C` 和冰箱对象引用。所有 `BL`、vtable literal 与数据访问均为可重定位符号，未保留 JP 原始代码块、`.set` 或地址偏移别名。
+
+Script Engine 的两张相邻虚表也已完成同层级整理。JP 原先将六个实际入口合并为四个 `incbin` 区间，并使用 JP 物理地址名作为虚表目标；现已按真实边界恢复为共同逻辑入口 `func_0804EE1C`、`func_0804EE30`、`func_0804EE64`、`func_0804EE88`、`func_0804EE9C` 和 `func_0804EEBC`。JP 仍保留自己的实际物理位置与对 `func_0804ED28` 的真实调用；两张虚表则直接重定位到共同入口名，不使用 `.set`、别名或地址偏移。
+
+| JP 函数 | US 对应函数 | JP 物理范围 | US 物理范围 | EU 物理范围 | DE 物理范围 |
+| --- | --- | --- | --- | --- | --- |
+| `func_0804EE1C` | `func_0804EE1C` | `0x0804EBC8`–`0x0804EBDB` | `0x0804EE1C`–`0x0804EE2F` | `0x0804EE30`–`0x0804EE43` | `0x0804ED14`–`0x0804ED27` |
+| `func_0804EE30` | `func_0804EE30` | `0x0804EBDC`–`0x0804EC0F` | `0x0804EE30`–`0x0804EE63` | `0x0804EE44`–`0x0804EE77` | `0x0804ED28`–`0x0804ED5B` |
+| `func_0804EE64` | `func_0804EE64` | `0x0804EC10`–`0x0804EC33` | `0x0804EE64`–`0x0804EE87` | `0x0804EE78`–`0x0804EE9B` | `0x0804ED5C`–`0x0804ED7F` |
+| `func_0804EE88` | `func_0804EE88` | `0x0804EC34`–`0x0804EC47` | `0x0804EE88`–`0x0804EE9B` | `0x0804EE9C`–`0x0804EEAF` | `0x0804ED80`–`0x0804ED93` |
+| `func_0804EE9C` | `func_0804EE9C` | `0x0804EC48`–`0x0804EC67` | `0x0804EE9C`–`0x0804EEBB` | `0x0804EEB0`–`0x0804EECF` | `0x0804ED94`–`0x0804EDB3` |
+| `func_0804EEBC` | `func_0804EEBC` | `0x0804EC68`–`0x0804EC87` | `0x0804EEBC`–`0x0804EEDB` | `0x0804EED0`–`0x0804EEEF` | `0x0804EDB4`–`0x0804EDD3` |

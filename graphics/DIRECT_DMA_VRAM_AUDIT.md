@@ -20,16 +20,16 @@ single source to different VRAM locations.
 | `gUnk_0875196C` | `0x80` | Existing Animal Festival icon 01 source. |
 | `gUnk_0875254C` | `0x20` | Existing Farm Status creature icon 03 source. |
 | `gUnk_08752F8C` | `0x80` | Existing Farm Status creature icon 11 source. |
-| `gUnk_08750C4C` | `0x20` | Unclassified: static one-tile copy; palette and UI ownership unproven. |
-| `gUnk_08750C8C` | `0x1A0`, `0x1C0` | Unclassified: overlapping fixed copies; its complete display relation must be established before exporting source artwork. |
-| `gUnk_087510AC` | `0x120` | Unclassified: raw UI candidate; palette and layout unproven. |
-| `gUnk_0875166C` | `0x120` | Unclassified: raw UI candidate; palette and layout unproven. |
+| `gUnk_08750C4C` | `0x20` | Managed raw UI tile record; palette and layout unproven. |
+| `gUnk_08750C8C` | `0x1A0`, `0x1C0` | Managed complete `0x1C0` raw UI tile record; the shorter caller consumes its leading subrange. |
+| `gUnk_087510AC` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
+| `gUnk_0875166C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
 
-The three icon rows already point at checked-in PNG pipelines.  The four
-unclassified rows remain audit leads only: no arbitrary tile-grid PNG or JSON
-layout is treated as a source asset.  Future work must first prove physical
-regional bounds, whether the full record is consumed, and the companion
-palette/layout.
+The three icon rows already point at checked-in PNG pipelines.  The four UI
+rows now have verified four-region physical bounds and reversible native-tile
+sources.  No arbitrary tile-grid PNG or JSON layout is treated as a source
+asset: a future visual pipeline must still establish the companion palette and
+tilemap/OAM layout.
 
 Generate the machine-readable scan with:
 

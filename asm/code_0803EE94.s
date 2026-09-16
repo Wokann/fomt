@@ -799,10 +799,122 @@ func_0804ED28: @ 0x0804EB50
     .align 2, 0
 .Ljp_0804EBC4: .4byte vtable_unk_080E7848
 
-    jp_code_0803ee_func func_0804EBC8, 0x4EBC8, 0x4EC34
-    jp_code_0803ee_func func_0804EC34, 0x4EC34, 0x4EC48
-    jp_code_0803ee_func func_0804EC48, 0x4EC48, 0x4EC68
-    jp_code_0803ee_func func_0804EC68, 0x4EC68, 0x4EC88
+    @ The four adjacent JP raw ranges contain the same six virtual-object
+    @ entries as the ordinary regions.  Keep their common logical names even
+    @ though JP places them at earlier physical addresses.
+    .global func_0804EE1C
+    .thumb_func
+func_0804EE1C: @ 0x0804EBC8
+    push {lr}
+    ldr r2, .Ljp_0804EBD8
+    str r2, [r0, #8]
+    bl func_080098AC
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_0804EBD8: .4byte vtable_unk_080E7848
+
+    .global func_0804EE30
+    .thumb_func
+func_0804EE30: @ 0x0804EBDC
+    push {r4, r5, r6, r7, lr}
+    adds r4, r0, #0
+    lsls r2, r2, #0x10
+    lsrs r7, r2, #0x10
+    lsls r3, r3, #0x10
+    adds r5, r1, #0
+    lsrs r6, r3, #4
+.Ljp_0804EBEA:
+    adds r0, r4, #0
+    movs r1, #0xa
+    bl __udivsi3
+    lsls r1, r0, #2
+    adds r1, r1, r0
+    lsls r1, r1, #1
+    subs r1, r4, r1
+    adds r1, r7, r1
+    orrs r1, r6
+    strh r1, [r5]
+    adds r4, r0, #0
+    subs r5, #2
+    cmp r4, #0
+    bne .Ljp_0804EBEA
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_0804EE64
+    .thumb_func
+func_0804EE64: @ 0x0804EC10
+    push {r4, r5, r6, lr}
+    ldr r5, [sp, #0x10]
+    ldr r6, [sp, #0x14]
+    movs r4, #0
+    str r4, [r0]
+    str r4, [r0, #4]
+    ldr r4, .Ljp_0804EC30
+    str r4, [r0, #8]
+    str r1, [r0, #0xc]
+    str r2, [r0, #0x10]
+    strh r3, [r0, #0x14]
+    strh r5, [r0, #0x16]
+    str r6, [r0, #0x18]
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_0804EC30: .4byte vtable_unk_080E7838
+
+    .global func_0804EE88
+    .thumb_func
+func_0804EE88: @ 0x0804EC34
+    push {lr}
+    ldr r2, .Ljp_0804EC44
+    str r2, [r0, #8]
+    bl func_080098AC
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_0804EC44: .4byte vtable_unk_080E7838
+
+    .global func_0804EE9C
+    .thumb_func
+func_0804EE9C: @ 0x0804EC48
+    push {r4, lr}
+    sub sp, #4
+    ldr r4, [r0, #0xc]
+    ldr r1, [r0, #0x10]
+    ldrh r2, [r0, #0x14]
+    ldrh r3, [r0, #0x16]
+    ldr r0, [r0, #0x18]
+    str r0, [sp]
+    adds r0, r4, #0
+    bl func_0804EE30
+    movs r0, #0
+    add sp, #4
+    pop {r4}
+    pop {r1}
+    bx r1
+
+    .global func_0804EEBC
+    .thumb_func
+func_0804EEBC: @ 0x0804EC68
+    push {r4, lr}
+    sub sp, #4
+    ldr r4, [r0, #0xc]
+    ldr r1, [r0, #0x10]
+    ldrh r2, [r0, #0x14]
+    ldrh r3, [r0, #0x16]
+    ldr r0, [r0, #0x18]
+    str r0, [sp]
+    adds r0, r4, #0
+    bl func_0804ED28
+    movs r0, #0
+    add sp, #4
+    pop {r4}
+    pop {r1}
+    bx r1
     .global func_0804EEFC
     .thumb_func
 func_0804EEFC: @ 0x0804EC88

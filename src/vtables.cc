@@ -28,6 +28,12 @@ struct RawVTableWithOffsetAnd66Entries {
 };
 
 extern void __pure_virtual(void);
+extern void func_0804EE1C(void);
+extern void func_0804EE30(void);
+extern void func_0804EE64(void);
+extern void func_0804EE88(void);
+extern void func_0804EE9C(void);
+extern void func_0804EEBC(void);
 extern void func_0804EEFC(void);
 extern void func_0804F19C(void);
 extern void func_080E0F48(void);
@@ -38,10 +44,6 @@ extern void method_0803EFD8__13AScriptEngine(void);
 extern void func_0803EB3C(void);
 extern void func_0803F550(void);
 extern void func_0804E8A8(void);
-extern void func_0804EBC8(void);
-extern void func_0804EC34(void);
-extern void func_0804EC48(void);
-extern void func_0804EC68(void);
 extern void func_0804EEEC(void);
 extern void func_080E07B8(void);
 extern void func_080E07C4(void);
@@ -4766,32 +4768,22 @@ extern RawVTableFunction const __vt_12ScriptEngine[]
 #endif
     };
 
-// Seven adjacent two-method dispatch tables.  The table shapes are shared;
-// only their raw code entry points differ between the two regional ROMs.
+// Seven adjacent two-method dispatch tables.  Their physical code addresses
+// differ by region, but these two tables use the same logical entry points.
 extern RawVTableFunction const vtable_unk_080E7838[]
     SECTION(".rodata.vtable_script_engine_adjacent") = {
         nullptr,
         nullptr,
-#if defined(REGION_JP)
-        func_0804EC48,
-        func_0804EC34,
-#else
         func_0804EE9C,
         func_0804EE88,
-#endif
     };
 
 extern RawVTableFunction const vtable_unk_080E7848[]
     SECTION(".rodata.vtable_script_engine_adjacent") = {
         nullptr,
         nullptr,
-#if defined(REGION_JP)
-        func_0804EC68,
-        func_0804EBC8,
-#else
         func_0804EEBC,
         func_0804EE1C,
-#endif
     };
 
 extern RawVTableFunction const vtable_unk_080E7858[]
