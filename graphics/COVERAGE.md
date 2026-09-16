@@ -13,7 +13,7 @@ image, nor that all game graphics have been extracted.
 | Dialogue portraits | `graphics/portraits/shared/full/*.png` | portrait tile stream | Yes |
 | Actor archive, every referenced descriptor | `graphics/sprites/actor_archive/full/*.png` | actor tile stream | Yes |
 | Located UI tile grid | `graphics/ui/shared_resource/shared_resource.png` | 4bpp tiles plus BGR555 palette | Yes |
-| Direct `func_080A2BA4` UI-scene BG streams | editable `graphics/ui/scene_080a2ba4/shared/tiles.4bpp` and `layer_*.tilemap`; read-only region-specific `reference/*/screen.png` | four native packed streams, patched back to their original locations after link; palette remains archive-owned and is not editable | Yes for streams; palette reference only |
+| Direct `func_080A2BA4` UI-scene BG streams | editable `graphics/ui/scene_080a2ba4/shared/tiles.4bpp` and `layer_*.tilemap`; read-only region-specific `reference/*/screen.png` | four native packed streams included directly by `gUnk_0874EF14`–`gUnk_0874F050`; palette remains archive-owned and is not editable | Yes for streams; palette reference only |
 | Direct `func_080AE7D0` UI-scene BG streams | `graphics/ui/scene_080ae7d0/shared/tiles.4bpp`, `layer_*.tilemap`, `palette_banks.png`; rendered `reference/layer_*.png` and `scene.png` | three native packed streams plus an independently bounded BGR555 palette, included directly by the four original `gUnk_0872FC34`–`gUnk_08731940` symbols | Yes |
 | Direct `func_080B7164` UI-scene BG streams | `graphics/ui/scene_080b7164/shared/tiles.4bpp`, `layer_*.tilemap`, and `palettes.png`; rendered `reference/layer_*.png` | three native packed streams included directly by `gUnk_0872D5CC`–`gUnk_0872D6D8`; the 0x200 palette read begins at a 0x60 symbol and remains cross-resource ROM data | Yes for streams; palette reference only |
 | Direct `func_080C160C` UI-scene BG streams | `graphics/ui/scene_080c160c/shared/tiles.4bpp`, `layer_*.tilemap`, and `palettes.png`; rendered `reference/layer_*.png` and `scene.png` | three native packed streams included directly by `gUnk_0873F3C8`–`gUnk_0873F6AC`; the 256-word palette copy begins at a 0xC0 symbol and remains cross-resource ROM data | Yes for streams; palette reference only |
@@ -41,10 +41,11 @@ their original continuous archive position through a post-link replacement
 step, because their 272 pointer-bearing streams are not a single assembly
 incbin block. Most direct UI-scene streams use the same explicit post-link
 replacement rule because their region-specific physical labels are embedded in
-otherwise raw data containers. `func_080AE7D0`, `func_080B7164`,
-`func_080C160C`, `func_080BCFAC`, `func_080B55D0`, `func_08054F40`, and
-`func_0805AB08` are the current exceptions: their independently bounded
-streams are included directly at the original `gUnk_*` symbols. The
+otherwise raw data containers. `func_080A2BA4`, `func_080AE7D0`,
+`func_080B7164`, `func_080C160C`, `func_080BCFAC`, `func_080B55D0`,
+`func_08054F40`, and `func_0805AB08` are the current exceptions: their
+independently bounded streams are included directly at the original `gUnk_*`
+symbols. The
 surrounding archive headers, OAM records, palettes, tables, and unhandled bytes
 remain direct ROM data until they have a
 corresponding verified source/rebuild path.

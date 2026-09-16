@@ -387,6 +387,22 @@
     .endif
     .endm
 
+    .macro FOMT_UI_SCENE_080A2BA4_ASSET file
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/scene_080a2ba4/\file"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/scene_080a2ba4/\file"
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/scene_080a2ba4/\file"
+    .else
+    .incbin "build/us/graphics/ui/scene_080a2ba4/\file"
+    .endif
+    .endif
+    .endif
+    .endm
+
     @ func_0806EC94 selects one of two three-layer 64x44 BG layouts.  Keep
     @ the native compressed streams separate because EU exposes header labels
     @ eight bytes before several payload labels.
@@ -5613,19 +5629,19 @@ gUnk_0874EE38:
 
 	.global gUnk_0874EF14
 gUnk_0874EF14:
-	FOMT_REGION_ASSET_INCBIN 0x74EF14, 0x28
+	FOMT_UI_SCENE_080A2BA4_ASSET "layer_0.tilemap.0x70"
 
 	.global gUnk_0874EF3C
 gUnk_0874EF3C:
-	FOMT_REGION_ASSET_INCBIN 0x74EF3C, 0xB0
+	FOMT_UI_SCENE_080A2BA4_ASSET "layer_1.tilemap.0x70"
 
 	.global gUnk_0874EFEC
 gUnk_0874EFEC:
-	FOMT_REGION_ASSET_INCBIN 0x74EFEC, 0x64
+	FOMT_UI_SCENE_080A2BA4_ASSET "layer_2.tilemap.0x70"
 
 	.global gUnk_0874F050
 gUnk_0874F050:
-	FOMT_REGION_ASSET_INCBIN 0x74F050, 0x29C
+	FOMT_UI_SCENE_080A2BA4_ASSET "tiles.4bpp.0x70"
 
 	.global gUnk_0874F2EC
 gUnk_0874F2EC:
