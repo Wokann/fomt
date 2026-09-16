@@ -12392,7 +12392,73 @@ func_0807AC60: @ 0x0807AC60
     pop {r1}
     bx r1
 
-    jp_code_0803ee_func func_0807AC94, 0x7AC94, 0x7AD18
+    .global func_0807AC94
+    .thumb_func
+func_0807AC94: @ 0x0807AC94
+    push {r4, r5, r6, r7, lr}
+    adds r5, r0, #0
+    adds r4, r2, #0
+    bl func_080C797C
+    ldr r0, .Ljp_0807ACB0
+    str r0, [r5, #4]
+    ldr r0, .Ljp_0807ACB4
+    adds r1, r5, r0
+    cmp r4, #0
+    beq .Ljp_0807ACB8
+    movs r0, #4
+    str r0, [r1]
+    b .Ljp_0807ACBA
+    .align 2, 0
+.Ljp_0807ACB0: .4byte vtable_unk_080E7BDC
+.Ljp_0807ACB4: .4byte 0x000006A4
+.Ljp_0807ACB8:
+    str r4, [r1]
+.Ljp_0807ACBA:
+    movs r1, #0xd5
+    lsls r1, r1, #3
+    adds r0, r5, r1
+    movs r1, #0
+    strb r1, [r0]
+    ldr r2, .Ljp_0807AD08
+    adds r0, r5, r2
+    str r1, [r0]
+    movs r0, #8
+    ldr r7, .Ljp_0807AD0C
+    subs r1, #1
+.Ljp_0807ACD0:
+    subs r0, #1
+    cmp r0, r1
+    bne .Ljp_0807ACD0
+    ldr r0, .Ljp_0807AD10
+    adds r6, r5, r0
+    adds r0, r7, #0
+    bl strlen
+    adds r4, r0, #0
+    cmp r4, #0x7f
+    bls .Ljp_0807ACE8
+    movs r4, #0x7f
+.Ljp_0807ACE8:
+    adds r0, r6, #0
+    adds r1, r7, #0
+    adds r2, r4, #0
+    bl memcpy
+    adds r1, r6, r4
+    movs r0, #0
+    strb r0, [r1]
+    ldr r2, .Ljp_0807AD14
+    adds r1, r5, r2
+    movs r0, #0
+    strb r0, [r1]
+    adds r0, r5, #0
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_0807AD08: .4byte 0x000006EC
+.Ljp_0807AD0C: .4byte gText_PoultryShop_PageBreak
+.Ljp_0807AD10: .4byte 0x00002234
+.Ljp_0807AD14: .4byte 0x000022B4
+
     jp_code_0803ee_func func_0807AD18, 0x7AD18, 0x7B498
     jp_code_0803ee_func func_0807B8F4, 0x7B498, 0x7BA18
     jp_code_0803ee_func func_0807BE74, 0x7BA18, 0x7CC1C

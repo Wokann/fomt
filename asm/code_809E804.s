@@ -551,7 +551,8 @@ func_080AD7B0:
     jp_code_809_func func_080C5648, 0xC506C, 0xC75A0
     jp_code_809_func func_080C7B7C, 0xC75A0, 0xC78F4
     jp_code_809_func func_080C78F4, 0xC78F4, 0xC7940
-    jp_code_809_func func_080C7F1C, 0xC7940, 0xC7D84
+    jp_code_809_func func_080C7F1C, 0xC7940, 0xC797C
+    jp_code_809_func func_080C797C, 0xC797C, 0xC7D84
     jp_code_809_func func_080C8360, 0xC7D84, 0xC7F74
     jp_code_809_func func_080C8550, 0xC7F74, 0xC8A2C
     jp_code_809_func func_080C9020, 0xC8A2C, 0xC9EE4
