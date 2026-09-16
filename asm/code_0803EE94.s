@@ -14610,7 +14610,78 @@ sub_0807BD78:
     .4byte .Ljp_poultry_state_case_9
     .4byte .Ljp_poultry_state_case_10
 .Ljp_poultry_state_case_0:
-    jp_code_0803ee_bytes 0x7BDC4, 0x7C570
+    ldr r0, [r7, #0x14]
+    ldr r1, [r7, #0x10]
+    cmp r0, r1
+    beq .Ljp_poultry_state_case_0_selected
+    lsls r0, r1, #2
+    adds r0, r0, r7
+    movs r2, #0xaa
+    lsls r2, r2, #2
+    adds r0, r0, r2
+    ldr r1, [r0]
+    adds r0, r7, #0
+    bl func_0807B4C4
+.Ljp_poultry_state_case_0_selected:
+    ldr r0, [r7, #0x10]
+    str r0, [r7, #0x14]
+    movs r3, #0xa9
+    lsls r3, r3, #2
+    adds r4, r7, r3
+    ldr r1, [r4]
+    adds r0, r7, #0
+    bl func_080C9020
+    ldr r5, .Ljp_poultry_state_case_0_prompt_pending_offset
+    adds r0, r7, r5
+    ldrb r0, [r0]
+    cmp r0, #0
+    bne .Ljp_poultry_state_case_0_with_prompt
+    b .Ljp_poultry_state_case_0_no_prompt
+.Ljp_poultry_state_case_0_with_prompt:
+    add r5, sp, #0x10
+    ldr r0, [r7, #0x10]
+    lsls r0, r0, #2
+    adds r0, #4
+    adds r0, r4, r0
+    ldr r3, [r0]
+    lsls r1, r3, #2
+    adds r1, r1, r3
+    lsls r1, r1, #2
+    ldr r2, .Ljp_poultry_state_case_0_catalog
+    adds r0, r5, #0
+    adds r1, r1, r2
+    ldm r1!, {r2, r4, r6}
+    stm r0!, {r2, r4, r6}
+    ldm r1!, {r2, r6}
+    stm r0!, {r2, r6}
+    cmp r3, #1
+    bne .Ljp_poultry_state_case_0_compare_item
+    b .Ljp_poultry_state_case_0_item_1
+.Ljp_poultry_state_case_0_compare_item:
+    cmp r3, #1
+    blo .Ljp_poultry_state_case_0_item_0
+    cmp r3, #2
+    bne .Ljp_poultry_state_case_0_compare_item_3
+    b .Ljp_poultry_state_case_0_item_2
+.Ljp_poultry_state_case_0_compare_item_3:
+    cmp r3, #3
+    bne .Ljp_poultry_state_case_0_unexpected_item
+    b .Ljp_poultry_state_case_0_item_3
+.Ljp_poultry_state_case_0_unexpected_item:
+    bl .Ljp_poultry_state_cleanup
+    .align 2, 0
+.Ljp_poultry_state_case_0_prompt_pending_offset: .4byte 0x000006A1
+.Ljp_poultry_state_case_0_catalog: .4byte gPoultryShopCatalog
+.Ljp_poultry_state_case_0_item_0:
+    jp_code_0803ee_bytes 0x7BE40, 0x7C028
+.Ljp_poultry_state_case_0_item_1:
+    jp_code_0803ee_bytes 0x7C028, 0x7C2E0
+.Ljp_poultry_state_case_0_item_2:
+    jp_code_0803ee_bytes 0x7C2E0, 0x7C3A0
+.Ljp_poultry_state_case_0_item_3:
+    jp_code_0803ee_bytes 0x7C3A0, 0x7C510
+.Ljp_poultry_state_case_0_no_prompt:
+    jp_code_0803ee_bytes 0x7C510, 0x7C570
 .Ljp_poultry_state_case_1:
     ldr r0, [r7, #0x14]
     ldr r1, [r7, #0x10]
