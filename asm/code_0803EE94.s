@@ -20524,9 +20524,90 @@ func_080809CC: @ 0x080809CC
 	.align 2, 0
 .Ljp_080809DC: .4byte vtable_unk_080E7CA0
     jp_code_0803ee_func func_080809E0, 0x809E0, 0x80C80
-    jp_code_0803ee_func func_08080C80, 0x80C80, 0x815E8
-    jp_code_0803ee_func func_080815E8, 0x815E8, 0x81628
-    jp_code_0803ee_func func_08081628, 0x81628, 0x81678
+    jp_code_0803ee_func func_08080C80, 0x80C80, 0x80CC4
+    .global func_08080CC4
+    .thumb_func
+func_08080CC4:
+    jp_code_0803ee_bytes 0x80CC4, 0x815E8
+
+.global func_080815E8
+.thumb_func
+func_080815E8: @ 0x080815E8
+	push {r4, r5, lr}
+	adds r4, r0, #0
+	adds r5, r1, #0
+	ldr r0, .Ljp_08081624
+	str r0, [r4]
+	ldr r1, [r4, #8]
+	cmp r1, #0
+	beq .Ljp_08081604
+	ldr r0, [r1]
+	ldr r2, [r0, #8]
+	adds r0, r1, #0
+	movs r1, #3
+	bl _call_via_r2
+.Ljp_08081604:
+	ldr r1, [r4, #4]
+	cmp r1, #0
+	beq .Ljp_08081616
+	ldr r0, [r1, #4]
+	ldr r2, [r0, #8]
+	adds r0, r1, #0
+	movs r1, #3
+	bl _call_via_r2
+.Ljp_08081616:
+	adds r0, r4, #0
+	adds r1, r5, #0
+	bl func_080007EC
+	pop {r4, r5}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_08081624: .4byte vtable_unk_080E7CA0_NullTail
+
+.global func_08081628
+.thumb_func
+func_08081628: @ 0x08081628
+	push {r4, r5, lr}
+	adds r5, r0, #0
+	adds r4, r1, #0
+	ldr r0, [r4, #4]
+	bl func_08080CC4
+	ldr r1, [r4, #8]
+	movs r0, #0
+	str r0, [r4, #8]
+	str r1, [r5]
+	adds r0, r5, #0
+	pop {r4, r5}
+	pop {r1}
+	bx r1
+
+.global func_08081644
+.thumb_func
+func_08081644: @ 0x08081644
+	push {r4, lr}
+	adds r4, r0, #0
+	bl func_080C797C
+	ldr r0, .Ljp_08081670
+	str r0, [r4, #4]
+	ldr r1, .Ljp_08081674
+	adds r0, r4, r1
+	movs r1, #0
+	str r1, [r0]
+	movs r2, #0xd5
+	lsls r2, r2, #3
+	adds r0, r4, r2
+	strb r1, [r0]
+	adds r2, #4
+	adds r0, r4, r2
+	str r1, [r0]
+	adds r0, r4, #0
+	pop {r4}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.Ljp_08081670: .4byte vtable_unk_080E7CBC
+.Ljp_08081674: .4byte 0x000006A4
     jp_code_0803ee_func func_08081678, 0x81678, 0x81CBC
     jp_code_0803ee_func func_08081CBC, 0x81CBC, 0x81CFC
     jp_code_0803ee_func func_08081CFC, 0x81CFC, 0x81D48
