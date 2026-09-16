@@ -21836,7 +21836,101 @@ func_08084050: @ 0x08083BC8
 	pop {r4, r5, r6, r7}
 	pop {r1}
 	bx r1
-    jp_code_0803ee_func func_080840F4, 0x83C6C, 0x850A0
+.global func_080840F4
+.thumb_func
+func_080840F4: @ 0x08083C6C
+	push {r4, r5, r6, r7, lr}
+	mov r7, r9
+	mov r6, r8
+	push {r6, r7}
+	sub sp, #0x18
+	adds r7, r0, #0
+	adds r5, r1, #0
+	ldr r0, .Ljp_08083CC4 @ =0x00006170
+	adds r6, r7, r0
+	ldr r2, .Ljp_08083CC8 @ =gText_Carpenter_RebuildRequirements
+	mov r8, r2
+	mov r0, r8
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, #0x7f
+	bls .Ljp_08083C90
+	movs r4, #0x7f
+.Ljp_08083C90:
+	adds r0, r6, #0
+	mov r1, r8
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r6, r4
+	movs r0, #0
+	strb r0, [r1]
+	lsls r3, r5, #2
+	adds r1, r3, r5
+	lsls r1, r1, #2
+	ldr r2, .Ljp_08083CCC @ =gCarpenterCatalog
+	mov r0, sp
+	adds r1, r1, r2
+	ldm r1!, {r2, r4, r6}
+	stm r0!, {r2, r4, r6}
+	ldm r1!, {r4, r6}
+	stm r0!, {r4, r6}
+	ldr r6, [sp, #0x10]
+	cmp r5, #0x13
+	bhi .Ljp_08083D8C
+	ldr r0, .Ljp_08083CD0 @ =0x08083CD4
+	adds r0, r3, r0
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.Ljp_08083CC4: .4byte 0x00006170
+.Ljp_08083CC8: .4byte gText_Carpenter_RebuildRequirements
+.Ljp_08083CCC: .4byte gCarpenterCatalog
+.Ljp_08083CD0: .4byte .Ljp_08083CD4
+.Ljp_08083CD4:
+	@ The 20-way table selects local code below.  Keep it relocatable so the
+	@ EU and DE layouts do not inherit US absolute branch addresses.
+	.4byte .Ljp_08083D24
+	.4byte .Ljp_08083D2C
+	.4byte .Ljp_08083D40, .Ljp_08083D40, .Ljp_08083D40, .Ljp_08083D40, .Ljp_08083D40, .Ljp_08083D40, .Ljp_08083D40, .Ljp_08083D40, .Ljp_08083D40
+	.4byte .Ljp_08083D4A, .Ljp_08083D4A, .Ljp_08083D4A, .Ljp_08083D4A, .Ljp_08083D4A, .Ljp_08083D4A, .Ljp_08083D4A, .Ljp_08083D4A, .Ljp_08083D4A
+.Ljp_08083D24:
+	.byte 0x05, 0xAC, 0x20, 0x1C, 0x59, 0x21, 0x03, 0xE0
+	@ The second table target skips the setup used only by index zero.
+.Ljp_08083D2C:
+	.byte 0x6C, 0x46, 0x15, 0x34, 0x20, 0x1C, 0x5A, 0x21
+	bl __7ArticleUi
+	.byte 0x20, 0x1C
+	bl GetDesc__C7Article
+	.byte 0x06, 0x1C
+	@ Most entries use the copied ArticleUi description.
+.Ljp_08083D40:
+	.byte 0x38, 0x1C, 0x31, 0x1C
+	bl func_080CA3FC
+	.byte 0x20, 0xE0
+.Ljp_08083D4A:
+	.byte 0x14, 0x48, 0x3C, 0x18, 0xB1, 0x46, 0x20, 0x1C
+	bl strlen
+	.byte 0x24, 0x18, 0xA0, 0x46, 0x7F, 0x21, 0x0D, 0x1A, 0x00, 0x2D, 0x0F, 0xD0, 0x48, 0x46
+	bl strlen
+	.byte 0x04, 0x1C, 0xAC, 0x42, 0x00, 0xD9, 0x2C, 0x1C, 0x40, 0x46, 0x31, 0x1C, 0x22, 0x1C
+	bl memcpy
+	.byte 0x42, 0x46, 0x11, 0x19, 0x00, 0x20, 0x08, 0x70, 0x06, 0x4C, 0x39, 0x19, 0x38, 0x1C
+	bl func_080CA3FC
+.Ljp_08083D8C:
+	add sp, #0x18
+	pop {r3, r4}
+	mov r8, r3
+	mov r9, r4
+	pop {r4, r5, r6, r7}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_08083D9C:
+	.byte 0x70, 0x61, 0x00, 0x00
+.global func_08084228
+.thumb_func
+func_08084228:
+    jp_code_0803ee_bytes 0x83DA0, 0x850A0
     jp_code_0803ee_func func_080850A0, 0x850A0, 0x850E0
     jp_code_0803ee_func func_080850E0, 0x850E0, 0x851A4
     jp_code_0803ee_func func_080851A4, 0x851A4, 0x853E4
