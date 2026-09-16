@@ -5550,25 +5550,31 @@ extern RawVTableFunction const vtable_unk_080E7B88[]
         nullptr,
 #if defined(REGION_JP)
         func_080E260C,
-        nullptr,
 #else
         func_08076E0C,
         func_08076EA8,
 #endif
     };
 
-extern RawVTableFunction const vtable_unk_080E7B98[]
-    SECTION(".rodata.vtable_7b98") = {
 #if defined(REGION_JP)
+// This JP table begins at the ROM pointer used by func_08077C40.  The first
+// null slot is physically adjacent to the preceding table, but belongs to
+// this object in the original layout.
+extern RawVTableFunction const vtable_unk_080E6FD4[]
+    SECTION(".rodata.vtable_7b98") = {
+        nullptr,
         nullptr,
         func_080777F4,
         func_08077834,
+    };
 #else
+extern RawVTableFunction const vtable_unk_080E7B98[]
+    SECTION(".rodata.vtable_7b98") = {
         nullptr,
         nullptr,
         func_080E2E6C,
-#endif
     };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E7BA4[]
     SECTION(".rodata.vtable_7ba4") = {

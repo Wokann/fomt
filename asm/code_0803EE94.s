@@ -8171,7 +8171,30 @@ func_08077A1C: @ 0x080775A4
     pop {r0}
     bx r0
 
-    jp_code_0803ee_func func_08077C40, 0x777C8, 0x777F4
+    .global func_08077C40
+    .thumb_func
+func_08077C40: @ 0x080777C8
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    ldr r0, .Ljp_080777F0
+    str r0, [r4]
+    movs r0, #0xe6
+    lsls r0, r0, #3
+    bl __builtin_new
+    bl func_080773E8
+    str r0, [r4, #4]
+    ldr r1, [r5]
+    movs r0, #0
+    str r0, [r5]
+    str r1, [r4, #8]
+    adds r0, r4, #0
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_080777F0: .4byte vtable_unk_080E6FD4
+
     jp_code_0803ee_func func_080777F4, 0x777F4, 0x77834
     jp_code_0803ee_func func_08077834, 0x77834, 0x77960
     jp_code_0803ee_func func_08077DD8, 0x77960, 0x779BC
