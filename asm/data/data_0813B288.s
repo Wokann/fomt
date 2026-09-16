@@ -2291,7 +2291,10 @@ gUnk_084D8278:
     .global gUnk_084D82F8
 gUnk_084D82F8:
     FOMT_RECORDS_TASK_PALETTE 06
-    .incbin "baserom_jp.gba", 0x4D8318, (0x4DB1DC - 0x4D8318)
+    .incbin "baserom_jp.gba", 0x4D8318, (0x4D977C - 0x4D8318)
+    .global gUnk_084D977C
+gUnk_084D977C:
+    .incbin "baserom_jp.gba", 0x4D977C, (0x4DB1DC - 0x4D977C)
     .global gUnk_084DB1DC
 gUnk_084DB1DC:
     .incbin "baserom_jp.gba", 0x4DB1DC, (0x4DB4E8 - 0x4DB1DC)

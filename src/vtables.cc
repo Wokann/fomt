@@ -5582,7 +5582,6 @@ extern RawVTableFunction const vtable_unk_080E7BA4[]
 #if defined(REGION_JP)
         nullptr,
         func_080E2A88,
-        nullptr,
 #else
         nullptr,
         func_08077C6C,
@@ -5590,13 +5589,18 @@ extern RawVTableFunction const vtable_unk_080E7BA4[]
 #endif
     };
 
-extern RawVTableFunction const vtable_unk_080E7BB4[]
-    SECTION(".rodata.vtable_7bb4") = {
 #if defined(REGION_JP)
+// This JP virtual-method table begins at 0x080E6FF0. Its initial null also
+// terminates the preceding table, preserving the ROM's shared boundary word.
+extern RawVTableFunction const vtable_unk_080E6FF0[]
+    SECTION(".rodata.vtable_7bb4") = {
+        nullptr,
         nullptr,
         func_08078670,
         func_080786A0,
 #else
+extern RawVTableFunction const vtable_unk_080E7BB4[]
+    SECTION(".rodata.vtable_7bb4") = {
         nullptr,
         nullptr,
         func_080E32E8,

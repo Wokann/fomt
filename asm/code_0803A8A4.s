@@ -3874,7 +3874,7 @@ func_0803C54C:
     str	r0, [r4, #4]
     adds	r0, r4, #0
     adds	r0, #8
-    bl .Ljp_0803C344
+    bl func_0803C5B0
     adds	r0, r4, #0
     add	sp, #20
     pop	{r4, r5}
@@ -3904,7 +3904,9 @@ func_0803C588:
     .align 2, 0
 .Ljp_0803C340:
     .4byte vtable_unk_080E77E0
-.Ljp_0803C344:
+    .global func_0803C5B0
+    .thumb_func
+func_0803C5B0:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
