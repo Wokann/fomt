@@ -5983,7 +5983,14 @@ func_080756B0: @ 0x0807530C
 .Ljp_08075328:
     .4byte vtable_unk_080E7B4C
 
-    jp_code_0803ee_func func_0807532C, 0x7532C, 0x7575C
+    .global func_0807532C
+    .thumb_func
+func_0807532C:
+    .incbin "baserom_jp.gba", 0x7532C, (0x75744 - 0x7532C)
+    .global func_08075AE8
+    .thumb_func
+func_08075AE8:
+    .incbin "baserom_jp.gba", 0x75744, (0x7575C - 0x75744)
 
     .global func_08075B00
     .thumb_func
@@ -8419,7 +8426,522 @@ func_08077DD8: @ 0x08077960
     bx r0
     .align 2, 0
 	.section .text.copy_bg_map_rect_after
-	jp_code_0803ee_func func_08077EC0, 0x77A48, 0x77E4C
+	.global func_08077EC0
+	.thumb_func
+func_08077EC0: @ 0x08077EC0
+	push {r4, r5, r6, lr}
+	sub sp, #0xc
+	adds r4, r0, #0
+	ldr r0, [r4, #8]
+	adds r0, #0x10
+	bl func_0800E324
+	adds r6, r0, #0
+	movs r0, #0
+	cmp r6, #3
+	bne .L08077ED8
+	movs r0, #1
+.L08077ED8:
+	adds r5, r0, #0
+	ldr r0, .L08077F38 @ =gUnk_08755848
+	cmp r5, #0
+	beq .L08077EE2
+	ldr r0, .L08077F3C @ =gUnk_0875822C
+.L08077EE2:
+	movs r1, #0xc0
+	lsls r1, r1, #0x13
+	bl Unpack
+	ldr r0, .L08077F40 @ =gUnk_08757AE0
+	cmp r5, #0
+	beq .L08077EF2
+	ldr r0, .L08077F44 @ =gUnk_0875A358
+.L08077EF2:
+	ldr r1, .L08077F48 @ =0x05000020
+	movs r2, #0xc0
+	bl func_08008E64
+	ldr r2, .L08077F4C @ =gUnk_08755230
+	cmp r5, #0
+	beq .L08077F02
+	ldr r2, .L08077F50 @ =gUnk_08757C14
+.L08077F02:
+	adds r0, r4, #0
+	movs r1, #0x1e
+	bl CopyBgMap30x13
+	ldr r2, .L08077F54 @ =gUnk_0875553C
+	cmp r5, #0
+	beq .L08077F12
+	ldr r2, .L08077F58 @ =gUnk_08757F20
+.L08077F12:
+	adds r0, r4, #0
+	movs r1, #0x1d
+	bl CopyBgMap30x13
+	cmp r6, #0
+	bne .L08077F60
+	movs r0, #5
+	str r0, [sp]
+	movs r0, #3
+	str r0, [sp, #4]
+	ldr r0, .L08077F5C @ =gUnk_08757BD8
+	str r0, [sp, #8]
+	adds r0, r4, #0
+	movs r1, #0x1e
+	movs r2, #0xa
+	movs r3, #0xa
+	bl CopyBgMapRect
+	b .L08077F7C
+	.align 2, 0
+.L08077F38: .4byte gUnk_084DB7F4
+.L08077F3C: .4byte gUnk_084DE1D8
+.L08077F40: .4byte gUnk_084DDA8C
+.L08077F44: .4byte gUnk_084E0304
+.L08077F48: .4byte 0x05000020
+.L08077F4C: .4byte gUnk_084DB1DC
+.L08077F50: .4byte gUnk_084DDBC0
+.L08077F54: .4byte gUnk_084DB4E8
+.L08077F58: .4byte gUnk_084DDECC
+.L08077F5C: .4byte gUnk_084DDB84
+.L08077F60:
+	cmp r6, #2
+	bne .L08077F7C
+	movs r0, #5
+	str r0, [sp]
+	movs r0, #3
+	str r0, [sp, #4]
+	ldr r0, .L08077FB4 @ =gUnk_08757BAC
+	str r0, [sp, #8]
+	adds r0, r4, #0
+	movs r1, #0x1e
+	movs r2, #0xa
+	movs r3, #0xa
+	bl CopyBgMapRect
+.L08077F7C:
+	cmp r6, #1
+	bne .L08077F98
+	movs r0, #3
+	str r0, [sp]
+	movs r0, #2
+	str r0, [sp, #4]
+	ldr r0, .L08077FB8 @ =gUnk_08757BCC
+	str r0, [sp, #8]
+	adds r0, r4, #0
+	movs r1, #0x1d
+	movs r2, #0x18
+	movs r3, #7
+	bl CopyBgMapRect
+.L08077F98:
+	ldr r0, [r4, #8]
+	bl func_08010E48
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .L08077FD0
+	movs r0, #3
+	str r0, [sp]
+	movs r0, #2
+	str r0, [sp, #4]
+	cmp r5, #0
+	beq .L08077FC0
+	ldr r0, .L08077FBC @ =gUnk_0875A418
+	b .L08077FC2
+	.align 2, 0
+.L08077FB4: .4byte gUnk_084DDB58
+.L08077FB8: .4byte gUnk_084DDB78
+.L08077FBC: .4byte gUnk_084E03C4
+.L08077FC0:
+	ldr r0, .L08077FEC @ =gUnk_08757BA0
+.L08077FC2:
+	str r0, [sp, #8]
+	adds r0, r4, #0
+	movs r1, #0x1d
+	movs r2, #0
+	movs r3, #5
+	bl CopyBgMapRect
+.L08077FD0:
+	ldr r0, [r4, #8]
+	bl func_08010E50
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .L08078004
+	movs r0, #2
+	str r0, [sp]
+	str r0, [sp, #4]
+	cmp r5, #0
+	beq .L08077FF4
+	ldr r0, .L08077FF0 @ =gUnk_0875A438
+	b .L08077FF6
+	.align 2, 0
+.L08077FEC: .4byte gUnk_084DDB4C
+.L08077FF0: .4byte gUnk_084E03E4
+.L08077FF4:
+	ldr r0, .L08078020 @ =gUnk_08757C0C
+.L08077FF6:
+	str r0, [sp, #8]
+	adds r0, r4, #0
+	movs r1, #0x1d
+	movs r2, #0xe
+	movs r3, #5
+	bl CopyBgMapRect
+.L08078004:
+	ldr r0, [r4, #8]
+	bl func_08010E58
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .L08078038
+	movs r0, #3
+	str r0, [sp]
+	str r0, [sp, #4]
+	cmp r5, #0
+	beq .L08078028
+	ldr r0, .L08078024 @ =gUnk_0875A424
+	b .L0807802A
+	.align 2, 0
+.L08078020: .4byte gUnk_084DDBB8
+.L08078024: .4byte gUnk_084E03D0
+.L08078028:
+	ldr r0, .L08078040 @ =gUnk_08757BF8
+.L0807802A:
+	str r0, [sp, #8]
+	adds r0, r4, #0
+	movs r1, #0x1d
+	movs r2, #0x1b
+	movs r3, #6
+	bl CopyBgMapRect
+.L08078038:
+	add sp, #0xc
+	pop {r4, r5, r6}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.L08078040: .4byte gUnk_084DDBA4
+
+	.global func_08078044
+	.thumb_func
+func_08078044: @ 0x08078044
+	push {r4, r5, r6, r7, lr}
+	mov r7, sl
+	mov r6, sb
+	mov r5, r8
+	push {r5, r6, r7}
+	sub sp, #0x2c
+	adds r7, r0, #0
+	mov sl, r1
+	str r2, [sp, #0x24]
+	adds r0, #0x8c
+	ldr r0, [r0]
+	adds r3, r0, r1
+	movs r0, #0xe8
+	lsls r0, r0, #8
+	cmp r3, r0
+	ble .L08078068
+	adds r3, r0, #0
+	b .L08078072
+.L08078068:
+	ldr r0, .L08078088 @ =0x000007FF
+	cmp r3, r0
+	bgt .L08078072
+	movs r3, #0x80
+	lsls r3, r3, #4
+.L08078072:
+	adds r1, r7, #0
+	adds r1, #0x90
+	ldr r0, [r1]
+	ldr r4, [sp, #0x24]
+	adds r2, r0, r4
+	movs r0, #0xc0
+	lsls r0, r0, #7
+	cmp r2, r0
+	ble .L0807808C
+	adds r2, r0, #0
+	b .L08078096
+	.align 2, 0
+.L08078088: .4byte 0x000007FF
+.L0807808C:
+	ldr r0, .L08078108 @ =0x000003FF
+	cmp r2, r0
+	bgt .L08078096
+	movs r2, #0x80
+	lsls r2, r2, #3
+.L08078096:
+	adds r0, r7, #0
+	adds r0, #0x8c
+	str r3, [r0]
+	str r2, [r1]
+	adds r0, r3, #0
+	cmp r0, #0
+	bge .L080780A6
+	adds r0, #0xff
+.L080780A6:
+	asrs r0, r0, #8
+	mov sb, r0
+	adds r0, r2, #0
+	cmp r0, #0
+	bge .L080780B2
+	adds r0, #0xff
+.L080780B2:
+	asrs r0, r0, #8
+	mov r8, r0
+	mov r0, sl
+	cmp r0, #0
+	bne .L0807810C
+	ldr r1, [sp, #0x24]
+	cmp r1, #0
+	bne .L0807810C
+	adds r4, r7, #0
+	adds r4, #0x78
+	adds r0, r4, #0
+	bl func_0805E8F0
+	adds r0, r7, #0
+	bl func_08008920
+	adds r5, r0, #0
+	ldr r1, [r7, #0x78]
+	ldr r3, [r1]
+	ldrh r2, [r4, #0xc]
+	lsls r2, r2, #2
+	ldr r0, [r7, #0x7c]
+	adds r0, r0, r2
+	ldrh r2, [r0]
+	add r0, sp, #4
+	ldr r3, [r3, #0x10]
+	bl _call_via_r3
+	add r0, sp, #4
+	adds r1, r0, #0
+	movs r2, #0x20
+	bl memcpy
+	adds r0, r7, #0
+	adds r0, #0x20
+	mov r3, r8
+	str r3, [sp]
+	adds r1, r5, #0
+	add r2, sp, #4
+	mov r3, sb
+	bl func_08075AE8
+	b .L08078126
+	.align 2, 0
+.L08078108: .4byte 0x000003FF
+.L0807810C:
+	adds r0, r7, #0
+	bl func_08008920
+	adds r1, r0, #0
+	adds r0, r7, #0
+	adds r0, #0x20
+	adds r2, r7, #0
+	adds r2, #0x58
+	mov r4, r8
+	str r4, [sp]
+	mov r3, sb
+	bl func_08075AE8
+.L08078126:
+	adds r0, r7, #0
+	adds r0, #0x94
+	ldr r6, [r0]
+	str r0, [sp, #0x28]
+	mov r0, sl
+	cmp r0, #0
+	bne .L0807813A
+	ldr r1, [sp, #0x24]
+	cmp r1, #0
+	beq .L080781F6
+.L0807813A:
+	movs r6, #0x28
+	ldr r0, [r7, #8]
+	bl func_08010E48
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .L08078164
+	ldr r3, .L08078160 @ =gTownMapHotspots
+	adds r0, r7, #0
+	mov r1, sb
+	mov r2, r8
+	bl TownMapHotspotContains
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .L08078164
+	movs r6, #0
+	b .L080781F2
+	.align 2, 0
+.L08078160: .4byte gTownMapHotspots
+.L08078164:
+	ldr r0, [r7, #8]
+	bl func_08010E50
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .L0807818C
+	ldr r3, .L08078188 @ =gTownMapHotspots + 0x28
+	adds r0, r7, #0
+	mov r1, sb
+	mov r2, r8
+	bl TownMapHotspotContains
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .L0807818C
+	movs r6, #2
+	b .L080781F2
+	.align 2, 0
+.L08078188: .4byte gTownMapHotspots + 0x28
+.L0807818C:
+	ldr r0, [r7, #8]
+	bl func_08010E58
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .L080781B4
+	ldr r3, .L080781B0 @ =gTownMapHotspots + 0x14
+	adds r0, r7, #0
+	mov r1, sb
+	mov r2, r8
+	bl TownMapHotspotContains
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .L080781B4
+	movs r6, #1
+	b .L080781F2
+	.align 2, 0
+.L080781B0: .4byte gTownMapHotspots + 0x14
+.L080781B4:
+	ldr r0, [r7, #8]
+	ldr r3, .L080781D0 @ =0x00002210
+	adds r0, r0, r3
+	ldrb r0, [r0]
+	lsls r0, r0, #0x1e
+	movs r1, #9
+	cmp r0, #0
+	bge .L080781C6
+	movs r1, #3
+.L080781C6:
+	adds r4, r1, #0
+	lsls r0, r4, #2
+	adds r0, r0, r4
+	lsls r5, r0, #2
+	b .L080781D8
+	.align 2, 0
+.L080781D0: .4byte 0x00002210
+.L080781D4:
+	adds r5, #0x14
+	adds r4, #1
+.L080781D8:
+	cmp r4, #0x27
+	bgt .L080781F2
+	ldr r3, .L08078204 @ =gTownMapHotspots
+	adds r3, r5, r3
+	adds r0, r7, #0
+	mov r1, sb
+	mov r2, r8
+	bl TownMapHotspotContains
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .L080781D4
+	adds r6, r4, #0
+.L080781F2:
+	ldr r4, [sp, #0x28]
+	str r6, [r4]
+.L080781F6:
+	cmp r6, #0x1d
+	beq .L08078214
+	cmp r6, #0x1d
+	bgt .L08078208
+	cmp r6, #0xa
+	beq .L08078228
+	b .L08078264
+	.align 2, 0
+.L08078204: .4byte gTownMapHotspots
+.L08078208:
+	cmp r6, #0x28
+	bne .L08078264
+	ldr r4, .L08078210 @ =gText_TownMap_Empty
+	b .L08078288
+	.align 2, 0
+.L08078210: .4byte gText_TownMap_Empty
+.L08078214:
+	ldrb r0, [r7, #0x14]
+	cmp r0, #0
+	beq .L08078222
+	movs r0, #0x8c
+	lsls r0, r0, #1
+	adds r4, r7, r0
+	b .L08078288
+.L08078222:
+	adds r4, r7, #0
+	adds r4, #0x98
+	b .L08078288
+.L08078228:
+	ldrb r0, [r7, #0x14]
+	cmp r0, #0
+	beq .L08078258
+	ldr r0, [r7, #8]
+	ldr r1, .L08078240 @ =0x00001E28
+	adds r0, r0, r1
+	bl GetRivalEventCount__C12Bachelorette
+	cmp r0, #4
+	bls .L08078248
+	ldr r4, .L08078244 @ =gText_Library_OpeningHours
+	b .L08078288
+	.align 2, 0
+.L08078240: .4byte 0x00001E28
+.L08078244: .4byte gText_Library_OpeningHours
+.L08078248:
+	ldrb r0, [r7, #0x14]
+	cmp r0, #0
+	beq .L08078258
+	ldr r0, .L08078254 @ =gTownMapHotspots
+	adds r0, #0xcc
+	b .L08078286
+	.align 2, 0
+.L08078254: .4byte gTownMapHotspots
+.L08078258:
+	ldr r0, .L08078260 @ =gTownMapHotspots
+	adds r0, #0xc8
+	b .L08078286
+	.align 2, 0
+.L08078260: .4byte gTownMapHotspots
+.L08078264:
+	ldrb r0, [r7, #0x14]
+	cmp r0, #0
+	beq .L0807827C
+	ldr r1, .L08078278 @ =gTownMapHotspots
+	lsls r0, r6, #2
+	adds r0, r0, r6
+	lsls r0, r0, #2
+	adds r1, #4
+	b .L08078284
+	.align 2, 0
+.L08078278: .4byte gTownMapHotspots
+.L0807827C:
+	ldr r1, .L080782BC @ =gTownMapHotspots
+	lsls r0, r6, #2
+	adds r0, r0, r6
+	lsls r0, r0, #2
+.L08078284:
+	adds r0, r0, r1
+.L08078286:
+	ldr r4, [r0]
+.L08078288:
+	cmp r4, #0
+	bne .L0807828E
+	ldr r4, .L080782C0 @ =gText_TownMap_Empty
+.L0807828E:
+	movs r3, #0xcc
+	lsls r3, r3, #1
+	adds r5, r7, r3
+	ldr r0, [r5]
+	cmp r4, r0
+	beq .L080782AA
+	adds r0, r7, #0
+	adds r0, #0x18
+	adds r1, r4, #0
+	movs r2, #0
+	movs r3, #0
+	bl func_08050DC8
+	str r4, [r5]
+.L080782AA:
+	add sp, #0x2c
+	pop {r3, r4, r5}
+	mov r8, r3
+	mov sb, r4
+	mov sl, r5
+	pop {r4, r5, r6, r7}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.L080782BC: .4byte gTownMapHotspots
+.L080782C0: .4byte gText_TownMap_Empty
+
     .section .text.town_map_hotspot_contains_after
     jp_code_0803ee_func func_080782EC, 0x77E74, 0x78150
     jp_code_0803ee_func func_080785C8, 0x78150, 0x78670

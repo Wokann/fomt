@@ -2291,7 +2291,58 @@ gUnk_084D8278:
     .global gUnk_084D82F8
 gUnk_084D82F8:
     FOMT_RECORDS_TASK_PALETTE 06
-    .incbin "baserom_jp.gba", 0x4D8318, (0x4E0BA0 - 0x4D8318)
+    .incbin "baserom_jp.gba", 0x4D8318, (0x4DB1DC - 0x4D8318)
+    .global gUnk_084DB1DC
+gUnk_084DB1DC:
+    .incbin "baserom_jp.gba", 0x4DB1DC, (0x4DB4E8 - 0x4DB1DC)
+    .global gUnk_084DB4E8
+gUnk_084DB4E8:
+    .incbin "baserom_jp.gba", 0x4DB4E8, (0x4DB7F4 - 0x4DB4E8)
+    .global gUnk_084DB7F4
+gUnk_084DB7F4:
+    .incbin "baserom_jp.gba", 0x4DB7F4, (0x4DDA8C - 0x4DB7F4)
+    .global gUnk_084DDA8C
+gUnk_084DDA8C:
+    .incbin "baserom_jp.gba", 0x4DDA8C, (0x4DDB4C - 0x4DDA8C)
+    .global gUnk_084DDB4C
+gUnk_084DDB4C:
+    .incbin "baserom_jp.gba", 0x4DDB4C, (0x4DDB58 - 0x4DDB4C)
+    .global gUnk_084DDB58
+gUnk_084DDB58:
+    .incbin "baserom_jp.gba", 0x4DDB58, (0x4DDB78 - 0x4DDB58)
+    .global gUnk_084DDB78
+gUnk_084DDB78:
+    .incbin "baserom_jp.gba", 0x4DDB78, (0x4DDB84 - 0x4DDB78)
+    .global gUnk_084DDB84
+gUnk_084DDB84:
+    .incbin "baserom_jp.gba", 0x4DDB84, (0x4DDBA4 - 0x4DDB84)
+    .global gUnk_084DDBA4
+gUnk_084DDBA4:
+    .incbin "baserom_jp.gba", 0x4DDBA4, (0x4DDBB8 - 0x4DDBA4)
+    .global gUnk_084DDBB8
+gUnk_084DDBB8:
+    .incbin "baserom_jp.gba", 0x4DDBB8, (0x4DDBC0 - 0x4DDBB8)
+    .global gUnk_084DDBC0
+gUnk_084DDBC0:
+    .incbin "baserom_jp.gba", 0x4DDBC0, (0x4DDECC - 0x4DDBC0)
+    .global gUnk_084DDECC
+gUnk_084DDECC:
+    .incbin "baserom_jp.gba", 0x4DDECC, (0x4DE1D8 - 0x4DDECC)
+    .global gUnk_084DE1D8
+gUnk_084DE1D8:
+    .incbin "baserom_jp.gba", 0x4DE1D8, (0x4E0304 - 0x4DE1D8)
+    .global gUnk_084E0304
+gUnk_084E0304:
+    .incbin "baserom_jp.gba", 0x4E0304, (0x4E03C4 - 0x4E0304)
+    .global gUnk_084E03C4
+gUnk_084E03C4:
+    .incbin "baserom_jp.gba", 0x4E03C4, (0x4E03D0 - 0x4E03C4)
+    .global gUnk_084E03D0
+gUnk_084E03D0:
+    .incbin "baserom_jp.gba", 0x4E03D0, (0x4E03E4 - 0x4E03D0)
+    .global gUnk_084E03E4
+gUnk_084E03E4:
+    .incbin "baserom_jp.gba", 0x4E03E4, (0x4E0BA0 - 0x4E03E4)
 
     @ Shared UI resource payloads.  These direct labels let the ui_state
     @ table retain ordinary relocations without a synthetic base-plus-offset
