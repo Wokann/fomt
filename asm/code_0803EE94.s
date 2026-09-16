@@ -15032,14 +15032,178 @@ sub_0807BD78:
     bl GetAmount__C9ToolStack
     mov r8, r0
 .Ljp_poultry_state_case_0_item_1_build_prompt:
-    jp_code_0803ee_bytes 0x7C166, 0x7C2B4
+    mov r2, r8
+    adds r0, r6, r2
+    adds r0, r0, r4
+    add r1, sp, #0x24
+    movs r2, #7
+    bl func_0804E98C
+    mov r5, sp
+    adds r5, #0x7f
+    ldr r1, [sp, #0x10]
+    adds r0, r5, #0
+    bl __4ToolUi
+    ldr r3, .Ljp_poultry_state_case_0_item_1_prompt_buffer_offset
+    adds r4, r7, r3
+    movs r6, #0
+    mov sl, r6
+    mov r0, sl
+    strb r0, [r4]
+    adds r0, r5, #0
+    bl GetName__C4Tool
+    mov sb, r0
+    mov r5, sb
+    adds r0, r4, #0
+    bl strlen
+    adds r1, r4, r0
+    mov r8, r1
+    movs r1, #0x63
+    subs r6, r1, r0
+    cmp r6, #0
+    beq .Ljp_poultry_state_case_0_item_1_name_done
+    adds r0, r5, #0
+    bl strlen
+    adds r5, r0, #0
+    cmp r5, r6
+    bls .Ljp_poultry_state_case_0_item_1_copy_name
+    adds r5, r6, #0
+.Ljp_poultry_state_case_0_item_1_copy_name:
+    mov r0, r8
+    mov r1, sb
+    adds r2, r5, #0
+    bl memcpy
+    mov r2, r8
+    adds r0, r2, r5
+    mov r3, sl
+    strb r3, [r0]
+.Ljp_poultry_state_case_0_item_1_name_done:
+    ldr r5, .Ljp_poultry_state_case_0_item_1_blank_line_text
+    mov sb, r5
+    adds r0, r4, #0
+    bl strlen
+    adds r6, r4, r0
+    mov r8, r6
+    movs r1, #0x63
+    subs r6, r1, r0
+    cmp r6, #0
+    beq .Ljp_poultry_state_case_0_item_1_blank_line_done
+    mov r0, sb
+    bl strlen
+    adds r5, r0, #0
+    cmp r5, r6
+    bls .Ljp_poultry_state_case_0_item_1_copy_blank_line
+    adds r5, r6, #0
+.Ljp_poultry_state_case_0_item_1_copy_blank_line:
+    mov r0, r8
+    mov r1, sb
+    adds r2, r5, #0
+    bl memcpy
+    mov r0, r8
+    adds r1, r0, r5
+    movs r0, #0
+    strb r0, [r1]
+.Ljp_poultry_state_case_0_item_1_blank_line_done:
+    ldr r0, .Ljp_poultry_state_case_0_item_1_owned_label_ref
+    ldr r0, [r0]
+    mov sb, r0
+    adds r0, r4, #0
+    bl strlen
+    adds r1, r4, r0
+    mov r8, r1
+    movs r1, #0x63
+    subs r6, r1, r0
+    cmp r6, #0
+    beq .Ljp_poultry_state_case_0_item_1_owned_label_done
+    mov r0, sb
+    bl strlen
+    adds r5, r0, #0
+    cmp r5, r6
+    bls .Ljp_poultry_state_case_0_item_1_copy_owned_label
+    adds r5, r6, #0
+.Ljp_poultry_state_case_0_item_1_copy_owned_label:
+    mov r0, r8
+    mov r1, sb
+    adds r2, r5, #0
+    bl memcpy
+    mov r2, r8
+    adds r1, r2, r5
+    movs r0, #0
+    strb r0, [r1]
+.Ljp_poultry_state_case_0_item_1_owned_label_done:
+    adds r0, r4, #0
+    bl strlen
+    adds r3, r4, r0
+    mov r8, r3
+    movs r1, #0x63
+    subs r6, r1, r0
+    cmp r6, #0
+    beq .Ljp_poultry_state_case_0_item_1_owned_count_done
+    add r0, sp, #0x24
+    bl strlen
+    adds r5, r0, #0
+    cmp r5, r6
+    bls .Ljp_poultry_state_case_0_item_1_copy_owned_count
+    adds r5, r6, #0
+.Ljp_poultry_state_case_0_item_1_copy_owned_count:
+    mov r0, r8
+    add r1, sp, #0x24
+    adds r2, r5, #0
+    bl memcpy
+    mov r6, r8
+    adds r1, r6, r5
+    movs r0, #0
+    strb r0, [r1]
+.Ljp_poultry_state_case_0_item_1_owned_count_done:
+    ldr r0, .Ljp_poultry_state_case_0_item_1_quantity_suffix_ref
+    ldr r0, [r0]
+    mov r8, r0
+    adds r0, r4, #0
+    bl strlen
+    adds r6, r4, r0
+    movs r1, #0x63
+    subs r5, r1, r0
+    cmp r5, #0
+    beq .Ljp_poultry_state_case_0_item_1_quantity_suffix_done
+    mov r0, r8
+    bl strlen
+    adds r4, r0, #0
+    cmp r4, r5
+    bls .Ljp_poultry_state_case_0_item_1_copy_quantity_suffix
+    adds r4, r5, #0
+.Ljp_poultry_state_case_0_item_1_copy_quantity_suffix:
+    adds r0, r6, #0
+    mov r1, r8
+    adds r2, r4, #0
+    bl memcpy
+    adds r1, r6, r4
+    movs r0, #0
+    strb r0, [r1]
+.Ljp_poultry_state_case_0_item_1_quantity_suffix_done:
+    ldr r0, .Ljp_poultry_state_case_0_item_1_prompt_buffer_offset
+    adds r1, r7, r0
+    adds r0, r7, #0
+    bl func_080CA3FC
+    ldr r1, .Ljp_poultry_state_case_0_item_1_widget_offset
+    adds r0, r7, r1
+    ldr r1, [sp, #0x18]
+    ldr r2, [sp, #0x94]
+    movs r3, #5
+    bl func_080CA8B4
 .Ljp_poultry_state_case_0_item_1_continue:
-    jp_code_0803ee_bytes 0x7C2B4, 0x7C2C0
+    ldr r2, .Ljp_poultry_state_case_0_item_1_continue_state_offset
+    adds r1, r7, r2
+    movs r0, #2
+    str r0, [r1]
+    bl .Ljp_poultry_state_cleanup
     .align 2, 0
 .Ljp_poultry_state_case_0_item_1_amount_rucksack_offset: .4byte 0x00001C38
 .Ljp_poultry_state_case_0_item_1_amount_stack_offset: .4byte 0x00001C34
-.Ljp_poultry_state_case_0_item_1_after_amount_literals:
-    jp_code_0803ee_bytes 0x7C2C8, 0x7C2E0
+.Ljp_poultry_state_case_0_item_1_prompt_buffer_offset: .4byte 0x000022B4
+.Ljp_poultry_state_case_0_item_1_blank_line_text: .4byte gText_PoultryShop_BlankLinePair
+.Ljp_poultry_state_case_0_item_1_owned_label_ref: .4byte gShopCommonOwnedQuantityLabelTextRef
+.Ljp_poultry_state_case_0_item_1_quantity_suffix_ref: .4byte gShopCommonQuantitySuffixTextRef
+.Ljp_poultry_state_case_0_item_1_widget_offset: .4byte 0x00000684
+.Ljp_poultry_state_case_0_item_1_continue_state_offset: .4byte 0x000006A4
 .Ljp_poultry_state_case_0_item_2:
     jp_code_0803ee_bytes 0x7C2E0, 0x7C3A0
 .Ljp_poultry_state_case_0_item_3:
