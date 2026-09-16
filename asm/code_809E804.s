@@ -4429,7 +4429,1142 @@ func_080A0A54: @ 0x080A048C
 	bx r0
 	.align 2, 0
 .L080A0A8C: .4byte 0xFFFFE03F
-    jp_code_809_func func_080A0A90, 0xA04C8, 0xA0EB0
+    .global func_080A0A90
+    .thumb_func
+func_080A0A90: @ 0x080A04C8
+	push {r4, r5, lr}
+	sub sp, #8
+	adds r3, r0, #0
+	ldrb r0, [r3, #2]
+	lsls r0, r0, #0x1a
+	cmp r0, #0
+	blt .Ljp_080A0ACC
+	ldr r4, [r3]
+	lsls r0, r4, #0xb
+	lsrs r0, r0, #0x18
+	adds r0, #1
+	str r0, [sp]
+	movs r5, #0xff
+	str r5, [sp, #4]
+	add r2, sp, #4
+	mov r1, sp
+	cmp r0, #0xff
+	bls .Ljp_080A0AB6
+	adds r1, r2, #0
+.Ljp_080A0AB6:
+	ldr r1, [r1]
+	ands r1, r5
+	lsls r1, r1, #0xd
+	ldr r0, .Ljp_080A0AD4 @ =0xFFE01FFF
+	ands r0, r4
+	orrs r0, r1
+	str r0, [r3]
+	ldrb r0, [r3, #2]
+	movs r1, #0x20
+	orrs r0, r1
+	strb r0, [r3, #2]
+.Ljp_080A0ACC:
+	add sp, #8
+	pop {r4, r5}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_080A0AD4: .4byte 0xFFE01FFF
+    .global func_080A0AD8
+    .thumb_func
+func_080A0AD8: @ 0x080A0510
+	push {lr}
+	cmp r1, #1
+	beq .Ljp_080A0AEA
+	cmp r1, #1
+	blo .Ljp_080A0AE6
+	cmp r1, #2
+	beq .Ljp_080A0AEE
+.Ljp_080A0AE6:
+	adds r0, #0x30
+	b .Ljp_080A0AF0
+.Ljp_080A0AEA:
+	adds r0, #0x38
+	b .Ljp_080A0AF0
+.Ljp_080A0AEE:
+	adds r0, #0x40
+.Ljp_080A0AF0:
+	pop {r1}
+	bx r1
+    .global func_080A0AF4
+    .thumb_func
+func_080A0AF4: @ 0x080A052C
+	push {lr}
+	cmp r1, #1
+	beq .Ljp_080A0B06
+	cmp r1, #1
+	blo .Ljp_080A0B02
+	cmp r1, #2
+	beq .Ljp_080A0B0A
+.Ljp_080A0B02:
+	adds r0, #0x48
+	b .Ljp_080A0B0C
+.Ljp_080A0B06:
+	adds r0, #0x50
+	b .Ljp_080A0B0C
+.Ljp_080A0B0A:
+	adds r0, #0x58
+.Ljp_080A0B0C:
+	pop {r1}
+	bx r1
+    .global func_080A0B10
+    .thumb_func
+func_080A0B10: @ 0x080A0548
+	adds r0, #0x60
+	bx lr
+    .global func_080A0B14
+    .thumb_func
+func_080A0B14: @ 0x080A054C
+	adds r0, #0x68
+	bx lr
+    .global func_080A0B18
+    .thumb_func
+func_080A0B18: @ 0x080A0550
+	push {r4, r5, r6, r7, lr}
+	mov r7, sl
+	mov r6, sb
+	mov r5, r8
+	push {r5, r6, r7}
+	sub sp, #0x48
+	adds r7, r0, #0
+	adds r5, r1, #0
+	mov sl, r2
+	str r3, [sp, #0x24]
+	ldrb r1, [r7, #2]
+	movs r0, #0x21
+	rsbs r0, r0, #0
+	ands r0, r1
+	strb r0, [r7, #2]
+	adds r0, r7, #0
+	bl func_080A0490
+	mov sb, r0
+	rsbs r0, r0, #0
+	mov r1, sb
+	orrs r0, r1
+	lsrs r0, r0, #0x1f
+	mov r8, r0
+	adds r4, r7, #0
+	adds r4, #0x70
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+	adds r4, #0x14
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+	adds r4, #0x14
+	adds r0, r4, #0
+	bl GetRivalEventCount__C12Bachelorette
+	cmp r0, #4
+	bls .Ljp_080A0B88
+	ldrb r0, [r5, #9]
+	lsls r0, r0, #0x1e
+	lsrs r0, r0, #0x1e
+	cmp r0, #1
+	bne .Ljp_080A0B9C
+.Ljp_080A0B88:
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r2, r0, #0
+	adds r0, r4, #0
+	mov r1, r8
+	bl DayUpdate__12BachelorettebUi
+.Ljp_080A0B9C:
+	adds r4, r7, #0
+	adds r4, #0xb0
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+	adds r4, #0x14
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+	adds r0, r7, #0
+	adds r0, #0xd8
+	bl func_0809EE4C
+	adds r4, #0x2c
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+	movs r2, #0x82
+	lsls r2, r2, #1
+	adds r4, r7, r2
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+	movs r3, #0x8c
+	lsls r3, r3, #1
+	adds r4, r7, r3
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+	movs r0, #0x96
+	lsls r0, r0, #1
+	adds r4, r7, r0
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+	movs r1, #0xa0
+	lsls r1, r1, #1
+	adds r4, r7, r1
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+	movs r2, #0xaa
+	lsls r2, r2, #1
+	adds r4, r7, r2
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r2, r0, #0
+	adds r0, r4, #0
+	mov r1, r8
+	bl DayUpdate__12BachelorettebUi
+	movs r3, #0xb6
+	lsls r3, r3, #1
+	adds r4, r7, r3
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+	movs r0, #0xc0
+	lsls r0, r0, #1
+	adds r4, r7, r0
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+	movs r1, #0xca
+	lsls r1, r1, #1
+	adds r4, r7, r1
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+	movs r2, #0xd4
+	lsls r2, r2, #1
+	adds r4, r7, r2
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+	movs r3, #0xde
+	lsls r3, r3, #1
+	adds r4, r7, r3
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+	movs r0, #0xe8
+	lsls r0, r0, #1
+	adds r4, r7, r0
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+	movs r1, #0xf2
+	lsls r1, r1, #1
+	adds r4, r7, r1
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r2, r0, #0
+	adds r0, r4, #0
+	mov r1, r8
+	bl DayUpdate__12BachelorettebUi
+	movs r2, #0xfe
+	lsls r2, r2, #1
+	adds r4, r7, r2
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+	movs r3, #0x84
+	lsls r3, r3, #2
+	adds r4, r7, r3
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r2, r0, #0
+	adds r0, r4, #0
+	mov r1, r8
+	bl DayUpdate__12BachelorettebUi
+	movs r0, #0x8a
+	lsls r0, r0, #2
+	adds r4, r7, r0
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+	movs r1, #0x8f
+	lsls r1, r1, #2
+	adds r4, r7, r1
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+	movs r2, #0x94
+	lsls r2, r2, #2
+	adds r4, r7, r2
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+	movs r3, #0x99
+	lsls r3, r3, #2
+	adds r4, r7, r3
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r2, r0, #0
+	adds r0, r4, #0
+	mov r1, r8
+	bl DayUpdate__12BachelorettebUi
+	ldrb r0, [r5, #9]
+	lsls r0, r0, #0x1e
+	lsrs r0, r0, #0x1e
+	cmp r0, #1
+	bne .Ljp_080A0DDE
+	movs r0, #0x9f
+	lsls r0, r0, #2
+	adds r4, r7, r0
+	adds r0, r4, #0
+	bl GetFriendship__C3Npc
+	adds r5, r0, #0
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+	adds r0, r4, #0
+	bl GetFriendship__C3Npc
+	cmp r0, r5
+	bls .Ljp_080A0DDE
+	adds r0, r4, #0
+	bl GetFriendship__C3Npc
+	adds r1, r0, #0
+	subs r1, r1, r5
+	adds r0, r4, #0
+	bl AddFriendship__3Npci
+.Ljp_080A0DDE:
+	movs r1, #0xa4
+	lsls r1, r1, #2
+	adds r0, r7, r1
+	bl func_0809EBEC
+	movs r2, #0xaa
+	lsls r2, r2, #2
+	adds r4, r7, r2
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+	movs r3, #0xaf
+	lsls r3, r3, #2
+	adds r4, r7, r3
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+	movs r0, #0xb4
+	lsls r0, r0, #2
+	adds r4, r7, r0
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+	movs r1, #0xb9
+	lsls r1, r1, #2
+	adds r4, r7, r1
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r2, r0, #0
+	adds r0, r4, #0
+	mov r1, r8
+	bl DayUpdate__12BachelorettebUi
+	movs r2, #0xbf
+	lsls r2, r2, #2
+	adds r4, r7, r2
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+	mov r0, sl
+	adds r0, #0x3a
+	ldrb r0, [r0]
+	lsls r0, r0, #0x19
+	lsrs r0, r0, #0x1e
+	cmp r0, #2
+	bne .Ljp_080A0E88
+	movs r3, #0xc4
+	lsls r3, r3, #2
+	adds r4, r7, r3
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+.Ljp_080A0E88:
+	mov r0, sl
+	adds r0, #0x3b
+	ldrb r0, [r0]
+	lsls r0, r0, #0x1b
+	lsrs r0, r0, #0x1e
+	cmp r0, #2
+	bne .Ljp_080A0EAE
+	movs r0, #0xca
+	lsls r0, r0, #2
+	adds r4, r7, r0
+	bl rand
+	movs r1, #0x64
+	bl __modsi3
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl DayUpdate__3NpcUi
+.Ljp_080A0EAE:
+	ldrb r0, [r7, #3]
+	lsls r0, r0, #0x1e
+	cmp r0, #0
+	bge .Ljp_080A0EBC
+	adds r0, r7, #4
+	bl func_0809EAF8
+.Ljp_080A0EBC:
+	movs r1, #0xcf
+	lsls r1, r1, #2
+	adds r4, r7, r1
+	adds r0, r4, #0
+	bl DayUpdate__13HarvestSprite
+	mov r0, sp
+	movs r1, #0
+	bl func_0809E804
+	adds r0, r4, #0
+	mov r1, sp
+	bl SetLocation__3NpcRC13ActorLocation
+	movs r6, #0
+	str r6, [sp, #8]
+	add r1, sp, #8
+	adds r0, r4, #0
+	bl method_0809E7C8__13HarvestSprite
+	movs r2, #0x87
+	lsls r2, r2, #3
+	adds r5, r7, r2
+	adds r0, r5, #0
+	movs r1, #0
+	bl func_0809E994
+	movs r3, #0xd8
+	lsls r3, r3, #2
+	adds r4, r7, r3
+	adds r0, r4, #0
+	bl DayUpdate__13HarvestSprite
+	mov r0, sp
+	movs r1, #1
+	bl func_0809E804
+	adds r0, r4, #0
+	mov r1, sp
+	bl SetLocation__3NpcRC13ActorLocation
+	str r6, [sp, #0xc]
+	add r1, sp, #0xc
+	adds r0, r4, #0
+	bl method_0809E7C8__13HarvestSprite
+	adds r0, r5, #0
+	movs r1, #1
+	bl func_0809E994
+	movs r0, #0xe1
+	lsls r0, r0, #2
+	adds r4, r7, r0
+	adds r0, r4, #0
+	bl DayUpdate__13HarvestSprite
+	mov r0, sp
+	movs r1, #2
+	bl func_0809E804
+	adds r0, r4, #0
+	mov r1, sp
+	bl SetLocation__3NpcRC13ActorLocation
+	str r6, [sp, #0x10]
+	add r1, sp, #0x10
+	adds r0, r4, #0
+	bl method_0809E7C8__13HarvestSprite
+	adds r0, r5, #0
+	movs r1, #2
+	bl func_0809E994
+	movs r1, #0xea
+	lsls r1, r1, #2
+	adds r4, r7, r1
+	adds r0, r4, #0
+	bl DayUpdate__13HarvestSprite
+	mov r0, sp
+	movs r1, #3
+	bl func_0809E804
+	adds r0, r4, #0
+	mov r1, sp
+	bl SetLocation__3NpcRC13ActorLocation
+	str r6, [sp, #0x14]
+	add r1, sp, #0x14
+	adds r0, r4, #0
+	bl method_0809E7C8__13HarvestSprite
+	adds r0, r5, #0
+	movs r1, #3
+	bl func_0809E994
+	movs r2, #0xf3
+	lsls r2, r2, #2
+	adds r4, r7, r2
+	adds r0, r4, #0
+	bl DayUpdate__13HarvestSprite
+	mov r0, sp
+	movs r1, #4
+	bl func_0809E804
+	adds r0, r4, #0
+	mov r1, sp
+	bl SetLocation__3NpcRC13ActorLocation
+	str r6, [sp, #0x18]
+	add r1, sp, #0x18
+	adds r0, r4, #0
+	bl method_0809E7C8__13HarvestSprite
+	adds r0, r5, #0
+	movs r1, #4
+	bl func_0809E994
+	movs r3, #0xfc
+	lsls r3, r3, #2
+	adds r4, r7, r3
+	adds r0, r4, #0
+	bl DayUpdate__13HarvestSprite
+	mov r0, sp
+	movs r1, #5
+	bl func_0809E804
+	adds r0, r4, #0
+	mov r1, sp
+	bl SetLocation__3NpcRC13ActorLocation
+	str r6, [sp, #0x1c]
+	add r1, sp, #0x1c
+	adds r0, r4, #0
+	bl method_0809E7C8__13HarvestSprite
+	adds r0, r5, #0
+	movs r1, #5
+	bl func_0809E994
+	ldr r0, .Ljp_080A10FC @ =0x00000414
+	adds r4, r7, r0
+	adds r0, r4, #0
+	bl DayUpdate__13HarvestSprite
+	mov r0, sp
+	movs r1, #6
+	bl func_0809E804
+	adds r0, r4, #0
+	mov r1, sp
+	bl SetLocation__3NpcRC13ActorLocation
+	str r6, [sp, #0x20]
+	add r1, sp, #0x20
+	adds r0, r4, #0
+	bl method_0809E7C8__13HarvestSprite
+	adds r0, r5, #0
+	movs r1, #6
+	bl func_0809E994
+	mov r2, sl
+	ldrb r1, [r2, #0x1b]
+	lsrs r1, r1, #7
+	ldrb r2, [r2, #0x1c]
+	movs r0, #1
+	ands r0, r2
+	lsls r0, r0, #1
+	orrs r0, r1
+	cmp r0, #2
+	beq .Ljp_080A104A
+	lsls r0, r2, #0x1d
+	lsrs r0, r0, #0x1e
+	cmp r0, #2
+	beq .Ljp_080A104A
+	lsls r0, r2, #0x1b
+	lsrs r0, r0, #0x1e
+	cmp r0, #2
+	beq .Ljp_080A104A
+	lsls r0, r2, #0x19
+	lsrs r0, r0, #0x1e
+	cmp r0, #2
+	beq .Ljp_080A104A
+	mov r3, sl
+	ldrh r0, [r3, #0x1c]
+	lsls r0, r0, #0x17
+	lsrs r0, r0, #0x1e
+	cmp r0, #2
+	beq .Ljp_080A104A
+	mov r0, sl
+	adds r0, #0x4b
+	ldrb r0, [r0]
+	lsls r0, r0, #0x1e
+	lsrs r0, r0, #0x1e
+	cmp r0, #2
+	bne .Ljp_080A105A
+.Ljp_080A104A:
+	movs r0, #0x8e
+	lsls r0, r0, #3
+	adds r1, r7, r0
+	ldr r0, [r1]
+	cmp r0, #0x3c
+	beq .Ljp_080A105A
+	adds r0, #1
+	str r0, [r1]
+.Ljp_080A105A:
+	adds r4, r7, #0
+	adds r4, #0x98
+	adds r0, r4, #0
+	bl method_0809E4BC__C12Bachelorette
+	mov sl, r4
+	adds r1, r7, #0
+	adds r1, #0x30
+	str r1, [sp, #0x28]
+	adds r2, r7, #0
+	adds r2, #0x38
+	str r2, [sp, #0x2c]
+	adds r3, r7, #0
+	adds r3, #0x40
+	str r3, [sp, #0x30]
+	adds r1, #0x18
+	str r1, [sp, #0x34]
+	adds r2, #0x18
+	str r2, [sp, #0x38]
+	adds r3, #0x18
+	str r3, [sp, #0x3c]
+	adds r1, #0x18
+	str r1, [sp, #0x40]
+	adds r2, #0x18
+	str r2, [sp, #0x44]
+	cmp r0, #4
+	bhi .Ljp_080A112A
+	mov r3, r8
+	cmp r3, #0
+	beq .Ljp_080A109C
+	mov r0, sb
+	cmp r0, #3
+	bne .Ljp_080A112A
+.Ljp_080A109C:
+	ldr r1, [sp, #0x68]
+	movs r2, #0xff
+	lsls r2, r2, #2
+	adds r0, r1, r2
+	bl CountChickens__C4Coop
+	adds r3, r7, #0
+	adds r3, #0x30
+	str r3, [sp, #0x28]
+	adds r1, r7, #0
+	adds r1, #0x38
+	str r1, [sp, #0x2c]
+	adds r2, r7, #0
+	adds r2, #0x40
+	str r2, [sp, #0x30]
+	adds r3, #0x18
+	str r3, [sp, #0x34]
+	adds r1, #0x18
+	str r1, [sp, #0x38]
+	adds r2, #0x18
+	str r2, [sp, #0x3c]
+	adds r3, #0x18
+	str r3, [sp, #0x40]
+	adds r1, #0x18
+	str r1, [sp, #0x44]
+	cmp r0, #8
+	bne .Ljp_080A112A
+	movs r6, #0
+	movs r5, #0
+.Ljp_080A10D6:
+	ldr r2, [sp, #0x68]
+	movs r3, #0xff
+	lsls r3, r3, #2
+	adds r0, r2, r3
+	adds r1, r5, #0
+	bl GetChicken__C4CoopUi
+	cmp r0, #0
+	beq .Ljp_080A10EE
+	bl GetAffection__C6Animal
+	adds r6, r6, r0
+.Ljp_080A10EE:
+	adds r5, #1
+	cmp r5, #7
+	bls .Ljp_080A10D6
+	lsrs r6, r6, #3
+	mov r5, sl
+	ldr r4, .Ljp_080A1100 @ =gUnk_BacheloretteLoveThresholds00
+	b .Ljp_080A1112
+	.align 2, 0
+.Ljp_080A10FC: .4byte 0x00000414
+.Ljp_080A1100: .4byte gUnk_BacheloretteLoveThresholds00
+.Ljp_080A1104:
+	adds r0, r5, #0
+	ldr r1, .Ljp_080A1154 @ =0x000009C4
+	bl AddLove__12Bachelorettei
+	adds r0, r5, #0
+	bl method_0809E550__12Bachelorette
+.Ljp_080A1112:
+	adds r0, r5, #0
+	bl method_0809E4BC__C12Bachelorette
+	cmp r0, #4
+	bhi .Ljp_080A112A
+	mov r0, sl
+	bl method_0809E4BC__C12Bachelorette
+	adds r0, r0, r4
+	ldrb r0, [r0]
+	cmp r6, r0
+	bhs .Ljp_080A1104
+.Ljp_080A112A:
+	movs r1, #0xaa
+	lsls r1, r1, #1
+	adds r0, r7, r1
+	bl method_0809E4BC__C12Bachelorette
+	cmp r0, #4
+	bhi .Ljp_080A1182
+	mov r2, r8
+	cmp r2, #0
+	beq .Ljp_080A1144
+	mov r3, sb
+	cmp r3, #0xc
+	bne .Ljp_080A1182
+.Ljp_080A1144:
+	ldr r0, [r7]
+	lsls r0, r0, #0xb
+	lsrs r6, r0, #0x18
+	movs r0, #0xaa
+	lsls r0, r0, #1
+	adds r5, r7, r0
+	ldr r4, .Ljp_080A1158 @ =gUnk_BacheloretteLoveThresholds01
+	b .Ljp_080A116A
+	.align 2, 0
+.Ljp_080A1154: .4byte 0x000009C4
+.Ljp_080A1158: .4byte gUnk_BacheloretteLoveThresholds01
+.Ljp_080A115C:
+	adds r0, r5, #0
+	ldr r1, .Ljp_080A11AC @ =0x000009C4
+	bl AddLove__12Bachelorettei
+	adds r0, r5, #0
+	bl method_0809E550__12Bachelorette
+.Ljp_080A116A:
+	adds r0, r5, #0
+	bl method_0809E4BC__C12Bachelorette
+	cmp r0, #4
+	bhi .Ljp_080A1182
+	adds r0, r5, #0
+	bl method_0809E4BC__C12Bachelorette
+	adds r0, r0, r4
+	ldrb r0, [r0]
+	cmp r6, r0
+	bhs .Ljp_080A115C
+.Ljp_080A1182:
+	movs r1, #0xf2
+	lsls r1, r1, #1
+	adds r0, r7, r1
+	bl method_0809E4BC__C12Bachelorette
+	cmp r0, #4
+	bhi .Ljp_080A11DA
+	mov r2, r8
+	cmp r2, #0
+	beq .Ljp_080A119C
+	mov r3, sb
+	cmp r3, #0x13
+	bne .Ljp_080A11DA
+.Ljp_080A119C:
+	ldrh r0, [r7]
+	lsls r0, r0, #0x13
+	lsrs r6, r0, #0x19
+	movs r0, #0xf2
+	lsls r0, r0, #1
+	adds r5, r7, r0
+	ldr r4, .Ljp_080A11B0 @ =gUnk_BacheloretteLoveThresholds02
+	b .Ljp_080A11C2
+	.align 2, 0
+.Ljp_080A11AC: .4byte 0x000009C4
+.Ljp_080A11B0: .4byte gUnk_BacheloretteLoveThresholds02
+.Ljp_080A11B4:
+	adds r0, r5, #0
+	ldr r1, .Ljp_080A1208 @ =0x000009C4
+	bl AddLove__12Bachelorettei
+	adds r0, r5, #0
+	bl method_0809E550__12Bachelorette
+.Ljp_080A11C2:
+	adds r0, r5, #0
+	bl method_0809E4BC__C12Bachelorette
+	cmp r0, #4
+	bhi .Ljp_080A11DA
+	adds r0, r5, #0
+	bl method_0809E4BC__C12Bachelorette
+	adds r0, r0, r4
+	ldrb r0, [r0]
+	cmp r6, r0
+	bhs .Ljp_080A11B4
+.Ljp_080A11DA:
+	movs r1, #0x84
+	lsls r1, r1, #2
+	adds r0, r7, r1
+	bl method_0809E4BC__C12Bachelorette
+	cmp r0, #4
+	bhi .Ljp_080A1236
+	mov r2, r8
+	cmp r2, #0
+	beq .Ljp_080A11F4
+	mov r3, sb
+	cmp r3, #0x15
+	bne .Ljp_080A1236
+.Ljp_080A11F4:
+	ldr r0, [sp, #0x24]
+	bl func_0800E970
+	adds r6, r0, #0
+	movs r0, #0x84
+	lsls r0, r0, #2
+	adds r5, r7, r0
+	ldr r4, .Ljp_080A120C @ =gUnk_BacheloretteLoveThresholds03
+	b .Ljp_080A121E
+	.align 2, 0
+.Ljp_080A1208: .4byte 0x000009C4
+.Ljp_080A120C: .4byte gUnk_BacheloretteLoveThresholds03
+.Ljp_080A1210:
+	adds r0, r5, #0
+	ldr r1, .Ljp_080A1260 @ =0x000009C4
+	bl AddLove__12Bachelorettei
+	adds r0, r5, #0
+	bl method_0809E550__12Bachelorette
+.Ljp_080A121E:
+	adds r0, r5, #0
+	bl method_0809E4BC__C12Bachelorette
+	cmp r0, #4
+	bhi .Ljp_080A1236
+	adds r0, r5, #0
+	bl method_0809E4BC__C12Bachelorette
+	adds r0, r0, r4
+	ldrb r0, [r0]
+	cmp r6, r0
+	bhs .Ljp_080A1210
+.Ljp_080A1236:
+	movs r1, #0x99
+	lsls r1, r1, #2
+	adds r0, r7, r1
+	bl method_0809E4BC__C12Bachelorette
+	cmp r0, #4
+	bhi .Ljp_080A128E
+	mov r2, r8
+	cmp r2, #0
+	beq .Ljp_080A1250
+	mov r3, sb
+	cmp r3, #0x19
+	bne .Ljp_080A128E
+.Ljp_080A1250:
+	ldrb r0, [r7]
+	lsls r0, r0, #0x1a
+	lsrs r6, r0, #0x1a
+	movs r0, #0x99
+	lsls r0, r0, #2
+	adds r5, r7, r0
+	ldr r4, .Ljp_080A1264 @ =gUnk_BacheloretteLoveThresholds04
+	b .Ljp_080A1276
+	.align 2, 0
+.Ljp_080A1260: .4byte 0x000009C4
+.Ljp_080A1264: .4byte gUnk_BacheloretteLoveThresholds04
+.Ljp_080A1268:
+	adds r0, r5, #0
+	ldr r1, .Ljp_080A12B4 @ =0x000009C4
+	bl AddLove__12Bachelorettei
+	adds r0, r5, #0
+	bl method_0809E550__12Bachelorette
+.Ljp_080A1276:
+	adds r0, r5, #0
+	bl method_0809E4BC__C12Bachelorette
+	cmp r0, #4
+	bhi .Ljp_080A128E
+	adds r0, r5, #0
+	bl method_0809E4BC__C12Bachelorette
+	adds r0, r0, r4
+	ldrb r0, [r0]
+	cmp r6, r0
+	bhs .Ljp_080A1268
+.Ljp_080A128E:
+	ldrh r0, [r7, #2]
+	lsls r0, r0, #0x17
+	lsrs r0, r0, #0x1d
+	cmp r0, #4
+	bls .Ljp_080A129A
+	b .Ljp_080A13DE
+.Ljp_080A129A:
+	movs r6, #0
+	movs r4, #0
+	movs r5, #0
+.Ljp_080A12A0:
+	adds r0, r5, #0
+	subs r0, #0x17
+	cmp r0, #0xc
+	bhi .Ljp_080A12F0
+	lsls r0, r0, #2
+	ldr r1, .Ljp_080A12B8 @ =.Ljp_080A12BC
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.Ljp_080A12B4: .4byte 0x000009C4
+.Ljp_080A12B8: .4byte .Ljp_080A12BC
+.Ljp_080A12BC: @ jump table
+	.4byte .Ljp_080A1304 @ case 0
+	.4byte .Ljp_080A12F0 @ case 1
+	.4byte .Ljp_080A12F0 @ case 2
+	.4byte .Ljp_080A1304 @ case 3
+	.4byte .Ljp_080A12F0 @ case 4
+	.4byte .Ljp_080A12F0 @ case 5
+	.4byte .Ljp_080A12F0 @ case 6
+	.4byte .Ljp_080A1304 @ case 7
+	.4byte .Ljp_080A12F0 @ case 8
+	.4byte .Ljp_080A12F0 @ case 9
+	.4byte .Ljp_080A1304 @ case 10
+	.4byte .Ljp_080A1304 @ case 11
+	.4byte .Ljp_080A1304 @ case 12
+.Ljp_080A12F0:
+	adds r0, r7, #0
+	adds r1, r5, #0
+	bl func_080A06B0
+	cmp r0, #0
+	beq .Ljp_080A1304
+	bl GetFriendship__C3Npc
+	adds r6, r6, r0
+	adds r4, #1
+.Ljp_080A1304:
+	adds r5, #1
+	cmp r5, #0x2a
+	bls .Ljp_080A12A0
+	adds r0, r6, #0
+	adds r1, r4, #0
+	bl __udivsi3
+	adds r5, r0, #0
+	ldrh r0, [r7, #2]
+	lsls r0, r0, #0x17
+	lsrs r1, r0, #0x1d
+	cmp r1, #4
+	bhi .Ljp_080A13DE
+	ldr r0, .Ljp_080A1324 @ =gUnk_BacheloretteLoveThresholds05
+	adds r0, r1, r0
+	b .Ljp_080A13D8
+	.align 2, 0
+.Ljp_080A1324: .4byte gUnk_BacheloretteLoveThresholds05
+.Ljp_080A1328:
+	mov r1, r8
+	cmp r1, #0
+	beq .Ljp_080A1334
+	mov r2, sb
+	cmp r2, #3
+	bne .Ljp_080A133C
+.Ljp_080A1334:
+	mov r0, sl
+	ldr r1, .Ljp_080A146C @ =0x000009C4
+	bl AddLove__12Bachelorettei
+.Ljp_080A133C:
+	mov r3, r8
+	cmp r3, #0
+	beq .Ljp_080A1348
+	mov r0, sb
+	cmp r0, #0xc
+	bne .Ljp_080A1354
+.Ljp_080A1348:
+	movs r1, #0xaa
+	lsls r1, r1, #1
+	adds r0, r7, r1
+	ldr r1, .Ljp_080A146C @ =0x000009C4
+	bl AddLove__12Bachelorettei
+.Ljp_080A1354:
+	mov r2, r8
+	cmp r2, #0
+	beq .Ljp_080A1360
+	mov r3, sb
+	cmp r3, #0x13
+	bne .Ljp_080A136C
+.Ljp_080A1360:
+	movs r1, #0xf2
+	lsls r1, r1, #1
+	adds r0, r7, r1
+	ldr r1, .Ljp_080A146C @ =0x000009C4
+	bl AddLove__12Bachelorettei
+.Ljp_080A136C:
+	mov r2, r8
+	cmp r2, #0
+	beq .Ljp_080A1378
+	mov r3, sb
+	cmp r3, #0x15
+	bne .Ljp_080A1384
+.Ljp_080A1378:
+	movs r1, #0x84
+	lsls r1, r1, #2
+	adds r0, r7, r1
+	ldr r1, .Ljp_080A146C @ =0x000009C4
+	bl AddLove__12Bachelorettei
+.Ljp_080A1384:
+	mov r2, r8
+	cmp r2, #0
+	beq .Ljp_080A1390
+	mov r3, sb
+	cmp r3, #0x19
+	bne .Ljp_080A139C
+.Ljp_080A1390:
+	movs r1, #0x99
+	lsls r1, r1, #2
+	adds r0, r7, r1
+	ldr r1, .Ljp_080A146C @ =0x000009C4
+	bl AddLove__12Bachelorettei
+.Ljp_080A139C:
+	mov r2, r8
+	cmp r2, #0
+	beq .Ljp_080A13A8
+	mov r3, sb
+	cmp r3, #0x1f
+	bne .Ljp_080A13B4
+.Ljp_080A13A8:
+	movs r1, #0xb9
+	lsls r1, r1, #2
+	adds r0, r7, r1
+	ldr r1, .Ljp_080A146C @ =0x000009C4
+	bl AddLove__12Bachelorettei
+.Ljp_080A13B4:
+	ldrh r2, [r7, #2]
+	lsls r0, r2, #0x17
+	lsrs r0, r0, #0x1d
+	adds r0, #1
+	movs r1, #7
+	ands r0, r1
+	lsls r0, r0, #6
+	ldr r3, .Ljp_080A1470 @ =0xFFFFFE3F
+	adds r1, r3, #0
+	ands r2, r1
+	orrs r2, r0
+	strh r2, [r7, #2]
+	lsls r2, r2, #0x17
+	lsrs r2, r2, #0x1d
+	cmp r2, #4
+	bhi .Ljp_080A13DE
+	ldr r0, .Ljp_080A1474 @ =gUnk_BacheloretteLoveThresholds05
+	adds r0, r2, r0
+.Ljp_080A13D8:
+	ldrb r0, [r0]
+	cmp r5, r0
+	bhs .Ljp_080A1328
+.Ljp_080A13DE:
+	mov r0, sp
+	movs r1, #0
+	bl func_080A17A0
+	ldr r1, [sp, #0x28]
+	mov r0, sp
+	ldm r0!, {r2, r3}
+	stm r1!, {r2, r3}
+	mov r0, sp
+	movs r1, #1
+	bl func_080A17A0
+	ldr r1, [sp, #0x2c]
+	mov r0, sp
+	ldm r0!, {r2, r3}
+	stm r1!, {r2, r3}
+	mov r0, sp
+	movs r1, #2
+	bl func_080A17A0
+	ldr r1, [sp, #0x30]
+	mov r0, sp
+	ldm r0!, {r2, r3}
+	stm r1!, {r2, r3}
+	mov r0, sp
+	movs r1, #0
+	bl func_080A1890
+	ldr r1, [sp, #0x34]
+	mov r0, sp
+	ldm r0!, {r2, r3}
+	stm r1!, {r2, r3}
+	mov r0, sp
+	movs r1, #1
+	bl func_080A1890
+	ldr r1, [sp, #0x38]
+	mov r0, sp
+	ldm r0!, {r2, r3}
+	stm r1!, {r2, r3}
+	mov r0, sp
+	movs r1, #2
+	bl func_080A1890
+	ldr r1, [sp, #0x3c]
+	mov r0, sp
+	ldm r0!, {r2, r3}
+	stm r1!, {r2, r3}
+	mov r0, sp
+	bl func_080A198C
+	ldr r1, [sp, #0x40]
+	mov r0, sp
+	ldm r0!, {r2, r3}
+	stm r1!, {r2, r3}
+	mov r0, sp
+	bl func_080A19EC
+	ldr r1, [sp, #0x44]
+	mov r0, sp
+	ldm r0!, {r2, r3}
+	stm r1!, {r2, r3}
+	add sp, #0x48
+	pop {r3, r4, r5}
+	mov r8, r3
+	mov sb, r4
+	mov sl, r5
+	pop {r4, r5, r6, r7}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_080A146C: .4byte 0x000009C4
+.Ljp_080A1470: .4byte 0xFFFFFE3F
+.Ljp_080A1474: .4byte gUnk_BacheloretteLoveThresholds05
     jp_code_809_func func_080A1478, 0xA0EB0, 0xA0EB8
     jp_code_809_func func_080A1480, 0xA0EB8, 0xA0EBC
     jp_code_809_func func_080A1484, 0xA0EBC, 0xA11D8
