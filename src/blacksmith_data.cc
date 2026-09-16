@@ -2,24 +2,11 @@
 
 #include "item.hh"
 
-// Menu labels precede the menu header and catalog in the original ROM.
+// Menu labels precede the catalog in the original ROM.
 #include FOMT_TEXT_INCLUDE(blacksmith_data_1.cc)
 
-// JP and US encode the tool-upgrade header differently.  Keep their native
-// layouts rather than adding artificial data solely to make the arrays match.
-#if defined(REGION_JP)
-BlacksmithMenuHeader const gBlacksmithMenuHeader = {
-    gText_Blacksmith_ToolUpgradeMenuLabel,
-    0,
-    0,
-    gText_Blacksmith_ToolUpgradeTitle,
-};
-#endif
-
 BlacksmithCatalogEntry const gBlacksmithCatalog[] = {
-#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     { 0, gText_Blacksmith_ToolUpgradeMenuLabel, 0, 0, gText_Blacksmith_ToolUpgradeTitle },
-#endif
     { ITEM_TOOL_BRUSH, gText_Blacksmith_Empty, 800, 1, gText_Blacksmith_Empty },
     { ITEM_TOOL_MILKER, gText_Blacksmith_Empty, 2000, 1, gText_Blacksmith_Empty },
     { ITEM_TOOL_CLIPPER_OR_CLIPPERS, gText_Blacksmith_Empty, 1800, 1, gText_Blacksmith_Empty },

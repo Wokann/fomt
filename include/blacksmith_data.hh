@@ -28,16 +28,6 @@ struct BlacksmithCatalogEntry
     char const * detail_text;
 };
 
-// JP stores its initial menu label as a distinct four-word header before the
-// ten catalog entries. US instead encodes the same data as catalog entry 0.
-struct BlacksmithMenuHeader
-{
-    char const * menu_text;
-    u32 unknown_04;
-    u32 unknown_08;
-    char const * title_text;
-};
-
 extern char const gText_Blacksmith_InsufficientGoldAdamantite[];
 extern char const gText_Blacksmith_InsufficientGoldOrichalc[];
 extern char const gText_Blacksmith_MakerFiveDays[];
@@ -60,9 +50,6 @@ extern char const gText_Blacksmith_NoToolToUpgrade[];
 extern char const gText_Blacksmith_NoOreToUpgrade[];
 extern char const gCppRuntimeBadAlloc_BlacksmithDialogueTrailer[];
 
-#if defined(REGION_JP)
-extern BlacksmithMenuHeader const gBlacksmithMenuHeader;
-#endif
 extern BlacksmithCatalogEntry const gBlacksmithCatalog[];
 
 #endif // BLACKSMITH_DATA_HH

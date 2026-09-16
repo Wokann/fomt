@@ -38,4 +38,4 @@ char const gText_Blacksmith_MakeBracelet[] =
     "ブレスレットを作る";
 
 char const gText_Blacksmith_MakeBroach[] =
-    "ブローチを作る\0\0\0\0";
+    "ブローチを作る";
