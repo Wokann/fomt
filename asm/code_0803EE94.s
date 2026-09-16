@@ -14136,7 +14136,51 @@ func_0807B4C4: @ 0x0807B4C4
 .Ljp_poultry_status_BA10: .4byte 0x000003E7
 .Ljp_poultry_status_BA14: .4byte gText_PoultryShop_Currency
 
-    jp_code_0803ee_func func_0807BE74, 0x7BA18, 0x7CC1C
+    .global func_0807BE74
+    .thumb_func
+func_0807BE74: @ 0x0807BA18
+    push {r4, lr}
+    ldr r0, [r0, #8]
+    movs r2, #0x82
+    lsls r2, r2, #3
+    adds r0, r0, r2
+    bl GetChicken__4CoopUi
+    movs r4, #0xfa
+    lsls r4, r4, #1
+    bl GetProductRank__C9Livestock
+    cmp r0, #4
+    bhi .Ljp_poultry_product_done
+    lsls r0, r0, #2
+    ldr r1, .Ljp_poultry_product_jump_table_ptr
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+    .align 2, 0
+.Ljp_poultry_product_jump_table_ptr: .4byte .Ljp_poultry_product_jump_table
+.Ljp_poultry_product_jump_table:
+    .4byte .Ljp_poultry_product_rank_0
+    .4byte .Ljp_poultry_product_rank_0
+    .4byte .Ljp_poultry_product_rank_0
+    .4byte .Ljp_poultry_product_rank_3
+    .4byte .Ljp_poultry_product_rank_4
+.Ljp_poultry_product_rank_0:
+    movs r4, #0xfa
+    lsls r4, r4, #1
+    b .Ljp_poultry_product_done
+.Ljp_poultry_product_rank_3:
+    movs r4, #0xfa
+    lsls r4, r4, #2
+    b .Ljp_poultry_product_done
+.Ljp_poultry_product_rank_4:
+    movs r4, #0xfa
+    lsls r4, r4, #3
+.Ljp_poultry_product_done:
+    adds r0, r4, #0
+    pop {r4}
+    pop {r1}
+    bx r1
+
+    jp_code_0803ee_func func_0807BA6C, 0x7BA6C, 0x7CC1C
     jp_code_0803ee_func func_0807CC1C, 0x7CC1C, 0x7CC5C
     jp_code_0803ee_func func_0807CC5C, 0x7CC5C, 0x7CD30
     jp_code_0803ee_func func_0807CD30, 0x7CD30, 0x7D8D0
