@@ -19985,7 +19985,50 @@ func_0807E9AC: @ 0x0807E9AC
 	.align 2, 0
 .Ljp_0807E9E8: .4byte vtable_unk_080E7C30_NullTail
 
-    jp_code_0803ee_func func_0807E9EC, 0x7E9EC, 0x7EA3C
+.global func_0807E9EC
+.thumb_func
+func_0807E9EC: @ 0x0807E9EC
+	push {r4, r5, lr}
+	adds r5, r0, #0
+	adds r4, r1, #0
+	ldr r0, [r4, #4]
+	bl func_0807E0C0
+	ldr r1, [r4, #8]
+	movs r0, #0
+	str r0, [r4, #8]
+	str r1, [r5]
+	adds r0, r5, #0
+	pop {r4, r5}
+	pop {r1}
+	bx r1
+
+.global func_0807EA08
+.thumb_func
+func_0807EA08: @ 0x0807EA08
+	push {r4, lr}
+	adds r4, r0, #0
+	bl func_080C797C
+	ldr r0, .Ljp_0807EA34
+	str r0, [r4, #4]
+	ldr r1, .Ljp_0807EA38
+	adds r0, r4, r1
+	movs r1, #0
+	str r1, [r0]
+	movs r2, #0xd5
+	lsls r2, r2, #3
+	adds r0, r4, r2
+	strb r1, [r0]
+	adds r2, #4
+	adds r0, r4, r2
+	str r1, [r0]
+	adds r0, r4, #0
+	pop {r4}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.Ljp_0807EA34: .4byte vtable_unk_080E7C4C
+.Ljp_0807EA38: .4byte 0x000006A4
+
     jp_code_0803ee_func func_0807EA3C, 0x7EA3C, 0x7F118
     jp_code_0803ee_func func_0807F118, 0x7F118, 0x7F158
     jp_code_0803ee_func func_0807F158, 0x7F158, 0x7F1D8
