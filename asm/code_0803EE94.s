@@ -15205,7 +15205,94 @@ sub_0807BD78:
 .Ljp_poultry_state_case_0_item_1_widget_offset: .4byte 0x00000684
 .Ljp_poultry_state_case_0_item_1_continue_state_offset: .4byte 0x000006A4
 .Ljp_poultry_state_case_0_item_2:
-    jp_code_0803ee_bytes 0x7C2E0, 0x7C3A0
+    ldr r3, [r7, #8]
+    ldr r4, .Ljp_poultry_state_case_0_item_2_money_offset
+    adds r0, r3, r4
+    ldr r1, [r0]
+    movs r2, #0
+    ldr r0, [r5, #8]
+    cmp r1, r0
+    bhs .Ljp_poultry_state_case_0_item_2_gold_checked
+    movs r2, #1
+.Ljp_poultry_state_case_0_item_2_gold_checked:
+    cmp r2, #0
+    beq .Ljp_poultry_state_case_0_item_2_check_capacity
+    ldr r1, .Ljp_poultry_state_case_0_item_2_insufficient_gold_text
+    adds r0, r7, #0
+    bl func_080CA3B0
+    movs r5, #0xd2
+    lsls r5, r5, #2
+    adds r0, r7, r5
+    movs r1, #0xe
+    bl func_08050E50
+    ldr r6, .Ljp_poultry_state_case_0_item_2_state_offset
+    adds r1, r7, r6
+    b .Ljp_poultry_state_purchase_continue
+    .align 2, 0
+.Ljp_poultry_state_case_0_item_2_money_offset: .4byte 0x00001AA8
+.Ljp_poultry_state_case_0_item_2_insufficient_gold_text: .4byte gText_PoultryShop_InsufficientGold
+.Ljp_poultry_state_case_0_item_2_state_offset: .4byte 0x000006A4
+.Ljp_poultry_state_case_0_item_2_check_capacity:
+    movs r4, #0x82
+    lsls r4, r4, #3
+    adds r0, r3, r4
+    bl GetCapacity__C4Coop
+    mov r8, r0
+    ldr r0, [r7, #8]
+    adds r0, r0, r4
+    bl CountChickens__C4Coop
+    adds r6, r0, #0
+    movs r5, #0
+    movs r4, #0
+    b .Ljp_poultry_state_case_0_item_2_count_loop_check
+.Ljp_poultry_state_case_0_item_2_count_loop:
+    ldr r0, [r7, #8]
+    movs r1, #0x82
+    lsls r1, r1, #3
+    adds r0, r0, r1
+    adds r1, r4, #0
+    bl IsIncubatorOccupied__C4CoopUi
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Ljp_poultry_state_case_0_item_2_count_next
+    adds r5, #1
+.Ljp_poultry_state_case_0_item_2_count_next:
+    adds r4, #1
+.Ljp_poultry_state_case_0_item_2_count_loop_check:
+    ldr r0, [r7, #8]
+    movs r2, #0x82
+    lsls r2, r2, #3
+    adds r0, r0, r2
+    bl GetIncubatorCapacity__C4Coop
+    cmp r4, r0
+    blo .Ljp_poultry_state_case_0_item_2_count_loop
+    mov r3, r8
+    subs r0, r3, r6
+    cmp r0, r5
+    bne .Ljp_poultry_state_case_0_item_2_name_prompt
+    ldr r1, .Ljp_poultry_state_case_0_item_2_coop_full_text
+    adds r0, r7, #0
+    bl func_080CA3B0
+    b .Ljp_poultry_state_purchase_prepare
+    .align 2, 0
+.Ljp_poultry_state_case_0_item_2_coop_full_text: .4byte gText_PoultryShop_CoopFull
+.Ljp_poultry_state_case_0_item_2_name_prompt:
+    ldr r1, .Ljp_poultry_state_case_0_item_2_name_prompt_text
+    adds r0, r7, #0
+    bl func_080CA3B0
+    movs r5, #0xd2
+    lsls r5, r5, #2
+    adds r0, r7, r5
+    movs r1, #0xf
+    bl func_08050E50
+    ldr r6, .Ljp_poultry_state_case_0_item_2_name_state_offset
+    adds r1, r7, r6
+    movs r0, #3
+    str r0, [r1]
+    bl .Ljp_poultry_state_cleanup
+    .align 2, 0
+.Ljp_poultry_state_case_0_item_2_name_prompt_text: .4byte gText_PoultryShop_NameChickenPrompt
+.Ljp_poultry_state_case_0_item_2_name_state_offset: .4byte 0x000006A4
 .Ljp_poultry_state_case_0_item_3:
     jp_code_0803ee_bytes 0x7C3A0, 0x7C510
 .Ljp_poultry_state_case_0_no_prompt:
@@ -15822,6 +15909,7 @@ sub_0807BD78:
     adds r0, r7, r3
     movs r1, #0xe
     bl func_08050E50
+.Ljp_poultry_state_purchase_prepare:
     ldr r4, .Ljp_poultry_state_case_7_state_offset
     adds r1, r7, r4
 .Ljp_poultry_state_purchase_continue:
