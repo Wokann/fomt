@@ -20304,7 +20304,11 @@ func_0807F1EC:
 func_0807F250:
     jp_code_0803ee_bytes 0x7F250, 0x7F350
     .4byte gWonShopCatalog
-    jp_code_0803ee_bytes 0x7F354, 0x7F820
+    jp_code_0803ee_bytes 0x7F354, 0x7F430
+    .global func_0807F430
+    .thumb_func
+func_0807F430:
+    jp_code_0803ee_bytes 0x7F430, 0x7F820
     .4byte gWonShopCatalog
     jp_code_0803ee_bytes 0x7F824, 0x7F8F4
     .4byte gText_WonShop_ToolCapacityFull
@@ -20335,8 +20339,86 @@ func_0807F250:
     jp_code_0803ee_bytes 0x7FEE0, 0x7FF08
     .4byte gText_WonShop_PurchaseComplete
     jp_code_0803ee_bytes 0x7FF0C, 0x7FFF4
-    jp_code_0803ee_func func_0807FFF4, 0x7FFF4, 0x80034
-    jp_code_0803ee_func func_08080034, 0x80034, 0x80094
+.global func_0807FFF4
+.thumb_func
+func_0807FFF4: @ 0x0807FFF4
+	push {r4, r5, lr}
+	adds r4, r0, #0
+	adds r5, r1, #0
+	ldr r0, .Ljp_08080030
+	str r0, [r4]
+	ldr r1, [r4, #8]
+	cmp r1, #0
+	beq .Ljp_08080010
+	ldr r0, [r1]
+	ldr r2, [r0, #8]
+	adds r0, r1, #0
+	movs r1, #3
+	bl _call_via_r2
+.Ljp_08080010:
+	ldr r1, [r4, #4]
+	cmp r1, #0
+	beq .Ljp_08080022
+	ldr r0, [r1, #4]
+	ldr r2, [r0, #8]
+	adds r0, r1, #0
+	movs r1, #3
+	bl _call_via_r2
+.Ljp_08080022:
+	adds r0, r4, #0
+	adds r1, r5, #0
+	bl func_080007EC
+	pop {r4, r5}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_08080030: .4byte vtable_unk_080E7C68_NullTail
+
+.global func_08080034
+.thumb_func
+func_08080034: @ 0x08080034
+	push {r4, r5, lr}
+	adds r5, r0, #0
+	adds r4, r1, #0
+	ldr r0, [r4, #4]
+	bl func_0807F430
+	ldr r1, [r4, #8]
+	movs r0, #0
+	str r0, [r4, #8]
+	str r1, [r5]
+	adds r0, r5, #0
+	pop {r4, r5}
+	pop {r1}
+	bx r1
+
+    jp_code_0803ee_func func_08080050, 0x80050, 0x80060
+
+.global func_08080060
+.thumb_func
+func_08080060: @ 0x08080060
+	push {r4, lr}
+	adds r4, r0, #0
+	bl func_080C797C
+	ldr r0, .Ljp_0808008C
+	str r0, [r4, #4]
+	ldr r1, .Ljp_08080090
+	adds r0, r4, r1
+	movs r1, #0
+	str r1, [r0]
+	movs r2, #0xd5
+	lsls r2, r2, #3
+	adds r0, r4, r2
+	strb r1, [r0]
+	adds r2, #4
+	adds r0, r4, r2
+	strb r1, [r0]
+	adds r0, r4, #0
+	pop {r4}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.Ljp_0808008C: .4byte vtable_unk_080E7C84
+.Ljp_08080090: .4byte 0x000006A4
     jp_code_0803ee_func func_08080094, 0x80094, 0x8093C
     jp_code_0803ee_func func_0808093C, 0x8093C, 0x8097C
     jp_code_0803ee_func func_0808097C, 0x8097C, 0x809CC
