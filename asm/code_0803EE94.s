@@ -14770,7 +14770,71 @@ sub_0807BD78:
 .Ljp_poultry_state_case_1_reset_pending_offset: .4byte 0x000006A3
 .Ljp_poultry_state_case_1_reset_state_offset: .4byte 0x000006A4
 .Ljp_poultry_state_case_2:
-    jp_code_0803ee_bytes 0x7C6C8, 0x7C8B8
+    adds r0, r7, #0
+    bl func_080088CC
+    adds r4, r0, #0
+    movs r0, #1
+    ands r4, r0
+    cmp r4, #0
+    bne .Ljp_poultry_state_case_2_purchase
+    b .Ljp_poultry_state_case_2_alternate
+.Ljp_poultry_state_case_2_purchase:
+    ldr r6, .Ljp_poultry_state_case_2_widget_offset
+    adds r0, r7, r6
+    ldr r1, [r0, #0x14]
+    mov r8, r1
+    bl func_080CAAF4
+    add r3, sp, #0x10
+    movs r2, #0xa9
+    lsls r2, r2, #2
+    adds r4, r7, r2
+    ldr r0, [r7, #0x10]
+    lsls r0, r0, #2
+    adds r0, #4
+    adds r0, r4, r0
+    ldr r0, [r0]
+    lsls r1, r0, #2
+    adds r1, r1, r0
+    lsls r1, r1, #2
+    ldr r2, .Ljp_poultry_state_case_2_catalog
+    adds r0, r3, #0
+    adds r1, r1, r2
+    ldm r1!, {r2, r5, r6}
+    stm r0!, {r2, r5, r6}
+    ldm r1!, {r5, r6}
+    stm r0!, {r5, r6}
+    ldr r0, [r7, #8]
+    ldr r1, .Ljp_poultry_state_case_2_storage_offset
+    adds r0, r0, r1
+    ldr r1, [r3, #8]
+    mov r2, r8
+    muls r2, r1, r2
+    adds r1, r2, #0
+    bl func_0809ACC0
+    adds r0, r7, #0
+    bl func_080C8550
+    ldr r0, [r7, #0x10]
+    lsls r0, r0, #2
+    adds r0, #4
+    adds r4, r4, r0
+    ldr r4, [r4]
+    cmp r4, #0
+    beq .Ljp_poultry_state_case_2_feed
+    cmp r4, #1
+    beq .Ljp_poultry_state_case_2_medicine
+    b .Ljp_poultry_state_case_2_complete
+    .align 2, 0
+.Ljp_poultry_state_case_2_widget_offset: .4byte 0x00000684
+.Ljp_poultry_state_case_2_catalog: .4byte gPoultryShopCatalog
+.Ljp_poultry_state_case_2_storage_offset: .4byte 0x00001AA8
+.Ljp_poultry_state_case_2_feed:
+    jp_code_0803ee_bytes 0x7C744, 0x7C76C
+.Ljp_poultry_state_case_2_medicine:
+    jp_code_0803ee_bytes 0x7C76C, 0x7C860
+.Ljp_poultry_state_case_2_complete:
+    jp_code_0803ee_bytes 0x7C860, 0x7C878
+.Ljp_poultry_state_case_2_alternate:
+    jp_code_0803ee_bytes 0x7C878, 0x7C8B8
 .Ljp_poultry_state_case_3:
     movs r1, #0xd4
     lsls r1, r1, #2
