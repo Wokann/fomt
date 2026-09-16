@@ -5911,7 +5911,131 @@ func_080A1484: @ 0x080A0EBC
 	pop {r0}
 	bx r0
 	.align 2, 0
-    jp_code_809_func func_080A17A0, 0xA11D8, 0xA12C8
+    .global func_080A17A0
+    .thumb_func
+func_080A17A0: @ 0x080A11D8
+	push {r4, r5, r6, lr}
+	sub sp, #8
+	adds r6, r0, #0
+	cmp r1, #1
+	beq .Ljp_080A17F0
+	cmp r1, #1
+	blo .Ljp_080A17B2
+	cmp r1, #2
+	beq .Ljp_080A1834
+.Ljp_080A17B2:
+	mov r4, sp
+	movs r2, #7
+	ldrh r1, [r4]
+	ldr r3, .Ljp_080A17EC @ =0xFFFFFC00
+	adds r0, r3, #0
+	ands r0, r1
+	orrs r0, r2
+	strh r0, [r4]
+	ldrb r1, [r4, #1]
+	movs r2, #3
+	adds r0, r2, #0
+	ands r0, r1
+	movs r1, #0x20
+	orrs r0, r1
+	strb r0, [r4, #1]
+	movs r5, #6
+	ldrh r1, [r4, #2]
+	adds r0, r3, #0
+	ands r0, r1
+	orrs r0, r5
+	strh r0, [r4, #2]
+	ldrb r0, [r4, #3]
+	ands r2, r0
+	movs r0, #0x60
+	orrs r2, r0
+	strb r2, [r4, #3]
+	movs r1, #5
+	b .Ljp_080A186A
+	.align 2, 0
+.Ljp_080A17EC: .4byte 0xFFFFFC00
+.Ljp_080A17F0:
+	mov r3, sp
+	movs r4, #7
+	ldrh r1, [r3]
+	ldr r2, .Ljp_080A1830 @ =0xFFFFFC00
+	adds r0, r2, #0
+	ands r0, r1
+	orrs r0, r4
+	strh r0, [r3]
+	movs r5, #0xe0
+	ldrb r4, [r3, #1]
+	movs r1, #3
+	adds r0, r1, #0
+	ands r0, r4
+	orrs r0, r5
+	strb r0, [r3, #1]
+	movs r5, #5
+	ldrh r4, [r3, #2]
+	adds r0, r2, #0
+	ands r0, r4
+	orrs r0, r5
+	strh r0, [r3, #2]
+	movs r4, #0xa0
+	ldrb r0, [r3, #3]
+	ands r1, r0
+	orrs r1, r4
+	strb r1, [r3, #3]
+	movs r1, #4
+	ldrh r0, [r3, #4]
+	ands r2, r0
+	orrs r2, r1
+	strh r2, [r3, #4]
+	b .Ljp_080A1872
+	.align 2, 0
+.Ljp_080A1830: .4byte 0xFFFFFC00
+.Ljp_080A1834:
+	mov r4, sp
+	movs r2, #7
+	ldrh r1, [r4]
+	ldr r3, .Ljp_080A188C @ =0xFFFFFC00
+	adds r0, r3, #0
+	ands r0, r1
+	orrs r0, r2
+	strh r0, [r4]
+	ldrb r1, [r4, #1]
+	movs r2, #3
+	adds r0, r2, #0
+	ands r0, r1
+	movs r1, #0x20
+	orrs r0, r1
+	strb r0, [r4, #1]
+	movs r5, #6
+	ldrh r1, [r4, #2]
+	adds r0, r3, #0
+	ands r0, r1
+	orrs r0, r5
+	strh r0, [r4, #2]
+	movs r1, #0xe0
+	ldrb r0, [r4, #3]
+	ands r2, r0
+	orrs r2, r1
+	strb r2, [r4, #3]
+	movs r1, #3
+.Ljp_080A186A:
+	ldrh r0, [r4, #4]
+	ands r3, r0
+	orrs r3, r1
+	strh r3, [r4, #4]
+.Ljp_080A1872:
+	movs r4, #0
+	adds r0, r6, #0
+	mov r1, sp
+	movs r2, #6
+	bl memcpy
+	strb r4, [r6, #6]
+	adds r0, r6, #0
+	add sp, #8
+	pop {r4, r5, r6}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.Ljp_080A188C: .4byte 0xFFFFFC00
     jp_code_809_func func_080A1890, 0xA12C8, 0xA13C4
     jp_code_809_func func_080A198C, 0xA13C4, 0xA1424
     jp_code_809_func func_080A19EC, 0xA1424, 0xA1570
