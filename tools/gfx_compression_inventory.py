@@ -19,7 +19,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 sys.path.insert(0, str(Path(__file__).parent / "scripts"))
 
-from decompress import UnpackException, unpack  # type: ignore[import-not-found]
+from decompress import UnpackException, unpack_with_consumed  # type: ignore[import-not-found]
 from gfx_incbin_inventory import Range, iter_ranges
 
 
@@ -31,6 +31,7 @@ class Candidate:
     rom: str
     offset: int
     container_end: int
+    consumed_size: int
     decoded_size: int
     format_spec: str
     ladder_spec: str
@@ -48,7 +49,7 @@ def decode_candidate(root: Path, entry: Range) -> Candidate | None:
     if rom[entry.offset] != 0x70:
         return None
     try:
-        payload, format_spec, ladder_spec = unpack(rom, entry.offset)
+        payload, format_spec, ladder_spec, consumed_size = unpack_with_consumed(rom, entry.offset)
     except (UnpackException, IndexError, ValueError):
         return None
     return Candidate(
@@ -58,6 +59,7 @@ def decode_candidate(root: Path, entry: Range) -> Candidate | None:
         rom=entry.rom,
         offset=entry.offset,
         container_end=entry.offset + entry.length,
+        consumed_size=consumed_size,
         decoded_size=len(payload),
         format_spec=format_spec,
         ladder_spec=ladder_spec,
@@ -79,13 +81,13 @@ def main() -> None:
         with arguments.csv.open("w", encoding="utf-8", newline="") as handle:
             writer = csv.writer(handle)
             writer.writerow((
-                "rom", "source", "line", "symbol", "offset", "container_end",
+                "rom", "source", "line", "symbol", "offset", "container_end", "consumed_size",
                 "decoded_size", "format", "ladder",
             ))
             for candidate in candidates:
                 writer.writerow((
                     candidate.rom, candidate.source, candidate.line, candidate.symbol,
-                    f"0x{candidate.offset:X}", f"0x{candidate.container_end:X}",
+                    f"0x{candidate.offset:X}", f"0x{candidate.container_end:X}", f"0x{candidate.consumed_size:X}",
                     f"0x{candidate.decoded_size:X}", candidate.format_spec, candidate.ladder_spec,
                 ))
         return
@@ -96,6 +98,7 @@ def main() -> None:
         print(
             f"{candidate.rom:15} {candidate.source}:{candidate.line} {name}: "
             f"0x{candidate.offset:08X} within 0x{candidate.offset:08X}-0x{candidate.container_end:08X}; "
+            f"decoder reads {candidate.consumed_size:#x}; "
             f"output {candidate.decoded_size:#x}, format {candidate.format_spec}, ladder {candidate.ladder_spec}"
         )
 

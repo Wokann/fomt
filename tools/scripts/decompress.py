@@ -517,7 +517,7 @@ class UnpackException(Exception):
     pass
 
 
-def unpack(data: bytes, offset: int = 0) -> tuple[bytes, str, str]:
+def _unpack(data: bytes, offset: int = 0) -> tuple[bytes, str, str, int]:
     head = int.from_bytes(data[offset : offset + 4], byteorder="little")
 
     if (head & 0xFF) != 0x70 or (head >> 8) > 0x40000:
@@ -557,14 +557,35 @@ def unpack(data: bytes, offset: int = 0) -> tuple[bytes, str, str]:
     if lzss_stream.overflew():
         raise UnpackException("LZSS stream overflew")
 
-    # packed_length = bit_reader.current_offset - offset
+    # The reader obtains source data in little-endian words, so this is the
+    # aligned source interval actually read by the retail-compatible decoder.
+    # It is intentionally not inferred from a surrounding incbin container.
+    packed_length = bit_reader.current_offset - offset
 
     DIFF_FUNCS[diff_fmt](lzss_stream.data)
 
     fmt_spec = f"{atom_fmt}{lzss_fmt}{diff_fmt}"
     lad_spec = lzss_stream.ladder_spec
 
-    return lzss_stream.data, fmt_spec, lad_spec
+    return lzss_stream.data, fmt_spec, lad_spec, packed_length
+
+
+def unpack(data: bytes, offset: int = 0) -> tuple[bytes, str, str]:
+    """Decode one Popuri stream without exposing its source-read boundary."""
+
+    decoded, format_spec, ladder_spec, _packed_length = _unpack(data, offset)
+    return decoded, format_spec, ladder_spec
+
+
+def unpack_with_consumed(data: bytes, offset: int = 0) -> tuple[bytes, str, str, int]:
+    """Decode one Popuri stream and return its aligned consumed source range.
+
+    ``consumed`` is the number of source bytes read in four-byte units by the
+    decoder.  It is suitable for auditing a proposed fixed packed slot, but
+    does not itself prove ownership of bytes following the stream.
+    """
+
+    return _unpack(data, offset)
 
 
 def main(args):

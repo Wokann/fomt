@@ -12,6 +12,12 @@ DMA copies, OAM tables, indirect pointer loads, or code paths whose target
 cannot be recovered statically. It is an auditable subset used to choose safe
 next graphics families.
 
+`tools/gfx_compression_inventory.py` now records the aligned number of source
+bytes actually read by the Popuri decoder for every successful candidate. This
+is an audit bound, not an ownership assertion: surrounding `incbin` bytes may
+still belong to another record, and a managed editable source is added only
+after a fixed-slot encoder can reproduce an edited payload within that bound.
+
 ## Classified direct consumers
 
 | Consumer group | Labels / streams | Four-region state | Pipeline state |
@@ -41,6 +47,15 @@ stream, these were observed:
 | `020` / `030` Raw-LZ | all three managed UI groups; several remaining tilemap candidates | `tools/marvelous_codec.py` has a strict checked encoder. Edited data remains subject to its fixed original slot size. |
 | `230` | `086FB004`, `0875822C`, `0874A9C0` | The generic Huffman-8/LZ3 encoder strictly decodes, but its `086FB004` output is `0x21C0`, exceeding the `0x2198` retail slot even without an edit. No fixed-slot encoder has been verified, so these are not presented as editable source assets. |
 | invalid header at assembly-label boundary | `0852AA6C` | The selected label range is not itself a standalone `Unpack` stream. It must be split from its real runtime consumer before any extraction. |
+
+The separate `gUnk_086FD240` field-data stream consumed by `func_080B55D0`
+is also now bounded by decoder evidence: each retail ROM has the same
+`0x590`-byte aligned stream, which decodes to `0x1A40` bytes with format
+`134` and ladder `61012`. The routine copies a `0x800`-byte `32x32` tilemap
+view from decoded offset `0x88A`, selecting `0x40` bytes from each `0x78`-byte
+row. It remains reference/audit data: the generic encoder expands an isolated
+map edit beyond the verified `0x590` slot, so there is no safe editable rebuild
+path yet.
 
 ## Verification rule
 
