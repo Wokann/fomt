@@ -52,10 +52,12 @@ sources.  No arbitrary tile-grid PNG or JSON layout is treated as a source
 asset: a future visual pipeline must still establish the companion palette and
 tilemap/OAM layout.
 
-The scanner also reports direct dynamic-text transfers and small UI-tile
-candidates that do not yet have a complete source/layout audit.  They remain
-in the CSV as leads only; this document does not promote them to graphics
-assets merely because their destinations are in VRAM.
+Every static `g*` source label currently found by this conservative scan is
+now classified above: it is either already covered by an icon PNG pipeline or
+preserved as a separately bounded native 4bpp tile record.  This does not
+claim that every ROM graphic has been found: calls through pointers, runtime
+descriptors, archive dispatch, or non-literal VRAM destinations remain outside
+this scanner's deliberately narrow scope.
 
 Generate the machine-readable scan with:
 
