@@ -3819,7 +3819,107 @@ func_080A05E4: @ 0x080A001C
 	adds r0, #0x68
 	bx lr
 
-    jp_code_809_func func_080A05E8, 0xA0020, 0xA00E8
+    .global func_080A05E8
+    .thumb_func
+func_080A05E8: @ 0x080A0020
+	push {r4, r5, r6, r7, lr}
+	mov r7, sb
+	mov r6, r8
+	push {r6, r7}
+	sub sp, #0x38
+	adds r7, r0, #0
+	mov sb, r1
+	ldrb r1, [r7, #3]
+	lsls r0, r1, #0x1e
+	lsrs r0, r0, #0x1f
+	mov r8, r0
+	cmp r0, #0
+	bne .L080A069E
+	movs r0, #2
+	orrs r0, r1
+	strb r0, [r7, #3]
+	add r1, sp, #0x30
+	movs r4, #0x1d
+	ldrh r2, [r1]
+	ldr r3, .L080A06AC @ =0xFFFFFC00
+	adds r0, r3, #0
+	ands r0, r2
+	orrs r0, r4
+	strh r0, [r1]
+	movs r6, #0x90
+	ldrb r4, [r1, #1]
+	movs r2, #3
+	adds r0, r2, #0
+	ands r0, r4
+	orrs r0, r6
+	strb r0, [r1, #1]
+	movs r5, #1
+	ldrh r4, [r1, #2]
+	adds r0, r3, #0
+	ands r0, r4
+	orrs r0, r5
+	strh r0, [r1, #2]
+	ldrb r0, [r1, #3]
+	ands r2, r0
+	orrs r2, r6
+	strb r2, [r1, #3]
+	ldrh r0, [r1, #4]
+	ands r3, r0
+	orrs r3, r5
+	strh r3, [r1, #4]
+	add r4, sp, #0x28
+	adds r0, r4, #0
+	movs r2, #6
+	bl memcpy
+	mov r0, r8
+	strb r0, [r4, #6]
+	mov r0, sp
+	mov r1, sb
+	adds r2, r4, #0
+	bl func_0809EA6C
+	adds r1, r7, #4
+	mov r0, sp
+	ldm r0!, {r2, r3, r4}
+	stm r1!, {r2, r3, r4}
+	ldm r0!, {r2, r3}
+	stm r1!, {r2, r3}
+	adds r0, r7, #0
+	adds r0, #0x18
+	add r1, sp, #0x14
+	bl strcpy
+	adds r1, r7, #0
+	adds r1, #0x28
+	add r0, sp, #0x24
+	ldrb r0, [r0]
+	strb r0, [r1]
+	mov r0, sp
+	adds r0, #0x25
+	ldrb r0, [r0]
+	adds r1, #1
+	strb r0, [r1]
+	mov r0, sp
+	adds r0, #0x26
+	ldrb r1, [r0]
+	lsls r1, r1, #0x1f
+	adds r3, r7, #0
+	adds r3, #0x2a
+	lsrs r1, r1, #0x1f
+	ldrb r2, [r3]
+	movs r0, #2
+	rsbs r0, r0, #0
+	ands r0, r2
+	orrs r0, r1
+	strb r0, [r3]
+.L080A069E:
+	add sp, #0x38
+	pop {r3, r4}
+	mov r8, r3
+	mov sb, r4
+	pop {r4, r5, r6, r7}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.L080A06AC: .4byte 0xFFFFFC00
     jp_code_809_func func_080A06B0, 0xA00E8, 0xA02B0
     jp_code_809_func func_080A0878, 0xA02B0, 0xA0368
     jp_code_809_func func_080A0930, 0xA0368, 0xA043C
