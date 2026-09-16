@@ -5956,7 +5956,6 @@ extern RawVTableFunction const vtable_unk_080E7CD8[]
         nullptr,
         nullptr,
         func_08081DC8,
-        nullptr,
 #else
         nullptr,
         nullptr,
@@ -5964,6 +5963,15 @@ extern RawVTableFunction const vtable_unk_080E7CD8[]
         func_08082184,
 #endif
     };
+
+#if defined(REGION_JP)
+// This final null word is directly addressed by the blacksmith result helper.
+// Keep it as a real object instead of a vtable + offset expression.
+extern RawVTableFunction const vtable_unk_080E7CD8_NullTail[]
+    SECTION(".rodata.vtable_7cd8") = {
+        nullptr,
+    };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E7CE8[]
     SECTION(".rodata.vtable_7ce8") = {
