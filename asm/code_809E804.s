@@ -4230,7 +4230,124 @@ func_080A0878: @ 0x080A02B0
 .L080A092C:
 	pop {r1}
 	bx r1
-    jp_code_809_func func_080A0930, 0xA0368, 0xA043C
+    .global func_080A0930
+    .thumb_func
+func_080A0930: @ 0x080A0368
+	push {lr}
+	adds r2, r0, #0
+	adds r0, r1, #0
+	subs r0, #0x24
+	cmp r0, #6
+	bhi .L080A0968
+	lsls r0, r0, #2
+	ldr r1, .L080A0948 @ =.L080A094C
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.L080A0948: .4byte .L080A094C
+.L080A094C: @ jump table
+	.4byte .L080A096C @ case 0
+	.4byte .L080A0972 @ case 1
+	.4byte .L080A0978 @ case 2
+	.4byte .L080A097E @ case 3
+	.4byte .L080A0984 @ case 4
+	.4byte .L080A098A @ case 5
+	.4byte .L080A0990 @ case 6
+.L080A0968:
+	movs r0, #0
+	b .L080A0994
+.L080A096C:
+	movs r1, #0xcf
+	lsls r1, r1, #2
+	b .L080A0992
+.L080A0972:
+	movs r1, #0xd8
+	lsls r1, r1, #2
+	b .L080A0992
+.L080A0978:
+	movs r1, #0xe1
+	lsls r1, r1, #2
+	b .L080A0992
+.L080A097E:
+	movs r1, #0xea
+	lsls r1, r1, #2
+	b .L080A0992
+.L080A0984:
+	movs r1, #0xf3
+	lsls r1, r1, #2
+	b .L080A0992
+.L080A098A:
+	movs r1, #0xfc
+	lsls r1, r1, #2
+	b .L080A0992
+.L080A0990:
+	ldr r1, .L080A0998 @ =0x00000414
+.L080A0992:
+	adds r0, r2, r1
+.L080A0994:
+	pop {r1}
+	bx r1
+	.align 2, 0
+.L080A0998: .4byte 0x00000414
+.global func_080A03D4
+    .thumb_func
+func_080A03D4: @ 0x080A03D4
+	push {lr}
+	adds r2, r0, #0
+	cmp r1, #6
+	bhi .Ljp_080A0408
+	lsls r0, r1, #2
+	ldr r1, .Ljp_080A03E8 @ =.Ljp_080A03EC
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.Ljp_080A03E8: .4byte .Ljp_080A03EC
+.Ljp_080A03EC: @ jump table
+	.4byte .Ljp_080A040C @ case 0
+	.4byte .Ljp_080A0412 @ case 1
+	.4byte .Ljp_080A0418 @ case 2
+	.4byte .Ljp_080A041E @ case 3
+	.4byte .Ljp_080A0424 @ case 4
+	.4byte .Ljp_080A042A @ case 5
+	.4byte .Ljp_080A0430 @ case 6
+.Ljp_080A0408:
+	movs r0, #0
+	b .Ljp_080A0434
+.Ljp_080A040C:
+	movs r1, #0xcf
+	lsls r1, r1, #2
+	b .Ljp_080A0432
+.Ljp_080A0412:
+	movs r1, #0xd8
+	lsls r1, r1, #2
+	b .Ljp_080A0432
+.Ljp_080A0418:
+	movs r1, #0xe1
+	lsls r1, r1, #2
+	b .Ljp_080A0432
+.Ljp_080A041E:
+	movs r1, #0xea
+	lsls r1, r1, #2
+	b .Ljp_080A0432
+.Ljp_080A0424:
+	movs r1, #0xf3
+	lsls r1, r1, #2
+	b .Ljp_080A0432
+.Ljp_080A042A:
+	movs r1, #0xfc
+	lsls r1, r1, #2
+	b .Ljp_080A0432
+.Ljp_080A0430:
+	ldr r1, .Ljp_080A0438 @ =0x00000414
+.Ljp_080A0432:
+	adds r0, r2, r1
+.Ljp_080A0434:
+	pop {r1}
+	bx r1
+	.align 2, 0
+.Ljp_080A0438: .4byte 0x00000414
     jp_code_809_func func_080A0A04, 0xA043C, 0xA0454
     jp_code_809_func func_080A0A1C, 0xA0454, 0xA048C
     jp_code_809_func func_080A0A54, 0xA048C, 0xA04C8

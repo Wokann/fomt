@@ -2801,7 +2801,7 @@ func_08033928:
     strb	r6, [r0, #0]
     adds	r0, r4, #0
     adds	r1, r6, #0
-    bl func_080A05E8 + 0x3B4
+    bl func_080A03D4
     str	r0, [r7, #52]	@ 0x34
     movs	r0, #135	@ 0x87
     lsls	r0, r0, #3
