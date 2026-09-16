@@ -3687,7 +3687,138 @@ func_080A0504: @ 0x0809FF3C
 	bx r1
 	.align 2, 0
 
-    jp_code_809_func func_080A0518, 0x9FF50, 0xA0020
+    .global func_080A0518
+    .thumb_func
+func_080A0518: @ 0x0809FF50
+	push {r4, r5, r6, lr}
+	adds r6, r0, #0
+	movs r5, #1
+	movs r4, #1
+.L080A0520:
+	adds r0, r4, #0
+	subs r0, #0x17
+	cmp r0, #0xc
+	bhi .L080A056C
+	lsls r0, r0, #2
+	ldr r1, .L080A0534 @ =.L080A0538
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.L080A0534: .4byte .L080A0538
+.L080A0538: @ jump table
+	.4byte .L080A0582 @ case 0
+	.4byte .L080A056C @ case 1
+	.4byte .L080A056C @ case 2
+	.4byte .L080A0582 @ case 3
+	.4byte .L080A056C @ case 4
+	.4byte .L080A056C @ case 5
+	.4byte .L080A056C @ case 6
+	.4byte .L080A0582 @ case 7
+	.4byte .L080A056C @ case 8
+	.4byte .L080A0582 @ case 9
+	.4byte .L080A056C @ case 10
+	.4byte .L080A056C @ case 11
+	.4byte .L080A0582 @ case 12
+.L080A056C:
+	adds r0, r6, #0
+	adds r1, r4, #0
+	bl func_080A0030
+	cmp r0, #0
+	beq .L080A0582
+	bl GetFriendship__C3Npc
+	cmp r0, #0xf9
+	bhi .L080A0582
+	movs r5, #0
+.L080A0582:
+	adds r4, #1
+	cmp r4, #0x2a
+	bls .L080A0520
+	adds r0, r5, #0
+	pop {r4, r5, r6}
+	pop {r1}
+	bx r1
+
+    .global func_080A0590
+    .thumb_func
+func_080A0590: @ 0x0809FFC8
+	ldrb r0, [r0]
+	lsls r0, r0, #0x1a
+	lsrs r0, r0, #0x1a
+	bx lr
+
+    .global func_080A0598
+    .thumb_func
+func_080A0598: @ 0x0809FFD0
+	ldrh r0, [r0]
+	lsls r0, r0, #0x13
+	lsrs r0, r0, #0x19
+	bx lr
+
+    .global func_080A05A0
+    .thumb_func
+func_080A05A0: @ 0x0809FFD8
+	ldr r0, [r0]
+	lsls r0, r0, #0xb
+	lsrs r0, r0, #0x18
+	bx lr
+
+    .global func_080A05A8
+    .thumb_func
+func_080A05A8: @ 0x0809FFE0
+	push {lr}
+	cmp r1, #1
+	beq .L080A05BA
+	cmp r1, #1
+	bcc .L080A05B6
+	cmp r1, #2
+	beq .L080A05BE
+.L080A05B6:
+	adds r0, #0x30
+	b .L080A05C0
+.L080A05BA:
+	adds r0, #0x38
+	b .L080A05C0
+.L080A05BE:
+	adds r0, #0x40
+.L080A05C0:
+	pop {r1}
+	bx r1
+
+    .global func_080A05C4
+    .thumb_func
+func_080A05C4: @ 0x0809FFFC
+	push {lr}
+	cmp r1, #1
+	beq .L080A05D6
+	cmp r1, #1
+	bcc .L080A05D2
+	cmp r1, #2
+	beq .L080A05DA
+.L080A05D2:
+	adds r0, #0x48
+	b .L080A05DC
+.L080A05D6:
+	adds r0, #0x50
+	b .L080A05DC
+.L080A05DA:
+	adds r0, #0x58
+.L080A05DC:
+	pop {r1}
+	bx r1
+
+    .global func_080A05E0
+    .thumb_func
+func_080A05E0: @ 0x080A0018
+	adds r0, #0x60
+	bx lr
+
+    .global func_080A05E4
+    .thumb_func
+func_080A05E4: @ 0x080A001C
+	adds r0, #0x68
+	bx lr
+
     jp_code_809_func func_080A05E8, 0xA0020, 0xA00E8
     jp_code_809_func func_080A06B0, 0xA00E8, 0xA02B0
     jp_code_809_func func_080A0878, 0xA02B0, 0xA0368
@@ -7982,13 +8113,78 @@ func_080A0518: @ 0x080A0518
 	pop {r4, r5, r6}
 	pop {r1}
 	bx r1
-.L080A0590:
-	.byte 0x00, 0x78, 0x80, 0x06, 0x80, 0x0E, 0x70, 0x47, 0x00, 0x88, 0xC0, 0x04, 0x40, 0x0E, 0x70, 0x47
-	.byte 0x00, 0x68, 0xC0, 0x02, 0x00, 0x0E, 0x70, 0x47, 0x00, 0xB5, 0x01, 0x29, 0x05, 0xD0, 0x01, 0x29
-	.byte 0x01, 0xD3, 0x02, 0x29, 0x03, 0xD0, 0x30, 0x30, 0x02, 0xE0, 0x38, 0x30, 0x00, 0xE0, 0x40, 0x30
-	.byte 0x02, 0xBC, 0x08, 0x47, 0x00, 0xB5, 0x01, 0x29, 0x05, 0xD0, 0x01, 0x29, 0x01, 0xD3, 0x02, 0x29
-	.byte 0x03, 0xD0, 0x48, 0x30, 0x02, 0xE0, 0x50, 0x30, 0x00, 0xE0, 0x58, 0x30, 0x02, 0xBC, 0x08, 0x47
-	.byte 0x60, 0x30, 0x70, 0x47, 0x68, 0x30, 0x70, 0x47
+	thumb_func_start func_080A0590
+func_080A0590: @ 0x080A0590
+	ldrb r0, [r0]
+	lsls r0, r0, #0x1a
+	lsrs r0, r0, #0x1a
+	bx lr
+
+	thumb_func_start func_080A0598
+func_080A0598: @ 0x080A0598
+	ldrh r0, [r0]
+	lsls r0, r0, #0x13
+	lsrs r0, r0, #0x19
+	bx lr
+
+	thumb_func_start func_080A05A0
+func_080A05A0: @ 0x080A05A0
+	ldr r0, [r0]
+	lsls r0, r0, #0xb
+	lsrs r0, r0, #0x18
+	bx lr
+
+	thumb_func_start func_080A05A8
+func_080A05A8: @ 0x080A05A8
+	push {lr}
+	cmp r1, #1
+	beq .L080A05BA
+	cmp r1, #1
+	bcc .L080A05B6
+	cmp r1, #2
+	beq .L080A05BE
+.L080A05B6:
+	adds r0, #0x30
+	b .L080A05C0
+.L080A05BA:
+	adds r0, #0x38
+	b .L080A05C0
+.L080A05BE:
+	adds r0, #0x40
+.L080A05C0:
+	pop {r1}
+	bx r1
+
+	thumb_func_start func_080A05C4
+func_080A05C4: @ 0x080A05C4
+	push {lr}
+	cmp r1, #1
+	beq .L080A05D6
+	cmp r1, #1
+	bcc .L080A05D2
+	cmp r1, #2
+	beq .L080A05DA
+.L080A05D2:
+	adds r0, #0x48
+	b .L080A05DC
+.L080A05D6:
+	adds r0, #0x50
+	b .L080A05DC
+.L080A05DA:
+	adds r0, #0x58
+.L080A05DC:
+	pop {r1}
+	bx r1
+
+	thumb_func_start func_080A05E0
+func_080A05E0: @ 0x080A05E0
+	adds r0, #0x60
+	bx lr
+
+	thumb_func_start func_080A05E4
+func_080A05E4: @ 0x080A05E4
+	adds r0, #0x68
+	bx lr
 
 	thumb_func_start func_080A05E8
 func_080A05E8: @ 0x080A05E8
