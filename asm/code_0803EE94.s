@@ -16449,7 +16449,46 @@ func_0807CCFC:
     .align 2, 0
 .Ljp_poultry_initializer_vtable: .4byte gUnk_080E7044
 .Ljp_poultry_initializer_state_offset: .4byte 0x000006A4
-    jp_code_0803ee_func func_0807CD30, 0x7CD30, 0x7CD80
+    .global func_0807CD30
+    .thumb_func
+func_0807CD30:
+    push {lr}
+    ldr r2, .Ljp_poultry_crop_seed_vtable
+    str r2, [r0, #4]
+    bl func_080C8360
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_poultry_crop_seed_vtable: .4byte gUnk_080E7044
+    .global func_0807CD44
+    .thumb_func
+func_0807CD44:
+    push {r4, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    ldr r2, .Ljp_poultry_crop_seed_catalog
+    lsls r1, r1, #2
+    adds r1, r1, r4
+    movs r0, #0xaa
+    lsls r0, r0, #2
+    adds r1, r1, r0
+    ldr r0, [r1]
+    lsls r0, r0, #3
+    adds r0, r0, r2
+    ldr r1, [r0]
+    mov r0, sp
+    bl __4ToolUi
+    mov r0, sp
+    bl GetDesc__C4Tool
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl func_080CA3FC
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_poultry_crop_seed_catalog: .4byte gSupermarketCropSeedCatalog
     jp_code_0803ee_func func_0807CD80, 0x7CD80, 0x7D8D0
     .global func_0807D8D0
     .thumb_func
@@ -139496,10 +139535,14 @@ func_0807D194: @ 0x0807D194
 .L0807D1C8:
 	thumb_func_start func_0807D1C8
 func_0807D1C8: @ 0x0807D1C8
-	.byte 0x00, 0xB5, 0x03, 0x4A, 0x42, 0x60
+	push {lr}
+	ldr r2, .L0807D1D8
+	str r2, [r0, #4]
 	bl func_080C8360
-	.byte 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
-	.4byte vtable_unk_080E7C14
+	pop {r0}
+	bx r0
+	.align 2, 0
+.L0807D1D8: .4byte vtable_unk_080E7C14
 
 	thumb_func_start func_0807D1DC
 func_0807D1DC: @ 0x0807D1DC
