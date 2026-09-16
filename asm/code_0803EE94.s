@@ -22001,8 +22001,49 @@ func_080851A4: @ 0x080851A4
 func_080851B8:
     jp_code_0803ee_bytes 0x851B8, 0x853E4
     jp_code_0803ee_func func_0808586C, 0x853E4, 0x85A3C
-    jp_code_0803ee_func func_08085EC4, 0x85A3C, 0x85A64
-    jp_code_0803ee_func func_08085EEC, 0x85A64, 0x86420
+.global func_08085EC4
+.thumb_func
+func_08085EC4: @ 0x08085A3C
+	push {r4, lr}
+	sub sp, #8
+	adds r0, r1, #0
+	movs r4, #0xa
+	str r4, [sp]
+	movs r1, #0x19
+	bl __udivsi3
+	str r0, [sp, #4]
+	add r1, sp, #4
+	mov r2, sp
+	cmp r4, r0
+	bls .Ljp_08085A58
+	adds r2, r1, #0
+.Ljp_08085A58:
+	ldr r0, [r2]
+	add sp, #8
+	pop {r4}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.global func_08085EEC
+.thumb_func
+func_08085EEC: @ 0x08085A64
+	push {lr}
+	ldr r1, .Ljp_08085A78 @ =0x000043D8
+	adds r0, r0, r1
+	ldr r0, [r0]
+	cmp r0, #1
+	bls .Ljp_08085A72
+	ldr r0, .Ljp_08085A7C @ =0x000003E7
+.Ljp_08085A72:
+	pop {r1}
+	bx r1
+	.align 2, 0
+.Ljp_08085A78: .4byte 0x000043D8
+.Ljp_08085A7C: .4byte 0x000003E7
+.global func_08085F08
+.thumb_func
+func_08085F08:
+    jp_code_0803ee_bytes 0x85A80, 0x86420
     jp_code_0803ee_func sub_080868A8, 0x86420, 0x8645C
     jp_code_0803ee_func func_080868E4, 0x8645C, 0x86518
     jp_code_0803ee_func func_080869A0, 0x86518, 0x86580
