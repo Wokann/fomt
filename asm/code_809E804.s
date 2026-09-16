@@ -528,7 +528,70 @@ func_0809EBA8: @ 0x0809E5E0
     strb r1, [r0, #0x15]
     bx lr
     .align 2, 0
-    jp_code_809_func func_0809EBD4, 0x9E60C, 0x9E680
+    .global func_0809EBD4
+    .thumb_func
+func_0809EBD4: @ 0x0809E60C
+    ldrb r2, [r0, #0x14]
+    movs r1, #0x10
+    rsbs r1, r1, #0
+    ands r1, r2
+    strb r1, [r0, #0x14]
+    ldrb r2, [r0, #0x15]
+    movs r1, #2
+    rsbs r1, r1, #0
+    ands r1, r2
+    strb r1, [r0, #0x15]
+    bx lr
+    .align 2, 0
+
+    .global func_0809EBEC
+    .thumb_func
+func_0809EBEC: @ 0x0809E624
+    push {r4, lr}
+    adds r4, r0, #0
+    bl rand
+    movs r1, #0x64
+    bl __modsi3
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl DayUpdate__3NpcUi
+    ldrb r2, [r4, #0x14]
+    lsrs r0, r2, #7
+    cmp r0, #0
+    beq .Ljp_0809E64A
+    movs r0, #0x7f
+    ands r0, r2
+    strb r0, [r4, #0x14]
+    b .Ljp_0809E678
+.Ljp_0809E64A:
+    ldrb r1, [r4, #0x15]
+    lsls r0, r1, #0x1f
+    cmp r0, #0
+    beq .Ljp_0809E678
+    movs r0, #2
+    rsbs r0, r0, #0
+    ands r0, r1
+    strb r0, [r4, #0x15]
+    movs r0, #0x70
+    ands r0, r2
+    cmp r0, #0
+    beq .Ljp_0809E678
+    lsls r0, r2, #0x19
+    lsrs r0, r0, #0x1d
+    subs r0, #1
+    movs r1, #7
+    ands r0, r1
+    lsls r0, r0, #4
+    movs r1, #0x71
+    rsbs r1, r1, #0
+    ands r1, r2
+    orrs r1, r0
+    strb r1, [r4, #0x14]
+.Ljp_0809E678:
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
     jp_code_809_func func_0809EC48, 0x9E680, 0x9E6C8
     jp_code_809_func func_0809EC90, 0x9E6C8, 0x9E710
     jp_code_809_func func_0809ECD8, 0x9E710, 0x9E718
