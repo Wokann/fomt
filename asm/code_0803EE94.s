@@ -8230,7 +8230,151 @@ func_080777F4: @ 0x080777F4
     .align 2, 0
 .Ljp_08077830: .4byte vtable_unk_080E6FD4
 
-    jp_code_0803ee_func func_08077834, 0x77834, 0x77960
+    .global func_08077834
+    .thumb_func
+func_08077834: @ 0x08077834
+    push {r4, r5, lr}
+    sub sp, #4
+    adds r5, r0, #0
+    adds r4, r1, #0
+    ldr r1, [r4, #4]
+    mov r0, sp
+    bl func_08077490
+    ldr r1, [sp]
+    cmp r1, #0
+    beq .Ljp_08077856
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08077856:
+    ldr r1, [r4, #8]
+    movs r0, #0
+    str r0, [r4, #8]
+    str r1, [r5]
+    adds r0, r5, #0
+    add sp, #4
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+
+    .global func_08077CE0
+    .thumb_func
+func_08077CE0: @ 0x08077868
+    push {r4, r5, lr}
+    sub sp, #0x14
+    adds r5, r0, #0
+    bl func_08008918
+    mov r1, sp
+    movs r2, #0x3f
+    strh r2, [r1]
+    adds r0, #0x50
+    strh r2, [r0]
+    adds r0, r5, #0
+    bl func_08008918
+    adds r1, r0, #0
+    add r4, sp, #4
+    movs r0, #0
+    str r0, [sp, #4]
+    str r0, [r4, #4]
+    ldr r0, .Ljp_080778B4
+    str r0, [sp, #0xc]
+    add r0, sp, #0x10
+    bl func_08009300
+    ldr r1, .Ljp_080778B8
+    add r0, sp, #0x10
+    movs r2, #1
+    movs r3, #1
+    bl func_0800934C
+    adds r0, r5, #0
+    bl func_08008940
+    ldr r1, [r0, #8]
+    ldr r2, [r1, #0x10]
+    adds r1, r4, #0
+    bl _call_via_r2
+    b .Ljp_080778C8
+    .align 2, 0
+.Ljp_080778B4: .4byte vtable_unk_080E5B80
+.Ljp_080778B8: .4byte 0x00000889
+.Ljp_080778BC:
+    adds r0, r5, #0
+    bl func_080785C8
+    adds r0, r5, #0
+    bl func_080087C8
+.Ljp_080778C8:
+    ldr r1, [sp, #4]
+    rsbs r0, r1, #0
+    orrs r0, r1
+    cmp r0, #0
+    blt .Ljp_080778BC
+    adds r0, r4, #0
+    movs r1, #2
+    bl func_080094B8
+    add sp, #0x14
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_08077D5C
+    .thumb_func
+func_08077D5C: @ 0x080778E4
+    push {r4, r5, lr}
+    sub sp, #0x14
+    adds r5, r0, #0
+    bl func_08008918
+    mov r1, sp
+    movs r2, #0x3f
+    strh r2, [r1]
+    adds r0, #0x50
+    strh r2, [r0]
+    adds r0, r5, #0
+    bl func_08008918
+    adds r1, r0, #0
+    add r4, sp, #4
+    movs r0, #0
+    str r0, [sp, #4]
+    str r0, [r4, #4]
+    ldr r0, .Ljp_08077930
+    str r0, [sp, #0xc]
+    add r0, sp, #0x10
+    bl func_08009300
+    ldr r1, .Ljp_08077934
+    add r0, sp, #0x10
+    movs r2, #1
+    movs r3, #1
+    bl func_08009378
+    adds r0, r5, #0
+    bl func_08008940
+    ldr r1, [r0, #8]
+    ldr r2, [r1, #0x10]
+    adds r1, r4, #0
+    bl _call_via_r2
+    b .Ljp_08077944
+    .align 2, 0
+.Ljp_08077930: .4byte vtable_unk_080E5B80
+.Ljp_08077934: .4byte 0x00000889
+.Ljp_08077938:
+    adds r0, r5, #0
+    bl func_080785C8
+    adds r0, r5, #0
+    bl func_080087C8
+.Ljp_08077944:
+    ldr r1, [sp, #4]
+    rsbs r0, r1, #0
+    orrs r0, r1
+    cmp r0, #0
+    blt .Ljp_08077938
+    adds r0, r4, #0
+    movs r1, #2
+    bl func_080094B8
+    add sp, #0x14
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
     jp_code_0803ee_func func_08077DD8, 0x77960, 0x779BC
 	.section .text.copy_bg_map_rect_after
 	jp_code_0803ee_func func_08077EC0, 0x77A48, 0x77E4C
@@ -121095,12 +121239,31 @@ func_08077C6C:
 
 	thumb_func_start func_08077CAC
 func_08077CAC:
-	.byte 0x30, 0xB5, 0x81, 0xB0
-	.byte 0x05, 0x1C, 0x0C, 0x1C, 0x61, 0x68, 0x68, 0x46, 0xFF, 0xF7, 0xEA, 0xFB, 0x00, 0x99, 0x00, 0x29
-	.byte 0x05, 0xD0, 0x08, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21
+	push {r4, r5, lr}
+	sub sp, #4
+	adds r5, r0, #0
+	adds r4, r1, #0
+	ldr r1, [r4, #4]
+	mov r0, sp
+	bl func_08077490
+	ldr r1, [sp]
+	cmp r1, #0
+	beq .L08077CCE
+	ldr r0, [r1]
+	ldr r2, [r0, #8]
+	adds r0, r1, #0
+	movs r1, #3
 	bl _call_via_r2
-	.byte 0xA1, 0x68
-	.byte 0x00, 0x20, 0xA0, 0x60, 0x29, 0x60, 0x28, 0x1C, 0x01, 0xB0, 0x30, 0xBC, 0x02, 0xBC, 0x08, 0x47
+.L08077CCE:
+	ldr r1, [r4, #8]
+	movs r0, #0
+	str r0, [r4, #8]
+	str r1, [r5]
+	adds r0, r5, #0
+	add sp, #4
+	pop {r4, r5}
+	pop {r1}
+	bx r1
 
 	thumb_func_start func_08077CE0
 func_08077CE0: @ 0x08077CE0
