@@ -5701,7 +5701,6 @@ extern RawVTableFunction const vtable_unk_080E7C08[]
 #if defined(REGION_JP)
         nullptr,
         func_0807CD30,
-        nullptr,
 #else
         nullptr,
         nullptr,
@@ -5709,18 +5708,25 @@ extern RawVTableFunction const vtable_unk_080E7C08[]
 #endif
     };
 
-extern RawVTableFunction const vtable_unk_080E7C14[]
-    SECTION(".rodata.vtable_7c14") = {
 #if defined(REGION_JP)
+// The following JP object starts at the last null slot of the preceding
+// logical table.  Give that physical start its own direct symbol rather than
+// modeling it as an alias into either table.
+extern RawVTableFunction const vtable_unk_080E7050[]
+    SECTION(".rodata.vtable_7c14") = {
+        nullptr,
         nullptr,
         func_0807DFE0,
         func_0807E020,
+    };
 #else
+extern RawVTableFunction const vtable_unk_080E7C14[]
+    SECTION(".rodata.vtable_7c14") = {
         nullptr,
         nullptr,
         func_0807D1C8,
-#endif
     };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E7C20[]
     SECTION(".rodata.vtable_7c20") = {

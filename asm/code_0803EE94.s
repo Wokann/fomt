@@ -18009,8 +18009,84 @@ func_0807D974:
     .align 2, 0
 .Ljp_poultry_seed_catalog: .4byte gSupermarketAdditionalSeedCatalog
     jp_code_0803ee_func func_0807DE3C, 0x7D9A4, 0x7DFE0
-    jp_code_0803ee_func func_0807DFE0, 0x7DFE0, 0x7E020
-    jp_code_0803ee_func func_0807E020, 0x7E020, 0x7E070
+    .global func_0807DFE0
+    .thumb_func
+func_0807DFE0:
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    ldr r0, .Ljp_0807E01C
+    str r0, [r4]
+    ldr r1, [r4, #8]
+    cmp r1, #0
+    beq .Ljp_0807DFFC
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_0807DFFC:
+    ldr r1, [r4, #4]
+    cmp r1, #0
+    beq .Ljp_0807E00E
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_0807E00E:
+    adds r0, r4, #0
+    adds r1, r5, #0
+    bl _._6AScene
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_0807E01C: .4byte vtable_unk_080E7050
+
+    .global func_0807E020
+    .thumb_func
+func_0807E020:
+    push {r4, r5, lr}
+    adds r5, r0, #0
+    adds r4, r1, #0
+    ldr r0, [r4, #4]
+    bl func_0807DE3C
+    ldr r1, [r4, #8]
+    movs r0, #0
+    str r0, [r4, #8]
+    str r1, [r5]
+    adds r0, r5, #0
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+
+    .global func_0807E03C
+    .thumb_func
+func_0807E03C:
+    push {r4, lr}
+    adds r4, r0, #0
+    bl func_080C797C
+    ldr r0, .Ljp_0807E068
+    str r0, [r4, #4]
+    ldr r1, .Ljp_0807E06C
+    adds r0, r4, r1
+    movs r1, #0
+    strb r1, [r0]
+    movs r2, #0xe1
+    lsls r2, r2, #3
+    adds r0, r4, r2
+    str r1, [r0]
+    adds r2, #4
+    adds r0, r4, r2
+    strb r1, [r0]
+    adds r0, r4, #0
+    pop {r4}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_0807E068: .4byte vtable_unk_080E7C30
+.Ljp_0807E06C: .4byte 0x000006A4
     jp_code_0803ee_func func_0807E070, 0x7E070, 0x7E9AC
     jp_code_0803ee_func func_0807E9AC, 0x7E9AC, 0x7E9EC
     jp_code_0803ee_func func_0807E9EC, 0x7E9EC, 0x7EA3C
@@ -143214,16 +143290,37 @@ func_0807E438: @ 0x0807E438
 .L0807E478:
 	thumb_func_start func_0807E478
 func_0807E478: @ 0x0807E478
-	.byte 0x30, 0xB5, 0x04, 0x1C, 0x0D, 0x1C, 0x0D, 0x48
-	.byte 0x20, 0x60, 0xA1, 0x68, 0x00, 0x29, 0x05, 0xD0, 0x08, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21
+	push {r4, r5, lr}
+	adds r4, r0, #0
+	adds r5, r1, #0
+	ldr r0, .L0807E4B4
+	str r0, [r4]
+	ldr r1, [r4, #8]
+	cmp r1, #0
+	beq .L0807E494
+	ldr r0, [r1]
+	ldr r2, [r0, #8]
+	adds r0, r1, #0
+	movs r1, #3
 	bl _call_via_r2
-	.byte 0x61, 0x68, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68, 0x82, 0x68, 0x08, 0x1C
-	.byte 0x03, 0x21
+.L0807E494:
+	ldr r1, [r4, #4]
+	cmp r1, #0
+	beq .L0807E4A6
+	ldr r0, [r1, #4]
+	ldr r2, [r0, #8]
+	adds r0, r1, #0
+	movs r1, #3
 	bl _call_via_r2
-	.byte 0x20, 0x1C, 0x29, 0x1C
+.L0807E4A6:
+	adds r0, r4, #0
+	adds r1, r5, #0
 	bl _._6AScene
-	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
-	.4byte vtable_unk_080E7C20
+	pop {r4, r5}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.L0807E4B4: .4byte vtable_unk_080E7C20
 
 	thumb_func_start func_0807E4B8
 func_0807E4B8: @ 0x0807E4B8
