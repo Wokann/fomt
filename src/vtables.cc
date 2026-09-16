@@ -5639,20 +5639,28 @@ extern RawVTableFunction const vtable_unk_080E7BD0[]
 #endif
     };
 
+// JP's destructor at 0x0807CC1C installs the final null slot directly.
+// Keep that physical slot as a real object rather than expressing it as a
+// pointer-plus-offset alias into this table.
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7BDC[]
     SECTION(".rodata.vtable_7bdc") = {
-#if defined(REGION_JP)
         nullptr,
         nullptr,
         func_0807AD18,
-        nullptr,
+    };
+
+extern RawVTableFunction const gUnk_080E7028
+    SECTION(".rodata.vtable_7bdc") = nullptr;
 #else
+extern RawVTableFunction const vtable_unk_080E7BDC[]
+    SECTION(".rodata.vtable_7bdc") = {
         nullptr,
         nullptr,
         func_0807B07C,
         func_0807B0BC,
-#endif
     };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E7BEC[]
     SECTION(".rodata.vtable_7bec") = {

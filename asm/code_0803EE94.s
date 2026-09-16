@@ -14181,8 +14181,121 @@ func_0807BE74: @ 0x0807BA18
     bx r1
 
     jp_code_0803ee_func func_0807BA6C, 0x7BA6C, 0x7CC1C
-    jp_code_0803ee_func func_0807CC1C, 0x7CC1C, 0x7CC5C
-    jp_code_0803ee_func func_0807CC5C, 0x7CC5C, 0x7CD30
+    .global func_0807CC1C
+    .thumb_func
+func_0807CC1C:
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    ldr r0, .Ljp_poultry_status_vtable
+    str r0, [r4]
+    ldr r1, [r4, #8]
+    cmp r1, #0
+    beq .Ljp_poultry_status_first_done
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_poultry_status_first_done:
+    ldr r1, [r4, #4]
+    cmp r1, #0
+    beq .Ljp_poultry_status_second_done
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_poultry_status_second_done:
+    adds r0, r4, #0
+    adds r1, r5, #0
+    bl _._6AScene
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_poultry_status_vtable: .4byte gUnk_080E7028
+    .global func_0807CC5C
+    .thumb_func
+func_0807CC5C:
+    push {r4, r5, r6, r7, lr}
+    mov r7, sb
+    mov r6, r8
+    push {r6, r7}
+    sub sp, #0x14
+    mov r8, r0
+    adds r7, r1, #0
+    ldr r0, [r7, #4]
+    bl func_0807BA6C
+    adds r6, r0, #0
+    movs r0, #1
+    rsbs r0, r0, #0
+    cmp r6, r0
+    beq .Ljp_poultry_action_failed
+    movs r0, #0x10
+    bl __builtin_new
+    ldr r5, [r7, #8]
+    movs r4, #0
+    str r4, [r7, #8]
+    add r1, sp, #4
+    mov sb, r1
+    ldr r2, [r7, #0x10]
+    movs r3, #1
+    ldr r1, .Ljp_poultry_action_vtable_first
+    str r1, [r0]
+    str r4, [sp, #4]
+    str r5, [r0, #4]
+    str r2, [r0, #8]
+    str r3, [r0, #0xc]
+    str r0, [sp]
+    movs r0, #0x14
+    bl __builtin_new
+    ldr r5, [sp]
+    str r4, [sp]
+    ldr r2, [r7, #0x10]
+    movs r3, #3
+    ldr r1, .Ljp_poultry_action_vtable_second
+    str r1, [r0]
+    str r4, [sp, #8]
+    str r5, [r0, #4]
+    str r2, [r0, #8]
+    str r3, [r0, #0xc]
+    strb r6, [r0, #0x10]
+    mov r1, sb
+    str r1, [sp, #0xc]
+    str r0, [sp, #0x10]
+    str r4, [sp, #4]
+    mov r1, r8
+    str r0, [r1]
+    ldr r1, [sp]
+    cmp r1, #0
+    beq .Ljp_poultry_action_done
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+    b .Ljp_poultry_action_done
+    .align 2, 0
+.Ljp_poultry_action_vtable_first: .4byte vtable_unk_080E5DA4
+.Ljp_poultry_action_vtable_second: .4byte vtable_unk_080E5C64
+.Ljp_poultry_action_failed:
+    ldr r1, [r7, #8]
+    movs r0, #0
+    str r0, [r7, #8]
+    mov r0, r8
+    str r1, [r0]
+.Ljp_poultry_action_done:
+    mov r0, r8
+    add sp, #0x14
+    pop {r3, r4}
+    mov r8, r3
+    mov sb, r4
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
+    jp_code_0803ee_func func_0807CCFC, 0x7CCFC, 0x7CD30
     jp_code_0803ee_func func_0807CD30, 0x7CD30, 0x7D8D0
     jp_code_0803ee_func func_0807D8D0, 0x7D8D0, 0x7D910
     jp_code_0803ee_func func_0807D910, 0x7D910, 0x7D960
