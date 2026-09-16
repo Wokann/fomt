@@ -17,11 +17,19 @@ it intentionally does not assign guessed meanings to descriptor fields.
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Common resource archive | `0x3ED9FC` | `0x6678A0` | `0x6678FC` | `0x3EE93C` | `0x12848` | `493, 500, 101, 1624, 342, 0` | 532 | `c28eff40e6965f89015da48b9527ea995eeec0d7ec30c4f1f2aeda5b8f3f9f33` |
 | Small companion archive | `0x3ED1BC` | `0x667060` | `0x6670BC` | `0x3EE0FC` | `0x840` | `3, 16, 3, 52, 2, 0` | 16 | `45596a1fced2bdeb33c101de5f124c26939d03ee0f2d71e361ba5ffab53a7cc7` |
+| Farm Status / Town Map archive | `0x4D977C` | `0x7537D0` | `0x75382C` | `0x4DACEC` | `0xEA4` | `20, 40, 11, 73, 13, 0` | 40 | `480a114e52b941e289d67055ddd632b6c0bbee3cfa66263523ad91c7e1d4dfc1` |
 
-Both complete native archive payloads are byte-identical across JP, US, EU,
-and DE. The common archive is the data currently exposed under
+All three complete native archive payloads are byte-identical across JP, US,
+EU, and DE. The common archive is the data currently exposed under
 `gUnk_086678A0` in non-JP regional assembly; the JP physical match was found
 by the exact complete payload, not by inventing a JP label.
+
+The common archive's group-descriptor consumer is fully bounded. Every
+drawable descriptor selects valid GBA OAM, 4bpp tile, and BGR555 palette
+ranges; `func_0805E790` resolves the fields and `func_080757E8` uploads tiles
+and palettes to OBJ memory. Its 498 indexed PNG sources and fixed-size rebuild
+live under `graphics/common_resource_archive/`. The two all-zero groups (`316`,
+`429`) are native non-drawable records and are deliberately not artwork.
 
 The Farm Status screen constructs a third archive at `0x4D977C` in JP and
 `0x7537D0` in US (with the regional locations recorded by its rebuild tool).
@@ -54,7 +62,7 @@ own continuation syntax elsewhere.
 
 The managed actor tile stream, Records Screen task icon/palette pairs, and
 other confirmed resource payloads retain their existing direct runtime labels.
-These two archive containers are their metadata/selection layer and are not
-replaced by a PNG export. Any future conversion must preserve the parsed
-boundary, all descriptor counts, entry ordering, and every pointer or caller
-that resolves an archive index.
+The small companion archive remains metadata/selection data rather than a PNG
+export. Any future conversion must preserve the parsed boundary, all descriptor
+counts, entry ordering, and every pointer or caller that resolves an archive
+index.

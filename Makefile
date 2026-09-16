@@ -230,6 +230,21 @@ FARM_STATUS_RESOURCE_ARCHIVE_OFFSET_EU := 0x75382C
 FARM_STATUS_RESOURCE_ARCHIVE_OFFSET_DE := 0x4DACEC
 FARM_STATUS_RESOURCE_ARCHIVE_OFFSET := $(FARM_STATUS_RESOURCE_ARCHIVE_OFFSET_$(GAME_REGION))
 
+# The common archive supplies many item and UI OAM resources. Indexed full PNGs
+# own only visible pixels; native selectors, OAM, and palettes stay in the
+# fixed archive and are patched after the normal link.
+COMMON_RESOURCE_ARCHIVE_TOOL := tools/common_resource_archive.py
+COMMON_RESOURCE_ARCHIVE_SOURCE_DIR := graphics/common_resource_archive
+COMMON_RESOURCE_ARCHIVE_SOURCES := $(wildcard $(COMMON_RESOURCE_ARCHIVE_SOURCE_DIR)/full/*.png)
+COMMON_RESOURCE_ARCHIVE_OUTPUT := $(BUILD_DIR)/graphics/common_resource_archive/common_resource_archive.bin
+COMMON_RESOURCE_ARCHIVE_LENGTH := 0x12848
+COMMON_RESOURCE_ARCHIVE_SHA256 := c28eff40e6965f89015da48b9527ea995eeec0d7ec30c4f1f2aeda5b8f3f9f33
+COMMON_RESOURCE_ARCHIVE_OFFSET_JP := 0x3ED9FC
+COMMON_RESOURCE_ARCHIVE_OFFSET_US := 0x6678A0
+COMMON_RESOURCE_ARCHIVE_OFFSET_EU := 0x6678FC
+COMMON_RESOURCE_ARCHIVE_OFFSET_DE := 0x3EE93C
+COMMON_RESOURCE_ARCHIVE_OFFSET := $(COMMON_RESOURCE_ARCHIVE_OFFSET_$(GAME_REGION))
+
 # Intro Scene loading sends this 0x70 output straight to VRAM. The decoded
 # 0x6E00-byte resource is a 40-by-22 linear 4bpp tile image (320 by 176
 # pixels) and the immediately following 0x60 bytes are three palette banks.
@@ -576,6 +591,14 @@ $(FARM_STATUS_RESOURCE_ARCHIVE_OUTPUT): $(FARM_STATUS_RESOURCE_ARCHIVE_SOURCES) 
 	  --sha256 $(FARM_STATUS_RESOURCE_ARCHIVE_SHA256) \
 	  build --source-dir $(FARM_STATUS_RESOURCE_ARCHIVE_SOURCE_DIR) --output $@
 
+$(COMMON_RESOURCE_ARCHIVE_OUTPUT): $(COMMON_RESOURCE_ARCHIVE_SOURCES) $(COMMON_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM)
+	@mkdir -p $(dir $@)
+	@$(PYTHON) $(COMMON_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM) \
+	  --offset $(COMMON_RESOURCE_ARCHIVE_OFFSET) \
+	  --length $(COMMON_RESOURCE_ARCHIVE_LENGTH) \
+	  --sha256 $(COMMON_RESOURCE_ARCHIVE_SHA256) \
+	  build --source-dir $(COMMON_RESOURCE_ARCHIVE_SOURCE_DIR) --output $@
+
 $(FARM_STATUS_TILEMAP_BIN): $(FARM_STATUS_TILEMAP_SOURCES) $(FARM_STATUS_TILEMAP_TOOL) $(FARM_STATUS_PREVIEW_TOOL)
 	@$(PYTHON) $(FARM_STATUS_TILEMAP_TOOL) build --source-dir $(FARM_STATUS_TILEMAP_SOURCE_DIR) --output $@
 
@@ -683,6 +706,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
 .PHONY: gfx-farm-status-resource-archive gfx-farm-status-resource-archive-test gfx-farm-status-resource-archive-all gfx-farm-status-resource-archive-patch-test gfx-farm-status-resource-archive-edit-test
+.PHONY: gfx-common-resource-archive gfx-common-resource-archive-test gfx-common-resource-archive-all gfx-common-resource-archive-patch-test gfx-common-resource-archive-edit-test
 .PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-secondary-tilemaps-edit-test gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-background-edit-test gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-objects-edit-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-tilemaps-edit-test gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all resource-archive-audit unpack-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
 .PHONY: gfx-ui-scene-080a2ba4 gfx-ui-scene-080a2ba4-reference gfx-ui-scene-080a2ba4-test gfx-ui-scene-080a2ba4-all gfx-ui-scene-080a2ba4-patch-test gfx-ui-scene-080a2ba4-edit-test
 .PHONY: gfx-ui-scene-08077810 gfx-ui-scene-08077810-test gfx-ui-scene-08077810-all gfx-ui-scene-08077810-patch-test gfx-ui-scene-08077810-edit-test
@@ -951,6 +975,35 @@ gfx-farm-status-resource-archive-edit-test: $(FARM_STATUS_RESOURCE_ARCHIVE_TOOL)
 	  --offset 0x4D977C --length $(FARM_STATUS_RESOURCE_ARCHIVE_LENGTH) \
 	  --sha256 $(FARM_STATUS_RESOURCE_ARCHIVE_SHA256) edit-test \
 	  --source-dir $(FARM_STATUS_RESOURCE_ARCHIVE_SOURCE_DIR)
+gfx-common-resource-archive: $(COMMON_RESOURCE_ARCHIVE_OUTPUT)
+gfx-common-resource-archive-test: gfx-common-resource-archive $(COMMON_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM)
+	@$(PYTHON) $(COMMON_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM) \
+	  --offset $(COMMON_RESOURCE_ARCHIVE_OFFSET) \
+	  --length $(COMMON_RESOURCE_ARCHIVE_LENGTH) \
+	  --sha256 $(COMMON_RESOURCE_ARCHIVE_SHA256) \
+	  verify --source-dir $(COMMON_RESOURCE_ARCHIVE_SOURCE_DIR)
+gfx-common-resource-archive-all:
+	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-common-resource-archive-test
+	@$(MAKE) --no-print-directory GAME_REGION=US gfx-common-resource-archive-test
+	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-common-resource-archive-test
+	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-common-resource-archive-test
+gfx-common-resource-archive-patch-test: gfx-common-resource-archive-all $(COMMON_RESOURCE_ARCHIVE_TOOL)
+	@$(PYTHON) $(COMMON_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba \
+	  --offset 0x3ED9FC --length $(COMMON_RESOURCE_ARCHIVE_LENGTH) \
+	  --sha256 $(COMMON_RESOURCE_ARCHIVE_SHA256) patch-test \
+	  --archive jp build/jp/graphics/common_resource_archive/common_resource_archive.bin \
+	  --archive us build/us/graphics/common_resource_archive/common_resource_archive.bin \
+	  --archive eu build/eu/graphics/common_resource_archive/common_resource_archive.bin \
+	  --archive de build/de/graphics/common_resource_archive/common_resource_archive.bin \
+	  --all-rom jp baserom_jp.gba 0x3ED9FC \
+	  --all-rom us baserom_us.gba 0x6678A0 \
+	  --all-rom eu baserom_eu.gba 0x6678FC \
+	  --all-rom de baserom_de.gba 0x3EE93C
+gfx-common-resource-archive-edit-test: $(COMMON_RESOURCE_ARCHIVE_TOOL) $(COMMON_RESOURCE_ARCHIVE_SOURCES) baserom_jp.gba
+	@$(PYTHON) $(COMMON_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba \
+	  --offset 0x3ED9FC --length $(COMMON_RESOURCE_ARCHIVE_LENGTH) \
+	  --sha256 $(COMMON_RESOURCE_ARCHIVE_SHA256) edit-test \
+	  --source-dir $(COMMON_RESOURCE_ARCHIVE_SOURCE_DIR)
 gfx-farm-status-previews: $(FARM_STATUS_TILES_SOURCE) $(FARM_STATUS_PALETTE_SOURCE) $(FARM_STATUS_TILEMAP_SOURCES) $(FARM_STATUS_PREVIEW_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(FARM_STATUS_PREVIEW_TOOL) --tiles-source $(FARM_STATUS_TILES_SOURCE) --palettes-source $(FARM_STATUS_PALETTE_SOURCE) --tilemaps-source $(FARM_STATUS_TILEMAP_SOURCE_DIR) --rom baserom_us.gba --region us --output $(FARM_STATUS_REFERENCE_DIR) --replace --verify-jp baserom_jp.gba --verify-us baserom_us.gba --verify-eu baserom_eu.gba --verify-de baserom_de.gba
 gfx-farm-status-tilemaps: $(FARM_STATUS_TILEMAP_BIN)
@@ -1018,9 +1071,10 @@ gfx-map-resources-all:
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-map-resources-test
 gfx-map-resources-patch-test: gfx-map-resources-all $(MAP_RESOURCES_TOOL)
 	@$(PYTHON) $(MAP_RESOURCES_TOOL) patch-test --output-root build $(MAP_RESOURCES_ROM_ARGS)
-resource-archive-audit: $(INDEXED_RESOURCE_ARCHIVE_TOOL) $(FARM_STATUS_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
+resource-archive-audit: $(INDEXED_RESOURCE_ARCHIVE_TOOL) $(COMMON_RESOURCE_ARCHIVE_TOOL) $(FARM_STATUS_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_TOOL) compare --rom jp baserom_jp.gba 0x3ED9FC --rom us baserom_us.gba 0x6678A0 --rom eu baserom_eu.gba 0x6678FC --rom de baserom_de.gba 0x3EE93C
 	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_TOOL) compare --rom jp baserom_jp.gba 0x3ED1BC --rom us baserom_us.gba 0x667060 --rom eu baserom_eu.gba 0x6670BC --rom de baserom_de.gba 0x3EE0FC
+	@$(PYTHON) $(COMMON_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --offset 0x3ED9FC --length $(COMMON_RESOURCE_ARCHIVE_LENGTH) --sha256 $(COMMON_RESOURCE_ARCHIVE_SHA256) audit
 	@$(PYTHON) $(FARM_STATUS_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --offset 0x4D977C --length $(FARM_STATUS_RESOURCE_ARCHIVE_LENGTH) --sha256 $(FARM_STATUS_RESOURCE_ARCHIVE_SHA256) audit
 unpack-vram-inventory: $(UNPACK_VRAM_INVENTORY_TOOL)
 	@$(PYTHON) $(UNPACK_VRAM_INVENTORY_TOOL) . --csv $(BUILD_DIR)/unpack_vram_inventory.csv
@@ -1048,7 +1102,7 @@ tile-grid-test:
 	@$(MAKE) --no-print-directory GAME_REGION=EU tile-grid-region-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE tile-grid-region-test
 
-gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui gfx-ui-scene-080a2ba4 gfx-ui-scene-08077810 gfx-ui-scene-080ae7d0 gfx-ui-scene-080b7164 gfx-ui-scene-080c160c gfx-ui-scene-080bcfac gfx-ui-scene-080b55d0-aux gfx-ui-scene-08054f40-tiles gfx-ui-scene-0805ab08-tiles gfx-farm-status gfx-farm-status-resource-archive gfx-farm-status-tilemaps gfx-farm-status-secondary-tilemaps gfx-intro-background gfx-intro-objects gfx-intro-startup-tilemaps gfx-map-resources gfx-records-minigame
+gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui gfx-ui-scene-080a2ba4 gfx-ui-scene-08077810 gfx-ui-scene-080ae7d0 gfx-ui-scene-080b7164 gfx-ui-scene-080c160c gfx-ui-scene-080bcfac gfx-ui-scene-080b55d0-aux gfx-ui-scene-08054f40-tiles gfx-ui-scene-0805ab08-tiles gfx-farm-status gfx-farm-status-resource-archive gfx-common-resource-archive gfx-farm-status-tilemaps gfx-farm-status-secondary-tilemaps gfx-intro-background gfx-intro-objects gfx-intro-startup-tilemaps gfx-map-resources gfx-records-minigame
 
 # Full graphics gate for assets that have an authoritative source/rebuild
 # path.  It intentionally does not link a ROM: the project-wide link is
@@ -1091,6 +1145,9 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-farm-status-resource-archive-all
 	@$(MAKE) --no-print-directory gfx-farm-status-resource-archive-patch-test
 	@$(MAKE) --no-print-directory gfx-farm-status-resource-archive-edit-test
+	@$(MAKE) --no-print-directory gfx-common-resource-archive-all
+	@$(MAKE) --no-print-directory gfx-common-resource-archive-patch-test
+	@$(MAKE) --no-print-directory gfx-common-resource-archive-edit-test
 	@$(MAKE) --no-print-directory gfx-farm-status-tilemaps-all
 	@$(MAKE) --no-print-directory gfx-farm-status-secondary-tilemaps-all
 	@$(MAKE) --no-print-directory gfx-farm-status-secondary-tilemaps-edit-test
@@ -1177,7 +1234,7 @@ $(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGIO
 	$(call FOMT_COMPILE_CPP,)
 
 # ROM from ELF
-%.gba: %.elf $(MAP_RESOURCES_STAMP) $(UI_SCENE_080A2BA4_STAMP) $(UI_SCENE_080AE7D0_STAMP) $(UI_SCENE_080B7164_STAMP) $(UI_SCENE_080B7164_PALETTE_BIN) $(UI_SCENE_080C160C_STAMP) $(UI_SCENE_080C160C_PALETTE_BIN) $(UI_SCENE_080BCFAC_STAMP) $(UI_SCENE_080BCFAC_PALETTE_BIN) $(UI_SCENE_080B55D0_AUX_STAMP) $(UI_SCENE_08054F40_TILES_STAMP) $(UI_SCENE_0805AB08_TILES_STAMP) $(FARM_STATUS_RESOURCE_ARCHIVE_OUTPUT)
+%.gba: %.elf $(MAP_RESOURCES_STAMP) $(UI_SCENE_080A2BA4_STAMP) $(UI_SCENE_080AE7D0_STAMP) $(UI_SCENE_080B7164_STAMP) $(UI_SCENE_080B7164_PALETTE_BIN) $(UI_SCENE_080C160C_STAMP) $(UI_SCENE_080C160C_PALETTE_BIN) $(UI_SCENE_080BCFAC_STAMP) $(UI_SCENE_080BCFAC_PALETTE_BIN) $(UI_SCENE_080B55D0_AUX_STAMP) $(UI_SCENE_08054F40_TILES_STAMP) $(UI_SCENE_0805AB08_TILES_STAMP) $(FARM_STATUS_RESOURCE_ARCHIVE_OUTPUT) $(COMMON_RESOURCE_ARCHIVE_OUTPUT)
 	$(OBJCOPY) -O binary $< $@
 	@$(PYTHON) $(MAP_RESOURCES_TOOL) patch --region $(MAP_RESOURCES_REGION) --rom $@ \
 	  --archive $(MAP_RESOURCES_OUTPUT_DIR)/map_visual_archive.0x70 $(MAP_RESOURCES_ALL_ROM_ARGS)
@@ -1203,6 +1260,11 @@ $(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGIO
 	  --rom $@ --output-dir $(UI_SCENE_08054F40_TILES_OUTPUT_DIR)
 	@$(PYTHON) $(UI_SCENE_0805AB08_TILES_TOOL) --profile 0805ab08_tiles patch --region $(UI_SCENE_0805AB08_TILES_REGION) --baseline $(BASE_ROM) \
 	  --rom $@ --output-dir $(UI_SCENE_0805AB08_TILES_OUTPUT_DIR)
+	@$(PYTHON) $(COMMON_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM) \
+	  --offset $(COMMON_RESOURCE_ARCHIVE_OFFSET) \
+	  --length $(COMMON_RESOURCE_ARCHIVE_LENGTH) \
+	  --sha256 $(COMMON_RESOURCE_ARCHIVE_SHA256) \
+	  patch --target $@ --archive $(COMMON_RESOURCE_ARCHIVE_OUTPUT)
 	@$(PYTHON) $(FARM_STATUS_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM) \
 	  --offset $(FARM_STATUS_RESOURCE_ARCHIVE_OFFSET) \
 	  --length $(FARM_STATUS_RESOURCE_ARCHIVE_LENGTH) \
@@ -1281,6 +1343,10 @@ ALL_DEPS :=
 endif
 
 ifneq (,$(filter gfx-farm-status-resource-archive gfx-farm-status-resource-archive-test gfx-farm-status-resource-archive-all gfx-farm-status-resource-archive-patch-test gfx-farm-status-resource-archive-edit-test,$(MAKECMDGOALS)))
+ALL_DEPS :=
+endif
+
+ifneq (,$(filter gfx-common-resource-archive gfx-common-resource-archive-test gfx-common-resource-archive-all gfx-common-resource-archive-patch-test gfx-common-resource-archive-edit-test,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 

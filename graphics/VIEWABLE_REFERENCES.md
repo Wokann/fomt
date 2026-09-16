@@ -20,6 +20,8 @@ grids:
   native tilemaps.
 - [Farm Status / Town Map OAM resources](ui/farm_status/resource_archive/full/)
   — complete indexed-PNG authoring sources with native archive descriptors.
+- [Common OAM resources](common_resource_archive/full/) — complete indexed-PNG
+  item/UI resource sources with native selector and OAM descriptors.
 - [Records-screen task icons](ui/records_minigame/shared/) — seven complete
   16-by-16 icons with their native palettes.
 
