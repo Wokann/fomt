@@ -4885,7 +4885,9 @@ func_0803C7C8:
     .4byte 0x06010000
 .Ljp_0803CB0C:
     .4byte 0x000003FF
-.Ljp_0803CB10:
+    .global func_0803CB10
+    .thumb_func
+func_0803CB10:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -5677,7 +5679,7 @@ func_0803D440:
     lsls	r2, r2, #24
     lsrs	r2, r2, #24
     adds	r0, #8
-    bl .Ljp_0803CB10
+    bl func_0803CB10
     pop	{r0}
     bx	r0
     .global func_0803D4D8
