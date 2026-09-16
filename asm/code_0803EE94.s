@@ -639,7 +639,8 @@ func_0804E3D8:
     @ rebuilt from src/font_draw.cc.
     @ The following tilemap rectangle filler is also rebuilt there.
     @ Its adjacent unknown virtual-object initializer is rebuilt there too.
-    jp_code_0803ee_func func_0804EA94, 0x4E8BC, 0x4EAAC
+    jp_code_0803ee_func func_0804EA94, 0x4E8BC, 0x4E98C
+    jp_code_0803ee_func func_0804E98C, 0x4E98C, 0x4EAAC
     .global func_0804EC84
     .thumb_func
 func_0804EC84: @ 0x0804EAAC
@@ -13489,7 +13490,652 @@ func_0807B8F4: @ 0x0807B498
     bx r1
     .align 2, 0
 
-    jp_code_0803ee_func func_0807B4C4, 0x7B4C4, 0x7BA18
+    .global func_0807B4C4
+    .thumb_func
+func_0807B4C4: @ 0x0807B4C4
+	push {r4, r5, r6, r7, lr}
+	mov r7, sl
+	mov r6, sb
+	mov r5, r8
+	push {r5, r6, r7}
+	sub sp, #0x2c
+	mov r8, r0
+	lsls r0, r1, #2
+	adds r0, r0, r1
+	lsls r0, r0, #2
+	ldr r2, .Ljp_poultry_status_B51C @ =gPoultryShopCatalog
+	mov r1, sp
+	adds r0, r0, r2
+	ldm r0!, {r2, r3, r4}
+	stm r1!, {r2, r3, r4}
+	ldm r0!, {r2, r3}
+	stm r1!, {r2, r3}
+	ldr r5, .Ljp_poultry_status_B520 @ =0x00002234
+	add r5, r8
+	ldr r6, .Ljp_poultry_status_B524 @ =gText_PoultryShop_Empty
+	adds r0, r6, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, #0x7f
+	bls .Ljp_poultry_status_B4FA
+	movs r4, #0x7f
+.Ljp_poultry_status_B4FA:
+	adds r0, r5, #0
+	adds r1, r6, #0
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r5, r4
+	movs r0, #0
+	strb r0, [r1]
+	ldr r0, [sp, #0x10]
+	cmp r0, #4
+	bls .Ljp_poultry_status_B512
+	b .Ljp_poultry_status_B9F0
+.Ljp_poultry_status_B512:
+	lsls r0, r0, #2
+	ldr r1, .Ljp_poultry_status_B528 @ =.Ljp_poultry_status_B52C
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.Ljp_poultry_status_B51C: .4byte gPoultryShopCatalog
+.Ljp_poultry_status_B520: .4byte 0x00002234
+.Ljp_poultry_status_B524: .4byte gText_PoultryShop_Empty
+.Ljp_poultry_status_B528: .4byte .Ljp_poultry_status_B52C
+.Ljp_poultry_status_B52C: @ jump table
+	.4byte .Ljp_poultry_status_B540 @ case 0
+	.4byte .Ljp_poultry_status_B554 @ case 1
+	.4byte .Ljp_poultry_status_B56A @ case 2
+	.4byte .Ljp_poultry_status_B56A @ case 3
+	.4byte .Ljp_poultry_status_B574 @ case 4
+.Ljp_poultry_status_B540:
+	add r4, sp, #0x28
+	ldr r1, [sp]
+	adds r0, r4, #0
+	bl __7ArticleUi
+	adds r0, r4, #0
+	bl GetDesc__C7Article
+	adds r1, r0, #0
+	b .Ljp_poultry_status_B56C
+.Ljp_poultry_status_B554:
+	mov r4, sp
+	adds r4, #0x29
+	ldr r1, [sp]
+	adds r0, r4, #0
+	bl __4ToolUi
+	adds r0, r4, #0
+	bl GetDesc__C4Tool
+	adds r1, r0, #0
+	b .Ljp_poultry_status_B56C
+.Ljp_poultry_status_B56A:
+	ldr r1, [sp, #0xc]
+.Ljp_poultry_status_B56C:
+	mov r0, r8
+	bl func_080CA3FC
+	b .Ljp_poultry_status_B9F0
+.Ljp_poultry_status_B574:
+	mov r4, r8
+	ldr r0, [r4, #8]
+	movs r1, #0x82
+	lsls r1, r1, #3
+	adds r0, r0, r1
+	ldr r2, [r4, #0x10]
+	lsls r2, r2, #3
+	ldr r1, .Ljp_poultry_status_B5D4 @ =0x000006AC
+	add r1, r8
+	adds r1, r1, r2
+	ldr r1, [r1]
+	bl GetChicken__4CoopUi
+	mov sl, r0
+	bl IsSick__C9Livestock
+	lsls r0, r0, #0x18
+	lsrs r0, r0, #0x18
+	mov sb, r0
+	cmp r0, #0
+	beq .Ljp_poultry_status_B5E0
+	ldr r4, .Ljp_poultry_status_B5D8 @ =0x00002234
+	add r4, r8
+	ldr r7, .Ljp_poultry_status_B5DC @ =gText_PoultryShop_StatusSick
+	adds r0, r4, #0
+	bl strlen
+	adds r6, r4, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_poultry_status_B660
+	adds r0, r7, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_poultry_status_B5C2
+	adds r4, r5, #0
+.Ljp_poultry_status_B5C2:
+	adds r0, r6, #0
+	adds r1, r7, #0
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r6, r4
+	movs r0, #0
+	strb r0, [r1]
+	b .Ljp_poultry_status_B660
+	.align 2, 0
+.Ljp_poultry_status_B5D4: .4byte 0x000006AC
+.Ljp_poultry_status_B5D8: .4byte 0x00002234
+.Ljp_poultry_status_B5DC: .4byte gText_PoultryShop_StatusSick
+.Ljp_poultry_status_B5E0:
+	mov r0, sl
+	bl IsUnhappy__C9Livestock
+	lsls r0, r0, #0x18
+	lsrs r7, r0, #0x18
+	cmp r7, #0
+	beq .Ljp_poultry_status_B62C
+	ldr r4, .Ljp_poultry_status_B624 @ =0x00002234
+	add r4, r8
+	ldr r7, .Ljp_poultry_status_B628 @ =gText_PoultryShop_StatusUnhappy
+	adds r0, r4, #0
+	bl strlen
+	adds r6, r4, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_poultry_status_B660
+	adds r0, r7, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_poultry_status_B612
+	adds r4, r5, #0
+.Ljp_poultry_status_B612:
+	adds r0, r6, #0
+	adds r1, r7, #0
+	adds r2, r4, #0
+	bl memcpy
+	adds r0, r6, r4
+	mov r2, sb
+	strb r2, [r0]
+	b .Ljp_poultry_status_B660
+	.align 2, 0
+.Ljp_poultry_status_B624: .4byte 0x00002234
+.Ljp_poultry_status_B628: .4byte gText_PoultryShop_StatusUnhappy
+.Ljp_poultry_status_B62C:
+	ldr r4, .Ljp_poultry_status_B738 @ =0x00002234
+	add r4, r8
+	ldr r3, .Ljp_poultry_status_B73C @ =gText_PoultryShop_StatusHealthy
+	mov sb, r3
+	adds r0, r4, #0
+	bl strlen
+	adds r6, r4, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_poultry_status_B660
+	mov r0, sb
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_poultry_status_B652
+	adds r4, r5, #0
+.Ljp_poultry_status_B652:
+	adds r0, r6, #0
+	mov r1, sb
+	adds r2, r4, #0
+	bl memcpy
+	adds r0, r6, r4
+	strb r7, [r0]
+.Ljp_poultry_status_B660:
+	mov r0, sl
+	bl GetAge__C6Animal
+	movs r1, #0x78
+	bl __udivsi3
+	adds r6, r0, #0
+	cmp r6, #9
+	bgt .Ljp_poultry_status_B6A8
+	ldr r4, .Ljp_poultry_status_B738 @ =0x00002234
+	add r4, r8
+	ldr r0, .Ljp_poultry_status_B740 @ =gText_PoultryShop_StatusSpacer
+	mov sb, r0
+	adds r0, r4, #0
+	bl strlen
+	adds r7, r4, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_poultry_status_B6A8
+	mov r0, sb
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_poultry_status_B698
+	adds r4, r5, #0
+.Ljp_poultry_status_B698:
+	adds r0, r7, #0
+	mov r1, sb
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r7, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_poultry_status_B6A8:
+	add r4, sp, #0x14
+	adds r0, r6, #0
+	adds r1, r4, #0
+	movs r2, #0
+	bl func_0804E98C
+	ldr r6, .Ljp_poultry_status_B738 @ =0x00002234
+	add r6, r8
+	adds r0, r6, #0
+	bl strlen
+	adds r7, r6, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_poultry_status_B6E6
+	add r0, sp, #0x14
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_poultry_status_B6D6
+	adds r4, r5, #0
+.Ljp_poultry_status_B6D6:
+	adds r0, r7, #0
+	add r1, sp, #0x14
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r7, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_poultry_status_B6E6:
+	ldr r7, .Ljp_poultry_status_B744 @ =gText_PoultryShop_Age
+	adds r0, r6, #0
+	bl strlen
+	adds r6, r6, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_poultry_status_B716
+	adds r0, r7, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_poultry_status_B706
+	adds r4, r5, #0
+.Ljp_poultry_status_B706:
+	adds r0, r6, #0
+	adds r1, r7, #0
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r6, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_poultry_status_B716:
+	mov r0, sl
+	bl GetAge__C6Animal
+	adds r4, r0, #0
+	mov r1, r8
+	ldr r0, [r1, #8]
+	ldrb r1, [r0, #0x11]
+	mov r0, sp
+	adds r0, #0x2a
+	strb r1, [r0]
+	adds r6, r0, #0
+	cmp r4, #0x1d
+	bhi .Ljp_poultry_status_B748
+	adds r5, r4, #0
+	movs r4, #0
+	b .Ljp_poultry_status_B75C
+	.align 2, 0
+.Ljp_poultry_status_B738: .4byte 0x00002234
+.Ljp_poultry_status_B73C: .4byte gText_PoultryShop_StatusHealthy
+.Ljp_poultry_status_B740: .4byte gText_PoultryShop_StatusSpacer
+.Ljp_poultry_status_B744: .4byte gText_PoultryShop_Age
+.Ljp_poultry_status_B748:
+	adds r0, r4, #0
+	movs r1, #0x1e
+	bl __umodsi3
+	adds r5, r0, #0
+	adds r0, r4, #0
+	movs r1, #0x1e
+	bl __udivsi3
+	adds r4, r0, #0
+.Ljp_poultry_status_B75C:
+	ldrb r0, [r6]
+	lsls r1, r0, #0x19
+	lsrs r1, r1, #0x1b
+	adds r2, r5, #0
+	subs r2, #0x1e
+	subs r3, r1, r2
+	cmp r3, #0x1d
+	bhi .Ljp_poultry_status_B770
+	adds r4, #1
+	b .Ljp_poultry_status_B772
+.Ljp_poultry_status_B770:
+	subs r3, #0x1e
+.Ljp_poultry_status_B772:
+	lsls r0, r0, #0x1e
+	lsrs r0, r0, #0x1e
+	movs r1, #4
+	rsbs r1, r1, #0
+	subs r0, r0, r4
+	movs r2, #3
+	ands r0, r2
+	ldrb r2, [r6]
+	ands r1, r2
+	orrs r1, r0
+	movs r0, #0x1f
+	ands r3, r0
+	lsls r2, r3, #2
+	movs r0, #0x7d
+	rsbs r0, r0, #0
+	ands r1, r0
+	orrs r1, r2
+	strb r1, [r6]
+	mov sl, r1
+	lsls r1, r1, #0x1e
+	lsrs r6, r1, #0x1e
+	cmp r6, #1
+	beq .Ljp_poultry_status_B7F4
+	cmp r6, #1
+	bgt .Ljp_poultry_status_B7AA
+	cmp r6, #0
+	beq .Ljp_poultry_status_B7B4
+	b .Ljp_poultry_status_B848
+.Ljp_poultry_status_B7AA:
+	cmp r6, #2
+	beq .Ljp_poultry_status_B804
+	cmp r6, #3
+	beq .Ljp_poultry_status_B814
+	b .Ljp_poultry_status_B848
+.Ljp_poultry_status_B7B4:
+	ldr r4, .Ljp_poultry_status_B7EC @ =0x00002234
+	add r4, r8
+	ldr r2, .Ljp_poultry_status_B7F0 @ =gText_PoultryShop_Spring
+	mov sb, r2
+	adds r0, r4, #0
+	bl strlen
+	adds r7, r4, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_poultry_status_B848
+	mov r0, sb
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_poultry_status_B7DA
+	adds r4, r5, #0
+.Ljp_poultry_status_B7DA:
+	adds r0, r7, #0
+	mov r1, sb
+	adds r2, r4, #0
+	bl memcpy
+	adds r0, r7, r4
+	strb r6, [r0]
+	b .Ljp_poultry_status_B848
+	.align 2, 0
+.Ljp_poultry_status_B7EC: .4byte 0x00002234
+.Ljp_poultry_status_B7F0: .4byte gText_PoultryShop_Spring
+.Ljp_poultry_status_B7F4:
+	ldr r4, .Ljp_poultry_status_B7FC @ =0x00002234
+	add r4, r8
+	ldr r7, .Ljp_poultry_status_B800 @ =gText_PoultryShop_Summer
+	b .Ljp_poultry_status_B81A
+	.align 2, 0
+.Ljp_poultry_status_B7FC: .4byte 0x00002234
+.Ljp_poultry_status_B800: .4byte gText_PoultryShop_Summer
+.Ljp_poultry_status_B804:
+	ldr r4, .Ljp_poultry_status_B80C @ =0x00002234
+	add r4, r8
+	ldr r7, .Ljp_poultry_status_B810 @ =gText_PoultryShop_Autumn
+	b .Ljp_poultry_status_B81A
+	.align 2, 0
+.Ljp_poultry_status_B80C: .4byte 0x00002234
+.Ljp_poultry_status_B810: .4byte gText_PoultryShop_Autumn
+.Ljp_poultry_status_B814:
+	ldr r4, .Ljp_poultry_status_BA00 @ =0x00002234
+	add r4, r8
+	ldr r7, .Ljp_poultry_status_BA04 @ =gText_PoultryShop_Winter
+.Ljp_poultry_status_B81A:
+	adds r0, r4, #0
+	bl strlen
+	adds r6, r4, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_poultry_status_B848
+	adds r0, r7, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_poultry_status_B838
+	adds r4, r5, #0
+.Ljp_poultry_status_B838:
+	adds r0, r6, #0
+	adds r1, r7, #0
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r6, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_poultry_status_B848:
+	mov r3, sl
+	lsls r0, r3, #0x19
+	lsrs r0, r0, #0x1b
+	adds r6, r0, #1
+	cmp r6, #9
+	bgt .Ljp_poultry_status_B888
+	ldr r4, .Ljp_poultry_status_BA00 @ =0x00002234
+	add r4, r8
+	ldr r7, .Ljp_poultry_status_BA08 @ =gText_PoultryShop_StatusSpacer
+	adds r0, r4, #0
+	bl strlen
+	adds r6, r4, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_poultry_status_B888
+	adds r0, r7, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_poultry_status_B878
+	adds r4, r5, #0
+.Ljp_poultry_status_B878:
+	adds r0, r6, #0
+	adds r1, r7, #0
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r6, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_poultry_status_B888:
+	mov r4, sl
+	lsls r0, r4, #0x19
+	lsrs r0, r0, #0x1b
+	adds r0, #1
+	add r1, sp, #0x14
+	movs r2, #0
+	bl func_0804E98C
+	ldr r6, .Ljp_poultry_status_BA00 @ =0x00002234
+	add r6, r8
+	ldr r0, .Ljp_poultry_status_BA08 @ =gText_PoultryShop_StatusSpacer
+	mov sb, r0
+	adds r0, r6, #0
+	bl strlen
+	adds r7, r6, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_poultry_status_B8CE
+	mov r0, sb
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_poultry_status_B8BE
+	adds r4, r5, #0
+.Ljp_poultry_status_B8BE:
+	adds r0, r7, #0
+	mov r1, sb
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r7, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_poultry_status_B8CE:
+	adds r0, r6, #0
+	bl strlen
+	adds r7, r6, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_poultry_status_B8FC
+	add r0, sp, #0x14
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_poultry_status_B8EC
+	adds r4, r5, #0
+.Ljp_poultry_status_B8EC:
+	adds r0, r7, #0
+	add r1, sp, #0x14
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r7, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_poultry_status_B8FC:
+	ldr r7, .Ljp_poultry_status_BA0C @ =gText_PoultryShop_DailySellingPrice
+	adds r0, r6, #0
+	bl strlen
+	adds r6, r6, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_poultry_status_B92C
+	adds r0, r7, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_poultry_status_B91C
+	adds r4, r5, #0
+.Ljp_poultry_status_B91C:
+	adds r0, r6, #0
+	adds r1, r7, #0
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r6, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_poultry_status_B92C:
+	mov r1, r8
+	ldr r0, [r1, #0x10]
+	lsls r0, r0, #3
+	movs r1, #0xd6
+	lsls r1, r1, #3
+	add r1, r8
+	adds r1, r1, r0
+	ldr r6, [r1]
+	ldr r0, .Ljp_poultry_status_BA10 @ =0x000003E7
+	cmp r6, r0
+	bgt .Ljp_poultry_status_B978
+	ldr r4, .Ljp_poultry_status_BA00 @ =0x00002234
+	add r4, r8
+	ldr r2, .Ljp_poultry_status_BA08 @ =gText_PoultryShop_StatusSpacer
+	mov sb, r2
+	adds r0, r4, #0
+	bl strlen
+	adds r7, r4, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_poultry_status_B978
+	mov r0, sb
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_poultry_status_B968
+	adds r4, r5, #0
+.Ljp_poultry_status_B968:
+	adds r0, r7, #0
+	mov r1, sb
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r7, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_poultry_status_B978:
+	add r4, sp, #0x14
+	adds r0, r6, #0
+	adds r1, r4, #0
+	movs r2, #0
+	bl func_0804E98C
+	ldr r6, .Ljp_poultry_status_BA00 @ =0x00002234
+	add r6, r8
+	adds r0, r6, #0
+	bl strlen
+	adds r7, r6, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_poultry_status_B9B6
+	adds r0, r4, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_poultry_status_B9A6
+	adds r4, r5, #0
+.Ljp_poultry_status_B9A6:
+	adds r0, r7, #0
+	add r1, sp, #0x14
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r7, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_poultry_status_B9B6:
+	ldr r7, .Ljp_poultry_status_BA14 @ =gText_PoultryShop_Currency
+	adds r0, r6, #0
+	bl strlen
+	adds r6, r6, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_poultry_status_B9E6
+	adds r0, r7, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_poultry_status_B9D6
+	adds r4, r5, #0
+.Ljp_poultry_status_B9D6:
+	adds r0, r6, #0
+	adds r1, r7, #0
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r6, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_poultry_status_B9E6:
+	ldr r1, .Ljp_poultry_status_BA00 @ =0x00002234
+	add r1, r8
+	mov r0, r8
+	bl func_080CA3FC
+.Ljp_poultry_status_B9F0:
+	add sp, #0x2c
+	pop {r3, r4, r5}
+	mov r8, r3
+	mov sb, r4
+	mov sl, r5
+	pop {r4, r5, r6, r7}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_poultry_status_BA00: .4byte 0x00002234
+.Ljp_poultry_status_BA04: .4byte gText_PoultryShop_Winter
+.Ljp_poultry_status_BA08: .4byte gText_PoultryShop_StatusSpacer
+.Ljp_poultry_status_BA0C: .4byte gText_PoultryShop_DailySellingPrice
+.Ljp_poultry_status_BA10: .4byte 0x000003E7
+.Ljp_poultry_status_BA14: .4byte gText_PoultryShop_Currency
+
     jp_code_0803ee_func func_0807BE74, 0x7BA18, 0x7CC1C
     jp_code_0803ee_func func_0807CC1C, 0x7CC1C, 0x7CC5C
     jp_code_0803ee_func func_0807CC5C, 0x7CC5C, 0x7CD30
