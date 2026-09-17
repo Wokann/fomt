@@ -63,7 +63,7 @@ gUnk_0852A9BC:
 	FOMT_FARM_STATUS_SECONDARY_TILEMAP 05, 0, 0xB0
 	.global gUnk_0852AA6C
 gUnk_0852AA6C:
-	.incbin "baserom_de.gba", 0x2B1B08, 0x1FD4
+	FOMT_FARM_STATUS_WINTER_TILES 0, 0x1FD4
 	.global gUnk_0852CA40
 gUnk_0852CA40:
 	.incbin "baserom_de.gba", 0x2B3ADC, 0x200

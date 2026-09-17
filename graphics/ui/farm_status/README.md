@@ -22,6 +22,16 @@ Rebuild the tilemap bundle and verify it against all four ROMs with:
 make gfx-farm-status-tilemaps-all
 ```
 
+`winter/shared/tiles.png` is the separate 256-by-144 native 4bpp source used
+by the overseas winter branch. It rebuilds the identical US/EU/DE tile stream
+inside its original `0x1FD4`-byte slot; regional palette data remains
+reference-only because EU stores it in a distinct archive.
+
+```console
+make gfx-farm-status-winter-all
+make gfx-farm-status-winter-edit-test
+```
+
 Regenerate the reference PNGs with:
 
 ```console

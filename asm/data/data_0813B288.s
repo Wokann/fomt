@@ -474,6 +474,18 @@
     .endif
     .endm
 
+    .macro FOMT_FARM_STATUS_WINTER_TILES offset, length
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/farm_status/winter_tiles.0x70", \offset, \length
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/farm_status/winter_tiles.0x70", \offset, \length
+    .else
+    .incbin "build/us/graphics/ui/farm_status/winter_tiles.0x70", \offset, \length
+    .endif
+    .endif
+    .endm
+
     @ Animal Festival selects ten independent 16x16 4bpp icon records and
     @ their following BGR555 palettes.  The physical order is retained:
     @ callers address individual labels rather than a synthetic atlas.
@@ -5084,10 +5096,10 @@ gUnk_0852AA18:
 	FOMT_FARM_STATUS_SECONDARY_TILEMAP 05, 0x8, 0xA8
 	.global gUnk_0852AAC8
 gUnk_0852AAC8:
-	.incbin "baserom_eu.gba", 0x52AAC8, 0x8
+	FOMT_FARM_STATUS_WINTER_TILES 0, 0x8
 	.global gUnk_0852AA6C
 gUnk_0852AA6C:
-	.incbin "baserom_eu.gba", 0x52AAD0, 0x1FCC
+	FOMT_FARM_STATUS_WINTER_TILES 0x8, 0x1FCC
 	.global gUnk_0852CA9C
 gUnk_0852CA9C:
 	.incbin "baserom_eu.gba", 0x52CA9C, 0x8
@@ -5180,7 +5192,7 @@ gUnk_0852A684:
 	FOMT_FARM_STATUS_SECONDARY_TILEMAP 05, 0, 0xB0
 
 	non_de_asset_label gUnk_0852AA6C
-	eu_post_script_incbin 0x52AA6C, 0x1FD4
+	FOMT_FARM_STATUS_WINTER_TILES 0, 0x1FD4
 
 	non_de_asset_label gUnk_0852CA40
 	eu_post_script_incbin 0x52CA40, 0x200
