@@ -2418,7 +2418,10 @@ gUnk_084AE488:
     .incbin "baserom_jp.gba", 0x4AE488, (0x4AF4E4 - 0x4AE488)
     .global gUnk_084AF4E4
 gUnk_084AF4E4:
-    .incbin "baserom_jp.gba", 0x4AF4E4, (0x4B1FCC - 0x4AF4E4)
+    .incbin "baserom_jp.gba", 0x4AF4E4, (0x4AF5C8 - 0x4AF4E4)
+    .global gUnk_084AF5C8
+gUnk_084AF5C8:
+    .incbin "baserom_jp.gba", 0x4AF5C8, (0x4B1FCC - 0x4AF5C8)
     .global gUnk_084B1FCC
 gUnk_084B1FCC:
     .incbin "baserom_jp.gba", 0x4B1FCC, (0x4B5D9C - 0x4B1FCC)
@@ -2433,13 +2436,25 @@ gUnk_084B6060:
     .incbin "baserom_jp.gba", 0x4B6060, (0x4B7AA8 - 0x4B6060)
     .global gUnk_084B7AA8
 gUnk_084B7AA8:
-    .incbin "baserom_jp.gba", 0x4B7AA8, (0x4C0FBC - 0x4B7AA8)
+    .incbin "baserom_jp.gba", 0x4B7AA8, (0x4B7CA8 - 0x4B7AA8)
+    .global gUnk_084B7CA8
+gUnk_084B7CA8:
+    .incbin "baserom_jp.gba", 0x4B7CA8, (0x4BE2AC - 0x4B7CA8)
+    .global gUnk_084BE2AC
+gUnk_084BE2AC:
+    .incbin "baserom_jp.gba", 0x4BE2AC, (0x4C0FBC - 0x4BE2AC)
     .global gUnk_084C0FBC
 gUnk_084C0FBC:
-    .incbin "baserom_jp.gba", 0x4C0FBC, (0x4C1FCC - 0x4C0FBC)
+    .incbin "baserom_jp.gba", 0x4C0FBC, (0x4C1130 - 0x4C0FBC)
+    .global gUnk_084C1130
+gUnk_084C1130:
+    .incbin "baserom_jp.gba", 0x4C1130, (0x4C1FCC - 0x4C1130)
     .global gUnk_084C1FCC
 gUnk_084C1FCC:
-    .incbin "baserom_jp.gba", 0x4C1FCC, (0x4C3840 - 0x4C1FCC)
+    .incbin "baserom_jp.gba", 0x4C1FCC, (0x4C3014 - 0x4C1FCC)
+    .global gUnk_084C3014
+gUnk_084C3014:
+    .incbin "baserom_jp.gba", 0x4C3014, (0x4C3840 - 0x4C3014)
     .global gUnk_084C3840
 gUnk_084C3840:
     .incbin "baserom_jp.gba", 0x4C3840, (0x4C3FAC - 0x4C3840)
@@ -2451,7 +2466,10 @@ gUnk_084C4718:
     .incbin "baserom_jp.gba", 0x4C4718, (0x4C6708 - 0x4C4718)
     .global gUnk_084C6708
 gUnk_084C6708:
-    .incbin "baserom_jp.gba", 0x4C6708, (0x4C7B5C - 0x4C6708)
+    .incbin "baserom_jp.gba", 0x4C6708, (0x4C6B4C - 0x4C6708)
+    .global gUnk_084C6B4C
+gUnk_084C6B4C:
+    .incbin "baserom_jp.gba", 0x4C6B4C, (0x4C7B5C - 0x4C6B4C)
 
     @ Twenty 0x500-byte Raw-LZ object-tile payloads, unpacked in order by
     @ func_0805FBB8. Their OAM composition remains runtime data.
@@ -6209,7 +6227,7 @@ gUnk_08750C6C:
 
 	.global gUnk_08750C8C
 gUnk_08750C8C:
-	FOMT_REGION_ASSET_INCBIN 0x750C8C, 0x1C0
+	FOMT_RAW_VRAM_UI_ASSET 08750c8c, tiles.4bpp
 
 	.global gUnk_08750E4C
 gUnk_08750E4C:
@@ -6225,11 +6243,11 @@ gUnk_08750F8C:
 
 	.global gUnk_087510AC
 gUnk_087510AC:
-	FOMT_REGION_ASSET_INCBIN 0x7510AC, 0x120
+	FOMT_RAW_VRAM_UI_ASSET 087510ac, tiles.4bpp
 
 	.global gUnk_087511CC
 gUnk_087511CC:
-	FOMT_REGION_ASSET_INCBIN 0x7511CC, 0x120
+	FOMT_RAW_VRAM_UI_ASSET 087511cc, tiles.4bpp
 
 	.global gUnk_087512EC
 gUnk_087512EC:
@@ -6237,23 +6255,23 @@ gUnk_087512EC:
 
 	.global gUnk_0875130C
 gUnk_0875130C:
-	FOMT_REGION_ASSET_INCBIN 0x75130C, 0x120
+	FOMT_RAW_VRAM_UI_ASSET 0875130c, tiles.4bpp
 
 	.global gUnk_0875142C
 gUnk_0875142C:
-	FOMT_REGION_ASSET_INCBIN 0x75142C, 0x120
+	FOMT_RAW_VRAM_UI_ASSET 0875142c, tiles.4bpp
 
 	.global gUnk_0875154C
 gUnk_0875154C:
-	FOMT_REGION_ASSET_INCBIN 0x75154C, 0x120
+	FOMT_RAW_VRAM_UI_ASSET 0875154c, tiles.4bpp
 
 	.global gUnk_0875166C
 gUnk_0875166C:
-	FOMT_REGION_ASSET_INCBIN 0x75166C, 0x120
+	FOMT_RAW_VRAM_UI_ASSET 0875166c, tiles.4bpp
 
 	.global gUnk_0875178C
 gUnk_0875178C:
-	FOMT_REGION_ASSET_INCBIN 0x75178C, 0x20
+	FOMT_RAW_VRAM_UI_ASSET 0875178c, palette.gbapal
 
 	.global gUnk_087517AC
 gUnk_087517AC:
@@ -6483,11 +6501,13 @@ gUnk_087529AC:
 
 	.global gUnk_08752A2C
 gUnk_08752A2C:
-	FOMT_REGION_ASSET_INCBIN 0x752A2C, 0x80
+	FOMT_RAW_VRAM_UI_ASSET 08752a2c, tiles.4bpp
+	gUnk_08752A4C:
+	FOMT_REGION_ASSET_INCBIN 0x752A4C, 0x60
 
 	.global gUnk_08752AAC
 gUnk_08752AAC:
-	FOMT_REGION_ASSET_INCBIN 0x752AAC, 0x20
+	FOMT_RAW_VRAM_UI_ASSET 08752aac, palette.gbapal
 
 	.global gUnk_08752ACC
 gUnk_08752ACC:
@@ -6501,7 +6521,9 @@ gUnk_08752B4C:
 
 	.global gUnk_08752BCC
 gUnk_08752BCC:
-	FOMT_REGION_ASSET_INCBIN 0x752BCC, 0x80
+	FOMT_RAW_VRAM_UI_ASSET 08752bcc, tiles.4bpp
+	gUnk_08752BEC:
+	FOMT_REGION_ASSET_INCBIN 0x752BEC, 0x60
 
 	.global gUnk_08752C4C
 gUnk_08752C4C:
@@ -6509,7 +6531,9 @@ gUnk_08752C4C:
 
 	.global gUnk_08752CCC
 gUnk_08752CCC:
-	FOMT_REGION_ASSET_INCBIN 0x752CCC, 0x80
+	FOMT_RAW_VRAM_UI_ASSET 08752ccc, tiles.4bpp
+	gUnk_08752CEC:
+	FOMT_REGION_ASSET_INCBIN 0x752CEC, 0x60
 
 	.global gUnk_08752D4C
 gUnk_08752D4C:

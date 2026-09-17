@@ -3,8 +3,10 @@
 char const gCppRuntimeBadAlloc_HarvestSpriteMiniGameAnimalHusbandry[] =
     "bad_alloc";
 
-char const gText_HarvestSpriteMiniGameAnimalHusbandryEmpty[] ALIGN(1) =
-    "\0\0";
+// The two bytes after "bad_alloc" are alignment fill. The real empty-string
+// pointer is the final NUL at the following four-byte boundary.
+char const gText_HarvestSpriteMiniGameAnimalHusbandryEmpty[] ALIGN(4) =
+    "";
 
 // Direct-indexed chicken-festival contestant names. The fixed 13-byte rows
 // retain the original JP display-space padding.
