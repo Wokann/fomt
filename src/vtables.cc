@@ -7493,62 +7493,67 @@ extern RawVTableFunction const vtable_unk_080E8440[]
     };
 
 #if defined(REGION_JP)
-// The JP constructor at 0x080AD9A4 points at this real four-slot tail, not
-// at the start of the preceding 44-slot abstract table.
+// The JP constructor at 0x080AD9A4 points at this three-slot tail. The
+// following four-slot table begins at the next word and belongs to the
+// resource-page helpers below.
 extern RawVTableFunction const vtable_unk_080E7930[]
     SECTION(".rodata.vtable_8440") = {
         nullptr,
         nullptr,
         func_080E4564,
-        nullptr,
     };
 #endif
 
 #if defined(REGION_JP)
 extern void func_080B3640(void);
 extern void func_080B3C3C(void);
+// The JP counterpart of vtable_unk_080E850C starts at 0x080E793C. It is
+// physically adjacent to, but not part of, vtable_unk_080E7930.
+extern RawVTableFunction const vtable_unk_080E850C[]
+    SECTION(".rodata.vtable_8500") = {
+        nullptr,
+        nullptr,
+        func_080B3640,
+        func_080B3C3C,
+    };
 #else
 extern void func_080E4564(void);
-#endif
 
 // Preserve this three-slot region-dependent table without assigning semantics
 // to the entries before the corresponding class implementation is recovered.
 extern RawVTableFunction const vtable_unk_080E8500[]
     SECTION(".rodata.vtable_8500") = {
-#if defined(REGION_JP)
-        nullptr,
-        func_080B3640,
-        func_080B3C3C,
-#else
         nullptr,
         nullptr,
         func_080E4564,
-#endif
     };
+#endif
 
 #if defined(REGION_JP)
 extern void func_080E4940(void);
+// This physical JP table follows vtable_unk_080E850C. Its owner is still
+// unknown, so retain an address-based name rather than assigning semantics.
+extern RawVTableFunction const vtable_unk_080E794C[]
+    SECTION(".rodata.vtable_850c") = {
+        nullptr,
+        nullptr,
+        func_080E4940,
+        nullptr,
+    };
 #else
 extern void func_080B3C0C(void);
 extern void func_080B3C3C(void);
-#endif
 
 // Retain every slot of this four-entry region-dependent callback table in the
 // original ROM order until the owning type has been recovered.
 extern RawVTableFunction const vtable_unk_080E850C[]
     SECTION(".rodata.vtable_850c") = {
-#if defined(REGION_JP)
-        nullptr,
-        nullptr,
-        func_080E4940,
-        nullptr,
-#else
         nullptr,
         nullptr,
         func_080B3C0C,
         func_080B3C3C,
-#endif
     };
+#endif
 
 #if defined(REGION_JP)
 extern void func_080BC2F4(void);

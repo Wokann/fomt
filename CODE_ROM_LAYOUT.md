@@ -1047,3 +1047,24 @@ EU、DE 的完整构建和 SHA-1 校验均已通过。
 `func_08008B6C`（JP 实际入口 `0x08008B74`）。所有调用均保留真实可重定位符号，
 函数不含代码 `.incbin`、原始 `.byte`、`.set`、`.thumb_set` 或地址偏移伪匹配。
 JP、US、EU、DE 的完整构建、SHA-1 与基准 ROM 的逐字节校验均已通过。
+
+三个连续的 JP 辅助函数也已从原始宏直接提升：`func_080B3618` 覆盖
+JP `0x080B3618`–`0x080B363F`，普通三区分别为 US `0x080B3BE4`–`0x080B3C0B`、
+EU `0x080B3C14`–`0x080B3C3B`、DE `0x080B3B44`–`0x080B3B6B`；
+`func_080B3640` 覆盖 JP `0x080B3640`–`0x080B366F`，对应 US
+`0x080B3C0C`–`0x080B3C3B`、EU `0x080B3C3C`–`0x080B3C6B`、DE
+`0x080B3B6C`–`0x080B3B9B`；`func_080B3C3C` 覆盖 JP
+`0x080B3670`–`0x080B36AB`，对应 US `0x080B3C3C`–`0x080B3C77`、EU
+`0x080B3C6C`–`0x080B3CA7`、DE `0x080B3B9C`–`0x080B3BD7`。
+
+所有跨区 `BL` 已按原始目标逐一校对：`__builtin_new` 与 `func_080007EC` 直接保持同名
+符号，`func_080ADF6C`/`func_080AE4E4` 分别直接映射为 JP 的真实入口
+`func_080AD9A4`/`func_080ADF1C`，虚调用保留 `_call_via_r2` 符号。两个 vtable 字面量
+也直接重定位到同一逻辑符号 `vtable_unk_080E850C`。三段均无代码 `.incbin`、原始
+`.byte`、`.set`、`.thumb_set` 或地址偏移伪匹配。
+
+为使该 vtable 引用确实落到原始 JP 地址，`src/vtables.cc` 已按实际对象边界重划：
+`vtable_unk_080E7930` 是位于 `0x080E7930` 的三槽尾部，
+`vtable_unk_080E850C` 是紧接的四槽表，真实起点 `0x080E793C`；后续独立的未知
+四槽表显式命名为 `vtable_unk_080E794C`。这只修正对象边界和符号归属，不改变任何
+ROM 字节。JP、US、EU、DE 的完整构建、SHA-1 与基准 ROM 逐字节校验均已通过。
