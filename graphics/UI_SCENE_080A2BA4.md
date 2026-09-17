@@ -1,7 +1,7 @@
 # `func_080A2BA4` BG resource set
 
-`func_080A2BA4` is an as-yet unnamed UI-scene setup routine. Its resource
-labels and VRAM loads are nevertheless concrete: the routine clears VRAM
+`func_080A2BA4` is an overseas-only, as-yet unnamed UI-scene setup routine.
+Its resource labels and VRAM loads are nevertheless concrete: the routine clears VRAM
 screen blocks, passes four labelled ROM streams to `Unpack`, then configures
 BG control values `0x1C43`, `0x1D41`, and `0x1E42`. Those controls select the
 three screen blocks at `0x0600E000`, `0x0600E800`, and `0x0600F000`; the fourth
@@ -17,11 +17,15 @@ screen capture:
 | `layer_2.tilemap` | `0x64` | `0x500` (32x20 u16 entries) | `020`, ladder `1234679` | `0x0600F000` |
 | `tiles.4bpp` | `0x29C` | `0x1400` (160 4bpp tiles) | `020`, ladder `125681012` | `0x06000000` |
 
-## Four-region evidence
+## Overseas runtime evidence and JP carrier boundary
 
-All four packed streams, as well as every decoded payload, are byte-identical
-in JP, US, EU, and DE. The physical starts differ only by localization ROM
-layout:
+The four packed streams and decoded payloads are byte-identical in JP, US, EU,
+and DE, but that does **not** establish a four-region runtime call relation.
+The callable routine above exists in US/EU/DE and consumes the overseas labels.
+JP has a byte-identical carrier block at `0x4D5430` for its data build, but the
+JP UI routine `func_080AE208` instead consumes the separate labels at
+`0x4B5D9C`; those inputs belong to the managed `func_080AE7D0` resource group.
+The physical starts of this carrier block differ only by ROM layout:
 
 | Region | First stream | Last stream |
 | --- | ---: | ---: |
@@ -41,20 +45,21 @@ affe9000551cfe131462a85c89847ac8d7909a7883a8201e3109a5e577fdb54d
 
 ## Shared palette boundary and read-only preview
 
-The routine copies exactly `0x200` bytes from `gUnk_0874F2EC` to BG palette
-RAM. The existing assembly label boundary after its first `0x60` bytes is
+The overseas routine copies exactly `0x200` bytes from `gUnk_0874F2EC` to BG
+palette RAM. The existing assembly label boundary after its first `0x60` bytes is
 `gUnk_0874F34C`, and that latter label is also constructed as an
 `IndexedResourceArchive` by nearby code. Therefore the range is **not** an
 independently editable palette source: changing it as artwork could damage the
 archive's other consumer.
 
-It is nevertheless the exact palette supplied to this UI routine, so the
-repository contains read-only, code-backed regional previews in
-`reference/jp/`, `reference/us/`, `reference/eu/`, and `reference/de/`. Each
-contains the three 256-by-160 BG layers and a `screen.png` cropped to the GBA's
-actual 240-by-160 viewport. These files are reference output only and have no
-build or patch rule. Their source hashes and each region's copied 0x200-byte
-palette range are checked before rendering.
+It is nevertheless the exact palette supplied to the overseas routine, so the
+repository contains read-only, code-backed previews in `reference/us/`,
+`reference/eu/`, and `reference/de/`. Each contains the three 256-by-160 BG
+layers and a `screen.png` cropped to the GBA's actual 240-by-160 viewport.
+`reference/jp/` remains only a byte-carrier visualization, not a claim of the
+JP runtime scene. These files are reference output only and have no build or
+patch rule. Their source hashes and each region's copied 0x200-byte palette
+range are checked before rendering.
 
 The four checked-in native sources are editable. Rebuilds preserve each retail
 compressed stream when unchanged; an edited stream is re-encoded with the

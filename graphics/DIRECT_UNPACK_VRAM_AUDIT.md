@@ -6,7 +6,7 @@ literal/register data flow through assembly and records a call only when a
 named `g*` resource is passed to `Unpack` with a statically recoverable VRAM
 destination. The current result has 44 calls and 37 distinct physical labels.
 This includes regional labels selected by conditional assembly: for example,
-the three JP `func_080A2BA4` inputs and the JP `func_08077810` inputs are
+the three JP `func_080AE208` inputs and the JP `func_08077810` inputs are
 separate symbols but members of already-classified logical resource groups.
 Repeated calls to one physical label are likewise retained as separate code
 paths. The inventory therefore measures delivery paths and physical symbols,
@@ -21,8 +21,8 @@ next graphics families.
 
 | Consumer group | Labels / streams | Four-region state | Pipeline state |
 | --- | --- | --- | --- |
-| `func_080A2BA4` | Overseas: `0874EF14`, `0874EF3C`, `0874EFEC`, `0874F050`; JP: `084B5D9C`, `084B5FD4`, `084B6060` | Every packed and decoded stream identical | Managed: four native streams. The exact palette copy is archive-owned, so it has only verified read-only regional PNG references and no editable/patchable palette source. |
-| `func_080AE7D0` | `0872FC34`, `0872FE6C`, `0872FEF8` plus adjacent palette | Every packed and decoded stream plus palette identical | Managed: two tilemaps, 4bpp tiles, and 16-bank palette PNG. Its proven BG control priorities also produce code-backed layer and composite image references. |
+| Overseas `func_080A2BA4` | `0874EF14`, `0874EF3C`, `0874EFEC`, `0874F050` | The overseas streams are byte-identical. A separate byte-identical JP carrier block is retained for the data build, but is not claimed as this routine's JP call input. | Managed: four native streams. The exact palette copy is archive-owned, so it has only verified read-only overseas PNG references and no editable/patchable palette source. |
+| `func_080AE7D0` and JP counterpart `func_080AE208` | Overseas: `0872FC34`, `0872FE6C`, `0872FEF8` plus adjacent palette; JP: `084B5D9C`, `084B5FD4`, `084B6060` plus `084B7AA8` palette | Every packed and decoded stream plus palette is identical | Managed: two tilemaps, 4bpp tiles, and 16-bank palette PNG. Its proven BG control priorities also produce code-backed layer and composite image references. |
 | `func_080B7164` | `0872D5CC`, `0872D630`, `0872D6D8` | Every packed and decoded stream identical | Managed: two tilemaps, 4bpp tiles, and the code-bounded 0x200-byte BG palette; generated layer PNGs provide code-backed visual references. |
 | `func_080B55D0` area | `086FB004`, `0872C5D0`, `0872C73C`, `0872C84C` | All labelled ranges are identical | Managed: the physically separate `086FB004` stream decodes to a shared 32 KiB/1024-tile native 4bpp source and rebuilds within its `0x2198` slot. The three later `020`/`030` streams remain two tilemaps plus 4bpp tiles. Two code-proven but overlapping palette operations generate a read-only auxiliary BG reference; no unproven full-scene layout is authored. |
 | `func_080BCFAC` | `0873BE24`, `0873BF48`, `0873BFF0` | Every packed and decoded stream plus the explicit 0x200-byte palette copy is identical | Managed: two 32-by-32 tilemaps, 4bpp tiles, code-bounded palette, and code-backed rendered layer references. |

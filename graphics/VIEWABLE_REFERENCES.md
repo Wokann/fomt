@@ -118,7 +118,7 @@ sources.
 
 | Routine / resource | View | Scope |
 | --- | --- | --- |
-| `func_080A2BA4` | [JP](ui/scene_080a2ba4/reference/jp/screen.png), [US](ui/scene_080a2ba4/reference/us/screen.png), [EU](ui/scene_080a2ba4/reference/eu/screen.png), [DE](ui/scene_080a2ba4/reference/de/screen.png) | Per-region 240-by-160 view; the palette is archive-owned and read-only. |
+| Overseas `func_080A2BA4` | [US](ui/scene_080a2ba4/reference/us/screen.png), [EU](ui/scene_080a2ba4/reference/eu/screen.png), [DE](ui/scene_080a2ba4/reference/de/screen.png) | Code-backed overseas 240-by-160 view; the palette is archive-owned and read-only. The JP carrier visualization is intentionally excluded because the JP routine loads a different managed resource group. |
 | `func_080AE7D0` | [scene](ui/scene_080ae7d0/reference/scene.png) | Two code-priority BG layers; common across all four regions. |
 | `func_080B7164` | [scene](ui/scene_080b7164/reference/scene.png) | Two code-priority BG layers; common across all four regions. |
 | `func_080BCFAC` | [scene](ui/scene_080bcfac/reference/scene.png) | Two code-priority BG layers; common across all four regions. |

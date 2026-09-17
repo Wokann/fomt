@@ -19,8 +19,8 @@ entire surrounding `incbin` range is a standalone palette resource.
 | `func_0806EC94` | `gUnk_08529794`, `gUnk_0852CA40` | `0x05000000`, `0x200` | Non-winter and winter Farm Status palette selections. The former is managed with `base_palettes.png`; the overseas winter palettes remain region-aware references. |
 | `func_08077810` and `func_08000F5C` | `gUnk_0874EB40`, `gUnk_084D529C` | `0x05000000`, `0x20` | The first is the shared overseas/intro palette slice; the second is the separate JP-only palette bank associated with its independently managed `func_08077810` resource group. |
 | `func_08077EC0` | `gUnk_08757AE0`, `gUnk_0875A358` | `0x05000020`, `0xC0` | Non-winter and winter seasonal palette selections, both represented by their managed six-bank BGR555 sources. |
-| `func_080A2BA4` | `gUnk_0874F2EC` | `0x05000000`, `0x200` | Archive-owned palette copied for the managed UI scene; preserved as a read-only reference. |
-| `func_080AE7D0` | `gUnk_08731940` | `0x05000000`, `0x200` | Managed UI-scene BGR555 palette. |
+| Overseas `func_080A2BA4` | `gUnk_0874F2EC` | `0x05000000`, `0x200` | Archive-owned palette copied for the managed overseas UI scene; preserved as a read-only reference. |
+| `func_080AE7D0` / JP `func_080AE208` | Overseas `gUnk_08731940`; JP `gUnk_084B7AA8` | `0x05000000`, `0x200` | Managed UI-scene BGR555 palette. |
 | `func_080B55D0` | `gUnk_0872D5AC` | `0x050000E0`, `0x200` | Crossing palette upload for the managed auxiliary UI reference; deliberately non-editable by itself. |
 | `func_080B7164` | `gUnk_0872DDE4` | `0x05000000`, `0x200` | Managed UI-scene BGR555 palette. |
 | `func_080BCFAC` | `gUnk_0873CBF4` | `0x05000000`, `0x200` | Managed UI-scene BGR555 palette. |
