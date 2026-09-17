@@ -87,6 +87,22 @@ under `reference/startup/` are generated from that proven row split, tile IDs,
 flip bits and palette-bank fields; they are visual references only, because a
 flat PNG cannot preserve those native map fields.
 
+`func_080019D8` writes the two maps from each source to fixed VRAM screen
+blocks. This is a proven storage relationship, not an assertion about which
+map is visible at a particular point in the scene:
+
+| Editable source | First 32x32 map | Second 32x32 map |
+| --- | --- | --- |
+| `startup_00.tilemap` | screen block 24 (`0x0600C000`) | screen block 25 (`0x0600C800`) |
+| `startup_01.tilemap` | screen block 26 (`0x0600D000`) | screen block 27 (`0x0600D800`) |
+| `startup_02.tilemap` | screen block 28 (`0x0600E000`) | screen block 29 (`0x0600E800`) |
+| `startup_03.tilemap` | screen block 30 (`0x0600F000`) | screen block 31 (`0x0600F800`) |
+
+For each of the 32 rows, the first `0x40` bytes of the source's `0x80`-byte
+row go to the first screen block and the next `0x40` bytes go to the second.
+The checked-in `.tilemap` files deliberately preserve this decoded native
+interleaving; the rendered layer PNGs must not replace them as source data.
+
 The startup tile payload uses the `230` Huffman-8/LZ3 family.  Its tile and
 palette sources are linked back into the original ranges.  An unchanged tile
 source retains the exact retail stream; an edited source is strictly decoded
