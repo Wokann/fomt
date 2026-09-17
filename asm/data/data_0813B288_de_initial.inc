@@ -2443,16 +2443,16 @@ gUnk_08757C0C:
 	.incbin "baserom_de.gba", 0x4DF128, 0x8
 	.global gUnk_08757C14
 gUnk_08757C14:
-	.incbin "baserom_de.gba", 0x4DF130, 0x30C
+	FOMT_SEASONAL_NONWINTER_ASSET "bg_30.tilemap"
 	.global gUnk_08757F20
 gUnk_08757F20:
-	.incbin "baserom_de.gba", 0x4DF43C, 0x30C
+	FOMT_SEASONAL_WINTER_ASSET "winter_bg_29.tilemap"
 	.global gUnk_0875822C
 gUnk_0875822C:
-	.incbin "baserom_de.gba", 0x4DF748, 0x212C
+	FOMT_SEASONAL_WINTER_ASSET "winter_tiles.0x70"
 	.global gUnk_0875A358
 gUnk_0875A358:
-	.incbin "baserom_de.gba", 0x4E1874, 0xC0
+	FOMT_SEASONAL_WINTER_ASSET "winter_palette_banks.gbapal"
 	.global gUnk_0875A418
 gUnk_0875A418:
 	.incbin "baserom_de.gba", 0x4E1934, 0xC

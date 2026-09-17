@@ -2484,13 +2484,13 @@ gUnk_084DDBC0:
     .incbin "baserom_jp.gba", 0x4DDBC0, (0x4DDECC - 0x4DDBC0)
     .global gUnk_084DDECC
 gUnk_084DDECC:
-    .incbin "baserom_jp.gba", 0x4DDECC, (0x4DE1D8 - 0x4DDECC)
+    .incbin "build/jp/graphics/ui/seasonal_background/winter/winter_bg_29.tilemap"
     .global gUnk_084DE1D8
 gUnk_084DE1D8:
-    .incbin "baserom_jp.gba", 0x4DE1D8, (0x4E0304 - 0x4DE1D8)
+    .incbin "build/jp/graphics/ui/seasonal_background/winter/winter_tiles.0x70"
     .global gUnk_084E0304
 gUnk_084E0304:
-    .incbin "baserom_jp.gba", 0x4E0304, (0x4E03C4 - 0x4E0304)
+    .incbin "build/jp/graphics/ui/seasonal_background/winter/winter_palette_banks.gbapal"
     .global gUnk_084E03C4
 gUnk_084E03C4:
     .incbin "baserom_jp.gba", 0x4E03C4, (0x4E03D0 - 0x4E03C4)
@@ -2563,6 +2563,21 @@ gUnk_UiSharedResourceData_001:
     .incbin "build/eu/graphics/ui/seasonal_background/\name"
     .else
     .incbin "build/us/graphics/ui/seasonal_background/\name"
+    .endif
+    .endif
+    .endm
+
+    @ Winter shares BG30 with the non-winter group but has its own H8/LZ3
+    @ stream, six-bank palette and BG29 map. The payloads are common across
+    @ JP/US/EU/DE while retaining each region's physical placement.
+    .macro FOMT_SEASONAL_WINTER_ASSET name
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/seasonal_background/winter/\name"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/seasonal_background/winter/\name"
+    .else
+    .incbin "build/us/graphics/ui/seasonal_background/winter/\name"
     .endif
     .endif
     .endm
@@ -6363,19 +6378,19 @@ gUnk_08757C0C:
 
 	.global gUnk_08757C14
 gUnk_08757C14:
-	FOMT_REGION_ASSET_INCBIN 0x757C14, 0x30C
+	FOMT_SEASONAL_NONWINTER_ASSET "bg_30.tilemap"
 
 	.global gUnk_08757F20
 gUnk_08757F20:
-	FOMT_REGION_ASSET_INCBIN 0x757F20, 0x30C
+	FOMT_SEASONAL_WINTER_ASSET "winter_bg_29.tilemap"
 
 	.global gUnk_0875822C
 gUnk_0875822C:
-	FOMT_REGION_ASSET_INCBIN 0x75822C, 0x212C
+	FOMT_SEASONAL_WINTER_ASSET "winter_tiles.0x70"
 
 	.global gUnk_0875A358
 gUnk_0875A358:
-	FOMT_REGION_ASSET_INCBIN 0x75A358, 0xC0
+	FOMT_SEASONAL_WINTER_ASSET "winter_palette_banks.gbapal"
 
 	.global gUnk_0875A418
 gUnk_0875A418:
