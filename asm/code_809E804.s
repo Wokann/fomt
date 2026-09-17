@@ -55336,7 +55336,83 @@ func_080B94A8: @ 0x080B8EDC
 	pop {r0}
 	bx r0
 
-    jp_code_809_func func_080B96AC, 0xB90E0, 0xB9168
+    .global func_080B96AC
+    .thumb_func
+func_080B96AC: @ 0x080B90E0
+	push {r4, r5, r6, r7, lr}
+	mov r7, r8
+	push {r7}
+	mov r8, r3
+	ldr r3, [sp, #0x18]
+	ldr r4, [sp, #0x1c]
+	ldr r5, [sp, #0x20]
+	ldr r0, [sp, #0x24]
+	lsls r1, r1, #0x10
+	lsls r2, r2, #0x10
+	lsls r3, r3, #0x10
+	lsls r4, r4, #0x10
+	lsls r5, r5, #0x18
+	lsrs r5, r5, #0x18
+	lsls r0, r0, #0x10
+	lsrs r6, r0, #0x10
+	adds r7, r6, #0
+	lsrs r3, r3, #0x18
+	lsrs r1, r1, #0x18
+	subs r3, r3, r1
+	lsrs r2, r2, #0x18
+	lsrs r4, r4, #0x18
+	subs r2, r2, r4
+	adds r0, r3, #0
+	muls r0, r3, r0
+	adds r1, r2, #0
+	muls r1, r2, r1
+	adds r0, r0, r1
+	adds r1, r5, #0
+	muls r1, r5, r1
+	cmp r0, r1
+	bgt .Ljp_080B915A
+	adds r0, r3, #0
+	adds r1, r2, #0
+	bl ArcTan2
+	lsls r0, r0, #0x10
+	lsrs r1, r0, #0x10
+	mov r0, r8
+	cmp r0, #1
+	bne .Ljp_080B913E
+	cmp r1, r6
+	blo .Ljp_080B9156
+	movs r0, #0x80
+	lsls r0, r0, #9
+	subs r0, r0, r6
+	b .Ljp_080B9152
+.Ljp_080B913E:
+	mov r3, r8
+	cmp r3, #3
+	bne .Ljp_080B9146
+	movs r3, #1
+.Ljp_080B9146:
+	adds r3, #1
+	lsls r3, r3, #0xe
+	adds r0, r7, r3
+	cmp r1, r0
+	bge .Ljp_080B915A
+	subs r0, r3, r7
+.Ljp_080B9152:
+	cmp r1, r0
+	ble .Ljp_080B915A
+.Ljp_080B9156:
+	movs r0, #1
+	b .Ljp_080B915C
+.Ljp_080B915A:
+	movs r0, #0
+.Ljp_080B915C:
+	pop {r3}
+	mov r8, r3
+	pop {r4, r5, r6, r7}
+	pop {r1}
+	bx r1
+	.align 2, 0
+
     jp_code_809_func func_080B9734, 0xB9168, 0xB9230
     jp_code_809_func func_080B97FC, 0xB9230, 0xB925C
     jp_code_809_func func_080B9828, 0xB925C, 0xB9278
