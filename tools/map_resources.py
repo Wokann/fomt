@@ -4,10 +4,10 @@
 The retail ``MapData`` table has 66 entries.  Its first six pointers are
 visual-resource streams: layer 0 is copied by ``func_080A5EA0`` to VRAM, layers
 1/2 are loaded by ``func_080A5DB8``, and layers 3--5 are BG tilemaps loaded by
-``func_080A5CC0``.  This first map-resource phase deliberately preserves each
-retail packed stream byte-for-byte.  It gives every unique stream a native,
-editable decoded source, but refuses an edited source until its specific
-Marvelous compression format has a proven encoder.
+``func_080A5CC0``. Each unique stream has a native decoded source. Unchanged
+sources preserve retail packed bytes exactly; edited sources are rebuilt with
+the audited atom/LZ/differential format and must fit their original fixed
+packed interval.
 
 There is no layout sidecar: the authoritative alias and boundary information
 is derived from the selected ROM's MapData table on every invocation.  A
@@ -24,8 +24,10 @@ from dataclasses import dataclass
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent / "scripts"))
+sys.path.insert(0, str(Path(__file__).parent))
 
 from decompress import unpack  # type: ignore[import-not-found]
+from marvelous_codec import encode_popuri  # type: ignore[import-not-found]
 
 
 ROM_BASE = 0x08000000
@@ -195,6 +197,32 @@ def payload_for(inputs: dict[str, bytes], resource: Resource, region: str) -> by
     return payload
 
 
+def rebuild(source: bytes, baseline: bytes, resource: Resource) -> bytes:
+    """Preserve an unchanged stream or rebuild one edited fixed-slot stream."""
+    original, format_spec, ladder = unpack(baseline)
+    if format_spec != resource.format_spec or ladder != resource.ladder:
+        raise AssertionError(
+            f"MapData {resource.owner[0]:02d}/{resource.owner[1]} no longer matches "
+            f"its audited format {resource.format_spec}/{resource.ladder}"
+        )
+    if bytes(original) == source:
+        return baseline
+    encoded = encode_popuri(source, format_spec, ladder)
+    if len(encoded) > resource.length:
+        raise ValueError(
+            f"edited MapData {resource.owner[0]:02d}/{resource.owner[1]} needs "
+            f"{len(encoded):#x} bytes but its fixed native interval holds only "
+            f"{resource.length:#x} bytes"
+        )
+    rebuilt = encoded + bytes(resource.length - len(encoded))
+    checked, checked_format, checked_ladder = unpack(rebuilt)
+    if bytes(checked) != source or checked_format != format_spec or checked_ladder != ladder:
+        raise AssertionError(
+            f"rebuilt MapData {resource.owner[0]:02d}/{resource.owner[1]} failed strict native decode validation"
+        )
+    return rebuilt
+
+
 def export(arguments: argparse.Namespace) -> None:
     inputs = {region: Path(path).read_bytes() for region, path in arguments.rom}
     resources = catalog(inputs)
@@ -217,20 +245,15 @@ def build(arguments: argparse.Namespace) -> None:
         source = source_path(arguments.source_dir, resource)
         if not source.exists():
             raise ValueError(f"missing source {source}")
-        original = payload_for(inputs, resource, arguments.region)
-        if source.read_bytes() != original:
-            raise ValueError(
-                f"{source}: edited MapData stream {resource.owner[0]:02d}/{resource.owner[1]} "
-                f"uses native format {resource.format_spec}/{resource.ladder}; its encoder is not yet proven"
-            )
         output = output_path(arguments.output_dir, resource)
         output.parent.mkdir(parents=True, exist_ok=True)
         offset = resource.offsets[arguments.region]
         packed = rom[offset:offset + resource.length]
-        output.write_bytes(packed)
+        rebuilt = rebuild(source.read_bytes(), packed, resource)
+        output.write_bytes(rebuilt)
         if expected_offset is not None and offset != expected_offset:
             raise AssertionError(f"MapData archive has a gap before {offset:#x}")
-        archive.extend(packed)
+        archive.extend(rebuilt)
         expected_offset = offset + resource.length
     archive_path(arguments.output_dir).write_bytes(archive)
     print(f"rebuilt {len(resources)} byte-identical MapData streams for {arguments.region.upper()}")
@@ -278,6 +301,47 @@ def patch_test(arguments: argparse.Namespace) -> None:
     print("verified post-link MapData archive patching against JP, US, EU and DE ROMs")
 
 
+def edit_test(arguments: argparse.Namespace) -> None:
+    """Exercise one capacity-fitting authored edit for every retail format.
+
+    The source tree remains unmodified. This validates the generic encoder
+    router, inverse differential filters, fixed-slot bound, and strict decoder
+    for all format families that MapData actually uses.
+    """
+    inputs = {region: Path(path).read_bytes() for region, path in arguments.rom}
+    resources = catalog(inputs)
+    remaining = {resource.format_spec for resource in resources}
+    verified: dict[str, tuple[int, int]] = {}
+    for resource in resources:
+        if resource.format_spec not in remaining:
+            continue
+        original = payload_for(inputs, resource, "jp")
+        edited = bytearray(original)
+        edited[-1] ^= 1
+        baseline = inputs["jp"][resource.offsets["jp"]:resource.offsets["jp"] + resource.length]
+        try:
+            rebuilt = rebuild(bytes(edited), baseline, resource)
+        except ValueError:
+            continue
+        checked, checked_format, checked_ladder = unpack(rebuilt)
+        if bytes(checked) != bytes(edited) or checked_format != resource.format_spec or checked_ladder != resource.ladder:
+            raise AssertionError(f"edited MapData {resource.owner} did not survive strict round-trip")
+        for region, rom in inputs.items():
+            regional_baseline = rom[resource.offsets[region]:resource.offsets[region] + resource.length]
+            _regional_payload, regional_format, regional_ladder = unpack(regional_baseline)
+            if regional_format != resource.format_spec or regional_ladder != resource.ladder:
+                raise AssertionError(f"MapData {resource.owner} has an unrecorded {region.upper()} format difference")
+            if len(rebuilt) != len(regional_baseline):
+                raise AssertionError(f"edited MapData {resource.owner} does not fit the {region.upper()} fixed interval")
+        verified[resource.format_spec] = resource.owner
+        remaining.remove(resource.format_spec)
+    if remaining:
+        missing = ", ".join(sorted(remaining))
+        raise AssertionError(f"no capacity-fitting edit test found for MapData formats: {missing}")
+    details = ", ".join(f"{key}:{owner[0]:02d}/{owner[1]}" for key, owner in sorted(verified.items()))
+    print(f"verified editable MapData format coverage ({details})")
+
+
 def audit(arguments: argparse.Namespace) -> None:
     inputs = {region: Path(path).read_bytes() for region, path in arguments.rom}
     resources = catalog(inputs)
@@ -319,6 +383,8 @@ def main() -> None:
     patch_test_parser = commands.add_parser("patch-test")
     patch_test_parser.add_argument("--output-root", type=Path, required=True)
     add_roms(patch_test_parser)
+    edit_test_parser = commands.add_parser("edit-test")
+    add_roms(edit_test_parser)
     audit_parser = commands.add_parser("audit")
     add_roms(audit_parser)
     arguments = parser.parse_args()
@@ -332,6 +398,8 @@ def main() -> None:
         patch(arguments)
     elif arguments.command == "patch-test":
         patch_test(arguments)
+    elif arguments.command == "edit-test":
+        edit_test(arguments)
     else:
         audit(arguments)
 

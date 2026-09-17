@@ -655,10 +655,10 @@ FARM_HOUSE_PALETTE_OUTPUT_DIR := $(BUILD_DIR)/graphics/farm_house_visual_palette
 FARM_HOUSE_PALETTE_STAMP := $(FARM_HOUSE_PALETTE_OUTPUT_DIR)/.farm-house-palettes.stamp
 FARM_HOUSE_PALETTE_REGION := $(INTRO_OBJECTS_REGION)
 
-# MapData owns 66 six-layer map records.  This initial pipeline exports every
-# unique retail visual stream as native decoded source and rebuilds it without
-# changing packed bytes.  A changed source is intentionally rejected until the
-# exact Marvelous encoder for that stream's format has been proven.
+# MapData owns 66 six-layer map records. Every unique visual stream has a
+# native decoded source. Unchanged sources retain their retail packed bytes;
+# edited sources use the audited Popuri atom/LZ/differential encoder and must
+# fit the original fixed packed interval.
 MAP_RESOURCES_TOOL := tools/map_resources.py
 MAP_VISUAL_REFERENCE_TOOL := tools/map_visual_references.py
 MAP_RESOURCES_SOURCE_DIR := graphics/maps/shared
@@ -1942,6 +1942,7 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-intro-small-archive-edit-test
 	@$(MAKE) --no-print-directory gfx-map-resources-all
 	@$(MAKE) --no-print-directory gfx-map-resources-patch-test
+	@$(MAKE) --no-print-directory gfx-map-resources-edit-test
 	@$(MAKE) --no-print-directory resource-archive-audit
 	@$(MAKE) --no-print-directory gfx-records-minigame-all
 	@$(MAKE) --no-print-directory gfx-animal-festival-icons-all

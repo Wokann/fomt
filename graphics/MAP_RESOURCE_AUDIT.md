@@ -65,11 +65,15 @@ evidence-based: 31 layer-0 streams use `.4bpp`, 194 layer-3--5 streams use
 consumer destination is proven.  All 272 exports total `0x22BE60` decoded
 bytes.
 
-The current builder intentionally preserves the original packed bytes only.
-If an edited source uses an unimplemented Marvelous format, it stops with a
-format-specific error rather than silently emitting a guessed encoding.  The
-four-region `gfx-map-resources-all` target verifies every generated packed
-stream byte-for-byte against the appropriate retail ROM.
+The builder preserves the original packed bytes when a decoded source is
+unchanged.  When it is edited, `tools/marvelous_codec.py` routes the payload
+through the exact audited Popuri atom/LZ/differential tuple and original
+distance ladder, then strictly decodes the result before accepting it.  The
+new packed data must fit the original fixed interval; an overrun is a hard
+error rather than a silent move into the next stream. `gfx-map-resources-all`
+continues to verify unchanged output byte-for-byte for every region, while
+`gfx-map-resources-edit-test` exercises one fitting authored edit for each of
+the 14 format tuples present in this archive.
 
 The normal `%.gba` link rule then invokes `map_resources.py patch` after
 `objcopy`.  It writes the selected region's generated archive back to the
@@ -86,11 +90,11 @@ each complete image byte-identical.
 * The six packed layer ranges, terrain-record table and terrain-index grid are
   all physically labelled in `asm/data/data_0813B288*.s` and referenced by
   `src/map_data.cc`.
-* All 272 unique visual layer streams are now a managed, source-backed
-  graphics family with four-region byte-range verification and a post-link
-  ROM integration step.  It preserves all existing direct assembly labels,
-  rather than risking a refactor of the aggregate archive before every
-  embedded label has been independently recovered.
+* All 272 unique visual layer streams are now a managed, source-backed,
+  fixed-slot editable graphics family with four-region byte-range verification
+  and a post-link ROM integration step. It preserves all existing direct
+  assembly labels, rather than risking a refactor of the aggregate archive
+  before every embedded label has been independently recovered.
 * Layer 0 and layers 3–5 have verified graphics/tilemap roles; layers 1–2
   still require exact tile/palette destination analysis.
 * The earlier `unknown_types.hh::MapData` sketch has a speculative
@@ -98,7 +102,7 @@ each complete image byte-identical.
   evidence for this pipeline; `map_data.hh` and the runtime access above are
   authoritative.
 
-## Required evidence before a map family becomes editable
+## Evidence retained for each editable map family
 
 For each map layer family, establish all of the following before replacing an
 original `incbin` range:
@@ -112,5 +116,7 @@ original `incbin` range:
 4. A source representation that preserves native ordering without JSON layout
    sidecars, a rebuild path, and four-region range-byte verification.
 
-Until then, extraction previews may be retained only as reference images and
-must not be used as authoritative editable sources.
+The MapData streams satisfy points 1, 2 and 4. Layer 0 and layers 3--5 also
+satisfy point 3; layers 1--2 intentionally remain native `.bin` sources until
+their tile/palette destinations are proven. Extraction previews may be kept
+as references but are never used as authoritative editable sources.

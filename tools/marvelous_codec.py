@@ -3,12 +3,13 @@
 
 The ROM's native ``Unpack`` routine at 0x080D102C selects an atom reader, an
 LZ mode and an optional differential filter from the byte following the 0x70
-header.  The managed formats currently include Raw/LZ3, Huffman-8/LZ2,
-Huffman-8/LZ3 and Huffman-4/LZ3, all without a differential filter.  This is
-a deliberately deterministic, valid encoder rather than a claim to reproduce
-the original publisher's exact bit stream.  An unchanged asset must retain
-its original stream; these encoders are for deliberately edited payloads, and callers must
-check that a result fits the allocated ROM interval.
+header. The managed formats include the Raw, Huffman-4 and Huffman-8 modes
+used by audited resource families, with their original LZ ladders and optional
+differential filters. This is a deliberately deterministic, valid encoder
+rather than a claim to reproduce the original publisher's exact bit stream.
+An unchanged asset must retain its original stream; these encoders are for
+deliberately edited payloads, and callers must check that a result fits the
+allocated ROM interval.
 """
 
 from __future__ import annotations
@@ -52,6 +53,62 @@ class BitWriter:
             self._word = 0
             self._used = 0
         return b"".join(struct.pack("<I", word) for word in self._words)
+
+
+def inverse_differential(data: bytes, filter_id: int) -> bytes:
+    """Invert the decoder's optional differential filter.
+
+    ``decompress.py`` applies the filter after the LZ stream has been decoded.
+    An encoder must therefore transform an authored payload back to the atom
+    stream first, while retaining the same filter ID in the Popuri header.
+    The filters operate on nibbles, bytes, little-endian words, or independent
+    even/odd byte lanes respectively.  They are deliberately kept here rather
+    than duplicated by every resource-family builder.
+    """
+    if filter_id == 0:
+        return bytes(data)
+    if not 1 <= filter_id <= 4:
+        raise ValueError(f"unsupported differential filter {filter_id}")
+
+    result = bytearray(data)
+    if filter_id == 1:
+        accumulator = 0
+        for index, value in enumerate(data):
+            high = value >> 4
+            low = value & 0x0F
+            result[index] = ((high - accumulator) & 0x0F) << 4 | ((low - high) & 0x0F)
+            accumulator = low
+        return bytes(result)
+
+    if filter_id == 2:
+        accumulator = 0
+        for index, value in enumerate(data):
+            result[index] = (value - accumulator) & 0xFF
+            accumulator = value
+        return bytes(result)
+
+    if len(data) & 1:
+        raise ValueError(f"differential filter {filter_id} requires an even-length payload")
+    if filter_id == 3:
+        accumulator = 0
+        for index in range(0, len(data), 2):
+            value = data[index] | (data[index + 1] << 8)
+            raw = (value - accumulator) & 0xFFFF
+            result[index] = raw & 0xFF
+            result[index + 1] = raw >> 8
+            accumulator = value
+        return bytes(result)
+
+    even_accumulator = 0
+    odd_accumulator = 0
+    for index in range(0, len(data), 2):
+        even = data[index]
+        odd = data[index + 1]
+        result[index] = (even - even_accumulator) & 0xFF
+        result[index + 1] = (odd - odd_accumulator) & 0xFF
+        even_accumulator = even
+        odd_accumulator = odd
+    return bytes(result)
 
 
 @dataclass(frozen=True)
@@ -1376,6 +1433,51 @@ def encode_raw_lz(
     return writer.finish()
 
 
+def encode_popuri(data: bytes, format_spec: str, ladder_spec: str) -> bytes:
+    """Encode an authored payload using its audited native Popuri format.
+
+    ``format_spec`` is the decoder's ``atom/LZ/differential`` triplet, such
+    as ``"231"`` for Huffman-8, LZ3 and the nibble differential filter.
+    This is intentionally a strict router: an unfamiliar format is an error,
+    never a reason to substitute a different codec that happens to decode.
+    """
+    if len(format_spec) != 3 or not format_spec.isdigit():
+        raise ValueError(f"invalid Popuri format {format_spec!r}")
+    atom_format, lz_mode, differential_filter = (int(value) for value in format_spec)
+    filtered = inverse_differential(data, differential_filter)
+
+    if atom_format == 0 and lz_mode in (1, 2, 3):
+        return encode_raw_lz(
+            filtered, lz_mode, ladder_spec, differential_filter=differential_filter,
+        )
+    if atom_format == 0 and lz_mode == 0:
+        return encode_raw_lz0(
+            filtered, ladder_spec, differential_filter=differential_filter,
+        )
+    if atom_format == 1 and lz_mode == 0 and differential_filter == 0:
+        return encode_huff4_lz0(filtered, ladder_spec)
+    if atom_format == 1 and lz_mode == 2:
+        return encode_huff4_lz2(
+            filtered, ladder_spec, differential_filter=differential_filter,
+        )
+    if atom_format == 1 and lz_mode == 3:
+        return encode_huff4_lz3(
+            filtered, ladder_spec, differential_filter=differential_filter,
+        )
+    if atom_format == 2 and lz_mode == 2:
+        return encode_huff8_lz2(
+            filtered, ladder_spec, differential_filter=differential_filter,
+        )
+    if atom_format == 2 and lz_mode == 3:
+        return encode_huff8_lz3(
+            filtered, ladder_spec=ladder_spec, differential_filter=differential_filter,
+        )
+    raise ValueError(
+        f"no verified encoder for Popuri format {format_spec} "
+        f"(atom {atom_format}, LZ {lz_mode}, differential {differential_filter})"
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("input", type=Path)
@@ -1416,10 +1518,7 @@ def main() -> None:
             encoded = baseline
             preserved = True
         else:
-            if original_format in ("010", "020", "030"):
-                encoded = encode_raw_lz(source, int(original_format[1]), original_ladder)
-            else:
-                encoded = encode_huff8_lz3(source)
+            encoded = encode_popuri(source, original_format, original_ladder)
             if len(encoded) > len(baseline):
                 raise ValueError(
                     f"edited packed stream is {len(encoded)} bytes but the native interval holds only {len(baseline)} bytes"
