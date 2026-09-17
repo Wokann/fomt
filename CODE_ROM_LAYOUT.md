@@ -1176,6 +1176,16 @@ JP 入口已在其真实物理位置拆出：`func_080B94A8`（`0x080B8EDC`）�
 `.set`、`.thumb_set` 或地址偏移伪匹配；JP、US、EU、DE 的完整构建、SHA-1 与基准 ROM 逐字节
 校验均已通过。
 
+其后的鸡祭流程处理函数 `func_080B888C` 也已直接提升。JP 覆盖
+`0x080B82C0`–`0x080B87DF`，普通三区分别覆盖 US `0x080B888C`–`0x080B8DAB`、EU
+`0x080B88BC`–`0x080B8DDB`、DE `0x080B87EC`–`0x080B8D0B`；四区长度均为 `0x520` 字节。
+函数内 76 个 `BL` 均直接重定位；鸡祭“停止”与“获胜后缀”文本直接沿用
+`gText_HarvestSpriteMiniGame_ChickenFestival_Stop` 和
+`gText_HarvestSpriteMiniGame_ChickenFestival_WinnerSuffix` 两个已有区域文本标签。
+
+已提升范围不含代码 `.incbin`、原始 `.byte`、`.set`、`.thumb_set` 或地址偏移伪匹配；JP、US、EU、
+DE 的完整构建、SHA-1 与基准 ROM 逐字节校验均已通过。
+
 其后的鸡祭参赛者选择函数 `func_080B757C` 也已直接提升。JP 覆盖
 `0x080B6FB0`–`0x080B707B`，普通三区分别覆盖 US `0x080B757C`–`0x080B7647`、EU
 `0x080B75AC`–`0x080B7677`、DE `0x080B74DC`–`0x080B75A7`；四区长度均为 `0xCC` 字节。
