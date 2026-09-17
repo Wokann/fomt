@@ -2059,14 +2059,7 @@ $(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGIO
 	  --rom $@ --output-dir $(RAW_VRAM_TILES_086D5508_OUTPUT_DIR)
 	@$(PYTHON) $(RAW_VRAM_TILES_086D6698_TOOL) --profile 086d6698 patch --region $(RAW_VRAM_TILES_086D6698_REGION) --baseline $(BASE_ROM) \
 	  --rom $@ --output-dir $(RAW_VRAM_TILES_086D6698_OUTPUT_DIR)
-	@$(PYTHON) $(RAW_VRAM_TILES_08750c4c_TOOL) --profile 08750c4c patch --region $(RAW_VRAM_TILES_08750c4c_REGION) --baseline $(BASE_ROM) \
-	  --rom $@ --output-dir $(RAW_VRAM_TILES_08750c4c_OUTPUT_DIR)
-	@$(PYTHON) $(RAW_VRAM_TILES_08750c8c_TOOL) --profile 08750c8c patch --region $(RAW_VRAM_TILES_08750c8c_REGION) --baseline $(BASE_ROM) \
-	  --rom $@ --output-dir $(RAW_VRAM_TILES_08750c8c_OUTPUT_DIR)
-	@$(PYTHON) $(RAW_VRAM_TILES_087510ac_TOOL) --profile 087510ac patch --region $(RAW_VRAM_TILES_087510ac_REGION) --baseline $(BASE_ROM) \
-	  --rom $@ --output-dir $(RAW_VRAM_TILES_087510ac_OUTPUT_DIR)
-	@$(PYTHON) $(RAW_VRAM_TILES_0875166c_TOOL) --profile 0875166c patch --region $(RAW_VRAM_TILES_0875166c_REGION) --baseline $(BASE_ROM) \
-	  --rom $@ --output-dir $(RAW_VRAM_TILES_0875166c_OUTPUT_DIR)
+	@set -e; $(foreach profile,$(RAW_VRAM_UI_PROFILES),$(PYTHON) $(RAW_VRAM_TILES_$(profile)_TOOL) --profile $(profile) patch --region $(RAW_VRAM_TILES_$(profile)_REGION) --baseline $(BASE_ROM) --rom $@ --output-dir $(RAW_VRAM_TILES_$(profile)_OUTPUT_DIR);)
 	@$(PYTHON) $(UI_SCENE_08054F40_TILES_TOOL) --profile 08054f40_tiles patch --region $(UI_SCENE_08054F40_TILES_REGION) --baseline $(BASE_ROM) \
 	  --rom $@ --output-dir $(UI_SCENE_08054F40_TILES_OUTPUT_DIR)
 	@$(PYTHON) $(UI_SCENE_0805AB08_TILES_TOOL) --profile 0805ab08_tiles patch --region $(UI_SCENE_0805AB08_TILES_REGION) --baseline $(BASE_ROM) \
