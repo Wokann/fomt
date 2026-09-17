@@ -34,7 +34,7 @@ consumer analysis can start from exact payload sizes.
 
 ## Complete non-VRAM result
 
-The control-flow-aware inventory currently finds sixteen distinct labelled
+The control-flow-aware inventory currently finds seventeen distinct labelled
 `Unpack` sources whose destination is either a caller-owned buffer or palette
 RAM rather than literal VRAM.  The table below classifies every such label.  A
 staging buffer is not an independently editable image source: only the rows
@@ -42,7 +42,7 @@ that already have a complete, verified resource pipeline are linked to one.
 
 | Consumer | Labels | Classification |
 | --- | --- | --- |
-| `func_08000914` | `gUnk_08747A74` | Managed Intro Scene indexed-resource archive. It has verified OAM descriptors, tile ranges and BGR555 palette indices; see `intro_scene/OBJECT_PIPELINE_AUDIT.md`. Its destination is an archive buffer, not a VRAM tile upload. |
+| `func_08000914` | `gUnk_08747A74`, `gUnk_084CDBDC` | Managed Intro Scene indexed-resource archives. The latter is the preserved JP code path; both have verified OAM descriptors, tile ranges and BGR555 palette indices. See `intro_scene/OBJECT_PIPELINE_AUDIT.md`. Their destinations are archive buffers, not direct VRAM tile uploads. |
 | `func_08054F40` | `gUnk_08738AD8`, `gUnk_08738CC8`, `gUnk_08738CF0`, `gUnk_08739A64` | Runtime staging inputs for the UI scene's maps and related data. They contribute to code-backed reference views, while only the separately direct-VRAM tile stream has a fixed-slot editable graphics pipeline. |
 | `func_0805AB08` | `gUnk_0872F11C`, `gUnk_0872F1BC`, `gUnk_0872F1EC`, `gUnk_0872FBFC` | Runtime map-template staging inputs for the UI scene. Their exact references are useful for inspection, but no replacement layout is inferred from a rendered PNG. |
 | `func_080A95A4` | `gUnk_08714A30`, `gUnk_08714B60`, `gUnk_08714BEC`, `gUnk_08716F84`, `gUnk_087170B8` | Map-state fallback buffers detailed above. No tile/palette/OAM ownership is established. |

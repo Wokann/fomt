@@ -23,11 +23,16 @@ REGISTER = r"r(?:[0-9]|1[0-2])|r8|sb|sl"
 LITERAL_LOAD_RE = re.compile(
     rf"^\s*ldr\s+(?P<register>{REGISTER}),\s+\S+\s+@\s*=\s*(?P<value>\S+)\s*$"
 )
+LITERAL_REFERENCE_RE = re.compile(
+    rf"^\s*ldr\s+(?P<register>{REGISTER}),\s+(?P<label>\.?[A-Za-z_][A-Za-z0-9_.$]*)\s*$"
+)
+LABEL_RE = re.compile(r"^\s*(?P<label>\.?[A-Za-z_][A-Za-z0-9_.$]*):")
+WORD_RE = re.compile(r"^\s*\.4byte\s+(?P<value>\S+)")
 MOV_RE = re.compile(
     rf"^\s*(?:mov|adds)\s+(?P<destination>{REGISTER}),\s+(?P<source>{REGISTER})(?:,\s*#0)?\s*$"
 )
 MOV_IMMEDIATE_RE = re.compile(
-    rf"^\s*movs\s+(?P<register>{REGISTER}),\s*#(?P<value>0x[0-9A-Fa-f]+|[0-9]+)\s*$"
+    rf"^\s*movs\s+(?P<register>{REGISTER}),\s*#(?P<value>0x[0-9A-Fa-f]+|[0-9]+)(?:\s+@.*)?\s*$"
 )
 SHIFT_RE = re.compile(
     rf"^\s*lsls\s+(?P<destination>{REGISTER}),\s+(?P<source>{REGISTER}),\s*#(?P<shift>0x[0-9A-Fa-f]+|[0-9]+)\s*$"
@@ -41,6 +46,7 @@ WRITE_RE = re.compile(
     rf"(?P<register>{REGISTER})(?:,|\s|$)"
 )
 FUNCTION_RE = re.compile(r"^\s*thumb_func_start\s+(?P<symbol>\S+)\s*$")
+GLOBAL_RE = re.compile(r"^\s*\.global\s+(?P<symbol>\S+)\s*$")
 CALL_RE = re.compile(r"^\s*bl\s+(?P<symbol>\S+)\s*$")
 BRANCH_RE = re.compile(
     r"^\s*(?P<opcode>b(?:eq|ne|cs|cc|mi|pl|vs|vc|hi|ls|ge|lt|gt|le)?)\s+"
@@ -99,12 +105,42 @@ def merge_states(current: State | None, incoming: State) -> State:
     return merged
 
 
-def transfer(line: str, state: State) -> State:
+def literal_pool(lines: list[str]) -> dict[str, Value]:
+    """Resolve bare ``ldr reg, .Lpool`` operands within one function.
+
+    Most assembly files annotate literal loads with ``@ =symbol``.  The
+    region-specific intro assembly instead leaves the ``.L...`` operand bare
+    and stores its value in a following ``.4byte``.  Recovering that local
+    indirection is still static evidence; no pointer table or runtime memory
+    is followed here.
+    """
+
+    result: dict[str, Value] = {}
+    for index, line in enumerate(lines):
+        if not (label_match := LABEL_RE.match(line)):
+            continue
+        for candidate in lines[index + 1:]:
+            if not candidate.strip() or candidate.lstrip().startswith("@"):
+                continue
+            if (word_match := WORD_RE.match(candidate)):
+                value = word_match.group("value")
+                number = parse_number(value)
+                result[label_match.group("label")] = number if number is not None else value
+            break
+    return result
+
+
+def transfer(line: str, state: State, literals: dict[str, Value]) -> State:
     result = dict(state)
     if match := LITERAL_LOAD_RE.match(line):
         value = match.group("value")
         number = parse_number(value)
         result[match.group("register")] = frozenset((number if number is not None else value,))
+    elif match := LITERAL_REFERENCE_RE.match(line):
+        if (value := literals.get(match.group("label"))) is not None:
+            result[match.group("register")] = frozenset((value,))
+        else:
+            result.pop(match.group("register"), None)
     elif match := MOV_RE.match(line):
         destination = match.group("destination")
         if values := result.get(match.group("source")):
@@ -169,10 +205,11 @@ def function_calls(
         if (match := re.match(r"^\s*(\.?[A-Za-z_][A-Za-z0-9_.$]*):", line))
     }
     states: dict[int, State] = {0: {}}
+    literals = literal_pool(lines)
     pending = [0]
     while pending:
         index = pending.pop()
-        outgoing = transfer(lines[index], states[index])
+        outgoing = transfer(lines[index], states[index], literals)
         for target in successors(lines, index, labels):
             merged = merge_states(states.get(target), outgoing)
             if states.get(target) != merged:
@@ -204,11 +241,40 @@ def function_calls(
     return result
 
 
+def function_starts(lines: list[str]) -> list[tuple[int, str]]:
+    """Find ordinary and JP-region Thumb function bodies.
+
+    The JP-only half of ``intro_scene.s`` deliberately preserves the original
+    assembler spelling: ``.global name``, ``.thumb_func``, then ``name:``.
+    It has no ``thumb_func_start`` macro, so treating only the macro as a
+    boundary silently skipped those static calls.  Recognize that exact
+    three-line declaration form without treating arbitrary global data as a
+    function.
+    """
+
+    starts: list[tuple[int, str]] = []
+    for index, line in enumerate(lines):
+        if match := FUNCTION_RE.match(line):
+            starts.append((index, match.group("symbol")))
+            continue
+        if not (match := GLOBAL_RE.match(line)):
+            continue
+        symbol = match.group("symbol")
+        for candidate_index in range(index + 1, min(index + 4, len(lines))):
+            candidate = lines[candidate_index]
+            if candidate.strip() == ".thumb_func":
+                continue
+            if (label_match := LABEL_RE.match(candidate)) and label_match.group("label") == symbol:
+                starts.append((candidate_index, symbol))
+            break
+    return starts
+
+
 def calls(root: Path, callee: str = "Unpack", include_size: bool = False) -> list[Call]:
     result: list[Call] = []
     for source in sorted((root / "asm").rglob("*.s")):
         lines = source.read_text(encoding="utf-8", errors="replace").splitlines()
-        starts = [(index, match.group("symbol")) for index, line in enumerate(lines) if (match := FUNCTION_RE.match(line))]
+        starts = function_starts(lines)
         for position, (start, name) in enumerate(starts):
             end = starts[position + 1][0] if position + 1 < len(starts) else len(lines)
             result.extend(function_calls(

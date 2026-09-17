@@ -110,7 +110,7 @@ graphics resource. The all-destination `Unpack` inventory and the narrower
 Unpack-to-VRAM inventory follow only simple literal and register data flow in
 assembly, so their rows are code-backed resource leads, not assertions about
 tile, palette, or OAM format. Run them with `make unpack-inventory` and
-`make unpack-vram-inventory`; the current source yields 48 labelled paths in
+`make unpack-vram-inventory`; the current source yields 52 labelled paths in
 the former and 32 direct-VRAM paths in the latter. `DIRECT_UNPACK_VRAM_AUDIT.md`
 records the classification of every direct-VRAM path and keeps unproven streams
 out of the managed-resource table.
