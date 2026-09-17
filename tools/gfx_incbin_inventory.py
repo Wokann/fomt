@@ -22,6 +22,9 @@ INCBIN_RE = re.compile(
     r'(?:\s*,\s*(?P<offset>[^,]+?)\s*,\s*(?P<length>.+?))?\s*(?:@.*)?$'
 )
 GLOBAL_LABEL_RE = re.compile(r"^(?P<label>g[A-Za-z0-9_]+):\s*(?:@.*)?$")
+SECTION_RE = re.compile(
+    r'^\s*\.section\s+(?P<section>"[^"]+"|[^,\s]+)'
+)
 
 
 @dataclass(frozen=True)
@@ -34,6 +37,27 @@ class Range:
     length: int | None
     offset_expression: str | None
     length_expression: str | None
+    section: str | None
+
+
+def storage_class(source: Path, section: str | None) -> str:
+    """Classify assembly placement without guessing the payload's media type.
+
+    A direct ROM include in a text section is matched machine code, not an
+    asset lead.  A data-section include remains an unclassified *data*
+    candidate until its consumer proves a graphic format and rebuild route.
+    Included data fragments inherit their parent data section at assembly time,
+    but are scanned as standalone files here, so their path is used only for
+    this conservative placement classification.
+    """
+    normalized = section.strip('"') if section else ""
+    if normalized.startswith(".text"):
+        return "code"
+    if normalized:
+        return "data"
+    if "asm/data" in source.as_posix():
+        return "data"
+    return "unknown"
 
 
 def integer_expression(value: str) -> int | None:
@@ -69,7 +93,11 @@ def iter_ranges(root: Path) -> Iterable[Range]:
     )
     for source in sources:
         current_symbol: str | None = None
+        current_section: str | None = None
         for line_number, line in enumerate(source.read_text(encoding="utf-8").splitlines(), 1):
+            section = SECTION_RE.match(line)
+            if section:
+                current_section = section.group("section")
             label = GLOBAL_LABEL_RE.match(line)
             if label:
                 current_symbol = label.group("label")
@@ -87,6 +115,7 @@ def iter_ranges(root: Path) -> Iterable[Range]:
                 length=integer_expression(length_expression) if length_expression else None,
                 offset_expression=offset_expression,
                 length_expression=length_expression,
+                section=current_section,
             )
             # A label names the immediately following ROM payload.  Do not
             # let it leak into an adjacent anonymous range in the same stream.
@@ -104,12 +133,17 @@ def main() -> None:
     if args.csv:
         with args.csv.open("w", encoding="utf-8", newline="") as handle:
             writer = csv.writer(handle)
-            writer.writerow(("rom", "source", "line", "symbol", "offset", "length", "offset_expression", "length_expression"))
+            writer.writerow((
+                "rom", "source", "line", "section", "storage_class", "symbol",
+                "offset", "length", "offset_expression", "length_expression",
+            ))
             for row in rows:
                 writer.writerow((
                     row.rom,
                     row.source.relative_to(root).as_posix(),
                     row.line,
+                    row.section or "",
+                    storage_class(row.source.relative_to(root), row.section),
                     row.symbol or "",
                     f"0x{row.offset:X}" if row.offset is not None else "",
                     f"0x{row.length:X}" if row.length is not None else "",
@@ -119,13 +153,20 @@ def main() -> None:
         return
 
     resolved = [row for row in rows if row.offset is not None and row.length is not None]
-    print(f"direct baserom incbins: {len(rows)} ({len(resolved)} numeric ranges)")
+    code_count = sum(storage_class(row.source.relative_to(root), row.section) == "code" for row in rows)
+    data_count = sum(storage_class(row.source.relative_to(root), row.section) == "data" for row in rows)
+    unknown_count = len(rows) - code_count - data_count
+    print(
+        f"direct baserom incbins: {len(rows)} ({len(resolved)} numeric ranges; "
+        f"{code_count} code, {data_count} data, {unknown_count} unknown placement)"
+    )
     for row in rows:
         location = row.source.relative_to(root).as_posix()
+        placement = storage_class(row.source.relative_to(root), row.section)
         if row.offset is None or row.length is None:
-            print(f"{row.rom:15} {location}:{row.line} {row.symbol or '-'}: unresolved {row.offset_expression!r}, {row.length_expression!r}")
+            print(f"{row.rom:15} {location}:{row.line} [{placement}] {row.symbol or '-'}: unresolved {row.offset_expression!r}, {row.length_expression!r}")
         else:
-            print(f"{row.rom:15} {location}:{row.line} {row.symbol or '-'}: 0x{row.offset:08X}-0x{row.offset + row.length:08X} ({row.length:#x})")
+            print(f"{row.rom:15} {location}:{row.line} [{placement}] {row.symbol or '-'}: 0x{row.offset:08X}-0x{row.offset + row.length:08X} ({row.length:#x})")
 
 
 if __name__ == "__main__":

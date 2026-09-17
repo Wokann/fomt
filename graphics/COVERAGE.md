@@ -121,10 +121,13 @@ corresponding verified source/rebuild path.
 
 ## Unclassified ROM ranges
 
-Assembly still contains many direct `baserom_*.gba` includes.  They are the
-inventory pool for later work.  A direct include must not be converted merely
-because it looks like tile data: first establish the exact format, bounds,
-palette/layout relationship, consuming code, and four-region byte round trip.
+Assembly still contains many direct `baserom_*.gba` includes.  The inventory
+now labels each entry by its assembly placement: `code` is a `.text` ROM
+fragment and is not an asset candidate; `data` remains an unclassified data
+candidate; `unknown` means the standalone scanner cannot recover its parent
+section.  A data include must not be converted merely because it looks like
+tile data: first establish the exact format, bounds, palette/layout
+relationship, consuming code, and four-region byte round trip.
 
 Generate a current list with:
 
