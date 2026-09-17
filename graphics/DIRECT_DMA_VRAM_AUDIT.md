@@ -74,7 +74,7 @@ remain native sources because their tile arrangement is not proven.
 The icon rows and the single-tile Harvest Sprite row now point at checked-in
 PNG pipelines. The remaining twenty-two raw UI records have verified
 four-region physical bounds and reversible native source assets. A manual
-second pass over every UI call site confirms that twenty records target
+second pass over every UI call site confirms that nineteen records target
 character VRAM; the three still-raw palette-RAM records are
 `gUnk_08750F6C`, `gUnk_0875178C`, and `gUnk_08752AAC`. No arbitrary tile-grid
 PNG or JSON layout is treated as a source asset: a future visual pipeline must

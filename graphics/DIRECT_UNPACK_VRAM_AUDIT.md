@@ -4,8 +4,13 @@ This is a code-consumer inventory, not a broad claim that every direct ROM
 include is graphics. `tools/unpack_vram_inventory.py` follows conservative
 literal/register data flow through assembly and records a call only when a
 named `g*` resource is passed to `Unpack` with a statically recoverable VRAM
-destination. The current result has 30 calls and 29 distinct labels; one
-label is consumed by both ordinary code and the Intro Scene code.
+destination. The current result has 44 calls and 37 distinct physical labels.
+This includes regional labels selected by conditional assembly: for example,
+the three JP `func_080A2BA4` inputs and the JP `func_08077810` inputs are
+separate symbols but members of already-classified logical resource groups.
+Repeated calls to one physical label are likewise retained as separate code
+paths. The inventory therefore measures delivery paths and physical symbols,
+not the number of independent visual assets.
 
 The inventory does not cover resources delivered through archive dispatch,
 DMA copies, OAM tables, indirect pointer loads, or code paths whose target
@@ -16,7 +21,7 @@ next graphics families.
 
 | Consumer group | Labels / streams | Four-region state | Pipeline state |
 | --- | --- | --- | --- |
-| `func_080A2BA4` | `0874EF14`, `0874EF3C`, `0874EFEC`, `0874F050` | Every packed and decoded stream identical | Managed: four native streams. The exact palette copy is archive-owned, so it has only verified read-only regional PNG references and no editable/patchable palette source. |
+| `func_080A2BA4` | Overseas: `0874EF14`, `0874EF3C`, `0874EFEC`, `0874F050`; JP: `084B5D9C`, `084B5FD4`, `084B6060` | Every packed and decoded stream identical | Managed: four native streams. The exact palette copy is archive-owned, so it has only verified read-only regional PNG references and no editable/patchable palette source. |
 | `func_080AE7D0` | `0872FC34`, `0872FE6C`, `0872FEF8` plus adjacent palette | Every packed and decoded stream plus palette identical | Managed: two tilemaps, 4bpp tiles, and 16-bank palette PNG. Its proven BG control priorities also produce code-backed layer and composite image references. |
 | `func_080B7164` | `0872D5CC`, `0872D630`, `0872D6D8` | Every packed and decoded stream identical | Managed: two tilemaps, 4bpp tiles, and the code-bounded 0x200-byte BG palette; generated layer PNGs provide code-backed visual references. |
 | `func_080B55D0` area | `086FB004`, `0872C5D0`, `0872C73C`, `0872C84C` | All labelled ranges are identical | Managed: the physically separate `086FB004` stream decodes to a shared 32 KiB/1024-tile native 4bpp source and rebuilds within its `0x2198` slot. The three later `020`/`030` streams remain two tilemaps plus 4bpp tiles. Two code-proven but overlapping palette operations generate a read-only auxiliary BG reference; no unproven full-scene layout is authored. |
@@ -28,7 +33,7 @@ next graphics families.
 | Seasonal `func_08077EC0` BG group | non-winter `08755848`, winter `0875822C`, palettes `08757AE0` / `0875A358`, and paired `30×13` maps | The complete group is byte-identical in JP/US/EU/DE. DE physically reorders its records, so assembly selects exact regional build files. | The routine chooses winter only when `func_0800E324` returns season 3; both streams decode to 0x8000-byte 4bpp tile sets. Non-winter uses its verified `220` source set. Winter uses an indexed tile grid, six BGR555 palette banks and its unique BG29 map while reusing the byte-identical shared BG30 map. A one-pixel H8/LZ3 edit strictly decodes inside the immutable `0x212C` slot. `reference/*.png` files are code-backed views, not map-editing inputs. |
 | Overseas `func_08077810` | character stream `0874E648`, palette `0874EB40`, `32×20` map `0874EB60`, `32×32` map `0874ECCC` | US/EU/DE bytes and decoded output are identical for both maps and the palette. JP uses different symbols (`084D4DDC` / `084D529C` / `084D52BC`) and decoded lengths, so it is not a shared counterpart. | All three streams are managed as native sources and direct assembly input. `0874EB60` is a complete `0x500`-byte format `100` / ladder `110` map. `0874E648` is format `230` with a `0x2BE2` output: `0x2BE0` bytes become 351 editable 4bpp tiles, while the final two non-tile bytes remain explicitly in `tiles_trailer.bin`. All native slots pass US/EU/DE rebuild, whole-ROM unchanged patch, and source-byte edit tests. |
 | Overseas `func_0806EC94` Farm Status winter tiles | `0852AA6C` (US; EU header `0852AAC8`; DE `082B1B08`), selected palette `0852CA40` (EU header `0852CA9C`) | US/EU/DE packed bytes and decoded `0x4800` bytes are identical and use format `220`; US/DE palette bytes agree while EU has a distinct selected palette payload behind its archive header. JP has a separate layout path. | Managed: `winter/shared/tiles.png` rebuilds the common native 4bpp grid. An unchanged source preserves each retail stream byte-for-byte; an edited source uses a strictly decoded Huffman-8/LZ3 stream and is rejected beyond the `0x1FD4` tile slot. `reference/winter/tiles_us_de.png`, `tiles_eu.png`, and their matching palette PNGs remain hash-checked references; the EU archive-wrapped palette must be handled separately. |
-| `asm/intro_scene.s` direct consumers | `0874E648`, `0874EB60`, `0874A9C0` | Startup tiles at JP `4D1154`, US `74A9C0`, EU `74AA1C`, DE `4D1E2C` and their adjacent `0x200` palettes are byte-identical in all four retail ROMs. `0874E648`/`0874EB60` differ from JP. | The startup tile payload decodes as a `0x8000`-byte `230` stream and the four native maps are managed. Its sixteen palette banks and eight code-backed BG-map references are exported and four-region verified. Unchanged tiles retain retail bytes; the one-byte edit fixture strictly decodes inside the `0x3970` slot. |
+| `asm/intro_scene.s` direct consumers | Overseas: `0874E648`, `0874EB60`, `0874A9C0`; JP: `084D4DDC`, `084D52BC`; startup map symbol `gUnk_IntroSceneStartupUnpackSource_003` | Startup tiles at JP `4D1154`, US `74A9C0`, EU `74AA1C`, DE `4D1E2C` and their adjacent `0x200` palettes are byte-identical in all four retail ROMs. `0874E648`/`0874EB60` differ from JP. | The startup tile payload decodes as a `0x8000`-byte `230` stream and the four native maps are managed. Its sixteen palette banks and eight code-backed BG-map references are exported and four-region verified. Unchanged tiles retain retail bytes; the one-byte edit fixture strictly decodes inside the `0x3970` slot. |
 
 ## Native-format evidence
 

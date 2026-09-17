@@ -35,10 +35,12 @@ managed source therefore preserves its complete proven `0x1C0`-byte record;
 the smaller call consumes its leading subrange. `gUnk_0875290C` is deliberately
 absent from this table because it is the complete ninth Farm Status icon record
 and is owned by `farm_status/creature_icons/shared/icon_09.png`, together with
-its adjacent `gUnk_0875298C` palette. A second manual audit confirms that
-twenty records target character VRAM and four records target palette RAM.
-`gUnk_08750C4C` additionally reaches a runtime layout helper, but that
-call does not prove a composited layout. The final ten raw records are used by
+its adjacent `gUnk_0875298C` palette. A second manual audit confirms that the
+remaining raw records include nineteen character-VRAM uploads and three
+palette-RAM uploads. `gUnk_08750C4C` and its adjacent palette
+`gUnk_08750C6C` are no longer raw records: their one-tile layout is proven
+and they are managed by the Farm Status Harvest Sprite task tile PNG pipeline.
+The final ten raw records are used by
 the Farm Status UI. Nine are character-VRAM tile uploads; the exception is
 `gUnk_08752AAC`, which `func_08068344` copies to `0x05000000` as one 16-colour
 BGR555 palette record. The neighboring `gUnk_08752A2C` range is only consumed
