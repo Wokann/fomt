@@ -38,6 +38,9 @@ grids:
 - [Shared OAM resource `086F2FAC`](shared_resource_086f2fac/full/) — sixteen
   complete indexed-PNG OAM source views; the original address is retained until
   the gameplay semantics are independently established.
+- [Shared OAM resource `086FAA80`](shared_resource_086faa80/full/) — nine
+  complete indexed-PNG OAM source views; the original address is retained until
+  the gameplay semantics are independently established.
 - [Records-screen task icons](ui/records_minigame/shared/) — seven complete
   16-by-16 icons with their native palettes.
 
