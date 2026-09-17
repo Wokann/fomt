@@ -2471,9 +2471,9 @@ gUnk_084D86B8:
     FOMT_FARM_STATUS_CREATURE_ICON 08, gbapal
     FOMT_FARM_STATUS_CREATURE_ICON 09, 4bpp
     FOMT_FARM_STATUS_CREATURE_ICON 09, gbapal
+    .incbin "baserom_jp.gba", 0x4D8958, (0x4D8DF8 - 0x4D8958)
     FOMT_FARM_STATUS_SELECTOR_CASE_09 4bpp
     FOMT_FARM_STATUS_SELECTOR_CASE_09 gbapal
-    .incbin "baserom_jp.gba", 0x4D89F8, (0x4D8E98 - 0x4D89F8)
     FOMT_FARM_STATUS_CREATURE_ICON 10, 4bpp
     FOMT_FARM_STATUS_CREATURE_ICON 10, gbapal
     FOMT_FARM_STATUS_CREATURE_ICON 11, 4bpp
@@ -5898,6 +5898,27 @@ gUnk_08747A74:
 	.incbin "build/us/graphics/intro_scene/startup_visual/startup_palette_banks.gbapal"
 	.endif
 	.endm
+	.macro FOMT_UI_SCENE_08077810_CHARACTER_TILES
+	.ifdef REGION_EU
+	.incbin "build/eu/graphics/ui/scene_08077810/tiles.0x70"
+	.else
+	.incbin "build/us/graphics/ui/scene_08077810/tiles.0x70"
+	.endif
+	.endm
+	.macro FOMT_UI_SCENE_08077810_CHARACTER_PALETTE
+	.ifdef REGION_EU
+	.incbin "build/eu/graphics/ui/scene_08077810/palette.gbapal"
+	.else
+	.incbin "build/us/graphics/ui/scene_08077810/palette.gbapal"
+	.endif
+	.endm
+	.macro FOMT_UI_SCENE_08077810_LZ0_TILEMAP
+	.ifdef REGION_EU
+	.incbin "build/eu/graphics/ui/scene_08077810/layer_1.tilemap.0x70"
+	.else
+	.incbin "build/us/graphics/ui/scene_08077810/layer_1.tilemap.0x70"
+	.endif
+	.endm
 	.global gUnk_IntroSceneStartupUnpackSource_000
 gUnk_IntroSceneStartupUnpackSource_000:
 	FOMT_INTRO_SCENE_STARTUP_TILEMAP 00
@@ -5933,15 +5954,15 @@ gUnk_0874E530:
 
 	.global gUnk_0874E648
 gUnk_0874E648:
-	FOMT_REGION_ASSET_INCBIN 0x74E648, 0x4F8
+	FOMT_UI_SCENE_08077810_CHARACTER_TILES
 
 	.global gUnk_0874EB40
 gUnk_0874EB40:
-	FOMT_REGION_ASSET_INCBIN 0x74EB40, 0x20
+	FOMT_UI_SCENE_08077810_CHARACTER_PALETTE
 
 	.global gUnk_0874EB60
 gUnk_0874EB60:
-	FOMT_REGION_ASSET_INCBIN 0x74EB60, 0x16C
+	FOMT_UI_SCENE_08077810_LZ0_TILEMAP
 
 	.global gUnk_0874ECCC
 gUnk_0874ECCC:

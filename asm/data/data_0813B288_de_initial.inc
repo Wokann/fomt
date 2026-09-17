@@ -2046,13 +2046,13 @@ gUnk_0874E530:
 	.incbin "build/de/graphics/intro_scene/small_indexed_archive/archive.bin"
 	.global gUnk_0874E648
 gUnk_0874E648:
-	.incbin "baserom_de.gba", 0x4D5AB4, 0x4F8
+	.incbin "build/de/graphics/ui/scene_08077810/tiles.0x70"
 	.global gUnk_0874EB40
 gUnk_0874EB40:
-	.incbin "baserom_de.gba", 0x4D5FAC, 0x20
+	.incbin "build/de/graphics/ui/scene_08077810/palette.gbapal"
 	.global gUnk_0874EB60
 gUnk_0874EB60:
-	.incbin "baserom_de.gba", 0x4D5FCC, 0x16C
+	.incbin "build/de/graphics/ui/scene_08077810/layer_1.tilemap.0x70"
 	.global gUnk_0874ECCC
 gUnk_0874ECCC:
 	.incbin "baserom_de.gba", 0x4D6138, 0x16C
