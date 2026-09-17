@@ -55518,7 +55518,34 @@ func_080B9734: @ 0x080B9168
 	bx r0
 	.align 2, 0
 
-    jp_code_809_func func_080B97FC, 0xB9230, 0xB925C
+    .global func_080B97FC
+    .thumb_func
+func_080B97FC: @ 0x080B9230
+	push {lr}
+	adds r2, r0, #0
+	lsls r1, r1, #0x18
+	cmp r1, #0
+	beq .Ljp_080B9248
+	adds r1, r2, #0
+	adds r1, #0x80
+	movs r0, #4
+	str r0, [r1]
+	adds r1, #0x40
+	movs r0, #2
+	b .Ljp_080B9254
+.Ljp_080B9248:
+	adds r1, r2, #0
+	adds r1, #0x80
+	movs r0, #2
+	str r0, [r1]
+	adds r1, #0x40
+	movs r0, #4
+.Ljp_080B9254:
+	str r0, [r1]
+	pop {r0}
+	bx r0
+	.align 2, 0
+
     jp_code_809_func func_080B9828, 0xB925C, 0xB9278
     jp_code_809_func func_080B9844, 0xB9278, 0xB94F4
     .global func_080B9AC0
