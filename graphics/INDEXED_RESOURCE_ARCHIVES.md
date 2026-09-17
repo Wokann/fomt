@@ -102,6 +102,20 @@ The archive contains three drawable OAM groups, four 4bpp tiles, one BGR555
 palette, and four selection entries. Its native descriptor, OAM, palette and
 selection records remain in the archive, so no JSON layout sidecar is needed.
 
+`gUnk_0872BE64` has a shared JP/US/EU archive and a larger DE-specific one.
+Each is rebuilt from its own indexed PNG source directory and patched only to
+its native range.
+
+| Source domain | Regions | ROM offset(s) | Length | Header counts | Entries | SHA-256 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Shared | JP / US / EU | `0x4B1FCC` / `0x72BE64` / `0x72BEC0` | `0x76C` | `1, 1, 3, 56, 1, 0` | 1 | `2a4cba88f782d3b8c1842bc62da56c21f2c17da5399313bb41272d3258581c5e` |
+| DE | DE | `0x4B3030` | `0x874` | `1, 1, 4, 64, 1, 0` | 1 | `37aad7c43b543ab9635788b47d89c3f9fc3ebc2e72b570ffc7897a26e9d21046` |
+
+The shared form contains 56 4bpp tiles; DE contains 64 and one extra native
+layout record. Both expose one drawable OAM group with one BGR555 palette and
+one selection entry. Native layout records remain the source of truth rather
+than a separately maintained JSON layout description.
+
 The common archive's group-descriptor consumer is fully bounded. Every
 drawable descriptor selects valid GBA OAM, 4bpp tile, and BGR555 palette
 ranges; `func_0805E790` resolves the fields and `func_080757E8` uploads tiles
