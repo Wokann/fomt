@@ -1068,3 +1068,13 @@ EU `0x080B3C14`–`0x080B3C3B`、DE `0x080B3B44`–`0x080B3B6B`；
 `vtable_unk_080E850C` 是紧接的四槽表，真实起点 `0x080E793C`；后续独立的未知
 四槽表显式命名为 `vtable_unk_080E794C`。这只修正对象边界和符号归属，不改变任何
 ROM 字节。JP、US、EU、DE 的完整构建、SHA-1 与基准 ROM 逐字节校验均已通过。
+
+两个后继的 JP 短辅助函数也已直接提升：`func_080B36AC` 覆盖
+JP `0x080B36AC`–`0x080B36B7`，普通三区对应为 US `func_080B3C78`
+（`0x080B3C78`–`0x080B3C83`）、EU `0x080B3CA8`–`0x080B3CB3`、DE
+`0x080B3BD8`–`0x080B3BE3`；唯一差异为它调用的实际 JP 入口
+`func_080ADF10`。`func_080B3C84` 覆盖 JP `0x080B36B8`–`0x080B36C3`，
+对应 US `0x080B3C84`–`0x080B3C8F`、EU `0x080B3CB4`–`0x080B3CBF`、DE
+`0x080B3BE4`–`0x080B3BEF`，四区字节布局一致。两者不含代码 `.incbin`、原始
+`.byte`、`.set`、`.thumb_set` 或地址偏移伪匹配。JP、US、EU、DE 的完整构建、SHA-1
+与基准 ROM 的逐字节校验均已通过。

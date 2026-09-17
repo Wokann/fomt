@@ -43913,8 +43913,24 @@ func_080B3C3C: @ 0x080B3670
 	pop {r1}
 	bx r1
 	.align 2, 0
-    jp_code_809_func func_080B36AC, 0xB36AC, 0xB36B8
-    jp_code_809_func func_080B3C84, 0xB36B8, 0xB36C4
+    .global func_080B36AC
+    .thumb_func
+func_080B36AC: @ 0x080B36AC
+	push {lr}
+	ldr r0, [r0, #4]
+	bl func_080ADF10
+	pop {r1}
+	bx r1
+
+    .global func_080B3C84
+    .thumb_func
+func_080B3C84: @ 0x080B36B8
+	ldr r0, [r0, #4]
+	movs r1, #0x91
+	lsls r1, r1, #4
+	adds r0, r0, r1
+	ldr r0, [r0]
+	bx lr
     jp_code_809_func func_080B36C4, 0xB36C4, 0xB3F14
     jp_code_809_func func_080B44E0, 0xB3F14, 0xB3F20
     jp_code_809_func func_080B44EC, 0xB3F20, 0xB4024
