@@ -55045,7 +55045,42 @@ func_080B9428: @ 0x080B8E5C
     .global func_080B9464
     .thumb_func
 func_080B9464: @ 0x080B8E98
-    .incbin "baserom_jp.gba", 0xB8E98, (0xB8EDC - 0xB8E98)
+	push {lr}
+	lsls r1, r1, #0x10
+	lsls r2, r2, #0x10
+	lsrs r1, r1, #0x18
+	subs r1, #0x78
+	lsrs r2, r2, #0x18
+	subs r2, #0x4c
+	adds r0, r1, #0
+	muls r0, r1, r0
+	lsls r1, r0, #1
+	adds r1, r1, r0
+	lsls r1, r1, #3
+	adds r1, r1, r0
+	lsls r1, r1, #6
+	adds r0, r2, #0
+	muls r0, r2, r0
+	adds r2, r0, #0
+	lsls r0, r2, #3
+	adds r0, r0, r2
+	lsls r0, r0, #8
+	adds r1, r1, r0
+	movs r0, #0xe1
+	lsls r0, r0, #0xe
+	subs r2, r0, r1
+	subs r1, r2, #1
+	ldr r0, .Ljp_080B8ED8 @ =0x0002C6FE
+	cmp r1, r0
+	bhi .Ljp_080B8ED2
+	movs r2, #0
+.Ljp_080B8ED2:
+	adds r0, r2, #0
+	pop {r1}
+	bx r1
+	.align 2, 0
+.Ljp_080B8ED8: .4byte 0x0002C6FE
+
     .global func_080B94A8
     .thumb_func
 func_080B94A8: @ 0x080B8EDC
