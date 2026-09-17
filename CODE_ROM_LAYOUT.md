@@ -1161,6 +1161,14 @@ JP 与 DE 在其中一项构造字段使用立即数 `8`，US 与 EU 使用 `10`
 已提升范围不含代码 `.incbin`、原始 `.byte`、`.set`、`.thumb_set` 或地址偏移伪匹配；JP、US、EU、
 DE 的完整构建、SHA-1 与基准 ROM 逐字节校验均已通过。
 
+紧随其后的鸡祭数值查询函数 `func_080B8DAC` 也已直接提升。JP 覆盖
+`0x080B87E0`–`0x080B8827`，普通三区分别覆盖 US `0x080B8DAC`–`0x080B8DF3`、EU
+`0x080B8DDC`–`0x080B8E23`、DE `0x080B8D0C`–`0x080B8D53`；四区长度均为 `0x48` 字节。
+它直接使用已有的 `gUnk_HarvestSpriteMiniGameChickenFestivalValues` 与
+`gUnk_HarvestSpriteMiniGameChickenFestivalOffsets` 符号；不含代码 `.incbin`、原始 `.byte`、
+`.set`、`.thumb_set` 或地址偏移伪匹配。JP、US、EU、DE 的完整构建、SHA-1 与基准 ROM 逐字节
+校验均已通过。
+
 鸡祭资源页面主处理函数 `func_080B7648` 已整段直接提升。JP 覆盖
 `0x080B707C`–`0x080B82BF`，普通三区分别覆盖 US `0x080B7648`–`0x080B888B`、EU
 `0x080B7678`–`0x080B88BB`、DE `0x080B75A8`–`0x080B87EB`；四区长度均为 `0x1244`

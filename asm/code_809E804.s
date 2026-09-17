@@ -54160,7 +54160,44 @@ func_080B888C: @ 0x080B82C0
 .Ljp_080B87D8: .4byte 0x00000AA8
 .Ljp_080B87DC: .4byte 0x00000B14
 
-    jp_code_809_func func_080B8DAC, 0xB87E0, 0xB8828
+    .global func_080B8DAC
+    .thumb_func
+func_080B8DAC: @ 0x080B87E0
+	push {r4, lr}
+	adds r4, r2, #0
+	lsls r3, r3, #0x18
+	lsrs r3, r3, #0x18
+	cmp r3, #1
+	bne .Ljp_080B87F8
+	ldr r2, .Ljp_080B881C @ =0x00000B18
+	adds r0, r0, r2
+	ldr r0, [r0]
+	adds r0, #1
+	lsls r0, r0, #0x18
+	lsrs r3, r0, #0x18
+.Ljp_080B87F8:
+	ldr r2, .Ljp_080B8820 @ =gUnk_HarvestSpriteMiniGameChickenFestivalValues
+	lsls r1, r1, #1
+	lsls r0, r3, #1
+	adds r0, r0, r3
+	lsls r0, r0, #2
+	adds r1, r1, r0
+	adds r1, r1, r2
+	ldr r0, .Ljp_080B8824 @ =gUnk_HarvestSpriteMiniGameChickenFestivalOffsets
+	adds r0, r4, r0
+	ldrb r2, [r0]
+	ldrh r0, [r1]
+	adds r0, r0, r2
+	lsls r0, r0, #0x10
+	lsrs r0, r0, #0x10
+	pop {r4}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.Ljp_080B881C: .4byte 0x00000B18
+.Ljp_080B8820: .4byte gUnk_HarvestSpriteMiniGameChickenFestivalValues
+.Ljp_080B8824: .4byte gUnk_HarvestSpriteMiniGameChickenFestivalOffsets
+
     .global func_080B8DF4
     .thumb_func
 func_080B8DF4: @ 0x080B8828
