@@ -18,6 +18,22 @@ matching regional archive range.  It does not use a checked-in JSON layout
 file.  The normal ROM link then post-link-patches only that proven continuous
 archive, retaining every existing code pointer.
 
+## Pointer-table coverage boundary
+
+Each regional `MapData` table has 66 records. On every invocation the tool
+walks the first six pointer fields of every record: the character stream, two
+palette groups, and up to three BG tilemaps. After resolving aliases, this
+produces 272 distinct non-null visual source streams. A shared source is
+accepted only when its declared bounds, compressed bytes, decoded bytes, and
+native format agree in JP, US, EU, and DE; otherwise the exporter stops rather
+than silently treating a regional resource as shared.
+
+The remaining `MapData` pointer fields are terrain/field data rather than
+proven tile, palette, map, or OAM inputs. They deliberately remain outside
+this image pipeline. Their own bounded data is checked by
+`make map-terrain-audit`; adding a visual conversion for one requires evidence
+from its runtime consumer, not merely that it is adjacent to a map record.
+
 ## Read-only visual references
 
 `tools/map_visual_references.py` can render each proven BG layer directly from
