@@ -835,3 +835,11 @@ JP、US、EU、DE 的完整构建及各自 SHA-1 校验均已通过。
 `func_08007C28` 与 `func_08007B54` 重定位。该 JP 函数不含 `.incbin`、`.byte`、
 `.set` 或 `.thumb_set`，已逐字节匹配基准 ROM；四版完整构建和 SHA-1 校验均已
 通过。
+
+紧邻的资源载入例程也已完成直接指令化：JP `func_080AE208` 覆盖
+`0x080AE208`–`0x080AE2CB`（`0xC4` 字节），对应 US `func_080AE7D0`、EU
+`0x080AE800`、DE `0x080AE730` 的同长度区域。原本位于保留数据流内的四个载入源
+已按实际 JP ROM 地址导出为 `gUnk_084B5D9C`、`gUnk_084B5FD4`、
+`gUnk_084B6060` 和 `gUnk_084B7AA8`；函数经由这些标签及已有的 `Unpack`、VRAM
+拷贝例程重定位。该 JP 范围不含 `.incbin`、`.byte`、`.set` 或 `.thumb_set`，并已
+逐字节匹配基准 ROM；四版完整构建和 SHA-1 校验均已通过。

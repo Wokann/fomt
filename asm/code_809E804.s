@@ -33009,7 +33009,89 @@ func_080AE104:
 .Ljp_080AE1FC: .4byte 0x000008B8
 .Ljp_080AE200: .4byte 0x000008C8
 .Ljp_080AE204: .4byte 0x000008D8
-    jp_code_809_func func_080AE208, 0xAE208, 0xAE2CC
+    .global func_080AE208
+    .thumb_func
+func_080AE208:
+    push {r4, r5, r6, lr}
+    mov r6, sb
+    mov r5, r8
+    push {r5, r6}
+    sub sp, #4
+    mov sb, r0
+    ldr r1, .Ljp_080AE2A8 @ =0x06007FE0
+    movs r0, #0
+    movs r2, #0x20
+    bl func_08008EB8
+    movs r5, #1
+    rsbs r5, r5, #0
+    ldr r0, .Ljp_080AE2AC @ =0x0600F000
+    mov r8, r0
+    movs r6, #0x80
+    lsls r6, r6, #4
+    adds r0, r5, #0
+    mov r1, r8
+    adds r2, r6, #0
+    bl func_08008EB8
+    ldr r4, .Ljp_080AE2B0 @ =0x0600F800
+    adds r0, r5, #0
+    adds r1, r4, #0
+    adds r2, r6, #0
+    bl func_08008EB8
+    ldr r0, .Ljp_080AE2B4 @ =gUnk_084B5D9C
+    adds r1, r4, #0
+    bl Unpack
+    ldr r0, .Ljp_080AE2B8 @ =gUnk_084B5FD4
+    mov r1, r8
+    bl Unpack
+    ldr r0, .Ljp_080AE2BC @ =gUnk_084B6060
+    movs r1, #0xc0
+    lsls r1, r1, #0x13
+    bl Unpack
+    ldr r0, .Ljp_080AE2C0 @ =gUnk_084B7AA8
+    movs r1, #0xa0
+    lsls r1, r1, #0x13
+    movs r2, #0x80
+    lsls r2, r2, #2
+    bl func_08008E64
+    mov r0, sb
+    bl func_08008918
+    mov r2, sp
+    movs r3, #0xb2
+    lsls r3, r3, #5
+    adds r1, r3, #0
+    strh r1, [r2]
+    strh r1, [r0]
+    mov r0, sb
+    bl func_08008918
+    mov r2, sp
+    ldr r3, .Ljp_080AE2C4 @ =0x00001E41
+    adds r1, r3, #0
+    strh r1, [r2]
+    strh r1, [r0, #0xa]
+    mov r0, sb
+    bl func_08008918
+    mov r2, sp
+    ldr r3, .Ljp_080AE2C8 @ =0x00001F42
+    adds r1, r3, #0
+    strh r1, [r2]
+    strh r1, [r0, #0xc]
+    add sp, #4
+    pop {r3, r4}
+    mov r8, r3
+    mov sb, r4
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_080AE2A8: .4byte 0x06007FE0
+.Ljp_080AE2AC: .4byte 0x0600F000
+.Ljp_080AE2B0: .4byte 0x0600F800
+.Ljp_080AE2B4: .4byte gUnk_084B5D9C
+.Ljp_080AE2B8: .4byte gUnk_084B5FD4
+.Ljp_080AE2BC: .4byte gUnk_084B6060
+.Ljp_080AE2C0: .4byte gUnk_084B7AA8
+.Ljp_080AE2C4: .4byte 0x00001E41
+.Ljp_080AE2C8: .4byte 0x00001F42
     jp_code_809_func func_080AE2CC, 0xAE2CC, 0xAF24C
     jp_code_809_func func_080AF24C, 0xAF24C, 0xB0378
     jp_code_809_func func_080B0934, 0xB0378, 0xB03B4
