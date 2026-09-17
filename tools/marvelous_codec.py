@@ -390,6 +390,234 @@ def encode_huff8_lz3(data: bytes) -> bytes:
     return writer.finish()
 
 
+def lz2_match_options(
+    data: bytes,
+    position: int,
+    candidates: list[int],
+    entries: list[tuple[int, int]],
+) -> list[tuple[int, int, int]]:
+    """Return the longest byte match in each LZ2 distance ladder entry."""
+    best = [(0, 0) for _ in entries]
+    maximum_distance = entries[-1][0] + (1 << entries[-1][1]) - 1
+    maximum_length = min(0x400, len(data) - position)
+    for candidate in reversed(candidates[-48:]):
+        distance = position - candidate
+        if distance > maximum_distance:
+            continue
+        length = 0
+        while length < maximum_length and data[candidate + length] == data[position + length]:
+            length += 1
+        if length < 3:
+            continue
+        index, _start, _bits = ladder_entry(distance, entries)
+        if length > best[index][0]:
+            best[index] = (length, distance)
+    return [(index, length, distance) for index, (length, distance) in enumerate(best) if length]
+
+
+def plan_lz2(
+    data: bytes,
+    literal_bits: Callable[[int], int],
+    entries: list[tuple[int, int]],
+) -> list[tuple[str, int, int]]:
+    """Choose a minimum-bit byte parse for the native LZ2 grammar."""
+    infinity = 1 << 60
+    costs = [infinity] * (len(data) + 1)
+    choices: list[tuple[str, int, int] | None] = [None] * (len(data) + 1)
+    costs[0] = 0
+    candidates: dict[bytes, list[int]] = collections.defaultdict(list)
+
+    for position in range(len(data)):
+        if costs[position] == infinity:
+            continue
+        literal_cost = costs[position] + 1 + literal_bits(data[position])
+        if literal_cost < costs[position + 1]:
+            costs[position + 1] = literal_cost
+            choices[position + 1] = ("literal", 1, 0)
+
+        key = data[position:position + 3]
+        for index, maximum, distance in lz2_match_options(data, position, candidates.get(key, []), entries):
+            _start, distance_bits = entries[index]
+            for length in range(3, min(maximum, 18) + 1):
+                target = position + length
+                candidate_cost = costs[position] + 1 + 3 + distance_bits + 4
+                if candidate_cost < costs[target]:
+                    costs[target] = candidate_cost
+                    choices[target] = ("lookup", length, index << 16 | distance)
+            long_lengths = list(range(19, min(maximum, 34) + 1))
+            long_lengths.extend(range(50, maximum + 1, 16))
+            if maximum >= 19 and (not long_lengths or long_lengths[-1] != maximum):
+                long_lengths.append(maximum)
+            for length in long_lengths:
+                target = position + length
+                lookup_count = (length - 3) >> 4
+                candidate_cost = costs[position] + 1 + 3 + vli_cost(lookup_count, 4) + 1 + 3 + distance_bits + 4
+                if candidate_cost < costs[target]:
+                    costs[target] = candidate_cost
+                    choices[target] = ("lookup", length, index << 16 | distance)
+
+        if position + 3 <= len(data):
+            values = candidates[key]
+            values.append(position)
+            maximum_distance = entries[-1][0] + (1 << entries[-1][1]) - 1
+            while values and values[0] < position - maximum_distance:
+                values.pop(0)
+
+    operations: list[tuple[str, int, int]] = []
+    cursor = len(data)
+    while cursor:
+        choice = choices[cursor]
+        if choice is None:
+            raise ValueError("LZ2 planner failed to cover the source stream")
+        operations.append(choice)
+        cursor -= choice[1]
+    operations.reverse()
+    return operations
+
+
+def literal_payload_lz2(data: bytes, operations: list[tuple[str, int, int]]) -> bytes:
+    """Return only literal atoms selected by a byte-oriented LZ2 parse."""
+    result = bytearray()
+    position = 0
+    for kind, length, _argument in operations:
+        if kind == "literal":
+            result.extend(data[position:position + length])
+        position += length
+    return bytes(result)
+
+
+def encode_huff8_lz2(data: bytes, ladder_spec: str) -> bytes:
+    """Encode a Huffman-8/LZ2 stream using its original seven-entry ladder."""
+    data = bytes(data)
+    if not data:
+        raise ValueError("Huffman-8/LZ2 payloads must be non-empty")
+    entries = ladder_entries(ladder_spec, 7)
+    codes, by_length = huffman_codes(data)
+    operations: list[tuple[str, int, int]] = []
+    for _ in range(8):
+        operations = plan_lz2(data, lambda value: codes[value].bits, entries)
+        next_codes, next_by_length = huffman_codes(literal_payload_lz2(data, operations))
+        if next_codes == codes:
+            break
+        codes, by_length = next_codes, next_by_length
+    else:
+        operations = plan_lz2(data, lambda value: codes[value].bits, entries)
+
+    writer = BitWriter()
+    writer.write((len(data) << 8) | 0x70, 32)
+    writer.write(0x12, 8)
+    emit_huffman_tree(writer, by_length)
+    emit_ladder(writer, entries)
+
+    position = 0
+    operation_index = 0
+    while operation_index < len(operations):
+        kind, length, argument = operations[operation_index]
+        if kind == "literal":
+            run_length = length
+            following = operation_index + 1
+            while following < len(operations) and operations[following][0] == "literal":
+                run_length += operations[following][1]
+                following += 1
+            extended_cost = 1 + 3 + vli_cost(run_length - 1, 4) + 1
+            if extended_cost < run_length:
+                writer.write(1, 1)
+                writer.write(7, 3)
+                emit_vli(writer, run_length - 1, 4)
+                writer.write(0, 1)
+                for offset in range(run_length):
+                    code = codes[data[position + offset]]
+                    writer.write(code.value, code.bits)
+                position += run_length
+                operation_index = following
+                continue
+        if kind == "lookup":
+            index, distance = argument >> 16, argument & 0xFFFF
+            start, bits = entries[index]
+            writer.write(1, 1)
+            if length <= 18:
+                writer.write(index, 3)
+            else:
+                writer.write(7, 3)
+                emit_vli(writer, (length - 3) >> 4, 4)
+                writer.write(1, 1)
+                writer.write(index, 3)
+            writer.write(distance - start, bits)
+            writer.write((length - 3) & 15, 4)
+        else:
+            writer.write(0, 1)
+            code = codes[data[position]]
+            writer.write(code.value, code.bits)
+        position += length
+        operation_index += 1
+    return writer.finish()
+
+
+def encode_huff4_lz2(data: bytes, ladder_spec: str) -> bytes:
+    """Encode a Huffman-4/LZ2 stream using its original seven-entry ladder."""
+    data = bytes(data)
+    if not data:
+        raise ValueError("Huffman-4/LZ2 payloads must be non-empty")
+    entries = ladder_entries(ladder_spec, 7)
+    codes, by_length = huffman_codes(huff4_symbols(data), 4)
+    operations: list[tuple[str, int, int]] = []
+    for _ in range(8):
+        operations = plan_lz2(data, lambda value: codes[value >> 4].bits + codes[value & 0x0F].bits, entries)
+        next_codes, next_by_length = huffman_codes(huff4_symbols(literal_payload_lz2(data, operations)), 4)
+        if next_codes == codes:
+            break
+        codes, by_length = next_codes, next_by_length
+    else:
+        operations = plan_lz2(data, lambda value: codes[value >> 4].bits + codes[value & 0x0F].bits, entries)
+
+    writer = BitWriter()
+    writer.write((len(data) << 8) | 0x70, 32)
+    writer.write(0x0A, 8)
+    emit_huffman_tree(writer, by_length, 4)
+    emit_ladder(writer, entries)
+
+    position = 0
+    operation_index = 0
+    while operation_index < len(operations):
+        kind, length, argument = operations[operation_index]
+        if kind == "literal":
+            run_length = length
+            following = operation_index + 1
+            while following < len(operations) and operations[following][0] == "literal":
+                run_length += operations[following][1]
+                following += 1
+            extended_cost = 1 + 3 + vli_cost(run_length - 1, 4) + 1
+            if extended_cost < run_length:
+                writer.write(1, 1)
+                writer.write(7, 3)
+                emit_vli(writer, run_length - 1, 4)
+                writer.write(0, 1)
+                for offset in range(run_length):
+                    write_huff4_byte(writer, data[position + offset], codes)
+                position += run_length
+                operation_index = following
+                continue
+        if kind == "lookup":
+            index, distance = argument >> 16, argument & 0xFFFF
+            start, bits = entries[index]
+            writer.write(1, 1)
+            if length <= 18:
+                writer.write(index, 3)
+            else:
+                writer.write(7, 3)
+                emit_vli(writer, (length - 3) >> 4, 4)
+                writer.write(1, 1)
+                writer.write(index, 3)
+            writer.write(distance - start, bits)
+            writer.write((length - 3) & 15, 4)
+        else:
+            writer.write(0, 1)
+            write_huff4_byte(writer, data[position], codes)
+        position += length
+        operation_index += 1
+    return writer.finish()
+
+
 def encode_huff4_lz3(data: bytes, ladder_spec: str) -> bytes:
     """Encode a Huffman-4 / LZ3 stream used by Intro Scene tilemaps.
 
