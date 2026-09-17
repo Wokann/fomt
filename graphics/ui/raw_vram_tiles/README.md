@@ -29,6 +29,9 @@ The exact JP/US/EU/DE offsets and shared SHA-256 values are the checked
 `Profile` entries in `tools/raw_vram_tile_group.py`.  The Make targets rebuild
 and verify every profile for all four regions without deriving a tilemap.
 
+All listed native records are active build inputs.  `data_0813B288.s` includes
+their per-region output directly; no final screen composition is claimed.
+
 ## Farm Status Harvest Sprite List
 
 `func_080645F0` selects the records below.  The shared nine-tile slot pairs
@@ -50,6 +53,9 @@ character-RAM locations.
 
 Every table entry is byte-identical across JP, US, EU and DE.  The exact
 regional boundaries and hash checks remain in `tools/raw_vram_tile_group.py`.
+
+All listed native records are active build inputs.  `data_0813B288.s` includes
+their per-region output directly; no final screen composition is claimed.
 
 All nine listed records are active build inputs: `data_0813B288.s` selects the
 regional `build/<region>/graphics/ui/raw_vram_tiles/...` result directly.
