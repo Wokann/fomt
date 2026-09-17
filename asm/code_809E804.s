@@ -32011,7 +32011,34 @@ func_080AD7B0:
     .global func_080AD978
     .thumb_func
 func_080AD978:
-    .incbin "baserom_jp.gba", 0xAD978, (0xADF10 - 0xAD978)
+    push {r4, r5, lr}
+    adds r2, r0, #0
+    ldrh r0, [r2, #6]
+    adds r5, r0, #0
+    ldrh r0, [r2, #4]
+    adds r1, r5, r0
+    adds r4, r1, #0
+    movs r0, #0xff
+    ands r0, r1
+    movs r3, #0
+    cmp r0, #0
+    beq .Ljp_080AD992
+    adds r3, r1, #0
+.Ljp_080AD992:
+    strh r3, [r2, #6]
+    adds r0, r4, #0
+    asrs r1, r0, #8
+    adds r0, r5, #0
+    asrs r0, r0, #8
+    subs r0, r1, r0
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+
+    .global func_080AD9A4
+    .thumb_func
+func_080AD9A4:
+    .incbin "baserom_jp.gba", 0xAD9A4, (0xADF10 - 0xAD9A4)
     jp_code_809_func func_080AE4D8, 0xADF10, 0xAE104
     jp_code_809_func func_080AE6CC, 0xAE104, 0xB0378
     jp_code_809_func func_080B0934, 0xB0378, 0xB03B4
