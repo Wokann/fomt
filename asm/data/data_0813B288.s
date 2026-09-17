@@ -474,6 +474,25 @@
     .endif
     .endm
 
+    @ Animal Festival selects ten independent 16x16 4bpp icon records and
+    @ their following BGR555 palettes.  The physical order is retained:
+    @ callers address individual labels rather than a synthetic atlas.
+    .macro FOMT_ANIMAL_FESTIVAL_ICON index, extension
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/animal_festival/icon_\index\().\extension"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/animal_festival/icon_\index\().\extension"
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/animal_festival/icon_\index\().\extension"
+    .else
+    .incbin "build/us/graphics/ui/animal_festival/icon_\index\().\extension"
+    .endif
+    .endif
+    .endif
+    .endm
+
     @ Overseas UI code copies the first 0x1000 bytes as 128 individual
     @ 8x8/4bpp glyphs.  The final four native bytes are retained by the
     @ rebuilt record.  JP has no counterpart in this region-specific path.
@@ -2342,13 +2361,31 @@ gUnk_084D5868:
     .incbin "baserom_jp.gba", 0x4D5868, (0x4D668C - 0x4D5868)
     .global gUnk_084D668C
 gUnk_084D668C:
-    .incbin "baserom_jp.gba", 0x4D668C, (0x4D7918 - 0x4D668C)
+    .incbin "baserom_jp.gba", 0x4D668C, (0x4D7878 - 0x4D668C)
+    FOMT_ANIMAL_FESTIVAL_ICON 00, 4bpp
+    FOMT_ANIMAL_FESTIVAL_ICON 00, gbapal
 .global gUnk_084D7918
 gUnk_084D7918:
-    .incbin "baserom_jp.gba", 0x4D7918, (0x4D7998 - 0x4D7918)
+    FOMT_ANIMAL_FESTIVAL_ICON 01, 4bpp
     .global gUnk_084D7998
 gUnk_084D7998:
-    .incbin "baserom_jp.gba", 0x4D7998, (0x4D7EB8 - 0x4D7998)
+    FOMT_ANIMAL_FESTIVAL_ICON 01, gbapal
+    FOMT_ANIMAL_FESTIVAL_ICON 02, 4bpp
+    FOMT_ANIMAL_FESTIVAL_ICON 02, gbapal
+    FOMT_ANIMAL_FESTIVAL_ICON 03, 4bpp
+    FOMT_ANIMAL_FESTIVAL_ICON 03, gbapal
+    FOMT_ANIMAL_FESTIVAL_ICON 04, 4bpp
+    FOMT_ANIMAL_FESTIVAL_ICON 04, gbapal
+    FOMT_ANIMAL_FESTIVAL_ICON 05, 4bpp
+    FOMT_ANIMAL_FESTIVAL_ICON 05, gbapal
+    FOMT_ANIMAL_FESTIVAL_ICON 06, 4bpp
+    FOMT_ANIMAL_FESTIVAL_ICON 06, gbapal
+    FOMT_ANIMAL_FESTIVAL_ICON 07, 4bpp
+    FOMT_ANIMAL_FESTIVAL_ICON 07, gbapal
+    FOMT_ANIMAL_FESTIVAL_ICON 08, 4bpp
+    FOMT_ANIMAL_FESTIVAL_ICON 08, gbapal
+    FOMT_ANIMAL_FESTIVAL_ICON 09, 4bpp
+    FOMT_ANIMAL_FESTIVAL_ICON 09, gbapal
 
     @ Records-screen minigame icon/palette boundaries.  The paired labels are
     @ preserved because records_screen_data.cc uses ordinary relocations.
@@ -5992,83 +6029,83 @@ gUnk_087517AC:
 
 	.global gUnk_087518CC
 gUnk_087518CC:
-	FOMT_REGION_ASSET_INCBIN 0x7518CC, 0x80
+	FOMT_ANIMAL_FESTIVAL_ICON 00, 4bpp
 
 	.global gUnk_0875194C
 gUnk_0875194C:
-	FOMT_REGION_ASSET_INCBIN 0x75194C, 0x20
+	FOMT_ANIMAL_FESTIVAL_ICON 00, gbapal
 
 	.global gUnk_0875196C
 gUnk_0875196C:
-	FOMT_REGION_ASSET_INCBIN 0x75196C, 0x80
+	FOMT_ANIMAL_FESTIVAL_ICON 01, 4bpp
 
 	.global gUnk_087519EC
 gUnk_087519EC:
-	FOMT_REGION_ASSET_INCBIN 0x7519EC, 0x20
+	FOMT_ANIMAL_FESTIVAL_ICON 01, gbapal
 
 	.global gUnk_08751A0C
 gUnk_08751A0C:
-	FOMT_REGION_ASSET_INCBIN 0x751A0C, 0x80
+	FOMT_ANIMAL_FESTIVAL_ICON 02, 4bpp
 
 	.global gUnk_08751A8C
 gUnk_08751A8C:
-	FOMT_REGION_ASSET_INCBIN 0x751A8C, 0x20
+	FOMT_ANIMAL_FESTIVAL_ICON 02, gbapal
 
 	.global gUnk_08751AAC
 gUnk_08751AAC:
-	FOMT_REGION_ASSET_INCBIN 0x751AAC, 0x80
+	FOMT_ANIMAL_FESTIVAL_ICON 03, 4bpp
 
 	.global gUnk_08751B2C
 gUnk_08751B2C:
-	FOMT_REGION_ASSET_INCBIN 0x751B2C, 0x20
+	FOMT_ANIMAL_FESTIVAL_ICON 03, gbapal
 
 	.global gUnk_08751B4C
 gUnk_08751B4C:
-	FOMT_REGION_ASSET_INCBIN 0x751B4C, 0x80
+	FOMT_ANIMAL_FESTIVAL_ICON 04, 4bpp
 
 	.global gUnk_08751BCC
 gUnk_08751BCC:
-	FOMT_REGION_ASSET_INCBIN 0x751BCC, 0x20
+	FOMT_ANIMAL_FESTIVAL_ICON 04, gbapal
 
 	.global gUnk_08751BEC
 gUnk_08751BEC:
-	FOMT_REGION_ASSET_INCBIN 0x751BEC, 0x80
+	FOMT_ANIMAL_FESTIVAL_ICON 05, 4bpp
 
 	.global gUnk_08751C6C
 gUnk_08751C6C:
-	FOMT_REGION_ASSET_INCBIN 0x751C6C, 0x20
+	FOMT_ANIMAL_FESTIVAL_ICON 05, gbapal
 
 	.global gUnk_08751C8C
 gUnk_08751C8C:
-	FOMT_REGION_ASSET_INCBIN 0x751C8C, 0x80
+	FOMT_ANIMAL_FESTIVAL_ICON 06, 4bpp
 
 	.global gUnk_08751D0C
 gUnk_08751D0C:
-	FOMT_REGION_ASSET_INCBIN 0x751D0C, 0x20
+	FOMT_ANIMAL_FESTIVAL_ICON 06, gbapal
 
 	.global gUnk_08751D2C
 gUnk_08751D2C:
-	FOMT_REGION_ASSET_INCBIN 0x751D2C, 0x80
+	FOMT_ANIMAL_FESTIVAL_ICON 07, 4bpp
 
 	.global gUnk_08751DAC
 gUnk_08751DAC:
-	FOMT_REGION_ASSET_INCBIN 0x751DAC, 0x20
+	FOMT_ANIMAL_FESTIVAL_ICON 07, gbapal
 
 	.global gUnk_08751DCC
 gUnk_08751DCC:
-	FOMT_REGION_ASSET_INCBIN 0x751DCC, 0x80
+	FOMT_ANIMAL_FESTIVAL_ICON 08, 4bpp
 
 	.global gUnk_08751E4C
 gUnk_08751E4C:
-	FOMT_REGION_ASSET_INCBIN 0x751E4C, 0x20
+	FOMT_ANIMAL_FESTIVAL_ICON 08, gbapal
 
 	.global gUnk_08751E6C
 gUnk_08751E6C:
-	FOMT_REGION_ASSET_INCBIN 0x751E6C, 0x80
+	FOMT_ANIMAL_FESTIVAL_ICON 09, 4bpp
 
 	.global gUnk_08751EEC
 gUnk_08751EEC:
-	FOMT_REGION_ASSET_INCBIN 0x751EEC, 0x20
+	FOMT_ANIMAL_FESTIVAL_ICON 09, gbapal
 
 	.global gUnk_08751F0C
 gUnk_08751F0C:

@@ -2128,64 +2128,64 @@ gUnk_087517AC:
 	.incbin "baserom_de.gba", 0x4D8CC8, 0x120
 	.global gUnk_087518CC
 gUnk_087518CC:
-	.incbin "baserom_de.gba", 0x4D8DE8, 0x80
+	FOMT_ANIMAL_FESTIVAL_ICON 00, 4bpp
 	.global gUnk_0875194C
 gUnk_0875194C:
-	.incbin "baserom_de.gba", 0x4D8E68, 0x20
+	FOMT_ANIMAL_FESTIVAL_ICON 00, gbapal
 	.global gUnk_0875196C
 gUnk_0875196C:
-	.incbin "baserom_de.gba", 0x4D8E88, 0x80
+	FOMT_ANIMAL_FESTIVAL_ICON 01, 4bpp
 	.global gUnk_087519EC
 gUnk_087519EC:
-	.incbin "baserom_de.gba", 0x4D8F08, 0x20
+	FOMT_ANIMAL_FESTIVAL_ICON 01, gbapal
 	.global gUnk_08751A0C
 gUnk_08751A0C:
-	.incbin "baserom_de.gba", 0x4D8F28, 0x80
+	FOMT_ANIMAL_FESTIVAL_ICON 02, 4bpp
 	.global gUnk_08751A8C
 gUnk_08751A8C:
-	.incbin "baserom_de.gba", 0x4D8FA8, 0x20
+	FOMT_ANIMAL_FESTIVAL_ICON 02, gbapal
 	.global gUnk_08751AAC
 gUnk_08751AAC:
-	.incbin "baserom_de.gba", 0x4D8FC8, 0x80
+	FOMT_ANIMAL_FESTIVAL_ICON 03, 4bpp
 	.global gUnk_08751B2C
 gUnk_08751B2C:
-	.incbin "baserom_de.gba", 0x4D9048, 0x20
+	FOMT_ANIMAL_FESTIVAL_ICON 03, gbapal
 	.global gUnk_08751B4C
 gUnk_08751B4C:
-	.incbin "baserom_de.gba", 0x4D9068, 0x80
+	FOMT_ANIMAL_FESTIVAL_ICON 04, 4bpp
 	.global gUnk_08751BCC
 gUnk_08751BCC:
-	.incbin "baserom_de.gba", 0x4D90E8, 0x20
+	FOMT_ANIMAL_FESTIVAL_ICON 04, gbapal
 	.global gUnk_08751BEC
 gUnk_08751BEC:
-	.incbin "baserom_de.gba", 0x4D9108, 0x80
+	FOMT_ANIMAL_FESTIVAL_ICON 05, 4bpp
 	.global gUnk_08751C6C
 gUnk_08751C6C:
-	.incbin "baserom_de.gba", 0x4D9188, 0x20
+	FOMT_ANIMAL_FESTIVAL_ICON 05, gbapal
 	.global gUnk_08751C8C
 gUnk_08751C8C:
-	.incbin "baserom_de.gba", 0x4D91A8, 0x80
+	FOMT_ANIMAL_FESTIVAL_ICON 06, 4bpp
 	.global gUnk_08751D0C
 gUnk_08751D0C:
-	.incbin "baserom_de.gba", 0x4D9228, 0x20
+	FOMT_ANIMAL_FESTIVAL_ICON 06, gbapal
 	.global gUnk_08751D2C
 gUnk_08751D2C:
-	.incbin "baserom_de.gba", 0x4D9248, 0x80
+	FOMT_ANIMAL_FESTIVAL_ICON 07, 4bpp
 	.global gUnk_08751DAC
 gUnk_08751DAC:
-	.incbin "baserom_de.gba", 0x4D92C8, 0x20
+	FOMT_ANIMAL_FESTIVAL_ICON 07, gbapal
 	.global gUnk_08751DCC
 gUnk_08751DCC:
-	.incbin "baserom_de.gba", 0x4D92E8, 0x80
+	FOMT_ANIMAL_FESTIVAL_ICON 08, 4bpp
 	.global gUnk_08751E4C
 gUnk_08751E4C:
-	.incbin "baserom_de.gba", 0x4D9368, 0x20
+	FOMT_ANIMAL_FESTIVAL_ICON 08, gbapal
 	.global gUnk_08751E6C
 gUnk_08751E6C:
-	.incbin "baserom_de.gba", 0x4D9388, 0x80
+	FOMT_ANIMAL_FESTIVAL_ICON 09, 4bpp
 	.global gUnk_08751EEC
 gUnk_08751EEC:
-	.incbin "baserom_de.gba", 0x4D9408, 0x20
+	FOMT_ANIMAL_FESTIVAL_ICON 09, gbapal
 	.global gUnk_08751F0C
 gUnk_08751F0C:
 	FOMT_RECORDS_TASK_TILES 00
