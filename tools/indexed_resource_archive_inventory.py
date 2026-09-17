@@ -28,6 +28,7 @@ REBUILT_SOURCES = {
     "gUnk_086F2FAC": "graphics/shared_resource_086f2fac/",
     "gUnk_086FAA80": "graphics/shared_resource_086faa80/",
     "gUnk_0871ECAC": "graphics/shared_resource_0871ecac/",
+    "gUnk_0871EDD4": "graphics/shared_resource_0871edd4/",
     "gUnk_08667060": "graphics/small_companion_archive/",
     "gUnk_086678A0": "graphics/common_resource_archive/",
     "gUnk_0871E7A8": "graphics/ui/menu_resource_archive/",

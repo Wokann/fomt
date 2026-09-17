@@ -43,6 +43,8 @@ grids:
   the gameplay semantics are independently established.
 - [Shared OAM resource `0871ECAC`](shared_resource_0871ecac/full/) — four
   complete indexed-PNG OAM source views plus one preserved native empty slot.
+- [Shared OAM resource `0871EDD4`](shared_resource_0871edd4/full/) — four
+  complete indexed-PNG OAM source views plus one preserved native empty slot.
 - [Records-screen task icons](ui/records_minigame/shared/) — seven complete
   16-by-16 icons with their native palettes.
 
