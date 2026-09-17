@@ -2043,7 +2043,7 @@ gUnk_0874E330:
 	.incbin "build/de/graphics/intro_scene/startup_visual/startup_palette_banks.gbapal"
 	.global gUnk_0874E530
 gUnk_0874E530:
-	.incbin "baserom_de.gba", 0x4D599C, 0x118
+	.incbin "build/de/graphics/intro_scene/small_indexed_archive/archive.bin"
 	.global gUnk_0874E648
 gUnk_0874E648:
 	.incbin "baserom_de.gba", 0x4D5AB4, 0x4F8

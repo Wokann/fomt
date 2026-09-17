@@ -62,6 +62,16 @@ make gfx-intro-indexed-archive-all
 make gfx-intro-indexed-archive-edit-test
 ```
 
+The same initializer also consumes `small_indexed_archive/shared/full/`: a
+separate, raw `0x118`-byte archive with three complete 16-by-16 OAM frames.
+Its native bytes are identical in JP, US, EU, and DE, so one shared source
+rebuilds every regional range and passes a PNG-pixel full-ROM patch fixture.
+
+```console
+make gfx-intro-small-archive-all
+make gfx-intro-small-archive-edit-test
+```
+
 ## Startup background layers
 
 `func_080019D8` additionally expands a shared `0x8000`-byte 4bpp tile payload,

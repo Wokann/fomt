@@ -2311,7 +2311,7 @@ gUnk_084D4AC4:
     .incbin "build/jp/graphics/intro_scene/startup_visual/startup_palette_banks.gbapal"
     .global gUnk_084D4CC4
 gUnk_084D4CC4:
-    .incbin "baserom_jp.gba", 0x4D4CC4, (0x4D4DDC - 0x4D4CC4)
+    .incbin "build/jp/graphics/intro_scene/small_indexed_archive/archive.bin"
     .global gUnk_084D4DDC
 gUnk_084D4DDC:
     .incbin "build/jp/graphics/ui/scene_08077810_jp/tiles.0x70"
@@ -5872,7 +5872,15 @@ gUnk_0874E330:
 
 	.global gUnk_0874E530
 gUnk_0874E530:
-	FOMT_REGION_ASSET_INCBIN 0x74E530, 0x118
+	.ifdef REGION_DE
+	.incbin "build/de/graphics/intro_scene/small_indexed_archive/archive.bin"
+	.else
+	.ifdef REGION_EU
+	.incbin "build/eu/graphics/intro_scene/small_indexed_archive/archive.bin"
+	.else
+	.incbin "build/us/graphics/intro_scene/small_indexed_archive/archive.bin"
+	.endif
+	.endif
 
 	.global gUnk_0874E648
 gUnk_0874E648:
