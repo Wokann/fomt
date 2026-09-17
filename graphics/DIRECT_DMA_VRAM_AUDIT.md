@@ -28,12 +28,12 @@ different video-RAM locations.
 | `gUnk_08750C6C` | `0x20` | Farm Status Harvest Sprite task UI tile BGR555 palette regenerated from the paired PNG source. |
 | `gUnk_08750C8C` | `0x1A0`, `0x1C0` | Managed complete `0x1C0` raw UI tile record; the shorter caller consumes its leading subrange. |
 | `gUnk_087510AC` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
-| `gUnk_0875166C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
-| `gUnk_0875178C` | `0x20` | Managed raw UI BGR555 palette record; paired with `gUnk_0875166C`. |
+| `gUnk_0875166C` | `0x120` | Farm Status Earnings Report native tile record; paired BGR555 palette is `gUnk_0875178C`, while final layout remains unproven. |
+| `gUnk_0875178C` | `0x20` | Farm Status Earnings Report BGR555 palette record; paired with `gUnk_0875166C`. |
 | `gUnk_087517AC` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
-| `gUnk_08750F6C` | `0x20` | Managed raw UI BGR555 palette record; paired with `gUnk_08750E4C`. |
+| `gUnk_08750F6C` | `0x20` | Farm Status Harvest Sprite List BGR555 palette record; paired with `gUnk_08750E4C`. |
 | `gUnk_08750F8C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
-| `gUnk_08750E4C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
+| `gUnk_08750E4C` | `0x120` | Farm Status Harvest Sprite List native tile record; paired BGR555 palette is `gUnk_08750F6C`, while final layout remains unproven. |
 | `gUnk_087511CC` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
 | `gUnk_0875154C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
 | `gUnk_0875130C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
@@ -68,8 +68,8 @@ remain native sources because their tile arrangement is not proven.
 | `gUnk_0875314C` | Immediately follows Farm Status UI icon record 13 (`gUnk_087530CC`). | Managed by the Farm Status icon PNG pipeline. |
 | `gUnk_0875350C` | Immediately follows Farm Status UI icon record 19 (`gUnk_0875348C`). | Managed by the Farm Status icon PNG pipeline. |
 | `gUnk_08750C6C` | Immediately follows the single-tile `gUnk_08750C4C` record. | Managed by the Farm Status Harvest Sprite task UI tile PNG pipeline. |
-| `gUnk_08750F6C` | Immediately follows raw `gUnk_08750E4C` tile record. | Native tile/palette pair; final layout remains unproven. |
-| `gUnk_0875178C` | Immediately follows raw `gUnk_0875166C` tile record. | Native tile/palette pair; final layout remains unproven. |
+| `gUnk_08750F6C` | `func_080645F0` (Farm Status Harvest Sprite List) copies it to palette RAM immediately after loading `gUnk_08750E4C`. | Native tile/palette pair; final layout remains unproven. |
+| `gUnk_0875178C` | `func_0806644C` (Farm Status Earnings Report) copies it to palette RAM immediately after loading `gUnk_0875166C`. | Native tile/palette pair; final layout remains unproven. |
 
 The icon rows and the single-tile Harvest Sprite row now point at checked-in
 PNG pipelines. The remaining twenty-two raw UI records have verified
