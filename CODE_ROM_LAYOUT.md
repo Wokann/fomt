@@ -711,3 +711,22 @@ JP 提升区间与完整 ROM 均已逐字节核验；JP、US、EU、DE 四版完
 已逐字节核对 JP 上述完整范围，并完成 JP、US、EU、DE 四版完整构建与 SHA-1
 校验。该 JP 源区间不含 `.incbin`、`.byte`、`jp_code_809_func`、`.set` 或
 `.thumb_set`。
+
+其后的实体地图辅助块也已完成 JP 侧提升。正常区域
+`0x080AB380`–`0x080ACAEF` 与 JP `0x080AADB8`–`0x080AC527` 长度均为
+`0x1770`，共有 26 个真实 Thumb 入口；其中三个此前未单独列出的内部入口为
+JP `func_080AAE48`、`func_080ABDC0` 与 `func_080AC0AC`。所有 JP 调用点均直接
+引用这些物理入口，不再借用正常区域符号、`.set`/`.thumb_set` 别名或地址补偿。
+
+该块的资源 literal 已拆为原始数据流中的真实 JP 标签：
+`gUnk_083ED1BC`、`gUnk_08479108`、`gUnk_08480BDC`、`gUnk_084A3678`、
+`gUnk_084A4E14`、`gUnk_084A4F3C`、`gUnk_084A5068`、`gUnk_084ABF08`、
+`gUnk_084ACE34`、`gUnk_084AD4D0` 与 `gUnk_084ADBDC`。这些标签只切分原
+`incbin` 数据边界，数据字节和物理地址均未改变。
+
+此范围还确认了两个实际嵌在既有虚表数据中的四槽子表：JP
+`vtable_unk_080E7774` 和 `vtable_unk_080E7870`。它们以独立的物理对象按原 ROM
+顺序链接，供相应 JP 代码直接重定位；不再用父表标签加偏移或别名模拟。
+
+该 JP 代码范围不含 `.incbin`、`.byte`、提升宏、`.set` 或 `.thumb_set`。JP、US、
+EU、DE 的完整构建均已通过各自基准 ROM 的 SHA-1 校验。

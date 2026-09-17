@@ -19332,7 +19332,11 @@ func_080DD460: @ 0x080DD460
 	bl func_0803A350
 .L080DD48C:
 	movs r0, #2
+	.ifdef REGION_JP
+	bl func_080AB1C0
+	.else
 	bl func_080AB788
+	.endif
 	adds r0, #6
 	lsls r1, r0, #4
 	subs r1, r1, r0
@@ -19627,7 +19631,11 @@ func_080DD5E4: @ 0x080DD5E4
 	str r4, [sp, #4]
 	mov r2, sb
 	mov r3, r8
+	.ifdef REGION_JP
+	bl func_080AB890
+	.else
 	bl func_080ABE58
+	.endif
 	adds r1, r0, #0
 	str r1, [r5, #0x50]
 	adds r6, r5, #0
@@ -20080,7 +20088,11 @@ func_080DD9CC: @ 0x080DD9CC
 	b .L080DDBD6
 .L080DD9F8:
 	movs r0, #2
+	.ifdef REGION_JP
+	bl func_080AB1C0
+	.else
 	bl func_080AB788
+	.endif
 	adds r0, #0x1e
 	lsls r1, r0, #4
 	subs r1, r1, r0
@@ -20461,7 +20473,11 @@ func_080DDC78: @ 0x080DDC78
 	cmp r5, #1
 	bne .L080DDCEE
 	movs r0, #4
+	.ifdef REGION_JP
+	bl func_080AB1C0
+	.else
 	bl func_080AB788
+	.endif
 	lsls r0, r0, #8
 	movs r2, #0x80
 	lsls r2, r2, #1
@@ -20479,7 +20495,11 @@ func_080DDC78: @ 0x080DDC78
 	b .L080DDD04
 .L080DDCEE:
 	movs r0, #2
+	.ifdef REGION_JP
+	bl func_080AB1C0
+	.else
 	bl func_080AB788
+	.endif
 	lsls r1, r0, #4
 	subs r1, r1, r0
 	lsls r1, r1, #2
@@ -20490,7 +20510,11 @@ func_080DDC78: @ 0x080DDC78
 	adds r4, r0, #0
 .L080DDD04:
 	movs r0, #2
+	.ifdef REGION_JP
+	bl func_080AB1C0
+	.else
 	bl func_080AB788
+	.endif
 	lsls r0, r0, #2
 	adds r0, #0xc
 	adds r1, r6, #0
@@ -34171,7 +34195,11 @@ func_080E44B8: @ 0x080E44B8
 	adds r4, r1, #0
 	adds r0, r5, #4
 	movs r1, #2
+	.ifdef REGION_JP
+	bl func_080AC294
+	.else
 	bl func_080AC85C
+	.endif
 	ldr r0, .L080E44E0 @ =vtable_unk_080E61A0
 	str r0, [r5]
 	movs r0, #1

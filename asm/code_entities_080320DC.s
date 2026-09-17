@@ -2746,7 +2746,7 @@ func_080338F0:
     adds	r4, r0, #0
     movs	r0, #128	@ 0x80
     lsls	r0, r0, #2
-    bl func_080AB788
+    bl func_080AB1C0
     movs	r1, #0
     movs	r2, #128	@ 0x80
     lsls	r2, r2, #1
@@ -3205,7 +3205,7 @@ func_08033B94:
     ldr r5, .Ljp_08033AA4
     adds	r0, r5, #0
     movs	r1, #5
-    bl func_080AB82C
+    bl func_080AB264
     lsls	r4, r0, #2
     adds	r4, r4, r5
     movs	r6, #0
@@ -3214,7 +3214,7 @@ func_08033B94:
     movs	r5, #60	@ 0x3c
     ldrb	r0, [r4, #2]
     muls	r0, r5
-    bl func_080AB788
+    bl func_080AB1C0
     ldrb	r1, [r4, #1]
     muls	r1, r5
     adds	r1, r1, r0
@@ -3240,12 +3240,12 @@ func_08033B94:
     b .Ljp_08033AFE
 .Ljp_08033AAE:
     movs	r0, #72	@ 0x48
-    bl func_080AB788
+    bl func_080AB1C0
     adds	r0, #128	@ 0x80
     mov	r3, r9
     strh	r0, [r3, #0]
     movs	r0, #72	@ 0x48
-    bl func_080AB788
+    bl func_080AB1C0
     movs	r5, #148	@ 0x94
     lsls	r5, r5, #1
     adds	r0, r0, r5
@@ -3254,24 +3254,24 @@ func_08033B94:
     b .Ljp_08033AFE
 .Ljp_08033ACC:
     movs	r0, #104	@ 0x68
-    bl func_080AB788
+    bl func_080AB1C0
     adds	r0, #72	@ 0x48
     mov	r1, r9
     strh	r0, [r1, #0]
     movs	r0, #48	@ 0x30
-    bl func_080AB788
+    bl func_080AB1C0
     adds	r0, #96	@ 0x60
     mov	r2, r9
     strh	r0, [r2, #2]
     b .Ljp_08033AFE
 .Ljp_08033AE6:
     movs	r0, #64	@ 0x40
-    bl func_080AB788
+    bl func_080AB1C0
     adds	r0, #144	@ 0x90
     mov	r3, r9
     strh	r0, [r3, #0]
     movs	r0, #48	@ 0x30
-    bl func_080AB788
+    bl func_080AB1C0
     adds	r0, #112	@ 0x70
     mov	r5, r9
     strh	r0, [r5, #2]
@@ -3332,7 +3332,7 @@ func_08033B94:
     str	r4, [sp, #0]
     mov	r6, r8
     str	r6, [sp, #4]
-    bl func_080ABC40
+    bl func_080AB678
     adds	r2, r0, #0
     ldr	r0, [sp, #148]	@ 0x94
     ldrb	r1, [r0, #2]
@@ -3618,14 +3618,14 @@ func_08033B94:
     adds	r0, r3, #0
 .Ljp_08033DA4:
     ldr	r0, [r0, #0]
-    bl func_080AB788
+    bl func_080AB1C0
     ldr	r1, [sp, #152]	@ 0x98
     strh	r0, [r1, #0]
     adds	r0, r7, #0
     adds	r0, #32
     ldrb	r4, [r0, #0]
     add	r0, sp, #8
-    bl func_080ABA3C
+    bl func_080AB474
     add	r0, sp, #88	@ 0x58
     movs	r3, #0
     ldrsh	r2, [r0, r3]
@@ -3636,7 +3636,7 @@ func_08033B94:
     str	r4, [sp, #4]
     ldr	r0, [sp, #156]	@ 0x9c
     ldr	r1, [sp, #160]	@ 0xa0
-    bl func_080ABC40
+    bl func_080AB678
     adds	r2, r0, #0
     adds	r0, r7, #0
     movs	r1, #1
@@ -4007,7 +4007,7 @@ func_080342D8:
     bne .Ljp_080340EA
 .Ljp_0803408E:
     movs	r0, #180	@ 0xb4
-    bl func_080AB788
+    bl func_080AB1C0
     lsls	r0, r0, #16
     lsrs	r0, r0, #16
     ldr r2, .Ljp_080340F4
@@ -4027,7 +4027,7 @@ func_080342D8:
     movs	r0, #128	@ 0x80
     lsls	r0, r0, #1
     subs	r0, r0, r1
-    bl func_080AB788
+    bl func_080AB1C0
     lsrs	r0, r0, #6
     adds	r0, #2
     lsls	r0, r0, #24
@@ -4763,7 +4763,7 @@ func_0803436C:
     cmp	r6, #3
     beq .Ljp_080346BC
     movs	r0, #200	@ 0xc8
-    bl func_080AB788
+    bl func_080AB1C0
     mov	r2, r8
     adds	r1, r2, r6
     ldrb	r1, [r1, #0]

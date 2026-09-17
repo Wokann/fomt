@@ -7062,20 +7062,29 @@ extern RawVTableFunction const vtable_unk_080E830C[]
 #endif
     };
 
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E831C[]
     SECTION(".rodata.vtable_831c") = {
-#if defined(REGION_JP)
         func_080A5F5C,
         func_080A6078,
         func_080AA974,
         func_080A6EC4,
         func_080A6098,
         func_080A8FDC,
+    };
+
+// This four-slot base-subobject table begins 0x18 bytes into the preceding
+// table in the JP ROM.  Keep it as a separately linkable physical object.
+extern RawVTableFunction const vtable_unk_080E7774[]
+    SECTION(".rodata.vtable_7774") = {
         nullptr,
         nullptr,
         func_080E3C50,
         func_080AC528,
+    };
 #else
+extern RawVTableFunction const vtable_unk_080E831C[]
+    SECTION(".rodata.vtable_831c") = {
         nullptr,
         nullptr,
         func_080E43B8,
@@ -7086,8 +7095,8 @@ extern RawVTableFunction const vtable_unk_080E831C[]
         func_080A748C,
         func_080A6660,
         func_080A95A4,
-#endif
     };
+#endif
 
 #if defined(REGION_JP)
 extern void func_080AC648(void);
@@ -7322,9 +7331,9 @@ extern void func_08032B40(void);
 
 // This short table has a region-dependent slot layout. Retain the opaque
 // callback sequence and null slots in ROM order until its class is identified.
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E8404[]
     SECTION(".rodata.vtable_8404") = {
-#if defined(REGION_JP)
         vfunc_10__7AEntity,
         vfunc_14__7AEntity,
         func_08032A30,
@@ -7336,11 +7345,20 @@ extern RawVTableFunction const vtable_unk_080E8404[]
         func_080E3C7C,
         func_080324B8,
         func_080328D4,
+    };
+
+// The JP object constructor uses this tail as a distinct base-subobject
+// vtable.  It starts at the real ROM address 0x080E7870.
+extern RawVTableFunction const vtable_unk_080E7870[]
+    SECTION(".rodata.vtable_7870") = {
         nullptr,
         nullptr,
         func_080E3CDC,
         __pure_virtual,
+    };
 #else
+extern RawVTableFunction const vtable_unk_080E8404[]
+    SECTION(".rodata.vtable_8404") = {
         nullptr,
         nullptr,
         func_080E4510,
@@ -7356,8 +7374,8 @@ extern RawVTableFunction const vtable_unk_080E8404[]
         func_080E44E4,
         func_080324B8,
         func_08032B40,
-#endif
     };
+#endif
 
 #if defined(REGION_JP)
 extern void func_080E4564(void);

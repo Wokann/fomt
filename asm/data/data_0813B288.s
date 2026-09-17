@@ -632,7 +632,10 @@ gUnk_082B3A8C:
 gUnk_08311B84:
     .incbin "baserom_jp.gba", 0x311B84, (0x329558 - 0x311B84)
     .incbin "build/jp/graphics/sprites/shared/actor_tiles.4bpp"
-    .incbin "baserom_jp.gba", 0x3E7F18, (0x3ED9FC - 0x3E7F18)
+    .incbin "baserom_jp.gba", 0x3E7F18, (0x3ED1BC - 0x3E7F18)
+    .global gUnk_083ED1BC
+gUnk_083ED1BC:
+    .incbin "baserom_jp.gba", 0x3ED1BC, (0x3ED9FC - 0x3ED1BC)
     .global gUnk_083ED9FC
 gUnk_083ED9FC:
     .incbin "baserom_jp.gba", 0x3ED9FC, (0x41DA7C - 0x3ED9FC)
@@ -2316,7 +2319,13 @@ gUnk_08470EE0:
     .incbin "baserom_jp.gba", 0x470EE0, (0x470EE8 - 0x470EE0)
     .global gUnk_08470EE8
 gUnk_08470EE8:
-    .incbin "baserom_jp.gba", 0x470EE8, (0x49AB8C - 0x470EE8)
+    .incbin "baserom_jp.gba", 0x470EE8, (0x479108 - 0x470EE8)
+    .global gUnk_08479108
+gUnk_08479108:
+    .incbin "baserom_jp.gba", 0x479108, (0x480BDC - 0x479108)
+    .global gUnk_08480BDC
+gUnk_08480BDC:
+    .incbin "baserom_jp.gba", 0x480BDC, (0x49AB8C - 0x480BDC)
     .global gUnk_0849AB8C
 gUnk_0849AB8C:
     .incbin "baserom_jp.gba", 0x49AB8C, (0x49ACBC - 0x49AB8C)
@@ -2331,7 +2340,31 @@ gUnk_0849D0E0:
     .incbin "baserom_jp.gba", 0x49D0E0, (0x49D214 - 0x49D0E0)
     .global gUnk_0849D214
 gUnk_0849D214:
-    .incbin "baserom_jp.gba", 0x49D214, (0x4AE370 - 0x49D214)
+    .incbin "baserom_jp.gba", 0x49D214, (0x4A3678 - 0x49D214)
+    .global gUnk_084A3678
+gUnk_084A3678:
+    .incbin "baserom_jp.gba", 0x4A3678, (0x4A4E14 - 0x4A3678)
+    .global gUnk_084A4E14
+gUnk_084A4E14:
+    .incbin "baserom_jp.gba", 0x4A4E14, (0x4A4F3C - 0x4A4E14)
+    .global gUnk_084A4F3C
+gUnk_084A4F3C:
+    .incbin "baserom_jp.gba", 0x4A4F3C, (0x4A5068 - 0x4A4F3C)
+    .global gUnk_084A5068
+gUnk_084A5068:
+    .incbin "baserom_jp.gba", 0x4A5068, (0x4ABF08 - 0x4A5068)
+    .global gUnk_084ABF08
+gUnk_084ABF08:
+    .incbin "baserom_jp.gba", 0x4ABF08, (0x4ACE34 - 0x4ABF08)
+    .global gUnk_084ACE34
+gUnk_084ACE34:
+    .incbin "baserom_jp.gba", 0x4ACE34, (0x4AD4D0 - 0x4ACE34)
+    .global gUnk_084AD4D0
+gUnk_084AD4D0:
+    .incbin "baserom_jp.gba", 0x4AD4D0, (0x4ADBDC - 0x4AD4D0)
+    .global gUnk_084ADBDC
+gUnk_084ADBDC:
+    .incbin "baserom_jp.gba", 0x4ADBDC, (0x4AE370 - 0x4ADBDC)
 
     @ UI resource archive payloads referenced directly by the JP UI constructor.
     @ The formats remain undecoded, but each label names byte zero of its
