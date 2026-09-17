@@ -929,3 +929,18 @@ US `0x080B0AA0`–`0x080B0BB7`、EU `0x080B0AD0`–`0x080B0BE7`、DE
 `.byte`、`.set` 或 `.thumb_set`。JP 对 `0x080B05FC`–`0x080B1583` 与
 `0x080B3444`–`0x080B345B` 的逐字节比对，以及 JP、US、EU、DE 的完整构建和
 SHA-1 校验均已通过。
+
+`func_080B1584` 的 JP 结果页逻辑已作为独立区域实现提升。它在 JP 覆盖
+`0x080B1584`–`0x080B1767`（`0x1E4` 字节）；普通三区的 `func_080B1B40` 分别
+覆盖 US `0x080B1B40`–`0x080B1D33`、EU `0x080B1B70`–`0x080B1D63`、DE
+`0x080B1AA0`–`0x080B1C93`（均为 `0x1F4` 字节）。JP 的字符串组装原本就与普通
+三区不同：它只调用两次 `memcpy`、两次 `strcat`，并对两段已验证的文本作直接复制；
+其第二个 ROM 指针实际指向
+`gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultSuffix`，因此源码保留该真实
+符号，不按名称臆测改为 Prefix。
+
+JP 的默认字形调用使用真实入口 `func_0804E98C`，资源页收尾使用
+`func_080AF24C`；其余 26 个 `BL` 也都由普通可重定位符号解析到 JP 实际入口。
+函数内的跳转表、文本指针和字面量均为显式标签，没有代码 `.incbin`、原始 `.byte`、
+`.set` 或 `.thumb_set`。JP 范围逐字节匹配基准 ROM；JP、US、EU、DE 的完整构建和
+SHA-1 校验均已通过。
