@@ -678,8 +678,11 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8298);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_82a8);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_82b8);
+. = ALIGN(4); src/vtables.o(.rodata.vtable_82c8);
+. = ALIGN(4); src/vtables.o(.rodata.vtable_82d4);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_82d8);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_82e4);
+. = ALIGN(4); src/vtables.o(.rodata.vtable_82fc);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_830c);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_831c);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_8344);

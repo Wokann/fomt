@@ -7052,7 +7052,7 @@ func_08038820:
 .Ljp_08038690:
     adds	r0, r4, #0
     movs	r1, #2
-    bl func_080A41EC
+    bl func_080A47B4
     adds	r4, #80	@ 0x50
     cmp	r4, r5
     bne .Ljp_08038690
@@ -7775,7 +7775,7 @@ func_08038DF0:
     beq .Ljp_08038C12
     adds	r0, r4, #0
     movs	r1, #2
-    bl func_080A41EC
+    bl func_080A47B4
     adds	r0, r4, #0
     bl __builtin_delete
 .Ljp_08038C12:
@@ -7829,7 +7829,7 @@ func_08038EB8:
     beq .Ljp_08038C6C
     adds	r0, r4, #0
     movs	r1, #2
-    bl func_080A41EC
+    bl func_080A47B4
     adds	r0, r4, #0
     bl __builtin_delete
 .Ljp_08038C6C:
@@ -9877,7 +9877,7 @@ func_08039F50:
     adds	r0, r4, #0
     adds	r0, #8
     movs	r1, #2
-    bl func_080A41EC
+    bl func_080A47B4
     movs	r0, #1
     ands	r0, r5
     cmp	r0, #0

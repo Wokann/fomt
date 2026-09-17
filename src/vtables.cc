@@ -326,27 +326,27 @@ extern void func_080E3838(void);
 extern void func_080E3928(void);
 extern void func_080E36D8(void);
 extern void func_080E3948(void);
-extern void func_080A31AC(void);
-extern void func_080A3530(void);
-extern void func_080A362C(void);
-extern void func_080A3434(void);
-extern void func_080A3678(void);
-extern void func_080A3338(void);
-extern void func_080A36C4(void);
-extern void func_080A31E0(void);
+extern void func_080A3774(void);
+extern void func_080A3AF8(void);
+extern void func_080A3BF4(void);
+extern void func_080A39FC(void);
+extern void func_080A3C40(void);
+extern void func_080A3900(void);
+extern void func_080A3C8C(void);
+extern void func_080A37A8(void);
 extern void func_080E3980(void);
 extern void func_080E39A8(void);
-extern void func_080A372C(void);
-extern void func_080A41EC(void);
-extern void func_080A45A4(void);
-extern void func_080A4624(void);
-extern void func_080A4988(void);
+extern void func_080A3CF4(void);
+extern void func_080A47B4(void);
+extern void func_080A4B6C(void);
+extern void func_080A4BEC(void);
+extern void func_080A4F50(void);
+extern void func_080A5670(void);
 extern void func_080A5198(void);
 extern void func_080A5E58(void);
 extern void func_080A58D8(void);
 extern void func_080A56F8(void);
 extern void func_080A57F0(void);
-extern void func_080A50A8(void);
 extern void func_080E39D0(void);
 extern void func_080E3B50(void);
 extern void func_080A5EF0(void);
@@ -6900,7 +6900,7 @@ extern RawVTableFunction const vtable_unk_080E8268[]
         nullptr,
 #if defined(REGION_JP)
         func_080E3948,
-        func_080A31AC,
+        func_080A3774,
 #else
         func_080E4190,
         func_080E3F40,
@@ -6912,8 +6912,8 @@ extern RawVTableFunction const vtable_unk_080E8278[]
         nullptr,
         nullptr,
 #if defined(REGION_JP)
-        func_080A362C,
-        func_080A3530,
+        func_080A3BF4,
+        func_080A3AF8,
 #else
         func_080E41B0,
         func_080A3774,
@@ -6925,8 +6925,8 @@ extern RawVTableFunction const vtable_unk_080E8288[]
         nullptr,
         nullptr,
 #if defined(REGION_JP)
-        func_080A3678,
-        func_080A3434,
+        func_080A3C40,
+        func_080A39FC,
 #else
         func_080A3BF4,
         func_080A3AF8,
@@ -6938,8 +6938,8 @@ extern RawVTableFunction const vtable_unk_080E8298[]
         nullptr,
         nullptr,
 #if defined(REGION_JP)
-        func_080A36C4,
-        func_080A3338,
+        func_080A3C8C,
+        func_080A3900,
 #else
         func_080A3C40,
         func_080A39FC,
@@ -6952,33 +6952,47 @@ extern RawVTableFunction const vtable_unk_080E82A8[]
         nullptr,
 #if defined(REGION_JP)
         func_080E3980,
-        func_080A31E0,
+        func_080A37A8,
 #else
         func_080A3C8C,
         func_080A3900,
 #endif
     };
 
-// The ROM places two four-word callback groups consecutively here. Keep the
-// groups in one array so their physical order and the JP null final slot stay
-// explicit without inferring an unverified class layout.
+// These are three adjacent callback starts in the original ROM.  Keep each
+// physical start as a real symbol: JP constructors use the C8 and D4 entries,
+// while the overseas code uses the later D8 table.
 extern RawVTableFunction const vtable_unk_080E82B8[]
     SECTION(".rodata.vtable_82b8") = {
         nullptr,
         nullptr,
 #if defined(REGION_JP)
         func_080E39A8,
-        func_080A372C,
-        nullptr,
-        nullptr,
-        func_080A41EC,
-        nullptr,
+        func_080A3CF4,
 #else
         func_080E41E8,
         func_080A37A8,
+#endif
+    };
+
+extern RawVTableFunction const vtable_unk_080E82C8[]
+    SECTION(".rodata.vtable_82c8") = {
+#if defined(REGION_JP)
+        nullptr,
+        nullptr,
+        func_080A47B4,
+#else
         nullptr,
         nullptr,
         func_080E4210,
+#endif
+    };
+
+extern RawVTableFunction const vtable_unk_080E82D4[]
+    SECTION(".rodata.vtable_82d4") = {
+#if defined(REGION_JP)
+        nullptr,
+#else
         func_080A3CF4,
 #endif
     };
@@ -6987,8 +7001,8 @@ extern RawVTableFunction const vtable_unk_080E82D8[]
     SECTION(".rodata.vtable_82d8") = {
 #if defined(REGION_JP)
         nullptr,
-        func_080A45A4,
-        func_080A4624,
+        func_080A4B6C,
+        func_080A4BEC,
 #else
         nullptr,
         nullptr,
@@ -6999,16 +7013,12 @@ extern RawVTableFunction const vtable_unk_080E82D8[]
 extern RawVTableFunction const vtable_unk_080E82E4[]
     SECTION(".rodata.vtable_82e4") = {
 #if defined(REGION_JP)
-        func_080A4988,
+        func_080A4F50,
         func_080A5198,
         func_080A5E58,
         func_080A58D8,
         func_080A56F8,
         func_080A57F0,
-        nullptr,
-        nullptr,
-        func_080A50A8,
-        func_080E39D0,
 #else
         nullptr,
         nullptr,
@@ -7016,6 +7026,17 @@ extern RawVTableFunction const vtable_unk_080E82E4[]
         func_080A4BEC,
         func_080A4F50,
         func_080A5760,
+#endif
+    };
+
+extern RawVTableFunction const vtable_unk_080E82FC[]
+    SECTION(".rodata.vtable_82fc") = {
+#if defined(REGION_JP)
+        nullptr,
+        nullptr,
+        func_080A5670,
+        func_080E39D0,
+#else
         func_080A6420,
         func_080A5EA0,
         func_080A5CC0,
@@ -7809,7 +7830,7 @@ extern RawVTableFunction const vtable_unk_080E85DC[]
 #if defined(REGION_JP)
         nullptr,
         func_080E4E00,
-        func_080A4624,
+        func_080A4BEC,
 #else
         nullptr,
         nullptr,
@@ -7832,7 +7853,7 @@ extern void func_080CFB5C(void);
 extern RawVTableFunction const vtable_unk_080E85E8[]
     SECTION(".rodata.vtable_85e8") = {
 #if defined(REGION_JP)
-        func_080A4988,
+        func_080A4F50,
         func_080A5198,
         func_080A5E58,
         func_080CF500,
