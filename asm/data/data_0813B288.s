@@ -638,7 +638,10 @@ gUnk_083ED9FC:
     .incbin "baserom_jp.gba", 0x3ED9FC, (0x41DA7C - 0x3ED9FC)
     .global gUnk_0841DA7C
 gUnk_0841DA7C:
-    .incbin "baserom_jp.gba", 0x41DA7C, (0x41ECDC - 0x41DA7C)
+    .incbin "baserom_jp.gba", 0x41DA7C, (0x41EC5C - 0x41DA7C)
+    .global gUnk_0841EC5C
+gUnk_0841EC5C:
+    .incbin "baserom_jp.gba", 0x41EC5C, (0x41ECDC - 0x41EC5C)
     .global gUnk_FieldPlotRenderRecord_004
 gUnk_FieldPlotRenderRecord_004:
     .incbin "baserom_jp.gba", 0x41ECDC, 0x30
@@ -686,13 +689,19 @@ gUnk_FieldPlotRenderRecord_013:
     .incbin "baserom_jp.gba", 0x41EF58, (0x41EF70 - 0x41EF58)
     .global gUnk_0841EF70
 gUnk_0841EF70:
-    .incbin "baserom_jp.gba", 0x41EF70, (0x4201D0 - 0x41EF70)
+    .incbin "baserom_jp.gba", 0x41EF70, (0x420150 - 0x41EF70)
+    .global gUnk_08420150
+gUnk_08420150:
+    .incbin "baserom_jp.gba", 0x420150, (0x4201D0 - 0x420150)
     .global gUnk_FieldPlotRenderRecord_003
 gUnk_FieldPlotRenderRecord_003:
     .incbin "baserom_jp.gba", 0x4201D0, (0x420200 - 0x4201D0)
     .global gUnk_08420200
 gUnk_08420200:
-    .incbin "baserom_jp.gba", 0x420200, (0x421460 - 0x420200)
+    .incbin "baserom_jp.gba", 0x420200, (0x4213E0 - 0x420200)
+    .global gUnk_084213E0
+gUnk_084213E0:
+    .incbin "baserom_jp.gba", 0x4213E0, (0x421460 - 0x4213E0)
     .global gUnk_FieldPlotRenderRecord_012
 gUnk_FieldPlotRenderRecord_012:
     .incbin "baserom_jp.gba", 0x421460, 0x18
@@ -707,7 +716,10 @@ gUnk_FieldPlotRenderRecord_000:
     .incbin "baserom_jp.gba", 0x4214F0, (0x45B664 - 0x4214F0)
     .global gUnk_0845B664
 gUnk_0845B664:
-    .incbin "baserom_jp.gba", 0x45B664, (0x45C524 - 0x45B664)
+    .incbin "baserom_jp.gba", 0x45B664, (0x45C4C4 - 0x45B664)
+    .global gUnk_0845C4C4
+gUnk_0845C4C4:
+    .incbin "baserom_jp.gba", 0x45C4C4, (0x45C524 - 0x45C4C4)
     .global gUnk_FieldPlotRenderRecord_033
 gUnk_FieldPlotRenderRecord_033:
     .incbin "baserom_jp.gba", 0x45C524, 0x18
@@ -2229,7 +2241,10 @@ gUnk_FieldPlotRenderRecord_021:
 
     .global gUnk_0845C7F4
 gUnk_0845C7F4:
-    .incbin "baserom_jp.gba", 0x45C7F4, (0x462520 - 0x45C7F4)
+    .incbin "baserom_jp.gba", 0x45C7F4, (0x45D654 - 0x45C7F4)
+    .global gUnk_0845D654
+gUnk_0845D654:
+    .incbin "baserom_jp.gba", 0x45D654, (0x462520 - 0x45D654)
 
     .global gActorStateGridCellType0Data
 gActorStateGridCellType0Data:
@@ -2253,7 +2268,34 @@ gActorStateGridCellType3Data:
 jp_data_08462550_start:
     .global gActorStateGridCellType4Data
 gActorStateGridCellType4Data:
-    .incbin "baserom_jp.gba", 0x462550, (0x4AE370 - 0x462550)
+    .incbin "baserom_jp.gba", 0x462550, (0x470E40 - 0x462550)
+    .global gUnk_08470E40
+gUnk_08470E40:
+    .incbin "baserom_jp.gba", 0x470E40, (0x470E60 - 0x470E40)
+    .global gUnk_08470E60
+gUnk_08470E60:
+    .incbin "baserom_jp.gba", 0x470E60, (0x470E80 - 0x470E60)
+    .global gUnk_08470E80
+gUnk_08470E80:
+    .incbin "baserom_jp.gba", 0x470E80, (0x470EA0 - 0x470E80)
+    .global gUnk_08470EA0
+gUnk_08470EA0:
+    .incbin "baserom_jp.gba", 0x470EA0, (0x49AB8C - 0x470EA0)
+    .global gUnk_0849AB8C
+gUnk_0849AB8C:
+    .incbin "baserom_jp.gba", 0x49AB8C, (0x49ACBC - 0x49AB8C)
+    .global gUnk_0849ACBC
+gUnk_0849ACBC:
+    .incbin "baserom_jp.gba", 0x49ACBC, (0x49AD48 - 0x49ACBC)
+    .global gUnk_0849AD48
+gUnk_0849AD48:
+    .incbin "baserom_jp.gba", 0x49AD48, (0x49D0E0 - 0x49AD48)
+    .global gUnk_0849D0E0
+gUnk_0849D0E0:
+    .incbin "baserom_jp.gba", 0x49D0E0, (0x49D214 - 0x49D0E0)
+    .global gUnk_0849D214
+gUnk_0849D214:
+    .incbin "baserom_jp.gba", 0x49D214, (0x4AE370 - 0x49D214)
 
     @ UI resource archive payloads referenced directly by the JP UI constructor.
     @ The formats remain undecoded, but each label names byte zero of its
