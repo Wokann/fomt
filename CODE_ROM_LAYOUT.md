@@ -1161,6 +1161,22 @@ JP 与 DE 在其中一项构造字段使用立即数 `8`，US 与 EU 使用 `10`
 已提升范围不含代码 `.incbin`、原始 `.byte`、`.set`、`.thumb_set` 或地址偏移伪匹配；JP、US、EU、
 DE 的完整构建、SHA-1 与基准 ROM 逐字节校验均已通过。
 
+JP `0x080CCD44`–`0x080CE863` 的十个可直接映射代码范围也已批量提升：
+`func_080CD534`、`func_080CDA44`、`func_080CDC00`、`func_080CDCD0`、
+`func_080CDD7C`、`func_080CE184`、`func_080CE3DC`、`func_080CEC84`、
+`func_080CECD0` 与 `func_080CF050`。其中 `func_080CDD7C` 的物理范围原本还包含一个
+未命名的连续 Thumb 入口，现以其真实 JP 位置 `func_080CD5BC` 表示并写成显式指令；没有保留
+`.byte` 伪装代码。该批的 US 入口依次为 `0x080CD534`、`0x080CDA44`、`0x080CDC00`、
+`0x080CDCD0`、`0x080CDD7C`、`0x080CE184`、`0x080CE3DC`、`0x080CEC84`、
+`0x080CECD0`、`0x080CF050`；EU 为 `0x080CD564`、`0x080CDA74`、`0x080CDC30`、
+`0x080CDD00`、`0x080CDDAC`、`0x080CE1B4`、`0x080CE40C`、`0x080CECB4`、
+`0x080CED00`、`0x080CF080`；DE 为 `0x080CD47C`、`0x080CD98C`、`0x080CDB48`、
+`0x080CDC18`、`0x080CDCC4`、`0x080CE0CC`、`0x080CE324`、`0x080CEBCC`、
+`0x080CEC18`、`0x080CEF98`。
+
+该批所有常量池和函数调用均保留真实可重定位标签；未使用 `.set`、别名或 `symbol + offset`
+来伪造 JP 匹配。JP、US、EU、DE 的完整构建及 SHA-1 基准校验均已通过。
+
 紧随其后的鸡祭数值查询函数 `func_080B8DAC` 也已直接提升。JP 覆盖
 `0x080B87E0`–`0x080B8827`，普通三区分别覆盖 US `0x080B8DAC`–`0x080B8DF3`、EU
 `0x080B8DDC`–`0x080B8E23`、DE `0x080B8D0C`–`0x080B8D53`；四区长度均为 `0x48` 字节。
