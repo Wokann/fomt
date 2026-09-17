@@ -26,6 +26,7 @@ LABELLED_INCBIN = re.compile(
 
 REBUILT_SOURCES = {
     "gUnk_087405A0": "graphics/shared_resource_087405a0/",
+    "gUnk_08740908": "graphics/shared_resource_08740908/",
     "gUnk_08740454": "graphics/shared_resource_08740454/",
     "gUnk_087401A4": "graphics/shared_resource_087401a4/",
     "gUnk_0873ED1C": "graphics/shared_resource_0873ed1c/",
