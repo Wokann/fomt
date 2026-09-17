@@ -86,6 +86,8 @@ grids:
   complete indexed-PNG OAM source views with native descriptor layout.
 - [Shared OAM resource `087401A4`](shared_resource_087401a4/full/) — four
   complete indexed-PNG OAM source views with native descriptor layout.
+- [Shared OAM resource `08740454`](shared_resource_08740454/full/) — three
+  complete indexed-PNG OAM source views with native descriptor layout.
 - [Records-screen task icons](ui/records_minigame/shared/) — seven complete
   16-by-16 icons with their native palettes.
 
