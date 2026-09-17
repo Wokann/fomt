@@ -2,7 +2,31 @@
 
 This directory contains image resources that replace verified raw ROM ranges.
 Source images are edited here; `make` rebuilds their GBA-native binary payloads
-under `build/<region>/graphics/` before assembly.
+under `build/<region>/graphics/`.
+
+## Build inputs and reference images
+
+Every managed resource has exactly one final-ROM delivery path:
+
+- **Link-time inclusion.**  A source PNG, palette, tilemap, or native 4bpp
+  source is converted under `build/<region>/graphics/`, then the owning C or
+  assembly data object includes that binary.  This is the normal path for a
+  continuous resource whose original data label is also its build boundary.
+- **Bounded post-link replacement.**  A source is converted under the same
+  build directory, then the final ROM recipe replaces only its independently
+  verified original byte interval.  This is used for pointer-bearing MapData,
+  region-local records embedded in larger raw containers, and direct-DMA
+  records whose surrounding layout is not yet a standalone data object.
+  The patch tool verifies both the input length and the target interval; it
+  does not search for a matching byte sequence.
+- **Reference only.**  Files below a `reference/` directory are readable
+  renderings or extraction evidence.  They are never build inputs and cannot
+  be used to regenerate ROM bytes.
+
+The two build paths are equivalent in authority: both consume checked-in
+editable sources and both are range-verified for JP, US, EU, and DE.  They
+must not be applied to the same range twice.  `COVERAGE.md` records the
+selected delivery path for every managed family.
 
 For directly viewable complete images and code-backed static scene references,
 see [VIEWABLE_REFERENCES.md](VIEWABLE_REFERENCES.md). It deliberately keeps
