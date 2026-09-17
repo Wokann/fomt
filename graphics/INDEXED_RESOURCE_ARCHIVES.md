@@ -36,9 +36,10 @@ regionally different. It is the coverage ledger for this staged pipeline.
 | Shared archive `08727A74` | `0x4ADBDC` | `0x727A74` | `0x727AD0` | `0x4AEC40` | `0x794` | `1, 1, 36, 49, 1, 0` | 1 | `3734dad3d75471435276b57d3fa13693950e13a49b24d9caede41a2562041ffc` |
 | Shared archive `08728320` | `0x4AE488` | `0x728320` | `0x72837C` | `0x4AF4EC` | `0x105C` | `7, 21, 32, 107, 1, 0` | 21 | `db6e14760f25e35a7211916f8a30cdafd90bcba78faed0e738bfc69dcf0edbfc` |
 | Shared archive `0872937C` | `0x4AF4E4` | `0x72937C` | `0x7293D8` | `0x4B0548` | `0xE4` | `1, 3, 1, 3, 1, 0` | 3 | `0e4724ae1b5689f71ce4ccab6643f935d670cc64a153a16cbc7748943c2ad6ba` |
+| Shared archive `08729460` | `0x4AF5C8` | `0x729460` | `0x7294BC` | `0x4B062C` | `0x2A04` | `1, 3, 9, 330, 1, 0` | 3 | `7a8b853ced44cc16da447b0f51ff98865b591f54b006fac3a3b52adfc9b1a24a` |
 | Farm Status / Town Map archive | `0x4D977C` | `0x7537D0` | `0x75382C` | `0x4DACEC` | `0xEA4` | `20, 40, 11, 73, 13, 0` | 40 | `480a114e52b941e289d67055ddd632b6c0bbee3cfa66263523ad91c7e1d4dfc1` |
 
-All seventeen complete native archive payloads are byte-identical across JP, US,
+All eighteen complete native archive payloads are byte-identical across JP, US,
 EU, and DE. The common archive is the data currently exposed under
 `gUnk_086678A0` in non-JP regional assembly; the JP physical match was found
 by the exact complete payload, not by inventing a JP label.
@@ -145,6 +146,12 @@ Shared archive `0872937C` is independently bounded at the four locations in
 the table. Its three descriptors select one native OAM record, three native
 4bpp tiles, one BGR555 palette, and three selection entries. Its editable PNG
 sources are under `graphics/shared_resource_0872937c/`; the address remains its
+source name until the runtime purpose is independently established.
+
+Shared archive `08729460` is independently bounded at the four locations in
+the table. Its three descriptors select nine native OAM records, 330 native
+4bpp tiles, one BGR555 palette, and three selection entries. Its editable PNG
+sources are under `graphics/shared_resource_08729460/`; the address remains its
 source name until the runtime purpose is independently established.
 
 The Farm Status screen constructs a third archive at `0x4D977C` in JP and
