@@ -1,3 +1,7 @@
+    @ The keyboard renderer counts rows from one.  Its literal therefore
+    @ intentionally precedes the first 31-byte row by one row width.
+    .equ NEW_GAME_NAME_ENTRY_ROW_WIDTH, 31
+
     .ifdef REGION_JP
     @ JP revision 0 counterpart of asm/new_game.s.
     @
@@ -123,14 +127,18 @@ func_08005B38:
     .incbin "baserom_jp.gba", 0x5A0C, 0x3E0
     .4byte gText_NewGameNameEntry_NameLabel
     .incbin "baserom_jp.gba", 0x5DF0, 0x6C0
-    .4byte gText_NewGameIdentity_Confirm + 0xB
+    @ This is the one-row-before base consumed by the keyboard-row renderer,
+    @ not an interior pointer into the confirmation text.
+    .4byte gNewGameNameEntryCharacterRows - NEW_GAME_NAME_ENTRY_ROW_WIDTH
     .incbin "baserom_jp.gba", 0x64B4, 0x11C
     .4byte gText_NewGameNameEntry_ModeKatakana
     .incbin "baserom_jp.gba", 0x65D4, 0x18
     .4byte gText_NewGameNameEntry_ModeSymbols
     .incbin "baserom_jp.gba", 0x65F0, 0x5C
     .4byte gText_NewGameNameEntry_ModeHiragana
-    .incbin "baserom_jp.gba", 0x6650, 0x9E0
+    .incbin "baserom_jp.gba", 0x6650, (0x6B40 - 0x6650)
+    .4byte gNewGameNameEntryCharacterRows
+    .incbin "baserom_jp.gba", 0x6B44, (0x7030 - 0x6B44)
     .4byte gText_NewGameNameEntry_Confirm
     .4byte gText_NewGameNameEntry_Yes
     .4byte gText_NewGameNameEntry_No
@@ -6867,7 +6875,7 @@ b.n	.LNewGameDE_080066C6
 .LNewGameDE_080065E4: .4byte 0x00004DBB
 .LNewGameDE_080065E8: .4byte 0x00003C2C
 .LNewGameDE_080065EC: .4byte 0x00004D84
-.LNewGameDE_080065F0: .4byte gText_NewGameIdentity_Confirm + 3
+.LNewGameDE_080065F0: .4byte gNewGameNameEntryCharacterRows - NEW_GAME_NAME_ENTRY_ROW_WIDTH
 .LNewGameDE_080065F4:
 str	r1, [sp, #84]
 movs	r0, #1
@@ -7277,7 +7285,7 @@ bx	r0
     movs r0, #0xba
     muls r0, r3, r0
     adds r2, r2, r0
-    ldr r0, .L080065D8 @ =gText_NewGameIdentity_DogName + 0xF
+    ldr r0, .L080065D8 @ =gNewGameNameEntryCharacterRows - NEW_GAME_NAME_ENTRY_ROW_WIDTH
     adds r2, r2, r0
     add r0, sp, #0x18
     movs r3, #0x1e
@@ -7333,10 +7341,9 @@ bx	r0
     .align 2, 0
 .L080065D0: .4byte 0x00004637
 .L080065D4: .4byte 0x000034A8
-@ The original code addresses the final reserved byte in the fixed DogName
-@ field directly.  Keep that byte in the C++ field rather than introducing an
-@ assembly alias for it.
-.L080065D8: .4byte gText_NewGameIdentity_DogName + 0xF
+@ r8 is one-based here, so this is the keyboard table address minus exactly
+@ one fixed-width row.  It is not a pointer into DogName.
+.L080065D8: .4byte gNewGameNameEntryCharacterRows - NEW_GAME_NAME_ENTRY_ROW_WIDTH
 .L080065DC:
     str r1, [sp, #0x54]
     movs r0, #1
