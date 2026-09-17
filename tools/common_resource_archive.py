@@ -48,6 +48,9 @@ PROFILES = {
     "small-ui": ArchiveProfile(
         (2, 4, 2, 36, 2, 0, 5), (3,), "small UI resource"
     ),
+    "cooking-ui": ArchiveProfile(
+        (1, 3, 3, 40, 1, 0, 4), (2,), "cooking UI resource"
+    ),
 }
 ACTIVE_PROFILE = PROFILES["common"]
 
