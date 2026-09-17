@@ -1011,3 +1011,12 @@ EU、DE 的完整构建和 SHA-1 校验均已通过。
 `gUnk_HarvestSpriteMiniGameAnimalHusbandrySelectionValues` 符号；其余指令、立即数和
 字面量均一致。函数不含代码 `.incbin`、原始 `.byte`、`.set`、`.thumb_set` 或地址偏移
 伪匹配。JP、US、EU、DE 的完整构建、SHA-1 与基准 ROM 的逐字节校验均已通过。
+
+`func_080B39BC` 的 JP 物理范围已直接提升：JP 为
+`0x080B33F0`–`0x080B340B`（`0x1C` 字节），普通三区为 US
+`0x080B39BC`–`0x080B39D7`、EU `0x080B39A4`–`0x080B39BF`、DE
+`0x080B38D4`–`0x080B38EF`。函数保留既有的跨区逻辑符号名，入口本身直接位于 JP
+物理地址，不使用 `.set` 或别名。唯一的原始字节差异是索引值数组地址，现直接重定位
+到 `gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues0`；无代码 `.incbin`、原始
+`.byte`、`.set`、`.thumb_set` 或地址偏移伪匹配。JP、US、EU、DE 的完整构建、SHA-1
+与基准 ROM 的逐字节校验均已通过。
