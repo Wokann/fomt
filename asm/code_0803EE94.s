@@ -1675,7 +1675,7 @@ func_0804F288: @ 0x0804F014
     mov r2, sl
     strb r0, [r2, #0x1a]
     ldr r0, [sp, #0x14]
-    bl func_080ADD44
+    bl func_080AD77C
     movs r0, #0x90
     lsls r0, r0, #1
     add r0, r8
@@ -2998,7 +2998,7 @@ func_0804F7A4: @ 0x0804F530
     lsls r2, r2, #1
     adds r1, r7, r2
     ldr r0, [sp, #0x90]
-    bl func_080ADD08
+    bl func_080AD740
     movs r3, #0xee
     lsls r3, r3, #1
     adds r0, r7, r3

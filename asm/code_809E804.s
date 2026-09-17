@@ -31569,20 +31569,211 @@ func_080AD5EC:
     .global func_080AD638
     .thumb_func
 func_080AD638:
-    .incbin "baserom_jp.gba", 0xAD638, (0xAD6BC - 0xAD638)
+    push {r4, lr}
+    adds r4, r0, #0
+    movs r0, #0x20
+    bl __builtin_new
+    adds r2, r0, #0
+    movs r0, #0
+    str r0, [r2]
+    strh r0, [r2, #4]
+    adds r1, r2, #0
+    adds r1, #8
+    str r0, [r2, #8]
+    strh r0, [r1, #4]
+    adds r1, #8
+    str r0, [r2, #0x10]
+    strh r0, [r1, #4]
+    adds r1, #8
+    str r0, [r2, #0x18]
+    strh r0, [r1, #4]
+    str r2, [r4]
+    adds r0, r4, #0
+    pop {r4}
+    pop {r1}
+    bx r1
+
+    .global func_080AD668
+    .thumb_func
+func_080AD668:
+    push {r4, r5, r6, lr}
+    mov r6, r8
+    push {r6}
+    sub sp, #0x38
+    mov r8, r0
+    adds r5, r1, #0
+    movs r0, #0x20
+    bl __builtin_new
+    adds r6, r0, #0
+    ldr r1, .Ljp_entity_080AD6B4
+    mov r0, sp
+    bl __22IndexedResourceArchivePCUc
+    ldr r4, [sp]
+    add r0, sp, #0x30
+    ldr r3, [r4, #0xC]
+    mov r1, sp
+    adds r2, r5, #0
+    bl _call_via_r3
+    ldr r0, [sp, #0x30]
+    ldrh r2, [r0]
+    adds r0, r6, #0
+    ldr r3, [r4, #0x10]
+    mov r1, sp
+    bl _call_via_r3
+    ldr r0, .Ljp_entity_080AD6B8
+    str r0, [sp]
+    mov r0, r8
+    str r6, [r0]
+    add sp, #0x38
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_entity_080AD6B4: .4byte gUnk_082B3AE0
+.Ljp_entity_080AD6B8: .4byte vtable_unk_080E5A28
+
     .global func_080AD6BC
     .thumb_func
 func_080AD6BC:
-    .incbin "baserom_jp.gba", 0xAD6BC, (0xAD6DC - 0xAD6BC)
-    jp_code_809_func func_080AD6DC, 0xAD6DC, 0xAD740
-    jp_code_809_func func_080ADD08, 0xAD740, 0xAD758
+    push {r4, r5, lr}
+    adds r5, r0, #0
+    adds r4, r1, #0
+    ldr r0, [r5]
+    bl __builtin_delete
+    movs r0, #1
+    ands r0, r4
+    cmp r0, #0
+    beq .Ljp_entity_080AD6D6
+    adds r0, r5, #0
+    bl __builtin_delete
+.Ljp_entity_080AD6D6:
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+
+    .global func_080AD6DC
+    .thumb_func
+func_080AD6DC:
+    push {r4, r5, r6, lr}
+    mov r6, r8
+    push {r6}
+    sub sp, #0x58
+    mov r8, r1
+    ldr r4, [r0]
+    ldr r1, .Ljp_entity_080AD738
+    add r0, sp, #0x20
+    bl __22IndexedResourceArchivePCUc
+    add r6, sp, #0x20
+    ldr r5, [sp, #0x20]
+    add r0, sp, #0x50
+    ldr r3, [r5, #0xC]
+    adds r1, r6, #0
+    mov r2, r8
+    bl _call_via_r3
+    ldr r0, [sp, #0x50]
+    ldrh r2, [r0]
+    mov r0, sp
+    ldr r3, [r5, #0x10]
+    adds r1, r6, #0
+    bl _call_via_r3
+    ldr r0, .Ljp_entity_080AD73C
+    str r0, [sp, #0x20]
+    mov r0, sp
+    mov r1, sp
+    movs r2, #0x20
+    bl memcpy
+    mov r0, sp
+    ldm r0!, {r1, r2, r3}
+    stm r4!, {r1, r2, r3}
+    ldm r0!, {r1, r2, r3}
+    stm r4!, {r1, r2, r3}
+    ldm r0!, {r1, r2}
+    stm r4!, {r1, r2}
+    add sp, #0x58
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_entity_080AD738: .4byte gUnk_082B3AE0
+.Ljp_entity_080AD73C: .4byte vtable_unk_080E5A28
+
+    .global func_080AD740
+    .thumb_func
+func_080AD740:
+    push {r4, r5, lr}
+    adds r2, r0, #0
+    ldr r1, [r1]
+    ldm r1!, {r3, r4, r5}
+    stm r2!, {r3, r4, r5}
+    ldm r1!, {r3, r4, r5}
+    stm r2!, {r3, r4, r5}
+    ldm r1!, {r3, r4}
+    stm r2!, {r3, r4}
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+
     .global func_080AD758
     .thumb_func
 func_080AD758:
-    .incbin "baserom_jp.gba", 0xAD758, (0xAD77C - 0xAD758)
-    jp_code_809_func func_080ADD44, 0xAD77C, 0xAD794
-    jp_code_809_func func_080AD794, 0xAD794, 0xAD7AC
-    jp_code_809_func func_080AD7AC, 0xAD7AC, 0xAD7B0
+    push {lr}
+    sub sp, #0x30
+    ldr r1, .Ljp_entity_080AD774
+    mov r0, sp
+    bl __22IndexedResourceArchivePCUc
+    mov r0, sp
+    ldrh r0, [r0, #0x20]
+    ldr r1, .Ljp_entity_080AD778
+    str r1, [sp]
+    add sp, #0x30
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_entity_080AD774: .4byte gUnk_082B3AE0
+.Ljp_entity_080AD778: .4byte vtable_unk_080E5A28
+
+    .global func_080AD77C
+    .thumb_func
+func_080AD77C:
+    movs r2, #0
+    str r2, [r0]
+    movs r3, #0
+    movs r1, #0x80
+    lsls r1, r1, #1
+    strh r1, [r0, #4]
+    strh r2, [r0, #6]
+    str r2, [r0, #8]
+    str r2, [r0, #0xC]
+    str r2, [r0, #0x10]
+    strb r3, [r0, #0x14]
+    bx lr
+
+    .global func_080AD794
+    .thumb_func
+func_080AD794:
+    str r1, [r0, #8]
+    str r2, [r0, #0xC]
+    movs r3, #0
+    str r3, [r0, #0x10]
+    strb r3, [r0, #0x14]
+    rsbs r2, r1, #0
+    orrs r2, r1
+    lsrs r2, r2, #0x1F
+    str r2, [r0]
+    strh r3, [r0, #6]
+    bx lr
+    .align 2, 0
+
+    .global func_080AD7AC
+    .thumb_func
+func_080AD7AC:
+    strh r1, [r0, #4]
+    bx lr
+
     .global func_080AD7B0
     .thumb_func
 func_080AD7B0:
@@ -63198,21 +63389,45 @@ func_080ADC00: @ 0x080ADC00
 	pop {r4}
 	pop {r1}
 	bx r1
-.L080ADC30:
-	.byte 0x70, 0xB5, 0x46, 0x46, 0x40, 0xB4, 0x8E, 0xB0, 0x80, 0x46, 0x0D, 0x1C, 0x20, 0x20
+	thumb_func_start func_080ADC30
+func_080ADC30: @ 0x080ADC30
+	push {r4, r5, r6, lr}
+	mov r6, r8
+	push {r6}
+	sub sp, #0x38
+	mov r8, r0
+	adds r5, r1, #0
+	movs r0, #0x20
 	bl __builtin_new
-	.byte 0x06, 0x1C, 0x0D, 0x49, 0x68, 0x46
+	adds r6, r0, #0
+	ldr r1, .L080ADC7C
+	mov r0, sp
 	bl __22IndexedResourceArchivePCUc
-	.byte 0x00, 0x9C, 0x0C, 0xA8
-	.byte 0xE3, 0x68, 0x69, 0x46, 0x2A, 0x1C
+	ldr r4, [sp]
+	add r0, sp, #0x30
+	ldr r3, [r4, #0xC]
+	mov r1, sp
+	adds r2, r5, #0
 	bl _call_via_r3
-	.byte 0x0C, 0x98, 0x02, 0x88, 0x30, 0x1C
-	.byte 0x23, 0x69, 0x69, 0x46
+	ldr r0, [sp, #0x30]
+	ldrh r2, [r0]
+	adds r0, r6, #0
+	ldr r3, [r4, #0x10]
+	mov r1, sp
 	bl _call_via_r3
-	.byte 0x05, 0x48, 0x00, 0x90, 0x40, 0x46, 0x06, 0x60
-	.byte 0x0E, 0xB0, 0x08, 0xBC, 0x98, 0x46, 0x70, 0xBC, 0x02, 0xBC, 0x08, 0x47
-	.4byte gUnk_0852D984
-	.4byte vtable_unk_080E5A28
+	ldr r0, .L080ADC80
+	str r0, [sp]
+	mov r0, r8
+	str r6, [r0]
+	add sp, #0x38
+	pop {r3}
+	mov r8, r3
+	pop {r4, r5, r6}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.L080ADC7C: .4byte gUnk_0852D984
+.L080ADC80: .4byte vtable_unk_080E5A28
 
 	thumb_func_start func_080ADC84
 func_080ADC84: @ 0x080ADC84

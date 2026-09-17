@@ -625,6 +625,8 @@ gUnk_082B39F0:
     .global gUnk_082B3A8C
 gUnk_082B3A8C:
     FOMT_FARM_STATUS_TILEMAP 0x3E4, 0x54
+    .global gUnk_082B3AE0
+gUnk_082B3AE0:
     .incbin "baserom_jp.gba", 0x2B3AE0, (0x2B69B8 - 0x2B3AE0)
     .incbin "build/jp/graphics/portraits/shared/portrait_tiles.4bpp"
     .incbin "baserom_jp.gba", 0x3111F8, (0x311B84 - 0x3111F8)
