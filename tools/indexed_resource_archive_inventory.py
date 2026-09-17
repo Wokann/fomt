@@ -75,6 +75,7 @@ REBUILT_SOURCES = {
     "gUnk_0873A6E8": "graphics/regional_resource_0873a6e8/",
     "gUnk_0873D6D8": "graphics/regional_resource_0873d6d8/",
     "gUnk_0874F34C": "graphics/regional_resource_0874f34c/",
+    "gUnk_0875B444": "graphics/regional_resource_0875b444/",
 }
 
 # These paths intentionally contain per-region source trees instead of one
@@ -84,7 +85,7 @@ REGIONAL_SOURCES = {
     "gUnk_0871D51C", "gUnk_08728208", "gUnk_0872BE64", "gUnk_0872DE44",
     "gUnk_08738144",
     "gUnk_0873A6E8", "gUnk_0873D6D8",
-    "gUnk_0874F34C",
+    "gUnk_0874F34C", "gUnk_0875B444",
 }
 
 # A regional rebuild has no single payload that ``bytes.find`` can locate in
@@ -138,6 +139,12 @@ REGIONAL_LOCATIONS = {
         "us": 0x74F34C,
         "eu": 0x74F3A8,
         "de": 0x4D67B8,
+    },
+    "gUnk_0875B444": {
+        "jp": 0x4E07CC,
+        "us": 0x75B444,
+        "eu": 0x75B4A0,
+        "de": 0x4E2960,
     },
 }
 

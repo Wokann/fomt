@@ -172,6 +172,15 @@ The respective domains retain 92, 134 and 140 4bpp tiles, each with three
 BGR555 palettes. Native records, rather than a JSON sidecar, remain the sole
 layout definition.
 
+`gUnk_0875B444` has the same six-descriptor native layout in every region, but
+JP is byte-distinct while US/EU/DE share one payload. Both source domains are
+kept separately and rebuilt into their original fixed ranges.
+
+| Source domain | Regions | ROM offset(s) | Length | Header counts | Entries | SHA-256 |
+| --- | --- | --- | --- | --- | --- | --- |
+| JP | JP | `0x4E07CC` | `0x3D4` | `6, 6, 1, 24, 1, 0` | 6 | `a3aff94806fef413110271384ca4eed8aef15a02c968528e68935b1f73e18ccb` |
+| Overseas | US / EU / DE | `0x75B444` / `0x75B4A0` / `0x4E2960` | `0x3D4` | `6, 6, 1, 24, 1, 0` | 6 | `8da8ca4fbff49ad00f1ba1f81243cb56718b42741524531b1cf3e307a5693218` |
+
 The common archive's group-descriptor consumer is fully bounded. Every
 drawable descriptor selects valid GBA OAM, 4bpp tile, and BGR555 palette
 ranges; `func_0805E790` resolves the fields and `func_080757E8` uploads tiles
@@ -420,6 +429,13 @@ the table. Its one descriptor selects one native OAM record, four native 4bpp
 tiles, one BGR555 palette, and one selection entry. Its editable PNG source is
 under `graphics/shared_resource_08755154/`; the address remains its source name
 until the runtime purpose is independently established.
+
+Regional archive `0875B444` is independently bounded at the locations above.
+Its six descriptors select six native OAM records, 24 native 4bpp tiles, one
+BGR555 palette, and six selection entries. Editable indexed-PNG sources are
+under `graphics/regional_resource_0875b444/{jp,overseas}/`; descriptor, OAM,
+selection, and palette tables remain native layout data rather than a sidecar
+layout manifest.
 
 The Farm Status screen constructs a third archive at `0x4D977C` in JP and
 `0x7537D0` in US (with the regional locations recorded by its rebuild tool).
