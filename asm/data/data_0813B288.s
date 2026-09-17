@@ -270,6 +270,25 @@
     .endif
     .endm
 
+    @ func_0806EC94 copies one raw exterior-style record into the Farm Status
+    @ BG tile grid.  Each rebuilt file retains its native two-u16 header and
+    @ all three style payloads, so the original style selector stays intact.
+    .macro FOMT_FARM_STATUS_EXTERIOR_STYLE name
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/farm_status/exterior_styles/\name\().4bpp"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/farm_status/exterior_styles/\name\().4bpp"
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/farm_status/exterior_styles/\name\().4bpp"
+    .else
+    .incbin "build/us/graphics/ui/farm_status/exterior_styles/\name\().4bpp"
+    .endif
+    .endif
+    .endif
+    .endm
+
     @ Code-backed static BG tile streams.  The routines that load these
     @ symbols consume the assembled payloads, rather than preview-only copies.
     .macro FOMT_UI_SCENE_08054F40_TILES
@@ -466,7 +485,7 @@ gUnk_085275D0:
     .global gUnk_08529794
 gUnk_08529794:
     .incbin "build/jp/graphics/ui/farm_status/base_tiles.gbapal"
-    .incbin "baserom_jp.gba", 0x2AFAF0, (0x2AFC74 - 0x2AFAF0)
+    FOMT_FARM_STATUS_EXTERIOR_STYLE doghouse
 
     @ Farm Status preview tilemap labels.  Every table entry selects one raw
     @ BG map; the non-map spans between them stay native ROM data.
@@ -476,7 +495,7 @@ gUnk_082AFC74:
     .global gUnk_082AFCD4
 gUnk_082AFCD4:
     FOMT_FARM_STATUS_TILEMAP 0x270, 0x30
-    .incbin "baserom_jp.gba", 0x2AFD04, (0x2AFDC8 - 0x2AFD04)
+    FOMT_FARM_STATUS_EXTERIOR_STYLE mailbox
     .global gUnk_082AFDC8
 gUnk_082AFDC8:
     FOMT_FARM_STATUS_TILEMAP 0x120, 0xA8
@@ -486,7 +505,7 @@ gUnk_082AFE70:
     .global gUnk_082AFED0
 gUnk_082AFED0:
     FOMT_FARM_STATUS_TILEMAP 0x000, 0x30
-    .incbin "baserom_jp.gba", 0x2AFF00, (0x2B0744 - 0x2AFF00)
+    FOMT_FARM_STATUS_EXTERIOR_STYLE window
     .global gUnk_082B0744
 gUnk_082B0744:
     FOMT_FARM_STATUS_TILEMAP 0x438, 0x9A
@@ -4857,8 +4876,7 @@ gUnk_08529794:
 	.incbin "build/eu/graphics/ui/farm_status/base_tiles.gbapal", 0x8, 0x1F8
 	.global gUnk_08529994
 gUnk_08529994:
-	.incbin "baserom_eu.gba", 0x5299F0, 0x8
-	.incbin "baserom_eu.gba", 0x5299F8, 0x17C
+	FOMT_FARM_STATUS_EXTERIOR_STYLE doghouse
 	.global gUnk_08529B18
 gUnk_08529B18:
 	FOMT_FARM_STATUS_TILEMAP 0x2D0, 0x60
@@ -4867,8 +4885,7 @@ gUnk_08529B78:
 	FOMT_FARM_STATUS_TILEMAP 0x270, 0x30
 	.global gUnk_08529BA8
 gUnk_08529BA8:
-	.incbin "baserom_eu.gba", 0x529C04, 0x8
-	.incbin "baserom_eu.gba", 0x529C0C, 0xBC
+	FOMT_FARM_STATUS_EXTERIOR_STYLE mailbox
 	.global gUnk_08529C6C
 gUnk_08529C6C:
 	FOMT_FARM_STATUS_TILEMAP 0x120, 0xA8
@@ -4880,8 +4897,7 @@ gUnk_08529D74:
 	FOMT_FARM_STATUS_TILEMAP 0x000, 0x30
 	.global gUnk_08529DA4
 gUnk_08529DA4:
-	.incbin "baserom_eu.gba", 0x529E00, 0x8
-	.incbin "baserom_eu.gba", 0x529E08, 0x83C
+	FOMT_FARM_STATUS_EXTERIOR_STYLE window
 	.global gUnk_0852A5E8
 gUnk_0852A5E8:
 	FOMT_FARM_STATUS_TILEMAP 0x438, 0x9A
@@ -4965,7 +4981,7 @@ gUnk_08529794:
 	.incbin "build/us/graphics/ui/farm_status/base_tiles.gbapal"
 
 	non_de_asset_label gUnk_08529994
-	eu_post_script_incbin 0x529994, (0x529B18 - 0x529994)
+	FOMT_FARM_STATUS_EXTERIOR_STYLE doghouse
 	.global gUnk_08529B18
 gUnk_08529B18:
 	FOMT_FARM_STATUS_TILEMAP 0x2D0, 0x60
@@ -4974,7 +4990,7 @@ gUnk_08529B78:
 	FOMT_FARM_STATUS_TILEMAP 0x270, 0x30
 
 	non_de_asset_label gUnk_08529BA8
-	eu_post_script_incbin 0x529BA8, (0x529C6C - 0x529BA8)
+	FOMT_FARM_STATUS_EXTERIOR_STYLE mailbox
 	.global gUnk_08529C6C
 gUnk_08529C6C:
 	FOMT_FARM_STATUS_TILEMAP 0x120, 0xA8
@@ -4986,7 +5002,7 @@ gUnk_08529D74:
 	FOMT_FARM_STATUS_TILEMAP 0x000, 0x30
 
 	non_de_asset_label gUnk_08529DA4
-	eu_post_script_incbin 0x529DA4, (0x52A5E8 - 0x529DA4)
+	FOMT_FARM_STATUS_EXTERIOR_STYLE window
 	.global gUnk_0852A5E8
 gUnk_0852A5E8:
 	FOMT_FARM_STATUS_TILEMAP 0x438, 0x9A

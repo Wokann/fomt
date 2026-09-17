@@ -22,28 +22,18 @@ image, nor that all game graphics have been extracted.
 | Direct `func_080B55D0` auxiliary BG streams | editable `graphics/ui/scene_080b55d0_aux/shared/tiles.4bpp` and `layer_*.tilemap`; read-only `reference/*.png` | three native packed streams included directly by `gUnk_0872C5D0`–`gUnk_0872C84C`; the 0x200 palette copy starts at a 0x20 symbol and remains cross-resource ROM data | Yes for streams; palette reference only |
 | Direct `func_08054F40` BG tile stream | `graphics/ui/scene_08054f40_tiles/shared/tiles.4bpp`; read-only `reference/base_layer_3.png` and `screen.png` | one native packed 4bpp tile stream included directly by the original `gUnk_08738D1C` symbol; static BG3 map and crossing palette copy are verified reference inputs | Yes for tile stream; reference inputs only |
 | Direct `func_0805AB08` BG tile stream | `graphics/ui/scene_0805ab08_tiles/shared/tiles.4bpp`; read-only `reference/layer_*.png`, `scene.png`, and `screen.png` | one native packed 4bpp tile stream included directly by the original `gUnk_0872F21C` symbol; code-built three-BG maps and crossing palette copy are verified reference inputs | Yes for tile stream; reference inputs only |
-| FarmHouse visual descriptor tiles, patches and palettes | `graphics/farm_house_visual/shared/visual_00.4bpp` through `visual_06.4bpp`, plus `shared/tilemap_patches/*.tilemap` and `shared/palettes/*.gbapal` | seven fixed native 0x70 tile streams, fourteen bounded 16-bit tilemap patch buffers, and ten exact BGR555 palette-source buffers selected by `gFarmHouseVisualDescriptors`; all are post-link patched at their original regional pointers | Yes for all managed payloads in JP/US/EU/DE; field lookup metadata and runtime layout remain intentionally unmanaged |
 | Farm-status non-winter background and building previews | `graphics/ui/farm_status/shared/base_tiles.png`, `base_palettes.png`, and `tilemaps/*.tilemap` | non-winter packed 4bpp tile stream, sixteen BGR555 palette banks, and fourteen BG tilemaps | Yes |
 | Farm-status overseas winter background tiles | `graphics/ui/farm_status/winter/shared/tiles.png`; regional palette PNGs remain references | one bounded native packed tile stream included directly at the original US/EU/DE runtime labels | Yes for JP/US/EU/DE: JP retains its separate direct-ROM layout |
 | Seasonal non-winter background (`func_08077EC0`) | `graphics/ui/seasonal_background/shared/nonwinter_tiles.png`, `nonwinter_palette_banks.png`, and `bg_30/bg_29.tilemap`; derived layer references are under `reference/` | one H8/LZ2 tile stream, six BGR555 palette banks, and two native 30-by-13 BG maps at their original JP/US/EU/DE locations | Yes |
 | Seasonal winter background (`func_08077EC0`) | `graphics/ui/seasonal_background/winter/winter_tiles.png`, `winter_palette_banks.png`, and `winter_bg_29.tilemap`; its BG30 map reuses the verified non-winter `shared/bg_30.tilemap` source; derived layer references are `reference/winter_bg_30.png` and `winter_bg_29.png` | one H8/LZ3 tile stream, six BGR555 palette banks, and the winter-exclusive native 30-by-13 BG29 map at their original JP/US/EU/DE locations | Yes |
 | Farm-status secondary layouts | `graphics/ui/farm_status/shared/secondary_tilemaps/*.tilemap` | six native Huffman-4/LZ3 64-by-44 BG tilemap streams | Yes |
 | Farm-status exterior styles | `graphics/ui/farm_status/shared/exterior_styles/{doghouse,mailbox,window}/style_*.png` | three raw style records, each retaining its two-u16 count header and three 4bpp variants | Yes |
-| Farm-status selector case-09 icon | `graphics/ui/farm_status/shared/auxiliary_icons/selector_case_09.png` | one code-paired 16-by-16 4bpp tile record plus BGR555 palette | Yes |
-| Overseas calendar/clock glyphs | `graphics/ui/clock_font/{us_eu,de}/glyph_indices.png`, with `shared/tail.bin` | 128 direct-copy 8-by-8 4bpp glyph records plus four retained bytes; the PNG palette is editor-only because runtime palette ownership remains unproven | Yes for US/EU/DE ranges; JP assembly remains unchanged because this overseas-only code path has no verified JP counterpart |
 | Farm-status creature/UI icons | `graphics/ui/farm_status/creature_icons/shared/icon_00.png` through `icon_19.png` | twenty raw 16-by-16 4bpp grids with individual BGR555 palettes, preserved as two physical groups | Yes |
-| Farm Status / Town Map OAM resources | `graphics/ui/farm_status/resource_archive/full/resource_000.png` through `resource_039.png` | one fixed `0xEA4` IndexedResourceArchive, preserving all selection, OAM, palette and descriptor bytes while updating only changed visible 4bpp pixels | Yes |
-| Common OAM resources | `graphics/common_resource_archive/full/group_000.png` through `group_499.png`, excluding native-empty groups `316` and `429` | fixed `0x12848` IndexedResourceArchive; 498 full OAM-composited indexed PNGs preserve selector, OAM, palette and descriptor bytes while updating only visible 4bpp pixels | Yes |
-| Small companion OAM resources | `graphics/small_companion_archive/full/group_000.png` through `group_015.png` | one fixed `0x840` IndexedResourceArchive; sixteen full OAM-composited indexed PNGs preserve selector, OAM, palette and descriptor bytes while updating only visible 4bpp pixels | Yes |
-| Direct `gUnk_08697920` VRAM tile group | `graphics/ui/raw_vram_tiles/08697920/shared/tiles.4bpp` | one fixed raw 143-tile 4bpp range, DMA-patched after linking at the original regional offset; palette and layout remain unproven | Yes |
-| Direct `gUnk_08698E14` / `gUnk_0869A0A4` field VRAM tile groups | `graphics/ui/raw_vram_tiles/{08698e14,0869a0a4}/shared/tiles.4bpp` | two fixed raw 143-tile 4bpp ranges selected by the field renderer; each is DMA-patched after linking at its original regional offset; palette and layout remain unproven | Yes |
-| Direct `gUnk_086D5508` / `gUnk_086D6698` field VRAM tile groups | `graphics/ui/raw_vram_tiles/{086d5508,086d6698}/shared/tiles.4bpp` | two fixed raw 115-tile 4bpp ranges selected by the field renderer; each is DMA-patched after linking at the original regional offset; palette and layout remain unproven | Yes |
-| Direct UI DMA tile groups | `graphics/ui/raw_vram_tiles/*/shared/tiles.4bpp` (see `ui/raw_vram_tiles/UI_DMA_TILES.md`) | twenty-two fixed raw 4bpp character-tile records, DMA-patched after linking at their original regional offsets; no palette or UI layout is claimed | Yes |
 | Intro-scene object tile sources | `graphics/intro_scene/shared/object_tiles/*.4bpp` | twenty native Raw-LZ object-tile streams; see `intro_scene/OBJECT_PIPELINE_AUDIT.md` for the proven runtime/OAM boundary | Yes |
 | Intro-scene startup background | `graphics/intro_scene/shared/startup_visual/*.png` and `shared/startup_tilemaps/*.tilemap` | one shared Huffman-8/LZ3 4bpp tile stream, sixteen BGR555 palette banks, and four native Huffman-4/LZ3 tilemap streams | Yes |
 | Records Screen task icons | `graphics/ui/records_minigame/shared/task_00.png` through `task_06.png` | seven raw 16x16 4bpp grids with individual BGR555 palettes | Yes |
 | Animal Festival UI icons | `graphics/ui/animal_festival/shared/icon_00.png` through `icon_09.png` | ten raw 16x16 4bpp grids with individual BGR555 palettes | Yes |
-| MapData visual layers | `graphics/maps/shared/map_XX/layer_N.*` (4bpp tiles, BGR555 palette streams, and native tilemaps) | 272 native packed streams, post-link patched at their original ROM ranges | Yes |
+| MapData visual layers | `graphics/maps/shared/map_XX/layer_N.*` | 272 native packed streams, post-link patched at their original ROM ranges | Yes |
 
 The actor archive has 3,009 frame descriptors, of which 2,963 are referenced
 by the retail animation tables.  Every referenced descriptor has a checked-in
@@ -96,36 +86,27 @@ Generate a current list with:
 ```console
 python tools/gfx_incbin_inventory.py . --csv build/gfx_incbin_inventory.csv
 python tools/gfx_compression_inventory.py . --csv build/gfx_compression_inventory.csv
-python tools/unpack_inventory.py . --csv build/unpack_inventory.csv
 python tools/unpack_vram_inventory.py . --csv build/unpack_vram_inventory.csv
-python tools/copy_ram_inventory.py . --csv build/copy_ram_inventory.csv
-python tools/dma_vram_inventory.py . --csv build/dma_vram_inventory.csv
 ```
 
 All generated CSV files are local audit artifacts, not source artwork. The
 compression inventory records only direct ranges that begin with a strictly
 decodable `0x70` stream. Its enclosing `incbin` boundary is not automatically
 the compressed stream's boundary, and a decoded stream is not automatically a
-graphics resource. The all-destination `Unpack` inventory and the narrower
-Unpack-to-VRAM inventory follow only simple literal and register data flow in
-assembly, so their rows are code-backed resource leads, not assertions about
-tile, palette, or OAM format. Run them with `make unpack-inventory` and
-`make unpack-vram-inventory`; the current source yields 52 labelled paths in
-the former and 32 direct-VRAM paths in the latter. `DIRECT_UNPACK_VRAM_AUDIT.md`
-records the classification of every direct-VRAM path and keeps unproven streams
-out of the managed-resource table.
-`DIRECT_COPY_RAM_AUDIT.md` records the literal-source `func_08008E64` layer;
-the current scan finds sixteen palette-RAM paths and no literal-VRAM path.
-`DIRECT_DMA_VRAM_AUDIT.md` does the same for literal `func_08008F0C` copies;
-it deliberately excludes indirect or runtime-computed DMA descriptors.
+graphics resource. The Unpack-to-VRAM inventory follows only simple literal
+and register data flow in assembly, so its rows are code-backed resource leads,
+not assertions about tile, palette, or OAM format. Run it with
+`make unpack-vram-inventory`; the current assembly yields 30 such calls.
+`DIRECT_UNPACK_VRAM_AUDIT.md` records the current code-consumer classification
+and keeps unproven streams out of the managed-resource table.
 
 ## Next audit queue
 
 | Candidate family | Evidence | Current conclusion |
 | --- | --- | --- |
-| `func_080B55D0` main scene layout | Main `230` source plus its field display setup; see `graphics/ui/scene_080b55d0_main/README.md`. | The shared 1024-tile 4bpp main source is managed and fixed-slot editable. Its complete map, palette ownership, display priority and state ordering remain unproven together, so no guessed full-screen source PNG is emitted. |
-| FarmHouse visual descriptor lookup/layout domains | `gFarmHouseVisualDescriptors`, `func_080A5BD8`, and the house setup branch at `0x080A924C`; see `graphics/farm_house_visual/LAYOUT_AUDIT.md` and `LOOKUP_AUDIT.md`. | Seven `+0x18` native 4bpp streams, fourteen state-dependent tilemap patches, and ten `+0x20` BGR555 palette buffers are managed. The `+0x10/+0x14` lookup pairs are proven four-region-identical field metadata, not palette data. No named state has all base-map, ordered patches and BG-display inputs proven, so no guessed static scene is authored. |
+| Farm-status remaining screen data | `FarmStatusScreenResourceDescriptor` and direct ranges adjacent to the managed layouts. | The common tile grid, full palette-bank set, fourteen building-preview tilemaps and six secondary layouts are now managed; surrounding resource classes still need separate format analysis. |
 | Intro-scene object OAM composition and palettes | `gUnk_IntroSceneUnpackSource_*` labels decode to twenty managed native 0x500-byte tile sources; `func_0805FBB8` stages them for OBJ use. `func_08000914`'s regional compressed archive and its shared raw companion archive are separately managed as OAM-composited frames. | The twenty streams remain managed native sources, but their own full-image OAM composition and per-object palette selectors remain runtime data. The nearby archives must not be misused as their layout; `intro_scene/OBJECT_PIPELINE_AUDIT.md` records the boundary. |
 | Intro-scene startup presentation sequencing | `func_080019D8` expands the managed shared tiles/palette banks, and copies each of four managed `0x1000`-byte sources as two interleaved 32-by-32 BG maps. | Native tile sheet, palette banks, maps and eight code-backed map references are managed. The runtime's choice and timing of the alternate BG maps still require a compositor/sequence audit, so no guessed final-screen PNG is treated as source. |
-| Indirect map-state fallback payloads | `func_080A95A4` selects five `0x30` streams and unpacks each through a caller-owned pointer array; see `graphics/INDIRECT_UNPACK_AUDIT.md`. | They have exact decode bounds but no proven VRAM destination, tile format, palette, tilemap, or OAM consumer. They remain native data rather than guessed graphics. |
-| MapData non-visual payloads | MapData `+0x18/+0x1C`, `GetMapData`, and field-render callers; see `MAP_NONVISUAL_AUDIT.md`. | The six visual pointer layers are managed as 272 verified streams. The remaining pair is proven as TerrainInfo lookup data plus one-byte terrain-index grids, not graphics; 63 maps have terrain pointers and 3 use null pointers. |
+| Overseas calendar/clock glyph set | `gUnk_0875A440` is copied as `glyph_index * 0x20` records by the overseas UI code. | Its US/EU payload is identical, DE is localized, and the JP counterpart and runtime palette remain unproven. `DIRECT_TILE_COPY_AUDIT.md` records the fixed glyph boundary without inventing a coloured PNG source. |
+| MapData non-visual payloads | MapData fields 1 and 2 plus field-render records are used by field rendering. | The six visual pointer layers are managed as 272 verified streams. The remaining payloads may contain collision, terrain and animation data and require separate runtime format analysis. |
+| Indexed resource archives | `IndexedResourceArchive` parses six counted descriptor sections and an entry table; its common and companion payloads are byte-identical across all four regions. | Exact boundaries and regional locations are recorded in `INDEXED_RESOURCE_ARCHIVES.md`. Descriptor semantics still require consumer-by-consumer analysis; neither archive is falsely exported as a graphics sheet. |

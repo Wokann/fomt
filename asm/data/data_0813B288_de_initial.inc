@@ -23,7 +23,7 @@ gUnk_08529794:
 	.incbin "build/de/graphics/ui/farm_status/base_tiles.gbapal"
 	.global gUnk_08529994
 gUnk_08529994:
-	.incbin "baserom_de.gba", 0x2B0A30, 0x184
+	FOMT_FARM_STATUS_EXTERIOR_STYLE doghouse
 	.global gUnk_082B0BB4
 gUnk_082B0BB4:
 	FOMT_FARM_STATUS_TILEMAP 0x2D0, 0x60
@@ -32,7 +32,7 @@ gUnk_082B0C14:
 	FOMT_FARM_STATUS_TILEMAP 0x270, 0x30
 	.global gUnk_08529BA8
 gUnk_08529BA8:
-	.incbin "baserom_de.gba", 0x2B0C44, 0xC4
+	FOMT_FARM_STATUS_EXTERIOR_STYLE mailbox
 	.global gUnk_082B0D08
 gUnk_082B0D08:
 	FOMT_FARM_STATUS_TILEMAP 0x120, 0xA8
@@ -44,7 +44,7 @@ gUnk_082B0E10:
 	FOMT_FARM_STATUS_TILEMAP 0x000, 0x30
 	.global gUnk_08529DA4
 gUnk_08529DA4:
-	.incbin "baserom_de.gba", 0x2B0E40, 0x844
+	FOMT_FARM_STATUS_EXTERIOR_STYLE window
 	.global gUnk_082B1684
 gUnk_082B1684:
 	FOMT_FARM_STATUS_TILEMAP 0x438, 0x9A
