@@ -116,6 +116,20 @@ layout record. Both expose one drawable OAM group with one BGR555 palette and
 one selection entry. Native layout records remain the source of truth rather
 than a separately maintained JSON layout description.
 
+`gUnk_0872DE44` has a 27-group shared JP/US/EU archive and a DE-specific
+layout. Its indexed PNG sources are rebuilt only into the corresponding native
+region ranges.
+
+| Source domain | Regions | ROM offset(s) | Length | Header counts | Entries | SHA-256 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Shared | JP / US / EU | `0x4B3FAC` / `0x72DE44` / `0x72DEA0` | `0x1034` | `27, 27, 6, 106, 1, 0` | 27 | `fb7e5be52ccd941e7330f86a984b93f2dbec6a694a8bcbbe9e7806bc7d9087ea` |
+| DE | DE | `0x4B5118` | `0x10CC` | `27, 27, 9, 110, 1, 0` | 27 | `c7787e7ae7b3b39821e29b4bebaa3af1b661517c8285f7940bd01dc0e42eccbf` |
+
+Both domains expose 27 drawable OAM groups with one BGR555 palette. DE uses
+three additional native layout records and four additional 4bpp tiles. Its
+native records are retained as the only layout definition, not duplicated into
+a JSON sidecar.
+
 The common archive's group-descriptor consumer is fully bounded. Every
 drawable descriptor selects valid GBA OAM, 4bpp tile, and BGR555 palette
 ranges; `func_0805E790` resolves the fields and `func_080757E8` uploads tiles
