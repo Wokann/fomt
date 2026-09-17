@@ -580,6 +580,29 @@ def rebuild_full(archive: Archive, source_directory: Path, output: Path) -> None
     print(f"portrait tile SHA-256: {hashlib.sha256(native).hexdigest()}")
 
 
+def verify_full(archive: Archive, source_directory: Path) -> None:
+    """Prove that the editable full portraits reconstruct table four exactly.
+
+    The archive's first three tables, palette table, and trailing data remain
+    immutable build-time structure. Full PNG sources own only table four, so
+    this comparison checks that precise native interval rather than treating
+    the complete archive as a PNG-derived payload.
+    """
+
+    native, changed_pixels = rebuild_full_data(archive, source_directory)
+    table_four_offset = archive.table_offsets[3]
+    retail = archive.data[table_four_offset:table_four_offset + len(native)]
+    if native != retail:
+        raise ValueError(
+            "full portrait PNGs do not reconstruct the retail table-four "
+            "4bpp tile payload"
+        )
+    print(
+        f"verified {len(native)} full-portrait tile bytes against archive "
+        f"table four with {changed_pixels} visible pixel changes"
+    )
+
+
 def render_full_previews(archive: Archive, source_directory: Path) -> None:
     """Render preview PNGs from the current complete-image authoring sources.
 
@@ -622,6 +645,10 @@ def main() -> int:
     rebuild_full_parser = subparsers.add_parser("rebuild-full", help="patch native 4bpp table four from full portrait PNGs")
     rebuild_full_parser.add_argument("--source", required=True, type=Path)
     rebuild_full_parser.add_argument("--output", required=True, type=Path)
+    verify_full_parser = subparsers.add_parser(
+        "verify-full", help="verify that full portrait PNGs reconstruct native table four"
+    )
+    verify_full_parser.add_argument("--source", required=True, type=Path)
     preview_parser = subparsers.add_parser(
         "render-full-preview", help="render preview PNGs from current full portrait PNGs"
     )
@@ -643,6 +670,8 @@ def main() -> int:
         rebuild(archive, args.source, args.output)
     elif args.command == "rebuild-full":
         rebuild_full(archive, args.source, args.output)
+    elif args.command == "verify-full":
+        verify_full(archive, args.source)
     elif args.command == "render-full-preview":
         render_full_previews(archive, args.source)
     else:

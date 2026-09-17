@@ -2147,11 +2147,14 @@ gfx-fonts-test:
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-font-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-font-test
 gfx-portraits: $(PORTRAIT_TILE_BIN)
+.PHONY: gfx-portraits-test
+gfx-portraits-test: gfx-portraits $(PORTRAIT_ARCHIVE_TOOL) $(BASE_ROM) $(PORTRAIT_FULL_IMAGES)
+	@$(PYTHON) $(PORTRAIT_ARCHIVE_TOOL) $(BASE_ROM) --offset $(PORTRAIT_ARCHIVE_OFFSET) --length $(PORTRAIT_ARCHIVE_LENGTH) --sha256 $(PORTRAIT_ARCHIVE_SHA256) verify-full --source $(PORTRAIT_SOURCE_DIR)
 gfx-portraits-all:
-	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-portraits
-	@$(MAKE) --no-print-directory GAME_REGION=US gfx-portraits
-	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-portraits
-	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-portraits
+	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-portraits-test
+	@$(MAKE) --no-print-directory GAME_REGION=US gfx-portraits-test
+	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-portraits-test
+	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-portraits-test
 gfx-actors: $(ACTOR_TILE_BIN)
 gfx-actors-test: gfx-actors $(BASE_ROM) $(GFX_RANGE_VERIFY)
 	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(ACTOR_TILE_OFFSET) --input $(ACTOR_TILE_BIN) --sha256 $(ACTOR_TILE_SHA256)

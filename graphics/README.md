@@ -129,9 +129,12 @@ make gfx-portraits-all
 `portrait_archive.py` rebuilds the native 0x5A840-byte tile stream from the
 full source PNGs. It first renders the original archive, then writes only a
 visible pixel that actually changed in `full/`; hidden OAM pixels therefore
-remain untouched and an unedited source round-trips byte-for-byte. It verifies
-every descriptor, OAM range, palette and PNG dimension. Sixty-eight tile slots
-are intentionally shared between descriptors; if two edited source images
+remain untouched and an unedited source round-trips byte-for-byte. The
+`gfx-portraits-all` target also compares the rebuilt table-four tile interval
+against each regional retail archive; it is not merely a four-directory
+generation target. It verifies every descriptor, OAM range, palette and PNG
+dimension. Sixty-eight tile slots are intentionally shared between descriptors;
+if two edited source images
 assign different values to such a slot, the build fails rather than arbitrarily
 selecting one edit. The four regional assembly paths split their original
 archive at the tile stream and retain every header, layout record, palette and
