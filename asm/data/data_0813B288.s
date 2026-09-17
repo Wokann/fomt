@@ -2379,7 +2379,28 @@ gUnk_084AE488:
     .incbin "baserom_jp.gba", 0x4AE488, (0x4AF4E4 - 0x4AE488)
     .global gUnk_084AF4E4
 gUnk_084AF4E4:
-    .incbin "baserom_jp.gba", 0x4AF4E4, (0x4C7B5C - 0x4AF4E4)
+    .incbin "baserom_jp.gba", 0x4AF4E4, (0x4B1FCC - 0x4AF4E4)
+    .global gUnk_084B1FCC
+gUnk_084B1FCC:
+    .incbin "baserom_jp.gba", 0x4B1FCC, (0x4C0FBC - 0x4B1FCC)
+    .global gUnk_084C0FBC
+gUnk_084C0FBC:
+    .incbin "baserom_jp.gba", 0x4C0FBC, (0x4C1FCC - 0x4C0FBC)
+    .global gUnk_084C1FCC
+gUnk_084C1FCC:
+    .incbin "baserom_jp.gba", 0x4C1FCC, (0x4C3840 - 0x4C1FCC)
+    .global gUnk_084C3840
+gUnk_084C3840:
+    .incbin "baserom_jp.gba", 0x4C3840, (0x4C3FAC - 0x4C3840)
+    .global gUnk_084C3FAC
+gUnk_084C3FAC:
+    .incbin "baserom_jp.gba", 0x4C3FAC, (0x4C4718 - 0x4C3FAC)
+    .global gUnk_084C4718
+gUnk_084C4718:
+    .incbin "baserom_jp.gba", 0x4C4718, (0x4C6708 - 0x4C4718)
+    .global gUnk_084C6708
+gUnk_084C6708:
+    .incbin "baserom_jp.gba", 0x4C6708, (0x4C7B5C - 0x4C6708)
 
     @ Twenty 0x500-byte Raw-LZ object-tile payloads, unpacked in order by
     @ func_0805FBB8. Their OAM composition remains runtime data.

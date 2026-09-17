@@ -7440,11 +7440,7 @@ extern RawVTableFunction const vtable_unk_080E8440[]
         __pure_virtual,
         __pure_virtual,
         __pure_virtual,
-        nullptr,
-        nullptr,
-        func_080E4564,
-        nullptr,
-#else
+    #else
         nullptr,
         nullptr,
         func_080E4544,
@@ -7495,6 +7491,18 @@ extern RawVTableFunction const vtable_unk_080E8440[]
         __pure_virtual,
 #endif
     };
+
+#if defined(REGION_JP)
+// The JP constructor at 0x080AD9A4 points at this real four-slot tail, not
+// at the start of the preceding 44-slot abstract table.
+extern RawVTableFunction const vtable_unk_080E7930[]
+    SECTION(".rodata.vtable_8440") = {
+        nullptr,
+        nullptr,
+        func_080E4564,
+        nullptr,
+    };
+#endif
 
 #if defined(REGION_JP)
 extern void func_080B3640(void);
