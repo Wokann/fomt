@@ -17,10 +17,35 @@ state. Consequently:
 
 - every `object_00.4bpp` through `object_19.4bpp` source is exactly `0x500`
   decoded bytes (40 native 4bpp tiles);
-- the numbered source order is a real VRAM-loading order, not an inferred
+- the numbered source order is a real runtime staging order, not an inferred
   animation or character order;
 - the shared source set can be rebuilt as twenty independent fixed-capacity
   Raw-LZ streams without changing the game's loader contract.
+
+## Proven RAM staging layout
+
+The call chain fixes the storage contract more precisely than a generic OBJ
+upload description. `func_0805FCD0` allocates `0x6430` bytes for the scene
+work object through `func_0805ED4C`; `func_0805FD44` then enters
+`func_0805EE44`, which calls `func_0805FBB8` with that same object. The latter
+starts its source cursor at `scene + 0x20` and writes twenty consecutive
+`0x500`-byte decoded streams:
+
+```text
+scene + 0x0020  object_00  0x500 bytes
+scene + 0x0520  object_01  0x500 bytes
+...
+scene + 0x5F20  object_19  0x500 bytes
+scene + 0x6420  end of object storage
+```
+
+Thus the object payload occupies exactly `0x6400` bytes of the `0x6430`-byte
+scene allocation, leaving its final `0x10` bytes outside the stream storage.
+`func_0805FBB8` also initializes several literal VRAM ranges for the scene,
+but the twenty `Unpack` destinations themselves are this runtime RAM buffer,
+not those VRAM ranges. Any future image compositor must therefore prove the
+later RAM-to-renderer/object-record path for a particular source; it cannot
+legitimately infer an OAM layout merely from the loading stride.
 
 The four retail FoMT regions have identical packed payloads and identical
 decoded payloads for all twenty source streams.  Only their ROM offsets vary.
