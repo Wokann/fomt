@@ -51102,7 +51102,108 @@ func_080B7164: @ 0x080B6B98
 	bx r0
 	.align 2, 0
 
-    jp_code_809_func func_080B757C, 0xB6FB0, 0xB707C
+    .global func_080B757C
+    .thumb_func
+func_080B757C: @ 0x080B6FB0
+	push {r4, r5, r6, r7, lr}
+	mov r7, r8
+	push {r7}
+	adds r6, r0, #0
+	movs r5, #0
+	movs r1, #0
+	adds r3, r6, #0
+	adds r3, #0x9e
+	movs r4, #0
+	adds r2, r6, #0
+	adds r2, #0xde
+	adds r7, r3, #0
+	mov r8, r2
+.Ljp_080B6FCA:
+	adds r0, r3, r1
+	strb r4, [r0]
+	adds r0, r2, r1
+	strb r4, [r0]
+	adds r1, #1
+	cmp r1, #0xd
+	ble .Ljp_080B6FCA
+	ldr r0, .Ljp_080B6FF8 @ =0x00000B1C
+	adds r1, r6, r0
+	adds r0, r7, #0
+	bl strcpy
+	ldr r1, .Ljp_080B6FFC @ =0x00000B18
+	adds r0, r6, r1
+	ldr r0, [r0]
+	cmp r0, #1
+	beq .Ljp_080B701C
+	cmp r0, #1
+	bgt .Ljp_080B7000
+	cmp r0, #0
+	beq .Ljp_080B7006
+	b .Ljp_080B7046
+	.align 2, 0
+.Ljp_080B6FF8: .4byte 0x00000B1C
+.Ljp_080B6FFC: .4byte 0x00000B18
+.Ljp_080B7000:
+	cmp r0, #2
+	beq .Ljp_080B7034
+	b .Ljp_080B7046
+.Ljp_080B7006:
+	movs r4, #6
+	bl rand
+	ldr r1, .Ljp_080B7018 @ =0x0000FFFF
+	ands r1, r0
+	adds r0, r1, #0
+	muls r0, r4, r0
+	lsrs r5, r0, #0x10
+	b .Ljp_080B7046
+	.align 2, 0
+.Ljp_080B7018: .4byte 0x0000FFFF
+.Ljp_080B701C:
+	movs r4, #7
+	bl rand
+	ldr r1, .Ljp_080B7030 @ =0x0000FFFF
+	ands r1, r0
+	adds r0, r1, #0
+	muls r0, r4, r0
+	lsrs r5, r0, #0x10
+	adds r5, #6
+	b .Ljp_080B7046
+	.align 2, 0
+.Ljp_080B7030: .4byte 0x0000FFFF
+.Ljp_080B7034:
+	movs r4, #7
+	bl rand
+	ldr r1, .Ljp_080B7070 @ =0x0000FFFF
+	ands r1, r0
+	adds r0, r1, #0
+	muls r0, r4, r0
+	lsrs r5, r0, #0x10
+	adds r5, #0xd
+.Ljp_080B7046:
+	ldr r2, .Ljp_080B7074 @ =0x00000B18
+	adds r1, r6, r2
+	adds r2, #0x25
+	adds r0, r6, r2
+	ldr r1, [r1]
+	adds r0, r0, r1
+	strb r5, [r0]
+	movs r0, #0xd
+	adds r1, r5, #0
+	muls r1, r0, r1
+	ldr r0, .Ljp_080B7078 @ =gText_ChickenFestival_ContestantNames
+	adds r1, r1, r0
+	mov r0, r8
+	bl strcpy
+	pop {r3}
+	mov r8, r3
+	pop {r4, r5, r6, r7}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_080B7070: .4byte 0x0000FFFF
+.Ljp_080B7074: .4byte 0x00000B18
+.Ljp_080B7078: .4byte gText_ChickenFestival_ContestantNames
+
     .global func_080B7648
     .thumb_func
 func_080B7648: @ 0x080B707C

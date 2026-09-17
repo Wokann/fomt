@@ -1160,3 +1160,12 @@ JP 与 DE 在其中一项构造字段使用立即数 `8`，US 与 EU 使用 `10`
 
 已提升范围不含代码 `.incbin`、原始 `.byte`、`.set`、`.thumb_set` 或地址偏移伪匹配；JP、US、EU、
 DE 的完整构建、SHA-1 与基准 ROM 逐字节校验均已通过。
+
+其后的鸡祭参赛者选择函数 `func_080B757C` 也已直接提升。JP 覆盖
+`0x080B6FB0`–`0x080B707B`，普通三区分别覆盖 US `0x080B757C`–`0x080B7647`、EU
+`0x080B75AC`–`0x080B7677`、DE `0x080B74DC`–`0x080B75A7`；四区长度均为 `0xCC` 字节。
+其五个 `BL` 均直接重定位到真实函数符号；参赛鸡名表直接引用已有的
+`gText_ChickenFestival_ContestantNames`，不新增别名或地址偏移。
+
+已提升范围不含代码 `.incbin`、原始 `.byte`、`.set`、`.thumb_set` 或地址偏移伪匹配；JP、US、EU、
+DE 的完整构建、SHA-1 与基准 ROM 逐字节校验均已通过。
