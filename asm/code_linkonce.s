@@ -8270,7 +8270,77 @@ func_080D7B44: @ 0x080D7B44
     .global func_080DE298
     .thumb_func
 func_080DE298:
-    .incbin "baserom_jp.gba", 0xDDA4C, (0xDF4D4 - 0xDDA4C)
+    .incbin "baserom_jp.gba", 0xDDA4C, 0x688
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE0D8, 0x54
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE130, 0x54
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE188, 0x70
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE1FC, 0x18
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE218, 0x3C
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE258, 0x84
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE2E0, 0x18
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE2FC, 0x18
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE318, 0x38
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE354, 0xB0
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE408, 0x18
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE424, 0x18
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE440, 0x18
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE45C, 0x30
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE490, 0x90
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE524, 0x40
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE568, 0x70
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE5DC, 0x18
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE5F8, 0x3C
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE638, 0xA0
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE6DC, 0x18
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE6F8, 0x18
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE714, 0x3C
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE754, 0xC8
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE820, 0x18
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE83C, 0x18
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE858, 0x18
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE874, 0x3C
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE8B4, 0xE4
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE99C, 0x18
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE9B8, 0x18
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE9D4, 0x18
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDE9F0, 0x1C
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDEA10, 0x3C
+    .4byte gText_Fallback_Error
+    .incbin "baserom_jp.gba", 0xDEA50, 0xA84
     .4byte gMaryScriptTable
     .incbin "baserom_jp.gba", 0xDF4D8, (0xDF848 - 0xDF4D8)
 

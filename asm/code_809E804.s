@@ -62525,15 +62525,40 @@ func_080BCCD4:
     .global func_080BCEC8
     .thumb_func
 func_080BCEC8:
-    .incbin "baserom_jp.gba", 0xBC8FC, (0xBE470 - 0xBC8FC)
+    .incbin "baserom_jp.gba", 0xBC8FC, 0x190C
+    .4byte gText_080BE728DigitZero
+    .incbin "baserom_jp.gba", 0xBE20C, 0x264
     .global func_080BEA34
     .thumb_func
 func_080BEA34:
-    .incbin "baserom_jp.gba", 0xBE470, (0xBF190 - 0xBE470)
+    .incbin "baserom_jp.gba", 0xBE470, 0x300
+    .4byte gText_HarvestSpriteMiniGame_Harvest_ExplanationQuestion
+    .4byte gText_HarvestSpriteMiniGame_Harvest_Yes
+    .4byte gText_HarvestSpriteMiniGame_Harvest_No
+    .incbin "baserom_jp.gba", 0xBE77C, 0x18
+    .4byte gText_HarvestSpriteMiniGame_Harvest_Introduction
+    .incbin "baserom_jp.gba", 0xBE798, 0x18
+    .4byte gText_HarvestSpriteMiniGame_Harvest_Instructions
+    .incbin "baserom_jp.gba", 0xBE7B4, 0x1C
+    .4byte gText_HarvestSpriteMiniGame_Harvest_FatigueWarning
+    .incbin "baserom_jp.gba", 0xBE7D4, 0x28
+    .4byte gText_HarvestSpriteMiniGame_Harvest_RestInstructions
+    .incbin "baserom_jp.gba", 0xBE800, 0x44
+    .4byte gText_HarvestSpriteMiniGame_Harvest_UnderstandQuestion
+    .4byte gText_HarvestSpriteMiniGame_Harvest_UnderstandYes
+    .4byte gText_HarvestSpriteMiniGame_Harvest_UnderstandAgain
+    .incbin "baserom_jp.gba", 0xBE850, 0x28
+    .4byte gText_HarvestSpriteMiniGame_Harvest_Start
+    .incbin "baserom_jp.gba", 0xBE87C, 0x380
+    .4byte gText_HarvestSpriteMiniGame_Harvest_ScorePrefix
+    .4byte gText_HarvestSpriteMiniGame_Harvest_ScoreResultSuffix
+    .incbin "baserom_jp.gba", 0xBEC04, 0x58C
     .global func_080BF764
     .thumb_func
 func_080BF764:
-    .incbin "baserom_jp.gba", 0xBF190, (0xC033C - 0xBF190)
+    .incbin "baserom_jp.gba", 0xBF190, 0xCC0
+    .4byte gText_HarvestSpriteMiniGame_Harvest_ScoreSummary
+    .incbin "baserom_jp.gba", 0xBFE54, 0x4E8
     .global func_080C0910
     .thumb_func
 func_080C0910: @ 0x080C033C
@@ -63096,11 +63121,31 @@ func_080C12B8:
     .global func_080C14C8
     .thumb_func
 func_080C14C8:
-    .incbin "baserom_jp.gba", 0xC0EF4, (0xC364C - 0xC0EF4)
+    .incbin "baserom_jp.gba", 0xC0EF4, 0x24C8
+    .4byte gText_080C38E4DigitZero
+    .incbin "baserom_jp.gba", 0xC33C0, 0x28C
     .global func_080C3C18
     .thumb_func
 func_080C3C18:
-    .incbin "baserom_jp.gba", 0xC364C, (0xC4514 - 0xC364C)
+    .incbin "baserom_jp.gba", 0xC364C, 0x400
+    .4byte gText_HarvestSpriteMiniGame_Watering_ExplanationQuestion
+    .4byte gText_HarvestSpriteMiniGame_Watering_Yes
+    .4byte gText_HarvestSpriteMiniGame_Watering_No
+    .incbin "baserom_jp.gba", 0xC3A58, 0x14
+    .4byte gText_HarvestSpriteMiniGame_Watering_Introduction
+    .incbin "baserom_jp.gba", 0xC3A70, 0x14
+    .4byte gText_HarvestSpriteMiniGame_Watering_Instructions
+    .incbin "baserom_jp.gba", 0xC3A88, 0x14
+    .4byte gText_HarvestSpriteMiniGame_Watering_SuccessInstructions
+    .incbin "baserom_jp.gba", 0xC3AA0, 0x14
+    .4byte gText_HarvestSpriteMiniGame_Watering_MistakeWarning
+    .incbin "baserom_jp.gba", 0xC3AB8, 0x20
+    .4byte gText_HarvestSpriteMiniGame_Watering_UnderstandQuestion
+    .4byte gText_HarvestSpriteMiniGame_Watering_UnderstandYes
+    .4byte gText_HarvestSpriteMiniGame_Watering_UnderstandAgain
+    .incbin "baserom_jp.gba", 0xC3AE4, 0x14
+    .4byte gText_HarvestSpriteMiniGame_Watering_Start
+    .incbin "baserom_jp.gba", 0xC3AFC, 0xA18
     .global sub_080C4AE0
     .thumb_func
 sub_080C4AE0:
@@ -63108,11 +63153,16 @@ sub_080C4AE0:
     .global sub_080C4BBC
     .thumb_func
 sub_080C4BBC:
-    .incbin "baserom_jp.gba", 0xC45F0, (0xC506C - 0xC45F0)
+    .incbin "baserom_jp.gba", 0xC45F0, 0x68C
+    .4byte gText_HarvestSpriteMiniGame_Watering_ScorePrefix
+    .4byte gText_HarvestSpriteMiniGame_Watering_ScoreResultSuffix
+    .incbin "baserom_jp.gba", 0xC4C84, 0x3E8
     .global func_080C5648
     .thumb_func
 func_080C5648:
-    .incbin "baserom_jp.gba", 0xC506C, (0xC75A0 - 0xC506C)
+    .incbin "baserom_jp.gba", 0xC506C, 0x1B64
+    .4byte gText_HarvestSpriteMiniGame_Watering_ScoreSummary
+    .incbin "baserom_jp.gba", 0xC6BD4, 0x9CC
     .global func_080C7B7C
     .thumb_func
 func_080C7B7C: @ 0x080C75A0
@@ -63565,7 +63615,9 @@ func_080C8550:
     .global func_080C7FC4
     .thumb_func
 func_080C7FC4:
-    .incbin "baserom_jp.gba", 0xC7FC4, (0xC8A2C - 0xC7FC4)
+    .incbin "baserom_jp.gba", 0xC7FC4, 0x24C
+    .4byte gText_ShopCommon_GoldUnit
+    .incbin "baserom_jp.gba", 0xC8214, 0x818
     .global func_080C9020
     .thumb_func
 func_080C9020: @ 0x080C8A2C
@@ -66204,7 +66256,44 @@ func_080CF050: @ 0x080CE860
     .global func_080CF054
     .thumb_func
 func_080CF054:
-    .incbin "baserom_jp.gba", 0xCE864, (0xCF2BC - 0xCE864)
+    .incbin "baserom_jp.gba", 0xCE864, 0x228
+    .4byte gText_ToolStatus_GemOfTruth
+    .4byte gText_ToolStatus_EnergyLabel
+    .4byte gText_ToolStatus_ValueSeparator
+    .4byte gText_ToolStatus_EnergyFatigueLineBreak
+    .4byte gText_ToolStatus_FatigueLabel
+    .4byte gText_ToolStatus_FatigueMaximum
+    .incbin "baserom_jp.gba", 0xCEAA4, 0xAC
+    .4byte gText_ToolStatus_PedometerLabel
+    .4byte gText_ToolStatus_PedometerStepsSuffix
+    .incbin "baserom_jp.gba", 0xCEB58, 0xF8
+    .4byte gText_ToolStatus_DescriptionQuoteOpen
+    .4byte gText_ToolStatus_DescriptionQuoteClose
+    .incbin "baserom_jp.gba", 0xCEC58, 0x184
+    .4byte gText_ToolStatus_DescriptionQuoteOpen
+    .4byte gText_ToolStatus_DescriptionQuoteClose
+    .4byte gText_ToolStatus_RemainingSquaresPrefix
+    .4byte gText_ToolStatus_RemainingSquaresSuffix
+    .incbin "baserom_jp.gba", 0xCEDEC, 0x100
+    .4byte gText_ToolStatus_RemainingSquaresPrefix
+    .4byte gText_ToolStatus_RemainingSquaresSuffix
+    .incbin "baserom_jp.gba", 0xCEEF4, 0x138
+    .4byte gText_AnimalStatus_Dog
+    .incbin "baserom_jp.gba", 0xCF030, 0x54
+    .4byte gText_AnimalStatus_Puppy
+    .incbin "baserom_jp.gba", 0xCF088, 0x28
+    .4byte gText_AnimalStatus_Chicken
+    .incbin "baserom_jp.gba", 0xCF0B4, 0x94
+    .4byte gText_AnimalStatus_Chick
+    .4byte gText_AnimalStatus_Sick
+    .incbin "baserom_jp.gba", 0xCF150, 0x44
+    .4byte gText_AnimalStatus_Unhappy
+    .incbin "baserom_jp.gba", 0xCF198, 0x34
+    .4byte gText_AnimalStatus_Healthy
+    .incbin "baserom_jp.gba", 0xCF1D0, 0xE0
+    .4byte gText_ItemStatus_BasketName
+    .4byte gText_ItemStatus_BasketDescription
+    .4byte gText_ItemStatus_BasketHoldingSuffix
     .global func_080CF2BC
     .thumb_func
 func_080CF2BC:

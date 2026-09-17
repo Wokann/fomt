@@ -11411,7 +11411,9 @@ func_08079860:
     .global func_08079A64
     .thumb_func
 func_08079A64:
-    .incbin "baserom_jp.gba", 0x795EC, (0x7995C - 0x795EC)
+    .incbin "baserom_jp.gba", 0x795EC, 0x368
+    .4byte gText_Library_Menu
+    .incbin "baserom_jp.gba", 0x79958, 0x4
     .global func_08079DC0
     .thumb_func
 func_08079DC0:
@@ -22514,7 +22516,11 @@ func_08087DEC: @ 0x08087DEC
 func_080885AC:
     .incbin "baserom_jp.gba", 0x880EC, (0x881C4 - 0x880EC)
     .4byte gText_Fridge_EmptyDescription
-    .incbin "baserom_jp.gba", 0x881C8, (0x886E0 - 0x881C8)
+    .incbin "baserom_jp.gba", 0x881C8, 0x444
+    .4byte gText_Fridge_WrappedGiftWarning
+    .incbin "baserom_jp.gba", 0x88610, 0xB4
+    .4byte gText_Fridge_WrappedGiftWarning
+    .incbin "baserom_jp.gba", 0x886C8, 0x18
     jp_code_0803ee_func func_08088BA0, 0x886E0, 0x8A6A8
     jp_code_0803ee_func func_0808A6A8, 0x8A6A8, 0x8A6E8
     jp_code_0803ee_func func_0808A6E8, 0x8A6E8, 0x8A754
@@ -22526,7 +22532,10 @@ func_080885AC:
 func_0808BC14:
     .incbin "baserom_jp.gba", 0x8B754, (0x8BBF8 - 0x8B754)
     .4byte gText_HomeStorage_EmptyDescription
-    .incbin "baserom_jp.gba", 0x8BBFC, (0x8C0DC - 0x8BBFC)
+    .incbin "baserom_jp.gba", 0x8BBFC, 0x234
+    .4byte gText_HomeStorage_CategoryTools
+    .4byte gText_HomeStorage_CategoryItems
+    .incbin "baserom_jp.gba", 0x8BE38, 0x2A4
     jp_code_0803ee_func func_0808C0DC, 0x8C0DC, 0x8C11C
     jp_code_0803ee_func func_0808C5DC, 0x8C11C, 0x8C190
     jp_code_0803ee_func func_0808C190, 0x8C190, 0x8C380
@@ -22536,7 +22545,46 @@ func_0808BC14:
 func_0808C8F4:
     .incbin "baserom_jp.gba", 0x8C434, (0x8C50C - 0x8C434)
     .4byte gText_Shelf_EmptyDescription
-    .incbin "baserom_jp.gba", 0x8C510, (0x8E848 - 0x8C510)
+    .incbin "baserom_jp.gba", 0x8C510, 0x434
+    .4byte gText_Shelf_WrappedGiftWarning
+    .incbin "baserom_jp.gba", 0x8C948, 0xA0
+    .4byte gText_Shelf_WrappedGiftWarning
+    .incbin "baserom_jp.gba", 0x8C9EC, 0x154
+    .4byte gText_Shelf_WrappedGiftWarning
+    .incbin "baserom_jp.gba", 0x8CB44, 0xB8
+    .4byte gText_Shelf_WrappedGiftWarning
+    .incbin "baserom_jp.gba", 0x8CC00, 0x324
+    .4byte gText_Shelf_WrappedGiftWarning
+    .incbin "baserom_jp.gba", 0x8CF28, 0xFC
+    .4byte gText_Shelf_WrappedGiftWarning
+    .incbin "baserom_jp.gba", 0x8D028, 0xE8
+    .4byte gText_Shelf_WrappedGiftWarning
+    .incbin "baserom_jp.gba", 0x8D114, 0x1D4
+    .4byte gText_Shelf_WrappedGiftWarning
+    .incbin "baserom_jp.gba", 0x8D2EC, 0x148
+    .4byte gText_Shelf_WrappedGiftWarning
+    .incbin "baserom_jp.gba", 0x8D438, 0xB94
+    .4byte gText_Shelf_Yes
+    .4byte gText_Shelf_No
+    .incbin "baserom_jp.gba", 0x8DFD4, 0x34
+    .4byte gText_Shelf_Yes
+    .4byte gText_Shelf_No
+    .incbin "baserom_jp.gba", 0x8E010, 0x90
+    .4byte gText_Shelf_Yes
+    .4byte gText_Shelf_No
+    .incbin "baserom_jp.gba", 0x8E0A8, 0x18
+    .4byte gText_Shelf_Yes
+    .4byte gText_Shelf_No
+    .incbin "baserom_jp.gba", 0x8E0C8, 0xCC
+    .4byte gText_Shelf_Yes
+    .4byte gText_Shelf_No
+    .incbin "baserom_jp.gba", 0x8E19C, 0x30C
+    .4byte gText_Shelf_Items
+    .4byte gText_Shelf_Title
+    .incbin "baserom_jp.gba", 0x8E4B0, 0x2B0
+    .4byte gText_Shelf_Yes
+    .4byte gText_Shelf_No
+    .incbin "baserom_jp.gba", 0x8E768, 0xE0
     jp_code_0803ee_func func_0808E848, 0x8E848, 0x8E888
     jp_code_0803ee_func func_0808E888, 0x8E888, 0x8E8F8
     jp_code_0803ee_func func_0808E8F8, 0x8E8F8, 0x8EAA8
@@ -22561,9 +22609,50 @@ func_08090FCC:
     .global func_080914A0
     .thumb_func
 func_080914A0:
-    .incbin "baserom_jp.gba", 0x90FE0, (0x91DF0 - 0x90FE0)
+    .incbin "baserom_jp.gba", 0x90FE0, 0x344
+    .4byte gText_BlacksmithUpgrade_Tools
+    .4byte gText_BlacksmithUpgrade_Items
+    .incbin "baserom_jp.gba", 0x9132C, 0x1A0
+    .4byte gText_BlacksmithUpgrade_SelectTool
+    .incbin "baserom_jp.gba", 0x914D0, 0x68
+    .4byte gText_BlacksmithUpgrade_CursedTool
+    .incbin "baserom_jp.gba", 0x9153C, 0x94
+    .4byte gText_BlacksmithUpgrade_SelectOre
+    .incbin "baserom_jp.gba", 0x915D4, 0x28
+    .4byte gText_BlacksmithUpgrade_CannotUpgradeTool
+    .incbin "baserom_jp.gba", 0x91600, 0xA0
+    .4byte gText_BlacksmithUpgrade_CursedTool
+    .incbin "baserom_jp.gba", 0x916A4, 0xCC
+    .4byte gText_BlacksmithUpgrade_SelectOre
+    .incbin "baserom_jp.gba", 0x91774, 0x28
+    .4byte gText_BlacksmithUpgrade_CannotUpgradeTool
+    .incbin "baserom_jp.gba", 0x917A0, 0x88
+    .4byte gText_BlacksmithUpgrade_InvalidUpgradeOre
+    .incbin "baserom_jp.gba", 0x9182C, 0xA0
+    .4byte gText_BlacksmithUpgrade_InvalidUpgradeOre
+    .incbin "baserom_jp.gba", 0x918D0, 0xF4
+    .4byte gText_BlacksmithUpgrade_InvalidUpgradeOre
+    .incbin "baserom_jp.gba", 0x919C8, 0x74
+    .4byte gText_BlacksmithUpgrade_CannotChangeMind
+    .incbin "baserom_jp.gba", 0x91A40, 0xEC
+    .4byte gText_BlacksmithUpgrade_InsufficientExperience
+    .incbin "baserom_jp.gba", 0x91B30, 0x2C
+    .4byte gText_BlacksmithUpgrade_AlreadyUpgradedWithOre
+    .incbin "baserom_jp.gba", 0x91B60, 0x28
+    .4byte gText_BlacksmithUpgrade_DowngradeConfirmation
+    .incbin "baserom_jp.gba", 0x91B8C, 0x254
+    .4byte gText_BlacksmithUpgrade_WorkOrderPrefix
+    .4byte gText_BlacksmithUpgrade_WorkOrderGoldSuffix
+    .4byte gText_BlacksmithUpgrade_WorkOrderDaysSuffix
+    .incbin "baserom_jp.gba", 0x91DEC, 0x4
     .4byte gText_BlacksmithUpgrade_InsufficientGoldPageBreak
-    .incbin "baserom_jp.gba", 0x91DF4, (0x92090 - 0x91DF4)
+    .4byte gText_BlacksmithUpgrade_InsufficientGold
+    .incbin "baserom_jp.gba", 0x91DF8, 0x64
+    .4byte gText_BlacksmithUpgrade_ResultYes
+    .4byte gText_BlacksmithUpgrade_ResultNo
+    .incbin "baserom_jp.gba", 0x91E64, 0xE8
+    .4byte gText_BlacksmithUpgrade_CannotChangeMind
+    .incbin "baserom_jp.gba", 0x91F50, 0x140
     jp_code_0803ee_func func_08092090, 0x92090, 0x920D0
     jp_code_0803ee_func func_08092604, 0x920D0, 0x9215C
     jp_code_0803ee_func func_0809215C, 0x9215C, 0x92170
@@ -22582,7 +22671,27 @@ func_08093308:
     .global func_08092DD4
     .thumb_func
 func_08092DD4:
-    .incbin "baserom_jp.gba", 0x92DD4, (0x93554 - 0x92DD4)
+    .incbin "baserom_jp.gba", 0x92DD4, 0x2E8
+    .4byte gText_LinkCommunication_QuitCommunication
+    .incbin "baserom_jp.gba", 0x930C0, 0x18
+    .4byte gText_LinkCommunication_OtherPlayerCanceled
+    .incbin "baserom_jp.gba", 0x930DC, 0x30
+    .4byte gText_LinkCommunication_IncompatibleGameData
+    .incbin "baserom_jp.gba", 0x93110, 0x50
+    .4byte gText_LinkCommunication_ExchangeRestriction
+    .incbin "baserom_jp.gba", 0x93164, 0x54
+    .4byte gText_LinkCommunication_ActionQuestion
+    .4byte gText_LinkCommunication_Yes
+    .4byte gText_LinkCommunication_No
+    .incbin "baserom_jp.gba", 0x931C4, 0x5C
+    .4byte gText_LinkCommunication_Declined
+    .incbin "baserom_jp.gba", 0x93224, 0x1C0
+    .4byte gText_LinkCommunication_Complete
+    .incbin "baserom_jp.gba", 0x933E8, 0x78
+    .4byte gText_LinkCommunication_QuitCommunication
+    .incbin "baserom_jp.gba", 0x93464, 0x30
+    .4byte gText_LinkCommunication_QuitCommunication
+    .incbin "baserom_jp.gba", 0x93498, 0xBC
     jp_code_0803ee_func func_08093554, 0x93554, 0x93594
     jp_code_0803ee_func func_08093AC8, 0x93594, 0x935A0
     .global func_08093AD4
@@ -22591,7 +22700,15 @@ func_08093AD4:
     .global func_080935A0
     .thumb_func
 func_080935A0:
-    .incbin "baserom_jp.gba", 0x935A0, (0x93700 - 0x935A0)
+    .incbin "baserom_jp.gba", 0x935A0, 0x88
+    .4byte gText_LinkCommunication_Yes
+    .4byte gText_LinkCommunication_No
+    .incbin "baserom_jp.gba", 0x93630, 0x64
+    .4byte gText_LinkCommunication_DataExchangeFailed
+    .incbin "baserom_jp.gba", 0x93698, 0x24
+    .4byte gText_LinkCommunication_NowSendingData
+    .incbin "baserom_jp.gba", 0x936C0, 0x3C
+    .4byte gText_LinkCommunication_WaitingForOtherPlayer
     jp_code_0803ee_func func_08093C3C, 0x93700, 0x93890
     jp_code_0803ee_func func_08093890, 0x93890, 0x938B0
     jp_code_0803ee_func func_080938B0, 0x938B0, 0x938E4

@@ -13,7 +13,42 @@
     .global func_08003788
     .thumb_func
 func_08003788:
-    .incbin "baserom_jp.gba", 0x37A0, 0x13D0
+    .incbin "baserom_jp.gba", 0x37A0, 0x39C
+    .4byte gText_NewGameStatus_YearSuffix
+    .4byte gText_NewGameStatus_SeasonSeparator
+    .4byte gText_NewGameStatus_DaySuffix
+    .4byte gText_NewGameStatus_OpenParen
+    .4byte gText_NewGameStatus_CloseParen
+    .4byte gText_NewGameStatus_FarmSuffix
+    .incbin "baserom_jp.gba", 0x3B54, 0x3F4
+    .4byte gText_NewGameStatus_WriteDiary
+    .4byte gText_NewGameStatus_ReadDiary
+    .incbin "baserom_jp.gba", 0x3F50, 0x28
+    .4byte gText_NewGameStatus_NoSavedData
+    .incbin "baserom_jp.gba", 0x3F7C, 0x4
+    .4byte gText_NewGameHelp_Controls
+    .incbin "baserom_jp.gba", 0x3F84, 0x4
+    .4byte gText_NewGameHelp_ClockDisplay
+    .incbin "baserom_jp.gba", 0x3F8C, 0x4
+    .4byte gText_NewGameHelp_FaceDisplay
+    .incbin "baserom_jp.gba", 0x3F94, 0x18
+    .4byte gText_NewGameHelp_NameDisplay
+    .4byte gText_NewGameMenu_Blank
+    .incbin "baserom_jp.gba", 0x3FB4, 0x100
+    .4byte gText_NewGameSave_SaveFailed
+    .incbin "baserom_jp.gba", 0x40B8, 0x138
+    .4byte gText_NewGameSave_LoadFailed
+    .incbin "baserom_jp.gba", 0x41F4, 0x658
+    .4byte gText_NewGameSave_LoadPrompt
+    .4byte gText_NewGameSave_Affirmative
+    .4byte gText_NewGameSave_Negative
+    .incbin "baserom_jp.gba", 0x4858, 0x20
+    .4byte gText_NewGameStatus_NoSavedData
+    .incbin "baserom_jp.gba", 0x487C, 0x30
+    .4byte gText_NewGameSave_OverwritePrompt
+    .4byte gText_NewGameSave_Affirmative
+    .4byte gText_NewGameSave_Negative
+    .incbin "baserom_jp.gba", 0x48B8, 0x2B8
 
     .global func_08004B58
     .thumb_func
@@ -48,12 +83,28 @@ func_08004C54:
     .global func_08004C68
     .thumb_func
 func_08004C68:
-    .incbin "baserom_jp.gba", 0x4C80, (0x5138 - 0x4C80)
+    .incbin "baserom_jp.gba", 0x4C80, 0x280
+    .4byte gText_NewGameIdentity_PlayerPrefix
+    .4byte gText_NewGameIdentity_FarmPrefix
+    .4byte gText_NewGameIdentity_DogPrefix
+    .incbin "baserom_jp.gba", 0x4F0C, 0x21C
+    .4byte gText_NewGameIdentity_BirthMonthSuffix
+    .4byte gText_NewGameIdentity_BirthDaySuffix
+    .incbin "baserom_jp.gba", 0x5130, 0x8
 
     .global func_080050C8
     .thumb_func
 func_080050C8:
-    .incbin "baserom_jp.gba", 0x5138, (0x58A4 - 0x5138)
+    .incbin "baserom_jp.gba", 0x5138, 0x3A8
+    .4byte gText_NewGameIdentity_PlayerName
+    .4byte gText_NewGameIdentity_PlayerBirthday
+    .4byte gText_NewGameIdentity_FarmName
+    .4byte gText_NewGameIdentity_DogName
+    .incbin "baserom_jp.gba", 0x54F0, 0x2E8
+    .4byte gText_NewGameIdentity_Confirm
+    .4byte gText_NewGameIdentity_Yes
+    .4byte gText_NewGameIdentity_No
+    .incbin "baserom_jp.gba", 0x57E4, 0xC0
 
     .global func_080059D0
     .thumb_func
@@ -63,12 +114,27 @@ func_080059D0:
     .global func_08005A00
     .thumb_func
 func_08005A00:
-    .incbin "baserom_jp.gba", 0x58D4, (0x5A0C - 0x58D4)
+    .incbin "baserom_jp.gba", 0x58D4, 0x134
+    .4byte gText_NewGameNameEntry_Placeholder
 
     .global func_08005B38
     .thumb_func
 func_08005B38:
-    .incbin "baserom_jp.gba", 0x5A0C, (0x7080 - 0x5A0C)
+    .incbin "baserom_jp.gba", 0x5A0C, 0x3E0
+    .4byte gText_NewGameNameEntry_NameLabel
+    .incbin "baserom_jp.gba", 0x5DF0, 0x6C0
+    .4byte gText_NewGameIdentity_Confirm + 0xB
+    .incbin "baserom_jp.gba", 0x64B4, 0x11C
+    .4byte gText_NewGameNameEntry_ModeKatakana
+    .incbin "baserom_jp.gba", 0x65D4, 0x18
+    .4byte gText_NewGameNameEntry_ModeSymbols
+    .incbin "baserom_jp.gba", 0x65F0, 0x5C
+    .4byte gText_NewGameNameEntry_ModeHiragana
+    .incbin "baserom_jp.gba", 0x6650, 0x9E0
+    .4byte gText_NewGameNameEntry_Confirm
+    .4byte gText_NewGameNameEntry_Yes
+    .4byte gText_NewGameNameEntry_No
+    .incbin "baserom_jp.gba", 0x703C, 0x44
 
     .global func_08007078
     .thumb_func
