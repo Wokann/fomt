@@ -67,6 +67,24 @@ REBUILT_SOURCES = {
     "gUnk_087537D0": "graphics/ui/farm_status/resource_archive/",
     "gUnk_08754674": "graphics/ui/cooking_resource_archive/",
     "gUnk_08754C0C": "graphics/ui/small_resource_archive/",
+    "gUnk_0871D51C": "graphics/regional_resource_0871d51c/",
+}
+
+# These paths intentionally contain per-region source trees instead of one
+# shared payload.  Keep the distinction visible in generated coverage rather
+# than letting a rebuilt regional archive look byte-identical by implication.
+REGIONAL_SOURCES = {"gUnk_0871D51C"}
+
+# A regional rebuild has no single payload that ``bytes.find`` can locate in
+# the other ROMs.  These addresses are instead obtained from the actual
+# regional code pointers and checked independently by its Make target.
+REGIONAL_LOCATIONS = {
+    "gUnk_0871D51C": {
+        "jp": 0x4A3678,
+        "us": 0x71D51C,
+        "eu": 0x71D578,
+        "de": 0x4A45B8,
+    },
 }
 
 
@@ -107,22 +125,29 @@ def write_markdown(output: Path, rows: list[tuple[str, int, int, Archive, dict[s
         "bounded by the project, then validates the native archive header. It is not",
         "a blind ROM scan and does not claim that every parseable byte sequence is an",
         "image resource. `different` means that the complete DE archive payload does",
-        "not occur verbatim in that regional ROM and therefore requires a separate",
-        "regional pipeline before it can be treated as shared.",
+        "not occur verbatim in that regional ROM. Such records either retain a",
+        "separate per-region pipeline or remain pending audit; they are never treated",
+        "as a shared payload.",
         "",
         "| Label | JP | US | EU | DE | Length | Header counts | Entries | Source status |",
         "| --- | --- | --- | --- | --- | ---: | --- | ---: | --- |",
     ]
-    rebuilt = 0
+    rebuilt_shared = 0
+    rebuilt_regional = 0
     identical_unmanaged = 0
     regional = 0
     for name, de_offset, _declared, archive, matches in rows:
         counts = ", ".join(str(value) for value in archive.section_counts)
         identical = all(matches[region] >= 0 for region in ("jp", "us", "eu", "de"))
+        display_locations = REGIONAL_LOCATIONS.get(name, matches)
         source = REBUILT_SOURCES.get(name)
         if source:
-            status = f"rebuild: `{source}`"
-            rebuilt += 1
+            if name in REGIONAL_SOURCES:
+                status = f"rebuild, region-local: `{source}`"
+                rebuilt_regional += 1
+            else:
+                status = f"rebuild, four-region shared: `{source}`"
+                rebuilt_shared += 1
         elif identical:
             status = "unmanaged, four-region identical"
             identical_unmanaged += 1
@@ -130,14 +155,15 @@ def write_markdown(output: Path, rows: list[tuple[str, int, int, Archive, dict[s
             status = "regional payload differs"
             regional += 1
         lines.append(
-            f"| `{name}` | {location(matches['jp'])} | {location(matches['us'])} | "
-            f"{location(matches['eu'])} | `0x{de_offset:X}` | `0x{archive.encoded_length:X}` | "
+            f"| `{name}` | {location(display_locations['jp'])} | {location(display_locations['us'])} | "
+            f"{location(display_locations['eu'])} | `0x{display_locations['de']:X}` | `0x{archive.encoded_length:X}` | "
             f"{counts} | {archive.entry_count} | {status} |"
         )
     lines.extend([
         "",
         (
-            f"Generated records: {len(rows)} ({rebuilt} rebuilt, "
+            f"Generated records: {len(rows)} ({rebuilt_shared} rebuilt shared, "
+            f"{rebuilt_regional} rebuilt regional, "
             f"{identical_unmanaged} unmanaged but four-region identical, "
             f"{regional} regionally different). Regenerate with:"
         ),

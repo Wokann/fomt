@@ -67,6 +67,26 @@ EU, and DE. The common archive is the data currently exposed under
 `gUnk_086678A0` in non-JP regional assembly; the JP physical match was found
 by the exact complete payload, not by inventing a JP label.
 
+## Confirmed region-local archives
+
+`gUnk_0871D51C` is the first archive intentionally kept outside the shared
+table. Code pointers and each native archive header independently establish
+the following fixed layouts. Its four `full/` source directories are rebuilt
+and patched only to their own region's range; no region is substituted for
+another.
+
+| Region | ROM offset | Length | Header counts | Entries | SHA-256 |
+| --- | --- | --- | --- | --- | --- |
+| JP | `0x4A3678` | `0x1298` | `11, 31, 1, 124, 1, 0` | 46 | `d32141496cb683bf0c91fb622cedf8f9879e8debe05644173e958dc4aab1092e` |
+| US | `0x71D51C` | `0x128C` | `11, 31, 1, 124, 1, 0` | 43 | `413634a8db92072ac9cd7e3db2dbb7c7c5980d1eca3e636b3c98a55661ea6a49` |
+| EU | `0x71D578` | `0x128C` | `11, 31, 1, 124, 1, 0` | 43 | `413634a8db92072ac9cd7e3db2dbb7c7c5980d1eca3e636b3c98a55661ea6a49` |
+| DE | `0x4A45B8` | `0x13BC` | `11, 33, 1, 132, 1, 0` | 47 | `646e80acf304222d6685c6795db233bdd0ed1c75f0b4f4511e1c14c4fea64813` |
+
+US and EU are presently byte-identical but deliberately retain independent
+authoring directories. JP's selection table contains three extra entries, and
+DE has two additional descriptors, eight extra tiles and four extra selection
+entries; those structural differences are preserved as native layout data.
+
 The common archive's group-descriptor consumer is fully bounded. Every
 drawable descriptor selects valid GBA OAM, 4bpp tile, and BGR555 palette
 ranges; `func_0805E790` resolves the fields and `func_080757E8` uploads tiles
