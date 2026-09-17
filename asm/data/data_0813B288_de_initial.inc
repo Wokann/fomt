@@ -2320,10 +2320,10 @@ gUnk_08752DCC:
 	.incbin "baserom_de.gba", 0x4DA2E8, 0x80
 	.global gUnk_08752E4C
 gUnk_08752E4C:
-	.incbin "baserom_de.gba", 0x4DA368, 0x80
+	FOMT_FARM_STATUS_SELECTOR_CASE_09 4bpp
 	.global gUnk_08752ECC
 gUnk_08752ECC:
-	.incbin "baserom_de.gba", 0x4DA3E8, 0x20
+	FOMT_FARM_STATUS_SELECTOR_CASE_09 gbapal
 	.global gUnk_08752EEC
 gUnk_08752EEC:
 	.incbin "baserom_de.gba", 0x4DA408, 0x80

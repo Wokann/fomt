@@ -455,6 +455,25 @@
     .endif
     .endm
 
+    @ The resource selector's case 9 has an independently paired 16x16 4bpp
+    @ tile record and BGR555 palette.  Its name stays tied to the proven
+    @ selector case until the owning UI state has a source-level name.
+    .macro FOMT_FARM_STATUS_SELECTOR_CASE_09 extension
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/farm_status/auxiliary_icons/selector_case_09.\extension"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/farm_status/auxiliary_icons/selector_case_09.\extension"
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/farm_status/auxiliary_icons/selector_case_09.\extension"
+    .else
+    .incbin "build/us/graphics/ui/farm_status/auxiliary_icons/selector_case_09.\extension"
+    .endif
+    .endif
+    .endif
+    .endm
+
     .ifdef REGION_JP
     @ JP revision 0 counterpart of data_0813B288.s.
     @
@@ -2353,7 +2372,10 @@ gUnk_084D8638:
     .incbin "baserom_jp.gba", 0x4D8638, (0x4D86B8 - 0x4D8638)
     .global gUnk_084D86B8
 gUnk_084D86B8:
-    .incbin "baserom_jp.gba", 0x4D86B8, (0x4D977C - 0x4D86B8)
+    .incbin "baserom_jp.gba", 0x4D86B8, (0x4D8958 - 0x4D86B8)
+    FOMT_FARM_STATUS_SELECTOR_CASE_09 4bpp
+    FOMT_FARM_STATUS_SELECTOR_CASE_09 gbapal
+    .incbin "baserom_jp.gba", 0x4D89F8, (0x4D977C - 0x4D89F8)
     .global gUnk_084D977C
 gUnk_084D977C:
     .incbin "baserom_jp.gba", 0x4D977C, (0x4DB1DC - 0x4D977C)
@@ -6100,11 +6122,11 @@ gUnk_08752DCC:
 
 	.global gUnk_08752E4C
 gUnk_08752E4C:
-	FOMT_REGION_ASSET_INCBIN 0x752E4C, 0x80
+	FOMT_FARM_STATUS_SELECTOR_CASE_09 4bpp
 
 	.global gUnk_08752ECC
 gUnk_08752ECC:
-	FOMT_REGION_ASSET_INCBIN 0x752ECC, 0x20
+	FOMT_FARM_STATUS_SELECTOR_CASE_09 gbapal
 
 	.global gUnk_08752EEC
 gUnk_08752EEC:
