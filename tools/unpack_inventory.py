@@ -198,6 +198,7 @@ def function_calls(
     start_line: int,
     callee: str,
     include_size: bool,
+    include_unresolved: bool = False,
 ) -> list[Call]:
     labels = {
         match.group(1): index
@@ -222,6 +223,12 @@ def function_calls(
             continue
         state = states.get(index, {})
         symbols = sorted(value for value in state.get("r0", frozenset()) if isinstance(value, str) and value.startswith("g"))
+        if not symbols and include_unresolved:
+            # Keep the ordinary inventory conservative: it reports only named
+            # ROM sources.  The coverage report additionally records every
+            # static call site so table-derived and otherwise dynamic sources
+            # remain visible as an audit queue rather than silently vanishing.
+            symbols = ["<unresolved>"]
         destinations = state.get("r1", frozenset()) or frozenset((None,))
         sizes = (state.get("r2", frozenset()) or frozenset((None,))) if include_size else frozenset((None,))
         for symbol in symbols:
@@ -270,7 +277,12 @@ def function_starts(lines: list[str]) -> list[tuple[int, str]]:
     return starts
 
 
-def calls(root: Path, callee: str = "Unpack", include_size: bool = False) -> list[Call]:
+def calls(
+    root: Path,
+    callee: str = "Unpack",
+    include_size: bool = False,
+    include_unresolved: bool = False,
+) -> list[Call]:
     result: list[Call] = []
     for source in sorted((root / "asm").rglob("*.s")):
         lines = source.read_text(encoding="utf-8", errors="replace").splitlines()
@@ -278,7 +290,8 @@ def calls(root: Path, callee: str = "Unpack", include_size: bool = False) -> lis
         for position, (start, name) in enumerate(starts):
             end = starts[position + 1][0] if position + 1 < len(starts) else len(lines)
             result.extend(function_calls(
-                source, root, name, lines[start:end], start + 1, callee, include_size
+                source, root, name, lines[start:end], start + 1, callee,
+                include_size, include_unresolved,
             ))
     return sorted(set(result), key=lambda row: (
         row.source, row.line, row.symbol, row.destination_kind, row.destination, row.byte_count
@@ -288,17 +301,33 @@ def calls(root: Path, callee: str = "Unpack", include_size: bool = False) -> lis
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("root", type=Path, help="project root containing asm/")
-    parser.add_argument("--csv", type=Path, help="write a CSV audit report")
+    parser.add_argument("--csv", type=Path, help="write the conservative named-source CSV audit report")
+    parser.add_argument(
+        "--coverage-csv",
+        type=Path,
+        help="write every static Unpack call; unresolved sources remain explicit audit leads",
+    )
     arguments = parser.parse_args()
     root = arguments.root.resolve()
-    rows = calls(root)
-    if arguments.csv:
-        arguments.csv.parent.mkdir(parents=True, exist_ok=True)
-        with arguments.csv.open("w", encoding="utf-8", newline="") as handle:
+    if arguments.csv and arguments.coverage_csv:
+        parser.error("--csv and --coverage-csv are mutually exclusive")
+    include_unresolved = arguments.coverage_csv is not None
+    rows = calls(root, include_unresolved=include_unresolved)
+    output = arguments.coverage_csv or arguments.csv
+    if output:
+        output.parent.mkdir(parents=True, exist_ok=True)
+        with output.open("w", encoding="utf-8", newline="") as handle:
             writer = csv.writer(handle)
-            writer.writerow(("source", "line", "function", "symbol", "destination_kind", "destination"))
+            if include_unresolved:
+                writer.writerow(("source", "line", "function", "symbol", "source_resolution", "destination_kind", "destination"))
+            else:
+                writer.writerow(("source", "line", "function", "symbol", "destination_kind", "destination"))
             for row in rows:
-                writer.writerow((row.source, row.line, row.function, row.symbol, row.destination_kind, row.destination))
+                if include_unresolved:
+                    resolution = "named" if row.symbol != "<unresolved>" else "unresolved"
+                    writer.writerow((row.source, row.line, row.function, row.symbol, resolution, row.destination_kind, row.destination))
+                else:
+                    writer.writerow((row.source, row.line, row.function, row.symbol, row.destination_kind, row.destination))
         return
     print(f"conservative labelled Unpack calls: {len(rows)}")
     for row in rows:

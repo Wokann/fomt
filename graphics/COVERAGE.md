@@ -132,6 +132,7 @@ Generate a current list with:
 python tools/gfx_incbin_inventory.py . --csv build/gfx_incbin_inventory.csv
 python tools/gfx_compression_inventory.py . --csv build/gfx_compression_inventory.csv
 python tools/unpack_vram_inventory.py . --csv build/unpack_vram_inventory.csv
+make unpack-coverage-inventory
 ```
 
 All generated CSV files are local audit artifacts, not source artwork. The
@@ -144,6 +145,13 @@ not assertions about tile, palette, or OAM format. Run it with
 `make unpack-vram-inventory`; the current assembly yields 30 such calls.
 `DIRECT_UNPACK_VRAM_AUDIT.md` records the current code-consumer classification
 and keeps unproven streams out of the managed-resource table.
+
+`unpack-coverage-inventory` is deliberately broader than that conservative
+named-source report: it records every static `bl Unpack` site and writes
+`<unresolved>` when the source comes through a table or caller argument. It is
+an audit queue, not an asset extractor. `UNPACK_CALL_COVERAGE.md` records how
+the current unresolved sites map to already-bounded MapData, Farm House, Intro
+Scene, or generic caller-owned paths.
 
 ## Audited runtime-delivery paths
 
@@ -158,6 +166,7 @@ byte is visual data.
 | --- | --- | --- |
 | Label-bound `IndexedResourceArchive` | 51 bounded payloads: 42 shared and 9 regional byte domains | Every payload rebuilds from indexed-PNG sources or its explicitly separated regional source; see `INDEXED_RESOURCE_ARCHIVE_INVENTORY.md`. |
 | Literal `Unpack` to VRAM | 44 calls, 37 distinct physical labels | Every recovered source is classified in `DIRECT_UNPACK_VRAM_AUDIT.md`; region-local symbols remain separate physical labels even when they belong to an already-managed logical resource group. Each source is either a verified editable pipeline, an archive-owned component, or an intentionally native-only resource whose image layout is not proven. |
+| All static `Unpack` calls | 98 call sites; 43 table/caller-derived sources remain explicit | `UNPACK_CALL_COVERAGE.md` resolves every non-direct-label site to MapData, Farm House, Intro Scene, or a generic caller-owned decoder. The report does not invent source ranges for dynamic pointers. |
 | Literal direct DMA to video RAM | 64 scanner-qualified calls, 47 distinct labels, plus one manually checked high-register call | Every recovered label is classified in `DIRECT_DMA_VRAM_AUDIT.md`. Raw tile and palette records retain their native source when no static tilemap/OAM layout exists. |
 | Literal guarded RAM copies | 18 bounded paths, all to palette RAM | Every source is classified in `DIRECT_COPY_RAM_AUDIT.md`; a palette slice is not promoted to a standalone image unless its owning layout is proven. |
 | MapData visual layers | 272 bounded native streams | The six visual pointer layers are managed as maps; terrain, collision, and other non-visual fields remain outside the graphics pipeline. |
