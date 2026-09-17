@@ -17789,13 +17789,4440 @@ func_080A6098: @ 0x080A6098
 	.align 2, 0
 .Ljp_080A7484: .4byte gFieldRenderRectDescriptors + 0x378
 .Ljp_080A7488: .4byte gFieldRenderRectDescriptors + 0x438
-    .global func_080A748C
-    .thumb_func
-func_080A748C:
     .global func_080A6EC4
     .thumb_func
-func_080A6EC4:
-    .incbin "baserom_jp.gba", 0xA6EC4, (0xA8FDC - 0xA6EC4)
+func_080A6EC4: @ 0x080A6EC4
+	push {r4, r5, r6, r7, lr}
+	mov r7, sl
+	mov r6, sb
+	mov r5, r8
+	push {r5, r6, r7}
+	sub sp, #0x1c4
+	str r0, [sp, #0x190]
+	adds r7, r1, #0
+	bl func_080A58D8
+	ldr r0, [sp, #0x190]
+	adds r0, #0x94
+	ldr r0, [r0]
+	ldr r1, .Ljp_map_080A6F04 @ =0x0000214C
+	adds r1, r0, r1
+	str r1, [sp, #0x194]
+	adds r0, #0x10
+	bl func_0800E324
+	adds r6, r0, #0
+	ldr r1, .Ljp_map_080A6F08 @ =gUnk_083ED9FC
+	mov r0, sp
+	bl __22IndexedResourceArchivePCUc
+	ldr r2, [sp, #0x190]
+	ldr r0, [r2]
+	cmp r0, #0x2e
+	bgt .Ljp_map_080A6F0C
+	cmp r0, #0x2d
+	bge .Ljp_map_080A6F12
+	b .Ljp_map_080A6F18
+	.align 2, 0
+.Ljp_map_080A6F04: .4byte 0x0000214C
+.Ljp_map_080A6F08: .4byte gUnk_083ED9FC
+.Ljp_map_080A6F0C:
+	cmp r0, #0x2f
+	beq .Ljp_map_080A6F16
+	b .Ljp_map_080A6F18
+.Ljp_map_080A6F12:
+	movs r6, #1
+	b .Ljp_map_080A6F18
+.Ljp_map_080A6F16:
+	movs r6, #3
+.Ljp_map_080A6F18:
+	ldr r3, [sp, #0x190]
+	ldr r0, [r3, #4]
+	adds r3, #0x9c
+	str r3, [sp, #0x1b4]
+	cmp r0, #0x33
+	bls .Ljp_map_080A6F28
+	bl .Ljp_map_080A8C5C
+.Ljp_map_080A6F28:
+	lsls r0, r0, #2
+	ldr r1, .Ljp_map_080A6F34 @ =.Ljp_map_080A6F38
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.Ljp_map_080A6F34: .4byte .Ljp_map_080A6F38
+.Ljp_map_080A6F38: @ jump table
+	.4byte .Ljp_map_080A7ACC @ case 0
+	.4byte .Ljp_map_080A8074 @ case 1
+	.4byte .Ljp_map_080A8C5C @ case 2
+	.4byte .Ljp_map_080A8C5C @ case 3
+	.4byte .Ljp_map_080A885E @ case 4
+	.4byte .Ljp_map_080A8C5C @ case 5
+	.4byte .Ljp_map_080A873C @ case 6
+	.4byte .Ljp_map_080A8C5C @ case 7
+	.4byte .Ljp_map_080A8C5C @ case 8
+	.4byte .Ljp_map_080A8C5C @ case 9
+	.4byte .Ljp_map_080A8C5C @ case 10
+	.4byte .Ljp_map_080A8C5C @ case 11
+	.4byte .Ljp_map_080A8C5C @ case 12
+	.4byte .Ljp_map_080A8C5C @ case 13
+	.4byte .Ljp_map_080A8C5C @ case 14
+	.4byte .Ljp_map_080A8C5C @ case 15
+	.4byte .Ljp_map_080A8C5C @ case 16
+	.4byte .Ljp_map_080A8C5C @ case 17
+	.4byte .Ljp_map_080A8C5C @ case 18
+	.4byte .Ljp_map_080A8C5C @ case 19
+	.4byte .Ljp_map_080A8C5C @ case 20
+	.4byte .Ljp_map_080A8C5C @ case 21
+	.4byte .Ljp_map_080A8C5C @ case 22
+	.4byte .Ljp_map_080A8C5C @ case 23
+	.4byte .Ljp_map_080A8C5C @ case 24
+	.4byte .Ljp_map_080A8C5C @ case 25
+	.4byte .Ljp_map_080A8C5C @ case 26
+	.4byte .Ljp_map_080A8C5C @ case 27
+	.4byte .Ljp_map_080A8C5C @ case 28
+	.4byte .Ljp_map_080A8C5C @ case 29
+	.4byte .Ljp_map_080A8C5C @ case 30
+	.4byte .Ljp_map_080A8C5C @ case 31
+	.4byte .Ljp_map_080A8C5C @ case 32
+	.4byte .Ljp_map_080A8C5C @ case 33
+	.4byte .Ljp_map_080A8C5C @ case 34
+	.4byte .Ljp_map_080A8C5C @ case 35
+	.4byte .Ljp_map_080A8C4A @ case 36
+	.4byte .Ljp_map_080A8C4A @ case 37
+	.4byte .Ljp_map_080A8C4A @ case 38
+	.4byte .Ljp_map_080A8C4A @ case 39
+	.4byte .Ljp_map_080A8C5C @ case 40
+	.4byte .Ljp_map_080A8C5C @ case 41
+	.4byte .Ljp_map_080A7008 @ case 42
+	.4byte .Ljp_map_080A7008 @ case 43
+	.4byte .Ljp_map_080A8C5C @ case 44
+	.4byte .Ljp_map_080A8C5C @ case 45
+	.4byte .Ljp_map_080A8C5C @ case 46
+	.4byte .Ljp_map_080A8C5C @ case 47
+	.4byte .Ljp_map_080A8C5C @ case 48
+	.4byte .Ljp_map_080A8C5C @ case 49
+	.4byte .Ljp_map_080A8C5C @ case 50
+	.4byte .Ljp_map_080A8328 @ case 51
+.Ljp_map_080A7008:
+	add r5, sp, #0x30
+	movs r0, #0
+	str r0, [sp, #0x30]
+	strh r0, [r5, #4]
+	add r4, sp, #0x38
+	str r0, [sp, #0x38]
+	strh r0, [r4, #4]
+	add r1, sp, #0x40
+	str r0, [sp, #0x40]
+	strh r0, [r1, #4]
+	add r1, sp, #0x48
+	str r0, [sp, #0x48]
+	strh r0, [r1, #4]
+	ldr r0, [sp, #0x190]
+	adds r0, #0x94
+	ldr r0, [r0]
+	movs r6, #0xfa
+	lsls r6, r6, #1
+	adds r6, r0, r6
+	str r6, [sp, #0x198]
+	adds r0, r6, #0
+	bl HasKitchenWhisk__C9FarmHouse
+	lsls r0, r0, #0x18
+	ldr r1, [sp, #0x190]
+	adds r1, #0x9c
+	str r1, [sp, #0x1b4]
+	cmp r0, #0
+	bne .Ljp_map_080A7044
+	b .Ljp_map_080A718A
+.Ljp_map_080A7044:
+	ldr r4, [sp]
+	add r0, sp, #0x70
+	ldr r3, [r4, #0xc]
+	mov r1, sp
+	movs r2, #0xec
+	lsls r2, r2, #1
+	bl _call_via_r3
+	ldr r0, [sp, #0x70]
+	ldrh r2, [r0]
+	add r0, sp, #0x50
+	ldr r3, [r4, #0x10]
+	mov r1, sp
+	bl _call_via_r3
+	add r4, sp, #0x50
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #0x20
+	bl memcpy
+	add r1, sp, #0x30
+	adds r0, r4, #0
+	ldm r0!, {r2, r3, r5}
+	stm r1!, {r2, r3, r5}
+	ldm r0!, {r2, r3, r6}
+	stm r1!, {r2, r3, r6}
+	ldm r0!, {r5, r6}
+	stm r1!, {r5, r6}
+	ldr r0, [sp, #0x38]
+	adds r1, r0, #0
+	movs r3, #0
+	cmp r1, #0
+	beq .Ljp_map_080A708C
+	mov r0, sp
+	ldrh r3, [r0, #0x3c]
+.Ljp_map_080A708C:
+	adds r0, r4, #0
+	ldr r2, .Ljp_map_080A70B8 @ =0x060045A0
+	bl func_08008F0C
+	mov sb, r4
+	ldr r1, [r7, #4]
+	ldr r0, [r7, #0xc]
+	cmp r1, r0
+	beq .Ljp_map_080A70BC
+	cmp r1, #0
+	beq .Ljp_map_080A70AE
+	adds r0, r1, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A70AE:
+	ldr r0, [r7, #4]
+	adds r0, #0x10
+	str r0, [r7, #4]
+	b .Ljp_map_080A718A
+	.align 2, 0
+.Ljp_map_080A70B8: .4byte 0x060045A0
+.Ljp_map_080A70BC:
+	mov sl, r1
+	movs r0, #1
+	str r0, [sp, #0x7c]
+	ldr r1, [r7]
+	mov r5, sl
+	subs r0, r5, r1
+	asrs r4, r0, #4
+	str r4, [sp, #0x78]
+	add r5, sp, #0x7c
+	add r0, sp, #0x78
+	adds r3, r1, #0
+	cmp r4, #1
+	bhs .Ljp_map_080A70D8
+	adds r0, r5, #0
+.Ljp_map_080A70D8:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_map_080A70F8
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_map_080A70F4
+	mov r0, r8
+	bl func_080D3BC0
+.Ljp_map_080A70F4:
+	ldr r3, [r7]
+	b .Ljp_map_080A70FC
+.Ljp_map_080A70F8:
+	movs r0, #0
+	mov r8, r0
+.Ljp_map_080A70FC:
+	adds r5, r0, #0
+	str r5, [sp, #0x1bc]
+	adds r2, r3, #0
+	adds r3, r5, #0
+	ldr r6, [sp, #0x190]
+	adds r6, #0x9c
+	str r6, [sp, #0x1b4]
+	cmp r2, sl
+	beq .Ljp_map_080A7126
+.Ljp_map_080A710E:
+	cmp r3, #0
+	beq .Ljp_map_080A711E
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A711E:
+	adds r2, #0x10
+	adds r3, #0x10
+	cmp r2, sl
+	bne .Ljp_map_080A710E
+.Ljp_map_080A7126:
+	adds r5, r3, #0
+	ldr r0, [sp, #0x7c]
+	cmp r0, #1
+	bne .Ljp_map_080A7142
+	cmp r5, #0
+	beq .Ljp_map_080A713E
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A713E:
+	adds r5, #0x10
+	b .Ljp_map_080A7164
+.Ljp_map_080A7142:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_map_080A7162
+.Ljp_map_080A714A:
+	cmp r2, #0
+	beq .Ljp_map_080A715A
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A715A:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_map_080A714A
+.Ljp_map_080A7162:
+	adds r5, r2, #0
+.Ljp_map_080A7164:
+	ldr r1, [r7, #4]
+	ldr r3, [r7]
+	adds r0, r3, #0
+	cmp r3, r1
+	beq .Ljp_map_080A7174
+.Ljp_map_080A716E:
+	adds r0, #0x10
+	cmp r0, r1
+	bne .Ljp_map_080A716E
+.Ljp_map_080A7174:
+	cmp r3, #0
+	beq .Ljp_map_080A717E
+	adds r0, r3, #0
+	bl free
+.Ljp_map_080A717E:
+	ldr r0, [sp, #0x1bc]
+	add r0, r8
+	ldr r6, [sp, #0x1bc]
+	str r6, [r7]
+	str r5, [r7, #4]
+	str r0, [r7, #0xc]
+.Ljp_map_080A718A:
+	ldr r0, [sp, #0x198]
+	bl HasKitchenKnife__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	bne .Ljp_map_080A7198
+	b .Ljp_map_080A72E4
+.Ljp_map_080A7198:
+	ldr r5, [sp]
+	add r4, sp, #0x80
+	adds r0, r4, #0
+	ldr r3, [r5, #0xc]
+	mov r1, sp
+	ldr r2, .Ljp_map_080A720C @ =0x00000109
+	bl _call_via_r3
+	ldr r0, [r4]
+	ldrh r2, [r0]
+	add r0, sp, #0x50
+	ldr r3, [r5, #0x10]
+	mov r1, sp
+	bl _call_via_r3
+	add r4, sp, #0x50
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #0x20
+	bl memcpy
+	add r1, sp, #0x30
+	adds r0, r4, #0
+	ldm r0!, {r2, r3, r5}
+	stm r1!, {r2, r3, r5}
+	ldm r0!, {r2, r3, r6}
+	stm r1!, {r2, r3, r6}
+	ldm r0!, {r5, r6}
+	stm r1!, {r5, r6}
+	ldr r0, [sp, #0x38]
+	adds r1, r0, #0
+	movs r3, #0
+	cmp r1, #0
+	beq .Ljp_map_080A71E0
+	mov r0, sp
+	ldrh r3, [r0, #0x3c]
+.Ljp_map_080A71E0:
+	adds r0, r4, #0
+	ldr r2, .Ljp_map_080A7210 @ =0x06004620
+	bl func_08008F0C
+	mov sb, r4
+	ldr r1, [r7, #4]
+	ldr r0, [r7, #0xc]
+	cmp r1, r0
+	beq .Ljp_map_080A7214
+	cmp r1, #0
+	beq .Ljp_map_080A7202
+	adds r0, r1, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7202:
+	ldr r0, [r7, #4]
+	adds r0, #0x10
+	str r0, [r7, #4]
+	b .Ljp_map_080A72E4
+	.align 2, 0
+.Ljp_map_080A720C: .4byte 0x00000109
+.Ljp_map_080A7210: .4byte 0x06004620
+.Ljp_map_080A7214:
+	str r1, [sp, #0x1c0]
+	movs r0, #1
+	add r1, sp, #0x8c
+	str r0, [r1]
+	ldr r3, [r7]
+	ldr r5, [sp, #0x1c0]
+	subs r0, r5, r3
+	asrs r4, r0, #4
+	add r0, sp, #0x88
+	str r4, [r0]
+	ldr r2, [r1]
+	mov sl, r1
+	cmp r4, r2
+	bhs .Ljp_map_080A7232
+	mov r0, sl
+.Ljp_map_080A7232:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_map_080A7252
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_map_080A724E
+	mov r0, r8
+	bl func_080D3BC0
+.Ljp_map_080A724E:
+	ldr r3, [r7]
+	b .Ljp_map_080A7256
+.Ljp_map_080A7252:
+	movs r0, #0
+	mov r8, r0
+.Ljp_map_080A7256:
+	adds r5, r0, #0
+	str r5, [sp, #0x1bc]
+	adds r2, r3, #0
+	adds r3, r5, #0
+	ldr r6, [sp, #0x1c0]
+	cmp r2, r6
+	beq .Ljp_map_080A727E
+.Ljp_map_080A7264:
+	cmp r3, #0
+	beq .Ljp_map_080A7274
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7274:
+	adds r2, #0x10
+	adds r3, #0x10
+	ldr r0, [sp, #0x1c0]
+	cmp r2, r0
+	bne .Ljp_map_080A7264
+.Ljp_map_080A727E:
+	adds r5, r3, #0
+	mov r2, sl
+	ldr r1, [r2]
+	cmp r1, #1
+	bne .Ljp_map_080A729C
+	cmp r5, #0
+	beq .Ljp_map_080A7298
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r3, r4, r6}
+	stm r0!, {r3, r4, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7298:
+	adds r5, #0x10
+	b .Ljp_map_080A72BE
+.Ljp_map_080A729C:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_map_080A72BC
+.Ljp_map_080A72A4:
+	cmp r2, #0
+	beq .Ljp_map_080A72B4
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A72B4:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_map_080A72A4
+.Ljp_map_080A72BC:
+	adds r5, r2, #0
+.Ljp_map_080A72BE:
+	ldr r1, [r7, #4]
+	ldr r3, [r7]
+	adds r0, r3, #0
+	cmp r3, r1
+	beq .Ljp_map_080A72CE
+.Ljp_map_080A72C8:
+	adds r0, #0x10
+	cmp r0, r1
+	bne .Ljp_map_080A72C8
+.Ljp_map_080A72CE:
+	cmp r3, #0
+	beq .Ljp_map_080A72D8
+	adds r0, r3, #0
+	bl free
+.Ljp_map_080A72D8:
+	ldr r0, [sp, #0x1bc]
+	add r0, r8
+	ldr r1, [sp, #0x1bc]
+	str r1, [r7]
+	str r5, [r7, #4]
+	str r0, [r7, #0xc]
+.Ljp_map_080A72E4:
+	ldr r0, [sp, #0x198]
+	bl HasKitchenPot__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	bne .Ljp_map_080A72F2
+	b .Ljp_map_080A743C
+.Ljp_map_080A72F2:
+	ldr r5, [sp]
+	add r4, sp, #0x90
+	adds r0, r4, #0
+	ldr r3, [r5, #0xc]
+	mov r1, sp
+	movs r2, #0xad
+	lsls r2, r2, #1
+	bl _call_via_r3
+	ldr r0, [r4]
+	ldrh r2, [r0]
+	add r0, sp, #0x50
+	ldr r3, [r5, #0x10]
+	mov r1, sp
+	bl _call_via_r3
+	add r4, sp, #0x50
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #0x20
+	bl memcpy
+	add r1, sp, #0x30
+	adds r0, r4, #0
+	ldm r0!, {r2, r3, r5}
+	stm r1!, {r2, r3, r5}
+	ldm r0!, {r2, r3, r6}
+	stm r1!, {r2, r3, r6}
+	ldm r0!, {r5, r6}
+	stm r1!, {r5, r6}
+	ldr r0, [sp, #0x38]
+	adds r1, r0, #0
+	movs r3, #0
+	cmp r1, #0
+	beq .Ljp_map_080A733C
+	mov r0, sp
+	ldrh r3, [r0, #0x3c]
+.Ljp_map_080A733C:
+	adds r0, r4, #0
+	ldr r2, .Ljp_map_080A7368 @ =0x060046A0
+	bl func_08008F0C
+	mov sb, r4
+	ldr r1, [r7, #4]
+	ldr r0, [r7, #0xc]
+	cmp r1, r0
+	beq .Ljp_map_080A736C
+	cmp r1, #0
+	beq .Ljp_map_080A735E
+	adds r0, r1, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A735E:
+	ldr r0, [r7, #4]
+	adds r0, #0x10
+	str r0, [r7, #4]
+	b .Ljp_map_080A743C
+	.align 2, 0
+.Ljp_map_080A7368: .4byte 0x060046A0
+.Ljp_map_080A736C:
+	str r1, [sp, #0x1c0]
+	movs r0, #1
+	add r1, sp, #0x9c
+	str r0, [r1]
+	ldr r3, [r7]
+	ldr r5, [sp, #0x1c0]
+	subs r0, r5, r3
+	asrs r4, r0, #4
+	add r0, sp, #0x98
+	str r4, [r0]
+	ldr r2, [r1]
+	mov sl, r1
+	cmp r4, r2
+	bhs .Ljp_map_080A738A
+	mov r0, sl
+.Ljp_map_080A738A:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_map_080A73AA
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_map_080A73A6
+	mov r0, r8
+	bl func_080D3BC0
+.Ljp_map_080A73A6:
+	ldr r3, [r7]
+	b .Ljp_map_080A73AE
+.Ljp_map_080A73AA:
+	movs r0, #0
+	mov r8, r0
+.Ljp_map_080A73AE:
+	adds r5, r0, #0
+	str r5, [sp, #0x1bc]
+	adds r2, r3, #0
+	adds r3, r5, #0
+	ldr r6, [sp, #0x1c0]
+	cmp r2, r6
+	beq .Ljp_map_080A73D6
+.Ljp_map_080A73BC:
+	cmp r3, #0
+	beq .Ljp_map_080A73CC
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A73CC:
+	adds r2, #0x10
+	adds r3, #0x10
+	ldr r0, [sp, #0x1c0]
+	cmp r2, r0
+	bne .Ljp_map_080A73BC
+.Ljp_map_080A73D6:
+	adds r5, r3, #0
+	mov r2, sl
+	ldr r1, [r2]
+	cmp r1, #1
+	bne .Ljp_map_080A73F4
+	cmp r5, #0
+	beq .Ljp_map_080A73F0
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r3, r4, r6}
+	stm r0!, {r3, r4, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A73F0:
+	adds r5, #0x10
+	b .Ljp_map_080A7416
+.Ljp_map_080A73F4:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_map_080A7414
+.Ljp_map_080A73FC:
+	cmp r2, #0
+	beq .Ljp_map_080A740C
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A740C:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_map_080A73FC
+.Ljp_map_080A7414:
+	adds r5, r2, #0
+.Ljp_map_080A7416:
+	ldr r1, [r7, #4]
+	ldr r3, [r7]
+	adds r0, r3, #0
+	cmp r3, r1
+	beq .Ljp_map_080A7426
+.Ljp_map_080A7420:
+	adds r0, #0x10
+	cmp r0, r1
+	bne .Ljp_map_080A7420
+.Ljp_map_080A7426:
+	cmp r3, #0
+	beq .Ljp_map_080A7430
+	adds r0, r3, #0
+	bl free
+.Ljp_map_080A7430:
+	ldr r0, [sp, #0x1bc]
+	add r0, r8
+	ldr r1, [sp, #0x1bc]
+	str r1, [r7]
+	str r5, [r7, #4]
+	str r0, [r7, #0xc]
+.Ljp_map_080A743C:
+	ldr r0, [sp, #0x198]
+	bl HasKitchenFryingPan__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	bne .Ljp_map_080A744A
+	b .Ljp_map_080A7590
+.Ljp_map_080A744A:
+	ldr r5, [sp]
+	add r4, sp, #0xa0
+	adds r0, r4, #0
+	ldr r3, [r5, #0xc]
+	mov r1, sp
+	movs r2, #0xcc
+	bl _call_via_r3
+	ldr r0, [r4]
+	ldrh r2, [r0]
+	add r0, sp, #0x50
+	ldr r3, [r5, #0x10]
+	mov r1, sp
+	bl _call_via_r3
+	add r4, sp, #0x50
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #0x20
+	bl memcpy
+	add r1, sp, #0x30
+	adds r0, r4, #0
+	ldm r0!, {r2, r3, r5}
+	stm r1!, {r2, r3, r5}
+	ldm r0!, {r2, r3, r6}
+	stm r1!, {r2, r3, r6}
+	ldm r0!, {r5, r6}
+	stm r1!, {r5, r6}
+	ldr r0, [sp, #0x38]
+	adds r1, r0, #0
+	movs r3, #0
+	cmp r1, #0
+	beq .Ljp_map_080A7492
+	mov r0, sp
+	ldrh r3, [r0, #0x3c]
+.Ljp_map_080A7492:
+	adds r0, r4, #0
+	ldr r2, .Ljp_map_080A74BC @ =0x06004720
+	bl func_08008F0C
+	mov sb, r4
+	ldr r1, [r7, #4]
+	ldr r0, [r7, #0xc]
+	cmp r1, r0
+	beq .Ljp_map_080A74C0
+	cmp r1, #0
+	beq .Ljp_map_080A74B4
+	adds r0, r1, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A74B4:
+	ldr r0, [r7, #4]
+	adds r0, #0x10
+	str r0, [r7, #4]
+	b .Ljp_map_080A7590
+	.align 2, 0
+.Ljp_map_080A74BC: .4byte 0x06004720
+.Ljp_map_080A74C0:
+	str r1, [sp, #0x1c0]
+	movs r0, #1
+	add r1, sp, #0xac
+	str r0, [r1]
+	ldr r3, [r7]
+	ldr r5, [sp, #0x1c0]
+	subs r0, r5, r3
+	asrs r4, r0, #4
+	add r0, sp, #0xa8
+	str r4, [r0]
+	ldr r2, [r1]
+	mov sl, r1
+	cmp r4, r2
+	bhs .Ljp_map_080A74DE
+	mov r0, sl
+.Ljp_map_080A74DE:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_map_080A74FE
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_map_080A74FA
+	mov r0, r8
+	bl func_080D3BC0
+.Ljp_map_080A74FA:
+	ldr r3, [r7]
+	b .Ljp_map_080A7502
+.Ljp_map_080A74FE:
+	movs r0, #0
+	mov r8, r0
+.Ljp_map_080A7502:
+	adds r5, r0, #0
+	str r5, [sp, #0x1bc]
+	adds r2, r3, #0
+	adds r3, r5, #0
+	ldr r6, [sp, #0x1c0]
+	cmp r2, r6
+	beq .Ljp_map_080A752A
+.Ljp_map_080A7510:
+	cmp r3, #0
+	beq .Ljp_map_080A7520
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7520:
+	adds r2, #0x10
+	adds r3, #0x10
+	ldr r0, [sp, #0x1c0]
+	cmp r2, r0
+	bne .Ljp_map_080A7510
+.Ljp_map_080A752A:
+	adds r5, r3, #0
+	mov r2, sl
+	ldr r1, [r2]
+	cmp r1, #1
+	bne .Ljp_map_080A7548
+	cmp r5, #0
+	beq .Ljp_map_080A7544
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r3, r4, r6}
+	stm r0!, {r3, r4, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7544:
+	adds r5, #0x10
+	b .Ljp_map_080A756A
+.Ljp_map_080A7548:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_map_080A7568
+.Ljp_map_080A7550:
+	cmp r2, #0
+	beq .Ljp_map_080A7560
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7560:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_map_080A7550
+.Ljp_map_080A7568:
+	adds r5, r2, #0
+.Ljp_map_080A756A:
+	ldr r1, [r7, #4]
+	ldr r3, [r7]
+	adds r0, r3, #0
+	cmp r3, r1
+	beq .Ljp_map_080A757A
+.Ljp_map_080A7574:
+	adds r0, #0x10
+	cmp r0, r1
+	bne .Ljp_map_080A7574
+.Ljp_map_080A757A:
+	cmp r3, #0
+	beq .Ljp_map_080A7584
+	adds r0, r3, #0
+	bl free
+.Ljp_map_080A7584:
+	ldr r0, [sp, #0x1bc]
+	add r0, r8
+	ldr r1, [sp, #0x1bc]
+	str r1, [r7]
+	str r5, [r7, #4]
+	str r0, [r7, #0xc]
+.Ljp_map_080A7590:
+	ldr r0, [sp, #0x198]
+	bl HasKitchenOven__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	bne .Ljp_map_080A759E
+	b .Ljp_map_080A76E8
+.Ljp_map_080A759E:
+	ldr r5, [sp]
+	add r4, sp, #0xb0
+	adds r0, r4, #0
+	ldr r3, [r5, #0xc]
+	mov r1, sp
+	ldr r2, .Ljp_map_080A7610 @ =0x00000147
+	bl _call_via_r3
+	ldr r0, [r4]
+	ldrh r2, [r0]
+	add r0, sp, #0x50
+	ldr r3, [r5, #0x10]
+	mov r1, sp
+	bl _call_via_r3
+	add r4, sp, #0x50
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #0x20
+	bl memcpy
+	add r1, sp, #0x30
+	adds r0, r4, #0
+	ldm r0!, {r2, r3, r5}
+	stm r1!, {r2, r3, r5}
+	ldm r0!, {r2, r3, r6}
+	stm r1!, {r2, r3, r6}
+	ldm r0!, {r5, r6}
+	stm r1!, {r5, r6}
+	ldr r0, [sp, #0x38]
+	adds r1, r0, #0
+	movs r3, #0
+	cmp r1, #0
+	beq .Ljp_map_080A75E6
+	mov r0, sp
+	ldrh r3, [r0, #0x3c]
+.Ljp_map_080A75E6:
+	adds r0, r4, #0
+	ldr r2, .Ljp_map_080A7614 @ =0x060047A0
+	bl func_08008F0C
+	mov sb, r4
+	ldr r1, [r7, #4]
+	ldr r0, [r7, #0xc]
+	cmp r1, r0
+	beq .Ljp_map_080A7618
+	cmp r1, #0
+	beq .Ljp_map_080A7608
+	adds r0, r1, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7608:
+	ldr r0, [r7, #4]
+	adds r0, #0x10
+	str r0, [r7, #4]
+	b .Ljp_map_080A76E8
+	.align 2, 0
+.Ljp_map_080A7610: .4byte 0x00000147
+.Ljp_map_080A7614: .4byte 0x060047A0
+.Ljp_map_080A7618:
+	str r1, [sp, #0x1c0]
+	movs r0, #1
+	add r1, sp, #0xbc
+	str r0, [r1]
+	ldr r3, [r7]
+	ldr r5, [sp, #0x1c0]
+	subs r0, r5, r3
+	asrs r4, r0, #4
+	add r0, sp, #0xb8
+	str r4, [r0]
+	ldr r2, [r1]
+	mov sl, r1
+	cmp r4, r2
+	bhs .Ljp_map_080A7636
+	mov r0, sl
+.Ljp_map_080A7636:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_map_080A7656
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_map_080A7652
+	mov r0, r8
+	bl func_080D3BC0
+.Ljp_map_080A7652:
+	ldr r3, [r7]
+	b .Ljp_map_080A765A
+.Ljp_map_080A7656:
+	movs r0, #0
+	mov r8, r0
+.Ljp_map_080A765A:
+	adds r5, r0, #0
+	str r5, [sp, #0x1bc]
+	adds r2, r3, #0
+	adds r3, r5, #0
+	ldr r6, [sp, #0x1c0]
+	cmp r2, r6
+	beq .Ljp_map_080A7682
+.Ljp_map_080A7668:
+	cmp r3, #0
+	beq .Ljp_map_080A7678
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7678:
+	adds r2, #0x10
+	adds r3, #0x10
+	ldr r0, [sp, #0x1c0]
+	cmp r2, r0
+	bne .Ljp_map_080A7668
+.Ljp_map_080A7682:
+	adds r5, r3, #0
+	mov r2, sl
+	ldr r1, [r2]
+	cmp r1, #1
+	bne .Ljp_map_080A76A0
+	cmp r5, #0
+	beq .Ljp_map_080A769C
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r3, r4, r6}
+	stm r0!, {r3, r4, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A769C:
+	adds r5, #0x10
+	b .Ljp_map_080A76C2
+.Ljp_map_080A76A0:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_map_080A76C0
+.Ljp_map_080A76A8:
+	cmp r2, #0
+	beq .Ljp_map_080A76B8
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A76B8:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_map_080A76A8
+.Ljp_map_080A76C0:
+	adds r5, r2, #0
+.Ljp_map_080A76C2:
+	ldr r1, [r7, #4]
+	ldr r3, [r7]
+	adds r0, r3, #0
+	cmp r3, r1
+	beq .Ljp_map_080A76D2
+.Ljp_map_080A76CC:
+	adds r0, #0x10
+	cmp r0, r1
+	bne .Ljp_map_080A76CC
+.Ljp_map_080A76D2:
+	cmp r3, #0
+	beq .Ljp_map_080A76DC
+	adds r0, r3, #0
+	bl free
+.Ljp_map_080A76DC:
+	ldr r0, [sp, #0x1bc]
+	add r0, r8
+	ldr r1, [sp, #0x1bc]
+	str r1, [r7]
+	str r5, [r7, #4]
+	str r0, [r7, #0xc]
+.Ljp_map_080A76E8:
+	ldr r0, [sp, #0x198]
+	bl HasKitchenRollingPin__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	bne .Ljp_map_080A76F6
+	b .Ljp_map_080A7840
+.Ljp_map_080A76F6:
+	ldr r5, [sp]
+	add r4, sp, #0xc0
+	adds r0, r4, #0
+	ldr r3, [r5, #0xc]
+	mov r1, sp
+	ldr r2, .Ljp_map_080A7768 @ =0x00000139
+	bl _call_via_r3
+	ldr r0, [r4]
+	ldrh r2, [r0]
+	add r0, sp, #0x50
+	ldr r3, [r5, #0x10]
+	mov r1, sp
+	bl _call_via_r3
+	add r4, sp, #0x50
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #0x20
+	bl memcpy
+	add r1, sp, #0x30
+	adds r0, r4, #0
+	ldm r0!, {r2, r3, r5}
+	stm r1!, {r2, r3, r5}
+	ldm r0!, {r2, r3, r6}
+	stm r1!, {r2, r3, r6}
+	ldm r0!, {r5, r6}
+	stm r1!, {r5, r6}
+	ldr r0, [sp, #0x38]
+	adds r1, r0, #0
+	movs r3, #0
+	cmp r1, #0
+	beq .Ljp_map_080A773E
+	mov r0, sp
+	ldrh r3, [r0, #0x3c]
+.Ljp_map_080A773E:
+	adds r0, r4, #0
+	ldr r2, .Ljp_map_080A776C @ =0x06004820
+	bl func_08008F0C
+	mov sb, r4
+	ldr r1, [r7, #4]
+	ldr r0, [r7, #0xc]
+	cmp r1, r0
+	beq .Ljp_map_080A7770
+	cmp r1, #0
+	beq .Ljp_map_080A7760
+	adds r0, r1, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7760:
+	ldr r0, [r7, #4]
+	adds r0, #0x10
+	str r0, [r7, #4]
+	b .Ljp_map_080A7840
+	.align 2, 0
+.Ljp_map_080A7768: .4byte 0x00000139
+.Ljp_map_080A776C: .4byte 0x06004820
+.Ljp_map_080A7770:
+	str r1, [sp, #0x1c0]
+	movs r0, #1
+	add r1, sp, #0xcc
+	str r0, [r1]
+	ldr r3, [r7]
+	ldr r5, [sp, #0x1c0]
+	subs r0, r5, r3
+	asrs r4, r0, #4
+	add r0, sp, #0xc8
+	str r4, [r0]
+	ldr r2, [r1]
+	mov sl, r1
+	cmp r4, r2
+	bhs .Ljp_map_080A778E
+	mov r0, sl
+.Ljp_map_080A778E:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_map_080A77AE
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_map_080A77AA
+	mov r0, r8
+	bl func_080D3BC0
+.Ljp_map_080A77AA:
+	ldr r3, [r7]
+	b .Ljp_map_080A77B2
+.Ljp_map_080A77AE:
+	movs r0, #0
+	mov r8, r0
+.Ljp_map_080A77B2:
+	adds r5, r0, #0
+	str r5, [sp, #0x1bc]
+	adds r2, r3, #0
+	adds r3, r5, #0
+	ldr r6, [sp, #0x1c0]
+	cmp r2, r6
+	beq .Ljp_map_080A77DA
+.Ljp_map_080A77C0:
+	cmp r3, #0
+	beq .Ljp_map_080A77D0
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A77D0:
+	adds r2, #0x10
+	adds r3, #0x10
+	ldr r0, [sp, #0x1c0]
+	cmp r2, r0
+	bne .Ljp_map_080A77C0
+.Ljp_map_080A77DA:
+	adds r5, r3, #0
+	mov r2, sl
+	ldr r1, [r2]
+	cmp r1, #1
+	bne .Ljp_map_080A77F8
+	cmp r5, #0
+	beq .Ljp_map_080A77F4
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r3, r4, r6}
+	stm r0!, {r3, r4, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A77F4:
+	adds r5, #0x10
+	b .Ljp_map_080A781A
+.Ljp_map_080A77F8:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_map_080A7818
+.Ljp_map_080A7800:
+	cmp r2, #0
+	beq .Ljp_map_080A7810
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7810:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_map_080A7800
+.Ljp_map_080A7818:
+	adds r5, r2, #0
+.Ljp_map_080A781A:
+	ldr r1, [r7, #4]
+	ldr r3, [r7]
+	adds r0, r3, #0
+	cmp r3, r1
+	beq .Ljp_map_080A782A
+.Ljp_map_080A7824:
+	adds r0, #0x10
+	cmp r0, r1
+	bne .Ljp_map_080A7824
+.Ljp_map_080A782A:
+	cmp r3, #0
+	beq .Ljp_map_080A7834
+	adds r0, r3, #0
+	bl free
+.Ljp_map_080A7834:
+	ldr r0, [sp, #0x1bc]
+	add r0, r8
+	ldr r1, [sp, #0x1bc]
+	str r1, [r7]
+	str r5, [r7, #4]
+	str r0, [r7, #0xc]
+.Ljp_map_080A7840:
+	ldr r0, [sp, #0x198]
+	bl HasKitchenMixer__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	bne .Ljp_map_080A784E
+	b .Ljp_map_080A7994
+.Ljp_map_080A784E:
+	ldr r5, [sp]
+	add r4, sp, #0xd0
+	adds r0, r4, #0
+	ldr r3, [r5, #0xc]
+	mov r1, sp
+	movs r2, #0x40
+	bl _call_via_r3
+	ldr r0, [r4]
+	ldrh r2, [r0]
+	add r0, sp, #0x50
+	ldr r3, [r5, #0x10]
+	mov r1, sp
+	bl _call_via_r3
+	add r4, sp, #0x50
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #0x20
+	bl memcpy
+	add r1, sp, #0x30
+	adds r0, r4, #0
+	ldm r0!, {r2, r3, r5}
+	stm r1!, {r2, r3, r5}
+	ldm r0!, {r2, r3, r6}
+	stm r1!, {r2, r3, r6}
+	ldm r0!, {r5, r6}
+	stm r1!, {r5, r6}
+	ldr r0, [sp, #0x38]
+	adds r1, r0, #0
+	movs r3, #0
+	cmp r1, #0
+	beq .Ljp_map_080A7896
+	mov r0, sp
+	ldrh r3, [r0, #0x3c]
+.Ljp_map_080A7896:
+	adds r0, r4, #0
+	ldr r2, .Ljp_map_080A78C0 @ =0x060048A0
+	bl func_08008F0C
+	mov sb, r4
+	ldr r1, [r7, #4]
+	ldr r0, [r7, #0xc]
+	cmp r1, r0
+	beq .Ljp_map_080A78C4
+	cmp r1, #0
+	beq .Ljp_map_080A78B8
+	adds r0, r1, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A78B8:
+	ldr r0, [r7, #4]
+	adds r0, #0x10
+	str r0, [r7, #4]
+	b .Ljp_map_080A7994
+	.align 2, 0
+.Ljp_map_080A78C0: .4byte 0x060048A0
+.Ljp_map_080A78C4:
+	str r1, [sp, #0x1c0]
+	movs r0, #1
+	add r1, sp, #0xdc
+	str r0, [r1]
+	ldr r3, [r7]
+	ldr r5, [sp, #0x1c0]
+	subs r0, r5, r3
+	asrs r4, r0, #4
+	add r0, sp, #0xd8
+	str r4, [r0]
+	ldr r2, [r1]
+	mov sl, r1
+	cmp r4, r2
+	bhs .Ljp_map_080A78E2
+	mov r0, sl
+.Ljp_map_080A78E2:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_map_080A7902
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_map_080A78FE
+	mov r0, r8
+	bl func_080D3BC0
+.Ljp_map_080A78FE:
+	ldr r3, [r7]
+	b .Ljp_map_080A7906
+.Ljp_map_080A7902:
+	movs r0, #0
+	mov r8, r0
+.Ljp_map_080A7906:
+	adds r5, r0, #0
+	str r5, [sp, #0x1bc]
+	adds r2, r3, #0
+	adds r3, r5, #0
+	ldr r6, [sp, #0x1c0]
+	cmp r2, r6
+	beq .Ljp_map_080A792E
+.Ljp_map_080A7914:
+	cmp r3, #0
+	beq .Ljp_map_080A7924
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7924:
+	adds r2, #0x10
+	adds r3, #0x10
+	ldr r0, [sp, #0x1c0]
+	cmp r2, r0
+	bne .Ljp_map_080A7914
+.Ljp_map_080A792E:
+	adds r5, r3, #0
+	mov r2, sl
+	ldr r1, [r2]
+	cmp r1, #1
+	bne .Ljp_map_080A794C
+	cmp r5, #0
+	beq .Ljp_map_080A7948
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r3, r4, r6}
+	stm r0!, {r3, r4, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7948:
+	adds r5, #0x10
+	b .Ljp_map_080A796E
+.Ljp_map_080A794C:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_map_080A796C
+.Ljp_map_080A7954:
+	cmp r2, #0
+	beq .Ljp_map_080A7964
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7964:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_map_080A7954
+.Ljp_map_080A796C:
+	adds r5, r2, #0
+.Ljp_map_080A796E:
+	ldr r1, [r7, #4]
+	ldr r3, [r7]
+	adds r0, r3, #0
+	cmp r3, r1
+	beq .Ljp_map_080A797E
+.Ljp_map_080A7978:
+	adds r0, #0x10
+	cmp r0, r1
+	bne .Ljp_map_080A7978
+.Ljp_map_080A797E:
+	cmp r3, #0
+	beq .Ljp_map_080A7988
+	adds r0, r3, #0
+	bl free
+.Ljp_map_080A7988:
+	ldr r0, [sp, #0x1bc]
+	add r0, r8
+	ldr r1, [sp, #0x1bc]
+	str r1, [r7]
+	str r5, [r7, #4]
+	str r0, [r7, #0xc]
+.Ljp_map_080A7994:
+	ldr r0, [sp, #0x198]
+	bl HasKitchenSeasoningSet__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	bne .Ljp_map_080A79A4
+	bl .Ljp_map_080A8C5C
+.Ljp_map_080A79A4:
+	ldr r5, [sp]
+	add r4, sp, #0xe0
+	adds r0, r4, #0
+	ldr r3, [r5, #0xc]
+	mov r1, sp
+	movs r2, #0xc8
+	lsls r2, r2, #1
+	bl _call_via_r3
+	ldr r0, [r4]
+	ldrh r2, [r0]
+	add r0, sp, #0x50
+	ldr r3, [r5, #0x10]
+	mov r1, sp
+	bl _call_via_r3
+	add r4, sp, #0x50
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #0x20
+	bl memcpy
+	add r1, sp, #0x30
+	adds r0, r4, #0
+	ldm r0!, {r2, r3, r5}
+	stm r1!, {r2, r3, r5}
+	ldm r0!, {r2, r3, r6}
+	stm r1!, {r2, r3, r6}
+	ldm r0!, {r5, r6}
+	stm r1!, {r5, r6}
+	ldr r0, [sp, #0x38]
+	adds r1, r0, #0
+	movs r3, #0
+	cmp r1, #0
+	beq .Ljp_map_080A79EE
+	mov r0, sp
+	ldrh r3, [r0, #0x3c]
+.Ljp_map_080A79EE:
+	adds r0, r4, #0
+	ldr r2, .Ljp_map_080A7A44 @ =0x06004920
+	bl func_08008F0C
+	mov sb, r4
+	ldr r1, [r7, #4]
+	ldr r0, [r7, #0xc]
+	cmp r1, r0
+	beq .Ljp_map_080A7A04
+	bl func_080A8B5A
+.Ljp_map_080A7A04:
+	str r1, [sp, #0x1c0]
+	movs r0, #1
+	add r1, sp, #0xec
+	str r0, [r1]
+	ldr r3, [r7]
+	ldr r5, [sp, #0x1c0]
+	subs r0, r5, r3
+	asrs r4, r0, #4
+	add r0, sp, #0xe8
+	str r4, [r0]
+	ldr r2, [r1]
+	mov sl, r1
+	cmp r4, r2
+	bhs .Ljp_map_080A7A22
+	mov r0, sl
+.Ljp_map_080A7A22:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_map_080A7A48
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_map_080A7A3E
+	mov r0, r8
+	bl func_080D3BC0
+.Ljp_map_080A7A3E:
+	ldr r3, [r7]
+	b .Ljp_map_080A7A4C
+	.align 2, 0
+.Ljp_map_080A7A44: .4byte 0x06004920
+.Ljp_map_080A7A48:
+	movs r0, #0
+	mov r8, r0
+.Ljp_map_080A7A4C:
+	adds r5, r0, #0
+	str r5, [sp, #0x1bc]
+	adds r2, r3, #0
+	adds r3, r5, #0
+	ldr r6, [sp, #0x1c0]
+	cmp r2, r6
+	beq .Ljp_map_080A7A74
+.Ljp_map_080A7A5A:
+	cmp r3, #0
+	beq .Ljp_map_080A7A6A
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7A6A:
+	adds r2, #0x10
+	adds r3, #0x10
+	ldr r0, [sp, #0x1c0]
+	cmp r2, r0
+	bne .Ljp_map_080A7A5A
+.Ljp_map_080A7A74:
+	adds r5, r3, #0
+	mov r2, sl
+	ldr r1, [r2]
+	cmp r1, #1
+	bne .Ljp_map_080A7A92
+	cmp r5, #0
+	beq .Ljp_map_080A7A8E
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r3, r4, r6}
+	stm r0!, {r3, r4, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7A8E:
+	adds r5, #0x10
+	b .Ljp_map_080A7AB4
+.Ljp_map_080A7A92:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_map_080A7AB2
+.Ljp_map_080A7A9A:
+	cmp r2, #0
+	beq .Ljp_map_080A7AAA
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7AAA:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_map_080A7A9A
+.Ljp_map_080A7AB2:
+	adds r5, r2, #0
+.Ljp_map_080A7AB4:
+	ldr r1, [r7, #4]
+	ldr r3, [r7]
+	adds r0, r3, #0
+	cmp r3, r1
+	bne .Ljp_map_080A7AC2
+	bl .Ljp_map_080A8C32
+.Ljp_map_080A7AC2:
+	adds r0, #0x10
+	cmp r0, r1
+	bne .Ljp_map_080A7AC2
+	bl .Ljp_map_080A8C32
+.Ljp_map_080A7ACC:
+	ldr r1, .Ljp_map_080A7B0C @ =gUnk_0845B664
+	add r0, sp, #0x30
+	ldr r2, .Ljp_map_080A7B10 @ =0x06005FC0
+	movs r3, #0xe6
+	lsls r3, r3, #4
+	bl func_08008F0C
+	add r2, sp, #0x30
+	mov sb, r2
+	ldr r1, [r7, #4]
+	ldr r0, [r7, #0xc]
+	cmp r1, r0
+	beq .Ljp_map_080A7B14
+	cmp r1, #0
+	beq .Ljp_map_080A7AF6
+	adds r0, r1, #0
+	add r1, sp, #0x30
+	ldm r1!, {r3, r4, r5}
+	stm r0!, {r3, r4, r5}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7AF6:
+	ldr r0, [r7, #4]
+	adds r0, #0x10
+	str r0, [r7, #4]
+	ldr r0, [sp, #0x190]
+	adds r0, #0x94
+	str r0, [sp, #0x1b0]
+	ldr r1, [sp, #0x190]
+	adds r1, #0x9c
+	str r1, [sp, #0x1b4]
+	b .Ljp_map_080A7BF2
+	.align 2, 0
+.Ljp_map_080A7B0C: .4byte gUnk_0845B664
+.Ljp_map_080A7B10: .4byte 0x06005FC0
+.Ljp_map_080A7B14:
+	mov r8, r1
+	movs r0, #1
+	add r1, sp, #0xf4
+	str r0, [r1]
+	ldr r3, [r7]
+	mov r2, r8
+	subs r0, r2, r3
+	asrs r4, r0, #4
+	add r0, sp, #0xf0
+	str r4, [r0]
+	ldr r2, [r1]
+	cmp r4, r2
+	bhs .Ljp_map_080A7B30
+	adds r0, r1, #0
+.Ljp_map_080A7B30:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_map_080A7B50
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov sl, r4
+	cmp r0, #0
+	bne .Ljp_map_080A7B4C
+	mov r0, sl
+	bl func_080D3BC0
+.Ljp_map_080A7B4C:
+	ldr r3, [r7]
+	b .Ljp_map_080A7B54
+.Ljp_map_080A7B50:
+	movs r0, #0
+	mov sl, r0
+.Ljp_map_080A7B54:
+	adds r5, r0, #0
+	str r5, [sp, #0x1bc]
+	adds r2, r3, #0
+	mov ip, r5
+	ldr r3, [sp, #0x190]
+	adds r3, #0x94
+	str r3, [sp, #0x1b0]
+	ldr r4, [sp, #0x190]
+	adds r4, #0x9c
+	str r4, [sp, #0x1b4]
+	cmp r2, r8
+	beq .Ljp_map_080A7B88
+.Ljp_map_080A7B6C:
+	mov r5, ip
+	cmp r5, #0
+	beq .Ljp_map_080A7B7E
+	mov r0, ip
+	adds r1, r2, #0
+	ldm r1!, {r3, r4, r5}
+	stm r0!, {r3, r4, r5}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7B7E:
+	adds r2, #0x10
+	movs r0, #0x10
+	add ip, r0
+	cmp r2, r8
+	bne .Ljp_map_080A7B6C
+.Ljp_map_080A7B88:
+	mov r5, ip
+	ldr r1, [sp, #0xf4]
+	cmp r1, #1
+	bne .Ljp_map_080A7BA4
+	cmp r5, #0
+	beq .Ljp_map_080A7BA0
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7BA0:
+	adds r5, #0x10
+	b .Ljp_map_080A7BCC
+.Ljp_map_080A7BA4:
+	mov r8, r1
+	adds r2, r5, #0
+	cmp r1, #0
+	beq .Ljp_map_080A7BCA
+.Ljp_map_080A7BAC:
+	cmp r2, #0
+	beq .Ljp_map_080A7BBC
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r3, r4, r5}
+	stm r0!, {r3, r4, r5}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7BBC:
+	movs r5, #1
+	rsbs r5, r5, #0
+	add r8, r5
+	adds r2, #0x10
+	mov r0, r8
+	cmp r0, #0
+	bne .Ljp_map_080A7BAC
+.Ljp_map_080A7BCA:
+	adds r5, r2, #0
+.Ljp_map_080A7BCC:
+	ldr r1, [r7, #4]
+	ldr r3, [r7]
+	adds r0, r3, #0
+	cmp r3, r1
+	beq .Ljp_map_080A7BDC
+.Ljp_map_080A7BD6:
+	adds r0, #0x10
+	cmp r0, r1
+	bne .Ljp_map_080A7BD6
+.Ljp_map_080A7BDC:
+	cmp r3, #0
+	beq .Ljp_map_080A7BE6
+	adds r0, r3, #0
+	bl free
+.Ljp_map_080A7BE6:
+	ldr r0, [sp, #0x1bc]
+	add r0, sl
+	ldr r1, [sp, #0x1bc]
+	str r1, [r7]
+	str r5, [r7, #4]
+	str r0, [r7, #0xc]
+.Ljp_map_080A7BF2:
+	cmp r6, #1
+	bne .Ljp_map_080A7BF8
+	b .Ljp_map_080A7CF6
+.Ljp_map_080A7BF8:
+	cmp r6, #1
+	bgt .Ljp_map_080A7C02
+	cmp r6, #0
+	beq .Ljp_map_080A7C0A
+	b .Ljp_map_080A7F00
+.Ljp_map_080A7C02:
+	cmp r6, #2
+	bne .Ljp_map_080A7C08
+	b .Ljp_map_080A7DF6
+.Ljp_map_080A7C08:
+	b .Ljp_map_080A7F00
+.Ljp_map_080A7C0A:
+	ldr r1, .Ljp_map_080A7C34 @ =gUnk_0841EF70
+	add r0, sp, #0x30
+	ldr r2, .Ljp_map_080A7C38 @ =0x06006E20
+	movs r3, #0x8f
+	lsls r3, r3, #5
+	bl func_08008F0C
+	add r2, sp, #0x30
+	mov sb, r2
+	ldr r1, [r7, #4]
+	ldr r0, [r7, #0xc]
+	cmp r1, r0
+	beq .Ljp_map_080A7C3C
+	cmp r1, #0
+	bne .Ljp_map_080A7C2A
+	b .Ljp_map_080A7E20
+.Ljp_map_080A7C2A:
+	adds r0, r1, #0
+	add r1, sp, #0x30
+	ldm r1!, {r3, r4, r5}
+	stm r0!, {r3, r4, r5}
+	b .Ljp_map_080A7E1C
+	.align 2, 0
+.Ljp_map_080A7C34: .4byte gUnk_0841EF70
+.Ljp_map_080A7C38: .4byte 0x06006E20
+.Ljp_map_080A7C3C:
+	str r1, [sp, #0x1c0]
+	movs r0, #1
+	add r1, sp, #0xfc
+	str r0, [r1]
+	ldr r3, [r7]
+	ldr r6, [sp, #0x1c0]
+	subs r0, r6, r3
+	asrs r4, r0, #4
+	add r0, sp, #0xf8
+	str r4, [r0]
+	ldr r2, [r1]
+	mov sl, r1
+	cmp r4, r2
+	bhs .Ljp_map_080A7C5A
+	mov r0, sl
+.Ljp_map_080A7C5A:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_map_080A7C7A
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_map_080A7C76
+	mov r0, r8
+	bl func_080D3BC0
+.Ljp_map_080A7C76:
+	ldr r3, [r7]
+	b .Ljp_map_080A7C7E
+.Ljp_map_080A7C7A:
+	movs r0, #0
+	mov r8, r0
+.Ljp_map_080A7C7E:
+	adds r5, r0, #0
+	str r5, [sp, #0x1bc]
+	adds r2, r3, #0
+	adds r3, r5, #0
+	b .Ljp_map_080A7C9C
+.Ljp_map_080A7C88:
+	cmp r3, #0
+	beq .Ljp_map_080A7C98
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7C98:
+	adds r2, #0x10
+	adds r3, #0x10
+.Ljp_map_080A7C9C:
+	ldr r0, [sp, #0x1c0]
+	cmp r2, r0
+	bne .Ljp_map_080A7C88
+	adds r5, r3, #0
+	mov r2, sl
+	ldr r1, [r2]
+	cmp r1, #1
+	bne .Ljp_map_080A7CC0
+	cmp r5, #0
+	beq .Ljp_map_080A7CBC
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r3, r4, r6}
+	stm r0!, {r3, r4, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7CBC:
+	adds r5, #0x10
+	b .Ljp_map_080A7CE2
+.Ljp_map_080A7CC0:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_map_080A7CE0
+.Ljp_map_080A7CC8:
+	cmp r2, #0
+	beq .Ljp_map_080A7CD8
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7CD8:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_map_080A7CC8
+.Ljp_map_080A7CE0:
+	adds r5, r2, #0
+.Ljp_map_080A7CE2:
+	ldr r1, [r7, #4]
+	ldr r3, [r7]
+	adds r0, r3, #0
+	cmp r3, r1
+	bne .Ljp_map_080A7CEE
+	b .Ljp_map_080A7EEA
+.Ljp_map_080A7CEE:
+	adds r0, #0x10
+	cmp r0, r1
+	bne .Ljp_map_080A7CEE
+	b .Ljp_map_080A7EEA
+.Ljp_map_080A7CF6:
+	ldr r1, .Ljp_map_080A7D20 @ =gUnk_08420200
+	add r0, sp, #0x30
+	ldr r2, .Ljp_map_080A7D24 @ =0x06006E20
+	movs r3, #0x8f
+	lsls r3, r3, #5
+	bl func_08008F0C
+	add r2, sp, #0x30
+	mov sb, r2
+	ldr r1, [r7, #4]
+	ldr r0, [r7, #0xc]
+	cmp r1, r0
+	beq .Ljp_map_080A7D28
+	cmp r1, #0
+	bne .Ljp_map_080A7D16
+	b .Ljp_map_080A7E20
+.Ljp_map_080A7D16:
+	adds r0, r1, #0
+	add r1, sp, #0x30
+	ldm r1!, {r3, r4, r5}
+	stm r0!, {r3, r4, r5}
+	b .Ljp_map_080A7E1C
+	.align 2, 0
+.Ljp_map_080A7D20: .4byte gUnk_08420200
+.Ljp_map_080A7D24: .4byte 0x06006E20
+.Ljp_map_080A7D28:
+	mov r8, r1
+	add r1, sp, #0x104
+	str r6, [r1]
+	ldr r2, [r7]
+	mov r6, r8
+	subs r0, r6, r2
+	asrs r4, r0, #4
+	add r0, sp, #0x100
+	str r4, [r0]
+	adds r5, r1, #0
+	ldr r0, [r1]
+	add r1, sp, #0x100
+	adds r3, r2, #0
+	cmp r4, r0
+	bhs .Ljp_map_080A7D48
+	adds r1, r5, #0
+.Ljp_map_080A7D48:
+	ldr r0, [r1]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_map_080A7D68
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	str r4, [sp, #0x1bc]
+	cmp r0, #0
+	bne .Ljp_map_080A7D64
+	adds r0, r4, #0
+	bl func_080D3BC0
+.Ljp_map_080A7D64:
+	ldr r3, [r7]
+	b .Ljp_map_080A7D6E
+.Ljp_map_080A7D68:
+	movs r0, #0
+	movs r1, #0
+	str r1, [sp, #0x1bc]
+.Ljp_map_080A7D6E:
+	adds r5, r0, #0
+	mov sl, r5
+	adds r2, r3, #0
+	mov r3, sl
+	cmp r2, r8
+	beq .Ljp_map_080A7D92
+.Ljp_map_080A7D7A:
+	cmp r3, #0
+	beq .Ljp_map_080A7D8A
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7D8A:
+	adds r2, #0x10
+	adds r3, #0x10
+	cmp r2, r8
+	bne .Ljp_map_080A7D7A
+.Ljp_map_080A7D92:
+	adds r5, r3, #0
+	add r0, sp, #0x104
+	ldr r0, [r0]
+	cmp r0, #1
+	bne .Ljp_map_080A7DB0
+	cmp r5, #0
+	beq .Ljp_map_080A7DAC
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7DAC:
+	adds r5, #0x10
+	b .Ljp_map_080A7DD2
+.Ljp_map_080A7DB0:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_map_080A7DD0
+.Ljp_map_080A7DB8:
+	cmp r2, #0
+	beq .Ljp_map_080A7DC8
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7DC8:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_map_080A7DB8
+.Ljp_map_080A7DD0:
+	adds r5, r2, #0
+.Ljp_map_080A7DD2:
+	ldr r1, [r7, #4]
+	ldr r3, [r7]
+	adds r0, r3, #0
+	cmp r3, r1
+	beq .Ljp_map_080A7DE2
+.Ljp_map_080A7DDC:
+	adds r0, #0x10
+	cmp r0, r1
+	bne .Ljp_map_080A7DDC
+.Ljp_map_080A7DE2:
+	cmp r3, #0
+	beq .Ljp_map_080A7DEC
+	adds r0, r3, #0
+	bl free
+.Ljp_map_080A7DEC:
+	ldr r0, [sp, #0x1bc]
+	add r0, sl
+	mov r6, sl
+	str r6, [r7]
+	b .Ljp_map_080A7EFC
+.Ljp_map_080A7DF6:
+	ldr r1, .Ljp_map_080A7E28 @ =gUnk_0841DA7C
+	add r0, sp, #0x30
+	ldr r2, .Ljp_map_080A7E2C @ =0x06006E20
+	movs r3, #0x8f
+	lsls r3, r3, #5
+	bl func_08008F0C
+	add r0, sp, #0x30
+	mov sb, r0
+	ldr r1, [r7, #4]
+	ldr r0, [r7, #0xc]
+	cmp r1, r0
+	beq .Ljp_map_080A7E30
+	cmp r1, #0
+	beq .Ljp_map_080A7E20
+	adds r0, r1, #0
+	add r1, sp, #0x30
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+.Ljp_map_080A7E1C:
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7E20:
+	ldr r0, [r7, #4]
+	adds r0, #0x10
+	str r0, [r7, #4]
+	b .Ljp_map_080A7F00
+	.align 2, 0
+.Ljp_map_080A7E28: .4byte gUnk_0841DA7C
+.Ljp_map_080A7E2C: .4byte 0x06006E20
+.Ljp_map_080A7E30:
+	mov sl, r1
+	movs r0, #1
+	add r1, sp, #0x10c
+	str r0, [r1]
+	ldr r2, [r7]
+	mov r5, sl
+	subs r0, r5, r2
+	asrs r4, r0, #4
+	add r0, sp, #0x108
+	str r4, [r0]
+	adds r5, r1, #0
+	ldr r0, [r1]
+	add r1, sp, #0x108
+	adds r3, r2, #0
+	cmp r4, r0
+	bhs .Ljp_map_080A7E52
+	adds r1, r5, #0
+.Ljp_map_080A7E52:
+	ldr r0, [r1]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_map_080A7E72
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_map_080A7E6E
+	mov r0, r8
+	bl func_080D3BC0
+.Ljp_map_080A7E6E:
+	ldr r3, [r7]
+	b .Ljp_map_080A7E76
+.Ljp_map_080A7E72:
+	movs r0, #0
+	mov r8, r0
+.Ljp_map_080A7E76:
+	adds r5, r0, #0
+	str r5, [sp, #0x1bc]
+	adds r2, r3, #0
+	adds r3, r5, #0
+	cmp r2, sl
+	beq .Ljp_map_080A7E9A
+.Ljp_map_080A7E82:
+	cmp r3, #0
+	beq .Ljp_map_080A7E92
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7E92:
+	adds r2, #0x10
+	adds r3, #0x10
+	cmp r2, sl
+	bne .Ljp_map_080A7E82
+.Ljp_map_080A7E9A:
+	adds r5, r3, #0
+	add r0, sp, #0x10c
+	ldr r0, [r0]
+	cmp r0, #1
+	bne .Ljp_map_080A7EB8
+	cmp r5, #0
+	beq .Ljp_map_080A7EB4
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r6}
+	stm r0!, {r2, r3, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7EB4:
+	adds r5, #0x10
+	b .Ljp_map_080A7EDA
+.Ljp_map_080A7EB8:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_map_080A7ED8
+.Ljp_map_080A7EC0:
+	cmp r2, #0
+	beq .Ljp_map_080A7ED0
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A7ED0:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_map_080A7EC0
+.Ljp_map_080A7ED8:
+	adds r5, r2, #0
+.Ljp_map_080A7EDA:
+	ldr r1, [r7, #4]
+	ldr r3, [r7]
+	adds r0, r3, #0
+	cmp r3, r1
+	beq .Ljp_map_080A7EEA
+.Ljp_map_080A7EE4:
+	adds r0, #0x10
+	cmp r0, r1
+	bne .Ljp_map_080A7EE4
+.Ljp_map_080A7EEA:
+	cmp r3, #0
+	beq .Ljp_map_080A7EF4
+	adds r0, r3, #0
+	bl free
+.Ljp_map_080A7EF4:
+	ldr r0, [sp, #0x1bc]
+	add r0, r8
+	ldr r1, [sp, #0x1bc]
+	str r1, [r7]
+.Ljp_map_080A7EFC:
+	str r5, [r7, #4]
+	str r0, [r7, #0xc]
+.Ljp_map_080A7F00:
+	ldr r1, .Ljp_map_080A805C @ =gFarmHouseTilePatchData + 0x068
+	ldr r0, [sp, #0x190]
+	movs r2, #0
+	adds r3, r7, #0
+	bl func_080A54E8
+	ldr r4, .Ljp_map_080A8060 @ =gFarmHouseTilePatchData + 0x000
+	ldr r2, [sp, #0x1b0]
+	ldr r0, [r2]
+	movs r5, #0xfa
+	lsls r5, r5, #1
+	adds r0, r0, r5
+	bl GetMailboxStyle__C9FarmHouse
+	adds r2, r0, #0
+	ldr r0, [sp, #0x190]
+	adds r1, r4, #0
+	adds r3, r7, #0
+	bl func_080A54E8
+	movs r3, #6
+	mov sb, r3
+	add r6, sp, #0x30
+	ldr r4, [sp, #0x1b0]
+	mov sl, r4
+.Ljp_map_080A7F32:
+	movs r5, #0x22
+	mov r8, r5
+	mov r0, sb
+	adds r0, #1
+	str r0, [sp, #0x1a4]
+.Ljp_map_080A7F3C:
+	adds r0, r6, #0
+	ldr r1, .Ljp_map_080A8064 @ =gFarmHouseStyleNibbleLookupData
+	movs r2, #3
+	bl memcpy
+	ldr r1, [sp, #0x190]
+	ldr r0, [r1, #4]
+	bl GetMapData
+	ldrh r0, [r0, #0x20]
+	mov r4, sb
+	muls r4, r0, r4
+	add r4, r8
+	lsls r4, r4, #1
+	ldr r2, [sp, #0x190]
+	ldr r0, [r2, #0x14]
+	adds r5, r0, r4
+	mov r3, sl
+	ldr r0, [r3]
+	movs r1, #0xfa
+	lsls r1, r1, #1
+	adds r0, r0, r1
+	bl GetMailboxStyle__C9FarmHouse
+	adds r0, r6, r0
+	ldrb r1, [r0]
+	lsls r1, r1, #4
+	ldrb r2, [r5, #1]
+	movs r0, #0xf
+	ands r0, r2
+	orrs r0, r1
+	strb r0, [r5, #1]
+	ldr r2, [sp, #0x190]
+	ldr r0, [r2, #0x18]
+	adds r5, r0, r4
+	mov r3, sl
+	ldr r0, [r3]
+	movs r4, #0xfa
+	lsls r4, r4, #1
+	adds r0, r0, r4
+	bl GetMailboxStyle__C9FarmHouse
+	adds r0, r6, r0
+	ldrb r1, [r0]
+	lsls r1, r1, #4
+	ldrb r2, [r5, #1]
+	movs r0, #0xf
+	ands r0, r2
+	orrs r0, r1
+	strb r0, [r5, #1]
+	movs r5, #1
+	add r8, r5
+	mov r0, r8
+	cmp r0, #0x23
+	bls .Ljp_map_080A7F3C
+	ldr r1, [sp, #0x1a4]
+	mov sb, r1
+	cmp r1, #8
+	bls .Ljp_map_080A7F32
+	ldr r4, .Ljp_map_080A8068 @ =gFarmHouseTilePatchData + 0x010
+	ldr r2, [sp, #0x1b0]
+	ldr r0, [r2]
+	movs r5, #0xfa
+	lsls r5, r5, #1
+	adds r0, r0, r5
+	bl GetDoghouseStyle__C9FarmHouse
+	adds r2, r0, #0
+	ldr r0, [sp, #0x190]
+	adds r1, r4, #0
+	adds r3, r7, #0
+	bl func_080A54E8
+	movs r3, #7
+	mov sb, r3
+	add r6, sp, #0x30
+	ldr r4, [sp, #0x1b0]
+	mov sl, r4
+.Ljp_map_080A7FD8:
+	movs r5, #0x31
+	mov r8, r5
+	mov r0, sb
+	adds r0, #1
+	str r0, [sp, #0x1a8]
+.Ljp_map_080A7FE2:
+	adds r0, r6, #0
+	ldr r1, .Ljp_map_080A806C @ =gFarmHouseStyleNibbleLookupData + 0x03
+	movs r2, #3
+	bl memcpy
+	ldr r1, [sp, #0x190]
+	ldr r0, [r1, #4]
+	bl GetMapData
+	ldrh r0, [r0, #0x20]
+	mov r4, sb
+	muls r4, r0, r4
+	add r4, r8
+	lsls r4, r4, #1
+	ldr r2, [sp, #0x190]
+	ldr r0, [r2, #0x14]
+	adds r5, r0, r4
+	mov r3, sl
+	ldr r0, [r3]
+	movs r1, #0xfa
+	lsls r1, r1, #1
+	adds r0, r0, r1
+	bl GetDoghouseStyle__C9FarmHouse
+	adds r0, r6, r0
+	ldrb r1, [r0]
+	lsls r1, r1, #4
+	ldrb r2, [r5, #1]
+	movs r0, #0xf
+	ands r0, r2
+	orrs r0, r1
+	strb r0, [r5, #1]
+	ldr r2, [sp, #0x190]
+	ldr r0, [r2, #0x18]
+	adds r5, r0, r4
+	mov r3, sl
+	ldr r0, [r3]
+	movs r4, #0xfa
+	lsls r4, r4, #1
+	adds r0, r0, r4
+	bl GetDoghouseStyle__C9FarmHouse
+	adds r0, r6, r0
+	ldrb r1, [r0]
+	lsls r1, r1, #4
+	ldrb r2, [r5, #1]
+	movs r0, #0xf
+	ands r0, r2
+	orrs r0, r1
+	strb r0, [r5, #1]
+	movs r5, #1
+	add r8, r5
+	mov r0, r8
+	cmp r0, #0x33
+	bls .Ljp_map_080A7FE2
+	ldr r1, [sp, #0x1a8]
+	mov sb, r1
+	cmp r1, #0xa
+	bls .Ljp_map_080A7FD8
+	ldr r4, .Ljp_map_080A8070 @ =gFarmHouseTilePatchData + 0x020
+	b .Ljp_map_080A82F2
+	.align 2, 0
+.Ljp_map_080A805C: .4byte gFarmHouseTilePatchData + 0x068
+.Ljp_map_080A8060: .4byte gFarmHouseTilePatchData + 0x000
+.Ljp_map_080A8064: .4byte gFarmHouseStyleNibbleLookupData
+.Ljp_map_080A8068: .4byte gFarmHouseTilePatchData + 0x010
+.Ljp_map_080A806C: .4byte gFarmHouseStyleNibbleLookupData + 0x03
+.Ljp_map_080A8070: .4byte gFarmHouseTilePatchData + 0x020
+.Ljp_map_080A8074:
+	ldr r1, .Ljp_map_080A80B4 @ =gUnk_0845C7F4
+	add r0, sp, #0x30
+	ldr r2, .Ljp_map_080A80B8 @ =0x06005FC0
+	movs r3, #0xe6
+	lsls r3, r3, #4
+	bl func_08008F0C
+	add r4, sp, #0x30
+	mov r8, r4
+	ldr r1, [r7, #4]
+	ldr r0, [r7, #0xc]
+	cmp r1, r0
+	beq .Ljp_map_080A80BC
+	cmp r1, #0
+	beq .Ljp_map_080A809E
+	adds r0, r1, #0
+	add r1, sp, #0x30
+	ldm r1!, {r2, r5, r6}
+	stm r0!, {r2, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A809E:
+	ldr r0, [r7, #4]
+	adds r0, #0x10
+	str r0, [r7, #4]
+	ldr r3, [sp, #0x190]
+	adds r3, #0x94
+	str r3, [sp, #0x1b0]
+	ldr r4, [sp, #0x190]
+	adds r4, #0x9c
+	str r4, [sp, #0x1b4]
+	b .Ljp_map_080A8198
+	.align 2, 0
+.Ljp_map_080A80B4: .4byte gUnk_0845C7F4
+.Ljp_map_080A80B8: .4byte 0x06005FC0
+.Ljp_map_080A80BC:
+	mov sl, r1
+	movs r0, #1
+	add r1, sp, #0x114
+	str r0, [r1]
+	ldr r2, [r7]
+	mov r5, sl
+	subs r0, r5, r2
+	asrs r4, r0, #4
+	add r0, sp, #0x110
+	str r4, [r0]
+	adds r5, r1, #0
+	ldr r0, [r1]
+	add r1, sp, #0x110
+	adds r3, r2, #0
+	cmp r4, r0
+	bhs .Ljp_map_080A80DE
+	adds r1, r5, #0
+.Ljp_map_080A80DE:
+	ldr r0, [r1]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_map_080A80FE
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov sb, r4
+	cmp r0, #0
+	bne .Ljp_map_080A80FA
+	mov r0, sb
+	bl func_080D3BC0
+.Ljp_map_080A80FA:
+	ldr r3, [r7]
+	b .Ljp_map_080A8102
+.Ljp_map_080A80FE:
+	movs r0, #0
+	mov sb, r0
+.Ljp_map_080A8102:
+	adds r5, r0, #0
+	str r5, [sp, #0x1bc]
+	adds r2, r3, #0
+	adds r3, r5, #0
+	ldr r6, [sp, #0x190]
+	adds r6, #0x94
+	str r6, [sp, #0x1b0]
+	ldr r0, [sp, #0x190]
+	adds r0, #0x9c
+	str r0, [sp, #0x1b4]
+	cmp r2, sl
+	beq .Ljp_map_080A8132
+.Ljp_map_080A811A:
+	cmp r3, #0
+	beq .Ljp_map_080A812A
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A812A:
+	adds r2, #0x10
+	adds r3, #0x10
+	cmp r2, sl
+	bne .Ljp_map_080A811A
+.Ljp_map_080A8132:
+	adds r5, r3, #0
+	add r0, sp, #0x114
+	ldr r0, [r0]
+	cmp r0, #1
+	bne .Ljp_map_080A8150
+	cmp r5, #0
+	beq .Ljp_map_080A814C
+	adds r0, r5, #0
+	mov r1, r8
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A814C:
+	adds r5, #0x10
+	b .Ljp_map_080A8172
+.Ljp_map_080A8150:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_map_080A8170
+.Ljp_map_080A8158:
+	cmp r2, #0
+	beq .Ljp_map_080A8168
+	adds r0, r2, #0
+	mov r1, r8
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A8168:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_map_080A8158
+.Ljp_map_080A8170:
+	adds r5, r2, #0
+.Ljp_map_080A8172:
+	ldr r1, [r7, #4]
+	ldr r3, [r7]
+	adds r0, r3, #0
+	cmp r3, r1
+	beq .Ljp_map_080A8182
+.Ljp_map_080A817C:
+	adds r0, #0x10
+	cmp r0, r1
+	bne .Ljp_map_080A817C
+.Ljp_map_080A8182:
+	cmp r3, #0
+	beq .Ljp_map_080A818C
+	adds r0, r3, #0
+	bl free
+.Ljp_map_080A818C:
+	ldr r0, [sp, #0x1bc]
+	add r0, sb
+	ldr r6, [sp, #0x1bc]
+	str r6, [r7]
+	str r5, [r7, #4]
+	str r0, [r7, #0xc]
+.Ljp_map_080A8198:
+	ldr r1, .Ljp_map_080A8310 @ =gFarmHouseTilePatchData + 0x070
+	ldr r0, [sp, #0x190]
+	movs r2, #0
+	adds r3, r7, #0
+	bl func_080A54E8
+	ldr r4, .Ljp_map_080A8314 @ =gFarmHouseTilePatchData + 0x008
+	ldr r1, [sp, #0x1b0]
+	ldr r0, [r1]
+	movs r5, #0xfa
+	lsls r5, r5, #1
+	adds r0, r0, r5
+	bl GetMailboxStyle__C9FarmHouse
+	adds r2, r0, #0
+	ldr r0, [sp, #0x190]
+	adds r1, r4, #0
+	adds r3, r7, #0
+	bl func_080A54E8
+	movs r2, #6
+	mov sb, r2
+	add r6, sp, #0x30
+	ldr r3, [sp, #0x1b0]
+	mov sl, r3
+.Ljp_map_080A81CA:
+	movs r4, #0x22
+	mov r8, r4
+	mov r5, sb
+	adds r5, #1
+	str r5, [sp, #0x1ac]
+.Ljp_map_080A81D4:
+	adds r0, r6, #0
+	ldr r1, .Ljp_map_080A8318 @ =gFarmHouseStyleNibbleLookupData + 0x06
+	movs r2, #3
+	bl memcpy
+	ldr r1, [sp, #0x190]
+	ldr r0, [r1, #4]
+	bl GetMapData
+	ldrh r0, [r0, #0x20]
+	mov r4, sb
+	muls r4, r0, r4
+	add r4, r8
+	lsls r4, r4, #1
+	ldr r2, [sp, #0x190]
+	ldr r0, [r2, #0x14]
+	adds r5, r0, r4
+	mov r3, sl
+	ldr r0, [r3]
+	movs r1, #0xfa
+	lsls r1, r1, #1
+	adds r0, r0, r1
+	bl GetMailboxStyle__C9FarmHouse
+	adds r0, r6, r0
+	ldrb r1, [r0]
+	lsls r1, r1, #4
+	ldrb r2, [r5, #1]
+	movs r0, #0xf
+	ands r0, r2
+	orrs r0, r1
+	strb r0, [r5, #1]
+	ldr r2, [sp, #0x190]
+	ldr r0, [r2, #0x18]
+	adds r5, r0, r4
+	mov r3, sl
+	ldr r0, [r3]
+	movs r4, #0xfa
+	lsls r4, r4, #1
+	adds r0, r0, r4
+	bl GetMailboxStyle__C9FarmHouse
+	adds r0, r6, r0
+	ldrb r1, [r0]
+	lsls r1, r1, #4
+	ldrb r2, [r5, #1]
+	movs r0, #0xf
+	ands r0, r2
+	orrs r0, r1
+	strb r0, [r5, #1]
+	movs r5, #1
+	add r8, r5
+	mov r0, r8
+	cmp r0, #0x23
+	bls .Ljp_map_080A81D4
+	ldr r1, [sp, #0x1ac]
+	mov sb, r1
+	cmp r1, #8
+	bls .Ljp_map_080A81CA
+	ldr r4, .Ljp_map_080A831C @ =gFarmHouseTilePatchData + 0x018
+	ldr r2, [sp, #0x1b0]
+	ldr r0, [r2]
+	movs r5, #0xfa
+	lsls r5, r5, #1
+	adds r0, r0, r5
+	bl GetDoghouseStyle__C9FarmHouse
+	adds r2, r0, #0
+	ldr r0, [sp, #0x190]
+	adds r1, r4, #0
+	adds r3, r7, #0
+	bl func_080A54E8
+	movs r3, #7
+	mov sb, r3
+	add r6, sp, #0x30
+	ldr r4, [sp, #0x1b0]
+	mov sl, r4
+.Ljp_map_080A8270:
+	movs r5, #0x31
+	mov r8, r5
+	mov r0, sb
+	adds r0, #1
+	str r0, [sp, #0x1b8]
+.Ljp_map_080A827A:
+	adds r0, r6, #0
+	ldr r1, .Ljp_map_080A8320 @ =gFarmHouseStyleNibbleLookupData + 0x03
+	movs r2, #3
+	bl memcpy
+	ldr r1, [sp, #0x190]
+	ldr r0, [r1, #4]
+	bl GetMapData
+	ldrh r0, [r0, #0x20]
+	mov r4, sb
+	muls r4, r0, r4
+	add r4, r8
+	lsls r4, r4, #1
+	ldr r2, [sp, #0x190]
+	ldr r0, [r2, #0x14]
+	adds r5, r0, r4
+	mov r3, sl
+	ldr r0, [r3]
+	movs r1, #0xfa
+	lsls r1, r1, #1
+	adds r0, r0, r1
+	bl GetDoghouseStyle__C9FarmHouse
+	adds r0, r6, r0
+	ldrb r1, [r0]
+	lsls r1, r1, #4
+	ldrb r2, [r5, #1]
+	movs r0, #0xf
+	ands r0, r2
+	orrs r0, r1
+	strb r0, [r5, #1]
+	ldr r2, [sp, #0x190]
+	ldr r0, [r2, #0x18]
+	adds r5, r0, r4
+	mov r3, sl
+	ldr r0, [r3]
+	movs r4, #0xfa
+	lsls r4, r4, #1
+	adds r0, r0, r4
+	bl GetDoghouseStyle__C9FarmHouse
+	adds r0, r6, r0
+	ldrb r1, [r0]
+	lsls r1, r1, #4
+	ldrb r2, [r5, #1]
+	movs r0, #0xf
+	ands r0, r2
+	orrs r0, r1
+	strb r0, [r5, #1]
+	movs r5, #1
+	add r8, r5
+	mov r0, r8
+	cmp r0, #0x33
+	bls .Ljp_map_080A827A
+	ldr r1, [sp, #0x1b8]
+	mov sb, r1
+	cmp r1, #0xa
+	bls .Ljp_map_080A8270
+	ldr r4, .Ljp_map_080A8324 @ =gFarmHouseTilePatchData + 0x028
+.Ljp_map_080A82F2:
+	ldr r2, [sp, #0x1b0]
+	ldr r0, [r2]
+	movs r3, #0xfa
+	lsls r3, r3, #1
+	adds r0, r0, r3
+	bl GetWindowStyle__C9FarmHouse
+	adds r2, r0, #0
+	ldr r0, [sp, #0x190]
+	adds r1, r4, #0
+	adds r3, r7, #0
+	bl func_080A54E8
+	bl .Ljp_map_080A8C5C
+	.align 2, 0
+.Ljp_map_080A8310: .4byte gFarmHouseTilePatchData + 0x070
+.Ljp_map_080A8314: .4byte gFarmHouseTilePatchData + 0x008
+.Ljp_map_080A8318: .4byte gFarmHouseStyleNibbleLookupData + 0x06
+.Ljp_map_080A831C: .4byte gFarmHouseTilePatchData + 0x018
+.Ljp_map_080A8320: .4byte gFarmHouseStyleNibbleLookupData + 0x03
+.Ljp_map_080A8324: .4byte gFarmHouseTilePatchData + 0x028
+.Ljp_map_080A8328:
+	add r5, sp, #0x30
+	movs r0, #0
+	str r0, [sp, #0x30]
+	strh r0, [r5, #4]
+	add r4, sp, #0x38
+	mov r8, r4
+	str r0, [sp, #0x38]
+	strh r0, [r4, #4]
+	add r1, sp, #0x40
+	str r0, [sp, #0x40]
+	strh r0, [r1, #4]
+	add r1, sp, #0x48
+	str r0, [sp, #0x48]
+	strh r0, [r1, #4]
+	cmp r6, #1
+	bne .Ljp_map_080A834A
+	b .Ljp_map_080A849A
+.Ljp_map_080A834A:
+	cmp r6, #1
+	bgt .Ljp_map_080A8354
+	cmp r6, #0
+	beq .Ljp_map_080A8364
+	b .Ljp_map_080A865C
+.Ljp_map_080A8354:
+	cmp r6, #2
+	bne .Ljp_map_080A835A
+	b .Ljp_map_080A85EC
+.Ljp_map_080A835A:
+	ldr r6, [sp, #0x190]
+	adds r6, #0x9c
+	str r6, [sp, #0x1b4]
+	bl .Ljp_map_080A8C5C
+.Ljp_map_080A8364:
+	ldr r4, [sp]
+	add r0, sp, #0x118
+	ldr r3, [r4, #0xc]
+	mov r1, sp
+	ldr r2, .Ljp_map_080A8400 @ =0x0000012F
+	bl _call_via_r3
+	add r0, sp, #0x118
+	ldr r0, [r0]
+	ldrh r2, [r0]
+	add r0, sp, #0x50
+	ldr r3, [r4, #0x10]
+	mov r1, sp
+	bl _call_via_r3
+	add r4, sp, #0x50
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #0x20
+	bl memcpy
+	adds r1, r5, #0
+	adds r0, r4, #0
+	ldm r0!, {r2, r3, r5}
+	stm r1!, {r2, r3, r5}
+	ldm r0!, {r2, r3, r6}
+	stm r1!, {r2, r3, r6}
+	ldm r0!, {r5, r6}
+	stm r1!, {r5, r6}
+	ldr r1, [sp, #0x38]
+	movs r3, #0
+	cmp r1, #0
+	beq .Ljp_map_080A83AA
+	mov r0, r8
+	ldrh r3, [r0, #4]
+.Ljp_map_080A83AA:
+	adds r0, r4, #0
+	ldr r2, .Ljp_map_080A8404 @ =0x06003000
+	bl func_08008F0C
+	mov sb, r4
+	ldr r1, [r7, #4]
+	ldr r0, [r7, #0xc]
+	cmp r1, r0
+	beq .Ljp_map_080A83BE
+	b .Ljp_map_080A8646
+.Ljp_map_080A83BE:
+	mov sl, r1
+	movs r0, #1
+	add r1, sp, #0x124
+	str r0, [r1]
+	ldr r2, [r7]
+	mov r6, sl
+	subs r0, r6, r2
+	asrs r4, r0, #4
+	add r0, sp, #0x120
+	str r4, [r0]
+	adds r5, r1, #0
+	ldr r0, [r1]
+	add r1, sp, #0x120
+	adds r3, r2, #0
+	cmp r4, r0
+	bhs .Ljp_map_080A83E0
+	adds r1, r5, #0
+.Ljp_map_080A83E0:
+	ldr r0, [r1]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_map_080A8408
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_map_080A83FC
+	mov r0, r8
+	bl func_080D3BC0
+.Ljp_map_080A83FC:
+	ldr r3, [r7]
+	b .Ljp_map_080A840C
+	.align 2, 0
+.Ljp_map_080A8400: .4byte 0x0000012F
+.Ljp_map_080A8404: .4byte 0x06003000
+.Ljp_map_080A8408:
+	movs r0, #0
+	mov r8, r0
+.Ljp_map_080A840C:
+	adds r5, r0, #0
+	str r5, [sp, #0x1bc]
+	adds r2, r3, #0
+	adds r3, r5, #0
+	ldr r0, [sp, #0x190]
+	adds r0, #0x9c
+	str r0, [sp, #0x1b4]
+	cmp r2, sl
+	beq .Ljp_map_080A8436
+.Ljp_map_080A841E:
+	cmp r3, #0
+	beq .Ljp_map_080A842E
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A842E:
+	adds r2, #0x10
+	adds r3, #0x10
+	cmp r2, sl
+	bne .Ljp_map_080A841E
+.Ljp_map_080A8436:
+	adds r5, r3, #0
+	add r0, sp, #0x124
+	ldr r0, [r0]
+	cmp r0, #1
+	bne .Ljp_map_080A8454
+	cmp r5, #0
+	beq .Ljp_map_080A8450
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A8450:
+	adds r5, #0x10
+	b .Ljp_map_080A8476
+.Ljp_map_080A8454:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_map_080A8474
+.Ljp_map_080A845C:
+	cmp r2, #0
+	beq .Ljp_map_080A846C
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A846C:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_map_080A845C
+.Ljp_map_080A8474:
+	adds r5, r2, #0
+.Ljp_map_080A8476:
+	ldr r1, [r7, #4]
+	ldr r3, [r7]
+	adds r0, r3, #0
+	cmp r3, r1
+	beq .Ljp_map_080A8486
+.Ljp_map_080A8480:
+	adds r0, #0x10
+	cmp r0, r1
+	bne .Ljp_map_080A8480
+.Ljp_map_080A8486:
+	cmp r3, #0
+	beq .Ljp_map_080A8490
+	adds r0, r3, #0
+	bl free
+.Ljp_map_080A8490:
+	ldr r0, [sp, #0x1bc]
+	add r0, r8
+	ldr r6, [sp, #0x1bc]
+	str r6, [r7]
+	b .Ljp_map_080A8C44
+.Ljp_map_080A849A:
+	ldr r4, [sp]
+	add r0, sp, #0x128
+	ldr r3, [r4, #0xc]
+	mov r1, sp
+	ldr r2, .Ljp_map_080A8510 @ =0x00000151
+	bl _call_via_r3
+	add r0, sp, #0x128
+	ldr r0, [r0]
+	ldrh r2, [r0]
+	add r0, sp, #0x50
+	ldr r3, [r4, #0x10]
+	mov r1, sp
+	bl _call_via_r3
+	add r4, sp, #0x50
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #0x20
+	bl memcpy
+	adds r1, r5, #0
+	adds r0, r4, #0
+	ldm r0!, {r2, r3, r5}
+	stm r1!, {r2, r3, r5}
+	ldm r0!, {r2, r3, r5}
+	stm r1!, {r2, r3, r5}
+	ldm r0!, {r2, r3}
+	stm r1!, {r2, r3}
+	ldr r1, [sp, #0x38]
+	movs r3, #0
+	cmp r1, #0
+	beq .Ljp_map_080A84E0
+	mov r5, r8
+	ldrh r3, [r5, #4]
+.Ljp_map_080A84E0:
+	adds r0, r4, #0
+	ldr r2, .Ljp_map_080A8514 @ =0x06003000
+	bl func_08008F0C
+	mov sb, r4
+	ldr r1, [r7, #4]
+	ldr r0, [r7, #0xc]
+	cmp r1, r0
+	beq .Ljp_map_080A8518
+	cmp r1, #0
+	beq .Ljp_map_080A8502
+	adds r0, r1, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r6}
+	stm r0!, {r2, r3, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A8502:
+	ldr r0, [r7, #4]
+	adds r0, #0x10
+	str r0, [r7, #4]
+	ldr r4, [sp, #0x190]
+	adds r4, #0x9c
+	str r4, [sp, #0x1b4]
+	b .Ljp_map_080A8C5C
+	.align 2, 0
+.Ljp_map_080A8510: .4byte 0x00000151
+.Ljp_map_080A8514: .4byte 0x06003000
+.Ljp_map_080A8518:
+	mov r8, r1
+	add r1, sp, #0x134
+	str r6, [r1]
+	ldr r2, [r7]
+	mov r5, r8
+	subs r0, r5, r2
+	asrs r4, r0, #4
+	add r0, sp, #0x130
+	str r4, [r0]
+	adds r5, r1, #0
+	ldr r0, [r1]
+	add r1, sp, #0x130
+	adds r3, r2, #0
+	cmp r4, r0
+	bhs .Ljp_map_080A8538
+	adds r1, r5, #0
+.Ljp_map_080A8538:
+	ldr r0, [r1]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_map_080A8558
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	str r4, [sp, #0x1bc]
+	cmp r0, #0
+	bne .Ljp_map_080A8554
+	adds r0, r4, #0
+	bl func_080D3BC0
+.Ljp_map_080A8554:
+	ldr r3, [r7]
+	b .Ljp_map_080A855E
+.Ljp_map_080A8558:
+	movs r0, #0
+	movs r6, #0
+	str r6, [sp, #0x1bc]
+.Ljp_map_080A855E:
+	adds r5, r0, #0
+	mov sl, r5
+	adds r2, r3, #0
+	mov r3, sl
+	ldr r0, [sp, #0x190]
+	adds r0, #0x9c
+	str r0, [sp, #0x1b4]
+	cmp r2, r8
+	beq .Ljp_map_080A8588
+.Ljp_map_080A8570:
+	cmp r3, #0
+	beq .Ljp_map_080A8580
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A8580:
+	adds r2, #0x10
+	adds r3, #0x10
+	cmp r2, r8
+	bne .Ljp_map_080A8570
+.Ljp_map_080A8588:
+	adds r5, r3, #0
+	add r0, sp, #0x134
+	ldr r0, [r0]
+	cmp r0, #1
+	bne .Ljp_map_080A85A6
+	cmp r5, #0
+	beq .Ljp_map_080A85A2
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A85A2:
+	adds r5, #0x10
+	b .Ljp_map_080A85C8
+.Ljp_map_080A85A6:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_map_080A85C6
+.Ljp_map_080A85AE:
+	cmp r2, #0
+	beq .Ljp_map_080A85BE
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A85BE:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_map_080A85AE
+.Ljp_map_080A85C6:
+	adds r5, r2, #0
+.Ljp_map_080A85C8:
+	ldr r1, [r7, #4]
+	ldr r3, [r7]
+	adds r0, r3, #0
+	cmp r3, r1
+	beq .Ljp_map_080A85D8
+.Ljp_map_080A85D2:
+	adds r0, #0x10
+	cmp r0, r1
+	bne .Ljp_map_080A85D2
+.Ljp_map_080A85D8:
+	cmp r3, #0
+	beq .Ljp_map_080A85E2
+	adds r0, r3, #0
+	bl free
+.Ljp_map_080A85E2:
+	ldr r0, [sp, #0x1bc]
+	add r0, sl
+	mov r6, sl
+	str r6, [r7]
+	b .Ljp_map_080A8C44
+.Ljp_map_080A85EC:
+	ldr r4, [sp]
+	add r0, sp, #0x138
+	ldr r3, [r4, #0xc]
+	mov r1, sp
+	movs r2, #0x88
+	lsls r2, r2, #1
+	bl _call_via_r3
+	add r0, sp, #0x138
+	ldr r0, [r0]
+	ldrh r2, [r0]
+	add r0, sp, #0x50
+	ldr r3, [r4, #0x10]
+	mov r1, sp
+	bl _call_via_r3
+	add r4, sp, #0x50
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #0x20
+	bl memcpy
+	adds r1, r5, #0
+	adds r0, r4, #0
+	ldm r0!, {r2, r3, r5}
+	stm r1!, {r2, r3, r5}
+	ldm r0!, {r2, r3, r6}
+	stm r1!, {r2, r3, r6}
+	ldm r0!, {r5, r6}
+	stm r1!, {r5, r6}
+	ldr r1, [sp, #0x38]
+	movs r3, #0
+	cmp r1, #0
+	beq .Ljp_map_080A8634
+	mov r0, r8
+	ldrh r3, [r0, #4]
+.Ljp_map_080A8634:
+	adds r0, r4, #0
+	ldr r2, .Ljp_map_080A8664 @ =0x06003000
+	bl func_08008F0C
+	mov sb, r4
+	ldr r1, [r7, #4]
+	ldr r0, [r7, #0xc]
+	cmp r1, r0
+	beq .Ljp_map_080A8668
+.Ljp_map_080A8646:
+	cmp r1, #0
+	beq .Ljp_map_080A8656
+	adds r0, r1, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A8656:
+	ldr r0, [r7, #4]
+	adds r0, #0x10
+	str r0, [r7, #4]
+.Ljp_map_080A865C:
+	ldr r5, [sp, #0x190]
+	adds r5, #0x9c
+	str r5, [sp, #0x1b4]
+	b .Ljp_map_080A8C5C
+	.align 2, 0
+.Ljp_map_080A8664: .4byte 0x06003000
+.Ljp_map_080A8668:
+	mov sl, r1
+	movs r0, #1
+	add r1, sp, #0x144
+	str r0, [r1]
+	ldr r2, [r7]
+	mov r6, sl
+	subs r0, r6, r2
+	asrs r4, r0, #4
+	add r0, sp, #0x140
+	str r4, [r0]
+	adds r5, r1, #0
+	ldr r0, [r1]
+	add r1, sp, #0x140
+	adds r3, r2, #0
+	cmp r4, r0
+	bhs .Ljp_map_080A868A
+	adds r1, r5, #0
+.Ljp_map_080A868A:
+	ldr r0, [r1]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_map_080A86AA
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_map_080A86A6
+	mov r0, r8
+	bl func_080D3BC0
+.Ljp_map_080A86A6:
+	ldr r3, [r7]
+	b .Ljp_map_080A86AE
+.Ljp_map_080A86AA:
+	movs r0, #0
+	mov r8, r0
+.Ljp_map_080A86AE:
+	adds r5, r0, #0
+	str r5, [sp, #0x1bc]
+	adds r2, r3, #0
+	adds r3, r5, #0
+	ldr r0, [sp, #0x190]
+	adds r0, #0x9c
+	str r0, [sp, #0x1b4]
+	cmp r2, sl
+	beq .Ljp_map_080A86D8
+.Ljp_map_080A86C0:
+	cmp r3, #0
+	beq .Ljp_map_080A86D0
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A86D0:
+	adds r2, #0x10
+	adds r3, #0x10
+	cmp r2, sl
+	bne .Ljp_map_080A86C0
+.Ljp_map_080A86D8:
+	adds r5, r3, #0
+	add r0, sp, #0x144
+	ldr r0, [r0]
+	cmp r0, #1
+	bne .Ljp_map_080A86F6
+	cmp r5, #0
+	beq .Ljp_map_080A86F2
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A86F2:
+	adds r5, #0x10
+	b .Ljp_map_080A8718
+.Ljp_map_080A86F6:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_map_080A8716
+.Ljp_map_080A86FE:
+	cmp r2, #0
+	beq .Ljp_map_080A870E
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A870E:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_map_080A86FE
+.Ljp_map_080A8716:
+	adds r5, r2, #0
+.Ljp_map_080A8718:
+	ldr r1, [r7, #4]
+	ldr r3, [r7]
+	adds r0, r3, #0
+	cmp r3, r1
+	beq .Ljp_map_080A8728
+.Ljp_map_080A8722:
+	adds r0, #0x10
+	cmp r0, r1
+	bne .Ljp_map_080A8722
+.Ljp_map_080A8728:
+	cmp r3, #0
+	beq .Ljp_map_080A8732
+	adds r0, r3, #0
+	bl free
+.Ljp_map_080A8732:
+	ldr r0, [sp, #0x1bc]
+	add r0, r8
+	ldr r6, [sp, #0x1bc]
+	str r6, [r7]
+	b .Ljp_map_080A8C44
+.Ljp_map_080A873C:
+	ldr r0, [sp, #0x190]
+	adds r0, #0x9c
+	str r0, [sp, #0x1b4]
+	cmp r6, #1
+	beq .Ljp_map_080A8748
+	b .Ljp_map_080A885E
+.Ljp_map_080A8748:
+	add r0, sp, #0x30
+	ldr r1, .Ljp_map_080A8778 @ =0x06007D00
+	ldr r2, .Ljp_map_080A877C @ =0x06007C80
+	movs r3, #0x80
+	bl func_08008F0C
+	add r1, sp, #0x30
+	mov sb, r1
+	ldr r1, [r7, #4]
+	ldr r0, [r7, #0xc]
+	cmp r1, r0
+	beq .Ljp_map_080A8780
+	cmp r1, #0
+	beq .Ljp_map_080A8770
+	adds r0, r1, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A8770:
+	ldr r0, [r7, #4]
+	adds r0, #0x10
+	str r0, [r7, #4]
+	b .Ljp_map_080A885E
+	.align 2, 0
+.Ljp_map_080A8778: .4byte 0x06007D00
+.Ljp_map_080A877C: .4byte 0x06007C80
+.Ljp_map_080A8780:
+	mov r8, r1
+	add r1, sp, #0x14c
+	str r6, [r1]
+	ldr r2, [r7]
+	mov r5, r8
+	subs r0, r5, r2
+	asrs r4, r0, #4
+	add r0, sp, #0x148
+	str r4, [r0]
+	adds r5, r1, #0
+	ldr r0, [r1]
+	add r1, sp, #0x148
+	adds r3, r2, #0
+	cmp r4, r0
+	bhs .Ljp_map_080A87A0
+	adds r1, r5, #0
+.Ljp_map_080A87A0:
+	ldr r0, [r1]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_map_080A87C0
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov sl, r4
+	cmp r0, #0
+	bne .Ljp_map_080A87BC
+	mov r0, sl
+	bl func_080D3BC0
+.Ljp_map_080A87BC:
+	ldr r3, [r7]
+	b .Ljp_map_080A87C4
+.Ljp_map_080A87C0:
+	movs r0, #0
+	mov sl, r0
+.Ljp_map_080A87C4:
+	adds r5, r0, #0
+	str r5, [sp, #0x1bc]
+	adds r2, r3, #0
+	mov ip, r5
+	ldr r0, [sp, #0x190]
+	adds r0, #0x9c
+	str r0, [sp, #0x1b4]
+	cmp r2, r8
+	beq .Ljp_map_080A87F2
+.Ljp_map_080A87D6:
+	mov r1, ip
+	cmp r1, #0
+	beq .Ljp_map_080A87E8
+	mov r0, ip
+	adds r1, r2, #0
+	ldm r1!, {r3, r4, r5}
+	stm r0!, {r3, r4, r5}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A87E8:
+	adds r2, #0x10
+	movs r0, #0x10
+	add ip, r0
+	cmp r2, r8
+	bne .Ljp_map_080A87D6
+.Ljp_map_080A87F2:
+	mov r5, ip
+	add r0, sp, #0x14c
+	ldr r0, [r0]
+	cmp r0, #1
+	bne .Ljp_map_080A8810
+	cmp r5, #0
+	beq .Ljp_map_080A880C
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A880C:
+	adds r5, #0x10
+	b .Ljp_map_080A8838
+.Ljp_map_080A8810:
+	mov r8, r0
+	adds r2, r5, #0
+	cmp r0, #0
+	beq .Ljp_map_080A8836
+.Ljp_map_080A8818:
+	cmp r2, #0
+	beq .Ljp_map_080A8828
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r3, r4, r5}
+	stm r0!, {r3, r4, r5}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A8828:
+	movs r5, #1
+	rsbs r5, r5, #0
+	add r8, r5
+	adds r2, #0x10
+	mov r0, r8
+	cmp r0, #0
+	bne .Ljp_map_080A8818
+.Ljp_map_080A8836:
+	adds r5, r2, #0
+.Ljp_map_080A8838:
+	ldr r1, [r7, #4]
+	ldr r3, [r7]
+	adds r0, r3, #0
+	cmp r3, r1
+	beq .Ljp_map_080A8848
+.Ljp_map_080A8842:
+	adds r0, #0x10
+	cmp r0, r1
+	bne .Ljp_map_080A8842
+.Ljp_map_080A8848:
+	cmp r3, #0
+	beq .Ljp_map_080A8852
+	adds r0, r3, #0
+	bl free
+.Ljp_map_080A8852:
+	ldr r0, [sp, #0x1bc]
+	add r0, sl
+	ldr r1, [sp, #0x1bc]
+	str r1, [r7]
+	str r5, [r7, #4]
+	str r0, [r7, #0xc]
+.Ljp_map_080A885E:
+	add r5, sp, #0x30
+	movs r0, #0
+	str r0, [sp, #0x30]
+	strh r0, [r5, #4]
+	add r2, sp, #0x38
+	mov r8, r2
+	str r0, [sp, #0x38]
+	strh r0, [r2, #4]
+	add r1, sp, #0x40
+	str r0, [sp, #0x40]
+	strh r0, [r1, #4]
+	add r1, sp, #0x48
+	str r0, [sp, #0x48]
+	strh r0, [r1, #4]
+	cmp r6, #1
+	bne .Ljp_map_080A8880
+	b .Ljp_map_080A89C2
+.Ljp_map_080A8880:
+	cmp r6, #1
+	bgt .Ljp_map_080A888A
+	cmp r6, #0
+	beq .Ljp_map_080A8892
+	b .Ljp_map_080A8C5C
+.Ljp_map_080A888A:
+	cmp r6, #2
+	bne .Ljp_map_080A8890
+	b .Ljp_map_080A8B00
+.Ljp_map_080A8890:
+	b .Ljp_map_080A8C5C
+.Ljp_map_080A8892:
+	ldr r4, [sp]
+	add r0, sp, #0x150
+	ldr r3, [r4, #0xc]
+	mov r1, sp
+	ldr r2, .Ljp_map_080A88FC @ =0x0000012F
+	bl _call_via_r3
+	add r0, sp, #0x150
+	ldr r0, [r0]
+	ldrh r2, [r0]
+	add r0, sp, #0x50
+	ldr r3, [r4, #0x10]
+	mov r1, sp
+	bl _call_via_r3
+	add r4, sp, #0x50
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #0x20
+	bl memcpy
+	adds r1, r5, #0
+	adds r0, r4, #0
+	ldm r0!, {r3, r5, r6}
+	stm r1!, {r3, r5, r6}
+	ldm r0!, {r2, r3, r5}
+	stm r1!, {r2, r3, r5}
+	ldm r0!, {r2, r6}
+	stm r1!, {r2, r6}
+	ldr r1, [sp, #0x38]
+	movs r3, #0
+	cmp r1, #0
+	beq .Ljp_map_080A88D8
+	mov r5, r8
+	ldrh r3, [r5, #4]
+.Ljp_map_080A88D8:
+	adds r0, r4, #0
+	ldr r2, .Ljp_map_080A8900 @ =0x06007C00
+	bl func_08008F0C
+	mov sb, r4
+	ldr r1, [r7, #4]
+	ldr r0, [r7, #0xc]
+	cmp r1, r0
+	beq .Ljp_map_080A8904
+	cmp r1, #0
+	bne .Ljp_map_080A88F0
+	b .Ljp_map_080A8B6A
+.Ljp_map_080A88F0:
+	adds r0, r1, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r6}
+	stm r0!, {r2, r3, r6}
+	b .Ljp_map_080A8B66
+	.align 2, 0
+.Ljp_map_080A88FC: .4byte 0x0000012F
+.Ljp_map_080A8900: .4byte 0x06007C00
+.Ljp_map_080A8904:
+	mov sl, r1
+	movs r0, #1
+	add r1, sp, #0x15c
+	str r0, [r1]
+	ldr r2, [r7]
+	mov r4, sl
+	subs r0, r4, r2
+	asrs r4, r0, #4
+	add r0, sp, #0x158
+	str r4, [r0]
+	adds r5, r1, #0
+	ldr r0, [r1]
+	add r1, sp, #0x158
+	adds r3, r2, #0
+	cmp r4, r0
+	bhs .Ljp_map_080A8926
+	adds r1, r5, #0
+.Ljp_map_080A8926:
+	ldr r0, [r1]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_map_080A8946
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_map_080A8942
+	mov r0, r8
+	bl func_080D3BC0
+.Ljp_map_080A8942:
+	ldr r3, [r7]
+	b .Ljp_map_080A894A
+.Ljp_map_080A8946:
+	movs r0, #0
+	mov r8, r0
+.Ljp_map_080A894A:
+	adds r5, r0, #0
+	str r5, [sp, #0x1bc]
+	adds r2, r3, #0
+	adds r3, r5, #0
+	cmp r2, sl
+	beq .Ljp_map_080A896E
+.Ljp_map_080A8956:
+	cmp r3, #0
+	beq .Ljp_map_080A8966
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A8966:
+	adds r2, #0x10
+	adds r3, #0x10
+	cmp r2, sl
+	bne .Ljp_map_080A8956
+.Ljp_map_080A896E:
+	adds r5, r3, #0
+	add r0, sp, #0x15c
+	ldr r0, [r0]
+	cmp r0, #1
+	bne .Ljp_map_080A898C
+	cmp r5, #0
+	beq .Ljp_map_080A8988
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r6}
+	stm r0!, {r2, r3, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A8988:
+	adds r5, #0x10
+	b .Ljp_map_080A89AE
+.Ljp_map_080A898C:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_map_080A89AC
+.Ljp_map_080A8994:
+	cmp r2, #0
+	beq .Ljp_map_080A89A4
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A89A4:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_map_080A8994
+.Ljp_map_080A89AC:
+	adds r5, r2, #0
+.Ljp_map_080A89AE:
+	ldr r1, [r7, #4]
+	ldr r3, [r7]
+	adds r0, r3, #0
+	cmp r3, r1
+	bne .Ljp_map_080A89BA
+	b .Ljp_map_080A8C32
+.Ljp_map_080A89BA:
+	adds r0, #0x10
+	cmp r0, r1
+	bne .Ljp_map_080A89BA
+	b .Ljp_map_080A8C32
+.Ljp_map_080A89C2:
+	ldr r4, [sp]
+	add r0, sp, #0x160
+	ldr r3, [r4, #0xc]
+	mov r1, sp
+	ldr r2, .Ljp_map_080A8A2C @ =0x00000151
+	bl _call_via_r3
+	add r0, sp, #0x160
+	ldr r0, [r0]
+	ldrh r2, [r0]
+	add r0, sp, #0x50
+	ldr r3, [r4, #0x10]
+	mov r1, sp
+	bl _call_via_r3
+	add r4, sp, #0x50
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #0x20
+	bl memcpy
+	adds r1, r5, #0
+	adds r0, r4, #0
+	ldm r0!, {r2, r3, r5}
+	stm r1!, {r2, r3, r5}
+	ldm r0!, {r2, r3, r5}
+	stm r1!, {r2, r3, r5}
+	ldm r0!, {r2, r3}
+	stm r1!, {r2, r3}
+	ldr r1, [sp, #0x38]
+	movs r3, #0
+	cmp r1, #0
+	beq .Ljp_map_080A8A08
+	mov r5, r8
+	ldrh r3, [r5, #4]
+.Ljp_map_080A8A08:
+	adds r0, r4, #0
+	ldr r2, .Ljp_map_080A8A30 @ =0x06007C00
+	bl func_08008F0C
+	mov sb, r4
+	ldr r1, [r7, #4]
+	ldr r0, [r7, #0xc]
+	cmp r1, r0
+	beq .Ljp_map_080A8A34
+	cmp r1, #0
+	bne .Ljp_map_080A8A20
+	b .Ljp_map_080A8B6A
+.Ljp_map_080A8A20:
+	adds r0, r1, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r6}
+	stm r0!, {r2, r3, r6}
+	b .Ljp_map_080A8B66
+	.align 2, 0
+.Ljp_map_080A8A2C: .4byte 0x00000151
+.Ljp_map_080A8A30: .4byte 0x06007C00
+.Ljp_map_080A8A34:
+	mov r8, r1
+	add r1, sp, #0x16c
+	str r6, [r1]
+	ldr r2, [r7]
+	mov r4, r8
+	subs r0, r4, r2
+	asrs r4, r0, #4
+	add r0, sp, #0x168
+	str r4, [r0]
+	adds r5, r1, #0
+	ldr r0, [r1]
+	add r1, sp, #0x168
+	adds r3, r2, #0
+	cmp r4, r0
+	bhs .Ljp_map_080A8A54
+	adds r1, r5, #0
+.Ljp_map_080A8A54:
+	ldr r0, [r1]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_map_080A8A74
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	str r4, [sp, #0x1bc]
+	cmp r0, #0
+	bne .Ljp_map_080A8A70
+	adds r0, r4, #0
+	bl func_080D3BC0
+.Ljp_map_080A8A70:
+	ldr r3, [r7]
+	b .Ljp_map_080A8A7A
+.Ljp_map_080A8A74:
+	movs r0, #0
+	movs r5, #0
+	str r5, [sp, #0x1bc]
+.Ljp_map_080A8A7A:
+	adds r5, r0, #0
+	mov sl, r5
+	adds r2, r3, #0
+	mov r3, sl
+	cmp r2, r8
+	beq .Ljp_map_080A8A9E
+.Ljp_map_080A8A86:
+	cmp r3, #0
+	beq .Ljp_map_080A8A96
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A8A96:
+	adds r2, #0x10
+	adds r3, #0x10
+	cmp r2, r8
+	bne .Ljp_map_080A8A86
+.Ljp_map_080A8A9E:
+	adds r5, r3, #0
+	add r0, sp, #0x16c
+	ldr r0, [r0]
+	cmp r0, #1
+	bne .Ljp_map_080A8ABC
+	cmp r5, #0
+	beq .Ljp_map_080A8AB8
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r6}
+	stm r0!, {r2, r3, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A8AB8:
+	adds r5, #0x10
+	b .Ljp_map_080A8ADE
+.Ljp_map_080A8ABC:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_map_080A8ADC
+.Ljp_map_080A8AC4:
+	cmp r2, #0
+	beq .Ljp_map_080A8AD4
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A8AD4:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_map_080A8AC4
+.Ljp_map_080A8ADC:
+	adds r5, r2, #0
+.Ljp_map_080A8ADE:
+	ldr r1, [r7, #4]
+	ldr r3, [r7]
+	adds r0, r3, #0
+	cmp r3, r1
+	beq .Ljp_map_080A8AEE
+.Ljp_map_080A8AE8:
+	adds r0, #0x10
+	cmp r0, r1
+	bne .Ljp_map_080A8AE8
+.Ljp_map_080A8AEE:
+	cmp r3, #0
+	beq .Ljp_map_080A8AF8
+	adds r0, r3, #0
+	bl free
+.Ljp_map_080A8AF8:
+	ldr r0, [sp, #0x1bc]
+	add r0, sl
+	mov r1, sl
+	b .Ljp_map_080A8C42
+.Ljp_map_080A8B00:
+	ldr r4, [sp]
+	add r0, sp, #0x170
+	ldr r3, [r4, #0xc]
+	mov r1, sp
+	movs r2, #0x88
+	lsls r2, r2, #1
+	bl _call_via_r3
+	add r0, sp, #0x170
+	ldr r0, [r0]
+	ldrh r2, [r0]
+	add r0, sp, #0x50
+	ldr r3, [r4, #0x10]
+	mov r1, sp
+	bl _call_via_r3
+	add r4, sp, #0x50
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #0x20
+	bl memcpy
+	adds r1, r5, #0
+	adds r0, r4, #0
+	ldm r0!, {r2, r3, r5}
+	stm r1!, {r2, r3, r5}
+	ldm r0!, {r2, r3, r6}
+	stm r1!, {r2, r3, r6}
+	ldm r0!, {r5, r6}
+	stm r1!, {r5, r6}
+	ldr r1, [sp, #0x38]
+	movs r3, #0
+	cmp r1, #0
+	beq .Ljp_map_080A8B48
+	mov r0, r8
+	ldrh r3, [r0, #4]
+.Ljp_map_080A8B48:
+	adds r0, r4, #0
+	ldr r2, .Ljp_map_080A8B74 @ =0x06007C00
+	bl func_08008F0C
+	mov sb, r4
+	ldr r1, [r7, #4]
+	ldr r0, [r7, #0xc]
+	cmp r1, r0
+	beq .Ljp_map_080A8B78
+
+    .global func_080A8B5A
+    .thumb_func
+func_080A8B5A: @ 0x080A8B5A
+	cmp r1, #0
+	beq .Ljp_map_080A8B6A
+	adds r0, r1, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+.Ljp_map_080A8B66:
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A8B6A:
+	ldr r0, [r7, #4]
+	adds r0, #0x10
+	str r0, [r7, #4]
+	b .Ljp_map_080A8C5C
+	.align 2, 0
+.Ljp_map_080A8B74: .4byte 0x06007C00
+.Ljp_map_080A8B78:
+	mov sl, r1
+	movs r0, #1
+	add r1, sp, #0x17c
+	str r0, [r1]
+	ldr r2, [r7]
+	mov r5, sl
+	subs r0, r5, r2
+	asrs r4, r0, #4
+	add r0, sp, #0x178
+	str r4, [r0]
+	adds r5, r1, #0
+	ldr r0, [r1]
+	add r1, sp, #0x178
+	adds r3, r2, #0
+	cmp r4, r0
+	bhs .Ljp_map_080A8B9A
+	adds r1, r5, #0
+.Ljp_map_080A8B9A:
+	ldr r0, [r1]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_map_080A8BBA
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_map_080A8BB6
+	mov r0, r8
+	bl func_080D3BC0
+.Ljp_map_080A8BB6:
+	ldr r3, [r7]
+	b .Ljp_map_080A8BBE
+.Ljp_map_080A8BBA:
+	movs r0, #0
+	mov r8, r0
+.Ljp_map_080A8BBE:
+	adds r5, r0, #0
+	str r5, [sp, #0x1bc]
+	adds r2, r3, #0
+	adds r3, r5, #0
+	cmp r2, sl
+	beq .Ljp_map_080A8BE2
+.Ljp_map_080A8BCA:
+	cmp r3, #0
+	beq .Ljp_map_080A8BDA
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A8BDA:
+	adds r2, #0x10
+	adds r3, #0x10
+	cmp r2, sl
+	bne .Ljp_map_080A8BCA
+.Ljp_map_080A8BE2:
+	adds r5, r3, #0
+	add r0, sp, #0x17c
+	ldr r0, [r0]
+	cmp r0, #1
+	bne .Ljp_map_080A8C00
+	cmp r5, #0
+	beq .Ljp_map_080A8BFC
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r6}
+	stm r0!, {r2, r3, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A8BFC:
+	adds r5, #0x10
+	b .Ljp_map_080A8C22
+.Ljp_map_080A8C00:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_map_080A8C20
+.Ljp_map_080A8C08:
+	cmp r2, #0
+	beq .Ljp_map_080A8C18
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A8C18:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_map_080A8C08
+.Ljp_map_080A8C20:
+	adds r5, r2, #0
+.Ljp_map_080A8C22:
+	ldr r1, [r7, #4]
+	ldr r3, [r7]
+	adds r0, r3, #0
+	cmp r3, r1
+	beq .Ljp_map_080A8C32
+.Ljp_map_080A8C2C:
+	adds r0, #0x10
+	cmp r0, r1
+	bne .Ljp_map_080A8C2C
+.Ljp_map_080A8C32:
+	cmp r3, #0
+	beq .Ljp_map_080A8C3C
+	adds r0, r3, #0
+	bl free
+.Ljp_map_080A8C3C:
+	ldr r0, [sp, #0x1bc]
+	add r0, r8
+	ldr r1, [sp, #0x1bc]
+.Ljp_map_080A8C42:
+	str r1, [r7]
+.Ljp_map_080A8C44:
+	str r5, [r7, #4]
+	str r0, [r7, #0xc]
+	b .Ljp_map_080A8C5C
+.Ljp_map_080A8C4A:
+	ldr r1, .Ljp_map_080A8C70 @ =gFarmHouseTilePatchData + 0x078
+	ldr r0, [sp, #0x190]
+	movs r2, #0
+	adds r3, r7, #0
+	bl func_080A54E8
+	ldr r2, [sp, #0x190]
+	adds r2, #0x9c
+	str r2, [sp, #0x1b4]
+.Ljp_map_080A8C5C:
+	ldr r3, [sp, #0x190]
+	ldr r0, [r3]
+	cmp r0, #8
+	bne .Ljp_map_080A8C66
+	b .Ljp_map_080A8E2A
+.Ljp_map_080A8C66:
+	cmp r0, #8
+	bgt .Ljp_map_080A8C74
+	cmp r0, #6
+	beq .Ljp_map_080A8C84
+	b .Ljp_map_080A8E2A
+	.align 2, 0
+.Ljp_map_080A8C70: .4byte gFarmHouseTilePatchData + 0x078
+.Ljp_map_080A8C74:
+	cmp r0, #0x1d
+	beq .Ljp_map_080A8C7A
+	b .Ljp_map_080A8E2A
+.Ljp_map_080A8C7A:
+	ldr r1, [sp, #0x190]
+	adds r1, #0x98
+	movs r0, #1
+	strb r0, [r1]
+	b .Ljp_map_080A8E2A
+.Ljp_map_080A8C84:
+	ldr r0, [sp, #0x194]
+	adds r0, #0x5d
+	ldrb r0, [r0]
+	lsls r0, r0, #0x1e
+	lsrs r0, r0, #0x1e
+	cmp r0, #1
+	bne .Ljp_map_080A8CA8
+	ldr r1, .Ljp_map_080A8EC0 @ =gFarmHouseVisualDescriptors + 0x58
+	ldr r0, [r1, #0x18]
+	cmp r0, #0
+	beq .Ljp_map_080A8CA8
+	ldr r1, [r1, #0x1c]
+	lsls r1, r1, #5
+	movs r4, #0xc0
+	lsls r4, r4, #0x13
+	adds r1, r1, r4
+	bl Unpack
+.Ljp_map_080A8CA8:
+	ldr r0, [sp, #0x194]
+	adds r0, #0x54
+	ldrb r0, [r0]
+	lsls r0, r0, #0x1e
+	lsrs r0, r0, #0x1e
+	cmp r0, #1
+	bne .Ljp_map_080A8CCC
+	ldr r1, .Ljp_map_080A8EC4 @ =gFarmHouseVisualDescriptors + 0x108
+	ldr r0, [r1, #0x18]
+	cmp r0, #0
+	beq .Ljp_map_080A8CCC
+	ldr r1, [r1, #0x1c]
+	lsls r1, r1, #5
+	movs r5, #0xc0
+	lsls r5, r5, #0x13
+	adds r1, r1, r5
+	bl Unpack
+.Ljp_map_080A8CCC:
+	ldr r1, [sp, #0x194]
+	adds r1, #0x4e
+	ldrh r0, [r1]
+	lsls r0, r0, #0x17
+	lsrs r0, r0, #0x1e
+	adds r4, r1, #0
+	cmp r0, #1
+	bne .Ljp_map_080A8CF2
+	ldr r1, .Ljp_map_080A8EC8 @ =gFarmHouseVisualDescriptors + 0x2C
+	ldr r0, [r1, #0x18]
+	cmp r0, #0
+	beq .Ljp_map_080A8CF2
+	ldr r1, [r1, #0x1c]
+	lsls r1, r1, #5
+	movs r6, #0xc0
+	lsls r6, r6, #0x13
+	adds r1, r1, r6
+	bl Unpack
+.Ljp_map_080A8CF2:
+	ldr r0, [sp, #0x194]
+	adds r0, #0x4f
+	ldrb r0, [r0]
+	lsls r0, r0, #0x1a
+	lsrs r0, r0, #0x1e
+	cmp r0, #1
+	bne .Ljp_map_080A8D16
+	ldr r1, .Ljp_map_080A8EC8 @ =gFarmHouseVisualDescriptors + 0x2C
+	ldr r0, [r1, #0x18]
+	cmp r0, #0
+	beq .Ljp_map_080A8D16
+	ldr r1, [r1, #0x1c]
+	lsls r1, r1, #5
+	movs r2, #0xc0
+	lsls r2, r2, #0x13
+	adds r1, r1, r2
+	bl Unpack
+.Ljp_map_080A8D16:
+	ldrb r0, [r4]
+	lsls r0, r0, #0x1c
+	lsrs r0, r0, #0x1e
+	cmp r0, #1
+	bne .Ljp_map_080A8D4C
+	ldr r1, .Ljp_map_080A8ECC @ =gFarmHouseVisualDescriptors
+	ldr r0, [r1, #0x18]
+	cmp r0, #0
+	beq .Ljp_map_080A8D36
+	ldr r1, [r1, #0x1c]
+	lsls r1, r1, #5
+	movs r3, #0xc0
+	lsls r3, r3, #0x13
+	adds r1, r1, r3
+	bl Unpack
+.Ljp_map_080A8D36:
+	ldr r1, .Ljp_map_080A8ED0 @ =gFarmHouseVisualDescriptors + 0xB0
+	ldr r0, [r1, #0x18]
+	cmp r0, #0
+	beq .Ljp_map_080A8D4C
+	ldr r1, [r1, #0x1c]
+	lsls r1, r1, #5
+	movs r4, #0xc0
+	lsls r4, r4, #0x13
+	adds r1, r1, r4
+	bl Unpack
+.Ljp_map_080A8D4C:
+	ldr r0, [sp, #0x194]
+	adds r0, #0x51
+	ldrb r0, [r0]
+	lsls r0, r0, #0x1b
+	lsrs r0, r0, #0x1e
+	cmp r0, #1
+	bne .Ljp_map_080A8D70
+	ldr r1, .Ljp_map_080A8ED4 @ =gFarmHouseVisualDescriptors + 0x84
+	ldr r0, [r1, #0x18]
+	cmp r0, #0
+	beq .Ljp_map_080A8D70
+	ldr r1, [r1, #0x1c]
+	lsls r1, r1, #5
+	movs r5, #0xc0
+	lsls r5, r5, #0x13
+	adds r1, r1, r5
+	bl Unpack
+.Ljp_map_080A8D70:
+	ldr r0, [sp, #0x194]
+	adds r0, #0x52
+	ldrb r0, [r0]
+	lsls r0, r0, #0x1d
+	lsrs r0, r0, #0x1e
+	cmp r0, #1
+	bne .Ljp_map_080A8D94
+	ldr r1, .Ljp_map_080A8ECC @ =gFarmHouseVisualDescriptors
+	ldr r0, [r1, #0x18]
+	cmp r0, #0
+	beq .Ljp_map_080A8D94
+	ldr r1, [r1, #0x1c]
+	lsls r1, r1, #5
+	movs r6, #0xc0
+	lsls r6, r6, #0x13
+	adds r1, r1, r6
+	bl Unpack
+.Ljp_map_080A8D94:
+	ldr r0, [sp, #0x194]
+	adds r0, #0x55
+	ldrb r0, [r0]
+	lsls r0, r0, #0x1b
+	lsrs r0, r0, #0x1e
+	cmp r0, #1
+	bne .Ljp_map_080A8DCE
+	ldr r1, .Ljp_map_080A8ECC @ =gFarmHouseVisualDescriptors
+	ldr r0, [r1, #0x18]
+	cmp r0, #0
+	beq .Ljp_map_080A8DB8
+	ldr r1, [r1, #0x1c]
+	lsls r1, r1, #5
+	movs r2, #0xc0
+	lsls r2, r2, #0x13
+	adds r1, r1, r2
+	bl Unpack
+.Ljp_map_080A8DB8:
+	ldr r1, .Ljp_map_080A8ED0 @ =gFarmHouseVisualDescriptors + 0xB0
+	ldr r0, [r1, #0x18]
+	cmp r0, #0
+	beq .Ljp_map_080A8DCE
+	ldr r1, [r1, #0x1c]
+	lsls r1, r1, #5
+	movs r3, #0xc0
+	lsls r3, r3, #0x13
+	adds r1, r1, r3
+	bl Unpack
+.Ljp_map_080A8DCE:
+	ldr r0, [sp, #0x194]
+	adds r0, #0x56
+	ldrb r0, [r0]
+	lsls r0, r0, #0x1d
+	lsrs r0, r0, #0x1e
+	cmp r0, #1
+	bne .Ljp_map_080A8DF2
+	ldr r1, .Ljp_map_080A8ECC @ =gFarmHouseVisualDescriptors
+	ldr r0, [r1, #0x18]
+	cmp r0, #0
+	beq .Ljp_map_080A8DF2
+	ldr r1, [r1, #0x1c]
+	lsls r1, r1, #5
+	movs r4, #0xc0
+	lsls r4, r4, #0x13
+	adds r1, r1, r4
+	bl Unpack
+.Ljp_map_080A8DF2:
+	ldr r0, [sp, #0x194]
+	adds r0, #0x4c
+	ldrb r0, [r0]
+	lsrs r0, r0, #6
+	cmp r0, #1
+	bne .Ljp_map_080A8E2A
+	ldr r1, .Ljp_map_080A8ED8 @ =gFarmHouseVisualDescriptors + 0xDC
+	ldr r0, [r1, #0x18]
+	cmp r0, #0
+	beq .Ljp_map_080A8E14
+	ldr r1, [r1, #0x1c]
+	lsls r1, r1, #5
+	movs r5, #0xc0
+	lsls r5, r5, #0x13
+	adds r1, r1, r5
+	bl Unpack
+.Ljp_map_080A8E14:
+	ldr r1, .Ljp_map_080A8EC8 @ =gFarmHouseVisualDescriptors + 0x2C
+	ldr r0, [r1, #0x18]
+	cmp r0, #0
+	beq .Ljp_map_080A8E2A
+	ldr r1, [r1, #0x1c]
+	lsls r1, r1, #5
+	movs r6, #0xc0
+	lsls r6, r6, #0x13
+	adds r1, r1, r6
+	bl Unpack
+.Ljp_map_080A8E2A:
+	ldr r0, [sp, #0x1b4]
+	bl func_080AAF10
+	mov sl, r0
+	ldr r0, [sp, #0x1b4]
+	bl func_080AAF1C
+	str r0, [sp, #0x19c]
+	mov r1, sl
+	eors r1, r0
+	rsbs r0, r1, #0
+	orrs r0, r1
+	cmp r0, #0
+	blt .Ljp_map_080A8E48
+	b .Ljp_map_080A8FC4
+.Ljp_map_080A8E48:
+	mov r0, sp
+	adds r0, #0x30
+	str r0, [sp, #0x1a0]
+.Ljp_map_080A8E4E:
+	mov r1, sl
+	ldr r0, [r1, #0x10]
+	movs r1, #0
+	bl func_080AAF28
+	adds r2, r0, #0
+	lsls r2, r2, #0x10
+	lsrs r2, r2, #0x10
+	ldr r4, [sp]
+	add r0, sp, #0x180
+	ldr r3, [r4, #0xc]
+	mov r1, sp
+	bl _call_via_r3
+	add r0, sp, #0x180
+	ldr r0, [r0]
+	ldrh r2, [r0]
+	ldr r0, [sp, #0x1a0]
+	ldr r3, [r4, #0x10]
+	mov r1, sp
+	bl _call_via_r3
+	ldr r0, [sp, #0x38]
+	adds r1, r0, #0
+	mov r3, sl
+	ldrh r2, [r3, #0x14]
+	add r0, sp, #0x38
+	movs r3, #0
+	cmp r1, #0
+	beq .Ljp_map_080A8E8C
+	ldrh r3, [r0, #4]
+.Ljp_map_080A8E8C:
+	lsls r2, r2, #5
+	movs r4, #0xc0
+	lsls r4, r4, #0x13
+	adds r2, r2, r4
+	add r0, sp, #0x50
+	bl func_08008F0C
+	add r5, sp, #0x50
+	mov sb, r5
+	ldr r1, [r7, #4]
+	ldr r0, [r7, #0xc]
+	cmp r1, r0
+	beq .Ljp_map_080A8EDC
+	cmp r1, #0
+	beq .Ljp_map_080A8EB6
+	adds r0, r1, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r6}
+	stm r0!, {r2, r3, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A8EB6:
+	ldr r0, [r7, #4]
+	adds r0, #0x10
+	str r0, [r7, #4]
+	b .Ljp_map_080A8FAC
+	.align 2, 0
+.Ljp_map_080A8EC0: .4byte gFarmHouseVisualDescriptors + 0x58
+.Ljp_map_080A8EC4: .4byte gFarmHouseVisualDescriptors + 0x108
+.Ljp_map_080A8EC8: .4byte gFarmHouseVisualDescriptors + 0x2C
+.Ljp_map_080A8ECC: .4byte gFarmHouseVisualDescriptors
+.Ljp_map_080A8ED0: .4byte gFarmHouseVisualDescriptors + 0xB0
+.Ljp_map_080A8ED4: .4byte gFarmHouseVisualDescriptors + 0x84
+.Ljp_map_080A8ED8: .4byte gFarmHouseVisualDescriptors + 0xDC
+.Ljp_map_080A8EDC:
+	str r1, [sp, #0x1c0]
+	movs r0, #1
+	add r5, sp, #0x18c
+	str r0, [r5]
+	ldr r2, [r7]
+	ldr r4, [sp, #0x1c0]
+	subs r0, r4, r2
+	asrs r4, r0, #4
+	add r0, sp, #0x188
+	str r4, [r0]
+	ldr r1, [r5]
+	adds r3, r2, #0
+	cmp r4, r1
+	bhs .Ljp_map_080A8EFA
+	adds r0, r5, #0
+.Ljp_map_080A8EFA:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_map_080A8F1A
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_map_080A8F16
+	mov r0, r8
+	bl func_080D3BC0
+.Ljp_map_080A8F16:
+	ldr r3, [r7]
+	b .Ljp_map_080A8F1E
+.Ljp_map_080A8F1A:
+	movs r0, #0
+	mov r8, r0
+.Ljp_map_080A8F1E:
+	adds r5, r0, #0
+	str r5, [sp, #0x1bc]
+	adds r2, r3, #0
+	adds r3, r5, #0
+	ldr r5, [sp, #0x1c0]
+	cmp r2, r5
+	beq .Ljp_map_080A8F46
+.Ljp_map_080A8F2C:
+	cmp r3, #0
+	beq .Ljp_map_080A8F3C
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A8F3C:
+	adds r2, #0x10
+	adds r3, #0x10
+	ldr r6, [sp, #0x1c0]
+	cmp r2, r6
+	bne .Ljp_map_080A8F2C
+.Ljp_map_080A8F46:
+	adds r5, r3, #0
+	add r0, sp, #0x18c
+	ldr r0, [r0]
+	cmp r0, #1
+	bne .Ljp_map_080A8F64
+	cmp r5, #0
+	beq .Ljp_map_080A8F60
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A8F60:
+	adds r5, #0x10
+	b .Ljp_map_080A8F86
+.Ljp_map_080A8F64:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_map_080A8F84
+.Ljp_map_080A8F6C:
+	cmp r2, #0
+	beq .Ljp_map_080A8F7C
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r6}
+	stm r0!, {r4, r5, r6}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_map_080A8F7C:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_map_080A8F6C
+.Ljp_map_080A8F84:
+	adds r5, r2, #0
+.Ljp_map_080A8F86:
+	ldr r1, [r7, #4]
+	ldr r3, [r7]
+	adds r0, r3, #0
+	cmp r3, r1
+	beq .Ljp_map_080A8F96
+.Ljp_map_080A8F90:
+	adds r0, #0x10
+	cmp r0, r1
+	bne .Ljp_map_080A8F90
+.Ljp_map_080A8F96:
+	cmp r3, #0
+	beq .Ljp_map_080A8FA0
+	adds r0, r3, #0
+	bl free
+.Ljp_map_080A8FA0:
+	ldr r0, [sp, #0x1bc]
+	add r0, r8
+	ldr r6, [sp, #0x1bc]
+	str r6, [r7]
+	str r5, [r7, #4]
+	str r0, [r7, #0xc]
+.Ljp_map_080A8FAC:
+	mov r0, sl
+	bl func_080E2B28
+	mov sl, r0
+	mov r1, sl
+	ldr r0, [sp, #0x19c]
+	eors r1, r0
+	rsbs r0, r1, #0
+	orrs r0, r1
+	cmp r0, #0
+	bge .Ljp_map_080A8FC4
+	b .Ljp_map_080A8E4E
+.Ljp_map_080A8FC4:
+	ldr r0, .Ljp_map_080A8FD8 @ =vtable_unk_080E5A28
+	str r0, [sp]
+	add sp, #0x1c4
+	pop {r3, r4, r5}
+	mov r8, r3
+	mov sb, r4
+	mov sl, r5
+	pop {r4, r5, r6, r7}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_map_080A8FD8: .4byte vtable_unk_080E5A28
+
     .global func_080A8FDC
     .thumb_func
 func_080A8FDC:

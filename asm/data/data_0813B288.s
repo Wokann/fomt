@@ -635,7 +635,10 @@ gUnk_08311B84:
     .incbin "baserom_jp.gba", 0x3E7F18, (0x3ED9FC - 0x3E7F18)
     .global gUnk_083ED9FC
 gUnk_083ED9FC:
-    .incbin "baserom_jp.gba", 0x3ED9FC, (0x41ECDC - 0x3ED9FC)
+    .incbin "baserom_jp.gba", 0x3ED9FC, (0x41DA7C - 0x3ED9FC)
+    .global gUnk_0841DA7C
+gUnk_0841DA7C:
+    .incbin "baserom_jp.gba", 0x41DA7C, (0x41ECDC - 0x41DA7C)
     .global gUnk_FieldPlotRenderRecord_004
 gUnk_FieldPlotRenderRecord_004:
     .incbin "baserom_jp.gba", 0x41ECDC, 0x30
@@ -680,10 +683,16 @@ gUnk_FieldPlotRenderRecord_008:
     .incbin "baserom_jp.gba", 0x41EF28, 0x30
     .global gUnk_FieldPlotRenderRecord_013
 gUnk_FieldPlotRenderRecord_013:
-    .incbin "baserom_jp.gba", 0x41EF58, 0x1278
+    .incbin "baserom_jp.gba", 0x41EF58, (0x41EF70 - 0x41EF58)
+    .global gUnk_0841EF70
+gUnk_0841EF70:
+    .incbin "baserom_jp.gba", 0x41EF70, (0x4201D0 - 0x41EF70)
     .global gUnk_FieldPlotRenderRecord_003
 gUnk_FieldPlotRenderRecord_003:
-    .incbin "baserom_jp.gba", 0x4201D0, 0x1290
+    .incbin "baserom_jp.gba", 0x4201D0, (0x420200 - 0x4201D0)
+    .global gUnk_08420200
+gUnk_08420200:
+    .incbin "baserom_jp.gba", 0x420200, (0x421460 - 0x420200)
     .global gUnk_FieldPlotRenderRecord_012
 gUnk_FieldPlotRenderRecord_012:
     .incbin "baserom_jp.gba", 0x421460, 0x18
@@ -695,7 +704,10 @@ gUnk_FieldPlotRenderRecord_019:
     .incbin "baserom_jp.gba", 0x4214B4, 0x3C
     .global gUnk_FieldPlotRenderRecord_000
 gUnk_FieldPlotRenderRecord_000:
-    .incbin "baserom_jp.gba", 0x4214F0, 0x3B034
+    .incbin "baserom_jp.gba", 0x4214F0, (0x45B664 - 0x4214F0)
+    .global gUnk_0845B664
+gUnk_0845B664:
+    .incbin "baserom_jp.gba", 0x45B664, (0x45C524 - 0x45B664)
     .global gUnk_FieldPlotRenderRecord_033
 gUnk_FieldPlotRenderRecord_033:
     .incbin "baserom_jp.gba", 0x45C524, 0x18
@@ -2215,6 +2227,8 @@ gUnk_FieldPlotRenderRecord_028:
 gUnk_FieldPlotRenderRecord_021:
     .incbin "baserom_jp.gba", 0x45C7E8, 0xC
 
+    .global gUnk_0845C7F4
+gUnk_0845C7F4:
     .incbin "baserom_jp.gba", 0x45C7F4, (0x462520 - 0x45C7F4)
 
     .global gActorStateGridCellType0Data
