@@ -56354,7 +56354,126 @@ func_080B9B50: @ 0x080B9584
     .global func_080B9E1C
     .thumb_func
 func_080B9E1C: @ 0x080B9850
-    .incbin "baserom_jp.gba", 0xB9850, (0xB9940 - 0xB9850)
+	push {r4, r5, r6, r7, lr}
+	mov r7, sl
+	mov r6, sb
+	mov r5, r8
+	push {r5, r6, r7}
+	sub sp, #4
+	mov sb, r0
+	lsls r1, r1, #0x18
+	lsrs r0, r1, #0x18
+	str r0, [sp]
+	movs r2, #0x80
+	lsls r2, r2, #0x11
+	adds r1, r1, r2
+	lsrs r1, r1, #0x18
+	mov r8, r1
+	cmp r1, #1
+	bls .Ljp_080B9876
+	movs r0, #0
+	mov r8, r0
+.Ljp_080B9876:
+	ldr r1, [sp]
+	lsls r4, r1, #6
+	mov r5, sb
+	adds r5, #0x74
+	adds r0, r5, r4
+	ldr r6, [r0]
+	bl rand
+	ldr r2, .Ljp_080B98C4 @ =0x0000FFFF
+	mov sl, r2
+	ands r0, r2
+	lsrs r0, r0, #8
+	mov r2, sb
+	adds r1, r2, r4
+	adds r1, #0x8e
+	adds r7, r4, #0
+	ldrb r1, [r1]
+	cmp r0, r1
+	bhs .Ljp_080B991A
+	bl rand
+	mov r1, sl
+	ands r0, r1
+	lsrs r4, r0, #0xf
+	mov r0, sb
+	ldr r1, [sp]
+	mov r2, r8
+	bl func_080B9F64
+	lsls r0, r0, #0x18
+	lsrs r0, r0, #0x18
+	cmp r0, #7
+	bhi .Ljp_080B991A
+	lsls r0, r0, #2
+	ldr r1, .Ljp_080B98C8 @ =.Ljp_080B98CC
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.Ljp_080B98C4: .4byte 0x0000FFFF
+.Ljp_080B98C8: .4byte .Ljp_080B98CC
+.Ljp_080B98CC: @ jump table
+	.4byte .Ljp_080B98EC @ case 0
+	.4byte .Ljp_080B98FC @ case 1
+	.4byte .Ljp_080B9908 @ case 2
+	.4byte .Ljp_080B9914 @ case 3
+	.4byte .Ljp_080B98F2 @ case 4
+	.4byte .Ljp_080B98F8 @ case 5
+	.4byte .Ljp_080B9904 @ case 6
+	.4byte .Ljp_080B9910 @ case 7
+.Ljp_080B98EC:
+	adds r0, r5, r7
+	ldr r6, [r0]
+	b .Ljp_080B991A
+.Ljp_080B98F2:
+	cmp r4, #0
+	ble .Ljp_080B991A
+	b .Ljp_080B98FC
+.Ljp_080B98F8:
+	cmp r4, #0
+	ble .Ljp_080B9908
+.Ljp_080B98FC:
+	adds r0, r5, r7
+	ldr r0, [r0]
+	adds r6, r0, #1
+	b .Ljp_080B991A
+.Ljp_080B9904:
+	cmp r4, #0
+	bgt .Ljp_080B9914
+.Ljp_080B9908:
+	adds r0, r5, r7
+	ldr r0, [r0]
+	adds r6, r0, #2
+	b .Ljp_080B991A
+.Ljp_080B9910:
+	cmp r4, #0
+	ble .Ljp_080B991A
+.Ljp_080B9914:
+	adds r0, r5, r7
+	ldr r0, [r0]
+	adds r6, r0, #3
+.Ljp_080B991A:
+	cmp r6, #3
+	ble .Ljp_080B9920
+	subs r6, #4
+.Ljp_080B9920:
+	adds r0, r5, r7
+	str r6, [r0]
+	mov r0, sb
+	adds r0, #0x6c
+	adds r0, r0, r7
+	movs r1, #0
+	str r1, [r0]
+	add sp, #4
+	pop {r3, r4, r5}
+	mov r8, r3
+	mov sb, r4
+	mov sl, r5
+	pop {r4, r5, r6, r7}
+	pop {r0}
+	bx r0
+	.align 2, 0
+
     .global func_080B9F0C
     .thumb_func
 func_080B9F0C: @ 0x080B9940
