@@ -262,10 +262,9 @@ are the ordered native files
 They are palette sources, not rendered PNGs: the routine does not prove an OBJ
 layout, BG tilemap, or a final composited image.
 
-US, EU and DE use byte-identical source streams at different physical ROM
-offsets. JP has no equivalent overseas loader branch; its build intentionally
-does nothing for this family. Rebuild and validate the exact fixed-slot Raw-LZ
-encoding with:
+JP, US, EU and DE use byte-identical source streams at different physical ROM
+offsets. Every regional build patches its own original fixed slots. Rebuild
+and validate the exact fixed-slot Raw-LZ encoding with:
 
 ```console
 make gfx-map-state-palettes-all

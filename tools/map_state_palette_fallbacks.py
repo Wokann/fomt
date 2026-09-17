@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Rebuild the five overseas MapData state-fallback palette streams.
+"""Rebuild the five MapData state-fallback palette streams.
 
-``func_080A95A4`` selects these streams only for overseas map-state branches.
-Each one decodes through the native ``0x30`` Raw-LZ path to exactly fifteen
-BGR555 palette banks.  They are not tile images: the authoritative editable
-source is the ordered native ``.gbapal`` byte stream.
+The regional map-state routines select these streams for their fallback
+branches. Each one decodes through the native ``0x30`` Raw-LZ path to exactly
+fifteen BGR555 palette banks. They are not tile images: the authoritative
+editable source is the ordered native ``.gbapal`` byte stream.
 """
 
 from __future__ import annotations
@@ -22,7 +22,6 @@ from marvelous_codec import encode_popuri  # type: ignore[import-not-found]
 
 
 REGIONS = ("jp", "us", "eu", "de")
-OVERSEAS = ("us", "eu", "de")
 DECODED_LENGTH = 0x1E0
 FALLBACKS = (
     ("fallback_00", 0xA0, "00f24dd083bc5f9435eb7f7d90069b8612b7eed34e0ea5c92cd701d312fabd27", "19297f6d026c99f1b4cbe7e1c53661d9d45ff861e1ebf588b6042a0ef0c8ac0a"),
@@ -32,6 +31,7 @@ FALLBACKS = (
     ("fallback_04", 0x94, "65676eef9bc7d520e1c5250ef75d5974407cf72b977e5f1e9818c4d36c2ca4fe", "c34f14059e32c92196f429e6cce18fb586a00eedf487b15555908410775c6184"),
 )
 OFFSETS = {
+    "jp": (0x49AB8C, 0x49ACBC, 0x49AD48, 0x49D0E0, 0x49D214),
     "us": (0x714A30, 0x714B60, 0x714BEC, 0x716F84, 0x7170B8),
     "eu": (0x714A8C, 0x714BBC, 0x714C48, 0x716FE0, 0x717114),
     "de": (0x49BACC, 0x49BBFC, 0x49BC88, 0x49E020, 0x49E154),
@@ -81,31 +81,28 @@ def packed_source(source: bytes, baseline: bytes, format_spec: str, ladder: str,
     return packed
 
 
-def require_overseas(roms: dict[str, bytes]) -> None:
-    if set(roms) != set(OVERSEAS):
-        raise ValueError("export requires exactly us, eu and de ROMs")
+def require_regions(roms: dict[str, bytes]) -> None:
+    if set(roms) != set(REGIONS):
+        raise ValueError("export requires exactly jp, us, eu and de ROMs")
 
 
 def export(arguments: argparse.Namespace) -> None:
     roms = {region: path.read_bytes() for region, path in arguments.rom}
-    require_overseas(roms)
+    require_regions(roms)
     for index, (name, _length, _packed_hash, _decoded_hash) in enumerate(FALLBACKS):
-        values = [retail(roms[region], region, index) for region in OVERSEAS]
+        values = [retail(roms[region], region, index) for region in REGIONS]
         if len({item[0] for item in values}) != 1 or len({item[1] for item in values}) != 1:
-            raise ValueError(f"{name} differs across overseas regions; refusing a shared source")
+            raise ValueError(f"{name} differs across retail regions; refusing a shared source")
         source, _output = paths(arguments.source_dir, arguments.source_dir, name)
         if source.exists() and not arguments.replace:
             raise ValueError(f"{source} exists; pass --replace to refresh it")
         source.parent.mkdir(parents=True, exist_ok=True)
         source.write_bytes(values[0][1])
-    print(f"exported {len(FALLBACKS)} verified shared overseas map-state palette groups")
+    print(f"exported {len(FALLBACKS)} verified shared four-region map-state palette groups")
 
 
 def build(arguments: argparse.Namespace) -> None:
     arguments.output_dir.mkdir(parents=True, exist_ok=True)
-    if arguments.region == "jp":
-        print("JP has no overseas map-state fallback palette path")
-        return
     rom = arguments.rom.read_bytes()
     for index, (name, _length, _packed_hash, _decoded_hash) in enumerate(FALLBACKS):
         baseline, _decoded, format_spec, ladder = retail(rom, arguments.region, index)
@@ -115,21 +112,19 @@ def build(arguments: argparse.Namespace) -> None:
 
 
 def verify(arguments: argparse.Namespace) -> None:
-    if arguments.region == "jp":
-        print("verified JP has no overseas map-state fallback palette path")
-        return
     rom = arguments.rom.read_bytes()
     for index, (name, _length, _packed_hash, _decoded_hash) in enumerate(FALLBACKS):
-        baseline, _decoded, _format_spec, _ladder = retail(rom, arguments.region, index)
+        baseline, _decoded, format_spec, ladder = retail(rom, arguments.region, index)
         _source, output = paths(arguments.source_dir, arguments.output_dir, name)
+        source = read_source(_source)
+        if packed_source(source, baseline, format_spec, ladder, name) != baseline:
+            raise ValueError(f"{arguments.region}: source {name} does not reproduce retail bytes")
         if output.read_bytes() != baseline:
             raise ValueError(f"{arguments.region}: rebuilt {name} differs from retail bytes")
     print(f"verified {len(FALLBACKS)} map-state fallback palette groups for {arguments.region}")
 
 
 def patch_bytes(image: bytearray, baseline: bytes, region: str, output_dir: Path) -> None:
-    if region == "jp":
-        return
     for index, (name, length, _packed_hash, _decoded_hash) in enumerate(FALLBACKS):
         offset = OFFSETS[region][index]
         replacement = (output_dir / f"{name}.0x70").read_bytes()

@@ -161,8 +161,8 @@ byte is visual data.
 | Literal direct DMA to video RAM | 64 scanner-qualified calls, 47 distinct labels, plus one manually checked high-register call | Every recovered label is classified in `DIRECT_DMA_VRAM_AUDIT.md`. Raw tile and palette records retain their native source when no static tilemap/OAM layout exists. |
 | Literal guarded RAM copies | 18 bounded paths, all to palette RAM | Every source is classified in `DIRECT_COPY_RAM_AUDIT.md`; a palette slice is not promoted to a standalone image unless its owning layout is proven. |
 | MapData visual layers | 272 bounded native streams | The six visual pointer layers are managed as maps; terrain, collision, and other non-visual fields remain outside the graphics pipeline. |
-| Overseas MapData state-fallback palettes | 5 bounded Raw-LZ streams, each decoding to 15 BGR555 banks | Managed as ordered native palette sources. US/EU/DE share byte-identical streams; JP has no corresponding overseas code path and is verified as a no-op. |
-| Indirect map-state `Unpack` buffers | 17 labelled non-VRAM inputs, including five fallback payloads | `INDIRECT_UNPACK_AUDIT.md` records strict decode bounds for every input. The five `func_080A95A4` fallback payloads are managed native BGR555 palettes; the remaining staging data stays native until its consumer proves a visual format and layout. |
+| MapData state-fallback palettes | 5 bounded Raw-LZ streams, each decoding to 15 BGR555 banks | Managed as ordered native palette sources. JP/US/EU/DE share byte-identical packed and decoded streams; every region is rebuilt and patched at its own original fixed slots. |
+| Indirect map-state `Unpack` buffers | 17 labelled non-VRAM inputs, including five fallback payloads | `INDIRECT_UNPACK_AUDIT.md` records strict decode bounds for every input. The five regional map-state fallback payloads (overseas `func_080A95A4`) are managed native BGR555 palettes; the remaining staging data stays native until its consumer proves a visual format and layout. |
 
 ## Next audit queue
 
