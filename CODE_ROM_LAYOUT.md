@@ -1037,3 +1037,13 @@ EU、DE 的完整构建和 SHA-1 校验均已通过。
 `gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues2`；无代码 `.incbin`、原始
 `.byte`、`.set`、`.thumb_set` 或地址偏移伪匹配。上述相邻两个函数的 JP、US、EU、DE
 完整构建、SHA-1 与基准 ROM 的逐字节校验均已通过。
+
+`func_080B3A28` 的 JP 资源页状态初始化函数已直接提升：JP 覆盖
+`0x080B345C`–`0x080B35DB`（`0x180` 字节），普通三区对应为 US
+`0x080B3A28`–`0x080B3BA7`、EU `0x080B3A10`–`0x080B3B8F`、DE
+`0x080B3940`–`0x080B3ABF`。四区指令布局与局部字面量一致；三处跨区字节差异均是
+`BL` 的区域相对编码。它们已逐项按 ROM 相对位置配对：一次调用
+`func_080B34DC`（JP 实际入口 `0x080B2F10`），以及三次调用
+`func_08008B6C`（JP 实际入口 `0x08008B74`）。所有调用均保留真实可重定位符号，
+函数不含代码 `.incbin`、原始 `.byte`、`.set`、`.thumb_set` 或地址偏移伪匹配。
+JP、US、EU、DE 的完整构建、SHA-1 与基准 ROM 的逐字节校验均已通过。
