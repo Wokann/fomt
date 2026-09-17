@@ -140,6 +140,10 @@ selecting one edit. The four regional assembly paths split their original
 archive at the tile stream and retain every header, layout record, palette and
 trailing byte around it.
 
+`make gfx-portraits-edit-test` changes one visible pixel in a temporary copy
+of portrait 000. It proves that the resulting native tile change stays within
+that descriptor's original tile range; repository PNGs are never modified.
+
 ## Actor animation frames
 
 `sprites/actor_archive/full` contains every one of the 2,963 actor frame

@@ -121,6 +121,7 @@ FONT_SHARED_DOUBLE_OFFSET := $(FONT_SHARED_DOUBLE_OFFSET_$(GAME_REGION))
 PORTRAIT_SOURCE_DIR := graphics/portraits/shared
 PORTRAIT_FULL_IMAGES := $(wildcard $(PORTRAIT_SOURCE_DIR)/full/*.png)
 PORTRAIT_ARCHIVE_TOOL := tools/portrait_archive.py
+PORTRAIT_ARCHIVE_EDIT_TEST := tools/portrait_archive_edit_test.py
 PORTRAIT_TILE_BIN := $(BUILD_DIR)/graphics/portraits/shared/portrait_tiles.4bpp
 PORTRAIT_ARCHIVE_LENGTH := 0x5E0A4
 PORTRAIT_ARCHIVE_SHA256 := 34c23aced1a4f23ba80d1429a87f4c8a7ca11b0458c61a37a6eb48731440bbd2
@@ -2150,6 +2151,9 @@ gfx-portraits: $(PORTRAIT_TILE_BIN)
 .PHONY: gfx-portraits-test
 gfx-portraits-test: gfx-portraits $(PORTRAIT_ARCHIVE_TOOL) $(BASE_ROM) $(PORTRAIT_FULL_IMAGES)
 	@$(PYTHON) $(PORTRAIT_ARCHIVE_TOOL) $(BASE_ROM) --offset $(PORTRAIT_ARCHIVE_OFFSET) --length $(PORTRAIT_ARCHIVE_LENGTH) --sha256 $(PORTRAIT_ARCHIVE_SHA256) verify-full --source $(PORTRAIT_SOURCE_DIR)
+.PHONY: gfx-portraits-edit-test
+gfx-portraits-edit-test: $(PORTRAIT_ARCHIVE_EDIT_TEST) $(PORTRAIT_ARCHIVE_TOOL) baserom_jp.gba $(PORTRAIT_FULL_IMAGES)
+	@$(PYTHON) $(PORTRAIT_ARCHIVE_EDIT_TEST) baserom_jp.gba --offset $(PORTRAIT_ARCHIVE_OFFSET_JP) --length $(PORTRAIT_ARCHIVE_LENGTH) --source $(PORTRAIT_SOURCE_DIR)
 gfx-portraits-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-portraits-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-portraits-test
@@ -3790,6 +3794,7 @@ gfx-assets: gfx-regional-resource-0874f34c
 gfx-verify:
 	@$(MAKE) --no-print-directory gfx-fonts-test
 	@$(MAKE) --no-print-directory gfx-portraits-all
+	@$(MAKE) --no-print-directory gfx-portraits-edit-test
 	@$(MAKE) --no-print-directory gfx-actors-all
 	@$(MAKE) --no-print-directory gfx-actors-edit-test
 	@$(MAKE) --no-print-directory gfx-ui-all
