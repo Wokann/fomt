@@ -9,7 +9,7 @@ regional pipeline before it can be treated as shared.
 
 | Label | JP | US | EU | DE | Length | Header counts | Entries | Source status |
 | --- | --- | --- | --- | --- | ---: | --- | ---: | --- |
-| `gUnk_08527094` | `0x2AD1F0` | `0x527094` | `0x5270F0` | `0x2AE130` | `0x1A4` | 4, 8, 7, 4, 1, 0 | 8 | unmanaged, four-region identical |
+| `gUnk_08527094` | `0x2AD1F0` | `0x527094` | `0x5270F0` | `0x2AE130` | `0x1A4` | 4, 8, 7, 4, 1, 0 | 8 | rebuild: `graphics/shared_resource_08527094/` |
 | `gUnk_08667060` | `0x3ED1BC` | `0x667060` | `0x6670BC` | `0x3EE0FC` | `0x840` | 3, 16, 3, 52, 2, 0 | 16 | rebuild: `graphics/small_companion_archive/` |
 | `gUnk_086678A0` | `0x3ED9FC` | `0x6678A0` | `0x6678FC` | `0x3EE93C` | `0x12848` | 493, 500, 101, 1624, 342, 0 | 532 | rebuild: `graphics/common_resource_archive/` |
 | `gUnk_086F2FAC` | `0x479108` | `0x6F2FAC` | `0x6F3008` | `0x47A048` | `0x31FC` | 4, 16, 2, 384, 4, 0 | 16 | rebuild: `graphics/shared_resource_086f2fac/` |
@@ -61,7 +61,7 @@ regional pipeline before it can be treated as shared.
 | `gUnk_08755154` | `0x4DB100` | `0x755154` | `0x7551B0` | `0x4DC670` | `0xDC` | 1, 1, 1, 4, 1, 0 | 1 | unmanaged, four-region identical |
 | `gUnk_0875B444` | different | `0x75B444` | `0x75B4A0` | `0x4E2960` | `0x3D4` | 6, 6, 1, 24, 1, 0 | 6 | regional payload differs |
 
-Generated records: 51 (12 rebuilt, 30 unmanaged but four-region identical, 9 regionally different). Regenerate with:
+Generated records: 51 (13 rebuilt, 29 unmanaged but four-region identical, 9 regionally different). Regenerate with:
 
 ```console
 make indexed-resource-archive-inventory

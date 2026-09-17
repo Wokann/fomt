@@ -31,9 +31,10 @@ regionally different. It is the coverage ledger for this staged pipeline.
 | Shared archive `086FAA80` | `0x480BDC` | `0x6FAA80` | `0x6FAADC` | `0x481B1C` | `0x584` | `3, 9, 1, 36, 1, 0` | 9 | `95c9e3db66e9d29b25c7e228d60accf8abba3ce6c5c7a489ece487a97d84ac31` |
 | Shared archive `0871ECAC` | `0x4A4E14` | `0x71ECAC` | `0x71ED08` | `0x4A5E78` | `0x128` | `1, 5, 1, 4, 1, 0` | 4 | `9f278e9f3fc533ace766b248d2e55c8c5bbc9ee1ad026abe1c36804eeb18ed81` |
 | Shared archive `0871EDD4` | `0x4A4F3C` | `0x71EDD4` | `0x71EE30` | `0x4A5FA0` | `0x12C` | `1, 5, 1, 4, 1, 0` | 5 | `102175f059443e70fd1483b0e568d5b1e125812a9170a70433b280a927039017` |
+| Shared archive `08527094` | `0x2AD1F0` | `0x527094` | `0x5270F0` | `0x2AE130` | `0x1A4` | `4, 8, 7, 4, 1, 0` | 8 | `b54f1e2abe5bc34fdde8cb5a4c7b18d82d5d669d315db22a237cd9b03856306d` |
 | Farm Status / Town Map archive | `0x4D977C` | `0x7537D0` | `0x75382C` | `0x4DACEC` | `0xEA4` | `20, 40, 11, 73, 13, 0` | 40 | `480a114e52b941e289d67055ddd632b6c0bbee3cfa66263523ad91c7e1d4dfc1` |
 
-All twelve complete native archive payloads are byte-identical across JP, US,
+All thirteen complete native archive payloads are byte-identical across JP, US,
 EU, and DE. The common archive is the data currently exposed under
 `gUnk_086678A0` in non-JP regional assembly; the JP physical match was found
 by the exact complete payload, not by inventing a JP label.
