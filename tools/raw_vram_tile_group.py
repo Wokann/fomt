@@ -71,7 +71,7 @@ PROFILES = {
         output_name="tiles.4bpp",
     ),
     "08750c8c": Profile(
-        name="FarmStatusEarningsReportTiles_0x150",
+        name="UiSharedTiles_0x150",
         offsets={"jp": 0x4D6C38, "us": 0x750C8C, "eu": 0x750CE8, "de": 0x4D81A8},
         length=0x1C0,
         sha256="2b7c39eab1900bb410cced0daa2ffd21055045e47ddcf99f318255775e77ec4f",
@@ -135,7 +135,7 @@ PROFILES = {
         output_name="tiles.4bpp",
     ),
     "087511cc": Profile(
-        name="gUnk_087511CC",
+        name="FarmStatusToolLevelListTiles_0x09C",
         offsets={"jp": 0x4D7178, "us": 0x7511CC, "eu": 0x751228, "de": 0x4D86E8},
         length=0x120,
         sha256="0246e5f8a7ce9136217957ade7c5cfdbd2aa7be7f208a419b15a768c18963f75",
@@ -143,7 +143,7 @@ PROFILES = {
         output_name="tiles.4bpp",
     ),
     "0875154c": Profile(
-        name="gUnk_0875154C",
+        name="FarmStatusToolLevelListTiles_0x0A5",
         offsets={"jp": 0x4D74F8, "us": 0x75154C, "eu": 0x7515A8, "de": 0x4D8A68},
         length=0x120,
         sha256="acfc397f1fb7813b07fd714a306bb890cc4ccec2b94cee6ff10754408c7cebf6",
@@ -151,7 +151,7 @@ PROFILES = {
         output_name="tiles.4bpp",
     ),
     "0875130c": Profile(
-        name="gUnk_0875130C",
+        name="FarmStatusToolLevelListTiles_0x0AE",
         offsets={"jp": 0x4D72B8, "us": 0x75130C, "eu": 0x751368, "de": 0x4D8828},
         length=0x120,
         sha256="b078a388eb2836e81fa338079b4185f05f6a0f635ed977b2e1d8052a72b78777",
@@ -159,7 +159,7 @@ PROFILES = {
         output_name="tiles.4bpp",
     ),
     "0875142c": Profile(
-        name="gUnk_0875142C",
+        name="FarmStatusToolLevelListTiles_0x0B7",
         offsets={"jp": 0x4D73D8, "us": 0x75142C, "eu": 0x751488, "de": 0x4D8948},
         length=0x120,
         sha256="aa637cc310aea66cedff57eb3080b430e380c20703184036a73c2f87eba97dbb",
@@ -207,7 +207,7 @@ PROFILES = {
         output_name="tiles.4bpp",
     ),
     "08752a2c": Profile(
-        name="gUnk_08752A2C",
+        name="FarmStatusToolLevelListTiles_0x058",
         offsets={"jp": 0x4D89D8, "us": 0x752A2C, "eu": 0x752A88, "de": 0x4D9F48},
         length=0x20,
         sha256="1eb989f756d8a797e4c33dbb012c7d4f1a3637dab164e4eab9fd867edfd2d532",
@@ -215,7 +215,7 @@ PROFILES = {
         output_name="tiles.4bpp",
     ),
     "08752aac": Profile(
-        name="gUnk_08752AAC",
+        name="FarmStatusToolLevelListPalette",
         offsets={"jp": 0x4D8A58, "us": 0x752AAC, "eu": 0x752B08, "de": 0x4D9FC8},
         length=0x20,
         sha256="16651959cfb2129a001de5974a24772259962d7e5d22e88096280f1c57371186",
@@ -223,7 +223,7 @@ PROFILES = {
         output_name="palette.gbapal",
     ),
     "08752ccc": Profile(
-        name="gUnk_08752CCC",
+        name="FarmStatusToolLevelListTiles_0x059",
         offsets={"jp": 0x4D8C78, "us": 0x752CCC, "eu": 0x752D28, "de": 0x4DA1E8},
         length=0x20,
         sha256="7ad0e85a313266549b865f289aed4f47dcfbd36e5d28ab1270b3729a86d0f5be",
@@ -231,7 +231,7 @@ PROFILES = {
         output_name="tiles.4bpp",
     ),
     "08752bcc": Profile(
-        name="gUnk_08752BCC",
+        name="FarmStatusToolLevelListTiles_0x05A",
         offsets={"jp": 0x4D8B78, "us": 0x752BCC, "eu": 0x752C28, "de": 0x4DA0E8},
         length=0x20,
         sha256="bd19e0c23ddca6d07e9306ef5a9ba2c4f906e6e5aa6c1b4c45b0db65125e3ae8",
@@ -239,7 +239,7 @@ PROFILES = {
         output_name="tiles.4bpp",
     ),
     "08752c4c": Profile(
-        name="gUnk_08752C4C",
+        name="FarmStatusToolLevelListTiles_0x05B",
         offsets={"jp": 0x4D8BF8, "us": 0x752C4C, "eu": 0x752CA8, "de": 0x4DA168},
         length=0x20,
         sha256="7cfc23dbe168b6540cfde63d355a87a45bcbff5d940529924641f9e1fdddb4c3",

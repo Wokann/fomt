@@ -26,7 +26,7 @@ different video-RAM locations.
 | `gUnk_08752F8C` | `0x80` | Existing Farm Status UI icon record 11 source. |
 | `gUnk_08750C4C` | `0x20` | Farm Status Harvest Sprite task UI tile PNG source; a complete 8x8 OBJ tile paired with `gUnk_08750C6C`. |
 | `gUnk_08750C6C` | `0x20` | Farm Status Harvest Sprite task UI tile BGR555 palette regenerated from the paired PNG source. |
-| `gUnk_08750C8C` | `0x1A0`, `0x1C0` | Farm Status Earnings Report native tiles at BG slot `0x150`; the shorter caller consumes its leading subrange. |
+| `gUnk_08750C8C` | `0x1A0`, `0x1C0` | Shared UI native tiles at BG slot `0x150`; Farm Status Earnings Report and Cooking menu code both consume it, and the shorter caller uses its leading subrange. |
 | `gUnk_087510AC` | `0x120` | Farm Status Earnings Report native tiles at BG slot `0x0A5`; final layout unproven. |
 | `gUnk_0875166C` | `0x120` | Farm Status Earnings Report native tiles at BG slot `0x09C`; paired BGR555 palette is `gUnk_0875178C`, while final layout remains unproven. |
 | `gUnk_0875178C` | `0x20` | Farm Status Earnings Report BGR555 palette bank 2; paired with `gUnk_0875166C`. |
@@ -34,21 +34,21 @@ different video-RAM locations.
 | `gUnk_08750F6C` | `0x20` | Farm Status Harvest Sprite List BGR555 palette bank 3; paired with `gUnk_08750E4C`. |
 | `gUnk_08750F8C` | `0x120` | Farm Status Harvest Sprite List native tiles at BG slot `0x0A5`; final layout unproven. |
 | `gUnk_08750E4C` | `0x120` | Farm Status Harvest Sprite List native tiles at BG slot `0x0AE`; paired BGR555 palette is `gUnk_08750F6C`, while final layout remains unproven. |
-| `gUnk_087511CC` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
-| `gUnk_0875154C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
-| `gUnk_0875130C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
-| `gUnk_0875142C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
+| `gUnk_087511CC` | `0x120` | Farm Status Tool Level List native tiles at BG slot `0x09C`; final layout unproven. |
+| `gUnk_0875154C` | `0x120` | Farm Status Tool Level List native tiles at BG slot `0x0A5`; final layout unproven. |
+| `gUnk_0875130C` | `0x120` | Farm Status Tool Level List native tiles at BG slot `0x0AE`; final layout unproven. |
+| `gUnk_0875142C` | `0x120` | Farm Status Tool Level List native tiles at BG slot `0x0B7`; final layout unproven. |
 | `gUnk_08752DCC` | `0x20` | Managed raw Farm Status UI tile record; palette and layout unproven. |
 | `gUnk_08752B4C` | `0x20` | Managed raw Farm Status UI tile record; palette and layout unproven. |
 | `gUnk_087529AC` | `0x20` | Managed raw Farm Status UI tile record; palette and layout unproven. |
 | `gUnk_08752D4C` | `0x80` | Managed raw Farm Status UI tile record; palette and layout unproven. |
 | `gUnk_08752ACC` | `0x80` | Managed raw Farm Status UI tile record; palette and layout unproven. |
 | `gUnk_0875290C` | `0x80` | Existing Farm Status UI icon record 09 source; its adjacent `gUnk_0875298C` is the paired BGR555 palette. |
-| `gUnk_08752A2C` | `0x20` | Managed raw Farm Status UI tile record; palette and layout unproven. |
-| `gUnk_08752AAC` | `0x20` | Managed Farm Status BGR555 palette record; `func_08068344` copies it directly to `0x05000000`. |
-| `gUnk_08752CCC` | `0x20` | Managed raw Farm Status UI tile record; palette and layout unproven. |
-| `gUnk_08752BCC` | `0x20` | Managed raw Farm Status UI tile record; palette and layout unproven. |
-| `gUnk_08752C4C` | `0x20` | Managed raw Farm Status UI tile record; palette and layout unproven. |
+| `gUnk_08752A2C` | `0x20` | Farm Status Tool Level List native tile at BG slot `0x058`; final layout unproven. |
+| `gUnk_08752AAC` | `0x20` | Farm Status Tool Level List BGR555 palette record; `func_08068344` copies it directly to palette RAM. |
+| `gUnk_08752CCC` | `0x20` | Farm Status Tool Level List native tile at BG slot `0x059`; final layout unproven. |
+| `gUnk_08752BCC` | `0x20` | Farm Status Tool Level List native tile at BG slot `0x05A`; final layout unproven. |
+| `gUnk_08752C4C` | `0x20` | Farm Status Tool Level List native tile at BG slot `0x05B`; final layout unproven. |
 
 ## Literal palette-RAM leads
 

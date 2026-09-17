@@ -1,9 +1,10 @@
-# Farm Status Earnings Report tiles — BG slot `0x150`
+# Shared UI tiles — BG slot `0x150`
 
-`func_0806644C` (Farm Status Earnings Report) copies this complete
-`0x1C0`-byte native 4bpp record to BG character RAM slot `0x150`
-(`0x06002A00`).  One caller consumes only its leading `0x1A0` bytes; the
-source nevertheless retains the complete verified `0x1C0`-byte record.
+`func_0806644C` (Farm Status Earnings Report) and cooking-menu routines
+`func_0809800C` / `func_0809964C` all consume this complete `0x1C0`-byte
+native 4bpp record.  The Earnings Report loads it into BG character RAM slot
+`0x150` (`0x06002A00`).  One caller consumes only its leading `0x1A0` bytes;
+the source nevertheless retains the complete verified `0x1C0`-byte record.
 
 | Region | ROM offset | Size | SHA-256 |
 | --- | ---: | ---: | --- |
