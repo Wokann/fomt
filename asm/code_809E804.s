@@ -55413,7 +55413,111 @@ func_080B96AC: @ 0x080B90E0
 	bx r1
 	.align 2, 0
 
-    jp_code_809_func func_080B9734, 0xB9168, 0xB9230
+    .global func_080B9734
+    .thumb_func
+func_080B9734: @ 0x080B9168
+	push {r4, r5, r6, lr}
+	adds r5, r0, #0
+	movs r4, #0x64
+	bl rand
+	ldr r1, .Ljp_080B91B4 @ =0x0000FFFF
+	ands r1, r0
+	adds r0, r1, #0
+	muls r0, r4, r0
+	lsrs r2, r0, #0x10
+	adds r0, r5, #0
+	adds r0, #0x8e
+	adds r1, r5, #0
+	adds r1, #0xce
+	ldrb r0, [r0]
+	ldrb r1, [r1]
+	cmp r0, r1
+	bls .Ljp_080B91B8
+	cmp r2, #0x59
+	bhi .Ljp_080B91E0
+	adds r4, r5, #0
+	adds r4, #0x80
+	movs r0, #3
+	str r0, [r4]
+	movs r1, #0x92
+	lsls r1, r1, #4
+	adds r0, r5, r1
+	ldr r0, [r0]
+	movs r1, #2
+	bl ResolveIndexedResourceHandle
+	adds r1, r5, #0
+	adds r1, #0xeb
+	movs r0, #1
+	strb r0, [r1]
+	subs r1, #0x2b
+	movs r0, #5
+	b .Ljp_080B9200
+	.align 2, 0
+.Ljp_080B91B4: .4byte 0x0000FFFF
+.Ljp_080B91B8:
+	cmp r2, #0x59
+	bls .Ljp_080B91E0
+	adds r4, r5, #0
+	adds r4, #0x80
+	movs r0, #3
+	str r0, [r4]
+	movs r1, #0x92
+	lsls r1, r1, #4
+	adds r0, r5, r1
+	ldr r0, [r0]
+	movs r1, #2
+	bl ResolveIndexedResourceHandle
+	adds r1, r5, #0
+	adds r1, #0xeb
+	movs r0, #1
+	strb r0, [r1]
+	subs r1, #0x2b
+	movs r0, #5
+	b .Ljp_080B9200
+.Ljp_080B91E0:
+	adds r4, r5, #0
+	adds r4, #0x80
+	movs r0, #5
+	str r0, [r4]
+	ldr r1, .Ljp_080B9218 @ =0x0000091C
+	adds r0, r5, r1
+	ldr r0, [r0]
+	movs r1, #2
+	bl ResolveIndexedResourceHandle
+	adds r1, r5, #0
+	adds r1, #0xab
+	movs r0, #1
+	strb r0, [r1]
+	adds r1, #0x15
+	movs r0, #3
+.Ljp_080B9200:
+	str r0, [r1]
+	movs r6, #0
+	movs r3, #1
+	adds r1, r5, #0
+	adds r1, #0x9b
+	movs r2, #1
+.Ljp_080B920C:
+	ldr r0, [r4]
+	cmp r0, #5
+	bne .Ljp_080B921C
+	strb r6, [r1]
+	b .Ljp_080B921E
+	.align 2, 0
+.Ljp_080B9218: .4byte 0x0000091C
+.Ljp_080B921C:
+	strb r3, [r1]
+.Ljp_080B921E:
+	adds r1, #0x40
+	adds r4, #0x40
+	subs r2, #1
+	cmp r2, #0
+	bge .Ljp_080B920C
+	pop {r4, r5, r6}
+	pop {r0}
+	bx r0
+	.align 2, 0
+
     jp_code_809_func func_080B97FC, 0xB9230, 0xB925C
     jp_code_809_func func_080B9828, 0xB925C, 0xB9278
     jp_code_809_func func_080B9844, 0xB9278, 0xB94F4
