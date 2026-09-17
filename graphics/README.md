@@ -252,6 +252,27 @@ lengths. The map is stored as native entries, not a guessed PNG composite:
 make gfx-ui-scene-08077810-patch-test
 ```
 
+## Map-state fallback palettes
+
+`func_080A95A4` selects one of five state-dependent palette streams while
+loading a `MapData` record.  Each stream strictly expands to fifteen complete
+16-colour BGR555 banks (`0x1E0` bytes), so the authoritative editable sources
+are the ordered native files
+`map_state_palettes/shared/fallback_00.gbapal` through `fallback_04.gbapal`.
+They are palette sources, not rendered PNGs: the routine does not prove an OBJ
+layout, BG tilemap, or a final composited image.
+
+US, EU and DE use byte-identical source streams at different physical ROM
+offsets. JP has no equivalent overseas loader branch; its build intentionally
+does nothing for this family. Rebuild and validate the exact fixed-slot Raw-LZ
+encoding with:
+
+```console
+make gfx-map-state-palettes-all
+make gfx-map-state-palettes-patch-test
+make gfx-map-state-palettes-edit-test
+```
+
 ## Shared UI tile grid
 
 `ui/shared_resource/shared_resource.png` is the first production use of the
