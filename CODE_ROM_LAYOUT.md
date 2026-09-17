@@ -1020,3 +1020,20 @@ EU、DE 的完整构建和 SHA-1 校验均已通过。
 到 `gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues0`；无代码 `.incbin`、原始
 `.byte`、`.set`、`.thumb_set` 或地址偏移伪匹配。JP、US、EU、DE 的完整构建、SHA-1
 与基准 ROM 的逐字节校验均已通过。
+
+`func_080B340C` 的 JP 索引值辅助函数已直接提升：JP 覆盖
+`0x080B340C`–`0x080B3427`（`0x1C` 字节），普通三区对应为 US
+`func_080B39D8`（`0x080B39D8`–`0x080B39F3`）、EU
+`0x080B39C0`–`0x080B39DB`、DE `0x080B38F0`–`0x080B390B`。唯一的跨区原始字节
+差异是第二个索引值数组的实际地址，现以
+`gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues1` 的真实重定位表达；无代码
+`.incbin`、原始 `.byte`、`.set`、`.thumb_set` 或地址偏移伪匹配。
+
+`func_080B3428` 的第三个 JP 索引值辅助函数也已直接提升：JP 覆盖
+`0x080B3428`–`0x080B3443`（`0x1C` 字节），普通三区对应为 US
+`func_080B39F4`（`0x080B39F4`–`0x080B3A0F`）、EU
+`0x080B39DC`–`0x080B39F7`、DE `0x080B390C`–`0x080B3927`。唯一的跨区原始字节
+差异是第三个索引值数组地址，现直接重定位到
+`gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues2`；无代码 `.incbin`、原始
+`.byte`、`.set`、`.thumb_set` 或地址偏移伪匹配。上述相邻两个函数的 JP、US、EU、DE
+完整构建、SHA-1 与基准 ROM 的逐字节校验均已通过。
