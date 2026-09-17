@@ -144,6 +144,24 @@ not assertions about tile, palette, or OAM format. Run it with
 `DIRECT_UNPACK_VRAM_AUDIT.md` records the current code-consumer classification
 and keeps unproven streams out of the managed-resource table.
 
+## Audited runtime-delivery paths
+
+The table below measures code paths rather than attempting a blind scan for
+byte sequences that happen to resemble graphics.  A row is complete only when
+the relevant scanner can recover the source boundary and the resulting source
+is either rebuilt or explicitly retained as native data.  It is consequently
+an auditable lower bound on coverage, not a claim that every unlabelled ROM
+byte is visual data.
+
+| Delivery path | Static result | Current disposition |
+| --- | --- | --- |
+| Label-bound `IndexedResourceArchive` | 51 bounded payloads: 42 shared and 9 regional byte domains | Every payload rebuilds from indexed-PNG sources or its explicitly separated regional source; see `INDEXED_RESOURCE_ARCHIVE_INVENTORY.md`. |
+| Literal `Unpack` to VRAM | 30 calls, 29 distinct labelled sources | Every recovered source is classified in `DIRECT_UNPACK_VRAM_AUDIT.md`; it is either a verified editable pipeline, an archive-owned component, or an intentionally native-only resource whose image layout is not proven. |
+| Literal direct DMA to video RAM | 64 scanner-qualified calls, 47 distinct labels, plus one manually checked high-register call | Every recovered label is classified in `DIRECT_DMA_VRAM_AUDIT.md`. Raw tile and palette records retain their native source when no static tilemap/OAM layout exists. |
+| Literal guarded RAM copies | 18 bounded paths, all to palette RAM | Every source is classified in `DIRECT_COPY_RAM_AUDIT.md`; a palette slice is not promoted to a standalone image unless its owning layout is proven. |
+| MapData visual layers | 272 bounded native streams | The six visual pointer layers are managed as maps; terrain, collision, and other non-visual fields remain outside the graphics pipeline. |
+| Indirect map-state `Unpack` buffers | 17 labelled non-VRAM inputs, including five fallback payloads | These are recorded in `INDIRECT_UNPACK_AUDIT.md` with strict decode bounds, but remain native data until a consumer proves graphics format, palette, and layout. |
+
 ## Next audit queue
 
 | Candidate family | Evidence | Current conclusion |
