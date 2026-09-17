@@ -39837,7 +39837,54 @@ func_080B1584: @ 0x080B1584
 	bx r0
 	.align 2, 0
 .Ljp_080B1764: .4byte 0x00000838
-    jp_code_809_func func_080B1768, 0xB1768, 0xB17C8
+    .global func_080B1768
+    .thumb_func
+func_080B1768: @ 0x080B1768
+	push {r4, r5, r6, r7, lr}
+	sub sp, #4
+	adds r4, r0, #0
+	movs r6, #0
+	bl func_08008918
+	mov r2, sp
+	movs r3, #0xb2
+	lsls r3, r3, #5
+	adds r1, r3, #0
+	strh r1, [r2]
+	strh r1, [r0]
+	adds r0, r4, #0
+	bl func_080AF24C
+	ldr r1, .Ljp_080B17C0 @ =0x00000814
+	adds r0, r4, r1
+	movs r1, #0xbb
+	bl func_08008B6C
+	ldr r3, .Ljp_080B17C4 @ =0x00000838
+	adds r0, r4, r3
+	ldr r0, [r0]
+	cmp r0, #2
+	bne .Ljp_080B17B8
+	adds r5, r4, r3
+	movs r7, #3
+.Ljp_080B179E:
+	adds r0, r4, #0
+	bl func_080087C8
+	adds r0, r4, #0
+	bl func_080AF24C
+	adds r6, #1
+	cmp r6, #0x78
+	ble .Ljp_080B17B2
+	str r7, [r5]
+.Ljp_080B17B2:
+	ldr r0, [r5]
+	cmp r0, #2
+	beq .Ljp_080B179E
+.Ljp_080B17B8:
+	add sp, #4
+	pop {r4, r5, r6, r7}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_080B17C0: .4byte 0x00000814
+.Ljp_080B17C4: .4byte 0x00000838
     jp_code_809_func func_080B17C8, 0xB17C8, 0xB1B48
     jp_code_809_func func_080B1B48, 0xB1B48, 0xB2F10
     jp_code_809_func func_080B34DC, 0xB2F10, 0xB30E8
