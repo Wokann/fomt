@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Rebuild FoMT's shared common IndexedResourceArchive without sidecar layouts.
+"""Rebuild FoMT IndexedResourceArchive graphics without sidecar layouts.
 
-The complete four-region-identical archive contains 500 group descriptors.
-Each drawable group owns a verified OAM range, 4bpp tile range, and one BGR555
-palette.  Its ``full/group_NNN.png`` indexed PNG is the editable source; the
-native selection, descriptor, OAM, and palette tables remain the ROM's layout
-source of truth.  Unchanged sources retain the original fixed-size archive
-byte-for-byte.  This deliberately does not use a JSON manifest.
+Each selected profile describes one complete four-region-identical native
+archive.  Every drawable group owns a verified OAM range, 4bpp tile range, and
+BGR555 palette.  Its ``full/group_NNN.png`` indexed PNG is the editable source;
+the native selection, descriptor, OAM, and palette tables remain the ROM's
+layout source of truth.  Unchanged sources retain the original fixed-size
+archive byte-for-byte.  This deliberately does not use a JSON manifest.
 """
 
 from __future__ import annotations
@@ -44,6 +44,9 @@ PROFILES = {
     ),
     "small-companion": ArchiveProfile(
         (3, 16, 3, 52, 2, 0, 16), (), "small companion"
+    ),
+    "small-ui": ArchiveProfile(
+        (2, 4, 2, 36, 2, 0, 5), (3,), "small UI resource"
     ),
 }
 ACTIVE_PROFILE = PROFILES["common"]
@@ -352,11 +355,12 @@ def edit_test(archive: Archive, source_dir: Path) -> None:
                 for native_pixel in native_pixels:
                     owners.setdefault(native_pixel, []).append((group_id, target))
         shared = next((pixel for pixel, users in owners.items() if len(users) >= 2), None)
-        if shared is None:
-            raise AssertionError(
-                f"{ACTIVE_PROFILE.name} archive unexpectedly has no shared drawable tile pixel"
-            )
-        users = owners[shared]
+        # Most archives deliberately reuse native pixels across multiple
+        # resources. A small archive can validly have no such overlap; test a
+        # single proven visible pixel in that case rather than rejecting a
+        # correct disjoint OAM layout.
+        shared_edit = shared is not None
+        users = owners[shared] if shared_edit else next(iter(owners.values()))
         changed_sources: set[int] = set()
         for group_id, target in users:
             if group_id in changed_sources:
@@ -372,14 +376,14 @@ def edit_test(archive: Archive, source_dir: Path) -> None:
         tile_end = tile_offset + archive.counts[3] * 32
         if not changed or rebuilt == archive.data:
             raise AssertionError(
-                f"shared OAM pixel edit did not change the {ACTIVE_PROFILE.name} archive"
+                f"visible OAM pixel edit did not change the {ACTIVE_PROFILE.name} archive"
             )
         if rebuilt[:tile_offset] != archive.data[:tile_offset] or rebuilt[tile_end:] != archive.data[tile_end:]:
             raise AssertionError(
                 f"{ACTIVE_PROFILE.name} OAM edit changed metadata outside table four"
             )
     print(
-        f"verified a shared visible {ACTIVE_PROFILE.name} OAM edit preserves "
+        f"verified a {'shared ' if shared_edit else ''}visible {ACTIVE_PROFILE.name} OAM edit preserves "
         "metadata and fixed archive bounds"
     )
 
