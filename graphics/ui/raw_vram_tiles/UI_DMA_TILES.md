@@ -23,7 +23,6 @@ JP, US, EU, and DE retail ROMs, so each has one shared native source.
 | `gUnk_087529AC` | `087529ac/shared/tiles.4bpp` | `0x20` | `0x4D8958` | `0x7529AC` | `0x752A08` | `0x4D9EC8` | `e65a24b3b2280d111ba0d1236b82953023ef8eb4fc099ea4b3af5350d9c27214` |
 | `gUnk_08752D4C` | `08752d4c/shared/tiles.4bpp` | `0x80` | `0x4D8CF8` | `0x752D4C` | `0x752DA8` | `0x4DA268` | `bbed8d40d3b50a112b0044f5cb15532a8373cd3979856ca2d420d71d65ae5dcf` |
 | `gUnk_08752ACC` | `08752acc/shared/tiles.4bpp` | `0x80` | `0x4D8A78` | `0x752ACC` | `0x752B28` | `0x4D9FE8` | `544c753c94d191908294f5db94a19d1cec38b880dbc83c1bd46e53d38a8d7004` |
-| `gUnk_0875290C` | `0875290c/shared/tiles.4bpp` | `0x80` | `0x4D88B8` | `0x75290C` | `0x752968` | `0x4D9E28` | `577830e91675ac0f323c3ed71d780c87f83b4b5a0a209b2c96e93c9d5b5533e3` |
 | `gUnk_08752A2C` | `08752a2c/shared/tiles.4bpp` | `0x20` | `0x4D89D8` | `0x752A2C` | `0x752A88` | `0x4D9F48` | `1eb989f756d8a797e4c33dbb012c7d4f1a3637dab164e4eab9fd867edfd2d532` |
 | `gUnk_08752AAC` | `08752aac/shared/palette.gbapal` | `0x20` | `0x4D8A58` | `0x752AAC` | `0x752B08` | `0x4D9FC8` | `16651959cfb2129a001de5974a24772259962d7e5d22e88096280f1c57371186` |
 | `gUnk_08752CCC` | `08752ccc/shared/tiles.4bpp` | `0x20` | `0x4D8C78` | `0x752CCC` | `0x752D28` | `0x4DA1E8` | `7ad0e85a313266549b865f289aed4f47dcfbd36e5d28ab1270b3729a86d0f5be` |
@@ -32,11 +31,14 @@ JP, US, EU, and DE retail ROMs, so each has one shared native source.
 
 `gUnk_08750C8C` is copied in both `0x1A0`-byte and `0x1C0`-byte forms. The
 managed source therefore preserves its complete proven `0x1C0`-byte record;
-the smaller call consumes its leading subrange. A second manual audit of all
-twenty-two profile call sites confirms that twenty-one records target character
+the smaller call consumes its leading subrange. `gUnk_0875290C` is deliberately
+absent from this table because it is the complete ninth Farm Status icon record
+and is owned by `farm_status/creature_icons/shared/icon_09.png`, together with
+its adjacent `gUnk_0875298C` palette. A second manual audit of the remaining
+twenty-one profile call sites confirms that twenty records target character
 VRAM. `gUnk_08750C4C` additionally reaches a runtime layout helper, but that
-call does not prove a composited layout. The final eleven records are used by
-the Farm Status UI. Ten are character-VRAM tile uploads; the exception is
+call does not prove a composited layout. The final ten raw records are used by
+the Farm Status UI. Nine are character-VRAM tile uploads; the exception is
 `gUnk_08752AAC`, which `func_08068344` copies to `0x05000000` as one 16-colour
 BGR555 palette record. The neighboring `gUnk_08752A2C` range is only consumed
 as a `0x20`-byte tile subrange by that function, so no full-image layout is

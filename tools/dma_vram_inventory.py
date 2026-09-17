@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Inventory literal DMA descriptors that copy named ROM data into VRAM.
+"""Inventory literal DMA descriptors that copy named ROM data into video RAM.
 
 The scan intentionally recognises only a narrow assembly pattern around
 ``func_08008F0C``: a named ``g*`` source loaded into r1, plus a completely
-literal r2 VRAM destination and r3 byte count.  Literal values may be loaded
-directly or assembled with `movs`, left shifts and additions.  Rows are
-code-backed audit leads, never assertions about image format or ownership.
+literal r2 destination in character VRAM or palette RAM and r3 byte count.
+Literal values may be loaded directly or assembled with `movs`, left shifts
+and additions. Rows are code-backed audit leads, never assertions about image
+format or ownership.
 """
 
 from __future__ import annotations
@@ -41,7 +42,7 @@ class Row:
     source: str
     line: int
     symbol: str
-    vram_destination: int
+    destination: int
     byte_count: int
 
 
@@ -148,8 +149,11 @@ def scan_file(path: Path, root: Path) -> list[Row]:
         # local window while invalidating every overwritten tracked register.
         window = lines[max(0, index - 64):index]
         source, destination, count = literal_registers(window)
-        if (source is not None and destination is not None and count is not None
-                and 0x06000000 <= destination < 0x06018000):
+        if source is None or destination is None or count is None:
+            continue
+        is_character_vram = 0x06000000 <= destination < 0x06018000
+        is_palette_ram = 0x05000000 <= destination < 0x05000400
+        if is_character_vram or is_palette_ram:
             rows.append(Row(path.relative_to(root).as_posix(), index + 1,
                             source, destination, count))
     return rows
@@ -171,15 +175,15 @@ def main() -> None:
     if arguments.csv is None:
         for row in result:
             print(f"{row.source}:{row.line}: {row.symbol} -> "
-                  f"{row.vram_destination:#010x}, {row.byte_count:#x} bytes")
+                  f"{row.destination:#010x}, {row.byte_count:#x} bytes")
         return
     arguments.csv.parent.mkdir(parents=True, exist_ok=True)
     with arguments.csv.open("w", newline="", encoding="utf-8") as stream:
         writer = csv.writer(stream)
-        writer.writerow(("source", "line", "symbol", "vram_destination", "byte_count"))
+        writer.writerow(("source", "line", "symbol", "destination", "byte_count"))
         for row in result:
             writer.writerow((row.source, row.line, row.symbol,
-                             f"{row.vram_destination:#010x}", f"{row.byte_count:#x}"))
+                             f"{row.destination:#010x}", f"{row.byte_count:#x}"))
 
 
 if __name__ == "__main__":
