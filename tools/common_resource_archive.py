@@ -189,6 +189,12 @@ PROFILES = {
     "regional-0872de44-de": ArchiveProfile(
         (27, 27, 9, 110, 1, 0, 27), (), "regional 0872DE44 DE resource"
     ),
+    "regional-08738144-small": ArchiveProfile(
+        (3, 3, 2, 72, 1, 0, 3), (), "regional 08738144 JP-DE resource"
+    ),
+    "regional-08738144-us-eu": ArchiveProfile(
+        (20, 20, 13, 794, 3, 0, 20), (), "regional 08738144 US-EU resource"
+    ),
 }
 ACTIVE_PROFILE = PROFILES["common"]
 

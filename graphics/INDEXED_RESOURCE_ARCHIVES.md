@@ -130,6 +130,21 @@ three additional native layout records and four additional 4bpp tiles. Its
 native records are retained as the only layout definition, not duplicated into
 a JSON sidecar.
 
+`gUnk_08738144` has three independent native source domains. US and EU are
+byte-identical, while JP and DE have equal archive dimensions but different
+bytes and therefore separate source directories.
+
+| Source domain | Regions | ROM offset(s) | Length | Header counts | Entries | SHA-256 |
+| --- | --- | --- | --- | --- | --- | --- |
+| JP | JP | `0x4BE2AC` | `0x994` | `3, 3, 2, 72, 1, 0` | 3 | `fb7aa01250524014a4f84c1149116a761f6a8f93f3ddc0de6d75bd0b0cfea405` |
+| US/EU | US / EU | `0x731B40` / `0x731B9C` | `0x6604` | `20, 20, 13, 794, 3, 0` | 20 | `f7ba7a09d7fd9da4ce57d4c898240aee2a733beb30e58e95230efa83ab0d1104` |
+| DE | DE | `0x4BF4B0` | `0x994` | `3, 3, 2, 72, 1, 0` | 3 | `701e945fe2c343672a6e52b8795881ff3248c2af4f54e8213f21c4c2741a4729` |
+
+The JP and DE archives each expose three drawable OAM groups, 72 tiles and
+one BGR555 palette. US/EU exposes 20 groups, 794 tiles and three palettes.
+Their native layout data remains authoritative; no independently maintained
+JSON description is introduced.
+
 The common archive's group-descriptor consumer is fully bounded. Every
 drawable descriptor selects valid GBA OAM, 4bpp tile, and BGR555 palette
 ranges; `func_0805E790` resolves the fields and `func_080757E8` uploads tiles
