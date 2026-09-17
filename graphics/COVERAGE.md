@@ -85,7 +85,7 @@ image, nor that all game graphics have been extracted.
 | Intro-scene indexed frame archive | `graphics/intro_scene/indexed_archive/{jp,us_eu,de}/full/*.png` | regional indexed archives with verified frame descriptors, OAM pieces, tiles, and BGR555 palettes; JP uses H4/LZ2 and US/EU/DE use H8/LZ2 | Yes |
 | Records Screen task icons | `graphics/ui/records_minigame/shared/task_00.png` through `task_06.png` | seven raw 16x16 4bpp grids with individual BGR555 palettes; the runtime table uses a verified nonphysical presentation order | Yes; see `RECORDS_SCREEN_RESOURCE_AUDIT.md` |
 | Animal Festival UI icons | `graphics/ui/animal_festival/shared/icon_00.png` through `icon_09.png` | ten raw 16x16 4bpp grids with individual BGR555 palettes | Yes |
-| Direct-DMA raw UI records | `graphics/ui/raw_vram_tiles/*/shared/*.4bpp` and the paired `*.gbapal` records | nineteen fixed-size raw 4bpp tile records and three BGR555 palette records; where the caller lacks a complete static layout, native source is retained rather than fabricating a PNG | Yes |
+| Direct-DMA raw UI records | `graphics/ui/raw_vram_tiles/*/{shared,jp,overseas}/*` | nineteen fixed-size raw 4bpp tile records and four BGR555 palette records; `087512ec` is split into JP and overseas source domains, while callers without a complete static layout retain native source rather than fabricating a PNG | Yes |
 | MapData visual layers | `graphics/maps/shared/map_XX/layer_N.*`; derived inspection images are generated under `build/graphics/maps/reference/` | 272 native packed streams, post-link patched at their original ROM ranges | Yes |
 
 The actor archive has 3,009 frame descriptors, of which 2,963 are referenced

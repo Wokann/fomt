@@ -35,6 +35,7 @@ different video-RAM locations.
 | `gUnk_08750F8C` | `0x120` | Farm Status Harvest Sprite List native tiles at BG slot `0x0A5`; final layout unproven. |
 | `gUnk_08750E4C` | `0x120` | Farm Status Harvest Sprite List native tiles at BG slot `0x0AE`; paired BGR555 palette is `gUnk_08750F6C`, while final layout remains unproven. |
 | `gUnk_087511CC` | `0x120` | Farm Status Tool Level List native tiles at BG slot `0x09C`; final layout unproven. |
+| `gUnk_087512EC` | `0x20` | Farm Status Tool Level List BGR555 palette bank 2. JP uses a distinct record; US/EU/DE share one overseas record. The destination is assembled through a stack temporary, so this manually audited call is outside the literal-only scanner. |
 | `gUnk_0875154C` | `0x120` | Farm Status Tool Level List native tiles at BG slot `0x0A5`; final layout unproven. |
 | `gUnk_0875130C` | `0x120` | Farm Status Tool Level List native tiles at BG slot `0x0AE`; final layout unproven. |
 | `gUnk_0875142C` | `0x120` | Farm Status Tool Level List native tiles at BG slot `0x0B7`; final layout unproven. |
@@ -69,14 +70,15 @@ remain native sources because their tile arrangement is not proven.
 | `gUnk_0875350C` | Immediately follows Farm Status UI icon record 19 (`gUnk_0875348C`). | Managed by the Farm Status icon PNG pipeline. |
 | `gUnk_08750C6C` | Immediately follows the single-tile `gUnk_08750C4C` record. | Managed by the Farm Status Harvest Sprite task UI tile PNG pipeline. |
 | `gUnk_08750F6C` | `func_080645F0` (Farm Status Harvest Sprite List) copies it to palette RAM immediately after loading `gUnk_08750E4C`. | Native tile/palette pair; final layout remains unproven. |
+| `gUnk_087512EC` | `func_08068344` uploads it to palette RAM beside the Tool Level List tiles. | Managed native BGR555 source, split into JP and US/EU/DE domains; final screen layout remains unproven. |
 | `gUnk_0875178C` | `func_0806644C` (Farm Status Earnings Report) copies it to palette RAM immediately after loading `gUnk_0875166C`. | Native tile/palette pair; final layout remains unproven. |
 
 The icon rows and the single-tile Harvest Sprite row now point at checked-in
-PNG pipelines. The remaining twenty-two raw UI records have verified
+PNG pipelines. The remaining twenty-three raw UI records have verified
 four-region physical bounds and reversible native source assets. A manual
 second pass over every UI call site confirms that nineteen records target
-character VRAM; the three still-raw palette-RAM records are
-`gUnk_08750F6C`, `gUnk_0875178C`, and `gUnk_08752AAC`. No arbitrary tile-grid
+character VRAM; the four still-raw palette-RAM records are
+`gUnk_08750F6C`, `gUnk_087512EC`, `gUnk_0875178C`, and `gUnk_08752AAC`. No arbitrary tile-grid
 PNG or JSON layout is treated as a source asset: a future visual pipeline must
 still establish the companion palette and tilemap/OAM layout.
 

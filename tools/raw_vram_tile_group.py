@@ -27,6 +27,7 @@ class Profile:
     sha256: str
     source_name: str
     output_name: str
+    regional_sha256: dict[str, str] | None = None
 
 
 PROFILES = {
@@ -142,6 +143,19 @@ PROFILES = {
         source_name="tiles.4bpp",
         output_name="tiles.4bpp",
     ),
+    "087512ec": Profile(
+        name="FarmStatusToolLevelListPaletteBank_2",
+        offsets={"jp": 0x4D7F58, "us": 0x7512EC, "eu": 0x751348, "de": 0x4D8808},
+        length=0x20,
+        # US/EU/DE use one common palette record. JP has its own BGR555 bank
+        # at the equivalent fixed upload site.
+        sha256="4e9002d1a59b76f30985349aa2066e6382f673231ec4021f73eeb7d7b88f8b86",
+        source_name="palette.gbapal",
+        output_name="palette.gbapal",
+        regional_sha256={
+            "jp": "31914dafe0d1a2e020d3adc49118040855d874bb122639b47143b991bc49d077",
+        },
+    ),
     "0875154c": Profile(
         name="FarmStatusToolLevelListTiles_0x0A5",
         offsets={"jp": 0x4D74F8, "us": 0x75154C, "eu": 0x7515A8, "de": 0x4D8A68},
@@ -253,6 +267,12 @@ def profile(name: str) -> Profile:
     return PROFILES[name]
 
 
+def expected_sha256(item: Profile, region: str) -> str:
+    if item.regional_sha256 is not None and region in item.regional_sha256:
+        return item.regional_sha256[region]
+    return item.sha256
+
+
 def range_from_rom(rom: bytes, region: str, item: Profile) -> bytes:
     offset = item.offsets[region]
     payload = rom[offset:offset + item.length]
@@ -263,7 +283,7 @@ def range_from_rom(rom: bytes, region: str, item: Profile) -> bytes:
 
 def checked_retail(rom: bytes, region: str, item: Profile) -> bytes:
     payload = range_from_rom(rom, region, item)
-    if hashlib.sha256(payload).hexdigest() != item.sha256:
+    if hashlib.sha256(payload).hexdigest() != expected_sha256(item, region):
         raise ValueError(f"{item.name}: {region.upper()} range differs from the verified retail payload")
     return payload
 
@@ -297,6 +317,17 @@ def export(arguments: argparse.Namespace) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)
     destination.write_bytes(payloads["jp"])
     print(f"exported one shared native {item.source_name} source for {item.name}")
+
+
+def export_region(arguments: argparse.Namespace) -> None:
+    item = profile(arguments.profile)
+    payload = checked_retail(arguments.rom.read_bytes(), arguments.region, item)
+    destination = source_path(arguments.source_dir, item)
+    if destination.exists() and not arguments.replace:
+        raise ValueError(f"{destination} exists; pass --replace to refresh it")
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_bytes(payload)
+    print(f"exported {arguments.region.upper()} native {item.source_name} source for {item.name}")
 
 
 def build(arguments: argparse.Namespace) -> None:
@@ -382,6 +413,11 @@ def main() -> None:
     export_parser.add_argument("--source-dir", type=Path, required=True)
     export_parser.add_argument("--rom", nargs=2, action="append", metavar=("REGION", "ROM"), required=True)
     export_parser.add_argument("--replace", action="store_true")
+    export_region_parser = commands.add_parser("export-region")
+    export_region_parser.add_argument("--region", choices=REGIONS, required=True)
+    export_region_parser.add_argument("--rom", type=Path, required=True)
+    export_region_parser.add_argument("--source-dir", type=Path, required=True)
+    export_region_parser.add_argument("--replace", action="store_true")
     for name in ("build", "verify"):
         command = commands.add_parser(name)
         command.add_argument("--region", choices=REGIONS, required=True)
@@ -412,6 +448,8 @@ def main() -> None:
         arguments.rom = [(region, Path(path)) for region, path in arguments.rom]
     if arguments.command == "export":
         export(arguments)
+    elif arguments.command == "export-region":
+        export_region(arguments)
     elif arguments.command == "build":
         if arguments.output_dir is None:
             raise ValueError("build requires --output-dir")

@@ -20,14 +20,17 @@ the on-screen position.
 | `08752bcc` | `gUnk_08752BCC` | one 4bpp tile | BG slot `0x05A` |
 | `08752c4c` | `gUnk_08752C4C` | one 4bpp tile | BG slot `0x05B` |
 | `087511cc` | `gUnk_087511CC` | nine 4bpp tiles | BG slot `0x09C` |
+| `087512ec` | `gUnk_087512EC` | one BGR555 palette bank | palette RAM (screen-relative destination) |
 | `0875154c` | `gUnk_0875154C` | nine 4bpp tiles | BG slot `0x0A5` |
 | `0875130c` | `gUnk_0875130C` | nine 4bpp tiles | BG slot `0x0AE` |
 | `0875142c` | `gUnk_0875142C` | nine 4bpp tiles | BG slot `0x0B7` |
 | `08752aac` | `gUnk_08752AAC` | one BGR555 palette bank | palette RAM (screen-relative destination) |
 
-The exact JP/US/EU/DE offsets and shared SHA-256 values are the checked
-`Profile` entries in `tools/raw_vram_tile_group.py`.  The Make targets rebuild
-and verify every profile for all four regions without deriving a tilemap.
+The exact JP/US/EU/DE offsets and SHA-256 values are the checked `Profile`
+entries in `tools/raw_vram_tile_group.py`. `087512ec` is deliberately split:
+its JP BGR555 palette differs, while US/EU/DE use one byte-identical overseas
+record. The Make targets rebuild and verify every profile for all four regions
+without deriving a tilemap.
 
 ## Farm Status Harvest Sprite List
 
