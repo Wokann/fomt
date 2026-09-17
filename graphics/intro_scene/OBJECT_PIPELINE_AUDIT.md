@@ -93,6 +93,23 @@ scene-state objects rather than through a static twenty-entry descriptor table
 adjacent to `gIntroSceneUnpackSources`. This independently confirms that the
 numbered object source order is a loading order only.
 
+## Address-space constraint for ROM analysis
+
+The assembly symbol `func_0805E99C` is a cross-localization logical name; it
+is not automatically the same physical JP address.  The JP code carrier maps
+that function to physical entry `0x0805E6E0` (`jp_code_0803ee_func` source
+range `0x5E6E0..0x5E968`), whereas FoMT-US has the equivalent code at its
+logical `0x0805E99C` location.  Ghidra analysis must therefore use a physical
+address for the ROM being inspected.
+
+Decompiling the physical JP entry establishes the generic hardware-OAM
+contract: it walks caller-supplied eight-byte piece records, derives each
+piece's shape, size, coordinates, tile index, palette bank and flip bits, and
+writes a transient entry into the caller's OAM buffer.  It confirms the
+emitter format, but it does **not** attach any static Intro object stream to a
+particular piece-record sequence.  This distinction is why the source-order
+list still cannot be converted into independent full PNG assets.
+
 ## Why a complete PNG cannot yet be emitted
 
 The same initialization path subsequently drives the Intro Scene through

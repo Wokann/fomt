@@ -1,6 +1,9 @@
 // Print a Ghidra decompilation for the function at, containing, or immediately
-// preceding one ROM address.  The last case is useful for Thumb literal pools:
-// Ghidra normally marks those words as data just after their owning function.
+// preceding one *physical address in the selected ROM*.  Cross-localization
+// assembly labels can deliberately retain a logical address while the JP ROM
+// function has shifted; pass the ROM's actual entry, not that logical label.
+// The last case is useful for Thumb literal pools: Ghidra normally marks those
+// words as data just after their owning function.
 //
 // Run with:
 // analyzeHeadless ... -postScript GhidraDecompileFunction.java 0x080B5004
