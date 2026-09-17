@@ -50,3 +50,13 @@ character-RAM locations.
 
 Every table entry is byte-identical across JP, US, EU and DE.  The exact
 regional boundaries and hash checks remain in `tools/raw_vram_tile_group.py`.
+
+The five first-row records at `087529ac`, `08752acc`, `08752b4c`, `08752d4c`
+and `08752dcc` are active build inputs: `data_0813B288.s` selects the regional
+`build/<region>/graphics/ui/raw_vram_tiles/.../tiles.4bpp` result directly.
+Three of those source intervals are only one tile wide, so the adjacent,
+unidentified bytes retain their original `baserom` includes; this deliberately
+keeps the original ROM layout and labels intact while making only the verified
+prefix editable.  The remaining four records are audited native sources but
+will not replace their legacy includes until their corresponding build wiring
+has been added.

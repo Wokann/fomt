@@ -1,3 +1,23 @@
+    @ Direct-DMA UI records whose source boundaries are proven but whose
+    @ complete tilemap is not yet known.  The authored native .4bpp payload
+    @ remains region-specific at the build boundary; no inferred PNG layout
+    @ is used in the final ROM.
+    .macro FOMT_RAW_VRAM_UI_TILES profile
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/raw_vram_tiles/\profile/tiles.4bpp"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/raw_vram_tiles/\profile/tiles.4bpp"
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/raw_vram_tiles/\profile/tiles.4bpp"
+    .else
+    .incbin "build/us/graphics/ui/raw_vram_tiles/\profile/tiles.4bpp"
+    .endif
+    .endif
+    .endif
+    .endm
+
     @ The Records Screen task resources are seven raw 16x16 4bpp grids and
     @ matching 16-colour palettes.  All four retail localizations contain
     @ identical payloads; keep the region-specific build paths explicit.
@@ -6457,7 +6477,9 @@ gUnk_0875298C:
 
 	.global gUnk_087529AC
 gUnk_087529AC:
-	FOMT_REGION_ASSET_INCBIN 0x7529AC, 0x80
+	FOMT_RAW_VRAM_UI_TILES 087529ac
+	gUnk_087529CC:
+	FOMT_REGION_ASSET_INCBIN 0x7529CC, 0x60
 
 	.global gUnk_08752A2C
 gUnk_08752A2C:
@@ -6469,11 +6491,13 @@ gUnk_08752AAC:
 
 	.global gUnk_08752ACC
 gUnk_08752ACC:
-	FOMT_REGION_ASSET_INCBIN 0x752ACC, 0x80
+	FOMT_RAW_VRAM_UI_TILES 08752acc
 
 	.global gUnk_08752B4C
 gUnk_08752B4C:
-	FOMT_REGION_ASSET_INCBIN 0x752B4C, 0x80
+	FOMT_RAW_VRAM_UI_TILES 08752b4c
+	gUnk_08752B6C:
+	FOMT_REGION_ASSET_INCBIN 0x752B6C, 0x60
 
 	.global gUnk_08752BCC
 gUnk_08752BCC:
@@ -6489,11 +6513,13 @@ gUnk_08752CCC:
 
 	.global gUnk_08752D4C
 gUnk_08752D4C:
-	FOMT_REGION_ASSET_INCBIN 0x752D4C, 0x80
+	FOMT_RAW_VRAM_UI_TILES 08752d4c
 
 	.global gUnk_08752DCC
 gUnk_08752DCC:
-	FOMT_REGION_ASSET_INCBIN 0x752DCC, 0x80
+	FOMT_RAW_VRAM_UI_TILES 08752dcc
+	gUnk_08752DEC:
+	FOMT_REGION_ASSET_INCBIN 0x752DEC, 0x60
 
 	.global gUnk_08752E4C
 gUnk_08752E4C:
