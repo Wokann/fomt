@@ -15043,41 +15043,2752 @@ func_080A58D8: @ 0x080A58D8
 	pop {r0}
 	bx r0
 	.align 2, 0
-    jp_code_809_func func_080A5EB8, 0xA58F0, 0xA5A54
-    jp_code_809_func func_080A601C, 0xA5A54, 0xA5A5C
-    jp_code_809_func func_080A6024, 0xA5A5C, 0xA5AB4
-    jp_code_809_func func_080A607C, 0xA5AB4, 0xA5DF0
-    jp_code_809_func func_080A63B8, 0xA5DF0, 0xA5E58
-    .global func_080A6420
+    .global func_080A5EB8
     .thumb_func
-func_080A6420:
+func_080A5EB8: @ 0x080A58F0
+	push {r4, r5, r6, r7, lr}
+	mov r7, r8
+	push {r7}
+	sub sp, #4
+	adds r5, r0, #0
+	adds r2, r1, #0
+	ldrh r0, [r2]
+	lsls r0, r0, #0x16
+	lsrs r0, r0, #0x16
+	cmp r0, #1
+	bne .Ljp_080A5F68
+	ldr r0, [r5]
+	cmp r0, #1
+	bne .Ljp_080A5F68
+	ldr r0, [r5, #4]
+	cmp r0, #8
+	bne .Ljp_080A5F68
+	ldrb r1, [r2, #1]
+	lsrs r1, r1, #2
+	ldrh r0, [r2, #2]
+	ldr r3, .Ljp_080A5F5C @ =0x000003FF
+	mov r8, r3
+	ands r0, r3
+	lsls r0, r0, #6
+	orrs r0, r1
+	lsls r0, r0, #0x10
+	asrs r0, r0, #0x10
+	cmp r0, #0
+	bge .Ljp_080A5EF4
+	adds r0, #7
+.Ljp_080A5EF4:
+	asrs r3, r0, #3
+	ldrb r1, [r2, #3]
+	lsrs r1, r1, #2
+	ldrh r0, [r2, #4]
+	mov r2, r8
+	ands r0, r2
+	lsls r0, r0, #6
+	orrs r0, r1
+	lsls r0, r0, #0x10
+	asrs r0, r0, #0x10
+	cmp r0, #0
+	bge .Ljp_080A5F0E
+	adds r0, #7
+.Ljp_080A5F0E:
+	asrs r2, r0, #3
+	mov r1, sp
+	mov r0, sp
+	strh r3, [r0]
+	strh r2, [r1, #2]
+	movs r0, #8
+	bl GetMapData
+	ldrh r2, [r0, #0x20]
+	movs r4, #0
+	adds r7, r5, #0
+	adds r7, #0x10
+	mov r1, sp
+	movs r3, #0
+	ldrsh r0, [r1, r3]
+	lsls r6, r0, #1
+	movs r3, #2
+	ldrsh r0, [r1, r3]
+	muls r0, r2, r0
+	lsls r5, r0, #1
+	mov r3, r8
+	movs r2, #8
+.Ljp_080A5F3A:
+	adds r0, r7, r2
+	ldr r0, [r0]
+	adds r0, r0, r6
+	adds r0, r0, r5
+	ldrh r0, [r0]
+	adds r1, r3, #0
+	ands r1, r0
+	cmp r1, r3
+	beq .Ljp_080A5F60
+	adds r0, r1, #0
+	subs r0, #0x58
+	cmp r0, #0x3c
+	bls .Ljp_080A5F58
+	cmp r1, #0x33
+	bhi .Ljp_080A5F68
+.Ljp_080A5F58:
+	movs r0, #1
+	b .Ljp_080A5F6A
+	.align 2, 0
+.Ljp_080A5F5C: .4byte 0x000003FF
+.Ljp_080A5F60:
+	subs r2, #4
+	adds r4, #1
+	cmp r4, #2
+	bls .Ljp_080A5F3A
+.Ljp_080A5F68:
+	movs r0, #0
+.Ljp_080A5F6A:
+	add sp, #4
+	pop {r3}
+	mov r8, r3
+	pop {r4, r5, r6, r7}
+	pop {r1}
+	bx r1
+	.align 2, 0
+
+    .global func_080A59B0
+    .thumb_func
+func_080A59B0: @ 0x080A59B0
+	push {r4, r5, r6, r7, lr}
+	mov r7, sl
+	mov r6, sb
+	mov r5, r8
+	push {r5, r6, r7}
+	sub sp, #4
+	adds r5, r0, #0
+	adds r4, r1, #0
+	mov r8, r2
+	mov sb, r3
+	ldr r0, [r5, #4]
+	bl GetMapData
+	ldrh r0, [r0, #0x20]
+	mov sl, r0
+	movs r6, #0
+	ldr r0, [sp, #0x24]
+	cmp r6, r0
+	bhs .Ljp_080A5FFE
+	lsls r4, r4, #2
+	str r4, [sp]
+.Ljp_080A5FA2:
+	movs r4, #0
+	adds r1, r6, #1
+	mov ip, r1
+	cmp r4, sb
+	bhs .Ljp_080A5FF6
+	adds r0, r5, #0
+	adds r0, #0x10
+	ldr r2, [sp]
+	adds r7, r0, r2
+.Ljp_080A5FB4:
+	mov r3, r8
+	movs r0, #0
+	ldrsh r1, [r3, r0]
+	adds r1, r1, r4
+	movs r2, #2
+	ldrsh r0, [r3, r2]
+	adds r0, r0, r6
+	mov r3, sl
+	muls r3, r0, r3
+	adds r0, r3, #0
+	adds r1, r1, r0
+	lsls r2, r1, #1
+	ldr r0, [r7]
+	adds r0, r0, r2
+	ldr r2, .Ljp_080A6018 @ =0x000003FF
+	strh r2, [r0]
+	ldr r2, [r5, #0x2c]
+	lsls r1, r1, #2
+	adds r2, r1, r2
+	ldrb r3, [r2]
+	movs r0, #2
+	rsbs r0, r0, #0
+	ands r0, r3
+	strb r0, [r2]
+	ldr r0, [r5, #0x2c]
+	adds r1, r1, r0
+	ldrh r2, [r1, #2]
+	movs r0, #1
+	ands r0, r2
+	strh r0, [r1, #2]
+	adds r4, #1
+	cmp r4, sb
+	blo .Ljp_080A5FB4
+.Ljp_080A5FF6:
+	mov r6, ip
+	ldr r3, [sp, #0x24]
+	cmp r6, r3
+	blo .Ljp_080A5FA2
+.Ljp_080A5FFE:
+	adds r1, r5, #0
+	adds r1, #0x29
+	movs r0, #1
+	strb r0, [r1]
+	add sp, #4
+	pop {r3, r4, r5}
+	mov r8, r3
+	mov sb, r4
+	mov sl, r5
+	pop {r4, r5, r6, r7}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_080A6018: .4byte 0x000003FF
+
+    .global func_080A601C
+    .thumb_func
+func_080A601C: @ 0x080A5A54
+	adds r0, #0x58
+	movs r1, #0x14
+	strb r1, [r0]
+	bx lr
+
+    .global func_080A6024
+    .thumb_func
+func_080A6024: @ 0x080A5A5C
+	push {r4, lr}
+	adds r4, r0, #0
+	adds r2, r1, #0
+	ldr r0, [r4, #4]
+	cmp r0, #0x24
+	blt .Ljp_080A6064
+	cmp r0, #0x25
+	ble .Ljp_080A603A
+	cmp r0, #0x40
+	beq .Ljp_080A6054
+	b .Ljp_080A6064
+.Ljp_080A603A:
+	ldr r1, .Ljp_080A604C @ =gFieldRenderRectDescriptors + 0x360
+	ldr r0, .Ljp_080A6050 @ =gFieldRenderPatchArgumentData
+	adds r0, r2, r0
+	ldrb r2, [r0]
+	adds r0, r4, #0
+	movs r3, #8
+	bl func_080A5610
+	b .Ljp_080A6064
+	.align 2, 0
+.Ljp_080A604C: .4byte gFieldRenderRectDescriptors + 0x360
+.Ljp_080A6050: .4byte gFieldRenderPatchArgumentData
+.Ljp_080A6054:
+	ldr r1, .Ljp_080A6074 @ =gFieldRenderRectDescriptors + 0x360
+	ldr r0, .Ljp_080A6078 @ =gFieldRenderPatchArgumentData + 0x08
+	adds r0, r2, r0
+	ldrb r2, [r0]
+	adds r0, r4, #0
+	movs r3, #4
+	bl func_080A5610
+.Ljp_080A6064:
+	adds r1, r4, #0
+	adds r1, #0x29
+	movs r0, #1
+	strb r0, [r1]
+	pop {r4}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_080A6074: .4byte gFieldRenderRectDescriptors + 0x360
+.Ljp_080A6078: .4byte gFieldRenderPatchArgumentData + 0x08
+
+    .global func_080A607C
+    .thumb_func
+func_080A607C: @ 0x080A5AB4
+	push {r4, lr}
+	adds r4, r0, #0
+	adds r2, r1, #0
+	ldr r0, [r4, #4]
+	cmp r0, #0x27
+	beq .Ljp_080A60CC
+	cmp r0, #0x27
+	bgt .Ljp_080A6092
+	cmp r0, #0x26
+	beq .Ljp_080A6098
+	b .Ljp_080A6120
+.Ljp_080A6092:
+	cmp r0, #0x41
+	beq .Ljp_080A6110
+	b .Ljp_080A6120
+.Ljp_080A6098:
+	cmp r2, #0xf
+	bls .Ljp_080A60BC
+	ldr r1, .Ljp_080A60B4 @ =gFieldRenderRectDescriptors + 0x348
+	ldr r3, .Ljp_080A60B8 @ =gFieldRenderPatchArgumentData + 0x0C
+	adds r0, r2, #0
+	subs r0, #0x10
+	lsls r0, r0, #1
+	adds r2, r0, r3
+	ldrb r2, [r2]
+	adds r3, #1
+	adds r0, r0, r3
+	ldrb r3, [r0]
+	b .Ljp_080A6100
+	.align 2, 0
+.Ljp_080A60B4: .4byte gFieldRenderRectDescriptors + 0x348
+.Ljp_080A60B8: .4byte gFieldRenderPatchArgumentData + 0x0C
+.Ljp_080A60BC:
+	ldr r1, .Ljp_080A60C4 @ =gFieldRenderRectDescriptors + 0x348
+	ldr r0, .Ljp_080A60C8 @ =gFieldRenderPatchArgumentData + 0x2C
+	b .Ljp_080A60F4
+	.align 2, 0
+.Ljp_080A60C4: .4byte gFieldRenderRectDescriptors + 0x348
+.Ljp_080A60C8: .4byte gFieldRenderPatchArgumentData + 0x2C
+.Ljp_080A60CC:
+	cmp r2, #0xf
+	bls .Ljp_080A60F0
+	ldr r1, .Ljp_080A60E8 @ =gFieldRenderRectDescriptors + 0x348
+	ldr r3, .Ljp_080A60EC @ =gFieldRenderPatchArgumentData + 0x0C
+	adds r0, r2, #0
+	subs r0, #0x10
+	lsls r0, r0, #1
+	adds r2, r0, r3
+	ldrb r2, [r2]
+	adds r3, #1
+	adds r0, r0, r3
+	ldrb r3, [r0]
+	b .Ljp_080A6100
+	.align 2, 0
+.Ljp_080A60E8: .4byte gFieldRenderRectDescriptors + 0x348
+.Ljp_080A60EC: .4byte gFieldRenderPatchArgumentData + 0x0C
+.Ljp_080A60F0:
+	ldr r1, .Ljp_080A6108 @ =gFieldRenderRectDescriptors + 0x348
+	ldr r0, .Ljp_080A610C @ =gFieldRenderPatchArgumentData + 0x3C
+.Ljp_080A60F4:
+	lsls r3, r2, #1
+	adds r2, r3, r0
+	ldrb r2, [r2]
+	adds r0, #1
+	adds r3, r3, r0
+	ldrb r3, [r3]
+.Ljp_080A6100:
+	adds r0, r4, #0
+	bl func_080A5610
+	b .Ljp_080A6120
+	.align 2, 0
+.Ljp_080A6108: .4byte gFieldRenderRectDescriptors + 0x348
+.Ljp_080A610C: .4byte gFieldRenderPatchArgumentData + 0x3C
+.Ljp_080A6110:
+	ldr r1, .Ljp_080A6130 @ =gFieldRenderRectDescriptors + 0x348
+	ldr r0, .Ljp_080A6134 @ =gFieldRenderPatchArgumentData + 0x5C
+	adds r0, r2, r0
+	ldrb r2, [r0]
+	adds r0, r4, #0
+	movs r3, #5
+	bl func_080A5610
+.Ljp_080A6120:
+	adds r1, r4, #0
+	adds r1, #0x29
+	movs r0, #1
+	strb r0, [r1]
+	pop {r4}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_080A6130: .4byte gFieldRenderRectDescriptors + 0x348
+.Ljp_080A6134: .4byte gFieldRenderPatchArgumentData + 0x5C
+
+    .global func_080A5B70
+    .thumb_func
+func_080A5B70: @ 0x080A5B70
+	push {r4, lr}
+	adds r4, r0, #0
+	ldr r0, [r4, #4]
+	cmp r0, #0x2a
+	beq .Ljp_080A6160
+	cmp r0, #0x2a
+	bgt .Ljp_080A614C
+	cmp r0, #0x29
+	beq .Ljp_080A6152
+	b .Ljp_080A6180
+.Ljp_080A614C:
+	cmp r0, #0x2b
+	beq .Ljp_080A6174
+	b .Ljp_080A6180
+.Ljp_080A6152:
+	ldr r1, .Ljp_080A615C @ =gFieldRenderRectDescriptors + 0x150
+	adds r0, r4, #0
+	movs r2, #0x19
+	b .Ljp_080A6166
+	.align 2, 0
+.Ljp_080A615C: .4byte gFieldRenderRectDescriptors + 0x150
+.Ljp_080A6160:
+	ldr r1, .Ljp_080A6170 @ =gFieldRenderRectDescriptors + 0x150
+	adds r0, r4, #0
+	movs r2, #0x28
+.Ljp_080A6166:
+	movs r3, #0xf
+	bl func_080A5610
+	b .Ljp_080A6180
+	.align 2, 0
+.Ljp_080A6170: .4byte gFieldRenderRectDescriptors + 0x150
+.Ljp_080A6174:
+	ldr r1, .Ljp_080A6190 @ =gFieldRenderRectDescriptors + 0x150
+	adds r0, r4, #0
+	movs r2, #0x36
+	movs r3, #0xf
+	bl func_080A5610
+.Ljp_080A6180:
+	adds r1, r4, #0
+	adds r1, #0x29
+	movs r0, #1
+	strb r0, [r1]
+	pop {r4}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_080A6190: .4byte gFieldRenderRectDescriptors + 0x150
+
+    .global func_080A5BCC
+    .thumb_func
+func_080A5BCC: @ 0x080A5BCC
+	push {r4, lr}
+	adds r4, r0, #0
+	ldr r0, [r4, #4]
+	cmp r0, #0x2a
+	beq .Ljp_080A61BC
+	cmp r0, #0x2a
+	bgt .Ljp_080A61A8
+	cmp r0, #0x29
+	beq .Ljp_080A61AE
+	b .Ljp_080A61DC
+.Ljp_080A61A8:
+	cmp r0, #0x2b
+	beq .Ljp_080A61D0
+	b .Ljp_080A61DC
+.Ljp_080A61AE:
+	ldr r1, .Ljp_080A61B8 @ =gFieldRenderRectDescriptors + 0x168
+	adds r0, r4, #0
+	movs r2, #0x19
+	b .Ljp_080A61C2
+	.align 2, 0
+.Ljp_080A61B8: .4byte gFieldRenderRectDescriptors + 0x168
+.Ljp_080A61BC:
+	ldr r1, .Ljp_080A61CC @ =gFieldRenderRectDescriptors + 0x168
+	adds r0, r4, #0
+	movs r2, #0x28
+.Ljp_080A61C2:
+	movs r3, #0xf
+	bl func_080A5610
+	b .Ljp_080A61DC
+	.align 2, 0
+.Ljp_080A61CC: .4byte gFieldRenderRectDescriptors + 0x168
+.Ljp_080A61D0:
+	ldr r1, .Ljp_080A61EC @ =gFieldRenderRectDescriptors + 0x168
+	adds r0, r4, #0
+	movs r2, #0x36
+	movs r3, #0xf
+	bl func_080A5610
+.Ljp_080A61DC:
+	adds r1, r4, #0
+	adds r1, #0x29
+	movs r0, #1
+	strb r0, [r1]
+	pop {r4}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_080A61EC: .4byte gFieldRenderRectDescriptors + 0x168
+
+    .global func_080A5C28
+    .thumb_func
+func_080A5C28: @ 0x080A5C28
+	push {r4, lr}
+	adds r4, r0, #0
+	ldr r0, [r4, #4]
+	cmp r0, #0x2a
+	beq .Ljp_080A6200
+	cmp r0, #0x2b
+	beq .Ljp_080A6214
+	b .Ljp_080A6220
+.Ljp_080A6200:
+	ldr r1, .Ljp_080A6210 @ =gFieldRenderRectDescriptors + 0x180
+	adds r0, r4, #0
+	movs r2, #0xb
+	movs r3, #3
+	bl func_080A5610
+	b .Ljp_080A6220
+	.align 2, 0
+.Ljp_080A6210: .4byte gFieldRenderRectDescriptors + 0x180
+.Ljp_080A6214:
+	ldr r1, .Ljp_080A6230 @ =gFieldRenderRectDescriptors + 0x180
+	adds r0, r4, #0
+	movs r2, #0x13
+	movs r3, #3
+	bl func_080A5610
+.Ljp_080A6220:
+	adds r1, r4, #0
+	adds r1, #0x29
+	movs r0, #1
+	strb r0, [r1]
+	pop {r4}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_080A6230: .4byte gFieldRenderRectDescriptors + 0x180
+
+    .global func_080A5C6C
+    .thumb_func
+func_080A5C6C: @ 0x080A5C6C
+	push {r4, lr}
+	adds r4, r0, #0
+	ldr r0, [r4, #4]
+	cmp r0, #0x2a
+	beq .Ljp_080A6244
+	cmp r0, #0x2b
+	beq .Ljp_080A6258
+	b .Ljp_080A6264
+.Ljp_080A6244:
+	ldr r1, .Ljp_080A6254 @ =gFieldRenderRectDescriptors + 0x198
+	adds r0, r4, #0
+	movs r2, #0xb
+	movs r3, #3
+	bl func_080A5610
+	b .Ljp_080A6264
+	.align 2, 0
+.Ljp_080A6254: .4byte gFieldRenderRectDescriptors + 0x198
+.Ljp_080A6258:
+	ldr r1, .Ljp_080A6274 @ =gFieldRenderRectDescriptors + 0x198
+	adds r0, r4, #0
+	movs r2, #0x13
+	movs r3, #3
+	bl func_080A5610
+.Ljp_080A6264:
+	adds r1, r4, #0
+	adds r1, #0x29
+	movs r0, #1
+	strb r0, [r1]
+	pop {r4}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_080A6274: .4byte gFieldRenderRectDescriptors + 0x198
+
+    .global func_080A5CB0
+    .thumb_func
+func_080A5CB0: @ 0x080A5CB0
+	push {r4, lr}
+	adds r4, r0, #0
+	ldr r0, [r4, #4]
+	cmp r0, #0x2a
+	beq .Ljp_080A6288
+	cmp r0, #0x2b
+	beq .Ljp_080A629C
+	b .Ljp_080A62A8
+.Ljp_080A6288:
+	ldr r1, .Ljp_080A6298 @ =gFieldRenderRectDescriptors + 0x1B0
+	adds r0, r4, #0
+	movs r2, #0xf
+	movs r3, #2
+	bl func_080A5610
+	b .Ljp_080A62A8
+	.align 2, 0
+.Ljp_080A6298: .4byte gFieldRenderRectDescriptors + 0x1B0
+.Ljp_080A629C:
+	ldr r1, .Ljp_080A62B8 @ =gFieldRenderRectDescriptors + 0x1B0
+	adds r0, r4, #0
+	movs r2, #0x17
+	movs r3, #2
+	bl func_080A5610
+.Ljp_080A62A8:
+	adds r1, r4, #0
+	adds r1, #0x29
+	movs r0, #1
+	strb r0, [r1]
+	pop {r4}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_080A62B8: .4byte gFieldRenderRectDescriptors + 0x1B0
+
+    .global func_080A5CF4
+    .thumb_func
+func_080A5CF4: @ 0x080A5CF4
+	push {r4, lr}
+	adds r4, r0, #0
+	ldr r0, [r4, #4]
+	cmp r0, #0x2a
+	beq .Ljp_080A62CC
+	cmp r0, #0x2b
+	beq .Ljp_080A62E0
+	b .Ljp_080A62EC
+.Ljp_080A62CC:
+	ldr r1, .Ljp_080A62DC @ =gFieldRenderRectDescriptors + 0x1C8
+	adds r0, r4, #0
+	movs r2, #0xf
+	movs r3, #2
+	bl func_080A5610
+	b .Ljp_080A62EC
+	.align 2, 0
+.Ljp_080A62DC: .4byte gFieldRenderRectDescriptors + 0x1C8
+.Ljp_080A62E0:
+	ldr r1, .Ljp_080A62FC @ =gFieldRenderRectDescriptors + 0x1C8
+	adds r0, r4, #0
+	movs r2, #0x17
+	movs r3, #2
+	bl func_080A5610
+.Ljp_080A62EC:
+	adds r1, r4, #0
+	adds r1, #0x29
+	movs r0, #1
+	strb r0, [r1]
+	pop {r4}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_080A62FC: .4byte gFieldRenderRectDescriptors + 0x1C8
+
+    .global func_080A5D38
+    .thumb_func
+func_080A5D38: @ 0x080A5D38
+	push {r4, lr}
+	adds r4, r0, #0
+	ldr r0, [r4, #4]
+	cmp r0, #0x2a
+	beq .Ljp_080A6328
+	cmp r0, #0x2a
+	bgt .Ljp_080A6314
+	cmp r0, #0x29
+	beq .Ljp_080A631A
+	b .Ljp_080A6350
+.Ljp_080A6314:
+	cmp r0, #0x2b
+	beq .Ljp_080A633C
+	b .Ljp_080A6350
+.Ljp_080A631A:
+	ldr r1, .Ljp_080A6324 @ =gFieldRenderRectDescriptors + 0x210
+	adds r0, r4, #0
+	movs r2, #1
+	b .Ljp_080A632E
+	.align 2, 0
+.Ljp_080A6324: .4byte gFieldRenderRectDescriptors + 0x210
+.Ljp_080A6328:
+	ldr r1, .Ljp_080A6338 @ =gFieldRenderRectDescriptors + 0x210
+	adds r0, r4, #0
+	movs r2, #0x10
+.Ljp_080A632E:
+	movs r3, #0x11
+	bl func_080A5610
+	b .Ljp_080A6348
+	.align 2, 0
+.Ljp_080A6338: .4byte gFieldRenderRectDescriptors + 0x210
+.Ljp_080A633C:
+	ldr r1, .Ljp_080A6358 @ =gFieldRenderRectDescriptors + 0x210
+	adds r0, r4, #0
+	movs r2, #0x18
+	movs r3, #0x11
+	bl func_080A5610
+.Ljp_080A6348:
+	adds r1, r4, #0
+	adds r1, #0x29
+	movs r0, #1
+	strb r0, [r1]
+.Ljp_080A6350:
+	pop {r4}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_080A6358: .4byte gFieldRenderRectDescriptors + 0x210
+
+    .global func_080A5D94
+    .thumb_func
+func_080A5D94: @ 0x080A5D94
+	push {r4, lr}
+	adds r4, r0, #0
+	ldr r0, [r4, #4]
+	cmp r0, #0x2a
+	beq .Ljp_080A6384
+	cmp r0, #0x2a
+	bgt .Ljp_080A6370
+	cmp r0, #0x29
+	beq .Ljp_080A6376
+	b .Ljp_080A63AC
+.Ljp_080A6370:
+	cmp r0, #0x2b
+	beq .Ljp_080A6398
+	b .Ljp_080A63AC
+.Ljp_080A6376:
+	ldr r1, .Ljp_080A6380 @ =gFieldRenderRectDescriptors + 0x1F8
+	adds r0, r4, #0
+	movs r2, #1
+	b .Ljp_080A638A
+	.align 2, 0
+.Ljp_080A6380: .4byte gFieldRenderRectDescriptors + 0x1F8
+.Ljp_080A6384:
+	ldr r1, .Ljp_080A6394 @ =gFieldRenderRectDescriptors + 0x1F8
+	adds r0, r4, #0
+	movs r2, #0x10
+.Ljp_080A638A:
+	movs r3, #0x11
+	bl func_080A5610
+	b .Ljp_080A63A4
+	.align 2, 0
+.Ljp_080A6394: .4byte gFieldRenderRectDescriptors + 0x1F8
+.Ljp_080A6398:
+	ldr r1, .Ljp_080A63B4 @ =gFieldRenderRectDescriptors + 0x1F8
+	adds r0, r4, #0
+	movs r2, #0x18
+	movs r3, #0x11
+	bl func_080A5610
+.Ljp_080A63A4:
+	adds r1, r4, #0
+	adds r1, #0x29
+	movs r0, #1
+	strb r0, [r1]
+.Ljp_080A63AC:
+	pop {r4}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_080A63B4: .4byte gFieldRenderRectDescriptors + 0x1F8
+
+    .global func_080A63B8
+    .thumb_func
+func_080A63B8: @ 0x080A5DF0
+	push {r4, lr}
+	adds r4, r0, #0
+	ldr r0, [r4, #4]
+	cmp r0, #0x25
+	beq .Ljp_080A63F8
+	cmp r0, #0x25
+	bgt .Ljp_080A63CC
+	cmp r0, #0x24
+	beq .Ljp_080A63E4
+	b .Ljp_080A6414
+.Ljp_080A63CC:
+	cmp r0, #0x40
+	bne .Ljp_080A6414
+	ldr r1, .Ljp_080A63E0 @ =gFieldRenderRectDescriptors + 0x798
+	adds r0, r4, #0
+	movs r2, #1
+	movs r3, #0xd
+	bl func_080A5610
+	b .Ljp_080A640C
+	.align 2, 0
+.Ljp_080A63E0: .4byte gFieldRenderRectDescriptors + 0x798
+.Ljp_080A63E4:
+	ldr r1, .Ljp_080A63F4 @ =gFieldRenderRectDescriptors + 0x798
+	adds r0, r4, #0
+	movs r2, #1
+	movs r3, #0x11
+	bl func_080A5610
+	b .Ljp_080A640C
+	.align 2, 0
+.Ljp_080A63F4: .4byte gFieldRenderRectDescriptors + 0x798
+.Ljp_080A63F8:
+	ldr r2, .Ljp_080A641C @ =gFieldRenderRectDescriptors + 0x798
+	movs r3, #0xd
+	cmp r1, #0
+	bne .Ljp_080A6402
+	movs r3, #0x11
+.Ljp_080A6402:
+	adds r0, r4, #0
+	adds r1, r2, #0
+	movs r2, #1
+	bl func_080A5610
+.Ljp_080A640C:
+	adds r1, r4, #0
+	adds r1, #0x29
+	movs r0, #1
+	strb r0, [r1]
+.Ljp_080A6414:
+	pop {r4}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_080A641C: .4byte gFieldRenderRectDescriptors + 0x798
+
     .global func_080A5E58
     .thumb_func
-func_080A5E58:
-    .incbin "baserom_jp.gba", 0xA5E58, (0xA5EAC - 0xA5E58)
-    jp_code_809_func func_080A6474, 0xA5EAC, 0xA5EF0
-    .global func_080A64B8
+func_080A5E58: @ 0x080A5E58
+	push {lr}
+	sub sp, #4
+	ldr r0, [r0]
+	movs r1, #0
+	str r1, [sp]
+	movs r1, #1
+	movs r2, #0
+	movs r3, #0
+	bl func_0803A638
+	add sp, #4
+	pop {r1}
+	bx r1
+	.align 2, 0
+    .global func_080A5E74
     .thumb_func
-func_080A64B8:
+func_080A5E74: @ 0x080A5E74
+	push {r4, r5, r6, lr}
+	adds r6, r0, #0
+	adds r4, r1, #0
+	adds r5, r2, #0
+	ldr r0, [r6, #4]
+	bl GetMapData
+	ldrh r0, [r0, #0x20]
+	muls r0, r5
+	adds r4, r4, r0
+	lsls r4, r4, #2
+	ldr r0, [r6, #0x2c]
+	adds r0, r0, r4
+	pop {r4, r5, r6}
+	pop {r1}
+	bx r1
+
+    .global func_080A5E94
+    .thumb_func
+func_080A5E94: @ 0x080A5E94
+	ldr r0, [r0, #4]
+	bx lr
+
+    .global func_080A5E98
+    .thumb_func
+func_080A5E98: @ 0x080A5E98
+	ldr r0, [r0]
+	bx lr
+
+    .global func_080A5E9C
+    .thumb_func
+func_080A5E9C: @ 0x080A5E9C
+	movs r1, #0xe
+	ldrsh r0, [r0, r1]
+	bx lr
+	.align 2, 0
+
+    .global func_080A5EA4
+    .thumb_func
+func_080A5EA4: @ 0x080A5EA4
+	movs r1, #0xa
+	ldrsh r0, [r0, r1]
+	bx lr
+	.align 2, 0
+
+    .global func_080A6474
+    .thumb_func
+func_080A6474: @ 0x080A5EAC
+	push {r4, r5, lr}
+	adds r5, r0, #0
+	adds r4, r1, #0
+	bl func_080A4A94
+	adds r1, r5, #0
+	adds r1, #0x90
+	ldr r0, .Ljp_080A64B4 @ =vtable_unk_080E830C
+	str r0, [r1]
+	adds r0, r5, #0
+	adds r0, #0x94
+	str r4, [r0]
+	adds r0, #4
+	movs r4, #0
+	strb r4, [r0]
+	adds r0, #4
+	bl func_080E43FC
+	adds r0, r5, #0
+	adds r0, #0xb4
+	strb r4, [r0]
+	strb r4, [r0, #1]
+	strb r4, [r0, #2]
+	adds r0, #4
+	strb r4, [r0]
+	strb r4, [r0, #1]
+	strb r4, [r0, #2]
+	adds r0, r5, #0
+	pop {r4, r5}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.Ljp_080A64B4: .4byte vtable_unk_080E830C
+
     .global func_080A5EF0
     .thumb_func
-func_080A5EF0:
-    .incbin "baserom_jp.gba", 0xA5EF0, (0xA5F5C - 0xA5EF0)
-    .global func_080A6524
-    .thumb_func
-func_080A6524:
+func_080A5EF0: @ 0x080A5EF0
+	push {r4, r5, r6, lr}
+	adds r4, r0, #0
+	bl func_080A4BEC
+	adds r0, r4, #0
+	adds r0, #0x94
+	ldr r1, [r0]
+	ldr r0, [r4]
+	cmp r0, #6
+	bne .Ljp_080A6510
+	ldr r2, .Ljp_080A6518 @ =0x000021A0
+	adds r0, r1, r2
+	ldrb r0, [r0]
+	lsls r0, r0, #0x1e
+	lsrs r3, r0, #0x1e
+	cmp r3, #1
+	bne .Ljp_080A6510
+	adds r2, r4, #0
+	adds r2, #0xb4
+	ldr r1, .Ljp_080A651C @ =gFarmHouseTilePatchAnimations
+	ldrb r0, [r2, #2]
+	adds r0, #1
+	movs r6, #0
+	strb r0, [r2, #2]
+	movs r5, #0xff
+	lsls r0, r0, #0x18
+	lsrs r0, r0, #0x18
+	ldrh r1, [r1, #8]
+	cmp r0, r1
+	blo .Ljp_080A64F8
+	strb r6, [r2, #2]
+	strb r3, [r2, #1]
+.Ljp_080A64F8:
+	adds r2, r4, #0
+	adds r2, #0xb8
+	ldr r1, .Ljp_080A6520 @ =gFarmHouseTilePatchAnimations + 0x0C
+	ldrb r0, [r2, #2]
+	adds r0, #1
+	strb r0, [r2, #2]
+	ands r0, r5
+	ldrh r1, [r1, #8]
+	cmp r0, r1
+	blo .Ljp_080A6510
+	strb r6, [r2, #2]
+	strb r3, [r2, #1]
+.Ljp_080A6510:
+	pop {r4, r5, r6}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_080A6518: .4byte 0x000021A0
+.Ljp_080A651C: .4byte gFarmHouseTilePatchAnimations
+.Ljp_080A6520: .4byte gFarmHouseTilePatchAnimations + 0x0C
+
     .global func_080A5F5C
     .thumb_func
-func_080A5F5C:
-    .incbin "baserom_jp.gba", 0xA5F5C, (0xA6078 - 0xA5F5C)
-    .global func_080A6640
-    .thumb_func
-func_080A6640:
+func_080A5F5C: @ 0x080A5F5C
+	push {r4, r5, r6, r7, lr}
+	mov r7, r8
+	push {r7}
+	adds r5, r0, #0
+	adds r6, r1, #0
+	bl func_080A4F50
+	adds r4, r5, #0
+	adds r4, #0x94
+	ldr r0, [r4]
+	ldr r1, [r5]
+	cmp r1, #6
+	beq .Ljp_080A65A0
+	cmp r1, #0x1d
+	bne .Ljp_080A662A
+	adds r1, r5, #0
+	adds r1, #0x98
+	ldrb r0, [r1]
+	cmp r0, #0
+	beq .Ljp_080A662A
+	movs r0, #0
+	strb r0, [r1]
+	ldr r0, [r4]
+	movs r1, #0xfa
+	lsls r1, r1, #1
+	adds r0, r0, r1
+	bl HasStocking__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A658C
+	ldr r0, [r4]
+	movs r1, #0xfa
+	lsls r1, r1, #1
+	adds r0, r0, r1
+	bl GetStockingArticleId__C9FarmHouse
+	cmp r0, #0x5f
+	bne .Ljp_080A6580
+	ldr r1, .Ljp_080A657C @ =gFarmHouseTilePatchData + 0x030
+	adds r0, r5, #0
+	movs r2, #1
+	b .Ljp_080A6592
+	.align 2, 0
+.Ljp_080A657C: .4byte gFarmHouseTilePatchData + 0x030
+.Ljp_080A6580:
+	ldr r1, .Ljp_080A6588 @ =gFarmHouseTilePatchData + 0x030
+	adds r0, r5, #0
+	movs r2, #2
+	b .Ljp_080A6592
+	.align 2, 0
+.Ljp_080A6588: .4byte gFarmHouseTilePatchData + 0x030
+.Ljp_080A658C:
+	ldr r1, .Ljp_080A659C @ =gFarmHouseTilePatchData + 0x030
+	adds r0, r5, #0
+	movs r2, #0
+.Ljp_080A6592:
+	adds r3, r6, #0
+	bl func_080A54E8
+	b .Ljp_080A662A
+	.align 2, 0
+.Ljp_080A659C: .4byte gFarmHouseTilePatchData + 0x030
+.Ljp_080A65A0:
+	ldr r1, .Ljp_080A6634 @ =0x000021A0
+	adds r0, r0, r1
+	ldrb r0, [r0]
+	lsls r0, r0, #0x1e
+	lsrs r0, r0, #0x1e
+	cmp r0, #1
+	bne .Ljp_080A662A
+	adds r4, r5, #0
+	adds r4, #0xb4
+	ldr r7, .Ljp_080A6638 @ =gFarmHouseTilePatchAnimations
+	ldrb r0, [r4, #1]
+	cmp r0, #0
+	beq .Ljp_080A65EC
+	movs r0, #0
+	mov r8, r0
+	mov r1, r8
+	strb r1, [r4, #1]
+	ldrb r2, [r4]
+	adds r0, r5, #0
+	adds r1, r7, #0
+	adds r3, r6, #0
+	bl func_080A54E8
+	ldr r0, [r7, #4]
+	ldrh r1, [r0, #2]
+	movs r2, #0
+	ldrb r0, [r4]
+	adds r0, #1
+	strb r0, [r4]
+	lsls r0, r0, #0x18
+	lsrs r0, r0, #0x18
+	cmp r0, r1
+	bne .Ljp_080A65E4
+	movs r2, #1
+.Ljp_080A65E4:
+	cmp r2, #0
+	beq .Ljp_080A65EC
+	mov r0, r8
+	strb r0, [r4]
+.Ljp_080A65EC:
+	adds r4, r5, #0
+	adds r4, #0xb8
+	ldr r7, .Ljp_080A663C @ =gFarmHouseTilePatchAnimations + 0x0C
+	ldrb r0, [r4, #1]
+	cmp r0, #0
+	beq .Ljp_080A662A
+	movs r1, #0
+	mov r8, r1
+	mov r0, r8
+	strb r0, [r4, #1]
+	ldrb r2, [r4]
+	adds r0, r5, #0
+	adds r1, r7, #0
+	adds r3, r6, #0
+	bl func_080A54E8
+	ldr r0, [r7, #4]
+	ldrh r1, [r0, #2]
+	movs r2, #0
+	ldrb r0, [r4]
+	adds r0, #1
+	strb r0, [r4]
+	lsls r0, r0, #0x18
+	lsrs r0, r0, #0x18
+	cmp r0, r1
+	bne .Ljp_080A6622
+	movs r2, #1
+.Ljp_080A6622:
+	cmp r2, #0
+	beq .Ljp_080A662A
+	mov r1, r8
+	strb r1, [r4]
+.Ljp_080A662A:
+	pop {r3}
+	mov r8, r3
+	pop {r4, r5, r6, r7}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_080A6634: .4byte 0x000021A0
+.Ljp_080A6638: .4byte gFarmHouseTilePatchAnimations
+.Ljp_080A663C: .4byte gFarmHouseTilePatchAnimations + 0x0C
+
     .global func_080A6078
     .thumb_func
-func_080A6078:
-    .incbin "baserom_jp.gba", 0xA6078, (0xA6098 - 0xA6078)
-    jp_code_809_func func_080A6098, 0xA6098, 0xA6EC4
+func_080A6078: @ 0x080A6078
+	push {r4, lr}
+	adds r4, r0, #0
+	bl func_080A5198
+	adds r1, r4, #0
+	adds r1, #0xb4
+	movs r0, #0
+	strb r0, [r1]
+	strb r0, [r1, #1]
+	adds r4, #0xb8
+	strb r0, [r4]
+	strb r0, [r4, #1]
+	pop {r4}
+	pop {r0}
+	bx r0
+	.align 2, 0
+
+    .global func_080A6098
+    .thumb_func
+func_080A6098: @ 0x080A6098
+	push {r4, r5, r6, r7, lr}
+	mov r7, sl
+	mov r6, sb
+	mov r5, r8
+	push {r5, r6, r7}
+	sub sp, #0x2c
+	mov r8, r0
+	bl func_080A56F8
+	mov r0, r8
+	adds r0, #0x94
+	ldr r0, [r0]
+	adds r0, #0x10
+	bl func_0800E324
+	adds r6, r0, #0
+	mov r1, r8
+	ldr r0, [r1]
+	cmp r0, #0x2e
+	bgt .Ljp_080A668E
+	cmp r0, #0x2d
+	bge .Ljp_080A6694
+	b .Ljp_080A669A
+.Ljp_080A668E:
+	cmp r0, #0x2f
+	beq .Ljp_080A6698
+	b .Ljp_080A669A
+.Ljp_080A6694:
+	movs r6, #1
+	b .Ljp_080A669A
+.Ljp_080A6698:
+	movs r6, #3
+.Ljp_080A669A:
+	mov r0, r8
+	adds r0, #0x94
+	ldr r4, [r0]
+	ldr r2, .Ljp_080A66D8 @ =0x0000214C
+	adds r7, r4, r2
+	mov r3, r8
+	ldr r2, [r3]
+	mov sb, r0
+	cmp r2, #6
+	beq .Ljp_080A66E4
+	cmp r2, #6
+	ble .Ljp_080A66B4
+	b .Ljp_080A6806
+.Ljp_080A66B4:
+	cmp r2, #1
+	beq .Ljp_080A66BA
+	b .Ljp_080A6806
+.Ljp_080A66BA:
+	ldr r1, .Ljp_080A66DC @ =0x0000219C
+	adds r0, r4, r1
+	ldrb r0, [r0]
+	lsls r0, r0, #0x19
+	lsrs r0, r0, #0x1e
+	cmp r0, #1
+	beq .Ljp_080A66CA
+	b .Ljp_080A6806
+.Ljp_080A66CA:
+	ldr r1, .Ljp_080A66E0 @ =gFieldRenderRectDescriptors + 0x408
+	mov r0, r8
+	movs r2, #0x17
+	movs r3, #0x11
+	bl func_080A5610
+	b .Ljp_080A6806
+	.align 2, 0
+.Ljp_080A66D8: .4byte 0x0000214C
+.Ljp_080A66DC: .4byte 0x0000219C
+.Ljp_080A66E0: .4byte gFieldRenderRectDescriptors + 0x408
+.Ljp_080A66E4:
+	ldr r2, .Ljp_080A681C @ =0x000021A9
+	adds r0, r4, r2
+	ldrb r0, [r0]
+	lsls r0, r0, #0x1e
+	lsrs r0, r0, #0x1e
+	cmp r0, #1
+	bne .Ljp_080A66FE
+	ldr r1, .Ljp_080A6820 @ =gFarmHouseVisualDescriptors + 0x58
+	mov r0, r8
+	movs r2, #0x13
+	movs r3, #0x11
+	bl func_080A5610
+.Ljp_080A66FE:
+	ldr r3, .Ljp_080A6824 @ =0x000021A0
+	adds r0, r4, r3
+	ldrb r0, [r0]
+	lsls r0, r0, #0x1e
+	lsrs r0, r0, #0x1e
+	cmp r0, #1
+	bne .Ljp_080A6718
+	ldr r1, .Ljp_080A6828 @ =gFarmHouseVisualDescriptors + 0x108
+	mov r0, r8
+	movs r2, #0x16
+	movs r3, #0x10
+	bl func_080A5610
+.Ljp_080A6718:
+	ldr r0, .Ljp_080A682C @ =0x0000219A
+	adds r5, r4, r0
+	ldrh r0, [r5]
+	lsls r0, r0, #0x17
+	lsrs r0, r0, #0x1e
+	cmp r0, #1
+	bne .Ljp_080A6732
+	ldr r1, .Ljp_080A6830 @ =gFarmHouseVisualDescriptors + 0x2C
+	mov r0, r8
+	movs r2, #0x13
+	movs r3, #0x11
+	bl func_080A5610
+.Ljp_080A6732:
+	ldr r1, .Ljp_080A6834 @ =0x0000219B
+	adds r0, r4, r1
+	ldrb r0, [r0]
+	lsls r0, r0, #0x1a
+	lsrs r0, r0, #0x1e
+	cmp r0, #1
+	bne .Ljp_080A674C
+	ldr r1, .Ljp_080A6830 @ =gFarmHouseVisualDescriptors + 0x2C
+	mov r0, r8
+	movs r2, #0x13
+	movs r3, #0x11
+	bl func_080A5610
+.Ljp_080A674C:
+	ldrb r0, [r5]
+	lsls r0, r0, #0x1c
+	lsrs r0, r0, #0x1e
+	cmp r0, #1
+	bne .Ljp_080A676E
+	ldr r1, .Ljp_080A6838 @ =gFarmHouseVisualDescriptors
+	mov r0, r8
+	movs r2, #8
+	movs r3, #0xc
+	bl func_080A5610
+	ldr r1, .Ljp_080A683C @ =gFarmHouseVisualDescriptors + 0xB0
+	mov r0, r8
+	movs r2, #0x11
+	movs r3, #0xf
+	bl func_080A5610
+.Ljp_080A676E:
+	ldr r2, .Ljp_080A6840 @ =0x0000219D
+	adds r0, r4, r2
+	ldrb r0, [r0]
+	lsls r0, r0, #0x1b
+	lsrs r0, r0, #0x1e
+	cmp r0, #1
+	bne .Ljp_080A6788
+	ldr r1, .Ljp_080A6844 @ =gFarmHouseVisualDescriptors + 0x84
+	mov r0, r8
+	movs r2, #0x17
+	movs r3, #0x17
+	bl func_080A5610
+.Ljp_080A6788:
+	ldr r3, .Ljp_080A6848 @ =0x0000219E
+	adds r0, r4, r3
+	ldrb r0, [r0]
+	lsls r0, r0, #0x1d
+	lsrs r0, r0, #0x1e
+	cmp r0, #1
+	bne .Ljp_080A67A2
+	ldr r1, .Ljp_080A6838 @ =gFarmHouseVisualDescriptors
+	mov r0, r8
+	movs r2, #8
+	movs r3, #0xc
+	bl func_080A5610
+.Ljp_080A67A2:
+	ldr r1, .Ljp_080A684C @ =0x000021A1
+	adds r0, r4, r1
+	ldrb r0, [r0]
+	lsls r0, r0, #0x1b
+	lsrs r0, r0, #0x1e
+	cmp r0, #1
+	bne .Ljp_080A67C8
+	ldr r1, .Ljp_080A6838 @ =gFarmHouseVisualDescriptors
+	mov r0, r8
+	movs r2, #8
+	movs r3, #0xc
+	bl func_080A5610
+	ldr r1, .Ljp_080A683C @ =gFarmHouseVisualDescriptors + 0xB0
+	mov r0, r8
+	movs r2, #0x11
+	movs r3, #0xf
+	bl func_080A5610
+.Ljp_080A67C8:
+	ldr r2, .Ljp_080A6850 @ =0x000021A2
+	adds r0, r4, r2
+	ldrb r0, [r0]
+	lsls r0, r0, #0x1d
+	lsrs r0, r0, #0x1e
+	cmp r0, #1
+	bne .Ljp_080A67E2
+	ldr r1, .Ljp_080A6838 @ =gFarmHouseVisualDescriptors
+	mov r0, r8
+	movs r2, #8
+	movs r3, #0xc
+	bl func_080A5610
+.Ljp_080A67E2:
+	adds r0, r7, #0
+	adds r0, #0x4c
+	ldrb r0, [r0]
+	lsrs r0, r0, #6
+	cmp r0, #1
+	bne .Ljp_080A6806
+	ldr r1, .Ljp_080A6854 @ =gFarmHouseVisualDescriptors + 0xDC
+	mov r0, r8
+	movs r2, #0x1b
+	movs r3, #0x1a
+	bl func_080A5610
+	ldr r1, .Ljp_080A6830 @ =gFarmHouseVisualDescriptors + 0x2C
+	mov r0, r8
+	movs r2, #0x13
+	movs r3, #0x11
+	bl func_080A5610
+.Ljp_080A6806:
+	mov r3, r8
+	ldr r2, [r3, #4]
+	cmp r2, #0x3d
+	bls .Ljp_080A6812
+	bl .Ljp_080A746E
+.Ljp_080A6812:
+	lsls r0, r2, #2
+	ldr r1, .Ljp_080A6858 @ =.Ljp_080A685C
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.Ljp_080A681C: .4byte 0x000021A9
+.Ljp_080A6820: .4byte gFarmHouseVisualDescriptors + 0x58
+.Ljp_080A6824: .4byte 0x000021A0
+.Ljp_080A6828: .4byte gFarmHouseVisualDescriptors + 0x108
+.Ljp_080A682C: .4byte 0x0000219A
+.Ljp_080A6830: .4byte gFarmHouseVisualDescriptors + 0x2C
+.Ljp_080A6834: .4byte 0x0000219B
+.Ljp_080A6838: .4byte gFarmHouseVisualDescriptors
+.Ljp_080A683C: .4byte gFarmHouseVisualDescriptors + 0xB0
+.Ljp_080A6840: .4byte 0x0000219D
+.Ljp_080A6844: .4byte gFarmHouseVisualDescriptors + 0x84
+.Ljp_080A6848: .4byte 0x0000219E
+.Ljp_080A684C: .4byte 0x000021A1
+.Ljp_080A6850: .4byte 0x000021A2
+.Ljp_080A6854: .4byte gFarmHouseVisualDescriptors + 0xDC
+.Ljp_080A6858: .4byte .Ljp_080A685C
+.Ljp_080A685C: @ jump table
+	.4byte .Ljp_080A6C18 @ case 0
+	.4byte .Ljp_080A6D78 @ case 1
+	.4byte .Ljp_080A746E @ case 2
+	.4byte .Ljp_080A746E @ case 3
+	.4byte .Ljp_080A746E @ case 4
+	.4byte .Ljp_080A746E @ case 5
+	.4byte .Ljp_080A6BD4 @ case 6
+	.4byte .Ljp_080A6BF0 @ case 7
+	.4byte .Ljp_080A6954 @ case 8
+	.4byte .Ljp_080A6988 @ case 9
+	.4byte .Ljp_080A746E @ case 10
+	.4byte .Ljp_080A746E @ case 11
+	.4byte .Ljp_080A746E @ case 12
+	.4byte .Ljp_080A746E @ case 13
+	.4byte .Ljp_080A7428 @ case 14
+	.4byte .Ljp_080A7448 @ case 15
+	.4byte .Ljp_080A746E @ case 16
+	.4byte .Ljp_080A746E @ case 17
+	.4byte .Ljp_080A746E @ case 18
+	.4byte .Ljp_080A69A8 @ case 19
+	.4byte .Ljp_080A746E @ case 20
+	.4byte .Ljp_080A746E @ case 21
+	.4byte .Ljp_080A69B4 @ case 22
+	.4byte .Ljp_080A69C0 @ case 23
+	.4byte .Ljp_080A69F4 @ case 24
+	.4byte .Ljp_080A6B20 @ case 25
+	.4byte .Ljp_080A746E @ case 26
+	.4byte .Ljp_080A746E @ case 27
+	.4byte .Ljp_080A746E @ case 28
+	.4byte .Ljp_080A746E @ case 29
+	.4byte .Ljp_080A69D4 @ case 30
+	.4byte .Ljp_080A6B0C @ case 31
+	.4byte .Ljp_080A746E @ case 32
+	.4byte .Ljp_080A746E @ case 33
+	.4byte .Ljp_080A746E @ case 34
+	.4byte .Ljp_080A746E @ case 35
+	.4byte .Ljp_080A7260 @ case 36
+	.4byte .Ljp_080A72B2 @ case 37
+	.4byte .Ljp_080A733C @ case 38
+	.4byte .Ljp_080A7396 @ case 39
+	.4byte .Ljp_080A746E @ case 40
+	.4byte .Ljp_080A6EE4 @ case 41
+	.4byte .Ljp_080A6FA0 @ case 42
+	.4byte .Ljp_080A70DC @ case 43
+	.4byte .Ljp_080A746E @ case 44
+	.4byte .Ljp_080A746E @ case 45
+	.4byte .Ljp_080A746E @ case 46
+	.4byte .Ljp_080A746E @ case 47
+	.4byte .Ljp_080A69E8 @ case 48
+	.4byte .Ljp_080A746E @ case 49
+	.4byte .Ljp_080A746E @ case 50
+	.4byte .Ljp_080A746E @ case 51
+	.4byte .Ljp_080A746E @ case 52
+	.4byte .Ljp_080A746E @ case 53
+	.4byte .Ljp_080A746E @ case 54
+	.4byte .Ljp_080A746E @ case 55
+	.4byte .Ljp_080A6A68 @ case 56
+	.4byte .Ljp_080A6A68 @ case 57
+	.4byte .Ljp_080A6A68 @ case 58
+	.4byte .Ljp_080A6A68 @ case 59
+	.4byte .Ljp_080A746E @ case 60
+	.4byte .Ljp_080A6A68 @ case 61
+.Ljp_080A6954:
+	cmp r6, #1
+	bne .Ljp_080A6964
+	ldr r1, .Ljp_080A6980 @ =gFieldRenderRectDescriptors + 0x3F0
+	mov r0, r8
+	movs r2, #0xa
+	movs r3, #0x19
+	bl func_080A5610
+.Ljp_080A6964:
+	mov r1, sb
+	ldr r0, [r1]
+	bl func_08010E58
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	bne .Ljp_080A6976
+	bl .Ljp_080A746E
+.Ljp_080A6976:
+	ldr r1, .Ljp_080A6984 @ =gFieldRenderRectDescriptors + 0x3C0
+	mov r0, r8
+	movs r2, #0x17
+	b .Ljp_080A6ED6
+	.align 2, 0
+.Ljp_080A6980: .4byte gFieldRenderRectDescriptors + 0x3F0
+.Ljp_080A6984: .4byte gFieldRenderRectDescriptors + 0x3C0
+.Ljp_080A6988:
+	mov r2, sb
+	ldr r0, [r2]
+	bl func_08010E58
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	bne .Ljp_080A699A
+	bl .Ljp_080A746E
+.Ljp_080A699A:
+	ldr r1, .Ljp_080A69A4 @ =gFieldRenderRectDescriptors + 0x3D8
+	mov r0, r8
+	movs r2, #0x17
+	b .Ljp_080A6ED6
+	.align 2, 0
+.Ljp_080A69A4: .4byte gFieldRenderRectDescriptors + 0x3D8
+.Ljp_080A69A8:
+	mov r0, r8
+	movs r1, #0
+	bl func_080AA850
+	bl .Ljp_080A746E
+.Ljp_080A69B4:
+	mov r0, r8
+	movs r1, #1
+	bl func_080AA850
+	bl .Ljp_080A746E
+.Ljp_080A69C0:
+	mov r0, r8
+	movs r1, #2
+	bl func_080AA850
+	mov r0, r8
+	movs r1, #3
+	bl func_080AA850
+	bl .Ljp_080A746E
+.Ljp_080A69D4:
+	mov r0, r8
+	movs r1, #6
+	bl func_080AA850
+	mov r0, r8
+	movs r1, #7
+	bl func_080AA850
+	bl .Ljp_080A746E
+.Ljp_080A69E8:
+	mov r0, r8
+	movs r1, #8
+	bl func_080AA850
+	bl .Ljp_080A746E
+.Ljp_080A69F4:
+	mov r3, sb
+	ldr r1, [r3]
+	ldr r2, .Ljp_080A6A60 @ =0x00002186
+	adds r0, r1, r2
+	ldrb r0, [r0]
+	lsls r0, r0, #0x19
+	lsrs r0, r0, #0x1e
+	cmp r0, #2
+	bne .Ljp_080A6A4A
+	ldrb r2, [r1, #0x10]
+	lsls r2, r2, #0x1d
+	lsrs r2, r2, #0x1d
+	ldrb r3, [r1, #0x11]
+	lsls r0, r3, #0x1e
+	lsrs r0, r0, #0x1e
+	lsls r3, r3, #0x19
+	lsrs r3, r3, #0x1b
+	adds r2, #6
+	lsls r1, r0, #4
+	subs r1, r1, r0
+	lsls r1, r1, #1
+	lsls r0, r2, #4
+	subs r0, r0, r2
+	lsls r0, r0, #3
+	adds r1, r1, r0
+	adds r1, r3, r1
+	cmp r1, #6
+	bls .Ljp_080A6A36
+	adds r0, r1, #0
+	movs r1, #7
+	bl __umodsi3
+	adds r1, r0, #0
+.Ljp_080A6A36:
+	movs r0, #7
+	ands r1, r0
+	cmp r1, #3
+	bne .Ljp_080A6A4A
+	ldr r1, .Ljp_080A6A64 @ =gFieldRenderRectDescriptors + 0x4E0
+	mov r0, r8
+	movs r2, #0x28
+	movs r3, #0x1d
+	bl func_080A5610
+.Ljp_080A6A4A:
+	mov r0, r8
+	movs r1, #4
+	bl func_080AA850
+	mov r0, r8
+	movs r1, #5
+	bl func_080AA850
+	bl .Ljp_080A746E
+	.align 2, 0
+.Ljp_080A6A60: .4byte 0x00002186
+.Ljp_080A6A64: .4byte gFieldRenderRectDescriptors + 0x4E0
+.Ljp_080A6A68:
+	adds r0, r2, #0
+	subs r0, #0x38
+	cmp r0, #5
+	bhi .Ljp_080A6AAA
+	lsls r0, r0, #2
+	ldr r1, .Ljp_080A6A7C @ =.Ljp_080A6A80
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.Ljp_080A6A7C: .4byte .Ljp_080A6A80
+.Ljp_080A6A80: @ jump table
+	.4byte .Ljp_080A6AAA @ case 0
+	.4byte .Ljp_080A6AA4 @ case 1
+	.4byte .Ljp_080A6A9E @ case 2
+	.4byte .Ljp_080A6A98 @ case 3
+	.4byte .Ljp_080A6AAA @ case 4
+	.4byte .Ljp_080A6AAA @ case 5
+.Ljp_080A6A98:
+	movs r0, #7
+	mov sl, r0
+	b .Ljp_080A6AAE
+.Ljp_080A6A9E:
+	movs r1, #7
+	mov sl, r1
+	b .Ljp_080A6AAE
+.Ljp_080A6AA4:
+	movs r2, #7
+	mov sl, r2
+	b .Ljp_080A6AAE
+.Ljp_080A6AAA:
+	movs r3, #7
+	mov sl, r3
+.Ljp_080A6AAE:
+	mov r1, sb
+	ldr r0, [r1]
+	ldr r2, .Ljp_080A6ABC @ =0x00002E58
+	adds r6, r0, r2
+	movs r7, #0
+	b .Ljp_080A6AFE
+	.align 2, 0
+.Ljp_080A6ABC: .4byte 0x00002E58
+.Ljp_080A6AC0:
+	movs r5, #0
+	adds r3, r7, #1
+	mov sb, r3
+	b .Ljp_080A6AF2
+.Ljp_080A6AC8:
+	adds r0, r6, #0
+	adds r1, r5, #0
+	adds r2, r7, #0
+	bl func_0809D8D4
+	adds r4, r0, #0
+	adds r0, r6, #0
+	adds r1, r5, #0
+	adds r2, r7, #0
+	bl func_0809E0AC
+	lsls r1, r5, #1
+	adds r1, #2
+	lsls r2, r7, #1
+	add r2, sl
+	str r0, [sp]
+	mov r0, r8
+	adds r3, r4, #0
+	bl func_080A9F78
+	adds r5, #1
+.Ljp_080A6AF2:
+	adds r0, r6, #0
+	bl func_0809D8A4
+	cmp r5, r0
+	blo .Ljp_080A6AC8
+	mov r7, sb
+.Ljp_080A6AFE:
+	adds r0, r6, #0
+	bl func_0809D8B8
+	cmp r7, r0
+	blo .Ljp_080A6AC0
+	bl .Ljp_080A746E
+.Ljp_080A6B0C:
+	mov r0, r8
+	movs r1, #0xa
+	bl func_080AA850
+	mov r0, r8
+	movs r1, #0xb
+	bl func_080AA850
+	bl .Ljp_080A746E
+.Ljp_080A6B20:
+	mov r0, r8
+	movs r1, #9
+	bl func_080AA850
+	mov r1, sb
+	ldr r0, [r1]
+	ldr r2, .Ljp_080A6B40 @ =0x00001C38
+	adds r0, r0, r2
+	bl GetUpgradeLevel__C8Rucksack
+	cmp r0, #0
+	beq .Ljp_080A6B44
+	cmp r0, #1
+	beq .Ljp_080A6B58
+	b .Ljp_080A6B74
+	.align 2, 0
+.Ljp_080A6B40: .4byte 0x00001C38
+.Ljp_080A6B44:
+	ldr r1, .Ljp_080A6B54 @ =gFieldRenderRectDescriptors + 0x450
+	mov r0, r8
+	movs r2, #0x21
+	movs r3, #0x14
+	bl func_080A5610
+	b .Ljp_080A6B74
+	.align 2, 0
+.Ljp_080A6B54: .4byte gFieldRenderRectDescriptors + 0x450
+.Ljp_080A6B58:
+	mov r3, sb
+	ldr r0, [r3]
+	ldr r1, .Ljp_080A6B9C @ =0x00001BD8
+	adds r0, r0, r1
+	bl func_0800E9A0
+	cmp r0, #7
+	bne .Ljp_080A6B74
+	ldr r1, .Ljp_080A6BA0 @ =gFieldRenderRectDescriptors + 0x450
+	mov r0, r8
+	movs r2, #0x21
+	movs r3, #0x14
+	bl func_080A5610
+.Ljp_080A6B74:
+	mov r0, r8
+	bl func_080AA8F0
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A6B8C
+	ldr r1, .Ljp_080A6BA4 @ =gFieldRenderRectDescriptors + 0x468
+	mov r0, r8
+	movs r2, #0x21
+	movs r3, #0x17
+	bl func_080A5610
+.Ljp_080A6B8C:
+	cmp r6, #1
+	beq .Ljp_080A6BB8
+	cmp r6, #1
+	bgt .Ljp_080A6BA8
+	cmp r6, #0
+	beq .Ljp_080A6BB0
+	bl .Ljp_080A746E
+	.align 2, 0
+.Ljp_080A6B9C: .4byte 0x00001BD8
+.Ljp_080A6BA0: .4byte gFieldRenderRectDescriptors + 0x450
+.Ljp_080A6BA4: .4byte gFieldRenderRectDescriptors + 0x468
+.Ljp_080A6BA8:
+	cmp r6, #2
+	beq .Ljp_080A6BC0
+	bl .Ljp_080A746E
+.Ljp_080A6BB0:
+	ldr r1, .Ljp_080A6BB4 @ =gFieldRenderRectDescriptors + 0x498
+	b .Ljp_080A6BC2
+	.align 2, 0
+.Ljp_080A6BB4: .4byte gFieldRenderRectDescriptors + 0x498
+.Ljp_080A6BB8:
+	ldr r1, .Ljp_080A6BBC @ =gFieldRenderRectDescriptors + 0x4B0
+	b .Ljp_080A6BC2
+	.align 2, 0
+.Ljp_080A6BBC: .4byte gFieldRenderRectDescriptors + 0x4B0
+.Ljp_080A6BC0:
+	ldr r1, .Ljp_080A6BD0 @ =gFieldRenderRectDescriptors + 0x4C8
+.Ljp_080A6BC2:
+	mov r0, r8
+	movs r2, #0xc
+	movs r3, #0x14
+	bl func_080A5610
+	bl .Ljp_080A746E
+	.align 2, 0
+.Ljp_080A6BD0: .4byte gFieldRenderRectDescriptors + 0x4C8
+.Ljp_080A6BD4:
+	mov r2, sb
+	ldr r0, [r2]
+	bl func_08010E50
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	bne .Ljp_080A6BE6
+	bl .Ljp_080A746E
+.Ljp_080A6BE6:
+	ldr r1, .Ljp_080A6BEC @ =gFieldRenderRectDescriptors + 0x390
+	b .Ljp_080A6C04
+	.align 2, 0
+.Ljp_080A6BEC: .4byte gFieldRenderRectDescriptors + 0x390
+.Ljp_080A6BF0:
+	mov r3, sb
+	ldr r0, [r3]
+	bl func_08010E50
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	bne .Ljp_080A6C02
+	bl .Ljp_080A746E
+.Ljp_080A6C02:
+	ldr r1, .Ljp_080A6C14 @ =gFieldRenderRectDescriptors + 0x3A8
+.Ljp_080A6C04:
+	mov r0, r8
+	movs r2, #0x3c
+	movs r3, #0
+	bl func_080A5610
+	bl .Ljp_080A746E
+	.align 2, 0
+.Ljp_080A6C14: .4byte gFieldRenderRectDescriptors + 0x3A8
+.Ljp_080A6C18:
+	movs r0, #0
+.Ljp_080A6C1A:
+	movs r4, #0
+	adds r6, r0, #1
+	subs r1, r0, #1
+	str r1, [sp, #0x1c]
+	lsls r2, r0, #1
+	str r2, [sp, #0x20]
+	movs r1, #0x2b
+	adds r3, r0, #0
+	muls r3, r1, r3
+	str r3, [sp, #4]
+	str r6, [sp, #8]
+	adds r2, r6, #0
+	muls r2, r1, r2
+	str r2, [sp, #0xc]
+	movs r3, #0x22
+	mov sl, r3
+.Ljp_080A6C3A:
+	mov r0, sb
+	ldr r1, [r0]
+	ldr r2, .Ljp_080A6C74 @ =0x000009DC
+	adds r1, r1, r2
+	ldr r3, [sp, #4]
+	adds r0, r4, r3
+	lsls r0, r0, #2
+	adds r5, r1, r0
+	adds r2, r1, #0
+	adds r7, r5, #0
+	movs r0, #0
+	cmp r4, #0
+	blt .Ljp_080A6C64
+	cmp r6, #0
+	blt .Ljp_080A6C64
+	cmp r4, #0x2a
+	bgt .Ljp_080A6C64
+	ldr r1, [sp, #8]
+	cmp r1, #0x18
+	bgt .Ljp_080A6C64
+	movs r0, #1
+.Ljp_080A6C64:
+	cmp r0, #0
+	beq .Ljp_080A6C78
+	ldr r3, [sp, #0xc]
+	adds r0, r4, r3
+	lsls r0, r0, #2
+	adds r1, r2, r0
+	b .Ljp_080A6C7A
+	.align 2, 0
+.Ljp_080A6C74: .4byte 0x000009DC
+.Ljp_080A6C78:
+	movs r1, #0
+.Ljp_080A6C7A:
+	ldr r0, [sp, #0x1c]
+	movs r3, #0
+	cmp r4, #0
+	blt .Ljp_080A6C90
+	cmp r0, #0
+	blt .Ljp_080A6C90
+	cmp r4, #0x2a
+	bgt .Ljp_080A6C90
+	cmp r0, #0x18
+	bgt .Ljp_080A6C90
+	movs r3, #1
+.Ljp_080A6C90:
+	cmp r3, #0
+	beq .Ljp_080A6CA0
+	movs r3, #0x2b
+	muls r0, r3, r0
+	adds r0, r4, r0
+	lsls r0, r0, #2
+	adds r2, r2, r0
+	b .Ljp_080A6CA2
+.Ljp_080A6CA0:
+	movs r2, #0
+.Ljp_080A6CA2:
+	adds r0, r7, #0
+	bl method_0800AF5C__C9FieldPlotPC9FieldPlotT1
+	str r0, [sp]
+	mov r0, r8
+	mov r1, sl
+	ldr r2, [sp, #0x20]
+	adds r2, #0x16
+	adds r3, r5, #0
+	bl func_080AA108
+	movs r0, #2
+	add sl, r0
+	adds r4, #1
+	cmp r4, #0x2a
+	bls .Ljp_080A6C3A
+	adds r0, r6, #0
+	cmp r0, #0x18
+	bls .Ljp_080A6C1A
+	mov r1, sb
+	ldr r0, [r1]
+	movs r2, #0xfa
+	lsls r2, r2, #1
+	adds r0, r0, r2
+	bl GetUpgradeLevel__C9FarmHouse
+	cmp r0, #1
+	beq .Ljp_080A6CF0
+	cmp r0, #1
+	blo .Ljp_080A6CE4
+	cmp r0, #2
+	beq .Ljp_080A6D04
+	b .Ljp_080A6D10
+.Ljp_080A6CE4:
+	ldr r1, .Ljp_080A6CEC @ =gFieldRenderRectDescriptors
+	mov r0, r8
+	movs r2, #0x1a
+	b .Ljp_080A6CF6
+	.align 2, 0
+.Ljp_080A6CEC: .4byte gFieldRenderRectDescriptors
+.Ljp_080A6CF0:
+	ldr r1, .Ljp_080A6D00 @ =gFieldRenderRectDescriptors + 0x30
+	mov r0, r8
+	movs r2, #0x12
+.Ljp_080A6CF6:
+	movs r3, #3
+	bl func_080A5610
+	b .Ljp_080A6D10
+	.align 2, 0
+.Ljp_080A6D00: .4byte gFieldRenderRectDescriptors + 0x30
+.Ljp_080A6D04:
+	ldr r1, .Ljp_080A6D28 @ =gFieldRenderRectDescriptors + 0x60
+	mov r0, r8
+	movs r2, #0xa
+	movs r3, #2
+	bl func_080A5610
+.Ljp_080A6D10:
+	mov r3, sb
+	ldr r0, [r3]
+	movs r1, #0xbe
+	lsls r1, r1, #3
+	adds r0, r0, r1
+	bl GetUpgradeLevel__C4Barn
+	cmp r0, #0
+	beq .Ljp_080A6D2C
+	cmp r0, #1
+	beq .Ljp_080A6D40
+	b .Ljp_080A6D4C
+	.align 2, 0
+.Ljp_080A6D28: .4byte gFieldRenderRectDescriptors + 0x60
+.Ljp_080A6D2C:
+	ldr r1, .Ljp_080A6D3C @ =gFieldRenderRectDescriptors + 0x90
+	mov r0, r8
+	movs r2, #0x3a
+	movs r3, #2
+	bl func_080A5610
+	b .Ljp_080A6D4C
+	.align 2, 0
+.Ljp_080A6D3C: .4byte gFieldRenderRectDescriptors + 0x90
+.Ljp_080A6D40:
+	ldr r1, .Ljp_080A6D64 @ =gFieldRenderRectDescriptors + 0xC0
+	mov r0, r8
+	movs r2, #0x3a
+	movs r3, #2
+	bl func_080A5610
+.Ljp_080A6D4C:
+	mov r2, sb
+	ldr r0, [r2]
+	movs r3, #0x82
+	lsls r3, r3, #3
+	adds r0, r0, r3
+	bl GetUpgradeLevel__C4Coop
+	cmp r0, #0
+	beq .Ljp_080A6D68
+	cmp r0, #1
+	beq .Ljp_080A6D70
+	b .Ljp_080A746E
+	.align 2, 0
+.Ljp_080A6D64: .4byte gFieldRenderRectDescriptors + 0xC0
+.Ljp_080A6D68:
+	ldr r1, .Ljp_080A6D6C @ =gFieldRenderRectDescriptors + 0xF0
+	b .Ljp_080A6ED2
+	.align 2, 0
+.Ljp_080A6D6C: .4byte gFieldRenderRectDescriptors + 0xF0
+.Ljp_080A6D70:
+	ldr r1, .Ljp_080A6D74 @ =gFieldRenderRectDescriptors + 0x120
+	b .Ljp_080A6ED2
+	.align 2, 0
+.Ljp_080A6D74: .4byte gFieldRenderRectDescriptors + 0x120
+.Ljp_080A6D78:
+	movs r0, #0
+.Ljp_080A6D7A:
+	movs r4, #0
+	adds r6, r0, #1
+	subs r1, r0, #1
+	str r1, [sp, #0x24]
+	lsls r2, r0, #1
+	str r2, [sp, #0x28]
+	movs r1, #0x2b
+	adds r3, r0, #0
+	muls r3, r1, r3
+	str r3, [sp, #0x10]
+	str r6, [sp, #0x14]
+	adds r2, r6, #0
+	muls r2, r1, r2
+	str r2, [sp, #0x18]
+	movs r3, #0x22
+	mov sl, r3
+.Ljp_080A6D9A:
+	mov r0, sb
+	ldr r1, [r0]
+	ldr r2, .Ljp_080A6DD4 @ =0x000009DC
+	adds r1, r1, r2
+	ldr r3, [sp, #0x10]
+	adds r0, r4, r3
+	lsls r0, r0, #2
+	adds r5, r1, r0
+	adds r2, r1, #0
+	adds r7, r5, #0
+	movs r0, #0
+	cmp r4, #0
+	blt .Ljp_080A6DC4
+	cmp r6, #0
+	blt .Ljp_080A6DC4
+	cmp r4, #0x2a
+	bgt .Ljp_080A6DC4
+	ldr r1, [sp, #0x14]
+	cmp r1, #0x18
+	bgt .Ljp_080A6DC4
+	movs r0, #1
+.Ljp_080A6DC4:
+	cmp r0, #0
+	beq .Ljp_080A6DD8
+	ldr r3, [sp, #0x18]
+	adds r0, r4, r3
+	lsls r0, r0, #2
+	adds r1, r2, r0
+	b .Ljp_080A6DDA
+	.align 2, 0
+.Ljp_080A6DD4: .4byte 0x000009DC
+.Ljp_080A6DD8:
+	movs r1, #0
+.Ljp_080A6DDA:
+	ldr r0, [sp, #0x24]
+	movs r3, #0
+	cmp r4, #0
+	blt .Ljp_080A6DF0
+	cmp r0, #0
+	blt .Ljp_080A6DF0
+	cmp r4, #0x2a
+	bgt .Ljp_080A6DF0
+	cmp r0, #0x18
+	bgt .Ljp_080A6DF0
+	movs r3, #1
+.Ljp_080A6DF0:
+	cmp r3, #0
+	beq .Ljp_080A6E00
+	movs r3, #0x2b
+	muls r0, r3, r0
+	adds r0, r4, r0
+	lsls r0, r0, #2
+	adds r2, r2, r0
+	b .Ljp_080A6E02
+.Ljp_080A6E00:
+	movs r2, #0
+.Ljp_080A6E02:
+	adds r0, r7, #0
+	bl method_0800AF5C__C9FieldPlotPC9FieldPlotT1
+	str r0, [sp]
+	mov r0, r8
+	mov r1, sl
+	ldr r2, [sp, #0x28]
+	adds r2, #0x16
+	adds r3, r5, #0
+	bl func_080AA108
+	movs r0, #2
+	add sl, r0
+	adds r4, #1
+	cmp r4, #0x2a
+	bls .Ljp_080A6D9A
+	adds r0, r6, #0
+	cmp r0, #0x18
+	bls .Ljp_080A6D7A
+	mov r1, sb
+	ldr r0, [r1]
+	movs r2, #0xfa
+	lsls r2, r2, #1
+	adds r0, r0, r2
+	bl GetUpgradeLevel__C9FarmHouse
+	cmp r0, #1
+	beq .Ljp_080A6E50
+	cmp r0, #1
+	blo .Ljp_080A6E44
+	cmp r0, #2
+	beq .Ljp_080A6E64
+	b .Ljp_080A6E70
+.Ljp_080A6E44:
+	ldr r1, .Ljp_080A6E4C @ =gFieldRenderRectDescriptors + 0x18
+	mov r0, r8
+	movs r2, #0x1a
+	b .Ljp_080A6E56
+	.align 2, 0
+.Ljp_080A6E4C: .4byte gFieldRenderRectDescriptors + 0x18
+.Ljp_080A6E50:
+	ldr r1, .Ljp_080A6E60 @ =gFieldRenderRectDescriptors + 0x48
+	mov r0, r8
+	movs r2, #0x12
+.Ljp_080A6E56:
+	movs r3, #3
+	bl func_080A5610
+	b .Ljp_080A6E70
+	.align 2, 0
+.Ljp_080A6E60: .4byte gFieldRenderRectDescriptors + 0x48
+.Ljp_080A6E64:
+	ldr r1, .Ljp_080A6E88 @ =gFieldRenderRectDescriptors + 0x78
+	mov r0, r8
+	movs r2, #0xa
+	movs r3, #2
+	bl func_080A5610
+.Ljp_080A6E70:
+	mov r3, sb
+	ldr r0, [r3]
+	movs r1, #0xbe
+	lsls r1, r1, #3
+	adds r0, r0, r1
+	bl GetUpgradeLevel__C4Barn
+	cmp r0, #0
+	beq .Ljp_080A6E8C
+	cmp r0, #1
+	beq .Ljp_080A6EA0
+	b .Ljp_080A6EAC
+	.align 2, 0
+.Ljp_080A6E88: .4byte gFieldRenderRectDescriptors + 0x78
+.Ljp_080A6E8C:
+	ldr r1, .Ljp_080A6E9C @ =gFieldRenderRectDescriptors + 0xA8
+	mov r0, r8
+	movs r2, #0x3a
+	movs r3, #2
+	bl func_080A5610
+	b .Ljp_080A6EAC
+	.align 2, 0
+.Ljp_080A6E9C: .4byte gFieldRenderRectDescriptors + 0xA8
+.Ljp_080A6EA0:
+	ldr r1, .Ljp_080A6EC4 @ =gFieldRenderRectDescriptors + 0xD8
+	mov r0, r8
+	movs r2, #0x3a
+	movs r3, #2
+	bl func_080A5610
+.Ljp_080A6EAC:
+	mov r2, sb
+	ldr r0, [r2]
+	movs r3, #0x82
+	lsls r3, r3, #3
+	adds r0, r0, r3
+	bl GetUpgradeLevel__C4Coop
+	cmp r0, #0
+	beq .Ljp_080A6EC8
+	cmp r0, #1
+	beq .Ljp_080A6ED0
+	b .Ljp_080A746E
+	.align 2, 0
+.Ljp_080A6EC4: .4byte gFieldRenderRectDescriptors + 0xD8
+.Ljp_080A6EC8:
+	ldr r1, .Ljp_080A6ECC @ =gFieldRenderRectDescriptors + 0x108
+	b .Ljp_080A6ED2
+	.align 2, 0
+.Ljp_080A6ECC: .4byte gFieldRenderRectDescriptors + 0x108
+.Ljp_080A6ED0:
+	ldr r1, .Ljp_080A6EE0 @ =gFieldRenderRectDescriptors + 0x138
+.Ljp_080A6ED2:
+	mov r0, r8
+	movs r2, #0xe
+.Ljp_080A6ED6:
+	movs r3, #0x34
+	bl func_080A5610
+	b .Ljp_080A746E
+	.align 2, 0
+.Ljp_080A6EE0: .4byte gFieldRenderRectDescriptors + 0x138
+.Ljp_080A6EE4:
+	ldr r1, .Ljp_080A6F10 @ =gFieldRenderRectDescriptors + 0x168
+	mov r0, r8
+	movs r2, #0x19
+	movs r3, #0xf
+	bl func_080A5610
+	mov r1, sb
+	ldr r0, [r1]
+	movs r2, #0xfa
+	lsls r2, r2, #1
+	adds r0, r0, r2
+	bl GetRecordPlayer__C9FarmHouse
+	cmp r0, #0
+	beq .Ljp_080A6F2C
+	bl HasAlbum__C12RecordPlayer
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A6F18
+	ldr r1, .Ljp_080A6F14 @ =gFieldRenderRectDescriptors + 0x1F8
+	b .Ljp_080A6F1A
+	.align 2, 0
+.Ljp_080A6F10: .4byte gFieldRenderRectDescriptors + 0x168
+.Ljp_080A6F14: .4byte gFieldRenderRectDescriptors + 0x1F8
+.Ljp_080A6F18:
+	ldr r1, .Ljp_080A6F28 @ =gFieldRenderRectDescriptors + 0x210
+.Ljp_080A6F1A:
+	mov r0, r8
+	movs r2, #1
+	movs r3, #0x11
+	bl func_080A5610
+	b .Ljp_080A6F38
+	.align 2, 0
+.Ljp_080A6F28: .4byte gFieldRenderRectDescriptors + 0x210
+.Ljp_080A6F2C:
+	ldr r1, .Ljp_080A6F90 @ =gFieldRenderRectDescriptors + 0x1E0
+	mov r0, r8
+	movs r2, #1
+	movs r3, #0x11
+	bl func_080A5610
+.Ljp_080A6F38:
+	mov r3, sb
+	ldr r0, [r3]
+	movs r4, #0xfa
+	lsls r4, r4, #1
+	adds r0, r0, r4
+	bl HasVase__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A6F58
+	ldr r1, .Ljp_080A6F94 @ =gFieldRenderRectDescriptors + 0x288
+	mov r0, r8
+	movs r2, #0x13
+	movs r3, #6
+	bl func_080A5610
+.Ljp_080A6F58:
+	mov r1, sb
+	ldr r0, [r1]
+	adds r0, r0, r4
+	bl HasMirror__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A6F74
+	ldr r1, .Ljp_080A6F98 @ =gFieldRenderRectDescriptors + 0x2A0
+	mov r0, r8
+	movs r2, #8
+	movs r3, #2
+	bl func_080A5610
+.Ljp_080A6F74:
+	mov r2, sb
+	ldr r0, [r2]
+	adds r0, r0, r4
+	bl HasClock__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	bne .Ljp_080A6F86
+	b .Ljp_080A746E
+.Ljp_080A6F86:
+	ldr r1, .Ljp_080A6F9C @ =gFieldRenderRectDescriptors + 0x2B8
+	mov r0, r8
+	movs r2, #5
+	b .Ljp_080A70C0
+	.align 2, 0
+.Ljp_080A6F90: .4byte gFieldRenderRectDescriptors + 0x1E0
+.Ljp_080A6F94: .4byte gFieldRenderRectDescriptors + 0x288
+.Ljp_080A6F98: .4byte gFieldRenderRectDescriptors + 0x2A0
+.Ljp_080A6F9C: .4byte gFieldRenderRectDescriptors + 0x2B8
+.Ljp_080A6FA0:
+	ldr r1, .Ljp_080A701C @ =gFieldRenderRectDescriptors + 0x168
+	mov r0, r8
+	movs r2, #0x28
+	movs r3, #0xf
+	bl func_080A5610
+	mov r3, sb
+	ldr r0, [r3]
+	movs r4, #0xfa
+	lsls r4, r4, #1
+	adds r0, r0, r4
+	bl HasKitchen__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A6FCC
+	ldr r1, .Ljp_080A7020 @ =gFieldRenderRectDescriptors + 0x228
+	mov r0, r8
+	movs r2, #2
+	movs r3, #1
+	bl func_080A5610
+.Ljp_080A6FCC:
+	mov r1, sb
+	ldr r0, [r1]
+	adds r0, r0, r4
+	bl GetFridge__C9FarmHouse
+	cmp r0, #0
+	beq .Ljp_080A6FE6
+	ldr r1, .Ljp_080A7024 @ =gFieldRenderRectDescriptors + 0x198
+	mov r0, r8
+	movs r2, #0xb
+	movs r3, #3
+	bl func_080A5610
+.Ljp_080A6FE6:
+	mov r2, sb
+	ldr r0, [r2]
+	adds r0, r0, r4
+	bl GetShelf__C9FarmHouse
+	cmp r0, #0
+	beq .Ljp_080A7000
+	ldr r1, .Ljp_080A7028 @ =gFieldRenderRectDescriptors + 0x1C8
+	mov r0, r8
+	movs r2, #0xf
+	movs r3, #2
+	bl func_080A5610
+.Ljp_080A7000:
+	mov r3, sb
+	ldr r0, [r3]
+	adds r0, r0, r4
+	bl GetRecordPlayer__C9FarmHouse
+	cmp r0, #0
+	beq .Ljp_080A7044
+	bl HasAlbum__C12RecordPlayer
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A7030
+	ldr r1, .Ljp_080A702C @ =gFieldRenderRectDescriptors + 0x1F8
+	b .Ljp_080A7032
+	.align 2, 0
+.Ljp_080A701C: .4byte gFieldRenderRectDescriptors + 0x168
+.Ljp_080A7020: .4byte gFieldRenderRectDescriptors + 0x228
+.Ljp_080A7024: .4byte gFieldRenderRectDescriptors + 0x198
+.Ljp_080A7028: .4byte gFieldRenderRectDescriptors + 0x1C8
+.Ljp_080A702C: .4byte gFieldRenderRectDescriptors + 0x1F8
+.Ljp_080A7030:
+	ldr r1, .Ljp_080A7040 @ =gFieldRenderRectDescriptors + 0x210
+.Ljp_080A7032:
+	mov r0, r8
+	movs r2, #0x10
+	movs r3, #0x11
+	bl func_080A5610
+	b .Ljp_080A7050
+	.align 2, 0
+.Ljp_080A7040: .4byte gFieldRenderRectDescriptors + 0x210
+.Ljp_080A7044:
+	ldr r1, .Ljp_080A70C8 @ =gFieldRenderRectDescriptors + 0x1E0
+	mov r0, r8
+	movs r2, #0x10
+	movs r3, #0x11
+	bl func_080A5610
+.Ljp_080A7050:
+	mov r1, sb
+	ldr r0, [r1]
+	movs r4, #0xfa
+	lsls r4, r4, #1
+	adds r0, r0, r4
+	bl HasCarpet__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A7070
+	ldr r1, .Ljp_080A70CC @ =gFieldRenderRectDescriptors + 0x270
+	mov r0, r8
+	movs r2, #0x17
+	movs r3, #0xa
+	bl func_080A5610
+.Ljp_080A7070:
+	mov r2, sb
+	ldr r0, [r2]
+	adds r0, r0, r4
+	bl HasVase__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A708C
+	ldr r1, .Ljp_080A70D0 @ =gFieldRenderRectDescriptors + 0x288
+	mov r0, r8
+	movs r2, #0x22
+	movs r3, #6
+	bl func_080A5610
+.Ljp_080A708C:
+	mov r3, sb
+	ldr r0, [r3]
+	adds r0, r0, r4
+	bl HasMirror__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A70A8
+	ldr r1, .Ljp_080A70D4 @ =gFieldRenderRectDescriptors + 0x2A0
+	mov r0, r8
+	movs r2, #0x17
+	movs r3, #2
+	bl func_080A5610
+.Ljp_080A70A8:
+	mov r1, sb
+	ldr r0, [r1]
+	adds r0, r0, r4
+	bl HasClock__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	bne .Ljp_080A70BA
+	b .Ljp_080A746E
+.Ljp_080A70BA:
+	ldr r1, .Ljp_080A70D8 @ =gFieldRenderRectDescriptors + 0x2B8
+	mov r0, r8
+	movs r2, #0x14
+.Ljp_080A70C0:
+	movs r3, #3
+	bl func_080A5610
+	b .Ljp_080A746E
+	.align 2, 0
+.Ljp_080A70C8: .4byte gFieldRenderRectDescriptors + 0x1E0
+.Ljp_080A70CC: .4byte gFieldRenderRectDescriptors + 0x270
+.Ljp_080A70D0: .4byte gFieldRenderRectDescriptors + 0x288
+.Ljp_080A70D4: .4byte gFieldRenderRectDescriptors + 0x2A0
+.Ljp_080A70D8: .4byte gFieldRenderRectDescriptors + 0x2B8
+.Ljp_080A70DC:
+	ldr r1, .Ljp_080A7158 @ =gFieldRenderRectDescriptors + 0x168
+	mov r0, r8
+	movs r2, #0x36
+	movs r3, #0xf
+	bl func_080A5610
+	mov r2, sb
+	ldr r0, [r2]
+	movs r4, #0xfa
+	lsls r4, r4, #1
+	adds r0, r0, r4
+	bl HasKitchen__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A7108
+	ldr r1, .Ljp_080A715C @ =gFieldRenderRectDescriptors + 0x228
+	mov r0, r8
+	movs r2, #0xa
+	movs r3, #1
+	bl func_080A5610
+.Ljp_080A7108:
+	mov r3, sb
+	ldr r0, [r3]
+	adds r0, r0, r4
+	bl GetFridge__C9FarmHouse
+	cmp r0, #0
+	beq .Ljp_080A7122
+	ldr r1, .Ljp_080A7160 @ =gFieldRenderRectDescriptors + 0x198
+	mov r0, r8
+	movs r2, #0x13
+	movs r3, #3
+	bl func_080A5610
+.Ljp_080A7122:
+	mov r1, sb
+	ldr r0, [r1]
+	adds r0, r0, r4
+	bl GetShelf__C9FarmHouse
+	cmp r0, #0
+	beq .Ljp_080A713C
+	ldr r1, .Ljp_080A7164 @ =gFieldRenderRectDescriptors + 0x1C8
+	mov r0, r8
+	movs r2, #0x17
+	movs r3, #2
+	bl func_080A5610
+.Ljp_080A713C:
+	mov r2, sb
+	ldr r0, [r2]
+	adds r0, r0, r4
+	bl GetRecordPlayer__C9FarmHouse
+	cmp r0, #0
+	beq .Ljp_080A7180
+	bl HasAlbum__C12RecordPlayer
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A716C
+	ldr r1, .Ljp_080A7168 @ =gFieldRenderRectDescriptors + 0x1F8
+	b .Ljp_080A716E
+	.align 2, 0
+.Ljp_080A7158: .4byte gFieldRenderRectDescriptors + 0x168
+.Ljp_080A715C: .4byte gFieldRenderRectDescriptors + 0x228
+.Ljp_080A7160: .4byte gFieldRenderRectDescriptors + 0x198
+.Ljp_080A7164: .4byte gFieldRenderRectDescriptors + 0x1C8
+.Ljp_080A7168: .4byte gFieldRenderRectDescriptors + 0x1F8
+.Ljp_080A716C:
+	ldr r1, .Ljp_080A717C @ =gFieldRenderRectDescriptors + 0x210
+.Ljp_080A716E:
+	mov r0, r8
+	movs r2, #0x18
+	movs r3, #0x11
+	bl func_080A5610
+	b .Ljp_080A718C
+	.align 2, 0
+.Ljp_080A717C: .4byte gFieldRenderRectDescriptors + 0x210
+.Ljp_080A7180:
+	ldr r1, .Ljp_080A7244 @ =gFieldRenderRectDescriptors + 0x1E0
+	mov r0, r8
+	movs r2, #0x18
+	movs r3, #0x11
+	bl func_080A5610
+.Ljp_080A718C:
+	ldr r1, .Ljp_080A7248 @ =gFieldRenderRectDescriptors + 0x240
+	mov r0, r8
+	movs r2, #4
+	movs r3, #1
+	bl func_080A5610
+	mov r3, sb
+	ldr r0, [r3]
+	movs r4, #0xfa
+	lsls r4, r4, #1
+	adds r0, r0, r4
+	bl HasLargeBed__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A71B8
+	ldr r1, .Ljp_080A724C @ =gFieldRenderRectDescriptors + 0x258
+	mov r0, r8
+	movs r2, #0x34
+	movs r3, #5
+	bl func_080A5610
+.Ljp_080A71B8:
+	mov r1, sb
+	ldr r0, [r1]
+	adds r0, r0, r4
+	bl HasCarpet__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A71D4
+	ldr r1, .Ljp_080A7250 @ =gFieldRenderRectDescriptors + 0x270
+	mov r0, r8
+	movs r2, #0x1f
+	movs r3, #0xa
+	bl func_080A5610
+.Ljp_080A71D4:
+	mov r2, sb
+	ldr r0, [r2]
+	adds r0, r0, r4
+	bl HasVase__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A71F0
+	ldr r1, .Ljp_080A7254 @ =gFieldRenderRectDescriptors + 0x288
+	mov r0, r8
+	movs r2, #0x2a
+	movs r3, #6
+	bl func_080A5610
+.Ljp_080A71F0:
+	mov r3, sb
+	ldr r0, [r3]
+	adds r0, r0, r4
+	bl HasMirror__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A720C
+	ldr r1, .Ljp_080A7258 @ =gFieldRenderRectDescriptors + 0x2A0
+	mov r0, r8
+	movs r2, #0x1f
+	movs r3, #2
+	bl func_080A5610
+.Ljp_080A720C:
+	mov r1, sb
+	ldr r0, [r1]
+	adds r0, r0, r4
+	bl HasClock__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A7228
+	ldr r1, .Ljp_080A725C @ =gFieldRenderRectDescriptors + 0x2B8
+	mov r0, r8
+	movs r2, #0x1c
+	movs r3, #3
+	bl func_080A5610
+.Ljp_080A7228:
+	mov r2, sb
+	ldr r0, [r2]
+	adds r0, r0, r4
+	bl HasBathroom__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	bne .Ljp_080A723A
+	b .Ljp_080A746E
+.Ljp_080A723A:
+	mov r0, r8
+	movs r1, #0xc
+	bl func_080AA850
+	b .Ljp_080A746E
+	.align 2, 0
+.Ljp_080A7244: .4byte gFieldRenderRectDescriptors + 0x1E0
+.Ljp_080A7248: .4byte gFieldRenderRectDescriptors + 0x240
+.Ljp_080A724C: .4byte gFieldRenderRectDescriptors + 0x258
+.Ljp_080A7250: .4byte gFieldRenderRectDescriptors + 0x270
+.Ljp_080A7254: .4byte gFieldRenderRectDescriptors + 0x288
+.Ljp_080A7258: .4byte gFieldRenderRectDescriptors + 0x2A0
+.Ljp_080A725C: .4byte gFieldRenderRectDescriptors + 0x2B8
+.Ljp_080A7260:
+	mov r3, sb
+	ldr r0, [r3]
+	movs r1, #0x82
+	lsls r1, r1, #3
+	adds r5, r0, r1
+	movs r4, #0
+	b .Ljp_080A7286
+.Ljp_080A726E:
+	adds r0, r5, #0
+	adds r1, r4, #0
+	bl HasBushelForEnt__C4CoopUi
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A7284
+	mov r0, r8
+	adds r1, r4, #0
+	bl func_080A6024
+.Ljp_080A7284:
+	adds r4, #1
+.Ljp_080A7286:
+	adds r0, r5, #0
+	bl GetCapacity__C4Coop
+	cmp r4, r0
+	blo .Ljp_080A726E
+	mov r2, sb
+	ldr r0, [r2]
+	movs r3, #0x82
+	lsls r3, r3, #3
+	adds r0, r0, r3
+	movs r1, #0
+	bl IsIncubatorOccupied__C4CoopUi
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	bne .Ljp_080A72A8
+	b .Ljp_080A746E
+.Ljp_080A72A8:
+	mov r0, r8
+	movs r1, #0
+	bl func_080A63B8
+	b .Ljp_080A746E
+.Ljp_080A72B2:
+	mov r1, sb
+	ldr r0, [r1]
+	movs r2, #0x82
+	lsls r2, r2, #3
+	adds r5, r0, r2
+	movs r4, #0
+	b .Ljp_080A72D8
+.Ljp_080A72C0:
+	adds r0, r5, #0
+	adds r1, r4, #0
+	bl HasBushelForEnt__C4CoopUi
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A72D6
+	mov r0, r8
+	adds r1, r4, #0
+	bl func_080A6024
+.Ljp_080A72D6:
+	adds r4, #1
+.Ljp_080A72D8:
+	adds r0, r5, #0
+	bl GetCapacity__C4Coop
+	cmp r4, r0
+	blo .Ljp_080A72C0
+	adds r0, r5, #0
+	bl method_0800C5C4__C4Coop
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A72FA
+	ldr r1, .Ljp_080A7338 @ =gFieldRenderRectDescriptors + 0x300
+	mov r0, r8
+	movs r2, #2
+	movs r3, #5
+	bl func_080A5610
+.Ljp_080A72FA:
+	mov r3, sb
+	ldr r0, [r3]
+	movs r4, #0x82
+	lsls r4, r4, #3
+	adds r0, r0, r4
+	movs r1, #0
+	bl IsIncubatorOccupied__C4CoopUi
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A7318
+	mov r0, r8
+	movs r1, #0
+	bl func_080A63B8
+.Ljp_080A7318:
+	mov r1, sb
+	ldr r0, [r1]
+	adds r0, r0, r4
+	movs r1, #1
+	bl IsIncubatorOccupied__C4CoopUi
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	bne .Ljp_080A732C
+	b .Ljp_080A746E
+.Ljp_080A732C:
+	mov r0, r8
+	movs r1, #1
+	bl func_080A63B8
+	b .Ljp_080A746E
+	.align 2, 0
+.Ljp_080A7338: .4byte gFieldRenderRectDescriptors + 0x300
+.Ljp_080A733C:
+	mov r2, sb
+	ldr r0, [r2]
+	movs r3, #0xbe
+	lsls r3, r3, #3
+	adds r5, r0, r3
+	movs r4, #0
+	b .Ljp_080A7362
+.Ljp_080A734A:
+	adds r0, r5, #0
+	adds r1, r4, #0
+	bl HasBushelForStall__C4BarnUi
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A7360
+	mov r0, r8
+	adds r1, r4, #0
+	bl func_080A607C
+.Ljp_080A7360:
+	adds r4, #1
+.Ljp_080A7362:
+	adds r0, r5, #0
+	bl GetCapacity__C4Barn
+	cmp r4, r0
+	blo .Ljp_080A734A
+	movs r4, #0
+	b .Ljp_080A738A
+.Ljp_080A7370:
+	adds r0, r5, #0
+	adds r1, r4, #0
+	bl HasBushelForPregnancyStall__C4BarnUi
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A7388
+	adds r1, r4, #0
+	adds r1, #0x10
+	mov r0, r8
+	bl func_080A607C
+.Ljp_080A7388:
+	adds r4, #1
+.Ljp_080A738A:
+	adds r0, r5, #0
+	bl GetPregnancyStallCapacity__C4Barn
+	cmp r4, r0
+	blo .Ljp_080A7370
+	b .Ljp_080A746E
+.Ljp_080A7396:
+	mov r1, sb
+	ldr r0, [r1]
+	movs r2, #0xbe
+	lsls r2, r2, #3
+	adds r5, r0, r2
+	movs r4, #0
+	b .Ljp_080A73BC
+.Ljp_080A73A4:
+	adds r0, r5, #0
+	adds r1, r4, #0
+	bl HasBushelForStall__C4BarnUi
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A73BA
+	mov r0, r8
+	adds r1, r4, #0
+	bl func_080A607C
+.Ljp_080A73BA:
+	adds r4, #1
+.Ljp_080A73BC:
+	adds r0, r5, #0
+	bl GetCapacity__C4Barn
+	cmp r4, r0
+	blo .Ljp_080A73A4
+	movs r4, #0
+	b .Ljp_080A73E4
+.Ljp_080A73CA:
+	adds r0, r5, #0
+	adds r1, r4, #0
+	bl HasBushelForPregnancyStall__C4BarnUi
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A73E2
+	adds r1, r4, #0
+	adds r1, #0x10
+	mov r0, r8
+	bl func_080A607C
+.Ljp_080A73E2:
+	adds r4, #1
+.Ljp_080A73E4:
+	adds r0, r5, #0
+	bl GetPregnancyStallCapacity__C4Barn
+	cmp r4, r0
+	blo .Ljp_080A73CA
+	adds r0, r5, #0
+	bl method_0800CF00__C4Barn
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A7406
+	ldr r1, .Ljp_080A7420 @ =gFieldRenderRectDescriptors + 0x330
+	mov r0, r8
+	movs r2, #0xc
+	movs r3, #5
+	bl func_080A5610
+.Ljp_080A7406:
+	adds r0, r5, #0
+	bl method_0800CF08__C4Barn
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A746E
+	ldr r1, .Ljp_080A7424 @ =gFieldRenderRectDescriptors + 0x318
+	mov r0, r8
+	movs r2, #8
+	movs r3, #5
+	bl func_080A5610
+	b .Ljp_080A746E
+	.align 2, 0
+.Ljp_080A7420: .4byte gFieldRenderRectDescriptors + 0x330
+.Ljp_080A7424: .4byte gFieldRenderRectDescriptors + 0x318
+.Ljp_080A7428:
+	mov r3, sb
+	ldr r0, [r3]
+	bl func_08010E48
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A746E
+	ldr r1, .Ljp_080A7444 @ =gFieldRenderRectDescriptors + 0x420
+	mov r0, r8
+	movs r2, #0x24
+	movs r3, #2
+	bl func_080A5610
+	b .Ljp_080A746E
+	.align 2, 0
+.Ljp_080A7444: .4byte gFieldRenderRectDescriptors + 0x420
+.Ljp_080A7448:
+	ldr r1, .Ljp_080A7484 @ =gFieldRenderRectDescriptors + 0x378
+	mov r0, r8
+	movs r2, #0x20
+	movs r3, #0x20
+	bl func_080A5610
+	mov r1, sb
+	ldr r0, [r1]
+	bl func_08010E48
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080A746E
+	ldr r1, .Ljp_080A7488 @ =gFieldRenderRectDescriptors + 0x438
+	mov r0, r8
+	movs r2, #0x24
+	movs r3, #2
+	bl func_080A5610
+.Ljp_080A746E:
+	mov r0, r8
+	bl func_080AACB8
+	add sp, #0x2c
+	pop {r3, r4, r5}
+	mov r8, r3
+	mov sb, r4
+	mov sl, r5
+	pop {r4, r5, r6, r7}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_080A7484: .4byte gFieldRenderRectDescriptors + 0x378
+.Ljp_080A7488: .4byte gFieldRenderRectDescriptors + 0x438
     .global func_080A748C
     .thumb_func
 func_080A748C:
@@ -15085,13 +17796,18 @@ func_080A748C:
     .thumb_func
 func_080A6EC4:
     .incbin "baserom_jp.gba", 0xA6EC4, (0xA8FDC - 0xA6EC4)
-    .global func_080A95A4
-    .thumb_func
-func_080A95A4:
     .global func_080A8FDC
     .thumb_func
 func_080A8FDC:
-    .incbin "baserom_jp.gba", 0xA8FDC, (0xAA288 - 0xA8FDC)
+    .incbin "baserom_jp.gba", 0xA8FDC, (0xA9F78 - 0xA8FDC)
+    .global func_080A9F78
+    .thumb_func
+func_080A9F78:
+    .incbin "baserom_jp.gba", 0xA9F78, (0xAA108 - 0xA9F78)
+    .global func_080AA108
+    .thumb_func
+func_080AA108:
+    .incbin "baserom_jp.gba", 0xAA108, (0xAA288 - 0xAA108)
     jp_code_809_func func_080AA850, 0xAA288, 0xAA2D4
     jp_code_809_func func_080AA89C, 0xAA2D4, 0xAA2F4
     jp_code_809_func func_080AA8BC, 0xAA2F4, 0xAA314
@@ -31237,14 +33953,52 @@ func_080A6420: @ 0x080A6420
 	pop {r1}
 	bx r1
 	.align 2, 0
-.L080A643C:
-	.byte 0x70, 0xB5, 0x06, 0x1C
-	.byte 0x0C, 0x1C, 0x15, 0x1C, 0x70, 0x68
+    .global func_080A643C
+    .thumb_func
+func_080A643C: @ 0x080A643C
+	push {r4, r5, r6, lr}
+	adds r6, r0, #0
+	adds r4, r1, #0
+	adds r5, r2, #0
+	ldr r0, [r6, #4]
 	bl GetMapData
-	.byte 0x00, 0x8C, 0x68, 0x43, 0x24, 0x18
-	.byte 0xA4, 0x00, 0xF0, 0x6A, 0x00, 0x19, 0x70, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x40, 0x68, 0x70, 0x47
-	.byte 0x00, 0x68, 0x70, 0x47, 0x0E, 0x21, 0x40, 0x5E, 0x70, 0x47, 0x00, 0x00, 0x0A, 0x21, 0x40, 0x5E
-	.byte 0x70, 0x47, 0x00, 0x00
+	ldrh r0, [r0, #0x20]
+	muls r0, r5
+	adds r4, r4, r0
+	lsls r4, r4, #2
+	ldr r0, [r6, #0x2c]
+	adds r0, r0, r4
+	pop {r4, r5, r6}
+	pop {r1}
+	bx r1
+
+    .global func_080A645C
+    .thumb_func
+func_080A645C: @ 0x080A645C
+	ldr r0, [r0, #4]
+	bx lr
+
+    .global func_080A6460
+    .thumb_func
+func_080A6460: @ 0x080A6460
+	ldr r0, [r0]
+	bx lr
+
+    .global func_080A6464
+    .thumb_func
+func_080A6464: @ 0x080A6464
+	movs r1, #0xe
+	ldrsh r0, [r0, r1]
+	bx lr
+	.align 2, 0
+
+    .global func_080A646C
+    .thumb_func
+func_080A646C: @ 0x080A646C
+	movs r1, #0xa
+	ldrsh r0, [r0, r1]
+	bx lr
+	.align 2, 0
 
 	thumb_func_start func_080A6474
 func_080A6474: @ 0x080A6474
