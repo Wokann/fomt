@@ -57,6 +57,9 @@ PROFILES = {
     "large-shared": ArchiveProfile(
         (27, 102, 1, 768, 46, 0, 124), (), "large shared resource"
     ),
+    "shared-08725da0": ArchiveProfile(
+        (6, 6, 20, 109, 2, 0, 6), (), "shared 08725DA0 resource"
+    ),
 }
 ACTIVE_PROFILE = PROFILES["common"]
 

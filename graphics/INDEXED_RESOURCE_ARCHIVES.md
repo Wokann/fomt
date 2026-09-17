@@ -21,9 +21,10 @@ it intentionally does not assign guessed meanings to descriptor fields.
 | Cooking UI archive | `0x4DA620` | `0x754674` | `0x7546D0` | `0x4DBB90` | `0x598` | `1, 3, 3, 40, 1, 0` | 4 | `3ad7d5722ca026e54678295cb52f199e435ae313e99a8c0cadf4b62e89566fda` |
 | Menu UI archive | `0x4A4910` | `0x71E7A8` | `0x71E804` | `0x4A5974` | `0x504` | `8, 8, 1, 32, 1, 0` | 8 | `294385013bada21051d9c04acea32fc4880318eef8dc59d2b9158cea7a978c8c` |
 | Large shared archive | `0x4A5068` | `0x71EF00` | `0x71EF5C` | `0x4A60CC` | `0x6EA0` | `27, 102, 1, 768, 46, 0` | 124 | `f3dbd496b2e790073ecf8175ef5be7f2d2aad8d8777751ccad7d3cb7d8203878` |
+| Shared archive `08725DA0` | `0x4ABF08` | `0x725DA0` | `0x725DFC` | `0x4ACF6C` | `0xF2C` | `6, 6, 20, 109, 2, 0` | 6 | `cd97e9321879d994de4330bb45763b1b368a782167db9c8f3f6d506357c8e11c` |
 | Farm Status / Town Map archive | `0x4D977C` | `0x7537D0` | `0x75382C` | `0x4DACEC` | `0xEA4` | `20, 40, 11, 73, 13, 0` | 40 | `480a114e52b941e289d67055ddd632b6c0bbee3cfa66263523ad91c7e1d4dfc1` |
 
-All seven complete native archive payloads are byte-identical across JP, US,
+All eight complete native archive payloads are byte-identical across JP, US,
 EU, and DE. The common archive is the data currently exposed under
 `gUnk_086678A0` in non-JP regional assembly; the JP physical match was found
 by the exact complete payload, not by inventing a JP label.
@@ -72,6 +73,13 @@ complete editable PNG sources are under `graphics/large_resource_archive/`.
 The current consumer evidence establishes an active shared runtime archive, not
 the gameplay meaning of every group, so its source file names remain neutral.
 
+Shared archive `08725DA0` is independently bounded at the four locations in
+the table. Its six descriptors all select drawable records, together covering
+20 OAM records, 109 4bpp tiles, two BGR555 palettes, and six selection entries.
+Its editable PNG sources are under `graphics/shared_resource_08725da0/`; its
+original address is retained because individual gameplay semantics remain
+unverified.
+
 The Farm Status screen constructs a third archive at `0x4D977C` in JP and
 `0x7537D0` in US (with the regional locations recorded by its rebuild tool).
 Town Map uses the same complete `0xEA4` payload. Its consumer path is fully
@@ -118,6 +126,12 @@ python tools/indexed_resource_archive.py compare ^
   --rom us baserom_us.gba 0x71EF00 ^
   --rom eu baserom_eu.gba 0x71EF5C ^
   --rom de baserom_de.gba 0x4A60CC
+
+python tools/indexed_resource_archive.py compare ^
+  --rom jp baserom_jp.gba 0x4ABF08 ^
+  --rom us baserom_us.gba 0x725DA0 ^
+  --rom eu baserom_eu.gba 0x725DFC ^
+  --rom de baserom_de.gba 0x4ACF6C
 ```
 
 The `^` continuation marker is for `cmd.exe`; remove it or use the shell's
