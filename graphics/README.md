@@ -303,6 +303,29 @@ make gfx-map-state-palettes-patch-test
 make gfx-map-state-palettes-edit-test
 ```
 
+## Map-state native presentation templates
+
+The map-state renderer also reads two much larger, uncompressed shared tables:
+`map_state_templates/shared/map_state_palette_templates.bin` and
+`map_state_templates/shared/map_state_tilemap_templates.bin`.  They are
+byte-identical in JP, US, EU and DE, despite occupying different ROM ranges in
+each localization.
+
+The first is copied in fixed `0x60`-byte units into caller-owned palette
+staging storage; the second is selected by map-state type and read as 16-bit
+BG tilemap entries.  Neither path proves standalone record boundaries, a tile
+sheet, or an owning palette for every entry.  Their authoritative editable
+form therefore remains native binary rather than a guessed PNG or a JSON
+layout sidecar.  The fixed source sizes and write ranges are checked on every
+build, and a one-byte edit test proves that a replacement cannot escape either
+original ROM range:
+
+```console
+make gfx-map-state-templates-all
+make gfx-map-state-templates-patch-test
+make gfx-map-state-templates-edit-test
+```
+
 ## Shared UI tile grid
 
 `ui/shared_resource/shared_resource.png` is the first production use of the

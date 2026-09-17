@@ -76,3 +76,23 @@ fixed `0x1E0`-byte decode size, the indexed destination within the caller
 palette-buffer array, and the exact region-local ROM boundaries.  It
 deliberately makes no claim about the semantic name of the caller object or
 any final tile/OAM presentation.
+
+## Adjacent uncompressed presentation templates
+
+The same map-state renderer contains two direct, uncompressed source-table
+paths which are not `Unpack` inputs and therefore are intentionally outside
+the seventeen-row inventory above.  Both are verified byte-identical across
+JP, US, EU and DE and now have fixed-range native-source rebuild paths in
+`graphics/map_state_templates/shared/`.
+
+| Native source | JP range | US range | EU range | DE range | Proven consumer format |
+| --- | ---: | ---: | ---: | ---: | --- |
+| `map_state_palette_templates.bin` | `0x45D654..0x462520` | `0x6D74F8..0x6DC3C4` | `0x6D7554..0x6DC420` | `0x45E594..0x463460` | `func_080A8FDC` copies the selected base in `0x60`-byte units into caller-owned palette staging storage. |
+| `map_state_tilemap_templates.bin` | `0x464950..0x470E38` | `0x6DE7F4..0x6EACDC` | `0x6DE850..0x6EAD38` | `0x465890..0x471D78` | `func_080AA400` selects the table for map-state type `0x0F` and reads it as 16-bit BG tilemap entries. |
+
+The first table begins with BGR555-looking data and the second begins with
+tilemap-looking words, but that is deliberately not promoted into a presumed
+per-record PNG format: the functions prove only their copy/entry behaviour,
+not all individual record boundaries, palette ownership, or a final rendered
+screen.  The checked-in binaries are the reversible source of truth, and the
+tool verifies the exact original region range before patching.

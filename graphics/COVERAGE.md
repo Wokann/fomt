@@ -180,6 +180,7 @@ byte is visual data.
 | Literal guarded RAM copies | 18 bounded paths, all to palette RAM | Every source is classified in `DIRECT_COPY_RAM_AUDIT.md`; a palette slice is not promoted to a standalone image unless its owning layout is proven. |
 | MapData visual layers | 272 bounded native streams | The six visual pointer layers are managed as maps; terrain, collision, and other non-visual fields remain outside the graphics pipeline. |
 | MapData state-fallback palettes | 5 bounded Raw-LZ streams, each decoding to 15 BGR555 banks | Managed as ordered native palette sources. JP/US/EU/DE share byte-identical packed and decoded streams; every region is rebuilt and patched at its own original fixed slots. |
+| Map-state native presentation templates | 2 bounded raw tables (`0x4ECC` palette-template bytes and `0xC4E8` 16-bit tilemap-template bytes) | Managed as shared native binary sources. The renderer proves fixed copy/entry formats but not independently authored tile or palette layouts, so no guessed PNG or layout sidecar is created. Every region is rebuilt and patched at its own original range. |
 | Indirect map-state `Unpack` buffers | 17 labelled non-VRAM inputs, including five fallback payloads | `INDIRECT_UNPACK_AUDIT.md` records strict decode bounds for every input. The five regional map-state fallback payloads (overseas `func_080A95A4`) are managed native BGR555 palettes; the remaining staging data stays native until its consumer proves a visual format and layout. |
 
 ## Next audit queue

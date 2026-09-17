@@ -1386,6 +1386,17 @@ MAP_STATE_PALETTE_SOURCES := $(wildcard $(MAP_STATE_PALETTE_SOURCE_DIR)/*.gbapal
 MAP_STATE_PALETTE_OUTPUT_DIR := $(BUILD_DIR)/graphics/map_state_palettes
 MAP_STATE_PALETTE_STAMP := $(MAP_STATE_PALETTE_OUTPUT_DIR)/.map-state-palettes.stamp
 MAP_STATE_PALETTE_REGION := $(MAP_RESOURCES_REGION)
+
+# Two large MapData renderer tables are byte-identical in JP/US/EU/DE.  They
+# are native palette-template and 16-bit tilemap-template records, not
+# standalone PNG layouts, so their reversible editable source remains binary.
+MAP_STATE_TEMPLATE_TOOL := tools/map_state_templates.py
+MAP_STATE_TEMPLATE_SOURCE_DIR := graphics/map_state_templates/shared
+MAP_STATE_TEMPLATE_SOURCES := $(wildcard $(MAP_STATE_TEMPLATE_SOURCE_DIR)/*.bin)
+MAP_STATE_TEMPLATE_OUTPUT_DIR := $(BUILD_DIR)/graphics/map_state_templates
+MAP_STATE_TEMPLATE_STAMP := $(MAP_STATE_TEMPLATE_OUTPUT_DIR)/.map-state-templates.stamp
+MAP_STATE_TEMPLATE_REGION := $(MAP_RESOURCES_REGION)
+
 INDEXED_RESOURCE_ARCHIVE_TOOL := tools/indexed_resource_archive.py
 INDEXED_RESOURCE_ARCHIVE_INVENTORY_TOOL := tools/indexed_resource_archive_inventory.py
 INDEXED_RESOURCE_ARCHIVE_INVENTORY := graphics/INDEXED_RESOURCE_ARCHIVE_INVENTORY.md
@@ -2017,6 +2028,11 @@ $(MAP_STATE_PALETTE_STAMP): $(MAP_STATE_PALETTE_SOURCES) $(MAP_STATE_PALETTE_TOO
 	  --source-dir $(MAP_STATE_PALETTE_SOURCE_DIR) --output-dir $(MAP_STATE_PALETTE_OUTPUT_DIR)
 	@touch $@
 
+$(MAP_STATE_TEMPLATE_STAMP): $(MAP_STATE_TEMPLATE_SOURCES) $(MAP_STATE_TEMPLATE_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
+	@$(PYTHON) $(MAP_STATE_TEMPLATE_TOOL) build --region $(MAP_STATE_TEMPLATE_REGION) --rom $(BASE_ROM) \
+	  --source-dir $(MAP_STATE_TEMPLATE_SOURCE_DIR) --output-dir $(MAP_STATE_TEMPLATE_OUTPUT_DIR)
+	@touch $@
+
 $(RECORDS_MINIGAME_OUTPUTS): $(RECORDS_MINIGAME_SOURCES) $(RECORDS_MINIGAME_TOOL)
 	@$(PYTHON) $(RECORDS_MINIGAME_TOOL) build --source-dir $(RECORDS_MINIGAME_SOURCE_DIR) --output-dir $(RECORDS_MINIGAME_OUTPUT_DIR)
 
@@ -2034,7 +2050,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
 .PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-resource-archive gfx-farm-status-resource-archive-test gfx-farm-status-resource-archive-all gfx-farm-status-resource-archive-patch-test gfx-farm-status-resource-archive-edit-test gfx-farm-status-winter gfx-farm-status-winter-test gfx-farm-status-winter-all gfx-farm-status-winter-edit-test gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-secondary-tilemaps-edit-test gfx-farm-status-exterior-styles gfx-farm-status-exterior-styles-test gfx-farm-status-selector-icon gfx-farm-status-selector-icon-test gfx-farm-status-selector-icon-all gfx-farm-status-selector-icon-edit-test gfx-clock-font gfx-clock-font-test gfx-clock-font-all gfx-clock-font-edit-test gfx-farm-status-creature-icons gfx-farm-status-creature-icons-test gfx-farm-status-creature-icons-all gfx-farm-status-task-marker gfx-farm-status-task-marker-test gfx-farm-status-task-marker-all gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal-nonwinter-all gfx-seasonal-nonwinter-reference gfx-seasonal-nonwinter-edit-test gfx-seasonal-winter gfx-seasonal-winter-test gfx-seasonal-winter-all gfx-seasonal-winter-reference gfx-seasonal-winter-edit-test gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-background-edit-test gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-tilemaps-edit-test gfx-intro-startup-visual gfx-intro-startup-visual-export gfx-intro-startup-visual-reference gfx-intro-startup-visual-test gfx-intro-startup-visual-all gfx-intro-startup-visual-edit-test gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-animal-festival-icons gfx-animal-festival-icons-test gfx-animal-festival-icons-all resource-archive-audit unpack-vram-inventory dma-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
-.PHONY: gfx-map-resources-reference gfx-map-resources-edit-test gfx-map-state-palettes gfx-map-state-palettes-test gfx-map-state-palettes-all gfx-map-state-palettes-patch-test gfx-map-state-palettes-edit-test unpack-inventory unpack-coverage-inventory copy-ram-inventory gfx-raw-vram-tiles-ui-build
+.PHONY: gfx-map-resources-reference gfx-map-resources-edit-test gfx-map-state-palettes gfx-map-state-palettes-test gfx-map-state-palettes-all gfx-map-state-palettes-patch-test gfx-map-state-palettes-edit-test gfx-map-state-templates gfx-map-state-templates-test gfx-map-state-templates-all gfx-map-state-templates-patch-test gfx-map-state-templates-edit-test unpack-inventory unpack-coverage-inventory copy-ram-inventory gfx-raw-vram-tiles-ui-build
 .PHONY: indexed-resource-archive-inventory
 .PHONY: gfx-farm-status-task-ui-tile gfx-farm-status-task-ui-tile-test gfx-farm-status-task-ui-tile-all
 .PHONY: gfx-small-ui-resource-archive gfx-small-ui-resource-archive-test gfx-small-ui-resource-archive-all gfx-small-ui-resource-archive-patch-test gfx-small-ui-resource-archive-edit-test
@@ -3609,6 +3625,21 @@ gfx-map-state-palettes-patch-test: gfx-map-state-palettes-all $(MAP_STATE_PALETT
 	@$(PYTHON) $(MAP_STATE_PALETTE_TOOL) patch-test --output-root build $(MAP_RESOURCES_ROM_ARGS)
 gfx-map-state-palettes-edit-test: $(MAP_STATE_PALETTE_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(MAP_STATE_PALETTE_TOOL) edit-test $(MAP_RESOURCES_ROM_ARGS)
+
+gfx-map-state-templates: $(MAP_STATE_TEMPLATE_STAMP)
+gfx-map-state-templates-test: gfx-map-state-templates $(MAP_STATE_TEMPLATE_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
+	@$(PYTHON) $(MAP_STATE_TEMPLATE_TOOL) verify --region $(MAP_STATE_TEMPLATE_REGION) --rom $(BASE_ROM) \
+	  --source-dir $(MAP_STATE_TEMPLATE_SOURCE_DIR) --output-dir $(MAP_STATE_TEMPLATE_OUTPUT_DIR)
+gfx-map-state-templates-all:
+	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-map-state-templates-test
+	@$(MAKE) --no-print-directory GAME_REGION=US gfx-map-state-templates-test
+	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-map-state-templates-test
+	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-map-state-templates-test
+gfx-map-state-templates-patch-test: gfx-map-state-templates-all $(MAP_STATE_TEMPLATE_TOOL)
+	@$(PYTHON) $(MAP_STATE_TEMPLATE_TOOL) patch-test --output-root build $(MAP_RESOURCES_ROM_ARGS)
+gfx-map-state-templates-edit-test: $(MAP_STATE_TEMPLATE_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
+	@$(PYTHON) $(MAP_STATE_TEMPLATE_TOOL) edit-test $(MAP_RESOURCES_ROM_ARGS)
+
 resource-archive-audit: $(INDEXED_RESOURCE_ARCHIVE_TOOL) $(COMMON_RESOURCE_ARCHIVE_TOOL) $(FARM_STATUS_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_TOOL) compare --rom jp baserom_jp.gba 0x3ED9FC --rom us baserom_us.gba 0x6678A0 --rom eu baserom_eu.gba 0x6678FC --rom de baserom_de.gba 0x3EE93C
 	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_TOOL) compare --rom jp baserom_jp.gba 0x3ED1BC --rom us baserom_us.gba 0x667060 --rom eu baserom_eu.gba 0x6670BC --rom de baserom_de.gba 0x3EE0FC
@@ -4031,6 +4062,9 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-map-state-palettes-all
 	@$(MAKE) --no-print-directory gfx-map-state-palettes-patch-test
 	@$(MAKE) --no-print-directory gfx-map-state-palettes-edit-test
+	@$(MAKE) --no-print-directory gfx-map-state-templates-all
+	@$(MAKE) --no-print-directory gfx-map-state-templates-patch-test
+	@$(MAKE) --no-print-directory gfx-map-state-templates-edit-test
 	@$(MAKE) --no-print-directory resource-archive-audit
 	@$(MAKE) --no-print-directory gfx-records-minigame-all
 	@$(MAKE) --no-print-directory gfx-animal-festival-icons-all
@@ -4155,12 +4189,14 @@ $(ROM): $(REGIONAL_RESOURCE_0873A6E8_OUTPUT)
 $(ROM): $(REGIONAL_RESOURCE_0873D6D8_OUTPUT)
 $(ROM): $(REGIONAL_RESOURCE_0874F34C_OUTPUT)
 
-%.gba: %.elf $(MAP_RESOURCES_STAMP) $(MAP_STATE_PALETTE_STAMP) $(UI_SCENE_080A2BA4_STAMP) $(UI_SCENE_080AE7D0_STAMP) $(UI_SCENE_080B7164_STAMP) $(UI_SCENE_080B7164_PALETTE_BIN) $(UI_SCENE_080C160C_STAMP) $(UI_SCENE_080C160C_PALETTE_BIN) $(UI_SCENE_080BCFAC_STAMP) $(UI_SCENE_080BCFAC_PALETTE_BIN) $(UI_SCENE_080B55D0_AUX_STAMP) $(UI_SCENE_080B55D0_MAIN_STAMP) $(RAW_VRAM_TILES_08697920_STAMP) $(RAW_VRAM_TILES_08698E14_STAMP) $(RAW_VRAM_TILES_0869A0A4_STAMP) $(RAW_VRAM_TILES_086D5508_STAMP) $(RAW_VRAM_TILES_086D6698_STAMP) $(foreach profile,$(RAW_VRAM_UI_PROFILES),$(RAW_VRAM_TILES_$(profile)_STAMP)) $(UI_SCENE_08054F40_TILES_STAMP) $(UI_SCENE_0805AB08_TILES_STAMP) $(FARM_HOUSE_VISUAL_STAMP) $(FARM_HOUSE_TILEMAP_STAMP) $(FARM_HOUSE_PALETTE_STAMP) $(FARM_STATUS_RESOURCE_ARCHIVE_OUTPUT) $(COMMON_RESOURCE_ARCHIVE_OUTPUT) $(SMALL_COMPANION_ARCHIVE_OUTPUT) $(SMALL_UI_RESOURCE_ARCHIVE_OUTPUT) $(COOKING_UI_RESOURCE_ARCHIVE_OUTPUT) $(MENU_UI_RESOURCE_ARCHIVE_OUTPUT) $(LARGE_SHARED_RESOURCE_ARCHIVE_OUTPUT) $(SHARED_RESOURCE_08725DA0_OUTPUT)
+%.gba: %.elf $(MAP_RESOURCES_STAMP) $(MAP_STATE_PALETTE_STAMP) $(MAP_STATE_TEMPLATE_STAMP) $(UI_SCENE_080A2BA4_STAMP) $(UI_SCENE_080AE7D0_STAMP) $(UI_SCENE_080B7164_STAMP) $(UI_SCENE_080B7164_PALETTE_BIN) $(UI_SCENE_080C160C_STAMP) $(UI_SCENE_080C160C_PALETTE_BIN) $(UI_SCENE_080BCFAC_STAMP) $(UI_SCENE_080BCFAC_PALETTE_BIN) $(UI_SCENE_080B55D0_AUX_STAMP) $(UI_SCENE_080B55D0_MAIN_STAMP) $(RAW_VRAM_TILES_08697920_STAMP) $(RAW_VRAM_TILES_08698E14_STAMP) $(RAW_VRAM_TILES_0869A0A4_STAMP) $(RAW_VRAM_TILES_086D5508_STAMP) $(RAW_VRAM_TILES_086D6698_STAMP) $(foreach profile,$(RAW_VRAM_UI_PROFILES),$(RAW_VRAM_TILES_$(profile)_STAMP)) $(UI_SCENE_08054F40_TILES_STAMP) $(UI_SCENE_0805AB08_TILES_STAMP) $(FARM_HOUSE_VISUAL_STAMP) $(FARM_HOUSE_TILEMAP_STAMP) $(FARM_HOUSE_PALETTE_STAMP) $(FARM_STATUS_RESOURCE_ARCHIVE_OUTPUT) $(COMMON_RESOURCE_ARCHIVE_OUTPUT) $(SMALL_COMPANION_ARCHIVE_OUTPUT) $(SMALL_UI_RESOURCE_ARCHIVE_OUTPUT) $(COOKING_UI_RESOURCE_ARCHIVE_OUTPUT) $(MENU_UI_RESOURCE_ARCHIVE_OUTPUT) $(LARGE_SHARED_RESOURCE_ARCHIVE_OUTPUT) $(SHARED_RESOURCE_08725DA0_OUTPUT)
 	$(OBJCOPY) -O binary $< $@
 	@$(PYTHON) $(MAP_RESOURCES_TOOL) patch --region $(MAP_RESOURCES_REGION) --rom $@ \
 	  --archive $(MAP_RESOURCES_OUTPUT_DIR)/map_visual_archive.0x70 $(MAP_RESOURCES_ALL_ROM_ARGS)
 	@$(PYTHON) $(MAP_STATE_PALETTE_TOOL) patch --region $(MAP_STATE_PALETTE_REGION) --rom $@ \
 	  --output-dir $(MAP_STATE_PALETTE_OUTPUT_DIR) $(MAP_RESOURCES_ALL_ROM_ARGS)
+	@$(PYTHON) $(MAP_STATE_TEMPLATE_TOOL) patch --region $(MAP_STATE_TEMPLATE_REGION) --rom $@ \
+	  --output-dir $(MAP_STATE_TEMPLATE_OUTPUT_DIR) $(MAP_RESOURCES_ALL_ROM_ARGS)
 	@$(PYTHON) $(UI_SCENE_080A2BA4_TOOL) patch --region $(UI_SCENE_080A2BA4_REGION) --baseline $(BASE_ROM) \
 	  --rom $@ --output-dir $(UI_SCENE_080A2BA4_OUTPUT_DIR)
 	@$(PYTHON) $(UI_SCENE_080AE7D0_TOOL) patch --region $(UI_SCENE_080AE7D0_REGION) --baseline $(BASE_ROM) \
