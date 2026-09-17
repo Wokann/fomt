@@ -54,6 +54,9 @@ PROFILES = {
     "menu-ui": ArchiveProfile(
         (8, 8, 1, 32, 1, 0, 8), (), "menu UI resource"
     ),
+    "large-shared": ArchiveProfile(
+        (27, 102, 1, 768, 46, 0, 124), (), "large shared resource"
+    ),
 }
 ACTIVE_PROFILE = PROFILES["common"]
 
