@@ -145,6 +145,20 @@ one BGR555 palette. US/EU exposes 20 groups, 794 tiles and three palettes.
 Their native layout data remains authoritative; no independently maintained
 JSON description is introduced.
 
+`gUnk_0873A6E8` and `gUnk_0873D6D8` each expose one drawable OAM group. Both
+use a byte-identical JP/US/EU source and a DE-specific source.
+
+| Archive / source domain | Regions | ROM offset(s) | Length | Header counts | SHA-256 |
+| --- | --- | --- | --- | --- | --- |
+| `0873A6E8` shared | JP / US / EU | `0x4C0850` / `0x73A6E8` / `0x73A744` | `0x76C` | `1, 1, 3, 56, 1, 0` | `a05269ed950c7e531e8886808f4e932f7bb2e00b6c846df6d0835608920a4764` |
+| `0873A6E8` DE | DE | `0x4C1A54` | `0x76C` | `1, 1, 3, 56, 1, 0` | `f01742625d55eea85e34694a92ea36e6d210782f21eedc667a08ad0bc4c91028` |
+| `0873D6D8` shared | JP / US / EU | `0x4C3840` / `0x73D6D8` / `0x73D734` | `0x76C` | `1, 1, 3, 56, 1, 0` | `8fff63c07bd1644165948f08f0c63b3ec1ba10e8c547b171e67368f2fb74b0e1` |
+| `0873D6D8` DE | DE | `0x4C4A44` | `0x874` | `1, 1, 4, 64, 1, 0` | `7f9861a38aa4da765cfcc53c3cbe9c5da7eee9713bc5aa0a23a6181c009e00b1` |
+
+`0873A6E8` has 56 tiles in both domains. `0873D6D8` has 56 in the shared
+domain and 64 in DE. Native descriptor and OAM records remain the layout
+source of truth; no sidecar description is created.
+
 The common archive's group-descriptor consumer is fully bounded. Every
 drawable descriptor selects valid GBA OAM, 4bpp tile, and BGR555 palette
 ranges; `func_0805E790` resolves the fields and `func_080757E8` uploads tiles
