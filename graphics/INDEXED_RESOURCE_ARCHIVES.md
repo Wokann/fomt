@@ -87,6 +87,21 @@ authoring directories. JP's selection table contains three extra entries, and
 DE has two additional descriptors, eight extra tiles and four extra selection
 entries; those structural differences are preserved as native layout data.
 
+`gUnk_08728208` has one fixed archive layout in all four regions, but two
+distinct visual payloads. JP uses the dedicated `jp/` source; US, EU, and DE
+are byte-identical and therefore use the shared `overseas/` source. Both are
+rebuilt from indexed PNG groups and patched only into their original physical
+ranges.
+
+| Source domain | Regions | ROM offset(s) | Length | Header counts | Entries | SHA-256 |
+| --- | --- | --- | --- | --- | --- | --- |
+| JP | JP | `0x4AE370` | `0x118` | `1, 3, 3, 4, 1, 0` | 4 | `746c463787fe0b16fecb948642b9be650f19d97035f67f94b7013ded15466e46` |
+| Overseas | US / EU / DE | `0x728208` / `0x728264` / `0x4AF3D4` | `0x118` | `1, 3, 3, 4, 1, 0` | 4 | `58123a3cf4968175427c4a4d817ff403e6c14788a542f009d61456fd84190b1a` |
+
+The archive contains three drawable OAM groups, four 4bpp tiles, one BGR555
+palette, and four selection entries. Its native descriptor, OAM, palette and
+selection records remain in the archive, so no JSON layout sidecar is needed.
+
 The common archive's group-descriptor consumer is fully bounded. Every
 drawable descriptor selects valid GBA OAM, 4bpp tile, and BGR555 palette
 ranges; `func_0805E790` resolves the fields and `func_080757E8` uploads tiles

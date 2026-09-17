@@ -68,12 +68,13 @@ REBUILT_SOURCES = {
     "gUnk_08754674": "graphics/ui/cooking_resource_archive/",
     "gUnk_08754C0C": "graphics/ui/small_resource_archive/",
     "gUnk_0871D51C": "graphics/regional_resource_0871d51c/",
+    "gUnk_08728208": "graphics/regional_resource_08728208/",
 }
 
 # These paths intentionally contain per-region source trees instead of one
 # shared payload.  Keep the distinction visible in generated coverage rather
 # than letting a rebuilt regional archive look byte-identical by implication.
-REGIONAL_SOURCES = {"gUnk_0871D51C"}
+REGIONAL_SOURCES = {"gUnk_0871D51C", "gUnk_08728208"}
 
 # A regional rebuild has no single payload that ``bytes.find`` can locate in
 # the other ROMs.  These addresses are instead obtained from the actual
@@ -84,6 +85,12 @@ REGIONAL_LOCATIONS = {
         "us": 0x71D51C,
         "eu": 0x71D578,
         "de": 0x4A45B8,
+    },
+    "gUnk_08728208": {
+        "jp": 0x4AE370,
+        "us": 0x728208,
+        "eu": 0x728264,
+        "de": 0x4AF3D4,
     },
 }
 

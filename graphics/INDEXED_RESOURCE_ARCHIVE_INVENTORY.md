@@ -24,7 +24,7 @@ as a shared payload.
 | `gUnk_08726CCC` | `0x4ACE34` | `0x726CCC` | `0x726D28` | `0x4ADE98` | `0x69C` | 1, 1, 9, 48, 1, 0 | 1 | rebuild, four-region shared: `graphics/shared_resource_08726ccc/` |
 | `gUnk_08727368` | `0x4AD4D0` | `0x727368` | `0x7273C4` | `0x4AE534` | `0x70C` | 3, 21, 68, 22, 1, 0 | 37 | rebuild, four-region shared: `graphics/shared_resource_08727368/` |
 | `gUnk_08727A74` | `0x4ADBDC` | `0x727A74` | `0x727AD0` | `0x4AEC40` | `0x794` | 1, 1, 36, 49, 1, 0 | 1 | rebuild, four-region shared: `graphics/shared_resource_08727a74/` |
-| `gUnk_08728208` | different | `0x728208` | `0x728264` | `0x4AF3D4` | `0x118` | 1, 3, 3, 4, 1, 0 | 4 | regional payload differs |
+| `gUnk_08728208` | `0x4AE370` | `0x728208` | `0x728264` | `0x4AF3D4` | `0x118` | 1, 3, 3, 4, 1, 0 | 4 | rebuild, region-local: `graphics/regional_resource_08728208/` |
 | `gUnk_08728320` | `0x4AE488` | `0x728320` | `0x72837C` | `0x4AF4EC` | `0x105C` | 7, 21, 32, 107, 1, 0 | 21 | rebuild, four-region shared: `graphics/shared_resource_08728320/` |
 | `gUnk_0872937C` | `0x4AF4E4` | `0x72937C` | `0x7293D8` | `0x4B0548` | `0xE4` | 1, 3, 1, 3, 1, 0 | 3 | rebuild, four-region shared: `graphics/shared_resource_0872937c/` |
 | `gUnk_08729460` | `0x4AF5C8` | `0x729460` | `0x7294BC` | `0x4B062C` | `0x2A04` | 1, 3, 9, 330, 1, 0 | 3 | rebuild, four-region shared: `graphics/shared_resource_08729460/` |
@@ -62,7 +62,7 @@ as a shared payload.
 | `gUnk_08755154` | `0x4DB100` | `0x755154` | `0x7551B0` | `0x4DC670` | `0xDC` | 1, 1, 1, 4, 1, 0 | 1 | rebuild, four-region shared: `graphics/shared_resource_08755154/` |
 | `gUnk_0875B444` | different | `0x75B444` | `0x75B4A0` | `0x4E2960` | `0x3D4` | 6, 6, 1, 24, 1, 0 | 6 | regional payload differs |
 
-Generated records: 51 (42 rebuilt shared, 1 rebuilt regional, 0 unmanaged but four-region identical, 8 regionally different). Regenerate with:
+Generated records: 51 (42 rebuilt shared, 2 rebuilt regional, 0 unmanaged but four-region identical, 7 regionally different). Regenerate with:
 
 ```console
 make indexed-resource-archive-inventory
