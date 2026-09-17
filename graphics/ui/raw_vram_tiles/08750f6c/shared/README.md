@@ -1,4 +1,4 @@
-# Farm Status Harvest Sprite List palette
+# Farm Status Harvest Sprite List palette — BG bank 3
 
 `func_080645F0` copies this exact `0x20`-byte BGR555 palette record to
 `0x05000060` immediately after it has loaded the companion Harvest Sprite List

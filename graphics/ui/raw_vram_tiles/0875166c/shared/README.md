@@ -1,7 +1,8 @@
-# Farm Status Earnings Report native tiles
+# Farm Status Earnings Report tiles — BG slot `0x09C`
 
 `func_0806644C` begins the Farm Status Earnings Report screen.  It copies
-this complete `0x120`-byte record to BG character RAM at `0x06001380`; the
+this complete `0x120`-byte record to BG character RAM slot `0x09C`
+(`0x06001380`); the
 same screen immediately copies companion palette `gUnk_0875178C` to
 `0x05000040`.
 

@@ -71,7 +71,7 @@ PROFILES = {
         output_name="tiles.4bpp",
     ),
     "08750c8c": Profile(
-        name="gUnk_08750C8C",
+        name="FarmStatusEarningsReportTiles_0x150",
         offsets={"jp": 0x4D6C38, "us": 0x750C8C, "eu": 0x750CE8, "de": 0x4D81A8},
         length=0x1C0,
         sha256="2b7c39eab1900bb410cced0daa2ffd21055045e47ddcf99f318255775e77ec4f",
@@ -79,7 +79,7 @@ PROFILES = {
         output_name="tiles.4bpp",
     ),
     "087510ac": Profile(
-        name="gUnk_087510AC",
+        name="FarmStatusEarningsReportTiles_0x0A5",
         offsets={"jp": 0x4D7058, "us": 0x7510AC, "eu": 0x751108, "de": 0x4D85C8},
         length=0x120,
         sha256="c477e41b27535552a2455bf44fa3b970cd335c9e5c8fe920f46959f871438583",
@@ -87,7 +87,7 @@ PROFILES = {
         output_name="tiles.4bpp",
     ),
     "0875166c": Profile(
-        name="gUnk_0875166C",
+        name="FarmStatusEarningsReportTiles_0x09C",
         offsets={"jp": 0x4D7618, "us": 0x75166C, "eu": 0x7516C8, "de": 0x4D8B88},
         length=0x120,
         sha256="bbf625be269f793c6bbe13c09ac11bc6f851b41588f4439f921255a9cb15ce1a",
@@ -95,7 +95,7 @@ PROFILES = {
         output_name="tiles.4bpp",
     ),
     "087517ac": Profile(
-        name="gUnk_087517AC",
+        name="FarmStatusHarvestSpriteListTiles_0x09C",
         offsets={"jp": 0x4D7758, "us": 0x7517AC, "eu": 0x751808, "de": 0x4D8CC8},
         length=0x120,
         sha256="c7a0b84c724745c4430e04c21fa72ebca8a52e9b769c2190ae01c21be4f5d89e",
@@ -103,7 +103,7 @@ PROFILES = {
         output_name="tiles.4bpp",
     ),
     "0875178c": Profile(
-        name="gUnk_0875178C",
+        name="FarmStatusEarningsReportPaletteBank_2",
         offsets={"jp": 0x4D7738, "us": 0x75178C, "eu": 0x7517E8, "de": 0x4D8CA8},
         length=0x20,
         sha256="786cebe9ac9654a40caf028be177f840f8737b11fd1e5c6da5609f867ae48da4",
@@ -111,7 +111,7 @@ PROFILES = {
         output_name="palette.gbapal",
     ),
     "08750f8c": Profile(
-        name="gUnk_08750F8C",
+        name="FarmStatusHarvestSpriteListTiles_0x0A5",
         offsets={"jp": 0x4D6F38, "us": 0x750F8C, "eu": 0x750FE8, "de": 0x4D84A8},
         length=0x120,
         sha256="fc2bda977d99c32f7fe6f8e480a47193d891ff65946dcbbbba85162e4146a331",
@@ -119,7 +119,7 @@ PROFILES = {
         output_name="tiles.4bpp",
     ),
     "08750f6c": Profile(
-        name="gUnk_08750F6C",
+        name="FarmStatusHarvestSpriteListPaletteBank_3",
         offsets={"jp": 0x4D6F18, "us": 0x750F6C, "eu": 0x750FC8, "de": 0x4D8488},
         length=0x20,
         sha256="9985d2bb7b07b88d53543f5ab323df57ac3eb3402671d800405dfdf4f9c18237",
@@ -127,7 +127,7 @@ PROFILES = {
         output_name="palette.gbapal",
     ),
     "08750e4c": Profile(
-        name="gUnk_08750E4C",
+        name="FarmStatusHarvestSpriteListTiles_0x0AE",
         offsets={"jp": 0x4D6DF8, "us": 0x750E4C, "eu": 0x750EA8, "de": 0x4D8368},
         length=0x120,
         sha256="a3b99c81ab8bac0912cd6c7d928f34f9bb739630701489b284e7ebf8e7fd047d",

@@ -1,7 +1,8 @@
-# Farm Status Harvest Sprite List native tiles
+# Farm Status Harvest Sprite List tiles — BG slot `0x0AE`
 
 `func_080645F0` begins the Farm Status Harvest Sprite List screen.  It copies
-this complete `0x120`-byte record to BG character RAM at `0x060015C0`; the
+this complete `0x120`-byte record to BG character RAM slot `0x0AE`
+(`0x060015C0`); the
 same screen immediately copies the companion `gUnk_08750F6C` record to BG
 palette RAM at `0x05000060`.
 

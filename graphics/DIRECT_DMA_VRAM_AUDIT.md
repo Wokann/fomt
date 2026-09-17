@@ -26,14 +26,14 @@ different video-RAM locations.
 | `gUnk_08752F8C` | `0x80` | Existing Farm Status UI icon record 11 source. |
 | `gUnk_08750C4C` | `0x20` | Farm Status Harvest Sprite task UI tile PNG source; a complete 8x8 OBJ tile paired with `gUnk_08750C6C`. |
 | `gUnk_08750C6C` | `0x20` | Farm Status Harvest Sprite task UI tile BGR555 palette regenerated from the paired PNG source. |
-| `gUnk_08750C8C` | `0x1A0`, `0x1C0` | Managed complete `0x1C0` raw UI tile record; the shorter caller consumes its leading subrange. |
-| `gUnk_087510AC` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
-| `gUnk_0875166C` | `0x120` | Farm Status Earnings Report native tile record; paired BGR555 palette is `gUnk_0875178C`, while final layout remains unproven. |
-| `gUnk_0875178C` | `0x20` | Farm Status Earnings Report BGR555 palette record; paired with `gUnk_0875166C`. |
-| `gUnk_087517AC` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
-| `gUnk_08750F6C` | `0x20` | Farm Status Harvest Sprite List BGR555 palette record; paired with `gUnk_08750E4C`. |
-| `gUnk_08750F8C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
-| `gUnk_08750E4C` | `0x120` | Farm Status Harvest Sprite List native tile record; paired BGR555 palette is `gUnk_08750F6C`, while final layout remains unproven. |
+| `gUnk_08750C8C` | `0x1A0`, `0x1C0` | Farm Status Earnings Report native tiles at BG slot `0x150`; the shorter caller consumes its leading subrange. |
+| `gUnk_087510AC` | `0x120` | Farm Status Earnings Report native tiles at BG slot `0x0A5`; final layout unproven. |
+| `gUnk_0875166C` | `0x120` | Farm Status Earnings Report native tiles at BG slot `0x09C`; paired BGR555 palette is `gUnk_0875178C`, while final layout remains unproven. |
+| `gUnk_0875178C` | `0x20` | Farm Status Earnings Report BGR555 palette bank 2; paired with `gUnk_0875166C`. |
+| `gUnk_087517AC` | `0x120` | Farm Status Harvest Sprite List native tiles at BG slot `0x09C`; final layout unproven. |
+| `gUnk_08750F6C` | `0x20` | Farm Status Harvest Sprite List BGR555 palette bank 3; paired with `gUnk_08750E4C`. |
+| `gUnk_08750F8C` | `0x120` | Farm Status Harvest Sprite List native tiles at BG slot `0x0A5`; final layout unproven. |
+| `gUnk_08750E4C` | `0x120` | Farm Status Harvest Sprite List native tiles at BG slot `0x0AE`; paired BGR555 palette is `gUnk_08750F6C`, while final layout remains unproven. |
 | `gUnk_087511CC` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
 | `gUnk_0875154C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
 | `gUnk_0875130C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |

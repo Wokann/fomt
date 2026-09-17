@@ -1,4 +1,4 @@
-# Farm Status Earnings Report palette
+# Farm Status Earnings Report palette — BG bank 2
 
 `func_0806644C` copies this exact `0x20`-byte BGR555 palette record to
 `0x05000040` immediately after it has loaded companion Earnings Report tile
