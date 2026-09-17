@@ -61,7 +61,7 @@ regional pipeline before it can be treated as shared.
 | `gUnk_08755154` | `0x4DB100` | `0x755154` | `0x7551B0` | `0x4DC670` | `0xDC` | 1, 1, 1, 4, 1, 0 | 1 | unmanaged, four-region identical |
 | `gUnk_0875B444` | different | `0x75B444` | `0x75B4A0` | `0x4E2960` | `0x3D4` | 6, 6, 1, 24, 1, 0 | 6 | regional payload differs |
 
-Generated records: 51. Regenerate with:
+Generated records: 51 (8 rebuilt, 34 unmanaged but four-region identical, 9 regionally different). Regenerate with:
 
 ```console
 make indexed-resource-archive-inventory

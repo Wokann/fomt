@@ -24,6 +24,17 @@ grids:
   item/UI resource sources with native selector and OAM descriptors.
 - [Small companion OAM resources](small_companion_archive/full/) — sixteen
   complete indexed-PNG OAM resource sources with native descriptors.
+- [Small shared UI OAM resources](ui/small_resource_archive/full/) — three
+  complete indexed-PNG OAM source views with one preserved native empty slot.
+- [Cooking UI OAM resources](ui/cooking_resource_archive/full/) — two complete
+  indexed-PNG OAM source views with one preserved native empty slot.
+- [Menu UI OAM resources](ui/menu_resource_archive/full/) — eight complete
+  indexed-PNG OAM source views with native selector and OAM descriptors.
+- [Large shared OAM resources](large_resource_archive/full/) — 102 complete
+  indexed-PNG OAM source views with neutral physical group names.
+- [Shared OAM resource `08725DA0`](shared_resource_08725da0/full/) — six
+  complete indexed-PNG OAM source views; the original address is retained until
+  the gameplay semantics are independently established.
 - [Records-screen task icons](ui/records_minigame/shared/) — seven complete
   16-by-16 icons with their native palettes.
 

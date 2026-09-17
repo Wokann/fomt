@@ -79,16 +79,22 @@ def write_markdown(output: Path, rows: list[tuple[str, int, int, Archive, dict[s
         "| Label | JP | US | EU | DE | Length | Header counts | Entries | Source status |",
         "| --- | --- | --- | --- | --- | ---: | --- | ---: | --- |",
     ]
+    rebuilt = 0
+    identical_unmanaged = 0
+    regional = 0
     for name, de_offset, _declared, archive, matches in rows:
         counts = ", ".join(str(value) for value in archive.section_counts)
         identical = all(matches[region] >= 0 for region in ("jp", "us", "eu", "de"))
         source = REBUILT_SOURCES.get(name)
         if source:
             status = f"rebuild: `{source}`"
+            rebuilt += 1
         elif identical:
             status = "unmanaged, four-region identical"
+            identical_unmanaged += 1
         else:
             status = "regional payload differs"
+            regional += 1
         lines.append(
             f"| `{name}` | {location(matches['jp'])} | {location(matches['us'])} | "
             f"{location(matches['eu'])} | `0x{de_offset:X}` | `0x{archive.encoded_length:X}` | "
@@ -96,7 +102,11 @@ def write_markdown(output: Path, rows: list[tuple[str, int, int, Archive, dict[s
         )
     lines.extend([
         "",
-        f"Generated records: {len(rows)}. Regenerate with:",
+        (
+            f"Generated records: {len(rows)} ({rebuilt} rebuilt, "
+            f"{identical_unmanaged} unmanaged but four-region identical, "
+            f"{regional} regionally different). Regenerate with:"
+        ),
         "",
         "```console",
         "make indexed-resource-archive-inventory",
