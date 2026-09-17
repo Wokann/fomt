@@ -119,6 +119,12 @@ surrounding archive headers, OAM records, palettes, tables, and unhandled bytes
 remain direct ROM data until they have a
 corresponding verified source/rebuild path.
 
+The direct-DMA raw UI profiles follow the bounded post-link route as well.  A
+profile rebuilds one proven native 4bpp or BGR555 interval and the final ROM
+recipe replaces only that interval after link.  It is deliberately not also
+included by `data_0813B288.s`: one resource range has one authoritative
+delivery path.
+
 ## Unclassified ROM ranges
 
 Assembly still contains many direct `baserom_*.gba` includes.  The inventory
