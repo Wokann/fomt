@@ -4616,6 +4616,10 @@ ifneq (,$(filter gfx-farm-house-tilemaps gfx-farm-house-tilemaps-test gfx-farm-h
 ALL_DEPS :=
 endif
 
+ifneq (,$(filter gfx-portraits gfx-portraits-test gfx-portraits-all gfx-portraits-edit-test,$(MAKECMDGOALS)))
+ALL_DEPS :=
+endif
+
 ifneq (clean,$(MAKECMDGOALS))
 ifeq (unpack-coverage-inventory,$(strip $(MAKECMDGOALS)))
 # This target needs only the Python audit tool, never the default ROM build.
