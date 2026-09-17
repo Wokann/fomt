@@ -31777,8 +31777,241 @@ func_080AD7AC:
     .global func_080AD7B0
     .thumb_func
 func_080AD7B0:
-    .incbin "baserom_jp.gba", 0xAD7B0, (0xAD978 - 0xAD7B0)
-    jp_code_809_func func_080ADF40, 0xAD978, 0xADF10
+    push {r4, r5, r6, r7, lr}
+    mov r7, sl
+    mov r6, sb
+    mov r5, r8
+    push {r5, r6, r7}
+    sub sp, #0x28
+    adds r7, r0, #0
+    mov r8, r1
+    mov sl, r2
+    movs r0, #0
+    str r0, [sp, #0x24]
+    adds r0, r7, #0
+    bl func_080AD978
+    adds r6, r0, #0
+    ldr r0, [r7]
+    cmp r0, #2
+    bne .Ljp_080AD7F6
+    mov r1, sl
+    ldr r0, [r1]
+    ldr r1, [r0, #0x14]
+    mov r0, sl
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Ljp_080AD7EA
+    movs r6, #0
+    b .Ljp_080AD81A
+.Ljp_080AD7EA:
+    movs r0, #1
+    str r0, [r7]
+    b .Ljp_080AD81A
+.Ljp_080AD7F0:
+    movs r0, #2
+    str r0, [r7]
+    b .Ljp_080AD952
+.Ljp_080AD7F6:
+    movs r4, #0
+    mov r1, sl
+    ldr r0, [r1]
+    ldr r1, [r0, #0xc]
+    mov r0, sl
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    lsrs r1, r0, #0x18
+    ldrh r0, [r7, #4]
+    cmp r0, #0
+    bne .Ljp_080AD812
+    movs r0, #1
+    orrs r1, r0
+.Ljp_080AD812:
+    cmp r1, #0
+    beq .Ljp_080AD818
+    movs r4, #1
+.Ljp_080AD818:
+    str r4, [sp, #0x24]
+.Ljp_080AD81A:
+    ldr r5, [r7, #0x10]
+    cmp r5, #0
+    bne .Ljp_080AD822
+    ldr r5, [r7, #8]
+.Ljp_080AD822:
+    movs r0, #0
+    mov sb, r0
+    b .Ljp_080AD930
+.Ljp_080AD828:
+    ldrb r2, [r5]
+    adds r5, #1
+    cmp r2, #0xd
+    bhi .Ljp_080AD878
+    lsls r0, r2, #2
+    ldr r1, .Ljp_080AD83C
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+    .align 2, 0
+.Ljp_080AD83C: .4byte .Ljp_080AD840
+.Ljp_080AD840:
+    .4byte .Ljp_080AD8E6
+    .4byte .Ljp_080AD878
+    .4byte .Ljp_080AD878
+    .4byte .Ljp_080AD878
+    .4byte .Ljp_080AD878
+    .4byte .Ljp_080AD91C
+    .4byte .Ljp_080AD878
+    .4byte .Ljp_080AD878
+    .4byte .Ljp_080AD878
+    .4byte .Ljp_080AD878
+    .4byte .Ljp_080AD900
+    .4byte .Ljp_080AD878
+    .4byte .Ljp_080AD908
+    .4byte .Ljp_080AD8F8
+.Ljp_080AD878:
+    cmp r2, #0x1f
+    bls .Ljp_080AD930
+    mov r1, sb
+    orrs r1, r2
+    mov sb, r1
+    mov r1, r8
+    ldr r0, [r1]
+    ldr r2, [r0, #0xc]
+    mov r0, r8
+    mov r1, sb
+    bl _call_via_r2
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Ljp_080AD89C
+    movs r0, #0
+    mov sb, r0
+    b .Ljp_080AD914
+.Ljp_080AD89C:
+    ldr r2, [r7, #0xc]
+    cmp r2, #0
+    beq .Ljp_080AD8DE
+    ldr r0, [r7, #0x10]
+    cmp r0, #0
+    bne .Ljp_080AD8DE
+    ldr r1, [r2]
+    mov r0, sp
+    ldr r3, [r1, #0xc]
+    adds r1, r2, #0
+    mov r2, sb
+    bl _call_via_r3
+    mov r0, sp
+    ldrb r0, [r0]
+    cmp r0, #0
+    beq .Ljp_080AD8D6
+    movs r1, #0
+    mov sb, r1
+    adds r4, r7, #0
+    adds r4, #0x14
+    add r1, sp, #4
+    adds r0, r4, #0
+    bl strcpy
+    str r5, [r7, #8]
+    str r4, [r7, #0x10]
+    adds r5, r4, #0
+    b .Ljp_080AD930
+.Ljp_080AD8D6:
+    mov r0, sb
+    lsls r0, r0, #8
+    mov sb, r0
+    b .Ljp_080AD930
+.Ljp_080AD8DE:
+    mov r1, sb
+    lsls r1, r1, #8
+    mov sb, r1
+    b .Ljp_080AD930
+.Ljp_080AD8E6:
+    ldr r0, [r7, #0x10]
+    cmp r0, #0
+    beq .Ljp_080AD8F4
+    movs r0, #0
+    str r0, [r7, #0x10]
+    ldr r5, [r7, #8]
+    b .Ljp_080AD930
+.Ljp_080AD8F4:
+    movs r5, #0
+    b .Ljp_080AD952
+.Ljp_080AD8F8:
+    mov r1, r8
+    ldr r0, [r1]
+    ldr r1, [r0, #0x10]
+    b .Ljp_080AD90E
+.Ljp_080AD900:
+    mov r1, r8
+    ldr r0, [r1]
+    ldr r1, [r0, #0x14]
+    b .Ljp_080AD90E
+.Ljp_080AD908:
+    mov r1, r8
+    ldr r0, [r1]
+    ldr r1, [r0, #0x18]
+.Ljp_080AD90E:
+    mov r0, r8
+    bl _call_via_r1
+.Ljp_080AD914:
+    cmp r6, #0
+    beq .Ljp_080AD930
+    subs r6, #1
+    b .Ljp_080AD930
+.Ljp_080AD91C:
+    mov r1, sl
+    ldr r0, [r1]
+    ldr r1, [r0, #0x10]
+    mov r0, sl
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Ljp_080AD930
+    b .Ljp_080AD7F0
+.Ljp_080AD930:
+    cmp r5, #0
+    beq .Ljp_080AD952
+    ldr r0, [sp, #0x24]
+    cmp r0, #0
+    bne .Ljp_080AD93E
+    cmp r6, #0
+    beq .Ljp_080AD952
+.Ljp_080AD93E:
+    mov r1, r8
+    ldr r0, [r1]
+    ldr r1, [r0, #0x1c]
+    mov r0, r8
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Ljp_080AD952
+    b .Ljp_080AD828
+.Ljp_080AD952:
+    ldr r0, [r7, #0x10]
+    cmp r0, #0
+    beq .Ljp_080AD95C
+    str r5, [r7, #0x10]
+    b .Ljp_080AD964
+.Ljp_080AD95C:
+    str r5, [r7, #8]
+    cmp r5, #0
+    bne .Ljp_080AD964
+    str r5, [r7]
+.Ljp_080AD964:
+    ldr r0, [r7]
+    add sp, #0x28
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
+
+    .global func_080AD978
+    .thumb_func
+func_080AD978:
+    .incbin "baserom_jp.gba", 0xAD978, (0xADF10 - 0xAD978)
     jp_code_809_func func_080AE4D8, 0xADF10, 0xAE104
     jp_code_809_func func_080AE6CC, 0xAE104, 0xB0378
     jp_code_809_func func_080B0934, 0xB0378, 0xB03B4
