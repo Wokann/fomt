@@ -62031,12 +62031,49 @@ func_080BC288: @ 0x080BBCBC
 .Ljp_080BC2C8: .4byte 0x00000AEC
     .global func_080BC2CC
     .thumb_func
-func_080BC2CC:
-    .incbin "baserom_jp.gba", 0xBC2CC, (0xBC2F4 - 0xBC2CC)
+func_080BC2CC: @ 0x080BC2CC
+	push {r4, r5, lr}
+	adds r4, r0, #0
+	adds r5, r1, #0
+	ldr r0, .Ljp_080BC2EC @ =gUnk_080E7958
+	str r0, [r4]
+	ldr r0, .Ljp_080BC2F0 @ =0x00000B78
+	bl __builtin_new
+	adds r1, r5, #0
+	bl func_080B3CC8
+	str r0, [r4, #4]
+	adds r0, r4, #0
+	pop {r4, r5}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.Ljp_080BC2EC: .4byte gUnk_080E7958
+.Ljp_080BC2F0: .4byte 0x00000B78
     .global func_080BC2F4
     .thumb_func
-func_080BC2F4:
-    .incbin "baserom_jp.gba", 0xBC2F4, (0xBC324 - 0xBC2F4)
+func_080BC2F4: @ 0x080BC2F4
+	push {r4, r5, lr}
+	adds r4, r0, #0
+	adds r5, r1, #0
+	ldr r0, .Ljp_080BC320 @ =gUnk_080E7958
+	str r0, [r4]
+	ldr r1, [r4, #4]
+	cmp r1, #0
+	beq .Ljp_080BC310
+	ldr r0, [r1, #4]
+	ldr r2, [r0, #8]
+	adds r0, r1, #0
+	movs r1, #3
+	bl _call_via_r2
+.Ljp_080BC310:
+	adds r0, r4, #0
+	adds r1, r5, #0
+	bl func_080007EC
+	pop {r4, r5}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_080BC320: .4byte gUnk_080E7958
     .global func_080BC8F0
     .thumb_func
 func_080BC8F0: @ 0x080BC324

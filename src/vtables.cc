@@ -7538,6 +7538,13 @@ extern RawVTableFunction const vtable_unk_080E794C[]
         nullptr,
         nullptr,
         func_080E4940,
+    };
+
+// JP constructors at 0x080BC2CC and 0x080BC2F4 take this physical fourth
+// slot directly.  Keep it as a separately relocatable label rather than
+// describing it as an offset into the preceding three-slot object.
+extern RawVTableFunction const gUnk_080E7958[]
+    SECTION(".rodata.vtable_850c") = {
         nullptr,
     };
 #else
