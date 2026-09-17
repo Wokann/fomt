@@ -51,6 +51,9 @@ PROFILES = {
     "cooking-ui": ArchiveProfile(
         (1, 3, 3, 40, 1, 0, 4), (2,), "cooking UI resource"
     ),
+    "menu-ui": ArchiveProfile(
+        (8, 8, 1, 32, 1, 0, 8), (), "menu UI resource"
+    ),
 }
 ACTIVE_PROFILE = PROFILES["common"]
 

@@ -281,6 +281,19 @@ COOKING_UI_RESOURCE_ARCHIVE_OFFSET_US := 0x754674
 COOKING_UI_RESOURCE_ARCHIVE_OFFSET_EU := 0x7546D0
 COOKING_UI_RESOURCE_ARCHIVE_OFFSET_DE := 0x4DBB90
 COOKING_UI_RESOURCE_ARCHIVE_OFFSET := $(COOKING_UI_RESOURCE_ARCHIVE_OFFSET_$(GAME_REGION))
+# This eight-entry menu archive is constructed beside the menu entry-ID table.
+# Its native selection, descriptor, OAM, tile and palette tables remain fixed.
+MENU_UI_RESOURCE_ARCHIVE_TOOL := tools/common_resource_archive.py
+MENU_UI_RESOURCE_ARCHIVE_SOURCE_DIR := graphics/ui/menu_resource_archive
+MENU_UI_RESOURCE_ARCHIVE_SOURCES := $(wildcard $(MENU_UI_RESOURCE_ARCHIVE_SOURCE_DIR)/full/*.png)
+MENU_UI_RESOURCE_ARCHIVE_OUTPUT := $(BUILD_DIR)/graphics/ui/menu_resource_archive/menu_ui_resource_archive.bin
+MENU_UI_RESOURCE_ARCHIVE_LENGTH := 0x504
+MENU_UI_RESOURCE_ARCHIVE_SHA256 := 294385013bada21051d9c04acea32fc4880318eef8dc59d2b9158cea7a978c8c
+MENU_UI_RESOURCE_ARCHIVE_OFFSET_JP := 0x4A4910
+MENU_UI_RESOURCE_ARCHIVE_OFFSET_US := 0x71E7A8
+MENU_UI_RESOURCE_ARCHIVE_OFFSET_EU := 0x71E804
+MENU_UI_RESOURCE_ARCHIVE_OFFSET_DE := 0x4A5974
+MENU_UI_RESOURCE_ARCHIVE_OFFSET := $(MENU_UI_RESOURCE_ARCHIVE_OFFSET_$(GAME_REGION))
 CLOCK_FONT_TOOL := tools/clock_font.py
 CLOCK_FONT_US_EU_SOURCE := graphics/ui/clock_font/us_eu/glyph_indices.png
 CLOCK_FONT_DE_SOURCE := graphics/ui/clock_font/de/glyph_indices.png
@@ -940,6 +953,14 @@ $(COOKING_UI_RESOURCE_ARCHIVE_OUTPUT): $(COOKING_UI_RESOURCE_ARCHIVE_SOURCES) $(
 	  --sha256 $(COOKING_UI_RESOURCE_ARCHIVE_SHA256) \
 	  build --source-dir $(COOKING_UI_RESOURCE_ARCHIVE_SOURCE_DIR) --output $@
 
+$(MENU_UI_RESOURCE_ARCHIVE_OUTPUT): $(MENU_UI_RESOURCE_ARCHIVE_SOURCES) $(MENU_UI_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM)
+	@mkdir -p $(dir $@)
+	@$(PYTHON) $(MENU_UI_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM) --profile menu-ui \
+	  --offset $(MENU_UI_RESOURCE_ARCHIVE_OFFSET) \
+	  --length $(MENU_UI_RESOURCE_ARCHIVE_LENGTH) \
+	  --sha256 $(MENU_UI_RESOURCE_ARCHIVE_SHA256) \
+	  build --source-dir $(MENU_UI_RESOURCE_ARCHIVE_SOURCE_DIR) --output $@
+
 $(FARM_STATUS_WINTER_TILES_BIN): $(FARM_STATUS_WINTER_TILES_SOURCE) $(TILE_GRID_TOOL)
 	@mkdir -p $(dir $@)
 	@$(PYTHON) $(TILE_GRID_TOOL) build --source $(FARM_STATUS_WINTER_TILES_SOURCE) --tiles $@ --palette $(BUILD_DIR)/graphics/ui/farm_status/winter_palette0.gbapal
@@ -1157,6 +1178,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 .PHONY: gfx-map-resources-reference gfx-map-resources-edit-test unpack-inventory copy-ram-inventory gfx-raw-vram-tiles-ui-build
 .PHONY: gfx-small-ui-resource-archive gfx-small-ui-resource-archive-test gfx-small-ui-resource-archive-all gfx-small-ui-resource-archive-patch-test gfx-small-ui-resource-archive-edit-test
 .PHONY: gfx-cooking-ui-resource-archive gfx-cooking-ui-resource-archive-test gfx-cooking-ui-resource-archive-all gfx-cooking-ui-resource-archive-patch-test gfx-cooking-ui-resource-archive-edit-test
+.PHONY: gfx-menu-ui-resource-archive gfx-menu-ui-resource-archive-test gfx-menu-ui-resource-archive-all gfx-menu-ui-resource-archive-patch-test gfx-menu-ui-resource-archive-edit-test
 .PHONY: gfx-common-resource-archive gfx-common-resource-archive-test gfx-common-resource-archive-all gfx-common-resource-archive-patch-test gfx-common-resource-archive-edit-test
 .PHONY: gfx-small-companion-archive gfx-small-companion-archive-test gfx-small-companion-archive-all gfx-small-companion-archive-patch-test gfx-small-companion-archive-edit-test
 .PHONY: gfx-raw-vram-tiles-ui
@@ -1710,6 +1732,35 @@ gfx-cooking-ui-resource-archive-edit-test: $(COOKING_UI_RESOURCE_ARCHIVE_TOOL) $
 	  --offset 0x4DA620 --length $(COOKING_UI_RESOURCE_ARCHIVE_LENGTH) \
 	  --sha256 $(COOKING_UI_RESOURCE_ARCHIVE_SHA256) edit-test \
 	  --source-dir $(COOKING_UI_RESOURCE_ARCHIVE_SOURCE_DIR)
+gfx-menu-ui-resource-archive: $(MENU_UI_RESOURCE_ARCHIVE_OUTPUT)
+gfx-menu-ui-resource-archive-test: gfx-menu-ui-resource-archive $(MENU_UI_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM)
+	@$(PYTHON) $(MENU_UI_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM) --profile menu-ui \
+	  --offset $(MENU_UI_RESOURCE_ARCHIVE_OFFSET) \
+	  --length $(MENU_UI_RESOURCE_ARCHIVE_LENGTH) \
+	  --sha256 $(MENU_UI_RESOURCE_ARCHIVE_SHA256) \
+	  verify --source-dir $(MENU_UI_RESOURCE_ARCHIVE_SOURCE_DIR)
+gfx-menu-ui-resource-archive-all:
+	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-menu-ui-resource-archive-test
+	@$(MAKE) --no-print-directory GAME_REGION=US gfx-menu-ui-resource-archive-test
+	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-menu-ui-resource-archive-test
+	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-menu-ui-resource-archive-test
+gfx-menu-ui-resource-archive-patch-test: gfx-menu-ui-resource-archive-all $(MENU_UI_RESOURCE_ARCHIVE_TOOL)
+	@$(PYTHON) $(MENU_UI_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --profile menu-ui \
+	  --offset 0x4A4910 --length $(MENU_UI_RESOURCE_ARCHIVE_LENGTH) \
+	  --sha256 $(MENU_UI_RESOURCE_ARCHIVE_SHA256) patch-test \
+	  --archive jp build/jp/graphics/ui/menu_resource_archive/menu_ui_resource_archive.bin \
+	  --archive us build/us/graphics/ui/menu_resource_archive/menu_ui_resource_archive.bin \
+	  --archive eu build/eu/graphics/ui/menu_resource_archive/menu_ui_resource_archive.bin \
+	  --archive de build/de/graphics/ui/menu_resource_archive/menu_ui_resource_archive.bin \
+	  --all-rom jp baserom_jp.gba 0x4A4910 \
+	  --all-rom us baserom_us.gba 0x71E7A8 \
+	  --all-rom eu baserom_eu.gba 0x71E804 \
+	  --all-rom de baserom_de.gba 0x4A5974
+gfx-menu-ui-resource-archive-edit-test: $(MENU_UI_RESOURCE_ARCHIVE_TOOL) $(MENU_UI_RESOURCE_ARCHIVE_SOURCES) baserom_jp.gba
+	@$(PYTHON) $(MENU_UI_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --profile menu-ui \
+	  --offset 0x4A4910 --length $(MENU_UI_RESOURCE_ARCHIVE_LENGTH) \
+	  --sha256 $(MENU_UI_RESOURCE_ARCHIVE_SHA256) edit-test \
+	  --source-dir $(MENU_UI_RESOURCE_ARCHIVE_SOURCE_DIR)
 gfx-farm-status-winter: $(FARM_STATUS_WINTER_TILES_BIN) $(FARM_STATUS_WINTER_PACKED_BIN)
 gfx-farm-status-winter-test: gfx-farm-status-winter $(BASE_ROM) $(GFX_RANGE_VERIFY)
 	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FARM_STATUS_WINTER_OFFSET) --input $(FARM_STATUS_WINTER_PACKED_BIN) --sha256 $(FARM_STATUS_WINTER_STREAM_SHA256)
@@ -1904,10 +1955,12 @@ resource-archive-audit: $(INDEXED_RESOURCE_ARCHIVE_TOOL) $(COMMON_RESOURCE_ARCHI
 	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_TOOL) compare --rom jp baserom_jp.gba 0x3ED1BC --rom us baserom_us.gba 0x667060 --rom eu baserom_eu.gba 0x6670BC --rom de baserom_de.gba 0x3EE0FC
 	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_TOOL) compare --rom jp baserom_jp.gba 0x4DABB8 --rom us baserom_us.gba 0x754C0C --rom eu baserom_eu.gba 0x754C68 --rom de baserom_de.gba 0x4DC128
 	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_TOOL) compare --rom jp baserom_jp.gba 0x4DA620 --rom us baserom_us.gba 0x754674 --rom eu baserom_eu.gba 0x7546D0 --rom de baserom_de.gba 0x4DBB90
+	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_TOOL) compare --rom jp baserom_jp.gba 0x4A4910 --rom us baserom_us.gba 0x71E7A8 --rom eu baserom_eu.gba 0x71E804 --rom de baserom_de.gba 0x4A5974
 	@$(PYTHON) $(COMMON_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --offset 0x3ED9FC --length $(COMMON_RESOURCE_ARCHIVE_LENGTH) --sha256 $(COMMON_RESOURCE_ARCHIVE_SHA256) audit
 	@$(PYTHON) $(SMALL_COMPANION_ARCHIVE_TOOL) baserom_jp.gba --profile small-companion --offset 0x3ED1BC --length $(SMALL_COMPANION_ARCHIVE_LENGTH) --sha256 $(SMALL_COMPANION_ARCHIVE_SHA256) audit
 	@$(PYTHON) $(SMALL_UI_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --profile small-ui --offset 0x4DABB8 --length $(SMALL_UI_RESOURCE_ARCHIVE_LENGTH) --sha256 $(SMALL_UI_RESOURCE_ARCHIVE_SHA256) audit
 	@$(PYTHON) $(COOKING_UI_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --profile cooking-ui --offset 0x4DA620 --length $(COOKING_UI_RESOURCE_ARCHIVE_LENGTH) --sha256 $(COOKING_UI_RESOURCE_ARCHIVE_SHA256) audit
+	@$(PYTHON) $(MENU_UI_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --profile menu-ui --offset 0x4A4910 --length $(MENU_UI_RESOURCE_ARCHIVE_LENGTH) --sha256 $(MENU_UI_RESOURCE_ARCHIVE_SHA256) audit
 	@$(PYTHON) $(FARM_STATUS_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --offset 0x4D977C --length $(FARM_STATUS_RESOURCE_ARCHIVE_LENGTH) --sha256 $(FARM_STATUS_RESOURCE_ARCHIVE_SHA256) audit
 map-terrain-audit: $(MAP_TERRAIN_AUDIT_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(MAP_TERRAIN_AUDIT_TOOL) $(MAP_RESOURCES_ROM_ARGS) --csv $(BUILD_DIR)/map_terrain_audit.csv
@@ -1961,7 +2014,7 @@ tile-grid-test:
 	@$(MAKE) --no-print-directory GAME_REGION=EU tile-grid-region-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE tile-grid-region-test
 
-gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui gfx-ui-scene-080a2ba4 gfx-ui-scene-08077810 gfx-ui-scene-080ae7d0 gfx-ui-scene-080b7164 gfx-ui-scene-080c160c gfx-ui-scene-080bcfac gfx-ui-scene-080b55d0-aux gfx-ui-scene-080b55d0-main gfx-raw-vram-tiles-08697920 gfx-raw-vram-tiles-field gfx-raw-vram-tiles-field-leading gfx-raw-vram-tiles-ui-build gfx-ui-scene-08054f40-tiles gfx-ui-scene-0805ab08-tiles gfx-farm-house-visual gfx-farm-house-tilemaps gfx-farm-house-palettes gfx-farm-status gfx-farm-status-resource-archive gfx-common-resource-archive gfx-small-companion-archive gfx-small-ui-resource-archive gfx-cooking-ui-resource-archive gfx-farm-status-tilemaps gfx-farm-status-secondary-tilemaps gfx-farm-status-exterior-styles gfx-farm-status-selector-icon gfx-clock-font gfx-farm-status-creature-icons gfx-seasonal-nonwinter gfx-seasonal-winter gfx-intro-background gfx-intro-objects gfx-intro-startup-tilemaps gfx-intro-startup-visual gfx-intro-indexed-archive gfx-intro-small-archive gfx-map-resources gfx-records-minigame gfx-animal-festival-icons
+gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui gfx-ui-scene-080a2ba4 gfx-ui-scene-08077810 gfx-ui-scene-080ae7d0 gfx-ui-scene-080b7164 gfx-ui-scene-080c160c gfx-ui-scene-080bcfac gfx-ui-scene-080b55d0-aux gfx-ui-scene-080b55d0-main gfx-raw-vram-tiles-08697920 gfx-raw-vram-tiles-field gfx-raw-vram-tiles-field-leading gfx-raw-vram-tiles-ui-build gfx-ui-scene-08054f40-tiles gfx-ui-scene-0805ab08-tiles gfx-farm-house-visual gfx-farm-house-tilemaps gfx-farm-house-palettes gfx-farm-status gfx-farm-status-resource-archive gfx-common-resource-archive gfx-small-companion-archive gfx-small-ui-resource-archive gfx-cooking-ui-resource-archive gfx-menu-ui-resource-archive gfx-farm-status-tilemaps gfx-farm-status-secondary-tilemaps gfx-farm-status-exterior-styles gfx-farm-status-selector-icon gfx-clock-font gfx-farm-status-creature-icons gfx-seasonal-nonwinter gfx-seasonal-winter gfx-intro-background gfx-intro-objects gfx-intro-startup-tilemaps gfx-intro-startup-visual gfx-intro-indexed-archive gfx-intro-small-archive gfx-map-resources gfx-records-minigame gfx-animal-festival-icons
 
 # Full graphics gate for assets that have an authoritative source/rebuild
 # path.  It intentionally does not link a ROM: the project-wide link is
@@ -2034,6 +2087,9 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-cooking-ui-resource-archive-all
 	@$(MAKE) --no-print-directory gfx-cooking-ui-resource-archive-patch-test
 	@$(MAKE) --no-print-directory gfx-cooking-ui-resource-archive-edit-test
+	@$(MAKE) --no-print-directory gfx-menu-ui-resource-archive-all
+	@$(MAKE) --no-print-directory gfx-menu-ui-resource-archive-patch-test
+	@$(MAKE) --no-print-directory gfx-menu-ui-resource-archive-edit-test
 	@$(MAKE) --no-print-directory gfx-farm-status-winter-all
 	@$(MAKE) --no-print-directory gfx-farm-status-winter-edit-test
 	@$(MAKE) --no-print-directory gfx-seasonal-nonwinter-all
@@ -2141,7 +2197,7 @@ $(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGIO
 	$(call FOMT_COMPILE_CPP,)
 
 # ROM from ELF
-%.gba: %.elf $(MAP_RESOURCES_STAMP) $(UI_SCENE_080A2BA4_STAMP) $(UI_SCENE_080AE7D0_STAMP) $(UI_SCENE_080B7164_STAMP) $(UI_SCENE_080B7164_PALETTE_BIN) $(UI_SCENE_080C160C_STAMP) $(UI_SCENE_080C160C_PALETTE_BIN) $(UI_SCENE_080BCFAC_STAMP) $(UI_SCENE_080BCFAC_PALETTE_BIN) $(UI_SCENE_080B55D0_AUX_STAMP) $(UI_SCENE_080B55D0_MAIN_STAMP) $(RAW_VRAM_TILES_08697920_STAMP) $(RAW_VRAM_TILES_08698E14_STAMP) $(RAW_VRAM_TILES_0869A0A4_STAMP) $(RAW_VRAM_TILES_086D5508_STAMP) $(RAW_VRAM_TILES_086D6698_STAMP) $(foreach profile,$(RAW_VRAM_UI_PROFILES),$(RAW_VRAM_TILES_$(profile)_STAMP)) $(UI_SCENE_08054F40_TILES_STAMP) $(UI_SCENE_0805AB08_TILES_STAMP) $(FARM_HOUSE_VISUAL_STAMP) $(FARM_HOUSE_TILEMAP_STAMP) $(FARM_HOUSE_PALETTE_STAMP) $(FARM_STATUS_RESOURCE_ARCHIVE_OUTPUT) $(COMMON_RESOURCE_ARCHIVE_OUTPUT) $(SMALL_COMPANION_ARCHIVE_OUTPUT) $(SMALL_UI_RESOURCE_ARCHIVE_OUTPUT) $(COOKING_UI_RESOURCE_ARCHIVE_OUTPUT)
+%.gba: %.elf $(MAP_RESOURCES_STAMP) $(UI_SCENE_080A2BA4_STAMP) $(UI_SCENE_080AE7D0_STAMP) $(UI_SCENE_080B7164_STAMP) $(UI_SCENE_080B7164_PALETTE_BIN) $(UI_SCENE_080C160C_STAMP) $(UI_SCENE_080C160C_PALETTE_BIN) $(UI_SCENE_080BCFAC_STAMP) $(UI_SCENE_080BCFAC_PALETTE_BIN) $(UI_SCENE_080B55D0_AUX_STAMP) $(UI_SCENE_080B55D0_MAIN_STAMP) $(RAW_VRAM_TILES_08697920_STAMP) $(RAW_VRAM_TILES_08698E14_STAMP) $(RAW_VRAM_TILES_0869A0A4_STAMP) $(RAW_VRAM_TILES_086D5508_STAMP) $(RAW_VRAM_TILES_086D6698_STAMP) $(foreach profile,$(RAW_VRAM_UI_PROFILES),$(RAW_VRAM_TILES_$(profile)_STAMP)) $(UI_SCENE_08054F40_TILES_STAMP) $(UI_SCENE_0805AB08_TILES_STAMP) $(FARM_HOUSE_VISUAL_STAMP) $(FARM_HOUSE_TILEMAP_STAMP) $(FARM_HOUSE_PALETTE_STAMP) $(FARM_STATUS_RESOURCE_ARCHIVE_OUTPUT) $(COMMON_RESOURCE_ARCHIVE_OUTPUT) $(SMALL_COMPANION_ARCHIVE_OUTPUT) $(SMALL_UI_RESOURCE_ARCHIVE_OUTPUT) $(COOKING_UI_RESOURCE_ARCHIVE_OUTPUT) $(MENU_UI_RESOURCE_ARCHIVE_OUTPUT)
 	$(OBJCOPY) -O binary $< $@
 	@$(PYTHON) $(MAP_RESOURCES_TOOL) patch --region $(MAP_RESOURCES_REGION) --rom $@ \
 	  --archive $(MAP_RESOURCES_OUTPUT_DIR)/map_visual_archive.0x70 $(MAP_RESOURCES_ALL_ROM_ARGS)
@@ -2201,6 +2257,11 @@ $(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGIO
 	  --length $(COOKING_UI_RESOURCE_ARCHIVE_LENGTH) \
 	  --sha256 $(COOKING_UI_RESOURCE_ARCHIVE_SHA256) \
 	  patch --target $@ --archive $(COOKING_UI_RESOURCE_ARCHIVE_OUTPUT)
+	@$(PYTHON) $(MENU_UI_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM) --profile menu-ui \
+	  --offset $(MENU_UI_RESOURCE_ARCHIVE_OFFSET) \
+	  --length $(MENU_UI_RESOURCE_ARCHIVE_LENGTH) \
+	  --sha256 $(MENU_UI_RESOURCE_ARCHIVE_SHA256) \
+	  patch --target $@ --archive $(MENU_UI_RESOURCE_ARCHIVE_OUTPUT)
 	@$(PYTHON) $(COMMON_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM) \
 	  --offset $(COMMON_RESOURCE_ARCHIVE_OFFSET) \
 	  --length $(COMMON_RESOURCE_ARCHIVE_LENGTH) \
@@ -2328,6 +2389,10 @@ ALL_DEPS :=
 endif
 
 ifneq (,$(filter gfx-cooking-ui-resource-archive gfx-cooking-ui-resource-archive-test gfx-cooking-ui-resource-archive-all gfx-cooking-ui-resource-archive-patch-test gfx-cooking-ui-resource-archive-edit-test,$(MAKECMDGOALS)))
+ALL_DEPS :=
+endif
+
+ifneq (,$(filter gfx-menu-ui-resource-archive gfx-menu-ui-resource-archive-test gfx-menu-ui-resource-archive-all gfx-menu-ui-resource-archive-patch-test gfx-menu-ui-resource-archive-edit-test,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 
