@@ -43535,7 +43535,29 @@ func_080B3948: @ 0x080B337C
 	.align 2, 0
 .Ljp_080B33BC: .4byte 0x0000085C
 .Ljp_080B33C0: .4byte 0x00000906
-    jp_code_809_func func_080B33C4, 0xB33C4, 0xB33F0
+    .global func_080B33C4
+    .thumb_func
+func_080B33C4: @ 0x080B33C4
+	ldr r2, .Ljp_080B33E8 @ =gUnk_HarvestSpriteMiniGameAnimalHusbandrySelectionValues
+	ldr r3, .Ljp_080B33EC @ =0x00000844
+	adds r1, r0, r3
+	ldr r1, [r1]
+	lsls r1, r1, #1
+	adds r1, r1, r2
+	movs r2, #0x93
+	lsls r2, r2, #4
+	adds r0, r0, r2
+	ldr r2, [r0]
+	movs r0, #0x54
+	muls r0, r2, r0
+	ldrh r1, [r1]
+	adds r0, r0, r1
+	lsls r0, r0, #0x10
+	lsrs r0, r0, #0x10
+	bx lr
+	.align 2, 0
+.Ljp_080B33E8: .4byte gUnk_HarvestSpriteMiniGameAnimalHusbandrySelectionValues
+.Ljp_080B33EC: .4byte 0x00000844
     jp_code_809_func func_080B39BC, 0xB33F0, 0xB340C
     jp_code_809_func func_080B340C, 0xB340C, 0xB3428
     jp_code_809_func func_080B3428, 0xB3428, 0xB3444

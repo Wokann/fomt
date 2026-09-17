@@ -1002,3 +1002,12 @@ EU、DE 的完整构建和 SHA-1 校验均已通过。
 循环分支均以本地标签表达，无代码 `.incbin`、原始 `.byte`、`.set`、`.thumb_set` 或
 地址偏移伪匹配。JP 范围已逐字节匹配基准 ROM；JP、US、EU、DE 的完整构建和 SHA-1
 校验均已通过。
+
+`func_080B33C4` 的实际 JP 选择值计算函数已提升：JP 覆盖
+`0x080B33C4`–`0x080B33EF`（`0x2C` 字节），普通三区对应为 US
+`func_080B3990`（`0x080B3990`–`0x080B39BB`）、EU
+`0x080B3978`–`0x080B39A3`、DE `0x080B38A8`–`0x080B38D3`。唯一的跨区原始字节
+差异是选择值数组的实际地址，现直接重定位到已有的
+`gUnk_HarvestSpriteMiniGameAnimalHusbandrySelectionValues` 符号；其余指令、立即数和
+字面量均一致。函数不含代码 `.incbin`、原始 `.byte`、`.set`、`.thumb_set` 或地址偏移
+伪匹配。JP、US、EU、DE 的完整构建、SHA-1 与基准 ROM 的逐字节校验均已通过。
