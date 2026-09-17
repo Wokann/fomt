@@ -2464,7 +2464,7 @@ gUnk_0875A438:
 	.incbin "baserom_de.gba", 0x4E1954, 0x8
 	.global gUnk_0875A440
 gUnk_0875A440:
-	.incbin "baserom_de.gba", 0x4E195C, 0x1004
+	FOMT_CLOCK_FONT
 	.global gUnk_0875B444
 gUnk_0875B444:
 	.incbin "baserom_de.gba", 0x4E2960, 0x3D4

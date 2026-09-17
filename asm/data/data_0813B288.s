@@ -474,6 +474,21 @@
     .endif
     .endm
 
+    @ Overseas UI code copies the first 0x1000 bytes as 128 individual
+    @ 8x8/4bpp glyphs.  The final four native bytes are retained by the
+    @ rebuilt record.  JP has no counterpart in this region-specific path.
+    .macro FOMT_CLOCK_FONT
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/clock_font/clock_font.bin"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/clock_font/clock_font.bin"
+    .else
+    .incbin "build/us/graphics/ui/clock_font/clock_font.bin"
+    .endif
+    .endif
+    .endm
+
     .ifdef REGION_JP
     @ JP revision 0 counterpart of data_0813B288.s.
     @
@@ -6306,7 +6321,7 @@ gUnk_0875A438:
 
 	.global gUnk_0875A440 @ gClockFont
 gUnk_0875A440:
-	FOMT_REGION_ASSET_INCBIN 0x75A440, 0x1004
+	FOMT_CLOCK_FONT
 
 	.global gUnk_0875B444
 gUnk_0875B444:
