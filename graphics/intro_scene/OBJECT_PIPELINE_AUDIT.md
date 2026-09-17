@@ -7,9 +7,13 @@ from the runtime resource path.
 
 ## Proven loading contract
 
-`func_0805FBB8` receives an object-tile destination, advances it by `0x20`,
-then walks `gIntroSceneUnpackSources` exactly twenty times.  Every iteration
-calls `Unpack` and advances the destination by `0x500`.  Consequently:
+`func_0805FBB8` receives the scene updater's runtime context base, advances
+its object-source storage address by `0x20`, then walks
+`gIntroSceneUnpackSources` exactly twenty times. Every iteration calls
+`Unpack` and advances that destination by `0x500`. This is not a literal VRAM
+address passed by a static resource table: the sole caller, `func_0805EE44`,
+passes its live scene context as the argument after initializing its own
+state. Consequently:
 
 - every `object_00.4bpp` through `object_19.4bpp` source is exactly `0x500`
   decoded bytes (40 native 4bpp tiles);
@@ -51,11 +55,11 @@ character identity shared or statically recoverable.
 ## Runtime-target recheck
 
 The object loader also does not establish a fixed object-to-VRAM mapping.
-`func_0805EE44` receives the destination through its caller and passes that
-runtime value directly to `func_0805FBB8`. The latter reserves the leading
-`0x20` bytes and then supplies successive `+0x500` destinations to `Unpack`.
-The loader therefore proves a bounded native allocation stride, but not a
-literal VRAM base or a permanent identity for any numbered source.
+`func_0805EE44` receives a scene-context value through its caller and passes
+that runtime value directly to `func_0805FBB8`. The latter reserves the
+leading `0x20` bytes and then supplies successive `+0x500` destinations to
+`Unpack`. The loader therefore proves a bounded native allocation stride, but
+not a literal VRAM base or a permanent identity for any numbered source.
 
 Likewise, `func_0805E99C` is a generic emitter: it receives caller-provided
 eight-byte OAM piece records and a runtime handle, then writes transient
