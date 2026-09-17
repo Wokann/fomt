@@ -1328,6 +1328,20 @@ JP 原 ROM 在 `0x080B9E80` 直接指向既有的
 已提升主体不含代码 `.incbin`、原始 `.byte`、`.set`、`.thumb_set` 或地址偏移伪匹配；JP、US、EU、DE
 的完整构建、SHA-1 与基准 ROM 逐字节校验均已通过。
 
+紧随其后的鸡祭资源查询与配置函数 `func_080BB890`、`func_080BB8EC`、`func_080BC254` 与
+`func_080BC288` 也已直接提升。它们在 JP 依次覆盖 `0x080BB2C4`–`0x080BB31F`、
+`0x080BB320`–`0x080BBC87`、`0x080BBC88`–`0x080BBCBB`、`0x080BBCBC`–`0x080BC2CB`；US 对应
+范围依次为 `0x080BB890`–`0x080BB8EB`、`0x080BB8EC`–`0x080BC253`、
+`0x080BC254`–`0x080BC287`、`0x080BC288`–`0x080BC897`。EU/DE 的起点依次为
+`0x080BB8C0`/`0x080BB7F0`、`0x080BB91C`/`0x080BB84C`、`0x080BC284`/`0x080BC1B4`、
+`0x080BC2B8`/`0x080BC1E8`，长度与 JP、US 一致。
+
+查询表和配置初始值分别直接重定位到已有的 `gUnk_080BB890FirstValues`、
+`gUnk_080BB890TableValues`、`gUnk_080BB890LastValues` 与 `gUnk_080BC288Values`；其余调用都使用
+真实物理函数标签。JP `0x080BC2CC` 是下一段独立物理入口，其普通三区对应的入口为
+`func_080BC898`，因此本次不将两者强行别名或合并。已提升主体不含代码 `.incbin`、原始 `.byte`、
+`.set`、`.thumb_set` 或地址偏移伪匹配；JP、US、EU、DE 的完整构建、SHA-1 与基准 ROM逐字节校验均已通过。
+
 鸡祭资源页面主处理函数 `func_080B7648` 已整段直接提升。JP 覆盖
 `0x080B707C`–`0x080B82BF`，普通三区分别覆盖 US `0x080B7648`–`0x080B888B`、EU
 `0x080B7678`–`0x080B88BB`、DE `0x080B75A8`–`0x080B87EB`；四区长度均为 `0x1244`
