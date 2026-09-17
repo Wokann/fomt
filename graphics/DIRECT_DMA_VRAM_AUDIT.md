@@ -57,7 +57,7 @@ remain native sources because their tile arrangement is not proven.
 
 | Palette source | Consumer relationship | State |
 | --- | --- | --- |
-| `gUnk_084D8578` | JP-only poultry-shop path copies `0x20` bytes to palette bank 1. | Bounded palette lead; a complete companion tile/layout contract is not yet proven. |
+| `gUnk_084D8578` | JP physical label for Farm Status UI icon record 03; immediately follows `gUnk_084D84F8`. | Managed by the Farm Status icon PNG pipeline. |
 | `gUnk_087519EC` | Immediately follows Animal Festival icon record 01 (`gUnk_0875196C`). | Managed by the Animal Festival icon PNG pipeline. |
 | `gUnk_087525CC` | Immediately follows Farm Status UI icon record 03 (`gUnk_0875254C`). | Managed by the Farm Status icon PNG pipeline. |
 | `gUnk_0875298C` | Immediately follows Farm Status UI icon record 09 (`gUnk_0875290C`). | Managed by the Farm Status icon PNG pipeline. |
