@@ -93,6 +93,25 @@ scene-state objects rather than through a static twenty-entry descriptor table
 adjacent to `gIntroSceneUnpackSources`. This independently confirms that the
 numbered object source order is a loading order only.
 
+## Proven source-selection stage
+
+The JP physical scene updater begins at `0x0805EB88`; its loader call targets
+the physical `0x0805F8FC` entry.  Analysing those physical Thumb entries (not
+their cross-region logical assembly names) establishes one further link in the
+pipeline.  Once the updater reaches its object-transfer state, a runtime scene
+selector chooses an object-source index and queues two fixed `0x500`-byte
+transfers from the corresponding `scene + 0x20 + index * 0x500` staging slot.
+The selector includes fixed cases and state-derived cases, so the loader order
+is demonstrably an addressable source bank rather than a sequence of unrelated
+one-shot images.
+
+This does **not** yet identify an object as a character or frame.  The same
+updater subsequently delegates rendering to the generic OAM path, whose piece
+records and palette choice remain runtime state.  The confirmed selection step
+therefore narrows the required trace to a selected source slot, but it cannot
+legitimately be used to assign rectangle dimensions, position, palette, or
+draw order for a PNG editing source.
+
 ## Address-space constraint for ROM analysis
 
 The assembly symbol `func_0805E99C` is a cross-localization logical name; it
