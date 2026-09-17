@@ -730,3 +730,23 @@ JP `func_080AAE48`、`func_080ABDC0` 与 `func_080AC0AC`。所有 JP 调用点�
 
 该 JP 代码范围不含 `.incbin`、`.byte`、提升宏、`.set` 或 `.thumb_set`。JP、US、
 EU、DE 的完整构建均已通过各自基准 ROM 的 SHA-1 校验。
+
+紧接的实体回调与状态更新块也已完成 JP 侧提升。正常区域
+`0x080ACAF0`–`0x080AD943` 与 JP `0x080AC528`–`0x080AD37B` 长度均为
+`0xE54`。JP 的十个实际入口为 `func_080AC528`、`func_080AC648`、
+`func_080ACDE8`、`func_080ACED4`、`func_080AD010`、`func_080AD0D4`、
+`func_080AD15C`、`func_080AD1B4`、`func_080AD2FC` 与 `func_080AD370`；
+均直接发射 Thumb 指令，不保留普通区域入口名的别名。
+
+该组交叉调用的三个此前未命名内部入口已按其真实 JP 地址拆出：
+`func_0803AA6C`、`func_0802BFA4` 与 `func_080CF3AC`；末尾回调目标亦拆为
+`func_080CF844`。它们均直接参与重定位，未以 `.set`、`.thumb_set` 或
+`symbol + offset` 模拟。
+
+JP `0x080E7834` 的四槽虚表尾部也已拆为实际物理对象
+`vtable_unk_080E7834`，按 ROM 顺序紧接 `vtable_unk_080E8344`。这使本组
+构造代码可以直接引用实际子表起点，而非引用父表加偏移。
+
+该 JP 源区间不含 `.incbin`、`.byte`、提升宏、`.set` 或 `.thumb_set`；输出
+区间已逐字节匹配基准 ROM。JP、US、EU、DE 的完整构建均通过各自基准 ROM 的
+SHA-1 校验。

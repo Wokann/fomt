@@ -713,6 +713,9 @@ func_0803AC78:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
+    .global func_0803AA6C
+    .thumb_func
+func_0803AA6C:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9

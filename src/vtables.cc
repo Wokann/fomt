@@ -7194,9 +7194,9 @@ extern void func_080AD8C4(void);
 extern void func_080AD77C(void);
 #endif
 
-// This is a single 48-slot ROM table. Its class layout remains unverified, so
-// retain every callback and null slot in physical order rather than inventing
-// a higher-level C++ representation.
+// This callback run remains physically contiguous. Its class layout is
+// unverified, so retain its ROM order rather than inventing a higher-level C++
+// representation.
 extern RawVTableFunction const vtable_unk_080E8344[]
     SECTION(".rodata.vtable_8344") = {
 #if defined(REGION_JP)
@@ -7244,10 +7244,6 @@ extern RawVTableFunction const vtable_unk_080E8344[]
         func_080AD370,
         func_080AD2FC,
         func_080AD1B4,
-        nullptr,
-        nullptr,
-        func_080E3CA8,
-        func_0803240C,
 #else
         nullptr,
         nullptr,
@@ -7299,6 +7295,18 @@ extern RawVTableFunction const vtable_unk_080E8344[]
         func_080AD77C,
 #endif
     };
+
+#if defined(REGION_JP)
+// This four-slot base-subobject table starts at the actual JP ROM address
+// 0x080E7834, immediately after the preceding callback run.
+extern RawVTableFunction const vtable_unk_080E7834[]
+    SECTION(".rodata.vtable_7834") = {
+        nullptr,
+        nullptr,
+        func_080E3CA8,
+        func_0803240C,
+    };
+#endif
 
 #if defined(REGION_JP)
 extern void vfunc_10__7AEntity(void);

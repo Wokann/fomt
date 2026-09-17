@@ -55,7 +55,11 @@ func_080212B0:
     .4byte gUnk_080F0C74
     jp_code_entities_chunk 0x239D4, 0x23E20
     .4byte gUnk_080F0E34
-    jp_code_entities_chunk 0x23E24, 0x31E70
+    jp_code_entities_chunk 0x23E24, 0x2BFA4
+    .global func_0802BFA4
+    .thumb_func
+func_0802BFA4:
+    jp_code_entities_chunk 0x2BFA4, 0x31E70
 
     @ Exact JP entries referenced by the raw table at 0x080E6284.
     .global func_08020034
