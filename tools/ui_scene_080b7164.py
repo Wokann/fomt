@@ -18,7 +18,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 sys.path.insert(0, str(Path(__file__).parent / "scripts"))
 
 from decompress import unpack  # type: ignore[import-not-found]
-from marvelous_codec import encode_raw_lz  # type: ignore[import-not-found]
+from marvelous_codec import encode_huff8_lz3, encode_raw_lz  # type: ignore[import-not-found]
 
 
 @dataclass(frozen=True)
@@ -74,6 +74,20 @@ PROFILES = {
             ("layer_0.tilemap", 0x16C, 0x800, "030", "125"),
             ("layer_1.tilemap", 0x110, 0x800, "030", "159"),
             ("tiles.4bpp", 0xD60, 0x1180, "020", "2589101112"),
+        ),
+    ),
+    # The main background stream loaded by func_080B55D0 is not adjacent to
+    # its two auxiliary maps.  It is nevertheless byte-identical in all four
+    # retail localizations and decodes to an exact 1024-tile native 4bpp
+    # source.  Scene composition remains deliberately separate until its
+    # base map and display ordering have independent runtime evidence.
+    "080b55d0_main": (
+        {
+            "jp": 0x481160, "us": 0x6FB004,
+            "eu": 0x6FB060, "de": 0x4820A0,
+        },
+        (
+            ("main_tiles.4bpp", 0x2198, 0x8000, "230", "41012"),
         ),
     ),
     "08054f40_tiles": (
@@ -168,7 +182,10 @@ def export(arguments: argparse.Namespace) -> None:
 def rebuild(source: bytes, baseline: bytes, stream: Stream) -> bytes:
     original, format_spec, ladder = unpack(baseline)
     if bytes(original) != source:
-        encoded = encode_raw_lz(source, int(format_spec[1]), ladder)
+        if format_spec == "230":
+            encoded = encode_huff8_lz3(source, ladder_spec=ladder)
+        else:
+            encoded = encode_raw_lz(source, int(format_spec[1]), ladder)
         if len(encoded) > len(baseline):
             raise ValueError(
                 f"edited {stream.name} needs {len(encoded):#x} bytes; "

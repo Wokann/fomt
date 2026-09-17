@@ -1,9 +1,9 @@
 # `func_080B55D0` auxiliary BG resource set
 
 `func_080B55D0` loads a larger scene with several unrelated resource classes.
-Its main `gUnk_086FB004` stream uses native format `230`, which has no
-verified encoder and is deliberately left as original ROM data. This pipeline
-only manages the later, contiguous, independently decodable streams loaded to
+Its main `gUnk_086FB004` stream is separately managed as the native source in
+`graphics/ui/scene_080b55d0_main/`. This pipeline manages the later,
+contiguous, independently decodable streams loaded to
 two BG map blocks and one 4bpp tile block.
 
 | Source | Packed bytes | Decoded bytes | Native format | Runtime destination |
