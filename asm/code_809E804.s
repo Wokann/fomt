@@ -32900,7 +32900,115 @@ func_080AE0F8:
     bx r0
     .align 2, 0
 
-    jp_code_809_func func_080AE104, 0xAE104, 0xAE208
+    .global func_080AE104
+    .thumb_func
+func_080AE104:
+    push {r4, r5, lr}
+    adds r5, r0, #0
+    ldr r0, .Ljp_080AE1F4 @ =0x00000888
+    adds r4, r5, r0
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
+    bl func_08007C28
+    adds r0, r4, #0
+    movs r1, #3
+    bl func_08007B54
+    str r0, [r4, #4]
+    movs r0, #0x89
+    lsls r0, r0, #4
+    adds r4, r5, r0
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
+    bl func_08007C28
+    adds r0, r4, #0
+    movs r1, #6
+    bl func_08007B54
+    str r0, [r4, #4]
+    movs r0, #0x8a
+    lsls r0, r0, #4
+    adds r4, r5, r0
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
+    bl func_08007C28
+    adds r0, r4, #0
+    movs r1, #5
+    bl func_08007B54
+    str r0, [r4, #4]
+    ldr r0, .Ljp_080AE1F8 @ =0x000008A8
+    adds r4, r5, r0
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
+    bl func_08007C28
+    adds r0, r4, #0
+    movs r1, #2
+    bl func_08007B54
+    str r0, [r4, #4]
+    movs r0, #0x8b
+    lsls r0, r0, #4
+    adds r4, r5, r0
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
+    bl func_08007C28
+    adds r0, r4, #0
+    movs r1, #4
+    bl func_08007B54
+    str r0, [r4, #4]
+    ldr r0, .Ljp_080AE1FC @ =0x000008B8
+    adds r4, r5, r0
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
+    bl func_08007C28
+    adds r0, r4, #0
+    movs r1, #5
+    bl func_08007B54
+    str r0, [r4, #4]
+    movs r0, #0x8c
+    lsls r0, r0, #4
+    adds r4, r5, r0
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
+    bl func_08007C28
+    adds r0, r4, #0
+    movs r1, #5
+    bl func_08007B54
+    str r0, [r4, #4]
+    ldr r0, .Ljp_080AE200 @ =0x000008C8
+    adds r4, r5, r0
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
+    bl func_08007C28
+    adds r0, r4, #0
+    movs r1, #5
+    bl func_08007B54
+    str r0, [r4, #4]
+    movs r0, #0x8d
+    lsls r0, r0, #4
+    adds r4, r5, r0
+    ldr r1, [r4, #4]
+    adds r0, r4, #0
+    bl func_08007C28
+    adds r0, r4, #0
+    movs r1, #6
+    bl func_08007B54
+    str r0, [r4, #4]
+    ldr r0, .Ljp_080AE204 @ =0x000008D8
+    adds r5, r5, r0
+    ldr r1, [r5, #4]
+    adds r0, r5, #0
+    bl func_08007C28
+    adds r0, r5, #0
+    movs r1, #6
+    bl func_08007B54
+    str r0, [r5, #4]
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_080AE1F4: .4byte 0x00000888
+.Ljp_080AE1F8: .4byte 0x000008A8
+.Ljp_080AE1FC: .4byte 0x000008B8
+.Ljp_080AE200: .4byte 0x000008C8
+.Ljp_080AE204: .4byte 0x000008D8
     jp_code_809_func func_080AE208, 0xAE208, 0xAE2CC
     jp_code_809_func func_080AE2CC, 0xAE2CC, 0xAF24C
     jp_code_809_func func_080AF24C, 0xAF24C, 0xB0378
