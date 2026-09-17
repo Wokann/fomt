@@ -29,7 +29,7 @@ regional pipeline before it can be treated as shared.
 | `gUnk_08729460` | `0x4AF5C8` | `0x729460` | `0x7294BC` | `0x4B062C` | `0x2A04` | 1, 3, 9, 330, 1, 0 | 3 | rebuild: `graphics/shared_resource_08729460/` |
 | `gUnk_0872BE64` | different | different | different | `0x4B3030` | `0x874` | 1, 1, 4, 64, 1, 0 | 1 | regional payload differs |
 | `gUnk_0872DE44` | different | different | different | `0x4B5118` | `0x10CC` | 27, 27, 9, 110, 1, 0 | 27 | regional payload differs |
-| `gUnk_0872EE78` | `0x4B4FE0` | `0x72EE78` | `0x72EED4` | `0x4B61E4` | `0x2A4` | 4, 4, 1, 16, 1, 0 | 4 | unmanaged, four-region identical |
+| `gUnk_0872EE78` | `0x4B4FE0` | `0x72EE78` | `0x72EED4` | `0x4B61E4` | `0x2A4` | 4, 4, 1, 16, 1, 0 | 4 | rebuild: `graphics/shared_resource_0872ee78/` |
 | `gUnk_08731B40` | `0x4B7CA8` | `0x731B40` | `0x731B9C` | `0x4B8EAC` | `0x6604` | 20, 20, 13, 794, 3, 0 | 20 | unmanaged, four-region identical |
 | `gUnk_08738144` | different | different | different | `0x4BF4B0` | `0x994` | 3, 3, 2, 72, 1, 0 | 3 | regional payload differs |
 | `gUnk_0873A6E8` | different | different | different | `0x4C1A54` | `0x76C` | 1, 1, 3, 56, 1, 0 | 1 | regional payload differs |
@@ -61,7 +61,7 @@ regional pipeline before it can be treated as shared.
 | `gUnk_08755154` | `0x4DB100` | `0x755154` | `0x7551B0` | `0x4DC670` | `0xDC` | 1, 1, 1, 4, 1, 0 | 1 | unmanaged, four-region identical |
 | `gUnk_0875B444` | different | `0x75B444` | `0x75B4A0` | `0x4E2960` | `0x3D4` | 6, 6, 1, 24, 1, 0 | 6 | regional payload differs |
 
-Generated records: 51 (19 rebuilt, 23 unmanaged but four-region identical, 9 regionally different). Regenerate with:
+Generated records: 51 (20 rebuilt, 22 unmanaged but four-region identical, 9 regionally different). Regenerate with:
 
 ```console
 make indexed-resource-archive-inventory
