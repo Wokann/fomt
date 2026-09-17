@@ -1,23 +1,3 @@
-    @ Direct-DMA UI records whose source boundaries are proven but whose
-    @ complete tilemap is not yet known.  The authored native .4bpp payload
-    @ remains region-specific at the build boundary; no inferred PNG layout
-    @ is used in the final ROM.
-    .macro FOMT_RAW_VRAM_UI_ASSET profile, file
-    .ifdef REGION_JP
-    .incbin "build/jp/graphics/ui/raw_vram_tiles/\profile/\file"
-    .else
-    .ifdef REGION_EU
-    .incbin "build/eu/graphics/ui/raw_vram_tiles/\profile/\file"
-    .else
-    .ifdef REGION_DE
-    .incbin "build/de/graphics/ui/raw_vram_tiles/\profile/\file"
-    .else
-    .incbin "build/us/graphics/ui/raw_vram_tiles/\profile/\file"
-    .endif
-    .endif
-    .endif
-    .endm
-
     @ The Records Screen task resources are seven raw 16x16 4bpp grids and
     @ matching 16-colour palettes.  All four retail localizations contain
     @ identical payloads; keep the region-specific build paths explicit.
@@ -6227,27 +6207,27 @@ gUnk_08750C6C:
 
 	.global gUnk_08750C8C
 gUnk_08750C8C:
-	FOMT_RAW_VRAM_UI_ASSET 08750c8c, tiles.4bpp
+	FOMT_REGION_ASSET_INCBIN 0x750C8C, 0x1C0
 
 	.global gUnk_08750E4C
 gUnk_08750E4C:
-	FOMT_RAW_VRAM_UI_ASSET 08750e4c, tiles.4bpp
+	FOMT_REGION_ASSET_INCBIN 0x750E4C, 0x120
 
 	.global gUnk_08750F6C
 gUnk_08750F6C:
-	FOMT_RAW_VRAM_UI_ASSET 08750f6c, palette.gbapal
+	FOMT_REGION_ASSET_INCBIN 0x750F6C, 0x20
 
 	.global gUnk_08750F8C
 gUnk_08750F8C:
-	FOMT_RAW_VRAM_UI_ASSET 08750f8c, tiles.4bpp
+	FOMT_REGION_ASSET_INCBIN 0x750F8C, 0x120
 
 	.global gUnk_087510AC
 gUnk_087510AC:
-	FOMT_RAW_VRAM_UI_ASSET 087510ac, tiles.4bpp
+	FOMT_REGION_ASSET_INCBIN 0x7510AC, 0x120
 
 	.global gUnk_087511CC
 gUnk_087511CC:
-	FOMT_RAW_VRAM_UI_ASSET 087511cc, tiles.4bpp
+	FOMT_REGION_ASSET_INCBIN 0x7511CC, 0x120
 
 	.global gUnk_087512EC
 gUnk_087512EC:
@@ -6255,27 +6235,27 @@ gUnk_087512EC:
 
 	.global gUnk_0875130C
 gUnk_0875130C:
-	FOMT_RAW_VRAM_UI_ASSET 0875130c, tiles.4bpp
+	FOMT_REGION_ASSET_INCBIN 0x75130C, 0x120
 
 	.global gUnk_0875142C
 gUnk_0875142C:
-	FOMT_RAW_VRAM_UI_ASSET 0875142c, tiles.4bpp
+	FOMT_REGION_ASSET_INCBIN 0x75142C, 0x120
 
 	.global gUnk_0875154C
 gUnk_0875154C:
-	FOMT_RAW_VRAM_UI_ASSET 0875154c, tiles.4bpp
+	FOMT_REGION_ASSET_INCBIN 0x75154C, 0x120
 
 	.global gUnk_0875166C
 gUnk_0875166C:
-	FOMT_RAW_VRAM_UI_ASSET 0875166c, tiles.4bpp
+	FOMT_REGION_ASSET_INCBIN 0x75166C, 0x120
 
 	.global gUnk_0875178C
 gUnk_0875178C:
-	FOMT_RAW_VRAM_UI_ASSET 0875178c, palette.gbapal
+	FOMT_REGION_ASSET_INCBIN 0x75178C, 0x20
 
 	.global gUnk_087517AC
 gUnk_087517AC:
-	FOMT_RAW_VRAM_UI_ASSET 087517ac, tiles.4bpp
+	FOMT_REGION_ASSET_INCBIN 0x7517AC, 0x120
 
 	.global gUnk_087518CC
 gUnk_087518CC:
@@ -6495,35 +6475,27 @@ gUnk_0875298C:
 
 	.global gUnk_087529AC
 gUnk_087529AC:
-	FOMT_RAW_VRAM_UI_ASSET 087529ac, tiles.4bpp
-	gUnk_087529CC:
-	FOMT_REGION_ASSET_INCBIN 0x7529CC, 0x60
+	FOMT_REGION_ASSET_INCBIN 0x7529AC, 0x80
 
 	.global gUnk_08752A2C
 gUnk_08752A2C:
-	FOMT_RAW_VRAM_UI_ASSET 08752a2c, tiles.4bpp
-	gUnk_08752A4C:
-	FOMT_REGION_ASSET_INCBIN 0x752A4C, 0x60
+	FOMT_REGION_ASSET_INCBIN 0x752A2C, 0x80
 
 	.global gUnk_08752AAC
 gUnk_08752AAC:
-	FOMT_RAW_VRAM_UI_ASSET 08752aac, palette.gbapal
+	FOMT_REGION_ASSET_INCBIN 0x752AAC, 0x20
 
 	.global gUnk_08752ACC
 gUnk_08752ACC:
-	FOMT_RAW_VRAM_UI_ASSET 08752acc, tiles.4bpp
+	FOMT_REGION_ASSET_INCBIN 0x752ACC, 0x80
 
 	.global gUnk_08752B4C
 gUnk_08752B4C:
-	FOMT_RAW_VRAM_UI_ASSET 08752b4c, tiles.4bpp
-	gUnk_08752B6C:
-	FOMT_REGION_ASSET_INCBIN 0x752B6C, 0x60
+	FOMT_REGION_ASSET_INCBIN 0x752B4C, 0x80
 
 	.global gUnk_08752BCC
 gUnk_08752BCC:
-	FOMT_RAW_VRAM_UI_ASSET 08752bcc, tiles.4bpp
-	gUnk_08752BEC:
-	FOMT_REGION_ASSET_INCBIN 0x752BEC, 0x60
+	FOMT_REGION_ASSET_INCBIN 0x752BCC, 0x80
 
 	.global gUnk_08752C4C
 gUnk_08752C4C:
@@ -6531,19 +6503,15 @@ gUnk_08752C4C:
 
 	.global gUnk_08752CCC
 gUnk_08752CCC:
-	FOMT_RAW_VRAM_UI_ASSET 08752ccc, tiles.4bpp
-	gUnk_08752CEC:
-	FOMT_REGION_ASSET_INCBIN 0x752CEC, 0x60
+	FOMT_REGION_ASSET_INCBIN 0x752CCC, 0x80
 
 	.global gUnk_08752D4C
 gUnk_08752D4C:
-	FOMT_RAW_VRAM_UI_ASSET 08752d4c, tiles.4bpp
+	FOMT_REGION_ASSET_INCBIN 0x752D4C, 0x80
 
 	.global gUnk_08752DCC
 gUnk_08752DCC:
-	FOMT_RAW_VRAM_UI_ASSET 08752dcc, tiles.4bpp
-	gUnk_08752DEC:
-	FOMT_REGION_ASSET_INCBIN 0x752DEC, 0x60
+	FOMT_REGION_ASSET_INCBIN 0x752DCC, 0x80
 
 	.global gUnk_08752E4C
 gUnk_08752E4C:
