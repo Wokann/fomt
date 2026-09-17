@@ -152,6 +152,17 @@ def source_path(source_dir: Path, resource: Resource) -> Path:
     return source_dir / resource.source_relative()
 
 
+def read_source(path: Path, resource: Resource) -> bytes:
+    """Read one decoded source with the catalog's proven payload bound."""
+    source = path.read_bytes()
+    if len(source) != resource.decoded_size:
+        raise ValueError(
+            f"{path}: expected {resource.decoded_size:#x} decoded bytes for "
+            f"MapData {resource.owner[0]:02d}/{resource.owner[1]}, got {len(source):#x}"
+        )
+    return source
+
+
 def output_path(output_dir: Path, resource: Resource) -> Path:
     return output_dir / resource.output_relative()
 
@@ -251,7 +262,7 @@ def build(arguments: argparse.Namespace) -> None:
         output.parent.mkdir(parents=True, exist_ok=True)
         offset = resource.offsets[arguments.region]
         packed = rom[offset:offset + resource.length]
-        rebuilt = rebuild(source.read_bytes(), packed, resource)
+        rebuilt = rebuild(read_source(source, resource), packed, resource)
         output.write_bytes(rebuilt)
         if expected_offset is not None and offset != expected_offset:
             raise AssertionError(f"MapData archive has a gap before {offset:#x}")
