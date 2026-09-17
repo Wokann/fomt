@@ -55904,7 +55904,76 @@ func_080B9844: @ 0x080B9278
     .global func_080B9AC0
     .thumb_func
 func_080B9AC0: @ 0x080B94F4
-    .incbin "baserom_jp.gba", 0xB94F4, (0xB9584 - 0xB94F4)
+	push {r4, r5, lr}
+	adds r4, r0, #0
+	movs r5, #0
+.Ljp_080B94FA:
+	lsls r1, r5, #6
+	adds r0, r4, #0
+	adds r0, #0x6c
+	adds r0, r0, r1
+	ldr r0, [r0]
+	adds r2, r1, #0
+	cmp r0, #5
+	bhi .Ljp_080B9576
+	lsls r0, r0, #2
+	ldr r1, .Ljp_080B9514 @ =.Ljp_080B9518
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.Ljp_080B9514: .4byte .Ljp_080B9518
+.Ljp_080B9518: @ jump table
+	.4byte .Ljp_080B9554 @ case 0
+	.4byte .Ljp_080B9530 @ case 1
+	.4byte .Ljp_080B953C @ case 2
+	.4byte .Ljp_080B9560 @ case 3
+	.4byte .Ljp_080B9548 @ case 4
+	.4byte .Ljp_080B956C @ case 5
+.Ljp_080B9530:
+	adds r0, r2, #0
+	adds r0, #0x6c
+	adds r0, r4, r0
+	bl func_080BA1A4
+	b .Ljp_080B9576
+.Ljp_080B953C:
+	adds r0, r2, #0
+	adds r0, #0x6c
+	adds r0, r4, r0
+	bl func_080BA1F4
+	b .Ljp_080B9576
+.Ljp_080B9548:
+	adds r0, r2, #0
+	adds r0, #0x6c
+	adds r0, r4, r0
+	bl func_080BA1F8
+	b .Ljp_080B9576
+.Ljp_080B9554:
+	adds r0, r2, #0
+	adds r0, #0x6c
+	adds r0, r4, r0
+	bl func_080BA1FC
+	b .Ljp_080B9576
+.Ljp_080B9560:
+	adds r0, r2, #0
+	adds r0, #0x6c
+	adds r0, r4, r0
+	bl func_080BA200
+	b .Ljp_080B9576
+.Ljp_080B956C:
+	adds r0, r2, #0
+	adds r0, #0x6c
+	adds r0, r4, r0
+	bl func_080BA204
+.Ljp_080B9576:
+	adds r5, #1
+	cmp r5, #1
+	bls .Ljp_080B94FA
+	pop {r4, r5}
+	pop {r0}
+	bx r0
+	.align 2, 0
+
     .global func_080B9B50
     .thumb_func
 func_080B9B50: @ 0x080B9584
@@ -55929,7 +55998,11 @@ func_080B9F64: @ 0x080B9998
     .thumb_func
 func_080BA0C4: @ 0x080B9AF8
     .incbin "baserom_jp.gba", 0xB9AF8, (0xB9BD8 - 0xB9AF8)
-    jp_code_809_func func_080BA1A4, 0xB9BD8, 0xB9C38
+    jp_code_809_func func_080BA1A4, 0xB9BD8, 0xB9C28
+    jp_code_809_func func_080BA1F4, 0xB9C28, 0xB9C2C
+    jp_code_809_func func_080BA1F8, 0xB9C2C, 0xB9C30
+    jp_code_809_func func_080BA1FC, 0xB9C30, 0xB9C34
+    jp_code_809_func func_080BA200, 0xB9C34, 0xB9C38
     jp_code_809_func func_080BA204, 0xB9C38, 0xB9CB8
     .global func_080BA284
     .thumb_func
