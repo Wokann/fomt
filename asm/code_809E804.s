@@ -56856,12 +56856,151 @@ func_080BA0C4: @ 0x080B9AF8
 	pop {r0}
 	bx r0
 
-    jp_code_809_func func_080BA1A4, 0xB9BD8, 0xB9C28
-    jp_code_809_func func_080BA1F4, 0xB9C28, 0xB9C2C
-    jp_code_809_func func_080BA1F8, 0xB9C2C, 0xB9C30
-    jp_code_809_func func_080BA1FC, 0xB9C30, 0xB9C34
-    jp_code_809_func func_080BA200, 0xB9C34, 0xB9C38
-    jp_code_809_func func_080BA204, 0xB9C38, 0xB9CB8
+    .global func_080BA1A4
+    .thumb_func
+func_080BA1A4: @ 0x080B9BD8
+	push {lr}
+	adds r2, r0, #0
+	ldr r0, [r2, #8]
+	cmp r0, #0
+	bne .Ljp_080B9BF0
+	adds r0, r2, #0
+	adds r0, #0x23
+	ldrb r1, [r0]
+	ldrh r0, [r2, #0x20]
+	subs r0, r0, r1
+	strh r0, [r2, #0x20]
+	b .Ljp_080B9C22
+.Ljp_080B9BF0:
+	cmp r0, #1
+	bne .Ljp_080B9C00
+	adds r1, r2, #0
+	adds r1, #0x23
+	ldrh r0, [r2, #0x1e]
+	ldrb r1, [r1]
+	adds r0, r0, r1
+	b .Ljp_080B9C20
+.Ljp_080B9C00:
+	cmp r0, #2
+	bne .Ljp_080B9C12
+	adds r1, r2, #0
+	adds r1, #0x23
+	ldrh r0, [r2, #0x20]
+	ldrb r1, [r1]
+	adds r0, r0, r1
+	strh r0, [r2, #0x20]
+	b .Ljp_080B9C22
+.Ljp_080B9C12:
+	cmp r0, #3
+	bne .Ljp_080B9C22
+	adds r0, r2, #0
+	adds r0, #0x23
+	ldrb r1, [r0]
+	ldrh r0, [r2, #0x1e]
+	subs r0, r0, r1
+.Ljp_080B9C20:
+	strh r0, [r2, #0x1e]
+.Ljp_080B9C22:
+	pop {r0}
+	bx r0
+	.align 2, 0
+
+    .global func_080BA1F4
+    .thumb_func
+func_080BA1F4: @ 0x080B9C28
+	bx lr
+	.align 2, 0
+
+    .global func_080BA1F8
+    .thumb_func
+func_080BA1F8: @ 0x080B9C2C
+	bx lr
+	.align 2, 0
+
+    .global func_080BA1FC
+    .thumb_func
+func_080BA1FC: @ 0x080B9C30
+	bx lr
+	.align 2, 0
+
+    .global func_080BA200
+    .thumb_func
+func_080BA200: @ 0x080B9C34
+	bx lr
+	.align 2, 0
+
+    .global func_080BA204
+    .thumb_func
+func_080BA204: @ 0x080B9C38
+	push {lr}
+	adds r1, r0, #0
+	ldrb r0, [r1, #0x1c]
+	cmp r0, #1
+	bls .Ljp_080B9CB0
+	cmp r0, #2
+	beq .Ljp_080B9CB0
+	cmp r0, #9
+	bne .Ljp_080B9C58
+	ldr r2, .Ljp_080B9C54 @ =0xFFFFFCB0
+	adds r0, r2, #0
+	ldrh r2, [r1, #0x20]
+	adds r0, r0, r2
+	b .Ljp_080B9CB2
+	.align 2, 0
+.Ljp_080B9C54: .4byte 0xFFFFFCB0
+.Ljp_080B9C58:
+	cmp r0, #0x13
+	bne .Ljp_080B9C6C
+	ldr r2, .Ljp_080B9C68 @ =0xFFFFFA00
+	adds r0, r2, #0
+	ldrh r2, [r1, #0x20]
+	adds r0, r0, r2
+	b .Ljp_080B9CB2
+	.align 2, 0
+.Ljp_080B9C68: .4byte 0xFFFFFA00
+.Ljp_080B9C6C:
+	cmp r0, #0x1d
+	bne .Ljp_080B9C80
+	ldr r2, .Ljp_080B9C7C @ =0xFFFFF800
+	adds r0, r2, #0
+	ldrh r2, [r1, #0x20]
+	adds r0, r0, r2
+	b .Ljp_080B9CB2
+	.align 2, 0
+.Ljp_080B9C7C: .4byte 0xFFFFF800
+.Ljp_080B9C80:
+	cmp r0, #0x27
+	bne .Ljp_080B9C94
+	ldr r2, .Ljp_080B9C90 @ =0xFFFFFA00
+	adds r0, r2, #0
+	ldrh r2, [r1, #0x20]
+	adds r0, r0, r2
+	b .Ljp_080B9CB2
+	.align 2, 0
+.Ljp_080B9C90: .4byte 0xFFFFFA00
+.Ljp_080B9C94:
+	cmp r0, #0x31
+	bne .Ljp_080B9CA8
+	ldr r2, .Ljp_080B9CA4 @ =0xFFFFFCB0
+	adds r0, r2, #0
+	ldrh r2, [r1, #0x20]
+	adds r0, r0, r2
+	b .Ljp_080B9CB2
+	.align 2, 0
+.Ljp_080B9CA4: .4byte 0xFFFFFCB0
+.Ljp_080B9CA8:
+	cmp r0, #0x39
+	beq .Ljp_080B9CB0
+	cmp r0, #0x39
+	bls .Ljp_080B9CB4
+.Ljp_080B9CB0:
+	ldrh r0, [r1, #0x20]
+.Ljp_080B9CB2:
+	strh r0, [r1, #0x2a]
+.Ljp_080B9CB4:
+	pop {r0}
+	bx r0
+
     .global func_080BA284
     .thumb_func
 func_080BA284: @ 0x080B9CB8
