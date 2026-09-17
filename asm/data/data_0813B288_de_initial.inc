@@ -2413,16 +2413,16 @@ gUnk_08755154:
 	.incbin "baserom_de.gba", 0x4DC670, 0xDC
 	.global gUnk_08755230
 gUnk_08755230:
-	.incbin "baserom_de.gba", 0x4DC74C, 0x30C
+	FOMT_SEASONAL_NONWINTER_ASSET "bg_30.tilemap"
 	.global gUnk_0875553C
 gUnk_0875553C:
-	.incbin "baserom_de.gba", 0x4DCA58, 0x30C
+	FOMT_SEASONAL_NONWINTER_ASSET "bg_29.tilemap"
 	.global gUnk_08755848
 gUnk_08755848:
-	.incbin "baserom_de.gba", 0x4DCD64, 0x2298
+	FOMT_SEASONAL_NONWINTER_ASSET "nonwinter_tiles.0x70"
 	.global gUnk_08757AE0
 gUnk_08757AE0:
-	.incbin "baserom_de.gba", 0x4DEFFC, 0xC0
+	FOMT_SEASONAL_NONWINTER_ASSET "nonwinter_palette_banks.gbapal"
 	.global gUnk_08757BA0
 gUnk_08757BA0:
 	.incbin "baserom_de.gba", 0x4DF0BC, 0xC

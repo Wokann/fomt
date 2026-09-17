@@ -2451,16 +2451,16 @@ gUnk_084D977C:
     .incbin "baserom_jp.gba", 0x4D977C, (0x4DB1DC - 0x4D977C)
     .global gUnk_084DB1DC
 gUnk_084DB1DC:
-    .incbin "baserom_jp.gba", 0x4DB1DC, (0x4DB4E8 - 0x4DB1DC)
+    .incbin "build/jp/graphics/ui/seasonal_background/bg_30.tilemap"
     .global gUnk_084DB4E8
 gUnk_084DB4E8:
-    .incbin "baserom_jp.gba", 0x4DB4E8, (0x4DB7F4 - 0x4DB4E8)
+    .incbin "build/jp/graphics/ui/seasonal_background/bg_29.tilemap"
     .global gUnk_084DB7F4
 gUnk_084DB7F4:
-    .incbin "baserom_jp.gba", 0x4DB7F4, (0x4DDA8C - 0x4DB7F4)
+    .incbin "build/jp/graphics/ui/seasonal_background/nonwinter_tiles.0x70"
     .global gUnk_084DDA8C
 gUnk_084DDA8C:
-    .incbin "baserom_jp.gba", 0x4DDA8C, (0x4DDB4C - 0x4DDA8C)
+    .incbin "build/jp/graphics/ui/seasonal_background/nonwinter_palette_banks.gbapal"
     .global gUnk_084DDB4C
 gUnk_084DDB4C:
     .incbin "baserom_jp.gba", 0x4DDB4C, (0x4DDB58 - 0x4DDB4C)
@@ -2549,6 +2549,21 @@ gUnk_UiSharedResourceData_001:
     .incbin "baserom_de.gba", (\offset + 0x2080), \length
     .else
     .incbin "baserom_us.gba", \offset, \length
+    .endif
+    .endm
+
+    @ The non-winter seasonal background has independently bounded native
+    @ tile, palette and 30-by-13 BG-map sources. DE reorders this group, so it
+    @ must not use FOMT_REGION_ASSET_INCBIN's leading-stream adjustment.
+    .macro FOMT_SEASONAL_NONWINTER_ASSET name
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/seasonal_background/\name"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/seasonal_background/\name"
+    .else
+    .incbin "build/us/graphics/ui/seasonal_background/\name"
+    .endif
     .endif
     .endm
 
@@ -6308,19 +6323,19 @@ gUnk_08755154:
 
 	.global gUnk_08755230
 gUnk_08755230:
-	FOMT_REGION_ASSET_INCBIN 0x755230, 0x30C
+	FOMT_SEASONAL_NONWINTER_ASSET "bg_30.tilemap"
 
 	.global gUnk_0875553C
 gUnk_0875553C:
-	FOMT_REGION_ASSET_INCBIN 0x75553C, 0x30C
+	FOMT_SEASONAL_NONWINTER_ASSET "bg_29.tilemap"
 
 	.global gUnk_08755848
 gUnk_08755848:
-	FOMT_REGION_ASSET_INCBIN 0x755848, 0x2298
+	FOMT_SEASONAL_NONWINTER_ASSET "nonwinter_tiles.0x70"
 
 	.global gUnk_08757AE0
 gUnk_08757AE0:
-	FOMT_REGION_ASSET_INCBIN 0x757AE0, 0xC0
+	FOMT_SEASONAL_NONWINTER_ASSET "nonwinter_palette_banks.gbapal"
 
 	.global gUnk_08757BA0
 gUnk_08757BA0:

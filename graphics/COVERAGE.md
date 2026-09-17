@@ -13,7 +13,7 @@ image, nor that all game graphics have been extracted.
 | Dialogue portraits | `graphics/portraits/shared/full/*.png` | portrait tile stream | Yes |
 | Actor archive, every referenced descriptor | `graphics/sprites/actor_archive/full/*.png` | actor tile stream | Yes |
 | Located UI tile grid | `graphics/ui/shared_resource/shared_resource.png` | 4bpp tiles plus BGR555 palette | Yes |
-| Overseas `func_08077810` BG and character streams | `graphics/ui/scene_08077810/shared/tiles.png`, `tiles_trailer.bin`, `layer_0.tilemap`, and `layer_1.tilemap` | editable full Huffman-8/LZ3 character stream (351 4bpp tiles plus an explicit two-byte non-tile trailer), Huffman-4/LZ3 32-by-32 map, and Huffman-4/LZ0 32-by-20 map, included directly by the original US/EU/DE labels | Yes for JP/US/EU/DE: JP has no corresponding consumers and remains direct ROM data |
+| Overseas `func_08077810` BG tilemaps | `graphics/ui/scene_08077810/shared/layer_0.tilemap` and `layer_1.tilemap` | editable Huffman-4/LZ3 32-by-32 and Huffman-4/LZ0 32-by-20 maps, included directly by `gUnk_0874ECCC` and `gUnk_0874EB60` in US/EU/DE | Yes for JP/US/EU/DE: JP has no corresponding consumers and remains direct ROM data |
 | Direct `func_080A2BA4` UI-scene BG streams | editable `graphics/ui/scene_080a2ba4/shared/tiles.4bpp` and `layer_*.tilemap`; read-only region-specific `reference/*/screen.png` | four native packed streams included directly by `gUnk_0874EF14`–`gUnk_0874F050`; palette remains archive-owned and is not editable | Yes for streams; palette reference only |
 | Direct `func_080AE7D0` UI-scene BG streams | `graphics/ui/scene_080ae7d0/shared/tiles.4bpp`, `layer_*.tilemap`, `palette_banks.png`; rendered `reference/layer_*.png` and `scene.png` | three native packed streams plus an independently bounded BGR555 palette, included directly by the four original `gUnk_0872FC34`–`gUnk_08731940` symbols | Yes |
 | Direct `func_080B7164` UI-scene BG streams | `graphics/ui/scene_080b7164/shared/tiles.4bpp`, `layer_*.tilemap`, and `palettes.png`; rendered `reference/layer_*.png` | three native packed streams included directly by `gUnk_0872D5CC`–`gUnk_0872D6D8`; the 0x200 palette read begins at a 0x60 symbol and remains cross-resource ROM data | Yes for streams; palette reference only |
@@ -26,11 +26,9 @@ image, nor that all game graphics have been extracted.
 | Farm-status overseas winter background tiles | `graphics/ui/farm_status/winter/shared/tiles.png`; regional palette PNGs remain references | one bounded native packed tile stream included directly at the original US/EU/DE runtime labels | Yes for JP/US/EU/DE: JP retains its separate direct-ROM layout |
 | Seasonal non-winter background (`func_08077EC0`) | `graphics/ui/seasonal_background/shared/nonwinter_tiles.png`, `nonwinter_palette_banks.png`, and `bg_30/bg_29.tilemap`; derived layer references are under `reference/` | one H8/LZ2 tile stream, six BGR555 palette banks, and two native 30-by-13 BG maps at their original JP/US/EU/DE locations | Yes |
 | Farm-status secondary layouts | `graphics/ui/farm_status/shared/secondary_tilemaps/*.tilemap` | six native Huffman-4/LZ3 64-by-44 BG tilemap streams | Yes |
-| Farm-status creature/UI icons | `graphics/ui/farm_status/creature_icons/shared/icon_00.png` through `icon_19.png` | twenty raw 16-by-16 4bpp grids with individual BGR555 palettes, preserved as two physical groups | Yes |
 | Intro-scene object tile sources | `graphics/intro_scene/shared/object_tiles/*.4bpp` | twenty native Raw-LZ object-tile streams; see `intro_scene/OBJECT_PIPELINE_AUDIT.md` for the proven runtime/OAM boundary | Yes |
-| Intro-scene startup background | `graphics/intro_scene/shared/startup_visual/*.png` and `shared/startup_tilemaps/*.tilemap` | one shared Huffman-8/LZ3 4bpp tile stream, sixteen BGR555 palette banks, and four native Huffman-4/LZ3 tilemap streams | Yes |
+| Intro-scene startup tilemaps | `graphics/intro_scene/shared/startup_tilemaps/*.tilemap` | four native Huffman-4/LZ3 streams | Yes |
 | Records Screen task icons | `graphics/ui/records_minigame/shared/task_00.png` through `task_06.png` | seven raw 16x16 4bpp grids with individual BGR555 palettes | Yes |
-| Animal Festival UI icons | `graphics/ui/animal_festival/shared/icon_00.png` through `icon_09.png` | ten raw 16x16 4bpp grids with individual BGR555 palettes | Yes |
 | MapData visual layers | `graphics/maps/shared/map_XX/layer_N.*` | 272 native packed streams, post-link patched at their original ROM ranges | Yes |
 
 The actor archive has 3,009 frame descriptors, of which 2,963 are referenced
@@ -45,14 +43,6 @@ palette is shared only by US/DE; EU has its own archive-wrapped palette
 payload, which remains a read-only reference. Hash-checked readable references
 live under `graphics/ui/farm_status/reference/winter/`; see
 `DIRECT_UNPACK_VRAM_AUDIT.md` for the proven fixed-slot rebuild bounds.
-
-The intro-scene startup group has four-region-verified tiles and sixteen
-palette banks in `graphics/intro_scene/shared/startup_visual/`, plus eight
-code-backed BG-map references in `graphics/intro_scene/reference/startup/`.
-The full native group is managed: an unchanged `230` tiles source retains its
-retail stream, and the checked one-byte edit fixture strictly decodes inside
-the original fixed slot.  The PNG references remain views rather than layout
-inputs; the native tilemaps are the editable layout source.
 
 ## Build linkage
 
@@ -103,10 +93,9 @@ and keeps unproven streams out of the managed-resource table.
 | Candidate family | Evidence | Current conclusion |
 | --- | --- | --- |
 | Farm-status remaining screen data | `FarmStatusScreenResourceDescriptor` and direct ranges adjacent to the managed layouts. | The common tile grid, full palette-bank set, fourteen building-preview tilemaps and six secondary layouts are now managed; surrounding resource classes still need separate format analysis. |
-| Intro-scene object OAM composition and palettes | `gUnk_IntroSceneUnpackSource_*` labels decode to twenty managed native 0x500-byte tile sources; `func_0805FBB8` stages them for OBJ use. `func_08000914`'s regional compressed archive and its shared raw companion archive are separately managed as OAM-composited frames. | The twenty streams remain managed native sources, but their own full-image OAM composition and per-object palette selectors remain runtime data. The nearby archives must not be misused as their layout; `intro_scene/OBJECT_PIPELINE_AUDIT.md` records the boundary. |
-| Intro-scene startup presentation sequencing | `func_080019D8` expands the managed shared tiles/palette banks, and copies each of four managed `0x1000`-byte sources as two interleaved 32-by-32 BG maps. | Native tile sheet, palette banks, maps and eight code-backed map references are managed. The runtime's choice and timing of the alternate BG maps still require a compositor/sequence audit, so no guessed final-screen PNG is treated as source. |
+| Intro-scene OAM composition and palettes | `gUnk_IntroSceneUnpackSource_*` labels decode to twenty managed native 0x500-byte tile sources; `func_0805FBB8` stages them for OBJ use, while `func_08000914` resolves runtime indexed-resource handles. | The streams are managed, but their full-image OAM composition and per-object palette selectors remain runtime data. `intro_scene/OBJECT_PIPELINE_AUDIT.md` records the required evidence; no guessed full PNG is treated as source. |
+| Intro-scene startup tilemap presentation | `func_08001A90` decodes four managed 0x1000-byte streams and copies each as two interleaved 32-by-32 BG tilemaps. | Native interleaved tilemaps are managed; their tile-sheet, palette-bank and screen-selection rules still require a separate compositor audit. |
 | Other Records-screen resources | Raw ranges adjacent to the task-icon records, plus page-specific data pointers in the Records Screen code. | The seven direct task icon/palette pairs are now managed; the remaining ranges still need independent consumer and format analysis. |
-| Overseas calendar/clock glyph set | `gUnk_0875A440` is copied as `glyph_index * 0x20` records by the overseas UI code. | Its US/EU payload is identical, DE is localized, and the JP counterpart and runtime palette remain unproven. `DIRECT_TILE_COPY_AUDIT.md` records the fixed glyph boundary without inventing a coloured PNG source. |
 | MapData non-visual payloads | MapData fields 1 and 2 plus field-render records are used by field rendering. | The six visual pointer layers are managed as 272 verified streams. The remaining payloads may contain collision, terrain and animation data and require separate runtime format analysis. |
 | Indexed resource archives | `IndexedResourceArchive` parses six counted descriptor sections and an entry table; its common and companion payloads are byte-identical across all four regions. | Exact boundaries and regional locations are recorded in `INDEXED_RESOURCE_ARCHIVES.md`. Descriptor semantics still require consumer-by-consumer analysis; neither archive is falsely exported as a graphics sheet. |
 | Seasonal overseas winter background | `func_08077EC0` selects paired non-winter/winter 0x8000-byte tile streams, six-bank palettes and two 30x13 tilemaps. | The non-winter `220` group is managed as one source tile grid, six palette banks and two native BG maps. The paired winter `230` stream remains 12 bytes over its `0x212C` slot under the current compatible encoder, so it stays direct ROM data. |
