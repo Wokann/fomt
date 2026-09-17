@@ -24,8 +24,8 @@ different video-RAM locations.
 | `gUnk_0875196C` | `0x80` | Existing Animal Festival icon 01 source. |
 | `gUnk_0875254C` | `0x20` | Existing Farm Status UI icon record 03 source. |
 | `gUnk_08752F8C` | `0x80` | Existing Farm Status UI icon record 11 source. |
-| `gUnk_08750C4C` | `0x20` | Managed raw UI tile record; palette and layout unproven. |
-| `gUnk_08750C6C` | `0x20` | Managed raw UI BGR555 palette record; paired with `gUnk_08750C4C`. |
+| `gUnk_08750C4C` | `0x20` | Farm Status Harvest Sprite task UI tile PNG source; a complete 8x8 OBJ tile paired with `gUnk_08750C6C`. |
+| `gUnk_08750C6C` | `0x20` | Farm Status Harvest Sprite task UI tile BGR555 palette regenerated from the paired PNG source. |
 | `gUnk_08750C8C` | `0x1A0`, `0x1C0` | Managed complete `0x1C0` raw UI tile record; the shorter caller consumes its leading subrange. |
 | `gUnk_087510AC` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
 | `gUnk_0875166C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
@@ -67,20 +67,18 @@ remain native sources because their tile arrangement is not proven.
 | `gUnk_0875300C` | Immediately follows Farm Status UI icon record 11 (`gUnk_08752F8C`). | Managed by the Farm Status icon PNG pipeline. |
 | `gUnk_0875314C` | Immediately follows Farm Status UI icon record 13 (`gUnk_087530CC`). | Managed by the Farm Status icon PNG pipeline. |
 | `gUnk_0875350C` | Immediately follows Farm Status UI icon record 19 (`gUnk_0875348C`). | Managed by the Farm Status icon PNG pipeline. |
-| `gUnk_08750C6C` | Immediately follows raw `gUnk_08750C4C` tile record. | Native tile/palette pair; final layout remains unproven. |
+| `gUnk_08750C6C` | Immediately follows the single-tile `gUnk_08750C4C` record. | Managed by the Farm Status Harvest Sprite task UI tile PNG pipeline. |
 | `gUnk_08750F6C` | Immediately follows raw `gUnk_08750E4C` tile record. | Native tile/palette pair; final layout remains unproven. |
 | `gUnk_0875178C` | Immediately follows raw `gUnk_0875166C` tile record. | Native tile/palette pair; final layout remains unproven. |
 
-The four icon rows already point at checked-in PNG pipelines. The remaining
-twenty-four raw UI records now have verified four-region physical bounds and
-reversible native source assets. A manual second pass over every UI call site
-confirms that twenty records target character VRAM; the four palette-RAM
-records are `gUnk_08750C6C`, `gUnk_08750F6C`, `gUnk_0875178C`, and
-`gUnk_08752AAC`. `gUnk_08750C4C` also has one separate
-runtime-layout consumer, which is not treated as evidence for an image layout.
-No arbitrary tile-grid PNG or JSON layout is treated as a source asset: a
-future visual pipeline must still establish the companion palette and
-tilemap/OAM layout.
+The icon rows and the single-tile Harvest Sprite row now point at checked-in
+PNG pipelines. The remaining twenty-two raw UI records have verified
+four-region physical bounds and reversible native source assets. A manual
+second pass over every UI call site confirms that twenty records target
+character VRAM; the three still-raw palette-RAM records are
+`gUnk_08750F6C`, `gUnk_0875178C`, and `gUnk_08752AAC`. No arbitrary tile-grid
+PNG or JSON layout is treated as a source asset: a future visual pipeline must
+still establish the companion palette and tilemap/OAM layout.
 
 Every static `g*` source label currently found by this conservative scan is
 now classified above: it is either already covered by an icon PNG pipeline,
