@@ -689,3 +689,11 @@ JP 输出的整个区间已与基准 ROM 逐字节核对一致，源区间不含
 此范围内的资源 literal 已全部改为可重定位的实际 JP 标签。除了已有的区域逻辑对象外，新拆出的物理数据起点为 `gUnk_0841EC5C`、`gUnk_08420150`、`gUnk_084213E0`、`gUnk_0845C4C4`、`gUnk_0845D654`、`gUnk_08470E40`、`gUnk_08470E60`、`gUnk_08470E80`、`gUnk_08470EA0`、`gUnk_0849AB8C`、`gUnk_0849ACBC`、`gUnk_0849AD48`、`gUnk_0849D0E0` 和 `gUnk_0849D214`。标签只在原数据 `incbin` 流中切分边界，未变动资源字节或使用 `.set`/`.thumb_set` 别名。
 
 JP 输出区间与基准 ROM 已逐字节一致，且源区间不含原始代码 `incbin`、`.byte`、提升宏或别名；JP、US、EU、DE 四版完整 SHA-1 构建均已通过。
+
+其后 `0x080AA288`–`0x080AA973` 的地图辅助函数组也已由原始 JP 代码改为直接 Thumb 指令。它对应正常区域 `0x080AA850`–`0x080AAF3B` 的连续 `0x6EC` 字节，JP 的实际入口依次为 `func_080AA288`、`func_080AA2D4`、`func_080AA2F4`、`func_080AA314`、`func_080AA328`、`func_080AA400`、`func_080AA6F0`、`func_080AA84C`、`func_080AA87C`、`func_080AA948`、`func_080AA954` 与 `func_080AA960`。所有 JP 分支内的调用也已改到这些实际入口，不保留正常版地址名作为 JP 入口别名。
+
+该组引用的 JP 原始资源流已拆出实际起点 `gUnk_084626A8`、`gUnk_084626D8`、`gUnk_08462DE4`、`gUnk_084637EC`、`gUnk_0846380C`、`gUnk_0846383C`、`gUnk_08463F48`、`gUnk_08464950`、`gUnk_08470E38`、`gUnk_08470EC0`、`gUnk_08470EE0` 与 `gUnk_08470EE8`；均为原始 `incbin` 的真实切分边界。
+
+校验过程中还发现一个原先被同名逻辑入口掩盖的实际区域差异：JP vtable 使用 `func_080DB4E4`，而这组运行时指令调用 `func_080DBD30`。两者现分别作为原始 JP 代码流中的直接标签，vtable 以 `REGION_JP` 条件选择前者；另一个跨区域调用点同样以区域分支明确选择 JP `func_080E3234` 或正常区域 `func_080E3A9C`。这保留原始字节，且移除了相关 `.thumb_set` 伪别名。
+
+JP 提升区间与完整 ROM 均已逐字节核验；JP、US、EU、DE 四版完整 SHA-1 构建均通过。

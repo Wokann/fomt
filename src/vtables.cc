@@ -888,6 +888,7 @@ extern void func_080DBC50(void);
 extern void func_080DBC78(void);
 extern void func_080DBCC0(void);
 extern void func_080DBCE8(void);
+extern void func_080DB4E4(void);
 extern void func_080DBD30(void);
 extern void func_080DBD58(void);
 extern void func_080DBDA0(void);
@@ -1346,7 +1347,11 @@ extern RawVTableFunction const vtable_unk_080E5D84[] = {
 extern RawVTableFunction const vtable_unk_080E5D94[] = {
     nullptr,
     nullptr,
+#if defined(REGION_JP)
+    func_080DB4E4,
+#else
     func_080DBD30,
+#endif
     func_080DBCE8,
 };
 

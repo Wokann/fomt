@@ -187181,7 +187181,11 @@ func_0809323C: @ 0x0809323C
 	bl func_080D02CC
 	adds r0, r4, #0
 	movs r1, #0
+	.ifdef REGION_JP
+	bl func_080E3234
+	.else
 	bl func_080E3A9C
+	.endif
 	ldr r0, .L08093300 @ =vtable_unk_080E7DF4
 	str r0, [r7, #8]
 	ldr r0, .L08093304 @ =vtable_unk_080E7F00

@@ -8233,11 +8233,13 @@ func_080D7B44: @ 0x080D7B44
     jp_linkonce_d7_func func_080D7F9C, 0xD7754, 0xDA8A0
     jp_linkonce_d7_func func_080DB0EC, 0xDA8A0, 0xDA998
     jp_linkonce_d7_func func_080DB1E4, 0xDA998, 0xDB3C0
-    jp_linkonce_d7_func func_080DBC0C, 0xDB3C0, 0xDB81C
+    jp_linkonce_d7_func func_080DBC0C, 0xDB3C0, 0xDB4E4
+    jp_linkonce_d7_func func_080DB4E4, 0xDB4E4, 0xDB81C
     jp_linkonce_d7_func func_080DC068, 0xDB81C, 0xDBA68
     jp_linkonce_d7_func func_080DC2B4, 0xDBA68, 0xDBB14
     jp_linkonce_d7_func func_080DC360, 0xDBB14, 0xDBB54
-    jp_linkonce_d7_func func_080DC3A0, 0xDBB54, 0xDBE30
+    jp_linkonce_d7_func func_080DC3A0, 0xDBB54, 0xDBD30
+    jp_linkonce_d7_func func_080DBD30, 0xDBD30, 0xDBE30
     jp_linkonce_d7_func func_080DC67C, 0xDBE30, 0xDBF18
     jp_linkonce_d7_func func_080DC764, 0xDBF18, 0xDBFF4
     jp_linkonce_d7_func func_080DC840, 0xDBFF4, 0xDC330
@@ -8657,8 +8659,6 @@ func_080E0094:
     .thumb_set func_080DBCC0, func_080DBC0C + 0xB4
     .global func_080DBCE8
     .thumb_set func_080DBCE8, func_080DBC0C + 0xDC
-    .global func_080DBD30
-    .thumb_set func_080DBD30, func_080DBC0C + 0x124
     .global func_080DBD58
     .thumb_set func_080DBD58, func_080DBC0C + 0x14C
     .global func_080DBDA0
@@ -26813,12 +26813,13 @@ func_080E0E80: @ 0x080E0E80
     jp_linkonce_e0_func func_080E38B0, 0xE3048, 0xE3078
     jp_linkonce_e0_func func_080E38E0, 0xE3078, 0xE3184
     jp_linkonce_e0_func func_080E39EC, 0xE3184, 0xE3234
-    jp_linkonce_e0_func func_080E3A9C, 0xE3234, 0xE3318
+    jp_linkonce_e0_func func_080E3234, 0xE3234, 0xE3318
     jp_linkonce_e0_func func_080E3B80, 0xE3318, 0xE33D4
     jp_linkonce_e0_func func_080E3C3C, 0xE33D4, 0xE3634
     jp_linkonce_e0_func func_080E3E9C, 0xE3634, 0xE36D8
     jp_linkonce_e0_func func_080E3F40, 0xE36D8, 0xE3838
-    jp_linkonce_e0_func func_080E40A0, 0xE3838, 0xE3B50
+    jp_linkonce_e0_func func_080E40A0, 0xE3838, 0xE3A9C
+    jp_linkonce_e0_func func_080E3A9C, 0xE3A9C, 0xE3B50
     jp_linkonce_e0_func func_080E43B8, 0xE3B50, 0xE3B94
     jp_linkonce_e0_func func_080E43FC, 0xE3B94, 0xE3BD0
     jp_linkonce_e0_func func_080E4438, 0xE3BD0, 0xE3CFC
@@ -26868,7 +26869,7 @@ func_080E0E80: @ 0x080E0E80
     jp_linkonce_e0_entry func_080E3000, func_080E37DC, 0x8C
 
     @ Exact JP entry point referenced by the large raw table at 0x080E7F0C.
-    jp_linkonce_e0_entry func_080E32F8, func_080E3A9C, 0xC4
+    jp_linkonce_e0_entry func_080E32F8, func_080E3234, 0xC4
 
     @ Exact JP entry point referenced by the raw table at 0x080E812C.
     jp_linkonce_e0_entry func_080E33D4, func_080E3C3C, 0x0

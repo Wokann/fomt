@@ -2268,7 +2268,34 @@ gActorStateGridCellType3Data:
 jp_data_08462550_start:
     .global gActorStateGridCellType4Data
 gActorStateGridCellType4Data:
-    .incbin "baserom_jp.gba", 0x462550, (0x470E40 - 0x462550)
+    .incbin "baserom_jp.gba", 0x462550, (0x4626A8 - 0x462550)
+    .global gUnk_084626A8
+gUnk_084626A8:
+    .incbin "baserom_jp.gba", 0x4626A8, (0x4626D8 - 0x4626A8)
+    .global gUnk_084626D8
+gUnk_084626D8:
+    .incbin "baserom_jp.gba", 0x4626D8, (0x462DE4 - 0x4626D8)
+    .global gUnk_08462DE4
+gUnk_08462DE4:
+    .incbin "baserom_jp.gba", 0x462DE4, (0x4637EC - 0x462DE4)
+    .global gUnk_084637EC
+gUnk_084637EC:
+    .incbin "baserom_jp.gba", 0x4637EC, (0x46380C - 0x4637EC)
+    .global gUnk_0846380C
+gUnk_0846380C:
+    .incbin "baserom_jp.gba", 0x46380C, (0x46383C - 0x46380C)
+    .global gUnk_0846383C
+gUnk_0846383C:
+    .incbin "baserom_jp.gba", 0x46383C, (0x463F48 - 0x46383C)
+    .global gUnk_08463F48
+gUnk_08463F48:
+    .incbin "baserom_jp.gba", 0x463F48, (0x464950 - 0x463F48)
+    .global gUnk_08464950
+gUnk_08464950:
+    .incbin "baserom_jp.gba", 0x464950, (0x470E38 - 0x464950)
+    .global gUnk_08470E38
+gUnk_08470E38:
+    .incbin "baserom_jp.gba", 0x470E38, (0x470E40 - 0x470E38)
     .global gUnk_08470E40
 gUnk_08470E40:
     .incbin "baserom_jp.gba", 0x470E40, (0x470E60 - 0x470E40)
@@ -2280,7 +2307,16 @@ gUnk_08470E80:
     .incbin "baserom_jp.gba", 0x470E80, (0x470EA0 - 0x470E80)
     .global gUnk_08470EA0
 gUnk_08470EA0:
-    .incbin "baserom_jp.gba", 0x470EA0, (0x49AB8C - 0x470EA0)
+    .incbin "baserom_jp.gba", 0x470EA0, (0x470EC0 - 0x470EA0)
+    .global gUnk_08470EC0
+gUnk_08470EC0:
+    .incbin "baserom_jp.gba", 0x470EC0, (0x470EE0 - 0x470EC0)
+    .global gUnk_08470EE0
+gUnk_08470EE0:
+    .incbin "baserom_jp.gba", 0x470EE0, (0x470EE8 - 0x470EE0)
+    .global gUnk_08470EE8
+gUnk_08470EE8:
+    .incbin "baserom_jp.gba", 0x470EE8, (0x49AB8C - 0x470EE8)
     .global gUnk_0849AB8C
 gUnk_0849AB8C:
     .incbin "baserom_jp.gba", 0x49AB8C, (0x49ACBC - 0x49AB8C)
