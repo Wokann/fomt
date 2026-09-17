@@ -2289,7 +2289,7 @@ gUnk_IntroSceneUnpackSource_019:
     .incbin "build/jp/graphics/intro_scene/background_palettes.gbapal"
     .global gUnk_084CDBDC
 gUnk_084CDBDC:
-    .incbin "baserom_jp.gba", 0x4CDBDC, (0x4D096C - 0x4CDBDC)
+    .incbin "build/jp/graphics/intro_scene/indexed_archive/archive.0x70"
 
     @ Four Huffman-4/LZ3 streams unpacked by the earlier Intro Scene startup
     @ path.  Each source is an interleaved pair of 32-by-32 BG tilemaps.
@@ -5820,7 +5820,11 @@ gFontShiftJisGlyphIndices:
 	.else
 	.global gUnk_08747A74
 gUnk_08747A74:
-	FOMT_REGION_ASSET_INCBIN 0x747A74, (0x74A1D8 - 0x747A74)
+	.ifdef REGION_EU
+	.incbin "build/eu/graphics/intro_scene/indexed_archive/archive.0x70"
+	.else
+	.incbin "build/us/graphics/intro_scene/indexed_archive/archive.0x70"
+	.endif
 
 	@ Four Huffman-4/LZ3 streams unpacked by the earlier Intro Scene startup
 	@ path. Each source is an interleaved pair of 32-by-32 BG tilemaps.

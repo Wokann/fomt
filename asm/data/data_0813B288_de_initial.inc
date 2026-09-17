@@ -2022,7 +2022,7 @@ gUnk_08747A14:
 	.incbin "build/de/graphics/intro_scene/background_palettes.gbapal"
 	.global gUnk_08747A74
 gUnk_08747A74:
-	.incbin "baserom_de.gba", 0x4CEEE8, 0x275C
+	.incbin "build/de/graphics/intro_scene/indexed_archive/archive.0x70"
 	.global gUnk_IntroSceneStartupUnpackSource_000
 gUnk_IntroSceneStartupUnpackSource_000:
 	.incbin "build/de/graphics/intro_scene/startup_tilemaps/startup_00.0x70"

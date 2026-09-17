@@ -35,6 +35,33 @@ Unchanged sources retain their exact retail packed bytes. An edit is re-encoded
 with the stream's original Raw-LZ mode and distance ladder, strictly decoded,
 and rejected if it exceeds that object's original packed allocation.
 
+## Regional indexed OAM archive
+
+`func_08000914` separately expands an `IndexedResourceArchive` immediately
+after the background stream. Unlike the twenty object-tile streams, this
+archive contains a complete native frame layout: animation selectors, 16-byte
+frame descriptors, eight-byte GBA OAM records, 4bpp tiles, BGR555 palettes,
+and frame entries. The data proves complete OAM-composited PNG frames without
+inventing a layout sidecar.
+
+The authoritative PNG sources follow the actual localization layouts:
+
+- `indexed_archive/jp/full/` has nine drawable JP frames;
+- `indexed_archive/us_eu/full/` has eight shared US/EU frames; and
+- `indexed_archive/de/full/` has eight DE frames.
+
+Each archive also selects two descriptors without drawable OAM. They have no
+fabricated blank PNG; their unchanged table data remains in the decoded
+archive. The source rebuild starts from that archive and patches only pixels
+reached by complete PNG frames. It then uses the exact regional codec (`120`
+Huffman-4/LZ2 for JP and `220` Huffman-8/LZ2 elsewhere), strictly decodes the
+result, and rejects output larger than the original regional slot.
+
+```console
+make gfx-intro-indexed-archive-all
+make gfx-intro-indexed-archive-edit-test
+```
+
 ## Startup background layers
 
 `func_080019D8` additionally expands a shared `0x8000`-byte 4bpp tile payload,
