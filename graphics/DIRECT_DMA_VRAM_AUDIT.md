@@ -25,10 +25,13 @@ different video-RAM locations.
 | `gUnk_0875254C` | `0x20` | Existing Farm Status UI icon record 03 source. |
 | `gUnk_08752F8C` | `0x80` | Existing Farm Status UI icon record 11 source. |
 | `gUnk_08750C4C` | `0x20` | Managed raw UI tile record; palette and layout unproven. |
+| `gUnk_08750C6C` | `0x20` | Managed raw UI BGR555 palette record; paired with `gUnk_08750C4C`. |
 | `gUnk_08750C8C` | `0x1A0`, `0x1C0` | Managed complete `0x1C0` raw UI tile record; the shorter caller consumes its leading subrange. |
 | `gUnk_087510AC` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
 | `gUnk_0875166C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
+| `gUnk_0875178C` | `0x20` | Managed raw UI BGR555 palette record; paired with `gUnk_0875166C`. |
 | `gUnk_087517AC` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
+| `gUnk_08750F6C` | `0x20` | Managed raw UI BGR555 palette record; paired with `gUnk_08750E4C`. |
 | `gUnk_08750F8C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
 | `gUnk_08750E4C` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
 | `gUnk_087511CC` | `0x120` | Managed raw UI tile record; palette and layout unproven. |
@@ -69,10 +72,11 @@ remain native sources because their tile arrangement is not proven.
 | `gUnk_0875178C` | Immediately follows raw `gUnk_0875166C` tile record. | Native tile/palette pair; final layout remains unproven. |
 
 The four icon rows already point at checked-in PNG pipelines. The remaining
-twenty-one raw UI rows now have verified four-region physical bounds and
+twenty-four raw UI records now have verified four-region physical bounds and
 reversible native source assets. A manual second pass over every UI call site
-confirms that twenty records target character VRAM; the sole palette-RAM
-exception is `gUnk_08752AAC`. `gUnk_08750C4C` also has one separate
+confirms that twenty records target character VRAM; the four palette-RAM
+records are `gUnk_08750C6C`, `gUnk_08750F6C`, `gUnk_0875178C`, and
+`gUnk_08752AAC`. `gUnk_08750C4C` also has one separate
 runtime-layout consumer, which is not treated as evidence for an image layout.
 No arbitrary tile-grid PNG or JSON layout is treated as a source asset: a
 future visual pipeline must still establish the companion palette and
@@ -80,8 +84,8 @@ tilemap/OAM layout.
 
 Every static `g*` source label currently found by this conservative scan is
 now classified above: it is either already covered by an icon PNG pipeline,
-preserved as a separately bounded native 4bpp tile record, or (for
-`gUnk_08752AAC`) preserved as a BGR555 palette record. This does not
+preserved as a separately bounded native 4bpp tile or BGR555 palette record.
+This does not
 claim that every ROM graphic has been found: calls through pointers, runtime
 descriptors, archive dispatch, or non-literal VRAM destinations remain outside
 this scanner's deliberately narrow scope.

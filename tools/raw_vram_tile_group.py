@@ -78,6 +78,14 @@ PROFILES = {
         source_name="tiles.4bpp",
         output_name="tiles.4bpp",
     ),
+    "08750c6c": Profile(
+        name="gUnk_08750C6C",
+        offsets={"jp": 0x4D6C18, "us": 0x750C6C, "eu": 0x750CC8, "de": 0x4D8188},
+        length=0x20,
+        sha256="9985d2bb7b07b88d53543f5ab323df57ac3eb3402671d800405dfdf4f9c18237",
+        source_name="palette.gbapal",
+        output_name="palette.gbapal",
+    ),
     "08750c8c": Profile(
         name="gUnk_08750C8C",
         offsets={"jp": 0x4D6C38, "us": 0x750C8C, "eu": 0x750CE8, "de": 0x4D81A8},
@@ -110,6 +118,14 @@ PROFILES = {
         source_name="tiles.4bpp",
         output_name="tiles.4bpp",
     ),
+    "0875178c": Profile(
+        name="gUnk_0875178C",
+        offsets={"jp": 0x4D7738, "us": 0x75178C, "eu": 0x7517E8, "de": 0x4D8CA8},
+        length=0x20,
+        sha256="786cebe9ac9654a40caf028be177f840f8737b11fd1e5c6da5609f867ae48da4",
+        source_name="palette.gbapal",
+        output_name="palette.gbapal",
+    ),
     "08750f8c": Profile(
         name="gUnk_08750F8C",
         offsets={"jp": 0x4D6F38, "us": 0x750F8C, "eu": 0x750FE8, "de": 0x4D84A8},
@@ -117,6 +133,14 @@ PROFILES = {
         sha256="fc2bda977d99c32f7fe6f8e480a47193d891ff65946dcbbbba85162e4146a331",
         source_name="tiles.4bpp",
         output_name="tiles.4bpp",
+    ),
+    "08750f6c": Profile(
+        name="gUnk_08750F6C",
+        offsets={"jp": 0x4D6F18, "us": 0x750F6C, "eu": 0x750FC8, "de": 0x4D8488},
+        length=0x20,
+        sha256="9985d2bb7b07b88d53543f5ab323df57ac3eb3402671d800405dfdf4f9c18237",
+        source_name="palette.gbapal",
+        output_name="palette.gbapal",
     ),
     "08750e4c": Profile(
         name="gUnk_08750E4C",
@@ -288,7 +312,7 @@ def export(arguments: argparse.Namespace) -> None:
         raise ValueError(f"{destination} exists; pass --replace to refresh it")
     destination.parent.mkdir(parents=True, exist_ok=True)
     destination.write_bytes(payloads["jp"])
-    print(f"exported one shared native 4bpp source for {item.name}")
+    print(f"exported one shared native {item.source_name} source for {item.name}")
 
 
 def build(arguments: argparse.Namespace) -> None:
