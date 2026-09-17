@@ -1292,6 +1292,20 @@ SHA-1 与基准 ROM 逐字节校验均已通过。
 数据指针，所有常量均为局部数值；不含代码 `.incbin`、原始 `.byte`、`.set`、`.thumb_set` 或地址偏移
 伪匹配。JP、US、EU、DE 的完整构建、SHA-1 与基准 ROM 逐字节校验均已通过。
 
+紧随其后的鸡祭流程控制函数 `func_080BA284` 与 `func_080BA2C4` 已直接提升。前者在 JP 覆盖
+`0x080B9CB8`–`0x080B9CF7`，US/EU/DE 分别为 `0x080BA284`–`0x080BA2C3`、
+`0x080BA2B4`–`0x080BA2F3`、`0x080BA1E4`–`0x080BA223`；后者在 JP 覆盖
+`0x080B9CF8`–`0x080B9FA7`，US/EU/DE 分别为 `0x080BA2C4`–`0x080BA573`、
+`0x080BA2F4`–`0x080BA5A3`、`0x080BA224`–`0x080BA4D3`。两段均通过真实的可重定位函数和
+文本符号表达调用与常量池；`func_080BA2C4` 的分派表是函数内部本地表。
+
+JP 原 ROM 在 `0x080B9E80` 直接指向既有的
+`gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationYes`，而 US/EU/DE 指向
+`gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandAgain`。该区域差异以直接的
+`REGION_JP` 文本符号选择表达，没有新增别名、`.set` 或地址偏移伪匹配。两段已提升主体不含代码
+`.incbin`、原始 `.byte`、`.set`、`.thumb_set` 或固定地址调用；JP、US、EU、DE 的完整构建、SHA-1
+与基准 ROM 逐字节校验均已通过。
+
 鸡祭资源页面主处理函数 `func_080B7648` 已整段直接提升。JP 覆盖
 `0x080B707C`–`0x080B82BF`，普通三区分别覆盖 US `0x080B7648`–`0x080B888B`、EU
 `0x080B7678`–`0x080B88BB`、DE `0x080B75A8`–`0x080B87EB`；四区长度均为 `0x1244`

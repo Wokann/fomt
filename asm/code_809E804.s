@@ -57004,11 +57004,394 @@ func_080BA204: @ 0x080B9C38
     .global func_080BA284
     .thumb_func
 func_080BA284: @ 0x080B9CB8
-    .incbin "baserom_jp.gba", 0xB9CB8, (0xB9CF8 - 0xB9CB8)
+	push {r4, lr}
+	adds r1, r0, #0
+	adds r1, #0x92
+	movs r3, #0xb4
+	lsls r3, r3, #4
+	adds r2, r0, r3
+	movs r4, #1
+.Ljp_080B9CC6:
+	ldrb r0, [r1, #6]
+	cmp r0, #0
+	beq .Ljp_080B9CE8
+	movs r0, #2
+	str r0, [r2]
+	ldrb r0, [r1]
+	adds r0, #1
+	movs r3, #0
+	strb r0, [r1]
+	lsls r0, r0, #0x18
+	lsrs r0, r0, #0x18
+	cmp r0, #0x3c
+	bls .Ljp_080B9CE8
+	movs r0, #1
+	str r0, [r2]
+	strb r3, [r1, #6]
+	strb r3, [r1]
+.Ljp_080B9CE8:
+	adds r1, #0x40
+	adds r2, #4
+	subs r4, #1
+	cmp r4, #0
+	bge .Ljp_080B9CC6
+	pop {r4}
+	pop {r0}
+	bx r0
+
     .global func_080BA2C4
     .thumb_func
 func_080BA2C4: @ 0x080B9CF8
-    .incbin "baserom_jp.gba", 0xB9CF8, (0xB9FA8 - 0xB9CF8)
+	push {r4, r5, r6, r7, lr}
+	mov r7, sl
+	mov r6, sb
+	mov r5, r8
+	push {r5, r6, r7}
+	sub sp, #0x10
+	adds r7, r0, #0
+	mov sl, r1
+	movs r0, #0xe3
+	lsls r0, r0, #3
+	adds r4, r7, r0
+	ldr r0, [r4]
+	bl func_08050D34
+	adds r6, r0, #0
+	ldr r4, [r4]
+	str r4, [sp, #0xc]
+	adds r0, r7, #0
+	bl func_080088DC
+	mov r8, r0
+	adds r0, r7, #0
+	bl func_08008920
+	mov sb, r0
+	adds r0, r7, #0
+	bl func_08008918
+	adds r5, r0, #0
+	adds r0, r7, #0
+	bl func_08008940
+	adds r4, r0, #0
+	adds r0, r7, #0
+	bl func_0800894C
+	movs r2, #0xe1
+	lsls r2, r2, #3
+	adds r1, r7, r2
+	str r4, [sp]
+	str r0, [sp, #4]
+	str r1, [sp, #8]
+	ldr r0, [sp, #0xc]
+	mov r1, r8
+	mov r2, sb
+	adds r3, r5, #0
+	bl func_08050D3C
+	cmp r0, #6
+	bls .Ljp_080B9D5E
+	b .Ljp_080B9F7E
+.Ljp_080B9D5E:
+	lsls r0, r0, #2
+	ldr r1, .Ljp_080B9D68 @ =.Ljp_080B9D6C
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.Ljp_080B9D68: .4byte .Ljp_080B9D6C
+.Ljp_080B9D6C: @ jump table
+	.4byte .Ljp_080B9D88 @ case 0
+	.4byte .Ljp_080B9F06 @ case 1
+	.4byte .Ljp_080B9F06 @ case 2
+	.4byte .Ljp_080B9DD0 @ case 3
+	.4byte .Ljp_080B9F06 @ case 4
+	.4byte .Ljp_080B9F06 @ case 5
+	.4byte .Ljp_080B9F06 @ case 6
+.Ljp_080B9D88:
+	ldr r1, .Ljp_080B9D9C @ =0x00000B34
+	adds r0, r7, r1
+	ldrb r0, [r0]
+	cmp r0, #0
+	beq .Ljp_080B9DA4
+	ldr r2, .Ljp_080B9DA0 @ =0x00000B14
+	adds r1, r7, r2
+	movs r0, #2
+	str r0, [r1]
+	b .Ljp_080B9F7E
+	.align 2, 0
+.Ljp_080B9D9C: .4byte 0x00000B34
+.Ljp_080B9DA0: .4byte 0x00000B14
+.Ljp_080B9DA4:
+	ldr r1, .Ljp_080B9DC8 @ =0x00000B3C
+	adds r0, r7, r1
+	ldrb r0, [r0]
+	cmp r0, #3
+	bne .Ljp_080B9DBA
+	ldr r2, .Ljp_080B9DCC @ =0x00000B3B
+	adds r0, r7, r2
+	ldrb r0, [r0]
+	cmp r0, #0xb3
+	bhi .Ljp_080B9DBA
+	b .Ljp_080B9F7E
+.Ljp_080B9DBA:
+	movs r1, #0xe3
+	lsls r1, r1, #3
+	adds r0, r7, r1
+	ldr r0, [r0]
+	bl func_08050D5C
+	b .Ljp_080B9F7E
+	.align 2, 0
+.Ljp_080B9DC8: .4byte 0x00000B3C
+.Ljp_080B9DCC: .4byte 0x00000B3B
+.Ljp_080B9DD0:
+	cmp r6, #5
+	bgt .Ljp_080B9DDE
+	cmp r6, #4
+	bge .Ljp_080B9E44
+	cmp r6, #1
+	beq .Ljp_080B9DF0
+	b .Ljp_080B9DE2
+.Ljp_080B9DDE:
+	cmp r6, #6
+	beq .Ljp_080B9E84
+.Ljp_080B9DE2:
+	movs r2, #0xe3
+	lsls r2, r2, #3
+	adds r0, r7, r2
+	ldr r0, [r0]
+	bl func_08050D74
+	b .Ljp_080B9F06
+.Ljp_080B9DF0:
+	ldr r1, .Ljp_080B9E40 @ =0x00000B3C
+	adds r0, r7, r1
+	ldrb r0, [r0]
+	cmp r0, #4
+	bne .Ljp_080B9E10
+	adds r0, r7, #0
+	adds r0, #0x84
+	ldr r0, [r0]
+	cmp r0, #0
+	ble .Ljp_080B9E10
+	movs r2, #0xe3
+	lsls r2, r2, #3
+	adds r0, r7, r2
+	ldr r0, [r0]
+	bl func_08050DD8
+.Ljp_080B9E10:
+	ldr r1, .Ljp_080B9E40 @ =0x00000B3C
+	adds r0, r7, r1
+	ldrb r0, [r0]
+	cmp r0, #5
+	bne .Ljp_080B9E30
+	adds r0, r7, #0
+	adds r0, #0x84
+	ldr r0, [r0]
+	cmp r0, #0
+	bne .Ljp_080B9E30
+	movs r2, #0xe3
+	lsls r2, r2, #3
+	adds r0, r7, r2
+	ldr r0, [r0]
+	bl func_08050DD8
+.Ljp_080B9E30:
+	ldr r1, .Ljp_080B9E40 @ =0x00000B3C
+	adds r0, r7, r1
+	ldrb r1, [r0]
+	adds r0, r7, #0
+	bl func_080BA574
+	b .Ljp_080B9F06
+	.align 2, 0
+.Ljp_080B9E40: .4byte 0x00000B3C
+.Ljp_080B9E44:
+	ldr r2, .Ljp_080B9E74 @ =0x00000B3C
+	adds r1, r7, r2
+	ldrb r0, [r1]
+	adds r0, #1
+	movs r4, #0
+	strb r0, [r1]
+	lsls r0, r0, #0x18
+	lsrs r0, r0, #0x18
+	cmp r0, #6
+	bne .Ljp_080B9F06
+	movs r1, #0xe3
+	lsls r1, r1, #3
+	adds r0, r7, r1
+	ldr r0, [r0]
+	ldr r1, .Ljp_080B9E78 @ =gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandQuestion
+	ldr r2, .Ljp_080B9E7C @ =gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandYes
+	ldr r3, .Ljp_080B9E80 @ =gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandAgain
+	str r4, [sp]
+	str r4, [sp, #4]
+	str r4, [sp, #8]
+	bl func_08050E30
+	b .Ljp_080B9F06
+	.align 2, 0
+.Ljp_080B9E74: .4byte 0x00000B3C
+.Ljp_080B9E78: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandQuestion
+.Ljp_080B9E7C: .4byte gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandYes
+.Ljp_080B9E80:
+	.ifdef REGION_JP
+	.4byte gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationYes
+	.else
+	.4byte gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandAgain
+	.endif
+.Ljp_080B9E84:
+	movs r2, #0xe3
+	lsls r2, r2, #3
+	adds r4, r7, r2
+	ldr r0, [r4]
+	bl func_08050DF0
+	cmp r0, #1
+	beq .Ljp_080B9E9A
+	cmp r0, #2
+	beq .Ljp_080B9EF8
+	b .Ljp_080B9F06
+.Ljp_080B9E9A:
+	ldr r1, .Ljp_080B9EB0 @ =0x00000B18
+	adds r0, r7, r1
+	ldr r0, [r0]
+	cmp r0, #1
+	beq .Ljp_080B9EC8
+	cmp r0, #1
+	bgt .Ljp_080B9EB4
+	cmp r0, #0
+	beq .Ljp_080B9EBA
+	b .Ljp_080B9EE0
+	.align 2, 0
+.Ljp_080B9EB0: .4byte 0x00000B18
+.Ljp_080B9EB4:
+	cmp r0, #2
+	beq .Ljp_080B9ED8
+	b .Ljp_080B9EE0
+.Ljp_080B9EBA:
+	ldr r0, [r4]
+	ldr r1, .Ljp_080B9EC4 @ =gText_HarvestSpriteMiniGame_ChickenFestival_RoundOneStart
+	bl func_08050D8C
+	b .Ljp_080B9EE0
+	.align 2, 0
+.Ljp_080B9EC4:
+	.ifdef REGION_DE
+	.4byte gText_HarvestSpriteMiniGame_ChickenFestival_RoundOneStartPageBreak
+	.else
+	.4byte gText_HarvestSpriteMiniGame_ChickenFestival_RoundOneStart
+	.endif
+.Ljp_080B9EC8:
+	ldr r0, [r4]
+	ldr r1, .Ljp_080B9ED4 @ =gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsStart
+	bl func_08050D8C
+	b .Ljp_080B9EE0
+	.align 2, 0
+.Ljp_080B9ED4:
+	.ifdef REGION_DE
+	.4byte gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsStartPageBreak
+	.else
+	.4byte gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsStart
+	.endif
+.Ljp_080B9ED8:
+	ldr r0, [r4]
+	ldr r1, .Ljp_080B9EF4 @ =gText_HarvestSpriteMiniGame_ChickenFestival_FinalsStart
+	bl func_08050D8C
+.Ljp_080B9EE0:
+	movs r2, #0xe3
+	lsls r2, r2, #3
+	adds r0, r7, r2
+	ldr r0, [r0]
+	bl func_08050DD8
+	movs r0, #0
+	mov sl, r0
+	b .Ljp_080B9F06
+	.align 2, 0
+.Ljp_080B9EF4:
+	.ifdef REGION_DE
+	.4byte gText_HarvestSpriteMiniGame_ChickenFestival_FinalsStartPageBreak
+	.else
+	.4byte gText_HarvestSpriteMiniGame_ChickenFestival_FinalsStart
+	.endif
+.Ljp_080B9EF8:
+	ldr r1, .Ljp_080B9F98 @ =0x00000B3C
+	adds r0, r7, r1
+	movs r1, #1
+	strb r1, [r0]
+	ldr r2, .Ljp_080B9F9C @ =0x00000B33
+	adds r0, r7, r2
+	strb r1, [r0]
+.Ljp_080B9F06:
+	mov r0, sl
+	cmp r0, #0x77
+	bgt .Ljp_080B9F10
+	movs r1, #1
+	add sl, r1
+.Ljp_080B9F10:
+	mov r2, sl
+	cmp r2, #0x78
+	bne .Ljp_080B9F3E
+	movs r0, #0xb5
+	lsls r0, r0, #4
+	adds r1, r7, r0
+	movs r0, #1
+	str r0, [r1]
+	movs r1, #0x7a
+	mov sl, r1
+	movs r2, #0xe3
+	lsls r2, r2, #3
+	adds r4, r7, r2
+	ldr r0, [r4]
+	bl func_08050DE4
+	ldr r0, [r4]
+	ldr r1, .Ljp_080B9FA0 @ =gText_HarvestSpriteMiniGame_ChickenFestival_Start
+	bl func_08050D8C
+	ldr r0, [r4]
+	bl func_08050DD8
+.Ljp_080B9F3E:
+	mov r0, sl
+	subs r0, #0x7a
+	cmp r0, #0x59
+	bhi .Ljp_080B9F4A
+	movs r0, #1
+	add sl, r0
+.Ljp_080B9F4A:
+	mov r1, sl
+	cmp r1, #0xd4
+	bne .Ljp_080B9F7E
+	movs r2, #0xb5
+	lsls r2, r2, #4
+	adds r0, r7, r2
+	movs r5, #0
+	str r5, [r0]
+	movs r0, #0x79
+	mov sl, r0
+	movs r1, #0xe3
+	lsls r1, r1, #3
+	adds r4, r7, r1
+	ldr r0, [r4]
+	bl func_08050DE4
+	ldr r0, [r4]
+	bl func_08050D74
+	ldr r2, .Ljp_080B9F9C @ =0x00000B33
+	adds r0, r7, r2
+	strb r5, [r0]
+	ldr r0, .Ljp_080B9FA4 @ =0x00000B34
+	adds r1, r7, r0
+	movs r0, #1
+	strb r0, [r1]
+.Ljp_080B9F7E:
+	adds r0, r7, #0
+	bl func_080B5318
+	mov r0, sl
+	add sp, #0x10
+	pop {r3, r4, r5}
+	mov r8, r3
+	mov sb, r4
+	mov sl, r5
+	pop {r4, r5, r6, r7}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.Ljp_080B9F98: .4byte 0x00000B3C
+.Ljp_080B9F9C: .4byte 0x00000B33
+.Ljp_080B9FA0:
+	.ifdef REGION_DE
+	.4byte gText_HarvestSpriteMiniGame_ChickenFestival_StartPageBreak
+	.else
+	.4byte gText_HarvestSpriteMiniGame_ChickenFestival_Start
+	.endif
+.Ljp_080B9FA4: .4byte 0x00000B34
+
     .global func_080BA574
     .thumb_func
 func_080BA574: @ 0x080B9FA8
