@@ -47,14 +47,18 @@ single source to different VRAM locations.
 | `gUnk_08752C4C` | `0x20` | Managed raw Farm Status UI tile record; palette and layout unproven. |
 
 The three icon rows already point at checked-in PNG pipelines.  The twenty-two UI
-rows now have verified four-region physical bounds and reversible native-tile
-sources.  No arbitrary tile-grid PNG or JSON layout is treated as a source
-asset: a future visual pipeline must still establish the companion palette and
-tilemap/OAM layout.
+rows now have verified four-region physical bounds and reversible native source
+assets.  A manual second pass over every UI call site confirms that twenty-one
+records target character VRAM; the sole palette-RAM exception is
+`gUnk_08752AAC`. `gUnk_08750C4C` also has one separate runtime-layout consumer,
+which is not treated as evidence for an image layout. No arbitrary tile-grid PNG
+or JSON layout is treated as a source asset: a future visual pipeline must still
+establish the companion palette and tilemap/OAM layout.
 
 Every static `g*` source label currently found by this conservative scan is
-now classified above: it is either already covered by an icon PNG pipeline or
-preserved as a separately bounded native 4bpp tile record.  This does not
+now classified above: it is either already covered by an icon PNG pipeline,
+preserved as a separately bounded native 4bpp tile record, or (for
+`gUnk_08752AAC`) preserved as a BGR555 palette record. This does not
 claim that every ROM graphic has been found: calls through pointers, runtime
 descriptors, archive dispatch, or non-literal VRAM destinations remain outside
 this scanner's deliberately narrow scope.

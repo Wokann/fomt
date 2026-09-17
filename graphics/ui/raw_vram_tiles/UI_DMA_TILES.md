@@ -32,13 +32,15 @@ JP, US, EU, and DE retail ROMs, so each has one shared native source.
 
 `gUnk_08750C8C` is copied in both `0x1A0`-byte and `0x1C0`-byte forms. The
 managed source therefore preserves its complete proven `0x1C0`-byte record;
-the smaller call consumes its leading subrange. The remaining twenty-one
-records are each consumed in full by a direct DMA call. The final eleven are
-used by the Farm Status UI. Ten are character-VRAM tile uploads; the exception
-is `gUnk_08752AAC`, which `func_08068344` copies to `0x05000000` as one
-16-colour BGR555 palette record. The neighboring `gUnk_08752A2C` range is
-only consumed as a `0x20`-byte tile subrange by that function, so no full-image
-layout is inferred from their adjacency.
+the smaller call consumes its leading subrange. A second manual audit of all
+twenty-two profile call sites confirms that twenty-one records target character
+VRAM. `gUnk_08750C4C` additionally reaches a runtime layout helper, but that
+call does not prove a composited layout. The final eleven records are used by
+the Farm Status UI. Ten are character-VRAM tile uploads; the exception is
+`gUnk_08752AAC`, which `func_08068344` copies to `0x05000000` as one 16-colour
+BGR555 palette record. The neighboring `gUnk_08752A2C` range is only consumed
+as a `0x20`-byte tile subrange by that function, so no full-image layout is
+inferred from their adjacency.
 
 The remaining sources are raw character tiles, not composited images. No
 tilemap or OAM layout is yet proven, so this pipeline intentionally emits
