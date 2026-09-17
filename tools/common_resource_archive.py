@@ -66,6 +66,9 @@ PROFILES = {
     "shared-086faa80": ArchiveProfile(
         (3, 9, 1, 36, 1, 0, 9), (), "shared 086FAA80 resource"
     ),
+    "shared-0871ecac": ArchiveProfile(
+        (1, 5, 1, 4, 1, 0, 4), (4,), "shared 0871ECAC resource"
+    ),
 }
 ACTIVE_PROFILE = PROFILES["common"]
 
