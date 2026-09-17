@@ -48,6 +48,22 @@ This removes a tempting but false shortcut: sharing the twenty object tile
 streams does not make their OAM descriptors, palettes, frame order, or
 character identity shared or statically recoverable.
 
+## Runtime-target recheck
+
+The object loader also does not establish a fixed object-to-VRAM mapping.
+`func_0805EE44` receives the destination through its caller and passes that
+runtime value directly to `func_0805FBB8`. The latter reserves the leading
+`0x20` bytes and then supplies successive `+0x500` destinations to `Unpack`.
+The loader therefore proves a bounded native allocation stride, but not a
+literal VRAM base or a permanent identity for any numbered source.
+
+Likewise, `func_0805E99C` is a generic emitter: it receives caller-provided
+eight-byte OAM piece records and a runtime handle, then writes transient
+hardware OAM entries. The Intro Scene call sites resolve those records through
+scene-state objects rather than through a static twenty-entry descriptor table
+adjacent to `gIntroSceneUnpackSources`. This independently confirms that the
+numbered object source order is a loading order only.
+
 ## Why a complete PNG cannot yet be emitted
 
 The same initialization path subsequently drives the Intro Scene through
