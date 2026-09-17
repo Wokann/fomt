@@ -7584,22 +7584,32 @@ extern void func_080BC8C0(void);
 extern void func_080BC8FC(void);
 #endif
 
-// Keep this four-slot table in physical order; only the function targets vary
-// between the JP and US revisions.
+// JP code also takes the address of the fourth physical slot directly. Keep
+// that one-slot object separate so the reference is a real ROM label rather
+// than an alias to vtable_unk_080E8528 + 0xC.
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E8528[]
     SECTION(".rodata.vtable_8528") = {
-#if defined(REGION_JP)
         nullptr,
         nullptr,
         func_080E4D50,
+    };
+
+extern RawVTableFunction const gUnk_080E7974[]
+    SECTION(".rodata.vtable_8528") = {
         nullptr,
+    };
 #else
+// Keep this four-slot table in physical order; only the function targets vary
+// between the western revisions.
+extern RawVTableFunction const vtable_unk_080E8528[]
+    SECTION(".rodata.vtable_8528") = {
         nullptr,
         nullptr,
         func_080BC8C0,
         func_080BC8FC,
-#endif
     };
+#endif
 
 #if defined(REGION_JP)
 extern void func_080C0770(void);
