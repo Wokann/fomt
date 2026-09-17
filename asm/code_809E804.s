@@ -62038,12 +62038,44 @@ func_080BC2F4:
     .incbin "baserom_jp.gba", 0xBC2F4, (0xBC324 - 0xBC2F4)
     .global func_080BC8F0
     .thumb_func
-func_080BC8F0:
-    .incbin "baserom_jp.gba", 0xBC324, (0xBC330 - 0xBC324)
+func_080BC8F0: @ 0x080BC324
+	push {lr}
+	ldr r0, [r0, #4]
+	bl func_080B44E0
+	pop {r1}
+	bx r1
     .global func_080BC8FC
     .thumb_func
-func_080BC8FC:
-    .incbin "baserom_jp.gba", 0xBC330, (0xBC36C - 0xBC330)
+func_080BC8FC: @ 0x080BC330
+	push {r4, lr}
+	sub sp, #0xc
+	adds r4, r0, #0
+	ldr r1, [r1, #4]
+	mov r0, sp
+	bl func_080B44EC
+	ldr r2, [sp]
+	mov r0, sp
+	str r0, [sp, #4]
+	str r2, [sp, #8]
+	adds r1, r0, #0
+	movs r0, #0
+	str r0, [r1]
+	str r2, [r4]
+	ldr r1, [sp]
+	cmp r1, #0
+	beq .L080BC360
+	ldr r0, [r1]
+	ldr r2, [r0, #8]
+	adds r0, r1, #0
+	movs r1, #3
+	bl _call_via_r2
+.L080BC360:
+	adds r0, r4, #0
+	add sp, #0xc
+	pop {r4}
+	pop {r1}
+	bx r1
+	.align 2, 0
     .global func_080BC938
     .thumb_func
 func_080BC938:
