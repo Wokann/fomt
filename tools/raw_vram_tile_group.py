@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Manage directly DMA-loaded native 4bpp tile groups with proven ROM bounds.
+"""Manage directly DMA-loaded native graphics records with proven ROM bounds.
 
 The tool deliberately uses a native ``.4bpp`` source when the consuming code
 proves a tile range but does not yet prove the palette and OAM/BG layout needed
-to make an editable full-image PNG.  It is a lossless source pipeline, not a
-layout guesser.
+to make an editable full-image PNG.  It also preserves direct BGR555 palette
+records as ``.gbapal`` when that is what the consumer proves. It is a lossless
+source pipeline, not a layout guesser.
 """
 
 from __future__ import annotations
@@ -218,8 +219,8 @@ PROFILES = {
         offsets={"jp": 0x4D8A58, "us": 0x752AAC, "eu": 0x752B08, "de": 0x4D9FC8},
         length=0x20,
         sha256="16651959cfb2129a001de5974a24772259962d7e5d22e88096280f1c57371186",
-        source_name="tiles.4bpp",
-        output_name="tiles.4bpp",
+        source_name="palette.gbapal",
+        output_name="palette.gbapal",
     ),
     "08752ccc": Profile(
         name="gUnk_08752CCC",
@@ -306,7 +307,7 @@ def build(arguments: argparse.Namespace) -> None:
     checked_retail(arguments.rom.read_bytes(), arguments.region, item)
     arguments.output_dir.mkdir(parents=True, exist_ok=True)
     output_path(arguments.output_dir, item).write_bytes(source)
-    print(f"rebuilt {item.name} native tile range for {arguments.region.upper()}")
+    print(f"rebuilt {item.name} native record for {arguments.region.upper()}")
 
 
 def verify(arguments: argparse.Namespace) -> None:
@@ -322,7 +323,7 @@ def verify(arguments: argparse.Namespace) -> None:
 
 def apply_payload(target: bytes, baseline: bytes, generated: bytes, region: str, item: Profile) -> bytes:
     if len(generated) != item.length:
-        raise ValueError(f"{item.name}: generated tile range has an invalid size")
+        raise ValueError(f"{item.name}: generated native record has an invalid size")
     offset = item.offsets[region]
     expected = checked_retail(baseline, region, item)
     current = target[offset:offset + item.length]
@@ -370,7 +371,7 @@ def edit_test(arguments: argparse.Namespace) -> None:
             or result[offset:offset + item.length] != bytes(edited)
             or result[offset + item.length:] != baseline[offset + item.length:]):
         raise AssertionError(f"{item.name}: native edit escaped its proven fixed range")
-    print(f"{item.name} edit test: byte {index:#x}; fixed {item.length:#x}-byte native tile range")
+    print(f"{item.name} edit test: byte {index:#x}; fixed {item.length:#x}-byte native record")
 
 
 def main() -> None:

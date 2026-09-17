@@ -1,9 +1,9 @@
-# UI direct-DMA native tile groups
+# UI direct-DMA native graphics records
 
-The consumers below call `func_08008F0C` with a named ROM source, literal
-character-VRAM destination, and fixed byte count.  Every listed physical range
-is byte-identical in the JP, US, EU, and DE retail ROMs, so each has one shared
-native `.4bpp` source.
+The consumers below call `func_08008F0C` with a named ROM source and fixed byte
+count. Except for the one explicitly identified palette upload, their target is
+literal character VRAM. Every listed physical range is byte-identical in the
+JP, US, EU, and DE retail ROMs, so each has one shared native source.
 
 | Symbol | Source | Bytes | JP | US | EU | DE | SHA-256 |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
@@ -25,20 +25,22 @@ native `.4bpp` source.
 | `gUnk_08752ACC` | `08752acc/shared/tiles.4bpp` | `0x80` | `0x4D8A78` | `0x752ACC` | `0x752B28` | `0x4D9FE8` | `544c753c94d191908294f5db94a19d1cec38b880dbc83c1bd46e53d38a8d7004` |
 | `gUnk_0875290C` | `0875290c/shared/tiles.4bpp` | `0x80` | `0x4D88B8` | `0x75290C` | `0x752968` | `0x4D9E28` | `577830e91675ac0f323c3ed71d780c87f83b4b5a0a209b2c96e93c9d5b5533e3` |
 | `gUnk_08752A2C` | `08752a2c/shared/tiles.4bpp` | `0x20` | `0x4D89D8` | `0x752A2C` | `0x752A88` | `0x4D9F48` | `1eb989f756d8a797e4c33dbb012c7d4f1a3637dab164e4eab9fd867edfd2d532` |
-| `gUnk_08752AAC` | `08752aac/shared/tiles.4bpp` | `0x20` | `0x4D8A58` | `0x752AAC` | `0x752B08` | `0x4D9FC8` | `16651959cfb2129a001de5974a24772259962d7e5d22e88096280f1c57371186` |
+| `gUnk_08752AAC` | `08752aac/shared/palette.gbapal` | `0x20` | `0x4D8A58` | `0x752AAC` | `0x752B08` | `0x4D9FC8` | `16651959cfb2129a001de5974a24772259962d7e5d22e88096280f1c57371186` |
 | `gUnk_08752CCC` | `08752ccc/shared/tiles.4bpp` | `0x20` | `0x4D8C78` | `0x752CCC` | `0x752D28` | `0x4DA1E8` | `7ad0e85a313266549b865f289aed4f47dcfbd36e5d28ab1270b3729a86d0f5be` |
 | `gUnk_08752BCC` | `08752bcc/shared/tiles.4bpp` | `0x20` | `0x4D8B78` | `0x752BCC` | `0x752C28` | `0x4DA0E8` | `bd19e0c23ddca6d07e9306ef5a9ba2c4f906e6e5aa6c1b4c45b0db65125e3ae8` |
 | `gUnk_08752C4C` | `08752c4c/shared/tiles.4bpp` | `0x20` | `0x4D8BF8` | `0x752C4C` | `0x752CA8` | `0x4DA168` | `7cfc23dbe168b6540cfde63d355a87a45bcbff5d940529924641f9e1fdddb4c3` |
 
-`gUnk_08750C8C` is copied in both `0x1A0`-byte and `0x1C0`-byte forms.  The
+`gUnk_08750C8C` is copied in both `0x1A0`-byte and `0x1C0`-byte forms. The
 managed source therefore preserves its complete proven `0x1C0`-byte record;
-the smaller call consumes its leading subrange.  The remaining twenty-one
-records are each consumed in full by a direct DMA call.  The final eleven are
-used by the Farm Status UI; their direct character-VRAM transfers establish
-only their native tile bounds, not a palette or final arrangement.
+the smaller call consumes its leading subrange. The remaining twenty-one
+records are each consumed in full by a direct DMA call. The final eleven are
+used by the Farm Status UI. Ten are character-VRAM tile uploads; the exception
+is `gUnk_08752AAC`, which `func_08068344` copies to `0x05000000` as one
+16-colour BGR555 palette record. The neighboring `gUnk_08752A2C` range is
+only consumed as a `0x20`-byte tile subrange by that function, so no full-image
+layout is inferred from their adjacency.
 
-The sources are raw character tiles, not composited images.  No palette bank,
-tilemap, OAM layout, or UI ownership is yet proven, so this pipeline
-intentionally emits neither a guessed PNG nor a JSON layout sidecar.  Build
-and post-link patch rules constrain every replacement to the listed original
-regional range.
+The remaining sources are raw character tiles, not composited images. No
+tilemap or OAM layout is yet proven, so this pipeline intentionally emits
+neither a guessed PNG nor a JSON layout sidecar. Build and post-link patch
+rules constrain every replacement to the listed original regional range.

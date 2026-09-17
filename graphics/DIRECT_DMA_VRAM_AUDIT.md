@@ -41,7 +41,7 @@ single source to different VRAM locations.
 | `gUnk_08752ACC` | `0x80` | Managed raw Farm Status UI tile record; palette and layout unproven. |
 | `gUnk_0875290C` | `0x80` | Managed raw Farm Status UI tile record; palette and layout unproven. |
 | `gUnk_08752A2C` | `0x20` | Managed raw Farm Status UI tile record; palette and layout unproven. |
-| `gUnk_08752AAC` | `0x20` | Managed raw Farm Status UI tile record; manual direct-DMA audit; palette and layout unproven. |
+| `gUnk_08752AAC` | `0x20` | Managed Farm Status BGR555 palette record; `func_08068344` copies it directly to `0x05000000`. |
 | `gUnk_08752CCC` | `0x20` | Managed raw Farm Status UI tile record; palette and layout unproven. |
 | `gUnk_08752BCC` | `0x20` | Managed raw Farm Status UI tile record; palette and layout unproven. |
 | `gUnk_08752C4C` | `0x20` | Managed raw Farm Status UI tile record; palette and layout unproven. |
