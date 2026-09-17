@@ -61,6 +61,8 @@ class Resource:
         layers = {layer for _map_id, layer in self.members}
         if layers == {0}:
             return ".4bpp"
+        if layers <= {1, 2}:
+            return ".gbapal"
         if layers <= {3, 4, 5}:
             return ".tilemap"
         return ".bin"
@@ -256,7 +258,7 @@ def build(arguments: argparse.Namespace) -> None:
         archive.extend(rebuilt)
         expected_offset = offset + resource.length
     archive_path(arguments.output_dir).write_bytes(archive)
-    print(f"rebuilt {len(resources)} byte-identical MapData streams for {arguments.region.upper()}")
+    print(f"rebuilt {len(resources)} MapData streams for {arguments.region.upper()}")
 
 
 def verify(arguments: argparse.Namespace) -> None:

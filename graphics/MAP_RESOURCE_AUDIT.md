@@ -11,7 +11,7 @@ unverified map payloads remain direct ROM data.
 | Offset | Field | Established role |
 | --- | --- | --- |
 | `0x00` | `compressed_layers[0]` | Primary tile-graphics stream: `func_080A5EA0` unpacks it directly to VRAM `0x06000000`. |
-| `0x04`–`0x08` | `compressed_layers[1..2]` | Additional packed visual layers. `func_080A5DB8` always loads layer 1 and conditionally also loads layer 2 to caller-selected destinations; their exact tile/palette roles need further destination tracing. |
+| `0x04`–`0x08` | `compressed_layers[1..2]` | BGR555 palette groups. `func_080A5DB8` expands them into one of three constructor-allocated `0x1E0`-byte buffers; every payload is exactly 15 × 16 native BGR555 entries. Layer 1 is always selected first; layer 2 is selected for the fourth caller mode. |
 | `0x0C`–`0x14` | `compressed_layers[3..5]` | Three packed 16-bit BG tilemap layers. `func_080A5CC0` unpacks them into three destination buffers; if absent, it fills exactly `width * height * 2` bytes with `0x03FF`, proving a u16 tile-entry grid. |
 | `0x18` | `terrain_data` | Table of four-byte terrain/interaction records. |
 | `0x1C` | `terrain_map` | One-byte index grid into `terrain_data`. |
@@ -60,10 +60,9 @@ native source files and writes corresponding region-specific packed files
 under `build/<region>/graphics/maps/`.  The latter also contains one
 `map_visual_archive.0x70` file per region: the exact contiguous archive range
 above, assembled from the 272 rebuilt streams.  The source classification is strictly
-evidence-based: 31 layer-0 streams use `.4bpp`, 194 layer-3--5 streams use
-`.tilemap`, and 47 layer-1/2 streams remain neutral `.bin` until their exact
-consumer destination is proven.  All 272 exports total `0x22BE60` decoded
-bytes.
+evidence-based: 31 layer-0 streams use `.4bpp`, 47 layer-1/2 streams use
+`.gbapal` (15 BGR555 banks each), and 194 layer-3--5 streams use `.tilemap`.
+All 272 exports total `0x22BE60` decoded bytes.
 
 The builder preserves the original packed bytes when a decoded source is
 unchanged.  When it is edited, `tools/marvelous_codec.py` routes the payload
@@ -95,8 +94,9 @@ each complete image byte-identical.
   and a post-link ROM integration step. It preserves all existing direct
   assembly labels, rather than risking a refactor of the aggregate archive
   before every embedded label has been independently recovered.
-* Layer 0 and layers 3–5 have verified graphics/tilemap roles; layers 1–2
-  still require exact tile/palette destination analysis.
+* Layer 0, layers 1–2 and layers 3–5 respectively have verified 4bpp tile,
+  BGR555 palette-group and u16 tilemap roles. The 47 palette sources retain
+  their native bank ordering as `.gbapal`.
 * The earlier `unknown_types.hh::MapData` sketch has a speculative
   `packed_img`/palette/tile naming scheme.  It is not used as authoritative
   evidence for this pipeline; `map_data.hh` and the runtime access above are
@@ -116,7 +116,7 @@ original `incbin` range:
 4. A source representation that preserves native ordering without JSON layout
    sidecars, a rebuild path, and four-region range-byte verification.
 
-The MapData streams satisfy points 1, 2 and 4. Layer 0 and layers 3--5 also
-satisfy point 3; layers 1--2 intentionally remain native `.bin` sources until
-their tile/palette destinations are proven. Extraction previews may be kept
-as references but are never used as authoritative editable sources.
+The MapData streams satisfy points 1, 2 and 4. Layers 0, 1--2 and 3--5 also
+satisfy point 3 as native tile, palette and tilemap data respectively.
+Extraction previews may be kept as references but are never used as
+authoritative editable sources.
