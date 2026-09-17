@@ -42933,7 +42933,42 @@ func_080B1B48: @ 0x080B1B48
 .Ljp_080B2F0C: .4byte 0x00000838
 
 
-    jp_code_809_func func_080B34DC, 0xB2F10, 0xB2F4C
+    .global func_080B34DC
+    .thumb_func
+func_080B34DC: @ 0x080B2F10
+	push {r4, r5, r6, lr}
+	adds r3, r0, #0
+	movs r2, #0
+	movs r0, #0x8e
+	lsls r0, r0, #4
+	adds r5, r3, r0
+	ldr r6, .Ljp_080B2F30 @ =gUnk_HarvestSpriteMiniGameAnimalHusbandryMatchValues
+	subs r0, #0x5c
+	adds r4, r3, r0
+.Ljp_080B2F22:
+	adds r1, r2, r6
+	ldrb r0, [r5]
+	ldrb r1, [r1]
+	cmp r0, r1
+	bne .Ljp_080B2F34
+	str r2, [r4]
+	b .Ljp_080B2F42
+	.align 2, 0
+.Ljp_080B2F30: .4byte gUnk_HarvestSpriteMiniGameAnimalHusbandryMatchValues
+.Ljp_080B2F34:
+	adds r2, #1
+	cmp r2, #4
+	ble .Ljp_080B2F22
+	ldr r0, .Ljp_080B2F48 @ =0x00000884
+	adds r1, r3, r0
+	movs r0, #5
+	str r0, [r1]
+.Ljp_080B2F42:
+	pop {r4, r5, r6}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_080B2F48: .4byte 0x00000884
     .global func_080B2F4C
     .thumb_func
 func_080B2F4C: @ 0x080B2F4C
