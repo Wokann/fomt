@@ -2242,14 +2242,36 @@ gUnk_084D4CC4:
     .incbin "baserom_jp.gba", 0x4D4CC4, (0x4D4DDC - 0x4D4CC4)
     .global gUnk_084D4DDC
 gUnk_084D4DDC:
-    .incbin "baserom_jp.gba", 0x4D4DDC, (0x4D529C - 0x4D4DDC)
+    .incbin "build/jp/graphics/ui/scene_08077810_jp/tiles.0x70"
     .global gUnk_084D529C
 gUnk_084D529C:
-    .incbin "baserom_jp.gba", 0x4D529C, (0x4D52BC - 0x4D529C)
-    .global gUnk_084D52BC
+    .incbin "build/jp/graphics/ui/scene_08077810_jp/palette.gbapal"
+.global gUnk_084D52BC
 gUnk_084D52BC:
-    .incbin "baserom_jp.gba", 0x4D52BC, (0x4D7918 - 0x4D52BC)
-    .global gUnk_084D7918
+    .incbin "build/jp/graphics/ui/scene_08077810_jp/layer_1.tilemap.0x70"
+    .incbin "baserom_jp.gba", 0x4D5354, (0x4D5430 - 0x4D5354)
+    .global gUnk_084D5430
+gUnk_084D5430:
+    .incbin "baserom_jp.gba", 0x4D5430, (0x4D5458 - 0x4D5430)
+    .global gUnk_084D5458
+gUnk_084D5458:
+    .incbin "baserom_jp.gba", 0x4D5458, (0x4D5508 - 0x4D5458)
+    .global gUnk_084D5508
+gUnk_084D5508:
+    .incbin "baserom_jp.gba", 0x4D5508, (0x4D556C - 0x4D5508)
+    .global gUnk_084D556C
+gUnk_084D556C:
+    .incbin "baserom_jp.gba", 0x4D556C, (0x4D5808 - 0x4D556C)
+    .global gUnk_084D5808
+gUnk_084D5808:
+    .incbin "baserom_jp.gba", 0x4D5808, (0x4D5868 - 0x4D5808)
+    .global gUnk_084D5868
+gUnk_084D5868:
+    .incbin "baserom_jp.gba", 0x4D5868, (0x4D668C - 0x4D5868)
+    .global gUnk_084D668C
+gUnk_084D668C:
+    .incbin "baserom_jp.gba", 0x4D668C, (0x4D7918 - 0x4D668C)
+.global gUnk_084D7918
 gUnk_084D7918:
     .incbin "baserom_jp.gba", 0x4D7918, (0x4D7998 - 0x4D7918)
     .global gUnk_084D7998
