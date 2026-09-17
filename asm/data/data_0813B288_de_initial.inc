@@ -2037,10 +2037,10 @@ gUnk_IntroSceneStartupUnpackSource_003:
 	.incbin "build/de/graphics/intro_scene/startup_tilemaps/startup_03.0x70"
 	.global gUnk_0874A9C0
 gUnk_0874A9C0:
-	.incbin "baserom_de.gba", 0x4D1E2C, 0x3970
+	.incbin "build/de/graphics/intro_scene/startup_visual/startup_tiles.0x70"
 	.global gUnk_0874E330
 gUnk_0874E330:
-	.incbin "baserom_de.gba", 0x4D579C, 0x200
+	.incbin "build/de/graphics/intro_scene/startup_visual/startup_palette_banks.gbapal"
 	.global gUnk_0874E530
 gUnk_0874E530:
 	.incbin "baserom_de.gba", 0x4D599C, 0x118

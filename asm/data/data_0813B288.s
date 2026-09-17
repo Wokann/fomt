@@ -2305,10 +2305,10 @@ gUnk_IntroSceneStartupUnpackSource_002:
     .global gUnk_IntroSceneStartupUnpackSource_003
 gUnk_IntroSceneStartupUnpackSource_003:
     .incbin "build/jp/graphics/intro_scene/startup_tilemaps/startup_03.0x70"
-    .incbin "baserom_jp.gba", 0x4D1154, (0x4D4AC4 - 0x4D1154)
+    .incbin "build/jp/graphics/intro_scene/startup_visual/startup_tiles.0x70"
     .global gUnk_084D4AC4
 gUnk_084D4AC4:
-    .incbin "baserom_jp.gba", 0x4D4AC4, (0x4D4CC4 - 0x4D4AC4)
+    .incbin "build/jp/graphics/intro_scene/startup_visual/startup_palette_banks.gbapal"
     .global gUnk_084D4CC4
 gUnk_084D4CC4:
     .incbin "baserom_jp.gba", 0x4D4CC4, (0x4D4DDC - 0x4D4CC4)
@@ -5831,6 +5831,20 @@ gUnk_08747A74:
 	.incbin "build/us/graphics/intro_scene/startup_tilemaps/startup_\source\().0x70"
 	.endif
 	.endm
+	.macro FOMT_INTRO_SCENE_STARTUP_VISUAL_TILES
+	.ifdef REGION_EU
+	.incbin "build/eu/graphics/intro_scene/startup_visual/startup_tiles.0x70"
+	.else
+	.incbin "build/us/graphics/intro_scene/startup_visual/startup_tiles.0x70"
+	.endif
+	.endm
+	.macro FOMT_INTRO_SCENE_STARTUP_VISUAL_PALETTE
+	.ifdef REGION_EU
+	.incbin "build/eu/graphics/intro_scene/startup_visual/startup_palette_banks.gbapal"
+	.else
+	.incbin "build/us/graphics/intro_scene/startup_visual/startup_palette_banks.gbapal"
+	.endif
+	.endm
 	.global gUnk_IntroSceneStartupUnpackSource_000
 gUnk_IntroSceneStartupUnpackSource_000:
 	FOMT_INTRO_SCENE_STARTUP_TILEMAP 00
@@ -5846,11 +5860,11 @@ gUnk_IntroSceneStartupUnpackSource_003:
 
 	.global gUnk_0874A9C0
 gUnk_0874A9C0:
-	FOMT_REGION_ASSET_INCBIN 0x74A9C0, 0x3970
+	FOMT_INTRO_SCENE_STARTUP_VISUAL_TILES
 
 	.global gUnk_0874E330
 gUnk_0874E330:
-	FOMT_REGION_ASSET_INCBIN 0x74E330, 0x200
+	FOMT_INTRO_SCENE_STARTUP_VISUAL_PALETTE
 
 	.global gUnk_0874E530
 gUnk_0874E530:
