@@ -70,22 +70,6 @@ PROFILES = {
         source_name="tiles.4bpp",
         output_name="tiles.4bpp",
     ),
-    "08750c4c": Profile(
-        name="gUnk_08750C4C",
-        offsets={"jp": 0x4D6BF8, "us": 0x750C4C, "eu": 0x750CA8, "de": 0x4D8168},
-        length=0x20,
-        sha256="e98672a456687f9c428628c321ff964b8507028878310d4e3eaebd3cfbe37e49",
-        source_name="tiles.4bpp",
-        output_name="tiles.4bpp",
-    ),
-    "08750c6c": Profile(
-        name="gUnk_08750C6C",
-        offsets={"jp": 0x4D6C18, "us": 0x750C6C, "eu": 0x750CC8, "de": 0x4D8188},
-        length=0x20,
-        sha256="9985d2bb7b07b88d53543f5ab323df57ac3eb3402671d800405dfdf4f9c18237",
-        source_name="palette.gbapal",
-        output_name="palette.gbapal",
-    ),
     "08750c8c": Profile(
         name="gUnk_08750C8C",
         offsets={"jp": 0x4D6C38, "us": 0x750C8C, "eu": 0x750CE8, "de": 0x4D81A8},

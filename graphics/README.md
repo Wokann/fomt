@@ -395,6 +395,21 @@ fourteen generated ranges against all four ROMs.  See
 `ui/records_minigame/README.md` for the exact source-regeneration command and
 the reason no OAM or JSON sidecar is involved.
 
+## Farm Status Harvest Sprite task UI tile
+
+`ui/farm_status/harvest_sprite_task_ui_tile/shared/harvest_sprite_task_ui_tile.png`
+is a complete 8x8 indexed 4bpp OBJ tile.  The Farm Status initializer
+uploads its single tile and adjacent BGR555 palette together, so this is a
+genuine editable PNG source rather than a guessed tile arrangement.  It
+rebuilds through:
+
+```console
+make gfx-farm-status-task-ui-tile-all
+```
+
+See `ui/farm_status/harvest_sprite_task_ui_tile/README.md` for the verified ROM
+offsets and runtime evidence.
+
 ## Farm-status screen background tiles
 
 `ui/farm_status/shared/base_tiles.png` is the 256x144 indexed 4bpp tile grid

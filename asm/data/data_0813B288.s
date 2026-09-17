@@ -539,6 +539,25 @@
     .endif
     .endm
 
+    @ The Harvest Sprite task UI tile is a complete 8x8 OBJ tile and its
+    @ adjacent BGR555 palette.  Both bytes are regenerated from one verified
+    @ PNG source; the selected output directory still follows the ROM region.
+    .macro FOMT_FARM_STATUS_TASK_UI_TILE extension
+    .ifdef REGION_JP
+    .incbin "build/jp/graphics/ui/farm_status/harvest_sprite_task_ui_tile/harvest_sprite_task_ui_tile.\extension"
+    .else
+    .ifdef REGION_EU
+    .incbin "build/eu/graphics/ui/farm_status/harvest_sprite_task_ui_tile/harvest_sprite_task_ui_tile.\extension"
+    .else
+    .ifdef REGION_DE
+    .incbin "build/de/graphics/ui/farm_status/harvest_sprite_task_ui_tile/harvest_sprite_task_ui_tile.\extension"
+    .else
+    .incbin "build/us/graphics/ui/farm_status/harvest_sprite_task_ui_tile/harvest_sprite_task_ui_tile.\extension"
+    .endif
+    .endif
+    .endif
+    .endm
+
     .ifdef REGION_JP
     @ JP revision 0 counterpart of data_0813B288.s.
     @
@@ -6162,11 +6181,11 @@ gUnk_087506E0:
 
 	.global gUnk_08750C4C
 gUnk_08750C4C:
-	FOMT_REGION_ASSET_INCBIN 0x750C4C, 0x20
+	FOMT_FARM_STATUS_TASK_UI_TILE 4bpp
 
 	.global gUnk_08750C6C
 gUnk_08750C6C:
-	FOMT_REGION_ASSET_INCBIN 0x750C6C, 0x20
+	FOMT_FARM_STATUS_TASK_UI_TILE gbapal
 
 	.global gUnk_08750C8C
 gUnk_08750C8C:

@@ -7,8 +7,6 @@ the JP, US, EU, and DE retail ROMs, so each has one shared native source.
 
 | Symbol | Source | Bytes | JP | US | EU | DE | SHA-256 |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
-| `gUnk_08750C4C` | `08750c4c/shared/tiles.4bpp` | `0x20` | `0x4D6BF8` | `0x750C4C` | `0x750CA8` | `0x4D8168` | `e98672a456687f9c428628c321ff964b8507028878310d4e3eaebd3cfbe37e49` |
-| `gUnk_08750C6C` | `08750c6c/shared/palette.gbapal` | `0x20` | `0x4D6C18` | `0x750C6C` | `0x750CC8` | `0x4D8188` | `9985d2bb7b07b88d53543f5ab323df57ac3eb3402671d800405dfdf4f9c18237` |
 | `gUnk_08750C8C` | `08750c8c/shared/tiles.4bpp` | `0x1C0` | `0x4D6C38` | `0x750C8C` | `0x750CE8` | `0x4D81A8` | `2b7c39eab1900bb410cced0daa2ffd21055045e47ddcf99f318255775e77ec4f` |
 | `gUnk_087510AC` | `087510ac/shared/tiles.4bpp` | `0x120` | `0x4D7058` | `0x7510AC` | `0x751108` | `0x4D85C8` | `c477e41b27535552a2455bf44fa3b970cd335c9e5c8fe920f46959f871438583` |
 | `gUnk_0875166C` | `0875166c/shared/tiles.4bpp` | `0x120` | `0x4D7618` | `0x75166C` | `0x7516C8` | `0x4D8B88` | `bbf625be269f793c6bbe13c09ac11bc6f851b41588f4439f921255a9cb15ce1a` |
@@ -59,11 +57,13 @@ The three adjacent records at the start of this group have enough caller
 evidence to classify their scope, but not enough to derive a single authored
 screen layout:
 
-* `gUnk_08750C4C` is a one-tile 4bpp record and `gUnk_08750C6C` is its
-  adjacent 16-colour BGR555 palette. `func_080645F0` and `func_0806644C`
-  upload them together to character VRAM and palette RAM. The shared caller
-  path invokes `GetTaskExp__C13HarvestSpriteQ213HarvestSprite4Task`, so this
-  pair belongs to the Harvest Sprite task/experience menu family.
+* `gUnk_08750C4C` and `gUnk_08750C6C` have moved to
+  `graphics/ui/farm_status/harvest_sprite_task_ui_tile/shared/` as one
+  editable 8x8 PNG source. `func_080645F0` and `func_0806644C` upload the
+  one-tile 4bpp record together with its adjacent 16-colour BGR555 palette to
+  OBJ tile and palette RAM. The shared caller path invokes
+  `GetTaskExp__C13HarvestSpriteQ213HarvestSprite4Task`; this proves a complete
+  Harvest Sprite task/experience UI tile rather than a guessed composite.
 * `gUnk_08750C8C` is a 14-tile 4bpp sheet. It is loaded by the same Harvest
   Sprite path, by the cooking ingredient and recipe-screen constructors
   (`func_0809800C` and `func_0809964C`), and by two other UI constructors in

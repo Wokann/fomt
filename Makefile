@@ -1269,13 +1269,14 @@ RAW_VRAM_TILES_086D6698_STAMP := $(RAW_VRAM_TILES_086D6698_OUTPUT_DIR)/.raw-vram
 RAW_VRAM_TILES_086D6698_REGION := $(INTRO_OBJECTS_REGION)
 
 # These UI payloads are almost all copied directly into BG or OBJ character
-# VRAM. 08750c6c, 08750f6c, 0875178c and 08752aac are direct BGR555
-# palette-RAM uploads.
+# VRAM. 08750f6c, 0875178c and 08752aac are direct BGR555 palette-RAM
+# uploads. The independently paired 08750c4c/08750c6c one-tile record has a
+# verified PNG pipeline under the Farm Status source tree.
 # The neighbouring 0875290c tile record is owned by the Farm Status icon PNG
 # pipeline, so it is deliberately not duplicated here. The remaining
 # consumers prove fixed native bounds but not a final layout, so preserve each
 # as native data instead of fabricating PNGs.
-RAW_VRAM_UI_PROFILES := 08750c4c 08750c6c 08750c8c 087510ac 0875166c 0875178c 087517ac 08750f6c 08750f8c 08750e4c 087511cc 0875154c 0875130c 0875142c 08752dcc 08752b4c 087529ac 08752d4c 08752acc 08752a2c 08752aac 08752ccc 08752bcc 08752c4c
+RAW_VRAM_UI_PROFILES := 08750c8c 087510ac 0875166c 0875178c 087517ac 08750f6c 08750f8c 08750e4c 087511cc 0875154c 0875130c 0875142c 08752dcc 08752b4c 087529ac 08752d4c 08752acc 08752a2c 08752aac 08752ccc 08752bcc 08752c4c
 RAW_VRAM_UI_TARGETS := $(foreach profile,$(RAW_VRAM_UI_PROFILES),gfx-raw-vram-tiles-$(profile) gfx-raw-vram-tiles-$(profile)-test gfx-raw-vram-tiles-$(profile)-all gfx-raw-vram-tiles-$(profile)-patch-test gfx-raw-vram-tiles-$(profile)-edit-test)
 define DEFINE_RAW_VRAM_UI_PROFILE
 RAW_VRAM_TILES_$(1)_TOOL := $(RAW_VRAM_TILES_08697920_TOOL)
@@ -1419,6 +1420,17 @@ FARM_STATUS_CREATURE_ICON_OUTPUT_DIR := $(BUILD_DIR)/graphics/ui/farm_status/cre
 FARM_STATUS_CREATURE_ICON_TILES := $(foreach icon,$(FARM_STATUS_CREATURE_ICON_IDS),$(FARM_STATUS_CREATURE_ICON_OUTPUT_DIR)/icon_$(icon).4bpp)
 FARM_STATUS_CREATURE_ICON_PALETTES := $(foreach icon,$(FARM_STATUS_CREATURE_ICON_IDS),$(FARM_STATUS_CREATURE_ICON_OUTPUT_DIR)/icon_$(icon).gbapal)
 FARM_STATUS_CREATURE_ICON_OUTPUTS := $(FARM_STATUS_CREATURE_ICON_TILES) $(FARM_STATUS_CREATURE_ICON_PALETTES)
+
+# The Farm Status Harvest Sprite task UI tile is one complete 8x8 OBJ tile
+# with its adjacent 16-colour BGR555 palette.  Its caller proves that exact
+# pairing, so this small record can use an editable PNG source.
+FARM_STATUS_TASK_UI_TILE_SOURCE_DIR := graphics/ui/farm_status/harvest_sprite_task_ui_tile/shared
+FARM_STATUS_TASK_UI_TILE_TOOL := tools/farm_status_task_ui_tile.py
+FARM_STATUS_TASK_UI_TILE_SOURCE := $(FARM_STATUS_TASK_UI_TILE_SOURCE_DIR)/harvest_sprite_task_ui_tile.png
+FARM_STATUS_TASK_UI_TILE_OUTPUT_DIR := $(BUILD_DIR)/graphics/ui/farm_status/harvest_sprite_task_ui_tile
+FARM_STATUS_TASK_UI_TILE_TILES := $(FARM_STATUS_TASK_UI_TILE_OUTPUT_DIR)/harvest_sprite_task_ui_tile.4bpp
+FARM_STATUS_TASK_UI_TILE_PALETTE := $(FARM_STATUS_TASK_UI_TILE_OUTPUT_DIR)/harvest_sprite_task_ui_tile.gbapal
+FARM_STATUS_TASK_UI_TILE_OUTPUTS := $(FARM_STATUS_TASK_UI_TILE_TILES) $(FARM_STATUS_TASK_UI_TILE_PALETTE)
 
 SUBDIRS := $(sort $(dir $(ALL_OBJS)))
 $(shell mkdir -p $(SUBDIRS))
@@ -2003,13 +2015,17 @@ $(ANIMAL_FESTIVAL_ICON_OUTPUTS): $(ANIMAL_FESTIVAL_ICON_SOURCES) $(ANIMAL_FESTIV
 $(FARM_STATUS_CREATURE_ICON_OUTPUTS): $(FARM_STATUS_CREATURE_ICON_SOURCES) $(FARM_STATUS_CREATURE_ICON_TOOL)
 	@$(PYTHON) $(FARM_STATUS_CREATURE_ICON_TOOL) build --source-dir $(FARM_STATUS_CREATURE_ICON_SOURCE_DIR) --output-dir $(FARM_STATUS_CREATURE_ICON_OUTPUT_DIR)
 
+$(FARM_STATUS_TASK_UI_TILE_OUTPUTS): $(FARM_STATUS_TASK_UI_TILE_SOURCE) $(FARM_STATUS_TASK_UI_TILE_TOOL)
+	@$(PYTHON) $(FARM_STATUS_TASK_UI_TILE_TOOL) build --source-dir $(FARM_STATUS_TASK_UI_TILE_SOURCE_DIR) --output-dir $(FARM_STATUS_TASK_UI_TILE_OUTPUT_DIR)
+
 FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-resource-archive gfx-farm-status-resource-archive-test gfx-farm-status-resource-archive-all gfx-farm-status-resource-archive-patch-test gfx-farm-status-resource-archive-edit-test gfx-farm-status-winter gfx-farm-status-winter-test gfx-farm-status-winter-all gfx-farm-status-winter-edit-test gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-secondary-tilemaps-edit-test gfx-farm-status-exterior-styles gfx-farm-status-exterior-styles-test gfx-farm-status-selector-icon gfx-farm-status-selector-icon-test gfx-farm-status-selector-icon-all gfx-farm-status-selector-icon-edit-test gfx-clock-font gfx-clock-font-test gfx-clock-font-all gfx-clock-font-edit-test gfx-farm-status-creature-icons gfx-farm-status-creature-icons-test gfx-farm-status-creature-icons-all gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal-nonwinter-all gfx-seasonal-nonwinter-reference gfx-seasonal-nonwinter-edit-test gfx-seasonal-winter gfx-seasonal-winter-test gfx-seasonal-winter-all gfx-seasonal-winter-reference gfx-seasonal-winter-edit-test gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-background-edit-test gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-tilemaps-edit-test gfx-intro-startup-visual gfx-intro-startup-visual-export gfx-intro-startup-visual-reference gfx-intro-startup-visual-test gfx-intro-startup-visual-all gfx-intro-startup-visual-edit-test gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-animal-festival-icons gfx-animal-festival-icons-test gfx-animal-festival-icons-all resource-archive-audit unpack-vram-inventory dma-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
+.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-resource-archive gfx-farm-status-resource-archive-test gfx-farm-status-resource-archive-all gfx-farm-status-resource-archive-patch-test gfx-farm-status-resource-archive-edit-test gfx-farm-status-winter gfx-farm-status-winter-test gfx-farm-status-winter-all gfx-farm-status-winter-edit-test gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-secondary-tilemaps-edit-test gfx-farm-status-exterior-styles gfx-farm-status-exterior-styles-test gfx-farm-status-selector-icon gfx-farm-status-selector-icon-test gfx-farm-status-selector-icon-all gfx-farm-status-selector-icon-edit-test gfx-clock-font gfx-clock-font-test gfx-clock-font-all gfx-clock-font-edit-test gfx-farm-status-creature-icons gfx-farm-status-creature-icons-test gfx-farm-status-creature-icons-all gfx-farm-status-task-marker gfx-farm-status-task-marker-test gfx-farm-status-task-marker-all gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal-nonwinter-all gfx-seasonal-nonwinter-reference gfx-seasonal-nonwinter-edit-test gfx-seasonal-winter gfx-seasonal-winter-test gfx-seasonal-winter-all gfx-seasonal-winter-reference gfx-seasonal-winter-edit-test gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-background-edit-test gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-tilemaps-edit-test gfx-intro-startup-visual gfx-intro-startup-visual-export gfx-intro-startup-visual-reference gfx-intro-startup-visual-test gfx-intro-startup-visual-all gfx-intro-startup-visual-edit-test gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-animal-festival-icons gfx-animal-festival-icons-test gfx-animal-festival-icons-all resource-archive-audit unpack-vram-inventory dma-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
 .PHONY: gfx-map-resources-reference gfx-map-resources-edit-test gfx-map-state-palettes gfx-map-state-palettes-test gfx-map-state-palettes-all gfx-map-state-palettes-patch-test gfx-map-state-palettes-edit-test unpack-inventory copy-ram-inventory gfx-raw-vram-tiles-ui-build
 .PHONY: indexed-resource-archive-inventory
+.PHONY: gfx-farm-status-task-ui-tile gfx-farm-status-task-ui-tile-test gfx-farm-status-task-ui-tile-all
 .PHONY: gfx-small-ui-resource-archive gfx-small-ui-resource-archive-test gfx-small-ui-resource-archive-all gfx-small-ui-resource-archive-patch-test gfx-small-ui-resource-archive-edit-test
 .PHONY: gfx-cooking-ui-resource-archive gfx-cooking-ui-resource-archive-test gfx-cooking-ui-resource-archive-all gfx-cooking-ui-resource-archive-patch-test gfx-cooking-ui-resource-archive-edit-test
 .PHONY: gfx-menu-ui-resource-archive gfx-menu-ui-resource-archive-test gfx-menu-ui-resource-archive-all gfx-menu-ui-resource-archive-patch-test gfx-menu-ui-resource-archive-edit-test
@@ -3686,6 +3702,14 @@ gfx-farm-status-creature-icons-all:
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-farm-status-creature-icons-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-farm-status-creature-icons-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-farm-status-creature-icons-test
+gfx-farm-status-task-ui-tile: $(FARM_STATUS_TASK_UI_TILE_OUTPUTS)
+gfx-farm-status-task-ui-tile-test: gfx-farm-status-task-ui-tile $(FARM_STATUS_TASK_UI_TILE_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
+	@$(PYTHON) $(FARM_STATUS_TASK_UI_TILE_TOOL) verify --source-dir $(FARM_STATUS_TASK_UI_TILE_SOURCE_DIR) --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
+gfx-farm-status-task-ui-tile-all:
+	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-farm-status-task-ui-tile-test
+	@$(MAKE) --no-print-directory GAME_REGION=US gfx-farm-status-task-ui-tile-test
+	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-farm-status-task-ui-tile-test
+	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-farm-status-task-ui-tile-test
 # Generic linear 4bpp grid regression using a verified UI resource. Unlike
 # character sprites, this payload has no OAM or tile-map indirection.
 TILE_GRID_TEST_DIR := $(BUILD_DIR)/graphics/tile_grid_test
@@ -3700,7 +3724,7 @@ tile-grid-test:
 	@$(MAKE) --no-print-directory GAME_REGION=EU tile-grid-region-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE tile-grid-region-test
 
-gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui gfx-ui-scene-080a2ba4 gfx-ui-scene-08077810 gfx-ui-scene-080ae7d0 gfx-ui-scene-080b7164 gfx-ui-scene-080c160c gfx-ui-scene-080bcfac gfx-ui-scene-080b55d0-aux gfx-ui-scene-080b55d0-main gfx-raw-vram-tiles-08697920 gfx-raw-vram-tiles-field gfx-raw-vram-tiles-field-leading gfx-raw-vram-tiles-ui-build gfx-ui-scene-08054f40-tiles gfx-ui-scene-0805ab08-tiles gfx-farm-house-visual gfx-farm-house-tilemaps gfx-farm-house-palettes gfx-farm-status gfx-farm-status-resource-archive gfx-common-resource-archive gfx-small-companion-archive gfx-small-ui-resource-archive gfx-cooking-ui-resource-archive gfx-menu-ui-resource-archive gfx-large-shared-resource-archive gfx-shared-resource-08725da0 gfx-shared-resource-086f2fac gfx-farm-status-tilemaps gfx-farm-status-secondary-tilemaps gfx-farm-status-exterior-styles gfx-farm-status-selector-icon gfx-clock-font gfx-farm-status-creature-icons gfx-seasonal-nonwinter gfx-seasonal-winter gfx-intro-background gfx-intro-objects gfx-intro-startup-tilemaps gfx-intro-startup-visual gfx-intro-indexed-archive gfx-intro-small-archive gfx-map-resources gfx-records-minigame gfx-animal-festival-icons
+gfx-assets: gfx-font gfx-portraits gfx-actors gfx-ui gfx-ui-scene-080a2ba4 gfx-ui-scene-08077810 gfx-ui-scene-080ae7d0 gfx-ui-scene-080b7164 gfx-ui-scene-080c160c gfx-ui-scene-080bcfac gfx-ui-scene-080b55d0-aux gfx-ui-scene-080b55d0-main gfx-raw-vram-tiles-08697920 gfx-raw-vram-tiles-field gfx-raw-vram-tiles-field-leading gfx-raw-vram-tiles-ui-build gfx-ui-scene-08054f40-tiles gfx-ui-scene-0805ab08-tiles gfx-farm-house-visual gfx-farm-house-tilemaps gfx-farm-house-palettes gfx-farm-status gfx-farm-status-resource-archive gfx-common-resource-archive gfx-small-companion-archive gfx-small-ui-resource-archive gfx-cooking-ui-resource-archive gfx-menu-ui-resource-archive gfx-large-shared-resource-archive gfx-shared-resource-08725da0 gfx-shared-resource-086f2fac gfx-farm-status-tilemaps gfx-farm-status-secondary-tilemaps gfx-farm-status-exterior-styles gfx-farm-status-selector-icon gfx-clock-font gfx-farm-status-creature-icons gfx-farm-status-task-ui-tile gfx-seasonal-nonwinter gfx-seasonal-winter gfx-intro-background gfx-intro-objects gfx-intro-startup-tilemaps gfx-intro-startup-visual gfx-intro-indexed-archive gfx-intro-small-archive gfx-map-resources gfx-records-minigame gfx-animal-festival-icons
 
 gfx-assets: gfx-shared-resource-086faa80
 gfx-assets: gfx-shared-resource-0871ecac
@@ -3991,11 +4015,12 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-records-minigame-all
 	@$(MAKE) --no-print-directory gfx-animal-festival-icons-all
 	@$(MAKE) --no-print-directory gfx-farm-status-creature-icons-all
+	@$(MAKE) --no-print-directory gfx-farm-status-task-ui-tile-all
 	@$(MAKE) --no-print-directory tile-grid-test
 	@$(MAKE) --no-print-directory oam-pack-test
 	@$(MAKE) --no-print-directory oam-pack-audit
 
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN) $(PORTRAIT_TILE_BIN) $(ACTOR_TILE_BIN) $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN) $(FARM_STATUS_PACKED_BIN) $(FARM_STATUS_RESOURCE_ARCHIVE_OUTPUT) $(COMMON_RESOURCE_ARCHIVE_OUTPUT) $(SMALL_COMPANION_ARCHIVE_OUTPUT) $(FARM_STATUS_WINTER_OUTPUTS) $(FARM_STATUS_PALETTE_BIN) $(FARM_STATUS_TILEMAP_BIN) $(FARM_STATUS_SECONDARY_TILEMAP_STAMP) $(FARM_STATUS_EXTERIOR_STYLE_STAMP) $(FARM_STATUS_SELECTOR_ICON_OUTPUTS) $(CLOCK_FONT_STAMP) $(FARM_STATUS_CREATURE_ICON_OUTPUTS) $(SEASONAL_NONWINTER_STAMP) $(SEASONAL_WINTER_STAMP) $(INTRO_BACKGROUND_PACKED_BIN) $(INTRO_BACKGROUND_PALETTE_BIN) $(INTRO_OBJECTS_STAMP) $(INTRO_STARTUP_TILEMAPS_STAMP) $(INTRO_STARTUP_VISUAL_STAMP) $(INTRO_INDEXED_ARCHIVE_OUTPUT) $(INTRO_SMALL_ARCHIVE_OUTPUT) $(UI_SCENE_080A2BA4_STAMP) $(UI_SCENE_08077810_ACTIVE_STAMP) $(UI_SCENE_080AE7D0_STAMP) $(UI_SCENE_080B7164_STAMP) $(UI_SCENE_080C160C_STAMP) $(UI_SCENE_080BCFAC_STAMP) $(UI_SCENE_080B55D0_AUX_STAMP) $(UI_SCENE_080B55D0_MAIN_STAMP) $(UI_SCENE_08054F40_TILES_STAMP) $(UI_SCENE_0805AB08_TILES_STAMP) $(MAP_RESOURCES_STAMP) $(RECORDS_MINIGAME_OUTPUTS) $(ANIMAL_FESTIVAL_ICON_OUTPUTS)
+$(BUILD_DIR)/asm/data/data_0813B288.o: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN) $(PORTRAIT_TILE_BIN) $(ACTOR_TILE_BIN) $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN) $(FARM_STATUS_PACKED_BIN) $(FARM_STATUS_RESOURCE_ARCHIVE_OUTPUT) $(COMMON_RESOURCE_ARCHIVE_OUTPUT) $(SMALL_COMPANION_ARCHIVE_OUTPUT) $(FARM_STATUS_WINTER_OUTPUTS) $(FARM_STATUS_PALETTE_BIN) $(FARM_STATUS_TILEMAP_BIN) $(FARM_STATUS_SECONDARY_TILEMAP_STAMP) $(FARM_STATUS_EXTERIOR_STYLE_STAMP) $(FARM_STATUS_SELECTOR_ICON_OUTPUTS) $(CLOCK_FONT_STAMP) $(FARM_STATUS_CREATURE_ICON_OUTPUTS) $(FARM_STATUS_TASK_UI_TILE_OUTPUTS) $(SEASONAL_NONWINTER_STAMP) $(SEASONAL_WINTER_STAMP) $(INTRO_BACKGROUND_PACKED_BIN) $(INTRO_BACKGROUND_PALETTE_BIN) $(INTRO_OBJECTS_STAMP) $(INTRO_STARTUP_TILEMAPS_STAMP) $(INTRO_STARTUP_VISUAL_STAMP) $(INTRO_INDEXED_ARCHIVE_OUTPUT) $(INTRO_SMALL_ARCHIVE_OUTPUT) $(UI_SCENE_080A2BA4_STAMP) $(UI_SCENE_08077810_ACTIVE_STAMP) $(UI_SCENE_080AE7D0_STAMP) $(UI_SCENE_080B7164_STAMP) $(UI_SCENE_080C160C_STAMP) $(UI_SCENE_080BCFAC_STAMP) $(UI_SCENE_080B55D0_AUX_STAMP) $(UI_SCENE_080B55D0_MAIN_STAMP) $(UI_SCENE_08054F40_TILES_STAMP) $(UI_SCENE_0805AB08_TILES_STAMP) $(MAP_RESOURCES_STAMP) $(RECORDS_MINIGAME_OUTPUTS) $(ANIMAL_FESTIVAL_ICON_OUTPUTS)
 
 # Mary owns the complete packed RIFF script stream.  Its three headers remain
 # explicit inputs: callables and slot names live with the selected scripts,
@@ -4321,6 +4346,10 @@ ALL_DEPS :=
 endif
 
 ifneq (,$(filter gfx-raw-vram-tiles-08697920 gfx-raw-vram-tiles-08697920-test gfx-raw-vram-tiles-08697920-all gfx-raw-vram-tiles-08697920-patch-test gfx-raw-vram-tiles-08697920-edit-test,$(MAKECMDGOALS)))
+ALL_DEPS :=
+endif
+
+ifneq (,$(filter gfx-farm-status-task-ui-tile gfx-farm-status-task-ui-tile-test gfx-farm-status-task-ui-tile-all,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 

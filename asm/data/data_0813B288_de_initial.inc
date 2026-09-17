@@ -2083,10 +2083,10 @@ gUnk_087506E0:
 	.incbin "baserom_de.gba", 0x4D7BFC, 0x56C
 	.global gUnk_08750C4C
 gUnk_08750C4C:
-	.incbin "baserom_de.gba", 0x4D8168, 0x20
+	FOMT_FARM_STATUS_TASK_UI_TILE 4bpp
 	.global gUnk_08750C6C
 gUnk_08750C6C:
-	.incbin "baserom_de.gba", 0x4D8188, 0x20
+	FOMT_FARM_STATUS_TASK_UI_TILE gbapal
 	.global gUnk_08750C8C
 gUnk_08750C8C:
 	.incbin "baserom_de.gba", 0x4D81A8, 0x1C0
