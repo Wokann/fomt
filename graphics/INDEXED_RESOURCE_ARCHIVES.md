@@ -56,9 +56,10 @@ regionally different. It is the coverage ledger for this staged pipeline.
 | Shared archive `087409E4` | `0x4C6B4C` | `0x7409E4` | `0x740A40` | `0x4C7E58` | `0x1010` | `1, 3, 18, 120, 1, 0` | 4 | `5f7a693b74b3a1a91e25515dc6b56bfdca5c6d73dd76ea2051e2573178810320` |
 | Shared archive `0874EE38` | `0x4D5354` | `0x74EE38` | `0x74EE94` | `0x4D62A4` | `0xDC` | `1, 1, 1, 4, 1, 0` | 1 | `b01a430fb80a11101e121ff8f0aac65d9263770992eedc2f4b6efdbdbaf378ef` |
 | Shared archive `087506E0` | `0x4D668C` | `0x7506E0` | `0x75073C` | `0x4D7BFC` | `0x56C` | `4, 4, 10, 36, 1, 0` | 4 | `47327d507aaa6887ea219a7a8facf07c41f18c0560d87d2ee74a448d5c989661` |
+| Shared archive `0875352C` | `0x4D94D8` | `0x75352C` | `0x753588` | `0x4DAA48` | `0xDC` | `1, 1, 1, 4, 1, 0` | 1 | `38e1fc4d3ae2dca18201483a01c7d8c4f2f349d647714657819d26781d0baa42` |
 | Farm Status / Town Map archive | `0x4D977C` | `0x7537D0` | `0x75382C` | `0x4DACEC` | `0xEA4` | `20, 40, 11, 73, 13, 0` | 40 | `480a114e52b941e289d67055ddd632b6c0bbee3cfa66263523ad91c7e1d4dfc1` |
 
-All thirty-seven complete native archive payloads are byte-identical across JP, US,
+All thirty-eight complete native archive payloads are byte-identical across JP, US,
 EU, and DE. The common archive is the data currently exposed under
 `gUnk_086678A0` in non-JP regional assembly; the JP physical match was found
 by the exact complete payload, not by inventing a JP label.
@@ -287,6 +288,12 @@ the table. Its four descriptors select four native OAM records, 36 native 4bpp
 tiles, one BGR555 palette, and four selection entries. Its editable PNG sources
 are under `graphics/shared_resource_087506e0/`; the address remains its source
 name until the runtime purpose is independently established.
+
+Shared archive `0875352C` is independently bounded at the four locations in
+the table. Its one descriptor selects one native OAM record, four native 4bpp
+tiles, one BGR555 palette, and one selection entry. Its editable PNG source is
+under `graphics/shared_resource_0875352c/`; the address remains its source name
+until the runtime purpose is independently established.
 
 The Farm Status screen constructs a third archive at `0x4D977C` in JP and
 `0x7537D0` in US (with the regional locations recorded by its rebuild tool).
