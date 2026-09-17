@@ -51,7 +51,7 @@ as a shared payload.
 | `gUnk_08740908` | `0x4C6A70` | `0x740908` | `0x740964` | `0x4C7D7C` | `0xDC` | 1, 1, 1, 4, 1, 0 | 1 | rebuild, four-region shared: `graphics/shared_resource_08740908/` |
 | `gUnk_087409E4` | `0x4C6B4C` | `0x7409E4` | `0x740A40` | `0x4C7E58` | `0x1010` | 1, 3, 18, 120, 1, 0 | 4 | rebuild, four-region shared: `graphics/shared_resource_087409e4/` |
 | `gUnk_0874EE38` | `0x4D5354` | `0x74EE38` | `0x74EE94` | `0x4D62A4` | `0xDC` | 1, 1, 1, 4, 1, 0 | 1 | rebuild, four-region shared: `graphics/shared_resource_0874ee38/` |
-| `gUnk_0874F34C` | different | different | different | `0x4D67B8` | `0x1444` | 22, 22, 7, 140, 3, 0 | 22 | regional payload differs |
+| `gUnk_0874F34C` | `0x4D5868` | `0x74F34C` | `0x74F3A8` | `0x4D67B8` | `0x1444` | 22, 22, 7, 140, 3, 0 | 22 | rebuild, region-local: `graphics/regional_resource_0874f34c/` |
 | `gUnk_087506E0` | `0x4D668C` | `0x7506E0` | `0x75073C` | `0x4D7BFC` | `0x56C` | 4, 4, 10, 36, 1, 0 | 4 | rebuild, four-region shared: `graphics/shared_resource_087506e0/` |
 | `gUnk_0875352C` | `0x4D94D8` | `0x75352C` | `0x753588` | `0x4DAA48` | `0xDC` | 1, 1, 1, 4, 1, 0 | 1 | rebuild, four-region shared: `graphics/shared_resource_0875352c/` |
 | `gUnk_08753608` | `0x4D95B4` | `0x753608` | `0x753664` | `0x4DAB24` | `0xDC` | 1, 1, 1, 4, 1, 0 | 1 | rebuild, four-region shared: `graphics/shared_resource_08753608/` |
@@ -62,7 +62,7 @@ as a shared payload.
 | `gUnk_08755154` | `0x4DB100` | `0x755154` | `0x7551B0` | `0x4DC670` | `0xDC` | 1, 1, 1, 4, 1, 0 | 1 | rebuild, four-region shared: `graphics/shared_resource_08755154/` |
 | `gUnk_0875B444` | different | `0x75B444` | `0x75B4A0` | `0x4E2960` | `0x3D4` | 6, 6, 1, 24, 1, 0 | 6 | regional payload differs |
 
-Generated records: 51 (42 rebuilt shared, 7 rebuilt regional, 0 unmanaged but four-region identical, 2 regionally different). Regenerate with:
+Generated records: 51 (42 rebuilt shared, 8 rebuilt regional, 0 unmanaged but four-region identical, 1 regionally different). Regenerate with:
 
 ```console
 make indexed-resource-archive-inventory

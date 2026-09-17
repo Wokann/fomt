@@ -159,6 +159,19 @@ use a byte-identical JP/US/EU source and a DE-specific source.
 domain and 64 in DE. Native descriptor and OAM records remain the layout
 source of truth; no sidecar description is created.
 
+`gUnk_0874F34C` has 22 drawable groups in all regions, but its JP, US/EU and
+DE archive layouts are individually bounded and rebuilt.
+
+| Source domain | Regions | ROM offset(s) | Length | Header counts | Entries | SHA-256 |
+| --- | --- | --- | --- | --- | --- | --- |
+| JP | JP | `0x4D5868` | `0xE24` | `22, 22, 3, 92, 3, 0` | 22 | `db592f933d2427fef7d6c595a83ffcbdf0455d428463274d63151336b86de8fa` |
+| US/EU | US / EU | `0x74F34C` / `0x74F3A8` | `0x1394` | `22, 22, 9, 134, 3, 0` | 22 | `3c47dd074560851632fbf494299b6fd99557d62111d576a42f2dff8a1d1078c8` |
+| DE | DE | `0x4D67B8` | `0x1444` | `22, 22, 7, 140, 3, 0` | 22 | `ce7bd0c5464919ea430c1f2d29507b7cdbface25ce77a645ba100ad062e84a83` |
+
+The respective domains retain 92, 134 and 140 4bpp tiles, each with three
+BGR555 palettes. Native records, rather than a JSON sidecar, remain the sole
+layout definition.
+
 The common archive's group-descriptor consumer is fully bounded. Every
 drawable descriptor selects valid GBA OAM, 4bpp tile, and BGR555 palette
 ranges; `func_0805E790` resolves the fields and `func_080757E8` uploads tiles
