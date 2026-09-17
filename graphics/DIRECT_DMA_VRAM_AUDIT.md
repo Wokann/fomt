@@ -38,11 +38,11 @@ different video-RAM locations.
 | `gUnk_0875154C` | `0x120` | Farm Status Tool Level List native tiles at BG slot `0x0A5`; final layout unproven. |
 | `gUnk_0875130C` | `0x120` | Farm Status Tool Level List native tiles at BG slot `0x0AE`; final layout unproven. |
 | `gUnk_0875142C` | `0x120` | Farm Status Tool Level List native tiles at BG slot `0x0B7`; final layout unproven. |
-| `gUnk_08752DCC` | `0x20` | Managed raw Farm Status UI tile record; palette and layout unproven. |
-| `gUnk_08752B4C` | `0x20` | Managed raw Farm Status UI tile record; palette and layout unproven. |
-| `gUnk_087529AC` | `0x20` | Managed raw Farm Status UI tile record; palette and layout unproven. |
-| `gUnk_08752D4C` | `0x80` | Managed raw Farm Status UI tile record; palette and layout unproven. |
-| `gUnk_08752ACC` | `0x80` | Managed raw Farm Status UI tile record; palette and layout unproven. |
+| `gUnk_08752DCC` | `0x20` | Farm Status Harvest Sprite List native tile at BG slot `0x070`; final layout unproven. |
+| `gUnk_08752B4C` | `0x20` | Farm Status Harvest Sprite List native tile at BG slot `0x071`; final layout unproven. |
+| `gUnk_087529AC` | `0x20` | Farm Status Harvest Sprite List native tile at BG slot `0x072`; final layout unproven. |
+| `gUnk_08752D4C` | `0x80` | Farm Status Harvest Sprite List native tiles at contiguous BG slots `0x073`–`0x076`; final layout unproven. |
+| `gUnk_08752ACC` | `0x80` | Farm Status Harvest Sprite List native tiles at contiguous BG slots `0x077`–`0x07A`; final layout unproven. |
 | `gUnk_0875290C` | `0x80` | Existing Farm Status UI icon record 09 source; its adjacent `gUnk_0875298C` is the paired BGR555 palette. |
 | `gUnk_08752A2C` | `0x20` | Farm Status Tool Level List native tile at BG slot `0x058`; final layout unproven. |
 | `gUnk_08752AAC` | `0x20` | Farm Status Tool Level List BGR555 palette record; `func_08068344` copies it directly to palette RAM. |

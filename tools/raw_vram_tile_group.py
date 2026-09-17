@@ -167,7 +167,7 @@ PROFILES = {
         output_name="tiles.4bpp",
     ),
     "08752dcc": Profile(
-        name="gUnk_08752DCC",
+        name="FarmStatusHarvestSpriteListTiles_0x070",
         offsets={"jp": 0x4D8D78, "us": 0x752DCC, "eu": 0x752E28, "de": 0x4DA2E8},
         length=0x20,
         sha256="edfe3b0dfa05ba559f7edb9dadc37610f2d68962dee6ebe21f4236e2da72f434",
@@ -175,7 +175,7 @@ PROFILES = {
         output_name="tiles.4bpp",
     ),
     "08752b4c": Profile(
-        name="gUnk_08752B4C",
+        name="FarmStatusHarvestSpriteListTiles_0x071",
         offsets={"jp": 0x4D8AF8, "us": 0x752B4C, "eu": 0x752BA8, "de": 0x4DA068},
         length=0x20,
         sha256="fd2f2ed59600716e8751a9a95cd3a57e3305878909400c20a0790044862f38fd",
@@ -183,7 +183,7 @@ PROFILES = {
         output_name="tiles.4bpp",
     ),
     "087529ac": Profile(
-        name="gUnk_087529AC",
+        name="FarmStatusHarvestSpriteListTiles_0x072",
         offsets={"jp": 0x4D8958, "us": 0x7529AC, "eu": 0x752A08, "de": 0x4D9EC8},
         length=0x20,
         sha256="e65a24b3b2280d111ba0d1236b82953023ef8eb4fc099ea4b3af5350d9c27214",
@@ -191,7 +191,7 @@ PROFILES = {
         output_name="tiles.4bpp",
     ),
     "08752d4c": Profile(
-        name="gUnk_08752D4C",
+        name="FarmStatusHarvestSpriteListTiles_0x073_0x076",
         offsets={"jp": 0x4D8CF8, "us": 0x752D4C, "eu": 0x752DA8, "de": 0x4DA268},
         length=0x80,
         sha256="bbed8d40d3b50a112b0044f5cb15532a8373cd3979856ca2d420d71d65ae5dcf",
@@ -199,7 +199,7 @@ PROFILES = {
         output_name="tiles.4bpp",
     ),
     "08752acc": Profile(
-        name="gUnk_08752ACC",
+        name="FarmStatusHarvestSpriteListTiles_0x077_0x07A",
         offsets={"jp": 0x4D8A78, "us": 0x752ACC, "eu": 0x752B28, "de": 0x4D9FE8},
         length=0x80,
         sha256="544c753c94d191908294f5db94a19d1cec38b880dbc83c1bd46e53d38a8d7004",
