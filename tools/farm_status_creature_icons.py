@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Losslessly manage twenty shared 16-by-16 Farm Status creature/UI icons.
+"""Losslessly manage twenty shared 16-by-16 Farm Status UI icon records.
 
 Every native record is a linear 4bpp tile grid immediately followed by its
 own 16-colour BGR555 palette.  The records are byte-identical in JP, US, EU,
@@ -36,7 +36,7 @@ def archive(rom: bytes, region: str, group: tuple[int, dict[str, int], str]) -> 
     _first, offsets, expected_hash = group
     data = rom[offsets[region]:offsets[region] + GROUP_LENGTH]
     if len(data) != GROUP_LENGTH or hashlib.sha256(data).hexdigest() != expected_hash:
-        raise ValueError(f"{region}: Farm Status creature icon group does not match its verified range")
+        raise ValueError(f"{region}: Farm Status UI icon group does not match its verified range")
     return data
 
 
@@ -90,8 +90,8 @@ def verify(args: argparse.Namespace) -> None:
         expected = b"".join(build_icon(source(args.source_dir, index)))
         for region, rom in roms.items():
             if expected != b"".join(icon(retail[region], index)):
-                raise ValueError(f"{region}: Farm Status creature icon {index:02d} does not round-trip")
-    print(f"all {COUNT} Farm Status creature icons match {len(roms)} regional ROMs")
+                raise ValueError(f"{region}: Farm Status UI icon {index:02d} does not round-trip")
+    print(f"all {COUNT} Farm Status UI icon records match {len(roms)} regional ROMs")
 
 
 def main() -> None:

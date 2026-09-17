@@ -520,7 +520,7 @@
     .endif
     .endm
 
-    @ Two ten-record Farm Status creature/UI icon sequences are complete
+    @ Two ten-record Farm Status UI-icon sequences are complete
     @ 16x16 4bpp grids with immediately following BGR555 palettes. Keep each
     @ physical sequence order: callers retain and select original labels.
     .macro FOMT_FARM_STATUS_CREATURE_ICON index, extension

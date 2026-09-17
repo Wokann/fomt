@@ -1,9 +1,16 @@
-# Farm Status creature/UI icons
+# Farm Status 16-by-16 UI icon records
 
 `shared/icon_00.png` through `icon_19.png` are twenty complete, independent
 16-by-16 indexed 4bpp records. Each PNG owns the exact sixteen-colour BGR555
 palette stored directly after its 0x80-byte tile grid. They are editable source
 artwork, not a screenshot, OAM fragment, atlas, or JSON-controlled layout.
+
+The historical directory and build macro retain `creature_icons` because this
+sequence supplies several cattle, sheep, and chicken list states. That is not
+an exhaustive semantic name for the records: `icon_09`, for example, is the
+cake image copied by the Harvest Sprite list (`func_080645F0`). Treat the
+numbered files as proven physical UI records until a caller establishes a
+more specific gameplay role.
 
 All four retail FoMT ROMs contain the same two `0x640`-byte sequences. The
 bytes between them stay native ROM data because they belong to other resource

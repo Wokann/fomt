@@ -21,8 +21,8 @@ single source to different VRAM locations.
 | `gUnk_08698E14` | `0x11E0` | Managed raw 4bpp field tail variant. |
 | `gUnk_0869A0A4` | `0x11E0` | Managed raw 4bpp field tail variant. |
 | `gUnk_0875196C` | `0x80` | Existing Animal Festival icon 01 source. |
-| `gUnk_0875254C` | `0x20` | Existing Farm Status creature icon 03 source. |
-| `gUnk_08752F8C` | `0x80` | Existing Farm Status creature icon 11 source. |
+| `gUnk_0875254C` | `0x20` | Existing Farm Status UI icon record 03 source. |
+| `gUnk_08752F8C` | `0x80` | Existing Farm Status UI icon record 11 source. |
 | `gUnk_08750C4C` | `0x20` | Managed raw UI tile record; palette and layout unproven. |
 | `gUnk_08750C8C` | `0x1A0`, `0x1C0` | Managed complete `0x1C0` raw UI tile record; the shorter caller consumes its leading subrange. |
 | `gUnk_087510AC` | `0x120` | Managed raw UI tile record; palette and layout unproven. |

@@ -699,8 +699,10 @@ ANIMAL_FESTIVAL_ICON_TILES := $(foreach icon,$(ANIMAL_FESTIVAL_ICON_IDS),$(ANIMA
 ANIMAL_FESTIVAL_ICON_PALETTES := $(foreach icon,$(ANIMAL_FESTIVAL_ICON_IDS),$(ANIMAL_FESTIVAL_ICON_OUTPUT_DIR)/icon_$(icon).gbapal)
 ANIMAL_FESTIVAL_ICON_OUTPUTS := $(ANIMAL_FESTIVAL_ICON_TILES) $(ANIMAL_FESTIVAL_ICON_PALETTES)
 
-# Farm Status has two direct ten-record icon sequences. Each 16x16 4bpp icon
-# owns its adjacent BGR555 palette; original code chooses the labels.
+# Farm Status has two direct ten-record 16x16 UI-icon sequences. Each record
+# owns its adjacent BGR555 palette; original code chooses the labels. The
+# historical CREATURE name below is a build identifier, not a semantic claim:
+# the first sequence also contains the Harvest Sprite list's cake icon.
 FARM_STATUS_CREATURE_ICON_SOURCE_DIR := graphics/ui/farm_status/creature_icons/shared
 FARM_STATUS_CREATURE_ICON_TOOL := tools/farm_status_creature_icons.py
 FARM_STATUS_CREATURE_ICON_IDS := 00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19
