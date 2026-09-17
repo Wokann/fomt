@@ -62,7 +62,7 @@ regionally different. It is the coverage ledger for this staged pipeline.
 | Shared archive `08755154` | `0x4DB100` | `0x755154` | `0x7551B0` | `0x4DC670` | `0xDC` | `1, 1, 1, 4, 1, 0` | 1 | `52f9afdd6e98d76dea6fac9c43ccfdb3bdb2d70a06678910080a24c796c08c42` |
 | Farm Status / Town Map archive | `0x4D977C` | `0x7537D0` | `0x75382C` | `0x4DACEC` | `0xEA4` | `20, 40, 11, 73, 13, 0` | 40 | `480a114e52b941e289d67055ddd632b6c0bbee3cfa66263523ad91c7e1d4dfc1` |
 
-All forty-one complete native archive payloads are byte-identical across JP, US,
+All forty-two complete native archive payloads are byte-identical across JP, US,
 EU, and DE. The common archive is the data currently exposed under
 `gUnk_086678A0` in non-JP regional assembly; the JP physical match was found
 by the exact complete payload, not by inventing a JP label.
