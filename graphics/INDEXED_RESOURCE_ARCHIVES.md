@@ -11,6 +11,11 @@ The constructor establishes six counted descriptor blocks with element sizes
 entries. `tools/indexed_resource_archive.py` parses only these proven bounds;
 it intentionally does not assign guessed meanings to descriptor fields.
 
+The generated [label-bound inventory](INDEXED_RESOURCE_ARCHIVE_INVENTORY.md)
+separately lists every currently bounded DE `gUnk_*` payload whose native
+header parses successfully, including records that are still unmanaged or
+regionally different. It is the coverage ledger for this staged pipeline.
+
 ## Confirmed shared archives
 
 | Archive | JP | US | EU | DE | Native length | Header counts | Entries | SHA-256 |

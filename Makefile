@@ -740,6 +740,8 @@ MAP_RESOURCES_REGION := $(INTRO_OBJECTS_REGION)
 MAP_RESOURCES_ALL_ROM_ARGS := --all-rom jp baserom_jp.gba --all-rom us baserom_us.gba --all-rom eu baserom_eu.gba --all-rom de baserom_de.gba
 MAP_RESOURCES_ROM_ARGS := --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
 INDEXED_RESOURCE_ARCHIVE_TOOL := tools/indexed_resource_archive.py
+INDEXED_RESOURCE_ARCHIVE_INVENTORY_TOOL := tools/indexed_resource_archive_inventory.py
+INDEXED_RESOURCE_ARCHIVE_INVENTORY := graphics/INDEXED_RESOURCE_ARCHIVE_INVENTORY.md
 UNPACK_VRAM_INVENTORY_TOOL := tools/unpack_vram_inventory.py
 UNPACK_INVENTORY_TOOL := tools/unpack_inventory.py
 COPY_RAM_INVENTORY_TOOL := tools/copy_ram_inventory.py
@@ -1218,6 +1220,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 # make to update every optional assembler dependency file in a fresh worktree.
 .PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-resource-archive gfx-farm-status-resource-archive-test gfx-farm-status-resource-archive-all gfx-farm-status-resource-archive-patch-test gfx-farm-status-resource-archive-edit-test gfx-farm-status-winter gfx-farm-status-winter-test gfx-farm-status-winter-all gfx-farm-status-winter-edit-test gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-secondary-tilemaps-edit-test gfx-farm-status-exterior-styles gfx-farm-status-exterior-styles-test gfx-farm-status-selector-icon gfx-farm-status-selector-icon-test gfx-farm-status-selector-icon-all gfx-farm-status-selector-icon-edit-test gfx-clock-font gfx-clock-font-test gfx-clock-font-all gfx-clock-font-edit-test gfx-farm-status-creature-icons gfx-farm-status-creature-icons-test gfx-farm-status-creature-icons-all gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal-nonwinter-all gfx-seasonal-nonwinter-reference gfx-seasonal-nonwinter-edit-test gfx-seasonal-winter gfx-seasonal-winter-test gfx-seasonal-winter-all gfx-seasonal-winter-reference gfx-seasonal-winter-edit-test gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-background-edit-test gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-tilemaps-edit-test gfx-intro-startup-visual gfx-intro-startup-visual-export gfx-intro-startup-visual-reference gfx-intro-startup-visual-test gfx-intro-startup-visual-all gfx-intro-startup-visual-edit-test gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-animal-festival-icons gfx-animal-festival-icons-test gfx-animal-festival-icons-all resource-archive-audit unpack-vram-inventory dma-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
 .PHONY: gfx-map-resources-reference gfx-map-resources-edit-test unpack-inventory copy-ram-inventory gfx-raw-vram-tiles-ui-build
+.PHONY: indexed-resource-archive-inventory
 .PHONY: gfx-small-ui-resource-archive gfx-small-ui-resource-archive-test gfx-small-ui-resource-archive-all gfx-small-ui-resource-archive-patch-test gfx-small-ui-resource-archive-edit-test
 .PHONY: gfx-cooking-ui-resource-archive gfx-cooking-ui-resource-archive-test gfx-cooking-ui-resource-archive-all gfx-cooking-ui-resource-archive-patch-test gfx-cooking-ui-resource-archive-edit-test
 .PHONY: gfx-menu-ui-resource-archive gfx-menu-ui-resource-archive-test gfx-menu-ui-resource-archive-all gfx-menu-ui-resource-archive-patch-test gfx-menu-ui-resource-archive-edit-test
@@ -2068,6 +2071,11 @@ resource-archive-audit: $(INDEXED_RESOURCE_ARCHIVE_TOOL) $(COMMON_RESOURCE_ARCHI
 	@$(PYTHON) $(LARGE_SHARED_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --profile large-shared --offset 0x4A5068 --length $(LARGE_SHARED_RESOURCE_ARCHIVE_LENGTH) --sha256 $(LARGE_SHARED_RESOURCE_ARCHIVE_SHA256) audit
 	@$(PYTHON) $(SHARED_RESOURCE_08725DA0_TOOL) baserom_jp.gba --profile shared-08725da0 --offset 0x4ABF08 --length $(SHARED_RESOURCE_08725DA0_LENGTH) --sha256 $(SHARED_RESOURCE_08725DA0_SHA256) audit
 	@$(PYTHON) $(FARM_STATUS_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --offset 0x4D977C --length $(FARM_STATUS_RESOURCE_ARCHIVE_LENGTH) --sha256 $(FARM_STATUS_RESOURCE_ARCHIVE_SHA256) audit
+indexed-resource-archive-inventory: $(INDEXED_RESOURCE_ARCHIVE_INVENTORY_TOOL) $(INDEXED_RESOURCE_ARCHIVE_TOOL) asm/data/data_0813B288_de_initial.inc baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
+	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_INVENTORY_TOOL) \
+	  --de-inventory asm/data/data_0813B288_de_initial.inc \
+	  --jp baserom_jp.gba --us baserom_us.gba --eu baserom_eu.gba --de baserom_de.gba \
+	  --output $(INDEXED_RESOURCE_ARCHIVE_INVENTORY)
 map-terrain-audit: $(MAP_TERRAIN_AUDIT_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(MAP_TERRAIN_AUDIT_TOOL) $(MAP_RESOURCES_ROM_ARGS) --csv $(BUILD_DIR)/map_terrain_audit.csv
 farm-house-lookup-audit: $(FARM_HOUSE_LOOKUP_AUDIT_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
@@ -2523,6 +2531,10 @@ ALL_DEPS :=
 endif
 
 ifneq (,$(filter gfx-shared-resource-08725da0 gfx-shared-resource-08725da0-test gfx-shared-resource-08725da0-all gfx-shared-resource-08725da0-patch-test gfx-shared-resource-08725da0-edit-test,$(MAKECMDGOALS)))
+ALL_DEPS :=
+endif
+
+ifneq (,$(filter indexed-resource-archive-inventory,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 
