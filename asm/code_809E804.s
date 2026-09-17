@@ -43496,7 +43496,45 @@ func_080B36B4: @ 0x080B30E8
 .Ljp_080B3370: .4byte 0x00000848
 .Ljp_080B3374: .4byte 0x0000091A
 .Ljp_080B3378: .4byte 0x00000814
-    jp_code_809_func func_080B3948, 0xB337C, 0xB33C4
+    .global func_080B3948
+    .thumb_func
+func_080B3948: @ 0x080B337C
+	push {r4, r5, lr}
+	ldr r1, .Ljp_080B33BC @ =0x0000085C
+	adds r2, r0, r1
+	ldr r3, .Ljp_080B33C0 @ =0x00000906
+	adds r1, r0, r3
+	movs r5, #1
+	movs r4, #4
+.Ljp_080B338A:
+	ldr r0, [r2]
+	cmp r0, #2
+	bgt .Ljp_080B33AA
+	cmp r0, #1
+	blt .Ljp_080B33AA
+	ldrb r0, [r1]
+	adds r0, #1
+	movs r3, #0
+	strb r0, [r1]
+	lsls r0, r0, #0x18
+	lsrs r0, r0, #0x18
+	cmp r0, #0x3c
+	bne .Ljp_080B33AA
+	strb r3, [r1]
+	str r3, [r2]
+	strb r5, [r1, #0x19]
+.Ljp_080B33AA:
+	adds r2, #4
+	adds r1, #1
+	subs r4, #1
+	cmp r4, #0
+	bge .Ljp_080B338A
+	pop {r4, r5}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_080B33BC: .4byte 0x0000085C
+.Ljp_080B33C0: .4byte 0x00000906
     jp_code_809_func func_080B33C4, 0xB33C4, 0xB33F0
     jp_code_809_func func_080B39BC, 0xB33F0, 0xB340C
     jp_code_809_func func_080B340C, 0xB340C, 0xB3428
