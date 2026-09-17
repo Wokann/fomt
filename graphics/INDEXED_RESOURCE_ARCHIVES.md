@@ -47,9 +47,10 @@ regionally different. It is the coverage ledger for this staged pipeline.
 | Shared archive `0873D234` | `0x4C339C` | `0x73D234` | `0x73D290` | `0x4C45A0` | `0x3C8` | `3, 6, 1, 24, 1, 0` | 6 | `3abfeee1b4c92cf474ec9bcba97809fbe42f87006023cb6e07e2c9d3736bda77` |
 | Shared archive `0873D5FC` | `0x4C3764` | `0x73D5FC` | `0x73D658` | `0x4C4968` | `0xDC` | `1, 1, 1, 4, 1, 0` | 1 | `ee9d4a1f4f377bae3b1ea463e567a3c744e09b319b1de58f5ad32b87d14ae7b6` |
 | Shared archive `0873DE44` | `0x4C3FAC` | `0x73DE44` | `0x73DEA0` | `0x4C52B8` | `0x76C` | `1, 1, 3, 56, 1, 0` | 1 | `8cd938635878c39beb869b454414787b8231eada2c056409ad196027fe8c3931` |
+| Shared archive `0873E5B0` | `0x4C4718` | `0x73E5B0` | `0x73E60C` | `0x4C5A24` | `0x76C` | `1, 1, 3, 56, 1, 0` | 1 | `88099d904d2e94041c3400a97c921a2edcf0e9fe148a760323b01abcc958050a` |
 | Farm Status / Town Map archive | `0x4D977C` | `0x7537D0` | `0x75382C` | `0x4DACEC` | `0xEA4` | `20, 40, 11, 73, 13, 0` | 40 | `480a114e52b941e289d67055ddd632b6c0bbee3cfa66263523ad91c7e1d4dfc1` |
 
-All twenty-eight complete native archive payloads are byte-identical across JP, US,
+All twenty-nine complete native archive payloads are byte-identical across JP, US,
 EU, and DE. The common archive is the data currently exposed under
 `gUnk_086678A0` in non-JP regional assembly; the JP physical match was found
 by the exact complete payload, not by inventing a JP label.
@@ -222,6 +223,12 @@ Shared archive `0873DE44` is independently bounded at the four locations in
 the table. Its one descriptor selects one native OAM record, 56 native 4bpp
 tiles, one BGR555 palette, and one selection entry. Its editable PNG source is
 under `graphics/shared_resource_0873de44/`; the address remains its source name
+until the runtime purpose is independently established.
+
+Shared archive `0873E5B0` is independently bounded at the four locations in
+the table. Its one descriptor selects one native OAM record, 56 native 4bpp
+tiles, one BGR555 palette, and one selection entry. Its editable PNG source is
+under `graphics/shared_resource_0873e5b0/`; the address remains its source name
 until the runtime purpose is independently established.
 
 The Farm Status screen constructs a third archive at `0x4D977C` in JP and
