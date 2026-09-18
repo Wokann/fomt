@@ -635,7 +635,8 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_85dc);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_85e8);
 
-        . = ALIGN(4); src/crt0_data.o(.rodata);
+        /* Start of the source-owned localization islands. */
+        . = 0xE8574; src/crt0_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
         src/sram_proxy_1.o(.rodata);
@@ -666,7 +667,8 @@ SECTIONS
         /* Entity UI resource-selector data follows schedule data. */
         . = ALIGN(4); src/entity_ui_resource_selector.o(.rodata);
         . = 0xF8EBC; data/scripts/script_table.o(.rodata.mary_script_table);
-        . = ALIGN(4); src/script_engine.o(.rodata);
+        /* The ordinary source block bounds the preceding Mary script table. */
+        . = 0xFA380; src/script_engine.o(.rodata);
          src/cooking_festival.o(.rodata);
         src/thomas_stocking.o(.rodata);
         FILL(0x00);
