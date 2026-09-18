@@ -1102,7 +1102,8 @@ INTRO_STARTUP_VISUAL_PALETTE_OFFSET := $(INTRO_STARTUP_VISUAL_PALETTE_OFFSET_$(G
 # the archive's own OAM records, so no JSON layout sidecar is necessary.
 INTRO_INDEXED_ARCHIVE_TOOL := tools/intro_scene_indexed_archive.py
 INTRO_INDEXED_ARCHIVE_SOURCE_ROOT := graphics/intro_scene/indexed_archive
-INTRO_INDEXED_ARCHIVE_SOURCES := $(wildcard $(INTRO_INDEXED_ARCHIVE_SOURCE_ROOT)/*/full/*.png)
+INTRO_INDEXED_ARCHIVE_SOURCES := $(wildcard $(INTRO_INDEXED_ARCHIVE_SOURCE_ROOT)/*/full/*.png) \
+	$(wildcard $(INTRO_INDEXED_ARCHIVE_SOURCE_ROOT)/*/runtime_obj_palette.gbapal)
 INTRO_INDEXED_ARCHIVE_OUTPUT := $(BUILD_DIR)/graphics/intro_scene/indexed_archive/archive.0x70
 INTRO_INDEXED_ARCHIVE_REGION := $(INTRO_OBJECTS_REGION)
 INTRO_SMALL_ARCHIVE_TOOL := tools/intro_scene_small_archive.py

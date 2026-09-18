@@ -6,6 +6,9 @@ the second describes their OAM/tile/palette ranges, and its third through
 fifth tables contain ordinary GBA OAM records, 4bpp tiles, and BGR555
 palettes.  Geometry is always read from those tables: complete indexed PNG
 frames are authoring inputs, and there is deliberately no JSON layout file.
+The title logo frames are 8bpp and use the complete runtime OBJ palette,
+whose low banks are loaded outside this archive.  A captured, verified
+512-byte palette therefore accompanies each regional source group.
 
 JP, US/EU, and DE each retain their own source directory.  US and EU are
 byte-identical; JP and DE have independently verified layouts and must not be
@@ -29,7 +32,6 @@ from actor_archive import (  # type: ignore[import-not-found]
     animation_frames,
     frame_descriptor,
     frame_oam,
-    rendered_pixel_layers,
     selected_frame_ids,
 )
 from decompress import unpack  # type: ignore[import-not-found]
@@ -37,12 +39,10 @@ from marvelous_codec import encode_huff4_lz2, encode_huff8_lz2  # type: ignore[i
 from portrait_archive import (  # type: ignore[import-not-found]
     Archive,
     TABLE_STRIDES,
-    assign_native_pixel,
     palette,
-    read_png_indexed,
     read_u32,
-    write_png_indexed,
 )
+from tile_grid import colors_from_bgr555, read_png, write_png  # type: ignore[import-not-found]
 
 
 @dataclass(frozen=True)
@@ -67,6 +67,14 @@ def digest(data: bytes) -> str:
 
 def source_dir(root: Path, region: str) -> Path:
     return root / REGIONS[region].source_group
+
+
+def load_runtime_obj_palette(directory: Path) -> bytes:
+    filename = directory / "runtime_obj_palette.gbapal"
+    data = filename.read_bytes()
+    if len(data) != 512:
+        raise ValueError(f"{filename} must contain exactly 512 bytes")
+    return data
 
 
 def archive_from_data(data: bytes) -> Archive:
@@ -110,6 +118,117 @@ def selected_frames(archive: Archive) -> list[int]:
     return selected_frame_ids(archive, list(range(archive.counts[0])))
 
 
+def frame_bpp(archive: Archive, frame_id: int) -> int:
+    """Return the hardware OBJ colour depth used by one frame."""
+    frame = frame_descriptor(archive, frame_id)
+    depths: set[int] = set()
+    for index in range(frame.oam_count):
+        offset = archive.table_offsets[2] + (frame.oam_start + index) * 8
+        attr0 = int.from_bytes(archive.data[offset:offset + 2], "little")
+        depths.add(8 if attr0 & 0x2000 else 4)
+    if len(depths) != 1:
+        raise ValueError(f"frame {frame_id} mixes unsupported OBJ colour depths: {sorted(depths)}")
+    return depths.pop()
+
+
+def frame_palette(
+    archive: Archive,
+    frame_id: int,
+    bpp: int,
+    runtime_obj_palette: bytes | None = None,
+) -> tuple[tuple[int, int, int, int], ...]:
+    frame = frame_descriptor(archive, frame_id)
+    if bpp == 4:
+        return palette(archive, frame.palette_id)
+    if runtime_obj_palette is not None:
+        if len(runtime_obj_palette) != 512:
+            raise ValueError("an 8bpp runtime OBJ palette must contain exactly 512 bytes")
+        return colors_from_bgr555(runtime_obj_palette, 8)
+    if frame.palette_id + 16 > archive.counts[4]:
+        raise ValueError(f"frame {frame_id} 8bpp palette exceeds table five")
+    offset = archive.table_offsets[4] + frame.palette_id * 32
+    return colors_from_bgr555(archive.data[offset:offset + 512], 8)
+
+
+def rendered_frame(
+    archive: Archive, frame_id: int
+) -> tuple[int, int, bytes, list[list[tuple[int, int]]], int]:
+    """Composite a 4bpp or 8bpp OBJ frame and retain native-byte mappings.
+
+    Each mapping is ``(byte_offset, shift)`` relative to table four.  A shift
+    of -1 denotes an 8bpp byte; 0 and 4 denote the low/high 4bpp nibble.
+    """
+    frame = frame_descriptor(archive, frame_id)
+    pieces = frame_oam(archive, frame_id)
+    if not pieces:
+        raise ValueError(f"frame {frame_id} has no drawable OAM pieces")
+    bpp = frame_bpp(archive, frame_id)
+    min_x = min(piece.x for piece in pieces)
+    min_y = min(piece.y for piece in pieces)
+    max_x = max(piece.x + piece.width for piece in pieces)
+    max_y = max(piece.y + piece.height for piece in pieces)
+    width, height = max_x - min_x, max_y - min_y
+    baseline = bytearray(width * height)
+    layers: list[list[tuple[int, int]]] = [[] for _ in range(width * height)]
+    tile_table = archive.table_offsets[3]
+
+    for piece in pieces:
+        tiles_wide = piece.width // 8
+        tiles_high = piece.height // 8
+        unit_stride = 2 if bpp == 8 else 1
+        local_start = piece.tile_start - frame.tile_start
+        required_units = tiles_wide * tiles_high * unit_stride
+        if local_start + required_units > frame.tile_count:
+            raise ValueError(f"frame {frame_id} OAM piece reads outside its tile range")
+        for source_tile_y in range(tiles_high):
+            for source_tile_x in range(tiles_wide):
+                logical_tile = source_tile_y * tiles_wide + source_tile_x
+                unit = piece.tile_start + logical_tile * unit_stride
+                tile_offset = tile_table + unit * 32
+                if bpp == 8:
+                    values = archive.data[tile_offset:tile_offset + 64]
+                else:
+                    packed = archive.data[tile_offset:tile_offset + 32]
+                    values = bytes(value for byte in packed for value in (byte & 15, byte >> 4))
+                draw_tile_x = tiles_wide - 1 - source_tile_x if piece.h_flip else source_tile_x
+                draw_tile_y = tiles_high - 1 - source_tile_y if piece.v_flip else source_tile_y
+                for source_pixel_y in range(8):
+                    for source_pixel_x in range(8):
+                        draw_pixel_x = 7 - source_pixel_x if piece.h_flip else source_pixel_x
+                        draw_pixel_y = 7 - source_pixel_y if piece.v_flip else source_pixel_y
+                        target_x = piece.x - min_x + draw_tile_x * 8 + draw_pixel_x
+                        target_y = piece.y - min_y + draw_tile_y * 8 + draw_pixel_y
+                        target = target_y * width + target_x
+                        pixel = source_pixel_y * 8 + source_pixel_x
+                        if bpp == 8:
+                            mapping = (unit * 32 + pixel, -1)
+                        else:
+                            mapping = (unit * 32 + pixel // 2, 4 if pixel & 1 else 0)
+                        layers[target].append(mapping)
+                        value = values[pixel]
+                        if value:
+                            baseline[target] = value
+    return width, height, bytes(baseline), layers, bpp
+
+
+def assign_native_pixel(
+    native: bytearray,
+    assignments: dict[tuple[int, int], int],
+    mapping: tuple[int, int],
+    value: int,
+) -> None:
+    existing = assignments.get(mapping)
+    if existing is not None and existing != value:
+        raise ValueError(f"conflicting edits assign {existing} and {value} to native pixel {mapping}")
+    assignments[mapping] = value
+    offset, shift = mapping
+    if shift < 0:
+        native[offset] = value
+    else:
+        mask = 15 << shift
+        native[offset] = (native[offset] & ~mask) | value << shift
+
+
 def audit(archive: Archive, region: str, format_spec: str, ladder: str) -> list[int]:
     """Prove the descriptor/OAM relationships before PNGs become sources."""
     frames = selected_frames(archive)
@@ -138,43 +257,57 @@ def frame_source(directory: Path, frame_id: int) -> Path:
     return directory / "full" / f"frame_{frame_id:04d}.png"
 
 
-def export_frames(archive: Archive, frames: list[int], directory: Path, replace: bool) -> None:
+def export_frames(
+    archive: Archive,
+    frames: list[int],
+    directory: Path,
+    replace: bool,
+    runtime_obj_palette: bytes | None = None,
+) -> None:
     written = 0
     preserved = 0
     for frame_id in frames:
-        frame = frame_descriptor(archive, frame_id)
         if not frame_oam(archive, frame_id):
             continue
-        width, height, indexes, _layers = rendered_pixel_layers(archive, frame_id)
+        width, height, indexes, _layers, bpp = rendered_frame(archive, frame_id)
         output = frame_source(directory, frame_id)
-        expected = (width, height, indexes, palette(archive, frame.palette_id))
+        expected = (
+            indexes,
+            width,
+            height,
+            frame_palette(archive, frame_id, bpp, runtime_obj_palette),
+        )
         if output.exists() and not replace:
-            if read_png_indexed(output) != expected:
+            if read_png(output, bpp) != expected:
                 raise ValueError(f"{output} differs from retail data; use --replace to overwrite it")
             preserved += 1
             continue
-        write_png_indexed(output, *expected)
+        write_png(output, *expected)
         written += 1
     print(f"exported {written} and preserved {preserved} OAM-composited frame PNG(s) in {directory / 'full'}")
 
 
-def rebuild_tiles(archive: Archive, frames: list[int], directory: Path) -> bytes:
+def rebuild_tiles(
+    archive: Archive,
+    frames: list[int],
+    directory: Path,
+    runtime_obj_palette: bytes | None = None,
+) -> bytes:
     tile_offset = archive.table_offsets[3]
     native = bytearray(archive.data[tile_offset:tile_offset + archive.counts[3] * 32])
     assignments: dict[tuple[int, int], int] = {}
     for frame_id in frames:
-        frame = frame_descriptor(archive, frame_id)
         if not frame_oam(archive, frame_id):
             continue
         filename = frame_source(directory, frame_id)
-        width, height, source_indexes, source_palette = read_png_indexed(filename)
-        expected_width, expected_height, baseline, layers = rendered_pixel_layers(archive, frame_id)
+        expected_width, expected_height, baseline, layers, bpp = rendered_frame(archive, frame_id)
+        source_indexes, width, height, source_palette = read_png(filename, bpp)
         if (width, height) != (expected_width, expected_height):
             raise ValueError(
                 f"{filename} must remain {expected_width}x{expected_height}, got {width}x{height}"
             )
-        if source_palette != palette(archive, frame.palette_id):
-            raise ValueError(f"{filename} has changed its native 16-colour palette")
+        if source_palette != frame_palette(archive, frame_id, bpp, runtime_obj_palette):
+            raise ValueError(f"{filename} has changed its verified runtime palette")
         for target, value in enumerate(source_indexes):
             if value == baseline[target]:
                 continue
@@ -183,18 +316,22 @@ def rebuild_tiles(archive: Archive, frames: list[int], directory: Path) -> bytes
                     raise ValueError(f"{filename} draws outside frame {frame_id}'s OAM bounds")
                 continue
             if value == 0:
-                for tile_id, pixel_id in layers[target]:
-                    assign_native_pixel(native, assignments, tile_id, pixel_id, 0)
+                for mapping in layers[target]:
+                    assign_native_pixel(native, assignments, mapping, 0)
             else:
-                tile_id, pixel_id = layers[target][-1]
-                assign_native_pixel(native, assignments, tile_id, pixel_id, value)
+                assign_native_pixel(native, assignments, layers[target][-1], value)
     return bytes(native)
 
 
-def patched_decoded(archive: Archive, frames: list[int], directory: Path) -> bytes:
+def patched_decoded(
+    archive: Archive,
+    frames: list[int],
+    directory: Path,
+    runtime_obj_palette: bytes | None = None,
+) -> bytes:
     result = bytearray(archive.data)
     tile_offset = archive.table_offsets[3]
-    tiles = rebuild_tiles(archive, frames, directory)
+    tiles = rebuild_tiles(archive, frames, directory, runtime_obj_palette)
     result[tile_offset:tile_offset + len(tiles)] = tiles
     return bytes(result)
 
@@ -229,7 +366,14 @@ def export(arguments: argparse.Namespace) -> None:
         packed, _decoded, format_spec, ladder, archive = load_region(inputs[region], region)
         streams[region] = packed
         frames = audit(archive, region, format_spec, ladder)
-        export_frames(archive, frames, source_dir(arguments.source_root, region), arguments.replace)
+        directory = source_dir(arguments.source_root, region)
+        export_frames(
+            archive,
+            frames,
+            directory,
+            arguments.replace,
+            load_runtime_obj_palette(directory),
+        )
     if streams["us"] != streams["eu"]:
         raise AssertionError("US and EU indexed archives must remain byte-identical")
     print("verified US/EU shared archive bytes; JP and DE retain independent sources")
@@ -238,7 +382,13 @@ def export(arguments: argparse.Namespace) -> None:
 def build(arguments: argparse.Namespace) -> None:
     packed, _decoded, format_spec, ladder, archive = load_region(arguments.rom, arguments.region)
     frames = audit(archive, arguments.region, format_spec, ladder)
-    source = patched_decoded(archive, frames, source_dir(arguments.source_root, arguments.region))
+    directory = source_dir(arguments.source_root, arguments.region)
+    source = patched_decoded(
+        archive,
+        frames,
+        directory,
+        load_runtime_obj_palette(directory),
+    )
     rebuilt = rebuild_stream(source, packed, format_spec, ladder)
     arguments.output.parent.mkdir(parents=True, exist_ok=True)
     arguments.output.write_bytes(rebuilt)
@@ -249,8 +399,14 @@ def verify(arguments: argparse.Namespace) -> None:
     for region, path in arguments.rom:
         packed, _decoded, format_spec, ladder, archive = load_region(path, region)
         frames = audit(archive, region, format_spec, ladder)
+        directory = source_dir(arguments.source_root, region)
         rebuilt = rebuild_stream(
-            patched_decoded(archive, frames, source_dir(arguments.source_root, region)),
+            patched_decoded(
+                archive,
+                frames,
+                directory,
+                load_runtime_obj_palette(directory),
+            ),
             packed,
             format_spec,
             ladder,
@@ -273,17 +429,24 @@ def verify(arguments: argparse.Namespace) -> None:
 def edit_test(arguments: argparse.Namespace) -> None:
     packed, _decoded, format_spec, ladder, archive = load_region(arguments.rom, arguments.region)
     frames = audit(archive, arguments.region, format_spec, ladder)
+    runtime_palette = load_runtime_obj_palette(source_dir(arguments.source_root, arguments.region))
     drawable = next(frame_id for frame_id in frames if frame_oam(archive, frame_id))
     with tempfile.TemporaryDirectory(prefix="fomt-indexed-archive-") as temporary:
         staged_root = Path(temporary) / "sources"
         shutil.copytree(arguments.source_root, staged_root)
         filename = frame_source(source_dir(staged_root, arguments.region), drawable)
-        width, height, pixels, colors = read_png_indexed(filename)
+        _expected_width, _expected_height, _baseline, _layers, bpp = rendered_frame(archive, drawable)
+        pixels, width, height, colors = read_png(filename, bpp)
         index = next(index for index, value in enumerate(pixels) if value)
         edited = bytearray(pixels)
         edited[index] = (edited[index] % 15) + 1
-        write_png_indexed(filename, width, height, bytes(edited), colors)
-        source = patched_decoded(archive, frames, source_dir(staged_root, arguments.region))
+        write_png(filename, bytes(edited), width, height, colors)
+        source = patched_decoded(
+            archive,
+            frames,
+            source_dir(staged_root, arguments.region),
+            runtime_palette,
+        )
     rebuilt = rebuild_stream(source, packed, format_spec, ladder)
     if rebuilt == packed:
         raise AssertionError("indexed archive edit did not change the packed stream")
