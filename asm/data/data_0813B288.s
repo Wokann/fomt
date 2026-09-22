@@ -2959,7 +2959,10 @@ gUnk_0875348C:
     .global gUnk_0875350C
 gUnk_0875350C:
     FOMT_FARM_STATUS_CREATURE_ICON 19, gbapal
-    .incbin "baserom_jp.gba", 0x4D94D8, (0x4D977C - 0x4D94D8)
+    .incbin "baserom_jp.gba", 0x4D94D8, (0x4D95B4 - 0x4D94D8)
+    .global gUnk_084D95B4
+gUnk_084D95B4:
+    .incbin "baserom_jp.gba", 0x4D95B4, (0x4D977C - 0x4D95B4)
     .global gUnk_084D977C
 gUnk_084D977C:
     .incbin "baserom_jp.gba", 0x4D977C, (0x4DB1DC - 0x4D977C)
