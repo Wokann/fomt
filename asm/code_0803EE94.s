@@ -73481,7 +73481,31 @@ func_0807F158: @ 0x0807F158
 	pop {r1}
 	bx r1
 
-    jp_code_0803ee_func func_0807F174, 0x7F174, 0x7F1A4
+	.global func_0807F174
+	.thumb_func
+func_0807F174: @ 0x0807F174
+	push {r4, lr}
+	sub sp, #0xc
+	adds r4, r0, #0
+	ldr r1, [r1, #4]
+	mov r0, sp
+	bl func_0807EA68
+	ldr r2, [sp]
+	mov r0, sp
+	str r0, [sp, #4]
+	str r2, [sp, #8]
+	adds r1, r0, #0
+	movs r0, #0
+	str r0, [r1]
+	str r2, [r4]
+	ldr r0, [sp]
+	bl __builtin_delete
+	adds r0, r4, #0
+	add sp, #0xc
+	pop {r4}
+	pop {r1}
+	bx r1
+	.align 2, 0
 
 .global func_0807F1A4
 .thumb_func
@@ -203300,11 +203324,31 @@ func_0807F5F0: @ 0x0807F5F0
 	pop {r4, r5}
 	pop {r1}
 	bx r1
-.L0807F60C:
-	.byte 0x10, 0xB5, 0x83, 0xB0, 0x04, 0x1C, 0x49, 0x68, 0x68, 0x46, 0xFF, 0xF7, 0x73, 0xFC, 0x00, 0x9A
-	.byte 0x68, 0x46, 0x01, 0x90, 0x02, 0x92, 0x01, 0x1C, 0x00, 0x20, 0x08, 0x60, 0x22, 0x60, 0x00, 0x98
+	.global func_0807F60C
+	.thumb_func
+func_0807F60C: @ 0x0807F60C
+	push {r4, lr}
+	sub sp, #0xc
+	adds r4, r0, #0
+	ldr r1, [r1, #4]
+	mov r0, sp
+	bl func_0807EF00
+	ldr r2, [sp]
+	mov r0, sp
+	str r0, [sp, #4]
+	str r2, [sp, #8]
+	adds r1, r0, #0
+	movs r0, #0
+	str r0, [r1]
+	str r2, [r4]
+	ldr r0, [sp]
 	bl __builtin_delete
-	.byte 0x20, 0x1C, 0x03, 0xB0, 0x10, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
+	adds r0, r4, #0
+	add sp, #0xc
+	pop {r4}
+	pop {r1}
+	bx r1
+	.align 2, 0
 
 	thumb_func_start func_0807F63C
 func_0807F63C: @ 0x0807F63C
