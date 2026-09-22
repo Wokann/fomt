@@ -84574,7 +84574,71 @@ func_08090FCC:
     .incbin "baserom_jp.gba", 0x90B0C, (0x90EEC - 0x90B0C)
     .4byte gText_BlacksmithUpgrade_EmptyDescription
     .incbin "baserom_jp.gba", 0x90EF0, (0x90F60 - 0x90EF0)
-    jp_code_0803ee_func func_08091420, 0x90F60, 0x90FE0
+    .global func_08091420
+    .thumb_func
+func_08091420:
+    push {r4, r5, lr}
+    adds r4, r1, #0
+    movs r0, #7
+    ands r4, r0
+    movs r3, #0
+    movs r5, #0
+    adds r0, r2, #0
+    subs r0, #0x12
+    cmp r0, #0xa
+    bhi .Ljp_08090FC2
+    lsls r0, r0, #2
+    ldr r1, .Ljp_08090F80 @ =.Ljp_08090F84
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+    .align 2, 0
+.Ljp_08090F80: .4byte .Ljp_08090F84
+.Ljp_08090F84: @ jump table
+    .4byte .Ljp_08090FB0 @ case 0
+    .4byte .Ljp_08090FB4 @ case 1
+    .4byte .Ljp_08090FB8 @ case 2
+    .4byte .Ljp_08090FBC @ case 3
+    .4byte .Ljp_08090FC2 @ case 4
+    .4byte .Ljp_08090FC2 @ case 5
+    .4byte .Ljp_08090FC2 @ case 6
+    .4byte .Ljp_08090FC2 @ case 7
+    .4byte .Ljp_08090FC2 @ case 8
+    .4byte .Ljp_08090FC2 @ case 9
+    .4byte .Ljp_08090FC0 @ case 10
+.Ljp_08090FB0:
+    movs r3, #1
+    b .Ljp_08090FC2
+.Ljp_08090FB4:
+    movs r3, #2
+    b .Ljp_08090FC2
+.Ljp_08090FB8:
+    movs r3, #3
+    b .Ljp_08090FC2
+.Ljp_08090FBC:
+    movs r3, #4
+    b .Ljp_08090FC2
+.Ljp_08090FC0:
+    movs r3, #7
+.Ljp_08090FC2:
+    cmp r4, r3
+    bne .Ljp_08090FCA
+    movs r5, #1
+    b .Ljp_08090FD8
+.Ljp_08090FCA:
+    cmp r4, r3
+    bls .Ljp_08090FD2
+    movs r5, #2
+    b .Ljp_08090FD8
+.Ljp_08090FD2:
+    cmp r4, r3
+    bhs .Ljp_08090FD8
+    movs r5, #3
+.Ljp_08090FD8:
+    adds r0, r5, #0
+    pop {r4, r5}
+    pop {r1}
+    bx r1
     .global func_080914A0
     .thumb_func
 func_080914A0:
