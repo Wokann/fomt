@@ -60,8 +60,29 @@ func_08010E68:
     .thumb_func
 func_08010F04:
     jp_game_state_chunk 0x10EE4, 0x10EEC
-    jp_game_state_chunk 0x10EEC, 0x10EFC
-    jp_game_state_chunk 0x10EFC, 0x10F04
+    .global func_08010F0C
+    .thumb_func
+func_08010F0C:
+    ldr r0, [r0]
+    lsls r0, r0, #0xe
+    lsrs r0, r0, #0x1b
+    bx lr
+
+    .global func_08010F14
+    .thumb_func
+func_08010F14:
+    ldrh r0, [r0, #2]
+    lsls r0, r0, #0x17
+    lsrs r0, r0, #0x19
+    bx lr
+
+    .global func_08010F1C
+    .thumb_func
+func_08010F1C:
+    ldrb r0, [r0, #3]
+    lsls r0, r0, #0x19
+    lsrs r0, r0, #0x1a
+    bx lr
     jp_game_state_entry func_08010F24, 0x10F04, 0x10F10
     jp_game_state_chunk 0x10F10, 0x10F1C
     jp_game_state_entry func_08010F3C, 0x10F1C, 0x10F28
@@ -1933,8 +1954,13 @@ func_08010F0C: @ 0x08010F0C
     lsls r0, r0, #0xe
     lsrs r0, r0, #0x1b
     bx lr
-.L08010F14:
-    .byte 0x40, 0x88, 0xC0, 0x05, 0x40, 0x0E, 0x70, 0x47
+
+    thumb_func_start func_08010F14
+func_08010F14: @ 0x08010F14
+    ldrh r0, [r0, #2]
+    lsls r0, r0, #0x17
+    lsrs r0, r0, #0x19
+    bx lr
 
     thumb_func_start func_08010F1C
 func_08010F1C: @ 0x08010F1C
