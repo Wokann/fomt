@@ -2619,6 +2619,8 @@ gUnk_084D529C:
 .global gUnk_084D52BC
 gUnk_084D52BC:
     .incbin "build/jp/graphics/ui/scene_08077810_jp/layer_1.tilemap.0x70"
+    .global gUnk_084D5354
+gUnk_084D5354:
     .incbin "baserom_jp.gba", 0x4D5354, (0x4D5430 - 0x4D5354)
     .global gUnk_084D5430
 gUnk_084D5430:
@@ -2959,13 +2961,18 @@ gUnk_0875348C:
     .global gUnk_0875350C
 gUnk_0875350C:
     FOMT_FARM_STATUS_CREATURE_ICON 19, gbapal
+    .global gUnk_084D94D8
+gUnk_084D94D8:
     .incbin "baserom_jp.gba", 0x4D94D8, (0x4D95B4 - 0x4D94D8)
     .global gUnk_084D95B4
 gUnk_084D95B4:
     .incbin "baserom_jp.gba", 0x4D95B4, (0x4D977C - 0x4D95B4)
     .global gUnk_084D977C
 gUnk_084D977C:
-    .incbin "baserom_jp.gba", 0x4D977C, (0x4DB1DC - 0x4D977C)
+    .incbin "baserom_jp.gba", 0x4D977C, (0x4DB100 - 0x4D977C)
+    .global gUnk_084DB100
+gUnk_084DB100:
+    .incbin "baserom_jp.gba", 0x4DB100, (0x4DB1DC - 0x4DB100)
     .global gUnk_084DB1DC
 gUnk_084DB1DC:
     .incbin "build/jp/graphics/ui/seasonal_background/bg_30.tilemap"
