@@ -40069,7 +40069,102 @@ func_0806EAF4:
 	pop {r0}
 	bx r0
 	.align 2, 0
-    jp_code_0803ee_func func_0806EB70, 0x6E7CC, 0x6E884
+	.global func_0806EB70
+	.thumb_func
+func_0806EB70:
+	push {r4, r5, r6, r7, lr}
+	mov r7, r8
+	push {r7}
+	sub sp, #0x18
+	mov r8, r1
+	adds r5, r2, #0
+	cmp r5, #0
+	beq .Ljp_0806E876
+	mov r6, sp
+	movs r4, #0
+	str r4, [sp]
+	str r4, [sp, #4]
+	add r0, sp, #8
+	str r4, [r0, #4]
+	movs r0, #0xb0
+	lsls r0, r0, #5
+	bl malloc
+	adds r1, r0, #0
+	cmp r1, #0
+	bne .Ljp_0806E800
+	movs r0, #0xb0
+	lsls r0, r0, #5
+	bl func_080D3BC0
+	adds r1, r0, #0
+.Ljp_0806E800:
+	str r1, [sp]
+	str r1, [sp, #4]
+	movs r2, #0xb0
+	lsls r2, r2, #5
+	adds r0, r1, r2
+	str r0, [sp, #0xc]
+	add r0, sp, #0x14
+	strh r4, [r0]
+	adds r3, r0, #0
+	movs r2, #0xb0
+	lsls r2, r2, #4
+.Ljp_0806E816:
+	ldrh r0, [r3]
+	strh r0, [r1]
+	subs r2, #1
+	adds r1, #2
+	cmp r2, #0
+	bne .Ljp_0806E816
+	str r1, [r6, #4]
+	ldr r1, [sp]
+	adds r0, r5, #0
+	bl Unpack
+	ldr r3, [sp]
+	movs r1, #0
+	mov ip, r3
+	movs r7, #0x1f
+.Ljp_0806E834:
+	movs r2, #0
+	lsrs r0, r1, #5
+	adds r6, r1, #1
+	lsls r5, r0, #1
+	ands r1, r7
+	lsls r0, r1, #6
+	movs r1, #0xc0
+	lsls r1, r1, #0x13
+	adds r4, r0, r1
+.Ljp_0806E846:
+	lsrs r0, r2, #5
+	adds r0, r5, r0
+	add r0, r8
+	lsls r0, r0, #0xb
+	adds r0, r0, r4
+	adds r1, r2, #0
+	ands r1, r7
+	lsls r1, r1, #1
+	adds r0, r0, r1
+	ldrh r1, [r3]
+	strh r1, [r0]
+	adds r3, #2
+	adds r2, #1
+	cmp r2, #0x3f
+	bls .Ljp_0806E846
+	adds r1, r6, #0
+	cmp r1, #0x2b
+	bls .Ljp_0806E834
+	mov r2, ip
+	cmp r2, #0
+	beq .Ljp_0806E876
+	mov r0, ip
+	bl free
+.Ljp_0806E876:
+	add sp, #0x18
+	pop {r3}
+	mov r8, r3
+	pop {r4, r5, r6, r7}
+	pop {r0}
+	bx r0
+	.align 2, 0
     jp_code_0803ee_func func_0806EC28, 0x6E884, 0x6EDC4
     jp_code_0803ee_func func_0806F168, 0x6EDC4, 0x6FD9C
     jp_code_0803ee_func func_08070140, 0x6FD9C, 0x70634
