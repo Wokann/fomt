@@ -84146,7 +84146,218 @@ func_080885AC:
     jp_code_0803ee_func func_0808A6E8, 0x8A6E8, 0x8A754
     jp_code_0803ee_func func_0808A754, 0x8A754, 0x8A768
     jp_code_0803ee_func func_0808AC28, 0x8A768, 0x8B5A0
-    jp_code_0803ee_func func_0808BA60, 0x8B5A0, 0x8B754
+
+.global func_0808BA60
+.thumb_func
+func_0808BA60:
+	push {r4, r5, r6, r7, lr}
+	sub sp, #0x14
+	adds r5, r0, #0
+	adds r7, r1, #0
+	cmp r7, #8
+	bgt .Ljp_0808B5E6
+	cmp r7, #0
+	bne .Ljp_0808B5B8
+	ldr r0, [r5, #0x78]
+	bl func_080CAB0C
+	b .Ljp_0808B5CC
+.Ljp_0808B5B8:
+	ldr r4, [r5, #0x78]
+	adds r0, r5, #0
+	adds r1, r7, #0
+	movs r2, #0
+	bl func_080CE184
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl func_080CAAF8
+.Ljp_0808B5CC:
+	adds r1, r0, #0
+	movs r2, #0
+	ldr r0, [r1, #4]
+	cmp r0, #0
+	beq .Ljp_0808B5DC
+	ldr r0, [r1, #8]
+	cmp r0, #0
+	bne .Ljp_0808B5DE
+.Ljp_0808B5DC:
+	movs r2, #1
+.Ljp_0808B5DE:
+	cmp r2, #0
+	beq .Ljp_0808B5E4
+	b .Ljp_0808B740
+.Ljp_0808B5E4:
+	b .Ljp_0808B6CA
+.Ljp_0808B5E6:
+	cmp r7, #9
+	bne .Ljp_0808B658
+	movs r1, #0x80
+	lsls r1, r1, #1
+	adds r4, r5, r1
+	ldr r0, [r4]
+	bl func_0800F190
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_0808B5FE
+	b .Ljp_0808B740
+.Ljp_0808B5FE:
+	ldr r0, [r4]
+	bl func_0800F204
+	adds r6, r0, #0
+	cmp r6, #0
+	bne .Ljp_0808B60C
+	b .Ljp_0808B720
+.Ljp_0808B60C:
+	cmp r6, #1
+	bne .Ljp_0808B6CA
+	ldr r0, [r4]
+	bl func_0800F258
+	adds r1, r0, #0
+	add r0, sp, #0x10
+	strb r1, [r0]
+	bl CanBeDiscarded__C7Article
+	movs r1, #1
+	eors r0, r1
+	lsls r0, r0, #0x18
+	lsrs r4, r0, #0x18
+	cmp r4, #0
+	bne .Ljp_0808B6CA
+	adds r0, r5, #0
+	adds r0, #0x80
+	ldr r1, .Ljp_0808B64C @ =gItemDiscardConfirmTextRef
+	ldr r1, [r1]
+	ldr r2, .Ljp_0808B650 @ =gText_HomeStorage_ConfirmationYes
+	ldr r3, .Ljp_0808B654 @ =gText_HomeStorage_ConfirmationNo
+	str r4, [sp]
+	str r4, [sp, #4]
+	str r4, [sp, #8]
+	bl func_08050E30
+	movs r1, #0x84
+	lsls r1, r1, #1
+	adds r0, r5, r1
+	str r6, [r0]
+	b .Ljp_0808B740
+	.align 2, 0
+.Ljp_0808B64C: .4byte gItemDiscardConfirmTextRef
+.Ljp_0808B650: .4byte gText_HomeStorage_ConfirmationYes
+.Ljp_0808B654: .4byte gText_HomeStorage_ConfirmationNo
+.Ljp_0808B658:
+	ldr r4, [r5, #0x7c]
+	adds r0, r5, #0
+	adds r1, r7, #0
+	movs r2, #0
+	bl func_080CE184
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl func_080CBF1C
+	adds r1, r0, #0
+	movs r2, #0
+	ldr r0, [r1, #4]
+	cmp r0, #0
+	beq .Ljp_0808B67C
+	ldr r0, [r1, #8]
+	cmp r0, #0
+	bne .Ljp_0808B67E
+.Ljp_0808B67C:
+	movs r2, #1
+.Ljp_0808B67E:
+	adds r6, r2, #0
+	cmp r6, #0
+	bne .Ljp_0808B740
+	movs r1, #0x82
+	lsls r1, r1, #1
+	adds r0, r5, r1
+	ldr r4, [r0]
+	adds r0, r5, #0
+	adds r1, r7, #0
+	movs r2, #0
+	bl func_080CE184
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl GetItemAt__8RucksackUi
+	ldr r0, [r0]
+	str r0, [sp, #0xc]
+	add r0, sp, #0xc
+	bl GetKind__C12RucksackItem
+	adds r4, r0, #0
+	cmp r4, #1
+	bne .Ljp_0808B720
+	add r0, sp, #0xc
+	bl GetArticle__C12RucksackItem
+	adds r1, r0, #0
+	mov r0, sp
+	adds r0, #0x11
+	strb r1, [r0]
+	bl CanBeDiscarded__C7Article
+	movs r1, #1
+	eors r0, r1
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_0808B6F4
+.Ljp_0808B6CA:
+	adds r0, r5, #0
+	adds r0, #0x80
+	ldr r1, .Ljp_0808B6F0 @ =gItemDiscardCannotDiscardTextRef
+	ldr r1, [r1]
+	movs r2, #0
+	movs r3, #0
+	bl func_08050DC8
+	movs r0, #0x84
+	lsls r0, r0, #1
+	adds r1, r5, r0
+	movs r0, #2
+	str r0, [r1]
+	adds r0, r5, #0
+	adds r0, #0xc
+	movs r1, #0xc7
+	bl func_08008B6C
+	b .Ljp_0808B740
+	.align 2, 0
+.Ljp_0808B6F0: .4byte gItemDiscardCannotDiscardTextRef
+.Ljp_0808B6F4:
+	adds r0, r5, #0
+	adds r0, #0x80
+	ldr r1, .Ljp_0808B714 @ =gItemDiscardConfirmTextRef
+	ldr r1, [r1]
+	ldr r2, .Ljp_0808B718 @ =gText_HomeStorage_ConfirmationYes
+	ldr r3, .Ljp_0808B71C @ =gText_HomeStorage_ConfirmationNo
+	str r6, [sp]
+	str r6, [sp, #4]
+	str r6, [sp, #8]
+	bl func_08050E30
+	movs r1, #0x84
+	lsls r1, r1, #1
+	adds r0, r5, r1
+	str r4, [r0]
+	b .Ljp_0808B740
+	.align 2, 0
+.Ljp_0808B714: .4byte gItemDiscardConfirmTextRef
+.Ljp_0808B718: .4byte gText_HomeStorage_ConfirmationYes
+.Ljp_0808B71C: .4byte gText_HomeStorage_ConfirmationNo
+.Ljp_0808B720:
+	adds r0, r5, #0
+	adds r0, #0x80
+	ldr r1, .Ljp_0808B748 @ =gItemDiscardConfirmTextRef
+	ldr r1, [r1]
+	ldr r2, .Ljp_0808B74C @ =gText_HomeStorage_ConfirmationYes
+	ldr r3, .Ljp_0808B750 @ =gText_HomeStorage_ConfirmationNo
+	str r6, [sp]
+	str r6, [sp, #4]
+	str r6, [sp, #8]
+	bl func_08050E30
+	movs r0, #0x84
+	lsls r0, r0, #1
+	adds r1, r5, r0
+	movs r0, #1
+	str r0, [r1]
+.Ljp_0808B740:
+	add sp, #0x14
+	pop {r4, r5, r6, r7}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_0808B748: .4byte gItemDiscardConfirmTextRef
+.Ljp_0808B74C: .4byte gText_HomeStorage_ConfirmationYes
+.Ljp_0808B750: .4byte gText_HomeStorage_ConfirmationNo
     .global func_0808BC14
     .thumb_func
 func_0808BC14:
