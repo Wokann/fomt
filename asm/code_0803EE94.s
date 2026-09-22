@@ -82604,7 +82604,1180 @@ func_08085EEC: @ 0x08085A64
 .global func_08085F08
 .thumb_func
 func_08085F08:
-    jp_code_0803ee_bytes 0x85A80, 0x86420
+	push {r4, r5, r6, r7, lr}
+	mov r7, sl
+	mov r6, sb
+	mov r5, r8
+	push {r5, r6, r7}
+	sub sp, #0x48
+	mov r8, r0
+	lsls r0, r1, #2
+	adds r0, r0, r1
+	lsls r0, r0, #2
+	ldr r2, .Ljp_08085AB8 @ =gLivestockShopCatalog
+	mov r1, sp
+	adds r0, r0, r2
+	ldm r0!, {r2, r3, r4}
+	stm r1!, {r2, r3, r4}
+	ldm r0!, {r2, r3}
+	stm r1!, {r2, r3}
+	ldr r0, [sp, #0x10]
+	cmp r0, #4
+	bls .Ljp_08085AAC
+	bl sub_080868BC
+.Ljp_08085AAC:
+	lsls r0, r0, #2
+	ldr r1, .Ljp_08085ABC @ =.Ljp_08085AC0
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.Ljp_08085AB8: .4byte gLivestockShopCatalog
+.Ljp_08085ABC: .4byte .Ljp_08085AC0
+.Ljp_08085AC0: @ jump table
+	.4byte .Ljp_08085AD4 @ case 0
+	.4byte .Ljp_08085AFE @ case 1
+	.4byte .Ljp_08085AE8 @ case 2
+	.4byte .Ljp_08085AFE @ case 3
+	.4byte .Ljp_08085B0A @ case 4
+.Ljp_08085AD4:
+	add r4, sp, #0x28
+	ldr r1, [sp]
+	adds r0, r4, #0
+	bl __7ArticleUi
+	adds r0, r4, #0
+	bl GetDesc__C7Article
+	adds r1, r0, #0
+	b .Ljp_08085B00
+.Ljp_08085AE8:
+	mov r4, sp
+	adds r4, #0x29
+	ldr r1, [sp]
+	adds r0, r4, #0
+	bl __4ToolUi
+	adds r0, r4, #0
+	bl GetDesc__C4Tool
+	adds r1, r0, #0
+	b .Ljp_08085B00
+.Ljp_08085AFE:
+	ldr r1, [sp, #0xc]
+.Ljp_08085B00:
+	mov r0, r8
+	bl func_080CA3FC
+	bl sub_080868BC
+.Ljp_08085B0A:
+	mov r4, r8
+	ldr r0, [r4, #0x10]
+	lsls r0, r0, #3
+	ldr r7, .Ljp_08085BC4 @ =0x000006AC
+	add r7, r8
+	adds r0, r7, r0
+	ldr r0, [r0]
+	mov sl, r0
+	lsls r0, r0, #5
+	add r0, sl
+	lsls r0, r0, #2
+	adds r1, r4, r0
+	ldr r2, .Ljp_08085BC8 @ =0x00003B98
+	adds r0, r1, r2
+	ldrb r0, [r0]
+	str r0, [sp, #0x2c]
+	cmp r0, #0
+	beq .Ljp_08085B32
+	bl sub_080868A8
+.Ljp_08085B32:
+	ldr r3, .Ljp_08085BCC @ =0x00003B9C
+	adds r5, r1, r3
+	ldr r6, .Ljp_08085BD0 @ =gText_LivestockShop_Empty
+	adds r0, r6, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, #0x7f
+	bls .Ljp_08085B46
+	movs r4, #0x7f
+.Ljp_08085B46:
+	adds r0, r5, #0
+	adds r1, r6, #0
+	adds r2, r4, #0
+	bl memcpy
+	adds r0, r5, r4
+	add r4, sp, #0x2c
+	ldrb r4, [r4]
+	strb r4, [r0]
+	mov r0, r8
+	ldr r1, [r0, #0x10]
+	lsls r0, r1, #2
+	add r0, r8
+	movs r2, #0xe6
+	lsls r2, r2, #3
+	adds r0, r0, r2
+	ldr r0, [r0]
+	cmp r0, #9
+	beq .Ljp_08085B6E
+	b .Ljp_08085FA8
+.Ljp_08085B6E:
+	mov r3, r8
+	ldr r0, [r3, #8]
+	movs r4, #0xbe
+	lsls r4, r4, #3
+	adds r0, r0, r4
+	lsls r1, r1, #3
+	adds r1, r7, r1
+	ldr r1, [r1]
+	bl GetCow__4BarnUi
+	str r0, [sp, #0x30]
+	bl IsSick__C9Livestock
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_08085BD8
+	ldr r7, .Ljp_08085BD4 @ =gText_LivestockShop_StatusSick
+	adds r0, r5, #0
+	bl strlen
+	adds r6, r5, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_08085C4E
+	adds r0, r7, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_08085BAE
+	adds r4, r5, #0
+.Ljp_08085BAE:
+	adds r0, r6, #0
+	adds r1, r7, #0
+	adds r2, r4, #0
+	bl memcpy
+	adds r0, r6, r4
+	add r1, sp, #0x2c
+	ldrb r1, [r1]
+	strb r1, [r0]
+	b .Ljp_08085C4E
+	.align 2, 0
+.Ljp_08085BC4: .4byte 0x000006AC
+.Ljp_08085BC8: .4byte 0x00003B98
+.Ljp_08085BCC: .4byte 0x00003B9C
+.Ljp_08085BD0: .4byte gText_LivestockShop_Empty
+.Ljp_08085BD4: .4byte gText_LivestockShop_StatusSick
+.Ljp_08085BD8:
+	ldr r0, [sp, #0x30]
+	bl IsUnhappy__C9Livestock
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_08085C1C
+	ldr r7, .Ljp_08085C18 @ =gText_LivestockShop_StatusUnhappy
+	adds r0, r5, #0
+	bl strlen
+	adds r6, r5, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_08085C4E
+	adds r0, r7, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_08085C04
+	adds r4, r5, #0
+.Ljp_08085C04:
+	adds r0, r6, #0
+	adds r1, r7, #0
+	adds r2, r4, #0
+	bl memcpy
+	adds r0, r6, r4
+	add r2, sp, #0x2c
+	ldrb r2, [r2]
+	strb r2, [r0]
+	b .Ljp_08085C4E
+	.align 2, 0
+.Ljp_08085C18: .4byte gText_LivestockShop_StatusUnhappy
+.Ljp_08085C1C:
+	ldr r7, .Ljp_08085D38 @ =gText_LivestockShop_StatusHealthy
+	adds r0, r5, #0
+	bl strlen
+	adds r6, r5, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_08085C4E
+	adds r0, r7, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_08085C3C
+	adds r4, r5, #0
+.Ljp_08085C3C:
+	adds r0, r6, #0
+	adds r1, r7, #0
+	adds r2, r4, #0
+	bl memcpy
+	adds r0, r6, r4
+	add r3, sp, #0x2c
+	ldrb r3, [r3]
+	strb r3, [r0]
+.Ljp_08085C4E:
+	ldr r0, [sp, #0x30]
+	bl GetAge__C6Animal
+	movs r1, #0x78
+	bl __udivsi3
+	adds r6, r0, #0
+	mov r4, sl
+	lsls r4, r4, #5
+	mov sb, r4
+	cmp r6, #9
+	bgt .Ljp_08085C9E
+	add r4, sl
+	lsls r4, r4, #2
+	add r4, r8
+	ldr r0, .Ljp_08085D3C @ =0x00003B9C
+	adds r4, r4, r0
+	adds r0, r4, #0
+	bl strlen
+	adds r7, r4, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_08085C9E
+	ldr r0, .Ljp_08085D40 @ =gText_LivestockShop_StatusSpacer
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_08085C8E
+	adds r4, r5, #0
+.Ljp_08085C8E:
+	adds r0, r7, #0
+	ldr r1, .Ljp_08085D40 @ =gText_LivestockShop_StatusSpacer
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r7, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_08085C9E:
+	add r4, sp, #0x14
+	adds r0, r6, #0
+	adds r1, r4, #0
+	movs r2, #0
+	bl func_0804E98C
+	mov r0, sb
+	add r0, sl
+	lsls r0, r0, #2
+	mov r1, r8
+	adds r6, r0, r1
+	ldr r2, .Ljp_08085D3C @ =0x00003B9C
+	adds r6, r6, r2
+	adds r0, r6, #0
+	bl strlen
+	adds r7, r6, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_08085CE6
+	add r0, sp, #0x14
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_08085CD6
+	adds r4, r5, #0
+.Ljp_08085CD6:
+	adds r0, r7, #0
+	add r1, sp, #0x14
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r7, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_08085CE6:
+	ldr r7, .Ljp_08085D44 @ =gText_LivestockShop_Age
+	adds r0, r6, #0
+	bl strlen
+	adds r6, r6, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_08085D16
+	adds r0, r7, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_08085D06
+	adds r4, r5, #0
+.Ljp_08085D06:
+	adds r0, r6, #0
+	adds r1, r7, #0
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r6, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_08085D16:
+	ldr r0, [sp, #0x30]
+	bl GetAge__C6Animal
+	adds r4, r0, #0
+	mov r3, r8
+	ldr r0, [r3, #8]
+	ldrb r1, [r0, #0x11]
+	mov r0, sp
+	adds r0, #0x2a
+	strb r1, [r0]
+	adds r6, r0, #0
+	cmp r4, #0x1d
+	bhi .Ljp_08085D48
+	adds r5, r4, #0
+	movs r4, #0
+	b .Ljp_08085D5C
+	.align 2, 0
+.Ljp_08085D38: .4byte gText_LivestockShop_StatusHealthy
+.Ljp_08085D3C: .4byte 0x00003B9C
+.Ljp_08085D40: .4byte gText_LivestockShop_StatusSpacer
+.Ljp_08085D44: .4byte gText_LivestockShop_Age
+.Ljp_08085D48:
+	adds r0, r4, #0
+	movs r1, #0x1e
+	bl __umodsi3
+	adds r5, r0, #0
+	adds r0, r4, #0
+	movs r1, #0x1e
+	bl __udivsi3
+	adds r4, r0, #0
+.Ljp_08085D5C:
+	ldrb r0, [r6]
+	lsls r1, r0, #0x19
+	lsrs r1, r1, #0x1b
+	adds r2, r5, #0
+	subs r2, #0x1e
+	subs r3, r1, r2
+	cmp r3, #0x1d
+	bhi .Ljp_08085D70
+	adds r4, #1
+	b .Ljp_08085D72
+.Ljp_08085D70:
+	subs r3, #0x1e
+.Ljp_08085D72:
+	lsls r0, r0, #0x1e
+	lsrs r0, r0, #0x1e
+	movs r1, #4
+	rsbs r1, r1, #0
+	subs r0, r0, r4
+	movs r2, #3
+	ands r0, r2
+	ldrb r2, [r6]
+	ands r1, r2
+	orrs r1, r0
+	movs r0, #0x1f
+	ands r3, r0
+	lsls r2, r3, #2
+	movs r0, #0x7d
+	rsbs r0, r0, #0
+	ands r1, r0
+	orrs r1, r2
+	strb r1, [r6]
+	add r4, sp, #0x34
+	strb r1, [r4]
+	lsls r1, r1, #0x1e
+	lsrs r6, r1, #0x1e
+	cmp r6, #1
+	beq .Ljp_08085DF8
+	cmp r6, #1
+	bgt .Ljp_08085DAC
+	cmp r6, #0
+	beq .Ljp_08085DB6
+	b .Ljp_08085E64
+.Ljp_08085DAC:
+	cmp r6, #2
+	beq .Ljp_08085E10
+	cmp r6, #3
+	beq .Ljp_08085E28
+	b .Ljp_08085E64
+.Ljp_08085DB6:
+	mov r4, sb
+	add r4, sl
+	lsls r4, r4, #2
+	add r4, r8
+	ldr r0, .Ljp_08085DF0 @ =0x00003B9C
+	adds r4, r4, r0
+	adds r0, r4, #0
+	bl strlen
+	adds r7, r4, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_08085E64
+	ldr r0, .Ljp_08085DF4 @ =gText_LivestockShop_Spring
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_08085DE0
+	adds r4, r5, #0
+.Ljp_08085DE0:
+	adds r0, r7, #0
+	ldr r1, .Ljp_08085DF4 @ =gText_LivestockShop_Spring
+	adds r2, r4, #0
+	bl memcpy
+	adds r0, r7, r4
+	strb r6, [r0]
+	b .Ljp_08085E64
+	.align 2, 0
+.Ljp_08085DF0: .4byte 0x00003B9C
+.Ljp_08085DF4: .4byte gText_LivestockShop_Spring
+.Ljp_08085DF8:
+	mov r4, sb
+	add r4, sl
+	lsls r4, r4, #2
+	add r4, r8
+	ldr r1, .Ljp_08085E08 @ =0x00003B9C
+	adds r4, r4, r1
+	ldr r7, .Ljp_08085E0C @ =gText_LivestockShop_Summer
+	b .Ljp_08085E36
+	.align 2, 0
+.Ljp_08085E08: .4byte 0x00003B9C
+.Ljp_08085E0C: .4byte gText_LivestockShop_Summer
+.Ljp_08085E10:
+	mov r4, sb
+	add r4, sl
+	lsls r4, r4, #2
+	add r4, r8
+	ldr r2, .Ljp_08085E20 @ =0x00003B9C
+	adds r4, r4, r2
+	ldr r7, .Ljp_08085E24 @ =gText_LivestockShop_Autumn
+	b .Ljp_08085E36
+	.align 2, 0
+.Ljp_08085E20: .4byte 0x00003B9C
+.Ljp_08085E24: .4byte gText_LivestockShop_Autumn
+.Ljp_08085E28:
+	mov r4, sb
+	add r4, sl
+	lsls r4, r4, #2
+	add r4, r8
+	ldr r3, .Ljp_08085F98 @ =0x00003B9C
+	adds r4, r4, r3
+	ldr r7, .Ljp_08085F9C @ =gText_LivestockShop_Winter
+.Ljp_08085E36:
+	adds r0, r4, #0
+	bl strlen
+	adds r6, r4, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_08085E64
+	adds r0, r7, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_08085E54
+	adds r4, r5, #0
+.Ljp_08085E54:
+	adds r0, r6, #0
+	adds r1, r7, #0
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r6, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_08085E64:
+	add r4, sp, #0x34
+	ldrb r4, [r4]
+	lsls r0, r4, #0x19
+	lsrs r0, r0, #0x1b
+	adds r6, r0, #1
+	cmp r6, #9
+	bgt .Ljp_08085EAE
+	mov r4, sb
+	add r4, sl
+	lsls r4, r4, #2
+	add r4, r8
+	ldr r0, .Ljp_08085F98 @ =0x00003B9C
+	adds r4, r4, r0
+	ldr r7, .Ljp_08085FA0 @ =gText_LivestockShop_StatusSpacer
+	adds r0, r4, #0
+	bl strlen
+	adds r6, r4, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_08085EAE
+	adds r0, r7, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_08085E9E
+	adds r4, r5, #0
+.Ljp_08085E9E:
+	adds r0, r6, #0
+	adds r1, r7, #0
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r6, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_08085EAE:
+	add r1, sp, #0x34
+	ldrb r1, [r1]
+	lsls r0, r1, #0x19
+	lsrs r0, r0, #0x1b
+	adds r0, #1
+	add r1, sp, #0x14
+	movs r2, #0
+	bl func_0804E98C
+	mov r0, sb
+	add r0, sl
+	lsls r0, r0, #2
+	mov r2, r8
+	adds r6, r0, r2
+	ldr r3, .Ljp_08085F98 @ =0x00003B9C
+	adds r6, r6, r3
+	adds r0, r6, #0
+	bl strlen
+	adds r7, r6, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_08085EFC
+	ldr r0, .Ljp_08085FA0 @ =gText_LivestockShop_StatusSpacer
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_08085EEC
+	adds r4, r5, #0
+.Ljp_08085EEC:
+	adds r0, r7, #0
+	ldr r1, .Ljp_08085FA0 @ =gText_LivestockShop_StatusSpacer
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r7, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_08085EFC:
+	adds r0, r6, #0
+	bl strlen
+	adds r7, r6, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_08085F2A
+	add r0, sp, #0x14
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_08085F1A
+	adds r4, r5, #0
+.Ljp_08085F1A:
+	adds r0, r7, #0
+	add r1, sp, #0x14
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r7, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_08085F2A:
+	ldr r7, .Ljp_08085FA4 @ =gText_LivestockShop_DailySellingPrice
+	adds r0, r6, #0
+	bl strlen
+	adds r6, r6, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_08085F5A
+	adds r0, r7, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_08085F4A
+	adds r4, r5, #0
+.Ljp_08085F4A:
+	adds r0, r6, #0
+	adds r1, r7, #0
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r6, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_08085F5A:
+	mov r4, r8
+	ldr r1, [r4, #0x10]
+	lsls r1, r1, #3
+	movs r0, #0xd6
+	lsls r0, r0, #3
+	add r0, r8
+	adds r0, r0, r1
+	ldr r6, [r0]
+	adds r0, r6, #0
+	add r1, sp, #0x14
+	movs r2, #0
+	bl func_0804E98C
+	mov r0, sb
+	add r0, sl
+	lsls r0, r0, #2
+	adds r6, r0, r4
+	ldr r0, .Ljp_08085F98 @ =0x00003B9C
+	adds r6, r6, r0
+	adds r0, r6, #0
+	bl strlen
+	adds r7, r6, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	bne .Ljp_08085F92
+	b .Ljp_080863DE
+.Ljp_08085F92:
+	add r0, sp, #0x14
+	b .Ljp_080863C2
+	.align 2, 0
+.Ljp_08085F98: .4byte 0x00003B9C
+.Ljp_08085F9C: .4byte gText_LivestockShop_Winter
+.Ljp_08085FA0: .4byte gText_LivestockShop_StatusSpacer
+.Ljp_08085FA4: .4byte gText_LivestockShop_DailySellingPrice
+.Ljp_08085FA8:
+	mov r2, r8
+	ldr r0, [r2, #8]
+	movs r3, #0xbe
+	lsls r3, r3, #3
+	adds r0, r0, r3
+	lsls r1, r1, #3
+	adds r1, r7, r1
+	ldr r1, [r1]
+	bl GetSheep__4BarnUi
+	str r0, [sp, #0x3c]
+	bl IsSick__C9Livestock
+	lsls r0, r0, #0x18
+	lsrs r0, r0, #0x18
+	mov sb, r0
+	cmp r0, #0
+	beq .Ljp_08086004
+	ldr r7, .Ljp_08086000 @ =gText_LivestockShop_StatusSick
+	adds r0, r5, #0
+	bl strlen
+	adds r6, r5, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_08086078
+	adds r0, r7, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_08085FEC
+	adds r4, r5, #0
+.Ljp_08085FEC:
+	adds r0, r6, #0
+	adds r1, r7, #0
+	adds r2, r4, #0
+	bl memcpy
+	adds r0, r6, r4
+	add r4, sp, #0x2c
+	ldrb r4, [r4]
+	strb r4, [r0]
+	b .Ljp_08086078
+	.align 2, 0
+.Ljp_08086000: .4byte gText_LivestockShop_StatusSick
+.Ljp_08086004:
+	ldr r0, [sp, #0x3c]
+	bl IsUnhappy__C9Livestock
+	lsls r0, r0, #0x18
+	lsrs r7, r0, #0x18
+	cmp r7, #0
+	beq .Ljp_08086048
+	ldr r7, .Ljp_08086044 @ =gText_LivestockShop_StatusUnhappy
+	adds r0, r5, #0
+	bl strlen
+	adds r6, r5, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_08086078
+	adds r0, r7, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_08086032
+	adds r4, r5, #0
+.Ljp_08086032:
+	adds r0, r6, #0
+	adds r1, r7, #0
+	adds r2, r4, #0
+	bl memcpy
+	adds r0, r6, r4
+	mov r1, sb
+	strb r1, [r0]
+	b .Ljp_08086078
+	.align 2, 0
+.Ljp_08086044: .4byte gText_LivestockShop_StatusUnhappy
+.Ljp_08086048:
+	ldr r2, .Ljp_08086164 @ =gText_LivestockShop_StatusHealthy
+	mov sb, r2
+	adds r0, r5, #0
+	bl strlen
+	adds r6, r5, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_08086078
+	mov r0, sb
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_0808606A
+	adds r4, r5, #0
+.Ljp_0808606A:
+	adds r0, r6, #0
+	mov r1, sb
+	adds r2, r4, #0
+	bl memcpy
+	adds r0, r6, r4
+	strb r7, [r0]
+.Ljp_08086078:
+	ldr r0, [sp, #0x3c]
+	bl GetAge__C6Animal
+	movs r1, #0x78
+	bl __udivsi3
+	adds r6, r0, #0
+	mov r3, sl
+	lsls r3, r3, #5
+	mov sb, r3
+	cmp r6, #9
+	bgt .Ljp_080860CA
+	mov r4, sb
+	add r4, sl
+	lsls r4, r4, #2
+	add r4, r8
+	ldr r0, .Ljp_08086168 @ =0x00003B9C
+	adds r4, r4, r0
+	adds r0, r4, #0
+	bl strlen
+	adds r7, r4, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_080860CA
+	ldr r0, .Ljp_0808616C @ =gText_LivestockShop_StatusSpacer
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_080860BA
+	adds r4, r5, #0
+.Ljp_080860BA:
+	adds r0, r7, #0
+	ldr r1, .Ljp_0808616C @ =gText_LivestockShop_StatusSpacer
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r7, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_080860CA:
+	add r4, sp, #0x14
+	adds r0, r6, #0
+	adds r1, r4, #0
+	movs r2, #0
+	bl func_0804E98C
+	mov r0, sb
+	add r0, sl
+	lsls r0, r0, #2
+	mov r1, r8
+	adds r6, r0, r1
+	ldr r2, .Ljp_08086168 @ =0x00003B9C
+	adds r6, r6, r2
+	adds r0, r6, #0
+	bl strlen
+	adds r7, r6, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_08086112
+	add r0, sp, #0x14
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_08086102
+	adds r4, r5, #0
+.Ljp_08086102:
+	adds r0, r7, #0
+	add r1, sp, #0x14
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r7, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_08086112:
+	ldr r7, .Ljp_08086170 @ =gText_LivestockShop_Age
+	adds r0, r6, #0
+	bl strlen
+	adds r6, r6, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_08086142
+	adds r0, r7, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_08086132
+	adds r4, r5, #0
+.Ljp_08086132:
+	adds r0, r6, #0
+	adds r1, r7, #0
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r6, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_08086142:
+	ldr r0, [sp, #0x3c]
+	bl GetAge__C6Animal
+	adds r4, r0, #0
+	mov r3, r8
+	ldr r0, [r3, #8]
+	ldrb r1, [r0, #0x11]
+	mov r0, sp
+	adds r0, #0x2b
+	strb r1, [r0]
+	adds r6, r0, #0
+	cmp r4, #0x1d
+	bhi .Ljp_08086174
+	adds r5, r4, #0
+	movs r4, #0
+	b .Ljp_08086188
+	.align 2, 0
+.Ljp_08086164: .4byte gText_LivestockShop_StatusHealthy
+.Ljp_08086168: .4byte 0x00003B9C
+.Ljp_0808616C: .4byte gText_LivestockShop_StatusSpacer
+.Ljp_08086170: .4byte gText_LivestockShop_Age
+.Ljp_08086174:
+	adds r0, r4, #0
+	movs r1, #0x1e
+	bl __umodsi3
+	adds r5, r0, #0
+	adds r0, r4, #0
+	movs r1, #0x1e
+	bl __udivsi3
+	adds r4, r0, #0
+.Ljp_08086188:
+	ldrb r0, [r6]
+	lsls r1, r0, #0x19
+	lsrs r1, r1, #0x1b
+	adds r2, r5, #0
+	subs r2, #0x1e
+	subs r3, r1, r2
+	cmp r3, #0x1d
+	bhi .Ljp_0808619C
+	adds r4, #1
+	b .Ljp_0808619E
+.Ljp_0808619C:
+	subs r3, #0x1e
+.Ljp_0808619E:
+	lsls r0, r0, #0x1e
+	lsrs r0, r0, #0x1e
+	movs r1, #4
+	rsbs r1, r1, #0
+	subs r0, r0, r4
+	movs r2, #3
+	ands r0, r2
+	ldrb r2, [r6]
+	ands r1, r2
+	orrs r1, r0
+	movs r0, #0x1f
+	ands r3, r0
+	lsls r2, r3, #2
+	movs r0, #0x7d
+	rsbs r0, r0, #0
+	ands r1, r0
+	orrs r1, r2
+	strb r1, [r6]
+	add r4, sp, #0x40
+	strb r1, [r4]
+	lsls r1, r1, #0x1e
+	lsrs r6, r1, #0x1e
+	cmp r6, #1
+	beq .Ljp_08086224
+	cmp r6, #1
+	bgt .Ljp_080861D8
+	cmp r6, #0
+	beq .Ljp_080861E2
+	b .Ljp_08086290
+.Ljp_080861D8:
+	cmp r6, #2
+	beq .Ljp_0808623C
+	cmp r6, #3
+	beq .Ljp_08086254
+	b .Ljp_08086290
+.Ljp_080861E2:
+	mov r4, sb
+	add r4, sl
+	lsls r4, r4, #2
+	add r4, r8
+	ldr r0, .Ljp_0808621C @ =0x00003B9C
+	adds r4, r4, r0
+	adds r0, r4, #0
+	bl strlen
+	adds r7, r4, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_08086290
+	ldr r0, .Ljp_08086220 @ =gText_LivestockShop_Spring
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_0808620C
+	adds r4, r5, #0
+.Ljp_0808620C:
+	adds r0, r7, #0
+	ldr r1, .Ljp_08086220 @ =gText_LivestockShop_Spring
+	adds r2, r4, #0
+	bl memcpy
+	adds r0, r7, r4
+	strb r6, [r0]
+	b .Ljp_08086290
+	.align 2, 0
+.Ljp_0808621C: .4byte 0x00003B9C
+.Ljp_08086220: .4byte gText_LivestockShop_Spring
+.Ljp_08086224:
+	mov r4, sb
+	add r4, sl
+	lsls r4, r4, #2
+	add r4, r8
+	ldr r1, .Ljp_08086234 @ =0x00003B9C
+	adds r4, r4, r1
+	ldr r7, .Ljp_08086238 @ =gText_LivestockShop_Summer
+	b .Ljp_08086262
+	.align 2, 0
+.Ljp_08086234: .4byte 0x00003B9C
+.Ljp_08086238: .4byte gText_LivestockShop_Summer
+.Ljp_0808623C:
+	mov r4, sb
+	add r4, sl
+	lsls r4, r4, #2
+	add r4, r8
+	ldr r2, .Ljp_0808624C @ =0x00003B9C
+	adds r4, r4, r2
+	ldr r7, .Ljp_08086250 @ =gText_LivestockShop_Autumn
+	b .Ljp_08086262
+	.align 2, 0
+.Ljp_0808624C: .4byte 0x00003B9C
+.Ljp_08086250: .4byte gText_LivestockShop_Autumn
+.Ljp_08086254:
+	mov r4, sb
+	add r4, sl
+	lsls r4, r4, #2
+	add r4, r8
+	ldr r3, .Ljp_08086444 @ =0x00003B9C
+	adds r4, r4, r3
+	ldr r7, .Ljp_08086448 @ =gText_LivestockShop_Winter
+.Ljp_08086262:
+	adds r0, r4, #0
+	bl strlen
+	adds r6, r4, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_08086290
+	adds r0, r7, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_08086280
+	adds r4, r5, #0
+.Ljp_08086280:
+	adds r0, r6, #0
+	adds r1, r7, #0
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r6, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_08086290:
+	add r4, sp, #0x40
+	ldrb r4, [r4]
+	lsls r0, r4, #0x19
+	lsrs r0, r0, #0x1b
+	adds r6, r0, #1
+	cmp r6, #9
+	bgt .Ljp_080862DA
+	mov r4, sb
+	add r4, sl
+	lsls r4, r4, #2
+	add r4, r8
+	ldr r0, .Ljp_08086444 @ =0x00003B9C
+	adds r4, r4, r0
+	ldr r7, .Ljp_0808644C @ =gText_LivestockShop_StatusSpacer
+	adds r0, r4, #0
+	bl strlen
+	adds r6, r4, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_080862DA
+	adds r0, r7, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_080862CA
+	adds r4, r5, #0
+.Ljp_080862CA:
+	adds r0, r6, #0
+	adds r1, r7, #0
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r6, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_080862DA:
+	add r1, sp, #0x40
+	ldrb r1, [r1]
+	lsls r0, r1, #0x19
+	lsrs r0, r0, #0x1b
+	adds r0, #1
+	add r1, sp, #0x14
+	movs r2, #0
+	bl func_0804E98C
+	mov r0, sb
+	add r0, sl
+	lsls r0, r0, #2
+	mov r2, r8
+	adds r6, r0, r2
+	ldr r3, .Ljp_08086444 @ =0x00003B9C
+	adds r6, r6, r3
+	adds r0, r6, #0
+	bl strlen
+	adds r7, r6, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_08086328
+	ldr r0, .Ljp_0808644C @ =gText_LivestockShop_StatusSpacer
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_08086318
+	adds r4, r5, #0
+.Ljp_08086318:
+	adds r0, r7, #0
+	ldr r1, .Ljp_0808644C @ =gText_LivestockShop_StatusSpacer
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r7, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_08086328:
+	adds r0, r6, #0
+	bl strlen
+	adds r7, r6, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_08086356
+	add r0, sp, #0x14
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_08086346
+	adds r4, r5, #0
+.Ljp_08086346:
+	adds r0, r7, #0
+	add r1, sp, #0x14
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r7, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_08086356:
+	ldr r7, .Ljp_08086450 @ =gText_LivestockShop_SecondaryDailySellingPrice
+	adds r0, r6, #0
+	bl strlen
+	adds r6, r6, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_08086386
+	adds r0, r7, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_08086376
+	adds r4, r5, #0
+.Ljp_08086376:
+	adds r0, r6, #0
+	adds r1, r7, #0
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r6, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_08086386:
+	mov r4, r8
+	ldr r1, [r4, #0x10]
+	lsls r1, r1, #3
+	movs r0, #0xd6
+	lsls r0, r0, #3
+	add r0, r8
+	adds r0, r0, r1
+	ldr r6, [r0]
+	add r4, sp, #0x14
+	adds r0, r6, #0
+	adds r1, r4, #0
+	movs r2, #0
+	bl func_0804E98C
+	mov r0, sb
+	add r0, sl
+	lsls r0, r0, #2
+	mov r1, r8
+	adds r6, r0, r1
+	ldr r2, .Ljp_08086444 @ =0x00003B9C
+	adds r6, r6, r2
+	adds r0, r6, #0
+	bl strlen
+	adds r7, r6, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_080863DE
+	adds r0, r4, #0
+.Ljp_080863C2:
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_080863CE
+	adds r4, r5, #0
+.Ljp_080863CE:
+	adds r0, r7, #0
+	add r1, sp, #0x14
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r7, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_080863DE:
+	ldr r7, .Ljp_08086454 @ =gText_LivestockShop_Currency
+	adds r0, r6, #0
+	bl strlen
+	adds r6, r6, r0
+	movs r1, #0x7f
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_0808640E
+	adds r0, r7, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_080863FE
+	adds r4, r5, #0
+.Ljp_080863FE:
+	adds r0, r6, #0
+	adds r1, r7, #0
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r6, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_0808640E:
+	mov r3, sl
+	lsls r0, r3, #5
+	add r0, sl
+	lsls r0, r0, #2
+	add r0, r8
+	ldr r4, .Ljp_08086458 @ =0x00003B98
+	adds r0, r0, r4
+	movs r1, #1
+	strb r1, [r0]
     .global sub_080868A8
     .thumb_func
 sub_080868A8: @ 0x08086420
