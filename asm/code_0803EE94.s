@@ -70911,11 +70911,130 @@ func_0809410C:
     jp_code_0803ee_func func_0809ACC0, 0x9A6F8, 0x9A7E0
     jp_code_0803ee_func func_0809ADA8, 0x9A7E0, 0x9AA50
     jp_code_0803ee_func func_0809B018, 0x9AA50, 0x9AA70
-    jp_code_0803ee_func func_0809B038, 0x9AA70, 0x9AA94
-    jp_code_0803ee_func func_0809B05C, 0x9AA94, 0x9AABC
-    jp_code_0803ee_func func_0809B084, 0x9AABC, 0x9AAE8
-    jp_code_0803ee_func func_0809B0B0, 0x9AAE8, 0x9AB10
-    jp_code_0803ee_func func_0809B0D8, 0x9AB10, 0x9AB3C
+	.global func_0809B038
+	.thumb_func
+func_0809B038:
+	push {lr}
+	adds r3, r0, #0
+	adds r3, #0xfc
+	ldr r2, [r3]
+	cmp r1, r2
+	blo .Ljp_0809AA84
+	movs r1, #0x80
+	lsls r1, r1, #1
+	adds r0, r0, r1
+	b .Ljp_0809AA8E
+.Ljp_0809AA84:
+	adds r0, r1, #1
+	subs r0, r2, r0
+	lsls r0, r0, #3
+	adds r0, #4
+	adds r0, r3, r0
+.Ljp_0809AA8E:
+	pop {r1}
+	bx r1
+	.align 2, 0
+	.global func_0809B05C
+	.thumb_func
+func_0809B05C:
+	push {lr}
+	adds r2, r0, #0
+	adds r1, r2, #0
+	adds r1, #8
+	ldr r0, [r2, #8]
+	subs r0, #1
+	lsls r0, r0, #3
+	adds r0, #4
+	adds r1, r1, r0
+	movs r0, #0x90
+	lsls r0, r0, #1
+	adds r3, r2, r0
+	ldr r2, [r3]
+	ldr r0, [r1]
+	cmp r2, r0
+	blo .Ljp_0809AAB6
+	adds r1, r3, #0
+.Ljp_0809AAB6:
+	ldr r0, [r1]
+	pop {r1}
+	bx r1
+	.global func_0809B084
+	.thumb_func
+func_0809B084:
+	push {lr}
+	adds r2, r0, #0
+	adds r1, r2, #0
+	adds r1, #8
+	ldr r0, [r2, #8]
+	subs r0, #1
+	lsls r0, r0, #3
+	adds r0, #4
+	adds r1, r1, r0
+	movs r0, #0x92
+	lsls r0, r0, #1
+	adds r3, r2, r0
+	ldr r2, [r3]
+	ldr r0, [r1, #4]
+	adds r1, #4
+	cmp r2, r0
+	blo .Ljp_0809AAE0
+	adds r1, r3, #0
+.Ljp_0809AAE0:
+	ldr r0, [r1]
+	pop {r1}
+	bx r1
+	.align 2, 0
+	.global func_0809B0B0
+	.thumb_func
+func_0809B0B0:
+	push {lr}
+	adds r2, r0, #0
+	adds r1, r2, #0
+	adds r1, #0xfc
+	ldr r0, [r1]
+	subs r0, #1
+	lsls r0, r0, #3
+	adds r0, #4
+	adds r1, r1, r0
+	movs r0, #0x94
+	lsls r0, r0, #1
+	adds r3, r2, r0
+	ldr r2, [r3]
+	ldr r0, [r1]
+	cmp r2, r0
+	blo .Ljp_0809AB0A
+	adds r1, r3, #0
+.Ljp_0809AB0A:
+	ldr r0, [r1]
+	pop {r1}
+	bx r1
+	.global func_0809B0D8
+	.thumb_func
+func_0809B0D8:
+	push {lr}
+	adds r2, r0, #0
+	adds r1, r2, #0
+	adds r1, #0xfc
+	ldr r0, [r1]
+	subs r0, #1
+	lsls r0, r0, #3
+	adds r0, #4
+	adds r1, r1, r0
+	movs r0, #0x96
+	lsls r0, r0, #1
+	adds r3, r2, r0
+	ldr r2, [r3]
+	ldr r0, [r1, #4]
+	adds r1, #4
+	cmp r2, r0
+	blo .Ljp_0809AB34
+	adds r1, r3, #0
+.Ljp_0809AB34:
+	ldr r0, [r1]
+	pop {r1}
+	bx r1
+	.align 2, 0
+
 
 
 
