@@ -2610,7 +2610,25 @@ gUnk_084D5868:
     .incbin "baserom_jp.gba", 0x4D5868, (0x4D668C - 0x4D5868)
     .global gUnk_084D668C
 gUnk_084D668C:
-    .incbin "baserom_jp.gba", 0x4D668C, (0x4D7878 - 0x4D668C)
+    .incbin "baserom_jp.gba", 0x4D668C, (0x4D6BF8 - 0x4D668C)
+    .global gUnk_08750C4C
+gUnk_08750C4C:
+    .incbin "baserom_jp.gba", 0x4D6BF8, (0x4D6C18 - 0x4D6BF8)
+    .global gUnk_08750C6C
+gUnk_08750C6C:
+    .incbin "baserom_jp.gba", 0x4D6C18, (0x4D6DF8 - 0x4D6C18)
+    .global gUnk_08750E4C
+gUnk_08750E4C:
+    .incbin "baserom_jp.gba", 0x4D6DF8, (0x4D6F18 - 0x4D6DF8)
+    .global gUnk_08750F6C
+gUnk_08750F6C:
+    .incbin "baserom_jp.gba", 0x4D6F18, (0x4D6F38 - 0x4D6F18)
+    .global gUnk_08750F8C
+gUnk_08750F8C:
+    .incbin "baserom_jp.gba", 0x4D6F38, (0x4D7758 - 0x4D6F38)
+    .global gUnk_087517AC
+gUnk_087517AC:
+    .incbin "baserom_jp.gba", 0x4D7758, (0x4D7878 - 0x4D7758)
     .global gUnk_087518CC
 gUnk_087518CC:
     FOMT_ANIMAL_FESTIVAL_ICON 00, 4bpp
@@ -2782,9 +2800,27 @@ gUnk_0875286C:
     .global gUnk_087528EC
 gUnk_087528EC:
     FOMT_FARM_STATUS_CREATURE_ICON 08, gbapal
+    .global gUnk_0875290C
+gUnk_0875290C:
     FOMT_FARM_STATUS_CREATURE_ICON 09, 4bpp
+    .global gUnk_0875298C
+gUnk_0875298C:
     FOMT_FARM_STATUS_CREATURE_ICON 09, gbapal
-    .incbin "baserom_jp.gba", 0x4D8958, (0x4D8DF8 - 0x4D8958)
+    .global gUnk_087529AC
+gUnk_087529AC:
+    .incbin "baserom_jp.gba", 0x4D8958, (0x4D8A78 - 0x4D8958)
+    .global gUnk_08752ACC
+gUnk_08752ACC:
+    .incbin "baserom_jp.gba", 0x4D8A78, (0x4D8AF8 - 0x4D8A78)
+    .global gUnk_08752B4C
+gUnk_08752B4C:
+    .incbin "baserom_jp.gba", 0x4D8AF8, (0x4D8CF8 - 0x4D8AF8)
+    .global gUnk_08752D4C
+gUnk_08752D4C:
+    .incbin "baserom_jp.gba", 0x4D8CF8, (0x4D8D78 - 0x4D8CF8)
+    .global gUnk_08752DCC
+gUnk_08752DCC:
+    .incbin "baserom_jp.gba", 0x4D8D78, (0x4D8DF8 - 0x4D8D78)
     .global gUnk_08752E4C
 gUnk_08752E4C:
     FOMT_FARM_STATUS_SELECTOR_CASE_09 4bpp
