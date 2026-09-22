@@ -84694,7 +84694,292 @@ func_080914A0:
 func_080926A4:
     .incbin "baserom_jp.gba", 0x92170, (0x92538 - 0x92170)
     .4byte gText_GiftWrap_EmptyDescription
-    jp_code_0803ee_func func_08092A70, 0x9253C, 0x9279C
+.global func_08092A70
+.thumb_func
+func_08092A70:
+	push {r4, r5, r6, lr}
+	sub sp, #0x18
+	adds r5, r0, #0
+	cmp r1, #0
+	bne .Ljp_08092558
+	adds r0, #0xfc
+	ldr r0, [r0]
+	bl IsEmpty__C9ToolStack
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_08092556
+	b .Ljp_08092750
+.Ljp_08092556:
+	b .Ljp_0809272E
+.Ljp_08092558:
+	cmp r1, #8
+	bgt .Ljp_0809258E
+	movs r2, #0x82
+	lsls r2, r2, #1
+	adds r0, r5, r2
+	ldr r4, [r0]
+	adds r0, r5, #0
+	movs r2, #0
+	bl func_080CE184
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl GetToolAt__8RucksackUi
+	adds r1, r0, #0
+	add r0, sp, #0xc
+	movs r2, #2
+	bl memcpy
+	add r0, sp, #0xc
+	bl IsEmpty__C9ToolStack
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_0809258C
+	b .Ljp_08092750
+.Ljp_0809258C:
+	b .Ljp_0809272E
+.Ljp_0809258E:
+	cmp r1, #9
+	beq .Ljp_08092594
+	b .Ljp_080926D0
+.Ljp_08092594:
+	movs r1, #0x80
+	lsls r1, r1, #1
+	adds r4, r5, r1
+	ldr r0, [r4]
+	bl func_0800F190
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080925A8
+	b .Ljp_08092750
+.Ljp_080925A8:
+	ldr r0, [r4]
+	bl func_0800F204
+	adds r6, r0, #0
+	cmp r6, #1
+	beq .Ljp_08092628
+	cmp r6, #1
+	bgt .Ljp_080925BE
+	cmp r6, #0
+	beq .Ljp_080925C4
+	b .Ljp_0809272E
+.Ljp_080925BE:
+	cmp r6, #2
+	beq .Ljp_080926A8
+	b .Ljp_0809272E
+.Ljp_080925C4:
+	ldr r0, [r4]
+	bl func_0800F388
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080925F4
+	adds r4, r5, #0
+	adds r4, #0x80
+	ldr r1, .Ljp_080925F0 @ =gText_GiftWrap_CannotWrap
+	adds r0, r4, #0
+	movs r2, #0
+	movs r3, #0
+	bl func_08050DC8
+	adds r0, r4, #0
+	movs r1, #0x43
+	bl func_08050E50
+	movs r2, #0x84
+	lsls r2, r2, #1
+	adds r1, r5, r2
+	b .Ljp_0809274C
+	.align 2, 0
+.Ljp_080925F0: .4byte gText_GiftWrap_CannotWrap
+.Ljp_080925F4:
+	adds r4, r5, #0
+	adds r4, #0x80
+	ldr r1, .Ljp_0809261C @ =gText_GiftWrap_Confirm
+	ldr r2, .Ljp_08092620 @ =gText_GiftWrap_Yes
+	ldr r3, .Ljp_08092624 @ =gText_GiftWrap_No
+	str r6, [sp]
+	str r6, [sp, #4]
+	str r6, [sp, #8]
+	adds r0, r4, #0
+	bl func_08050E30
+	adds r0, r4, #0
+	movs r1, #0x43
+	bl func_08050E50
+	movs r0, #0x84
+	lsls r0, r0, #1
+	adds r1, r5, r0
+	b .Ljp_08092784
+	.align 2, 0
+.Ljp_0809261C: .4byte gText_GiftWrap_Confirm
+.Ljp_08092620: .4byte gText_GiftWrap_Yes
+.Ljp_08092624: .4byte gText_GiftWrap_No
+.Ljp_08092628:
+	ldr r0, [r4]
+	bl func_0800F388
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_08092658
+	adds r4, r5, #0
+	adds r4, #0x80
+	ldr r1, .Ljp_08092654 @ =gText_GiftWrap_CannotWrap
+	adds r0, r4, #0
+	movs r2, #0
+	movs r3, #0
+	bl func_08050DC8
+	adds r0, r4, #0
+	movs r1, #0x43
+	bl func_08050E50
+	movs r2, #0x84
+	lsls r2, r2, #1
+	adds r1, r5, r2
+	b .Ljp_0809274C
+	.align 2, 0
+.Ljp_08092654: .4byte gText_GiftWrap_CannotWrap
+.Ljp_08092658:
+	ldr r0, [r4]
+	bl func_0800F258
+	adds r1, r0, #0
+	add r0, sp, #0x14
+	strb r1, [r0]
+	bl CanBeDiscarded__C7Article
+	movs r1, #1
+	eors r0, r1
+	lsls r0, r0, #0x18
+	lsrs r0, r0, #0x18
+	cmp r0, #0
+	bne .Ljp_0809272E
+	adds r4, r5, #0
+	adds r4, #0x80
+	ldr r1, .Ljp_0809269C @ =gText_GiftWrap_Confirm
+	ldr r2, .Ljp_080926A0 @ =gText_GiftWrap_Yes
+	ldr r3, .Ljp_080926A4 @ =gText_GiftWrap_No
+	str r0, [sp]
+	str r0, [sp, #4]
+	str r0, [sp, #8]
+	adds r0, r4, #0
+	bl func_08050E30
+	adds r0, r4, #0
+	movs r1, #0x43
+	bl func_08050E50
+	movs r1, #0x84
+	lsls r1, r1, #1
+	adds r0, r5, r1
+	str r6, [r0]
+	b .Ljp_08092788
+	.align 2, 0
+.Ljp_0809269C: .4byte gText_GiftWrap_Confirm
+.Ljp_080926A0: .4byte gText_GiftWrap_Yes
+.Ljp_080926A4: .4byte gText_GiftWrap_No
+.Ljp_080926A8:
+	adds r4, r5, #0
+	adds r4, #0x80
+	ldr r1, .Ljp_080926CC @ =gText_GiftWrap_DogWarning
+	adds r0, r4, #0
+	movs r2, #0
+	movs r3, #0
+	bl func_08050DC8
+	adds r0, r4, #0
+	movs r1, #0x45
+	bl func_08050E50
+	movs r2, #0x84
+	lsls r2, r2, #1
+	adds r0, r5, r2
+	str r6, [r0]
+	b .Ljp_08092750
+	.align 2, 0
+.Ljp_080926CC: .4byte gText_GiftWrap_DogWarning
+.Ljp_080926D0:
+	add r6, sp, #0x10
+	movs r2, #0x82
+	lsls r2, r2, #1
+	adds r0, r5, r2
+	ldr r4, [r0]
+	adds r0, r5, #0
+	movs r2, #0
+	bl func_080CE184
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl GetItemAt__8RucksackUi
+	ldr r0, [r0]
+	str r0, [sp, #0x10]
+	adds r0, r6, #0
+	bl IsEmpty__C12RucksackItem
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	bne .Ljp_08092750
+	adds r0, r6, #0
+	bl IsWrapped__C12RucksackItem
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	bne .Ljp_0809272E
+	adds r0, r6, #0
+	bl GetKind__C12RucksackItem
+	cmp r0, #0
+	beq .Ljp_08092760
+	adds r0, r6, #0
+	bl GetArticle__C12RucksackItem
+	adds r1, r0, #0
+	mov r0, sp
+	adds r0, #0x15
+	strb r1, [r0]
+	bl CanBeDiscarded__C7Article
+	movs r1, #1
+	eors r0, r1
+	lsls r0, r0, #0x18
+	lsrs r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_08092760
+.Ljp_0809272E:
+	adds r4, r5, #0
+	adds r4, #0x80
+	ldr r1, .Ljp_0809275C @ =gText_GiftWrap_CannotWrap
+	adds r0, r4, #0
+	movs r2, #0
+	movs r3, #0
+	bl func_08050DC8
+	adds r0, r4, #0
+	movs r1, #0x43
+	bl func_08050E50
+	movs r0, #0x84
+	lsls r0, r0, #1
+	adds r1, r5, r0
+.Ljp_0809274C:
+	movs r0, #2
+	str r0, [r1]
+.Ljp_08092750:
+	adds r0, r5, #0
+	adds r0, #0xc
+	movs r1, #0xc7
+	bl func_08008B6C
+	b .Ljp_08092788
+	.align 2, 0
+.Ljp_0809275C: .4byte gText_GiftWrap_CannotWrap
+.Ljp_08092760:
+	adds r4, r5, #0
+	adds r4, #0x80
+	ldr r1, .Ljp_08092790 @ =gText_GiftWrap_Confirm
+	ldr r2, .Ljp_08092794 @ =gText_GiftWrap_Yes
+	ldr r3, .Ljp_08092798 @ =gText_GiftWrap_No
+	str r0, [sp]
+	str r0, [sp, #4]
+	str r0, [sp, #8]
+	adds r0, r4, #0
+	bl func_08050E30
+	adds r0, r4, #0
+	movs r1, #0x43
+	bl func_08050E50
+	movs r2, #0x84
+	lsls r2, r2, #1
+	adds r1, r5, r2
+.Ljp_08092784:
+	movs r0, #1
+	str r0, [r1]
+.Ljp_08092788:
+	add sp, #0x18
+	pop {r4, r5, r6}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_08092790: .4byte gText_GiftWrap_Confirm
+.Ljp_08092794: .4byte gText_GiftWrap_Yes
+.Ljp_08092798: .4byte gText_GiftWrap_No
+
     jp_code_0803ee_func func_08092CD0, 0x9279C, 0x92CAC
     jp_code_0803ee_func func_08092CAC, 0x92CAC, 0x92CEC
     jp_code_0803ee_func func_08093220, 0x92CEC, 0x92DD4
