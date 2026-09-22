@@ -20997,7 +20997,8999 @@ func_080645F0: @ 0x080645F0
 	movs r3, #0
 	str r3, [sp, #0xf8]
 
-    jp_code_0803ee_func sub_08065B14, 0x65844, 0x69AC8
+	.global sub_08065B14
+	.thumb_func
+sub_08065B14:
+	ldr r4, [sp, #0xf0]
+	ldr r5, .Ljp_phys_08065888
+	adds r0, r4, r5
+	ldr r0, [r0]
+	ldr r7, .Ljp_phys_0806588C
+	adds r0, r0, r7
+	ldr r1, [sp, #0xf8]
+	bl func_080A099C
+	str r0, [sp, #0xfc]
+	ldr r0, [sp, #0xf8]
+	adds r0, #1
+	str r0, [sp, #0x138]
+	ldr r1, [sp, #0xfc]
+	cmp r1, #0
+	bne .Ljp_phys_08065868
+	bl sub_0806641E
+.Ljp_phys_08065868:
+	movs r0, #8
+	str r0, [sp, #0xc]
+	add r1, sp, #8
+	mov r2, r8
+	lsls r0, r2, #3
+	strh r0, [r1]
+	str r0, [sp, #0x150]
+	ldr r3, [sp, #0xf8]
+	cmp r3, #6
+	bhi .Ljp_phys_080658B0
+	lsls r0, r3, #2
+	ldr r1, .Ljp_phys_08065890
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.Ljp_phys_08065888:
+	.4byte 0x0000058C
+.Ljp_phys_0806588C:
+	.4byte 0x00001CD4
+.Ljp_phys_08065890:
+	.4byte .Ljp_phys_08065894
+.Ljp_phys_08065894:
+	.4byte .Ljp_phys_08065910
+	.4byte .Ljp_phys_080658C8
+	.4byte .Ljp_phys_08065928
+	.4byte .Ljp_phys_080658B0
+	.4byte .Ljp_phys_08065940
+	.4byte .Ljp_phys_080658F8
+	.4byte .Ljp_phys_080658E0
+.Ljp_phys_080658B0:
+	ldr r0, .Ljp_phys_080658C0
+	str r0, [sp, #0x10]
+	ldr r0, .Ljp_phys_080658C4
+	str r0, [sp, #0x14]
+	movs r4, #0x27
+	str r4, [sp, #0x100]
+	b .Ljp_phys_0806594C
+	.align 2, 0
+.Ljp_phys_080658C0:
+	.4byte gUnk_084D8138
+.Ljp_phys_080658C4:
+	.4byte gUnk_084D81B8
+.Ljp_phys_080658C8:
+	ldr r0, .Ljp_phys_080658D8
+	str r0, [sp, #0x10]
+	ldr r0, .Ljp_phys_080658DC
+	str r0, [sp, #0x14]
+	movs r5, #0x25
+	str r5, [sp, #0x100]
+	b .Ljp_phys_0806594C
+	.align 2, 0
+.Ljp_phys_080658D8:
+	.4byte gUnk_084D7FF8
+.Ljp_phys_080658DC:
+	.4byte gUnk_084D8078
+.Ljp_phys_080658E0:
+	ldr r0, .Ljp_phys_080658F0
+	str r0, [sp, #0x10]
+	ldr r0, .Ljp_phys_080658F4
+	str r0, [sp, #0x14]
+	movs r7, #0x2a
+	str r7, [sp, #0x100]
+	b .Ljp_phys_0806594C
+	.align 2, 0
+.Ljp_phys_080658F0:
+	.4byte gUnk_084D7F58
+.Ljp_phys_080658F4:
+	.4byte gUnk_084D7FD8
+.Ljp_phys_080658F8:
+	ldr r0, .Ljp_phys_08065908
+	str r0, [sp, #0x10]
+	ldr r0, .Ljp_phys_0806590C
+	str r0, [sp, #0x14]
+	movs r0, #0x29
+	str r0, [sp, #0x100]
+	b .Ljp_phys_0806594C
+	.align 2, 0
+.Ljp_phys_08065908:
+	.4byte gUnk_084D8278
+.Ljp_phys_0806590C:
+	.4byte gUnk_084D82F8
+.Ljp_phys_08065910:
+	ldr r0, .Ljp_phys_08065920
+	str r0, [sp, #0x10]
+	ldr r0, .Ljp_phys_08065924
+	str r0, [sp, #0x14]
+	movs r1, #0x24
+	str r1, [sp, #0x100]
+	b .Ljp_phys_0806594C
+	.align 2, 0
+.Ljp_phys_08065920:
+	.4byte gUnk_084D7EB8
+.Ljp_phys_08065924:
+	.4byte gUnk_084D7F38
+.Ljp_phys_08065928:
+	ldr r0, .Ljp_phys_08065938
+	str r0, [sp, #0x10]
+	ldr r0, .Ljp_phys_0806593C
+	str r0, [sp, #0x14]
+	movs r2, #0x26
+	str r2, [sp, #0x100]
+	b .Ljp_phys_0806594C
+	.align 2, 0
+.Ljp_phys_08065938:
+	.4byte gUnk_084D8098
+.Ljp_phys_0806593C:
+	.4byte gUnk_084D8118
+.Ljp_phys_08065940:
+	ldr r0, .Ljp_phys_080659DC
+	str r0, [sp, #0x10]
+	ldr r0, .Ljp_phys_080659E0
+	str r0, [sp, #0x14]
+	movs r3, #0x28
+	str r3, [sp, #0x100]
+.Ljp_phys_0806594C:
+	ldr r4, [sp, #0xf0]
+	ldr r5, .Ljp_phys_080659E4
+	adds r6, r4, r5
+	mov r7, sp
+	adds r7, #8
+	str r7, [sp, #0x104]
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_080659E8
+	cmp r1, #0
+	beq .Ljp_phys_08065970
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08065970:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	add r5, sp, #0x18
+	mov sb, r5
+	ldr r7, [sp, #0xf8]
+	lsls r7, r7, #1
+	str r7, [sp, #0x14c]
+	mov r0, sp
+	adds r0, #0xd8
+	str r0, [sp, #0x11c]
+	mov r1, sp
+	adds r1, #0xdc
+	str r1, [sp, #0x120]
+	mov r2, r8
+	lsls r2, r2, #6
+	str r2, [sp, #0x154]
+	mov r3, sp
+	adds r3, #0xe8
+	str r3, [sp, #0x124]
+	mov r4, sp
+	adds r4, #0xec
+	str r4, [sp, #0x128]
+	mov r5, r8
+	adds r5, #2
+	str r5, [sp, #0x134]
+	mov r7, r8
+	adds r7, #3
+	str r7, [sp, #0x13c]
+	movs r0, #0x70
+	lsls r0, r0, #0x10
+	str r0, [sp, #0x158]
+	mov r1, r8
+	adds r1, #4
+	str r1, [sp, #0x140]
+	movs r2, #0x71
+	lsls r2, r2, #0x10
+	str r2, [sp, #0x15c]
+	mov r3, r8
+	adds r3, #5
+	str r3, [sp, #0x144]
+	movs r4, #0x72
+	lsls r4, r4, #0x10
+	str r4, [sp, #0x108]
+	movs r5, #0x44
+	lsls r5, r5, #0x10
+	str r5, [sp, #0x12c]
+	adds r7, #3
+	str r7, [sp, #0x148]
+	ldr r0, [sp, #0xf8]
+	adds r0, #1
+	str r0, [sp, #0x138]
+	b .Ljp_phys_08065B16
+	.align 2, 0
+.Ljp_phys_080659DC:
+	.4byte gUnk_084D81D8
+.Ljp_phys_080659E0:
+	.4byte gUnk_084D8258
+.Ljp_phys_080659E4:
+	.4byte 0x00000594
+.Ljp_phys_080659E8:
+	str r1, [sp, #0x160]
+	movs r0, #1
+	add r1, sp, #0xd4
+	str r0, [r1]
+	ldr r3, [r6]
+	ldr r2, [sp, #0x160]
+	subs r0, r2, r3
+	asrs r4, r0, #4
+	add r0, sp, #0xd0
+	str r4, [r0]
+	ldr r2, [r1]
+	adds r1, r3, #0
+	cmp r4, r2
+	bhs .Ljp_phys_08065A06
+	add r0, sp, #0xd4
+.Ljp_phys_08065A06:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_08065A26
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov sl, r4
+	cmp r0, #0
+	bne .Ljp_phys_08065A22
+	mov r0, sl
+	bl func_080D3BC0
+.Ljp_phys_08065A22:
+	ldr r1, [r6]
+	b .Ljp_phys_08065A2A
+.Ljp_phys_08065A26:
+	movs r0, #0
+	mov sl, r0
+.Ljp_phys_08065A2A:
+	adds r5, r0, #0
+	str r5, [sp, #0x164]
+	adds r3, r1, #0
+	adds r2, r5, #0
+	add r4, sp, #0x18
+	mov sb, r4
+	ldr r5, [sp, #0xf8]
+	lsls r5, r5, #1
+	str r5, [sp, #0x14c]
+	mov r7, sp
+	adds r7, #0xd8
+	str r7, [sp, #0x11c]
+	mov r0, sp
+	adds r0, #0xdc
+	str r0, [sp, #0x120]
+	mov r1, r8
+	lsls r1, r1, #6
+	str r1, [sp, #0x154]
+	mov r4, sp
+	adds r4, #0xe8
+	str r4, [sp, #0x124]
+	mov r5, sp
+	adds r5, #0xec
+	str r5, [sp, #0x128]
+	mov r7, r8
+	adds r7, #2
+	str r7, [sp, #0x134]
+	mov r0, r8
+	adds r0, #3
+	str r0, [sp, #0x13c]
+	movs r1, #0x70
+	lsls r1, r1, #0x10
+	str r1, [sp, #0x158]
+	mov r4, r8
+	adds r4, #4
+	str r4, [sp, #0x140]
+	movs r5, #0x71
+	lsls r5, r5, #0x10
+	str r5, [sp, #0x15c]
+	adds r7, #3
+	str r7, [sp, #0x144]
+	movs r0, #0x72
+	lsls r0, r0, #0x10
+	str r0, [sp, #0x108]
+	movs r1, #0x44
+	lsls r1, r1, #0x10
+	str r1, [sp, #0x12c]
+	adds r4, #2
+	str r4, [sp, #0x148]
+	ldr r5, [sp, #0xf8]
+	adds r5, #1
+	str r5, [sp, #0x138]
+	ldr r7, [sp, #0x160]
+	cmp r3, r7
+	beq .Ljp_phys_08065AB2
+.Ljp_phys_08065A98:
+	cmp r2, #0
+	beq .Ljp_phys_08065AA8
+	adds r0, r2, #0
+	adds r1, r3, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08065AA8:
+	adds r3, #0x10
+	adds r2, #0x10
+	ldr r0, [sp, #0x160]
+	cmp r3, r0
+	bne .Ljp_phys_08065A98
+.Ljp_phys_08065AB2:
+	adds r5, r2, #0
+	ldr r1, [sp, #0xd4]
+	cmp r1, #1
+	bne .Ljp_phys_08065ACE
+	cmp r5, #0
+	beq .Ljp_phys_08065ACA
+	adds r0, r5, #0
+	ldr r1, [sp, #0x104]
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08065ACA:
+	adds r5, #0x10
+	b .Ljp_phys_08065AF0
+.Ljp_phys_08065ACE:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_08065AEE
+.Ljp_phys_08065AD6:
+	cmp r2, #0
+	beq .Ljp_phys_08065AE6
+	adds r0, r2, #0
+	ldr r1, [sp, #0x104]
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08065AE6:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_08065AD6
+.Ljp_phys_08065AEE:
+	adds r5, r2, #0
+.Ljp_phys_08065AF0:
+	ldr r2, [r6, #4]
+	ldr r1, [r6]
+	adds r0, r1, #0
+	cmp r1, r2
+	beq .Ljp_phys_08065B00
+.Ljp_phys_08065AFA:
+	adds r0, #0x10
+	cmp r0, r2
+	bne .Ljp_phys_08065AFA
+.Ljp_phys_08065B00:
+	cmp r1, #0
+	beq .Ljp_phys_08065B0A
+	adds r0, r1, #0
+	bl free
+.Ljp_phys_08065B0A:
+	ldr r0, [sp, #0x164]
+	add r0, sl
+	ldr r7, [sp, #0x164]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_08065B16:
+	movs r0, #0
+	mov r8, r0
+	add r1, sp, #0x150
+	ldrh r2, [r1]
+	mov r1, sb
+	strh r2, [r1]
+	ldr r2, [sp, #0x14c]
+	ldr r3, [sp, #0xf8]
+	adds r4, r2, r3
+	lsls r4, r4, #6
+	adds r4, r4, r3
+	lsls r4, r4, #2
+	ldr r5, [sp, #0xf0]
+	adds r1, r4, r5
+	movs r5, #0xc
+	movs r6, #2
+	add r0, sp, #0xd8
+	strh r5, [r0]
+	ldr r7, [sp, #0x11c]
+	strh r6, [r7, #2]
+	ldr r0, [r0]
+	ldr r2, .Ljp_phys_08065BEC
+	adds r1, r1, r2
+	movs r2, #0
+	bl Clear2DGfxBuffer
+	ldr r3, [sp, #0xf0]
+	ldr r7, .Ljp_phys_08065BF0
+	adds r0, r3, r7
+	ldr r0, [r0]
+	ldr r1, .Ljp_phys_08065BF4
+	adds r0, r0, r1
+	ldr r1, [sp, #0x100]
+	bl func_0809FE3C
+	adds r2, r0, #0
+	ldr r3, [sp, #0xf0]
+	adds r1, r4, r3
+	add r0, sp, #0xdc
+	strh r5, [r0]
+	ldr r5, [sp, #0x120]
+	strh r6, [r5, #2]
+	ldr r0, [r0]
+	ldr r7, .Ljp_phys_08065BEC
+	adds r1, r1, r7
+	str r2, [sp]
+	movs r2, #0
+	movs r3, #0
+	bl DrawStringTo2DGfxBuffer
+	ldr r0, [sp, #0xf0]
+	adds r4, r4, r0
+	adds r1, r7, #0
+	adds r4, r4, r1
+	mov r2, sb
+	str r4, [r2, #4]
+	movs r0, #3
+	ldr r3, [sp, #0xf8]
+	ands r0, r3
+	lsls r4, r0, #1
+	adds r4, r4, r0
+	lsls r4, r4, #3
+	movs r0, #0xc0
+	lsls r0, r0, #1
+	adds r4, r4, r0
+	ldr r5, [sp, #0xf4]
+	ldr r0, [r5, #0x18]
+	ldr r7, [sp, #0x154]
+	adds r0, r0, r7
+	adds r0, #6
+	mov r1, r8
+	str r1, [sp]
+	movs r1, #0x20
+	str r1, [sp, #4]
+	adds r1, r4, #0
+	movs r2, #0xc
+	movs r3, #2
+	bl func_0804E9F4
+	lsls r4, r4, #5
+	movs r0, #0xc0
+	lsls r0, r0, #0x13
+	adds r4, r4, r0
+	mov r2, sb
+	str r4, [r2, #8]
+	movs r0, #0xc0
+	lsls r0, r0, #2
+	str r0, [r2, #0xc]
+	ldr r3, [sp, #0xf0]
+	ldr r4, .Ljp_phys_08065BF8
+	adds r6, r3, r4
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_08065BFC
+	cmp r1, #0
+	beq .Ljp_phys_08065BE4
+	adds r0, r1, #0
+	mov r1, sb
+	ldm r1!, {r2, r5, r7}
+	stm r0!, {r2, r5, r7}
+	ldr r1, [sp, #0x24]
+	str r1, [r0]
+.Ljp_phys_08065BE4:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_phys_08065CCE
+.Ljp_phys_08065BEC:
+	.4byte 0x00000C4C
+.Ljp_phys_08065BF0:
+	.4byte 0x0000058C
+.Ljp_phys_08065BF4:
+	.4byte 0x00001CD4
+.Ljp_phys_08065BF8:
+	.4byte 0x000005A4
+.Ljp_phys_08065BFC:
+	str r1, [sp, #0x160]
+	movs r0, #1
+	add r1, sp, #0xe4
+	str r0, [r1]
+	ldr r3, [r6]
+	ldr r4, [sp, #0x160]
+	subs r0, r4, r3
+	asrs r4, r0, #4
+	add r0, sp, #0xe0
+	str r4, [r0]
+	ldr r2, [r1]
+	mov sl, r1
+	adds r1, r3, #0
+	cmp r4, r2
+	bhs .Ljp_phys_08065C1C
+	mov r0, sl
+.Ljp_phys_08065C1C:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_08065C3C
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_08065C38
+	mov r0, r8
+	bl func_080D3BC0
+.Ljp_phys_08065C38:
+	ldr r1, [r6]
+	b .Ljp_phys_08065C40
+.Ljp_phys_08065C3C:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_08065C40:
+	adds r5, r0, #0
+	str r5, [sp, #0x164]
+	adds r3, r1, #0
+	adds r2, r5, #0
+	ldr r5, [sp, #0x160]
+	cmp r3, r5
+	beq .Ljp_phys_08065C68
+.Ljp_phys_08065C4E:
+	cmp r2, #0
+	beq .Ljp_phys_08065C5E
+	adds r0, r2, #0
+	adds r1, r3, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08065C5E:
+	adds r3, #0x10
+	adds r2, #0x10
+	ldr r7, [sp, #0x160]
+	cmp r3, r7
+	bne .Ljp_phys_08065C4E
+.Ljp_phys_08065C68:
+	adds r5, r2, #0
+	mov r0, sl
+	ldr r1, [r0]
+	cmp r1, #1
+	bne .Ljp_phys_08065C86
+	cmp r5, #0
+	beq .Ljp_phys_08065C82
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [sp, #0x24]
+	str r1, [r0]
+.Ljp_phys_08065C82:
+	adds r5, #0x10
+	b .Ljp_phys_08065CA8
+.Ljp_phys_08065C86:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_08065CA6
+.Ljp_phys_08065C8E:
+	cmp r2, #0
+	beq .Ljp_phys_08065C9E
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [sp, #0x24]
+	str r1, [r0]
+.Ljp_phys_08065C9E:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_08065C8E
+.Ljp_phys_08065CA6:
+	adds r5, r2, #0
+.Ljp_phys_08065CA8:
+	ldr r2, [r6, #4]
+	ldr r1, [r6]
+	adds r0, r1, #0
+	cmp r1, r2
+	beq .Ljp_phys_08065CB8
+.Ljp_phys_08065CB2:
+	adds r0, #0x10
+	cmp r0, r2
+	bne .Ljp_phys_08065CB2
+.Ljp_phys_08065CB8:
+	cmp r1, #0
+	beq .Ljp_phys_08065CC2
+	adds r0, r1, #0
+	bl free
+.Ljp_phys_08065CC2:
+	ldr r0, [sp, #0x164]
+	add r0, r8
+	ldr r7, [sp, #0x164]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_08065CCE:
+	movs r0, #0xa
+	ldr r1, [sp, #0x124]
+	str r0, [r1]
+	ldr r0, [sp, #0xfc]
+	bl GetFriendship__C3Npc
+	movs r1, #0x19
+	bl __udivsi3
+	ldr r2, [sp, #0x128]
+	str r0, [r2]
+	add r1, sp, #0xe8
+	add r3, sp, #0xec
+	ldr r2, [r1]
+	ldr r0, [r3]
+	cmp r2, r0
+	bls .Ljp_phys_08065CF2
+	adds r1, r3, #0
+.Ljp_phys_08065CF2:
+	ldr r6, [r1]
+	movs r4, #0
+	cmp r4, r6
+	bhs .Ljp_phys_08065D26
+	movs r5, #0xa
+	movs r3, #0x6c
+	lsls r7, r3, #0x10
+.Ljp_phys_08065D00:
+	ldr r1, [sp, #0xf4]
+	ldr r0, [r1, #0x18]
+	ldr r2, [sp, #0x134]
+	lsls r1, r2, #6
+	adds r0, r0, r1
+	adds r0, r0, r5
+	movs r1, #1
+	str r1, [sp]
+	movs r1, #0x20
+	str r1, [sp, #4]
+	lsrs r1, r7, #0x10
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r5, #2
+	adds r4, #1
+	cmp r4, r6
+	blo .Ljp_phys_08065D00
+.Ljp_phys_08065D26:
+	movs r0, #0x78
+	str r0, [sp, #0xc]
+	ldr r0, .Ljp_phys_08065D78
+	str r0, [sp, #0x10]
+	ldr r0, .Ljp_phys_08065D7C
+	str r0, [sp, #0x14]
+	movs r5, #0
+	ldr r3, [sp, #0xf4]
+	ldr r0, [r3, #0x18]
+	ldr r4, [sp, #0x13c]
+	lsls r1, r4, #6
+	adds r0, r0, r1
+	adds r0, #8
+	ldr r7, [sp, #0x158]
+	lsrs r1, r7, #0x10
+	movs r2, #2
+	str r2, [sp]
+	movs r2, #0x20
+	str r2, [sp, #4]
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	ldr r0, [sp, #0xfc]
+	movs r1, #1
+	bl GetTaskExp__C13HarvestSpriteQ213HarvestSprite4Task
+	adds r1, r0, #0
+	lsls r0, r1, #2
+	adds r0, r0, r1
+	lsls r0, r0, #4
+	movs r1, #0xff
+	bl __udivsi3
+	adds r4, r0, #0
+	movs r0, #0x80
+	adds r0, #8
+	lsls r7, r0, #0x10
+	movs r6, #0xa
+	b .Ljp_phys_08065DA2
+	.align 2, 0
+.Ljp_phys_08065D78:
+	.4byte gUnk_08750C4C
+.Ljp_phys_08065D7C:
+	.4byte gUnk_08750C6C
+.Ljp_phys_08065D80:
+	ldr r1, [sp, #0xf4]
+	ldr r0, [r1, #0x18]
+	ldr r2, [sp, #0x13c]
+	lsls r1, r2, #6
+	adds r0, r0, r1
+	adds r0, r0, r6
+	movs r1, #3
+	str r1, [sp]
+	movs r1, #0x20
+	str r1, [sp, #4]
+	lsrs r1, r7, #0x10
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r6, #2
+	adds r5, #1
+.Ljp_phys_08065DA2:
+	adds r1, r4, #0
+	cmp r4, #0
+	bge .Ljp_phys_08065DAA
+	adds r1, r4, #7
+.Ljp_phys_08065DAA:
+	asrs r2, r1, #3
+	cmp r5, r2
+	blt .Ljp_phys_08065D80
+	cmp r5, #9
+	bgt .Ljp_phys_08065E16
+	ldr r3, [sp, #0xf4]
+	ldr r1, [r3, #0x18]
+	ldr r7, [sp, #0x13c]
+	lsls r0, r7, #6
+	adds r1, r1, r0
+	adds r0, r5, #5
+	lsls r0, r0, #1
+	adds r3, r1, r0
+	lsls r1, r2, #3
+	subs r1, r4, r1
+	adds r1, #0x80
+	lsls r1, r1, #0x10
+	lsrs r1, r1, #0x10
+	movs r0, #3
+	str r0, [sp]
+	movs r0, #0x20
+	str r0, [sp, #4]
+	adds r0, r3, #0
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r5, #1
+	cmp r5, #9
+	bgt .Ljp_phys_08065E16
+	lsls r0, r5, #1
+	adds r4, r0, #0
+	adds r4, #0xa
+	movs r0, #0x80
+	lsls r6, r0, #0x10
+.Ljp_phys_08065DF0:
+	ldr r1, [sp, #0xf4]
+	ldr r0, [r1, #0x18]
+	ldr r2, [sp, #0x13c]
+	lsls r1, r2, #6
+	adds r0, r0, r1
+	adds r0, r0, r4
+	movs r1, #3
+	str r1, [sp]
+	movs r1, #0x20
+	str r1, [sp, #4]
+	lsrs r1, r6, #0x10
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r4, #2
+	adds r5, #1
+	cmp r5, #9
+	ble .Ljp_phys_08065DF0
+.Ljp_phys_08065E16:
+	add r1, sp, #8
+	ldr r3, [sp, #0x13c]
+	lsls r0, r3, #3
+	adds r0, #1
+	strh r0, [r1]
+	ldr r4, [sp, #0xf0]
+	ldr r5, .Ljp_phys_08065E88
+	adds r2, r4, r5
+	ldr r0, [r2]
+	cmp r0, #0x14
+	bhi .Ljp_phys_08065E44
+	lsls r0, r0, #4
+	adds r0, #4
+	adds r0, r2, r0
+	cmp r0, #0
+	beq .Ljp_phys_08065E3E
+	ldm r1!, {r3, r4, r7}
+	stm r0!, {r3, r4, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08065E3E:
+	ldr r0, [r2]
+	adds r0, #1
+	str r0, [r2]
+.Ljp_phys_08065E44:
+	movs r5, #0
+	ldr r7, [sp, #0xf4]
+	ldr r0, [r7, #0x18]
+	ldr r2, [sp, #0x140]
+	lsls r1, r2, #6
+	adds r0, r0, r1
+	adds r0, #8
+	ldr r3, [sp, #0x15c]
+	lsrs r1, r3, #0x10
+	movs r2, #2
+	str r2, [sp]
+	movs r2, #0x20
+	str r2, [sp, #4]
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	ldr r0, [sp, #0xfc]
+	movs r1, #0
+	bl GetTaskExp__C13HarvestSpriteQ213HarvestSprite4Task
+	adds r1, r0, #0
+	lsls r0, r1, #2
+	adds r0, r0, r1
+	lsls r0, r0, #4
+	movs r1, #0xff
+	bl __udivsi3
+	adds r4, r0, #0
+	movs r0, #0x89
+	adds r0, #8
+	lsls r7, r0, #0x10
+	movs r6, #0xa
+	b .Ljp_phys_08065EAE
+.Ljp_phys_08065E88:
+	.4byte 0x00002164
+.Ljp_phys_08065E8C:
+	ldr r1, [sp, #0xf4]
+	ldr r0, [r1, #0x18]
+	ldr r2, [sp, #0x140]
+	lsls r1, r2, #6
+	adds r0, r0, r1
+	adds r0, r0, r6
+	movs r1, #3
+	str r1, [sp]
+	movs r1, #0x20
+	str r1, [sp, #4]
+	lsrs r1, r7, #0x10
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r6, #2
+	adds r5, #1
+.Ljp_phys_08065EAE:
+	adds r1, r4, #0
+	cmp r4, #0
+	bge .Ljp_phys_08065EB6
+	adds r1, r4, #7
+.Ljp_phys_08065EB6:
+	asrs r2, r1, #3
+	cmp r5, r2
+	blt .Ljp_phys_08065E8C
+	cmp r5, #9
+	bgt .Ljp_phys_08065F22
+	ldr r3, [sp, #0xf4]
+	ldr r1, [r3, #0x18]
+	ldr r7, [sp, #0x140]
+	lsls r0, r7, #6
+	adds r1, r1, r0
+	adds r0, r5, #5
+	lsls r0, r0, #1
+	adds r3, r1, r0
+	lsls r1, r2, #3
+	subs r1, r4, r1
+	adds r1, #0x89
+	lsls r1, r1, #0x10
+	lsrs r1, r1, #0x10
+	movs r0, #3
+	str r0, [sp]
+	movs r0, #0x20
+	str r0, [sp, #4]
+	adds r0, r3, #0
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r5, #1
+	cmp r5, #9
+	bgt .Ljp_phys_08065F22
+	lsls r0, r5, #1
+	adds r4, r0, #0
+	adds r4, #0xa
+	movs r0, #0x89
+	lsls r6, r0, #0x10
+.Ljp_phys_08065EFC:
+	ldr r1, [sp, #0xf4]
+	ldr r0, [r1, #0x18]
+	ldr r2, [sp, #0x140]
+	lsls r1, r2, #6
+	adds r0, r0, r1
+	adds r0, r0, r4
+	movs r1, #3
+	str r1, [sp]
+	movs r1, #0x20
+	str r1, [sp, #4]
+	lsrs r1, r6, #0x10
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r4, #2
+	adds r5, #1
+	cmp r5, #9
+	ble .Ljp_phys_08065EFC
+.Ljp_phys_08065F22:
+	add r1, sp, #8
+	ldr r3, [sp, #0x140]
+	lsls r0, r3, #3
+	adds r0, #1
+	strh r0, [r1]
+	ldr r4, [sp, #0xf0]
+	ldr r5, .Ljp_phys_08065F94
+	adds r2, r4, r5
+	ldr r0, [r2]
+	cmp r0, #0x14
+	bhi .Ljp_phys_08065F50
+	lsls r0, r0, #4
+	adds r0, #4
+	adds r0, r2, r0
+	cmp r0, #0
+	beq .Ljp_phys_08065F4A
+	ldm r1!, {r3, r4, r7}
+	stm r0!, {r3, r4, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08065F4A:
+	ldr r0, [r2]
+	adds r0, #1
+	str r0, [r2]
+.Ljp_phys_08065F50:
+	movs r5, #0
+	ldr r7, [sp, #0xf4]
+	ldr r0, [r7, #0x18]
+	ldr r2, [sp, #0x144]
+	lsls r1, r2, #6
+	adds r0, r0, r1
+	adds r0, #8
+	ldr r3, [sp, #0x108]
+	lsrs r1, r3, #0x10
+	movs r2, #2
+	str r2, [sp]
+	movs r2, #0x20
+	str r2, [sp, #4]
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	ldr r0, [sp, #0xfc]
+	movs r1, #2
+	bl GetTaskExp__C13HarvestSpriteQ213HarvestSprite4Task
+	adds r1, r0, #0
+	lsls r0, r1, #2
+	adds r0, r0, r1
+	lsls r0, r0, #4
+	movs r1, #0xff
+	bl __udivsi3
+	adds r4, r0, #0
+	movs r0, #0x92
+	adds r0, #8
+	lsls r7, r0, #0x10
+	movs r6, #0xa
+	b .Ljp_phys_08065FBA
+.Ljp_phys_08065F94:
+	.4byte 0x00002164
+.Ljp_phys_08065F98:
+	ldr r1, [sp, #0xf4]
+	ldr r0, [r1, #0x18]
+	ldr r2, [sp, #0x144]
+	lsls r1, r2, #6
+	adds r0, r0, r1
+	adds r0, r0, r6
+	movs r1, #3
+	str r1, [sp]
+	movs r1, #0x20
+	str r1, [sp, #4]
+	lsrs r1, r7, #0x10
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r6, #2
+	adds r5, #1
+.Ljp_phys_08065FBA:
+	adds r1, r4, #0
+	cmp r4, #0
+	bge .Ljp_phys_08065FC2
+	adds r1, r4, #7
+.Ljp_phys_08065FC2:
+	asrs r2, r1, #3
+	cmp r5, r2
+	blt .Ljp_phys_08065F98
+	cmp r5, #9
+	bgt .Ljp_phys_0806602E
+	ldr r3, [sp, #0xf4]
+	ldr r1, [r3, #0x18]
+	ldr r7, [sp, #0x144]
+	lsls r0, r7, #6
+	adds r1, r1, r0
+	adds r0, r5, #5
+	lsls r0, r0, #1
+	adds r3, r1, r0
+	lsls r1, r2, #3
+	subs r1, r4, r1
+	adds r1, #0x92
+	lsls r1, r1, #0x10
+	lsrs r1, r1, #0x10
+	movs r0, #3
+	str r0, [sp]
+	movs r0, #0x20
+	str r0, [sp, #4]
+	adds r0, r3, #0
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r5, #1
+	cmp r5, #9
+	bgt .Ljp_phys_0806602E
+	lsls r0, r5, #1
+	adds r4, r0, #0
+	adds r4, #0xa
+	movs r0, #0x92
+	lsls r6, r0, #0x10
+.Ljp_phys_08066008:
+	ldr r1, [sp, #0xf4]
+	ldr r0, [r1, #0x18]
+	ldr r2, [sp, #0x144]
+	lsls r1, r2, #6
+	adds r0, r0, r1
+	adds r0, r0, r4
+	movs r1, #3
+	str r1, [sp]
+	movs r1, #0x20
+	str r1, [sp, #4]
+	lsrs r1, r6, #0x10
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r4, #2
+	adds r5, #1
+	cmp r5, #9
+	ble .Ljp_phys_08066008
+.Ljp_phys_0806602E:
+	add r1, sp, #8
+	ldr r3, [sp, #0x144]
+	lsls r0, r3, #3
+	adds r0, #1
+	strh r0, [r1]
+	ldr r4, [sp, #0xf0]
+	ldr r5, .Ljp_phys_08066094
+	adds r2, r4, r5
+	ldr r0, [r2]
+	cmp r0, #0x14
+	bhi .Ljp_phys_0806605C
+	lsls r0, r0, #4
+	adds r0, #4
+	adds r0, r2, r0
+	cmp r0, #0
+	beq .Ljp_phys_08066056
+	ldm r1!, {r3, r4, r7}
+	stm r0!, {r3, r4, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066056:
+	ldr r0, [r2]
+	adds r0, #1
+	str r0, [r2]
+.Ljp_phys_0806605C:
+	ldr r5, [sp, #0xf4]
+	ldr r0, [r5, #0x18]
+	ldr r7, [sp, #0x134]
+	lsls r1, r7, #6
+	adds r0, r0, r1
+	adds r0, #0x22
+	ldr r2, [sp, #0x12c]
+	lsrs r1, r2, #0x10
+	movs r6, #0
+	str r6, [sp]
+	movs r5, #0x20
+	str r5, [sp, #4]
+	movs r2, #8
+	movs r3, #2
+	bl func_0804E9F4
+	ldr r0, [sp, #0xfc]
+	bl GetCurrentTask__C13HarvestSprite
+	adds r2, r0, #0
+	cmp r2, #1
+	beq .Ljp_phys_080660A2
+	cmp r2, #1
+	bgt .Ljp_phys_08066098
+	cmp r2, #0
+	beq .Ljp_phys_080660B8
+	b .Ljp_phys_0806614A
+	.align 2, 0
+.Ljp_phys_08066094:
+	.4byte 0x00002164
+.Ljp_phys_08066098:
+	cmp r2, #2
+	beq .Ljp_phys_080660CE
+	cmp r2, #3
+	beq .Ljp_phys_08066130
+	b .Ljp_phys_0806614A
+.Ljp_phys_080660A2:
+	ldr r3, [sp, #0xf4]
+	ldr r0, [r3, #0x18]
+	ldr r7, [sp, #0x140]
+	lsls r4, r7, #6
+	adds r0, r0, r4
+	adds r0, #0x22
+	movs r1, #0x73
+	movs r2, #2
+	str r2, [sp]
+	str r5, [sp, #4]
+	b .Ljp_phys_080660E2
+.Ljp_phys_080660B8:
+	ldr r4, [sp, #0xf4]
+	ldr r0, [r4, #0x18]
+	ldr r7, [sp, #0x140]
+	lsls r4, r7, #6
+	adds r0, r0, r4
+	adds r0, #0x22
+	movs r1, #0x77
+	movs r2, #2
+	str r2, [sp]
+	str r5, [sp, #4]
+	b .Ljp_phys_080660E2
+.Ljp_phys_080660CE:
+	ldr r4, [sp, #0xf4]
+	ldr r0, [r4, #0x18]
+	ldr r7, [sp, #0x140]
+	lsls r4, r7, #6
+	adds r0, r0, r4
+	adds r0, #0x22
+	movs r1, #0x7b
+	str r2, [sp]
+	str r5, [sp, #4]
+	movs r2, #2
+.Ljp_phys_080660E2:
+	movs r3, #2
+	bl func_0804E9F4
+	ldr r1, [sp, #0xf4]
+	ldr r0, [r1, #0x18]
+	adds r0, r0, r4
+	adds r0, #0x26
+	movs r1, #0x3c
+	str r6, [sp]
+	str r5, [sp, #4]
+	movs r2, #4
+	movs r3, #2
+	bl func_0804E9F4
+	ldr r0, [sp, #0xfc]
+	bl GetWorkDaysLeft__C13HarvestSprite
+	ldr r2, [sp, #0xf4]
+	ldr r1, [r2, #0x18]
+	adds r1, r1, r4
+	adds r1, #0x30
+	movs r2, #0x90
+	lsls r2, r2, #1
+	str r5, [sp]
+	movs r3, #0
+	bl func_0804ED28
+	ldr r3, [sp, #0xf4]
+	ldr r0, [r3, #0x18]
+	adds r0, r0, r4
+	adds r0, #0x32
+	movs r1, #0x38
+	str r6, [sp]
+	str r5, [sp, #4]
+	movs r2, #2
+	movs r3, #2
+	bl func_0804E9F4
+	b .Ljp_phys_0806614A
+.Ljp_phys_08066130:
+	ldr r4, [sp, #0xf4]
+	ldr r0, [r4, #0x18]
+	ldr r7, [sp, #0x140]
+	lsls r1, r7, #6
+	adds r0, r0, r1
+	adds r0, #0x22
+	movs r1, #0x54
+	str r6, [sp]
+	str r5, [sp, #4]
+	movs r2, #0xc
+	movs r3, #2
+	bl func_0804E9F4
+.Ljp_phys_0806614A:
+	ldr r0, [sp, #0x148]
+	mov r8, r0
+sub_0806641E:
+	ldr r1, [sp, #0x138]
+	str r1, [sp, #0xf8]
+	cmp r1, #6
+	bhi .Ljp_phys_0806615A
+	bl sub_08065B14
+.Ljp_phys_0806615A:
+	mov r1, r8
+	adds r1, #1
+	lsls r1, r1, #0x13
+	asrs r1, r1, #0x10
+	ldr r0, [sp, #0xf4]
+	bl func_08075E24
+	ldr r0, [sp, #0xf0]
+	add sp, #0x168
+	pop {r3, r4, r5}
+	mov r8, r3
+	mov sb, r4
+	mov sl, r5
+	pop {r4, r5, r6, r7}
+	pop {r1}
+	bx r1
+	.align 2, 0
+	.global func_0806644C
+	.thumb_func
+func_0806644C:
+	push {r4, r5, r6, r7, lr}
+	mov r7, sl
+	mov r6, sb
+	mov r5, r8
+	push {r5, r6, r7}
+	sub sp, #0x1a4
+	str r0, [sp, #0xf4]
+	ldr r0, .Ljp_phys_080662B4
+	str r0, [sp]
+	ldr r0, [sp, #0xf4]
+	movs r3, #0x96
+	bl func_08076BFC
+	ldr r0, [sp, #0xf4]
+	ldr r2, .Ljp_phys_080662B8
+	adds r1, r0, r2
+	ldr r0, .Ljp_phys_080662BC
+	str r0, [r1]
+	ldr r3, [sp, #0xf4]
+	ldr r4, .Ljp_phys_080662C0
+	adds r0, r3, r4
+	movs r1, #0
+	str r1, [r0]
+	ldr r5, .Ljp_phys_080662C4
+	adds r0, r3, r5
+	str r1, [r0]
+	ldr r6, [r3, #4]
+	str r6, [sp, #0xf8]
+	ldr r2, .Ljp_phys_080662C8
+	add r1, sp, #0x18
+	movs r0, #2
+	strh r0, [r1]
+	strh r0, [r1, #2]
+	ldr r0, [sp, #0x18]
+	movs r7, #0xe9
+	lsls r7, r7, #3
+	adds r4, r3, r7
+	str r2, [sp]
+	adds r1, r4, #0
+	movs r2, #0
+	movs r3, #0
+	bl DrawStringTo2DGfxBuffer
+	ldr r1, [sp, #0xf4]
+	ldr r0, [r1]
+	bl func_08008910
+	adds r6, r0, #0
+	movs r3, #0x38
+	lsls r2, r3, #5
+	movs r0, #0xc0
+	lsls r0, r0, #0x13
+	adds r2, r2, r0
+	add r0, sp, #8
+	adds r1, r4, #0
+	movs r3, #0x80
+	bl func_08008F0C
+	add r4, sp, #8
+	mov sb, r4
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_080662EC
+	cmp r1, #0
+	beq .Ljp_phys_0806620C
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r2, r5, r7}
+	stm r0!, {r2, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_0806620C:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	mov r3, sp
+	adds r3, #0x24
+	str r3, [sp, #0x120]
+	ldr r4, [sp, #0xf4]
+	ldr r5, .Ljp_phys_080662CC
+	adds r4, r4, r5
+	mov sl, r4
+	mov r6, sp
+	adds r6, #0x30
+	str r6, [sp, #0x124]
+	movs r0, #0xc8
+	lsls r0, r0, #3
+	ldr r7, [sp, #0xf4]
+	adds r0, r7, r0
+	str r0, [sp, #0x194]
+	mov r1, sp
+	adds r1, #0x3c
+	str r1, [sp, #0x128]
+	ldr r2, .Ljp_phys_080662D0
+	adds r2, r7, r2
+	str r2, [sp, #0x118]
+	adds r3, #0x24
+	str r3, [sp, #0x12c]
+	ldr r4, .Ljp_phys_080662D4
+	adds r4, r7, r4
+	str r4, [sp, #0x130]
+	mov r5, sp
+	adds r5, #0x54
+	str r5, [sp, #0x134]
+	movs r6, #0x85
+	lsls r6, r6, #4
+	adds r6, r7, r6
+	str r6, [sp, #0x154]
+	mov r7, sp
+	adds r7, #0x60
+	str r7, [sp, #0x138]
+	ldr r1, .Ljp_phys_080662D8
+	ldr r0, [sp, #0xf4]
+	adds r1, r0, r1
+	str r1, [sp, #0x168]
+	mov r2, sp
+	adds r2, #0x6c
+	str r2, [sp, #0x140]
+	ldr r3, .Ljp_phys_080662DC
+	adds r3, r0, r3
+	str r3, [sp, #0x170]
+	mov r4, sp
+	adds r4, #0x78
+	str r4, [sp, #0x144]
+	ldr r5, .Ljp_phys_080662E0
+	adds r5, r0, r5
+	str r5, [sp, #0x174]
+	mov r6, sp
+	adds r6, #0x84
+	str r6, [sp, #0x148]
+	movs r7, #0xae
+	lsls r7, r7, #4
+	adds r7, r0, r7
+	str r7, [sp, #0x17c]
+	mov r0, sp
+	adds r0, #0x90
+	str r0, [sp, #0x14c]
+	ldr r2, .Ljp_phys_080662E4
+	ldr r1, [sp, #0xf4]
+	adds r2, r1, r2
+	str r2, [sp, #0x180]
+	mov r3, sp
+	adds r3, #0x9c
+	str r3, [sp, #0x150]
+	ldr r4, .Ljp_phys_080662E8
+	adds r4, r1, r4
+	str r4, [sp, #0x18c]
+	mov r5, sp
+	adds r5, #0xf0
+	str r5, [sp, #0x160]
+	adds r6, #0x64
+	str r6, [sp, #0x158]
+	mov r7, sp
+	adds r7, #0xec
+	str r7, [sp, #0x15c]
+	b .Ljp_phys_0806645E
+.Ljp_phys_080662B4:
+	.4byte gText_FarmStatus_EarningsReport
+.Ljp_phys_080662B8:
+	.4byte 0x000005B4
+.Ljp_phys_080662BC:
+	.4byte vtable_unk_080E7A08
+.Ljp_phys_080662C0:
+	.4byte 0x00000DE8
+.Ljp_phys_080662C4:
+	.4byte 0x000011BC
+.Ljp_phys_080662C8:
+	.4byte gText_FarmStatus_DayUnit
+.Ljp_phys_080662CC:
+	.4byte 0x000005BC
+.Ljp_phys_080662D0:
+	.4byte 0x000006C4
+.Ljp_phys_080662D4:
+	.4byte 0x000007CC
+.Ljp_phys_080662D8:
+	.4byte 0x000008D4
+.Ljp_phys_080662DC:
+	.4byte 0x00000958
+.Ljp_phys_080662E0:
+	.4byte 0x000009DC
+.Ljp_phys_080662E4:
+	.4byte 0x00000BE4
+.Ljp_phys_080662E8:
+	.4byte 0x00000CE8
+.Ljp_phys_080662EC:
+	str r1, [sp, #0x19c]
+	movs r0, #1
+	str r0, [sp, #0x20]
+	ldr r0, [r6]
+	subs r0, r1, r0
+	asrs r4, r0, #4
+	str r4, [sp, #0x1c]
+	add r1, sp, #0x20
+	add r0, sp, #0x1c
+	cmp r4, #1
+	bhs .Ljp_phys_08066304
+	adds r0, r1, #0
+.Ljp_phys_08066304:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_08066322
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_08066326
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_08066326
+.Ljp_phys_08066322:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_08066326:
+	adds r5, r0, #0
+	str r5, [sp, #0x1a0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	mov r4, sp
+	adds r4, #0x24
+	str r4, [sp, #0x120]
+	ldr r5, [sp, #0xf4]
+	ldr r7, .Ljp_phys_080663F8
+	adds r5, r5, r7
+	mov sl, r5
+	mov r0, sp
+	adds r0, #0x30
+	str r0, [sp, #0x124]
+	movs r4, #0xc8
+	lsls r4, r4, #3
+	ldr r1, [sp, #0xf4]
+	adds r4, r1, r4
+	str r4, [sp, #0x194]
+	mov r5, sp
+	adds r5, #0x3c
+	str r5, [sp, #0x128]
+	ldr r7, .Ljp_phys_080663FC
+	adds r7, r1, r7
+	str r7, [sp, #0x118]
+	adds r0, #0x18
+	str r0, [sp, #0x12c]
+	ldr r4, .Ljp_phys_08066400
+	adds r4, r1, r4
+	str r4, [sp, #0x130]
+	adds r5, #0x18
+	str r5, [sp, #0x134]
+	movs r7, #0x85
+	lsls r7, r7, #4
+	adds r7, r1, r7
+	str r7, [sp, #0x154]
+	adds r0, #0x18
+	str r0, [sp, #0x138]
+	ldr r4, .Ljp_phys_08066404
+	adds r4, r1, r4
+	str r4, [sp, #0x168]
+	adds r5, #0x18
+	str r5, [sp, #0x140]
+	ldr r7, .Ljp_phys_08066408
+	adds r7, r1, r7
+	str r7, [sp, #0x170]
+	adds r0, #0x18
+	str r0, [sp, #0x144]
+	ldr r4, .Ljp_phys_0806640C
+	adds r4, r1, r4
+	str r4, [sp, #0x174]
+	adds r5, #0x18
+	str r5, [sp, #0x148]
+	movs r7, #0xae
+	lsls r7, r7, #4
+	adds r7, r1, r7
+	str r7, [sp, #0x17c]
+	adds r0, #0x18
+	str r0, [sp, #0x14c]
+	ldr r4, .Ljp_phys_08066410
+	adds r4, r1, r4
+	str r4, [sp, #0x180]
+	adds r5, #0x18
+	str r5, [sp, #0x150]
+	ldr r7, .Ljp_phys_08066414
+	adds r7, r1, r7
+	str r7, [sp, #0x18c]
+	adds r0, #0x60
+	str r0, [sp, #0x160]
+	mov r1, sp
+	adds r1, #0xe8
+	str r1, [sp, #0x158]
+	mov r4, sp
+	adds r4, #0xec
+	str r4, [sp, #0x15c]
+	ldr r5, [sp, #0x19c]
+	cmp r2, r5
+	beq .Ljp_phys_080663DC
+.Ljp_phys_080663C2:
+	cmp r3, #0
+	beq .Ljp_phys_080663D2
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080663D2:
+	adds r2, #0x10
+	adds r3, #0x10
+	ldr r7, [sp, #0x19c]
+	cmp r2, r7
+	bne .Ljp_phys_080663C2
+.Ljp_phys_080663DC:
+	adds r5, r3, #0
+	ldr r0, [sp, #0x20]
+	cmp r0, #1
+	bne .Ljp_phys_08066418
+	cmp r5, #0
+	beq .Ljp_phys_080663F4
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080663F4:
+	adds r5, #0x10
+	b .Ljp_phys_0806643A
+.Ljp_phys_080663F8:
+	.4byte 0x000005BC
+.Ljp_phys_080663FC:
+	.4byte 0x000006C4
+.Ljp_phys_08066400:
+	.4byte 0x000007CC
+.Ljp_phys_08066404:
+	.4byte 0x000008D4
+.Ljp_phys_08066408:
+	.4byte 0x00000958
+.Ljp_phys_0806640C:
+	.4byte 0x000009DC
+.Ljp_phys_08066410:
+	.4byte 0x00000BE4
+.Ljp_phys_08066414:
+	.4byte 0x00000CE8
+.Ljp_phys_08066418:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_08066438
+.Ljp_phys_08066420:
+	cmp r2, #0
+	beq .Ljp_phys_08066430
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066430:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_08066420
+.Ljp_phys_08066438:
+	adds r5, r2, #0
+.Ljp_phys_0806643A:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_0806644A
+.Ljp_phys_08066444:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_08066444
+.Ljp_phys_0806644A:
+	cmp r0, #0
+	beq .Ljp_phys_08066452
+	bl free
+.Ljp_phys_08066452:
+	ldr r0, [sp, #0x1a0]
+	add r0, r8
+	ldr r7, [sp, #0x1a0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_0806645E:
+	ldr r2, .Ljp_phys_080664C0
+	movs r1, #2
+	add r0, sp, #0x24
+	strh r1, [r0]
+	ldr r0, [sp, #0x120]
+	strh r1, [r0, #2]
+	ldr r0, [sp, #0x24]
+	str r2, [sp]
+	mov r1, sl
+	movs r2, #0
+	movs r3, #0
+	bl DrawStringTo2DGfxBuffer
+	ldr r1, [sp, #0xf4]
+	ldr r0, [r1]
+	bl func_08008910
+	adds r6, r0, #0
+	movs r3, #0x3c
+	lsls r2, r3, #5
+	movs r0, #0xc0
+	lsls r0, r0, #0x13
+	adds r2, r2, r0
+	add r0, sp, #8
+	mov r1, sl
+	movs r3, #0x80
+	bl func_08008F0C
+	add r4, sp, #8
+	mov sb, r4
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_080664C4
+	cmp r1, #0
+	beq .Ljp_phys_080664B2
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r2, r5, r7}
+	stm r0!, {r2, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080664B2:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	movs r3, #0x3c
+	lsls r3, r3, #0x10
+	str r3, [sp, #0x164]
+	b .Ljp_phys_0806658A
+.Ljp_phys_080664C0:
+	.4byte gText_FarmStatus_GoldUnit
+.Ljp_phys_080664C4:
+	mov sl, r1
+	movs r0, #1
+	str r0, [sp, #0x2c]
+	ldr r0, [r6]
+	subs r0, r1, r0
+	asrs r4, r0, #4
+	str r4, [sp, #0x28]
+	add r1, sp, #0x2c
+	add r0, sp, #0x28
+	cmp r4, #1
+	bhs .Ljp_phys_080664DC
+	adds r0, r1, #0
+.Ljp_phys_080664DC:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_080664FA
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_080664FE
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_080664FE
+.Ljp_phys_080664FA:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_080664FE:
+	adds r5, r0, #0
+	str r5, [sp, #0x1a0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	movs r4, #0x3c
+	lsls r4, r4, #0x10
+	str r4, [sp, #0x164]
+	cmp r2, sl
+	beq .Ljp_phys_08066528
+.Ljp_phys_08066510:
+	cmp r3, #0
+	beq .Ljp_phys_08066520
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066520:
+	adds r2, #0x10
+	adds r3, #0x10
+	cmp r2, sl
+	bne .Ljp_phys_08066510
+.Ljp_phys_08066528:
+	adds r5, r3, #0
+	ldr r0, [sp, #0x2c]
+	cmp r0, #1
+	bne .Ljp_phys_08066544
+	cmp r5, #0
+	beq .Ljp_phys_08066540
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r7}
+	stm r0!, {r2, r3, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066540:
+	adds r5, #0x10
+	b .Ljp_phys_08066566
+.Ljp_phys_08066544:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_08066564
+.Ljp_phys_0806654C:
+	cmp r2, #0
+	beq .Ljp_phys_0806655C
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_0806655C:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_0806654C
+.Ljp_phys_08066564:
+	adds r5, r2, #0
+.Ljp_phys_08066566:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_08066576
+.Ljp_phys_08066570:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_08066570
+.Ljp_phys_08066576:
+	cmp r0, #0
+	beq .Ljp_phys_0806657E
+	bl free
+.Ljp_phys_0806657E:
+	ldr r0, [sp, #0x1a0]
+	add r0, r8
+	ldr r1, [sp, #0x1a0]
+	str r1, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_0806658A:
+	movs r2, #0x40
+	mov sl, r2
+	ldr r2, .Ljp_phys_080665F0
+	movs r1, #2
+	add r0, sp, #0x30
+	strh r1, [r0]
+	ldr r3, [sp, #0x124]
+	strh r1, [r3, #2]
+	ldr r0, [sp, #0x30]
+	str r2, [sp]
+	ldr r1, [sp, #0x194]
+	movs r2, #0
+	movs r3, #0
+	bl DrawStringTo2DGfxBuffer
+	ldr r4, [sp, #0xf4]
+	ldr r0, [r4]
+	bl func_08008910
+	adds r6, r0, #0
+	mov r5, sl
+	lsls r2, r5, #5
+	movs r0, #0xc0
+	lsls r0, r0, #0x13
+	adds r2, r2, r0
+	add r0, sp, #8
+	ldr r1, [sp, #0x194]
+	movs r3, #0x80
+	bl func_08008F0C
+	add r7, sp, #8
+	mov sb, r7
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_080665F4
+	cmp r1, #0
+	beq .Ljp_phys_080665E2
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080665E2:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	mov r5, sl
+	lsls r5, r5, #0x10
+	str r5, [sp, #0x16c]
+	b .Ljp_phys_080666C0
+.Ljp_phys_080665F0:
+	.4byte gText_FarmStatus_PlusSign
+.Ljp_phys_080665F4:
+	str r1, [sp, #0x19c]
+	movs r0, #1
+	str r0, [sp, #0x38]
+	ldr r0, [r6]
+	adds r7, r1, #0
+	subs r0, r7, r0
+	asrs r4, r0, #4
+	str r4, [sp, #0x34]
+	add r1, sp, #0x38
+	add r0, sp, #0x34
+	cmp r4, #1
+	bhs .Ljp_phys_0806660E
+	adds r0, r1, #0
+.Ljp_phys_0806660E:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_0806662C
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_08066630
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_08066630
+.Ljp_phys_0806662C:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_08066630:
+	adds r5, r0, #0
+	str r5, [sp, #0x1a0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	mov r0, sl
+	lsls r0, r0, #0x10
+	str r0, [sp, #0x16c]
+	ldr r1, [sp, #0x19c]
+	cmp r2, r1
+	beq .Ljp_phys_0806665E
+.Ljp_phys_08066644:
+	cmp r3, #0
+	beq .Ljp_phys_08066654
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066654:
+	adds r2, #0x10
+	adds r3, #0x10
+	ldr r0, [sp, #0x19c]
+	cmp r2, r0
+	bne .Ljp_phys_08066644
+.Ljp_phys_0806665E:
+	adds r5, r3, #0
+	ldr r0, [sp, #0x38]
+	cmp r0, #1
+	bne .Ljp_phys_0806667A
+	cmp r5, #0
+	beq .Ljp_phys_08066676
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066676:
+	adds r5, #0x10
+	b .Ljp_phys_0806669C
+.Ljp_phys_0806667A:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_0806669A
+.Ljp_phys_08066682:
+	cmp r2, #0
+	beq .Ljp_phys_08066692
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066692:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_08066682
+.Ljp_phys_0806669A:
+	adds r5, r2, #0
+.Ljp_phys_0806669C:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_080666AC
+.Ljp_phys_080666A6:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_080666A6
+.Ljp_phys_080666AC:
+	cmp r0, #0
+	beq .Ljp_phys_080666B4
+	bl free
+.Ljp_phys_080666B4:
+	ldr r0, [sp, #0x1a0]
+	add r0, r8
+	ldr r7, [sp, #0x1a0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_080666C0:
+	movs r0, #0x44
+	mov sl, r0
+	ldr r2, .Ljp_phys_08066728
+	movs r1, #2
+	add r0, sp, #0x3c
+	strh r1, [r0]
+	ldr r3, [sp, #0x128]
+	strh r1, [r3, #2]
+	ldr r0, [sp, #0x3c]
+	str r2, [sp]
+	ldr r1, [sp, #0x118]
+	movs r2, #0
+	movs r3, #0
+	bl DrawStringTo2DGfxBuffer
+	ldr r4, [sp, #0xf4]
+	ldr r0, [r4]
+	bl func_08008910
+	adds r6, r0, #0
+	mov r5, sl
+	lsls r2, r5, #5
+	movs r0, #0xc0
+	lsls r0, r0, #0x13
+	adds r2, r2, r0
+	add r0, sp, #8
+	ldr r1, [sp, #0x118]
+	movs r3, #0x80
+	bl func_08008F0C
+	add r7, sp, #8
+	mov sb, r7
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_0806672C
+	cmp r1, #0
+	beq .Ljp_phys_08066718
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066718:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	mov r5, sl
+	lsls r5, r5, #0x10
+	str r5, [sp, #0x178]
+	b .Ljp_phys_080667F8
+	.align 2, 0
+.Ljp_phys_08066728:
+	.4byte gText_FarmStatus_MinusSign
+.Ljp_phys_0806672C:
+	str r1, [sp, #0x19c]
+	movs r0, #1
+	str r0, [sp, #0x44]
+	ldr r0, [r6]
+	adds r7, r1, #0
+	subs r0, r7, r0
+	asrs r4, r0, #4
+	str r4, [sp, #0x40]
+	add r1, sp, #0x44
+	add r0, sp, #0x40
+	cmp r4, #1
+	bhs .Ljp_phys_08066746
+	adds r0, r1, #0
+.Ljp_phys_08066746:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_08066764
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_08066768
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_08066768
+.Ljp_phys_08066764:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_08066768:
+	adds r5, r0, #0
+	str r5, [sp, #0x1a0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	mov r0, sl
+	lsls r0, r0, #0x10
+	str r0, [sp, #0x178]
+	ldr r1, [sp, #0x19c]
+	cmp r2, r1
+	beq .Ljp_phys_08066796
+.Ljp_phys_0806677C:
+	cmp r3, #0
+	beq .Ljp_phys_0806678C
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_0806678C:
+	adds r2, #0x10
+	adds r3, #0x10
+	ldr r0, [sp, #0x19c]
+	cmp r2, r0
+	bne .Ljp_phys_0806677C
+.Ljp_phys_08066796:
+	adds r5, r3, #0
+	ldr r0, [sp, #0x44]
+	cmp r0, #1
+	bne .Ljp_phys_080667B2
+	cmp r5, #0
+	beq .Ljp_phys_080667AE
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080667AE:
+	adds r5, #0x10
+	b .Ljp_phys_080667D4
+.Ljp_phys_080667B2:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_080667D2
+.Ljp_phys_080667BA:
+	cmp r2, #0
+	beq .Ljp_phys_080667CA
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080667CA:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_080667BA
+.Ljp_phys_080667D2:
+	adds r5, r2, #0
+.Ljp_phys_080667D4:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_080667E4
+.Ljp_phys_080667DE:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_080667DE
+.Ljp_phys_080667E4:
+	cmp r0, #0
+	beq .Ljp_phys_080667EC
+	bl free
+.Ljp_phys_080667EC:
+	ldr r0, [sp, #0x1a0]
+	add r0, r8
+	ldr r7, [sp, #0x1a0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_080667F8:
+	ldr r2, .Ljp_phys_08066854
+	movs r1, #2
+	add r0, sp, #0x48
+	strh r1, [r0]
+	ldr r0, [sp, #0x12c]
+	strh r1, [r0, #2]
+	ldr r0, [sp, #0x48]
+	str r2, [sp]
+	ldr r1, [sp, #0x130]
+	movs r2, #0
+	movs r3, #0
+	bl DrawStringTo2DGfxBuffer
+	ldr r1, [sp, #0xf4]
+	ldr r0, [r1]
+	bl func_08008910
+	adds r6, r0, #0
+	movs r3, #0x48
+	lsls r2, r3, #5
+	movs r0, #0xc0
+	lsls r0, r0, #0x13
+	adds r2, r2, r0
+	add r0, sp, #8
+	ldr r1, [sp, #0x130]
+	movs r3, #0x80
+	bl func_08008F0C
+	add r4, sp, #8
+	mov sb, r4
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_08066858
+	cmp r1, #0
+	beq .Ljp_phys_0806684C
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r2, r5, r7}
+	stm r0!, {r2, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_0806684C:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_phys_08066918
+.Ljp_phys_08066854:
+	.4byte gText_FarmStatus_Spring
+.Ljp_phys_08066858:
+	mov sl, r1
+	movs r0, #1
+	str r0, [sp, #0x50]
+	ldr r0, [r6]
+	subs r0, r1, r0
+	asrs r4, r0, #4
+	str r4, [sp, #0x4c]
+	add r1, sp, #0x50
+	add r0, sp, #0x4c
+	cmp r4, #1
+	bhs .Ljp_phys_08066870
+	adds r0, r1, #0
+.Ljp_phys_08066870:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_0806688E
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_08066892
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_08066892
+.Ljp_phys_0806688E:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_08066892:
+	adds r5, r0, #0
+	str r5, [sp, #0x1a0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	cmp r2, sl
+	beq .Ljp_phys_080668B6
+.Ljp_phys_0806689E:
+	cmp r3, #0
+	beq .Ljp_phys_080668AE
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080668AE:
+	adds r2, #0x10
+	adds r3, #0x10
+	cmp r2, sl
+	bne .Ljp_phys_0806689E
+.Ljp_phys_080668B6:
+	adds r5, r3, #0
+	ldr r0, [sp, #0x50]
+	cmp r0, #1
+	bne .Ljp_phys_080668D2
+	cmp r5, #0
+	beq .Ljp_phys_080668CE
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080668CE:
+	adds r5, #0x10
+	b .Ljp_phys_080668F4
+.Ljp_phys_080668D2:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_080668F2
+.Ljp_phys_080668DA:
+	cmp r2, #0
+	beq .Ljp_phys_080668EA
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080668EA:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_080668DA
+.Ljp_phys_080668F2:
+	adds r5, r2, #0
+.Ljp_phys_080668F4:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_08066904
+.Ljp_phys_080668FE:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_080668FE
+.Ljp_phys_08066904:
+	cmp r0, #0
+	beq .Ljp_phys_0806690C
+	bl free
+.Ljp_phys_0806690C:
+	ldr r0, [sp, #0x1a0]
+	add r0, r8
+	ldr r7, [sp, #0x1a0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_08066918:
+	ldr r2, .Ljp_phys_0806696C
+	movs r1, #2
+	add r0, sp, #0x54
+	strh r1, [r0]
+	ldr r0, [sp, #0x134]
+	strh r1, [r0, #2]
+	ldr r0, [sp, #0x54]
+	str r2, [sp]
+	ldr r1, [sp, #0x154]
+	movs r2, #0
+	movs r3, #0
+	bl DrawStringTo2DGfxBuffer
+	ldr r1, [sp, #0xf4]
+	ldr r0, [r1]
+	bl func_08008910
+	adds r6, r0, #0
+	ldr r2, .Ljp_phys_08066970
+	add r0, sp, #8
+	ldr r1, [sp, #0x154]
+	movs r3, #0x80
+	bl func_08008F0C
+	add r2, sp, #8
+	mov sb, r2
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_08066974
+	cmp r1, #0
+	beq .Ljp_phys_08066964
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r3, r4, r5}
+	stm r0!, {r3, r4, r5}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066964:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_phys_08066A34
+.Ljp_phys_0806696C:
+	.4byte gText_FarmStatus_Summer
+.Ljp_phys_08066970:
+	.4byte 0x06000980
+.Ljp_phys_08066974:
+	mov sl, r1
+	movs r0, #1
+	str r0, [sp, #0x5c]
+	ldr r0, [r6]
+	subs r0, r1, r0
+	asrs r4, r0, #4
+	str r4, [sp, #0x58]
+	add r1, sp, #0x5c
+	add r0, sp, #0x58
+	cmp r4, #1
+	bhs .Ljp_phys_0806698C
+	adds r0, r1, #0
+.Ljp_phys_0806698C:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_080669AA
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_080669AE
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_080669AE
+.Ljp_phys_080669AA:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_080669AE:
+	adds r5, r0, #0
+	str r5, [sp, #0x1a0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	cmp r2, sl
+	beq .Ljp_phys_080669D2
+.Ljp_phys_080669BA:
+	cmp r3, #0
+	beq .Ljp_phys_080669CA
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080669CA:
+	adds r2, #0x10
+	adds r3, #0x10
+	cmp r2, sl
+	bne .Ljp_phys_080669BA
+.Ljp_phys_080669D2:
+	adds r5, r3, #0
+	ldr r0, [sp, #0x5c]
+	cmp r0, #1
+	bne .Ljp_phys_080669EE
+	cmp r5, #0
+	beq .Ljp_phys_080669EA
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r7}
+	stm r0!, {r2, r3, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080669EA:
+	adds r5, #0x10
+	b .Ljp_phys_08066A10
+.Ljp_phys_080669EE:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_08066A0E
+.Ljp_phys_080669F6:
+	cmp r2, #0
+	beq .Ljp_phys_08066A06
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066A06:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_080669F6
+.Ljp_phys_08066A0E:
+	adds r5, r2, #0
+.Ljp_phys_08066A10:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_08066A20
+.Ljp_phys_08066A1A:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_08066A1A
+.Ljp_phys_08066A20:
+	cmp r0, #0
+	beq .Ljp_phys_08066A28
+	bl free
+.Ljp_phys_08066A28:
+	ldr r0, [sp, #0x1a0]
+	add r0, r8
+	ldr r1, [sp, #0x1a0]
+	str r1, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_08066A34:
+	ldr r2, .Ljp_phys_08066A88
+	movs r1, #2
+	add r0, sp, #0x60
+	strh r1, [r0]
+	ldr r3, [sp, #0x138]
+	strh r1, [r3, #2]
+	ldr r0, [sp, #0x60]
+	str r2, [sp]
+	ldr r1, [sp, #0x168]
+	movs r2, #0
+	movs r3, #0
+	bl DrawStringTo2DGfxBuffer
+	ldr r4, [sp, #0xf4]
+	ldr r0, [r4]
+	bl func_08008910
+	adds r6, r0, #0
+	ldr r2, .Ljp_phys_08066A8C
+	add r0, sp, #8
+	ldr r1, [sp, #0x168]
+	movs r3, #0x80
+	bl func_08008F0C
+	add r5, sp, #8
+	mov sb, r5
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_08066A90
+	cmp r1, #0
+	beq .Ljp_phys_08066A80
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r2, r3, r7}
+	stm r0!, {r2, r3, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066A80:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_phys_08066B50
+.Ljp_phys_08066A88:
+	.4byte gText_FarmStatus_Autumn
+.Ljp_phys_08066A8C:
+	.4byte 0x06000A00
+.Ljp_phys_08066A90:
+	mov sl, r1
+	movs r0, #1
+	str r0, [sp, #0x68]
+	ldr r0, [r6]
+	subs r0, r1, r0
+	asrs r4, r0, #4
+	str r4, [sp, #0x64]
+	add r1, sp, #0x68
+	add r0, sp, #0x64
+	cmp r4, #1
+	bhs .Ljp_phys_08066AA8
+	adds r0, r1, #0
+.Ljp_phys_08066AA8:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_08066AC6
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_08066ACA
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_08066ACA
+.Ljp_phys_08066AC6:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_08066ACA:
+	adds r5, r0, #0
+	str r5, [sp, #0x1a0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	cmp r2, sl
+	beq .Ljp_phys_08066AEE
+.Ljp_phys_08066AD6:
+	cmp r3, #0
+	beq .Ljp_phys_08066AE6
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066AE6:
+	adds r2, #0x10
+	adds r3, #0x10
+	cmp r2, sl
+	bne .Ljp_phys_08066AD6
+.Ljp_phys_08066AEE:
+	adds r5, r3, #0
+	ldr r0, [sp, #0x68]
+	cmp r0, #1
+	bne .Ljp_phys_08066B0A
+	cmp r5, #0
+	beq .Ljp_phys_08066B06
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066B06:
+	adds r5, #0x10
+	b .Ljp_phys_08066B2C
+.Ljp_phys_08066B0A:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_08066B2A
+.Ljp_phys_08066B12:
+	cmp r2, #0
+	beq .Ljp_phys_08066B22
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066B22:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_08066B12
+.Ljp_phys_08066B2A:
+	adds r5, r2, #0
+.Ljp_phys_08066B2C:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_08066B3C
+.Ljp_phys_08066B36:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_08066B36
+.Ljp_phys_08066B3C:
+	cmp r0, #0
+	beq .Ljp_phys_08066B44
+	bl free
+.Ljp_phys_08066B44:
+	ldr r0, [sp, #0x1a0]
+	add r0, r8
+	ldr r7, [sp, #0x1a0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_08066B50:
+	ldr r2, .Ljp_phys_08066BA4
+	movs r1, #2
+	add r0, sp, #0x6c
+	strh r1, [r0]
+	ldr r0, [sp, #0x140]
+	strh r1, [r0, #2]
+	ldr r0, [sp, #0x6c]
+	str r2, [sp]
+	ldr r1, [sp, #0x170]
+	movs r2, #0
+	movs r3, #0
+	bl DrawStringTo2DGfxBuffer
+	ldr r1, [sp, #0xf4]
+	ldr r0, [r1]
+	bl func_08008910
+	adds r6, r0, #0
+	ldr r2, .Ljp_phys_08066BA8
+	add r0, sp, #8
+	ldr r1, [sp, #0x170]
+	movs r3, #0x80
+	bl func_08008F0C
+	add r2, sp, #8
+	mov sb, r2
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_08066BAC
+	cmp r1, #0
+	beq .Ljp_phys_08066B9C
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r3, r4, r5}
+	stm r0!, {r3, r4, r5}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066B9C:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_phys_08066C6C
+.Ljp_phys_08066BA4:
+	.4byte gText_FarmStatus_Winter
+.Ljp_phys_08066BA8:
+	.4byte 0x06000A80
+.Ljp_phys_08066BAC:
+	mov sl, r1
+	movs r0, #1
+	str r0, [sp, #0x74]
+	ldr r0, [r6]
+	subs r0, r1, r0
+	asrs r4, r0, #4
+	str r4, [sp, #0x70]
+	add r1, sp, #0x74
+	add r0, sp, #0x70
+	cmp r4, #1
+	bhs .Ljp_phys_08066BC4
+	adds r0, r1, #0
+.Ljp_phys_08066BC4:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_08066BE2
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_08066BE6
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_08066BE6
+.Ljp_phys_08066BE2:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_08066BE6:
+	adds r5, r0, #0
+	str r5, [sp, #0x1a0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	cmp r2, sl
+	beq .Ljp_phys_08066C0A
+.Ljp_phys_08066BF2:
+	cmp r3, #0
+	beq .Ljp_phys_08066C02
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066C02:
+	adds r2, #0x10
+	adds r3, #0x10
+	cmp r2, sl
+	bne .Ljp_phys_08066BF2
+.Ljp_phys_08066C0A:
+	adds r5, r3, #0
+	ldr r0, [sp, #0x74]
+	cmp r0, #1
+	bne .Ljp_phys_08066C26
+	cmp r5, #0
+	beq .Ljp_phys_08066C22
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r7}
+	stm r0!, {r2, r3, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066C22:
+	adds r5, #0x10
+	b .Ljp_phys_08066C48
+.Ljp_phys_08066C26:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_08066C46
+.Ljp_phys_08066C2E:
+	cmp r2, #0
+	beq .Ljp_phys_08066C3E
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066C3E:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_08066C2E
+.Ljp_phys_08066C46:
+	adds r5, r2, #0
+.Ljp_phys_08066C48:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_08066C58
+.Ljp_phys_08066C52:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_08066C52
+.Ljp_phys_08066C58:
+	cmp r0, #0
+	beq .Ljp_phys_08066C60
+	bl free
+.Ljp_phys_08066C60:
+	ldr r0, [sp, #0x1a0]
+	add r0, r8
+	ldr r1, [sp, #0x1a0]
+	str r1, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_08066C6C:
+	movs r2, #0x58
+	mov sl, r2
+	ldr r3, .Ljp_phys_08066CD8
+	movs r1, #4
+	movs r2, #2
+	add r0, sp, #0x78
+	strh r1, [r0]
+	ldr r4, [sp, #0x144]
+	strh r2, [r4, #2]
+	ldr r0, [sp, #0x78]
+	str r3, [sp]
+	ldr r1, [sp, #0x174]
+	movs r2, #0
+	movs r3, #0
+	bl DrawStringTo2DGfxBuffer
+	ldr r5, [sp, #0xf4]
+	ldr r0, [r5]
+	bl func_08008910
+	movs r3, #0x80
+	lsls r3, r3, #1
+	adds r6, r0, #0
+	mov r7, sl
+	lsls r2, r7, #5
+	movs r0, #0xc0
+	lsls r0, r0, #0x13
+	adds r2, r2, r0
+	add r0, sp, #8
+	ldr r1, [sp, #0x174]
+	bl func_08008F0C
+	add r0, sp, #8
+	mov sb, r0
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_08066CDC
+	cmp r1, #0
+	beq .Ljp_phys_08066CC8
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066CC8:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	mov r5, sl
+	lsls r5, r5, #0x10
+	str r5, [sp, #0x190]
+	b .Ljp_phys_08066DA8
+	.align 2, 0
+.Ljp_phys_08066CD8:
+	.4byte gText_FarmStatus_MonthSuffix
+.Ljp_phys_08066CDC:
+	str r1, [sp, #0x19c]
+	movs r0, #1
+	str r0, [sp, #0x80]
+	ldr r0, [r6]
+	adds r7, r1, #0
+	subs r0, r7, r0
+	asrs r4, r0, #4
+	str r4, [sp, #0x7c]
+	add r1, sp, #0x80
+	add r0, sp, #0x7c
+	cmp r4, #1
+	bhs .Ljp_phys_08066CF6
+	adds r0, r1, #0
+.Ljp_phys_08066CF6:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_08066D14
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_08066D18
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_08066D18
+.Ljp_phys_08066D14:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_08066D18:
+	adds r5, r0, #0
+	str r5, [sp, #0x1a0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	mov r0, sl
+	lsls r0, r0, #0x10
+	str r0, [sp, #0x190]
+	ldr r1, [sp, #0x19c]
+	cmp r2, r1
+	beq .Ljp_phys_08066D46
+.Ljp_phys_08066D2C:
+	cmp r3, #0
+	beq .Ljp_phys_08066D3C
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066D3C:
+	adds r2, #0x10
+	adds r3, #0x10
+	ldr r0, [sp, #0x19c]
+	cmp r2, r0
+	bne .Ljp_phys_08066D2C
+.Ljp_phys_08066D46:
+	adds r5, r3, #0
+	ldr r0, [sp, #0x80]
+	cmp r0, #1
+	bne .Ljp_phys_08066D62
+	cmp r5, #0
+	beq .Ljp_phys_08066D5E
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066D5E:
+	adds r5, #0x10
+	b .Ljp_phys_08066D84
+.Ljp_phys_08066D62:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_08066D82
+.Ljp_phys_08066D6A:
+	cmp r2, #0
+	beq .Ljp_phys_08066D7A
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066D7A:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_08066D6A
+.Ljp_phys_08066D82:
+	adds r5, r2, #0
+.Ljp_phys_08066D84:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_08066D94
+.Ljp_phys_08066D8E:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_08066D8E
+.Ljp_phys_08066D94:
+	cmp r0, #0
+	beq .Ljp_phys_08066D9C
+	bl free
+.Ljp_phys_08066D9C:
+	ldr r0, [sp, #0x1a0]
+	add r0, r8
+	ldr r7, [sp, #0x1a0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_08066DA8:
+	movs r0, #0x60
+	mov sl, r0
+	ldr r3, .Ljp_phys_08066E14
+	movs r1, #4
+	movs r2, #2
+	add r0, sp, #0x84
+	strh r1, [r0]
+	ldr r1, [sp, #0x148]
+	strh r2, [r1, #2]
+	ldr r0, [sp, #0x84]
+	str r3, [sp]
+	ldr r1, [sp, #0x17c]
+	movs r2, #0
+	movs r3, #0
+	bl DrawStringTo2DGfxBuffer
+	ldr r2, [sp, #0xf4]
+	ldr r0, [r2]
+	bl func_08008910
+	movs r3, #0x80
+	lsls r3, r3, #1
+	adds r6, r0, #0
+	mov r4, sl
+	lsls r2, r4, #5
+	movs r0, #0xc0
+	lsls r0, r0, #0x13
+	adds r2, r2, r0
+	add r0, sp, #8
+	ldr r1, [sp, #0x17c]
+	bl func_08008F0C
+	add r5, sp, #8
+	mov sb, r5
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_08066E18
+	cmp r1, #0
+	beq .Ljp_phys_08066E04
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r2, r3, r7}
+	stm r0!, {r2, r3, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066E04:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	mov r4, sl
+	lsls r4, r4, #0x10
+	str r4, [sp, #0x198]
+	b .Ljp_phys_08066EE2
+	.align 2, 0
+.Ljp_phys_08066E14:
+	.4byte gText_FarmStatus_YearLabel
+.Ljp_phys_08066E18:
+	str r1, [sp, #0x19c]
+	movs r0, #1
+	add r1, sp, #0x8c
+	str r0, [r1]
+	ldr r0, [r6]
+	ldr r5, [sp, #0x19c]
+	subs r0, r5, r0
+	asrs r4, r0, #4
+	add r0, sp, #0x88
+	str r4, [r0]
+	ldr r2, [r1]
+	cmp r4, r2
+	bhs .Ljp_phys_08066E34
+	adds r0, r1, #0
+.Ljp_phys_08066E34:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_08066E52
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_08066E56
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_08066E56
+.Ljp_phys_08066E52:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_08066E56:
+	adds r5, r0, #0
+	str r5, [sp, #0x1a0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	mov r7, sl
+	lsls r7, r7, #0x10
+	str r7, [sp, #0x198]
+	b .Ljp_phys_08066E7A
+.Ljp_phys_08066E66:
+	cmp r3, #0
+	beq .Ljp_phys_08066E76
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066E76:
+	adds r2, #0x10
+	adds r3, #0x10
+.Ljp_phys_08066E7A:
+	ldr r0, [sp, #0x19c]
+	cmp r2, r0
+	bne .Ljp_phys_08066E66
+	adds r5, r3, #0
+	ldr r1, [sp, #0x8c]
+	cmp r1, #1
+	bne .Ljp_phys_08066E9C
+	cmp r5, #0
+	beq .Ljp_phys_08066E98
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066E98:
+	adds r5, #0x10
+	b .Ljp_phys_08066EBE
+.Ljp_phys_08066E9C:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_08066EBC
+.Ljp_phys_08066EA4:
+	cmp r2, #0
+	beq .Ljp_phys_08066EB4
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066EB4:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_08066EA4
+.Ljp_phys_08066EBC:
+	adds r5, r2, #0
+.Ljp_phys_08066EBE:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_08066ECE
+.Ljp_phys_08066EC8:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_08066EC8
+.Ljp_phys_08066ECE:
+	cmp r0, #0
+	beq .Ljp_phys_08066ED6
+	bl free
+.Ljp_phys_08066ED6:
+	ldr r0, [sp, #0x1a0]
+	add r0, r8
+	ldr r7, [sp, #0x1a0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_08066EE2:
+	movs r0, #0x68
+	mov sl, r0
+	ldr r3, .Ljp_phys_08066F4C
+	movs r1, #4
+	movs r2, #2
+	add r0, sp, #0x90
+	strh r1, [r0]
+	ldr r1, [sp, #0x14c]
+	strh r2, [r1, #2]
+	ldr r0, [r0]
+	str r3, [sp]
+	ldr r1, [sp, #0x180]
+	movs r2, #0
+	movs r3, #0
+	bl DrawStringTo2DGfxBuffer
+	ldr r2, [sp, #0xf4]
+	ldr r0, [r2]
+	bl func_08008910
+	movs r3, #0x80
+	lsls r3, r3, #1
+	adds r6, r0, #0
+	mov r4, sl
+	lsls r2, r4, #5
+	movs r0, #0xc0
+	lsls r0, r0, #0x13
+	adds r2, r2, r0
+	add r0, sp, #8
+	ldr r1, [sp, #0x180]
+	bl func_08008F0C
+	add r5, sp, #8
+	mov sb, r5
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_08066F50
+	cmp r1, #0
+	beq .Ljp_phys_08066F3E
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r2, r3, r7}
+	stm r0!, {r2, r3, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066F3E:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	mov r4, sl
+	lsls r4, r4, #0x10
+	str r4, [sp, #0x11c]
+	b .Ljp_phys_0806701A
+.Ljp_phys_08066F4C:
+	.4byte gText_FarmStatus_Income
+.Ljp_phys_08066F50:
+	str r1, [sp, #0x19c]
+	movs r0, #1
+	add r1, sp, #0x98
+	str r0, [r1]
+	ldr r0, [r6]
+	ldr r5, [sp, #0x19c]
+	subs r0, r5, r0
+	asrs r4, r0, #4
+	add r0, sp, #0x94
+	str r4, [r0]
+	ldr r2, [r1]
+	cmp r4, r2
+	bhs .Ljp_phys_08066F6C
+	adds r0, r1, #0
+.Ljp_phys_08066F6C:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_08066F8A
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_08066F8E
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_08066F8E
+.Ljp_phys_08066F8A:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_08066F8E:
+	adds r5, r0, #0
+	str r5, [sp, #0x1a0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	mov r7, sl
+	lsls r7, r7, #0x10
+	str r7, [sp, #0x11c]
+	b .Ljp_phys_08066FB2
+.Ljp_phys_08066F9E:
+	cmp r3, #0
+	beq .Ljp_phys_08066FAE
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066FAE:
+	adds r2, #0x10
+	adds r3, #0x10
+.Ljp_phys_08066FB2:
+	ldr r0, [sp, #0x19c]
+	cmp r2, r0
+	bne .Ljp_phys_08066F9E
+	adds r5, r3, #0
+	ldr r1, [sp, #0x98]
+	cmp r1, #1
+	bne .Ljp_phys_08066FD4
+	cmp r5, #0
+	beq .Ljp_phys_08066FD0
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066FD0:
+	adds r5, #0x10
+	b .Ljp_phys_08066FF6
+.Ljp_phys_08066FD4:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_08066FF4
+.Ljp_phys_08066FDC:
+	cmp r2, #0
+	beq .Ljp_phys_08066FEC
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08066FEC:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_08066FDC
+.Ljp_phys_08066FF4:
+	adds r5, r2, #0
+.Ljp_phys_08066FF6:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_08067006
+.Ljp_phys_08067000:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_08067000
+.Ljp_phys_08067006:
+	cmp r0, #0
+	beq .Ljp_phys_0806700E
+	bl free
+.Ljp_phys_0806700E:
+	ldr r0, [sp, #0x1a0]
+	add r0, r8
+	ldr r7, [sp, #0x1a0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_0806701A:
+	movs r0, #0x70
+	mov sl, r0
+	ldr r3, .Ljp_phys_08067084
+	movs r1, #4
+	movs r2, #2
+	add r0, sp, #0x9c
+	strh r1, [r0]
+	ldr r1, [sp, #0x150]
+	strh r2, [r1, #2]
+	ldr r0, [r0]
+	str r3, [sp]
+	ldr r1, [sp, #0x18c]
+	movs r2, #0
+	movs r3, #0
+	bl DrawStringTo2DGfxBuffer
+	ldr r2, [sp, #0xf4]
+	ldr r0, [r2]
+	bl func_08008910
+	movs r3, #0x80
+	lsls r3, r3, #1
+	adds r6, r0, #0
+	mov r4, sl
+	lsls r2, r4, #5
+	movs r0, #0xc0
+	lsls r0, r0, #0x13
+	adds r2, r2, r0
+	add r0, sp, #8
+	ldr r1, [sp, #0x18c]
+	bl func_08008F0C
+	add r5, sp, #8
+	mov sb, r5
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_08067088
+	cmp r1, #0
+	beq .Ljp_phys_08067076
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r2, r3, r7}
+	stm r0!, {r2, r3, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08067076:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	mov r4, sl
+	lsls r4, r4, #0x10
+	str r4, [sp, #0x13c]
+	b .Ljp_phys_08067152
+.Ljp_phys_08067084:
+	.4byte gText_FarmStatus_Expenses
+.Ljp_phys_08067088:
+	str r1, [sp, #0x19c]
+	movs r0, #1
+	add r1, sp, #0xa4
+	str r0, [r1]
+	ldr r0, [r6]
+	ldr r5, [sp, #0x19c]
+	subs r0, r5, r0
+	asrs r4, r0, #4
+	add r0, sp, #0xa0
+	str r4, [r0]
+	ldr r2, [r1]
+	cmp r4, r2
+	bhs .Ljp_phys_080670A4
+	adds r0, r1, #0
+.Ljp_phys_080670A4:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_080670C2
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_080670C6
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_080670C6
+.Ljp_phys_080670C2:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_080670C6:
+	adds r5, r0, #0
+	str r5, [sp, #0x1a0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	mov r7, sl
+	lsls r7, r7, #0x10
+	str r7, [sp, #0x13c]
+	b .Ljp_phys_080670EA
+.Ljp_phys_080670D6:
+	cmp r3, #0
+	beq .Ljp_phys_080670E6
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080670E6:
+	adds r2, #0x10
+	adds r3, #0x10
+.Ljp_phys_080670EA:
+	ldr r0, [sp, #0x19c]
+	cmp r2, r0
+	bne .Ljp_phys_080670D6
+	adds r5, r3, #0
+	ldr r1, [sp, #0xa4]
+	cmp r1, #1
+	bne .Ljp_phys_0806710C
+	cmp r5, #0
+	beq .Ljp_phys_08067108
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08067108:
+	adds r5, #0x10
+	b .Ljp_phys_0806712E
+.Ljp_phys_0806710C:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_0806712C
+.Ljp_phys_08067114:
+	cmp r2, #0
+	beq .Ljp_phys_08067124
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08067124:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_08067114
+.Ljp_phys_0806712C:
+	adds r5, r2, #0
+.Ljp_phys_0806712E:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_0806713E
+.Ljp_phys_08067138:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_08067138
+.Ljp_phys_0806713E:
+	cmp r0, #0
+	beq .Ljp_phys_08067146
+	bl free
+.Ljp_phys_08067146:
+	ldr r0, [sp, #0x1a0]
+	add r0, r8
+	ldr r7, [sp, #0x1a0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_08067152:
+	ldr r1, [sp, #0xf4]
+	ldr r0, [r1]
+	bl func_08008910
+	adds r6, r0, #0
+	ldr r1, .Ljp_phys_0806718C
+	add r0, sp, #8
+	ldr r2, .Ljp_phys_08067190
+	movs r3, #0x80
+	bl func_08008F0C
+	add r2, sp, #8
+	mov sb, r2
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_08067194
+	cmp r1, #0
+	beq .Ljp_phys_08067184
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r3, r4, r5}
+	stm r0!, {r3, r4, r5}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08067184:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_phys_0806725C
+.Ljp_phys_0806718C:
+	.4byte gUnk_08752F8C
+.Ljp_phys_08067190:
+	.4byte 0x06010200
+.Ljp_phys_08067194:
+	str r1, [sp, #0x19c]
+	movs r0, #1
+	add r1, sp, #0xac
+	str r0, [r1]
+	ldr r0, [r6]
+	ldr r7, [sp, #0x19c]
+	subs r0, r7, r0
+	asrs r4, r0, #4
+	add r0, sp, #0xa8
+	str r4, [r0]
+	ldr r2, [r1]
+	mov sl, r1
+	cmp r4, r2
+	bhs .Ljp_phys_080671B2
+	mov r0, sl
+.Ljp_phys_080671B2:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_080671D0
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_080671D4
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_080671D4
+.Ljp_phys_080671D0:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_080671D4:
+	adds r5, r0, #0
+	str r5, [sp, #0x1a0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	b .Ljp_phys_080671F2
+.Ljp_phys_080671DE:
+	cmp r3, #0
+	beq .Ljp_phys_080671EE
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080671EE:
+	adds r2, #0x10
+	adds r3, #0x10
+.Ljp_phys_080671F2:
+	ldr r0, [sp, #0x19c]
+	cmp r2, r0
+	bne .Ljp_phys_080671DE
+	adds r5, r3, #0
+	mov r2, sl
+	ldr r1, [r2]
+	cmp r1, #1
+	bne .Ljp_phys_08067216
+	cmp r5, #0
+	beq .Ljp_phys_08067212
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r3, r4, r7}
+	stm r0!, {r3, r4, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08067212:
+	adds r5, #0x10
+	b .Ljp_phys_08067238
+.Ljp_phys_08067216:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_08067236
+.Ljp_phys_0806721E:
+	cmp r2, #0
+	beq .Ljp_phys_0806722E
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_0806722E:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_0806721E
+.Ljp_phys_08067236:
+	adds r5, r2, #0
+.Ljp_phys_08067238:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_08067248
+.Ljp_phys_08067242:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_08067242
+.Ljp_phys_08067248:
+	cmp r0, #0
+	beq .Ljp_phys_08067250
+	bl free
+.Ljp_phys_08067250:
+	ldr r0, [sp, #0x1a0]
+	add r0, r8
+	ldr r1, [sp, #0x1a0]
+	str r1, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_0806725C:
+	ldr r2, [sp, #0xf4]
+	ldr r0, [r2]
+	bl func_08008910
+	adds r6, r0, #0
+	ldr r1, .Ljp_phys_08067298
+	add r0, sp, #8
+	ldr r2, .Ljp_phys_0806729C
+	movs r3, #0x20
+	bl func_08008F0C
+	add r3, sp, #8
+	mov sb, r3
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_080672A0
+	cmp r1, #0
+	beq .Ljp_phys_0806728E
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_0806728E:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_phys_0806736C
+	.align 2, 0
+.Ljp_phys_08067298:
+	.4byte gUnk_0875300C
+.Ljp_phys_0806729C:
+	.4byte 0x05000240
+.Ljp_phys_080672A0:
+	str r1, [sp, #0x19c]
+	movs r0, #1
+	add r1, sp, #0xb4
+	str r0, [r1]
+	ldr r0, [r6]
+	ldr r2, [sp, #0x19c]
+	subs r0, r2, r0
+	asrs r4, r0, #4
+	add r0, sp, #0xb0
+	str r4, [r0]
+	ldr r2, [r1]
+	mov sl, r1
+	cmp r4, r2
+	bhs .Ljp_phys_080672BE
+	mov r0, sl
+.Ljp_phys_080672BE:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_080672DC
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_080672E0
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_080672E0
+.Ljp_phys_080672DC:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_080672E0:
+	adds r5, r0, #0
+	str r5, [sp, #0x1a0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	ldr r4, [sp, #0x19c]
+	cmp r2, r4
+	beq .Ljp_phys_08067308
+.Ljp_phys_080672EE:
+	cmp r3, #0
+	beq .Ljp_phys_080672FE
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080672FE:
+	adds r2, #0x10
+	adds r3, #0x10
+	ldr r5, [sp, #0x19c]
+	cmp r2, r5
+	bne .Ljp_phys_080672EE
+.Ljp_phys_08067308:
+	adds r5, r3, #0
+	mov r7, sl
+	ldr r1, [r7]
+	cmp r1, #1
+	bne .Ljp_phys_08067326
+	cmp r5, #0
+	beq .Ljp_phys_08067322
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08067322:
+	adds r5, #0x10
+	b .Ljp_phys_08067348
+.Ljp_phys_08067326:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_08067346
+.Ljp_phys_0806732E:
+	cmp r2, #0
+	beq .Ljp_phys_0806733E
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_0806733E:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_0806732E
+.Ljp_phys_08067346:
+	adds r5, r2, #0
+.Ljp_phys_08067348:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_08067358
+.Ljp_phys_08067352:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_08067352
+.Ljp_phys_08067358:
+	cmp r0, #0
+	beq .Ljp_phys_08067360
+	bl free
+.Ljp_phys_08067360:
+	ldr r0, [sp, #0x1a0]
+	add r0, r8
+	ldr r7, [sp, #0x1a0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_0806736C:
+	ldr r1, [sp, #0xf4]
+	ldr r0, [r1]
+	bl func_08008910
+	adds r6, r0, #0
+	ldr r1, .Ljp_phys_080673A8
+	add r0, sp, #8
+	ldr r2, .Ljp_phys_080673AC
+	movs r3, #0xd0
+	lsls r3, r3, #1
+	bl func_08008F0C
+	add r2, sp, #8
+	mov sb, r2
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_080673B0
+	cmp r1, #0
+	beq .Ljp_phys_080673A0
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r3, r4, r5}
+	stm r0!, {r3, r4, r5}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080673A0:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_phys_08067478
+.Ljp_phys_080673A8:
+	.4byte gUnk_08750C8C
+.Ljp_phys_080673AC:
+	.4byte 0x06002A00
+.Ljp_phys_080673B0:
+	str r1, [sp, #0x19c]
+	movs r0, #1
+	add r1, sp, #0xbc
+	str r0, [r1]
+	ldr r0, [r6]
+	ldr r7, [sp, #0x19c]
+	subs r0, r7, r0
+	asrs r4, r0, #4
+	add r0, sp, #0xb8
+	str r4, [r0]
+	ldr r2, [r1]
+	mov sl, r1
+	cmp r4, r2
+	bhs .Ljp_phys_080673CE
+	mov r0, sl
+.Ljp_phys_080673CE:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_080673EC
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_080673F0
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_080673F0
+.Ljp_phys_080673EC:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_080673F0:
+	adds r5, r0, #0
+	str r5, [sp, #0x1a0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	b .Ljp_phys_0806740E
+.Ljp_phys_080673FA:
+	cmp r3, #0
+	beq .Ljp_phys_0806740A
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_0806740A:
+	adds r2, #0x10
+	adds r3, #0x10
+.Ljp_phys_0806740E:
+	ldr r0, [sp, #0x19c]
+	cmp r2, r0
+	bne .Ljp_phys_080673FA
+	adds r5, r3, #0
+	mov r2, sl
+	ldr r1, [r2]
+	cmp r1, #1
+	bne .Ljp_phys_08067432
+	cmp r5, #0
+	beq .Ljp_phys_0806742E
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r3, r4, r7}
+	stm r0!, {r3, r4, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_0806742E:
+	adds r5, #0x10
+	b .Ljp_phys_08067454
+.Ljp_phys_08067432:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_08067452
+.Ljp_phys_0806743A:
+	cmp r2, #0
+	beq .Ljp_phys_0806744A
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_0806744A:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_0806743A
+.Ljp_phys_08067452:
+	adds r5, r2, #0
+.Ljp_phys_08067454:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_08067464
+.Ljp_phys_0806745E:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_0806745E
+.Ljp_phys_08067464:
+	cmp r0, #0
+	beq .Ljp_phys_0806746C
+	bl free
+.Ljp_phys_0806746C:
+	ldr r0, [sp, #0x1a0]
+	add r0, r8
+	ldr r1, [sp, #0x1a0]
+	str r1, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_08067478:
+	ldr r2, [sp, #0xf4]
+	ldr r0, [r2]
+	bl func_08008910
+	adds r6, r0, #0
+	ldr r1, .Ljp_phys_080674B4
+	add r0, sp, #8
+	ldr r2, .Ljp_phys_080674B8
+	movs r3, #0x90
+	lsls r3, r3, #1
+	bl func_08008F0C
+	add r3, sp, #8
+	mov sb, r3
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_080674BC
+	cmp r1, #0
+	beq .Ljp_phys_080674AC
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080674AC:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_phys_08067588
+.Ljp_phys_080674B4:
+	.4byte gUnk_0875166C
+.Ljp_phys_080674B8:
+	.4byte 0x06001000
+.Ljp_phys_080674BC:
+	str r1, [sp, #0x19c]
+	movs r0, #1
+	add r1, sp, #0xc4
+	str r0, [r1]
+	ldr r0, [r6]
+	ldr r2, [sp, #0x19c]
+	subs r0, r2, r0
+	asrs r4, r0, #4
+	add r0, sp, #0xc0
+	str r4, [r0]
+	ldr r2, [r1]
+	mov sl, r1
+	cmp r4, r2
+	bhs .Ljp_phys_080674DA
+	mov r0, sl
+.Ljp_phys_080674DA:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_080674F8
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_080674FC
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_080674FC
+.Ljp_phys_080674F8:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_080674FC:
+	adds r5, r0, #0
+	str r5, [sp, #0x1a0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	ldr r4, [sp, #0x19c]
+	cmp r2, r4
+	beq .Ljp_phys_08067524
+.Ljp_phys_0806750A:
+	cmp r3, #0
+	beq .Ljp_phys_0806751A
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_0806751A:
+	adds r2, #0x10
+	adds r3, #0x10
+	ldr r5, [sp, #0x19c]
+	cmp r2, r5
+	bne .Ljp_phys_0806750A
+.Ljp_phys_08067524:
+	adds r5, r3, #0
+	mov r7, sl
+	ldr r1, [r7]
+	cmp r1, #1
+	bne .Ljp_phys_08067542
+	cmp r5, #0
+	beq .Ljp_phys_0806753E
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_0806753E:
+	adds r5, #0x10
+	b .Ljp_phys_08067564
+.Ljp_phys_08067542:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_08067562
+.Ljp_phys_0806754A:
+	cmp r2, #0
+	beq .Ljp_phys_0806755A
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_0806755A:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_0806754A
+.Ljp_phys_08067562:
+	adds r5, r2, #0
+.Ljp_phys_08067564:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_08067574
+.Ljp_phys_0806756E:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_0806756E
+.Ljp_phys_08067574:
+	cmp r0, #0
+	beq .Ljp_phys_0806757C
+	bl free
+.Ljp_phys_0806757C:
+	ldr r0, [sp, #0x1a0]
+	add r0, r8
+	ldr r7, [sp, #0x1a0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_08067588:
+	ldr r1, [sp, #0xf4]
+	ldr r0, [r1]
+	bl func_08008910
+	adds r6, r0, #0
+	ldr r1, .Ljp_phys_080675C4
+	add r0, sp, #8
+	ldr r2, .Ljp_phys_080675C8
+	movs r3, #0x90
+	lsls r3, r3, #1
+	bl func_08008F0C
+	add r2, sp, #8
+	mov sb, r2
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_080675CC
+	cmp r1, #0
+	beq .Ljp_phys_080675BC
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r3, r4, r5}
+	stm r0!, {r3, r4, r5}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080675BC:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_phys_08067694
+.Ljp_phys_080675C4:
+	.4byte gUnk_087510AC
+.Ljp_phys_080675C8:
+	.4byte 0x06001120
+.Ljp_phys_080675CC:
+	str r1, [sp, #0x19c]
+	movs r0, #1
+	add r1, sp, #0xcc
+	str r0, [r1]
+	ldr r0, [r6]
+	ldr r7, [sp, #0x19c]
+	subs r0, r7, r0
+	asrs r4, r0, #4
+	add r0, sp, #0xc8
+	str r4, [r0]
+	ldr r2, [r1]
+	mov sl, r1
+	cmp r4, r2
+	bhs .Ljp_phys_080675EA
+	mov r0, sl
+.Ljp_phys_080675EA:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_08067608
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_0806760C
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_0806760C
+.Ljp_phys_08067608:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_0806760C:
+	adds r5, r0, #0
+	str r5, [sp, #0x1a0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	b .Ljp_phys_0806762A
+.Ljp_phys_08067616:
+	cmp r3, #0
+	beq .Ljp_phys_08067626
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08067626:
+	adds r2, #0x10
+	adds r3, #0x10
+.Ljp_phys_0806762A:
+	ldr r0, [sp, #0x19c]
+	cmp r2, r0
+	bne .Ljp_phys_08067616
+	adds r5, r3, #0
+	mov r2, sl
+	ldr r1, [r2]
+	cmp r1, #1
+	bne .Ljp_phys_0806764E
+	cmp r5, #0
+	beq .Ljp_phys_0806764A
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r3, r4, r7}
+	stm r0!, {r3, r4, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_0806764A:
+	adds r5, #0x10
+	b .Ljp_phys_08067670
+.Ljp_phys_0806764E:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_0806766E
+.Ljp_phys_08067656:
+	cmp r2, #0
+	beq .Ljp_phys_08067666
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08067666:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_08067656
+.Ljp_phys_0806766E:
+	adds r5, r2, #0
+.Ljp_phys_08067670:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_08067680
+.Ljp_phys_0806767A:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_0806767A
+.Ljp_phys_08067680:
+	cmp r0, #0
+	beq .Ljp_phys_08067688
+	bl free
+.Ljp_phys_08067688:
+	ldr r0, [sp, #0x1a0]
+	add r0, r8
+	ldr r1, [sp, #0x1a0]
+	str r1, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_08067694:
+	ldr r2, [sp, #0xf4]
+	ldr r0, [r2]
+	bl func_08008910
+	adds r6, r0, #0
+	ldr r1, .Ljp_phys_080676D0
+	add r0, sp, #8
+	ldr r2, .Ljp_phys_080676D4
+	movs r3, #0x20
+	bl func_08008F0C
+	add r3, sp, #8
+	mov sb, r3
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_080676D8
+	cmp r1, #0
+	beq .Ljp_phys_080676C6
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080676C6:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_phys_080677A4
+	.align 2, 0
+.Ljp_phys_080676D0:
+	.4byte gUnk_0875178C
+.Ljp_phys_080676D4:
+	.4byte 0x05000040
+.Ljp_phys_080676D8:
+	str r1, [sp, #0x19c]
+	movs r0, #1
+	add r1, sp, #0xd4
+	str r0, [r1]
+	ldr r0, [r6]
+	ldr r2, [sp, #0x19c]
+	subs r0, r2, r0
+	asrs r4, r0, #4
+	add r0, sp, #0xd0
+	str r4, [r0]
+	ldr r2, [r1]
+	mov sl, r1
+	cmp r4, r2
+	bhs .Ljp_phys_080676F6
+	mov r0, sl
+.Ljp_phys_080676F6:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_08067714
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_08067718
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_08067718
+.Ljp_phys_08067714:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_08067718:
+	adds r5, r0, #0
+	str r5, [sp, #0x1a0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	ldr r4, [sp, #0x19c]
+	cmp r2, r4
+	beq .Ljp_phys_08067740
+.Ljp_phys_08067726:
+	cmp r3, #0
+	beq .Ljp_phys_08067736
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08067736:
+	adds r2, #0x10
+	adds r3, #0x10
+	ldr r5, [sp, #0x19c]
+	cmp r2, r5
+	bne .Ljp_phys_08067726
+.Ljp_phys_08067740:
+	adds r5, r3, #0
+	mov r7, sl
+	ldr r1, [r7]
+	cmp r1, #1
+	bne .Ljp_phys_0806775E
+	cmp r5, #0
+	beq .Ljp_phys_0806775A
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_0806775A:
+	adds r5, #0x10
+	b .Ljp_phys_08067780
+.Ljp_phys_0806775E:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_0806777E
+.Ljp_phys_08067766:
+	cmp r2, #0
+	beq .Ljp_phys_08067776
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08067776:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_08067766
+.Ljp_phys_0806777E:
+	adds r5, r2, #0
+.Ljp_phys_08067780:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_08067790
+.Ljp_phys_0806778A:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_0806778A
+.Ljp_phys_08067790:
+	cmp r0, #0
+	beq .Ljp_phys_08067798
+	bl free
+.Ljp_phys_08067798:
+	ldr r0, [sp, #0x1a0]
+	add r0, r8
+	ldr r7, [sp, #0x1a0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_080677A4:
+	ldr r1, [sp, #0xf4]
+	ldr r0, [r1]
+	bl func_08008910
+	adds r6, r0, #0
+	ldr r1, .Ljp_phys_080677E0
+	add r0, sp, #8
+	ldr r2, .Ljp_phys_080677E4
+	movs r3, #0x20
+	bl func_08008F0C
+	add r2, sp, #8
+	mov sb, r2
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_080677E8
+	cmp r1, #0
+	beq .Ljp_phys_080677D6
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r3, r4, r5}
+	stm r0!, {r3, r4, r5}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080677D6:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_phys_080678B0
+	.align 2, 0
+.Ljp_phys_080677E0:
+	.4byte gUnk_08750C4C
+.Ljp_phys_080677E4:
+	.4byte 0x060100A0
+.Ljp_phys_080677E8:
+	str r1, [sp, #0x19c]
+	movs r0, #1
+	add r1, sp, #0xdc
+	str r0, [r1]
+	ldr r0, [r6]
+	ldr r7, [sp, #0x19c]
+	subs r0, r7, r0
+	asrs r4, r0, #4
+	add r0, sp, #0xd8
+	str r4, [r0]
+	ldr r2, [r1]
+	mov sl, r1
+	cmp r4, r2
+	bhs .Ljp_phys_08067806
+	mov r0, sl
+.Ljp_phys_08067806:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_08067824
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_08067828
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_08067828
+.Ljp_phys_08067824:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_08067828:
+	adds r5, r0, #0
+	str r5, [sp, #0x1a0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	b .Ljp_phys_08067846
+.Ljp_phys_08067832:
+	cmp r3, #0
+	beq .Ljp_phys_08067842
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08067842:
+	adds r2, #0x10
+	adds r3, #0x10
+.Ljp_phys_08067846:
+	ldr r0, [sp, #0x19c]
+	cmp r2, r0
+	bne .Ljp_phys_08067832
+	adds r5, r3, #0
+	mov r2, sl
+	ldr r1, [r2]
+	cmp r1, #1
+	bne .Ljp_phys_0806786A
+	cmp r5, #0
+	beq .Ljp_phys_08067866
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r3, r4, r7}
+	stm r0!, {r3, r4, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08067866:
+	adds r5, #0x10
+	b .Ljp_phys_0806788C
+.Ljp_phys_0806786A:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_0806788A
+.Ljp_phys_08067872:
+	cmp r2, #0
+	beq .Ljp_phys_08067882
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08067882:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_08067872
+.Ljp_phys_0806788A:
+	adds r5, r2, #0
+.Ljp_phys_0806788C:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_0806789C
+.Ljp_phys_08067896:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_08067896
+.Ljp_phys_0806789C:
+	cmp r0, #0
+	beq .Ljp_phys_080678A4
+	bl free
+.Ljp_phys_080678A4:
+	ldr r0, [sp, #0x1a0]
+	add r0, r8
+	ldr r1, [sp, #0x1a0]
+	str r1, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_080678B0:
+	ldr r2, [sp, #0xf4]
+	ldr r0, [r2]
+	bl func_08008910
+	adds r6, r0, #0
+	ldr r1, .Ljp_phys_080678EC
+	add r0, sp, #8
+	ldr r2, .Ljp_phys_080678F0
+	movs r3, #0x20
+	bl func_08008F0C
+	add r3, sp, #8
+	mov sb, r3
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_080678F4
+	cmp r1, #0
+	beq .Ljp_phys_080678E2
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080678E2:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_phys_080679C0
+	.align 2, 0
+.Ljp_phys_080678EC:
+	.4byte gUnk_08750C6C
+.Ljp_phys_080678F0:
+	.4byte 0x05000220
+.Ljp_phys_080678F4:
+	str r1, [sp, #0x19c]
+	movs r0, #1
+	add r1, sp, #0xe4
+	str r0, [r1]
+	ldr r0, [r6]
+	ldr r2, [sp, #0x19c]
+	subs r0, r2, r0
+	asrs r4, r0, #4
+	add r0, sp, #0xe0
+	str r4, [r0]
+	ldr r2, [r1]
+	mov sl, r1
+	cmp r4, r2
+	bhs .Ljp_phys_08067912
+	mov r0, sl
+.Ljp_phys_08067912:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_08067930
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_08067934
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_08067934
+.Ljp_phys_08067930:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_08067934:
+	adds r5, r0, #0
+	str r5, [sp, #0x1a0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	ldr r4, [sp, #0x19c]
+	cmp r2, r4
+	beq .Ljp_phys_0806795C
+.Ljp_phys_08067942:
+	cmp r3, #0
+	beq .Ljp_phys_08067952
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08067952:
+	adds r2, #0x10
+	adds r3, #0x10
+	ldr r5, [sp, #0x19c]
+	cmp r2, r5
+	bne .Ljp_phys_08067942
+.Ljp_phys_0806795C:
+	adds r5, r3, #0
+	mov r7, sl
+	ldr r1, [r7]
+	cmp r1, #1
+	bne .Ljp_phys_0806797A
+	cmp r5, #0
+	beq .Ljp_phys_08067976
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08067976:
+	adds r5, #0x10
+	b .Ljp_phys_0806799C
+.Ljp_phys_0806797A:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_0806799A
+.Ljp_phys_08067982:
+	cmp r2, #0
+	beq .Ljp_phys_08067992
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08067992:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_08067982
+.Ljp_phys_0806799A:
+	adds r5, r2, #0
+.Ljp_phys_0806799C:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_080679AC
+.Ljp_phys_080679A6:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_080679A6
+.Ljp_phys_080679AC:
+	cmp r0, #0
+	beq .Ljp_phys_080679B4
+	bl free
+.Ljp_phys_080679B4:
+	ldr r0, [sp, #0x1a0]
+	add r0, r8
+	ldr r7, [sp, #0x1a0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_080679C0:
+	movs r0, #4
+	str r0, [sp, #0xfc]
+	ldr r1, [sp, #0xf4]
+	ldr r2, .Ljp_phys_08067A30
+	adds r4, r1, r2
+	ldr r0, [r4]
+	ldrb r0, [r0, #0x11]
+	ldr r3, [sp, #0x160]
+	strb r0, [r3]
+	ldr r1, [r4]
+	movs r0, #0xc8
+	ldr r5, [sp, #0x158]
+	str r0, [r5]
+	ldrb r1, [r1, #0x10]
+	lsrs r2, r1, #3
+	lsls r0, r2, #3
+	subs r0, r0, r2
+	lsls r1, r1, #0x1d
+	lsrs r1, r1, #0x1d
+	adds r0, r0, r1
+	ldr r6, [sp, #0x15c]
+	str r0, [r6]
+	add r1, sp, #0xe8
+	add r3, sp, #0xec
+	ldr r2, [r1]
+	ldr r0, [r3]
+	cmp r2, r0
+	bls .Ljp_phys_080679FA
+	adds r1, r3, #0
+.Ljp_phys_080679FA:
+	ldr r3, [r1]
+	ldr r0, [r4]
+	ldrb r0, [r0, #0x12]
+	lsls r0, r0, #0x1b
+	lsrs r0, r0, #0x1b
+	cmp r0, #5
+	bhi .Ljp_phys_08067A5E
+	ldr r5, [sp, #0x160]
+	add r4, sp, #0xf0
+	ldrb r1, [r4]
+	lsls r0, r1, #0x19
+	lsrs r2, r0, #0x1b
+	cmp r2, #0
+	bne .Ljp_phys_08067A34
+	lsls r0, r1, #0x1e
+	lsrs r0, r0, #0x1e
+	movs r2, #4
+	rsbs r2, r2, #0
+	subs r0, #1
+	movs r1, #3
+	ands r0, r1
+	ldrb r1, [r5]
+	ands r2, r1
+	orrs r2, r0
+	strb r2, [r4]
+	movs r2, #0x1d
+	b .Ljp_phys_08067A36
+.Ljp_phys_08067A30:
+	.4byte 0x0000058C
+.Ljp_phys_08067A34:
+	subs r2, #1
+.Ljp_phys_08067A36:
+	movs r0, #0x1f
+	ands r2, r0
+	lsls r2, r2, #2
+	ldrb r1, [r5]
+	movs r0, #0x7d
+	rsbs r0, r0, #0
+	ands r0, r1
+	orrs r0, r2
+	strb r0, [r5]
+	ldr r7, [sp, #0x160]
+	ldrb r1, [r7]
+	lsls r0, r1, #0x1e
+	lsrs r0, r0, #0x1e
+	cmp r0, #3
+	bne .Ljp_phys_08067A5E
+	lsls r0, r1, #0x19
+	lsrs r0, r0, #0x1b
+	cmp r0, #0x1d
+	bne .Ljp_phys_08067A5E
+	subs r3, #1
+.Ljp_phys_08067A5E:
+	ldr r0, [sp, #0xf8]
+	ldr r1, [r0, #0x18]
+	ldr r2, [sp, #0xfc]
+	lsls r4, r2, #6
+	adds r1, r1, r4
+	adds r1, #0xc
+	movs r6, #0x20
+	str r6, [sp]
+	adds r0, r3, #0
+	movs r2, #0x90
+	lsls r2, r2, #1
+	movs r3, #0
+	bl func_0804ED28
+	ldr r3, [sp, #0xf8]
+	ldr r0, [r3, #0x18]
+	adds r0, r0, r4
+	adds r0, #0xe
+	ldr r5, [sp, #0x198]
+	lsrs r1, r5, #0x10
+	movs r7, #0
+	mov r8, r7
+	mov r2, r8
+	str r2, [sp]
+	str r6, [sp, #4]
+	movs r2, #4
+	movs r3, #2
+	bl func_0804E9F4
+	ldr r3, [sp, #0xf8]
+	ldr r0, [r3, #0x18]
+	adds r0, r0, r4
+	adds r0, #0x1a
+	ldr r5, [sp, #0x160]
+	ldrb r1, [r5]
+	lsls r1, r1, #0x1e
+	lsrs r1, r1, #0x1c
+	adds r1, #0x48
+	str r7, [sp]
+	str r6, [sp, #4]
+	movs r2, #2
+	movs r3, #2
+	bl func_0804E9F4
+	ldr r1, [sp, #0xf8]
+	ldr r0, [r1, #0x18]
+	adds r0, r0, r4
+	adds r0, #0x1e
+	ldr r2, [sp, #0x190]
+	lsrs r1, r2, #0x10
+	str r7, [sp]
+	str r6, [sp, #4]
+	movs r2, #4
+	movs r3, #2
+	bl func_0804E9F4
+	ldr r3, [sp, #0xfc]
+	adds r3, #3
+	ldr r4, [sp, #0xf8]
+	ldr r0, [r4, #0x18]
+	lsls r3, r3, #6
+	mov sl, r3
+	add r0, sl
+	adds r0, #0xa
+	ldr r5, [sp, #0x16c]
+	lsrs r1, r5, #0x10
+	str r7, [sp]
+	str r6, [sp, #4]
+	movs r2, #2
+	movs r3, #2
+	bl func_0804E9F4
+	ldr r7, [sp, #0xfc]
+	adds r7, #5
+	ldr r0, [r4, #0x18]
+	adds r1, r7, #0
+	lsls r1, r1, #6
+	mov sb, r1
+	add r0, sb
+	adds r0, #0xa
+	ldr r2, [sp, #0x178]
+	lsrs r1, r2, #0x10
+	mov r3, r8
+	str r3, [sp]
+	str r6, [sp, #4]
+	movs r2, #2
+	movs r3, #2
+	bl func_0804E9F4
+	ldr r4, [sp, #0xf4]
+	ldr r7, .Ljp_phys_08067C10
+	adds r5, r4, r7
+	ldr r0, [r5]
+	ldr r4, .Ljp_phys_08067C14
+	adds r0, r0, r4
+	movs r1, #0
+	bl func_0809B038
+	ldr r7, [r0]
+	ldr r0, [r5]
+	adds r0, r0, r4
+	movs r1, #0
+	bl func_0809B038
+	ldr r4, [r0, #4]
+	ldr r0, [sp, #0xf8]
+	ldr r1, [r0, #0x18]
+	add r1, sl
+	adds r1, #0x34
+	str r6, [sp]
+	adds r0, r7, #0
+	movs r2, #0x90
+	lsls r2, r2, #1
+	movs r3, #0
+	bl func_0804ED28
+	ldr r2, [sp, #0xf8]
+	ldr r1, [r2, #0x18]
+	add r1, sb
+	adds r1, #0x34
+	str r6, [sp]
+	adds r0, r4, #0
+	movs r2, #0x90
+	lsls r2, r2, #1
+	movs r3, #0
+	bl func_0804ED28
+	ldr r3, [sp, #0xf8]
+	ldr r0, [r3, #0x18]
+	add r0, sl
+	adds r0, #0x36
+	ldr r5, [sp, #0x164]
+	lsrs r4, r5, #0x10
+	mov r7, r8
+	str r7, [sp]
+	str r6, [sp, #4]
+	adds r1, r4, #0
+	movs r2, #2
+	movs r3, #2
+	bl func_0804E9F4
+	ldr r1, [sp, #0xf8]
+	ldr r0, [r1, #0x18]
+	add r0, sb
+	adds r0, #0x36
+	str r7, [sp]
+	str r6, [sp, #4]
+	adds r1, r4, #0
+	movs r2, #2
+	movs r3, #2
+	bl func_0804E9F4
+	ldr r2, [sp, #0xfc]
+	adds r2, #8
+	str r2, [sp, #0xfc]
+	movs r0, #0x10
+	str r0, [sp, #0xc]
+	add r1, sp, #8
+	lsls r0, r2, #3
+	strh r0, [r1]
+	ldr r3, [sp, #0xf4]
+	ldr r4, .Ljp_phys_08067C18
+	adds r2, r3, r4
+	ldr r0, [r2]
+	cmp r0, #0x3c
+	bhi .Ljp_phys_08067BC2
+	lsls r0, r0, #4
+	adds r0, #4
+	adds r0, r2, r0
+	cmp r0, #0
+	beq .Ljp_phys_08067BBC
+	ldm r1!, {r5, r6, r7}
+	stm r0!, {r5, r6, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08067BBC:
+	ldr r0, [r2]
+	adds r0, #1
+	str r0, [r2]
+.Ljp_phys_08067BC2:
+	ldr r1, [sp, #0xfc]
+	adds r1, #1
+	ldr r2, [sp, #0xf8]
+	ldr r0, [r2, #0x18]
+	lsls r4, r1, #6
+	adds r0, r0, r4
+	adds r0, #8
+	ldr r1, .Ljp_phys_08067C1C
+	movs r2, #0
+	str r2, [sp]
+	movs r5, #0x20
+	str r5, [sp, #4]
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	ldr r3, [sp, #0xf4]
+	ldr r6, .Ljp_phys_08067C10
+	adds r0, r3, r6
+	ldr r0, [r0]
+	ldr r7, .Ljp_phys_08067C14
+	adds r0, r0, r7
+	ldrb r0, [r0, #4]
+	lsls r0, r0, #0x1f
+	cmp r0, #0
+	beq .Ljp_phys_08067C24
+	ldr r0, [sp, #0xf8]
+	ldr r1, [r0, #0x18]
+	adds r1, r1, r4
+	adds r1, #0x14
+	ldr r0, .Ljp_phys_08067C20
+	movs r2, #0xa8
+	lsls r2, r2, #1
+	str r5, [sp]
+	movs r3, #0
+	bl func_0804EE30
+	b .Ljp_phys_08067C3A
+	.align 2, 0
+.Ljp_phys_08067C10:
+	.4byte 0x0000058C
+.Ljp_phys_08067C14:
+	.4byte 0x00001AA8
+.Ljp_phys_08067C18:
+	.4byte 0x00000DE8
+.Ljp_phys_08067C1C:
+	.4byte 0x0000015B
+.Ljp_phys_08067C20:
+	.4byte 0x000186A0
+.Ljp_phys_08067C24:
+	ldr r2, [sp, #0xf8]
+	ldr r1, [r2, #0x18]
+	adds r1, r1, r4
+	adds r1, #0x12
+	ldr r0, .Ljp_phys_08067E1C
+	movs r2, #0xa8
+	lsls r2, r2, #1
+	str r5, [sp]
+	movs r3, #0
+	bl func_0804EE30
+.Ljp_phys_08067C3A:
+	ldr r4, [sp, #0xfc]
+	adds r4, #1
+	ldr r3, [sp, #0xf8]
+	ldr r0, [r3, #0x18]
+	lsls r4, r4, #6
+	adds r0, r0, r4
+	adds r0, #0x18
+	ldr r5, [sp, #0x11c]
+	lsrs r1, r5, #0x10
+	movs r6, #0
+	str r6, [sp]
+	movs r5, #0x20
+	str r5, [sp, #4]
+	movs r2, #4
+	movs r3, #2
+	bl func_0804E9F4
+	ldr r7, [sp, #0xf8]
+	ldr r0, [r7, #0x18]
+	adds r0, r0, r4
+	adds r0, #0x28
+	ldr r2, [sp, #0x13c]
+	lsrs r1, r2, #0x10
+	str r6, [sp]
+	str r5, [sp, #4]
+	movs r2, #4
+	movs r3, #2
+	bl func_0804E9F4
+	ldr r3, [sp, #0xfc]
+	adds r3, #2
+	str r3, [sp, #0xfc]
+	ldr r4, [sp, #0xf4]
+	ldr r5, .Ljp_phys_08067E20
+	adds r0, r4, r5
+	ldr r1, [r0]
+	ldr r6, .Ljp_phys_08067E24
+	adds r0, r1, r6
+	ldrb r0, [r0, #4]
+	lsls r0, r0, #0x1f
+	ldr r7, .Ljp_phys_08067E1C
+	str r7, [sp, #0x104]
+	cmp r0, #0
+	beq .Ljp_phys_08067C96
+	ldr r0, .Ljp_phys_08067E28
+	str r0, [sp, #0x104]
+.Ljp_phys_08067C96:
+	movs r2, #0
+	str r2, [sp, #0x108]
+	ldr r3, .Ljp_phys_08067E2C
+	adds r0, r1, r3
+	ldr r0, [r0]
+	cmp r2, r0
+	blo .Ljp_phys_08067CA6
+	b .Ljp_phys_0806805A
+.Ljp_phys_08067CA6:
+	ldr r4, [sp, #0x160]
+	ldrb r0, [r4]
+	lsls r0, r0, #0x19
+	lsrs r0, r0, #0x1b
+	adds r0, #1
+	cmp r2, r0
+	blo .Ljp_phys_08067CB6
+	b .Ljp_phys_0806805A
+.Ljp_phys_08067CB6:
+	movs r5, #0x20
+	mov sl, r5
+	ldr r7, .Ljp_phys_08067E30
+	ldr r6, [sp, #0xf4]
+	adds r7, r6, r7
+	str r7, [sp, #0x10c]
+.Ljp_phys_08067CC2:
+	movs r6, #0
+	ldr r1, [sp, #0x160]
+	ldrb r0, [r1]
+	lsls r0, r0, #0x19
+	lsrs r0, r0, #0x1b
+	adds r0, #1
+	ldr r2, [sp, #0x108]
+	subs r0, r0, r2
+	ldr r5, [sp, #0xfc]
+	adds r5, #1
+	ldr r3, [sp, #0xf8]
+	ldr r1, [r3, #0x18]
+	lsls r4, r5, #6
+	adds r1, r1, r4
+	adds r1, #8
+	mov r7, sl
+	str r7, [sp]
+	movs r2, #0x90
+	lsls r2, r2, #1
+	movs r3, #0
+	bl func_0804ED28
+	ldr r1, [sp, #0xf8]
+	ldr r0, [r1, #0x18]
+	adds r0, r0, r4
+	adds r0, #0xa
+	movs r2, #0x38
+	lsls r1, r2, #0x10
+	str r6, [sp]
+	str r7, [sp, #4]
+	lsrs r1, r1, #0x10
+	movs r2, #2
+	movs r3, #2
+	bl func_0804E9F4
+	movs r0, #0x40
+	str r0, [sp, #0xc]
+	add r0, sp, #8
+	ldr r3, [sp, #0xfc]
+	lsls r1, r3, #3
+	strh r1, [r0]
+	ldr r4, [sp, #0x10c]
+	ldr r0, [r4]
+	adds r2, r1, #0
+	str r5, [sp, #0x184]
+	cmp r0, #0x3c
+	bhi .Ljp_phys_08067D3C
+	lsls r0, r0, #4
+	adds r0, #4
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_08067D34
+	add r1, sp, #8
+	ldm r1!, {r5, r6, r7}
+	stm r0!, {r5, r6, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08067D34:
+	ldr r1, [sp, #0x10c]
+	ldr r0, [r1]
+	adds r0, #1
+	str r0, [r1]
+.Ljp_phys_08067D3C:
+	movs r0, #0xd0
+	str r0, [sp, #0xc]
+	add r0, sp, #8
+	strh r2, [r0]
+	ldr r3, [sp, #0xf4]
+	ldr r4, .Ljp_phys_08067E30
+	adds r2, r3, r4
+	ldr r0, [r2]
+	cmp r0, #0x3c
+	bhi .Ljp_phys_08067D6A
+	lsls r0, r0, #4
+	adds r0, #4
+	adds r0, r2, r0
+	cmp r0, #0
+	beq .Ljp_phys_08067D64
+	add r1, sp, #8
+	ldm r1!, {r5, r6, r7}
+	stm r0!, {r5, r6, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08067D64:
+	ldr r0, [r2]
+	adds r0, #1
+	str r0, [r2]
+.Ljp_phys_08067D6A:
+	movs r0, #0x40
+	str r0, [sp, #0xc]
+	add r1, sp, #8
+	ldr r2, [sp, #0xfc]
+	adds r2, #2
+	lsls r0, r2, #3
+	strh r0, [r1]
+	ldr r0, [sp, #0xf4]
+	ldr r1, .Ljp_phys_08067E34
+	adds r3, r0, r1
+	ldr r0, [r3]
+	mov r8, r2
+	cmp r0, #0x3b
+	bhi .Ljp_phys_08067DA0
+	lsls r0, r0, #4
+	adds r0, #4
+	adds r0, r3, r0
+	cmp r0, #0
+	beq .Ljp_phys_08067D9A
+	add r1, sp, #8
+	ldm r1!, {r2, r4, r5}
+	stm r0!, {r2, r4, r5}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08067D9A:
+	ldr r0, [r3]
+	adds r0, #1
+	str r0, [r3]
+.Ljp_phys_08067DA0:
+	movs r0, #0xe0
+	str r0, [sp, #0xc]
+	ldr r6, [sp, #0xf4]
+	ldr r7, .Ljp_phys_08067E34
+	adds r2, r6, r7
+	ldr r0, [r2]
+	cmp r0, #0x3b
+	bhi .Ljp_phys_08067DCA
+	lsls r0, r0, #4
+	adds r0, #4
+	adds r0, r2, r0
+	cmp r0, #0
+	beq .Ljp_phys_08067DC4
+	add r1, sp, #8
+	ldm r1!, {r3, r4, r5}
+	stm r0!, {r3, r4, r5}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08067DC4:
+	ldr r0, [r2]
+	adds r0, #1
+	str r0, [r2]
+.Ljp_phys_08067DCA:
+	ldr r6, [sp, #0xf4]
+	ldr r7, .Ljp_phys_08067E20
+	adds r0, r6, r7
+	ldr r0, [r0]
+	ldr r1, .Ljp_phys_08067E24
+	adds r0, r0, r1
+	ldr r1, [sp, #0x108]
+	bl func_0809B018
+	ldr r7, [r0]
+	adds r0, r7, #0
+	ldr r1, [sp, #0x104]
+	bl __udivsi3
+	adds r5, r0, #0
+	cmp r5, #0
+	beq .Ljp_phys_08067E6A
+	ldr r2, [sp, #0xf8]
+	ldr r0, [r2, #0x18]
+	ldr r3, [sp, #0x184]
+	lsls r6, r3, #6
+	adds r0, r0, r6
+	adds r0, #0x14
+	movs r1, #0
+	str r1, [sp]
+	movs r4, #0x20
+	str r4, [sp, #4]
+	movs r1, #0xad
+	lsls r1, r1, #1
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	cmp r5, #0x64
+	ble .Ljp_phys_08067E38
+	ldr r0, [sp, #0xf8]
+	ldr r1, [r0, #0x18]
+	adds r1, r1, r6
+	adds r1, #0x1e
+	b .Ljp_phys_08067E44
+	.align 2, 0
+.Ljp_phys_08067E1C:
+	.4byte 0x00002710
+.Ljp_phys_08067E20:
+	.4byte 0x0000058C
+.Ljp_phys_08067E24:
+	.4byte 0x00001AA8
+.Ljp_phys_08067E28:
+	.4byte 0x000186A0
+.Ljp_phys_08067E2C:
+	.4byte 0x00001AB0
+.Ljp_phys_08067E30:
+	.4byte 0x00000DE8
+.Ljp_phys_08067E34:
+	.4byte 0x000011BC
+.Ljp_phys_08067E38:
+	cmp r5, #0xa
+	ble .Ljp_phys_08067E54
+	ldr r2, [sp, #0xf8]
+	ldr r1, [r2, #0x18]
+	adds r1, r1, r6
+	adds r1, #0x1c
+.Ljp_phys_08067E44:
+	str r4, [sp]
+	adds r0, r5, #0
+	movs r2, #0xa8
+	lsls r2, r2, #1
+	movs r3, #0
+	bl func_0804EE30
+	b .Ljp_phys_08067E6A
+.Ljp_phys_08067E54:
+	ldr r3, [sp, #0xf8]
+	ldr r1, [r3, #0x18]
+	adds r1, r1, r6
+	adds r1, #0x1a
+	str r4, [sp]
+	adds r0, r5, #0
+	movs r2, #0xa8
+	lsls r2, r2, #1
+	movs r3, #0
+	bl func_0804EE30
+.Ljp_phys_08067E6A:
+	adds r0, r7, #0
+	ldr r1, [sp, #0x104]
+	bl __umodsi3
+	adds r1, r0, #0
+	lsls r0, r1, #2
+	adds r0, r0, r1
+	lsls r0, r0, #4
+	ldr r1, [sp, #0x104]
+	bl __udivsi3
+	adds r4, r0, #0
+	movs r6, #0
+	ldr r5, [sp, #0xfc]
+	adds r5, #3
+	str r5, [sp, #0x188]
+	ldr r7, [sp, #0x108]
+	adds r7, #1
+	mov sb, r7
+	b .Ljp_phys_08067EB8
+.Ljp_phys_08067E92:
+	ldr r1, [sp, #0xf8]
+	ldr r0, [r1, #0x18]
+	mov r2, r8
+	lsls r1, r2, #6
+	adds r0, r0, r1
+	movs r1, #0x11
+	subs r1, r1, r6
+	lsls r1, r1, #1
+	adds r0, r0, r1
+	movs r1, #2
+	str r1, [sp]
+	mov r3, sl
+	str r3, [sp, #4]
+	movs r1, #0x88
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r6, #1
+.Ljp_phys_08067EB8:
+	adds r1, r4, #0
+	cmp r4, #0
+	bge .Ljp_phys_08067EC0
+	adds r1, r4, #7
+.Ljp_phys_08067EC0:
+	asrs r2, r1, #3
+	cmp r6, r2
+	blt .Ljp_phys_08067E92
+	cmp r6, #9
+	bgt .Ljp_phys_08067F1C
+	ldr r5, [sp, #0xf8]
+	ldr r1, [r5, #0x18]
+	mov r7, r8
+	lsls r0, r7, #6
+	adds r1, r1, r0
+	movs r0, #0x11
+	subs r0, r0, r6
+	lsls r0, r0, #1
+	adds r3, r1, r0
+	lsls r1, r2, #3
+	subs r1, r4, r1
+	adds r1, #0x80
+	lsls r1, r1, #0x10
+	lsrs r1, r1, #0x10
+	movs r0, #2
+	str r0, [sp]
+	mov r0, sl
+	str r0, [sp, #4]
+	adds r0, r3, #0
+	b .Ljp_phys_08067F0E
+.Ljp_phys_08067EF2:
+	ldr r1, [sp, #0xf8]
+	ldr r0, [r1, #0x18]
+	mov r2, r8
+	lsls r1, r2, #6
+	adds r0, r0, r1
+	movs r1, #0x11
+	subs r1, r1, r6
+	lsls r1, r1, #1
+	adds r0, r0, r1
+	movs r1, #2
+	str r1, [sp]
+	mov r3, sl
+	str r3, [sp, #4]
+	movs r1, #0x80
+.Ljp_phys_08067F0E:
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r6, #1
+	cmp r6, #9
+	ble .Ljp_phys_08067EF2
+.Ljp_phys_08067F1C:
+	movs r6, #0
+	ldr r4, [sp, #0xf4]
+	ldr r5, .Ljp_phys_08067F94
+	adds r0, r4, r5
+	ldr r0, [r0]
+	ldr r7, .Ljp_phys_08067F98
+	adds r0, r0, r7
+	ldr r1, [sp, #0x108]
+	bl func_0809B018
+	ldr r0, [r0, #4]
+	adds r7, r0, #0
+	ldr r1, [sp, #0x104]
+	bl __udivsi3
+	adds r5, r0, #0
+	cmp r5, #0
+	beq .Ljp_phys_08067F76
+	ldr r1, [sp, #0xf8]
+	ldr r0, [r1, #0x18]
+	ldr r2, [sp, #0x184]
+	lsls r4, r2, #6
+	adds r0, r0, r4
+	adds r0, #0x32
+	str r6, [sp]
+	mov r3, sl
+	str r3, [sp, #4]
+	movs r1, #0xad
+	lsls r1, r1, #1
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	ldr r0, [sp, #0xf8]
+	ldr r1, [r0, #0x18]
+	adds r1, r1, r4
+	adds r1, #0x30
+	mov r2, sl
+	str r2, [sp]
+	adds r0, r5, #0
+	movs r2, #0xa8
+	lsls r2, r2, #1
+	movs r3, #0
+	bl func_0804EE30
+.Ljp_phys_08067F76:
+	adds r0, r7, #0
+	ldr r1, [sp, #0x104]
+	bl __umodsi3
+	adds r1, r0, #0
+	lsls r0, r1, #2
+	adds r0, r0, r1
+	lsls r0, r0, #4
+	ldr r1, [sp, #0x104]
+	bl __udivsi3
+	adds r4, r0, #0
+	movs r5, #0x24
+	b .Ljp_phys_08067FBE
+	.align 2, 0
+.Ljp_phys_08067F94:
+	.4byte 0x0000058C
+.Ljp_phys_08067F98:
+	.4byte 0x00001AA8
+.Ljp_phys_08067F9C:
+	ldr r3, [sp, #0xf8]
+	ldr r0, [r3, #0x18]
+	mov r7, r8
+	lsls r1, r7, #6
+	adds r0, r0, r1
+	adds r0, r0, r5
+	movs r1, #2
+	str r1, [sp]
+	mov r1, sl
+	str r1, [sp, #4]
+	movs r1, #0x91
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r5, #2
+	adds r6, #1
+.Ljp_phys_08067FBE:
+	adds r1, r4, #0
+	cmp r4, #0
+	bge .Ljp_phys_08067FC6
+	adds r1, r4, #7
+.Ljp_phys_08067FC6:
+	asrs r2, r1, #3
+	cmp r6, r2
+	blt .Ljp_phys_08067F9C
+	cmp r6, #9
+	bgt .Ljp_phys_08068030
+	ldr r3, [sp, #0xf8]
+	ldr r1, [r3, #0x18]
+	mov r5, r8
+	lsls r0, r5, #6
+	adds r1, r1, r0
+	adds r0, r6, #0
+	adds r0, #0x12
+	lsls r0, r0, #1
+	adds r3, r1, r0
+	lsls r1, r2, #3
+	subs r1, r4, r1
+	adds r1, #0x89
+	lsls r1, r1, #0x10
+	lsrs r1, r1, #0x10
+	movs r0, #2
+	str r0, [sp]
+	mov r7, sl
+	str r7, [sp, #4]
+	adds r0, r3, #0
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r6, #1
+	cmp r6, #9
+	bgt .Ljp_phys_08068030
+	lsls r0, r6, #1
+	adds r4, r0, #0
+	adds r4, #0x24
+.Ljp_phys_0806800A:
+	ldr r1, [sp, #0xf8]
+	ldr r0, [r1, #0x18]
+	mov r2, r8
+	lsls r1, r2, #6
+	adds r0, r0, r1
+	adds r0, r0, r4
+	movs r1, #2
+	str r1, [sp]
+	mov r3, sl
+	str r3, [sp, #4]
+	movs r1, #0x89
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r4, #2
+	adds r6, #1
+	cmp r6, #9
+	ble .Ljp_phys_0806800A
+.Ljp_phys_08068030:
+	ldr r4, [sp, #0x188]
+	str r4, [sp, #0xfc]
+	mov r5, sb
+	str r5, [sp, #0x108]
+	ldr r6, [sp, #0xf4]
+	ldr r7, .Ljp_phys_080681C4
+	adds r0, r6, r7
+	ldr r0, [r0]
+	ldr r1, .Ljp_phys_080681C8
+	adds r0, r0, r1
+	ldr r0, [r0]
+	cmp sb, r0
+	bhs .Ljp_phys_0806805A
+	ldr r2, [sp, #0x160]
+	ldrb r0, [r2]
+	lsls r0, r0, #0x19
+	lsrs r0, r0, #0x1b
+	adds r0, #1
+	cmp sb, r0
+	bhs .Ljp_phys_0806805A
+	b .Ljp_phys_08067CC2
+.Ljp_phys_0806805A:
+	ldr r3, [sp, #0xfc]
+	adds r3, #1
+	str r3, [sp, #0xfc]
+	movs r4, #1
+	mov sb, r4
+	ldr r5, [sp, #0xf4]
+	ldr r6, .Ljp_phys_080681C4
+	adds r0, r5, r6
+	ldr r0, [r0]
+	ldr r7, .Ljp_phys_080681CC
+	adds r0, r0, r7
+	ldr r0, [r0]
+	cmp sb, r0
+	blo .Ljp_phys_08068078
+	b .Ljp_phys_080681A6
+.Ljp_phys_08068078:
+	movs r0, #0
+	mov sl, r0
+	movs r1, #0x20
+	mov r8, r1
+	lsls r0, r3, #6
+	adds r7, r0, #0
+	adds r7, #0x80
+	adds r2, r6, #0
+	adds r2, r5, r2
+	str r2, [sp, #0x114]
+.Ljp_phys_0806808C:
+	ldr r3, [sp, #0x160]
+	ldrb r0, [r3]
+	lsls r0, r0, #0x1e
+	lsrs r0, r0, #0x1e
+	movs r4, #3
+	ands r0, r4
+	movs r1, #4
+	rsbs r1, r1, #0
+	add r5, sp, #0x110
+	ldrb r5, [r5]
+	ands r1, r5
+	orrs r1, r0
+	add r6, sp, #0x110
+	strb r1, [r6]
+	lsls r1, r1, #0x1e
+	lsrs r1, r1, #0x1e
+	mov r0, sb
+	subs r1, r1, r0
+	ands r1, r4
+	ldr r2, [sp, #0xf8]
+	ldr r0, [r2, #0x18]
+	ldr r3, [sp, #0xfc]
+	lsls r6, r3, #6
+	adds r0, r0, r6
+	adds r0, #4
+	lsls r1, r1, #2
+	adds r1, #0x48
+	mov r4, sl
+	str r4, [sp]
+	mov r5, r8
+	str r5, [sp, #4]
+	movs r2, #2
+	movs r3, #2
+	bl func_0804E9F4
+	ldr r1, [sp, #0xf8]
+	ldr r0, [r1, #0x18]
+	adds r0, r0, r6
+	adds r0, #0xa
+	str r4, [sp]
+	str r5, [sp, #4]
+	ldr r2, [sp, #0x16c]
+	lsrs r1, r2, #0x10
+	movs r2, #2
+	movs r3, #2
+	bl func_0804E9F4
+	ldr r3, [sp, #0xf8]
+	ldr r0, [r3, #0x18]
+	adds r0, r0, r7
+	adds r0, #0xa
+	str r4, [sp]
+	str r5, [sp, #4]
+	ldr r4, [sp, #0x178]
+	lsrs r1, r4, #0x10
+	movs r2, #2
+	movs r3, #2
+	bl func_0804E9F4
+	ldr r5, [sp, #0x114]
+	ldr r0, [r5]
+	ldr r1, .Ljp_phys_080681D0
+	adds r0, r0, r1
+	mov r1, sb
+	bl func_0809B038
+	ldr r4, [r0]
+	ldr r0, [r5]
+	ldr r2, .Ljp_phys_080681D0
+	adds r0, r0, r2
+	mov r1, sb
+	bl func_0809B038
+	ldr r5, [r0, #4]
+	ldr r3, [sp, #0xf8]
+	ldr r1, [r3, #0x18]
+	adds r1, r1, r6
+	adds r1, #0x34
+	mov r0, r8
+	str r0, [sp]
+	adds r0, r4, #0
+	movs r2, #0x90
+	lsls r2, r2, #1
+	movs r3, #0
+	bl func_0804ED28
+	ldr r2, [sp, #0xf8]
+	ldr r1, [r2, #0x18]
+	adds r1, r1, r7
+	adds r1, #0x34
+	mov r3, r8
+	str r3, [sp]
+	adds r0, r5, #0
+	movs r2, #0x90
+	lsls r2, r2, #1
+	movs r3, #0
+	bl func_0804ED28
+	ldr r4, [sp, #0xf8]
+	ldr r0, [r4, #0x18]
+	adds r0, r0, r6
+	adds r0, #0x36
+	ldr r5, [sp, #0x164]
+	lsrs r4, r5, #0x10
+	mov r6, sl
+	str r6, [sp]
+	mov r1, r8
+	str r1, [sp, #4]
+	adds r1, r4, #0
+	movs r2, #2
+	movs r3, #2
+	bl func_0804E9F4
+	ldr r2, [sp, #0xf8]
+	ldr r0, [r2, #0x18]
+	adds r0, r0, r7
+	adds r0, #0x36
+	str r6, [sp]
+	mov r3, r8
+	str r3, [sp, #4]
+	adds r1, r4, #0
+	movs r2, #2
+	movs r3, #2
+	bl func_0804E9F4
+	movs r4, #0xa0
+	lsls r4, r4, #1
+	adds r7, r7, r4
+	ldr r5, [sp, #0xfc]
+	adds r5, #5
+	str r5, [sp, #0xfc]
+	movs r6, #1
+	add sb, r6
+	ldr r1, [sp, #0x114]
+	ldr r0, [r1]
+	ldr r2, .Ljp_phys_080681CC
+	adds r0, r0, r2
+	ldr r0, [r0]
+	cmp sb, r0
+	bhs .Ljp_phys_080681A6
+	b .Ljp_phys_0806808C
+.Ljp_phys_080681A6:
+	ldr r3, [sp, #0xfc]
+	lsls r1, r3, #0x13
+	asrs r1, r1, #0x10
+	ldr r0, [sp, #0xf8]
+	bl func_08075E24
+	ldr r0, [sp, #0xf4]
+	add sp, #0x1a4
+	pop {r3, r4, r5}
+	mov r8, r3
+	mov sb, r4
+	mov sl, r5
+	pop {r4, r5, r6, r7}
+	pop {r1}
+	bx r1
+.Ljp_phys_080681C4:
+	.4byte 0x0000058C
+.Ljp_phys_080681C8:
+	.4byte 0x00001AB0
+.Ljp_phys_080681CC:
+	.4byte 0x00001BA4
+.Ljp_phys_080681D0:
+	.4byte 0x00001AA8
+	.global func_08068344
+	.thumb_func
+func_08068344:
+	push {r4, r5, r6, r7, lr}
+	mov r7, sl
+	mov r6, sb
+	mov r5, r8
+	push {r5, r6, r7}
+	sub sp, #0xf4
+	str r0, [sp, #0xbc]
+	ldr r0, .Ljp_phys_0806828C
+	str r0, [sp]
+	ldr r0, [sp, #0xbc]
+	movs r3, #0x20
+	bl func_08076BFC
+	ldr r0, [sp, #0xbc]
+	ldr r2, .Ljp_phys_08068290
+	adds r1, r0, r2
+	ldr r0, .Ljp_phys_08068294
+	str r0, [r1]
+	ldr r3, [sp, #0xbc]
+	ldr r4, .Ljp_phys_08068298
+	adds r0, r3, r4
+	ldr r1, .Ljp_phys_0806829C
+	bl __22IndexedResourceArchivePCUc
+	ldr r5, [sp, #0xbc]
+	ldr r5, [r5, #4]
+	str r5, [sp, #0xc0]
+	ldr r3, .Ljp_phys_080682A0
+	add r2, sp, #0x38
+	movs r0, #6
+	movs r1, #2
+	strh r0, [r2]
+	strh r1, [r2, #2]
+	ldr r0, [sp, #0x38]
+	ldr r7, [sp, #0xbc]
+	movs r1, #0xc8
+	lsls r1, r1, #3
+	adds r4, r7, r1
+	str r3, [sp]
+	adds r1, r4, #0
+	movs r2, #0
+	movs r3, #0
+	bl DrawStringTo2DGfxBuffer
+	ldr r0, [r7]
+	bl func_08008910
+	movs r3, #0xc0
+	lsls r3, r3, #1
+	adds r6, r0, #0
+	movs r5, #0x38
+	lsls r2, r5, #5
+	movs r0, #0xc0
+	lsls r0, r0, #0x13
+	adds r2, r2, r0
+	add r0, sp, #8
+	adds r1, r4, #0
+	bl func_08008F0C
+	add r7, sp, #8
+	mov sb, r7
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_080682AC
+	cmp r1, #0
+	beq .Ljp_phys_08068266
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068266:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	mov r5, sp
+	adds r5, #0x44
+	str r5, [sp, #0xe0]
+	ldr r7, [sp, #0xbc]
+	ldr r0, .Ljp_phys_080682A4
+	adds r7, r7, r0
+	mov sl, r7
+	mov r1, sp
+	adds r1, #0x50
+	str r1, [sp, #0xe4]
+	ldr r3, .Ljp_phys_080682A8
+	ldr r2, [sp, #0xbc]
+	adds r3, r2, r3
+	str r3, [sp, #0xdc]
+	b .Ljp_phys_08068396
+	.align 2, 0
+.Ljp_phys_0806828C:
+	.4byte gText_FarmStatus_ToolLevelList
+.Ljp_phys_08068290:
+	.4byte 0x000005B4
+.Ljp_phys_08068294:
+	.4byte vtable_unk_080E79F8
+.Ljp_phys_08068298:
+	.4byte 0x000009C4
+.Ljp_phys_0806829C:
+	.4byte gUnk_083ED9FC
+.Ljp_phys_080682A0:
+	.4byte gText_FarmStatus_ToolUpgradeInProgress
+.Ljp_phys_080682A4:
+	.4byte 0x000007C4
+.Ljp_phys_080682A8:
+	.4byte 0x000005BC
+.Ljp_phys_080682AC:
+	str r1, [sp, #0xec]
+	movs r0, #1
+	str r0, [sp, #0x40]
+	ldr r0, [r6]
+	adds r4, r1, #0
+	subs r0, r4, r0
+	asrs r4, r0, #4
+	str r4, [sp, #0x3c]
+	add r1, sp, #0x40
+	add r0, sp, #0x3c
+	cmp r4, #1
+	bhs .Ljp_phys_080682C6
+	adds r0, r1, #0
+.Ljp_phys_080682C6:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_080682E4
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_080682E8
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_080682E8
+.Ljp_phys_080682E4:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_080682E8:
+	adds r5, r0, #0
+	str r5, [sp, #0xf0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	mov r5, sp
+	adds r5, #0x44
+	str r5, [sp, #0xe0]
+	ldr r7, [sp, #0xbc]
+	ldr r0, .Ljp_phys_08068348
+	adds r7, r7, r0
+	mov sl, r7
+	mov r1, sp
+	adds r1, #0x50
+	str r1, [sp, #0xe4]
+	ldr r5, .Ljp_phys_0806834C
+	ldr r4, [sp, #0xbc]
+	adds r5, r4, r5
+	str r5, [sp, #0xdc]
+	ldr r7, [sp, #0xec]
+	cmp r2, r7
+	beq .Ljp_phys_0806832C
+.Ljp_phys_08068312:
+	cmp r3, #0
+	beq .Ljp_phys_08068322
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068322:
+	adds r2, #0x10
+	adds r3, #0x10
+	ldr r0, [sp, #0xec]
+	cmp r2, r0
+	bne .Ljp_phys_08068312
+.Ljp_phys_0806832C:
+	adds r5, r3, #0
+	ldr r0, [sp, #0x40]
+	cmp r0, #1
+	bne .Ljp_phys_08068350
+	cmp r5, #0
+	beq .Ljp_phys_08068344
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068344:
+	adds r5, #0x10
+	b .Ljp_phys_08068372
+.Ljp_phys_08068348:
+	.4byte 0x000007C4
+.Ljp_phys_0806834C:
+	.4byte 0x000005BC
+.Ljp_phys_08068350:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_08068370
+.Ljp_phys_08068358:
+	cmp r2, #0
+	beq .Ljp_phys_08068368
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068368:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_08068358
+.Ljp_phys_08068370:
+	adds r5, r2, #0
+.Ljp_phys_08068372:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_08068382
+.Ljp_phys_0806837C:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_0806837C
+.Ljp_phys_08068382:
+	cmp r0, #0
+	beq .Ljp_phys_0806838A
+	bl free
+.Ljp_phys_0806838A:
+	ldr r0, [sp, #0xf0]
+	add r0, r8
+	ldr r7, [sp, #0xf0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_08068396:
+	ldr r3, .Ljp_phys_080683F8
+	movs r1, #8
+	movs r2, #2
+	add r0, sp, #0x44
+	strh r1, [r0]
+	ldr r0, [sp, #0xe0]
+	strh r2, [r0, #2]
+	ldr r0, [sp, #0x44]
+	str r3, [sp]
+	mov r1, sl
+	movs r2, #0
+	movs r3, #0
+	bl DrawStringTo2DGfxBuffer
+	ldr r1, [sp, #0xbc]
+	ldr r0, [r1]
+	bl func_08008910
+	movs r3, #0x80
+	lsls r3, r3, #2
+	adds r6, r0, #0
+	movs r4, #0x44
+	lsls r2, r4, #5
+	movs r0, #0xc0
+	lsls r0, r0, #0x13
+	adds r2, r2, r0
+	add r0, sp, #8
+	mov r1, sl
+	bl func_08008F0C
+	add r5, sp, #8
+	mov sb, r5
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_080683FC
+	cmp r1, #0
+	beq .Ljp_phys_080683EE
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r2, r3, r7}
+	stm r0!, {r2, r3, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080683EE:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_phys_080684BC
+	.align 2, 0
+.Ljp_phys_080683F8:
+	.4byte gText_FarmStatus_ToolUpgradeAvailable
+.Ljp_phys_080683FC:
+	mov sl, r1
+	movs r0, #1
+	str r0, [sp, #0x4c]
+	ldr r0, [r6]
+	subs r0, r1, r0
+	asrs r4, r0, #4
+	str r4, [sp, #0x48]
+	add r1, sp, #0x4c
+	add r0, sp, #0x48
+	cmp r4, #1
+	bhs .Ljp_phys_08068414
+	adds r0, r1, #0
+.Ljp_phys_08068414:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_08068432
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_08068436
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_08068436
+.Ljp_phys_08068432:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_08068436:
+	adds r5, r0, #0
+	str r5, [sp, #0xf0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	cmp r2, sl
+	beq .Ljp_phys_0806845A
+.Ljp_phys_08068442:
+	cmp r3, #0
+	beq .Ljp_phys_08068452
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068452:
+	adds r2, #0x10
+	adds r3, #0x10
+	cmp r2, sl
+	bne .Ljp_phys_08068442
+.Ljp_phys_0806845A:
+	adds r5, r3, #0
+	ldr r0, [sp, #0x4c]
+	cmp r0, #1
+	bne .Ljp_phys_08068476
+	cmp r5, #0
+	beq .Ljp_phys_08068472
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068472:
+	adds r5, #0x10
+	b .Ljp_phys_08068498
+.Ljp_phys_08068476:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_08068496
+.Ljp_phys_0806847E:
+	cmp r2, #0
+	beq .Ljp_phys_0806848E
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_0806848E:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_0806847E
+.Ljp_phys_08068496:
+	adds r5, r2, #0
+.Ljp_phys_08068498:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_080684A8
+.Ljp_phys_080684A2:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_080684A2
+.Ljp_phys_080684A8:
+	cmp r0, #0
+	beq .Ljp_phys_080684B0
+	bl free
+.Ljp_phys_080684B0:
+	ldr r0, [sp, #0xf0]
+	add r0, r8
+	ldr r7, [sp, #0xf0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_080684BC:
+	ldr r2, .Ljp_phys_08068518
+	movs r1, #2
+	add r0, sp, #0x50
+	strh r1, [r0]
+	ldr r0, [sp, #0xe4]
+	strh r1, [r0, #2]
+	ldr r0, [sp, #0x50]
+	str r2, [sp]
+	ldr r1, [sp, #0xdc]
+	movs r2, #0
+	movs r3, #0
+	bl DrawStringTo2DGfxBuffer
+	ldr r1, [sp, #0xbc]
+	ldr r0, [r1]
+	bl func_08008910
+	adds r6, r0, #0
+	movs r3, #0x54
+	lsls r2, r3, #5
+	movs r0, #0xc0
+	lsls r0, r0, #0x13
+	adds r2, r2, r0
+	add r0, sp, #8
+	ldr r1, [sp, #0xdc]
+	movs r3, #0x80
+	bl func_08008F0C
+	add r4, sp, #8
+	mov sb, r4
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_0806851C
+	cmp r1, #0
+	beq .Ljp_phys_08068510
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r2, r5, r7}
+	stm r0!, {r2, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068510:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_phys_080685DC
+.Ljp_phys_08068518:
+	.4byte gText_FarmStatus_PercentSign
+.Ljp_phys_0806851C:
+	mov sl, r1
+	movs r0, #1
+	str r0, [sp, #0x58]
+	ldr r0, [r6]
+	subs r0, r1, r0
+	asrs r4, r0, #4
+	str r4, [sp, #0x54]
+	add r1, sp, #0x58
+	add r0, sp, #0x54
+	cmp r4, #1
+	bhs .Ljp_phys_08068534
+	adds r0, r1, #0
+.Ljp_phys_08068534:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_08068552
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_08068556
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_08068556
+.Ljp_phys_08068552:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_08068556:
+	adds r5, r0, #0
+	str r5, [sp, #0xf0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	cmp r2, sl
+	beq .Ljp_phys_0806857A
+.Ljp_phys_08068562:
+	cmp r3, #0
+	beq .Ljp_phys_08068572
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068572:
+	adds r2, #0x10
+	adds r3, #0x10
+	cmp r2, sl
+	bne .Ljp_phys_08068562
+.Ljp_phys_0806857A:
+	adds r5, r3, #0
+	ldr r0, [sp, #0x58]
+	cmp r0, #1
+	bne .Ljp_phys_08068596
+	cmp r5, #0
+	beq .Ljp_phys_08068592
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068592:
+	adds r5, #0x10
+	b .Ljp_phys_080685B8
+.Ljp_phys_08068596:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_080685B6
+.Ljp_phys_0806859E:
+	cmp r2, #0
+	beq .Ljp_phys_080685AE
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080685AE:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_0806859E
+.Ljp_phys_080685B6:
+	adds r5, r2, #0
+.Ljp_phys_080685B8:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_080685C8
+.Ljp_phys_080685C2:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_080685C2
+.Ljp_phys_080685C8:
+	cmp r0, #0
+	beq .Ljp_phys_080685D0
+	bl free
+.Ljp_phys_080685D0:
+	ldr r0, [sp, #0xf0]
+	add r0, r8
+	ldr r7, [sp, #0xf0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_080685DC:
+	ldr r1, [sp, #0xbc]
+	ldr r0, [r1]
+	bl func_08008910
+	adds r6, r0, #0
+	ldr r1, .Ljp_phys_08068624
+	movs r3, #0x58
+	lsls r2, r3, #5
+	movs r0, #0xc0
+	lsls r0, r0, #0x13
+	adds r2, r2, r0
+	add r0, sp, #8
+	movs r3, #0x20
+	bl func_08008F0C
+	add r4, sp, #8
+	mov sb, r4
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_08068628
+	cmp r1, #0
+	beq .Ljp_phys_08068616
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r2, r5, r7}
+	stm r0!, {r2, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068616:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	movs r3, #0x20
+	mov sl, r3
+	b .Ljp_phys_080686F4
+	.align 2, 0
+.Ljp_phys_08068624:
+	.4byte gUnk_08752A2C
+.Ljp_phys_08068628:
+	str r1, [sp, #0xec]
+	movs r4, #1
+	str r4, [sp, #0x60]
+	ldr r1, [r6]
+	ldr r5, [sp, #0xec]
+	subs r0, r5, r1
+	asrs r4, r0, #4
+	str r4, [sp, #0x5c]
+	add r2, sp, #0x60
+	add r0, sp, #0x5c
+	cmp r4, #1
+	bhs .Ljp_phys_08068642
+	adds r0, r2, #0
+.Ljp_phys_08068642:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_08068662
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_0806865E
+	mov r0, r8
+	bl func_080D3BC0
+.Ljp_phys_0806865E:
+	ldr r1, [r6]
+	b .Ljp_phys_08068666
+.Ljp_phys_08068662:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_08068666:
+	adds r5, r0, #0
+	str r5, [sp, #0xf0]
+	adds r2, r1, #0
+	adds r3, r5, #0
+	movs r7, #1
+	lsls r7, r7, #5
+	mov sl, r7
+	b .Ljp_phys_0806868A
+.Ljp_phys_08068676:
+	cmp r3, #0
+	beq .Ljp_phys_08068686
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068686:
+	adds r2, #0x10
+	adds r3, #0x10
+.Ljp_phys_0806868A:
+	ldr r0, [sp, #0xec]
+	cmp r2, r0
+	bne .Ljp_phys_08068676
+	adds r5, r3, #0
+	ldr r0, [sp, #0x60]
+	cmp r0, #1
+	bne .Ljp_phys_080686AC
+	cmp r5, #0
+	beq .Ljp_phys_080686A8
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080686A8:
+	adds r5, #0x10
+	b .Ljp_phys_080686CE
+.Ljp_phys_080686AC:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_080686CC
+.Ljp_phys_080686B4:
+	cmp r2, #0
+	beq .Ljp_phys_080686C4
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080686C4:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_080686B4
+.Ljp_phys_080686CC:
+	adds r5, r2, #0
+.Ljp_phys_080686CE:
+	ldr r2, [r6, #4]
+	ldr r1, [r6]
+	adds r0, r1, #0
+	cmp r1, r2
+	beq .Ljp_phys_080686DE
+.Ljp_phys_080686D8:
+	adds r0, #0x10
+	cmp r0, r2
+	bne .Ljp_phys_080686D8
+.Ljp_phys_080686DE:
+	cmp r1, #0
+	beq .Ljp_phys_080686E8
+	adds r0, r1, #0
+	bl free
+.Ljp_phys_080686E8:
+	ldr r0, [sp, #0xf0]
+	add r0, r8
+	ldr r7, [sp, #0xf0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_080686F4:
+	ldr r1, [sp, #0xbc]
+	ldr r0, [r1]
+	bl func_08008910
+	adds r6, r0, #0
+	ldr r1, .Ljp_phys_08068734
+	movs r2, #0xa0
+	lsls r2, r2, #0x13
+	add r2, sl
+	add r0, sp, #8
+	movs r3, #0x20
+	bl func_08008F0C
+	add r2, sp, #8
+	mov sb, r2
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_08068738
+	cmp r1, #0
+	beq .Ljp_phys_0806872A
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r3, r4, r5}
+	stm r0!, {r3, r4, r5}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_0806872A:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_phys_080687FE
+	.align 2, 0
+.Ljp_phys_08068734:
+	.4byte gUnk_08752AAC
+.Ljp_phys_08068738:
+	mov sl, r1
+	movs r0, #1
+	str r0, [sp, #0x68]
+	ldr r1, [r6]
+	mov r7, sl
+	subs r0, r7, r1
+	asrs r4, r0, #4
+	str r4, [sp, #0x64]
+	add r2, sp, #0x68
+	add r0, sp, #0x64
+	cmp r4, #1
+	bhs .Ljp_phys_08068752
+	adds r0, r2, #0
+.Ljp_phys_08068752:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_08068772
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_0806876E
+	mov r0, r8
+	bl func_080D3BC0
+.Ljp_phys_0806876E:
+	ldr r1, [r6]
+	b .Ljp_phys_08068776
+.Ljp_phys_08068772:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_08068776:
+	adds r5, r0, #0
+	str r5, [sp, #0xf0]
+	adds r2, r1, #0
+	adds r3, r5, #0
+	cmp r2, sl
+	beq .Ljp_phys_0806879A
+.Ljp_phys_08068782:
+	cmp r3, #0
+	beq .Ljp_phys_08068792
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068792:
+	adds r2, #0x10
+	adds r3, #0x10
+	cmp r2, sl
+	bne .Ljp_phys_08068782
+.Ljp_phys_0806879A:
+	adds r5, r3, #0
+	ldr r0, [sp, #0x68]
+	cmp r0, #1
+	bne .Ljp_phys_080687B6
+	cmp r5, #0
+	beq .Ljp_phys_080687B2
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080687B2:
+	adds r5, #0x10
+	b .Ljp_phys_080687D8
+.Ljp_phys_080687B6:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_080687D6
+.Ljp_phys_080687BE:
+	cmp r2, #0
+	beq .Ljp_phys_080687CE
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080687CE:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_080687BE
+.Ljp_phys_080687D6:
+	adds r5, r2, #0
+.Ljp_phys_080687D8:
+	ldr r2, [r6, #4]
+	ldr r1, [r6]
+	adds r0, r1, #0
+	cmp r1, r2
+	beq .Ljp_phys_080687E8
+.Ljp_phys_080687E2:
+	adds r0, #0x10
+	cmp r0, r2
+	bne .Ljp_phys_080687E2
+.Ljp_phys_080687E8:
+	cmp r1, #0
+	beq .Ljp_phys_080687F2
+	adds r0, r1, #0
+	bl free
+.Ljp_phys_080687F2:
+	ldr r0, [sp, #0xf0]
+	add r0, r8
+	ldr r7, [sp, #0xf0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_080687FE:
+	ldr r1, [sp, #0xbc]
+	ldr r0, [r1]
+	bl func_08008910
+	adds r6, r0, #0
+	ldr r1, .Ljp_phys_08068840
+	movs r3, #0x59
+	lsls r2, r3, #5
+	movs r0, #0xc0
+	lsls r0, r0, #0x13
+	adds r2, r2, r0
+	add r0, sp, #8
+	movs r3, #0x20
+	bl func_08008F0C
+	add r4, sp, #8
+	mov sb, r4
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_08068844
+	cmp r1, #0
+	beq .Ljp_phys_08068838
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r2, r5, r7}
+	stm r0!, {r2, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068838:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_phys_0806890A
+.Ljp_phys_08068840:
+	.4byte gUnk_08752CCC
+.Ljp_phys_08068844:
+	mov sl, r1
+	movs r0, #1
+	str r0, [sp, #0x70]
+	ldr r1, [r6]
+	mov r3, sl
+	subs r0, r3, r1
+	asrs r4, r0, #4
+	str r4, [sp, #0x6c]
+	add r2, sp, #0x70
+	add r0, sp, #0x6c
+	cmp r4, #1
+	bhs .Ljp_phys_0806885E
+	adds r0, r2, #0
+.Ljp_phys_0806885E:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_0806887E
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_0806887A
+	mov r0, r8
+	bl func_080D3BC0
+.Ljp_phys_0806887A:
+	ldr r1, [r6]
+	b .Ljp_phys_08068882
+.Ljp_phys_0806887E:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_08068882:
+	adds r5, r0, #0
+	str r5, [sp, #0xf0]
+	adds r2, r1, #0
+	adds r3, r5, #0
+	cmp r2, sl
+	beq .Ljp_phys_080688A6
+.Ljp_phys_0806888E:
+	cmp r3, #0
+	beq .Ljp_phys_0806889E
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_0806889E:
+	adds r2, #0x10
+	adds r3, #0x10
+	cmp r2, sl
+	bne .Ljp_phys_0806888E
+.Ljp_phys_080688A6:
+	adds r5, r3, #0
+	ldr r0, [sp, #0x70]
+	cmp r0, #1
+	bne .Ljp_phys_080688C2
+	cmp r5, #0
+	beq .Ljp_phys_080688BE
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080688BE:
+	adds r5, #0x10
+	b .Ljp_phys_080688E4
+.Ljp_phys_080688C2:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_080688E2
+.Ljp_phys_080688CA:
+	cmp r2, #0
+	beq .Ljp_phys_080688DA
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080688DA:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_080688CA
+.Ljp_phys_080688E2:
+	adds r5, r2, #0
+.Ljp_phys_080688E4:
+	ldr r2, [r6, #4]
+	ldr r1, [r6]
+	adds r0, r1, #0
+	cmp r1, r2
+	beq .Ljp_phys_080688F4
+.Ljp_phys_080688EE:
+	adds r0, #0x10
+	cmp r0, r2
+	bne .Ljp_phys_080688EE
+.Ljp_phys_080688F4:
+	cmp r1, #0
+	beq .Ljp_phys_080688FE
+	adds r0, r1, #0
+	bl free
+.Ljp_phys_080688FE:
+	ldr r0, [sp, #0xf0]
+	add r0, r8
+	ldr r7, [sp, #0xf0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_0806890A:
+	ldr r1, [sp, #0xbc]
+	ldr r0, [r1]
+	bl func_08008910
+	adds r6, r0, #0
+	ldr r1, .Ljp_phys_0806894C
+	movs r3, #0x5a
+	lsls r2, r3, #5
+	movs r0, #0xc0
+	lsls r0, r0, #0x13
+	adds r2, r2, r0
+	add r0, sp, #8
+	movs r3, #0x20
+	bl func_08008F0C
+	add r4, sp, #8
+	mov sb, r4
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_08068950
+	cmp r1, #0
+	beq .Ljp_phys_08068944
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r2, r5, r7}
+	stm r0!, {r2, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068944:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_phys_08068A16
+.Ljp_phys_0806894C:
+	.4byte gUnk_08752BCC
+.Ljp_phys_08068950:
+	mov sl, r1
+	movs r0, #1
+	str r0, [sp, #0x78]
+	ldr r1, [r6]
+	mov r3, sl
+	subs r0, r3, r1
+	asrs r4, r0, #4
+	str r4, [sp, #0x74]
+	add r2, sp, #0x78
+	add r0, sp, #0x74
+	cmp r4, #1
+	bhs .Ljp_phys_0806896A
+	adds r0, r2, #0
+.Ljp_phys_0806896A:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_0806898A
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_08068986
+	mov r0, r8
+	bl func_080D3BC0
+.Ljp_phys_08068986:
+	ldr r1, [r6]
+	b .Ljp_phys_0806898E
+.Ljp_phys_0806898A:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_0806898E:
+	adds r5, r0, #0
+	str r5, [sp, #0xf0]
+	adds r2, r1, #0
+	adds r3, r5, #0
+	cmp r2, sl
+	beq .Ljp_phys_080689B2
+.Ljp_phys_0806899A:
+	cmp r3, #0
+	beq .Ljp_phys_080689AA
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080689AA:
+	adds r2, #0x10
+	adds r3, #0x10
+	cmp r2, sl
+	bne .Ljp_phys_0806899A
+.Ljp_phys_080689B2:
+	adds r5, r3, #0
+	ldr r0, [sp, #0x78]
+	cmp r0, #1
+	bne .Ljp_phys_080689CE
+	cmp r5, #0
+	beq .Ljp_phys_080689CA
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080689CA:
+	adds r5, #0x10
+	b .Ljp_phys_080689F0
+.Ljp_phys_080689CE:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_080689EE
+.Ljp_phys_080689D6:
+	cmp r2, #0
+	beq .Ljp_phys_080689E6
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080689E6:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_080689D6
+.Ljp_phys_080689EE:
+	adds r5, r2, #0
+.Ljp_phys_080689F0:
+	ldr r2, [r6, #4]
+	ldr r1, [r6]
+	adds r0, r1, #0
+	cmp r1, r2
+	beq .Ljp_phys_08068A00
+.Ljp_phys_080689FA:
+	adds r0, #0x10
+	cmp r0, r2
+	bne .Ljp_phys_080689FA
+.Ljp_phys_08068A00:
+	cmp r1, #0
+	beq .Ljp_phys_08068A0A
+	adds r0, r1, #0
+	bl free
+.Ljp_phys_08068A0A:
+	ldr r0, [sp, #0xf0]
+	add r0, r8
+	ldr r7, [sp, #0xf0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_08068A16:
+	ldr r1, [sp, #0xbc]
+	ldr r0, [r1]
+	bl func_08008910
+	adds r6, r0, #0
+	ldr r1, .Ljp_phys_08068A58
+	movs r3, #0x5b
+	lsls r2, r3, #5
+	movs r0, #0xc0
+	lsls r0, r0, #0x13
+	adds r2, r2, r0
+	add r0, sp, #8
+	movs r3, #0x20
+	bl func_08008F0C
+	add r4, sp, #8
+	mov sb, r4
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_08068A5C
+	cmp r1, #0
+	beq .Ljp_phys_08068A50
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r2, r5, r7}
+	stm r0!, {r2, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068A50:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_phys_08068B22
+.Ljp_phys_08068A58:
+	.4byte gUnk_08752C4C
+.Ljp_phys_08068A5C:
+	mov sl, r1
+	movs r0, #1
+	str r0, [sp, #0x80]
+	ldr r1, [r6]
+	mov r3, sl
+	subs r0, r3, r1
+	asrs r4, r0, #4
+	str r4, [sp, #0x7c]
+	add r2, sp, #0x80
+	add r0, sp, #0x7c
+	cmp r4, #1
+	bhs .Ljp_phys_08068A76
+	adds r0, r2, #0
+.Ljp_phys_08068A76:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_08068A96
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_08068A92
+	mov r0, r8
+	bl func_080D3BC0
+.Ljp_phys_08068A92:
+	ldr r1, [r6]
+	b .Ljp_phys_08068A9A
+.Ljp_phys_08068A96:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_08068A9A:
+	adds r5, r0, #0
+	str r5, [sp, #0xf0]
+	adds r2, r1, #0
+	adds r3, r5, #0
+	cmp r2, sl
+	beq .Ljp_phys_08068ABE
+.Ljp_phys_08068AA6:
+	cmp r3, #0
+	beq .Ljp_phys_08068AB6
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068AB6:
+	adds r2, #0x10
+	adds r3, #0x10
+	cmp r2, sl
+	bne .Ljp_phys_08068AA6
+.Ljp_phys_08068ABE:
+	adds r5, r3, #0
+	ldr r0, [sp, #0x80]
+	cmp r0, #1
+	bne .Ljp_phys_08068ADA
+	cmp r5, #0
+	beq .Ljp_phys_08068AD6
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068AD6:
+	adds r5, #0x10
+	b .Ljp_phys_08068AFC
+.Ljp_phys_08068ADA:
+	adds r3, r0, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_08068AFA
+.Ljp_phys_08068AE2:
+	cmp r2, #0
+	beq .Ljp_phys_08068AF2
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068AF2:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_08068AE2
+.Ljp_phys_08068AFA:
+	adds r5, r2, #0
+.Ljp_phys_08068AFC:
+	ldr r2, [r6, #4]
+	ldr r1, [r6]
+	adds r0, r1, #0
+	cmp r1, r2
+	beq .Ljp_phys_08068B0C
+.Ljp_phys_08068B06:
+	adds r0, #0x10
+	cmp r0, r2
+	bne .Ljp_phys_08068B06
+.Ljp_phys_08068B0C:
+	cmp r1, #0
+	beq .Ljp_phys_08068B16
+	adds r0, r1, #0
+	bl free
+.Ljp_phys_08068B16:
+	ldr r0, [sp, #0xf0]
+	add r0, r8
+	ldr r7, [sp, #0xf0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_08068B22:
+	ldr r1, [sp, #0xbc]
+	ldr r0, [r1]
+	bl func_08008910
+	adds r6, r0, #0
+	ldr r1, .Ljp_phys_08068B68
+	movs r3, #0x80
+	lsls r2, r3, #5
+	movs r0, #0xc0
+	lsls r0, r0, #0x13
+	adds r2, r2, r0
+	add r0, sp, #8
+	adds r3, #0xa0
+	bl func_08008F0C
+	add r4, sp, #8
+	mov sb, r4
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_08068B6C
+	cmp r1, #0
+	beq .Ljp_phys_08068B5C
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r2, r5, r7}
+	stm r0!, {r2, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068B5C:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	movs r3, #0x40
+	str r3, [sp, #0xd8]
+	b .Ljp_phys_08068C3E
+.Ljp_phys_08068B68:
+	.4byte gUnk_087511CC
+.Ljp_phys_08068B6C:
+	str r1, [sp, #0xec]
+	movs r0, #1
+	add r1, sp, #0x88
+	str r0, [r1]
+	ldr r0, [r6]
+	ldr r4, [sp, #0xec]
+	subs r0, r4, r0
+	asrs r4, r0, #4
+	str r4, [sp, #0x84]
+	ldr r0, [r1]
+	add r2, sp, #0x84
+	mov sl, r1
+	cmp r4, r0
+	bhs .Ljp_phys_08068B8A
+	mov r2, sl
+.Ljp_phys_08068B8A:
+	ldr r0, [r2]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_08068BA8
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_08068BAC
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_08068BAC
+.Ljp_phys_08068BA8:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_08068BAC:
+	adds r5, r0, #0
+	str r5, [sp, #0xf0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	movs r5, #2
+	lsls r5, r5, #5
+	str r5, [sp, #0xd8]
+	ldr r7, [sp, #0xec]
+	cmp r2, r7
+	beq .Ljp_phys_08068BDA
+.Ljp_phys_08068BC0:
+	cmp r3, #0
+	beq .Ljp_phys_08068BD0
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068BD0:
+	adds r2, #0x10
+	adds r3, #0x10
+	ldr r0, [sp, #0xec]
+	cmp r2, r0
+	bne .Ljp_phys_08068BC0
+.Ljp_phys_08068BDA:
+	adds r5, r3, #0
+	mov r2, sl
+	ldr r1, [r2]
+	cmp r1, #1
+	bne .Ljp_phys_08068BF8
+	cmp r5, #0
+	beq .Ljp_phys_08068BF4
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r3, r4, r7}
+	stm r0!, {r3, r4, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068BF4:
+	adds r5, #0x10
+	b .Ljp_phys_08068C1A
+.Ljp_phys_08068BF8:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_08068C18
+.Ljp_phys_08068C00:
+	cmp r2, #0
+	beq .Ljp_phys_08068C10
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068C10:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_08068C00
+.Ljp_phys_08068C18:
+	adds r5, r2, #0
+.Ljp_phys_08068C1A:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_08068C2A
+.Ljp_phys_08068C24:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_08068C24
+.Ljp_phys_08068C2A:
+	cmp r0, #0
+	beq .Ljp_phys_08068C32
+	bl free
+.Ljp_phys_08068C32:
+	ldr r0, [sp, #0xf0]
+	add r0, r8
+	ldr r1, [sp, #0xf0]
+	str r1, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_08068C3E:
+	ldr r2, [sp, #0xbc]
+	ldr r0, [r2]
+	bl func_08008910
+	adds r6, r0, #0
+	ldr r1, .Ljp_phys_08068C80
+	movs r2, #0xa0
+	lsls r2, r2, #0x13
+	ldr r3, [sp, #0xd8]
+	adds r2, r3, r2
+	add r0, sp, #8
+	movs r3, #0x20
+	bl func_08008F0C
+	add r4, sp, #8
+	mov sb, r4
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_08068C84
+	cmp r1, #0
+	beq .Ljp_phys_08068C76
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r2, r5, r7}
+	stm r0!, {r2, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068C76:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_phys_08068D50
+	.align 2, 0
+.Ljp_phys_08068C80:
+	.4byte gUnk_087512EC
+.Ljp_phys_08068C84:
+	str r1, [sp, #0xec]
+	movs r0, #1
+	add r1, sp, #0x90
+	str r0, [r1]
+	ldr r0, [r6]
+	ldr r3, [sp, #0xec]
+	subs r0, r3, r0
+	asrs r4, r0, #4
+	add r0, sp, #0x8c
+	str r4, [r0]
+	ldr r2, [r1]
+	mov sl, r1
+	cmp r4, r2
+	bhs .Ljp_phys_08068CA2
+	mov r0, sl
+.Ljp_phys_08068CA2:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_08068CC0
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_08068CC4
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_08068CC4
+.Ljp_phys_08068CC0:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_08068CC4:
+	adds r5, r0, #0
+	str r5, [sp, #0xf0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	ldr r4, [sp, #0xec]
+	cmp r2, r4
+	beq .Ljp_phys_08068CEC
+.Ljp_phys_08068CD2:
+	cmp r3, #0
+	beq .Ljp_phys_08068CE2
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068CE2:
+	adds r2, #0x10
+	adds r3, #0x10
+	ldr r5, [sp, #0xec]
+	cmp r2, r5
+	bne .Ljp_phys_08068CD2
+.Ljp_phys_08068CEC:
+	adds r5, r3, #0
+	mov r7, sl
+	ldr r1, [r7]
+	cmp r1, #1
+	bne .Ljp_phys_08068D0A
+	cmp r5, #0
+	beq .Ljp_phys_08068D06
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068D06:
+	adds r5, #0x10
+	b .Ljp_phys_08068D2C
+.Ljp_phys_08068D0A:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_08068D2A
+.Ljp_phys_08068D12:
+	cmp r2, #0
+	beq .Ljp_phys_08068D22
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068D22:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_08068D12
+.Ljp_phys_08068D2A:
+	adds r5, r2, #0
+.Ljp_phys_08068D2C:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_08068D3C
+.Ljp_phys_08068D36:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_08068D36
+.Ljp_phys_08068D3C:
+	cmp r0, #0
+	beq .Ljp_phys_08068D44
+	bl free
+.Ljp_phys_08068D44:
+	ldr r0, [sp, #0xf0]
+	add r0, r8
+	ldr r7, [sp, #0xf0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_08068D50:
+	ldr r1, [sp, #0xbc]
+	ldr r0, [r1]
+	bl func_08008910
+	adds r6, r0, #0
+	ldr r1, .Ljp_phys_08068D94
+	movs r3, #0x89
+	lsls r2, r3, #5
+	movs r0, #0xc0
+	lsls r0, r0, #0x13
+	adds r2, r2, r0
+	add r0, sp, #8
+	adds r3, #0x97
+	bl func_08008F0C
+	add r4, sp, #8
+	mov sb, r4
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_08068D98
+	cmp r1, #0
+	beq .Ljp_phys_08068D8A
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r2, r5, r7}
+	stm r0!, {r2, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068D8A:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_phys_08068E64
+	.align 2, 0
+.Ljp_phys_08068D94:
+	.4byte gUnk_0875154C
+.Ljp_phys_08068D98:
+	str r1, [sp, #0xec]
+	movs r0, #1
+	add r1, sp, #0x98
+	str r0, [r1]
+	ldr r0, [r6]
+	ldr r3, [sp, #0xec]
+	subs r0, r3, r0
+	asrs r4, r0, #4
+	add r0, sp, #0x94
+	str r4, [r0]
+	ldr r2, [r1]
+	mov sl, r1
+	cmp r4, r2
+	bhs .Ljp_phys_08068DB6
+	mov r0, sl
+.Ljp_phys_08068DB6:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_08068DD4
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_08068DD8
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_08068DD8
+.Ljp_phys_08068DD4:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_08068DD8:
+	adds r5, r0, #0
+	str r5, [sp, #0xf0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	ldr r4, [sp, #0xec]
+	cmp r2, r4
+	beq .Ljp_phys_08068E00
+.Ljp_phys_08068DE6:
+	cmp r3, #0
+	beq .Ljp_phys_08068DF6
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068DF6:
+	adds r2, #0x10
+	adds r3, #0x10
+	ldr r5, [sp, #0xec]
+	cmp r2, r5
+	bne .Ljp_phys_08068DE6
+.Ljp_phys_08068E00:
+	adds r5, r3, #0
+	mov r7, sl
+	ldr r1, [r7]
+	cmp r1, #1
+	bne .Ljp_phys_08068E1E
+	cmp r5, #0
+	beq .Ljp_phys_08068E1A
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068E1A:
+	adds r5, #0x10
+	b .Ljp_phys_08068E40
+.Ljp_phys_08068E1E:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_08068E3E
+.Ljp_phys_08068E26:
+	cmp r2, #0
+	beq .Ljp_phys_08068E36
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068E36:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_08068E26
+.Ljp_phys_08068E3E:
+	adds r5, r2, #0
+.Ljp_phys_08068E40:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_08068E50
+.Ljp_phys_08068E4A:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_08068E4A
+.Ljp_phys_08068E50:
+	cmp r0, #0
+	beq .Ljp_phys_08068E58
+	bl free
+.Ljp_phys_08068E58:
+	ldr r0, [sp, #0xf0]
+	add r0, r8
+	ldr r7, [sp, #0xf0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_08068E64:
+	ldr r1, [sp, #0xbc]
+	ldr r0, [r1]
+	bl func_08008910
+	adds r6, r0, #0
+	ldr r1, .Ljp_phys_08068EA8
+	movs r3, #0x92
+	lsls r2, r3, #5
+	movs r0, #0xc0
+	lsls r0, r0, #0x13
+	adds r2, r2, r0
+	add r0, sp, #8
+	adds r3, #0x8e
+	bl func_08008F0C
+	add r4, sp, #8
+	mov sb, r4
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_08068EAC
+	cmp r1, #0
+	beq .Ljp_phys_08068E9E
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r2, r5, r7}
+	stm r0!, {r2, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068E9E:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_phys_08068F78
+	.align 2, 0
+.Ljp_phys_08068EA8:
+	.4byte gUnk_0875130C
+.Ljp_phys_08068EAC:
+	str r1, [sp, #0xec]
+	movs r0, #1
+	add r1, sp, #0xa0
+	str r0, [r1]
+	ldr r0, [r6]
+	ldr r3, [sp, #0xec]
+	subs r0, r3, r0
+	asrs r4, r0, #4
+	add r0, sp, #0x9c
+	str r4, [r0]
+	ldr r2, [r1]
+	mov sl, r1
+	cmp r4, r2
+	bhs .Ljp_phys_08068ECA
+	mov r0, sl
+.Ljp_phys_08068ECA:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_08068EE8
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_08068EEC
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_08068EEC
+.Ljp_phys_08068EE8:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_08068EEC:
+	adds r5, r0, #0
+	str r5, [sp, #0xf0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	ldr r4, [sp, #0xec]
+	cmp r2, r4
+	beq .Ljp_phys_08068F14
+.Ljp_phys_08068EFA:
+	cmp r3, #0
+	beq .Ljp_phys_08068F0A
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068F0A:
+	adds r2, #0x10
+	adds r3, #0x10
+	ldr r5, [sp, #0xec]
+	cmp r2, r5
+	bne .Ljp_phys_08068EFA
+.Ljp_phys_08068F14:
+	adds r5, r3, #0
+	mov r7, sl
+	ldr r1, [r7]
+	cmp r1, #1
+	bne .Ljp_phys_08068F32
+	cmp r5, #0
+	beq .Ljp_phys_08068F2E
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068F2E:
+	adds r5, #0x10
+	b .Ljp_phys_08068F54
+.Ljp_phys_08068F32:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_08068F52
+.Ljp_phys_08068F3A:
+	cmp r2, #0
+	beq .Ljp_phys_08068F4A
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068F4A:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_08068F3A
+.Ljp_phys_08068F52:
+	adds r5, r2, #0
+.Ljp_phys_08068F54:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_08068F64
+.Ljp_phys_08068F5E:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_08068F5E
+.Ljp_phys_08068F64:
+	cmp r0, #0
+	beq .Ljp_phys_08068F6C
+	bl free
+.Ljp_phys_08068F6C:
+	ldr r0, [sp, #0xf0]
+	add r0, r8
+	ldr r7, [sp, #0xf0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_08068F78:
+	ldr r1, [sp, #0xbc]
+	ldr r0, [r1]
+	bl func_08008910
+	adds r6, r0, #0
+	ldr r1, .Ljp_phys_08068FBC
+	movs r3, #0x9b
+	lsls r2, r3, #5
+	movs r0, #0xc0
+	lsls r0, r0, #0x13
+	adds r2, r2, r0
+	add r0, sp, #8
+	adds r3, #0x85
+	bl func_08008F0C
+	add r4, sp, #8
+	mov sb, r4
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_08068FC0
+	cmp r1, #0
+	beq .Ljp_phys_08068FB2
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r2, r5, r7}
+	stm r0!, {r2, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08068FB2:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_phys_0806908C
+	.align 2, 0
+.Ljp_phys_08068FBC:
+	.4byte gUnk_0875142C
+.Ljp_phys_08068FC0:
+	str r1, [sp, #0xec]
+	movs r0, #1
+	add r1, sp, #0xa8
+	str r0, [r1]
+	ldr r0, [r6]
+	ldr r3, [sp, #0xec]
+	subs r0, r3, r0
+	asrs r4, r0, #4
+	add r0, sp, #0xa4
+	str r4, [r0]
+	ldr r2, [r1]
+	mov sl, r1
+	cmp r4, r2
+	bhs .Ljp_phys_08068FDE
+	mov r0, sl
+.Ljp_phys_08068FDE:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_08068FFC
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_08069000
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_phys_08069000
+.Ljp_phys_08068FFC:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_08069000:
+	adds r5, r0, #0
+	str r5, [sp, #0xf0]
+	ldr r2, [r6]
+	adds r3, r5, #0
+	ldr r4, [sp, #0xec]
+	cmp r2, r4
+	beq .Ljp_phys_08069028
+.Ljp_phys_0806900E:
+	cmp r3, #0
+	beq .Ljp_phys_0806901E
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_0806901E:
+	adds r2, #0x10
+	adds r3, #0x10
+	ldr r5, [sp, #0xec]
+	cmp r2, r5
+	bne .Ljp_phys_0806900E
+.Ljp_phys_08069028:
+	adds r5, r3, #0
+	mov r7, sl
+	ldr r1, [r7]
+	cmp r1, #1
+	bne .Ljp_phys_08069046
+	cmp r5, #0
+	beq .Ljp_phys_08069042
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08069042:
+	adds r5, #0x10
+	b .Ljp_phys_08069068
+.Ljp_phys_08069046:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_08069066
+.Ljp_phys_0806904E:
+	cmp r2, #0
+	beq .Ljp_phys_0806905E
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_0806905E:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_0806904E
+.Ljp_phys_08069066:
+	adds r5, r2, #0
+.Ljp_phys_08069068:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_phys_08069078
+.Ljp_phys_08069072:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_phys_08069072
+.Ljp_phys_08069078:
+	cmp r0, #0
+	beq .Ljp_phys_08069080
+	bl free
+.Ljp_phys_08069080:
+	ldr r0, [sp, #0xf0]
+	add r0, r8
+	ldr r7, [sp, #0xf0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_0806908C:
+	movs r1, #0
+	ldr r2, [sp, #0xbc]
+	ldr r3, .Ljp_phys_08069108
+	adds r0, r2, r3
+	ldr r0, [r0]
+	ldr r4, .Ljp_phys_0806910C
+	adds r0, r0, r4
+	ldrb r0, [r0]
+	lsls r0, r0, #0x1e
+	lsrs r0, r0, #0x1e
+	cmp r0, #2
+	bne .Ljp_phys_080690A6
+	movs r1, #1
+.Ljp_phys_080690A6:
+	movs r5, #4
+	str r5, [sp, #0xc4]
+	cmp r1, #0
+	beq .Ljp_phys_080690B2
+	movs r7, #3
+	str r7, [sp, #0xc4]
+.Ljp_phys_080690B2:
+	movs r0, #5
+	cmp r1, #0
+	beq .Ljp_phys_080690BA
+	movs r0, #6
+.Ljp_phys_080690BA:
+	str r0, [sp, #0xc8]
+	movs r0, #0
+	str r0, [sp, #0xcc]
+	ldr r1, [sp, #0xc8]
+	cmp r0, r1
+	blt .Ljp_phys_080690CA
+	bl .Ljp_phys_08069AA8
+.Ljp_phys_080690CA:
+	ldr r2, [sp, #0xbc]
+	ldr r3, .Ljp_phys_08069108
+	adds r0, r2, r3
+	ldr r0, [r0]
+	ldr r4, .Ljp_phys_08069110
+	adds r0, r0, r4
+	ldr r1, [sp, #0xcc]
+	bl func_0800E548
+	str r0, [sp, #0xd0]
+	bl func_0800EF68
+	lsls r0, r0, #0x10
+	lsrs r0, r0, #0x10
+	str r0, [sp, #0xd4]
+	ldr r0, [sp, #0xd0]
+	bl func_0800EF6C
+	mov sl, r0
+	movs r2, #1
+	rsbs r2, r2, #0
+	ldr r5, [sp, #0xcc]
+	cmp r5, #5
+	bls .Ljp_phys_080690FC
+	b .Ljp_phys_080692FE
+.Ljp_phys_080690FC:
+	lsls r0, r5, #2
+	ldr r1, .Ljp_phys_08069114
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.Ljp_phys_08069108:
+	.4byte 0x0000058C
+.Ljp_phys_0806910C:
+	.4byte 0x00002185
+.Ljp_phys_08069110:
+	.4byte 0x00001BD8
+.Ljp_phys_08069114:
+	.4byte .Ljp_phys_08069118
+.Ljp_phys_08069118:
+	str r2, [sp, #0xd0]
+	lsrs r6, r0, #0x20
+	.4byte .Ljp_phys_08069130
+	.4byte .Ljp_phys_0806918E
+	.4byte .Ljp_phys_08069278
+	.4byte .Ljp_phys_080691D4
+	.4byte .Ljp_phys_080692BC
+.Ljp_phys_08069130:
+	mov r7, sl
+	cmp r7, #5
+	bls .Ljp_phys_08069138
+	b .Ljp_phys_080692FE
+.Ljp_phys_08069138:
+	lsls r0, r7, #2
+	ldr r1, .Ljp_phys_08069144
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.Ljp_phys_08069144:
+	.4byte .Ljp_phys_08069148
+.Ljp_phys_08069148:
+	str r1, [sp, #0x180]
+	lsrs r6, r0, #0x20
+	.4byte .Ljp_phys_08069168
+	.4byte .Ljp_phys_0806916E
+	.4byte .Ljp_phys_08069178
+	.4byte .Ljp_phys_0806917E
+	.4byte .Ljp_phys_08069188
+	ldr r2, .Ljp_phys_08069164
+	b .Ljp_phys_080692FE
+.Ljp_phys_08069164:
+	.4byte 0x00000193
+.Ljp_phys_08069168:
+	movs r2, #0xca
+	lsls r2, r2, #1
+	b .Ljp_phys_080692FE
+.Ljp_phys_0806916E:
+	ldr r2, .Ljp_phys_08069174
+	b .Ljp_phys_080692FE
+	.align 2, 0
+.Ljp_phys_08069174:
+	.4byte 0x00000195
+.Ljp_phys_08069178:
+	movs r2, #0xcb
+	lsls r2, r2, #1
+	b .Ljp_phys_080692FE
+.Ljp_phys_0806917E:
+	ldr r2, .Ljp_phys_08069184
+	b .Ljp_phys_080692FE
+	.align 2, 0
+.Ljp_phys_08069184:
+	.4byte 0x00000197
+.Ljp_phys_08069188:
+	movs r2, #0xcd
+	lsls r2, r2, #1
+	b .Ljp_phys_080692FE
+.Ljp_phys_0806918E:
+	mov r0, sl
+	cmp r0, #5
+	bls .Ljp_phys_08069196
+	b .Ljp_phys_080692FE
+.Ljp_phys_08069196:
+	lsls r0, r0, #2
+	ldr r1, .Ljp_phys_080691A0
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+.Ljp_phys_080691A0:
+	.4byte .Ljp_phys_080691A4
+.Ljp_phys_080691A4:
+	str r1, [sp, #0x2f0]
+	lsrs r6, r0, #0x20
+	.4byte .Ljp_phys_080691C0
+	.4byte .Ljp_phys_080691C4
+	.4byte .Ljp_phys_080691C8
+	.4byte .Ljp_phys_080691CC
+	.4byte .Ljp_phys_080691D0
+	movs r2, #0xd
+	b .Ljp_phys_080692FE
+.Ljp_phys_080691C0:
+	movs r2, #0xe
+	b .Ljp_phys_080692FE
+.Ljp_phys_080691C4:
+	movs r2, #0xf
+	b .Ljp_phys_080692FE
+.Ljp_phys_080691C8:
+	movs r2, #0x10
+	b .Ljp_phys_080692FE
+.Ljp_phys_080691CC:
+	movs r2, #0x11
+	b .Ljp_phys_080692FE
+.Ljp_phys_080691D0:
+	movs r2, #0x14
+	b .Ljp_phys_080692FE
+.Ljp_phys_080691D4:
+	mov r1, sl
+	cmp r1, #5
+	bls .Ljp_phys_080691DC
+	b .Ljp_phys_080692FE
+.Ljp_phys_080691DC:
+	lsls r0, r1, #2
+	ldr r1, .Ljp_phys_080691E8
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.Ljp_phys_080691E8:
+	.4byte .Ljp_phys_080691EC
+.Ljp_phys_080691EC:
+	str r2, [sp, #0x10]
+	lsrs r6, r0, #0x20
+	.4byte .Ljp_phys_0806920A
+	.4byte .Ljp_phys_08069214
+	.4byte .Ljp_phys_0806921A
+	.4byte .Ljp_phys_08069224
+	.4byte .Ljp_phys_0806922A
+	movs r2, #0xe7
+	lsls r2, r2, #1
+	b .Ljp_phys_080692FE
+.Ljp_phys_0806920A:
+	ldr r2, .Ljp_phys_08069210
+	b .Ljp_phys_080692FE
+	.align 2, 0
+.Ljp_phys_08069210:
+	.4byte 0x000001CF
+.Ljp_phys_08069214:
+	movs r2, #0xe8
+	lsls r2, r2, #1
+	b .Ljp_phys_080692FE
+.Ljp_phys_0806921A:
+	ldr r2, .Ljp_phys_08069220
+	b .Ljp_phys_080692FE
+	.align 2, 0
+.Ljp_phys_08069220:
+	.4byte 0x000001D1
+.Ljp_phys_08069224:
+	movs r2, #0xe9
+	lsls r2, r2, #1
+	b .Ljp_phys_080692FE
+.Ljp_phys_0806922A:
+	ldr r2, .Ljp_phys_08069230
+	b .Ljp_phys_080692FE
+	.align 2, 0
+.Ljp_phys_08069230:
+	.4byte 0x000001D5
+	mov r3, sl
+	cmp r3, #5
+	bhi .Ljp_phys_080692FE
+	lsls r0, r3, #2
+	ldr r1, .Ljp_phys_08069244
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+.Ljp_phys_08069244:
+	.4byte .Ljp_phys_08069248
+.Ljp_phys_08069248:
+	str r2, [sp, #0x180]
+	lsrs r6, r0, #0x20
+	.4byte .Ljp_phys_08069264
+	.4byte .Ljp_phys_08069268
+	.4byte .Ljp_phys_0806926C
+	.4byte .Ljp_phys_08069270
+	.4byte .Ljp_phys_08069274
+	movs r2, #0xea
+	b .Ljp_phys_080692FE
+.Ljp_phys_08069264:
+	movs r2, #0xeb
+	b .Ljp_phys_080692FE
+.Ljp_phys_08069268:
+	movs r2, #0xec
+	b .Ljp_phys_080692FE
+.Ljp_phys_0806926C:
+	movs r2, #0xed
+	b .Ljp_phys_080692FE
+.Ljp_phys_08069270:
+	movs r2, #0xee
+	b .Ljp_phys_080692FE
+.Ljp_phys_08069274:
+	movs r2, #0xf1
+	b .Ljp_phys_080692FE
+.Ljp_phys_08069278:
+	mov r4, sl
+	cmp r4, #5
+	bhi .Ljp_phys_080692FE
+	lsls r0, r4, #2
+	ldr r1, .Ljp_phys_08069288
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+.Ljp_phys_08069288:
+	.4byte .Ljp_phys_0806928C
+.Ljp_phys_0806928C:
+	str r2, [sp, #0x290]
+	lsrs r6, r0, #0x20
+	.4byte .Ljp_phys_080692A8
+	.4byte .Ljp_phys_080692AC
+	.4byte .Ljp_phys_080692B0
+	.4byte .Ljp_phys_080692B4
+	.4byte .Ljp_phys_080692B8
+	movs r2, #0xdf
+	b .Ljp_phys_080692FE
+.Ljp_phys_080692A8:
+	movs r2, #0xe0
+	b .Ljp_phys_080692FE
+.Ljp_phys_080692AC:
+	movs r2, #0xe1
+	b .Ljp_phys_080692FE
+.Ljp_phys_080692B0:
+	movs r2, #0xe2
+	b .Ljp_phys_080692FE
+.Ljp_phys_080692B4:
+	movs r2, #0xe3
+	b .Ljp_phys_080692FE
+.Ljp_phys_080692B8:
+	movs r2, #0xe6
+	b .Ljp_phys_080692FE
+.Ljp_phys_080692BC:
+	mov r5, sl
+	cmp r5, #5
+	bhi .Ljp_phys_080692FE
+	lsls r0, r5, #2
+	ldr r1, .Ljp_phys_080692CC
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+.Ljp_phys_080692CC:
+	.4byte .Ljp_phys_080692D0
+.Ljp_phys_080692D0:
+	str r2, [sp, #0x3a0]
+	lsrs r6, r0, #0x20
+	.4byte .Ljp_phys_080692EC
+	.4byte .Ljp_phys_080692F0
+	.4byte .Ljp_phys_080692F4
+	.4byte .Ljp_phys_080692F8
+	.4byte .Ljp_phys_080692FC
+	movs r2, #0x94
+	b .Ljp_phys_080692FE
+.Ljp_phys_080692EC:
+	movs r2, #0x95
+	b .Ljp_phys_080692FE
+.Ljp_phys_080692F0:
+	movs r2, #0x96
+	b .Ljp_phys_080692FE
+.Ljp_phys_080692F4:
+	movs r2, #0x97
+	b .Ljp_phys_080692FE
+.Ljp_phys_080692F8:
+	movs r2, #0x98
+	b .Ljp_phys_080692FE
+.Ljp_phys_080692FC:
+	movs r2, #0x9b
+.Ljp_phys_080692FE:
+	movs r0, #1
+	rsbs r0, r0, #0
+	ldr r7, [sp, #0xcc]
+	adds r7, #1
+	str r7, [sp, #0xe8]
+	cmp r2, r0
+	bne .Ljp_phys_0806930E
+	b .Ljp_phys_0806944C
+.Ljp_phys_0806930E:
+	add r0, sp, #0x18
+	mov r8, r0
+	ldr r1, [sp, #0xbc]
+	ldr r3, .Ljp_phys_08069374
+	adds r4, r1, r3
+	ldr r6, [r4]
+	add r5, sp, #0xac
+	adds r0, r5, #0
+	ldr r3, [r6, #0xc]
+	adds r1, r4, #0
+	bl _call_via_r3
+	ldr r0, [r5]
+	ldrh r2, [r0]
+	mov r0, r8
+	ldr r3, [r6, #0x10]
+	adds r1, r4, #0
+	bl _call_via_r3
+	movs r0, #0x10
+	str r0, [sp, #0xc]
+	add r1, sp, #8
+	ldr r4, [sp, #0xc4]
+	lsls r0, r4, #3
+	strh r0, [r1]
+	ldr r0, [sp, #0x20]
+	str r0, [sp, #0x10]
+	ldr r0, [sp, #0x28]
+	str r0, [sp, #0x14]
+	ldr r5, [sp, #0xbc]
+	ldr r7, .Ljp_phys_08069378
+	adds r6, r5, r7
+	add r0, sp, #8
+	mov sb, r0
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_phys_0806937C
+	cmp r1, #0
+	beq .Ljp_phys_0806936A
+	adds r0, r1, #0
+	add r1, sp, #8
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_0806936A:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_phys_0806944C
+	.align 2, 0
+.Ljp_phys_08069374:
+	.4byte 0x000009C4
+.Ljp_phys_08069378:
+	.4byte 0x00000594
+.Ljp_phys_0806937C:
+	str r1, [sp, #0xec]
+	movs r0, #1
+	add r1, sp, #0xb8
+	str r0, [r1]
+	ldr r3, [r6]
+	ldr r5, [sp, #0xec]
+	subs r0, r5, r3
+	asrs r4, r0, #4
+	add r0, sp, #0xb4
+	str r4, [r0]
+	ldr r2, [r1]
+	adds r1, r3, #0
+	cmp r4, r2
+	bhs .Ljp_phys_0806939A
+	add r0, sp, #0xb8
+.Ljp_phys_0806939A:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_phys_080693BA
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_phys_080693B6
+	mov r0, r8
+	bl func_080D3BC0
+.Ljp_phys_080693B6:
+	ldr r1, [r6]
+	b .Ljp_phys_080693BE
+.Ljp_phys_080693BA:
+	movs r0, #0
+	mov r8, r0
+.Ljp_phys_080693BE:
+	adds r5, r0, #0
+	str r5, [sp, #0xf0]
+	adds r3, r1, #0
+	adds r2, r5, #0
+	ldr r7, [sp, #0xcc]
+	adds r7, #1
+	str r7, [sp, #0xe8]
+	b .Ljp_phys_080693E2
+.Ljp_phys_080693CE:
+	cmp r2, #0
+	beq .Ljp_phys_080693DE
+	adds r0, r2, #0
+	adds r1, r3, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_080693DE:
+	adds r3, #0x10
+	adds r2, #0x10
+.Ljp_phys_080693E2:
+	ldr r0, [sp, #0xec]
+	cmp r3, r0
+	bne .Ljp_phys_080693CE
+	adds r5, r2, #0
+	ldr r1, [sp, #0xb8]
+	cmp r1, #1
+	bne .Ljp_phys_08069404
+	cmp r5, #0
+	beq .Ljp_phys_08069400
+	adds r0, r5, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_08069400:
+	adds r5, #0x10
+	b .Ljp_phys_08069426
+.Ljp_phys_08069404:
+	adds r3, r1, #0
+	adds r2, r5, #0
+	cmp r3, #0
+	beq .Ljp_phys_08069424
+.Ljp_phys_0806940C:
+	cmp r2, #0
+	beq .Ljp_phys_0806941C
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_phys_0806941C:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_phys_0806940C
+.Ljp_phys_08069424:
+	adds r5, r2, #0
+.Ljp_phys_08069426:
+	ldr r2, [r6, #4]
+	ldr r1, [r6]
+	adds r0, r1, #0
+	cmp r1, r2
+	beq .Ljp_phys_08069436
+.Ljp_phys_08069430:
+	adds r0, #0x10
+	cmp r0, r2
+	bne .Ljp_phys_08069430
+.Ljp_phys_08069436:
+	cmp r1, #0
+	beq .Ljp_phys_08069440
+	adds r0, r1, #0
+	bl free
+.Ljp_phys_08069440:
+	ldr r0, [sp, #0xf0]
+	add r0, r8
+	ldr r7, [sp, #0xf0]
+	str r7, [r6]
+	str r5, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_phys_0806944C:
+	ldr r0, .Ljp_phys_080694B8
+	ldr r1, [sp, #0xd4]
+	cmp r1, r0
+	bne .Ljp_phys_080694E0
+	movs r7, #0
+	ldr r2, [sp, #0xc4]
+	lsls r5, r2, #6
+	movs r0, #0x9b
+	adds r0, #8
+	movs r3, #2
+	lsls r4, r3, #0x10
+	lsls r0, r0, #0x10
+	mov r8, r0
+	movs r6, #0xa
+.Ljp_phys_08069468:
+	ldr r1, [sp, #0xc0]
+	ldr r0, [r1, #0x18]
+	adds r0, r0, r5
+	adds r0, r0, r6
+	lsrs r1, r4, #0x10
+	str r1, [sp]
+	movs r2, #0x20
+	mov sb, r2
+	str r2, [sp, #4]
+	mov r3, r8
+	lsrs r1, r3, #0x10
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r6, #2
+	adds r7, #1
+	cmp r7, #0xe
+	bls .Ljp_phys_08069468
+	mov r4, sl
+	cmp r4, #3
+	bgt .Ljp_phys_080694BC
+	ldr r0, [sp, #0xd0]
+	bl func_0800EF74
+	lsls r0, r0, #0x18
+	lsrs r2, r0, #0x18
+	cmp r2, #0
+	bne .Ljp_phys_080694BC
+	ldr r7, [sp, #0xc0]
+	ldr r0, [r7, #0x18]
+	adds r0, r0, r5
+	adds r0, #0x2a
+	movs r1, #0x44
+	str r2, [sp]
+	mov r2, sb
+	str r2, [sp, #4]
+	movs r2, #8
+	b .Ljp_phys_080698EE
+	.align 2, 0
+.Ljp_phys_080694B8:
+	.4byte 0x0000FFFF
+.Ljp_phys_080694BC:
+	ldr r0, [sp, #0xd0]
+	bl func_0800EF74
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	bne .Ljp_phys_080694CA
+	b .Ljp_phys_080699F6
+.Ljp_phys_080694CA:
+	ldr r3, [sp, #0xc0]
+	ldr r0, [r3, #0x18]
+	adds r0, r0, r5
+	adds r0, #0x2a
+	movs r1, #0x38
+	movs r2, #0
+	str r2, [sp]
+	movs r2, #0x20
+	str r2, [sp, #4]
+	movs r2, #6
+	b .Ljp_phys_080698EE
+.Ljp_phys_080694E0:
+	ldr r0, .Ljp_phys_080695CC
+	ldr r4, [sp, #0xd4]
+	cmp r4, r0
+	bhi .Ljp_phys_080694EA
+	b .Ljp_phys_08069650
+.Ljp_phys_080694EA:
+	ldr r5, .Ljp_phys_080695D0
+	adds r1, r4, r5
+	lsls r0, r1, #4
+	subs r0, r0, r1
+	lsls r0, r0, #3
+	ldr r1, .Ljp_phys_080695D4
+	bl __udivsi3
+	adds r6, r0, #0
+	movs r7, #0
+	lsrs r1, r6, #3
+	cmp r7, r1
+	bhs .Ljp_phys_0806953C
+	movs r0, #0x9b
+	adds r0, #8
+	lsls r0, r0, #0x10
+	mov sb, r0
+	movs r0, #2
+	mov r8, r0
+	movs r4, #0xa
+	adds r5, r1, #0
+.Ljp_phys_08069514:
+	ldr r1, [sp, #0xc0]
+	ldr r0, [r1, #0x18]
+	ldr r2, [sp, #0xc4]
+	lsls r1, r2, #6
+	adds r0, r0, r1
+	adds r0, r0, r4
+	mov r3, r8
+	str r3, [sp]
+	movs r1, #0x20
+	str r1, [sp, #4]
+	mov r2, sb
+	lsrs r1, r2, #0x10
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r4, #2
+	adds r7, #1
+	cmp r7, r5
+	blo .Ljp_phys_08069514
+.Ljp_phys_0806953C:
+	cmp r7, #0xe
+	bhi .Ljp_phys_0806959E
+	ldr r3, [sp, #0xc0]
+	ldr r0, [r3, #0x18]
+	ldr r4, [sp, #0xc4]
+	lsls r5, r4, #6
+	adds r0, r0, r5
+	adds r1, r7, #5
+	lsls r1, r1, #1
+	adds r0, r0, r1
+	movs r1, #7
+	ands r1, r6
+	adds r1, #0x9b
+	movs r2, #2
+	lsls r4, r2, #0x10
+	str r2, [sp]
+	movs r2, #0x20
+	str r2, [sp, #4]
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r7, #1
+	cmp r7, #0xe
+	bhi .Ljp_phys_0806959E
+	lsls r0, r7, #1
+	adds r6, r0, #0
+	adds r6, #0xa
+	movs r3, #0x9b
+	lsls r3, r3, #0x10
+	mov r8, r3
+.Ljp_phys_0806957A:
+	ldr r1, [sp, #0xc0]
+	ldr r0, [r1, #0x18]
+	adds r0, r0, r5
+	adds r0, r0, r6
+	lsrs r1, r4, #0x10
+	str r1, [sp]
+	movs r1, #0x20
+	str r1, [sp, #4]
+	mov r2, r8
+	lsrs r1, r2, #0x10
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r6, #2
+	adds r7, #1
+	cmp r7, #0xe
+	bls .Ljp_phys_0806957A
+.Ljp_phys_0806959E:
+	mov r3, sl
+	cmp r3, #2
+	bgt .Ljp_phys_080695D8
+	ldr r0, [sp, #0xd0]
+	bl func_0800EF74
+	lsls r0, r0, #0x18
+	lsrs r2, r0, #0x18
+	cmp r2, #0
+	bne .Ljp_phys_080695D8
+	ldr r4, [sp, #0xc0]
+	ldr r0, [r4, #0x18]
+	ldr r5, [sp, #0xc4]
+	lsls r1, r5, #6
+	adds r0, r0, r1
+	adds r0, #0x2a
+	movs r1, #0x44
+	str r2, [sp]
+	movs r2, #0x20
+	str r2, [sp, #4]
+	movs r2, #8
+	b .Ljp_phys_080698EE
+	.align 2, 0
+.Ljp_phys_080695CC:
+	.4byte 0x00008C9F
+.Ljp_phys_080695D0:
+	.4byte 0xFFFF7360
+.Ljp_phys_080695D4:
+	.4byte 0x0000735F
+.Ljp_phys_080695D8:
+	ldr r0, [sp, #0xd0]
+	bl func_0800EF74
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_phys_080695FE
+	ldr r7, [sp, #0xc0]
+	ldr r0, [r7, #0x18]
+	ldr r2, [sp, #0xc4]
+	lsls r1, r2, #6
+	adds r0, r0, r1
+	adds r0, #0x2a
+	movs r1, #0x38
+	movs r2, #0
+	str r2, [sp]
+	movs r2, #0x20
+	str r2, [sp, #4]
+	movs r2, #6
+	b .Ljp_phys_080698EE
+.Ljp_phys_080695FE:
+	mov r3, sl
+	cmp r3, #3
+	beq .Ljp_phys_08069606
+	b .Ljp_phys_080699F6
+.Ljp_phys_08069606:
+	ldr r0, [sp, #0xd0]
+	bl func_0800EF74
+	lsls r0, r0, #0x18
+	lsrs r7, r0, #0x18
+	cmp r7, #0
+	beq .Ljp_phys_08069616
+	b .Ljp_phys_080699F6
+.Ljp_phys_08069616:
+	ldr r5, [sp, #0xc0]
+	ldr r4, [r5, #0x18]
+	ldr r0, [sp, #0xc4]
+	lsls r6, r0, #6
+	adds r4, r4, r6
+	adds r4, #0x32
+	ldr r2, [sp, #0xd4]
+	ldr r3, .Ljp_phys_08069648
+	adds r1, r2, r3
+	movs r0, #0x64
+	muls r0, r1, r0
+	ldr r1, .Ljp_phys_0806964C
+	bl __udivsi3
+	movs r2, #0x90
+	lsls r2, r2, #1
+	movs r5, #0x20
+	str r5, [sp]
+	adds r1, r4, #0
+	movs r3, #0
+	bl func_0804ED28
+	ldr r4, [sp, #0xc0]
+	ldr r0, [r4, #0x18]
+	b .Ljp_phys_080698E2
+.Ljp_phys_08069648:
+	.4byte 0xFFFF7360
+.Ljp_phys_0806964C:
+	.4byte 0x0000735F
+.Ljp_phys_08069650:
+	ldr r0, .Ljp_phys_08069730
+	ldr r5, [sp, #0xd4]
+	cmp r5, r0
+	bhi .Ljp_phys_0806965A
+	b .Ljp_phys_08069790
+.Ljp_phys_0806965A:
+	ldr r7, .Ljp_phys_08069734
+	adds r0, r5, r7
+	movs r1, #0x96
+	bl __udivsi3
+	adds r6, r0, #0
+	movs r7, #0
+	lsrs r0, r6, #3
+	cmp r7, r0
+	bhs .Ljp_phys_080696A2
+	movs r0, #0x92
+	adds r0, #8
+	lsls r0, r0, #0x10
+	mov r8, r0
+	movs r5, #2
+	movs r4, #0xa
+.Ljp_phys_0806967A:
+	ldr r1, [sp, #0xc0]
+	ldr r0, [r1, #0x18]
+	ldr r2, [sp, #0xc4]
+	lsls r1, r2, #6
+	adds r0, r0, r1
+	adds r0, r0, r4
+	str r5, [sp]
+	movs r1, #0x20
+	str r1, [sp, #4]
+	mov r3, r8
+	lsrs r1, r3, #0x10
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r4, #2
+	adds r7, #1
+	lsrs r0, r6, #3
+	cmp r7, r0
+	blo .Ljp_phys_0806967A
+.Ljp_phys_080696A2:
+	cmp r7, #0xe
+	bhi .Ljp_phys_08069704
+	ldr r4, [sp, #0xc0]
+	ldr r0, [r4, #0x18]
+	ldr r1, [sp, #0xc4]
+	lsls r5, r1, #6
+	adds r0, r0, r5
+	adds r1, r7, #5
+	lsls r1, r1, #1
+	adds r0, r0, r1
+	movs r1, #7
+	ands r1, r6
+	adds r1, #0x92
+	movs r2, #2
+	lsls r4, r2, #0x10
+	str r2, [sp]
+	movs r2, #0x20
+	str r2, [sp, #4]
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r7, #1
+	cmp r7, #0xe
+	bhi .Ljp_phys_08069704
+	lsls r0, r7, #1
+	adds r6, r0, #0
+	adds r6, #0xa
+	movs r3, #0x92
+	lsls r3, r3, #0x10
+	mov r8, r3
+.Ljp_phys_080696E0:
+	ldr r1, [sp, #0xc0]
+	ldr r0, [r1, #0x18]
+	adds r0, r0, r5
+	adds r0, r0, r6
+	lsrs r1, r4, #0x10
+	str r1, [sp]
+	movs r1, #0x20
+	str r1, [sp, #4]
+	mov r2, r8
+	lsrs r1, r2, #0x10
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r6, #2
+	adds r7, #1
+	cmp r7, #0xe
+	bls .Ljp_phys_080696E0
+.Ljp_phys_08069704:
+	mov r3, sl
+	cmp r3, #1
+	bgt .Ljp_phys_08069738
+	ldr r0, [sp, #0xd0]
+	bl func_0800EF74
+	lsls r0, r0, #0x18
+	lsrs r2, r0, #0x18
+	cmp r2, #0
+	bne .Ljp_phys_08069738
+	ldr r4, [sp, #0xc0]
+	ldr r0, [r4, #0x18]
+	ldr r5, [sp, #0xc4]
+	lsls r1, r5, #6
+	adds r0, r0, r1
+	adds r0, #0x2a
+	movs r1, #0x44
+	str r2, [sp]
+	movs r2, #0x20
+	str r2, [sp, #4]
+	movs r2, #8
+	b .Ljp_phys_080698EE
+.Ljp_phys_08069730:
+	.4byte 0x0000464F
+.Ljp_phys_08069734:
+	.4byte 0xFFFFB9B0
+.Ljp_phys_08069738:
+	ldr r0, [sp, #0xd0]
+	bl func_0800EF74
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_phys_0806975E
+	ldr r7, [sp, #0xc0]
+	ldr r0, [r7, #0x18]
+	ldr r2, [sp, #0xc4]
+	lsls r1, r2, #6
+	adds r0, r0, r1
+	adds r0, #0x2a
+	movs r1, #0x38
+	movs r2, #0
+	str r2, [sp]
+	movs r2, #0x20
+	str r2, [sp, #4]
+	movs r2, #6
+	b .Ljp_phys_080698EE
+.Ljp_phys_0806975E:
+	mov r3, sl
+	cmp r3, #2
+	beq .Ljp_phys_08069766
+	b .Ljp_phys_080699F6
+.Ljp_phys_08069766:
+	ldr r0, [sp, #0xd0]
+	bl func_0800EF74
+	lsls r0, r0, #0x18
+	lsrs r7, r0, #0x18
+	cmp r7, #0
+	beq .Ljp_phys_08069776
+	b .Ljp_phys_080699F6
+.Ljp_phys_08069776:
+	ldr r5, [sp, #0xc0]
+	ldr r4, [r5, #0x18]
+	ldr r0, [sp, #0xc4]
+	lsls r6, r0, #6
+	adds r4, r4, r6
+	adds r4, #0x32
+	ldr r1, [sp, #0xd4]
+	ldr r2, .Ljp_phys_0806978C
+	adds r0, r1, r2
+	movs r1, #0xb4
+	b .Ljp_phys_080698CA
+.Ljp_phys_0806978C:
+	.4byte 0xFFFFB9B0
+.Ljp_phys_08069790:
+	ldr r0, .Ljp_phys_08069870
+	ldr r4, [sp, #0xd4]
+	cmp r4, r0
+	bhi .Ljp_phys_0806979A
+	b .Ljp_phys_080698FC
+.Ljp_phys_0806979A:
+	ldr r5, .Ljp_phys_08069874
+	adds r0, r4, r5
+	movs r1, #0x64
+	bl __udivsi3
+	adds r6, r0, #0
+	movs r7, #0
+	lsrs r0, r6, #3
+	cmp r7, r0
+	bhs .Ljp_phys_080697E2
+	movs r0, #0x89
+	adds r0, #8
+	lsls r0, r0, #0x10
+	mov r8, r0
+	movs r5, #2
+	movs r4, #0xa
+.Ljp_phys_080697BA:
+	ldr r1, [sp, #0xc0]
+	ldr r0, [r1, #0x18]
+	ldr r2, [sp, #0xc4]
+	lsls r1, r2, #6
+	adds r0, r0, r1
+	adds r0, r0, r4
+	str r5, [sp]
+	movs r1, #0x20
+	str r1, [sp, #4]
+	mov r3, r8
+	lsrs r1, r3, #0x10
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r4, #2
+	adds r7, #1
+	lsrs r0, r6, #3
+	cmp r7, r0
+	blo .Ljp_phys_080697BA
+.Ljp_phys_080697E2:
+	cmp r7, #0xe
+	bhi .Ljp_phys_08069844
+	ldr r4, [sp, #0xc0]
+	ldr r0, [r4, #0x18]
+	ldr r1, [sp, #0xc4]
+	lsls r5, r1, #6
+	adds r0, r0, r5
+	adds r1, r7, #5
+	lsls r1, r1, #1
+	adds r0, r0, r1
+	movs r1, #7
+	ands r1, r6
+	adds r1, #0x89
+	movs r2, #2
+	lsls r4, r2, #0x10
+	str r2, [sp]
+	movs r2, #0x20
+	str r2, [sp, #4]
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r7, #1
+	cmp r7, #0xe
+	bhi .Ljp_phys_08069844
+	lsls r0, r7, #1
+	adds r6, r0, #0
+	adds r6, #0xa
+	movs r3, #0x89
+	lsls r3, r3, #0x10
+	mov r8, r3
+.Ljp_phys_08069820:
+	ldr r1, [sp, #0xc0]
+	ldr r0, [r1, #0x18]
+	adds r0, r0, r5
+	adds r0, r0, r6
+	lsrs r1, r4, #0x10
+	str r1, [sp]
+	movs r1, #0x20
+	str r1, [sp, #4]
+	mov r2, r8
+	lsrs r1, r2, #0x10
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r6, #2
+	adds r7, #1
+	cmp r7, #0xe
+	bls .Ljp_phys_08069820
+.Ljp_phys_08069844:
+	mov r3, sl
+	cmp r3, #0
+	bgt .Ljp_phys_08069878
+	ldr r0, [sp, #0xd0]
+	bl func_0800EF74
+	lsls r0, r0, #0x18
+	lsrs r2, r0, #0x18
+	cmp r2, #0
+	bne .Ljp_phys_08069878
+	ldr r4, [sp, #0xc0]
+	ldr r0, [r4, #0x18]
+	ldr r5, [sp, #0xc4]
+	lsls r1, r5, #6
+	adds r0, r0, r1
+	adds r0, #0x2a
+	movs r1, #0x44
+	str r2, [sp]
+	movs r2, #0x20
+	str r2, [sp, #4]
+	movs r2, #8
+	b .Ljp_phys_080698EE
+.Ljp_phys_08069870:
+	.4byte 0x0000176F
+.Ljp_phys_08069874:
+	.4byte 0xFFFFE890
+.Ljp_phys_08069878:
+	ldr r0, [sp, #0xd0]
+	bl func_0800EF74
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_phys_0806989E
+	ldr r7, [sp, #0xc0]
+	ldr r0, [r7, #0x18]
+	ldr r2, [sp, #0xc4]
+	lsls r1, r2, #6
+	adds r0, r0, r1
+	adds r0, #0x2a
+	movs r1, #0x38
+	movs r2, #0
+	str r2, [sp]
+	movs r2, #0x20
+	str r2, [sp, #4]
+	movs r2, #6
+	b .Ljp_phys_080698EE
+.Ljp_phys_0806989E:
+	mov r3, sl
+	cmp r3, #1
+	beq .Ljp_phys_080698A6
+	b .Ljp_phys_080699F6
+.Ljp_phys_080698A6:
+	ldr r0, [sp, #0xd0]
+	bl func_0800EF74
+	lsls r0, r0, #0x18
+	lsrs r7, r0, #0x18
+	cmp r7, #0
+	beq .Ljp_phys_080698B6
+	b .Ljp_phys_080699F6
+.Ljp_phys_080698B6:
+	ldr r5, [sp, #0xc0]
+	ldr r4, [r5, #0x18]
+	ldr r0, [sp, #0xc4]
+	lsls r6, r0, #6
+	adds r4, r4, r6
+	adds r4, #0x32
+	ldr r1, [sp, #0xd4]
+	ldr r2, .Ljp_phys_080698F8
+	adds r0, r1, r2
+	movs r1, #0x78
+.Ljp_phys_080698CA:
+	bl __udivsi3
+	movs r2, #0x90
+	lsls r2, r2, #1
+	movs r5, #0x20
+	str r5, [sp]
+	adds r1, r4, #0
+	movs r3, #0
+	bl func_0804ED28
+	ldr r3, [sp, #0xc0]
+	ldr r0, [r3, #0x18]
+.Ljp_phys_080698E2:
+	adds r0, r0, r6
+	adds r0, #0x34
+	movs r1, #0x54
+	str r7, [sp]
+	str r5, [sp, #4]
+	movs r2, #2
+.Ljp_phys_080698EE:
+	movs r3, #2
+	bl func_0804E9F4
+	b .Ljp_phys_080699F6
+	.align 2, 0
+.Ljp_phys_080698F8:
+	.4byte 0xFFFFE890
+.Ljp_phys_080698FC:
+	ldr r0, [sp, #0xd4]
+	movs r1, #0x32
+	bl __udivsi3
+	adds r6, r0, #0
+	movs r7, #0
+	lsrs r0, r6, #3
+	cmp r7, r0
+	bhs .Ljp_phys_08069942
+	movs r0, #0x80
+	adds r0, #8
+	lsls r0, r0, #0x10
+	mov r8, r0
+	movs r5, #2
+	movs r4, #0xa
+.Ljp_phys_0806991A:
+	ldr r1, [sp, #0xc0]
+	ldr r0, [r1, #0x18]
+	ldr r2, [sp, #0xc4]
+	lsls r1, r2, #6
+	adds r0, r0, r1
+	adds r0, r0, r4
+	str r5, [sp]
+	movs r1, #0x20
+	str r1, [sp, #4]
+	mov r3, r8
+	lsrs r1, r3, #0x10
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r4, #2
+	adds r7, #1
+	lsrs r0, r6, #3
+	cmp r7, r0
+	blo .Ljp_phys_0806991A
+.Ljp_phys_08069942:
+	cmp r7, #0xe
+	bhi .Ljp_phys_080699A8
+	ldr r4, [sp, #0xc0]
+	ldr r0, [r4, #0x18]
+	ldr r1, [sp, #0xc4]
+	lsls r5, r1, #6
+	adds r0, r0, r5
+	adds r1, r7, #5
+	lsls r1, r1, #1
+	adds r0, r0, r1
+	movs r1, #7
+	ands r6, r1
+	movs r2, #0x80
+	orrs r6, r2
+	movs r3, #2
+	lsls r4, r3, #0x10
+	str r3, [sp]
+	movs r1, #0x20
+	str r1, [sp, #4]
+	adds r1, r6, #0
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r7, #1
+	cmp r7, #0xe
+	bhi .Ljp_phys_080699A8
+	lsls r0, r7, #1
+	adds r6, r0, #0
+	adds r6, #0xa
+	movs r0, #0x80
+	lsls r0, r0, #0x10
+	mov r8, r0
+.Ljp_phys_08069984:
+	ldr r1, [sp, #0xc0]
+	ldr r0, [r1, #0x18]
+	adds r0, r0, r5
+	adds r0, r0, r6
+	lsrs r1, r4, #0x10
+	str r1, [sp]
+	movs r1, #0x20
+	str r1, [sp, #4]
+	mov r2, r8
+	lsrs r1, r2, #0x10
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	adds r6, #2
+	adds r7, #1
+	cmp r7, #0xe
+	bls .Ljp_phys_08069984
+.Ljp_phys_080699A8:
+	mov r3, sl
+	cmp r3, #0
+	bne .Ljp_phys_080699F6
+	ldr r0, [sp, #0xd0]
+	bl func_0800EF74
+	lsls r0, r0, #0x18
+	lsrs r7, r0, #0x18
+	cmp r7, #0
+	bne .Ljp_phys_080699F6
+	ldr r5, [sp, #0xc0]
+	ldr r4, [r5, #0x18]
+	ldr r0, [sp, #0xc4]
+	lsls r6, r0, #6
+	adds r4, r4, r6
+	adds r4, #0x32
+	ldr r0, [sp, #0xd4]
+	movs r1, #0x3c
+	bl __udivsi3
+	movs r2, #0x90
+	lsls r2, r2, #1
+	movs r5, #0x20
+	str r5, [sp]
+	adds r1, r4, #0
+	movs r3, #0
+	bl func_0804ED28
+	ldr r1, [sp, #0xc0]
+	ldr r0, [r1, #0x18]
+	adds r0, r0, r6
+	adds r0, #0x34
+	movs r1, #0x54
+	str r7, [sp]
+	str r5, [sp, #4]
+	movs r2, #2
+	movs r3, #2
+	bl func_0804E9F4
+.Ljp_phys_080699F6:
+	ldr r0, .Ljp_phys_08069A84
+	ldr r2, [sp, #0xd4]
+	cmp r2, r0
+	bls .Ljp_phys_08069A74
+	ldr r1, [sp, #0xc4]
+	adds r1, #1
+	ldr r3, [sp, #0xc0]
+	ldr r0, [r3, #0x18]
+	lsls r5, r1, #6
+	adds r0, r0, r5
+	adds r0, #0xa
+	movs r1, #0x58
+	movs r4, #1
+	str r4, [sp]
+	movs r6, #0x20
+	str r6, [sp, #4]
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	ldr r0, .Ljp_phys_08069A88
+	ldr r7, [sp, #0xd4]
+	cmp r7, r0
+	bls .Ljp_phys_08069A74
+	ldr r1, [sp, #0xc0]
+	ldr r0, [r1, #0x18]
+	adds r0, r0, r5
+	adds r0, #0xc
+	movs r1, #0x59
+	str r4, [sp]
+	str r6, [sp, #4]
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	ldr r0, .Ljp_phys_08069A8C
+	cmp r7, r0
+	bls .Ljp_phys_08069A74
+	ldr r2, [sp, #0xc0]
+	ldr r0, [r2, #0x18]
+	adds r0, r0, r5
+	adds r0, #0xe
+	movs r1, #0x5a
+	str r4, [sp]
+	str r6, [sp, #4]
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+	ldr r0, .Ljp_phys_08069A90
+	cmp r7, r0
+	bne .Ljp_phys_08069A74
+	ldr r3, [sp, #0xc0]
+	ldr r0, [r3, #0x18]
+	adds r0, r0, r5
+	adds r0, #0x10
+	movs r1, #0x5b
+	str r4, [sp]
+	str r6, [sp, #4]
+	movs r2, #1
+	movs r3, #1
+	bl func_0804E9F4
+.Ljp_phys_08069A74:
+	ldr r4, [sp, #0xe8]
+	ldr r5, [sp, #0xc8]
+	cmp r4, r5
+	bge .Ljp_phys_08069A94
+	ldr r7, [sp, #0xc4]
+	adds r7, #3
+	str r7, [sp, #0xc4]
+	b .Ljp_phys_08069A9A
+.Ljp_phys_08069A84:
+	.4byte 0x0000176F
+.Ljp_phys_08069A88:
+	.4byte 0x0000464F
+.Ljp_phys_08069A8C:
+	.4byte 0x00008C9F
+.Ljp_phys_08069A90:
+	.4byte 0x0000FFFF
+.Ljp_phys_08069A94:
+	ldr r0, [sp, #0xc4]
+	adds r0, #2
+	str r0, [sp, #0xc4]
+.Ljp_phys_08069A9A:
+	ldr r1, [sp, #0xe8]
+	str r1, [sp, #0xcc]
+	ldr r2, [sp, #0xc8]
+	cmp r1, r2
+	bge .Ljp_phys_08069AA8
+	bl .Ljp_phys_080690CA
+.Ljp_phys_08069AA8:
+	ldr r3, [sp, #0xc4]
+	lsls r1, r3, #0x13
+	asrs r1, r1, #0x10
+	ldr r0, [sp, #0xc0]
+	bl func_08075E24
+	ldr r0, [sp, #0xbc]
+	add sp, #0xf4
+	pop {r3, r4, r5}
+	mov r8, r3
+	mov sb, r4
+	mov sl, r5
+	pop {r4, r5, r6, r7}
+	pop {r1}
+	bx r1
+	.align 2, 0
     jp_code_0803ee_func func_08069C34, 0x69AC8, 0x69C14
     jp_code_0803ee_func func_08069C14, 0x69C14, 0x69CE8
     jp_code_0803ee_func func_08069CE8, 0x69CE8, 0x69D28

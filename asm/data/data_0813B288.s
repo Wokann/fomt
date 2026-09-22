@@ -2616,7 +2616,10 @@ gUnk_08750C4C:
     .incbin "baserom_jp.gba", 0x4D6BF8, (0x4D6C18 - 0x4D6BF8)
     .global gUnk_08750C6C
 gUnk_08750C6C:
-    .incbin "baserom_jp.gba", 0x4D6C18, (0x4D6DF8 - 0x4D6C18)
+    .incbin "baserom_jp.gba", 0x4D6C18, (0x4D6C38 - 0x4D6C18)
+    .global gUnk_08750C8C
+gUnk_08750C8C:
+    .incbin "baserom_jp.gba", 0x4D6C38, (0x4D6DF8 - 0x4D6C38)
     .global gUnk_08750E4C
 gUnk_08750E4C:
     .incbin "baserom_jp.gba", 0x4D6DF8, (0x4D6F18 - 0x4D6DF8)
@@ -2625,7 +2628,31 @@ gUnk_08750F6C:
     .incbin "baserom_jp.gba", 0x4D6F18, (0x4D6F38 - 0x4D6F18)
     .global gUnk_08750F8C
 gUnk_08750F8C:
-    .incbin "baserom_jp.gba", 0x4D6F38, (0x4D7758 - 0x4D6F38)
+    .incbin "baserom_jp.gba", 0x4D6F38, (0x4D7058 - 0x4D6F38)
+    .global gUnk_087510AC
+gUnk_087510AC:
+    .incbin "baserom_jp.gba", 0x4D7058, (0x4D7178 - 0x4D7058)
+    .global gUnk_087511CC
+gUnk_087511CC:
+    .incbin "baserom_jp.gba", 0x4D7178, (0x4D7298 - 0x4D7178)
+    .global gUnk_087512EC
+gUnk_087512EC:
+    .incbin "baserom_jp.gba", 0x4D7298, (0x4D72B8 - 0x4D7298)
+    .global gUnk_0875130C
+gUnk_0875130C:
+    .incbin "baserom_jp.gba", 0x4D72B8, (0x4D73D8 - 0x4D72B8)
+    .global gUnk_0875142C
+gUnk_0875142C:
+    .incbin "baserom_jp.gba", 0x4D73D8, (0x4D74F8 - 0x4D73D8)
+    .global gUnk_0875154C
+gUnk_0875154C:
+    .incbin "baserom_jp.gba", 0x4D74F8, (0x4D7618 - 0x4D74F8)
+    .global gUnk_0875166C
+gUnk_0875166C:
+    .incbin "baserom_jp.gba", 0x4D7618, (0x4D7738 - 0x4D7618)
+    .global gUnk_0875178C
+gUnk_0875178C:
+    .incbin "baserom_jp.gba", 0x4D7738, (0x4D7758 - 0x4D7738)
     .global gUnk_087517AC
 gUnk_087517AC:
     .incbin "baserom_jp.gba", 0x4D7758, (0x4D7878 - 0x4D7758)
@@ -2808,13 +2835,28 @@ gUnk_0875298C:
     FOMT_FARM_STATUS_CREATURE_ICON 09, gbapal
     .global gUnk_087529AC
 gUnk_087529AC:
-    .incbin "baserom_jp.gba", 0x4D8958, (0x4D8A78 - 0x4D8958)
+    .incbin "baserom_jp.gba", 0x4D8958, (0x4D89D8 - 0x4D8958)
+    .global gUnk_08752A2C
+gUnk_08752A2C:
+    .incbin "baserom_jp.gba", 0x4D89D8, (0x4D8A58 - 0x4D89D8)
+    .global gUnk_08752AAC
+gUnk_08752AAC:
+    .incbin "baserom_jp.gba", 0x4D8A58, (0x4D8A78 - 0x4D8A58)
     .global gUnk_08752ACC
 gUnk_08752ACC:
     .incbin "baserom_jp.gba", 0x4D8A78, (0x4D8AF8 - 0x4D8A78)
     .global gUnk_08752B4C
 gUnk_08752B4C:
-    .incbin "baserom_jp.gba", 0x4D8AF8, (0x4D8CF8 - 0x4D8AF8)
+    .incbin "baserom_jp.gba", 0x4D8AF8, (0x4D8B78 - 0x4D8AF8)
+    .global gUnk_08752BCC
+gUnk_08752BCC:
+    .incbin "baserom_jp.gba", 0x4D8B78, (0x4D8BF8 - 0x4D8B78)
+    .global gUnk_08752C4C
+gUnk_08752C4C:
+    .incbin "baserom_jp.gba", 0x4D8BF8, (0x4D8C78 - 0x4D8BF8)
+    .global gUnk_08752CCC
+gUnk_08752CCC:
+    .incbin "baserom_jp.gba", 0x4D8C78, (0x4D8CF8 - 0x4D8C78)
     .global gUnk_08752D4C
 gUnk_08752D4C:
     .incbin "baserom_jp.gba", 0x4D8CF8, (0x4D8D78 - 0x4D8CF8)
