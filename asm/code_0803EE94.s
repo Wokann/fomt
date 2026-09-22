@@ -81339,7 +81339,88 @@ func_080850E0: @ 0x080850E0
 .global func_080850FC
 .thumb_func
 func_080850FC:
-    jp_code_0803ee_bytes 0x850FC, 0x851A4
+	push {r4, r5, r6, r7, lr}
+	adds r5, r0, #0
+	adds r4, r2, #0
+	bl func_080C797C
+	ldr r0, .Ljp_0808511C @ =vtable_unk_080E7D20
+	str r0, [r5, #4]
+	ldr r0, .Ljp_08085120 @ =0x000006A4
+	adds r1, r5, r0
+	cmp r4, #0
+	beq .Ljp_0808512A
+	cmp r4, #1
+	beq .Ljp_08085124
+	movs r0, #6
+	str r0, [r1]
+	b .Ljp_0808512C
+	.align 2, 0
+.Ljp_0808511C: .4byte vtable_unk_080E7D20
+.Ljp_08085120: .4byte 0x000006A4
+.Ljp_08085124:
+	movs r0, #5
+	str r0, [r1]
+	b .Ljp_0808512C
+.Ljp_0808512A:
+	str r4, [r1]
+.Ljp_0808512C:
+	movs r1, #0xd5
+	lsls r1, r1, #3
+	adds r0, r5, r1
+	movs r1, #0
+	strb r1, [r0]
+	ldr r2, .Ljp_08085190 @ =0x0000072C
+	adds r0, r5, r2
+	str r1, [r0]
+	movs r0, #0x10
+	ldr r7, .Ljp_08085194 @ =gText_LivestockShop_PageBreak
+	subs r1, #1
+.Ljp_08085142:
+	subs r0, #1
+	cmp r0, r1
+	bne .Ljp_08085142
+	ldr r0, .Ljp_08085198 @ =0x00003AB4
+	adds r6, r5, r0
+	adds r0, r7, #0
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, #0x7f
+	bls .Ljp_0808515A
+	movs r4, #0x7f
+.Ljp_0808515A:
+	adds r0, r6, #0
+	adds r1, r7, #0
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r6, r4
+	movs r0, #0
+	strb r0, [r1]
+	ldr r2, .Ljp_0808519C @ =0x00003B34
+	adds r1, r5, r2
+	movs r0, #0
+	strb r0, [r1]
+	ldr r1, .Ljp_080851A0 @ =0x00003B98
+	adds r0, r5, r1
+	movs r1, #0xf
+	movs r3, #0
+	movs r2, #1
+	rsbs r2, r2, #0
+.Ljp_0808517E:
+	strb r3, [r0, #4]
+	adds r0, #0x84
+	subs r1, #1
+	cmp r1, r2
+	bne .Ljp_0808517E
+	adds r0, r5, #0
+	pop {r4, r5, r6, r7}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.Ljp_08085190: .4byte 0x0000072C
+.Ljp_08085194: .4byte gText_LivestockShop_PageBreak
+.Ljp_08085198: .4byte 0x00003AB4
+.Ljp_0808519C: .4byte 0x00003B34
+.Ljp_080851A0: .4byte 0x00003B98
 .global func_080851A4
 .thumb_func
 func_080851A4: @ 0x080851A4
