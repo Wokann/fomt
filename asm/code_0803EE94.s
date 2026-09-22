@@ -54754,8 +54754,62 @@ func_08075A5C: @ 0x08075A5C
     bx r1
     .global func_08075E24
     .thumb_func
-func_08075E24:
-    .incbin "baserom_jp.gba", 0x75A80, (0x75AD8 - 0x75A80)
+func_08075E24: @ 0x08075A80
+    push {r4, r5, lr}
+    adds r2, r0, #0
+    lsls r1, r1, #0x10
+    lsrs r4, r1, #0x10
+    asrs r1, r1, #0x10
+    ldrh r3, [r2, #4]
+    movs r5, #4
+    ldrsh r0, [r2, r5]
+    cmp r1, r0
+    bgt .Ljp_08075A98
+    strh r4, [r2, #0xe]
+    b .Ljp_08075A9A
+.Ljp_08075A98:
+    strh r3, [r2, #0xe]
+.Ljp_08075A9A:
+    movs r1, #0xe
+    ldrsh r0, [r2, r1]
+    cmp r0, #0x9f
+    bgt .Ljp_08075AA6
+    movs r0, #0xa0
+    strh r0, [r2, #0xe]
+.Ljp_08075AA6:
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+
+    .global func_08075E50
+    .thumb_func
+func_08075E50: @ 0x08075AAC
+    push {r4, r5, r6, lr}
+    ldr r4, [sp, #0x10]
+    ldr r5, [sp, #0x14]
+    ldr r6, [sp, #0x18]
+    str r1, [r0, #0xc]
+    str r2, [r0, #0x10]
+    str r3, [r0, #0x14]
+    str r4, [r0, #0x18]
+    str r5, [r0, #0x1c]
+    str r6, [r0, #0x20]
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+    .hword 0 @ Original two-byte padding before the next Thumb entry.
+
+    .global func_08075E6A
+    .thumb_func
+func_08075E6A: @ 0x08075AC8
+    movs r1, #0
+    str r1, [r0]
+    str r1, [r0, #4]
+    ldr r1, .Ljp_08075AD4
+    str r1, [r0, #8]
+    bx lr
+.Ljp_08075AD4:
+    .4byte vtable_unk_080E6F98_Subtable
     .global func_08075E7C
     .thumb_func
 func_08075E7C:
@@ -179909,11 +179963,35 @@ func_08075E24: @ 0x08075E24
 	pop {r4, r5}
 	pop {r0}
 	bx r0
-.L08075E50:
-	.byte 0x70, 0xB5, 0x04, 0x9C, 0x05, 0x9D, 0x06, 0x9E, 0xC1, 0x60, 0x02, 0x61, 0x43, 0x61, 0x84, 0x61
-	.byte 0xC5, 0x61, 0x06, 0x62, 0x70, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x00, 0x21, 0x01, 0x60
-	.byte 0x41, 0x60, 0x01, 0x49, 0x81, 0x60, 0x70, 0x47
-	.4byte vtable_unk_080E7B68
+	.global func_08075E50
+	.thumb_func
+func_08075E50: @ 0x08075E50
+	push {r4, r5, r6, lr}
+	ldr r4, [sp, #0x10]
+	ldr r5, [sp, #0x14]
+	ldr r6, [sp, #0x18]
+	str r1, [r0, #0xc]
+	str r2, [r0, #0x10]
+	str r3, [r0, #0x14]
+	str r4, [r0, #0x18]
+	str r5, [r0, #0x1c]
+	str r6, [r0, #0x20]
+	pop {r4, r5, r6}
+	pop {r0}
+	bx r0
+	.hword 0 @ Original two-byte padding before the next Thumb entry.
+
+	.global func_08075E6A
+	.thumb_func
+func_08075E6A: @ 0x08075E6A
+	movs r1, #0
+	str r1, [r0]
+	str r1, [r0, #4]
+	ldr r1, .L08075E78 @ =vtable_unk_080E7B68
+	str r1, [r0, #8]
+	bx lr
+	.align 2, 0
+.L08075E78: .4byte vtable_unk_080E7B68
 
 	thumb_func_start func_08075E7C
 func_08075E7C: @ 0x08075E7C
