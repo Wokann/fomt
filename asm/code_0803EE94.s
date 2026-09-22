@@ -75255,10 +75255,1099 @@ func_08080C80:
 	bx r0
 	.align 2, 0
 .Ljp_08080CC0: .4byte gText_SpecialMerchantShop_RecordPlayerDescription
-    .global func_08080CC4
-    .thumb_func
+	.global func_08080CC4
+	.thumb_func
 func_08080CC4:
-    jp_code_0803ee_bytes 0x80CC4, 0x815E8
+	push {r4, r5, r6, r7, lr}
+	mov r7, sl
+	mov r6, sb
+	mov r5, r8
+	push {r5, r6, r7}
+	sub sp, #0x2c
+	adds r6, r0, #0
+	bl func_08008724
+	adds r0, r6, #0
+	bl func_080C7FC4
+	movs r4, #0
+	movs r1, #0
+.Ljp_08080CE0:
+	ldr r0, [r6, #8]
+	ldr r2, .Ljp_08080E70
+	adds r0, r0, r2
+	bl func_0809EEA4
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_08080D0E
+	movs r0, #0xa9
+	lsls r0, r0, #2
+	adds r1, r6, r0
+	ldr r0, [r1]
+	cmp r0, #0x27
+	bhi .Ljp_08080D0E
+	lsls r0, r0, #2
+	adds r0, #4
+	adds r0, r1, r0
+	cmp r0, #0
+	beq .Ljp_08080D08
+	str r4, [r0]
+.Ljp_08080D08:
+	ldr r0, [r1]
+	adds r0, #1
+	str r0, [r1]
+.Ljp_08080D0E:
+	adds r4, #1
+	adds r1, r4, #0
+	cmp r1, #9
+	bls .Ljp_08080CE0
+	ldr r0, [r6, #8]
+	movs r1, #0xfa
+	lsls r1, r1, #1
+	adds r0, r0, r1
+	bl GetRecordPlayer__9FarmHouse
+	cmp r0, #0
+	bne .Ljp_08080D46
+	movs r2, #0xa9
+	lsls r2, r2, #2
+	adds r1, r6, r2
+	ldr r0, [r1]
+	cmp r0, #0x27
+	bhi .Ljp_08080D46
+	lsls r0, r0, #2
+	adds r0, #4
+	adds r2, r1, r0
+	cmp r2, #0
+	beq .Ljp_08080D40
+	movs r0, #0xa
+	str r0, [r2]
+.Ljp_08080D40:
+	ldr r0, [r1]
+	adds r0, #1
+	str r0, [r1]
+.Ljp_08080D46:
+	movs r0, #0xa9
+	lsls r0, r0, #2
+	adds r1, r6, r0
+	ldr r0, [r1]
+	cmp r0, #0x27
+	bhi .Ljp_08080D66
+	lsls r0, r0, #2
+	adds r0, #4
+	adds r2, r1, r0
+	cmp r2, #0
+	beq .Ljp_08080D60
+	movs r0, #0xb
+	str r0, [r2]
+.Ljp_08080D60:
+	ldr r0, [r1]
+	adds r0, #1
+	str r0, [r1]
+.Ljp_08080D66:
+	movs r2, #0xa9
+	lsls r2, r2, #2
+	adds r1, r6, r2
+	ldr r0, [r1]
+	cmp r0, #0x27
+	bhi .Ljp_08080D86
+	lsls r0, r0, #2
+	adds r0, #4
+	adds r2, r1, r0
+	cmp r2, #0
+	beq .Ljp_08080D80
+	movs r0, #0xc
+	str r0, [r2]
+.Ljp_08080D80:
+	ldr r0, [r1]
+	adds r0, #1
+	str r0, [r1]
+.Ljp_08080D86:
+	movs r0, #0xa9
+	lsls r0, r0, #2
+	adds r1, r6, r0
+	ldr r0, [r1]
+	cmp r0, #0x27
+	bhi .Ljp_08080DA6
+	lsls r0, r0, #2
+	adds r0, #4
+	adds r2, r1, r0
+	cmp r2, #0
+	beq .Ljp_08080DA0
+	movs r0, #0xd
+	str r0, [r2]
+.Ljp_08080DA0:
+	ldr r0, [r1]
+	adds r0, #1
+	str r0, [r1]
+.Ljp_08080DA6:
+	movs r2, #0xa9
+	lsls r2, r2, #2
+	adds r1, r6, r2
+	ldr r0, [r1]
+	cmp r0, #0x27
+	bhi .Ljp_08080DC6
+	lsls r0, r0, #2
+	adds r0, #4
+	adds r2, r1, r0
+	cmp r2, #0
+	beq .Ljp_08080DC0
+	movs r0, #0xe
+	str r0, [r2]
+.Ljp_08080DC0:
+	ldr r0, [r1]
+	adds r0, #1
+	str r0, [r1]
+.Ljp_08080DC6:
+	adds r0, r6, #0
+	bl func_080809E0
+	ldr r0, [r6, #0x10]
+	lsls r0, r0, #2
+	adds r0, r0, r6
+	movs r1, #0xaa
+	lsls r1, r1, #2
+	adds r0, r0, r1
+	ldr r1, [r0]
+	adds r0, r6, #0
+	bl func_08080C80
+	adds r0, r6, #0
+	bl func_08008918
+	mov r1, sp
+	movs r2, #0x3f
+	strh r2, [r1]
+	adds r0, #0x50
+	strh r2, [r0]
+	movs r0, #0x10
+	bl __builtin_new
+	adds r4, r0, #0
+	adds r0, r6, #0
+	bl func_08008918
+	adds r1, r0, #0
+	movs r0, #0
+	str r0, [r4]
+	str r0, [r4, #4]
+	ldr r0, .Ljp_08080E74
+	str r0, [r4, #8]
+	adds r5, r4, #0
+	adds r5, #0xc
+	adds r0, r5, #0
+	bl func_08009300
+	str r4, [sp, #4]
+	ldr r1, .Ljp_08080E78
+	adds r0, r5, #0
+	movs r2, #1
+	movs r3, #1
+	bl func_0800934C
+	adds r0, r6, #0
+	bl func_08008940
+	ldr r2, [r0, #8]
+	ldr r1, [sp, #4]
+	ldr r2, [r2, #0x10]
+	bl _call_via_r2
+	movs r2, #0
+	str r2, [sp, #0x24]
+.Ljp_08080E36:
+	adds r0, r6, #0
+	bl func_080087C8
+	adds r0, r6, #0
+	bl func_080088B8
+	ldr r3, [sp, #4]
+	ldr r1, [r3]
+	rsbs r0, r1, #0
+	orrs r0, r1
+	cmp r0, #0
+	bge .Ljp_08080E50
+	b .Ljp_0808158E
+.Ljp_08080E50:
+	ldr r0, [sp, #0x24]
+	cmp r0, #0
+	beq .Ljp_08080E58
+	b .Ljp_0808159C
+.Ljp_08080E58:
+	ldr r1, .Ljp_08080E7C
+	adds r0, r6, r1
+	ldr r0, [r0]
+	cmp r0, #5
+	bls .Ljp_08080E64
+	b .Ljp_0808158E
+.Ljp_08080E64:
+	lsls r0, r0, #2
+	ldr r1, .Ljp_08080E80
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov pc, r0
+	.align 2, 0
+.Ljp_08080E70: .4byte 0x00001FE4
+.Ljp_08080E74: .4byte vtable_unk_080E5B80
+.Ljp_08080E78: .4byte 0x00000889
+.Ljp_08080E7C: .4byte 0x000006A4
+.Ljp_08080E80: .4byte .Ljp_08080E84
+.Ljp_08080E84: .4byte .Ljp_08080E9C
+.Ljp_08080E88: .4byte .Ljp_08081284
+.Ljp_08080E8C: .4byte .Ljp_080813C8
+.Ljp_08080E90: .4byte .Ljp_080813F0
+.Ljp_08080E94: .4byte .Ljp_0808141C
+.Ljp_08080E98: .4byte .Ljp_08081554
+.Ljp_08080E9C:
+	ldr r0, [r6, #0x14]
+	ldr r1, [r6, #0x10]
+	cmp r0, r1
+	beq .Ljp_08080EB6
+	lsls r0, r1, #2
+	adds r0, r0, r6
+	movs r2, #0xaa
+	lsls r2, r2, #2
+	adds r0, r0, r2
+	ldr r1, [r0]
+	adds r0, r6, #0
+	bl func_08080C80
+.Ljp_08080EB6:
+	ldr r1, .Ljp_08080F14
+	adds r0, r6, r1
+	ldrb r0, [r0]
+	cmp r0, #0
+	bne .Ljp_08080EC2
+	b .Ljp_08081224
+.Ljp_08080EC2:
+	ldr r0, [r6, #0x10]
+	lsls r0, r0, #2
+	adds r0, r0, r6
+	movs r2, #0xaa
+	lsls r2, r2, #2
+	adds r0, r0, r2
+	ldr r3, [r0]
+	lsls r0, r3, #3
+	ldr r1, .Ljp_08080F18
+	adds r0, r0, r1
+	ldr r1, [r0, #4]
+	ldr r0, [r0]
+	str r0, [sp, #0x18]
+	str r1, [sp, #0x1c]
+	ldr r5, [r6, #8]
+	ldr r1, .Ljp_08080F1C
+	adds r0, r5, r1
+	ldr r2, [r0]
+	movs r4, #0
+	add r0, sp, #0x18
+	ldr r1, [r0, #4]
+	cmp r1, r2
+	bls .Ljp_08080EF2
+	movs r4, #1
+.Ljp_08080EF2:
+	cmp r4, #0
+	beq .Ljp_08080F28
+	ldr r1, .Ljp_08080F20
+	adds r0, r6, #0
+	bl func_080CA3B0
+	movs r2, #0xd2
+	lsls r2, r2, #2
+	adds r0, r6, r2
+	movs r1, #0x90
+	bl func_08050E50
+	ldr r0, .Ljp_08080F24
+	adds r1, r6, r0
+	movs r0, #3
+	b .Ljp_08081266
+	.align 2, 0
+.Ljp_08080F14: .4byte 0x000006A1
+.Ljp_08080F18: .4byte gSpecialMerchantShopCatalog
+.Ljp_08080F1C: .4byte 0x00001AA8
+.Ljp_08080F20: .4byte gText_SpecialMerchantShop_InsufficientGold
+.Ljp_08080F24: .4byte 0x000006A4
+.Ljp_08080F28:
+	cmp r3, #0xa
+	bne .Ljp_08080F38
+	ldr r2, .Ljp_08080F34
+	adds r1, r6, r2
+	movs r0, #1
+	b .Ljp_08081266
+	.align 2, 0
+.Ljp_08080F34: .4byte 0x000006A4
+.Ljp_08080F38:
+	cmp r3, #0xa
+	bhs .Ljp_08080F3E
+	b .Ljp_080811A0
+.Ljp_08080F3E:
+	cmp r3, #0xe
+	bls .Ljp_08080F44
+	b .Ljp_080811A0
+.Ljp_08080F44:
+	movs r0, #0
+	mov sb, r0
+	mov r8, r0
+	ldr r1, .Ljp_08080FB4
+	mov sl, r1
+	adds r0, r5, r1
+	bl GetEmptyItemSlotCount__C8Rucksack
+	adds r5, r0, #0
+	ldr r0, [r6, #8]
+	movs r7, #0xfa
+	lsls r7, r7, #1
+	adds r0, r0, r7
+	bl GetShelf__9FarmHouse
+	cmp r0, #0
+	beq .Ljp_08080F78
+	ldr r0, [r6, #8]
+	adds r2, r7, #0
+	adds r0, r0, r2
+	bl GetShelf__9FarmHouse
+	ldr r1, [sp, #0x18]
+	bl GetAvailableSpaceFor__C5ShelfUi
+	mov r8, r0
+.Ljp_08080F78:
+	ldr r0, [r6, #8]
+	ldr r4, .Ljp_08080FB8
+	adds r0, r0, r4
+	bl func_0800F190
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_08080F8C
+	movs r0, #1
+	mov sb, r0
+.Ljp_08080F8C:
+	mov r1, sb
+	adds r0, r5, r1
+	add r0, r8
+	str r0, [sp, #0x28]
+	cmp r0, #0
+	bne .Ljp_08080FC4
+	ldr r1, .Ljp_08080FBC
+	adds r0, r6, #0
+	bl func_080CA3B0
+	movs r2, #0xd2
+	lsls r2, r2, #2
+	adds r0, r6, r2
+	movs r1, #0x90
+	bl func_08050E50
+	ldr r0, .Ljp_08080FC0
+	adds r1, r6, r0
+	movs r0, #3
+	b .Ljp_08081266
+	.align 2, 0
+.Ljp_08080FB4: .4byte 0x00001C38
+.Ljp_08080FB8: .4byte 0x00001C2C
+.Ljp_08080FBC: .4byte gText_SpecialMerchantShop_InventoryFull
+.Ljp_08080FC0: .4byte 0x000006A4
+.Ljp_08080FC4:
+	ldr r0, [r6, #8]
+	add r0, sl
+	ldr r1, [sp, #0x18]
+	bl GetAmountOfArticles__C8RucksackUi
+	adds r5, r0, #0
+	movs r1, #0
+	mov sb, r1
+	mov r8, r1
+	ldr r0, [r6, #8]
+	adds r0, r0, r7
+	bl GetShelf__9FarmHouse
+	cmp r0, #0
+	beq .Ljp_08080FF2
+	ldr r0, [r6, #8]
+	adds r0, r0, r7
+	bl GetShelf__9FarmHouse
+	ldr r1, [sp, #0x18]
+	bl GetAmountOf__C5ShelfUi
+	mov r8, r0
+.Ljp_08080FF2:
+	ldr r0, [r6, #8]
+	adds r0, r0, r4
+	bl func_0800F190
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	bne .Ljp_08081030
+	ldr r0, [r6, #8]
+	adds r0, r0, r4
+	bl func_0800F204
+	cmp r0, #1
+	bne .Ljp_08081030
+	ldr r0, [r6, #8]
+	adds r0, r0, r4
+	bl func_0800F258
+	adds r1, r0, #0
+	add r0, sp, #0x20
+	strb r1, [r0]
+	bl GetId__C7Article
+	movs r2, #0
+	ldr r1, [sp, #0x18]
+	cmp r0, r1
+	bne .Ljp_08081028
+	movs r2, #1
+.Ljp_08081028:
+	cmp r2, #0
+	beq .Ljp_08081030
+	movs r2, #1
+	mov sb, r2
+.Ljp_08081030:
+	mov r1, sb
+	adds r0, r5, r1
+	add r0, r8
+	add r1, sp, #8
+	movs r2, #7
+	bl func_0804E98C
+	mov r5, sp
+	adds r5, #0x21
+	ldr r1, [sp, #0x18]
+	adds r0, r5, #0
+	bl __7ArticleUi
+	ldr r2, .Ljp_08081188
+	adds r4, r6, r2
+	movs r0, #0
+	mov sl, r0
+	mov r1, sl
+	strb r1, [r4]
+	adds r0, r5, #0
+	bl GetName__C7Article
+	mov sb, r0
+	adds r7, r4, #0
+	mov r5, sb
+	adds r0, r7, #0
+	bl strlen
+	adds r2, r7, r0
+	mov r8, r2
+	movs r1, #0x63
+	subs r4, r1, r0
+	cmp r4, #0
+	beq .Ljp_08081094
+	adds r0, r5, #0
+	bl strlen
+	adds r5, r0, #0
+	cmp r5, r4
+	bls .Ljp_08081082
+	adds r5, r4, #0
+.Ljp_08081082:
+	mov r0, r8
+	mov r1, sb
+	adds r2, r5, #0
+	bl memcpy
+	mov r1, r8
+	adds r0, r1, r5
+	mov r2, sl
+	strb r2, [r0]
+.Ljp_08081094:
+	ldr r0, .Ljp_0808118C
+	mov sb, r0
+	adds r0, r7, #0
+	bl strlen
+	adds r1, r7, r0
+	mov r8, r1
+	movs r1, #0x63
+	subs r4, r1, r0
+	cmp r4, #0
+	beq .Ljp_080810CA
+	mov r0, sb
+	bl strlen
+	adds r5, r0, #0
+	cmp r5, r4
+	bls .Ljp_080810B8
+	adds r5, r4, #0
+.Ljp_080810B8:
+	mov r0, r8
+	mov r1, sb
+	adds r2, r5, #0
+	bl memcpy
+	mov r2, r8
+	adds r1, r2, r5
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_080810CA:
+	ldr r0, .Ljp_08081190
+	ldr r0, [r0]
+	mov sb, r0
+	adds r0, r7, #0
+	bl strlen
+	adds r1, r7, r0
+	mov r8, r1
+	movs r1, #0x63
+	subs r4, r1, r0
+	cmp r4, #0
+	beq .Ljp_08081102
+	mov r0, sb
+	bl strlen
+	adds r5, r0, #0
+	cmp r5, r4
+	bls .Ljp_080810F0
+	adds r5, r4, #0
+.Ljp_080810F0:
+	mov r0, r8
+	mov r1, sb
+	adds r2, r5, #0
+	bl memcpy
+	mov r2, r8
+	adds r1, r2, r5
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_08081102:
+	adds r0, r7, #0
+	bl strlen
+	adds r1, r7, r0
+	mov r8, r1
+	movs r1, #0x63
+	subs r4, r1, r0
+	cmp r4, #0
+	beq .Ljp_08081134
+	add r0, sp, #8
+	bl strlen
+	adds r5, r0, #0
+	cmp r5, r4
+	bls .Ljp_08081122
+	adds r5, r4, #0
+.Ljp_08081122:
+	mov r0, r8
+	add r1, sp, #8
+	adds r2, r5, #0
+	bl memcpy
+	mov r2, r8
+	adds r1, r2, r5
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_08081134:
+	ldr r0, .Ljp_08081194
+	ldr r0, [r0]
+	mov r8, r0
+	adds r0, r7, #0
+	bl strlen
+	adds r7, r7, r0
+	movs r1, #0x63
+	subs r5, r1, r0
+	cmp r5, #0
+	beq .Ljp_08081168
+	mov r0, r8
+	bl strlen
+	adds r4, r0, #0
+	cmp r4, r5
+	bls .Ljp_08081158
+	adds r4, r5, #0
+.Ljp_08081158:
+	adds r0, r7, #0
+	mov r1, r8
+	adds r2, r4, #0
+	bl memcpy
+	adds r1, r7, r4
+	movs r0, #0
+	strb r0, [r1]
+.Ljp_08081168:
+	ldr r0, .Ljp_08081188
+	adds r1, r6, r0
+	adds r0, r6, #0
+	bl func_080CA3FC
+	ldr r1, .Ljp_08081198
+	adds r0, r6, r1
+	ldr r1, [sp, #0x1c]
+	ldr r2, [sp, #0x28]
+	movs r3, #5
+	bl func_080CA8B4
+	ldr r2, .Ljp_0808119C
+	adds r1, r6, r2
+	movs r0, #4
+	b .Ljp_08081266
+	.align 2, 0
+.Ljp_08081188: .4byte 0x000006AC
+.Ljp_0808118C: .4byte gText_SpecialMerchantShop_BlankLinePair
+.Ljp_08081190: .4byte gShopCommonOwnedQuantityLabelTextRef
+.Ljp_08081194: .4byte gShopCommonQuantitySuffixTextRef
+.Ljp_08081198: .4byte 0x00000684
+.Ljp_0808119C: .4byte 0x000006A4
+.Ljp_080811A0:
+	movs r7, #0
+	movs r5, #0
+	ldr r0, [r6, #8]
+	ldr r1, .Ljp_08081208
+	adds r0, r0, r1
+	bl GetEmptyItemSlotCount__C8Rucksack
+	adds r4, r0, #0
+	ldr r0, [r6, #8]
+	movs r2, #0xfa
+	lsls r2, r2, #1
+	adds r0, r0, r2
+	bl GetShelf__9FarmHouse
+	cmp r0, #0
+	beq .Ljp_080811D4
+	ldr r0, [r6, #8]
+	movs r1, #0xfa
+	lsls r1, r1, #1
+	adds r0, r0, r1
+	bl GetShelf__9FarmHouse
+	ldr r1, [sp, #0x18]
+	bl GetAvailableSpaceFor__C5ShelfUi
+	adds r5, r0, #0
+.Ljp_080811D4:
+	ldr r0, [r6, #8]
+	ldr r2, .Ljp_0808120C
+	adds r0, r0, r2
+	bl func_0800F190
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080811E6
+	movs r7, #1
+.Ljp_080811E6:
+	adds r0, r4, r7
+	cmn r0, r5
+	bne .Ljp_08081218
+	ldr r1, .Ljp_08081210
+	adds r0, r6, #0
+	bl func_080CA3B0
+	movs r1, #0xd2
+	lsls r1, r1, #2
+	adds r0, r6, r1
+	movs r1, #0x90
+	bl func_08050E50
+	ldr r2, .Ljp_08081214
+	adds r1, r6, r2
+	movs r0, #3
+	b .Ljp_08081266
+	.align 2, 0
+.Ljp_08081208: .4byte 0x00001C38
+.Ljp_0808120C: .4byte 0x00001C2C
+.Ljp_08081210: .4byte gText_SpecialMerchantShop_InventoryFull
+.Ljp_08081214: .4byte 0x000006A4
+.Ljp_08081218:
+	ldr r0, .Ljp_08081220
+	adds r1, r6, r0
+	movs r0, #1
+	b .Ljp_08081266
+	.align 2, 0
+.Ljp_08081220: .4byte 0x000006A4
+.Ljp_08081224:
+	adds r0, r6, #0
+	bl func_080088CC
+	movs r1, #2
+	ands r0, r1
+	cmp r0, #0
+	beq .Ljp_08081268
+	movs r1, #0xd5
+	lsls r1, r1, #3
+	adds r0, r6, r1
+	ldrb r0, [r0]
+	cmp r0, #0
+	beq .Ljp_0808124C
+	ldr r1, .Ljp_08081248
+	adds r0, r6, #0
+	bl func_080CA3B0
+	b .Ljp_08081254
+	.align 2, 0
+.Ljp_08081248: .4byte gText_SpecialMerchantShop_PurchaseComplete
+.Ljp_0808124C:
+	ldr r1, .Ljp_0808127C
+	adds r0, r6, #0
+	bl func_080CA3B0
+.Ljp_08081254:
+	movs r2, #0xd2
+	lsls r2, r2, #2
+	adds r0, r6, r2
+	movs r1, #0x8d
+	bl func_08050E50
+	ldr r0, .Ljp_08081280
+	adds r1, r6, r0
+	movs r0, #5
+.Ljp_08081266:
+	str r0, [r1]
+.Ljp_08081268:
+	ldr r0, [r6, #0x10]
+	str r0, [r6, #0x14]
+	movs r1, #0xa9
+	lsls r1, r1, #2
+	adds r0, r6, r1
+	ldr r1, [r0]
+	adds r0, r6, #0
+	bl func_080C9020
+	b .Ljp_0808158E
+	.align 2, 0
+.Ljp_0808127C: .4byte gText_SpecialMerchantShop_PurchaseComplete
+.Ljp_08081280: .4byte 0x000006A4
+.Ljp_08081284:
+	movs r2, #0xa9
+	lsls r2, r2, #2
+	adds r4, r6, r2
+	ldr r0, [r6, #0x10]
+	lsls r0, r0, #2
+	adds r0, #4
+	adds r0, r4, r0
+	ldr r0, [r0]
+	lsls r0, r0, #3
+	ldr r1, .Ljp_0808130C
+	adds r0, r0, r1
+	ldr r1, [r0, #4]
+	ldr r0, [r0]
+	str r0, [sp, #0x18]
+	str r1, [sp, #0x1c]
+	ldr r0, [r6, #8]
+	ldr r1, .Ljp_08081310
+	adds r0, r0, r1
+	ldr r1, [sp, #0x1c]
+	bl func_0809ACC0
+	adds r0, r6, #0
+	bl func_080C8550
+	ldr r0, [sp, #0x18]
+	cmp r0, #0xa
+	bne .Ljp_08081318
+	ldr r0, [r6, #8]
+	movs r2, #0xfa
+	lsls r2, r2, #1
+	adds r0, r0, r2
+	bl AddRecordPlayer__9FarmHouse
+	ldr r1, .Ljp_08081314
+	adds r0, r6, #0
+	bl func_080CA3B0
+	ldr r0, [r6, #0x10]
+	lsls r0, r0, #2
+	adds r0, #4
+	adds r3, r4, r0
+	ldr r0, [r4]
+	cmp r0, #0
+	beq .Ljp_080812FA
+	lsls r0, r0, #2
+	adds r0, #4
+	adds r0, r4, r0
+	adds r1, r3, #4
+	cmp r1, r0
+	beq .Ljp_080812F4
+	cmp r0, r1
+	beq .Ljp_080812F4
+	subs r2, r0, r1
+	adds r0, r3, #0
+	bl memmove
+.Ljp_080812F4:
+	ldr r0, [r4]
+	subs r0, #1
+	str r0, [r4]
+.Ljp_080812FA:
+	adds r0, r6, #0
+	bl func_080809E0
+	movs r0, #0
+	str r0, [r6, #0x10]
+	subs r0, #1
+	str r0, [r6, #0x14]
+	b .Ljp_080813A8
+	.align 2, 0
+.Ljp_0808130C: .4byte gSpecialMerchantShopCatalog
+.Ljp_08081310: .4byte 0x00001AA8
+.Ljp_08081314: .4byte gText_SpecialMerchantShop_RecordPlayerDelivery
+.Ljp_08081318:
+	ldr r0, [r6, #8]
+	ldr r1, .Ljp_08081344
+	adds r0, r0, r1
+	bl func_0800F190
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_08081348
+	ldr r4, [r6, #8]
+	ldr r2, .Ljp_08081344
+	adds r4, r4, r2
+	mov r5, sp
+	adds r5, #0x22
+	ldr r1, [sp, #0x18]
+	adds r0, r5, #0
+	bl __7ArticleUi
+	ldrb r1, [r5]
+	adds r0, r4, #0
+	bl func_0800F3E8
+	b .Ljp_08081368
+	.align 2, 0
+.Ljp_08081344: .4byte 0x00001C2C
+.Ljp_08081348:
+	ldr r0, [r6, #8]
+	ldr r1, .Ljp_08081374
+	adds r0, r0, r1
+	bl GetEmptyItemSlotCount__C8Rucksack
+	cmp r0, #0
+	beq .Ljp_0808137C
+	ldr r0, [r6, #8]
+	ldr r2, .Ljp_08081374
+	adds r0, r0, r2
+	ldr r1, [sp, #0x18]
+	movs r2, #1
+	bl AddAmountOfArticle__8RucksackUiUi
+	cmp r0, #0
+	bne .Ljp_080813A8
+.Ljp_08081368:
+	ldr r1, .Ljp_08081378
+	adds r0, r6, #0
+	bl func_080CA3B0
+	b .Ljp_080813A8
+	.align 2, 0
+.Ljp_08081374: .4byte 0x00001C38
+.Ljp_08081378: .4byte gText_SpecialMerchantShop_PurchaseCompleteShort
+.Ljp_0808137C:
+	ldr r0, [r6, #8]
+	movs r1, #0xfa
+	lsls r1, r1, #1
+	adds r0, r0, r1
+	bl GetShelf__9FarmHouse
+	cmp r0, #0
+	beq .Ljp_080813A8
+	ldr r0, [r6, #8]
+	movs r2, #0xfa
+	lsls r2, r2, #1
+	adds r0, r0, r2
+	bl GetShelf__9FarmHouse
+	ldr r1, [sp, #0x18]
+	movs r2, #1
+	bl AddAmountOf__5ShelfUiUi
+	ldr r1, .Ljp_080813C0
+	adds r0, r6, #0
+	bl func_080CA3B0
+.Ljp_080813A8:
+	movs r1, #0xd2
+	lsls r1, r1, #2
+	adds r0, r6, r1
+	movs r1, #0x8e
+	bl func_08050E50
+	ldr r2, .Ljp_080813C4
+	adds r1, r6, r2
+	movs r0, #2
+	str r0, [r1]
+	b .Ljp_0808158E
+	.align 2, 0
+.Ljp_080813C0: .4byte gText_SpecialMerchantShop_ArticleDelivery
+.Ljp_080813C4: .4byte 0x000006A4
+.Ljp_080813C8:
+	movs r1, #0xd4
+	lsls r1, r1, #2
+	adds r0, r6, r1
+	ldr r4, [r0]
+	cmp r4, #3
+	beq .Ljp_080813D6
+	b .Ljp_0808158E
+.Ljp_080813D6:
+	ldr r1, .Ljp_080813E8
+	adds r0, r6, #0
+	bl func_080CA3B0
+	ldr r2, .Ljp_080813EC
+	adds r0, r6, r2
+	str r4, [r0]
+	b .Ljp_0808158E
+	.align 2, 0
+.Ljp_080813E8: .4byte gText_SpecialMerchantShop_PurchaseMorePrompt
+.Ljp_080813EC: .4byte 0x000006A4
+.Ljp_080813F0:
+	movs r1, #0xd4
+	lsls r1, r1, #2
+	adds r0, r6, r1
+	ldr r0, [r0]
+	cmp r0, #3
+	beq .Ljp_080813FE
+	b .Ljp_0808158E
+.Ljp_080813FE:
+	movs r2, #0xd2
+	lsls r2, r2, #2
+	adds r0, r6, r2
+	bl func_08050E5C
+	ldr r0, .Ljp_08081418
+	adds r1, r6, r0
+	movs r0, #0
+	str r0, [r1]
+	subs r0, #1
+	str r0, [r6, #0x14]
+	b .Ljp_0808158E
+	.align 2, 0
+.Ljp_08081418: .4byte 0x000006A4
+.Ljp_0808141C:
+	adds r0, r6, #0
+	bl func_080088CC
+	adds r4, r0, #0
+	movs r0, #1
+	ands r4, r0
+	cmp r4, #0
+	beq .Ljp_08081510
+	ldr r1, .Ljp_080814C8
+	adds r0, r6, r1
+	ldr r7, [r0, #0x14]
+	bl func_080CAAF4
+	ldr r0, [r6, #0x10]
+	lsls r0, r0, #2
+	adds r0, r0, r6
+	movs r2, #0xaa
+	lsls r2, r2, #2
+	adds r0, r0, r2
+	ldr r0, [r0]
+	lsls r0, r0, #3
+	ldr r1, .Ljp_080814CC
+	adds r0, r0, r1
+	ldr r1, [r0, #4]
+	ldr r0, [r0]
+	str r0, [sp, #0x18]
+	str r1, [sp, #0x1c]
+	ldr r0, [r6, #8]
+	ldr r1, .Ljp_080814D0
+	adds r0, r0, r1
+	ldr r1, [sp, #0x1c]
+	muls r1, r7, r1
+	bl func_0809ACC0
+	adds r0, r6, #0
+	bl func_080C8550
+	ldr r0, [r6, #8]
+	ldr r2, .Ljp_080814D4
+	adds r0, r0, r2
+	bl func_0800F190
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_08081492
+	subs r7, #1
+	ldr r4, [r6, #8]
+	ldr r0, .Ljp_080814D4
+	adds r4, r4, r0
+	mov r5, sp
+	adds r5, #0x23
+	ldr r1, [sp, #0x18]
+	adds r0, r5, #0
+	bl __7ArticleUi
+	ldrb r1, [r5]
+	adds r0, r4, #0
+	bl func_0800F3E8
+.Ljp_08081492:
+	cmp r7, #0
+	beq .Ljp_080814E0
+	ldr r0, [r6, #8]
+	ldr r1, .Ljp_080814D8
+	adds r0, r0, r1
+	ldr r1, [sp, #0x18]
+	adds r2, r7, #0
+	bl AddAmountOfArticle__8RucksackUiUi
+	adds r7, r0, #0
+	cmp r7, #0
+	beq .Ljp_080814E0
+	ldr r0, [r6, #8]
+	movs r2, #0xfa
+	lsls r2, r2, #1
+	adds r0, r0, r2
+	bl GetShelf__9FarmHouse
+	ldr r1, [sp, #0x18]
+	adds r2, r7, #0
+	bl AddAmountOf__5ShelfUiUi
+	ldr r1, .Ljp_080814DC
+	adds r0, r6, #0
+	bl func_080CA3B0
+	b .Ljp_080814E8
+	.align 2, 0
+.Ljp_080814C8: .4byte 0x00000684
+.Ljp_080814CC: .4byte gSpecialMerchantShopCatalog
+.Ljp_080814D0: .4byte 0x00001AA8
+.Ljp_080814D4: .4byte 0x00001C2C
+.Ljp_080814D8: .4byte 0x00001C38
+.Ljp_080814DC: .4byte gText_SpecialMerchantShop_ArticleDelivery
+.Ljp_080814E0:
+	ldr r1, .Ljp_08081508
+	adds r0, r6, #0
+	bl func_080CA3B0
+.Ljp_080814E8:
+	movs r1, #0xd2
+	lsls r1, r1, #2
+	adds r0, r6, r1
+	movs r1, #0x8e
+	bl func_08050E50
+	ldr r2, .Ljp_0808150C
+	adds r1, r6, r2
+	movs r0, #2
+	str r0, [r1]
+	movs r0, #0xd5
+	lsls r0, r0, #3
+	adds r1, r6, r0
+	movs r0, #1
+	strb r0, [r1]
+	b .Ljp_0808158E
+	.align 2, 0
+.Ljp_08081508: .4byte gText_SpecialMerchantShop_PurchaseCompleteShort
+.Ljp_0808150C: .4byte 0x000006A4
+.Ljp_08081510:
+	adds r0, r6, #0
+	bl func_080088CC
+	movs r1, #2
+	ands r0, r1
+	cmp r0, #0
+	beq .Ljp_0808153C
+	ldr r1, .Ljp_08081534
+	adds r0, r6, r1
+	bl func_080CAAF4
+	ldr r2, .Ljp_08081538
+	adds r0, r6, r2
+	str r4, [r0]
+	movs r0, #1
+	rsbs r0, r0, #0
+	str r0, [r6, #0x14]
+	b .Ljp_0808158E
+	.align 2, 0
+.Ljp_08081534: .4byte 0x00000684
+.Ljp_08081538: .4byte 0x000006A4
+.Ljp_0808153C:
+	ldr r0, .Ljp_08081550
+	adds r1, r6, r0
+	ldrb r0, [r1, #8]
+	cmp r0, #0
+	beq .Ljp_0808158E
+	adds r0, r1, #0
+	bl func_080CA98C
+	b .Ljp_0808158E
+	.align 2, 0
+.Ljp_08081550: .4byte 0x00000684
+.Ljp_08081554:
+	movs r1, #0xd4
+	lsls r1, r1, #2
+	adds r0, r6, r1
+	ldr r0, [r0]
+	cmp r0, #3
+	bne .Ljp_0808158E
+	ldr r2, [sp, #4]
+	ldr r1, [r2]
+	rsbs r0, r1, #0
+	orrs r0, r1
+	cmp r0, #0
+	blt .Ljp_0808158E
+	movs r0, #1
+	str r0, [sp, #0x24]
+	ldr r1, .Ljp_08081598
+	adds r0, r2, #0
+	adds r0, #0xc
+	movs r2, #1
+	movs r3, #1
+	bl func_08009378
+	adds r0, r6, #0
+	bl func_08008940
+	ldr r2, [r0, #8]
+	ldr r1, [sp, #4]
+	ldr r2, [r2, #0x10]
+	bl _call_via_r2
+.Ljp_0808158E:
+	adds r0, r6, #0
+	bl func_080C90D0
+	b .Ljp_08080E36
+	.align 2, 0
+.Ljp_08081598: .4byte 0x00000889
+.Ljp_0808159C:
+	ldr r0, [r3, #8]
+	ldr r2, [r0, #0xc]
+	adds r0, r3, #0
+	movs r1, #3
+	bl _call_via_r2
+	add sp, #0x2c
+	pop {r3, r4, r5}
+	mov r8, r3
+	mov sb, r4
+	mov sl, r5
+	pop {r4, r5, r6, r7}
+	pop {r0}
+	bx r0
+	.global func_080815B8
+	.thumb_func
+func_080815B8:
+	push {r4, r5, r6, lr}
+	adds r4, r0, #0
+	adds r6, r1, #0
+	adds r5, r2, #0
+	ldr r0, .Ljp_080815E4
+	str r0, [r4]
+	movs r0, #0xe2
+	lsls r0, r0, #3
+	bl __builtin_new
+	adds r1, r5, #0
+	bl func_08080998
+	str r0, [r4, #4]
+	ldr r1, [r6]
+	movs r0, #0
+	str r0, [r6]
+	str r1, [r4, #8]
+	adds r0, r4, #0
+	pop {r4, r5, r6}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.Ljp_080815E4: .4byte vtable_unk_080E7CA0_NullTail
 
 .global func_080815E8
 .thumb_func
