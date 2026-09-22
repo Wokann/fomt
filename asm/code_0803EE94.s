@@ -62396,7 +62396,249 @@ func_08079A64:
     .global func_08079DC0
     .thumb_func
 func_08079DC0:
-    .incbin "baserom_jp.gba", 0x7995C, (0x79B28 - 0x7995C)
+	push {r4, r5, r6, r7, lr}
+	mov r7, sl
+	mov r6, sb
+	mov r5, r8
+	push {r5, r6, r7}
+	sub sp, #0x40
+	adds r6, r0, #0
+	movs r1, #0x84
+	lsls r1, r1, #4
+	adds r0, r6, r1
+	ldr r2, .Ljp_library_scroll_0807998C
+	adds r1, r6, r2
+	ldrh r0, [r0]
+	lsls r2, r0, #0x10
+	ldrh r1, [r1]
+	cmp r0, r1
+	bls .Ljp_library_scroll_08079990
+	lsrs r0, r2, #0x14
+	adds r7, r0, #0
+	adds r7, #8
+	adds r5, r0, #0
+	adds r5, #0xa
+	movs r0, #0xf
+	b .Ljp_library_scroll_08079996
+.Ljp_library_scroll_0807998C:
+	.4byte 0x00000842
+.Ljp_library_scroll_08079990:
+	lsrs r0, r2, #0x14
+	subs r7, r0, #2
+	movs r5, #0xf
+.Ljp_library_scroll_08079996:
+	ands r5, r0
+	add r0, sp, #0x2c
+	movs r3, #0x1c
+	mov r8, r3
+	movs r4, #2
+	mov sb, r4
+	mov r1, r8
+	strh r1, [r0]
+	mov r2, sb
+	strh r2, [r0, #2]
+	ldr r0, [sp, #0x2c]
+	adds r4, r6, #0
+	adds r4, #0x14
+	adds r1, r4, #0
+	movs r2, #0
+	bl Clear2DGfxBuffer
+	cmp r7, #0
+	blt .Ljp_library_scroll_08079A06
+	ldr r0, .Ljp_library_scroll_08079A48
+	adds r3, r6, r0
+	ldr r2, .Ljp_library_scroll_08079A4C
+	lsls r1, r7, #1
+	ldr r7, .Ljp_library_scroll_08079A50
+	adds r0, r6, r7
+	adds r0, r0, r1
+	movs r1, #0
+	ldrsh r0, [r0, r1]
+	lsls r0, r0, #2
+	adds r0, r0, r2
+	ldr r0, [r0]
+	str r0, [r3]
+	ldr r1, [r0]
+	cmp r1, #0
+	beq .Ljp_library_scroll_08079A06
+	adds r0, r6, #0
+	add r2, sp, #0xc
+	bl func_0807A708
+	movs r2, #1
+	add r0, sp, #0x30
+	mov r3, r8
+	strh r3, [r0]
+	mov r7, sb
+	strh r7, [r0, #2]
+	ldr r0, [sp, #0x30]
+	add r1, sp, #0xc
+	str r1, [sp]
+	movs r1, #0
+	str r1, [sp, #4]
+	str r2, [sp, #8]
+	adds r1, r4, #0
+	movs r2, #0
+	movs r3, #0
+	bl DrawStringTo2DGfxBufferExt
+.Ljp_library_scroll_08079A06:
+	adds r0, r6, #0
+	bl func_08008910
+	adds r6, r0, #0
+	lsls r2, r5, #3
+	subs r2, r2, r5
+	lsls r2, r2, #8
+	ldr r3, .Ljp_library_scroll_08079A54
+	adds r2, r2, r3
+	add r0, sp, #0xc
+	adds r1, r4, #0
+	movs r3, #0xe0
+	lsls r3, r3, #3
+	bl func_08008F0C
+	add r4, sp, #0xc
+	mov sb, r4
+	ldr r1, [r6, #4]
+	ldr r0, [r6, #0xc]
+	cmp r1, r0
+	beq .Ljp_library_scroll_08079A58
+	cmp r1, #0
+	beq .Ljp_library_scroll_08079A40
+	adds r0, r1, #0
+	add r1, sp, #0xc
+	ldm r1!, {r2, r5, r7}
+	stm r0!, {r2, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_library_scroll_08079A40:
+	ldr r0, [r6, #4]
+	adds r0, #0x10
+	str r0, [r6, #4]
+	b .Ljp_library_scroll_08079B18
+.Ljp_library_scroll_08079A48:
+	.4byte 0x00000A5C
+.Ljp_library_scroll_08079A4C:
+	.4byte gReferenceGuideTables
+.Ljp_library_scroll_08079A50:
+	.4byte 0x00000858
+.Ljp_library_scroll_08079A54:
+	.4byte 0x06000C00
+.Ljp_library_scroll_08079A58:
+	mov sl, r1
+	movs r0, #1
+	str r0, [sp, #0x38]
+	ldr r0, [r6]
+	subs r0, r1, r0
+	asrs r4, r0, #4
+	str r4, [sp, #0x34]
+	add r1, sp, #0x38
+	add r0, sp, #0x34
+	cmp r4, #1
+	bhs .Ljp_library_scroll_08079A70
+	adds r0, r1, #0
+.Ljp_library_scroll_08079A70:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_library_scroll_08079A8E
+	lsls r4, r0, #4
+	adds r0, r4, #0
+	bl malloc
+	mov r8, r4
+	cmp r0, #0
+	bne .Ljp_library_scroll_08079A92
+	mov r0, r8
+	bl func_080D3BC0
+	b .Ljp_library_scroll_08079A92
+.Ljp_library_scroll_08079A8E:
+	movs r0, #0
+	mov r8, r0
+.Ljp_library_scroll_08079A92:
+	adds r4, r0, #0
+	str r4, [sp, #0x3c]
+	ldr r2, [r6]
+	adds r3, r4, #0
+	cmp r2, sl
+	beq .Ljp_library_scroll_08079AB6
+.Ljp_library_scroll_08079A9E:
+	cmp r3, #0
+	beq .Ljp_library_scroll_08079AAE
+	adds r0, r3, #0
+	adds r1, r2, #0
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_library_scroll_08079AAE:
+	adds r2, #0x10
+	adds r3, #0x10
+	cmp r2, sl
+	bne .Ljp_library_scroll_08079A9E
+.Ljp_library_scroll_08079AB6:
+	adds r4, r3, #0
+	ldr r0, [sp, #0x38]
+	cmp r0, #1
+	bne .Ljp_library_scroll_08079AD2
+	cmp r4, #0
+	beq .Ljp_library_scroll_08079ACE
+	adds r0, r4, #0
+	mov r1, sb
+	ldm r1!, {r2, r3, r5}
+	stm r0!, {r2, r3, r5}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_library_scroll_08079ACE:
+	adds r4, #0x10
+	b .Ljp_library_scroll_08079AF4
+.Ljp_library_scroll_08079AD2:
+	adds r3, r0, #0
+	adds r2, r4, #0
+	cmp r3, #0
+	beq .Ljp_library_scroll_08079AF2
+.Ljp_library_scroll_08079ADA:
+	cmp r2, #0
+	beq .Ljp_library_scroll_08079AEA
+	adds r0, r2, #0
+	mov r1, sb
+	ldm r1!, {r4, r5, r7}
+	stm r0!, {r4, r5, r7}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_library_scroll_08079AEA:
+	subs r3, #1
+	adds r2, #0x10
+	cmp r3, #0
+	bne .Ljp_library_scroll_08079ADA
+.Ljp_library_scroll_08079AF2:
+	adds r4, r2, #0
+.Ljp_library_scroll_08079AF4:
+	ldr r2, [r6, #4]
+	ldr r0, [r6]
+	adds r1, r0, #0
+	cmp r0, r2
+	beq .Ljp_library_scroll_08079B04
+.Ljp_library_scroll_08079AFE:
+	adds r1, #0x10
+	cmp r1, r2
+	bne .Ljp_library_scroll_08079AFE
+.Ljp_library_scroll_08079B04:
+	cmp r0, #0
+	beq .Ljp_library_scroll_08079B0C
+	bl free
+.Ljp_library_scroll_08079B0C:
+	ldr r0, [sp, #0x3c]
+	add r0, r8
+	ldr r7, [sp, #0x3c]
+	str r7, [r6]
+	str r4, [r6, #4]
+	str r0, [r6, #0xc]
+.Ljp_library_scroll_08079B18:
+	add sp, #0x40
+	pop {r3, r4, r5}
+	mov r8, r3
+	mov sb, r4
+	mov sl, r5
+	pop {r4, r5, r6, r7}
+	pop {r0}
+	bx r0
     .global func_08079F8C
     .thumb_func
 func_08079F8C:
