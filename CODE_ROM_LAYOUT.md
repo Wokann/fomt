@@ -107,6 +107,8 @@ JP 实体 `func_080A03D4` 与 US/EU/DE 的 `func_080A099C` 现在均以直接符
 
 相邻的对象构造例程 `func_0805ED4C` 已将 JP `0x0805EA90`–`0x0805EB87` 的 248 字节代码 `incbin` 提升为普通 Thumb 汇编。该函数初始化资源句柄、三个小型状态对象和尾部运行时字段。审计同时确认 JP 的两个 vtable 指针实际位于 `0x080E6E0C` 与 `0x080E6E18`，并非 US 地址命名数组的起点；`src/vtables.cc` 已按 JP 的真实物理对象边界直接定义 `gUnk_080E6E0C`、`gUnk_080E6E18`，没有使用 `symbol - 0x10` 或 `.set` 补偿。
 
+JP `func_0805EE44` 所覆盖的 `0x0805EB88`–`0x0805F8FB`（3444 字节）也已整体从交错的代码 `incbin` 与手工文本指针片段提升为普通 Thumb 汇编，其中原本埋在大块内部的 `func_0805F5F4` 现有独立真实入口。序章人物名与对话文本、调用目标和 literal pool 均以可重定位符号表达，不再依赖原 ROM 固定地址；完整 JP 输出已逐字节匹配。
+
 本轮进一步将三个相关 JP 原始模块中已核实的内部入口全部实体化：`asm/code_0803EE94.s` 的 140 项、`asm/code_809E804.s` 的 95 项和 `asm/game_state.s` 的 86 项，共 321 项。每个符号现在都在其真实 JP ROM 字节起点以 Thumb 标签发射，而非通过 `.thumb_set`、`.set` 或“函数名 + 偏移”建立别名。链接后的 `fomt_jp.elf` 已逐项核对这 321 个地址；源码仍保留尚未语义反编译的指令字节，故这不是把整个模块误报为已完成反编译。
 
 随后，JP 的 `sub_08048FEC` 和 `func_0804E3D8` 也不再保留为原始指令块。前者是一个 14 字节的公共返回尾部，后接经 ROM 验证的两字节零填充，现由 `.align 2, 0` 自然保留该物理边界；后者是按动物类别取得马、牛、羊、鸡或玩家角色对象的五分支函数，含真实跳转表和对既有 `GetHorse__4Farm`、`GetCapacity__C4Barn`、`GetCow__4BarnUi`、`GetSheep__4BarnUi`、`GetCapacity__C4Coop`、`GetChicken__4CoopUi` 的可重定位调用。两段 JP 输出均逐字节复核；US、EU、DE 既有的普通 Thumb 表示保持不变。
