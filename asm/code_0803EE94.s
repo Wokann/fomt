@@ -77370,7 +77370,123 @@ func_08081DC8: @ 0x08081DC8
 .global func_08082264
 .thumb_func
 func_08082264:
-    jp_code_0803ee_bytes 0x81DDC, 0x822C8
+	push {r4, r5, r6, r7, lr}
+	mov r7, sb
+	mov r6, r8
+	push {r6, r7}
+	sub sp, #0xb8
+	adds r7, r0, #0
+	mov sb, r1
+	ldr r1, [sp, #0xd4]
+	str r2, [sp, #4]
+	mov r0, sp
+	movs r6, #0
+	movs r4, #0
+	strh r3, [r0]
+	add r5, sp, #0x10
+	adds r0, r5, #0
+	bl __22IndexedResourceArchivePCUc
+	add r0, sp, #0x40
+	strh r4, [r0]
+	strh r4, [r0, #2]
+	add r0, sp, #0x44
+	adds r1, r5, #0
+	movs r2, #0
+	movs r3, #0x80
+	lsls r3, r3, #1
+	bl __21IndexedResourceHandleP23IndexedResourceProviderUii
+	add r0, sp, #0x58
+	strh r4, [r0]
+	strh r4, [r0, #2]
+	strh r4, [r0, #4]
+	strh r4, [r0, #6]
+	strh r4, [r0, #8]
+	str r4, [r0, #0xc]
+	strb r6, [r0, #0x10]
+	strb r6, [r0, #0x11]
+	str r4, [r0, #0x14]
+	strb r6, [r0, #0x18]
+	add r0, sp, #0x74
+	strb r6, [r0]
+	add r5, sp, #0x78
+	str r4, [sp, #0x78]
+	strh r4, [r5, #4]
+	add r0, sp, #0x80
+	mov r8, r0
+	str r4, [r0]
+	strh r4, [r0, #4]
+	add r6, sp, #0x88
+	str r4, [r6]
+	strh r4, [r6, #4]
+	add r0, sp, #0x90
+	str r4, [r0]
+	strh r4, [r0, #4]
+	add r4, sp, #0x44
+	adds r0, r4, #0
+	mov r1, sb
+	bl ResolveIndexedResourceHandle
+	ldr r1, [sp, #0x44]
+	ldr r3, [r1]
+	ldrh r2, [r4, #0xc]
+	lsls r2, r2, #2
+	ldr r0, [sp, #0x48]
+	adds r0, r0, r2
+	ldrh r2, [r0]
+	add r0, sp, #0x98
+	ldr r3, [r3, #0x10]
+	bl _call_via_r3
+	add r4, sp, #0x98
+	adds r0, r4, #0
+	adds r1, r4, #0
+	movs r2, #0x20
+	bl memcpy
+	ldm r4!, {r1, r2, r3}
+	stm r5!, {r1, r2, r3}
+	ldm r4!, {r0, r1, r2}
+	stm r5!, {r0, r1, r2}
+	ldm r4!, {r0, r3}
+	stm r5!, {r0, r3}
+	mov r1, r8
+	ldr r0, [r1]
+	str r0, [sp, #8]
+	ldr r0, [r6]
+	str r0, [sp, #0xc]
+	adds r1, r7, #0
+	adds r1, #0x20
+	ldr r0, [r7, #0x20]
+	cmp r0, #0x27
+	bhi .Ljp_08081EAC
+	lsls r0, r0, #4
+	adds r0, #4
+	adds r0, r1, r0
+	cmp r0, #0
+	beq .Ljp_08081EA6
+	mov r1, sp
+	ldm r1!, {r2, r3, r4}
+	stm r0!, {r2, r3, r4}
+	ldr r1, [r1]
+	str r1, [r0]
+.Ljp_08081EA6:
+	ldr r0, [r7, #0x20]
+	adds r0, #1
+	str r0, [r7, #0x20]
+.Ljp_08081EAC:
+	ldr r0, .Ljp_08081EC0
+	str r0, [sp, #0x10]
+	add sp, #0xb8
+	pop {r3, r4}
+	mov r8, r3
+	mov sb, r4
+	pop {r4, r5, r6, r7}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_08081EC0: .4byte vtable_unk_080E5A28
+
+.global func_0808234C
+.thumb_func
+func_0808234C:
+    jp_code_0803ee_bytes 0x81EC4, 0x822C8
     .4byte gBlacksmithCatalog
     jp_code_0803ee_bytes 0x822CC, 0x82614
 .global func_08082A9C
