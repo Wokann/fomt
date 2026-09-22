@@ -1497,3 +1497,15 @@ JP vtable 对象差异仍由 `vtable_unk_080E7AA8` 表达。范围末尾的 12 �
 该 JP 范围不再包含代码 `.incbin`、`.byte`/`.2byte`、固定 ROM 指针、`.set`、`.thumb_set`
 或未命名调用目标；显存、调色板及按键掩码等数值均为硬件地址/常量，而非 ROM 地址伪匹配。
 JP、US、EU、DE 均已完成完整构建并通过各自基准 ROM 的 SHA-1 校验。
+
+其后的动物状态绘制与对象辅助组也已在 JP 连续提升，物理范围为
+`0x0806E474`–`0x0806E7CB`，共 `0x358`（`856`）字节。该范围直接定义共享语义入口
+`func_0806E78C`、`func_0806E9D8`、`func_0806EA00`、`func_0806EA30`、`func_0806EA6C`、
+`func_0806EA78` 与 `func_0806EAF4`；不再以 JP 物理地址名制造另一套函数名。
+
+同时修正了 JP vtable 的真实对象边界：`vtable_unk_080E7AB4` 在 JP 为三个槽，紧随其后的
+`vtable_unk_080E7AC4` 从 `0x080E6F00` 开始并含四个槽。因此构造、析构和转换入口现在都直接
+引用 `vtable_unk_080E7AC4`、`func_0806EA00` 与 `func_0806EA30`，不再保留
+`vtable + 0xC` 式裸地址或 `func_0806E65C`/`func_0806E68C` 物理别名。该范围不含代码
+`.incbin`、`.byte`/`.2byte`、固定 ROM 指针、`.set` 或 `.thumb_set`。JP、US、EU、DE 均已
+完成完整构建并通过各自基准 ROM 的 SHA-1 校验。
