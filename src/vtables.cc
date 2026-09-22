@@ -5378,12 +5378,21 @@ extern RawVTableFunction const vtable_unk_080E7AD0[]
         nullptr,
 #if defined(REGION_JP)
         func_080E2018,
-        nullptr,
 #else
         func_0806EA00,
         func_0806EA30,
 #endif
     };
+
+#if defined(REGION_JP)
+// Physical JP sub-vtable used while func_080701BC constructs its resource
+// archive.  It begins at 0x080E6F1C, immediately after the three-slot table
+// above; give that real boundary a symbol instead of referring to AD0 + 0xC.
+extern RawVTableFunction const vtable_unk_080E6F1C[]
+    SECTION(".rodata.vtable_6f1c") = {
+        nullptr,
+    };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E7AE0[]
     SECTION(".rodata.vtable_7ae0") = {

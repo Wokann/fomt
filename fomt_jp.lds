@@ -606,6 +606,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7ab4);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7ac4);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7ad0);
+. = ALIGN(4); src/vtables.o(.rodata.vtable_6f1c);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7ae0);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7aec);
 . = ALIGN(4); src/vtables.o(.rodata.vtable_7afc);
