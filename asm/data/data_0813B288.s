@@ -2549,7 +2549,11 @@ gUnk_IntroSceneUnpackSource_018:
     .global gUnk_IntroSceneUnpackSource_019
 gUnk_IntroSceneUnpackSource_019:
     .incbin "build/jp/graphics/intro_scene/objects/object_19.0x70"
+    .global gUnk_08743058
+gUnk_08743058:
     .incbin "build/jp/graphics/intro_scene/background_tiles.0x70"
+    .global gUnk_08747A14
+gUnk_08747A14:
     .incbin "build/jp/graphics/intro_scene/background_palettes.gbapal"
     .global gUnk_084CDBDC
 gUnk_084CDBDC:

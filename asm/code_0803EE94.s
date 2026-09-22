@@ -8012,10 +8012,429 @@ func_0805F5F4:
 .L0805FBAC: .4byte gText_IntroScene_OldManName
 .L0805FBB0: .4byte gText_IntroScene_OldManWaitsForLetter
 .L0805FBB4: .4byte 0x00006428
-    jp_code_0803ee_func func_0805FBB8, 0x5F8FC, 0x5FA48
-    jp_code_0803ee_func func_0805FA48, 0x5FA48, 0x5FA88
-    jp_code_0803ee_func func_0805FA88, 0x5FA88, 0x5FABC
-    jp_code_0803ee_func func_0805FD78, 0x5FABC, 0x5FC58
+    .global func_0805FBB8
+    .thumb_func
+func_0805FBB8:
+	push {r4, r5, r6, lr}
+	sub sp, #4
+	adds r6, r0, #0
+	ldr r1, .L0805FCA0 @ =0x06007FE0
+	movs r0, #0
+	movs r2, #0x20
+	bl func_08008EB8
+	ldr r4, .L0805FCA4 @ =0x10661066
+	ldr r1, .L0805FCA8 @ =0x0600E000
+	movs r5, #0x80
+	lsls r5, r5, #4
+	adds r0, r4, #0
+	adds r2, r5, #0
+	bl func_08008EB8
+	ldr r1, .L0805FCAC @ =0x0600E800
+	adds r0, r4, #0
+	adds r2, r5, #0
+	bl func_08008EB8
+	ldr r1, .L0805FCB0 @ =0x0600F000
+	adds r0, r4, #0
+	adds r2, r5, #0
+	bl func_08008EB8
+	ldr r0, .L0805FCB4 @ =gUnk_08743058
+	movs r1, #0xc0
+	lsls r1, r1, #0x13
+	bl Unpack
+	ldr r0, .L0805FCB8 @ =gUnk_08747A14
+	movs r4, #0xa0
+	lsls r4, r4, #0x13
+	adds r1, r4, #0
+	movs r2, #0x40
+	bl func_08008E64
+	ldr r1, .L0805FCBC @ =0x00007FFF
+	adds r0, r1, #0
+	strh r0, [r4]
+	adds r0, r6, #0
+	bl func_08008918
+	mov r1, sp
+	movs r3, #0xe2
+	lsls r3, r3, #5
+	adds r2, r3, #0
+	strh r2, [r1]
+	movs r4, #0
+	strh r2, [r0]
+	adds r0, r6, #0
+	bl func_08008918
+	mov r2, sp
+	ldr r3, .L0805FCC0 @ =0x00001E43
+	adds r1, r3, #0
+	strh r1, [r2]
+	strh r1, [r0, #0xe]
+	adds r0, r6, #0
+	bl func_08008918
+	mov r2, sp
+	ldr r3, .L0805FCC4 @ =0x00001D42
+	adds r1, r3, #0
+	strh r1, [r2]
+	strh r1, [r0, #0xc]
+	adds r0, r6, #0
+	bl func_08008918
+	mov r2, sp
+	ldr r3, .L0805FCC8 @ =0x00001C41
+	adds r1, r3, #0
+	strh r1, [r2]
+	strh r1, [r0, #0xa]
+	adds r0, r6, #0
+	bl func_08008918
+	mov r1, sp
+	strh r4, [r1]
+	strh r4, [r0, #0x18]
+	adds r0, r6, #0
+	bl func_08008918
+	mov r1, sp
+	strh r4, [r1]
+	strh r4, [r0, #0x1a]
+	adds r0, r6, #0
+	bl func_08008918
+	mov r1, sp
+	strh r4, [r1]
+	strh r4, [r0, #0x1c]
+	adds r0, r6, #0
+	bl func_08008918
+	mov r1, sp
+	strh r4, [r1]
+	strh r4, [r0, #0x1e]
+	adds r6, #0x20
+	ldr r5, .L0805FCCC @ =gIntroSceneUnpackSources
+	movs r4, #0x13
+.L0805FC84:
+	ldm r5!, {r0}
+	adds r1, r6, #0
+	bl Unpack
+	movs r0, #0xa0
+	lsls r0, r0, #3
+	adds r6, r6, r0
+	subs r4, #1
+	cmp r4, #0
+	bge .L0805FC84
+	add sp, #4
+	pop {r4, r5, r6}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.L0805FCA0: .4byte 0x06007FE0
+.L0805FCA4: .4byte 0x10661066
+.L0805FCA8: .4byte 0x0600E000
+.L0805FCAC: .4byte 0x0600E800
+.L0805FCB0: .4byte 0x0600F000
+.L0805FCB4: .4byte gUnk_08743058
+.L0805FCB8: .4byte gUnk_08747A14
+.L0805FCBC: .4byte 0x00007FFF
+.L0805FCC0: .4byte 0x00001E43
+.L0805FCC4: .4byte 0x00001D42
+.L0805FCC8: .4byte 0x00001C41
+.L0805FCCC: .4byte gIntroSceneUnpackSources
+
+	.global func_0805FCD0
+	.thumb_func
+func_0805FCD0:
+	push {r4, r5, r6, lr}
+	adds r4, r0, #0
+	adds r6, r1, #0
+	adds r5, r2, #0
+	ldr r0, .L0805FCFC @ =vtable_unk_080E79E8
+	str r0, [r4]
+	ldr r0, .L0805FD00 @ =0x00006430
+	bl __builtin_new
+	adds r1, r5, #0
+	bl func_0805ED4C
+	str r0, [r4, #4]
+	ldr r1, [r6]
+	movs r0, #0
+	str r0, [r6]
+	str r1, [r4, #8]
+	adds r0, r4, #0
+	pop {r4, r5, r6}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.L0805FCFC: .4byte vtable_unk_080E79E8
+.L0805FD00: .4byte 0x00006430
+    .global func_0805FA48
+    .thumb_func
+func_0805FA48:
+	push {r4, r5, lr}
+	adds r4, r0, #0
+	adds r5, r1, #0
+	ldr r0, .L0805FD40 @ =vtable_unk_080E79E8
+	str r0, [r4]
+	ldr r1, [r4, #8]
+	cmp r1, #0
+	beq .L0805FD20
+	ldr r0, [r1]
+	ldr r2, [r0, #8]
+	adds r0, r1, #0
+	movs r1, #3
+	bl _call_via_r2
+.L0805FD20:
+	ldr r1, [r4, #4]
+	cmp r1, #0
+	beq .L0805FD32
+	ldr r0, [r1, #4]
+	ldr r2, [r0, #8]
+	adds r0, r1, #0
+	movs r1, #3
+	bl _call_via_r2
+.L0805FD32:
+	adds r0, r4, #0
+	adds r1, r5, #0
+	bl func_080007EC
+	pop {r4, r5}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.L0805FD40: .4byte vtable_unk_080E79E8
+    .global func_0805FA88
+    .thumb_func
+func_0805FA88:
+	push {r4, r5, lr}
+	sub sp, #4
+	adds r5, r0, #0
+	adds r4, r1, #0
+	ldr r1, [r4, #4]
+	mov r0, sp
+	bl func_0805EE44
+	ldr r1, [sp]
+	cmp r1, #0
+	beq .L0805FD66
+	ldr r0, [r1]
+	ldr r2, [r0, #8]
+	adds r0, r1, #0
+	movs r1, #3
+	bl _call_via_r2
+.L0805FD66:
+	ldr r1, [r4, #8]
+	movs r0, #0
+	str r0, [r4, #8]
+	str r1, [r5]
+	adds r0, r5, #0
+	add sp, #4
+	pop {r4, r5}
+	pop {r1}
+	bx r1
+    .global func_0805FD78
+    .thumb_func
+func_0805FD78:
+	push {r4, r5, r6, lr}
+	sub sp, #8
+	adds r5, r0, #0
+	adds r4, r1, #0
+	lsls r1, r2, #0x18
+	lsrs r1, r1, #0x18
+	bl func_08075AD8
+	ldr r0, .L0805FF10 @ =vtable_unk_080E7A78
+	str r0, [r5, #4]
+	movs r1, #0x90
+	lsls r1, r1, #1
+	adds r0, r5, r1
+	str r4, [r0]
+	movs r0, #0x92
+	lsls r0, r0, #1
+	adds r6, r5, r0
+	movs r0, #0
+	str r0, [r6]
+	mov r1, sp
+	str r0, [sp]
+	strh r0, [r1, #4]
+	str r0, [sp]
+	movs r1, #0x94
+	lsls r1, r1, #1
+	adds r2, r5, r1
+	cmp r2, #0
+	beq .L0805FDB8
+	ldr r0, [sp]
+	ldr r1, [sp, #4]
+	str r0, [r2]
+	str r1, [r2, #4]
+.L0805FDB8:
+	ldr r0, [r6]
+	adds r0, #1
+	str r0, [r6]
+	movs r0, #0x90
+	lsls r0, r0, #1
+	adds r4, r5, r0
+	ldr r0, [r4]
+	movs r1, #0x82
+	lsls r1, r1, #3
+	adds r0, r0, r1
+	bl CountChickens__C4Coop
+	rsbs r1, r0, #0
+	orrs r1, r0
+	cmp r1, #0
+	bge .L0805FDFC
+	movs r0, #1
+	str r0, [sp]
+	adds r1, r6, #0
+	ldr r0, [r1]
+	cmp r0, #6
+	bhi .L0805FDFC
+	lsls r0, r0, #3
+	adds r0, #4
+	adds r2, r1, r0
+	cmp r2, #0
+	beq .L0805FDF6
+	ldr r0, [sp]
+	ldr r1, [sp, #4]
+	str r0, [r2]
+	str r1, [r2, #4]
+.L0805FDF6:
+	ldr r0, [r6]
+	adds r0, #1
+	str r0, [r6]
+.L0805FDFC:
+	ldr r0, [r4]
+	movs r1, #0xbe
+	lsls r1, r1, #3
+	adds r0, r0, r1
+	bl CountCows__C4Barn
+	rsbs r1, r0, #0
+	orrs r1, r0
+	cmp r1, #0
+	bge .L0805FE38
+	movs r0, #2
+	str r0, [sp]
+	movs r0, #0x92
+	lsls r0, r0, #1
+	adds r2, r5, r0
+	ldr r0, [r2]
+	cmp r0, #6
+	bhi .L0805FE38
+	lsls r0, r0, #3
+	adds r0, #4
+	adds r3, r2, r0
+	cmp r3, #0
+	beq .L0805FE32
+	ldr r0, [sp]
+	ldr r1, [sp, #4]
+	str r0, [r3]
+	str r1, [r3, #4]
+.L0805FE32:
+	ldr r0, [r2]
+	adds r0, #1
+	str r0, [r2]
+.L0805FE38:
+	ldr r0, [r4]
+	movs r1, #0xbe
+	lsls r1, r1, #3
+	adds r0, r0, r1
+	bl CountSheeps__C4Barn
+	rsbs r1, r0, #0
+	orrs r1, r0
+	cmp r1, #0
+	bge .L0805FE74
+	movs r0, #3
+	str r0, [sp]
+	movs r0, #0x92
+	lsls r0, r0, #1
+	adds r2, r5, r0
+	ldr r0, [r2]
+	cmp r0, #6
+	bhi .L0805FE74
+	lsls r0, r0, #3
+	adds r0, #4
+	adds r3, r2, r0
+	cmp r3, #0
+	beq .L0805FE6E
+	ldr r0, [sp]
+	ldr r1, [sp, #4]
+	str r0, [r3]
+	str r1, [r3, #4]
+.L0805FE6E:
+	ldr r0, [r2]
+	adds r0, #1
+	str r0, [r2]
+.L0805FE74:
+	movs r0, #4
+	str r0, [sp]
+	movs r1, #0x92
+	lsls r1, r1, #1
+	adds r2, r5, r1
+	ldr r0, [r2]
+	cmp r0, #6
+	bhi .L0805FE9C
+	lsls r0, r0, #3
+	adds r0, #4
+	adds r3, r2, r0
+	cmp r3, #0
+	beq .L0805FE96
+	ldr r0, [sp]
+	ldr r1, [sp, #4]
+	str r0, [r3]
+	str r1, [r3, #4]
+.L0805FE96:
+	ldr r0, [r2]
+	adds r0, #1
+	str r0, [r2]
+.L0805FE9C:
+	movs r0, #5
+	str r0, [sp]
+	movs r0, #0x92
+	lsls r0, r0, #1
+	adds r2, r5, r0
+	ldr r0, [r2]
+	cmp r0, #6
+	bhi .L0805FEC4
+	lsls r0, r0, #3
+	adds r0, #4
+	adds r3, r2, r0
+	cmp r3, #0
+	beq .L0805FEBE
+	ldr r0, [sp]
+	ldr r1, [sp, #4]
+	str r0, [r3]
+	str r1, [r3, #4]
+.L0805FEBE:
+	ldr r0, [r2]
+	adds r0, #1
+	str r0, [r2]
+.L0805FEC4:
+	movs r0, #6
+	str r0, [sp]
+	movs r1, #0x92
+	lsls r1, r1, #1
+	adds r2, r5, r1
+	ldr r0, [r2]
+	cmp r0, #6
+	bhi .L0805FEEC
+	lsls r0, r0, #3
+	adds r0, #4
+	adds r3, r2, r0
+	cmp r3, #0
+	beq .L0805FEE6
+	ldr r0, [sp]
+	ldr r1, [sp, #4]
+	str r0, [r3]
+	str r1, [r3, #4]
+.L0805FEE6:
+	ldr r0, [r2]
+	adds r0, #1
+	str r0, [r2]
+.L0805FEEC:
+	movs r0, #0xb0
+	lsls r0, r0, #1
+	adds r1, r5, r0
+	movs r0, #0
+	str r0, [r1]
+	movs r1, #0x94
+	lsls r1, r1, #1
+	adds r0, r5, r1
+	ldr r1, [r0]
+	adds r0, r5, #0
+	bl func_08069C34
+	adds r0, r5, #0
+	add sp, #8
+	pop {r4, r5, r6}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.L0805FF10: .4byte vtable_unk_080E7A78
+
     jp_code_0803ee_func func_0805FF14, 0x5FC58, 0x61B44
     jp_code_0803ee_func sub_08061E00, 0x61B44, 0x63B3C
     jp_code_0803ee_func func_08063E04, 0x63B3C, 0x63B90
@@ -8822,7 +9241,14 @@ func_08075A5C: @ 0x08075A5C
     pop {r4}
     pop {r1}
     bx r1
-    jp_code_0803ee_func func_08075E24, 0x75A80, 0x75EEC
+    .global func_08075E24
+    .thumb_func
+func_08075E24:
+    .incbin "baserom_jp.gba", 0x75A80, (0x75AD8 - 0x75A80)
+    .global func_08075AD8
+    .thumb_func
+func_08075AD8:
+    .incbin "baserom_jp.gba", 0x75AD8, (0x75EEC - 0x75AD8)
     jp_code_0803ee_func func_0807628C, 0x75EEC, 0x76600
     .global func_080769A0
     .thumb_func
