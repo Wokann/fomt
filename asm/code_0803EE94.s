@@ -54276,8 +54276,39 @@ func_0807565C: @ 0x080752B8
     pop {r1}
     bx r1
 
-    @ The following physical entries are still shared raw code in all regions.
-    jp_code_0803ee_func func_080752D4, 0x752D4, 0x7530C
+	@ Record-page wrapper helpers shared by all regions.
+	.global func_08075678
+	.thumb_func
+func_08075678:
+	push {r4, lr}
+	sub sp, #4
+	ldr r4, [r3, #8]
+	ldr r3, [r3, #0x10]
+	str r3, [sp]
+	adds r3, r4, #0
+	bl func_08075334
+	add sp, #4
+	pop {r4}
+	pop {r0}
+	bx r0
+	.global func_08075690
+	.thumb_func
+func_08075690:
+	push {r4, lr}
+	sub sp, #4
+	lsls r4, r3, #3
+	ldr r3, .Ljp_08075308
+	adds r4, r4, r3
+	ldr r3, [r4]
+	ldr r4, [r4, #4]
+	str r4, [sp]
+	bl func_08075334
+	add sp, #4
+	pop {r4}
+	pop {r0}
+	bx r0
+.Ljp_08075308:
+	.4byte gRecordsScreenMinigameTaskResources
 
     .global func_080756B0
     .thumb_func
@@ -178929,12 +178960,37 @@ func_0807565C: @ 0x0807565C
 	pop {r4, r5}
 	pop {r1}
 	bx r1
-.L08075678:
-	.byte 0x10, 0xB5, 0x81, 0xB0, 0x9C, 0x68, 0x1B, 0x69
-	.byte 0x00, 0x93, 0x23, 0x1C, 0xFF, 0xF7, 0x56, 0xFE, 0x01, 0xB0, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47
-	.byte 0x10, 0xB5, 0x81, 0xB0, 0xDC, 0x00, 0x05, 0x4B, 0xE4, 0x18, 0x23, 0x68, 0x64, 0x68, 0x00, 0x94
-	.byte 0xFF, 0xF7, 0x48, 0xFE, 0x01, 0xB0, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47
-	.4byte gRecordsScreenMinigameTaskResources
+	thumb_func_start func_08075678
+func_08075678: @ 0x08075678
+	push {r4, lr}
+	sub sp, #4
+	ldr r4, [r3, #8]
+	ldr r3, [r3, #0x10]
+	str r3, [sp]
+	adds r3, r4, #0
+	bl func_08075334
+	add sp, #4
+	pop {r4}
+	pop {r0}
+	bx r0
+
+	thumb_func_start func_08075690
+func_08075690: @ 0x08075690
+	push {r4, lr}
+	sub sp, #4
+	lsls r4, r3, #3
+	ldr r3, .L080756AC @ =gRecordsScreenMinigameTaskResources
+	adds r4, r4, r3
+	ldr r3, [r4]
+	ldr r4, [r4, #4]
+	str r4, [sp]
+	bl func_08075334
+	add sp, #4
+	pop {r4}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.L080756AC: .4byte gRecordsScreenMinigameTaskResources
 
 	thumb_func_start func_080756B0
 func_080756B0: @ 0x080756B0
