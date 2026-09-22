@@ -73689,7 +73689,18 @@ func_08080034: @ 0x08080034
 	pop {r1}
 	bx r1
 
-    jp_code_0803ee_func func_08080050, 0x80050, 0x80060
+	.global func_08080050
+	.thumb_func
+func_08080050: @ 0x08080050
+	push {lr}
+	movs r0, #0
+	cmp r1, #2
+	bgt .Ljp_0808005A
+	movs r0, #1
+.Ljp_0808005A:
+	pop {r1}
+	bx r1
+	.align 2, 0
 
 .global func_08080060
 .thumb_func
@@ -205164,9 +205175,18 @@ func_080804CC: @ 0x080804CC
 	pop {r4, r5}
 	pop {r1}
 	bx r1
-.L080804E8:
-	.byte 0x00, 0xB5, 0x00, 0x20, 0x02, 0x29, 0x00, 0xDC
-	.byte 0x01, 0x20, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
+	.global func_080804E8
+	.thumb_func
+func_080804E8: @ 0x080804E8
+	push {lr}
+	movs r0, #0
+	cmp r1, #2
+	bgt .L080804F2
+	movs r0, #1
+.L080804F2:
+	pop {r1}
+	bx r1
+	.align 2, 0
 
 	thumb_func_start func_080804F8
 func_080804F8: @ 0x080804F8
