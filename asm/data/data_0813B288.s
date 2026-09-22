@@ -574,8 +574,14 @@ jp_data_0813b288_start:
     .global gUnk_082AD1F0
 gUnk_082AD1F0:
     .incbin "baserom_jp.gba", 0x2AD1F0, (0x2AD394 - 0x2AD1F0)
+    .global gUnk_08527238
+gUnk_08527238:
     FOMT_FARM_STATUS_SECONDARY_TILEMAP 00, 0, 0x110
+    .global gUnk_08527348
+gUnk_08527348:
     FOMT_FARM_STATUS_SECONDARY_TILEMAP 01, 0, 0x1D8
+    .global gUnk_08527520
+gUnk_08527520:
     FOMT_FARM_STATUS_SECONDARY_TILEMAP 02, 0, 0xB0
 
     @ Farm-status screen: the native stream expands to an 8bpp tile grid and
@@ -588,6 +594,8 @@ gUnk_085275D0:
     .global gUnk_08529794
 gUnk_08529794:
     .incbin "build/jp/graphics/ui/farm_status/base_tiles.gbapal"
+    .global gUnk_08529994
+gUnk_08529994:
     FOMT_FARM_STATUS_EXTERIOR_STYLE doghouse
 
     @ Farm Status preview tilemap labels.  Every table entry selects one raw
@@ -598,6 +606,8 @@ gUnk_082AFC74:
     .global gUnk_082AFCD4
 gUnk_082AFCD4:
     FOMT_FARM_STATUS_TILEMAP 0x270, 0x30
+    .global gUnk_08529BA8
+gUnk_08529BA8:
     FOMT_FARM_STATUS_EXTERIOR_STYLE mailbox
     .global gUnk_082AFDC8
 gUnk_082AFDC8:
@@ -608,6 +618,8 @@ gUnk_082AFE70:
     .global gUnk_082AFED0
 gUnk_082AFED0:
     FOMT_FARM_STATUS_TILEMAP 0x000, 0x30
+    .global gUnk_08529DA4
+gUnk_08529DA4:
     FOMT_FARM_STATUS_EXTERIOR_STYLE window
     .global gUnk_082B0744
 gUnk_082B0744:
@@ -616,16 +628,32 @@ gUnk_082B0744:
     .global gUnk_082B07E0
 gUnk_082B07E0:
     FOMT_FARM_STATUS_TILEMAP 0x390, 0x54
+    .global gUnk_0852A6D8
+gUnk_0852A6D8:
     FOMT_FARM_STATUS_SECONDARY_TILEMAP 03, 0, 0x114
+    .global gUnk_0852A7EC
+gUnk_0852A7EC:
     FOMT_FARM_STATUS_SECONDARY_TILEMAP 04, 0, 0x1D0
+    .global gUnk_0852A9BC
+gUnk_0852A9BC:
     FOMT_FARM_STATUS_SECONDARY_TILEMAP 05, 0, 0xB0
-    .incbin "baserom_jp.gba", 0x2B0BC8, (0x2B2F20 - 0x2B0BC8)
+    .global gUnk_0852AA6C
+gUnk_0852AA6C:
+    .incbin "baserom_jp.gba", 0x2B0BC8, (0x2B2B9C - 0x2B0BC8)
+    .global gUnk_0852CA40
+gUnk_0852CA40:
+    .incbin "baserom_jp.gba", 0x2B2B9C, (0x2B2D9C - 0x2B2B9C)
+    .global gUnk_0852CC40
+gUnk_0852CC40:
+    .incbin "baserom_jp.gba", 0x2B2D9C, (0x2B2F20 - 0x2B2D9C)
     .global gUnk_082B2F20
 gUnk_082B2F20:
     FOMT_FARM_STATUS_TILEMAP 0x330, 0x60
     .global gUnk_082B2F80
 gUnk_082B2F80:
     FOMT_FARM_STATUS_TILEMAP 0x2A0, 0x30
+    .global gUnk_0852CE54
+gUnk_0852CE54:
     .incbin "baserom_jp.gba", 0x2B2FB0, (0x2B3074 - 0x2B2FB0)
     .global gUnk_082B3074
 gUnk_082B3074:
@@ -636,6 +664,8 @@ gUnk_082B311C:
     .global gUnk_082B317C
 gUnk_082B317C:
     FOMT_FARM_STATUS_TILEMAP 0x030, 0x30
+    .global gUnk_0852D050
+gUnk_0852D050:
     .incbin "baserom_jp.gba", 0x2B31AC, (0x2B39F0 - 0x2B31AC)
     .global gUnk_082B39F0
 gUnk_082B39F0:
