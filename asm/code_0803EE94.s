@@ -16967,7 +16967,51 @@ func_08062E9C:
 	pop {r4, r5, r6, r7}
 	pop {r1}
 	bx r1
-    jp_code_0803ee_func func_08063E04, 0x63B3C, 0x63B90
+	.global func_08063E04
+	.thumb_func
+func_08063E04:
+	push {r4, r5, r6, r7, lr}
+	sub sp, #0xc
+	adds r7, r2, #0
+	cmp r1, #0xf
+	bls .Ljp_08063B4A
+	movs r0, #0
+	b .Ljp_08063B88
+.Ljp_08063B4A:
+	lsls r4, r1, #1
+	adds r4, r4, r1
+	lsls r4, r4, #6
+	adds r4, r4, r1
+	lsls r4, r4, #2
+	adds r4, r4, r0
+	add r1, sp, #4
+	movs r5, #0xc
+	movs r6, #2
+	adds r0, r1, #0
+	strh r5, [r0]
+	strh r6, [r1, #2]
+	ldr r0, [sp, #4]
+	movs r1, #0xd6
+	lsls r1, r1, #4
+	adds r4, r4, r1
+	adds r1, r4, #0
+	movs r2, #0
+	bl Clear2DGfxBuffer
+	add r0, sp, #8
+	strh r5, [r0]
+	strh r6, [r0, #2]
+	ldr r0, [sp, #8]
+	str r7, [sp]
+	adds r1, r4, #0
+	movs r2, #0
+	movs r3, #0
+	bl DrawStringTo2DGfxBuffer
+	adds r0, r4, #0
+.Ljp_08063B88:
+	add sp, #0xc
+	pop {r4, r5, r6, r7}
+	pop {r1}
+	bx r1
     jp_code_0803ee_func func_08063B90, 0x63B90, 0x64050
     jp_code_0803ee_func func_08064320, 0x64050, 0x64320
     jp_code_0803ee_func func_080645F0, 0x64320, 0x65844
