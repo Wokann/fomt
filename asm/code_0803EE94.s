@@ -61954,9 +61954,445 @@ func_08079860:
     .global func_08079A64
     .thumb_func
 func_08079A64:
-    .incbin "baserom_jp.gba", 0x795EC, 0x368
-    .4byte gText_Library_Menu
-    .incbin "baserom_jp.gba", 0x79958, 0x4
+	push {r4, r5, r6, r7, lr}
+	mov r7, sl
+	mov r6, sb
+	mov r5, r8
+	push {r5, r6, r7}
+	sub sp, #0xc8
+	adds r4, r0, #0
+	movs r0, #0x85
+	lsls r0, r0, #4
+	adds r1, r4, r0
+	movs r0, #0
+	strh r0, [r1]
+	ldr r2, .Ljp_library_page_0807973C
+	adds r0, r4, r2
+	ldrb r0, [r0]
+	cmp r0, #0
+	beq .Ljp_library_page_08079610
+	b .Ljp_library_page_08079748
+.Ljp_library_page_08079610:
+	movs r3, #0
+	mov r0, sp
+	adds r0, #0xb0
+	str r0, [sp, #0xc4]
+	movs r2, #0x14
+	adds r2, r2, r4
+	mov sl, r2
+	adds r2, r1, #0
+	ldr r0, .Ljp_library_page_08079740
+	adds r5, r4, r0
+	ldr r6, .Ljp_library_page_08079744
+.Ljp_library_page_08079626:
+	movs r1, #0
+	ldrsh r0, [r2, r1]
+	lsls r0, r0, #1
+	adds r0, r5, r0
+	ldm r6!, {r1}
+	strh r1, [r0]
+	ldrh r0, [r2]
+	adds r0, #1
+	strh r0, [r2]
+	adds r3, #1
+	cmp r3, #7
+	bls .Ljp_library_page_08079626
+	ldr r0, [r4, #8]
+	movs r5, #0xfa
+	lsls r5, r5, #1
+	adds r0, r0, r5
+	bl HasVase__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_library_page_0807966C
+	movs r3, #0x85
+	lsls r3, r3, #4
+	adds r2, r4, r3
+	movs r1, #0
+	ldrsh r0, [r2, r1]
+	lsls r0, r0, #1
+	adds r3, #8
+	adds r1, r4, r3
+	adds r1, r1, r0
+	movs r0, #0x4a
+	strh r0, [r1]
+	ldrh r0, [r2]
+	adds r0, #1
+	strh r0, [r2]
+.Ljp_library_page_0807966C:
+	ldr r0, [r4, #8]
+	adds r0, r0, r5
+	bl GetFridge__9FarmHouse
+	cmp r0, #0
+	beq .Ljp_library_page_08079694
+	movs r0, #0x85
+	lsls r0, r0, #4
+	adds r2, r4, r0
+	movs r1, #0
+	ldrsh r0, [r2, r1]
+	lsls r0, r0, #1
+	ldr r3, .Ljp_library_page_08079740
+	adds r1, r4, r3
+	adds r1, r1, r0
+	movs r0, #0x4b
+	strh r0, [r1]
+	ldrh r0, [r2]
+	adds r0, #1
+	strh r0, [r2]
+.Ljp_library_page_08079694:
+	ldr r0, [r4, #8]
+	adds r0, r0, r5
+	bl GetShelf__9FarmHouse
+	cmp r0, #0
+	beq .Ljp_library_page_080796BC
+	movs r0, #0x85
+	lsls r0, r0, #4
+	adds r2, r4, r0
+	movs r1, #0
+	ldrsh r0, [r2, r1]
+	lsls r0, r0, #1
+	ldr r3, .Ljp_library_page_08079740
+	adds r1, r4, r3
+	adds r1, r1, r0
+	movs r0, #0x4c
+	strh r0, [r1]
+	ldrh r0, [r2]
+	adds r0, #1
+	strh r0, [r2]
+.Ljp_library_page_080796BC:
+	ldr r0, [r4, #8]
+	adds r0, r0, r5
+	bl HasKitchen__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_library_page_080796E6
+	movs r0, #0x85
+	lsls r0, r0, #4
+	adds r2, r4, r0
+	movs r1, #0
+	ldrsh r0, [r2, r1]
+	lsls r0, r0, #1
+	ldr r3, .Ljp_library_page_08079740
+	adds r1, r4, r3
+	adds r1, r1, r0
+	movs r0, #0xc
+	strh r0, [r1]
+	ldrh r0, [r2]
+	adds r0, #1
+	strh r0, [r2]
+.Ljp_library_page_080796E6:
+	ldr r0, [r4, #8]
+	adds r0, r0, r5
+	bl HasBathroom__C9FarmHouse
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_library_page_08079710
+	movs r0, #0x85
+	lsls r0, r0, #4
+	adds r2, r4, r0
+	movs r1, #0
+	ldrsh r0, [r2, r1]
+	lsls r0, r0, #1
+	ldr r3, .Ljp_library_page_08079740
+	adds r1, r4, r3
+	adds r1, r1, r0
+	movs r0, #0x49
+	strh r0, [r1]
+	ldrh r0, [r2]
+	adds r0, #1
+	strh r0, [r2]
+.Ljp_library_page_08079710:
+	ldr r0, [r4, #8]
+	adds r0, r0, r5
+	bl GetRecordPlayer__9FarmHouse
+	cmp r0, #0
+	beq .Ljp_library_page_0807978A
+	movs r0, #0x85
+	lsls r0, r0, #4
+	adds r2, r4, r0
+	movs r1, #0
+	ldrsh r0, [r2, r1]
+	lsls r0, r0, #1
+	ldr r3, .Ljp_library_page_08079740
+	adds r1, r4, r3
+	adds r1, r1, r0
+	movs r0, #0x48
+	strh r0, [r1]
+	ldrh r0, [r2]
+	adds r0, #1
+	strh r0, [r2]
+	b .Ljp_library_page_0807978A
+	.align 2, 0
+.Ljp_library_page_0807973C:
+	.4byte 0x00000A57
+.Ljp_library_page_08079740:
+	.4byte 0x00000858
+.Ljp_library_page_08079744:
+	.4byte gLibraryInitialEntryIds
+.Ljp_library_page_08079748:
+	movs r6, #0x4d
+	mov r0, sp
+	adds r0, #0xb0
+	str r0, [sp, #0xc4]
+	movs r1, #0x14
+	adds r1, r1, r4
+	mov sl, r1
+	movs r2, #0x85
+	lsls r2, r2, #4
+	adds r5, r4, r2
+.Ljp_library_page_0807975C:
+	ldr r0, [r4, #8]
+	movs r3, #0x80
+	lsls r3, r3, #3
+	adds r0, r0, r3
+	adds r1, r6, #0
+	bl func_0800BD40
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_library_page_08079784
+	movs r1, #0
+	ldrsh r0, [r5, r1]
+	lsls r0, r0, #1
+	ldr r2, .Ljp_library_page_080797A4
+	adds r1, r4, r2
+	adds r1, r1, r0
+	strh r6, [r1]
+	ldrh r0, [r5]
+	adds r0, #1
+	strh r0, [r5]
+.Ljp_library_page_08079784:
+	adds r6, #1
+	cmp r6, #0x88
+	ble .Ljp_library_page_0807975C
+.Ljp_library_page_0807978A:
+	movs r3, #0x85
+	lsls r3, r3, #4
+	adds r0, r4, r3
+	movs r1, #0
+	ldrsh r2, [r0, r1]
+	adds r0, r2, #2
+	cmp r0, #0xa
+	ble .Ljp_library_page_080797A8
+	subs r3, #8
+	adds r1, r4, r3
+	subs r0, #0xa
+	lsls r0, r0, #0x14
+	b .Ljp_library_page_080797AE
+.Ljp_library_page_080797A4:
+	.4byte 0x00000858
+.Ljp_library_page_080797A8:
+	ldr r0, .Ljp_library_page_0807993C
+	adds r1, r4, r0
+	movs r0, #0
+.Ljp_library_page_080797AE:
+	str r0, [r1]
+	movs r5, #0
+	movs r1, #0x1c
+	mov r8, r1
+	movs r7, #2
+	mov r6, sl
+	ldr r2, .Ljp_library_page_08079940
+	adds r2, r2, r4
+	mov sb, r2
+.Ljp_library_page_080797C0:
+	add r0, sp, #0xb0
+	mov r3, r8
+	strh r3, [r0]
+	ldr r1, [sp, #0xc4]
+	strh r7, [r1, #2]
+	ldr r0, [r0]
+	adds r1, r6, #0
+	movs r2, #0
+	bl Clear2DGfxBuffer
+	ldr r2, .Ljp_library_page_08079944
+	adds r0, r4, r2
+	movs r3, #0
+	ldrsh r0, [r0, r3]
+	adds r1, r0, r5
+	cmp r1, #1
+	ble .Ljp_library_page_08079836
+	adds r2, #2
+	adds r0, r4, r2
+	movs r3, #0
+	ldrsh r0, [r0, r3]
+	adds r0, #2
+	cmp r1, r0
+	bge .Ljp_library_page_08079836
+	subs r1, #2
+	lsls r1, r1, #1
+	adds r2, #8
+	adds r0, r4, r2
+	adds r0, r0, r1
+	movs r3, #0
+	ldrsh r0, [r0, r3]
+	lsls r0, r0, #2
+	ldr r1, .Ljp_library_page_08079948
+	adds r0, r0, r1
+	ldr r0, [r0]
+	mov r2, sb
+	str r0, [r2]
+	ldr r1, [r0]
+	cmp r1, #0
+	beq .Ljp_library_page_08079836
+	adds r0, r4, #0
+	add r2, sp, #0xc
+	bl func_0807A708
+	add r0, sp, #0xb4
+	mov r3, r8
+	strh r3, [r0]
+	strh r7, [r0, #2]
+	ldr r0, [r0]
+	add r1, sp, #0xc
+	str r1, [sp]
+	movs r2, #0
+	str r2, [sp, #4]
+	movs r3, #1
+	str r3, [sp, #8]
+	adds r1, r6, #0
+	movs r3, #0
+	bl DrawStringTo2DGfxBufferExt
+.Ljp_library_page_08079836:
+	movs r1, #0x84
+	lsls r1, r1, #4
+	adds r0, r4, r1
+	ldrh r0, [r0]
+	lsrs r0, r0, #4
+	adds r0, r0, r5
+	movs r1, #0xf
+	ands r0, r1
+	lsls r1, r0, #3
+	subs r1, r1, r0
+	lsls r1, r1, #8
+	ldr r2, .Ljp_library_page_0807994C
+	adds r1, r1, r2
+	mov r0, sl
+	movs r2, #0xe0
+	lsls r2, r2, #3
+	bl func_08008E64
+	adds r5, #1
+	cmp r5, #0xa
+	ble .Ljp_library_page_080797C0
+	movs r3, #0x82
+	lsls r3, r3, #4
+	adds r0, r4, r3
+	ldr r1, [r0, #4]
+	bl func_08007D4C
+	adds r1, r0, #0
+	lsls r1, r1, #5
+	ldr r0, .Ljp_library_page_08079950
+	adds r1, r1, r0
+	movs r2, #0xe0
+	lsls r2, r2, #3
+	movs r0, #0
+	bl func_08008EB8
+	movs r6, #0
+	add r5, sp, #0xc
+	ldr r1, .Ljp_library_page_08079954
+	mov sl, r1
+	add r2, sp, #0xb8
+	mov r8, r2
+	movs r3, #2
+	mov sb, r3
+	add r7, sp, #0xbc
+	mov r0, sp
+	adds r0, #0x30
+	str r0, [sp, #0xc0]
+.Ljp_library_page_08079896:
+	lsls r2, r6, #1
+	ldr r1, .Ljp_library_page_08079958
+	adds r0, r4, r1
+	ldrb r1, [r0]
+	movs r0, #1
+	ands r0, r1
+	lsls r1, r0, #3
+	adds r1, r1, r0
+	adds r0, r2, r1
+	add r0, sl
+	ldrb r0, [r0]
+	strb r0, [r5]
+	cmp r0, #0
+	beq .Ljp_library_page_08079918
+	adds r0, r1, #1
+	adds r0, r2, r0
+	add r0, sl
+	ldrb r0, [r0]
+	strb r0, [r5, #1]
+	mov r3, sb
+	mov r2, r8
+	strh r3, [r2]
+	strh r3, [r2, #2]
+	ldr r0, [r2]
+	add r1, sp, #0x30
+	movs r2, #0
+	bl Clear2DGfxBuffer
+	ldrb r0, [r5]
+	lsls r0, r0, #8
+	ldrb r1, [r5, #1]
+	orrs r1, r0
+	mov r0, sb
+	strh r0, [r7]
+	strh r0, [r7, #2]
+	ldr r0, [r7]
+	str r1, [sp]
+	movs r1, #0
+	str r1, [sp, #4]
+	movs r2, #1
+	str r2, [sp, #8]
+	add r1, sp, #0x30
+	movs r2, #0
+	movs r3, #0
+	bl func_0804E5AC
+	movs r3, #0x82
+	lsls r3, r3, #4
+	adds r0, r4, r3
+	ldr r1, [r0, #4]
+	bl func_08007D4C
+	adds r1, r0, #0
+	lsls r0, r6, #2
+	adds r1, r1, r0
+	lsls r1, r1, #5
+	ldr r0, .Ljp_library_page_08079950
+	adds r1, r1, r0
+	ldr r0, [sp, #0xc0]
+	movs r2, #0x80
+	bl func_08008E64
+	adds r6, #1
+	cmp r6, #8
+	ble .Ljp_library_page_08079896
+.Ljp_library_page_08079918:
+	adds r0, r4, #0
+	bl func_08008918
+	add r2, sp, #0xc
+	movs r3, #0xf2
+	lsls r3, r3, #5
+	adds r1, r3, #0
+	strh r1, [r2]
+	strh r1, [r0]
+	add sp, #0xc8
+	pop {r3, r4, r5}
+	mov r8, r3
+	mov sb, r4
+	mov sl, r5
+	pop {r4, r5, r6, r7}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_library_page_0807993C:
+	.4byte 0x00000848
+.Ljp_library_page_08079940:
+	.4byte 0x00000A5C
+.Ljp_library_page_08079944:
+	.4byte 0x0000084E
+.Ljp_library_page_08079948:
+	.4byte gReferenceGuideTables
+.Ljp_library_page_0807994C:
+	.4byte 0x06000C00
+.Ljp_library_page_08079950:
+	.4byte 0x06010000
+.Ljp_library_page_08079954:
+	.4byte gText_Library_Menu
+.Ljp_library_page_08079958:
+	.4byte 0x00000A57
     .global func_08079DC0
     .thumb_func
 func_08079DC0:
