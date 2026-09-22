@@ -37915,15 +37915,110 @@ func_0806A1F4:
 	pop {r4, r5, r6, r7}
 	pop {r1}
 	bx r1
-    jp_code_0803ee_func func_0806D8C8, 0x6D6C0, 0x6D710
-    jp_code_0803ee_func func_0806D710, 0x6D710, 0x6D740
-    .global func_0806D948
-    .thumb_func
+	.global func_0806D8C8
+	.thumb_func
+func_0806D8C8:
+	push {r4, r5, r6, r7, lr}
+	sub sp, #4
+	adds r7, r0, #0
+	adds r4, r1, #0
+	adds r5, r2, #0
+	adds r6, r3, #0
+	ldr r0, .Ljp_0806D708
+	str r0, [r7]
+	ldr r1, [r4]
+	movs r0, #0
+	str r0, [r4]
+	str r1, [sp]
+	ldr r0, .Ljp_0806D70C
+	bl __builtin_new
+	mov r1, sp
+	adds r2, r5, #0
+	adds r3, r6, #0
+	bl func_08069F14
+	str r0, [r7, #4]
+	ldr r4, [r4]
+	cmp r4, #0
+	beq .Ljp_0806D6FC
+	ldr r0, [r4]
+	ldr r2, [r0, #8]
+	adds r0, r4, #0
+	movs r1, #3
+	bl _call_via_r2
+.Ljp_0806D6FC:
+	adds r0, r7, #0
+	add sp, #4
+	pop {r4, r5, r6, r7}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.Ljp_0806D708: .4byte vtable_unk_080E7AA8
+.Ljp_0806D70C: .4byte 0x00003BF8
+	.global func_0806D918
+	.thumb_func
+func_0806D918:
+	push {r4, r5, lr}
+	adds r4, r0, #0
+	adds r5, r1, #0
+	ldr r0, .Ljp_0806D73C
+	str r0, [r4]
+	ldr r1, [r4, #4]
+	cmp r1, #0
+	beq .Ljp_0806D72C
+	ldr r0, [r1, #4]
+	ldr r2, [r0, #8]
+	adds r0, r1, #0
+	movs r1, #3
+	bl _call_via_r2
+.Ljp_0806D72C:
+	adds r0, r4, #0
+	adds r1, r5, #0
+	bl func_080007EC
+	pop {r4, r5}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_0806D73C: .4byte vtable_unk_080E7AA8
+
+	.global func_0806D948
+	.thumb_func
 func_0806D948:
-    .global func_0806D740
-    .thumb_func
-func_0806D740:
-    .incbin "baserom_jp.gba", 0x6D740, (0x6D788 - 0x6D740)
+	push {r4, lr}
+	sub sp, #0xc
+	adds r4, r0, #0
+	ldr r1, [r1, #4]
+	mov r0, sp
+	bl func_0806A1F4
+	ldr r2, [sp]
+	mov r0, sp
+	str r0, [sp, #4]
+	str r2, [sp, #8]
+	adds r1, r0, #0
+	movs r0, #0
+	str r0, [r1]
+	str r2, [r4]
+	ldr r1, [sp]
+	cmp r1, #0
+	beq .Ljp_0806D770
+	ldr r0, [r1]
+	ldr r2, [r0, #8]
+	adds r0, r1, #0
+	movs r1, #3
+	bl _call_via_r2
+.Ljp_0806D770:
+	adds r0, r4, #0
+	add sp, #0xc
+	pop {r4}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.Ljp_0806D77C:
+	ldr r1, [r1, #4]
+	ldr r2, [r1, #0x18]
+	ldr r1, [r1, #0x14]
+	str r1, [r0]
+	str r2, [r0, #4]
+	bx lr
     jp_code_0803ee_func func_0806D990, 0x6D788, 0x6E474
     jp_code_0803ee_func func_0806E78C, 0x6E474, 0x6E65C
     jp_code_0803ee_func func_0806E65C, 0x6E65C, 0x6E68C
@@ -145617,7 +145712,12 @@ func_0806D948: @ 0x0806D948
 	bx r1
 	.align 2, 0
 .L0806D984:
-	.byte 0x49, 0x68, 0x8A, 0x69, 0x49, 0x69, 0x01, 0x60, 0x42, 0x60, 0x70, 0x47
+	ldr r1, [r1, #4]
+	ldr r2, [r1, #0x18]
+	ldr r1, [r1, #0x14]
+	str r1, [r0]
+	str r2, [r0, #4]
+	bx lr
 
 	thumb_func_start func_0806D990
 func_0806D990: @ 0x0806D990
