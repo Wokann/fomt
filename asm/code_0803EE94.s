@@ -75221,7 +75221,40 @@ func_080809E0:
 	.align 2, 0
 .Ljp_08080C78: .4byte gUnk_084D95B4
 .Ljp_08080C7C: .4byte vtable_unk_080E5A28
-    jp_code_0803ee_func func_08080C80, 0x80C80, 0x80CC4
+	.global func_08080C80
+	.thumb_func
+func_08080C80:
+	push {r4, lr}
+	sub sp, #4
+	adds r4, r0, #0
+	adds r0, r1, #0
+	cmp r0, #0xa
+	beq .Ljp_08080CB0
+	ldr r1, .Ljp_08080CAC
+	lsls r0, r0, #3
+	adds r0, r0, r1
+	ldr r1, [r0]
+	mov r0, sp
+	bl __7ArticleUi
+	mov r0, sp
+	bl GetDesc__C7Article
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl func_080CA3FC
+	b .Ljp_08080CB8
+	.align 2, 0
+.Ljp_08080CAC: .4byte gSpecialMerchantShopCatalog
+.Ljp_08080CB0:
+	ldr r1, .Ljp_08080CC0
+	adds r0, r4, #0
+	bl func_080CA3FC
+.Ljp_08080CB8:
+	add sp, #4
+	pop {r4}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_08080CC0: .4byte gText_SpecialMerchantShop_RecordPlayerDescription
     .global func_08080CC4
     .thumb_func
 func_08080CC4:
