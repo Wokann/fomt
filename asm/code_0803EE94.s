@@ -76427,7 +76427,104 @@ func_08081644: @ 0x08081644
 	.align 2, 0
 .Ljp_08081670: .4byte vtable_unk_080E7CBC
 .Ljp_08081674: .4byte 0x000006A4
-    jp_code_0803ee_func func_08081678, 0x81678, 0x81734
+	.global func_08081678
+	.thumb_func
+func_08081678:
+	push {r4, r5, lr}
+	adds r4, r0, #0
+	adds r5, r1, #0
+	ldr r0, .Ljp_0808169C
+	str r0, [r4, #4]
+	ldr r1, .Ljp_080816A0
+	adds r0, r4, r1
+	ldr r0, [r0]
+	bl __builtin_delete
+	adds r0, r4, #0
+	adds r1, r5, #0
+	bl func_080C8360
+	pop {r4, r5}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_0808169C: .4byte vtable_unk_080E7CBC
+.Ljp_080816A0: .4byte 0x000006AC
+
+	.global func_080816A4
+	.thumb_func
+func_080816A4:
+	ldr r2, .Ljp_080816B4
+	adds r1, r1, r2
+	ldr r3, [r1]
+	movs r2, #0
+	str r2, [r1]
+	str r3, [r0]
+	bx lr
+	.align 2, 0
+.Ljp_080816B4: .4byte 0x000006AC
+
+	.global func_080816B8
+	.thumb_func
+func_080816B8:
+	push {r4, r5, lr}
+	sub sp, #4
+	adds r4, r0, #0
+	adds r3, r1, #0
+	ldr r5, .Ljp_0808170C
+	movs r0, #0xa9
+	lsls r0, r0, #2
+	adds r2, r4, r0
+	ldr r0, [r4, #0x10]
+	lsls r0, r0, #2
+	adds r0, #4
+	adds r0, r2, r0
+	ldr r1, [r0]
+	lsls r0, r1, #3
+	subs r0, r0, r1
+	lsls r0, r0, #2
+	adds r1, r5, #0
+	adds r1, #0xc
+	adds r0, r0, r1
+	ldr r0, [r0]
+	cmp r0, #0
+	bne .Ljp_08081710
+	lsls r0, r3, #2
+	adds r0, #4
+	adds r0, r2, r0
+	ldr r1, [r0]
+	lsls r0, r1, #3
+	subs r0, r0, r1
+	lsls r0, r0, #2
+	adds r0, r0, r5
+	ldr r1, [r0]
+	mov r0, sp
+	bl __4FoodUi
+	mov r0, sp
+	bl GetDesc__C4Food
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl func_080CA3FC
+	b .Ljp_0808172C
+	.align 2, 0
+.Ljp_0808170C: .4byte gBeachCafeShopMenu
+.Ljp_08081710:
+	lsls r0, r3, #2
+	adds r0, #4
+	adds r0, r2, r0
+	ldr r1, [r0]
+	lsls r0, r1, #3
+	subs r0, r0, r1
+	lsls r0, r0, #2
+	adds r1, r5, #0
+	adds r1, #8
+	adds r0, r0, r1
+	ldr r1, [r0]
+	adds r0, r4, #0
+	bl func_080CA3FC
+.Ljp_0808172C:
+	add sp, #4
+	pop {r4, r5}
+	pop {r0}
+	bx r0
     .global func_08081734
     .thumb_func
 func_08081734:
