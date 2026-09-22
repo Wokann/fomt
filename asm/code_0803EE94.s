@@ -17655,7 +17655,342 @@ func_08063EB8:
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
-    jp_code_0803ee_func func_08064320, 0x64050, 0x64320
+	.global func_08064320
+	.thumb_func
+func_08064320: @ 0x08064320
+	push {r4, r5, r6, r7, lr}
+	mov r7, r8
+	push {r7}
+	sub sp, #4
+	adds r5, r0, #0
+	ldr r0, .Ljp_08064384 @ =gText_FarmStatus_ChickenList
+	str r0, [sp]
+	adds r0, r5, #0
+	movs r3, #0x2d
+	bl func_08062E9C
+	ldr r0, .Ljp_08064388 @ =0x000005B4
+	adds r1, r5, r0
+	ldr r0, .Ljp_0806438C @ =vtable_unk_080E7A48
+	str r0, [r1]
+	movs r6, #0
+	movs r7, #0
+	ldr r1, .Ljp_08064390 @ =0x0000058C
+	adds r0, r5, r1
+	ldr r0, [r0]
+	movs r1, #0x82
+	lsls r1, r1, #3
+	adds r0, r0, r1
+	bl GetCapacity__C4Coop
+	mov r8, r0
+	cmp r6, r8
+	bhs .Ljp_080643B4
+.Ljp_08064358:
+	ldr r1, .Ljp_08064390 @ =0x0000058C
+	adds r0, r5, r1
+	ldr r0, [r0]
+	movs r1, #0x82
+	lsls r1, r1, #3
+	adds r0, r0, r1
+	adds r1, r7, #0
+	bl GetChicken__C4CoopUi
+	adds r4, r0, #0
+	cmp r4, #0
+	beq .Ljp_080643AE
+	bl GetGrowthStage__C7Chicken
+	cmp r0, #0
+	beq .Ljp_0806439C
+	cmp r0, #1
+	bne .Ljp_0806439C
+	ldr r3, .Ljp_08064394 @ =gUnk_0875268C
+	ldr r0, .Ljp_08064398 @ =gUnk_0875270C
+	b .Ljp_080643A0
+	.align 2, 0
+.Ljp_08064384: .4byte gText_FarmStatus_ChickenList
+.Ljp_08064388: .4byte 0x000005B4
+.Ljp_0806438C: .4byte vtable_unk_080E7A48
+.Ljp_08064390: .4byte 0x0000058C
+.Ljp_08064394: .4byte gUnk_0875268C
+.Ljp_08064398: .4byte gUnk_0875270C
+.Ljp_0806439C:
+	ldr r3, .Ljp_080643D4 @ =gUnk_0875272C
+	ldr r0, .Ljp_080643D8 @ =gUnk_087527AC
+.Ljp_080643A0:
+	str r0, [sp]
+	adds r0, r5, #0
+	adds r1, r6, #0
+	adds r2, r4, #0
+	bl func_08063EB8
+	adds r6, #1
+.Ljp_080643AE:
+	adds r7, #1
+	cmp r7, r8
+	blo .Ljp_08064358
+.Ljp_080643B4:
+	ldr r0, [r5, #4]
+	lsls r1, r6, #2
+	adds r1, r1, r6
+	adds r1, #5
+	lsls r1, r1, #0x13
+	asrs r1, r1, #0x10
+	bl func_08075E24
+	adds r0, r5, #0
+	add sp, #4
+	pop {r3}
+	mov r8, r3
+	pop {r4, r5, r6, r7}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.Ljp_080643D4: .4byte gUnk_0875272C
+.Ljp_080643D8: .4byte gUnk_087527AC
+
+	.global func_080643DC
+	.thumb_func
+func_080643DC: @ 0x080643DC
+	push {r4, r5, r6, r7, lr}
+	mov r7, sl
+	mov r6, sb
+	mov r5, r8
+	push {r5, r6, r7}
+	sub sp, #4
+	adds r7, r0, #0
+	ldr r0, .Ljp_08064458 @ =gText_FarmStatus_CattleList
+	str r0, [sp]
+	adds r0, r7, #0
+	movs r3, #0x55
+	bl func_08062E9C
+	ldr r0, .Ljp_0806445C @ =0x000005B4
+	adds r1, r7, r0
+	ldr r0, .Ljp_08064460 @ =vtable_unk_080E7A38
+	str r0, [r1]
+	movs r1, #0
+	mov r8, r1
+	mov sb, r1
+	ldr r2, .Ljp_08064464 @ =0x0000058C
+	adds r0, r7, r2
+	ldr r0, [r0]
+	movs r1, #0xbe
+	lsls r1, r1, #3
+	adds r0, r0, r1
+	bl GetCapacity__C4Barn
+	mov sl, r0
+	cmp r8, sl
+	bhs .Ljp_080644C2
+.Ljp_0806441A:
+	ldr r2, .Ljp_08064464 @ =0x0000058C
+	adds r0, r7, r2
+	ldr r0, [r0]
+	movs r1, #0xbe
+	lsls r1, r1, #3
+	adds r0, r0, r1
+	mov r1, sb
+	bl GetCow__C4BarnUi
+	adds r4, r0, #0
+	cmp r4, #0
+	beq .Ljp_080644BA
+	bl GetGrowthStage__C3Cow
+	cmp r0, #1
+	beq .Ljp_08064494
+	cmp r0, #1
+	blo .Ljp_080644A4
+	cmp r0, #2
+	bne .Ljp_080644A4
+	ldr r6, .Ljp_08064468 @ =gUnk_08751B4C
+	ldr r5, .Ljp_0806446C @ =gUnk_08751BCC
+	adds r0, r4, #0
+	bl IsPregnant__C10BarnAnimal
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_08064478
+	ldr r6, .Ljp_08064470 @ =gUnk_08751C8C
+	ldr r5, .Ljp_08064474 @ =gUnk_08751D0C
+	b .Ljp_080644A8
+	.align 2, 0
+.Ljp_08064458: .4byte gText_FarmStatus_CattleList
+.Ljp_0806445C: .4byte 0x000005B4
+.Ljp_08064460: .4byte vtable_unk_080E7A38
+.Ljp_08064464: .4byte 0x0000058C
+.Ljp_08064468: .4byte gUnk_08751B4C
+.Ljp_0806446C: .4byte gUnk_08751BCC
+.Ljp_08064470: .4byte gUnk_08751C8C
+.Ljp_08064474: .4byte gUnk_08751D0C
+.Ljp_08064478:
+	adds r0, r4, #0
+	bl HasBeenMilked__C3Cow
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080644A8
+	ldr r6, .Ljp_0806448C @ =gUnk_08751DCC
+	ldr r5, .Ljp_08064490 @ =gUnk_08751E4C
+	b .Ljp_080644A8
+	.align 2, 0
+.Ljp_0806448C: .4byte gUnk_08751DCC
+.Ljp_08064490: .4byte gUnk_08751E4C
+.Ljp_08064494:
+	ldr r6, .Ljp_0806449C @ =gUnk_08751BEC
+	ldr r5, .Ljp_080644A0 @ =gUnk_08751C6C
+	b .Ljp_080644A8
+	.align 2, 0
+.Ljp_0806449C: .4byte gUnk_08751BEC
+.Ljp_080644A0: .4byte gUnk_08751C6C
+.Ljp_080644A4:
+	ldr r6, .Ljp_080644E8 @ =gUnk_08751D2C
+	ldr r5, .Ljp_080644EC @ =gUnk_08751DAC
+.Ljp_080644A8:
+	str r5, [sp]
+	adds r0, r7, #0
+	mov r1, r8
+	adds r2, r4, #0
+	adds r3, r6, #0
+	bl func_08063EB8
+	movs r2, #1
+	add r8, r2
+.Ljp_080644BA:
+	movs r0, #1
+	add sb, r0
+	cmp sb, sl
+	blo .Ljp_0806441A
+.Ljp_080644C2:
+	ldr r0, [r7, #4]
+	mov r2, r8
+	lsls r1, r2, #2
+	add r1, r8
+	adds r1, #5
+	lsls r1, r1, #0x13
+	asrs r1, r1, #0x10
+	bl func_08075E24
+	adds r0, r7, #0
+	add sp, #4
+	pop {r3, r4, r5}
+	mov r8, r3
+	mov sb, r4
+	mov sl, r5
+	pop {r4, r5, r6, r7}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.Ljp_080644E8: .4byte gUnk_08751D2C
+.Ljp_080644EC: .4byte gUnk_08751DAC
+
+	.global func_080644F0
+	.thumb_func
+func_080644F0: @ 0x080644F0
+	push {r4, r5, r6, r7, lr}
+	mov r7, sl
+	mov r6, sb
+	mov r5, r8
+	push {r5, r6, r7}
+	sub sp, #4
+	adds r7, r0, #0
+	ldr r0, .Ljp_08064568 @ =gText_FarmStatus_SheepList
+	str r0, [sp]
+	adds r0, r7, #0
+	movs r3, #0x55
+	bl func_08062E9C
+	ldr r0, .Ljp_0806456C @ =0x000005B4
+	adds r1, r7, r0
+	ldr r0, .Ljp_08064570 @ =vtable_unk_080E7A28
+	str r0, [r1]
+	movs r1, #0
+	mov r8, r1
+	mov sb, r1
+	ldr r2, .Ljp_08064574 @ =0x0000058C
+	adds r0, r7, r2
+	ldr r0, [r0]
+	movs r1, #0xbe
+	lsls r1, r1, #3
+	adds r0, r0, r1
+	bl GetCapacity__C4Barn
+	mov sl, r0
+	cmp r8, sl
+	bhs .Ljp_080645C2
+.Ljp_0806452E:
+	ldr r2, .Ljp_08064574 @ =0x0000058C
+	adds r0, r7, r2
+	ldr r0, [r0]
+	movs r1, #0xbe
+	lsls r1, r1, #3
+	adds r0, r0, r1
+	mov r1, sb
+	bl GetSheep__C4BarnUi
+	adds r4, r0, #0
+	cmp r4, #0
+	beq .Ljp_080645BA
+	bl GetGrowthStage__C5Sheep
+	cmp r0, #0
+	beq .Ljp_080645A4
+	cmp r0, #1
+	bne .Ljp_080645A4
+	ldr r6, .Ljp_08064578 @ =gUnk_0875320C
+	ldr r5, .Ljp_0806457C @ =gUnk_0875328C
+	adds r0, r4, #0
+	bl IsPregnant__C10BarnAnimal
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_08064588
+	ldr r6, .Ljp_08064580 @ =gUnk_0875334C
+	ldr r5, .Ljp_08064584 @ =gUnk_087533CC
+	b .Ljp_080645A8
+	.align 2, 0
+.Ljp_08064568: .4byte gText_FarmStatus_SheepList
+.Ljp_0806456C: .4byte 0x000005B4
+.Ljp_08064570: .4byte vtable_unk_080E7A28
+.Ljp_08064574: .4byte 0x0000058C
+.Ljp_08064578: .4byte gUnk_0875320C
+.Ljp_0806457C: .4byte gUnk_0875328C
+.Ljp_08064580: .4byte gUnk_0875334C
+.Ljp_08064584: .4byte gUnk_087533CC
+.Ljp_08064588:
+	adds r0, r4, #0
+	bl IsSheared__C5Sheep
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_080645A8
+	ldr r6, .Ljp_0806459C @ =gUnk_087532AC
+	ldr r5, .Ljp_080645A0 @ =gUnk_0875332C
+	b .Ljp_080645A8
+	.align 2, 0
+.Ljp_0806459C: .4byte gUnk_087532AC
+.Ljp_080645A0: .4byte gUnk_0875332C
+.Ljp_080645A4:
+	ldr r6, .Ljp_080645E8 @ =gUnk_087533EC
+	ldr r5, .Ljp_080645EC @ =gUnk_0875346C
+.Ljp_080645A8:
+	str r5, [sp]
+	adds r0, r7, #0
+	mov r1, r8
+	adds r2, r4, #0
+	adds r3, r6, #0
+	bl func_08063EB8
+	movs r2, #1
+	add r8, r2
+.Ljp_080645BA:
+	movs r0, #1
+	add sb, r0
+	cmp sb, sl
+	blo .Ljp_0806452E
+.Ljp_080645C2:
+	ldr r0, [r7, #4]
+	mov r2, r8
+	lsls r1, r2, #2
+	add r1, r8
+	adds r1, #5
+	lsls r1, r1, #0x13
+	asrs r1, r1, #0x10
+	bl func_08075E24
+	adds r0, r7, #0
+	add sp, #4
+	pop {r3, r4, r5}
+	mov r8, r3
+	mov sb, r4
+	mov sl, r5
+	pop {r4, r5, r6, r7}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.Ljp_080645E8: .4byte gUnk_087533EC
+.Ljp_080645EC: .4byte gUnk_0875346C
+
     jp_code_0803ee_func func_080645F0, 0x64320, 0x65844
     jp_code_0803ee_func sub_08065B14, 0x65844, 0x69AC8
     jp_code_0803ee_func func_08069C34, 0x69AC8, 0x69C14
