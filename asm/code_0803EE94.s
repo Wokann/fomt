@@ -5628,7 +5628,78 @@ func_0805E790:
     .global func_0805E4D4
     .thumb_func
 func_0805E4D4:
-    .incbin "baserom_jp.gba", 0x5E4D4, (0x5E560 - 0x5E4D4)
+    push {r4, r5, r6, r7, lr}
+    mov r7, sb
+    mov r6, r8
+    push {r6, r7}
+    mov ip, r0
+    adds r7, r1, #0
+    ldrh r0, [r7, #0x22]
+    cmp r2, r0
+    bhs .Ljp_0805E534
+    lsls r1, r2, #4
+    ldr r0, [r7, #8]
+    adds r0, r0, r1
+    ldrh r3, [r0, #2]
+    ldrh r1, [r0]
+    mov sb, r1
+    ldrh r4, [r0, #6]
+    lsls r4, r4, #5
+    ldr r1, [r7, #0x10]
+    adds r4, r4, r1
+    ldrh r6, [r0, #4]
+    ldrh r2, [r0, #0xa]
+    lsls r2, r2, #5
+    ldr r1, [r7, #0x14]
+    adds r2, r2, r1
+    ldrh r5, [r0, #8]
+    ldrh r1, [r0, #0xe]
+    ldrh r0, [r0, #0xc]
+    mov r8, r0
+    lsls r3, r3, #3
+    ldr r0, [r7, #0xc]
+    adds r3, r3, r0
+    lsls r6, r6, #5
+    lsls r5, r5, #5
+    lsls r1, r1, #3
+    ldr r0, [r7, #0x18]
+    adds r1, r1, r0
+    mov r0, ip
+    str r3, [r0]
+    mov r3, sb
+    strh r3, [r0, #4]
+    str r4, [r0, #8]
+    strh r6, [r0, #0xc]
+    str r2, [r0, #0x10]
+    strh r5, [r0, #0x14]
+    str r1, [r0, #0x18]
+    mov r1, r8
+    strh r1, [r0, #0x1c]
+    b .Ljp_0805E550
+.Ljp_0805E534:
+    movs r0, #0
+    mov r2, ip
+    str r0, [r2]
+    strh r0, [r2, #4]
+    mov r1, ip
+    adds r1, #8
+    str r0, [r2, #8]
+    strh r0, [r1, #4]
+    adds r1, #8
+    str r0, [r2, #0x10]
+    strh r0, [r1, #4]
+    adds r1, #8
+    str r0, [r2, #0x18]
+    strh r0, [r1, #4]
+.Ljp_0805E550:
+    mov r0, ip
+    pop {r3, r4}
+    mov r8, r3
+    mov sb, r4
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
     .section .text.indexed_resource_handle_constructor_after
     jp_code_0803ee_func func_0805E894, 0x5E5D8, 0x5E634
     jp_code_0803ee_func func_0805E8F0, 0x5E634, 0x5E6E0
