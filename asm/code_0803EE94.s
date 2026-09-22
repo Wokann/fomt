@@ -30292,7 +30292,77 @@ func_08069E58:
 	bx r0
 .Ljp_08069D24:
 	.4byte vtable_unk_080E7A88
-    jp_code_0803ee_func func_08069D28, 0x69D28, 0x6D6C0
+	.global func_08069E98
+	.thumb_func
+func_08069E98:
+	push {r4, r5, lr}
+	adds r5, r0, #0
+	adds r4, r1, #0
+	ldr r0, [r4, #4]
+	bl func_080769A0
+	ldr r1, [r4, #8]
+	movs r0, #0
+	str r0, [r4, #8]
+	str r1, [r5]
+	adds r0, r5, #0
+	pop {r4, r5}
+	pop {r1}
+	bx r1
+	.global func_08069EB4
+	.thumb_func
+func_08069EB4:
+	push {lr}
+	movs r1, #0x90
+	lsls r1, r1, #1
+	adds r0, r0, r1
+	ldr r0, [r0]
+	movs r1, #0xbe
+	lsls r1, r1, #3
+	adds r0, r0, r1
+	bl CountSheeps__C4Barn
+	adds r1, r0, #0
+	rsbs r0, r1, #0
+	orrs r0, r1
+	lsrs r0, r0, #0x1f
+	pop {r1}
+	bx r1
+	.global func_08069ED4
+	.thumb_func
+func_08069ED4:
+	push {lr}
+	movs r1, #0x90
+	lsls r1, r1, #1
+	adds r0, r0, r1
+	ldr r0, [r0]
+	movs r1, #0xbe
+	lsls r1, r1, #3
+	adds r0, r0, r1
+	bl CountCows__C4Barn
+	adds r1, r0, #0
+	rsbs r0, r1, #0
+	orrs r0, r1
+	lsrs r0, r0, #0x1f
+	pop {r1}
+	bx r1
+	.global func_08069EF4
+	.thumb_func
+func_08069EF4:
+	push {lr}
+	movs r1, #0x90
+	lsls r1, r1, #1
+	adds r0, r0, r1
+	ldr r0, [r0]
+	movs r1, #0x82
+	lsls r1, r1, #3
+	adds r0, r0, r1
+	bl CountChickens__C4Coop
+	adds r1, r0, #0
+	rsbs r0, r1, #0
+	orrs r0, r1
+	lsrs r0, r0, #0x1f
+	pop {r1}
+	bx r1
+    jp_code_0803ee_func func_08069F14, 0x69DA4, 0x6D6C0
     jp_code_0803ee_func func_0806D8C8, 0x6D6C0, 0x6D710
     jp_code_0803ee_func func_0806D710, 0x6D710, 0x6D740
     .global func_0806D948
@@ -130361,16 +130431,59 @@ func_08069E98: @ 0x08069E98
 	pop {r4, r5}
 	pop {r1}
 	bx r1
-.L08069EB4:
-	.byte 0x00, 0xB5, 0x90, 0x21, 0x49, 0x00, 0x40, 0x18, 0x00, 0x68, 0xBE, 0x21, 0xC9, 0x00, 0x40, 0x18
+	thumb_func_start func_08069EB4
+func_08069EB4:
+	push {lr}
+	movs r1, #0x90
+	lsls r1, r1, #1
+	adds r0, r0, r1
+	ldr r0, [r0]
+	movs r1, #0xbe
+	lsls r1, r1, #3
+	adds r0, r0, r1
 	bl CountSheeps__C4Barn
-	.byte 0x01, 0x1C, 0x48, 0x42, 0x08, 0x43, 0xC0, 0x0F, 0x02, 0xBC, 0x08, 0x47, 0x00, 0xB5, 0x90, 0x21
-	.byte 0x49, 0x00, 0x40, 0x18, 0x00, 0x68, 0xBE, 0x21, 0xC9, 0x00, 0x40, 0x18
+	adds r1, r0, #0
+	rsbs r0, r1, #0
+	orrs r0, r1
+	lsrs r0, r0, #0x1f
+	pop {r1}
+	bx r1
+
+	thumb_func_start func_08069ED4
+func_08069ED4:
+	push {lr}
+	movs r1, #0x90
+	lsls r1, r1, #1
+	adds r0, r0, r1
+	ldr r0, [r0]
+	movs r1, #0xbe
+	lsls r1, r1, #3
+	adds r0, r0, r1
 	bl CountCows__C4Barn
-	.byte 0x01, 0x1C, 0x48, 0x42, 0x08, 0x43, 0xC0, 0x0F, 0x02, 0xBC, 0x08, 0x47, 0x00, 0xB5, 0x90, 0x21
-	.byte 0x49, 0x00, 0x40, 0x18, 0x00, 0x68, 0x82, 0x21, 0xC9, 0x00, 0x40, 0x18
+	adds r1, r0, #0
+	rsbs r0, r1, #0
+	orrs r0, r1
+	lsrs r0, r0, #0x1f
+	pop {r1}
+	bx r1
+
+	thumb_func_start func_08069EF4
+func_08069EF4:
+	push {lr}
+	movs r1, #0x90
+	lsls r1, r1, #1
+	adds r0, r0, r1
+	ldr r0, [r0]
+	movs r1, #0x82
+	lsls r1, r1, #3
+	adds r0, r0, r1
 	bl CountChickens__C4Coop
-	.byte 0x01, 0x1C, 0x48, 0x42, 0x08, 0x43, 0xC0, 0x0F, 0x02, 0xBC, 0x08, 0x47
+	adds r1, r0, #0
+	rsbs r0, r1, #0
+	orrs r0, r1
+	lsrs r0, r0, #0x1f
+	pop {r1}
+	bx r1
 
 	thumb_func_start func_08069F14
 func_08069F14: @ 0x08069F14
