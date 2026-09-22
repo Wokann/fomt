@@ -36,6 +36,8 @@ extern void func_0804EE9C(void);
 extern void func_0804EEBC(void);
 extern void func_0804EEFC(void);
 extern void func_0804F19C(void);
+extern void func_08069D84(void);
+extern void func_08069E58(void);
 extern void func_080E0F48(void);
 extern void func_080E0F90(void);
 extern void func_080E0EF0(void);
@@ -97,8 +99,6 @@ extern void func_080E1898(void);
 extern void func_080E18A4_vtable_target(void);
 extern void func_080E18B0(void);
 extern void func_080E18BC(void);
-extern void func_08069C14(void);
-extern void func_08069CE8(void);
 extern void func_08069D28(void);
 extern void func_0806D710(void);
 extern void func_0806D740(void);
@@ -440,8 +440,6 @@ extern void func_080E1DB0(void);
 extern void func_080E1DBC(void);
 extern void func_080E1DC8(void);
 extern void func_080E1DD4(void);
-extern void func_08069D84(void);
-extern void func_08069E58(void);
 extern void func_08069E98(void);
 extern void func_0806D918(void);
 extern void func_0806D948(void);
@@ -5309,7 +5307,7 @@ extern RawVTableFunction const vtable_unk_080E7A78[]
         nullptr,
 #if defined(REGION_JP)
         func_080E1574,
-        func_08069C14,
+        func_08069D84,
 #else
         func_080E1DC8,
         func_080E1DBC,
@@ -5321,7 +5319,7 @@ extern RawVTableFunction const vtable_unk_080E7A88[]
         nullptr,
         nullptr,
 #if defined(REGION_JP)
-        func_08069CE8,
+        func_08069E58,
         func_08069D28,
 #else
         func_080E1DD4,
