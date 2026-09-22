@@ -6343,7 +6343,113 @@ func_0805EC24:
 	pop {r4, r5, r6, r7}
 	pop {r0}
 	bx r0
-    jp_code_0803ee_func func_0805ED4C, 0x5EA90, 0x5EB88
+    .global func_0805ED4C
+    .thumb_func
+func_0805ED4C:
+	push {r4, r5, r6, lr}
+	mov r6, r8
+	push {r6}
+	sub sp, #0x18
+	adds r4, r0, #0
+	adds r5, r1, #0
+	add r1, sp, #0x14
+	movs r0, #0x1e
+	movs r2, #1
+	movs r3, #0
+	mov r8, r3
+	strh r0, [r1]
+	strh r2, [r1, #2]
+	adds r0, r4, #0
+	bl func_080084DC
+	ldr r0, .Ljp0805EB64 @ =gUnk_080E6E0C
+	str r0, [r4, #4]
+	str r5, [r4, #8]
+	mov r0, r8
+	str r0, [r4, #0xc]
+	movs r0, #4
+	bl __builtin_new
+	adds r6, r0, #0
+	add r0, sp, #0xc
+	bl func_0800835C
+	add r5, sp, #0x10
+	adds r0, r5, #0
+	bl func_0800770C
+	ldr r0, [r4, #0xc]
+	str r0, [sp]
+	add r1, sp, #0xc
+	str r1, [sp, #4]
+	str r5, [sp, #8]
+	adds r0, r6, #0
+	movs r1, #0
+	movs r2, #0x1f
+	movs r3, #0xf
+	bl func_08050CC0
+	str r0, [r4, #0x10]
+	adds r0, r5, #0
+	movs r1, #2
+	bl func_08007714
+	add r0, sp, #0xc
+	movs r1, #2
+	bl func_08008364
+	adds r0, r4, #0
+	adds r0, #0x14
+	movs r1, #1
+	bl func_08008B54
+	adds r0, r4, #0
+	adds r0, #0x18
+	movs r1, #0
+	bl func_08008B54
+	adds r0, r4, #0
+	adds r0, #0x1c
+	movs r1, #2
+	bl func_08008B54
+	ldr r2, .Ljp0805EB68 @ =0x00006428
+	adds r1, r4, r2
+	ldr r0, .Ljp0805EB6C @ =gUnk_080E6E18
+	str r0, [r1]
+	mov r3, r8
+	str r3, [r1, #4]
+	ldr r0, [r4, #0x10]
+	movs r1, #0xb
+	bl func_08050E98
+	ldr r1, .Ljp0805EB70 @ =0x00006420
+	adds r0, r4, r1
+	mov r2, r8
+	strh r2, [r0]
+	ldr r3, .Ljp0805EB74 @ =0x00006422
+	adds r0, r4, r3
+	strh r2, [r0]
+	ldr r0, .Ljp0805EB78 @ =0x00006426
+	adds r1, r4, r0
+	movs r0, #2
+	strh r0, [r1]
+	ldr r1, .Ljp0805EB7C @ =0x00006424
+	adds r0, r4, r1
+	strh r2, [r0]
+	ldr r0, [r4, #8]
+	ldr r2, .Ljp0805EB80 @ =0x00001BD8
+	adds r0, r0, r2
+	bl func_0800E4E0
+	ldr r3, .Ljp0805EB84 @ =0x0000642C
+	adds r1, r4, r3
+	str r0, [r1]
+	adds r0, r4, #0
+	add sp, #0x18
+	pop {r3}
+	mov r8, r3
+	pop {r4, r5, r6}
+	pop {r1}
+	bx r1
+	.align 2, 0
+.Ljp0805EB64: .4byte gUnk_080E6E0C
+.Ljp0805EB68: .4byte 0x00006428
+.Ljp0805EB6C: .4byte gUnk_080E6E18
+.Ljp0805EB70: .4byte 0x00006420
+.Ljp0805EB74: .4byte 0x00006422
+.Ljp0805EB78: .4byte 0x00006426
+.Ljp0805EB7C: .4byte 0x00006424
+.Ljp0805EB80: .4byte 0x00001BD8
+.Ljp0805EB84: .4byte 0x0000642C
     @ Keep the matched Thumb body raw, but give every text literal-pool entry
     @ a relocatable semantic symbol shared with the US source.
     .global func_0805EE44

@@ -5148,10 +5148,6 @@ extern RawVTableFunction const vtable_unk_080E79C8[]
     SECTION(".rodata.vtable_79c8") = {
 #if defined(REGION_JP)
         func_0805E4D4,
-        nullptr,
-        nullptr,
-        func_080E1198,
-        nullptr,
 #else
         nullptr,
         nullptr,
@@ -5160,6 +5156,22 @@ extern RawVTableFunction const vtable_unk_080E79C8[]
         func_0805E790,
 #endif
     };
+
+#if defined(REGION_JP)
+// JP places two independently referenced vtable fragments inside the ROM
+// range occupied by the overseas vtable_unk_080E79C8 object.
+extern RawVTableFunction const gUnk_080E6E0C[]
+    SECTION(".rodata.vtable_79c8") = {
+        nullptr,
+        nullptr,
+        func_080E1198,
+    };
+
+extern RawVTableFunction const gUnk_080E6E18[]
+    SECTION(".rodata.vtable_79c8") = {
+        nullptr,
+    };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E79DC[]
     SECTION(".rodata.vtable_79dc") = {
