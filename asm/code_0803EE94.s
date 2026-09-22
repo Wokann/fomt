@@ -62642,7 +62642,417 @@ func_08079DC0:
     .global func_08079F8C
     .thumb_func
 func_08079F8C:
-    .incbin "baserom_jp.gba", 0x79B28, (0x79E54 - 0x79B28)
+	push {r4, r5, r6, r7, lr}
+	mov r7, sl
+	mov r6, sb
+	mov r5, r8
+	push {r5, r6, r7}
+	sub sp, #0xe8
+	mov sb, r0
+	movs r5, #0
+	ldr r2, .Ljp_library_render_08079BD8
+	adds r0, r0, r2
+	ldr r0, [r0]
+	ldr r0, [r0]
+	mov r1, sp
+	adds r1, #0xc4
+	str r1, [sp, #0xd8]
+	cmp r0, #0
+	beq .Ljp_library_render_08079BBE
+	add r4, sp, #0xc
+.Ljp_library_render_08079B4C:
+	lsls r1, r5, #0x10
+	mov r3, sb
+	adds r0, r3, r2
+	ldr r0, [r0]
+	asrs r1, r1, #0xe
+	adds r1, r1, r0
+	ldr r1, [r1]
+	ldrb r0, [r1]
+	cmp r0, #0x3c
+	bne .Ljp_library_render_08079BA2
+	adds r3, r1, #0
+	ldrb r0, [r3, #1]
+	subs r0, #0x30
+	lsls r0, r0, #0x18
+	lsrs r0, r0, #0x18
+	cmp r0, #9
+	bhi .Ljp_library_render_08079BA2
+	movs r2, #0
+.Ljp_library_render_08079B70:
+	mov r1, sp
+	adds r1, r1, r2
+	adds r1, #0xc
+	adds r0, r2, r3
+	ldrb r0, [r0, #1]
+	subs r0, #0x30
+	strb r0, [r1]
+	adds r2, #1
+	cmp r2, #2
+	ble .Ljp_library_render_08079B70
+	ldrb r1, [r4]
+	movs r0, #0x64
+	muls r1, r0, r1
+	ldrb r2, [r4, #1]
+	lsls r0, r2, #2
+	adds r0, r0, r2
+	lsls r0, r0, #1
+	adds r1, r1, r0
+	ldrb r0, [r4, #2]
+	adds r1, r1, r0
+	mov r0, sb
+	bl func_0807A2AC
+	cmp r0, #1
+	beq .Ljp_library_render_08079BBE
+.Ljp_library_render_08079BA2:
+	lsls r0, r5, #0x10
+	movs r1, #0x80
+	lsls r1, r1, #9
+	adds r0, r0, r1
+	lsrs r5, r0, #0x10
+	ldr r2, .Ljp_library_render_08079BD8
+	mov r3, sb
+	adds r1, r3, r2
+	ldr r1, [r1]
+	asrs r0, r0, #0xe
+	adds r0, r0, r1
+	ldr r0, [r0]
+	cmp r0, #0
+	bne .Ljp_library_render_08079B4C
+.Ljp_library_render_08079BBE:
+	lsls r0, r5, #0x10
+	ldr r1, .Ljp_library_render_08079BDC
+	adds r0, r0, r1
+	lsrs r5, r0, #0x10
+	asrs r2, r0, #0x10
+	adds r0, r2, #2
+	cmp r0, #0xa
+	ble .Ljp_library_render_08079BE4
+	ldr r1, .Ljp_library_render_08079BE0
+	add r1, sb
+	subs r0, #0xa
+	lsls r0, r0, #0x14
+	b .Ljp_library_render_08079BEA
+.Ljp_library_render_08079BD8:
+	.4byte 0x00000A5C
+.Ljp_library_render_08079BDC:
+	.4byte 0xFFFF0000
+.Ljp_library_render_08079BE0:
+	.4byte 0x00000848
+.Ljp_library_render_08079BE4:
+	ldr r1, .Ljp_library_render_08079C44
+	add r1, sb
+	movs r0, #0
+.Ljp_library_render_08079BEA:
+	str r0, [r1]
+	movs r0, #0xa6
+	lsls r0, r0, #4
+	add r0, sb
+	ldr r1, [r0]
+	str r1, [r0, #4]
+	lsls r0, r5, #0x10
+	movs r3, #0
+	str r0, [sp, #0xe0]
+	mov r2, sb
+	adds r2, #0x14
+	str r2, [sp, #0xdc]
+	cmp r0, #0
+	ble .Ljp_library_render_08079CE4
+.Ljp_library_render_08079C06:
+	ldr r0, .Ljp_library_render_08079C48
+	add r0, sb
+	ldr r1, [r0]
+	lsls r0, r3, #2
+	adds r0, r0, r1
+	ldr r0, [r0, #4]
+	ldrb r1, [r0]
+	lsls r1, r1, #8
+	ldrb r0, [r0, #1]
+	orrs r1, r0
+	ldr r0, .Ljp_library_render_08079C4C
+	adds r7, r3, #1
+	cmp r1, r0
+	bne .Ljp_library_render_08079CDA
+	add r0, sp, #0xb8
+	str r3, [r0]
+	movs r5, #0xa6
+	lsls r5, r5, #4
+	add r5, sb
+	ldr r4, [r5, #4]
+	ldr r0, [r5, #0xc]
+	cmp r4, r0
+	beq .Ljp_library_render_08079C50
+	cmp r4, #0
+	beq .Ljp_library_render_08079C3A
+	str r3, [r4]
+.Ljp_library_render_08079C3A:
+	ldr r0, [r5, #4]
+	adds r0, #4
+	str r0, [r5, #4]
+	b .Ljp_library_render_08079CDA
+	.align 2, 0
+.Ljp_library_render_08079C44:
+	.4byte 0x00000848
+.Ljp_library_render_08079C48:
+	.4byte 0x00000A5C
+.Ljp_library_render_08079C4C:
+	.4byte 0x0000819A
+.Ljp_library_render_08079C50:
+	adds r7, r4, #0
+	movs r0, #1
+	add r1, sp, #0xc0
+	str r0, [r1]
+	ldr r0, [r5]
+	subs r0, r7, r0
+	asrs r4, r0, #2
+	add r0, sp, #0xbc
+	str r4, [r0]
+	ldr r2, [r1]
+	mov sl, r1
+	cmp r4, r2
+	bhs .Ljp_library_render_08079C6C
+	mov r0, sl
+.Ljp_library_render_08079C6C:
+	ldr r0, [r0]
+	adds r0, r4, r0
+	cmp r0, #0
+	beq .Ljp_library_render_08079C90
+	lsls r4, r0, #2
+	adds r0, r4, #0
+	str r3, [sp, #0xe4]
+	bl malloc
+	mov r8, r4
+	ldr r3, [sp, #0xe4]
+	cmp r0, #0
+	bne .Ljp_library_render_08079C94
+	mov r0, r8
+	bl func_080D3BC0
+	ldr r3, [sp, #0xe4]
+	b .Ljp_library_render_08079C94
+.Ljp_library_render_08079C90:
+	movs r0, #0
+	mov r8, r0
+.Ljp_library_render_08079C94:
+	adds r6, r0, #0
+	ldr r1, [r5]
+	cmp r7, r1
+	beq .Ljp_library_render_08079CAC
+	subs r4, r7, r1
+	adds r2, r4, #0
+	str r3, [sp, #0xe4]
+	bl memmove
+	adds r0, r0, r4
+	ldr r3, [sp, #0xe4]
+	b .Ljp_library_render_08079CAE
+.Ljp_library_render_08079CAC:
+	adds r0, r6, #0
+.Ljp_library_render_08079CAE:
+	adds r4, r0, #0
+	mov r0, sl
+	ldr r1, [r0]
+	ldr r2, [r5]
+	adds r7, r3, #1
+	cmp r1, #0
+	beq .Ljp_library_render_08079CC6
+.Ljp_library_render_08079CBC:
+	ldr r0, [sp, #0xb8]
+	stm r4!, {r0}
+	subs r1, #1
+	cmp r1, #0
+	bne .Ljp_library_render_08079CBC
+.Ljp_library_render_08079CC6:
+	cmp r2, #0
+	beq .Ljp_library_render_08079CD0
+	adds r0, r2, #0
+	bl free
+.Ljp_library_render_08079CD0:
+	mov r1, r8
+	adds r0, r1, r6
+	str r6, [r5]
+	str r4, [r5, #4]
+	str r0, [r5, #0xc]
+.Ljp_library_render_08079CDA:
+	adds r3, r7, #0
+	ldr r2, [sp, #0xe0]
+	asrs r0, r2, #0x10
+	cmp r3, r0
+	blt .Ljp_library_render_08079C06
+.Ljp_library_render_08079CE4:
+	ldr r1, .Ljp_library_render_08079E44
+	movs r2, #0xe0
+	lsls r2, r2, #4
+	movs r0, #0
+	bl func_08008EB8
+	movs r5, #0
+	ldr r3, [sp, #0xdc]
+	mov r8, r3
+	ldr r0, .Ljp_library_render_08079E48
+	mov sl, r0
+	add r7, sp, #0xc4
+	add r6, sp, #0x10
+	add r4, sp, #0xc8
+.Ljp_library_render_08079D00:
+	movs r1, #0x1c
+	strh r1, [r7]
+	movs r3, #2
+	ldr r2, [sp, #0xd8]
+	strh r3, [r2, #2]
+	ldr r0, [r7]
+	mov r1, r8
+	movs r2, #0
+	bl Clear2DGfxBuffer
+	ldr r1, [sp, #0xe0]
+	asrs r0, r1, #0x10
+	cmp r5, r0
+	bge .Ljp_library_render_08079D52
+	ldr r0, .Ljp_library_render_08079E4C
+	add r0, sb
+	ldr r1, [r0]
+	lsls r0, r5, #2
+	adds r0, r0, r1
+	ldr r1, [r0, #4]
+	cmp r1, #0
+	beq .Ljp_library_render_08079D52
+	mov r0, sb
+	adds r2, r6, #0
+	bl func_0807A708
+	movs r2, #0x1c
+	strh r2, [r4]
+	movs r3, #2
+	strh r3, [r4, #2]
+	ldr r0, [r4]
+	str r6, [sp]
+	movs r1, #0
+	str r1, [sp, #4]
+	movs r2, #1
+	str r2, [sp, #8]
+	mov r1, r8
+	movs r2, #0
+	movs r3, #0
+	bl DrawStringTo2DGfxBufferExt
+.Ljp_library_render_08079D52:
+	ldr r0, [sp, #0xdc]
+	mov r1, sl
+	movs r2, #0xe0
+	lsls r2, r2, #3
+	bl func_08008E64
+	movs r3, #0xe0
+	lsls r3, r3, #3
+	add sl, r3
+	adds r5, #1
+	cmp r5, #8
+	ble .Ljp_library_render_08079D00
+	movs r0, #0x82
+	lsls r0, r0, #4
+	add r0, sb
+	ldr r1, [r0, #4]
+	bl func_08007D4C
+	adds r1, r0, #0
+	lsls r1, r1, #5
+	ldr r0, .Ljp_library_render_08079E50
+	adds r1, r1, r0
+	movs r2, #0xe0
+	lsls r2, r2, #3
+	movs r0, #0
+	bl func_08008EB8
+	ldr r0, .Ljp_library_render_08079E4C
+	add r0, sb
+	ldr r0, [r0]
+	ldr r1, [r0]
+	cmp r1, #0
+	beq .Ljp_library_render_08079E20
+	mov r0, sb
+	add r2, sp, #0xc
+	bl func_0807A708
+	movs r1, #0
+	mov sl, r1
+	add r5, sp, #0xb4
+	add r7, sp, #0xcc
+	movs r2, #2
+	mov r8, r2
+	add r6, sp, #0xd0
+	add r4, sp, #0xc
+	mov r3, sp
+	adds r3, #0x34
+	str r3, [sp, #0xd4]
+.Ljp_library_render_08079DB2:
+	ldrb r0, [r4]
+	strb r0, [r5]
+	lsls r0, r0, #0x18
+	cmp r0, #0
+	beq .Ljp_library_render_08079E20
+	ldrb r0, [r4, #1]
+	strb r0, [r5, #1]
+	mov r0, r8
+	strh r0, [r7]
+	strh r0, [r7, #2]
+	ldr r0, [r7]
+	add r1, sp, #0x34
+	movs r2, #0
+	bl Clear2DGfxBuffer
+	ldrb r0, [r5]
+	lsls r0, r0, #8
+	ldrb r1, [r5, #1]
+	orrs r1, r0
+	mov r2, r8
+	strh r2, [r6]
+	strh r2, [r6, #2]
+	ldr r0, [r6]
+	str r1, [sp]
+	movs r3, #0
+	str r3, [sp, #4]
+	movs r1, #1
+	str r1, [sp, #8]
+	add r1, sp, #0x34
+	movs r2, #0
+	bl func_0804E5AC
+	movs r0, #0x82
+	lsls r0, r0, #4
+	add r0, sb
+	ldr r1, [r0, #4]
+	bl func_08007D4C
+	adds r1, r0, #0
+	mov r2, sl
+	lsls r0, r2, #2
+	adds r1, r1, r0
+	lsls r1, r1, #5
+	ldr r3, .Ljp_library_render_08079E50
+	adds r1, r1, r3
+	ldr r0, [sp, #0xd4]
+	movs r2, #0x80
+	bl func_08008E64
+	adds r4, #2
+	movs r0, #1
+	add sl, r0
+	mov r1, sl
+	cmp r1, #0xd
+	ble .Ljp_library_render_08079DB2
+.Ljp_library_render_08079E20:
+	mov r0, sb
+	bl func_08008918
+	add r2, sp, #0xc
+	movs r3, #0xf2
+	lsls r3, r3, #5
+	adds r1, r3, #0
+	strh r1, [r2]
+	strh r1, [r0]
+	add sp, #0xe8
+	pop {r3, r4, r5}
+	mov r8, r3
+	mov sb, r4
+	mov sl, r5
+	pop {r4, r5, r6, r7}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_library_render_08079E44:
+	.4byte 0x06000C00
+.Ljp_library_render_08079E48:
+	.4byte 0x06001A00
+.Ljp_library_render_08079E4C:
+	.4byte 0x00000A5C
+.Ljp_library_render_08079E50:
+	.4byte 0x06010000
     .global func_0807A2AC
     .thumb_func
 func_0807A2AC:
