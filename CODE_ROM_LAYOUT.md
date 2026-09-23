@@ -2270,6 +2270,20 @@ US、EU、DE 的独立汇编对象分别完成 `.text` 字节和完整符号表�
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与各自基准 ROM 一致。
 
+## `asm/new_game.s`：JP 新游戏对象辅助函数
+
+JP 原始块中 `0x08004B70`–`0x08004C7F` 的六个连续对象生命周期辅助函数已由
+直接 Thumb 指令替换原始 `.incbin`：`func_08004B58`、`func_08004B94`、
+`func_08004BDC`、`func_08004C0C`、`func_08004C48` 和 `func_08004C54`。函数名沿用
+跨区域语义名称，但每个标签均置于 JP ROM 中实际的函数首字节，不使用 `.set`、
+`.thumb_set` 或 `symbol + offset` 别名。
+
+这组六个函数所调用的两个尚未反编译的 JP 内部入口也已在真实边界直接导出：
+`func_080041DC` 位于 `0x080041F4`，`func_08004570` 位于 `0x08004588`。对象级 `.text`
+字节与原始范围完全一致；本轮只影响 JP 条件分支，故依最小化策略仅在 WSL 重建 JP。
+`fomt_jp.gba` 的 SHA-1 为 `A655B2789AED14A6AC78C6075FBC533D3062DBE3`，与
+`baserom_jp.gba` 逐字节一致。
+
 ## `asm/code_linkonce.s`：海外 `0x080E0EF0` 原始入口直写
 
 US/EU/DE 共享分支的 11 个 `.thumb_set` 入口已全部改为真实标签。四个目标原先落在组合
