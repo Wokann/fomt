@@ -6796,10 +6796,6 @@ extern RawVTableFunction const vtable_unk_080E812C[]
         func_08094220,
         func_0809421C,
         func_08094218,
-        nullptr,
-        nullptr,
-        func_080E33D4,
-        nullptr,
 #else
         nullptr,
         nullptr,
@@ -6868,6 +6864,22 @@ extern RawVTableFunction const vtable_unk_080E812C[]
         func_08094754,
 #endif
     };
+
+// These are separate physical JP subobjects at the tail of the preceding
+// table. Keeping them named makes references from lifted code relocatable.
+#if defined(REGION_JP)
+extern RawVTableFunction const gUnk_080E7660[]
+    SECTION(".rodata.vtable_812c") = {
+        nullptr,
+        nullptr,
+        func_080E33D4,
+    };
+
+extern RawVTableFunction const gUnk_080E766C[]
+    SECTION(".rodata.vtable_812c") = {
+        nullptr,
+    };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E8230[]
     SECTION(".rodata.vtable_8230") = {

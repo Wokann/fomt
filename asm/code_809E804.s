@@ -64641,10 +64641,14 @@ func_080CD534: @ 0x080CCD44
 	.align 2, 0
 .L080CCD60: .4byte gUnk_0811783C
 .L080CCD64: .4byte 0xFFFFFF00
-    .global func_080CD558
+    .global func_080CCD68
     .thumb_func
-func_080CD558:
-    .incbin "baserom_jp.gba", 0xCCD68, (0xCD160 - 0xCCD68)
+func_080CCD68:
+    .incbin "baserom_jp.gba", 0xCCD68, (0xCCD88 - 0xCCD68)
+    .global func_080CCD88
+    .thumb_func
+func_080CCD88:
+    .incbin "baserom_jp.gba", 0xCCD88, (0xCD160 - 0xCCD88)
     .global func_080CD950
     .thumb_func
 func_080CD950:

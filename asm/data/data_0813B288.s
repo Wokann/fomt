@@ -2969,7 +2969,13 @@ gUnk_084D95B4:
     .incbin "baserom_jp.gba", 0x4D95B4, (0x4D977C - 0x4D95B4)
     .global gUnk_084D977C
 gUnk_084D977C:
-    .incbin "baserom_jp.gba", 0x4D977C, (0x4DB100 - 0x4D977C)
+    .incbin "baserom_jp.gba", 0x4D977C, (0x4DA620 - 0x4D977C)
+    .global gUnk_084DA620
+gUnk_084DA620:
+    .incbin "baserom_jp.gba", 0x4DA620, (0x4DABB8 - 0x4DA620)
+    .global gUnk_084DABB8
+gUnk_084DABB8:
+    .incbin "baserom_jp.gba", 0x4DABB8, (0x4DB100 - 0x4DABB8)
     .global gUnk_084DB100
 gUnk_084DB100:
     .incbin "baserom_jp.gba", 0x4DB100, (0x4DB1DC - 0x4DB100)
