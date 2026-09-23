@@ -3278,3 +3278,18 @@ WSL 以 `-j4` 重建四区域并逐字节对照均通过：JP
 `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 一致。
+
+## `asm/code_entities.s`：四区域工具等级归一化跳转表
+
+JP `func_08024450` 已从原始 `.incbin` 提升为直接 Thumb，与海外
+`func_080246BC` 处于同一层级。它先读取工具 ID，再经 8 项本地跳转表获得等级上限，
+最后返回输入值与上限之间的较小值；重复表项保持指向同一实际 JP case 标签。
+
+JP 余下实体原始代码明确从下一真实入口 `func_080244B8` 继续直接 `.incbin`，没有
+别名、固定地址 BL、`.set`、`.thumb_set` 或伪造偏移。
+
+WSL 以 `-j4` 重建四区域并逐字节对照均通过：JP
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`、US
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 一致。
