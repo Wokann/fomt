@@ -2057,3 +2057,9 @@ JP 析构入口 `0x08093890`–`0x080938AF` 已提升为 `func_08093890`，并�
 `__builtin_delete`。其虚表地址原先位于 `vtable_unk_080E8028` 尾部的无名 16 字节
 子对象，现以独立的 `gUnk_080E755C` 定义并保持原始物理地址；这消除了隐式表内偏移，
 未使用别名或 `symbol + offset`。
+
+同一链接通信页的前置流程 `0x08093700`–`0x08093783` 已提升为
+`func_08093C3C` 与 `func_08093704`。流程文本改为直接引用
+`gText_LinkCommunication_ProceedQuestion`、`gText_LinkCommunication_Yes` 和
+`gText_LinkCommunication_No`，状态帮助函数均为已有的真实符号；后续物理 helper 从
+`func_08093784` 起独立保留，等待逐项提升。

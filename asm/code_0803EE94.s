@@ -85345,7 +85345,84 @@ func_080935A0:
     .4byte gText_LinkCommunication_NowSendingData
     .incbin "baserom_jp.gba", 0x936C0, 0x3C
     .4byte gText_LinkCommunication_WaitingForOtherPlayer
-    jp_code_0803ee_func func_08093C3C, 0x93700, 0x93890
+    .global func_08093C3C
+    .thumb_func
+func_08093C3C:
+    bx lr
+    .align 2, 0
+
+    .global func_08093704
+    .thumb_func
+func_08093704:
+    push {r4, r5, r6, lr}
+    sub sp, #0xc
+    adds r1, r0, #0
+    movs r6, #0
+    movs r0, #0xf9
+    lsls r0, r0, #2
+    adds r4, r1, r0
+    ldr r0, [r4]
+    cmp r0, #0
+    beq .Ljp_0809371E
+    cmp r0, #1
+    beq .Ljp_08093754
+    b .Ljp_0809377A
+.Ljp_0809371E:
+    movs r0, #0xe8
+    lsls r0, r0, #1
+    adds r5, r1, r0
+    adds r0, r5, #0
+    bl func_08050D34
+    cmp r0, #3
+    bne .Ljp_0809377A
+    movs r0, #1
+    str r0, [r4]
+    ldr r1, .Ljp_08093748
+    ldr r2, .Ljp_0809374C
+    ldr r3, .Ljp_08093750
+    str r6, [sp]
+    str r6, [sp, #4]
+    str r6, [sp, #8]
+    adds r0, r5, #0
+    bl func_08050E30
+    b .Ljp_0809377A
+    .align 2, 0
+.Ljp_08093748: .4byte gText_LinkCommunication_ProceedQuestion
+.Ljp_0809374C: .4byte gText_LinkCommunication_Yes
+.Ljp_08093750: .4byte gText_LinkCommunication_No
+.Ljp_08093754:
+    movs r0, #0xe8
+    lsls r0, r0, #1
+    adds r4, r1, r0
+    adds r0, r4, #0
+    bl func_08050D34
+    cmp r0, #3
+    bne .Ljp_0809377A
+    adds r0, r4, #0
+    bl func_08050DF0
+    cmp r0, #1
+    beq .Ljp_08093774
+    cmp r0, #2
+    beq .Ljp_08093778
+    b .Ljp_0809377A
+.Ljp_08093774:
+    movs r6, #2
+    b .Ljp_0809377A
+.Ljp_08093778:
+    movs r6, #3
+.Ljp_0809377A:
+    adds r0, r6, #0
+    add sp, #0xc
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+
+    @ The remaining physical helper entries are kept separately while their
+    @ own dispatch and resource tables are lifted.
+    .global func_08093784
+    .thumb_func
+func_08093784:
+    .incbin "baserom_jp.gba", 0x93784, (0x93890 - 0x93784)
     .global func_08093890
     .thumb_func
 func_08093890:
