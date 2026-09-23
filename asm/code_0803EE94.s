@@ -85417,12 +85417,163 @@ func_08093704:
     pop {r1}
     bx r1
 
-    @ The remaining physical helper entries are kept separately while their
-    @ own dispatch and resource tables are lifted.
     .global func_08093784
     .thumb_func
 func_08093784:
-    .incbin "baserom_jp.gba", 0x93784, (0x93890 - 0x93784)
+    push {r4, lr}
+    adds r2, r0, #0
+    movs r1, #0xf8
+    lsls r1, r1, #2
+    adds r0, r2, r1
+    movs r1, #0
+    str r1, [r0]
+    movs r3, #0xf9
+    lsls r3, r3, #2
+    adds r0, r2, r3
+    str r1, [r0]
+    movs r0, #0xe8
+    lsls r0, r0, #1
+    adds r4, r2, r0
+    ldr r1, .Ljp_080937BC
+    adds r0, r4, #0
+    movs r2, #0
+    movs r3, #0
+    bl func_08050DC8
+    adds r0, r4, #0
+    movs r1, #0x3a
+    bl func_08050E50
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_080937BC: .4byte gText_LinkCommunication_CannotResendPreviousData
+
+    .global func_080937C0
+    .thumb_func
+func_080937C0:
+    push {r4, lr}
+    adds r4, r0, #0
+    movs r0, #0xe8
+    lsls r0, r0, #1
+    adds r4, r4, r0
+    ldr r1, .Ljp_080937E4
+    adds r0, r4, #0
+    movs r2, #0
+    movs r3, #0
+    bl func_08050DC8
+    adds r0, r4, #0
+    movs r1, #0x38
+    bl func_08050E50
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_080937E4: .4byte gText_LinkCommunication_TestingConnection
+
+    .global func_080937E8
+    .thumb_func
+func_080937E8:
+    push {r4, lr}
+    adds r4, r0, #0
+    movs r0, #0xe8
+    lsls r0, r0, #1
+    adds r4, r4, r0
+    ldr r1, .Ljp_0809380C
+    adds r0, r4, #0
+    movs r2, #0
+    movs r3, #0
+    bl func_08050DC8
+    adds r0, r4, #0
+    movs r1, #0x38
+    bl func_08050E50
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_0809380C: .4byte gText_LinkCommunication_SendingGameData
+
+    .global func_08093810
+    .thumb_func
+func_08093810:
+    push {lr}
+    bl func_080088CC
+    movs r1, #2
+    ands r0, r1
+    cmp r0, #0
+    bne .Ljp_08093822
+    movs r0, #0
+    b .Ljp_08093824
+.Ljp_08093822:
+    movs r0, #1
+.Ljp_08093824:
+    pop {r1}
+    bx r1
+
+    .global func_08093828
+    .thumb_func
+func_08093828:
+    push {r4, lr}
+    adds r4, r0, #0
+    movs r0, #0xe8
+    lsls r0, r0, #1
+    adds r4, r4, r0
+    ldr r1, .Ljp_0809384C
+    adds r0, r4, #0
+    movs r2, #0
+    movs r3, #0
+    bl func_08050DC8
+    adds r0, r4, #0
+    movs r1, #0x39
+    bl func_08050E50
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_0809384C: .4byte gText_LinkCommunication_Waiting
+
+    .global func_08093850
+    .thumb_func
+func_08093850:
+    push {lr}
+    bl func_080088CC
+    pop {r1}
+    bx r1
+    .align 2, 0
+
+    .global func_0809385C
+    .thumb_func
+func_0809385C:
+    push {lr}
+    bl func_080088C4
+    pop {r1}
+    bx r1
+    .align 2, 0
+
+    .global func_08093868
+    .thumb_func
+func_08093868:
+    movs r1, #0xe2
+    lsls r1, r1, #1
+    adds r0, r0, r1
+    ldr r0, [r0]
+    bx lr
+    .align 2, 0
+
+    .global func_08093874
+    .thumb_func
+func_08093874:
+    ldr r1, .Ljp_08093888
+    str r1, [r0]
+    ldr r1, .Ljp_0809388C
+    str r1, [r0, #4]
+    movs r1, #0
+    str r1, [r0, #8]
+    movs r1, #1
+    strb r1, [r0, #0xd]
+    bx lr
+    .align 2, 0
+.Ljp_08093888: .4byte gUnk_080E755C
+.Ljp_0809388C: .4byte gUnk_0810089C
     .global func_08093890
     .thumb_func
 func_08093890:

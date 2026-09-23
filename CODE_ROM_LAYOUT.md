@@ -2063,3 +2063,9 @@ JP 析构入口 `0x08093890`–`0x080938AF` 已提升为 `func_08093890`，并�
 `gText_LinkCommunication_ProceedQuestion`、`gText_LinkCommunication_Yes` 和
 `gText_LinkCommunication_No`，状态帮助函数均为已有的真实符号；后续物理 helper 从
 `func_08093784` 起独立保留，等待逐项提升。
+
+该 helper 区余下 `0x08093784`–`0x0809388F` 已全部提升为
+`func_08093784` 至 `func_08093874` 的实际 Thumb 入口。四个状态文本、
+`gUnk_080E755C` 与 `gUnk_0810089C` 均使用真实重定位；跨区域位置不同的硬件读取
+例程也改为 JP ROM 上实际的 `func_080088CC` / `func_080088C4` 符号，不采用别名或
+地址偏移。
