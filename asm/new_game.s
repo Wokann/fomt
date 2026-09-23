@@ -955,12 +955,26 @@ func_080050F8:
     .global func_08005254
     .thumb_func
 func_08005254:
-    .incbin "baserom_jp.gba", 0x52C4, (0x52D0 - 0x52C4)
+    push {lr}
+    bl func_08008724
+    pop {r0}
+    bx r0
+    .align 2, 0
 
     .global func_08005260
     .thumb_func
 func_08005260:
-    .incbin "baserom_jp.gba", 0x52D0, (0x52E8 - 0x52D0)
+    ldr r2, .Ljp_08005270 @ =0x00001875
+    adds r1, r0, r2
+    movs r2, #0
+    strb r2, [r1]
+    ldr r1, .Ljp_08005274 @ =0x00001874
+    adds r0, r0, r1
+    strb r2, [r0]
+    bx lr
+    .align 2, 0
+.Ljp_08005270: .4byte 0x00001875
+.Ljp_08005274: .4byte 0x00001874
 
     .global func_08005278
     .thumb_func
