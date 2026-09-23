@@ -84829,7 +84829,11 @@ func_08091420:
     .global func_080914A0
     .thumb_func
 func_080914A0:
-    .incbin "baserom_jp.gba", 0x90FE0, 0x344
+    .incbin "baserom_jp.gba", 0x90FE0, (0x9106C - 0x90FE0)
+    .global func_0809106C
+    .thumb_func
+func_0809106C:
+    .incbin "baserom_jp.gba", 0x9106C, (0x91324 - 0x9106C)
     .4byte gText_BlacksmithUpgrade_Tools
     .4byte gText_BlacksmithUpgrade_Items
     .incbin "baserom_jp.gba", 0x9132C, 0x1A0
@@ -84873,9 +84877,127 @@ func_080914A0:
     .incbin "baserom_jp.gba", 0x91E64, 0xE8
     .4byte gText_BlacksmithUpgrade_CannotChangeMind
     .incbin "baserom_jp.gba", 0x91F50, 0x140
-    jp_code_0803ee_func func_08092090, 0x92090, 0x920D0
-    jp_code_0803ee_func func_08092604, 0x920D0, 0x9215C
-    jp_code_0803ee_func func_0809215C, 0x9215C, 0x92170
+    .global func_08092090
+    .thumb_func
+func_08092090:
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    ldr r0, .Ljp_080920CC
+    str r0, [r4]
+    ldr r1, [r4, #8]
+    cmp r1, #0
+    beq .Ljp_080920AC
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_080920AC:
+    ldr r1, [r4, #4]
+    cmp r1, #0
+    beq .Ljp_080920BE
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_080920BE:
+    adds r0, r4, #0
+    adds r1, r5, #0
+    bl func_080007EC
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_080920CC: .4byte gUnk_080E71F8
+
+    .global func_080920D0
+    .thumb_func
+func_080920D0:
+    push {r4, lr}
+    sub sp, #0xc
+    adds r4, r0, #0
+    ldr r1, [r1, #4]
+    mov r0, sp
+    bl func_0809106C
+    ldr r2, [sp]
+    mov r0, sp
+    str r0, [sp, #4]
+    str r2, [sp, #8]
+    adds r1, r0, #0
+    movs r0, #0
+    str r0, [r1]
+    str r2, [r4]
+    ldr r1, [sp]
+    cmp r1, #0
+    beq .Ljp_08092100
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08092100:
+    adds r0, r4, #0
+    add sp, #0xc
+    pop {r4}
+    pop {r1}
+    bx r1
+    .align 2, 0
+
+    .global func_0809210C
+    .thumb_func
+func_0809210C:
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    bl func_080CE19C
+    ldr r0, .Ljp_08092154
+    str r0, [r4, #4]
+    adds r0, r4, #0
+    adds r0, #0x98
+    movs r3, #0
+    strb r3, [r0]
+    adds r2, r4, #0
+    adds r2, #0xfc
+    ldr r1, [r4, #8]
+    ldr r5, .Ljp_08092158
+    adds r0, r1, r5
+    str r0, [r2]
+    movs r0, #0x80
+    lsls r0, r0, #1
+    adds r2, r4, r0
+    subs r5, #8
+    adds r0, r1, r5
+    str r0, [r2]
+    movs r2, #0x82
+    lsls r2, r2, #1
+    adds r0, r4, r2
+    adds r5, #0xc
+    adds r1, r1, r5
+    str r1, [r0]
+    movs r1, #0x84
+    lsls r1, r1, #1
+    adds r0, r4, r1
+    str r3, [r0]
+    adds r0, r4, #0
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_08092154: .4byte vtable_unk_080E7DC8
+.Ljp_08092158: .4byte 0x00001C34
+
+    .global func_0809215C
+    .thumb_func
+func_0809215C:
+    push {lr}
+    ldr r2, .Ljp_0809216C
+    str r2, [r0, #4]
+    bl func_080E3504
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_0809216C: .4byte vtable_unk_080E7DC8
     .global func_080926A4
     .thumb_func
 func_080926A4:
