@@ -2552,3 +2552,14 @@ JP `func_080068D4` 的真实物理范围 `0x080068D4`–`0x08006AC0` 已从原�
 该项只影响 JP；先对 `asm/new_game.s` 覆盖的完整代码范围作逐字节比较，再以 WSL
 完整链接、资源补丁和 ROM 对照验证，`fomt_jp.gba` SHA-1 为
 `A655B2789AED14A6AC78C6075FBC533D3062DBE3`，与基准 ROM 逐字节一致。
+
+## `asm/new_game.s`：JP 姓名输入字符写入
+
+JP `func_08006AC0` 的真实物理范围 `0x08006AC0`–`0x08006BBC` 已提升为完整
+Thumb 指令。函数中原先夹在机器码中的 `gNewGameNameEntryCharacterRows` 指针保持为
+直接符号重定位；其余五个局部状态字段和两段字面量池保留为原始数值，且
+`func_08006BBC` 仍从自己的真实入口开始。未使用 `.set`、别名、地址加法或隐藏范围宏。
+
+该项只影响 JP；先对 `asm/new_game.s` 覆盖的完整代码范围作逐字节比较，再以 WSL
+完整链接、资源补丁和 ROM 对照验证，`fomt_jp.gba` SHA-1 为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`，与基准 ROM 逐字节一致。
