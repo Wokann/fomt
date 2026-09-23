@@ -3349,3 +3349,21 @@ JP `func_08024A64` 已由原始 `.incbin` 提升为直接 Thumb，与海外
 未处理的下一函数从真实物理边界 `func_08024DAC` 继续直接 `.incbin`。本批仅修改 JP
 源码，WSL `-j4` 重建后的 SHA-1 为
 `A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并与 `baserom_jp.gba` 逐字节一致。
+
+## `asm/code_entities.s`：四区域实体 UI 连续处理块
+
+JP `func_08024DFC`–`func_08026058` 的 17 个连续入口已提升为直接 Thumb，和海外
+`func_08025068`–`func_080262C4` 保持同一源码层级。范围内的内部基本块、跳转表、
+常量池及跨函数调用均按各自 ROM 的真实物理位置和符号表达；JP 对海外不具名入口的
+调用直接落到对应 JP 入口 `func_0802A2A4`、`func_08026FA0`、`func_080274B0` 等，
+没有别名、`.set`、`.thumb_set`、固定 BL 字节或伪造偏移。
+
+原先夹在海外范围中的 0xC8 字节 `.byte` 指令也已按实际 Thumb 指令边界还原；其中一个
+条件跳转落入相邻基本块，已保留为独立本地标签，避免将代码错误合并为单一直线块。JP
+剩余原始代码从下一真实物理入口 `func_080260E0` 继续直接 `.incbin`。
+
+WSL 以 `-j4` 重建并逐字节对照四区域均通过：JP
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`、US
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 一致。
