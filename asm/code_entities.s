@@ -1104,7 +1104,59 @@ func_08021450:
     .global func_080214D0
     .thumb_func
 func_080214D0:
-    .incbin "baserom_jp.gba", 0x214D0, (0x2153C - 0x214D0)
+    push {r4, r5, r6, lr}
+    sub sp, #8
+    adds r5, r0, #0
+    adds r6, r1, #0
+    ldr r0, .Ljp_08021534
+    str r0, [r5, #0x14]
+    adds r0, r5, #0
+    adds r0, #0x3d
+    ldrb r0, [r0]
+    cmp r0, #0
+    beq .Ljp_080214F6
+    movs r1, #0x38
+    ldrsh r0, [r5, r1]
+    lsls r0, r0, #0x10
+    str r0, [r5, #8]
+    movs r1, #0x3a
+    ldrsh r0, [r5, r1]
+    lsls r0, r0, #0x10
+    str r0, [r5, #0xc]
+.Ljp_080214F6:
+    ldr r4, [r5, #0x34]
+    mov r0, sp
+    adds r1, r5, #0
+    bl GetLocation__C12AActorEntity
+    adds r0, r4, #0
+    mov r1, sp
+    bl SetLocation__5ActorRC13ActorLocation
+    ldr r0, .Ljp_08021538
+    str r0, [r5, #0x14]
+    ldr r1, [r5, #0x10]
+    cmp r1, #0
+    beq .Ljp_0802151E
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_0802151E:
+    movs r0, #1
+    ands r0, r6
+    cmp r0, #0
+    beq .Ljp_0802152C
+    adds r0, r5, #0
+    bl __builtin_delete
+.Ljp_0802152C:
+    add sp, #8
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_08021534: .4byte vtable_unk_080E6428
+.Ljp_08021538: .4byte __vt_7AEntity
+
     .global func_0802153C
     .thumb_func
 func_0802153C:
@@ -4629,22 +4681,59 @@ func_080216BC: @ 0x080216BC
     .global func_0802173C
     .thumb_func
 func_0802173C:
-    .byte 0x70, 0xB5, 0x82, 0xB0
-    .byte 0x05, 0x1C, 0x0E, 0x1C, 0x16, 0x48, 0x68, 0x61, 0x28, 0x1C, 0x3D, 0x30, 0x00, 0x78, 0x00, 0x28
-    .byte 0x07, 0xD0, 0x38, 0x21, 0x68, 0x5E, 0x00, 0x04, 0xA8, 0x60, 0x3A, 0x21, 0x68, 0x5E, 0x00, 0x04
-    .byte 0xE8, 0x60, 0x6C, 0x6B, 0x68, 0x46, 0x29, 0x1C
+    push {r4, r5, r6, lr}
+    sub sp, #8
+    adds r5, r0, #0
+    adds r6, r1, #0
+    ldr r0, .L080217A0
+    str r0, [r5, #0x14]
+    adds r0, r5, #0
+    adds r0, #0x3d
+    ldrb r0, [r0]
+    cmp r0, #0
+    beq .L08021762
+    movs r1, #0x38
+    ldrsh r0, [r5, r1]
+    lsls r0, r0, #0x10
+    str r0, [r5, #8]
+    movs r1, #0x3a
+    ldrsh r0, [r5, r1]
+    lsls r0, r0, #0x10
+    str r0, [r5, #0xc]
+.L08021762:
+    ldr r4, [r5, #0x34]
+    mov r0, sp
+    adds r1, r5, #0
     bl GetLocation__C12AActorEntity
-    .byte 0x20, 0x1C, 0x69, 0x46
+    adds r0, r4, #0
+    mov r1, sp
     bl SetLocation__5ActorRC13ActorLocation
-    .byte 0x0B, 0x48, 0x68, 0x61, 0x29, 0x69, 0x00, 0x29, 0x05, 0xD0, 0x48, 0x68
-    .byte 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21
+    ldr r0, .L080217A4
+    str r0, [r5, #0x14]
+    ldr r1, [r5, #0x10]
+    cmp r1, #0
+    beq .L0802178A
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
     bl _call_via_r2
-    .byte 0x01, 0x20, 0x30, 0x40, 0x00, 0x28
-    .byte 0x02, 0xD0, 0x28, 0x1C
+.L0802178A:
+    movs r0, #1
+    ands r0, r6
+    cmp r0, #0
+    beq .L08021798
+    adds r0, r5, #0
     bl __builtin_delete
-    .byte 0x02, 0xB0, 0x70, 0xBC, 0x01, 0xBC, 0x00, 0x47
-    .4byte vtable_unk_080E6428
-    .4byte __vt_7AEntity
+.L08021798:
+    add sp, #8
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.L080217A0: .4byte vtable_unk_080E6428
+.L080217A4: .4byte __vt_7AEntity
+
     .global func_080217A8
     .thumb_func
 func_080217A8:

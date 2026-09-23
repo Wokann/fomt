@@ -2500,6 +2500,21 @@ US、EU、DE 的汇编对象字节和完整符号表均与变更前一致；完�
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。
 
+## `asm/code_entities.s`：四区域宠物实体位置同步与析构回调
+
+JP `func_080214D0`（`0x080214D0`–`0x0802153B`）和海外
+`func_0802173C`（`0x0802173C`–`0x080217A7`）已同步从原始块/`.byte` 提升为
+实际 Thumb 指令。该组临时切换 Entity 虚表，按状态回写坐标，向 Actor 同步位置，再恢复
+基础虚表；调用方指定释放标志时会执行原有析构路径。
+
+两个字面量池均以区域可重定位的 `vtable_unk_080E6428` 与 `__vt_7AEntity` 符号表示，
+而非固定 ROM 地址；末尾对齐仍由 `.align 2, 0` 精确保留。ARM/Thumb 反汇编、符号 map
+和四版编译 ROM 均已核对通过：JP
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`、US
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。
+
 ## `asm/code_entities.s`：JP 宠物实体初始化回调
 
 JP `func_08021450` 的物理范围 `0x08021450`–`0x080214CF` 已从直接 `.incbin`
