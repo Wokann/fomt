@@ -2154,3 +2154,8 @@ JP ToolChest 主循环 `func_08090960` 的真实物理范围
 `vtable_unk_080E5A28`、`vtable_unk_080E5B80` 及 `gUnk_080E71DC`。未提升的连续原始
 范围仍逐段直接书写 `.incbin`，不使用宏包装。四版完整 WSL 构建均与各自基准 ROM
 逐字节一致。
+
+Blacksmith Upgrade 的等级比较 helper `func_080914A0` 在 JP 的真实物理范围
+`0x08090FE0`–`0x0809106B`，现与 US/EU/DE 一样由显式 Thumb 指令、跳转表与本地标签
+组成。JP 的局部表保留真实地址顺序及零填充，不使用包装 `incbin`、`.set`、`.thumb_set`
+或固定地址跳转；四版完整 WSL 构建均与各自基准 ROM 逐字节一致。
