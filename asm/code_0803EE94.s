@@ -85346,7 +85346,24 @@ func_080935A0:
     .incbin "baserom_jp.gba", 0x936C0, 0x3C
     .4byte gText_LinkCommunication_WaitingForOtherPlayer
     jp_code_0803ee_func func_08093C3C, 0x93700, 0x93890
-    jp_code_0803ee_func func_08093890, 0x93890, 0x938B0
+    .global func_08093890
+    .thumb_func
+func_08093890:
+    push {lr}
+    adds r2, r0, #0
+    ldr r0, .Ljp_080938AC
+    str r0, [r2]
+    movs r0, #1
+    ands r0, r1
+    cmp r0, #0
+    beq .Ljp_080938A6
+    adds r0, r2, #0
+    bl __builtin_delete
+.Ljp_080938A6:
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_080938AC: .4byte gUnk_080E755C
     .global func_080938B0
     .thumb_func
 func_080938B0:

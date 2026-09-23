@@ -6659,10 +6659,6 @@ extern RawVTableFunction const vtable_unk_080E8028[]
         func_080941B8,
         func_080941B4,
         func_080941B0,
-        nullptr,
-        nullptr,
-        func_080938B0,
-        func_080938E4,
 #else
         nullptr,
         nullptr,
@@ -6731,6 +6727,18 @@ extern RawVTableFunction const vtable_unk_080E8028[]
         func_080946EC,
 #endif
     };
+
+// The JP build places this four-entry virtual subtable immediately after
+// vtable_unk_080E8028. It is a separately addressable original ROM object.
+#if defined(REGION_JP)
+extern RawVTableFunction const gUnk_080E755C[]
+    SECTION(".rodata.vtable_8028") = {
+        nullptr,
+        nullptr,
+        func_080938B0,
+        func_080938E4,
+    };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E812C[]
     SECTION(".rodata.vtable_812c") = {
