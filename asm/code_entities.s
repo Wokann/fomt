@@ -2644,7 +2644,46 @@ func_08031E10:
     .global func_08032090
     .thumb_func
 func_08032090:
-    .incbin "baserom_jp.gba", 0x31E24, (0x31E70 - 0x31E24)
+    push {r4, lr}
+    sub sp, #0x10
+    adds r4, r0, #0
+    adds r2, r1, #0
+    ldr r1, [r4]
+    mov r0, sp
+    ldr r3, [r1, #0xc]
+    adds r1, r4, #0
+    bl _call_via_r3
+    ldr r0, [sp]
+    ldr r1, [sp, #4]
+    str r0, [sp, #8]
+    str r1, [sp, #0xc]
+    add r2, sp, #8
+    movs r4, #0
+    movs r3, #0
+    ldr r0, [sp, #8]
+    movs r1, #0
+    cmp r0, #0
+    beq .Ljp_08031E50
+    ldrh r1, [r2, #4]
+.Ljp_08031E50:
+    adds r2, r1, #0
+    cmp r4, r2
+    bhs .Ljp_08031E64
+    adds r1, r0, #0
+.Ljp_08031E58:
+    ldrh r0, [r1, #2]
+    adds r4, r4, r0
+    adds r1, #4
+    adds r3, #1
+    cmp r3, r2
+    bcc .Ljp_08031E58
+.Ljp_08031E64:
+    adds r0, r4, #0
+    add sp, #0x10
+    pop {r4}
+    pop {r1}
+    bx r1
+    .align 2, 0
 
 
     @ All JP raw-table targets above are direct physical labels.

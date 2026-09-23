@@ -3029,3 +3029,14 @@ WSL 四区域完整构建和 ROM 对照均已通过：JP
 `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 逐字节一致。
+
+## `asm/code_entities.s`：JP 实体 UI 表长度汇总
+
+JP `func_08032090` 的物理范围 `0x08031E24`–`0x08031E6F` 已由直接 `.incbin` 提升为
+Thumb 指令，实现通过对象虚调用取得表头、逐项累加半字长度并返回结果的原始逻辑。海外
+对应入口此前已经是可读指令，因此此处四个版本现处于相同反编译层级。
+
+函数保持原有的 `_call_via_r3` 虚函数调用约定、循环分支和末尾 `.align 2, 0` 布局；没有
+引入别名、固定地址分支或原始 `.byte`。该项只位于 `REGION_JP`，故按增量流程仅重建 JP；
+WSL 完整链接、资源补丁和 ROM 对照均已通过，`fomt_jp.gba` SHA-1 为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`。
