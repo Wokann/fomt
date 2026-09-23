@@ -2383,7 +2383,70 @@ func_0802332C:
     .global func_0802335C
     .thumb_func
 func_0802335C:
-    .incbin "baserom_jp.gba", 0x2335C, (0x233EC - 0x2335C)
+    push {r4, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    ldr r0, [r4, #0x34]
+    bl IsPregnant__C10BarnAnimal
+    lsls r0, r0, #24
+    cmp r0, #0
+    bne .Ljp_080233B2
+    movs r0, #0x78
+    bl func_080AB1C0
+    adds r0, #0xf0
+    lsls r0, r0, #16
+    lsrs r0, r0, #16
+    ldr r2, .Ljp_080233DC
+    ldr r1, [sp]
+    ands r1, r2
+    orrs r1, r0
+    ldr r0, .Ljp_080233E0
+    ands r1, r0
+    movs r0, #0xf0
+    lsls r0, r0, #14
+    orrs r1, r0
+    ldr r0, .Ljp_080233E4
+    ands r1, r0
+    ldr r0, .Ljp_080233E8
+    ands r1, r0
+    str r1, [sp]
+    ldr r0, [r4, #0x34]
+    mov r1, sp
+    bl method_0809B94C__10BarnAnimalPC15UnkBarnAnimal2C
+    adds r0, r4, #0
+    bl func_0802310C
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
+    bl func_0802309C
+.Ljp_080233B2:
+    ldr r0, [r4, #0x34]
+    movs r1, #0xa
+    bl SubtractAffection__6Animali
+    ldr r0, [r4, #0x34]
+    bl SetUnhappy__9Livestock
+    adds r0, r4, #0
+    movs r1, #0
+    movs r2, #0
+    bl func_08032384
+    adds r0, r4, #0
+    movs r1, #0xa2
+    bl func_0801FE58
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_080233DC:
+    .word 0xFFFF0000
+.Ljp_080233E0:
+    .word 0xFF80FFFF
+.Ljp_080233E4:
+    .word 0xFF7FFFFF
+.Ljp_080233E8:
+    .word 0x00FFFFFF
     .global func_080233EC
     .thumb_func
 func_080233EC:
@@ -8456,31 +8519,70 @@ func_08023598:
     .global func_080235C8
     .thumb_func
 func_080235C8:
-    .byte 0x10, 0xB5, 0x81, 0xB0, 0x04, 0x1C, 0x60, 0x6B
+    push {r4, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    ldr r0, [r4, #0x34]
     bl IsPregnant__C10BarnAnimal
-    .byte 0x00, 0x06, 0x00, 0x28, 0x21, 0xD1, 0x78, 0x20
+    lsls r0, r0, #24
+    cmp r0, #0
+    bne .L0802361E
+    movs r0, #0x78
     bl func_080AB788
-    .byte 0xF0, 0x30, 0x00, 0x04, 0x00, 0x0C, 0x18, 0x4A, 0x00, 0x99, 0x11, 0x40, 0x01, 0x43, 0x17, 0x48
-    .byte 0x01, 0x40, 0xF0, 0x20, 0x80, 0x03, 0x01, 0x43, 0x15, 0x48, 0x01, 0x40, 0x15, 0x48, 0x01, 0x40
-    .byte 0x00, 0x91, 0x60, 0x6B, 0x69, 0x46
+    adds r0, #0xf0
+    lsls r0, r0, #16
+    lsrs r0, r0, #16
+    ldr r2, .L08023648
+    ldr r1, [sp]
+    ands r1, r2
+    orrs r1, r0
+    ldr r0, .L0802364C
+    ands r1, r0
+    movs r0, #0xf0
+    lsls r0, r0, #14
+    orrs r1, r0
+    ldr r0, .L08023650
+    ands r1, r0
+    ldr r0, .L08023654
+    ands r1, r0
+    str r1, [sp]
+    ldr r0, [r4, #0x34]
+    mov r1, sp
     bl method_0809B94C__10BarnAnimalPC15UnkBarnAnimal2C
-    .byte 0x20, 0x1C
+    adds r0, r4, #0
     bl func_08023378
-    .byte 0x01, 0x1C, 0x20, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x20, 0x1C
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
     bl func_08023308
-    .byte 0x60, 0x6B
-    .byte 0x0A, 0x21
+.L0802361E:
+    ldr r0, [r4, #0x34]
+    movs r1, #0xa
     bl SubtractAffection__6Animali
-    .byte 0x60, 0x6B
+    ldr r0, [r4, #0x34]
     bl SetUnhappy__9Livestock
-    .byte 0x20, 0x1C, 0x00, 0x21
-    .byte 0x00, 0x22
+    adds r0, r4, #0
+    movs r1, #0
+    movs r2, #0
     bl func_08032384
-    .byte 0x20, 0x1C, 0xA2, 0x21
+    adds r0, r4, #0
+    movs r1, #0xa2
     bl func_080200C4
-    .byte 0x01, 0xB0
-    .byte 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x80, 0xFF
-    .byte 0xFF, 0xFF, 0x7F, 0xFF, 0xFF, 0xFF, 0xFF, 0x00
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.L08023648:
+    .word 0xFFFF0000
+.L0802364C:
+    .word 0xFF80FFFF
+.L08023650:
+    .word 0xFF7FFFFF
+.L08023654:
+    .word 0x00FFFFFF
     .global func_08023658
     .thumb_func
 func_08023658:

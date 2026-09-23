@@ -3108,3 +3108,19 @@ WSL 四区域完整构建、资源补丁和 ROM 对照均已通过：JP
 `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 逐字节一致。
+
+## `asm/code_entities.s`：四区域奶牛状态处理变体
+
+JP `func_0802335C` 与海外 `func_080235C8` 已由原始块/`.byte` 提升为直接 Thumb。该
+变体同样以怀孕状态决定是否构造实体请求，随后更新好感度与不满状态并发起后续动作；它
+使用四项原始字面量池，且所有早退分支均落在对应 ROM 的状态更新段。
+
+JP 使用 `func_0802310C`、`func_0802309C` 两个已显式化的真实物理调用入口；海外使用
+同功能的既有直接符号。无别名、固定 `BL` 字节、原始 `.byte` 或伪造偏移残留在提升后的
+函数中。
+
+WSL 四区域完整构建、资源补丁和 ROM 对照均已通过：JP
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`、US
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 逐字节一致。
