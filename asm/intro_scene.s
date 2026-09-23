@@ -5864,6 +5864,10 @@ func_0800374C:
 .Ljp_0800379C:
     adds	r0, r4, #0
     add	sp, #12
+    pop	{r4}
+    pop	{r1}
+    bx	r1
+    .align 2, 0
     .else
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED

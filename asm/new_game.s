@@ -14,9 +14,6 @@
     .syntax unified
     .thumb
 
-    @ The preceding intro-scene function's final epilogue crosses this linker boundary.
-    .incbin "baserom_jp.gba", 0x37A0, 0x8
-
     .global func_08003788
     .thumb_func
 func_08003788:
