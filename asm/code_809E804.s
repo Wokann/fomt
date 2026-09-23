@@ -66296,7 +66296,11 @@ func_080CF050: @ 0x080CE860
     .global func_080CF054
     .thumb_func
 func_080CF054:
-    .incbin "baserom_jp.gba", 0xCE864, 0x228
+    .incbin "baserom_jp.gba", 0xCE864, (0xCE86C - 0xCE864)
+    .global func_080CE86C
+    .thumb_func
+func_080CE86C:
+    .incbin "baserom_jp.gba", 0xCE86C, (0xCEA8C - 0xCE86C)
     .4byte gText_ToolStatus_GemOfTruth
     .4byte gText_ToolStatus_EnergyLabel
     .4byte gText_ToolStatus_ValueSeparator

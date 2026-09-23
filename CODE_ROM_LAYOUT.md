@@ -2119,3 +2119,13 @@ JP ToolChest 虚表辅助组 `0x0808E848`–`0x0808E8F7` 已提升为实际 Thum
 `func_080CAB14`、`func_080CB300`、`func_080CE390`、`func_080CE3D0` 以及
 `gUnk_083ED9FC`；这些被调用的入口已在各自保留块中按物理地址拆出，未使用别名、
 固定地址跳转或 `symbol + offset`。四版完整构建均与基准 ROM 逐字节一致。
+
+紧邻的 JP ToolChest 选择/说明处理函数 `func_0808EF68`
+（`0x0808EAA8`–`0x0808EBB9`）已提升为显式 Thumb 指令。它通过真实符号
+`IsEmpty__C9ToolStack`、`GetTool__C9ToolStack`、`GetToolAt__8RucksackUi`、
+`GetToolStackAt__9ToolChestUi`、`func_080CE184` 与 `func_08050DC8` 调用现有对象；
+原先落在保留块中、被该函数直接分支到的物理入口 `0x080CE86C` 已拆出为
+`func_080CE86C`。末尾说明文本 literal 直接重定位至
+`gText_ToolChest_EmptyDescription`，并保留原 ROM 的两字节零填充。该组没有包装
+`incbin`、别名、固定地址跳转或 `symbol + offset`；JP 重建以及其余三版分支汇编和
+四份当前 ROM 均与各自基准逐字节一致。

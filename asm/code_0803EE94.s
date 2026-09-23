@@ -85107,7 +85107,137 @@ func_0808EA8C:
     .global func_0808EF68
     .thumb_func
 func_0808EF68:
-    .incbin "baserom_jp.gba", 0x8EAA8, (0x8EBBC - 0x8EAA8)
+    push {r4, r5, r6, r7, lr}
+    mov r7, r9
+    mov r6, r8
+    push {r6, r7}
+    sub sp, #4
+    adds r6, r0, #0
+    adds r7, r1, #0
+    movs r0, #0
+    mov r9, r0
+    cmp r7, #0
+    bne .L0808EAE6
+    adds r5, r6, #0
+    adds r5, #0xfc
+    ldr r0, [r5]
+    bl IsEmpty__C9ToolStack
+    lsls r0, r0, #24
+    cmp r0, #0
+    bne .L0808EB88
+    adds r4, r6, #0
+    adds r4, #0x98
+    ldr r0, [r5]
+    bl GetTool__C9ToolStack
+    mov r1, sp
+    strb r0, [r1]
+    adds r0, r6, #0
+    adds r1, r4, #0
+    mov r2, sp
+    movs r3, #1
+    b .L0808EB82
+.L0808EAE6:
+    cmp r7, #9
+    beq .L0808EB88
+    cmp r7, #8
+    bgt .L0808EB3E
+    movs r1, #0x80
+    lsls r1, r1, #1
+    adds r1, r1, r6
+    mov r8, r1
+    ldr r4, [r1]
+    adds r0, r6, #0
+    adds r1, r7, #0
+    movs r2, #0
+    bl func_080CE184
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl GetToolAt__8RucksackUi
+    bl IsEmpty__C9ToolStack
+    lsls r0, r0, #24
+    cmp r0, #0
+    bne .L0808EB88
+    adds r5, r6, #0
+    adds r5, #0x98
+    mov r0, r8
+    ldr r4, [r0]
+    adds r0, r6, #0
+    adds r1, r7, #0
+    movs r2, #0
+    bl func_080CE184
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl GetToolAt__8RucksackUi
+    bl GetTool__C9ToolStack
+    mov r2, sp
+    adds r2, #1
+    strb r0, [r2]
+    adds r0, r6, #0
+    adds r1, r5, #0
+    b .L0808EB80
+.L0808EB3E:
+    movs r1, #0x82
+    lsls r1, r1, #1
+    adds r0, r6, r1
+    ldr r4, [r0]
+    adds r0, r6, #0
+    adds r0, #0x94
+    ldr r0, [r0]
+    adds r0, #0xbc
+    ldr r2, [r0]
+    adds r0, r6, #0
+    adds r1, r7, #0
+    bl func_080CE184
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl GetToolStackAt__9ToolChestUi
+    adds r5, r0, #0
+    bl IsEmpty__C9ToolStack
+    lsls r0, r0, #24
+    cmp r0, #0
+    bne .L0808EB88
+    adds r4, r6, #0
+    adds r4, #0x98
+    adds r0, r5, #0
+    bl GetTool__C9ToolStack
+    mov r2, sp
+    adds r2, #2
+    strb r0, [r2]
+    adds r0, r6, #0
+    adds r1, r4, #0
+.L0808EB80:
+    movs r3, #0
+.L0808EB82:
+    bl func_080CE86C
+    mov r9, r0
+.L0808EB88:
+    mov r0, r9
+    cmp r0, #0
+    beq .L0808EB9E
+    adds r0, r6, #0
+    adds r0, #0x80
+    mov r1, r9
+    movs r2, #0
+    movs r3, #0
+    bl func_08050DC8
+    b .L0808EBAC
+.L0808EB9E:
+    adds r0, r6, #0
+    adds r0, #0x80
+    ldr r1, .L0808EBBC
+    movs r2, #0
+    movs r3, #0
+    bl func_08050DC8
+.L0808EBAC:
+    add sp, #4
+    pop {r3, r4}
+    mov r8, r3
+    mov r9, r4
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.L0808EBBC:
     .4byte gText_ToolChest_EmptyDescription
     .incbin "baserom_jp.gba", 0x8EBC0, (0x9040C - 0x8EBC0)
     .global func_080908CC
