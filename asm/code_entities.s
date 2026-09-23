@@ -3115,7 +3115,121 @@ func_08024360:
     .global func_08024374
     .thumb_func
 func_08024374:
-    .incbin "baserom_jp.gba", 0x24374, (0x24814 - 0x24374)
+    push {lr}
+    subs r0, #0x32
+    cmp r0, #0x13
+    bhi .Ljp_0802444A
+    lsls r0, r0, #2
+    ldr r1, .Ljp_08024388
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+    .align 2, 0
+.Ljp_08024388:
+    .word .Ljp_0802438C
+.Ljp_0802438C:
+    .word .Ljp_080243DC
+    .word .Ljp_080243E0
+    .word .Ljp_080243E4
+    .word .Ljp_080243E8
+    .word .Ljp_080243EC
+    .word .Ljp_080243F0
+    .word .Ljp_080243F4
+    .word .Ljp_080243F8
+    .word .Ljp_080243FC
+    .word .Ljp_08024400
+    .word .Ljp_08024404
+    .word .Ljp_08024408
+    .word .Ljp_0802440C
+    .word .Ljp_08024410
+    .word .Ljp_08024414
+    .word .Ljp_08024418
+    .word .Ljp_0802441C
+    .word .Ljp_08024420
+    .word .Ljp_08024424
+    .word .Ljp_08024446
+.Ljp_080243DC:
+    movs r0, #0
+    b .Ljp_0802444C
+.Ljp_080243E0:
+    movs r0, #1
+    b .Ljp_0802444C
+.Ljp_080243E4:
+    movs r0, #2
+    b .Ljp_0802444C
+.Ljp_080243E8:
+    movs r0, #3
+    b .Ljp_0802444C
+.Ljp_080243EC:
+    movs r0, #4
+    b .Ljp_0802444C
+.Ljp_080243F0:
+    movs r0, #5
+    b .Ljp_0802444C
+.Ljp_080243F4:
+    movs r0, #6
+    b .Ljp_0802444C
+.Ljp_080243F8:
+    movs r0, #7
+    b .Ljp_0802444C
+.Ljp_080243FC:
+    movs r0, #8
+    b .Ljp_0802444C
+.Ljp_08024400:
+    movs r0, #9
+    b .Ljp_0802444C
+.Ljp_08024404:
+    movs r0, #0xA
+    b .Ljp_0802444C
+.Ljp_08024408:
+    movs r0, #0xB
+    b .Ljp_0802444C
+.Ljp_0802440C:
+    movs r0, #0xC
+    b .Ljp_0802444C
+.Ljp_08024410:
+    movs r0, #0xD
+    b .Ljp_0802444C
+.Ljp_08024414:
+    movs r0, #0xE
+    b .Ljp_0802444C
+.Ljp_08024418:
+    movs r0, #0x14
+    b .Ljp_0802444C
+.Ljp_0802441C:
+    movs r0, #0xF
+    b .Ljp_0802444C
+.Ljp_08024420:
+    movs r0, #0x10
+    b .Ljp_0802444C
+.Ljp_08024424:
+    bl rand
+    movs r1, #0xFA
+    lsls r1, r1, #2
+    bl __modsi3
+    movs r1, #0xA
+    bl __divsi3
+    lsls r0, r0, #0x18
+    lsrs r0, r0, #0x18
+    cmp r0, #4
+    bhi .Ljp_08024442
+    movs r0, #0x12
+    b .Ljp_0802444C
+.Ljp_08024442:
+    movs r0, #0x11
+    b .Ljp_0802444C
+.Ljp_08024446:
+    movs r0, #0x13
+    b .Ljp_0802444C
+.Ljp_0802444A:
+    movs r0, #0x15
+.Ljp_0802444C:
+    pop {r1}
+    bx r1
+    .global func_08024450
+    .thumb_func
+func_08024450:
+    .incbin "baserom_jp.gba", 0x24450, (0x24814 - 0x24450)
     .global func_08024814
     .thumb_func
 func_08024814:

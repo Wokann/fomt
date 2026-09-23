@@ -3262,3 +3262,19 @@ WSL 以 `-j4` 重建四区域并逐字节对照均通过：JP
 `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 一致。
+
+## `asm/code_entities.s`：四区域实体类别归一化跳转表
+
+JP `func_08024374` 已从原始 `.incbin` 提升为直接 Thumb，与海外既有的
+`func_080245E0` 保持同一层级。函数将输入类别归一化为内部编号；19 项跳转表、随机
+类别分支、所有本地目标及 `rand` / `__modsi3` / `__divsi3` 调用均以 JP 的真实标签和
+可重定位符号表达。
+
+剩余 JP 原始代码从实际下一入口 `func_08024450` 直接 `.incbin`，保留连续物理边界。
+没有借用海外表项、固定地址跳转、`.set`、`.thumb_set` 或伪造 `+offset`。
+
+WSL 以 `-j4` 重建四区域并逐字节对照均通过：JP
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`、US
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 一致。
