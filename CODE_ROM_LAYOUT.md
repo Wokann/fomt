@@ -2541,3 +2541,14 @@ IWRAM 模块的八段未反编译范围原先由 `inc from, to` 宏换算为
 `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与各自基准 ROM 一致。
+
+## `asm/new_game.s`：JP 姓名输入状态处理
+
+JP `func_080068D4` 的真实物理范围 `0x080068D4`–`0x08006AC0` 已从原始
+`.incbin` 提升为完整 Thumb 指令。原有五段字面量池、分支和字段偏移均按原始字节保留；
+两项外部调用现在直接使用 `func_080088D4` 与 `func_08008B6C`。相邻的
+`func_08006AC0` 继续在其真实入口开始，未以别名、地址加法或包装宏伪造边界。
+
+该项只影响 JP；先对 `asm/new_game.s` 覆盖的完整代码范围作逐字节比较，再以 WSL
+完整链接、资源补丁和 ROM 对照验证，`fomt_jp.gba` SHA-1 为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`，与基准 ROM 逐字节一致。
