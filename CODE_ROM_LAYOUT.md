@@ -2848,6 +2848,22 @@ WSL 四区域完整构建和 ROM 对照均已通过：JP
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 逐字节一致。
 
+## `asm/code_entities.s`：宠物 UI 选择与类别转换入口
+
+JP 原先单条 `0x08022088`–`0x080220DB` 的直接 `incbin` 实际包含三个连续函数，现已按
+真实物理入口拆为 `func_08022088`、`func_080220B4`、`func_080220C8`。第一个读取对象
+坐标/类别并更新 UI 选择，后两个是小型类别转换回调。海外对应的首个
+`func_080222F4` 也从 `.byte` 提升；海外后两项原本已是可读 Thumb 源码。
+
+两个跨模块调用直接使用 `func_08032900` 与 `func_08032690` 的区域可重定位符号。首个
+函数尾端经验证的两字节填充以 `.align 2, 0` 保留，未创建别名、固定跳转或伪造数据。
+
+WSL 四区域完整构建和 ROM 对照均已通过：JP
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`、US
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 逐字节一致。
+
 ## `asm/code_entities.s`：宠物刷毛判定与处理回调
 
 JP `func_08021EE8` 与 `func_08021EF8`（连续物理范围

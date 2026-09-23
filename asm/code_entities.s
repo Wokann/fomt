@@ -1607,7 +1607,60 @@ func_08021F30:
     .global func_08022088
     .thumb_func
 func_08022088:
-    .incbin "baserom_jp.gba", 0x22088, (0x220DC - 0x22088)
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    ldr r2, [r4]
+    ldrh r0, [r2, #4]
+    movs r3, #0xa
+    ldrsh r1, [r2, r3]
+    movs r3, #0xe
+    ldrsh r2, [r2, r3]
+    bl func_08032900
+    adds r1, r4, #0
+    adds r1, #0x8b
+    strb r0, [r1]
+    adds r0, r4, #0
+    adds r1, r5, #0
+    bl func_08032690
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_080220B4
+    .thumb_func
+func_080220B4:
+    push {lr}
+    cmp r0, #0
+    beq .Ljp_080220BE
+    cmp r0, #1
+    beq .Ljp_080220C2
+.Ljp_080220BE:
+    movs r0, #1
+    b .Ljp_080220C4
+.Ljp_080220C2:
+    movs r0, #2
+.Ljp_080220C4:
+    pop {r1}
+    bx r1
+
+    .global func_080220C8
+    .thumb_func
+func_080220C8:
+    push {lr}
+    cmp r0, #0
+    beq .Ljp_080220D2
+    cmp r0, #1
+    beq .Ljp_080220D6
+.Ljp_080220D2:
+    movs r0, #0xe
+    b .Ljp_080220D8
+.Ljp_080220D6:
+    movs r0, #0xf
+.Ljp_080220D8:
+    pop {r1}
+    bx r1
     .global func_080220DC
     .thumb_func
 func_080220DC:
@@ -5910,13 +5963,26 @@ func_080222A8: @ 0x080222A8
     .global func_080222F4
     .thumb_func
 func_080222F4:
-    .byte 0x30, 0xB5, 0x04, 0x1C, 0x0D, 0x1C, 0x22, 0x68, 0x90, 0x88, 0x0A, 0x23
-    .byte 0xD1, 0x5E, 0x0E, 0x23, 0xD2, 0x5E
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    ldr r2, [r4]
+    ldrh r0, [r2, #4]
+    movs r3, #0xa
+    ldrsh r1, [r2, r3]
+    movs r3, #0xe
+    ldrsh r2, [r2, r3]
     bl func_08032900
-    .byte 0x21, 0x1C, 0x8B, 0x31, 0x08, 0x70
-    .byte 0x20, 0x1C, 0x29, 0x1C
+    adds r1, r4, #0
+    adds r1, #0x8b
+    strb r0, [r1]
+    adds r0, r4, #0
+    adds r1, r5, #0
     bl func_08032690
-    .byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
 
     thumb_func_start func_08022320
 func_08022320: @ 0x08022320
