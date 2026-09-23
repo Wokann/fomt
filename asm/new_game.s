@@ -1093,8 +1093,123 @@ func_08005A00:
     .global func_08005A3C
     .thumb_func
 func_08005A3C:
-    .incbin "baserom_jp.gba", 0x5910, (0x5A08 - 0x5910)
-    .4byte gText_NewGameNameEntry_Placeholder
+    ldr r0, [r0, #4]
+    ldr r1, .Ljp_08005A48 @ =0x00001876
+    adds r0, r0, r1
+    ldrb r0, [r0]
+    bx lr
+    .align 2, 0
+.Ljp_08005A48: .4byte 0x00001876
+.Ljp_08005A4C:
+    ldr r1, .Ljp_08005A54 @ =0x00001876
+    adds r0, r0, r1
+    ldrb r0, [r0]
+    bx lr
+    .align 2, 0
+.Ljp_08005A54: .4byte 0x00001876
+
+    .global func_08005A58
+    .thumb_func
+func_08005A58:
+    push {r4, r5, r6, r7, lr}
+    mov r7, r8
+    push {r7}
+    sub sp, #0x14
+    adds r5, r0, #0
+    mov r8, r1
+    adds r7, r2, #0
+    bl func_08008444
+    ldr r0, .Ljp_08005B1C @ =vtable_unk_080E5AB4
+    str r0, [r5, #4]
+    movs r0, #7
+    add r6, sp, #0x10
+    movs r1, #1
+    rsbs r1, r1, #0
+.Ljp_08005A76:
+    subs r0, #1
+    cmp r0, r1
+    bne .Ljp_08005A76
+    ldr r1, .Ljp_08005B20 @ =0x00004530
+    adds r0, r5, r1
+    movs r1, #1
+    bl func_08008B54
+    ldr r2, .Ljp_08005B24 @ =0x00004534
+    adds r0, r5, r2
+    movs r1, #2
+    bl func_08008B54
+    movs r0, #4
+    bl __builtin_new
+    adds r4, r0, #0
+    add r0, sp, #0xc
+    bl func_0800835C
+    adds r0, r6, #0
+    bl func_0800770C
+    movs r0, #0
+    str r0, [sp]
+    add r3, sp, #0xc
+    str r3, [sp, #4]
+    str r6, [sp, #8]
+    adds r0, r4, #0
+    movs r1, #0
+    movs r2, #0xf
+    movs r3, #4
+    bl func_08050CC0
+    ldr r4, .Ljp_08005B28 @ =0x00004538
+    adds r1, r5, r4
+    str r0, [r1]
+    adds r0, r6, #0
+    movs r1, #2
+    bl func_08007714
+    add r0, sp, #0xc
+    movs r1, #2
+    bl func_08008364
+    ldr r6, .Ljp_08005B2C @ =0x0000453C
+    adds r0, r5, r6
+    mov r1, r8
+    str r1, [r0]
+    ldr r3, .Ljp_08005B30 @ =0x0000455C
+    adds r2, r5, r3
+    adds r1, r2, #0
+    ldr r0, .Ljp_08005B34 @ =gText_NewGameNameEntry_Placeholder
+    ldm r0!, {r3, r4, r6}
+    stm r1!, {r3, r4, r6}
+    ldrb r0, [r0]
+    strb r0, [r1]
+    cmp r7, #0
+    beq .Ljp_08005B0C
+    movs r3, #0
+    ldrb r0, [r7]
+    cmp r0, #0
+    beq .Ljp_08005B0C
+    adds r4, r2, #0
+    adds r2, r7, #0
+.Ljp_08005AF8:
+    adds r1, r4, r3
+    ldrb r0, [r2]
+    strb r0, [r1]
+    adds r2, #1
+    adds r3, #1
+    cmp r3, #0xc
+    bgt .Ljp_08005B0C
+    ldrb r0, [r2]
+    cmp r0, #0
+    bne .Ljp_08005AF8
+.Ljp_08005B0C:
+    adds r0, r5, #0
+    add sp, #0x14
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_08005B1C: .4byte vtable_unk_080E5AB4
+.Ljp_08005B20: .4byte 0x00004530
+.Ljp_08005B24: .4byte 0x00004534
+.Ljp_08005B28: .4byte 0x00004538
+.Ljp_08005B2C: .4byte 0x0000453C
+.Ljp_08005B30: .4byte 0x0000455C
+.Ljp_08005B34: .4byte gText_NewGameNameEntry_Placeholder
 
     .global func_08005B38
     .thumb_func
