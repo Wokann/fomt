@@ -3164,3 +3164,17 @@ JP 末尾调用的 `func_0802A56C` 已按真实物理函数入口从保留代码
 
 仅 JP 源码发生变化，依区域化验证规则以 WSL 重建 JP；SHA-1
 `A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并与 `baserom_jp.gba` 逐字节一致。
+
+## `asm/code_entities.s`：四区域家畜刷毛状态入口
+
+JP `func_080240AC` 与海外 `func_08024318` 已同时从原始 `.incbin`/`.byte`
+提升为直接 Thumb，因此 US、EU、DE 共用的海外实现与 JP 都处于同一反编译层级。该入口
+处理每日刷毛、好感度、不满状态的概率恢复，以及非生病时的实体状态变更；区域差异只使用
+各自真实的随机数和实体函数符号。
+
+函数尾部原有两字节对齐由 `.align 2, 0` 保留；没有 `.set`、`.thumb_set`、固定 BL
+字节、原始 `.byte` 或伪造 `+offset` 残留。WSL 以 `-j4` 重建四区域并逐字节对照均通过：
+JP `A655B2789AED14A6AC78C6075FBC533D3062DBE3`、US
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 一致。
