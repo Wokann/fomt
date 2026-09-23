@@ -765,7 +765,33 @@ func_08004EFC:
     .global func_080050C8
     .thumb_func
 func_080050C8:
-    .incbin "baserom_jp.gba", 0x5138, 0x3A8
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    ldr r0, .Ljp_08005160
+    str r0, [r4, #4]
+    ldr r1, .Ljp_08005164
+    adds r0, r4, r1
+    ldr r0, [r0]
+    cmp r0, #0
+    beq .Ljp_08005152
+    movs r1, #3
+    bl func_08050D0C
+.Ljp_08005152:
+    adds r0, r4, #0
+    adds r1, r5, #0
+    bl func_080086BC
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_08005160: .4byte vtable_unk_080E5A98
+.Ljp_08005164: .4byte 0x0000182C
+
+    .global func_080050F8
+    .thumb_func
+func_080050F8:
+    .incbin "baserom_jp.gba", 0x5168, (0x54E0 - 0x5168)
     .4byte gText_NewGameIdentity_PlayerName
     .4byte gText_NewGameIdentity_PlayerBirthday
     .4byte gText_NewGameIdentity_FarmName
