@@ -27348,15 +27348,67 @@ func_080E0F48:
     .global func_080E0F90
     .thumb_func
 func_080E0F90:
-    .incbin "baserom_jp.gba", 0xE0730, (0xE07FC - 0xE0730)
+    .incbin "baserom_jp.gba", 0xE0730, (0xE07B8 - 0xE0730)
+    .global func_080E07B8
+    .thumb_func
+func_080E07B8:
+    .incbin "baserom_jp.gba", 0xE07B8, (0xE07C4 - 0xE07B8)
+    .global func_080E07C4
+    .thumb_func
+func_080E07C4:
+    .incbin "baserom_jp.gba", 0xE07C4, (0xE07D0 - 0xE07C4)
+    .global func_080E07D0
+    .thumb_func
+func_080E07D0:
+    .incbin "baserom_jp.gba", 0xE07D0, (0xE07DC - 0xE07D0)
+    .global func_080E07DC
+    .thumb_func
+func_080E07DC:
+    .incbin "baserom_jp.gba", 0xE07DC, (0xE07FC - 0xE07DC)
     .global func_080E105C
     .thumb_func
 func_080E105C:
-    .incbin "baserom_jp.gba", 0xE07FC, (0xE088C - 0xE07FC)
+    .incbin "baserom_jp.gba", 0xE07FC, (0xE0880 - 0xE07FC)
+    .global func_080E0880
+    .thumb_func
+func_080E0880:
+    .incbin "baserom_jp.gba", 0xE0880, (0xE088C - 0xE0880)
     .global func_080E10EC
     .thumb_func
 func_080E10EC:
-    .incbin "baserom_jp.gba", 0xE088C, (0xE08E8 - 0xE088C)
+    .incbin "baserom_jp.gba", 0xE088C, (0xE0890 - 0xE088C)
+    .global func_080E0890
+    .thumb_func
+func_080E0890:
+    .incbin "baserom_jp.gba", 0xE0890, (0xE0894 - 0xE0890)
+    .global func_080E0894
+    .thumb_func
+func_080E0894:
+    .incbin "baserom_jp.gba", 0xE0894, (0xE0898 - 0xE0894)
+    .global func_080E0898
+    .thumb_func
+func_080E0898:
+    .incbin "baserom_jp.gba", 0xE0898, (0xE08B8 - 0xE0898)
+    .global func_080E08B8
+    .thumb_func
+func_080E08B8:
+    .incbin "baserom_jp.gba", 0xE08B8, (0xE08BC - 0xE08B8)
+    .global func_080E08BC
+    .thumb_func
+func_080E08BC:
+    .incbin "baserom_jp.gba", 0xE08BC, (0xE08C0 - 0xE08BC)
+    .global func_080E08C0
+    .thumb_func
+func_080E08C0:
+    .incbin "baserom_jp.gba", 0xE08C0, (0xE08C4 - 0xE08C0)
+    .global func_080E08C4
+    .thumb_func
+func_080E08C4:
+    .incbin "baserom_jp.gba", 0xE08C4, (0xE08C8 - 0xE08C4)
+    .global func_080E08C8
+    .thumb_func
+func_080E08C8:
+    .incbin "baserom_jp.gba", 0xE08C8, (0xE08E8 - 0xE08C8)
     .global func_080E1148
     .thumb_func
 func_080E1148:
@@ -27368,39 +27420,128 @@ func_080E118C:
     .global func_080E11EC
     .thumb_func
 func_080E11EC:
-    .incbin "baserom_jp.gba", 0xE098C, (0xE0C58 - 0xE098C)
+    .incbin "baserom_jp.gba", 0xE098C, (0xE0C38 - 0xE098C)
+    .global func_080E0C38_vtable_target
+    .thumb_func
+func_080E0C38_vtable_target:
+    .incbin "baserom_jp.gba", 0xE0C38, (0xE0C58 - 0xE0C38)
     .global func_080E14B8
     .thumb_func
 func_080E14B8:
-    .incbin "baserom_jp.gba", 0xE0C58, (0xE0FE4 - 0xE0C58)
+    .incbin "baserom_jp.gba", 0xE0C58, (0xE0D60 - 0xE0C58)
+    .global func_080E0D60
+    .thumb_func
+func_080E0D60:
+    .incbin "baserom_jp.gba", 0xE0D60, (0xE0FC4 - 0xE0D60)
+    .global func_080E0FC4
+    .thumb_func
+func_080E0FC4:
+    .incbin "baserom_jp.gba", 0xE0FC4, (0xE0FE4 - 0xE0FC4)
     .global func_080E1844
     .thumb_func
 func_080E1844:
+    .global func_080E0FE4
+    .thumb_func
+func_080E0FE4:
     .incbin "baserom_jp.gba", 0xE0FE4, (0xE1044 - 0xE0FE4)
     .global func_080E18A4
     .thumb_func
 func_080E18A4:
-    .incbin "baserom_jp.gba", 0xE1044, (0xE1144 - 0xE1044)
+    .global func_080E1044
+    .thumb_func
+func_080E1044:
+    .incbin "baserom_jp.gba", 0xE1044, (0xE1104 - 0xE1044)
+    .global func_080E1104
+    .thumb_func
+func_080E1104:
+    .incbin "baserom_jp.gba", 0xE1104, (0xE1124 - 0xE1104)
+    .global func_080E1124
+    .thumb_func
+func_080E1124:
+    .incbin "baserom_jp.gba", 0xE1124, (0xE1144 - 0xE1124)
     .global func_080E19A4
     .thumb_func
 func_080E19A4:
+    .global func_080E1144
+    .thumb_func
+func_080E1144:
     .incbin "baserom_jp.gba", 0xE1144, (0xE1198 - 0xE1144)
     .global func_080E19F8
     .thumb_func
 func_080E19F8:
-    .incbin "baserom_jp.gba", 0xE1198, (0xE1210 - 0xE1198)
+    .global func_080E1198
+    .thumb_func
+func_080E1198:
+    .incbin "baserom_jp.gba", 0xE1198, (0xE11C8 - 0xE1198)
+    .global func_080E11C8
+    .thumb_func
+func_080E11C8:
+    .incbin "baserom_jp.gba", 0xE11C8, (0xE11E8 - 0xE11C8)
+    .global func_080E11E8
+    .thumb_func
+func_080E11E8:
+    .incbin "baserom_jp.gba", 0xE11E8, (0xE11F4 - 0xE11E8)
+    .global func_080E11F4
+    .thumb_func
+func_080E11F4:
+    .incbin "baserom_jp.gba", 0xE11F4, (0xE1210 - 0xE11F4)
     .global func_080E1A70
     .thumb_func
 func_080E1A70:
-    .incbin "baserom_jp.gba", 0xE1210, (0xE1410 - 0xE1210)
+    .global func_080E1210
+    .thumb_func
+func_080E1210:
+    .incbin "baserom_jp.gba", 0xE1210, (0xE13B8 - 0xE1210)
+    .global func_080E13B8
+    .thumb_func
+func_080E13B8:
+    .incbin "baserom_jp.gba", 0xE13B8, (0xE1410 - 0xE13B8)
     .global func_080E1C70
     .thumb_func
 func_080E1C70:
+    .global func_080E1410
+    .thumb_func
+func_080E1410:
     .incbin "baserom_jp.gba", 0xE1410, (0xE14F4 - 0xE1410)
     .global func_080E1D54
     .thumb_func
 func_080E1D54:
-    .incbin "baserom_jp.gba", 0xE14F4, (0xE174C - 0xE14F4)
+    .global func_080E14F4
+    .thumb_func
+func_080E14F4:
+    .incbin "baserom_jp.gba", 0xE14F4, (0xE152C - 0xE14F4)
+    .global func_080E152C
+    .thumb_func
+func_080E152C:
+    .incbin "baserom_jp.gba", 0xE152C, (0xE1538 - 0xE152C)
+    .global func_080E1538
+    .thumb_func
+func_080E1538:
+    .incbin "baserom_jp.gba", 0xE1538, (0xE1544 - 0xE1538)
+    .global func_080E1544
+    .thumb_func
+func_080E1544:
+    .incbin "baserom_jp.gba", 0xE1544, (0xE1550 - 0xE1544)
+    .global func_080E1550
+    .thumb_func
+func_080E1550:
+    .incbin "baserom_jp.gba", 0xE1550, (0xE155C - 0xE1550)
+    .global func_080E155C
+    .thumb_func
+func_080E155C:
+    .incbin "baserom_jp.gba", 0xE155C, (0xE1568 - 0xE155C)
+    .global func_080E1568
+    .thumb_func
+func_080E1568:
+    .incbin "baserom_jp.gba", 0xE1568, (0xE1574 - 0xE1568)
+    .global func_080E1574
+    .thumb_func
+func_080E1574:
+    .incbin "baserom_jp.gba", 0xE1574, (0xE15C8 - 0xE1574)
+    .global func_080E15C8
+    .thumb_func
+func_080E15C8:
+    .incbin "baserom_jp.gba", 0xE15C8, (0xE174C - 0xE15C8)
     .global func_080E1FAC
     .thumb_func
 func_080E1FAC:
@@ -27412,15 +27553,27 @@ func_080E2018:
     .global func_080E2094
     .thumb_func
 func_080E2094:
-    .incbin "baserom_jp.gba", 0xE1834, (0xE1910 - 0xE1834)
+    .incbin "baserom_jp.gba", 0xE1834, (0xE1898 - 0xE1834)
     .global func_080E1898
-    .thumb_set func_080E1898, func_080E2094 + 0x64
+    .thumb_func
+func_080E1898:
+    .incbin "baserom_jp.gba", 0xE1898, (0xE18A4 - 0xE1898)
     .global func_080E18A4_vtable_target
-    .thumb_set func_080E18A4_vtable_target, func_080E2094 + 0x70
+    .thumb_func
+func_080E18A4_vtable_target:
+    .incbin "baserom_jp.gba", 0xE18A4, (0xE18B0 - 0xE18A4)
     .global func_080E18B0
-    .thumb_set func_080E18B0, func_080E2094 + 0x7C
+    .thumb_func
+func_080E18B0:
+    .incbin "baserom_jp.gba", 0xE18B0, (0xE18BC - 0xE18B0)
     .global func_080E18BC
-    .thumb_set func_080E18BC, func_080E2094 + 0x88
+    .thumb_func
+func_080E18BC:
+    .incbin "baserom_jp.gba", 0xE18BC, (0xE1910 - 0xE18BC)
+
+
+
+
     .global func_080E2170
     .thumb_func
 func_080E2170:
@@ -27445,8 +27598,7 @@ func_080E25FC:
     .thumb_func
 func_080E2B28:
     .incbin "baserom_jp.gba", 0xE22C8, (0xE2354 - 0xE22C8)
-    .global func_080E2A88
-    .thumb_set func_080E2A88, func_080E2B28 + 0x7C0
+
     .global func_080E2BB4
     .thumb_func
 func_080E2BB4:
@@ -27475,7 +27627,11 @@ func_080E2F74:
     .global func_080E3054
     .thumb_func
 func_080E3054:
-    .incbin "baserom_jp.gba", 0xE27F4, (0xE2B38 - 0xE27F4)
+    .incbin "baserom_jp.gba", 0xE27F4, (0xE2A88 - 0xE27F4)
+    .global func_080E2A88
+    .thumb_func
+func_080E2A88:
+    .incbin "baserom_jp.gba", 0xE2A88, (0xE2B38 - 0xE2A88)
     .global func_080E3398
     .thumb_func
 func_080E3398:
@@ -27677,7 +27833,15 @@ func_080E33D4:
     .global func_080E352C
     .thumb_func
 func_080E352C:
-    .incbin "baserom_jp.gba", 0xE352C, (0xE3634 - 0xE352C)
+    .incbin "baserom_jp.gba", 0xE352C, (0xE354C - 0xE352C)
+    .global func_080E3DB4
+    .thumb_func
+func_080E3DB4:
+    .incbin "baserom_jp.gba", 0xE354C, (0xE35C0 - 0xE354C)
+    .global func_080E3E28
+    .thumb_func
+func_080E3E28:
+    .incbin "baserom_jp.gba", 0xE35C0, (0xE3634 - 0xE35C0)
     .global func_080E3E9C
     .thumb_func
 func_080E3E9C:
@@ -27803,183 +27967,7 @@ func_080E4DAC:
     .thumb_func
 func_080E4E00:
     .incbin "baserom_jp.gba", 0xE4E00, (0xE4E0C - 0xE4E00)
-
-    @ Exact JP entry points referenced by the large raw table at 0x080E7DF4.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @ The existing cross-region func_080E2F74 symbol names a different JP entry.
-
-
-
-
-
-    @ Exact JP entry point referenced by the large raw table at 0x080E7F0C.
-
-
-    @ Exact JP entry point referenced by the raw table at 0x080E812C.
-
-
-    @ Exact JP entry points referenced by the raw table at 0x080E8230.
-
-
-
-    @ Exact JP entry point referenced by the raw table at 0x080E824C.
-
-
-    @ Exact JP entry points referenced by the raw table at 0x080E825C.
-
-
-
-    @ Exact JP entry point referenced by the raw table at 0x080E8268.
-
-
-    @ Exact JP entry point referenced by the raw table at 0x080E82A8.
-
-
-    @ Exact JP entry point referenced by the raw table at 0x080E82B8.
-
-
-    @ Exact JP entry point referenced by the raw table at 0x080E82E4.
-
-
-    @ Exact JP entry point referenced by the raw table at 0x080E830C.
-
-
-    @ Exact JP entry point referenced by the raw table at 0x080E831C.
-
-
-    @ Exact JP entry point referenced by the raw table at 0x080E8344.
-
-
-    @ Exact JP entry points referenced by the raw table at 0x080E8404.
-
-
-
-    @ Exact JP entry point referenced by the raw table at 0x080E8570.
-
-
-    @ Exact JP entry point referenced by the raw table at 0x080E857C.
-
-
-    @ Exact JP entry point referenced by the raw table at 0x080E8588.
-
-
-    @ Exact JP entry point referenced by the raw table at 0x080E8594.
-
-
-    @ Exact JP entry point referenced by the raw table at 0x080E85DC.
-
-
-    @ Paired target entries preserve the original order after matching JP
-    @ prefixes; aliases keep the raw counterpart's byte layout intact.
-    .global func_080E3DB4
-    .thumb_set func_080E3DB4, func_080E0EF0 + 0x2EBC
-    .global func_080E3E28
-    .thumb_set func_080E3E28, func_080E0EF0 + 0x2F30
-    .global func_080E07B8
-    .thumb_set func_080E07B8, func_080E0F90 + 0x88
-    .global func_080E07C4
-    .thumb_set func_080E07C4, func_080E0F90 + 0x94
-    .global func_080E07D0
-    .thumb_set func_080E07D0, func_080E0F90 + 0xA0
-    .global func_080E07DC
-    .thumb_set func_080E07DC, func_080E0F90 + 0xAC
-    .global func_080E0880
-    .thumb_set func_080E0880, func_080E105C + 0x84
-    .global func_080E0890
-    .thumb_set func_080E0890, func_080E10EC + 0x4
-    .global func_080E0894
-    .thumb_set func_080E0894, func_080E10EC + 0x8
-    .global func_080E0898
-    .thumb_set func_080E0898, func_080E10EC + 0xC
-    .global func_080E08B8
-    .thumb_set func_080E08B8, func_080E10EC + 0x2C
-    .global func_080E08BC
-    .thumb_set func_080E08BC, func_080E10EC + 0x30
-    .global func_080E08C0
-    .thumb_set func_080E08C0, func_080E10EC + 0x34
-    .global func_080E08C4
-    .thumb_set func_080E08C4, func_080E10EC + 0x38
-    .global func_080E08C8
-    .thumb_set func_080E08C8, func_080E10EC + 0x3C
-    @ This physical JP entry would collide with the existing cross-region
-    @ func_080E0C38 symbol, so retain a neutral local dispatch-target name.
-    .global func_080E0C38_vtable_target
-    .thumb_set func_080E0C38_vtable_target, func_080E11EC + 0x2AC
-    .global func_080E0D60
-    .thumb_set func_080E0D60, func_080E14B8 + 0x108
-    .global func_080E0FC4
-    .thumb_set func_080E0FC4, func_080E14B8 + 0x36C
-    .global func_080E1044
-    .thumb_set func_080E1044, func_080E18A4
-    .global func_080E0FE4
-    .thumb_set func_080E0FE4, func_080E1844
-    .global func_080E1104
-    .thumb_set func_080E1104, func_080E18A4 + 0xC0
-    .global func_080E1124
-    .thumb_set func_080E1124, func_080E18A4 + 0xE0
-    .global func_080E1144
-    .thumb_set func_080E1144, func_080E19A4
-    .global func_080E1198
-    .thumb_set func_080E1198, func_080E19F8
-    .global func_080E11C8
-    .thumb_set func_080E11C8, func_080E19F8 + 0x30
-    .global func_080E11E8
-    .thumb_set func_080E11E8, func_080E19F8 + 0x50
-    .global func_080E11F4
-    .thumb_set func_080E11F4, func_080E19F8 + 0x5C
-    .global func_080E1210
-    .thumb_set func_080E1210, func_080E1A70
-    .global func_080E13B8
-    .thumb_set func_080E13B8, func_080E1A70 + 0x1A8
-    .global func_080E1410
-    .thumb_set func_080E1410, func_080E1C70
-    .global func_080E14F4
-    .thumb_set func_080E14F4, func_080E1D54
-    .global func_080E152C
-    .thumb_set func_080E152C, func_080E1D54 + 0x38
-    .global func_080E1538
-    .thumb_set func_080E1538, func_080E1D54 + 0x44
-    .global func_080E1544
-    .thumb_set func_080E1544, func_080E1D54 + 0x50
-    .global func_080E1550
-    .thumb_set func_080E1550, func_080E1D54 + 0x5C
-    .global func_080E155C
-    .thumb_set func_080E155C, func_080E1D54 + 0x68
-    .global func_080E1568
-    .thumb_set func_080E1568, func_080E1D54 + 0x74
-    .global func_080E1574
-    .thumb_set func_080E1574, func_080E1D54 + 0x80
-    .global func_080E15C8
-    .thumb_set func_080E15C8, func_080E1D54 + 0xD4
-    .else
+.else
 
 	thumb_func_start func_080E0EF0
 func_080E0EF0: @ 0x080E0EF0

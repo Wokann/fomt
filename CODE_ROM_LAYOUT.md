@@ -2247,3 +2247,13 @@ JP `0x080D7CFC` 对应的原始连续块中，175 个此前用 `.thumb_set` 表�
 
 独立汇编比较证明 JP `.text` 字节和完整函数符号表与变更前一致，US、EU、DE 条件汇编对象也逐字节
 一致；四版本完整 WSL 构建均通过原始 ROM SHA-1 校验。
+
+## `asm/code_linkonce.s`：JP `0x080E0EF0` 原始入口直写
+
+JP `0x080E0EF0`–`0x080E4E0B` 连续原始块中余下的 44 个 `.thumb_set` 入口已经全部移除。
+每个入口现直接定义在经原始 ROM 验证的物理字节边界，并使用 `.global`、`.thumb_func` 和真实
+标签表示；原始 `.incbin` 只在这些入口处分割。该 JP 条件分支不再保留 `.set`、`.thumb_set`
+或“入口别名”注释尾块。
+
+此修改仅触及 JP 分支。变更前后的 JP 汇编对象 `.text` 字节和完整符号表逐项一致；随后仅重建 JP，
+其 `fomt_jp.gba` SHA-1 为 `A655B2789AED14A6AC78C6075FBC533D3062DBE3`，与基准 ROM 一致。
