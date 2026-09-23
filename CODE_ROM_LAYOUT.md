@@ -2596,3 +2596,15 @@ ROM 保留；后继 `func_080068D4` 继续从独立的真实入口开始。未�
 该项只影响 JP；先对 `asm/new_game.s` 覆盖的完整代码范围作逐字节比较，再以 WSL
 完整链接、资源补丁和 ROM 对照验证，`fomt_jp.gba` SHA-1 为
 `A655B2789AED14A6AC78C6075FBC533D3062DBE3`，与基准 ROM 逐字节一致。
+
+## `asm/new_game.s`：JP 姓名输入绘制与模式文本
+
+JP `func_080064E8` 的完整物理范围 `0x080063BC`–`0x08006734` 已从分散的原始
+代码与嵌入指针提升为 Thumb 指令。字符行表及片假名、符号、平假名三种模式文本均改用
+直接符号重定位；JP 原 ROM 的绘制入口 `Clear2DGfxBuffer`、`DrawStringTo2DGfxBuffer`、
+内存分配调用和全部局部字面量池保持实际目标与原有布局。没有 `.set`、别名、地址加法
+或残留的代码 `incbin`。
+
+该项只影响 JP；先对 `asm/new_game.s` 覆盖的完整代码范围作逐字节比较，再以 WSL
+完整链接、资源补丁和 ROM 对照验证，`fomt_jp.gba` SHA-1 为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`，与基准 ROM 逐字节一致。
