@@ -2500,6 +2500,17 @@ US、EU、DE 的汇编对象字节和完整符号表均与变更前一致；完�
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。
 
+## `asm/code_entities.s`：JP 宠物动画查询分派器
+
+JP `func_08021D40`（`0x08021D40`–`0x08021DDB`）已由直接 `.incbin` 提升为完整
+Thumb 分派器，与海外既有的 `func_08021FAC` 处于同一层级。它使用原 ROM 的七项跳表，
+对多个动画状态返回固定值或从虚表取得坐标差后进行除法计算。跳表及所有本地标签均保持在
+原始物理地址，外部调用则使用 `_call_via_r2`、`__divsi3` 等直接符号。
+
+此项仅修改 `REGION_JP` 分支；US/EU/DE 的对应函数本来就是实际 Thumb 源码，故按区域
+增量规则只重建 JP。WSL 完整链接、资源补丁和 ROM 对照通过，SHA-1 为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`。
+
 ## `asm/code_entities.s`：JP 宠物播放状态短函数组
 
 旧 JP 原始区间 `0x08021C3C`–`0x08021D3F` 已按真实物理边界拆为
