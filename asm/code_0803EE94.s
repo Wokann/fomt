@@ -120464,6 +120464,9 @@ func_0804EFAC: @ 0x0804EFAC
 	.align 2, 0
 .L0804F054: .4byte 0x00008140
 .L0804F058:
+	.global func_0804F058
+	.thumb_func
+func_0804F058:
 	movs r1, #0
 	strh r1, [r0, #0x14]
 	bx lr
@@ -203369,7 +203372,6 @@ func_08076EA8: @ 0x08076EA8
 	pop {r1}
 	bx r1
 .L080773C4:
-.L080773C4:
 	movs r2, #0xb2
 	lsls r2, r2, #3
 	adds r0, r0, r2
@@ -210557,6 +210559,9 @@ func_0807B07C:
 	bl _._6AScene
 	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
 	.4byte vtable_unk_080E7BDC
+	.global func_0807B0BC
+	.thumb_func
+func_0807B0BC:
 	.byte 0x30, 0xB5, 0x81, 0xB0
 	.byte 0x05, 0x1C, 0x0C, 0x1C, 0x61, 0x68, 0x68, 0x46, 0xFE, 0xF7, 0x0C, 0xF8, 0x00, 0x99, 0x00, 0x29
 	.byte 0x05, 0xD0, 0x08, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21
@@ -210564,8 +210569,6 @@ func_0807B07C:
 	.byte 0xA1, 0x68
 	.byte 0x00, 0x20, 0xA0, 0x60, 0x29, 0x60, 0x28, 0x1C, 0x01, 0xB0, 0x30, 0xBC, 0x02, 0xBC, 0x08, 0x47
 
-	.global func_0807B0BC
-	.thumb_set func_0807B0BC, func_0807B07C + 0x40
 
 	thumb_func_start func_0807B0F0
 func_0807B0F0: @ 0x0807B0F0
@@ -210586,8 +210589,6 @@ func_0807B0F0: @ 0x0807B0F0
 .L0807B10C: .4byte vtable_unk_080E7BEC
 .L0807B110: .4byte 0x000006A4
 
-	.global func_0807B174
-	.thumb_set func_0807B174, func_0807B0F0 + 0x84
 .L0807B114:
 	str r4, [r1]
 .L0807B116:
@@ -210636,6 +210637,9 @@ func_0807B0F0: @ 0x0807B0F0
 .L0807B16C: .4byte 0x00002234
 .L0807B170: .4byte 0x000022B4
 .L0807B174:
+	.global func_0807B174
+	.thumb_func
+func_0807B174:
 	.byte 0x00, 0xB5, 0x03, 0x4A, 0x42, 0x60
 	bl func_080C8360
 	.byte 0x01, 0xBC
@@ -214512,9 +214516,10 @@ func_0807D0B4:
 	bl _._6AScene
 	.byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
 
-	.global func_0807D0F4
-	.thumb_set func_0807D0F4, func_0807D0B4 + 0x40
 	.4byte vtable_unk_080E7BF8
+	.global func_0807D0F4
+	.thumb_func
+func_0807D0F4:
 	.byte 0xF0, 0xB5, 0x4F, 0x46, 0x46, 0x46, 0xC0, 0xB4, 0x85, 0xB0, 0x80, 0x46
 	.byte 0x0F, 0x1C, 0x78, 0x68
 	bl func_0807BEC8
@@ -258302,6 +258307,9 @@ func_08094048: @ 0x08094048
 	.align 2, 0
 .L080940B8: .4byte gUnk_0810089C
 .L080940BC:
+	.global func_080940BC
+	.thumb_func
+func_080940BC:
 	.byte 0x70, 0x47, 0x00, 0x00
 
 	thumb_func_start func_080940C0
@@ -258484,11 +258492,25 @@ func_080941C8: @ 0x080941C8
 	.align 2, 0
 .L08094204: .4byte gUnk_0810089C
 .L08094208:
+	.global func_08094208
+	.thumb_func
+func_08094208:
 	.byte 0x00, 0xB5, 0x01, 0x21, 0x41, 0x73, 0x01, 0x68
 	.byte 0xC9, 0x6A
 	bl _call_via_r1
-	.byte 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x70, 0x47, 0x00, 0x00
-	.byte 0x70, 0x47, 0x00, 0x00, 0x00, 0xB5, 0x02, 0x1C, 0x02, 0x29, 0x02, 0xD0, 0x03, 0x29, 0x05, 0xD0
+	.byte 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
+	.global func_0809421C
+	.thumb_func
+func_0809421C:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_08094220
+	.thumb_func
+func_08094220:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_08094224
+	.thumb_func
+func_08094224:
+	.byte 0x00, 0xB5, 0x02, 0x1C, 0x02, 0x29, 0x02, 0xD0, 0x03, 0x29, 0x05, 0xD0
 	.byte 0x08, 0xE0, 0x01, 0x48, 0x05, 0xE0, 0x00, 0x00
 	.4byte gUnk_081007AC
 	.byte 0x01, 0x20, 0x10, 0x61, 0x01, 0x48, 0x90, 0x60, 0x01, 0xBC, 0x00, 0x47
@@ -258921,6 +258943,9 @@ func_080944E8: @ 0x080944E8
 	.align 2, 0
 .L08094558: .4byte gUnk_081009DC
 .L0809455C:
+	.global func_0809455C
+	.thumb_func
+func_0809455C:
 	.byte 0x70, 0x47, 0x00, 0x00
 
 	thumb_func_start func_08094560
@@ -259151,136 +259176,212 @@ func_080946C4: @ 0x080946C4
 	.align 2, 0
 .L080946E8: .4byte gUnk_081009DC
 .L080946EC:
+	.global func_080946EC
+	.thumb_func
+func_080946EC:
 	.byte 0x70, 0x47, 0x00, 0x00
-	.byte 0x00, 0x20, 0x70, 0x47, 0x70, 0x47, 0x00, 0x00, 0x70, 0x47, 0x00, 0x00, 0x00, 0x20, 0x70, 0x47
-	.byte 0x70, 0x47, 0x00, 0x00, 0x70, 0x47, 0x00, 0x00, 0x00, 0x20, 0x70, 0x47, 0x70, 0x47, 0x00, 0x00
-	.byte 0x70, 0x47, 0x00, 0x00, 0x00, 0x20, 0x70, 0x47, 0x70, 0x47, 0x00, 0x00, 0x70, 0x47, 0x00, 0x00
-	.byte 0x00, 0x20, 0x70, 0x47, 0x70, 0x47, 0x00, 0x00, 0x70, 0x47, 0x00, 0x00, 0x00, 0x20, 0x70, 0x47
-	.byte 0x70, 0x47, 0x00, 0x00, 0x70, 0x47, 0x00, 0x00, 0x00, 0x20, 0x70, 0x47, 0x70, 0x47, 0x00, 0x00
-	.byte 0x70, 0x47, 0x00, 0x00, 0x00, 0x20, 0x70, 0x47, 0x70, 0x47, 0x00, 0x00, 0x40, 0x69, 0x80, 0x68
-	.byte 0x70, 0x47, 0x00, 0x00, 0x70, 0x47, 0x00, 0x00, 0x00, 0x20, 0x70, 0x47, 0x70, 0x47, 0x00, 0x00
-	.byte 0x70, 0x47, 0x00, 0x00, 0x00, 0x20, 0x70, 0x47, 0x70, 0x47, 0x00, 0x00, 0x70, 0x47, 0x00, 0x00
-	.byte 0x00, 0x20, 0x70, 0x47, 0x70, 0x47, 0x00, 0x00, 0x70, 0x47, 0x00, 0x00, 0x00, 0x20, 0x70, 0x47
-	.byte 0x70, 0x47, 0x00, 0x00, 0x70, 0x47, 0x00, 0x00, 0x00, 0x20, 0x70, 0x47, 0x70, 0x47, 0x00, 0x00
-	.byte 0x70, 0x47, 0x00, 0x00, 0x00, 0x20, 0x70, 0x47, 0x70, 0x47, 0x00, 0x00, 0x70, 0x47, 0x00, 0x00
-	.byte 0x00, 0x20, 0x70, 0x47, 0x70, 0x47, 0x00, 0x00, 0x70, 0x47, 0x00, 0x00, 0x00, 0x20, 0x70, 0x47
-	.byte 0x70, 0x47, 0x00, 0x00, 0x40, 0x69, 0x80, 0x68, 0x70, 0x47, 0x00, 0x00
+	.global func_080946F0
+	.thumb_func
+func_080946F0:
+	.byte 0x00, 0x20, 0x70, 0x47
+	.global func_080946F4
+	.thumb_func
+func_080946F4:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_080946F8
+	.thumb_func
+func_080946F8:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_080946FC
+	.thumb_func
+func_080946FC:
+	.byte 0x00, 0x20, 0x70, 0x47
+	.global func_08094700
+	.thumb_func
+func_08094700:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_08094704
+	.thumb_func
+func_08094704:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_08094708
+	.thumb_func
+func_08094708:
+	.byte 0x00, 0x20, 0x70, 0x47
+	.global func_0809470C
+	.thumb_func
+func_0809470C:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_08094710
+	.thumb_func
+func_08094710:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_08094714
+	.thumb_func
+func_08094714:
+	.byte 0x00, 0x20, 0x70, 0x47
+	.global func_08094718
+	.thumb_func
+func_08094718:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_0809471C
+	.thumb_func
+func_0809471C:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_08094720
+	.thumb_func
+func_08094720:
+	.byte 0x00, 0x20, 0x70, 0x47
+	.global func_08094724
+	.thumb_func
+func_08094724:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_08094728
+	.thumb_func
+func_08094728:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_0809472C
+	.thumb_func
+func_0809472C:
+	.byte 0x00, 0x20, 0x70, 0x47
+	.global func_08094730
+	.thumb_func
+func_08094730:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_08094734
+	.thumb_func
+func_08094734:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_08094738
+	.thumb_func
+func_08094738:
+	.byte 0x00, 0x20, 0x70, 0x47
+	.global func_0809473C
+	.thumb_func
+func_0809473C:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_08094740
+	.thumb_func
+func_08094740:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_08094744
+	.thumb_func
+func_08094744:
+	.byte 0x00, 0x20, 0x70, 0x47
+	.global func_08094748
+	.thumb_func
+func_08094748:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_0809474C
+	.thumb_func
+func_0809474C:
+	.byte 0x40, 0x69, 0x80, 0x68
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_08094754
+	.thumb_func
+func_08094754:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_08094758
+	.thumb_func
+func_08094758:
+	.byte 0x00, 0x20, 0x70, 0x47
+	.global func_0809475C
+	.thumb_func
+func_0809475C:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_08094760
+	.thumb_func
+func_08094760:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_08094764
+	.thumb_func
+func_08094764:
+	.byte 0x00, 0x20, 0x70, 0x47
+	.global func_08094768
+	.thumb_func
+func_08094768:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_0809476C
+	.thumb_func
+func_0809476C:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_08094770
+	.thumb_func
+func_08094770:
+	.byte 0x00, 0x20, 0x70, 0x47
+	.global func_08094774
+	.thumb_func
+func_08094774:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_08094778
+	.thumb_func
+func_08094778:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_0809477C
+	.thumb_func
+func_0809477C:
+	.byte 0x00, 0x20, 0x70, 0x47
+	.global func_08094780
+	.thumb_func
+func_08094780:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_08094784
+	.thumb_func
+func_08094784:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_08094788
+	.thumb_func
+func_08094788:
+	.byte 0x00, 0x20, 0x70, 0x47
+	.global func_0809478C
+	.thumb_func
+func_0809478C:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_08094790
+	.thumb_func
+func_08094790:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_08094794
+	.thumb_func
+func_08094794:
+	.byte 0x00, 0x20, 0x70, 0x47
+	.global func_08094798
+	.thumb_func
+func_08094798:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_0809479C
+	.thumb_func
+func_0809479C:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_080947A0
+	.thumb_func
+func_080947A0:
+	.byte 0x00, 0x20, 0x70, 0x47
+	.global func_080947A4
+	.thumb_func
+func_080947A4:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_080947A8
+	.thumb_func
+func_080947A8:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_080947AC
+	.thumb_func
+func_080947AC:
+	.byte 0x00, 0x20, 0x70, 0x47
+	.global func_080947B0
+	.thumb_func
+func_080947B0:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_080947B4
+	.thumb_func
+func_080947B4:
+	.byte 0x40, 0x69, 0x80, 0x68
+	.byte 0x70, 0x47, 0x00, 0x00
 
-    @ Exact US entry points inside the packed trivial-handler run.
-    .global func_0809455C
-    .thumb_set func_0809455C, func_08094560 - 0x4
-    .global func_080946F8
-    .thumb_set func_080946F8, func_080946C4 + 0x34
-    .global func_080946FC
-    .thumb_set func_080946FC, func_080946C4 + 0x38
-    .global func_08094700
-    .thumb_set func_08094700, func_080946C4 + 0x3C
-    .global func_08094708
-    .thumb_set func_08094708, func_080946C4 + 0x44
-    .global func_08094710
-    .thumb_set func_08094710, func_080946C4 + 0x4C
-    .global func_08094728
-    .thumb_set func_08094728, func_080946C4 + 0x64
-    .global func_0809472C
-    .thumb_set func_0809472C, func_080946C4 + 0x68
-    .global func_08094734
-    .thumb_set func_08094734, func_080946C4 + 0x70
-    .global func_08094738
-    .thumb_set func_08094738, func_080946C4 + 0x74
-    .global func_08094740
-    .thumb_set func_08094740, func_080946C4 + 0x7C
-    .global func_0809474C
-    .thumb_set func_0809474C, func_080946C4 + 0x88
-    .global func_08094748
-    .thumb_set func_08094748, func_080946C4 + 0x84
-    .global func_08094744
-    .thumb_set func_08094744, func_080946C4 + 0x80
-    .global func_0809473C
-    .thumb_set func_0809473C, func_080946C4 + 0x78
-    .global func_08094730
-    .thumb_set func_08094730, func_080946C4 + 0x6C
-    .global func_08094724
-    .thumb_set func_08094724, func_080946C4 + 0x60
-    .global func_08094720
-    .thumb_set func_08094720, func_080946C4 + 0x5C
-    .global func_0809471C
-    .thumb_set func_0809471C, func_080946C4 + 0x58
-    .global func_08094718
-    .thumb_set func_08094718, func_080946C4 + 0x54
-    .global func_08094714
-    .thumb_set func_08094714, func_080946C4 + 0x50
-    .global func_0809470C
-    .thumb_set func_0809470C, func_080946C4 + 0x48
-    .global func_08094704
-    .thumb_set func_08094704, func_080946C4 + 0x40
-    .global func_080946F4
-    .thumb_set func_080946F4, func_080946C4 + 0x30
-    .global func_080946F0
-    .thumb_set func_080946F0, func_080946C4 + 0x2C
-    .global func_080946EC
-    .thumb_set func_080946EC, func_080946C4 + 0x28
+    @ Direct physical entries inside the packed trivial-handler run.
 
-    @ Exact US entry points referenced by the raw table at 0x080E812C.
-    .global func_080947B4
-    .thumb_set func_080947B4, func_080946C4 + 0xF0
-    .global func_080947B0
-    .thumb_set func_080947B0, func_080946C4 + 0xEC
-    .global func_080947AC
-    .thumb_set func_080947AC, func_080946C4 + 0xE8
-    .global func_080947A8
-    .thumb_set func_080947A8, func_080946C4 + 0xE4
-    .global func_080947A4
-    .thumb_set func_080947A4, func_080946C4 + 0xE0
-    .global func_080947A0
-    .thumb_set func_080947A0, func_080946C4 + 0xDC
-    .global func_0809479C
-    .thumb_set func_0809479C, func_080946C4 + 0xD8
-    .global func_08094798
-    .thumb_set func_08094798, func_080946C4 + 0xD4
-    .global func_08094794
-    .thumb_set func_08094794, func_080946C4 + 0xD0
-    .global func_08094790
-    .thumb_set func_08094790, func_080946C4 + 0xCC
-    .global func_0809478C
-    .thumb_set func_0809478C, func_080946C4 + 0xC8
-    .global func_08094788
-    .thumb_set func_08094788, func_080946C4 + 0xC4
-    .global func_08094784
-    .thumb_set func_08094784, func_080946C4 + 0xC0
-    .global func_08094780
-    .thumb_set func_08094780, func_080946C4 + 0xBC
-    .global func_0809477C
-    .thumb_set func_0809477C, func_080946C4 + 0xB8
-    .global func_08094778
-    .thumb_set func_08094778, func_080946C4 + 0xB4
-    .global func_08094774
-    .thumb_set func_08094774, func_080946C4 + 0xB0
-    .global func_08094770
-    .thumb_set func_08094770, func_080946C4 + 0xAC
-    .global func_0809476C
-    .thumb_set func_0809476C, func_080946C4 + 0xA8
-    .global func_08094768
-    .thumb_set func_08094768, func_080946C4 + 0xA4
-    .global func_08094764
-    .thumb_set func_08094764, func_080946C4 + 0xA0
-    .global func_08094760
-    .thumb_set func_08094760, func_080946C4 + 0x9C
-    .global func_0809475C
-    .thumb_set func_0809475C, func_080946C4 + 0x98
-    .global func_08094758
-    .thumb_set func_08094758, func_080946C4 + 0x94
-    .global func_08094754
-    .thumb_set func_08094754, func_080946C4 + 0x90
-    .global func_080940BC
-    .thumb_set func_080940BC, func_080940C0 - 0x4
-    .global func_08094208
-    .thumb_set func_08094208, func_080941C8 + 0x40
-    .global func_0809421C
-    .thumb_set func_0809421C, func_080941C8 + 0x54
-    .global func_08094220
-    .thumb_set func_08094220, func_080941C8 + 0x58
-    .global func_08094224
-    .thumb_set func_08094224, func_080941C8 + 0x5C
+    @ Direct physical entries referenced by the raw table at 0x080E812C.
 
 	thumb_func_start func_080947BC
 func_080947BC: @ 0x080947BC
@@ -272693,8 +272794,6 @@ func_0809B0D8: @ 0x0809B0D8
 	bx r1
 	.align 2, 0
 
-    @ Exact US entry point referenced by a recovered dispatch table.
-	.global func_0804F058
-	.thumb_set func_0804F058, func_0804F060 - 0x8
+    @ Direct physical entry referenced by a recovered dispatch table.
 
     .endif
