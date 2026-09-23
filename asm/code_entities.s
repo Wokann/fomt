@@ -3588,7 +3588,133 @@ func_080244B8:
     .global func_08024708
     .thumb_func
 func_08024708:
-    .incbin "baserom_jp.gba", 0x24708, (0x24814 - 0x24708)
+    push {r4, r5, r6, r7, lr}
+    adds r7, r0, #0
+    adds r4, r2, #0
+    bl func_0802B69C
+    ldr r0, .Ljp_08024804 @ =vtable_unk_080E6658
+    str r0, [r7, #0x14]
+    str r4, [r7, #0x34]
+    ldr r0, .Ljp_08024808 @ =0x00001BD8
+    adds r4, r4, r0
+    str r4, [r7, #0x38]
+    adds r0, r7, #0
+    adds r0, #0x3c
+    movs r4, #0
+    strb r4, [r0]
+    adds r0, #1
+    strb r4, [r0]
+    adds r0, #1
+    strb r4, [r0]
+    adds r1, r7, #0
+    adds r1, #0x3f
+    movs r0, #0xf
+    strb r0, [r1]
+    adds r0, r7, #0
+    adds r0, #0x40
+    strb r4, [r0]
+    adds r0, #1
+    strb r4, [r0]
+    adds r0, #1
+    strb r4, [r0]
+    adds r0, #2
+    movs r5, #0
+    strh r4, [r0]
+    adds r6, r7, #0
+    adds r6, #0x60
+    ldr r0, .Ljp_0802480C @ =gText_NotAvailable
+    str r0, [r7, #0x60]
+    strh r4, [r6, #4]
+    adds r0, r7, #0
+    adds r0, #0x68
+    bl __12RucksackItem
+    strb r5, [r6, #0xc]
+    strb r5, [r6, #0xd]
+    movs r0, #0x3b
+    str r0, [r6, #0x10]
+    strb r5, [r6, #0x14]
+    adds r0, r7, #0
+    adds r0, #0x78
+    strb r5, [r0]
+    adds r0, #1
+    strb r5, [r0]
+    adds r0, #1
+    strb r5, [r0]
+    adds r1, r7, #0
+    adds r1, #0x7c
+    ldr r0, .Ljp_08024810 @ =0x0000FFFF
+    strh r0, [r1]
+    adds r0, r7, #0
+    adds r0, #0x80
+    str r4, [r0]
+    adds r0, #8
+    strb r5, [r0]
+    strb r5, [r0, #1]
+    str r4, [r0, #4]
+    str r4, [r0, #8]
+    str r4, [r0, #0xc]
+    str r4, [r0, #0x10]
+    str r4, [r0, #0x14]
+    str r4, [r0, #0x18]
+    adds r1, #0x28
+    movs r0, #1
+    strb r0, [r1]
+    adds r0, r7, #0
+    adds r0, #0xa6
+    strh r4, [r0]
+    adds r0, #2
+    movs r1, #1
+    rsbs r1, r1, #0
+    str r1, [r0]
+    adds r0, #4
+    str r1, [r0]
+    adds r0, #4
+    strb r5, [r0]
+    adds r0, #1
+    strb r5, [r0]
+    adds r1, r7, #0
+    adds r1, #0xb2
+    movs r0, #0x64
+    strb r0, [r1]
+    adds r0, r7, #0
+    adds r0, #0xb3
+    strb r5, [r0]
+    adds r0, #1
+    strb r5, [r0]
+    adds r0, #0xc
+    strb r5, [r0]
+    adds r0, #1
+    strb r5, [r0]
+    adds r0, #1
+    strb r5, [r0]
+    adds r0, #1
+    strb r5, [r0]
+    adds r0, #1
+    strb r5, [r0]
+    adds r0, #1
+    strb r5, [r0]
+    adds r0, r7, #0
+    bl func_0802C070
+    adds r0, r7, #0
+    bl func_0802CEEC
+    lsls r0, r0, #0x10
+    lsrs r1, r0, #0x10
+    ldrh r0, [r7, #0x22]
+    cmp r0, r1
+    beq .Ljp_080247FA
+    adds r0, r7, #0
+    bl SetAnim__12AActorEntityUi
+.Ljp_080247FA:
+    adds r0, r7, #0
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_08024804: .4byte vtable_unk_080E6658
+.Ljp_08024808: .4byte 0x00001BD8
+.Ljp_0802480C: .4byte gText_NotAvailable
+.Ljp_08024810: .4byte 0x0000FFFF
+
     .global func_08024814
     .thumb_func
 func_08024814:
@@ -3934,7 +4060,11 @@ func_0802B148:
     .global func_0802B2B0
     .thumb_func
 func_0802B2B0:
-    .incbin "baserom_jp.gba", 0x2B2B0, (0x2B7A4 - 0x2B2B0)
+    .incbin "baserom_jp.gba", 0x2B2B0, (0x2B69C - 0x2B2B0)
+    .global func_0802B69C
+    .thumb_func
+func_0802B69C:
+    .incbin "baserom_jp.gba", 0x2B69C, (0x2B7A4 - 0x2B69C)
     .global func_0802B7A4
     .thumb_func
 func_0802B7A4:
@@ -3974,7 +4104,11 @@ func_0802BFA4:
     .global func_0802C068
     .thumb_func
 func_0802C068:
-    .incbin "baserom_jp.gba", 0x2C068, (0x2CEEC - 0x2C068)
+    .incbin "baserom_jp.gba", 0x2C068, (0x2C070 - 0x2C068)
+    .global func_0802C070
+    .thumb_func
+func_0802C070:
+    .incbin "baserom_jp.gba", 0x2C070, (0x2CEEC - 0x2C070)
     .global func_0802CEEC
     .thumb_func
 func_0802CEEC:

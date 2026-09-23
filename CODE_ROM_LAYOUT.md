@@ -3306,3 +3306,18 @@ JP `func_080244B8` 已由原始 `.incbin` 提升为直接 Thumb，并与海外�
 
 本批仅修改 JP 源码，依区域化验证规则以 WSL `-j4` 重建 JP；SHA-1 为
 `A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并与 `baserom_jp.gba` 逐字节一致。
+
+## `asm/code_entities.s`：JP 实体 UI 初始化入口
+
+JP `func_08024708` 已从原始 `.incbin` 提升为直接 Thumb，与海外的
+`func_08024974` 处于同一层级。它初始化实体 UI 字段、背包条目、默认文本指针与动画，
+并按原始流程调用后续状态初始化入口。
+
+跨区域函数地址已逐项按 JP ROM 反汇编核对：海外
+`func_0802B908` / `func_0802C2DC` / `func_0802D158` 分别对应真实 JP 入口
+`func_0802B69C` / `func_0802C070` / `func_0802CEEC`。前两个入口已在保留原始
+`.incbin` 的物理位置直接标注为全局符号；共享 vtable 和文本则直接使用其真实链接符号。
+
+未处理的下一函数从真实物理边界 `func_08024814` 继续直接 `.incbin`。本批仅修改 JP
+源码，WSL `-j4` 重建后的 SHA-1 为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并与 `baserom_jp.gba` 逐字节一致。
