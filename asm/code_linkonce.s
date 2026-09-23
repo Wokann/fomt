@@ -28272,7 +28272,14 @@ func_080E10EC: @ 0x080E10EC
 	movs r0, #1
 	bx lr
 .L080E10F0:
-	.byte 0x00, 0x20, 0x70, 0x47, 0x00, 0x20, 0x70, 0x47
+	.global func_080E10F0
+	.thumb_func
+func_080E10F0:
+	.byte 0x00, 0x20, 0x70, 0x47
+	.global func_080E10F4
+	.thumb_func
+func_080E10F4:
+	.byte 0x00, 0x20, 0x70, 0x47
 
 	thumb_func_start func_080E10F8
 func_080E10F8: @ 0x080E10F8
@@ -28292,8 +28299,22 @@ func_080E10F8: @ 0x080E10F8
 	.align 2, 0
 .L080E1114: .4byte vtable_unk_080E78F0
 .L080E1118:
-	.byte 0x00, 0x20, 0x70, 0x47, 0x70, 0x47, 0x00, 0x00
-	.byte 0x70, 0x47, 0x00, 0x00, 0x70, 0x47, 0x00, 0x00
+	.global func_080E1118
+	.thumb_func
+func_080E1118:
+	.byte 0x00, 0x20, 0x70, 0x47
+	.global func_080E111C
+	.thumb_func
+func_080E111C:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_080E1120
+	.thumb_func
+func_080E1120:
+	.byte 0x70, 0x47, 0x00, 0x00
+	.global func_080E1124
+	.thumb_func
+func_080E1124:
+	.byte 0x70, 0x47, 0x00, 0x00
 
 	thumb_func_start func_080E1128
 func_080E1128: @ 0x080E1128
@@ -32152,6 +32173,9 @@ func_080E2DC8: @ 0x080E2DC8
 	pop {r1}
 	bx r1
 .L080E2E34:
+	.global func_080E2E34
+	.thumb_func
+func_080E2E34:
 	.byte 0x30, 0xB5, 0x04, 0x1C, 0x0D, 0x1C, 0x0A, 0x48, 0xE0, 0x60, 0xA1, 0x68
 	.byte 0x00, 0x29, 0x07, 0xD0, 0x08, 0x4A, 0x88, 0x18, 0x00, 0x68, 0x82, 0x68, 0x08, 0x1C, 0x03, 0x21
 	.byte 0xF0, 0xF7, 0x60, 0xFD, 0x20, 0x1C, 0x29, 0x1C
@@ -32159,7 +32183,11 @@ func_080E2DC8: @ 0x080E2DC8
 	.byte 0x30, 0xBC, 0x01, 0xBC
 	.byte 0x00, 0x47, 0x00, 0x00
 	.4byte vtable_unk_080E5A28
-	.byte 0xB4, 0x05, 0x00, 0x00, 0x00, 0xB5
+	.byte 0xB4, 0x05, 0x00, 0x00
+	.global func_080E2E6C
+	.thumb_func
+func_080E2E6C:
+	.byte 0x00, 0xB5
 	bl func_080086BC
 	.byte 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
 
@@ -32188,11 +32216,6 @@ func_080E2E78: @ 0x080E2E78
 	pop {r0}
 	bx r0
 	.align 2, 0
-
-	.global func_080E2E34
-	.thumb_set func_080E2E34, func_080E2BB4 + 0x280
-	.global func_080E2E6C
-	.thumb_set func_080E2E6C, func_080E2BB4 + 0x2B8
 
 	thumb_func_start func_080E2EA4
 func_080E2EA4: @ 0x080E2EA4
@@ -32791,6 +32814,9 @@ func_080E3054: @ 0x080E3054
 	bx r1
 	.align 2, 0
 .L080E32E8:
+	.global func_080E32E8
+	.thumb_func
+func_080E32E8:
 	.byte 0xF0, 0xB5, 0x47, 0x46, 0x80, 0xB4, 0x05, 0x1C
 	.byte 0x88, 0x46, 0xEE, 0x20, 0x40, 0x00, 0x2C, 0x18, 0xA0, 0x68, 0x00, 0x28, 0x0C, 0xD0, 0x60, 0x68
 	.byte 0x41, 0x68, 0x20, 0x1C
@@ -32815,11 +32841,6 @@ func_080E3054: @ 0x080E3054
 	.byte 0x08, 0xBC, 0x98, 0x46, 0xF0, 0xBC
 	.byte 0x01, 0xBC, 0x00, 0x47
 	.4byte vtable_unk_080E5A28
-
-	.global func_080E32E8
-	.thumb_set func_080E32E8, func_080E3054 + 0x294
-	.global func_080E33D0
-	.thumb_set func_080E33D0, func_080E3054 + 0x37C
 
 	thumb_func_start func_080E3398
 func_080E3398: @ 0x080E3398
@@ -32856,6 +32877,9 @@ func_080E3398: @ 0x080E3398
 	pop {r1}
 	bx r1
 .L080E33D0:
+	.global func_080E33D0
+	.thumb_func
+func_080E33D0:
 	push {r4, r5, r6, lr}
 	adds r5, r0, #0
 	adds r6, r1, #0
@@ -33336,9 +33360,10 @@ func_080E3774: @ 0x080E3774
 	.align 2, 0
 .L080E3794: .4byte gText_LinkCommunication_NowSendingData
 .L080E3798:
-	.byte 0x70, 0x47, 0x00, 0x00
 	.global func_080E3798
-	.thumb_set func_080E3798, .L080E3798
+	.thumb_func
+func_080E3798:
+	.byte 0x70, 0x47, 0x00, 0x00
 
 	thumb_func_start func_080E379C
 func_080E379C: @ 0x080E379C
@@ -37702,20 +37727,6 @@ func_080E59C0: @ 0x080E59C0
 	pop {r0}
 	bx r0
 .align 2, 0
-
-    @ Exact US entry points referenced by recovered dispatch tables.
-	.global func_080E10F0
-	.thumb_set func_080E10F0, func_080E10EC + 0x4
-	.global func_080E10F4
-	.thumb_set func_080E10F4, func_080E10EC + 0x8
-	.global func_080E1118
-	.thumb_set func_080E1118, func_080E1128 - 0x10
-	.global func_080E111C
-	.thumb_set func_080E111C, func_080E1128 - 0xC
-	.global func_080E1120
-	.thumb_set func_080E1120, func_080E1128 - 0x8
-	.global func_080E1124
-	.thumb_set func_080E1124, func_080E1128 - 0x4
 
     .endif
 

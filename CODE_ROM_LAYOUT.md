@@ -2269,3 +2269,14 @@ US、EU、DE 的独立汇编对象分别完成 `.text` 字节和完整符号表�
 这三个受影响版本。其 SHA-1 依次为 US `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与各自基准 ROM 一致。
+
+## `asm/code_linkonce.s`：海外 `0x080E0EF0` 原始入口直写
+
+US/EU/DE 共享分支的 11 个 `.thumb_set` 入口已全部改为真实标签。四个目标原先落在组合
+`.byte` 指令内，因此仅按真实入口边界拆开；其他目标直接定义在已有局部标签、指令或数据之后。
+局部 `.L` 标签继续保留给已有分支使用，而导出的函数名与其共址，不再通过地址加减或别名表达。
+
+US、EU、DE 的汇编对象字节和完整符号表均与变更前一致；完整构建后的 SHA-1 分别为 US
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均通过基准 ROM 比对。本轮没有修改或重建 JP。
