@@ -85208,7 +85208,11 @@ func_08094000:
 func_08093AC4:
     .incbin "baserom_jp.gba", 0x93AC4, (0x93B0C - 0x93AC4)
     jp_code_0803ee_func func_08093B0C, 0x93B0C, 0x93B80
-    jp_code_0803ee_func func_08093B80, 0x93B80, 0x93B84
+    .global func_08093B80
+    .thumb_func
+func_08093B80:
+    bx lr
+    .align 2, 0
     jp_code_0803ee_func func_08093B84, 0x93B84, 0x93BA8
     jp_code_0803ee_func func_08093BA8, 0x93BA8, 0x93BD4
     jp_code_0803ee_func func_08093BD4, 0x93BD4, 0x93C6C
@@ -85221,15 +85225,33 @@ func_08093C6C:
     .incbin "baserom_jp.gba", 0x93C6C, (0x93C8C - 0x93C6C)
     jp_code_0803ee_func func_08093C8C, 0x93C8C, 0x93CCC
     jp_code_0803ee_func func_08093CCC, 0x93CCC, 0x93CE0
-    jp_code_0803ee_func func_08093CE0, 0x93CE0, 0x93CE4
-    jp_code_0803ee_func func_08093CE4, 0x93CE4, 0x93CE8
+    .global func_08093CE0
+    .thumb_func
+func_08093CE0:
+    bx lr
+    .align 2, 0
+
+    .global func_08093CE4
+    .thumb_func
+func_08093CE4:
+    bx lr
+    .align 2, 0
     jp_code_0803ee_func func_08093CE8, 0x93CE8, 0x93D2C
     jp_code_0803ee_func func_08093D2C, 0x93D2C, 0x93D4C
     jp_code_0803ee_func func_08093D4C, 0x93D4C, 0x93D80
     jp_code_0803ee_func func_08093D80, 0x93D80, 0x93E4C
     jp_code_0803ee_func func_08093E4C, 0x93E4C, 0x93E80
-    jp_code_0803ee_func func_08093E80, 0x93E80, 0x93E84
-    jp_code_0803ee_func func_08093E84, 0x93E84, 0x93E88
+    .global func_08093E80
+    .thumb_func
+func_08093E80:
+    ldrb r0, [r0, #0xD]
+    bx lr
+
+    .global func_08093E84
+    .thumb_func
+func_08093E84:
+    ldr r0, [r0, #0x10]
+    bx lr
     jp_code_0803ee_func func_08093E88, 0x93E88, 0x93EA8
     jp_code_0803ee_func func_08093EA8, 0x93EA8, 0x93F10
     .global func_0809444C
@@ -85248,7 +85270,11 @@ func_080944A8:
 func_08093F6C:
     .incbin "baserom_jp.gba", 0x93F6C, (0x93FAC - 0x93F6C)
     jp_code_0803ee_func func_08093FAC, 0x93FAC, 0x94020
-    jp_code_0803ee_func func_08094020, 0x94020, 0x94024
+    .global func_08094020
+    .thumb_func
+func_08094020:
+    bx lr
+    .align 2, 0
     jp_code_0803ee_func func_08094024, 0x94024, 0x94048
     jp_code_0803ee_func func_08094048, 0x94048, 0x94074
     jp_code_0803ee_func func_08094074, 0x94074, 0x9410C
