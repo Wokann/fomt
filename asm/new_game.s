@@ -1451,7 +1451,198 @@ func_08006334:
     .global func_0800637C
     .thumb_func
 func_0800637C:
-    .incbin "baserom_jp.gba", 0x6250, (0x63BC - 0x6250)
+    push {r4, r5, r6, r7, lr}
+    mov r7, sl
+    mov r6, r9
+    mov r5, r8
+    push {r5, r6, r7}
+    sub sp, #0x30
+    adds r5, r0, #0
+    movs r0, #0xf0
+    lsls r0, r0, #3
+    mov r9, r0
+    movs r1, #0x60
+    movs r2, #0x10
+    movs r3, #0
+    add r0, sp, #0x1c
+    movs r6, #0x1e
+    movs r4, #2
+    mov r8, r4
+    strh r6, [r0]
+    mov r7, r8
+    strh r7, [r0, #2]
+    ldr r0, [sp, #0x1c]
+    ldr r7, .Ljp_080062E4 @ =0x00003C2C
+    adds r4, r5, r7
+    str r1, [sp]
+    str r2, [sp, #4]
+    str r3, [sp, #8]
+    adds r1, r4, #0
+    movs r2, #0
+    bl Clear2DGfxBufferRect
+    ldr r0, .Ljp_080062E8 @ =0x0000455C
+    adds r1, r5, r0
+    add r0, sp, #0x20
+    strh r6, [r0]
+    mov r2, r8
+    strh r2, [r0, #2]
+    ldr r0, [sp, #0x20]
+    str r1, [sp]
+    adds r1, r4, #0
+    movs r2, #0x90
+    movs r3, #0
+    bl DrawStringTo2DGfxBuffer
+    adds r0, r5, #0
+    bl func_08008910
+    adds r6, r0, #0
+    mov r3, r9
+    lsls r2, r3, #3
+    movs r0, #0xc0
+    lsls r0, r0, #0x13
+    adds r2, r2, r0
+    add r0, sp, #0xc
+    adds r1, r4, #0
+    bl func_08008F0C
+    add r4, sp, #0xc
+    mov r9, r4
+    ldr r1, [r6, #4]
+    ldr r0, [r6, #0xc]
+    cmp r1, r0
+    beq .Ljp_080062EC
+    cmp r1, #0
+    beq .Ljp_080062DC
+    adds r0, r1, #0
+    add r1, sp, #0xc
+    ldmia r1!, {r2, r5, r7}
+    stmia r0!, {r2, r5, r7}
+    ldr r1, [r1]
+    str r1, [r0]
+.Ljp_080062DC:
+    ldr r0, [r6, #4]
+    adds r0, #0x10
+    str r0, [r6, #4]
+    b .Ljp_080063AC
+    .align 2, 0
+.Ljp_080062E4: .4byte 0x00003C2C
+.Ljp_080062E8: .4byte 0x0000455C
+.Ljp_080062EC:
+    mov sl, r1
+    movs r0, #1
+    str r0, [sp, #0x28]
+    ldr r0, [r6]
+    subs r0, r1, r0
+    asrs r4, r0, #4
+    str r4, [sp, #0x24]
+    add r1, sp, #0x28
+    add r0, sp, #0x24
+    cmp r4, #1
+    bcs .Ljp_08006304
+    adds r0, r1, #0
+.Ljp_08006304:
+    ldr r0, [r0]
+    adds r0, r4, r0
+    cmp r0, #0
+    beq .Ljp_08006322
+    lsls r4, r0, #4
+    adds r0, r4, #0
+    bl malloc
+    mov r8, r4
+    cmp r0, #0
+    bne .Ljp_08006326
+    mov r0, r8
+    bl func_080D3BC0
+    b .Ljp_08006326
+.Ljp_08006322:
+    movs r0, #0
+    mov r8, r0
+.Ljp_08006326:
+    adds r5, r0, #0
+    str r5, [sp, #0x2c]
+    ldr r2, [r6]
+    adds r3, r5, #0
+    cmp r2, sl
+    beq .Ljp_0800634A
+.Ljp_08006332:
+    cmp r3, #0
+    beq .Ljp_08006342
+    adds r0, r3, #0
+    adds r1, r2, #0
+    ldmia r1!, {r4, r5, r7}
+    stmia r0!, {r4, r5, r7}
+    ldr r1, [r1]
+    str r1, [r0]
+.Ljp_08006342:
+    adds r2, #0x10
+    adds r3, #0x10
+    cmp r2, sl
+    bne .Ljp_08006332
+.Ljp_0800634A:
+    adds r5, r3, #0
+    ldr r0, [sp, #0x28]
+    cmp r0, #1
+    bne .Ljp_08006366
+    cmp r5, #0
+    beq .Ljp_08006362
+    adds r0, r5, #0
+    mov r1, r9
+    ldmia r1!, {r2, r3, r4}
+    stmia r0!, {r2, r3, r4}
+    ldr r1, [r1]
+    str r1, [r0]
+.Ljp_08006362:
+    adds r5, #0x10
+    b .Ljp_08006388
+.Ljp_08006366:
+    adds r3, r0, #0
+    adds r2, r5, #0
+    cmp r3, #0
+    beq .Ljp_08006386
+.Ljp_0800636E:
+    cmp r2, #0
+    beq .Ljp_0800637E
+    adds r0, r2, #0
+    mov r1, r9
+    ldmia r1!, {r4, r5, r7}
+    stmia r0!, {r4, r5, r7}
+    ldr r1, [r1]
+    str r1, [r0]
+.Ljp_0800637E:
+    subs r3, #1
+    adds r2, #0x10
+    cmp r3, #0
+    bne .Ljp_0800636E
+.Ljp_08006386:
+    adds r5, r2, #0
+.Ljp_08006388:
+    ldr r2, [r6, #4]
+    ldr r0, [r6]
+    adds r1, r0, #0
+    cmp r0, r2
+    beq .Ljp_08006398
+.Ljp_08006392:
+    adds r1, #0x10
+    cmp r1, r2
+    bne .Ljp_08006392
+.Ljp_08006398:
+    cmp r0, #0
+    beq .Ljp_080063A0
+    bl free
+.Ljp_080063A0:
+    ldr r0, [sp, #0x2c]
+    add r0, r8
+    ldr r7, [sp, #0x2c]
+    str r7, [r6]
+    str r5, [r6, #4]
+    str r0, [r6, #0xc]
+.Ljp_080063AC:
+    add sp, #0x30
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov r9, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
 
     .global func_080064E8
     .thumb_func

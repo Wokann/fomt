@@ -2297,6 +2297,19 @@ JP 下一真实入口 `func_0800637C` 的 `0x08006250` 精确相邻。函数按�
 比对，再以 WSL 完整链接、资源补丁及 ROM 对照验证。`fomt_jp.gba` SHA-1 为
 `A655B2789AED14A6AC78C6075FBC533D3062DBE3`，与基准 ROM 逐字节一致。
 
+## `asm/new_game.s`：JP 姓名输入缓冲区更新
+
+JP `func_0800637C` 的真实入口 `0x08006250` 已提升为完整实际 Thumb 指令，至下一
+真实入口 `func_080064E8` 的 `0x080063BC`。中间字面量池保留在原始 `0x080062E4`；
+所有外部调用均为直接重定位符号：`Clear2DGfxBufferRect`、
+`DrawStringTo2DGfxBuffer`、`func_08008910`、`func_08008F0C`、`malloc`、`free`
+与 `func_080D3BC0`。JP 专有对象偏移 `0x3C2C` 与 `0x455C` 直接保留为验证过的
+字面量池值，不用海外布局代替。
+
+本项只影响 JP；先对整个 `0x080037A0`–`0x08007130` 的 `new_game` 代码区间逐字节
+比对，再以 WSL 完整链接、资源补丁及 ROM 对照验证。`fomt_jp.gba` SHA-1 为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`，与基准 ROM 逐字节一致。
+
 ## `asm/new_game.s`：JP 姓名输入记录追加
 
 JP `func_08006858` 的真实入口 `0x08006734` 已提升为实际 Thumb 指令，至下一真实
