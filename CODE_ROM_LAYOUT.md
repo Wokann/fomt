@@ -2280,3 +2280,18 @@ US、EU、DE 的汇编对象字节和完整符号表均与变更前一致；完�
 `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均通过基准 ROM 比对。本轮没有修改或重建 JP。
+
+## `asm/code_linkonce.s`：跨区域 D7 入口直写
+
+文件尾部最后 11 个跨区域 `.thumb_set` 入口已清除。其物理目标均在
+`.text.code_080D7CFC`：JP 的五段原始 `.incbin` 已按目标边界切成直接标签；海外共享汇编中，
+三个此前仅有局部标签或字节序列的入口也已导出真实标签，其余八个本就由
+`thumb_func_start func_…` 直接定义，因此只移除重复的别名导出。局部标签继续供分支使用，未引入
+地址算术、伪造名称或额外字节。
+
+至此 `asm/code_linkonce.s` 不再包含 `.thumb_set` 或 `.set`。JP、US、EU、DE 的独立汇编
+对象均完成字节和完整符号表比对，并均重建为基准 ROM：JP
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`、US
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。

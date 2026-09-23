@@ -9014,7 +9014,11 @@ func_080DCFCC:
     .global func_080DCFE0
     .thumb_func
 func_080DCFE0:
-    .incbin "baserom_jp.gba", 0xDC794, (0xDCB5C - 0xDC794)
+    .incbin "baserom_jp.gba", 0xDC794, (0xDCB38 - 0xDC794)
+    .global func_080DD384
+    .thumb_func
+func_080DD384:
+    .incbin "baserom_jp.gba", 0xDCB38, (0xDCB5C - 0xDCB38)
     .global func_080DD3A8
     .thumb_func
 func_080DD3A8:
@@ -9218,7 +9222,23 @@ func_080DE1B4:
     .global func_080DE220
     .thumb_func
 func_080DE220:
-    .incbin "baserom_jp.gba", 0xDD9D4, (0xDDA4C - 0xDD9D4)
+    .incbin "baserom_jp.gba", 0xDD9D4, (0xDD9F4 - 0xDD9D4)
+    .global func_080DE240
+    .thumb_func
+func_080DE240:
+    .incbin "baserom_jp.gba", 0xDD9F4, (0xDDA14 - 0xDD9F4)
+    .global func_080DE260
+    .thumb_func
+func_080DE260:
+    .incbin "baserom_jp.gba", 0xDDA14, (0xDDA34 - 0xDDA14)
+    .global func_080DE280
+    .thumb_func
+func_080DE280:
+    .incbin "baserom_jp.gba", 0xDDA34, (0xDDA40 - 0xDDA34)
+    .global func_080DE28C
+    .thumb_func
+func_080DE28C:
+    .incbin "baserom_jp.gba", 0xDDA40, (0xDDA4C - 0xDDA40)
     .global func_080DE298
     .thumb_func
 func_080DE298:
@@ -9305,7 +9325,15 @@ func_080E0094:
     .global func_080E0908
     .thumb_func
 func_080E0908:
-    .incbin "baserom_jp.gba", 0xE00A8, (0xE0184 - 0xE00A8)
+    .incbin "baserom_jp.gba", 0xE00A8, (0xE0150 - 0xE00A8)
+    .global func_080E09B0
+    .thumb_func
+func_080E09B0:
+    .incbin "baserom_jp.gba", 0xE0150, (0xE015C - 0xE0150)
+    .global func_080E09BC
+    .thumb_func
+func_080E09BC:
+    .incbin "baserom_jp.gba", 0xE015C, (0xE0184 - 0xE015C)
     .global func_080E09E4
     .thumb_func
 func_080E09E4:
@@ -9313,7 +9341,15 @@ func_080E09E4:
     .global func_080E0A08
     .thumb_func
 func_080E0A08:
-    .incbin "baserom_jp.gba", 0xE01A8, (0xE0234 - 0xE01A8)
+    .incbin "baserom_jp.gba", 0xE01A8, (0xE021C - 0xE01A8)
+    .global func_080E0A7C
+    .thumb_func
+func_080E0A7C:
+    .incbin "baserom_jp.gba", 0xE021C, (0xE0228 - 0xE021C)
+    .global func_080E0A88
+    .thumb_func
+func_080E0A88:
+    .incbin "baserom_jp.gba", 0xE0228, (0xE0234 - 0xE0228)
     .global func_080E0A94
     .thumb_func
 func_080E0A94:
@@ -9321,7 +9357,15 @@ func_080E0A94:
     .global func_080E0C38
     .thumb_func
 func_080E0C38:
-    .incbin "baserom_jp.gba", 0xE03D8, (0xE0510 - 0xE03D8)
+    .incbin "baserom_jp.gba", 0xE03D8, (0xE04F0 - 0xE03D8)
+    .global func_080E0D50
+    .thumb_func
+func_080E0D50:
+    .incbin "baserom_jp.gba", 0xE04F0, (0xE0504 - 0xE04F0)
+    .global func_080E0D64
+    .thumb_func
+func_080E0D64:
+    .incbin "baserom_jp.gba", 0xE0504, (0xE0510 - 0xE0504)
     .global func_080E0D70
     .thumb_func
 func_080E0D70:
@@ -19796,6 +19840,9 @@ func_080DCFE0: @ 0x080DCFE0
 	.align 2, 0
 .L080DD380: .4byte vtable_unk_080E76D4
 .L080DD384:
+	.global func_080DD384
+	.thumb_func
+func_080DD384:
 	.byte 0x0B, 0x78, 0x10, 0x22, 0x52, 0x42, 0x1A, 0x40, 0x0C, 0x23, 0x1A, 0x43
 	.byte 0x0A, 0x70, 0x02, 0x6D, 0x4A, 0x60, 0x02, 0x1C, 0x54, 0x32, 0x12, 0x88, 0x0A, 0x81, 0x56, 0x30
 	.byte 0x00, 0x88, 0x48, 0x81, 0x70, 0x47, 0x00, 0x00
@@ -21840,8 +21887,14 @@ func_080DE220: @ 0x080DE220
 	.align 2, 0
 .L080DE23C: .4byte vtable_unk_080E76F8
 .L080DE240:
+	.global func_080DE240
+	.thumb_func
+func_080DE240:
 	.byte 0x10, 0xB5, 0x88, 0xB0, 0x04, 0x1C, 0x69, 0x46, 0x00, 0x20, 0x08, 0x70, 0x20, 0x70, 0x20, 0x1D
 	.byte 0xF5, 0xF7, 0x6A, 0xFC, 0x20, 0x1C, 0x08, 0xB0, 0x10, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
+	.global func_080DE260
+	.thumb_func
+func_080DE260:
 	.byte 0x00, 0xB5, 0x02, 0x1C, 0x05, 0x48, 0x10, 0x60, 0x01, 0x20, 0x08, 0x40, 0x00, 0x28, 0x02, 0xD0
 	.byte 0x10, 0x1C
 	bl __builtin_delete
@@ -37729,44 +37782,3 @@ func_080E59C0: @ 0x080E59C0
 .align 2, 0
 
     .endif
-
-    @ This intra-function Thumb entry is referenced by the raw vtable at
-    @ 0x080E759C in both regional ROMs.
-    .global func_080DD384
-    .thumb_set func_080DD384, func_080DCFE0 + 0x3A4
-    @ These intra-function Thumb entries are referenced by the raw table at
-    @ 0x080E76F8 in both regional ROMs.
-    .global func_080DE260
-    .thumb_set func_080DE260, func_080DE220 + 0x40
-    .global func_080DE240
-    .thumb_set func_080DE240, func_080DE220 + 0x20
-    @ This intra-function Thumb entry is referenced by the raw table at
-    @ 0x080E7708 in both regional ROMs.
-    .global func_080DE280
-    .thumb_set func_080DE280, func_080DE220 + 0x60
-    @ This intra-function Thumb entry is referenced by the raw table at
-    @ 0x080E7714 in both regional ROMs.
-    .global func_080DE28C
-    .thumb_set func_080DE28C, func_080DE220 + 0x6C
-    @ This intra-function Thumb entry is referenced by the raw table at
-    @ 0x080E7738 in both regional ROMs.
-    .global func_080E09B0
-    .thumb_set func_080E09B0, func_080E0908 + 0xA8
-    @ This intra-function Thumb entry is referenced by the raw table at
-    @ 0x080E7748 in both regional ROMs.
-    .global func_080E09BC
-    .thumb_set func_080E09BC, func_080E09B0 + 0xC
-    @ This intra-function Thumb entry is referenced by the raw table at
-    @ 0x080E7758 in both regional ROMs.
-    .global func_080E0A7C
-    .thumb_set func_080E0A7C, func_080E0A08 + 0x74
-    @ This intra-function Thumb entry is referenced by the raw table at
-    @ 0x080E7768 in both regional ROMs.
-    .global func_080E0A88
-    .thumb_set func_080E0A88, func_080E0A7C + 0xC
-    @ These intra-function Thumb entries are referenced by the raw table at
-    @ 0x080E77D0 in both regional ROMs.
-    .global func_080E0D50
-    .thumb_set func_080E0D50, func_080E0C38 + 0x118
-    .global func_080E0D64
-    .thumb_set func_080E0D64, func_080E0C38 + 0x12C
