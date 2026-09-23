@@ -85347,7 +85347,34 @@ func_080935A0:
     .4byte gText_LinkCommunication_WaitingForOtherPlayer
     jp_code_0803ee_func func_08093C3C, 0x93700, 0x93890
     jp_code_0803ee_func func_08093890, 0x93890, 0x938B0
-    jp_code_0803ee_func func_080938B0, 0x938B0, 0x938E4
+    .global func_080938B0
+    .thumb_func
+func_080938B0:
+    push {r4, r5, r6, r7, lr}
+    adds r4, r0, #0
+    adds r5, r3, #0
+    ldr r6, [sp, #0x14]
+    ldr r7, [sp, #0x18]
+    ldr r0, [r4]
+    ldr r3, [r0, #0x20]
+    adds r0, r4, #0
+    bl _call_via_r3
+    str r5, [r4, #0x14]
+    str r6, [r4, #0x18]
+    str r7, [r4, #0x1c]
+    ldr r0, [sp, #0x1c]
+    str r0, [r4, #0x20]
+    ldr r0, [sp, #0x20]
+    str r0, [r4, #0x24]
+    ldr r0, .Ljp_080938E0
+    str r0, [r4, #8]
+    movs r0, #0
+    strb r0, [r4, #0xd]
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_080938E0: .4byte gUnk_081007AC
     .global func_080938E4
     .thumb_func
 func_080938E4:
