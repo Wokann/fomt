@@ -791,12 +791,192 @@ func_080050C8:
     .global func_080050F8
     .thumb_func
 func_080050F8:
-    .incbin "baserom_jp.gba", 0x5168, (0x54E0 - 0x5168)
+    push {r4, r5, r6, r7, lr}
+    mov r7, sb
+    mov r6, r8
+    push {r6, r7}
+    sub sp, #0x14
+    mov sb, r0
+    adds r6, r1, #0
+    adds r0, r6, #0
+    bl func_08005254
+    adds r0, r6, #0
+    bl func_08005260
+    adds r0, r6, #0
+    bl func_08005278
+    adds r0, r6, #0
+    bl func_08008918
+    mov r1, sp
+    movs r2, #0x3f
+    strh r2, [r1]
+    adds r0, #0x50
+    strh r2, [r0]
+    movs r0, #0x10
+    bl __builtin_new
+    adds r4, r0, #0
+    adds r0, r6, #0
+    bl func_08008918
+    adds r1, r0, #0
+    movs r0, #0
+    str r0, [r4]
+    str r0, [r4, #4]
+    ldr r0, .Ljp_08005198 @ =vtable_unk_080E5B80
+    str r0, [r4, #8]
+    adds r5, r4, #0
+    adds r5, #0xc
+    adds r0, r5, #0
+    bl func_08009300
+    str r4, [sp, #4]
+    ldr r1, .Ljp_0800519C @ =0x00000889
+    adds r0, r5, #0
+    movs r2, #1
+    movs r3, #1
+    bl func_0800934C
+    adds r0, r6, #0
+    bl func_08008940
+    ldr r2, [r0, #8]
+    ldr r1, [sp, #4]
+    ldr r2, [r2, #0x10]
+    bl _call_via_r2
+    movs r4, #0
+    movs r5, #0
+    add r7, sp, #8
+    add r0, sp, #0xc
+    mov r8, r0
+.Ljp_08005174:
+    adds r0, r6, #0
+    bl func_080087C8
+    adds r0, r6, #0
+    bl func_080088B8
+    adds r0, r6, #0
+    bl func_080088D4
+    adds r0, r4, #0
+    cmp r0, #1
+    beq .Ljp_080051BA
+    cmp r0, #1
+    bgt .Ljp_080051A0
+    cmp r0, #0
+    beq .Ljp_080051AA
+    b .Ljp_0800520A
+    .align 2, 0
+.Ljp_08005198: .4byte vtable_unk_080E5B80
+.Ljp_0800519C: .4byte 0x00000889
+.Ljp_080051A0:
+    cmp r0, #2
+    beq .Ljp_080051D4
+    cmp r0, #3
+    beq .Ljp_080051FC
+    b .Ljp_0800520A
+.Ljp_080051AA:
+    ldr r0, [sp, #4]
+    ldr r1, [r0]
+    rsbs r0, r1, #0
+    orrs r0, r1
+    cmp r0, #0
+    blt .Ljp_0800520A
+    movs r4, #1
+    b .Ljp_0800520A
+.Ljp_080051BA:
+    adds r0, r6, #0
+    bl func_08005800
+    ldr r1, .Ljp_080051D0 @ =0x00001874
+    adds r0, r6, r1
+    ldrb r0, [r0]
+    cmp r0, #0
+    beq .Ljp_0800520A
+    movs r4, #2
+    b .Ljp_0800520A
+    .align 2, 0
+.Ljp_080051D0: .4byte 0x00001874
+.Ljp_080051D4:
+    ldr r0, [sp, #4]
+    adds r0, #0xc
+    ldr r1, .Ljp_080051F8 @ =0x00000889
+    movs r2, #1
+    movs r3, #1
+    bl func_08009378
+    adds r0, r6, #0
+    bl func_08008940
+    ldr r2, [r0, #8]
+    ldr r1, [sp, #4]
+    ldr r2, [r2, #0x10]
+    bl _call_via_r2
+    movs r4, #3
+    b .Ljp_0800520A
+    .align 2, 0
+.Ljp_080051F8: .4byte 0x00000889
+.Ljp_080051FC:
+    ldr r0, [sp, #4]
+    ldr r1, [r0]
+    rsbs r0, r1, #0
+    orrs r0, r1
+    cmp r0, #0
+    blt .Ljp_0800520A
+    movs r5, #1
+.Ljp_0800520A:
+    cmp r5, #0
+    beq .Ljp_08005174
+    movs r0, #0
+    str r0, [sp, #8]
+    str r7, [sp, #0xc]
+    mov r1, r8
+    str r0, [r1, #4]
+    str r0, [r7]
+    mov r1, sb
+    str r0, [r1]
+    ldr r1, [sp, #8]
+    cmp r1, #0
+    beq .Ljp_08005230
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08005230:
+    ldr r1, [sp, #4]
+    cmp r1, #0
+    beq .Ljp_08005242
+    ldr r0, [r1, #8]
+    ldr r2, [r0, #0xc]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08005242:
+    mov r0, sb
+    add sp, #0x14
+    pop {r3, r4}
+    mov r8, r3
+    mov sb, r4
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
+
+    .global func_08005254
+    .thumb_func
+func_08005254:
+    .incbin "baserom_jp.gba", 0x52C4, (0x52D0 - 0x52C4)
+
+    .global func_08005260
+    .thumb_func
+func_08005260:
+    .incbin "baserom_jp.gba", 0x52D0, (0x52E8 - 0x52D0)
+
+    .global func_08005278
+    .thumb_func
+func_08005278:
+    .incbin "baserom_jp.gba", 0x52E8, (0x54E0 - 0x52E8)
+
     .4byte gText_NewGameIdentity_PlayerName
     .4byte gText_NewGameIdentity_PlayerBirthday
     .4byte gText_NewGameIdentity_FarmName
     .4byte gText_NewGameIdentity_DogName
-    .incbin "baserom_jp.gba", 0x54F0, 0x2E8
+    .incbin "baserom_jp.gba", 0x54F0, (0x56D4 - 0x54F0)
+
+    .global func_08005800
+    .thumb_func
+func_08005800:
+    .incbin "baserom_jp.gba", 0x56D4, (0x57D8 - 0x56D4)
     .4byte gText_NewGameIdentity_Confirm
     .4byte gText_NewGameIdentity_Yes
     .4byte gText_NewGameIdentity_No
