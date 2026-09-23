@@ -86834,7 +86834,35 @@ func_08099F50:
     bx r0
     .align 2, 0
 .Ljp_08099F8C: .4byte vtable_unk_080E823C
-    jp_code_0803ee_func func_08099F90, 0x99F90, 0x99FC4
+    .global func_08099F90
+    .thumb_func
+func_08099F90:
+    push {r4, r5, lr}
+    sub sp, #4
+    adds r5, r0, #0
+    adds r4, r1, #0
+    ldr r1, [r4, #4]
+    mov r0, sp
+    bl func_08094A40
+    ldr r1, [sp]
+    cmp r1, #0
+    beq .Ljp_08099FB2
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08099FB2:
+    ldr r1, [r4, #8]
+    movs r0, #0
+    str r0, [r4, #8]
+    str r1, [r5]
+    adds r0, r5, #0
+    add sp, #4
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+
     .global func_08099FC4
     .thumb_func
 func_08099FC4:
