@@ -5607,9 +5607,114 @@ func_08052230: @ 0x08051FC0
     jp_code_0803ee_func func_08057D34, 0x57AC4, 0x57BAC
     jp_code_0803ee_func func_08057BAC, 0x57BAC, 0x57BEC
     jp_code_0803ee_func func_08057BEC, 0x57BEC, 0x57C20
-    jp_code_0803ee_func func_08057E90, 0x57C20, 0x57CB4
-    jp_code_0803ee_func func_08057F24, 0x57CB4, 0x57CDC
-    jp_code_0803ee_func func_08057F4C, 0x57CDC, 0x59D6C
+    .global func_08057C20
+    .thumb_func
+func_08057C20:
+    push {r4, r5, r6, r7, lr}
+    mov r7, sb
+    mov r6, r8
+    push {r6, r7}
+    adds r5, r0, #0
+    mov sb, r2
+    lsls r1, r1, #0x18
+    lsrs r1, r1, #0x18
+    adds r3, r5, #0
+    adds r3, #0x2c
+    ldrb r2, [r3]
+    movs r0, #4
+    rsbs r0, r0, #0
+    ands r0, r2
+    strb r0, [r3]
+    adds r3, #2
+    movs r0, #1
+    ands r1, r0
+    lsls r1, r1, #5
+    ldrb r2, [r3]
+    subs r0, #0x22
+    ands r0, r2
+    orrs r0, r1
+    strb r0, [r3]
+    movs r2, #0
+    movs r3, #0xff
+.Ljp_08057C54:
+    adds r1, r5, r2
+    ldrb r0, [r1]
+    orrs r0, r3
+    strb r0, [r1]
+    adds r2, #1
+    cmp r2, #0xb
+    ble .Ljp_08057C54
+    movs r4, #0
+.Ljp_08057C64:
+    adds r6, r5, r4
+    adds r0, r4, #1
+    mov r8, r0
+    adds r7, r6, #0
+.Ljp_08057C6C:
+    bl rand
+    asrs r0, r0, #8
+    movs r1, #0x28
+    bl __modsi3
+    strb r0, [r6]
+    movs r2, #0
+    movs r1, #0
+.Ljp_08057C7E:
+    cmp r4, r1
+    beq .Ljp_08057C8E
+    adds r0, r5, r1
+    ldrb r0, [r0]
+    ldrb r3, [r7]
+    cmp r0, r3
+    bne .Ljp_08057C8E
+    movs r2, #1
+.Ljp_08057C8E:
+    adds r1, #1
+    cmp r1, #0xb
+    ble .Ljp_08057C7E
+    cmp r2, #0
+    bne .Ljp_08057C6C
+    mov r4, r8
+    cmp r4, #0xb
+    ble .Ljp_08057C64
+    adds r0, r5, #0
+    mov r1, sb
+    bl func_08057CF4
+    pop {r3, r4}
+    mov r8, r3
+    mov sb, r4
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_08057CB4
+    .thumb_func
+func_08057CB4:
+    push {r4, r5, lr}
+    adds r5, r0, #0
+    adds r5, #0x2c
+    ldrb r4, [r5]
+    lsls r3, r4, #0x1e
+    lsrs r3, r3, #0x1e
+    adds r3, #1
+    movs r2, #3
+    ands r3, r2
+    movs r2, #4
+    rsbs r2, r2, #0
+    ands r2, r4
+    orrs r2, r3
+    strb r2, [r5]
+    bl func_08057CF4
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    jp_code_0803ee_func func_08057CDC, 0x57CDC, 0x57CF4
+    .global func_08057CF4
+    .thumb_func
+func_08057CF4:
+    .incbin "baserom_jp.gba", 0x57CF4, (0x59D6C - 0x57CF4)
     jp_code_0803ee_func func_08059FE0, 0x59D6C, 0x5A17C
     jp_code_0803ee_func func_0805A3F0, 0x5A17C, 0x5A458
     jp_code_0803ee_func func_0805A6E4, 0x5A458, 0x5CC44
