@@ -85261,58 +85261,264 @@ func_0809410C:
     .incbin "baserom_jp.gba", 0x9410C, (0x9412C - 0x9410C)
     jp_code_0803ee_func func_0809412C, 0x9412C, 0x9416C
     jp_code_0803ee_func func_0809416C, 0x9416C, 0x94180
-    jp_code_0803ee_func func_08094180, 0x94180, 0x94184
-    jp_code_0803ee_func func_08094184, 0x94184, 0x94188
+.global func_08094180
+.thumb_func
+func_08094180:
+	bx lr
+.align 2, 0
+.global func_08094184
+.thumb_func
+func_08094184:
+	bx lr
+.align 2, 0
     jp_code_0803ee_func func_08094188, 0x94188, 0x941B0
-    jp_code_0803ee_func func_080941B0, 0x941B0, 0x941B4
-    jp_code_0803ee_func func_080941B4, 0x941B4, 0x941B8
-    jp_code_0803ee_func func_080941B8, 0x941B8, 0x941BC
-    jp_code_0803ee_func func_080941BC, 0x941BC, 0x941C0
-    jp_code_0803ee_func func_080941C0, 0x941C0, 0x941C4
-    jp_code_0803ee_func func_080941C4, 0x941C4, 0x941C8
-    jp_code_0803ee_func func_080941C8, 0x941C8, 0x941CC
-    jp_code_0803ee_func func_080941CC, 0x941CC, 0x941D0
-    jp_code_0803ee_func func_080941D0, 0x941D0, 0x941D4
-    jp_code_0803ee_func func_080941D4, 0x941D4, 0x941D8
-    jp_code_0803ee_func func_080941D8, 0x941D8, 0x941DC
-    jp_code_0803ee_func func_080941DC, 0x941DC, 0x941E0
-    jp_code_0803ee_func func_080941E0, 0x941E0, 0x941E4
-    jp_code_0803ee_func func_080941E4, 0x941E4, 0x941E8
-    jp_code_0803ee_func func_080941E8, 0x941E8, 0x941EC
-    jp_code_0803ee_func func_080941EC, 0x941EC, 0x941F0
-    jp_code_0803ee_func func_080941F0, 0x941F0, 0x941F4
-    jp_code_0803ee_func func_080941F4, 0x941F4, 0x941F8
-    jp_code_0803ee_func func_080941F8, 0x941F8, 0x941FC
-    jp_code_0803ee_func func_080941FC, 0x941FC, 0x94200
-    jp_code_0803ee_func func_08094200, 0x94200, 0x94204
-    jp_code_0803ee_func func_08094204, 0x94204, 0x94208
-    jp_code_0803ee_func func_08094208, 0x94208, 0x9420C
-    jp_code_0803ee_func func_0809420C, 0x9420C, 0x94210
-    jp_code_0803ee_func func_08094210, 0x94210, 0x94218
-    jp_code_0803ee_func func_08094218, 0x94218, 0x9421C
-    jp_code_0803ee_func func_0809421C, 0x9421C, 0x94220
-    jp_code_0803ee_func func_08094220, 0x94220, 0x94224
-    jp_code_0803ee_func func_08094224, 0x94224, 0x94228
-    jp_code_0803ee_func func_08094228, 0x94228, 0x9422C
-    jp_code_0803ee_func func_0809422C, 0x9422C, 0x94230
-    jp_code_0803ee_func func_08094230, 0x94230, 0x94234
-    jp_code_0803ee_func func_08094234, 0x94234, 0x94238
-    jp_code_0803ee_func func_08094238, 0x94238, 0x9423C
-    jp_code_0803ee_func func_0809423C, 0x9423C, 0x94240
-    jp_code_0803ee_func func_08094240, 0x94240, 0x94244
-    jp_code_0803ee_func func_08094244, 0x94244, 0x94248
-    jp_code_0803ee_func func_08094248, 0x94248, 0x9424C
-    jp_code_0803ee_func func_0809424C, 0x9424C, 0x94250
-    jp_code_0803ee_func func_08094250, 0x94250, 0x94254
-    jp_code_0803ee_func func_08094254, 0x94254, 0x94258
-    jp_code_0803ee_func func_08094258, 0x94258, 0x9425C
-    jp_code_0803ee_func func_0809425C, 0x9425C, 0x94260
-    jp_code_0803ee_func func_08094260, 0x94260, 0x94264
-    jp_code_0803ee_func func_08094264, 0x94264, 0x94268
-    jp_code_0803ee_func func_08094268, 0x94268, 0x9426C
-    jp_code_0803ee_func func_0809426C, 0x9426C, 0x94270
-    jp_code_0803ee_func func_08094270, 0x94270, 0x94274
-    jp_code_0803ee_func func_08094274, 0x94274, 0x94278
+.global func_080941B0
+.thumb_func
+func_080941B0:
+	bx lr
+.align 2, 0
+.global func_080941B4
+.thumb_func
+func_080941B4:
+	movs r0, #0
+	bx lr
+.global func_080941B8
+.thumb_func
+func_080941B8:
+	bx lr
+.align 2, 0
+.global func_080941BC
+.thumb_func
+func_080941BC:
+	bx lr
+.align 2, 0
+.global func_080941C0
+.thumb_func
+func_080941C0:
+	movs r0, #0
+	bx lr
+.global func_080941C4
+.thumb_func
+func_080941C4:
+	bx lr
+.align 2, 0
+.global func_080941C8
+.thumb_func
+func_080941C8:
+	bx lr
+.align 2, 0
+.global func_080941CC
+.thumb_func
+func_080941CC:
+	movs r0, #0
+	bx lr
+.global func_080941D0
+.thumb_func
+func_080941D0:
+	bx lr
+.align 2, 0
+.global func_080941D4
+.thumb_func
+func_080941D4:
+	bx lr
+.align 2, 0
+.global func_080941D8
+.thumb_func
+func_080941D8:
+	movs r0, #0
+	bx lr
+.global func_080941DC
+.thumb_func
+func_080941DC:
+	bx lr
+.align 2, 0
+.global func_080941E0
+.thumb_func
+func_080941E0:
+	bx lr
+.align 2, 0
+.global func_080941E4
+.thumb_func
+func_080941E4:
+	movs r0, #0
+	bx lr
+.global func_080941E8
+.thumb_func
+func_080941E8:
+	bx lr
+.align 2, 0
+.global func_080941EC
+.thumb_func
+func_080941EC:
+	bx lr
+.align 2, 0
+.global func_080941F0
+.thumb_func
+func_080941F0:
+	movs r0, #0
+	bx lr
+.global func_080941F4
+.thumb_func
+func_080941F4:
+	bx lr
+.align 2, 0
+.global func_080941F8
+.thumb_func
+func_080941F8:
+	bx lr
+.align 2, 0
+.global func_080941FC
+.thumb_func
+func_080941FC:
+	movs r0, #0
+	bx lr
+.global func_08094200
+.thumb_func
+func_08094200:
+	bx lr
+.align 2, 0
+.global func_08094204
+.thumb_func
+func_08094204:
+	bx lr
+.align 2, 0
+.global func_08094208
+.thumb_func
+func_08094208:
+	movs r0, #0
+	bx lr
+.global func_0809420C
+.thumb_func
+func_0809420C:
+	bx lr
+.align 2, 0
+.global func_08094210
+.thumb_func
+func_08094210:
+	ldr r0, [r0, #0x14]
+	ldr r0, [r0, #8]
+	bx lr
+.align 2, 0
+.global func_08094218
+.thumb_func
+func_08094218:
+	bx lr
+.align 2, 0
+.global func_0809421C
+.thumb_func
+func_0809421C:
+	movs r0, #0
+	bx lr
+.global func_08094220
+.thumb_func
+func_08094220:
+	bx lr
+.align 2, 0
+.global func_08094224
+.thumb_func
+func_08094224:
+	bx lr
+.align 2, 0
+.global func_08094228
+.thumb_func
+func_08094228:
+	movs r0, #0
+	bx lr
+.global func_0809422C
+.thumb_func
+func_0809422C:
+	bx lr
+.align 2, 0
+.global func_08094230
+.thumb_func
+func_08094230:
+	bx lr
+.align 2, 0
+.global func_08094234
+.thumb_func
+func_08094234:
+	movs r0, #0
+	bx lr
+.global func_08094238
+.thumb_func
+func_08094238:
+	bx lr
+.align 2, 0
+.global func_0809423C
+.thumb_func
+func_0809423C:
+	bx lr
+.align 2, 0
+.global func_08094240
+.thumb_func
+func_08094240:
+	movs r0, #0
+	bx lr
+.global func_08094244
+.thumb_func
+func_08094244:
+	bx lr
+.align 2, 0
+.global func_08094248
+.thumb_func
+func_08094248:
+	bx lr
+.align 2, 0
+.global func_0809424C
+.thumb_func
+func_0809424C:
+	movs r0, #0
+	bx lr
+.global func_08094250
+.thumb_func
+func_08094250:
+	bx lr
+.align 2, 0
+.global func_08094254
+.thumb_func
+func_08094254:
+	bx lr
+.align 2, 0
+.global func_08094258
+.thumb_func
+func_08094258:
+	movs r0, #0
+	bx lr
+.global func_0809425C
+.thumb_func
+func_0809425C:
+	bx lr
+.align 2, 0
+.global func_08094260
+.thumb_func
+func_08094260:
+	bx lr
+.align 2, 0
+.global func_08094264
+.thumb_func
+func_08094264:
+	movs r0, #0
+	bx lr
+.global func_08094268
+.thumb_func
+func_08094268:
+	bx lr
+.align 2, 0
+.global func_0809426C
+.thumb_func
+func_0809426C:
+	bx lr
+.align 2, 0
+.global func_08094270
+.thumb_func
+func_08094270:
+	movs r0, #0
+	bx lr
+.global func_08094274
+.thumb_func
+func_08094274:
+	bx lr
+.align 2, 0
     jp_code_0803ee_func func_08094278, 0x94278, 0x942D8
     jp_code_0803ee_func func_08094814, 0x942D8, 0x94438
     jp_code_0803ee_func func_08094974, 0x94438, 0x94510
