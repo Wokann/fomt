@@ -86067,7 +86067,36 @@ func_0809A970:
     .align 2, 0
 .Ljp_0809A3F4: .4byte 0xFFFFF000
     jp_code_0803ee_func func_0809A9C0, 0x9A3F8, 0x9A460
-    jp_code_0803ee_func func_0809AA28, 0x9A460, 0x9A490
+    .global func_0809AA28
+    .thumb_func
+func_0809AA28:
+    push {lr}
+    adds r1, r0, #0
+    movs r3, #0
+    ldr r2, .Ljp_0809A48C
+    adds r0, r1, r2
+    ldrb r0, [r0]
+    cmp r3, r0
+    bge .Ljp_0809A486
+    adds r2, r1, #0
+    adds r1, r0, #0
+.Ljp_0809A474:
+    ldrb r0, [r2, #0x13]
+    lsls r0, r0, #0x1B
+    cmp r0, #0
+    bge .Ljp_0809A47E
+    adds r3, #1
+.Ljp_0809A47E:
+    adds r2, #0x14
+    subs r1, #1
+    cmp r1, #0
+    bne .Ljp_0809A474
+.Ljp_0809A486:
+    adds r0, r3, #0
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_0809A48C: .4byte 0x00000A06
     jp_code_0803ee_func func_0809AA58, 0x9A490, 0x9A50C
     jp_code_0803ee_func func_0809AAD4, 0x9A50C, 0x9A540
     jp_code_0803ee_func func_0809AB08, 0x9A540, 0x9A5C4
