@@ -5599,14 +5599,80 @@ func_08052230: @ 0x08051FC0
 .Ljp_08052064: .4byte gAnimalFestivalRankingScoreTable
     @ Exact JP entries referenced by the raw table at 0x080E7928.
     .section .text.animal_festival_ranking_after
-    jp_code_0803ee_func func_080522F8, 0x52088, 0x536F0
+    jp_code_0803ee_func func_080522F8, 0x52088, 0x52714
+    @ Physical JP callee used by func_08057BEC; its body remains unlifted.
+    .global func_08052714
+    .thumb_func
+func_08052714:
+    .incbin "baserom_jp.gba", 0x52714, (0x536F0 - 0x52714)
     jp_code_0803ee_func func_08053960, 0x536F0, 0x54AC4
     jp_code_0803ee_func func_08054D34, 0x54AC4, 0x55654
     jp_code_0803ee_func func_080558C4, 0x55654, 0x57914
     jp_code_0803ee_func func_08057B84, 0x57914, 0x57AC4
     jp_code_0803ee_func func_08057D34, 0x57AC4, 0x57BAC
-    jp_code_0803ee_func func_08057BAC, 0x57BAC, 0x57BEC
-    jp_code_0803ee_func func_08057BEC, 0x57BEC, 0x57C20
+    .global func_08057BAC
+    .thumb_func
+func_08057BAC:
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    ldr r0, .Ljp_08057BE8
+    str r0, [r4]
+    ldr r1, [r4, #8]
+    cmp r1, #0
+    beq .Ljp_08057BC8
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08057BC8:
+    ldr r1, [r4, #4]
+    cmp r1, #0
+    beq .Ljp_08057BDA
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08057BDA:
+    adds r0, r4, #0
+    adds r1, r5, #0
+    bl func_080007EC
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_08057BE8: .4byte vtable_unk_080E7950
+
+    .global func_08057BEC
+    .thumb_func
+func_08057BEC:
+    push {r4, r5, lr}
+    sub sp, #4
+    adds r5, r0, #0
+    adds r4, r1, #0
+    ldr r1, [r4, #4]
+    mov r0, sp
+    bl func_08052714
+    ldr r1, [sp]
+    cmp r1, #0
+    beq .Ljp_08057C0E
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08057C0E:
+    ldr r1, [r4, #8]
+    movs r0, #0
+    str r0, [r4, #8]
+    str r1, [r5]
+    adds r0, r5, #0
+    add sp, #4
+    pop {r4, r5}
+    pop {r1}
+    bx r1
     .global func_08057C20
     .thumb_func
 func_08057C20:
@@ -5710,7 +5776,23 @@ func_08057CB4:
     bx r0
     .align 2, 0
 
-    jp_code_0803ee_func func_08057CDC, 0x57CDC, 0x57CF4
+    .global func_08057CDC
+    .thumb_func
+func_08057CDC:
+    push {lr}
+    movs r2, #0
+    adds r0, #0x2c
+    ldrb r1, [r0]
+    movs r0, #3
+    ands r0, r1
+    cmp r0, #3
+    bne .Ljp_08057CEE
+    movs r2, #1
+.Ljp_08057CEE:
+    adds r0, r2, #0
+    pop {r1}
+    bx r1
+    .align 2, 0
     .global func_08057CF4
     .thumb_func
 func_08057CF4:
