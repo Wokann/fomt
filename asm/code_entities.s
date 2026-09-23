@@ -1160,7 +1160,37 @@ func_080214D0:
     .global func_0802153C
     .thumb_func
 func_0802153C:
-    .incbin "baserom_jp.gba", 0x2153C, (0x21580 - 0x2153C)
+    push {r4, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    lsls r1, r1, #0x10
+    lsrs r1, r1, #0x10
+    ldr r2, .Ljp_08021578
+    ldr r0, [sp]
+    ands r0, r2
+    orrs r0, r1
+    ldr r1, .Ljp_0802157C
+    ands r0, r1
+    str r0, [sp]
+    ldr r0, [r4, #0x34]
+    mov r1, sp
+    bl method_0809BC24__5HorsePC15UnkBarnAnimal2C
+    adds r0, r4, #0
+    bl func_08021E68
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
+    bl func_08021DDC
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_08021578: .4byte 0xFFFF0000
+.Ljp_0802157C: .4byte 0xFF00FFFF
+
     .global func_08021580
     .thumb_func
 func_08021580:
@@ -4737,17 +4767,37 @@ func_0802173C:
     .global func_080217A8
     .thumb_func
 func_080217A8:
-    .byte 0x10, 0xB5, 0x81, 0xB0, 0x04, 0x1C, 0x09, 0x04
-    .byte 0x09, 0x0C, 0x0C, 0x4A, 0x00, 0x98, 0x10, 0x40, 0x08, 0x43, 0x0B, 0x49, 0x08, 0x40, 0x00, 0x90
-    .byte 0x60, 0x6B, 0x69, 0x46
+    push {r4, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    lsls r1, r1, #0x10
+    lsrs r1, r1, #0x10
+    ldr r2, .L080217E4
+    ldr r0, [sp]
+    ands r0, r2
+    orrs r0, r1
+    ldr r1, .L080217E8
+    ands r0, r1
+    str r0, [sp]
+    ldr r0, [r4, #0x34]
+    mov r1, sp
     bl method_0809BC24__5HorsePC15UnkBarnAnimal2C
-    .byte 0x20, 0x1C
+    adds r0, r4, #0
     bl func_080220D4
-    .byte 0x01, 0x1C
-    .byte 0x20, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x20, 0x1C
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
     bl func_08022048
-    .byte 0x01, 0xB0, 0x10, 0xBC
-    .byte 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.L080217E4: .4byte 0xFFFF0000
+.L080217E8: .4byte 0xFF00FFFF
+
     .global func_080217EC
     .thumb_func
 func_080217EC:

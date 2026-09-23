@@ -2500,6 +2500,22 @@ US、EU、DE 的汇编对象字节和完整符号表均与变更前一致；完�
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。
 
+## `asm/code_entities.s`：四区域宠物动画参数打包回调
+
+JP `func_0802153C`（`0x0802153C`–`0x0802157F`）与海外
+`func_080217A8`（`0x080217A8`–`0x080217EB`）已同步提升为实际 Thumb 指令。它将
+16 位参数合并进原有状态字，交给 Horse/Animal 参数方法处理，再通过当前区域的动画状态和
+朝向函数更新实体。`0xFFFF0000` 与 `0xFF00FFFF` 保持为原始字面量池数据，函数尾部的
+对齐字节由 `.align 2, 0` 保留。
+
+JP 调用的 `func_08021E68`、`func_08021DDC` 与海外的
+`func_080220D4`、`func_08022048` 均为真实物理入口符号，没有固定地址或伪造偏移。
+WSL 四区域完整构建和 ROM 对照均已通过：JP
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`、US
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。
+
 ## `asm/code_entities.s`：四区域宠物实体位置同步与析构回调
 
 JP `func_080214D0`（`0x080214D0`–`0x0802153B`）和海外
