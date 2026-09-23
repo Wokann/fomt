@@ -85243,7 +85243,78 @@ func_0808EF68:
     .global func_080908CC
     .thumb_func
 func_080908CC:
-    .incbin "baserom_jp.gba", 0x9040C, (0x904A0 - 0x9040C)
+    push {r4, r5, r6, lr}
+    sub sp, #12
+    adds r6, r0, #0
+    adds r5, r1, #0
+    mov r0, sp
+    bl func_080CA480
+    cmp r5, #0
+    bne .L08090426
+    ldr r0, [r6, #0x78]
+    bl func_080CAB0C
+    b .L08090454
+.L08090426:
+    cmp r5, #8
+    bgt .L08090440
+    ldr r4, [r6, #0x78]
+    adds r0, r6, #0
+    adds r1, r5, #0
+    movs r2, #0
+    bl func_080CE184
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl func_080CAAF8
+    b .L08090454
+.L08090440:
+    ldr r4, [r6, #0x7c]
+    adds r0, r6, #0
+    adds r1, r5, #0
+    movs r2, #0
+    bl func_080CE184
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl func_080CBF1C
+.L08090454:
+    mov r1, sp
+    ldmia r0!, {r2, r3, r4}
+    stmia r1!, {r2, r3, r4}
+    movs r1, #0
+    ldr r0, [sp, #4]
+    cmp r0, #0
+    beq .L08090468
+    ldr r0, [sp, #8]
+    cmp r0, #0
+    bne .L0809046A
+.L08090468:
+    movs r1, #1
+.L0809046A:
+    cmp r1, #0
+    bne .L08090492
+    adds r0, r6, #0
+    adds r0, #0x80
+    ldr r1, .L0809049C
+    ldr r1, [r1]
+    movs r2, #0
+    movs r3, #0
+    bl func_08050DC8
+    movs r0, #0x84
+    lsls r0, r0, #1
+    adds r1, r6, r0
+    movs r0, #1
+    str r0, [r1]
+    adds r0, r6, #0
+    adds r0, #0xc
+    movs r1, #0xc7
+    bl func_08008B6C
+.L08090492:
+    add sp, #12
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.L0809049C:
+    .4byte gItemDiscardCannotDiscardTextRef
     .global func_08090960
     .thumb_func
 func_08090960:

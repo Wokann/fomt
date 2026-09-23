@@ -2129,3 +2129,10 @@ JP ToolChest 虚表辅助组 `0x0808E848`–`0x0808E8F7` 已提升为实际 Thum
 `gText_ToolChest_EmptyDescription`，并保留原 ROM 的两字节零填充。该组没有包装
 `incbin`、别名、固定地址跳转或 `symbol + offset`；JP 重建以及其余三版分支汇编和
 四份当前 ROM 均与各自基准逐字节一致。
+
+JP ToolChest 条目确认处理函数 `func_080908CC`
+（`0x0809040C`–`0x08090499`）已提升为显式 Thumb 指令。其三类条目查询直接调用
+`func_080CAB0C`、`func_080CAAF8`、`func_080CBF1C` 和 `func_080CE184`；原先位于
+保留范围内的结构清零 helper `0x080CA480` 现为实际物理标签 `func_080CA480`。末尾
+literal 直接重定位至 `gItemDiscardCannotDiscardTextRef`，再经其指针取得不可丢弃提示，
+不使用地址字或别名。JP 完整重建逐字节匹配基准，其他三区域分支也通过汇编验证。

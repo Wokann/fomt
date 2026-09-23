@@ -64569,7 +64569,11 @@ func_080CA3B0:
     .global func_080CA3FC
     .thumb_func
 func_080CA3FC:
-    .incbin "baserom_jp.gba", 0xCA3FC, (0xCA5C4 - 0xCA3FC)
+    .incbin "baserom_jp.gba", 0xCA3FC, (0xCA480 - 0xCA3FC)
+    .global func_080CA480
+    .thumb_func
+func_080CA480:
+    .incbin "baserom_jp.gba", 0xCA480, (0xCA5C4 - 0xCA480)
     .global func_080CADB4
     .thumb_func
 func_080CADB4:
