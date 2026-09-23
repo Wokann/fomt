@@ -211,11 +211,306 @@ func_08004C54:
     .global func_08004C68
     .thumb_func
 func_08004C68:
-    .incbin "baserom_jp.gba", 0x4C80, 0x280
-    .4byte gText_NewGameIdentity_PlayerPrefix
-    .4byte gText_NewGameIdentity_FarmPrefix
-    .4byte gText_NewGameIdentity_DogPrefix
-    .incbin "baserom_jp.gba", 0x4F0C, 0x21C
+    push {r4, r5, r6, r7, lr}
+    mov r7, sl
+    mov r6, sb
+    mov r5, r8
+    push {r5, r6, r7}
+    sub sp, #0x5c
+    str r0, [sp, #0x4c]
+    add r0, sp, #4
+    bl func_08008980
+    movs r0, #0x23
+    bl func_08008DB8
+    add r4, sp, #8
+    movs r0, #0
+    strb r0, [r4]
+    add r3, sp, #0x18
+    strb r0, [r3]
+    add r2, sp, #0x28
+    strb r0, [r2]
+    subs r0, #4
+    mov r1, r8
+    ands r0, r1
+    movs r1, #0x7d
+    rsbs r1, r1, #0
+    ands r0, r1
+    mov r8, r0
+    mov sb, r3
+    mov r0, sp
+    adds r0, #0x38
+    str r0, [sp, #0x54]
+    mov r1, sp
+    adds r1, #0x44
+    str r1, [sp, #0x58]
+    adds r6, r0, #0
+    add r0, sp, #8
+    mov sl, r0
+    add r7, sp, #0x40
+.Ljp_08004CB4:
+    adds r0, r6, #0
+    ldr r1, .Ljp_08004EE8 @ =gText_NewGameIdentity_PlayerPrefix
+    mov r2, sl
+    bl func_08007078
+    adds r0, r7, #0
+    adds r1, r6, #0
+    bl func_080070D4
+    ldr r1, [sp, #0x40]
+    cmp r1, #0
+    beq .Ljp_08004CD8
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08004CD8:
+    adds r0, r6, #0
+    bl func_08007110
+    adds r5, r0, #0
+    bl strlen
+    adds r4, r0, #0
+    cmp r4, #0xc
+    bls .Ljp_08004CEC
+    movs r4, #0xc
+.Ljp_08004CEC:
+    mov r0, sl
+    adds r1, r5, #0
+    adds r2, r4, #0
+    bl memcpy
+    mov r1, sl
+    adds r0, r1, r4
+    movs r1, #0
+    strb r1, [r0]
+    adds r0, r6, #0
+    movs r1, #2
+    bl func_080070A4
+    adds r0, r6, #0
+    mov r1, r8
+    bl func_0806E9D8
+    adds r0, r7, #0
+    adds r1, r6, #0
+    bl func_0806EA30
+    ldr r1, [sp, #0x40]
+    cmp r1, #0
+    beq .Ljp_08004D28
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08004D28:
+    adds r0, r6, #0
+    bl func_0806EA6C
+    mov r8, r0
+    adds r0, r6, #0
+    movs r1, #2
+    bl func_0806EA00
+    adds r0, r6, #0
+    ldr r1, .Ljp_08004EEC @ =gText_NewGameIdentity_FarmPrefix
+    mov r2, sb
+    bl func_08007078
+    adds r0, r7, #0
+    adds r1, r6, #0
+    bl func_080070D4
+    ldr r1, [sp, #0x40]
+    cmp r1, #0
+    beq .Ljp_08004D5C
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08004D5C:
+    adds r0, r6, #0
+    bl func_08007110
+    adds r5, r0, #0
+    bl strlen
+    adds r4, r0, #0
+    cmp r4, #0xc
+    bls .Ljp_08004D70
+    movs r4, #0xc
+.Ljp_08004D70:
+    mov r0, sb
+    adds r1, r5, #0
+    adds r2, r4, #0
+    bl memcpy
+    mov r1, sb
+    adds r0, r1, r4
+    movs r1, #0
+    strb r1, [r0]
+    adds r0, r6, #0
+    movs r1, #2
+    bl func_080070A4
+    adds r0, r6, #0
+    ldr r1, .Ljp_08004EF0 @ =gText_NewGameIdentity_DogPrefix
+    add r2, sp, #0x28
+    bl func_08007078
+    adds r0, r7, #0
+    adds r1, r6, #0
+    bl func_080070D4
+    ldr r1, [sp, #0x40]
+    cmp r1, #0
+    beq .Ljp_08004DAE
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08004DAE:
+    adds r0, r6, #0
+    bl func_08007110
+    adds r5, r0, #0
+    bl strlen
+    adds r4, r0, #0
+    cmp r4, #0xc
+    bls .Ljp_08004DC2
+    movs r4, #0xc
+.Ljp_08004DC2:
+    add r0, sp, #0x28
+    adds r1, r5, #0
+    adds r2, r4, #0
+    bl memcpy
+    mov r0, sp
+    adds r0, r0, r4
+    adds r0, #0x28
+    movs r1, #0
+    strb r1, [r0]
+    adds r0, r6, #0
+    movs r1, #2
+    bl func_080070A4
+    add r0, sp, #0x28
+    str r0, [sp]
+    adds r0, r6, #0
+    mov r1, sl
+    mov r2, r8
+    mov r3, sb
+    bl func_0800598C
+    adds r0, r7, #0
+    adds r1, r6, #0
+    bl func_08005A00
+    ldr r1, [sp, #0x40]
+    cmp r1, #0
+    beq .Ljp_08004E08
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08004E08:
+    adds r0, r6, #0
+    bl func_08005A3C
+    adds r4, r0, #0
+    lsls r4, r4, #0x18
+    lsrs r4, r4, #0x18
+    adds r0, r6, #0
+    movs r1, #2
+    bl func_080059D0
+    cmp r4, #0
+    bne .Ljp_08004E22
+    b .Ljp_08004CB4
+.Ljp_08004E22:
+    movs r0, #0x38
+    bl __builtin_new
+    adds r6, r0, #0
+    mov r0, sb
+    add r1, sp, #8
+    mov sl, r1
+    mov r1, sp
+    adds r1, #0x28
+    str r1, [sp, #0x50]
+    ldr r1, .Ljp_08004EF4 @ =__vt_13AUnk_0800080C
+    str r1, [r6]
+    ldr r1, .Ljp_08004EF8 @ =vtable_unk_080E5A78
+    adds r5, r6, #0
+    stm r5!, {r1}
+    bl strlen
+    adds r4, r0, #0
+    cmp r4, #0xc
+    bls .Ljp_08004E4C
+    movs r4, #0xc
+.Ljp_08004E4C:
+    adds r0, r5, #0
+    mov r1, sb
+    adds r2, r4, #0
+    bl memcpy
+    adds r0, r5, r4
+    movs r7, #0
+    strb r7, [r0]
+    adds r5, r6, #0
+    adds r5, #0x14
+    mov r0, sl
+    bl strlen
+    adds r4, r0, #0
+    cmp r4, #0xc
+    bls .Ljp_08004E6E
+    movs r4, #0xc
+.Ljp_08004E6E:
+    adds r0, r5, #0
+    add r1, sp, #8
+    adds r2, r4, #0
+    bl memcpy
+    adds r0, r5, r4
+    strb r7, [r0]
+    adds r0, r6, #0
+    adds r0, #0x24
+    mov r1, r8
+    strb r1, [r0]
+    adds r5, r6, #0
+    adds r5, #0x28
+    ldr r0, [sp, #0x50]
+    bl strlen
+    adds r4, r0, #0
+    cmp r4, #0xc
+    bls .Ljp_08004E96
+    movs r4, #0xc
+.Ljp_08004E96:
+    adds r0, r5, #0
+    add r1, sp, #0x28
+    adds r2, r4, #0
+    bl memcpy
+    adds r0, r5, r4
+    movs r1, #0
+    strb r1, [r0]
+    str r6, [sp, #0x38]
+    ldr r0, [sp, #0x54]
+    str r0, [sp, #0x44]
+    ldr r1, [sp, #0x58]
+    str r6, [r1, #4]
+    movs r0, #0
+    ldr r1, [sp, #0x54]
+    str r0, [r1]
+    ldr r0, [sp, #0x4c]
+    str r6, [r0]
+    ldr r1, [sp, #0x38]
+    cmp r1, #0
+    beq .Ljp_08004ECC
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08004ECC:
+    add r0, sp, #4
+    movs r1, #2
+    bl func_08008A68
+    ldr r0, [sp, #0x4c]
+    add sp, #0x5c
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_08004EE8: .4byte gText_NewGameIdentity_PlayerPrefix
+.Ljp_08004EEC: .4byte gText_NewGameIdentity_FarmPrefix
+.Ljp_08004EF0: .4byte gText_NewGameIdentity_DogPrefix
+.Ljp_08004EF4: .4byte __vt_13AUnk_0800080C
+.Ljp_08004EF8: .4byte vtable_unk_080E5A78
+
+    .incbin "baserom_jp.gba", 0x4F14, (0x5128 - 0x4F14)
+
     .4byte gText_NewGameIdentity_BirthMonthSuffix
     .4byte gText_NewGameIdentity_BirthDaySuffix
     .incbin "baserom_jp.gba", 0x5130, 0x8
@@ -232,7 +527,12 @@ func_080050C8:
     .4byte gText_NewGameIdentity_Confirm
     .4byte gText_NewGameIdentity_Yes
     .4byte gText_NewGameIdentity_No
-    .incbin "baserom_jp.gba", 0x57E4, 0xC0
+    .incbin "baserom_jp.gba", 0x57E4, (0x5860 - 0x57E4)
+
+    .global func_0800598C
+    .thumb_func
+func_0800598C:
+    .incbin "baserom_jp.gba", 0x5860, (0x58A4 - 0x5860)
 
     .global func_080059D0
     .thumb_func
@@ -242,7 +542,12 @@ func_080059D0:
     .global func_08005A00
     .thumb_func
 func_08005A00:
-    .incbin "baserom_jp.gba", 0x58D4, 0x134
+    .incbin "baserom_jp.gba", 0x58D4, (0x5910 - 0x58D4)
+
+    .global func_08005A3C
+    .thumb_func
+func_08005A3C:
+    .incbin "baserom_jp.gba", 0x5910, (0x5A08 - 0x5910)
     .4byte gText_NewGameNameEntry_Placeholder
 
     .global func_08005B38
