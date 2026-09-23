@@ -85546,7 +85546,38 @@ func_08094274:
 	bx lr
 .align 2, 0
     jp_code_0803ee_func func_08094278, 0x94278, 0x942D8
-    jp_code_0803ee_func func_08094814, 0x942D8, 0x94438
+    .global func_08094814
+    .thumb_func
+func_08094814:
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    ldr r0, [r4, #4]
+    cmp r0, #0
+    beq .Ljp_080942E8
+    bl __builtin_vec_delete
+.Ljp_080942E8:
+    ldr r0, [r4, #8]
+    cmp r0, #0
+    beq .Ljp_080942F2
+    bl __builtin_vec_delete
+.Ljp_080942F2:
+    movs r0, #1
+    ands r0, r5
+    cmp r0, #0
+    beq .Ljp_08094300
+    adds r0, r4, #0
+    bl __builtin_delete
+.Ljp_08094300:
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_08094844
+    .thumb_func
+func_08094844:
+    .incbin "baserom_jp.gba", 0x94308, (0x94438 - 0x94308)
     jp_code_0803ee_func func_08094974, 0x94438, 0x94510
     jp_code_0803ee_func func_08094A3C, 0x94510, 0x94A40
     jp_code_0803ee_func func_08094F6C, 0x94A40, 0x969A4
