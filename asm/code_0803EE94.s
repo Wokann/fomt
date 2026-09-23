@@ -85163,8 +85163,17 @@ func_080935A0:
     jp_code_0803ee_func func_080938B0, 0x938B0, 0x938E4
     jp_code_0803ee_func func_080938E4, 0x938E4, 0x939B0
     jp_code_0803ee_func func_080939B0, 0x939B0, 0x939E4
-    jp_code_0803ee_func func_080939E4, 0x939E4, 0x939E8
-    jp_code_0803ee_func func_080939E8, 0x939E8, 0x939EC
+.global func_080939E4
+.thumb_func
+func_080939E4:
+	ldrb r0, [r0, #0xd]
+	bx lr
+
+.global func_080939E8
+.thumb_func
+func_080939E8:
+	ldr r0, [r0, #0x10]
+	bx lr
     jp_code_0803ee_func func_080939EC, 0x939EC, 0x93A0C
     jp_code_0803ee_func func_08093A0C, 0x93A0C, 0x93A74
     .global func_08093FB0
