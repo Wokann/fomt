@@ -1043,7 +1043,64 @@ func_080213C8:
     .global func_08021450
     .thumb_func
 func_08021450:
-    .incbin "baserom_jp.gba", 0x21450, (0x214D0 - 0x21450)
+    push {r4, r5, r6, lr}
+    sub sp, #8
+    adds r6, r0, #0
+    adds r4, r1, #0
+    adds r5, r2, #0
+    mov r0, sp
+    adds r1, r5, #0
+    bl __5ActorRC5Actor
+    ldr r3, .Ljp_080214C8
+    adds r0, r6, #0
+    adds r1, r4, #0
+    mov r2, sp
+    bl __15Entity_080E6554P10GameObjectRC13ActorLocationUi
+    ldr r0, .Ljp_080214CC
+    str r0, [r6, #0x14]
+    str r5, [r6, #0x34]
+    adds r1, r6, #0
+    adds r1, #0x3d
+    movs r0, #0
+    strb r0, [r1]
+    ldr r0, [r4]
+    ldr r2, [r0, #0x40]
+    adds r0, r4, #0
+    movs r1, #0
+    bl _call_via_r2
+    adds r2, r0, #0
+    movs r0, #0
+    cmp r2, #0
+    beq .Ljp_080214A2
+    ldr r0, [r2, #0x14]
+    ldr r1, [r0, #0x40]
+    adds r0, r2, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    lsrs r0, r0, #0x18
+    rsbs r0, r0, #0
+    lsrs r0, r0, #0x1f
+.Ljp_080214A2:
+    adds r1, r6, #0
+    adds r1, #0x3e
+    strb r0, [r1]
+    adds r0, r6, #0
+    bl func_08021E68
+    adds r1, r0, #0
+    adds r0, r6, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r6, #0
+    bl func_08021DDC
+    adds r0, r6, #0
+    add sp, #8
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_080214C8: .4byte 0x00000782
+.Ljp_080214CC: .4byte vtable_unk_080E6428
+
     .global func_080214D0
     .thumb_func
 func_080214D0:
@@ -1063,7 +1120,18 @@ func_08021580:
 func_08021C3C:
     .incbin "baserom_jp.gba", 0x21C3C, (0x21D3C - 0x21C3C)
     .4byte gUnk_080F09AC
-    .incbin "baserom_jp.gba", 0x21D40, (0x21E94 - 0x21D40)
+    .incbin "baserom_jp.gba", 0x21D40, (0x21DDC - 0x21D40)
+
+    .global func_08021DDC
+    .thumb_func
+func_08021DDC:
+    .incbin "baserom_jp.gba", 0x21DDC, (0x21E68 - 0x21DDC)
+
+    .global func_08021E68
+    .thumb_func
+func_08021E68:
+    .incbin "baserom_jp.gba", 0x21E68, (0x21E94 - 0x21E68)
+
     .global func_08021E94
     .thumb_func
 func_08021E94:
@@ -1953,7 +2021,7 @@ func_08020310: @ 0x08020310
     adds r0, r6, #0
     adds r1, r7, #0
     add r2, sp, #4
-    bl func_08020038
+    bl __15Entity_080E6554P10GameObjectRC13ActorLocationUi
     ldr r0, .L08020378 @ =vtable_unk_080E64C8
     str r0, [r6, #0x14]
     str r4, [r6, #0x34]

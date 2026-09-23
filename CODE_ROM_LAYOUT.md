@@ -2500,6 +2500,24 @@ US、EU、DE 的汇编对象字节和完整符号表均与变更前一致；完�
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。
 
+## `asm/code_entities.s`：JP 宠物实体初始化回调
+
+JP `func_08021450` 的物理范围 `0x08021450`–`0x080214CF` 已从直接 `.incbin`
+提升为 Thumb 指令，与海外既有的 `func_080216BC` 逐指令对应。它构造 Actor/Entity
+基类、写入区域对应的 `vtable_unk_080E6428`、查询虚表状态，并以该状态设置动画和朝向。
+海外调用也改为直接使用真实的 Entity 构造函数符号，而非兼容别名。
+
+此函数调用的两个尚未提升 JP 函数已在其实际物理入口分别标注为
+`func_08021DDC`（`0x08021DDC`）和 `func_08021E68`（`0x08021E68`）；它们保留
+直接 `.incbin`，没有用 `.set` 或地址偏移伪造关联。原函数末尾的两字节填充继续由
+`.align 2, 0` 输出，下一块从 `func_080214D0` 直接开始。
+
+ARM/Thumb 字节反汇编与海外函数逐指令比对后，WSL 四区域完整构建和 ROM 对照均已
+通过：JP `A655B2789AED14A6AC78C6075FBC533D3062DBE3`、US
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。
+
 ## `src/script_engine.cc`：JP 原始入口直写
 
 JP 的脚本引擎原始范围 `0x0803EB08`–`0x0803F703` 之前以
