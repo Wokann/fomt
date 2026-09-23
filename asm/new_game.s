@@ -1214,7 +1214,12 @@ func_08005A58:
     .global func_08005B38
     .thumb_func
 func_08005B38:
-    .incbin "baserom_jp.gba", 0x5A0C, 0x3E0
+    .incbin "baserom_jp.gba", 0x5A0C, (0x5A3C - 0x5A0C)
+
+    .global func_08005B68
+    .thumb_func
+func_08005B68:
+    .incbin "baserom_jp.gba", 0x5A3C, (0x5DEC - 0x5A3C)
     .4byte gText_NewGameNameEntry_NameLabel
     .incbin "baserom_jp.gba", 0x5DF0, 0x6C0
     @ This is the one-row-before base consumed by the keyboard-row renderer,
@@ -1237,22 +1242,100 @@ func_08005B38:
     .global func_08007078
     .thumb_func
 func_08007078:
-    .incbin "baserom_jp.gba", 0x7080, 0x2C
+    push {r4, r5, r6, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    adds r6, r2, #0
+    ldr r0, .Ljp_0800709C @ =vtable_unk_080E5AC0
+    str r0, [r4]
+    movs r0, #0x8b
+    lsls r0, r0, #7
+    bl __builtin_new
+    adds r1, r5, #0
+    adds r2, r6, #0
+    bl func_08005A58
+    str r0, [r4, #4]
+    adds r0, r4, #0
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_0800709C: .4byte vtable_unk_080E5AC0
 
     .global func_080070A4
     .thumb_func
 func_080070A4:
-    .incbin "baserom_jp.gba", 0x70AC, 0x30
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    ldr r0, .Ljp_080070D0 @ =vtable_unk_080E5AC0
+    str r0, [r4]
+    ldr r1, [r4, #4]
+    cmp r1, #0
+    beq .Ljp_080070C0
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_080070C0:
+    adds r0, r4, #0
+    adds r1, r5, #0
+    bl func_080007EC
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_080070D0: .4byte vtable_unk_080E5AC0
 
     .global func_080070D4
     .thumb_func
 func_080070D4:
-    .incbin "baserom_jp.gba", 0x70DC, 0x3C
+    push {r4, lr}
+    sub sp, #0xc
+    adds r4, r0, #0
+    ldr r1, [r1, #4]
+    mov r0, sp
+    bl func_08005B68
+    ldr r2, [sp]
+    mov r0, sp
+    str r0, [sp, #4]
+    str r2, [sp, #8]
+    adds r1, r0, #0
+    movs r0, #0
+    str r0, [r1]
+    str r2, [r4]
+    ldr r1, [sp]
+    cmp r1, #0
+    beq .Ljp_08007104
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08007104:
+    adds r0, r4, #0
+    add sp, #0xc
+    pop {r4}
+    pop {r1}
+    bx r1
+    .align 2, 0
 
     .global func_08007110
     .thumb_func
 func_08007110:
-    .incbin "baserom_jp.gba", 0x7118, 0x18
+    ldr r0, [r0, #4]
+    ldr r1, .Ljp_08007118 @ =0x0000455C
+    adds r0, r0, r1
+    bx lr
+    .align 2, 0
+.Ljp_08007118: .4byte 0x0000455C
+.Ljp_0800711C:
+    ldr r1, .Ljp_08007128 @ =0x0000455C
+    adds r0, r0, r1
+    bx lr
+    .align 2, 0
+.Ljp_08007128: .4byte 0x0000455C
     .else
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
