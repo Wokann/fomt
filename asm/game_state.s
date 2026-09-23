@@ -131,7 +131,16 @@ func_08011550:
     .incbin "baserom_jp.gba", 0x11530, (0x11548 - 0x11530)
     .incbin "baserom_jp.gba", 0x11548, (0x11568 - 0x11548)
     .incbin "baserom_jp.gba", 0x11568, (0x11590 - 0x11568)
-    .incbin "baserom_jp.gba", 0x11590, (0x11914 - 0x11590)
+
+    .global func_080115B0
+    .thumb_func
+func_080115B0:
+    .incbin "baserom_jp.gba", 0x11590, (0x11630 - 0x11590)
+
+    .global func_08011650
+    .thumb_func
+func_08011650:
+    .incbin "baserom_jp.gba", 0x11630, (0x11914 - 0x11630)
 
     .incbin "baserom_jp.gba", 0x11914, (0x1198C - 0x11914)
     .4byte gText_AnimalMemorial_LineBreak

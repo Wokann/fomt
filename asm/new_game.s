@@ -1008,10 +1008,286 @@ func_08003EEC:
     .align 2, 0
 .Ljp_08003FAC: .4byte gText_NewGameHelp_NameDisplay
 .Ljp_08003FB0: .4byte gText_NewGameMenu_Blank
-    .incbin "baserom_jp.gba", 0x3FB4, 0x100
-    .4byte gText_NewGameSave_SaveFailed
-    .incbin "baserom_jp.gba", 0x40B8, 0x138
-    .4byte gText_NewGameSave_LoadFailed
+    .global func_08003F9C
+    .thumb_func
+func_08003F9C:
+    push	{r4, r5, r6, r7, lr}
+    mov	r7, sl
+    mov	r6, r9
+    mov	r5, r8
+    push	{r5, r6, r7}
+    sub	sp, #24
+    adds	r5, r0, #0
+    ldr	r0, [r5, #8]
+    cmp	r0, #0
+    beq.n .Ljp_08004082
+    adds	r0, r5, #0
+    adds	r0, #133
+    ldrb	r0, [r0, #0]
+    mov	r8, r0
+    adds	r4, r5, #0
+    adds	r4, #144
+    adds	r0, r4, #0
+    mov	r1, r8
+    bl func_080003DC
+    str	r0, [sp, #4]
+    movs	r0, #3
+    mov	r9, r0
+    adds	r7, r4, #0
+    adds	r1, r5, #0
+    adds	r1, #16
+    str	r1, [sp, #16]
+    adds	r0, r5, #0
+    adds	r0, #140
+    str	r0, [sp, #12]
+    adds	r1, #8
+    str	r1, [sp, #20]
+    mov	r0, sp
+    str	r0, [sp, #8]
+    mov	r1, r8
+    lsls	r6, r1, #7
+    adds	r4, r6, r5
+    adds	r4, #152
+    movs	r0, #128
+    lsls	r0, r0, #5
+    mov	sl, r0
+.Ljp_08004006:
+    mov	r0, sl
+    bl func_08000528
+    mov	r1, sl
+    ands	r1, r0
+    ldr	r0, [sp, #8]
+    strh	r1, [r0, #0]
+    ldr	r0, [r5, #8]
+    adds	r1, r7, #0
+    ldr	r2, [sp, #4]
+    bl	func_080115B0
+    cmp	r0, #0
+    bne.n .Ljp_0800406A
+    adds	r1, r6, #0
+    adds	r1, #152
+    ldr	r2, [r5, #8]
+    adds	r0, r5, #0
+    adds	r1, r5, r1
+    bl func_08003788
+    ldr	r0, [sp, #16]
+    adds	r1, r4, #0
+    movs	r2, #0
+    movs	r3, #0
+    bl func_08050DC8
+    movs	r0, #3
+    ldr	r1, [sp, #12]
+    str	r0, [r1, #0]
+    ldr	r0, [sp, #20]
+    movs	r1, #197
+    bl func_08008B6C
+    adds	r0, r7, #0
+    mov	r1, r8
+    bl func_080003E8
+    adds	r0, r7, #0
+    mov	r1, r8
+    bl func_08000470
+    mov	r1, sp
+    ldrh	r0, [r1, #0]
+    cmp	r0, #0
+    beq.n .Ljp_08004066
+    bl func_080004F4
+.Ljp_08004066:
+    movs	r0, #1
+    b.n .Ljp_080040A4
+.Ljp_0800406A:
+    mov	r1, sp
+    ldrh	r0, [r1, #0]
+    cmp	r0, #0
+    beq.n .Ljp_08004076
+    bl func_080004F4
+.Ljp_08004076:
+    movs	r0, #1
+    negs	r0, r0
+    add	r9, r0
+    mov	r1, r9
+    cmp	r1, #0
+    bne.n .Ljp_08004006
+.Ljp_08004082:
+    adds	r0, r5, #0
+    adds	r0, #16
+    ldr	r1, .Ljp_080040B4
+    movs	r2, #0
+    movs	r3, #0
+    bl func_08050DC8
+    adds	r1, r5, #0
+    adds	r1, #140
+    movs	r0, #3
+    str	r0, [r1, #0]
+    adds	r0, r5, #0
+    adds	r0, #24
+    movs	r1, #199
+    bl func_08008B6C
+    movs	r0, #0
+.Ljp_080040A4:
+    add	sp, #24
+    pop	{r3, r4, r5}
+    mov	r8, r3
+    mov	r9, r4
+    mov	sl, r5
+    pop	{r4, r5, r6, r7}
+    pop	{r1}
+    bx	r1
+    .align 2, 0
+.Ljp_080040B4: .4byte gText_NewGameSave_SaveFailed
+
+    .global func_080040A0
+    .thumb_func
+func_080040A0:
+    push	{r4, r5, r6, r7, lr}
+    mov	r7, sl
+    mov	r6, r9
+    mov	r5, r8
+    push	{r5, r6, r7}
+    sub	sp, #16
+    adds	r6, r0, #0
+    adds	r0, #133
+    ldrb	r0, [r0, #0]
+    mov	r8, r0
+    adds	r4, r6, #0
+    adds	r4, #144
+    adds	r0, r4, #0
+    mov	r1, r8
+    bl func_080003DC
+    mov	sl, r0
+    movs	r0, #0
+    str	r0, [sp, #8]
+    movs	r7, #3
+    add	r0, sp, #8
+    mov	r9, r0
+    str	r4, [sp, #12]
+.Ljp_080040E6:
+    mov	r5, sp
+    movs	r4, #128
+    lsls	r4, r4, #5
+    adds	r0, r4, #0
+    bl func_08000528
+    ands	r4, r0
+    strh	r4, [r5, #0]
+    ldr	r0, .Ljp_08004130
+    bl __builtin_new
+    adds	r1, r6, #0
+    adds	r1, #144
+    mov	r2, sl
+    mov	r3, r9
+    bl	func_08011650
+    adds	r1, r0, #0
+    str	r1, [sp, #4]
+    ldr	r0, [sp, #8]
+    cmp	r0, #0
+    bne.n .Ljp_08004194
+    ldr	r4, [r6, #8]
+    cmp	r4, #0
+    beq.n .Ljp_08004134
+    adds	r0, r4, #0
+    movs	r1, #2
+    bl func_080D4480
+    ldr	r0, [r6, #8]
+    cmp	r0, #0
+    beq.n .Ljp_08004162
+    ldr	r1, [sp, #4]
+    bl func_080D4178
+    b.n .Ljp_08004162
+    .align 2, 0
+.Ljp_08004130: .4byte 0x000034F4
+.Ljp_08004134:
+    movs	r0, #8
+    bl __builtin_new
+    ldr	r1, .Ljp_08004190
+    str	r1, [r0, #0]
+    ldr	r1, [sp, #4]
+    str	r4, [sp, #4]
+    str	r1, [r0, #4]
+    adds	r5, r6, #0
+    adds	r5, #12
+    adds	r4, r0, #0
+    ldr	r1, [r6, #12]
+    cmp	r4, r1
+    beq.n .Ljp_08004160
+    cmp	r1, #0
+    beq.n .Ljp_08004160
+    ldr	r0, [r1, #0]
+    ldr	r2, [r0, #8]
+    adds	r0, r1, #0
+    movs	r1, #3
+    bl _call_via_r2
+.Ljp_08004160:
+    str	r4, [r5, #0]
+.Ljp_08004162:
+    adds	r0, r6, #0
+    adds	r0, #24
+    movs	r1, #197
+    bl func_08008B6C
+    ldr	r0, [sp, #12]
+    mov	r1, r8
+    bl func_08000470
+    ldr	r0, [sp, #4]
+    cmp	r0, #0
+    beq.n .Ljp_08004180
+    movs	r1, #3
+    bl func_080D4480
+.Ljp_08004180:
+    mov	r1, sp
+    ldrh	r0, [r1, #0]
+    cmp	r0, #0
+    beq.n .Ljp_0800418C
+    bl func_080004F4
+.Ljp_0800418C:
+    movs	r0, #1
+    b.n .Ljp_080041DE
+    .align 2, 0
+.Ljp_08004190: .4byte vtable_unk_080E5A4C
+.Ljp_08004194:
+    movs	r0, #0
+    str	r0, [sp, #4]
+    adds	r0, r1, #0
+    bl __builtin_delete
+    ldr	r0, [sp, #4]
+    cmp	r0, #0
+    beq.n .Ljp_080041AA
+    movs	r1, #3
+    bl func_080D4480
+.Ljp_080041AA:
+    mov	r1, sp
+    ldrh	r0, [r1, #0]
+    cmp	r0, #0
+    beq.n .Ljp_080041B6
+    bl func_080004F4
+.Ljp_080041B6:
+    subs	r7, #1
+    cmp	r7, #0
+    bne.n .Ljp_080040E6
+    adds	r0, r6, #0
+    adds	r0, #16
+    ldr	r1, .Ljp_080041F0
+    movs	r2, #0
+    movs	r3, #0
+    bl func_08050DC8
+    adds	r1, r6, #0
+    adds	r1, #140
+    movs	r0, #3
+    str	r0, [r1, #0]
+    adds	r0, r6, #0
+    adds	r0, #24
+    movs	r1, #199
+    bl func_08008B6C
+    movs	r0, #0
+.Ljp_080041DE:
+    add	sp, #16
+    pop	{r3, r4, r5}
+    mov	r8, r3
+    mov	r9, r4
+    mov	sl, r5
+    pop	{r4, r5, r6, r7}
+    pop	{r1}
+    bx	r1
+    .align 2, 0
+.Ljp_080041F0: .4byte gText_NewGameSave_LoadFailed
     .global func_080041DC
     .thumb_func
 func_080041DC:
