@@ -2948,7 +2948,44 @@ func_08024A64:
     .global func_08024DAC
     .thumb_func
 func_08024DAC:
-    .incbin "baserom_jp.gba", 0x24DAC, (0x24DFC - 0x24DAC)
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    adds r1, r4, #0
+    adds r1, #0xC1
+    movs r0, #0
+    strb r0, [r1]
+    adds r0, r4, #0
+    adds r0, #0xC2
+    ldrb r0, [r0]
+    cmp r0, #0
+    bne .L08024DF6
+    adds r0, r4, #0
+    adds r0, #0xC0
+    ldrb r0, [r0]
+    cmp r0, #0
+    beq .L08024DEE
+    adds r0, r4, #0
+    movs r1, #0
+    movs r2, #0
+    bl func_0802EE80
+    adds r0, r4, #0
+    bl func_0802CEEC
+    lsls r0, r0, #0x10
+    lsrs r1, r0, #0x10
+    ldrh r0, [r4, #0x22]
+    cmp r0, r1
+    beq .L08024DEE
+    adds r0, r4, #0
+    bl SetAnim__12AActorEntityUi
+.L08024DEE:
+    adds r0, r4, #0
+    adds r1, r5, #0
+    bl func_0803242C
+.L08024DF6:
+    pop {r4, r5}
+    pop {r0}
+    bx r0
     .global func_08024DFC
     .thumb_func
 func_08024DFC:
@@ -3060,7 +3097,15 @@ func_0802BFA4:
     .global func_0802C068
     .thumb_func
 func_0802C068:
-    .incbin "baserom_jp.gba", 0x2C068, (0x31DAC - 0x2C068)
+    .incbin "baserom_jp.gba", 0x2C068, (0x2CEEC - 0x2C068)
+    .global func_0802CEEC
+    .thumb_func
+func_0802CEEC:
+    .incbin "baserom_jp.gba", 0x2CEEC, (0x2EE80 - 0x2CEEC)
+    .global func_0802EE80
+    .thumb_func
+func_0802EE80:
+    .incbin "baserom_jp.gba", 0x2EE80, (0x31DAC - 0x2EE80)
     .global func_08031DAC
     .thumb_func
 func_08031DAC:
