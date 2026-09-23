@@ -86026,11 +86026,7 @@ func_08099F50:
     .thumb_func
 func_08099FC4:
     .incbin "baserom_jp.gba", 0x99FC4, (0x9A2E4 - 0x99FC4)
-    jp_code_0803ee_func func_0809A8AC, 0x9A2E4, 0x9A8A4
-    .global func_0809A8A4
-    .thumb_func
-func_0809A8A4:
-    .incbin "baserom_jp.gba", 0x9A8A4, (0x9A3A8 - 0x9A8A4)
+    jp_code_0803ee_func func_0809A8AC, 0x9A2E4, 0x9A3A8
     .global func_0809A970
     .thumb_func
 func_0809A970:
@@ -86624,7 +86620,11 @@ func_0809ACC0:
     .align 2, 0
 .Ljp_0809A7D8: .4byte 0x3B9ACA00
 .Ljp_0809A7DC: .4byte 0x0001869F
-    jp_code_0803ee_func func_0809ADA8, 0x9A7E0, 0x9AA50
+    jp_code_0803ee_func func_0809ADA8, 0x9A7E0, 0x9A8A4
+    .global func_0809A8A4
+    .thumb_func
+func_0809A8A4:
+    .incbin "baserom_jp.gba", 0x9A8A4, (0x9AA50 - 0x9A8A4)
     .global func_0809B018
     .thumb_func
 func_0809B018:
