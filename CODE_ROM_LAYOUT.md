@@ -2136,3 +2136,10 @@ JP ToolChest 条目确认处理函数 `func_080908CC`
 保留范围内的结构清零 helper `0x080CA480` 现为实际物理标签 `func_080CA480`。末尾
 literal 直接重定位至 `gItemDiscardCannotDiscardTextRef`，再经其指针取得不可丢弃提示，
 不使用地址字或别名。JP 完整重建逐字节匹配基准，其他三区域分支也通过汇编验证。
+
+JP ToolChest 相邻析构入口 `func_080909C4`
+（`0x080909C4`–`0x080909FF`）已改为实际 Thumb 指令，与海外版同类析构逻辑保持同层级。
+其原先直接取址的虚表末尾空项现在拆为物理符号 `gUnk_080E71DC`，正好位于 JP
+`vtable_unk_080E7D90` 的第四项；函数直接调用 `_call_via_r2` 和
+`func_080007EC`，不使用虚表内偏移、别名或固定地址字。四版完整 WSL 构建均与各自
+基准 ROM 逐字节一致。

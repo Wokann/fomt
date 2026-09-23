@@ -6181,20 +6181,26 @@ extern RawVTableFunction const vtable_unk_080E7D84[]
 #endif
     };
 
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7D90[]
     SECTION(".rodata.vtable_7d90") = {
-#if defined(REGION_JP)
         nullptr,
         nullptr,
         func_0808E8F8,
-        nullptr,
+    };
+
+// JP code directly takes the physical fourth entry rather than the table base.
+extern RawVTableFunction const gUnk_080E71DC
+    SECTION(".rodata.vtable_7d90") = nullptr;
 #else
+extern RawVTableFunction const vtable_unk_080E7D90[]
+    SECTION(".rodata.vtable_7d90") = {
         nullptr,
         nullptr,
         func_0808ED08,
         func_0808ED48,
-#endif
     };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E7DA0[]
     SECTION(".rodata.vtable_7da0") = {
