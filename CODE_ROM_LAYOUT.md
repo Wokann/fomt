@@ -3228,3 +3228,20 @@ WSL 以 `-j4` 重建四区域并逐字节对照均通过：JP
 `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 一致。
+
+## `asm/code_entities.s`：四区域羊毛状态请求构造入口
+
+JP `func_08024280` 与海外 `func_080244EC` 已从原始
+`.incbin`/`.byte` 同时提升为直接 Thumb。该函数读取羊的生长阶段，构造状态请求对象，
+并在特定状态下填入已解析资源句柄和标志字；所有跨区域调用均使用其真实符号，包含
+`GetGrowthStage__C5Sheep`、`func_080324BC` 与 `ResolveIndexedResourceHandle`。
+
+主函数后连续的两个 18 字节矩形写入函数也按物理边界提升：JP
+`func_08024308` / `func_0802431C`，海外 `func_08024574` / `func_08024588`。两个原始的
+二字节对齐空隙由 `.align 2, 0` 保留，没有留下固定地址字节、别名或伪造偏移。
+
+WSL 以 `-j4` 重建四区域并逐字节对照均通过：JP
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`、US
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 一致。

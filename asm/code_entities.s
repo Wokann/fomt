@@ -2981,7 +2981,95 @@ func_0802426C:
     .global func_08024280
     .thumb_func
 func_08024280:
-    .incbin "baserom_jp.gba", 0x24280, (0x24330 - 0x24280)
+    push {r4, r5, r6, lr}
+    mov r6, r8
+    push {r6}
+    sub sp, #0x10
+    adds r5, r0, #0
+    ldr r0, [r5, #0x34]
+    bl GetGrowthStage__C5Sheep
+    adds r6, r0, #0
+    movs r0, #0x8C
+    bl __builtin_new
+    mov r8, r0
+    adds r0, r6, #0
+    bl func_08024258
+    adds r4, r0, #0
+    adds r0, r6, #0
+    bl func_0802426C
+    str r4, [sp]
+    str r0, [sp, #4]
+    movs r6, #0
+    str r6, [sp, #8]
+    add r0, sp, #0xC
+    strb r6, [r0]
+    mov r0, r8
+    adds r1, r5, #0
+    movs r2, #4
+    movs r3, #0xB
+    bl func_080324BC
+    adds r4, r0, #0
+    mov r8, r4
+    adds r5, #0x38
+    ldrb r0, [r5]
+    cmp r0, #4
+    bne .Ljp_080242F8
+    adds r0, r4, #0
+    adds r0, #0x70
+    movs r1, #8
+    bl ResolveIndexedResourceHandle
+    adds r0, r4, #0
+    adds r0, #0x84
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r6, [r0]
+    adds r0, #1
+    strb r1, [r0]
+    adds r2, r4, #0
+    adds r2, #0x8A
+    movs r3, #2
+    ldrb r1, [r2]
+    movs r0, #4
+    negs r0, r0
+    ands r0, r1
+    orrs r0, r3
+    strb r0, [r2]
+.Ljp_080242F8:
+    mov r0, r8
+    add sp, #0x10
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
+    .global func_08024308
+    .thumb_func
+func_08024308:
+    subs r3, r1, #7
+    strh r3, [r0]
+    subs r3, r2, #4
+    strh r3, [r0, #2]
+    adds r1, #7
+    strh r1, [r0, #4]
+    adds r2, #5
+    strh r2, [r0, #6]
+    bx lr
+    .align 2, 0
+    .global func_0802431C
+    .thumb_func
+func_0802431C:
+    subs r3, r1, #7
+    strh r3, [r0]
+    subs r3, r2, #4
+    strh r3, [r0, #2]
+    adds r1, #7
+    strh r1, [r0, #4]
+    adds r2, #5
+    strh r2, [r0, #6]
+    bx lr
+    .align 2, 0
     .global func_08024330
     .thumb_func
 func_08024330:
@@ -10048,27 +10136,95 @@ func_080244D8: @ 0x080244D8
     .global func_080244EC
     .thumb_func
 func_080244EC:
-    .byte 0x70, 0xB5, 0x46, 0x46
-    .byte 0x40, 0xB4, 0x84, 0xB0, 0x05, 0x1C, 0x68, 0x6B
+    push {r4, r5, r6, lr}
+    mov r6, r8
+    push {r6}
+    sub sp, #0x10
+    adds r5, r0, #0
+    ldr r0, [r5, #0x34]
     bl GetGrowthStage__C5Sheep
-    .byte 0x06, 0x1C, 0x8C, 0x20
+    adds r6, r0, #0
+    movs r0, #0x8C
     bl __builtin_new
-    .byte 0x80, 0x46, 0x30, 0x1C
+    mov r8, r0
+    adds r0, r6, #0
     bl func_080244C4
-    .byte 0x04, 0x1C, 0x30, 0x1C
+    adds r4, r0, #0
+    adds r0, r6, #0
     bl func_080244D8
-    .byte 0x00, 0x94, 0x01, 0x90, 0x00, 0x26, 0x02, 0x96, 0x03, 0xA8, 0x06, 0x70
-    .byte 0x40, 0x46, 0x29, 0x1C, 0x04, 0x22, 0x0B, 0x23
+    str r4, [sp]
+    str r0, [sp, #4]
+    movs r6, #0
+    str r6, [sp, #8]
+    add r0, sp, #0xC
+    strb r6, [r0]
+    mov r0, r8
+    adds r1, r5, #0
+    movs r2, #4
+    movs r3, #0xB
     bl func_080324BC
-    .byte 0x04, 0x1C, 0xA0, 0x46
-    .byte 0x38, 0x35, 0x28, 0x78, 0x04, 0x28, 0x15, 0xD1, 0x20, 0x1C, 0x70, 0x30, 0x08, 0x21
+    adds r4, r0, #0
+    mov r8, r4
+    adds r5, #0x38
+    ldrb r0, [r5]
+    cmp r0, #4
+    bne .L08024564
+    adds r0, r4, #0
+    adds r0, #0x70
+    movs r1, #8
     bl ResolveIndexedResourceHandle
-    .byte 0x20, 0x1C, 0x84, 0x30, 0x01, 0x21, 0x01, 0x70, 0x02, 0x30, 0x06, 0x70, 0x01, 0x30
-    .byte 0x01, 0x70, 0x22, 0x1C, 0x8A, 0x32, 0x02, 0x23, 0x11, 0x78, 0x04, 0x20, 0x40, 0x42, 0x08, 0x40
-    .byte 0x18, 0x43, 0x10, 0x70, 0x40, 0x46, 0x04, 0xB0, 0x08, 0xBC, 0x98, 0x46, 0x70, 0xBC, 0x02, 0xBC
-    .byte 0x08, 0x47, 0x00, 0x00, 0xCB, 0x1F, 0x03, 0x80, 0x13, 0x1F, 0x43, 0x80, 0x07, 0x31, 0x81, 0x80
-    .byte 0x05, 0x32, 0xC2, 0x80, 0x70, 0x47, 0x00, 0x00, 0xCB, 0x1F, 0x03, 0x80, 0x13, 0x1F, 0x43, 0x80
-    .byte 0x07, 0x31, 0x81, 0x80, 0x05, 0x32, 0xC2, 0x80, 0x70, 0x47, 0x00, 0x00
+    adds r0, r4, #0
+    adds r0, #0x84
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r6, [r0]
+    adds r0, #1
+    strb r1, [r0]
+    adds r2, r4, #0
+    adds r2, #0x8A
+    movs r3, #2
+    ldrb r1, [r2]
+    movs r0, #4
+    negs r0, r0
+    ands r0, r1
+    orrs r0, r3
+    strb r0, [r2]
+.L08024564:
+    mov r0, r8
+    add sp, #0x10
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
+    .global func_08024574
+    .thumb_func
+func_08024574:
+    subs r3, r1, #7
+    strh r3, [r0]
+    subs r3, r2, #4
+    strh r3, [r0, #2]
+    adds r1, #7
+    strh r1, [r0, #4]
+    adds r2, #5
+    strh r2, [r0, #6]
+    bx lr
+    .align 2, 0
+    .global func_08024588
+    .thumb_func
+func_08024588:
+    subs r3, r1, #7
+    strh r3, [r0]
+    subs r3, r2, #4
+    strh r3, [r0, #2]
+    adds r1, #7
+    strh r1, [r0, #4]
+    adds r2, #5
+    strh r2, [r0, #6]
+    bx lr
+    .align 2, 0
     .global func_0802459C
     .thumb_func
 func_0802459C:
