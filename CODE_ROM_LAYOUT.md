@@ -2159,3 +2159,9 @@ Blacksmith Upgrade 的等级比较 helper `func_080914A0` 在 JP 的真实物理
 `0x08090FE0`–`0x0809106B`，现与 US/EU/DE 一样由显式 Thumb 指令、跳转表与本地标签
 组成。JP 的局部表保留真实地址顺序及零填充，不使用包装 `incbin`、`.set`、`.thumb_set`
 或固定地址跳转；四版完整 WSL 构建均与各自基准 ROM 逐字节一致。
+
+JP Farm Status 虚表调用 helper `func_0809410C`
+（`0x0809410C`–`0x0809412B`）已由显式 Thumb 指令表示，并直接调用实际 trampoline
+`_call_via_r4`。此前同一 JP 入口还额外导出海外版名 `func_08094648`；经虚表的区域分支
+核实，JP 只引用 `func_0809410C`、海外三区只引用 `func_08094648`，因此已删除该同地址
+别名。四版完整 WSL 构建均与各自基准 ROM 逐字节一致。
