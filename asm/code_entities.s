@@ -3017,7 +3017,45 @@ func_080288E4:
     .global func_08028E10
     .thumb_func
 func_08028E10:
-    .incbin "baserom_jp.gba", 0x28E10, (0x28E68 - 0x28E10)
+    push {r4, r5, lr}
+    sub sp, #4
+    adds r5, r0, #0
+    ldr r0, [r5, #0x34]
+    ldr r1, .L08028E64
+    adds r4, r0, r1
+    adds r0, r4, #0
+    bl func_0800F190
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .L08028E5A
+    adds r0, r4, #0
+    bl func_0800F204
+    cmp r0, #1
+    bne .L08028E4C
+    adds r0, r4, #0
+    bl func_0800F258
+    mov r1, sp
+    strb r0, [r1]
+    mov r0, sp
+    bl GetId__C7Article
+    cmp r0, #0x35
+    bne .L08028E4C
+    ldr r0, [r5, #0x38]
+    bl func_0800ED2C
+.L08028E4C:
+    ldr r0, [r5, #0x38]
+    adds r0, #0x54
+    bl func_0800F390
+    adds r0, r5, #0
+    bl func_0802A56C
+.L08028E5A:
+    add sp, #4
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.L08028E64:
+    .word 0x00001C2C
     .global func_08028E68
     .thumb_func
 func_08028E68:
@@ -3045,7 +3083,11 @@ func_0802A194:
     .global func_0802A31C
     .thumb_func
 func_0802A31C:
-    .incbin "baserom_jp.gba", 0x2A31C, (0x2AFF4 - 0x2A31C)
+    .incbin "baserom_jp.gba", 0x2A31C, (0x2A56C - 0x2A31C)
+    .global func_0802A56C
+    .thumb_func
+func_0802A56C:
+    .incbin "baserom_jp.gba", 0x2A56C, (0x2AFF4 - 0x2A56C)
     .global func_0802AFF4
     .thumb_func
 func_0802AFF4:
