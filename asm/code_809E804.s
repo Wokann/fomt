@@ -66357,7 +66357,11 @@ free:
     .global func_080D02CC
     .thumb_func
 func_080D02CC:
-    .incbin "baserom_jp.gba", 0xCFB50, (0xCFB74 - 0xCFB50)
+    .incbin "baserom_jp.gba", 0xCFB50, (0xCFB70 - 0xCFB50)
+    .global func_080CFB70
+    .thumb_func
+func_080CFB70:
+    .incbin "baserom_jp.gba", 0xCFB70, (0xCFB74 - 0xCFB70)
     .global func_080D02F0
     .thumb_func
 func_080D02F0: @ 0x080CFB74

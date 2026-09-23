@@ -6348,11 +6348,19 @@ extern RawVTableFunction const vtable_unk_080E7DF4[]
         func_080E2FF0,
         func_080E2FF4,
         func_080E3000,
+    };
+
+// JP code addresses this trailing virtual subtable and its final null entry
+// directly. Keep both physical objects separately addressable.
+extern RawVTableFunction const gUnk_080E7330[]
+    SECTION(".rodata.vtable_7df4") = {
         nullptr,
         nullptr,
         func_08092DD4,
-        nullptr,
     };
+
+extern RawVTableFunction const gUnk_080E733C
+    SECTION(".rodata.vtable_7df4") = nullptr;
 #else
 extern RawVTableWithOffsetAnd66Entries const vtable_unk_080E7DF4
     SECTION(".rodata.vtable_7df4") = {

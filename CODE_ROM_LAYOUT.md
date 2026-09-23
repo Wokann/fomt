@@ -2084,3 +2084,10 @@ JP 链接通信析构入口 `0x08093554`–`0x08093593` 已提升为实际 Thumb
 和 `gText_LinkCommunication_WaitingForOtherPlayer`；析构调用所需的实际 JP 入口
 `func_08092E30` 也在其原始物理位置单独标注，未使用别名、固定分支或地址偏移。四版完整
 构建均与基准 ROM 逐字节一致。
+
+JP 链接通信构造函数 `func_08092DD4`（`0x08092DD4`–`0x08092E2F`）也已改为显式 Thumb
+指令。它的三个 virtual-table literal 分别直接重定位到 `vtable_unk_080E7DE4`、
+`gUnk_080E7330` 与 `gUnk_080E733C`；后两者是原大表末端被代码直接寻址的真实子表和末尾
+空项，现按原顺序独立定义，不再依赖表内偏移。调用的原始 JP helper 同样以物理入口
+`func_080CFB70` 表示，旧的 `func_08093308` JP 同址名称已移除。四版完整构建均与基准 ROM
+逐字节一致。
