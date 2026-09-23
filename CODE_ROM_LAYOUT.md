@@ -2112,3 +2112,10 @@ JP ToolChest 虚表辅助组 `0x0808E848`–`0x0808E8F7` 已提升为实际 Thum
 入口 `func_0808E23C` 和 `func_080CE19C`；被首个函数取址的前序虚表末尾空项独立为
 `gUnk_080E71C0`，构造函数直接重定位到 `vtable_unk_080E7D90`。该连续组不保留代码
 `incbin`、别名或硬编码指针，四版完整构建均与基准 ROM 逐字节一致。
+
+紧邻的 JP ToolChest 方法组 `0x0808E8F8`–`0x0808EAA7` 现由实际 Thumb 入口
+`func_0808E8F8`、`func_0808E90C`、`func_0808E9DC`、`func_0808EA70` 与
+`func_0808EA8C` 表示。所有原始分支均改为真实物理符号：
+`func_080CAB14`、`func_080CB300`、`func_080CE390`、`func_080CE3D0` 以及
+`gUnk_083ED9FC`；这些被调用的入口已在各自保留块中按物理地址拆出，未使用别名、
+固定地址跳转或 `symbol + offset`。四版完整构建均与基准 ROM 逐字节一致。

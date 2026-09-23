@@ -64589,11 +64589,19 @@ func_080CAAF8:
     .global func_080CAB0C
     .thumb_func
 func_080CAB0C:
-    .incbin "baserom_jp.gba", 0xCAB0C, (0xCB270 - 0xCAB0C)
+    .incbin "baserom_jp.gba", 0xCAB0C, (0xCAB14 - 0xCAB0C)
+    .global func_080CAB14
+    .thumb_func
+func_080CAB14:
+    .incbin "baserom_jp.gba", 0xCAB14, (0xCB270 - 0xCAB14)
     .global func_080CBA60
     .thumb_func
 func_080CBA60:
-    .incbin "baserom_jp.gba", 0xCB270, (0xCB8C4 - 0xCB270)
+    .incbin "baserom_jp.gba", 0xCB270, (0xCB300 - 0xCB270)
+    .global func_080CB300
+    .thumb_func
+func_080CB300:
+    .incbin "baserom_jp.gba", 0xCB300, (0xCB8C4 - 0xCB300)
     .global func_080CC0B4
     .thumb_func
 func_080CC0B4:
@@ -65745,7 +65753,15 @@ func_080CE510: @ 0x080CDD20
     .global func_080CE598
     .thumb_func
 func_080CE598:
-    .incbin "baserom_jp.gba", 0xCDDA8, (0xCE410 - 0xCDDA8)
+    .incbin "baserom_jp.gba", 0xCDDA8, (0xCE390 - 0xCDDA8)
+    .global func_080CE390
+    .thumb_func
+func_080CE390:
+    .incbin "baserom_jp.gba", 0xCE390, (0xCE3D0 - 0xCE390)
+    .global func_080CE3D0
+    .thumb_func
+func_080CE3D0:
+    .incbin "baserom_jp.gba", 0xCE3D0, (0xCE410 - 0xCE3D0)
     .global func_080CEC00
     .thumb_func
 func_080CEC00:

@@ -84897,7 +84897,213 @@ func_0808E8A4:
     .global func_0808E8F8
     .thumb_func
 func_0808E8F8:
-    .incbin "baserom_jp.gba", 0x8E8F8, (0x8EAA8 - 0x8E8F8)
+    push {lr}
+    ldr r2, .Ljp_0808E908
+    str r2, [r0, #4]
+    bl func_080E3504
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_0808E908: .4byte vtable_unk_080E7D90
+
+    .global func_0808E90C
+    .thumb_func
+func_0808E90C:
+    push {r4, r5, r6, r7, lr}
+    mov r7, r8
+    push {r7}
+    sub sp, #0xC
+    adds r5, r0, #0
+    mov r8, r1
+    movs r7, #0
+    cmp r1, #0
+    beq .Ljp_0808E97E
+.Ljp_0808E91E:
+    movs r1, #0x80
+    lsls r1, r1, #1
+    adds r0, r5, r1
+    ldr r0, [r0]
+    adds r1, r7, #0
+    bl GetToolAt__8RucksackUi
+    adds r1, r0, #0
+    add r0, sp, #4
+    movs r2, #2
+    bl memcpy
+    add r0, sp, #4
+    bl IsEmpty__C9ToolStack
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Ljp_0808E978
+    add r0, sp, #4
+    bl GetTool__C9ToolStack
+    adds r1, r0, #0
+    ldr r0, [r5, #8]
+    ldr r2, .Ljp_0808E9D4
+    adds r0, r0, r2
+    bl func_0800E550
+    adds r1, r0, #0
+    add r0, sp, #8
+    strb r1, [r0]
+    bl GetIconId__C4Tool
+    lsls r0, r0, #0x10
+    lsrs r6, r0, #0x10
+    ldr r4, [r5, #0x78]
+    add r0, sp, #4
+    bl GetAmount__C9ToolStack
+    str r0, [sp]
+    adds r0, r4, #0
+    adds r1, r7, #0
+    ldr r2, .Ljp_0808E9D8
+    adds r3, r6, #0
+    bl func_080CAB14
+.Ljp_0808E978:
+    adds r7, #1
+    cmp r7, r8
+    bcc .Ljp_0808E91E
+.Ljp_0808E97E:
+    adds r7, r5, #0
+    adds r7, #0xFC
+    ldr r0, [r7]
+    bl IsEmpty__C9ToolStack
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Ljp_0808E9C6
+    ldr r0, [r7]
+    bl GetTool__C9ToolStack
+    adds r1, r0, #0
+    ldr r0, [r5, #8]
+    ldr r2, .Ljp_0808E9D4
+    adds r0, r0, r2
+    bl func_0800E550
+    adds r1, r0, #0
+    mov r0, sp
+    adds r0, #9
+    strb r1, [r0]
+    bl GetIconId__C4Tool
+    lsls r0, r0, #0x10
+    lsrs r6, r0, #0x10
+    ldr r4, [r5, #0x78]
+    ldr r5, .Ljp_0808E9D8
+    ldr r0, [r7]
+    bl GetAmount__C9ToolStack
+    adds r3, r0, #0
+    adds r0, r4, #0
+    adds r1, r5, #0
+    adds r2, r6, #0
+    bl func_080CB300
+.Ljp_0808E9C6:
+    add sp, #0xC
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_0808E9D4: .4byte 0x00001BD8
+.Ljp_0808E9D8: .4byte gUnk_083ED9FC
+
+    .global func_0808E9DC
+    .thumb_func
+func_0808E9DC:
+    push {r4, r5, r6, r7, lr}
+    mov r7, r8
+    push {r7}
+    sub sp, #0xC
+    adds r6, r0, #0
+    mov r8, r1
+    movs r7, #0
+.Ljp_0808E9EA:
+    movs r1, #0x82
+    lsls r1, r1, #1
+    adds r0, r6, r1
+    ldr r0, [r0]
+    mov r2, r8
+    lsls r1, r2, #3
+    adds r1, r1, r7
+    bl GetToolStackAt__9ToolChestUi
+    adds r1, r0, #0
+    add r0, sp, #4
+    movs r2, #2
+    bl memcpy
+    add r0, sp, #4
+    bl IsEmpty__C9ToolStack
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Ljp_0808EA54
+    add r0, sp, #4
+    bl GetTool__C9ToolStack
+    adds r1, r0, #0
+    ldr r0, [r6, #8]
+    ldr r2, .Ljp_0808EA4C
+    adds r0, r0, r2
+    bl func_0800E550
+    adds r1, r0, #0
+    add r0, sp, #8
+    strb r1, [r0]
+    bl GetIconId__C4Tool
+    adds r4, r0, #0
+    lsls r4, r4, #0x10
+    lsrs r4, r4, #0x10
+    ldr r5, [r6, #0x7C]
+    add r0, sp, #4
+    bl GetAmount__C9ToolStack
+    str r0, [sp]
+    adds r0, r5, #0
+    adds r1, r7, #0
+    ldr r2, .Ljp_0808EA50
+    adds r3, r4, #0
+    bl func_080CC728
+    b .Ljp_0808EA5C
+.Ljp_0808EA4C: .4byte 0x00001BD8
+.Ljp_0808EA50: .4byte gUnk_083ED9FC
+.Ljp_0808EA54:
+    ldr r0, [r6, #0x7C]
+    adds r1, r7, #0
+    bl func_080CCDEC
+.Ljp_0808EA5C:
+    adds r7, #1
+    cmp r7, #7
+    bls .Ljp_0808E9EA
+    add sp, #0xC
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_0808EA70
+    .thumb_func
+func_0808EA70:
+    push {r4, lr}
+    adds r4, r0, #0
+    adds r0, #0x94
+    ldr r0, [r0]
+    bl func_080CE390
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl func_0808E9DC
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_0808EA8C
+    .thumb_func
+func_0808EA8C:
+    push {r4, lr}
+    adds r4, r0, #0
+    adds r0, #0x94
+    ldr r0, [r0]
+    bl func_080CE3D0
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl func_0808E9DC
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
     .global func_0808EF68
     .thumb_func
 func_0808EF68:
