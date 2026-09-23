@@ -1489,12 +1489,79 @@ func_08021DDC:
     .global func_08021E68
     .thumb_func
 func_08021E68:
-    .incbin "baserom_jp.gba", 0x21E68, (0x21E94 - 0x21E68)
+    push {lr}
+    ldr r0, [r0, #0x34]
+    ldr r1, [r0, #0x20]
+    cmp r1, #1
+    beq .Ljp_08021E8A
+    cmp r1, #1
+    bgt .Ljp_08021E7C
+    cmp r1, #0
+    beq .Ljp_08021E84
+    b .Ljp_08021E80
+.Ljp_08021E7C:
+    cmp r1, #2
+    beq .Ljp_08021E8E
+.Ljp_08021E80:
+    movs r0, #0
+    b .Ljp_08021E90
+.Ljp_08021E84:
+    adds r0, #0x26
+    ldrb r0, [r0]
+    b .Ljp_08021E90
+.Ljp_08021E8A:
+    movs r0, #2
+    b .Ljp_08021E90
+.Ljp_08021E8E:
+    movs r0, #1
+.Ljp_08021E90:
+    pop {r1}
+    bx r1
 
     .global func_08021E94
     .thumb_func
 func_08021E94:
-    .incbin "baserom_jp.gba", 0x21E94, (0x21EE8 - 0x21E94)
+    push {r4, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    ldr r2, [r4, #0x34]
+    ldr r0, [r2, #0x20]
+    cmp r0, #2
+    bne .Ljp_08021ED8
+    ldr r1, .Ljp_08021EE0
+    ldr r0, [sp]
+    ands r0, r1
+    movs r1, #0xb4
+    orrs r0, r1
+    ldr r1, .Ljp_08021EE4
+    ands r0, r1
+    str r0, [sp]
+    adds r0, r2, #0
+    mov r1, sp
+    bl method_0809BC24__5HorsePC15UnkBarnAnimal2C
+    adds r0, r4, #0
+    adds r0, #0x3d
+    ldrb r0, [r0]
+    cmp r0, #0
+    bne .Ljp_08021ED8
+    adds r0, r4, #0
+    bl func_08021E68
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
+    bl func_08021DDC
+.Ljp_08021ED8:
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_08021EE0:
+    .word 0xFFFF0000
+.Ljp_08021EE4:
+    .word 0xFF00FFFF
     .global func_08021EE8
     .thumb_func
 func_08021EE8:
@@ -5588,17 +5655,47 @@ func_080220D4: @ 0x080220D4
     .global func_08022100
     .thumb_func
 func_08022100:
-    .byte 0x10, 0xB5, 0x81, 0xB0, 0x04, 0x1C, 0x62, 0x6B, 0x10, 0x6A, 0x02, 0x28, 0x1A, 0xD1, 0x0F, 0x49
-    .byte 0x00, 0x98, 0x08, 0x40, 0xB4, 0x21, 0x08, 0x43, 0x0D, 0x49, 0x08, 0x40, 0x00, 0x90, 0x10, 0x1C
-    .byte 0x69, 0x46
+    push {r4, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    ldr r2, [r4, #0x34]
+    ldr r0, [r2, #0x20]
+    cmp r0, #2
+    bne .L08022144
+    ldr r1, .L0802214C
+    ldr r0, [sp]
+    ands r0, r1
+    movs r1, #0xb4
+    orrs r0, r1
+    ldr r1, .L08022150
+    ands r0, r1
+    str r0, [sp]
+    adds r0, r2, #0
+    mov r1, sp
     bl method_0809BC24__5HorsePC15UnkBarnAnimal2C
-    .byte 0x20, 0x1C, 0x3D, 0x30, 0x00, 0x78, 0x00, 0x28, 0x09, 0xD1
-    .byte 0x20, 0x1C
+    adds r0, r4, #0
+    adds r0, #0x3d
+    ldrb r0, [r0]
+    cmp r0, #0
+    bne .L08022144
+    adds r0, r4, #0
     bl func_080220D4
-    .byte 0x01, 0x1C, 0x20, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x20, 0x1C
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
     bl func_08022048
-    .byte 0x01, 0xB0, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0xFF, 0xFF
-    .byte 0xFF, 0xFF, 0x00, 0xFF
+.L08022144:
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.L0802214C:
+    .word 0xFFFF0000
+.L08022150:
+    .word 0xFF00FFFF
     .global func_08022154
     .thumb_func
 func_08022154:
