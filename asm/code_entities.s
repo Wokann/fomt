@@ -1007,7 +1007,7 @@ func_08021054:
     bl _call_via_r2
     adds r0, r7, #0
     adds r1, r4, #0
-    bl func_080AC070
+    bl func_080ABAA8
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_08021122
@@ -1157,7 +1157,109 @@ func_08021144:
     .global func_080211D8
     .thumb_func
 func_080211D8:
-    .incbin "baserom_jp.gba", 0x211D8, (0x212B0 - 0x211D8)
+    push {r4, r5, r6, r7, lr}
+    mov r7, r8
+    push {r7}
+    sub sp, #8
+    adds r6, r0, #0
+    adds r7, r1, #0
+    ldrh r0, [r7]
+    lsls r0, r0, #0x16
+    lsrs r0, r0, #0x16
+    ldrh r1, [r6, #4]
+    cmp r0, r1
+    bne .Ljp_0802129E
+    ldr r1, [r6, #0x34]
+    ldr r0, [r1, #0x20]
+    cmp r0, #5
+    beq .Ljp_0802129E
+    adds r0, r1, #0
+    bl GetAffection__C6Animal
+    mov r8, r0
+    bl func_08020018
+    movs r1, #0xa
+    ldrsh r3, [r6, r1]
+    ldrb r1, [r7, #1]
+    lsrs r1, r1, #2
+    ldrh r2, [r7, #2]
+    ldr r4, .Ljp_080212AC
+    ands r2, r4
+    lsls r2, r2, #6
+    orrs r2, r1
+    lsls r2, r2, #0x10
+    asrs r2, r2, #0x10
+    subs r2, r2, r3
+    movs r3, #0xe
+    ldrsh r5, [r6, r3]
+    ldrb r3, [r7, #3]
+    lsrs r3, r3, #2
+    ldrh r1, [r7, #4]
+    ands r1, r4
+    lsls r1, r1, #6
+    orrs r1, r3
+    lsls r1, r1, #0x10
+    asrs r1, r1, #0x10
+    subs r1, r1, r5
+    adds r3, r2, #0
+    muls r3, r2
+    adds r2, r3, #0
+    adds r3, r1, #0
+    muls r3, r1
+    adds r1, r3, #0
+    adds r2, r2, r1
+    adds r1, r0, #0
+    muls r1, r0
+    adds r0, r1, #0
+    cmp r2, r0
+    bgt .Ljp_0802129E
+    ldr r0, [r6, #0x34]
+    ldr r0, [r0, #0x20]
+    cmp r0, #5
+    bne .Ljp_08021258
+    adds r0, r6, #0
+    bl func_08021054
+.Ljp_08021258:
+    mov r3, r8
+    lsls r0, r3, #4
+    subs r0, r0, r3
+    lsls r0, r0, #6
+    movs r1, #0xfb
+    bl __udivsi3
+    movs r1, #0xf0
+    lsls r1, r1, #1
+    adds r0, r0, r1
+    lsls r0, r0, #0x10
+    lsrs r0, r0, #0x10
+    str r0, [sp]
+    ldr r0, [r6, #0x34]
+    mov r1, sp
+    bl method_0809BB54__3DogPC18UnkBarnAnimal2C_x2
+    adds r0, r6, #0
+    adds r0, #0x40
+    ldrb r0, [r0]
+    cmp r0, #0
+    bne .Ljp_08021298
+    adds r0, r6, #0
+    bl func_08020FF8
+    adds r1, r0, #0
+    adds r0, r6, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r6, #0
+    bl func_08020F78
+.Ljp_08021298:
+    ldr r0, [r6, #0x34]
+    bl SetHasTalkedToday__3Pet
+.Ljp_0802129E:
+    add sp, #8
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_080212AC:
+    .word 0x000003FF
     .global func_080212B0
     .thumb_func
 func_080212B0:
