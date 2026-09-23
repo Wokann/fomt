@@ -976,7 +976,74 @@ func_080213B4:
     .global func_080213C8
     .thumb_func
 func_080213C8:
-    .incbin "baserom_jp.gba", 0x213C8, (0x214D0 - 0x213C8)
+    push {r4, r5, r6, lr}
+    mov r6, r8
+    push {r6}
+    sub sp, #0x10
+    adds r5, r0, #0
+    ldr r0, [r5, #0x34]
+    bl GetGrowthStage__C3Dog
+    adds r6, r0, #0
+    movs r0, #0x8c
+    bl __builtin_new
+    mov r8, r0
+    adds r0, r6, #0
+    bl func_080213B0
+    adds r4, r0, #0
+    adds r0, r6, #0
+    bl func_080213B4
+    str r4, [sp]
+    str r0, [sp, #4]
+    movs r6, #0
+    str r6, [sp, #8]
+    add r0, sp, #0xc
+    strb r6, [r0]
+    mov r0, r8
+    adds r1, r5, #0
+    movs r2, #2
+    movs r3, #6
+    bl func_080324BC
+    adds r4, r0, #0
+    mov r8, r4
+    adds r5, #0x41
+    ldrb r0, [r5]
+    cmp r0, #8
+    bne .Ljp_08021440
+    adds r0, r4, #0
+    adds r0, #0x70
+    movs r1, #8
+    bl ResolveIndexedResourceHandle
+    adds r0, r4, #0
+    adds r0, #0x84
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r6, [r0]
+    adds r0, #1
+    strb r1, [r0]
+    adds r2, r4, #0
+    adds r2, #0x8a
+    movs r3, #2
+    ldrb r1, [r2]
+    movs r0, #4
+    negs r0, r0
+    ands r0, r1
+    orrs r0, r3
+    strb r0, [r2]
+.Ljp_08021440:
+    mov r0, r8
+    add sp, #0x10
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
+
+    .global func_08021450
+    .thumb_func
+func_08021450:
+    .incbin "baserom_jp.gba", 0x21450, (0x214D0 - 0x21450)
     .global func_080214D0
     .thumb_func
 func_080214D0:
@@ -4367,24 +4434,69 @@ func_08021620: @ 0x08021620
     .global func_08021634
     .thumb_func
 func_08021634:
-    .byte 0x70, 0xB5, 0x46, 0x46, 0x40, 0xB4, 0x84, 0xB0, 0x05, 0x1C, 0x68, 0x6B
+    push {r4, r5, r6, lr}
+    mov r6, r8
+    push {r6}
+    sub sp, #0x10
+    adds r5, r0, #0
+    ldr r0, [r5, #0x34]
     bl GetGrowthStage__C3Dog
-    .byte 0x06, 0x1C, 0x8C, 0x20
+    adds r6, r0, #0
+    movs r0, #0x8c
     bl __builtin_new
-    .byte 0x80, 0x46, 0x30, 0x1C
+    mov r8, r0
+    adds r0, r6, #0
     bl func_0802161C
-    .byte 0x04, 0x1C, 0x30, 0x1C
+    adds r4, r0, #0
+    adds r0, r6, #0
     bl func_08021620
-    .byte 0x00, 0x94, 0x01, 0x90
-    .byte 0x00, 0x26, 0x02, 0x96, 0x03, 0xA8, 0x06, 0x70, 0x40, 0x46, 0x29, 0x1C, 0x02, 0x22, 0x06, 0x23
+    str r4, [sp]
+    str r0, [sp, #4]
+    movs r6, #0
+    str r6, [sp, #8]
+    add r0, sp, #0xc
+    strb r6, [r0]
+    mov r0, r8
+    adds r1, r5, #0
+    movs r2, #2
+    movs r3, #6
     bl func_080324BC
-    .byte 0x04, 0x1C, 0xA0, 0x46, 0x41, 0x35, 0x28, 0x78, 0x08, 0x28, 0x15, 0xD1
-    .byte 0x20, 0x1C, 0x70, 0x30, 0x08, 0x21
+    adds r4, r0, #0
+    mov r8, r4
+    adds r5, #0x41
+    ldrb r0, [r5]
+    cmp r0, #8
+    bne .L080216AC
+    adds r0, r4, #0
+    adds r0, #0x70
+    movs r1, #8
     bl ResolveIndexedResourceHandle
-    .byte 0x20, 0x1C, 0x84, 0x30, 0x01, 0x21
-    .byte 0x01, 0x70, 0x02, 0x30, 0x06, 0x70, 0x01, 0x30, 0x01, 0x70, 0x22, 0x1C, 0x8A, 0x32, 0x02, 0x23
-    .byte 0x11, 0x78, 0x04, 0x20, 0x40, 0x42, 0x08, 0x40, 0x18, 0x43, 0x10, 0x70, 0x40, 0x46, 0x04, 0xB0
-    .byte 0x08, 0xBC, 0x98, 0x46, 0x70, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
+    adds r0, r4, #0
+    adds r0, #0x84
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r6, [r0]
+    adds r0, #1
+    strb r1, [r0]
+    adds r2, r4, #0
+    adds r2, #0x8a
+    movs r3, #2
+    ldrb r1, [r2]
+    movs r0, #4
+    negs r0, r0
+    ands r0, r1
+    orrs r0, r3
+    strb r0, [r2]
+.L080216AC:
+    mov r0, r8
+    add sp, #0x10
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
 
     thumb_func_start func_080216BC
 func_080216BC: @ 0x080216BC
