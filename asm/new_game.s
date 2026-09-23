@@ -917,20 +917,97 @@ func_08003E88:
 .Ljp_08003EF8: .4byte 0xFFFFFF00
 .Ljp_08003EFC: .4byte 0x000001FF
 .Ljp_08003F00: .4byte 0xFE00FFFF
-    .incbin "baserom_jp.gba", 0x3F04, 0x44
-    .4byte gText_NewGameStatus_WriteDiary
-    .4byte gText_NewGameStatus_ReadDiary
-    .incbin "baserom_jp.gba", 0x3F50, 0x28
-    .4byte gText_NewGameStatus_NoSavedData
-    .incbin "baserom_jp.gba", 0x3F7C, 0x4
-    .4byte gText_NewGameHelp_Controls
-    .incbin "baserom_jp.gba", 0x3F84, 0x4
-    .4byte gText_NewGameHelp_ClockDisplay
-    .incbin "baserom_jp.gba", 0x3F8C, 0x4
-    .4byte gText_NewGameHelp_FaceDisplay
-    .incbin "baserom_jp.gba", 0x3F94, 0x18
-    .4byte gText_NewGameHelp_NameDisplay
-    .4byte gText_NewGameMenu_Blank
+    .global func_08003EEC
+    .thumb_func
+func_08003EEC:
+    push	{lr}
+    adds	r2, r0, #0
+    movs	r1, #0
+    adds	r0, #128
+    ldr	r0, [r0, #0]
+    cmp	r0, #5
+    bhi.n .Ljp_08003F96
+    lsls	r0, r0, #2
+    ldr	r1, .Ljp_08003F1C
+    adds	r0, r0, r1
+    ldr	r0, [r0, #0]
+    mov	pc, r0
+    .align 2, 0
+.Ljp_08003F1C: .4byte .Ljp_08003F20
+.Ljp_08003F20: .4byte .Ljp_08003F38
+.Ljp_08003F24: .4byte .Ljp_08003F50
+.Ljp_08003F28: .4byte .Ljp_08003F7C
+.Ljp_08003F2C: .4byte .Ljp_08003F84
+.Ljp_08003F30: .4byte .Ljp_08003F8C
+.Ljp_08003F34: .4byte .Ljp_08003F94
+.Ljp_08003F38:
+    adds	r0, r2, #0
+    adds	r0, #132
+    ldrb	r0, [r0, #0]
+    ldr	r1, .Ljp_08003F48
+    cmp	r0, #0
+    beq.n .Ljp_08003F96
+    ldr	r1, .Ljp_08003F4C
+    b.n .Ljp_08003F96
+    .align 2, 0
+.Ljp_08003F48: .4byte gText_NewGameStatus_WriteDiary
+.Ljp_08003F4C: .4byte gText_NewGameStatus_ReadDiary
+.Ljp_08003F50:
+    adds	r0, r2, #0
+    adds	r0, #133
+    ldrb	r0, [r0, #0]
+    lsls	r1, r0, #7
+    adds	r0, r1, r2
+    adds	r0, #152
+    movs	r3, #0
+    ldrb	r0, [r0, #0]
+    cmp	r0, #0
+    bne.n .Ljp_08003F66
+    movs	r3, #1
+.Ljp_08003F66:
+    cmp	r3, #0
+    bne.n .Ljp_08003F72
+    adds	r0, r1, r2
+    adds	r1, r0, #0
+    adds	r1, #152
+    b.n .Ljp_08003F96
+.Ljp_08003F72:
+    ldr	r1, .Ljp_08003F78
+    b.n .Ljp_08003F96
+    .align 2, 0
+.Ljp_08003F78: .4byte gText_NewGameStatus_NoSavedData
+.Ljp_08003F7C:
+    ldr	r1, .Ljp_08003F80
+    b.n .Ljp_08003F96
+    .align 2, 0
+.Ljp_08003F80: .4byte gText_NewGameHelp_Controls
+.Ljp_08003F84:
+    ldr	r1, .Ljp_08003F88
+    b.n .Ljp_08003F96
+    .align 2, 0
+.Ljp_08003F88: .4byte gText_NewGameHelp_ClockDisplay
+.Ljp_08003F8C:
+    ldr	r1, .Ljp_08003F90
+    b.n .Ljp_08003F96
+    .align 2, 0
+.Ljp_08003F90: .4byte gText_NewGameHelp_FaceDisplay
+.Ljp_08003F94:
+    ldr	r1, .Ljp_08003FAC
+.Ljp_08003F96:
+    adds	r0, r2, #0
+    adds	r0, #16
+    cmp	r1, #0
+    bne.n .Ljp_08003FA0
+    ldr	r1, .Ljp_08003FB0
+.Ljp_08003FA0:
+    movs	r2, #0
+    movs	r3, #0
+    bl func_08050DC8
+    pop	{r0}
+    bx	r0
+    .align 2, 0
+.Ljp_08003FAC: .4byte gText_NewGameHelp_NameDisplay
+.Ljp_08003FB0: .4byte gText_NewGameMenu_Blank
     .incbin "baserom_jp.gba", 0x3FB4, 0x100
     .4byte gText_NewGameSave_SaveFailed
     .incbin "baserom_jp.gba", 0x40B8, 0x138
