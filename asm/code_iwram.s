@@ -1,30 +1,29 @@
     .section .iwram, "awx"
 
-    .macro inc from, to
-    .incbin "baserom_us.gba", 0x75B9F8 + \from - 0x03000490, \to - \from
-    .endm
-
     .global func_03000490
     .type func_03000490, function
     .thumb
 func_03000490:
-    inc 0x03000490, 0x030004C0
+    .incbin "baserom_us.gba", 0x75B9F8, 0x30
 
     .global __new_handler
     .type __new_handler, object
 __new_handler:
-    inc 0x030004C0, 0x030004DC
+    .incbin "baserom_us.gba", 0x75BA28, 0x1C
 
     .global func_030004DC
     .type func_030004DC, function
     .arm
 func_030004DC:
-    inc 0x030004DC, 0x03000714
+    .incbin "baserom_us.gba", 0x75BA44, 0x238
 
     .global DrawGlyph2Tile
+    .global func_03000714
     .type DrawGlyph2Tile, function
+    .type func_03000714, function
     .arm
 DrawGlyph2Tile:
+func_03000714:
     @ r0 is a 24-byte, 16-pixel-wide 1bpp glyph; r1 is the 16x16-tile
     @ scratch buffer. Each source row becomes 4bpp pixels plus its shadow.
     push {r4, r5, r6, r7, r8, r9, sl, lr}
@@ -115,13 +114,13 @@ DrawGlyph2Tile:
     pop {r4, r5, r6, r7, r8, r9, sl, lr}
     bx lr
 
-    .global func_03000714
-    .set func_03000714, DrawGlyph2Tile
-
     .global DrawGlyph1Tile
+    .global func_0300085C
     .type DrawGlyph1Tile, function
+    .type func_0300085C, function
     .arm
 DrawGlyph1Tile:
+func_0300085C:
     @ r0 is a 12-byte, 8-pixel-wide 1bpp glyph; r1 is the same scratch
     @ buffer. The right-hand tile receives the generated shadow pixels.
     push {r4, r5, r6, r7, r8, lr}
@@ -193,34 +192,31 @@ DrawGlyph1Tile:
     pop {r4, r5, r6, r7, r8, lr}
     bx lr
 
-    .global func_0300085C
-    .set func_0300085C, DrawGlyph1Tile
-
     .global func_03000958
     .type func_03000958, function
     .arm
 func_03000958:
-    inc 0x03000958, 0x03000A1C
+    .incbin "baserom_us.gba", 0x75BEC0, 0xC4
 
     .global func_03000A1C
     .type func_03000A1C, function
     .arm
 func_03000A1C:
-    inc 0x03000A1C, 0x03000C08
+    .incbin "baserom_us.gba", 0x75BF84, 0x1EC
 
     .global func_03000C08
     .type func_03000C08, function
     .arm
 func_03000C08:
-    inc 0x03000C08, 0x03000C2C
+    .incbin "baserom_us.gba", 0x75C170, 0x24
 
     .global func_03000C2C
     .type func_03000C2C, function
     .arm
 func_03000C2C:
-    inc 0x03000C2C, 0x03000CD4
+    .incbin "baserom_us.gba", 0x75C194, 0xA8
 
     .global gUnk_03000CD4
     .type gUnk_03000CD4, object
 gUnk_03000CD4: @ new handler
-    inc 0x03000CD4, 0x03000CD8
+    .incbin "baserom_us.gba", 0x75C23C, 0x4

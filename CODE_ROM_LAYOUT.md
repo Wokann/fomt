@@ -2322,3 +2322,18 @@ JP 的脚本引擎原始范围 `0x0803EB08`–`0x0803F703` 之前以
 
 该项仅影响 JP 条件分支；WSL JP 重建后，`fomt_jp.gba` SHA-1 仍为
 `A655B2789AED14A6AC78C6075FBC533D3062DBE3`，逐字节匹配基准 ROM。
+
+## `asm/code_iwram.s`：IWRAM 入口与原始范围直写
+
+IWRAM 模块的八段未反编译范围原先由 `inc from, to` 宏换算为
+`baserom_us.gba` 的 ROM 偏移；现已逐段写成实际 `.incbin` 起点与长度，
+不再隐藏任何物理范围。两个同址绘字函数入口也不再使用 `.set`：
+`DrawGlyph2Tile` / `func_03000714` 以及 `DrawGlyph1Tile` /
+`func_0300085C` 均在各自真实 ARM 函数首字节定义为共址直接标签。
+
+该 IWRAM 输入节由四个区域共同链接。变更前后对象二进制和完整符号表均一致；
+随后以 WSL 完整重建四版，SHA-1 分别为 JP
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`、US
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与各自基准 ROM 一致。
