@@ -1200,8 +1200,135 @@ func_08021580:
     .global func_08021C3C
     .thumb_func
 func_08021C3C:
-    .incbin "baserom_jp.gba", 0x21C3C, (0x21D3C - 0x21C3C)
-    .4byte gUnk_080F09AC
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    adds r0, #0x3e
+    ldrb r0, [r0]
+    cmp r0, #0
+    beq .Ljp_08021C66
+    ldr r0, [r4]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0
+    bl _call_via_r2
+    ldr r1, [r0, #0x14]
+    adds r1, #0xa0
+    ldr r1, [r1]
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Ljp_08021C6E
+.Ljp_08021C66:
+    adds r0, r4, #0
+    adds r1, r5, #0
+    bl func_0803242C
+.Ljp_08021C6E:
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_08021C74
+    .thumb_func
+func_08021C74:
+    push {r4, r5, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    ldr r0, [r4, #0x34]
+    bl GetGrowthStage__C5Horse
+    adds r5, r0, #0
+    cmp r5, #1
+    bne .Ljp_08021CBE
+    ldr r1, .Ljp_08021CC8
+    ldr r0, [sp]
+    ands r0, r1
+    movs r1, #0x78
+    orrs r0, r1
+    ldr r1, .Ljp_08021CCC
+    ands r0, r1
+    str r0, [sp]
+    ldr r0, [r4, #0x34]
+    mov r1, sp
+    bl method_0809BC24__5HorsePC15UnkBarnAnimal2C
+    adds r0, r4, #0
+    bl func_08021E68
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
+    bl func_08021DDC
+    adds r0, r4, #0
+    adds r0, #0x3e
+    strb r5, [r0]
+    ldr r0, [r4, #0x34]
+    bl SetHasPlayedToday__3Pet
+.Ljp_08021CBE:
+    add sp, #4
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_08021CC8: .4byte 0xFFFF0000
+.Ljp_08021CCC: .4byte 0xFF00FFFF
+
+    .global func_08021CD0
+    .thumb_func
+func_08021CD0:
+    push {r4, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    adds r1, r4, #0
+    adds r1, #0x3e
+    movs r0, #0
+    strb r0, [r1]
+    ldr r1, .Ljp_08021D14
+    ldr r0, [sp]
+    ands r0, r1
+    movs r1, #0x78
+    orrs r0, r1
+    ldr r1, .Ljp_08021D18
+    ands r0, r1
+    str r0, [sp]
+    ldr r0, [r4, #0x34]
+    mov r1, sp
+    bl method_0809BC24__5HorsePC15UnkBarnAnimal2C
+    adds r0, r4, #0
+    bl func_08021E68
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
+    bl func_08021DDC
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_08021D14: .4byte 0xFFFF0000
+.Ljp_08021D18: .4byte 0xFF00FFFF
+
+    .global func_08021D1C
+    .thumb_func
+func_08021D1C:
+    push {r4, r5, lr}
+    adds r4, r1, #0
+    ldr r5, .Ljp_08021D3C
+    ldr r0, [r0, #0x34]
+    bl GetGrowthStage__C5Horse
+    lsls r1, r0, #3
+    subs r1, r1, r0
+    adds r1, r1, r4
+    lsls r1, r1, #1
+    adds r1, r1, r5
+    ldrh r0, [r1]
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_08021D3C: .4byte gUnk_080F09AC
     .incbin "baserom_jp.gba", 0x21D40, (0x21DDC - 0x21D40)
 
     .global func_08021DDC
@@ -4996,15 +5123,34 @@ func_080217EC:
     .global func_08021EA8
     .thumb_func
 func_08021EA8:
-    .byte 0x30, 0xB5, 0x04, 0x1C, 0x0D, 0x1C, 0x3E, 0x30
-    .byte 0x00, 0x78, 0x00, 0x28, 0x0D, 0xD0, 0x20, 0x68, 0x01, 0x68, 0x0A, 0x6C, 0x00, 0x21
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    adds r0, #0x3e
+    ldrb r0, [r0]
+    cmp r0, #0
+    beq .L08021ED2
+    ldr r0, [r4]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0
     bl _call_via_r2
-    .byte 0x41, 0x69, 0xA0, 0x31, 0x09, 0x68
+    ldr r1, [r0, #0x14]
+    adds r1, #0xa0
+    ldr r1, [r1]
     bl _call_via_r1
-    .byte 0x00, 0x06, 0x00, 0x28
-    .byte 0x03, 0xD1, 0x20, 0x1C, 0x29, 0x1C
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .L08021EDA
+.L08021ED2:
+    adds r0, r4, #0
+    adds r1, r5, #0
     bl func_0803242C
-    .byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47
+.L08021EDA:
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
 
     thumb_func_start func_08021EE0
 func_08021EE0: @ 0x08021EE0
