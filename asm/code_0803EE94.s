@@ -85320,7 +85320,40 @@ func_08092DD4:
     .incbin "baserom_jp.gba", 0x93464, 0x30
     .4byte gText_LinkCommunication_QuitCommunication
     .incbin "baserom_jp.gba", 0x93498, 0xBC
-    jp_code_0803ee_func func_08093554, 0x93554, 0x93594
+    .global func_08093554
+    .thumb_func
+func_08093554:
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    ldr r0, .Ljp_08093590
+    str r0, [r4]
+    ldr r1, [r4, #8]
+    cmp r1, #0
+    beq .Ljp_08093570
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08093570:
+    ldr r1, [r4, #4]
+    cmp r1, #0
+    beq .Ljp_08093582
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08093582:
+    adds r0, r4, #0
+    adds r1, r5, #0
+    bl func_080007EC
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_08093590: .4byte gUnk_080E7448
 .global func_08093AC8
 .thumb_func
 func_08093AC8:

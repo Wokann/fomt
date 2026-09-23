@@ -6507,10 +6507,6 @@ extern RawVTableFunction const vtable_unk_080E7F0C[]
         func_080941B0,
         __pure_virtual,
         __pure_virtual,
-        nullptr,
-        nullptr,
-        func_08093554,
-        func_080935A0,
 #else
         nullptr,
         nullptr,
@@ -6581,6 +6577,18 @@ extern RawVTableFunction const vtable_unk_080E7F0C[]
         __pure_virtual,
 #endif
     };
+
+// JP keeps this four-entry virtual subtable at the physical tail of the
+// preceding table. Its address is used directly by func_08093554.
+#if defined(REGION_JP)
+extern RawVTableFunction const gUnk_080E7448[]
+    SECTION(".rodata.vtable_7f0c") = {
+        nullptr,
+        nullptr,
+        func_08093554,
+        func_080935A0,
+    };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E8018[]
     SECTION(".rodata.vtable_8018") = {
