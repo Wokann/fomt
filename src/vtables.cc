@@ -6228,20 +6228,27 @@ extern RawVTableFunction const vtable_unk_080E7DBC[]
 #endif
     };
 
+// JP code directly addresses the final word. Keep it separately addressable
+// so that call sites use its true symbol rather than a pointer offset.
+#if defined(REGION_JP)
 extern RawVTableFunction const vtable_unk_080E7DC8[]
     SECTION(".rodata.vtable_7dc8") = {
-#if defined(REGION_JP)
         nullptr,
         nullptr,
         func_0809215C,
-        nullptr,
+    };
+
+extern RawVTableFunction const gUnk_080E7214
+    SECTION(".rodata.vtable_7dc8") = nullptr;
 #else
+extern RawVTableFunction const vtable_unk_080E7DC8[]
+    SECTION(".rodata.vtable_7dc8") = {
         nullptr,
         nullptr,
         func_080925C4,
         func_08092604,
-#endif
     };
+#endif
 
 extern RawVTableFunction const vtable_unk_080E7DD8[]
     SECTION(".rodata.vtable_7dd8") = {
