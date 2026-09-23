@@ -2217,3 +2217,13 @@ JP 的 `jp_linkonce_d7_func` 与 `jp_linkonce_e0_func` 两个范围包装宏已�
 
 变更前后 JP 对象的二进制内容和完整符号表已逐项比对一致；US、EU、DE 条件汇编对象也逐字节一致。
 四版完整 WSL 构建随后均与各自基准 ROM 的 SHA-1 完全一致。
+
+## `asm/code_linkonce.s`：JP `0x080E` 入口表真实标签
+
+JP `jp_linkonce_e0_entry` 原先把 54 个入口导出为 `.thumb_set 名称, 基础标签 + 偏移`。
+现已移除该宏及全部调用；每个名称均直接置于它在 JP 原始字节流中的真实物理位置，并由
+`.global`、`.thumb_func` 与标签定义。为保持物理顺序，原始 `.incbin` 仅在这些入口边界拆开；
+未新增代码、填充或地址运算别名。
+
+变更前后 JP 汇编对象的所有函数符号和值、以及 `.text` 二进制内容完全一致；US、EU、DE 的
+条件汇编对象逐字节一致。JP、US、EU、DE 四版完整 WSL 构建均与各自基准 ROM 的 SHA-1 一致。
