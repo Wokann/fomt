@@ -2023,6 +2023,7 @@ $(FARM_HOUSE_PALETTE_STAMP): $(FARM_HOUSE_PALETTE_SOURCES) $(FARM_HOUSE_PALETTE_
 $(MAP_RESOURCES_STAMP): $(MAP_RESOURCES_SOURCES) $(MAP_RESOURCES_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(MAP_RESOURCES_TOOL) build --region $(MAP_RESOURCES_REGION) --rom $(BASE_ROM) \
 	  --source-dir $(MAP_RESOURCES_SOURCE_DIR) --output-dir $(MAP_RESOURCES_OUTPUT_DIR) $(MAP_RESOURCES_ALL_ROM_ARGS)
+	@touch $@
 
 $(MAP_STATE_PALETTE_STAMP): $(MAP_STATE_PALETTE_SOURCES) $(MAP_STATE_PALETTE_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(MAP_STATE_PALETTE_TOOL) build --region $(MAP_STATE_PALETTE_REGION) --rom $(BASE_ROM) \
