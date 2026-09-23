@@ -3245,3 +3245,20 @@ WSL 以 `-j4` 重建四区域并逐字节对照均通过：JP
 `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 一致。
+
+## `asm/code_entities.s`：四区域家畜计数更新与矩形写入入口
+
+JP `func_08024330` / `func_08024360` 与海外 `func_0802459C` /
+`func_080245CC` 已同时由原始 `.incbin`/`.byte` 提升为直接 Thumb。前一函数清除
+实体标志、递减或重装计数值，并在存在对象时调用其真实虚函数入口；后一函数按原始运算
+写入四个 16 位矩形边界字段。
+
+JP 未处理的后续跳转表函数已从原大块中切到直接
+`func_08024374` `.incbin` 起点，确保新提升范围与剩余原始代码的物理边界连续、明确。
+本批没有使用 `.set`、`.thumb_set`、固定 BL 字节或伪造偏移。
+
+WSL 以 `-j4` 重建四区域并逐字节对照均通过：JP
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`、US
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 一致。

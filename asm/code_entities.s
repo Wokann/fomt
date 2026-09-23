@@ -3073,7 +3073,49 @@ func_0802431C:
     .global func_08024330
     .thumb_func
 func_08024330:
-    .incbin "baserom_jp.gba", 0x24330, (0x24814 - 0x24330)
+    push {lr}
+    adds r2, r0, #0
+    adds r1, r2, #0
+    adds r1, #0x30
+    movs r0, #0
+    strb r0, [r1]
+    ldrh r0, [r2, #0x24]
+    cmp r0, #0
+    beq .Ljp_08024346
+    subs r0, #1
+    b .Ljp_08024348
+.Ljp_08024346:
+    ldrh r0, [r2, #0x26]
+.Ljp_08024348:
+    strh r0, [r2, #0x24]
+    ldr r2, [r2, #0x10]
+    cmp r2, #0
+    beq .Ljp_0802435A
+    ldr r0, [r2, #4]
+    ldr r1, [r0, #0xC]
+    adds r0, r2, #0
+    bl _call_via_r1
+.Ljp_0802435A:
+    pop {r0}
+    bx r0
+    .align 2, 0
+    .global func_08024360
+    .thumb_func
+func_08024360:
+    subs r3, r1, #7
+    strh r3, [r0]
+    adds r3, r2, #0
+    subs r3, #9
+    strh r3, [r0, #2]
+    adds r1, #7
+    strh r1, [r0, #4]
+    adds r2, #5
+    strh r2, [r0, #6]
+    bx lr
+    .global func_08024374
+    .thumb_func
+func_08024374:
+    .incbin "baserom_jp.gba", 0x24374, (0x24814 - 0x24374)
     .global func_08024814
     .thumb_func
 func_08024814:
@@ -10228,13 +10270,45 @@ func_08024588:
     .global func_0802459C
     .thumb_func
 func_0802459C:
-    .byte 0x00, 0xB5, 0x02, 0x1C
-    .byte 0x11, 0x1C, 0x30, 0x31, 0x00, 0x20, 0x08, 0x70, 0x90, 0x8C, 0x00, 0x28, 0x01, 0xD0, 0x01, 0x38
-    .byte 0x00, 0xE0, 0xD0, 0x8C, 0x90, 0x84, 0x12, 0x69, 0x00, 0x2A, 0x04, 0xD0, 0x50, 0x68, 0xC1, 0x68
-    .byte 0x10, 0x1C
+    push {lr}
+    adds r2, r0, #0
+    adds r1, r2, #0
+    adds r1, #0x30
+    movs r0, #0
+    strb r0, [r1]
+    ldrh r0, [r2, #0x24]
+    cmp r0, #0
+    beq .L080245B2
+    subs r0, #1
+    b .L080245B4
+.L080245B2:
+    ldrh r0, [r2, #0x26]
+.L080245B4:
+    strh r0, [r2, #0x24]
+    ldr r2, [r2, #0x10]
+    cmp r2, #0
+    beq .L080245C6
+    ldr r0, [r2, #4]
+    ldr r1, [r0, #0xC]
+    adds r0, r2, #0
     bl _call_via_r1
-    .byte 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0xCB, 0x1F, 0x03, 0x80
-    .byte 0x13, 0x1C, 0x09, 0x3B, 0x43, 0x80, 0x07, 0x31, 0x81, 0x80, 0x05, 0x32, 0xC2, 0x80, 0x70, 0x47
+.L080245C6:
+    pop {r0}
+    bx r0
+    .align 2, 0
+    .global func_080245CC
+    .thumb_func
+func_080245CC:
+    subs r3, r1, #7
+    strh r3, [r0]
+    adds r3, r2, #0
+    subs r3, #9
+    strh r3, [r0, #2]
+    adds r1, #7
+    strh r1, [r0, #4]
+    adds r2, #5
+    strh r2, [r0, #6]
+    bx lr
 
     thumb_func_start func_080245E0
 func_080245E0: @ 0x080245E0
