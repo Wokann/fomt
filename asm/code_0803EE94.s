@@ -85987,7 +85987,40 @@ func_08094AC0:
     jp_code_0803ee_func func_08097D38, 0x977F4, 0x984A4
     jp_code_0803ee_func func_080989DC, 0x984A4, 0x99E18
     jp_code_0803ee_func func_0809A3E0, 0x99E18, 0x99F50
-    jp_code_0803ee_func func_08099F50, 0x99F50, 0x99F90
+    .global func_08099F50
+    .thumb_func
+func_08099F50:
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    ldr r0, .Ljp_08099F8C
+    str r0, [r4]
+    ldr r1, [r4, #8]
+    cmp r1, #0
+    beq .Ljp_08099F6C
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08099F6C:
+    ldr r1, [r4, #4]
+    cmp r1, #0
+    beq .Ljp_08099F7E
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08099F7E:
+    adds r0, r4, #0
+    adds r1, r5, #0
+    bl func_080007EC
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_08099F8C: .4byte vtable_unk_080E823C
     jp_code_0803ee_func func_08099F90, 0x99F90, 0x9A2E4
     jp_code_0803ee_func func_0809A8AC, 0x9A2E4, 0x9A3A8
     jp_code_0803ee_func func_0809A970, 0x9A3A8, 0x9A3F8
