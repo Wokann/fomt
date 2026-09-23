@@ -2383,11 +2383,64 @@ func_080233EC:
     .global func_080233F8
     .thumb_func
 func_080233F8:
-    .incbin "baserom_jp.gba", 0x233F8, (0x23458 - 0x233F8)
+    push {r4, lr}
+    adds r4, r0, #0
+    ldr r0, [r4, #0x34]
+    bl HasBeenBrushedToday__C6Animal
+    lsls r0, r0, #24
+    cmp r0, #0
+    bne .Ljp_08023416
+    ldr r0, [r4, #0x34]
+    movs r1, #1
+    bl AddAffection__6Animali
+    ldr r0, [r4, #0x34]
+    bl SetBrushed__6Animal
+.Ljp_08023416:
+    ldr r0, [r4, #0x34]
+    bl IsUnhappy__C9Livestock
+    lsls r0, r0, #24
+    cmp r0, #0
+    beq .Ljp_08023432
+    movs r0, #0x64
+    bl func_080AB1C0
+    cmp r0, #0x1d
+    bhi .Ljp_08023432
+    ldr r0, [r4, #0x34]
+    bl ResetUnhappy__9Livestock
+.Ljp_08023432:
+    ldr r0, [r4, #0x34]
+    bl IsSick__C9Livestock
+    lsls r0, r0, #24
+    cmp r0, #0
+    bne .Ljp_08023450
+    adds r0, r4, #0
+    movs r1, #1
+    movs r2, #0
+    bl func_08032384
+    adds r0, r4, #0
+    movs r1, #0xa1
+    bl func_0801FE58
+.Ljp_08023450:
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
     .global func_08023458
     .thumb_func
 func_08023458:
-    .incbin "baserom_jp.gba", 0x23458, (0x23478 - 0x23458)
+    push {r4, lr}
+    adds r4, r0, #0
+    movs r1, #1
+    movs r2, #0
+    bl func_08032384
+    adds r0, r4, #0
+    movs r1, #0xa1
+    bl func_0801FE58
+    ldr r0, [r4, #0x34]
+    bl ConsumeProduct__3Cow
+    pop {r4}
+    pop {r1}
+    bx r1
     .global func_08023478
     .thumb_func
 func_08023478:
@@ -8287,38 +8340,64 @@ func_08023658:
     .global func_08023664
     .thumb_func
 func_08023664:
-    .byte 0x10, 0xB5, 0x04, 0x1C, 0x60, 0x6B
+    push {r4, lr}
+    adds r4, r0, #0
+    ldr r0, [r4, #0x34]
     bl HasBeenBrushedToday__C6Animal
-    .byte 0x00, 0x06
-    .byte 0x00, 0x28, 0x06, 0xD1, 0x60, 0x6B, 0x01, 0x21
+    lsls r0, r0, #24
+    cmp r0, #0
+    bne .L08023682
+    ldr r0, [r4, #0x34]
+    movs r1, #1
     bl AddAffection__6Animali
-    .byte 0x60, 0x6B
+    ldr r0, [r4, #0x34]
     bl SetBrushed__6Animal
-    .byte 0x60, 0x6B
+.L08023682:
+    ldr r0, [r4, #0x34]
     bl IsUnhappy__C9Livestock
-    .byte 0x00, 0x06, 0x00, 0x28, 0x07, 0xD0, 0x64, 0x20
+    lsls r0, r0, #24
+    cmp r0, #0
+    beq .L0802369E
+    movs r0, #0x64
     bl func_080AB788
-    .byte 0x1D, 0x28, 0x02, 0xD8, 0x60, 0x6B
+    cmp r0, #0x1d
+    bhi .L0802369E
+    ldr r0, [r4, #0x34]
     bl ResetUnhappy__9Livestock
-    .byte 0x60, 0x6B
+.L0802369E:
+    ldr r0, [r4, #0x34]
     bl IsSick__C9Livestock
-    .byte 0x00, 0x06, 0x00, 0x28, 0x08, 0xD1, 0x20, 0x1C, 0x01, 0x21, 0x00, 0x22
+    lsls r0, r0, #24
+    cmp r0, #0
+    bne .L080236BC
+    adds r0, r4, #0
+    movs r1, #1
+    movs r2, #0
     bl func_08032384
-    .byte 0x20, 0x1C, 0xA1, 0x21
+    adds r0, r4, #0
+    movs r1, #0xa1
     bl func_080200C4
-    .byte 0x10, 0xBC, 0x01, 0xBC
-    .byte 0x00, 0x47, 0x00, 0x00
+.L080236BC:
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
     .global func_080236C4
     .thumb_func
 func_080236C4:
-    .byte 0x10, 0xB5, 0x04, 0x1C, 0x01, 0x21, 0x00, 0x22
+    push {r4, lr}
+    adds r4, r0, #0
+    movs r1, #1
+    movs r2, #0
     bl func_08032384
-    .byte 0x20, 0x1C, 0xA1, 0x21
+    adds r0, r4, #0
+    movs r1, #0xa1
     bl func_080200C4
-    .byte 0x60, 0x6B
+    ldr r0, [r4, #0x34]
     bl ConsumeProduct__3Cow
-    .byte 0x10, 0xBC
-    .byte 0x02, 0xBC, 0x08, 0x47
+    pop {r4}
+    pop {r1}
+    bx r1
     .global func_080236E4
     .thumb_func
 func_080236E4:
