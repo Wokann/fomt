@@ -86023,7 +86023,49 @@ func_08099F50:
 .Ljp_08099F8C: .4byte vtable_unk_080E823C
     jp_code_0803ee_func func_08099F90, 0x99F90, 0x9A2E4
     jp_code_0803ee_func func_0809A8AC, 0x9A2E4, 0x9A3A8
-    jp_code_0803ee_func func_0809A970, 0x9A3A8, 0x9A3F8
+    .global func_0809A970
+    .thumb_func
+func_0809A970:
+    push {r4, lr}
+    lsls r3, r2, #2
+    adds r3, r3, r2
+    lsls r3, r3, #2
+    adds r0, r0, r3
+    ldrh r2, [r0]
+    strh r2, [r1]
+    ldrh r3, [r0, #0x12]
+    lsls r3, r3, #0x14
+    lsrs r3, r3, #0x14
+    ldrh r4, [r1, #0x12]
+    ldr r2, .Ljp_0809A3F4
+    ands r2, r4
+    orrs r2, r3
+    strh r2, [r1, #0x12]
+    ldrb r2, [r0, #0x13]
+    movs r3, #0x10
+    ands r3, r2
+    ldrb r4, [r1, #0x13]
+    movs r2, #0x11
+    rsbs r2, r2, #0
+    ands r2, r4
+    orrs r2, r3
+    strb r2, [r1, #0x13]
+    adds r2, r0, #2
+    adds r1, #2
+    movs r3, #7
+.Ljp_0809A3DE:
+    ldrh r0, [r2]
+    strh r0, [r1]
+    adds r2, #2
+    adds r1, #2
+    subs r3, #1
+    cmp r3, #0
+    bge .Ljp_0809A3DE
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_0809A3F4: .4byte 0xFFFFF000
     jp_code_0803ee_func func_0809A9C0, 0x9A3F8, 0x9A460
     jp_code_0803ee_func func_0809AA28, 0x9A460, 0x9A490
     jp_code_0803ee_func func_0809AA58, 0x9A490, 0x9A50C
