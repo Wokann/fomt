@@ -2563,3 +2563,14 @@ Thumb 指令。函数中原先夹在机器码中的 `gNewGameNameEntryCharacterR
 该项只影响 JP；先对 `asm/new_game.s` 覆盖的完整代码范围作逐字节比较，再以 WSL
 完整链接、资源补丁和 ROM 对照验证，`fomt_jp.gba` SHA-1 为
 `A655B2789AED14A6AC78C6075FBC533D3062DBE3`，与基准 ROM 逐字节一致。
+
+## `asm/new_game.s`：JP 姓名输入行收缩
+
+JP `func_08006BBC` 的真实物理范围 `0x08006BBC`–`0x08006C0C` 已提升为完整
+Thumb 指令。该函数的循环、三项局部字段和末尾字面量池都按原始 ROM 保留；相邻
+`func_08006C0C` 保持从其自身的真实入口开始。没有使用 `.set`、别名、地址加法或
+包装式 `incbin`。
+
+该项只影响 JP；先对 `asm/new_game.s` 覆盖的完整代码范围作逐字节比较，再以 WSL
+完整链接、资源补丁和 ROM 对照验证，`fomt_jp.gba` SHA-1 为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`，与基准 ROM 逐字节一致。
