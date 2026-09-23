@@ -6095,7 +6095,6 @@ extern RawVTableFunction const vtable_unk_080E7D3C[]
         nullptr,
         nullptr,
         func_08087E44,
-        nullptr,
 #else
         nullptr,
         nullptr,
@@ -6103,6 +6102,11 @@ extern RawVTableFunction const vtable_unk_080E7D3C[]
         func_080881EC,
 #endif
     };
+
+#if defined(REGION_JP)
+extern RawVTableFunction const gUnk_080E7188
+    SECTION(".rodata.vtable_7d3c") = nullptr;
+#endif
 
 extern RawVTableFunction const vtable_unk_080E7D4C[]
     SECTION(".rodata.vtable_7d4c") = {

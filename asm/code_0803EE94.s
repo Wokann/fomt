@@ -9,18 +9,6 @@
     .section .text
     .syntax unified
     .thumb
-
-    .macro jp_code_0803ee_func name, start, end
-        .global \name
-        .thumb_func
-\name:
-        .incbin "baserom_jp.gba", \start, (\end - \start)
-    .endm
-
-    .macro jp_code_0803ee_bytes start, end
-        .incbin "baserom_jp.gba", \start, (\end - \start)
-    .endm
-
     .global func_0803F8DC
     .thumb_func
 func_0803F8DC:
@@ -146,8 +134,14 @@ func_08045584:
     pop {r1}
     bx r1
     .align 2, 0
-    jp_code_0803ee_func func_080455D8, 0x4524C, 0x45734
-    jp_code_0803ee_func VarGet__12ScriptEngineUi, 0x45734, 0x48E14
+    .global func_080455D8
+    .thumb_func
+func_080455D8:
+    .incbin "baserom_jp.gba", 0x4524C, (0x45734 - 0x4524C)
+    .global VarGet__12ScriptEngineUi
+    .thumb_func
+VarGet__12ScriptEngineUi:
+    .incbin "baserom_jp.gba", 0x45734, (0x48E14 - 0x45734)
     .global sub_08048FEC
     .thumb_func
 sub_08048FEC:
@@ -159,7 +153,10 @@ sub_08048FEC:
     pop {r1}
     bx r1
     .align 2, 0
-    jp_code_0803ee_func VarSet__12ScriptEngineUii, 0x48E24, 0x4DF20
+    .global VarSet__12ScriptEngineUii
+    .thumb_func
+VarSet__12ScriptEngineUii:
+    .incbin "baserom_jp.gba", 0x48E24, (0x4DF20 - 0x48E24)
     .global func_0804E0F8
     .thumb_func
 func_0804E0F8: @ 0x0804DF20
@@ -639,8 +636,14 @@ func_0804E3D8:
     @ rebuilt from src/font_draw.cc.
     @ The following tilemap rectangle filler is also rebuilt there.
     @ Its adjacent unknown virtual-object initializer is rebuilt there too.
-    jp_code_0803ee_func func_0804EA94, 0x4E8BC, 0x4E98C
-    jp_code_0803ee_func func_0804E98C, 0x4E98C, 0x4EAAC
+    .global func_0804EA94
+    .thumb_func
+func_0804EA94:
+    .incbin "baserom_jp.gba", 0x4E8BC, (0x4E98C - 0x4E8BC)
+    .global func_0804E98C
+    .thumb_func
+func_0804E98C:
+    .incbin "baserom_jp.gba", 0x4E98C, (0x4EAAC - 0x4E98C)
     .global func_0804EC84
     .thumb_func
 func_0804EC84: @ 0x0804EAAC
@@ -4957,8 +4960,10 @@ func_08050F74: @ 0x08050D00
     bx r0
 
     @ The next physical entry has no recovered cross-region name yet.
-    jp_code_0803ee_func func_08050D2C, 0x50D2C, 0x510AC
-
+    .global func_08050D2C
+    .thumb_func
+func_08050D2C:
+    .incbin "baserom_jp.gba", 0x50D2C, (0x510AC - 0x50D2C)
     .global func_08051320
     .thumb_func
 func_08051320: @ 0x080510AC
@@ -5444,8 +5449,14 @@ func_08051504: @ 0x08051290
 
     @ The following two physical entries are still raw, but are labelled so
     @ the decoded state machine above keeps real JP branch relocations.
-    jp_code_0803ee_func func_0805147C, 0x5147C, 0x51B00
-    jp_code_0803ee_func func_08051B00, 0x51B00, 0x51F4C
+    .global func_0805147C
+    .thumb_func
+func_0805147C:
+    .incbin "baserom_jp.gba", 0x5147C, (0x51B00 - 0x5147C)
+    .global func_08051B00
+    .thumb_func
+func_08051B00:
+    .incbin "baserom_jp.gba", 0x51B00, (0x51F4C - 0x51B00)
     .global func_080521BC
     .thumb_func
 func_080521BC: @ 0x08051F4C
@@ -5599,17 +5610,35 @@ func_08052230: @ 0x08051FC0
 .Ljp_08052064: .4byte gAnimalFestivalRankingScoreTable
     @ Exact JP entries referenced by the raw table at 0x080E7928.
     .section .text.animal_festival_ranking_after
-    jp_code_0803ee_func func_080522F8, 0x52088, 0x52714
+    .global func_080522F8
+    .thumb_func
+func_080522F8:
+    .incbin "baserom_jp.gba", 0x52088, (0x52714 - 0x52088)
     @ Physical JP callee used by func_08057BEC; its body remains unlifted.
     .global func_08052714
     .thumb_func
 func_08052714:
     .incbin "baserom_jp.gba", 0x52714, (0x536F0 - 0x52714)
-    jp_code_0803ee_func func_08053960, 0x536F0, 0x54AC4
-    jp_code_0803ee_func func_08054D34, 0x54AC4, 0x55654
-    jp_code_0803ee_func func_080558C4, 0x55654, 0x57914
-    jp_code_0803ee_func func_08057B84, 0x57914, 0x57AC4
-    jp_code_0803ee_func func_08057D34, 0x57AC4, 0x57BAC
+    .global func_08053960
+    .thumb_func
+func_08053960:
+    .incbin "baserom_jp.gba", 0x536F0, (0x54AC4 - 0x536F0)
+    .global func_08054D34
+    .thumb_func
+func_08054D34:
+    .incbin "baserom_jp.gba", 0x54AC4, (0x55654 - 0x54AC4)
+    .global func_080558C4
+    .thumb_func
+func_080558C4:
+    .incbin "baserom_jp.gba", 0x55654, (0x57914 - 0x55654)
+    .global func_08057B84
+    .thumb_func
+func_08057B84:
+    .incbin "baserom_jp.gba", 0x57914, (0x57AC4 - 0x57914)
+    .global func_08057D34
+    .thumb_func
+func_08057D34:
+    .incbin "baserom_jp.gba", 0x57AC4, (0x57BAC - 0x57AC4)
     .global func_08057BAC
     .thumb_func
 func_08057BAC:
@@ -5797,17 +5826,50 @@ func_08057CDC:
     .thumb_func
 func_08057CF4:
     .incbin "baserom_jp.gba", 0x57CF4, (0x59D6C - 0x57CF4)
-    jp_code_0803ee_func func_08059FE0, 0x59D6C, 0x5A17C
-    jp_code_0803ee_func func_0805A3F0, 0x5A17C, 0x5A458
-    jp_code_0803ee_func func_0805A6E4, 0x5A458, 0x5CC44
-    jp_code_0803ee_func func_0805CC44, 0x5CC44, 0x5CC84
-    jp_code_0803ee_func func_0805CC84, 0x5CC84, 0x5CCB8
-    jp_code_0803ee_func func_0805CF70, 0x5CCB8, 0x5D968
-    jp_code_0803ee_func func_0805DC24, 0x5D968, 0x5DB68
-    jp_code_0803ee_func func_0805DE24, 0x5DB68, 0x5DCAC
-    jp_code_0803ee_func func_0805DF68, 0x5DCAC, 0x5E39C
-    jp_code_0803ee_func func_0805E39C, 0x5E39C, 0x5E3DC
-    jp_code_0803ee_func func_0805E3DC, 0x5E3DC, 0x5E410
+    .global func_08059FE0
+    .thumb_func
+func_08059FE0:
+    .incbin "baserom_jp.gba", 0x59D6C, (0x5A17C - 0x59D6C)
+    .global func_0805A3F0
+    .thumb_func
+func_0805A3F0:
+    .incbin "baserom_jp.gba", 0x5A17C, (0x5A458 - 0x5A17C)
+    .global func_0805A6E4
+    .thumb_func
+func_0805A6E4:
+    .incbin "baserom_jp.gba", 0x5A458, (0x5CC44 - 0x5A458)
+    .global func_0805CC44
+    .thumb_func
+func_0805CC44:
+    .incbin "baserom_jp.gba", 0x5CC44, (0x5CC84 - 0x5CC44)
+    .global func_0805CC84
+    .thumb_func
+func_0805CC84:
+    .incbin "baserom_jp.gba", 0x5CC84, (0x5CCB8 - 0x5CC84)
+    .global func_0805CF70
+    .thumb_func
+func_0805CF70:
+    .incbin "baserom_jp.gba", 0x5CCB8, (0x5D968 - 0x5CCB8)
+    .global func_0805DC24
+    .thumb_func
+func_0805DC24:
+    .incbin "baserom_jp.gba", 0x5D968, (0x5DB68 - 0x5D968)
+    .global func_0805DE24
+    .thumb_func
+func_0805DE24:
+    .incbin "baserom_jp.gba", 0x5DB68, (0x5DCAC - 0x5DB68)
+    .global func_0805DF68
+    .thumb_func
+func_0805DF68:
+    .incbin "baserom_jp.gba", 0x5DCAC, (0x5E39C - 0x5DCAC)
+    .global func_0805E39C
+    .thumb_func
+func_0805E39C:
+    .incbin "baserom_jp.gba", 0x5E39C, (0x5E3DC - 0x5E39C)
+    .global func_0805E3DC
+    .thumb_func
+func_0805E3DC:
+    .incbin "baserom_jp.gba", 0x5E3DC, (0x5E410 - 0x5E3DC)
     .section .text.indexed_resource_archive_resolve_after
     .global func_0805E790
     .thumb_func
@@ -73787,43 +73849,43 @@ func_0807F1EC:
     .global func_0807F250
     .thumb_func
 func_0807F250:
-    jp_code_0803ee_bytes 0x7F250, 0x7F350
+    .incbin "baserom_jp.gba", 0x7F250, (0x7F350 - 0x7F250)
     .4byte gWonShopCatalog
-    jp_code_0803ee_bytes 0x7F354, 0x7F430
+    .incbin "baserom_jp.gba", 0x7F354, (0x7F430 - 0x7F354)
     .global func_0807F430
     .thumb_func
 func_0807F430:
-    jp_code_0803ee_bytes 0x7F430, 0x7F820
+    .incbin "baserom_jp.gba", 0x7F430, (0x7F820 - 0x7F430)
     .4byte gWonShopCatalog
-    jp_code_0803ee_bytes 0x7F824, 0x7F8F4
+    .incbin "baserom_jp.gba", 0x7F824, (0x7F8F4 - 0x7F824)
     .4byte gText_WonShop_ToolCapacityFull
-    jp_code_0803ee_bytes 0x7F8F8, 0x7FAF4
+    .incbin "baserom_jp.gba", 0x7F8F8, (0x7FAF4 - 0x7F8F8)
     .4byte gText_WonShop_ItemCapacityFull
-    jp_code_0803ee_bytes 0x7FAF8, 0x7FB04
+    .incbin "baserom_jp.gba", 0x7FAF8, (0x7FB04 - 0x7FAF8)
     .4byte gText_WonShop_BlankLinePair
-    jp_code_0803ee_bytes 0x7FB08, 0x7FBA4
+    .incbin "baserom_jp.gba", 0x7FB08, (0x7FBA4 - 0x7FB08)
     .4byte gText_WonShop_ArticleDelivery
-    jp_code_0803ee_bytes 0x7FBA8, 0x7FBB4
+    .incbin "baserom_jp.gba", 0x7FBA8, (0x7FBB4 - 0x7FBA8)
     .4byte gText_WonShop_ArticleDeliveryMultiple
-    jp_code_0803ee_bytes 0x7FBB8, 0x7FC8C
+    .incbin "baserom_jp.gba", 0x7FBB8, (0x7FC8C - 0x7FBB8)
     .4byte gText_WonShop_PurchaseComplete
-    jp_code_0803ee_bytes 0x7FC90, 0x7FCC4
+    .incbin "baserom_jp.gba", 0x7FC90, (0x7FCC4 - 0x7FC90)
     .4byte gText_WonShop_InsufficientGold
-    jp_code_0803ee_bytes 0x7FCC8, 0x7FCFC
+    .incbin "baserom_jp.gba", 0x7FCC8, (0x7FCFC - 0x7FCC8)
     .4byte gText_WonShop_PurchaseMorePrompt
-    jp_code_0803ee_bytes 0x7FD00, 0x7FD34
+    .incbin "baserom_jp.gba", 0x7FD00, (0x7FD34 - 0x7FD00)
     .4byte gText_WonShop_NoPurchase
-    jp_code_0803ee_bytes 0x7FD38, 0x7FD68
+    .incbin "baserom_jp.gba", 0x7FD38, (0x7FD68 - 0x7FD38)
     .4byte gText_WonShop_NoAdditionalPurchase
-    jp_code_0803ee_bytes 0x7FD6C, 0x7FE28
+    .incbin "baserom_jp.gba", 0x7FD6C, (0x7FE28 - 0x7FD6C)
     .4byte gWonShopCatalog
-    jp_code_0803ee_bytes 0x7FE2C, 0x7FECC
+    .incbin "baserom_jp.gba", 0x7FE2C, (0x7FECC - 0x7FE2C)
     .4byte gText_WonShop_ToolDelivery
-    jp_code_0803ee_bytes 0x7FED0, 0x7FEDC
+    .incbin "baserom_jp.gba", 0x7FED0, (0x7FEDC - 0x7FED0)
     .4byte gText_WonShop_ToolDeliveryMultiple
-    jp_code_0803ee_bytes 0x7FEE0, 0x7FF08
+    .incbin "baserom_jp.gba", 0x7FEE0, (0x7FF08 - 0x7FEE0)
     .4byte gText_WonShop_PurchaseComplete
-    jp_code_0803ee_bytes 0x7FF0C, 0x7FFF4
+    .incbin "baserom_jp.gba", 0x7FF0C, (0x7FFF4 - 0x7FF0C)
 .global func_0807FFF4
 .thumb_func
 func_0807FFF4: @ 0x0807FFF4
@@ -81472,7 +81534,7 @@ func_080840F4: @ 0x08083C6C
 .global func_08084228
 .thumb_func
 func_08084228:
-    jp_code_0803ee_bytes 0x83DA0, 0x850A0
+    .incbin "baserom_jp.gba", 0x83DA0, (0x850A0 - 0x83DA0)
 .global func_080850A0
 .thumb_func
 func_080850A0: @ 0x080850A0
@@ -84142,7 +84204,10 @@ func_080869A0: @ 0x08086518
     pop {r1}
     bx r1
     .align 2, 0
-    jp_code_0803ee_func func_08086A08, 0x86580, 0x87CEC
+    .global func_08086A08
+    .thumb_func
+func_08086A08:
+    .incbin "baserom_jp.gba", 0x86580, (0x87CEC - 0x86580)
     .global func_08087CEC
     .thumb_func
 func_08087CEC: @ 0x08087CEC
@@ -84317,7 +84382,10 @@ func_08087DEC: @ 0x08087DEC
     .align 2, 0
 .Ljp_08087E3C: .4byte vtable_unk_080E7D3C
 .Ljp_08087E40: .4byte 0x00001C2C
-    jp_code_0803ee_func func_08087E44, 0x87E44, 0x880EC
+    .global func_08087E44
+    .thumb_func
+func_08087E44:
+    .incbin "baserom_jp.gba", 0x87E44, (0x880EC - 0x87E44)
     .global func_080885AC
     .thumb_func
 func_080885AC:
@@ -84328,12 +84396,124 @@ func_080885AC:
     .incbin "baserom_jp.gba", 0x88610, 0xB4
     .4byte gText_Fridge_WrappedGiftWarning
     .incbin "baserom_jp.gba", 0x886C8, 0x18
-    jp_code_0803ee_func func_08088BA0, 0x886E0, 0x8A6A8
-    jp_code_0803ee_func func_0808A6A8, 0x8A6A8, 0x8A6E8
-    jp_code_0803ee_func func_0808A6E8, 0x8A6E8, 0x8A754
-    jp_code_0803ee_func func_0808A754, 0x8A754, 0x8A768
-    jp_code_0803ee_func func_0808AC28, 0x8A768, 0x8B5A0
+    .global func_08088BA0
+    .thumb_func
+func_08088BA0:
+    .incbin "baserom_jp.gba", 0x886E0, (0x8A09C - 0x886E0)
+    .global func_0808A09C
+    .thumb_func
+func_0808A09C:
+    .incbin "baserom_jp.gba", 0x8A09C, (0x8A6A8 - 0x8A09C)
 
+    .global func_0808A6A8
+    .thumb_func
+func_0808A6A8:
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    ldr r0, .Ljp_0808A6E4
+    str r0, [r4]
+    ldr r1, [r4, #8]
+    cmp r1, #0
+    beq .Ljp_0808A6C4
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_0808A6C4:
+    ldr r1, [r4, #4]
+    cmp r1, #0
+    beq .Ljp_0808A6D6
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_0808A6D6:
+    adds r0, r4, #0
+    adds r1, r5, #0
+    bl func_080007EC
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_0808A6E4: .4byte gUnk_080E7188
+
+    .global func_0808A6E8
+    .thumb_func
+func_0808A6E8:
+    push {r4, r5, lr}
+    adds r5, r0, #0
+    adds r4, r1, #0
+    ldr r0, [r4, #4]
+    bl func_0808A09C
+    ldr r1, [r4, #8]
+    movs r0, #0
+    str r0, [r4, #8]
+    str r1, [r5]
+    adds r0, r5, #0
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+
+    .global func_0808A704
+    .thumb_func
+func_0808A704:
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    bl func_080CE19C
+    ldr r0, .Ljp_0808A74C
+    str r0, [r4, #4]
+    adds r0, r4, #0
+    adds r0, #0x98
+    movs r3, #0
+    strb r3, [r0]
+    adds r2, r4, #0
+    adds r2, #0xfc
+    ldr r1, [r4, #8]
+    ldr r5, .Ljp_0808A750
+    adds r0, r1, r5
+    str r0, [r2]
+    movs r0, #0x80
+    lsls r0, r0, #1
+    adds r2, r4, r0
+    subs r5, #8
+    adds r0, r1, r5
+    str r0, [r2]
+    movs r2, #0x82
+    lsls r2, r2, #1
+    adds r0, r4, r2
+    adds r5, #0xc
+    adds r1, r1, r5
+    str r1, [r0]
+    movs r1, #0x84
+    lsls r1, r1, #1
+    adds r0, r4, r1
+    str r3, [r0]
+    adds r0, r4, #0
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_0808A74C: .4byte vtable_unk_080E7D58
+.Ljp_0808A750: .4byte 0x00001C34
+
+    .global func_0808A754
+    .thumb_func
+func_0808A754:
+    push {lr}
+    ldr r2, .Ljp_0808A764
+    str r2, [r0, #4]
+    bl func_080E3504
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_0808A764: .4byte vtable_unk_080E7D58
+    .global func_0808AC28
+    .thumb_func
+func_0808AC28:
+    .incbin "baserom_jp.gba", 0x8A768, (0x8B5A0 - 0x8A768)
 .global func_0808BA60
 .thumb_func
 func_0808BA60:
@@ -84554,10 +84734,22 @@ func_0808BC14:
     .4byte gText_HomeStorage_CategoryTools
     .4byte gText_HomeStorage_CategoryItems
     .incbin "baserom_jp.gba", 0x8BE38, 0x2A4
-    jp_code_0803ee_func func_0808C0DC, 0x8C0DC, 0x8C11C
-    jp_code_0803ee_func func_0808C5DC, 0x8C11C, 0x8C190
-    jp_code_0803ee_func func_0808C190, 0x8C190, 0x8C380
-    jp_code_0803ee_func func_0808C840, 0x8C380, 0x8C434
+    .global func_0808C0DC
+    .thumb_func
+func_0808C0DC:
+    .incbin "baserom_jp.gba", 0x8C0DC, (0x8C11C - 0x8C0DC)
+    .global func_0808C5DC
+    .thumb_func
+func_0808C5DC:
+    .incbin "baserom_jp.gba", 0x8C11C, (0x8C190 - 0x8C11C)
+    .global func_0808C190
+    .thumb_func
+func_0808C190:
+    .incbin "baserom_jp.gba", 0x8C190, (0x8C380 - 0x8C190)
+    .global func_0808C840
+    .thumb_func
+func_0808C840:
+    .incbin "baserom_jp.gba", 0x8C380, (0x8C434 - 0x8C380)
     .global func_0808C8F4
     .thumb_func
 func_0808C8F4:
@@ -84603,9 +84795,18 @@ func_0808C8F4:
     .4byte gText_Shelf_Yes
     .4byte gText_Shelf_No
     .incbin "baserom_jp.gba", 0x8E768, 0xE0
-    jp_code_0803ee_func func_0808E848, 0x8E848, 0x8E888
-    jp_code_0803ee_func func_0808E888, 0x8E888, 0x8E8F8
-    jp_code_0803ee_func func_0808E8F8, 0x8E8F8, 0x8EAA8
+    .global func_0808E848
+    .thumb_func
+func_0808E848:
+    .incbin "baserom_jp.gba", 0x8E848, (0x8E888 - 0x8E848)
+    .global func_0808E888
+    .thumb_func
+func_0808E888:
+    .incbin "baserom_jp.gba", 0x8E888, (0x8E8F8 - 0x8E888)
+    .global func_0808E8F8
+    .thumb_func
+func_0808E8F8:
+    .incbin "baserom_jp.gba", 0x8E8F8, (0x8EAA8 - 0x8E8F8)
     .global func_0808EF68
     .thumb_func
 func_0808EF68:
@@ -84620,7 +84821,10 @@ func_080908CC:
     .thumb_func
 func_08090960:
     .incbin "baserom_jp.gba", 0x904A0, (0x909C4 - 0x904A0)
-    jp_code_0803ee_func func_080909C4, 0x909C4, 0x90A04
+    .global func_080909C4
+    .thumb_func
+func_080909C4:
+    .incbin "baserom_jp.gba", 0x909C4, (0x90A04 - 0x909C4)
     .global func_08090EC4
     .thumb_func
 func_08090EC4:
@@ -88571,10 +88775,24 @@ func_08094594:
 .Ljp_08094A38: .4byte 0x00002BAF
 .Ljp_08094A3C: .4byte 0x000033D0
 
-    jp_code_0803ee_func func_08094A40, 0x94A40, 0x969A4
-    jp_code_0803ee_func func_08096EE8, 0x969A4, 0x977F4
-    jp_code_0803ee_func func_08097D38, 0x977F4, 0x984A4
-    jp_code_0803ee_func func_080989DC, 0x984A4, 0x99E18
+    .global func_08094A40
+
+    .thumb_func
+func_08094A40:
+
+    .incbin "baserom_jp.gba", 0x94A40, (0x969A4 - 0x94A40)
+    .global func_08096EE8
+    .thumb_func
+func_08096EE8:
+    .incbin "baserom_jp.gba", 0x969A4, (0x977F4 - 0x969A4)
+    .global func_08097D38
+    .thumb_func
+func_08097D38:
+    .incbin "baserom_jp.gba", 0x977F4, (0x984A4 - 0x977F4)
+    .global func_080989DC
+    .thumb_func
+func_080989DC:
+    .incbin "baserom_jp.gba", 0x984A4, (0x99E18 - 0x984A4)
     .global func_08099E18
     .thumb_func
 func_08099E18:
