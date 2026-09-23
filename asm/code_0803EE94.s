@@ -85648,7 +85648,133 @@ func_08094844:
     .global func_080948E0
     .thumb_func
 func_080948E0:
-    .incbin "baserom_jp.gba", 0x943A4, (0x94438 - 0x943A4)
+    ldr r0, .Ljp_080943AC
+    ldr r0, [r0]
+    bx lr
+    .align 2, 0
+.Ljp_080943AC: .4byte gLinkCommunicationGameCodeA4N
+
+    .global func_080948EC
+    .thumb_func
+func_080948EC:
+    ldr r0, .Ljp_080943B8
+    ldr r0, [r0]
+    bx lr
+    .align 2, 0
+.Ljp_080943B8: .4byte gLinkCommunicationGameCodeGYW
+
+    .global func_080948F8
+    .thumb_func
+func_080948F8:
+    adds r0, #0xC
+    bx lr
+
+    .global func_080948FC
+    .thumb_func
+func_080948FC:
+    adds r0, #0xC
+    bx lr
+
+    .global func_08094900
+    .thumb_func
+func_08094900:
+    ldr r0, [r0, #4]
+    bx lr
+
+    .global func_08094904
+    .thumb_func
+func_08094904:
+    movs r0, #0x1C
+    bx lr
+
+    .global func_08094908
+    .thumb_func
+func_08094908:
+    ldr r0, [r0, #8]
+    bx lr
+
+    .global func_0809490C
+    .thumb_func
+func_0809490C:
+    movs r0, #0x20
+    bx lr
+
+    .global func_08094910
+    .thumb_func
+func_08094910:
+    ldr r0, [r0, #0x14]
+    bx lr
+
+    .global func_08094914
+    .thumb_func
+func_08094914:
+    push {lr}
+    ldr r2, [r0, #8]
+    bl func_08094A00
+    pop {r0}
+    bx r0
+
+    .global func_08094920
+    .thumb_func
+func_08094920:
+    push {lr}
+    ldr r2, [r0, #8]
+    adds r2, #8
+    bl func_08094A00
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_08094930
+    .thumb_func
+func_08094930:
+    push {lr}
+    ldr r2, [r0, #8]
+    adds r2, #0x10
+    bl func_08094A00
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_08094940
+    .thumb_func
+func_08094940:
+    push {lr}
+    ldr r2, [r0, #8]
+    bl func_08094A00
+    pop {r0}
+    bx r0
+
+    .global func_0809494C
+    .thumb_func
+func_0809494C:
+    push {lr}
+    ldr r2, [r0, #8]
+    adds r2, #8
+    bl func_08094A00
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_0809495C
+    .thumb_func
+func_0809495C:
+    push {lr}
+    ldr r2, [r0, #8]
+    adds r2, #0x10
+    bl func_08094A00
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_0809496C
+    .thumb_func
+func_0809496C:
+    ldr r0, [r0, #8]
+    adds r0, #0x18
+    bx lr
+    .align 2, 0
+
     .global func_08094974
     .thumb_func
 func_08094974:
@@ -85657,7 +85783,12 @@ func_08094974:
     .global func_08094994
     .thumb_func
 func_08094994:
-    .incbin "baserom_jp.gba", 0x94458, (0x94510 - 0x94458)
+    .incbin "baserom_jp.gba", 0x94458, (0x944C8 - 0x94458)
+
+    .global func_08094A00
+    .thumb_func
+func_08094A00:
+    .incbin "baserom_jp.gba", 0x944C8, (0x94510 - 0x944C8)
     jp_code_0803ee_func func_08094A3C, 0x94510, 0x94A40
     jp_code_0803ee_func func_08094F6C, 0x94A40, 0x969A4
     jp_code_0803ee_func func_08096EE8, 0x969A4, 0x977F4
@@ -253373,8 +253504,10 @@ func_080948EC: @ 0x080948EC
 	bx lr
 	.align 2, 0
 .L080948F4: .4byte gLinkCommunicationGameCodeGYW
-.L080948F8:
-	.byte 0x0C, 0x30, 0x70, 0x47
+	thumb_func_start func_080948F8
+func_080948F8: @ 0x080948F8
+	adds r0, #0xc
+	bx lr
 
 	thumb_func_start func_080948FC
 func_080948FC: @ 0x080948FC
@@ -253405,10 +253538,33 @@ func_0809490C: @ 0x0809490C
 func_08094910: @ 0x08094910
 	ldr r0, [r0, #0x14]
 	bx lr
-.L08094914:
-	.byte 0x00, 0xB5, 0x82, 0x68, 0x00, 0xF0, 0x72, 0xF8, 0x01, 0xBC, 0x00, 0x47
-	.byte 0x00, 0xB5, 0x82, 0x68, 0x0D, 0x32, 0x00, 0xF0, 0x6B, 0xF8, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
-	.byte 0x00, 0xB5, 0x82, 0x68, 0x1A, 0x32, 0x00, 0xF0, 0x63, 0xF8, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
+	thumb_func_start func_08094914
+func_08094914: @ 0x08094914
+	push {lr}
+	ldr r2, [r0, #8]
+	bl func_08094A00
+	pop {r0}
+	bx r0
+
+	thumb_func_start func_08094920
+func_08094920: @ 0x08094920
+	push {lr}
+	ldr r2, [r0, #8]
+	adds r2, #0xd
+	bl func_08094A00
+	pop {r0}
+	bx r0
+	.align 2, 0
+
+	thumb_func_start func_08094930
+func_08094930: @ 0x08094930
+	push {lr}
+	ldr r2, [r0, #8]
+	adds r2, #0x1a
+	bl func_08094A00
+	pop {r0}
+	bx r0
+	.align 2, 0
 
 	thumb_func_start func_08094940
 func_08094940: @ 0x08094940
