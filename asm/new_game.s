@@ -509,11 +509,258 @@ func_08004C68:
 .Ljp_08004EF4: .4byte __vt_13AUnk_0800080C
 .Ljp_08004EF8: .4byte vtable_unk_080E5A78
 
-    .incbin "baserom_jp.gba", 0x4F14, (0x5128 - 0x4F14)
-
-    .4byte gText_NewGameIdentity_BirthMonthSuffix
-    .4byte gText_NewGameIdentity_BirthDaySuffix
-    .incbin "baserom_jp.gba", 0x5130, 0x8
+    .global func_08004EFC
+    .thumb_func
+func_08004EFC:
+    push {r4, r5, r6, r7, lr}
+    mov r7, sl
+    mov r6, sb
+    mov r5, r8
+    push {r5, r6, r7}
+    sub sp, #0x28
+    mov r8, r0
+    adds r6, r1, #0
+    adds r7, r2, #0
+    str r3, [sp, #0x24]
+    bl func_08008444
+    ldr r0, .Ljp_0800510C
+    mov r1, r8
+    str r0, [r1, #4]
+    movs r0, #7
+    add r5, sp, #0x10
+    add r1, sp, #0x14
+    mov sb, r1
+    movs r1, #1
+    rsbs r1, r1, #0
+.Ljp_08004F3E:
+    subs r0, #1
+    cmp r0, r1
+    bne .Ljp_08004F3E
+    ldr r1, .Ljp_08005110
+    add r1, r8
+    movs r0, #2
+    str r0, [r1]
+    movs r0, #4
+    bl __builtin_new
+    adds r4, r0, #0
+    add r0, sp, #0xc
+    bl func_0800835C
+    adds r0, r5, #0
+    bl func_0800770C
+    movs r0, #0
+    str r0, [sp]
+    add r0, sp, #0xc
+    str r0, [sp, #4]
+    str r5, [sp, #8]
+    adds r0, r4, #0
+    movs r1, #0
+    movs r2, #0x1c
+    movs r3, #4
+    bl func_08050CC0
+    ldr r1, .Ljp_08005114
+    add r1, r8
+    str r0, [r1]
+    adds r0, r5, #0
+    movs r1, #2
+    bl func_08007714
+    add r0, sp, #0xc
+    movs r1, #2
+    bl func_08008364
+    ldr r4, .Ljp_08005118
+    add r4, r8
+    movs r0, #0xc8
+    bl func_08008D3C
+    str r0, [r4]
+    ldr r0, .Ljp_0800511C
+    add r0, r8
+    movs r1, #3
+    movs r3, #0
+    movs r2, #1
+    rsbs r2, r2, #0
+.Ljp_08004FA4:
+    strb r3, [r0]
+    adds r0, #0x10
+    subs r1, #1
+    cmp r1, r2
+    bne .Ljp_08004FA4
+    ldr r0, .Ljp_08005120
+    add r0, r8
+    movs r1, #0
+    mov sl, r1
+    mov r1, sl
+    strb r1, [r0]
+    ldr r5, .Ljp_0800511C
+    add r5, r8
+    adds r0, r6, #0
+    bl strlen
+    adds r4, r0, #0
+    cmp r4, #0xf
+    bls .Ljp_08004FCC
+    movs r4, #0xf
+.Ljp_08004FCC:
+    adds r0, r5, #0
+    adds r1, r6, #0
+    adds r2, r4, #0
+    bl memcpy
+    adds r0, r5, r4
+    mov r1, sl
+    strb r1, [r0]
+    lsls r0, r7, #0x19
+    lsrs r0, r0, #0x1b
+    adds r0, #1
+    mov r1, sb
+    movs r2, #2
+    bl func_0804E98C
+    lsls r0, r7, #0x1e
+    lsrs r0, r0, #0x1e
+    bl func_0800E2E4
+    mov sb, r0
+    ldr r6, .Ljp_08005124
+    add r6, r8
+    mov r4, sb
+    adds r0, r6, #0
+    bl strlen
+    adds r7, r6, r0
+    movs r1, #0xf
+    subs r5, r1, r0
+    cmp r5, #0
+    beq .Ljp_08005028
+    adds r0, r4, #0
+    bl strlen
+    adds r4, r0, #0
+    cmp r4, r5
+    bls .Ljp_08005018
+    adds r4, r5, #0
+.Ljp_08005018:
+    adds r0, r7, #0
+    mov r1, sb
+    adds r2, r4, #0
+    bl memcpy
+    adds r0, r7, r4
+    mov r1, sl
+    strb r1, [r0]
+.Ljp_08005028:
+    ldr r0, .Ljp_08005128
+    mov sb, r0
+    adds r0, r6, #0
+    bl strlen
+    adds r7, r6, r0
+    movs r1, #0xf
+    subs r5, r1, r0
+    cmp r5, #0
+    beq .Ljp_0800505A
+    mov r0, sb
+    bl strlen
+    adds r4, r0, #0
+    cmp r4, r5
+    bls .Ljp_0800504A
+    adds r4, r5, #0
+.Ljp_0800504A:
+    adds r0, r7, #0
+    mov r1, sb
+    adds r2, r4, #0
+    bl memcpy
+    adds r1, r7, r4
+    movs r0, #0
+    strb r0, [r1]
+.Ljp_0800505A:
+    adds r0, r6, #0
+    bl strlen
+    adds r7, r6, r0
+    movs r1, #0xf
+    subs r5, r1, r0
+    cmp r5, #0
+    beq .Ljp_08005088
+    add r0, sp, #0x14
+    bl strlen
+    adds r4, r0, #0
+    cmp r4, r5
+    bls .Ljp_08005078
+    adds r4, r5, #0
+.Ljp_08005078:
+    adds r0, r7, #0
+    add r1, sp, #0x14
+    adds r2, r4, #0
+    bl memcpy
+    adds r1, r7, r4
+    movs r0, #0
+    strb r0, [r1]
+.Ljp_08005088:
+    ldr r7, .Ljp_0800512C
+    adds r0, r6, #0
+    bl strlen
+    adds r6, r6, r0
+    movs r1, #0xf
+    subs r5, r1, r0
+    cmp r5, #0
+    beq .Ljp_080050B8
+    adds r0, r7, #0
+    bl strlen
+    adds r4, r0, #0
+    cmp r4, r5
+    bls .Ljp_080050A8
+    adds r4, r5, #0
+.Ljp_080050A8:
+    adds r0, r6, #0
+    adds r1, r7, #0
+    adds r2, r4, #0
+    bl memcpy
+    adds r1, r6, r4
+    movs r0, #0
+    strb r0, [r1]
+.Ljp_080050B8:
+    ldr r5, .Ljp_08005130
+    add r5, r8
+    ldr r0, [sp, #0x24]
+    bl strlen
+    adds r4, r0, #0
+    cmp r4, #0xf
+    bls .Ljp_080050CA
+    movs r4, #0xf
+.Ljp_080050CA:
+    adds r0, r5, #0
+    ldr r1, [sp, #0x24]
+    adds r2, r4, #0
+    bl memcpy
+    adds r0, r5, r4
+    movs r6, #0
+    strb r6, [r0]
+    ldr r5, .Ljp_08005134
+    add r5, r8
+    ldr r0, [sp, #0x48]
+    bl strlen
+    adds r4, r0, #0
+    cmp r4, #0xf
+    bls .Ljp_080050EC
+    movs r4, #0xf
+.Ljp_080050EC:
+    adds r0, r5, #0
+    ldr r1, [sp, #0x48]
+    adds r2, r4, #0
+    bl memcpy
+    adds r0, r5, r4
+    strb r6, [r0]
+    mov r0, r8
+    add sp, #0x28
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_0800510C: .4byte vtable_unk_080E5A98
+.Ljp_08005110: .4byte 0x00001828
+.Ljp_08005114: .4byte 0x0000182C
+.Ljp_08005118: .4byte 0x00001830
+.Ljp_0800511C: .4byte 0x00001834
+.Ljp_08005120: .4byte 0x00001876
+.Ljp_08005124: .4byte 0x00001844
+.Ljp_08005128: .4byte gText_NewGameIdentity_BirthMonthSuffix
+.Ljp_0800512C: .4byte gText_NewGameIdentity_BirthDaySuffix
+.Ljp_08005130: .4byte 0x00001854
+.Ljp_08005134: .4byte 0x00001864
 
     .global func_080050C8
     .thumb_func
