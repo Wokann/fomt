@@ -788,7 +788,136 @@ func_08003C80:
 .Ljp_08003DFC: .4byte 0x00002D20
 .Ljp_08003E00: .4byte gNewGameMenuLabels
 .Ljp_08003E04: .4byte 0x00002D28
-    .incbin "baserom_jp.gba", 0x3E08, 0x140
+    .global func_08003DF0
+    .thumb_func
+func_08003DF0:
+    push	{r4, r5, lr}
+    sub	sp, #8
+    adds	r5, r0, #0
+    adds	r4, r1, #0
+    str	r2, [sp, #0]
+    str	r3, [sp, #4]
+    mov	r0, sp
+    ldrb	r1, [r0, #0]
+    adds	r1, #8
+    lsls	r0, r4, #1
+    adds	r0, #1
+    lsls	r0, r0, #3
+    adds	r1, r1, r0
+    lsls	r1, r1, #24
+    lsrs	r1, r1, #24
+    ldr	r0, .Ljp_08003E90
+    ldr	r2, [sp, #0]
+    ands	r2, r0
+    orrs	r2, r1
+    str	r2, [sp, #0]
+    lsls	r0, r2, #7
+    lsrs	r3, r0, #23
+    adds	r0, r5, #0
+    adds	r0, #132
+    adds	r0, r0, r4
+    ldrb	r0, [r0, #0]
+    adds	r1, r3, #0
+    adds	r1, #128
+    cmp	r0, #0
+    beq.n .Ljp_08003E46
+    adds	r1, #64
+.Ljp_08003E46:
+    ldr	r0, .Ljp_08003E94
+    ands	r1, r0
+    lsls	r0, r1, #16
+    ldr	r1, .Ljp_08003E98
+    ands	r1, r2
+    orrs	r1, r0
+    str	r1, [sp, #0]
+    cmp	r4, #1
+    bne.n .Ljp_08003E6E
+    adds	r0, r5, #0
+    adds	r0, #128
+    ldr	r0, [r0, #0]
+    cmp	r0, #1
+    beq.n .Ljp_08003E6E
+    ldr	r0, .Ljp_08003E9C
+    ands	r0, r1
+    movs	r1, #128
+    lsls	r1, r1, #2
+    orrs	r0, r1
+    str	r0, [sp, #0]
+.Ljp_08003E6E:
+    adds	r0, r5, #0
+    bl func_08008920
+    mov	r2, sp
+    movs	r1, #127
+    ands	r1, r4
+    lsls	r1, r1, #3
+    adds	r1, #4
+    adds	r0, r0, r1
+    ldr	r1, [sp, #0]
+    str	r1, [r0, #0]
+    ldrh	r1, [r2, #4]
+    strh	r1, [r0, #4]
+    add	sp, #8
+    pop	{r4, r5}
+    pop	{r0}
+    bx	r0
+    .align 2, 0
+.Ljp_08003E90: .4byte 0xFFFFFF00
+.Ljp_08003E94: .4byte 0x000001FF
+.Ljp_08003E98: .4byte 0xFE00FFFF
+.Ljp_08003E9C: .4byte 0xFFFFFCFF
+
+    .global func_08003E88
+    .thumb_func
+func_08003E88:
+    push	{r4, r5, lr}
+    sub	sp, #8
+    adds	r5, r0, #0
+    adds	r4, r1, #0
+    cmp	r4, #1
+    bne.n .Ljp_08003EAE
+    movs	r4, #0
+.Ljp_08003EAE:
+    str	r2, [sp, #0]
+    str	r3, [sp, #4]
+    mov	r0, sp
+    ldrb	r1, [r0, #0]
+    adds	r1, #8
+    lsls	r0, r4, #1
+    adds	r0, #1
+    lsls	r0, r0, #3
+    adds	r1, r1, r0
+    lsls	r1, r1, #24
+    lsrs	r1, r1, #24
+    ldr	r0, .Ljp_08003EF8
+    ldr	r2, [sp, #0]
+    ands	r2, r0
+    orrs	r2, r1
+    lsls	r1, r2, #7
+    lsrs	r1, r1, #23
+    adds	r1, #16
+    ldr	r0, .Ljp_08003EFC
+    ands	r1, r0
+    lsls	r1, r1, #16
+    ldr	r0, .Ljp_08003F00
+    ands	r0, r2
+    orrs	r0, r1
+    str	r0, [sp, #0]
+    adds	r0, r5, #0
+    bl func_08008920
+    mov	r2, sp
+    ldr	r1, [sp, #0]
+    str	r1, [r0, #52]
+    ldrh	r1, [r2, #4]
+    strh	r1, [r0, #56]
+    add	sp, #8
+    pop	{r4, r5}
+    pop	{r0}
+    bx	r0
+    .align 2, 0
+.Ljp_08003EF8: .4byte 0xFFFFFF00
+.Ljp_08003EFC: .4byte 0x000001FF
+.Ljp_08003F00: .4byte 0xFE00FFFF
+    .incbin "baserom_jp.gba", 0x3F04, 0x44
     .4byte gText_NewGameStatus_WriteDiary
     .4byte gText_NewGameStatus_ReadDiary
     .incbin "baserom_jp.gba", 0x3F50, 0x28
