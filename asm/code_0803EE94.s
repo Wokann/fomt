@@ -86021,7 +86021,11 @@ func_08099F50:
     bx r0
     .align 2, 0
 .Ljp_08099F8C: .4byte vtable_unk_080E823C
-    jp_code_0803ee_func func_08099F90, 0x99F90, 0x9A2E4
+    jp_code_0803ee_func func_08099F90, 0x99F90, 0x99FC4
+    .global func_08099FC4
+    .thumb_func
+func_08099FC4:
+    .incbin "baserom_jp.gba", 0x99FC4, (0x9A2E4 - 0x99FC4)
     jp_code_0803ee_func func_0809A8AC, 0x9A2E4, 0x9A3A8
     .global func_0809A970
     .thumb_func
@@ -86248,7 +86252,77 @@ func_0809AAD4:
     bx r1
     .align 2, 0
 .Ljp_0809A53C: .4byte 0x00000A06
-    jp_code_0803ee_func func_0809AB08, 0x9A540, 0x9A5C4
+    .global func_0809AB08
+    .thumb_func
+func_0809AB08:
+    push {r4, r5, r6, r7, lr}
+    mov r7, r8
+    push {r7}
+    sub sp, #0x28
+    mov r8, r0
+    adds r5, r1, #0
+    mov ip, r2
+    mov r0, sp
+    movs r1, #0
+    strh r1, [r0]
+    movs r6, #0
+    movs r2, #0
+    ldr r1, .Ljp_0809A590
+    adds r0, r5, r1
+    ldrb r0, [r0]
+    cmp r2, r0
+    bge .Ljp_0809A5A6
+    add r4, sp, #0x14
+    adds r3, r5, #0
+    adds r1, r5, #0
+.Ljp_0809A568:
+    ldrh r0, [r3]
+    cmp r0, #0xAB
+    bhi .Ljp_0809A596
+    ldrb r0, [r3, #0x13]
+    lsls r0, r0, #0x1B
+    cmp r0, #0
+    bge .Ljp_0809A596
+    cmp r6, ip
+    bne .Ljp_0809A594
+    adds r0, r4, #0
+    bl func_08099FC4
+    mov r1, sp
+    adds r0, r4, #0
+    ldm r0!, {r2, r3, r4}
+    stm r1!, {r2, r3, r4}
+    ldm r0!, {r2, r7}
+    stm r1!, {r2, r7}
+    b .Ljp_0809A5A6
+    .align 2, 0
+.Ljp_0809A590: .4byte 0x00000A06
+.Ljp_0809A594:
+    adds r6, #1
+.Ljp_0809A596:
+    adds r3, #0x14
+    adds r1, #0x14
+    adds r2, #1
+    ldr r7, .Ljp_0809A5C0
+    adds r0, r5, r7
+    ldrb r0, [r0]
+    cmp r2, r0
+    blt .Ljp_0809A568
+.Ljp_0809A5A6:
+    mov r1, r8
+    mov r0, sp
+    ldm r0!, {r2, r3, r4}
+    stm r1!, {r2, r3, r4}
+    ldm r0!, {r2, r7}
+    stm r1!, {r2, r7}
+    mov r0, r8
+    add sp, #0x28
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_0809A5C0: .4byte 0x00000A06
     jp_code_0803ee_func func_0809AB8C, 0x9A5C4, 0x9A610
     jp_code_0803ee_func func_0809ABD8, 0x9A610, 0x9A6F8
     jp_code_0803ee_func func_0809ACC0, 0x9A6F8, 0x9A7E0
