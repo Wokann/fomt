@@ -3334,3 +3334,18 @@ JP `func_08024814` 已由原始 `.incbin` 提升为直接 Thumb，与海外
 
 本批仅修改 JP 源码，WSL `-j4` 重建后的 SHA-1 为
 `A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并与 `baserom_jp.gba` 逐字节一致。
+
+## `asm/code_entities.s`：JP 实体连续更新入口
+
+JP `func_08024A64` 已由原始 `.incbin` 提升为直接 Thumb，与海外
+`func_08024CD0` 处于同一层级。函数完成实体动画/计数状态更新，按工具栈状态构造
+多组位置数据，并通过原有虚函数调用链更新关联对象。
+
+17 个调用已按 JP 原 ROM 的解码顺序逐项核对。海外无语义地址名的
+`func_0802F0EC` / `func_0802CDCC` / `func_0802D158` 分别直接映射到真实 JP
+`func_0802EE80` / `func_0802CB60` / `func_0802CEEC`；其中新增的
+`func_0802CB60` 是保留原始 `.incbin` 内的真实物理入口，并非别名。
+
+未处理的下一函数从真实物理边界 `func_08024DAC` 继续直接 `.incbin`。本批仅修改 JP
+源码，WSL `-j4` 重建后的 SHA-1 为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并与 `baserom_jp.gba` 逐字节一致。
