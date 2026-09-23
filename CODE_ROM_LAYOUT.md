@@ -2143,3 +2143,14 @@ JP ToolChest 相邻析构入口 `func_080909C4`
 `vtable_unk_080E7D90` 的第四项；函数直接调用 `_call_via_r2` 和
 `func_080007EC`，不使用虚表内偏移、别名或固定地址字。四版完整 WSL 构建均与各自
 基准 ROM 逐字节一致。
+
+JP ToolChest 主循环 `func_08090960` 的真实物理范围
+`0x080904A0`–`0x08090993`，以及紧邻的构造入口 `func_08090E54`
+（`0x08090994`–`0x080909C3`），现均为显式 Thumb 指令；前者保留其与海外版共享的
+规范函数名，绝不以 `.set`、`.thumb_set` 或地址加法伪造 JP 入口。所有 `bl` 已替换为
+真实物理符号，其中新增边界 `func_0808EBC0`、`func_0808F2C4`、`func_080CA7D4`、
+`func_080CA8A0`、`func_080CB96C` 与 `func_080CBB20` 均从相应保留块直接导出；文本与
+虚表 literal 直接重定位到 `gText_ToolChest_HeaderTools`、`gText_ToolChest_Title`、
+`vtable_unk_080E5A28`、`vtable_unk_080E5B80` 及 `gUnk_080E71DC`。未提升的连续原始
+范围仍逐段直接书写 `.incbin`，不使用宏包装。四版完整 WSL 构建均与各自基准 ROM
+逐字节一致。
