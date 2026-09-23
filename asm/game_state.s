@@ -103,6 +103,10 @@ func_08011498:
     .thumb_func
 func_080114C8:
     .incbin "baserom_jp.gba", 0x114A8, (0x114D8 - 0x114A8)
+
+    .global func_080114F8
+    .thumb_func
+func_080114F8:
     .incbin "baserom_jp.gba", 0x114D8, (0x114F0 - 0x114D8)
     .incbin "baserom_jp.gba", 0x114F0, (0x114FC - 0x114F0)
     .global func_0801151C
