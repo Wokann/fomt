@@ -2218,11 +2218,108 @@ func_0802281C:
     .global func_08022840
     .thumb_func
 func_08022840:
-    .incbin "baserom_jp.gba", 0x22840, (0x228CC - 0x22840)
+    push {r4, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    movs r0, #0x78
+    bl func_080AB1C0
+    adds r0, #0xf0
+    lsls r0, r0, #16
+    lsrs r0, r0, #16
+    ldr r2, .Ljp_080228C0
+    ldr r1, [sp]
+    ands r1, r2
+    orrs r1, r0
+    ldr r0, .Ljp_080228C4
+    ands r1, r0
+    movs r0, #0xf0
+    lsls r0, r0, #14
+    orrs r1, r0
+    movs r0, #0x80
+    lsls r0, r0, #16
+    orrs r1, r0
+    ldr r0, .Ljp_080228C8
+    ands r1, r0
+    str r1, [sp]
+    ldr r0, [r4, #0x34]
+    mov r1, sp
+    bl method_0809BD2C__7ChickenPC15UnkBarnAnimal2C
+    adds r0, r4, #0
+    bl func_080226E4
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
+    bl func_08022648
+    ldr r0, [r4, #0x34]
+    movs r1, #0xa
+    bl SubtractAffection__6Animali
+    ldr r0, [r4, #0x34]
+    bl SetUnhappy__9Livestock
+    adds r0, r4, #0
+    movs r1, #2
+    movs r2, #0
+    bl func_08032384
+    ldr r0, [r4, #0x34]
+    bl GetGrowthStage__C7Chicken
+    movs r1, #0xa5
+    cmp r0, #1
+    bne .Ljp_080228B2
+    movs r1, #0xa6
+.Ljp_080228B2:
+    adds r0, r4, #0
+    bl func_0801FE58
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+.Ljp_080228C0:
+    .word 0xFFFF0000
+.Ljp_080228C4:
+    .word 0xFF80FFFF
+.Ljp_080228C8:
+    .word 0x00FFFFFF
     .global func_080228CC
     .thumb_func
 func_080228CC:
-    .incbin "baserom_jp.gba", 0x228CC, (0x22904 - 0x228CC)
+    push {r4, lr}
+    movs r3, #0xa
+    ldrsh r2, [r1, r3]
+    movs r4, #0xe
+    ldrsh r3, [r1, r4]
+    subs r1, r2, #7
+    strh r1, [r0]
+    subs r1, r3, #4
+    strh r1, [r0, #2]
+    adds r2, #7
+    strh r2, [r0, #4]
+    adds r3, #5
+    strh r3, [r0, #6]
+    pop {r4}
+    pop {r2}
+    bx r2
+    .global func_080228EC
+    .thumb_func
+func_080228EC:
+    movs r0, #0
+    bx lr
+    .global func_080228F0
+    .thumb_func
+func_080228F0:
+    push {lr}
+    cmp r0, #0
+    beq .Ljp_080228FA
+    cmp r0, #1
+    beq .Ljp_080228FE
+.Ljp_080228FA:
+    movs r0, #6
+    b .Ljp_08022900
+.Ljp_080228FE:
+    movs r0, #7
+.Ljp_08022900:
+    pop {r1}
+    bx r1
     .global func_08022904
     .thumb_func
 func_08022904:
@@ -7521,36 +7618,87 @@ func_08022A88:
     .global func_08022AAC
     .thumb_func
 func_08022AAC:
-    .byte 0x10, 0xB5, 0x81, 0xB0
-    .byte 0x04, 0x1C, 0x78, 0x20
+    push {r4, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    movs r0, #0x78
     bl func_080AB788
-    .byte 0xF0, 0x30, 0x00, 0x04, 0x00, 0x0C, 0x1B, 0x4A
-    .byte 0x00, 0x99, 0x11, 0x40, 0x01, 0x43, 0x1A, 0x48, 0x01, 0x40, 0xF0, 0x20, 0x80, 0x03, 0x01, 0x43
-    .byte 0x80, 0x20, 0x00, 0x04, 0x01, 0x43, 0x17, 0x48, 0x01, 0x40, 0x00, 0x91, 0x60, 0x6B, 0x69, 0x46
+    adds r0, #0xf0
+    lsls r0, r0, #16
+    lsrs r0, r0, #16
+    ldr r2, .L08022B2C
+    ldr r1, [sp]
+    ands r1, r2
+    orrs r1, r0
+    ldr r0, .L08022B30
+    ands r1, r0
+    movs r0, #0xf0
+    lsls r0, r0, #14
+    orrs r1, r0
+    movs r0, #0x80
+    lsls r0, r0, #16
+    orrs r1, r0
+    ldr r0, .L08022B34
+    ands r1, r0
+    str r1, [sp]
+    ldr r0, [r4, #0x34]
+    mov r1, sp
     bl method_0809BD2C__7ChickenPC15UnkBarnAnimal2C
-    .byte 0x20, 0x1C
+    adds r0, r4, #0
     bl func_08022950
-    .byte 0x01, 0x1C, 0x20, 0x1C, 0x20, 0x30
-    .byte 0x02, 0x78, 0x20, 0x1C
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
     bl func_080228B4
-    .byte 0x60, 0x6B, 0x0A, 0x21
+    ldr r0, [r4, #0x34]
+    movs r1, #0xa
     bl SubtractAffection__6Animali
-    .byte 0x60, 0x6B
+    ldr r0, [r4, #0x34]
     bl SetUnhappy__9Livestock
-    .byte 0x20, 0x1C, 0x02, 0x21, 0x00, 0x22
+    adds r0, r4, #0
+    movs r1, #2
+    movs r2, #0
     bl func_08032384
-    .byte 0x60, 0x6B
+    ldr r0, [r4, #0x34]
     bl GetGrowthStage__C7Chicken
-    .byte 0xA5, 0x21, 0x01, 0x28, 0x00, 0xD1, 0xA6, 0x21, 0x20, 0x1C
+    movs r1, #0xa5
+    cmp r0, #1
+    bne .L08022B1E
+    movs r1, #0xa6
+.L08022B1E:
+    adds r0, r4, #0
     bl func_080200C4
-    .byte 0x01, 0xB0, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0xFF, 0xFF
-    .byte 0xFF, 0xFF, 0x80, 0xFF, 0xFF, 0xFF, 0xFF, 0x00
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+.L08022B2C:
+    .word 0xFFFF0000
+.L08022B30:
+    .word 0xFF80FFFF
+.L08022B34:
+    .word 0x00FFFFFF
     .global func_08022B38
     .thumb_func
 func_08022B38:
-    .byte 0x10, 0xB5, 0x0A, 0x23, 0xCA, 0x5E, 0x0E, 0x24
-    .byte 0x0B, 0x5F, 0xD1, 0x1F, 0x01, 0x80, 0x19, 0x1F, 0x41, 0x80, 0x07, 0x32, 0x82, 0x80, 0x05, 0x33
-    .byte 0xC3, 0x80, 0x10, 0xBC, 0x04, 0xBC, 0x10, 0x47
+    push {r4, lr}
+    movs r3, #0xa
+    ldrsh r2, [r1, r3]
+    movs r4, #0xe
+    ldrsh r3, [r1, r4]
+    subs r1, r2, #7
+    strh r1, [r0]
+    subs r1, r3, #4
+    strh r1, [r0, #2]
+    adds r2, #7
+    strh r2, [r0, #4]
+    adds r3, #5
+    strh r3, [r0, #6]
+    pop {r4}
+    pop {r2}
+    bx r2
 
     thumb_func_start func_08022B58
 func_08022B58: @ 0x08022B58

@@ -3056,3 +3056,21 @@ WSL 四区域完整构建、资源补丁和 ROM 对照均已通过：JP
 `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 逐字节一致。
+
+## `asm/code_entities.s`：四区域鸡状态与边界辅助入口
+
+第二个连续鸡状态处理函数也已提升：JP `func_08022840`
+（`0x08022840`–`0x080228CB`）与海外 `func_08022AAC`
+（`0x08022AAC`–`0x08022B37`）直接保留原有状态位构造、鸡实体调用、状态更新、三项
+字面量池及 ROM 顺序。
+
+紧随其后的坐标边界写入函数 JP `func_080228CC` 与海外 `func_08022B38` 已统一为 Thumb
+指令。JP 同一原始片段内另有两个真实入口 `func_080228EC` 和 `func_080228F0`，分别与
+海外已可读的 `func_08022B58`、`func_08022B5C` 对应；现在它们也不再被合并的 `.incbin`
+隐藏。该批没有添加别名、固定 `BL` 字节、伪造偏移或多余 section。
+
+WSL 四区域完整构建、资源补丁和 ROM 对照均已通过：JP
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`、US
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 逐字节一致。
