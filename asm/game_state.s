@@ -10,56 +10,46 @@
     .syntax unified
     .thumb
 
-    .macro jp_game_state_chunk start, end
-        .incbin "baserom_jp.gba", \start, (\end - \start)
-    .endm
-
-    .macro jp_game_state_entry name, start, end
-        .global \name
-        .thumb_func
-\name:
-        jp_game_state_chunk \start, \end
-    .endm
 
     .global func_08010348
     .thumb_func
 func_08010348:
-    jp_game_state_chunk 0x10328, 0x10338
+    .incbin "baserom_jp.gba", 0x10328, (0x10338 - 0x10328)
 
     .global func_08010358
     .thumb_func
 func_08010358:
-    jp_game_state_chunk 0x10338, 0x10E28
+    .incbin "baserom_jp.gba", 0x10338, (0x10E28 - 0x10338)
 
     .global func_08010E48
     .thumb_func
 func_08010E48:
-    jp_game_state_chunk 0x10E28, 0x10E30
+    .incbin "baserom_jp.gba", 0x10E28, (0x10E30 - 0x10E28)
 
     .global func_08010E50
     .thumb_func
 func_08010E50:
-    jp_game_state_chunk 0x10E30, 0x10E38
+    .incbin "baserom_jp.gba", 0x10E30, (0x10E38 - 0x10E30)
 
     .global func_08010E58
     .thumb_func
 func_08010E58:
-    jp_game_state_chunk 0x10E38, 0x10E40
+    .incbin "baserom_jp.gba", 0x10E38, (0x10E40 - 0x10E38)
 
     .global func_08010E60
     .thumb_func
 func_08010E60:
-    jp_game_state_chunk 0x10E40, 0x10E48
+    .incbin "baserom_jp.gba", 0x10E40, (0x10E48 - 0x10E40)
 
     .global func_08010E68
     .thumb_func
 func_08010E68:
-    jp_game_state_chunk 0x10E48, 0x10EE4
+    .incbin "baserom_jp.gba", 0x10E48, (0x10EE4 - 0x10E48)
 
     .global func_08010F04
     .thumb_func
 func_08010F04:
-    jp_game_state_chunk 0x10EE4, 0x10EEC
+    .incbin "baserom_jp.gba", 0x10EE4, (0x10EEC - 0x10EE4)
     .global func_08010F0C
     .thumb_func
 func_08010F0C:
@@ -83,400 +73,1132 @@ func_08010F1C:
     lsls r0, r0, #0x19
     lsrs r0, r0, #0x1a
     bx lr
-    jp_game_state_entry func_08010F24, 0x10F04, 0x10F10
-    jp_game_state_chunk 0x10F10, 0x10F1C
-    jp_game_state_entry func_08010F3C, 0x10F1C, 0x10F28
-    jp_game_state_chunk 0x10F28, 0x10F34
-    jp_game_state_chunk 0x10F34, 0x110CC
+    .global func_08010F24
+    .thumb_func
+func_08010F24:
+    .incbin "baserom_jp.gba", 0x10F04, (0x10F10 - 0x10F04)
+    .incbin "baserom_jp.gba", 0x10F10, (0x10F1C - 0x10F10)
+    .global func_08010F3C
+    .thumb_func
+func_08010F3C:
+    .incbin "baserom_jp.gba", 0x10F1C, (0x10F28 - 0x10F1C)
+    .incbin "baserom_jp.gba", 0x10F28, (0x10F34 - 0x10F28)
+    .incbin "baserom_jp.gba", 0x10F34, (0x110CC - 0x10F34)
     .4byte gUnk_080F0566
-    jp_game_state_chunk 0x110D0, 0x113EC
-    jp_game_state_chunk 0x113EC, 0x11438
-    jp_game_state_chunk 0x11438, 0x11444
+    .incbin "baserom_jp.gba", 0x110D0, (0x113EC - 0x110D0)
+    .incbin "baserom_jp.gba", 0x113EC, (0x11438 - 0x113EC)
+    .incbin "baserom_jp.gba", 0x11438, (0x11444 - 0x11438)
 
     .global func_08011464
     .thumb_func
 func_08011464:
-    jp_game_state_chunk 0x11444, 0x11478
+    .incbin "baserom_jp.gba", 0x11444, (0x11478 - 0x11444)
 
     .global func_08011498
     .thumb_func
 func_08011498:
-    jp_game_state_chunk 0x11478, 0x114A8
+    .incbin "baserom_jp.gba", 0x11478, (0x114A8 - 0x11478)
 
     .global func_080114C8
     .thumb_func
 func_080114C8:
-    jp_game_state_chunk 0x114A8, 0x114D8
-    jp_game_state_chunk 0x114D8, 0x114F0
-    jp_game_state_chunk 0x114F0, 0x114FC
-    jp_game_state_entry func_0801151C, 0x114FC, 0x11500
-    jp_game_state_entry func_08011520, 0x11500, 0x11504
-    jp_game_state_entry func_08011524, 0x11504, 0x11520
-    jp_game_state_entry func_08011540, 0x11520, 0x11524
-    jp_game_state_entry func_08011544, 0x11524, 0x11530
-    jp_game_state_entry func_08011550, 0x11530, 0x11548
-    jp_game_state_chunk 0x11548, 0x11568
-    jp_game_state_chunk 0x11568, 0x11590
-    jp_game_state_chunk 0x11590, 0x11914
+    .incbin "baserom_jp.gba", 0x114A8, (0x114D8 - 0x114A8)
+    .incbin "baserom_jp.gba", 0x114D8, (0x114F0 - 0x114D8)
+    .incbin "baserom_jp.gba", 0x114F0, (0x114FC - 0x114F0)
+    .global func_0801151C
+    .thumb_func
+func_0801151C:
+    .incbin "baserom_jp.gba", 0x114FC, (0x11500 - 0x114FC)
+    .global func_08011520
+    .thumb_func
+func_08011520:
+    .incbin "baserom_jp.gba", 0x11500, (0x11504 - 0x11500)
+    .global func_08011524
+    .thumb_func
+func_08011524:
+    .incbin "baserom_jp.gba", 0x11504, (0x11520 - 0x11504)
+    .global func_08011540
+    .thumb_func
+func_08011540:
+    .incbin "baserom_jp.gba", 0x11520, (0x11524 - 0x11520)
+    .global func_08011544
+    .thumb_func
+func_08011544:
+    .incbin "baserom_jp.gba", 0x11524, (0x11530 - 0x11524)
+    .global func_08011550
+    .thumb_func
+func_08011550:
+    .incbin "baserom_jp.gba", 0x11530, (0x11548 - 0x11530)
+    .incbin "baserom_jp.gba", 0x11548, (0x11568 - 0x11548)
+    .incbin "baserom_jp.gba", 0x11568, (0x11590 - 0x11568)
+    .incbin "baserom_jp.gba", 0x11590, (0x11914 - 0x11590)
 
-    jp_game_state_chunk 0x11914, 0x1198C
+    .incbin "baserom_jp.gba", 0x11914, (0x1198C - 0x11914)
     .4byte gText_AnimalMemorial_LineBreak
     .4byte gText_AnimalMemorial_Continue
-    jp_game_state_chunk 0x11994, 0x11A9C
+    .incbin "baserom_jp.gba", 0x11994, (0x11A9C - 0x11994)
     .4byte gText_AnimalMemorial_LineBreak
-    jp_game_state_chunk 0x11AA0, 0x11AA4
+    .incbin "baserom_jp.gba", 0x11AA0, (0x11AA4 - 0x11AA0)
     .4byte gText_AnimalMemorial_Continue
-    jp_game_state_chunk 0x11AA8, 0x11B9C
+    .incbin "baserom_jp.gba", 0x11AA8, (0x11B9C - 0x11AA8)
     .4byte gText_AnimalMemorial_LineBreak
-    jp_game_state_chunk 0x11BA0, 0x11BA4
+    .incbin "baserom_jp.gba", 0x11BA0, (0x11BA4 - 0x11BA0)
     .4byte gText_AnimalMemorial_Continue
-    jp_game_state_chunk 0x11BA8, 0x11CAC
+    .incbin "baserom_jp.gba", 0x11BA8, (0x11CAC - 0x11BA8)
     .4byte gText_AnimalMemorial_LineBreak
-    jp_game_state_chunk 0x11CB0, 0x11CB4
+    .incbin "baserom_jp.gba", 0x11CB0, (0x11CB4 - 0x11CB0)
     .4byte gText_AnimalMemorial_Continue
 
     .global func_08011CD8
     .thumb_func
 func_08011CD8:
-    jp_game_state_chunk 0x11CB8, 0x11DA4
+    .incbin "baserom_jp.gba", 0x11CB8, (0x11DA4 - 0x11CB8)
 
     .global func_08011DC4
     .thumb_func
 func_08011DC4:
-    jp_game_state_chunk 0x11DA4, 0x11EB8
-    jp_game_state_entry func_08011FE8, 0x11EB8, 0x11EF8
-    jp_game_state_entry func_08012028, 0x11EF8, 0x11F34
-    jp_game_state_entry func_08012064, 0x11F34, 0x11F74
-    jp_game_state_entry func_080120A4, 0x11F74, 0x11F94
-    jp_game_state_entry func_080120C4, 0x11F94, 0x11FB4
-    jp_game_state_entry func_080120E4, 0x11FB4, 0x11FE4
-    jp_game_state_entry func_08012114, 0x11FE4, 0x12024
-    jp_game_state_entry func_08012154, 0x12024, 0x12044
-    jp_game_state_entry func_08012174, 0x12044, 0x1206C
-    jp_game_state_entry func_0801219C, 0x1206C, 0x12094
-    jp_game_state_entry func_080121C4, 0x12094, 0x120BC
-    jp_game_state_entry func_080121EC, 0x120BC, 0x120E8
-    jp_game_state_entry func_08012218, 0x120E8, 0x120EC
-    jp_game_state_entry func_0801221C, 0x120EC, 0x1210C
-    jp_game_state_entry func_0801223C, 0x1210C, 0x12144
-    jp_game_state_entry func_08012274, 0x12144, 0x12170
-    jp_game_state_entry func_080122A0, 0x12170, 0x1218C
-    jp_game_state_entry func_080122BC, 0x1218C, 0x121B0
-    jp_game_state_entry func_080122E0, 0x121B0, 0x1225C
-    jp_game_state_entry func_0801238C, 0x1225C, 0x12274
-    jp_game_state_entry func_080123A4, 0x12274, 0x1229C
-    jp_game_state_entry func_080123CC, 0x1229C, 0x12324
-    jp_game_state_entry func_08012454, 0x12324, 0x12334
-    jp_game_state_entry func_08012464, 0x12334, 0x12394
-    jp_game_state_entry func_080124C4, 0x12394, 0x123A0
-    jp_game_state_entry func_080124D0, 0x123A0, 0x124BC
-    jp_game_state_entry func_080125EC, 0x124BC, 0x12528
-    jp_game_state_entry func_08012658, 0x12528, 0x1255C
-    jp_game_state_entry func_0801268C, 0x1255C, 0x1258C
-    jp_game_state_entry func_080126BC, 0x1258C, 0x125B4
-    jp_game_state_entry func_080126E4, 0x125B4, 0x125F0
-    jp_game_state_entry func_08012720, 0x125F0, 0x1261C
-    jp_game_state_entry func_0801274C, 0x1261C, 0x12630
-    jp_game_state_entry func_08012760, 0x12630, 0x1265C
-    jp_game_state_entry func_0801278C, 0x1265C, 0x12670
-    jp_game_state_entry func_080127A0, 0x12670, 0x1271C
-    jp_game_state_entry func_0801284C, 0x1271C, 0x12730
-    jp_game_state_entry func_08012860, 0x12730, 0x127A0
-    jp_game_state_entry func_080128D0, 0x127A0, 0x1284C
-    jp_game_state_entry func_0801297C, 0x1284C, 0x1299C
-    jp_game_state_entry func_08012ACC, 0x1299C, 0x129D4
-    jp_game_state_chunk 0x129D4, 0x129F4
-    jp_game_state_chunk 0x129F4, 0x12A7C
-    jp_game_state_chunk 0x12A7C, 0x12A8C
-    jp_game_state_entry func_08012BBC, 0x12A8C, 0x12B20
-    jp_game_state_entry func_08012C50, 0x12B20, 0x12BC4
-    jp_game_state_entry func_08012CF4, 0x12BC4, 0x12C58
-    jp_game_state_entry func_08012D88, 0x12C58, 0x12CEC
-    jp_game_state_entry func_08012E1C, 0x12CEC, 0x12D90
-    jp_game_state_entry func_08012EC0, 0x12D90, 0x12E24
-    jp_game_state_entry func_08012F54, 0x12E24, 0x12EB8
-    jp_game_state_entry func_08012FE8, 0x12EB8, 0x12F50
-    jp_game_state_entry func_08012F50, 0x12F50, 0x12FE4
-    jp_game_state_entry func_08012FE4, 0x12FE4, 0x13078
-    jp_game_state_entry func_08013078, 0x13078, 0x13110
-    jp_game_state_entry func_08013110, 0x13110, 0x131A4
-    jp_game_state_entry func_080131A4, 0x131A4, 0x13238
-    jp_game_state_entry func_08013238, 0x13238, 0x132DC
-    jp_game_state_entry func_080132DC, 0x132DC, 0x13378
-    jp_game_state_entry func_08013378, 0x13378, 0x13418
-    jp_game_state_entry func_08013418, 0x13418, 0x134AC
-    jp_game_state_entry func_080134AC, 0x134AC, 0x13540
-    jp_game_state_entry func_08013540, 0x13540, 0x135D4
-    jp_game_state_entry func_080135D4, 0x135D4, 0x13668
-    jp_game_state_entry func_08013668, 0x13668, 0x136FC
-    jp_game_state_entry func_080136FC, 0x136FC, 0x13794
-    jp_game_state_entry func_08013794, 0x13794, 0x13830
-    jp_game_state_entry func_08013830, 0x13830, 0x138C4
-    jp_game_state_entry func_080138C4, 0x138C4, 0x13968
-    jp_game_state_entry func_08013968, 0x13968, 0x13A0C
-    jp_game_state_entry func_08013A0C, 0x13A0C, 0x13AB0
-    jp_game_state_entry func_08013AB0, 0x13AB0, 0x13B44
-    jp_game_state_entry func_08013B44, 0x13B44, 0x13BD8
-    jp_game_state_entry func_08013BD8, 0x13BD8, 0x13C9C
-    jp_game_state_entry func_08013C9C, 0x13C9C, 0x13D40
-    jp_game_state_entry func_08013D40, 0x13D40, 0x13DCC
-    jp_game_state_entry func_08013DCC, 0x13DCC, 0x13E5C
-    jp_game_state_entry func_08013E5C, 0x13E5C, 0x13F08
-    jp_game_state_entry func_08013F08, 0x13F08, 0x13F20
-    jp_game_state_entry func_08013F20, 0x13F20, 0x13F38
-    jp_game_state_entry func_08013F38, 0x13F38, 0x13F50
-    jp_game_state_entry func_08013F50, 0x13F50, 0x13F68
-    jp_game_state_entry func_08013F68, 0x13F68, 0x13F80
-    jp_game_state_entry func_08013F80, 0x13F80, 0x13F98
-    jp_game_state_entry func_08013F98, 0x13F98, 0x13FB0
-    jp_game_state_entry func_08013FB0, 0x13FB0, 0x13FC8
-    jp_game_state_entry func_08013FC8, 0x13FC8, 0x13FE0
-    jp_game_state_entry func_08013FE0, 0x13FE0, 0x14038
-    jp_game_state_chunk 0x14038, 0x1406C
-    jp_game_state_entry func_0801406C, 0x1406C, 0x14098
-    jp_game_state_entry func_08014098, 0x14098, 0x14108
-    jp_game_state_entry func_08014108, 0x14108, 0x14120
-    jp_game_state_entry func_08014120, 0x14120, 0x14138
-    jp_game_state_entry func_08014138, 0x14138, 0x14164
-    jp_game_state_entry func_08014164, 0x14164, 0x1418C
-    jp_game_state_entry func_0801418C, 0x1418C, 0x141A8
-    jp_game_state_entry func_080141A8, 0x141A8, 0x141C4
-    jp_game_state_entry func_080141C4, 0x141C4, 0x141D8
-    jp_game_state_entry func_080141D8, 0x141D8, 0x141EC
-    jp_game_state_entry func_080141EC, 0x141EC, 0x14250
-    jp_game_state_entry func_08014250, 0x14250, 0x142E4
-    jp_game_state_entry func_080142E4, 0x142E4, 0x14390
-    jp_game_state_entry func_08014390, 0x14390, 0x14424
-    jp_game_state_entry func_08014424, 0x14424, 0x144CC
-    jp_game_state_entry func_080144CC, 0x144CC, 0x14560
-    jp_game_state_chunk 0x14560, 0x14568
-    jp_game_state_entry func_08014568, 0x14568, 0x14584
-    jp_game_state_entry func_08014584, 0x14584, 0x145A0
-    jp_game_state_entry func_080145A0, 0x145A0, 0x145D0
-    jp_game_state_entry func_080145D0, 0x145D0, 0x149CC
-    jp_game_state_entry func_080149CC, 0x149CC, 0x14AAC
-    jp_game_state_entry func_08014AAC, 0x14AAC, 0x14AE0
-    jp_game_state_entry func_08014AE0, 0x14AE0, 0x14B08
-    jp_game_state_entry func_08014B08, 0x14B08, 0x14C04
-    jp_game_state_entry func_08014C04, 0x14C04, 0x14C30
-    jp_game_state_entry func_08014C30, 0x14C30, 0x14C50
-    jp_game_state_entry func_08014C50, 0x14C50, 0x14C70
-    jp_game_state_entry func_08014C70, 0x14C70, 0x14FE8
+    .incbin "baserom_jp.gba", 0x11DA4, (0x11EB8 - 0x11DA4)
+    .global func_08011FE8
+    .thumb_func
+func_08011FE8:
+    .incbin "baserom_jp.gba", 0x11EB8, (0x11EF8 - 0x11EB8)
+    .global func_08012028
+    .thumb_func
+func_08012028:
+    .incbin "baserom_jp.gba", 0x11EF8, (0x11F34 - 0x11EF8)
+    .global func_08012064
+    .thumb_func
+func_08012064:
+    .incbin "baserom_jp.gba", 0x11F34, (0x11F74 - 0x11F34)
+    .global func_080120A4
+    .thumb_func
+func_080120A4:
+    .incbin "baserom_jp.gba", 0x11F74, (0x11F94 - 0x11F74)
+    .global func_080120C4
+    .thumb_func
+func_080120C4:
+    .incbin "baserom_jp.gba", 0x11F94, (0x11FB4 - 0x11F94)
+    .global func_080120E4
+    .thumb_func
+func_080120E4:
+    .incbin "baserom_jp.gba", 0x11FB4, (0x11FE4 - 0x11FB4)
+    .global func_08012114
+    .thumb_func
+func_08012114:
+    .incbin "baserom_jp.gba", 0x11FE4, (0x12024 - 0x11FE4)
+    .global func_08012154
+    .thumb_func
+func_08012154:
+    .incbin "baserom_jp.gba", 0x12024, (0x12044 - 0x12024)
+    .global func_08012174
+    .thumb_func
+func_08012174:
+    .incbin "baserom_jp.gba", 0x12044, (0x1206C - 0x12044)
+    .global func_0801219C
+    .thumb_func
+func_0801219C:
+    .incbin "baserom_jp.gba", 0x1206C, (0x12094 - 0x1206C)
+    .global func_080121C4
+    .thumb_func
+func_080121C4:
+    .incbin "baserom_jp.gba", 0x12094, (0x120BC - 0x12094)
+    .global func_080121EC
+    .thumb_func
+func_080121EC:
+    .incbin "baserom_jp.gba", 0x120BC, (0x120E8 - 0x120BC)
+    .global func_08012218
+    .thumb_func
+func_08012218:
+    .incbin "baserom_jp.gba", 0x120E8, (0x120EC - 0x120E8)
+    .global func_0801221C
+    .thumb_func
+func_0801221C:
+    .incbin "baserom_jp.gba", 0x120EC, (0x1210C - 0x120EC)
+    .global func_0801223C
+    .thumb_func
+func_0801223C:
+    .incbin "baserom_jp.gba", 0x1210C, (0x12144 - 0x1210C)
+    .global func_08012274
+    .thumb_func
+func_08012274:
+    .incbin "baserom_jp.gba", 0x12144, (0x12170 - 0x12144)
+    .global func_080122A0
+    .thumb_func
+func_080122A0:
+    .incbin "baserom_jp.gba", 0x12170, (0x1218C - 0x12170)
+    .global func_080122BC
+    .thumb_func
+func_080122BC:
+    .incbin "baserom_jp.gba", 0x1218C, (0x121B0 - 0x1218C)
+    .global func_080122E0
+    .thumb_func
+func_080122E0:
+    .incbin "baserom_jp.gba", 0x121B0, (0x1225C - 0x121B0)
+    .global func_0801238C
+    .thumb_func
+func_0801238C:
+    .incbin "baserom_jp.gba", 0x1225C, (0x12274 - 0x1225C)
+    .global func_080123A4
+    .thumb_func
+func_080123A4:
+    .incbin "baserom_jp.gba", 0x12274, (0x1229C - 0x12274)
+    .global func_080123CC
+    .thumb_func
+func_080123CC:
+    .incbin "baserom_jp.gba", 0x1229C, (0x12324 - 0x1229C)
+    .global func_08012454
+    .thumb_func
+func_08012454:
+    .incbin "baserom_jp.gba", 0x12324, (0x12334 - 0x12324)
+    .global func_08012464
+    .thumb_func
+func_08012464:
+    .incbin "baserom_jp.gba", 0x12334, (0x12394 - 0x12334)
+    .global func_080124C4
+    .thumb_func
+func_080124C4:
+    .incbin "baserom_jp.gba", 0x12394, (0x123A0 - 0x12394)
+    .global func_080124D0
+    .thumb_func
+func_080124D0:
+    .incbin "baserom_jp.gba", 0x123A0, (0x124BC - 0x123A0)
+    .global func_080125EC
+    .thumb_func
+func_080125EC:
+    .incbin "baserom_jp.gba", 0x124BC, (0x12528 - 0x124BC)
+    .global func_08012658
+    .thumb_func
+func_08012658:
+    .incbin "baserom_jp.gba", 0x12528, (0x1255C - 0x12528)
+    .global func_0801268C
+    .thumb_func
+func_0801268C:
+    .incbin "baserom_jp.gba", 0x1255C, (0x1258C - 0x1255C)
+    .global func_080126BC
+    .thumb_func
+func_080126BC:
+    .incbin "baserom_jp.gba", 0x1258C, (0x125B4 - 0x1258C)
+    .global func_080126E4
+    .thumb_func
+func_080126E4:
+    .incbin "baserom_jp.gba", 0x125B4, (0x125F0 - 0x125B4)
+    .global func_08012720
+    .thumb_func
+func_08012720:
+    .incbin "baserom_jp.gba", 0x125F0, (0x1261C - 0x125F0)
+    .global func_0801274C
+    .thumb_func
+func_0801274C:
+    .incbin "baserom_jp.gba", 0x1261C, (0x12630 - 0x1261C)
+    .global func_08012760
+    .thumb_func
+func_08012760:
+    .incbin "baserom_jp.gba", 0x12630, (0x1265C - 0x12630)
+    .global func_0801278C
+    .thumb_func
+func_0801278C:
+    .incbin "baserom_jp.gba", 0x1265C, (0x12670 - 0x1265C)
+    .global func_080127A0
+    .thumb_func
+func_080127A0:
+    .incbin "baserom_jp.gba", 0x12670, (0x1271C - 0x12670)
+    .global func_0801284C
+    .thumb_func
+func_0801284C:
+    .incbin "baserom_jp.gba", 0x1271C, (0x12730 - 0x1271C)
+    .global func_08012860
+    .thumb_func
+func_08012860:
+    .incbin "baserom_jp.gba", 0x12730, (0x127A0 - 0x12730)
+    .global func_080128D0
+    .thumb_func
+func_080128D0:
+    .incbin "baserom_jp.gba", 0x127A0, (0x1284C - 0x127A0)
+    .global func_0801297C
+    .thumb_func
+func_0801297C:
+    .incbin "baserom_jp.gba", 0x1284C, (0x1299C - 0x1284C)
+    .global func_08012ACC
+    .thumb_func
+func_08012ACC:
+    .incbin "baserom_jp.gba", 0x1299C, (0x129D4 - 0x1299C)
+    .incbin "baserom_jp.gba", 0x129D4, (0x129F4 - 0x129D4)
+    .incbin "baserom_jp.gba", 0x129F4, (0x12A7C - 0x129F4)
+    .incbin "baserom_jp.gba", 0x12A7C, (0x12A8C - 0x12A7C)
+    .global func_08012BBC
+    .thumb_func
+func_08012BBC:
+    .incbin "baserom_jp.gba", 0x12A8C, (0x12B20 - 0x12A8C)
+    .global func_08012C50
+    .thumb_func
+func_08012C50:
+    .incbin "baserom_jp.gba", 0x12B20, (0x12BC4 - 0x12B20)
+    .global func_08012CF4
+    .thumb_func
+func_08012CF4:
+    .incbin "baserom_jp.gba", 0x12BC4, (0x12C58 - 0x12BC4)
+    .global func_08012D88
+    .thumb_func
+func_08012D88:
+    .incbin "baserom_jp.gba", 0x12C58, (0x12CEC - 0x12C58)
+    .global func_08012E1C
+    .thumb_func
+func_08012E1C:
+    .incbin "baserom_jp.gba", 0x12CEC, (0x12D90 - 0x12CEC)
+    .global func_08012EC0
+    .thumb_func
+func_08012EC0:
+    .incbin "baserom_jp.gba", 0x12D90, (0x12E24 - 0x12D90)
+    .global func_08012F54
+    .thumb_func
+func_08012F54:
+    .incbin "baserom_jp.gba", 0x12E24, (0x12EB8 - 0x12E24)
+    .global func_08012FE8
+    .thumb_func
+func_08012FE8:
+    .incbin "baserom_jp.gba", 0x12EB8, (0x12F50 - 0x12EB8)
+    .global func_08012F50
+    .thumb_func
+func_08012F50:
+    .incbin "baserom_jp.gba", 0x12F50, (0x12FE4 - 0x12F50)
+    .global func_08012FE4
+    .thumb_func
+func_08012FE4:
+    .incbin "baserom_jp.gba", 0x12FE4, (0x13078 - 0x12FE4)
+    .global func_08013078
+    .thumb_func
+func_08013078:
+    .incbin "baserom_jp.gba", 0x13078, (0x13110 - 0x13078)
+    .global func_08013110
+    .thumb_func
+func_08013110:
+    .incbin "baserom_jp.gba", 0x13110, (0x131A4 - 0x13110)
+    .global func_080131A4
+    .thumb_func
+func_080131A4:
+    .incbin "baserom_jp.gba", 0x131A4, (0x13238 - 0x131A4)
+    .global func_08013238
+    .thumb_func
+func_08013238:
+    .incbin "baserom_jp.gba", 0x13238, (0x132DC - 0x13238)
+    .global func_080132DC
+    .thumb_func
+func_080132DC:
+    .incbin "baserom_jp.gba", 0x132DC, (0x13378 - 0x132DC)
+    .global func_08013378
+    .thumb_func
+func_08013378:
+    .incbin "baserom_jp.gba", 0x13378, (0x13418 - 0x13378)
+    .global func_08013418
+    .thumb_func
+func_08013418:
+    .incbin "baserom_jp.gba", 0x13418, (0x134AC - 0x13418)
+    .global func_080134AC
+    .thumb_func
+func_080134AC:
+    .incbin "baserom_jp.gba", 0x134AC, (0x13540 - 0x134AC)
+    .global func_08013540
+    .thumb_func
+func_08013540:
+    .incbin "baserom_jp.gba", 0x13540, (0x135D4 - 0x13540)
+    .global func_080135D4
+    .thumb_func
+func_080135D4:
+    .incbin "baserom_jp.gba", 0x135D4, (0x13668 - 0x135D4)
+    .global func_08013668
+    .thumb_func
+func_08013668:
+    .incbin "baserom_jp.gba", 0x13668, (0x136FC - 0x13668)
+    .global func_080136FC
+    .thumb_func
+func_080136FC:
+    .incbin "baserom_jp.gba", 0x136FC, (0x13794 - 0x136FC)
+    .global func_08013794
+    .thumb_func
+func_08013794:
+    .incbin "baserom_jp.gba", 0x13794, (0x13830 - 0x13794)
+    .global func_08013830
+    .thumb_func
+func_08013830:
+    .incbin "baserom_jp.gba", 0x13830, (0x138C4 - 0x13830)
+    .global func_080138C4
+    .thumb_func
+func_080138C4:
+    .incbin "baserom_jp.gba", 0x138C4, (0x13968 - 0x138C4)
+    .global func_08013968
+    .thumb_func
+func_08013968:
+    .incbin "baserom_jp.gba", 0x13968, (0x13A0C - 0x13968)
+    .global func_08013A0C
+    .thumb_func
+func_08013A0C:
+    .incbin "baserom_jp.gba", 0x13A0C, (0x13AB0 - 0x13A0C)
+    .global func_08013AB0
+    .thumb_func
+func_08013AB0:
+    .incbin "baserom_jp.gba", 0x13AB0, (0x13B44 - 0x13AB0)
+    .global func_08013B44
+    .thumb_func
+func_08013B44:
+    .incbin "baserom_jp.gba", 0x13B44, (0x13BD8 - 0x13B44)
+    .global func_08013BD8
+    .thumb_func
+func_08013BD8:
+    .incbin "baserom_jp.gba", 0x13BD8, (0x13C9C - 0x13BD8)
+    .global func_08013C9C
+    .thumb_func
+func_08013C9C:
+    .incbin "baserom_jp.gba", 0x13C9C, (0x13D40 - 0x13C9C)
+    .global func_08013D40
+    .thumb_func
+func_08013D40:
+    .incbin "baserom_jp.gba", 0x13D40, (0x13DCC - 0x13D40)
+    .global func_08013DCC
+    .thumb_func
+func_08013DCC:
+    .incbin "baserom_jp.gba", 0x13DCC, (0x13E5C - 0x13DCC)
+    .global func_08013E5C
+    .thumb_func
+func_08013E5C:
+    .incbin "baserom_jp.gba", 0x13E5C, (0x13F08 - 0x13E5C)
+    .global func_08013F08
+    .thumb_func
+func_08013F08:
+    .incbin "baserom_jp.gba", 0x13F08, (0x13F20 - 0x13F08)
+    .global func_08013F20
+    .thumb_func
+func_08013F20:
+    .incbin "baserom_jp.gba", 0x13F20, (0x13F38 - 0x13F20)
+    .global func_08013F38
+    .thumb_func
+func_08013F38:
+    .incbin "baserom_jp.gba", 0x13F38, (0x13F50 - 0x13F38)
+    .global func_08013F50
+    .thumb_func
+func_08013F50:
+    .incbin "baserom_jp.gba", 0x13F50, (0x13F68 - 0x13F50)
+    .global func_08013F68
+    .thumb_func
+func_08013F68:
+    .incbin "baserom_jp.gba", 0x13F68, (0x13F80 - 0x13F68)
+    .global func_08013F80
+    .thumb_func
+func_08013F80:
+    .incbin "baserom_jp.gba", 0x13F80, (0x13F98 - 0x13F80)
+    .global func_08013F98
+    .thumb_func
+func_08013F98:
+    .incbin "baserom_jp.gba", 0x13F98, (0x13FB0 - 0x13F98)
+    .global func_08013FB0
+    .thumb_func
+func_08013FB0:
+    .incbin "baserom_jp.gba", 0x13FB0, (0x13FC8 - 0x13FB0)
+    .global func_08013FC8
+    .thumb_func
+func_08013FC8:
+    .incbin "baserom_jp.gba", 0x13FC8, (0x13FE0 - 0x13FC8)
+    .global func_08013FE0
+    .thumb_func
+func_08013FE0:
+    .incbin "baserom_jp.gba", 0x13FE0, (0x14038 - 0x13FE0)
+    .incbin "baserom_jp.gba", 0x14038, (0x1406C - 0x14038)
+    .global func_0801406C
+    .thumb_func
+func_0801406C:
+    .incbin "baserom_jp.gba", 0x1406C, (0x14098 - 0x1406C)
+    .global func_08014098
+    .thumb_func
+func_08014098:
+    .incbin "baserom_jp.gba", 0x14098, (0x14108 - 0x14098)
+    .global func_08014108
+    .thumb_func
+func_08014108:
+    .incbin "baserom_jp.gba", 0x14108, (0x14120 - 0x14108)
+    .global func_08014120
+    .thumb_func
+func_08014120:
+    .incbin "baserom_jp.gba", 0x14120, (0x14138 - 0x14120)
+    .global func_08014138
+    .thumb_func
+func_08014138:
+    .incbin "baserom_jp.gba", 0x14138, (0x14164 - 0x14138)
+    .global func_08014164
+    .thumb_func
+func_08014164:
+    .incbin "baserom_jp.gba", 0x14164, (0x1418C - 0x14164)
+    .global func_0801418C
+    .thumb_func
+func_0801418C:
+    .incbin "baserom_jp.gba", 0x1418C, (0x141A8 - 0x1418C)
+    .global func_080141A8
+    .thumb_func
+func_080141A8:
+    .incbin "baserom_jp.gba", 0x141A8, (0x141C4 - 0x141A8)
+    .global func_080141C4
+    .thumb_func
+func_080141C4:
+    .incbin "baserom_jp.gba", 0x141C4, (0x141D8 - 0x141C4)
+    .global func_080141D8
+    .thumb_func
+func_080141D8:
+    .incbin "baserom_jp.gba", 0x141D8, (0x141EC - 0x141D8)
+    .global func_080141EC
+    .thumb_func
+func_080141EC:
+    .incbin "baserom_jp.gba", 0x141EC, (0x14250 - 0x141EC)
+    .global func_08014250
+    .thumb_func
+func_08014250:
+    .incbin "baserom_jp.gba", 0x14250, (0x142E4 - 0x14250)
+    .global func_080142E4
+    .thumb_func
+func_080142E4:
+    .incbin "baserom_jp.gba", 0x142E4, (0x14390 - 0x142E4)
+    .global func_08014390
+    .thumb_func
+func_08014390:
+    .incbin "baserom_jp.gba", 0x14390, (0x14424 - 0x14390)
+    .global func_08014424
+    .thumb_func
+func_08014424:
+    .incbin "baserom_jp.gba", 0x14424, (0x144CC - 0x14424)
+    .global func_080144CC
+    .thumb_func
+func_080144CC:
+    .incbin "baserom_jp.gba", 0x144CC, (0x14560 - 0x144CC)
+    .incbin "baserom_jp.gba", 0x14560, (0x14568 - 0x14560)
+    .global func_08014568
+    .thumb_func
+func_08014568:
+    .incbin "baserom_jp.gba", 0x14568, (0x14584 - 0x14568)
+    .global func_08014584
+    .thumb_func
+func_08014584:
+    .incbin "baserom_jp.gba", 0x14584, (0x145A0 - 0x14584)
+    .global func_080145A0
+    .thumb_func
+func_080145A0:
+    .incbin "baserom_jp.gba", 0x145A0, (0x145D0 - 0x145A0)
+    .global func_080145D0
+    .thumb_func
+func_080145D0:
+    .incbin "baserom_jp.gba", 0x145D0, (0x149CC - 0x145D0)
+    .global func_080149CC
+    .thumb_func
+func_080149CC:
+    .incbin "baserom_jp.gba", 0x149CC, (0x14AAC - 0x149CC)
+    .global func_08014AAC
+    .thumb_func
+func_08014AAC:
+    .incbin "baserom_jp.gba", 0x14AAC, (0x14AE0 - 0x14AAC)
+    .global func_08014AE0
+    .thumb_func
+func_08014AE0:
+    .incbin "baserom_jp.gba", 0x14AE0, (0x14B08 - 0x14AE0)
+    .global func_08014B08
+    .thumb_func
+func_08014B08:
+    .incbin "baserom_jp.gba", 0x14B08, (0x14C04 - 0x14B08)
+    .global func_08014C04
+    .thumb_func
+func_08014C04:
+    .incbin "baserom_jp.gba", 0x14C04, (0x14C30 - 0x14C04)
+    .global func_08014C30
+    .thumb_func
+func_08014C30:
+    .incbin "baserom_jp.gba", 0x14C30, (0x14C50 - 0x14C30)
+    .global func_08014C50
+    .thumb_func
+func_08014C50:
+    .incbin "baserom_jp.gba", 0x14C50, (0x14C70 - 0x14C50)
+    .global func_08014C70
+    .thumb_func
+func_08014C70:
+    .incbin "baserom_jp.gba", 0x14C70, (0x14FE8 - 0x14C70)
     .4byte gText_AnimalMemorial_LineBreak
     .4byte gText_AnimalMemorial_Continue
     .4byte gText_AnimalMemorial_PageBreak
     .4byte gText_AnimalMemorial_Header
-    jp_game_state_chunk 0x14FF8, 0x14FFC
+    .incbin "baserom_jp.gba", 0x14FF8, (0x14FFC - 0x14FF8)
     .4byte gText_AnimalMemorial_FarmPrefix
     .4byte gText_AnimalMemorial_PassedAway
     .4byte gText_AnimalMemorial_NamesIntro
     .4byte gText_AnimalMemorial_PrayerIntro
     .4byte gText_AnimalMemorial_PrayerEnding
-    jp_game_state_chunk 0x15010, 0x15044
-    jp_game_state_entry func_08015044, 0x15044, 0x15150
-    jp_game_state_entry func_08015150, 0x15150, 0x154C8
+    .incbin "baserom_jp.gba", 0x15010, (0x15044 - 0x15010)
+    .global func_08015044
+    .thumb_func
+func_08015044:
+    .incbin "baserom_jp.gba", 0x15044, (0x15150 - 0x15044)
+    .global func_08015150
+    .thumb_func
+func_08015150:
+    .incbin "baserom_jp.gba", 0x15150, (0x154C8 - 0x15150)
     .4byte gText_AnimalMemorial_LineBreak
     .4byte gText_AnimalMemorial_Continue
     .4byte gText_AnimalMemorial_PageBreak
     .4byte gText_AnimalMemorial_Header
-    jp_game_state_chunk 0x154D8, 0x154DC
+    .incbin "baserom_jp.gba", 0x154D8, (0x154DC - 0x154D8)
     .4byte gText_AnimalMemorial_FarmPrefix
     .4byte gText_AnimalMemorial_PassedNaturalLife
     .4byte gText_AnimalMemorial_NamesIntro
     .4byte gText_AnimalMemorial_PrayerIntro
     .4byte gText_AnimalMemorial_PrayerEnding
-    jp_game_state_chunk 0x154F0, 0x15524
-    jp_game_state_entry func_08015524, 0x15524, 0x15630
-    jp_game_state_entry func_08015630, 0x15630, 0x15660
-    jp_game_state_entry func_08015660, 0x15660, 0x1568C
-    jp_game_state_entry func_0801568C, 0x1568C, 0x156B4
-    jp_game_state_entry func_080156B4, 0x156B4, 0x156E4
-    jp_game_state_entry func_080156E4, 0x156E4, 0x15704
-    jp_game_state_entry func_08015704, 0x15704, 0x15724
-    jp_game_state_entry func_08015724, 0x15724, 0x15744
-    jp_game_state_entry func_08015744, 0x15744, 0x15BC4
-    jp_game_state_entry func_08015BC4, 0x15BC4, 0x16518
-    jp_game_state_chunk 0x16518, 0x16540
-    jp_game_state_entry func_08016540, 0x16540, 0x16570
-    jp_game_state_entry func_08016570, 0x16570, 0x165C8
-    jp_game_state_entry func_080165C8, 0x165C8, 0x16668
-    jp_game_state_entry func_08016668, 0x16668, 0x16890
-    jp_game_state_entry func_08016890, 0x16890, 0x16938
-    jp_game_state_entry func_08016938, 0x16938, 0x16954
-    jp_game_state_entry func_08016954, 0x16954, 0x16970
-    jp_game_state_entry func_08016970, 0x16970, 0x16988
-    jp_game_state_entry func_08016988, 0x16988, 0x169A4
-    jp_game_state_chunk 0x169A4, 0x169C0
-    jp_game_state_entry func_080169C0, 0x169C0, 0x169DC
-    jp_game_state_entry func_080169DC, 0x169DC, 0x16A00
-    jp_game_state_entry func_08016A00, 0x16A00, 0x16A1C
-    jp_game_state_entry func_08016A1C, 0x16A1C, 0x16A40
-    jp_game_state_entry func_08016A40, 0x16A40, 0x16A60
-    jp_game_state_entry func_08016A60, 0x16A60, 0x16A80
-    jp_game_state_entry func_08016A80, 0x16A80, 0x16ADC
-    jp_game_state_entry func_08016ADC, 0x16ADC, 0x16B14
-    jp_game_state_entry func_08016B14, 0x16B14, 0x16B30
-    jp_game_state_entry func_08016B30, 0x16B30, 0x16B44
-    jp_game_state_entry func_08016B44, 0x16B44, 0x16C10
-    jp_game_state_entry func_08016C10, 0x16C10, 0x16C30
-    jp_game_state_entry func_08016C30, 0x16C30, 0x16C58
-    jp_game_state_entry func_08016C58, 0x16C58, 0x16C84
-    jp_game_state_entry func_08016C84, 0x16C84, 0x16CA0
-    jp_game_state_entry func_08016CA0, 0x16CA0, 0x16CC8
-    jp_game_state_chunk 0x16CC8, 0x16CF4
-    jp_game_state_entry func_08016CF4, 0x16CF4, 0x16D38
-    jp_game_state_entry func_08016D38, 0x16D38, 0x16F14
-    jp_game_state_chunk 0x16F14, 0x1725C
-    jp_game_state_chunk 0x1725C, 0x17760
-    jp_game_state_entry func_080179CC, 0x17760, 0x17994
-    jp_game_state_entry func_08017C00, 0x17994, 0x179C4
-    jp_game_state_entry func_08017C30, 0x179C4, 0x1805C
-    jp_game_state_entry func_080182C8, 0x1805C, 0x18D04
+    .incbin "baserom_jp.gba", 0x154F0, (0x15524 - 0x154F0)
+    .global func_08015524
+    .thumb_func
+func_08015524:
+    .incbin "baserom_jp.gba", 0x15524, (0x15630 - 0x15524)
+    .global func_08015630
+    .thumb_func
+func_08015630:
+    .incbin "baserom_jp.gba", 0x15630, (0x15660 - 0x15630)
+    .global func_08015660
+    .thumb_func
+func_08015660:
+    .incbin "baserom_jp.gba", 0x15660, (0x1568C - 0x15660)
+    .global func_0801568C
+    .thumb_func
+func_0801568C:
+    .incbin "baserom_jp.gba", 0x1568C, (0x156B4 - 0x1568C)
+    .global func_080156B4
+    .thumb_func
+func_080156B4:
+    .incbin "baserom_jp.gba", 0x156B4, (0x156E4 - 0x156B4)
+    .global func_080156E4
+    .thumb_func
+func_080156E4:
+    .incbin "baserom_jp.gba", 0x156E4, (0x15704 - 0x156E4)
+    .global func_08015704
+    .thumb_func
+func_08015704:
+    .incbin "baserom_jp.gba", 0x15704, (0x15724 - 0x15704)
+    .global func_08015724
+    .thumb_func
+func_08015724:
+    .incbin "baserom_jp.gba", 0x15724, (0x15744 - 0x15724)
+    .global func_08015744
+    .thumb_func
+func_08015744:
+    .incbin "baserom_jp.gba", 0x15744, (0x15BC4 - 0x15744)
+    .global func_08015BC4
+    .thumb_func
+func_08015BC4:
+    .incbin "baserom_jp.gba", 0x15BC4, (0x16518 - 0x15BC4)
+    .incbin "baserom_jp.gba", 0x16518, (0x16540 - 0x16518)
+    .global func_08016540
+    .thumb_func
+func_08016540:
+    .incbin "baserom_jp.gba", 0x16540, (0x16570 - 0x16540)
+    .global func_08016570
+    .thumb_func
+func_08016570:
+    .incbin "baserom_jp.gba", 0x16570, (0x165C8 - 0x16570)
+    .global func_080165C8
+    .thumb_func
+func_080165C8:
+    .incbin "baserom_jp.gba", 0x165C8, (0x16668 - 0x165C8)
+    .global func_08016668
+    .thumb_func
+func_08016668:
+    .incbin "baserom_jp.gba", 0x16668, (0x16890 - 0x16668)
+    .global func_08016890
+    .thumb_func
+func_08016890:
+    .incbin "baserom_jp.gba", 0x16890, (0x16938 - 0x16890)
+    .global func_08016938
+    .thumb_func
+func_08016938:
+    .incbin "baserom_jp.gba", 0x16938, (0x16954 - 0x16938)
+    .global func_08016954
+    .thumb_func
+func_08016954:
+    .incbin "baserom_jp.gba", 0x16954, (0x16970 - 0x16954)
+    .global func_08016970
+    .thumb_func
+func_08016970:
+    .incbin "baserom_jp.gba", 0x16970, (0x16988 - 0x16970)
+    .global func_08016988
+    .thumb_func
+func_08016988:
+    .incbin "baserom_jp.gba", 0x16988, (0x169A4 - 0x16988)
+    .incbin "baserom_jp.gba", 0x169A4, (0x169C0 - 0x169A4)
+    .global func_080169C0
+    .thumb_func
+func_080169C0:
+    .incbin "baserom_jp.gba", 0x169C0, (0x169DC - 0x169C0)
+    .global func_080169DC
+    .thumb_func
+func_080169DC:
+    .incbin "baserom_jp.gba", 0x169DC, (0x16A00 - 0x169DC)
+    .global func_08016A00
+    .thumb_func
+func_08016A00:
+    .incbin "baserom_jp.gba", 0x16A00, (0x16A1C - 0x16A00)
+    .global func_08016A1C
+    .thumb_func
+func_08016A1C:
+    .incbin "baserom_jp.gba", 0x16A1C, (0x16A40 - 0x16A1C)
+    .global func_08016A40
+    .thumb_func
+func_08016A40:
+    .incbin "baserom_jp.gba", 0x16A40, (0x16A60 - 0x16A40)
+    .global func_08016A60
+    .thumb_func
+func_08016A60:
+    .incbin "baserom_jp.gba", 0x16A60, (0x16A80 - 0x16A60)
+    .global func_08016A80
+    .thumb_func
+func_08016A80:
+    .incbin "baserom_jp.gba", 0x16A80, (0x16ADC - 0x16A80)
+    .global func_08016ADC
+    .thumb_func
+func_08016ADC:
+    .incbin "baserom_jp.gba", 0x16ADC, (0x16B14 - 0x16ADC)
+    .global func_08016B14
+    .thumb_func
+func_08016B14:
+    .incbin "baserom_jp.gba", 0x16B14, (0x16B30 - 0x16B14)
+    .global func_08016B30
+    .thumb_func
+func_08016B30:
+    .incbin "baserom_jp.gba", 0x16B30, (0x16B44 - 0x16B30)
+    .global func_08016B44
+    .thumb_func
+func_08016B44:
+    .incbin "baserom_jp.gba", 0x16B44, (0x16C10 - 0x16B44)
+    .global func_08016C10
+    .thumb_func
+func_08016C10:
+    .incbin "baserom_jp.gba", 0x16C10, (0x16C30 - 0x16C10)
+    .global func_08016C30
+    .thumb_func
+func_08016C30:
+    .incbin "baserom_jp.gba", 0x16C30, (0x16C58 - 0x16C30)
+    .global func_08016C58
+    .thumb_func
+func_08016C58:
+    .incbin "baserom_jp.gba", 0x16C58, (0x16C84 - 0x16C58)
+    .global func_08016C84
+    .thumb_func
+func_08016C84:
+    .incbin "baserom_jp.gba", 0x16C84, (0x16CA0 - 0x16C84)
+    .global func_08016CA0
+    .thumb_func
+func_08016CA0:
+    .incbin "baserom_jp.gba", 0x16CA0, (0x16CC8 - 0x16CA0)
+    .incbin "baserom_jp.gba", 0x16CC8, (0x16CF4 - 0x16CC8)
+    .global func_08016CF4
+    .thumb_func
+func_08016CF4:
+    .incbin "baserom_jp.gba", 0x16CF4, (0x16D38 - 0x16CF4)
+    .global func_08016D38
+    .thumb_func
+func_08016D38:
+    .incbin "baserom_jp.gba", 0x16D38, (0x16F14 - 0x16D38)
+    .incbin "baserom_jp.gba", 0x16F14, (0x1725C - 0x16F14)
+    .incbin "baserom_jp.gba", 0x1725C, (0x17760 - 0x1725C)
+    .global func_080179CC
+    .thumb_func
+func_080179CC:
+    .incbin "baserom_jp.gba", 0x17760, (0x17994 - 0x17760)
+    .global func_08017C00
+    .thumb_func
+func_08017C00:
+    .incbin "baserom_jp.gba", 0x17994, (0x179C4 - 0x17994)
+    .global func_08017C30
+    .thumb_func
+func_08017C30:
+    .incbin "baserom_jp.gba", 0x179C4, (0x1805C - 0x179C4)
+    .global func_080182C8
+    .thumb_func
+func_080182C8:
+    .incbin "baserom_jp.gba", 0x1805C, (0x18D04 - 0x1805C)
     .4byte gUnk_080F06FD
-    jp_game_state_chunk 0x18D08, 0x18DF0
+    .incbin "baserom_jp.gba", 0x18D08, (0x18DF0 - 0x18D08)
     .4byte gUnk_080F06FD
-    jp_game_state_chunk 0x18DF4, 0x19924
-    jp_game_state_entry func_08019B90, 0x19924, 0x19980
-    jp_game_state_entry func_08019BEC, 0x19980, 0x19CCC
+    .incbin "baserom_jp.gba", 0x18DF4, (0x19924 - 0x18DF4)
+    .global func_08019B90
+    .thumb_func
+func_08019B90:
+    .incbin "baserom_jp.gba", 0x19924, (0x19980 - 0x19924)
+    .global func_08019BEC
+    .thumb_func
+func_08019BEC:
+    .incbin "baserom_jp.gba", 0x19980, (0x19CCC - 0x19980)
 
     .global func_08019F38
     .thumb_func
 func_08019F38:
-    jp_game_state_chunk 0x19CCC, 0x19D10
-    jp_game_state_entry func_08019F7C, 0x19D10, 0x19D7C
-    jp_game_state_entry func_08019FE8, 0x19D7C, 0x19DE8
+    .incbin "baserom_jp.gba", 0x19CCC, (0x19D10 - 0x19CCC)
+    .global func_08019F7C
+    .thumb_func
+func_08019F7C:
+    .incbin "baserom_jp.gba", 0x19D10, (0x19D7C - 0x19D10)
+    .global func_08019FE8
+    .thumb_func
+func_08019FE8:
+    .incbin "baserom_jp.gba", 0x19D7C, (0x19DE8 - 0x19D7C)
 
     .global func_0801A054
     .thumb_func
 func_0801A054:
-    jp_game_state_chunk 0x19DE8, 0x19ED0
-    jp_game_state_chunk 0x19ED0, 0x1A654
-    jp_game_state_chunk 0x1A654, 0x1A674
-    jp_game_state_entry func_0801A8E0, 0x1A674, 0x1B1F8
-    jp_game_state_chunk 0x1B1F8, 0x1B22C
-    jp_game_state_entry func_0801B498, 0x1B22C, 0x1B354
-    jp_game_state_entry func_0801B5C0, 0x1B354, 0x1B77C
-    jp_game_state_entry func_0801B9E8, 0x1B77C, 0x1BE74
-    jp_game_state_entry func_0801C0E0, 0x1BE74, 0x1BE8C
-    jp_game_state_chunk 0x1BE8C, 0x1BF2C
-    jp_game_state_chunk 0x1BF2C, 0x1C030
-    jp_game_state_entry func_0801C29C, 0x1C030, 0x1C170
-    jp_game_state_entry func_0801C3DC, 0x1C170, 0x1C174
-    jp_game_state_entry func_0801C3E0, 0x1C174, 0x1C230
-    jp_game_state_entry func_0801C49C, 0x1C230, 0x1C2E4
-    jp_game_state_entry func_0801C550, 0x1C2E4, 0x1C430
-    jp_game_state_entry func_0801C69C, 0x1C430, 0x1C608
-    jp_game_state_chunk 0x1C608, 0x1C7B0
-    jp_game_state_entry func_0801CA1C, 0x1C7B0, 0x1C7F0
+    .incbin "baserom_jp.gba", 0x19DE8, (0x19ED0 - 0x19DE8)
+    .incbin "baserom_jp.gba", 0x19ED0, (0x1A654 - 0x19ED0)
+    .incbin "baserom_jp.gba", 0x1A654, (0x1A674 - 0x1A654)
+    .global func_0801A8E0
+    .thumb_func
+func_0801A8E0:
+    .incbin "baserom_jp.gba", 0x1A674, (0x1B1F8 - 0x1A674)
+    .incbin "baserom_jp.gba", 0x1B1F8, (0x1B22C - 0x1B1F8)
+    .global func_0801B498
+    .thumb_func
+func_0801B498:
+    .incbin "baserom_jp.gba", 0x1B22C, (0x1B354 - 0x1B22C)
+    .global func_0801B5C0
+    .thumb_func
+func_0801B5C0:
+    .incbin "baserom_jp.gba", 0x1B354, (0x1B77C - 0x1B354)
+    .global func_0801B9E8
+    .thumb_func
+func_0801B9E8:
+    .incbin "baserom_jp.gba", 0x1B77C, (0x1BE74 - 0x1B77C)
+    .global func_0801C0E0
+    .thumb_func
+func_0801C0E0:
+    .incbin "baserom_jp.gba", 0x1BE74, (0x1BE8C - 0x1BE74)
+    .incbin "baserom_jp.gba", 0x1BE8C, (0x1BF2C - 0x1BE8C)
+    .incbin "baserom_jp.gba", 0x1BF2C, (0x1C030 - 0x1BF2C)
+    .global func_0801C29C
+    .thumb_func
+func_0801C29C:
+    .incbin "baserom_jp.gba", 0x1C030, (0x1C170 - 0x1C030)
+    .global func_0801C3DC
+    .thumb_func
+func_0801C3DC:
+    .incbin "baserom_jp.gba", 0x1C170, (0x1C174 - 0x1C170)
+    .global func_0801C3E0
+    .thumb_func
+func_0801C3E0:
+    .incbin "baserom_jp.gba", 0x1C174, (0x1C230 - 0x1C174)
+    .global func_0801C49C
+    .thumb_func
+func_0801C49C:
+    .incbin "baserom_jp.gba", 0x1C230, (0x1C2E4 - 0x1C230)
+    .global func_0801C550
+    .thumb_func
+func_0801C550:
+    .incbin "baserom_jp.gba", 0x1C2E4, (0x1C430 - 0x1C2E4)
+    .global func_0801C69C
+    .thumb_func
+func_0801C69C:
+    .incbin "baserom_jp.gba", 0x1C430, (0x1C608 - 0x1C430)
+    .incbin "baserom_jp.gba", 0x1C608, (0x1C7B0 - 0x1C608)
+    .global func_0801CA1C
+    .thumb_func
+func_0801CA1C:
+    .incbin "baserom_jp.gba", 0x1C7B0, (0x1C7F0 - 0x1C7B0)
     .4byte gUnk_080F0800
-    jp_game_state_chunk 0x1C7F4, 0x1C824
+    .incbin "baserom_jp.gba", 0x1C7F4, (0x1C824 - 0x1C7F4)
     .4byte gUnk_080F0800
-    jp_game_state_chunk 0x1C828, 0x1C86C
-    jp_game_state_entry func_0801CAD8, 0x1C86C, 0x1C944
-    jp_game_state_entry func_0801CBB0, 0x1C944, 0x1C9A8
+    .incbin "baserom_jp.gba", 0x1C828, (0x1C86C - 0x1C828)
+    .global func_0801CAD8
+    .thumb_func
+func_0801CAD8:
+    .incbin "baserom_jp.gba", 0x1C86C, (0x1C944 - 0x1C86C)
+    .global func_0801CBB0
+    .thumb_func
+func_0801CBB0:
+    .incbin "baserom_jp.gba", 0x1C944, (0x1C9A8 - 0x1C944)
     .4byte gUnk_080F0800
-    jp_game_state_chunk 0x1C9AC, 0x1CA70
+    .incbin "baserom_jp.gba", 0x1C9AC, (0x1CA70 - 0x1C9AC)
     .4byte gUnk_080F0800
-    jp_game_state_chunk 0x1CA74, 0x1CB50
-    jp_game_state_chunk 0x1CB50, 0x1CC90
-    jp_game_state_entry func_0801CEFC, 0x1CC90, 0x1CCD0
+    .incbin "baserom_jp.gba", 0x1CA74, (0x1CB50 - 0x1CA74)
+    .incbin "baserom_jp.gba", 0x1CB50, (0x1CC90 - 0x1CB50)
+    .global func_0801CEFC
+    .thumb_func
+func_0801CEFC:
+    .incbin "baserom_jp.gba", 0x1CC90, (0x1CCD0 - 0x1CC90)
     .4byte gUnk_080F0800 + 7
-    jp_game_state_chunk 0x1CCD4, 0x1CD04
+    .incbin "baserom_jp.gba", 0x1CCD4, (0x1CD04 - 0x1CCD4)
     .4byte gUnk_080F0800 + 7
-    jp_game_state_chunk 0x1CD08, 0x1CD4C
-    jp_game_state_entry func_0801CFB8, 0x1CD4C, 0x1CDCC
+    .incbin "baserom_jp.gba", 0x1CD08, (0x1CD4C - 0x1CD08)
+    .global func_0801CFB8
+    .thumb_func
+func_0801CFB8:
+    .incbin "baserom_jp.gba", 0x1CD4C, (0x1CDCC - 0x1CD4C)
     .4byte gUnk_080F0800 + 7
-    jp_game_state_chunk 0x1CDD0, 0x1CE90
+    .incbin "baserom_jp.gba", 0x1CDD0, (0x1CE90 - 0x1CDD0)
     .4byte gUnk_080F0800 + 7
-    jp_game_state_chunk 0x1CE94, 0x1CFD0
-    jp_game_state_entry func_0801D23C, 0x1CFD0, 0x1D190
-    jp_game_state_entry func_0801D3FC, 0x1D190, 0x1D274
-    jp_game_state_entry func_0801D4E0, 0x1D274, 0x1D350
-    jp_game_state_entry func_0801D5BC, 0x1D350, 0x1D544
-    jp_game_state_entry func_0801D7B0, 0x1D544, 0x1D620
-    jp_game_state_entry func_0801D88C, 0x1D620, 0x1D660
-    jp_game_state_entry func_0801D8CC, 0x1D660, 0x1D6DC
+    .incbin "baserom_jp.gba", 0x1CE94, (0x1CFD0 - 0x1CE94)
+    .global func_0801D23C
+    .thumb_func
+func_0801D23C:
+    .incbin "baserom_jp.gba", 0x1CFD0, (0x1D190 - 0x1CFD0)
+    .global func_0801D3FC
+    .thumb_func
+func_0801D3FC:
+    .incbin "baserom_jp.gba", 0x1D190, (0x1D274 - 0x1D190)
+    .global func_0801D4E0
+    .thumb_func
+func_0801D4E0:
+    .incbin "baserom_jp.gba", 0x1D274, (0x1D350 - 0x1D274)
+    .global func_0801D5BC
+    .thumb_func
+func_0801D5BC:
+    .incbin "baserom_jp.gba", 0x1D350, (0x1D544 - 0x1D350)
+    .global func_0801D7B0
+    .thumb_func
+func_0801D7B0:
+    .incbin "baserom_jp.gba", 0x1D544, (0x1D620 - 0x1D544)
+    .global func_0801D88C
+    .thumb_func
+func_0801D88C:
+    .incbin "baserom_jp.gba", 0x1D620, (0x1D660 - 0x1D620)
+    .global func_0801D8CC
+    .thumb_func
+func_0801D8CC:
+    .incbin "baserom_jp.gba", 0x1D660, (0x1D6DC - 0x1D660)
 
     .global func_0801D948
     .thumb_func
 func_0801D948:
-    jp_game_state_chunk 0x1D6DC, 0x1D73C
+    .incbin "baserom_jp.gba", 0x1D6DC, (0x1D73C - 0x1D6DC)
 
     .global func_0801D9A8
     .thumb_func
 func_0801D9A8:
-    jp_game_state_chunk 0x1D73C, 0x1D750
-    jp_game_state_entry func_0801D9BC, 0x1D750, 0x1D8D8
-    jp_game_state_entry func_0801DB44, 0x1D8D8, 0x1D8EC
-    jp_game_state_chunk 0x1D8EC, 0x1D9B8
-    jp_game_state_entry func_0801DC24, 0x1D9B8, 0x1DA3C
-    jp_game_state_entry func_0801DCA8, 0x1DA3C, 0x1DA68
-    jp_game_state_entry func_0801DCD4, 0x1DA68, 0x1DAAC
-    jp_game_state_entry func_0801DD18, 0x1DAAC, 0x1DAB8
-    jp_game_state_entry func_0801DD24, 0x1DAB8, 0x1DAC4
-    jp_game_state_entry func_0801DD30, 0x1DAC4, 0x1DAD0
-    jp_game_state_entry func_0801DD3C, 0x1DAD0, 0x1DADC
-    jp_game_state_entry func_0801DD48, 0x1DADC, 0x1DAE8
-    jp_game_state_entry func_0801DD54, 0x1DAE8, 0x1DAF4
-    jp_game_state_entry func_0801DD60, 0x1DAF4, 0x1DB00
-    jp_game_state_entry func_0801DD6C, 0x1DB00, 0x1DB0C
-    jp_game_state_entry func_0801DD78, 0x1DB0C, 0x1DB18
-    jp_game_state_entry func_0801DD84, 0x1DB18, 0x1DB60
-    jp_game_state_entry func_0801DDCC, 0x1DB60, 0x1DB8C
-    jp_game_state_entry func_0801DDF8, 0x1DB8C, 0x1DBB8
-    jp_game_state_entry func_0801DE24, 0x1DBB8, 0x1DBC4
-    jp_game_state_entry func_0801DE30, 0x1DBC4, 0x1DBD0
-    jp_game_state_entry func_0801DE3C, 0x1DBD0, 0x1DBDC
-    jp_game_state_entry func_0801DE48, 0x1DBDC, 0x1DBE8
-    jp_game_state_entry func_0801DE54, 0x1DBE8, 0x1DC48
-    jp_game_state_entry func_0801DEB4, 0x1DC48, 0x1DE18
-    jp_game_state_entry func_0801E084, 0x1DE18, 0x1E440
+    .incbin "baserom_jp.gba", 0x1D73C, (0x1D750 - 0x1D73C)
+    .global func_0801D9BC
+    .thumb_func
+func_0801D9BC:
+    .incbin "baserom_jp.gba", 0x1D750, (0x1D8D8 - 0x1D750)
+    .global func_0801DB44
+    .thumb_func
+func_0801DB44:
+    .incbin "baserom_jp.gba", 0x1D8D8, (0x1D8EC - 0x1D8D8)
+    .incbin "baserom_jp.gba", 0x1D8EC, (0x1D9B8 - 0x1D8EC)
+    .global func_0801DC24
+    .thumb_func
+func_0801DC24:
+    .incbin "baserom_jp.gba", 0x1D9B8, (0x1DA3C - 0x1D9B8)
+    .global func_0801DCA8
+    .thumb_func
+func_0801DCA8:
+    .incbin "baserom_jp.gba", 0x1DA3C, (0x1DA68 - 0x1DA3C)
+    .global func_0801DCD4
+    .thumb_func
+func_0801DCD4:
+    .incbin "baserom_jp.gba", 0x1DA68, (0x1DAAC - 0x1DA68)
+    .global func_0801DD18
+    .thumb_func
+func_0801DD18:
+    .incbin "baserom_jp.gba", 0x1DAAC, (0x1DAB8 - 0x1DAAC)
+    .global func_0801DD24
+    .thumb_func
+func_0801DD24:
+    .incbin "baserom_jp.gba", 0x1DAB8, (0x1DAC4 - 0x1DAB8)
+    .global func_0801DD30
+    .thumb_func
+func_0801DD30:
+    .incbin "baserom_jp.gba", 0x1DAC4, (0x1DAD0 - 0x1DAC4)
+    .global func_0801DD3C
+    .thumb_func
+func_0801DD3C:
+    .incbin "baserom_jp.gba", 0x1DAD0, (0x1DADC - 0x1DAD0)
+    .global func_0801DD48
+    .thumb_func
+func_0801DD48:
+    .incbin "baserom_jp.gba", 0x1DADC, (0x1DAE8 - 0x1DADC)
+    .global func_0801DD54
+    .thumb_func
+func_0801DD54:
+    .incbin "baserom_jp.gba", 0x1DAE8, (0x1DAF4 - 0x1DAE8)
+    .global func_0801DD60
+    .thumb_func
+func_0801DD60:
+    .incbin "baserom_jp.gba", 0x1DAF4, (0x1DB00 - 0x1DAF4)
+    .global func_0801DD6C
+    .thumb_func
+func_0801DD6C:
+    .incbin "baserom_jp.gba", 0x1DB00, (0x1DB0C - 0x1DB00)
+    .global func_0801DD78
+    .thumb_func
+func_0801DD78:
+    .incbin "baserom_jp.gba", 0x1DB0C, (0x1DB18 - 0x1DB0C)
+    .global func_0801DD84
+    .thumb_func
+func_0801DD84:
+    .incbin "baserom_jp.gba", 0x1DB18, (0x1DB60 - 0x1DB18)
+    .global func_0801DDCC
+    .thumb_func
+func_0801DDCC:
+    .incbin "baserom_jp.gba", 0x1DB60, (0x1DB8C - 0x1DB60)
+    .global func_0801DDF8
+    .thumb_func
+func_0801DDF8:
+    .incbin "baserom_jp.gba", 0x1DB8C, (0x1DBB8 - 0x1DB8C)
+    .global func_0801DE24
+    .thumb_func
+func_0801DE24:
+    .incbin "baserom_jp.gba", 0x1DBB8, (0x1DBC4 - 0x1DBB8)
+    .global func_0801DE30
+    .thumb_func
+func_0801DE30:
+    .incbin "baserom_jp.gba", 0x1DBC4, (0x1DBD0 - 0x1DBC4)
+    .global func_0801DE3C
+    .thumb_func
+func_0801DE3C:
+    .incbin "baserom_jp.gba", 0x1DBD0, (0x1DBDC - 0x1DBD0)
+    .global func_0801DE48
+    .thumb_func
+func_0801DE48:
+    .incbin "baserom_jp.gba", 0x1DBDC, (0x1DBE8 - 0x1DBDC)
+    .global func_0801DE54
+    .thumb_func
+func_0801DE54:
+    .incbin "baserom_jp.gba", 0x1DBE8, (0x1DC48 - 0x1DBE8)
+    .global func_0801DEB4
+    .thumb_func
+func_0801DEB4:
+    .incbin "baserom_jp.gba", 0x1DC48, (0x1DE18 - 0x1DC48)
+    .global func_0801E084
+    .thumb_func
+func_0801E084:
+    .incbin "baserom_jp.gba", 0x1DE18, (0x1E440 - 0x1DE18)
     .4byte gUnk_080F0704
-    jp_game_state_chunk 0x1E444, 0x1E448
+    .incbin "baserom_jp.gba", 0x1E444, (0x1E448 - 0x1E444)
     .4byte gUnk_080F0718
-    jp_game_state_chunk 0x1E44C, 0x1E4A0
+    .incbin "baserom_jp.gba", 0x1E44C, (0x1E4A0 - 0x1E44C)
     .4byte gUnk_080F0730
-    jp_game_state_chunk 0x1E4A4, 0x1E6A0
-    jp_game_state_chunk 0x1E6A0, 0x1E834
-    jp_game_state_entry func_0801EAA0, 0x1E834, 0x1E950
+    .incbin "baserom_jp.gba", 0x1E4A4, (0x1E6A0 - 0x1E4A4)
+    .incbin "baserom_jp.gba", 0x1E6A0, (0x1E834 - 0x1E6A0)
+    .global func_0801EAA0
+    .thumb_func
+func_0801EAA0:
+    .incbin "baserom_jp.gba", 0x1E834, (0x1E950 - 0x1E834)
     .4byte gUnk_080F0748
     .4byte gUnk_080F0770
-    jp_game_state_chunk 0x1E958, 0x1EB94
-    jp_game_state_entry func_0801EE00, 0x1EB94, 0x1EEE0
-    jp_game_state_chunk 0x1EEE0, 0x1F070
-    jp_game_state_chunk 0x1F070, 0x1F178
-    jp_game_state_chunk 0x1F178, 0x1F2AC
-    jp_game_state_entry func_0801F518, 0x1F2AC, 0x1F384
-    jp_game_state_entry func_0801F5F0, 0x1F384, 0x1F3A8
-    jp_game_state_chunk 0x1F3A8, 0x1F510
-    jp_game_state_chunk 0x1F510, 0x1F6B8
-    jp_game_state_entry func_0801F924, 0x1F6B8, 0x1F83C
-    jp_game_state_entry func_0801FAA8, 0x1F83C, 0x1F84C
-    jp_game_state_entry func_0801FAB8, 0x1F84C, 0x1F85C
-    jp_game_state_chunk 0x1F85C, 0x1F910
-    jp_game_state_chunk 0x1F910, 0x1F97C
-    jp_game_state_entry func_0801FBE8, 0x1F97C, 0x1F988
-    jp_game_state_entry func_0801FBF4, 0x1F988, 0x1F994
-    jp_game_state_entry func_0801FC00, 0x1F994, 0x1F9A0
-    jp_game_state_entry func_0801FC0C, 0x1F9A0, 0x1F9D0
-    jp_game_state_entry func_0801FC3C, 0x1F9D0, 0x1F9DC
-    jp_game_state_entry func_0801FC48, 0x1F9DC, 0x1F9E8
-    jp_game_state_entry func_0801FC54, 0x1F9E8, 0x1F9F4
-    jp_game_state_entry func_0801FC60, 0x1F9F4, 0x1FA00
-    jp_game_state_entry func_0801FC6C, 0x1FA00, 0x1FA38
-    jp_game_state_entry func_0801FCA4, 0x1FA38, 0x1FA48
-    jp_game_state_entry func_0801FCB4, 0x1FA48, 0x1FA70
-    jp_game_state_entry func_0801FCDC, 0x1FA70, 0x1FA88
-    jp_game_state_entry func_0801FCF4, 0x1FA88, 0x1FA94
-    jp_game_state_entry func_0801FD00, 0x1FA94, 0x1FAA0
-    jp_game_state_entry func_0801FD0C, 0x1FAA0, 0x1FAC4
-    jp_game_state_entry func_0801FD30, 0x1FAC4, 0x1FAD0
-    jp_game_state_entry func_0801FD3C, 0x1FAD0, 0x1FADC
-    jp_game_state_entry func_0801FD48, 0x1FADC, 0x1FAE4
-    jp_game_state_entry func_0801FD50, 0x1FAE4, 0x1FAEC
-    jp_game_state_entry func_0801FD58, 0x1FAEC, 0x1FAF4
-    jp_game_state_entry func_0801FD60, 0x1FAF4, 0x1FB00
-    jp_game_state_entry func_0801FD6C, 0x1FB00, 0x1FB0C
+    .incbin "baserom_jp.gba", 0x1E958, (0x1EB94 - 0x1E958)
+    .global func_0801EE00
+    .thumb_func
+func_0801EE00:
+    .incbin "baserom_jp.gba", 0x1EB94, (0x1EEE0 - 0x1EB94)
+    .incbin "baserom_jp.gba", 0x1EEE0, (0x1F070 - 0x1EEE0)
+    .incbin "baserom_jp.gba", 0x1F070, (0x1F178 - 0x1F070)
+    .incbin "baserom_jp.gba", 0x1F178, (0x1F2AC - 0x1F178)
+    .global func_0801F518
+    .thumb_func
+func_0801F518:
+    .incbin "baserom_jp.gba", 0x1F2AC, (0x1F384 - 0x1F2AC)
+    .global func_0801F5F0
+    .thumb_func
+func_0801F5F0:
+    .incbin "baserom_jp.gba", 0x1F384, (0x1F3A8 - 0x1F384)
+    .incbin "baserom_jp.gba", 0x1F3A8, (0x1F510 - 0x1F3A8)
+    .incbin "baserom_jp.gba", 0x1F510, (0x1F6B8 - 0x1F510)
+    .global func_0801F924
+    .thumb_func
+func_0801F924:
+    .incbin "baserom_jp.gba", 0x1F6B8, (0x1F83C - 0x1F6B8)
+    .global func_0801FAA8
+    .thumb_func
+func_0801FAA8:
+    .incbin "baserom_jp.gba", 0x1F83C, (0x1F84C - 0x1F83C)
+    .global func_0801FAB8
+    .thumb_func
+func_0801FAB8:
+    .incbin "baserom_jp.gba", 0x1F84C, (0x1F85C - 0x1F84C)
+    .incbin "baserom_jp.gba", 0x1F85C, (0x1F910 - 0x1F85C)
+    .incbin "baserom_jp.gba", 0x1F910, (0x1F97C - 0x1F910)
+    .global func_0801FBE8
+    .thumb_func
+func_0801FBE8:
+    .incbin "baserom_jp.gba", 0x1F97C, (0x1F988 - 0x1F97C)
+    .global func_0801FBF4
+    .thumb_func
+func_0801FBF4:
+    .incbin "baserom_jp.gba", 0x1F988, (0x1F994 - 0x1F988)
+    .global func_0801FC00
+    .thumb_func
+func_0801FC00:
+    .incbin "baserom_jp.gba", 0x1F994, (0x1F9A0 - 0x1F994)
+    .global func_0801FC0C
+    .thumb_func
+func_0801FC0C:
+    .incbin "baserom_jp.gba", 0x1F9A0, (0x1F9D0 - 0x1F9A0)
+    .global func_0801FC3C
+    .thumb_func
+func_0801FC3C:
+    .incbin "baserom_jp.gba", 0x1F9D0, (0x1F9DC - 0x1F9D0)
+    .global func_0801FC48
+    .thumb_func
+func_0801FC48:
+    .incbin "baserom_jp.gba", 0x1F9DC, (0x1F9E8 - 0x1F9DC)
+    .global func_0801FC54
+    .thumb_func
+func_0801FC54:
+    .incbin "baserom_jp.gba", 0x1F9E8, (0x1F9F4 - 0x1F9E8)
+    .global func_0801FC60
+    .thumb_func
+func_0801FC60:
+    .incbin "baserom_jp.gba", 0x1F9F4, (0x1FA00 - 0x1F9F4)
+    .global func_0801FC6C
+    .thumb_func
+func_0801FC6C:
+    .incbin "baserom_jp.gba", 0x1FA00, (0x1FA38 - 0x1FA00)
+    .global func_0801FCA4
+    .thumb_func
+func_0801FCA4:
+    .incbin "baserom_jp.gba", 0x1FA38, (0x1FA48 - 0x1FA38)
+    .global func_0801FCB4
+    .thumb_func
+func_0801FCB4:
+    .incbin "baserom_jp.gba", 0x1FA48, (0x1FA70 - 0x1FA48)
+    .global func_0801FCDC
+    .thumb_func
+func_0801FCDC:
+    .incbin "baserom_jp.gba", 0x1FA70, (0x1FA88 - 0x1FA70)
+    .global func_0801FCF4
+    .thumb_func
+func_0801FCF4:
+    .incbin "baserom_jp.gba", 0x1FA88, (0x1FA94 - 0x1FA88)
+    .global func_0801FD00
+    .thumb_func
+func_0801FD00:
+    .incbin "baserom_jp.gba", 0x1FA94, (0x1FAA0 - 0x1FA94)
+    .global func_0801FD0C
+    .thumb_func
+func_0801FD0C:
+    .incbin "baserom_jp.gba", 0x1FAA0, (0x1FAC4 - 0x1FAA0)
+    .global func_0801FD30
+    .thumb_func
+func_0801FD30:
+    .incbin "baserom_jp.gba", 0x1FAC4, (0x1FAD0 - 0x1FAC4)
+    .global func_0801FD3C
+    .thumb_func
+func_0801FD3C:
+    .incbin "baserom_jp.gba", 0x1FAD0, (0x1FADC - 0x1FAD0)
+    .global func_0801FD48
+    .thumb_func
+func_0801FD48:
+    .incbin "baserom_jp.gba", 0x1FADC, (0x1FAE4 - 0x1FADC)
+    .global func_0801FD50
+    .thumb_func
+func_0801FD50:
+    .incbin "baserom_jp.gba", 0x1FAE4, (0x1FAEC - 0x1FAE4)
+    .global func_0801FD58
+    .thumb_func
+func_0801FD58:
+    .incbin "baserom_jp.gba", 0x1FAEC, (0x1FAF4 - 0x1FAEC)
+    .global func_0801FD60
+    .thumb_func
+func_0801FD60:
+    .incbin "baserom_jp.gba", 0x1FAF4, (0x1FB00 - 0x1FAF4)
+    .global func_0801FD6C
+    .thumb_func
+func_0801FD6C:
+    .incbin "baserom_jp.gba", 0x1FB00, (0x1FB0C - 0x1FB00)
 
 
     .else
@@ -22340,6 +23062,9 @@ sub_0801B464: @ 0x0801B464
     .4byte 0x00001038
     .4byte 0x0000214C
 .L0801B498:
+    .global func_0801B498
+    .thumb_func
+func_0801B498:
     push {r4, r5, r6, r7, lr}
     mov r7, sl
     mov r6, sb
@@ -22496,6 +23221,9 @@ sub_0801B464: @ 0x0801B464
 .L0801B498_mask:
     .4byte 0x000003FF
 .L0801B5C0:
+    .global func_0801B5C0
+    .thumb_func
+func_0801B5C0:
     push {r4, r5, r6, lr}
     adds r6, r0, #0
     adds r4, r1, #0
@@ -22733,6 +23461,9 @@ sub_0801B464: @ 0x0801B464
     .byte 0x41, 0x18, 0x08, 0x78, 0x00, 0x28, 0xEC, 0xD0, 0x84, 0x31, 0x01, 0x32, 0x16, 0x2A, 0xF8, 0xD3
     .byte 0x15, 0x20, 0x70, 0xBC, 0x02, 0xBC, 0x08, 0x47
 .L0801B9E8:
+    .global func_0801B9E8
+    .thumb_func
+func_0801B9E8:
     .byte 0xF0, 0xB5, 0x57, 0x46, 0x4E, 0x46, 0x45, 0x46
     .byte 0xE0, 0xB4, 0xB0, 0xB0, 0x07, 0x1C, 0x88, 0x46, 0x24, 0x92, 0x1B, 0x06, 0x1B, 0x0E, 0x9A, 0x46
     .byte 0x78, 0x68, 0x40, 0x68
@@ -22875,6 +23606,9 @@ sub_0801B464: @ 0x0801B464
     .byte 0x82, 0x31, 0x01, 0x20, 0x08, 0x70, 0x30, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46
     .byte 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x1F, 0xFC, 0xFF, 0xFF, 0x32, 0x6A, 0x00, 0x00
     .byte 0x2C, 0x0C, 0x00, 0x03, 0x29, 0x25, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF
+    .global func_0801C0E0
+    .thumb_func
+func_0801C0E0:
     .byte 0x03, 0x4A, 0x83, 0x18, 0x01, 0x22, 0x1A, 0x70, 0x02, 0x4A, 0x80, 0x18, 0x01, 0x70, 0x70, 0x47
     .byte 0xC8, 0x10, 0x00, 0x00, 0xC9, 0x10, 0x00, 0x00
 
@@ -23255,7 +23989,13 @@ func_0801C29C: @ 0x0801C29C
     .align 2, 0
 .L0801C3D8: .4byte 0x00001081
 .L0801C3DC:
+    .global func_0801C3DC
+    .thumb_func
+func_0801C3DC:
     .byte 0x70, 0x47, 0x00, 0x00
+    .global func_0801C3E0
+    .thumb_func
+func_0801C3E0:
     .byte 0xF0, 0xB5, 0x4F, 0x46, 0x46, 0x46, 0xC0, 0xB4, 0x83, 0xB0, 0x07, 0x1C, 0x00, 0x22, 0x91, 0x46
     .byte 0x27, 0x48, 0xC0, 0x19, 0x80, 0x46, 0x27, 0x48, 0x3E, 0x18, 0x31, 0x78, 0x88, 0x07, 0x80, 0x0F
     .byte 0x02, 0x28, 0x2E, 0xD1, 0x04, 0x22, 0x52, 0x42, 0x10, 0x1C, 0x01, 0x40, 0x01, 0x20, 0x01, 0x43
@@ -23275,7 +24015,11 @@ func_0801C29C: @ 0x0801C29C
     .byte 0xC3, 0xD9, 0x00, 0x2A, 0x04, 0xD0, 0xB8, 0x68, 0x02, 0x21, 0x00, 0x22
     bl func_08032384
     .byte 0x03, 0xB0, 0x18, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
-    .byte 0x88, 0x10, 0x00, 0x00, 0x81, 0x10, 0x00, 0x00, 0x6F, 0x08, 0x00, 0x00, 0xF0, 0xB5, 0x57, 0x46
+    .byte 0x88, 0x10, 0x00, 0x00, 0x81, 0x10, 0x00, 0x00, 0x6F, 0x08, 0x00, 0x00
+    .global func_0801C49C
+    .thumb_func
+func_0801C49C:
+    .byte 0xF0, 0xB5, 0x57, 0x46
     .byte 0x4E, 0x46, 0x45, 0x46, 0xE0, 0xB4, 0x83, 0xB0, 0x04, 0x1C, 0x89, 0x46, 0x90, 0x46, 0x00, 0x20
     .byte 0x10, 0x60, 0x01, 0xAE, 0x20, 0x1C, 0x32, 0x1C
     bl func_0801C198
@@ -23298,6 +24042,9 @@ func_0801C29C: @ 0x0801C29C
     bl func_080AA540
     .byte 0x50, 0x46, 0x04, 0xE0, 0x38, 0x10, 0x00, 0x00, 0x58, 0x2E, 0x00, 0x00, 0x00, 0x20, 0x03, 0xB0
     .byte 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
+    .global func_0801C550
+    .thumb_func
+func_0801C550:
     .byte 0xF0, 0xB5, 0x57, 0x46, 0x4E, 0x46, 0x45, 0x46, 0xE0, 0xB4, 0x83, 0xB0, 0x81, 0x46, 0x8A, 0x46
     .byte 0x15, 0x1C, 0x1E, 0x1C, 0x0B, 0x9F, 0x0C, 0x98, 0x02, 0x04, 0x12, 0x0C, 0x02, 0x92, 0x44, 0x48
     .byte 0x04, 0x68, 0x44, 0x48, 0x24, 0x18, 0x48, 0x00, 0x50, 0x44, 0x80, 0x00, 0x24, 0x18, 0x21, 0x78
@@ -23332,6 +24079,9 @@ func_0801C29C: @ 0x0801C29C
     .byte 0x0C, 0x04, 0x00, 0x03, 0xDC, 0x04, 0x00, 0x00, 0xFF, 0x03, 0x00, 0x00, 0x00, 0xFC, 0xFF, 0xFF
     .byte 0xFF, 0x03, 0x00, 0xFC, 0xB0, 0x10, 0x00, 0x00
     .4byte vtable_unk_080E602C
+    .global func_0801C69C
+    .thumb_func
+func_0801C69C:
     .byte 0x30, 0xB5, 0x10, 0x4A
     .byte 0x13, 0x68, 0x10, 0x4A, 0x9B, 0x18, 0x4A, 0x00, 0x52, 0x18, 0x92, 0x00, 0x9B, 0x18, 0x1C, 0x78
     .byte 0x04, 0x22, 0x52, 0x42, 0x22, 0x40, 0x1A, 0x70, 0x0B, 0x4A, 0x80, 0x18, 0x89, 0x00, 0x44, 0x18
@@ -23739,6 +24489,9 @@ func_0801C874: @ 0x0801C874
     .align 2, 0
 .L0801CA18: .4byte 0x00001028
 .L0801CA1C:
+    .global func_0801CA1C
+    .thumb_func
+func_0801CA1C:
     .byte 0xF0, 0xB5, 0x89, 0xB0
     .byte 0x05, 0x1C, 0x0E, 0x1C, 0x17, 0x1C, 0x01, 0xA9, 0x00, 0x20, 0x01, 0x90, 0x88, 0x80, 0xC8, 0x80
     .byte 0x08, 0x81, 0x48, 0x81, 0x28, 0x1C, 0x31, 0x1C, 0x01, 0xAA
@@ -23762,7 +24515,11 @@ func_0801C874: @ 0x0801C874
     .byte 0x08, 0x49, 0x68, 0x18, 0x00, 0x68, 0xA1, 0x68, 0x18, 0x31, 0xE2, 0x68, 0x20, 0x32, 0x09, 0x23
     bl func_080AB68C
     .byte 0x20, 0x7C, 0x01, 0x21, 0x48, 0x40, 0x09, 0xB0, 0xF0, 0xBC, 0x02, 0xBC
-    .byte 0x08, 0x47, 0x00, 0x00, 0x28, 0x10, 0x00, 0x00, 0xF0, 0xB5, 0x57, 0x46, 0x4E, 0x46, 0x45, 0x46
+    .byte 0x08, 0x47, 0x00, 0x00, 0x28, 0x10, 0x00, 0x00
+    .global func_0801CAD8
+    .thumb_func
+func_0801CAD8:
+    .byte 0xF0, 0xB5, 0x57, 0x46, 0x4E, 0x46, 0x45, 0x46
     .byte 0xE0, 0xB4, 0x83, 0xB0, 0x80, 0x46, 0x89, 0x46, 0x15, 0x1C, 0x00, 0x20, 0x28, 0x60, 0x01, 0xAE
     .byte 0x40, 0x46, 0x32, 0x1C
     bl func_0801C198
@@ -23789,6 +24546,9 @@ func_0801C874: @ 0x0801C874
     .byte 0x50, 0x46, 0x06, 0xE0
     .byte 0x38, 0x10, 0x00, 0x00, 0x58, 0x2E, 0x00, 0x00, 0x28, 0x10, 0x00, 0x00, 0x00, 0x20, 0x03, 0xB0
     .byte 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
+    .global func_0801CBB0
+    .thumb_func
+func_0801CBB0:
     .byte 0xF0, 0xB5, 0x57, 0x46, 0x4E, 0x46, 0x45, 0x46, 0xE0, 0xB4, 0x8F, 0xB0, 0x81, 0x46, 0x0E, 0x91
     .byte 0x92, 0x46, 0x00, 0x26, 0x02, 0x29, 0x2B, 0xD1, 0x00, 0x21, 0x12, 0x48, 0x50, 0x44, 0x80, 0x46
     .byte 0x00, 0x25, 0x4F, 0x1C, 0xAC, 0x20, 0x0C, 0x1C, 0x44, 0x43, 0x0F, 0x48, 0x48, 0x44, 0x00, 0x68
@@ -24092,6 +24852,9 @@ func_0801CDBC: @ 0x0801CDBC
 .L0801CEF4: .4byte 0x00001038
 .L0801CEF8: .4byte 0x00001028
 .L0801CEFC:
+    .global func_0801CEFC
+    .thumb_func
+func_0801CEFC:
     .byte 0xF0, 0xB5, 0x89, 0xB0
     .byte 0x05, 0x1C, 0x0E, 0x1C, 0x17, 0x1C, 0x01, 0xA9, 0x00, 0x20, 0x01, 0x90, 0x88, 0x80, 0xC8, 0x80
     .byte 0x08, 0x81, 0x48, 0x81, 0x28, 0x1C, 0x31, 0x1C, 0x01, 0xAA
@@ -24115,7 +24878,11 @@ func_0801CDBC: @ 0x0801CDBC
     .byte 0x08, 0x49, 0x68, 0x18, 0x00, 0x68, 0xA1, 0x68, 0x08, 0x31, 0xE2, 0x68, 0x0B, 0x32, 0x04, 0x23
     bl func_080AB68C
     .byte 0x20, 0x7C, 0x01, 0x21, 0x48, 0x40, 0x09, 0xB0, 0xF0, 0xBC, 0x02, 0xBC
-    .byte 0x08, 0x47, 0x00, 0x00, 0x28, 0x10, 0x00, 0x00, 0xF0, 0xB5, 0x57, 0x46, 0x4E, 0x46, 0x45, 0x46
+    .byte 0x08, 0x47, 0x00, 0x00, 0x28, 0x10, 0x00, 0x00
+    .global func_0801CFB8
+    .thumb_func
+func_0801CFB8:
+    .byte 0xF0, 0xB5, 0x57, 0x46, 0x4E, 0x46, 0x45, 0x46
     .byte 0xE0, 0xB4, 0x8F, 0xB0, 0x0E, 0x90, 0x89, 0x46, 0x92, 0x46, 0x00, 0x26, 0x02, 0x29, 0x37, 0xD1
     .byte 0x00, 0x21, 0x18, 0x4A, 0x87, 0x18, 0x18, 0x48, 0x82, 0x44, 0x00, 0x25, 0x4B, 0x1C, 0x99, 0x46
     .byte 0x2B, 0x22, 0x08, 0x1C, 0x50, 0x43, 0x80, 0x46, 0x38, 0x68, 0x14, 0x4B, 0xC0, 0x18, 0x42, 0x46
@@ -24316,6 +25083,9 @@ func_0801D104: @ 0x0801D104
     bx r1
     .align 2, 0
 .L0801D23C:
+    .global func_0801D23C
+    .thumb_func
+func_0801D23C:
     .byte 0xF0, 0xB5, 0x57, 0x46
     .byte 0x4E, 0x46, 0x45, 0x46, 0xE0, 0xB4, 0x8A, 0xB0, 0x80, 0x46, 0x0C, 0x1C, 0x01, 0xA9, 0x00, 0x20
     .byte 0x01, 0x90, 0x88, 0x80, 0xC8, 0x80, 0x08, 0x81, 0x48, 0x81, 0x40, 0x46, 0x21, 0x1C, 0x01, 0xAA
@@ -24355,7 +25125,11 @@ func_0801D104: @ 0x0801D104
     .byte 0x02, 0x20
     .byte 0x81, 0x44, 0x2B, 0x36, 0x01, 0x35, 0x07, 0x99, 0x01, 0x39, 0x07, 0x91, 0x00, 0x29, 0x9D, 0xDA
     .byte 0x09, 0x9A, 0x04, 0x9B, 0x1A, 0x43, 0xD0, 0x0F, 0x00, 0xE0, 0x00, 0x20, 0x0A, 0xB0, 0x38, 0xBC
-    .byte 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0xF0, 0xB5, 0x84, 0xB0
+    .byte 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47
+    .global func_0801D3FC
+    .thumb_func
+func_0801D3FC:
+    .byte 0xF0, 0xB5, 0x84, 0xB0
     .byte 0x04, 0x1C, 0x0D, 0x1C, 0x01, 0xA9, 0x00, 0x20, 0x01, 0x90, 0x88, 0x80, 0xC8, 0x80, 0x08, 0x81
     .byte 0x48, 0x81, 0x20, 0x1C, 0x29, 0x1C, 0x01, 0xAA
     bl func_0801C0F8
@@ -24377,6 +25151,9 @@ func_0801D104: @ 0x0801D104
     bl func_080AA6D0
     .byte 0x01, 0x2F
     .byte 0x01, 0xD1, 0x01, 0x20, 0x00, 0xE0, 0x00, 0x20, 0x04, 0xB0, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47
+    .global func_0801D4E0
+    .thumb_func
+func_0801D4E0:
     .byte 0x70, 0xB5, 0x84, 0xB0, 0x04, 0x1C, 0x0D, 0x1C, 0x16, 0x1C, 0x01, 0xA9, 0x00, 0x20, 0x01, 0x90
     .byte 0x88, 0x80, 0xC8, 0x80, 0x08, 0x81, 0x48, 0x81, 0x20, 0x1C, 0x29, 0x1C, 0x01, 0xAA
     bl func_0801C0F8
@@ -24396,7 +25173,11 @@ func_0801D104: @ 0x0801D104
     bl method_0800AF5C__C9FieldPlotPC9FieldPlotT1
     .byte 0x01, 0xA9, 0x89, 0x88, 0x01, 0xAA, 0xD2, 0x88, 0x01, 0x9B, 0x00, 0x90, 0x30, 0x1C
     bl func_080AA6D0
-    .byte 0x04, 0xB0, 0x70, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x70, 0xB5, 0x85, 0xB0
+    .byte 0x04, 0xB0, 0x70, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
+    .global func_0801D5BC
+    .thumb_func
+func_0801D5BC:
+    .byte 0x70, 0xB5, 0x85, 0xB0
     .byte 0x04, 0x1C, 0x0D, 0x1C, 0x16, 0x1C, 0x01, 0xA9, 0x00, 0x20, 0x01, 0x90, 0x88, 0x80, 0xC8, 0x80
     .byte 0x08, 0x81, 0x48, 0x81, 0x20, 0x1C, 0x29, 0x1C, 0x01, 0xAA
     bl func_0801C0F8
@@ -24550,6 +25331,9 @@ func_0801D6AC: @ 0x0801D6AC
 .L0801D7A8: .4byte 0x000034C8
 .L0801D7AC: .4byte 0x000003FF
 .L0801D7B0:
+    .global func_0801D7B0
+    .thumb_func
+func_0801D7B0:
     .byte 0x70, 0xB5, 0x84, 0xB0, 0x04, 0x1C, 0x0D, 0x1C, 0x16, 0x1C, 0x01, 0xA9, 0x00, 0x20, 0x01, 0x90
     .byte 0x88, 0x80, 0xC8, 0x80, 0x08, 0x81, 0x48, 0x81, 0x20, 0x1C, 0x29, 0x1C, 0x01, 0xAA
     bl func_0801C0F8
@@ -24569,7 +25353,11 @@ func_0801D6AC: @ 0x0801D6AC
     bl method_0800AF5C__C9FieldPlotPC9FieldPlotT1
     .byte 0x01, 0xA9, 0x89, 0x88, 0x01, 0xAA, 0xD2, 0x88, 0x01, 0x9B, 0x00, 0x90, 0x30, 0x1C
     bl func_080AA6D0
-    .byte 0x04, 0xB0, 0x70, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x10, 0xB5, 0x83, 0xB0
+    .byte 0x04, 0xB0, 0x70, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
+    .global func_0801D88C
+    .thumb_func
+func_0801D88C:
+    .byte 0x10, 0xB5, 0x83, 0xB0
     .byte 0x14, 0x1C, 0x6B, 0x46, 0x00, 0x22, 0x00, 0x92, 0x9A, 0x80, 0xDA, 0x80, 0x1A, 0x81, 0x5A, 0x81
     .byte 0x6A, 0x46
     bl func_0801C0F8
@@ -24707,6 +25495,9 @@ func_0801D9A8: @ 0x0801D9A8
     .align 2, 0
 .L0801D9B8: .4byte 0x00001054
 .L0801D9BC:
+    .global func_0801D9BC
+    .thumb_func
+func_0801D9BC:
     .byte 0x70, 0xB5, 0x04, 0x1C
     .byte 0x04, 0x49, 0x60, 0x18, 0x01, 0x68, 0x0E, 0x1C, 0x08, 0x36, 0x88, 0x68, 0x01, 0x28, 0x03, 0xD1
     .byte 0x0A, 0x20, 0xB4, 0xE0, 0x38, 0x10, 0x00, 0x00, 0x03, 0x38, 0x01, 0x28, 0x01, 0xD8, 0x0B, 0x20
@@ -25044,16 +25835,34 @@ func_0801DD30: @ 0x0801DD30
     pop {r0}
     bx r0
 .L0801DD3C:
+    .global func_0801DD3C
+    .thumb_func
+func_0801DD3C:
     .byte 0x00, 0xB5, 0x40, 0x68
     bl func_080A6234
-    .byte 0x01, 0xBC, 0x00, 0x47, 0x00, 0xB5, 0x40, 0x68
+    .byte 0x01, 0xBC, 0x00, 0x47
+    .global func_0801DD48
+    .thumb_func
+func_0801DD48:
+    .byte 0x00, 0xB5, 0x40, 0x68
     bl func_080A6278
-    .byte 0x01, 0xBC, 0x00, 0x47, 0x00, 0xB5, 0x40, 0x68
+    .byte 0x01, 0xBC, 0x00, 0x47
+    .global func_0801DD54
+    .thumb_func
+func_0801DD54:
+    .byte 0x00, 0xB5, 0x40, 0x68
     bl func_080A62BC
     .byte 0x01, 0xBC, 0x00, 0x47
+    .global func_0801DD60
+    .thumb_func
+func_0801DD60:
     .byte 0x00, 0xB5, 0x40, 0x68
     bl func_080A607C
-    .byte 0x01, 0xBC, 0x00, 0x47, 0x00, 0xB5, 0x40, 0x68
+    .byte 0x01, 0xBC, 0x00, 0x47
+    .global func_0801DD6C
+    .thumb_func
+func_0801DD6C:
+    .byte 0x00, 0xB5, 0x40, 0x68
     bl func_080A6024
     .byte 0x01, 0xBC, 0x00, 0x47
 
@@ -25065,6 +25874,9 @@ func_0801DD78: @ 0x0801DD78
     pop {r0}
     bx r0
 .L0801DD84:
+    .global func_0801DD84
+    .thumb_func
+func_0801DD84:
     .byte 0x30, 0xB5, 0x82, 0xB0, 0x04, 0x1C, 0x0F, 0x49, 0x60, 0x18, 0x00, 0x68
     .byte 0xFA, 0x21, 0x49, 0x00, 0x40, 0x18
     bl GetRecordPlayer__9FarmHouse
@@ -25132,6 +25944,9 @@ func_0801DE24: @ 0x0801DE24
     pop {r0}
     bx r0
 .L0801DE30:
+    .global func_0801DE30
+    .thumb_func
+func_0801DE30:
     .byte 0x00, 0xB5, 0x40, 0x68
     bl func_080AA89C
     .byte 0x01, 0xBC, 0x00, 0x47
@@ -25152,6 +25967,9 @@ func_0801DE48: @ 0x0801DE48
     pop {r0}
     bx r0
 .L0801DE54:
+    .global func_0801DE54
+    .thumb_func
+func_0801DE54:
     .byte 0x70, 0xB5, 0x46, 0x46, 0x40, 0xB4, 0x82, 0xB0, 0x05, 0x1C, 0x88, 0x46
     .byte 0x13, 0x49, 0x68, 0x18, 0x00, 0x68, 0xFA, 0x21, 0x49, 0x00, 0x40, 0x18
     bl GetRecordPlayer__9FarmHouse
@@ -25417,6 +26235,9 @@ func_0801DEB4: @ 0x0801DEB4
     pop {r1}
     bx r1
 .L0801E084:
+    .global func_0801E084
+    .thumb_func
+func_0801E084:
     .byte 0xF0, 0xB5, 0x57, 0x46, 0x4E, 0x46, 0x45, 0x46, 0xE0, 0xB4, 0x93, 0xB0
     .byte 0x10, 0x90
     bl func_0801E90C
@@ -27393,6 +28214,9 @@ func_0801F3E4: @ 0x0801F3E4
     .align 2, 0
 .L0801F514: .4byte 0x00001068
 .L0801F518:
+    .global func_0801F518
+    .thumb_func
+func_0801F518:
     .byte 0x70, 0xB5, 0x83, 0xB0, 0x06, 0x1C, 0x0C, 0x1C
     .byte 0x1D, 0x2C, 0x07, 0xD0, 0x1D, 0x2C, 0x02, 0xDC, 0x12, 0x2C, 0x17, 0xD0, 0x58, 0xE0, 0x27, 0x2C
     .byte 0x1E, 0xD0, 0x55, 0xE0, 0x08, 0x48, 0x35, 0x18, 0x28, 0x68, 0xFA, 0x21, 0x49, 0x00, 0x40, 0x18
@@ -28172,27 +28996,80 @@ func_0801FB7C: @ 0x0801FB7C
 .L0801FBD8: .4byte 0x000010CC
 .L0801FBDC:
     .byte 0x01, 0x49, 0x40, 0x18
-    .byte 0x70, 0x47, 0x00, 0x00, 0xF4, 0x0F, 0x00, 0x00, 0x01, 0x49, 0x40, 0x18, 0x70, 0x47, 0x00, 0x00
-    .byte 0xC4, 0x0F, 0x00, 0x00, 0x01, 0x49, 0x40, 0x18, 0x70, 0x47, 0x00, 0x00, 0x94, 0x0F, 0x00, 0x00
-    .byte 0x01, 0x49, 0x40, 0x18, 0x70, 0x47, 0x00, 0x00, 0x64, 0x0F, 0x00, 0x00, 0x01, 0x49, 0x40, 0x18
+    .byte 0x70, 0x47, 0x00, 0x00, 0xF4, 0x0F, 0x00, 0x00
+    .global func_0801FBE8
+    .thumb_func
+func_0801FBE8:
+    .byte 0x01, 0x49, 0x40, 0x18, 0x70, 0x47, 0x00, 0x00
+    .byte 0xC4, 0x0F, 0x00, 0x00
+    .global func_0801FBF4
+    .thumb_func
+func_0801FBF4:
+    .byte 0x01, 0x49, 0x40, 0x18, 0x70, 0x47, 0x00, 0x00, 0x94, 0x0F, 0x00, 0x00
+    .global func_0801FC00
+    .thumb_func
+func_0801FC00:
+    .byte 0x01, 0x49, 0x40, 0x18, 0x70, 0x47, 0x00, 0x00, 0x64, 0x0F, 0x00, 0x00
+    .global func_0801FC0C
+    .thumb_func
+func_0801FC0C:
+    .byte 0x01, 0x49, 0x40, 0x18
     .byte 0x70, 0x47, 0x00, 0x00, 0x34, 0x0F, 0x00, 0x00, 0x01, 0x49, 0x40, 0x18, 0x70, 0x47, 0x00, 0x00
     .byte 0x04, 0x0F, 0x00, 0x00, 0x01, 0x49, 0x40, 0x18, 0x70, 0x47, 0x00, 0x00, 0xD4, 0x0E, 0x00, 0x00
-    .byte 0x01, 0x49, 0x40, 0x18, 0x70, 0x47, 0x00, 0x00, 0xA4, 0x0E, 0x00, 0x00, 0x01, 0x49, 0x40, 0x18
-    .byte 0x70, 0x47, 0x00, 0x00, 0x74, 0x0E, 0x00, 0x00, 0x01, 0x49, 0x40, 0x18, 0x70, 0x47, 0x00, 0x00
-    .byte 0x44, 0x0E, 0x00, 0x00, 0x01, 0x49, 0x40, 0x18, 0x70, 0x47, 0x00, 0x00, 0x14, 0x0E, 0x00, 0x00
-    .byte 0x01, 0x49, 0x40, 0x18, 0x70, 0x47, 0x00, 0x00, 0xE4, 0x0D, 0x00, 0x00, 0x01, 0x49, 0x40, 0x18
+    .byte 0x01, 0x49, 0x40, 0x18, 0x70, 0x47, 0x00, 0x00, 0xA4, 0x0E, 0x00, 0x00
+    .global func_0801FC3C
+    .thumb_func
+func_0801FC3C:
+    .byte 0x01, 0x49, 0x40, 0x18
+    .byte 0x70, 0x47, 0x00, 0x00, 0x74, 0x0E, 0x00, 0x00
+    .global func_0801FC48
+    .thumb_func
+func_0801FC48:
+    .byte 0x01, 0x49, 0x40, 0x18, 0x70, 0x47, 0x00, 0x00
+    .byte 0x44, 0x0E, 0x00, 0x00
+    .global func_0801FC54
+    .thumb_func
+func_0801FC54:
+    .byte 0x01, 0x49, 0x40, 0x18, 0x70, 0x47, 0x00, 0x00, 0x14, 0x0E, 0x00, 0x00
+    .global func_0801FC60
+    .thumb_func
+func_0801FC60:
+    .byte 0x01, 0x49, 0x40, 0x18, 0x70, 0x47, 0x00, 0x00, 0xE4, 0x0D, 0x00, 0x00
+    .global func_0801FC6C
+    .thumb_func
+func_0801FC6C:
+    .byte 0x01, 0x49, 0x40, 0x18
     .byte 0x70, 0x47, 0x00, 0x00, 0xB4, 0x0D, 0x00, 0x00, 0x30, 0xB5, 0x07, 0x49, 0x44, 0x18, 0x00, 0x25
     .byte 0x20, 0x68, 0x85, 0x42, 0x04, 0xD0, 0x00, 0x28, 0x02, 0xD0, 0x03, 0x21
     bl func_0803B0A8
     .byte 0x25, 0x60, 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x7C, 0x10, 0x00, 0x00, 0x40, 0x68, 0x70, 0x47
-    .byte 0x40, 0x68, 0x70, 0x47, 0x02, 0x49, 0x40, 0x18, 0x00, 0x68, 0x08, 0x30, 0x70, 0x47, 0x00, 0x00
-    .byte 0x38, 0x10, 0x00, 0x00, 0x10, 0xB5, 0xCE, 0x22, 0x52, 0x00, 0x83, 0x18, 0x5C, 0x18, 0x20, 0x78
+    .byte 0x40, 0x68, 0x70, 0x47
+    .global func_0801FCA4
+    .thumb_func
+func_0801FCA4:
+    .byte 0x02, 0x49, 0x40, 0x18, 0x00, 0x68, 0x08, 0x30, 0x70, 0x47, 0x00, 0x00
+    .byte 0x38, 0x10, 0x00, 0x00
+    .global func_0801FCB4
+    .thumb_func
+func_0801FCB4:
+    .byte 0x10, 0xB5, 0xCE, 0x22, 0x52, 0x00, 0x83, 0x18, 0x5C, 0x18, 0x20, 0x78
     .byte 0x02, 0x1C, 0x10, 0x3A, 0x00, 0x2A, 0x05, 0xDA, 0x18, 0x1C
     bl func_080AC96C
     .byte 0x02, 0x1C
-    .byte 0x10, 0x30, 0x20, 0x70, 0x10, 0x1C, 0x10, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x4A, 0x01, 0x52, 0x18
+    .byte 0x10, 0x30, 0x20, 0x70, 0x10, 0x1C, 0x10, 0xBC, 0x02, 0xBC, 0x08, 0x47
+    .global func_0801FCDC
+    .thumb_func
+func_0801FCDC:
+    .byte 0x4A, 0x01, 0x52, 0x18
     .byte 0x92, 0x00, 0x80, 0x18, 0x02, 0x49, 0x40, 0x18, 0x00, 0x21, 0x01, 0x70, 0x70, 0x47, 0x00, 0x00
-    .byte 0x3D, 0x02, 0x00, 0x00, 0x08, 0x30, 0x89, 0x00, 0x40, 0x18, 0x00, 0x68, 0x70, 0x47, 0x00, 0x00
+    .byte 0x3D, 0x02, 0x00, 0x00
+    .global func_0801FCF4
+    .thumb_func
+func_0801FCF4:
+    .byte 0x08, 0x30, 0x89, 0x00, 0x40, 0x18, 0x00, 0x68, 0x70, 0x47, 0x00, 0x00
+    .global func_0801FD00
+    .thumb_func
+func_0801FD00:
     .byte 0x08, 0x30, 0x89, 0x00, 0x40, 0x18, 0x00, 0x68, 0x70, 0x47, 0x00, 0x00
 
     thumb_func_start func_0801FD0C
@@ -28216,6 +29093,9 @@ func_0801FD0C: @ 0x0801FD0C
     pop {r0}
     bx r0
 .L0801FD30:
+    .global func_0801FD30
+    .thumb_func
+func_0801FD30:
     .byte 0x01, 0x49, 0x40, 0x18, 0x00, 0x68, 0x70, 0x47, 0x24, 0x10, 0x00, 0x00
 
     thumb_func_start func_0801FD3C
@@ -28226,8 +29106,18 @@ func_0801FD3C: @ 0x0801FD3C
     pop {r1}
     bx r1
 .L0801FD48:
+    .global func_0801FD48
+    .thumb_func
+func_0801FD48:
     .byte 0x40, 0x68, 0x0E, 0x21, 0x40, 0x5E, 0x70, 0x47
-    .byte 0x40, 0x68, 0x0A, 0x21, 0x40, 0x5E, 0x70, 0x47, 0x40, 0x68, 0x00, 0x68, 0x70, 0x47, 0x00, 0x00
+    .global func_0801FD50
+    .thumb_func
+func_0801FD50:
+    .byte 0x40, 0x68, 0x0A, 0x21, 0x40, 0x5E, 0x70, 0x47
+    .global func_0801FD58
+    .thumb_func
+func_0801FD58:
+    .byte 0x40, 0x68, 0x00, 0x68, 0x70, 0x47, 0x00, 0x00
 
     thumb_func_start func_0801FD60
 func_0801FD60: @ 0x0801FD60
@@ -28245,302 +29135,7 @@ func_0801FD6C: @ 0x0801FD6C
     pop {r0}
     bx r0
 
-    @ Game-object virtual-table entries that begin within retained raw code.
-    @ The DE code block has a verified 0x10C-byte layout reduction before
-    @ these entries, so each exported target names its real DE entry point.
-    .global func_0801FD58
-    .ifdef REGION_DE
-    .thumb_set func_0801FD58, func_08011DC4 + 0xDE88
-    .else
-    .thumb_set func_0801FD58, func_08011DC4 + 0xDF94
-    .endif
-    .global func_0801FD50
-    .ifdef REGION_DE
-    .thumb_set func_0801FD50, func_08011DC4 + 0xDE80
-    .else
-    .thumb_set func_0801FD50, func_08011DC4 + 0xDF8C
-    .endif
-    .global func_0801FD48
-    .ifdef REGION_DE
-    .thumb_set func_0801FD48, func_08011DC4 + 0xDE78
-    .else
-    .thumb_set func_0801FD48, func_08011DC4 + 0xDF84
-    .endif
-    .global func_0801FD00
-    .ifdef REGION_DE
-    .thumb_set func_0801FD00, func_08011DC4 + 0xDE30
-    .else
-    .thumb_set func_0801FD00, func_08011DC4 + 0xDF3C
-    .endif
-    .global func_0801FCF4
-    .ifdef REGION_DE
-    .thumb_set func_0801FCF4, func_08011DC4 + 0xDE24
-    .else
-    .thumb_set func_0801FCF4, func_08011DC4 + 0xDF30
-    .endif
-    .global func_0801B5C0
-    .ifdef REGION_DE
-    .thumb_set func_0801B5C0, func_08011DC4 + 0x96F0
-    .else
-    .thumb_set func_0801B5C0, func_08011DC4 + 0x97FC
-    .endif
-    .global func_0801FCDC
-    .ifdef REGION_DE
-    .thumb_set func_0801FCDC, func_08011DC4 + 0xDE0C
-    .else
-    .thumb_set func_0801FCDC, func_08011DC4 + 0xDF18
-    .endif
-    .global func_0801FCB4
-    .ifdef REGION_DE
-    .thumb_set func_0801FCB4, func_08011DC4 + 0xDDE4
-    .else
-    .thumb_set func_0801FCB4, func_08011DC4 + 0xDEF0
-    .endif
-    .global func_0801B9E8
-    .ifdef REGION_DE
-    .thumb_set func_0801B9E8, func_08011DC4 + 0x9B18
-    .else
-    .thumb_set func_0801B9E8, func_08011DC4 + 0x9C24
-    .endif
-    .global func_0801FD30
-    .ifdef REGION_DE
-    .thumb_set func_0801FD30, func_08011DC4 + 0xDE60
-    .else
-    .thumb_set func_0801FD30, func_08011DC4 + 0xDF6C
-    .endif
-    .global func_0801FC54
-    .ifdef REGION_DE
-    .thumb_set func_0801FC54, func_08011DC4 + 0xDD84
-    .else
-    .thumb_set func_0801FC54, func_08011DC4 + 0xDE90
-    .endif
-    .global func_0801FC48
-    .ifdef REGION_DE
-    .thumb_set func_0801FC48, func_08011DC4 + 0xDD78
-    .else
-    .thumb_set func_0801FC48, func_08011DC4 + 0xDE84
-    .endif
-    .global func_0801FC60
-    .ifdef REGION_DE
-    .thumb_set func_0801FC60, func_08011DC4 + 0xDD90
-    .else
-    .thumb_set func_0801FC60, func_08011DC4 + 0xDE9C
-    .endif
-    .global func_0801FC6C
-    .ifdef REGION_DE
-    .thumb_set func_0801FC6C, func_08011DC4 + 0xDD9C
-    .else
-    .thumb_set func_0801FC6C, func_08011DC4 + 0xDEA8
-    .endif
-    .global func_0801FC3C
-    .ifdef REGION_DE
-    .thumb_set func_0801FC3C, func_08011DC4 + 0xDD6C
-    .else
-    .thumb_set func_0801FC3C, func_08011DC4 + 0xDE78
-    .endif
-    .global func_0801FC0C
-    .ifdef REGION_DE
-    .thumb_set func_0801FC0C, func_08011DC4 + 0xDD3C
-    .else
-    .thumb_set func_0801FC0C, func_08011DC4 + 0xDE48
-    .endif
-    .global func_0801FC00
-    .ifdef REGION_DE
-    .thumb_set func_0801FC00, func_08011DC4 + 0xDD30
-    .else
-    .thumb_set func_0801FC00, func_08011DC4 + 0xDE3C
-    .endif
-    .global func_0801FBF4
-    .ifdef REGION_DE
-    .thumb_set func_0801FBF4, func_08011DC4 + 0xDD24
-    .else
-    .thumb_set func_0801FBF4, func_08011DC4 + 0xDE30
-    .endif
-    .global func_0801FBE8
-    .ifdef REGION_DE
-    .thumb_set func_0801FBE8, func_08011DC4 + 0xDD18
-    .else
-    .thumb_set func_0801FBE8, func_08011DC4 + 0xDE24
-    .endif
-    .global func_0801DD3C
-    .ifdef REGION_DE
-    .thumb_set func_0801DD3C, func_08011DC4 + 0xBE6C
-    .else
-    .thumb_set func_0801DD3C, func_08011DC4 + 0xBF78
-    .endif
-    .global func_0801DD48
-    .ifdef REGION_DE
-    .thumb_set func_0801DD48, func_08011DC4 + 0xBE78
-    .else
-    .thumb_set func_0801DD48, func_08011DC4 + 0xBF84
-    .endif
-    .global func_0801DD54
-    .ifdef REGION_DE
-    .thumb_set func_0801DD54, func_08011DC4 + 0xBE84
-    .else
-    .thumb_set func_0801DD54, func_08011DC4 + 0xBF90
-    .endif
-    .global func_0801DD60
-    .ifdef REGION_DE
-    .thumb_set func_0801DD60, func_08011DC4 + 0xBE90
-    .else
-    .thumb_set func_0801DD60, func_08011DC4 + 0xBF9C
-    .endif
-    .global func_0801DD6C
-    .ifdef REGION_DE
-    .thumb_set func_0801DD6C, func_08011DC4 + 0xBE9C
-    .else
-    .thumb_set func_0801DD6C, func_08011DC4 + 0xBFA8
-    .endif
-    .global func_0801DD84
-    .ifdef REGION_DE
-    .thumb_set func_0801DD84, func_08011DC4 + 0xBEB4
-    .else
-    .thumb_set func_0801DD84, func_08011DC4 + 0xBFC0
-    .endif
-    .global func_0801DE54
-    .ifdef REGION_DE
-    .thumb_set func_0801DE54, func_08011DC4 + 0xBF84
-    .else
-    .thumb_set func_0801DE54, func_08011DC4 + 0xC090
-    .endif
-    .global func_0801CA1C
-    .ifdef REGION_DE
-    .thumb_set func_0801CA1C, func_08011DC4 + 0xAB4C
-    .else
-    .thumb_set func_0801CA1C, func_08011DC4 + 0xAC58
-    .endif
-    .global func_0801C49C
-    .ifdef REGION_DE
-    .thumb_set func_0801C49C, func_08011DC4 + 0xA5CC
-    .else
-    .thumb_set func_0801C49C, func_08011DC4 + 0xA6D8
-    .endif
-    .global func_0801CAD8
-    .ifdef REGION_DE
-    .thumb_set func_0801CAD8, func_08011DC4 + 0xAC08
-    .else
-    .thumb_set func_0801CAD8, func_08011DC4 + 0xAD14
-    .endif
-    .global func_0801CEFC
-    .ifdef REGION_DE
-    .thumb_set func_0801CEFC, func_08011DC4 + 0xB02C
-    .else
-    .thumb_set func_0801CEFC, func_08011DC4 + 0xB138
-    .endif
-    .global func_0801D23C
-    .ifdef REGION_DE
-    .thumb_set func_0801D23C, func_08011DC4 + 0xB36C
-    .else
-    .thumb_set func_0801D23C, func_08011DC4 + 0xB478
-    .endif
-    .global func_0801D3FC
-    .ifdef REGION_DE
-    .thumb_set func_0801D3FC, func_08011DC4 + 0xB52C
-    .else
-    .thumb_set func_0801D3FC, func_08011DC4 + 0xB638
-    .endif
-    .global func_0801D4E0
-    .ifdef REGION_DE
-    .thumb_set func_0801D4E0, func_08011DC4 + 0xB610
-    .else
-    .thumb_set func_0801D4E0, func_08011DC4 + 0xB71C
-    .endif
-    .global func_0801D5BC
-    .ifdef REGION_DE
-    .thumb_set func_0801D5BC, func_08011DC4 + 0xB6EC
-    .else
-    .thumb_set func_0801D5BC, func_08011DC4 + 0xB7F8
-    .endif
-    .global func_0801D7B0
-    .ifdef REGION_DE
-    .thumb_set func_0801D7B0, func_08011DC4 + 0xB8E0
-    .else
-    .thumb_set func_0801D7B0, func_08011DC4 + 0xB9EC
-    .endif
-    .global func_0801D88C
-    .ifdef REGION_DE
-    .thumb_set func_0801D88C, func_08011DC4 + 0xB9BC
-    .else
-    .thumb_set func_0801D88C, func_08011DC4 + 0xBAC8
-    .endif
-    .global func_0801CBB0
-    .ifdef REGION_DE
-    .thumb_set func_0801CBB0, func_08011DC4 + 0xACE0
-    .else
-    .thumb_set func_0801CBB0, func_08011DC4 + 0xADEC
-    .endif
-    .global func_0801CFB8
-    .ifdef REGION_DE
-    .thumb_set func_0801CFB8, func_08011DC4 + 0xB0E8
-    .else
-    .thumb_set func_0801CFB8, func_08011DC4 + 0xB1F4
-    .endif
-    .global func_0801C3DC
-    .ifdef REGION_DE
-    .thumb_set func_0801C3DC, func_08011DC4 + 0xA50C
-    .else
-    .thumb_set func_0801C3DC, func_08011DC4 + 0xA618
-    .endif
-    .global func_0801C3E0
-    .ifdef REGION_DE
-    .thumb_set func_0801C3E0, func_08011DC4 + 0xA510
-    .else
-    .thumb_set func_0801C3E0, func_08011DC4 + 0xA61C
-    .endif
-    .global func_0801DE30
-    .ifdef REGION_DE
-    .thumb_set func_0801DE30, func_08011DC4 + 0xBF60
-    .else
-    .thumb_set func_0801DE30, func_08011DC4 + 0xC06C
-    .endif
-    .global func_0801B498
-    .ifdef REGION_DE
-    .thumb_set func_0801B498, func_08011DC4 + 0x95C8
-    .else
-    .thumb_set func_0801B498, func_08011DC4 + 0x96D4
-    .endif
-    .global func_0801E084
-    .ifdef REGION_DE
-    .thumb_set func_0801E084, func_08011DC4 + 0xC1B4
-    .else
-    .thumb_set func_0801E084, func_08011DC4 + 0xC2C0
-    .endif
-    .global func_0801C0E0
-    .ifdef REGION_DE
-    .thumb_set func_0801C0E0, func_08011DC4 + 0xA210
-    .else
-    .thumb_set func_0801C0E0, func_08011DC4 + 0xA31C
-    .endif
-    .global func_0801FCA4
-    .ifdef REGION_DE
-    .thumb_set func_0801FCA4, func_08011DC4 + 0xDDD4
-    .else
-    .thumb_set func_0801FCA4, func_08011DC4 + 0xDEE0
-    .endif
-    .global func_0801D9BC
-    .ifdef REGION_DE
-    .thumb_set func_0801D9BC, func_08011DC4 + 0xBAEC
-    .else
-    .thumb_set func_0801D9BC, func_08011DC4 + 0xBBF8
-    .endif
-    .global func_0801F518
-    .ifdef REGION_DE
-    .thumb_set func_0801F518, func_08011DC4 + 0xD648
-    .else
-    .thumb_set func_0801F518, func_08011DC4 + 0xD754
-    .endif
-    .global func_0801C550
-    .ifdef REGION_DE
-    .thumb_set func_0801C550, func_08011DC4 + 0xA680
-    .else
-    .thumb_set func_0801C550, func_08011DC4 + 0xA78C
-    .endif
-    .global func_0801C69C
-    .ifdef REGION_DE
-    .thumb_set func_0801C69C, func_08011DC4 + 0xA7CC
-    .else
-    .thumb_set func_0801C69C, func_08011DC4 + 0xA8D8
-    .endif
+    @ All overseas virtual-table entries above are direct physical labels.
+    @ The verified source positions are shared by US, EU, and DE.
 
     .endif

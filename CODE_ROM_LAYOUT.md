@@ -2177,3 +2177,17 @@ JP `asm/code_entities.s` 的实体派遣原始代码块
 `.thumb_set` 指向的原始表项目标，现直接置于其经 listing 验证的真实 Thumb 字节位置；必要时
 只拆分原有 `.byte` 序列，不改变任何指令或填充。独立汇编比较确认 `.text` 的 73,852 字节和
 全部 101 个符号值均保持一致；四版完整 WSL 构建均与各自基准 ROM 逐字节一致。
+
+## `asm/game_state.s`
+
+JP 分支原有的 `jp_game_state_chunk` 与 `jp_game_state_entry` 包装已完全展开：79 段连续
+原始范围及 244 个入口现在均直接写成 `.global`、`.thumb_func`、标签与可见 `.incbin`，不再
+以宏隐藏 ROM 范围。当前该分支可直接统计到 323 条 `baserom_jp.gba` `.incbin`；其中原有的
+`.4byte` 重定位仍保持在其原始物理位置。独立 assembler 比较确认输出 `.text` 的 63,460
+字节与变更前完全相同，264 个函数符号地址亦未变化。
+
+US/EU/DE 共享分支此前的 49 个真实入口也已从 `.thumb_set` 别名改为实际位置的
+`.global`、`.thumb_func` 和标签。三版 listing 证明每个入口在各自源码中落在同一条指令/字节
+位置；因此只拆分了 44 行原始 `.byte`，并在两个既有 Thumb 指令前补上入口标签，不改动指令、
+填充或区域布局。US、EU、DE 的独立 `.text` 与全部 49 个符号值均逐字节/逐值一致；JP、US、EU、
+DE 四版完整 WSL 构建均与各自基准 ROM 的 SHA-1 一致。
