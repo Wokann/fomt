@@ -1565,11 +1565,41 @@ func_08021E94:
     .global func_08021EE8
     .thumb_func
 func_08021EE8:
-    .incbin "baserom_jp.gba", 0x21EE8, (0x21EF8 - 0x21EE8)
+    push {lr}
+    ldr r0, [r0, #0x34]
+    bl HasBeenBrushedToday__C6Animal
+    movs r1, #1
+    eors r0, r1
+    pop {r1}
+    bx r1
+
     .global func_08021EF8
     .thumb_func
 func_08021EF8:
-    .incbin "baserom_jp.gba", 0x21EF8, (0x21F30 - 0x21EF8)
+    push {r4, lr}
+    adds r4, r0, #0
+    ldr r0, [r4, #0x34]
+    bl HasBeenBrushedToday__C6Animal
+    lsls r0, r0, #24
+    cmp r0, #0
+    bne .Ljp_08021F16
+    ldr r0, [r4, #0x34]
+    movs r1, #1
+    bl AddAffection__6Animali
+    ldr r0, [r4, #0x34]
+    bl SetBrushed__6Animal
+.Ljp_08021F16:
+    adds r0, r4, #0
+    movs r1, #1
+    movs r2, #0
+    bl func_08032384
+    adds r0, r4, #0
+    movs r1, #0xa7
+    bl func_0801FE58
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
     .global func_08021F30
     .thumb_func
 func_08021F30:
@@ -5699,25 +5729,41 @@ func_08022100:
     .global func_08022154
     .thumb_func
 func_08022154:
-    .byte 0x00, 0xB5, 0x40, 0x6B
+    push {lr}
+    ldr r0, [r0, #0x34]
     bl HasBeenBrushedToday__C6Animal
-    .byte 0x01, 0x21, 0x48, 0x40
-    .byte 0x02, 0xBC, 0x08, 0x47
+    movs r1, #1
+    eors r0, r1
+    pop {r1}
+    bx r1
+
     .global func_08022164
     .thumb_func
 func_08022164:
-    .byte 0x10, 0xB5, 0x04, 0x1C, 0x60, 0x6B
+    push {r4, lr}
+    adds r4, r0, #0
+    ldr r0, [r4, #0x34]
     bl HasBeenBrushedToday__C6Animal
-    .byte 0x00, 0x06
-    .byte 0x00, 0x28, 0x06, 0xD1, 0x60, 0x6B, 0x01, 0x21
+    lsls r0, r0, #24
+    cmp r0, #0
+    bne .L08022182
+    ldr r0, [r4, #0x34]
+    movs r1, #1
     bl AddAffection__6Animali
-    .byte 0x60, 0x6B
+    ldr r0, [r4, #0x34]
     bl SetBrushed__6Animal
-    .byte 0x20, 0x1C, 0x01, 0x21, 0x00, 0x22
+.L08022182:
+    adds r0, r4, #0
+    movs r1, #1
+    movs r2, #0
     bl func_08032384
-    .byte 0x20, 0x1C, 0xA7, 0x21
+    adds r0, r4, #0
+    movs r1, #0xa7
     bl func_080200C4
-    .byte 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
     .global func_0802219C
     .thumb_func
 func_0802219C:

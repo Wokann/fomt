@@ -2848,6 +2848,23 @@ WSL 四区域完整构建和 ROM 对照均已通过：JP
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 逐字节一致。
 
+## `asm/code_entities.s`：宠物刷毛判定与处理回调
+
+JP `func_08021EE8` 与 `func_08021EF8`（连续物理范围
+`0x08021EE8`–`0x08021F2F`）已提升为 Thumb 指令，分别实现“尚未刷毛”布尔判定和
+刷毛后的好感度、状态标志、UI 事件更新。海外对应的 `func_08022154` 与
+`func_08022164` 同步从 `.byte` 序列提升，因此四版在此处保持同一源码层级。
+
+JP 调用使用其真实物理符号 `func_0801FE58`，海外保留对应的
+`func_080200C4`；动物方法和 UI 回调均为区域可重定位符号。第二个函数的原始末尾
+两字节 `00` 填充由 `.align 2, 0` 保留，而非伪造数据对象。
+
+WSL 四区域完整构建和 ROM 对照均已通过：JP
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`、US
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 逐字节一致。
+
 ## `asm/code_entities.s`：JP 宠物动画状态应用
 
 JP `func_08021DDC`（物理范围 `0x08021DDC`–`0x08021E67`）已由直接 `.incbin`
