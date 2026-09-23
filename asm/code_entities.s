@@ -933,7 +933,46 @@ func_080212B0:
     .global func_08021390
     .thumb_func
 func_08021390:
-    .incbin "baserom_jp.gba", 0x21390, (0x213C8 - 0x21390)
+    push {r4, lr}
+    movs r3, #0xa
+    ldrsh r2, [r1, r3]
+    movs r4, #0xe
+    ldrsh r3, [r1, r4]
+    subs r1, r2, #7
+    strh r1, [r0]
+    subs r1, r3, #4
+    strh r1, [r0, #2]
+    adds r2, #7
+    strh r2, [r0, #4]
+    adds r3, #5
+    strh r3, [r0, #6]
+    pop {r4}
+    pop {r2}
+    bx r2
+
+    .global func_080213B0
+    .thumb_func
+func_080213B0:
+    movs r0, #0
+    bx lr
+
+    .global func_080213B4
+    .thumb_func
+func_080213B4:
+    push {lr}
+    cmp r0, #0
+    beq .Ljp_080213BE
+    cmp r0, #1
+    beq .Ljp_080213C2
+.Ljp_080213BE:
+    movs r0, #6
+    b .Ljp_080213C4
+.Ljp_080213C2:
+    movs r0, #8
+.Ljp_080213C4:
+    pop {r1}
+    bx r1
+
     .global func_080213C8
     .thumb_func
 func_080213C8:
@@ -4287,9 +4326,22 @@ func_0802151C: @ 0x0802151C
     .global func_080215FC
     .thumb_func
 func_080215FC:
-    .byte 0x10, 0xB5, 0x0A, 0x23
-    .byte 0xCA, 0x5E, 0x0E, 0x24, 0x0B, 0x5F, 0xD1, 0x1F, 0x01, 0x80, 0x19, 0x1F, 0x41, 0x80, 0x07, 0x32
-    .byte 0x82, 0x80, 0x05, 0x33, 0xC3, 0x80, 0x10, 0xBC, 0x04, 0xBC, 0x10, 0x47
+    push {r4, lr}
+    movs r3, #0xa
+    ldrsh r2, [r1, r3]
+    movs r4, #0xe
+    ldrsh r3, [r1, r4]
+    subs r1, r2, #7
+    strh r1, [r0]
+    subs r1, r3, #4
+    strh r1, [r0, #2]
+    adds r2, #7
+    strh r2, [r0, #4]
+    adds r3, #5
+    strh r3, [r0, #6]
+    pop {r4}
+    pop {r2}
+    bx r2
 
     thumb_func_start func_0802161C
 func_0802161C: @ 0x0802161C

@@ -2772,6 +2772,21 @@ WSL 四区域完整构建和 ROM 对照均已通过：JP
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 逐字节一致。
 
+## `asm/code_entities.s`：四区域宠物矩形与状态回调
+
+JP 物理范围 `0x08021390`–`0x080213C7` 的三个短虚表回调现为真实 Thumb
+指令：`func_08021390`、`func_080213B0` 和 `func_080213B4`。前者与海外版
+`func_080215FC` 对应，按实体坐标生成四个有符号半字的矩形边界；后两者分别与既有的
+`func_0802161C`、`func_08021620` 对应，返回原 ROM 所定义的小型状态结果。海外版此前
+保留为 `.byte` 的 `func_080215FC` 也已改为同样的直接 Thumb 指令。
+
+本批没有引入别名、绝对分支或原始字节指令；函数入口和跨函数引用均为直接符号。WSL
+四区域完整构建和 ROM 对照均已通过：JP
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`、US
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 逐字节一致。
+
 ## `asm/code_entities.s`：JP 宠物游玩判定
 
 JP `func_080212B0` 的物理范围 `0x080212B0`–`0x0802138F` 已提升为完整 Thumb 指令，
