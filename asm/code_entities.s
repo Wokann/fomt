@@ -2683,7 +2683,11 @@ func_080236DC:
 func_08023720:
     .incbin "baserom_jp.gba", 0x23720, (0x239D0 - 0x23720)
     .4byte gUnk_080F0C74
-    .incbin "baserom_jp.gba", 0x239D4, (0x23E20 - 0x239D4)
+    .incbin "baserom_jp.gba", 0x239D4, (0x23DF0 - 0x239D4)
+    .global func_08023DF0
+    .thumb_func
+func_08023DF0:
+    .incbin "baserom_jp.gba", 0x23DF0, (0x23E20 - 0x23DF0)
     .4byte gUnk_080F0E34
     .incbin "baserom_jp.gba", 0x23E24, (0x23E64 - 0x23E24)
     .global func_08023E64
@@ -2774,7 +2778,34 @@ func_080240AC:
     .global func_0802410C
     .thumb_func
 func_0802410C:
-    .incbin "baserom_jp.gba", 0x2410C, (0x2414C - 0x2410C)
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    movs r1, #1
+    movs r2, #0
+    bl func_08032384
+    adds r0, r4, #0
+    movs r1, #0xA3
+    bl func_0801FE58
+    ldr r0, [r4, #0x34]
+    bl ConsumeProduct__5Sheep
+    adds r5, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x38
+    ldrb r1, [r0]
+    adds r0, r4, #0
+    bl func_08023DF0
+    adds r1, r0, #0
+    ldrh r0, [r4, #0x22]
+    cmp r0, r1
+    beq .Ljp_08024142
+    adds r0, r4, #0
+    bl SetAnim__12AActorEntityUi
+.Ljp_08024142:
+    adds r0, r5, #0
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+    .align 2, 0
     .global func_0802414C
     .thumb_func
 func_0802414C:
@@ -9661,18 +9692,34 @@ func_08024318:
     .global func_08024378
     .thumb_func
 func_08024378:
-    .byte 0x30, 0xB5, 0x04, 0x1C, 0x01, 0x21, 0x00, 0x22
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    movs r1, #1
+    movs r2, #0
     bl func_08032384
-    .byte 0x20, 0x1C, 0xA3, 0x21
+    adds r0, r4, #0
+    movs r1, #0xA3
     bl func_080200C4
-    .byte 0x60, 0x6B
+    ldr r0, [r4, #0x34]
     bl ConsumeProduct__5Sheep
-    .byte 0x05, 0x1C, 0x20, 0x1C, 0x38, 0x30, 0x01, 0x78, 0x20, 0x1C
+    adds r5, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x38
+    ldrb r1, [r0]
+    adds r0, r4, #0
     bl func_0802405C
-    .byte 0x01, 0x1C, 0x60, 0x8C, 0x88, 0x42, 0x02, 0xD0, 0x20, 0x1C
+    adds r1, r0, #0
+    ldrh r0, [r4, #0x22]
+    cmp r0, r1
+    beq .L080243AE
+    adds r0, r4, #0
     bl SetAnim__12AActorEntityUi
-    .byte 0x28, 0x1C
-    .byte 0x30, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
+.L080243AE:
+    adds r0, r5, #0
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+    .align 2, 0
     .global func_080243B8
     .thumb_func
 func_080243B8:
