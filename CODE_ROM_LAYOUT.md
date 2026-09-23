@@ -2295,3 +2295,18 @@ US、EU、DE 的汇编对象字节和完整符号表均与变更前一致；完�
 `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。
+
+## `src/script_engine.cc`：JP 原始入口直写
+
+JP 的脚本引擎原始范围 `0x0803EB08`–`0x0803F703` 之前以
+`jp_script_func` 汇编宏包装 17 个 `incbin` 范围，并以
+`.thumb_set func_0803EB3C, _._13AScriptEngine` 提供一个外部入口。
+现已完全展开为可直接审计的 `.global`、`.thumb_func`、真实标签与
+`.incbin`。`func_0803EB3C` 和 `_._13AScriptEngine` 同处其经 ROM
+核验的真实函数起点 `0x0803EB3C`，因此以共址直接标签表示，不再使用
+汇编别名、地址算术或范围包装宏。
+
+这项改动只在 `REGION_JP` 条件分支生效。按受影响范围最小化构建策略，
+仅以 WSL 重建 JP；`fomt_jp.gba` 的 SHA-1 为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`，与 `baserom_jp.gba`
+逐字节一致。
