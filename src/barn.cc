@@ -19,27 +19,6 @@ Barn::Barn()
     fill_n_inl(pregnancy_stall_ent_idx, static_cast<int>(MAX_PREGNANCY_STALL_CAPACITY), -1);
 }
 
-#if defined(REGION_JP)
-/*
- * Byte-exact JP assembly stays in this module.  As matching functions are
- * recovered, keep shared definitions outside the regional guard and retain
- * only genuinely version-specific definitions inside it.
- */
-asm(
-    "    @ JP-only Barn entry points.\n"
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "    .thumb_set jp_barn_text_start, __4Barn\n"
-    "\n"
-    "    .global AttemptBirth__4BarnUi\n"
-    "    .thumb_set AttemptBirth__4BarnUi, jp_barn_text_start + 0xAEC\n"
-    "    .section .text\n"
-    "    @ Keep later shared C++ emission in agbcp's default syntax mode.\n"
-    "    .syntax divided\n"
-);
-#endif // REGION_JP
-
 Vec2 Barn::method_0800CE58()
 {
     return Vec2(184, 272);
@@ -556,6 +535,9 @@ asm(
     "    .section .text\n"
     "    .syntax unified\n"
     "    .thumb\n"
+    "    .global AttemptBirth__4BarnUi\n"
+    "    .thumb_func\n"
+    "AttemptBirth__4BarnUi:\n"
     "    .incbin \"baserom_jp.gba\", 0xD888, 0x154\n"
     "    .syntax divided\n"
 );

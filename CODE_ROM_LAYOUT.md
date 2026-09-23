@@ -2310,3 +2310,15 @@ JP 的脚本引擎原始范围 `0x0803EB08`–`0x0803F703` 之前以
 仅以 WSL 重建 JP；`fomt_jp.gba` 的 SHA-1 为
 `A655B2789AED14A6AC78C6075FBC533D3062DBE3`，与 `baserom_jp.gba`
 逐字节一致。
+
+## `src/barn.cc`：JP `AttemptBirth` 真实入口
+
+`Barn::AttemptBirth` 的 JP 实现在 `Barn::MoveToPregnancyStall` 之后，
+物理入口为 `0x0800D888`。旧源码先从构造器 `__4Barn` 建立合成基址，
+再用 `.thumb_set` 加 `0xAEC` 导出该入口；现已删除这两个别名定义，改为在
+该函数自身的直接 `.incbin` 前写出 `.global`、`.thumb_func` 和
+`AttemptBirth__4BarnUi`。函数本体仍是待反编译的 JP 原始代码，但它的对外
+调用已指向真实物理标签，不依赖构造器相对偏移。
+
+该项仅影响 JP 条件分支；WSL JP 重建后，`fomt_jp.gba` SHA-1 仍为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`，逐字节匹配基准 ROM。
