@@ -85348,7 +85348,115 @@ func_080935A0:
     jp_code_0803ee_func func_08093C3C, 0x93700, 0x93890
     jp_code_0803ee_func func_08093890, 0x93890, 0x938B0
     jp_code_0803ee_func func_080938B0, 0x938B0, 0x938E4
-    jp_code_0803ee_func func_080938E4, 0x938E4, 0x939B0
+    .global func_080938E4
+    .thumb_func
+func_080938E4:
+    push {r4, lr}
+    adds r4, r0, #0
+    ldr r0, [r4]
+    ldr r1, [r0, #0x24]
+    adds r0, r4, #0
+    bl _call_via_r1
+    ldr r1, [r4, #8]
+    cmp r1, #0
+    beq .Ljp_08093950
+    str r1, [r4, #4]
+    movs r0, #0
+    str r0, [r4, #8]
+    movs r0, #0x12
+    ldrsh r2, [r1, r0]
+    cmp r2, #0
+    ble .Ljp_08093918
+    movs r3, #0x14
+    ldrsh r0, [r1, r3]
+    adds r0, r4, r0
+    ldr r1, [r0]
+    lsls r0, r2, #2
+    adds r0, r0, r1
+    subs r0, #4
+    ldr r1, [r0]
+    b .Ljp_0809391A
+.Ljp_08093918:
+    ldr r1, [r1, #0x14]
+.Ljp_0809391A:
+    ldr r0, [r4, #4]
+    movs r2, #0x10
+    ldrsh r0, [r0, r2]
+    adds r0, r4, r0
+    bl _call_via_r1
+    ldr r0, [r4, #4]
+    movs r3, #2
+    ldrsh r2, [r0, r3]
+    cmp r2, #0
+    ble .Ljp_08093942
+    movs r1, #4
+    ldrsh r0, [r0, r1]
+    adds r0, r4, r0
+    ldr r1, [r0]
+    lsls r0, r2, #2
+    adds r0, r0, r1
+    subs r0, #4
+    ldr r1, [r0]
+    b .Ljp_08093944
+.Ljp_08093942:
+    ldr r1, [r0, #4]
+.Ljp_08093944:
+    ldr r0, [r4, #4]
+    movs r2, #0
+    ldrsh r0, [r0, r2]
+    adds r0, r4, r0
+    bl _call_via_r1
+.Ljp_08093950:
+    ldr r0, [r4, #4]
+    movs r3, #0x1a
+    ldrsh r2, [r0, r3]
+    cmp r2, #0
+    ble .Ljp_0809396C
+    movs r1, #0x1c
+    ldrsh r0, [r0, r1]
+    adds r0, r4, r0
+    ldr r1, [r0]
+    lsls r0, r2, #2
+    adds r0, r0, r1
+    subs r0, #4
+    ldr r1, [r0]
+    b .Ljp_0809396E
+.Ljp_0809396C:
+    ldr r1, [r0, #0x1c]
+.Ljp_0809396E:
+    ldr r0, [r4, #4]
+    movs r2, #0x18
+    ldrsh r0, [r0, r2]
+    adds r0, r4, r0
+    bl _call_via_r1
+    adds r3, r0, #0
+    ldr r0, [r4, #4]
+    movs r1, #0xa
+    ldrsh r2, [r0, r1]
+    cmp r2, #0
+    ble .Ljp_08093998
+    movs r1, #0xc
+    ldrsh r0, [r0, r1]
+    adds r0, r4, r0
+    ldr r1, [r0]
+    lsls r0, r2, #2
+    adds r0, r0, r1
+    subs r0, #4
+    ldr r2, [r0]
+    b .Ljp_0809399A
+.Ljp_08093998:
+    ldr r2, [r0, #0xc]
+.Ljp_0809399A:
+    ldr r0, [r4, #4]
+    movs r1, #8
+    ldrsh r0, [r0, r1]
+    adds r0, r4, r0
+    adds r1, r3, #0
+    bl _call_via_r2
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
     .global func_080939B0
     .thumb_func
 func_080939B0:
