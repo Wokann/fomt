@@ -738,11 +738,89 @@ func_08021054:
     .global func_08021138
     .thumb_func
 func_08021138:
-    .incbin "baserom_jp.gba", 0x21138, (0x21144 - 0x21138)
+    adds r0, #0x40
+    ldrb r0, [r0]
+    movs r1, #1
+    eors r0, r1
+    bx lr
+    .align 2, 0
+
     .global func_08021144
     .thumb_func
 func_08021144:
-    .incbin "baserom_jp.gba", 0x21144, (0x212B0 - 0x21144)
+    push {r4, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    adds r0, #0x40
+    ldrb r0, [r0]
+    cmp r0, #0
+    bne .Ljp_080211BE
+    ldr r0, [r4, #0x34]
+    ldr r0, [r0, #0x20]
+    cmp r0, #5
+    bne .Ljp_08021160
+    adds r0, r4, #0
+    bl func_08021054
+.Ljp_08021160:
+    movs r0, #0x78
+    bl func_080AB1C0
+    adds r0, #0xf0
+    lsls r0, r0, #0x10
+    lsrs r0, r0, #0x10
+    ldr r2, .Ljp_080211C8
+    ldr r1, [sp]
+    ands r1, r2
+    orrs r1, r0
+    ldr r0, .Ljp_080211CC
+    ands r1, r0
+    movs r0, #0xf0
+    lsls r0, r0, #0xe
+    orrs r1, r0
+    ldr r0, .Ljp_080211D0
+    ands r1, r0
+    ldr r0, .Ljp_080211D4
+    ands r1, r0
+    str r1, [sp]
+    ldr r0, [r4, #0x34]
+    mov r1, sp
+    bl method_0809BB64__3DogPC15UnkBarnAnimal2C
+    adds r0, r4, #0
+    bl func_08020FF8
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
+    bl func_08020F78
+    ldr r0, [r4, #0x34]
+    movs r1, #0xa
+    bl SubtractAffection__6Animali
+    adds r0, r4, #0
+    movs r1, #2
+    movs r2, #0
+    bl func_08032384
+    adds r0, r4, #0
+    movs r1, #0xaa
+    bl func_0801FE58
+.Ljp_080211BE:
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_080211C8:
+    .4byte 0xFFFF0000
+.Ljp_080211CC:
+    .4byte 0xFF80FFFF
+.Ljp_080211D0:
+    .4byte 0xFF7FFFFF
+.Ljp_080211D4:
+    .4byte 0x00FFFFFF
+
+    .global func_080211D8
+    .thumb_func
+func_080211D8:
+    .incbin "baserom_jp.gba", 0x211D8, (0x212B0 - 0x211D8)
     .global func_080212B0
     .thumb_func
 func_080212B0:
@@ -3813,32 +3891,80 @@ func_080212C0: @ 0x080212C0
     .global func_080213A4
     .thumb_func
 func_080213A4:
-    .byte 0x40, 0x30, 0x00, 0x78, 0x01, 0x21, 0x48, 0x40, 0x70, 0x47, 0x00, 0x00
+    adds r0, #0x40
+    ldrb r0, [r0]
+    movs r1, #1
+    eors r0, r1
+    bx lr
+    .align 2, 0
+
     .global func_080213B0
     .thumb_func
 func_080213B0:
-    .byte 0x10, 0xB5, 0x81, 0xB0, 0x04, 0x1C, 0x40, 0x30, 0x00, 0x78, 0x00, 0x28, 0x35, 0xD1, 0x60, 0x6B
-    .byte 0x00, 0x6A, 0x05, 0x28, 0x02, 0xD1, 0x20, 0x1C
+    push {r4, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    adds r0, #0x40
+    ldrb r0, [r0]
+    cmp r0, #0
+    bne .L0802142A
+    ldr r0, [r4, #0x34]
+    ldr r0, [r0, #0x20]
+    cmp r0, #5
+    bne .L080213CC
+    adds r0, r4, #0
     bl func_080212C0
-    .byte 0x78, 0x20
+.L080213CC:
+    movs r0, #0x78
     bl func_080AB788
-    .byte 0xF0, 0x30, 0x00, 0x04, 0x00, 0x0C, 0x16, 0x4A, 0x00, 0x99, 0x11, 0x40, 0x01, 0x43
-    .byte 0x15, 0x48, 0x01, 0x40, 0xF0, 0x20, 0x80, 0x03, 0x01, 0x43, 0x14, 0x48, 0x01, 0x40, 0x14, 0x48
-    .byte 0x01, 0x40, 0x00, 0x91, 0x60, 0x6B, 0x69, 0x46
+    adds r0, #0xf0
+    lsls r0, r0, #0x10
+    lsrs r0, r0, #0x10
+    ldr r2, .L08021434
+    ldr r1, [sp]
+    ands r1, r2
+    orrs r1, r0
+    ldr r0, .L08021438
+    ands r1, r0
+    movs r0, #0xf0
+    lsls r0, r0, #0xe
+    orrs r1, r0
+    ldr r0, .L0802143C
+    ands r1, r0
+    ldr r0, .L08021440
+    ands r1, r0
+    str r1, [sp]
+    ldr r0, [r4, #0x34]
+    mov r1, sp
     bl method_0809BB64__3DogPC15UnkBarnAnimal2C
-    .byte 0x20, 0x1C
+    adds r0, r4, #0
     bl func_08021264
-    .byte 0x01, 0x1C, 0x20, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x20, 0x1C
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
     bl func_080211E4
-    .byte 0x60, 0x6B, 0x0A, 0x21
+    ldr r0, [r4, #0x34]
+    movs r1, #0xa
     bl SubtractAffection__6Animali
-    .byte 0x20, 0x1C, 0x02, 0x21, 0x00, 0x22
+    adds r0, r4, #0
+    movs r1, #2
+    movs r2, #0
     bl func_08032384
-    .byte 0x20, 0x1C, 0xAA, 0x21
+    adds r0, r4, #0
+    movs r1, #0xaa
     bl func_080200C4
-    .byte 0x01, 0xB0, 0x10, 0xBC, 0x01, 0xBC
-    .byte 0x00, 0x47, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x80, 0xFF, 0xFF, 0xFF, 0x7F, 0xFF
-    .byte 0xFF, 0xFF, 0xFF, 0x00
+.L0802142A:
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.L08021434: .4byte 0xFFFF0000
+.L08021438: .4byte 0xFF80FFFF
+.L0802143C: .4byte 0xFF7FFFFF
+.L08021440: .4byte 0x00FFFFFF
 
     thumb_func_start func_08021444
 func_08021444: @ 0x08021444
