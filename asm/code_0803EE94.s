@@ -85174,7 +85174,23 @@ func_080939E4:
 func_080939E8:
 	ldr r0, [r0, #0x10]
 	bx lr
-    jp_code_0803ee_func func_080939EC, 0x939EC, 0x93A0C
+.global func_080939EC
+.thumb_func
+func_080939EC:
+	push {r4, lr}
+	adds r4, r0, #0
+	ldr r0, [r4]
+	ldr r1, [r0, #0x28]
+	adds r0, r4, #0
+	bl _call_via_r1
+	ldr r0, [r4]
+	ldr r1, [r0, #0x30]
+	adds r0, r4, #0
+	bl _call_via_r1
+	pop {r4}
+	pop {r0}
+	bx r0
+	.align 2, 0
     jp_code_0803ee_func func_08093A0C, 0x93A0C, 0x93A74
     .global func_08093FB0
     .thumb_func
