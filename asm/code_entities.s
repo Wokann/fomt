@@ -2761,15 +2761,102 @@ func_08024814:
     .global func_08024930
     .thumb_func
 func_08024930:
-    .incbin "baserom_jp.gba", 0x24930, (0x2497C - 0x24930)
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    movs r5, #2
+    ldrh r0, [r4, #4]
+    cmp r0, #0x13
+    bne .L0802495E
+    ldr r1, [r4, #0x34]
+    ldr r2, .L08024978
+    adds r0, r1, r2
+    ldrb r0, [r0]
+    lsls r0, r0, #0x1B
+    lsrs r0, r0, #0x1E
+    cmp r0, #1
+    beq .L0802495C
+    subs r2, #0x25
+    adds r0, r1, r2
+    movs r1, #0x4A
+    bl func_0809C694
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .L0802495E
+.L0802495C:
+    movs r5, #1
+.L0802495E:
+    adds r0, r4, #0
+    adds r0, #0x21
+    strb r5, [r0]
+    movs r0, #0xA1
+    lsls r0, r0, #2
+    bl __builtin_new
+    adds r1, r4, #0
+    bl func_0802AFF4
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.L08024978:
+    .word 0x00002171
     .global func_0802497C
     .thumb_func
 func_0802497C:
-    .incbin "baserom_jp.gba", 0x2497C, (0x24990 - 0x2497C)
+    push {r4, lr}
+    adds r4, r0, #0
+    bl vfunc_10__7AEntity
+    adds r0, r4, #0
+    bl func_0802A31C
+    pop {r4}
+    pop {r0}
+    bx r0
     .global func_08024990
     .thumb_func
 func_08024990:
-    .incbin "baserom_jp.gba", 0x24990, (0x249E8 - 0x24990)
+    push {r4, r5, lr}
+    sub sp, #0x10
+    adds r5, r0, #0
+    adds r4, r1, #0
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x40]
+    adds r0, r4, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .L080249CC
+    movs r0, #0xA
+    ldrsh r1, [r4, r0]
+    movs r0, #0xE
+    ldrsh r2, [r4, r0]
+    mov r4, sp
+    subs r3, r1, #7
+    mov r0, sp
+    strh r3, [r0]
+    adds r0, r2, #0
+    subs r0, #9
+    strh r0, [r4, #2]
+    adds r1, #7
+    strh r1, [r4, #4]
+    adds r2, #5
+    strh r2, [r4, #6]
+    ldr r0, [sp]
+    ldr r1, [sp, #4]
+    b .L080249D8
+.L080249CC:
+    add r0, sp, #8
+    adds r1, r4, #0
+    bl func_0803240C
+    ldr r0, [sp, #8]
+    ldr r1, [sp, #0xC]
+.L080249D8:
+    str r0, [r5]
+    str r1, [r5, #4]
+    adds r0, r5, #0
+    add sp, #0x10
+    pop {r4, r5}
+    pop {r2}
+    bx r2
+    .align 2, 0
     .global func_080249E8
     .thumb_func
 func_080249E8:
@@ -2917,7 +3004,15 @@ func_08029CC4:
     .global func_0802A194
     .thumb_func
 func_0802A194:
-    .incbin "baserom_jp.gba", 0x2A194, (0x2B148 - 0x2A194)
+    .incbin "baserom_jp.gba", 0x2A194, (0x2A31C - 0x2A194)
+    .global func_0802A31C
+    .thumb_func
+func_0802A31C:
+    .incbin "baserom_jp.gba", 0x2A31C, (0x2AFF4 - 0x2A31C)
+    .global func_0802AFF4
+    .thumb_func
+func_0802AFF4:
+    .incbin "baserom_jp.gba", 0x2AFF4, (0x2B148 - 0x2AFF4)
     .global func_0802B148
     .thumb_func
 func_0802B148:
