@@ -1471,7 +1471,60 @@ func_080064E8:
     .global func_08006858
     .thumb_func
 func_08006858:
-    .incbin "baserom_jp.gba", 0x6734, (0x67A8 - 0x6734)
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    ldr r1, .Ljp_08006798 @ =0x0000457C
+    adds r0, r4, r1
+    ldr r0, [r0]
+    cmp r0, #0
+    bne .Ljp_0800676A
+    adds r0, r4, #0
+    bl func_08008920
+    adds r3, r0, #0
+    ldr r5, .Ljp_0800679C @ =0x00004548
+    adds r1, r4, r5
+    ldrb r2, [r3]
+    cmp r2, #0x7f
+    bhi .Ljp_0800676A
+    lsls r0, r2, #3
+    adds r0, #4
+    adds r0, r3, r0
+    ldr r1, [r1]
+    str r1, [r0]
+    adds r5, #4
+    adds r1, r4, r5
+    ldrh r1, [r1]
+    strh r1, [r0, #4]
+    adds r0, r2, #1
+    strb r0, [r3]
+.Ljp_0800676A:
+    adds r0, r4, #0
+    bl func_08008920
+    adds r3, r0, #0
+    ldr r0, .Ljp_080067A0 @ =0x00004554
+    adds r1, r4, r0
+    ldrb r2, [r3]
+    cmp r2, #0x7f
+    bhi .Ljp_08006792
+    lsls r0, r2, #3
+    adds r0, #4
+    adds r0, r3, r0
+    ldr r1, [r1]
+    str r1, [r0]
+    ldr r5, .Ljp_080067A4 @ =0x00004558
+    adds r1, r4, r5
+    ldrh r1, [r1]
+    strh r1, [r0, #4]
+    adds r0, r2, #1
+    strb r0, [r3]
+.Ljp_08006792:
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+.Ljp_08006798: .4byte 0x0000457C
+.Ljp_0800679C: .4byte 0x00004548
+.Ljp_080067A0: .4byte 0x00004554
+.Ljp_080067A4: .4byte 0x00004558
 
     .global func_080068CC
     .thumb_func
