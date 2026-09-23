@@ -3718,7 +3718,133 @@ func_08024708:
     .global func_08024814
     .thumb_func
 func_08024814:
-    .incbin "baserom_jp.gba", 0x24814, (0x24930 - 0x24814)
+    push {r4, r5, r6, r7, lr}
+    sub sp, #0xc
+    adds r5, r0, #0
+    adds r7, r1, #0
+    ldr r0, .Ljp_08024858 @ =vtable_unk_080E6658
+    str r0, [r5, #0x14]
+    ldr r4, [r5, #0x38]
+    mov r0, sp
+    adds r1, r5, #0
+    bl GetLocation__C12AActorEntity
+    adds r0, r4, #0
+    mov r1, sp
+    bl func_0800EB34
+    ldr r0, [r5, #0x38]
+    adds r6, r0, #0
+    adds r6, #0x54
+    adds r0, r6, #0
+    bl func_0800F190
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Ljp_080248FE
+    adds r0, r6, #0
+    bl func_0800F204
+    cmp r0, #5
+    bhi .Ljp_080248FE
+    lsls r0, r0, #2
+    ldr r1, .Ljp_0802485C @ =.Ljp_08024860
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+    .align 2, 0
+.Ljp_08024858: .4byte vtable_unk_080E6658
+.Ljp_0802485C: .4byte .Ljp_08024860
+.Ljp_08024860: @ jump table
+    .4byte .Ljp_080248FE @ case 0
+    .4byte .Ljp_08024878 @ case 1
+    .4byte .Ljp_080248AC @ case 2
+    .4byte .Ljp_080248B8 @ case 3
+    .4byte .Ljp_080248E6 @ case 4
+    .4byte .Ljp_080248FE @ case 5
+.Ljp_08024878:
+    adds r0, r6, #0
+    bl func_0800F258
+    adds r1, r0, #0
+    add r0, sp, #8
+    strb r1, [r0]
+    bl GetId__C7Article
+    cmp r0, #0x35
+    bne .Ljp_080248FE
+    ldr r4, [r5, #0x34]
+    ldr r0, .Ljp_080248A8 @ =0x00001CCC
+    adds r4, r4, r0
+    mov r0, sp
+    adds r1, r5, #0
+    bl GetLocation__C7AEntity
+    adds r0, r4, #0
+    mov r1, sp
+    movs r2, #6
+    bl memcpy
+    b .Ljp_080248FE
+    .align 2, 0
+.Ljp_080248A8: .4byte 0x00001CCC
+.Ljp_080248AC:
+    ldr r4, [r5, #0x34]
+    ldr r0, .Ljp_080248B4 @ =0x00001C70
+    adds r4, r4, r0
+    b .Ljp_080248D4
+    .align 2, 0
+.Ljp_080248B4: .4byte 0x00001C70
+.Ljp_080248B8:
+    ldr r4, [r5, #0x34]
+    movs r0, #0x82
+    lsls r0, r0, #3
+    adds r4, r4, r0
+    adds r0, r6, #0
+    bl func_0800F344
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl GetChicken__4CoopUi
+    adds r4, r0, #0
+    cmp r4, #0
+    beq .Ljp_080248FE
+.Ljp_080248D4:
+    mov r0, sp
+    adds r1, r5, #0
+    bl GetLocation__C12AActorEntity
+    adds r0, r4, #0
+    mov r1, sp
+    bl SetLocation__5ActorRC13ActorLocation
+    b .Ljp_080248FE
+.Ljp_080248E6:
+    ldr r4, [r5, #0x34]
+    movs r0, #0xe5
+    lsls r0, r0, #5
+    adds r4, r4, r0
+    mov r0, sp
+    adds r1, r5, #0
+    bl GetLocation__C7AEntity
+    adds r0, r4, #0
+    mov r1, sp
+    bl func_08010014
+.Ljp_080248FE:
+    ldr r0, .Ljp_0802492C @ =__vt_7AEntity
+    str r0, [r5, #0x14]
+    ldr r1, [r5, #0x10]
+    cmp r1, #0
+    beq .Ljp_08024914
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08024914:
+    movs r0, #1
+    ands r0, r7
+    cmp r0, #0
+    beq .Ljp_08024922
+    adds r0, r5, #0
+    bl __builtin_delete
+.Ljp_08024922:
+    add sp, #0xc
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_0802492C: .4byte __vt_7AEntity
+
     .global func_08024930
     .thumb_func
 func_08024930:
