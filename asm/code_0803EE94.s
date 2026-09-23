@@ -85134,7 +85134,15 @@ func_08092DD4:
     .4byte gText_LinkCommunication_QuitCommunication
     .incbin "baserom_jp.gba", 0x93498, 0xBC
     jp_code_0803ee_func func_08093554, 0x93554, 0x93594
-    jp_code_0803ee_func func_08093AC8, 0x93594, 0x935A0
+.global func_08093AC8
+.thumb_func
+func_08093AC8:
+	ldr r0, [r0, #4]
+	movs r1, #0xe2
+	lsls r1, r1, #1
+	adds r0, r0, r1
+	ldr r0, [r0]
+	bx lr
     .global func_08093AD4
     .thumb_func
 func_08093AD4:
