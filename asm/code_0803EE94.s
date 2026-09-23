@@ -86495,7 +86495,135 @@ func_0809ABD8:
 .Ljp_0809A6EC: .4byte 0x3B9ACA00
 .Ljp_0809A6F0: .4byte 0x05F5E0FF
 .Ljp_0809A6F4: .4byte 0x0001869F
-    jp_code_0803ee_func func_0809ACC0, 0x9A6F8, 0x9A7E0
+    .global func_0809ACC0
+    .thumb_func
+func_0809ACC0:
+    push {r4, r5, lr}
+    sub sp, #0x10
+    mov ip, r0
+    adds r4, r1, #0
+    mov r3, ip
+    adds r3, #0xFC
+    movs r0, #0
+    ldr r1, [r3]
+    cmp r1, #0
+    bne .Ljp_0809A70E
+    movs r0, #1
+.Ljp_0809A70E:
+    cmp r0, #0
+    beq .Ljp_0809A734
+    movs r0, #0
+    str r0, [sp]
+    str r0, [sp, #4]
+    cmp r1, #3
+    bhi .Ljp_0809A734
+    lsls r0, r1, #3
+    adds r0, #4
+    adds r2, r3, r0
+    cmp r2, #0
+    beq .Ljp_0809A72E
+    ldr r0, [sp]
+    ldr r1, [sp, #4]
+    str r0, [r2]
+    str r1, [r2, #4]
+.Ljp_0809A72E:
+    ldr r0, [r3]
+    adds r0, #1
+    str r0, [r3]
+.Ljp_0809A734:
+    movs r0, #0
+    mov r2, ip
+    ldr r1, [r2, #8]
+    mov r3, ip
+    adds r3, #8
+    cmp r1, #0
+    bne .Ljp_0809A744
+    movs r0, #1
+.Ljp_0809A744:
+    cmp r0, #0
+    beq .Ljp_0809A76C
+    movs r0, #0
+    str r0, [sp, #8]
+    str r0, [sp, #0xC]
+    cmp r1, #0x1D
+    bhi .Ljp_0809A76C
+    lsls r0, r1, #3
+    adds r0, #4
+    adds r2, r3, r0
+    cmp r2, #0
+    beq .Ljp_0809A764
+    ldr r0, [sp, #8]
+    ldr r1, [sp, #0xC]
+    str r0, [r2]
+    str r1, [r2, #4]
+.Ljp_0809A764:
+    mov r1, ip
+    ldr r0, [r1, #8]
+    adds r0, #1
+    str r0, [r1, #8]
+.Ljp_0809A76C:
+    mov r2, ip
+    ldr r0, [r2]
+    cmp r4, r0
+    bls .Ljp_0809A778
+    movs r0, #0
+    b .Ljp_0809A7CE
+.Ljp_0809A778:
+    adds r1, r0, #0
+    cmp r0, r4
+    bls .Ljp_0809A780
+    adds r1, r4, #0
+.Ljp_0809A780:
+    subs r0, r0, r1
+    mov r1, ip
+    str r0, [r1]
+    ldr r0, [r1, #8]
+    subs r0, #1
+    lsls r0, r0, #3
+    adds r0, #4
+    adds r3, r3, r0
+    adds r1, #0xFC
+    ldr r0, [r1]
+    subs r0, #1
+    lsls r0, r0, #3
+    adds r0, #4
+    adds r1, r1, r0
+    ldr r2, [r3, #4]
+    ldr r5, .Ljp_0809A7D8
+    subs r0, r5, r2
+    cmp r0, r4
+    bls .Ljp_0809A7A8
+    adds r0, r4, #0
+.Ljp_0809A7A8:
+    adds r0, r2, r0
+    str r0, [r3, #4]
+    ldr r2, [r1, #4]
+    subs r0, r5, r2
+    cmp r0, r4
+    bls .Ljp_0809A7B6
+    adds r0, r4, #0
+.Ljp_0809A7B6:
+    adds r0, r2, r0
+    str r0, [r1, #4]
+    ldr r1, [r3, #4]
+    ldr r0, .Ljp_0809A7DC
+    cmp r1, r0
+    bls .Ljp_0809A7CC
+    mov r2, ip
+    ldrb r0, [r2, #4]
+    movs r1, #1
+    orrs r0, r1
+    strb r0, [r2, #4]
+.Ljp_0809A7CC:
+    movs r0, #1
+.Ljp_0809A7CE:
+    add sp, #0x10
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_0809A7D8: .4byte 0x3B9ACA00
+.Ljp_0809A7DC: .4byte 0x0001869F
     jp_code_0803ee_func func_0809ADA8, 0x9A7E0, 0x9AA50
     .global func_0809B018
     .thumb_func
