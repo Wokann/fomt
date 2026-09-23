@@ -2902,7 +2902,82 @@ func_08024170:
     .global func_080241FC
     .thumb_func
 func_080241FC:
-    .incbin "baserom_jp.gba", 0x241FC, (0x24280 - 0x241FC)
+    push {r4, r5, r6, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    adds r6, r1, #0
+    adds r5, r2, #0
+    ldr r0, [r4, #0x34]
+    bl IsPregnant__C10BarnAnimal
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Ljp_0802424C
+    cmp r5, #0x3B
+    bls .Ljp_0802424C
+    adds r5, r4, #0
+    adds r5, #0x20
+    ldrb r0, [r5]
+    cmp r0, r6
+    beq .Ljp_08024228
+    adds r0, r4, #0
+    adds r1, r6, #0
+    bl SetAnimFacing__12AActorEntityUi
+.Ljp_08024228:
+    ldr r1, .Ljp_08024254
+    ldr r0, [sp]
+    ands r0, r1
+    movs r1, #0x3C
+    orrs r0, r1
+    str r0, [sp]
+    ldr r0, [r4, #0x34]
+    mov r1, sp
+    bl method_0809B968__10BarnAnimal
+    adds r0, r4, #0
+    bl func_08023DB4
+    adds r1, r0, #0
+    ldrb r2, [r5]
+    adds r0, r4, #0
+    bl func_08023D44
+.Ljp_0802424C:
+    add sp, #4
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_08024254:
+    .word 0xFFFF0000
+    .global func_08024258
+    .thumb_func
+func_08024258:
+    push {lr}
+    cmp r0, #0
+    beq .Ljp_08024262
+    cmp r0, #1
+    beq .Ljp_08024266
+.Ljp_08024262:
+    movs r0, #1
+    b .Ljp_08024268
+.Ljp_08024266:
+    movs r0, #2
+.Ljp_08024268:
+    pop {r1}
+    bx r1
+    .global func_0802426C
+    .thumb_func
+func_0802426C:
+    push {lr}
+    cmp r0, #0
+    beq .Ljp_08024276
+    cmp r0, #1
+    beq .Ljp_0802427A
+.Ljp_08024276:
+    movs r0, #0xA
+    b .Ljp_0802427C
+.Ljp_0802427A:
+    movs r0, #0xD
+.Ljp_0802427C:
+    pop {r1}
+    bx r1
     .global func_08024280
     .thumb_func
 func_08024280:
@@ -9893,22 +9968,50 @@ func_080243DC:
     .global func_08024468
     .thumb_func
 func_08024468:
-    .byte 0x70, 0xB5, 0x81, 0xB0, 0x04, 0x1C, 0x0E, 0x1C
-    .byte 0x15, 0x1C, 0x60, 0x6B
+    push {r4, r5, r6, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    adds r6, r1, #0
+    adds r5, r2, #0
+    ldr r0, [r4, #0x34]
     bl IsPregnant__C10BarnAnimal
-    .byte 0x00, 0x06, 0x00, 0x28, 0x1C, 0xD1, 0x3B, 0x2D
-    .byte 0x1A, 0xD9, 0x25, 0x1C, 0x20, 0x35, 0x28, 0x78, 0xB0, 0x42, 0x03, 0xD0, 0x20, 0x1C, 0x31, 0x1C
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .L080244B8
+    cmp r5, #0x3B
+    bls .L080244B8
+    adds r5, r4, #0
+    adds r5, #0x20
+    ldrb r0, [r5]
+    cmp r0, r6
+    beq .L08024494
+    adds r0, r4, #0
+    adds r1, r6, #0
     bl SetAnimFacing__12AActorEntityUi
-    .byte 0x0A, 0x49, 0x00, 0x98, 0x08, 0x40, 0x3C, 0x21, 0x08, 0x43, 0x00, 0x90
-    .byte 0x60, 0x6B, 0x69, 0x46
+.L08024494:
+    ldr r1, .L080244C0
+    ldr r0, [sp]
+    ands r0, r1
+    movs r1, #0x3C
+    orrs r0, r1
+    str r0, [sp]
+    ldr r0, [r4, #0x34]
+    mov r1, sp
     bl method_0809B968__10BarnAnimal
-    .byte 0x20, 0x1C
+    adds r0, r4, #0
     bl func_08024020
-    .byte 0x01, 0x1C
-    .byte 0x2A, 0x78, 0x20, 0x1C
+    adds r1, r0, #0
+    ldrb r2, [r5]
+    adds r0, r4, #0
     bl func_08023FB0
-    .byte 0x01, 0xB0, 0x70, 0xBC, 0x01, 0xBC, 0x00, 0x47
-    .byte 0x00, 0x00, 0xFF, 0xFF
+.L080244B8:
+    add sp, #4
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.L080244C0:
+    .word 0xFFFF0000
 
     thumb_func_start func_080244C4
 func_080244C4: @ 0x080244C4

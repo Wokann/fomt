@@ -3211,3 +3211,20 @@ WSL 以 `-j4` 重建四区域并逐字节对照均通过：JP
 `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 一致。
+
+## `asm/code_entities.s`：四区域家畜朝向更新与状态选择入口
+
+JP `func_080241FC` 与海外 `func_08024468` 已同时从原始
+`.incbin`/`.byte` 提升为直接 Thumb。它们检查妊娠与状态阈值，必要时调用
+`SetAnimFacing__12AActorEntityUi` 更新实体朝向，随后构造状态请求并调用对应的
+家畜动作入口。JP 和海外均使用真实的区域函数符号，没有固定 BL 字节、别名或伪造偏移。
+
+同一物理块内的 JP `func_08024258` 与 `func_0802426C` 也已按实际函数边界显式写出，
+分别对应海外原有的 `func_080244C4` 与 `func_080244D8`；因此四个区域在该组三个入口
+保持相同层级。原始 `0xFFFF0000` 字面量池仍位于函数尾部的四字节边界。
+
+WSL 以 `-j4` 重建四区域并逐字节对照均通过：JP
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`、US
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 一致。
