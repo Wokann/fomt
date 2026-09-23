@@ -468,7 +468,114 @@ func_08003788:
 .Ljp_08003B4C: .4byte gText_NewGameStatus_CloseParen
 .Ljp_08003B50: .4byte gText_NewGameStatus_FarmSuffix
 .Ljp_08003B54: .4byte 0x00001BD8
-    .incbin "baserom_jp.gba", 0x3B58, 0x3F0
+    .global func_08003B40
+    .thumb_func
+func_08003B40:
+    push	{r4, r5, lr}
+    sub	sp, #20
+    adds	r5, r0, #0
+    bl func_08008918
+    mov	r1, sp
+    movs	r2, #63
+    strh	r2, [r1, #0]
+    adds	r0, #80
+    strh	r2, [r0, #0]
+    adds	r0, r5, #0
+    bl func_08008918
+    adds	r1, r0, #0
+    add	r4, sp, #4
+    movs	r0, #0
+    str	r0, [sp, #4]
+    str	r0, [r4, #4]
+    ldr	r0, .Ljp_08003BA4
+    str	r0, [sp, #12]
+    add	r0, sp, #16
+    bl func_08009300
+    ldr	r1, .Ljp_08003BA8
+    add	r0, sp, #16
+    movs	r2, #1
+    movs	r3, #1
+    bl func_0800934C
+    adds	r0, r5, #0
+    bl func_08008940
+    ldr	r1, [r0, #8]
+    ldr	r2, [r1, #16]
+    adds	r1, r4, #0
+    bl _call_via_r2
+    b.n .Ljp_08003BB2
+.Ljp_08003BA4: .4byte vtable_unk_080E5B80
+.Ljp_08003BA8: .4byte 0x00000889
+.Ljp_08003BAC:
+    adds	r0, r5, #0
+    bl func_080087C8
+.Ljp_08003BB2:
+    ldr	r1, [sp, #4]
+    negs	r0, r1
+    orrs	r0, r1
+    cmp	r0, #0
+    blt.n .Ljp_08003BAC
+    adds	r0, r4, #0
+    movs	r1, #2
+    bl func_080094B8
+    add	sp, #20
+    pop	{r4, r5}
+    pop	{r0}
+    bx	r0
+
+    .global func_08003BB4
+    .thumb_func
+func_08003BB4:
+    push	{r4, r5, lr}
+    sub	sp, #20
+    adds	r5, r0, #0
+    bl func_08008918
+    mov	r1, sp
+    movs	r2, #63
+    strh	r2, [r1, #0]
+    adds	r0, #80
+    strh	r2, [r0, #0]
+    adds	r0, r5, #0
+    bl func_08008918
+    adds	r1, r0, #0
+    add	r4, sp, #4
+    movs	r0, #0
+    str	r0, [sp, #4]
+    str	r0, [r4, #4]
+    ldr	r0, .Ljp_08003C18
+    str	r0, [sp, #12]
+    add	r0, sp, #16
+    bl func_08009300
+    ldr	r1, .Ljp_08003C1C
+    add	r0, sp, #16
+    movs	r2, #1
+    movs	r3, #1
+    bl func_08009378
+    adds	r0, r5, #0
+    bl func_08008940
+    ldr	r1, [r0, #8]
+    ldr	r2, [r1, #16]
+    adds	r1, r4, #0
+    bl _call_via_r2
+    b.n .Ljp_08003C26
+.Ljp_08003C18: .4byte vtable_unk_080E5B80
+.Ljp_08003C1C: .4byte 0x00000889
+.Ljp_08003C20:
+    adds	r0, r5, #0
+    bl func_080087C8
+.Ljp_08003C26:
+    ldr	r1, [sp, #4]
+    negs	r0, r1
+    orrs	r0, r1
+    cmp	r0, #0
+    blt.n .Ljp_08003C20
+    adds	r0, r4, #0
+    movs	r1, #2
+    bl func_080094B8
+    add	sp, #20
+    pop	{r4, r5}
+    pop	{r0}
+    bx	r0
+    .incbin "baserom_jp.gba", 0x3C40, 0x308
     .4byte gText_NewGameStatus_WriteDiary
     .4byte gText_NewGameStatus_ReadDiary
     .incbin "baserom_jp.gba", 0x3F50, 0x28
