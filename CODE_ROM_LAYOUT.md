@@ -3194,3 +3194,20 @@ WSL 以 `-j4` 重建四区域并逐字节对照均通过：JP
 `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 一致。
+
+## `asm/code_entities.s`：四区域家畜病症与不满状态入口
+
+JP `func_0802414C` / `func_08024170` 与海外 `func_080243B8` /
+`func_080243DC` 已同时提升为直接 Thumb。前一对重置病症并在需要时清除不满；后一对
+依据妊娠状态构造原始状态字、执行动作处理、扣除好感度并设置不满状态。
+
+JP 的 `func_08023D44`、`func_08023DB4` 是后一入口的真实原始函数起点，现以直接符号
+供可重定位调用；其函数体继续保留直写 `.incbin`。三项状态字字面量
+`0xFFFF0000`、`0xFF80FFFF`、`0x00FFFFFF` 及原始对齐均在源码中按 ROM 顺序保留，
+未使用别名、固定 BL 字节或伪造偏移。
+
+WSL 以 `-j4` 重建四区域并逐字节对照均通过：JP
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`、US
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 一致。
