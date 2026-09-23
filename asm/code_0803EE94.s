@@ -85239,7 +85239,7 @@ func_08092CD0:
 	.global func_08092D64
 	.thumb_func
 func_08092D64:
-	.incbin "baserom_jp.gba", 0x92830, (0x92CAC - 0x92830)
+    .incbin "baserom_jp.gba", 0x92830, (0x92CAC - 0x92830)
 
 .global func_08092CAC
 .thumb_func
@@ -85299,7 +85299,12 @@ func_08093308:
     .global func_08092DD4
     .thumb_func
 func_08092DD4:
-    .incbin "baserom_jp.gba", 0x92DD4, 0x2E8
+    .incbin "baserom_jp.gba", 0x92DD4, (0x92E30 - 0x92DD4)
+
+    .global func_08092E30
+    .thumb_func
+func_08092E30:
+    .incbin "baserom_jp.gba", 0x92E30, (0x930BC - 0x92E30)
     .4byte gText_LinkCommunication_QuitCommunication
     .incbin "baserom_jp.gba", 0x930C0, 0x18
     .4byte gText_LinkCommunication_OtherPlayerCanceled
@@ -85363,21 +85368,214 @@ func_08093AC8:
 	adds r0, r0, r1
 	ldr r0, [r0]
 	bx lr
-    .global func_08093AD4
-    .thumb_func
-func_08093AD4:
     .global func_080935A0
     .thumb_func
 func_080935A0:
-    .incbin "baserom_jp.gba", 0x935A0, 0x88
-    .4byte gText_LinkCommunication_Yes
-    .4byte gText_LinkCommunication_No
-    .incbin "baserom_jp.gba", 0x93630, 0x64
-    .4byte gText_LinkCommunication_DataExchangeFailed
-    .incbin "baserom_jp.gba", 0x93698, 0x24
-    .4byte gText_LinkCommunication_NowSendingData
-    .incbin "baserom_jp.gba", 0x936C0, 0x3C
-    .4byte gText_LinkCommunication_WaitingForOtherPlayer
+    push {r4, r5, lr}
+    adds r5, r0, #0
+    adds r4, r1, #0
+    ldr r0, [r4, #4]
+    bl func_08092E30
+    ldr r1, [r4, #8]
+    movs r0, #0
+    str r0, [r4, #8]
+    str r1, [r5]
+    adds r0, r5, #0
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+
+    .global func_080935BC
+    .thumb_func
+func_080935BC:
+    movs r1, #0xfb
+    lsls r1, r1, #2
+    adds r0, r0, r1
+    movs r1, #1
+    strb r1, [r0]
+    bx lr
+
+    .global func_080935C8
+    .thumb_func
+func_080935C8:
+    adds r2, r0, #0
+    movs r3, #0xfa
+    lsls r3, r3, #2
+    adds r0, r2, r3
+    str r1, [r0]
+    movs r0, #0xfb
+    lsls r0, r0, #2
+    adds r1, r2, r0
+    movs r0, #1
+    strb r0, [r1]
+    bx lr
+    .align 2, 0
+
+    .global func_080935E0
+    .thumb_func
+func_080935E0:
+    bx lr
+    .align 2, 0
+
+    .global func_080935E4
+    .thumb_func
+func_080935E4:
+    push {r4, lr}
+    sub sp, #0x10
+    adds r1, r0, #0
+    movs r4, #0
+    movs r0, #0xf9
+    lsls r0, r0, #2
+    adds r2, r1, r0
+    ldr r0, [r2]
+    cmp r0, #0
+    beq .Ljp_080935FE
+    cmp r0, #1
+    beq .Ljp_08093630
+    b .Ljp_08093656
+.Ljp_080935FE:
+    movs r3, #0xee
+    lsls r3, r3, #1
+    adds r0, r1, r3
+    ldr r0, [r0]
+    cmp r0, #3
+    bne .Ljp_08093656
+    movs r0, #1
+    str r0, [r2]
+    movs r2, #0xe8
+    lsls r2, r2, #1
+    adds r0, r1, r2
+    ldr r1, .Ljp_08093628
+    ldr r2, .Ljp_0809362C
+    str r4, [sp]
+    str r4, [sp, #4]
+    str r4, [sp, #8]
+    str r4, [sp, #0xc]
+    movs r3, #0
+    bl func_08050E0C
+    b .Ljp_08093656
+    .align 2, 0
+.Ljp_08093628: .4byte gText_LinkCommunication_Yes
+.Ljp_0809362C: .4byte gText_LinkCommunication_No
+.Ljp_08093630:
+    movs r3, #0xee
+    lsls r3, r3, #1
+    adds r0, r1, r3
+    ldr r0, [r0]
+    cmp r0, #3
+    bne .Ljp_08093656
+    movs r2, #0xe8
+    lsls r2, r2, #1
+    adds r0, r1, r2
+    bl func_08050DF0
+    cmp r0, #1
+    beq .Ljp_08093650
+    cmp r0, #2
+    beq .Ljp_08093654
+    b .Ljp_08093656
+.Ljp_08093650:
+    movs r4, #2
+    b .Ljp_08093656
+.Ljp_08093654:
+    movs r4, #3
+.Ljp_08093656:
+    adds r0, r4, #0
+    add sp, #0x10
+    pop {r4}
+    pop {r1}
+    bx r1
+
+    .global func_08093660
+    .thumb_func
+func_08093660:
+    push {r4, lr}
+    adds r2, r0, #0
+    movs r1, #0xf8
+    lsls r1, r1, #2
+    adds r0, r2, r1
+    movs r1, #0
+    str r1, [r0]
+    movs r3, #0xf9
+    lsls r3, r3, #2
+    adds r0, r2, r3
+    str r1, [r0]
+    movs r0, #0xe8
+    lsls r0, r0, #1
+    adds r4, r2, r0
+    ldr r1, .Ljp_08093694
+    adds r0, r4, #0
+    bl func_08050D8C
+    adds r0, r4, #0
+    movs r1, #0x3a
+    bl func_08050E50
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_08093694: .4byte gText_LinkCommunication_DataExchangeFailed
+
+    .global func_08093698
+    .thumb_func
+func_08093698:
+    bx lr
+    .align 2, 0
+
+    .global func_0809369C
+    .thumb_func
+func_0809369C:
+    push {r4, lr}
+    adds r4, r0, #0
+    movs r0, #0xe8
+    lsls r0, r0, #1
+    adds r4, r4, r0
+    ldr r1, .Ljp_080936BC
+    adds r0, r4, #0
+    bl func_08050D8C
+    adds r0, r4, #0
+    movs r1, #0x38
+    bl func_08050E50
+    pop {r4}
+    pop {r0}
+    bx r0
+.Ljp_080936BC: .4byte gText_LinkCommunication_NowSendingData
+
+    .global func_080936C0
+    .thumb_func
+func_080936C0:
+    push {lr}
+    bl func_080088CC
+    movs r1, #2
+    ands r0, r1
+    cmp r0, #0
+    bne .Ljp_080936D2
+    movs r0, #0
+    b .Ljp_080936D4
+.Ljp_080936D2:
+    movs r0, #1
+.Ljp_080936D4:
+    pop {r1}
+    bx r1
+
+    .global func_080936D8
+    .thumb_func
+func_080936D8:
+    push {r4, lr}
+    adds r4, r0, #0
+    movs r0, #0xe8
+    lsls r0, r0, #1
+    adds r4, r4, r0
+    ldr r1, .Ljp_080936FC
+    adds r0, r4, #0
+    movs r2, #0
+    movs r3, #0
+    bl func_08050DC8
+    adds r0, r4, #0
+    movs r1, #0x38
+    bl func_08050E50
+    pop {r4}
+    pop {r0}
+    bx r0
+.Ljp_080936FC: .4byte gText_LinkCommunication_WaitingForOtherPlayer
     .global func_08093C3C
     .thumb_func
 func_08093C3C:

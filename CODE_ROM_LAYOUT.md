@@ -2074,3 +2074,13 @@ JP 链接通信析构入口 `0x08093554`–`0x08093593` 已提升为实际 Thumb
 `func_08093554`。它使用 `_call_via_r2` 和 `func_080007EC` 的直接符号；原先在
 `vtable_unk_080E7F0C` 尾部的无名四项子表现定义为 `gUnk_080E7448`，并经 JP
 符号表确认保持在 `0x080E7448`，不使用表内地址偏移。
+
+紧随其后的 JP 链接通信析构与消息状态组 `0x080935A0`–`0x080936FF` 已提升为
+`func_080935A0`、`func_080935BC`、`func_080935C8`、`func_080935E0`、
+`func_080935E4`、`func_08093660`、`func_08093698`、`func_0809369C`、
+`func_080936C0` 与 `func_080936D8` 的显式 Thumb 指令。五个消息 literal 直接重定位到
+`gText_LinkCommunication_Yes`、`gText_LinkCommunication_No`、
+`gText_LinkCommunication_DataExchangeFailed`、`gText_LinkCommunication_NowSendingData`
+和 `gText_LinkCommunication_WaitingForOtherPlayer`；析构调用所需的实际 JP 入口
+`func_08092E30` 也在其原始物理位置单独标注，未使用别名、固定分支或地址偏移。四版完整
+构建均与基准 ROM 逐字节一致。
