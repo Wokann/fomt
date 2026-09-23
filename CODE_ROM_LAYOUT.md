@@ -3012,3 +3012,20 @@ WSL 四区域完整构建和 ROM 对照均已通过：JP
 `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 逐字节一致。
+
+## `asm/code_entities.s`：四区域实体 UI 字段访问器
+
+JP `0x08031DAC`–`0x08031E23` 与海外对应范围中的 12 个连续实体 UI 小入口现均为直接
+Thumb 指令。它们读取或写入对象的字节/字字段、返回内部指针、判断状态，并把坐标参数
+转换为四半字边界。JP 原先保留为逐段 `incbin`，海外其中多项保留为 `.byte`；二者均已
+清除。
+
+两个原始合并块中的次级入口也按其真实物理地址显式标注为 `func_08031E10` 和
+`func_0803207C`。函数间原有的二字节填充均由 `.align 2, 0` 保持，未引入别名、固定
+分支或伪造偏移。
+
+WSL 四区域完整构建和 ROM 对照均已通过：JP
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`、US
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与对应基准 ROM 逐字节一致。
