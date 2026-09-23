@@ -84980,7 +84980,77 @@ func_08092A70:
 .Ljp_08092794: .4byte gText_GiftWrap_Yes
 .Ljp_08092798: .4byte gText_GiftWrap_No
 
-    jp_code_0803ee_func func_08092CD0, 0x9279C, 0x92CAC
+.global func_08092CD0
+.thumb_func
+func_08092CD0:
+	push {r4, r5, r6, lr}
+	sub sp, #4
+	adds r5, r0, #0
+	adds r6, r1, #0
+	cmp r6, #9
+	bne .Ljp_080927C8
+	movs r1, #0x80
+	lsls r1, r1, #1
+	adds r0, r5, r1
+	ldr r0, [r0]
+	bl func_0800F528
+	ldr r0, [r5, #0x7c]
+	ldr r1, .Ljp_080927C4 @ =gUnk_083ED9FC
+	movs r2, #0xb0
+	lsls r2, r2, #1
+	movs r3, #1
+	bl func_080CCE58
+	b .Ljp_08092804
+	.align 2, 0
+.Ljp_080927C4: .4byte gUnk_083ED9FC
+.Ljp_080927C8:
+	movs r1, #0x82
+	lsls r1, r1, #1
+	adds r0, r5, r1
+	ldr r4, [r0]
+	adds r0, r5, #0
+	adds r1, r6, #0
+	movs r2, #0
+	bl func_080CE184
+	adds r1, r0, #0
+	adds r0, r4, #0
+	bl GetItemAt__8RucksackUi
+	bl TryWrap__12RucksackItem
+	ldr r4, [r5, #0x7c]
+	adds r0, r5, #0
+	adds r1, r6, #0
+	movs r2, #0
+	bl func_080CE184
+	adds r1, r0, #0
+	ldr r2, .Ljp_08092824 @ =gUnk_083ED9FC
+	movs r3, #0xb0
+	lsls r3, r3, #1
+	movs r0, #1
+	str r0, [sp]
+	adds r0, r4, #0
+	bl func_080CC728
+.Ljp_08092804:
+	ldr r0, [r5, #8]
+	ldr r1, .Ljp_08092828 @ =0x00001AA8
+	adds r0, r0, r1
+	movs r1, #0x64
+	bl func_0809ACC0
+	ldr r0, [r5, #8]
+	ldr r1, .Ljp_0809282C @ =0x00001CD4
+	adds r0, r0, r1
+	movs r1, #1
+	bl func_080A0A54
+	add sp, #4
+	pop {r4, r5, r6}
+	pop {r0}
+	bx r0
+	.align 2, 0
+.Ljp_08092824: .4byte gUnk_083ED9FC
+.Ljp_08092828: .4byte 0x00001AA8
+.Ljp_0809282C: .4byte 0x00001CD4
+
+	.incbin "baserom_jp.gba", 0x92830, (0x92CAC - 0x92830)
+
     jp_code_0803ee_func func_08092CAC, 0x92CAC, 0x92CEC
     jp_code_0803ee_func func_08093220, 0x92CEC, 0x92DD4
     .global func_08093308
