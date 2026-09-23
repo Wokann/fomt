@@ -85906,7 +85906,82 @@ func_08094A00:
     bx r0
     .align 2, 0
 .Ljp_0809450C: .4byte gLinkCommunicationCharacterCodeTable
-    jp_code_0803ee_func func_08094A3C, 0x94510, 0x94A40
+    .global func_08094A3C
+    .thumb_func
+func_08094A3C:
+    push {r4, r5, r6, r7, lr}
+    mov r7, r9
+    mov r6, r8
+    push {r6, r7}
+    mov r8, r0
+    adds r7, r1, #0
+    ldr r0, .Ljp_0809458C
+    add r0, r8
+    mov r9, r0
+    movs r6, #0
+.Ljp_08094524:
+    lsls r1, r6, #7
+    adds r1, r1, r6
+    lsls r1, r1, #2
+    adds r1, #4
+    add r1, r8
+    adds r4, r1, #4
+    ldr r0, [r1]
+    lsls r0, r0, #2
+    adds r0, #4
+    adds r5, r1, r0
+    adds r0, r4, #0
+    adds r1, r5, #0
+    ldr r2, .Ljp_08094590
+    bl _call_via_r2
+    adds r6, #1
+    cmp r4, r5
+    beq .Ljp_08094576
+    movs r1, #0x7F
+    mov ip, r1
+.Ljp_0809454C:
+    ldr r0, [r4]
+    mov r1, ip
+    ands r0, r1
+    lsls r0, r0, #3
+    mov r1, r9
+    adds r3, r0, r1
+    ldrb r2, [r7]
+    cmp r2, #0x7F
+    bhi .Ljp_08094570
+    lsls r0, r2, #3
+    adds r0, #4
+    adds r0, r7, r0
+    ldr r1, [r3]
+    str r1, [r0]
+    ldrh r1, [r3, #4]
+    strh r1, [r0, #4]
+    adds r0, r2, #1
+    strb r0, [r7]
+.Ljp_08094570:
+    adds r4, #4
+    cmp r4, r5
+    bne .Ljp_0809454C
+.Ljp_08094576:
+    cmp r6, #3
+    bls .Ljp_08094524
+    movs r0, #0
+    mov r1, r8
+    strb r0, [r1]
+    pop {r3, r4}
+    mov r8, r3
+    mov r9, r4
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_0809458C: .4byte 0x00000814
+.Ljp_08094590: .4byte func_03000C08
+
+    .global func_08094AC0
+    .thumb_func
+func_08094AC0:
+    .incbin "baserom_jp.gba", 0x94594, (0x94A40 - 0x94594)
     jp_code_0803ee_func func_08094F6C, 0x94A40, 0x969A4
     jp_code_0803ee_func func_08096EE8, 0x969A4, 0x977F4
     jp_code_0803ee_func func_08097D38, 0x977F4, 0x984A4
