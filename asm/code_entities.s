@@ -13770,8 +13770,20 @@ func_080292EC: @ 0x080292EC
     bx r1
     .global func_08029764
     .thumb_func
-func_08029764:
-    .incbin "baserom_jp.gba", 0x29764, (0x29780 - 0x29764)
+func_08029764: @ 0x08029764
+    push {lr}
+    adds r1, r0, #0
+    adds r1, #0xa4
+    movs r2, #0
+    strb r2, [r1]
+    subs r1, #0x1c
+    strb r2, [r1]
+    movs r1, #0xc9
+    lsls r1, r1, #1
+    bl SetAnim__12AActorEntityUi
+    pop {r0}
+    bx r0
+    .align 2, 0
     .global func_08029780
     .thumb_func
 func_08029780:
