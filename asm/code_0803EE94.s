@@ -85049,10 +85049,30 @@ func_08092CD0:
 .Ljp_08092828: .4byte 0x00001AA8
 .Ljp_0809282C: .4byte 0x00001CD4
 
+	.global func_08092D64
+	.thumb_func
+func_08092D64:
 	.incbin "baserom_jp.gba", 0x92830, (0x92CAC - 0x92830)
 
     jp_code_0803ee_func func_08092CAC, 0x92CAC, 0x92CEC
-    jp_code_0803ee_func func_08093220, 0x92CEC, 0x92DD4
+.global func_08093220
+.thumb_func
+func_08093220:
+	push {r4, r5, lr}
+	adds r5, r0, #0
+	adds r4, r1, #0
+	ldr r0, [r4, #4]
+	bl func_08092D64
+	ldr r1, [r4, #8]
+	movs r0, #0
+	str r0, [r4, #8]
+	str r1, [r5]
+	adds r0, r5, #0
+	pop {r4, r5}
+	pop {r1}
+	bx r1
+
+	.incbin "baserom_jp.gba", 0x92D08, (0x92DD4 - 0x92D08)
     .global func_08093308
     .thumb_func
 func_08093308:
