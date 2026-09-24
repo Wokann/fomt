@@ -3753,3 +3753,20 @@ US/EU/DE 当前 SHA-1 仍分别为
 `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。
+
+## `asm/code_entities.s`：JP 实体 UI 状态完成检查
+
+JP `func_0802BD34` 已由直接 Thumb 表示，与海外 `func_0802BFA0` 保持同层级。
+该 0x44 字节入口先刷新 UI 状态，再根据完成条件读取/更新对象标志，并保留原始的
+状态查询和资源检查调用顺序。
+
+区域内本地分支使用真实 JP 标签；`func_0803260C` 与 `func_0805E8F0` 沿用已验证的
+可重定位逻辑符号。没有代码 `incbin`、`.byte`、别名或固定地址伪匹配。下一未提升
+JP 入口从 `func_0802BD78` 开始。
+
+本批仅修改 JP 源码。资源补丁链稳定后，JP SHA-1 为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并与 `baserom_jp.gba` 逐字节一致；
+US/EU/DE 的已验证 SHA-1 仍分别为
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。

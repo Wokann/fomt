@@ -18610,7 +18610,43 @@ func_0802BCC0:
     .global func_0802BD34
     .thumb_func
 func_0802BD34:
-    .incbin "baserom_jp.gba", 0x2BD34, (0x2BD78 - 0x2BD34)
+    push {r4, lr}
+    adds r4, r0, #0
+    bl func_0803260C
+    ldr r0, [r4]
+    adds r0, #0x38
+    movs r1, #0
+    ldrb r0, [r0]
+    cmp r0, #1
+    bne .Ljp_0802BD4A
+    movs r1, #1
+.Ljp_0802BD4A:
+    cmp r1, #0
+    beq .Ljp_0802BD72
+    adds r1, r4, #0
+    adds r1, #0xcb
+    ldrb r0, [r1]
+    cmp r0, #0
+    bne .Ljp_0802BD6E
+    adds r0, r4, #0
+    adds r0, #0xb4
+    bl func_0805E8F0
+    lsls r0, r0, #0x1e
+    cmp r0, #0
+    bge .Ljp_0802BD72
+    adds r1, r4, #0
+    adds r1, #0xc8
+    movs r0, #1
+    b .Ljp_0802BD70
+.Ljp_0802BD6E:
+    movs r0, #0
+.Ljp_0802BD70:
+    strb r0, [r1]
+.Ljp_0802BD72:
+    pop {r4}
+    pop {r0}
+    bx r0
+
     .global func_0802BD78
     .thumb_func
 func_0802BD78:
