@@ -1,5 +1,6 @@
 #include "sram_proxy.hh"
 #include "sram_proxy_1.hh"
+#include "sram_proxy_2.hh"
 #include "types.h"
 
 #include <string.h>
