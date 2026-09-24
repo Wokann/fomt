@@ -18931,15 +18931,123 @@ func_0802BD78:
     .global func_0802BFA4
     .thumb_func
 func_0802BFA4:
-    .incbin "baserom_jp.gba", 0x2BFA4, (0x2C068 - 0x2BFA4)
+    push {r4, lr}
+    adds r4, r0, #0
+    movs r0, #0x5c
+    bl __builtin_new
+    adds r1, r4, #0
+    bl func_0802B754
+    pop {r4}
+    pop {r1}
+    bx r1
+    .align 2, 0
+    .global func_0802BFBC
+    .thumb_func
+func_0802BFBC:
+    push {r4, r5, lr}
+    adds r5, r0, #0
+    adds r4, r1, #0
+    ldr r0, [r5]
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r1, [r1, #100]
+    bl _call_via_r1
+    adds r1, r0, #0
+    adds r0, r5, #0
+    adds r0, #180
+    adds r2, r4, #0
+    bl InitializeIndexedResourceHandle
+    adds r0, r5, #0
+    adds r0, #200
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r2, [r0]
+    adds r0, #1
+    strb r1, [r0]
+    adds r0, #1
+    strh r4, [r0]
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_0802BFF8
+    .thumb_func
+func_0802BFF8:
+    push {r4, r5, lr}
+    adds r5, r0, #0
+    adds r4, r1, #0
+    ldr r0, [r5]
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r1, [r1, #104]
+    bl _call_via_r1
+    adds r1, r0, #0
+    adds r0, r5, #0
+    adds r0, #180
+    adds r2, r4, #0
+    bl InitializeIndexedResourceHandle
+    adds r0, r5, #0
+    adds r0, #200
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r2, [r0]
+    adds r0, #1
+    strb r1, [r0]
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_0802C030
+    .thumb_func
+func_0802C030:
+    push {r4, r5, lr}
+    adds r5, r0, #0
+    adds r4, r1, #0
+    ldr r0, [r5]
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r1, [r1, #100]
+    bl _call_via_r1
+    adds r1, r0, #0
+    adds r0, r5, #0
+    adds r0, #180
+    adds r2, r4, #0
+    bl InitializeIndexedResourceHandle
+    adds r0, r5, #0
+    adds r0, #200
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r2, [r0]
+    adds r0, #1
+    strb r1, [r0]
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
     .global func_0802C068
     .thumb_func
 func_0802C068:
-    .incbin "baserom_jp.gba", 0x2C068, (0x2C070 - 0x2C068)
+    adds r0, #0x54
+    ldrb r0, [r0]
+    bx lr
+    .align 2, 0
     .global func_0802C070
     .thumb_func
 func_0802C070:
-    .incbin "baserom_jp.gba", 0x2C070, (0x2CB60 - 0x2C070)
+    bx lr
+    .align 2, 0
+    .global func_0802C074
+    .thumb_func
+func_0802C074:
+    .incbin "baserom_jp.gba", 0x2C074, (0x2CB60 - 0x2C074)
     .global func_0802CB60
     .thumb_func
 func_0802CB60:
@@ -41533,34 +41641,101 @@ func_0802C210: @ 0x0802C210
     pop {r1}
     bx r1
     .align 2, 0
-.L0802C228:
-    .byte 0x30, 0xB5, 0x05, 0x1C, 0x0C, 0x1C, 0x28, 0x68
-    .byte 0x00, 0x68, 0x01, 0x68, 0x49, 0x6E
+    thumb_func_start func_0802C228
+func_0802C228: @ 0x0802C228
+    push {r4, r5, lr}
+    adds r5, r0, #0
+    adds r4, r1, #0
+    ldr r0, [r5]
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r1, [r1, #100]
     bl _call_via_r1
-    .byte 0x01, 0x1C, 0x28, 0x1C, 0xB4, 0x30
-    .byte 0x22, 0x1C
+    adds r1, r0, #0
+    adds r0, r5, #0
+    adds r0, #180
+    adds r2, r4, #0
     bl InitializeIndexedResourceHandle
-    .byte 0x28, 0x1C, 0xC8, 0x30, 0x00, 0x22, 0x01, 0x21, 0x01, 0x70
-    .byte 0x02, 0x30, 0x02, 0x70, 0x01, 0x30, 0x01, 0x70, 0x01, 0x30, 0x04, 0x80, 0x30, 0xBC, 0x01, 0xBC
-    .byte 0x00, 0x47, 0x00, 0x00, 0x30, 0xB5, 0x05, 0x1C, 0x0C, 0x1C, 0x28, 0x68, 0x00, 0x68, 0x01, 0x68
-    .byte 0x89, 0x6E
+    adds r0, r5, #0
+    adds r0, #200
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r2, [r0]
+    adds r0, #1
+    strb r1, [r0]
+    adds r0, #1
+    strh r4, [r0]
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    thumb_func_start func_0802C264
+func_0802C264: @ 0x0802C264
+    push {r4, r5, lr}
+    adds r5, r0, #0
+    adds r4, r1, #0
+    ldr r0, [r5]
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r1, [r1, #104]
     bl _call_via_r1
-    .byte 0x01, 0x1C, 0x28, 0x1C, 0xB4, 0x30, 0x22, 0x1C
+    adds r1, r0, #0
+    adds r0, r5, #0
+    adds r0, #180
+    adds r2, r4, #0
     bl InitializeIndexedResourceHandle
-    .byte 0x28, 0x1C, 0xC8, 0x30, 0x00, 0x22, 0x01, 0x21, 0x01, 0x70, 0x02, 0x30, 0x02, 0x70
-    .byte 0x01, 0x30, 0x01, 0x70, 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x30, 0xB5, 0x05, 0x1C
-    .byte 0x0C, 0x1C, 0x28, 0x68, 0x00, 0x68, 0x01, 0x68, 0x49, 0x6E
+    adds r0, r5, #0
+    adds r0, #200
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r2, [r0]
+    adds r0, #1
+    strb r1, [r0]
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    thumb_func_start func_0802C29C
+func_0802C29C: @ 0x0802C29C
+    push {r4, r5, lr}
+    adds r5, r0, #0
+    adds r4, r1, #0
+    ldr r0, [r5]
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r1, [r1, #100]
     bl _call_via_r1
-    .byte 0x01, 0x1C
-    .byte 0x28, 0x1C, 0xB4, 0x30, 0x22, 0x1C
+    adds r1, r0, #0
+    adds r0, r5, #0
+    adds r0, #180
+    adds r2, r4, #0
     bl InitializeIndexedResourceHandle
-    .byte 0x28, 0x1C, 0xC8, 0x30, 0x00, 0x22
-    .byte 0x01, 0x21, 0x01, 0x70, 0x02, 0x30, 0x02, 0x70, 0x01, 0x30, 0x01, 0x70, 0x30, 0xBC, 0x01, 0xBC
-    .byte 0x00, 0x47, 0x00, 0x00
+    adds r0, r5, #0
+    adds r0, #200
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r2, [r0]
+    adds r0, #1
+    strb r1, [r0]
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
     .global func_0802C2D4
     .thumb_func
 func_0802C2D4:
-    .byte 0x54, 0x30, 0x00, 0x78, 0x70, 0x47, 0x00, 0x00
+    adds r0, #0x54
+    ldrb r0, [r0]
+    bx lr
+    .align 2, 0
 
     thumb_func_start func_0802C2DC
 func_0802C2DC: @ 0x0802C2DC

@@ -3787,3 +3787,22 @@ JP 入口从 `func_0802BFA4` 继续。
 `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。
+
+## `asm/code_entities.s`：四区实体 UI 初始化入口组
+
+海外连续范围 `0x0802C210–0x0802C2E0` 与 JP 对应范围
+`0x0802BFA4–0x0802C074` 现均由真实 Thumb 指令表示。该组包括对象分配入口、
+三个资源句柄初始化入口、状态字节读取入口及空实现入口；源码和 JP 均以实际函数
+边界显式拆分，分别保留原始的栈约定、vtable 回调偏移和资源状态字段写入顺序。
+
+JP 的对象初始化直接调用真实 `func_0802B754`，海外保持对应
+`func_0802B9C0`；其余调用均为 `_call_via_r1`、
+`InitializeIndexedResourceHandle` 和 `__builtin_new` 等可重定位符号。该连续组已无
+函数级 `.byte`、代码 `incbin`、`.set`/`.thumb_set` 别名、固定地址跳转或伪造偏移。
+下一未提升的对应入口为海外 `func_0802C2E0` 与 JP `func_0802C074`。
+
+以 WSL `-j4` 重建四版并等待资源补丁链稳定后，SHA-1 与逐字节比较均确认原样：
+JP `A655B2789AED14A6AC78C6075FBC533D3062DBE3`、
+US `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、
+EU `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、
+DE `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。
