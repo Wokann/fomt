@@ -69,7 +69,7 @@ image, nor that all game graphics have been extracted.
 | Direct `func_080B7164` UI-scene BG streams | `graphics/ui/scene_080b7164/shared/tiles.4bpp`, `layer_*.tilemap`, and `palettes.png`; rendered `reference/layer_*.png` | three C-compressed, source-adjacent streams directly linked under `gUiTwoLayerBackgroundMap0`–`gUiTwoLayerBackgroundTiles`; the 0x200 palette read begins at a 0x60 symbol and remains cross-resource ROM data | Yes for streams; palette reference only |
 | Direct `func_080C160C` UI-scene BG streams | `graphics/ui/scene_080c160c/shared/tiles.4bpp`, `layer_*.tilemap`, and `palettes.png`; rendered `reference/layer_*.png` and `scene.png` | three C-compressed source-adjacent streams directly linked as `gUiScene080C160C*`; the 256-word palette copy begins at a 0xC0 symbol and remains cross-resource ROM data | Yes for streams; palette reference only |
 | Direct `func_080BCFAC` UI-scene BG streams | `graphics/ui/scene_080bcfac/shared/tiles.4bpp`, `layer_*.tilemap`, and `palettes.png`; rendered `reference/layer_*.png` and `scene.png` | three C-compressed source-adjacent streams directly linked as `gUiScene080BCFAC*`; the 0x200 palette copy begins at a 0xC0 symbol and remains cross-resource ROM data | Yes for streams; palette reference only |
-| Direct `func_080B55D0` auxiliary BG streams | editable `graphics/ui/scene_080b55d0_aux/shared/tiles.4bpp` and `layer_*.tilemap`; read-only `reference/*.png` | three native packed streams included directly by `gUnk_0872C5D0`–`gUnk_0872C84C`; the 0x200 palette copy starts at a 0x20 symbol and remains cross-resource ROM data | Yes for streams; palette reference only |
+| Direct `func_080B55D0` auxiliary BG streams | editable `graphics/ui/scene_080b55d0_aux/shared/tiles.4bpp` and `layer_*.tilemap`; read-only `reference/*.png` | three C-compressed, source-adjacent `.lz` streams linked directly as `gUiLayeredSceneAuxMap0`–`gUiLayeredSceneAuxTiles`; the 0x200 palette copy starts at a 0x20 symbol and remains cross-resource ROM data | Yes for streams; palette reference only |
 | Direct `func_080B55D0` main tile stream | `graphics/ui/scene_080b55d0_main/shared/main_tiles.4bpp` | one shared native Huffman-8/LZ3 1024-tile stream, rebuilt in its original four-region 0x2198-byte slot; scene composition remains unproven | Yes for the tile stream; no guessed scene layout |
 | Direct `func_08054F40` BG tile stream | `graphics/ui/scene_08054f40_tiles/shared/tiles.4bpp`; read-only `reference/base_layer_3.png` and `screen.png` | one C-compressed, source-adjacent 4bpp tile stream included directly by `gBeachBackgroundTiles`; static BG3 map and crossing palette copy remain verified reference inputs | Yes for tile stream; reference inputs only |
 | Direct `func_0805AB08` BG tile stream | `graphics/ui/scene_0805ab08_tiles/shared/tiles.4bpp`; read-only `reference/layer_*.png`, `scene.png`, and `screen.png` | one C-compressed, source-adjacent 4bpp tile stream included directly by `gUiThreeLayerBackgroundTiles`; code-built three-BG maps and crossing palette copy remain verified reference inputs | Yes for tile stream; reference inputs only |
@@ -112,9 +112,8 @@ replacement rule because their region-specific physical labels are embedded in
 otherwise raw data containers. `func_080A2BA4`, `func_080AE7D0`,
 `func_080B7164`, `func_080C160C`, `func_080BCFAC`, `func_080B55D0`,
 `func_08054F40`, `func_0805AB08`, and the overseas-only `func_08077810` are
-the current exceptions: their
-independently bounded streams are included directly at the original `gUnk_*`
-symbols. The
+the current exceptions: their independently bounded streams are included
+directly at verified resource symbols. The
 surrounding archive headers, OAM records, palettes, tables, and unhandled bytes
 remain direct ROM data until they have a
 corresponding verified source/rebuild path.

@@ -47061,13 +47061,13 @@ func_080B55D0: @ 0x080B5004
 	movs r1, #0xa0
 	lsls r1, r1, #0x13
 	bl Unpack
-	ldr r0, .Ljp_080B5188 @ =gUnk_084B2738
+	ldr r0, .Ljp_080B5188 @ =gUiLayeredSceneAuxMap0
 	ldr r1, .Ljp_080B518C @ =0x0600E800
 	bl Unpack
-	ldr r0, .Ljp_080B5190 @ =gUnk_084B28A4
+	ldr r0, .Ljp_080B5190 @ =gUiLayeredSceneAuxMap1
 	ldr r1, .Ljp_080B5194 @ =0x0600F800
 	bl Unpack
-	ldr r0, .Ljp_080B5198 @ =gUnk_084B29B4
+	ldr r0, .Ljp_080B5198 @ =gUiLayeredSceneAuxTiles
 	ldr r1, .Ljp_080B519C @ =0x06004000
 	bl Unpack
 	ldr r0, .Ljp_080B51A0 @ =gUnk_084B3714
@@ -47188,11 +47188,11 @@ func_080B55D0: @ 0x080B5004
 .Ljp_080B517C: .4byte 0x00000896
 .Ljp_080B5180: .4byte gUnk_08481160
 .Ljp_080B5184: .4byte gUnk_084832F8
-.Ljp_080B5188: .4byte gUnk_084B2738
+.Ljp_080B5188: .4byte gUiLayeredSceneAuxMap0
 .Ljp_080B518C: .4byte 0x0600E800
-.Ljp_080B5190: .4byte gUnk_084B28A4
+.Ljp_080B5190: .4byte gUiLayeredSceneAuxMap1
 .Ljp_080B5194: .4byte 0x0600F800
-.Ljp_080B5198: .4byte gUnk_084B29B4
+.Ljp_080B5198: .4byte gUiLayeredSceneAuxTiles
 .Ljp_080B519C: .4byte 0x06004000
 .Ljp_080B51A0: .4byte gUnk_084B3714
 .Ljp_080B51A4: .4byte 0x050000E0
@@ -138603,13 +138603,13 @@ func_080B55D0: @ 0x080B55D0
 	movs r1, #0xa0
 	lsls r1, r1, #0x13
 	bl Unpack
-	ldr r0, .L080B5754 @ =gUnk_0872C5D0
+	ldr r0, .L080B5754 @ =gUiLayeredSceneAuxMap0
 	ldr r1, .L080B5758 @ =0x0600E800
 	bl Unpack
-	ldr r0, .L080B575C @ =gUnk_0872C73C
+	ldr r0, .L080B575C @ =gUiLayeredSceneAuxMap1
 	ldr r1, .L080B5760 @ =0x0600F800
 	bl Unpack
-	ldr r0, .L080B5764 @ =gUnk_0872C84C
+	ldr r0, .L080B5764 @ =gUiLayeredSceneAuxTiles
 	ldr r1, .L080B5768 @ =0x06004000
 	bl Unpack
 	ldr r0, .L080B576C @ =gUnk_0872D5AC
@@ -138730,11 +138730,11 @@ func_080B55D0: @ 0x080B55D0
 .L080B5748: .4byte 0x00000896
 .L080B574C: .4byte gUnk_086FB004
 .L080B5750: .4byte gUnk_086FD19C
-.L080B5754: .4byte gUnk_0872C5D0
+.L080B5754: .4byte gUiLayeredSceneAuxMap0
 .L080B5758: .4byte 0x0600E800
-.L080B575C: .4byte gUnk_0872C73C
+.L080B575C: .4byte gUiLayeredSceneAuxMap1
 .L080B5760: .4byte 0x0600F800
-.L080B5764: .4byte gUnk_0872C84C
+.L080B5764: .4byte gUiLayeredSceneAuxTiles
 .L080B5768: .4byte 0x06004000
 .L080B576C: .4byte gUnk_0872D5AC
 .L080B5770: .4byte 0x050000E0

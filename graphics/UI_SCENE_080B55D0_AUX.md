@@ -40,9 +40,10 @@ all four retail regions. No JSON layout sidecar is used.
 ```console
 make gfx-ui-scene-080b55d0-aux-all
 make gfx-ui-scene-080b55d0-aux-reference
-make gfx-ui-scene-080b55d0-aux-patch-test
+make gfx-ui-scene-080b55d0-aux-test
 ```
 
-The normal ROM recipe rebuilds only these three selected streams after
-`objcopy`. Unchanged sources reproduce their retail physical ranges exactly;
-an edit is rejected if its Raw-LZ result exceeds the original slot.
+The normal ROM recipe builds these three streams beside their native sources
+with the C Raw-LZ tool and includes them directly in the linked data object.
+Unchanged sources reproduce their retail physical ranges exactly; an edit is
+rejected if its Raw-LZ result exceeds the original slot.
