@@ -24904,7 +24904,163 @@ func_0802E994:
     .global func_0802EE80
     .thumb_func
 func_0802EE80:
-    .incbin "baserom_jp.gba", 0x2EE80, (0x31DAC - 0x2EE80)
+    .incbin "baserom_jp.gba", 0x2EE80, (0x31CB4 - 0x2EE80)
+
+    .global sub_08031CB4
+    .thumb_func
+sub_08031CB4:
+    ldr r1, .Ljp_08031CC0
+    adds r0, r0, r1
+    movs r1, #1
+    strb r1, [r0]
+    bx lr
+    .align 2, 0
+.Ljp_08031CC0: .4byte 0x00000281
+
+    .global sub_08031CC4
+    .thumb_func
+sub_08031CC4:
+    push {r4, r5, lr}
+    adds r5, r0, #0
+    adds r4, r1, #0
+    ldr r0, [r5]
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r1, [r1, #104]
+    bl _call_via_r1
+    adds r1, r0, #0
+    adds r0, r5, #0
+    adds r0, #180
+    adds r2, r4, #0
+    bl InitializeIndexedResourceHandle
+    adds r0, r5, #0
+    adds r0, #200
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r2, [r0]
+    adds r0, #1
+    strb r1, [r0]
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global sub_08031CFC
+    .thumb_func
+sub_08031CFC:
+    push {r4, r5, lr}
+    adds r5, r0, #0
+    adds r4, r1, #0
+    ldr r0, [r5]
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r1, [r1, #100]
+    bl _call_via_r1
+    adds r1, r0, #0
+    adds r0, r5, #0
+    adds r0, #180
+    adds r2, r4, #0
+    bl InitializeIndexedResourceHandle
+    adds r0, r5, #0
+    adds r0, #200
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r2, [r0]
+    adds r0, #1
+    strb r1, [r0]
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global sub_08031D34
+    .thumb_func
+sub_08031D34:
+    push {lr}
+    adds r2, r0, #0
+    adds r0, #0xb2
+    ldrb r3, [r0]
+    movs r1, #0
+    adds r0, r3, #0
+    subs r0, #0x2b
+    cmp r0, #0x1a
+    bhi .Ljp_08031D48
+    movs r1, #1
+.Ljp_08031D48:
+    cmp r1, #0
+    bne .Ljp_08031D50
+    movs r0, #0
+    b .Ljp_08031D5C
+.Ljp_08031D50:
+    ldr r0, [r2]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    adds r1, r3, #0
+    bl _call_via_r2
+.Ljp_08031D5C:
+    pop {r1}
+    bx r1
+
+    .global sub_08031D60
+    .thumb_func
+sub_08031D60:
+    push {lr}
+    movs r0, #0
+    subs r1, #0x2b
+    cmp r1, #0x1a
+    bhi .Ljp_08031D6C
+    movs r0, #1
+.Ljp_08031D6C:
+    pop {r1}
+    bx r1
+
+    .global sub_08031D70
+    .thumb_func
+sub_08031D70:
+    push {lr}
+    cmp r2, #1
+    beq .Ljp_08031D90
+    cmp r2, #1
+    bgt .Ljp_08031D80
+    cmp r2, #0
+    beq .Ljp_08031D86
+    b .Ljp_08031DA4
+.Ljp_08031D80:
+    cmp r2, #2
+    beq .Ljp_08031D9E
+    b .Ljp_08031DA4
+.Ljp_08031D86:
+    ldr r2, [r1]
+    ldr r0, [r1, #4]
+    str r0, [r1]
+    str r2, [r1, #4]
+    b .Ljp_08031DA4
+.Ljp_08031D90:
+    ldr r2, [r1]
+    ldr r0, [r1, #4]
+    negs r0, r0
+    str r0, [r1]
+    negs r0, r2
+    str r0, [r1, #4]
+    b .Ljp_08031DA4
+.Ljp_08031D9E:
+    ldr r0, [r1]
+    negs r0, r0
+    str r0, [r1]
+.Ljp_08031DA4:
+    pop {r0}
+    bx r0
+
+    .global sub_08031DA8
+    .thumb_func
+sub_08031DA8:
+    adds r0, #0x88
+    bx lr
+
     .global func_08031DAC
     .thumb_func
 func_08031DAC:
@@ -59365,32 +59521,160 @@ sub_08031E0A: @ 0x08031E0A
     pop {r0}
     bx r0
     .align 2, 0
-.L08031F20:
-    .byte 0x02, 0x49, 0x40, 0x18, 0x01, 0x21, 0x01, 0x70, 0x70, 0x47, 0x00, 0x00, 0x81, 0x02, 0x00, 0x00
-    .byte 0x30, 0xB5, 0x05, 0x1C, 0x0C, 0x1C, 0x28, 0x68, 0x00, 0x68, 0x01, 0x68, 0x89, 0x6E
+    .global sub_08031F20
+    .thumb_func
+sub_08031F20:
+    ldr r1, .L08031F2C
+    adds r0, r0, r1
+    movs r1, #1
+    strb r1, [r0]
+    bx lr
+    .align 2, 0
+.L08031F2C: .4byte 0x00000281
+
+    .global sub_08031F30
+    .thumb_func
+sub_08031F30:
+    push {r4, r5, lr}
+    adds r5, r0, #0
+    adds r4, r1, #0
+    ldr r0, [r5]
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r1, [r1, #104]
     bl _call_via_r1
-    .byte 0x01, 0x1C, 0x28, 0x1C, 0xB4, 0x30, 0x22, 0x1C
+    adds r1, r0, #0
+    adds r0, r5, #0
+    adds r0, #180
+    adds r2, r4, #0
     bl InitializeIndexedResourceHandle
-    .byte 0x28, 0x1C
-    .byte 0xC8, 0x30, 0x00, 0x22, 0x01, 0x21, 0x01, 0x70, 0x02, 0x30, 0x02, 0x70, 0x01, 0x30, 0x01, 0x70
-    .byte 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x30, 0xB5, 0x05, 0x1C, 0x0C, 0x1C, 0x28, 0x68
-    .byte 0x00, 0x68, 0x01, 0x68, 0x49, 0x6E
+    adds r0, r5, #0
+    adds r0, #200
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r2, [r0]
+    adds r0, #1
+    strb r1, [r0]
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global sub_08031F68
+    .thumb_func
+sub_08031F68:
+    push {r4, r5, lr}
+    adds r5, r0, #0
+    adds r4, r1, #0
+    ldr r0, [r5]
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r1, [r1, #100]
     bl _call_via_r1
-    .byte 0x01, 0x1C, 0x28, 0x1C, 0xB4, 0x30
-    .byte 0x22, 0x1C
+    adds r1, r0, #0
+    adds r0, r5, #0
+    adds r0, #180
+    adds r2, r4, #0
     bl InitializeIndexedResourceHandle
-    .byte 0x28, 0x1C, 0xC8, 0x30, 0x00, 0x22, 0x01, 0x21, 0x01, 0x70
-    .byte 0x02, 0x30, 0x02, 0x70, 0x01, 0x30, 0x01, 0x70, 0x30, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
-    .byte 0x00, 0xB5, 0x02, 0x1C, 0xB2, 0x30, 0x03, 0x78, 0x00, 0x21, 0x18, 0x1C, 0x2B, 0x38, 0x1A, 0x28
-    .byte 0x00, 0xD8, 0x01, 0x21, 0x00, 0x29, 0x01, 0xD1, 0x00, 0x20, 0x05, 0xE0, 0x10, 0x68, 0x01, 0x68
-    .byte 0x0A, 0x6C, 0x19, 0x1C
+    adds r0, r5, #0
+    adds r0, #200
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r2, [r0]
+    adds r0, #1
+    strb r1, [r0]
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global sub_08031FA0
+    .thumb_func
+sub_08031FA0:
+    push {lr}
+    adds r2, r0, #0
+    adds r0, #0xb2
+    ldrb r3, [r0]
+    movs r1, #0
+    adds r0, r3, #0
+    subs r0, #0x2b
+    cmp r0, #0x1a
+    bhi .L08031FB4
+    movs r1, #1
+.L08031FB4:
+    cmp r1, #0
+    bne .L08031FBC
+    movs r0, #0
+    b .L08031FC8
+.L08031FBC:
+    ldr r0, [r2]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    adds r1, r3, #0
     bl _call_via_r2
-    .byte 0x02, 0xBC, 0x08, 0x47, 0x00, 0xB5, 0x00, 0x20
-    .byte 0x2B, 0x39, 0x1A, 0x29, 0x00, 0xD8, 0x01, 0x20, 0x02, 0xBC, 0x08, 0x47, 0x00, 0xB5, 0x01, 0x2A
-    .byte 0x0C, 0xD0, 0x01, 0x2A, 0x02, 0xDC, 0x00, 0x2A, 0x03, 0xD0, 0x11, 0xE0, 0x02, 0x2A, 0x0C, 0xD0
-    .byte 0x0E, 0xE0, 0x0A, 0x68, 0x48, 0x68, 0x08, 0x60, 0x4A, 0x60, 0x09, 0xE0, 0x0A, 0x68, 0x48, 0x68
-    .byte 0x40, 0x42, 0x08, 0x60, 0x50, 0x42, 0x48, 0x60, 0x02, 0xE0, 0x08, 0x68, 0x40, 0x42, 0x08, 0x60
-    .byte 0x01, 0xBC, 0x00, 0x47, 0x88, 0x30, 0x70, 0x47
+.L08031FC8:
+    pop {r1}
+    bx r1
+
+    .global sub_08031FCC
+    .thumb_func
+sub_08031FCC:
+    push {lr}
+    movs r0, #0
+    subs r1, #0x2b
+    cmp r1, #0x1a
+    bhi .L08031FD8
+    movs r0, #1
+.L08031FD8:
+    pop {r1}
+    bx r1
+
+    .global sub_08031FDC
+    .thumb_func
+sub_08031FDC:
+    push {lr}
+    cmp r2, #1
+    beq .L08031FFC
+    cmp r2, #1
+    bgt .L08031FEC
+    cmp r2, #0
+    beq .L08031FF2
+    b .L08032010
+.L08031FEC:
+    cmp r2, #2
+    beq .L0803200A
+    b .L08032010
+.L08031FF2:
+    ldr r2, [r1]
+    ldr r0, [r1, #4]
+    str r0, [r1]
+    str r2, [r1, #4]
+    b .L08032010
+.L08031FFC:
+    ldr r2, [r1]
+    ldr r0, [r1, #4]
+    negs r0, r0
+    str r0, [r1]
+    negs r0, r2
+    str r0, [r1, #4]
+    b .L08032010
+.L0803200A:
+    ldr r0, [r1]
+    negs r0, r0
+    str r0, [r1]
+.L08032010:
+    pop {r0}
+    bx r0
+
+    .global sub_08032014
+    .thumb_func
+sub_08032014:
+    adds r0, #0x88
+    bx lr
     .global func_08032018
     .thumb_func
 func_08032018:
