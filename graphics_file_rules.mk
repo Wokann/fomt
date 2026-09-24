@@ -1291,9 +1291,7 @@ MAP_RESOURCES_ROM_ARGS := --rom jp baserom_jp.gba --rom us baserom_us.gba --rom 
 MAP_STATE_PALETTE_TOOL := tools/map_state_palette_fallbacks.py
 MAP_STATE_PALETTE_SOURCE_DIR := graphics/map_state_palettes/shared
 MAP_STATE_PALETTE_SOURCES := $(wildcard $(MAP_STATE_PALETTE_SOURCE_DIR)/*.gbapal)
-MAP_STATE_PALETTE_OUTPUT_DIR := $(BUILD_DIR)/graphics/map_state_palettes
-MAP_STATE_PALETTE_STAMP := $(MAP_STATE_PALETTE_OUTPUT_DIR)/.map-state-palettes.stamp
-MAP_STATE_PALETTE_REGION := $(MAP_RESOURCES_REGION)
+MAP_STATE_PALETTE_OUTPUTS := $(MAP_STATE_PALETTE_SOURCES:.gbapal=.0x70)
 
 # Two large MapData renderer tables are byte-identical in JP/US/EU/DE.  They
 # are native palette-template and 16-bit tilemap-template records, not
@@ -1826,10 +1824,8 @@ $(MAP_RESOURCES_STAMP): $(MAP_RESOURCES_SOURCES) $(MAP_RESOURCES_TOOL) baserom_j
 	  --source-dir $(MAP_RESOURCES_SOURCE_DIR) --output-dir $(MAP_RESOURCES_OUTPUT_DIR) $(MAP_RESOURCES_ALL_ROM_ARGS)
 	@touch $@
 
-$(MAP_STATE_PALETTE_STAMP): $(MAP_STATE_PALETTE_SOURCES) $(MAP_STATE_PALETTE_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(MAP_STATE_PALETTE_TOOL) build --region $(MAP_STATE_PALETTE_REGION) --rom $(BASE_ROM) \
-	  --source-dir $(MAP_STATE_PALETTE_SOURCE_DIR) --output-dir $(MAP_STATE_PALETTE_OUTPUT_DIR)
-	@touch $@
+$(MAP_STATE_PALETTE_SOURCE_DIR)/%.0x70: $(MAP_STATE_PALETTE_SOURCE_DIR)/%.gbapal $(MAP_STATE_PALETTE_TOOL) tools/marvelous_codec.py tools/scripts/decompress.py
+	@$(PYTHON) $(MAP_STATE_PALETTE_TOOL) build --source $< --output $@
 
 $(MAP_STATE_TEMPLATE_STAMP): $(MAP_STATE_TEMPLATE_SOURCES) $(MAP_STATE_TEMPLATE_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(MAP_STATE_TEMPLATE_TOOL) build --region $(MAP_STATE_TEMPLATE_REGION) --rom $(BASE_ROM) \
@@ -1853,7 +1849,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
 .PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-resource-archive gfx-farm-status-resource-archive-test gfx-farm-status-resource-archive-all gfx-farm-status-resource-archive-patch-test gfx-farm-status-resource-archive-edit-test gfx-farm-status-winter gfx-farm-status-winter-test gfx-farm-status-winter-all gfx-farm-status-winter-edit-test gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-secondary-tilemaps-edit-test gfx-farm-status-exterior-styles gfx-farm-status-exterior-styles-test gfx-farm-status-selector-icon gfx-farm-status-selector-icon-test gfx-farm-status-selector-icon-all gfx-farm-status-selector-icon-edit-test gfx-clock-font gfx-clock-font-test gfx-clock-font-all gfx-clock-font-edit-test gfx-farm-status-creature-icons gfx-farm-status-creature-icons-test gfx-farm-status-creature-icons-all gfx-farm-status-task-marker gfx-farm-status-task-marker-test gfx-farm-status-task-marker-all gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal-nonwinter-all gfx-seasonal-nonwinter-reference gfx-seasonal-nonwinter-edit-test gfx-seasonal-winter gfx-seasonal-winter-test gfx-seasonal-winter-all gfx-seasonal-winter-reference gfx-seasonal-winter-edit-test gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-background-edit-test gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-tilemaps-edit-test gfx-intro-startup-visual gfx-intro-startup-visual-export gfx-intro-startup-visual-reference gfx-intro-startup-visual-test gfx-intro-startup-visual-all gfx-intro-startup-visual-edit-test gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-animal-festival-icons gfx-animal-festival-icons-test gfx-animal-festival-icons-all resource-archive-audit unpack-vram-inventory dma-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
-.PHONY: gfx-map-resources-reference gfx-map-resources-edit-test gfx-map-state-palettes gfx-map-state-palettes-test gfx-map-state-palettes-all gfx-map-state-palettes-patch-test gfx-map-state-palettes-edit-test gfx-map-state-templates gfx-map-state-templates-test gfx-map-state-templates-all gfx-map-state-templates-patch-test gfx-map-state-templates-edit-test unpack-inventory unpack-coverage-inventory copy-ram-inventory gfx-raw-vram-tiles-ui-build
+.PHONY: gfx-map-resources-reference gfx-map-resources-edit-test gfx-map-state-palettes gfx-map-state-palettes-test gfx-map-state-templates gfx-map-state-templates-test gfx-map-state-templates-all gfx-map-state-templates-patch-test gfx-map-state-templates-edit-test unpack-inventory unpack-coverage-inventory copy-ram-inventory gfx-raw-vram-tiles-ui-build
 .PHONY: indexed-resource-archive-inventory
 .PHONY: gfx-farm-status-task-ui-tile gfx-farm-status-task-ui-tile-test gfx-farm-status-task-ui-tile-all
 .PHONY: gfx-small-ui-resource-archive gfx-small-ui-resource-archive-test gfx-small-ui-resource-archive-all gfx-small-ui-resource-archive-patch-test gfx-small-ui-resource-archive-edit-test
@@ -3390,19 +3386,11 @@ gfx-map-resources-edit-test: $(MAP_RESOURCES_TOOL) baserom_jp.gba baserom_us.gba
 gfx-map-resources-reference: $(MAP_VISUAL_REFERENCE_TOOL) $(MAP_RESOURCES_SOURCES) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(MAP_VISUAL_REFERENCE_TOOL) render --source-dir $(MAP_RESOURCES_SOURCE_DIR) --output-dir $(BUILD_DIR)/graphics/maps/reference $(MAP_RESOURCES_ROM_ARGS)
 
-gfx-map-state-palettes: $(MAP_STATE_PALETTE_STAMP)
-gfx-map-state-palettes-test: gfx-map-state-palettes $(MAP_STATE_PALETTE_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(MAP_STATE_PALETTE_TOOL) verify --region $(MAP_STATE_PALETTE_REGION) --rom $(BASE_ROM) \
-	  --source-dir $(MAP_STATE_PALETTE_SOURCE_DIR) --output-dir $(MAP_STATE_PALETTE_OUTPUT_DIR)
-gfx-map-state-palettes-all:
-	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-map-state-palettes-test
-	@$(MAKE) --no-print-directory GAME_REGION=US gfx-map-state-palettes-test
-	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-map-state-palettes-test
-	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-map-state-palettes-test
-gfx-map-state-palettes-patch-test: gfx-map-state-palettes-all $(MAP_STATE_PALETTE_TOOL)
-	@$(PYTHON) $(MAP_STATE_PALETTE_TOOL) patch-test --output-root build $(MAP_RESOURCES_ROM_ARGS)
-gfx-map-state-palettes-edit-test: $(MAP_STATE_PALETTE_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(MAP_STATE_PALETTE_TOOL) edit-test $(MAP_RESOURCES_ROM_ARGS)
+gfx-map-state-palettes: $(MAP_STATE_PALETTE_OUTPUTS)
+gfx-map-state-palettes-test: gfx-map-state-palettes
+	@for source in $(MAP_STATE_PALETTE_SOURCES); do \
+	  $(PYTHON) $(MAP_STATE_PALETTE_TOOL) verify --source $$source --output $${source%.gbapal}.0x70; \
+	done
 
 gfx-map-state-templates: $(MAP_STATE_TEMPLATE_STAMP)
 gfx-map-state-templates-test: gfx-map-state-templates $(MAP_STATE_TEMPLATE_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
@@ -3835,9 +3823,7 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-map-resources-all
 	@$(MAKE) --no-print-directory gfx-map-resources-patch-test
 	@$(MAKE) --no-print-directory gfx-map-resources-edit-test
-	@$(MAKE) --no-print-directory gfx-map-state-palettes-all
-	@$(MAKE) --no-print-directory gfx-map-state-palettes-patch-test
-	@$(MAKE) --no-print-directory gfx-map-state-palettes-edit-test
+	@$(MAKE) --no-print-directory gfx-map-state-palettes-test
 	@$(MAKE) --no-print-directory gfx-map-state-templates-all
 	@$(MAKE) --no-print-directory gfx-map-state-templates-patch-test
 	@$(MAKE) --no-print-directory gfx-map-state-templates-edit-test

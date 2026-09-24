@@ -1228,6 +1228,97 @@ def raw_lz3_match_options(data: bytes, position: int, entries: list[tuple[int, i
     return [(index, pairs, distance) for index, (pairs, distance) in enumerate(best) if pairs]
 
 
+def encode_raw_lz3_greedy(
+    data: bytes, ladder_spec: str, *, differential_filter: int = 0,
+) -> bytes:
+    """Encode a Raw LZ3 stream with the native greedy token policy.
+
+    This is a general Raw-LZ3 encoder, distinct from
+    :func:`encode_raw_lz3`'s size-oriented dynamic-programming planner.  It
+    emits the longest available backward match at each pair boundary and
+    coalesces an unmatched run only when it exceeds eight pairs.  That is the
+    policy used by the retail palette streams, while remaining a normal
+    source-to-stream codec for any compatible payload.
+    """
+    data = bytes(data)
+    if not data or len(data) & 1:
+        raise ValueError("Raw LZ3 payloads must be non-empty and even-sized")
+    if not 0 <= differential_filter <= 4:
+        raise ValueError("Raw-LZ3 differential filter must be in 0..4")
+
+    entries = ladder_entries(ladder_spec, 3)
+    maximum_distance = entries[-1][0] + (1 << entries[-1][1]) - 1
+    writer = BitWriter()
+    writer.write((len(data) << 8) | 0x70, 32)
+    writer.write(3 | (differential_filter << 5), 8)
+    emit_ladder(writer, entries)
+
+    position = 0
+    while position < len(data):
+        distance, length = longest_match(
+            data,
+            position,
+            max_distance=maximum_distance,
+            max_length=len(data) - position,
+            unit=2,
+        )
+        pairs = length // 2
+
+        if pairs < 2:
+            literal_pairs = 1
+            probe = position + 2
+            while probe < len(data):
+                _distance, probe_length = longest_match(
+                    data,
+                    probe,
+                    max_distance=maximum_distance,
+                    max_length=len(data) - probe,
+                    unit=2,
+                )
+                if probe_length // 2 >= 2:
+                    break
+                literal_pairs += 1
+                probe += 2
+
+            # The native greedy writer keeps an eight-pair run as individual
+            # literals; the extended form begins at nine pairs.
+            if literal_pairs > 8:
+                writer.write(1, 1)
+                writer.write(3, 2)
+                emit_vli(writer, literal_pairs - 1, 3)
+                writer.write(0, 1)
+                for cursor in range(position, position + literal_pairs * 2, 2):
+                    writer.write((data[cursor] << 8) | data[cursor + 1], 16)
+                position += literal_pairs * 2
+            else:
+                writer.write(0, 1)
+                writer.write((data[position] << 8) | data[position + 1], 16)
+                position += 2
+            continue
+
+        entry_index = next(
+            index
+            for index, (start, width) in enumerate(entries)
+            if start <= distance < start + (1 << width)
+        )
+        start, width = entries[entry_index]
+        writer.write(1, 1)
+        if pairs >= 10:
+            writer.write(3, 2)
+            emit_vli(writer, (pairs - 2) >> 3, 3)
+            writer.write(1, 1)
+            writer.write(entry_index, 2)
+            writer.write(distance - start, width)
+            writer.write((pairs - 2) & 7, 3)
+        else:
+            writer.write(entry_index, 2)
+            writer.write(distance - start, width)
+            writer.write(pairs - 2, 3)
+        position += pairs * 2
+
+    return writer.finish()
+
+
 def encode_raw_lz3(
     data: bytes, entries: list[tuple[int, int]], *, differential_filter: int = 0,
 ) -> bytes:
