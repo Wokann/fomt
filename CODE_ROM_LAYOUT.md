@@ -3770,3 +3770,20 @@ US/EU/DE 的已验证 SHA-1 仍分别为
 `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。
+
+## `asm/code_entities.s`：JP 实体 UI 大型位置与对象处理函数
+
+JP `func_0802BD78`（`0x0802BD78–0x0802BFA4`）已整体提升为直接 Thumb，对应海外
+`func_0802BFE4`。该 0x22C 字节连续函数包含对象位置计算、边界/动画状态、多个
+资源回调和所有本地控制分支；其堆栈对象、局部跳转和调用顺序均按 JP 原 ROM 保存。
+
+所有块内地址使用真实 JP 本地标签，跨模块调用维持现有逻辑符号；没有使用 `.set`、
+`.thumb_set`、函数 `.byte`、代码 `incbin`、固定地址跳转或伪造 `+offset`。下一未提升
+JP 入口从 `func_0802BFA4` 继续。
+
+本批仅修改 JP 源码。资源补丁链稳定后，JP SHA-1 为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并通过与 `baserom_jp.gba` 的逐字节
+比较；US/EU/DE 当前产物仍分别为
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。
