@@ -18298,7 +18298,153 @@ func_0802BA38:
     .global func_0802BAE4
     .thumb_func
 func_0802BAE4:
-    .incbin "baserom_jp.gba", 0x2BAE4, (0x2BBFC - 0x2BAE4)
+    push {r4, r5, r6, r7, lr}
+    mov r7, r9
+    mov r6, r8
+    push {r6, r7}
+    adds r5, r0, #0
+    lsls r1, r1, #16
+    lsrs r6, r1, #16
+    mov r9, r6
+    lsls r2, r2, #24
+    lsrs r3, r2, #24
+    adds r0, #86
+    movs r1, #0
+    mov r8, r1
+    movs r2, #0
+    strh r6, [r0, #0]
+    subs r0, #30
+    movs r7, #1
+    strb r7, [r0, #0]
+    mov r1, r8
+    strb r1, [r0, #1]
+    movs r1, #168
+    lsls r1, r1, #13
+    str r2, [r0, #4]
+    str r2, [r0, #8]
+    str r1, [r0, #20]
+    ldr r4, [r5, #16]
+    cmp r4, #0
+    beq .Ljp_0802BB5E
+    cmp r3, #0
+    bne .Ljp_0802BB36
+    ldr r0, [r4, #0]
+    ldr r0, [r0, #0]
+    ldr r1, [r0, #0]
+    ldr r1, [r1, #100]
+    bl _call_via_r1
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #180
+    adds r2, r6, #0
+    b .Ljp_0802BB4A
+.Ljp_0802BB36:
+    ldr r0, [r4, #0]
+    ldr r0, [r0, #0]
+    ldr r1, [r0, #0]
+    ldr r1, [r1, #104]
+    bl _call_via_r1
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #180
+    mov r2, r9
+.Ljp_0802BB4A:
+    bl InitializeIndexedResourceHandle
+    adds r0, r4, #0
+    adds r0, #200
+    strb r7, [r0, #0]
+    adds r0, #2
+    mov r1, r8
+    strb r1, [r0, #0]
+    adds r0, #1
+    strb r7, [r0, #0]
+.Ljp_0802BB5E:
+    adds r0, r5, #0
+    adds r0, #52
+    movs r4, #0
+    movs r1, #3
+    strb r1, [r0, #0]
+    subs r0, #20
+    ldrb r3, [r0, #0]
+    cmp r3, #1
+    beq .Ljp_0802BBAA
+    cmp r3, #1
+    bgt .Ljp_0802BB7A
+    cmp r3, #0
+    beq .Ljp_0802BBBC
+    b .Ljp_0802BBCE
+.Ljp_0802BB7A:
+    cmp r3, #2
+    beq .Ljp_0802BB84
+    cmp r3, #3
+    beq .Ljp_0802BB98
+    b .Ljp_0802BBCE
+.Ljp_0802BB84:
+    adds r0, r5, #0
+    adds r0, #56
+    ldr r1, .Ljp_0802BB94
+    movs r2, #192
+    lsls r2, r2, #12
+    str r1, [r0, #4]
+    str r4, [r0, #8]
+    b .Ljp_0802BBCC
+    .align 2, 0
+.Ljp_0802BB94: .4byte 0xFFF60000
+.Ljp_0802BB98:
+    adds r0, r5, #0
+    adds r0, #56
+    movs r1, #160
+    lsls r1, r1, #12
+    movs r2, #192
+    lsls r2, r2, #12
+    str r1, [r0, #4]
+    str r4, [r0, #8]
+    b .Ljp_0802BBCC
+.Ljp_0802BBAA:
+    adds r0, r5, #0
+    adds r0, #56
+    ldr r1, .Ljp_0802BBB8
+    movs r2, #192
+    lsls r2, r2, #12
+    str r4, [r0, #4]
+    b .Ljp_0802BBCA
+    .align 2, 0
+.Ljp_0802BBB8: .4byte 0xFFF60000
+.Ljp_0802BBBC:
+    adds r0, r5, #0
+    adds r0, #56
+    movs r1, #160
+    lsls r1, r1, #12
+    movs r2, #192
+    lsls r2, r2, #12
+    str r3, [r0, #4]
+.Ljp_0802BBCA:
+    str r1, [r0, #8]
+.Ljp_0802BBCC:
+    str r2, [r0, #20]
+.Ljp_0802BBCE:
+    adds r0, r5, #0
+    adds r0, #88
+    movs r4, #1
+    strb r4, [r0, #0]
+    adds r0, r5, #0
+    bl func_0802B9DC
+    adds r1, r0, #0
+    lsls r1, r1, #16
+    lsrs r1, r1, #16
+    adds r0, r5, #0
+    bl SetAnim__12AActorEntityUi
+    adds r0, r5, #0
+    adds r0, #84
+    strb r4, [r0, #0]
+    pop {r3, r4}
+    mov r8, r3
+    mov r9, r4
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
     .global func_0802BBFC
     .thumb_func
 func_0802BBFC:
@@ -40287,33 +40433,152 @@ func_0802BCA4:
     .global func_0802BD50
     .thumb_func
 func_0802BD50:
-    .byte 0xF0, 0xB5, 0x4F, 0x46, 0x46, 0x46, 0xC0, 0xB4, 0x05, 0x1C, 0x09, 0x04, 0x0E, 0x0C, 0xB1, 0x46
-    .byte 0x12, 0x06, 0x13, 0x0E, 0x56, 0x30, 0x00, 0x21, 0x88, 0x46, 0x00, 0x22, 0x06, 0x80, 0x1E, 0x38
-    .byte 0x01, 0x27, 0x07, 0x70, 0x41, 0x46, 0x41, 0x70, 0xA8, 0x21, 0x49, 0x03, 0x42, 0x60, 0x82, 0x60
-    .byte 0x41, 0x61, 0x2C, 0x69, 0x00, 0x2C, 0x20, 0xD0, 0x00, 0x2B, 0x0A, 0xD1, 0x20, 0x68, 0x00, 0x68
-    .byte 0x01, 0x68, 0x49, 0x6E
+    push {r4, r5, r6, r7, lr}
+    mov r7, r9
+    mov r6, r8
+    push {r6, r7}
+    adds r5, r0, #0
+    lsls r1, r1, #16
+    lsrs r6, r1, #16
+    mov r9, r6
+    lsls r2, r2, #24
+    lsrs r3, r2, #24
+    adds r0, #86
+    movs r1, #0
+    mov r8, r1
+    movs r2, #0
+    strh r6, [r0, #0]
+    subs r0, #30
+    movs r7, #1
+    strb r7, [r0, #0]
+    mov r1, r8
+    strb r1, [r0, #1]
+    movs r1, #168
+    lsls r1, r1, #13
+    str r2, [r0, #4]
+    str r2, [r0, #8]
+    str r1, [r0, #20]
+    ldr r4, [r5, #16]
+    cmp r4, #0
+    beq .L0802BDCA
+    cmp r3, #0
+    bne .L0802BDA2
+    ldr r0, [r4, #0]
+    ldr r0, [r0, #0]
+    ldr r1, [r0, #0]
+    ldr r1, [r1, #100]
     bl _call_via_r1
-    .byte 0x01, 0x1C, 0x20, 0x1C, 0xB4, 0x30, 0x32, 0x1C
-    .byte 0x09, 0xE0, 0x20, 0x68, 0x00, 0x68, 0x01, 0x68, 0x89, 0x6E
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #180
+    adds r2, r6, #0
+    b .L0802BDB6
+.L0802BDA2:
+    ldr r0, [r4, #0]
+    ldr r0, [r0, #0]
+    ldr r1, [r0, #0]
+    ldr r1, [r1, #104]
     bl _call_via_r1
-    .byte 0x01, 0x1C
-    .byte 0x20, 0x1C, 0xB4, 0x30, 0x4A, 0x46
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #180
+    mov r2, r9
+.L0802BDB6:
     bl InitializeIndexedResourceHandle
-    .byte 0x20, 0x1C, 0xC8, 0x30, 0x07, 0x70
-    .byte 0x02, 0x30, 0x41, 0x46, 0x01, 0x70, 0x01, 0x30, 0x07, 0x70, 0x28, 0x1C, 0x34, 0x30, 0x00, 0x24
-    .byte 0x03, 0x21, 0x01, 0x70, 0x14, 0x38, 0x03, 0x78, 0x01, 0x2B, 0x1C, 0xD0, 0x01, 0x2B, 0x02, 0xDC
-    .byte 0x00, 0x2B, 0x21, 0xD0, 0x29, 0xE0, 0x02, 0x2B, 0x02, 0xD0, 0x03, 0x2B, 0x0A, 0xD0, 0x24, 0xE0
-    .byte 0x28, 0x1C, 0x38, 0x30, 0x02, 0x49, 0xC0, 0x22, 0x12, 0x03, 0x41, 0x60, 0x84, 0x60, 0x1B, 0xE0
-    .byte 0x00, 0x00, 0xF6, 0xFF, 0x28, 0x1C, 0x38, 0x30, 0xA0, 0x21, 0x09, 0x03, 0xC0, 0x22, 0x12, 0x03
-    .byte 0x41, 0x60, 0x84, 0x60, 0x10, 0xE0, 0x28, 0x1C, 0x38, 0x30, 0x02, 0x49, 0xC0, 0x22, 0x12, 0x03
-    .byte 0x44, 0x60, 0x08, 0xE0, 0x00, 0x00, 0xF6, 0xFF, 0x28, 0x1C, 0x38, 0x30, 0xA0, 0x21, 0x09, 0x03
-    .byte 0xC0, 0x22, 0x12, 0x03, 0x43, 0x60, 0x81, 0x60, 0x42, 0x61, 0x28, 0x1C, 0x58, 0x30, 0x01, 0x24
-    .byte 0x04, 0x70, 0x28, 0x1C
+    adds r0, r4, #0
+    adds r0, #200
+    strb r7, [r0, #0]
+    adds r0, #2
+    mov r1, r8
+    strb r1, [r0, #0]
+    adds r0, #1
+    strb r7, [r0, #0]
+.L0802BDCA:
+    adds r0, r5, #0
+    adds r0, #52
+    movs r4, #0
+    movs r1, #3
+    strb r1, [r0, #0]
+    subs r0, #20
+    ldrb r3, [r0, #0]
+    cmp r3, #1
+    beq .L0802BE16
+    cmp r3, #1
+    bgt .L0802BDE6
+    cmp r3, #0
+    beq .L0802BE28
+    b .L0802BE3A
+.L0802BDE6:
+    cmp r3, #2
+    beq .L0802BDF0
+    cmp r3, #3
+    beq .L0802BE04
+    b .L0802BE3A
+.L0802BDF0:
+    adds r0, r5, #0
+    adds r0, #56
+    ldr r1, .L0802BE00
+    movs r2, #192
+    lsls r2, r2, #12
+    str r1, [r0, #4]
+    str r4, [r0, #8]
+    b .L0802BE38
+    .align 2, 0
+.L0802BE00: .4byte 0xFFF60000
+.L0802BE04:
+    adds r0, r5, #0
+    adds r0, #56
+    movs r1, #160
+    lsls r1, r1, #12
+    movs r2, #192
+    lsls r2, r2, #12
+    str r1, [r0, #4]
+    str r4, [r0, #8]
+    b .L0802BE38
+.L0802BE16:
+    adds r0, r5, #0
+    adds r0, #56
+    ldr r1, .L0802BE24
+    movs r2, #192
+    lsls r2, r2, #12
+    str r4, [r0, #4]
+    b .L0802BE36
+    .align 2, 0
+.L0802BE24: .4byte 0xFFF60000
+.L0802BE28:
+    adds r0, r5, #0
+    adds r0, #56
+    movs r1, #160
+    lsls r1, r1, #12
+    movs r2, #192
+    lsls r2, r2, #12
+    str r3, [r0, #4]
+.L0802BE36:
+    str r1, [r0, #8]
+.L0802BE38:
+    str r2, [r0, #20]
+.L0802BE3A:
+    adds r0, r5, #0
+    adds r0, #88
+    movs r4, #1
+    strb r4, [r0, #0]
+    adds r0, r5, #0
     bl func_0802BC48
-    .byte 0x01, 0x1C, 0x09, 0x04, 0x09, 0x0C, 0x28, 0x1C
+    adds r1, r0, #0
+    lsls r1, r1, #16
+    lsrs r1, r1, #16
+    adds r0, r5, #0
     bl SetAnim__12AActorEntityUi
-    .byte 0x28, 0x1C, 0x54, 0x30, 0x04, 0x70, 0x18, 0xBC, 0x98, 0x46, 0xA1, 0x46
-    .byte 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00
+    adds r0, r5, #0
+    adds r0, #84
+    strb r4, [r0, #0]
+    pop {r3, r4}
+    mov r8, r3
+    mov r9, r4
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
 
     thumb_func_start func_0802BE68
 func_0802BE68: @ 0x0802BE68

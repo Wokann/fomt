@@ -3700,3 +3700,20 @@ JP 入口从 `func_0802BAE4` 继续。
 US `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。
+
+## `asm/code_entities.s`：四区实体 UI 资源状态选择
+
+海外 `func_0802BD50` 与 JP `func_0802BAE4` 的 0x118 字节资源状态选择入口均已
+由原始代码表示提升为直接 Thumb。函数按原 ROM 的顺序处理资源句柄、四种状态分支、
+图标动画以及完成标记；两个跳过式小端文字池均明确保留为
+`.4byte 0xFFF60000`。
+
+JP 调用直接连接到真实的 `func_0802B9DC`，其余资源和动画例程保持既有的可重定位
+符号调用，不使用别名、固定地址跳转、函数 `.byte` 或原始函数 `incbin`。下一未提升
+JP 入口从 `func_0802BBFC` 继续。
+
+共享海外代码以 WSL `-j4` 重建 US/EU/DE，JP 对应代码单独重建；资源补丁链稳定后，
+四版 SHA-1 均与原 ROM 一致：JP `A655B2789AED14A6AC78C6075FBC533D3062DBE3`、
+US `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。
