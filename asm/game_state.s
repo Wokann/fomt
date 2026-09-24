@@ -10108,7 +10108,131 @@ func_08014C70:
     .global func_08015044
     .thumb_func
 func_08015044:
-    .incbin "baserom_jp.gba", 0x15044, (0x15150 - 0x15044)
+    push {r4, r5, r6, r7, lr}
+    mov r7, r8
+    push {r7}
+    ldr r0, [r0, #4]
+    mov r8, r0
+    mov r5, r8
+    adds r5, #140
+    ldr r0, [r5, #0]
+    movs r1, #130
+    lsls r1, r1, #3
+    adds r0, r0, r1
+    bl GetCapacity__C4Coop
+    adds r6, r0, #0
+    movs r4, #0
+    cmp r4, r6
+    bcs .Ljp_080150A6
+    mov r7, r8
+    adds r7, #168
+.Ljp_0801506A:
+    ldr r0, [r5, #0]
+    movs r1, #130
+    lsls r1, r1, #3
+    adds r0, r0, r1
+    adds r1, r4, #0
+    bl GetChicken__4CoopUi
+    cmp r0, #0
+    beq .Ljp_080150A0
+    bl method_0809B514__C9Livestock
+    cmp r0, #2
+    bne .Ljp_080150A0
+    ldr r0, [r7, #0]
+    ldr r2, [r0, #0]
+    adds r1, r4, #0
+    adds r1, #46
+    ldr r2, [r2, #60]
+    bl _call_via_r2
+    ldr r0, [r5, #0]
+    movs r1, #130
+    lsls r1, r1, #3
+    adds r0, r0, r1
+    adds r1, r4, #0
+    bl RemoveAndRememberUnk__4CoopUi
+.Ljp_080150A0:
+    adds r4, #1
+    cmp r4, r6
+    bcc .Ljp_0801506A
+.Ljp_080150A6:
+    mov r4, r8
+    adds r4, #140
+    ldr r0, [r4, #0]
+    ldr r1, .Ljp_0801514C
+    adds r5, r0, r1
+    adds r0, r5, #0
+    bl func_0800F190
+    lsls r0, r0, #24
+    adds r6, r4, #0
+    cmp r0, #0
+    bne .Ljp_080150EC
+    adds r0, r5, #0
+    bl func_0800F204
+    cmp r0, #3
+    bne .Ljp_080150EC
+    ldr r4, [r6, #0]
+    movs r0, #130
+    lsls r0, r0, #3
+    adds r4, r4, r0
+    adds r0, r5, #0
+    bl func_0800F344
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl GetChicken__4CoopUi
+    cmp r0, #0
+    bne .Ljp_080150EC
+    ldr r0, [r6, #0]
+    ldr r1, .Ljp_0801514C
+    adds r0, r0, r1
+    bl func_0800F390
+.Ljp_080150EC:
+    ldr r0, [r6, #0]
+    movs r1, #190
+    lsls r1, r1, #3
+    adds r0, r0, r1
+    bl GetCapacity__C4Barn
+    adds r7, r0, #0
+    movs r4, #0
+    cmp r4, r7
+    bcs .Ljp_08015142
+    adds r5, r6, #0
+    mov r6, r8
+    adds r6, #168
+.Ljp_08015106:
+    ldr r0, [r5, #0]
+    movs r1, #190
+    lsls r1, r1, #3
+    adds r0, r0, r1
+    adds r1, r4, #0
+    bl GetBarnAnimal__4BarnUi
+    cmp r0, #0
+    beq .Ljp_0801513C
+    bl method_0809B514__C9Livestock
+    cmp r0, #2
+    bne .Ljp_0801513C
+    ldr r0, [r6, #0]
+    ldr r2, [r0, #0]
+    adds r1, r4, #0
+    adds r1, #54
+    ldr r2, [r2, #60]
+    bl _call_via_r2
+    ldr r0, [r5, #0]
+    movs r1, #190
+    lsls r1, r1, #3
+    adds r0, r0, r1
+    adds r1, r4, #0
+    bl RemoveAndRememberUnk__4BarnUi
+.Ljp_0801513C:
+    adds r4, #1
+    cmp r4, r7
+    bcc .Ljp_08015106
+.Ljp_08015142:
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+.Ljp_0801514C: .4byte 0x00001C2C
     .global func_08015150
     .thumb_func
 func_08015150:
