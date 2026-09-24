@@ -55,6 +55,27 @@ JP 和海外版本并非可强行合并的相同行为：JP 两个分支都会�
 
 核验：本次仅改动 `REGION_JP` 路径，WSL `fomt_jp` 已与 JP 基准 ROM 的 SHA-1 完全一致；US、EU、DE 的既有 C++ 路径未改动。
 
+## `src/field.cc`：`FieldPlot` 的每日与换季更新
+
+JP 曾通过 `asm/field_jp.inc` 保留 `FieldPlot::DayUpdate` 和
+`FieldPlot::method_0800AB08` 的完整 Thumb 指令流；现已删除该入口，四区均由
+`src/field.cc` 的普通 C++ 编译。
+
+两处 JP 行为与海外版不同，均已按原始 JP 指令和跳表写为 C++ 区域分支：日更新中
+类型 `0x14` 仅在阶段为 `5` 时跳过增长，海外版还会在 `date.season == 3` 时跳过；
+换季函数处理 `season == 3`、类型 `0x14` 时，JP 不写入 `unk_00_08` 与
+`unk_00_0C`，海外版分别写入 `7` 和 `0`。这些差异不使用汇编、别名或固定字节。
+
+| 区域 | `DayUpdate` | `method_0800AB08` |
+| --- | --- | --- |
+| JP | `0x0800A7B8`–`0x0800AB03` | `0x0800AB04`–`0x0800AEFF` |
+| US | `0x0800A7B0`–`0x0800AB07` | `0x0800AB08`–`0x0800AF1F` |
+| EU | `0x0800A7C4`–`0x0800AB1B` | `0x0800AB1C`–`0x0800AF33` |
+| DE | `0x0800A7D0`–`0x0800AB27` | `0x0800AB28`–`0x0800AF3F` |
+
+核验：本次只有 JP 预处理路径新增分支；WSL `fomt_jp` 已与 JP 基准 ROM 的 SHA-1
+完全一致。US、EU、DE 的既有 C++ 输出未改变。
+
 ## `asm/code_actor_0809BFE8.s`
 
 JP 原先有 19 段原始 Thumb 代码和 9 个 `.thumb_set` 偏移别名。现已逐段发射真实指令、跳表和数据池；9 个对外入口直接在其真实物理位置定义，不保留 `.set`、`.thumb_set`、代码 `incbin` 或伪造的加偏移匹配。US、EU、DE 原先已由同一模块的标准汇编分支发射，因此四版在该模块均为可读汇编层级。

@@ -561,12 +561,6 @@ bool FieldPlot::method_0800A78C() const
 
 asm(".align 2, 0");
 
-#if defined(REGION_JP)
-asm(
-    "    .include \"asm/field_jp.inc\"\n"
-);
-#else
-
 void FieldPlot::DayUpdate(int weather, GameDate const & date)
 {
     if (GetUnk8() == 1)
@@ -661,7 +655,11 @@ void FieldPlot::DayUpdate(int weather, GameDate const & date)
                 break;
 
             case 0x14:
+#if defined(REGION_JP)
+                if (GetUnk8() != 5)
+#else
                 if (date.season != 3 && GetUnk8() != 5)
+#endif
                 {
                     unk_00_0C = unk_00_0C + 1;
 
@@ -982,8 +980,10 @@ void FieldPlot::method_0800AB08(Season season)
                 switch (unk_00_02)
                 {
                     case 0x14:
+#if !defined(REGION_JP)
                         unk_00_08 = 7;
                         unk_00_0C = 0;
+#endif
                         break;
 
                         if (GetUnk8() != 1)
@@ -1047,8 +1047,6 @@ void FieldPlot::method_0800AB08(Season season)
             break;
     }
 }
-
-#endif // REGION_JP
 
 void const * FieldPlot::method_0800AF20() const
 {
