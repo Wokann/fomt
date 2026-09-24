@@ -5794,32 +5794,6 @@ func_080035C0:
     .section .text.intro_scene_post, "ax", %progbits
     .thumb
     .align 2, 0
-    .global func_0800371C
-    .thumb_func
-func_0800371C:
-    push	{r4, r5, lr}
-    adds	r4, r0, #0
-    adds	r5, r1, #0
-    ldr r0, .Ljp_08003768
-    str	r0, [r4, #0]
-    ldr	r1, [r4, #4]
-    cmp	r1, #0
-    beq .Ljp_08003758
-    ldr	r0, [r1, #4]
-    ldr	r2, [r0, #8]
-    adds	r0, r1, #0
-    movs	r1, #3
-    bl _call_via_r2
-.Ljp_08003758:
-    adds	r0, r4, #0
-    adds	r1, r5, #0
-    bl func_080007EC
-    pop	{r4, r5}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-.Ljp_08003768:
-    .4byte vtable_unk_080E5A18
     .global func_0800374C
     .thumb_func
 func_0800374C:
@@ -11267,31 +11241,6 @@ func_080035C0: @ 0x080035C0
 .L080036F4: .4byte 0x00006CE8
 
     .section .text.intro_scene_post, "ax", %progbits
-    thumb_func_start func_0800371C
-func_0800371C: @ 0x0800371C
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, .L08003748 @ =vtable_unk_080E5A18
-    str r0, [r4]
-    ldr r1, [r4, #4]
-    cmp r1, #0
-    beq .L08003738
-    ldr r0, [r1, #4]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.L08003738:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl func_080007EC
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08003748: .4byte vtable_unk_080E5A18
-
     thumb_func_start func_0800374C
 func_0800374C: @ 0x0800374C
     push {r4, lr}

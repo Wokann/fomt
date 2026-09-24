@@ -1,4 +1,5 @@
 #include "prelude.h"
+#include "intro_scene.hh"
 
 EXTERN_C
 
@@ -928,7 +929,6 @@ extern void func_080D782C(void);
 extern void func_080D7868(void);
 extern void func_080D7874(void);
 extern void func_080D7880(void);
-extern void func_0800371C(void);
 extern void func_0800374C(void);
 
 extern RawVTableFunction const vtable_unk_080E59EC[] = {
@@ -954,7 +954,7 @@ extern RawVTableFunction const vtable_unk_080E5A0C[] = {
 extern RawVTableFunction const vtable_unk_080E5A18[] = {
     nullptr,
     nullptr,
-    func_0800371C,
+    reinterpret_cast<RawVTableFunction>(DestroyGameIntroScene),
     func_0800374C,
 };
 

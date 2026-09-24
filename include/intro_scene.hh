@@ -16,6 +16,7 @@ EXTERN_C
 
 extern IntroSceneVTableFunction const vtable_unk_080E5A18[];
 GameIntroScene * ConstructGameIntroScene(GameIntroScene * scene);
+void DestroyGameIntroScene(GameIntroScene * scene, int flags);
 
 EXTERN_C_END
 
