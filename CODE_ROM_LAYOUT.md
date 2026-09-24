@@ -3868,3 +3868,16 @@ JP `func_0802CEEC`（`0x0802CEEC–0x0802D330`）已提升为直接 Thumb，对�
 
 本批仅修改 JP。WSL `-j4` 构建、资源补丁链稳定后的 SHA-1 为
 `A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并通过与 `baserom_jp.gba` 的逐字节比较。
+
+## `asm/code_entities.s`：JP 实体 UI 位置与朝向更新
+
+JP `func_0802D330`（`0x0802D330–0x0802D5D8`）已提升为直接 Thumb，对应海外
+`func_0802D59C`。该连续入口保留位置限制、碰撞/边界回调、朝向动画设置和全部局部
+常量池的原始布局。
+
+调用保持真实可重定位符号 `GetLocation__C7AEntity`、
+`SetAnimFacing__12AActorEntityUi` 及既有虚调用入口；无函数级 `.byte`、代码
+`incbin`、别名或固定地址偏移。下一未提升 JP 入口为 `func_0802D5D8`。
+
+本批仅修改 JP。WSL `-j4` 构建、资源补丁链稳定后的 SHA-1 为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并通过与 `baserom_jp.gba` 的逐字节比较。
