@@ -11523,8 +11523,12 @@ func_08005A3C: @ 0x08005A3C
     .align 2, 0
 .L08005A48: .4byte 0x00001A76
 .L08005A4C:
-    .byte 0x01, 0x49, 0x40, 0x18
-    .byte 0x00, 0x78, 0x70, 0x47, 0x76, 0x1A, 0x00, 0x00
+    ldr r1, .L08005A54 @ =0x00001A76
+    adds r0, r0, r1
+    ldrb r0, [r0]
+    bx lr
+    .align 2, 0
+.L08005A54: .4byte 0x00001A76
 
     thumb_func_start func_08005A58
 func_08005A58: @ 0x08005A58
