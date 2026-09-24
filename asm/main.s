@@ -64,7 +64,7 @@ AgbMain:
     bl func_08008980
     movs r0, #8
     bl __builtin_new
-    bl func_080036F8
+    bl ConstructGameIntroScene
     add r1, sp, #8
     str r1, [sp, #0x14]
     str r0, [sp, #0x18]

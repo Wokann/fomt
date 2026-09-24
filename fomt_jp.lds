@@ -80,6 +80,8 @@ SECTIONS
         asm/scene.o(.text);
         . = 0x914; /* JP ROM 0x08000914, independently matched */
         asm/intro_scene.o(.text);
+        src/intro_scene.o(.text);
+        asm/intro_scene.o(.text.intro_scene_post);
         . = 0x37A8; /* JP ROM 0x080037A8, independently matched */
         asm/new_game.o(.text);
         . = 0x7130; /* JP ROM 0x08007130, independently matched */

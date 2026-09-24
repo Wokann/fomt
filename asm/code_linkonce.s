@@ -495,7 +495,7 @@ func_080D4004: @ 0x080D4004
 	adds r4, r0, #0
 	movs r0, #8
 	bl __builtin_new
-	bl func_080036F8
+	bl ConstructGameIntroScene
 	str r0, [sp]
 	mov r1, sp
 	str r1, [sp, #4]
