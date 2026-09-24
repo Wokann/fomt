@@ -17029,7 +17029,201 @@ func_0802AFF4:
     .global func_0802B148
     .thumb_func
 func_0802B148:
-    .incbin "baserom_jp.gba", 0x2B148, (0x2B2B0 - 0x2B148)
+    push {r4, r5, r6, r7, lr}
+    sub sp, #4
+    adds r5, r0, #0
+    bl func_0803260C
+    ldr r4, [r5]
+    adds r0, r5, #0
+    adds r0, #0x44
+    ldrb r3, [r0]
+    adds r2, r4, #0
+    adds r2, #0x7c
+    ldrh r1, [r2]
+    ldr r0, .Ljp_0802B1A0 @ =0x0000FFFF
+    cmp r1, r0
+    beq .Ljp_0802B16E
+    cmp r3, #0
+    bne .Ljp_0802B16E
+    orrs r0, r1
+    strh r0, [r2]
+.Ljp_0802B16E:
+    adds r0, r4, #0
+    adds r0, #0x88
+    movs r1, #0
+    ldrb r0, [r0]
+    cmp r0, #1
+    bne .Ljp_0802B17C
+    movs r1, #1
+.Ljp_0802B17C:
+    cmp r1, #0
+    beq .Ljp_0802B1A8
+    adds r1, r5, #0
+    adds r1, #0xcb
+    ldrb r0, [r1]
+    cmp r0, #0
+    bne .Ljp_0802B1A4
+    adds r0, r5, #0
+    adds r0, #0xb4
+    bl func_0805E8F0
+    lsls r0, r0, #0x1e
+    cmp r0, #0
+    bge .Ljp_0802B1A8
+    adds r1, r5, #0
+    adds r1, #0xc8
+    movs r0, #1
+    b .Ljp_0802B1A6
+    .align 2, 0
+.Ljp_0802B1A0: .4byte 0x0000FFFF
+.Ljp_0802B1A4:
+    movs r0, #0
+.Ljp_0802B1A6:
+    strb r0, [r1]
+.Ljp_0802B1A8:
+    movs r7, #0
+    movs r2, #0
+    adds r4, r5, #0
+    adds r4, #0xfc
+    ldr r0, .Ljp_0802B1DC @ =0x00000113
+    adds r6, r5, r0
+    adds r5, #0xd0
+.Ljp_0802B1B6:
+    ldrb r0, [r5]
+    cmp r0, #0
+    beq .Ljp_0802B1EC
+    ldrb r0, [r4, #0x17]
+    cmp r0, #0
+    bne .Ljp_0802B1E0
+    adds r0, r4, #0
+    str r2, [sp]
+    bl func_0805E8F0
+    adds r1, r0, #0
+    lsls r0, r1, #0x1e
+    ldr r2, [sp]
+    cmp r0, #0
+    bge .Ljp_0802B1D8
+    movs r0, #1
+    strb r0, [r4, #0x14]
+.Ljp_0802B1D8:
+    adds r0, r1, #0
+    b .Ljp_0802B1E4
+    .align 2, 0
+.Ljp_0802B1DC: .4byte 0x00000113
+.Ljp_0802B1E0:
+    strb r2, [r6]
+    movs r0, #2
+.Ljp_0802B1E4:
+    lsls r0, r0, #0x1d
+    cmp r0, #0
+    bge .Ljp_0802B1EC
+    strb r2, [r5]
+.Ljp_0802B1EC:
+    adds r4, #0x48
+    adds r6, #0x48
+    adds r5, #0x48
+    adds r7, #1
+    cmp r7, #5
+    bls .Ljp_0802B1B6
+    add sp, #4
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+
+    .global func_0802B200
+    .thumb_func
+func_0802B200: @ 0x0802B200
+    push {r4, r5, r6, r7, lr}
+    mov r7, r8
+    push {r7}
+    sub sp, #4
+    mov r8, r0
+    ldr r1, [r0]
+    movs r0, #0xa0
+    lsls r0, r0, #2
+    add r0, r8
+    ldrb r7, [r0]
+    mov r4, r8
+    adds r4, #0xcc
+    lsls r0, r7, #3
+    adds r0, r0, r7
+    lsls r0, r0, #3
+    adds r0, #4
+    movs r3, #0xa
+    ldrsh r2, [r1, r3]
+    movs r5, #0xe
+    ldrsh r3, [r1, r5]
+    adds r1, #0x20
+    ldrb r6, [r1]
+    movs r1, #1
+    adds r5, r7, #0
+    ands r5, r1
+    adds r4, r4, r0
+    strb r1, [r4]
+    mov r1, sp
+    mov r0, sp
+    strh r2, [r0]
+    strh r3, [r1, #2]
+    ldr r0, [sp]
+    str r0, [r4, #0x44]
+    cmp r6, #1
+    beq .Ljp_0802B25A
+    cmp r6, #1
+    ble .Ljp_0802B252
+    cmp r6, #2
+    beq .Ljp_0802B264
+    cmp r6, #3
+    beq .Ljp_0802B270
+.Ljp_0802B252:
+    movs r0, #0xca
+    lsls r0, r0, #3
+    adds r1, r5, r0
+    b .Ljp_0802B274
+.Ljp_0802B25A:
+    ldr r3, .Ljp_0802B260 @ =0x00000652
+    b .Ljp_0802B272
+    .align 2, 0
+.Ljp_0802B260: .4byte 0x00000652
+.Ljp_0802B264:
+    ldr r0, .Ljp_0802B26C @ =0x00000654
+    adds r1, r5, r0
+    b .Ljp_0802B274
+    .align 2, 0
+.Ljp_0802B26C: .4byte 0x00000654
+.Ljp_0802B270:
+    ldr r3, .Ljp_0802B2AC @ =0x00000656
+.Ljp_0802B272:
+    adds r1, r5, r3
+.Ljp_0802B274:
+    adds r0, r4, #0
+    adds r0, #0x2c
+    bl ResolveIndexedResourceHandle
+    adds r0, r4, #0
+    adds r0, #0x40
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r2, [r0]
+    adds r0, #1
+    strb r1, [r0]
+    adds r0, r7, #1
+    movs r1, #0
+    cmp r0, #5
+    bhi .Ljp_0802B298
+    adds r1, r0, #0
+.Ljp_0802B298:
+    movs r0, #0xa0
+    lsls r0, r0, #2
+    add r0, r8
+    strb r1, [r0]
+    add sp, #4
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_0802B2AC: .4byte 0x00000656
     .global func_0802B2B0
     .thumb_func
 func_0802B2B0:
