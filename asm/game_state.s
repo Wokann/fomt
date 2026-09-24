@@ -11796,7 +11796,263 @@ func_080165C8:
     .global func_08016668
     .thumb_func
 func_08016668:
-    .incbin "baserom_jp.gba", 0x16668, (0x16890 - 0x16668)
+    push {r4, r5, r6, r7, lr}
+    mov r7, r8
+    push {r7}
+    sub sp, #8
+    ldr r6, [r0, #4]
+    cmp r1, #4
+    bls .Ljp_08016678
+    b .Ljp_08016884
+.Ljp_08016678:
+    lsls r0, r1, #2
+    ldr r1, .Ljp_08016684 @ =.Ljp_08016688
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+    .align 2, 0
+.Ljp_08016684: .4byte .Ljp_08016688
+.Ljp_08016688: @ jump table
+    .4byte .Ljp_0801669C @ case 0
+    .4byte .Ljp_08016700 @ case 1
+    .4byte .Ljp_08016700 @ case 2
+    .4byte .Ljp_08016796 @ case 3
+    .4byte .Ljp_08016826 @ case 4
+.Ljp_0801669C:
+    adds r4, r6, #0
+    adds r4, #0xa8
+    ldr r0, [r4]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0x2c
+    bl _call_via_r2
+    cmp r0, #0
+    beq .Ljp_080166B2
+    b .Ljp_08016884
+.Ljp_080166B2:
+    ldr r0, [r4]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x38]
+    movs r1, #0x2c
+    bl _call_via_r2
+    ldr r0, [r4]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0x2c
+    bl _call_via_r2
+    adds r4, r0, #0
+    cmp r4, #0
+    beq .Ljp_080166EA
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x28]
+    adds r0, r4, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Ljp_080166EA
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x20]
+    adds r0, r4, #0
+    bl _call_via_r1
+.Ljp_080166EA:
+    cmp r4, #0
+    bne .Ljp_080166F0
+    b .Ljp_08016884
+.Ljp_080166F0:
+    adds r0, r4, #0
+    movs r1, #2
+    movs r2, #0xbc
+    lsls r2, r2, #2
+    movs r3, #0x84
+    bl SetLocation__7AEntityUiii
+    b .Ljp_08016884
+.Ljp_08016700:
+    adds r4, r6, #0
+    adds r4, #0x8c
+    ldr r0, [r4]
+    movs r1, #0xbe
+    lsls r1, r1, #3
+    adds r0, r0, r1
+    bl method_0800D058__C4Barn
+    adds r7, r0, #0
+    movs r0, #1
+    rsbs r0, r0, #0
+    mov r8, r4
+    cmp r7, r0
+    bne .Ljp_0801671E
+    b .Ljp_08016884
+.Ljp_0801671E:
+    ldr r0, [r4]
+    movs r1, #0xbe
+    lsls r1, r1, #3
+    adds r0, r0, r1
+    bl method_0800D858__4Barn
+    adds r5, r7, #0
+    adds r5, #0x36
+    adds r4, #0x1c
+    ldr r0, [r4]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x38]
+    adds r1, r5, #0
+    bl _call_via_r2
+    ldr r0, [r4]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    adds r1, r5, #0
+    bl _call_via_r2
+    adds r5, r0, #0
+    cmp r5, #0
+    beq .Ljp_08016768
+    ldr r0, [r5, #0x14]
+    ldr r1, [r0, #0x28]
+    adds r0, r5, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Ljp_08016768
+    ldr r0, [r5, #0x14]
+    ldr r1, [r0, #0x20]
+    adds r0, r5, #0
+    bl _call_via_r1
+.Ljp_08016768:
+    mov r0, r8
+    ldr r1, [r0]
+    movs r0, #0xbe
+    lsls r0, r0, #3
+    adds r1, r1, r0
+    mov r4, sp
+    mov r0, sp
+    adds r2, r7, #0
+    bl method_0800D074__C4BarnUi
+    cmp r5, #0
+    bne .Ljp_08016782
+    b .Ljp_08016884
+.Ljp_08016782:
+    mov r0, sp
+    movs r1, #0
+    ldrsh r2, [r0, r1]
+    movs r0, #2
+    ldrsh r3, [r4, r0]
+    adds r0, r5, #0
+    movs r1, #0x25
+    bl SetLocation__7AEntityUiii
+    b .Ljp_08016884
+.Ljp_08016796:
+    adds r4, r6, #0
+    adds r4, #0x8c
+    ldr r0, [r4]
+    movs r1, #0x82
+    lsls r1, r1, #3
+    adds r0, r0, r1
+    bl GetUnkEnt__C4Coop
+    adds r7, r0, #0
+    movs r0, #1
+    rsbs r0, r0, #0
+    mov r8, r4
+    cmp r7, r0
+    beq .Ljp_08016884
+    ldr r0, [r4]
+    movs r1, #0x82
+    lsls r1, r1, #3
+    adds r0, r0, r1
+    bl method_0800CBC0__4Coop
+    adds r5, r7, #0
+    adds r5, #0x2e
+    adds r4, #0x1c
+    ldr r0, [r4]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x38]
+    adds r1, r5, #0
+    bl _call_via_r2
+    ldr r0, [r4]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    adds r1, r5, #0
+    bl _call_via_r2
+    adds r4, r0, #0
+    cmp r4, #0
+    beq .Ljp_080167FC
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x28]
+    adds r0, r4, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Ljp_080167FC
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x20]
+    adds r0, r4, #0
+    bl _call_via_r1
+.Ljp_080167FC:
+    mov r0, r8
+    ldr r1, [r0]
+    movs r0, #0x82
+    lsls r0, r0, #3
+    adds r1, r1, r0
+    add r5, sp, #4
+    adds r0, r5, #0
+    adds r2, r7, #0
+    bl method_0800C6F0__C4CoopUi
+    cmp r4, #0
+    beq .Ljp_08016884
+    movs r1, #0
+    ldrsh r2, [r5, r1]
+    movs r0, #2
+    ldrsh r3, [r5, r0]
+    adds r0, r4, #0
+    movs r1, #0x11
+    bl SetLocation__7AEntityUiii
+    b .Ljp_08016884
+.Ljp_08016826:
+    adds r4, r6, #0
+    adds r4, #0xa8
+    ldr r0, [r4]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0x2b
+    bl _call_via_r2
+    cmp r0, #0
+    bne .Ljp_08016884
+    ldr r0, [r4]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x38]
+    movs r1, #0x2b
+    bl _call_via_r2
+    ldr r0, [r4]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0x2b
+    bl _call_via_r2
+    adds r4, r0, #0
+    cmp r4, #0
+    beq .Ljp_08016872
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x28]
+    adds r0, r4, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Ljp_08016872
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x20]
+    adds r0, r4, #0
+    bl _call_via_r1
+.Ljp_08016872:
+    cmp r4, #0
+    beq .Ljp_08016884
+    adds r0, r4, #0
+    movs r1, #2
+    movs r2, #0xbf
+    lsls r2, r2, #1
+    movs r3, #0x52
+    bl SetLocation__7AEntityUiii
+.Ljp_08016884:
+    add sp, #8
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
     .global func_08016890
     .thumb_func
 func_08016890:
