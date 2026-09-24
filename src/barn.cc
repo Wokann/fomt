@@ -530,18 +530,17 @@ void Barn::MoveToPregnancyStall(u32 pregnancy_stall_idx, u32 ent_idx)
 
 asm(".align 2, 0");
 
-#if defined(REGION_JP)
-asm(
-    "    .include \"asm/barn_jp.inc\"\n"
-);
-#else
-
 int Barn::AttemptBirth(u32 pregnancy_stall_idx)
 {
     Vec2 vec;
 
+#if defined(REGION_JP)
+    if (IsReadyToGiveBirth(pregnancy_stall_idx))
+    {
+#else
     if (!IsReadyToGiveBirth(pregnancy_stall_idx))
         return -1;
+#endif
 
     int ent_idx = pregnancy_stall_ent_idx[pregnancy_stall_idx];
     pregnancy_stall_ent_idx[pregnancy_stall_idx] = -1;
@@ -557,9 +556,15 @@ int Barn::AttemptBirth(u32 pregnancy_stall_idx)
 
         Cow new_cow(actor_location, 0, 0);
 
+#if defined(REGION_JP)
+        u32 new_affection = rand();
+        u32 max_new_affection = parent_cow->GetAffection() / 2;
+        new_cow.AddAffection(new_affection % max_new_affection);
+#else
         u32 max_new_affection = parent_cow->GetAffection() / 2;
         if (max_new_affection > 1)
             new_cow.AddAffection(rand() % max_new_affection);
+#endif
 
         return InsertCow(new_cow);
     }
@@ -572,17 +577,27 @@ int Barn::AttemptBirth(u32 pregnancy_stall_idx)
 
         Sheep new_sheep(actor_location, 0, 0);
 
+#if defined(REGION_JP)
+        // The original JP executable calls this accessor with a null receiver.
+        // Preserve that verified regional behavior in the regional source path.
+        u32 new_affection = rand();
+        u32 max_new_affection = reinterpret_cast<Animal const *>(0)->GetAffection() / 2;
+        new_sheep.AddAffection(new_affection % max_new_affection);
+#else
         u32 max_new_affection = parent_sheep->GetAffection() / 2;
         if (max_new_affection > 1)
             new_sheep.AddAffection(rand() % max_new_affection);
+#endif
 
         return InsertSheep(new_sheep);
     }
 
+#if defined(REGION_JP)
+    }
+#endif
+
     return -1;
 }
-
-#endif // REGION_JP
 
 Barn::Ent::Ent()
     : occupied(false)

@@ -1,6 +1,6 @@
 # 代码 ROM 物理布局
 
-本文件记录已从原始代码 `incbin` 提升为实际 ARM/Thumb 汇编的连续模块。地址以各地区基准 ROM 的物理地址为准；一个模块即使在原始布局中被已编译的 C/C++ 输入节穿插，也仍由同一个源汇编文件维护。
+本文件记录已从原始代码 `incbin` 或字节块提升为 C/C++ 或实际 ARM/Thumb 汇编的连续模块。地址以各地区基准 ROM 的物理地址为准；一个模块即使在原始布局中被已编译的 C/C++ 输入节穿插，也仍由同一个源文件维护。
 
 ## `asm/game_scene.s`：场景状态访问器组
 
@@ -39,6 +39,21 @@ JP 原本已将该连续的七个短访问器和 literal pool 写成 Thumb 指�
 | JP / US / EU / DE | `0x030005FC`–`0x0300060B` | 回调返回后的参数/状态写入 |
 
 四区的 IWRAM 输入节均从 `0x03000490` 开始、大小均为 `0x848`。核验：四个区域均以 WSL 构建，并与各自基准 ROM 的 SHA-1 完全一致。
+
+## `src/barn.cc`：`Barn::AttemptBirth`
+
+JP 曾通过 `asm/barn_jp.inc` 把 `Barn::AttemptBirth` 的整段代码留为内联汇编；US、EU、DE 已使用同一源文件中的 C++ 实现。现已删除该汇编入口，四区均由普通 C++ 编译本函数。
+
+JP 和海外版本并非可强行合并的相同行为：JP 两个分支都会执行亲密度取模而没有海外版的 `> 1` 防护，且绵羊分支将空对象传给 `Animal::GetAffection`。这些均由 JP 原始指令核验后保留在 `REGION_JP` 的 C++ 分支中，不使用汇编别名或固定字节。
+
+| 区域 | `Barn::AttemptBirth` 物理范围 |
+| --- | --- |
+| JP | `0x0800D888`–`0x0800D9DB` |
+| US | `0x0800D8A8`–`0x0800D9FB` |
+| EU | `0x0800D8BC`–`0x0800DA0F` |
+| DE | `0x0800D8C8`–`0x0800DA1B` |
+
+核验：本次仅改动 `REGION_JP` 路径，WSL `fomt_jp` 已与 JP 基准 ROM 的 SHA-1 完全一致；US、EU、DE 的既有 C++ 路径未改动。
 
 ## `asm/code_actor_0809BFE8.s`
 
