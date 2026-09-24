@@ -22,6 +22,11 @@ make gfx-clock-font-all
 make gfx-clock-font-edit-test
 ```
 
+The generated native inputs are kept beside their corresponding PNG sources:
+`us_eu/clock_font.bin` for US/EU and `de/clock_font.bin` for DE.  Assembly
+selects one of these source-adjacent files directly; `build/` is not used as a
+graphics-resource staging area.
+
 JP has no established equivalent `gClockFont` consumer, so its original
 container bytes remain untouched.  This does not assert that JP lacks a clock
 display; only that it does not share this proven overseas resource path.
