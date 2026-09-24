@@ -8581,16 +8581,16 @@ func_080A2BA4: @ 0x080A25DC
 	adds r1, r6, #0
 	adds r2, r5, #0
 	bl func_08008EB8
-	ldr r0, .Ljp_080A2FD0 @ =gUnk_0874EF14
+	ldr r0, .Ljp_080A2FD0 @ =gUiSceneBackgroundLayer0Tilemap
 	mov r1, sb
 	bl Unpack
-	ldr r0, .Ljp_080A2FD4 @ =gUnk_0874EF3C
+	ldr r0, .Ljp_080A2FD4 @ =gUiSceneBackgroundLayer1Tilemap
 	mov r1, r8
 	bl Unpack
-	ldr r0, .Ljp_080A2FD8 @ =gUnk_0874EFEC
+	ldr r0, .Ljp_080A2FD8 @ =gUiSceneBackgroundLayer2Tilemap
 	adds r1, r6, #0
 	bl Unpack
-	ldr r0, .Ljp_080A2FDC @ =gUnk_0874F050
+	ldr r0, .Ljp_080A2FDC @ =gUiSceneBackgroundTiles
 	movs r1, #0xc0
 	lsls r1, r1, #0x13
 	bl Unpack
@@ -9007,10 +9007,10 @@ func_080A2BA4: @ 0x080A25DC
 .Ljp_080A2FC4: .4byte 0x0600E000
 .Ljp_080A2FC8: .4byte 0x0600E800
 .Ljp_080A2FCC: .4byte 0x0600F000
-.Ljp_080A2FD0: .4byte gUnk_084D5430
-.Ljp_080A2FD4: .4byte gUnk_084D5458
-.Ljp_080A2FD8: .4byte gUnk_084D5508
-.Ljp_080A2FDC: .4byte gUnk_084D556C
+.Ljp_080A2FD0: .4byte gUiSceneBackgroundLayer0Tilemap
+.Ljp_080A2FD4: .4byte gUiSceneBackgroundLayer1Tilemap
+.Ljp_080A2FD8: .4byte gUiSceneBackgroundLayer2Tilemap
+.Ljp_080A2FDC: .4byte gUiSceneBackgroundTiles
 .Ljp_080A2FE0: .4byte gUnk_084D5808
 .Ljp_080A2FE4: .4byte 0x00001C43
 .Ljp_080A2FE8: .4byte 0x00001D41
@@ -100271,16 +100271,16 @@ func_080A2BA4: @ 0x080A2BA4
 	adds r1, r6, #0
 	adds r2, r5, #0
 	bl func_08008EB8
-	ldr r0, .L080A2FD0 @ =gUnk_0874EF14
+	ldr r0, .L080A2FD0 @ =gUiSceneBackgroundLayer0Tilemap
 	mov r1, sb
 	bl Unpack
-	ldr r0, .L080A2FD4 @ =gUnk_0874EF3C
+	ldr r0, .L080A2FD4 @ =gUiSceneBackgroundLayer1Tilemap
 	mov r1, r8
 	bl Unpack
-	ldr r0, .L080A2FD8 @ =gUnk_0874EFEC
+	ldr r0, .L080A2FD8 @ =gUiSceneBackgroundLayer2Tilemap
 	adds r1, r6, #0
 	bl Unpack
-	ldr r0, .L080A2FDC @ =gUnk_0874F050
+	ldr r0, .L080A2FDC @ =gUiSceneBackgroundTiles
 	movs r1, #0xc0
 	lsls r1, r1, #0x13
 	bl Unpack
@@ -100697,10 +100697,10 @@ func_080A2BA4: @ 0x080A2BA4
 .L080A2FC4: .4byte 0x0600E000
 .L080A2FC8: .4byte 0x0600E800
 .L080A2FCC: .4byte 0x0600F000
-.L080A2FD0: .4byte gUnk_0874EF14
-.L080A2FD4: .4byte gUnk_0874EF3C
-.L080A2FD8: .4byte gUnk_0874EFEC
-.L080A2FDC: .4byte gUnk_0874F050
+.L080A2FD0: .4byte gUiSceneBackgroundLayer0Tilemap
+.L080A2FD4: .4byte gUiSceneBackgroundLayer1Tilemap
+.L080A2FD8: .4byte gUiSceneBackgroundLayer2Tilemap
+.L080A2FDC: .4byte gUiSceneBackgroundTiles
 .L080A2FE0: .4byte gUnk_0874F2EC
 .L080A2FE4: .4byte 0x00001C43
 .L080A2FE8: .4byte 0x00001D41

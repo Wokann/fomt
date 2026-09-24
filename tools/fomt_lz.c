@@ -1,4 +1,4 @@
-// FoMT's native Raw-LZ3 stream codec. The 0x70 header is a stream header,
+// FoMT's native Raw-LZ2/Raw-LZ3 stream codec. The 0x70 header is a stream header,
 // not a graphics format or a filename extension. Bit words are little-endian
 // while bits within each word are read most-significant first.
 #include <errno.h>
@@ -108,27 +108,29 @@ static unsigned parse_width(char const **cursor)
     return (unsigned)value;
 }
 
-static void parse_ladder(char const *spec, LadderEntry entries[3])
+static void parse_ladder(char const *spec, LadderEntry *entries, unsigned count)
 {
     char const *cursor = spec;
     unsigned start = 1;
-    if (strlen(spec) == 3 && spec[0] >= '1' && spec[0] <= '9'
-            && spec[1] >= '1' && spec[1] <= '9'
-            && spec[2] >= '1' && spec[2] <= '9') {
-        for (unsigned index = 0; index < 3; index++) {
+    int compact = strlen(spec) == count;
+    for (unsigned index = 0; index < count && compact; index++)
+        if (spec[index] < '1' || spec[index] > '9')
+            compact = 0;
+    if (compact) {
+        for (unsigned index = 0; index < count; index++) {
             entries[index].start = start;
             entries[index].width = (unsigned)(spec[index] - '0');
             start += 1u << entries[index].width;
         }
         return;
     }
-    for (unsigned index = 0; index < 3; index++) {
+    for (unsigned index = 0; index < count; index++) {
         entries[index].start = start;
         entries[index].width = parse_width(&cursor);
         start += 1u << entries[index].width;
-        if (index < 2) {
+        if (index + 1 < count) {
             if (*cursor++ != ',')
-                fail("expected three comma-separated ladder widths");
+                fail("expected comma-separated ladder widths");
         } else if (*cursor) {
             fail("unexpected text after the ladder widths");
         }
@@ -177,16 +179,23 @@ static void write_file(char const *path, unsigned char const *data, size_t size)
         fail("cannot write output file");
 }
 
-static void write_vli(BitWriter *writer, unsigned value)
+static void write_vli_bits(BitWriter *writer, unsigned value, unsigned atom_bits)
 {
     unsigned digits[16];
     unsigned count = 0;
+    unsigned digit_bits = atom_bits - 1;
+    unsigned mask = (1u << digit_bits) - 1;
     do {
-        digits[count++] = value & 3;
-        value >>= 2;
+        digits[count++] = value & mask;
+        value >>= digit_bits;
     } while (value);
     for (unsigned index = count; index > 0; index--)
-        write_bits(writer, (digits[index - 1] << 1) | (index > 1), 3);
+        write_bits(writer, (digits[index - 1] << 1) | (index > 1), atom_bits);
+}
+
+static void write_vli(BitWriter *writer, unsigned value)
+{
+    write_vli_bits(writer, value, 3);
 }
 
 static unsigned longest_match(unsigned char const *data, size_t size,
@@ -289,16 +298,117 @@ static unsigned char *encode_lz3(unsigned char const *source, size_t size,
     return packed;
 }
 
-static unsigned read_vli(BitReader *reader)
+static unsigned longest_match_lz2(unsigned char const *data, size_t size,
+                                  size_t position, unsigned max_distance,
+                                  unsigned *best_distance)
+{
+    unsigned best_length = 0;
+    unsigned limit = (unsigned)position;
+    if (limit > max_distance)
+        limit = max_distance;
+    *best_distance = 0;
+    for (unsigned distance = 1; distance <= limit; distance++) {
+        unsigned length = 0;
+        while (position + length < size &&
+               data[position + length] == data[position + length - distance])
+            length++;
+        if (length > best_length) {
+            best_length = length;
+            *best_distance = distance;
+            if (best_length == size - position)
+                break;
+        }
+    }
+    return best_length;
+}
+
+static unsigned char *encode_lz2(unsigned char const *source, size_t size,
+                                 LadderEntry const ladder[7], size_t *packed_size)
+{
+    if (!size || size > 0x40000)
+        fail("Raw-LZ2 source size must be in 1..0x40000");
+    BitWriter writer = {0};
+    write_bits(&writer, 2, 8); // raw atoms, LZ mode 2, no differential filter
+    for (unsigned index = 0; index < 7; index++)
+        write_bits(&writer, ladder[index].width - 1, 4);
+    unsigned max_distance = ladder[6].start + (1u << ladder[6].width) - 1;
+    size_t position = 0;
+    while (position < size) {
+        unsigned distance;
+        unsigned length = longest_match_lz2(source, size, position,
+                                             max_distance, &distance);
+        if (length < 3) {
+            unsigned run = 1;
+            size_t probe = position + 1;
+            while (probe < size) {
+                unsigned probe_distance;
+                if (longest_match_lz2(source, size, probe, max_distance,
+                                      &probe_distance) >= 3)
+                    break;
+                run++;
+                probe++;
+            }
+            if (run >= 10) {
+                write_bits(&writer, 1, 1);
+                write_bits(&writer, 7, 3);
+                write_vli_bits(&writer, run - 1, 4);
+                write_bits(&writer, 0, 1);
+                for (unsigned index = 0; index < run; index++)
+                    write_bits(&writer, source[position++], 8);
+            } else {
+                write_bits(&writer, 0, 1);
+                write_bits(&writer, source[position++], 8);
+            }
+            continue;
+        }
+        unsigned index = 0;
+        while (index < 7 && distance >= ladder[index].start + (1u << ladder[index].width))
+            index++;
+        if (index == 7)
+            fail("Raw-LZ2 match distance exceeds the ladder");
+        write_bits(&writer, 1, 1);
+        if (length >= 19) {
+            write_bits(&writer, 7, 3);
+            write_vli_bits(&writer, (length - 3) >> 4, 4);
+            write_bits(&writer, 1, 1);
+            write_bits(&writer, index, 3);
+            write_bits(&writer, distance - ladder[index].start, ladder[index].width);
+            write_bits(&writer, (length - 3) & 15, 4);
+        } else {
+            write_bits(&writer, index, 3);
+            write_bits(&writer, distance - ladder[index].start, ladder[index].width);
+            write_bits(&writer, length - 3, 4);
+        }
+        position += length;
+    }
+    finish_bits(&writer);
+    *packed_size = writer.size + 4;
+    unsigned char *packed = malloc(*packed_size);
+    if (!packed)
+        fail("out of memory");
+    uint32_t header = ((uint32_t)size << 8) | 0x70;
+    for (unsigned index = 0; index < 4; index++)
+        packed[index] = (unsigned char)(header >> (index * 8));
+    memcpy(packed + 4, writer.data, writer.size);
+    free(writer.data);
+    return packed;
+}
+
+static unsigned read_vli_bits(BitReader *reader, unsigned atom_bits)
 {
     unsigned value = 0;
     uint32_t atom;
     do {
-        if (!read_bits(reader, 3, &atom) || value > 0x40000)
+        if (!read_bits(reader, atom_bits, &atom) || value > 0x40000)
             fail("truncated or oversized variable-length integer");
-        value = (value << 2) | (atom >> 1);
+        value = (value << (atom_bits - 1)) | (atom >> 1);
     } while (atom & 1);
     return value;
+}
+
+static unsigned read_vli(BitReader *reader)
+{
+    return read_vli_bits(reader, 3);
 }
 
 static unsigned char *decode_lz3(unsigned char const *packed, size_t packed_size,
@@ -381,25 +491,109 @@ static unsigned char *decode_lz3(unsigned char const *packed, size_t packed_size
     return output;
 }
 
+static unsigned char *decode_lz2(unsigned char const *packed, size_t packed_size,
+                                 LadderEntry ladder[7], size_t *decoded_size)
+{
+    if (packed_size < 12 || packed[0] != 0x70)
+        fail("not a FoMT native 0x70 stream");
+    *decoded_size = (size_t)packed[1] | ((size_t)packed[2] << 8)
+                  | ((size_t)packed[3] << 16);
+    if (!*decoded_size || *decoded_size > 0x40000)
+        fail("invalid Raw-LZ2 decoded size");
+    BitReader reader = {packed, packed_size, 4, 0, 0};
+    uint32_t value;
+    if (!read_bits(&reader, 8, &value) || value != 2)
+        fail("this codec requires raw atoms, LZ mode 2 and no filter");
+    unsigned start = 1;
+    for (unsigned index = 0; index < 7; index++) {
+        if (!read_bits(&reader, 4, &value))
+            fail("truncated LZ2 ladder");
+        ladder[index].start = start;
+        ladder[index].width = value + 1;
+        start += 1u << ladder[index].width;
+    }
+    unsigned char *output = malloc(*decoded_size);
+    if (!output)
+        fail("out of memory");
+    size_t written = 0;
+    while (written < *decoded_size) {
+        if (!read_bits(&reader, 1, &value))
+            fail("truncated LZ2 command");
+        unsigned length = 1;
+        unsigned distance = 0;
+        if (value) {
+            if (!read_bits(&reader, 3, &value))
+                fail("truncated LZ2 command type");
+            unsigned index = value;
+            if (index == 7) {
+                unsigned count = read_vli_bits(&reader, 4);
+                if (!read_bits(&reader, 1, &value))
+                    fail("truncated extended LZ2 command");
+                if (!value) {
+                    length = count + 1;
+                } else {
+                    if (!read_bits(&reader, 3, &value) || value == 7)
+                        fail("invalid extended LZ2 ladder index");
+                    index = value;
+                    if (!read_bits(&reader, ladder[index].width, &value))
+                        fail("truncated extended LZ2 distance");
+                    distance = ladder[index].start + value;
+                    if (!read_bits(&reader, 4, &value))
+                        fail("truncated extended LZ2 length");
+                    length = (count << 4) + value + 3;
+                }
+            } else {
+                if (!read_bits(&reader, ladder[index].width, &value))
+                    fail("truncated LZ2 distance");
+                distance = ladder[index].start + value;
+                if (!read_bits(&reader, 4, &value))
+                    fail("truncated LZ2 length");
+                length = value + 3;
+            }
+        }
+        if (length > *decoded_size - written)
+            fail("LZ2 command exceeds decoded size");
+        if (distance) {
+            if (distance > written)
+                fail("LZ2 lookup precedes decoded data");
+            for (unsigned byte = 0; byte < length; byte++) {
+                output[written] = output[written - distance];
+                written++;
+            }
+        } else {
+            for (unsigned byte = 0; byte < length; byte++) {
+                if (!read_bits(&reader, 8, &value))
+                    fail("truncated LZ2 literal");
+                output[written++] = (unsigned char)value;
+            }
+        }
+    }
+    return output;
+}
+
 static void usage(void)
 {
-    fail("usage: fomt-lz encode-lz3 SOURCE OUTPUT LADDER SLOT_SIZE | "
-         "decode-lz3 SOURCE OUTPUT | verify-lz3 SOURCE PACKED [LADDER]");
+    fail("usage: fomt-lz encode-lz2|encode-lz3 SOURCE OUTPUT LADDER SLOT_SIZE | "
+         "decode-lz2|decode-lz3 SOURCE OUTPUT | "
+         "verify-lz2|verify-lz3 SOURCE PACKED [LADDER]");
 }
 
 int main(int argc, char **argv)
 {
     if (argc < 4)
         usage();
-    if (strcmp(argv[1], "encode-lz3") == 0) {
+    if (strcmp(argv[1], "encode-lz2") == 0 || strcmp(argv[1], "encode-lz3") == 0) {
         if (argc != 6)
             usage();
-        LadderEntry ladder[3];
-        parse_ladder(argv[4], ladder);
+        int lz2 = strcmp(argv[1], "encode-lz2") == 0;
+        LadderEntry ladder[7];
+        parse_ladder(argv[4], ladder, lz2 ? 7 : 3);
         unsigned slot_size = parse_size(argv[5]);
         size_t source_size, packed_size;
         unsigned char *source = read_file(argv[2], &source_size);
-        unsigned char *packed = encode_lz3(source, source_size, ladder, &packed_size);
+        unsigned char *packed = lz2
+            ? encode_lz2(source, source_size, ladder, &packed_size)
+            : encode_lz3(source, source_size, ladder, &packed_size);
         if (slot_size && packed_size > slot_size)
             fail("encoded stream exceeds its declared slot");
         if (slot_size && packed_size < slot_size) {
@@ -412,29 +606,36 @@ int main(int argc, char **argv)
         write_file(argv[3], packed, packed_size);
         free(packed);
         free(source);
-    } else if (strcmp(argv[1], "decode-lz3") == 0) {
+    } else if (strcmp(argv[1], "decode-lz2") == 0 || strcmp(argv[1], "decode-lz3") == 0) {
         if (argc != 4)
             usage();
+        int lz2 = strcmp(argv[1], "decode-lz2") == 0;
         size_t packed_size, decoded_size;
         unsigned char *packed = read_file(argv[2], &packed_size);
-        LadderEntry ladder[3];
-        unsigned char *decoded = decode_lz3(packed, packed_size, ladder, &decoded_size);
+        LadderEntry ladder[7];
+        unsigned char *decoded = lz2
+            ? decode_lz2(packed, packed_size, ladder, &decoded_size)
+            : decode_lz3(packed, packed_size, ladder, &decoded_size);
         write_file(argv[3], decoded, decoded_size);
         free(decoded);
         free(packed);
-    } else if (strcmp(argv[1], "verify-lz3") == 0) {
+    } else if (strcmp(argv[1], "verify-lz2") == 0 || strcmp(argv[1], "verify-lz3") == 0) {
         if (argc != 4 && argc != 5)
             usage();
+        int lz2 = strcmp(argv[1], "verify-lz2") == 0;
+        unsigned count = lz2 ? 7 : 3;
         size_t source_size, packed_size, decoded_size;
         unsigned char *source = read_file(argv[2], &source_size);
         unsigned char *packed = read_file(argv[3], &packed_size);
-        LadderEntry expected[3], actual[3];
+        LadderEntry expected[7], actual[7];
         if (argc == 5)
-            parse_ladder(argv[4], expected);
-        unsigned char *decoded = decode_lz3(packed, packed_size, actual, &decoded_size);
+            parse_ladder(argv[4], expected, count);
+        unsigned char *decoded = lz2
+            ? decode_lz2(packed, packed_size, actual, &decoded_size)
+            : decode_lz3(packed, packed_size, actual, &decoded_size);
         if (source_size != decoded_size || memcmp(source, decoded, source_size) != 0)
             fail("decoded stream does not match the source");
-        for (unsigned index = 0; index < 3 && argc == 5; index++)
+        for (unsigned index = 0; index < count && argc == 5; index++)
             if (expected[index].width != actual[index].width)
                 fail("stream ladder does not match the declared ladder");
         free(decoded);

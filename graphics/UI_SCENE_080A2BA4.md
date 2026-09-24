@@ -61,20 +61,24 @@ JP runtime scene. These files are reference output only and have no build or
 patch rule. Their source hashes and each region's copied 0x200-byte palette
 range are checked before rendering.
 
-The four checked-in native sources are editable. Rebuilds preserve each retail
-compressed stream when unchanged; an edited stream is re-encoded with the
-proven corresponding Raw-LZ encoder and rejected when it no longer fits its
-original fixed ROM slot.
+The four checked-in native sources are editable. The compiled C `fomt-lz`
+tool encodes Raw-LZ2/LZ3 into source-adjacent `.tilemap.lz` and `.4bpp.lz`
+files, using each stream's verified ladder and original slot size. Its output
+is byte-identical to all four retail ROMs for the checked-in sources. An edit
+that does not fit the current fixed slot fails at resource conversion.
 
 ## Build and linkage
 
 ```console
 make gfx-ui-scene-080a2ba4-all
 make gfx-ui-scene-080a2ba4-reference
-make gfx-ui-scene-080a2ba4-patch-test
 ```
 
-`%.gba` depends on this source set. After `objcopy`, the regular ROM build
-patches exactly these four original ranges with the selected region's generated
-streams. Existing code labels and pointers remain at their retail locations,
-so no guessed relocation table is introduced.
+The assembly source includes these four generated files directly under the
+shared semantic labels `gUiSceneBackgroundLayer0Tilemap`,
+`gUiSceneBackgroundLayer1Tilemap`, `gUiSceneBackgroundLayer2Tilemap`, and
+`gUiSceneBackgroundTiles`. The assembler object depends on all four
+outputs, so editing a source rebuilds the referring object before link. This
+set no longer reads a baseline ROM or patches the ROM after `objcopy` during
+the normal build; baseline ROMs are used only by the explicit comparison and
+reference-rendering commands. The archive-owned palette boundary is unchanged.
