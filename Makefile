@@ -103,11 +103,11 @@ ALL_DEPS := $(ALL_OBJS:%.o=%.d)
 # localizations. Native records have twelve active rows and are padded only
 # for gbagfx's 8x8 tile conversion.
 FONT_SHARED_SINGLE_PNG := graphics/font/shared/single_width_font.png
-FONT_SHARED_SINGLE_PADDED := $(BUILD_DIR)/graphics/font/shared/single_width_font.padded.1bpp
-FONT_SHARED_SINGLE_BIN := $(BUILD_DIR)/graphics/font/shared/single_width_font.1bpp
+FONT_SHARED_SINGLE_PADDED := graphics/font/shared/single_width_font.padded.1bpp
+FONT_SHARED_SINGLE_BIN := graphics/font/shared/single_width_font.1bpp
 FONT_SHARED_DOUBLE_PNG := graphics/font/shared/double_width_font.png
-FONT_SHARED_DOUBLE_PADDED := $(BUILD_DIR)/graphics/font/shared/double_width_font.padded.1bpp
-FONT_SHARED_DOUBLE_BIN := $(BUILD_DIR)/graphics/font/shared/double_width_font.1bpp
+FONT_SHARED_DOUBLE_PADDED := graphics/font/shared/double_width_font.padded.1bpp
+FONT_SHARED_DOUBLE_BIN := graphics/font/shared/double_width_font.1bpp
 FONT_SHARED_SINGLE_SHA256 := 92bc2a39dd9caf5e0f02a8ce7518f223eabe6c491bc4e05b8d1d2104f731754c
 FONT_SHARED_DOUBLE_SHA256 := bb7ffb1ed47acb9a05d2789eae9f3236945a4892df746c5a4f9f1dde706c4d3e
 FONT_SHARED_SINGLE_OFFSET_JP := 0x7515A8
@@ -130,7 +130,7 @@ PORTRAIT_SOURCE_DIR := graphics/portraits/shared
 PORTRAIT_FULL_IMAGES := $(wildcard $(PORTRAIT_SOURCE_DIR)/full/*.png)
 PORTRAIT_ARCHIVE_TOOL := tools/portrait_archive.py
 PORTRAIT_ARCHIVE_EDIT_TEST := tools/portrait_archive_edit_test.py
-PORTRAIT_TILE_BIN := $(BUILD_DIR)/graphics/portraits/shared/portrait_tiles.4bpp
+PORTRAIT_TILE_BIN := $(PORTRAIT_SOURCE_DIR)/portrait_tiles.4bpp
 PORTRAIT_ARCHIVE_LENGTH := 0x5E0A4
 PORTRAIT_ARCHIVE_SHA256 := 34c23aced1a4f23ba80d1429a87f4c8a7ca11b0458c61a37a6eb48731440bbd2
 PORTRAIT_ARCHIVE_OFFSET_JP := 0x2B3AE0
@@ -152,7 +152,7 @@ ACTOR_FULL_IMAGES := $(foreach directory,$(ACTOR_SOURCE_DIRS),$(wildcard $(direc
 # descriptors; the 46 unreferenced descriptor slots have no game caller and
 # therefore are deliberately not treated as authored animation frames.
 ACTOR_ANIMATIONS := 0x000-0x9F6
-ACTOR_TILE_BIN := $(BUILD_DIR)/graphics/sprites/shared/actor_tiles.4bpp
+ACTOR_TILE_BIN := graphics/sprites/actor_archive/actor_tiles.4bpp
 ACTOR_ARCHIVE_LENGTH := 0xDB638
 ACTOR_ARCHIVE_SHA256 := 19a8733e132573478713e9b6e48e9650a702e62516209159787d26f270933736
 ACTOR_TILE_SHA256 := 5feee08fb08ead63211d9cc17dfc46c5b7f1722599aad36883c10ef3d18334f6
@@ -171,8 +171,8 @@ ACTOR_ARCHIVE_OFFSET := $(ACTOR_ARCHIVE_OFFSET_$(GAME_REGION))
 # its immediately following 32-byte palette.  It is a simple 24x24 linear
 # 4bpp grid, common to every retail localization.
 UI_SHARED_RESOURCE_SOURCE := graphics/ui/shared_resource/shared_resource.png
-UI_SHARED_RESOURCE_TILE_BIN := $(BUILD_DIR)/graphics/ui/shared_resource/shared_resource.4bpp
-UI_SHARED_RESOURCE_PALETTE_BIN := $(BUILD_DIR)/graphics/ui/shared_resource/shared_resource.gbapal
+UI_SHARED_RESOURCE_TILE_BIN := graphics/ui/shared_resource/shared_resource.4bpp
+UI_SHARED_RESOURCE_PALETTE_BIN := graphics/ui/shared_resource/shared_resource.gbapal
 UI_SHARED_RESOURCE_TILE_SHA256 := 0ccf3327b9f4b30e2b1e47d763f56c9a15d8dff94ff3e44c79b8e87c89a8992c
 UI_SHARED_RESOURCE_PALETTE_SHA256 := 4c62773b262255ca7aa361ffb127e7d1a36397b9057ab59ff44ba4d5ac357a2c
 UI_SHARED_RESOURCE_TILE_OFFSET_JP := 0x4E0BA0
@@ -1575,31 +1575,24 @@ $(OAM_PACK): $(OAM_PACK_DIR)/oam_pack.c $(OAM_PACK_DIR)/Makefile
 	@$(MAKE) -C $(OAM_PACK_DIR)
 
 $(FONT_SHARED_SINGLE_PADDED): $(FONT_SHARED_SINGLE_PNG) $(GFX_TOOL)
-	@mkdir -p $(dir $@)
 	@$(GFX_TOOL) $< $@
 
 $(FONT_SHARED_SINGLE_BIN): $(FONT_SHARED_SINGLE_PADDED) $(FONT_PAD)
-	@mkdir -p $(dir $@)
 	@$(FONT_PAD) trim-grid-12-from-16 $< $@ 16 487
 
 $(FONT_SHARED_DOUBLE_PADDED): $(FONT_SHARED_DOUBLE_PNG) $(GFX_TOOL)
-	@mkdir -p $(dir $@)
 	@$(GFX_TOOL) $< $@
 
 $(FONT_SHARED_DOUBLE_BIN): $(FONT_SHARED_DOUBLE_PADDED) $(FONT_PAD)
-	@mkdir -p $(dir $@)
 	@$(FONT_PAD) trim-grid-16x12-from-16x16 $< $@ 32 6922
 
 $(PORTRAIT_TILE_BIN): $(PORTRAIT_ARCHIVE_TOOL) $(PORTRAIT_FULL_IMAGES) $(BASE_ROM)
-	@mkdir -p $(dir $@)
 	@$(PYTHON) $(PORTRAIT_ARCHIVE_TOOL) $(BASE_ROM) --offset $(PORTRAIT_ARCHIVE_OFFSET) --length $(PORTRAIT_ARCHIVE_LENGTH) --sha256 $(PORTRAIT_ARCHIVE_SHA256) rebuild-full --source $(PORTRAIT_SOURCE_DIR) --output $@
 
 $(ACTOR_TILE_BIN): $(ACTOR_ARCHIVE_TOOL) $(PORTRAIT_ARCHIVE_TOOL) $(ACTOR_FULL_IMAGES) $(BASE_ROM)
-	@mkdir -p $(dir $@)
 	@$(PYTHON) $(ACTOR_ARCHIVE_TOOL) $(BASE_ROM) --offset $(ACTOR_ARCHIVE_OFFSET) --length $(ACTOR_ARCHIVE_LENGTH) --sha256 $(ACTOR_ARCHIVE_SHA256) rebuild --animations $(ACTOR_ANIMATIONS) --source $(ACTOR_SOURCE_DIRS) --output $@
 
-$(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN): $(UI_SHARED_RESOURCE_SOURCE) $(TILE_GRID_TOOL)
-	@mkdir -p $(dir $(UI_SHARED_RESOURCE_TILE_BIN))
+$(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN) &: $(UI_SHARED_RESOURCE_SOURCE) $(TILE_GRID_TOOL)
 	@$(PYTHON) $(TILE_GRID_TOOL) build --source $(UI_SHARED_RESOURCE_SOURCE) --tiles $(UI_SHARED_RESOURCE_TILE_BIN) --palette $(UI_SHARED_RESOURCE_PALETTE_BIN)
 
 $(FARM_STATUS_TILES_BIN): $(FARM_STATUS_TILES_SOURCE) $(TILE_GRID_TOOL)
