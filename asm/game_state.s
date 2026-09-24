@@ -9460,22 +9460,190 @@ func_08014C0C:
     pop {r0}
     bx r0
 
-    .global func_08014B08
+    .global func_08014C34
     .thumb_func
-func_08014B08:
-    .incbin "baserom_jp.gba", 0x14B08, (0x14C04 - 0x14B08)
-    .global func_08014C04
+func_08014C34:
+    push {r4, r5, r6, r7, lr}
+    mov r7, sl
+    mov r6, sb
+    mov r5, r8
+    push {r5, r6, r7}
+    sub sp, #0x44
+    adds r7, r1, #0
+    str r2, [sp, #0x3c]
+    ldr r0, [r0, #4]
+    str r0, [sp, #0x40]
+    cmp r7, #0
+    bne .Ljp_08014BEC
+    adds r0, #0x8c
+    ldr r0, [r0]
+    mov sl, r0
+    movs r0, #0x14
+    add sl, r0
+    add r1, sp, #0x34
+    ldr r0, .Ljp_08014BFC @ =0x000003FF
+    mov r8, r0
+    mov r0, r8
+    ands r3, r0
+    ldrh r2, [r1]
+    ldr r5, .Ljp_08014C00 @ =0xFFFFFC00
+    adds r0, r5, #0
+    ands r0, r2
+    orrs r0, r3
+    strh r0, [r1]
+    ldr r2, [sp, #0x64]
+    lsls r2, r2, #0x10
+    lsrs r3, r2, #0x10
+    movs r0, #0x3f
+    mov sb, r0
+    ands r3, r0
+    lsls r3, r3, #2
+    ldrb r6, [r1, #1]
+    movs r4, #3
+    adds r0, r4, #0
+    ands r0, r6
+    orrs r0, r3
+    strb r0, [r1, #1]
+    lsrs r2, r2, #0x16
+    mov r3, r8
+    ands r2, r3
+    ldrh r3, [r1, #2]
+    adds r0, r5, #0
+    ands r0, r3
+    orrs r0, r2
+    strh r0, [r1, #2]
+    ldr r2, [sp, #0x68]
+    lsls r2, r2, #0x10
+    lsrs r0, r2, #0x10
+    mov r3, sb
+    ands r0, r3
+    lsls r0, r0, #2
+    ldrb r3, [r1, #3]
+    ands r4, r3
+    orrs r4, r0
+    strb r4, [r1, #3]
+    lsrs r2, r2, #0x16
+    mov r0, r8
+    ands r2, r0
+    ldrh r0, [r1, #4]
+    ands r5, r0
+    orrs r5, r2
+    strh r5, [r1, #4]
+    add r4, sp, #0x2c
+    adds r0, r4, #0
+    movs r2, #6
+    bl memcpy
+    strb r7, [r4, #6]
+    ldr r3, [sp, #0x3c]
+    lsls r2, r3, #4
+    subs r2, r2, r3
+    lsls r2, r2, #3
+    mov r0, sp
+    adds r1, r4, #0
+    bl __5HorseRC13ActorLocationUi
+    mov r0, sl
+    mov r1, sp
+    bl SetHorse__4FarmRC5Horse
+    ldr r4, [sp, #0x40]
+    adds r4, #0xa8
+    ldr r0, [r4]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x38]
+    movs r1, #0x2c
+    bl _call_via_r2
+    ldr r0, [r4]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0x2c
+    bl _call_via_r2
+    adds r4, r0, #0
+    cmp r4, #0
+    beq .Ljp_08014BEC
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x28]
+    adds r0, r4, #0
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Ljp_08014BEC
+    ldr r0, [r4, #0x14]
+    ldr r1, [r0, #0x20]
+    adds r0, r4, #0
+    bl _call_via_r1
+.Ljp_08014BEC:
+    add sp, #0x44
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_08014BFC: .4byte 0x000003FF
+.Ljp_08014C00: .4byte 0xFFFFFC00
+
+    .global func_08014D30
     .thumb_func
-func_08014C04:
-    .incbin "baserom_jp.gba", 0x14C04, (0x14C30 - 0x14C04)
-    .global func_08014C30
+func_08014D30:
+    push {r4, lr}
+    ldr r4, [r0, #4]
+    cmp r1, #0
+    bne .Ljp_08014C28
+    adds r0, r4, #0
+    adds r0, #0xa8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x3c]
+    movs r1, #0x2c
+    bl _call_via_r2
+    adds r0, r4, #0
+    adds r0, #0x8c
+    ldr r0, [r0]
+    adds r0, #0x14
+    bl RemoveHorse__4Farm
+.Ljp_08014C28:
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_08014D5C
     .thumb_func
-func_08014C30:
-    .incbin "baserom_jp.gba", 0x14C30, (0x14C50 - 0x14C30)
-    .global func_08014C50
+func_08014D5C:
+    push {lr}
+    ldr r0, [r0, #4]
+    adds r0, #0xa8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0
+    bl _call_via_r2
+    ldr r1, [r0, #0x14]
+    ldr r1, [r1, #0x78]
+    bl _call_via_r1
+    pop {r1}
+    bx r1
+    .align 2, 0
+
+    .global func_08014D7C
     .thumb_func
-func_08014C50:
-    .incbin "baserom_jp.gba", 0x14C50, (0x14C70 - 0x14C50)
+func_08014D7C:
+    push {lr}
+    ldr r0, [r0, #4]
+    adds r0, #0xa8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0
+    bl _call_via_r2
+    ldr r1, [r0, #0x14]
+    ldr r1, [r1, #0x44]
+    bl _call_via_r1
+    pop {r1}
+    bx r1
+    .align 2, 0
+
     .global func_08014C70
     .thumb_func
 func_08014C70:
