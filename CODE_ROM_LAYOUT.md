@@ -3635,3 +3635,17 @@ WSL 以 `-j4` 完整构建并逐字节对照四版均通过：JP
 `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。
+
+## `asm/code_entities.s`：JP 实体 UI 三个连续构造入口
+
+JP `0x0802B69C–0x0802B7A4` 已从一个原始 `.incbin` 块拆为三个真实物理入口：
+`func_0802B69C`、`func_0802B6D8`、`func_0802B754`，分别对应海外
+`func_0802B908`、`func_0802B944`、`func_0802B9C0`。代码、内部调用、
+文字池以及 vtable 指针均按原 ROM 顺序保留为真实的 JP 标签/可重定位符号。
+
+块内原本指向海外 `func_0802B944` 的调用已改为 JP 的真实
+`func_0802B6D8`；其它跨模块符号在 JP `.map` 中均已确认落到正确的 JP 物理地址。
+没有使用别名、固定 BL 字节、`.set` 或伪造偏移。
+
+本批仅修改 JP 源码；WSL `-j4` 构建后的 SHA-1 为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`，与 `baserom_jp.gba` 逐字节一致。
