@@ -160112,46 +160112,46 @@ gUnk_08751EEC:
 	FOMT_ANIMAL_FESTIVAL_ICON 09, gbapal
 	.global gUnk_08751F0C
 gUnk_08751F0C:
-	FOMT_RECORDS_TASK_TILES 00
+	.incbin "graphics/ui/records_minigame/shared/task_00.4bpp"
 	.global gUnk_08751F8C
 gUnk_08751F8C:
-	FOMT_RECORDS_TASK_PALETTE 00
+	.incbin "graphics/ui/records_minigame/shared/task_00.gbapal"
 	.global gUnk_08751FAC
 gUnk_08751FAC:
-	FOMT_RECORDS_TASK_TILES 01
+	.incbin "graphics/ui/records_minigame/shared/task_01.4bpp"
 	.global gUnk_0875202C
 gUnk_0875202C:
-	FOMT_RECORDS_TASK_PALETTE 01
+	.incbin "graphics/ui/records_minigame/shared/task_01.gbapal"
 	.global gUnk_0875204C
 gUnk_0875204C:
-	FOMT_RECORDS_TASK_TILES 02
+	.incbin "graphics/ui/records_minigame/shared/task_02.4bpp"
 	.global gUnk_087520CC
 gUnk_087520CC:
-	FOMT_RECORDS_TASK_PALETTE 02
+	.incbin "graphics/ui/records_minigame/shared/task_02.gbapal"
 	.global gUnk_087520EC
 gUnk_087520EC:
-	FOMT_RECORDS_TASK_TILES 03
+	.incbin "graphics/ui/records_minigame/shared/task_03.4bpp"
 	.global gUnk_0875216C
 gUnk_0875216C:
-	FOMT_RECORDS_TASK_PALETTE 03
+	.incbin "graphics/ui/records_minigame/shared/task_03.gbapal"
 	.global gUnk_0875218C
 gUnk_0875218C:
-	FOMT_RECORDS_TASK_TILES 04
+	.incbin "graphics/ui/records_minigame/shared/task_04.4bpp"
 	.global gUnk_0875220C
 gUnk_0875220C:
-	FOMT_RECORDS_TASK_PALETTE 04
+	.incbin "graphics/ui/records_minigame/shared/task_04.gbapal"
 	.global gUnk_0875222C
 gUnk_0875222C:
-	FOMT_RECORDS_TASK_TILES 05
+	.incbin "graphics/ui/records_minigame/shared/task_05.4bpp"
 	.global gUnk_087522AC
 gUnk_087522AC:
-	FOMT_RECORDS_TASK_PALETTE 05
+	.incbin "graphics/ui/records_minigame/shared/task_05.gbapal"
 	.global gUnk_087522CC
 gUnk_087522CC:
-	FOMT_RECORDS_TASK_TILES 06
+	.incbin "graphics/ui/records_minigame/shared/task_06.4bpp"
 	.global gUnk_0875234C
 gUnk_0875234C:
-	FOMT_RECORDS_TASK_PALETTE 06
+	.incbin "graphics/ui/records_minigame/shared/task_06.gbapal"
 	.global gUnk_0875236C
 gUnk_0875236C:
 	.byte 0x00, 0x00, 0x00, 0x30, 0x00, 0x00, 0x00, 0x93, 0x00, 0x00, 0x30, 0x97, 0x00, 0x00, 0x73, 0xB6

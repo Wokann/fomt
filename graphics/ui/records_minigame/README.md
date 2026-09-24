@@ -29,11 +29,11 @@ does not match.
 make gfx-records-minigame-all
 ```
 
-This rebuilds all regional `build/<region>/graphics/ui/records_minigame/`
-outputs and verifies every generated tile/palette pair against JP, US, EU and
-DE.  The assembler consumes those generated files at the original resource
-labels, so an unchanged source rebuild is byte-identical and preserves the
-native C++ pointer-table references.
+This rebuilds the source-adjacent `shared/task_XX.4bpp` and
+`shared/task_XX.gbapal` inputs, then verifies every generated tile/palette
+pair against JP, US, EU and DE.  The assembler consumes those files directly
+at the original resource labels, so an unchanged source rebuild is
+byte-identical and preserves the native C++ pointer-table references.
 
 To regenerate the checked-in sources from a verified JP ROM:
 
