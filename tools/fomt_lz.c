@@ -323,7 +323,8 @@ static unsigned longest_match_lz2(unsigned char const *data, size_t size,
 }
 
 static unsigned char *encode_lz2(unsigned char const *source, size_t size,
-                                 LadderEntry const ladder[7], size_t *packed_size)
+                                 LadderEntry const ladder[7], int literal_tail,
+                                 size_t *packed_size)
 {
     if (!size || size > 0x40000)
         fail("Raw-LZ2 source size must be in 1..0x40000");
@@ -342,9 +343,21 @@ static unsigned char *encode_lz2(unsigned char const *source, size_t size,
             size_t probe = position + 1;
             while (probe < size) {
                 unsigned probe_distance;
-                if (longest_match_lz2(source, size, probe, max_distance,
-                                      &probe_distance) >= 3)
+                unsigned probe_length = longest_match_lz2(source, size, probe,
+                                                           max_distance,
+                                                           &probe_distance);
+                if (probe_length >= 3) {
+                    // Some retail streams keep a final three-byte match in
+                    // the preceding extended literal instead of emitting a
+                    // separate lookup. This is a reusable encoder strategy,
+                    // selected explicitly for streams that use it.
+                    if (literal_tail && probe_length == 3 &&
+                        probe + probe_length == size) {
+                        run += probe_length;
+                        probe += probe_length;
+                    }
                     break;
+                }
                 run++;
                 probe++;
             }
@@ -574,7 +587,9 @@ static unsigned char *decode_lz2(unsigned char const *packed, size_t packed_size
 
 static void usage(void)
 {
-    fail("usage: fomt-lz encode-lz2|encode-lz3 SOURCE OUTPUT LADDER SLOT_SIZE | "
+    fail("usage: fomt-lz encode-lz2 SOURCE OUTPUT LADDER SLOT_SIZE "
+         "[--literal-tail] | "
+         "encode-lz3 SOURCE OUTPUT LADDER SLOT_SIZE | "
          "decode-lz2|decode-lz3 SOURCE OUTPUT | "
          "verify-lz2|verify-lz3 SOURCE PACKED [LADDER]");
 }
@@ -584,16 +599,18 @@ int main(int argc, char **argv)
     if (argc < 4)
         usage();
     if (strcmp(argv[1], "encode-lz2") == 0 || strcmp(argv[1], "encode-lz3") == 0) {
-        if (argc != 6)
-            usage();
         int lz2 = strcmp(argv[1], "encode-lz2") == 0;
+        if (argc != 6 && !(lz2 && argc == 7 &&
+                           strcmp(argv[6], "--literal-tail") == 0))
+            usage();
+        int literal_tail = argc == 7;
         LadderEntry ladder[7];
         parse_ladder(argv[4], ladder, lz2 ? 7 : 3);
         unsigned slot_size = parse_size(argv[5]);
         size_t source_size, packed_size;
         unsigned char *source = read_file(argv[2], &source_size);
         unsigned char *packed = lz2
-            ? encode_lz2(source, source_size, ladder, &packed_size)
+            ? encode_lz2(source, source_size, ladder, literal_tail, &packed_size)
             : encode_lz3(source, source_size, ladder, &packed_size);
         if (slot_size && packed_size > slot_size)
             fail("encoded stream exceeds its declared slot");

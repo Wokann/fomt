@@ -58,7 +58,9 @@ make gfx-ui-scene-080bcfac-preview
 make gfx-ui-scene-080bcfac-patch-test
 ```
 
-The normal ROM recipe rebuilds the selected region's three native streams and
-palette, then patches only their original intervals after `objcopy`. Unchanged
-sources reproduce retail bytes exactly; edited tile/map data uses the verified
-Raw-LZ encoder and is rejected if it does not fit the original fixed slot.
+The C Raw-LZ tool builds source-adjacent `.tilemap.lz` and `.4bpp.lz`
+files, which assembly includes directly under relocatable symbols. All three
+stream addresses in each region and the four ROM SHA-1 hashes match retail. Only
+the 0x200-byte palette copy still crosses another resource's physical boundary
+and is patched after `objcopy`. An edited stream must still fit its original
+slot until that adjacent data is made relocatable.

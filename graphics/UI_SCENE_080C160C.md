@@ -16,7 +16,7 @@ regions:
 
 | Region | First stream | Last stream |
 | --- | ---: | ---: |
-| JP | `0x4C5530` | `0x4C5C14` |
+| JP | `0x4C5530` | `0x4C5814` |
 | US | `0x73F3C8` | `0x73F6AC` |
 | EU | `0x73F424` | `0x73F708` |
 | DE | `0x4C683C` | `0x4C6B20` |
@@ -53,7 +53,11 @@ make gfx-ui-scene-080c160c-preview
 make gfx-ui-scene-080c160c-patch-test
 ```
 
-The normal ROM recipe rebuilds the selected region's streams and palette, then
-patches only their original intervals after `objcopy`. Unchanged sources
-reproduce retail bytes exactly; changed tile/map sources use the proven Raw-LZ
-encoder and are rejected if their fixed native slots are too small.
+The C Raw-LZ tool builds source-adjacent `.tilemap.lz` and `.4bpp.lz`
+files, which assembly includes directly under relocatable symbols. The tile
+stream uses the encoder's general `--literal-tail` strategy to preserve the
+retail final three-byte literal run. All three stream addresses in each region and
+the four ROM SHA-1 hashes match retail. Only the 0x200-byte palette copy still
+crosses another resource's physical boundary and is patched after `objcopy`.
+An edited stream must still fit its original slot until that adjacent data is
+made relocatable.
