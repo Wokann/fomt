@@ -15037,8 +15037,143 @@ func_08029CC4: @ 0x08029CC4
     .align 2, 0
     .global func_0802A194
     .thumb_func
-func_0802A194:
-    .incbin "baserom_jp.gba", 0x2A194, (0x2A2A4 - 0x2A194)
+func_0802A194: @ 0x0802A194
+    push {r4, r5, r6, r7, lr}
+    mov r7, sb
+    mov r6, r8
+    push {r6, r7}
+    adds r6, r0, #0
+    adds r7, r1, #0
+    adds r0, #0xa4
+    movs r1, #0
+    mov r8, r1
+    movs r2, #1
+    mov sb, r2
+    mov r1, sb
+    strb r1, [r0]
+    subs r0, #0x1c
+    strb r1, [r0]
+    mov r2, r8
+    strb r2, [r0, #1]
+    movs r1, #0xa8
+    lsls r1, r1, #0xd
+    mov r2, r8
+    str r2, [r0, #4]
+    str r2, [r0, #8]
+    str r1, [r0, #0x14]
+    ldr r5, [r6, #0x10]
+    cmp r5, #0
+    beq .Ljp_0802A1FE
+    adds r0, r7, #0
+    bl GetIconId__C4Food
+    adds r4, r0, #0
+    lsls r4, r4, #0x10
+    lsrs r4, r4, #0x10
+    ldr r0, [r5]
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r1, [r1, #0x64]
+    bl _call_via_r1
+    adds r1, r0, #0
+    adds r0, r5, #0
+    adds r0, #0xb4
+    adds r2, r4, #0
+    bl InitializeIndexedResourceHandle
+    adds r0, r5, #0
+    adds r0, #0xc8
+    mov r1, sb
+    strb r1, [r0]
+    adds r0, #2
+    mov r2, r8
+    strb r2, [r0]
+    adds r0, #1
+    strb r1, [r0]
+.Ljp_0802A1FE:
+    ldr r5, [r6, #0x14]
+    adds r0, r7, #0
+    bl GetStaminaGain__C4Food
+    adds r4, r0, #0
+    adds r0, r7, #0
+    bl GetFatigueGain__C4Food
+    adds r2, r0, #0
+    ldr r3, [r5, #0x64]
+    adds r0, r6, #0
+    adds r1, r4, #0
+    bl _call_via_r3
+    adds r0, r7, #0
+    bl IsDrink__C4Food
+    cmp r0, #0
+    bne .Ljp_0802A22C
+    adds r1, r6, #0
+    adds r1, #0x3c
+    movs r0, #0x36
+    b .Ljp_0802A232
+.Ljp_0802A22C:
+    adds r1, r6, #0
+    adds r1, #0x3c
+    movs r0, #0x37
+.Ljp_0802A232:
+    strb r0, [r1]
+    adds r0, r6, #0
+    adds r0, #0xc0
+    movs r1, #1
+    strb r1, [r0]
+    movs r1, #0xa3
+    lsls r1, r1, #1
+    adds r0, r6, #0
+    bl SetAnim__12AActorEntityUi
+    pop {r3, r4}
+    mov r8, r3
+    mov sb, r4
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_0802A254
+    .thumb_func
+func_0802A254: @ 0x0802A254
+    push {r4, r5, lr}
+    adds r3, r0, #0
+    adds r5, r1, #0
+    adds r1, r3, #0
+    adds r1, #0x88
+    movs r0, #1
+    strb r0, [r1]
+    cmp r2, #1
+    beq .Ljp_0802A26A
+    cmp r2, #0
+    bne .Ljp_0802A26C
+.Ljp_0802A26A:
+    strb r2, [r1, #1]
+.Ljp_0802A26C:
+    ldr r4, [r3, #0x10]
+    cmp r4, #0
+    beq .Ljp_0802A29C
+    ldr r0, [r4]
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r1, [r1, #0x64]
+    bl _call_via_r1
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0xb4
+    adds r2, r5, #0
+    bl InitializeIndexedResourceHandle
+    adds r0, r4, #0
+    adds r0, #0xc8
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r2, [r0]
+    adds r0, #1
+    strb r1, [r0]
+.Ljp_0802A29C:
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
     .global func_0802A2A4
     .thumb_func
 func_0802A2A4:
