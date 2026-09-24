@@ -41,8 +41,9 @@ region-specific executable object tree.
 
 As in `pokeruby`, `config.mk` is the sole source for each ROM header's title,
 game code, maker code, and revision.  The build applies those values with the
-host-side `tools/gbafix` after `objcopy`; regional layout fragments do not
-carry header identity or a duplicate game-code definition.
+host-side `tools/gbafix` after `objcopy`; no regional layout fragment carries
+header identity or a duplicate game-code definition.  The repository has no
+regional layout fragment for the ROM header.
 
 Some JP functions are not semantic source yet.  Their bounded, byte-exact
 assembly is kept directly in the owning `.cc` file's `REGION_JP` branch with
@@ -51,11 +52,10 @@ functions are recovered, move common definitions out of the guard and leave
 only the verified regional body inside it.
 
 Large content blocks use the opposite hierarchy: domain first, then version.
-For example, scripts live in `data/scripts/<region>`, layout fragments live in
-`data/layout/<region>`, and ordinary text sources live in
-`data/text/<region>`, all behind their small selectors. Add text, graphics,
-and other future regional assets in the same `data/<domain>/<region>` form; do
-not split executable code that way.
+For example, scripts live in `data/scripts/<region>` and ordinary text sources
+live in `data/text/<region>`, both behind their small selectors. Add text,
+graphics, and other future regional assets in the same
+`data/<domain>/<region>` form; do not split executable code that way.
 
 Script bytecode and its referenced text are treated as one region-specific
 block when the text differs substantially.  Mary compiles every

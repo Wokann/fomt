@@ -1,1 +1,0 @@
-	.equ ROM_IMAGE_SIZE, 0x800000
