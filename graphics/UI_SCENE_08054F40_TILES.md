@@ -31,11 +31,15 @@ runtime, so this does not claim to be the routine's whole final screen.
 
 ```console
 make gfx-ui-scene-08054f40-tiles-all
-make gfx-ui-scene-08054f40-tiles-patch-test
 make gfx-ui-scene-08054f40-reference
 ```
 
-The normal ROM recipe rebuilds this stream after `objcopy` and patches only
-its original regional interval. An unchanged source matches retail bytes
-exactly; an edited source is rejected if its Raw-LZ encoding no longer fits
-the original fixed slot.
+The compiled C `fomt-lz` tool converts the editable tiles into a
+source-adjacent `tiles.4bpp.lz` with the verified Raw-LZ2 ladder and fixed
+slot size. `asm/data/data_0813B288.s` includes that output directly under
+`gBeachBackgroundTiles` in each region, and the assembler object depends on
+the generated file. The JP literal-pool call and overseas assembly use this
+symbol; the DE resource is included at its native location. This stream no
+longer reads a baseline ROM or uses a post-`objcopy` patch during the normal
+build. Unchanged tiles match all four retail ROMs byte-for-byte; an edit that
+exceeds the current slot fails at resource conversion.

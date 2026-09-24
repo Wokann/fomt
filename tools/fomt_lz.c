@@ -348,7 +348,8 @@ static unsigned char *encode_lz2(unsigned char const *source, size_t size,
                 run++;
                 probe++;
             }
-            if (run >= 10) {
+            // A nine-byte extended literal is present in retail Raw-LZ2 data.
+            if (run >= 9) {
                 write_bits(&writer, 1, 1);
                 write_bits(&writer, 7, 3);
                 write_vli_bits(&writer, run - 1, 4);
