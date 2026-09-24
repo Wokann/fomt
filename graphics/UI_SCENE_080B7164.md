@@ -35,6 +35,20 @@ adjacent data range. Its common four-region payload has SHA-256
 | DE | `0x4B50B8` | `0x200` |
 
 `shared/palettes.png` is the editable indexed source for those sixteen banks.
+The generic `%.gbapal: %.png` rule converts it beside the PNG. Assembly now
+links that generated palette at the original ROM position, retaining the
+`gUnk_0872DE44` label at byte `0x60` in the western layout. The four-region
+retail SHA-256 above matches the directly linked output.
+
+There is an important physical overlap: the first `0x60` bytes belong only to
+the palette, while bytes `0x60`–`0x1FF` are also the beginning of the adjacent
+indexed resource archive. The archive still has a separate post-link builder.
+Before that builder writes to the ROM, the ordinary ROM recipe compares its
+first `0x1A0` bytes with the palette suffix and stops on disagreement. Thus
+edits to the overlapping palette banks must also agree with the archive source;
+they cannot be treated as independently owned by this PNG. This is a remaining
+build-chain boundary, not a second hidden palette copy.
+
 The native tilemaps remain the authoritative lossless layout source because
 they retain tile IDs, X/Y flip flags, and palette-bank selectors. The generated
 `reference/layer_0.png` and `reference/layer_1.png` are therefore genuine,
@@ -47,7 +61,7 @@ tilemaps. No JSON layout sidecar is used.
 ```console
 make gfx-ui-scene-080b7164-all
 make gfx-ui-scene-080b7164-preview
-make gfx-ui-scene-080b7164-patch-test
+make fomt_jp fomt_us fomt_eu fomt_de
 ```
 
 The C `fomt-lz` tool now rebuilds all three streams beside their editable
@@ -57,6 +71,5 @@ under `gUiTwoLayerBackgroundMap0`, `gUiTwoLayerBackgroundMap1`, and
 The three streams no longer use a baseline ROM or a post-`objcopy` patch in
 the normal build. Their original slot sizes are checked during compression,
 and unchanged sources produce byte-identical JP/US/EU/DE ROMs. The palette
-still uses its separate bounded post-link path because its 0x200-byte copy
-crosses the adjacent indexed resource archive; `patch-test` above verifies
-that remaining path.
+no longer has its own post-link patch; the overlapping archive remains a
+separate item to migrate.
