@@ -46,12 +46,12 @@ f00f6c6244f3c5497846998979764889717faf5eb805d1630b36001e60ece437
 
 ```console
 make gfx-ui-scene-080ae7d0-all
-make gfx-ui-scene-080ae7d0-patch-test
+make gfx-ui-scene-080ae7d0-test
 make gfx-ui-scene-080ae7d0-preview
 ```
 
-The normal `%.gba` recipe regenerates these sources first, then patches only
-the listed original ranges after `objcopy`. It refuses to patch a target range
-that is neither the retail baseline nor the matching generated output. A
-modified compressed stream must fit its original ROM slot; otherwise the build
-reports the required size instead of silently overwriting following data.
+The normal build generates the three compressed streams and BGR555 palette
+beside their editable sources, then links them in ROM order under four symbols.
+This group no longer uses a post-link ROM patch or a baseline ROM build input.
+A modified compressed stream must fit its original ROM slot; otherwise the
+build reports the required size instead of silently overwriting following data.

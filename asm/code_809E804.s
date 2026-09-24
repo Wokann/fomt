@@ -33032,17 +33032,17 @@ func_080AE208:
     adds r1, r4, #0
     adds r2, r6, #0
     bl func_08008EB8
-    ldr r0, .Ljp_080AE2B4 @ =gUnk_084B5D9C
+    ldr r0, .Ljp_080AE2B4 @ =gUiResourcePageMap0
     adds r1, r4, #0
     bl Unpack
-    ldr r0, .Ljp_080AE2B8 @ =gUnk_084B5FD4
+    ldr r0, .Ljp_080AE2B8 @ =gUiResourcePageMap1
     mov r1, r8
     bl Unpack
-    ldr r0, .Ljp_080AE2BC @ =gUnk_084B6060
+    ldr r0, .Ljp_080AE2BC @ =gUiResourcePageTiles
     movs r1, #0xc0
     lsls r1, r1, #0x13
     bl Unpack
-    ldr r0, .Ljp_080AE2C0 @ =gUnk_084B7AA8
+    ldr r0, .Ljp_080AE2C0 @ =gUiResourcePagePalette
     movs r1, #0xa0
     lsls r1, r1, #0x13
     movs r2, #0x80
@@ -33081,10 +33081,10 @@ func_080AE208:
 .Ljp_080AE2A8: .4byte 0x06007FE0
 .Ljp_080AE2AC: .4byte 0x0600F000
 .Ljp_080AE2B0: .4byte 0x0600F800
-.Ljp_080AE2B4: .4byte gUnk_084B5D9C
-.Ljp_080AE2B8: .4byte gUnk_084B5FD4
-.Ljp_080AE2BC: .4byte gUnk_084B6060
-.Ljp_080AE2C0: .4byte gUnk_084B7AA8
+.Ljp_080AE2B4: .4byte gUiResourcePageMap0
+.Ljp_080AE2B8: .4byte gUiResourcePageMap1
+.Ljp_080AE2BC: .4byte gUiResourcePageTiles
+.Ljp_080AE2C0: .4byte gUiResourcePagePalette
 .Ljp_080AE2C4: .4byte 0x00001E41
 .Ljp_080AE2C8: .4byte 0x00001F42
     .global func_080AE2CC
@@ -124592,17 +124592,17 @@ func_080AE7D0: @ 0x080AE7D0
 	adds r1, r4, #0
 	adds r2, r6, #0
 	bl func_08008EB8
-	ldr r0, .L080AE87C @ =gUnk_0872FC34
+	ldr r0, .L080AE87C @ =gUiResourcePageMap0
 	adds r1, r4, #0
 	bl Unpack
-	ldr r0, .L080AE880 @ =gUnk_0872FE6C
+	ldr r0, .L080AE880 @ =gUiResourcePageMap1
 	mov r1, r8
 	bl Unpack
-	ldr r0, .L080AE884 @ =gUnk_0872FEF8
+	ldr r0, .L080AE884 @ =gUiResourcePageTiles
 	movs r1, #0xc0
 	lsls r1, r1, #0x13
 	bl Unpack
-	ldr r0, .L080AE888 @ =gUnk_08731940
+	ldr r0, .L080AE888 @ =gUiResourcePagePalette
 	movs r1, #0xa0
 	lsls r1, r1, #0x13
 	movs r2, #0x80
@@ -124641,10 +124641,10 @@ func_080AE7D0: @ 0x080AE7D0
 .L080AE870: .4byte 0x06007FE0
 .L080AE874: .4byte 0x0600F000
 .L080AE878: .4byte 0x0600F800
-.L080AE87C: .4byte gUnk_0872FC34
-.L080AE880: .4byte gUnk_0872FE6C
-.L080AE884: .4byte gUnk_0872FEF8
-.L080AE888: .4byte gUnk_08731940
+.L080AE87C: .4byte gUiResourcePageMap0
+.L080AE880: .4byte gUiResourcePageMap1
+.L080AE884: .4byte gUiResourcePageTiles
+.L080AE888: .4byte gUiResourcePagePalette
 .L080AE88C: .4byte 0x00001E41
 .L080AE890: .4byte 0x00001F42
 
