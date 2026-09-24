@@ -3854,3 +3854,17 @@ JP `func_0802CB60`（`0x0802CB60–0x0802CEEC`）现以直接 Thumb 表示，对
 
 本批仅修改 JP。WSL `-j4` 构建、资源补丁链稳定后的 SHA-1 为
 `A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并通过与 `baserom_jp.gba` 的逐字节比较。
+
+## `asm/code_entities.s`：JP 实体 UI 工具选择状态机
+
+JP `func_0802CEEC`（`0x0802CEEC–0x0802D330`）已提升为直接 Thumb，对应海外
+`func_0802D158`。该 0x444 字节入口的 58 项状态跳转表、工具/图标查询、资源回调、
+局部常量池和动画调用均按原始 ROM 顺序显式保留。
+
+所有跨模块引用继续通过本项目的区域逻辑符号重定位，包括
+`func_0800F190`、`GetTool__C9ToolStack`、`GetIconId__C4Tool`、
+`SetAnim__12AActorEntityUi` 和 `gUnk_080F0FCC`；因此没有地址别名、固定地址跳转、
+函数级 `.byte` 或代码 `incbin`。下一未提升 JP 入口为 `func_0802D330`。
+
+本批仅修改 JP。WSL `-j4` 构建、资源补丁链稳定后的 SHA-1 为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并通过与 `baserom_jp.gba` 的逐字节比较。

@@ -20841,7 +20841,535 @@ func_0802CB60:
     .global func_0802CEEC
     .thumb_func
 func_0802CEEC:
-    .incbin "baserom_jp.gba", 0x2CEEC, (0x2EE80 - 0x2CEEC)
+    push {r4, r5, r6, lr}
+    sub sp, #8
+    adds r5, r0, #0
+    movs r6, #0xc9
+    lsls r6, r6, #1
+    adds r0, #0x7c
+    ldr r1, .Ljp_0802CF10 @ =0x0000FFFF
+    strh r1, [r0]
+    subs r0, #0x40
+    ldrb r0, [r0]
+    cmp r0, #0x39
+    bls .Ljp_0802CF06
+    b .Ljp_0802D324
+.Ljp_0802CF06:
+    lsls r0, r0, #2
+    ldr r1, .Ljp_0802CF14 @ =.Ljp_0802CF18
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+    .align 2, 0
+.Ljp_0802CF10: .4byte 0x0000FFFF
+.Ljp_0802CF14: .4byte .Ljp_0802CF18
+.Ljp_0802CF18: @ jump table
+    .4byte .Ljp_0802D000 @ case 0
+    .4byte .Ljp_0802D0DA @ case 1
+    .4byte .Ljp_0802D074 @ case 2
+    .4byte .Ljp_0802D0DA @ case 3
+    .4byte .Ljp_0802D0C4 @ case 4
+    .4byte .Ljp_0802D0DA @ case 5
+    .4byte .Ljp_0802D1FA @ case 6
+    .4byte .Ljp_0802D206 @ case 7
+    .4byte .Ljp_0802D316 @ case 8
+    .4byte .Ljp_0802D112 @ case 9
+    .4byte .Ljp_0802D2FA @ case 10
+    .4byte .Ljp_0802D0F8 @ case 11
+    .4byte .Ljp_0802D0F8 @ case 12
+    .4byte .Ljp_0802D0F2 @ case 13
+    .4byte .Ljp_0802D0F8 @ case 14
+    .4byte .Ljp_0802D0FE @ case 15
+    .4byte .Ljp_0802D102 @ case 16
+    .4byte .Ljp_0802D2E8 @ case 17
+    .4byte .Ljp_0802D2F4 @ case 18
+    .4byte .Ljp_0802D106 @ case 19
+    .4byte .Ljp_0802D10C @ case 20
+    .4byte .Ljp_0802D2FA @ case 21
+    .4byte .Ljp_0802D1EE @ case 22
+    .4byte .Ljp_0802D1F4 @ case 23
+    .4byte .Ljp_0802D200 @ case 24
+    .4byte .Ljp_0802D160 @ case 25
+    .4byte .Ljp_0802D160 @ case 26
+    .4byte .Ljp_0802D132 @ case 27
+    .4byte .Ljp_0802D150 @ case 28
+    .4byte .Ljp_0802D150 @ case 29
+    .4byte .Ljp_0802D190 @ case 30
+    .4byte .Ljp_0802D1AA @ case 31
+    .4byte .Ljp_0802D1C6 @ case 32
+    .4byte .Ljp_0802D2E8 @ case 33
+    .4byte .Ljp_0802D250 @ case 34
+    .4byte .Ljp_0802D26C @ case 35
+    .4byte .Ljp_0802D284 @ case 36
+    .4byte .Ljp_0802D28A @ case 37
+    .4byte .Ljp_0802D290 @ case 38
+    .4byte .Ljp_0802D294 @ case 39
+    .4byte .Ljp_0802D298 @ case 40
+    .4byte .Ljp_0802D29E @ case 41
+    .4byte .Ljp_0802D2A4 @ case 42
+    .4byte .Ljp_0802D2A4 @ case 43
+    .4byte .Ljp_0802D2AA @ case 44
+    .4byte .Ljp_0802D2C0 @ case 45
+    .4byte .Ljp_0802D2E4 @ case 46
+    .4byte .Ljp_0802D2FA @ case 47
+    .4byte .Ljp_0802D2EE @ case 48
+    .4byte .Ljp_0802D2E8 @ case 49
+    .4byte .Ljp_0802D2EE @ case 50
+    .4byte .Ljp_0802D2F4 @ case 51
+    .4byte .Ljp_0802D2FA @ case 52
+    .4byte .Ljp_0802D2FE @ case 53
+    .4byte .Ljp_0802D2E8 @ case 54
+    .4byte .Ljp_0802D2E8 @ case 55
+    .4byte .Ljp_0802D2EE @ case 56
+    .4byte .Ljp_0802D2EE @ case 57
+.Ljp_0802D000:
+    ldr r0, [r5, #0x38]
+    adds r0, #0x54
+    bl func_0800F190
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Ljp_0802D032
+    adds r0, r5, #0
+    adds r0, #0x3e
+    ldrb r0, [r0]
+    cmp r0, #1
+    bne .Ljp_0802D01A
+    b .Ljp_0802D310
+.Ljp_0802D01A:
+    cmp r0, #1
+    bgt .Ljp_0802D026
+    cmp r0, #0
+    bne .Ljp_0802D024
+    b .Ljp_0802D2EE
+.Ljp_0802D024:
+    b .Ljp_0802D324
+.Ljp_0802D026:
+    cmp r0, #2
+    beq .Ljp_0802D02C
+    b .Ljp_0802D324
+.Ljp_0802D02C:
+    movs r6, #0xa7
+    lsls r6, r6, #1
+    b .Ljp_0802D324
+.Ljp_0802D032:
+    adds r0, r5, #0
+    adds r0, #0x3e
+    ldrb r0, [r0]
+    cmp r0, #1
+    beq .Ljp_0802D04E
+    cmp r0, #1
+    bgt .Ljp_0802D048
+    cmp r0, #0
+    bne .Ljp_0802D046
+    b .Ljp_0802D160
+.Ljp_0802D046:
+    b .Ljp_0802D324
+.Ljp_0802D048:
+    cmp r0, #2
+    beq .Ljp_0802D060
+    b .Ljp_0802D324
+.Ljp_0802D04E:
+    adds r0, r5, #0
+    adds r0, #0xb3
+    ldrb r0, [r0]
+    movs r1, #0x99
+    lsls r1, r1, #1
+    cmp r0, #0
+    bne .Ljp_0802D070
+    adds r1, #0x94
+    b .Ljp_0802D070
+.Ljp_0802D060:
+    adds r0, r5, #0
+    adds r0, #0xb3
+    ldrb r0, [r0]
+    movs r1, #0x99
+    lsls r1, r1, #1
+    cmp r0, #0
+    bne .Ljp_0802D070
+    adds r1, #0x2c
+.Ljp_0802D070:
+    adds r6, r1, #0
+    b .Ljp_0802D324
+.Ljp_0802D074:
+    ldr r0, [r5, #0x38]
+    adds r0, #0x54
+    bl func_0800F190
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Ljp_0802D084
+    b .Ljp_0802D2EE
+.Ljp_0802D084:
+    adds r0, r5, #0
+    adds r0, #0x3f
+    ldrb r3, [r0]
+    cmp r3, #5
+    bgt .Ljp_0802D160
+    cmp r3, #0
+    blt .Ljp_0802D160
+    ldr r2, .Ljp_0802D0C0 @ =gUnk_080F0FCC
+    adds r1, r5, #0
+    adds r1, #0x40
+    lsls r0, r3, #3
+    subs r0, r0, r3
+    ldrb r1, [r1]
+    adds r0, r0, r1
+    lsls r0, r0, #1
+    adds r0, r0, r2
+    ldrh r6, [r0]
+    ldr r4, [r5, #0x38]
+    adds r0, r4, #0
+    adds r0, #0x5c
+    bl GetTool__C9ToolStack
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl func_0800E550
+    mov r1, sp
+    strb r0, [r1]
+    mov r0, sp
+    b .Ljp_0802D1E2
+    .align 2, 0
+.Ljp_0802D0C0: .4byte gUnk_080F0FCC
+.Ljp_0802D0C4:
+    ldr r0, [r5, #0x38]
+    adds r0, #0x54
+    bl func_0800F190
+    lsls r0, r0, #0x18
+    movs r6, #0xc9
+    lsls r6, r6, #1
+    cmp r0, #0
+    beq .Ljp_0802D0D8
+    b .Ljp_0802D324
+.Ljp_0802D0D8:
+    b .Ljp_0802D2EE
+.Ljp_0802D0DA:
+    ldr r0, [r5, #0x38]
+    adds r0, #0x54
+    bl func_0800F190
+    lsls r0, r0, #0x18
+    movs r6, #0xc9
+    lsls r6, r6, #1
+    cmp r0, #0
+    beq .Ljp_0802D0EE
+    b .Ljp_0802D324
+.Ljp_0802D0EE:
+    subs r6, #0x40
+    b .Ljp_0802D324
+.Ljp_0802D0F2:
+    movs r6, #0x9b
+    lsls r6, r6, #1
+    b .Ljp_0802D324
+.Ljp_0802D0F8:
+    movs r6, #0xcf
+    lsls r6, r6, #1
+    b .Ljp_0802D324
+.Ljp_0802D0FE:
+    movs r6, #0x4e
+    b .Ljp_0802D324
+.Ljp_0802D102:
+    movs r6, #0x46
+    b .Ljp_0802D324
+.Ljp_0802D106:
+    movs r6, #0x9f
+    lsls r6, r6, #1
+    b .Ljp_0802D324
+.Ljp_0802D10C:
+    movs r6, #0xa1
+    lsls r6, r6, #1
+    b .Ljp_0802D324
+.Ljp_0802D112:
+    adds r0, r5, #0
+    adds r0, #0x44
+    ldrh r6, [r0]
+    ldr r4, [r5, #0x38]
+    adds r0, r4, #0
+    adds r0, #0x5c
+    bl GetTool__C9ToolStack
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl func_0800E550
+    adds r1, r0, #0
+    mov r0, sp
+    adds r0, #1
+    b .Ljp_0802D1E0
+.Ljp_0802D132:
+    movs r6, #0xf5
+    lsls r6, r6, #1
+    ldr r4, [r5, #0x38]
+    adds r0, r4, #0
+    adds r0, #0x5c
+    bl GetTool__C9ToolStack
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl func_0800E550
+    adds r1, r0, #0
+    mov r0, sp
+    adds r0, #2
+    b .Ljp_0802D1E0
+.Ljp_0802D150:
+    adds r2, r5, #0
+    adds r2, #0x4e
+    adds r1, r5, #0
+    adds r1, #0x4f
+    ldrb r0, [r2]
+    ldrb r3, [r1]
+    cmp r0, r3
+    bne .Ljp_0802D166
+.Ljp_0802D160:
+    movs r6, #0xc9
+    lsls r6, r6, #1
+    b .Ljp_0802D324
+.Ljp_0802D166:
+    ldrb r0, [r1]
+    ldrb r1, [r2]
+    subs r0, r0, r1
+    movs r6, #0xc1
+    lsls r6, r6, #1
+    cmp r0, #1
+    bne .Ljp_0802D176
+    adds r6, #4
+.Ljp_0802D176:
+    ldr r4, [r5, #0x38]
+    adds r0, r4, #0
+    adds r0, #0x5c
+    bl GetTool__C9ToolStack
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl func_0800E550
+    adds r1, r0, #0
+    mov r0, sp
+    adds r0, #3
+    b .Ljp_0802D1E0
+.Ljp_0802D190:
+    movs r6, #0x76
+    ldr r4, [r5, #0x38]
+    adds r0, r4, #0
+    adds r0, #0x5c
+    bl GetTool__C9ToolStack
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl func_0800E550
+    adds r1, r0, #0
+    add r0, sp, #4
+    b .Ljp_0802D1E0
+.Ljp_0802D1AA:
+    movs r6, #0x6e
+    ldr r4, [r5, #0x38]
+    adds r0, r4, #0
+    adds r0, #0x5c
+    bl GetTool__C9ToolStack
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl func_0800E550
+    adds r1, r0, #0
+    mov r0, sp
+    adds r0, #5
+    b .Ljp_0802D1E0
+.Ljp_0802D1C6:
+    movs r6, #0x72
+    ldr r4, [r5, #0x38]
+    adds r0, r4, #0
+    adds r0, #0x5c
+    bl GetTool__C9ToolStack
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl func_0800E550
+    adds r1, r0, #0
+    mov r0, sp
+    adds r0, #6
+.Ljp_0802D1E0:
+    strb r1, [r0]
+.Ljp_0802D1E2:
+    bl GetIconId__C4Tool
+    adds r1, r5, #0
+    adds r1, #0x7c
+    strh r0, [r1]
+    b .Ljp_0802D324
+.Ljp_0802D1EE:
+    movs r6, #0xfd
+    lsls r6, r6, #1
+    b .Ljp_0802D324
+.Ljp_0802D1F4:
+    movs r6, #0xcb
+    lsls r6, r6, #1
+    b .Ljp_0802D324
+.Ljp_0802D1FA:
+    movs r6, #0x89
+    lsls r6, r6, #1
+    b .Ljp_0802D324
+.Ljp_0802D200:
+    movs r6, #0x8b
+    lsls r6, r6, #1
+    b .Ljp_0802D324
+.Ljp_0802D206:
+    ldr r0, [r5]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0x2c
+    bl _call_via_r2
+    adds r2, r0, #0
+    adds r0, r5, #0
+    adds r0, #0x3e
+    ldrb r0, [r0]
+    cmp r0, #1
+    beq .Ljp_0802D238
+    cmp r0, #1
+    bgt .Ljp_0802D228
+    cmp r0, #0
+    beq .Ljp_0802D22E
+    b .Ljp_0802D324
+.Ljp_0802D228:
+    cmp r0, #2
+    beq .Ljp_0802D244
+    b .Ljp_0802D324
+.Ljp_0802D22E:
+    movs r6, #0xea
+    ldr r1, .Ljp_0802D234 @ =0x0000077A
+    b .Ljp_0802D2D2
+    .align 2, 0
+.Ljp_0802D234: .4byte 0x0000077A
+.Ljp_0802D238:
+    movs r6, #0xee
+    ldr r1, .Ljp_0802D240 @ =0x0000077E
+    b .Ljp_0802D2D2
+    .align 2, 0
+.Ljp_0802D240: .4byte 0x0000077E
+.Ljp_0802D244:
+    movs r6, #0xe6
+    ldr r1, .Ljp_0802D24C @ =0x00000782
+    b .Ljp_0802D2D2
+    .align 2, 0
+.Ljp_0802D24C: .4byte 0x00000782
+.Ljp_0802D250:
+    movs r6, #0xad
+    lsls r6, r6, #1
+    ldr r0, [r5]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0x2c
+    bl _call_via_r2
+    adds r2, r0, #0
+    ldr r1, .Ljp_0802D268 @ =0x0000077A
+    b .Ljp_0802D2D2
+    .align 2, 0
+.Ljp_0802D268: .4byte 0x0000077A
+.Ljp_0802D26C:
+    movs r6, #0x9a
+    ldr r0, [r5]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0x2c
+    bl _call_via_r2
+    adds r2, r0, #0
+    ldr r1, .Ljp_0802D280 @ =0x0000077A
+    b .Ljp_0802D2D2
+    .align 2, 0
+.Ljp_0802D280: .4byte 0x0000077A
+.Ljp_0802D284:
+    movs r6, #0x83
+    lsls r6, r6, #1
+    b .Ljp_0802D324
+.Ljp_0802D28A:
+    movs r6, #0x81
+    lsls r6, r6, #1
+    b .Ljp_0802D324
+.Ljp_0802D290:
+    movs r6, #0xfe
+    b .Ljp_0802D324
+.Ljp_0802D294:
+    movs r6, #0xfa
+    b .Ljp_0802D324
+.Ljp_0802D298:
+    movs r6, #0x91
+    lsls r6, r6, #1
+    b .Ljp_0802D324
+.Ljp_0802D29E:
+    movs r6, #0x8f
+    lsls r6, r6, #1
+    b .Ljp_0802D324
+.Ljp_0802D2A4:
+    movs r6, #0x8d
+    lsls r6, r6, #1
+    b .Ljp_0802D324
+.Ljp_0802D2AA:
+    ldr r0, [r5, #0x38]
+    adds r0, #0x54
+    bl func_0800F190
+    lsls r0, r0, #0x18
+    movs r6, #0xa5
+    lsls r6, r6, #1
+    cmp r0, #0
+    beq .Ljp_0802D324
+    subs r6, #0x40
+    b .Ljp_0802D324
+.Ljp_0802D2C0:
+    movs r6, #0xe2
+    ldr r0, [r5]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0x2c
+    bl _call_via_r2
+    adds r2, r0, #0
+    ldr r1, .Ljp_0802D2E0 @ =0x00000792
+.Ljp_0802D2D2:
+    ldrh r0, [r2, #0x22]
+    cmp r0, r1
+    beq .Ljp_0802D324
+    adds r0, r2, #0
+    bl SetAnim__12AActorEntityUi
+    b .Ljp_0802D324
+    .align 2, 0
+.Ljp_0802D2E0: .4byte 0x00000792
+.Ljp_0802D2E4:
+    movs r6, #0x3e
+    b .Ljp_0802D324
+.Ljp_0802D2E8:
+    movs r6, #0xa3
+    lsls r6, r6, #1
+    b .Ljp_0802D324
+.Ljp_0802D2EE:
+    movs r6, #0xa9
+    lsls r6, r6, #1
+    b .Ljp_0802D324
+.Ljp_0802D2F4:
+    movs r6, #0x9d
+    lsls r6, r6, #1
+    b .Ljp_0802D324
+.Ljp_0802D2FA:
+    movs r6, #0x42
+    b .Ljp_0802D324
+.Ljp_0802D2FE:
+    ldr r0, [r5, #0x38]
+    adds r0, #0x54
+    bl func_0800F190
+    lsls r0, r0, #0x18
+    movs r6, #0xe3
+    lsls r6, r6, #1
+    cmp r0, #0
+    bne .Ljp_0802D324
+.Ljp_0802D310:
+    movs r6, #0xab
+    lsls r6, r6, #1
+    b .Ljp_0802D324
+.Ljp_0802D316:
+    adds r0, r5, #0
+    adds r0, #0x3d
+    ldrb r0, [r0]
+    movs r6, #0xf6
+    cmp r0, #0
+    beq .Ljp_0802D324
+    movs r6, #0xf2
+.Ljp_0802D324:
+    adds r0, r6, #0
+    add sp, #8
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
+
+    .global func_0802D330
+    .thumb_func
+func_0802D330:
+    .incbin "baserom_jp.gba", 0x2D330, (0x2EE80 - 0x2D330)
     .global func_0802EE80
     .thumb_func
 func_0802EE80:
