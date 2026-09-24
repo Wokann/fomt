@@ -3,8 +3,8 @@
 
 #include "prelude.h"
 
-// fomt-text recovers each original fixed storage field from the selected ROM.
-// The maintained credit source itself remains unconstrained visible text.
+// fomt-text derives each aligned storage field and shared pointer from the
+// visible credit rows. No baseline ROM is needed during compilation.
 template <unsigned int Size>
 struct StaffCreditsTextStorage
 {

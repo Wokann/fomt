@@ -32,6 +32,13 @@ To recover the editable, visible row source for a regional staff-credit table:
 
     tools/textproc/fomt-text staff-credits-decode CHARMAP REGION BASEROM OUTPUT
 
+That decode command is an optional ROM comparison/export operation. The normal
+staff-credit build reads only `data/text/<region>/staff_credits_1.cc`: first
+appearance sets physical text-field order, identical encoded rows share a
+pointer, and each field contains its C terminator and four-byte zero padding.
+The JP/US/EU/DE retail text pools and pointer tables were checked against this
+rule; no baseline ROM is read during compilation.
+
 `source` 是普通 C/C++ 词法转换：它可处理 `.c`、`.cc`、`.h`、`.hh` 中的
 字符串。正常构建会先运行常规 C 预处理器，因此被包含的头文件内容会与其所属
 翻译单元一同经过转换。除了游戏字符串外，源代码会原样保留；尤其是 `ALIGN(n)`、

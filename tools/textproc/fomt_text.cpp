@@ -10,6 +10,7 @@
 #include <stdexcept>
 #include <string>
 #include <string_view>
+#include <utility>
 #include <vector>
 
 namespace {
@@ -689,15 +690,12 @@ void EmitStaffCreditsCppString(std::ostringstream &output, const std::string &la
 {
     if (bytes.size() + 1 > storage_size) {
         throw std::runtime_error("staff-credit text '" + label
-            + "' exceeds its original storage field");
+            + "' exceeds its aligned storage field");
     }
 
-    // The maintained source intentionally has no byte capacities.  The
-    // original field size is recovered from the baseline pointer table, then
-    // emitted here so shorter edited strings retain the original zero-fill.
-    // This output is inserted after the ordinary C preprocessor for the
-    // inline owner.  Emit the compiler spelling directly rather than the
-    // project's ALIGN macro, which has already been expanded at that point.
+    // Source-derived fields include the C terminator and zero-fill up to the
+    // next four-byte boundary. This output is inserted after the ordinary C
+    // preprocessor, so use the compiler spelling rather than the ALIGN macro.
     output << "extern StaffCreditsTextStorage<" << storage_size << "> const " << label
            << " __attribute__((aligned(1))) =\n{\n";
     if (bytes.empty()) {
@@ -1350,9 +1348,7 @@ bool TryCompileEncodedArrayInitializer(const std::string &source, const Charmap 
 // owner.  The normal source command receives this context only for that owner;
 // all other C/C++ sources keep the same generic path.
 struct StaffCreditsInlineInput {
-    std::string region;
     std::string source;
-    Bytes rom;
 };
 
 std::string CompileInlineStaffCredits(const StaffCreditsInlineInput &input,
@@ -1393,7 +1389,7 @@ bool TryCompileStaffCreditsMarker(const std::string &source, const Charmap &char
     }
     if (staff_credits == nullptr) {
         throw std::runtime_error("line " + std::to_string(SourceLineNumber(source, at))
-            + ": FOMT_STAFF_CREDITS requires its regional source and baseline ROM");
+            + ": FOMT_STAFF_CREDITS requires its regional source");
     }
 
     output << CompileInlineStaffCredits(*staff_credits, charmap);
@@ -2023,8 +2019,9 @@ GuidePageSource ParseGuidePageSource(const std::string &source, const std::strin
 }
 
 // Staff credits are maintained as one visible scrolling sequence rather than
-// as separately named storage fields.  The original pointer table supplies
-// the physical field order, widths, and repeated-pointer relationships.
+// as separately named storage fields. First appearance determines physical
+// field order; equal encoded rows share one field and pointer. The retail ROM
+// confirms this rule and four-byte field alignment in all four regions.
 struct StaffCreditsSource {
     std::vector<std::string> lines;
 };
@@ -2172,20 +2169,18 @@ std::string StaffCreditsLineLabel(std::size_t source_line)
     return "gText_StaffCredits_Line" + number;
 }
 
-std::string CompileStaffCredits(const std::string &source, const std::string &region,
-    const Bytes &rom, const Charmap &charmap, bool standalone_output = true)
+struct StaffCreditsGeneratedField {
+    Bytes bytes;
+    std::string label;
+};
+
+std::string CompileStaffCredits(const std::string &source, const Charmap &charmap,
+    bool standalone_output = true)
 {
     const StaffCreditsSource credits = ParseStaffCreditsSource(source);
-    const StaffCreditsBaseline baseline = ReadStaffCreditsBaseline(rom,
-        StaffCreditsLayoutForRegion(region));
-    if (credits.lines.size() != baseline.row_addresses.size()) {
-        throw std::runtime_error("staff-credit source has "
-            + std::to_string(credits.lines.size()) + " visible rows, but the " + region
-            + " baseline pointer table has " + std::to_string(baseline.row_addresses.size()));
-    }
-
-    std::map<std::uint32_t, Bytes> text_by_address;
-    std::map<std::uint32_t, std::size_t> first_row_by_address;
+    std::map<Bytes, std::size_t> field_by_bytes;
+    std::vector<StaffCreditsGeneratedField> fields;
+    std::vector<std::size_t> row_fields;
     for (std::size_t row = 0; row < credits.lines.size(); ++row) {
         Bytes bytes;
         try {
@@ -2195,30 +2190,13 @@ std::string CompileStaffCredits(const std::string &source, const std::string &re
                 + ": " + error.what());
         }
 
-        const std::uint32_t address = baseline.row_addresses[row];
-        const auto inserted = text_by_address.emplace(address, bytes);
+        const auto inserted = field_by_bytes.emplace(bytes, fields.size());
         if (inserted.second) {
-            first_row_by_address.emplace(address, row);
-            continue;
+            const std::string label = bytes.empty()
+                ? "gText_StaffCredits_EmptyLine" : StaffCreditsLineLabel(row);
+            fields.push_back({std::move(bytes), label});
         }
-        if (inserted.first->second != bytes) {
-            throw std::runtime_error("staff-credit row " + std::to_string(row)
-                + " shares its original pointer with row "
-                + std::to_string(first_row_by_address.at(address))
-                + ", so both visible rows must contain the same text");
-        }
-    }
-
-    std::map<std::uint32_t, std::string> label_by_address;
-    std::size_t empty_field_count = 0;
-    for (const StaffCreditsTextField &field : baseline.fields) {
-        const Bytes &bytes = text_by_address.at(field.address);
-        if (bytes.empty() && empty_field_count++ == 0) {
-            label_by_address.emplace(field.address, "gText_StaffCredits_EmptyLine");
-        } else {
-            label_by_address.emplace(field.address,
-                StaffCreditsLineLabel(first_row_by_address.at(field.address)));
-        }
+        row_fields.push_back(inserted.first->second);
     }
 
     std::ostringstream output;
@@ -2228,14 +2206,15 @@ std::string CompileStaffCredits(const std::string &source, const std::string &re
         output << "// Generated by fomt-text.  Do not edit.\n"
                   "#include \"staff_credits.hh\"\n\n";
     }
-    for (const StaffCreditsTextField &field : baseline.fields) {
-        EmitStaffCreditsCppString(output, label_by_address.at(field.address),
-            field.storage_size, text_by_address.at(field.address));
+    for (const StaffCreditsGeneratedField &field : fields) {
+        const std::size_t used_size = field.bytes.size() + 1;
+        const std::size_t storage_size = used_size + (4 - used_size % 4) % 4;
+        EmitStaffCreditsCppString(output, field.label, storage_size, field.bytes);
     }
 
     output << "extern char const * const gStaffCreditsLines[] = {\n";
-    for (const std::uint32_t address : baseline.row_addresses)
-        output << "    " << label_by_address.at(address) << ".bytes,\n";
+    for (const std::size_t field : row_fields)
+        output << "    " << fields[field].label << ".bytes,\n";
     // agbcp is pre-C++11; do not rely on prelude.h's nullptr compatibility
     // macro after lowering text into an already-preprocessed source stream.
     output << "    0,\n};\n";
@@ -2245,7 +2224,7 @@ std::string CompileStaffCredits(const std::string &source, const std::string &re
 std::string CompileInlineStaffCredits(const StaffCreditsInlineInput &input,
     const Charmap &charmap)
 {
-    return CompileStaffCredits(input.source, input.region, input.rom, charmap, false);
+    return CompileStaffCredits(input.source, charmap, false);
 }
 
 std::string QuoteFomtTextSource(const std::string &text)
@@ -3433,6 +3412,30 @@ void SelfTest()
             == "gText_ReferenceGuide_Existing",
         "legacy guide text was not included in the guide catalog");
 
+    const std::string generated_credits = CompileStaffCredits(
+        "FOMT_STAFF_CREDITS\n"
+        "    \"A\"\n"
+        "    \"\"\n"
+        "    \"A\"\n"
+        "    \"B\"\n"
+        "    \"\"\n"
+        "END_FOMT_STAFF_CREDITS\n", map);
+    const std::size_t credit_first = generated_credits.find("gText_StaffCredits_Line000 __attribute__");
+    const std::size_t credit_empty = generated_credits.find("gText_StaffCredits_EmptyLine __attribute__");
+    const std::size_t credit_second = generated_credits.find("gText_StaffCredits_Line003 __attribute__");
+    Require(credit_first != std::string::npos && credit_empty != std::string::npos
+            && credit_second != std::string::npos && credit_first < credit_empty
+            && credit_empty < credit_second,
+        "staff-credit fields did not follow first appearance order");
+    Require(generated_credits.find("StaffCreditsTextStorage<4> const gText_StaffCredits_Line000")
+            != std::string::npos,
+        "staff-credit field did not include its terminator and four-byte alignment");
+    Require(generated_credits.find("gText_StaffCredits_Line002") == std::string::npos
+            && generated_credits.find("gText_StaffCredits_Line000.bytes",
+                   generated_credits.find("gText_StaffCredits_Line000.bytes") + 1)
+                   != std::string::npos,
+        "staff-credit duplicate row did not reuse the first text pointer");
+
     const std::string generated_rows = CompileCppTextInclude(
         "char const gText_TestRows[2][2] = {\n"
         "    \"A\",\n"
@@ -3493,11 +3496,11 @@ const char *Usage()
            "  fomt-text validate CHARMAP REGION\n"
            "  fomt-text encode CHARMAP REGION INPUT OUTPUT\n"
            "  fomt-text decode CHARMAP REGION INPUT OUTPUT\n"
-           "  fomt-text source CHARMAP REGION INPUT OUTPUT [STAFF_CREDITS_SOURCE BASEROM]\n"
+           "  fomt-text source CHARMAP REGION INPUT OUTPUT [STAFF_CREDITS_SOURCE]\n"
            "  fomt-text cpp CHARMAP REGION INPUT OUTPUT\n"
            "  fomt-text guide CHARMAP REGION INPUT TEXT_OUTPUT TABLE_OUTPUT [CATALOG_SOURCE ...]\n"
            "  fomt-text guide-collection CHARMAP REGION MANIFEST OUTPUT\n"
-           "  fomt-text staff-credits CHARMAP REGION BASEROM INPUT OUTPUT\n"
+           "  fomt-text staff-credits CHARMAP REGION INPUT OUTPUT\n"
            "  fomt-text staff-credits-decode CHARMAP REGION BASEROM OUTPUT\n";
 }
 
@@ -3523,14 +3526,10 @@ int Run(int argc, char **argv)
         WriteTextFile(output, generated.source);
         return 0;
     }
-    if (argc == 7 && std::string(argv[1]) == "staff-credits") {
+    if (argc == 6 && std::string(argv[1]) == "staff-credits") {
         const std::string region = argv[3];
         const Charmap charmap = Charmap::Parse(ReadTextFile(argv[2]), RegionDefines(region));
-        const std::filesystem::path baserom = argv[4];
-        const std::filesystem::path input = argv[5];
-        const std::filesystem::path output = argv[6];
-        WriteTextFile(output, CompileStaffCredits(ReadTextFile(input), region,
-            ReadBinaryFile(baserom), charmap));
+        WriteTextFile(argv[5], CompileStaffCredits(ReadTextFile(argv[4]), charmap));
         return 0;
     }
     if (argc == 6 && std::string(argv[1]) == "staff-credits-decode") {
@@ -3558,7 +3557,7 @@ int Run(int argc, char **argv)
         return 0;
     }
     const std::string command = argv[1];
-    if (argc != 6 && !(argc == 8 && command == "source"))
+    if (argc != 6 && !(argc == 7 && command == "source"))
         throw std::runtime_error(Usage());
 
     const Charmap charmap = Charmap::Parse(ReadTextFile(argv[2]), RegionDefines(argv[3]));
@@ -3578,10 +3577,8 @@ int Run(int argc, char **argv)
     if (command == "source") {
         StaffCreditsInlineInput staff_credits;
         StaffCreditsInlineInput const *staff_credits_input = nullptr;
-        if (argc == 8) {
-            staff_credits.region = argv[3];
+        if (argc == 7) {
             staff_credits.source = ReadTextFile(argv[6]);
-            staff_credits.rom = ReadBinaryFile(argv[7]);
             staff_credits_input = &staff_credits;
         }
         WriteTextFile(output, CompileCppSourceText(ReadTextFile(input), charmap,

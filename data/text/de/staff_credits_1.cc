@@ -1,10 +1,10 @@
 // fomt-text input, intentionally not a C++ translation unit.
-// Write each displayed credit row in order.  Repeated original pointers
-// are detected and preserved automatically by the build tool.
+// Write each displayed credit row in order. Equal encoded rows reuse one
+// text field and pointer; field sizes follow the encoded text automatically.
 //
 // 以下是 fomt-text 的输入，不是可直接编译的 C++ 翻译单元。
-// 请按游戏画面中的字幕顺序逐行维护；原 ROM 复用同一指针的行仍直接写出
-// 可见文本，构建工具会自动检测并保留该复用关系。
+// 请按游戏画面中的字幕顺序逐行维护；编码后相同的行会复用同一文本字段和指针，
+// 字段大小由编码后的文本自动决定。
 FOMT_STAFF_CREDITS
     "Mitwirkende"
     ""

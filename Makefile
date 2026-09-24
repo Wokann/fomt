@@ -486,10 +486,10 @@ $(BUILD_DIR)/%.o: %.cc $(BUILD_DIR)/%.d $(TEXT_TOOLS) charmap.txt
 	@echo "CP $<"
 	$(call FOMT_COMPILE_CPP,)
 
-# This remains the ordinary C++ rule above.  Only its explicit authoring
-# marker needs the selected visible-credit input and baseline field layout.
-$(BUILD_DIR)/src/staff_credits.o: FOMT_TEXT_SOURCE_ARGS := $(STAFF_CREDITS_SOURCE) baserom_$(TEXT_REGION).gba
-$(BUILD_DIR)/src/staff_credits.o: $(STAFF_CREDITS_SOURCE) baserom_$(TEXT_REGION).gba
+# This remains the ordinary C++ rule above.  Its explicit authoring marker
+# needs only the selected visible-credit input; field layout is source-derived.
+$(BUILD_DIR)/src/staff_credits.o: FOMT_TEXT_SOURCE_ARGS := $(STAFF_CREDITS_SOURCE)
+$(BUILD_DIR)/src/staff_credits.o: $(STAFF_CREDITS_SOURCE)
 
 # ASM dependency file (dummy, generated with the object)
 $(BUILD_DIR)/%.d: $(BUILD_DIR)/%.o
