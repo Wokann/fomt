@@ -3382,6 +3382,23 @@ JP `func_080260E0` 已由原始 `.incbin` 提升为直接 Thumb，与海外
 本批仅修改 JP 源码；WSL 以 `-j4` 重建后的 SHA-1 为
 `A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并与 `baserom_jp.gba` 逐字节一致。
 
+## `asm/code_entities.s`：JP 实体 UI 连续动作处理块
+
+JP 原 ROM 的 `0x0802A56C–0x0802AFF4` 已由直接 `.incbin` 提升为八个真实的
+Thumb 函数入口：`func_0802A56C`、`func_0802A574`、`func_0802A818`、
+`func_0802A92C`、`func_0802A9C0`、`func_0802AB14`、`func_0802AC38` 和
+`func_0802ADE8`。它们分别与海外
+`0x0802A7D8–0x0802B260` 中同边界、同长度的动作/资源选择处理函数对应；所有
+分支、常量池和块内调用均改为 JP 的真实物理标签，而非别名。
+
+海外 `func_080246BC` 的三个调用使用已存在的 JP 真实入口
+`func_08024450`。碰撞辅助函数也按 JP 链接映射使用真实符号：
+`func_080AC5D0 → func_080AC008`，`func_080AC070 → func_080ABAA8`；因此没有
+固定地址、`.set`/`.thumb_set` 或伪造 `+offset` 引用。
+
+本批仅修改 JP 源码；WSL 以 `-j4` 重建后的 SHA-1 为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并与 `baserom_jp.gba` 逐字节一致。
+
 ## `asm/code_entities.s`：JP 实体资源选择入口
 
 JP `func_0802A31C` 已由原始 `.incbin` 提升为直接 Thumb，与海外
