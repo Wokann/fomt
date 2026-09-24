@@ -18528,11 +18528,85 @@ func_0802BBFC:
     .global func_0802BC90
     .thumb_func
 func_0802BC90:
-    .incbin "baserom_jp.gba", 0x2BC90, (0x2BCC0 - 0x2BC90)
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r1, r4, #0
+    adds r1, #0x34
+    movs r0, #2
+    strb r0, [r1]
+    adds r0, r4, #0
+    adds r0, #0x58
+    movs r5, #1
+    strb r5, [r0]
+    adds r0, r4, #0
+    bl func_0802B9DC
+    adds r1, r0, #0
+    lsls r1, r1, #0x10
+    lsrs r1, r1, #0x10
+    adds r0, r4, #0
+    bl SetAnim__12AActorEntityUi
+    adds r4, #0x54
+    strb r5, [r4]
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+
     .global func_0802BCC0
     .thumb_func
 func_0802BCC0:
-    .incbin "baserom_jp.gba", 0x2BCC0, (0x2BD34 - 0x2BCC0)
+    push {r4, r5, r6, lr}
+    mov r6, r8
+    push {r6}
+    sub sp, #0x14
+    mov r8, r0
+    adds r4, r1, #0
+    ldr r3, .Ljp_0802BD28 @ =gUnk_080F1224
+    movs r0, #3
+    str r0, [sp]
+    movs r5, #1
+    str r5, [sp, #4]
+    movs r6, #0
+    str r6, [sp, #8]
+    str r6, [sp, #0xc]
+    add r0, sp, #0x10
+    strb r5, [r0]
+    mov r0, r8
+    movs r2, #6
+    bl func_08032560
+    ldr r0, .Ljp_0802BD2C @ =vtable_unk_080E6644
+    mov r1, r8
+    str r0, [r1, #4]
+    ldr r0, [r4]
+    ldr r1, [r0]
+    ldr r1, [r1, #0x64]
+    bl _call_via_r1
+    adds r1, r0, #0
+    ldr r3, [r4]
+    mov r0, r8
+    adds r0, #0x8c
+    movs r2, #2
+    str r2, [sp]
+    str r5, [sp, #4]
+    add r2, sp, #8
+    strb r6, [r2]
+    movs r2, #0
+    bl func_080A4A00
+    mov r1, r8
+    adds r1, #0xcc
+    ldr r0, .Ljp_0802BD30 @ =0x0000FFFF
+    strh r0, [r1]
+    mov r0, r8
+    add sp, #0x14
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .align 2, 0
+.Ljp_0802BD28: .4byte gUnk_080F1224
+.Ljp_0802BD2C: .4byte vtable_unk_080E6644
+.Ljp_0802BD30: .4byte 0x0000FFFF
+
     .global func_0802BD34
     .thumb_func
 func_0802BD34:

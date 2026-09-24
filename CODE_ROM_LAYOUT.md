@@ -3733,3 +3733,23 @@ JP 内部调用直接指向 `func_0802B9DC`，外部动画调用仍为可重定�
 `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与各自原 ROM 一致。
+
+## `asm/code_entities.s`：JP 实体 UI 图标与对象构造入口
+
+JP 连续范围 `0x0802BC90–0x0802BD34` 已由两个直接 Thumb 入口组成：
+`func_0802BC90` 对应海外 `func_0802BEFC`，`func_0802BCC0` 对应海外
+`func_0802BF2C`。前者负责图标动画状态，后者保留对象构造参数、vtable、资源句柄
+初始化和末尾常量池的原始布局。
+
+JP 内部状态查询明确调用已提升的 `func_0802B9DC`；跨模块的
+`func_08032560`、`func_080A4A00`、`gUnk_080F1224` 和
+`vtable_unk_080E6644` 保持同一逻辑符号，并已从 JP `.map` 核对到其真实 JP 地址。
+没有别名、固定地址伪匹配、函数 `.byte` 或代码 `incbin`；下一未提升 JP 入口从
+`func_0802BD34` 开始。
+
+本批仅修改 JP 源码。等待资源补丁链稳定后，连续两次 SHA-1 和 `cmp` 均确认 JP 为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`，与 `baserom_jp.gba` 逐字节一致；
+US/EU/DE 当前 SHA-1 仍分别为
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。
