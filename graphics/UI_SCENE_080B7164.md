@@ -50,7 +50,13 @@ make gfx-ui-scene-080b7164-preview
 make gfx-ui-scene-080b7164-patch-test
 ```
 
-The normal ROM recipe rebuilds the selected region's streams and patches only
-their original intervals after `objcopy`. Unchanged sources reproduce retail
-bytes exactly; changed sources use the proven Raw-LZ encoder and are rejected
-if their fixed native slots are too small.
+The C `fomt-lz` tool now rebuilds all three streams beside their editable
+sources as `.tilemap.lz` and `.4bpp.lz` files. Assembly includes them directly
+under `gUiTwoLayerBackgroundMap0`, `gUiTwoLayerBackgroundMap1`, and
+`gUiTwoLayerBackgroundTiles`; the consuming literal pools use those symbols.
+The three streams no longer use a baseline ROM or a post-`objcopy` patch in
+the normal build. Their original slot sizes are checked during compression,
+and unchanged sources produce byte-identical JP/US/EU/DE ROMs. The palette
+still uses its separate bounded post-link path because its 0x200-byte copy
+crosses the adjacent indexed resource archive; `patch-test` above verifies
+that remaining path.

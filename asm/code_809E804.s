@@ -50583,13 +50583,13 @@ func_080B7164: @ 0x080B6B98
 	mov sb, r0
 	str r1, [sp, #0x40]
 	bl func_08008724
-	ldr r0, .Ljp_080B6D1C @ =gUnk_084B3734
+	ldr r0, .Ljp_080B6D1C @ =gUiTwoLayerBackgroundMap0
 	ldr r1, .Ljp_080B6D20 @ =0x0600F000
 	bl Unpack
-	ldr r0, .Ljp_080B6D24 @ =gUnk_084B3798
+	ldr r0, .Ljp_080B6D24 @ =gUiTwoLayerBackgroundMap1
 	ldr r1, .Ljp_080B6D28 @ =0x0600F800
 	bl Unpack
-	ldr r0, .Ljp_080B6D2C @ =gUnk_084B3840
+	ldr r0, .Ljp_080B6D2C @ =gUiTwoLayerBackgroundTiles
 	movs r1, #0xc0
 	lsls r1, r1, #0x13
 	bl Unpack
@@ -50755,11 +50755,11 @@ func_080B7164: @ 0x080B6B98
 	str r4, [sp, #0x4c]
 	b .Ljp_080B6E22
 	.align 2, 0
-.Ljp_080B6D1C: .4byte gUnk_084B3734
+.Ljp_080B6D1C: .4byte gUiTwoLayerBackgroundMap0
 .Ljp_080B6D20: .4byte 0x0600F000
-.Ljp_080B6D24: .4byte gUnk_084B3798
+.Ljp_080B6D24: .4byte gUiTwoLayerBackgroundMap1
 .Ljp_080B6D28: .4byte 0x0600F800
-.Ljp_080B6D2C: .4byte gUnk_084B3840
+.Ljp_080B6D2C: .4byte gUiTwoLayerBackgroundTiles
 .Ljp_080B6D30: .4byte 0x0600BFE0
 .Ljp_080B6D34: .4byte gUnk_084B3F4C
 .Ljp_080B6D38: .4byte 0x00001F41
@@ -142123,13 +142123,13 @@ func_080B7164: @ 0x080B7164
 	mov sb, r0
 	str r1, [sp, #0x40]
 	bl func_08008724
-	ldr r0, .L080B72E8 @ =gUnk_0872D5CC
+	ldr r0, .L080B72E8 @ =gUiTwoLayerBackgroundMap0
 	ldr r1, .L080B72EC @ =0x0600F000
 	bl Unpack
-	ldr r0, .L080B72F0 @ =gUnk_0872D630
+	ldr r0, .L080B72F0 @ =gUiTwoLayerBackgroundMap1
 	ldr r1, .L080B72F4 @ =0x0600F800
 	bl Unpack
-	ldr r0, .L080B72F8 @ =gUnk_0872D6D8
+	ldr r0, .L080B72F8 @ =gUiTwoLayerBackgroundTiles
 	movs r1, #0xc0
 	lsls r1, r1, #0x13
 	bl Unpack
@@ -142295,11 +142295,11 @@ func_080B7164: @ 0x080B7164
 	str r4, [sp, #0x4c]
 	b .L080B73EE
 	.align 2, 0
-.L080B72E8: .4byte gUnk_0872D5CC
+.L080B72E8: .4byte gUiTwoLayerBackgroundMap0
 .L080B72EC: .4byte 0x0600F000
-.L080B72F0: .4byte gUnk_0872D630
+.L080B72F0: .4byte gUiTwoLayerBackgroundMap1
 .L080B72F4: .4byte 0x0600F800
-.L080B72F8: .4byte gUnk_0872D6D8
+.L080B72F8: .4byte gUiTwoLayerBackgroundTiles
 .L080B72FC: .4byte 0x0600BFE0
 .L080B7300: .4byte gUnk_0872DDE4
 .L080B7304: .4byte 0x00001F41
