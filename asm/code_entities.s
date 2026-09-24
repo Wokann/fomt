@@ -22569,7 +22569,324 @@ func_0802D984:
     .global func_0802DC28
     .thumb_func
 func_0802DC28:
-    .incbin "baserom_jp.gba", 0x2DC28, (0x2EE80 - 0x2DC28)
+    push {r4, r5, r6, lr}
+    sub sp, #0x10
+    adds r6, r0, #0
+    movs r2, #0
+    str r2, [sp, #4]
+    cmp r1, #0
+    beq .Ljp_0802DC3C
+    ldrh r2, [r1]
+    ldrh r0, [r1, #4]
+    str r0, [sp, #4]
+.Ljp_0802DC3C:
+    adds r0, r6, #0
+    adds r0, #0xc3
+    ldrb r0, [r0]
+    cmp r0, #0
+    beq .Ljp_0802DC48
+    b .Ljp_0802DE42
+.Ljp_0802DC48:
+    movs r5, #2
+    ands r2, r5
+    lsls r0, r2, #0x18
+    lsrs r4, r0, #0x18
+    cmp r4, #0
+    bne .Ljp_0802DC56
+    b .Ljp_0802DE4C
+.Ljp_0802DC56:
+    ldr r0, [r6, #0x38]
+    adds r0, #0x54
+    bl func_0800F190
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Ljp_0802DC6A
+    adds r0, r6, #0
+    bl func_0802C69C
+.Ljp_0802DC6A:
+    ldr r2, [sp, #4]
+    lsls r1, r2, #0x19
+    lsrs r1, r1, #0x1f
+    lsls r0, r2, #0x18
+    lsrs r0, r0, #0x1f
+    orrs r1, r0
+    lsls r0, r2, #0x1a
+    lsrs r0, r0, #0x1f
+    orrs r0, r1
+    lsls r2, r2, #0x1b
+    lsrs r2, r2, #0x1f
+    orrs r2, r0
+    cmp r2, #0
+    beq .Ljp_0802DD04
+    add r0, sp, #4
+    ldrb r1, [r0]
+    movs r0, #0x20
+    ands r0, r1
+    cmp r0, #0
+    beq .Ljp_0802DCA8
+    adds r0, r6, #0
+    adds r0, #0x20
+    ldrb r0, [r0]
+    cmp r0, #2
+    bne .Ljp_0802DC9E
+    b .Ljp_0802DE86
+.Ljp_0802DC9E:
+    adds r0, r6, #0
+    movs r1, #2
+    bl SetAnimFacing__12AActorEntityUi
+    b .Ljp_0802DE86
+.Ljp_0802DCA8:
+    movs r0, #0x10
+    ands r0, r1
+    cmp r0, #0
+    beq .Ljp_0802DCC6
+    adds r0, r6, #0
+    adds r0, #0x20
+    ldrb r0, [r0]
+    cmp r0, #3
+    bne .Ljp_0802DCBC
+    b .Ljp_0802DE86
+.Ljp_0802DCBC:
+    adds r0, r6, #0
+    movs r1, #3
+    bl SetAnimFacing__12AActorEntityUi
+    b .Ljp_0802DE86
+.Ljp_0802DCC6:
+    movs r0, #0x40
+    ands r0, r1
+    cmp r0, #0
+    beq .Ljp_0802DCE4
+    adds r0, r6, #0
+    adds r0, #0x20
+    ldrb r0, [r0]
+    cmp r0, #1
+    bne .Ljp_0802DCDA
+    b .Ljp_0802DE86
+.Ljp_0802DCDA:
+    adds r0, r6, #0
+    movs r1, #1
+    bl SetAnimFacing__12AActorEntityUi
+    b .Ljp_0802DE86
+.Ljp_0802DCE4:
+    movs r0, #0x80
+    ands r0, r1
+    cmp r0, #0
+    bne .Ljp_0802DCEE
+    b .Ljp_0802DE86
+.Ljp_0802DCEE:
+    adds r0, r6, #0
+    adds r0, #0x20
+    ldrb r0, [r0]
+    cmp r0, #0
+    bne .Ljp_0802DCFA
+    b .Ljp_0802DE86
+.Ljp_0802DCFA:
+    adds r0, r6, #0
+    movs r1, #0
+    bl SetAnimFacing__12AActorEntityUi
+    b .Ljp_0802DE86
+.Ljp_0802DD04:
+    add r1, sp, #4
+    ldrb r3, [r1, #1]
+    movs r0, #1
+    adds r4, r0, #0
+    ands r4, r3
+    cmp r4, #0
+    beq .Ljp_0802DD1A
+    adds r0, r6, #0
+    adds r0, #0x3c
+    strb r2, [r0]
+    b .Ljp_0802DE86
+.Ljp_0802DD1A:
+    ldrb r1, [r1]
+    ands r0, r1
+    cmp r0, #0
+    beq .Ljp_0802DD44
+    ldr r0, [r6]
+    ldr r3, [r0]
+    movs r1, #0xa0
+    lsls r1, r1, #1
+    adds r3, r3, r1
+    add r1, sp, #8
+    ldr r2, .Ljp_0802DD40 @ =0x000003CE
+    str r2, [sp, #8]
+    str r4, [r1, #4]
+    ldr r3, [r3]
+    movs r2, #0
+    bl _call_via_r3
+    b .Ljp_0802DE6C
+    .align 2, 0
+.Ljp_0802DD40: .4byte 0x000003CE
+.Ljp_0802DD44:
+    adds r0, r5, #0
+    ands r0, r3
+    cmp r0, #0
+    bne .Ljp_0802DD4E
+    b .Ljp_0802DE86
+.Ljp_0802DD4E:
+    ldr r0, [r6, #0x38]
+    adds r0, #0x54
+    bl func_0800F190
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Ljp_0802DD6A
+    adds r0, r6, #0
+    movs r1, #0
+    bl func_080257D4
+    b .Ljp_0802DE86
+.Ljp_0802DD66:
+    ldr r0, [r4]
+    b .Ljp_0802DDEA
+.Ljp_0802DD6A:
+    ldr r0, [r6, #0x38]
+    adds r0, #0x54
+    bl func_0800F388
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Ljp_0802DE42
+    ldr r0, [r6, #0x38]
+    adds r0, #0x54
+    bl func_0800F204
+    cmp r0, #0
+    bne .Ljp_0802DE42
+    ldr r1, [r6, #0x38]
+    adds r1, #0x54
+    mov r0, sp
+    bl func_0800F20C
+    ldr r5, [r6, #0x14]
+    mov r0, sp
+    bl GetStaminaGain__C4Food
+    adds r4, r0, #0
+    mov r0, sp
+    bl GetFatigueGain__C4Food
+    adds r2, r0, #0
+    ldr r3, [r5, #0x64]
+    adds r0, r6, #0
+    adds r1, r4, #0
+    bl _call_via_r3
+    mov r0, sp
+    bl IsDrink__C4Food
+    cmp r0, #0
+    bne .Ljp_0802DDF6
+    adds r1, r6, #0
+    adds r1, #0x3c
+    movs r0, #0xf
+    strb r0, [r1]
+    ldr r0, [r6]
+    ldr r1, [r0]
+    movs r2, #0xa6
+    lsls r2, r2, #1
+    adds r1, r1, r2
+    ldr r1, [r1]
+    bl _call_via_r1
+    ldr r4, [r0]
+    ldr r5, [r0, #4]
+    cmp r4, r5
+    beq .Ljp_0802DDE6
+.Ljp_0802DDD4:
+    ldr r0, [r4]
+    bl func_08008CD0
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Ljp_0802DD66
+    adds r4, #4
+    cmp r4, r5
+    bne .Ljp_0802DDD4
+.Ljp_0802DDE6:
+    subs r0, r5, #4
+    ldr r0, [r0]
+.Ljp_0802DDEA:
+    movs r1, #0x65
+    bl func_08008B6C
+    b .Ljp_0802DE32
+.Ljp_0802DDF2:
+    ldr r0, [r4]
+    b .Ljp_0802DE2C
+.Ljp_0802DDF6:
+    adds r1, r6, #0
+    adds r1, #0x3c
+    movs r0, #0x10
+    strb r0, [r1]
+    ldr r0, [r6]
+    ldr r1, [r0]
+    movs r2, #0xa6
+    lsls r2, r2, #1
+    adds r1, r1, r2
+    ldr r1, [r1]
+    bl _call_via_r1
+    ldr r4, [r0]
+    ldr r5, [r0, #4]
+    cmp r4, r5
+    beq .Ljp_0802DE28
+.Ljp_0802DE16:
+    ldr r0, [r4]
+    bl func_08008CD0
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Ljp_0802DDF2
+    adds r4, #4
+    cmp r4, r5
+    bne .Ljp_0802DE16
+.Ljp_0802DE28:
+    subs r0, r5, #4
+    ldr r0, [r0]
+.Ljp_0802DE2C:
+    movs r1, #0x66
+    bl func_08008B6C
+.Ljp_0802DE32:
+    adds r0, r6, #0
+    bl func_0802A56C
+    ldr r0, [r6, #0x38]
+    adds r0, #0x54
+    bl func_0800F390
+    b .Ljp_0802DE86
+.Ljp_0802DE42:
+    adds r1, r6, #0
+    adds r1, #0x3c
+    movs r0, #0
+    strb r0, [r1]
+    b .Ljp_0802DE86
+.Ljp_0802DE4C:
+    ldr r0, [r6, #0x38]
+    adds r0, #0x54
+    bl func_0800F190
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Ljp_0802DE62
+    adds r0, r6, #0
+    bl func_08025634
+    b .Ljp_0802DE86
+.Ljp_0802DE62:
+    adds r0, r6, #0
+    adds r0, #0x3f
+    ldrb r0, [r0]
+    cmp r0, #0xf
+    bne .Ljp_0802DE74
+.Ljp_0802DE6C:
+    adds r0, r6, #0
+    adds r0, #0x3c
+    strb r4, [r0]
+    b .Ljp_0802DE86
+.Ljp_0802DE74:
+    cmp r0, #0xe
+    bne .Ljp_0802DE80
+    adds r0, r6, #0
+    bl func_0802C5F4
+    b .Ljp_0802DE86
+.Ljp_0802DE80:
+    adds r0, r6, #0
+    bl func_0802C074
+.Ljp_0802DE86:
+    add sp, #0x10
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_0802DE90
+    .thumb_func
+func_0802DE90:
+    .incbin "baserom_jp.gba", 0x2DE90, (0x2EE80 - 0x2DE90)
     .global func_0802EE80
     .thumb_func
 func_0802EE80:
