@@ -68,7 +68,7 @@ SECTIONS
         . = 0x2E0; /* JP ROM 0x080002E0, independently matched */
         src/sram_proxy_1.o(.text);
         . = 0x4C4; /* JP ROM 0x080004C4, independently matched */
-        asm/interrupt.o(.text);
+        src/interrupt.o(.text);
         . = 0x59C; /* JP ROM 0x0800059C, independently matched */
         src/new.o(.text);
         src/pure_virtual.o(.text);
