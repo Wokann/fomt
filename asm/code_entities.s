@@ -15234,8 +15234,286 @@ func_0802A2A4: @ 0x0802A2A4
 .Ljp_0802A318: .4byte 0xFFF80000
     .global func_0802A31C
     .thumb_func
-func_0802A31C:
-    .incbin "baserom_jp.gba", 0x2A31C, (0x2A56C - 0x2A31C)
+func_0802A31C: @ 0x0802A31C
+    push {r4, r5, r6, r7, lr}
+    mov r7, r8
+    push {r7}
+    sub sp, #8
+    adds r6, r0, #0
+    ldr r0, [r6, #0x38]
+    adds r4, r0, #0
+    adds r4, #0x54
+    adds r0, r4, #0
+    bl func_0800F190
+    lsls r0, r0, #0x18
+    lsrs r7, r0, #0x18
+    cmp r7, #0
+    beq .Ljp_0802A33C
+    b .Ljp_0802A556
+.Ljp_0802A33C:
+    adds r0, r6, #0
+    adds r0, #0x88
+    movs r1, #1
+    mov r8, r1
+    mov r2, r8
+    strb r2, [r0]
+    strb r7, [r0, #1]
+    movs r1, #0xa8
+    lsls r1, r1, #0xd
+    str r7, [r0, #4]
+    str r7, [r0, #8]
+    str r1, [r0, #0x14]
+    ldr r0, [r6, #0x10]
+    cmp r0, #0
+    bne .Ljp_0802A35C
+    b .Ljp_0802A55E
+.Ljp_0802A35C:
+    adds r5, r0, #0
+    adds r0, r4, #0
+    bl func_0800F388
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Ljp_0802A392
+    ldr r0, [r5]
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r1, [r1, #0x64]
+    bl _call_via_r1
+    adds r1, r0, #0
+    adds r0, r5, #0
+    adds r0, #0xb4
+    movs r2, #0xb0
+    lsls r2, r2, #1
+    bl InitializeIndexedResourceHandle
+    adds r0, r5, #0
+    adds r0, #0xc8
+    mov r1, r8
+    strb r1, [r0]
+    adds r0, #2
+    strb r7, [r0]
+    b .Ljp_0802A550
+.Ljp_0802A392:
+    adds r0, r4, #0
+    bl func_0800F204
+    cmp r0, #5
+    bls .Ljp_0802A39E
+    b .Ljp_0802A55E
+.Ljp_0802A39E:
+    lsls r0, r0, #2
+    ldr r1, .Ljp_0802A3A8 @ =.Ljp_0802A3AC
+    adds r0, r0, r1
+    ldr r0, [r0]
+    mov pc, r0
+    .align 2, 0
+.Ljp_0802A3A8: .4byte .Ljp_0802A3AC
+.Ljp_0802A3AC: @ jump table
+    .4byte .Ljp_0802A3C4 @ case 0
+    .4byte .Ljp_0802A3DA @ case 1
+    .4byte .Ljp_0802A452 @ case 2
+    .4byte .Ljp_0802A4A8 @ case 3
+    .4byte .Ljp_0802A50C @ case 4
+    .4byte .Ljp_0802A522 @ case 5
+.Ljp_0802A3C4:
+    mov r0, sp
+    adds r1, r4, #0
+    bl func_0800F20C
+    mov r0, sp
+    bl GetIconId__C4Food
+    adds r4, r0, #0
+    lsls r4, r4, #0x10
+    lsrs r4, r4, #0x10
+    b .Ljp_0802A52A
+.Ljp_0802A3DA:
+    adds r0, r4, #0
+    bl func_0800F258
+    adds r1, r0, #0
+    add r0, sp, #4
+    strb r1, [r0]
+    bl GetId__C7Article
+    cmp r0, #0x1b
+    bne .Ljp_0802A438
+    adds r0, r6, #0
+    bl func_08025890
+    lsls r0, r0, #0x18
+    lsrs r4, r0, #0x18
+    cmp r4, #0
+    beq .Ljp_0802A412
+    ldr r0, [r5]
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r1, [r1, #0x64]
+    bl _call_via_r1
+    adds r1, r0, #0
+    adds r0, r5, #0
+    adds r0, #0xb4
+    movs r2, #4
+    b .Ljp_0802A53E
+.Ljp_0802A412:
+    ldr r0, [r5]
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r1, [r1, #0x64]
+    bl _call_via_r1
+    adds r1, r0, #0
+    adds r0, r5, #0
+    adds r0, #0xb4
+    movs r2, #3
+    bl InitializeIndexedResourceHandle
+    adds r0, r5, #0
+    adds r0, #0xc8
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r4, [r0]
+    b .Ljp_0802A550
+.Ljp_0802A438:
+    adds r0, r4, #0
+    bl func_0800F258
+    adds r1, r0, #0
+    mov r0, sp
+    adds r0, #5
+    strb r1, [r0]
+    bl GetIconId__C7Article
+    adds r4, r0, #0
+    lsls r4, r4, #0x10
+    lsrs r4, r4, #0x10
+    b .Ljp_0802A52A
+.Ljp_0802A452:
+    ldr r0, [r6, #0x34]
+    ldr r2, .Ljp_0802A488 @ =0x00001C70
+    adds r0, r0, r2
+    bl GetGrowthStage__C3Dog
+    adds r4, r0, #0
+    cmp r4, #0
+    bne .Ljp_0802A490
+    ldr r0, [r5]
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r1, [r1, #0x68]
+    bl _call_via_r1
+    adds r1, r0, #0
+    adds r0, r5, #0
+    adds r0, #0xb4
+    ldr r2, .Ljp_0802A48C @ =0x000003DA
+    bl InitializeIndexedResourceHandle
+    adds r0, r5, #0
+    adds r0, #0xc8
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r4, [r0]
+    b .Ljp_0802A550
+    .align 2, 0
+.Ljp_0802A488: .4byte 0x00001C70
+.Ljp_0802A48C: .4byte 0x000003DA
+.Ljp_0802A490:
+    ldr r0, [r5]
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r1, [r1, #0x68]
+    bl _call_via_r1
+    adds r1, r0, #0
+    adds r0, r5, #0
+    adds r0, #0xb4
+    movs r2, #0xdd
+    lsls r2, r2, #2
+    b .Ljp_0802A53E
+.Ljp_0802A4A8:
+    adds r0, r4, #0
+    bl func_0800F344
+    adds r1, r0, #0
+    ldr r0, [r6, #0x34]
+    movs r2, #0x82
+    lsls r2, r2, #3
+    adds r0, r0, r2
+    bl GetChicken__4CoopUi
+    bl GetGrowthStage__C7Chicken
+    adds r4, r0, #0
+    cmp r4, #0
+    bne .Ljp_0802A4F0
+    ldr r0, [r5]
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r1, [r1, #0x68]
+    bl _call_via_r1
+    adds r1, r0, #0
+    adds r0, r5, #0
+    adds r0, #0xb4
+    ldr r2, .Ljp_0802A4EC @ =0x0000073D
+    bl InitializeIndexedResourceHandle
+    adds r0, r5, #0
+    adds r0, #0xc8
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r4, [r0]
+    b .Ljp_0802A550
+    .align 2, 0
+.Ljp_0802A4EC: .4byte 0x0000073D
+.Ljp_0802A4F0:
+    ldr r0, [r5]
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r1, [r1, #0x68]
+    bl _call_via_r1
+    adds r1, r0, #0
+    adds r0, r5, #0
+    adds r0, #0xb4
+    ldr r2, .Ljp_0802A508 @ =0x00000734
+    b .Ljp_0802A53E
+    .align 2, 0
+.Ljp_0802A508: .4byte 0x00000734
+.Ljp_0802A50C:
+    ldr r0, [r5]
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r1, [r1, #0x64]
+    bl _call_via_r1
+    adds r1, r0, #0
+    adds r0, r5, #0
+    adds r0, #0xb4
+    movs r2, #0x35
+    b .Ljp_0802A53E
+.Ljp_0802A522:
+    adds r0, r4, #0
+    bl func_0800F360
+    adds r4, r0, #0
+.Ljp_0802A52A:
+    ldr r0, [r5]
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r1, [r1, #0x64]
+    bl _call_via_r1
+    adds r1, r0, #0
+    adds r0, r5, #0
+    adds r0, #0xb4
+    adds r2, r4, #0
+.Ljp_0802A53E:
+    bl InitializeIndexedResourceHandle
+    adds r0, r5, #0
+    adds r0, #0xc8
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r2, [r0]
+.Ljp_0802A550:
+    adds r0, #1
+    strb r1, [r0]
+    b .Ljp_0802A55E
+.Ljp_0802A556:
+    adds r1, r6, #0
+    adds r1, #0x88
+    movs r0, #0
+    strb r0, [r1]
+.Ljp_0802A55E:
+    add sp, #8
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
     .global func_0802A56C
     .thumb_func
 func_0802A56C:

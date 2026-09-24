@@ -3382,6 +3382,19 @@ JP `func_080260E0` 已由原始 `.incbin` 提升为直接 Thumb，与海外
 本批仅修改 JP 源码；WSL 以 `-j4` 重建后的 SHA-1 为
 `A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并与 `baserom_jp.gba` 逐字节一致。
 
+## `asm/code_entities.s`：JP 实体资源选择入口
+
+JP `func_0802A31C` 已由原始 `.incbin` 提升为直接 Thumb，与海外
+`func_0802A588` 保持同一层级。它按物品、动物和鸡等资源类型选择图标并初始化资源
+句柄；所有本地分支和常量池均按 JP 原 ROM 的实际布局保留。
+
+海外 `func_08025AFC` 的调用已直接对应到 JP 真实入口 `func_08025890`。没有 `.set`、
+`.thumb_set`、固定 BL 字节或伪造 `+offset`。后续 JP 原始代码从 `func_0802A56C`
+继续直接 `.incbin`。
+
+本批仅修改 JP 源码；WSL 以 `-j4` 重建后的 SHA-1 为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并与 `baserom_jp.gba` 逐字节一致。
+
 ## `asm/code_entities.s`：JP 工具 UI 资源初始化入口
 
 JP `func_0802A2A4` 已由原始 `.incbin` 提升为直接 Thumb，与海外
