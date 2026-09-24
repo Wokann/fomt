@@ -22,8 +22,9 @@ All four retail FoMT ROMs contain exactly the same 0x640-byte archive:
 
 The verified archive SHA-256 is
 `38ffc2dc46e7d720773ca0ee78e7329bceaced0848a8f4c123cdb7a7a97739af`.
-`tools/animal_festival_icons.py` verifies that full range before export and
-rebuild, then validates every 0xA0-byte icon record individually.  Assembly
+`tools/animal_festival_icons.py` verifies that full range before export,
+then validates every 0xA0-byte icon record individually. The normal build
+uses the shared `PNG -> .4bpp/.gbapal` Make rules and `gbagfx`; assembly
 keeps all original address labels and directly includes the source-adjacent
 tile/palette files.
 

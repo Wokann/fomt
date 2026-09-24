@@ -1836,18 +1836,6 @@ $(MAP_STATE_TEMPLATE_STAMP): $(MAP_STATE_TEMPLATE_SOURCES) $(MAP_STATE_TEMPLATE_
 	  --source-dir $(MAP_STATE_TEMPLATE_SOURCE_DIR) --output-dir $(MAP_STATE_TEMPLATE_OUTPUT_DIR)
 	@touch $@
 
-$(RECORDS_MINIGAME_OUTPUTS) &: $(RECORDS_MINIGAME_SOURCES) $(RECORDS_MINIGAME_TOOL)
-	@$(PYTHON) $(RECORDS_MINIGAME_TOOL) build --source-dir $(RECORDS_MINIGAME_SOURCE_DIR) --output-dir $(RECORDS_MINIGAME_OUTPUT_DIR)
-
-$(ANIMAL_FESTIVAL_ICON_OUTPUTS) &: $(ANIMAL_FESTIVAL_ICON_SOURCES) $(ANIMAL_FESTIVAL_ICON_TOOL)
-	@$(PYTHON) $(ANIMAL_FESTIVAL_ICON_TOOL) build --source-dir $(ANIMAL_FESTIVAL_ICON_SOURCE_DIR) --output-dir $(ANIMAL_FESTIVAL_ICON_OUTPUT_DIR)
-
-$(FARM_STATUS_CREATURE_ICON_OUTPUTS) &: $(FARM_STATUS_CREATURE_ICON_SOURCES) $(FARM_STATUS_CREATURE_ICON_TOOL)
-	@$(PYTHON) $(FARM_STATUS_CREATURE_ICON_TOOL) build --source-dir $(FARM_STATUS_CREATURE_ICON_SOURCE_DIR) --output-dir $(FARM_STATUS_CREATURE_ICON_OUTPUT_DIR)
-
-$(FARM_STATUS_TASK_UI_TILE_OUTPUTS) &: $(FARM_STATUS_TASK_UI_TILE_SOURCE) $(FARM_STATUS_TASK_UI_TILE_TOOL)
-	@$(PYTHON) $(FARM_STATUS_TASK_UI_TILE_TOOL) build --source-dir $(FARM_STATUS_TASK_UI_TILE_SOURCE_DIR) --output-dir $(FARM_STATUS_TASK_UI_TILE_OUTPUT_DIR)
-
 FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
@@ -3844,11 +3832,11 @@ gfx-verify:
 # Standard source-adjacent conversions mirror pret's graphics_file_rules.mk.
 # Assets that need exact record packing or a retail-compatible compressor keep
 # dedicated rules above; ordinary PNG-derived files use these shared rules.
-%.1bpp: %.png
+%.1bpp: %.png $(GFX_TOOL)
 	@$(GFX_TOOL) $< $@
 
-%.4bpp: %.png
+%.4bpp: %.png $(GFX_TOOL)
 	@$(GFX_TOOL) $< $@
 
-%.gbapal: %.png
+%.gbapal: %.png $(GFX_TOOL)
 	@$(GFX_TOOL) $< $@

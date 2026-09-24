@@ -25,6 +25,10 @@ palette data.  `tools/records_minigame_resources.py` owns these bounds and
 the expected SHA-256 values; it refuses to export a selected ROM whose record
 does not match.
 
+The normal build uses the shared `PNG -> .4bpp/.gbapal` Make rules and
+`gbagfx`, one PNG at a time. The Python tool remains for ROM export and
+verification; it is not part of the conversion path.
+
 ```console
 make gfx-records-minigame-all
 ```

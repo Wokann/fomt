@@ -9,7 +9,9 @@ adjacent palette record to `0x05000220`.
 The build derives `shared/harvest_sprite_task_ui_tile.4bpp` and
 `shared/harvest_sprite_task_ui_tile.gbapal` beside that source image.  Assembly
 includes those source-adjacent artifacts directly; `build/` only holds normal
-compiler and linker intermediates.
+compiler and linker intermediates. Both conversions use the shared PNG Make
+rules and `gbagfx`; the dedicated Python tool remains for export and ROM
+verification.
 
 The upload pair is `gUnk_08750C4C` / `gUnk_08750C6C`.  It is shared byte for
 byte by all four retail FoMT ROMs:

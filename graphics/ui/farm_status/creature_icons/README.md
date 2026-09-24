@@ -27,7 +27,8 @@ The verified SHA-256 values, in source order, are
 `7095571e9e9b0ca2ba0ae87e9f0f9cc2d2f74bd674e76f78f4ed770809ed6ae8` and
 `3f3af3b3491fb338cbc6003a73453e03454b47a374a61b15a4eb09f974be6bb5`.
 `tools/farm_status_creature_icons.py` verifies both native ranges before
-export/rebuild and then compares every generated `0xA0` record individually.
+export and then compares every generated `0xA0` record individually. The
+normal build uses the shared `PNG -> .4bpp/.gbapal` Make rules and `gbagfx`.
 
 The original code keeps separate tile and palette labels, and those labels are
 retained in `asm/data/data_0813B288.s`. Several calls occur within the Farm

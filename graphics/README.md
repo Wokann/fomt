@@ -443,8 +443,9 @@ pointer-table targets with a generated file for the selected region.
 make gfx-records-minigame-all
 ```
 
-This command rebuilds all four output directories and verifies each of the
-fourteen generated ranges against all four ROMs.  See
+The generic `%.4bpp` and `%.gbapal` rules rebuild the shared outputs beside
+their PNG sources; the audit then verifies all fourteen tile/palette ranges
+against all four ROMs.  See
 `ui/records_minigame/README.md` for the exact source-regeneration command and
 the reason no OAM or JSON sidecar is involved.
 
