@@ -3382,6 +3382,18 @@ JP `func_080260E0` 已由原始 `.incbin` 提升为直接 Thumb，与海外
 本批仅修改 JP 源码；WSL 以 `-j4` 重建后的 SHA-1 为
 `A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并与 `baserom_jp.gba` 逐字节一致。
 
+## `asm/code_entities.s`：JP 实体 UI 工具对象分派入口
+
+JP `func_08029CC4` 已由原始 `.incbin` 提升为直接 Thumb，与海外
+`func_08029F30` 保持同一层级。函数的工具对象构造、完整状态表、资源初始化、工具
+查询和动画调用均依照 JP 原 ROM 的真实控制流保留。
+
+全部外部调用已有可重定位符号，不存在需额外映射的区域内目标；无 `.set`、`.thumb_set`、
+固定 BL 字节或伪造 `+offset`。剩余 JP 原始代码从 `func_0802A194` 继续直接 `.incbin`。
+
+本批仅修改 JP 源码；WSL 以 `-j4` 重建后的 SHA-1 为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并与 `baserom_jp.gba` 逐字节一致。
+
 ## `asm/code_entities.s`：JP 实体 UI 动画状态分派入口
 
 JP `func_08029780` 已由原始 `.incbin` 提升为直接 Thumb，与海外
