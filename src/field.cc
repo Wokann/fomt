@@ -563,20 +563,7 @@ asm(".align 2, 0");
 
 #if defined(REGION_JP)
 asm(
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "    .global DayUpdate__9FieldPlotiRC8GameDate\n"
-    "    .thumb_func\n"
-    "DayUpdate__9FieldPlotiRC8GameDate:\n"
-    "    .incbin \"baserom_jp.gba\", 0xA7B8, 0x34C\n"
-    "\n"
-    "    .global method_0800AB08__9FieldPlot6Season\n"
-    "    .thumb_func\n"
-    "method_0800AB08__9FieldPlot6Season:\n"
-    "    .incbin \"baserom_jp.gba\", 0xAB04, 0x3FC\n"
-    "\n"
-    "    .syntax divided\n"
+    "    .include \"asm/field_jp.inc\"\n"
 );
 #else
 

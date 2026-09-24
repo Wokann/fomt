@@ -81,6 +81,14 @@ C_OBJS := $(C_SRCS:%.c=$(BUILD_DIR)/%.o)
 CXX_SRCS := $(filter-out $(SRC_DIR)/reference_guide.cc,$(wildcard $(SRC_DIR)/*.cc $(SRC_DIR)/rt/*.cc))
 CXX_OBJS := $(CXX_SRCS:%.cc=$(BUILD_DIR)/%.o)
 
+# Some JP-only implementations are ordinary compiler-owned C++ objects whose
+# historical inline assembly is kept in reviewable assembly include files.
+# Derive the object dependencies from the include names so editing one always
+# rebuilds its owning C++ object without naming a ROM as a build input.
+INLINE_JP_ASM_INCLUDES := $(wildcard $(ASM_DIR)/*_jp.inc)
+INLINE_JP_ASM_MODULES := $(patsubst $(ASM_DIR)/%_jp.inc,%,$(INLINE_JP_ASM_INCLUDES))
+$(foreach module,$(INLINE_JP_ASM_MODULES),$(eval $(BUILD_DIR)/$(SRC_DIR)/$(module).o: $(ASM_DIR)/$(module)_jp.inc))
+
 
 ASM_SRCS := $(wildcard $(SRC_DIR)/*.s $(ASM_DIR)/*.s)
 ASM_OBJS := $(ASM_SRCS:%.s=$(BUILD_DIR)/%.o)

@@ -1296,6 +1296,9 @@ func_0803B0A8:
     pop	{r4, r5, r6, r7}
     pop	{r0}
     bx	r0
+    .global func_0803AEBC
+    .thumb_func
+func_0803AEBC:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -1505,6 +1508,9 @@ func_0803B0A8:
     pop	{r0}
     bx	r0
     .align 2, 0
+    .global func_0803B03C
+    .thumb_func
+func_0803B03C:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9
@@ -1605,6 +1611,9 @@ func_0803B0A8:
     pop	{r0}
     bx	r0
     .align 2, 0
+    .global func_0803B0FC
+    .thumb_func
+func_0803B0FC:
     push	{r4, r5, r6, r7, lr}
     mov	r7, sl
     mov	r6, r9

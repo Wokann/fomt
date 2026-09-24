@@ -532,14 +532,7 @@ asm(".align 2, 0");
 
 #if defined(REGION_JP)
 asm(
-    "    .section .text\n"
-    "    .syntax unified\n"
-    "    .thumb\n"
-    "    .global AttemptBirth__4BarnUi\n"
-    "    .thumb_func\n"
-    "AttemptBirth__4BarnUi:\n"
-    "    .incbin \"baserom_jp.gba\", 0xD888, 0x154\n"
-    "    .syntax divided\n"
+    "    .include \"asm/barn_jp.inc\"\n"
 );
 #else
 

@@ -3213,9 +3213,770 @@ func_0802153C:
     .global func_08021580
     .thumb_func
 func_08021580:
-    .incbin "baserom_jp.gba", 0x21580, (0x21A18 - 0x21580)
+    push {r4, r5, r6, r7, lr}
+    mov r7, sl
+    mov r6, sb
+    mov r5, r8
+    push {r5, r6, r7}
+    sub sp, #0xd8
+    adds r6, r0, #0
+    ldr r0, [r6]
+    mov sl, r0
+    adds r0, r6, #0
+    adds r0, #0x3e
+    ldrb r0, [r0]
+    cmp r0, #0
+    beq .Lauto_0802159E
+    b loc_08021BFE
+    .Lauto_0802159E:
+    ldr r1, [r6, #0x34]
+    str r1, [sp, #0xbc]
+    adds r0, r1, #0
+    bl GetGrowthStage__C5Horse
+    adds r5, r0, #0
+    ldrh r2, [r6, #4]
+    str r2, [sp, #0xc0]
+    mov r3, sl
+    ldr r1, [r3]
+    add r0, sp, #8
+    ldr r3, [r1, #0x34]
+    mov r1, sl
+    bl _call_via_r3
+    ldr r1, [r6, #0x14]
+    add r4, sp, #0x7c
+    adds r0, r4, #0
+    ldr r2, [r1, #0xc]
+    adds r1, r6, #0
+    bl _call_via_r2
+    movs r1, #0
+    movs r0, #0
+    mov r8, r4
+    ldr r4, [sp, #0xc0]
+    cmp r4, #8
+    bgt .Lauto_080215D8
+    movs r0, #1
+    .Lauto_080215D8:
+    cmp r0, #0
+    beq .Lauto_080215E2
+    cmp r5, #1
+    bne .Lauto_080215E2
+    movs r1, #1
+    .Lauto_080215E2:
+    adds r2, r1, #0
+    cmp r2, #0
+    beq .Lauto_080215FC
+    mov r7, r8
+    movs r1, #4
+    ldrsh r0, [r7, r1]
+    add r1, sp, #0x7c
+    movs r3, #0
+    ldrsh r1, [r1, r3]
+    subs r0, r0, r1
+    adds r0, #0x10
+    str r0, [sp, #0xc4]
+    b .Lauto_08021600
+    .Lauto_080215FC:
+    movs r4, #0
+    str r4, [sp, #0xc4]
+    .Lauto_08021600:
+    cmp r2, #0
+    beq .Lauto_08021616
+    mov r7, r8
+    movs r1, #6
+    ldrsh r0, [r7, r1]
+    movs r2, #2
+    ldrsh r1, [r7, r2]
+    subs r0, r0, r1
+    adds r0, #0x10
+    str r0, [sp, #0xc8]
+    b .Lauto_0802161A
+    .Lauto_08021616:
+    movs r3, #0
+    str r3, [sp, #0xc8]
+    .Lauto_0802161A:
+    add r4, sp, #0x14
+    movs r7, #0x21
+    str r7, [sp, #0x14]
+    movs r0, #0x21
+    rsbs r0, r0, #0
+    str r0, [r4, #4]
+    str r0, [r4, #8]
+    str r7, [r4, #0xc]
+    add r1, sp, #0x28
+    add r0, sp, #8
+    ldm r0!, {r2, r3, r7}
+    stm r1!, {r2, r3, r7}
+    ldr r0, [sp, #0x7c]
+    ldr r1, [sp, #0x80]
+    str r0, [sp, #0x34]
+    str r1, [sp, #0x38]
+    movs r0, #0x20
+    str r0, [r4, #0x28]
+    ldr r1, [sp, #0xc4]
+    str r1, [sp, #0x40]
+    ldr r2, [sp, #0xc8]
+    str r2, [sp, #0x44]
+    mov r3, sl
+    ldr r0, [r3]
+    ldr r2, [r0, #0x40]
+    mov r0, sl
+    movs r1, #0
+    bl _call_via_r2
+    mov sb, r0
+    mov r7, sl
+    ldr r0, [r7]
+    ldr r2, [r0, #0x40]
+    mov r0, sl
+    movs r1, #0x4a
+    bl _call_via_r2
+    adds r7, r0, #0
+    adds r0, r6, #0
+    adds r0, #0x3d
+    ldrb r1, [r0]
+    str r0, [sp, #0xd4]
+    cmp r1, #0
+    beq .Lauto_08021750
+    movs r1, #0
+    ldrh r0, [r6, #0x24]
+    cmp r0, #0
+    bne .Lauto_0802167C
+    movs r1, #1
+    .Lauto_0802167C:
+    cmp r1, #0
+    beq .Lauto_08021750
+    movs r0, #0
+    ldr r1, [sp, #0xd4]
+    strb r0, [r1]
+    movs r2, #0x38
+    .byte 0xB0, 0x5E, 0x00, 0x04, 0xB0, 0x60, 0x3A, 0x23, 0xF0, 0x5E, 0x00, 0x04, 0xF0, 0x60, 0x71, 0x69
+    .byte 0x21, 0xAC, 0x20, 0x1C, 0xCA, 0x68, 0x31, 0x1C, 0xB1, 0xF0, 0x14, 0xFD, 0x20, 0x68, 0x61, 0x68
+    .byte 0x1F, 0x90, 0x20, 0x91, 0x44, 0x46, 0x04, 0x20, 0x25, 0x5E, 0x00, 0x21, 0x60, 0x5E, 0x2D, 0x1A
+    .byte 0x10, 0x35, 0xAA, 0x46, 0x06, 0x22, 0xA4, 0x5E, 0x43, 0x46, 0x02, 0x25, 0x58, 0x5F, 0x24, 0x1A
+    .byte 0x10, 0x34, 0xA0, 0x46, 0x12, 0xA9, 0x21, 0x20, 0x12, 0x90, 0x21, 0x22, 0x52, 0x42, 0x4A, 0x60
+    .byte 0x8A, 0x60, 0xC8, 0x60, 0x17, 0xAA, 0x02, 0xA8, 0x38, 0xC8, 0x38, 0xC2, 0x1F, 0x9A, 0x20, 0x9B
+    .byte 0x1A, 0x92, 0x1B, 0x93, 0x20, 0x20, 0x88, 0x62, 0x52, 0x46, 0x1D, 0x92, 0x43, 0x46, 0x1E, 0x93
+    .byte 0x05, 0xA8, 0x34, 0x22, 0xB1, 0xF0, 0x26, 0xFD, 0x4C, 0x46, 0x00, 0x2C, 0x0F, 0xD0, 0xA0, 0x88
+    .byte 0x30, 0x9D, 0xA8, 0x42, 0x0B, 0xD1, 0x61, 0x69, 0x23, 0xAC, 0x20, 0x1C, 0xCA, 0x68, 0x49, 0x46
+    .byte 0xB1, 0xF0, 0xD8, 0xFC, 0x05, 0xA8, 0x21, 0x1C, 0x01, 0x22, 0x89, 0xF0, 0xD1, 0xFE, 0x00, 0x2F
+    .byte 0x00, 0xD1, 0xE2, 0xE1, 0xB8, 0x88, 0x30, 0x99, 0x88, 0x42, 0x00, 0xD0, 0xDD, 0xE1, 0x79, 0x69
+    .byte 0x25, 0xAC, 0x20, 0x1C, 0xCA, 0x68, 0x39, 0x1C, 0xB1, 0xF0, 0xC4, 0xFC, 0x05, 0xA8, 0x21, 0x1C
+    .byte 0x00, 0x22, 0x89, 0xF0, 0xBD, 0xFE, 0xD0, 0xE1
+    .Lauto_08021750:
+    mov r2, sb
+    cmp r2, #0
+    beq .Lauto_08021776
+    ldrh r0, [r2, #4]
+    ldr r3, [sp, #0xc0]
+    cmp r0, r3
+    bne .Lauto_08021776
+    ldr r1, [r2, #0x14]
+    add r4, sp, #0x9c
+    adds r0, r4, #0
+    ldr r2, [r1, #0xc]
+    mov r1, sb
+    bl _call_via_r2
+    add r0, sp, #0x14
+    adds r1, r4, #0
+    movs r2, #1
+    bl func_080AB4C8
+    .Lauto_08021776:
+    cmp r7, #0
+    beq .Lauto_0802179A
+    ldrh r0, [r7, #4]
+    ldr r4, [sp, #0xc0]
+    cmp r0, r4
+    bne .Lauto_0802179A
+    ldr r1, [r7, #0x14]
+    add r4, sp, #0xa4
+    adds r0, r4, #0
+    ldr r2, [r1, #0xc]
+    adds r1, r7, #0
+    bl _call_via_r2
+    add r0, sp, #0x14
+    adds r1, r4, #0
+    movs r2, #0
+    bl func_080AB4C8
+    .Lauto_0802179A:
+    ldr r7, [sp, #0xd4]
+    ldrb r0, [r7]
+    cmp r0, #0
+    beq .Lauto_080217A4
+    b .Lauto_080218C6
+    .Lauto_080217A4:
+    cmp r5, #1
+    beq .Lauto_080217AA
+    b .Lauto_080218C6
+    .Lauto_080217AA:
+    movs r1, #0xa
+    ldrsh r0, [r6, r1]
+    str r0, [sp, #0xcc]
+    movs r3, #0xe
+    ldrsh r2, [r6, r3]
+    str r2, [sp, #0xd0]
+    ldr r4, [r6, #0x18]
+    mov r8, r4
+    ldr r7, [r6, #0x1c]
+    adds r4, r0, #0
+    adds r5, r2, #0
+    cmp r7, #0
+    ble .Lauto_080217F6
+    ldr r1, [sp, #0x14]
+    ldr r0, [sp, #0x3c]
+    cmp r1, r0
+    ble .Lauto_080217D6
+    add r0, sp, #0x14
+    bl func_080AB294
+    ldr r0, [sp, #0x14]
+    b .Lauto_080217D8
+    .Lauto_080217D6:
+    adds r0, r1, #0
+    .Lauto_080217D8:
+    cmp r0, #0
+    bne .Lauto_080217F6
+    ldr r1, [sp, #0x14]
+    ldr r0, [sp, #0x3c]
+    cmp r1, r0
+    ble .Lauto_080217EA
+    add r0, sp, #0x14
+    bl func_080AB294
+    .Lauto_080217EA:
+    add r1, sp, #0x24
+    ldrb r0, [r1]
+    cmp r0, #0
+    beq .Lauto_080217F6
+    ldr r2, [sp, #0xc8]
+    adds r5, r5, r2
+    .Lauto_080217F6:
+    cmp r7, #0
+    bge .Lauto_0802182E
+    ldr r1, [sp, #0x18]
+    ldr r0, [sp, #0x3c]
+    cmn r1, r0
+    bge .Lauto_0802180C
+    add r0, sp, #0x14
+    bl func_080AB308
+    ldr r0, [sp, #0x18]
+    b .Lauto_0802180E
+    .Lauto_0802180C:
+    adds r0, r1, #0
+    .Lauto_0802180E:
+    cmp r0, #0
+    bne .Lauto_0802182E
+    ldr r1, [sp, #0x3c]
+    ldr r0, [sp, #0x18]
+    cmn r0, r1
+    bge .Lauto_08021820
+    add r0, sp, #0x14
+    bl func_080AB308
+    .Lauto_08021820:
+    movs r3, #0x25
+    add r3, sp
+    ldrb r0, [r3]
+    cmp r0, #0
+    beq .Lauto_0802182E
+    ldr r7, [sp, #0xc8]
+    subs r5, r5, r7
+    .Lauto_0802182E:
+    mov r0, r8
+    cmp r0, #0
+    bge .Lauto_08021868
+    ldr r1, [sp, #0x1c]
+    ldr r0, [sp, #0x3c]
+    cmn r1, r0
+    bge .Lauto_08021846
+    add r0, sp, #0x14
+    bl func_080AB380
+    ldr r0, [sp, #0x1c]
+    b .Lauto_08021848
+    .Lauto_08021846:
+    adds r0, r1, #0
+    .Lauto_08021848:
+    cmp r0, #0
+    bne .Lauto_08021868
+    ldr r1, [sp, #0x3c]
+    ldr r0, [sp, #0x1c]
+    cmn r0, r1
+    bge .Lauto_0802185A
+    add r0, sp, #0x14
+    bl func_080AB380
+    .Lauto_0802185A:
+    movs r1, #0x26
+    add r1, sp
+    ldrb r0, [r1]
+    cmp r0, #0
+    beq .Lauto_08021868
+    ldr r2, [sp, #0xc4]
+    subs r4, r4, r2
+    .Lauto_08021868:
+    mov r3, r8
+    cmp r3, #0
+    ble .Lauto_080218A2
+    ldr r1, [sp, #0x20]
+    ldr r0, [sp, #0x3c]
+    cmp r1, r0
+    ble .Lauto_08021880
+    add r0, sp, #0x14
+    bl func_080AB3FC
+    ldr r0, [sp, #0x20]
+    b .Lauto_08021882
+    .Lauto_08021880:
+    adds r0, r1, #0
+    .Lauto_08021882:
+    cmp r0, #0
+    bne .Lauto_080218A2
+    ldr r1, [sp, #0x20]
+    ldr r0, [sp, #0x3c]
+    cmp r1, r0
+    ble .Lauto_08021894
+    add r0, sp, #0x14
+    bl func_080AB3FC
+    .Lauto_08021894:
+    movs r7, #0x27
+    add r7, sp
+    ldrb r0, [r7]
+    cmp r0, #0
+    beq .Lauto_080218A2
+    ldr r0, [sp, #0xc4]
+    adds r4, r4, r0
+    .Lauto_080218A2:
+    ldr r1, [sp, #0xcc]
+    cmp r4, r1
+    bne .Lauto_080218AE
+    ldr r2, [sp, #0xd0]
+    cmp r5, r2
+    beq .Lauto_080218C6
+    .Lauto_080218AE:
+    strh r4, [r6, #0x38]
+    strh r5, [r6, #0x3a]
+    movs r0, #1
+    ldr r3, [sp, #0xd4]
+    strb r0, [r3]
+    adds r0, r6, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r6, #0
+    movs r1, #6
+    bl func_08021DDC
+    .Lauto_080218C6:
+    ldr r4, [sp, #0xbc]
+    ldr r0, [r4, #0x20]
+    cmp r0, #1
+    bne .Lauto_080218D0
+    b loc_08021A1C
+    .Lauto_080218D0:
+    cmp r0, #1
+    bgt .Lauto_080218DA
+    cmp r0, #0
+    beq .Lauto_080218E2
+    b loc_08021BEC
+    .Lauto_080218DA:
+    cmp r0, #2
+    bne .Lauto_080218E0
+    b loc_08021B10
+    .Lauto_080218E0:
+    b loc_08021BEC
+    .Lauto_080218E2:
+    ldr r5, [sp, #0xbc]
+    adds r5, #0x24
+    mov sb, r5
+    ldr r7, [sp, #0xbc]
+    ldrh r4, [r7, #0x24]
+    cmp r4, #0
+    beq .Lauto_0802197A
+    ldr r5, [r6, #0x18]
+    ldr r7, [r6, #0x1c]
+    movs r0, #0
+    mov r8, r0
+    cmp r5, #0
+    bge .Lauto_08021914
+    ldr r1, [sp, #0x1c]
+    ldr r0, [sp, #0x3c]
+    cmn r1, r0
+    bge .Lauto_0802190C
+    add r0, sp, #0x14
+    bl func_080AB380
+    ldr r1, [sp, #0x1c]
+    .Lauto_0802190C:
+    movs r0, #0x10
+    rsbs r0, r0, #0
+    cmp r1, r0
+    bgt .Lauto_08021968
+    .Lauto_08021914:
+    cmp r5, #0
+    ble .Lauto_08021930
+    ldr r1, [sp, #0x20]
+    ldr r0, [sp, #0x3c]
+    cmp r1, r0
+    ble .Lauto_0802192A
+    add r0, sp, #0x14
+    bl func_080AB3FC
+    ldr r0, [sp, #0x20]
+    b .Lauto_0802192C
+    .Lauto_0802192A:
+    adds r0, r1, #0
+    .Lauto_0802192C:
+    cmp r0, #0xf
+    ble .Lauto_08021968
+    .Lauto_08021930:
+    cmp r7, #0
+    bge .Lauto_0802194C
+    ldr r1, [sp, #0x18]
+    ldr r0, [sp, #0x3c]
+    cmn r1, r0
+    bge .Lauto_08021944
+    add r0, sp, #0x14
+    bl func_080AB308
+    ldr r1, [sp, #0x18]
+    .Lauto_08021944:
+    movs r0, #0x10
+    rsbs r0, r0, #0
+    cmp r1, r0
+    bgt .Lauto_08021968
+    .Lauto_0802194C:
+    cmp r7, #0
+    ble .Lauto_0802196C
+    ldr r1, [sp, #0x14]
+    ldr r0, [sp, #0x3c]
+    cmp r1, r0
+    ble .Lauto_08021962
+    add r0, sp, #0x14
+    bl func_080AB294
+    ldr r0, [sp, #0x14]
+    b .Lauto_08021964
+    .Lauto_08021962:
+    adds r0, r1, #0
+    .Lauto_08021964:
+    cmp r0, #0xf
+    bgt .Lauto_0802196C
+    .Lauto_08021968:
+    movs r1, #1
+    mov r8, r1
+    .Lauto_0802196C:
+    mov r2, r8
+    cmp r2, #0
+    beq .Lauto_08021976
+    movs r4, #0
+    b .Lauto_08021A12
+    .Lauto_08021976:
+    subs r4, #1
+    b .Lauto_08021A12
+    .Lauto_0802197A:
+    ldr r3, [sp, #0xd4]
+    ldrb r0, [r3]
+    cmp r0, #0
+    bne .Lauto_08021A12
+    adds r0, r6, #0
+    bl func_0801FEC4
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lauto_08021A12
+    mov r4, sl
+    ldr r0, [r4]
+    movs r5, #0xa2
+    lsls r5, r5, #1
+    adds r0, r0, r5
+    ldr r1, [r0]
+    mov r0, sl
+    bl _call_via_r1
+    .byte 0x80, 0x7A, 0xC0, 0x06, 0xC0, 0x0E, 0x00, 0x25, 0x06, 0x38, 0x0E, 0x28, 0x00, 0xD9, 0x01, 0x25
+    .byte 0x2F, 0x98, 0x79, 0xF0, 0x49, 0xFE, 0xEC, 0x00, 0x64, 0x1B, 0xE4, 0x00, 0xC1, 0x00, 0x09, 0x1A
+    .byte 0x89, 0x00, 0x15, 0x48, 0x09, 0x18, 0x64, 0x18, 0x20, 0x1C, 0x07, 0x21, 0x89, 0xF0, 0x4A, 0xFC
+    .byte 0x07, 0x1C, 0xB8, 0x00, 0x24, 0x18, 0x3C, 0x25, 0xA0, 0x78, 0x68, 0x43, 0x89, 0xF0, 0xF0, 0xFB
+    .byte 0x61, 0x78, 0x69, 0x43, 0x0C, 0x18, 0x30, 0x1C, 0x20, 0x30, 0x05, 0x78, 0x04, 0x20, 0x89, 0xF0
+    .byte 0xE7, 0xFB, 0x01, 0x1C, 0x00, 0x29, 0x05, 0xD0, 0x03, 0x29, 0x03, 0xD0, 0x28, 0x1C, 0x89, 0xF0
+    .byte 0xED, 0xFB, 0x05, 0x1C, 0x48, 0x46, 0x87, 0x70, 0x30, 0x1C, 0x39, 0x1C, 0x2A, 0x1C, 0x00, 0xF0
+    .byte 0xE5, 0xF9
+    .Lauto_08021A12:
+    mov r1, sb
+    strh r4, [r1]
+    b loc_08021BEC
     .4byte gUnk_080F093C
-    .incbin "baserom_jp.gba", 0x21A1C, (0x21C3C - 0x21A1C)
+    .global loc_08021A1C
+    .thumb_func
+    loc_08021A1C:
+    ldr r4, [sp, #0xbc]
+    adds r4, #0x24
+    ldr r2, [sp, #0xbc]
+    ldrh r5, [r2, #0x24]
+    cmp r5, #0
+    beq .Lauto_08021A2A
+    subs r5, #1
+    .Lauto_08021A2A:
+    ldrh r2, [r4, #2]
+    cmp r2, #0
+    beq .Lauto_08021A32
+    subs r2, #1
+    .Lauto_08021A32:
+    cmp r5, #0
+    beq .Lauto_08021ADA
+    mov r3, sb
+    cmp r3, #0
+    beq .Lauto_08021ADA
+    ldrh r0, [r3, #4]
+    ldr r7, [sp, #0xc0]
+    cmp r0, r7
+    bne .Lauto_08021ADA
+    movs r0, #0xa
+    ldrsh r3, [r6, r0]
+    movs r7, #0xe
+    ldrsh r1, [r6, r7]
+    mov r0, sb
+    movs r7, #0xa
+    ldrsh r0, [r0, r7]
+    mov r8, r0
+    mov r0, sb
+    movs r7, #0xe
+    ldrsh r0, [r0, r7]
+    mov sb, r0
+    mov r7, r8
+    subs r0, r7, r3
+    cmp r0, #0
+    bge .Lauto_08021A66
+    rsbs r0, r0, #0
+    .Lauto_08021A66:
+    cmp r0, #0xf
+    bgt .Lauto_08021A78
+    mov r7, sb
+    subs r0, r7, r1
+    cmp r0, #0
+    bge .Lauto_08021A74
+    rsbs r0, r0, #0
+    .Lauto_08021A74:
+    cmp r0, #0xf
+    ble .Lauto_08021ADA
+    .Lauto_08021A78:
+    ldr r7, [sp, #0xd4]
+    ldrb r0, [r7]
+    cmp r0, #0
+    bne .Lauto_08021AD4
+    cmp r2, #0
+    beq .Lauto_08021AA4
+    movs r7, #4
+    ldrsh r0, [r4, r7]
+    subs r0, r0, r3
+    cmp r0, #0
+    bge .Lauto_08021A90
+    rsbs r0, r0, #0
+    .Lauto_08021A90:
+    cmp r0, #0xf
+    bgt .Lauto_08021AD4
+    movs r7, #6
+    ldrsh r0, [r4, r7]
+    subs r0, r0, r1
+    cmp r0, #0
+    bge .Lauto_08021AA0
+    rsbs r0, r0, #0
+    .Lauto_08021AA0:
+    cmp r0, #0xf
+    bgt .Lauto_08021AD4
+    .Lauto_08021AA4:
+    adds r0, r6, #0
+    adds r0, #0x20
+    ldrb r0, [r0]
+    add r2, sp, #0x14
+    str r2, [sp]
+    str r0, [sp, #4]
+    adds r0, r3, #0
+    mov r2, r8
+    mov r3, sb
+    bl func_080AB678
+    adds r2, r0, #0
+    adds r0, r6, #0
+    movs r1, #2
+    bl func_08021DDC
+    movs r0, #0x1e
+    bl func_080AB1C0
+    adds r2, r0, #1
+    mov r3, r8
+    strh r3, [r4, #4]
+    mov r7, sb
+    strh r7, [r4, #6]
+    .Lauto_08021AD4:
+    strh r5, [r4]
+    strh r2, [r4, #2]
+    b .Lauto_08021BEC
+    .Lauto_08021ADA:
+    ldr r2, [pc, #0x2c]
+    add r1, sp, #0xac
+    ldr r0, [r1]
+    ands r0, r2
+    movs r2, #0xb4
+    orrs r0, r2
+    ldr r2, [pc, #0x24]
+    ands r0, r2
+    str r0, [r1]
+    ldr r0, [sp, #0xbc]
+    bl method_0809BC24__5HorsePC15UnkBarnAnimal2C
+    adds r0, r6, #0
+    bl func_08021E68
+    adds r1, r0, #0
+    adds r0, r6, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r6, #0
+    bl func_08021DDC
+    b .Lauto_08021BEC
+    .byte 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+    .global loc_08021B10
+    .thumb_func
+    loc_08021B10:
+    ldr r0, [sp, #0xbc]
+    adds r0, #0x24
+    mov sb, r0
+    adds r3, r6, #0
+    adds r3, #0x20
+    ldrb r4, [r3]
+    movs r2, #0xa
+    ldrsh r1, [r6, r2]
+    mov ip, r1
+    movs r7, #0xe
+    ldrsh r5, [r6, r7]
+    add r2, sp, #0xb0
+    movs r0, #0x78
+    movs r1, #0xd0
+    strh r0, [r2]
+    strh r1, [r2, #2]
+    add r0, sp, #0xb4
+    movs r1, #0xbc
+    lsls r1, r1, #2
+    mov r8, r1
+    movs r1, #0x84
+    mov r7, r8
+    strh r7, [r0]
+    strh r1, [r0, #2]
+    mov sl, r3
+    adds r1, r0, #0
+    ldr r0, [sp, #0xc0]
+    cmp r0, #9
+    bne .Lauto_08021B70
+    cmp r4, #0
+    bne .Lauto_08021B70
+    movs r3, #2
+    ldrsh r1, [r2, r3]
+    adds r0, r5, #0
+    subs r0, #8
+    subs r0, r1, r0
+    cmp r0, #0
+    bge .Lauto_08021B5E
+    rsbs r0, r0, #0
+    .Lauto_08021B5E:
+    cmp r0, #7
+    bgt .Lauto_08021BB4
+    adds r0, r6, #0
+    movs r1, #2
+    mov r2, r8
+    movs r3, #0x94
+    bl SetLocation__7AEntityUiii
+    b .Lauto_08021BB4
+    .Lauto_08021B70:
+    ldr r7, [sp, #0xc0]
+    cmp r7, #2
+    bne .Lauto_08021BB4
+    cmp r4, #1
+    bne .Lauto_08021BB4
+    movs r3, #0
+    ldrsh r0, [r1, r3]
+    mov r4, ip
+    subs r0, r0, r4
+    cmp r0, #0
+    bge .Lauto_08021B88
+    rsbs r0, r0, #0
+    .Lauto_08021B88:
+    cmp r0, #0xf
+    bgt .Lauto_08021BB4
+    movs r7, #2
+    ldrsh r1, [r1, r7]
+    adds r0, r5, #0
+    adds r0, #8
+    subs r0, r1, r0
+    cmp r0, #0
+    bge .Lauto_08021B9C
+    rsbs r0, r0, #0
+    .Lauto_08021B9C:
+    cmp r0, #7
+    bgt .Lauto_08021BB4
+    movs r0, #0
+    ldrsh r2, [r2, r0]
+    add r0, sp, #0xb0
+    movs r1, #2
+    ldrsh r3, [r0, r1]
+    subs r3, #0x20
+    adds r0, r6, #0
+    movs r1, #9
+    bl SetLocation__7AEntityUiii
+    .Lauto_08021BB4:
+    mov r2, sb
+    ldrh r0, [r2]
+    cmp r0, #0
+    beq .Lauto_08021BC2
+    subs r0, #1
+    strh r0, [r2]
+    b .Lauto_08021BEC
+    .Lauto_08021BC2:
+    ldr r2, [pc, #0x4c]
+    add r1, sp, #0xb8
+    ldr r0, [r1]
+    ands r0, r2
+    movs r2, #0xb4
+    orrs r0, r2
+    ldr r2, [pc, #0x44]
+    ands r0, r2
+    str r0, [r1]
+    ldr r0, [sp, #0xbc]
+    bl method_0809BC24__5HorsePC15UnkBarnAnimal2C
+    adds r0, r6, #0
+    bl func_08021E68
+    adds r1, r0, #0
+    mov r3, sl
+    ldrb r2, [r3]
+    adds r0, r6, #0
+    bl func_08021DDC
+    .global loc_08021BEC
+    .thumb_func
+    loc_08021BEC:
+    .Lauto_08021BEC:
+    ldr r4, [sp, #0xd4]
+    ldrb r0, [r4]
+    add r1, sp, #0x14
+    cmp r0, #0
+    beq .Lauto_08021BF8
+    movs r1, #0
+    .Lauto_08021BF8:
+    adds r0, r6, #0
+    bl func_0801FF04
+    .global loc_08021BFE
+    .thumb_func
+    loc_08021BFE:
+    adds r1, r6, #0
+    adds r1, #0x30
+    movs r0, #0
+    strb r0, [r1]
+    ldrh r0, [r6, #0x24]
+    cmp r0, #0
+    beq .Lauto_08021C18
+    subs r0, #1
+    b .Lauto_08021C1A
+    .byte 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+    .Lauto_08021C18:
+    ldrh r0, [r6, #0x26]
+    .Lauto_08021C1A:
+    strh r0, [r6, #0x24]
+    ldr r3, [r6, #0x10]
+    cmp r3, #0
+    beq .Lauto_08021C2C
+    ldr r0, [r3, #4]
+    ldr r1, [r0, #0xc]
+    adds r0, r3, #0
+    bl _call_via_r1
+    .Lauto_08021C2C:
+    add sp, #0xd8
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
     .global func_08021C3C
     .thumb_func
 func_08021C3C:
@@ -3622,11 +4383,99 @@ func_08021EF8:
     .global func_08021F30
     .thumb_func
 func_08021F30:
-    .incbin "baserom_jp.gba", 0x21F30, (0x21F84 - 0x21F30)
+    push {r4, r5, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    cmp r2, #0x3b
+    bls .Lauto_08021F78
+    adds r5, r4, #0
+    adds r5, #0x20
+    ldrb r0, [r5]
+    cmp r0, r1
+    beq .Lauto_08021F4A
+    adds r0, r4, #0
+    bl SetAnimFacing__12AActorEntityUi
+    .Lauto_08021F4A:
+    ldr r1, [pc, #0x34]
+    ldr r0, [sp]
+    ands r0, r1
+    movs r1, #0x3c
+    orrs r0, r1
+    str r0, [sp]
+    ldr r0, [r4, #0x34]
+    mov r1, sp
+    bl method_0809BC40__5Horse
+    adds r0, r4, #0
+    adds r0, #0x3d
+    ldrb r0, [r0]
+    cmp r0, #0
+    bne .Lauto_08021F78
+    adds r0, r4, #0
+    bl func_08021E68
+    adds r1, r0, #0
+    ldrb r2, [r5]
+    adds r0, r4, #0
+    bl func_08021DDC
+    .Lauto_08021F78:
+    add sp, #4
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .byte 0x00, 0x00, 0xFF, 0xFF
     .global func_08021F84
     .thumb_func
 func_08021F84:
-    .incbin "baserom_jp.gba", 0x21F84, (0x22088 - 0x21F84)
+    push {r4, r5, r6, r7, lr}
+    sub sp, #8
+    adds r6, r0, #0
+    adds r7, r1, #0
+    .byte 0x38, 0x88, 0x80, 0x05, 0x80, 0x0D, 0xB1, 0x88, 0x88, 0x42, 0x4A, 0xD1, 0x70, 0x6B, 0x78, 0xF0
+    .byte 0x61, 0xFE, 0xFD, 0xF7, 0x05, 0xFF, 0x0A, 0x21, 0x73, 0x5E, 0x79, 0x78, 0x89, 0x08, 0x7A, 0x88
+    .byte 0x22, 0x4C, 0x22, 0x40, 0x92, 0x01, 0x0A, 0x43, 0x12, 0x04, 0x12, 0x14, 0xD2, 0x1A, 0x0E, 0x23
+    .byte 0xF5, 0x5E, 0xFB, 0x78, 0x9B, 0x08, 0xB9, 0x88, 0x21, 0x40, 0x89, 0x01, 0x19, 0x43, 0x09, 0x04
+    .byte 0x09, 0x14, 0x49, 0x1B, 0x13, 0x1C, 0x53, 0x43, 0x1A, 0x1C, 0x0B, 0x1C, 0x4B, 0x43, 0x19, 0x1C
+    .byte 0x52, 0x18, 0x01, 0x1C, 0x41, 0x43, 0x08, 0x1C, 0x82, 0x42, 0x22, 0xDC, 0x70, 0x6B, 0x78, 0xF0
+    .byte 0x39, 0xFE, 0x01, 0x01, 0x09, 0x1A, 0x89, 0x01, 0x09, 0x0A, 0xF0, 0x23, 0x5B, 0x00, 0xC9, 0x18
+    .byte 0x09, 0x04, 0x09, 0x0C, 0x00, 0x91, 0x70, 0x6B, 0x69, 0x46, 0x79, 0xF0, 0x2F, 0xFB, 0x30, 0x1C
+    .byte 0x3D, 0x30, 0x00, 0x78, 0x00, 0x28, 0x09, 0xD1, 0x30, 0x1C, 0xFF, 0xF7, 0x27, 0xFF, 0x01, 0x1C
+    .byte 0x30, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x30, 0x1C, 0xFF, 0xF7, 0xDA, 0xFE, 0x70, 0x6B, 0x78, 0xF0
+    .byte 0xE3, 0xFE, 0x02, 0xB0, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0xFF, 0x03, 0x00, 0x00
+    .global loc_0802203C
+    .thumb_func
+    loc_0802203C:
+    push {r4, r5, r6, lr}
+    mov r6, r8
+    push {r6}
+    sub sp, #0x10
+    adds r6, r0, #0
+    mov r8, r1
+    adds r4, r2, #0
+    adds r0, r4, #0
+    bl func_080220B4
+    adds r5, r0, #0
+    adds r0, r4, #0
+    bl func_080220C8
+    str r5, [sp]
+    str r0, [sp, #4]
+    movs r1, #0
+    str r1, [sp, #8]
+    add r0, sp, #0xc
+    strb r1, [r0]
+    adds r0, r6, #0
+    mov r1, r8
+    movs r2, #5
+    movs r3, #0xd
+    bl func_080324BC
+    ldr r0, [pc, #0x10]
+    str r0, [r6, #4]
+    adds r0, r6, #0
+    add sp, #0x10
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .byte 0x00, 0x00, 0xF4, 0x58, 0x0E, 0x08
     .global func_08022088
     .thumb_func
 func_08022088:
@@ -3687,47 +4536,678 @@ func_080220C8:
     .global func_080220DC
     .thumb_func
 func_080220DC:
-    .incbin "baserom_jp.gba", 0x220DC, (0x22184 - 0x220DC)
+    push {r4, r5, r6, lr}
+    adds r4, r0, #0
+    movs r0, #0x8c
+    bl __builtin_new
+    adds r5, r0, #0
+    ldr r0, [r4, #0x34]
+    bl GetGrowthStage__C5Horse
+    adds r2, r0, #0
+    adds r0, r5, #0
+    adds r1, r4, #0
+    bl loc_0802203C
+    adds r5, r0, #0
+    adds r6, r5, #0
+    adds r4, #0x3c
+    ldrb r0, [r4]
+    cmp r0, #4
+    bne .Lauto_08022132
+    adds r0, r5, #0
+    adds r0, #0x70
+    movs r1, #8
+    bl ResolveIndexedResourceHandle
+    adds r0, r5, #0
+    adds r0, #0x84
+    movs r2, #0
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r2, [r0]
+    adds r0, #1
+    strb r1, [r0]
+    adds r2, r5, #0
+    adds r2, #0x8a
+    movs r3, #2
+    ldrb r1, [r2]
+    movs r0, #4
+    rsbs r0, r0, #0
+    ands r0, r1
+    orrs r0, r3
+    strb r0, [r2]
+    .Lauto_08022132:
+    adds r0, r6, #0
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .byte 0x00, 0x00, 0x70, 0xB5, 0x82, 0xB0, 0x04, 0x1C, 0x0D, 0x1C, 0x16, 0x1C, 0x68, 0x46, 0x31, 0x1C
+    .byte 0x78, 0xF0, 0xFF, 0xFC, 0xE4, 0x23, 0xDB, 0x00, 0x20, 0x1C, 0x29, 0x1C, 0x6A, 0x46, 0xFD, 0xF7
+    .byte 0x38, 0xFE, 0x08, 0x48, 0x60, 0x61, 0x66, 0x63, 0x20, 0x1C, 0x00, 0xF0, 0xBE, 0xFA, 0x01, 0x1C
+    .byte 0x20, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x20, 0x1C, 0x00, 0xF0, 0x69, 0xFA, 0x20, 0x1C, 0x02, 0xB0
+    .byte 0x70, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0xDC, 0x57, 0x0E, 0x08
     .global func_08022184
     .thumb_func
 func_08022184:
-    .incbin "baserom_jp.gba", 0x22184, (0x221D8 - 0x22184)
+    push {r4, r5, r6, lr}
+    sub sp, #8
+    adds r5, r0, #0
+    adds r6, r1, #0
+    ldr r0, [pc, #0x40]
+    str r0, [r5, #0x14]
+    ldr r4, [r5, #0x34]
+    mov r0, sp
+    adds r1, r5, #0
+    bl GetLocation__C12AActorEntity
+    adds r0, r4, #0
+    mov r1, sp
+    bl SetLocation__5ActorRC13ActorLocation
+    ldr r0, [pc, #0x30]
+    str r0, [r5, #0x14]
+    ldr r1, [r5, #0x10]
+    cmp r1, #0
+    beq .Lauto_080221B8
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+    .Lauto_080221B8:
+    movs r0, #1
+    ands r0, r6
+    cmp r0, #0
+    beq .Lauto_080221C6
+    adds r0, r5, #0
+    bl __builtin_delete
+    .Lauto_080221C6:
+    add sp, #8
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+    .byte 0x00, 0x00, 0xDC, 0x57, 0x0E, 0x08, 0x90, 0x56, 0x0E, 0x08
     .global func_080221D8
     .thumb_func
 func_080221D8:
-    .incbin "baserom_jp.gba", 0x221D8, (0x2221C - 0x221D8)
+    push {r4, lr}
+    sub sp, #4
+    .byte 0x04, 0x1C, 0x09, 0x04, 0x09, 0x0C, 0x0C, 0x4A, 0x00, 0x98, 0x10, 0x40, 0x08, 0x43, 0x0B, 0x49
+    .byte 0x08, 0x40, 0x00, 0x90, 0x60, 0x6B, 0x69, 0x46, 0x79, 0xF0, 0xB0, 0xFA, 0x20, 0x1C, 0x00, 0xF0
+    .byte 0x73, 0xFA, 0x01, 0x1C, 0x20, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x20, 0x1C, 0x00, 0xF0, 0x1E, 0xFA
+    .byte 0x01, 0xB0, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
     .global func_0802221C
     .thumb_func
 func_0802221C:
-    .incbin "baserom_jp.gba", 0x2221C, (0x22250 - 0x2221C)
+    push {r4, lr}
+    adds r4, r0, #0
+    bl loc_08022278
+    adds r1, r4, #0
+    adds r1, #0x30
+    movs r0, #0
+    strb r0, [r1]
+    ldrh r0, [r4, #0x24]
+    cmp r0, #0
+    beq .Lauto_08022236
+    subs r0, #1
+    b .Lauto_08022238
+    .Lauto_08022236:
+    ldrh r0, [r4, #0x26]
+    .Lauto_08022238:
+    strh r0, [r4, #0x24]
+    ldr r2, [r4, #0x10]
+    cmp r2, #0
+    beq .Lauto_0802224A
+    ldr r0, [r2, #4]
+    ldr r1, [r0, #0xc]
+    adds r0, r2, #0
+    bl _call_via_r1
+    .Lauto_0802224A:
+    pop {r4}
+    pop {r0}
+    bx r0
     .global func_08022250
     .thumb_func
 func_08022250:
-    .incbin "baserom_jp.gba", 0x22250, (0x22544 - 0x22250)
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    bl func_08032370
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lauto_08022268
+    adds r0, r4, #0
+    adds r1, r5, #0
+    bl .Lauto_08022278
+    .Lauto_08022268:
+    adds r0, r4, #0
+    adds r1, r5, #0
+    bl func_0803242C
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .byte 0x00, 0x00
+    .global loc_08022278
+    .thumb_func
+    loc_08022278:
+    .Lauto_08022278:
+    push {r4, r5, r6, r7, lr}
+    mov r7, sl
+    mov r6, sb
+    mov r5, r8
+    push {r5, r6, r7}
+    sub sp, #0x74
+    mov sb, r0
+    ldr r7, [r0, #0x34]
+    ldr r0, [r0]
+    mov r8, r0
+    mov r2, sb
+    ldrh r2, [r2, #4]
+    str r2, [sp, #0x64]
+    cmp r2, #2
+    bne .Lauto_0802233A
+    ldrb r0, [r1, #4]
+    cmp r0, #0
+    beq .Lauto_0802233A
+    adds r0, r7, #0
+    bl GetCurrentOutdoorMinutes__C9Livestock
+    adds r5, r0, #0
+    adds r0, r7, #0
+    movs r1, #1
+    bl AddOutdoorMinutes__9LivestockUi
+    adds r0, r7, #0
+    bl GetCurrentOutdoorMinutes__C9Livestock
+    adds r4, r0, #0
+    cmp r5, #0xb3
+    bhi .Lauto_080222E6
+    cmp r4, #0xb3
+    bls .Lauto_080222E6
+    mov r3, r8
+    ldr r0, [r3]
+    movs r6, #0xa2
+    lsls r6, r6, #1
+    adds r0, r0, r6
+    ldr r1, [r0]
+    mov r0, r8
+    bl _call_via_r1
+    ldr r0, [r0]
+    cmp r0, #0
+    beq .Lauto_080222E6
+    adds r0, r7, #0
+    bl IsUnhappy__C9Livestock
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lauto_080222E6
+    adds r0, r7, #0
+    bl SetUnhappy__9Livestock
+    .Lauto_080222E6:
+    cmp r5, #0xef
+    bhi .Lauto_080222F4
+    cmp r4, #0xef
+    bls .Lauto_080222F4
+    adds r0, r7, #0
+    bl SetFed__7Chicken
+    .Lauto_080222F4:
+    ldr r0, [pc, #0x10c]
+    cmp r5, r0
+    bhi .Lauto_0802233A
+    cmp r4, r0
+    bls .Lauto_0802233A
+    mov r1, r8
+    ldr r0, [r1]
+    movs r2, #0xa2
+    lsls r2, r2, #1
+    adds r0, r0, r2
+    ldr r1, [r0]
+    mov r0, r8
+    bl _call_via_r1
+    ldr r0, [r0]
+    cmp r0, #0
+    bne .Lauto_0802233A
+    adds r0, r7, #0
+    bl IsUnhappy__C9Livestock
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lauto_08022332
+    movs r0, #0x64
+    bl func_080AB1C0
+    cmp r0, #0x1d
+    bhi .Lauto_08022332
+    adds r0, r7, #0
+    bl ResetUnhappy__9Livestock
+    .Lauto_08022332:
+    adds r0, r7, #0
+    movs r1, #1
+    bl AddAffection__6Animali
+    .Lauto_0802233A:
+    mov r3, r8
+    ldr r1, [r3]
+    add r0, sp, #8
+    ldr r3, [r1, #0x34]
+    mov r1, r8
+    ldr r2, [sp, #0x64]
+    bl _call_via_r3
+    mov r6, sb
+    ldr r1, [r6, #0x14]
+    add r0, sp, #0x48
+    ldr r2, [r1, #0xc]
+    mov r1, sb
+    bl _call_via_r2
+    ldr r0, [sp, #0x48]
+    ldr r1, [sp, #0x4c]
+    str r0, [sp, #0x6c]
+    str r1, [sp, #0x70]
+    add r4, sp, #0x14
+    movs r1, #0x10
+    mov sl, r1
+    movs r5, #0
+    movs r1, #0x11
+    str r1, [sp, #0x14]
+    movs r0, #0x11
+    rsbs r0, r0, #0
+    str r0, [r4, #4]
+    str r0, [r4, #8]
+    str r1, [r4, #0xc]
+    add r1, sp, #0x28
+    add r0, sp, #8
+    ldm r0!, {r2, r3, r6}
+    stm r1!, {r2, r3, r6}
+    ldr r0, [sp, #0x6c]
+    ldr r1, [sp, #0x70]
+    str r0, [sp, #0x34]
+    str r1, [sp, #0x38]
+    mov r1, sl
+    str r1, [r4, #0x28]
+    str r5, [r4, #0x2c]
+    str r5, [r4, #0x30]
+    mov r2, r8
+    ldr r0, [r2]
+    ldr r2, [r0, #0x40]
+    mov r0, r8
+    movs r1, #0
+    bl _call_via_r2
+    adds r6, r0, #0
+    mov r3, r8
+    ldr r0, [r3]
+    ldr r2, [r0, #0x40]
+    mov r0, r8
+    movs r1, #0x4a
+    bl _call_via_r2
+    adds r5, r0, #0
+    cmp r6, #0
+    beq .Lauto_080223D2
+    ldrh r0, [r6, #4]
+    ldr r1, [sp, #0x64]
+    cmp r0, r1
+    bne .Lauto_080223D2
+    ldr r1, [r6, #0x14]
+    add r4, sp, #0x50
+    adds r0, r4, #0
+    ldr r2, [r1, #0xc]
+    adds r1, r6, #0
+    bl _call_via_r2
+    add r0, sp, #0x14
+    adds r1, r4, #0
+    movs r2, #0
+    bl func_080AB4C8
+    .Lauto_080223D2:
+    cmp r5, #0
+    beq .Lauto_080223F6
+    ldrh r0, [r5, #4]
+    ldr r2, [sp, #0x64]
+    cmp r0, r2
+    bne .Lauto_080223F6
+    ldr r1, [r5, #0x14]
+    add r4, sp, #0x58
+    adds r0, r4, #0
+    ldr r2, [r1, #0xc]
+    adds r1, r5, #0
+    bl _call_via_r2
+    add r0, sp, #0x14
+    adds r1, r4, #0
+    movs r2, #0
+    bl func_080AB4C8
+    .Lauto_080223F6:
+    ldr r0, [r7, #0x24]
+    cmp r0, #0
+    beq .Lauto_08022408
+    cmp r0, #1
+    bne .Lauto_08022402
+    b loc_08022548
+    .Lauto_08022402:
+    b loc_08022628
+    .byte 0x2B, 0x01, 0x00, 0x00
+    .Lauto_08022408:
+    movs r3, #0x28
+    adds r3, r3, r7
+    mov sl, r3
+    ldrh r4, [r7, #0x28]
+    cmp r4, #0
+    beq .Lauto_0802249A
+    mov r6, sb
+    ldr r5, [r6, #0x18]
+    ldr r6, [r6, #0x1c]
+    movs r7, #0
+    cmp r5, #0
+    bge .Lauto_08022438
+    ldr r1, [sp, #0x1c]
+    ldr r0, [sp, #0x3c]
+    cmn r1, r0
+    bge .Lauto_08022430
+    add r0, sp, #0x14
+    bl func_080AB380
+    ldr r1, [sp, #0x1c]
+    .Lauto_08022430:
+    movs r0, #0x10
+    rsbs r0, r0, #0
+    cmp r1, r0
+    bgt .Lauto_0802248C
+    .Lauto_08022438:
+    cmp r5, #0
+    ble .Lauto_08022454
+    ldr r1, [sp, #0x20]
+    ldr r0, [sp, #0x3c]
+    cmp r1, r0
+    ble .Lauto_0802244E
+    add r0, sp, #0x14
+    bl func_080AB3FC
+    ldr r0, [sp, #0x20]
+    b .Lauto_08022450
+    .Lauto_0802244E:
+    adds r0, r1, #0
+    .Lauto_08022450:
+    cmp r0, #0xf
+    ble .Lauto_0802248C
+    .Lauto_08022454:
+    cmp r6, #0
+    bge .Lauto_08022470
+    ldr r1, [sp, #0x18]
+    ldr r0, [sp, #0x3c]
+    cmn r1, r0
+    bge .Lauto_08022468
+    add r0, sp, #0x14
+    bl func_080AB308
+    ldr r1, [sp, #0x18]
+    .Lauto_08022468:
+    movs r0, #0x10
+    rsbs r0, r0, #0
+    cmp r1, r0
+    bgt .Lauto_0802248C
+    .Lauto_08022470:
+    cmp r6, #0
+    ble .Lauto_0802248E
+    ldr r1, [sp, #0x14]
+    ldr r0, [sp, #0x3c]
+    cmp r1, r0
+    ble .Lauto_08022486
+    add r0, sp, #0x14
+    bl func_080AB294
+    ldr r0, [sp, #0x14]
+    b .Lauto_08022488
+    .Lauto_08022486:
+    adds r0, r1, #0
+    .Lauto_08022488:
+    cmp r0, #0xf
+    bgt .Lauto_0802248E
+    .Lauto_0802248C:
+    movs r7, #1
+    .Lauto_0802248E:
+    cmp r7, #0
+    beq .Lauto_08022496
+    movs r4, #0
+    b .Lauto_0802253E
+    .Lauto_08022496:
+    subs r4, #1
+    b .Lauto_0802253E
+    .Lauto_0802249A:
+    mov r0, sb
+    bl func_0801FEC4
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lauto_0802253E
+    mov r1, r8
+    ldr r0, [r1]
+    movs r2, #0xa2
+    lsls r2, r2, #1
+    adds r0, r0, r2
+    ldr r1, [r0]
+    mov r0, r8
+    bl _call_via_r1
+    .byte 0x80, 0x7A, 0xC0, 0x06, 0xC0, 0x0E, 0x00, 0x26, 0x06, 0x38, 0x0E, 0x28, 0x00, 0xD9, 0x01, 0x26
+    .byte 0x38, 0x1C, 0x79, 0xF0, 0x0B, 0xF9, 0x05, 0x1C, 0x38, 0x1C, 0x78, 0xF0, 0x37, 0xFD, 0xB4, 0x00
+    .byte 0xA4, 0x19, 0x24, 0x01, 0xA9, 0x00, 0x49, 0x19, 0xC9, 0x00, 0x18, 0x4A, 0x89, 0x18, 0x64, 0x18
+    .byte 0x00, 0x06, 0x00, 0x0E, 0x81, 0x00, 0x09, 0x18, 0x89, 0x00, 0x64, 0x18, 0x20, 0x1C, 0x05, 0x21
+    .byte 0x88, 0xF0, 0xB4, 0xFE, 0x06, 0x1C, 0xB0, 0x00, 0x24, 0x18, 0x3C, 0x25, 0xA0, 0x78, 0x68, 0x43
+    .byte 0x88, 0xF0, 0x5A, 0xFE, 0x61, 0x78, 0x69, 0x43, 0x0C, 0x18, 0x48, 0x46, 0x20, 0x30, 0x05, 0x78
+    .byte 0x04, 0x20, 0x88, 0xF0, 0x51, 0xFE, 0x01, 0x1C, 0x00, 0x29, 0x05, 0xD0, 0x03, 0x29, 0x03, 0xD0
+    .byte 0x28, 0x1C, 0x88, 0xF0, 0x57, 0xFE, 0x05, 0x1C, 0x48, 0x46, 0x31, 0x1C, 0x2A, 0x1C, 0x00, 0xF0
+    .byte 0x87, 0xF8, 0x53, 0x46, 0x9E, 0x70
+    .Lauto_0802253E:
+    mov r6, sl
+    strh r4, [r6]
+    b loc_08022628
     .4byte gUnk_080F09C8
-    .incbin "baserom_jp.gba", 0x22548, (0x22648 - 0x22548)
+    .global loc_08022548
+    .thumb_func
+    loc_08022548:
+    adds r0, r7, #0
+    adds r0, #0x28
+    str r0, [sp, #0x68]
+    ldrh r1, [r7, #0x28]
+    mov sl, r1
+    cmp r1, #0
+    beq .Lauto_0802255C
+    movs r2, #1
+    rsbs r2, r2, #0
+    add sl, r2
+    .Lauto_0802255C:
+    .byte 0xB9, 0x6A, 0x48, 0x02, 0x45, 0x0E, 0x00, 0x2D, 0x00, 0xD0, 0x01, 0x3D, 0x1A, 0x9B, 0xDC, 0x78
+    .byte 0x00, 0x2C, 0x00, 0xD0, 0x01, 0x3C, 0x50, 0x46, 0x00, 0x28, 0x41, 0xD0, 0x08, 0x02, 0x00, 0x28
+    .byte 0x08, 0xDA, 0x41, 0x46, 0x08, 0x68, 0x02, 0x6C, 0x40, 0x46, 0x2D, 0x21, 0xB0, 0xF0, 0xA0, 0xFD
+    .byte 0x01, 0x1C, 0x00, 0xE0, 0x31, 0x1C, 0x00, 0x29, 0x32, 0xD0, 0x88, 0x88, 0x19, 0x9A, 0x90, 0x42
+    .byte 0x2E, 0xD1, 0x00, 0x2C, 0x1F, 0xD1, 0x4B, 0x46, 0x0A, 0x20, 0x1E, 0x5E, 0x0E, 0x22, 0x9C, 0x5E
+    .byte 0x0A, 0x23, 0xCA, 0x5E, 0x0E, 0x20, 0x0B, 0x5E, 0x01, 0x27, 0x00, 0x2D, 0x00, 0xD0, 0x04, 0x27
+    .byte 0x48, 0x46, 0x20, 0x30, 0x00, 0x78, 0x05, 0xA9, 0x00, 0x91, 0x01, 0x90, 0x30, 0x1C, 0x21, 0x1C
+    .byte 0x89, 0xF0, 0x60, 0xF9, 0x02, 0x1C, 0x48, 0x46, 0x39, 0x1C, 0x00, 0xF0, 0x37, 0xF8, 0x1E, 0x20
+    .byte 0x88, 0xF0, 0xF0, 0xFD, 0x44, 0x1C, 0x53, 0x46, 0x1A, 0x9A, 0x13, 0x80, 0x7F, 0x20, 0x05, 0x40
+    .byte 0x91, 0x78, 0x80, 0x20, 0x40, 0x42, 0x08, 0x40, 0x28, 0x43, 0x90, 0x70, 0xD4, 0x70, 0x15, 0xE0
+    .byte 0x10, 0x49, 0x18, 0x98, 0x08, 0x40, 0xB4, 0x21, 0x08, 0x43, 0x0F, 0x49, 0x08, 0x40, 0x18, 0x90
+    .byte 0x18, 0xA9, 0x38, 0x1C, 0x79, 0xF0, 0xA2, 0xF8, 0x48, 0x46, 0x00, 0xF0, 0x65, 0xF8, 0x01, 0x1C
+    .byte 0x48, 0x46, 0x20, 0x30, 0x02, 0x78, 0x48, 0x46, 0x00, 0xF0, 0x10, 0xF8
+    .global loc_08022628
+    .thumb_func
+    loc_08022628:
+    mov r0, sb
+    add r1, sp, #0x14
+    bl func_0801FF04
+    add sp, #0x74
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .byte 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
     .global func_08022648
     .thumb_func
 func_08022648:
-    .incbin "baserom_jp.gba", 0x22648, (0x226E4 - 0x22648)
+    push {r4, r5, r6, r7, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    adds r6, r2, #0
+    bl loc_08022714
+    adds r1, r0, #0
+    ldrh r0, [r4, #0x22]
+    cmp r0, r1
+    beq .Lauto_08022662
+    adds r0, r4, #0
+    bl SetAnim__12AActorEntityUi
+    .Lauto_08022662:
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r0, [r0]
+    cmp r0, r6
+    beq .Lauto_08022674
+    adds r0, r4, #0
+    adds r1, r6, #0
+    bl SetAnimFacing__12AActorEntityUi
+    .Lauto_08022674:
+    adds r0, r4, #0
+    adds r1, r5, #0
+    bl loc_08022738
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl func_0801FE14
+    adds r0, r4, #0
+    adds r0, #0x38
+    adds r7, r0, #0
+    ldrb r0, [r7]
+    cmp r5, r0
+    beq .Lauto_080226DA
+    movs r6, #1
+    rsbs r6, r6, #0
+    ldr r0, [r4, #0x34]
+    bl GetGrowthStage__C7Chicken
+    movs r1, #0
+    cmp r0, #0
+    beq .Lauto_080226A2
+    movs r1, #3
+    .Lauto_080226A2:
+    cmp r5, r1
+    bne .Lauto_080226C4
+    ldr r0, [r4]
+    ldr r1, [r0]
+    movs r2, #0xa2
+    lsls r2, r2, #1
+    adds r1, r1, r2
+    ldr r1, [r1]
+    bl _call_via_r1
+    ldrb r0, [r0, #0xa]
+    lsls r0, r0, #0x1b
+    lsrs r0, r0, #0x1b
+    subs r0, #6
+    cmp r0, #0xe
+    bls .Lauto_080226C4
+    movs r6, #8
+    .Lauto_080226C4:
+    cmp r6, #0
+    blt .Lauto_080226D4
+    adds r0, r4, #0
+    adds r1, r6, #0
+    movs r2, #1
+    bl func_08032384
+    b .Lauto_080226DA
+    .Lauto_080226D4:
+    adds r0, r4, #0
+    bl func_080323C8
+    .Lauto_080226DA:
+    strb r5, [r7]
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .byte 0x00, 0x00
     .global func_080226E4
     .thumb_func
 func_080226E4:
-    .incbin "baserom_jp.gba", 0x226E4, (0x22734 - 0x226E4)
+    push {lr}
+    ldr r0, [r0, #0x34]
+    ldr r1, [r0, #0x24]
+    cmp r1, #0
+    beq .Lauto_080226F6
+    cmp r1, #1
+    beq .Lauto_080226FC
+    movs r0, #0
+    b .Lauto_0802270E
+    .Lauto_080226F6:
+    adds r0, #0x2a
+    ldrb r0, [r0]
+    b .Lauto_0802270E
+    .Lauto_080226FC:
+    adds r0, #0x2a
+    ldrb r1, [r0]
+    movs r0, #0x7f
+    ands r0, r1
+    movs r1, #1
+    cmp r0, #0
+    beq .Lauto_0802270C
+    movs r1, #4
+    .Lauto_0802270C:
+    adds r0, r1, #0
+    .Lauto_0802270E:
+    pop {r1}
+    bx r1
+    .byte 0x00, 0x00
+    .global loc_08022714
+    .thumb_func
+    loc_08022714:
+    push {r4, r5, lr}
+    adds r4, r1, #0
+    ldr r5, [pc, #0x18]
+    ldr r0, [r0, #0x34]
+    bl GetGrowthStage__C7Chicken
+    lsls r1, r0, #2
+    adds r1, r1, r0
+    adds r1, r1, r4
+    lsls r1, r1, #1
+    adds r1, r1, r5
+    ldrh r0, [r1]
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+    .byte 0x00, 0x00
     .4byte gUnk_080F0A68
-    .incbin "baserom_jp.gba", 0x22738, (0x2274C - 0x22738)
+    .global loc_08022738
+    .thumb_func
+    loc_08022738:
+    push {lr}
+    cmp r1, #1
+    beq .Lauto_08022742
+    movs r0, #0
+    b .Lauto_08022746
+    .Lauto_08022742:
+    movs r0, #0x80
+    lsls r0, r0, #8
+    .Lauto_08022746:
+    pop {r1}
+    bx r1
+    .byte 0x00, 0x00
     .global func_0802274C
     .thumb_func
 func_0802274C:
-    .incbin "baserom_jp.gba", 0x2274C, (0x22750 - 0x2274C)
+    movs r0, #1
+    bx lr
     .global func_08022750
     .thumb_func
 func_08022750:
-    .incbin "baserom_jp.gba", 0x22750, (0x2275C - 0x22750)
+    push {lr}
+    ldr r0, [r0, #0x34]
+    bl IsSick__C9Livestock
+    pop {r1}
+    bx r1
     .global func_0802275C
     .thumb_func
 func_0802275C:
-    .incbin "baserom_jp.gba", 0x2275C, (0x2278C - 0x2275C)
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    movs r5, #0
+    ldrh r0, [r4, #4]
+    cmp r0, #2
+    bne .Lauto_08022782
+    ldr r0, [r4, #0x34]
+    bl IsSick__C9Livestock
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lauto_08022782
+    ldr r0, [r4, #0x34]
+    bl IsUnhappy__C9Livestock
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lauto_08022782
+    movs r5, #1
+    .Lauto_08022782:
+    adds r0, r5, #0
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+    .byte 0x00, 0x00
     .global func_0802278C
     .thumb_func
 func_0802278C:
@@ -3798,7 +5278,22 @@ func_0802278C:
     .global func_0802281C
     .thumb_func
 func_0802281C:
-    .incbin "baserom_jp.gba", 0x2281C, (0x22840 - 0x2281C)
+    push {r4, lr}
+    adds r4, r0, #0
+    ldr r0, [r4, #0x34]
+    bl ResetSick__9Livestock
+    ldr r0, [r4, #0x34]
+    bl IsUnhappy__C9Livestock
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lauto_08022838
+    ldr r0, [r4, #0x34]
+    bl ResetUnhappy__9Livestock
+    .Lauto_08022838:
+    pop {r4}
+    pop {r0}
+    bx r0
+    .byte 0x00, 0x00
     .global func_08022840
     .thumb_func
 func_08022840:
@@ -3907,63 +5402,1131 @@ func_080228F0:
     .global func_08022904
     .thumb_func
 func_08022904:
-    .incbin "baserom_jp.gba", 0x22904, (0x229F4 - 0x22904)
+    push {r4, r5, r6, r7, lr}
+    sub sp, #0x10
+    adds r7, r0, #0
+    ldr r0, [r7, #0x34]
+    bl GetGrowthStage__C7Chicken
+    adds r5, r0, #0
+    movs r0, #0x8c
+    bl __builtin_new
+    adds r6, r0, #0
+    adds r0, r5, #0
+    bl func_080228EC
+    adds r4, r0, #0
+    adds r0, r5, #0
+    bl func_080228F0
+    str r4, [sp]
+    str r0, [sp, #4]
+    movs r5, #0
+    str r5, [sp, #8]
+    add r0, sp, #0xc
+    strb r5, [r0]
+    adds r0, r6, #0
+    adds r1, r7, #0
+    movs r2, #2
+    movs r3, #9
+    bl func_080324BC
+    adds r4, r0, #0
+    ldr r0, [r7, #0x34]
+    bl GetGrowthStage__C7Chicken
+    movs r1, #0
+    cmp r0, #0
+    beq .Lauto_08022950
+    movs r1, #3
+    .Lauto_08022950:
+    adds r0, r7, #0
+    adds r0, #0x38
+    ldrb r0, [r0]
+    cmp r0, r1
+    bne .Lauto_080229A2
+    ldr r0, [r7]
+    ldr r1, [r0]
+    movs r2, #0xa2
+    lsls r2, r2, #1
+    adds r1, r1, r2
+    ldr r1, [r1]
+    bl _call_via_r1
+    ldrb r0, [r0, #0xa]
+    lsls r0, r0, #0x1b
+    lsrs r0, r0, #0x1b
+    subs r0, #6
+    cmp r0, #0xe
+    bls .Lauto_080229A2
+    adds r0, r4, #0
+    adds r0, #0x70
+    movs r1, #8
+    bl ResolveIndexedResourceHandle
+    adds r0, r4, #0
+    adds r0, #0x84
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r5, [r0]
+    adds r0, #1
+    strb r1, [r0]
+    adds r3, r4, #0
+    adds r3, #0x8a
+    movs r2, #2
+    ldrb r1, [r3]
+    movs r0, #4
+    rsbs r0, r0, #0
+    ands r0, r1
+    orrs r0, r2
+    strb r0, [r3]
+    .Lauto_080229A2:
+    adds r0, r4, #0
+    add sp, #0x10
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .byte 0x70, 0xB5, 0x82, 0xB0, 0x04, 0x1C, 0x0D, 0x1C, 0x16, 0x1C, 0x68, 0x46, 0x31, 0x1C, 0x78, 0xF0
+    .byte 0xC7, 0xF8, 0xAC, 0x23, 0x9B, 0x00, 0x20, 0x1C, 0x29, 0x1C, 0x6A, 0x46, 0xFD, 0xF7, 0x00, 0xFA
+    .byte 0x08, 0x48, 0x60, 0x61, 0x66, 0x63, 0x20, 0x1C, 0x00, 0xF0, 0x9A, 0xFB, 0x01, 0x1C, 0x20, 0x1C
+    .byte 0x20, 0x30, 0x02, 0x78, 0x20, 0x1C, 0x00, 0xF0, 0x5B, 0xFB, 0x20, 0x1C, 0x02, 0xB0, 0x70, 0xBC
+    .byte 0x02, 0xBC, 0x08, 0x47, 0x50, 0x57, 0x0E, 0x08
     .global func_080229F4
     .thumb_func
 func_080229F4:
-    .incbin "baserom_jp.gba", 0x229F4, (0x22A48 - 0x229F4)
+    push {r4, r5, r6, lr}
+    sub sp, #8
+    adds r5, r0, #0
+    adds r6, r1, #0
+    ldr r0, [pc, #0x40]
+    str r0, [r5, #0x14]
+    ldr r4, [r5, #0x34]
+    mov r0, sp
+    adds r1, r5, #0
+    bl GetLocation__C12AActorEntity
+    adds r0, r4, #0
+    mov r1, sp
+    bl SetLocation__5ActorRC13ActorLocation
+    ldr r0, [pc, #0x30]
+    str r0, [r5, #0x14]
+    ldr r1, [r5, #0x10]
+    cmp r1, #0
+    beq .Lauto_08022A28
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+    .Lauto_08022A28:
+    movs r0, #1
+    ands r0, r6
+    cmp r0, #0
+    beq .Lauto_08022A36
+    adds r0, r5, #0
+    bl __builtin_delete
+    .Lauto_08022A36:
+    add sp, #8
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+    .byte 0x00, 0x00, 0x50, 0x57, 0x0E, 0x08, 0x90, 0x56, 0x0E, 0x08
     .global func_08022A48
     .thumb_func
 func_08022A48:
-    .incbin "baserom_jp.gba", 0x22A48, (0x22A8C - 0x22A48)
+    push {r4, lr}
+    sub sp, #4
+    .byte 0x04, 0x1C, 0x09, 0x04, 0x09, 0x0C, 0x0C, 0x4A, 0x00, 0x98, 0x10, 0x40, 0x08, 0x43, 0x0B, 0x49
+    .byte 0x08, 0x40, 0x00, 0x90, 0x60, 0x6B, 0x69, 0x46, 0x78, 0xF0, 0x88, 0xFC, 0x20, 0x1C, 0x00, 0xF0
+    .byte 0x4F, 0xFB, 0x01, 0x1C, 0x20, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x20, 0x1C, 0x00, 0xF0, 0x10, 0xFB
+    .byte 0x01, 0xB0, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
     .global func_08022A8C
     .thumb_func
 func_08022A8C:
-    .incbin "baserom_jp.gba", 0x22A8C, (0x22D3C - 0x22A8C)
+    push {r4, r5, r6, r7, lr}
+    mov r7, sl
+    mov r6, sb
+    mov r5, r8
+    push {r5, r6, r7}
+    sub sp, #0xa0
+    mov r8, r0
+    ldr r7, [r0]
+    ldr r0, [r0, #0x34]
+    mov sb, r0
+    mov r2, r8
+    ldrh r2, [r2, #4]
+    str r2, [sp, #0x90]
+    cmp r2, #2
+    bne .Lauto_08022B70
+    ldrb r0, [r1, #4]
+    cmp r0, #0
+    beq .Lauto_08022B70
+    mov r0, sb
+    bl GetCurrentOutdoorMinutes__C9Livestock
+    adds r5, r0, #0
+    mov r0, sb
+    movs r1, #1
+    bl AddOutdoorMinutes__9LivestockUi
+    mov r0, sb
+    bl GetCurrentOutdoorMinutes__C9Livestock
+    adds r4, r0, #0
+    cmp r5, #0xb3
+    bhi .Lauto_08022AF8
+    cmp r4, #0xb3
+    bls .Lauto_08022AF8
+    ldr r0, [r7]
+    movs r3, #0xa2
+    lsls r3, r3, #1
+    adds r0, r0, r3
+    ldr r1, [r0]
+    adds r0, r7, #0
+    bl _call_via_r1
+    ldr r0, [r0]
+    cmp r0, #0
+    beq .Lauto_08022AF8
+    mov r0, sb
+    bl IsUnhappy__C9Livestock
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lauto_08022AF8
+    mov r0, sb
+    bl SetUnhappy__9Livestock
+    .Lauto_08022AF8:
+    cmp r5, #0xef
+    bhi .Lauto_08022B2C
+    cmp r4, #0xef
+    bls .Lauto_08022B2C
+    ldr r0, [r7]
+    movs r6, #0x84
+    lsls r6, r6, #1
+    adds r0, r0, r6
+    mov r1, r8
+    movs r3, #0xa
+    ldrsh r2, [r1, r3]
+    movs r6, #0xe
+    ldrsh r3, [r1, r6]
+    add r1, sp, #0x48
+    strh r2, [r1]
+    strh r3, [r1, #2]
+    ldr r2, [r0]
+    adds r0, r7, #0
+    bl _call_via_r2
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lauto_08022B2C
+    mov r0, sb
+    bl SetFed__10BarnAnimal
+    .Lauto_08022B2C:
+    ldr r0, [pc, #0x10c]
+    cmp r5, r0
+    bhi .Lauto_08022B70
+    cmp r4, r0
+    bls .Lauto_08022B70
+    ldr r0, [r7]
+    movs r1, #0xa2
+    lsls r1, r1, #1
+    adds r0, r0, r1
+    ldr r1, [r0]
+    adds r0, r7, #0
+    bl _call_via_r1
+    ldr r0, [r0]
+    cmp r0, #0
+    bne .Lauto_08022B70
+    mov r0, sb
+    bl IsUnhappy__C9Livestock
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lauto_08022B68
+    movs r0, #0x64
+    bl func_080AB1C0
+    cmp r0, #0x1d
+    bhi .Lauto_08022B68
+    mov r0, sb
+    bl ResetUnhappy__9Livestock
+    .Lauto_08022B68:
+    mov r0, sb
+    movs r1, #1
+    bl AddAffection__6Animali
+    .Lauto_08022B70:
+    ldr r1, [r7]
+    add r0, sp, #8
+    ldr r3, [r1, #0x34]
+    adds r1, r7, #0
+    ldr r2, [sp, #0x90]
+    bl _call_via_r3
+    mov r2, r8
+    ldr r1, [r2, #0x14]
+    add r0, sp, #0x4c
+    ldr r2, [r1, #0xc]
+    mov r1, r8
+    bl _call_via_r2
+    ldr r0, [sp, #0x4c]
+    ldr r1, [sp, #0x50]
+    str r0, [sp, #0x98]
+    str r1, [sp, #0x9c]
+    add r4, sp, #0x14
+    movs r1, #0x10
+    mov sl, r1
+    movs r5, #0
+    movs r1, #0x11
+    str r1, [sp, #0x14]
+    movs r0, #0x11
+    rsbs r0, r0, #0
+    str r0, [r4, #4]
+    str r0, [r4, #8]
+    str r1, [r4, #0xc]
+    add r1, sp, #0x28
+    add r0, sp, #8
+    ldm r0!, {r2, r3, r6}
+    stm r1!, {r2, r3, r6}
+    ldr r0, [sp, #0x98]
+    ldr r1, [sp, #0x9c]
+    str r0, [sp, #0x34]
+    str r1, [sp, #0x38]
+    mov r1, sl
+    str r1, [r4, #0x28]
+    str r5, [r4, #0x2c]
+    str r5, [r4, #0x30]
+    ldr r0, [r7]
+    ldr r2, [r0, #0x40]
+    adds r0, r7, #0
+    movs r1, #0
+    bl _call_via_r2
+    adds r6, r0, #0
+    ldr r0, [r7]
+    ldr r2, [r0, #0x40]
+    adds r0, r7, #0
+    movs r1, #0x4a
+    bl _call_via_r2
+    adds r5, r0, #0
+    cmp r6, #0
+    beq .Lauto_08022C02
+    ldrh r0, [r6, #4]
+    ldr r2, [sp, #0x90]
+    cmp r0, r2
+    bne .Lauto_08022C02
+    ldr r1, [r6, #0x14]
+    add r4, sp, #0x54
+    adds r0, r4, #0
+    ldr r2, [r1, #0xc]
+    adds r1, r6, #0
+    bl _call_via_r2
+    add r0, sp, #0x14
+    adds r1, r4, #0
+    movs r2, #0
+    bl func_080AB4C8
+    .Lauto_08022C02:
+    cmp r5, #0
+    beq .Lauto_08022C26
+    ldrh r0, [r5, #4]
+    ldr r3, [sp, #0x90]
+    cmp r0, r3
+    bne .Lauto_08022C26
+    ldr r1, [r5, #0x14]
+    add r4, sp, #0x5c
+    adds r0, r4, #0
+    ldr r2, [r1, #0xc]
+    adds r1, r5, #0
+    bl _call_via_r2
+    add r0, sp, #0x14
+    adds r1, r4, #0
+    movs r2, #0
+    bl func_080AB4C8
+    .Lauto_08022C26:
+    mov r1, sb
+    ldr r0, [r1, #0x28]
+    cmp r0, #1
+    bne .Lauto_08022C30
+    b loc_08022DA0
+    .Lauto_08022C30:
+    cmp r0, #1
+    bgt .Lauto_08022C40
+    cmp r0, #0
+    beq .Lauto_08022C4E
+    b loc_0802304C
+    .byte 0x00, 0x00, 0x2B, 0x01, 0x00, 0x00
+    .Lauto_08022C40:
+    cmp r0, #2
+    bne .Lauto_08022C46
+    b loc_08022E74
+    .Lauto_08022C46:
+    cmp r0, #3
+    bne .Lauto_08022C4C
+    b loc_08022F58
+    .Lauto_08022C4C:
+    b loc_0802304C
+    .Lauto_08022C4E:
+    movs r2, #0x2c
+    add r2, sb
+    mov sl, r2
+    mov r3, sb
+    ldrh r4, [r3, #0x2c]
+    cmp r4, #0
+    beq .Lauto_08022CE2
+    mov r6, r8
+    ldr r5, [r6, #0x18]
+    ldr r6, [r6, #0x1c]
+    movs r7, #0
+    cmp r5, #0
+    bge .Lauto_08022C80
+    ldr r1, [sp, #0x1c]
+    ldr r0, [sp, #0x3c]
+    cmn r1, r0
+    bge .Lauto_08022C78
+    add r0, sp, #0x14
+    bl func_080AB380
+    ldr r1, [sp, #0x1c]
+    .Lauto_08022C78:
+    movs r0, #0x10
+    rsbs r0, r0, #0
+    cmp r1, r0
+    bgt .Lauto_08022CD4
+    .Lauto_08022C80:
+    cmp r5, #0
+    ble .Lauto_08022C9C
+    ldr r1, [sp, #0x20]
+    ldr r0, [sp, #0x3c]
+    cmp r1, r0
+    ble .Lauto_08022C96
+    add r0, sp, #0x14
+    bl func_080AB3FC
+    ldr r0, [sp, #0x20]
+    b .Lauto_08022C98
+    .Lauto_08022C96:
+    adds r0, r1, #0
+    .Lauto_08022C98:
+    cmp r0, #0xf
+    ble .Lauto_08022CD4
+    .Lauto_08022C9C:
+    cmp r6, #0
+    bge .Lauto_08022CB8
+    ldr r1, [sp, #0x18]
+    ldr r0, [sp, #0x3c]
+    cmn r1, r0
+    bge .Lauto_08022CB0
+    add r0, sp, #0x14
+    bl func_080AB308
+    ldr r1, [sp, #0x18]
+    .Lauto_08022CB0:
+    movs r0, #0x10
+    rsbs r0, r0, #0
+    cmp r1, r0
+    bgt .Lauto_08022CD4
+    .Lauto_08022CB8:
+    cmp r6, #0
+    ble .Lauto_08022CD6
+    ldr r1, [sp, #0x14]
+    ldr r0, [sp, #0x3c]
+    cmp r1, r0
+    ble .Lauto_08022CCE
+    add r0, sp, #0x14
+    bl func_080AB294
+    ldr r0, [sp, #0x14]
+    b .Lauto_08022CD0
+    .Lauto_08022CCE:
+    adds r0, r1, #0
+    .Lauto_08022CD0:
+    cmp r0, #0xf
+    bgt .Lauto_08022CD6
+    .Lauto_08022CD4:
+    movs r7, #1
+    .Lauto_08022CD6:
+    cmp r7, #0
+    beq .Lauto_08022CDE
+    movs r4, #0
+    b loc_08022D9A
+    .Lauto_08022CDE:
+    subs r4, #1
+    b loc_08022D9A
+    .Lauto_08022CE2:
+    mov r0, r8
+    bl func_0801FEC4
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq loc_08022D9A
+    ldr r0, [r7]
+    movs r1, #0xa2
+    lsls r1, r1, #1
+    adds r0, r0, r1
+    ldr r1, [r0]
+    adds r0, r7, #0
+    bl _call_via_r1
+    ldrb r0, [r0, #0xa]
+    lsls r0, r0, #0x1b
+    lsrs r0, r0, #0x1b
+    movs r1, #0
+    subs r0, #6
+    cmp r0, #0xe
+    bls .Lauto_08022D0E
+    movs r1, #1
+    .Lauto_08022D0E:
+    lsls r0, r1, #3
+    subs r0, r0, r1
+    lsls r0, r0, #5
+    ldr r1, [pc, #0x24]
+    adds r5, r0, r1
+    mov r0, sb
+    bl IsSick__C9Livestock
+    lsls r0, r0, #0x18
+    lsrs r0, r0, #0x18
+    lsls r1, r0, #3
+    subs r1, r1, r0
+    lsls r4, r1, #2
+    mov r0, sb
+    bl IsPregnant__C10BarnAnimal
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq loc_08022D40
+    adds r0, r4, #0
+    adds r0, #0xa8
+    adds r5, r5, r0
+    b loc_08022D50
     .4byte gUnk_080F0A7C
-    .incbin "baserom_jp.gba", 0x22D40, (0x2309C - 0x22D40)
+    .global loc_08022D40
+    .thumb_func
+    loc_08022D40:
+    mov r0, sb
+    bl GetGrowthStage__C3Cow
+    lsls r1, r0, #3
+    subs r1, r1, r0
+    lsls r1, r1, #3
+    adds r1, r5, r1
+    adds r5, r1, r4
+    .global loc_08022D50
+    .thumb_func
+    loc_08022D50:
+    adds r0, r5, #0
+    movs r1, #7
+    bl func_080AB264
+    adds r6, r0, #0
+    lsls r4, r6, #2
+    adds r4, r5, r4
+    movs r5, #0x3c
+    ldrb r0, [r4, #2]
+    muls r0, r5, r0
+    bl func_080AB1C0
+    ldrb r1, [r4, #1]
+    muls r1, r5, r1
+    adds r4, r1, r0
+    mov r0, r8
+    adds r0, #0x20
+    ldrb r5, [r0]
+    movs r0, #4
+    bl func_080AB1C0
+    adds r1, r0, #0
+    cmp r1, #0
+    beq .Lauto_08022D8C
+    cmp r1, #3
+    beq .Lauto_08022D8C
+    adds r0, r5, #0
+    bl func_080AB1DC
+    adds r5, r0, #0
+    .Lauto_08022D8C:
+    mov r0, r8
+    adds r1, r6, #0
+    adds r2, r5, #0
+    bl func_0802309C
+    mov r2, sl
+    strb r6, [r2, #2]
+    .global loc_08022D9A
+    .thumb_func
+    loc_08022D9A:
+    mov r3, sl
+    strh r4, [r3]
+    b .Lauto_0802304C
+    .global loc_08022DA0
+    .thumb_func
+    loc_08022DA0:
+    mov r0, sb
+    adds r0, #0x2c
+    str r0, [sp, #0x94]
+    mov r1, sb
+    ldrh r1, [r1, #0x2c]
+    mov sl, r1
+    cmp r1, #0
+    beq .Lauto_08022DB6
+    movs r2, #1
+    rsbs r2, r2, #0
+    add sl, r2
+    .Lauto_08022DB6:
+    mov r3, sb
+    .byte 0xD9, 0x6A, 0x48, 0x02, 0x45, 0x0E, 0x00, 0x2D, 0x00, 0xD0, 0x01, 0x3D, 0x25, 0x98, 0xC4, 0x78
+    .byte 0x00, 0x2C, 0x00, 0xD0, 0x01, 0x3C, 0x52, 0x46, 0x00, 0x2A, 0x40, 0xD0, 0x08, 0x02, 0x00, 0x28
+    .byte 0x07, 0xDA, 0x38, 0x68, 0x02, 0x6C, 0x38, 0x1C, 0x2D, 0x21, 0xB0, 0xF0, 0x73, 0xF9, 0x01, 0x1C
+    .byte 0x00, 0xE0, 0x31, 0x1C, 0x00, 0x29, 0x32, 0xD0, 0x88, 0x88, 0x24, 0x9B, 0x98, 0x42, 0x2E, 0xD1
+    .byte 0x00, 0x2C, 0x1F, 0xD1, 0x47, 0x46, 0x0A, 0x20, 0x3E, 0x5E, 0x0E, 0x22, 0xBC, 0x5E, 0x0A, 0x23
+    .byte 0xCA, 0x5E, 0x0E, 0x27, 0xCB, 0x5F, 0x01, 0x27, 0x00, 0x2D, 0x00, 0xD0, 0x06, 0x27, 0x40, 0x46
+    .byte 0x20, 0x30, 0x00, 0x78, 0x05, 0xA9, 0x00, 0x91, 0x01, 0x90, 0x30, 0x1C, 0x21, 0x1C, 0x88, 0xF0
+    .byte 0x33, 0xFD, 0x02, 0x1C, 0x40, 0x46, 0x39, 0x1C, 0x00, 0xF0, 0x34, 0xF9, 0x1E, 0x20, 0x88, 0xF0
+    .byte 0xC3, 0xF9, 0x44, 0x1C, 0x53, 0x46, 0x25, 0x9A, 0x13, 0x80, 0x7F, 0x20, 0x05, 0x40, 0x91, 0x78
+    .byte 0x80, 0x20, 0x40, 0x42, 0x08, 0x40, 0x28, 0x43, 0x90, 0x70, 0xD4, 0x70, 0xFA, 0xE0, 0x05, 0x49
+    .byte 0x19, 0x98, 0x08, 0x40, 0xB4, 0x21, 0x08, 0x43, 0x03, 0x49, 0x08, 0x40, 0x19, 0x90, 0x19, 0xA9
+    .byte 0x63, 0xE0, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+    .global loc_08022E74
+    .thumb_func
+    loc_08022E74:
+    mov r4, sb
+    adds r4, #0x2c
+    mov r7, sb
+    ldrh r5, [r7, #0x2c]
+    cmp r5, #0
+    beq .Lauto_08022E82
+    subs r5, #1
+    .Lauto_08022E82:
+    ldrh r2, [r4, #2]
+    cmp r2, #0
+    beq .Lauto_08022E8A
+    subs r2, #1
+    .Lauto_08022E8A:
+    cmp r5, #0
+    beq .Lauto_08022F20
+    cmp r6, #0
+    beq .Lauto_08022F20
+    ldrh r0, [r6, #4]
+    ldr r1, [sp, #0x90]
+    cmp r0, r1
+    bne .Lauto_08022F20
+    mov r7, r8
+    movs r0, #0xa
+    ldrsh r3, [r7, r0]
+    movs r0, #0xe
+    ldrsh r1, [r7, r0]
+    movs r0, #0xa
+    ldrsh r7, [r6, r0]
+    mov sl, r7
+    movs r7, #0xe
+    ldrsh r6, [r6, r7]
+    mov r7, sl
+    subs r0, r7, r3
+    cmp r0, #0
+    bge .Lauto_08022EB8
+    rsbs r0, r0, #0
+    .Lauto_08022EB8:
+    cmp r0, #0xf
+    bgt .Lauto_08022EC8
+    subs r0, r6, r1
+    cmp r0, #0
+    bge .Lauto_08022EC4
+    rsbs r0, r0, #0
+    .Lauto_08022EC4:
+    cmp r0, #0xf
+    ble .Lauto_08022F20
+    .Lauto_08022EC8:
+    cmp r2, #0
+    beq .Lauto_08022EEC
+    movs r7, #4
+    ldrsh r0, [r4, r7]
+    subs r0, r0, r3
+    cmp r0, #0
+    bge .Lauto_08022ED8
+    rsbs r0, r0, #0
+    .Lauto_08022ED8:
+    cmp r0, #0xf
+    bgt .Lauto_08022F1A
+    movs r7, #6
+    ldrsh r0, [r4, r7]
+    subs r0, r0, r1
+    cmp r0, #0
+    bge .Lauto_08022EE8
+    rsbs r0, r0, #0
+    .Lauto_08022EE8:
+    cmp r0, #0xf
+    bgt .Lauto_08022F1A
+    .Lauto_08022EEC:
+    mov r0, r8
+    adds r0, #0x20
+    ldrb r0, [r0]
+    add r2, sp, #0x14
+    str r2, [sp]
+    str r0, [sp, #4]
+    adds r0, r3, #0
+    mov r2, sl
+    adds r3, r6, #0
+    bl func_080AB678
+    adds r2, r0, #0
+    mov r0, r8
+    movs r1, #1
+    bl func_0802309C
+    movs r0, #0x1e
+    bl func_080AB1C0
+    adds r2, r0, #1
+    mov r3, sl
+    strh r3, [r4, #4]
+    strh r6, [r4, #6]
+    .Lauto_08022F1A:
+    strh r5, [r4]
+    strh r2, [r4, #2]
+    b .Lauto_0802304C
+    .Lauto_08022F20:
+    ldr r1, [pc, #0x2c]
+    ldr r0, [sp, #0x68]
+    ands r0, r1
+    movs r1, #0xb4
+    orrs r0, r1
+    ldr r1, [pc, #0x28]
+    ands r0, r1
+    str r0, [sp, #0x68]
+    add r1, sp, #0x68
+    mov r0, sb
+    bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C
+    mov r0, r8
+    bl func_0802310C
+    adds r1, r0, #0
+    mov r0, r8
+    adds r0, #0x20
+    ldrb r2, [r0]
+    mov r0, r8
+    bl func_0802309C
+    b .Lauto_0802304C
+    .byte 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+    .global loc_08022F58
+    .thumb_func
+    loc_08022F58:
+    mov r6, sb
+    adds r6, #0x2c
+    mov r0, r8
+    adds r0, #0x20
+    ldrb r1, [r0]
+    mov r7, r8
+    movs r2, #0xa
+    ldrsh r4, [r7, r2]
+    movs r3, #0xe
+    ldrsh r5, [r7, r3]
+    adds r7, r0, #0
+    ldr r0, [sp, #0x90]
+    cmp r0, #0x25
+    bne .Lauto_08022FB8
+    cmp r1, #0
+    bne .Lauto_08022FB8
+    add r0, sp, #0x6c
+    bl method_0800CE58__4Barn
+    ldr r0, [sp, #0x6c]
+    str r0, [sp, #0x70]
+    add r0, sp, #0x70
+    movs r2, #2
+    ldrsh r1, [r0, r2]
+    adds r0, r5, #0
+    subs r0, #8
+    subs r0, r1, r0
+    cmp r0, #0
+    bge .Lauto_08022F94
+    rsbs r0, r0, #0
+    .Lauto_08022F94:
+    cmp r0, #7
+    bgt .Lauto_08023018
+    add r0, sp, #0x74
+    bl smethod_08009ADC__4Farm
+    ldr r0, [sp, #0x74]
+    str r0, [sp, #0x78]
+    add r0, sp, #0x78
+    movs r3, #0
+    ldrsh r2, [r0, r3]
+    movs r1, #2
+    ldrsh r3, [r0, r1]
+    adds r3, #0x10
+    mov r0, r8
+    movs r1, #2
+    bl SetLocation__7AEntityUiii
+    b .Lauto_08023018
+    .Lauto_08022FB8:
+    ldr r2, [sp, #0x90]
+    cmp r2, #2
+    bne .Lauto_08023018
+    cmp r1, #1
+    bne .Lauto_08023018
+    add r0, sp, #0x7c
+    bl smethod_08009ADC__4Farm
+    ldr r0, [sp, #0x7c]
+    str r0, [sp, #0x80]
+    add r0, sp, #0x80
+    adds r1, r0, #0
+    movs r3, #0
+    ldrsh r0, [r1, r3]
+    subs r0, r0, r4
+    cmp r0, #0
+    bge .Lauto_08022FDC
+    rsbs r0, r0, #0
+    .Lauto_08022FDC:
+    cmp r0, #0xf
+    bgt .Lauto_08023018
+    movs r0, #2
+    ldrsh r1, [r1, r0]
+    adds r0, r5, #0
+    adds r0, #8
+    subs r0, r1, r0
+    cmp r0, #0
+    bge .Lauto_08022FF0
+    rsbs r0, r0, #0
+    .Lauto_08022FF0:
+    cmp r0, #7
+    bgt .Lauto_08023018
+    add r0, sp, #0x84
+    bl method_0800CE58__4Barn
+    ldr r1, [sp, #0x84]
+    add r0, sp, #0x88
+    str r1, [r0]
+    movs r1, #0
+    ldrsh r2, [r0, r1]
+    movs r1, #2
+    ldrsh r3, [r0, r1]
+    subs r3, #0x20
+    mov r0, r8
+    movs r1, #0x25
+    bl SetLocation__7AEntityUiii
+    mov r0, sb
+    bl ResetCurrentOutdoorMinutes__9Livestock
+    .Lauto_08023018:
+    ldrh r0, [r6]
+    cmp r0, #0
+    beq .Lauto_08023024
+    subs r0, #1
+    strh r0, [r6]
+    b .Lauto_0802304C
+    .Lauto_08023024:
+    ldr r2, [pc, #0x44]
+    add r1, sp, #0x8c
+    ldr r0, [r1]
+    ands r0, r2
+    movs r2, #0xb4
+    orrs r0, r2
+    ldr r2, [pc, #0x3c]
+    ands r0, r2
+    str r0, [r1]
+    mov r0, sb
+    bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C
+    mov r0, r8
+    bl func_0802310C
+    adds r1, r0, #0
+    ldrb r2, [r7]
+    mov r0, r8
+    bl func_0802309C
+    .global loc_0802304C
+    .thumb_func
+    loc_0802304C:
+    .Lauto_0802304C:
+    mov r0, r8
+    add r1, sp, #0x14
+    bl func_0801FF04
+    mov r1, r8
+    adds r1, #0x30
+    movs r0, #0
+    strb r0, [r1]
+    mov r2, r8
+    ldrh r0, [r2, #0x24]
+    cmp r0, #0
+    beq .Lauto_08023074
+    subs r0, #1
+    strh r0, [r2, #0x24]
+    b .Lauto_0802307A
+    .byte 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+    .Lauto_08023074:
+    mov r3, r8
+    ldrh r0, [r3, #0x26]
+    strh r0, [r3, #0x24]
+    .Lauto_0802307A:
+    mov r6, r8
+    ldr r2, [r6, #0x10]
+    cmp r2, #0
+    beq .Lauto_0802308C
+    ldr r0, [r2, #4]
+    ldr r1, [r0, #0xc]
+    adds r0, r2, #0
+    bl _call_via_r1
+    .Lauto_0802308C:
+    add sp, #0xa0
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
     .global func_0802309C
     .thumb_func
 func_0802309C:
-    .incbin "baserom_jp.gba", 0x2309C, (0x2310C - 0x2309C)
+    push {r4, r5, r6, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    adds r6, r2, #0
+    bl loc_08023148
+    adds r1, r0, #0
+    ldrh r0, [r4, #0x22]
+    cmp r0, r1
+    beq .Lauto_080230B6
+    adds r0, r4, #0
+    bl SetAnim__12AActorEntityUi
+    .Lauto_080230B6:
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r0, [r0]
+    cmp r0, r6
+    beq .Lauto_080230C8
+    adds r0, r4, #0
+    adds r1, r6, #0
+    bl SetAnimFacing__12AActorEntityUi
+    .Lauto_080230C8:
+    adds r0, r4, #0
+    adds r1, r5, #0
+    bl loc_08023194
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl func_0801FE14
+    adds r0, r4, #0
+    adds r0, #0x38
+    adds r6, r0, #0
+    ldrb r0, [r6]
+    cmp r5, r0
+    beq .Lauto_08023102
+    movs r1, #1
+    rsbs r1, r1, #0
+    cmp r5, #4
+    bne .Lauto_080230EE
+    movs r1, #8
+    .Lauto_080230EE:
+    cmp r1, #0
+    blt .Lauto_080230FC
+    adds r0, r4, #0
+    movs r2, #1
+    bl func_08032384
+    b .Lauto_08023102
+    .Lauto_080230FC:
+    adds r0, r4, #0
+    bl func_080323C8
+    .Lauto_08023102:
+    strb r5, [r6]
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+    .byte 0x00, 0x00
     .global func_0802310C
     .thumb_func
 func_0802310C:
-    .incbin "baserom_jp.gba", 0x2310C, (0x23178 - 0x2310C)
+    push {lr}
+    ldr r0, [r0, #0x34]
+    ldr r1, [r0, #0x28]
+    cmp r1, #1
+    beq .Lauto_0802312E
+    cmp r1, #1
+    bgt .Lauto_08023120
+    cmp r1, #0
+    beq .Lauto_08023128
+    b .Lauto_08023124
+    .Lauto_08023120:
+    cmp r1, #3
+    ble .Lauto_08023142
+    .Lauto_08023124:
+    movs r0, #0
+    b .Lauto_08023144
+    .Lauto_08023128:
+    adds r0, #0x2e
+    ldrb r0, [r0]
+    b .Lauto_08023144
+    .Lauto_0802312E:
+    adds r0, #0x2e
+    ldrb r1, [r0]
+    movs r0, #0x7f
+    ands r0, r1
+    movs r1, #1
+    cmp r0, #0
+    beq .Lauto_0802313E
+    movs r1, #6
+    .Lauto_0802313E:
+    adds r0, r1, #0
+    b .Lauto_08023144
+    .Lauto_08023142:
+    movs r0, #1
+    .Lauto_08023144:
+    pop {r1}
+    bx r1
+    .global loc_08023148
+    .thumb_func
+    loc_08023148:
+    push {r4, r5, r6, r7, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    movs r6, #0
+    ldr r0, [r4, #0x34]
+    bl IsPregnant__C10BarnAnimal
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lauto_08023168
+    ldr r0, [r4, #0x34]
+    bl GetDaysPregnant__C10BarnAnimal
+    rsbs r1, r0, #0
+    orrs r1, r0
+    lsrs r6, r1, #0x1f
+    .Lauto_08023168:
+    ldr r7, [pc, #0xc]
+    lsls r5, r5, #1
+    cmp r6, #0
+    beq loc_0802317C
+    adds r0, r5, #0
+    adds r0, #0x2a
+    b loc_0802318A
+    .byte 0x00, 0x00
     .4byte gUnk_080F0C3C
-    .incbin "baserom_jp.gba", 0x2317C, (0x231A8 - 0x2317C)
+    .global loc_0802317C
+    .thumb_func
+    loc_0802317C:
+    ldr r0, [r4, #0x34]
+    bl GetGrowthStage__C3Cow
+    lsls r1, r0, #3
+    subs r1, r1, r0
+    lsls r1, r1, #1
+    adds r0, r5, r1
+    .global loc_0802318A
+    .thumb_func
+    loc_0802318A:
+    adds r0, r7, r0
+    ldrh r0, [r0]
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .global loc_08023194
+    .thumb_func
+    loc_08023194:
+    push {lr}
+    cmp r1, #1
+    beq .Lauto_0802319E
+    movs r0, #0
+    b .Lauto_080231A2
+    .Lauto_0802319E:
+    movs r0, #0x80
+    lsls r0, r0, #8
+    .Lauto_080231A2:
+    pop {r1}
+    bx r1
+    .byte 0x00, 0x00
     .global func_080231A8
     .thumb_func
 func_080231A8:
-    .incbin "baserom_jp.gba", 0x231A8, (0x2328C - 0x231A8)
+    push {r4, r5, r6, r7, lr}
+    mov r7, r8
+    push {r7}
+    sub sp, #8
+    adds r6, r0, #0
+    adds r7, r1, #0
+    .byte 0x38, 0x88, 0x80, 0x05, 0x80, 0x0D, 0xB1, 0x88, 0x88, 0x42, 0x5F, 0xD1, 0x70, 0x6B, 0x78, 0xF0
+    .byte 0x91, 0xF8, 0x00, 0x06, 0x00, 0x28, 0x59, 0xD1, 0x70, 0x6B, 0x77, 0xF0, 0x47, 0xFD, 0x80, 0x46
+    .byte 0xFC, 0xF7, 0xEA, 0xFD, 0x0A, 0x21, 0x73, 0x5E, 0x79, 0x78, 0x89, 0x08, 0x7A, 0x88, 0x13, 0x4C
+    .byte 0x22, 0x40, 0x92, 0x01, 0x0A, 0x43, 0x12, 0x04, 0x12, 0x14, 0xD2, 0x1A, 0x0E, 0x23, 0xF5, 0x5E
+    .byte 0xFB, 0x78, 0x9B, 0x08, 0xB9, 0x88, 0x21, 0x40, 0x89, 0x01, 0x19, 0x43, 0x09, 0x04, 0x09, 0x14
+    .byte 0x49, 0x1B, 0x13, 0x1C, 0x53, 0x43, 0x1A, 0x1C, 0x0B, 0x1C, 0x4B, 0x43, 0x19, 0x1C, 0x52, 0x18
+    .byte 0x01, 0x1C, 0x41, 0x43, 0x08, 0x1C, 0x82, 0x42, 0x30, 0xDC, 0x70, 0x6B, 0x77, 0xF0, 0x90, 0xFE
+    .byte 0x00, 0x06, 0x00, 0x28, 0x04, 0xD0, 0x1E, 0x24, 0x0A, 0xE0, 0x00, 0x00, 0xFF, 0x03, 0x00, 0x00
+    .byte 0x70, 0x6B, 0x77, 0xF0, 0x81, 0xFE, 0x00, 0x06, 0x64, 0x24, 0x00, 0x28, 0x00, 0xD0, 0x46, 0x24
+    .byte 0x64, 0x20, 0x87, 0xF0, 0xBB, 0xFF, 0xA0, 0x42, 0x18, 0xD2, 0x43, 0x46, 0x18, 0x01, 0xC0, 0x1A
+    .byte 0x80, 0x01, 0x00, 0x0A, 0xF0, 0x21, 0x49, 0x00, 0x40, 0x18, 0x00, 0x04, 0x00, 0x0C, 0x00, 0x90
+    .byte 0x70, 0x6B, 0x69, 0x46, 0x78, 0xF0, 0x92, 0xF8, 0x30, 0x1C, 0xFF, 0xF7, 0x4D, 0xFF, 0x01, 0x1C
+    .byte 0x30, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x30, 0x1C, 0xFF, 0xF7, 0x0E, 0xFF, 0x02, 0xB0, 0x08, 0xBC
+    .byte 0x98, 0x46, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47
     .global func_0802328C
     .thumb_func
 func_0802328C:
-    .incbin "baserom_jp.gba", 0x2328C, (0x232D8 - 0x2328C)
+    push {r4, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    ldr r2, [r4, #0x34]
+    ldr r0, [r2, #0x28]
+    cmp r0, #3
+    bne .Lauto_080232C6
+    ldr r1, [pc, #0x34]
+    ldr r0, [sp]
+    ands r0, r1
+    movs r1, #0xb4
+    orrs r0, r1
+    ldr r1, [pc, #0x2c]
+    ands r0, r1
+    str r0, [sp]
+    adds r0, r2, #0
+    mov r1, sp
+    bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C
+    adds r0, r4, #0
+    bl func_0802310C
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
+    bl func_0802309C
+    .Lauto_080232C6:
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+    .byte 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
     .global func_080232D8
     .thumb_func
 func_080232D8:
-    .incbin "baserom_jp.gba", 0x232D8, (0x232DC - 0x232D8)
+    movs r0, #1
+    bx lr
     .global func_080232DC
     .thumb_func
 func_080232DC:
-    .incbin "baserom_jp.gba", 0x232DC, (0x23304 - 0x232DC)
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    movs r5, #0
+    ldr r0, [r4, #0x34]
+    bl IsPregnant__C10BarnAnimal
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lauto_080232FC
+    ldr r0, [r4, #0x34]
+    bl CanBeMadePregnant__C3Cow
+    lsls r0, r0, #0x18
+    lsrs r0, r0, #0x18
+    rsbs r0, r0, #0
+    lsrs r5, r0, #0x1f
+    .Lauto_080232FC:
+    adds r0, r5, #0
+    pop {r4, r5}
+    pop {r1}
+    bx r1
     .global func_08023304
     .thumb_func
 func_08023304:
-    .incbin "baserom_jp.gba", 0x23304, (0x23314 - 0x23304)
+    push {lr}
+    ldr r0, [r0, #0x34]
+    bl HasBeenBrushedToday__C6Animal
+    movs r1, #1
+    eors r0, r1
+    pop {r1}
+    bx r1
     .global func_08023314
     .thumb_func
 func_08023314:
-    .incbin "baserom_jp.gba", 0x23314, (0x23320 - 0x23314)
+    push {lr}
+    ldr r0, [r0, #0x34]
+    bl CanBeMilked__C3Cow
+    pop {r1}
+    bx r1
     .global func_08023320
     .thumb_func
 func_08023320:
-    .incbin "baserom_jp.gba", 0x23320, (0x2332C - 0x23320)
+    push {lr}
+    ldr r0, [r0, #0x34]
+    bl IsSick__C9Livestock
+    pop {r1}
+    bx r1
     .global func_0802332C
     .thumb_func
 func_0802332C:
-    .incbin "baserom_jp.gba", 0x2332C, (0x2335C - 0x2332C)
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    movs r5, #0
+    ldrh r0, [r4, #4]
+    cmp r0, #2
+    bne .Lauto_08023352
+    ldr r0, [r4, #0x34]
+    bl IsSick__C9Livestock
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lauto_08023352
+    ldr r0, [r4, #0x34]
+    bl IsUnhappy__C9Livestock
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lauto_08023352
+    movs r5, #1
+    .Lauto_08023352:
+    adds r0, r5, #0
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+    .byte 0x00, 0x00
     .global func_0802335C
     .thumb_func
 func_0802335C:
@@ -4034,7 +6597,11 @@ func_0802335C:
     .global func_080233EC
     .thumb_func
 func_080233EC:
-    .incbin "baserom_jp.gba", 0x233EC, (0x233F8 - 0x233EC)
+    push {lr}
+    ldr r0, [r0, #0x34]
+    bl StartPregnancy__10BarnAnimal
+    pop {r0}
+    bx r0
     .global func_080233F8
     .thumb_func
 func_080233F8:
@@ -4099,7 +6666,22 @@ func_08023458:
     .global func_08023478
     .thumb_func
 func_08023478:
-    .incbin "baserom_jp.gba", 0x23478, (0x2349C - 0x23478)
+    push {r4, lr}
+    adds r4, r0, #0
+    ldr r0, [r4, #0x34]
+    bl ResetSick__9Livestock
+    ldr r0, [r4, #0x34]
+    bl IsUnhappy__C9Livestock
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lauto_08023494
+    ldr r0, [r4, #0x34]
+    bl ResetUnhappy__9Livestock
+    .Lauto_08023494:
+    pop {r4}
+    pop {r0}
+    bx r0
+    .byte 0x00, 0x00
     .global func_0802349C
     .thumb_func
 func_0802349C:
@@ -4253,75 +6835,1179 @@ func_08023598:
     .global func_080235B4
     .thumb_func
 func_080235B4:
-    .incbin "baserom_jp.gba", 0x235B4, (0x23688 - 0x235B4)
+    push {r4, r5, r6, lr}
+    mov r6, r8
+    push {r6}
+    sub sp, #0x10
+    adds r5, r0, #0
+    ldr r0, [r5, #0x34]
+    bl GetGrowthStage__C3Cow
+    adds r6, r0, #0
+    movs r0, #0x8c
+    bl __builtin_new
+    mov r8, r0
+    adds r0, r6, #0
+    bl func_08023584
+    adds r4, r0, #0
+    adds r0, r6, #0
+    bl func_08023598
+    str r4, [sp]
+    str r0, [sp, #4]
+    movs r6, #0
+    str r6, [sp, #8]
+    add r0, sp, #0xc
+    strb r6, [r0]
+    mov r0, r8
+    adds r1, r5, #0
+    movs r2, #4
+    movs r3, #0xc
+    bl func_080324BC
+    adds r4, r0, #0
+    mov r8, r4
+    adds r5, #0x38
+    ldrb r0, [r5]
+    cmp r0, #4
+    bne .Lauto_0802362C
+    adds r0, r4, #0
+    adds r0, #0x70
+    movs r1, #8
+    bl ResolveIndexedResourceHandle
+    adds r0, r4, #0
+    adds r0, #0x84
+    movs r1, #1
+    strb r1, [r0]
+    adds r0, #2
+    strb r6, [r0]
+    adds r0, #1
+    strb r1, [r0]
+    adds r2, r4, #0
+    adds r2, #0x8a
+    movs r3, #2
+    ldrb r1, [r2]
+    movs r0, #4
+    rsbs r0, r0, #0
+    ands r0, r1
+    orrs r0, r3
+    strb r0, [r2]
+    .Lauto_0802362C:
+    mov r0, r8
+    add sp, #0x10
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+    .byte 0x00, 0x00, 0x70, 0xB5, 0x82, 0xB0, 0x04, 0x1C, 0x0D, 0x1C, 0x16, 0x1C, 0x68, 0x46, 0x31, 0x1C
+    .byte 0x77, 0xF0, 0x7F, 0xFA, 0x0C, 0x4B, 0x20, 0x1C, 0x29, 0x1C, 0x6A, 0x46, 0xFC, 0xF7, 0xB9, 0xFB
+    .byte 0x0A, 0x48, 0x60, 0x61, 0x66, 0x63, 0x20, 0x1C, 0x00, 0xF0, 0xA7, 0xFB, 0x01, 0x1C, 0x20, 0x1C
+    .byte 0x20, 0x30, 0x02, 0x78, 0x20, 0x1C, 0x00, 0xF0, 0x68, 0xFB, 0x20, 0x1C, 0x02, 0xB0, 0x70, 0xBC
+    .byte 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00, 0x21, 0x09, 0x00, 0x00, 0xC4, 0x56, 0x0E, 0x08
     .global func_08023688
     .thumb_func
 func_08023688:
-    .incbin "baserom_jp.gba", 0x23688, (0x236DC - 0x23688)
+    push {r4, r5, r6, lr}
+    sub sp, #8
+    adds r5, r0, #0
+    adds r6, r1, #0
+    ldr r0, [pc, #0x40]
+    str r0, [r5, #0x14]
+    ldr r4, [r5, #0x34]
+    mov r0, sp
+    adds r1, r5, #0
+    bl GetLocation__C12AActorEntity
+    adds r0, r4, #0
+    mov r1, sp
+    bl SetLocation__5ActorRC13ActorLocation
+    ldr r0, [pc, #0x30]
+    str r0, [r5, #0x14]
+    ldr r1, [r5, #0x10]
+    cmp r1, #0
+    beq .Lauto_080236BC
+    ldr r0, [r1, #4]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+    .Lauto_080236BC:
+    movs r0, #1
+    ands r0, r6
+    cmp r0, #0
+    beq .Lauto_080236CA
+    adds r0, r5, #0
+    bl __builtin_delete
+    .Lauto_080236CA:
+    add sp, #8
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+    .byte 0x00, 0x00, 0xC4, 0x56, 0x0E, 0x08, 0x90, 0x56, 0x0E, 0x08
     .global func_080236DC
     .thumb_func
 func_080236DC:
-    .incbin "baserom_jp.gba", 0x236DC, (0x23720 - 0x236DC)
+    push {r4, lr}
+    sub sp, #4
+    .byte 0x04, 0x1C, 0x09, 0x04, 0x09, 0x0C, 0x0C, 0x4A, 0x00, 0x98, 0x10, 0x40, 0x08, 0x43, 0x0B, 0x49
+    .byte 0x08, 0x40, 0x00, 0x90, 0x60, 0x6B, 0x69, 0x46, 0x77, 0xF0, 0x3E, 0xFE, 0x20, 0x1C, 0x00, 0xF0
+    .byte 0x59, 0xFB, 0x01, 0x1C, 0x20, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x20, 0x1C, 0x00, 0xF0, 0x1A, 0xFB
+    .byte 0x01, 0xB0, 0x10, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
     .global func_08023720
     .thumb_func
 func_08023720:
-    .incbin "baserom_jp.gba", 0x23720, (0x239D0 - 0x23720)
+    push {r4, r5, r6, r7, lr}
+    mov r7, sl
+    mov r6, sb
+    mov r5, r8
+    push {r5, r6, r7}
+    sub sp, #0xa0
+    mov r8, r0
+    ldr r7, [r0]
+    ldr r0, [r0, #0x34]
+    mov sb, r0
+    mov r2, r8
+    ldrh r2, [r2, #4]
+    str r2, [sp, #0x90]
+    cmp r2, #2
+    bne .Lauto_08023804
+    ldrb r0, [r1, #4]
+    cmp r0, #0
+    beq .Lauto_08023804
+    mov r0, sb
+    bl GetCurrentOutdoorMinutes__C9Livestock
+    adds r5, r0, #0
+    mov r0, sb
+    movs r1, #1
+    bl AddOutdoorMinutes__9LivestockUi
+    mov r0, sb
+    bl GetCurrentOutdoorMinutes__C9Livestock
+    adds r4, r0, #0
+    cmp r5, #0xb3
+    bhi .Lauto_0802378C
+    cmp r4, #0xb3
+    bls .Lauto_0802378C
+    ldr r0, [r7]
+    movs r3, #0xa2
+    lsls r3, r3, #1
+    adds r0, r0, r3
+    ldr r1, [r0]
+    adds r0, r7, #0
+    bl _call_via_r1
+    ldr r0, [r0]
+    cmp r0, #0
+    beq .Lauto_0802378C
+    mov r0, sb
+    bl IsUnhappy__C9Livestock
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lauto_0802378C
+    mov r0, sb
+    bl SetUnhappy__9Livestock
+    .Lauto_0802378C:
+    cmp r5, #0xef
+    bhi .Lauto_080237C0
+    cmp r4, #0xef
+    bls .Lauto_080237C0
+    ldr r0, [r7]
+    movs r6, #0x84
+    lsls r6, r6, #1
+    adds r0, r0, r6
+    mov r1, r8
+    movs r3, #0xa
+    ldrsh r2, [r1, r3]
+    movs r6, #0xe
+    ldrsh r3, [r1, r6]
+    add r1, sp, #0x48
+    strh r2, [r1]
+    strh r3, [r1, #2]
+    ldr r2, [r0]
+    adds r0, r7, #0
+    bl _call_via_r2
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lauto_080237C0
+    mov r0, sb
+    bl SetFed__10BarnAnimal
+    .Lauto_080237C0:
+    ldr r0, [pc, #0x10c]
+    cmp r5, r0
+    bhi .Lauto_08023804
+    cmp r4, r0
+    bls .Lauto_08023804
+    ldr r0, [r7]
+    movs r1, #0xa2
+    lsls r1, r1, #1
+    adds r0, r0, r1
+    ldr r1, [r0]
+    adds r0, r7, #0
+    bl _call_via_r1
+    ldr r0, [r0]
+    cmp r0, #0
+    bne .Lauto_08023804
+    mov r0, sb
+    bl IsUnhappy__C9Livestock
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lauto_080237FC
+    movs r0, #0x64
+    bl func_080AB1C0
+    cmp r0, #0x1d
+    bhi .Lauto_080237FC
+    mov r0, sb
+    bl ResetUnhappy__9Livestock
+    .Lauto_080237FC:
+    mov r0, sb
+    movs r1, #1
+    bl AddAffection__6Animali
+    .Lauto_08023804:
+    ldr r1, [r7]
+    add r0, sp, #8
+    ldr r3, [r1, #0x34]
+    adds r1, r7, #0
+    ldr r2, [sp, #0x90]
+    bl _call_via_r3
+    mov r2, r8
+    ldr r1, [r2, #0x14]
+    add r0, sp, #0x4c
+    ldr r2, [r1, #0xc]
+    mov r1, r8
+    bl _call_via_r2
+    ldr r0, [sp, #0x4c]
+    ldr r1, [sp, #0x50]
+    str r0, [sp, #0x98]
+    str r1, [sp, #0x9c]
+    add r4, sp, #0x14
+    movs r1, #0x10
+    mov sl, r1
+    movs r5, #0
+    movs r1, #0x11
+    str r1, [sp, #0x14]
+    movs r0, #0x11
+    rsbs r0, r0, #0
+    str r0, [r4, #4]
+    str r0, [r4, #8]
+    str r1, [r4, #0xc]
+    add r1, sp, #0x28
+    add r0, sp, #8
+    ldm r0!, {r2, r3, r6}
+    stm r1!, {r2, r3, r6}
+    ldr r0, [sp, #0x98]
+    ldr r1, [sp, #0x9c]
+    str r0, [sp, #0x34]
+    str r1, [sp, #0x38]
+    mov r1, sl
+    str r1, [r4, #0x28]
+    str r5, [r4, #0x2c]
+    str r5, [r4, #0x30]
+    ldr r0, [r7]
+    ldr r2, [r0, #0x40]
+    adds r0, r7, #0
+    movs r1, #0
+    bl _call_via_r2
+    adds r6, r0, #0
+    ldr r0, [r7]
+    ldr r2, [r0, #0x40]
+    adds r0, r7, #0
+    movs r1, #0x4a
+    bl _call_via_r2
+    adds r5, r0, #0
+    cmp r6, #0
+    beq .Lauto_08023896
+    ldrh r0, [r6, #4]
+    ldr r2, [sp, #0x90]
+    cmp r0, r2
+    bne .Lauto_08023896
+    ldr r1, [r6, #0x14]
+    add r4, sp, #0x54
+    adds r0, r4, #0
+    ldr r2, [r1, #0xc]
+    adds r1, r6, #0
+    bl _call_via_r2
+    add r0, sp, #0x14
+    adds r1, r4, #0
+    movs r2, #0
+    bl func_080AB4C8
+    .Lauto_08023896:
+    cmp r5, #0
+    beq .Lauto_080238BA
+    ldrh r0, [r5, #4]
+    ldr r3, [sp, #0x90]
+    cmp r0, r3
+    bne .Lauto_080238BA
+    ldr r1, [r5, #0x14]
+    add r4, sp, #0x5c
+    adds r0, r4, #0
+    ldr r2, [r1, #0xc]
+    adds r1, r5, #0
+    bl _call_via_r2
+    add r0, sp, #0x14
+    adds r1, r4, #0
+    movs r2, #0
+    bl func_080AB4C8
+    .Lauto_080238BA:
+    mov r1, sb
+    ldr r0, [r1, #0x28]
+    cmp r0, #1
+    bne .Lauto_080238C4
+    b loc_08023A48
+    .Lauto_080238C4:
+    cmp r0, #1
+    bgt .Lauto_080238D4
+    cmp r0, #0
+    beq .Lauto_080238E2
+    b loc_08023CF4
+    .byte 0x00, 0x00, 0x2B, 0x01, 0x00, 0x00
+    .Lauto_080238D4:
+    cmp r0, #2
+    bne .Lauto_080238DA
+    b loc_08023B1C
+    .Lauto_080238DA:
+    cmp r0, #3
+    bne .Lauto_080238E0
+    b loc_08023C00
+    .Lauto_080238E0:
+    b loc_08023CF4
+    .Lauto_080238E2:
+    movs r2, #0x2c
+    add r2, sb
+    mov sl, r2
+    mov r3, sb
+    ldrh r4, [r3, #0x2c]
+    cmp r4, #0
+    beq .Lauto_08023976
+    mov r6, r8
+    ldr r5, [r6, #0x18]
+    ldr r6, [r6, #0x1c]
+    movs r7, #0
+    cmp r5, #0
+    bge .Lauto_08023914
+    ldr r1, [sp, #0x1c]
+    ldr r0, [sp, #0x3c]
+    cmn r1, r0
+    bge .Lauto_0802390C
+    add r0, sp, #0x14
+    bl func_080AB380
+    ldr r1, [sp, #0x1c]
+    .Lauto_0802390C:
+    movs r0, #0x10
+    rsbs r0, r0, #0
+    cmp r1, r0
+    bgt .Lauto_08023968
+    .Lauto_08023914:
+    cmp r5, #0
+    ble .Lauto_08023930
+    ldr r1, [sp, #0x20]
+    ldr r0, [sp, #0x3c]
+    cmp r1, r0
+    ble .Lauto_0802392A
+    add r0, sp, #0x14
+    bl func_080AB3FC
+    ldr r0, [sp, #0x20]
+    b .Lauto_0802392C
+    .Lauto_0802392A:
+    adds r0, r1, #0
+    .Lauto_0802392C:
+    cmp r0, #0xf
+    ble .Lauto_08023968
+    .Lauto_08023930:
+    cmp r6, #0
+    bge .Lauto_0802394C
+    ldr r1, [sp, #0x18]
+    ldr r0, [sp, #0x3c]
+    cmn r1, r0
+    bge .Lauto_08023944
+    add r0, sp, #0x14
+    bl func_080AB308
+    ldr r1, [sp, #0x18]
+    .Lauto_08023944:
+    movs r0, #0x10
+    rsbs r0, r0, #0
+    cmp r1, r0
+    bgt .Lauto_08023968
+    .Lauto_0802394C:
+    cmp r6, #0
+    ble .Lauto_0802396A
+    ldr r1, [sp, #0x14]
+    ldr r0, [sp, #0x3c]
+    cmp r1, r0
+    ble .Lauto_08023962
+    add r0, sp, #0x14
+    bl func_080AB294
+    ldr r0, [sp, #0x14]
+    b .Lauto_08023964
+    .Lauto_08023962:
+    adds r0, r1, #0
+    .Lauto_08023964:
+    cmp r0, #0xf
+    bgt .Lauto_0802396A
+    .Lauto_08023968:
+    movs r7, #1
+    .Lauto_0802396A:
+    cmp r7, #0
+    beq .Lauto_08023972
+    movs r4, #0
+    b loc_08023A42
+    .Lauto_08023972:
+    subs r4, #1
+    b loc_08023A42
+    .Lauto_08023976:
+    mov r0, r8
+    bl func_0801FEC4
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq loc_08023A42
+    ldr r0, [r7]
+    movs r1, #0xa2
+    lsls r1, r1, #1
+    adds r0, r0, r1
+    ldr r1, [r0]
+    adds r0, r7, #0
+    bl _call_via_r1
+    ldrb r0, [r0, #0xa]
+    lsls r0, r0, #0x1b
+    lsrs r0, r0, #0x1b
+    movs r1, #0
+    subs r0, #6
+    cmp r0, #0xe
+    bls .Lauto_080239A2
+    movs r1, #1
+    .Lauto_080239A2:
+    lsls r0, r1, #3
+    subs r0, r0, r1
+    lsls r0, r0, #5
+    ldr r1, [pc, #0x24]
+    adds r5, r0, r1
+    mov r0, sb
+    bl IsSick__C9Livestock
+    lsls r0, r0, #0x18
+    lsrs r0, r0, #0x18
+    lsls r1, r0, #3
+    subs r1, r1, r0
+    lsls r4, r1, #2
+    mov r0, sb
+    bl IsPregnant__C10BarnAnimal
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq loc_080239D4
+    adds r0, r4, #0
+    adds r0, #0xa8
+    adds r5, r5, r0
+    b loc_080239F8
     .4byte gUnk_080F0C74
-    .incbin "baserom_jp.gba", 0x239D4, (0x23D44 - 0x239D4)
+    .global loc_080239D4
+    .thumb_func
+    loc_080239D4:
+    mov r0, sb
+    bl IsSheared__C5Sheep
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lauto_080239E8
+    adds r0, r4, #0
+    adds r0, #0x70
+    adds r5, r5, r0
+    b .Lauto_080239F8
+    .Lauto_080239E8:
+    mov r0, sb
+    bl GetGrowthStage__C5Sheep
+    lsls r1, r0, #3
+    subs r1, r1, r0
+    lsls r1, r1, #3
+    adds r1, r5, r1
+    adds r5, r1, r4
+    .global loc_080239F8
+    .thumb_func
+    loc_080239F8:
+    .Lauto_080239F8:
+    adds r0, r5, #0
+    movs r1, #7
+    bl func_080AB264
+    adds r6, r0, #0
+    lsls r4, r6, #2
+    adds r4, r5, r4
+    movs r5, #0x3c
+    ldrb r0, [r4, #2]
+    muls r0, r5, r0
+    bl func_080AB1C0
+    ldrb r1, [r4, #1]
+    muls r1, r5, r1
+    adds r4, r1, r0
+    mov r0, r8
+    adds r0, #0x20
+    ldrb r5, [r0]
+    movs r0, #4
+    bl func_080AB1C0
+    adds r1, r0, #0
+    cmp r1, #0
+    beq .Lauto_08023A34
+    cmp r1, #3
+    beq .Lauto_08023A34
+    adds r0, r5, #0
+    bl func_080AB1DC
+    adds r5, r0, #0
+    .Lauto_08023A34:
+    mov r0, r8
+    adds r1, r6, #0
+    adds r2, r5, #0
+    bl func_08023D44
+    mov r2, sl
+    strb r6, [r2, #2]
+    .global loc_08023A42
+    .thumb_func
+    loc_08023A42:
+    mov r3, sl
+    strh r4, [r3]
+    b .Lauto_08023CF4
+    .global loc_08023A48
+    .thumb_func
+    loc_08023A48:
+    mov r0, sb
+    adds r0, #0x2c
+    str r0, [sp, #0x94]
+    mov r1, sb
+    ldrh r1, [r1, #0x2c]
+    mov sl, r1
+    cmp r1, #0
+    beq .Lauto_08023A5E
+    movs r2, #1
+    rsbs r2, r2, #0
+    add sl, r2
+    .Lauto_08023A5E:
+    mov r3, sb
+    .byte 0xD9, 0x6A, 0x48, 0x02, 0x45, 0x0E, 0x00, 0x2D, 0x00, 0xD0, 0x01, 0x3D, 0x25, 0x98, 0xC4, 0x78
+    .byte 0x00, 0x2C, 0x00, 0xD0, 0x01, 0x3C, 0x52, 0x46, 0x00, 0x2A, 0x40, 0xD0, 0x08, 0x02, 0x00, 0x28
+    .byte 0x07, 0xDA, 0x38, 0x68, 0x02, 0x6C, 0x38, 0x1C, 0x2D, 0x21, 0xAF, 0xF0, 0x1F, 0xFB, 0x01, 0x1C
+    .byte 0x00, 0xE0, 0x31, 0x1C, 0x00, 0x29, 0x32, 0xD0, 0x88, 0x88, 0x24, 0x9B, 0x98, 0x42, 0x2E, 0xD1
+    .byte 0x00, 0x2C, 0x1F, 0xD1, 0x47, 0x46, 0x0A, 0x20, 0x3E, 0x5E, 0x0E, 0x22, 0xBC, 0x5E, 0x0A, 0x23
+    .byte 0xCA, 0x5E, 0x0E, 0x27, 0xCB, 0x5F, 0x01, 0x27, 0x00, 0x2D, 0x00, 0xD0, 0x06, 0x27, 0x40, 0x46
+    .byte 0x20, 0x30, 0x00, 0x78, 0x05, 0xA9, 0x00, 0x91, 0x01, 0x90, 0x30, 0x1C, 0x21, 0x1C, 0x87, 0xF0
+    .byte 0xDF, 0xFE, 0x02, 0x1C, 0x40, 0x46, 0x39, 0x1C, 0x00, 0xF0, 0x34, 0xF9, 0x1E, 0x20, 0x87, 0xF0
+    .byte 0x6F, 0xFB, 0x44, 0x1C, 0x53, 0x46, 0x25, 0x9A, 0x13, 0x80, 0x7F, 0x20, 0x05, 0x40, 0x91, 0x78
+    .byte 0x80, 0x20, 0x40, 0x42, 0x08, 0x40, 0x28, 0x43, 0x90, 0x70, 0xD4, 0x70, 0xFA, 0xE0, 0x05, 0x49
+    .byte 0x19, 0x98, 0x08, 0x40, 0xB4, 0x21, 0x08, 0x43, 0x03, 0x49, 0x08, 0x40, 0x19, 0x90, 0x19, 0xA9
+    .byte 0x63, 0xE0, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+    .global loc_08023B1C
+    .thumb_func
+    loc_08023B1C:
+    mov r4, sb
+    adds r4, #0x2c
+    mov r7, sb
+    ldrh r5, [r7, #0x2c]
+    cmp r5, #0
+    beq .Lauto_08023B2A
+    subs r5, #1
+    .Lauto_08023B2A:
+    ldrh r2, [r4, #2]
+    cmp r2, #0
+    beq .Lauto_08023B32
+    subs r2, #1
+    .Lauto_08023B32:
+    cmp r5, #0
+    beq .Lauto_08023BC8
+    cmp r6, #0
+    beq .Lauto_08023BC8
+    ldrh r0, [r6, #4]
+    ldr r1, [sp, #0x90]
+    cmp r0, r1
+    bne .Lauto_08023BC8
+    mov r7, r8
+    movs r0, #0xa
+    ldrsh r3, [r7, r0]
+    movs r0, #0xe
+    ldrsh r1, [r7, r0]
+    movs r0, #0xa
+    ldrsh r7, [r6, r0]
+    mov sl, r7
+    movs r7, #0xe
+    ldrsh r6, [r6, r7]
+    mov r7, sl
+    subs r0, r7, r3
+    cmp r0, #0
+    bge .Lauto_08023B60
+    rsbs r0, r0, #0
+    .Lauto_08023B60:
+    cmp r0, #0xf
+    bgt .Lauto_08023B70
+    subs r0, r6, r1
+    cmp r0, #0
+    bge .Lauto_08023B6C
+    rsbs r0, r0, #0
+    .Lauto_08023B6C:
+    cmp r0, #0xf
+    ble .Lauto_08023BC8
+    .Lauto_08023B70:
+    cmp r2, #0
+    beq .Lauto_08023B94
+    movs r7, #4
+    ldrsh r0, [r4, r7]
+    subs r0, r0, r3
+    cmp r0, #0
+    bge .Lauto_08023B80
+    rsbs r0, r0, #0
+    .Lauto_08023B80:
+    cmp r0, #0xf
+    bgt .Lauto_08023BC2
+    movs r7, #6
+    ldrsh r0, [r4, r7]
+    subs r0, r0, r1
+    cmp r0, #0
+    bge .Lauto_08023B90
+    rsbs r0, r0, #0
+    .Lauto_08023B90:
+    cmp r0, #0xf
+    bgt .Lauto_08023BC2
+    .Lauto_08023B94:
+    mov r0, r8
+    adds r0, #0x20
+    ldrb r0, [r0]
+    add r2, sp, #0x14
+    str r2, [sp]
+    str r0, [sp, #4]
+    adds r0, r3, #0
+    mov r2, sl
+    adds r3, r6, #0
+    bl func_080AB678
+    adds r2, r0, #0
+    mov r0, r8
+    movs r1, #1
+    bl func_08023D44
+    movs r0, #0x1e
+    bl func_080AB1C0
+    adds r2, r0, #1
+    mov r3, sl
+    strh r3, [r4, #4]
+    strh r6, [r4, #6]
+    .Lauto_08023BC2:
+    strh r5, [r4]
+    strh r2, [r4, #2]
+    b .Lauto_08023CF4
+    .Lauto_08023BC8:
+    ldr r1, [pc, #0x2c]
+    ldr r0, [sp, #0x68]
+    ands r0, r1
+    movs r1, #0xb4
+    orrs r0, r1
+    ldr r1, [pc, #0x28]
+    ands r0, r1
+    str r0, [sp, #0x68]
+    add r1, sp, #0x68
+    mov r0, sb
+    bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C
+    mov r0, r8
+    bl func_08023DB4
+    adds r1, r0, #0
+    mov r0, r8
+    adds r0, #0x20
+    ldrb r2, [r0]
+    mov r0, r8
+    bl func_08023D44
+    b .Lauto_08023CF4
+    .byte 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+    .global loc_08023C00
+    .thumb_func
+    loc_08023C00:
+    mov r6, sb
+    adds r6, #0x2c
+    mov r0, r8
+    adds r0, #0x20
+    ldrb r1, [r0]
+    mov r7, r8
+    movs r2, #0xa
+    ldrsh r4, [r7, r2]
+    movs r3, #0xe
+    ldrsh r5, [r7, r3]
+    adds r7, r0, #0
+    ldr r0, [sp, #0x90]
+    cmp r0, #0x25
+    bne .Lauto_08023C60
+    cmp r1, #0
+    bne .Lauto_08023C60
+    add r0, sp, #0x6c
+    bl method_0800CE58__4Barn
+    ldr r0, [sp, #0x6c]
+    str r0, [sp, #0x70]
+    add r0, sp, #0x70
+    movs r2, #2
+    ldrsh r1, [r0, r2]
+    adds r0, r5, #0
+    subs r0, #8
+    subs r0, r1, r0
+    cmp r0, #0
+    bge .Lauto_08023C3C
+    rsbs r0, r0, #0
+    .Lauto_08023C3C:
+    cmp r0, #7
+    bgt .Lauto_08023CC0
+    add r0, sp, #0x74
+    bl smethod_08009ADC__4Farm
+    ldr r0, [sp, #0x74]
+    str r0, [sp, #0x78]
+    add r0, sp, #0x78
+    movs r3, #0
+    ldrsh r2, [r0, r3]
+    movs r1, #2
+    ldrsh r3, [r0, r1]
+    adds r3, #0x10
+    mov r0, r8
+    movs r1, #2
+    bl SetLocation__7AEntityUiii
+    b .Lauto_08023CC0
+    .Lauto_08023C60:
+    ldr r2, [sp, #0x90]
+    cmp r2, #2
+    bne .Lauto_08023CC0
+    cmp r1, #1
+    bne .Lauto_08023CC0
+    add r0, sp, #0x7c
+    bl smethod_08009ADC__4Farm
+    ldr r0, [sp, #0x7c]
+    str r0, [sp, #0x80]
+    add r0, sp, #0x80
+    adds r1, r0, #0
+    movs r3, #0
+    ldrsh r0, [r1, r3]
+    subs r0, r0, r4
+    cmp r0, #0
+    bge .Lauto_08023C84
+    rsbs r0, r0, #0
+    .Lauto_08023C84:
+    cmp r0, #0xf
+    bgt .Lauto_08023CC0
+    movs r0, #2
+    ldrsh r1, [r1, r0]
+    adds r0, r5, #0
+    adds r0, #8
+    subs r0, r1, r0
+    cmp r0, #0
+    bge .Lauto_08023C98
+    rsbs r0, r0, #0
+    .Lauto_08023C98:
+    cmp r0, #7
+    bgt .Lauto_08023CC0
+    add r0, sp, #0x84
+    bl method_0800CE58__4Barn
+    ldr r1, [sp, #0x84]
+    add r0, sp, #0x88
+    str r1, [r0]
+    movs r1, #0
+    ldrsh r2, [r0, r1]
+    movs r1, #2
+    ldrsh r3, [r0, r1]
+    subs r3, #0x20
+    mov r0, r8
+    movs r1, #0x25
+    bl SetLocation__7AEntityUiii
+    mov r0, sb
+    bl ResetCurrentOutdoorMinutes__9Livestock
+    .Lauto_08023CC0:
+    ldrh r0, [r6]
+    cmp r0, #0
+    beq .Lauto_08023CCC
+    subs r0, #1
+    strh r0, [r6]
+    b .Lauto_08023CF4
+    .Lauto_08023CCC:
+    ldr r2, [pc, #0x44]
+    add r1, sp, #0x8c
+    ldr r0, [r1]
+    ands r0, r2
+    movs r2, #0xb4
+    orrs r0, r2
+    ldr r2, [pc, #0x3c]
+    ands r0, r2
+    str r0, [r1]
+    mov r0, sb
+    bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C
+    mov r0, r8
+    bl func_08023DB4
+    adds r1, r0, #0
+    ldrb r2, [r7]
+    mov r0, r8
+    bl func_08023D44
+    .global loc_08023CF4
+    .thumb_func
+    loc_08023CF4:
+    .Lauto_08023CF4:
+    mov r0, r8
+    add r1, sp, #0x14
+    bl func_0801FF04
+    mov r1, r8
+    adds r1, #0x30
+    movs r0, #0
+    strb r0, [r1]
+    mov r2, r8
+    ldrh r0, [r2, #0x24]
+    cmp r0, #0
+    beq .Lauto_08023D1C
+    subs r0, #1
+    strh r0, [r2, #0x24]
+    b .Lauto_08023D22
+    .byte 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
+    .Lauto_08023D1C:
+    mov r3, r8
+    ldrh r0, [r3, #0x26]
+    strh r0, [r3, #0x24]
+    .Lauto_08023D22:
+    mov r6, r8
+    ldr r2, [r6, #0x10]
+    cmp r2, #0
+    beq .Lauto_08023D34
+    ldr r0, [r2, #4]
+    ldr r1, [r0, #0xc]
+    adds r0, r2, #0
+    bl _call_via_r1
+    .Lauto_08023D34:
+    add sp, #0xa0
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
     .global func_08023D44
     .thumb_func
 func_08023D44:
-    .incbin "baserom_jp.gba", 0x23D44, (0x23DB4 - 0x23D44)
+    push {r4, r5, r6, lr}
+    adds r4, r0, #0
+    adds r5, r1, #0
+    adds r6, r2, #0
+    bl func_08023DF0
+    adds r1, r0, #0
+    ldrh r0, [r4, #0x22]
+    cmp r0, r1
+    beq .Lauto_08023D5E
+    adds r0, r4, #0
+    bl SetAnim__12AActorEntityUi
+    .Lauto_08023D5E:
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r0, [r0]
+    cmp r0, r6
+    beq .Lauto_08023D70
+    adds r0, r4, #0
+    adds r1, r6, #0
+    bl SetAnimFacing__12AActorEntityUi
+    .Lauto_08023D70:
+    adds r0, r4, #0
+    adds r1, r5, #0
+    bl loc_08023E50
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl func_0801FE14
+    adds r0, r4, #0
+    adds r0, #0x38
+    adds r6, r0, #0
+    ldrb r0, [r6]
+    cmp r5, r0
+    beq .Lauto_08023DAA
+    movs r1, #1
+    rsbs r1, r1, #0
+    cmp r5, #4
+    bne .Lauto_08023D96
+    movs r1, #8
+    .Lauto_08023D96:
+    cmp r1, #0
+    blt .Lauto_08023DA4
+    adds r0, r4, #0
+    movs r2, #1
+    bl func_08032384
+    b .Lauto_08023DAA
+    .Lauto_08023DA4:
+    adds r0, r4, #0
+    bl func_080323C8
+    .Lauto_08023DAA:
+    strb r5, [r6]
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+    .byte 0x00, 0x00
     .global func_08023DB4
     .thumb_func
 func_08023DB4:
-    .incbin "baserom_jp.gba", 0x23DB4, (0x23DF0 - 0x23DB4)
+    push {lr}
+    ldr r0, [r0, #0x34]
+    ldr r1, [r0, #0x28]
+    cmp r1, #1
+    beq .Lauto_08023DD6
+    cmp r1, #1
+    bgt .Lauto_08023DC8
+    cmp r1, #0
+    beq .Lauto_08023DD0
+    b .Lauto_08023DCC
+    .Lauto_08023DC8:
+    cmp r1, #3
+    ble .Lauto_08023DEA
+    .Lauto_08023DCC:
+    movs r0, #0
+    b .Lauto_08023DEC
+    .Lauto_08023DD0:
+    adds r0, #0x2e
+    ldrb r0, [r0]
+    b .Lauto_08023DEC
+    .Lauto_08023DD6:
+    adds r0, #0x2e
+    ldrb r1, [r0]
+    movs r0, #0x7f
+    ands r0, r1
+    movs r1, #1
+    cmp r0, #0
+    beq .Lauto_08023DE6
+    movs r1, #6
+    .Lauto_08023DE6:
+    adds r0, r1, #0
+    b .Lauto_08023DEC
+    .Lauto_08023DEA:
+    movs r0, #1
+    .Lauto_08023DEC:
+    pop {r1}
+    bx r1
     .global func_08023DF0
     .thumb_func
 func_08023DF0:
-    .incbin "baserom_jp.gba", 0x23DF0, (0x23E20 - 0x23DF0)
+    push {r4, r5, r6, r7, lr}
+    adds r5, r0, #0
+    adds r4, r1, #0
+    movs r6, #0
+    ldr r0, [r5, #0x34]
+    bl IsPregnant__C10BarnAnimal
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lauto_08023E10
+    ldr r0, [r5, #0x34]
+    bl GetDaysPregnant__C10BarnAnimal
+    rsbs r1, r0, #0
+    orrs r1, r0
+    lsrs r6, r1, #0x1f
+    .Lauto_08023E10:
+    ldr r7, [pc, #0xc]
+    lsls r4, r4, #1
+    cmp r6, #0
+    beq loc_08023E24
+    adds r0, r4, #0
+    adds r0, #0x2a
+    b loc_08023E44
+    .byte 0x00, 0x00
     .4byte gUnk_080F0E34
-    .incbin "baserom_jp.gba", 0x23E24, (0x23E64 - 0x23E24)
+    .global loc_08023E24
+    .thumb_func
+    loc_08023E24:
+    ldr r0, [r5, #0x34]
+    bl IsSheared__C5Sheep
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Lauto_08023E36
+    adds r0, r4, #0
+    adds r0, #0x1c
+    b .Lauto_08023E44
+    .Lauto_08023E36:
+    ldr r0, [r5, #0x34]
+    bl GetGrowthStage__C5Sheep
+    lsls r1, r0, #3
+    subs r1, r1, r0
+    lsls r1, r1, #1
+    adds r0, r4, r1
+    .global loc_08023E44
+    .thumb_func
+    loc_08023E44:
+    .Lauto_08023E44:
+    adds r0, r7, r0
+    ldrh r0, [r0]
+    pop {r4, r5, r6, r7}
+    pop {r1}
+    bx r1
+    .byte 0x00, 0x00
+    .global loc_08023E50
+    .thumb_func
+    loc_08023E50:
+    push {lr}
+    cmp r1, #1
+    beq .Lauto_08023E5A
+    movs r0, #0
+    b .Lauto_08023E5E
+    .Lauto_08023E5A:
+    movs r0, #0x80
+    lsls r0, r0, #8
+    .Lauto_08023E5E:
+    pop {r1}
+    bx r1
+    .byte 0x00, 0x00
     .global func_08023E64
     .thumb_func
 func_08023E64:
-    .incbin "baserom_jp.gba", 0x23E64, (0x23F40 - 0x23E64)
+    push {r4, r5, r6, r7, lr}
+    sub sp, #8
+    adds r6, r0, #0
+    adds r7, r1, #0
+    .byte 0x38, 0x88, 0x80, 0x05, 0x80, 0x0D, 0xB1, 0x88, 0x88, 0x42, 0x5F, 0xD1, 0x70, 0x6B, 0x77, 0xF0
+    .byte 0x35, 0xFA, 0x00, 0x06, 0x00, 0x28, 0x59, 0xD1, 0x70, 0x6B, 0x76, 0xF0, 0xEB, 0xFE, 0xFB, 0xF7
+    .byte 0x8F, 0xFF, 0x0A, 0x21, 0x73, 0x5E, 0x79, 0x78, 0x89, 0x08, 0x7A, 0x88, 0x12, 0x4C, 0x22, 0x40
+    .byte 0x92, 0x01, 0x0A, 0x43, 0x12, 0x04, 0x12, 0x14, 0xD2, 0x1A, 0x0E, 0x23, 0xF5, 0x5E, 0xFB, 0x78
+    .byte 0x9B, 0x08, 0xB9, 0x88, 0x21, 0x40, 0x89, 0x01, 0x19, 0x43, 0x09, 0x04, 0x09, 0x14, 0x49, 0x1B
+    .byte 0x13, 0x1C, 0x53, 0x43, 0x1A, 0x1C, 0x0B, 0x1C, 0x4B, 0x43, 0x19, 0x1C, 0x52, 0x18, 0x01, 0x1C
+    .byte 0x41, 0x43, 0x08, 0x1C, 0x82, 0x42, 0x31, 0xDC, 0x70, 0x6B, 0x77, 0xF0, 0x35, 0xF8, 0x00, 0x06
+    .byte 0x00, 0x28, 0x03, 0xD0, 0x1E, 0x24, 0x09, 0xE0, 0xFF, 0x03, 0x00, 0x00, 0x70, 0x6B, 0x77, 0xF0
+    .byte 0x27, 0xF8, 0x00, 0x06, 0x64, 0x24, 0x00, 0x28, 0x00, 0xD0, 0x46, 0x24, 0x64, 0x20, 0x87, 0xF0
+    .byte 0x61, 0xF9, 0xA0, 0x42, 0x1A, 0xD2, 0x70, 0x6B, 0x76, 0xF0, 0xAC, 0xFE, 0x01, 0x01, 0x09, 0x1A
+    .byte 0x89, 0x01, 0x09, 0x0A, 0xF0, 0x23, 0x5B, 0x00, 0xC9, 0x18, 0x09, 0x04, 0x09, 0x0C, 0x00, 0x91
+    .byte 0x70, 0x6B, 0x69, 0x46, 0x77, 0xF0, 0x36, 0xFA, 0x30, 0x1C, 0xFF, 0xF7, 0x45, 0xFF, 0x01, 0x1C
+    .byte 0x30, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x30, 0x1C, 0xFF, 0xF7, 0x06, 0xFF, 0x02, 0xB0, 0xF0, 0xBC
+    .byte 0x01, 0xBC, 0x00, 0x47
     .global func_08023F40
     .thumb_func
 func_08023F40:
-    .incbin "baserom_jp.gba", 0x23F40, (0x23F8C - 0x23F40)
+    push {r4, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    ldr r2, [r4, #0x34]
+    ldr r0, [r2, #0x28]
+    cmp r0, #3
+    bne .Lauto_08023F7A
+    ldr r1, [pc, #0x34]
+    ldr r0, [sp]
+    ands r0, r1
+    movs r1, #0xb4
+    orrs r0, r1
+    ldr r1, [pc, #0x2c]
+    ands r0, r1
+    str r0, [sp]
+    adds r0, r2, #0
+    mov r1, sp
+    bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C
+    adds r0, r4, #0
+    bl func_08023DB4
+    adds r1, r0, #0
+    adds r0, r4, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    adds r0, r4, #0
+    bl func_08023D44
+    .Lauto_08023F7A:
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+    .byte 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF
     .global func_08023F8C
     .thumb_func
 func_08023F8C:
-    .incbin "baserom_jp.gba", 0x23F8C, (0x23F90 - 0x23F8C)
+    movs r0, #1
+    bx lr
     .global func_08023F90
     .thumb_func
 func_08023F90:
-    .incbin "baserom_jp.gba", 0x23F90, (0x23FB8 - 0x23F90)
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    movs r5, #0
+    ldr r0, [r4, #0x34]
+    bl IsPregnant__C10BarnAnimal
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lauto_08023FB0
+    ldr r0, [r4, #0x34]
+    bl CanBeMadePregnant__C5Sheep
+    lsls r0, r0, #0x18
+    lsrs r0, r0, #0x18
+    rsbs r0, r0, #0
+    lsrs r5, r0, #0x1f
+    .Lauto_08023FB0:
+    adds r0, r5, #0
+    pop {r4, r5}
+    pop {r1}
+    bx r1
     .global func_08023FB8
     .thumb_func
 func_08023FB8:
-    .incbin "baserom_jp.gba", 0x23FB8, (0x23FC8 - 0x23FB8)
+    push {lr}
+    ldr r0, [r0, #0x34]
+    bl HasBeenBrushedToday__C6Animal
+    movs r1, #1
+    eors r0, r1
+    pop {r1}
+    bx r1
     .global func_08023FC8
     .thumb_func
 func_08023FC8:
-    .incbin "baserom_jp.gba", 0x23FC8, (0x23FD4 - 0x23FC8)
+    push {lr}
+    ldr r0, [r0, #0x34]
+    bl CanBeSheared__C5Sheep
+    pop {r1}
+    bx r1
     .global func_08023FD4
     .thumb_func
 func_08023FD4:
-    .incbin "baserom_jp.gba", 0x23FD4, (0x23FE0 - 0x23FD4)
+    push {lr}
+    ldr r0, [r0, #0x34]
+    bl IsSick__C9Livestock
+    pop {r1}
+    bx r1
     .global func_08023FE0
     .thumb_func
 func_08023FE0:
-    .incbin "baserom_jp.gba", 0x23FE0, (0x24010 - 0x23FE0)
+    push {r4, r5, lr}
+    adds r4, r0, #0
+    movs r5, #0
+    ldrh r0, [r4, #4]
+    cmp r0, #2
+    bne .Lauto_08024006
+    ldr r0, [r4, #0x34]
+    bl IsSick__C9Livestock
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lauto_08024006
+    ldr r0, [r4, #0x34]
+    bl IsUnhappy__C9Livestock
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lauto_08024006
+    movs r5, #1
+    .Lauto_08024006:
+    adds r0, r5, #0
+    pop {r4, r5}
+    pop {r1}
+    bx r1
+    .byte 0x00, 0x00
     .global func_08024010
     .thumb_func
 func_08024010:
-    .incbin "baserom_jp.gba", 0x24010, (0x240A0 - 0x24010)
+    push {r4, lr}
+    sub sp, #4
+    adds r4, r0, #0
+    ldr r0, [r4, #0x34]
+    bl IsPregnant__C10BarnAnimal
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    bne .Lauto_08024066
+    movs r0, #0x78
+    bl func_080AB1C0
+    .byte 0xF0, 0x30, 0x00, 0x04, 0x00, 0x0C, 0x18, 0x4A, 0x00, 0x99, 0x11, 0x40, 0x01, 0x43, 0x17, 0x48
+    .byte 0x01, 0x40, 0xF0, 0x20, 0x80, 0x03, 0x01, 0x43, 0x15, 0x48, 0x01, 0x40, 0x15, 0x48, 0x01, 0x40
+    .byte 0x00, 0x91, 0x60, 0x6B, 0x69, 0x46, 0x77, 0xF0, 0x99, 0xF9, 0x20, 0x1C, 0xFF, 0xF7, 0xAE, 0xFE
+    .byte 0x01, 0x1C, 0x20, 0x1C, 0x20, 0x30, 0x02, 0x78, 0x20, 0x1C, 0xFF, 0xF7, 0x6F, 0xFE
+    .Lauto_08024066:
+    ldr r0, [r4, #0x34]
+    movs r1, #0xa
+    bl SubtractAffection__6Animali
+    ldr r0, [r4, #0x34]
+    bl SetUnhappy__9Livestock
+    adds r0, r4, #0
+    movs r1, #0
+    movs r2, #0
+    bl func_08032384
+    adds r0, r4, #0
+    movs r1, #0xa4
+    bl func_0801FE58
+    add sp, #4
+    pop {r4}
+    pop {r0}
+    bx r0
+    .byte 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x80, 0xFF, 0xFF, 0xFF, 0x7F, 0xFF, 0xFF, 0xFF
+    .byte 0xFF, 0x00
     .global func_080240A0
     .thumb_func
 func_080240A0:
-    .incbin "baserom_jp.gba", 0x240A0, (0x240AC - 0x240A0)
+    push {lr}
+    ldr r0, [r0, #0x34]
+    bl StartPregnancy__10BarnAnimal
+    pop {r0}
+    bx r0
     .global func_080240AC
     .thumb_func
 func_080240AC:
