@@ -3838,3 +3838,19 @@ JP `0x0802C5F4–0x0802CB60` 的三个连续入口均已改为直接 Thumb：
 
 本批仅修改 JP。WSL `-j4` 构建、资源补丁链稳定后的 SHA-1 为
 `A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并通过与 `baserom_jp.gba` 的逐字节比较。
+
+## `asm/code_entities.s`：JP 实体 UI 大型帧处理入口
+
+JP `func_0802CB60`（`0x0802CB60–0x0802CEEC`）现以直接 Thumb 表示，对应海外
+`func_0802CDCC`。该完整入口保留帧内对象处理、碰撞范围回调、局部栈对象、状态字段
+更新和局部数据标签的原始顺序。
+
+该批的真实区域符号映射包括海外 `func_0802536C` 对应 JP
+`func_08025100`，以及海外 `func_080AC070` 对应 JP `func_080ABAA8`。后者曾以
+原 ROM 的两处 BL 编码独立核对；相邻的 `func_080ABB5C` 不是该调用目标，因此未被
+用作伪匹配。其余对象表符号由 JP 链接器正常重定位。块内没有函数级 `.byte`、代码
+`incbin`、`.set`/`.thumb_set` 或固定地址跳转；下一未提升 JP 入口为
+`func_0802CEEC`。
+
+本批仅修改 JP。WSL `-j4` 构建、资源补丁链稳定后的 SHA-1 为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并通过与 `baserom_jp.gba` 的逐字节比较。
