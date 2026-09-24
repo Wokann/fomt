@@ -10697,35 +10697,278 @@ func_08015150:
     .global func_08015524
     .thumb_func
 func_08015524:
-    .incbin "baserom_jp.gba", 0x15524, (0x15630 - 0x15524)
+    push	{r4, r5, r6, r7, lr}
+    mov	r7, r8
+    push	{r7}
+    ldr	r0, [r0, #4]
+    mov	r8, r0
+    mov	r5, r8
+    adds	r5, #140
+    ldr	r0, [r5, #0]
+    movs	r1, #130
+    lsls	r1, r1, #3
+    adds	r0, r0, r1
+    bl GetCapacity__C4Coop
+    adds	r6, r0, #0
+    movs	r4, #0
+    cmp	r4, r6
+    bcs .Ljp_08015586
+    mov	r7, r8
+    adds	r7, #168
+.Ljp_0801554A:
+    ldr	r0, [r5, #0]
+    movs	r1, #130
+    lsls	r1, r1, #3
+    adds	r0, r0, r1
+    adds	r1, r4, #0
+    bl GetChicken__4CoopUi
+    cmp	r0, #0
+    beq .Ljp_08015580
+    bl method_0809B514__C9Livestock
+    cmp	r0, #1
+    bne .Ljp_08015580
+    ldr	r0, [r7, #0]
+    ldr	r2, [r0, #0]
+    adds	r1, r4, #0
+    adds	r1, #46
+    ldr	r2, [r2, #60]
+    bl _call_via_r2
+    ldr	r0, [r5, #0]
+    movs	r1, #130
+    lsls	r1, r1, #3
+    adds	r0, r0, r1
+    adds	r1, r4, #0
+    bl RemoveAndRememberUnk__4CoopUi
+.Ljp_08015580:
+    adds	r4, #1
+    cmp	r4, r6
+    bcc .Ljp_0801554A
+.Ljp_08015586:
+    mov	r4, r8
+    adds	r4, #140
+    ldr	r0, [r4, #0]
+    ldr	r1, .Ljp_0801562C
+    adds	r5, r0, r1
+    adds	r0, r5, #0
+    bl func_0800F190
+    lsls	r0, r0, #24
+    adds	r6, r4, #0
+    cmp	r0, #0
+    bne .Ljp_080155CC
+    adds	r0, r5, #0
+    bl func_0800F204
+    cmp	r0, #3
+    bne .Ljp_080155CC
+    ldr	r4, [r6, #0]
+    movs	r0, #130
+    lsls	r0, r0, #3
+    adds	r4, r4, r0
+    adds	r0, r5, #0
+    bl func_0800F344
+    adds	r1, r0, #0
+    adds	r0, r4, #0
+    bl GetChicken__4CoopUi
+    cmp	r0, #0
+    bne .Ljp_080155CC
+    ldr	r0, [r6, #0]
+    ldr	r1, .Ljp_0801562C
+    adds	r0, r0, r1
+    bl func_0800F390
+.Ljp_080155CC:
+    ldr	r0, [r6, #0]
+    movs	r1, #190
+    lsls	r1, r1, #3
+    adds	r0, r0, r1
+    bl GetCapacity__C4Barn
+    adds	r7, r0, #0
+    movs	r4, #0
+    cmp	r4, r7
+    bcs .Ljp_08015622
+    adds	r5, r6, #0
+    mov	r6, r8
+    adds	r6, #168
+.Ljp_080155E6:
+    ldr	r0, [r5, #0]
+    movs	r1, #190
+    lsls	r1, r1, #3
+    adds	r0, r0, r1
+    adds	r1, r4, #0
+    bl GetBarnAnimal__4BarnUi
+    cmp	r0, #0
+    beq .Ljp_0801561C
+    bl method_0809B514__C9Livestock
+    cmp	r0, #1
+    bne .Ljp_0801561C
+    ldr	r0, [r6, #0]
+    ldr	r2, [r0, #0]
+    adds	r1, r4, #0
+    adds	r1, #54
+    ldr	r2, [r2, #60]
+    bl _call_via_r2
+    ldr	r0, [r5, #0]
+    movs	r1, #190
+    lsls	r1, r1, #3
+    adds	r0, r0, r1
+    adds	r1, r4, #0
+    bl RemoveAndRememberUnk__4BarnUi
+.Ljp_0801561C:
+    adds	r4, #1
+    cmp	r4, r7
+    bcc .Ljp_080155E6
+.Ljp_08015622:
+    pop	{r3}
+    mov	r8, r3
+    pop	{r4, r5, r6, r7}
+    pop	{r0}
+    bx	r0
+.Ljp_0801562C: .4byte 0x00001C2C
     .global func_08015630
     .thumb_func
 func_08015630:
-    .incbin "baserom_jp.gba", 0x15630, (0x15660 - 0x15630)
+    push	{r4, r5, lr}
+    lsls	r5, r1, #16
+    lsrs	r5, r5, #16
+    ldr	r4, [r0, #4]
+    adds	r0, r4, #0
+    adds	r0, #168
+    ldr	r0, [r0, #0]
+    ldr	r1, [r0, #0]
+    ldr	r2, [r1, #64]
+    movs	r1, #0
+    bl _call_via_r2
+    ldr	r1, [r0, #20]
+    ldr	r2, [r1, #104]
+    adds	r1, r5, #0
+    bl _call_via_r2
+    adds	r4, #156
+    movs	r0, #25
+    str	r0, [r4, #0]
+    pop	{r4, r5}
+    pop	{r0}
+    bx	r0
+    .align 2, 0
     .global func_08015660
     .thumb_func
 func_08015660:
-    .incbin "baserom_jp.gba", 0x15660, (0x1568C - 0x15660)
+    push	{r4, lr}
+    ldr	r4, [r0, #4]
+    adds	r0, r4, #0
+    adds	r0, #168
+    ldr	r0, [r0, #0]
+    ldr	r1, [r0, #0]
+    ldr	r2, [r1, #64]
+    movs	r1, #0
+    bl _call_via_r2
+    ldr	r1, [r0, #20]
+    adds	r1, #128
+    ldr	r1, [r1, #0]
+    bl _call_via_r1
+    adds	r4, #156
+    movs	r0, #25
+    str	r0, [r4, #0]
+    pop	{r4}
+    pop	{r0}
+    bx	r0
+    .align 2, 0
     .global func_0801568C
     .thumb_func
 func_0801568C:
-    .incbin "baserom_jp.gba", 0x1568C, (0x156B4 - 0x1568C)
+    push	{r4, lr}
+    ldr	r4, [r0, #4]
+    adds	r0, r4, #0
+    adds	r0, #168
+    ldr	r0, [r0, #0]
+    ldr	r1, [r0, #0]
+    ldr	r2, [r1, #64]
+    movs	r1, #0
+    bl _call_via_r2
+    ldr	r1, [r0, #20]
+    ldr	r1, [r1, #124]
+    bl _call_via_r1
+    adds	r4, #156
+    movs	r0, #25
+    str	r0, [r4, #0]
+    pop	{r4}
+    pop	{r0}
+    bx	r0
     .global func_080156B4
     .thumb_func
 func_080156B4:
-    .incbin "baserom_jp.gba", 0x156B4, (0x156E4 - 0x156B4)
+    push	{lr}
+    adds	r3, r1, #0
+    ldr	r1, [r0, #4]
+    adds	r0, r3, #0
+    subs	r0, #36
+    cmp	r0, #6
+    bhi .Ljp_080156DC
+    adds	r0, r1, #0
+    adds	r0, #168
+    ldr	r0, [r0, #0]
+    ldr	r1, [r0, #0]
+    ldr	r2, [r1, #64]
+    adds	r1, r3, #0
+    bl _call_via_r2
+    cmp	r0, #0
+    beq .Ljp_080156DC
+    bl func_08033B24
+    b .Ljp_080156DE
+.Ljp_080156DC:
+    movs	r0, #0
+.Ljp_080156DE:
+    pop	{r1}
+    bx	r1
+    .align 2, 0
     .global func_080156E4
     .thumb_func
 func_080156E4:
-    .incbin "baserom_jp.gba", 0x156E4, (0x15704 - 0x156E4)
+    push	{lr}
+    ldr	r0, [r0, #4]
+    adds	r0, #168
+    ldr	r0, [r0, #0]
+    ldr	r1, [r0, #0]
+    ldr	r2, [r1, #64]
+    movs	r1, #0
+    bl _call_via_r2
+    ldr	r1, [r0, #20]
+    adds	r1, #132
+    ldr	r1, [r1, #0]
+    bl _call_via_r1
+    pop	{r1}
+    bx	r1
     .global func_08015704
     .thumb_func
 func_08015704:
-    .incbin "baserom_jp.gba", 0x15704, (0x15724 - 0x15704)
+    push	{lr}
+    ldr	r0, [r0, #4]
+    adds	r0, #168
+    ldr	r0, [r0, #0]
+    ldr	r1, [r0, #0]
+    ldr	r2, [r1, #64]
+    movs	r1, #0
+    bl _call_via_r2
+    ldr	r1, [r0, #20]
+    adds	r1, #136
+    ldr	r1, [r1, #0]
+    bl _call_via_r1
+    pop	{r1}
+    bx	r1
     .global func_08015724
     .thumb_func
 func_08015724:
-    .incbin "baserom_jp.gba", 0x15724, (0x15744 - 0x15724)
+    push	{lr}
+    ldr	r0, [r0, #4]
+    adds	r0, #168
+    ldr	r0, [r0, #0]
+    ldr	r1, [r0, #0]
+    ldr	r2, [r1, #64]
+    movs	r1, #0
+    bl _call_via_r2
+    ldr	r1, [r0, #20]
+    adds	r1, #140
+    ldr	r1, [r1, #0]
+    bl _call_via_r1
+    pop	{r1}
+    bx	r1
     .global func_08015744
     .thumb_func
 func_08015744:
