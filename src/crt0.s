@@ -33,50 +33,10 @@ _start:
     .byte  0x65, 0xC0, 0x7C, 0x63, 0x87, 0xF0, 0x3C, 0xAF
     .byte  0xD6, 0x25, 0xE4, 0x8B, 0x38, 0x0A, 0xAC, 0x72
     .byte  0x21, 0xD4, 0xF8, 0x07
-    @ CHECKSUM AREA BEGIN
-    .ifdef REGION_JP
-    .ascii "BOKUMONOGBA"  @ Game title
-    .zero  1              @ JP title terminator
-    .ascii "A4NJ"         @ Game code
-    .else
-    .ifdef REGION_DE
-    .ascii "HARVESTMOGER"  @ Game title
-    .ascii "A4ND"          @ Game code
-    .else
-    .ifdef REGION_EU
-    .ascii "HARVESTMOGBA"  @ Game title
-    .ascii "A4NP"          @ Game code
-    .else
-    .ascii "HARVESTMOGBA"  @ Game title
-    .ascii "A4NE"          @ Game code
-    .endif
-    .endif
-    .endif
-    .ifdef REGION_JP
-    .ascii "99"            @ Maker code
-    .else
-    .ascii "E9"            @ Maker code
-    .endif
-    .byte  0x96            @ Mandatory
-    .zero  1               @ Device code
-    .zero  1               @ Device type
-    .zero  7               @ Reserved
-    .zero  1               @ Game version
-    @ CHECKSUM AREA END
-    .ifdef REGION_JP
-    .byte  0x9E            @ Checksum
-    .else
-    .ifdef REGION_DE
-    .byte  0x35            @ Checksum
-    .else
-    .ifdef REGION_EU
-    .byte  0x3D            @ Checksum
-    .else
-    .byte  0x48            @ Checksum
-    .endif
-    .endif
-    .endif
-    .zero  2               @ Reserved
+    @ The 0xA0-0xBF header identity is filled from config.mk by tools/gbafix
+    @ after objcopy, following the pokeruby build model.  It must not be a
+    @ region-specific layout fragment or a duplicate set of assembler strings.
+    .zero  0x20
 
     .arm
     .type entrypoint, function

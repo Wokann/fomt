@@ -39,6 +39,11 @@ module: shared code is kept outside the conditional, and only a verified
 difference is placed under the relevant region guard. Do not create a separate
 region-specific executable object tree.
 
+As in `pokeruby`, `config.mk` is the sole source for each ROM header's title,
+game code, maker code, and revision.  The build applies those values with the
+host-side `tools/gbafix` after `objcopy`; regional layout fragments do not
+carry header identity or a duplicate game-code definition.
+
 Some JP functions are not semantic source yet.  Their bounded, byte-exact
 assembly is kept directly in the owning `.cc` file's `REGION_JP` branch with
 file-scope `asm()`.  It is not a second source file or compilation unit.  As

@@ -47,6 +47,11 @@ CC1PLUS  := tools/agbcc/bin/agbcp$(EXE)
 
 OLD_CC1  := tools/agbcc/bin/old_agbcc$(EXE)
 
+# ROM header values live in config.mk, as in pret/pokeruby.  The small host
+# tool writes them only after objcopy has produced the flat GBA image.
+GBAFIX_DIR := tools/gbafix
+GBAFIX := $(GBAFIX_DIR)/gbafix$(EXE)
+
 # Host-side graphics tools.  gbagfx is vendored from pokeemerald under its
 # original licence; fontpad only bridges FoMT's 8x12 1bpp glyph records to
 # gbagfx's 8x8-tile input without changing the authored PNG workflow.
@@ -206,6 +211,9 @@ ALL_DEPS += $(REGION_TEXT_DEPS) $(GUIDE_GENERATED_DEP) $(MARY_BUNDLE_DEP)
 $(TEXT_TOOLS): $(TEXT_TOOL_DIR)/fomt_text.cpp $(TEXT_TOOL_DIR)/fomt_preproc.cpp $(TEXT_TOOL_DIR)/Makefile
 	@$(MAKE) -C $(TEXT_TOOL_DIR) $(notdir $@)
 
+$(GBAFIX): $(GBAFIX_DIR)/gbafix.c $(GBAFIX_DIR)/Makefile
+	@$(MAKE) -C $(GBAFIX_DIR) $(notdir $@)
+
 # graphics_file_rules.mk owns every image conversion dependency.  Assemble
 # only after it has produced the source-adjacent assets; GAS then records each
 # real .incbin input in its ordinary generated dependency file.
@@ -280,6 +288,7 @@ $(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGIO
 # ROM from ELF
 # Keep the post-link archive replacement available before the generic ROM rule
 # runs, regardless of which regional BUILD_NAME selected the target.
+$(ROM): $(GBAFIX) config.mk
 $(ROM): $(SHARED_RESOURCE_086F2FAC_OUTPUT)
 $(ROM): $(SHARED_RESOURCE_086FAA80_OUTPUT)
 $(ROM): $(SHARED_RESOURCE_0871ECAC_OUTPUT)
@@ -462,6 +471,7 @@ $(ROM): $(REGIONAL_RESOURCE_0874F34C_OUTPUT)
 	  --length $(FARM_STATUS_RESOURCE_ARCHIVE_LENGTH) \
 	  --sha256 $(FARM_STATUS_RESOURCE_ARCHIVE_SHA256) \
 	  patch --target $@ --archive $(FARM_STATUS_RESOURCE_ARCHIVE_OUTPUT)
+	@$(GBAFIX) $@ -p -t"$(TITLE)" -c$(GAME_CODE) -m$(MAKER_CODE) -r$(GAME_REVISION) --silent
 
 # ELF
 $(ELF): $(ALL_OBJS) $(LDS)
