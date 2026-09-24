@@ -294,13 +294,13 @@ They are palette sources, not rendered PNGs: the routine does not prove an OBJ
 layout, BG tilemap, or a final composited image.
 
 JP, US, EU and DE use byte-identical source streams at different physical ROM
-offsets. Every regional build patches its own original fixed slots. Rebuild
-and validate the exact fixed-slot Raw-LZ encoding with:
+offsets. `tools/fomt_lz.c` compiles the native `.gbapal.lz` streams beside the
+sources; assembly includes them directly without patching the linked ROM.
+Rebuild and validate the exact fixed-slot Raw-LZ encoding with:
 
 ```console
-make gfx-map-state-palettes-all
-make gfx-map-state-palettes-patch-test
-make gfx-map-state-palettes-edit-test
+make GAME_REGION=JP gfx-map-state-palettes-test
+make GAME_REGION=JP compare
 ```
 
 ## Map-state native presentation templates

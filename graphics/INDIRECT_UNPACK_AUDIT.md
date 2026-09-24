@@ -34,10 +34,10 @@ Each decoded payload is exactly `0x1E0` bytes: fifteen 16-colour BGR555 banks
 (`15 * 16 * 2`).  The loader selects one full payload as its state-dependent
 palette input.  The checked-in ordered sources are therefore native
 `graphics/map_state_palettes/shared/fallback_00.gbapal` through
-`fallback_04.gbapal`; `tools/map_state_palette_fallbacks.py` preserves the
-retail packed bytes when unchanged and uses a strict bounded Raw-LZ rebuild
-when edited.  JP, US, EU and DE have byte-identical packed payloads and
-decoded palette banks; each output ROM receives its own region-local patch.
+`fallback_04.gbapal`; `tools/fomt_lz.c` encodes the source palettes as bounded
+`.gbapal.lz` streams included directly by assembly. JP, US, EU and DE have
+byte-identical packed payloads and decoded palette banks; no post-link patch
+is used for these five streams.
 
 This proves palette ownership only.  The records must not be exported as
 guessed PNGs or presented as tile/OAM layouts: none of the regional map-state

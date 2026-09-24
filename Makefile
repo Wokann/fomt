@@ -44,6 +44,7 @@ endif
 
 CC1      := tools/agbcc/bin/agbcc$(EXE)
 CC1PLUS  := tools/agbcc/bin/agbcp$(EXE)
+HOSTCC ?= cc
 
 OLD_CC1  := tools/agbcc/bin/old_agbcc$(EXE)
 
@@ -57,6 +58,7 @@ GBAFIX := $(GBAFIX_DIR)/gbafix$(EXE)
 # gbagfx's 8x8-tile input without changing the authored PNG workflow.
 GFX_TOOL_DIR := tools/gbagfx
 GFX_TOOL := $(GFX_TOOL_DIR)/gbagfx$(EXE)
+FOMT_LZ_TOOL := tools/fomt-lz$(EXE)
 GFX_TOOL_SOURCES := $(wildcard $(GFX_TOOL_DIR)/*.c $(GFX_TOOL_DIR)/*.h) $(GFX_TOOL_DIR)/Makefile
 FONT_PAD_DIR := tools/fontpad
 FONT_PAD := $(FONT_PAD_DIR)/fontpad$(EXE)
@@ -213,6 +215,9 @@ $(TEXT_TOOLS): $(TEXT_TOOL_DIR)/fomt_text.cpp $(TEXT_TOOL_DIR)/fomt_preproc.cpp 
 
 $(GBAFIX): $(GBAFIX_DIR)/gbafix.c $(GBAFIX_DIR)/Makefile
 	@$(MAKE) -C $(GBAFIX_DIR) $(notdir $@)
+
+$(FOMT_LZ_TOOL): tools/fomt_lz.c
+	@$(HOSTCC) -std=c11 -Wall -Wextra -Werror -O2 $< -o $@
 
 # graphics_file_rules.mk owns every image conversion dependency.  Assemble
 # only after it has produced the source-adjacent assets; GAS then records each

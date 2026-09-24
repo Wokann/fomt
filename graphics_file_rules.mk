@@ -1288,10 +1288,14 @@ MAP_RESOURCES_REGION := $(INTRO_OBJECTS_REGION)
 MAP_RESOURCES_ALL_ROM_ARGS := --all-rom jp baserom_jp.gba --all-rom us baserom_us.gba --all-rom eu baserom_eu.gba --all-rom de baserom_de.gba
 MAP_RESOURCES_ROM_ARGS := --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
 
-MAP_STATE_PALETTE_TOOL := tools/map_state_palette_fallbacks.py
 MAP_STATE_PALETTE_SOURCE_DIR := graphics/map_state_palettes/shared
 MAP_STATE_PALETTE_SOURCES := $(wildcard $(MAP_STATE_PALETTE_SOURCE_DIR)/*.gbapal)
-MAP_STATE_PALETTE_OUTPUTS := $(MAP_STATE_PALETTE_SOURCES:.gbapal=.0x70)
+MAP_STATE_PALETTE_OUTPUTS := $(MAP_STATE_PALETTE_SOURCES:.gbapal=.gbapal.lz)
+$(MAP_STATE_PALETTE_SOURCE_DIR)/fallback_00.gbapal.lz: FOMT_LZ3_ARGS := 145 0xA0
+$(MAP_STATE_PALETTE_SOURCE_DIR)/fallback_01.gbapal.lz: FOMT_LZ3_ARGS := 147 0x8C
+$(MAP_STATE_PALETTE_SOURCE_DIR)/fallback_02.gbapal.lz: FOMT_LZ3_ARGS := 456 0x98
+$(MAP_STATE_PALETTE_SOURCE_DIR)/fallback_03.gbapal.lz: FOMT_LZ3_ARGS := 456 0x94
+$(MAP_STATE_PALETTE_SOURCE_DIR)/fallback_04.gbapal.lz: FOMT_LZ3_ARGS := 147 0x94
 
 # Two large MapData renderer tables are byte-identical in JP/US/EU/DE.  They
 # are native palette-template and 16-bit tilemap-template records, not
@@ -1824,8 +1828,8 @@ $(MAP_RESOURCES_STAMP): $(MAP_RESOURCES_SOURCES) $(MAP_RESOURCES_TOOL) baserom_j
 	  --source-dir $(MAP_RESOURCES_SOURCE_DIR) --output-dir $(MAP_RESOURCES_OUTPUT_DIR) $(MAP_RESOURCES_ALL_ROM_ARGS)
 	@touch $@
 
-$(MAP_STATE_PALETTE_SOURCE_DIR)/%.0x70: $(MAP_STATE_PALETTE_SOURCE_DIR)/%.gbapal $(MAP_STATE_PALETTE_TOOL) tools/marvelous_codec.py tools/scripts/decompress.py
-	@$(PYTHON) $(MAP_STATE_PALETTE_TOOL) build --source $< --output $@
+$(MAP_STATE_PALETTE_SOURCE_DIR)/%.gbapal.lz: $(MAP_STATE_PALETTE_SOURCE_DIR)/%.gbapal $(FOMT_LZ_TOOL)
+	@$(FOMT_LZ_TOOL) encode-lz3 $< $@ $(FOMT_LZ3_ARGS)
 
 $(MAP_STATE_TEMPLATE_STAMP): $(MAP_STATE_TEMPLATE_SOURCES) $(MAP_STATE_TEMPLATE_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(MAP_STATE_TEMPLATE_TOOL) build --region $(MAP_STATE_TEMPLATE_REGION) --rom $(BASE_ROM) \
@@ -3388,8 +3392,8 @@ gfx-map-resources-reference: $(MAP_VISUAL_REFERENCE_TOOL) $(MAP_RESOURCES_SOURCE
 
 gfx-map-state-palettes: $(MAP_STATE_PALETTE_OUTPUTS)
 gfx-map-state-palettes-test: gfx-map-state-palettes
-	@for source in $(MAP_STATE_PALETTE_SOURCES); do \
-	  $(PYTHON) $(MAP_STATE_PALETTE_TOOL) verify --source $$source --output $${source%.gbapal}.0x70; \
+	@set -e; for source in $(MAP_STATE_PALETTE_SOURCES); do \
+	  $(FOMT_LZ_TOOL) verify-lz3 $$source $$source.lz; \
 	done
 
 gfx-map-state-templates: $(MAP_STATE_TEMPLATE_STAMP)

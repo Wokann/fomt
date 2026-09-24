@@ -10,5 +10,7 @@
 
 build/
 graphics/map_state_palettes/shared/*.0x70
+graphics/map_state_palettes/shared/*.gbapal.lz
+tools/fomt-lz
 __pycache__/
 tools/textproc/fomt-*
