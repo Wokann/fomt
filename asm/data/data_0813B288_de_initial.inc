@@ -159824,10 +159824,10 @@ gUnk_087506E0:
 	.byte 0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00
 	.global gUnk_08750C4C
 gUnk_08750C4C:
-	FOMT_FARM_STATUS_TASK_UI_TILE 4bpp
+	.incbin "graphics/ui/farm_status/harvest_sprite_task_ui_tile/shared/harvest_sprite_task_ui_tile.4bpp"
 	.global gUnk_08750C6C
 gUnk_08750C6C:
-	FOMT_FARM_STATUS_TASK_UI_TILE gbapal
+	.incbin "graphics/ui/farm_status/harvest_sprite_task_ui_tile/shared/harvest_sprite_task_ui_tile.gbapal"
 	.global gUnk_08750C8C
 gUnk_08750C8C:
 	.byte 0x00, 0x00, 0x00, 0x00, 0x00, 0x11, 0x11, 0x01, 0x10, 0x01, 0x00, 0x11, 0x10, 0x01, 0x00, 0x11

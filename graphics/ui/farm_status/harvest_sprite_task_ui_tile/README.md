@@ -6,6 +6,11 @@ raw UI tiles, this does not need a tilemap or a multi-piece OAM layout: the
 retail initializer uploads exactly its sole tile to `0x060100A0` and its
 adjacent palette record to `0x05000220`.
 
+The build derives `shared/harvest_sprite_task_ui_tile.4bpp` and
+`shared/harvest_sprite_task_ui_tile.gbapal` beside that source image.  Assembly
+includes those source-adjacent artifacts directly; `build/` only holds normal
+compiler and linker intermediates.
+
 The upload pair is `gUnk_08750C4C` / `gUnk_08750C6C`.  It is shared byte for
 byte by all four retail FoMT ROMs:
 
