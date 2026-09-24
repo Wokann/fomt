@@ -160052,64 +160052,64 @@ gUnk_087517AC:
 	.byte 0x33, 0x33, 0x33, 0x33, 0x44, 0x44, 0x44, 0x44, 0x55, 0x55, 0x55, 0x55, 0xBB, 0xBB, 0xBB, 0xBB
 	.global gUnk_087518CC
 gUnk_087518CC:
-	FOMT_ANIMAL_FESTIVAL_ICON 00, 4bpp
+	.incbin "graphics/ui/animal_festival/shared/icon_00.4bpp"
 	.global gUnk_0875194C
 gUnk_0875194C:
-	FOMT_ANIMAL_FESTIVAL_ICON 00, gbapal
+	.incbin "graphics/ui/animal_festival/shared/icon_00.gbapal"
 	.global gUnk_0875196C
 gUnk_0875196C:
-	FOMT_ANIMAL_FESTIVAL_ICON 01, 4bpp
+	.incbin "graphics/ui/animal_festival/shared/icon_01.4bpp"
 	.global gUnk_087519EC
 gUnk_087519EC:
-	FOMT_ANIMAL_FESTIVAL_ICON 01, gbapal
+	.incbin "graphics/ui/animal_festival/shared/icon_01.gbapal"
 	.global gUnk_08751A0C
 gUnk_08751A0C:
-	FOMT_ANIMAL_FESTIVAL_ICON 02, 4bpp
+	.incbin "graphics/ui/animal_festival/shared/icon_02.4bpp"
 	.global gUnk_08751A8C
 gUnk_08751A8C:
-	FOMT_ANIMAL_FESTIVAL_ICON 02, gbapal
+	.incbin "graphics/ui/animal_festival/shared/icon_02.gbapal"
 	.global gUnk_08751AAC
 gUnk_08751AAC:
-	FOMT_ANIMAL_FESTIVAL_ICON 03, 4bpp
+	.incbin "graphics/ui/animal_festival/shared/icon_03.4bpp"
 	.global gUnk_08751B2C
 gUnk_08751B2C:
-	FOMT_ANIMAL_FESTIVAL_ICON 03, gbapal
+	.incbin "graphics/ui/animal_festival/shared/icon_03.gbapal"
 	.global gUnk_08751B4C
 gUnk_08751B4C:
-	FOMT_ANIMAL_FESTIVAL_ICON 04, 4bpp
+	.incbin "graphics/ui/animal_festival/shared/icon_04.4bpp"
 	.global gUnk_08751BCC
 gUnk_08751BCC:
-	FOMT_ANIMAL_FESTIVAL_ICON 04, gbapal
+	.incbin "graphics/ui/animal_festival/shared/icon_04.gbapal"
 	.global gUnk_08751BEC
 gUnk_08751BEC:
-	FOMT_ANIMAL_FESTIVAL_ICON 05, 4bpp
+	.incbin "graphics/ui/animal_festival/shared/icon_05.4bpp"
 	.global gUnk_08751C6C
 gUnk_08751C6C:
-	FOMT_ANIMAL_FESTIVAL_ICON 05, gbapal
+	.incbin "graphics/ui/animal_festival/shared/icon_05.gbapal"
 	.global gUnk_08751C8C
 gUnk_08751C8C:
-	FOMT_ANIMAL_FESTIVAL_ICON 06, 4bpp
+	.incbin "graphics/ui/animal_festival/shared/icon_06.4bpp"
 	.global gUnk_08751D0C
 gUnk_08751D0C:
-	FOMT_ANIMAL_FESTIVAL_ICON 06, gbapal
+	.incbin "graphics/ui/animal_festival/shared/icon_06.gbapal"
 	.global gUnk_08751D2C
 gUnk_08751D2C:
-	FOMT_ANIMAL_FESTIVAL_ICON 07, 4bpp
+	.incbin "graphics/ui/animal_festival/shared/icon_07.4bpp"
 	.global gUnk_08751DAC
 gUnk_08751DAC:
-	FOMT_ANIMAL_FESTIVAL_ICON 07, gbapal
+	.incbin "graphics/ui/animal_festival/shared/icon_07.gbapal"
 	.global gUnk_08751DCC
 gUnk_08751DCC:
-	FOMT_ANIMAL_FESTIVAL_ICON 08, 4bpp
+	.incbin "graphics/ui/animal_festival/shared/icon_08.4bpp"
 	.global gUnk_08751E4C
 gUnk_08751E4C:
-	FOMT_ANIMAL_FESTIVAL_ICON 08, gbapal
+	.incbin "graphics/ui/animal_festival/shared/icon_08.gbapal"
 	.global gUnk_08751E6C
 gUnk_08751E6C:
-	FOMT_ANIMAL_FESTIVAL_ICON 09, 4bpp
+	.incbin "graphics/ui/animal_festival/shared/icon_09.4bpp"
 	.global gUnk_08751EEC
 gUnk_08751EEC:
-	FOMT_ANIMAL_FESTIVAL_ICON 09, gbapal
+	.incbin "graphics/ui/animal_festival/shared/icon_09.gbapal"
 	.global gUnk_08751F0C
 gUnk_08751F0C:
 	.incbin "graphics/ui/records_minigame/shared/task_00.4bpp"

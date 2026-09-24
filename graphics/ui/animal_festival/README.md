@@ -24,14 +24,15 @@ The verified archive SHA-256 is
 `38ffc2dc46e7d720773ca0ee78e7329bceaced0848a8f4c123cdb7a7a97739af`.
 `tools/animal_festival_icons.py` verifies that full range before export and
 rebuild, then validates every 0xA0-byte icon record individually.  Assembly
-keeps all original address labels and replaces only those 20 tile/palette
-payloads with the matching regional build outputs.
+keeps all original address labels and directly includes the source-adjacent
+tile/palette files.
 
 ```console
 make gfx-animal-festival-icons-all
 ```
 
-This builds the active region's outputs and verifies the authored PNGs against
-JP, US, EU and DE.  The unchanged result is byte-identical at every original
-range; changing a PNG produces the corresponding native 4bpp bytes and
-BGR555 palette without a sidecar layout format.
+This builds source-adjacent `shared/icon_XX.4bpp` and `shared/icon_XX.gbapal`
+files, then verifies the authored PNGs against JP, US, EU and DE.  The
+unchanged result is byte-identical at every original range; changing a PNG
+produces the corresponding native 4bpp bytes and BGR555 palette without a
+sidecar layout format.
