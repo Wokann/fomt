@@ -42,6 +42,7 @@ their gameplay roles have equally direct evidence.
 make gfx-farm-status-creature-icons-all
 ```
 
-The target rebuilds each active regional output and checks unchanged PNGs
-against JP, US, EU, and DE. Editing a source PNG produces its corresponding
-native tile bytes and BGR555 palette without relying on sidecar layout data.
+The target rebuilds source-adjacent `shared/icon_XX.4bpp` and
+`shared/icon_XX.gbapal` files, then checks unchanged PNGs against JP, US, EU,
+and DE. Editing a source PNG produces its corresponding native tile bytes and
+BGR555 palette without relying on sidecar layout data.
