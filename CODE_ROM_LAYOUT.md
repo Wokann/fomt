@@ -3665,3 +3665,21 @@ WSL 以 `-j4` 构建并逐字节对照四版均通过：JP
 `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。
+
+## `asm/code_entities.s`：四区实体 UI 状态更新模块
+
+JP 连续范围 `0x0802B7BC–0x0802BA38` 已完整提升为三个真实入口：
+`func_0802B7BC`、`func_0802B808` 和 `func_0802B9DC`，分别与海外
+`func_0802BA28`、`func_0802BA74` 和 `func_0802BC48` 处于相同反编译层级。
+首个入口的动画/图标状态处理、随后 5 项状态分派和图标 ID 查询表均为直接 Thumb，
+跳转表、文字池和本地分支保持各区域原始物理顺序。
+
+JP 内部调用明确指向真实 JP 函数入口，跨模块调用保持已有可重定位符号；没有保留
+`.byte`、`.set`、`.thumb_set`、伪造偏移或以标签包装的函数 `incbin`。下一未提升
+JP 入口从 `func_0802BA38` 的直接原始 `incbin` 继续。
+
+共享海外源码变更已用 WSL `-j4` 重建四版，随后 JP 的同构代码也单独重建；最终
+四版 SHA-1 均与原 ROM 一致：JP `A655B2789AED14A6AC78C6075FBC533D3062DBE3`、
+US `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。
