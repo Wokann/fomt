@@ -3929,3 +3929,18 @@ JP `func_0802DE90`（`0x0802DE90–0x0802E994`）已整体提升为直接 Thumb�
 
 本批仅修改 JP。WSL `-j4` 构建、资源补丁链稳定后的 SHA-1 为
 `A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并通过与 `baserom_jp.gba` 的逐字节比较。
+
+## `asm/code_entities.s`：JP 实体 UI 收尾状态入口
+
+JP `func_0802E994`（`0x0802E994–0x0802EE80`）已提升为直接 Thumb，对应海外
+`func_0802EC00`。该收尾入口保留项目/资源状态查询、实体位置处理、动画调用、局部
+常量池与调用顺序。
+
+海外 `func_0802AD80`、`func_0802AEA4`、`func_0802B46C`、`func_0802C984` 在 JP 中
+明确为 `func_0802AB14`、`func_0802AC38`、`func_0802B200`、`func_0802C718`；其余
+接口仍为可重定位区域符号。至此此前 JP 原始连续块
+`0x0802BFA4–0x0802EE80` 已无函数级 `.byte`、代码 `incbin`、`.set`/`.thumb_set`
+别名或固定地址伪匹配。
+
+本批仅修改 JP。WSL `-j4` 构建、资源补丁链稳定后的 SHA-1 为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并通过与 `baserom_jp.gba` 的逐字节比较。
