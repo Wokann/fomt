@@ -3683,3 +3683,20 @@ JP 入口从 `func_0802BA38` 的直接原始 `incbin` 继续。
 US `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。
+
+## `asm/code_entities.s`：四区实体 UI 图标资源初始化
+
+海外 `func_0802BCA4` 与 JP `func_0802BA38` 的 0xAC 字节图标资源初始化入口现已
+同时成为直接 Thumb。该函数保留工具图标构造、资源句柄初始化、动画设置和状态字段
+更新的原始顺序；尾部文字池按原始小端字节 `00 00 F8 FF` 表示为
+`.4byte 0xFFF80000`。
+
+JP 内部调用直接使用已提升的 `func_0802B9DC`，其余跨模块调用均保留真实可重定位
+符号。没有函数级 `.byte`、原始代码 `incbin`、别名或固定地址伪匹配；下一未提升
+JP 入口从 `func_0802BAE4` 继续。
+
+共享海外源码以 WSL `-j4` 重建 US/EU/DE，JP 同构块单独重建；资源补丁链稳定后，
+最终 SHA-1 均与原 ROM 一致：JP `A655B2789AED14A6AC78C6075FBC533D3062DBE3`、
+US `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。

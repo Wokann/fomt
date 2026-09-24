@@ -18214,7 +18214,87 @@ func_0802B9DC:
     .global func_0802BA38
     .thumb_func
 func_0802BA38:
-    .incbin "baserom_jp.gba", 0x2BA38, (0x2BAE4 - 0x2BA38)
+    push {r4, r5, r6, r7, lr}
+    mov r7, r8
+    push {r7}
+    sub sp, #4
+    adds r6, r0, #0
+    adds r3, r1, #0
+    adds r0, #56
+    movs r7, #0
+    movs r1, #1
+    mov r8, r1
+    mov r1, r8
+    strb r1, [r0, #0]
+    strb r7, [r0, #1]
+    ldr r1, .Ljp_0802BAE0
+    movs r2, #136
+    lsls r2, r2, #13
+    str r1, [r0, #4]
+    str r7, [r0, #8]
+    str r2, [r0, #20]
+    ldr r5, [r6, #16]
+    cmp r5, #0
+    beq .Ljp_0802BAA4
+    mov r0, sp
+    adds r1, r3, #0
+    bl __4ToolUi
+    mov r0, sp
+    bl GetIconId__C4Tool
+    adds r4, r0, #0
+    lsls r4, r4, #16
+    lsrs r4, r4, #16
+    ldr r0, [r5, #0]
+    ldr r0, [r0, #0]
+    ldr r1, [r0, #0]
+    ldr r1, [r1, #100]
+    bl _call_via_r1
+    adds r1, r0, #0
+    adds r0, r5, #0
+    adds r0, #180
+    adds r2, r4, #0
+    bl InitializeIndexedResourceHandle
+    adds r0, r5, #0
+    adds r0, #200
+    mov r1, r8
+    strb r1, [r0, #0]
+    adds r0, #2
+    strb r7, [r0, #0]
+    adds r0, #1
+    strb r1, [r0, #0]
+    adds r0, #1
+    strh r4, [r0, #0]
+.Ljp_0802BAA4:
+    adds r1, r6, #0
+    adds r1, #52
+    movs r0, #4
+    strb r0, [r1, #0]
+    adds r1, #1
+    movs r0, #20
+    strb r0, [r1, #0]
+    adds r0, r6, #0
+    adds r0, #88
+    mov r1, r8
+    strb r1, [r0, #0]
+    adds r0, r6, #0
+    bl func_0802B9DC
+    adds r1, r0, #0
+    lsls r1, r1, #16
+    lsrs r1, r1, #16
+    adds r0, r6, #0
+    bl SetAnim__12AActorEntityUi
+    adds r0, r6, #0
+    adds r0, #84
+    mov r1, r8
+    strb r1, [r0, #0]
+    add sp, #4
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_0802BAE0: .4byte 0xFFF80000
     .global func_0802BAE4
     .thumb_func
 func_0802BAE4:
@@ -40123,28 +40203,87 @@ func_0802BC48: @ 0x0802BC48
     .global func_0802BCA4
     .thumb_func
 func_0802BCA4:
-    .byte 0xF0, 0xB5, 0x47, 0x46, 0x80, 0xB4, 0x81, 0xB0, 0x06, 0x1C, 0x0B, 0x1C
-    .byte 0x38, 0x30, 0x00, 0x27, 0x01, 0x21, 0x88, 0x46, 0x41, 0x46, 0x01, 0x70, 0x47, 0x70, 0x23, 0x49
-    .byte 0x88, 0x22, 0x52, 0x03, 0x41, 0x60, 0x87, 0x60, 0x42, 0x61, 0x35, 0x69, 0x00, 0x2D, 0x1F, 0xD0
-    .byte 0x68, 0x46, 0x19, 0x1C
+    push {r4, r5, r6, r7, lr}
+    mov r7, r8
+    push {r7}
+    sub sp, #4
+    adds r6, r0, #0
+    adds r3, r1, #0
+    adds r0, #56
+    movs r7, #0
+    movs r1, #1
+    mov r8, r1
+    mov r1, r8
+    strb r1, [r0, #0]
+    strb r7, [r0, #1]
+    ldr r1, .L0802BD4C
+    movs r2, #136
+    lsls r2, r2, #13
+    str r1, [r0, #4]
+    str r7, [r0, #8]
+    str r2, [r0, #20]
+    ldr r5, [r6, #16]
+    cmp r5, #0
+    beq .L0802BD10
+    mov r0, sp
+    adds r1, r3, #0
     bl __4ToolUi
-    .byte 0x68, 0x46
+    mov r0, sp
     bl GetIconId__C4Tool
-    .byte 0x04, 0x1C
-    .byte 0x24, 0x04, 0x24, 0x0C, 0x28, 0x68, 0x00, 0x68, 0x01, 0x68, 0x49, 0x6E
+    adds r4, r0, #0
+    lsls r4, r4, #16
+    lsrs r4, r4, #16
+    ldr r0, [r5, #0]
+    ldr r0, [r0, #0]
+    ldr r1, [r0, #0]
+    ldr r1, [r1, #100]
     bl _call_via_r1
-    .byte 0x01, 0x1C, 0x28, 0x1C, 0xB4, 0x30, 0x22, 0x1C
+    adds r1, r0, #0
+    adds r0, r5, #0
+    adds r0, #180
+    adds r2, r4, #0
     bl InitializeIndexedResourceHandle
-    .byte 0x28, 0x1C, 0xC8, 0x30
-    .byte 0x41, 0x46, 0x01, 0x70, 0x02, 0x30, 0x07, 0x70, 0x01, 0x30, 0x01, 0x70, 0x01, 0x30, 0x04, 0x80
-    .byte 0x31, 0x1C, 0x34, 0x31, 0x04, 0x20, 0x08, 0x70, 0x01, 0x31, 0x14, 0x20, 0x08, 0x70, 0x30, 0x1C
-    .byte 0x58, 0x30, 0x41, 0x46, 0x01, 0x70, 0x30, 0x1C
+    adds r0, r5, #0
+    adds r0, #200
+    mov r1, r8
+    strb r1, [r0, #0]
+    adds r0, #2
+    strb r7, [r0, #0]
+    adds r0, #1
+    strb r1, [r0, #0]
+    adds r0, #1
+    strh r4, [r0, #0]
+.L0802BD10:
+    adds r1, r6, #0
+    adds r1, #52
+    movs r0, #4
+    strb r0, [r1, #0]
+    adds r1, #1
+    movs r0, #20
+    strb r0, [r1, #0]
+    adds r0, r6, #0
+    adds r0, #88
+    mov r1, r8
+    strb r1, [r0, #0]
+    adds r0, r6, #0
     bl func_0802BC48
-    .byte 0x01, 0x1C, 0x09, 0x04
-    .byte 0x09, 0x0C, 0x30, 0x1C
+    adds r1, r0, #0
+    lsls r1, r1, #16
+    lsrs r1, r1, #16
+    adds r0, r6, #0
     bl SetAnim__12AActorEntityUi
-    .byte 0x30, 0x1C, 0x54, 0x30, 0x41, 0x46, 0x01, 0x70
-    .byte 0x01, 0xB0, 0x08, 0xBC, 0x98, 0x46, 0xF0, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0xF8, 0xFF
+    adds r0, r6, #0
+    adds r0, #84
+    mov r1, r8
+    strb r1, [r0, #0]
+    add sp, #4
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.L0802BD4C: .4byte 0xFFF80000
     .global func_0802BD50
     .thumb_func
 func_0802BD50:
