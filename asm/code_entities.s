@@ -17863,7 +17863,16 @@ func_0802B754: @ 0x0802B754
     .global func_0802B7A4
     .thumb_func
 func_0802B7A4:
-    .incbin "baserom_jp.gba", 0x2B7A4, (0x2B7BC - 0x2B7A4)
+    push {r4, lr}
+    adds r4, r0, #0
+    movs r0, #208
+    bl __builtin_new
+    adds r1, r4, #0
+    bl func_0802BCC0
+    pop {r4}
+    pop {r1}
+    bx r1
+    .align 2, 0
     .global func_0802B7BC
     .thumb_func
 func_0802B7BC:
@@ -17883,7 +17892,11 @@ func_0802BBFC:
     .global func_0802BC90
     .thumb_func
 func_0802BC90:
-    .incbin "baserom_jp.gba", 0x2BC90, (0x2BD34 - 0x2BC90)
+    .incbin "baserom_jp.gba", 0x2BC90, (0x2BCC0 - 0x2BC90)
+    .global func_0802BCC0
+    .thumb_func
+func_0802BCC0:
+    .incbin "baserom_jp.gba", 0x2BCC0, (0x2BD34 - 0x2BCC0)
     .global func_0802BD34
     .thumb_func
 func_0802BD34:
@@ -39425,11 +39438,16 @@ func_0802B9C0: @ 0x0802B9C0
     .global func_0802BA10
     .thumb_func
 func_0802BA10:
-    .byte 0x10, 0xB5, 0x04, 0x1C, 0xD0, 0x20
+    push {r4, lr}
+    adds r4, r0, #0
+    movs r0, #208
     bl __builtin_new
-    .byte 0x21, 0x1C
+    adds r1, r4, #0
     bl func_0802BF2C
-    .byte 0x10, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
+    pop {r4}
+    pop {r1}
+    bx r1
+    .align 2, 0
     .global func_0802BA28
     .thumb_func
 func_0802BA28:

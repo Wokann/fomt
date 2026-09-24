@@ -3649,3 +3649,19 @@ JP `0x0802B69C–0x0802B7A4` 已从一个原始 `.incbin` 块拆为三个真实�
 
 本批仅修改 JP 源码；WSL `-j4` 构建后的 SHA-1 为
 `A655B2789AED14A6AC78C6075FBC533D3062DBE3`，与 `baserom_jp.gba` 逐字节一致。
+
+## `asm/code_entities.s`：四区实体 UI 分配入口
+
+海外 `func_0802BA10` 与 JP `func_0802B7A4` 是同一 0x18 字节的实体 UI 分配入口；
+此前海外版本用 `.byte` 拼接、JP 保留原始 `.incbin`。现在四版都使用真实 Thumb
+指令，保留分配大小、构造参数与返回路径的原始顺序。
+
+JP 调用目标位于尚未提升的连续原始块内部，已按真实函数边界显式标为
+`func_0802BCC0`，并直接由 JP 入口调用；这不是 `.set`、别名或固定地址跳转。
+该目标本身仍是直接可见的原始 `.incbin`，将在后续同一实体模块提升时继续展开。
+
+WSL 以 `-j4` 构建并逐字节对照四版均通过：JP
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`、US
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。
