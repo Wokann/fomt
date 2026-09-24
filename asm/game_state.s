@@ -7922,104 +7922,1544 @@ func_080140F4:
     bx r0
     .align 2, 0
 
-    .global func_08013FE0
+    .global func_0801410C
     .thumb_func
-func_08013FE0:
-    .incbin "baserom_jp.gba", 0x13FE0, (0x14038 - 0x13FE0)
-    .incbin "baserom_jp.gba", 0x14038, (0x1406C - 0x14038)
-    .global func_0801406C
+func_0801410C:
+    push {lr}
+    ldr r0, [r0, #4]
+    adds r0, #0xa8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0
+    bl _call_via_r2
+    ldr r1, [r0, #0x14]
+    ldr r1, [r1, #0x40]
+    bl _call_via_r1
+    pop {r1}
+    bx r1
+    .align 2, 0
+
+    .global func_0801412C
     .thumb_func
-func_0801406C:
-    .incbin "baserom_jp.gba", 0x1406C, (0x14098 - 0x1406C)
-    .global func_08014098
-    .thumb_func
-func_08014098:
-    .incbin "baserom_jp.gba", 0x14098, (0x14108 - 0x14098)
-    .global func_08014108
-    .thumb_func
-func_08014108:
-    .incbin "baserom_jp.gba", 0x14108, (0x14120 - 0x14108)
-    .global func_08014120
-    .thumb_func
-func_08014120:
-    .incbin "baserom_jp.gba", 0x14120, (0x14138 - 0x14120)
-    .global func_08014138
-    .thumb_func
-func_08014138:
-    .incbin "baserom_jp.gba", 0x14138, (0x14164 - 0x14138)
+func_0801412C:
+    push {r4, lr}
+    ldr r4, [r0, #4]
+    adds r0, r4, #0
+    adds r0, #0xa8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0
+    bl _call_via_r2
+    ldr r1, [r0, #0x14]
+    ldr r1, [r1, #0x48]
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    cmp r0, #0
+    beq .Ljp_0801402E
+    adds r1, r4, #0
+    adds r1, #0x9c
+    movs r0, #0x19
+    str r0, [r1]
+    movs r0, #1
+    b .Ljp_08014030
+.Ljp_0801402E:
+    movs r0, #0
+.Ljp_08014030:
+    pop {r4}
+    pop {r1}
+    bx r1
+    .align 2, 0
+
     .global func_08014164
     .thumb_func
 func_08014164:
-    .incbin "baserom_jp.gba", 0x14164, (0x1418C - 0x14164)
-    .global func_0801418C
+    push {r4, r5, r6, lr}
+    adds r6, r1, #0
+    lsls r5, r2, #0x18
+    lsrs r5, r5, #0x18
+    ldr r4, [r0, #4]
+    adds r0, r4, #0
+    adds r0, #0xa8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0
+    bl _call_via_r2
+    ldr r1, [r0, #0x14]
+    ldr r3, [r1, #0x5c]
+    adds r1, r6, #0
+    adds r2, r5, #0
+    bl _call_via_r3
+    adds r4, #0x9c
+    movs r0, #0x19
+    str r0, [r4]
+    movs r0, #1
+    pop {r4, r5, r6}
+    pop {r1}
+    bx r1
+
+    .global func_08014198
     .thumb_func
-func_0801418C:
-    .incbin "baserom_jp.gba", 0x1418C, (0x141A8 - 0x1418C)
-    .global func_080141A8
-    .thumb_func
-func_080141A8:
-    .incbin "baserom_jp.gba", 0x141A8, (0x141C4 - 0x141A8)
+func_08014198:
+    push {r4, lr}
+    ldr r4, [r0, #4]
+    adds r0, r4, #0
+    adds r0, #0xa8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0
+    bl _call_via_r2
+    ldr r1, [r0, #0x14]
+    ldr r1, [r1, #0x60]
+    bl _call_via_r1
+    adds r4, #0x9c
+    movs r0, #0x19
+    str r0, [r4]
+    movs r0, #1
+    pop {r4}
+    pop {r1}
+    bx r1
+    .align 2, 0
+
     .global func_080141C4
     .thumb_func
 func_080141C4:
-    .incbin "baserom_jp.gba", 0x141C4, (0x141D8 - 0x141C4)
-    .global func_080141D8
-    .thumb_func
-func_080141D8:
-    .incbin "baserom_jp.gba", 0x141D8, (0x141EC - 0x141D8)
+    push {r4, lr}
+    ldr r4, [r0, #4]
+    adds r0, r4, #0
+    adds r0, #0xa8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0
+    bl _call_via_r2
+    ldr r1, [r0, #0x14]
+    ldr r1, [r1, #0x4c]
+    bl _call_via_r1
+    adds r4, #0x9c
+    movs r0, #0x19
+    str r0, [r4]
+    pop {r4}
+    pop {r0}
+    bx r0
+
     .global func_080141EC
     .thumb_func
 func_080141EC:
-    .incbin "baserom_jp.gba", 0x141EC, (0x14250 - 0x141EC)
-    .global func_08014250
+    push {r4, lr}
+    ldr r4, [r0, #4]
+    adds r0, r4, #0
+    adds r0, #0xa8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0
+    bl _call_via_r2
+    ldr r1, [r0, #0x14]
+    ldr r1, [r1, #0x50]
+    bl _call_via_r1
+    adds r4, #0x9c
+    movs r0, #0x19
+    str r0, [r4]
+    pop {r4}
+    pop {r0}
+    bx r0
+
+    .global func_08014214
     .thumb_func
-func_08014250:
-    .incbin "baserom_jp.gba", 0x14250, (0x142E4 - 0x14250)
-    .global func_080142E4
+func_08014214:
+    push {lr}
+    ldr r0, [r0, #4]
+    adds r0, #0xa8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0
+    bl _call_via_r2
+    ldr r1, [r0, #0x14]
+    ldr r1, [r1, #0x54]
+    bl _call_via_r1
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_08014234
     .thumb_func
-func_080142E4:
-    .incbin "baserom_jp.gba", 0x142E4, (0x14390 - 0x142E4)
-    .global func_08014390
+func_08014234:
+    push {lr}
+    ldr r0, [r0, #4]
+    adds r0, #0xa8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    adds r1, #0xa4
+    ldr r1, [r1]
+    bl _call_via_r1
+    pop {r1}
+    bx r1
+    .align 2, 0
+
+    .global func_0801424C
     .thumb_func
-func_08014390:
-    .incbin "baserom_jp.gba", 0x14390, (0x14424 - 0x14390)
-    .global func_08014424
+func_0801424C:
+    push {lr}
+    ldr r0, [r0, #4]
+    adds r0, #0xa8
+    ldr r0, [r0]
+    ldr r2, [r0]
+    adds r2, #0xa8
+    ldr r2, [r2]
+    bl _call_via_r2
+    pop {r1}
+    bx r1
+    .align 2, 0
+
+    .global func_08014264
     .thumb_func
-func_08014424:
-    .incbin "baserom_jp.gba", 0x14424, (0x144CC - 0x14424)
-    .global func_080144CC
+func_08014264:
+    push {r4, lr}
+    adds r4, r2, #0
+    ldr r0, [r0, #4]
+    adds r0, #0xa8
+    ldr r0, [r0]
+    ldr r2, [r0]
+    ldr r2, [r2, #0x40]
+    bl _call_via_r2
+    adds r1, r0, #0
+    cmp r1, #0
+    beq .Ljp_0801415C
+    ldr r0, [r1, #0x14]
+    ldr r2, [r0, #0x38]
+    adds r0, r1, #0
+    adds r1, r4, #0
+    bl _call_via_r2
+.Ljp_0801415C:
+    pop {r4}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_08014290
     .thumb_func
-func_080144CC:
-    .incbin "baserom_jp.gba", 0x144CC, (0x14560 - 0x144CC)
-    .incbin "baserom_jp.gba", 0x14560, (0x14568 - 0x14560)
-    .global func_08014568
+func_08014290:
+    push {lr}
+    ldr r0, [r0, #4]
+    adds r0, #0xa8
+    ldr r0, [r0]
+    ldr r2, [r0]
+    ldr r2, [r2, #0x40]
+    bl _call_via_r2
+    adds r1, r0, #0
+    cmp r1, #0
+    beq .Ljp_08014186
+    ldr r0, [r1, #0x14]
+    ldr r2, [r0, #0x38]
+    adds r0, r1, #0
+    movs r1, #0
+    bl _call_via_r2
+.Ljp_08014186:
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_080142B8
     .thumb_func
-func_08014568:
-    .incbin "baserom_jp.gba", 0x14568, (0x14584 - 0x14568)
-    .global func_08014584
+func_080142B8:
+    push {lr}
+    ldr r0, [r0, #4]
+    adds r0, #0xa8
+    ldr r0, [r0]
+    ldr r2, [r0]
+    movs r3, #0x8c
+    lsls r3, r3, #1
+    adds r2, r2, r3
+    ldr r2, [r2]
+    bl _call_via_r2
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_080142D4
     .thumb_func
-func_08014584:
-    .incbin "baserom_jp.gba", 0x14584, (0x145A0 - 0x14584)
-    .global func_080145A0
+func_080142D4:
+    push {lr}
+    ldr r0, [r0, #4]
+    adds r0, #0xa8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    movs r2, #0x8e
+    lsls r2, r2, #1
+    adds r1, r1, r2
+    ldr r1, [r1]
+    bl _call_via_r1
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_080142F0
     .thumb_func
-func_080145A0:
-    .incbin "baserom_jp.gba", 0x145A0, (0x145D0 - 0x145A0)
-    .global func_080145D0
+func_080142F0:
+    ldr r0, [r0, #4]
+    adds r0, #0x8c
+    ldr r0, [r0]
+    ldr r1, .Ljp_080141D4 @ =0x000034C4
+    adds r0, r0, r1
+    movs r1, #1
+    strb r1, [r0]
+    bx lr
+    .align 2, 0
+.Ljp_080141D4: .4byte 0x000034C4
+
+    .global func_08014304
     .thumb_func
-func_080145D0:
-    .incbin "baserom_jp.gba", 0x145D0, (0x149CC - 0x145D0)
-    .global func_080149CC
+func_08014304:
+    ldr r0, [r0, #4]
+    adds r0, #0x8c
+    ldr r0, [r0]
+    ldr r1, .Ljp_080141E8 @ =0x000034C4
+    adds r0, r0, r1
+    movs r1, #0
+    strb r1, [r0]
+    bx lr
+    .align 2, 0
+.Ljp_080141E8: .4byte 0x000034C4
+
+    .global func_08014318
     .thumb_func
-func_080149CC:
-    .incbin "baserom_jp.gba", 0x149CC, (0x14AAC - 0x149CC)
-    .global func_08014AAC
+func_08014318:
+    push {r4, r5, r6, r7, lr}
+    ldr r4, [r0, #4]
+    adds r5, r4, #0
+    adds r5, #0xa8
+    ldr r0, [r5]
+    ldr r2, [r0]
+    adds r2, #0xbc
+    ldr r2, [r2]
+    bl _call_via_r2
+    adds r0, r4, #0
+    adds r0, #0xb4
+    ldr r0, [r0]
+    cmp r0, #0
+    beq .Ljp_08014244
+    adds r6, r0, #0
+    movs r7, #0
+    ldr r0, [r5]
+    ldr r1, [r0]
+    adds r1, #0xb0
+    ldr r1, [r1]
+    bl _call_via_r1
+    lsls r0, r0, #0x18
+    adds r3, r4, #0
+    adds r3, #0x8c
+    cmp r0, #0
+    bne .Ljp_08014234
+    ldr r0, [r3]
+    ldrh r1, [r0, #0x12]
+    lsls r1, r1, #0x15
+    lsrs r1, r1, #0x1a
+    movs r0, #1
+    ands r0, r1
+    cmp r0, #0
+    beq .Ljp_08014236
+.Ljp_08014234:
+    movs r7, #1
+.Ljp_08014236:
+    adds r2, r7, #0
+    ldr r1, [r3]
+    adds r1, #0x10
+    adds r0, r6, #0
+    adds r0, #8
+    bl func_0803CB10
+.Ljp_08014244:
+    adds r0, r4, #0
+    bl func_080D7F08
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+
+    .global func_0801437C
     .thumb_func
-func_08014AAC:
-    .incbin "baserom_jp.gba", 0x14AAC, (0x14AE0 - 0x14AAC)
-    .global func_08014AE0
+func_0801437C:
+    push {r4, r5, r6, r7, lr}
+    sub sp, #0x1c
+    ldr r6, [r0, #4]
+    movs r0, #0x23
+    str r0, [sp]
+    movs r0, #0x14
+    bl __builtin_new
+    adds r5, r6, #0
+    adds r5, #0x8c
+    ldr r1, [r5]
+    mov ip, r1
+    add r2, sp, #0x10
+    mov r1, sp
+    ldm r1!, {r3, r4, r7}
+    stm r2!, {r3, r4, r7}
+    ldr r1, .Ljp_080142DC @ =vtable_unk_080E5E74
+    str r1, [r0]
+    mov r1, ip
+    str r1, [r0, #4]
+    adds r2, r0, #0
+    adds r2, #8
+    add r1, sp, #0x10
+    ldm r1!, {r3, r4, r7}
+    stm r2!, {r3, r4, r7}
+    str r0, [sp, #0xc]
+    movs r0, #0xc
+    bl __builtin_new
+    ldr r4, [sp, #0xc]
+    movs r2, #0
+    str r2, [sp, #0xc]
+    str r4, [sp, #0x10]
+    ldr r3, [r5]
+    ldr r1, .Ljp_080142E0 @ =vtable_unk_080E5CA4
+    str r1, [r0]
+    str r2, [sp, #0x10]
+    str r4, [r0, #4]
+    str r3, [r0, #8]
+    adds r5, #0x18
+    adds r4, r0, #0
+    ldr r1, [r5]
+    cmp r4, r1
+    beq .Ljp_080142B8
+    cmp r1, #0
+    beq .Ljp_080142B8
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_080142B8:
+    str r4, [r5]
+    adds r1, r6, #0
+    adds r1, #0x9c
+    movs r0, #0x18
+    str r0, [r1]
+    ldr r1, [sp, #0xc]
+    cmp r1, #0
+    beq .Ljp_080142D4
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_080142D4:
+    add sp, #0x1c
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_080142DC: .4byte vtable_unk_080E5E74
+.Ljp_080142E0: .4byte vtable_unk_080E5CA4
+
+    .global func_08014410
     .thumb_func
-func_08014AE0:
-    .incbin "baserom_jp.gba", 0x14AE0, (0x14B08 - 0x14AE0)
+func_08014410:
+    push {r4, r5, r6, r7, lr}
+    mov r7, r8
+    push {r7}
+    sub sp, #0x1c
+    mov r8, r1
+    ldr r7, [r0, #4]
+    movs r0, #0x24
+    str r0, [sp]
+    movs r0, #0x14
+    bl __builtin_new
+    adds r6, r7, #0
+    adds r6, #0x8c
+    ldr r1, [r6]
+    mov ip, r1
+    add r2, sp, #0x10
+    mov r1, sp
+    ldm r1!, {r3, r4, r5}
+    stm r2!, {r3, r4, r5}
+    ldr r1, .Ljp_08014388 @ =vtable_unk_080E5E74
+    str r1, [r0]
+    mov r1, ip
+    str r1, [r0, #4]
+    adds r2, r0, #0
+    adds r2, #8
+    add r1, sp, #0x10
+    ldm r1!, {r3, r4, r5}
+    stm r2!, {r3, r4, r5}
+    str r0, [sp, #0xc]
+    movs r0, #0x10
+    bl __builtin_new
+    ldr r5, [sp, #0xc]
+    movs r4, #0
+    str r4, [sp, #0xc]
+    str r5, [sp, #0x10]
+    mov r1, r8
+    rsbs r2, r1, #0
+    orrs r2, r1
+    lsrs r2, r2, #0x1f
+    ldr r3, [r6]
+    ldr r1, .Ljp_0801438C @ =vtable_unk_080E5D34
+    str r1, [r0]
+    str r4, [sp, #0x10]
+    str r5, [r0, #4]
+    str r3, [r0, #8]
+    strb r2, [r0, #0xc]
+    adds r5, r7, #0
+    adds r5, #0xa4
+    adds r4, r0, #0
+    ldr r1, [r5]
+    cmp r4, r1
+    beq .Ljp_0801435E
+    cmp r1, #0
+    beq .Ljp_0801435E
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_0801435E:
+    str r4, [r5]
+    adds r1, r7, #0
+    adds r1, #0x9c
+    movs r0, #0x18
+    str r0, [r1]
+    ldr r1, [sp, #0xc]
+    cmp r1, #0
+    beq .Ljp_0801437A
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_0801437A:
+    add sp, #0x1c
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_08014388: .4byte vtable_unk_080E5E74
+.Ljp_0801438C: .4byte vtable_unk_080E5D34
+
+    .global func_080144BC
+    .thumb_func
+func_080144BC:
+    push {r4, r5, r6, r7, lr}
+    sub sp, #0x1c
+    ldr r6, [r0, #4]
+    movs r0, #0x25
+    str r0, [sp]
+    movs r0, #0x14
+    bl __builtin_new
+    adds r5, r6, #0
+    adds r5, #0x8c
+    ldr r1, [r5]
+    mov ip, r1
+    add r2, sp, #0x10
+    mov r1, sp
+    ldm r1!, {r3, r4, r7}
+    stm r2!, {r3, r4, r7}
+    ldr r1, .Ljp_0801441C @ =vtable_unk_080E5E74
+    str r1, [r0]
+    mov r1, ip
+    str r1, [r0, #4]
+    adds r2, r0, #0
+    adds r2, #8
+    add r1, sp, #0x10
+    ldm r1!, {r3, r4, r7}
+    stm r2!, {r3, r4, r7}
+    str r0, [sp, #0xc]
+    movs r0, #0xc
+    bl __builtin_new
+    ldr r4, [sp, #0xc]
+    movs r2, #0
+    str r2, [sp, #0xc]
+    str r4, [sp, #0x10]
+    ldr r3, [r5]
+    ldr r1, .Ljp_08014420 @ =vtable_unk_080E5D24
+    str r1, [r0]
+    str r2, [sp, #0x10]
+    str r4, [r0, #4]
+    str r3, [r0, #8]
+    adds r5, #0x18
+    adds r4, r0, #0
+    ldr r1, [r5]
+    cmp r4, r1
+    beq .Ljp_080143F8
+    cmp r1, #0
+    beq .Ljp_080143F8
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_080143F8:
+    str r4, [r5]
+    adds r1, r6, #0
+    adds r1, #0x9c
+    movs r0, #0x18
+    str r0, [r1]
+    ldr r1, [sp, #0xc]
+    cmp r1, #0
+    beq .Ljp_08014414
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08014414:
+    add sp, #0x1c
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_0801441C: .4byte vtable_unk_080E5E74
+.Ljp_08014420: .4byte vtable_unk_080E5D24
+
+    .global func_08014550
+    .thumb_func
+func_08014550:
+    push {r4, r5, r6, r7, lr}
+    mov r7, r8
+    push {r7}
+    sub sp, #0x1c
+    lsls r5, r1, #0x18
+    lsrs r5, r5, #0x18
+    mov r8, r5
+    ldr r7, [r0, #4]
+    movs r0, #0x26
+    str r0, [sp]
+    movs r0, #0x14
+    bl __builtin_new
+    adds r6, r7, #0
+    adds r6, #0x8c
+    ldr r1, [r6]
+    mov ip, r1
+    add r2, sp, #0x10
+    mov r1, sp
+    ldm r1!, {r3, r4, r5}
+    stm r2!, {r3, r4, r5}
+    ldr r1, .Ljp_080144C4 @ =vtable_unk_080E5E74
+    str r1, [r0]
+    mov r1, ip
+    str r1, [r0, #4]
+    adds r2, r0, #0
+    adds r2, #8
+    add r1, sp, #0x10
+    ldm r1!, {r3, r4, r5}
+    stm r2!, {r3, r4, r5}
+    str r0, [sp, #0xc]
+    movs r0, #0x10
+    bl __builtin_new
+    ldr r4, [sp, #0xc]
+    movs r2, #0
+    str r2, [sp, #0xc]
+    str r4, [sp, #0x10]
+    ldr r3, [r6]
+    ldr r1, .Ljp_080144C8 @ =vtable_unk_080E5D14
+    str r1, [r0]
+    str r2, [sp, #0x10]
+    str r4, [r0, #4]
+    str r3, [r0, #8]
+    mov r1, r8
+    strb r1, [r0, #0xc]
+    adds r5, r7, #0
+    adds r5, #0xa4
+    adds r4, r0, #0
+    ldr r1, [r5]
+    cmp r4, r1
+    beq .Ljp_0801449C
+    cmp r1, #0
+    beq .Ljp_0801449C
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_0801449C:
+    str r4, [r5]
+    adds r1, r7, #0
+    adds r1, #0x9c
+    movs r0, #0x18
+    str r0, [r1]
+    ldr r1, [sp, #0xc]
+    cmp r1, #0
+    beq .Ljp_080144B8
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_080144B8:
+    add sp, #0x1c
+    pop {r3}
+    mov r8, r3
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_080144C4: .4byte vtable_unk_080E5E74
+.Ljp_080144C8: .4byte vtable_unk_080E5D14
+
+    .global func_080145F8
+    .thumb_func
+func_080145F8:
+    push {r4, r5, r6, r7, lr}
+    sub sp, #0x1c
+    ldr r6, [r0, #4]
+    movs r0, #0x27
+    str r0, [sp]
+    movs r0, #0x14
+    bl __builtin_new
+    adds r5, r6, #0
+    adds r5, #0x8c
+    ldr r1, [r5]
+    mov ip, r1
+    add r2, sp, #0x10
+    mov r1, sp
+    ldm r1!, {r3, r4, r7}
+    stm r2!, {r3, r4, r7}
+    ldr r1, .Ljp_08014558 @ =vtable_unk_080E5E74
+    str r1, [r0]
+    mov r1, ip
+    str r1, [r0, #4]
+    adds r2, r0, #0
+    adds r2, #8
+    add r1, sp, #0x10
+    ldm r1!, {r3, r4, r7}
+    stm r2!, {r3, r4, r7}
+    str r0, [sp, #0xc]
+    movs r0, #0xc
+    bl __builtin_new
+    ldr r4, [sp, #0xc]
+    movs r2, #0
+    str r2, [sp, #0xc]
+    str r4, [sp, #0x10]
+    ldr r3, [r5]
+    ldr r1, .Ljp_0801455C @ =vtable_unk_080E5D04
+    str r1, [r0]
+    str r2, [sp, #0x10]
+    str r4, [r0, #4]
+    str r3, [r0, #8]
+    adds r5, #0x18
+    adds r4, r0, #0
+    ldr r1, [r5]
+    cmp r4, r1
+    beq .Ljp_08014534
+    cmp r1, #0
+    beq .Ljp_08014534
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08014534:
+    str r4, [r5]
+    adds r1, r6, #0
+    adds r1, #0x9c
+    movs r0, #0x18
+    str r0, [r1]
+    ldr r1, [sp, #0xc]
+    cmp r1, #0
+    beq .Ljp_08014550
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08014550:
+    add sp, #0x1c
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_08014558: .4byte vtable_unk_080E5E74
+.Ljp_0801455C: .4byte vtable_unk_080E5D04
+
+    .global func_0801468C
+    .thumb_func
+func_0801468C:
+    ldr r0, [r0, #4]
+    adds r0, #0xd0
+    bx lr
+    .align 2, 0
+
+    .global func_08014694
+    .thumb_func
+func_08014694:
+    push {lr}
+    ldr r0, [r0, #4]
+    adds r0, #0xa8
+    ldr r0, [r0]
+    ldr r2, [r0]
+    movs r3, #0xa8
+    lsls r3, r3, #1
+    adds r2, r2, r3
+    ldr r2, [r2]
+    bl _call_via_r2
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_080146B0
+    .thumb_func
+func_080146B0:
+    push {lr}
+    ldr r0, [r0, #4]
+    adds r0, #0xa8
+    ldr r0, [r0]
+    ldr r2, [r0]
+    movs r3, #0xaa
+    lsls r3, r3, #1
+    adds r2, r2, r3
+    ldr r2, [r2]
+    bl _call_via_r2
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_080146CC
+    .thumb_func
+func_080146CC:
+    push {r4, r5, lr}
+    adds r5, r1, #0
+    ldr r4, [r0, #4]
+    adds r0, r4, #0
+    adds r0, #0x8c
+    ldr r0, [r0]
+    movs r1, #0x82
+    lsls r1, r1, #3
+    adds r0, r0, r1
+    adds r1, r5, #0
+    bl BeginIncubation__4CoopUi
+    adds r4, #0xa8
+    ldr r0, [r4]
+    ldr r1, [r0]
+    adds r1, #0xac
+    ldr r2, [r1]
+    adds r1, r5, #0
+    bl _call_via_r2
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_080146FC
+    .thumb_func
+func_080146FC:
+    push {r4, r5, r6, r7, lr}
+    mov r7, sl
+    mov r6, sb
+    mov r5, r8
+    push {r5, r6, r7}
+    sub sp, #0x54
+    ldr r5, [r0, #4]
+    adds r0, r5, #0
+    adds r0, #0xea
+    movs r4, #1
+    strb r4, [r0]
+    adds r3, r5, #0
+    adds r3, #0xec
+    strh r1, [r3]
+    adds r2, r5, #0
+    adds r2, #0x10
+    ldrh r0, [r5, #0x10]
+    movs r6, #0x80
+    lsls r6, r6, #1
+    adds r1, r6, #0
+    orrs r0, r1
+    strh r0, [r5, #0x10]
+    mov r1, sp
+    ldr r0, .Ljp_08014678 @ =0x00001F0C
+    strh r0, [r1]
+    strh r0, [r5, #0x18]
+    mov r0, sp
+    movs r7, #0
+    strh r7, [r0]
+    movs r0, #0
+    strh r0, [r2, #0x10]
+    mov r0, sp
+    movs r1, #0
+    strh r1, [r0]
+    strh r1, [r5, #0x22]
+    ldrh r1, [r3]
+    mov r8, r5
+    add r0, sp, #4
+    ldr r2, .Ljp_0801467C @ =0x05000002
+    movs r3, #2
+    bl func_08008F60
+    add r2, sp, #4
+    mov sb, r2
+    ldr r1, [r5, #4]
+    ldr r0, [r5, #0xc]
+    cmp r1, r0
+    beq .Ljp_08014680
+    cmp r1, #0
+    beq .Ljp_08014640
+    adds r0, r1, #0
+    mov r1, sb
+    ldm r1!, {r3, r4, r6}
+    stm r0!, {r3, r4, r6}
+    ldr r1, [r1]
+    str r1, [r0]
+.Ljp_08014640:
+    ldr r0, [r5, #4]
+    adds r0, #0x10
+    str r0, [r5, #4]
+    movs r7, #3
+    lsls r7, r7, #9
+    str r7, [sp, #0x38]
+    movs r0, #0
+    str r0, [sp, #0x3c]
+    movs r1, #0x1f
+    lsls r1, r1, #0xb
+    str r1, [sp, #0x40]
+    adds r2, r5, #0
+    adds r2, #0x60
+    str r2, [sp, #0x44]
+    adds r3, r5, #0
+    adds r3, #0xee
+    str r3, [sp, #0x30]
+    adds r4, r5, #0
+    adds r4, #0x62
+    str r4, [sp, #0x48]
+    adds r6, r5, #0
+    adds r6, #0xef
+    str r6, [sp, #0x34]
+    adds r7, r5, #0
+    adds r7, #0x9c
+    str r7, [sp, #0x2c]
+    b .Ljp_08014774
+    .align 2, 0
+.Ljp_08014678: .4byte 0x00001F0C
+.Ljp_0801467C: .4byte 0x05000002
+.Ljp_08014680:
+    str r1, [sp, #0x4c]
+    str r4, [sp, #0x18]
+    ldr r0, [r5]
+    subs r0, r1, r0
+    asrs r4, r0, #4
+    str r4, [sp, #0x14]
+    add r1, sp, #0x18
+    add r0, sp, #0x14
+    cmp r4, #1
+    bhs .Ljp_08014696
+    adds r0, r1, #0
+.Ljp_08014696:
+    ldr r0, [r0]
+    adds r0, r4, r0
+    cmp r0, #0
+    beq .Ljp_080146B4
+    lsls r4, r0, #4
+    adds r0, r4, #0
+    bl malloc
+    mov sl, r4
+    cmp r0, #0
+    bne .Ljp_080146B8
+    mov r0, sl
+    bl func_080D3BC0
+    b .Ljp_080146B8
+.Ljp_080146B4:
+    movs r0, #0
+    mov sl, r0
+.Ljp_080146B8:
+    adds r4, r0, #0
+    str r4, [sp, #0x50]
+    mov r3, r8
+    ldr r2, [r3]
+    adds r3, r4, #0
+    movs r4, #3
+    lsls r4, r4, #9
+    str r4, [sp, #0x38]
+    movs r6, #0
+    lsls r6, r6, #0xc
+    str r6, [sp, #0x3c]
+    movs r7, #0x1f
+    lsls r7, r7, #0xb
+    str r7, [sp, #0x40]
+    adds r0, r5, #0
+    adds r0, #0x60
+    str r0, [sp, #0x44]
+    adds r1, r5, #0
+    adds r1, #0xee
+    str r1, [sp, #0x30]
+    adds r4, r5, #0
+    adds r4, #0x62
+    str r4, [sp, #0x48]
+    adds r6, r5, #0
+    adds r6, #0xef
+    str r6, [sp, #0x34]
+    adds r7, r5, #0
+    adds r7, #0x9c
+    str r7, [sp, #0x2c]
+    b .Ljp_08014708
+.Ljp_080146F4:
+    cmp r3, #0
+    beq .Ljp_08014704
+    adds r0, r3, #0
+    adds r1, r2, #0
+    ldm r1!, {r4, r6, r7}
+    stm r0!, {r4, r6, r7}
+    ldr r1, [r1]
+    str r1, [r0]
+.Ljp_08014704:
+    adds r2, #0x10
+    adds r3, #0x10
+.Ljp_08014708:
+    ldr r0, [sp, #0x4c]
+    cmp r2, r0
+    bne .Ljp_080146F4
+    adds r4, r3, #0
+    ldr r0, [sp, #0x18]
+    cmp r0, #1
+    bne .Ljp_0801472A
+    cmp r4, #0
+    beq .Ljp_08014726
+    adds r0, r4, #0
+    mov r1, sb
+    ldm r1!, {r2, r3, r6}
+    stm r0!, {r2, r3, r6}
+    ldr r1, [r1]
+    str r1, [r0]
+.Ljp_08014726:
+    adds r4, #0x10
+    b .Ljp_0801474C
+.Ljp_0801472A:
+    adds r3, r0, #0
+    adds r2, r4, #0
+    cmp r3, #0
+    beq .Ljp_0801474A
+.Ljp_08014732:
+    cmp r2, #0
+    beq .Ljp_08014742
+    adds r0, r2, #0
+    mov r1, sb
+    ldm r1!, {r4, r6, r7}
+    stm r0!, {r4, r6, r7}
+    ldr r1, [r1]
+    str r1, [r0]
+.Ljp_08014742:
+    subs r3, #1
+    adds r2, #0x10
+    cmp r3, #0
+    bne .Ljp_08014732
+.Ljp_0801474A:
+    adds r4, r2, #0
+.Ljp_0801474C:
+    mov r7, r8
+    ldr r2, [r7, #4]
+    ldr r0, [r7]
+    adds r1, r0, #0
+    cmp r0, r2
+    beq .Ljp_0801475E
+.Ljp_08014758:
+    adds r1, #0x10
+    cmp r1, r2
+    bne .Ljp_08014758
+.Ljp_0801475E:
+    cmp r0, #0
+    beq .Ljp_08014766
+    bl free
+.Ljp_08014766:
+    ldr r0, [sp, #0x50]
+    add r0, sl
+    ldr r1, [sp, #0x50]
+    mov r2, r8
+    str r1, [r2]
+    str r4, [r2, #4]
+    str r0, [r2, #0xc]
+.Ljp_08014774:
+    ldr r1, .Ljp_080147B4 @ =0x11111111
+    ldr r3, [sp, #0x38]
+    movs r4, #0xf4
+    lsls r4, r4, #1
+    adds r2, r3, r4
+    mov r8, r5
+    lsls r2, r2, #5
+    movs r6, #0xc0
+    lsls r6, r6, #0x13
+    adds r2, r2, r6
+    mov r0, sp
+    movs r3, #0x20
+    bl func_08008F60
+    mov sl, sp
+    ldr r1, [r5, #4]
+    ldr r0, [r5, #0xc]
+    cmp r1, r0
+    beq .Ljp_080147B8
+    cmp r1, #0
+    beq .Ljp_080147AA
+    adds r0, r1, #0
+    mov r1, sp
+    ldm r1!, {r2, r3, r7}
+    stm r0!, {r2, r3, r7}
+    ldr r1, [r1]
+    str r1, [r0]
+.Ljp_080147AA:
+    ldr r0, [r5, #4]
+    adds r0, #0x10
+    str r0, [r5, #4]
+    b .Ljp_08014884
+    .align 2, 0
+.Ljp_080147B4: .4byte 0x11111111
+.Ljp_080147B8:
+    str r1, [sp, #0x4c]
+    movs r0, #1
+    str r0, [sp, #0x20]
+    ldr r0, [r5]
+    adds r4, r1, #0
+    subs r0, r4, r0
+    asrs r4, r0, #4
+    str r4, [sp, #0x1c]
+    add r1, sp, #0x20
+    add r0, sp, #0x1c
+    cmp r4, #1
+    bhs .Ljp_080147D2
+    adds r0, r1, #0
+.Ljp_080147D2:
+    ldr r0, [r0]
+    adds r0, r4, r0
+    cmp r0, #0
+    beq .Ljp_080147F0
+    lsls r4, r0, #4
+    adds r0, r4, #0
+    bl malloc
+    mov sb, r4
+    cmp r0, #0
+    bne .Ljp_080147F4
+    mov r0, sb
+    bl func_080D3BC0
+    b .Ljp_080147F4
+.Ljp_080147F0:
+    movs r0, #0
+    mov sb, r0
+.Ljp_080147F4:
+    adds r4, r0, #0
+    str r4, [sp, #0x50]
+    mov r6, r8
+    ldr r2, [r6]
+    adds r3, r4, #0
+    ldr r7, [sp, #0x4c]
+    cmp r2, r7
+    beq .Ljp_0801481E
+.Ljp_08014804:
+    cmp r3, #0
+    beq .Ljp_08014814
+    adds r0, r3, #0
+    adds r1, r2, #0
+    ldm r1!, {r4, r6, r7}
+    stm r0!, {r4, r6, r7}
+    ldr r1, [r1]
+    str r1, [r0]
+.Ljp_08014814:
+    adds r2, #0x10
+    adds r3, #0x10
+    ldr r0, [sp, #0x4c]
+    cmp r2, r0
+    bne .Ljp_08014804
+.Ljp_0801481E:
+    adds r4, r3, #0
+    ldr r0, [sp, #0x20]
+    cmp r0, #1
+    bne .Ljp_0801483A
+    cmp r4, #0
+    beq .Ljp_08014836
+    adds r0, r4, #0
+    mov r1, sl
+    ldm r1!, {r2, r3, r6}
+    stm r0!, {r2, r3, r6}
+    ldr r1, [r1]
+    str r1, [r0]
+.Ljp_08014836:
+    adds r4, #0x10
+    b .Ljp_0801485C
+.Ljp_0801483A:
+    adds r3, r0, #0
+    adds r2, r4, #0
+    cmp r3, #0
+    beq .Ljp_0801485A
+.Ljp_08014842:
+    cmp r2, #0
+    beq .Ljp_08014852
+    adds r0, r2, #0
+    mov r1, sl
+    ldm r1!, {r4, r6, r7}
+    stm r0!, {r4, r6, r7}
+    ldr r1, [r1]
+    str r1, [r0]
+.Ljp_08014852:
+    subs r3, #1
+    adds r2, #0x10
+    cmp r3, #0
+    bne .Ljp_08014842
+.Ljp_0801485A:
+    adds r4, r2, #0
+.Ljp_0801485C:
+    mov r7, r8
+    ldr r2, [r7, #4]
+    ldr r0, [r7]
+    adds r1, r0, #0
+    cmp r0, r2
+    beq .Ljp_0801486E
+.Ljp_08014868:
+    adds r1, #0x10
+    cmp r1, r2
+    bne .Ljp_08014868
+.Ljp_0801486E:
+    cmp r0, #0
+    beq .Ljp_08014876
+    bl free
+.Ljp_08014876:
+    ldr r0, [sp, #0x50]
+    add r0, sb
+    ldr r1, [sp, #0x50]
+    mov r2, r8
+    str r1, [r2]
+    str r4, [r2, #4]
+    str r0, [r2, #0xc]
+.Ljp_08014884:
+    movs r3, #0xf0
+    lsls r3, r3, #8
+    adds r0, r3, #0
+    ldr r1, [sp, #0x3c]
+    ands r1, r0
+    movs r4, #0xf4
+    lsls r4, r4, #1
+    orrs r1, r4
+    lsls r0, r1, #0x10
+    orrs r1, r0
+    ldr r6, [sp, #0x40]
+    movs r7, #0xc0
+    lsls r7, r7, #0x13
+    adds r2, r6, r7
+    mov r0, sp
+    movs r3, #0xa0
+    lsls r3, r3, #3
+    bl func_08008F60
+    mov sb, sp
+    ldr r1, [r5, #4]
+    ldr r0, [r5, #0xc]
+    cmp r1, r0
+    beq .Ljp_080148CC
+    cmp r1, #0
+    beq .Ljp_080148C4
+    adds r0, r1, #0
+    mov r1, sp
+    ldm r1!, {r2, r3, r4}
+    stm r0!, {r2, r3, r4}
+    ldr r1, [r1]
+    str r1, [r0]
+.Ljp_080148C4:
+    ldr r0, [r5, #4]
+    adds r0, #0x10
+    str r0, [r5, #4]
+    b .Ljp_0801498C
+.Ljp_080148CC:
+    mov sl, r1
+    movs r0, #1
+    str r0, [sp, #0x28]
+    ldr r0, [r5]
+    subs r0, r1, r0
+    asrs r4, r0, #4
+    str r4, [sp, #0x24]
+    add r1, sp, #0x28
+    add r0, sp, #0x24
+    cmp r4, #1
+    bhs .Ljp_080148E4
+    adds r0, r1, #0
+.Ljp_080148E4:
+    ldr r0, [r0]
+    adds r0, r4, r0
+    cmp r0, #0
+    beq .Ljp_08014902
+    lsls r4, r0, #4
+    adds r0, r4, #0
+    bl malloc
+    mov r8, r4
+    cmp r0, #0
+    bne .Ljp_08014906
+    mov r0, r8
+    bl func_080D3BC0
+    b .Ljp_08014906
+.Ljp_08014902:
+    movs r0, #0
+    mov r8, r0
+.Ljp_08014906:
+    adds r4, r0, #0
+    str r4, [sp, #0x50]
+    ldr r2, [r5]
+    adds r3, r4, #0
+    cmp r2, sl
+    beq .Ljp_0801492A
+.Ljp_08014912:
+    cmp r3, #0
+    beq .Ljp_08014922
+    adds r0, r3, #0
+    adds r1, r2, #0
+    ldm r1!, {r4, r6, r7}
+    stm r0!, {r4, r6, r7}
+    ldr r1, [r1]
+    str r1, [r0]
+.Ljp_08014922:
+    adds r2, #0x10
+    adds r3, #0x10
+    cmp r2, sl
+    bne .Ljp_08014912
+.Ljp_0801492A:
+    adds r4, r3, #0
+    ldr r0, [sp, #0x28]
+    cmp r0, #1
+    bne .Ljp_08014946
+    cmp r4, #0
+    beq .Ljp_08014942
+    adds r0, r4, #0
+    mov r1, sb
+    ldm r1!, {r2, r6, r7}
+    stm r0!, {r2, r6, r7}
+    ldr r1, [r1]
+    str r1, [r0]
+.Ljp_08014942:
+    adds r4, #0x10
+    b .Ljp_08014968
+.Ljp_08014946:
+    adds r3, r0, #0
+    adds r2, r4, #0
+    cmp r3, #0
+    beq .Ljp_08014966
+.Ljp_0801494E:
+    cmp r2, #0
+    beq .Ljp_0801495E
+    adds r0, r2, #0
+    mov r1, sb
+    ldm r1!, {r4, r6, r7}
+    stm r0!, {r4, r6, r7}
+    ldr r1, [r1]
+    str r1, [r0]
+.Ljp_0801495E:
+    subs r3, #1
+    adds r2, #0x10
+    cmp r3, #0
+    bne .Ljp_0801494E
+.Ljp_08014966:
+    adds r4, r2, #0
+.Ljp_08014968:
+    ldr r2, [r5, #4]
+    ldr r0, [r5]
+    adds r1, r0, #0
+    cmp r0, r2
+    beq .Ljp_08014978
+.Ljp_08014972:
+    adds r1, #0x10
+    cmp r1, r2
+    bne .Ljp_08014972
+.Ljp_08014978:
+    cmp r0, #0
+    beq .Ljp_08014980
+    bl free
+.Ljp_08014980:
+    ldr r0, [sp, #0x50]
+    add r0, r8
+    ldr r1, [sp, #0x50]
+    str r1, [r5]
+    str r4, [r5, #4]
+    str r0, [r5, #0xc]
+.Ljp_0801498C:
+    mov r1, sp
+    ldr r2, .Ljp_080149C4 @ =0x00003E41
+    adds r0, r2, #0
+    strh r0, [r1]
+    ldr r3, [sp, #0x44]
+    strh r0, [r3]
+    movs r2, #0
+    movs r0, #0x10
+    ldr r4, [sp, #0x30]
+    strb r0, [r4]
+    ldr r0, .Ljp_080149C8 @ =0x00001010
+    strh r0, [r1]
+    ldr r6, [sp, #0x48]
+    strh r0, [r6]
+    ldr r7, [sp, #0x34]
+    strb r2, [r7]
+    movs r0, #0x1a
+    ldr r1, [sp, #0x2c]
+    str r0, [r1]
+    add sp, #0x54
+    pop {r3, r4, r5}
+    mov r8, r3
+    mov sb, r4
+    mov sl, r5
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_080149C4: .4byte 0x00003E41
+.Ljp_080149C8: .4byte 0x00001010
+
+    .global func_08014AF8
+    .thumb_func
+func_08014AF8:
+    push {r4, r5, r6, lr}
+    sub sp, #0xc
+    ldr r5, [r0, #4]
+    adds r4, r5, #0
+    adds r4, #0xa8
+    movs r6, #0
+    ldr r1, [r4]
+    cmp r6, r1
+    beq .Ljp_080149EE
+    cmp r1, #0
+    beq .Ljp_080149EE
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_080149EE:
+    str r6, [r4]
+    adds r4, r5, #0
+    adds r4, #0x8c
+    ldr r0, [r4]
+    bl func_08010F54
+    adds r6, r5, #0
+    adds r6, #0xa8
+    ldr r1, [r4]
+    adds r0, r5, #0
+    adds r0, #0x88
+    ldr r2, [r0]
+    mov r0, sp
+    movs r3, #0
+    bl func_0801F910
+    ldr r1, [sp]
+    mov r0, sp
+    str r0, [sp, #4]
+    str r1, [sp, #8]
+    movs r0, #0
+    str r0, [sp]
+    adds r4, r1, #0
+    ldr r1, [r6]
+    adds r5, r6, #0
+    cmp r4, r1
+    beq .Ljp_08014A34
+    cmp r1, #0
+    beq .Ljp_08014A34
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08014A34:
+    str r4, [r6]
+    ldr r1, [sp]
+    cmp r1, #0
+    beq .Ljp_08014A48
+    ldr r0, [r1]
+    ldr r2, [r0, #8]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08014A48:
+    ldr r0, [r5]
+    ldr r1, [r0]
+    movs r2, #0x9c
+    lsls r2, r2, #1
+    adds r1, r1, r2
+    ldr r1, [r1]
+    bl _call_via_r1
+    ldr r0, [r5]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0
+    bl _call_via_r2
+    adds r4, r0, #0
+    ldr r0, .Ljp_08014A88 @ =gUnk_0300040C
+    ldr r1, [r0]
+    movs r2, #0xdb
+    lsls r2, r2, #2
+    adds r0, r1, r2
+    ldrb r0, [r0]
+    cmp r0, #0
+    beq .Ljp_08014AA2
+    adds r2, #8
+    adds r0, r1, r2
+    ldrh r0, [r0]
+    lsls r0, r0, #0x1b
+    lsrs r1, r0, #0x1b
+    cmp r1, #5
+    bhi .Ljp_08014A8C
+    movs r0, #6
+    b .Ljp_08014A8E
+    .align 2, 0
+.Ljp_08014A88: .4byte gUnk_0300040C
+.Ljp_08014A8C:
+    movs r0, #0x1e
+.Ljp_08014A8E:
+    subs r2, r0, r1
+    ldr r0, [r4, #0x14]
+    lsls r1, r2, #3
+    subs r1, r1, r2
+    lsls r2, r2, #1
+    rsbs r2, r2, #0
+    ldr r3, [r0, #0x64]
+    adds r0, r4, #0
+    bl _call_via_r3
+.Ljp_08014AA2:
+    add sp, #0xc
+    pop {r4, r5, r6}
+    pop {r0}
+    bx r0
+    .align 2, 0
+
+    .global func_08014BD8
+    .thumb_func
+func_08014BD8:
+    push {r4, r5, lr}
+    ldr r0, [r0, #4]
+    movs r4, #1
+    adds r5, r0, #0
+    adds r5, #0xa8
+.Ljp_08014AB6:
+    ldr r0, [r5]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    adds r1, r4, #0
+    bl _call_via_r2
+    adds r1, r0, #0
+    cmp r1, #0
+    beq .Ljp_08014AD4
+    ldr r0, [r1, #0x14]
+    ldr r2, [r0, #0x3c]
+    adds r0, r1, #0
+    movs r1, #3
+    bl _call_via_r2
+.Ljp_08014AD4:
+    adds r4, #1
+    cmp r4, #0x23
+    bls .Ljp_08014AB6
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+
+    .global func_08014C0C
+    .thumb_func
+func_08014C0C:
+    push {r4, r5, lr}
+    adds r4, r1, #0
+    adds r5, r2, #0
+    ldr r0, [r0, #4]
+    adds r0, #0xa8
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r2, [r1, #0x40]
+    movs r1, #0
+    bl _call_via_r2
+    ldr r1, [r0, #0x14]
+    ldr r3, [r1, #0x64]
+    adds r1, r4, #0
+    adds r2, r5, #0
+    bl _call_via_r3
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+
     .global func_08014B08
     .thumb_func
 func_08014B08:
@@ -8535,6 +9975,9 @@ func_0801FAA8:
 func_0801FAB8:
     .incbin "baserom_jp.gba", 0x1F84C, (0x1F85C - 0x1F84C)
     .incbin "baserom_jp.gba", 0x1F85C, (0x1F910 - 0x1F85C)
+    .global func_0801F910
+    .thumb_func
+func_0801F910:
     .incbin "baserom_jp.gba", 0x1F910, (0x1F97C - 0x1F910)
     .global func_0801FBE8
     .thumb_func
