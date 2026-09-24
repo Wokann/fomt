@@ -1,6 +1,6 @@
 # `func_0805AB08` direct BG tile stream
 
-`func_0805AB08` directly unpacks `gUnk_0872F21C` to `0x06000000`, BG
+`func_0805AB08` directly unpacks `gUiThreeLayerBackgroundTiles` to `0x06000000`, BG
 character block 0 (not OBJ VRAM). The decoded payload is exactly 358 4bpp
 tiles. It expands four 32-row template streams into three 32-by-32 maps at
 `0x0600C800`, `0x0600D800`, and `0x0600E800`, configured as BG3, BG2, and
@@ -31,11 +31,14 @@ static three-BG result rather than claiming every later runtime frame.
 
 ```console
 make gfx-ui-scene-0805ab08-tiles-all
-make gfx-ui-scene-0805ab08-tiles-patch-test
 make gfx-ui-scene-0805ab08-reference
 ```
 
-The normal ROM recipe rebuilds this stream after `objcopy` and patches only
-its original regional interval. An unchanged source matches retail bytes
-exactly; an edited source is rejected if its Raw-LZ encoding no longer fits
-the original fixed slot.
+The compiled C `fomt-lz` tool converts the editable tiles into a
+source-adjacent `tiles.4bpp.lz` with the verified Raw-LZ2 ladder and fixed
+slot size. The assembler includes it directly under
+`gUiThreeLayerBackgroundTiles` in each region, with a normal object
+prerequisite. The JP literal-pool pointer and overseas assembly use this
+symbol. This stream no longer reads a baseline ROM or needs a post-`objcopy`
+patch in the normal build. Unchanged tiles match all four retail ROMs
+byte-for-byte; an edit that exceeds the current slot fails at conversion.

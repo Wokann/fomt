@@ -1238,9 +1238,9 @@ UI_SCENE_08054F40_REFERENCE_DIR := graphics/ui/scene_08054f40_tiles/reference
 
 UI_SCENE_0805AB08_TILES_TOOL := $(UI_SCENE_080B7164_TOOL)
 UI_SCENE_0805AB08_TILES_SOURCE_DIR := graphics/ui/scene_0805ab08_tiles/shared
-UI_SCENE_0805AB08_TILES_SOURCES := $(wildcard $(UI_SCENE_0805AB08_TILES_SOURCE_DIR)/*)
-UI_SCENE_0805AB08_TILES_OUTPUT_DIR := $(BUILD_DIR)/graphics/ui/scene_0805ab08_tiles
-UI_SCENE_0805AB08_TILES_STAMP := $(UI_SCENE_0805AB08_TILES_OUTPUT_DIR)/.scene-0805ab08-tiles.stamp
+UI_SCENE_0805AB08_TILES_SOURCE := $(UI_SCENE_0805AB08_TILES_SOURCE_DIR)/tiles.4bpp
+UI_SCENE_0805AB08_TILES_SOURCES := $(UI_SCENE_0805AB08_TILES_SOURCE)
+UI_SCENE_0805AB08_TILES_OUTPUT := $(UI_SCENE_0805AB08_TILES_SOURCE).lz
 UI_SCENE_0805AB08_TILES_REGION := $(INTRO_OBJECTS_REGION)
 UI_SCENE_0805AB08_REFERENCE_TOOL := tools/ui_scene_0805ab08_reference.py
 UI_SCENE_0805AB08_REFERENCE_DIR := graphics/ui/scene_0805ab08_tiles/reference
@@ -1392,7 +1392,7 @@ GRAPHICS_ASSETS = \
 	$(UI_SCENE_080B7164_STAMP) $(UI_SCENE_080C160C_STAMP) \
 	$(UI_SCENE_080BCFAC_STAMP) $(UI_SCENE_080B55D0_AUX_STAMP) \
 	$(UI_SCENE_080B55D0_MAIN_STAMP) $(UI_SCENE_08054F40_TILES_OUTPUT) \
-	$(UI_SCENE_0805AB08_TILES_STAMP) $(MAP_RESOURCES_STAMP) \
+	$(UI_SCENE_0805AB08_TILES_OUTPUT) $(MAP_RESOURCES_STAMP) \
 	$(RECORDS_MINIGAME_OUTPUTS) $(ANIMAL_FESTIVAL_ICON_OUTPUTS) \
 	$(RAW_VRAM_TILES_08697920_SOURCES) $(RAW_VRAM_TILES_08698E14_SOURCES) \
 	$(RAW_VRAM_TILES_0869A0A4_SOURCES) $(RAW_VRAM_TILES_086D5508_SOURCES) \
@@ -1807,10 +1807,8 @@ $(UI_SCENE_080B55D0_MAIN_STAMP): $(UI_SCENE_080B55D0_MAIN_SOURCES) $(UI_SCENE_08
 $(UI_SCENE_08054F40_TILES_OUTPUT): $(UI_SCENE_08054F40_TILES_SOURCE) $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) encode-lz2 $< $@ 2,5,7,8,10,13,14 0xCA8
 
-$(UI_SCENE_0805AB08_TILES_STAMP): $(UI_SCENE_0805AB08_TILES_SOURCES) $(UI_SCENE_0805AB08_TILES_TOOL) $(FARM_STATUS_CODEC) $(BASE_ROM)
-	@$(PYTHON) $(UI_SCENE_0805AB08_TILES_TOOL) --profile 0805ab08_tiles build --region $(UI_SCENE_0805AB08_TILES_REGION) --rom $(BASE_ROM) \
-	  --source-dir $(UI_SCENE_0805AB08_TILES_SOURCE_DIR) --output-dir $(UI_SCENE_0805AB08_TILES_OUTPUT_DIR)
-	@touch $@
+$(UI_SCENE_0805AB08_TILES_OUTPUT): $(UI_SCENE_0805AB08_TILES_SOURCE) $(FOMT_LZ_TOOL)
+	@$(FOMT_LZ_TOOL) encode-lz2 $< $@ 3,5,7,10,11,12,14 0x880
 
 $(FARM_HOUSE_VISUAL_STAMP): $(FARM_HOUSE_VISUAL_SOURCES) $(FARM_HOUSE_VISUAL_TOOL) $(FARM_STATUS_CODEC) $(BASE_ROM)
 	@$(PYTHON) $(FARM_HOUSE_VISUAL_TOOL) build --region $(FARM_HOUSE_VISUAL_REGION) --rom $(BASE_ROM) \
@@ -1917,7 +1915,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 .PHONY: gfx-raw-vram-tiles-086d6698 gfx-raw-vram-tiles-086d6698-test gfx-raw-vram-tiles-086d6698-all
 .PHONY: gfx-raw-vram-tiles-field-leading
 .PHONY: gfx-ui-scene-08054f40-tiles gfx-ui-scene-08054f40-reference gfx-ui-scene-08054f40-tiles-test gfx-ui-scene-08054f40-tiles-all gfx-ui-scene-08054f40-tiles-edit-test
-.PHONY: gfx-ui-scene-0805ab08-tiles gfx-ui-scene-0805ab08-reference gfx-ui-scene-0805ab08-tiles-test gfx-ui-scene-0805ab08-tiles-all gfx-ui-scene-0805ab08-tiles-patch-test gfx-ui-scene-0805ab08-tiles-edit-test
+.PHONY: gfx-ui-scene-0805ab08-tiles gfx-ui-scene-0805ab08-reference gfx-ui-scene-0805ab08-tiles-test gfx-ui-scene-0805ab08-tiles-all gfx-ui-scene-0805ab08-tiles-edit-test
 .PHONY: gfx-farm-house-visual gfx-farm-house-visual-test gfx-farm-house-visual-all gfx-farm-house-visual-patch-test gfx-farm-house-visual-edit-test
 .PHONY: gfx-farm-house-tilemaps gfx-farm-house-tilemaps-test gfx-farm-house-tilemaps-all gfx-farm-house-tilemaps-patch-test gfx-farm-house-tilemaps-edit-test
 .PHONY: gfx-farm-house-palettes gfx-farm-house-palettes-test gfx-farm-house-palettes-all gfx-farm-house-palettes-patch-test gfx-farm-house-palettes-edit-test
@@ -2212,21 +2210,19 @@ gfx-ui-scene-08054f40-tiles-all:
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-ui-scene-08054f40-tiles-test
 gfx-ui-scene-08054f40-tiles-edit-test: $(UI_SCENE_08054F40_TILES_TOOL) baserom_jp.gba
 	@$(PYTHON) $(UI_SCENE_08054F40_TILES_TOOL) --profile 08054f40_tiles edit-test --region jp --rom baserom_jp.gba
-gfx-ui-scene-0805ab08-tiles: $(UI_SCENE_0805AB08_TILES_STAMP)
+gfx-ui-scene-0805ab08-tiles: $(UI_SCENE_0805AB08_TILES_OUTPUT)
 gfx-ui-scene-0805ab08-reference: $(UI_SCENE_0805AB08_REFERENCE_TOOL) $(UI_SCENE_0805AB08_TILES_SOURCES) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(UI_SCENE_0805AB08_REFERENCE_TOOL) --source-dir $(UI_SCENE_0805AB08_TILES_SOURCE_DIR) --reference-dir $(UI_SCENE_0805AB08_REFERENCE_DIR) \
 	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
-gfx-ui-scene-0805ab08-tiles-test: gfx-ui-scene-0805ab08-tiles $(UI_SCENE_0805AB08_TILES_TOOL)
+gfx-ui-scene-0805ab08-tiles-test: gfx-ui-scene-0805ab08-tiles $(UI_SCENE_0805AB08_TILES_TOOL) $(FOMT_LZ_TOOL)
+	@$(FOMT_LZ_TOOL) verify-lz2 $(UI_SCENE_0805AB08_TILES_SOURCE) $(UI_SCENE_0805AB08_TILES_OUTPUT) 3,5,7,10,11,12,14
 	@$(PYTHON) $(UI_SCENE_0805AB08_TILES_TOOL) --profile 0805ab08_tiles verify --region $(UI_SCENE_0805AB08_TILES_REGION) --rom $(BASE_ROM) \
-	  --source-dir $(UI_SCENE_0805AB08_TILES_SOURCE_DIR) --output-dir $(UI_SCENE_0805AB08_TILES_OUTPUT_DIR)
+	  --source-dir $(UI_SCENE_0805AB08_TILES_SOURCE_DIR)
 gfx-ui-scene-0805ab08-tiles-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-ui-scene-0805ab08-tiles-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-ui-scene-0805ab08-tiles-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-ui-scene-0805ab08-tiles-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-ui-scene-0805ab08-tiles-test
-gfx-ui-scene-0805ab08-tiles-patch-test: gfx-ui-scene-0805ab08-tiles-all $(UI_SCENE_0805AB08_TILES_TOOL)
-	@$(PYTHON) $(UI_SCENE_0805AB08_TILES_TOOL) --profile 0805ab08_tiles patch-test --output-root build \
-	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
 gfx-ui-scene-0805ab08-tiles-edit-test: $(UI_SCENE_0805AB08_TILES_TOOL) baserom_jp.gba
 	@$(PYTHON) $(UI_SCENE_0805AB08_TILES_TOOL) --profile 0805ab08_tiles edit-test --region jp --rom baserom_jp.gba
 gfx-farm-house-visual: $(FARM_HOUSE_VISUAL_STAMP)
@@ -3620,7 +3616,6 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-ui-scene-08054f40-tiles-all
 	@$(MAKE) --no-print-directory gfx-ui-scene-08054f40-tiles-edit-test
 	@$(MAKE) --no-print-directory gfx-ui-scene-0805ab08-tiles-all
-	@$(MAKE) --no-print-directory gfx-ui-scene-0805ab08-tiles-patch-test
 	@$(MAKE) --no-print-directory gfx-ui-scene-0805ab08-tiles-edit-test
 	@$(MAKE) --no-print-directory gfx-farm-house-visual-all
 	@$(MAKE) --no-print-directory gfx-farm-house-visual-patch-test
