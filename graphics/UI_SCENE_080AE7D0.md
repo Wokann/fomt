@@ -52,6 +52,8 @@ make gfx-ui-scene-080ae7d0-preview
 
 The normal build generates the three compressed streams and BGR555 palette
 beside their editable sources, then links them in ROM order under four symbols.
+The palette uses the shared `%.gbapal: %.png` gbagfx rule; its output is
+`palette_banks.gbapal` and matches the original bytes exactly.
 This group no longer uses a post-link ROM patch or a baseline ROM build input.
 A modified compressed stream must fit its original ROM slot; otherwise the
 build reports the required size instead of silently overwriting following data.

@@ -11,7 +11,7 @@
 
 build/
 graphics/map_state_palettes/shared/*.0x70
-graphics/ui/scene_080ae7d0/shared/palettes.gbapal
+graphics/ui/scene_080ae7d0/shared/palette_banks.gbapal
 tools/fomt-lz
 __pycache__/
 tools/textproc/fomt-*

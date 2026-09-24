@@ -153961,7 +153961,7 @@ gUiResourcePageTiles:
 	.incbin "graphics/ui/scene_080ae7d0/shared/tiles.4bpp.lz"
 	.global gUiResourcePagePalette
 gUiResourcePagePalette:
-	.incbin "graphics/ui/scene_080ae7d0/shared/palettes.gbapal"
+	.incbin "graphics/ui/scene_080ae7d0/shared/palette_banks.gbapal"
 
 	.global gUnk_08731B40
 gUnk_08731B40:
