@@ -3382,6 +3382,17 @@ JP `func_080260E0` 已由原始 `.incbin` 提升为直接 Thumb，与海外
 本批仅修改 JP 源码；WSL 以 `-j4` 重建后的 SHA-1 为
 `A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并与 `baserom_jp.gba` 逐字节一致。
 
+## `asm/code_entities.s`：JP 实体 UI 资源列表初始化
+
+JP `func_0802AFF4`（`0x0802AFF4–0x0802B148`）已由直接 `.incbin` 提升为完整
+Thumb 实现，并与海外 `func_0802B260` 保持同一边界和指令层级。函数初始化实体 UI
+的资源/对象列表，逐项填充运行时条目并设置相应 vtable。
+
+外部调用沿用已存在的可重定位逻辑符号；JP 链接映射将它们分别放在
+`0x080322F4`、`0x080A4438`、`0x080DBFF4`、`0x080A41EC`，因此源码不伪造
+物理地址或 `+offset`。本批只改动 JP；WSL `-j4` 构建后的 SHA-1 为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`，与 `baserom_jp.gba` 逐字节一致。
+
 ## `asm/code_entities.s`：JP 实体 UI 连续动作处理块
 
 JP 原 ROM 的 `0x0802A56C–0x0802AFF4` 已由直接 `.incbin` 提升为八个真实的
