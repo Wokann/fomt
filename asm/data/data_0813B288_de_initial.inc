@@ -94477,10 +94477,10 @@ gUnk_08527520:
 	FOMT_FARM_STATUS_SECONDARY_TILEMAP 02, 0, 0xB0
 	.global gUnk_085275D0
 gUnk_085275D0:
-	.incbin "build/de/graphics/ui/farm_status/base_tiles.0x70"
+	.incbin "graphics/ui/farm_status/shared/base_tiles.0x70"
 	.global gUnk_08529794
 gUnk_08529794:
-	.incbin "build/de/graphics/ui/farm_status/base_tiles.gbapal"
+	.incbin "graphics/ui/farm_status/shared/base_tiles.gbapal"
 	.global gUnk_08529994
 gUnk_08529994:
 	FOMT_FARM_STATUS_EXTERIOR_STYLE doghouse
