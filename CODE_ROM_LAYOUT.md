@@ -3717,3 +3717,19 @@ JP 入口从 `func_0802BBFC` 继续。
 US `A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、EU
 `7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、DE
 `60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`。
+
+## `asm/code_entities.s`：四区实体 UI 资源速度设置
+
+海外 `func_0802BE68` 与 JP `func_0802BBFC` 的 0x94 字节状态入口均已是直接 Thumb。
+该模块按四种资源状态设置速度分量、清零累计字段、恢复动画并写入完成标记；三个
+跳过式文字池及其局部分支均按各自区域的真实物理标签保留。
+
+JP 内部调用直接指向 `func_0802B9DC`，外部动画调用仍为可重定位符号；没有保留函数
+`incbin`、`.byte`、别名、`.set` 或伪造偏移。下一未提升 JP 入口从
+`func_0802BC90` 继续。
+
+本批仅修改 JP 源码；WSL `-j4` 重建后的 JP SHA-1 为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`，且当前 US/EU/DE 产物仍分别为
+`A2FC3574F0A65A4FCF7682FB274B9D7EEBDEF963`、
+`7BA1EC1E46CE424E3C6FD72E4E8D5E9EB5EDE247`、
+`60F2A30B55C0E32754897B4D5DF6CE06F8B71A37`，均与各自原 ROM 一致。

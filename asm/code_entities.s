@@ -18448,7 +18448,83 @@ func_0802BAE4:
     .global func_0802BBFC
     .thumb_func
 func_0802BBFC:
-    .incbin "baserom_jp.gba", 0x2BBFC, (0x2BC90 - 0x2BBFC)
+    push {r4, r5, lr}
+    adds r5, r0, #0
+    adds r0, #0x20
+    ldrb r2, [r0]
+    cmp r2, #1
+    beq .Ljp_0802BC44
+    cmp r2, #1
+    bgt .Ljp_0802BC12
+    cmp r2, #0
+    beq .Ljp_0802BC54
+    b .Ljp_0802BC60
+.Ljp_0802BC12:
+    cmp r2, #2
+    beq .Ljp_0802BC1C
+    cmp r2, #3
+    beq .Ljp_0802BC30
+    b .Ljp_0802BC60
+.Ljp_0802BC1C:
+    adds r0, r5, #0
+    adds r0, #0x38
+    ldr r1, .Ljp_0802BC2C @ =0xFFFE5556
+    movs r2, #0
+    str r1, [r0, #0xc]
+    str r2, [r0, #0x10]
+    b .Ljp_0802BC5E
+    .align 2, 0
+.Ljp_0802BC2C: .4byte 0xFFFE5556
+.Ljp_0802BC30:
+    adds r0, r5, #0
+    adds r0, #0x38
+    ldr r1, .Ljp_0802BC40 @ =0x0001AAAA
+    movs r2, #0
+    str r1, [r0, #0xc]
+    str r2, [r0, #0x10]
+    b .Ljp_0802BC5E
+    .align 2, 0
+.Ljp_0802BC40: .4byte 0x0001AAAA
+.Ljp_0802BC44:
+    adds r0, r5, #0
+    adds r0, #0x38
+    movs r2, #0
+    ldr r1, .Ljp_0802BC50 @ =0xFFFE5556
+    b .Ljp_0802BC5A
+    .align 2, 0
+.Ljp_0802BC50: .4byte 0xFFFE5556
+.Ljp_0802BC54:
+    adds r0, r5, #0
+    adds r0, #0x38
+    ldr r1, .Ljp_0802BC8C @ =0x0001AAAA
+.Ljp_0802BC5A:
+    str r2, [r0, #0xc]
+    str r1, [r0, #0x10]
+.Ljp_0802BC5E:
+    str r2, [r0, #0x18]
+.Ljp_0802BC60:
+    adds r0, r5, #0
+    adds r0, #0x34
+    movs r4, #1
+    strb r4, [r0]
+    adds r0, #0x24
+    strb r4, [r0]
+    adds r0, r5, #0
+    bl func_0802B9DC
+    adds r1, r0, #0
+    lsls r1, r1, #0x10
+    lsrs r1, r1, #0x10
+    adds r0, r5, #0
+    bl SetAnim__12AActorEntityUi
+    adds r0, r5, #0
+    adds r0, #0x54
+    strb r4, [r0]
+    pop {r4, r5}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_0802BC8C: .4byte 0x0001AAAA
+
     .global func_0802BC90
     .thumb_func
 func_0802BC90:
