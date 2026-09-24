@@ -3382,6 +3382,18 @@ JP `func_080260E0` 已由原始 `.incbin` 提升为直接 Thumb，与海外
 本批仅修改 JP 源码；WSL 以 `-j4` 重建后的 SHA-1 为
 `A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并与 `baserom_jp.gba` 逐字节一致。
 
+## `asm/code_entities.s`：JP 工具 UI 资源初始化入口
+
+JP `func_0802A2A4` 已由原始 `.incbin` 提升为直接 Thumb，与海外
+`func_0802A510` 保持同一层级。它初始化工具 UI 状态、选择图标并构造对应资源句柄；
+所有本地标签、常量池与对齐均按 JP ROM 原样保留。
+
+全部外部调用使用已有可重定位符号，无 `.set`、`.thumb_set`、固定 BL 字节或伪造
+`+offset`。后续 JP 原始代码从 `func_0802A31C` 继续直接 `.incbin`。
+
+本批仅修改 JP 源码；WSL 以 `-j4` 重建后的 SHA-1 为
+`A655B2789AED14A6AC78C6075FBC533D3062DBE3`，并与 `baserom_jp.gba` 逐字节一致。
+
 ## `asm/code_entities.s`：JP 食物 UI 初始化入口
 
 原 JP 原始范围中含有两个连续真实函数，现均已提升为直接 Thumb：

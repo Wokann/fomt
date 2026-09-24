@@ -15176,8 +15176,62 @@ func_0802A254: @ 0x0802A254
     .align 2, 0
     .global func_0802A2A4
     .thumb_func
-func_0802A2A4:
-    .incbin "baserom_jp.gba", 0x2A2A4, (0x2A31C - 0x2A2A4)
+func_0802A2A4: @ 0x0802A2A4
+    push {r4, r5, r6, r7, lr}
+    sub sp, #4
+    adds r3, r0, #0
+    adds r0, #0x88
+    movs r6, #0
+    movs r7, #1
+    strb r7, [r0]
+    strb r6, [r0, #1]
+    ldr r1, .Ljp_0802A318 @ =0xFFF80000
+    movs r2, #0x88
+    lsls r2, r2, #0xd
+    str r1, [r0, #4]
+    str r6, [r0, #8]
+    str r2, [r0, #0x14]
+    ldr r5, [r3, #0x10]
+    cmp r5, #0
+    beq .Ljp_0802A30E
+    ldr r4, [r3, #0x38]
+    adds r0, r4, #0
+    adds r0, #0x5c
+    bl GetTool__C9ToolStack
+    adds r1, r0, #0
+    adds r0, r4, #0
+    bl func_0800E550
+    mov r1, sp
+    strb r0, [r1]
+    mov r0, sp
+    bl GetIconId__C4Tool
+    adds r4, r0, #0
+    lsls r4, r4, #0x10
+    lsrs r4, r4, #0x10
+    ldr r0, [r5]
+    ldr r0, [r0]
+    ldr r1, [r0]
+    ldr r1, [r1, #0x64]
+    bl _call_via_r1
+    adds r1, r0, #0
+    adds r0, r5, #0
+    adds r0, #0xb4
+    adds r2, r4, #0
+    bl InitializeIndexedResourceHandle
+    adds r0, r5, #0
+    adds r0, #0xc8
+    strb r7, [r0]
+    adds r0, #2
+    strb r6, [r0]
+    adds r0, #1
+    strb r7, [r0]
+.Ljp_0802A30E:
+    add sp, #4
+    pop {r4, r5, r6, r7}
+    pop {r0}
+    bx r0
+    .align 2, 0
+.Ljp_0802A318: .4byte 0xFFF80000
     .global func_0802A31C
     .thumb_func
 func_0802A31C:
