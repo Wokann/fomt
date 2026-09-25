@@ -927,13 +927,9 @@ INTRO_BACKGROUND_PALETTE_OFFSET := $(INTRO_BACKGROUND_PALETTE_OFFSET_$(GAME_REGI
 # Intro Scene object tiles are twenty independently packed, byte-identical
 # Raw-LZ streams.  Their 0x500-byte decoded sources preserve native tile
 # order; OAM composition is deliberately kept separate until it is proven.
-INTRO_OBJECTS_TOOL := tools/intro_scene_objects.py
 INTRO_OBJECTS_SOURCE_DIR := graphics/intro_scene/shared/object_tiles
-INTRO_OBJECTS := 00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19
-INTRO_OBJECTS_SOURCES := $(foreach object,$(INTRO_OBJECTS),$(INTRO_OBJECTS_SOURCE_DIR)/object_$(object).4bpp)
-INTRO_OBJECTS_OUTPUT_DIR := $(BUILD_DIR)/graphics/intro_scene/objects
-INTRO_OBJECTS_OUTPUTS := $(foreach object,$(INTRO_OBJECTS),$(INTRO_OBJECTS_OUTPUT_DIR)/object_$(object).0x70)
-INTRO_OBJECTS_STAMP := $(INTRO_OBJECTS_OUTPUT_DIR)/.objects.stamp
+INTRO_OBJECTS_SOURCES := $(wildcard $(INTRO_OBJECTS_SOURCE_DIR)/object_*.4bpp)
+INTRO_OBJECTS_OUTPUTS := $(INTRO_OBJECTS_SOURCES:%=%.lz)
 INTRO_OBJECTS_REGION := $(shell echo "$(GAME_REGION)" | tr '[:upper:]' '[:lower:]')
 
 # The earlier Intro Scene setup function creates two interleaved 32-by-32 BG
@@ -1298,7 +1294,7 @@ GRAPHICS_ASSETS = \
 	$(FARM_HOUSE_VISUAL_OUTPUTS) \
 	$(SEASONAL_NONWINTER_OUTPUTS) $(SEASONAL_WINTER_OUTPUTS) \
 	$(INTRO_BACKGROUND_PACKED_BIN) $(INTRO_BACKGROUND_PALETTE_BIN) \
-	$(INTRO_OBJECTS_STAMP) $(INTRO_STARTUP_TILEMAPS_OUTPUTS) \
+	$(INTRO_OBJECTS_OUTPUTS) $(INTRO_STARTUP_TILEMAPS_OUTPUTS) \
 	$(INTRO_STARTUP_VISUAL_PACKED_BIN) $(INTRO_STARTUP_VISUAL_PALETTE_BIN) $(INTRO_INDEXED_ARCHIVE_OUTPUT) \
 	$(INTRO_SMALL_ARCHIVE_ASSETS) $(UI_SCENE_080A2BA4_OUTPUTS) \
 	$(UI_SCENE_08077810_ACTIVE_STAMP) $(UI_SCENE_080AE7D0_OUTPUTS) \
@@ -1576,12 +1572,8 @@ $(INTRO_BACKGROUND_PACKED_BIN): $(INTRO_BACKGROUND_TILES_BIN) $(FARM_STATUS_CODE
 	  --baseline-rom $(BASE_ROM) --baseline-offset $(INTRO_BACKGROUND_STREAM_OFFSET) \
 	  --baseline-length $(INTRO_BACKGROUND_STREAM_LENGTH) --baseline-sha256 $(INTRO_BACKGROUND_STREAM_SHA256)
 
-$(INTRO_OBJECTS_STAMP): $(INTRO_OBJECTS_SOURCES) $(INTRO_OBJECTS_TOOL) $(FARM_STATUS_CODEC) $(BASE_ROM)
-	@$(PYTHON) $(INTRO_OBJECTS_TOOL) build --region $(INTRO_OBJECTS_REGION) --rom $(BASE_ROM) \
-	  --source-dir $(INTRO_OBJECTS_SOURCE_DIR) --output-dir $(INTRO_OBJECTS_OUTPUT_DIR)
-	@touch $@
-
-$(INTRO_OBJECTS_OUTPUTS): $(INTRO_OBJECTS_STAMP)
+$(INTRO_OBJECTS_SOURCE_DIR)/%.4bpp.lz: $(INTRO_OBJECTS_SOURCE_DIR)/%.4bpp $(INTRO_OBJECTS_SOURCE_DIR)/%.original.lz $(FOMT_LZ_TOOL)
+	@$(FOMT_LZ_TOOL) rebuild-native $< $(word 2,$^) $@
 
 $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/%.tilemap.lz: $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/%.tilemap $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/%.original.lz $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) rebuild-native $< $(word 2,$^) $@
@@ -2984,17 +2976,16 @@ gfx-intro-background-all:
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-intro-background-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-intro-background-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-intro-background-test
-gfx-intro-objects: $(INTRO_OBJECTS_STAMP)
-gfx-intro-objects-test: gfx-intro-objects $(BASE_ROM) $(INTRO_OBJECTS_TOOL)
-	@$(PYTHON) $(INTRO_OBJECTS_TOOL) verify --region $(INTRO_OBJECTS_REGION) --rom $(BASE_ROM) \
-	  --source-dir $(INTRO_OBJECTS_SOURCE_DIR) --output-dir $(INTRO_OBJECTS_OUTPUT_DIR)
+gfx-intro-objects: $(INTRO_OBJECTS_OUTPUTS)
+gfx-intro-objects-test: gfx-intro-objects $(FOMT_LZ_TOOL)
+	@set -e; for source in $(INTRO_OBJECTS_SOURCES); do \
+	  $(FOMT_LZ_TOOL) verify-native "$$source" "$$source.lz"; \
+	done
 gfx-intro-objects-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-intro-objects-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-intro-objects-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-intro-objects-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-intro-objects-test
-gfx-intro-objects-edit-test: $(INTRO_OBJECTS_TOOL) baserom_jp.gba
-	@$(PYTHON) $(INTRO_OBJECTS_TOOL) edit-test --region jp --rom baserom_jp.gba
 $(INTRO_INDEXED_ARCHIVE_OUTPUT): $(INTRO_INDEXED_ARCHIVE_TOOL) $(INTRO_INDEXED_ARCHIVE_SOURCES) $(BASE_ROM)
 	@mkdir -p $(dir $@)
 	@$(PYTHON) $(INTRO_INDEXED_ARCHIVE_TOOL) build --region $(INTRO_INDEXED_ARCHIVE_REGION) --rom $(BASE_ROM) --source-root $(INTRO_INDEXED_ARCHIVE_SOURCE_ROOT) --output $@
@@ -3428,7 +3419,6 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-clock-font-all
 	@$(MAKE) --no-print-directory gfx-intro-background-all
 	@$(MAKE) --no-print-directory gfx-intro-objects-all
-	@$(MAKE) --no-print-directory gfx-intro-objects-edit-test
 	@$(MAKE) --no-print-directory gfx-intro-startup-tilemaps-all
 	@$(MAKE) --no-print-directory gfx-intro-startup-visual-all
 	@$(MAKE) --no-print-directory gfx-intro-indexed-archive-all

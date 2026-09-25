@@ -341,8 +341,55 @@ static unsigned longest_match_lz2(unsigned char const *data, size_t size,
     return best_length;
 }
 
+static unsigned char *encode_lz1(unsigned char const *source, size_t size,
+                                 LadderEntry const ladder[4], size_t *packed_size)
+{
+    if (!size || size > 0x40000)
+        fail("Raw-LZ1 source size must be in 1..0x40000");
+    BitWriter writer = {0};
+    write_bits(&writer, 1, 8); // raw atoms, LZ mode 1, no differential filter
+    for (unsigned index = 0; index < 4; index++)
+        write_bits(&writer, ladder[index].width - 1, 4);
+    unsigned max_distance = ladder[3].start + (1u << ladder[3].width) - 1;
+    size_t position = 0;
+    while (position < size) {
+        unsigned distance;
+        unsigned length = longest_match_lz2(source, size, position,
+                                             max_distance, &distance);
+        if (length < 3) {
+            write_bits(&writer, 0, 1);
+            write_bits(&writer, source[position++], 8);
+            continue;
+        }
+        if (length > 18)
+            length = 18;
+        unsigned index = 0;
+        while (index < 4 && distance >= ladder[index].start + (1u << ladder[index].width))
+            index++;
+        if (index == 4)
+            fail("Raw-LZ1 match distance exceeds the ladder");
+        write_bits(&writer, 1, 1);
+        write_bits(&writer, index, 2);
+        write_bits(&writer, distance - ladder[index].start, ladder[index].width);
+        write_bits(&writer, length - 3, 4);
+        position += length;
+    }
+    finish_bits(&writer);
+    *packed_size = writer.size + 4;
+    unsigned char *packed = malloc(*packed_size);
+    if (!packed)
+        fail("out of memory");
+    uint32_t header = ((uint32_t)size << 8) | 0x70;
+    for (unsigned index = 0; index < 4; index++)
+        packed[index] = (unsigned char)(header >> (index * 8));
+    memcpy(packed + 4, writer.data, writer.size);
+    free(writer.data);
+    return packed;
+}
+
 static unsigned char *encode_lz2(unsigned char const *source, size_t size,
                                  LadderEntry const ladder[7], int literal_tail,
+                                 unsigned literal_threshold,
                                  size_t *packed_size)
 {
     if (!size || size > 0x40000)
@@ -380,8 +427,7 @@ static unsigned char *encode_lz2(unsigned char const *source, size_t size,
                 run++;
                 probe++;
             }
-            // A nine-byte extended literal is present in retail Raw-LZ2 data.
-            if (run >= 9) {
+            if (run >= literal_threshold) {
                 write_bits(&writer, 1, 1);
                 write_bits(&writer, 7, 3);
                 write_vli_bits(&writer, run - 1, 4);
@@ -1140,6 +1186,126 @@ static unsigned vli_bit_cost(unsigned value, unsigned atom_bits)
     return digits * atom_bits;
 }
 
+static unsigned char *encode_lz3_optimal(unsigned char const *source, size_t size,
+                                          LadderEntry const ladder[3], size_t *packed_size)
+{
+    if (!size || size > 0x40000 || (size & 1))
+        fail("Raw-LZ3 source size must be even and in 2..0x40000");
+    // Dynamic planning is useful for small fixed-slot art; larger raw streams
+    // retain the linear-space greedy encoder rather than a quadratic search.
+    if (size > 0x2000)
+        return encode_lz3(source, size, ladder, packed_size);
+    unsigned pair_count = (unsigned)(size / 2);
+    Lz3Matches *matches = precompute_lz3_matches(source, size, ladder, 512);
+    uint64_t *costs = malloc(((size_t)pair_count + 1) * sizeof(*costs));
+    Lz3Operation *choices = calloc((size_t)pair_count + 1, sizeof(*choices));
+    Lz3Operation *operations = malloc((size_t)pair_count * sizeof(*operations));
+    if (!costs || !choices || !operations)
+        fail("out of memory");
+    for (unsigned pair = 0; pair <= pair_count; pair++)
+        costs[pair] = UINT64_MAX;
+    costs[0] = 0;
+    for (unsigned pair = 0; pair < pair_count; pair++) {
+        if (costs[pair] == UINT64_MAX)
+            continue;
+        uint64_t cost = costs[pair] + 17;
+        if (cost < costs[pair + 1]) {
+            costs[pair + 1] = cost;
+            choices[pair + 1] = (Lz3Operation){0, 1, 0, 0};
+        }
+        for (unsigned pairs = 8; pairs <= pair_count - pair; pairs++) {
+            cost = costs[pair] + 4 + vli_bit_cost(pairs - 1, 3) + pairs * 16;
+            unsigned target = pair + pairs;
+            if (cost < costs[target]) {
+                costs[target] = cost;
+                choices[target] = (Lz3Operation){2, pairs, 0, 0};
+            }
+        }
+        for (unsigned index = 0; index < 3; index++) {
+            unsigned maximum = matches[pair].pairs[index];
+            unsigned distance = matches[pair].distance[index];
+            for (unsigned pairs = 2; pairs <= maximum; pairs++) {
+                unsigned bits = pairs <= 9
+                    ? 1 + 2 + ladder[index].width + 3
+                    : 1 + 2 + vli_bit_cost((pairs - 2) >> 3, 3) + 1 + 2 +
+                          ladder[index].width + 3;
+                unsigned target = pair + pairs;
+                cost = costs[pair] + bits;
+                if (cost < costs[target]) {
+                    costs[target] = cost;
+                    choices[target] = (Lz3Operation){1, pairs, index, distance};
+                }
+            }
+        }
+    }
+    Lz3Operation *ordered = operations;
+    size_t operation_count = 0;
+    unsigned cursor = pair_count;
+    while (cursor) {
+        Lz3Operation choice = choices[cursor];
+        if (!choice.pairs || choice.pairs > cursor)
+            fail("Raw-LZ3 planner produced an invalid path");
+        ordered[operation_count++] = choice;
+        cursor -= choice.pairs;
+    }
+    for (size_t left = 0, right = operation_count - 1; left < right; left++, right--) {
+        Lz3Operation swap = ordered[left];
+        ordered[left] = ordered[right];
+        ordered[right] = swap;
+    }
+    free(matches);
+    free(costs);
+    free(choices);
+
+    BitWriter writer = {0};
+    write_bits(&writer, 3, 8);
+    for (unsigned index = 0; index < 3; index++)
+        write_bits(&writer, ladder[index].width - 1, 4);
+    size_t position = 0;
+    for (size_t operation = 0; operation < operation_count; operation++) {
+        Lz3Operation const *choice = &ordered[operation];
+        if (choice->kind == 0) {
+            write_bits(&writer, 0, 1);
+            write_bits(&writer, source[position] << 8 | source[position + 1], 16);
+        } else if (choice->kind == 2) {
+            write_bits(&writer, 1, 1);
+            write_bits(&writer, 3, 2);
+            write_vli(&writer, choice->pairs - 1);
+            write_bits(&writer, 0, 1);
+            for (unsigned pair = 0; pair < choice->pairs; pair++) {
+                size_t at = position + (size_t)pair * 2;
+                write_bits(&writer, source[at] << 8 | source[at + 1], 16);
+            }
+        } else {
+            write_bits(&writer, 1, 1);
+            if (choice->pairs <= 9) {
+                write_bits(&writer, choice->index, 2);
+            } else {
+                write_bits(&writer, 3, 2);
+                write_vli(&writer, (choice->pairs - 2) >> 3);
+                write_bits(&writer, 1, 1);
+                write_bits(&writer, choice->index, 2);
+            }
+            write_bits(&writer, choice->distance - ladder[choice->index].start,
+                       ladder[choice->index].width);
+            write_bits(&writer, (choice->pairs - 2) & 7, 3);
+        }
+        position += (size_t)choice->pairs * 2;
+    }
+    free(ordered);
+    finish_bits(&writer);
+    *packed_size = writer.size + 4;
+    unsigned char *packed = malloc(*packed_size);
+    if (!packed)
+        fail("out of memory");
+    uint32_t header = ((uint32_t)size << 8) | 0x70;
+    for (unsigned index = 0; index < 4; index++)
+        packed[index] = (unsigned char)(header >> (index * 8));
+    memcpy(packed + 4, writer.data, writer.size);
+    free(writer.data);
+    return packed;
+}
+
 static void write_huff_byte(BitWriter *writer, HuffModel const *model,
                             unsigned symbol)
 {
@@ -1264,6 +1430,59 @@ static unsigned char *encode_huff8_lz3(unsigned char const *source, size_t size,
                                         LadderEntry const ladder[3], size_t *packed_size)
 {
     return encode_huff_lz3(source, size, ladder, packed_size, 8);
+}
+
+static unsigned char *decode_lz1(unsigned char const *packed, size_t packed_size,
+                                 LadderEntry ladder[4], size_t *decoded_size)
+{
+    if (packed_size < 8 || packed[0] != 0x70)
+        fail("not a FoMT native 0x70 stream");
+    *decoded_size = (size_t)packed[1] | ((size_t)packed[2] << 8)
+                  | ((size_t)packed[3] << 16);
+    if (!*decoded_size || *decoded_size > 0x40000)
+        fail("invalid Raw-LZ1 decoded size");
+    BitReader reader = {packed, packed_size, 4, 0, 0};
+    uint32_t value;
+    if (!read_bits(&reader, 8, &value) || value != 1)
+        fail("this codec requires raw atoms, LZ mode 1 and no filter");
+    unsigned start = 1;
+    for (unsigned index = 0; index < 4; index++) {
+        if (!read_bits(&reader, 4, &value))
+            fail("truncated LZ1 ladder");
+        ladder[index].start = start;
+        ladder[index].width = value + 1;
+        start += 1u << ladder[index].width;
+    }
+    unsigned char *output = malloc(*decoded_size);
+    if (!output)
+        fail("out of memory");
+    size_t written = 0;
+    while (written < *decoded_size) {
+        if (!read_bits(&reader, 1, &value))
+            fail("truncated LZ1 command");
+        if (!value) {
+            if (!read_bits(&reader, 8, &value))
+                fail("truncated LZ1 literal");
+            output[written++] = (unsigned char)value;
+            continue;
+        }
+        if (!read_bits(&reader, 2, &value))
+            fail("truncated LZ1 ladder index");
+        unsigned index = value;
+        if (!read_bits(&reader, ladder[index].width, &value))
+            fail("truncated LZ1 distance");
+        unsigned distance = ladder[index].start + value;
+        if (!read_bits(&reader, 4, &value))
+            fail("truncated LZ1 length");
+        unsigned length = value + 3;
+        if (distance > written || length > *decoded_size - written)
+            fail("invalid LZ1 lookup");
+        for (unsigned byte = 0; byte < length; byte++) {
+            output[written] = output[written - distance];
+            written++;
+        }
+    }
+    return output;
 }
 
 static unsigned char *decode_lz2(unsigned char const *packed, size_t packed_size,
@@ -1846,34 +2065,67 @@ int main(int argc, char **argv)
         if (!read_bits(&reader, 8, &format))
             fail("truncated native stream format");
         unsigned symbol_bits = (format & 31u) == 0x0Au || format == 0x0Bu ? 4 : 8;
+        int raw = format >= 1 && format <= 3;
         int lz2 = (format & 31u) == 0x0Au || (format & 31u) == 0x12u;
-        if (!lz2 && format != 0x0B && format != 0x13)
-            fail("rebuild-native only supports Huffman-4/8 LZ2/LZ3 streams");
+        if (!raw && !lz2 && format != 0x0B && format != 0x13)
+            fail("rebuild-native does not support this FoMT stream format");
         LadderEntry ladder[7], check_ladder[7];
-        unsigned char *decoded = lz2
-            ? decode_huff_lz2(original, original_size, ladder, &decoded_size,
-                              symbol_bits)
-            : decode_huff_lz3(original, original_size, ladder, &decoded_size,
-                              symbol_bits);
+        unsigned char *decoded;
+        if (format == 1)
+            decoded = decode_lz1(original, original_size, ladder, &decoded_size);
+        else if (format == 2)
+            decoded = decode_lz2(original, original_size, ladder, &decoded_size);
+        else if (format == 3)
+            decoded = decode_lz3(original, original_size, ladder, &decoded_size);
+        else if (lz2)
+            decoded = decode_huff_lz2(original, original_size, ladder,
+                                      &decoded_size, symbol_bits);
+        else
+            decoded = decode_huff_lz3(original, original_size, ladder,
+                                      &decoded_size, symbol_bits);
         if (source_size != decoded_size)
             fail("edited source changed the original decoded size");
         if (memcmp(source, decoded, source_size) == 0) {
             write_file(argv[4], original, original_size);
         } else {
             size_t packed_size;
-            unsigned char *packed = lz2
-                ? encode_huff_lz2(source, source_size, ladder, symbol_bits,
-                                  format >> 5, &packed_size)
-                : encode_huff_lz3(source, source_size, ladder, &packed_size,
-                                  symbol_bits);
+            unsigned char *packed;
+            if (format == 1)
+                packed = encode_lz1(source, source_size, ladder, &packed_size);
+            else if (format == 2)
+                packed = encode_lz2(source, source_size, ladder, 0, 9,
+                                    &packed_size);
+            else if (format == 3)
+                packed = encode_lz3_optimal(source, source_size, ladder, &packed_size);
+            else if (lz2)
+                packed = encode_huff_lz2(source, source_size, ladder, symbol_bits,
+                                        format >> 5, &packed_size);
+            else
+                packed = encode_huff_lz3(source, source_size, ladder, &packed_size,
+                                         symbol_bits);
+            if (format == 2 && packed_size > original_size) {
+                // A different literal packing can fit a tight native slot.
+                // Keep the established encoder when it already fits.
+                free(packed);
+                packed = encode_lz2(source, source_size, ladder, 0, 10,
+                                    &packed_size);
+            }
             if (packed_size > original_size)
                 fail("edited native stream exceeds its reference slot");
             size_t check_size;
-            unsigned char *check = lz2
-                ? decode_huff_lz2(packed, packed_size, check_ladder,
-                                  &check_size, symbol_bits)
-                : decode_huff_lz3(packed, packed_size, check_ladder, &check_size,
-                                  symbol_bits);
+            unsigned char *check;
+            if (format == 1)
+                check = decode_lz1(packed, packed_size, check_ladder, &check_size);
+            else if (format == 2)
+                check = decode_lz2(packed, packed_size, check_ladder, &check_size);
+            else if (format == 3)
+                check = decode_lz3(packed, packed_size, check_ladder, &check_size);
+            else if (lz2)
+                check = decode_huff_lz2(packed, packed_size, check_ladder,
+                                        &check_size, symbol_bits);
+            else
+                check = decode_huff_lz3(packed, packed_size, check_ladder,
+                                        &check_size, symbol_bits);
             if (check_size != source_size || memcmp(check, source, source_size) != 0)
                 fail("edited native stream does not reproduce its source");
             free(check);
@@ -2005,7 +2257,8 @@ int main(int argc, char **argv)
         size_t source_size, packed_size;
         unsigned char *source = read_file(argv[2], &source_size);
         unsigned char *packed = lz2
-            ? encode_lz2(source, source_size, ladder, literal_tail, &packed_size)
+            ? encode_lz2(source, source_size, ladder, literal_tail, 9,
+                         &packed_size)
             : huff8 ? encode_huff8_lz3(source, source_size, ladder, &packed_size)
                     : encode_lz3(source, source_size, ladder, &packed_size);
         if (huff8) {
@@ -2072,7 +2325,13 @@ int main(int argc, char **argv)
             fail("truncated native stream format");
         LadderEntry ladder[7];
         unsigned char *decoded;
-        if ((format & 31u) == 0x0Au || (format & 31u) == 0x12u)
+        if (format == 1)
+            decoded = decode_lz1(packed, packed_size, ladder, &decoded_size);
+        else if (format == 2)
+            decoded = decode_lz2(packed, packed_size, ladder, &decoded_size);
+        else if (format == 3)
+            decoded = decode_lz3(packed, packed_size, ladder, &decoded_size);
+        else if ((format & 31u) == 0x0Au || (format & 31u) == 0x12u)
             decoded = decode_huff_lz2(packed, packed_size, ladder,
                                       &decoded_size, (format & 31u) == 0x0Au ? 4 : 8);
         else if (format == 0x0B || format == 0x13)

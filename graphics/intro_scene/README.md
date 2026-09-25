@@ -34,6 +34,9 @@ make gfx-intro-objects-all
 Unchanged sources retain their exact retail packed bytes. An edit is re-encoded
 with the stream's original Raw-LZ mode and distance ladder, strictly decoded,
 and rejected if it exceeds that object's original packed allocation.
+The source-adjacent `.original.lz` files retain the native header, ladder and
+fixed-slot reference. The C compressor writes `.4bpp.lz` beside each tile source;
+the assembly includes those generated files directly.
 
 ## Regional indexed OAM archive
 

@@ -151197,64 +151197,64 @@ gUnk_087409E4:
 	@ instead of assigning US-stream aliases to the regional data.
 	.global gUnk_IntroSceneUnpackSource_000
 gUnk_IntroSceneUnpackSource_000:
-	.incbin "build/de/graphics/intro_scene/objects/object_00.0x70"
+	.incbin "graphics/intro_scene/shared/object_tiles/object_00.4bpp.lz"
 	.global gUnk_IntroSceneUnpackSource_001
 gUnk_IntroSceneUnpackSource_001:
-	.incbin "build/de/graphics/intro_scene/objects/object_01.0x70"
+	.incbin "graphics/intro_scene/shared/object_tiles/object_01.4bpp.lz"
 	.global gUnk_IntroSceneUnpackSource_002
 gUnk_IntroSceneUnpackSource_002:
-	.incbin "build/de/graphics/intro_scene/objects/object_02.0x70"
+	.incbin "graphics/intro_scene/shared/object_tiles/object_02.4bpp.lz"
 	.global gUnk_IntroSceneUnpackSource_003
 gUnk_IntroSceneUnpackSource_003:
-	.incbin "build/de/graphics/intro_scene/objects/object_03.0x70"
+	.incbin "graphics/intro_scene/shared/object_tiles/object_03.4bpp.lz"
 	.global gUnk_IntroSceneUnpackSource_004
 gUnk_IntroSceneUnpackSource_004:
-	.incbin "build/de/graphics/intro_scene/objects/object_04.0x70"
+	.incbin "graphics/intro_scene/shared/object_tiles/object_04.4bpp.lz"
 	.global gUnk_IntroSceneUnpackSource_005
 gUnk_IntroSceneUnpackSource_005:
-	.incbin "build/de/graphics/intro_scene/objects/object_05.0x70"
+	.incbin "graphics/intro_scene/shared/object_tiles/object_05.4bpp.lz"
 	.global gUnk_IntroSceneUnpackSource_006
 gUnk_IntroSceneUnpackSource_006:
-	.incbin "build/de/graphics/intro_scene/objects/object_06.0x70"
+	.incbin "graphics/intro_scene/shared/object_tiles/object_06.4bpp.lz"
 	.global gUnk_IntroSceneUnpackSource_007
 gUnk_IntroSceneUnpackSource_007:
-	.incbin "build/de/graphics/intro_scene/objects/object_07.0x70"
+	.incbin "graphics/intro_scene/shared/object_tiles/object_07.4bpp.lz"
 	.global gUnk_IntroSceneUnpackSource_008
 gUnk_IntroSceneUnpackSource_008:
-	.incbin "build/de/graphics/intro_scene/objects/object_08.0x70"
+	.incbin "graphics/intro_scene/shared/object_tiles/object_08.4bpp.lz"
 	.global gUnk_IntroSceneUnpackSource_009
 gUnk_IntroSceneUnpackSource_009:
-	.incbin "build/de/graphics/intro_scene/objects/object_09.0x70"
+	.incbin "graphics/intro_scene/shared/object_tiles/object_09.4bpp.lz"
 	.global gUnk_IntroSceneUnpackSource_010
 gUnk_IntroSceneUnpackSource_010:
-	.incbin "build/de/graphics/intro_scene/objects/object_10.0x70"
+	.incbin "graphics/intro_scene/shared/object_tiles/object_10.4bpp.lz"
 	.global gUnk_IntroSceneUnpackSource_011
 gUnk_IntroSceneUnpackSource_011:
-	.incbin "build/de/graphics/intro_scene/objects/object_11.0x70"
+	.incbin "graphics/intro_scene/shared/object_tiles/object_11.4bpp.lz"
 	.global gUnk_IntroSceneUnpackSource_012
 gUnk_IntroSceneUnpackSource_012:
-	.incbin "build/de/graphics/intro_scene/objects/object_12.0x70"
+	.incbin "graphics/intro_scene/shared/object_tiles/object_12.4bpp.lz"
 	.global gUnk_IntroSceneUnpackSource_013
 gUnk_IntroSceneUnpackSource_013:
-	.incbin "build/de/graphics/intro_scene/objects/object_13.0x70"
+	.incbin "graphics/intro_scene/shared/object_tiles/object_13.4bpp.lz"
 	.global gUnk_IntroSceneUnpackSource_014
 gUnk_IntroSceneUnpackSource_014:
-	.incbin "build/de/graphics/intro_scene/objects/object_14.0x70"
+	.incbin "graphics/intro_scene/shared/object_tiles/object_14.4bpp.lz"
 	.global gUnk_IntroSceneUnpackSource_015
 gUnk_IntroSceneUnpackSource_015:
-	.incbin "build/de/graphics/intro_scene/objects/object_15.0x70"
+	.incbin "graphics/intro_scene/shared/object_tiles/object_15.4bpp.lz"
 	.global gUnk_IntroSceneUnpackSource_016
 gUnk_IntroSceneUnpackSource_016:
-	.incbin "build/de/graphics/intro_scene/objects/object_16.0x70"
+	.incbin "graphics/intro_scene/shared/object_tiles/object_16.4bpp.lz"
 	.global gUnk_IntroSceneUnpackSource_017
 gUnk_IntroSceneUnpackSource_017:
-	.incbin "build/de/graphics/intro_scene/objects/object_17.0x70"
+	.incbin "graphics/intro_scene/shared/object_tiles/object_17.4bpp.lz"
 	.global gUnk_IntroSceneUnpackSource_018
 gUnk_IntroSceneUnpackSource_018:
-	.incbin "build/de/graphics/intro_scene/objects/object_18.0x70"
+	.incbin "graphics/intro_scene/shared/object_tiles/object_18.4bpp.lz"
 	.global gUnk_IntroSceneUnpackSource_019
 gUnk_IntroSceneUnpackSource_019:
-	.incbin "build/de/graphics/intro_scene/objects/object_19.0x70"
+	.incbin "graphics/intro_scene/shared/object_tiles/object_19.4bpp.lz"
 	.global gUnk_08743058
 gUnk_08743058:
 	.incbin "build/de/graphics/intro_scene/background_tiles.0x70"

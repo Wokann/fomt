@@ -10,6 +10,7 @@
 *.lz
 !graphics/farm_house_visual/shared/*.original.lz
 !graphics/intro_scene/shared/startup_tilemaps/*.original.lz
+!graphics/intro_scene/shared/object_tiles/*.original.lz
 !graphics/intro_scene/shared/startup_visual/*.original.lz
 !graphics/ui/seasonal_background/shared/*.original.lz
 !graphics/ui/seasonal_background/winter/*.original.lz
