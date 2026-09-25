@@ -46,9 +46,9 @@ original table label, preserving the C++ pointer table without relocation.
 tilemaps selected by `func_0806EC94`: two layouts, each containing three
 screen-block layers. They are source-order arrays of 16-bit BG entries, not
 rendered artwork or a sidecar layout description. The stream headers and the
-EU-only eight-byte labels remain in the assembly source; the actual compressed
-payload is rebuilt from the selected region's `.tilemap` source and is included
-at its original runtime label.
+EU-only eight-byte labels remain in the assembly source. Each shared
+`.tilemap` is packed by the C codec using its source-adjacent `.original.lz`
+header and distance ladder, then included at its original runtime label.
 
 Rebuild and compare these six streams across all four ROMs with:
 
@@ -58,8 +58,7 @@ make gfx-farm-status-secondary-tilemaps-all
 
 Their native packed slots are deliberately fixed. A source edit that expands
 past its original compressed slot is rejected rather than overwriting the next
-resource; `make gfx-farm-status-secondary-tilemaps-edit-test` exercises that
-capacity guard.
+resource.
 
 `shared/exterior_styles/` contains the three raw style groups selected by
 `func_0806EC94`: `doghouse/`, `mailbox/`, and `window/`.  Each contains three

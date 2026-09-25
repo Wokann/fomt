@@ -106,12 +106,9 @@ FARM_STATUS_PREVIEW_TOOL := tools/farm_status_previews.py
 FARM_STATUS_REFERENCE_DIR := graphics/ui/farm_status/reference
 FARM_STATUS_TILEMAP_SOURCE_DIR := graphics/ui/farm_status/shared/tilemaps
 FARM_STATUS_TILEMAP_SOURCES := $(wildcard $(FARM_STATUS_TILEMAP_SOURCE_DIR)/*.tilemap)
-FARM_STATUS_SECONDARY_TILEMAP_TOOL := tools/farm_status_secondary_tilemaps.py
 FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR := graphics/ui/farm_status/shared/secondary_tilemaps
 FARM_STATUS_SECONDARY_TILEMAP_SOURCES := $(wildcard $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/*.tilemap)
-FARM_STATUS_SECONDARY_TILEMAP_OUTPUT_DIR := $(BUILD_DIR)/graphics/ui/farm_status/secondary_tilemaps
-FARM_STATUS_SECONDARY_TILEMAP_STAMP := $(FARM_STATUS_SECONDARY_TILEMAP_OUTPUT_DIR)/.secondary-tilemaps.stamp
-FARM_STATUS_SECONDARY_TILEMAP_REGION := $(shell echo "$(GAME_REGION)" | tr '[:upper:]' '[:lower:]')
+FARM_STATUS_SECONDARY_TILEMAP_OUTPUTS := $(FARM_STATUS_SECONDARY_TILEMAP_SOURCES:%=%.lz)
 FARM_STATUS_EXTERIOR_STYLE_TOOL := tools/farm_status_exterior_styles.py
 FARM_STATUS_EXTERIOR_STYLE_SOURCE_DIR := graphics/ui/farm_status/shared/exterior_styles
 FARM_STATUS_EXTERIOR_STYLE_SOURCES := $(wildcard $(FARM_STATUS_EXTERIOR_STYLE_SOURCE_DIR)/*/*.png)
@@ -1287,7 +1284,7 @@ GRAPHICS_ASSETS = \
 	$(SHARED_RESOURCE_08740908_ASSETS) $(SHARED_RESOURCE_0874EE38_ASSETS) \
 	$(SHARED_RESOURCE_0875352C_ASSETS) $(SHARED_RESOURCE_08753608_ASSETS) $(SHARED_RESOURCE_08755154_ASSETS) \
 	$(FARM_STATUS_WINTER_OUTPUTS) $(FARM_STATUS_PALETTE_BIN) \
-	$(FARM_STATUS_SECONDARY_TILEMAP_STAMP) \
+	$(FARM_STATUS_SECONDARY_TILEMAP_OUTPUTS) \
 	$(FARM_STATUS_EXTERIOR_STYLE_STAMP) $(FARM_STATUS_SELECTOR_ICON_OUTPUTS) \
 	$(CLOCK_FONT_OUTPUTS) $(FARM_STATUS_CREATURE_ICON_OUTPUTS) \
 	$(FARM_STATUS_TASK_UI_TILE_OUTPUTS) \
@@ -1551,10 +1548,8 @@ $(SEASONAL_NONWINTER_PACKED_BIN): $(SEASONAL_NONWINTER_TILES_BIN) $(SEASONAL_NON
 $(SEASONAL_WINTER_PACKED_BIN): $(SEASONAL_WINTER_TILES_BIN) $(SEASONAL_WINTER_ORIGINAL) $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) rebuild-native $< $(SEASONAL_WINTER_ORIGINAL) $@
 
-$(FARM_STATUS_SECONDARY_TILEMAP_STAMP): $(FARM_STATUS_SECONDARY_TILEMAP_SOURCES) $(FARM_STATUS_SECONDARY_TILEMAP_TOOL) $(FARM_STATUS_CODEC) $(BASE_ROM)
-	@$(PYTHON) $(FARM_STATUS_SECONDARY_TILEMAP_TOOL) build --region $(FARM_STATUS_SECONDARY_TILEMAP_REGION) --rom $(BASE_ROM) \
-	  --source-dir $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR) --output-dir $(FARM_STATUS_SECONDARY_TILEMAP_OUTPUT_DIR)
-	@touch $@
+$(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/%.tilemap.lz: $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/%.tilemap $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/%.original.lz $(FOMT_LZ_TOOL)
+	@$(FOMT_LZ_TOOL) rebuild-native $< $(word 2,$^) $@
 
 $(FARM_STATUS_EXTERIOR_STYLE_STAMP): $(FARM_STATUS_EXTERIOR_STYLE_SOURCES) $(FARM_STATUS_EXTERIOR_STYLE_TOOL)
 	@$(PYTHON) $(FARM_STATUS_EXTERIOR_STYLE_TOOL) build --source-dir $(FARM_STATUS_EXTERIOR_STYLE_SOURCE_DIR) --output-dir $(FARM_STATUS_EXTERIOR_STYLE_OUTPUT_DIR)
@@ -1676,7 +1671,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-resource-archive gfx-farm-status-resource-archive-test gfx-farm-status-resource-archive-all gfx-farm-status-resource-archive-patch-test gfx-farm-status-resource-archive-edit-test gfx-farm-status-winter gfx-farm-status-winter-test gfx-farm-status-winter-all gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-secondary-tilemaps-edit-test gfx-farm-status-exterior-styles gfx-farm-status-exterior-styles-test gfx-farm-status-selector-icon gfx-farm-status-selector-icon-test gfx-farm-status-selector-icon-all gfx-clock-font gfx-clock-font-test gfx-clock-font-all gfx-farm-status-creature-icons gfx-farm-status-creature-icons-test gfx-farm-status-creature-icons-all gfx-farm-status-task-marker gfx-farm-status-task-marker-test gfx-farm-status-task-marker-all gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal-nonwinter-all gfx-seasonal-winter gfx-seasonal-winter-test gfx-seasonal-winter-all gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-visual gfx-intro-startup-visual-test gfx-intro-startup-visual-all gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-animal-festival-icons gfx-animal-festival-icons-test gfx-animal-festival-icons-all resource-archive-audit unpack-vram-inventory dma-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
+.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-resource-archive gfx-farm-status-resource-archive-test gfx-farm-status-resource-archive-all gfx-farm-status-resource-archive-patch-test gfx-farm-status-resource-archive-edit-test gfx-farm-status-winter gfx-farm-status-winter-test gfx-farm-status-winter-all gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-exterior-styles gfx-farm-status-exterior-styles-test gfx-farm-status-selector-icon gfx-farm-status-selector-icon-test gfx-farm-status-selector-icon-all gfx-clock-font gfx-clock-font-test gfx-clock-font-all gfx-farm-status-creature-icons gfx-farm-status-creature-icons-test gfx-farm-status-creature-icons-all gfx-farm-status-task-marker gfx-farm-status-task-marker-test gfx-farm-status-task-marker-all gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal-nonwinter-all gfx-seasonal-winter gfx-seasonal-winter-test gfx-seasonal-winter-all gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-visual gfx-intro-startup-visual-test gfx-intro-startup-visual-all gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-animal-festival-icons gfx-animal-festival-icons-test gfx-animal-festival-icons-all resource-archive-audit unpack-vram-inventory dma-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
 .PHONY: gfx-map-resources-reference gfx-map-resources-edit-test gfx-map-state-palettes gfx-map-state-palettes-test gfx-map-state-templates gfx-map-state-templates-test gfx-map-state-templates-all unpack-inventory unpack-coverage-inventory copy-ram-inventory
 .PHONY: indexed-resource-archive-inventory
 .PHONY: gfx-farm-status-task-ui-tile gfx-farm-status-task-ui-tile-test gfx-farm-status-task-ui-tile-all
@@ -2924,17 +2919,16 @@ gfx-farm-status-tilemaps-test: gfx-farm-status-tilemaps $(FARM_STATUS_PREVIEW_TO
 	  --verify-jp baserom_jp.gba --verify-us baserom_us.gba \
 	  --verify-eu baserom_eu.gba --verify-de baserom_de.gba
 gfx-farm-status-tilemaps-all: gfx-farm-status-tilemaps-test
-gfx-farm-status-secondary-tilemaps: $(FARM_STATUS_SECONDARY_TILEMAP_STAMP)
-gfx-farm-status-secondary-tilemaps-test: gfx-farm-status-secondary-tilemaps $(BASE_ROM) $(FARM_STATUS_SECONDARY_TILEMAP_TOOL)
-	@$(PYTHON) $(FARM_STATUS_SECONDARY_TILEMAP_TOOL) verify --region $(FARM_STATUS_SECONDARY_TILEMAP_REGION) --rom $(BASE_ROM) \
-	  --source-dir $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR) --output-dir $(FARM_STATUS_SECONDARY_TILEMAP_OUTPUT_DIR)
+gfx-farm-status-secondary-tilemaps: $(FARM_STATUS_SECONDARY_TILEMAP_OUTPUTS)
+gfx-farm-status-secondary-tilemaps-test: gfx-farm-status-secondary-tilemaps $(FOMT_LZ_TOOL)
+	@set -e; for source in $(FARM_STATUS_SECONDARY_TILEMAP_SOURCES); do \
+	  $(FOMT_LZ_TOOL) verify-native "$$source" "$$source.lz"; \
+	done
 gfx-farm-status-secondary-tilemaps-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-farm-status-secondary-tilemaps-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-farm-status-secondary-tilemaps-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-farm-status-secondary-tilemaps-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-farm-status-secondary-tilemaps-test
-gfx-farm-status-secondary-tilemaps-edit-test: $(FARM_STATUS_SECONDARY_TILEMAP_TOOL) baserom_jp.gba
-	@$(PYTHON) $(FARM_STATUS_SECONDARY_TILEMAP_TOOL) edit-test --region jp --rom baserom_jp.gba
 gfx-farm-status-exterior-styles: $(FARM_STATUS_EXTERIOR_STYLE_OUTPUTS)
 gfx-farm-status-exterior-styles-test: gfx-farm-status-exterior-styles $(FARM_STATUS_EXTERIOR_STYLE_TOOL) $(BASE_ROM)
 	@$(PYTHON) $(FARM_STATUS_EXTERIOR_STYLE_TOOL) verify --region $(FARM_STATUS_EXTERIOR_STYLE_REGION) --rom $(BASE_ROM) --source-dir $(FARM_STATUS_EXTERIOR_STYLE_SOURCE_DIR) --output-dir $(FARM_STATUS_EXTERIOR_STYLE_OUTPUT_DIR)
@@ -3412,7 +3406,6 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-seasonal-winter-all
 	@$(MAKE) --no-print-directory gfx-farm-status-tilemaps-all
 	@$(MAKE) --no-print-directory gfx-farm-status-secondary-tilemaps-all
-	@$(MAKE) --no-print-directory gfx-farm-status-secondary-tilemaps-edit-test
 	@$(MAKE) --no-print-directory gfx-farm-status-exterior-styles-all
 	@$(MAKE) --no-print-directory gfx-farm-status-exterior-styles-edit-test
 	@$(MAKE) --no-print-directory gfx-farm-status-selector-icon-all

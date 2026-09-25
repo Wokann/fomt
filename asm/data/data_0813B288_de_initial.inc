@@ -94468,13 +94468,13 @@ gUnk_08527094:
 	.byte 0x07, 0x00, 0x0C, 0x00
 	.global gUnk_08527238
 gUnk_08527238:
-	FOMT_FARM_STATUS_SECONDARY_TILEMAP 00, 0, 0x110
+	.incbin "graphics/ui/farm_status/shared/secondary_tilemaps/secondary_00.tilemap.lz"
 	.global gUnk_08527348
 gUnk_08527348:
-	FOMT_FARM_STATUS_SECONDARY_TILEMAP 01, 0, 0x1D8
+	.incbin "graphics/ui/farm_status/shared/secondary_tilemaps/secondary_01.tilemap.lz"
 	.global gUnk_08527520
 gUnk_08527520:
-	FOMT_FARM_STATUS_SECONDARY_TILEMAP 02, 0, 0xB0
+	.incbin "graphics/ui/farm_status/shared/secondary_tilemaps/secondary_02.tilemap.lz"
 	.global gUnk_085275D0
 gUnk_085275D0:
 	.incbin "graphics/ui/farm_status/shared/base_tiles.0x70"
@@ -94514,13 +94514,13 @@ gUnk_082B1720:
 	.incbin "graphics/ui/farm_status/shared/tilemaps/barn_level_0_primary.tilemap"
 	.global gUnk_0852A6D8
 gUnk_0852A6D8:
-	FOMT_FARM_STATUS_SECONDARY_TILEMAP 03, 0, 0x114
+	.incbin "graphics/ui/farm_status/shared/secondary_tilemaps/secondary_03.tilemap.lz"
 	.global gUnk_0852A7EC
 gUnk_0852A7EC:
-	FOMT_FARM_STATUS_SECONDARY_TILEMAP 04, 0, 0x1D0
+	.incbin "graphics/ui/farm_status/shared/secondary_tilemaps/secondary_04.tilemap.lz"
 	.global gUnk_0852A9BC
 gUnk_0852A9BC:
-	FOMT_FARM_STATUS_SECONDARY_TILEMAP 05, 0, 0xB0
+	.incbin "graphics/ui/farm_status/shared/secondary_tilemaps/secondary_05.tilemap.lz"
 	.global gUnk_0852AA6C
 gUnk_0852AA6C:
 	.incbin "graphics/ui/farm_status/winter/shared/winter_tiles.0x70", 0, 0x1FD4
