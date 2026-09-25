@@ -32,6 +32,8 @@ graphics/ui/farm_status/shared/exterior_styles/*/style_*.4bpp
 tools/fomt-lz
 tools/fomt-indexed-archive
 tools/fomt-indexed-archive.exe
+tools/farm-house-lookup-audit
+tools/farm-house-lookup-audit.exe
 graphics/shared_resource_0871ecac/archive.bin
 graphics/shared_resource_0871ecac/full/*.4bpp
 graphics/shared_resource_0871ecac/full/*.gbapal

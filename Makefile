@@ -222,6 +222,9 @@ $(FOMT_LZ_TOOL): tools/fomt_lz.c
 $(FOMT_INDEXED_ARCHIVE_TOOL): tools/fomt_indexed_archive.c
 	@$(HOSTCC) -std=c11 -Wall -Wextra -Werror -O2 $< -o $@
 
+tools/farm-house-lookup-audit$(EXE): tools/farm_house_lookup_audit.c
+	@$(HOSTCC) -std=c11 -Wall -Wextra -Werror -O2 $< -o $@
+
 $(GFX_RANGE_VERIFY): tools/verify_gfx_range.c
 	@$(HOSTCC) -std=c11 -Wall -Wextra -Werror -O2 $< -o $@
 

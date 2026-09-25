@@ -1192,7 +1192,7 @@ UNPACK_INVENTORY_TOOL := tools/unpack_inventory.py
 COPY_RAM_INVENTORY_TOOL := tools/copy_ram_inventory.py
 DMA_VRAM_INVENTORY_TOOL := tools/dma_vram_inventory.py
 MAP_TERRAIN_AUDIT_TOOL := tools/map_terrain_audit.py
-FARM_HOUSE_LOOKUP_AUDIT_TOOL := tools/farm_house_lookup_audit.py
+FARM_HOUSE_LOOKUP_AUDIT_TOOL := tools/farm-house-lookup-audit$(EXE)
 
 # The Records Screen uses seven independently selected, raw 16x16 4bpp task
 # icons.  Each source PNG retains the physical icon's own 16-colour BGR555
@@ -3077,7 +3077,7 @@ indexed-resource-archive-inventory: $(INDEXED_RESOURCE_ARCHIVE_INVENTORY_TOOL) $
 map-terrain-audit: $(MAP_TERRAIN_AUDIT_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(MAP_TERRAIN_AUDIT_TOOL) $(MAP_RESOURCES_ROM_ARGS) --csv $(BUILD_DIR)/map_terrain_audit.csv
 farm-house-lookup-audit: $(FARM_HOUSE_LOOKUP_AUDIT_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(FARM_HOUSE_LOOKUP_AUDIT_TOOL) $(MAP_RESOURCES_ROM_ARGS) --csv $(BUILD_DIR)/farm_house_lookup_audit.csv
+	@$(FARM_HOUSE_LOOKUP_AUDIT_TOOL) $(MAP_RESOURCES_ROM_ARGS) --csv $(BUILD_DIR)/farm_house_lookup_audit.csv
 unpack-inventory: $(UNPACK_INVENTORY_TOOL)
 	@$(PYTHON) $(UNPACK_INVENTORY_TOOL) . --csv $(BUILD_DIR)/unpack_inventory.csv
 unpack-coverage-inventory: $(UNPACK_INVENTORY_TOOL)
