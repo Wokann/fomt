@@ -9,6 +9,7 @@
 *.sav
 *.lz
 !graphics/farm_house_visual/shared/*.original.lz
+!graphics/intro_scene/shared/startup_tilemaps/*.original.lz
 
 build/
 graphics/map_state_palettes/shared/*.0x70

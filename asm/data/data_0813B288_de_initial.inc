@@ -151266,16 +151266,16 @@ gUnk_08747A74:
 	.incbin "build/de/graphics/intro_scene/indexed_archive/archive.0x70"
 	.global gUnk_IntroSceneStartupUnpackSource_000
 gUnk_IntroSceneStartupUnpackSource_000:
-	.incbin "build/de/graphics/intro_scene/startup_tilemaps/startup_00.0x70"
+	.incbin "graphics/intro_scene/shared/startup_tilemaps/startup_00.tilemap.lz"
 	.global gUnk_IntroSceneStartupUnpackSource_001
 gUnk_IntroSceneStartupUnpackSource_001:
-	.incbin "build/de/graphics/intro_scene/startup_tilemaps/startup_01.0x70"
+	.incbin "graphics/intro_scene/shared/startup_tilemaps/startup_01.tilemap.lz"
 	.global gUnk_IntroSceneStartupUnpackSource_002
 gUnk_IntroSceneStartupUnpackSource_002:
-	.incbin "build/de/graphics/intro_scene/startup_tilemaps/startup_02.0x70"
+	.incbin "graphics/intro_scene/shared/startup_tilemaps/startup_02.tilemap.lz"
 	.global gUnk_IntroSceneStartupUnpackSource_003
 gUnk_IntroSceneStartupUnpackSource_003:
-	.incbin "build/de/graphics/intro_scene/startup_tilemaps/startup_03.0x70"
+	.incbin "graphics/intro_scene/shared/startup_tilemaps/startup_03.tilemap.lz"
 	.global gUnk_0874A9C0
 gUnk_0874A9C0:
 	.incbin "build/de/graphics/intro_scene/startup_visual/startup_tiles.0x70"

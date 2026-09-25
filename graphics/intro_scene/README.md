@@ -90,6 +90,12 @@ under `reference/startup/` are generated from that proven row split, tile IDs,
 flip bits and palette-bank fields; they are visual references only, because a
 flat PNG cannot preserve those native map fields.
 
+The four `startup_NN.original.lz` files retain the byte-identical publisher
+streams for an unchanged source. The C `fomt-lz` tool builds each
+`startup_NN.tilemap.lz` beside its editable `.tilemap`; assembly includes that
+generated stream directly. Neither the resource build nor the link reads a
+retail ROM or patches the finished image.
+
 `func_080019D8` writes the two maps from each source to fixed VRAM screen
 blocks. This is a proven storage relationship, not an assertion about which
 map is visible at a particular point in the scene:
