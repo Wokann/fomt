@@ -1033,11 +1033,9 @@ INTRO_SMALL_ARCHIVE_REGION := $(INTRO_OBJECTS_REGION)
 # character stream into fixed VRAM locations. Its adjacent palette bytes are
 # also part of an indexed archive, so native tile/tilemap sources are kept
 # without inventing an unproven coloured composite.
-UI_SCENE_080A2BA4_TOOL := tools/ui_scene_080a2ba4.py
 UI_SCENE_080A2BA4_SOURCE_DIR := graphics/ui/scene_080a2ba4/shared
 UI_SCENE_080A2BA4_SOURCES := $(addprefix $(UI_SCENE_080A2BA4_SOURCE_DIR)/,layer_0.tilemap layer_1.tilemap layer_2.tilemap tiles.4bpp)
 UI_SCENE_080A2BA4_OUTPUTS := $(addsuffix .lz,$(UI_SCENE_080A2BA4_SOURCES))
-UI_SCENE_080A2BA4_REGION := $(INTRO_OBJECTS_REGION)
 
 # func_08077810 is an overseas-only consumer. Its one 32-by-32 tilemap is
 # byte-identical in US/EU/DE; JP uses a different code/data layout.
@@ -1069,11 +1067,9 @@ endif
 # func_080AE7D0 has two 32-by-32 BG tilemaps, a 928-tile 4bpp character
 # stream and an independently bounded 16-bank palette.  Native sources avoid
 # assigning a visual compositor before the screen's layer logic is proven.
-UI_SCENE_080AE7D0_TOOL := tools/ui_scene_080ae7d0.py
 UI_SCENE_080AE7D0_VISUAL_TOOL := tools/ui_scene_080b7164_visual.py
 UI_SCENE_080AE7D0_SOURCE_DIR := graphics/ui/scene_080ae7d0/shared
 UI_SCENE_080AE7D0_SOURCES := $(wildcard $(UI_SCENE_080AE7D0_SOURCE_DIR)/*)
-UI_SCENE_080AE7D0_OUTPUT_DIR := $(BUILD_DIR)/graphics/ui/scene_080ae7d0
 UI_SCENE_080AE7D0_MAP0_SOURCE := $(UI_SCENE_080AE7D0_SOURCE_DIR)/layer_0.tilemap
 UI_SCENE_080AE7D0_MAP1_SOURCE := $(UI_SCENE_080AE7D0_SOURCE_DIR)/layer_1.tilemap
 UI_SCENE_080AE7D0_TILES_SOURCE := $(UI_SCENE_080AE7D0_SOURCE_DIR)/tiles.4bpp
@@ -1093,7 +1089,6 @@ UI_SCENE_080A2BA4_REFERENCE_DIR := graphics/ui/scene_080a2ba4/reference
 # Its 0x200-byte palette-RAM copy starts at the shared three-bank JASC-PAL
 # source and continues into the following archive.  The rendered PNGs are
 # references; the native tilemaps retain map/flip/bank metadata.
-UI_SCENE_080B7164_TOOL := tools/ui_scene_080b7164.py
 UI_SCENE_080B7164_VISUAL_TOOL := tools/ui_scene_080b7164_visual.py
 UI_SCENE_080B7164_SOURCE_DIR := graphics/ui/scene_080b7164/shared
 UI_SCENE_080B7164_SOURCES := $(wildcard $(UI_SCENE_080B7164_SOURCE_DIR)/*)
@@ -1106,10 +1101,8 @@ UI_SCENE_080B7164_PALETTE_BIN := $(UI_SCENE_080B7164_PALETTE_SOURCE:.pal=.gbapal
 UI_SCENE_080B7164_OUTPUTS := $(UI_SCENE_080B7164_MAP0_SOURCE).lz $(UI_SCENE_080B7164_MAP1_SOURCE).lz $(UI_SCENE_080B7164_TILES_SOURCE).lz $(UI_SCENE_080B7164_PALETTE_BIN)
 UI_SCENE_080B7164_REFERENCE_DIR := graphics/ui/scene_080b7164/reference
 
-# This profile shares the proven native stream tool with 080B7164. It has its
-# own physical ranges and Raw-LZ ladders, but the same two tilemap plus 4bpp
-# tile-stream topology.
-UI_SCENE_080C160C_TOOL := $(UI_SCENE_080B7164_TOOL)
+# This profile shares the C Raw-LZ codec with 080B7164. It has its own
+# physical ranges and ladders, but the same two tilemap plus 4bpp topology.
 UI_SCENE_080C160C_SOURCE_DIR := graphics/ui/scene_080c160c/shared
 UI_SCENE_080C160C_SOURCES := $(wildcard $(UI_SCENE_080C160C_SOURCE_DIR)/*)
 UI_SCENE_080C160C_MAP0_SOURCE := $(UI_SCENE_080C160C_SOURCE_DIR)/layer_0.tilemap
@@ -1122,7 +1115,6 @@ UI_SCENE_080C160C_PALETTE_BIN := $(UI_SCENE_080C160C_PALETTE_SOURCE:.pal=.gbapal
 UI_SCENE_080C160C_OUTPUTS := $(UI_SCENE_080C160C_MAP0_SOURCE).lz $(UI_SCENE_080C160C_MAP1_SOURCE).lz $(UI_SCENE_080C160C_TILES_SOURCE).lz $(UI_SCENE_080C160C_PALETTE_BIN)
 UI_SCENE_080C160C_REFERENCE_DIR := graphics/ui/scene_080c160c/reference
 
-UI_SCENE_080BCFAC_TOOL := $(UI_SCENE_080B7164_TOOL)
 UI_SCENE_080BCFAC_SOURCE_DIR := graphics/ui/scene_080bcfac/shared
 UI_SCENE_080BCFAC_SOURCES := $(wildcard $(UI_SCENE_080BCFAC_SOURCE_DIR)/*)
 UI_SCENE_080BCFAC_MAP0_SOURCE := $(UI_SCENE_080BCFAC_SOURCE_DIR)/layer_0.tilemap
@@ -1135,15 +1127,12 @@ UI_SCENE_080BCFAC_PALETTE_BIN := $(UI_SCENE_080BCFAC_PALETTE_SOURCE:.pal=.gbapal
 UI_SCENE_080BCFAC_OUTPUTS := $(UI_SCENE_080BCFAC_MAP0_SOURCE).lz $(UI_SCENE_080BCFAC_MAP1_SOURCE).lz $(UI_SCENE_080BCFAC_TILES_SOURCE).lz $(UI_SCENE_080BCFAC_PALETTE_BIN)
 UI_SCENE_080BCFAC_REFERENCE_DIR := graphics/ui/scene_080bcfac/reference
 
-UI_SCENE_080B55D0_AUX_TOOL := $(UI_SCENE_080B7164_TOOL)
 UI_SCENE_080B55D0_AUX_SOURCE_DIR := graphics/ui/scene_080b55d0_aux/shared
 UI_SCENE_080B55D0_AUX_SOURCES := $(wildcard $(UI_SCENE_080B55D0_AUX_SOURCE_DIR)/*)
-UI_SCENE_080B55D0_AUX_OUTPUT_DIR := $(BUILD_DIR)/graphics/ui/scene_080b55d0_aux
 UI_SCENE_080B55D0_AUX_MAP0_SOURCE := $(UI_SCENE_080B55D0_AUX_SOURCE_DIR)/layer_0.tilemap
 UI_SCENE_080B55D0_AUX_MAP1_SOURCE := $(UI_SCENE_080B55D0_AUX_SOURCE_DIR)/layer_1.tilemap
 UI_SCENE_080B55D0_AUX_TILES_SOURCE := $(UI_SCENE_080B55D0_AUX_SOURCE_DIR)/tiles.4bpp
 UI_SCENE_080B55D0_AUX_OUTPUTS := $(UI_SCENE_080B55D0_AUX_MAP0_SOURCE).lz $(UI_SCENE_080B55D0_AUX_MAP1_SOURCE).lz $(UI_SCENE_080B55D0_AUX_TILES_SOURCE).lz
-UI_SCENE_080B55D0_AUX_REGION := $(INTRO_OBJECTS_REGION)
 UI_SCENE_080B55D0_AUX_REFERENCE_TOOL := tools/ui_scene_080b55d0_reference.py
 UI_SCENE_080B55D0_AUX_REFERENCE_DIR := graphics/ui/scene_080b55d0_aux/reference
 
@@ -1238,21 +1227,17 @@ RAW_VRAM_TILES_087512ec_SOURCE_DIR := graphics/ui/raw_vram_tiles/087512ec/overse
 endif
 RAW_VRAM_TILES_087512ec_SOURCES := $(wildcard $(RAW_VRAM_TILES_087512ec_SOURCE_DIR)/*)
 
-UI_SCENE_08054F40_TILES_TOOL := $(UI_SCENE_080B7164_TOOL)
 UI_SCENE_08054F40_TILES_SOURCE_DIR := graphics/ui/scene_08054f40_tiles/shared
 UI_SCENE_08054F40_TILES_SOURCE := $(UI_SCENE_08054F40_TILES_SOURCE_DIR)/tiles.4bpp
 UI_SCENE_08054F40_TILES_SOURCES := $(UI_SCENE_08054F40_TILES_SOURCE)
 UI_SCENE_08054F40_TILES_OUTPUT := $(UI_SCENE_08054F40_TILES_SOURCE).lz
-UI_SCENE_08054F40_TILES_REGION := $(INTRO_OBJECTS_REGION)
 UI_SCENE_08054F40_REFERENCE_TOOL := tools/ui_scene_08054f40_reference.py
 UI_SCENE_08054F40_REFERENCE_DIR := graphics/ui/scene_08054f40_tiles/reference
 
-UI_SCENE_0805AB08_TILES_TOOL := $(UI_SCENE_080B7164_TOOL)
 UI_SCENE_0805AB08_TILES_SOURCE_DIR := graphics/ui/scene_0805ab08_tiles/shared
 UI_SCENE_0805AB08_TILES_SOURCE := $(UI_SCENE_0805AB08_TILES_SOURCE_DIR)/tiles.4bpp
 UI_SCENE_0805AB08_TILES_SOURCES := $(UI_SCENE_0805AB08_TILES_SOURCE)
 UI_SCENE_0805AB08_TILES_OUTPUT := $(UI_SCENE_0805AB08_TILES_SOURCE).lz
-UI_SCENE_0805AB08_TILES_REGION := $(INTRO_OBJECTS_REGION)
 UI_SCENE_0805AB08_REFERENCE_TOOL := tools/ui_scene_0805ab08_reference.py
 UI_SCENE_0805AB08_REFERENCE_DIR := graphics/ui/scene_0805ab08_tiles/reference
 
@@ -1915,13 +1900,13 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 .PHONY: gfx-raw-vram-tiles-ui
 .PHONY: map-terrain-audit
 .PHONY: farm-house-lookup-audit
-.PHONY: gfx-ui-scene-080a2ba4 gfx-ui-scene-080a2ba4-reference gfx-ui-scene-080a2ba4-test gfx-ui-scene-080a2ba4-all gfx-ui-scene-080a2ba4-edit-test
+.PHONY: gfx-ui-scene-080a2ba4 gfx-ui-scene-080a2ba4-reference gfx-ui-scene-080a2ba4-test gfx-ui-scene-080a2ba4-all
 .PHONY: gfx-ui-scene-08077810 gfx-ui-scene-08077810-reference gfx-ui-scene-08077810-test gfx-ui-scene-08077810-all gfx-ui-scene-08077810-patch-test gfx-ui-scene-08077810-edit-test
-.PHONY: gfx-ui-scene-080ae7d0 gfx-ui-scene-080ae7d0-preview gfx-ui-scene-080ae7d0-test gfx-ui-scene-080ae7d0-all gfx-ui-scene-080ae7d0-edit-test
-.PHONY: gfx-ui-scene-080b7164 gfx-ui-scene-080b7164-preview gfx-ui-scene-080b7164-test gfx-ui-scene-080b7164-all gfx-ui-scene-080b7164-edit-test
-.PHONY: gfx-ui-scene-080c160c gfx-ui-scene-080c160c-preview gfx-ui-scene-080c160c-test gfx-ui-scene-080c160c-all gfx-ui-scene-080c160c-edit-test
-.PHONY: gfx-ui-scene-080bcfac gfx-ui-scene-080bcfac-preview gfx-ui-scene-080bcfac-test gfx-ui-scene-080bcfac-all gfx-ui-scene-080bcfac-edit-test
-.PHONY: gfx-ui-scene-080b55d0-aux gfx-ui-scene-080b55d0-aux-reference gfx-ui-scene-080b55d0-aux-test gfx-ui-scene-080b55d0-aux-all gfx-ui-scene-080b55d0-aux-edit-test
+.PHONY: gfx-ui-scene-080ae7d0 gfx-ui-scene-080ae7d0-preview gfx-ui-scene-080ae7d0-test gfx-ui-scene-080ae7d0-all
+.PHONY: gfx-ui-scene-080b7164 gfx-ui-scene-080b7164-preview gfx-ui-scene-080b7164-test gfx-ui-scene-080b7164-all
+.PHONY: gfx-ui-scene-080c160c gfx-ui-scene-080c160c-preview gfx-ui-scene-080c160c-test gfx-ui-scene-080c160c-all
+.PHONY: gfx-ui-scene-080bcfac gfx-ui-scene-080bcfac-preview gfx-ui-scene-080bcfac-test gfx-ui-scene-080bcfac-all
+.PHONY: gfx-ui-scene-080b55d0-aux gfx-ui-scene-080b55d0-aux-reference gfx-ui-scene-080b55d0-aux-test gfx-ui-scene-080b55d0-aux-all
 .PHONY: gfx-ui-scene-080b55d0-main gfx-ui-scene-080b55d0-main-test gfx-ui-scene-080b55d0-main-all
 .PHONY: gfx-raw-vram-tiles-08697920 gfx-raw-vram-tiles-08697920-test gfx-raw-vram-tiles-08697920-all
 .PHONY: gfx-raw-vram-tiles-08698e14 gfx-raw-vram-tiles-08698e14-test gfx-raw-vram-tiles-08698e14-all
@@ -1930,8 +1915,8 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 .PHONY: gfx-raw-vram-tiles-086d5508 gfx-raw-vram-tiles-086d5508-test gfx-raw-vram-tiles-086d5508-all
 .PHONY: gfx-raw-vram-tiles-086d6698 gfx-raw-vram-tiles-086d6698-test gfx-raw-vram-tiles-086d6698-all
 .PHONY: gfx-raw-vram-tiles-field-leading
-.PHONY: gfx-ui-scene-08054f40-tiles gfx-ui-scene-08054f40-reference gfx-ui-scene-08054f40-tiles-test gfx-ui-scene-08054f40-tiles-all gfx-ui-scene-08054f40-tiles-edit-test
-.PHONY: gfx-ui-scene-0805ab08-tiles gfx-ui-scene-0805ab08-reference gfx-ui-scene-0805ab08-tiles-test gfx-ui-scene-0805ab08-tiles-all gfx-ui-scene-0805ab08-tiles-edit-test
+.PHONY: gfx-ui-scene-08054f40-tiles gfx-ui-scene-08054f40-reference gfx-ui-scene-08054f40-tiles-test gfx-ui-scene-08054f40-tiles-all
+.PHONY: gfx-ui-scene-0805ab08-tiles gfx-ui-scene-0805ab08-reference gfx-ui-scene-0805ab08-tiles-test gfx-ui-scene-0805ab08-tiles-all
 .PHONY: gfx-farm-house-visual gfx-farm-house-visual-test gfx-farm-house-visual-all gfx-farm-house-visual-patch-test gfx-farm-house-visual-edit-test
 .PHONY: gfx-farm-house-tilemaps gfx-farm-house-tilemaps-test gfx-farm-house-tilemaps-all gfx-farm-house-tilemaps-patch-test gfx-farm-house-tilemaps-edit-test
 .PHONY: gfx-farm-house-palettes gfx-farm-house-palettes-test gfx-farm-house-palettes-all gfx-farm-house-palettes-patch-test gfx-farm-house-palettes-edit-test
@@ -2007,20 +1992,16 @@ gfx-ui-scene-080a2ba4: $(UI_SCENE_080A2BA4_OUTPUTS)
 gfx-ui-scene-080a2ba4-reference: $(UI_SCENE_080A2BA4_REFERENCE_TOOL) $(UI_SCENE_080A2BA4_SOURCES) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(UI_SCENE_080A2BA4_REFERENCE_TOOL) --source-dir $(UI_SCENE_080A2BA4_SOURCE_DIR) --reference-dir $(UI_SCENE_080A2BA4_REFERENCE_DIR) \
 	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
-gfx-ui-scene-080a2ba4-test: gfx-ui-scene-080a2ba4 $(UI_SCENE_080A2BA4_TOOL) $(FOMT_LZ_TOOL)
+gfx-ui-scene-080a2ba4-test: gfx-ui-scene-080a2ba4 $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) verify-lz3 $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_0.tilemap $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_0.tilemap.lz 125
 	@$(FOMT_LZ_TOOL) verify-lz2 $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_1.tilemap $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_1.tilemap.lz 1234679
 	@$(FOMT_LZ_TOOL) verify-lz2 $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_2.tilemap $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_2.tilemap.lz 1234679
 	@$(FOMT_LZ_TOOL) verify-lz2 $(UI_SCENE_080A2BA4_SOURCE_DIR)/tiles.4bpp $(UI_SCENE_080A2BA4_SOURCE_DIR)/tiles.4bpp.lz 1,2,5,6,8,10,12
-	@$(PYTHON) $(UI_SCENE_080A2BA4_TOOL) verify --region $(UI_SCENE_080A2BA4_REGION) --rom $(BASE_ROM) \
-	  --source-dir $(UI_SCENE_080A2BA4_SOURCE_DIR) --output-dir $(UI_SCENE_080A2BA4_SOURCE_DIR)
 gfx-ui-scene-080a2ba4-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-ui-scene-080a2ba4-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-ui-scene-080a2ba4-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-ui-scene-080a2ba4-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-ui-scene-080a2ba4-test
-gfx-ui-scene-080a2ba4-edit-test: $(UI_SCENE_080A2BA4_TOOL) baserom_jp.gba
-	@$(PYTHON) $(UI_SCENE_080A2BA4_TOOL) edit-test --region jp --rom baserom_jp.gba
 gfx-ui-scene-08077810: $(UI_SCENE_08077810_ACTIVE_STAMP)
 gfx-ui-scene-08077810-reference: $(UI_SCENE_08077810_REFERENCE_TOOL) baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(UI_SCENE_08077810_REFERENCE_TOOL) --reference-dir $(UI_SCENE_08077810_REFERENCE_DIR) \
@@ -2058,12 +2039,10 @@ gfx-ui-scene-08077810-edit-test: $(UI_SCENE_08077810_TOOL) $(UI_SCENE_08077810_T
 gfx-ui-scene-080ae7d0: $(UI_SCENE_080AE7D0_OUTPUTS)
 gfx-ui-scene-080ae7d0-preview: $(UI_SCENE_080AE7D0_VISUAL_TOOL) $(UI_SCENE_080AE7D0_SOURCES)
 	@$(PYTHON) $(UI_SCENE_080AE7D0_VISUAL_TOOL) preview --profile 080ae7d0 --region $(UI_SCENE_080AE7D0_REGION) --source-dir $(UI_SCENE_080AE7D0_SOURCE_DIR) --reference-dir $(UI_SCENE_080AE7D0_REFERENCE_DIR)
-gfx-ui-scene-080ae7d0-test: gfx-ui-scene-080ae7d0 $(UI_SCENE_080AE7D0_TOOL) $(UI_SCENE_080AE7D0_VISUAL_TOOL) $(FOMT_LZ_TOOL)
+gfx-ui-scene-080ae7d0-test: gfx-ui-scene-080ae7d0 $(UI_SCENE_080AE7D0_VISUAL_TOOL) $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) verify-lz2 $(UI_SCENE_080AE7D0_MAP0_SOURCE) $(UI_SCENE_080AE7D0_MAP0_SOURCE).lz 3,5,6,7,8,9,10
 	@$(FOMT_LZ_TOOL) verify-lz3 $(UI_SCENE_080AE7D0_MAP1_SOURCE) $(UI_SCENE_080AE7D0_MAP1_SOURCE).lz 2,5,10
 	@$(FOMT_LZ_TOOL) verify-lz2 $(UI_SCENE_080AE7D0_TILES_SOURCE) $(UI_SCENE_080AE7D0_TILES_SOURCE).lz 2,5,7,10,11,13,15
-	@$(PYTHON) $(UI_SCENE_080AE7D0_TOOL) verify --region $(UI_SCENE_080AE7D0_REGION) --rom $(BASE_ROM) \
-	  --source-dir $(UI_SCENE_080AE7D0_SOURCE_DIR)
 	@$(PYTHON) $(UI_SCENE_080AE7D0_VISUAL_TOOL) verify --profile 080ae7d0 --region $(UI_SCENE_080AE7D0_REGION) \
 	  --rom $(BASE_ROM) --source-dir $(UI_SCENE_080AE7D0_SOURCE_DIR)
 gfx-ui-scene-080ae7d0-all:
@@ -2071,17 +2050,13 @@ gfx-ui-scene-080ae7d0-all:
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-ui-scene-080ae7d0-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-ui-scene-080ae7d0-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-ui-scene-080ae7d0-test
-gfx-ui-scene-080ae7d0-edit-test: $(UI_SCENE_080AE7D0_TOOL) baserom_jp.gba
-	@$(PYTHON) $(UI_SCENE_080AE7D0_TOOL) edit-test --region jp --rom baserom_jp.gba
 gfx-ui-scene-080b7164: $(UI_SCENE_080B7164_OUTPUTS)
 gfx-ui-scene-080b7164-preview: $(UI_SCENE_080B7164_VISUAL_TOOL) $(UI_SCENE_080B7164_PALETTE_SOURCE) $(UI_SCENE_080B7164_SOURCES)
 	@$(PYTHON) $(UI_SCENE_080B7164_VISUAL_TOOL) preview --profile 080b7164 --region $(UI_SCENE_080B7164_REGION) --source-dir $(UI_SCENE_080B7164_SOURCE_DIR) --reference-dir $(UI_SCENE_080B7164_REFERENCE_DIR)
-gfx-ui-scene-080b7164-test: gfx-ui-scene-080b7164 $(UI_SCENE_080B7164_TOOL) $(UI_SCENE_080B7164_VISUAL_TOOL) $(FOMT_LZ_TOOL) $(GFX_RANGE_VERIFY)
+gfx-ui-scene-080b7164-test: gfx-ui-scene-080b7164 $(UI_SCENE_080B7164_VISUAL_TOOL) $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) verify-lz3 $(UI_SCENE_080B7164_MAP0_SOURCE) $(UI_SCENE_080B7164_MAP0_SOURCE).lz 3,5,7
 	@$(FOMT_LZ_TOOL) verify-lz3 $(UI_SCENE_080B7164_MAP1_SOURCE) $(UI_SCENE_080B7164_MAP1_SOURCE).lz 1,5,9
 	@$(FOMT_LZ_TOOL) verify-lz2 $(UI_SCENE_080B7164_TILES_SOURCE) $(UI_SCENE_080B7164_TILES_SOURCE).lz 2,5,7,8,10,11,12
-	@$(PYTHON) $(UI_SCENE_080B7164_TOOL) verify --region $(UI_SCENE_080B7164_REGION) --rom $(BASE_ROM) \
-	  --source-dir $(UI_SCENE_080B7164_SOURCE_DIR)
 	@$(PYTHON) $(UI_SCENE_080B7164_VISUAL_TOOL) verify --region $(UI_SCENE_080B7164_REGION) --rom $(BASE_ROM) \
 	  --profile 080b7164 --source-dir $(UI_SCENE_080B7164_SOURCE_DIR) --output-dir $(UI_SCENE_080B7164_SOURCE_DIR)
 gfx-ui-scene-080b7164-all:
@@ -2089,17 +2064,13 @@ gfx-ui-scene-080b7164-all:
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-ui-scene-080b7164-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-ui-scene-080b7164-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-ui-scene-080b7164-test
-gfx-ui-scene-080b7164-edit-test: $(UI_SCENE_080B7164_TOOL) baserom_jp.gba
-	@$(PYTHON) $(UI_SCENE_080B7164_TOOL) edit-test --region jp --rom baserom_jp.gba
 gfx-ui-scene-080c160c: $(UI_SCENE_080C160C_OUTPUTS)
 gfx-ui-scene-080c160c-preview: $(UI_SCENE_080C160C_VISUAL_TOOL) $(UI_SCENE_080C160C_PALETTE_SOURCE) $(UI_SCENE_080C160C_SOURCES)
 	@$(PYTHON) $(UI_SCENE_080C160C_VISUAL_TOOL) preview --profile 080c160c --region $(UI_SCENE_080C160C_REGION) --source-dir $(UI_SCENE_080C160C_SOURCE_DIR) --reference-dir $(UI_SCENE_080C160C_REFERENCE_DIR)
-gfx-ui-scene-080c160c-test: gfx-ui-scene-080c160c $(UI_SCENE_080C160C_TOOL) $(UI_SCENE_080C160C_VISUAL_TOOL) $(FOMT_LZ_TOOL)
+gfx-ui-scene-080c160c-test: gfx-ui-scene-080c160c $(UI_SCENE_080C160C_VISUAL_TOOL) $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) verify-lz2 $(UI_SCENE_080C160C_MAP0_SOURCE) $(UI_SCENE_080C160C_MAP0_SOURCE).lz 2,3,6,7,9,10,11
 	@$(FOMT_LZ_TOOL) verify-lz3 $(UI_SCENE_080C160C_MAP1_SOURCE) $(UI_SCENE_080C160C_MAP1_SOURCE).lz 3,7,9
 	@$(FOMT_LZ_TOOL) verify-lz2 $(UI_SCENE_080C160C_TILES_SOURCE) $(UI_SCENE_080C160C_TILES_SOURCE).lz 2,4,6,7,8,10,12
-	@$(PYTHON) $(UI_SCENE_080C160C_TOOL) --profile 080c160c verify --region $(UI_SCENE_080C160C_REGION) --rom $(BASE_ROM) \
-	  --source-dir $(UI_SCENE_080C160C_SOURCE_DIR)
 	@$(PYTHON) $(UI_SCENE_080C160C_VISUAL_TOOL) verify --profile 080c160c --region $(UI_SCENE_080C160C_REGION) --rom $(BASE_ROM) \
 	  --source-dir $(UI_SCENE_080C160C_SOURCE_DIR) --output-dir $(UI_SCENE_080C160C_SOURCE_DIR)
 gfx-ui-scene-080c160c-all:
@@ -2107,17 +2078,13 @@ gfx-ui-scene-080c160c-all:
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-ui-scene-080c160c-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-ui-scene-080c160c-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-ui-scene-080c160c-test
-gfx-ui-scene-080c160c-edit-test: $(UI_SCENE_080C160C_TOOL) baserom_jp.gba
-	@$(PYTHON) $(UI_SCENE_080C160C_TOOL) --profile 080c160c edit-test --region jp --rom baserom_jp.gba
 gfx-ui-scene-080bcfac: $(UI_SCENE_080BCFAC_OUTPUTS)
 gfx-ui-scene-080bcfac-preview: $(UI_SCENE_080BCFAC_VISUAL_TOOL) $(UI_SCENE_080BCFAC_PALETTE_SOURCE) $(UI_SCENE_080BCFAC_SOURCES)
 	@$(PYTHON) $(UI_SCENE_080BCFAC_VISUAL_TOOL) preview --profile 080bcfac --region $(UI_SCENE_080BCFAC_REGION) --source-dir $(UI_SCENE_080BCFAC_SOURCE_DIR) --reference-dir $(UI_SCENE_080BCFAC_REFERENCE_DIR)
-gfx-ui-scene-080bcfac-test: gfx-ui-scene-080bcfac $(UI_SCENE_080BCFAC_TOOL) $(UI_SCENE_080BCFAC_VISUAL_TOOL) $(FOMT_LZ_TOOL)
+gfx-ui-scene-080bcfac-test: gfx-ui-scene-080bcfac $(UI_SCENE_080BCFAC_VISUAL_TOOL) $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) verify-lz3 $(UI_SCENE_080BCFAC_MAP0_SOURCE) $(UI_SCENE_080BCFAC_MAP0_SOURCE).lz 2,6,10
 	@$(FOMT_LZ_TOOL) verify-lz3 $(UI_SCENE_080BCFAC_MAP1_SOURCE) $(UI_SCENE_080BCFAC_MAP1_SOURCE).lz 1,6,9
 	@$(FOMT_LZ_TOOL) verify-lz2 $(UI_SCENE_080BCFAC_TILES_SOURCE) $(UI_SCENE_080BCFAC_TILES_SOURCE).lz 2,5,6,7,9,11,13
-	@$(PYTHON) $(UI_SCENE_080BCFAC_TOOL) --profile 080bcfac verify --region $(UI_SCENE_080BCFAC_REGION) --rom $(BASE_ROM) \
-	  --source-dir $(UI_SCENE_080BCFAC_SOURCE_DIR)
 	@$(PYTHON) $(UI_SCENE_080BCFAC_VISUAL_TOOL) verify --profile 080bcfac --region $(UI_SCENE_080BCFAC_REGION) --rom $(BASE_ROM) \
 	  --source-dir $(UI_SCENE_080BCFAC_SOURCE_DIR) --output-dir $(UI_SCENE_080BCFAC_SOURCE_DIR)
 gfx-ui-scene-080bcfac-all:
@@ -2125,25 +2092,19 @@ gfx-ui-scene-080bcfac-all:
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-ui-scene-080bcfac-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-ui-scene-080bcfac-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-ui-scene-080bcfac-test
-gfx-ui-scene-080bcfac-edit-test: $(UI_SCENE_080BCFAC_TOOL) baserom_jp.gba
-	@$(PYTHON) $(UI_SCENE_080BCFAC_TOOL) --profile 080bcfac edit-test --region jp --rom baserom_jp.gba
 gfx-ui-scene-080b55d0-aux: $(UI_SCENE_080B55D0_AUX_OUTPUTS)
 gfx-ui-scene-080b55d0-aux-reference: $(UI_SCENE_080B55D0_AUX_REFERENCE_TOOL) $(UI_SCENE_080B55D0_AUX_SOURCES) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(UI_SCENE_080B55D0_AUX_REFERENCE_TOOL) --source-dir $(UI_SCENE_080B55D0_AUX_SOURCE_DIR) --reference-dir $(UI_SCENE_080B55D0_AUX_REFERENCE_DIR) \
 	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
-gfx-ui-scene-080b55d0-aux-test: gfx-ui-scene-080b55d0-aux $(UI_SCENE_080B55D0_AUX_TOOL) $(FOMT_LZ_TOOL)
+gfx-ui-scene-080b55d0-aux-test: gfx-ui-scene-080b55d0-aux $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) verify-lz3 $(UI_SCENE_080B55D0_AUX_MAP0_SOURCE) $(UI_SCENE_080B55D0_AUX_MAP0_SOURCE).lz 1,2,5
 	@$(FOMT_LZ_TOOL) verify-lz3 $(UI_SCENE_080B55D0_AUX_MAP1_SOURCE) $(UI_SCENE_080B55D0_AUX_MAP1_SOURCE).lz 1,5,9
 	@$(FOMT_LZ_TOOL) verify-lz2 $(UI_SCENE_080B55D0_AUX_TILES_SOURCE) $(UI_SCENE_080B55D0_AUX_TILES_SOURCE).lz 2,5,8,9,10,11,12
-	@$(PYTHON) $(UI_SCENE_080B55D0_AUX_TOOL) --profile 080b55d0_aux verify --region $(UI_SCENE_080B55D0_AUX_REGION) --rom $(BASE_ROM) \
-	  --source-dir $(UI_SCENE_080B55D0_AUX_SOURCE_DIR)
 gfx-ui-scene-080b55d0-aux-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-ui-scene-080b55d0-aux-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-ui-scene-080b55d0-aux-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-ui-scene-080b55d0-aux-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-ui-scene-080b55d0-aux-test
-gfx-ui-scene-080b55d0-aux-edit-test: $(UI_SCENE_080B55D0_AUX_TOOL) baserom_jp.gba
-	@$(PYTHON) $(UI_SCENE_080B55D0_AUX_TOOL) --profile 080b55d0_aux edit-test --region jp --rom baserom_jp.gba
 gfx-ui-scene-080b55d0-main: $(UI_SCENE_080B55D0_MAIN_OUTPUT)
 gfx-ui-scene-080b55d0-main-test: gfx-ui-scene-080b55d0-main $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) verify-huff8-lz3 $(UI_SCENE_080B55D0_MAIN_SOURCE) $(UI_SCENE_080B55D0_MAIN_OUTPUT) 4,10,12
@@ -2205,32 +2166,24 @@ gfx-ui-scene-08054f40-tiles: $(UI_SCENE_08054F40_TILES_OUTPUT)
 gfx-ui-scene-08054f40-reference: $(UI_SCENE_08054F40_REFERENCE_TOOL) $(UI_SCENE_08054F40_TILES_SOURCES) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(UI_SCENE_08054F40_REFERENCE_TOOL) --source-dir $(UI_SCENE_08054F40_TILES_SOURCE_DIR) --reference-dir $(UI_SCENE_08054F40_REFERENCE_DIR) \
 	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
-gfx-ui-scene-08054f40-tiles-test: gfx-ui-scene-08054f40-tiles $(UI_SCENE_08054F40_TILES_TOOL) $(FOMT_LZ_TOOL)
+gfx-ui-scene-08054f40-tiles-test: gfx-ui-scene-08054f40-tiles $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) verify-lz2 $(UI_SCENE_08054F40_TILES_SOURCE) $(UI_SCENE_08054F40_TILES_OUTPUT) 2,5,7,8,10,13,14
-	@$(PYTHON) $(UI_SCENE_08054F40_TILES_TOOL) --profile 08054f40_tiles verify --region $(UI_SCENE_08054F40_TILES_REGION) --rom $(BASE_ROM) \
-	  --source-dir $(UI_SCENE_08054F40_TILES_SOURCE_DIR)
 gfx-ui-scene-08054f40-tiles-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-ui-scene-08054f40-tiles-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-ui-scene-08054f40-tiles-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-ui-scene-08054f40-tiles-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-ui-scene-08054f40-tiles-test
-gfx-ui-scene-08054f40-tiles-edit-test: $(UI_SCENE_08054F40_TILES_TOOL) baserom_jp.gba
-	@$(PYTHON) $(UI_SCENE_08054F40_TILES_TOOL) --profile 08054f40_tiles edit-test --region jp --rom baserom_jp.gba
 gfx-ui-scene-0805ab08-tiles: $(UI_SCENE_0805AB08_TILES_OUTPUT)
 gfx-ui-scene-0805ab08-reference: $(UI_SCENE_0805AB08_REFERENCE_TOOL) $(UI_SCENE_0805AB08_TILES_SOURCES) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(UI_SCENE_0805AB08_REFERENCE_TOOL) --source-dir $(UI_SCENE_0805AB08_TILES_SOURCE_DIR) --reference-dir $(UI_SCENE_0805AB08_REFERENCE_DIR) \
 	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
-gfx-ui-scene-0805ab08-tiles-test: gfx-ui-scene-0805ab08-tiles $(UI_SCENE_0805AB08_TILES_TOOL) $(FOMT_LZ_TOOL)
+gfx-ui-scene-0805ab08-tiles-test: gfx-ui-scene-0805ab08-tiles $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) verify-lz2 $(UI_SCENE_0805AB08_TILES_SOURCE) $(UI_SCENE_0805AB08_TILES_OUTPUT) 3,5,7,10,11,12,14
-	@$(PYTHON) $(UI_SCENE_0805AB08_TILES_TOOL) --profile 0805ab08_tiles verify --region $(UI_SCENE_0805AB08_TILES_REGION) --rom $(BASE_ROM) \
-	  --source-dir $(UI_SCENE_0805AB08_TILES_SOURCE_DIR)
 gfx-ui-scene-0805ab08-tiles-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-ui-scene-0805ab08-tiles-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-ui-scene-0805ab08-tiles-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-ui-scene-0805ab08-tiles-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-ui-scene-0805ab08-tiles-test
-gfx-ui-scene-0805ab08-tiles-edit-test: $(UI_SCENE_0805AB08_TILES_TOOL) baserom_jp.gba
-	@$(PYTHON) $(UI_SCENE_0805AB08_TILES_TOOL) --profile 0805ab08_tiles edit-test --region jp --rom baserom_jp.gba
 gfx-farm-house-visual: $(FARM_HOUSE_VISUAL_STAMP)
 gfx-farm-house-visual-test: gfx-farm-house-visual $(FARM_HOUSE_VISUAL_TOOL)
 	@$(PYTHON) $(FARM_HOUSE_VISUAL_TOOL) verify --region $(FARM_HOUSE_VISUAL_REGION) --rom $(BASE_ROM) \
@@ -3593,29 +3546,21 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-actors-edit-test
 	@$(MAKE) --no-print-directory gfx-ui-all
 	@$(MAKE) --no-print-directory gfx-ui-scene-080a2ba4-all
-	@$(MAKE) --no-print-directory gfx-ui-scene-080a2ba4-edit-test
 	@$(MAKE) --no-print-directory gfx-ui-scene-08077810-all
 	@$(MAKE) --no-print-directory gfx-ui-scene-08077810-patch-test
 	@$(MAKE) --no-print-directory gfx-ui-scene-08077810-edit-test
 	@$(MAKE) --no-print-directory gfx-ui-scene-080ae7d0-all
-	@$(MAKE) --no-print-directory gfx-ui-scene-080ae7d0-edit-test
 	@$(MAKE) --no-print-directory gfx-ui-scene-080b7164-all
-	@$(MAKE) --no-print-directory gfx-ui-scene-080b7164-edit-test
 	@$(MAKE) --no-print-directory gfx-ui-scene-080c160c-all
-	@$(MAKE) --no-print-directory gfx-ui-scene-080c160c-edit-test
 	@$(MAKE) --no-print-directory gfx-ui-scene-080bcfac-all
-	@$(MAKE) --no-print-directory gfx-ui-scene-080bcfac-edit-test
 	@$(MAKE) --no-print-directory gfx-ui-scene-080b55d0-aux-all
-	@$(MAKE) --no-print-directory gfx-ui-scene-080b55d0-aux-edit-test
 	@$(MAKE) --no-print-directory gfx-ui-scene-080b55d0-main-all
 	@$(MAKE) --no-print-directory gfx-raw-vram-tiles-08697920-all
 	@$(MAKE) --no-print-directory gfx-raw-vram-tiles-field
 	@$(MAKE) --no-print-directory gfx-raw-vram-tiles-field-leading
 	@$(MAKE) --no-print-directory gfx-raw-vram-tiles-ui
 	@$(MAKE) --no-print-directory gfx-ui-scene-08054f40-tiles-all
-	@$(MAKE) --no-print-directory gfx-ui-scene-08054f40-tiles-edit-test
 	@$(MAKE) --no-print-directory gfx-ui-scene-0805ab08-tiles-all
-	@$(MAKE) --no-print-directory gfx-ui-scene-0805ab08-tiles-edit-test
 	@$(MAKE) --no-print-directory gfx-farm-house-visual-all
 	@$(MAKE) --no-print-directory gfx-farm-house-visual-patch-test
 	@$(MAKE) --no-print-directory gfx-farm-house-visual-edit-test
