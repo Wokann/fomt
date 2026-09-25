@@ -86,7 +86,7 @@ the JP, US, EU and DE ROMs and are available under
 `shared/startup_tilemaps/startup_00.tilemap` through `startup_03.tilemap`
 remain the authoritative editable layout sources.  Each `0x1000`-byte source
 contains two 32-by-32 BG maps in alternating 0x40-byte rows.  The eight PNGs
-under `reference/startup/` are generated from that proven row split, tile IDs,
+under `reference/startup/` were rendered from that proven row split, tile IDs,
 flip bits and palette-bank fields; they are visual references only, because a
 flat PNG cannot preserve those native map fields.
 
@@ -112,17 +112,16 @@ row go to the first screen block and the next `0x40` bytes go to the second.
 The checked-in `.tilemap` files deliberately preserve this decoded native
 interleaving; the rendered layer PNGs must not replace them as source data.
 
-The startup tile payload uses the `230` Huffman-8/LZ3 family.  Its tile and
-palette sources are linked back into the original ranges.  An unchanged tile
-source retains the exact retail stream; an edited source is strictly decoded
-after H8/LZ3 encoding and rejected if it exceeds the original `0x3970` slot.
-The checked edit fixture changes a real tile byte and succeeds in that slot.
-The native startup maps remain independently editable and rebuild through
-their verified Huffman-4/LZ3 path.
+The startup tile payload uses the `230` Huffman-8/LZ3 family. `gbagfx` converts
+the tile and palette PNGs into source-adjacent `.4bpp` and `.gbapal` resources;
+the C `fomt-lz` tool then packs the tiles into `.4bpp.lz`. The checked-in
+`startup_tiles.original.lz` preserves the publisher stream for unchanged art.
+Edited tiles are decoded after H8/LZ3 encoding and rejected if they exceed the
+original `0x3970` slot. Assembly links these generated resources directly,
+without reading a ROM or patching the linked image. The native startup maps
+remain independently editable through their Huffman-4/LZ3 path.
 
 ```console
 make gfx-intro-startup-visual-test
-make gfx-intro-startup-visual-reference
-make gfx-intro-startup-visual-edit-test
 make gfx-intro-startup-tilemaps-all
 ```

@@ -958,28 +958,13 @@ INTRO_STARTUP_TILEMAPS_OUTPUTS := $(INTRO_STARTUP_TILEMAPS_SOURCES:%=%.lz)
 # The native maps remain the editable layout source.  Rendered layer PNGs are
 # deliberately reference-only because a flat PNG cannot retain tile indexes,
 # flip bits, or palette-bank selectors.
-INTRO_STARTUP_VISUAL_TOOL := tools/intro_scene_startup_visual.py
 INTRO_STARTUP_VISUAL_SOURCE_DIR := graphics/intro_scene/shared/startup_visual
 INTRO_STARTUP_VISUAL_TILES_SOURCE := $(INTRO_STARTUP_VISUAL_SOURCE_DIR)/startup_tiles.png
 INTRO_STARTUP_VISUAL_PALETTE_SOURCE := $(INTRO_STARTUP_VISUAL_SOURCE_DIR)/startup_palette_banks.png
-INTRO_STARTUP_VISUAL_REFERENCE_DIR := graphics/intro_scene/reference/startup
-INTRO_STARTUP_VISUAL_OUTPUT_DIR := $(BUILD_DIR)/graphics/intro_scene/startup_visual
-INTRO_STARTUP_VISUAL_TILES_BIN := $(INTRO_STARTUP_VISUAL_OUTPUT_DIR)/startup_tiles.0x70
-INTRO_STARTUP_VISUAL_PALETTE_BIN := $(INTRO_STARTUP_VISUAL_OUTPUT_DIR)/startup_palette_banks.gbapal
-INTRO_STARTUP_VISUAL_STAMP := $(INTRO_STARTUP_VISUAL_OUTPUT_DIR)/.startup-visual.stamp
-INTRO_STARTUP_VISUAL_REGION := $(INTRO_OBJECTS_REGION)
-INTRO_STARTUP_VISUAL_STREAM_SHA256 := 20269c8c8acaa2cdfd0ec72cacca882ec6e21cda7e2abc961b97d62626ac877b
-INTRO_STARTUP_VISUAL_PALETTE_SHA256 := d503e20b342424db39c68a212268de64fa9307148860754d9cc7d6c2b75b453e
-INTRO_STARTUP_VISUAL_STREAM_OFFSET_JP := 0x4D1154
-INTRO_STARTUP_VISUAL_STREAM_OFFSET_US := 0x74A9C0
-INTRO_STARTUP_VISUAL_STREAM_OFFSET_EU := 0x74AA1C
-INTRO_STARTUP_VISUAL_STREAM_OFFSET_DE := 0x4D1E2C
-INTRO_STARTUP_VISUAL_PALETTE_OFFSET_JP := 0x4D4AC4
-INTRO_STARTUP_VISUAL_PALETTE_OFFSET_US := 0x74E330
-INTRO_STARTUP_VISUAL_PALETTE_OFFSET_EU := 0x74E38C
-INTRO_STARTUP_VISUAL_PALETTE_OFFSET_DE := 0x4D579C
-INTRO_STARTUP_VISUAL_STREAM_OFFSET := $(INTRO_STARTUP_VISUAL_STREAM_OFFSET_$(GAME_REGION))
-INTRO_STARTUP_VISUAL_PALETTE_OFFSET := $(INTRO_STARTUP_VISUAL_PALETTE_OFFSET_$(GAME_REGION))
+INTRO_STARTUP_VISUAL_TILES_BIN := $(INTRO_STARTUP_VISUAL_SOURCE_DIR)/startup_tiles.4bpp
+INTRO_STARTUP_VISUAL_PACKED_BIN := $(INTRO_STARTUP_VISUAL_TILES_BIN).lz
+INTRO_STARTUP_VISUAL_ORIGINAL := $(INTRO_STARTUP_VISUAL_SOURCE_DIR)/startup_tiles.original.lz
+INTRO_STARTUP_VISUAL_PALETTE_BIN := $(INTRO_STARTUP_VISUAL_SOURCE_DIR)/startup_palette_banks.gbapal
 
 # func_08000914 expands this regional IndexedResourceArchive immediately
 # after the Intro Scene background data. Complete frames are composed from
@@ -1323,7 +1308,7 @@ GRAPHICS_ASSETS = \
 	$(SEASONAL_NONWINTER_STAMP) $(SEASONAL_WINTER_STAMP) \
 	$(INTRO_BACKGROUND_PACKED_BIN) $(INTRO_BACKGROUND_PALETTE_BIN) \
 	$(INTRO_OBJECTS_STAMP) $(INTRO_STARTUP_TILEMAPS_OUTPUTS) \
-	$(INTRO_STARTUP_VISUAL_STAMP) $(INTRO_INDEXED_ARCHIVE_OUTPUT) \
+	$(INTRO_STARTUP_VISUAL_PACKED_BIN) $(INTRO_STARTUP_VISUAL_PALETTE_BIN) $(INTRO_INDEXED_ARCHIVE_OUTPUT) \
 	$(INTRO_SMALL_ARCHIVE_ASSETS) $(UI_SCENE_080A2BA4_OUTPUTS) \
 	$(UI_SCENE_08077810_ACTIVE_STAMP) $(UI_SCENE_080AE7D0_OUTPUTS) \
 	$(UI_SCENE_080B7164_OUTPUTS) $(UI_SCENE_080C160C_OUTPUTS) $(UI_SCENE_080BCFAC_OUTPUTS) \
@@ -1618,12 +1603,8 @@ $(INTRO_OBJECTS_OUTPUTS): $(INTRO_OBJECTS_STAMP)
 $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/%.tilemap.lz: $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/%.tilemap $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/%.original.lz $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) rebuild-native $< $(word 2,$^) $@
 
-$(INTRO_STARTUP_VISUAL_STAMP): $(INTRO_STARTUP_VISUAL_TILES_SOURCE) $(INTRO_STARTUP_VISUAL_PALETTE_SOURCE) $(INTRO_STARTUP_VISUAL_TOOL) $(FARM_STATUS_CODEC) $(BASE_ROM)
-	@$(PYTHON) $(INTRO_STARTUP_VISUAL_TOOL) build --region $(INTRO_STARTUP_VISUAL_REGION) --rom $(BASE_ROM) \
-	  --source-dir $(INTRO_STARTUP_VISUAL_SOURCE_DIR) --output $(INTRO_STARTUP_VISUAL_TILES_BIN) --palette-output $(INTRO_STARTUP_VISUAL_PALETTE_BIN)
-	@touch $@
-
-$(INTRO_STARTUP_VISUAL_TILES_BIN) $(INTRO_STARTUP_VISUAL_PALETTE_BIN): $(INTRO_STARTUP_VISUAL_STAMP)
+$(INTRO_STARTUP_VISUAL_PACKED_BIN): $(INTRO_STARTUP_VISUAL_TILES_BIN) $(INTRO_STARTUP_VISUAL_ORIGINAL) $(FOMT_LZ_TOOL)
+	@$(FOMT_LZ_TOOL) rebuild-native $< $(INTRO_STARTUP_VISUAL_ORIGINAL) $@
 
 $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_0.tilemap.lz: $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_0.tilemap $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) encode-lz3 $< $@ 125 0x28
@@ -1720,7 +1701,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-resource-archive gfx-farm-status-resource-archive-test gfx-farm-status-resource-archive-all gfx-farm-status-resource-archive-patch-test gfx-farm-status-resource-archive-edit-test gfx-farm-status-winter gfx-farm-status-winter-test gfx-farm-status-winter-all gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-secondary-tilemaps-edit-test gfx-farm-status-exterior-styles gfx-farm-status-exterior-styles-test gfx-farm-status-selector-icon gfx-farm-status-selector-icon-test gfx-farm-status-selector-icon-all gfx-clock-font gfx-clock-font-test gfx-clock-font-all gfx-farm-status-creature-icons gfx-farm-status-creature-icons-test gfx-farm-status-creature-icons-all gfx-farm-status-task-marker gfx-farm-status-task-marker-test gfx-farm-status-task-marker-all gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal-nonwinter-all gfx-seasonal-nonwinter-reference gfx-seasonal-winter gfx-seasonal-winter-test gfx-seasonal-winter-all gfx-seasonal-winter-reference gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-visual gfx-intro-startup-visual-export gfx-intro-startup-visual-reference gfx-intro-startup-visual-test gfx-intro-startup-visual-all gfx-intro-startup-visual-edit-test gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-animal-festival-icons gfx-animal-festival-icons-test gfx-animal-festival-icons-all resource-archive-audit unpack-vram-inventory dma-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
+.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-resource-archive gfx-farm-status-resource-archive-test gfx-farm-status-resource-archive-all gfx-farm-status-resource-archive-patch-test gfx-farm-status-resource-archive-edit-test gfx-farm-status-winter gfx-farm-status-winter-test gfx-farm-status-winter-all gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-secondary-tilemaps-edit-test gfx-farm-status-exterior-styles gfx-farm-status-exterior-styles-test gfx-farm-status-selector-icon gfx-farm-status-selector-icon-test gfx-farm-status-selector-icon-all gfx-clock-font gfx-clock-font-test gfx-clock-font-all gfx-farm-status-creature-icons gfx-farm-status-creature-icons-test gfx-farm-status-creature-icons-all gfx-farm-status-task-marker gfx-farm-status-task-marker-test gfx-farm-status-task-marker-all gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal-nonwinter-all gfx-seasonal-nonwinter-reference gfx-seasonal-winter gfx-seasonal-winter-test gfx-seasonal-winter-all gfx-seasonal-winter-reference gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-visual gfx-intro-startup-visual-test gfx-intro-startup-visual-all gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-animal-festival-icons gfx-animal-festival-icons-test gfx-animal-festival-icons-all resource-archive-audit unpack-vram-inventory dma-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
 .PHONY: gfx-map-resources-reference gfx-map-resources-edit-test gfx-map-state-palettes gfx-map-state-palettes-test gfx-map-state-templates gfx-map-state-templates-test gfx-map-state-templates-all unpack-inventory unpack-coverage-inventory copy-ram-inventory
 .PHONY: indexed-resource-archive-inventory
 .PHONY: gfx-farm-status-task-ui-tile gfx-farm-status-task-ui-tile-test gfx-farm-status-task-ui-tile-all
@@ -3079,22 +3060,10 @@ gfx-intro-startup-tilemaps-test: gfx-intro-startup-tilemaps $(FOMT_LZ_TOOL)
 	  $(FOMT_LZ_TOOL) verify-native "$$source" "$$source.lz"; \
 	done
 gfx-intro-startup-tilemaps-all: gfx-intro-startup-tilemaps-test
-gfx-intro-startup-visual-export: $(INTRO_STARTUP_VISUAL_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(INTRO_STARTUP_VISUAL_TOOL) export --source-dir $(INTRO_STARTUP_VISUAL_SOURCE_DIR) --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba --replace
-gfx-intro-startup-visual-reference: $(INTRO_STARTUP_VISUAL_TOOL) $(INTRO_STARTUP_VISUAL_TILES_SOURCE) $(INTRO_STARTUP_VISUAL_PALETTE_SOURCE) $(INTRO_STARTUP_TILEMAPS_SOURCES)
-	@$(PYTHON) $(INTRO_STARTUP_VISUAL_TOOL) reference --source-dir $(INTRO_STARTUP_VISUAL_SOURCE_DIR) --tilemaps-dir $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR) --reference-dir $(INTRO_STARTUP_VISUAL_REFERENCE_DIR) --replace
-gfx-intro-startup-visual: $(INTRO_STARTUP_VISUAL_TILES_BIN) $(INTRO_STARTUP_VISUAL_PALETTE_BIN)
-gfx-intro-startup-visual-test: gfx-intro-startup-visual $(BASE_ROM) $(GFX_RANGE_VERIFY)
-	@$(PYTHON) $(INTRO_STARTUP_VISUAL_TOOL) verify --source-dir $(INTRO_STARTUP_VISUAL_SOURCE_DIR) --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
-	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(INTRO_STARTUP_VISUAL_STREAM_OFFSET) --input $(INTRO_STARTUP_VISUAL_TILES_BIN)
-	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(INTRO_STARTUP_VISUAL_PALETTE_OFFSET) --input $(INTRO_STARTUP_VISUAL_PALETTE_BIN)
-gfx-intro-startup-visual-all:
-	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-intro-startup-visual-test
-	@$(MAKE) --no-print-directory GAME_REGION=US gfx-intro-startup-visual-test
-	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-intro-startup-visual-test
-	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-intro-startup-visual-test
-gfx-intro-startup-visual-edit-test: $(INTRO_STARTUP_VISUAL_TOOL) baserom_jp.gba
-	@$(PYTHON) $(INTRO_STARTUP_VISUAL_TOOL) edit-test --region jp --rom baserom_jp.gba
+gfx-intro-startup-visual: $(INTRO_STARTUP_VISUAL_PACKED_BIN) $(INTRO_STARTUP_VISUAL_PALETTE_BIN)
+gfx-intro-startup-visual-test: gfx-intro-startup-visual $(FOMT_LZ_TOOL)
+	@$(FOMT_LZ_TOOL) verify-native $(INTRO_STARTUP_VISUAL_TILES_BIN) $(INTRO_STARTUP_VISUAL_PACKED_BIN)
+gfx-intro-startup-visual-all: gfx-intro-startup-visual-test
 gfx-map-resources: $(MAP_RESOURCES_STAMP)
 gfx-map-resources-test: gfx-map-resources $(MAP_RESOURCES_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(MAP_RESOURCES_TOOL) verify --region $(MAP_RESOURCES_REGION) --source-dir $(MAP_RESOURCES_SOURCE_DIR) --output-dir $(MAP_RESOURCES_OUTPUT_DIR) \
@@ -3493,7 +3462,6 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-intro-objects-edit-test
 	@$(MAKE) --no-print-directory gfx-intro-startup-tilemaps-all
 	@$(MAKE) --no-print-directory gfx-intro-startup-visual-all
-	@$(MAKE) --no-print-directory gfx-intro-startup-visual-edit-test
 	@$(MAKE) --no-print-directory gfx-intro-indexed-archive-all
 	@$(MAKE) --no-print-directory gfx-intro-indexed-archive-edit-test
 	@$(MAKE) --no-print-directory gfx-intro-small-archive-all

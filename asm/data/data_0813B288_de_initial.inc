@@ -151278,10 +151278,10 @@ gUnk_IntroSceneStartupUnpackSource_003:
 	.incbin "graphics/intro_scene/shared/startup_tilemaps/startup_03.tilemap.lz"
 	.global gUnk_0874A9C0
 gUnk_0874A9C0:
-	.incbin "build/de/graphics/intro_scene/startup_visual/startup_tiles.0x70"
+	.incbin "graphics/intro_scene/shared/startup_visual/startup_tiles.4bpp.lz"
 	.global gUnk_0874E330
 gUnk_0874E330:
-	.incbin "build/de/graphics/intro_scene/startup_visual/startup_palette_banks.gbapal"
+	.incbin "graphics/intro_scene/shared/startup_visual/startup_palette_banks.gbapal"
 	.global gUnk_0874E530
 gUnk_0874E530:
 	.4byte 1                         @ selection count
