@@ -23,7 +23,7 @@ as a shared payload.
 | `gUnk_0871EDD4` | `0x4A4F3C` | `0x71EDD4` | `0x71EE30` | `0x4A5FA0` | `0x12C` | 1, 5, 1, 4, 1, 0 | 5 | rebuild, four-region shared: `graphics/shared_resource_0871edd4/` |
 | `gUnk_0871EF00` | `0x4A5068` | `0x71EF00` | `0x71EF5C` | `0x4A60CC` | `0x6EA0` | 27, 102, 1, 768, 46, 0 | 124 | rebuild, four-region shared: `graphics/large_resource_archive/` |
 | `gUnk_08725DA0` | `0x4ABF08` | `0x725DA0` | `0x725DFC` | `0x4ACF6C` | `0xF2C` | 6, 6, 20, 109, 2, 0 | 6 | rebuild, four-region shared: `graphics/shared_resource_08725da0/` |
-| `gUnk_08726CCC` | `0x4ACE34` | `0x726CCC` | `0x726D28` | `0x4ADE98` | `0x69C` | 1, 1, 9, 48, 1, 0 | 1 | rebuild, four-region shared: `graphics/shared_resource_08726ccc/` |
+| `gUnk_08726CCC` | `0x4ACE34` | `0x726CCC` | `0x726D28` | `0x4ADE98` | `0x69C` | 1, 1, 9, 48, 1, 0 | 1 | source-owned direct link, four-region shared: `graphics/shared_resource_08726ccc/` |
 | `gUnk_08727368` | `0x4AD4D0` | `0x727368` | `0x7273C4` | `0x4AE534` | `0x70C` | 3, 21, 68, 22, 1, 0 | 37 | rebuild, four-region shared: `graphics/shared_resource_08727368/` |
 | `gUnk_08727A74` | `0x4ADBDC` | `0x727A74` | `0x727AD0` | `0x4AEC40` | `0x794` | 1, 1, 36, 49, 1, 0 | 1 | rebuild, four-region shared: `graphics/shared_resource_08727a74/` |
 | `gUnk_08728208` | `0x4AE370` | `0x728208` | `0x728264` | `0x4AF3D4` | `0x118` | 1, 3, 3, 4, 1, 0 | 4 | rebuild, region-local: `graphics/regional_resource_08728208/` |
