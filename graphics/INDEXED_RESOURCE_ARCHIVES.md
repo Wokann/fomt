@@ -378,9 +378,9 @@ the runtime purpose is independently established.
 Shared archive `08740454` is independently bounded at the four locations in
 the table. Its three descriptors select two native OAM records, six native 4bpp
 tiles, one BGR555 palette, and three selection entries. Three native OAM flips
-remain layout data. Its editable PNG sources are under
-`graphics/shared_resource_08740454/`; the address remains its source name until
-the runtime purpose is independently established.
+remain layout data. Editable `full/native.png` is linked through `archive.inc`
+using the generic graphics rules, without a post-link patch. The address
+remains its source name until the runtime purpose is independently established.
 
 Shared archive `087405A0` is independently bounded at the four locations in
 the table. Its one descriptor selects two native OAM records, 24 native 4bpp
