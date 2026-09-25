@@ -258,6 +258,19 @@ lengths. The map is stored as native entries, not a guessed PNG composite:
 make gfx-ui-scene-08077810-patch-test
 ```
 
+## FarmHouse descriptor palettes
+
+The ten native BGR555 buffers in `farm_house_visual/shared/palettes/` are
+included directly at their original assembly positions for JP, US/EU and DE.
+The descriptor pointers continue to refer to those positions; the formal ROM
+build does not copy the buffers through a generated directory or patch them
+after linking. Independently compare every source buffer with all four retail
+ROMs using the C range verifier:
+
+```console
+make gfx-farm-house-palettes-all
+```
+
 ## Map-state fallback palettes
 
 `func_080A95A4` selects one of five state-dependent palette streams while

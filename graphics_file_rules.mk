@@ -1158,12 +1158,28 @@ FARM_HOUSE_TILEMAP_REGION := $(INTRO_OBJECTS_REGION)
 # Each descriptor's +0x20 source is copied as a known number of native
 # BGR555 palette banks. Keep it binary, separate from both tile and tilemap
 # authoring data.
-FARM_HOUSE_PALETTE_TOOL := tools/farm_house_visual_palettes.py
 FARM_HOUSE_PALETTE_SOURCE_DIR := graphics/farm_house_visual/shared/palettes
 FARM_HOUSE_PALETTE_SOURCES := $(wildcard $(FARM_HOUSE_PALETTE_SOURCE_DIR)/*.gbapal)
-FARM_HOUSE_PALETTE_OUTPUT_DIR := $(BUILD_DIR)/graphics/farm_house_visual_palettes
-FARM_HOUSE_PALETTE_STAMP := $(FARM_HOUSE_PALETTE_OUTPUT_DIR)/.farm-house-palettes.stamp
-FARM_HOUSE_PALETTE_REGION := $(INTRO_OBJECTS_REGION)
+FARM_HOUSE_PALETTE_VERIFY_JP := \
+  palette_00_buffer_0.gbapal:0x472FCC palette_01_buffer_0.gbapal:0x473470 palette_01_buffer_1.gbapal:0x473678 \
+  palette_02_buffer_0.gbapal:0x478EA0 palette_02_buffer_1.gbapal:0x4790A8 palette_03_buffer_0.gbapal:0x47668C \
+  palette_04_buffer_0.gbapal:0x478008 palette_05_buffer_0.gbapal:0x473A3C palette_05_buffer_1.gbapal:0x473AEC \
+  palette_06_buffer_0.gbapal:0x474C28
+FARM_HOUSE_PALETTE_VERIFY_US := \
+  palette_00_buffer_0.gbapal:0x6ECE70 palette_01_buffer_0.gbapal:0x6ED314 palette_01_buffer_1.gbapal:0x6ED51C \
+  palette_02_buffer_0.gbapal:0x6F2D44 palette_02_buffer_1.gbapal:0x6F2F4C palette_03_buffer_0.gbapal:0x6F0530 \
+  palette_04_buffer_0.gbapal:0x6F1EAC palette_05_buffer_0.gbapal:0x6ED8E0 palette_05_buffer_1.gbapal:0x6ED990 \
+  palette_06_buffer_0.gbapal:0x6EEACC
+FARM_HOUSE_PALETTE_VERIFY_EU := \
+  palette_00_buffer_0.gbapal:0x6ECECC palette_01_buffer_0.gbapal:0x6ED370 palette_01_buffer_1.gbapal:0x6ED578 \
+  palette_02_buffer_0.gbapal:0x6F2DA0 palette_02_buffer_1.gbapal:0x6F2FA8 palette_03_buffer_0.gbapal:0x6F058C \
+  palette_04_buffer_0.gbapal:0x6F1F08 palette_05_buffer_0.gbapal:0x6ED93C palette_05_buffer_1.gbapal:0x6ED9EC \
+  palette_06_buffer_0.gbapal:0x6EEB28
+FARM_HOUSE_PALETTE_VERIFY_DE := \
+  palette_00_buffer_0.gbapal:0x473F0C palette_01_buffer_0.gbapal:0x4743B0 palette_01_buffer_1.gbapal:0x4745B8 \
+  palette_02_buffer_0.gbapal:0x479DE0 palette_02_buffer_1.gbapal:0x479FE8 palette_03_buffer_0.gbapal:0x4775CC \
+  palette_04_buffer_0.gbapal:0x478F48 palette_05_buffer_0.gbapal:0x47497C palette_05_buffer_1.gbapal:0x474A2C \
+  palette_06_buffer_0.gbapal:0x475B68
 
 # MapData owns 66 six-layer map records. Every unique visual stream has a
 # native decoded source. Unchanged sources retain their retail packed bytes;
@@ -1700,11 +1716,6 @@ $(FARM_HOUSE_TILEMAP_STAMP): $(FARM_HOUSE_TILEMAP_SOURCES) $(FARM_HOUSE_TILEMAP_
 	  --source-dir $(FARM_HOUSE_TILEMAP_SOURCE_DIR) --output-dir $(FARM_HOUSE_TILEMAP_OUTPUT_DIR) $(MAP_RESOURCES_ALL_ROM_ARGS)
 	@touch $@
 
-$(FARM_HOUSE_PALETTE_STAMP): $(FARM_HOUSE_PALETTE_SOURCES) $(FARM_HOUSE_PALETTE_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(FARM_HOUSE_PALETTE_TOOL) build --region $(FARM_HOUSE_PALETTE_REGION) \
-	  --source-dir $(FARM_HOUSE_PALETTE_SOURCE_DIR) --output-dir $(FARM_HOUSE_PALETTE_OUTPUT_DIR) $(MAP_RESOURCES_ALL_ROM_ARGS)
-	@touch $@
-
 $(MAP_RESOURCES_STAMP): $(MAP_RESOURCES_SOURCES) $(MAP_RESOURCES_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(MAP_RESOURCES_TOOL) build --region $(MAP_RESOURCES_REGION) --rom $(BASE_ROM) \
 	  --source-dir $(MAP_RESOURCES_SOURCE_DIR) --output-dir $(MAP_RESOURCES_OUTPUT_DIR) $(MAP_RESOURCES_ALL_ROM_ARGS)
@@ -1786,7 +1797,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 .PHONY: gfx-ui-scene-0805ab08-tiles gfx-ui-scene-0805ab08-reference gfx-ui-scene-0805ab08-tiles-test gfx-ui-scene-0805ab08-tiles-all
 .PHONY: gfx-farm-house-visual gfx-farm-house-visual-test gfx-farm-house-visual-all gfx-farm-house-visual-patch-test gfx-farm-house-visual-edit-test
 .PHONY: gfx-farm-house-tilemaps gfx-farm-house-tilemaps-test gfx-farm-house-tilemaps-all gfx-farm-house-tilemaps-patch-test gfx-farm-house-tilemaps-edit-test
-.PHONY: gfx-farm-house-palettes gfx-farm-house-palettes-test gfx-farm-house-palettes-all gfx-farm-house-palettes-patch-test gfx-farm-house-palettes-edit-test
+.PHONY: gfx-farm-house-palettes gfx-farm-house-palettes-test gfx-farm-house-palettes-all
 .PHONY: gfx-intro-indexed-archive gfx-intro-indexed-archive-test gfx-intro-indexed-archive-all gfx-intro-indexed-archive-edit-test
 .PHONY: gfx-intro-small-archive gfx-intro-small-archive-test gfx-intro-small-archive-all
 oam-pack: $(OAM_PACK)
@@ -2053,19 +2064,17 @@ gfx-farm-house-tilemaps-patch-test: gfx-farm-house-tilemaps-all $(FARM_HOUSE_TIL
 	@$(PYTHON) $(FARM_HOUSE_TILEMAP_TOOL) patch-test --output-root build $(MAP_RESOURCES_ROM_ARGS)
 gfx-farm-house-tilemaps-edit-test: $(FARM_HOUSE_TILEMAP_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(FARM_HOUSE_TILEMAP_TOOL) edit-test $(MAP_RESOURCES_ROM_ARGS)
-gfx-farm-house-palettes: $(FARM_HOUSE_PALETTE_STAMP)
-gfx-farm-house-palettes-test: gfx-farm-house-palettes $(FARM_HOUSE_PALETTE_TOOL)
-	@$(PYTHON) $(FARM_HOUSE_PALETTE_TOOL) verify --region $(FARM_HOUSE_PALETTE_REGION) \
-	  --source-dir $(FARM_HOUSE_PALETTE_SOURCE_DIR) --output-dir $(FARM_HOUSE_PALETTE_OUTPUT_DIR) $(MAP_RESOURCES_ALL_ROM_ARGS)
+gfx-farm-house-palettes: $(FARM_HOUSE_PALETTE_SOURCES)
+gfx-farm-house-palettes-test: gfx-farm-house-palettes $(GFX_RANGE_VERIFY) $(BASE_ROM)
+	@set -e; for entry in $(FARM_HOUSE_PALETTE_VERIFY_$(GAME_REGION)); do \
+	  source=$${entry%%:*}; offset=$${entry#*:}; \
+	  $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$offset --input $(FARM_HOUSE_PALETTE_SOURCE_DIR)/$$source; \
+	done
 gfx-farm-house-palettes-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-farm-house-palettes-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-farm-house-palettes-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-farm-house-palettes-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-farm-house-palettes-test
-gfx-farm-house-palettes-patch-test: gfx-farm-house-palettes-all $(FARM_HOUSE_PALETTE_TOOL)
-	@$(PYTHON) $(FARM_HOUSE_PALETTE_TOOL) patch-test --output-root build $(MAP_RESOURCES_ROM_ARGS)
-gfx-farm-house-palettes-edit-test: $(FARM_HOUSE_PALETTE_TOOL) $(FARM_HOUSE_PALETTE_SOURCES) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(FARM_HOUSE_PALETTE_TOOL) edit-test --source-dir $(FARM_HOUSE_PALETTE_SOURCE_DIR) $(MAP_RESOURCES_ROM_ARGS)
 gfx-farm-status: $(FARM_STATUS_TILES_BIN) $(FARM_STATUS_PALETTE_BIN) $(FARM_STATUS_PACKED_BIN)
 gfx-farm-status-test: gfx-farm-status $(BASE_ROM) $(GFX_RANGE_VERIFY)
 	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FARM_STATUS_STREAM_OFFSET) --input $(FARM_STATUS_PACKED_BIN)
@@ -3359,8 +3368,6 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-farm-house-tilemaps-patch-test
 	@$(MAKE) --no-print-directory gfx-farm-house-tilemaps-edit-test
 	@$(MAKE) --no-print-directory gfx-farm-house-palettes-all
-	@$(MAKE) --no-print-directory gfx-farm-house-palettes-patch-test
-	@$(MAKE) --no-print-directory gfx-farm-house-palettes-edit-test
 	@$(MAKE) --no-print-directory gfx-farm-status-all
 	@$(MAKE) --no-print-directory gfx-farm-status-resource-archive-all
 	@$(MAKE) --no-print-directory gfx-farm-status-resource-archive-patch-test
