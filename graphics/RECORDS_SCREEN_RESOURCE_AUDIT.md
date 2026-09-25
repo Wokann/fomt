@@ -24,9 +24,10 @@ ROM order, but the table selects the presentation order below:
 | 6 | `task_01` |
 
 The same ordering exists in JP and overseas branches.  The only regional
-differences are physical ROM offsets.  `tools/records_minigame_resources.py`
-hash-checks each of the seven tile and palette records for JP, US, EU, and DE,
-and the one shared set of indexed PNG sources rebuilds all four byte-for-byte.
+differences are physical ROM offsets. The `gfx-records-minigame-all` target
+compares each of the seven generated tile/palette pairs with JP, US, EU, and
+DE, and the one shared set of indexed PNG sources rebuilds all four
+byte-for-byte.
 
 The Records Screen assembly path at
 `asm/code_0803EE94.s:125216` indexes this two-word table and passes its

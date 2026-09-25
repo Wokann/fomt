@@ -17,17 +17,24 @@ def main() -> None:
     parser.add_argument("rom", type=Path)
     parser.add_argument("--offset", required=True, type=number)
     parser.add_argument("--input", required=True, type=Path)
-    parser.add_argument("--sha256", required=True)
+    parser.add_argument("--length", type=number)
+    parser.add_argument("--sha256")
     arguments = parser.parse_args()
 
     payload = arguments.input.read_bytes()
-    actual_sha256 = hashlib.sha256(payload).hexdigest()
-    if actual_sha256.lower() != arguments.sha256.lower():
+    if arguments.length is not None and len(payload) != arguments.length:
         raise SystemExit(
-            f"{arguments.input}: SHA-256 {actual_sha256} does not match declared {arguments.sha256}"
+            f"{arguments.input}: expected 0x{arguments.length:X} bytes, got 0x{len(payload):X}"
         )
-    rom = arguments.rom.read_bytes()
-    reference = rom[arguments.offset:arguments.offset + len(payload)]
+    if arguments.sha256:
+        actual_sha256 = hashlib.sha256(payload).hexdigest()
+        if actual_sha256.lower() != arguments.sha256.lower():
+            raise SystemExit(
+                f"{arguments.input}: SHA-256 {actual_sha256} does not match declared {arguments.sha256}"
+            )
+    with arguments.rom.open("rb") as rom:
+        rom.seek(arguments.offset)
+        reference = rom.read(len(payload))
     if len(reference) != len(payload):
         raise SystemExit(f"{arguments.rom}: range 0x{arguments.offset:X} exceeds the ROM")
     if reference != payload:

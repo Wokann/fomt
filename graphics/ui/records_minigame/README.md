@@ -21,13 +21,12 @@ The raw tile/palette pairs are byte-identical in all four retail FoMT ROMs:
 | DE | `0x4D9428` | `0xA0` | 7 |
 
 Every pair is `0x80` bytes of 4bpp tiles followed by `0x20` bytes of BGR555
-palette data.  `tools/records_minigame_resources.py` owns these bounds and
-the expected SHA-256 values; it refuses to export a selected ROM whose record
-does not match.
+palette data. The Make rules record these physical bounds and compare each
+generated tile/palette file with the corresponding retail ROM range.
 
 The normal build uses the shared `PNG -> .4bpp/.gbapal` Make rules and
-`gbagfx`, one PNG at a time. The Python tool remains for ROM export and
-verification; it is not part of the conversion path.
+`gbagfx`, one PNG at a time. The shared range verifier is used only by the
+explicit test target, not by the conversion path.
 
 ```console
 make gfx-records-minigame-all
@@ -38,11 +37,3 @@ This rebuilds the source-adjacent `shared/task_XX.4bpp` and
 pair against JP, US, EU and DE.  The assembler consumes those files directly
 at the original resource labels, so an unchanged source rebuild is
 byte-identical and preserves the native C++ pointer-table references.
-
-To regenerate the checked-in sources from a verified JP ROM:
-
-```console
-python tools/records_minigame_resources.py export \
-  --rom baserom_jp.gba --region jp \
-  --output-dir graphics/ui/records_minigame/shared --replace
-```

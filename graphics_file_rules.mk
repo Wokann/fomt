@@ -122,10 +122,13 @@ FARM_STATUS_EXTERIOR_STYLE_OUTPUT_DIR := $(BUILD_DIR)/graphics/ui/farm_status/ex
 FARM_STATUS_EXTERIOR_STYLE_OUTPUTS := $(FARM_STATUS_EXTERIOR_STYLE_OUTPUT_DIR)/doghouse.4bpp $(FARM_STATUS_EXTERIOR_STYLE_OUTPUT_DIR)/mailbox.4bpp $(FARM_STATUS_EXTERIOR_STYLE_OUTPUT_DIR)/window.4bpp
 FARM_STATUS_EXTERIOR_STYLE_STAMP := $(FARM_STATUS_EXTERIOR_STYLE_OUTPUT_DIR)/.exterior-styles.stamp
 FARM_STATUS_EXTERIOR_STYLE_REGION := $(shell echo "$(GAME_REGION)" | tr '[:upper:]' '[:lower:]')
-FARM_STATUS_SELECTOR_ICON_TOOL := tools/farm_status_selector_icon.py
 FARM_STATUS_SELECTOR_ICON_SOURCE := graphics/ui/farm_status/shared/auxiliary_icons/selector_case_09.png
 FARM_STATUS_SELECTOR_ICON_OUTPUT_DIR := graphics/ui/farm_status/shared/auxiliary_icons
 FARM_STATUS_SELECTOR_ICON_OUTPUTS := $(FARM_STATUS_SELECTOR_ICON_OUTPUT_DIR)/selector_case_09.4bpp $(FARM_STATUS_SELECTOR_ICON_OUTPUT_DIR)/selector_case_09.gbapal
+FARM_STATUS_SELECTOR_ICON_BASE_JP := 0x4D8DF8
+FARM_STATUS_SELECTOR_ICON_BASE_US := 0x752E4C
+FARM_STATUS_SELECTOR_ICON_BASE_EU := 0x752EA8
+FARM_STATUS_SELECTOR_ICON_BASE_DE := 0x4DA368
 # The Farm Status and Town Map share a compact IndexedResourceArchive.  Its
 # forty complete OAM resources use indexed full PNGs as authoring input; the
 # original descriptor/OAM/palette tables remain native archive data.  The
@@ -1316,7 +1319,6 @@ FARM_HOUSE_LOOKUP_AUDIT_TOOL := tools/farm_house_lookup_audit.py
 # icons.  Each source PNG retains the physical icon's own 16-colour BGR555
 # palette; the C++ pointer table determines presentation order at runtime.
 RECORDS_MINIGAME_SOURCE_DIR := graphics/ui/records_minigame/shared
-RECORDS_MINIGAME_TOOL := tools/records_minigame_resources.py
 RECORDS_MINIGAME_TASKS := 00 01 02 03 04 05 06
 RECORDS_MINIGAME_SOURCES := $(foreach task,$(RECORDS_MINIGAME_TASKS),$(RECORDS_MINIGAME_SOURCE_DIR)/task_$(task).png)
 # Generated resource inputs live with their PNG sources.  `build/` is reserved
@@ -1325,11 +1327,14 @@ RECORDS_MINIGAME_OUTPUT_DIR := $(RECORDS_MINIGAME_SOURCE_DIR)
 RECORDS_MINIGAME_TILES_BIN := $(foreach task,$(RECORDS_MINIGAME_TASKS),$(RECORDS_MINIGAME_OUTPUT_DIR)/task_$(task).4bpp)
 RECORDS_MINIGAME_PALETTE_BIN := $(foreach task,$(RECORDS_MINIGAME_TASKS),$(RECORDS_MINIGAME_OUTPUT_DIR)/task_$(task).gbapal)
 RECORDS_MINIGAME_OUTPUTS := $(RECORDS_MINIGAME_TILES_BIN) $(RECORDS_MINIGAME_PALETTE_BIN)
+RECORDS_MINIGAME_BASE_JP := 0x4D7EB8
+RECORDS_MINIGAME_BASE_US := 0x751F0C
+RECORDS_MINIGAME_BASE_EU := 0x751F68
+RECORDS_MINIGAME_BASE_DE := 0x4D9428
 
 # Animal Festival loads ten independent raw 16x16 icons.  The shared PNGs
 # retain each record's own palette; code selects physical records by pointer.
 ANIMAL_FESTIVAL_ICON_SOURCE_DIR := graphics/ui/animal_festival/shared
-ANIMAL_FESTIVAL_ICON_TOOL := tools/animal_festival_icons.py
 ANIMAL_FESTIVAL_ICON_IDS := 00 01 02 03 04 05 06 07 08 09
 ANIMAL_FESTIVAL_ICON_SOURCES := $(foreach icon,$(ANIMAL_FESTIVAL_ICON_IDS),$(ANIMAL_FESTIVAL_ICON_SOURCE_DIR)/icon_$(icon).png)
 # Generated resource inputs remain beside their PNG sources; `build/` holds
@@ -1338,30 +1343,44 @@ ANIMAL_FESTIVAL_ICON_OUTPUT_DIR := $(ANIMAL_FESTIVAL_ICON_SOURCE_DIR)
 ANIMAL_FESTIVAL_ICON_TILES := $(foreach icon,$(ANIMAL_FESTIVAL_ICON_IDS),$(ANIMAL_FESTIVAL_ICON_OUTPUT_DIR)/icon_$(icon).4bpp)
 ANIMAL_FESTIVAL_ICON_PALETTES := $(foreach icon,$(ANIMAL_FESTIVAL_ICON_IDS),$(ANIMAL_FESTIVAL_ICON_OUTPUT_DIR)/icon_$(icon).gbapal)
 ANIMAL_FESTIVAL_ICON_OUTPUTS := $(ANIMAL_FESTIVAL_ICON_TILES) $(ANIMAL_FESTIVAL_ICON_PALETTES)
+ANIMAL_FESTIVAL_ICON_BASE_JP := 0x4D7878
+ANIMAL_FESTIVAL_ICON_BASE_US := 0x7518CC
+ANIMAL_FESTIVAL_ICON_BASE_EU := 0x751928
+ANIMAL_FESTIVAL_ICON_BASE_DE := 0x4D8DE8
 
 # Farm Status has two direct ten-record 16x16 UI-icon sequences. Each record
 # owns its adjacent BGR555 palette; original code chooses the labels. The
 # historical CREATURE name below is a build identifier, not a semantic claim:
 # the first sequence also contains the Harvest Sprite list's cake icon.
 FARM_STATUS_CREATURE_ICON_SOURCE_DIR := graphics/ui/farm_status/creature_icons/shared
-FARM_STATUS_CREATURE_ICON_TOOL := tools/farm_status_creature_icons.py
 FARM_STATUS_CREATURE_ICON_IDS := 00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19
 FARM_STATUS_CREATURE_ICON_SOURCES := $(foreach icon,$(FARM_STATUS_CREATURE_ICON_IDS),$(FARM_STATUS_CREATURE_ICON_SOURCE_DIR)/icon_$(icon).png)
 FARM_STATUS_CREATURE_ICON_OUTPUT_DIR := $(FARM_STATUS_CREATURE_ICON_SOURCE_DIR)
 FARM_STATUS_CREATURE_ICON_TILES := $(foreach icon,$(FARM_STATUS_CREATURE_ICON_IDS),$(FARM_STATUS_CREATURE_ICON_OUTPUT_DIR)/icon_$(icon).4bpp)
 FARM_STATUS_CREATURE_ICON_PALETTES := $(foreach icon,$(FARM_STATUS_CREATURE_ICON_IDS),$(FARM_STATUS_CREATURE_ICON_OUTPUT_DIR)/icon_$(icon).gbapal)
 FARM_STATUS_CREATURE_ICON_OUTPUTS := $(FARM_STATUS_CREATURE_ICON_TILES) $(FARM_STATUS_CREATURE_ICON_PALETTES)
+FARM_STATUS_CREATURE_ICON_BASE_0_JP := 0x4D8318
+FARM_STATUS_CREATURE_ICON_BASE_0_US := 0x75236C
+FARM_STATUS_CREATURE_ICON_BASE_0_EU := 0x7523C8
+FARM_STATUS_CREATURE_ICON_BASE_0_DE := 0x4D9888
+FARM_STATUS_CREATURE_ICON_BASE_1_JP := 0x4D8E98
+FARM_STATUS_CREATURE_ICON_BASE_1_US := 0x752EEC
+FARM_STATUS_CREATURE_ICON_BASE_1_EU := 0x752F48
+FARM_STATUS_CREATURE_ICON_BASE_1_DE := 0x4DA408
 
 # The Farm Status Harvest Sprite task UI tile is one complete 8x8 OBJ tile
 # with its adjacent 16-colour BGR555 palette.  Its caller proves that exact
 # pairing, so this small record can use an editable PNG source.
 FARM_STATUS_TASK_UI_TILE_SOURCE_DIR := graphics/ui/farm_status/harvest_sprite_task_ui_tile/shared
-FARM_STATUS_TASK_UI_TILE_TOOL := tools/farm_status_task_ui_tile.py
 FARM_STATUS_TASK_UI_TILE_SOURCE := $(FARM_STATUS_TASK_UI_TILE_SOURCE_DIR)/harvest_sprite_task_ui_tile.png
 FARM_STATUS_TASK_UI_TILE_OUTPUT_DIR := $(FARM_STATUS_TASK_UI_TILE_SOURCE_DIR)
 FARM_STATUS_TASK_UI_TILE_TILES := $(FARM_STATUS_TASK_UI_TILE_OUTPUT_DIR)/harvest_sprite_task_ui_tile.4bpp
 FARM_STATUS_TASK_UI_TILE_PALETTE := $(FARM_STATUS_TASK_UI_TILE_OUTPUT_DIR)/harvest_sprite_task_ui_tile.gbapal
 FARM_STATUS_TASK_UI_TILE_OUTPUTS := $(FARM_STATUS_TASK_UI_TILE_TILES) $(FARM_STATUS_TASK_UI_TILE_PALETTE)
+FARM_STATUS_TASK_UI_TILE_BASE_JP := 0x4D6BF8
+FARM_STATUS_TASK_UI_TILE_BASE_US := 0x750C4C
+FARM_STATUS_TASK_UI_TILE_BASE_EU := 0x750CA8
+FARM_STATUS_TASK_UI_TILE_BASE_DE := 0x4D8168
 
 # Buildable graphics consumed by the current assembly data.  Keep this
 # inventory with the conversion rules rather than in the root Makefile: source
@@ -1687,9 +1706,6 @@ $(FARM_STATUS_EXTERIOR_STYLE_STAMP): $(FARM_STATUS_EXTERIOR_STYLE_SOURCES) $(FAR
 
 $(FARM_STATUS_EXTERIOR_STYLE_OUTPUTS): $(FARM_STATUS_EXTERIOR_STYLE_STAMP)
 
-$(FARM_STATUS_SELECTOR_ICON_OUTPUTS) &: $(FARM_STATUS_SELECTOR_ICON_SOURCE) $(FARM_STATUS_SELECTOR_ICON_TOOL)
-	@$(PYTHON) $(FARM_STATUS_SELECTOR_ICON_TOOL) build --source $(FARM_STATUS_SELECTOR_ICON_SOURCE) --output-dir $(FARM_STATUS_SELECTOR_ICON_OUTPUT_DIR)
-
 $(CLOCK_FONT_US_EU_OUTPUT): $(CLOCK_FONT_TOOL) $(CLOCK_FONT_US_EU_SOURCE) $(CLOCK_FONT_TAIL)
 	@$(PYTHON) $(CLOCK_FONT_TOOL) build --source $(CLOCK_FONT_US_EU_SOURCE) --tail $(CLOCK_FONT_TAIL) --output $@
 
@@ -1843,7 +1859,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-resource-archive gfx-farm-status-resource-archive-test gfx-farm-status-resource-archive-all gfx-farm-status-resource-archive-patch-test gfx-farm-status-resource-archive-edit-test gfx-farm-status-winter gfx-farm-status-winter-test gfx-farm-status-winter-all gfx-farm-status-winter-edit-test gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-secondary-tilemaps-edit-test gfx-farm-status-exterior-styles gfx-farm-status-exterior-styles-test gfx-farm-status-selector-icon gfx-farm-status-selector-icon-test gfx-farm-status-selector-icon-all gfx-farm-status-selector-icon-edit-test gfx-clock-font gfx-clock-font-test gfx-clock-font-all gfx-clock-font-edit-test gfx-farm-status-creature-icons gfx-farm-status-creature-icons-test gfx-farm-status-creature-icons-all gfx-farm-status-task-marker gfx-farm-status-task-marker-test gfx-farm-status-task-marker-all gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal-nonwinter-all gfx-seasonal-nonwinter-reference gfx-seasonal-nonwinter-edit-test gfx-seasonal-winter gfx-seasonal-winter-test gfx-seasonal-winter-all gfx-seasonal-winter-reference gfx-seasonal-winter-edit-test gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-background-edit-test gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-tilemaps-edit-test gfx-intro-startup-visual gfx-intro-startup-visual-export gfx-intro-startup-visual-reference gfx-intro-startup-visual-test gfx-intro-startup-visual-all gfx-intro-startup-visual-edit-test gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-animal-festival-icons gfx-animal-festival-icons-test gfx-animal-festival-icons-all resource-archive-audit unpack-vram-inventory dma-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
+.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-resource-archive gfx-farm-status-resource-archive-test gfx-farm-status-resource-archive-all gfx-farm-status-resource-archive-patch-test gfx-farm-status-resource-archive-edit-test gfx-farm-status-winter gfx-farm-status-winter-test gfx-farm-status-winter-all gfx-farm-status-winter-edit-test gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-secondary-tilemaps-edit-test gfx-farm-status-exterior-styles gfx-farm-status-exterior-styles-test gfx-farm-status-selector-icon gfx-farm-status-selector-icon-test gfx-farm-status-selector-icon-all gfx-clock-font gfx-clock-font-test gfx-clock-font-all gfx-clock-font-edit-test gfx-farm-status-creature-icons gfx-farm-status-creature-icons-test gfx-farm-status-creature-icons-all gfx-farm-status-task-marker gfx-farm-status-task-marker-test gfx-farm-status-task-marker-all gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal-nonwinter-all gfx-seasonal-nonwinter-reference gfx-seasonal-nonwinter-edit-test gfx-seasonal-winter gfx-seasonal-winter-test gfx-seasonal-winter-all gfx-seasonal-winter-reference gfx-seasonal-winter-edit-test gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-background-edit-test gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-tilemaps-edit-test gfx-intro-startup-visual gfx-intro-startup-visual-export gfx-intro-startup-visual-reference gfx-intro-startup-visual-test gfx-intro-startup-visual-all gfx-intro-startup-visual-edit-test gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-animal-festival-icons gfx-animal-festival-icons-test gfx-animal-festival-icons-all resource-archive-audit unpack-vram-inventory dma-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
 .PHONY: gfx-map-resources-reference gfx-map-resources-edit-test gfx-map-state-palettes gfx-map-state-palettes-test gfx-map-state-templates gfx-map-state-templates-test gfx-map-state-templates-all gfx-map-state-templates-patch-test gfx-map-state-templates-edit-test unpack-inventory unpack-coverage-inventory copy-ram-inventory gfx-raw-vram-tiles-ui-build
 .PHONY: indexed-resource-archive-inventory
 .PHONY: gfx-farm-status-task-ui-tile gfx-farm-status-task-ui-tile-test gfx-farm-status-task-ui-tile-all
@@ -3216,15 +3232,14 @@ gfx-farm-status-exterior-styles-all:
 gfx-farm-status-exterior-styles-edit-test: $(FARM_STATUS_EXTERIOR_STYLE_TOOL) $(FARM_STATUS_EXTERIOR_STYLE_SOURCES)
 	@$(PYTHON) $(FARM_STATUS_EXTERIOR_STYLE_TOOL) edit-test --source-dir $(FARM_STATUS_EXTERIOR_STYLE_SOURCE_DIR)
 gfx-farm-status-selector-icon: $(FARM_STATUS_SELECTOR_ICON_OUTPUTS)
-gfx-farm-status-selector-icon-test: gfx-farm-status-selector-icon $(FARM_STATUS_SELECTOR_ICON_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(FARM_STATUS_SELECTOR_ICON_TOOL) verify --source $(FARM_STATUS_SELECTOR_ICON_SOURCE) --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
+gfx-farm-status-selector-icon-test: gfx-farm-status-selector-icon $(GFX_RANGE_VERIFY) $(BASE_ROM)
+	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FARM_STATUS_SELECTOR_ICON_BASE_$(GAME_REGION)) --length 0x80 --input $(FARM_STATUS_SELECTOR_ICON_OUTPUT_DIR)/selector_case_09.4bpp
+	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$(($(FARM_STATUS_SELECTOR_ICON_BASE_$(GAME_REGION)) + 0x80)) --length 0x20 --input $(FARM_STATUS_SELECTOR_ICON_OUTPUT_DIR)/selector_case_09.gbapal
 gfx-farm-status-selector-icon-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-farm-status-selector-icon-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-farm-status-selector-icon-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-farm-status-selector-icon-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-farm-status-selector-icon-test
-gfx-farm-status-selector-icon-edit-test: $(FARM_STATUS_SELECTOR_ICON_TOOL) $(FARM_STATUS_SELECTOR_ICON_SOURCE)
-	@$(PYTHON) $(FARM_STATUS_SELECTOR_ICON_TOOL) edit-test --source $(FARM_STATUS_SELECTOR_ICON_SOURCE)
 gfx-clock-font: $(CLOCK_FONT_OUTPUTS)
 gfx-clock-font-test: gfx-clock-font $(CLOCK_FONT_TOOL) baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(CLOCK_FONT_TOOL) verify --tail $(CLOCK_FONT_TAIL) --rom us baserom_us.gba $(CLOCK_FONT_US_EU_SOURCE) --rom eu baserom_eu.gba $(CLOCK_FONT_US_EU_SOURCE) --rom de baserom_de.gba $(CLOCK_FONT_DE_SOURCE) --built us $(CLOCK_FONT_US_EU_OUTPUT) --built eu $(CLOCK_FONT_US_EU_OUTPUT) --built de $(CLOCK_FONT_DE_OUTPUT)
@@ -3443,34 +3458,50 @@ unpack-vram-inventory: $(UNPACK_VRAM_INVENTORY_TOOL)
 dma-vram-inventory: $(DMA_VRAM_INVENTORY_TOOL)
 	@$(PYTHON) $(DMA_VRAM_INVENTORY_TOOL) . --csv $(BUILD_DIR)/dma_vram_inventory.csv
 gfx-records-minigame: $(RECORDS_MINIGAME_OUTPUTS)
-gfx-records-minigame-test: gfx-records-minigame $(RECORDS_MINIGAME_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(RECORDS_MINIGAME_TOOL) verify --source-dir $(RECORDS_MINIGAME_SOURCE_DIR) \
-	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
+gfx-records-minigame-test: gfx-records-minigame $(GFX_RANGE_VERIFY) $(BASE_ROM)
+	@set -e; index=0; for task in $(RECORDS_MINIGAME_TASKS); do \
+	  offset=$$(($(RECORDS_MINIGAME_BASE_$(GAME_REGION)) + index * 0xA0)); \
+	  $(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$offset --length 0x80 --input $(RECORDS_MINIGAME_SOURCE_DIR)/task_$$task.4bpp; \
+	  $(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$((offset + 0x80)) --length 0x20 --input $(RECORDS_MINIGAME_SOURCE_DIR)/task_$$task.gbapal; \
+	  index=$$((index + 1)); \
+	done
 gfx-records-minigame-all:
-	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-records-minigame
-	@$(MAKE) --no-print-directory GAME_REGION=US gfx-records-minigame
-	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-records-minigame
-	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-records-minigame
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-records-minigame-test
+	@$(MAKE) --no-print-directory GAME_REGION=US gfx-records-minigame-test
+	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-records-minigame-test
+	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-records-minigame-test
 gfx-animal-festival-icons: $(ANIMAL_FESTIVAL_ICON_OUTPUTS)
-gfx-animal-festival-icons-test: gfx-animal-festival-icons $(ANIMAL_FESTIVAL_ICON_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(ANIMAL_FESTIVAL_ICON_TOOL) verify --source-dir $(ANIMAL_FESTIVAL_ICON_SOURCE_DIR) --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
+gfx-animal-festival-icons-test: gfx-animal-festival-icons $(GFX_RANGE_VERIFY) $(BASE_ROM)
+	@set -e; index=0; for icon in $(ANIMAL_FESTIVAL_ICON_IDS); do \
+	  offset=$$(($(ANIMAL_FESTIVAL_ICON_BASE_$(GAME_REGION)) + index * 0xA0)); \
+	  $(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$offset --length 0x80 --input $(ANIMAL_FESTIVAL_ICON_SOURCE_DIR)/icon_$$icon.4bpp; \
+	  $(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$((offset + 0x80)) --length 0x20 --input $(ANIMAL_FESTIVAL_ICON_SOURCE_DIR)/icon_$$icon.gbapal; \
+	  index=$$((index + 1)); \
+	done
 gfx-animal-festival-icons-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-animal-festival-icons-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-animal-festival-icons-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-animal-festival-icons-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-animal-festival-icons-test
 gfx-farm-status-creature-icons: $(FARM_STATUS_CREATURE_ICON_OUTPUTS)
-gfx-farm-status-creature-icons-test: gfx-farm-status-creature-icons $(FARM_STATUS_CREATURE_ICON_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(FARM_STATUS_CREATURE_ICON_TOOL) verify --source-dir $(FARM_STATUS_CREATURE_ICON_SOURCE_DIR) --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
+gfx-farm-status-creature-icons-test: gfx-farm-status-creature-icons $(GFX_RANGE_VERIFY) $(BASE_ROM)
+	@set -e; index=0; for icon in $(FARM_STATUS_CREATURE_ICON_IDS); do \
+	  if [ $$index -lt 10 ]; then base=$(FARM_STATUS_CREATURE_ICON_BASE_0_$(GAME_REGION)); slot=$$index; \
+	  else base=$(FARM_STATUS_CREATURE_ICON_BASE_1_$(GAME_REGION)); slot=$$((index - 10)); fi; \
+	  offset=$$((base + slot * 0xA0)); \
+	  $(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$offset --length 0x80 --input $(FARM_STATUS_CREATURE_ICON_SOURCE_DIR)/icon_$$icon.4bpp; \
+	  $(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$((offset + 0x80)) --length 0x20 --input $(FARM_STATUS_CREATURE_ICON_SOURCE_DIR)/icon_$$icon.gbapal; \
+	  index=$$((index + 1)); \
+	done
 gfx-farm-status-creature-icons-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-farm-status-creature-icons-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-farm-status-creature-icons-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-farm-status-creature-icons-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-farm-status-creature-icons-test
 gfx-farm-status-task-ui-tile: $(FARM_STATUS_TASK_UI_TILE_OUTPUTS)
-gfx-farm-status-task-ui-tile-test: gfx-farm-status-task-ui-tile $(FARM_STATUS_TASK_UI_TILE_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(FARM_STATUS_TASK_UI_TILE_TOOL) verify --source-dir $(FARM_STATUS_TASK_UI_TILE_SOURCE_DIR) --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
+gfx-farm-status-task-ui-tile-test: gfx-farm-status-task-ui-tile $(GFX_RANGE_VERIFY) $(BASE_ROM)
+	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FARM_STATUS_TASK_UI_TILE_BASE_$(GAME_REGION)) --length 0x20 --input $(FARM_STATUS_TASK_UI_TILE_TILES)
+	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$(($(FARM_STATUS_TASK_UI_TILE_BASE_$(GAME_REGION)) + 0x20)) --length 0x20 --input $(FARM_STATUS_TASK_UI_TILE_PALETTE)
 gfx-farm-status-task-ui-tile-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-farm-status-task-ui-tile-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-farm-status-task-ui-tile-test
@@ -3536,8 +3567,7 @@ gfx-assets: gfx-regional-resource-0873d6d8
 gfx-assets: gfx-regional-resource-0874f34c
 
 # Full graphics gate for assets that have an authoritative source/rebuild
-# path.  It intentionally does not link a ROM: the project-wide link is
-# currently blocked independently by non-graphics C sources.
+# path. Full-ROM linking and SHA-1 comparison remain separate targets.
 gfx-verify:
 	@$(MAKE) --no-print-directory gfx-fonts-test
 	@$(MAKE) --no-print-directory gfx-portraits-all
@@ -3737,7 +3767,6 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-farm-status-exterior-styles-all
 	@$(MAKE) --no-print-directory gfx-farm-status-exterior-styles-edit-test
 	@$(MAKE) --no-print-directory gfx-farm-status-selector-icon-all
-	@$(MAKE) --no-print-directory gfx-farm-status-selector-icon-edit-test
 	@$(MAKE) --no-print-directory gfx-clock-font-all
 	@$(MAKE) --no-print-directory gfx-clock-font-edit-test
 	@$(MAKE) --no-print-directory gfx-intro-background-all
