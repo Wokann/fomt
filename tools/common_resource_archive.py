@@ -88,9 +88,6 @@ PROFILES = {
     "shared-0873afc8": ArchiveProfile(
         (1, 1, 9, 110, 1, 0, 1), (), "shared 0873AFC8 resource"
     ),
-    "shared-087536e4": ArchiveProfile(
-        (2, 4, 3, 2, 1, 0, 4), (), "shared 087536E4 resource"
-    ),
     # This archive is localized rather than byte-identical.  Keep one profile
     # for each proven native descriptor layout; the Makefile selects the
     # matching profile and region-local full PNG source directory.
