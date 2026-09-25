@@ -4,9 +4,10 @@
 palette-indexed views of four drawable resources in one fixed `0x128`-byte
 `IndexedResourceArchive`. They are complete OAM-composited source images, not
 tile atlases or screenshots. The fifth native descriptor is all zero and
-remains native data. The original archive retains its selector, descriptor,
+remains native data. `archive.original.bin` retains its selector, descriptor,
 OAM, tile-placement, and BGR555 palette tables, so rebuilding requires no JSON
-layout sidecar.
+layout sidecar. This metadata remains a native binary until its structure is
+fully expressed as C data.
 
 The archive is byte-identical in all four retail FoMT ROMs:
 
@@ -22,13 +23,16 @@ four native 4bpp tiles, one BGR555 palette, and four selection entries. Its
 individual gameplay semantics are not independently proven, so the source
 directory retains the original address rather than inventing a semantic name.
 
-`preview/` contains transparent RGBA inspection exports only; compilation
-reads `full/` only.
+`preview/` contains transparent RGBA inspection exports only. The ordinary
+graphics rules use the C `gbagfx` tool to generate adjacent `.4bpp` and
+`.gbapal` files from `full/`. The C `fomt-indexed-archive` tool combines
+them with the checked-in metadata into adjacent `archive.bin`. The assembler
+includes that file directly in all four regions, without an original ROM or
+post-link replacement for this archive.
 
 Use the following checks after editing:
 
 ```console
 make gfx-shared-resource-0871ecac-all
-make gfx-shared-resource-0871ecac-patch-test
-make gfx-shared-resource-0871ecac-edit-test
+# Then use make compare, compare_eu, and compare_de for whole-ROM checks.
 ```
