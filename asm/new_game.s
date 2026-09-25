@@ -2800,7 +2800,7 @@ func_08004C68:
     mov r1, sp
     adds r1, #0x28
     str r1, [sp, #0x50]
-    ldr r1, .Ljp_08004EF4 @ =__vt_13AUnk_0800080C
+    ldr r1, .Ljp_08004EF4 @ =__vt_15SceneTransition
     str r1, [r6]
     ldr r1, .Ljp_08004EF8 @ =vtable_unk_080E5A78
     adds r5, r6, #0
@@ -2888,7 +2888,7 @@ func_08004C68:
 .Ljp_08004EE8: .4byte gText_NewGameIdentity_PlayerPrefix
 .Ljp_08004EEC: .4byte gText_NewGameIdentity_FarmPrefix
 .Ljp_08004EF0: .4byte gText_NewGameIdentity_DogPrefix
-.Ljp_08004EF4: .4byte __vt_13AUnk_0800080C
+.Ljp_08004EF4: .4byte __vt_15SceneTransition
 .Ljp_08004EF8: .4byte vtable_unk_080E5A78
 
     .global func_08004EFC
@@ -10027,7 +10027,7 @@ func_08004C68: @ 0x08004C68
     mov r1, sp
     adds r1, #0x28
     str r1, [sp, #0x50]
-    ldr r1, .L08004EF4 @ =__vt_13AUnk_0800080C
+    ldr r1, .L08004EF4 @ =__vt_15SceneTransition
     str r1, [r6]
     ldr r1, .L08004EF8 @ =vtable_unk_080E5A78
     adds r5, r6, #0
@@ -10115,7 +10115,7 @@ func_08004C68: @ 0x08004C68
 .L08004EE8: .4byte gText_NewGameIdentity_PlayerPrefix
 .L08004EEC: .4byte gText_NewGameIdentity_FarmPrefix
 .L08004EF0: .4byte gText_NewGameIdentity_DogPrefix
-.L08004EF4: .4byte __vt_13AUnk_0800080C
+.L08004EF4: .4byte __vt_15SceneTransition
 .L08004EF8: .4byte vtable_unk_080E5A78
 
     thumb_func_start func_08004EFC

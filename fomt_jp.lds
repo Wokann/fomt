@@ -466,7 +466,7 @@ SECTIONS
 
         . = 0xE4E0C; /* JP C++ table region begins after code_linkonce. */
         *(.gnu.linkonce.d.__vt_6AScene);
-        *(.gnu.linkonce.d.__vt_13AUnk_0800080C);
+        *(.gnu.linkonce.d.__vt_15SceneTransition);
         . = ALIGN(4); src/vtables.o(.rodata);
         *(.gnu.linkonce.d.__vt_7AEntity);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6284);
