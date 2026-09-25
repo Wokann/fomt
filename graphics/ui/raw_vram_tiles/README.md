@@ -26,14 +26,11 @@ the on-screen position.
 | `0875142c` | `gUnk_0875142C` | nine 4bpp tiles | BG slot `0x0B7` |
 | `08752aac` | `gUnk_08752AAC` | one BGR555 palette bank | palette RAM (screen-relative destination) |
 
-The exact JP/US/EU/DE offsets and SHA-256 values for these remaining profiles
-are the checked entries in `tools/raw_vram_tile_group.py`. The shared
-`08750c8c` tile record is now assembled directly from its native source and
-verified by `gfx-ui-shared-tiles-test`, without a resource-specific Python
-patch. `087512ec` is deliberately split:
-its JP BGR555 palette differs, while US/EU/DE use one byte-identical overseas
-record. The Make targets rebuild and verify every profile for all four regions
-without deriving a tilemap.
+The verified JP/US/EU/DE offsets and SHA-256 values are listed in
+`UI_DMA_TILES.md`. These records are assembled directly from their native
+sources; none needs a resource-specific Python post-link patch. The former JP
+`087512ec` profile was misidentified: it pointed into a separate
+records-minigame tile. The palette itself is shared by all four regions.
 
 ## Farm Status Harvest Sprite List
 
@@ -54,13 +51,10 @@ character-RAM locations.
 | `08750e4c` | `gUnk_08750E4C` | nine 4bpp tiles | BG slot `0x0AE` |
 | `08750f6c` | `gUnk_08750F6C` | one BGR555 palette bank | BG palette bank 3 |
 
-Every table entry is byte-identical across JP, US, EU and DE.  The exact
-regional boundaries and hash checks remain in `tools/raw_vram_tile_group.py`.
-
-All nine listed records are active build inputs.  After link, the regional
-`build/<region>/graphics/ui/raw_vram_tiles/...` outputs replace only their
-verified fixed ROM intervals; no final screen composition is claimed.
-Three of those source intervals are only one tile wide, so the adjacent,
-unidentified bytes retain their original `baserom` includes; this deliberately
-keeps the original ROM layout and labels intact while making only the verified
-prefix editable.
+Every table entry is byte-identical across JP, US, EU and DE. The verified
+regional boundaries and hashes are listed in `UI_DMA_TILES.md`. The ASM data
+file links each native resource directly at its ROM label; a full regional ROM
+comparison validates the resulting placement. No final screen composition is
+claimed. Three source intervals are only one tile wide, so adjacent
+unidentified bytes remain separate inline data until their structure is
+understood.

@@ -3,8 +3,8 @@
 The consumers below call `func_08008F0C` with a named ROM source and fixed byte
 count. Their targets are literal character VRAM except for four explicit
 BGR555 palette-RAM uploads. Every listed physical range is byte-identical in
-the JP, US, EU, and DE retail ROMs except `gUnk_087512EC`: JP has a distinct
-palette record while US/EU/DE share one overseas record.
+the JP, US, EU, and DE retail ROMs. The earlier JP offset for
+`gUnk_087512EC` was a different records-minigame tile, not this palette.
 
 | Symbol | Source | Bytes | JP | US | EU | DE | SHA-256 |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
@@ -17,7 +17,7 @@ palette record while US/EU/DE share one overseas record.
 | `gUnk_08750F8C` | `08750f8c/shared/tiles.4bpp` | `0x120` | `0x4D6F38` | `0x750F8C` | `0x750FE8` | `0x4D84A8` | `fc2bda977d99c32f7fe6f8e480a47193d891ff65946dcbbbba85162e4146a331` |
 | `gUnk_08750E4C` | `08750e4c/shared/tiles.4bpp` | `0x120` | `0x4D6DF8` | `0x750E4C` | `0x750EA8` | `0x4D8368` | `a3b99c81ab8bac0912cd6c7d928f34f9bb739630701489b284e7ebf8e7fd047d` |
 | `gUnk_087511CC` | `087511cc/shared/tiles.4bpp` | `0x120` | `0x4D7178` | `0x7511CC` | `0x751228` | `0x4D86E8` | `0246e5f8a7ce9136217957ade7c5cfdbd2aa7be7f208a419b15a768c18963f75` |
-| `gUnk_087512EC` | `087512ec/{jp,overseas}/palette.gbapal` | `0x20` | `0x4D7F58` | `0x7512EC` | `0x751348` | `0x4D8808` | JP `31914dafe0d1a2e020d3adc49118040855d874bb122639b47143b991bc49d077`; overseas `4e9002d1a59b76f30985349aa2066e6382f673231ec4021f73eeb7d7b88f8b86` |
+| `gUnk_087512EC` | `087512ec/shared/palette.gbapal` | `0x20` | `0x4D7298` | `0x7512EC` | `0x751348` | `0x4D8808` | `4e9002d1a59b76f30985349aa2066e6382f673231ec4021f73eeb7d7b88f8b86` |
 | `gUnk_0875154C` | `0875154c/shared/tiles.4bpp` | `0x120` | `0x4D74F8` | `0x75154C` | `0x7515A8` | `0x4D8A68` | `acfc397f1fb7813b07fd714a306bb890cc4ccec2b94cee6ff10754408c7cebf6` |
 | `gUnk_0875130C` | `0875130c/shared/tiles.4bpp` | `0x120` | `0x4D72B8` | `0x75130C` | `0x751368` | `0x4D8828` | `b078a388eb2836e81fa338079b4185f05f6a0f635ed977b2e1d8052a72b78777` |
 | `gUnk_0875142C` | `0875142c/shared/tiles.4bpp` | `0x120` | `0x4D73D8` | `0x75142C` | `0x751488` | `0x4D8948` | `aa637cc310aea66cedff57eb3080b430e380c20703184036a73c2f87eba97dbb` |

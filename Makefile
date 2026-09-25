@@ -337,13 +337,12 @@ $(ROM): $(REGIONAL_RESOURCE_0873A6E8_OUTPUT)
 $(ROM): $(REGIONAL_RESOURCE_0873D6D8_OUTPUT)
 $(ROM): $(REGIONAL_RESOURCE_0874F34C_OUTPUT)
 
-%.gba: %.elf $(MAP_RESOURCES_STAMP) $(MAP_STATE_TEMPLATE_STAMP) $(foreach profile,$(RAW_VRAM_UI_PROFILES),$(RAW_VRAM_TILES_$(profile)_STAMP)) $(FARM_HOUSE_VISUAL_STAMP) $(FARM_HOUSE_TILEMAP_STAMP) $(FARM_HOUSE_PALETTE_STAMP) $(FARM_STATUS_RESOURCE_ARCHIVE_OUTPUT) $(COMMON_RESOURCE_ARCHIVE_OUTPUT) $(SMALL_COMPANION_ARCHIVE_OUTPUT) $(COOKING_UI_RESOURCE_ARCHIVE_OUTPUT) $(MENU_UI_RESOURCE_ARCHIVE_OUTPUT) $(LARGE_SHARED_RESOURCE_ARCHIVE_OUTPUT) $(SHARED_RESOURCE_08725DA0_OUTPUT)
+%.gba: %.elf $(MAP_RESOURCES_STAMP) $(MAP_STATE_TEMPLATE_STAMP) $(FARM_HOUSE_VISUAL_STAMP) $(FARM_HOUSE_TILEMAP_STAMP) $(FARM_HOUSE_PALETTE_STAMP) $(FARM_STATUS_RESOURCE_ARCHIVE_OUTPUT) $(COMMON_RESOURCE_ARCHIVE_OUTPUT) $(SMALL_COMPANION_ARCHIVE_OUTPUT) $(COOKING_UI_RESOURCE_ARCHIVE_OUTPUT) $(MENU_UI_RESOURCE_ARCHIVE_OUTPUT) $(LARGE_SHARED_RESOURCE_ARCHIVE_OUTPUT) $(SHARED_RESOURCE_08725DA0_OUTPUT)
 	$(OBJCOPY) -O binary $< $@
 	@$(PYTHON) $(MAP_RESOURCES_TOOL) patch --region $(MAP_RESOURCES_REGION) --rom $@ \
 	  --archive $(MAP_RESOURCES_OUTPUT_DIR)/map_visual_archive.0x70 $(MAP_RESOURCES_ALL_ROM_ARGS)
 	@$(PYTHON) $(MAP_STATE_TEMPLATE_TOOL) patch --region $(MAP_STATE_TEMPLATE_REGION) --rom $@ \
 	  --output-dir $(MAP_STATE_TEMPLATE_OUTPUT_DIR) $(MAP_RESOURCES_ALL_ROM_ARGS)
-	@set -e; $(foreach profile,$(RAW_VRAM_UI_PROFILES),$(PYTHON) $(RAW_VRAM_TILES_$(profile)_TOOL) --profile $(profile) patch --region $(RAW_VRAM_TILES_$(profile)_REGION) --baseline $(BASE_ROM) --rom $@ --output-dir $(RAW_VRAM_TILES_$(profile)_OUTPUT_DIR);)
 	@$(PYTHON) $(FARM_HOUSE_VISUAL_TOOL) patch --region $(FARM_HOUSE_VISUAL_REGION) --baseline $(BASE_ROM) \
 	  --rom $@ --output-dir $(FARM_HOUSE_VISUAL_OUTPUT_DIR)
 	@$(PYTHON) $(FARM_HOUSE_TILEMAP_TOOL) patch --region $(FARM_HOUSE_TILEMAP_REGION) --baseline $(BASE_ROM) \
@@ -518,23 +517,11 @@ ifneq (,$(filter gfx-ui-scene-080b55d0-aux gfx-ui-scene-080b55d0-aux-reference g
 ALL_DEPS :=
 endif
 
-ifneq (,$(filter gfx-raw-vram-tiles-08697920 gfx-raw-vram-tiles-08697920-test gfx-raw-vram-tiles-08697920-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
 ifneq (,$(filter gfx-farm-status-task-ui-tile gfx-farm-status-task-ui-tile-test gfx-farm-status-task-ui-tile-all,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 
-ifneq (,$(filter gfx-raw-vram-tiles-08698e14 gfx-raw-vram-tiles-08698e14-test gfx-raw-vram-tiles-08698e14-all gfx-raw-vram-tiles-0869a0a4 gfx-raw-vram-tiles-0869a0a4-test gfx-raw-vram-tiles-0869a0a4-all gfx-raw-vram-tiles-field,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-raw-vram-tiles-086d5508 gfx-raw-vram-tiles-086d5508-test gfx-raw-vram-tiles-086d5508-all gfx-raw-vram-tiles-086d6698 gfx-raw-vram-tiles-086d6698-test gfx-raw-vram-tiles-086d6698-all gfx-raw-vram-tiles-field-leading,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter $(RAW_VRAM_UI_TARGETS) gfx-raw-vram-tiles-ui gfx-ui-shared-tiles-test,$(MAKECMDGOALS)))
+ifneq (,$(filter gfx-ui-shared-tiles-test,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 
