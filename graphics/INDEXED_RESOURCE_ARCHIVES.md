@@ -28,7 +28,7 @@ regionally different. It is the coverage ledger for this staged pipeline.
 | Large shared archive | `0x4A5068` | `0x71EF00` | `0x71EF5C` | `0x4A60CC` | `0x6EA0` | `27, 102, 1, 768, 46, 0` | 124 | `f3dbd496b2e790073ecf8175ef5be7f2d2aad8d8777751ccad7d3cb7d8203878` |
 | Shared archive `08725DA0` | `0x4ABF08` | `0x725DA0` | `0x725DFC` | `0x4ACF6C` | `0xF2C` | `6, 6, 20, 109, 2, 0` | 6 | `cd97e9321879d994de4330bb45763b1b368a782167db9c8f3f6d506357c8e11c` |
 | Shared archive `086F2FAC` | `0x479108` | `0x6F2FAC` | `0x6F3008` | `0x47A048` | `0x31FC` | `4, 16, 2, 384, 4, 0` | 16 | `de384dcd7c3fe848025b77ae9efb94d63e9d15cc2247cb858727a20167b1b2a4` |
-| Shared archive `086FAA80` | `0x480BDC` | `0x6FAA80` | `0x6FAADC` | `0x481B1C` | `0x584` | `3, 9, 1, 36, 1, 0` | 9 | `95c9e3db66e9d29b25c7e228d60accf8abba3ce6c5c7a489ece487a97d84ac31` |
+| Shared archive `086FAA80` (source-owned `archive.inc` + `native.png`) | `0x480BDC` | `0x6FAA80` | `0x6FAADC` | `0x481B1C` | `0x584` | `3, 9, 1, 36, 1, 0` | 9 | `95c9e3db66e9d29b25c7e228d60accf8abba3ce6c5c7a489ece487a97d84ac31` |
 | Shared archive `0871ECAC` | `0x4A4E14` | `0x71ECAC` | `0x71ED08` | `0x4A5E78` | `0x128` | `1, 5, 1, 4, 1, 0` | 4 | `9f278e9f3fc533ace766b248d2e55c8c5bbc9ee1ad026abe1c36804eeb18ed81` |
 | Shared archive `0871EDD4` | `0x4A4F3C` | `0x71EDD4` | `0x71EE30` | `0x4A5FA0` | `0x12C` | `1, 5, 1, 4, 1, 0` | 5 | `102175f059443e70fd1483b0e568d5b1e125812a9170a70433b280a927039017` |
 | Shared archive `08527094` (source-owned `archive.inc` + `native.png`) | `0x2AD1F0` | `0x527094` | `0x5270F0` | `0x2AE130` | `0x1A4` | `4, 8, 7, 4, 1, 0` | 8 | `b54f1e2abe5bc34fdde8cb5a4c7b18d82d5d669d315db22a237cd9b03856306d` |
@@ -242,9 +242,10 @@ until the runtime purpose is independently established.
 Shared archive `086FAA80` is independently bounded at the four locations in
 the table. Its nine descriptors all select drawable records, together covering
 one OAM record, 36 native 4bpp tiles, one BGR555 palette, and nine selection
-entries. Its editable PNG sources are under
-`graphics/shared_resource_086faa80/`; the address remains its source name
-until the runtime purpose is independently established.
+entries. `graphics/shared_resource_086faa80/full/native.png` supplies the
+editable tiles and palette; `archive.inc` links them with the native tables.
+The address remains its source name until the runtime purpose is
+independently established.
 
 Shared archive `0871ECAC` is independently bounded at the four locations in
 the table. Its five descriptors contain four drawable resources and one

@@ -1,11 +1,11 @@
 # Shared resource `086FAA80`
 
-`full/group_000.png` through `group_008.png` are the editable,
-palette-indexed views of all nine drawable resources in one fixed
-`0x584`-byte `IndexedResourceArchive`. They are complete OAM-composited
-source images, not tile atlases or screenshots. The original archive retains
-its selector, descriptor, OAM, tile-placement, and BGR555 palette tables, so
-rebuilding requires no JSON layout sidecar.
+`full/native.png` contains the 36 native tiles in ROM order. The ordinary
+graphics rules generate `native.4bpp` and `native.gbapal` from it. `archive.inc`
+declares the native selector, descriptor, OAM, and entry tables and links those
+assets directly, without a ROM template or post-link patch. The existing
+`full/group_000.png` through `group_008.png` are rendered reference views,
+not build inputs. No JSON layout sidecar is used.
 
 The archive is byte-identical in all four retail FoMT ROMs:
 
@@ -22,12 +22,8 @@ Its individual gameplay semantics are not independently proven, so the source
 directory retains the original address rather than inventing a semantic name.
 
 `preview/` contains transparent RGBA inspection exports only; compilation
-reads `full/` only.
-
-Use the following checks after editing:
+reads `full/native.png` only. Build the resource with:
 
 ```console
-make gfx-shared-resource-086faa80-all
-make gfx-shared-resource-086faa80-patch-test
-make gfx-shared-resource-086faa80-edit-test
+make gfx-shared-resource-086faa80
 ```
