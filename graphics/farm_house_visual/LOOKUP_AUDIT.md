@@ -20,12 +20,6 @@ as editable tiles, palettes, or a JSON layout.
 
 ## Four-region result
 
-Run the reproducible audit with:
-
-```console
-make farm-house-lookup-audit
-```
-
 All seven rectangles are byte-identical in FoMT-JP, FoMT-US, FoMT-EU, and
 FoMT-DE.  Together they contain 1,202 index cells.  Every rectangle contains
 only indices `0` and `1`, therefore each proven value domain is exactly two
