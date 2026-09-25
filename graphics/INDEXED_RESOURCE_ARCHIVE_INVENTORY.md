@@ -61,7 +61,7 @@ as a shared payload.
 | `gUnk_087537D0` | `0x4D977C` | `0x7537D0` | `0x75382C` | `0x4DACEC` | `0xEA4` | 20, 40, 11, 73, 13, 0 | 40 | rebuild, four-region shared: `graphics/ui/farm_status/resource_archive/` |
 | `gUnk_08754674` | `0x4DA620` | `0x754674` | `0x7546D0` | `0x4DBB90` | `0x598` | 1, 3, 3, 40, 1, 0 | 4 | rebuild, four-region shared: `graphics/ui/cooking_resource_archive/` |
 | `gUnk_08754C0C` | `0x4DABB8` | `0x754C0C` | `0x754C68` | `0x4DC128` | `0x548` | 2, 4, 2, 36, 2, 0 | 5 | rebuild, four-region shared: `graphics/ui/small_resource_archive/` |
-| `gUnk_08755154` | `0x4DB100` | `0x755154` | `0x7551B0` | `0x4DC670` | `0xDC` | 1, 1, 1, 4, 1, 0 | 1 | rebuild, four-region shared: `graphics/shared_resource_08755154/` |
+| `gUnk_08755154` | `0x4DB100` | `0x755154` | `0x7551B0` | `0x4DC670` | `0xDC` | 1, 1, 1, 4, 1, 0 | 1 | linked from indexed PNG, no baserom input or post-link patch: `graphics/shared_resource_08755154/` |
 | `gUnk_0875B444` | `0x4E07CC` | `0x75B444` | `0x75B4A0` | `0x4E2960` | `0x3D4` | 6, 6, 1, 24, 1, 0 | 6 | rebuild, region-local: `graphics/regional_resource_0875b444/` |
 
 Generated records: 51 (42 rebuilt shared, 9 rebuilt regional, 0 unmanaged but four-region identical, 0 regionally different). Regenerate with:
