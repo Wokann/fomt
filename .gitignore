@@ -8,6 +8,7 @@
 *.map
 *.sav
 *.lz
+!graphics/farm_house_visual/shared/*.original.lz
 
 build/
 graphics/map_state_palettes/shared/*.0x70

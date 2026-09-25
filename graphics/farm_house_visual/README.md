@@ -10,8 +10,11 @@ order: 64, 63, 63, 159, 351, 63, and 223 tiles respectively.
 
 All seven original packed streams and all seven decoded payloads are
 byte-identical in the JP, US, EU, and DE retail ROMs.  Their **addresses** are
-not identical: the build tool reads the original region's visual descriptor
-table before it rebuilds or applies a stream.
+not identical. The seven `visual_NN.original.lz` files preserve the verified
+publisher streams, while `fomt-lz` rebuilds `visual_NN.4bpp.lz` from the
+editable `.4bpp` sources. Assembly includes those generated streams at the
+original resource positions; no ROM-derived build template or post-link
+patch is involved.
 
 Each descriptor also supplies two non-null native 16-bit tilemap patch
 buffers.  They are exposed as
@@ -38,26 +41,21 @@ and copied by the retail DMA helper into `palette_bank`.  These deliberately
 remain binary source files: a PNG swatch would not describe their stateful
 destination bank or prove a full FarmHouse layout.
 
-Build and verify every region:
+Build and verify the shared visual streams and the neighboring source assets:
 
 ```console
 make gfx-farm-house-visual-all
-make gfx-farm-house-visual-patch-test
 make gfx-farm-house-tilemaps-all
 make gfx-farm-house-tilemaps-patch-test
 ```
 
-The unchanged sources retain the publisher's compressed byte stream.  An
-intentional source edit is recompressed with the same decoder format and is
-accepted only when it fits the original fixed interval.  The build also has a
-deterministic changed-byte fixture covering every managed encoding format and
-distance-ladder variant (Huffman-8/LZ3, Huffman-8/LZ2, ordinary
-Huffman-4/LZ2, and 4-bit-differential Huffman-4/LZ2):
-
-```console
-make gfx-farm-house-visual-edit-test
-make gfx-farm-house-tilemaps-edit-test
-```
+The unchanged sources retain the publisher's compressed byte stream. An
+intentional source edit is recompressed in C using the original stream's
+format, differential filter and distance ladder, then decoded again for
+verification. The build rejects edits that exceed the original fixed slot.
+The four managed formats are Huffman-8/LZ3, Huffman-8/LZ2, Huffman-4/LZ2,
+and 4-bit-differential Huffman-4/LZ2. Tilemap edits can be checked with
+`make gfx-farm-house-tilemaps-edit-test`.
 
 The `.4bpp` files are native source, not a JSON sidecar.  A future full-image
 pipeline must first add a separately proven palette and layout source; it may

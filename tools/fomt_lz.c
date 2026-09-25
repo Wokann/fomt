@@ -1786,11 +1786,13 @@ static void usage(void)
     fail("usage: fomt-lz encode-lz2 SOURCE OUTPUT LADDER SLOT_SIZE "
          "[--literal-tail] | "
          "encode-lz3|encode-huff8-lz3 SOURCE OUTPUT LADDER SLOT_SIZE | "
+         "rebuild-native SOURCE ORIGINAL OUTPUT | "
          "rebuild-huff8-lz3 SOURCE ORIGINAL OUTPUT LADDER SLOT_SIZE | "
          "rebuild-huff4-lz2|rebuild-huff8-lz2 "
          "SOURCE ORIGINAL OUTPUT LADDER SLOT_SIZE | "
          "decode-lz2|decode-lz3|decode-huff8-lz3|"
          "decode-huff4-lz2|decode-huff8-lz2 SOURCE OUTPUT | "
+         "verify-native SOURCE PACKED | "
          "verify-lz2|verify-lz3|verify-huff8-lz3|"
          "verify-huff4-lz2|verify-huff8-lz2 SOURCE PACKED [LADDER]");
 }
@@ -1799,7 +1801,59 @@ int main(int argc, char **argv)
 {
     if (argc < 4)
         usage();
-    if (strcmp(argv[1], "rebuild-huff4-lz2") == 0 ||
+    if (strcmp(argv[1], "rebuild-native") == 0) {
+        if (argc != 5 || strcmp(argv[3], argv[4]) == 0)
+            usage();
+        size_t source_size, original_size, decoded_size;
+        unsigned char *source = read_file(argv[2], &source_size);
+        unsigned char *original = read_file(argv[3], &original_size);
+        if (original_size < 8 || original[0] != 0x70)
+            fail("rebuild reference is not a FoMT native stream");
+        BitReader reader = {original, original_size, 4, 0, 0};
+        uint32_t format;
+        if (!read_bits(&reader, 8, &format))
+            fail("truncated native stream format");
+        unsigned symbol_bits = (format & 31u) == 0x0Au ? 4 : 8;
+        int lz2 = (format & 31u) == 0x0Au || (format & 31u) == 0x12u;
+        if (!lz2 && format != 0x13)
+            fail("rebuild-native only supports Huffman-4/8 LZ2 and Huffman-8 LZ3");
+        LadderEntry ladder[7], check_ladder[7];
+        unsigned char *decoded = lz2
+            ? decode_huff_lz2(original, original_size, ladder, &decoded_size,
+                              symbol_bits)
+            : decode_huff8_lz3(original, original_size, ladder, &decoded_size);
+        if (source_size != decoded_size)
+            fail("edited source changed the original decoded size");
+        if (memcmp(source, decoded, source_size) == 0) {
+            write_file(argv[4], original, original_size);
+        } else {
+            size_t packed_size;
+            unsigned char *packed = lz2
+                ? encode_huff_lz2(source, source_size, ladder, symbol_bits,
+                                  format >> 5, &packed_size)
+                : encode_huff8_lz3(source, source_size, ladder, &packed_size);
+            if (packed_size > original_size)
+                fail("edited native stream exceeds its reference slot");
+            size_t check_size;
+            unsigned char *check = lz2
+                ? decode_huff_lz2(packed, packed_size, check_ladder,
+                                  &check_size, symbol_bits)
+                : decode_huff8_lz3(packed, packed_size, check_ladder, &check_size);
+            if (check_size != source_size || memcmp(check, source, source_size) != 0)
+                fail("edited native stream does not reproduce its source");
+            free(check);
+            unsigned char *resized = realloc(packed, original_size);
+            if (!resized)
+                fail("out of memory");
+            packed = resized;
+            memset(packed + packed_size, 0, original_size - packed_size);
+            write_file(argv[4], packed, original_size);
+            free(packed);
+        }
+        free(decoded);
+        free(original);
+        free(source);
+    } else if (strcmp(argv[1], "rebuild-huff4-lz2") == 0 ||
         strcmp(argv[1], "rebuild-huff8-lz2") == 0) {
         if (argc != 7 || strcmp(argv[3], argv[4]) == 0)
             usage();
@@ -1965,6 +2019,32 @@ int main(int argc, char **argv)
         write_file(argv[3], decoded, decoded_size);
         free(decoded);
         free(packed);
+    } else if (strcmp(argv[1], "verify-native") == 0) {
+        if (argc != 4)
+            usage();
+        size_t source_size, packed_size, decoded_size;
+        unsigned char *source = read_file(argv[2], &source_size);
+        unsigned char *packed = read_file(argv[3], &packed_size);
+        if (packed_size < 8 || packed[0] != 0x70)
+            fail("verify-native input is not a FoMT native stream");
+        BitReader reader = {packed, packed_size, 4, 0, 0};
+        uint32_t format;
+        if (!read_bits(&reader, 8, &format))
+            fail("truncated native stream format");
+        LadderEntry ladder[7];
+        unsigned char *decoded;
+        if ((format & 31u) == 0x0Au || (format & 31u) == 0x12u)
+            decoded = decode_huff_lz2(packed, packed_size, ladder,
+                                      &decoded_size, (format & 31u) == 0x0Au ? 4 : 8);
+        else if (format == 0x13)
+            decoded = decode_huff8_lz3(packed, packed_size, ladder, &decoded_size);
+        else
+            fail("verify-native does not support this stream format");
+        if (source_size != decoded_size || memcmp(source, decoded, source_size) != 0)
+            fail("decoded native stream does not match the source");
+        free(decoded);
+        free(packed);
+        free(source);
     } else if (strcmp(argv[1], "verify-lz2") == 0 ||
                strcmp(argv[1], "verify-lz3") == 0 ||
                strcmp(argv[1], "verify-huff8-lz3") == 0 ||
