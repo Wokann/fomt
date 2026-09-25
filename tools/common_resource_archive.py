@@ -49,9 +49,6 @@ PROFILES = {
     "cooking-ui": ArchiveProfile(
         (1, 3, 3, 40, 1, 0, 4), (2,), "cooking UI resource"
     ),
-    "menu-ui": ArchiveProfile(
-        (8, 8, 1, 32, 1, 0, 8), (), "menu UI resource"
-    ),
     "large-shared": ArchiveProfile(
         (27, 102, 1, 768, 46, 0, 124), (), "large shared resource"
     ),

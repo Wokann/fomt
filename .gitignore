@@ -46,6 +46,10 @@ graphics/shared_resource_*/full/*.4bpp
 graphics/shared_resource_*/full/*.gbapal
 graphics/ui/small_resource_archive/full/*.4bpp
 graphics/ui/small_resource_archive/full/*.gbapal
+graphics/ui/menu_resource_archive/full/*.4bpp
+graphics/ui/menu_resource_archive/full/*.gbapal
+graphics/ui/cooking_resource_archive/full/*.4bpp
+graphics/ui/cooking_resource_archive/full/*.gbapal
 tools/verify-gfx-range
 tools/verify-gfx-range.exe
 graphics/intro_scene/small_indexed_archive/shared/full/frame_0000.4bpp

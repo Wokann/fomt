@@ -185,17 +185,11 @@ COOKING_UI_RESOURCE_ARCHIVE_OFFSET_DE := 0x4DBB90
 COOKING_UI_RESOURCE_ARCHIVE_OFFSET := $(COOKING_UI_RESOURCE_ARCHIVE_OFFSET_$(GAME_REGION))
 # This eight-entry menu archive is constructed beside the menu entry-ID table.
 # Its native selection, descriptor, OAM, tile and palette tables remain fixed.
-MENU_UI_RESOURCE_ARCHIVE_TOOL := tools/common_resource_archive.py
 MENU_UI_RESOURCE_ARCHIVE_SOURCE_DIR := graphics/ui/menu_resource_archive
 MENU_UI_RESOURCE_ARCHIVE_SOURCES := $(wildcard $(MENU_UI_RESOURCE_ARCHIVE_SOURCE_DIR)/full/*.png)
-MENU_UI_RESOURCE_ARCHIVE_OUTPUT := $(BUILD_DIR)/graphics/ui/menu_resource_archive/menu_ui_resource_archive.bin
-MENU_UI_RESOURCE_ARCHIVE_LENGTH := 0x504
-MENU_UI_RESOURCE_ARCHIVE_SHA256 := 294385013bada21051d9c04acea32fc4880318eef8dc59d2b9158cea7a978c8c
-MENU_UI_RESOURCE_ARCHIVE_OFFSET_JP := 0x4A4910
-MENU_UI_RESOURCE_ARCHIVE_OFFSET_US := 0x71E7A8
-MENU_UI_RESOURCE_ARCHIVE_OFFSET_EU := 0x71E804
-MENU_UI_RESOURCE_ARCHIVE_OFFSET_DE := 0x4A5974
-MENU_UI_RESOURCE_ARCHIVE_OFFSET := $(MENU_UI_RESOURCE_ARCHIVE_OFFSET_$(GAME_REGION))
+MENU_UI_RESOURCE_ARCHIVE_TILES := $(MENU_UI_RESOURCE_ARCHIVE_SOURCES:.png=.4bpp)
+MENU_UI_RESOURCE_ARCHIVE_PALETTE := $(MENU_UI_RESOURCE_ARCHIVE_SOURCE_DIR)/full/group_000.gbapal
+MENU_UI_RESOURCE_ARCHIVE_ASSETS := $(MENU_UI_RESOURCE_ARCHIVE_TILES) $(MENU_UI_RESOURCE_ARCHIVE_PALETTE)
 # This complete 102-entry archive has four-region-identical data. Its callers
 # span shared runtime paths, so source names remain neutral physical group IDs.
 LARGE_SHARED_RESOURCE_ARCHIVE_TOOL := tools/common_resource_archive.py
@@ -1372,14 +1366,6 @@ $(COOKING_UI_RESOURCE_ARCHIVE_OUTPUT): $(COOKING_UI_RESOURCE_ARCHIVE_SOURCES) $(
 	  --sha256 $(COOKING_UI_RESOURCE_ARCHIVE_SHA256) \
 	  build --source-dir $(COOKING_UI_RESOURCE_ARCHIVE_SOURCE_DIR) --output $@
 
-$(MENU_UI_RESOURCE_ARCHIVE_OUTPUT): $(MENU_UI_RESOURCE_ARCHIVE_SOURCES) $(MENU_UI_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM)
-	@mkdir -p $(dir $@)
-	@$(PYTHON) $(MENU_UI_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM) --profile menu-ui \
-	  --offset $(MENU_UI_RESOURCE_ARCHIVE_OFFSET) \
-	  --length $(MENU_UI_RESOURCE_ARCHIVE_LENGTH) \
-	  --sha256 $(MENU_UI_RESOURCE_ARCHIVE_SHA256) \
-	  build --source-dir $(MENU_UI_RESOURCE_ARCHIVE_SOURCE_DIR) --output $@
-
 $(LARGE_SHARED_RESOURCE_ARCHIVE_OUTPUT): $(LARGE_SHARED_RESOURCE_ARCHIVE_SOURCES) $(LARGE_SHARED_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM)
 	@mkdir -p $(dir $@)
 	@$(PYTHON) $(LARGE_SHARED_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM) --profile large-shared \
@@ -1619,7 +1605,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 .PHONY: gfx-farm-status-task-ui-tile gfx-farm-status-task-ui-tile-test gfx-farm-status-task-ui-tile-all
 .PHONY: gfx-small-ui-resource-archive
 .PHONY: gfx-cooking-ui-resource-archive gfx-cooking-ui-resource-archive-test gfx-cooking-ui-resource-archive-all gfx-cooking-ui-resource-archive-patch-test gfx-cooking-ui-resource-archive-edit-test
-.PHONY: gfx-menu-ui-resource-archive gfx-menu-ui-resource-archive-test gfx-menu-ui-resource-archive-all gfx-menu-ui-resource-archive-patch-test gfx-menu-ui-resource-archive-edit-test
+.PHONY: gfx-menu-ui-resource-archive
 .PHONY: gfx-large-shared-resource-archive gfx-large-shared-resource-archive-test gfx-large-shared-resource-archive-all gfx-large-shared-resource-archive-patch-test gfx-large-shared-resource-archive-edit-test
 .PHONY: gfx-shared-resource-08725da0 gfx-shared-resource-08725da0-test gfx-shared-resource-08725da0-all gfx-shared-resource-08725da0-patch-test gfx-shared-resource-08725da0-edit-test
 .PHONY: gfx-shared-resource-086f2fac gfx-shared-resource-086f2fac-test gfx-shared-resource-086f2fac-all gfx-shared-resource-086f2fac-patch-test gfx-shared-resource-086f2fac-edit-test
@@ -2061,35 +2047,7 @@ gfx-cooking-ui-resource-archive-edit-test: $(COOKING_UI_RESOURCE_ARCHIVE_TOOL) $
 	  --offset 0x4DA620 --length $(COOKING_UI_RESOURCE_ARCHIVE_LENGTH) \
 	  --sha256 $(COOKING_UI_RESOURCE_ARCHIVE_SHA256) edit-test \
 	  --source-dir $(COOKING_UI_RESOURCE_ARCHIVE_SOURCE_DIR)
-gfx-menu-ui-resource-archive: $(MENU_UI_RESOURCE_ARCHIVE_OUTPUT)
-gfx-menu-ui-resource-archive-test: gfx-menu-ui-resource-archive $(MENU_UI_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM)
-	@$(PYTHON) $(MENU_UI_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM) --profile menu-ui \
-	  --offset $(MENU_UI_RESOURCE_ARCHIVE_OFFSET) \
-	  --length $(MENU_UI_RESOURCE_ARCHIVE_LENGTH) \
-	  --sha256 $(MENU_UI_RESOURCE_ARCHIVE_SHA256) \
-	  verify --source-dir $(MENU_UI_RESOURCE_ARCHIVE_SOURCE_DIR)
-gfx-menu-ui-resource-archive-all:
-	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-menu-ui-resource-archive-test
-	@$(MAKE) --no-print-directory GAME_REGION=US gfx-menu-ui-resource-archive-test
-	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-menu-ui-resource-archive-test
-	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-menu-ui-resource-archive-test
-gfx-menu-ui-resource-archive-patch-test: gfx-menu-ui-resource-archive-all $(MENU_UI_RESOURCE_ARCHIVE_TOOL)
-	@$(PYTHON) $(MENU_UI_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --profile menu-ui \
-	  --offset 0x4A4910 --length $(MENU_UI_RESOURCE_ARCHIVE_LENGTH) \
-	  --sha256 $(MENU_UI_RESOURCE_ARCHIVE_SHA256) patch-test \
-	  --archive jp build/jp/graphics/ui/menu_resource_archive/menu_ui_resource_archive.bin \
-	  --archive us build/us/graphics/ui/menu_resource_archive/menu_ui_resource_archive.bin \
-	  --archive eu build/eu/graphics/ui/menu_resource_archive/menu_ui_resource_archive.bin \
-	  --archive de build/de/graphics/ui/menu_resource_archive/menu_ui_resource_archive.bin \
-	  --all-rom jp baserom_jp.gba 0x4A4910 \
-	  --all-rom us baserom_us.gba 0x71E7A8 \
-	  --all-rom eu baserom_eu.gba 0x71E804 \
-	  --all-rom de baserom_de.gba 0x4A5974
-gfx-menu-ui-resource-archive-edit-test: $(MENU_UI_RESOURCE_ARCHIVE_TOOL) $(MENU_UI_RESOURCE_ARCHIVE_SOURCES) baserom_jp.gba
-	@$(PYTHON) $(MENU_UI_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --profile menu-ui \
-	  --offset 0x4A4910 --length $(MENU_UI_RESOURCE_ARCHIVE_LENGTH) \
-	  --sha256 $(MENU_UI_RESOURCE_ARCHIVE_SHA256) edit-test \
-	  --source-dir $(MENU_UI_RESOURCE_ARCHIVE_SOURCE_DIR)
+gfx-menu-ui-resource-archive: $(MENU_UI_RESOURCE_ARCHIVE_ASSETS)
 gfx-large-shared-resource-archive: $(LARGE_SHARED_RESOURCE_ARCHIVE_OUTPUT)
 gfx-large-shared-resource-archive-test: gfx-large-shared-resource-archive $(LARGE_SHARED_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM)
 	@$(PYTHON) $(LARGE_SHARED_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM) --profile large-shared \
@@ -2920,7 +2878,6 @@ resource-archive-audit: $(INDEXED_RESOURCE_ARCHIVE_TOOL) $(COMMON_RESOURCE_ARCHI
 	@$(PYTHON) $(COMMON_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --offset 0x3ED9FC --length $(COMMON_RESOURCE_ARCHIVE_LENGTH) --sha256 $(COMMON_RESOURCE_ARCHIVE_SHA256) audit
 	@$(PYTHON) $(SMALL_COMPANION_ARCHIVE_TOOL) baserom_jp.gba --profile small-companion --offset 0x3ED1BC --length $(SMALL_COMPANION_ARCHIVE_LENGTH) --sha256 $(SMALL_COMPANION_ARCHIVE_SHA256) audit
 	@$(PYTHON) $(COOKING_UI_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --profile cooking-ui --offset 0x4DA620 --length $(COOKING_UI_RESOURCE_ARCHIVE_LENGTH) --sha256 $(COOKING_UI_RESOURCE_ARCHIVE_SHA256) audit
-	@$(PYTHON) $(MENU_UI_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --profile menu-ui --offset 0x4A4910 --length $(MENU_UI_RESOURCE_ARCHIVE_LENGTH) --sha256 $(MENU_UI_RESOURCE_ARCHIVE_SHA256) audit
 	@$(PYTHON) $(LARGE_SHARED_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --profile large-shared --offset 0x4A5068 --length $(LARGE_SHARED_RESOURCE_ARCHIVE_LENGTH) --sha256 $(LARGE_SHARED_RESOURCE_ARCHIVE_SHA256) audit
 	@$(PYTHON) $(SHARED_RESOURCE_08725DA0_TOOL) baserom_jp.gba --profile shared-08725da0 --offset 0x4ABF08 --length $(SHARED_RESOURCE_08725DA0_LENGTH) --sha256 $(SHARED_RESOURCE_08725DA0_SHA256) audit
 	@$(PYTHON) $(SHARED_RESOURCE_086F2FAC_TOOL) baserom_jp.gba --profile shared-086f2fac --offset 0x479108 --length $(SHARED_RESOURCE_086F2FAC_LENGTH) --sha256 $(SHARED_RESOURCE_086F2FAC_SHA256) audit
@@ -3106,9 +3063,7 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-cooking-ui-resource-archive-all
 	@$(MAKE) --no-print-directory gfx-cooking-ui-resource-archive-patch-test
 	@$(MAKE) --no-print-directory gfx-cooking-ui-resource-archive-edit-test
-	@$(MAKE) --no-print-directory gfx-menu-ui-resource-archive-all
-	@$(MAKE) --no-print-directory gfx-menu-ui-resource-archive-patch-test
-	@$(MAKE) --no-print-directory gfx-menu-ui-resource-archive-edit-test
+	@$(MAKE) --no-print-directory gfx-menu-ui-resource-archive
 	@$(MAKE) --no-print-directory gfx-large-shared-resource-archive-all
 	@$(MAKE) --no-print-directory gfx-large-shared-resource-archive-patch-test
 	@$(MAKE) --no-print-directory gfx-large-shared-resource-archive-edit-test

@@ -1,11 +1,12 @@
 # Menu UI resource archive
 
 `full/group_000.png` through `group_007.png` are the editable,
-palette-indexed views of the eight drawable resources in one fixed
-`0x504`-byte `IndexedResourceArchive`. They are complete OAM-composited source
-images, not tile atlases or screenshots. The original archive retains its
-selector, descriptor, OAM, tile-placement, and BGR555 palette tables, so
-rebuilding requires no JSON layout sidecar.
+palette-indexed views of the eight drawable resources in one `0x504`-byte
+`IndexedResourceArchive`. They are complete OAM-composited source images, not
+tile atlases or screenshots. `archive.inc` keeps the native selector,
+descriptor, OAM, and selection tables in ROM order. The shared graphics rules
+turn the PNGs into 4bpp tiles and a BGR555 palette for direct assembly; no
+base-ROM template, custom archive builder, or post-link patch is needed.
 
 The archive is byte-identical in all four retail FoMT ROMs:
 
@@ -28,7 +29,6 @@ reads `full/` only.
 Use the following checks after editing:
 
 ```console
-make gfx-menu-ui-resource-archive-all
-make gfx-menu-ui-resource-archive-patch-test
-make gfx-menu-ui-resource-archive-edit-test
+make gfx-menu-ui-resource-archive
+make -j4 fomt_jp fomt_us fomt_eu fomt_de
 ```
