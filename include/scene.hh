@@ -132,6 +132,6 @@ inline void SceneOwner::reset(AScene * scene)
 
 inline SceneTransitionOwner::~SceneTransitionOwner() { delete value; }
 
-void SceneMain(SceneOwner scene);
+extern "C" void SceneMain(SceneOwner scene);
 
 #endif // SCENE_HH

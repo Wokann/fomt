@@ -1,8 +1,8 @@
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
 
-    thumb_func_start func_0800082C
-func_0800082C: @ 0x0800082C
+    thumb_func_start SceneMain
+SceneMain: @ 0x0800082C
     push {r4, r5, r6, r7, lr}
     sub sp, #0x1c
     adds r5, r0, #0

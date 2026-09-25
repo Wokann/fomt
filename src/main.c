@@ -11,7 +11,10 @@ extern void func_080D100C(u32 index, void (*handler)(void));
 extern void func_03000490(void);
 extern void func_08008AFC(void);
 extern void func_08008980(void *manager);
-extern void func_0800082C(void *scene_argument);
+// The C++ by-value SceneOwner argument is passed as a pointer to its one-word
+// stack object by this ABI.  C cannot include scene.hh, so keep this C-facing
+// declaration at the representation boundary.
+extern void SceneMain(void *scene_argument);
 extern void func_08008A68(void *manager, u32 mode);
 extern void *__builtin_new(u32 size);
 extern struct GameIntroScene *ConstructGameIntroScene(struct GameIntroScene *scene);
@@ -59,7 +62,7 @@ void AgbMain(void)
     frame.transfer_value = (u32)scene;
     frame.temporary = 0;
     frame.scene_argument = (u32)scene;
-    func_0800082C(&frame.scene_argument);
+    SceneMain(&frame.scene_argument);
 
     if (frame.temporary != 0)
     {
