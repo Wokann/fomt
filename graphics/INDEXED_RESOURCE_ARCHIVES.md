@@ -34,7 +34,7 @@ regionally different. It is the coverage ledger for this staged pipeline.
 | Shared archive `08527094` (source-owned `archive.inc` + `native.png`) | `0x2AD1F0` | `0x527094` | `0x5270F0` | `0x2AE130` | `0x1A4` | `4, 8, 7, 4, 1, 0` | 8 | `b54f1e2abe5bc34fdde8cb5a4c7b18d82d5d669d315db22a237cd9b03856306d` |
 | Shared archive `08726CCC` (source-owned `archive.inc` + `native.png`) | `0x4ACE34` | `0x726CCC` | `0x726D28` | `0x4ADE98` | `0x69C` | `1, 1, 9, 48, 1, 0` | 1 | `3c47f19f0d885430e84c64212819ff8f2a9051f7508e43a7961646cb2682cd74` |
 | Shared archive `08727368` (source-owned `archive.inc` + `native.png`) | `0x4AD4D0` | `0x727368` | `0x7273C4` | `0x4AE534` | `0x70C` | `3, 21, 68, 22, 1, 0` | 37 | `d045b5182e480e59df0de81d681be5187deb65427b80757af52a618d83955f0a` |
-| Shared archive `08727A74` | `0x4ADBDC` | `0x727A74` | `0x727AD0` | `0x4AEC40` | `0x794` | `1, 1, 36, 49, 1, 0` | 1 | `3734dad3d75471435276b57d3fa13693950e13a49b24d9caede41a2562041ffc` |
+| Shared archive `08727A74` (source-owned `archive.inc` + `native.png`) | `0x4ADBDC` | `0x727A74` | `0x727AD0` | `0x4AEC40` | `0x794` | `1, 1, 36, 49, 1, 0` | 1 | `3734dad3d75471435276b57d3fa13693950e13a49b24d9caede41a2562041ffc` |
 | Shared archive `08728320` | `0x4AE488` | `0x728320` | `0x72837C` | `0x4AF4EC` | `0x105C` | `7, 21, 32, 107, 1, 0` | 21 | `db6e14760f25e35a7211916f8a30cdafd90bcba78faed0e738bfc69dcf0edbfc` |
 | Shared archive `0872937C` | `0x4AF4E4` | `0x72937C` | `0x7293D8` | `0x4B0548` | `0xE4` | `1, 3, 1, 3, 1, 0` | 3 | `0e4724ae1b5689f71ce4ccab6643f935d670cc64a153a16cbc7748943c2ad6ba` |
 | Shared archive `08729460` | `0x4AF5C8` | `0x729460` | `0x7294BC` | `0x4B062C` | `0x2A04` | `1, 3, 9, 330, 1, 0` | 3 | `7a8b853ced44cc16da447b0f51ff98865b591f54b006fac3a3b52adfc9b1a24a` |
@@ -272,8 +272,9 @@ source name until the runtime purpose is independently established.
 
 Shared archive `08727A74` is independently bounded at the four locations in
 the table. Its one descriptor selects 36 native flipped OAM entries, 49 native
-4bpp tiles, one BGR555 palette, and one selection entry. Its editable PNG
-source is under `graphics/shared_resource_08727a74/`; the address remains its
+4bpp tiles, one BGR555 palette, and one selection entry. Its editable native
+tiles and palette are in `graphics/shared_resource_08727a74/full/native.png`;
+`archive.inc` links them with the remaining tables. The address remains its
 source name until the runtime purpose is independently established.
 
 Shared archive `08728320` is independently bounded at the four locations in
