@@ -1090,10 +1090,9 @@ UI_SCENE_080A2BA4_REFERENCE_TOOL := tools/ui_scene_080a2ba4_reference.py
 UI_SCENE_080A2BA4_REFERENCE_DIR := graphics/ui/scene_080a2ba4/reference
 
 # func_080B7164 loads two native 32-by-32 BG tilemaps and a 4bpp tile stream.
-# It then copies exactly 0x200 bytes from the explicitly loaded palette source
-# into palette RAM.  The palette is common to JP, US, EU and DE and is now an
-# editable 16-bank PNG; the two rendered PNGs are readable references, while
-# the native tilemap streams retain the reversible map/flip/bank metadata.
+# Its 0x200-byte palette-RAM copy starts at the shared three-bank JASC-PAL
+# source and continues into the following archive.  The rendered PNGs are
+# references; the native tilemaps retain map/flip/bank metadata.
 UI_SCENE_080B7164_TOOL := tools/ui_scene_080b7164.py
 UI_SCENE_080B7164_VISUAL_TOOL := tools/ui_scene_080b7164_visual.py
 UI_SCENE_080B7164_SOURCE_DIR := graphics/ui/scene_080b7164/shared
