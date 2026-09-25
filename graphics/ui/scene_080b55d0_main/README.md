@@ -16,10 +16,13 @@ four retail FoMT localizations:
 | EU | `0x6FB060` | `0x2198` | `0x8000` |
 | DE | `0x4820A0` | `0x2198` | `0x8000` |
 
-The source is rebuilt through the verified native Huffman-8/LZ3 encoder. An
-unchanged source retains the publisher stream byte-for-byte. An edited source
-must strictly decode to the 32 KiB payload and fit its immutable `0x2198`
-slot; otherwise the build stops rather than overwriting adjacent data.
+The current Python builder retains the publisher stream byte-for-byte when
+the source is unchanged. For an edited source, it encodes Huffman-8/LZ3 and
+requires the result to fit the `0x2198` slot. The C `fomt-lz` tool now
+independently decodes and verifies this format for all four regions; it does
+not yet encode it. Consequently this asset still depends on the Python
+builder and post-link patch, and is **not yet** on the desired direct-link
+resource path.
 
 ```console
 make gfx-ui-scene-080b55d0-main-all

@@ -1,4 +1,4 @@
-// FoMT's native Raw-LZ2/Raw-LZ3 stream codec. The 0x70 header is a stream header,
+// FoMT's native Raw-LZ2/Raw-LZ3 and Huffman-8/LZ3 stream codec. The 0x70 header is a stream header,
 // not a graphics format or a filename extension. Bit words are little-endian
 // while bits within each word are read most-significant first.
 #include <errno.h>
@@ -27,6 +27,11 @@ typedef struct {
     unsigned start;
     unsigned width;
 } LadderEntry;
+
+typedef struct {
+    int child[2];
+    int symbol;
+} HuffNode;
 
 static void fail(char const *message)
 {
@@ -505,6 +510,153 @@ static unsigned char *decode_lz3(unsigned char const *packed, size_t packed_size
     return output;
 }
 
+static int add_huff_node(HuffNode nodes[512], unsigned *count, int symbol)
+{
+    if (*count >= 512)
+        fail("Huffman-8 tree has too many nodes");
+    unsigned index = (*count)++;
+    nodes[index].child[0] = -1;
+    nodes[index].child[1] = -1;
+    nodes[index].symbol = symbol;
+    return (int)index;
+}
+
+static void read_huff8_tree(BitReader *reader, HuffNode nodes[512], unsigned *node_count)
+{
+    *node_count = 0;
+    add_huff_node(nodes, node_count, -1);
+    unsigned path = 0;
+    for (unsigned depth = 0; depth < 16; depth++) {
+        uint32_t count;
+        if (!read_bits(reader, 8, &count))
+            fail("truncated Huffman-8 tree count");
+        path <<= 1;
+        for (unsigned entry = 0; entry < count; entry++) {
+            if (path >= (1u << (depth + 1)))
+                fail("Huffman-8 code exceeds its declared depth");
+            int node = 0;
+            for (unsigned step = 0; step < depth; step++) {
+                unsigned branch = (path >> (depth - step)) & 1u;
+                if (nodes[node].child[branch] == -1)
+                    nodes[node].child[branch] = add_huff_node(nodes, node_count, -1);
+                node = nodes[node].child[branch];
+                if (nodes[node].symbol != -1)
+                    fail("Huffman-8 tree has a code beneath a leaf");
+            }
+            unsigned branch = path & 1u;
+            uint32_t symbol;
+            if (!read_bits(reader, 8, &symbol))
+                fail("truncated Huffman-8 tree symbol");
+            if (nodes[node].child[branch] != -1)
+                fail("Huffman-8 tree repeats a code");
+            nodes[node].child[branch] = add_huff_node(nodes, node_count, (int)symbol);
+            path++;
+        }
+    }
+    for (unsigned index = 0; index < *node_count; index++) {
+        if (nodes[index].symbol == -1 &&
+            (nodes[index].child[0] == -1 || nodes[index].child[1] == -1))
+            fail("Huffman-8 tree is incomplete");
+    }
+}
+
+static unsigned read_huff8_byte(BitReader *reader, HuffNode const nodes[512])
+{
+    int node = 0;
+    for (unsigned depth = 0; depth < 17; depth++) {
+        if (nodes[node].symbol != -1)
+            return (unsigned)nodes[node].symbol;
+        uint32_t branch;
+        if (!read_bits(reader, 1, &branch))
+            fail("truncated Huffman-8 literal");
+        node = nodes[node].child[branch];
+        if (node < 0)
+            fail("invalid Huffman-8 code");
+    }
+    fail("Huffman-8 code exceeds the maximum length");
+    return 0;
+}
+
+static unsigned char *decode_huff8_lz3(unsigned char const *packed, size_t packed_size,
+                                       LadderEntry ladder[3], size_t *decoded_size)
+{
+    if (packed_size < 8 || packed[0] != 0x70)
+        fail("not a FoMT native 0x70 stream");
+    *decoded_size = (size_t)packed[1] | ((size_t)packed[2] << 8)
+                  | ((size_t)packed[3] << 16);
+    if (!*decoded_size || *decoded_size > 0x40000 || (*decoded_size & 1))
+        fail("invalid Huffman-8/LZ3 decoded size");
+    BitReader reader = {packed, packed_size, 4, 0, 0};
+    uint32_t value;
+    if (!read_bits(&reader, 8, &value) || value != 0x13)
+        fail("this codec requires Huffman-8 atoms, LZ mode 3 and no filter");
+    HuffNode nodes[512];
+    unsigned node_count;
+    read_huff8_tree(&reader, nodes, &node_count);
+    unsigned start = 1;
+    for (unsigned index = 0; index < 3; index++) {
+        if (!read_bits(&reader, 4, &value))
+            fail("truncated Huffman-8/LZ3 ladder");
+        ladder[index].start = start;
+        ladder[index].width = value + 1;
+        start += 1u << ladder[index].width;
+    }
+    unsigned char *output = malloc(*decoded_size);
+    if (!output)
+        fail("out of memory");
+    size_t written = 0;
+    while (written < *decoded_size) {
+        if (!read_bits(&reader, 1, &value))
+            fail("truncated Huffman-8/LZ3 command");
+        unsigned pairs = 1;
+        unsigned distance = 0;
+        if (value) {
+            if (!read_bits(&reader, 2, &value))
+                fail("truncated Huffman-8/LZ3 command type");
+            unsigned index = value;
+            if (index == 3) {
+                unsigned count = read_vli(&reader);
+                if (!read_bits(&reader, 1, &value))
+                    fail("truncated extended Huffman-8/LZ3 command");
+                if (!value) {
+                    pairs = count + 1;
+                } else {
+                    if (!read_bits(&reader, 2, &value) || value == 3)
+                        fail("invalid extended Huffman-8/LZ3 ladder index");
+                    index = value;
+                    if (!read_bits(&reader, ladder[index].width, &value))
+                        fail("truncated extended Huffman-8/LZ3 distance");
+                    distance = ladder[index].start + value;
+                    if (!read_bits(&reader, 3, &value))
+                        fail("truncated extended Huffman-8/LZ3 length");
+                    pairs = (count << 3) + value + 2;
+                }
+            } else {
+                if (!read_bits(&reader, ladder[index].width, &value))
+                    fail("truncated Huffman-8/LZ3 distance");
+                distance = ladder[index].start + value;
+                if (!read_bits(&reader, 3, &value))
+                    fail("truncated Huffman-8/LZ3 length");
+                pairs = value + 2;
+            }
+        }
+        if (pairs > (*decoded_size - written) / 2)
+            fail("Huffman-8/LZ3 command exceeds decoded size");
+        if (distance) {
+            if (distance > written / 2)
+                fail("Huffman-8/LZ3 lookup precedes decoded data");
+            for (unsigned byte = 0; byte < pairs * 2; byte++) {
+                output[written] = output[written - distance * 2];
+                written++;
+            }
+        } else {
+            for (unsigned byte = 0; byte < pairs * 2; byte++)
+                output[written++] = (unsigned char)read_huff8_byte(&reader, nodes);
+        }
+    }
+    return output;
+}
+
 static unsigned char *decode_lz2(unsigned char const *packed, size_t packed_size,
                                  LadderEntry ladder[7], size_t *decoded_size)
 {
@@ -590,8 +742,8 @@ static void usage(void)
     fail("usage: fomt-lz encode-lz2 SOURCE OUTPUT LADDER SLOT_SIZE "
          "[--literal-tail] | "
          "encode-lz3 SOURCE OUTPUT LADDER SLOT_SIZE | "
-         "decode-lz2|decode-lz3 SOURCE OUTPUT | "
-         "verify-lz2|verify-lz3 SOURCE PACKED [LADDER]");
+         "decode-lz2|decode-lz3|decode-huff8-lz3 SOURCE OUTPUT | "
+         "verify-lz2|verify-lz3|verify-huff8-lz3 SOURCE PACKED [LADDER]");
 }
 
 int main(int argc, char **argv)
@@ -624,23 +776,30 @@ int main(int argc, char **argv)
         write_file(argv[3], packed, packed_size);
         free(packed);
         free(source);
-    } else if (strcmp(argv[1], "decode-lz2") == 0 || strcmp(argv[1], "decode-lz3") == 0) {
+    } else if (strcmp(argv[1], "decode-lz2") == 0 ||
+               strcmp(argv[1], "decode-lz3") == 0 ||
+               strcmp(argv[1], "decode-huff8-lz3") == 0) {
         if (argc != 4)
             usage();
         int lz2 = strcmp(argv[1], "decode-lz2") == 0;
+        int huff8 = strcmp(argv[1], "decode-huff8-lz3") == 0;
         size_t packed_size, decoded_size;
         unsigned char *packed = read_file(argv[2], &packed_size);
         LadderEntry ladder[7];
         unsigned char *decoded = lz2
             ? decode_lz2(packed, packed_size, ladder, &decoded_size)
-            : decode_lz3(packed, packed_size, ladder, &decoded_size);
+            : huff8 ? decode_huff8_lz3(packed, packed_size, ladder, &decoded_size)
+                    : decode_lz3(packed, packed_size, ladder, &decoded_size);
         write_file(argv[3], decoded, decoded_size);
         free(decoded);
         free(packed);
-    } else if (strcmp(argv[1], "verify-lz2") == 0 || strcmp(argv[1], "verify-lz3") == 0) {
+    } else if (strcmp(argv[1], "verify-lz2") == 0 ||
+               strcmp(argv[1], "verify-lz3") == 0 ||
+               strcmp(argv[1], "verify-huff8-lz3") == 0) {
         if (argc != 4 && argc != 5)
             usage();
         int lz2 = strcmp(argv[1], "verify-lz2") == 0;
+        int huff8 = strcmp(argv[1], "verify-huff8-lz3") == 0;
         unsigned count = lz2 ? 7 : 3;
         size_t source_size, packed_size, decoded_size;
         unsigned char *source = read_file(argv[2], &source_size);
@@ -650,7 +809,8 @@ int main(int argc, char **argv)
             parse_ladder(argv[4], expected, count);
         unsigned char *decoded = lz2
             ? decode_lz2(packed, packed_size, actual, &decoded_size)
-            : decode_lz3(packed, packed_size, actual, &decoded_size);
+            : huff8 ? decode_huff8_lz3(packed, packed_size, actual, &decoded_size)
+                    : decode_lz3(packed, packed_size, actual, &decoded_size);
         if (source_size != decoded_size || memcmp(source, decoded, source_size) != 0)
             fail("decoded stream does not match the source");
         for (unsigned index = 0; index < count && argc == 5; index++)

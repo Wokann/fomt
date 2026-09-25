@@ -2149,7 +2149,9 @@ gfx-ui-scene-080b55d0-aux-all:
 gfx-ui-scene-080b55d0-aux-edit-test: $(UI_SCENE_080B55D0_AUX_TOOL) baserom_jp.gba
 	@$(PYTHON) $(UI_SCENE_080B55D0_AUX_TOOL) --profile 080b55d0_aux edit-test --region jp --rom baserom_jp.gba
 gfx-ui-scene-080b55d0-main: $(UI_SCENE_080B55D0_MAIN_STAMP)
-gfx-ui-scene-080b55d0-main-test: gfx-ui-scene-080b55d0-main $(UI_SCENE_080B55D0_MAIN_TOOL)
+gfx-ui-scene-080b55d0-main-test: gfx-ui-scene-080b55d0-main $(UI_SCENE_080B55D0_MAIN_TOOL) $(FOMT_LZ_TOOL)
+	@$(FOMT_LZ_TOOL) verify-huff8-lz3 $(UI_SCENE_080B55D0_MAIN_SOURCE_DIR)/main_tiles.4bpp \
+	  $(UI_SCENE_080B55D0_MAIN_OUTPUT_DIR)/main_tiles.4bpp.0x70 4,10,12
 	@$(PYTHON) $(UI_SCENE_080B55D0_MAIN_TOOL) --profile 080b55d0_main verify --region $(UI_SCENE_080B55D0_MAIN_REGION) --rom $(BASE_ROM) \
 	  --source-dir $(UI_SCENE_080B55D0_MAIN_SOURCE_DIR) --output-dir $(UI_SCENE_080B55D0_MAIN_OUTPUT_DIR)
 gfx-ui-scene-080b55d0-main-all:
