@@ -20,6 +20,10 @@ tools/verify-gfx-range
 tools/verify-gfx-range.exe
 graphics/shared_resource_0873d5fc/full/group_000.4bpp
 graphics/shared_resource_0873d5fc/full/group_000.gbapal
+graphics/shared_resource_0873ae54/full/group_000.4bpp
+graphics/shared_resource_0873ae54/full/group_000.gbapal
+graphics/shared_resource_0873ae54/full/group_001.4bpp
+graphics/shared_resource_0873ae54/full/group_001.gbapal
 graphics/shared_resource_08740908/full/group_000.4bpp
 graphics/shared_resource_08740908/full/group_000.gbapal
 graphics/shared_resource_0874ee38/full/group_000.4bpp
