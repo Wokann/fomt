@@ -258,16 +258,21 @@ lengths. The map is stored as native entries, not a guessed PNG composite:
 make gfx-ui-scene-08077810-patch-test
 ```
 
-## FarmHouse descriptor palettes
+## FarmHouse descriptor source buffers
 
 The ten native BGR555 buffers in `farm_house_visual/shared/palettes/` are
 included directly at their original assembly positions for JP, US/EU and DE.
+The fourteen native 16-bit tilemap patches in the adjacent `tilemap_patches/`
+directory follow the same direct-link rule. Two patches have identical bytes
+but retain separate source files and physical positions because the descriptor
+table addresses them separately.
 The descriptor pointers continue to refer to those positions; the formal ROM
-build does not copy the buffers through a generated directory or patch them
-after linking. Independently compare every source buffer with all four retail
-ROMs using the C range verifier:
+build does not copy these buffers through a generated directory or patch them
+after linking. Independently compare both families with all four retail ROMs
+using the C range verifier:
 
 ```console
+make gfx-farm-house-tilemaps-all
 make gfx-farm-house-palettes-all
 ```
 

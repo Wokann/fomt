@@ -1149,12 +1149,23 @@ FARM_HOUSE_VISUAL_STAMP := $(FARM_HOUSE_VISUAL_OUTPUT_DIR)/.farm-house-visual.st
 FARM_HOUSE_VISUAL_REGION := $(INTRO_OBJECTS_REGION)
 # The same seven descriptors also contain fourteen bounded 16-bit tilemap
 # patches.  Their lookup and palette domains deliberately remain untouched.
-FARM_HOUSE_TILEMAP_TOOL := tools/farm_house_visual_tilemaps.py
 FARM_HOUSE_TILEMAP_SOURCE_DIR := graphics/farm_house_visual/shared/tilemap_patches
 FARM_HOUSE_TILEMAP_SOURCES := $(wildcard $(FARM_HOUSE_TILEMAP_SOURCE_DIR)/*.tilemap)
-FARM_HOUSE_TILEMAP_OUTPUT_DIR := $(BUILD_DIR)/graphics/farm_house_visual_tilemaps
-FARM_HOUSE_TILEMAP_STAMP := $(FARM_HOUSE_TILEMAP_OUTPUT_DIR)/.farm-house-tilemaps.stamp
-FARM_HOUSE_TILEMAP_REGION := $(INTRO_OBJECTS_REGION)
+FARM_HOUSE_TILEMAP_VERIFY_JP := \
+  patch_00_buffer_0.tilemap:0x472FEC patch_00_buffer_1.tilemap:0x47301C \
+  patch_01_buffer_0.tilemap:0x4734D0 patch_01_buffer_1.tilemap:0x4735A4 \
+  patch_02_buffer_0.tilemap:0x478F00 patch_02_buffer_1.tilemap:0x478FD4 \
+  patch_03_buffer_0.tilemap:0x4766AC patch_03_buffer_1.tilemap:0x4767E4 \
+  patch_04_buffer_0.tilemap:0x478068 patch_04_buffer_1.tilemap:0x478578 \
+  patch_05_buffer_0.tilemap:0x473A9C patch_05_buffer_1.tilemap:0x473AC4 \
+  patch_06_buffer_0.tilemap:0x474CA8 patch_06_buffer_1.tilemap:0x474DC8
+# The complete family has a constant regional displacement in the retail ROMs.
+# These values are used only for independent source-range verification, never
+# to address resources in the linked game.
+FARM_HOUSE_TILEMAP_VERIFY_DELTA_JP := 0x0
+FARM_HOUSE_TILEMAP_VERIFY_DELTA_US := 0x279EA4
+FARM_HOUSE_TILEMAP_VERIFY_DELTA_EU := 0x279F00
+FARM_HOUSE_TILEMAP_VERIFY_DELTA_DE := 0xF40
 # Each descriptor's +0x20 source is copied as a known number of native
 # BGR555 palette banks. Keep it binary, separate from both tile and tilemap
 # authoring data.
@@ -1711,11 +1722,6 @@ $(FARM_HOUSE_VISUAL_STAMP): $(FARM_HOUSE_VISUAL_SOURCES) $(FARM_HOUSE_VISUAL_TOO
 	  --source-dir $(FARM_HOUSE_VISUAL_SOURCE_DIR) --output-dir $(FARM_HOUSE_VISUAL_OUTPUT_DIR)
 	@touch $@
 
-$(FARM_HOUSE_TILEMAP_STAMP): $(FARM_HOUSE_TILEMAP_SOURCES) $(FARM_HOUSE_TILEMAP_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(FARM_HOUSE_TILEMAP_TOOL) build --region $(FARM_HOUSE_TILEMAP_REGION) \
-	  --source-dir $(FARM_HOUSE_TILEMAP_SOURCE_DIR) --output-dir $(FARM_HOUSE_TILEMAP_OUTPUT_DIR) $(MAP_RESOURCES_ALL_ROM_ARGS)
-	@touch $@
-
 $(MAP_RESOURCES_STAMP): $(MAP_RESOURCES_SOURCES) $(MAP_RESOURCES_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(MAP_RESOURCES_TOOL) build --region $(MAP_RESOURCES_REGION) --rom $(BASE_ROM) \
 	  --source-dir $(MAP_RESOURCES_SOURCE_DIR) --output-dir $(MAP_RESOURCES_OUTPUT_DIR) $(MAP_RESOURCES_ALL_ROM_ARGS)
@@ -1796,7 +1802,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 .PHONY: gfx-ui-scene-08054f40-tiles gfx-ui-scene-08054f40-reference gfx-ui-scene-08054f40-tiles-test gfx-ui-scene-08054f40-tiles-all
 .PHONY: gfx-ui-scene-0805ab08-tiles gfx-ui-scene-0805ab08-reference gfx-ui-scene-0805ab08-tiles-test gfx-ui-scene-0805ab08-tiles-all
 .PHONY: gfx-farm-house-visual gfx-farm-house-visual-test gfx-farm-house-visual-all gfx-farm-house-visual-patch-test gfx-farm-house-visual-edit-test
-.PHONY: gfx-farm-house-tilemaps gfx-farm-house-tilemaps-test gfx-farm-house-tilemaps-all gfx-farm-house-tilemaps-patch-test gfx-farm-house-tilemaps-edit-test
+.PHONY: gfx-farm-house-tilemaps gfx-farm-house-tilemaps-test gfx-farm-house-tilemaps-all
 .PHONY: gfx-farm-house-palettes gfx-farm-house-palettes-test gfx-farm-house-palettes-all
 .PHONY: gfx-intro-indexed-archive gfx-intro-indexed-archive-test gfx-intro-indexed-archive-all gfx-intro-indexed-archive-edit-test
 .PHONY: gfx-intro-small-archive gfx-intro-small-archive-test gfx-intro-small-archive-all
@@ -2051,19 +2057,17 @@ gfx-farm-house-visual-edit-test: $(FARM_HOUSE_VISUAL_TOOL) baserom_us.gba
 	@$(PYTHON) $(FARM_HOUSE_VISUAL_TOOL) edit-test --region us --rom baserom_us.gba --stream 2
 	@$(PYTHON) $(FARM_HOUSE_VISUAL_TOOL) edit-test --region us --rom baserom_us.gba --stream 4
 	@$(PYTHON) $(FARM_HOUSE_VISUAL_TOOL) edit-test --region us --rom baserom_us.gba --stream 5
-gfx-farm-house-tilemaps: $(FARM_HOUSE_TILEMAP_STAMP)
-gfx-farm-house-tilemaps-test: gfx-farm-house-tilemaps $(FARM_HOUSE_TILEMAP_TOOL)
-	@$(PYTHON) $(FARM_HOUSE_TILEMAP_TOOL) verify --region $(FARM_HOUSE_TILEMAP_REGION) \
-	  --source-dir $(FARM_HOUSE_TILEMAP_SOURCE_DIR) --output-dir $(FARM_HOUSE_TILEMAP_OUTPUT_DIR) $(MAP_RESOURCES_ALL_ROM_ARGS)
+gfx-farm-house-tilemaps: $(FARM_HOUSE_TILEMAP_SOURCES)
+gfx-farm-house-tilemaps-test: gfx-farm-house-tilemaps $(GFX_RANGE_VERIFY) $(BASE_ROM)
+	@set -e; for entry in $(FARM_HOUSE_TILEMAP_VERIFY_JP); do \
+	  source=$${entry%%:*}; jp_offset=$${entry#*:}; \
+	  $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$((jp_offset + $(FARM_HOUSE_TILEMAP_VERIFY_DELTA_$(GAME_REGION)))) --input $(FARM_HOUSE_TILEMAP_SOURCE_DIR)/$$source; \
+	done
 gfx-farm-house-tilemaps-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-farm-house-tilemaps-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-farm-house-tilemaps-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-farm-house-tilemaps-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-farm-house-tilemaps-test
-gfx-farm-house-tilemaps-patch-test: gfx-farm-house-tilemaps-all $(FARM_HOUSE_TILEMAP_TOOL)
-	@$(PYTHON) $(FARM_HOUSE_TILEMAP_TOOL) patch-test --output-root build $(MAP_RESOURCES_ROM_ARGS)
-gfx-farm-house-tilemaps-edit-test: $(FARM_HOUSE_TILEMAP_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(FARM_HOUSE_TILEMAP_TOOL) edit-test $(MAP_RESOURCES_ROM_ARGS)
 gfx-farm-house-palettes: $(FARM_HOUSE_PALETTE_SOURCES)
 gfx-farm-house-palettes-test: gfx-farm-house-palettes $(GFX_RANGE_VERIFY) $(BASE_ROM)
 	@set -e; for entry in $(FARM_HOUSE_PALETTE_VERIFY_$(GAME_REGION)); do \
@@ -3365,8 +3369,6 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-farm-house-visual-patch-test
 	@$(MAKE) --no-print-directory gfx-farm-house-visual-edit-test
 	@$(MAKE) --no-print-directory gfx-farm-house-tilemaps-all
-	@$(MAKE) --no-print-directory gfx-farm-house-tilemaps-patch-test
-	@$(MAKE) --no-print-directory gfx-farm-house-tilemaps-edit-test
 	@$(MAKE) --no-print-directory gfx-farm-house-palettes-all
 	@$(MAKE) --no-print-directory gfx-farm-status-all
 	@$(MAKE) --no-print-directory gfx-farm-status-resource-archive-all
