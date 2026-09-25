@@ -152778,16 +152778,16 @@ gUnk_08755154:
 	.4byte 0                      @ final table entry
 	.global gUnk_08755230
 gUnk_08755230:
-	FOMT_SEASONAL_NONWINTER_ASSET "bg_30.tilemap"
+	.incbin "graphics/ui/seasonal_background/shared/bg_30.tilemap"
 	.global gUnk_0875553C
 gUnk_0875553C:
-	FOMT_SEASONAL_NONWINTER_ASSET "bg_29.tilemap"
+	.incbin "graphics/ui/seasonal_background/shared/bg_29.tilemap"
 	.global gUnk_08755848
 gUnk_08755848:
-	FOMT_SEASONAL_NONWINTER_ASSET "nonwinter_tiles.0x70"
+	.incbin "graphics/ui/seasonal_background/shared/nonwinter_tiles.4bpp.lz"
 	.global gUnk_08757AE0
 gUnk_08757AE0:
-	FOMT_SEASONAL_NONWINTER_ASSET "nonwinter_palette_banks.gbapal"
+	.incbin "graphics/ui/seasonal_background/shared/nonwinter_palette_banks.gbapal"
 	.global gUnk_08757BA0
 gUnk_08757BA0:
 	.byte 0xBC, 0x51, 0xBD, 0x51, 0xBE, 0x51, 0xDC, 0x51, 0xDD, 0x51, 0xDE, 0x51
@@ -152811,7 +152811,7 @@ gUnk_08757C0C:
 	.byte 0xB0, 0x41, 0xB1, 0x41, 0xD0, 0x41, 0xD1, 0x41
 	.global gUnk_08757C14
 gUnk_08757C14:
-	FOMT_SEASONAL_NONWINTER_ASSET "bg_30.tilemap"
+	.incbin "graphics/ui/seasonal_background/shared/bg_30.tilemap"
 	.global gUnk_08757F20
 gUnk_08757F20:
 	FOMT_SEASONAL_WINTER_ASSET "winter_bg_29.tilemap"
