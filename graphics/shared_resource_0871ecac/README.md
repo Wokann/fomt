@@ -3,11 +3,10 @@
 `full/group_000.png` through `group_003.png` are the editable,
 palette-indexed views of four drawable resources in one fixed `0x128`-byte
 `IndexedResourceArchive`. They are complete OAM-composited source images, not
-tile atlases or screenshots. The fifth native descriptor is all zero and
-remains native data. `archive.original.bin` retains its selector, descriptor,
-OAM, tile-placement, and BGR555 palette tables, so rebuilding requires no JSON
-layout sidecar. This metadata remains a native binary until its structure is
-fully expressed as C data.
+tile atlases or screenshots. The fifth native descriptor is all zero.
+`archive.inc` now expresses the seven native tables in ROM order and includes
+the four PNG-derived tiles and the shared palette directly. There is no ROM
+template or intermediate `archive.bin` in the build.
 
 The archive is byte-identical in all four retail FoMT ROMs:
 
@@ -24,15 +23,15 @@ individual gameplay semantics are not independently proven, so the source
 directory retains the original address rather than inventing a semantic name.
 
 `preview/` contains transparent RGBA inspection exports only. The ordinary
-graphics rules use the C `gbagfx` tool to generate adjacent `.4bpp` and
-`.gbapal` files from `full/`. The C `fomt-indexed-archive` tool combines
-them with the checked-in metadata into adjacent `archive.bin`. The assembler
-includes that file directly in all four regions, without an original ROM or
-post-link replacement for this archive.
+graphics rules use `gbagfx` to generate adjacent `.4bpp` files from all four
+PNGs and a `.gbapal` from `group_000.png`. All four retail palettes are
+identical; `group_000.png` owns the shared palette. The assembler includes
+the table source directly in all four regions, without a separate archive
+builder or post-link replacement.
 
 Use the following checks after editing:
 
 ```console
-make gfx-shared-resource-0871ecac-all
-# Then use make compare, compare_eu, and compare_de for whole-ROM checks.
+make gfx-shared-resource-0871ecac
+make compare compare_eu compare_de
 ```
