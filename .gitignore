@@ -34,5 +34,7 @@ graphics/shared_resource_08753608/full/group_000.4bpp
 graphics/shared_resource_08753608/full/group_000.gbapal
 graphics/shared_resource_08755154/full/group_000.4bpp
 graphics/shared_resource_08755154/full/group_000.gbapal
+graphics/intro_scene/small_indexed_archive/shared/full/frame_0000.4bpp
+graphics/intro_scene/small_indexed_archive/shared/full/frame_0000.gbapal
 __pycache__/
 tools/textproc/fomt-*

@@ -64,12 +64,15 @@ make gfx-intro-indexed-archive-edit-test
 
 The same initializer also consumes `small_indexed_archive/shared/full/`: a
 separate, raw `0x118`-byte archive with three complete 16-by-16 OAM frames.
-Its native bytes are identical in JP, US, EU, and DE, so one shared source
-rebuilds every regional range and passes a PNG-pixel full-ROM patch fixture.
+Its native bytes are identical in JP, US, EU, and DE. All three views share
+the same four native tiles and palette; their original PNG exports were
+byte-for-byte duplicates. One `frame_0000.png` therefore supplies both
+assets through the ordinary C `gbagfx` rules. The selection, descriptor,
+OAM, and animation records are written directly in the assembly source;
+there is no ROM-template rebuild or post-link patch for this archive.
 
 ```console
 make gfx-intro-small-archive-all
-make gfx-intro-small-archive-edit-test
 ```
 
 ## Startup background layers

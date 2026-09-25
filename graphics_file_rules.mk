@@ -995,11 +995,13 @@ INTRO_INDEXED_ARCHIVE_SOURCES := $(wildcard $(INTRO_INDEXED_ARCHIVE_SOURCE_ROOT)
 	$(wildcard $(INTRO_INDEXED_ARCHIVE_SOURCE_ROOT)/*/runtime_obj_palette.gbapal)
 INTRO_INDEXED_ARCHIVE_OUTPUT := $(BUILD_DIR)/graphics/intro_scene/indexed_archive/archive.0x70
 INTRO_INDEXED_ARCHIVE_REGION := $(INTRO_OBJECTS_REGION)
-INTRO_SMALL_ARCHIVE_TOOL := tools/intro_scene_small_archive.py
 INTRO_SMALL_ARCHIVE_SOURCE_DIR := graphics/intro_scene/small_indexed_archive/shared
-INTRO_SMALL_ARCHIVE_SOURCES := $(wildcard $(INTRO_SMALL_ARCHIVE_SOURCE_DIR)/full/*.png)
-INTRO_SMALL_ARCHIVE_OUTPUT := $(BUILD_DIR)/graphics/intro_scene/small_indexed_archive/archive.bin
-INTRO_SMALL_ARCHIVE_REGION := $(INTRO_OBJECTS_REGION)
+INTRO_SMALL_ARCHIVE_ASSETS := $(INTRO_SMALL_ARCHIVE_SOURCE_DIR)/full/frame_0000.4bpp $(INTRO_SMALL_ARCHIVE_SOURCE_DIR)/full/frame_0000.gbapal
+INTRO_SMALL_ARCHIVE_OFFSET_JP := 0x4D4CC4
+INTRO_SMALL_ARCHIVE_OFFSET_US := 0x74E530
+INTRO_SMALL_ARCHIVE_OFFSET_EU := 0x74E58C
+INTRO_SMALL_ARCHIVE_OFFSET_DE := 0x4D599C
+INTRO_SMALL_ARCHIVE_OFFSET := $(INTRO_SMALL_ARCHIVE_OFFSET_$(GAME_REGION))
 
 # func_080A2BA4 loads three 32-by-20 BG tilemaps and one 160-tile 4bpp
 # character stream into fixed VRAM locations. Its adjacent palette bytes are
@@ -1297,7 +1299,7 @@ GRAPHICS_ASSETS = \
 	$(INTRO_BACKGROUND_PACKED_BIN) $(INTRO_BACKGROUND_PALETTE_BIN) \
 	$(INTRO_OBJECTS_STAMP) $(INTRO_STARTUP_TILEMAPS_STAMP) \
 	$(INTRO_STARTUP_VISUAL_STAMP) $(INTRO_INDEXED_ARCHIVE_OUTPUT) \
-	$(INTRO_SMALL_ARCHIVE_OUTPUT) $(UI_SCENE_080A2BA4_OUTPUTS) \
+	$(INTRO_SMALL_ARCHIVE_ASSETS) $(UI_SCENE_080A2BA4_OUTPUTS) \
 	$(UI_SCENE_08077810_ACTIVE_STAMP) $(UI_SCENE_080AE7D0_OUTPUTS) \
 	$(UI_SCENE_080B7164_OUTPUTS) $(UI_SCENE_080C160C_OUTPUTS) $(UI_SCENE_080BCFAC_OUTPUTS) \
 	$(UI_SCENE_080B55D0_AUX_OUTPUTS) \
@@ -1785,7 +1787,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 .PHONY: gfx-farm-house-tilemaps gfx-farm-house-tilemaps-test gfx-farm-house-tilemaps-all gfx-farm-house-tilemaps-patch-test gfx-farm-house-tilemaps-edit-test
 .PHONY: gfx-farm-house-palettes gfx-farm-house-palettes-test gfx-farm-house-palettes-all gfx-farm-house-palettes-patch-test gfx-farm-house-palettes-edit-test
 .PHONY: gfx-intro-indexed-archive gfx-intro-indexed-archive-test gfx-intro-indexed-archive-all gfx-intro-indexed-archive-edit-test
-.PHONY: gfx-intro-small-archive gfx-intro-small-archive-all gfx-intro-small-archive-edit-test
+.PHONY: gfx-intro-small-archive gfx-intro-small-archive-test gfx-intro-small-archive-all
 oam-pack: $(OAM_PACK)
 oam-pack-test: $(OAM_PACK) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba $(PORTRAIT_SOURCE_DIR)/full/000_TALK_PORTRAIT_RICK_NORMAL.png
 	@mkdir -p $(BUILD_DIR)/graphics/oam_pack
@@ -3074,22 +3076,15 @@ gfx-intro-indexed-archive-edit-test: $(INTRO_INDEXED_ARCHIVE_TOOL) baserom_jp.gb
 	@$(PYTHON) $(INTRO_INDEXED_ARCHIVE_TOOL) edit-test --region us --rom baserom_us.gba --source-root $(INTRO_INDEXED_ARCHIVE_SOURCE_ROOT)
 	@$(PYTHON) $(INTRO_INDEXED_ARCHIVE_TOOL) edit-test --region eu --rom baserom_eu.gba --source-root $(INTRO_INDEXED_ARCHIVE_SOURCE_ROOT)
 	@$(PYTHON) $(INTRO_INDEXED_ARCHIVE_TOOL) edit-test --region de --rom baserom_de.gba --source-root $(INTRO_INDEXED_ARCHIVE_SOURCE_ROOT)
-$(INTRO_SMALL_ARCHIVE_OUTPUT): $(INTRO_SMALL_ARCHIVE_TOOL) $(INTRO_SMALL_ARCHIVE_SOURCES) $(BASE_ROM)
-	@mkdir -p $(dir $@)
-	@$(PYTHON) $(INTRO_SMALL_ARCHIVE_TOOL) build --region $(INTRO_SMALL_ARCHIVE_REGION) --rom $(BASE_ROM) --source-dir $(INTRO_SMALL_ARCHIVE_SOURCE_DIR) --output $@
-gfx-intro-small-archive: $(INTRO_SMALL_ARCHIVE_OUTPUT)
+gfx-intro-small-archive: $(INTRO_SMALL_ARCHIVE_ASSETS)
+gfx-intro-small-archive-test: gfx-intro-small-archive $(GFX_RANGE_VERIFY) $(BASE_ROM)
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$(($(INTRO_SMALL_ARCHIVE_OFFSET) + 0x5C)) --length 0x80 --input $(word 1,$(INTRO_SMALL_ARCHIVE_ASSETS))
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$(($(INTRO_SMALL_ARCHIVE_OFFSET) + 0xE0)) --length 0x20 --input $(word 2,$(INTRO_SMALL_ARCHIVE_ASSETS))
 gfx-intro-small-archive-all:
-	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-intro-small-archive
-	@$(MAKE) --no-print-directory GAME_REGION=US gfx-intro-small-archive
-	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-intro-small-archive
-	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-intro-small-archive
-	@$(PYTHON) $(INTRO_SMALL_ARCHIVE_TOOL) verify --source-dir $(INTRO_SMALL_ARCHIVE_SOURCE_DIR) --output-root build \
-	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
-gfx-intro-small-archive-edit-test: $(INTRO_SMALL_ARCHIVE_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(INTRO_SMALL_ARCHIVE_TOOL) edit-test --region jp --rom baserom_jp.gba --source-dir $(INTRO_SMALL_ARCHIVE_SOURCE_DIR)
-	@$(PYTHON) $(INTRO_SMALL_ARCHIVE_TOOL) edit-test --region us --rom baserom_us.gba --source-dir $(INTRO_SMALL_ARCHIVE_SOURCE_DIR)
-	@$(PYTHON) $(INTRO_SMALL_ARCHIVE_TOOL) edit-test --region eu --rom baserom_eu.gba --source-dir $(INTRO_SMALL_ARCHIVE_SOURCE_DIR)
-	@$(PYTHON) $(INTRO_SMALL_ARCHIVE_TOOL) edit-test --region de --rom baserom_de.gba --source-dir $(INTRO_SMALL_ARCHIVE_SOURCE_DIR)
+	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-intro-small-archive-test
+	@$(MAKE) --no-print-directory GAME_REGION=US gfx-intro-small-archive-test
+	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-intro-small-archive-test
+	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-intro-small-archive-test
 gfx-intro-startup-tilemaps: $(INTRO_STARTUP_TILEMAPS_STAMP)
 gfx-intro-startup-tilemaps-test: gfx-intro-startup-tilemaps $(BASE_ROM) $(INTRO_STARTUP_TILEMAPS_TOOL)
 	@$(PYTHON) $(INTRO_STARTUP_TILEMAPS_TOOL) verify --region $(INTRO_STARTUP_TILEMAPS_REGION) --rom $(BASE_ROM) \
@@ -3530,7 +3525,6 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-intro-indexed-archive-all
 	@$(MAKE) --no-print-directory gfx-intro-indexed-archive-edit-test
 	@$(MAKE) --no-print-directory gfx-intro-small-archive-all
-	@$(MAKE) --no-print-directory gfx-intro-small-archive-edit-test
 	@$(MAKE) --no-print-directory gfx-map-resources-all
 	@$(MAKE) --no-print-directory gfx-map-resources-patch-test
 	@$(MAKE) --no-print-directory gfx-map-resources-edit-test

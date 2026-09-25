@@ -157023,7 +157023,23 @@ gUnk_0874E330:
 	.incbin "build/de/graphics/intro_scene/startup_visual/startup_palette_banks.gbapal"
 	.global gUnk_0874E530
 gUnk_0874E530:
-	.incbin "build/de/graphics/intro_scene/small_indexed_archive/archive.bin"
+	.4byte 1                         @ selection count
+	.4byte 4                         @ selection
+	.4byte 3                         @ frame descriptor count
+	.4byte 1, 4, 1, 0               @ frame 0
+	.4byte 0x00010001, 4, 1, 0      @ frame 1
+	.4byte 0x00020001, 4, 1, 0      @ frame 2
+	.4byte 3                         @ OAM count
+	.2byte 0x00FA, 0x41F0, 0, 0
+	.2byte 0x00FA, 0x41F1, 0, 0
+	.2byte 0x00FA, 0x41F2, 0, 0
+	.4byte 4                         @ tile count
+	.incbin "graphics/intro_scene/small_indexed_archive/shared/full/frame_0000.4bpp"
+	.4byte 1                         @ palette count
+	.incbin "graphics/intro_scene/small_indexed_archive/shared/full/frame_0000.gbapal"
+	.4byte 0                         @ empty table count
+	.4byte 4                         @ animation entry count
+	.4byte 0x00060000, 0x00060001, 0x00060002, 0x00060001
 	.global gUnk_0874E648
 gUnk_0874E648:
 	.incbin "build/de/graphics/ui/scene_08077810/tiles.0x70"
