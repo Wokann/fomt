@@ -38,14 +38,14 @@ as a shared payload.
 | `gUnk_0873A6E8` | `0x4C0850` | `0x73A6E8` | `0x73A744` | `0x4C1A54` | `0x76C` | 1, 1, 3, 56, 1, 0 | 1 | rebuild, region-local: `graphics/regional_resource_0873a6e8/` |
 | `gUnk_0873AE54` | `0x4C0FBC` | `0x73AE54` | `0x73AEB0` | `0x4C21C0` | `0x174` | 2, 2, 1, 8, 1, 0 | 2 | linked from indexed PNG, no baserom input or post-link patch: `graphics/shared_resource_0873ae54/` |
 | `gUnk_0873AFC8` | `0x4C1130` | `0x73AFC8` | `0x73B024` | `0x4C2334` | `0xE5C` | 1, 1, 9, 110, 1, 0 | 1 | rebuild, four-region shared: `graphics/shared_resource_0873afc8/` |
-| `gUnk_0873CCB4` | `0x4C2E1C` | `0x73CCB4` | `0x73CD10` | `0x4C4020` | `0x1F8` | 1, 2, 2, 12, 1, 0 | 2 | rebuild, four-region shared: `graphics/shared_resource_0873ccb4/` |
-| `gUnk_0873CEAC` | `0x4C3014` | `0x73CEAC` | `0x73CF08` | `0x4C4218` | `0xE4` | 1, 1, 2, 4, 1, 0 | 1 | rebuild, four-region shared: `graphics/shared_resource_0873ceac/` |
-| `gUnk_0873CF90` | `0x4C30F8` | `0x73CF90` | `0x73CFEC` | `0x4C42FC` | `0x2A4` | 4, 4, 1, 16, 1, 0 | 4 | rebuild, four-region shared: `graphics/shared_resource_0873cf90/` |
-| `gUnk_0873D234` | `0x4C339C` | `0x73D234` | `0x73D290` | `0x4C45A0` | `0x3C8` | 3, 6, 1, 24, 1, 0 | 6 | rebuild, four-region shared: `graphics/shared_resource_0873d234/` |
+| `gUnk_0873CCB4` | `0x4C2E1C` | `0x73CCB4` | `0x73CD10` | `0x4C4020` | `0x1F8` | 1, 2, 2, 12, 1, 0 | 2 | native PNG + assembly tables, directly linked: `graphics/shared_resource_0873ccb4/` |
+| `gUnk_0873CEAC` | `0x4C3014` | `0x73CEAC` | `0x73CF08` | `0x4C4218` | `0xE4` | 1, 1, 2, 4, 1, 0 | 1 | native PNG + assembly tables, directly linked: `graphics/shared_resource_0873ceac/` |
+| `gUnk_0873CF90` | `0x4C30F8` | `0x73CF90` | `0x73CFEC` | `0x4C42FC` | `0x2A4` | 4, 4, 1, 16, 1, 0 | 4 | native PNG + assembly tables, directly linked: `graphics/shared_resource_0873cf90/` |
+| `gUnk_0873D234` | `0x4C339C` | `0x73D234` | `0x73D290` | `0x4C45A0` | `0x3C8` | 3, 6, 1, 24, 1, 0 | 6 | native PNG + assembly tables, directly linked: `graphics/shared_resource_0873d234/` |
 | `gUnk_0873D5FC` | `0x4C3764` | `0x73D5FC` | `0x73D658` | `0x4C4968` | `0xDC` | 1, 1, 1, 4, 1, 0 | 1 | linked from indexed PNG, no baserom input or post-link patch: `graphics/shared_resource_0873d5fc/` |
 | `gUnk_0873D6D8` | `0x4C3840` | `0x73D6D8` | `0x73D734` | `0x4C4A44` | `0x874` | 1, 1, 4, 64, 1, 0 | 1 | rebuild, region-local: `graphics/regional_resource_0873d6d8/` |
-| `gUnk_0873DE44` | `0x4C3FAC` | `0x73DE44` | `0x73DEA0` | `0x4C52B8` | `0x76C` | 1, 1, 3, 56, 1, 0 | 1 | rebuild, four-region shared: `graphics/shared_resource_0873de44/` |
-| `gUnk_0873E5B0` | `0x4C4718` | `0x73E5B0` | `0x73E60C` | `0x4C5A24` | `0x76C` | 1, 1, 3, 56, 1, 0 | 1 | rebuild, four-region shared: `graphics/shared_resource_0873e5b0/` |
+| `gUnk_0873DE44` | `0x4C3FAC` | `0x73DE44` | `0x73DEA0` | `0x4C52B8` | `0x76C` | 1, 1, 3, 56, 1, 0 | 1 | native PNG + assembly tables, directly linked: `graphics/shared_resource_0873de44/` |
+| `gUnk_0873E5B0` | `0x4C4718` | `0x73E5B0` | `0x73E60C` | `0x4C5A24` | `0x76C` | 1, 1, 3, 56, 1, 0 | 1 | native PNG + assembly tables, directly linked: `graphics/shared_resource_0873e5b0/` |
 | `gUnk_0873ED1C` | `0x4C4E84` | `0x73ED1C` | `0x73ED78` | `0x4C6190` | `0x6AC` | 3, 10, 11, 41, 2, 0 | 11 | rebuild, four-region shared: `graphics/shared_resource_0873ed1c/` |
 | `gUnk_087401A4` | `0x4C630C` | `0x7401A4` | `0x740200` | `0x4C7618` | `0x2B0` | 1, 4, 4, 16, 1, 0 | 4 | rebuild, four-region shared: `graphics/shared_resource_087401a4/` |
 | `gUnk_08740454` | `0x4C65BC` | `0x740454` | `0x7404B0` | `0x4C78C8` | `0x14C` | 1, 3, 2, 6, 1, 0 | 3 | rebuild, four-region shared: `graphics/shared_resource_08740454/` |

@@ -317,9 +317,10 @@ the runtime purpose is independently established.
 
 Shared archive `0873CCB4` is independently bounded at the four locations in
 the table. Its two descriptors select two native OAM records, 12 native 4bpp
-tiles, one BGR555 palette, and two selection entries. Its editable PNG sources
-are under `graphics/shared_resource_0873ccb4/`; the address remains its source
-name until the runtime purpose is independently established.
+tiles, one BGR555 palette, and two selection entries. The native-order tile
+source is `graphics/shared_resource_0873ccb4/full/native.png`; `archive.inc`
+links its generated assets and native tables without a post-link patch. The
+address remains its source name until the runtime purpose is established.
 
 Shared archive `0873CEAC` is independently bounded at the four locations in
 the table. Its descriptor selects one native OAM record, four native 4bpp
@@ -335,9 +336,10 @@ name until the runtime purpose is independently established.
 
 Shared archive `0873D234` is independently bounded at the four locations in
 the table. Its six descriptors select one native OAM record, 24 native 4bpp
-tiles, one BGR555 palette, and six selection entries. Its editable PNG sources
-are under `graphics/shared_resource_0873d234/`; the address remains its source
-name until the runtime purpose is independently established.
+tiles, one BGR555 palette, and six selection entries. The native-order tile
+source is `graphics/shared_resource_0873d234/full/native.png`; `archive.inc`
+links its generated assets and native tables without a post-link patch. The
+address remains its source name until the runtime purpose is established.
 
 Shared archive `0873D5FC` is independently bounded at the four locations in
 the table. Its one descriptor selects one native OAM record, four native 4bpp
@@ -347,15 +349,17 @@ until the runtime purpose is independently established.
 
 Shared archive `0873DE44` is independently bounded at the four locations in
 the table. Its one descriptor selects one native OAM record, 56 native 4bpp
-tiles, one BGR555 palette, and one selection entry. Its editable PNG source is
-under `graphics/shared_resource_0873de44/`; the address remains its source name
-until the runtime purpose is independently established.
+tiles, one BGR555 palette, and one selection entry. The native-order tile
+source is `graphics/shared_resource_0873de44/full/native.png`; `archive.inc`
+links its generated assets and native tables without a post-link patch. The
+address remains its source name until the runtime purpose is established.
 
 Shared archive `0873E5B0` is independently bounded at the four locations in
 the table. Its one descriptor selects one native OAM record, 56 native 4bpp
-tiles, one BGR555 palette, and one selection entry. Its editable PNG source is
-under `graphics/shared_resource_0873e5b0/`; the address remains its source name
-until the runtime purpose is independently established.
+tiles, one BGR555 palette, and one selection entry. The native-order tile
+source is `graphics/shared_resource_0873e5b0/full/native.png`; `archive.inc`
+links its generated assets and native tables without a post-link patch. The
+address remains its source name until the runtime purpose is established.
 
 Shared archive `0873ED1C` is independently bounded at the four locations in
 the table. Its ten descriptors select eleven native OAM records, 41 native

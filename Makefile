@@ -307,9 +307,6 @@ $(ROM): $(SHARED_RESOURCE_08729460_OUTPUT)
 $(ROM): $(SHARED_RESOURCE_0872EE78_OUTPUT)
 $(ROM): $(SHARED_RESOURCE_08731B40_OUTPUT)
 $(ROM): $(SHARED_RESOURCE_0873AFC8_OUTPUT)
-$(ROM): $(SHARED_RESOURCE_0873D234_OUTPUT)
-$(ROM): $(SHARED_RESOURCE_0873DE44_OUTPUT)
-$(ROM): $(SHARED_RESOURCE_0873E5B0_OUTPUT)
 $(ROM): $(SHARED_RESOURCE_0873ED1C_OUTPUT)
 $(ROM): $(SHARED_RESOURCE_087401A4_OUTPUT)
 $(ROM): $(SHARED_RESOURCE_08740454_OUTPUT)
@@ -370,9 +367,6 @@ $(ROM): $(REGIONAL_RESOURCE_0874F34C_OUTPUT)
 	@$(PYTHON) $(SHARED_RESOURCE_0872EE78_TOOL) $(BASE_ROM) --profile shared-0872ee78 --offset $(SHARED_RESOURCE_0872EE78_OFFSET) --length $(SHARED_RESOURCE_0872EE78_LENGTH) --sha256 $(SHARED_RESOURCE_0872EE78_SHA256) patch --target $@ --archive $(SHARED_RESOURCE_0872EE78_OUTPUT)
 	@$(PYTHON) $(SHARED_RESOURCE_08731B40_TOOL) $(BASE_ROM) --profile shared-08731b40 --offset $(SHARED_RESOURCE_08731B40_OFFSET) --length $(SHARED_RESOURCE_08731B40_LENGTH) --sha256 $(SHARED_RESOURCE_08731B40_SHA256) patch --target $@ --archive $(SHARED_RESOURCE_08731B40_OUTPUT)
 	@$(PYTHON) $(SHARED_RESOURCE_0873AFC8_TOOL) $(BASE_ROM) --profile shared-0873afc8 --offset $(SHARED_RESOURCE_0873AFC8_OFFSET) --length $(SHARED_RESOURCE_0873AFC8_LENGTH) --sha256 $(SHARED_RESOURCE_0873AFC8_SHA256) patch --target $@ --archive $(SHARED_RESOURCE_0873AFC8_OUTPUT)
-	@$(PYTHON) $(SHARED_RESOURCE_0873D234_TOOL) $(BASE_ROM) --profile shared-0873d234 --offset $(SHARED_RESOURCE_0873D234_OFFSET) --length $(SHARED_RESOURCE_0873D234_LENGTH) --sha256 $(SHARED_RESOURCE_0873D234_SHA256) patch --target $@ --archive $(SHARED_RESOURCE_0873D234_OUTPUT)
-	@$(PYTHON) $(SHARED_RESOURCE_0873DE44_TOOL) $(BASE_ROM) --profile shared-0873de44 --offset $(SHARED_RESOURCE_0873DE44_OFFSET) --length $(SHARED_RESOURCE_0873DE44_LENGTH) --sha256 $(SHARED_RESOURCE_0873DE44_SHA256) patch --target $@ --archive $(SHARED_RESOURCE_0873DE44_OUTPUT)
-	@$(PYTHON) $(SHARED_RESOURCE_0873E5B0_TOOL) $(BASE_ROM) --profile shared-0873e5b0 --offset $(SHARED_RESOURCE_0873E5B0_OFFSET) --length $(SHARED_RESOURCE_0873E5B0_LENGTH) --sha256 $(SHARED_RESOURCE_0873E5B0_SHA256) patch --target $@ --archive $(SHARED_RESOURCE_0873E5B0_OUTPUT)
 	@$(PYTHON) $(SHARED_RESOURCE_0873ED1C_TOOL) $(BASE_ROM) --profile shared-0873ed1c --offset $(SHARED_RESOURCE_0873ED1C_OFFSET) --length $(SHARED_RESOURCE_0873ED1C_LENGTH) --sha256 $(SHARED_RESOURCE_0873ED1C_SHA256) patch --target $@ --archive $(SHARED_RESOURCE_0873ED1C_OUTPUT)
 	@$(PYTHON) $(SHARED_RESOURCE_087401A4_TOOL) $(BASE_ROM) --profile shared-087401a4 --offset $(SHARED_RESOURCE_087401A4_OFFSET) --length $(SHARED_RESOURCE_087401A4_LENGTH) --sha256 $(SHARED_RESOURCE_087401A4_SHA256) patch --target $@ --archive $(SHARED_RESOURCE_087401A4_OUTPUT)
 	@$(PYTHON) $(SHARED_RESOURCE_08740454_TOOL) $(BASE_ROM) --profile shared-08740454 --offset $(SHARED_RESOURCE_08740454_OFFSET) --length $(SHARED_RESOURCE_08740454_LENGTH) --sha256 $(SHARED_RESOURCE_08740454_SHA256) patch --target $@ --archive $(SHARED_RESOURCE_08740454_OUTPUT)
@@ -449,6 +443,9 @@ $(BUILD_DIR)/asm/data/data_0813B288.o: asm/data/data_0813B288_de_initial.inc
 $(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_0873CEAC_ASSETS) $(SHARED_RESOURCE_0873CEAC_SOURCE_DIR)/archive.inc
 $(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_0873CF90_ASSETS) $(SHARED_RESOURCE_0873CF90_SOURCE_DIR)/archive.inc
 $(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_0873CCB4_ASSETS) $(SHARED_RESOURCE_0873CCB4_SOURCE_DIR)/archive.inc
+$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_0873D234_ASSETS) $(SHARED_RESOURCE_0873D234_SOURCE_DIR)/archive.inc
+$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_0873DE44_ASSETS) $(SHARED_RESOURCE_0873DE44_SOURCE_DIR)/archive.inc
+$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_0873E5B0_ASSETS) $(SHARED_RESOURCE_0873E5B0_SOURCE_DIR)/archive.inc
 $(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_0872937C_ASSETS) $(SHARED_RESOURCE_0872937C_SOURCE_DIR)/archive.inc
 
 # overrides for matching
@@ -593,7 +590,7 @@ ifneq (,$(filter gfx-shared-resource-0873afc8 gfx-shared-resource-0873afc8-test 
 ALL_DEPS :=
 endif
 
-ifneq (,$(filter gfx-shared-resource-0873ccb4 gfx-shared-resource-0873ccb4-test gfx-shared-resource-0873ccb4-all gfx-shared-resource-0873ccb4-patch-test gfx-shared-resource-0873ccb4-edit-test,$(MAKECMDGOALS)))
+ifneq (,$(filter gfx-shared-resource-0873ccb4,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 
@@ -605,7 +602,7 @@ ifneq (,$(filter gfx-shared-resource-0873cf90,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 
-ifneq (,$(filter gfx-shared-resource-0873d234 gfx-shared-resource-0873d234-test gfx-shared-resource-0873d234-all gfx-shared-resource-0873d234-patch-test gfx-shared-resource-0873d234-edit-test,$(MAKECMDGOALS)))
+ifneq (,$(filter gfx-shared-resource-0873d234,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 
@@ -613,11 +610,11 @@ ifneq (,$(filter gfx-shared-resource-0873d5fc gfx-shared-resource-0873d5fc-test 
 ALL_DEPS :=
 endif
 
-ifneq (,$(filter gfx-shared-resource-0873de44 gfx-shared-resource-0873de44-test gfx-shared-resource-0873de44-all gfx-shared-resource-0873de44-patch-test gfx-shared-resource-0873de44-edit-test,$(MAKECMDGOALS)))
+ifneq (,$(filter gfx-shared-resource-0873de44,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 
-ifneq (,$(filter gfx-shared-resource-0873e5b0 gfx-shared-resource-0873e5b0-test gfx-shared-resource-0873e5b0-all gfx-shared-resource-0873e5b0-patch-test gfx-shared-resource-0873e5b0-edit-test,$(MAKECMDGOALS)))
+ifneq (,$(filter gfx-shared-resource-0873e5b0,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 
