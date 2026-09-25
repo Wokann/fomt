@@ -237,8 +237,11 @@ Shared archive `086F2FAC` is independently bounded at the four locations in
 the table. Its sixteen descriptors all select drawable records, together
 covering two OAM records, 384 native 4bpp tiles, four BGR555 palettes, and
 sixteen selection entries. Its editable PNG sources are under
-`graphics/shared_resource_086f2fac/`; the address remains its source name
-until the runtime purpose is independently established.
+`graphics/shared_resource_086f2fac/full/native.png`, with all four palette
+banks in `native.pal`. `archive.inc` links these through the generic graphics
+conversion rules; the OAM-composited group PNGs are reference views, not
+build inputs. The address remains its source name until the runtime purpose
+is independently established.
 
 Shared archive `086FAA80` is independently bounded at the four locations in
 the table. Its nine descriptors all select drawable records, together covering

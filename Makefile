@@ -296,7 +296,6 @@ $(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGIO
 # Keep the post-link archive replacement available before the generic ROM rule
 # runs, regardless of which regional BUILD_NAME selected the target.
 $(ROM): $(GBAFIX) config.mk
-$(ROM): $(SHARED_RESOURCE_086F2FAC_OUTPUT)
 $(ROM): $(SHARED_RESOURCE_08731B40_OUTPUT)
 $(ROM): $(REGIONAL_RESOURCE_0871D51C_OUTPUT)
 $(ROM): $(REGIONAL_RESOURCE_0872BE64_OUTPUT)
@@ -330,11 +329,6 @@ $(ROM): $(REGIONAL_RESOURCE_0874F34C_OUTPUT)
 	  --length $(SHARED_RESOURCE_08725DA0_LENGTH) \
 	  --sha256 $(SHARED_RESOURCE_08725DA0_SHA256) \
 	  patch --target $@ --archive $(SHARED_RESOURCE_08725DA0_OUTPUT)
-	@$(PYTHON) $(SHARED_RESOURCE_086F2FAC_TOOL) $(BASE_ROM) --profile shared-086f2fac \
-	  --offset $(SHARED_RESOURCE_086F2FAC_OFFSET) \
-	  --length $(SHARED_RESOURCE_086F2FAC_LENGTH) \
-	  --sha256 $(SHARED_RESOURCE_086F2FAC_SHA256) \
-	  patch --target $@ --archive $(SHARED_RESOURCE_086F2FAC_OUTPUT)
 	@$(PYTHON) $(SHARED_RESOURCE_08731B40_TOOL) $(BASE_ROM) --profile shared-08731b40 --offset $(SHARED_RESOURCE_08731B40_OFFSET) --length $(SHARED_RESOURCE_08731B40_LENGTH) --sha256 $(SHARED_RESOURCE_08731B40_SHA256) patch --target $@ --archive $(SHARED_RESOURCE_08731B40_OUTPUT)
 	@$(PYTHON) $(REGIONAL_RESOURCE_0871D51C_TOOL) $(BASE_ROM) --profile $(REGIONAL_RESOURCE_0871D51C_PROFILE) --offset $(REGIONAL_RESOURCE_0871D51C_OFFSET) --length $(REGIONAL_RESOURCE_0871D51C_LENGTH) --sha256 $(REGIONAL_RESOURCE_0871D51C_SHA256) patch --target $@ --archive $(REGIONAL_RESOURCE_0871D51C_OUTPUT)
 	@$(PYTHON) $(REGIONAL_RESOURCE_0872BE64_TOOL) $(BASE_ROM) --profile $(REGIONAL_RESOURCE_0872BE64_PROFILE) --offset $(REGIONAL_RESOURCE_0872BE64_OFFSET) --length $(REGIONAL_RESOURCE_0872BE64_LENGTH) --sha256 $(REGIONAL_RESOURCE_0872BE64_SHA256) patch --target $@ --archive $(REGIONAL_RESOURCE_0872BE64_OUTPUT)
@@ -425,6 +419,7 @@ $(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_08729460_ASSETS) $(SHAR
 $(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_0873AFC8_ASSETS) $(SHARED_RESOURCE_0873AFC8_SOURCE_DIR)/archive.inc
 $(BUILD_DIR)/asm/data/data_0813B288.o: $(REGIONAL_RESOURCE_0875B444_ASSETS) $(REGIONAL_RESOURCE_0875B444_SOURCE_ROOT)/archive.inc
 $(BUILD_DIR)/asm/data/data_0813B288.o: $(REGIONAL_RESOURCE_08728208_ASSETS) $(REGIONAL_RESOURCE_08728208_SOURCE_ROOT)/archive.inc
+$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_086F2FAC_ASSETS) $(SHARED_RESOURCE_086F2FAC_SOURCE_DIR)/archive.inc
 
 # overrides for matching
 $(BUILD_DIR)/src/m4a.o: CC1 := $(OLD_CC1)
@@ -509,7 +504,7 @@ ifneq (,$(filter gfx-shared-resource-08725da0 gfx-shared-resource-08725da0-test 
 ALL_DEPS :=
 endif
 
-ifneq (,$(filter gfx-shared-resource-086f2fac gfx-shared-resource-086f2fac-test gfx-shared-resource-086f2fac-all gfx-shared-resource-086f2fac-patch-test gfx-shared-resource-086f2fac-edit-test,$(MAKECMDGOALS)))
+ifneq (,$(filter gfx-shared-resource-086f2fac,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 
