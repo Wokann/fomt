@@ -26,8 +26,11 @@ the on-screen position.
 | `0875142c` | `gUnk_0875142C` | nine 4bpp tiles | BG slot `0x0B7` |
 | `08752aac` | `gUnk_08752AAC` | one BGR555 palette bank | palette RAM (screen-relative destination) |
 
-The exact JP/US/EU/DE offsets and SHA-256 values are the checked `Profile`
-entries in `tools/raw_vram_tile_group.py`. `087512ec` is deliberately split:
+The exact JP/US/EU/DE offsets and SHA-256 values for these remaining profiles
+are the checked entries in `tools/raw_vram_tile_group.py`. The shared
+`08750c8c` tile record is now assembled directly from its native source and
+verified by `gfx-ui-shared-tiles-test`, without a resource-specific Python
+patch. `087512ec` is deliberately split:
 its JP BGR555 palette differs, while US/EU/DE use one byte-identical overseas
 record. The Make targets rebuild and verify every profile for all four regions
 without deriving a tilemap.

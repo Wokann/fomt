@@ -71,14 +71,6 @@ PROFILES = {
         source_name="tiles.4bpp",
         output_name="tiles.4bpp",
     ),
-    "08750c8c": Profile(
-        name="UiSharedTiles_0x150",
-        offsets={"jp": 0x4D6C38, "us": 0x750C8C, "eu": 0x750CE8, "de": 0x4D81A8},
-        length=0x1C0,
-        sha256="2b7c39eab1900bb410cced0daa2ffd21055045e47ddcf99f318255775e77ec4f",
-        source_name="tiles.4bpp",
-        output_name="tiles.4bpp",
-    ),
     "087510ac": Profile(
         name="FarmStatusEarningsReportTiles_0x0A5",
         offsets={"jp": 0x4D7058, "us": 0x7510AC, "eu": 0x751108, "de": 0x4D85C8},

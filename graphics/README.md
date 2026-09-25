@@ -502,14 +502,9 @@ python tools/farm_status_previews.py \
   --verify-eu baserom_eu.gba --verify-de baserom_de.gba
 ```
 
-Regenerate the native tilemap sources from a verified JP ROM only when
-intentionally restoring the retail layout:
-
-```console
-python tools/farm_status_tilemaps.py export \
-  --rom baserom_jp.gba --region jp \
-  --output-dir graphics/ui/farm_status/shared/tilemaps --replace
-```
+The native `.tilemap` sources are assembled directly in ROM order. They do
+not require a Python-generated bundle; `make gfx-farm-status-tilemaps-test`
+compares all 14 source records against each of the four retail ROMs.
 
 ## Experimental forward OAM compiler
 

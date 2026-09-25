@@ -64,7 +64,6 @@ FONT_PAD_DIR := tools/fontpad
 FONT_PAD := $(FONT_PAD_DIR)/fontpad$(EXE)
 OAM_PACK_DIR := tools/oam_pack
 OAM_PACK := $(OAM_PACK_DIR)/oam_pack$(EXE)
-OAM_PACK_AUDIT := $(OAM_PACK_DIR)/audit_portraits.py
 GFX_RANGE_VERIFY := tools/verify_gfx_range.py
 TILE_GRID_TOOL := tools/tile_grid.py
 # ================
@@ -535,7 +534,7 @@ ifneq (,$(filter gfx-raw-vram-tiles-086d5508 gfx-raw-vram-tiles-086d5508-test gf
 ALL_DEPS :=
 endif
 
-ifneq (,$(filter $(RAW_VRAM_UI_TARGETS) gfx-raw-vram-tiles-ui,$(MAKECMDGOALS)))
+ifneq (,$(filter $(RAW_VRAM_UI_TARGETS) gfx-raw-vram-tiles-ui gfx-ui-shared-tiles-test,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 

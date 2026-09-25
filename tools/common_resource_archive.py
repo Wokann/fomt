@@ -15,6 +15,7 @@ import argparse
 import hashlib
 import shutil
 import struct
+import sys
 import tempfile
 from dataclasses import dataclass
 from pathlib import Path
@@ -515,6 +516,33 @@ def patch_test(arguments: argparse.Namespace) -> None:
     )
 
 
+def regional_patch_test(command: list[str]) -> None:
+    """Check region-specific archive layouts using the same patch implementation."""
+    parser = argparse.ArgumentParser(description="Verify regional archive patches")
+    parser.add_argument(
+        "--case", action="append", nargs=7, required=True,
+        metavar=("REGION", "ROM", "OFFSET", "LENGTH", "SHA256", "PROFILE", "ARCHIVE"),
+    )
+    arguments = parser.parse_args(command)
+    seen: set[str] = set()
+    global ACTIVE_PROFILE
+    for region, rom_text, offset_text, length_text, digest, profile_name, archive_text in arguments.case:
+        normalized = region.upper()
+        if normalized in seen:
+            raise ValueError(f"duplicate regional archive case: {normalized}")
+        seen.add(normalized)
+        ACTIVE_PROFILE = PROFILES[profile_name]
+        rom = Path(rom_text)
+        offset = int(offset_text, 0)
+        baseline = load_checked(rom, offset, int(length_text, 0), digest)
+        original = rom.read_bytes()
+        if patch_bytes(original, baseline, offset, Path(archive_text).read_bytes()) != original:
+            raise AssertionError(f"unchanged {normalized} archive patch changes retail ROM bytes")
+    if seen != {"JP", "US", "EU", "DE"}:
+        raise ValueError("regional archive patch verification requires JP, US, EU, and DE cases")
+    print("verified unchanged localized archive post-link patches against all four retail ROMs")
+
+
 def edit_test(archive: Archive, source_dir: Path) -> None:
     with tempfile.TemporaryDirectory(prefix=f"fomt_{ACTIVE_PROFILE.name.replace(' ', '_')}_archive_") as temporary:
         copied = Path(temporary) / "source"
@@ -560,6 +588,9 @@ def edit_test(archive: Archive, source_dir: Path) -> None:
 
 
 def main() -> None:
+    if len(sys.argv) > 1 and sys.argv[1] == "--case":
+        regional_patch_test(sys.argv[1:])
+        return
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("rom", type=Path)
     parser.add_argument("--profile", choices=tuple(PROFILES), default="common")

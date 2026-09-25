@@ -103,11 +103,9 @@ FARM_STATUS_PALETTE_BIN := $(FARM_STATUS_PALETTE_SOURCE:.png=.gbapal)
 FARM_STATUS_PACKED_BIN := $(FARM_STATUS_OUTPUT_DIR)/base_tiles.0x70
 FARM_STATUS_CODEC := tools/marvelous_codec.py
 FARM_STATUS_PREVIEW_TOOL := tools/farm_status_previews.py
-FARM_STATUS_TILEMAP_TOOL := tools/farm_status_tilemaps.py
 FARM_STATUS_REFERENCE_DIR := graphics/ui/farm_status/reference
 FARM_STATUS_TILEMAP_SOURCE_DIR := graphics/ui/farm_status/shared/tilemaps
 FARM_STATUS_TILEMAP_SOURCES := $(wildcard $(FARM_STATUS_TILEMAP_SOURCE_DIR)/*.tilemap)
-FARM_STATUS_TILEMAP_BIN := $(BUILD_DIR)/graphics/ui/farm_status/preview_tilemaps.bin
 FARM_STATUS_SECONDARY_TILEMAP_TOOL := tools/farm_status_secondary_tilemaps.py
 FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR := graphics/ui/farm_status/shared/secondary_tilemaps
 FARM_STATUS_SECONDARY_TILEMAP_SOURCES := $(wildcard $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/*.tilemap)
@@ -620,7 +618,7 @@ SHARED_RESOURCE_08755154_SHA256 := 52f9afdd6e98d76dea6fac9c43ccfdb3bdb2d70a06678
 # one directory per region; their selection/OAM/descriptor/palette tables stay
 # in their respective retail archive layouts.
 REGIONAL_RESOURCE_0871D51C_TOOL := tools/common_resource_archive.py
-REGIONAL_RESOURCE_0871D51C_PATCH_TEST_TOOL := tools/regional_resource_archive_patch_test.py
+REGIONAL_RESOURCE_0871D51C_PATCH_TEST_TOOL := $(REGIONAL_RESOURCE_0871D51C_TOOL)
 REGIONAL_RESOURCE_0871D51C_SOURCE_ROOT := graphics/regional_resource_0871d51c
 REGIONAL_RESOURCE_0871D51C_REGION := $(shell echo "$(GAME_REGION)" | tr '[:upper:]' '[:lower:]')
 REGIONAL_RESOURCE_0871D51C_SOURCE_DIR := $(REGIONAL_RESOURCE_0871D51C_SOURCE_ROOT)/$(REGIONAL_RESOURCE_0871D51C_REGION)
@@ -650,7 +648,7 @@ REGIONAL_RESOURCE_0871D51C_PROFILE := $(REGIONAL_RESOURCE_0871D51C_PROFILE_$(GAM
 # regions retain their original positions, while the source directory mirrors
 # the two verified byte domains.
 REGIONAL_RESOURCE_08728208_TOOL := tools/common_resource_archive.py
-REGIONAL_RESOURCE_08728208_PATCH_TEST_TOOL := tools/regional_resource_archive_patch_test.py
+REGIONAL_RESOURCE_08728208_PATCH_TEST_TOOL := $(REGIONAL_RESOURCE_08728208_TOOL)
 REGIONAL_RESOURCE_08728208_SOURCE_ROOT := graphics/regional_resource_08728208
 ifeq ($(GAME_REGION),JP)
 REGIONAL_RESOURCE_08728208_SOURCE_DIR := $(REGIONAL_RESOURCE_08728208_SOURCE_ROOT)/jp
@@ -673,7 +671,7 @@ REGIONAL_RESOURCE_08728208_SHA256 := $(REGIONAL_RESOURCE_08728208_SHA256_$(GAME_
 # ``gUnk_0872BE64`` has one byte-identical JP/US/EU payload and a larger DE
 # payload.  The native headers establish the two source profiles.
 REGIONAL_RESOURCE_0872BE64_TOOL := tools/common_resource_archive.py
-REGIONAL_RESOURCE_0872BE64_PATCH_TEST_TOOL := tools/regional_resource_archive_patch_test.py
+REGIONAL_RESOURCE_0872BE64_PATCH_TEST_TOOL := $(REGIONAL_RESOURCE_0872BE64_TOOL)
 REGIONAL_RESOURCE_0872BE64_SOURCE_ROOT := graphics/regional_resource_0872be64
 ifeq ($(GAME_REGION),DE)
 REGIONAL_RESOURCE_0872BE64_SOURCE_DIR := $(REGIONAL_RESOURCE_0872BE64_SOURCE_ROOT)/de
@@ -701,7 +699,7 @@ REGIONAL_RESOURCE_0872BE64_LENGTH := $(REGIONAL_RESOURCE_0872BE64_LENGTH_$(GAME_
 REGIONAL_RESOURCE_0872BE64_SHA256 := $(REGIONAL_RESOURCE_0872BE64_SHA256_$(GAME_REGION))
 # ``gUnk_0872DE44`` keeps one JP/US/EU archive and a distinct DE layout.
 REGIONAL_RESOURCE_0872DE44_TOOL := tools/common_resource_archive.py
-REGIONAL_RESOURCE_0872DE44_PATCH_TEST_TOOL := tools/regional_resource_archive_patch_test.py
+REGIONAL_RESOURCE_0872DE44_PATCH_TEST_TOOL := $(REGIONAL_RESOURCE_0872DE44_TOOL)
 REGIONAL_RESOURCE_0872DE44_SOURCE_ROOT := graphics/regional_resource_0872de44
 ifeq ($(GAME_REGION),DE)
 REGIONAL_RESOURCE_0872DE44_SOURCE_DIR := $(REGIONAL_RESOURCE_0872DE44_SOURCE_ROOT)/de
@@ -730,7 +728,7 @@ REGIONAL_RESOURCE_0872DE44_SHA256 := $(REGIONAL_RESOURCE_0872DE44_SHA256_$(GAME_
 # ``gUnk_08738144`` has three independent source domains.  JP and DE share
 # the small native layout but not its bytes; US and EU use a larger shared one.
 REGIONAL_RESOURCE_08738144_TOOL := tools/common_resource_archive.py
-REGIONAL_RESOURCE_08738144_PATCH_TEST_TOOL := tools/regional_resource_archive_patch_test.py
+REGIONAL_RESOURCE_08738144_PATCH_TEST_TOOL := $(REGIONAL_RESOURCE_08738144_TOOL)
 REGIONAL_RESOURCE_08738144_SOURCE_ROOT := graphics/regional_resource_08738144
 ifeq ($(GAME_REGION),JP)
 REGIONAL_RESOURCE_08738144_SOURCE_DIR := $(REGIONAL_RESOURCE_08738144_SOURCE_ROOT)/jp
@@ -761,7 +759,7 @@ REGIONAL_RESOURCE_08738144_LENGTH := $(REGIONAL_RESOURCE_08738144_LENGTH_$(GAME_
 REGIONAL_RESOURCE_08738144_SHA256 := $(REGIONAL_RESOURCE_08738144_SHA256_$(GAME_REGION))
 # Both archives below share JP/US/EU bytes but have distinct DE layouts.
 REGIONAL_RESOURCE_0873A6E8_TOOL := tools/common_resource_archive.py
-REGIONAL_RESOURCE_0873A6E8_PATCH_TEST_TOOL := tools/regional_resource_archive_patch_test.py
+REGIONAL_RESOURCE_0873A6E8_PATCH_TEST_TOOL := $(REGIONAL_RESOURCE_0873A6E8_TOOL)
 REGIONAL_RESOURCE_0873A6E8_SOURCE_ROOT := graphics/regional_resource_0873a6e8
 ifeq ($(GAME_REGION),DE)
 REGIONAL_RESOURCE_0873A6E8_SOURCE_DIR := $(REGIONAL_RESOURCE_0873A6E8_SOURCE_ROOT)/de
@@ -784,7 +782,7 @@ REGIONAL_RESOURCE_0873A6E8_SHA256_DE := f01742625d55eea85e34694a92ea36e6d210782f
 REGIONAL_RESOURCE_0873A6E8_OFFSET := $(REGIONAL_RESOURCE_0873A6E8_OFFSET_$(GAME_REGION))
 REGIONAL_RESOURCE_0873A6E8_SHA256 := $(REGIONAL_RESOURCE_0873A6E8_SHA256_$(GAME_REGION))
 REGIONAL_RESOURCE_0873D6D8_TOOL := tools/common_resource_archive.py
-REGIONAL_RESOURCE_0873D6D8_PATCH_TEST_TOOL := tools/regional_resource_archive_patch_test.py
+REGIONAL_RESOURCE_0873D6D8_PATCH_TEST_TOOL := $(REGIONAL_RESOURCE_0873D6D8_TOOL)
 REGIONAL_RESOURCE_0873D6D8_SOURCE_ROOT := graphics/regional_resource_0873d6d8
 ifeq ($(GAME_REGION),DE)
 REGIONAL_RESOURCE_0873D6D8_SOURCE_DIR := $(REGIONAL_RESOURCE_0873D6D8_SOURCE_ROOT)/de
@@ -812,7 +810,7 @@ REGIONAL_RESOURCE_0873D6D8_LENGTH := $(REGIONAL_RESOURCE_0873D6D8_LENGTH_$(GAME_
 REGIONAL_RESOURCE_0873D6D8_SHA256 := $(REGIONAL_RESOURCE_0873D6D8_SHA256_$(GAME_REGION))
 # ``gUnk_0874F34C`` retains three genuinely different native layouts.
 REGIONAL_RESOURCE_0874F34C_TOOL := tools/common_resource_archive.py
-REGIONAL_RESOURCE_0874F34C_PATCH_TEST_TOOL := tools/regional_resource_archive_patch_test.py
+REGIONAL_RESOURCE_0874F34C_PATCH_TEST_TOOL := $(REGIONAL_RESOURCE_0874F34C_TOOL)
 REGIONAL_RESOURCE_0874F34C_SOURCE_ROOT := graphics/regional_resource_0874f34c
 ifeq ($(GAME_REGION),JP)
 REGIONAL_RESOURCE_0874F34C_SOURCE_DIR := $(REGIONAL_RESOURCE_0874F34C_SOURCE_ROOT)/jp
@@ -845,7 +843,7 @@ REGIONAL_RESOURCE_0874F34C_SHA256 := $(REGIONAL_RESOURCE_0874F34C_SHA256_$(GAME_
 # Its descriptor layout is the same, but editable sources remain split by the
 # two proven byte domains.
 REGIONAL_RESOURCE_0875B444_TOOL := tools/common_resource_archive.py
-REGIONAL_RESOURCE_0875B444_PATCH_TEST_TOOL := tools/regional_resource_archive_patch_test.py
+REGIONAL_RESOURCE_0875B444_PATCH_TEST_TOOL := $(REGIONAL_RESOURCE_0875B444_TOOL)
 REGIONAL_RESOURCE_0875B444_SOURCE_ROOT := graphics/regional_resource_0875b444
 ifeq ($(GAME_REGION),JP)
 REGIONAL_RESOURCE_0875B444_SOURCE_DIR := $(REGIONAL_RESOURCE_0875B444_SOURCE_ROOT)/jp
@@ -1185,7 +1183,7 @@ RAW_VRAM_TILES_086D6698_REGION := $(INTRO_OBJECTS_REGION)
 # pipeline, so it is deliberately not duplicated here. The remaining
 # consumers prove fixed native bounds but not a final layout, so preserve each
 # as native data instead of fabricating PNGs.
-RAW_VRAM_UI_PROFILES := 08750c8c 087510ac 0875166c 0875178c 087517ac 08750f6c 08750f8c 08750e4c 087511cc 087512ec 0875154c 0875130c 0875142c 08752dcc 08752b4c 087529ac 08752d4c 08752acc 08752a2c 08752aac 08752ccc 08752bcc 08752c4c
+RAW_VRAM_UI_PROFILES := 087510ac 0875166c 0875178c 087517ac 08750f6c 08750f8c 08750e4c 087511cc 087512ec 0875154c 0875130c 0875142c 08752dcc 08752b4c 087529ac 08752d4c 08752acc 08752a2c 08752aac 08752ccc 08752bcc 08752c4c
 RAW_VRAM_UI_TARGETS := $(foreach profile,$(RAW_VRAM_UI_PROFILES),gfx-raw-vram-tiles-$(profile) gfx-raw-vram-tiles-$(profile)-test gfx-raw-vram-tiles-$(profile)-all gfx-raw-vram-tiles-$(profile)-patch-test gfx-raw-vram-tiles-$(profile)-edit-test)
 define DEFINE_RAW_VRAM_UI_PROFILE
 RAW_VRAM_TILES_$(1)_TOOL := $(RAW_VRAM_TILES_08697920_TOOL)
@@ -1392,7 +1390,7 @@ GRAPHICS_ASSETS = \
 	$(FARM_STATUS_PACKED_BIN) $(FARM_STATUS_RESOURCE_ARCHIVE_OUTPUT) \
 	$(COMMON_RESOURCE_ARCHIVE_OUTPUT) $(SMALL_COMPANION_ARCHIVE_OUTPUT) \
 	$(FARM_STATUS_WINTER_OUTPUTS) $(FARM_STATUS_PALETTE_BIN) \
-	$(FARM_STATUS_TILEMAP_BIN) $(FARM_STATUS_SECONDARY_TILEMAP_STAMP) \
+	$(FARM_STATUS_SECONDARY_TILEMAP_STAMP) \
 	$(FARM_STATUS_EXTERIOR_STYLE_STAMP) $(FARM_STATUS_SELECTOR_ICON_OUTPUTS) \
 	$(CLOCK_FONT_OUTPUTS) $(FARM_STATUS_CREATURE_ICON_OUTPUTS) \
 	$(FARM_STATUS_TASK_UI_TILE_OUTPUTS) \
@@ -1687,9 +1685,6 @@ $(SEASONAL_WINTER_STAMP): $(SEASONAL_WINTER_TOOL) $(SEASONAL_WINTER_TILES_SOURCE
 
 $(SEASONAL_WINTER_OUTPUTS): $(SEASONAL_WINTER_STAMP)
 
-$(FARM_STATUS_TILEMAP_BIN): $(FARM_STATUS_TILEMAP_SOURCES) $(FARM_STATUS_TILEMAP_TOOL) $(FARM_STATUS_PREVIEW_TOOL)
-	@$(PYTHON) $(FARM_STATUS_TILEMAP_TOOL) build --source-dir $(FARM_STATUS_TILEMAP_SOURCE_DIR) --output $@
-
 $(FARM_STATUS_SECONDARY_TILEMAP_STAMP): $(FARM_STATUS_SECONDARY_TILEMAP_SOURCES) $(FARM_STATUS_SECONDARY_TILEMAP_TOOL) $(FARM_STATUS_CODEC) $(BASE_ROM)
 	@$(PYTHON) $(FARM_STATUS_SECONDARY_TILEMAP_TOOL) build --region $(FARM_STATUS_SECONDARY_TILEMAP_REGION) --rom $(BASE_ROM) \
 	  --source-dir $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR) --output-dir $(FARM_STATUS_SECONDARY_TILEMAP_OUTPUT_DIR)
@@ -1898,7 +1893,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 .PHONY: gfx-regional-resource-0875b444 gfx-regional-resource-0875b444-test gfx-regional-resource-0875b444-all gfx-regional-resource-0875b444-patch-test gfx-regional-resource-0875b444-edit-test gfx-regional-resource-0875b444-edit-test-one
 .PHONY: gfx-common-resource-archive gfx-common-resource-archive-test gfx-common-resource-archive-all gfx-common-resource-archive-patch-test gfx-common-resource-archive-edit-test
 .PHONY: gfx-small-companion-archive gfx-small-companion-archive-test gfx-small-companion-archive-all gfx-small-companion-archive-patch-test gfx-small-companion-archive-edit-test
-.PHONY: gfx-raw-vram-tiles-ui
+.PHONY: gfx-raw-vram-tiles-ui gfx-ui-shared-tiles-test
 .PHONY: map-terrain-audit
 .PHONY: farm-house-lookup-audit
 .PHONY: gfx-ui-scene-080a2ba4 gfx-ui-scene-080a2ba4-reference gfx-ui-scene-080a2ba4-test gfx-ui-scene-080a2ba4-all
@@ -1939,10 +1934,25 @@ oam-pack-test: $(OAM_PACK) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_
 	    --origin-x -24 --origin-y -72 --strategy canvas \
 	    --reference-rom $$1 --reference-offset $$2 --portrait-id 0; \
 	done
-oam-pack-audit: $(OAM_PACK) $(OAM_PACK_AUDIT) baserom_jp.gba $(PORTRAIT_FULL_IMAGES)
-	@$(PYTHON) $(OAM_PACK_AUDIT) $(OAM_PACK) baserom_jp.gba \
-	  --archive-offset $(PORTRAIT_ARCHIVE_OFFSET_JP) \
-	  --source $(PORTRAIT_SOURCE_DIR)/full --output $(BUILD_DIR)/graphics/oam_pack/audit
+oam-pack-audit: $(OAM_PACK) baserom_jp.gba $(PORTRAIT_FULL_IMAGES)
+	@set -eu; mkdir -p $(BUILD_DIR)/graphics/oam_pack/audit; count=0; exact=0; exact_ids=''; \
+	  for image in $(PORTRAIT_FULL_IMAGES); do \
+	    id=$${image##*/}; id=$${id%%_*}; expected=$$(printf '%03d' "$$count"); \
+	    test "$$id" = "$$expected" || { echo "portrait numbering: expected $$expected, got $$image" >&2; exit 1; }; \
+	    report=$$($(OAM_PACK) "$$image" \
+	      --tiles $(BUILD_DIR)/graphics/oam_pack/audit/portrait.4bpp \
+	      --palette $(BUILD_DIR)/graphics/oam_pack/audit/portrait.gbapal \
+	      --oam $(BUILD_DIR)/graphics/oam_pack/audit/portrait.oam \
+	      --origin-x -24 --origin-y -72 --strategy canvas \
+	      --reference-rom baserom_jp.gba --reference-offset $(PORTRAIT_ARCHIVE_OFFSET_JP) \
+	      --portrait-id "$$count" --report-only); \
+	    matches=$$(printf '%s\n' "$$report" | grep -c ', identical' || :); \
+	    if [ "$$matches" -eq 3 ]; then exact=$$((exact + 1)); exact_ids="$$exact_ids $$count"; fi; \
+	    count=$$((count + 1)); \
+	  done; \
+	  test "$$count" -gt 0; \
+	  printf 'canvas generated valid tile/OAM data for %s/%s portraits\n' "$$count" "$$count"; \
+	  printf 'byte-identical tile/palette/OAM portraits: %s/%s (%s)\n' "$$exact" "$$count" "$${exact_ids# }"
 gfx-font: $(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN)
 gfx-jp-font: gfx-font
 gfx-fonts:
@@ -2162,7 +2172,12 @@ gfx-raw-vram-tiles-086d6698-all:
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-raw-vram-tiles-086d6698-test
 gfx-raw-vram-tiles-field-leading: gfx-raw-vram-tiles-086d5508-all gfx-raw-vram-tiles-086d6698-all
 gfx-raw-vram-tiles-ui-build: $(foreach profile,$(RAW_VRAM_UI_PROFILES),gfx-raw-vram-tiles-$(profile))
-gfx-raw-vram-tiles-ui: $(foreach profile,$(RAW_VRAM_UI_PROFILES),gfx-raw-vram-tiles-$(profile)-all gfx-raw-vram-tiles-$(profile)-patch-test gfx-raw-vram-tiles-$(profile)-edit-test)
+gfx-ui-shared-tiles-test: graphics/ui/raw_vram_tiles/08750c8c/shared/tiles.4bpp $(GFX_RANGE_VERIFY) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
+	@$(PYTHON) $(GFX_RANGE_VERIFY) baserom_jp.gba --offset 0x4D6C38 --length 0x1C0 --input $<
+	@$(PYTHON) $(GFX_RANGE_VERIFY) baserom_us.gba --offset 0x750C8C --length 0x1C0 --input $<
+	@$(PYTHON) $(GFX_RANGE_VERIFY) baserom_eu.gba --offset 0x750CE8 --length 0x1C0 --input $<
+	@$(PYTHON) $(GFX_RANGE_VERIFY) baserom_de.gba --offset 0x4D81A8 --length 0x1C0 --input $<
+gfx-raw-vram-tiles-ui: gfx-ui-shared-tiles-test $(foreach profile,$(RAW_VRAM_UI_PROFILES),gfx-raw-vram-tiles-$(profile)-all gfx-raw-vram-tiles-$(profile)-patch-test gfx-raw-vram-tiles-$(profile)-edit-test)
 gfx-ui-scene-08054f40-tiles: $(UI_SCENE_08054F40_TILES_OUTPUT)
 gfx-ui-scene-08054f40-reference: $(UI_SCENE_08054F40_REFERENCE_TOOL) $(UI_SCENE_08054F40_TILES_SOURCES) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(UI_SCENE_08054F40_REFERENCE_TOOL) --source-dir $(UI_SCENE_08054F40_TILES_SOURCE_DIR) --reference-dir $(UI_SCENE_08054F40_REFERENCE_DIR) \
@@ -3177,16 +3192,12 @@ gfx-seasonal-winter-reference: $(SEASONAL_WINTER_TOOL) $(SEASONAL_WINTER_TILES_S
 	@$(PYTHON) $(SEASONAL_WINTER_TOOL) reference --source-dir $(SEASONAL_WINTER_SOURCE_DIR) --reference-dir $(SEASONAL_WINTER_REFERENCE_DIR) --replace
 gfx-farm-status-previews: $(FARM_STATUS_TILES_SOURCE) $(FARM_STATUS_PALETTE_SOURCE) $(FARM_STATUS_TILEMAP_SOURCES) $(FARM_STATUS_PREVIEW_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(FARM_STATUS_PREVIEW_TOOL) --tiles-source $(FARM_STATUS_TILES_SOURCE) --palettes-source $(FARM_STATUS_PALETTE_SOURCE) --tilemaps-source $(FARM_STATUS_TILEMAP_SOURCE_DIR) --rom baserom_us.gba --region us --output $(FARM_STATUS_REFERENCE_DIR) --replace --verify-jp baserom_jp.gba --verify-us baserom_us.gba --verify-eu baserom_eu.gba --verify-de baserom_de.gba
-gfx-farm-status-tilemaps: $(FARM_STATUS_TILEMAP_BIN)
-gfx-farm-status-tilemaps-test: gfx-farm-status-tilemaps $(FARM_STATUS_TILEMAP_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(FARM_STATUS_TILEMAP_TOOL) verify --source-dir $(FARM_STATUS_TILEMAP_SOURCE_DIR) \
-	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
-gfx-farm-status-tilemaps-all:
-	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-farm-status-tilemaps
-	@$(MAKE) --no-print-directory GAME_REGION=US gfx-farm-status-tilemaps
-	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-farm-status-tilemaps
-	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-farm-status-tilemaps
-	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-farm-status-tilemaps-test
+gfx-farm-status-tilemaps: $(FARM_STATUS_TILEMAP_SOURCES)
+gfx-farm-status-tilemaps-test: gfx-farm-status-tilemaps $(FARM_STATUS_PREVIEW_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
+	@$(PYTHON) $(FARM_STATUS_PREVIEW_TOOL) --verify-only --tilemaps-source $(FARM_STATUS_TILEMAP_SOURCE_DIR) \
+	  --verify-jp baserom_jp.gba --verify-us baserom_us.gba \
+	  --verify-eu baserom_eu.gba --verify-de baserom_de.gba
+gfx-farm-status-tilemaps-all: gfx-farm-status-tilemaps-test
 gfx-farm-status-secondary-tilemaps: $(FARM_STATUS_SECONDARY_TILEMAP_STAMP)
 gfx-farm-status-secondary-tilemaps-test: gfx-farm-status-secondary-tilemaps $(BASE_ROM) $(FARM_STATUS_SECONDARY_TILEMAP_TOOL)
 	@$(PYTHON) $(FARM_STATUS_SECONDARY_TILEMAP_TOOL) verify --region $(FARM_STATUS_SECONDARY_TILEMAP_REGION) --rom $(BASE_ROM) \

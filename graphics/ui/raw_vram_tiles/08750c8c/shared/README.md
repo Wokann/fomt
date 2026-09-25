@@ -13,5 +13,6 @@ the source nevertheless retains the complete verified `0x1C0`-byte record.
 | EU | `0x750CE8` | `0x1C0` | same |
 | DE | `0x4D81A8` | `0x1C0` | same |
 
-`tiles.4bpp` is the authoritative fixed-size source.  Its screen tilemap
-arrangement remains unproven and is not replaced with a speculative PNG.
+`tiles.4bpp` is assembled directly at `gUnk_08750C8C`; no per-resource
+Python rebuild or post-link ROM patch is used. Its screen tilemap arrangement
+remains unproven and is not replaced with a speculative PNG.

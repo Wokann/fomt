@@ -51,9 +51,10 @@ inferred from their adjacency.
 
 The remaining graphic records are raw character tiles and BGR555 palettes, not
 composited images. No tilemap or OAM layout is yet proven, so this pipeline
-intentionally emits neither a guessed PNG nor a JSON layout sidecar. Build and
-post-link patch rules constrain every replacement to the listed original
-regional range.
+intentionally emits neither a guessed PNG nor a JSON layout sidecar.
+`gUnk_08750C8C` now links its native source directly; the remaining records
+still use bounded post-link replacement until their enclosing data is linked
+from source.
 
 ## Proven runtime scope, without invented layouts
 

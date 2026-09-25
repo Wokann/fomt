@@ -111,7 +111,7 @@ def render(tile_pixels: bytes, tile_width: int, tile_height: int,
     return bytes(result)
 
 
-def verify_regions(roms: dict[str, Path]) -> None:
+def verify_regions(roms: dict[str, Path], tilemaps_source: Path | None = None) -> None:
     contents = {region: path.read_bytes() for region, path in roms.items()}
     for preview in PREVIEWS:
         for variant, suffix in enumerate(("primary", "alternate")):
@@ -121,18 +121,24 @@ def verify_regions(roms: dict[str, Path]) -> None:
             }
             if len(set(hashes.values())) != 1:
                 raise ValueError(f"{preview.name}_{suffix} is not byte-identical across regions: {hashes}")
+            if tilemaps_source is not None:
+                source = source_map_bytes(tilemaps_source, preview, variant)
+                if any(source != map_bytes(data, preview, variant, region)
+                       for region, data in contents.items()):
+                    raise ValueError(f"{preview.name}_{suffix} source differs from a regional ROM")
     print(f"verified {len(PREVIEWS) * 2} Farm Status tilemaps across JP, US, EU and DE")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--tiles-source", type=Path, required=True)
-    parser.add_argument("--palettes-source", type=Path, required=True)
+    parser.add_argument("--tiles-source", type=Path)
+    parser.add_argument("--palettes-source", type=Path)
     parser.add_argument("--tilemaps-source", type=Path)
-    parser.add_argument("--rom", type=Path, required=True)
+    parser.add_argument("--rom", type=Path)
     parser.add_argument("--region", choices=("jp", "us", "eu", "de"), default="us")
-    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--output", type=Path)
     parser.add_argument("--replace", action="store_true")
+    parser.add_argument("--verify-only", action="store_true")
     parser.add_argument("--verify-jp", type=Path)
     parser.add_argument("--verify-us", type=Path)
     parser.add_argument("--verify-eu", type=Path)
@@ -148,7 +154,15 @@ def main() -> None:
     if verification_paths:
         if set(verification_paths) != {"jp", "us", "eu", "de"}:
             parser.error("supply all four --verify-* ROM paths together")
-        verify_regions(verification_paths)
+        verify_regions(verification_paths, arguments.tilemaps_source)
+
+    if arguments.verify_only:
+        if not verification_paths or arguments.tilemaps_source is None:
+            parser.error("--verify-only requires tilemap sources and all four ROMs")
+        return
+    if any(value is None for value in (arguments.tiles_source, arguments.palettes_source,
+                                       arguments.rom, arguments.output)):
+        parser.error("rendering requires --tiles-source, --palettes-source, --rom and --output")
 
     pixels, width, height, _tile_palette = read_png(arguments.tiles_source, 4)
     palette_indexes, palette_width, palette_height, palette = read_png(arguments.palettes_source, 8)
