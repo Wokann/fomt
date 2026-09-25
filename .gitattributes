@@ -5,3 +5,4 @@ charmap_jp.txt whitespace=-trailing-space
 *.4bpp binary
 *.tilemap binary
 *.bin binary
+*.pal text eol=crlf

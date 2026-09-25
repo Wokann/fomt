@@ -29,21 +29,21 @@ from tile_grid import (  # noqa: E402
 
 
 PALETTE_LENGTH = 0x200
-PALETTE_SOURCE = "palettes.png"
 PALETTE_OUTPUT = "palettes.gbapal"
 TILES_SOURCE = "tiles.4bpp"
 TILEMAP_SOURCES = ("layer_0.tilemap", "layer_1.tilemap")
 REFERENCE_NAMES = ("layer_0.png", "layer_1.png")
 COMPOSITE_REFERENCE = "scene.png"
 
-# Each entry represents one exact 0x200-byte palette copy proven in the
-# consumer routine. Both ranges are common to JP, US, EU and DE.
+# The consumer copies 0x200 bytes, but the 080B7164 palette ends after 0x60;
+# its remaining copied bytes physically belong to the following archive.
 PROFILES = {
     "080b7164": {
         "offsets": {"jp": 0x4B3F4C, "us": 0x72DDE4, "eu": 0x72DE40, "de": 0x4B50B8},
-        "sha256": {"jp": "27d34fdaddf10393f59fb1f89ad87d10e8d1b3d06176d3870216e36fcf3b0750", "us": "27d34fdaddf10393f59fb1f89ad87d10e8d1b3d06176d3870216e36fcf3b0750", "eu": "27d34fdaddf10393f59fb1f89ad87d10e8d1b3d06176d3870216e36fcf3b0750", "de": "27d34fdaddf10393f59fb1f89ad87d10e8d1b3d06176d3870216e36fcf3b0750"},
-        "sources": {"jp": "palettes.png", "us": "palettes.png", "eu": "palettes.png", "de": "palettes.png"},
-        "palette_source": "palettes.png",
+        "length": 0x60,
+        "sha256": {"jp": "556f3423f4da49c183dafea8575bba9330a4b4d3d5f9b3c11b31e360832955b3", "us": "556f3423f4da49c183dafea8575bba9330a4b4d3d5f9b3c11b31e360832955b3", "eu": "556f3423f4da49c183dafea8575bba9330a4b4d3d5f9b3c11b31e360832955b3", "de": "556f3423f4da49c183dafea8575bba9330a4b4d3d5f9b3c11b31e360832955b3"},
+        "sources": {"jp": "palettes.pal", "us": "palettes.pal", "eu": "palettes.pal", "de": "palettes.pal"},
+        "palette_source": "palettes.pal",
         "first_palette_bank": 0,
     },
     "080bcfac": {
@@ -55,9 +55,10 @@ PROFILES = {
     },
     "080c160c": {
         "offsets": {"jp": 0x4C624C, "us": 0x7400E4, "eu": 0x740140, "de": 0x4C7558},
-        "sha256": {"jp": "56c55d406a8e778b0f83b672a3b6e0816219c0c9e26527fae77b5f4da550a901", "us": "56c55d406a8e778b0f83b672a3b6e0816219c0c9e26527fae77b5f4da550a901", "eu": "56c55d406a8e778b0f83b672a3b6e0816219c0c9e26527fae77b5f4da550a901", "de": "56c55d406a8e778b0f83b672a3b6e0816219c0c9e26527fae77b5f4da550a901"},
-        "sources": {"jp": "palettes.png", "us": "palettes.png", "eu": "palettes.png", "de": "palettes.png"},
-        "palette_source": "palettes.png",
+        "length": 0xC0,
+        "sha256": {"jp": "3cd46474231b5f816641cec654275a7dde0612f764272a2fd6b7990e77c49bd4", "us": "3cd46474231b5f816641cec654275a7dde0612f764272a2fd6b7990e77c49bd4", "eu": "3cd46474231b5f816641cec654275a7dde0612f764272a2fd6b7990e77c49bd4", "de": "3cd46474231b5f816641cec654275a7dde0612f764272a2fd6b7990e77c49bd4"},
+        "sources": {"jp": "palettes.pal", "us": "palettes.pal", "eu": "palettes.pal", "de": "palettes.pal"},
+        "palette_source": "palettes.pal",
         "first_palette_bank": 1,
     },
     "080ae7d0": {
@@ -73,8 +74,9 @@ PROFILES = {
 def palette_from_rom(rom: bytes, region: str, profile: str) -> bytes:
     specification = PROFILES[profile]
     offset = specification["offsets"][region]
-    palette = rom[offset:offset + PALETTE_LENGTH]
-    if len(palette) != PALETTE_LENGTH:
+    length = specification.get("length", PALETTE_LENGTH)
+    palette = rom[offset:offset + length]
+    if len(palette) != length:
         raise ValueError(f"{region} ROM ends within the scene palette")
     if hashlib.sha256(palette).hexdigest() != specification["sha256"][region]:
         raise ValueError(f"{region} scene palette does not match the four-region baseline")
@@ -83,7 +85,7 @@ def palette_from_rom(rom: bytes, region: str, profile: str) -> bytes:
 
 def colors_from_palette(palette: bytes) -> tuple[tuple[int, int, int, int], ...]:
     """Use PNG alpha value 254 to retain otherwise invisible BGR555 bit 15."""
-    colors = list(colors_from_bgr555(palette, color_count=256))
+    colors = list(colors_from_bgr555(palette, color_count=len(palette) // 2))
     for index in range(1, len(colors)):
         if struct.unpack_from("<H", palette, index * 2)[0] & 0x8000:
             red, green, blue, _ = colors[index]
@@ -94,7 +96,7 @@ def colors_from_palette(palette: bytes) -> tuple[tuple[int, int, int, int], ...]
 def palette_from_colors(colors: tuple[tuple[int, int, int, int], ...]) -> bytes:
     if any(alpha not in (0, 254, 255) for _, _, _, alpha in colors):
         raise ValueError("palette PNG alpha must be 0, 254, or 255")
-    result = bytearray(bgr555_from_colors(colors, color_count=256))
+    result = bytearray(bgr555_from_colors(colors, color_count=len(colors)))
     for index, (_, _, _, alpha) in enumerate(colors):
         if index and alpha == 254:
             value = struct.unpack_from("<H", result, index * 2)[0] | 0x8000
@@ -108,6 +110,18 @@ def palette_path(source_dir: Path, profile: str, region: str) -> Path:
 
 def palette_from_source(source_dir: Path, profile: str, region: str) -> bytes:
     source = palette_path(source_dir, profile, region)
+    if source.suffix == ".pal":
+        lines = source.read_text(encoding="ascii").splitlines()
+        color_count = PROFILES[profile].get("length", PALETTE_LENGTH) // 2
+        if lines[:3] != ["JASC-PAL", "0100", str(color_count)] or len(lines) != color_count + 3:
+            raise ValueError(f"{source.name} must contain exactly {color_count} JASC-PAL colors")
+        colors = []
+        for line in lines[3:]:
+            components = tuple(int(component) for component in line.split())
+            if len(components) != 3 or any(not 0 <= value <= 255 for value in components):
+                raise ValueError(f"{source.name} has an invalid RGB color")
+            colors.append((*components, 255))
+        return palette_from_colors(tuple(colors))
     indexes, width, height, colors = read_png(source, color_count=256)
     if (width, height) != (256, 8) or indexes != bytes(range(256)) * 8:
         raise ValueError(f"{source.name} must remain a 256x8 ordered 16-bank palette swatch")
@@ -153,6 +167,8 @@ def write_references(source_dir: Path, reference_dir: Path, profile: str, region
     palette = palette_from_source(source_dir, profile, region)
     tiles = (source_dir / TILES_SOURCE).read_bytes()
     colors = colors_from_palette(palette)
+    if palette_path(source_dir, profile, region).suffix == ".pal":
+        write_png(reference_dir / "palettes.png", bytes(range(len(colors))), 16, len(colors) // 16, colors)
     layers = [render(tiles, (source_dir / source).read_bytes(), PROFILES[profile]["first_palette_bank"]) for source in TILEMAP_SOURCES]
     for layer, name in zip(layers, REFERENCE_NAMES, strict=True):
         write_png(reference_dir / name, layer, 256, 256, colors)
@@ -182,7 +198,17 @@ def export(arguments: argparse.Namespace) -> None:
         output = arguments.source_dir / source
         if output.exists() and not arguments.replace:
             raise ValueError(f"{output} already exists; use --replace to refresh it")
-        write_png(output, bytes(range(256)) * 8, 256, 8, colors_from_palette(next(iter(values))))
+        palette = next(iter(values))
+        if output.suffix == ".pal":
+            colors = colors_from_palette(palette)
+            if any(alpha == 254 for _, _, _, alpha in colors):
+                raise ValueError(f"{source} cannot preserve palette bit 15 in JASC-PAL")
+            output.write_bytes((
+                f"JASC-PAL\r\n0100\r\n{len(colors)}\r\n"
+                + "".join(f"{red} {green} {blue}\r\n" for red, green, blue, _ in colors)
+            ).encode("ascii"))
+        else:
+            write_png(output, bytes(range(256)) * 8, 256, 8, colors_from_palette(palette))
         output_dir = arguments.reference_dir if len(source_groups) == 1 else arguments.reference_dir / source.removesuffix(".png")
         write_references(arguments.source_dir, output_dir, arguments.profile, regions[0])
     print(f"exported {len(source_groups)} verified palette source(s) and visual references to {arguments.source_dir}")
@@ -209,13 +235,14 @@ def apply(target: bytes, baseline: bytes, output_dir: Path, region: str, profile
     generated = (output_dir / PALETTE_OUTPUT).read_bytes()
     expected = palette_from_rom(baseline, region, profile)
     offset = PROFILES[profile]["offsets"][region]
-    current = target[offset:offset + PALETTE_LENGTH]
-    if len(generated) != PALETTE_LENGTH:
+    length = len(expected)
+    current = target[offset:offset + length]
+    if len(generated) != length:
         raise ValueError("generated scene palette has an incorrect length")
     if current != expected and current != generated:
         raise ValueError("target scene palette differs from retail baseline and generated data")
     result = bytearray(target)
-    result[offset:offset + PALETTE_LENGTH] = generated
+    result[offset:offset + length] = generated
     return bytes(result)
 
 

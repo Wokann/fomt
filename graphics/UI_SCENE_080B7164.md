@@ -21,33 +21,34 @@ regions:
 | EU | `0x72D628` | `0x72D734` |
 | DE | `0x4B48A0` | `0x4B49AC` |
 
-Immediately after these unpack operations, the same function copies exactly
-`0x200` bytes from `gUnk_0872DDE4` to BG palette RAM (`0x05000000`). This is a
-code-proven complete sixteen-bank BGR555 palette, rather than an inferred
-adjacent data range. Its common four-region payload has SHA-256
-`27d34fdaddf10393f59fb1f89ad87d10e8d1b3d06176d3870216e36fcf3b0750`.
+Immediately after these unpack operations, the function copies `0x200` bytes
+from `gUnk_0872DDE4` to BG palette RAM (`0x05000000`). The copy length is not
+the ownership length: the two tilemaps select only palette banks 0, 1 and 2.
+Those three banks occupy the first `0x60` bytes. At `+0x60`, the next indexed
+resource archive begins; the remaining `0x1A0` copied bytes belong to that
+archive, not to a fourth through sixteenth palette bank. The four-region
+palette prefix has SHA-256
+`556f3423f4da49c183dafea8575bba9330a4b4d3d5f9b3c11b31e360832955b3`.
 
 | Region | Palette offset | Length |
 | --- | ---: | ---: |
-| JP | `0x4B3F4C` | `0x200` |
-| US | `0x72DDE4` | `0x200` |
-| EU | `0x72DE40` | `0x200` |
-| DE | `0x4B50B8` | `0x200` |
+| JP | `0x4B3F4C` | `0x60` |
+| US | `0x72DDE4` | `0x60` |
+| EU | `0x72DE40` | `0x60` |
+| DE | `0x4B50B8` | `0x60` |
 
-`shared/palettes.png` is the editable indexed source for those sixteen banks.
-The generic `%.gbapal: %.png` rule converts it beside the PNG. Assembly now
-links that generated palette at the original ROM position, retaining the
-`gUnk_0872DE44` label at byte `0x60` in the western layout. The four-region
-retail SHA-256 above matches the directly linked output.
+`shared/palettes.pal` is the independent JASC-PAL source for those three
+banks. The generic `%.gbapal: %.pal` rule converts it beside the `.pal` file;
+`reference/palettes.png` is only a viewable swatch, not a build input. Assembly
+links the generated `.gbapal` at the original ROM position and retains the
+`gUnk_0872DE44` archive label immediately afterward in the western layout.
+The four-region retail SHA-256 above matches the directly linked palette.
 
-There is an important physical overlap: the first `0x60` bytes belong only to
-the palette, while bytes `0x60`–`0x1FF` are also the beginning of the adjacent
-indexed resource archive. The archive still has a separate post-link builder.
-Before that builder writes to the ROM, the ordinary ROM recipe compares its
-first `0x1A0` bytes with the palette suffix and stops on disagreement. Thus
-edits to the overlapping palette banks must also agree with the archive source;
-they cannot be treated as independently owned by this PNG. This is a remaining
-build-chain boundary, not a second hidden palette copy.
+The palette and archive are now separate source ranges despite the routine's
+overlong hardware copy. The archive still has a separate post-link builder;
+its migration into the ordinary linker path remains future work. No palette
+source bytes overlap the archive, so editing a color does not alter archive
+tables or pixel indices.
 
 The native tilemaps remain the authoritative lossless layout source because
 they retain tile IDs, X/Y flip flags, and palette-bank selectors. The generated
@@ -71,5 +72,5 @@ under `gUiTwoLayerBackgroundMap0`, `gUiTwoLayerBackgroundMap1`, and
 The three streams no longer use a baseline ROM or a post-`objcopy` patch in
 the normal build. Their original slot sizes are checked during compression,
 and unchanged sources produce byte-identical JP/US/EU/DE ROMs. The palette
-no longer has its own post-link patch; the overlapping archive remains a
+no longer has its own post-link patch; the adjacent archive remains a
 separate item to migrate.
