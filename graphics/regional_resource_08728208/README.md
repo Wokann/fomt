@@ -14,13 +14,12 @@ one editable source directory. JP is a separate verified source because its
 payload SHA-256 differs. Both domains contain three drawable OAM groups, four
 native 4bpp tiles, one BGR555 palette and four selection entries.
 
-`full/group_*.png` files are editable indexed-PNG source. `preview/` is
-regenerated from the native OAM records and is a readable reference only. The
-selection, descriptor, OAM, tile-allocation and palette tables remain inside
-the fixed-size native archive; no JSON layout sidecar is used.
+`full/group_000.png` is the canonical indexed-PNG source: all three group
+PNGs encode the same four native tiles. `preview/` is an OAM-rendered
+reference. The selection, descriptor, OAM and entry tables are written in
+`archive.inc`, which is included at the original physical ROM positions.
 
-The Make build selects `jp/` only for `GAME_REGION=JP`; US, EU and DE select
-`overseas/`. It rebuilds a region-local `archive.bin`, then applies it to the
-original physical range after the normal ROM link. The four-region patch and
-editable-pixel tests confirm that an unchanged source preserves every byte and
-that a source edit remains confined to the native allocation.
+The ordinary graphics rules convert the selected PNG to `.4bpp` tiles and
+`.gbapal` palette. The linker assembles the archive directly; this resource
+has no base-ROM input or post-link patch. JP uses `jp/`; US, EU and DE use
+`overseas/`. The four region ROM SHA-1 checks verify unchanged reconstruction.

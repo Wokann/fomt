@@ -90,9 +90,9 @@ entries; those structural differences are preserved as native layout data.
 
 `gUnk_08728208` has one fixed archive layout in all four regions, but two
 distinct visual payloads. JP uses the dedicated `jp/` source; US, EU, and DE
-are byte-identical and therefore use the shared `overseas/` source. Both are
-rebuilt from indexed PNG groups and patched only into their original physical
-ranges.
+are byte-identical and therefore use the shared `overseas/` source. The
+generic graphics rules convert `group_000.png` to native tiles and palette;
+`archive.inc` places those assets with the shared tables during linking.
 
 | Source domain | Regions | ROM offset(s) | Length | Header counts | Entries | SHA-256 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -174,8 +174,8 @@ BGR555 palettes. Native records, rather than a JSON sidecar, remain the sole
 layout definition.
 
 `gUnk_0875B444` has the same six-descriptor native layout in every region, but
-JP is byte-distinct while US/EU/DE share one payload. Both source domains are
-kept separately and rebuilt into their original fixed ranges.
+JP is byte-distinct while US/EU/DE share one payload. Both source domains use
+the same source-owned table layout and are linked at their original positions.
 
 | Source domain | Regions | ROM offset(s) | Length | Header counts | Entries | SHA-256 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -449,7 +449,7 @@ under `graphics/shared_resource_08755154/`; the address remains its source name
 until the runtime purpose is independently established.
 
 Regional archive `0875B444` is independently bounded at the locations above.
-Its six descriptors select six native OAM records, 24 native 4bpp tiles, one
+Its six descriptors share one native OAM record and select 24 native 4bpp tiles, one
 BGR555 palette, and six selection entries. Editable indexed-PNG sources are
 under `graphics/regional_resource_0875b444/{jp,overseas}/`; descriptor, OAM,
 selection, and palette tables remain native layout data rather than a sidecar
