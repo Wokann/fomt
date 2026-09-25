@@ -53,7 +53,6 @@ SECTIONS
     .rom : ALIGN(4)
     {
         src/crt0.o(.rom_header);
-        asm/main.o(.text);
         src/main.o(.text);
         src/sram_proxy_1.o(.text);
         src/interrupt.o(.text);
