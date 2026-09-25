@@ -5,11 +5,29 @@
 
 typedef void (*IntroSceneVTableFunction)(void);
 
-// The scene owns an allocation whose internal layout is not yet decompiled.
+struct IntroSceneCorePrefix;
+
+typedef void (*IntroSceneCoreDestroyFunction)(IntroSceneCorePrefix *, int);
+
+struct IntroSceneCoreVTable
+{
+    void * unk_00;
+    void * unk_04;
+    IntroSceneCoreDestroyFunction destroy;
+};
+
+// Only the fields used by the scene destructor are known. The full core
+// allocation is larger and remains in asm/intro_scene.s.
+struct IntroSceneCorePrefix
+{
+    void * unk_00;
+    IntroSceneCoreVTable const * vtable;
+};
+
 struct GameIntroScene
 {
     IntroSceneVTableFunction const * vtable;
-    void * core;
+    IntroSceneCorePrefix * core;
 };
 
 EXTERN_C
