@@ -37,7 +37,7 @@ as a shared payload.
 | `gUnk_08738144` | `0x4BE2AC` | `0x731B40` | `0x731B9C` | `0x4BF4B0` | `0x994` | 3, 3, 2, 72, 1, 0 | 3 | rebuild, region-local: `graphics/regional_resource_08738144/` |
 | `gUnk_0873A6E8` | `0x4C0850` | `0x73A6E8` | `0x73A744` | `0x4C1A54` | `0x76C` | 1, 1, 3, 56, 1, 0 | 1 | rebuild, region-local: `graphics/regional_resource_0873a6e8/` |
 | `gUnk_0873AE54` | `0x4C0FBC` | `0x73AE54` | `0x73AEB0` | `0x4C21C0` | `0x174` | 2, 2, 1, 8, 1, 0 | 2 | linked from indexed PNG, no baserom input or post-link patch: `graphics/shared_resource_0873ae54/` |
-| `gUnk_0873AFC8` | `0x4C1130` | `0x73AFC8` | `0x73B024` | `0x4C2334` | `0xE5C` | 1, 1, 9, 110, 1, 0 | 1 | rebuild, four-region shared: `graphics/shared_resource_0873afc8/` |
+| `gUnk_0873AFC8` | `0x4C1130` | `0x73AFC8` | `0x73B024` | `0x4C2334` | `0xE5C` | 1, 1, 9, 110, 1, 0 | 1 | source-owned direct link, four-region shared: `graphics/shared_resource_0873afc8/` |
 | `gUnk_0873CCB4` | `0x4C2E1C` | `0x73CCB4` | `0x73CD10` | `0x4C4020` | `0x1F8` | 1, 2, 2, 12, 1, 0 | 2 | native PNG + assembly tables, directly linked: `graphics/shared_resource_0873ccb4/` |
 | `gUnk_0873CEAC` | `0x4C3014` | `0x73CEAC` | `0x73CF08` | `0x4C4218` | `0xE4` | 1, 1, 2, 4, 1, 0 | 1 | native PNG + assembly tables, directly linked: `graphics/shared_resource_0873ceac/` |
 | `gUnk_0873CF90` | `0x4C30F8` | `0x73CF90` | `0x73CFEC` | `0x4C42FC` | `0x2A4` | 4, 4, 1, 16, 1, 0 | 4 | native PNG + assembly tables, directly linked: `graphics/shared_resource_0873cf90/` |
