@@ -28,6 +28,7 @@ graphics/ui/seasonal_background/shared/nonwinter_tiles.4bpp
 graphics/ui/seasonal_background/shared/nonwinter_palette_banks.gbapal
 graphics/ui/seasonal_background/winter/winter_tiles.4bpp
 graphics/ui/seasonal_background/winter/winter_palette_banks.gbapal
+graphics/ui/farm_status/shared/exterior_styles/*/style_*.4bpp
 tools/fomt-lz
 tools/verify-gfx-range
 tools/verify-gfx-range.exe

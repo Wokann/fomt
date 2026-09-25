@@ -94483,7 +94483,10 @@ gUnk_08529794:
 	.incbin "graphics/ui/farm_status/shared/base_palettes.gbapal"
 	.global gUnk_08529994
 gUnk_08529994:
-	FOMT_FARM_STATUS_EXTERIOR_STYLE doghouse
+	.short 4, 3
+	.incbin "graphics/ui/farm_status/shared/exterior_styles/doghouse/style_00.4bpp"
+	.incbin "graphics/ui/farm_status/shared/exterior_styles/doghouse/style_01.4bpp"
+	.incbin "graphics/ui/farm_status/shared/exterior_styles/doghouse/style_02.4bpp"
 	.global gUnk_082B0BB4
 gUnk_082B0BB4:
 	.incbin "graphics/ui/farm_status/shared/tilemaps/coop_level_1_primary.tilemap"
@@ -94492,7 +94495,10 @@ gUnk_082B0C14:
 	.incbin "graphics/ui/farm_status/shared/tilemaps/coop_level_0_primary.tilemap"
 	.global gUnk_08529BA8
 gUnk_08529BA8:
-	FOMT_FARM_STATUS_EXTERIOR_STYLE mailbox
+	.short 2, 3
+	.incbin "graphics/ui/farm_status/shared/exterior_styles/mailbox/style_00.4bpp"
+	.incbin "graphics/ui/farm_status/shared/exterior_styles/mailbox/style_01.4bpp"
+	.incbin "graphics/ui/farm_status/shared/exterior_styles/mailbox/style_02.4bpp"
 	.global gUnk_082B0D08
 gUnk_082B0D08:
 	.incbin "graphics/ui/farm_status/shared/tilemaps/farm_house_level_2_primary.tilemap"
@@ -94504,7 +94510,10 @@ gUnk_082B0E10:
 	.incbin "graphics/ui/farm_status/shared/tilemaps/farm_house_level_0_primary.tilemap"
 	.global gUnk_08529DA4
 gUnk_08529DA4:
-	FOMT_FARM_STATUS_EXTERIOR_STYLE window
+	.short 22, 3
+	.incbin "graphics/ui/farm_status/shared/exterior_styles/window/style_00.4bpp"
+	.incbin "graphics/ui/farm_status/shared/exterior_styles/window/style_01.4bpp"
+	.incbin "graphics/ui/farm_status/shared/exterior_styles/window/style_02.4bpp"
 	.global gUnk_082B1684
 gUnk_082B1684:
 	.incbin "graphics/ui/farm_status/shared/tilemaps/barn_level_1_primary.tilemap"

@@ -109,13 +109,9 @@ FARM_STATUS_TILEMAP_SOURCES := $(wildcard $(FARM_STATUS_TILEMAP_SOURCE_DIR)/*.ti
 FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR := graphics/ui/farm_status/shared/secondary_tilemaps
 FARM_STATUS_SECONDARY_TILEMAP_SOURCES := $(wildcard $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/*.tilemap)
 FARM_STATUS_SECONDARY_TILEMAP_OUTPUTS := $(FARM_STATUS_SECONDARY_TILEMAP_SOURCES:%=%.lz)
-FARM_STATUS_EXTERIOR_STYLE_TOOL := tools/farm_status_exterior_styles.py
 FARM_STATUS_EXTERIOR_STYLE_SOURCE_DIR := graphics/ui/farm_status/shared/exterior_styles
 FARM_STATUS_EXTERIOR_STYLE_SOURCES := $(wildcard $(FARM_STATUS_EXTERIOR_STYLE_SOURCE_DIR)/*/*.png)
-FARM_STATUS_EXTERIOR_STYLE_OUTPUT_DIR := $(BUILD_DIR)/graphics/ui/farm_status/exterior_styles
-FARM_STATUS_EXTERIOR_STYLE_OUTPUTS := $(FARM_STATUS_EXTERIOR_STYLE_OUTPUT_DIR)/doghouse.4bpp $(FARM_STATUS_EXTERIOR_STYLE_OUTPUT_DIR)/mailbox.4bpp $(FARM_STATUS_EXTERIOR_STYLE_OUTPUT_DIR)/window.4bpp
-FARM_STATUS_EXTERIOR_STYLE_STAMP := $(FARM_STATUS_EXTERIOR_STYLE_OUTPUT_DIR)/.exterior-styles.stamp
-FARM_STATUS_EXTERIOR_STYLE_REGION := $(shell echo "$(GAME_REGION)" | tr '[:upper:]' '[:lower:]')
+FARM_STATUS_EXTERIOR_STYLE_OUTPUTS := $(FARM_STATUS_EXTERIOR_STYLE_SOURCES:.png=.4bpp)
 FARM_STATUS_SELECTOR_ICON_SOURCE := graphics/ui/farm_status/shared/auxiliary_icons/selector_case_09.png
 FARM_STATUS_SELECTOR_ICON_OUTPUT_DIR := graphics/ui/farm_status/shared/auxiliary_icons
 FARM_STATUS_SELECTOR_ICON_OUTPUTS := $(FARM_STATUS_SELECTOR_ICON_OUTPUT_DIR)/selector_case_09.4bpp $(FARM_STATUS_SELECTOR_ICON_OUTPUT_DIR)/selector_case_09.gbapal
@@ -1285,7 +1281,7 @@ GRAPHICS_ASSETS = \
 	$(SHARED_RESOURCE_0875352C_ASSETS) $(SHARED_RESOURCE_08753608_ASSETS) $(SHARED_RESOURCE_08755154_ASSETS) \
 	$(FARM_STATUS_WINTER_OUTPUTS) $(FARM_STATUS_PALETTE_BIN) \
 	$(FARM_STATUS_SECONDARY_TILEMAP_OUTPUTS) \
-	$(FARM_STATUS_EXTERIOR_STYLE_STAMP) $(FARM_STATUS_SELECTOR_ICON_OUTPUTS) \
+	$(FARM_STATUS_EXTERIOR_STYLE_OUTPUTS) $(FARM_STATUS_SELECTOR_ICON_OUTPUTS) \
 	$(CLOCK_FONT_OUTPUTS) $(FARM_STATUS_CREATURE_ICON_OUTPUTS) \
 	$(FARM_STATUS_TASK_UI_TILE_OUTPUTS) \
 	$(FARM_HOUSE_VISUAL_OUTPUTS) \
@@ -1550,12 +1546,6 @@ $(SEASONAL_WINTER_PACKED_BIN): $(SEASONAL_WINTER_TILES_BIN) $(SEASONAL_WINTER_OR
 
 $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/%.tilemap.lz: $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/%.tilemap $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/%.original.lz $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) rebuild-native $< $(word 2,$^) $@
-
-$(FARM_STATUS_EXTERIOR_STYLE_STAMP): $(FARM_STATUS_EXTERIOR_STYLE_SOURCES) $(FARM_STATUS_EXTERIOR_STYLE_TOOL)
-	@$(PYTHON) $(FARM_STATUS_EXTERIOR_STYLE_TOOL) build --source-dir $(FARM_STATUS_EXTERIOR_STYLE_SOURCE_DIR) --output-dir $(FARM_STATUS_EXTERIOR_STYLE_OUTPUT_DIR)
-	@touch $@
-
-$(FARM_STATUS_EXTERIOR_STYLE_OUTPUTS): $(FARM_STATUS_EXTERIOR_STYLE_STAMP)
 
 $(INTRO_BACKGROUND_TILES_BIN): $(INTRO_BACKGROUND_TILES_SOURCE) $(GFX_TOOL)
 	@mkdir -p $(dir $@)
@@ -2930,15 +2920,12 @@ gfx-farm-status-secondary-tilemaps-all:
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-farm-status-secondary-tilemaps-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-farm-status-secondary-tilemaps-test
 gfx-farm-status-exterior-styles: $(FARM_STATUS_EXTERIOR_STYLE_OUTPUTS)
-gfx-farm-status-exterior-styles-test: gfx-farm-status-exterior-styles $(FARM_STATUS_EXTERIOR_STYLE_TOOL) $(BASE_ROM)
-	@$(PYTHON) $(FARM_STATUS_EXTERIOR_STYLE_TOOL) verify --region $(FARM_STATUS_EXTERIOR_STYLE_REGION) --rom $(BASE_ROM) --source-dir $(FARM_STATUS_EXTERIOR_STYLE_SOURCE_DIR) --output-dir $(FARM_STATUS_EXTERIOR_STYLE_OUTPUT_DIR)
+gfx-farm-status-exterior-styles-test: gfx-farm-status-exterior-styles
 gfx-farm-status-exterior-styles-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-farm-status-exterior-styles-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-farm-status-exterior-styles-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-farm-status-exterior-styles-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-farm-status-exterior-styles-test
-gfx-farm-status-exterior-styles-edit-test: $(FARM_STATUS_EXTERIOR_STYLE_TOOL) $(FARM_STATUS_EXTERIOR_STYLE_SOURCES)
-	@$(PYTHON) $(FARM_STATUS_EXTERIOR_STYLE_TOOL) edit-test --source-dir $(FARM_STATUS_EXTERIOR_STYLE_SOURCE_DIR)
 gfx-farm-status-selector-icon: $(FARM_STATUS_SELECTOR_ICON_OUTPUTS)
 gfx-farm-status-selector-icon-test: gfx-farm-status-selector-icon $(GFX_RANGE_VERIFY) $(BASE_ROM)
 	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FARM_STATUS_SELECTOR_ICON_BASE_$(GAME_REGION)) --length 0x80 --input $(FARM_STATUS_SELECTOR_ICON_OUTPUT_DIR)/selector_case_09.4bpp
@@ -3407,7 +3394,6 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-farm-status-tilemaps-all
 	@$(MAKE) --no-print-directory gfx-farm-status-secondary-tilemaps-all
 	@$(MAKE) --no-print-directory gfx-farm-status-exterior-styles-all
-	@$(MAKE) --no-print-directory gfx-farm-status-exterior-styles-edit-test
 	@$(MAKE) --no-print-directory gfx-farm-status-selector-icon-all
 	@$(MAKE) --no-print-directory gfx-clock-font-all
 	@$(MAKE) --no-print-directory gfx-intro-background-all

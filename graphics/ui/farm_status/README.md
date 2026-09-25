@@ -67,21 +67,20 @@ editable indexed 4bpp PNGs in native tile order.  Their dimensions are 16 by
 runtime copies four doghouse tiles to BG IDs 22-25, two mailbox tiles to IDs
 26-27, and twenty-two window tiles to IDs 0-21.  The corresponding Farm
 Status maps prove their 2-by-2, 1-by-2, and 11-by-2 arrangements and select
-palette bank 5 from `base_palettes.png`.  The build restores each original
-two-word count header followed by its three style payloads; no JSON or other
-layout sidecar is used.
+palette bank 5 from `base_palettes.png`. The existing C `gbagfx` tool converts
+each PNG to an adjacent `.4bpp`; assembly then writes the native two-word
+count header and includes the three styles in source order. No packing script
+or layout sidecar is used.
 
-Build and byte-check all three groups in JP, US, EU, and DE with:
+Build all three groups in JP, US, EU, and DE with:
 
 ```console
 make gfx-farm-status-exterior-styles-all
-make gfx-farm-status-exterior-styles-edit-test
 ```
 
-The latter changes one source pixel in memory and verifies that every raw
-resource stays within its fixed original range.  All three original physical
-ranges are byte-identical across the four retail ROMs, so one shared source
-tree is authoritative.
+All three original physical ranges are byte-identical across the four retail
+ROMs, so one shared source tree is authoritative. The normal ROM compare checks
+the complete linked layout and byte content.
 
 `winter/shared/tiles.png` is the editable native 4bpp tile grid selected by
 `func_0806EC94` when the season is winter. Its pixel indices are shared by US,
