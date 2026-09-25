@@ -38,7 +38,7 @@ regionally different. It is the coverage ledger for this staged pipeline.
 | Shared archive `08728320` (source-owned `archive.inc` + `native.png`) | `0x4AE488` | `0x728320` | `0x72837C` | `0x4AF4EC` | `0x105C` | `7, 21, 32, 107, 1, 0` | 21 | `db6e14760f25e35a7211916f8a30cdafd90bcba78faed0e738bfc69dcf0edbfc` |
 | Shared archive `0872937C` | `0x4AF4E4` | `0x72937C` | `0x7293D8` | `0x4B0548` | `0xE4` | `1, 3, 1, 3, 1, 0` | 3 | `0e4724ae1b5689f71ce4ccab6643f935d670cc64a153a16cbc7748943c2ad6ba` |
 | Shared archive `08729460` | `0x4AF5C8` | `0x729460` | `0x7294BC` | `0x4B062C` | `0x2A04` | `1, 3, 9, 330, 1, 0` | 3 | `7a8b853ced44cc16da447b0f51ff98865b591f54b006fac3a3b52adfc9b1a24a` |
-| Shared archive `0872EE78` | `0x4B4FE0` | `0x72EE78` | `0x72EED4` | `0x4B61E4` | `0x2A4` | `4, 4, 1, 16, 1, 0` | 4 | `037e8098cf0ae92448f15134435110b9973350086eb0c4ff894fe628fcf5956e` |
+| Shared archive `0872EE78` (source-owned `archive.inc` + group PNGs) | `0x4B4FE0` | `0x72EE78` | `0x72EED4` | `0x4B61E4` | `0x2A4` | `4, 4, 1, 16, 1, 0` | 4 | `037e8098cf0ae92448f15134435110b9973350086eb0c4ff894fe628fcf5956e` |
 | Shared archive `08731B40` | `0x4B7CA8` | `0x731B40` | `0x731B9C` | `0x4B8EAC` | `0x6604` | `20, 20, 13, 794, 3, 0` | 20 | `f7ba7a09d7fd9da4ce57d4c898240aee2a733beb30e58e95230efa83ab0d1104` |
 | Shared archive `0873AE54` | `0x4C0FBC` | `0x73AE54` | `0x73AEB0` | `0x4C21C0` | `0x174` | `2, 2, 1, 8, 1, 0` | 2 | `4df3efe78a69739b78cd62fb773e30710ddac261913c72027f46d2ba4f22fac7` |
 | Shared archive `0873AFC8` | `0x4C1130` | `0x73AFC8` | `0x73B024` | `0x4C2334` | `0xE5C` | `1, 1, 9, 110, 1, 0` | 1 | `0d6914b0adbac7c333dfdc60c3050ab487ac5ba38fa84e30f58b42de72318aa4` |
@@ -299,8 +299,9 @@ source name until the runtime purpose is independently established.
 Shared archive `0872EE78` is independently bounded at the four locations in
 the table. Its four descriptors select one native OAM record, 16 native 4bpp
 tiles, one BGR555 palette, and four selection entries. Its editable PNG sources
-are under `graphics/shared_resource_0872ee78/`; the address remains its source
-name until the runtime purpose is independently established.
+and native tables are under `graphics/shared_resource_0872ee78/` and link
+directly; the address remains its source name until the runtime purpose is
+independently established.
 
 Shared archive `08731B40` is independently bounded at the four locations in
 the table. Its 20 descriptors select 13 native OAM records, 794 native 4bpp
