@@ -187,6 +187,25 @@ static unsigned char *read_file(char const *path, size_t *size)
     return data;
 }
 
+static unsigned char *read_file_parts(char const *first_path,
+                                       char const *second_path, size_t *size)
+{
+    unsigned char *first = read_file(first_path, size);
+    if (!second_path)
+        return first;
+    size_t second_size;
+    unsigned char *second = read_file(second_path, &second_size);
+    if (second_size > SIZE_MAX - *size)
+        fail("combined source is too large");
+    unsigned char *combined = realloc(first, *size + second_size);
+    if (!combined)
+        fail("out of memory");
+    memcpy(combined + *size, second, second_size);
+    *size += second_size;
+    free(second);
+    return combined;
+}
+
 static void write_file(char const *path, unsigned char const *data, size_t size)
 {
     FILE *file = fopen(path, "wb");
@@ -2037,13 +2056,13 @@ static void usage(void)
     fail("usage: fomt-lz encode-lz2 SOURCE OUTPUT LADDER SLOT_SIZE "
          "[--literal-tail] | "
          "encode-lz3|encode-huff8-lz3 SOURCE OUTPUT LADDER SLOT_SIZE | "
-         "rebuild-native SOURCE ORIGINAL OUTPUT | "
+         "rebuild-native SOURCE ORIGINAL OUTPUT [TAIL] | "
          "rebuild-huff8-lz3 SOURCE ORIGINAL OUTPUT LADDER SLOT_SIZE | "
          "rebuild-huff4-lz2|rebuild-huff8-lz2 "
          "SOURCE ORIGINAL OUTPUT LADDER SLOT_SIZE | "
          "decode-lz2|decode-lz3|decode-huff4-lz3|decode-huff8-lz3|"
          "decode-huff4-lz2|decode-huff8-lz2 SOURCE OUTPUT | "
-         "verify-native SOURCE PACKED | "
+         "verify-native SOURCE PACKED [TAIL] | "
          "verify-lz2|verify-lz3|verify-huff4-lz3|verify-huff8-lz3|"
          "verify-huff4-lz2|verify-huff8-lz2 SOURCE PACKED [LADDER]");
 }
@@ -2053,10 +2072,11 @@ int main(int argc, char **argv)
     if (argc < 4)
         usage();
     if (strcmp(argv[1], "rebuild-native") == 0) {
-        if (argc != 5 || strcmp(argv[3], argv[4]) == 0)
+        if ((argc != 5 && argc != 6) || strcmp(argv[3], argv[4]) == 0)
             usage();
         size_t source_size, original_size, decoded_size;
-        unsigned char *source = read_file(argv[2], &source_size);
+        unsigned char *source = read_file_parts(argv[2], argc == 6 ? argv[5] : NULL,
+                                                &source_size);
         unsigned char *original = read_file(argv[3], &original_size);
         if (original_size < 8 || original[0] != 0x70)
             fail("rebuild reference is not a FoMT native stream");
@@ -2312,10 +2332,11 @@ int main(int argc, char **argv)
         free(decoded);
         free(packed);
     } else if (strcmp(argv[1], "verify-native") == 0) {
-        if (argc != 4)
+        if (argc != 4 && argc != 5)
             usage();
         size_t source_size, packed_size, decoded_size;
-        unsigned char *source = read_file(argv[2], &source_size);
+        unsigned char *source = read_file_parts(argv[2], argc == 5 ? argv[4] : NULL,
+                                                &source_size);
         unsigned char *packed = read_file(argv[3], &packed_size);
         if (packed_size < 8 || packed[0] != 0x70)
             fail("verify-native input is not a FoMT native stream");

@@ -151294,10 +151294,10 @@ gUnk_0874E530:
 	.4byte 0x00060000, 0x00060001, 0x00060002, 0x00060001
 	.global gUnk_0874E648
 gUnk_0874E648:
-	.incbin "build/de/graphics/ui/scene_08077810/tiles.0x70"
+	.incbin "graphics/ui/scene_08077810/shared/tiles.4bpp.lz"
 	.global gUnk_0874EB40
 gUnk_0874EB40:
-	.incbin "build/de/graphics/ui/scene_08077810/palette.gbapal"
+	.incbin "graphics/ui/scene_08077810/shared/tiles.gbapal"
 	.global gUnk_0874EB60
 gUnk_0874EB60:
 	.incbin "build/de/graphics/ui/scene_08077810/layer_1.tilemap.0x70"

@@ -30,46 +30,9 @@ than silently treating a regional resource as shared.
 
 The remaining `MapData` pointer fields are terrain/field data rather than
 proven tile, palette, map, or OAM inputs. They deliberately remain outside
-this image pipeline. Their own bounded data is checked by
-`make map-terrain-audit`; adding a visual conversion for one requires evidence
-from its runtime consumer, not merely that it is adjacent to a map record.
-
-## Read-only visual references
-
-`tools/map_visual_references.py` can render each proven BG layer directly from
-the native sources.  Its output is deliberately written to
-`build/graphics/maps/reference/`, not to `shared/`, because a rendered image
-cannot carry the complete 16-bit tilemap data back into the build.
-
-For each map and each available tilemap it writes both
-`layer_N_palette_1.png` and `layer_N_palette_2.png`.  The game has two
-separate palette streams and selects between them at runtime, so neither is
-presented as the single canonical screenshot.  The renderer handles GBA tile
-flips and palette-bank indices.  It skips a layer that requests bank 15,
-because the per-map streams contain only banks 0--14 and supplying an invented
-colour would make the reference misleading.
-
-Generate all available references with:
-
-```console
-make gfx-map-resources-reference
-```
-
-The command is an inspection aid only.  It never edits `shared/`, ROM data,
-or build input files.  For a small focused inspection, invoke the renderer
-directly with one map ID:
-
-```console
-python tools/map_visual_references.py render ^
-  --source-dir graphics/maps/shared ^
-  --output-dir build/graphics/maps/reference ^
-  --map-id 0 ^
-  --rom jp baserom_jp.gba --rom us baserom_us.gba ^
-  --rom eu baserom_eu.gba --rom de baserom_de.gba
-```
-
-The `^` continuation marker is for `cmd.exe`; remove it or use the shell's
-own continuation syntax elsewhere.
+this image pipeline; adding a visual conversion requires evidence from the
+runtime consumer, not merely adjacency to a map record. Rendered screenshots
+are likewise not build inputs because they cannot retain native tilemap bits.
 
 ## Verification
 
