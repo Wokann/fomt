@@ -16,5 +16,7 @@ graphics/ui/scene_080b7164/shared/palettes.gbapal
 graphics/ui/scene_080c160c/shared/palettes.gbapal
 graphics/ui/scene_080bcfac/shared/palettes.gbapal
 tools/fomt-lz
+graphics/shared_resource_0873d5fc/full/group_000.4bpp
+graphics/shared_resource_0873d5fc/full/group_000.gbapal
 __pycache__/
 tools/textproc/fomt-*
