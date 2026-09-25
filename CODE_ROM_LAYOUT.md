@@ -34,6 +34,8 @@
 
 `SceneMain` 对这些后继对象的虚表 `+0x0C` 发起调用，并接收下一场景；因此 `include/scene.hh` 中原先仅按地址暂名的 `AUnk_0800080C` 已改为归属本模块的 `SceneTransition`，对应虚函数命名为 `CreateScene`。`src/scene.cc` 的析构符号、`asm/new_game.s` 和 `asm/code_linkonce.s` 的直接引用及四份 LDS 中的虚表输入节同步更名；保留的 `SceneMain` 和后继对象构造仍是汇编，未把所有权转移假称为已经高级语言化。四区重新编译后均与各自原 ROM SHA-1 一致。
 
+随后把 `asm/code_linkonce.s` 中 88 处对析构地址名 `func_0800080C` 的调用改成直接引用 `_._15SceneTransition`，并移除 `src/scene.cc` 的对应 `.thumb_set` 入口别名。调用目标仍在原地址，四区 SHA-1 再次一致；这并不表示 `SceneMain` 的临时所有权对象已反编译。
+
 | 区域 | C++ 构造函数 | C++ 析构函数 | 后续汇编运行函数 |
 | --- | --- | --- | --- |
 | JP | `0x08003718`–`0x0800373B` | `0x0800373C`–`0x0800376B` | `0x0800376C` |

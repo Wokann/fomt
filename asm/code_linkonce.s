@@ -92,7 +92,7 @@ func_080D3C24: @ 0x080D3C24
 	thumb_func_start func_080D3C60
 func_080D3C60: @ 0x080D3C60
 	push {lr}
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -100,7 +100,7 @@ func_080D3C60: @ 0x080D3C60
 	thumb_func_start func_080D3C6C
 func_080D3C6C: @ 0x080D3C6C
 	push {lr}
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -522,7 +522,7 @@ func_080D4004: @ 0x080D4004
 	thumb_func_start func_080D4040
 func_080D4040: @ 0x080D4040
 	push {lr}
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -540,7 +540,7 @@ func_080D404C: @ 0x080D404C
 .L080D405E:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -6086,7 +6086,7 @@ func_080D6C58:
     .thumb_func
 func_080D6D8C:
     push {lr}
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r0}
     bx r0
     .byte 0x00, 0x00
@@ -8546,7 +8546,7 @@ func_080D6C58: @ 0x080D6C58
 	thumb_func_start func_080D6D8C
 func_080D6D8C: @ 0x080D6D8C
 	push {lr}
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -12562,7 +12562,7 @@ func_080DB2EC:
     .Lauto_080DAAB8:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -12571,7 +12571,7 @@ func_080DB2EC:
     .thumb_func
 func_080DB314:
     push {lr}
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r0}
     bx r0
     .byte 0x00, 0x00
@@ -12631,7 +12631,7 @@ func_080DB36C:
     .Lauto_080DAB38:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -12690,7 +12690,7 @@ func_080DB3DC:
     .Lauto_080DABA8:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -12749,7 +12749,7 @@ func_080DB44C:
     .Lauto_080DAC18:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -12814,7 +12814,7 @@ func_080DB4C8:
     .Lauto_080DAC94:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -12877,7 +12877,7 @@ func_080DB540:
     .Lauto_080DAD0C:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -12940,7 +12940,7 @@ func_080DB5B8:
     .Lauto_080DAD84:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -13003,7 +13003,7 @@ func_080DB630:
     .Lauto_080DADFC:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -13064,7 +13064,7 @@ func_080DB6A4:
     .Lauto_080DAE70:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -13123,7 +13123,7 @@ func_080DB714:
     .Lauto_080DAEE0:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -13182,7 +13182,7 @@ func_080DB784:
     .Lauto_080DAF50:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -13241,7 +13241,7 @@ func_080DB7F4:
     .Lauto_080DAFC0:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -13300,7 +13300,7 @@ func_080DB864:
     .Lauto_080DB030:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -13359,7 +13359,7 @@ func_080DB8D4:
     .Lauto_080DB0A0:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -13418,7 +13418,7 @@ func_080DB944:
     .Lauto_080DB110:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -13477,7 +13477,7 @@ func_080DB9B4:
     .Lauto_080DB180:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -13536,7 +13536,7 @@ func_080DBA24:
     .Lauto_080DB1F0:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -13595,7 +13595,7 @@ func_080DBA94:
     .Lauto_080DB260:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -13654,7 +13654,7 @@ func_080DBB04:
     .Lauto_080DB2D0:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -13713,7 +13713,7 @@ func_080DBB74:
     .Lauto_080DB340:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -13772,7 +13772,7 @@ func_080DBBE4:
     .Lauto_080DB3B0:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -13829,7 +13829,7 @@ func_080DBC50:
     .Lauto_080DB41C:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -13888,7 +13888,7 @@ func_080DBCC0:
     .Lauto_080DB48C:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -13947,7 +13947,7 @@ func_080DB4E4:
     .Lauto_080DB4FC:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -14006,7 +14006,7 @@ func_080DBDA0:
     .Lauto_080DB56C:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -14065,7 +14065,7 @@ func_080DBE10:
     .Lauto_080DB5DC:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -14124,7 +14124,7 @@ func_080DBE80:
     .Lauto_080DB64C:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -14183,7 +14183,7 @@ func_080DBEF0:
     .Lauto_080DB6BC:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -14242,7 +14242,7 @@ func_080DBF60:
     .Lauto_080DB72C:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -14301,7 +14301,7 @@ func_080DBFD0:
     .Lauto_080DB79C:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -14360,7 +14360,7 @@ func_080DC040:
     .Lauto_080DB80C:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -14427,7 +14427,7 @@ func_080DC0C0:
     .Lauto_080DB88C:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -14486,7 +14486,7 @@ func_080DC130:
     .Lauto_080DB8FC:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -14545,7 +14545,7 @@ func_080DC1A0:
     .Lauto_080DB96C:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -14554,7 +14554,7 @@ func_080DC1A0:
     .thumb_func
 func_080DC1C8:
     push {lr}
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r0}
     bx r0
     .byte 0x00, 0x00
@@ -14612,7 +14612,7 @@ func_080DC21C:
     .Lauto_080DB9E8:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -14656,7 +14656,7 @@ func_080DC244:
     .thumb_func
 func_080DC288:
     push {lr}
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r0}
     bx r0
     .byte 0x00, 0x00, 0x10, 0xB5, 0x04, 0x1C, 0x05, 0x48, 0x00, 0x68, 0x08, 0x30, 0x63, 0xF7, 0x4B, 0xFD
@@ -14855,7 +14855,7 @@ func_080DC474:
     .Lauto_080DBC40:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -14914,7 +14914,7 @@ func_080DC4E4:
     .Lauto_080DBCB0:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -14973,7 +14973,7 @@ func_080DC554:
     .Lauto_080DBD20:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -19607,7 +19607,7 @@ func_080E09BC:
     .Lauto_080E0174:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -26688,7 +26688,7 @@ func_080DB2EC: @ 0x080DB2EC
 .L080DB304:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -26697,7 +26697,7 @@ func_080DB2EC: @ 0x080DB2EC
 	thumb_func_start func_080DB314
 func_080DB314: @ 0x080DB314
 	push {lr}
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -26758,7 +26758,7 @@ func_080DB36C: @ 0x080DB36C
 .L080DB384:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -26817,7 +26817,7 @@ func_080DB3DC: @ 0x080DB3DC
 .L080DB3F4:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -26928,7 +26928,7 @@ func_080DB630: @ 0x080DB630
 .L080DB648:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -26990,7 +26990,7 @@ func_080DB6A4: @ 0x080DB6A4
 .L080DB6BC:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -27049,7 +27049,7 @@ func_080DB714: @ 0x080DB714
 .L080DB72C:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -27108,7 +27108,7 @@ func_080DB784: @ 0x080DB784
 .L080DB79C:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -27167,7 +27167,7 @@ func_080DB7F4: @ 0x080DB7F4
 .L080DB80C:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -27226,7 +27226,7 @@ func_080DB864: @ 0x080DB864
 .L080DB87C:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -27285,7 +27285,7 @@ func_080DB8D4: @ 0x080DB8D4
 .L080DB8EC:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -27344,7 +27344,7 @@ func_080DB944: @ 0x080DB944
 .L080DB95C:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -27403,7 +27403,7 @@ func_080DB9B4: @ 0x080DB9B4
 .L080DB9CC:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -27462,7 +27462,7 @@ func_080DBA24: @ 0x080DBA24
 .L080DBA3C:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -27521,7 +27521,7 @@ func_080DBA94: @ 0x080DBA94
 .L080DBAAC:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -27580,7 +27580,7 @@ func_080DBB04: @ 0x080DBB04
 .L080DBB1C:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -27639,7 +27639,7 @@ func_080DBB74: @ 0x080DBB74
 .L080DBB8C:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -27698,7 +27698,7 @@ func_080DBBE4: @ 0x080DBBE4
 .L080DBBFC:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -27755,7 +27755,7 @@ func_080DBC50: @ 0x080DBC50
 .L080DBC68:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -27814,7 +27814,7 @@ func_080DBCC0: @ 0x080DBCC0
 .L080DBCD8:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -27873,7 +27873,7 @@ func_080DBD30: @ 0x080DBD30
 .L080DBD48:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -27932,7 +27932,7 @@ func_080DBDA0: @ 0x080DBDA0
 .L080DBDB8:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -27991,7 +27991,7 @@ func_080DBE10: @ 0x080DBE10
 .L080DBE28:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -28050,7 +28050,7 @@ func_080DBE80: @ 0x080DBE80
 .L080DBE98:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -28109,7 +28109,7 @@ func_080DBEF0: @ 0x080DBEF0
 .L080DBF08:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -28168,7 +28168,7 @@ func_080DBF60: @ 0x080DBF60
 .L080DBF78:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -28227,7 +28227,7 @@ func_080DBFD0: @ 0x080DBFD0
 .L080DBFE8:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -28286,7 +28286,7 @@ func_080DC040: @ 0x080DC040
 .L080DC058:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -28353,7 +28353,7 @@ func_080DC0C0: @ 0x080DC0C0
 .L080DC0D8:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -28412,7 +28412,7 @@ func_080DC130: @ 0x080DC130
 .L080DC148:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -28471,7 +28471,7 @@ func_080DC1A0: @ 0x080DC1A0
 .L080DC1B8:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -28480,7 +28480,7 @@ func_080DC1A0: @ 0x080DC1A0
 	thumb_func_start func_080DC1C8
 func_080DC1C8: @ 0x080DC1C8
 	push {lr}
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -28538,7 +28538,7 @@ func_080DC21C: @ 0x080DC21C
 .L080DC234:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -28582,7 +28582,7 @@ func_080DC244: @ 0x080DC244
 	thumb_func_start func_080DC288
 func_080DC288: @ 0x080DC288
 	push {lr}
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -28846,7 +28846,7 @@ func_080DC474: @ 0x080DC474
 .L080DC48C:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -28905,7 +28905,7 @@ func_080DC4E4: @ 0x080DC4E4
 .L080DC4FC:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -28964,7 +28964,7 @@ func_080DC554: @ 0x080DC554
 .L080DC56C:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -37614,7 +37614,7 @@ func_080E09BC: @ 0x080E09BC
 .L080E09D4:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -42279,7 +42279,7 @@ func_080E2C7C:
     .Lauto_080E2C94:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_0800080C
+    bl _._15SceneTransition
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -51240,7 +51240,7 @@ func_080E34DC: @ 0x080E34DC
 .L080E34F4:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_0800080C
+	bl _._15SceneTransition
 	pop {r4, r5}
 	pop {r0}
 	bx r0
