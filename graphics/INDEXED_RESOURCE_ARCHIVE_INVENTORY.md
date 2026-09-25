@@ -49,7 +49,7 @@ as a shared payload.
 | `gUnk_0873ED1C` | `0x4C4E84` | `0x73ED1C` | `0x73ED78` | `0x4C6190` | `0x6AC` | 3, 10, 11, 41, 2, 0 | 11 | native PNG/PAL + assembly tables, directly linked: `graphics/shared_resource_0873ed1c/` |
 | `gUnk_087401A4` | `0x4C630C` | `0x7401A4` | `0x740200` | `0x4C7618` | `0x2B0` | 1, 4, 4, 16, 1, 0 | 4 | native PNG + assembly tables, directly linked: `graphics/shared_resource_087401a4/` |
 | `gUnk_08740454` | `0x4C65BC` | `0x740454` | `0x7404B0` | `0x4C78C8` | `0x14C` | 1, 3, 2, 6, 1, 0 | 3 | native PNG + assembly tables, directly linked: `graphics/shared_resource_08740454/` |
-| `gUnk_087405A0` | `0x4C6708` | `0x7405A0` | `0x7405FC` | `0x4C7A14` | `0x368` | 2, 1, 2, 24, 1, 0 | 1 | rebuild, four-region shared: `graphics/shared_resource_087405a0/` |
+| `gUnk_087405A0` | `0x4C6708` | `0x7405A0` | `0x7405FC` | `0x4C7A14` | `0x368` | 2, 1, 2, 24, 1, 0 | 1 | native PNG + assembly tables, directly linked: `graphics/shared_resource_087405a0/` |
 | `gUnk_08740908` | `0x4C6A70` | `0x740908` | `0x740964` | `0x4C7D7C` | `0xDC` | 1, 1, 1, 4, 1, 0 | 1 | linked from indexed PNG, no baserom input or post-link patch: `graphics/shared_resource_08740908/` |
 | `gUnk_087409E4` | `0x4C6B4C` | `0x7409E4` | `0x740A40` | `0x4C7E58` | `0x1010` | 1, 3, 18, 120, 1, 0 | 4 | rebuild, four-region shared: `graphics/shared_resource_087409e4/` |
 | `gUnk_0874E530` | `0x4D4CC4` | `0x74E530` | `0x74E58C` | `0x4D599C` | `0x118` | 1, 3, 3, 4, 1, 0 | 4 | linked from indexed PNG, no baserom input or post-link patch: `graphics/intro_scene/small_indexed_archive/shared/` |

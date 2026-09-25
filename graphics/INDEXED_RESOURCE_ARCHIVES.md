@@ -384,9 +384,10 @@ remains its source name until the runtime purpose is independently established.
 
 Shared archive `087405A0` is independently bounded at the four locations in
 the table. Its one descriptor selects two native OAM records, 24 native 4bpp
-tiles, one BGR555 palette, and one selection entry. Its editable PNG source is
-under `graphics/shared_resource_087405a0/`; the address remains its source name
-until the runtime purpose is independently established.
+tiles, one BGR555 palette, and one selection entry. Editable `full/native.png`
+is linked through `archive.inc` using the generic graphics rules, without a
+post-link patch. The address remains its source name until the runtime purpose
+is independently established.
 
 Shared archive `08740908` is independently bounded at the four locations in
 the table. Its one descriptor selects one native OAM record, four native 4bpp
