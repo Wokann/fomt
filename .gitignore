@@ -40,8 +40,6 @@ graphics/ui/seasonal_background/winter/winter_tiles.4bpp
 graphics/ui/seasonal_background/winter/winter_palette_banks.gbapal
 graphics/ui/farm_status/shared/exterior_styles/*/style_*.4bpp
 tools/fomt-lz
-tools/farm-house-lookup-audit
-tools/farm-house-lookup-audit.exe
 graphics/shared_resource_*/full/*.4bpp
 graphics/shared_resource_*/full/*.gbapal
 graphics/ui/small_resource_archive/full/*.4bpp
