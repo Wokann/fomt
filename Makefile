@@ -64,7 +64,7 @@ FONT_PAD_DIR := tools/fontpad
 FONT_PAD := $(FONT_PAD_DIR)/fontpad$(EXE)
 OAM_PACK_DIR := tools/oam_pack
 OAM_PACK := $(OAM_PACK_DIR)/oam_pack$(EXE)
-GFX_RANGE_VERIFY := tools/verify_gfx_range.py
+GFX_RANGE_VERIFY := tools/verify-gfx-range$(EXE)
 TILE_GRID_TOOL := tools/tile_grid.py
 # ================
 # = BUILD CONFIG =
@@ -216,6 +216,9 @@ $(GBAFIX): $(GBAFIX_DIR)/gbafix.c $(GBAFIX_DIR)/Makefile
 	@$(MAKE) -C $(GBAFIX_DIR) $(notdir $@)
 
 $(FOMT_LZ_TOOL): tools/fomt_lz.c
+	@$(HOSTCC) -std=c11 -Wall -Wextra -Werror -O2 $< -o $@
+
+$(GFX_RANGE_VERIFY): tools/verify_gfx_range.c
 	@$(HOSTCC) -std=c11 -Wall -Wextra -Werror -O2 $< -o $@
 
 # graphics_file_rules.mk owns every image conversion dependency.  Assemble

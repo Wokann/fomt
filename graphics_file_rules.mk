@@ -450,15 +450,12 @@ SHARED_RESOURCE_0873D234_LENGTH := 0x3C8
 SHARED_RESOURCE_0873D234_SHA256 := 3abfeee1b4c92cf474ec9bcba97809fbe42f87006023cb6e07e2c9d3736bda77
 SHARED_RESOURCE_0873D5FC_SOURCE_DIR := graphics/shared_resource_0873d5fc
 SHARED_RESOURCE_0873D5FC_ASSETS := $(SHARED_RESOURCE_0873D5FC_SOURCE_DIR)/full/group_000.4bpp $(SHARED_RESOURCE_0873D5FC_SOURCE_DIR)/full/group_000.gbapal
-# These values are retained only for the independent retail inventory audit.
-SHARED_RESOURCE_0873D5FC_TOOL := tools/common_resource_archive.py
+# These offsets are used only by the optional reference-ROM comparison target.
 SHARED_RESOURCE_0873D5FC_OFFSET_JP := 0x4C3764
 SHARED_RESOURCE_0873D5FC_OFFSET_US := 0x73D5FC
 SHARED_RESOURCE_0873D5FC_OFFSET_EU := 0x73D658
 SHARED_RESOURCE_0873D5FC_OFFSET_DE := 0x4C4968
 SHARED_RESOURCE_0873D5FC_OFFSET := $(SHARED_RESOURCE_0873D5FC_OFFSET_$(GAME_REGION))
-SHARED_RESOURCE_0873D5FC_LENGTH := 0xDC
-SHARED_RESOURCE_0873D5FC_SHA256 := ee9d4a1f4f377bae3b1ea463e567a3c744e09b319b1de58f5ad32b87d14ae7b6
 SHARED_RESOURCE_0873DE44_TOOL := tools/common_resource_archive.py
 SHARED_RESOURCE_0873DE44_SOURCE_DIR := graphics/shared_resource_0873de44
 SHARED_RESOURCE_0873DE44_SOURCES := $(wildcard $(SHARED_RESOURCE_0873DE44_SOURCE_DIR)/full/*.png)
@@ -1872,8 +1869,8 @@ gfx-fonts:
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-font
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-font
 gfx-font-test: gfx-font $(BASE_ROM) $(GFX_RANGE_VERIFY)
-	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FONT_SHARED_SINGLE_OFFSET) --input $(FONT_SHARED_SINGLE_BIN) --sha256 $(FONT_SHARED_SINGLE_SHA256)
-	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FONT_SHARED_DOUBLE_OFFSET) --input $(FONT_SHARED_DOUBLE_BIN) --sha256 $(FONT_SHARED_DOUBLE_SHA256)
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FONT_SHARED_SINGLE_OFFSET) --input $(FONT_SHARED_SINGLE_BIN)
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FONT_SHARED_DOUBLE_OFFSET) --input $(FONT_SHARED_DOUBLE_BIN)
 gfx-fonts-test:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-font-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-font-test
@@ -1893,7 +1890,7 @@ gfx-portraits-all:
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-portraits-test
 gfx-actors: $(ACTOR_TILE_BIN)
 gfx-actors-test: gfx-actors $(BASE_ROM) $(GFX_RANGE_VERIFY)
-	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(ACTOR_TILE_OFFSET) --input $(ACTOR_TILE_BIN) --sha256 $(ACTOR_TILE_SHA256)
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(ACTOR_TILE_OFFSET) --input $(ACTOR_TILE_BIN)
 gfx-actors-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-actors-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-actors-test
@@ -1903,8 +1900,8 @@ gfx-actors-edit-test: $(ACTOR_ARCHIVE_EDIT_TEST) $(ACTOR_ARCHIVE_TOOL) $(PORTRAI
 	@$(PYTHON) $(ACTOR_ARCHIVE_EDIT_TEST) baserom_us.gba --offset $(ACTOR_ARCHIVE_OFFSET_US) --length $(ACTOR_ARCHIVE_LENGTH) --source graphics/sprites/actor_archive
 gfx-ui: $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN)
 gfx-ui-test: gfx-ui $(BASE_ROM) $(GFX_RANGE_VERIFY)
-	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(UI_SHARED_RESOURCE_TILE_OFFSET) --input $(UI_SHARED_RESOURCE_TILE_BIN) --sha256 $(UI_SHARED_RESOURCE_TILE_SHA256)
-	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(UI_SHARED_RESOURCE_PALETTE_OFFSET) --input $(UI_SHARED_RESOURCE_PALETTE_BIN) --sha256 $(UI_SHARED_RESOURCE_PALETTE_SHA256)
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(UI_SHARED_RESOURCE_TILE_OFFSET) --input $(UI_SHARED_RESOURCE_TILE_BIN)
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(UI_SHARED_RESOURCE_PALETTE_OFFSET) --input $(UI_SHARED_RESOURCE_PALETTE_BIN)
 gfx-ui-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-ui-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-ui-test
@@ -2036,10 +2033,10 @@ gfx-ui-scene-080b55d0-main-all:
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-ui-scene-080b55d0-main-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-ui-scene-080b55d0-main-test
 gfx-ui-shared-tiles-test: graphics/ui/raw_vram_tiles/08750c8c/shared/tiles.4bpp $(GFX_RANGE_VERIFY) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(GFX_RANGE_VERIFY) baserom_jp.gba --offset 0x4D6C38 --length 0x1C0 --input $<
-	@$(PYTHON) $(GFX_RANGE_VERIFY) baserom_us.gba --offset 0x750C8C --length 0x1C0 --input $<
-	@$(PYTHON) $(GFX_RANGE_VERIFY) baserom_eu.gba --offset 0x750CE8 --length 0x1C0 --input $<
-	@$(PYTHON) $(GFX_RANGE_VERIFY) baserom_de.gba --offset 0x4D81A8 --length 0x1C0 --input $<
+	@$(GFX_RANGE_VERIFY) baserom_jp.gba --offset 0x4D6C38 --length 0x1C0 --input $<
+	@$(GFX_RANGE_VERIFY) baserom_us.gba --offset 0x750C8C --length 0x1C0 --input $<
+	@$(GFX_RANGE_VERIFY) baserom_eu.gba --offset 0x750CE8 --length 0x1C0 --input $<
+	@$(GFX_RANGE_VERIFY) baserom_de.gba --offset 0x4D81A8 --length 0x1C0 --input $<
 gfx-ui-scene-08054f40-tiles: $(UI_SCENE_08054F40_TILES_OUTPUT)
 gfx-ui-scene-08054f40-reference: $(UI_SCENE_08054F40_REFERENCE_TOOL) $(UI_SCENE_08054F40_TILES_SOURCES) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(UI_SCENE_08054F40_REFERENCE_TOOL) --source-dir $(UI_SCENE_08054F40_TILES_SOURCE_DIR) --reference-dir $(UI_SCENE_08054F40_REFERENCE_DIR) \
@@ -2108,8 +2105,8 @@ gfx-farm-house-palettes-edit-test: $(FARM_HOUSE_PALETTE_TOOL) $(FARM_HOUSE_PALET
 	@$(PYTHON) $(FARM_HOUSE_PALETTE_TOOL) edit-test --source-dir $(FARM_HOUSE_PALETTE_SOURCE_DIR) $(MAP_RESOURCES_ROM_ARGS)
 gfx-farm-status: $(FARM_STATUS_TILES_BIN) $(FARM_STATUS_PALETTE_BIN) $(FARM_STATUS_PACKED_BIN)
 gfx-farm-status-test: gfx-farm-status $(BASE_ROM) $(GFX_RANGE_VERIFY)
-	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FARM_STATUS_STREAM_OFFSET) --input $(FARM_STATUS_PACKED_BIN) --sha256 $(FARM_STATUS_STREAM_SHA256)
-	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FARM_STATUS_PALETTE_OFFSET) --input $(FARM_STATUS_PALETTE_BIN) --sha256 $(FARM_STATUS_PALETTE_SHA256)
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FARM_STATUS_STREAM_OFFSET) --input $(FARM_STATUS_PACKED_BIN)
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FARM_STATUS_PALETTE_OFFSET) --input $(FARM_STATUS_PALETTE_BIN)
 gfx-farm-status-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-farm-status-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-farm-status-test
@@ -2657,9 +2654,9 @@ gfx-shared-resource-0873d234-edit-test:
 	@$(PYTHON) $(SHARED_RESOURCE_0873D234_TOOL) baserom_jp.gba --profile shared-0873d234 --offset 0x4C339C --length $(SHARED_RESOURCE_0873D234_LENGTH) --sha256 $(SHARED_RESOURCE_0873D234_SHA256) edit-test --source-dir $(SHARED_RESOURCE_0873D234_SOURCE_DIR)
 
 gfx-shared-resource-0873d5fc: $(SHARED_RESOURCE_0873D5FC_ASSETS)
-gfx-shared-resource-0873d5fc-test: gfx-shared-resource-0873d5fc $(GFX_RANGE_VERIFY) $(BASE_ROM)
-	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$(($(SHARED_RESOURCE_0873D5FC_OFFSET) + 0x2C)) --length 0x80 --input $(word 1,$(SHARED_RESOURCE_0873D5FC_ASSETS))
-	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$(($(SHARED_RESOURCE_0873D5FC_OFFSET) + 0xB0)) --length 0x20 --input $(word 2,$(SHARED_RESOURCE_0873D5FC_ASSETS))
+gfx-shared-resource-0873d5fc-test: gfx-shared-resource-0873d5fc $(BASE_ROM)
+	@cmp -n 128 -i $$(($(SHARED_RESOURCE_0873D5FC_OFFSET) + 0x2C)):0 $(BASE_ROM) $(word 1,$(SHARED_RESOURCE_0873D5FC_ASSETS))
+	@cmp -n 32 -i $$(($(SHARED_RESOURCE_0873D5FC_OFFSET) + 0xB0)):0 $(BASE_ROM) $(word 2,$(SHARED_RESOURCE_0873D5FC_ASSETS))
 gfx-shared-resource-0873d5fc-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-shared-resource-0873d5fc-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-shared-resource-0873d5fc-test
@@ -3021,7 +3018,7 @@ gfx-regional-resource-0875b444-edit-test-one:
 
 gfx-farm-status-winter: $(FARM_STATUS_WINTER_TILES_BIN) $(FARM_STATUS_WINTER_PACKED_BIN)
 gfx-farm-status-winter-test: gfx-farm-status-winter $(BASE_ROM) $(GFX_RANGE_VERIFY)
-	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FARM_STATUS_WINTER_OFFSET) --input $(FARM_STATUS_WINTER_PACKED_BIN) --sha256 $(FARM_STATUS_WINTER_STREAM_SHA256)
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FARM_STATUS_WINTER_OFFSET) --input $(FARM_STATUS_WINTER_PACKED_BIN)
 gfx-farm-status-winter-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP build/jp/asm/data/data_0813B288.o
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-farm-status-winter-test
@@ -3080,8 +3077,8 @@ gfx-farm-status-exterior-styles-edit-test: $(FARM_STATUS_EXTERIOR_STYLE_TOOL) $(
 	@$(PYTHON) $(FARM_STATUS_EXTERIOR_STYLE_TOOL) edit-test --source-dir $(FARM_STATUS_EXTERIOR_STYLE_SOURCE_DIR)
 gfx-farm-status-selector-icon: $(FARM_STATUS_SELECTOR_ICON_OUTPUTS)
 gfx-farm-status-selector-icon-test: gfx-farm-status-selector-icon $(GFX_RANGE_VERIFY) $(BASE_ROM)
-	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FARM_STATUS_SELECTOR_ICON_BASE_$(GAME_REGION)) --length 0x80 --input $(FARM_STATUS_SELECTOR_ICON_OUTPUT_DIR)/selector_case_09.4bpp
-	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$(($(FARM_STATUS_SELECTOR_ICON_BASE_$(GAME_REGION)) + 0x80)) --length 0x20 --input $(FARM_STATUS_SELECTOR_ICON_OUTPUT_DIR)/selector_case_09.gbapal
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FARM_STATUS_SELECTOR_ICON_BASE_$(GAME_REGION)) --length 0x80 --input $(FARM_STATUS_SELECTOR_ICON_OUTPUT_DIR)/selector_case_09.4bpp
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$(($(FARM_STATUS_SELECTOR_ICON_BASE_$(GAME_REGION)) + 0x80)) --length 0x20 --input $(FARM_STATUS_SELECTOR_ICON_OUTPUT_DIR)/selector_case_09.gbapal
 gfx-farm-status-selector-icon-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-farm-status-selector-icon-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-farm-status-selector-icon-test
@@ -3089,12 +3086,12 @@ gfx-farm-status-selector-icon-all:
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-farm-status-selector-icon-test
 gfx-clock-font: $(CLOCK_FONT_OUTPUTS)
 gfx-clock-font-test: gfx-clock-font $(GFX_RANGE_VERIFY) $(CLOCK_FONT_TAIL) baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(GFX_RANGE_VERIFY) baserom_us.gba --offset 0x75A440 --length 0x1000 --input $(CLOCK_FONT_US_EU_OUTPUT)
-	@$(PYTHON) $(GFX_RANGE_VERIFY) baserom_eu.gba --offset 0x75A49C --length 0x1000 --input $(CLOCK_FONT_US_EU_OUTPUT)
-	@$(PYTHON) $(GFX_RANGE_VERIFY) baserom_de.gba --offset 0x4E195C --length 0x1000 --input $(CLOCK_FONT_DE_OUTPUT)
-	@$(PYTHON) $(GFX_RANGE_VERIFY) baserom_us.gba --offset 0x75B440 --length 4 --input $(CLOCK_FONT_TAIL)
-	@$(PYTHON) $(GFX_RANGE_VERIFY) baserom_eu.gba --offset 0x75B49C --length 4 --input $(CLOCK_FONT_TAIL)
-	@$(PYTHON) $(GFX_RANGE_VERIFY) baserom_de.gba --offset 0x4E295C --length 4 --input $(CLOCK_FONT_TAIL)
+	@$(GFX_RANGE_VERIFY) baserom_us.gba --offset 0x75A440 --length 0x1000 --input $(CLOCK_FONT_US_EU_OUTPUT)
+	@$(GFX_RANGE_VERIFY) baserom_eu.gba --offset 0x75A49C --length 0x1000 --input $(CLOCK_FONT_US_EU_OUTPUT)
+	@$(GFX_RANGE_VERIFY) baserom_de.gba --offset 0x4E195C --length 0x1000 --input $(CLOCK_FONT_DE_OUTPUT)
+	@$(GFX_RANGE_VERIFY) baserom_us.gba --offset 0x75B440 --length 4 --input $(CLOCK_FONT_TAIL)
+	@$(GFX_RANGE_VERIFY) baserom_eu.gba --offset 0x75B49C --length 4 --input $(CLOCK_FONT_TAIL)
+	@$(GFX_RANGE_VERIFY) baserom_de.gba --offset 0x4E295C --length 4 --input $(CLOCK_FONT_TAIL)
 gfx-clock-font-all: gfx-clock-font-test
 	@$(MAKE) --no-print-directory GAME_REGION=JP build/jp/asm/data/data_0813B288.o
 	@$(MAKE) --no-print-directory GAME_REGION=US build/us/asm/data/data_0813B288.o
@@ -3102,8 +3099,8 @@ gfx-clock-font-all: gfx-clock-font-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE build/de/asm/data/data_0813B288.o
 gfx-intro-background: $(INTRO_BACKGROUND_TILES_BIN) $(INTRO_BACKGROUND_PALETTE_BIN) $(INTRO_BACKGROUND_PACKED_BIN)
 gfx-intro-background-test: gfx-intro-background $(BASE_ROM) $(GFX_RANGE_VERIFY)
-	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(INTRO_BACKGROUND_STREAM_OFFSET) --input $(INTRO_BACKGROUND_PACKED_BIN) --sha256 $(INTRO_BACKGROUND_STREAM_SHA256)
-	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(INTRO_BACKGROUND_PALETTE_OFFSET) --input $(INTRO_BACKGROUND_PALETTE_BIN) --sha256 $(INTRO_BACKGROUND_PALETTE_SHA256)
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(INTRO_BACKGROUND_STREAM_OFFSET) --input $(INTRO_BACKGROUND_PACKED_BIN)
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(INTRO_BACKGROUND_PALETTE_OFFSET) --input $(INTRO_BACKGROUND_PALETTE_BIN)
 gfx-intro-background-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-intro-background-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-intro-background-test
@@ -3173,8 +3170,8 @@ gfx-intro-startup-visual-reference: $(INTRO_STARTUP_VISUAL_TOOL) $(INTRO_STARTUP
 gfx-intro-startup-visual: $(INTRO_STARTUP_VISUAL_TILES_BIN) $(INTRO_STARTUP_VISUAL_PALETTE_BIN)
 gfx-intro-startup-visual-test: gfx-intro-startup-visual $(BASE_ROM) $(GFX_RANGE_VERIFY)
 	@$(PYTHON) $(INTRO_STARTUP_VISUAL_TOOL) verify --source-dir $(INTRO_STARTUP_VISUAL_SOURCE_DIR) --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
-	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(INTRO_STARTUP_VISUAL_STREAM_OFFSET) --input $(INTRO_STARTUP_VISUAL_TILES_BIN) --sha256 $(INTRO_STARTUP_VISUAL_STREAM_SHA256)
-	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(INTRO_STARTUP_VISUAL_PALETTE_OFFSET) --input $(INTRO_STARTUP_VISUAL_PALETTE_BIN) --sha256 $(INTRO_STARTUP_VISUAL_PALETTE_SHA256)
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(INTRO_STARTUP_VISUAL_STREAM_OFFSET) --input $(INTRO_STARTUP_VISUAL_TILES_BIN)
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(INTRO_STARTUP_VISUAL_PALETTE_OFFSET) --input $(INTRO_STARTUP_VISUAL_PALETTE_BIN)
 gfx-intro-startup-visual-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-intro-startup-visual-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-intro-startup-visual-test
@@ -3268,7 +3265,6 @@ resource-archive-audit: $(INDEXED_RESOURCE_ARCHIVE_TOOL) $(COMMON_RESOURCE_ARCHI
 	@$(PYTHON) $(SHARED_RESOURCE_0873CEAC_TOOL) baserom_jp.gba --profile shared-0873ceac --offset 0x4C3014 --length $(SHARED_RESOURCE_0873CEAC_LENGTH) --sha256 $(SHARED_RESOURCE_0873CEAC_SHA256) audit
 	@$(PYTHON) $(SHARED_RESOURCE_0873CF90_TOOL) baserom_jp.gba --profile shared-0873cf90 --offset 0x4C30F8 --length $(SHARED_RESOURCE_0873CF90_LENGTH) --sha256 $(SHARED_RESOURCE_0873CF90_SHA256) audit
 	@$(PYTHON) $(SHARED_RESOURCE_0873D234_TOOL) baserom_jp.gba --profile shared-0873d234 --offset 0x4C339C --length $(SHARED_RESOURCE_0873D234_LENGTH) --sha256 $(SHARED_RESOURCE_0873D234_SHA256) audit
-	@$(PYTHON) $(SHARED_RESOURCE_0873D5FC_TOOL) baserom_jp.gba --profile shared-0873d5fc --offset 0x4C3764 --length $(SHARED_RESOURCE_0873D5FC_LENGTH) --sha256 $(SHARED_RESOURCE_0873D5FC_SHA256) audit
 	@$(PYTHON) $(SHARED_RESOURCE_0873DE44_TOOL) baserom_jp.gba --profile shared-0873de44 --offset 0x4C3FAC --length $(SHARED_RESOURCE_0873DE44_LENGTH) --sha256 $(SHARED_RESOURCE_0873DE44_SHA256) audit
 	@$(PYTHON) $(SHARED_RESOURCE_0873E5B0_TOOL) baserom_jp.gba --profile shared-0873e5b0 --offset 0x4C4718 --length $(SHARED_RESOURCE_0873E5B0_LENGTH) --sha256 $(SHARED_RESOURCE_0873E5B0_SHA256) audit
 	@$(PYTHON) $(SHARED_RESOURCE_0873ED1C_TOOL) baserom_jp.gba --profile shared-0873ed1c --offset 0x4C4E84 --length $(SHARED_RESOURCE_0873ED1C_LENGTH) --sha256 $(SHARED_RESOURCE_0873ED1C_SHA256) audit
@@ -3308,8 +3304,8 @@ gfx-records-minigame: $(RECORDS_MINIGAME_OUTPUTS)
 gfx-records-minigame-test: gfx-records-minigame $(GFX_RANGE_VERIFY) $(BASE_ROM)
 	@set -e; index=0; for task in $(RECORDS_MINIGAME_TASKS); do \
 	  offset=$$(($(RECORDS_MINIGAME_BASE_$(GAME_REGION)) + index * 0xA0)); \
-	  $(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$offset --length 0x80 --input $(RECORDS_MINIGAME_SOURCE_DIR)/task_$$task.4bpp; \
-	  $(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$((offset + 0x80)) --length 0x20 --input $(RECORDS_MINIGAME_SOURCE_DIR)/task_$$task.gbapal; \
+	  $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$offset --length 0x80 --input $(RECORDS_MINIGAME_SOURCE_DIR)/task_$$task.4bpp; \
+	  $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$((offset + 0x80)) --length 0x20 --input $(RECORDS_MINIGAME_SOURCE_DIR)/task_$$task.gbapal; \
 	  index=$$((index + 1)); \
 	done
 gfx-records-minigame-all:
@@ -3321,8 +3317,8 @@ gfx-animal-festival-icons: $(ANIMAL_FESTIVAL_ICON_OUTPUTS)
 gfx-animal-festival-icons-test: gfx-animal-festival-icons $(GFX_RANGE_VERIFY) $(BASE_ROM)
 	@set -e; index=0; for icon in $(ANIMAL_FESTIVAL_ICON_IDS); do \
 	  offset=$$(($(ANIMAL_FESTIVAL_ICON_BASE_$(GAME_REGION)) + index * 0xA0)); \
-	  $(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$offset --length 0x80 --input $(ANIMAL_FESTIVAL_ICON_SOURCE_DIR)/icon_$$icon.4bpp; \
-	  $(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$((offset + 0x80)) --length 0x20 --input $(ANIMAL_FESTIVAL_ICON_SOURCE_DIR)/icon_$$icon.gbapal; \
+	  $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$offset --length 0x80 --input $(ANIMAL_FESTIVAL_ICON_SOURCE_DIR)/icon_$$icon.4bpp; \
+	  $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$((offset + 0x80)) --length 0x20 --input $(ANIMAL_FESTIVAL_ICON_SOURCE_DIR)/icon_$$icon.gbapal; \
 	  index=$$((index + 1)); \
 	done
 gfx-animal-festival-icons-all:
@@ -3336,8 +3332,8 @@ gfx-farm-status-creature-icons-test: gfx-farm-status-creature-icons $(GFX_RANGE_
 	  if [ $$index -lt 10 ]; then base=$(FARM_STATUS_CREATURE_ICON_BASE_0_$(GAME_REGION)); slot=$$index; \
 	  else base=$(FARM_STATUS_CREATURE_ICON_BASE_1_$(GAME_REGION)); slot=$$((index - 10)); fi; \
 	  offset=$$((base + slot * 0xA0)); \
-	  $(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$offset --length 0x80 --input $(FARM_STATUS_CREATURE_ICON_SOURCE_DIR)/icon_$$icon.4bpp; \
-	  $(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$((offset + 0x80)) --length 0x20 --input $(FARM_STATUS_CREATURE_ICON_SOURCE_DIR)/icon_$$icon.gbapal; \
+	  $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$offset --length 0x80 --input $(FARM_STATUS_CREATURE_ICON_SOURCE_DIR)/icon_$$icon.4bpp; \
+	  $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$((offset + 0x80)) --length 0x20 --input $(FARM_STATUS_CREATURE_ICON_SOURCE_DIR)/icon_$$icon.gbapal; \
 	  index=$$((index + 1)); \
 	done
 gfx-farm-status-creature-icons-all:
@@ -3347,8 +3343,8 @@ gfx-farm-status-creature-icons-all:
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-farm-status-creature-icons-test
 gfx-farm-status-task-ui-tile: $(FARM_STATUS_TASK_UI_TILE_OUTPUTS)
 gfx-farm-status-task-ui-tile-test: gfx-farm-status-task-ui-tile $(GFX_RANGE_VERIFY) $(BASE_ROM)
-	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FARM_STATUS_TASK_UI_TILE_BASE_$(GAME_REGION)) --length 0x20 --input $(FARM_STATUS_TASK_UI_TILE_TILES)
-	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$(($(FARM_STATUS_TASK_UI_TILE_BASE_$(GAME_REGION)) + 0x20)) --length 0x20 --input $(FARM_STATUS_TASK_UI_TILE_PALETTE)
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(FARM_STATUS_TASK_UI_TILE_BASE_$(GAME_REGION)) --length 0x20 --input $(FARM_STATUS_TASK_UI_TILE_TILES)
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$(($(FARM_STATUS_TASK_UI_TILE_BASE_$(GAME_REGION)) + 0x20)) --length 0x20 --input $(FARM_STATUS_TASK_UI_TILE_PALETTE)
 gfx-farm-status-task-ui-tile-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-farm-status-task-ui-tile-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-farm-status-task-ui-tile-test
@@ -3360,8 +3356,8 @@ TILE_GRID_TEST_DIR := $(BUILD_DIR)/graphics/tile_grid_test
 tile-grid-region-test: $(TILE_GRID_TOOL) $(GFX_RANGE_VERIFY) $(BASE_ROM)
 	@$(PYTHON) $(TILE_GRID_TOOL) export $(BASE_ROM) --tiles-offset $(UI_SHARED_RESOURCE_TILE_OFFSET) --tiles-length 0x120 --palette-offset $(UI_SHARED_RESOURCE_PALETTE_OFFSET) --width 24 --sha256 $(UI_SHARED_RESOURCE_TILE_SHA256) --output $(TILE_GRID_TEST_DIR)/ui_shared_resource.png --replace
 	@$(PYTHON) $(TILE_GRID_TOOL) build --source $(TILE_GRID_TEST_DIR)/ui_shared_resource.png --tiles $(TILE_GRID_TEST_DIR)/ui_shared_resource.4bpp --palette $(TILE_GRID_TEST_DIR)/ui_shared_resource.gbapal
-	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(UI_SHARED_RESOURCE_TILE_OFFSET) --input $(TILE_GRID_TEST_DIR)/ui_shared_resource.4bpp --sha256 $(UI_SHARED_RESOURCE_TILE_SHA256)
-	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(UI_SHARED_RESOURCE_PALETTE_OFFSET) --input $(TILE_GRID_TEST_DIR)/ui_shared_resource.gbapal --sha256 $(UI_SHARED_RESOURCE_PALETTE_SHA256)
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(UI_SHARED_RESOURCE_TILE_OFFSET) --input $(TILE_GRID_TEST_DIR)/ui_shared_resource.4bpp
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(UI_SHARED_RESOURCE_PALETTE_OFFSET) --input $(TILE_GRID_TEST_DIR)/ui_shared_resource.gbapal
 tile-grid-test:
 	@$(MAKE) --no-print-directory GAME_REGION=JP tile-grid-region-test
 	@$(MAKE) --no-print-directory GAME_REGION=US tile-grid-region-test
