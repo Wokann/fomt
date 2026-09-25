@@ -31,7 +31,7 @@ regionally different. It is the coverage ledger for this staged pipeline.
 | Shared archive `086FAA80` | `0x480BDC` | `0x6FAA80` | `0x6FAADC` | `0x481B1C` | `0x584` | `3, 9, 1, 36, 1, 0` | 9 | `95c9e3db66e9d29b25c7e228d60accf8abba3ce6c5c7a489ece487a97d84ac31` |
 | Shared archive `0871ECAC` | `0x4A4E14` | `0x71ECAC` | `0x71ED08` | `0x4A5E78` | `0x128` | `1, 5, 1, 4, 1, 0` | 4 | `9f278e9f3fc533ace766b248d2e55c8c5bbc9ee1ad026abe1c36804eeb18ed81` |
 | Shared archive `0871EDD4` | `0x4A4F3C` | `0x71EDD4` | `0x71EE30` | `0x4A5FA0` | `0x12C` | `1, 5, 1, 4, 1, 0` | 5 | `102175f059443e70fd1483b0e568d5b1e125812a9170a70433b280a927039017` |
-| Shared archive `08527094` | `0x2AD1F0` | `0x527094` | `0x5270F0` | `0x2AE130` | `0x1A4` | `4, 8, 7, 4, 1, 0` | 8 | `b54f1e2abe5bc34fdde8cb5a4c7b18d82d5d669d315db22a237cd9b03856306d` |
+| Shared archive `08527094` (source-owned `archive.inc` + `native.png`) | `0x2AD1F0` | `0x527094` | `0x5270F0` | `0x2AE130` | `0x1A4` | `4, 8, 7, 4, 1, 0` | 8 | `b54f1e2abe5bc34fdde8cb5a4c7b18d82d5d669d315db22a237cd9b03856306d` |
 | Shared archive `08727368` | `0x4AD4D0` | `0x727368` | `0x7273C4` | `0x4AE534` | `0x70C` | `3, 21, 68, 22, 1, 0` | 37 | `d045b5182e480e59df0de81d681be5187deb65427b80757af52a618d83955f0a` |
 | Shared archive `08727A74` | `0x4ADBDC` | `0x727A74` | `0x727AD0` | `0x4AEC40` | `0x794` | `1, 1, 36, 49, 1, 0` | 1 | `3734dad3d75471435276b57d3fa13693950e13a49b24d9caede41a2562041ffc` |
 | Shared archive `08728320` | `0x4AE488` | `0x728320` | `0x72837C` | `0x4AF4EC` | `0x105C` | `7, 21, 32, 107, 1, 0` | 21 | `db6e14760f25e35a7211916f8a30cdafd90bcba78faed0e738bfc69dcf0edbfc` |

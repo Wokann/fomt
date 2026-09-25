@@ -1,10 +1,11 @@
 # Shared resource `08527094`
 
-`full/group_000.png` through `group_007.png` are eight editable,
-palette-indexed OAM-composited source views of a fixed `0x1A4`-byte
-`IndexedResourceArchive`. The original selector, descriptor, OAM,
-tile-placement, flip, and BGR555 palette data remain native archive data; no
-JSON layout sidecar is used.
+`full/native.png` contains the four native tiles in ROM order. The ordinary
+graphics rules generate `native.4bpp` and `native.gbapal` from it. `archive.inc`
+declares the native selector, descriptor, OAM, and entry tables and links those
+assets directly, without a ROM template or post-link patch. The existing
+`full/group_000.png` through `group_007.png` are rendered reference views,
+not build inputs. No JSON layout sidecar is used.
 
 The archive is byte-identical in all four retail FoMT ROMs:
 
@@ -20,4 +21,4 @@ records, four native 4bpp tiles, one BGR555 palette, eight entries, and four
 native flipped OAM compositions. The original address remains the source name
 until a runtime purpose is independently established.
 
-`preview/` is reference-only; compilation reads `full/` only.
+`preview/` is reference-only; compilation reads `full/native.png` only.

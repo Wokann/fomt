@@ -12,7 +12,7 @@ as a shared payload.
 
 | Label | JP | US | EU | DE | Length | Header counts | Entries | Source status |
 | --- | --- | --- | --- | --- | ---: | --- | ---: | --- |
-| `gUnk_08527094` | `0x2AD1F0` | `0x527094` | `0x5270F0` | `0x2AE130` | `0x1A4` | 4, 8, 7, 4, 1, 0 | 8 | rebuild, four-region shared: `graphics/shared_resource_08527094/` |
+| `gUnk_08527094` | `0x2AD1F0` | `0x527094` | `0x5270F0` | `0x2AE130` | `0x1A4` | 4, 8, 7, 4, 1, 0 | 8 | source-owned direct link, four-region shared: `graphics/shared_resource_08527094/` |
 | `gUnk_08667060` | `0x3ED1BC` | `0x667060` | `0x6670BC` | `0x3EE0FC` | `0x840` | 3, 16, 3, 52, 2, 0 | 16 | rebuild, four-region shared: `graphics/small_companion_archive/` |
 | `gUnk_086678A0` | `0x3ED9FC` | `0x6678A0` | `0x6678FC` | `0x3EE93C` | `0x12848` | 493, 500, 101, 1624, 342, 0 | 532 | rebuild, four-region shared: `graphics/common_resource_archive/` |
 | `gUnk_086F2FAC` | `0x479108` | `0x6F2FAC` | `0x6F3008` | `0x47A048` | `0x31FC` | 4, 16, 2, 384, 4, 0 | 16 | rebuild, four-region shared: `graphics/shared_resource_086f2fac/` |
