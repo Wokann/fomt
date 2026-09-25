@@ -364,8 +364,9 @@ address remains its source name until the runtime purpose is established.
 Shared archive `0873ED1C` is independently bounded at the four locations in
 the table. Its ten descriptors select eleven native OAM records, 41 native
 4bpp tiles, two BGR555 palettes, and eleven selection entries. Its editable
-PNG sources are under `graphics/shared_resource_0873ed1c/`; the address remains
-its source name until the runtime purpose is independently established.
+`full/native.png` and `full/palettes.pal` are linked through `archive.inc`
+using the generic graphics rules, without a post-link patch. The address
+remains its source name until the runtime purpose is independently established.
 
 Shared archive `087401A4` is independently bounded at the four locations in
 the table. Its four descriptors select four native OAM records, 16 native 4bpp

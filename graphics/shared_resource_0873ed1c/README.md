@@ -1,9 +1,11 @@
 # Shared resource `0873ED1C`
 
-`full/group_*.png` files are the editable indexed-PNG sources for the ten
-drawable native descriptors. The archive layout, OAM records, tile ranges,
-palette tables, and eleven selection records remain part of the fixed
-`0x6AC`-byte archive rebuild.
+`full/native.png` contains all 41 native tiles in ROM order. The two
+independent 16-color banks are editable in `full/palettes.pal`. The ordinary
+graphics rules generate `native.4bpp` and `palettes.gbapal`; `archive.inc`
+declares the selection, descriptor, and OAM tables and links those assets
+directly, without a ROM template or post-link patch. The existing
+`full/group_*.png` files are rendered reference views, not build inputs.
 
 No JSON layout sidecar is used. `preview/` contains readable RGBA renderings
 generated from the native descriptor and OAM layout, and is reference-only.
