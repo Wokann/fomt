@@ -12,6 +12,9 @@
 !graphics/intro_scene/shared/startup_tilemaps/*.original.lz
 !graphics/intro_scene/shared/object_tiles/*.original.lz
 !graphics/intro_scene/shared/startup_visual/*.original.lz
+!graphics/intro_scene/shared/*.original.lz
+!graphics/ui/farm_status/shared/*.original.lz
+!graphics/ui/farm_status/winter/shared/*.original.lz
 !graphics/ui/seasonal_background/shared/*.original.lz
 !graphics/ui/seasonal_background/winter/*.original.lz
 !graphics/ui/farm_status/shared/secondary_tilemaps/*.original.lz
@@ -23,6 +26,7 @@ graphics/ui/scene_080b7164/shared/palettes.gbapal
 graphics/ui/scene_080c160c/shared/palettes.gbapal
 graphics/ui/scene_080bcfac/shared/palettes.gbapal
 graphics/intro_scene/shared/startup_visual/startup_tiles.4bpp
+graphics/intro_scene/shared/background_tiles.4bpp
 graphics/intro_scene/shared/startup_visual/startup_palette_banks.gbapal
 graphics/ui/seasonal_background/shared/nonwinter_tiles.4bpp
 graphics/ui/seasonal_background/shared/nonwinter_palette_banks.gbapal

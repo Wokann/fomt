@@ -4,6 +4,13 @@
 retain their native values from 0 through 15; it deliberately displays only
 palette bank zero.
 
+`shared/base_tiles.original.lz` is the checked-in native Huffman/LZ stream
+for this tile grid. The ordinary C `gbagfx` and `fomt-lz` tools produce
+`base_tiles.4bpp` and `base_tiles.4bpp.lz` beside the PNG; assembly includes
+the packed resource directly. The source build does not read a retail ROM.
+The packed stream occupies 0x21C4 bytes at JP 0x2AD72C, US 0x5275D0,
+EU 0x52762C, and DE 0x2AE66C.
+
 `shared/base_palettes.png` is the editable sixteen-bank BGR555 palette source.
 Its 256 by 8 swatch arrangement is part of the source format: every row is
 the indices 0 through 255, so changing a swatch changes that exact native
@@ -26,6 +33,10 @@ make gfx-farm-status-tilemaps-all
 by the overseas winter branch. It rebuilds the identical US/EU/DE tile stream
 inside its original `0x1FD4`-byte slot; regional palette data remains
 reference-only because EU stores it in a distinct archive.
+`winter/shared/winter_tiles.original.lz` supplies the native codec header
+and fixed-slot reference to the same C `fomt-lz` rule.
+The winter stream occupies 0x1FD4 bytes at US 0x52AA6C, EU 0x52AAC8,
+and DE 0x2B1B08; this specific resource is not present in the JP layout.
 
 ```console
 make gfx-farm-status-winter-all

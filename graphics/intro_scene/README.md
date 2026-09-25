@@ -10,6 +10,12 @@ and possible composition remain distinct runtime data. The original stream is
 used byte-for-byte when source pixels are unchanged. Edited tiles are rebuilt
 to 4bpp, encoded into a valid `0x70` stream, strictly decoded, and rejected if
 they do not fit the original 0x49BC-byte allocation.
+The checked-in `shared/background_tiles.original.lz` supplies that native
+slot reference. C `gbagfx` and `fomt-lz` generate adjacent `.4bpp` and
+`.4bpp.lz` files from the PNG; assembly includes the latter directly,
+without a baserom build dependency or a `.0x70` pseudo-extension.
+The packed stream occupies 0x49BC bytes at JP 0x4C91C0, US 0x743058,
+EU 0x7430B4, and DE 0x4CA4CC.
 
 `shared/object_tiles/object_00.4bpp` through `object_19.4bpp` are the twenty
 additional streams loaded by the same routine. Each decodes to exactly `0x500`
