@@ -47053,7 +47053,7 @@ func_080B55D0: @ 0x080B5004
 	subs r5, #1
 	cmp r5, #0
 	bge .Ljp_080B502C
-	ldr r0, .Ljp_080B5180 @ =gUnk_08481160
+	ldr r0, .Ljp_080B5180 @ =gUiScene080B55D0MainTilesLz
 	movs r1, #0xc0
 	lsls r1, r1, #0x13
 	bl Unpack
@@ -47186,7 +47186,7 @@ func_080B55D0: @ 0x080B5004
 .Ljp_080B5174: .4byte 0x0000200C
 .Ljp_080B5178: .4byte 0x0600F000
 .Ljp_080B517C: .4byte 0x00000896
-.Ljp_080B5180: .4byte gUnk_08481160
+.Ljp_080B5180: .4byte gUiScene080B55D0MainTilesLz
 .Ljp_080B5184: .4byte gUnk_084832F8
 .Ljp_080B5188: .4byte gUiLayeredSceneAuxMap0
 .Ljp_080B518C: .4byte 0x0600E800
@@ -138595,7 +138595,7 @@ func_080B55D0: @ 0x080B55D0
 	subs r5, #1
 	cmp r5, #0
 	bge .L080B55F8
-	ldr r0, .L080B574C @ =gUnk_086FB004
+	ldr r0, .L080B574C @ =gUiScene080B55D0MainTilesLz
 	movs r1, #0xc0
 	lsls r1, r1, #0x13
 	bl Unpack
@@ -138728,7 +138728,7 @@ func_080B55D0: @ 0x080B55D0
 .L080B5740: .4byte 0x0000200C
 .L080B5744: .4byte 0x0600F000
 .L080B5748: .4byte 0x00000896
-.L080B574C: .4byte gUnk_086FB004
+.L080B574C: .4byte gUiScene080B55D0MainTilesLz
 .L080B5750: .4byte gUnk_086FD19C
 .L080B5754: .4byte gUiLayeredSceneAuxMap0
 .L080B5758: .4byte 0x0600E800

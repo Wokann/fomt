@@ -16,18 +16,16 @@ four retail FoMT localizations:
 | EU | `0x6FB060` | `0x2198` | `0x8000` |
 | DE | `0x4820A0` | `0x2198` | `0x8000` |
 
-The current Python builder retains the publisher stream byte-for-byte when
-the source is unchanged. For an edited source, it encodes Huffman-8/LZ3 and
-requires the result to fit the `0x2198` slot. The C `fomt-lz` tool now
-independently decodes and verifies this format for all four regions; it does
-not yet encode it. Consequently this asset still depends on the Python
-builder and post-link patch, and is **not yet** on the desired direct-link
-resource path.
+The C `fomt-lz` tool builds `shared/main_tiles.4bpp.lz` from the editable
+`shared/main_tiles.4bpp` source. Its `rebuild-huff8-lz3` mode verifies the
+tracked, byte-identical `shared/main_tiles.original.lz` publisher stream and
+retains it while the decoded source is unchanged. Once the source changes,
+the same C tool encodes a new Huffman-8/LZ3 stream, verifies its decoded
+bytes, and enforces the fixed `0x2198` slot. The assembler includes the
+result directly; no baseline ROM is read or patched in this production step.
 
 ```console
 make gfx-ui-scene-080b55d0-main-all
-make gfx-ui-scene-080b55d0-main-patch-test
-make gfx-ui-scene-080b55d0-main-edit-test
 ```
 
 `graphics/ui/scene_080b55d0_aux/` continues to own the separately proven

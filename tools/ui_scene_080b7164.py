@@ -76,20 +76,6 @@ PROFILES = {
             ("tiles.4bpp", 0xD60, 0x1180, "020", "2589101112"),
         ),
     ),
-    # The main background stream loaded by func_080B55D0 is not adjacent to
-    # its two auxiliary maps.  It is nevertheless byte-identical in all four
-    # retail localizations and decodes to an exact 1024-tile native 4bpp
-    # source.  Scene composition remains deliberately separate until its
-    # base map and display ordering have independent runtime evidence.
-    "080b55d0_main": (
-        {
-            "jp": 0x481160, "us": 0x6FB004,
-            "eu": 0x6FB060, "de": 0x4820A0,
-        },
-        (
-            ("main_tiles.4bpp", 0x2198, 0x8000, "230", "41012"),
-        ),
-    ),
     "08054f40_tiles": (
         {
             "jp": 0x4BEE84, "us": 0x738D1C,

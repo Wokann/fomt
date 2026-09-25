@@ -1150,12 +1150,10 @@ UI_SCENE_080B55D0_AUX_REFERENCE_DIR := graphics/ui/scene_080b55d0_aux/reference
 # The scene's 32 KiB main 4bpp tile stream is physically separate from its
 # two auxiliary maps.  It has a verified editable native source but no
 # asserted full-scene layout yet.
-UI_SCENE_080B55D0_MAIN_TOOL := $(UI_SCENE_080B7164_TOOL)
 UI_SCENE_080B55D0_MAIN_SOURCE_DIR := graphics/ui/scene_080b55d0_main/shared
-UI_SCENE_080B55D0_MAIN_SOURCES := $(wildcard $(UI_SCENE_080B55D0_MAIN_SOURCE_DIR)/*)
-UI_SCENE_080B55D0_MAIN_OUTPUT_DIR := $(BUILD_DIR)/graphics/ui/scene_080b55d0_main
-UI_SCENE_080B55D0_MAIN_STAMP := $(UI_SCENE_080B55D0_MAIN_OUTPUT_DIR)/.scene-080b55d0-main.stamp
-UI_SCENE_080B55D0_MAIN_REGION := $(INTRO_OBJECTS_REGION)
+UI_SCENE_080B55D0_MAIN_SOURCE := $(UI_SCENE_080B55D0_MAIN_SOURCE_DIR)/main_tiles.4bpp
+UI_SCENE_080B55D0_MAIN_ORIGINAL := $(UI_SCENE_080B55D0_MAIN_SOURCE_DIR)/main_tiles.original.lz
+UI_SCENE_080B55D0_MAIN_OUTPUT := $(UI_SCENE_080B55D0_MAIN_SOURCE).lz
 
 # The direct gUnk_08697920 DMA payload fills the final 143 4bpp tiles in a
 # character block. Its palette and layout are not yet proven, so its editable
@@ -1404,7 +1402,7 @@ GRAPHICS_ASSETS = \
 	$(UI_SCENE_08077810_ACTIVE_STAMP) $(UI_SCENE_080AE7D0_OUTPUTS) \
 	$(UI_SCENE_080B7164_OUTPUTS) $(UI_SCENE_080C160C_OUTPUTS) $(UI_SCENE_080BCFAC_OUTPUTS) \
 	$(UI_SCENE_080B55D0_AUX_OUTPUTS) \
-	$(UI_SCENE_080B55D0_MAIN_STAMP) $(UI_SCENE_08054F40_TILES_OUTPUT) \
+	$(UI_SCENE_080B55D0_MAIN_OUTPUT) $(UI_SCENE_08054F40_TILES_OUTPUT) \
 	$(UI_SCENE_0805AB08_TILES_OUTPUT) $(MAP_RESOURCES_STAMP) \
 	$(RECORDS_MINIGAME_OUTPUTS) $(ANIMAL_FESTIVAL_ICON_OUTPUTS) \
 	$(RAW_VRAM_TILES_08697920_SOURCES) $(RAW_VRAM_TILES_08698E14_SOURCES) \
@@ -1819,10 +1817,8 @@ $(UI_SCENE_080B55D0_AUX_MAP1_SOURCE).lz: $(UI_SCENE_080B55D0_AUX_MAP1_SOURCE) $(
 $(UI_SCENE_080B55D0_AUX_TILES_SOURCE).lz: $(UI_SCENE_080B55D0_AUX_TILES_SOURCE) $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) encode-lz2 $< $@ 2,5,8,9,10,11,12 0xD60
 
-$(UI_SCENE_080B55D0_MAIN_STAMP): $(UI_SCENE_080B55D0_MAIN_SOURCES) $(UI_SCENE_080B55D0_MAIN_TOOL) $(FARM_STATUS_CODEC) $(BASE_ROM)
-	@$(PYTHON) $(UI_SCENE_080B55D0_MAIN_TOOL) --profile 080b55d0_main build --region $(UI_SCENE_080B55D0_MAIN_REGION) --rom $(BASE_ROM) \
-	  --source-dir $(UI_SCENE_080B55D0_MAIN_SOURCE_DIR) --output-dir $(UI_SCENE_080B55D0_MAIN_OUTPUT_DIR)
-	@touch $@
+$(UI_SCENE_080B55D0_MAIN_OUTPUT): $(UI_SCENE_080B55D0_MAIN_SOURCE) $(UI_SCENE_080B55D0_MAIN_ORIGINAL) $(FOMT_LZ_TOOL)
+	@$(FOMT_LZ_TOOL) rebuild-huff8-lz3 $< $(UI_SCENE_080B55D0_MAIN_ORIGINAL) $@ 4,10,12 0x2198
 
 $(UI_SCENE_08054F40_TILES_OUTPUT): $(UI_SCENE_08054F40_TILES_SOURCE) $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) encode-lz2 $< $@ 2,5,7,8,10,13,14 0xCA8
@@ -1926,7 +1922,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 .PHONY: gfx-ui-scene-080c160c gfx-ui-scene-080c160c-preview gfx-ui-scene-080c160c-test gfx-ui-scene-080c160c-all gfx-ui-scene-080c160c-edit-test
 .PHONY: gfx-ui-scene-080bcfac gfx-ui-scene-080bcfac-preview gfx-ui-scene-080bcfac-test gfx-ui-scene-080bcfac-all gfx-ui-scene-080bcfac-edit-test
 .PHONY: gfx-ui-scene-080b55d0-aux gfx-ui-scene-080b55d0-aux-reference gfx-ui-scene-080b55d0-aux-test gfx-ui-scene-080b55d0-aux-all gfx-ui-scene-080b55d0-aux-edit-test
-.PHONY: gfx-ui-scene-080b55d0-main gfx-ui-scene-080b55d0-main-test gfx-ui-scene-080b55d0-main-all gfx-ui-scene-080b55d0-main-patch-test gfx-ui-scene-080b55d0-main-edit-test
+.PHONY: gfx-ui-scene-080b55d0-main gfx-ui-scene-080b55d0-main-test gfx-ui-scene-080b55d0-main-all
 .PHONY: gfx-raw-vram-tiles-08697920 gfx-raw-vram-tiles-08697920-test gfx-raw-vram-tiles-08697920-all
 .PHONY: gfx-raw-vram-tiles-08698e14 gfx-raw-vram-tiles-08698e14-test gfx-raw-vram-tiles-08698e14-all
 .PHONY: gfx-raw-vram-tiles-0869a0a4 gfx-raw-vram-tiles-0869a0a4-test gfx-raw-vram-tiles-0869a0a4-all
@@ -2148,22 +2144,14 @@ gfx-ui-scene-080b55d0-aux-all:
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-ui-scene-080b55d0-aux-test
 gfx-ui-scene-080b55d0-aux-edit-test: $(UI_SCENE_080B55D0_AUX_TOOL) baserom_jp.gba
 	@$(PYTHON) $(UI_SCENE_080B55D0_AUX_TOOL) --profile 080b55d0_aux edit-test --region jp --rom baserom_jp.gba
-gfx-ui-scene-080b55d0-main: $(UI_SCENE_080B55D0_MAIN_STAMP)
-gfx-ui-scene-080b55d0-main-test: gfx-ui-scene-080b55d0-main $(UI_SCENE_080B55D0_MAIN_TOOL) $(FOMT_LZ_TOOL)
-	@$(FOMT_LZ_TOOL) verify-huff8-lz3 $(UI_SCENE_080B55D0_MAIN_SOURCE_DIR)/main_tiles.4bpp \
-	  $(UI_SCENE_080B55D0_MAIN_OUTPUT_DIR)/main_tiles.4bpp.0x70 4,10,12
-	@$(PYTHON) $(UI_SCENE_080B55D0_MAIN_TOOL) --profile 080b55d0_main verify --region $(UI_SCENE_080B55D0_MAIN_REGION) --rom $(BASE_ROM) \
-	  --source-dir $(UI_SCENE_080B55D0_MAIN_SOURCE_DIR) --output-dir $(UI_SCENE_080B55D0_MAIN_OUTPUT_DIR)
+gfx-ui-scene-080b55d0-main: $(UI_SCENE_080B55D0_MAIN_OUTPUT)
+gfx-ui-scene-080b55d0-main-test: gfx-ui-scene-080b55d0-main $(FOMT_LZ_TOOL)
+	@$(FOMT_LZ_TOOL) verify-huff8-lz3 $(UI_SCENE_080B55D0_MAIN_SOURCE) $(UI_SCENE_080B55D0_MAIN_OUTPUT) 4,10,12
 gfx-ui-scene-080b55d0-main-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-ui-scene-080b55d0-main-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-ui-scene-080b55d0-main-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-ui-scene-080b55d0-main-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-ui-scene-080b55d0-main-test
-gfx-ui-scene-080b55d0-main-patch-test: gfx-ui-scene-080b55d0-main-all $(UI_SCENE_080B55D0_MAIN_TOOL)
-	@$(PYTHON) $(UI_SCENE_080B55D0_MAIN_TOOL) --profile 080b55d0_main patch-test --output-root build \
-	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
-gfx-ui-scene-080b55d0-main-edit-test: $(UI_SCENE_080B55D0_MAIN_TOOL) baserom_jp.gba
-	@$(PYTHON) $(UI_SCENE_080B55D0_MAIN_TOOL) --profile 080b55d0_main edit-test --region jp --rom baserom_jp.gba
 gfx-raw-vram-tiles-08697920: $(RAW_VRAM_TILES_08697920_SOURCES)
 gfx-raw-vram-tiles-08697920-test: gfx-raw-vram-tiles-08697920 $(RAW_VRAM_TILES_08697920_TOOL)
 	@$(PYTHON) $(RAW_VRAM_TILES_08697920_TOOL) --profile 08697920 verify --region $(RAW_VRAM_TILES_08697920_REGION) --rom $(BASE_ROM) \
@@ -3620,8 +3608,6 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-ui-scene-080b55d0-aux-all
 	@$(MAKE) --no-print-directory gfx-ui-scene-080b55d0-aux-edit-test
 	@$(MAKE) --no-print-directory gfx-ui-scene-080b55d0-main-all
-	@$(MAKE) --no-print-directory gfx-ui-scene-080b55d0-main-patch-test
-	@$(MAKE) --no-print-directory gfx-ui-scene-080b55d0-main-edit-test
 	@$(MAKE) --no-print-directory gfx-raw-vram-tiles-08697920-all
 	@$(MAKE) --no-print-directory gfx-raw-vram-tiles-field
 	@$(MAKE) --no-print-directory gfx-raw-vram-tiles-field-leading
