@@ -136,14 +136,8 @@ PROFILES = {
     "shared-087405a0": ArchiveProfile(
         (2, 1, 2, 24, 1, 0, 1), (), "shared 087405A0 resource"
     ),
-    "shared-08740908": ArchiveProfile(
-        (1, 1, 1, 4, 1, 0, 1), (), "shared 08740908 resource"
-    ),
     "shared-087409e4": ArchiveProfile(
         (1, 3, 18, 120, 1, 0, 4), (), "shared 087409E4 resource"
-    ),
-    "shared-0874ee38": ArchiveProfile(
-        (1, 1, 1, 4, 1, 0, 1), (), "shared 0874EE38 resource"
     ),
     "shared-087506e0": ArchiveProfile(
         (4, 4, 10, 36, 1, 0, 4), (), "shared 087506E0 resource"

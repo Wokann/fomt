@@ -50,9 +50,9 @@ as a shared payload.
 | `gUnk_087401A4` | `0x4C630C` | `0x7401A4` | `0x740200` | `0x4C7618` | `0x2B0` | 1, 4, 4, 16, 1, 0 | 4 | rebuild, four-region shared: `graphics/shared_resource_087401a4/` |
 | `gUnk_08740454` | `0x4C65BC` | `0x740454` | `0x7404B0` | `0x4C78C8` | `0x14C` | 1, 3, 2, 6, 1, 0 | 3 | rebuild, four-region shared: `graphics/shared_resource_08740454/` |
 | `gUnk_087405A0` | `0x4C6708` | `0x7405A0` | `0x7405FC` | `0x4C7A14` | `0x368` | 2, 1, 2, 24, 1, 0 | 1 | rebuild, four-region shared: `graphics/shared_resource_087405a0/` |
-| `gUnk_08740908` | `0x4C6A70` | `0x740908` | `0x740964` | `0x4C7D7C` | `0xDC` | 1, 1, 1, 4, 1, 0 | 1 | rebuild, four-region shared: `graphics/shared_resource_08740908/` |
+| `gUnk_08740908` | `0x4C6A70` | `0x740908` | `0x740964` | `0x4C7D7C` | `0xDC` | 1, 1, 1, 4, 1, 0 | 1 | linked from indexed PNG, no baserom input or post-link patch: `graphics/shared_resource_08740908/` |
 | `gUnk_087409E4` | `0x4C6B4C` | `0x7409E4` | `0x740A40` | `0x4C7E58` | `0x1010` | 1, 3, 18, 120, 1, 0 | 4 | rebuild, four-region shared: `graphics/shared_resource_087409e4/` |
-| `gUnk_0874EE38` | `0x4D5354` | `0x74EE38` | `0x74EE94` | `0x4D62A4` | `0xDC` | 1, 1, 1, 4, 1, 0 | 1 | rebuild, four-region shared: `graphics/shared_resource_0874ee38/` |
+| `gUnk_0874EE38` | `0x4D5354` | `0x74EE38` | `0x74EE94` | `0x4D62A4` | `0xDC` | 1, 1, 1, 4, 1, 0 | 1 | linked from indexed PNG, no baserom input or post-link patch: `graphics/shared_resource_0874ee38/` |
 | `gUnk_0874F34C` | `0x4D5868` | `0x74F34C` | `0x74F3A8` | `0x4D67B8` | `0x1444` | 22, 22, 7, 140, 3, 0 | 22 | rebuild, region-local: `graphics/regional_resource_0874f34c/` |
 | `gUnk_087506E0` | `0x4D668C` | `0x7506E0` | `0x75073C` | `0x4D7BFC` | `0x56C` | 4, 4, 10, 36, 1, 0 | 4 | rebuild, four-region shared: `graphics/shared_resource_087506e0/` |
 | `gUnk_0875352C` | `0x4D94D8` | `0x75352C` | `0x753588` | `0x4DAA48` | `0xDC` | 1, 1, 1, 4, 1, 0 | 1 | linked from indexed PNG, no baserom input or post-link patch: `graphics/shared_resource_0875352c/` |
