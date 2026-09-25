@@ -65,7 +65,7 @@ FONT_PAD := $(FONT_PAD_DIR)/fontpad$(EXE)
 OAM_PACK_DIR := tools/oam_pack
 OAM_PACK := $(OAM_PACK_DIR)/oam_pack$(EXE)
 GFX_RANGE_VERIFY := tools/verify-gfx-range$(EXE)
-TILE_GRID_TOOL := tools/tile_grid.py
+TILE_GRID_LEGACY_LIB := tools/tile_grid.py
 # ================
 # = BUILD CONFIG =
 # ================

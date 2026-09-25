@@ -162,25 +162,17 @@ used as source material.
 
 ## Linear 4bpp tile grids
 
-`tools/tile_grid.py` covers the other common case: a located graphics payload
-whose tiles are stored left-to-right and top-to-bottom with no OAM or tile-map
-indirection. It exports a strict indexed PNG and native BGR555 palette, then
-rebuilds the same raw tile order. It requires an expected SHA-256 when reading
-a ROM, so an incorrect offset cannot silently become authored art.
+For a located graphics payload whose tiles are stored left-to-right and
+top-to-bottom with no OAM or tile-map indirection, the indexed PNG is the
+authoring source. The C `gbagfx` tool converts it to native 4bpp tiles and
+BGR555 palette bytes; no Python tile-grid conversion runs in this build path.
 
 ```console
-python tools/tile_grid.py export baserom_us.gba \
-  --tiles-offset 0x75B818 --tiles-length 0x120 \
-  --palette-offset 0x75B938 --width 24 \
-  --sha256 0ccf3327b9f4b30e2b1e47d763f56c9a15d8dff94ff3e44c79b8e87c89a8992c \
-  --output build/tile_grid_probe/ui_shared_resource.png
-python tools/tile_grid.py build \
-  --source build/tile_grid_probe/ui_shared_resource.png \
-  --tiles build/tile_grid_probe/ui_shared_resource.4bpp \
-  --palette build/tile_grid_probe/ui_shared_resource.gbapal
+make graphics/ui/shared_resource/shared_resource.4bpp
+make graphics/ui/shared_resource/shared_resource.gbapal
 ```
 
-`make tile-grid-test` runs that generic route against all four retail ROMs.
+`make tile-grid-test` compares both generated files with all four retail ROMs.
 
 ## Code-backed UI scene previews
 
