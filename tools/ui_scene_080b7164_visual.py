@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Manage code-proven palette and visual references for direct UI BG scenes.
 
-Each profiled routine explicitly copies 0x200 bytes from the listed palette
-address to palette RAM after unpacking its two 32-by-32 tilemaps and 4bpp tiles. The
-tilemap and tile streams remain the lossless authoring inputs; ordinary PNGs
+Each profiled routine copies 0x200 bytes from the listed ROM address to
+palette RAM after unpacking its two 32-by-32 tilemaps and 4bpp tiles. Some
+copies run into an adjacent archive; the profile length covers only real
+palette bytes. The tilemap and tile streams remain the lossless authoring
+inputs; ordinary PNGs
 cannot retain tile IDs, flip flags, or palette-bank attributes.  This tool
 therefore writes PNGs as faithful, directly viewable references rather than
 pretending that they are a hidden layout sidecar or a reversible tilemap.
@@ -35,8 +37,8 @@ TILEMAP_SOURCES = ("layer_0.tilemap", "layer_1.tilemap")
 REFERENCE_NAMES = ("layer_0.png", "layer_1.png")
 COMPOSITE_REFERENCE = "scene.png"
 
-# The consumer copies 0x200 bytes, but the 080B7164 palette ends after 0x60;
-# its remaining copied bytes physically belong to the following archive.
+# Each consumer copies 0x200 bytes; profile lengths stop at the actual palette
+# boundary so following archive data is never encoded as a color.
 PROFILES = {
     "080b7164": {
         "offsets": {"jp": 0x4B3F4C, "us": 0x72DDE4, "eu": 0x72DE40, "de": 0x4B50B8},
@@ -48,9 +50,10 @@ PROFILES = {
     },
     "080bcfac": {
         "offsets": {"jp": 0x4C2D5C, "us": 0x73CBF4, "eu": 0x73CC50, "de": 0x4C3F60},
-        "sha256": {"jp": "f22d1e3fbc046353944f725f6e025ef0148545ac998b3c1268019aff5a090672", "us": "f22d1e3fbc046353944f725f6e025ef0148545ac998b3c1268019aff5a090672", "eu": "f22d1e3fbc046353944f725f6e025ef0148545ac998b3c1268019aff5a090672", "de": "f22d1e3fbc046353944f725f6e025ef0148545ac998b3c1268019aff5a090672"},
-        "sources": {"jp": "palettes.png", "us": "palettes.png", "eu": "palettes.png", "de": "palettes.png"},
-        "palette_source": "palettes.png",
+        "length": 0xC0,
+        "sha256": {"jp": "f52675fe893d77e2fba976c7b291acd6a6359d433e8283bc04cbf5a35e34f469", "us": "f52675fe893d77e2fba976c7b291acd6a6359d433e8283bc04cbf5a35e34f469", "eu": "f52675fe893d77e2fba976c7b291acd6a6359d433e8283bc04cbf5a35e34f469", "de": "f52675fe893d77e2fba976c7b291acd6a6359d433e8283bc04cbf5a35e34f469"},
+        "sources": {"jp": "palettes.pal", "us": "palettes.pal", "eu": "palettes.pal", "de": "palettes.pal"},
+        "palette_source": "palettes.pal",
         "first_palette_bank": 0,
     },
     "080c160c": {
@@ -80,28 +83,19 @@ def palette_from_rom(rom: bytes, region: str, profile: str) -> bytes:
         raise ValueError(f"{region} ROM ends within the scene palette")
     if hashlib.sha256(palette).hexdigest() != specification["sha256"][region]:
         raise ValueError(f"{region} scene palette does not match the four-region baseline")
+    if any(struct.unpack_from("<H", palette, index)[0] & 0x8000 for index in range(0, len(palette), 2)):
+        raise ValueError(f"{region} scene palette contains a non-color bit; check the resource boundary")
     return palette
 
 
 def colors_from_palette(palette: bytes) -> tuple[tuple[int, int, int, int], ...]:
-    """Use PNG alpha value 254 to retain otherwise invisible BGR555 bit 15."""
-    colors = list(colors_from_bgr555(palette, color_count=len(palette) // 2))
-    for index in range(1, len(colors)):
-        if struct.unpack_from("<H", palette, index * 2)[0] & 0x8000:
-            red, green, blue, _ = colors[index]
-            colors[index] = (red, green, blue, 254)
-    return tuple(colors)
+    return colors_from_bgr555(palette, color_count=len(palette) // 2)
 
 
 def palette_from_colors(colors: tuple[tuple[int, int, int, int], ...]) -> bytes:
-    if any(alpha not in (0, 254, 255) for _, _, _, alpha in colors):
-        raise ValueError("palette PNG alpha must be 0, 254, or 255")
-    result = bytearray(bgr555_from_colors(colors, color_count=len(colors)))
-    for index, (_, _, _, alpha) in enumerate(colors):
-        if index and alpha == 254:
-            value = struct.unpack_from("<H", result, index * 2)[0] | 0x8000
-            struct.pack_into("<H", result, index * 2, value)
-    return bytes(result)
+    if any(alpha not in (0, 255) for _, _, _, alpha in colors):
+        raise ValueError("palette PNG alpha must be 0 or 255")
+    return bgr555_from_colors(colors, color_count=len(colors))
 
 
 def palette_path(source_dir: Path, profile: str, region: str) -> Path:
@@ -201,8 +195,6 @@ def export(arguments: argparse.Namespace) -> None:
         palette = next(iter(values))
         if output.suffix == ".pal":
             colors = colors_from_palette(palette)
-            if any(alpha == 254 for _, _, _, alpha in colors):
-                raise ValueError(f"{source} cannot preserve palette bit 15 in JASC-PAL")
             output.write_bytes((
                 f"JASC-PAL\r\n0100\r\n{len(colors)}\r\n"
                 + "".join(f"{red} {green} {blue}\r\n" for red, green, blue, _ in colors)

@@ -62855,7 +62855,7 @@ func_080BCEC8:
     .byte 0x0C, 0x4B, 0x19, 0x1C, 0x11, 0x80, 0x81, 0x81, 0x01, 0xB0, 0x18, 0xBC, 0x98, 0x46, 0xA1, 0x46
     .byte 0x70, 0xBC, 0x01, 0xBC, 0x00, 0x47, 0x00, 0x00, 0x00, 0xF0, 0x00, 0x06, 0x00, 0xF8, 0x00, 0x06
     .4byte gUiScene080BCFACLayer0TilemapLz, gUiScene080BCFACLayer1TilemapLz
-    .4byte gUiScene080BCFACTilesLz, 0x084C2D5C
+    .4byte gUiScene080BCFACTilesLz, gUiScene080BCFACPalette
     .byte 0x41, 0x1E, 0x00, 0x00, 0x42, 0x1F, 0x00, 0x00
     .global loc_080BCA98
     .thumb_func
@@ -154387,7 +154387,7 @@ func_080BCFAC: @ 0x080BCFAC
 	movs r1, #0xc0
 	lsls r1, r1, #0x13
 	bl Unpack
-	ldr r0, .L080BD058 @ =gUnk_0873CBF4
+	ldr r0, .L080BD058 @ =gUiScene080BCFACPalette
 	movs r1, #0xa0
 	lsls r1, r1, #0x13
 	movs r2, #0x80
@@ -154428,7 +154428,7 @@ func_080BCFAC: @ 0x080BCFAC
 .L080BD04C: .4byte gUiScene080BCFACLayer0TilemapLz
 .L080BD050: .4byte gUiScene080BCFACLayer1TilemapLz
 .L080BD054: .4byte gUiScene080BCFACTilesLz
-.L080BD058: .4byte gUnk_0873CBF4
+.L080BD058: .4byte gUiScene080BCFACPalette
 .L080BD05C: .4byte 0x00001E41
 .L080BD060: .4byte 0x00001F42
 

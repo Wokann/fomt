@@ -30,23 +30,25 @@ regions:
 | DE | `0x4C3190` | `0x4C335C` |
 
 Immediately after unpacking, the function copies exactly `0x200` bytes from
-`gUnk_0873CBF4` to BG palette RAM (`0x05000000`). The load length is an
-explicit code boundary, so the source remains valid even though it crosses an
-assembly-only label boundary. The whole palette is shared by JP, US, EU and
-DE and has SHA-256
-`f22d1e3fbc046353944f725f6e025ef0148545ac998b3c1268019aff5a090672`.
+`gUiScene080BCFACPalette` to BG palette RAM (`0x05000000`). The copy length
+is not the ROM ownership length: the tilemaps select banks 0, 1, 2, 3 and 5;
+the first six banks occupy `0xC0` bytes. The indexed resource archive starts
+at `+0xC0`. The remaining `0x140` bytes copied by the routine are archive
+data, not colors. The four-region palette prefix has SHA-256
+`f52675fe893d77e2fba976c7b291acd6a6359d433e8283bc04cbf5a35e34f469`.
 
 | Region | Palette offset | Length |
 | --- | ---: | ---: |
-| JP | `0x4C2D5C` | `0x200` |
-| US | `0x73CBF4` | `0x200` |
-| EU | `0x73CC50` | `0x200` |
-| DE | `0x4C3F60` | `0x200` |
+| JP | `0x4C2D5C` | `0xC0` |
+| US | `0x73CBF4` | `0xC0` |
+| EU | `0x73CC50` | `0xC0` |
+| DE | `0x4C3F60` | `0xC0` |
 
-`shared/palettes.png` is the editable indexed sixteen-bank palette source.
-One native entry has BGR555 bit 15 set; because the bit is not visible on the
-GBA, the PNG stores it as alpha `254` (ordinary opaque entries use `255`) and
-the build restores it exactly. `reference/layer_0.png`, `layer_1.png`, and
+`shared/palettes.pal` is the editable six-bank JASC-PAL source. The bit-15
+word previously represented with PNG alpha `254` was actually in the adjacent
+archive, not in this palette. The generic `%.gbapal: %.pal` rule now creates
+the source-adjacent binary used directly by assembly. `reference/palettes.png`
+is a view, not a build input. `reference/layer_0.png`, `layer_1.png`, and
 `scene.png` are code-backed 256-by-256 visual references; the latter composites
 the upper layer over the lower one with palette index zero transparent. These
 references are not a replacement for the native tilemaps, and no JSON layout
@@ -55,12 +57,11 @@ sidecar is used.
 ```console
 make gfx-ui-scene-080bcfac-all
 make gfx-ui-scene-080bcfac-preview
-make gfx-ui-scene-080bcfac-patch-test
+make fomt_jp fomt_us fomt_eu fomt_de
 ```
 
 The C Raw-LZ tool builds source-adjacent `.tilemap.lz` and `.4bpp.lz`
-files, which assembly includes directly under relocatable symbols. All three
-stream addresses in each region and the four ROM SHA-1 hashes match retail. Only
-the 0x200-byte palette copy still crosses another resource's physical boundary
-and is patched after `objcopy`. An edited stream must still fit its original
-slot until that adjacent data is made relocatable.
+files, which assembly includes directly under relocatable symbols. The
+palette is also linked directly, without a post-`objcopy` Python patch.
+The hardware copy still reads into the separately owned archive. An edited
+stream must fit its original slot until adjacent data is made relocatable.
