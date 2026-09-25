@@ -13,16 +13,17 @@ at 256 by 256 pixels with sixteen indices, and keep the palette swatch at
 the native 0x30C-byte map representation; it retains tile IDs, flips and
 palette-bank selection that a flattened image would lose.
 
+`gbagfx` converts the PNGs into source-adjacent `.4bpp` and `.gbapal`
+resources. The C `fomt-lz` tool then builds `winter_tiles.4bpp.lz`, preserving
+the checked-in publisher stream for unchanged pixels. Assembly includes these
+resources directly; the build neither reads a retail ROM nor patches the
+linked image. Edited streams must fit the original 0x212C-byte slot.
+
 ```console
-make gfx-seasonal-winter-all
-make gfx-seasonal-winter-reference
+make gfx-seasonal-winter-test
 ```
 
-The first command verifies unchanged JP, US, EU and DE build outputs against
-their original ROM ranges. The builder checks that an edited stream fits the
-immutable 0x212C-byte slot and rejects an oversized result.
-
-The reference command writes `../reference/winter_bg_30.png` and
-`../reference/winter_bg_29.png` from the same native tile grid, six palette
-banks and BG entries.  They are code-bounded layer views for inspection, not
-flattened build inputs and not a claim of the game's final composited screen.
+This command verifies that the generated stream decodes to the editable tile
+source. The PNGs under `../reference/` were rendered from the same native tile
+grid, palette banks and BG entries. They are inspection views, not build inputs
+or a claim of the game's final composited screen.

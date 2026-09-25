@@ -514,7 +514,7 @@ ifneq (,$(filter gfx-ui-scene-0805ab08-tiles gfx-ui-scene-0805ab08-reference gfx
 ALL_DEPS :=
 endif
 
-ifneq (,$(filter gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal-nonwinter-all gfx-seasonal-winter gfx-seasonal-winter-test gfx-seasonal-winter-all gfx-seasonal-winter-reference,$(MAKECMDGOALS)))
+ifneq (,$(filter gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal-nonwinter-all gfx-seasonal-winter gfx-seasonal-winter-test gfx-seasonal-winter-all,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 

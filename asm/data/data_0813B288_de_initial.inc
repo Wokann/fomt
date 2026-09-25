@@ -152814,13 +152814,13 @@ gUnk_08757C14:
 	.incbin "graphics/ui/seasonal_background/shared/bg_30.tilemap"
 	.global gUnk_08757F20
 gUnk_08757F20:
-	FOMT_SEASONAL_WINTER_ASSET "winter_bg_29.tilemap"
+	.incbin "graphics/ui/seasonal_background/winter/winter_bg_29.tilemap"
 	.global gUnk_0875822C
 gUnk_0875822C:
-	FOMT_SEASONAL_WINTER_ASSET "winter_tiles.0x70"
+	.incbin "graphics/ui/seasonal_background/winter/winter_tiles.4bpp.lz"
 	.global gUnk_0875A358
 gUnk_0875A358:
-	FOMT_SEASONAL_WINTER_ASSET "winter_palette_banks.gbapal"
+	.incbin "graphics/ui/seasonal_background/winter/winter_palette_banks.gbapal"
 	.global gUnk_0875A418
 gUnk_0875A418:
 	.byte 0x5E, 0x50, 0x5F, 0x50, 0x9E, 0x50, 0x7E, 0x50, 0x7F, 0x50, 0xBE, 0x50

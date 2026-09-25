@@ -885,26 +885,20 @@ SEASONAL_NONWINTER_PACKED_BIN := $(SEASONAL_NONWINTER_TILES_BIN).lz
 SEASONAL_NONWINTER_ORIGINAL := $(SEASONAL_NONWINTER_SOURCE_DIR)/nonwinter_tiles.original.lz
 SEASONAL_NONWINTER_PALETTE_BIN := $(SEASONAL_NONWINTER_SOURCE_DIR)/nonwinter_palette_banks.gbapal
 SEASONAL_NONWINTER_OUTPUTS := $(SEASONAL_NONWINTER_PACKED_BIN) $(SEASONAL_NONWINTER_PALETTE_BIN) $(SEASONAL_NONWINTER_MAP_SOURCES)
-SEASONAL_NONWINTER_REGION := $(shell echo "$(GAME_REGION)" | tr '[:upper:]' '[:lower:]')
 
 # ``func_08077EC0`` selects this H8/LZ3 set when the season value is 3.  Its
 # BG30 map is physically identical to the non-winter BG30 source above; the
 # winter-specific tile stream, six palette banks and BG29 map are shared by
 # all four retail regions.
-SEASONAL_WINTER_TOOL := tools/seasonal_winter_background.py
 SEASONAL_WINTER_SOURCE_DIR := graphics/ui/seasonal_background/winter
 SEASONAL_WINTER_TILES_SOURCE := $(SEASONAL_WINTER_SOURCE_DIR)/winter_tiles.png
 SEASONAL_WINTER_PALETTE_SOURCE := $(SEASONAL_WINTER_SOURCE_DIR)/winter_palette_banks.png
 SEASONAL_WINTER_BG29_SOURCE := $(SEASONAL_WINTER_SOURCE_DIR)/winter_bg_29.tilemap
-SEASONAL_WINTER_SHARED_BG30_SOURCE := $(SEASONAL_NONWINTER_SOURCE_DIR)/bg_30.tilemap
-SEASONAL_WINTER_OUTPUT_DIR := $(BUILD_DIR)/graphics/ui/seasonal_background/winter
-SEASONAL_WINTER_TILES_BIN := $(SEASONAL_WINTER_OUTPUT_DIR)/winter_tiles.0x70
-SEASONAL_WINTER_PALETTE_BIN := $(SEASONAL_WINTER_OUTPUT_DIR)/winter_palette_banks.gbapal
-SEASONAL_WINTER_BG29_BIN := $(SEASONAL_WINTER_OUTPUT_DIR)/winter_bg_29.tilemap
-SEASONAL_WINTER_OUTPUTS := $(SEASONAL_WINTER_TILES_BIN) $(SEASONAL_WINTER_PALETTE_BIN) $(SEASONAL_WINTER_BG29_BIN)
-SEASONAL_WINTER_STAMP := $(SEASONAL_WINTER_OUTPUT_DIR)/.winter.stamp
-SEASONAL_WINTER_REGION := $(SEASONAL_NONWINTER_REGION)
-SEASONAL_WINTER_REFERENCE_DIR := graphics/ui/seasonal_background/reference
+SEASONAL_WINTER_TILES_BIN := $(SEASONAL_WINTER_SOURCE_DIR)/winter_tiles.4bpp
+SEASONAL_WINTER_PACKED_BIN := $(SEASONAL_WINTER_TILES_BIN).lz
+SEASONAL_WINTER_ORIGINAL := $(SEASONAL_WINTER_SOURCE_DIR)/winter_tiles.original.lz
+SEASONAL_WINTER_PALETTE_BIN := $(SEASONAL_WINTER_SOURCE_DIR)/winter_palette_banks.gbapal
+SEASONAL_WINTER_OUTPUTS := $(SEASONAL_WINTER_PACKED_BIN) $(SEASONAL_WINTER_PALETTE_BIN) $(SEASONAL_WINTER_BG29_SOURCE)
 
 # Intro Scene loading sends this 0x70 output straight to VRAM. The decoded
 # 0x6E00-byte resource is a 40-by-22 linear 4bpp tile image (320 by 176
@@ -1302,7 +1296,7 @@ GRAPHICS_ASSETS = \
 	$(CLOCK_FONT_OUTPUTS) $(FARM_STATUS_CREATURE_ICON_OUTPUTS) \
 	$(FARM_STATUS_TASK_UI_TILE_OUTPUTS) \
 	$(FARM_HOUSE_VISUAL_OUTPUTS) \
-	$(SEASONAL_NONWINTER_OUTPUTS) $(SEASONAL_WINTER_STAMP) \
+	$(SEASONAL_NONWINTER_OUTPUTS) $(SEASONAL_WINTER_OUTPUTS) \
 	$(INTRO_BACKGROUND_PACKED_BIN) $(INTRO_BACKGROUND_PALETTE_BIN) \
 	$(INTRO_OBJECTS_STAMP) $(INTRO_STARTUP_TILEMAPS_OUTPUTS) \
 	$(INTRO_STARTUP_VISUAL_PACKED_BIN) $(INTRO_STARTUP_VISUAL_PALETTE_BIN) $(INTRO_INDEXED_ARCHIVE_OUTPUT) \
@@ -1558,12 +1552,8 @@ $(FARM_STATUS_WINTER_PACKED_BIN): $(FARM_STATUS_WINTER_TILES_BIN) $(FARM_STATUS_
 $(SEASONAL_NONWINTER_PACKED_BIN): $(SEASONAL_NONWINTER_TILES_BIN) $(SEASONAL_NONWINTER_ORIGINAL) $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) rebuild-native $< $(SEASONAL_NONWINTER_ORIGINAL) $@
 
-$(SEASONAL_WINTER_STAMP): $(SEASONAL_WINTER_TOOL) $(SEASONAL_WINTER_TILES_SOURCE) $(SEASONAL_WINTER_PALETTE_SOURCE) $(SEASONAL_WINTER_BG29_SOURCE) $(SEASONAL_WINTER_SHARED_BG30_SOURCE) $(FARM_STATUS_CODEC) $(TILE_GRID_LEGACY_LIB) $(BASE_ROM)
-	@$(PYTHON) $(SEASONAL_WINTER_TOOL) build --region $(SEASONAL_WINTER_REGION) --rom $(BASE_ROM) \
-	  --source-dir $(SEASONAL_WINTER_SOURCE_DIR) --output-dir $(SEASONAL_WINTER_OUTPUT_DIR)
-	@touch $@
-
-$(SEASONAL_WINTER_OUTPUTS): $(SEASONAL_WINTER_STAMP)
+$(SEASONAL_WINTER_PACKED_BIN): $(SEASONAL_WINTER_TILES_BIN) $(SEASONAL_WINTER_ORIGINAL) $(FOMT_LZ_TOOL)
+	@$(FOMT_LZ_TOOL) rebuild-native $< $(SEASONAL_WINTER_ORIGINAL) $@
 
 $(FARM_STATUS_SECONDARY_TILEMAP_STAMP): $(FARM_STATUS_SECONDARY_TILEMAP_SOURCES) $(FARM_STATUS_SECONDARY_TILEMAP_TOOL) $(FARM_STATUS_CODEC) $(BASE_ROM)
 	@$(PYTHON) $(FARM_STATUS_SECONDARY_TILEMAP_TOOL) build --region $(FARM_STATUS_SECONDARY_TILEMAP_REGION) --rom $(BASE_ROM) \
@@ -1694,7 +1684,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-resource-archive gfx-farm-status-resource-archive-test gfx-farm-status-resource-archive-all gfx-farm-status-resource-archive-patch-test gfx-farm-status-resource-archive-edit-test gfx-farm-status-winter gfx-farm-status-winter-test gfx-farm-status-winter-all gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-secondary-tilemaps-edit-test gfx-farm-status-exterior-styles gfx-farm-status-exterior-styles-test gfx-farm-status-selector-icon gfx-farm-status-selector-icon-test gfx-farm-status-selector-icon-all gfx-clock-font gfx-clock-font-test gfx-clock-font-all gfx-farm-status-creature-icons gfx-farm-status-creature-icons-test gfx-farm-status-creature-icons-all gfx-farm-status-task-marker gfx-farm-status-task-marker-test gfx-farm-status-task-marker-all gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal-nonwinter-all gfx-seasonal-winter gfx-seasonal-winter-test gfx-seasonal-winter-all gfx-seasonal-winter-reference gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-visual gfx-intro-startup-visual-test gfx-intro-startup-visual-all gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-animal-festival-icons gfx-animal-festival-icons-test gfx-animal-festival-icons-all resource-archive-audit unpack-vram-inventory dma-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
+.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-resource-archive gfx-farm-status-resource-archive-test gfx-farm-status-resource-archive-all gfx-farm-status-resource-archive-patch-test gfx-farm-status-resource-archive-edit-test gfx-farm-status-winter gfx-farm-status-winter-test gfx-farm-status-winter-all gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-secondary-tilemaps-edit-test gfx-farm-status-exterior-styles gfx-farm-status-exterior-styles-test gfx-farm-status-selector-icon gfx-farm-status-selector-icon-test gfx-farm-status-selector-icon-all gfx-clock-font gfx-clock-font-test gfx-clock-font-all gfx-farm-status-creature-icons gfx-farm-status-creature-icons-test gfx-farm-status-creature-icons-all gfx-farm-status-task-marker gfx-farm-status-task-marker-test gfx-farm-status-task-marker-all gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal-nonwinter-all gfx-seasonal-winter gfx-seasonal-winter-test gfx-seasonal-winter-all gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-visual gfx-intro-startup-visual-test gfx-intro-startup-visual-all gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-animal-festival-icons gfx-animal-festival-icons-test gfx-animal-festival-icons-all resource-archive-audit unpack-vram-inventory dma-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
 .PHONY: gfx-map-resources-reference gfx-map-resources-edit-test gfx-map-state-palettes gfx-map-state-palettes-test gfx-map-state-templates gfx-map-state-templates-test gfx-map-state-templates-all unpack-inventory unpack-coverage-inventory copy-ram-inventory
 .PHONY: indexed-resource-archive-inventory
 .PHONY: gfx-farm-status-task-ui-tile gfx-farm-status-task-ui-tile-test gfx-farm-status-task-ui-tile-all
@@ -2931,16 +2921,9 @@ gfx-seasonal-nonwinter-test: gfx-seasonal-nonwinter $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) verify-native $(SEASONAL_NONWINTER_TILES_BIN) $(SEASONAL_NONWINTER_PACKED_BIN)
 gfx-seasonal-nonwinter-all: gfx-seasonal-nonwinter-test
 gfx-seasonal-winter: $(SEASONAL_WINTER_OUTPUTS)
-gfx-seasonal-winter-test: gfx-seasonal-winter $(SEASONAL_WINTER_TOOL) $(BASE_ROM)
-	@$(PYTHON) $(SEASONAL_WINTER_TOOL) verify --region $(SEASONAL_WINTER_REGION) --rom $(BASE_ROM) \
-	  --source-dir $(SEASONAL_WINTER_SOURCE_DIR) --output-dir $(SEASONAL_WINTER_OUTPUT_DIR)
-gfx-seasonal-winter-all:
-	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-seasonal-winter-test
-	@$(MAKE) --no-print-directory GAME_REGION=US gfx-seasonal-winter-test
-	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-seasonal-winter-test
-	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-seasonal-winter-test
-gfx-seasonal-winter-reference: $(SEASONAL_WINTER_TOOL) $(SEASONAL_WINTER_TILES_SOURCE) $(SEASONAL_WINTER_PALETTE_SOURCE) $(SEASONAL_WINTER_BG29_SOURCE) $(SEASONAL_WINTER_SHARED_BG30_SOURCE)
-	@$(PYTHON) $(SEASONAL_WINTER_TOOL) reference --source-dir $(SEASONAL_WINTER_SOURCE_DIR) --reference-dir $(SEASONAL_WINTER_REFERENCE_DIR) --replace
+gfx-seasonal-winter-test: gfx-seasonal-winter $(FOMT_LZ_TOOL)
+	@$(FOMT_LZ_TOOL) verify-native $(SEASONAL_WINTER_TILES_BIN) $(SEASONAL_WINTER_PACKED_BIN)
+gfx-seasonal-winter-all: gfx-seasonal-winter-test
 gfx-farm-status-previews: $(FARM_STATUS_TILES_SOURCE) $(FARM_STATUS_PALETTE_SOURCE) $(FARM_STATUS_TILEMAP_SOURCES) $(FARM_STATUS_PREVIEW_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(FARM_STATUS_PREVIEW_TOOL) --tiles-source $(FARM_STATUS_TILES_SOURCE) --palettes-source $(FARM_STATUS_PALETTE_SOURCE) --tilemaps-source $(FARM_STATUS_TILEMAP_SOURCE_DIR) --rom baserom_us.gba --region us --output $(FARM_STATUS_REFERENCE_DIR) --replace --verify-jp baserom_jp.gba --verify-us baserom_us.gba --verify-eu baserom_eu.gba --verify-de baserom_de.gba
 gfx-farm-status-tilemaps: $(FARM_STATUS_TILEMAP_SOURCES)
