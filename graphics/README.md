@@ -291,14 +291,19 @@ staging storage; the second is selected by map-state type and read as 16-bit
 BG tilemap entries.  Neither path proves standalone record boundaries, a tile
 sheet, or an owning palette for every entry.  Their authoritative editable
 form therefore remains native binary rather than a guessed PNG or a JSON
-layout sidecar.  The fixed source sizes and write ranges are checked on every
-build, and a one-byte edit test proves that a replacement cannot escape either
-original ROM range:
+layout sidecar. Both tables are now linked directly from these source files at
+their original assembly positions. DE labels inside the tables remain at their
+original offsets, so its source is included in bounded pieces around them.
+The independent range test checks both sources against each original ROM;
+there is no ROM-template build input or post-link patch:
+
+| Source | JP | US | EU | DE | Size |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `map_state_palette_templates.bin` | `0x45D654` | `0x6D74F8` | `0x6D7554` | `0x45E594` | `0x4ECC` |
+| `map_state_tilemap_templates.bin` | `0x464950` | `0x6DE7F4` | `0x6DE850` | `0x465890` | `0xC4E8` |
 
 ```console
 make gfx-map-state-templates-all
-make gfx-map-state-templates-patch-test
-make gfx-map-state-templates-edit-test
 ```
 
 ## Shared UI tile grid
