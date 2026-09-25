@@ -357,7 +357,6 @@ DE `0x4CEE88`.
 
 ```console
 make gfx-intro-background-all
-make gfx-intro-background-edit-test
 ```
 
 Unchanged source preserves the retail `0x70` stream. An edited source is
@@ -401,11 +400,11 @@ python tools/tile_grid.py export-unpacked baserom_us.gba \
   --sha256 ee0ea9e581dab0baad7a55f2eed3c44dbc63518a2a5b8da5f79d4ef03d0b91c7 \
   --palette-sha256 7b7ceecd51340e503d145875c32b894e8ddfe22dd4d690820664e117fcc27ba3 \
   --output graphics/intro_scene/shared/background_tiles.png --replace
-
-python tools/palette_banks.py export baserom_us.gba --offset 0x747A14 --banks 3 \
-  --sha256 9d372a163a837204d61a996f95b8f894912cd6d7e4f49342fd07b810c2751d8e \
-  --output graphics/intro_scene/shared/background_palettes.png --replace
 ```
+
+The committed palette PNG is the editable source. The shared gbagfx rule
+builds its source-adjacent `background_palettes.gbapal`; the four-region
+verification target compares the result with each retail ROM.
 
 ## Records Screen task icons
 
@@ -467,13 +466,12 @@ The packed 0x70 stream and the 0x200-byte BGR555 palette are identical in all
 four retail FoMT regions.  Their physical locations are JP `0x2AD72C` /
 `0x2AF8F0`, US `0x5275D0` / `0x529794`, EU `0x52762C` / `0x5297F0`, and DE
 `0x2AE66C` / `0x2B0830`. `tile_grid.py` validates the compressed stream and
-strictly unpacks its 0x4800-byte 4bpp payload. `palette_banks.py` preserves all
-256 BGR555 entries, including palette entries that look alike but have distinct
-native indices.
+strictly unpacks its 0x4800-byte 4bpp payload. The shared gbagfx rule
+converts the indexed palette PNG to all 256 BGR555 entries, including
+entries that look alike but have distinct native indices.
 
 ```console
 make gfx-farm-status-all
-make gfx-farm-status-edit-test
 make gfx-farm-status-tilemaps-all
 ```
 
@@ -481,9 +479,8 @@ The first command verifies both generated ranges byte-for-byte against every
 retail ROM.  An unchanged PNG deliberately reuses the original compressed
 stream, so this verification stays exact. An edited tile source is rebuilt to
 4bpp then encoded through `marvelous_codec.py`; the strict unpacker checks it again
-and the build fails if it exceeds the original 0x21C4-byte allocation.  The
-edit test changes one temporary source pixel and proves that a non-identical,
-valid stream still fits.  No JSON layout sidecar participates in either path.
+and the build fails if it exceeds the original 0x21C4-byte allocation.
+No JSON layout sidecar participates in either path.
 
 Regenerate the source from a verified US ROM with:
 
@@ -495,11 +492,6 @@ python tools/tile_grid.py export-unpacked baserom_us.gba \
   --sha256 0039e4aa2bb252d5ae17cb2028406e47a79c4461990ad6c1e7e384a962b719e8 \
   --palette-sha256 4538f7889f19367690ca80129ed8a36290924f4defb11261c57f4b095593ca48 \
   --output graphics/ui/farm_status/shared/base_tiles.png --replace
-
-python tools/palette_banks.py export baserom_us.gba \
-  --offset 0x529794 \
-  --sha256 8d2885512b1f0a453e45d632c61a41be90d978f8614aa07109202a955da61303 \
-  --output graphics/ui/farm_status/shared/base_palettes.png --replace
 
 python tools/farm_status_previews.py \
   --tiles-source graphics/ui/farm_status/shared/base_tiles.png \

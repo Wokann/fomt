@@ -19,13 +19,12 @@ JP/US/EU/DE data container with:
 
 ```console
 make gfx-clock-font-all
-make gfx-clock-font-edit-test
 ```
 
-The generated native inputs are kept beside their corresponding PNG sources:
-`us_eu/clock_font.bin` for US/EU and `de/clock_font.bin` for DE.  Assembly
-selects one of these source-adjacent files directly; `build/` is not used as a
-graphics-resource staging area.
+The shared gbagfx rule converts each PNG to its source-adjacent
+`glyph_indices.4bpp`. Assembly includes that tile data followed by the
+four-byte `shared/tail.bin`. No dedicated clock-font build script or
+intermediate combined binary is needed.
 
 JP has no established equivalent `gClockFont` consumer, so its original
 container bytes remain untouched.  This does not assert that JP lacks a clock

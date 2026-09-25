@@ -99,10 +99,9 @@ FARM_STATUS_PALETTE_SOURCE := graphics/ui/farm_status/shared/base_palettes.png
 FARM_STATUS_OUTPUT_DIR := graphics/ui/farm_status/shared
 FARM_STATUS_TILES_BIN := $(FARM_STATUS_OUTPUT_DIR)/base_tiles.4bpp
 FARM_STATUS_TILES_PALETTE0_BIN := $(FARM_STATUS_OUTPUT_DIR)/base_tiles_palette0.gbapal
-FARM_STATUS_PALETTE_BIN := $(FARM_STATUS_OUTPUT_DIR)/base_tiles.gbapal
+FARM_STATUS_PALETTE_BIN := $(FARM_STATUS_PALETTE_SOURCE:.png=.gbapal)
 FARM_STATUS_PACKED_BIN := $(FARM_STATUS_OUTPUT_DIR)/base_tiles.0x70
 FARM_STATUS_CODEC := tools/marvelous_codec.py
-FARM_STATUS_PALETTE_TOOL := tools/palette_banks.py
 FARM_STATUS_PREVIEW_TOOL := tools/farm_status_previews.py
 FARM_STATUS_TILEMAP_TOOL := tools/farm_status_tilemaps.py
 FARM_STATUS_REFERENCE_DIR := graphics/ui/farm_status/reference
@@ -866,12 +865,11 @@ REGIONAL_RESOURCE_0875B444_SHA256_EU := 8da8ca4fbff49ad00f1ba1f81243cb56718b4274
 REGIONAL_RESOURCE_0875B444_SHA256_DE := 8da8ca4fbff49ad00f1ba1f81243cb56718b42741524531b1cf3e307a5693218
 REGIONAL_RESOURCE_0875B444_OFFSET := $(REGIONAL_RESOURCE_0875B444_OFFSET_$(GAME_REGION))
 REGIONAL_RESOURCE_0875B444_SHA256 := $(REGIONAL_RESOURCE_0875B444_SHA256_$(GAME_REGION))
-CLOCK_FONT_TOOL := tools/clock_font.py
 CLOCK_FONT_US_EU_SOURCE := graphics/ui/clock_font/us_eu/glyph_indices.png
 CLOCK_FONT_DE_SOURCE := graphics/ui/clock_font/de/glyph_indices.png
 CLOCK_FONT_TAIL := graphics/ui/clock_font/shared/tail.bin
-CLOCK_FONT_US_EU_OUTPUT := graphics/ui/clock_font/us_eu/clock_font.bin
-CLOCK_FONT_DE_OUTPUT := graphics/ui/clock_font/de/clock_font.bin
+CLOCK_FONT_US_EU_OUTPUT := $(CLOCK_FONT_US_EU_SOURCE:.png=.4bpp)
+CLOCK_FONT_DE_OUTPUT := $(CLOCK_FONT_DE_SOURCE:.png=.4bpp)
 CLOCK_FONT_OUTPUTS := $(CLOCK_FONT_US_EU_OUTPUT) $(CLOCK_FONT_DE_OUTPUT)
 FARM_STATUS_STREAM_LENGTH := 0x21C4
 FARM_STATUS_STREAM_SHA256 := 669dec9d78bbe0d2ceb08383495eea9da863086b00c7dbd4687d90e5c01cddc5
@@ -947,7 +945,7 @@ SEASONAL_WINTER_REFERENCE_DIR := graphics/ui/seasonal_background/reference
 INTRO_BACKGROUND_TILES_SOURCE := graphics/intro_scene/shared/background_tiles.png
 INTRO_BACKGROUND_PALETTE_SOURCE := graphics/intro_scene/shared/background_palettes.png
 INTRO_BACKGROUND_TILES_BIN := $(BUILD_DIR)/graphics/intro_scene/background_tiles.4bpp
-INTRO_BACKGROUND_PALETTE_BIN := $(BUILD_DIR)/graphics/intro_scene/background_palettes.gbapal
+INTRO_BACKGROUND_PALETTE_BIN := $(INTRO_BACKGROUND_PALETTE_SOURCE:.png=.gbapal)
 INTRO_BACKGROUND_PACKED_BIN := $(BUILD_DIR)/graphics/intro_scene/background_tiles.0x70
 INTRO_BACKGROUND_STREAM_LENGTH := 0x49BC
 INTRO_BACKGROUND_STREAM_SHA256 := f0c828f16cafc75c3b277841bca74d1b7f62bbdf3551c9b591103c0f46213d4f
@@ -1450,9 +1448,6 @@ $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN) &: $(UI_SHARED_
 $(FARM_STATUS_TILES_BIN) $(FARM_STATUS_TILES_PALETTE0_BIN) &: $(FARM_STATUS_TILES_SOURCE) $(TILE_GRID_TOOL)
 	@$(PYTHON) $(TILE_GRID_TOOL) build --source $(FARM_STATUS_TILES_SOURCE) --tiles $(FARM_STATUS_TILES_BIN) --palette $(FARM_STATUS_TILES_PALETTE0_BIN)
 
-$(FARM_STATUS_PALETTE_BIN): $(FARM_STATUS_PALETTE_SOURCE) $(FARM_STATUS_PALETTE_TOOL)
-	@$(PYTHON) $(FARM_STATUS_PALETTE_TOOL) build --source $(FARM_STATUS_PALETTE_SOURCE) --output $@
-
 $(FARM_STATUS_PACKED_BIN): $(FARM_STATUS_TILES_BIN) $(FARM_STATUS_CODEC) $(BASE_ROM)
 	@$(PYTHON) $(FARM_STATUS_CODEC) $(FARM_STATUS_TILES_BIN) $@ \
 	  --baseline-rom $(BASE_ROM) --baseline-offset $(FARM_STATUS_STREAM_OFFSET) \
@@ -1706,19 +1701,9 @@ $(FARM_STATUS_EXTERIOR_STYLE_STAMP): $(FARM_STATUS_EXTERIOR_STYLE_SOURCES) $(FAR
 
 $(FARM_STATUS_EXTERIOR_STYLE_OUTPUTS): $(FARM_STATUS_EXTERIOR_STYLE_STAMP)
 
-$(CLOCK_FONT_US_EU_OUTPUT): $(CLOCK_FONT_TOOL) $(CLOCK_FONT_US_EU_SOURCE) $(CLOCK_FONT_TAIL)
-	@$(PYTHON) $(CLOCK_FONT_TOOL) build --source $(CLOCK_FONT_US_EU_SOURCE) --tail $(CLOCK_FONT_TAIL) --output $@
-
-$(CLOCK_FONT_DE_OUTPUT): $(CLOCK_FONT_TOOL) $(CLOCK_FONT_DE_SOURCE) $(CLOCK_FONT_TAIL)
-	@$(PYTHON) $(CLOCK_FONT_TOOL) build --source $(CLOCK_FONT_DE_SOURCE) --tail $(CLOCK_FONT_TAIL) --output $@
-
 $(INTRO_BACKGROUND_TILES_BIN): $(INTRO_BACKGROUND_TILES_SOURCE) $(TILE_GRID_TOOL)
 	@mkdir -p $(dir $@)
 	@$(PYTHON) $(TILE_GRID_TOOL) build --source $(INTRO_BACKGROUND_TILES_SOURCE) --tiles $@ --palette $(BUILD_DIR)/graphics/intro_scene/background_palette0.gbapal
-
-$(INTRO_BACKGROUND_PALETTE_BIN): $(INTRO_BACKGROUND_PALETTE_SOURCE) $(FARM_STATUS_PALETTE_TOOL)
-	@mkdir -p $(dir $@)
-	@$(PYTHON) $(FARM_STATUS_PALETTE_TOOL) build --source $< --banks 3 --output $@
 
 $(INTRO_BACKGROUND_PACKED_BIN): $(INTRO_BACKGROUND_TILES_BIN) $(FARM_STATUS_CODEC) $(BASE_ROM)
 	@mkdir -p $(dir $@)
@@ -1859,7 +1844,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-edit-test gfx-farm-status-resource-archive gfx-farm-status-resource-archive-test gfx-farm-status-resource-archive-all gfx-farm-status-resource-archive-patch-test gfx-farm-status-resource-archive-edit-test gfx-farm-status-winter gfx-farm-status-winter-test gfx-farm-status-winter-all gfx-farm-status-winter-edit-test gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-secondary-tilemaps-edit-test gfx-farm-status-exterior-styles gfx-farm-status-exterior-styles-test gfx-farm-status-selector-icon gfx-farm-status-selector-icon-test gfx-farm-status-selector-icon-all gfx-clock-font gfx-clock-font-test gfx-clock-font-all gfx-clock-font-edit-test gfx-farm-status-creature-icons gfx-farm-status-creature-icons-test gfx-farm-status-creature-icons-all gfx-farm-status-task-marker gfx-farm-status-task-marker-test gfx-farm-status-task-marker-all gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal-nonwinter-all gfx-seasonal-nonwinter-reference gfx-seasonal-nonwinter-edit-test gfx-seasonal-winter gfx-seasonal-winter-test gfx-seasonal-winter-all gfx-seasonal-winter-reference gfx-seasonal-winter-edit-test gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-background-edit-test gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-tilemaps-edit-test gfx-intro-startup-visual gfx-intro-startup-visual-export gfx-intro-startup-visual-reference gfx-intro-startup-visual-test gfx-intro-startup-visual-all gfx-intro-startup-visual-edit-test gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-animal-festival-icons gfx-animal-festival-icons-test gfx-animal-festival-icons-all resource-archive-audit unpack-vram-inventory dma-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
+.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-resource-archive gfx-farm-status-resource-archive-test gfx-farm-status-resource-archive-all gfx-farm-status-resource-archive-patch-test gfx-farm-status-resource-archive-edit-test gfx-farm-status-winter gfx-farm-status-winter-test gfx-farm-status-winter-all gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-secondary-tilemaps-edit-test gfx-farm-status-exterior-styles gfx-farm-status-exterior-styles-test gfx-farm-status-selector-icon gfx-farm-status-selector-icon-test gfx-farm-status-selector-icon-all gfx-clock-font gfx-clock-font-test gfx-clock-font-all gfx-farm-status-creature-icons gfx-farm-status-creature-icons-test gfx-farm-status-creature-icons-all gfx-farm-status-task-marker gfx-farm-status-task-marker-test gfx-farm-status-task-marker-all gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal-nonwinter-all gfx-seasonal-nonwinter-reference gfx-seasonal-winter gfx-seasonal-winter-test gfx-seasonal-winter-all gfx-seasonal-winter-reference gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-tilemaps-edit-test gfx-intro-startup-visual gfx-intro-startup-visual-export gfx-intro-startup-visual-reference gfx-intro-startup-visual-test gfx-intro-startup-visual-all gfx-intro-startup-visual-edit-test gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-animal-festival-icons gfx-animal-festival-icons-test gfx-animal-festival-icons-all resource-archive-audit unpack-vram-inventory dma-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
 .PHONY: gfx-map-resources-reference gfx-map-resources-edit-test gfx-map-state-palettes gfx-map-state-palettes-test gfx-map-state-templates gfx-map-state-templates-test gfx-map-state-templates-all gfx-map-state-templates-patch-test gfx-map-state-templates-edit-test unpack-inventory unpack-coverage-inventory copy-ram-inventory gfx-raw-vram-tiles-ui-build
 .PHONY: indexed-resource-archive-inventory
 .PHONY: gfx-farm-status-task-ui-tile gfx-farm-status-task-ui-tile-test gfx-farm-status-task-ui-tile-all
@@ -2253,8 +2238,6 @@ gfx-farm-status-all:
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-farm-status-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-farm-status-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-farm-status-test
-gfx-farm-status-edit-test: $(FARM_STATUS_TILES_SOURCE) $(FARM_STATUS_PALETTE_SOURCE) $(FARM_STATUS_CODEC) $(TILE_GRID_TOOL) $(FARM_STATUS_PALETTE_TOOL) baserom_us.gba
-	@$(PYTHON) tools/farm_status_edit_test.py baserom_us.gba $(FARM_STATUS_TILES_SOURCE) $(FARM_STATUS_PALETTE_SOURCE)
 gfx-farm-status-resource-archive: $(FARM_STATUS_RESOURCE_ARCHIVE_OUTPUT)
 gfx-farm-status-resource-archive-test: gfx-farm-status-resource-archive $(FARM_STATUS_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM)
 	@$(PYTHON) $(FARM_STATUS_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM) \
@@ -3170,8 +3153,6 @@ gfx-farm-status-winter-all:
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-farm-status-winter-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-farm-status-winter-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-farm-status-winter-test
-gfx-farm-status-winter-edit-test: $(FARM_STATUS_WINTER_TILES_SOURCE) $(FARM_STATUS_CODEC) $(TILE_GRID_TOOL) baserom_us.gba
-	@$(PYTHON) tools/farm_status_winter_edit_test.py baserom_us.gba $(FARM_STATUS_WINTER_TILES_SOURCE)
 gfx-seasonal-nonwinter: $(SEASONAL_NONWINTER_OUTPUTS)
 gfx-seasonal-nonwinter-test: gfx-seasonal-nonwinter $(SEASONAL_NONWINTER_TOOL) $(BASE_ROM)
 	@$(PYTHON) $(SEASONAL_NONWINTER_TOOL) verify --region $(SEASONAL_NONWINTER_REGION) --rom $(BASE_ROM) \
@@ -3183,8 +3164,6 @@ gfx-seasonal-nonwinter-all:
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-seasonal-nonwinter-test
 gfx-seasonal-nonwinter-reference: $(SEASONAL_NONWINTER_TOOL) $(SEASONAL_NONWINTER_TILES_SOURCE) $(SEASONAL_NONWINTER_PALETTE_SOURCE) $(SEASONAL_NONWINTER_MAP_SOURCES)
 	@$(PYTHON) $(SEASONAL_NONWINTER_TOOL) reference --source-dir $(SEASONAL_NONWINTER_SOURCE_DIR) --reference-dir $(SEASONAL_NONWINTER_REFERENCE_DIR) --replace
-gfx-seasonal-nonwinter-edit-test: $(SEASONAL_NONWINTER_TILES_SOURCE) tools/seasonal_background_edit_test.py tools/marvelous_codec.py baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) tools/seasonal_background_edit_test.py
 gfx-seasonal-winter: $(SEASONAL_WINTER_OUTPUTS)
 gfx-seasonal-winter-test: gfx-seasonal-winter $(SEASONAL_WINTER_TOOL) $(BASE_ROM)
 	@$(PYTHON) $(SEASONAL_WINTER_TOOL) verify --region $(SEASONAL_WINTER_REGION) --rom $(BASE_ROM) \
@@ -3196,8 +3175,6 @@ gfx-seasonal-winter-all:
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-seasonal-winter-test
 gfx-seasonal-winter-reference: $(SEASONAL_WINTER_TOOL) $(SEASONAL_WINTER_TILES_SOURCE) $(SEASONAL_WINTER_PALETTE_SOURCE) $(SEASONAL_WINTER_BG29_SOURCE) $(SEASONAL_WINTER_SHARED_BG30_SOURCE)
 	@$(PYTHON) $(SEASONAL_WINTER_TOOL) reference --source-dir $(SEASONAL_WINTER_SOURCE_DIR) --reference-dir $(SEASONAL_WINTER_REFERENCE_DIR) --replace
-gfx-seasonal-winter-edit-test: $(SEASONAL_WINTER_TILES_SOURCE) tools/seasonal_winter_background_edit_test.py tools/marvelous_codec.py baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) tools/seasonal_winter_background_edit_test.py
 gfx-farm-status-previews: $(FARM_STATUS_TILES_SOURCE) $(FARM_STATUS_PALETTE_SOURCE) $(FARM_STATUS_TILEMAP_SOURCES) $(FARM_STATUS_PREVIEW_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(FARM_STATUS_PREVIEW_TOOL) --tiles-source $(FARM_STATUS_TILES_SOURCE) --palettes-source $(FARM_STATUS_PALETTE_SOURCE) --tilemaps-source $(FARM_STATUS_TILEMAP_SOURCE_DIR) --rom baserom_us.gba --region us --output $(FARM_STATUS_REFERENCE_DIR) --replace --verify-jp baserom_jp.gba --verify-us baserom_us.gba --verify-eu baserom_eu.gba --verify-de baserom_de.gba
 gfx-farm-status-tilemaps: $(FARM_STATUS_TILEMAP_BIN)
@@ -3241,16 +3218,18 @@ gfx-farm-status-selector-icon-all:
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-farm-status-selector-icon-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-farm-status-selector-icon-test
 gfx-clock-font: $(CLOCK_FONT_OUTPUTS)
-gfx-clock-font-test: gfx-clock-font $(CLOCK_FONT_TOOL) baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(CLOCK_FONT_TOOL) verify --tail $(CLOCK_FONT_TAIL) --rom us baserom_us.gba $(CLOCK_FONT_US_EU_SOURCE) --rom eu baserom_eu.gba $(CLOCK_FONT_US_EU_SOURCE) --rom de baserom_de.gba $(CLOCK_FONT_DE_SOURCE) --built us $(CLOCK_FONT_US_EU_OUTPUT) --built eu $(CLOCK_FONT_US_EU_OUTPUT) --built de $(CLOCK_FONT_DE_OUTPUT)
+gfx-clock-font-test: gfx-clock-font $(GFX_RANGE_VERIFY) $(CLOCK_FONT_TAIL) baserom_us.gba baserom_eu.gba baserom_de.gba
+	@$(PYTHON) $(GFX_RANGE_VERIFY) baserom_us.gba --offset 0x75A440 --length 0x1000 --input $(CLOCK_FONT_US_EU_OUTPUT)
+	@$(PYTHON) $(GFX_RANGE_VERIFY) baserom_eu.gba --offset 0x75A49C --length 0x1000 --input $(CLOCK_FONT_US_EU_OUTPUT)
+	@$(PYTHON) $(GFX_RANGE_VERIFY) baserom_de.gba --offset 0x4E195C --length 0x1000 --input $(CLOCK_FONT_DE_OUTPUT)
+	@$(PYTHON) $(GFX_RANGE_VERIFY) baserom_us.gba --offset 0x75B440 --length 4 --input $(CLOCK_FONT_TAIL)
+	@$(PYTHON) $(GFX_RANGE_VERIFY) baserom_eu.gba --offset 0x75B49C --length 4 --input $(CLOCK_FONT_TAIL)
+	@$(PYTHON) $(GFX_RANGE_VERIFY) baserom_de.gba --offset 0x4E295C --length 4 --input $(CLOCK_FONT_TAIL)
 gfx-clock-font-all: gfx-clock-font-test
 	@$(MAKE) --no-print-directory GAME_REGION=JP build/jp/asm/data/data_0813B288.o
 	@$(MAKE) --no-print-directory GAME_REGION=US build/us/asm/data/data_0813B288.o
 	@$(MAKE) --no-print-directory GAME_REGION=EU build/eu/asm/data/data_0813B288.o
 	@$(MAKE) --no-print-directory GAME_REGION=DE build/de/asm/data/data_0813B288.o
-gfx-clock-font-edit-test: $(CLOCK_FONT_TOOL) $(CLOCK_FONT_US_EU_SOURCE) $(CLOCK_FONT_DE_SOURCE)
-	@$(PYTHON) $(CLOCK_FONT_TOOL) edit-test --source $(CLOCK_FONT_US_EU_SOURCE)
-	@$(PYTHON) $(CLOCK_FONT_TOOL) edit-test --source $(CLOCK_FONT_DE_SOURCE)
 gfx-intro-background: $(INTRO_BACKGROUND_TILES_BIN) $(INTRO_BACKGROUND_PALETTE_BIN) $(INTRO_BACKGROUND_PACKED_BIN)
 gfx-intro-background-test: gfx-intro-background $(BASE_ROM) $(GFX_RANGE_VERIFY)
 	@$(PYTHON) $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(INTRO_BACKGROUND_STREAM_OFFSET) --input $(INTRO_BACKGROUND_PACKED_BIN) --sha256 $(INTRO_BACKGROUND_STREAM_SHA256)
@@ -3260,8 +3239,6 @@ gfx-intro-background-all:
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-intro-background-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-intro-background-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-intro-background-test
-gfx-intro-background-edit-test: $(INTRO_BACKGROUND_TILES_SOURCE) $(INTRO_BACKGROUND_PALETTE_SOURCE) $(FARM_STATUS_CODEC) $(TILE_GRID_TOOL) $(FARM_STATUS_PALETTE_TOOL) baserom_us.gba
-	@$(PYTHON) tools/intro_background_edit_test.py baserom_us.gba $(INTRO_BACKGROUND_TILES_SOURCE) $(INTRO_BACKGROUND_PALETTE_SOURCE)
 gfx-intro-objects: $(INTRO_OBJECTS_STAMP)
 gfx-intro-objects-test: gfx-intro-objects $(BASE_ROM) $(INTRO_OBJECTS_TOOL)
 	@$(PYTHON) $(INTRO_OBJECTS_TOOL) verify --region $(INTRO_OBJECTS_REGION) --rom $(BASE_ROM) \
@@ -3601,7 +3578,6 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-farm-house-palettes-patch-test
 	@$(MAKE) --no-print-directory gfx-farm-house-palettes-edit-test
 	@$(MAKE) --no-print-directory gfx-farm-status-all
-	@$(MAKE) --no-print-directory gfx-farm-status-edit-test
 	@$(MAKE) --no-print-directory gfx-farm-status-resource-archive-all
 	@$(MAKE) --no-print-directory gfx-farm-status-resource-archive-patch-test
 	@$(MAKE) --no-print-directory gfx-farm-status-resource-archive-edit-test
@@ -3758,9 +3734,7 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-farm-status-winter-all
 	@$(MAKE) --no-print-directory gfx-farm-status-winter-edit-test
 	@$(MAKE) --no-print-directory gfx-seasonal-nonwinter-all
-	@$(MAKE) --no-print-directory gfx-seasonal-nonwinter-edit-test
 	@$(MAKE) --no-print-directory gfx-seasonal-winter-all
-	@$(MAKE) --no-print-directory gfx-seasonal-winter-edit-test
 	@$(MAKE) --no-print-directory gfx-farm-status-tilemaps-all
 	@$(MAKE) --no-print-directory gfx-farm-status-secondary-tilemaps-all
 	@$(MAKE) --no-print-directory gfx-farm-status-secondary-tilemaps-edit-test
@@ -3768,9 +3742,7 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-farm-status-exterior-styles-edit-test
 	@$(MAKE) --no-print-directory gfx-farm-status-selector-icon-all
 	@$(MAKE) --no-print-directory gfx-clock-font-all
-	@$(MAKE) --no-print-directory gfx-clock-font-edit-test
 	@$(MAKE) --no-print-directory gfx-intro-background-all
-	@$(MAKE) --no-print-directory gfx-intro-background-edit-test
 	@$(MAKE) --no-print-directory gfx-intro-objects-all
 	@$(MAKE) --no-print-directory gfx-intro-objects-edit-test
 	@$(MAKE) --no-print-directory gfx-intro-startup-tilemaps-all

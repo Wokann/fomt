@@ -15,15 +15,12 @@ palette-bank selection that a flattened image would lose.
 
 ```console
 make gfx-seasonal-winter-all
-make gfx-seasonal-winter-edit-test
 make gfx-seasonal-winter-reference
 ```
 
 The first command verifies unchanged JP, US, EU and DE build outputs against
-their original ROM ranges.  The second makes a one-byte source edit in memory,
-strictly decodes the rebuilt native stream, and verifies that it fits the
-immutable 0x212C-byte slot.  Any real edit that needs more than that slot is
-rejected rather than overwriting the following resource.
+their original ROM ranges. The builder checks that an edited stream fits the
+immutable 0x212C-byte slot and rejects an oversized result.
 
 The reference command writes `../reference/winter_bg_30.png` and
 `../reference/winter_bg_29.png` from the same native tile grid, six palette

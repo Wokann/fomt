@@ -94480,7 +94480,7 @@ gUnk_085275D0:
 	.incbin "graphics/ui/farm_status/shared/base_tiles.0x70"
 	.global gUnk_08529794
 gUnk_08529794:
-	.incbin "graphics/ui/farm_status/shared/base_tiles.gbapal"
+	.incbin "graphics/ui/farm_status/shared/base_palettes.gbapal"
 	.global gUnk_08529994
 gUnk_08529994:
 	FOMT_FARM_STATUS_EXTERIOR_STYLE doghouse
@@ -157009,7 +157009,7 @@ gUnk_08743058:
 	.incbin "build/de/graphics/intro_scene/background_tiles.0x70"
 	.global gUnk_08747A14
 gUnk_08747A14:
-	.incbin "build/de/graphics/intro_scene/background_palettes.gbapal"
+	.incbin "graphics/intro_scene/shared/background_palettes.gbapal"
 	.global gUnk_08747A74
 gUnk_08747A74:
 	.incbin "build/de/graphics/intro_scene/indexed_archive/archive.0x70"
@@ -158775,7 +158775,8 @@ gUnk_0875A438:
 	.byte 0xB0, 0x41, 0xB1, 0x41, 0xD0, 0x41, 0xD1, 0x41
 	.global gUnk_0875A440
 gUnk_0875A440:
-	.incbin "graphics/ui/clock_font/de/clock_font.bin"
+	.incbin "graphics/ui/clock_font/de/glyph_indices.4bpp"
+	.incbin "graphics/ui/clock_font/shared/tail.bin"
 	.global gUnk_0875B444
 gUnk_0875B444:
 	.byte 0x06, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x02, 0x00

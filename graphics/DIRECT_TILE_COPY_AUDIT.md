@@ -23,7 +23,7 @@ font metadata, so they must not be silently discarded or drawn as a tile.
 | --- | ---: | ---: | --- |
 | US | `0x75A440` | `0x1004` | Baseline overseas payload |
 | EU | `0x75A49C` | `0x1004` | Byte-identical to US; only its physical placement differs |
-| DE | `0x75C4C0` | `0x1004` | Same direct-copy format but distinct localized bytes |
+| DE | `0x4E195C` | `0x1004` | Same direct-copy format but distinct localized bytes |
 | JP | — | — | No corresponding overseas `gClockFont` consumer or byte-identical payload has been established |
 
 The glyph-copy calls do not copy a palette with this payload.  The palette
@@ -31,7 +31,7 @@ selection and any character-to-glyph mapping still need independent runtime
 evidence.  The set is therefore managed as an **indexed source**, not as an
 in-game colour rendering: `graphics/ui/clock_font/{us_eu,de}/glyph_indices.png`
 uses a neutral index palette solely to expose the native pixel values.  Its
-source palette is editor-only and is ignored during rebuilding.  The pipeline
-reorders its 16-by-8 glyph sheet back to the original 128 sequential records,
-then appends the verified four-byte `shared/tail.bin` unchanged.  This supplies
+source palette is editor-only and is ignored during rebuilding. The shared
+gbagfx rule writes 128 sequential 4bpp tile records, and assembly appends
+the verified four-byte `shared/tail.bin` unchanged. This supplies
 a reversible glyph-editing path without claiming an unproven display palette.
