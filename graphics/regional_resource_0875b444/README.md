@@ -11,18 +11,20 @@ trees therefore follow the two verified byte domains:
 | `jp/` | JP | `0x4E07CC` | `a3aff94806fef413110271384ca4eed8aef15a02c968528e68935b1f73e18ccb` |
 | `overseas/` | US / EU / DE | `0x75B444` / `0x75B4A0` / `0x4E2960` | `8da8ca4fbff49ad00f1ba1f81243cb56718b42741524531b1cf3e307a5693218` |
 
-`full/group_*.png` are editable indexed-PNG sources. `preview/group_*.png`
-are rendered from the native OAM records for inspection only. Selection,
-descriptor, OAM, tile-allocation, and palette tables remain inside the native
-fixed archive; this pipeline deliberately has no JSON layout sidecar.
+`full/group_*.png` are editable indexed-PNG sources. The ordinary graphics
+rules convert them to `.4bpp` tiles and a `.gbapal` palette. The native
+selection, descriptor, OAM, and entry tables are in `archive.inc`, included
+at their original locations by `asm/data/data_0813B288.s` (and its DE
+initial fragment). The linker assembles the archive directly; the build
+does not read a base ROM or patch the linked ROM for this resource.
+`preview/group_*.png` are OAM-rendered inspection images only.
 
 ```console
-make gfx-regional-resource-0875b444-all
-make gfx-regional-resource-0875b444-patch-test
-make gfx-regional-resource-0875b444-edit-test
+make gfx-regional-resource-0875b444 GAME_REGION=JP
+make -j4 fomt_jp
+make -j4 fomt_us
 ```
 
-The first command verifies unchanged reconstruction for JP, US, EU, and DE.
-The second confirms that patching unchanged outputs preserves every retail ROM
-byte-for-byte. The third changes one visible source pixel in each domain and
-confirms the rebuilt archive remains inside its original fixed allocation.
+The first command generates JP tiles and palette from PNG. The ROM targets
+link the selected assets and can be checked against their retail SHA-1 values.
+The same targets for EU and DE verify the shared overseas asset domain.
