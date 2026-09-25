@@ -151300,7 +151300,7 @@ gUnk_0874EB40:
 	.incbin "graphics/ui/scene_08077810/shared/tiles.gbapal"
 	.global gUnk_0874EB60
 gUnk_0874EB60:
-	.incbin "build/de/graphics/ui/scene_08077810/layer_1.tilemap.0x70"
+	.incbin "graphics/ui/scene_08077810/shared/layer_1.tilemap.lz"
 	.global gUnk_0874ECCC
 gUnk_0874ECCC:
 	.incbin "graphics/ui/scene_08077810/shared/layer_0.tilemap.lz"

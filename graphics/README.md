@@ -247,15 +247,15 @@ its two tilemaps, tile stream, and sixteen BGR555 palette banks are included at
 The rendered PNGs remain previews only; the native source files are the
 authoritative editable inputs.
 
-`ui/scene_08077810/shared/layer_0.tilemap` is an overseas-only native 32-by-32
-BG map: US, EU and DE use the exact same Huffman-4/LZ3 stream at their
-respective `gUnk_0874ECCC` locations. It is included directly by that original
-assembly symbol. JP deliberately has no generated counterpart because its
-startup code references a different resource set with different decoded
-lengths. The map is stored as native entries, not a guessed PNG composite:
+`ui/scene_08077810/shared/layer_0.tilemap` and `layer_1.tilemap` are native
+overseas BG maps. US, EU and DE share the same Huffman-4/LZ3 and
+Huffman-4/LZ0 streams, which are generated beside those sources and included
+directly at `gUnk_0874ECCC` and `gUnk_0874EB60`. JP instead has a distinct
+resource set in `ui/scene_08077810/jp/`. The maps remain native entries, not
+guessed PNG composites:
 
 ```console
-make gfx-ui-scene-08077810-patch-test
+make gfx-ui-scene-08077810-all
 ```
 
 ## FarmHouse descriptor source buffers
