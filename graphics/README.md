@@ -77,30 +77,12 @@ build paths. The single-width output is 0x16D4 bytes and hashes to
 The double-width output is 0x288F0 bytes and hashes to
 `bb7ffb1ed47acb9a05d2789eae9f3236945a4892df746c5a4f9f1dde706c4d3e`.
 
-The PNG file itself is the authored resource; no JSON manifest controls its
-name, layout, or conversion. The verified regional ROM interval is supplied
-explicitly when regenerating a source image. For the single-width font the JP
-interval is `0x7515A8`, length `0x16D4`; all four regions have the same
-payload hash. Regenerate it with only Python's standard library plus the two
-locally built graphics tools:
-
-```console
-python tools/extract_gfx.py font-1bpp \
-  --rom baserom_jp.gba \
-  --offset 0x7515A8 --length 0x16D4 \
-  --sha256 92bc2a39dd9caf5e0f02a8ce7518f223eabe6c491bc4e05b8d1d2104f731754c \
-  --glyph-count 487 --glyph-width 8 --grid-columns 16 \
-  --output graphics/font/shared/single_width_font.png \
-  --gbagfx tools/gbagfx/gbagfx \
-  --fontpad tools/fontpad/fontpad
-```
-
-For US / EU / DE the corresponding offsets are `0x4F90CC` / `0x4F9128` /
-`0x71DDD4`; keep the remaining arguments identical. On Windows, use the
-corresponding `.exe` paths (or invoke the script through `py -3`). The
-extractor verifies the selected ROM range hash before touching the PNG; it
-refuses an unverified or mismatched ROM instead of silently producing a
-plausible but incorrect asset.
+The PNG files are the authored resources; no JSON manifest maps them onto
+ROM ranges. The original single-width JP interval is `0x7515A8` with length
+`0x16D4`; US / EU / DE use `0x4F90CC` / `0x4F9128` / `0x71DDD4`.
+Use `make gfx-fonts-test` to compare rebuilt bytes with the four retail ROMs.
+The old one-off ROM-to-PNG extraction script is not needed to build or check
+the tracked source images.
 
 ## Shared dialogue portraits
 

@@ -126,28 +126,20 @@ delivery path.
 
 ## Unclassified ROM ranges
 
-Assembly still contains many direct `baserom_*.gba` includes.  The inventory
-now labels each entry by its assembly placement: `code` is a `.text` ROM
-fragment and is not an asset candidate; `data` remains an unclassified data
-candidate; `unknown` means the standalone scanner cannot recover its parent
-section.  A data include must not be converted merely because it looks like
-tile data: first establish the exact format, bounds, palette/layout
-relationship, consuming code, and four-region byte round trip.
-
-Generate a current list with:
+Assembly no longer contains direct `baserom_*.gba` includes. The earlier
+one-off scanners for those includes are therefore no longer part of the
+toolset. Remaining unclassified resources must still be identified from
+their consuming code, exact bounds, format and four-region byte round trip;
+the absence of direct ROM includes does not mean every resource has an
+editable source. The code-backed Unpack inventories remain available:
 
 ```console
-python tools/gfx_incbin_inventory.py . --csv build/gfx_incbin_inventory.csv
-python tools/gfx_compression_inventory.py . --csv build/gfx_compression_inventory.csv
 python tools/unpack_vram_inventory.py . --csv build/unpack_vram_inventory.csv
 make unpack-coverage-inventory
 ```
 
 All generated CSV files are local audit artifacts, not source artwork. The
-compression inventory records only direct ranges that begin with a strictly
-decodable `0x70` stream. Its enclosing `incbin` boundary is not automatically
-the compressed stream's boundary, and a decoded stream is not automatically a
-graphics resource. The Unpack-to-VRAM inventory follows only simple literal
+Unpack-to-VRAM inventory follows only simple literal
 and register data flow in assembly, so its rows are code-backed resource leads,
 not assertions about tile, palette, or OAM format. Run it with
 `make unpack-vram-inventory`; the current assembly yields 44 such calls.
