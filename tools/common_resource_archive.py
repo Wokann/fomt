@@ -46,9 +46,6 @@ PROFILES = {
     "small-companion": ArchiveProfile(
         (3, 16, 3, 52, 2, 0, 16), (), "small companion"
     ),
-    "small-ui": ArchiveProfile(
-        (2, 4, 2, 36, 2, 0, 5), (3,), "small UI resource"
-    ),
     "cooking-ui": ArchiveProfile(
         (1, 3, 3, 40, 1, 0, 4), (2,), "cooking UI resource"
     ),
