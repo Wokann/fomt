@@ -566,28 +566,20 @@ SHARED_RESOURCE_087506E0_OFFSET_DE := 0x4D7BFC
 SHARED_RESOURCE_087506E0_OFFSET := $(SHARED_RESOURCE_087506E0_OFFSET_$(GAME_REGION))
 SHARED_RESOURCE_087506E0_LENGTH := 0x56C
 SHARED_RESOURCE_087506E0_SHA256 := 47327d507aaa6887ea219a7a8facf07c41f18c0560d87d2ee74a448d5c989661
-SHARED_RESOURCE_0875352C_TOOL := tools/common_resource_archive.py
 SHARED_RESOURCE_0875352C_SOURCE_DIR := graphics/shared_resource_0875352c
-SHARED_RESOURCE_0875352C_SOURCES := $(wildcard $(SHARED_RESOURCE_0875352C_SOURCE_DIR)/full/*.png)
-SHARED_RESOURCE_0875352C_OUTPUT := $(BUILD_DIR)/graphics/shared_resource_0875352c/shared_resource_0875352c.bin
+SHARED_RESOURCE_0875352C_ASSETS := $(SHARED_RESOURCE_0875352C_SOURCE_DIR)/full/group_000.4bpp $(SHARED_RESOURCE_0875352C_SOURCE_DIR)/full/group_000.gbapal
 SHARED_RESOURCE_0875352C_OFFSET_JP := 0x4D94D8
 SHARED_RESOURCE_0875352C_OFFSET_US := 0x75352C
 SHARED_RESOURCE_0875352C_OFFSET_EU := 0x753588
 SHARED_RESOURCE_0875352C_OFFSET_DE := 0x4DAA48
 SHARED_RESOURCE_0875352C_OFFSET := $(SHARED_RESOURCE_0875352C_OFFSET_$(GAME_REGION))
-SHARED_RESOURCE_0875352C_LENGTH := 0xDC
-SHARED_RESOURCE_0875352C_SHA256 := 38e1fc4d3ae2dca18201483a01c7d8c4f2f349d647714657819d26781d0baa42
-SHARED_RESOURCE_08753608_TOOL := tools/common_resource_archive.py
 SHARED_RESOURCE_08753608_SOURCE_DIR := graphics/shared_resource_08753608
-SHARED_RESOURCE_08753608_SOURCES := $(wildcard $(SHARED_RESOURCE_08753608_SOURCE_DIR)/full/*.png)
-SHARED_RESOURCE_08753608_OUTPUT := $(BUILD_DIR)/graphics/shared_resource_08753608/shared_resource_08753608.bin
+SHARED_RESOURCE_08753608_ASSETS := $(SHARED_RESOURCE_08753608_SOURCE_DIR)/full/group_000.4bpp $(SHARED_RESOURCE_08753608_SOURCE_DIR)/full/group_000.gbapal
 SHARED_RESOURCE_08753608_OFFSET_JP := 0x4D95B4
 SHARED_RESOURCE_08753608_OFFSET_US := 0x753608
 SHARED_RESOURCE_08753608_OFFSET_EU := 0x753664
 SHARED_RESOURCE_08753608_OFFSET_DE := 0x4DAB24
 SHARED_RESOURCE_08753608_OFFSET := $(SHARED_RESOURCE_08753608_OFFSET_$(GAME_REGION))
-SHARED_RESOURCE_08753608_LENGTH := 0xDC
-SHARED_RESOURCE_08753608_SHA256 := 7be849ea577613d60c0442e0d6621854079e92ca590fd7341cd3c1b8dc37f073
 SHARED_RESOURCE_087536E4_TOOL := tools/common_resource_archive.py
 SHARED_RESOURCE_087536E4_SOURCE_DIR := graphics/shared_resource_087536e4
 SHARED_RESOURCE_087536E4_SOURCES := $(wildcard $(SHARED_RESOURCE_087536E4_SOURCE_DIR)/full/*.png)
@@ -1309,6 +1301,7 @@ GRAPHICS_ASSETS = \
 	$(FARM_STATUS_PACKED_BIN) $(FARM_STATUS_RESOURCE_ARCHIVE_OUTPUT) \
 	$(COMMON_RESOURCE_ARCHIVE_OUTPUT) $(SMALL_COMPANION_ARCHIVE_OUTPUT) \
 	$(SHARED_RESOURCE_0873D5FC_ASSETS) \
+	$(SHARED_RESOURCE_0875352C_ASSETS) $(SHARED_RESOURCE_08753608_ASSETS) \
 	$(FARM_STATUS_WINTER_OUTPUTS) $(FARM_STATUS_PALETTE_BIN) \
 	$(FARM_STATUS_SECONDARY_TILEMAP_STAMP) \
 	$(FARM_STATUS_EXTERIOR_STYLE_STAMP) $(FARM_STATUS_SELECTOR_ICON_OUTPUTS) \
@@ -1540,12 +1533,6 @@ $(SHARED_RESOURCE_0874EE38_OUTPUT): $(SHARED_RESOURCE_0874EE38_SOURCES) $(SHARED
 $(SHARED_RESOURCE_087506E0_OUTPUT): $(SHARED_RESOURCE_087506E0_SOURCES) $(SHARED_RESOURCE_087506E0_TOOL) $(BASE_ROM)
 	@mkdir -p $(dir $@)
 	@$(PYTHON) $(SHARED_RESOURCE_087506E0_TOOL) $(BASE_ROM) --profile shared-087506e0 --offset $(SHARED_RESOURCE_087506E0_OFFSET) --length $(SHARED_RESOURCE_087506E0_LENGTH) --sha256 $(SHARED_RESOURCE_087506E0_SHA256) build --source-dir $(SHARED_RESOURCE_087506E0_SOURCE_DIR) --output $@
-$(SHARED_RESOURCE_0875352C_OUTPUT): $(SHARED_RESOURCE_0875352C_SOURCES) $(SHARED_RESOURCE_0875352C_TOOL) $(BASE_ROM)
-	@mkdir -p $(dir $@)
-	@$(PYTHON) $(SHARED_RESOURCE_0875352C_TOOL) $(BASE_ROM) --profile shared-0875352c --offset $(SHARED_RESOURCE_0875352C_OFFSET) --length $(SHARED_RESOURCE_0875352C_LENGTH) --sha256 $(SHARED_RESOURCE_0875352C_SHA256) build --source-dir $(SHARED_RESOURCE_0875352C_SOURCE_DIR) --output $@
-$(SHARED_RESOURCE_08753608_OUTPUT): $(SHARED_RESOURCE_08753608_SOURCES) $(SHARED_RESOURCE_08753608_TOOL) $(BASE_ROM)
-	@mkdir -p $(dir $@)
-	@$(PYTHON) $(SHARED_RESOURCE_08753608_TOOL) $(BASE_ROM) --profile shared-08753608 --offset $(SHARED_RESOURCE_08753608_OFFSET) --length $(SHARED_RESOURCE_08753608_LENGTH) --sha256 $(SHARED_RESOURCE_08753608_SHA256) build --source-dir $(SHARED_RESOURCE_08753608_SOURCE_DIR) --output $@
 $(SHARED_RESOURCE_087536E4_OUTPUT): $(SHARED_RESOURCE_087536E4_SOURCES) $(SHARED_RESOURCE_087536E4_TOOL) $(BASE_ROM)
 	@mkdir -p $(dir $@)
 	@$(PYTHON) $(SHARED_RESOURCE_087536E4_TOOL) $(BASE_ROM) --profile shared-087536e4 --offset $(SHARED_RESOURCE_087536E4_OFFSET) --length $(SHARED_RESOURCE_087536E4_LENGTH) --sha256 $(SHARED_RESOURCE_087536E4_SHA256) build --source-dir $(SHARED_RESOURCE_087536E4_SOURCE_DIR) --output $@
@@ -1793,8 +1780,8 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 .PHONY: gfx-shared-resource-087409e4 gfx-shared-resource-087409e4-test gfx-shared-resource-087409e4-all gfx-shared-resource-087409e4-patch-test gfx-shared-resource-087409e4-edit-test
 .PHONY: gfx-shared-resource-0874ee38 gfx-shared-resource-0874ee38-test gfx-shared-resource-0874ee38-all gfx-shared-resource-0874ee38-patch-test gfx-shared-resource-0874ee38-edit-test
 .PHONY: gfx-shared-resource-087506e0 gfx-shared-resource-087506e0-test gfx-shared-resource-087506e0-all gfx-shared-resource-087506e0-patch-test gfx-shared-resource-087506e0-edit-test
-.PHONY: gfx-shared-resource-0875352c gfx-shared-resource-0875352c-test gfx-shared-resource-0875352c-all gfx-shared-resource-0875352c-patch-test gfx-shared-resource-0875352c-edit-test
-.PHONY: gfx-shared-resource-08753608 gfx-shared-resource-08753608-test gfx-shared-resource-08753608-all gfx-shared-resource-08753608-patch-test gfx-shared-resource-08753608-edit-test
+.PHONY: gfx-shared-resource-0875352c gfx-shared-resource-0875352c-test gfx-shared-resource-0875352c-all
+.PHONY: gfx-shared-resource-08753608 gfx-shared-resource-08753608-test gfx-shared-resource-08753608-all
 .PHONY: gfx-shared-resource-087536e4 gfx-shared-resource-087536e4-test gfx-shared-resource-087536e4-all gfx-shared-resource-087536e4-patch-test gfx-shared-resource-087536e4-edit-test
 .PHONY: gfx-shared-resource-08755154 gfx-shared-resource-08755154-test gfx-shared-resource-08755154-all gfx-shared-resource-08755154-patch-test gfx-shared-resource-08755154-edit-test
 .PHONY: gfx-regional-resource-0871d51c gfx-regional-resource-0871d51c-test gfx-regional-resource-0871d51c-all gfx-regional-resource-0871d51c-patch-test gfx-regional-resource-0871d51c-edit-test gfx-regional-resource-0871d51c-edit-test-one
@@ -2793,32 +2780,24 @@ gfx-shared-resource-087506e0-patch-test: gfx-shared-resource-087506e0-all
 gfx-shared-resource-087506e0-edit-test:
 	@$(PYTHON) $(SHARED_RESOURCE_087506E0_TOOL) baserom_jp.gba --profile shared-087506e0 --offset 0x4D668C --length $(SHARED_RESOURCE_087506E0_LENGTH) --sha256 $(SHARED_RESOURCE_087506E0_SHA256) edit-test --source-dir $(SHARED_RESOURCE_087506E0_SOURCE_DIR)
 
-gfx-shared-resource-0875352c: $(SHARED_RESOURCE_0875352C_OUTPUT)
-gfx-shared-resource-0875352c-test: gfx-shared-resource-0875352c $(SHARED_RESOURCE_0875352C_TOOL) $(BASE_ROM)
-	@$(PYTHON) $(SHARED_RESOURCE_0875352C_TOOL) $(BASE_ROM) --profile shared-0875352c --offset $(SHARED_RESOURCE_0875352C_OFFSET) --length $(SHARED_RESOURCE_0875352C_LENGTH) --sha256 $(SHARED_RESOURCE_0875352C_SHA256) verify --source-dir $(SHARED_RESOURCE_0875352C_SOURCE_DIR)
+gfx-shared-resource-0875352c: $(SHARED_RESOURCE_0875352C_ASSETS)
+gfx-shared-resource-0875352c-test: gfx-shared-resource-0875352c $(GFX_RANGE_VERIFY) $(BASE_ROM)
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$(($(SHARED_RESOURCE_0875352C_OFFSET) + 0x2C)) --length 0x80 --input $(word 1,$(SHARED_RESOURCE_0875352C_ASSETS))
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$(($(SHARED_RESOURCE_0875352C_OFFSET) + 0xB0)) --length 0x20 --input $(word 2,$(SHARED_RESOURCE_0875352C_ASSETS))
 gfx-shared-resource-0875352c-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-shared-resource-0875352c-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-shared-resource-0875352c-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-shared-resource-0875352c-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-shared-resource-0875352c-test
-gfx-shared-resource-0875352c-patch-test: gfx-shared-resource-0875352c-all
-	@$(PYTHON) $(SHARED_RESOURCE_0875352C_TOOL) baserom_jp.gba --profile shared-0875352c --offset 0x4D94D8 --length $(SHARED_RESOURCE_0875352C_LENGTH) --sha256 $(SHARED_RESOURCE_0875352C_SHA256) patch-test --archive jp build/jp/graphics/shared_resource_0875352c/shared_resource_0875352c.bin --archive us build/us/graphics/shared_resource_0875352c/shared_resource_0875352c.bin --archive eu build/eu/graphics/shared_resource_0875352c/shared_resource_0875352c.bin --archive de build/de/graphics/shared_resource_0875352c/shared_resource_0875352c.bin --all-rom jp baserom_jp.gba 0x4D94D8 --all-rom us baserom_us.gba 0x75352C --all-rom eu baserom_eu.gba 0x753588 --all-rom de baserom_de.gba 0x4DAA48
-gfx-shared-resource-0875352c-edit-test:
-	@$(PYTHON) $(SHARED_RESOURCE_0875352C_TOOL) baserom_jp.gba --profile shared-0875352c --offset 0x4D94D8 --length $(SHARED_RESOURCE_0875352C_LENGTH) --sha256 $(SHARED_RESOURCE_0875352C_SHA256) edit-test --source-dir $(SHARED_RESOURCE_0875352C_SOURCE_DIR)
-
-gfx-shared-resource-08753608: $(SHARED_RESOURCE_08753608_OUTPUT)
-gfx-shared-resource-08753608-test: gfx-shared-resource-08753608 $(SHARED_RESOURCE_08753608_TOOL) $(BASE_ROM)
-	@$(PYTHON) $(SHARED_RESOURCE_08753608_TOOL) $(BASE_ROM) --profile shared-08753608 --offset $(SHARED_RESOURCE_08753608_OFFSET) --length $(SHARED_RESOURCE_08753608_LENGTH) --sha256 $(SHARED_RESOURCE_08753608_SHA256) verify --source-dir $(SHARED_RESOURCE_08753608_SOURCE_DIR)
+gfx-shared-resource-08753608: $(SHARED_RESOURCE_08753608_ASSETS)
+gfx-shared-resource-08753608-test: gfx-shared-resource-08753608 $(GFX_RANGE_VERIFY) $(BASE_ROM)
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$(($(SHARED_RESOURCE_08753608_OFFSET) + 0x2C)) --length 0x80 --input $(word 1,$(SHARED_RESOURCE_08753608_ASSETS))
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$(($(SHARED_RESOURCE_08753608_OFFSET) + 0xB0)) --length 0x20 --input $(word 2,$(SHARED_RESOURCE_08753608_ASSETS))
 gfx-shared-resource-08753608-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-shared-resource-08753608-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-shared-resource-08753608-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-shared-resource-08753608-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-shared-resource-08753608-test
-gfx-shared-resource-08753608-patch-test: gfx-shared-resource-08753608-all
-	@$(PYTHON) $(SHARED_RESOURCE_08753608_TOOL) baserom_jp.gba --profile shared-08753608 --offset 0x4D95B4 --length $(SHARED_RESOURCE_08753608_LENGTH) --sha256 $(SHARED_RESOURCE_08753608_SHA256) patch-test --archive jp build/jp/graphics/shared_resource_08753608/shared_resource_08753608.bin --archive us build/us/graphics/shared_resource_08753608/shared_resource_08753608.bin --archive eu build/eu/graphics/shared_resource_08753608/shared_resource_08753608.bin --archive de build/de/graphics/shared_resource_08753608/shared_resource_08753608.bin --all-rom jp baserom_jp.gba 0x4D95B4 --all-rom us baserom_us.gba 0x753608 --all-rom eu baserom_eu.gba 0x753664 --all-rom de baserom_de.gba 0x4DAB24
-gfx-shared-resource-08753608-edit-test:
-	@$(PYTHON) $(SHARED_RESOURCE_08753608_TOOL) baserom_jp.gba --profile shared-08753608 --offset 0x4D95B4 --length $(SHARED_RESOURCE_08753608_LENGTH) --sha256 $(SHARED_RESOURCE_08753608_SHA256) edit-test --source-dir $(SHARED_RESOURCE_08753608_SOURCE_DIR)
-
 gfx-shared-resource-087536e4: $(SHARED_RESOURCE_087536E4_OUTPUT)
 gfx-shared-resource-087536e4-test: gfx-shared-resource-087536e4 $(SHARED_RESOURCE_087536E4_TOOL) $(BASE_ROM)
 	@$(PYTHON) $(SHARED_RESOURCE_087536E4_TOOL) $(BASE_ROM) --profile shared-087536e4 --offset $(SHARED_RESOURCE_087536E4_OFFSET) --length $(SHARED_RESOURCE_087536E4_LENGTH) --sha256 $(SHARED_RESOURCE_087536E4_SHA256) verify --source-dir $(SHARED_RESOURCE_087536E4_SOURCE_DIR)
@@ -3275,8 +3254,6 @@ resource-archive-audit: $(INDEXED_RESOURCE_ARCHIVE_TOOL) $(COMMON_RESOURCE_ARCHI
 	@$(PYTHON) $(SHARED_RESOURCE_087409E4_TOOL) baserom_jp.gba --profile shared-087409e4 --offset 0x4C6B4C --length $(SHARED_RESOURCE_087409E4_LENGTH) --sha256 $(SHARED_RESOURCE_087409E4_SHA256) audit
 	@$(PYTHON) $(SHARED_RESOURCE_0874EE38_TOOL) baserom_jp.gba --profile shared-0874ee38 --offset 0x4D5354 --length $(SHARED_RESOURCE_0874EE38_LENGTH) --sha256 $(SHARED_RESOURCE_0874EE38_SHA256) audit
 	@$(PYTHON) $(SHARED_RESOURCE_087506E0_TOOL) baserom_jp.gba --profile shared-087506e0 --offset 0x4D668C --length $(SHARED_RESOURCE_087506E0_LENGTH) --sha256 $(SHARED_RESOURCE_087506E0_SHA256) audit
-	@$(PYTHON) $(SHARED_RESOURCE_0875352C_TOOL) baserom_jp.gba --profile shared-0875352c --offset 0x4D94D8 --length $(SHARED_RESOURCE_0875352C_LENGTH) --sha256 $(SHARED_RESOURCE_0875352C_SHA256) audit
-	@$(PYTHON) $(SHARED_RESOURCE_08753608_TOOL) baserom_jp.gba --profile shared-08753608 --offset 0x4D95B4 --length $(SHARED_RESOURCE_08753608_LENGTH) --sha256 $(SHARED_RESOURCE_08753608_SHA256) audit
 	@$(PYTHON) $(SHARED_RESOURCE_087536E4_TOOL) baserom_jp.gba --profile shared-087536e4 --offset 0x4D9690 --length $(SHARED_RESOURCE_087536E4_LENGTH) --sha256 $(SHARED_RESOURCE_087536E4_SHA256) audit
 	@$(PYTHON) $(SHARED_RESOURCE_08755154_TOOL) baserom_jp.gba --profile shared-08755154 --offset 0x4DB100 --length $(SHARED_RESOURCE_08755154_LENGTH) --sha256 $(SHARED_RESOURCE_08755154_SHA256) audit
 	@$(PYTHON) $(REGIONAL_RESOURCE_0875B444_TOOL) baserom_jp.gba --profile regional-0875b444 --offset 0x4E07CC --length $(REGIONAL_RESOURCE_0875B444_LENGTH) --sha256 $(REGIONAL_RESOURCE_0875B444_SHA256_JP) audit
@@ -3554,11 +3531,7 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-shared-resource-087506e0-patch-test
 	@$(MAKE) --no-print-directory gfx-shared-resource-087506e0-edit-test
 	@$(MAKE) --no-print-directory gfx-shared-resource-0875352c-all
-	@$(MAKE) --no-print-directory gfx-shared-resource-0875352c-patch-test
-	@$(MAKE) --no-print-directory gfx-shared-resource-0875352c-edit-test
 	@$(MAKE) --no-print-directory gfx-shared-resource-08753608-all
-	@$(MAKE) --no-print-directory gfx-shared-resource-08753608-patch-test
-	@$(MAKE) --no-print-directory gfx-shared-resource-08753608-edit-test
 	@$(MAKE) --no-print-directory gfx-shared-resource-087536e4-all
 	@$(MAKE) --no-print-directory gfx-shared-resource-087536e4-patch-test
 	@$(MAKE) --no-print-directory gfx-shared-resource-087536e4-edit-test
