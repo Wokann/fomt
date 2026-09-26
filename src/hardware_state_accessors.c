@@ -1,17 +1,15 @@
 #include "hardware_state_accessors.hh"
 #include "hardware_nested_accessors.hh"
-
-extern void func_080092C8(void * state, u16 value);
-extern void func_080092FC(void * state, u16 value);
+#include "hardware_input_repeat.hh"
 
 void func_080088E0(void * const * state, u16 value)
 {
-    func_080092C8(*state, value);
+    func_080092C8((struct HardwareInputState *)*state, value);
 }
 
 void func_080088F0(void * const * state, u16 value)
 {
-    func_080092FC(*state, value);
+    func_080092FC((struct HardwareInputState *)*state, value);
 }
 
 u16 func_08008900(void * const * state)

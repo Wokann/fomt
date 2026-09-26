@@ -3333,96 +3333,9 @@ func_08009224: @ 0x08009224
     pop {r1}
     bx r1
 
-    thumb_func_start func_08009268
-func_08009268: @ 0x08009268
-    push {r4, r5, r6, r7, lr}
-    mov r7, r8
-    push {r7}
-    adds r4, r0, #0
-    bl func_08009190
-    mov ip, r0
-    ldrh r0, [r4]
-    mov r8, r0
-    ldrh r6, [r4, #0xc]
-    ldrh r5, [r4, #0xa]
-    movs r3, #0
-    movs r2, #0x80
-    lsls r2, r2, #2
-    adds r1, r4, #0
-    adds r1, #0x20
-.L08009288:
-    mov r0, r8
-    ands r0, r2
-    cmp r0, #0
-    beq .L080092B0
-    mov r0, ip
-    ands r0, r2
-    cmp r0, #0
-    bne .L080092AA
-    movs r7, #0
-    ldrsh r0, [r1, r7]
-    cmp r0, r5
-    beq .L080092A4
-    adds r0, #1
-    b .L080092AE
-.L080092A4:
-    orrs r3, r2
-    subs r0, r0, r6
-    b .L080092AE
-.L080092AA:
-    orrs r3, r2
-    movs r0, #0
-.L080092AE:
-    strh r0, [r1]
-.L080092B0:
-    subs r1, #2
-    lsrs r2, r2, #1
-    cmp r2, #0
-    bne .L08009288
-    strh r3, [r4, #8]
-    adds r0, r3, #0
-    pop {r3}
-    mov r8, r3
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
+    .section .text.hardware_input_repeat_after, "ax", %progbits
+    .thumb
     .align 2, 0
-
-    thumb_func_start func_080092C8
-func_080092C8: @ 0x080092C8
-    push {r4, r5, r6, lr}
-    adds r4, r0, #0
-    lsls r1, r1, #0x10
-    lsrs r6, r1, #0x10
-    ldrh r5, [r4]
-    movs r3, #0x80
-    lsls r3, r3, #2
-    adds r2, r4, #0
-    adds r2, #0x20
-    ldrh r0, [r4, #0xa]
-    subs r1, r6, r0
-.L080092DE:
-    adds r0, r5, #0
-    ands r0, r3
-    cmp r0, #0
-    beq .L080092EC
-    ldrh r0, [r2]
-    adds r0, r0, r1
-    strh r0, [r2]
-.L080092EC:
-    subs r2, #2
-    lsrs r3, r3, #1
-    cmp r3, #0
-    bne .L080092DE
-    strh r6, [r4, #0xa]
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-
-    thumb_func_start func_080092FC
-func_080092FC: @ 0x080092FC
-    strh r1, [r0, #0xc]
-    bx lr
 
     thumb_func_start func_08009300
 func_08009300: @ 0x08009300
