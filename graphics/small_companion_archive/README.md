@@ -8,25 +8,25 @@ DE `0x3EE0FC`. The four retail payloads are byte-identical:
 SHA-256 45596a1fced2bdeb33c101de5f124c26939d03ee0f2d71e361ba5ffab53a7cc7
 ```
 
-`full/group_000.png` through `full/group_015.png` are the sixteen complete
-indexed-PNG OAM resources. Their geometry, tile mapping, draw order and
-palette selections come from the native archive descriptor/OAM tables; no JSON
-or hand-authored layout sidecar is used. `preview/` contains RGBA review
-images and is not an input to the rebuild.
+`full/native.png` is the editable native-order indexed atlas of 52 4bpp tiles;
+`full/native.pal` contains both original 16-color palette banks. The generic
+graphics rules produce `native.4bpp` and `native.gbapal`, and `archive.inc`
+links them with the original selector, descriptor, OAM, and selection tables.
+The build no longer reads a ROM template or applies a post-link patch for this
+archive.
+
+`full/group_000.png` through `full/group_015.png` are OAM-composited reference
+views, not compilation input. `preview/` contains RGBA review images only.
 
 The archive contains three selector descriptors, sixteen group descriptors,
 three OAM records, fifty-two 4bpp tiles, two BGR555 palettes, and sixteen
-selection entries. The rebuild starts with the verified baseline archive and
-changes only native 4bpp pixels reached by an edited PNG. It retains selector,
-descriptor, OAM, palette and non-visible tile bytes exactly as stored by the
-retail ROM.
+selection entries. The native source atlas includes pixels hidden by the OAM
+composition; the original tables preserve sharing between group views.
 
 ```console
-make gfx-small-companion-archive-all
-make gfx-small-companion-archive-patch-test
-make gfx-small-companion-archive-edit-test
+make -j4 gfx-small-companion-archive
+make -j4 fomt_jp
+make -j4 fomt_us
+make -j4 fomt_eu
+make -j4 fomt_de
 ```
-
-The last command edits a visible pixel shared by multiple group views and
-verifies that only the native tile table changes, within the fixed archive
-allocation.

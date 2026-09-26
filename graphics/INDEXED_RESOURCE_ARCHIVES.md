@@ -192,9 +192,10 @@ live under `graphics/common_resource_archive/`. The two all-zero groups (`316`,
 The small companion archive follows the same fully bounded group-descriptor
 contract. Its sixteen descriptors select three native GBA OAM records, fifty-
 two 4bpp tiles, and two BGR555 palettes. Every group is drawable; shared OAM
-records intentionally map multiple editable group views onto their native tile
-ranges. Its complete indexed PNG sources and fixed-size rebuild live under
-`graphics/small_companion_archive/`.
+records intentionally map multiple group views onto their native tile ranges.
+`graphics/small_companion_archive/full/native.png` and `native.pal` are the
+editable sources; `archive.inc` links their generic conversion products with
+the original tables. The group PNGs are reference views, not build inputs.
 
 The small shared UI archive is independently bounded at the four locations in
 the table. Its four descriptors contain three drawable resources and one

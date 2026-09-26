@@ -23,8 +23,9 @@ grids:
   OAM-composited group PNGs are reference views.
 - [Common OAM resources](common_resource_archive/full/) — complete indexed-PNG
   item/UI resource sources with native selector and OAM descriptors.
-- [Small companion OAM resources](small_companion_archive/full/) — sixteen
-  complete indexed-PNG OAM resource sources with native descriptors.
+- [Small companion OAM resources](small_companion_archive/full/) — one editable
+  native tile atlas and two-bank palette; sixteen OAM-composited group PNGs are
+  reference views.
 - [Small shared UI OAM resources](ui/small_resource_archive/full/) — three
   complete indexed-PNG OAM source views with one preserved native empty slot.
 - [Cooking UI OAM resources](ui/cooking_resource_archive/full/) — two complete

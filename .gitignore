@@ -54,6 +54,8 @@ graphics/ui/cooking_resource_archive/full/*.4bpp
 graphics/ui/cooking_resource_archive/full/*.gbapal
 graphics/ui/farm_status/resource_archive/full/*.4bpp
 graphics/ui/farm_status/resource_archive/full/*.gbapal
+graphics/small_companion_archive/full/*.4bpp
+graphics/small_companion_archive/full/*.gbapal
 tools/verify-gfx-range
 tools/verify-gfx-range.exe
 graphics/intro_scene/small_indexed_archive/shared/full/frame_0000.4bpp
