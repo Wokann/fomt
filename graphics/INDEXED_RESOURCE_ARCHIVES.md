@@ -210,10 +210,11 @@ inventing a single-screen interpretation.
 The cooking UI archive is independently bounded at the four locations in the
 table. Its three descriptors contain two drawable resources and one all-zero
 native slot; together they select three OAM records, 40 4bpp tiles, one BGR555
-palette, and four selection entries. Cooking constructors instantiate it, so
-its PNG sources live under `graphics/ui/cooking_resource_archive/`; their
-neutral physical group names avoid guessing a separate gameplay role for each
-selection-frame variant.
+palette, and four selection entries. `full/native.png` preserves all tiles in
+the original archive order and `full/native.pal` preserves its palette. The
+two `group_*.png` images are OAM-composited reference views, not build inputs.
+`archive.inc` links the converted assets with the ordered native tables at
+the original location, without a ROM template or a post-link patch.
 
 The menu UI archive is independently bounded at the four locations in the
 table. Its eight descriptors all select drawable records, together covering one

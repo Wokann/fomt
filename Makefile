@@ -305,13 +305,8 @@ $(ROM): $(REGIONAL_RESOURCE_0873A6E8_OUTPUT)
 $(ROM): $(REGIONAL_RESOURCE_0873D6D8_OUTPUT)
 $(ROM): $(REGIONAL_RESOURCE_0874F34C_OUTPUT)
 
-%.gba: %.elf $(COOKING_UI_RESOURCE_ARCHIVE_OUTPUT) $(LARGE_SHARED_RESOURCE_ARCHIVE_OUTPUT) $(SHARED_RESOURCE_08725DA0_OUTPUT)
+%.gba: %.elf $(LARGE_SHARED_RESOURCE_ARCHIVE_OUTPUT) $(SHARED_RESOURCE_08725DA0_OUTPUT)
 	$(OBJCOPY) -O binary $< $@
-	@$(PYTHON) $(COOKING_UI_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM) --profile cooking-ui \
-	  --offset $(COOKING_UI_RESOURCE_ARCHIVE_OFFSET) \
-	  --length $(COOKING_UI_RESOURCE_ARCHIVE_LENGTH) \
-	  --sha256 $(COOKING_UI_RESOURCE_ARCHIVE_SHA256) \
-	  patch --target $@ --archive $(COOKING_UI_RESOURCE_ARCHIVE_OUTPUT)
 	@$(PYTHON) $(LARGE_SHARED_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM) --profile large-shared \
 	  --offset $(LARGE_SHARED_RESOURCE_ARCHIVE_OFFSET) \
 	  --length $(LARGE_SHARED_RESOURCE_ARCHIVE_LENGTH) \
@@ -470,7 +465,7 @@ ifneq (,$(filter gfx-small-ui-resource-archive,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 
-ifneq (,$(filter gfx-cooking-ui-resource-archive gfx-cooking-ui-resource-archive-test gfx-cooking-ui-resource-archive-all gfx-cooking-ui-resource-archive-patch-test gfx-cooking-ui-resource-archive-edit-test,$(MAKECMDGOALS)))
+ifneq (,$(filter gfx-cooking-ui-resource-archive gfx-cooking-ui-resource-archive-test gfx-cooking-ui-resource-archive-all,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 
