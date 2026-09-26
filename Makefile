@@ -296,7 +296,6 @@ $(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGIO
 # Keep the post-link archive replacement available before the generic ROM rule
 # runs, regardless of which regional BUILD_NAME selected the target.
 $(ROM): $(GBAFIX) config.mk
-$(ROM): $(SHARED_RESOURCE_08731B40_OUTPUT)
 $(ROM): $(REGIONAL_RESOURCE_08738144_OUTPUT)
 $(ROM): $(REGIONAL_RESOURCE_0873A6E8_OUTPUT)
 $(ROM): $(REGIONAL_RESOURCE_0873D6D8_OUTPUT)
@@ -304,7 +303,6 @@ $(ROM): $(REGIONAL_RESOURCE_0874F34C_OUTPUT)
 
 %.gba: %.elf
 	$(OBJCOPY) -O binary $< $@
-	@$(PYTHON) $(SHARED_RESOURCE_08731B40_TOOL) $(BASE_ROM) --profile shared-08731b40 --offset $(SHARED_RESOURCE_08731B40_OFFSET) --length $(SHARED_RESOURCE_08731B40_LENGTH) --sha256 $(SHARED_RESOURCE_08731B40_SHA256) patch --target $@ --archive $(SHARED_RESOURCE_08731B40_OUTPUT)
 	@$(PYTHON) $(REGIONAL_RESOURCE_08738144_TOOL) $(BASE_ROM) --profile $(REGIONAL_RESOURCE_08738144_PROFILE) --offset $(REGIONAL_RESOURCE_08738144_OFFSET) --length $(REGIONAL_RESOURCE_08738144_LENGTH) --sha256 $(REGIONAL_RESOURCE_08738144_SHA256) patch --target $@ --archive $(REGIONAL_RESOURCE_08738144_OUTPUT)
 	@$(PYTHON) $(REGIONAL_RESOURCE_0873A6E8_TOOL) $(BASE_ROM) --profile $(REGIONAL_RESOURCE_0873A6E8_PROFILE) --offset $(REGIONAL_RESOURCE_0873A6E8_OFFSET) --length $(REGIONAL_RESOURCE_0873A6E8_LENGTH) --sha256 $(REGIONAL_RESOURCE_0873A6E8_SHA256) patch --target $@ --archive $(REGIONAL_RESOURCE_0873A6E8_OUTPUT)
 	@$(PYTHON) $(REGIONAL_RESOURCE_0873D6D8_TOOL) $(BASE_ROM) --profile $(REGIONAL_RESOURCE_0873D6D8_PROFILE) --offset $(REGIONAL_RESOURCE_0873D6D8_OFFSET) --length $(REGIONAL_RESOURCE_0873D6D8_LENGTH) --sha256 $(REGIONAL_RESOURCE_0873D6D8_SHA256) patch --target $@ --archive $(REGIONAL_RESOURCE_0873D6D8_OUTPUT)
@@ -512,7 +510,7 @@ ifneq (,$(filter gfx-shared-resource-0872ee78,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 
-ifneq (,$(filter gfx-shared-resource-08731b40 gfx-shared-resource-08731b40-test gfx-shared-resource-08731b40-all gfx-shared-resource-08731b40-patch-test gfx-shared-resource-08731b40-edit-test,$(MAKECMDGOALS)))
+ifneq (,$(filter gfx-shared-resource-08731b40 gfx-shared-resource-08731b40-all,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 

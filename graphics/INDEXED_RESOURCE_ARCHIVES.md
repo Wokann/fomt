@@ -325,9 +325,11 @@ independently established.
 
 Shared archive `08731B40` is independently bounded at the four locations in
 the table. Its 20 descriptors select 13 native OAM records, 794 native 4bpp
-tiles, three BGR555 palettes, and 20 selection entries. Its editable PNG
-sources are under `graphics/shared_resource_08731b40/`; the address remains its
-source name until the runtime purpose is independently established.
+tiles, three BGR555 palettes, and 20 selection entries. A native-order PNG,
+48-color PAL, and original-order assembly tables now link directly from
+`graphics/shared_resource_08731b40/`; the OAM-composited group PNGs are reference
+views only. The address remains its source name until the runtime purpose is
+independently established.
 
 Shared archive `0873AE54` is independently bounded at the four locations in
 the table. Its two descriptors select one native OAM record, eight native 4bpp
