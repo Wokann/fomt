@@ -1004,7 +1004,11 @@ FOMT_LZ_ENCODE_OUTPUTS := $(addsuffix .lz, \
   $(UI_SCENE_080C160C_MAP0_SOURCE) $(UI_SCENE_080C160C_MAP1_SOURCE) $(UI_SCENE_080C160C_TILES_SOURCE) \
   $(UI_SCENE_080BCFAC_MAP0_SOURCE) $(UI_SCENE_080BCFAC_MAP1_SOURCE) $(UI_SCENE_080BCFAC_TILES_SOURCE) \
   $(UI_SCENE_080B55D0_AUX_MAP0_SOURCE) $(UI_SCENE_080B55D0_AUX_MAP1_SOURCE) $(UI_SCENE_080B55D0_AUX_TILES_SOURCE) \
-  $(UI_SCENE_08054F40_TILES_SOURCE) $(UI_SCENE_0805AB08_TILES_SOURCE))
+  $(UI_SCENE_08054F40_TILES_SOURCE) $(UI_SCENE_0805AB08_TILES_SOURCE) \
+  $(addprefix $(INTRO_OBJECTS_SOURCE_DIR)/object_,$(addsuffix .4bpp,01 03 05 07 08 09 11 12 14 17 19)) \
+  $(MAP_DATA_SOURCE_DIR)/map_08/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_08/layer_2.gbapal \
+  $(MAP_DATA_SOURCE_DIR)/map_09/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_09/layer_2.gbapal \
+  $(MAP_DATA_SOURCE_DIR)/map_09/layer_5.tilemap $(MAP_DATA_SOURCE_DIR)/map_31/layer_5.tilemap)
 
 $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_0.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 125 0x28
 $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_1.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1234679 0xB0
@@ -1027,6 +1031,26 @@ $(UI_SCENE_080B55D0_AUX_MAP1_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x11
 $(UI_SCENE_080B55D0_AUX_TILES_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz2 2,5,8,9,10,11,12 0xD60
 $(UI_SCENE_08054F40_TILES_OUTPUT): FOMT_LZ_ENCODE := encode-lz2 2,5,7,8,10,13,14 0xCA8
 $(UI_SCENE_0805AB08_TILES_OUTPUT): FOMT_LZ_ENCODE := encode-lz2 3,5,7,10,11,12,14 0x880
+
+# All 17 of these retail Raw-LZ3 streams were rebuilt directly and matched
+# their original packed bytes; their .original.lz copies are audit-only now.
+$(INTRO_OBJECTS_SOURCE_DIR)/object_01.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x54
+$(INTRO_OBJECTS_SOURCE_DIR)/object_03.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x6C
+$(INTRO_OBJECTS_SOURCE_DIR)/object_05.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x98
+$(INTRO_OBJECTS_SOURCE_DIR)/object_07.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x78
+$(INTRO_OBJECTS_SOURCE_DIR)/object_08.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,7 0x94
+$(INTRO_OBJECTS_SOURCE_DIR)/object_09.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x60
+$(INTRO_OBJECTS_SOURCE_DIR)/object_11.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x74
+$(INTRO_OBJECTS_SOURCE_DIR)/object_12.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 5,8,10 0x26C
+$(INTRO_OBJECTS_SOURCE_DIR)/object_14.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 5,8,10 0x274
+$(INTRO_OBJECTS_SOURCE_DIR)/object_17.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x50
+$(INTRO_OBJECTS_SOURCE_DIR)/object_19.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 5,8,10 0x68
+$(MAP_DATA_SOURCE_DIR)/map_08/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,5 0xE0
+$(MAP_DATA_SOURCE_DIR)/map_08/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 4,5,4 0xE4
+$(MAP_DATA_SOURCE_DIR)/map_09/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 4,5,7 0xD8
+$(MAP_DATA_SOURCE_DIR)/map_09/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 4,5,7 0xCC
+$(MAP_DATA_SOURCE_DIR)/map_09/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,6,12 0x6C
+$(MAP_DATA_SOURCE_DIR)/map_31/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 3,6,11 0xEC
 
 $(FOMT_LZ_ENCODE_OUTPUTS): %.lz: % $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) $(firstword $(FOMT_LZ_ENCODE)) $< $@ $(wordlist 2,99,$(FOMT_LZ_ENCODE))

@@ -16,10 +16,13 @@ Make rules convert seven editable PNG tile sets to `.4bpp`, eleven editable
 JASC palettes to `.gbapal`, and then use the shared `tools/fomt-lz` codec to
 make the source-adjacent `.lz` files. The other 24 sources are native u16
 `.tilemap` files, preserving tile indices, flip flags, and palette banks.
-Each `.original.lz` records the original packing parameters and fixed slot
-size; it is not read from `baserom` during a normal build. An unchanged
-source reproduces the original stream exactly. An edit that cannot fit its
-verified slot fails the build rather than overwriting a neighboring record.
+Six Raw-LZ3 streams now encode directly from their `.tilemap` or `.gbapal`
+sources: map `08` layers `1`/`2`, map `09` layers `1`/`2`/`5`, and map `31`
+layer `5`. All six rebuilt packed slots match the retail bytes exactly; their
+`.original.lz` files are comparison references, not build inputs. The other
+streams still use source-adjacent original packing metadata to preserve exact
+output. No normal build reads `baserom`; an edit that cannot fit its verified
+slot fails rather than overwriting a neighboring record.
 
 ```console
 make -j4 gfx-map-resources-test

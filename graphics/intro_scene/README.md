@@ -37,12 +37,15 @@ OAM-piece and palette selection come from runtime indexed-resource handles.
 make gfx-intro-objects-all
 ```
 
-Unchanged sources retain their exact retail packed bytes. An edit is re-encoded
-with the stream's original Raw-LZ mode and distance ladder, strictly decoded,
-and rejected if it exceeds that object's original packed allocation.
-The source-adjacent `.original.lz` files retain the native header, ladder and
-fixed-slot reference. The C compressor writes `.4bpp.lz` beside each tile source;
-the assembly includes those generated files directly.
+The eleven Raw-LZ3 objects `01`, `03`, `05`, `07`, `08`, `09`, `11`, `12`,
+`14`, `17`, and `19` are encoded directly by the C compressor from their
+`.4bpp` sources. Each rebuilt packed slot matches the retail bytes exactly;
+the corresponding `.original.lz` files are retained only for independent
+comparison, not read by these build rules. The other nine objects still use
+their source-adjacent original streams to preserve byte-exact output until
+their packing modes are independently reproduced. Edited streams are decoded
+for verification and rejected if they exceed their original packed slots.
+Assembly includes the generated `.4bpp.lz` files directly.
 
 ## Regional indexed OAM archive
 
