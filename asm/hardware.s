@@ -2866,36 +2866,11 @@ func_080088D4: @ 0x080088D4
 func_080088DC: @ 0x080088DC
     ldr r0, [r0]
     bx lr
-    @ The four state controls and three display-state accessors are compiled
-    @ from one C object in their original ROM order at this point.
+    @ The consecutive state controls and accessors are compiled from one C
+    @ object in their original ROM order at this point.
     .section .text.hardware_post_accessors, "ax", %progbits
-.L08008928:
-    .byte 0x00, 0x68, 0x24, 0x30, 0x70, 0x47, 0x00, 0x00
-    .byte 0x00, 0x68, 0x34, 0x30, 0x70, 0x47, 0x00, 0x00, 0x00, 0x68, 0x8C, 0x30, 0x70, 0x47, 0x00, 0x00
-
-    thumb_func_start func_08008940
-func_08008940: @ 0x08008940
-    ldr r0, [r0]
-    ldr r1, .L08008948 @ =0x00000494
-    adds r0, r0, r1
-    bx lr
+    .thumb
     .align 2, 0
-.L08008948: .4byte 0x00000494
-
-    thumb_func_start func_0800894C
-func_0800894C: @ 0x0800894C
-    push {lr}
-    ldr r0, [r0]
-    movs r1, #0x92
-    lsls r1, r1, #3
-    adds r0, r0, r1
-    bl func_08008AE0
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L08008960:
-    .byte 0x00, 0x68, 0x01, 0x49, 0x40, 0x18, 0x70, 0x47, 0x94, 0x04, 0x00, 0x00, 0x00, 0xB5, 0x00, 0x68
-    .byte 0x92, 0x21, 0xC9, 0x00, 0x40, 0x18, 0x00, 0xF0, 0xB3, 0xF8, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00
 
     thumb_func_start func_08008980
 func_08008980: @ 0x08008980
