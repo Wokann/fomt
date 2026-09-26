@@ -3035,14 +3035,9 @@ func_08008A68: @ 0x08008A68
 .L08008AD8: .4byte vtable_unk_080E5B0C
 .L08008ADC: .4byte vtable_unk_080E5B18
 
-    thumb_func_start func_08008AE0
-func_08008AE0: @ 0x08008AE0
-    ldr r0, [r0]
-    adds r0, #0xc
-    bx lr
+    .section .text.hardware_nested_accessors_after, "ax", %progbits
+    .thumb
     .align 2, 0
-.L08008AE8:
-    .byte 0x00, 0x68, 0x0C, 0x30, 0x70, 0x47, 0x00, 0x00
 
     thumb_func_start func_08008AF0
 func_08008AF0: @ 0x08008AF0

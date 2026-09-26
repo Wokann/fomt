@@ -73,6 +73,8 @@ SECTIONS
         asm/hardware.o(.text.hardware_state_properties_after);
         src/hardware_state_accessors.o(.text);
         asm/hardware.o(.text.hardware_post_accessors);
+        src/hardware_nested_accessors.o(.text);
+        asm/hardware.o(.text.hardware_nested_accessors_after);
         src/farm.o(.text);
         src/field.o(.text);
         src/shipping_bin.o(.text);

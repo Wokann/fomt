@@ -1,8 +1,8 @@
 #include "hardware_state_accessors.hh"
+#include "hardware_nested_accessors.hh"
 
 extern void func_080092C8(void * state, u16 value);
 extern void func_080092FC(void * state, u16 value);
-extern u8 * func_08008AE0(void * const * state);
 
 void func_080088E0(void * const * state, u16 value)
 {
