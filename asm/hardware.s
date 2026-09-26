@@ -3219,83 +3219,10 @@ func_08008EB8: @ 0x08008EB8
     .align 2, 0
 .L08008F08: .4byte 0x040000D4
 
-    .section .text.hardware_dma_descriptor_after, "ax", %progbits
+    .section .text.hardware_input_after, "ax", %progbits
     .thumb
     .align 2, 0
 
-    thumb_func_start func_0800912C
-func_0800912C: @ 0x0800912C
-    ldr r0, .L08009138 @ =0x04000130
-    ldrh r1, [r0]
-    ldr r0, .L0800913C @ =0x000003FF
-    bics r0, r1
-    bx lr
-    .align 2, 0
-.L08009138: .4byte 0x04000130
-.L0800913C: .4byte 0x000003FF
-
-    thumb_func_start func_08009140
-func_08009140: @ 0x08009140
-    push {r4, lr}
-    adds r4, r0, #0
-    bl func_0800912C
-    strh r0, [r4]
-    adds r0, r4, #0
-    pop {r4}
-    pop {r1}
-    bx r1
-    .align 2, 0
-
-    thumb_func_start func_08009154
-func_08009154: @ 0x08009154
-    strh r1, [r0]
-    bx lr
-
-    thumb_func_start func_08009158
-func_08009158: @ 0x08009158
-    push {r4, lr}
-    adds r4, r0, #0
-    bl func_0800912C
-    strh r0, [r4]
-    pop {r4}
-    pop {r1}
-    bx r1
-
-    thumb_func_start func_08009168
-func_08009168: @ 0x08009168
-    push {r4, lr}
-    adds r4, r0, #0
-    bl func_08009140
-    ldrh r0, [r4]
-    strh r0, [r4, #4]
-    adds r0, r4, #0
-    pop {r4}
-    pop {r1}
-    bx r1
-
-    thumb_func_start func_0800917C
-func_0800917C: @ 0x0800917C
-    push {r4, lr}
-    adds r4, r0, #0
-    bl func_08009154
-    ldrh r0, [r4]
-    strh r0, [r4, #4]
-    adds r0, r4, #0
-    pop {r4}
-    pop {r1}
-    bx r1
-
-    thumb_func_start func_08009190
-func_08009190: @ 0x08009190
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    ldrh r5, [r4]
-    bl func_08009158
-    bics r0, r5
-    strh r0, [r4, #4]
-    pop {r4, r5}
-    pop {r1}
-    bx r1
 
     thumb_func_start func_080091A4
 func_080091A4: @ 0x080091A4
