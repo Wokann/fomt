@@ -86,7 +86,8 @@ SECTIONS
         src/hardware_input.o(.text);
         asm/hardware.o(.text.hardware_input_after);
         src/hardware_input_repeat.o(.text);
-        asm/hardware.o(.text.hardware_input_repeat_after);
+        src/hardware_blend.o(.text);
+        asm/hardware.o(.text.hardware_blend_after);
         src/farm.o(.text);
         src/field.o(.text);
         src/shipping_bin.o(.text);
