@@ -82,6 +82,8 @@ SECTIONS
         asm/hardware.o(.text.hardware_song_after);
         src/hardware_dma.o(.text);
         asm/hardware.o(.text.hardware_dma_after);
+        src/hardware_dma_descriptor.o(.text);
+        asm/hardware.o(.text.hardware_dma_descriptor_after);
         src/farm.o(.text);
         src/field.o(.text);
         src/shipping_bin.o(.text);
