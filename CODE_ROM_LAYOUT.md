@@ -98,6 +98,19 @@ JP 原本已将该连续的七个短访问器和 literal pool 写成 Thumb 指�
 
 LDS 依次链接硬件汇编前段、这段 C 函数、硬件汇编后段；四区 WSL 构建均与各自原 ROM 的 SHA-1 一致。
 
+## `src/hardware_state_properties.c`：两个连续的硬件状态函数
+
+原 `asm/hardware.s` 在 `func_08007E24` 后的 28 字节裸指令与字面量，现由同一个普通 C 对象中的两个函数生成：`func_08007E8C` 读取 `gUnk_03000408` 指向状态的 `+0x920` 处半字，`func_08007EA0` 返回 `0x100`。目前没有足够证据给该字段和常量赋予更具体的名称。`gUnk_03000408` 的地址由链接器重定位，后继汇编保持原位。
+
+| 区域 | 两个函数的连续物理范围 |
+| --- | --- |
+| JP | `0x08007E94`–`0x08007EAF` |
+| US | `0x08007E8C`–`0x08007EA7` |
+| EU | `0x08007EA0`–`0x08007EBB` |
+| DE | `0x08007EAC`–`0x08007EC7` |
+
+四区均已重新构建，并通过各自基准 ROM 的 SHA-1 校验。
+
 ## `src/hardware_state_accessors.c`：连续的硬件状态字段访问器
 
 原 `asm/hardware.s` 中连续的三个 Thumb 访问器现由 `src/hardware_state_accessors.c` 编译，声明集中在 `include/hardware_state_accessors.hh`。三个函数先读取传入对象的首字段指针，再分别返回该指针加 `0x24`、`0x34`、`0x8C`；其余对象结构尚未确认，不据此猜测字段名。LDS 按原 ROM 顺序链接硬件汇编前段、这一段 C 代码、硬件汇编后段。原位置之后的未解析字节仍在原汇编文件，不计入 C 源码化。

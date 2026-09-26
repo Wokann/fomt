@@ -89,6 +89,8 @@ SECTIONS
         asm/hardware.o(.text);
         src/hardware_refcount.o(.text);
         asm/hardware.o(.text.hardware_refcount_after);
+        src/hardware_state_properties.o(.text);
+        asm/hardware.o(.text.hardware_state_properties_after);
         src/hardware_state_accessors.o(.text);
         asm/hardware.o(.text.hardware_post_accessors);
         . = 0x9A50; /* JP ROM 0x08009A50, independently matched */
