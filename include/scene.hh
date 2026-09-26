@@ -102,22 +102,17 @@ inline SceneOwner::~SceneOwner() { delete value; }
 inline SceneOwner & SceneOwner::operator=(SceneOwner & other)
 {
     AScene * scene = other.release();
-    if (value != scene)
-    {
+    if (scene != value)
         delete value;
-        value = scene;
-    }
+    value = scene;
     return *this;
 }
 
 inline SceneOwner & SceneOwner::operator=(AScene * scene)
 {
-    if (value != scene)
-    {
-        if (value != nullptr)
-            delete value;
-        value = scene;
-    }
+    if (scene != value)
+        delete value;
+    value = scene;
     return *this;
 }
 
