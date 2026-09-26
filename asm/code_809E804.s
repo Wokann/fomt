@@ -7602,7 +7602,7 @@ func_080A220C: @ 0x080A1C44
 	b .Ljp_080A2472
 	.align 2, 0
 .Ljp_080A245C: .4byte vtable_unk_080E824C
-.Ljp_080A2460: .4byte gUnk_084D5868
+.Ljp_080A2460: .4byte gUnk_0874F34C
 .Ljp_080A2464: .4byte gUnk_084D668C
 .Ljp_080A2468: .4byte gUnk_084AE370
 .Ljp_080A246C: .4byte vtable_unk_080E824C + 0xC @ JP fourth vtable slot

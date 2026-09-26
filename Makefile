@@ -293,14 +293,10 @@ $(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGIO
 	$(call FOMT_COMPILE_CPP,)
 
 # ROM from ELF
-# Keep the post-link archive replacement available before the generic ROM rule
-# runs, regardless of which regional BUILD_NAME selected the target.
 $(ROM): $(GBAFIX) config.mk
-$(ROM): $(REGIONAL_RESOURCE_0874F34C_OUTPUT)
 
 %.gba: %.elf
 	$(OBJCOPY) -O binary $< $@
-	@$(PYTHON) $(REGIONAL_RESOURCE_0874F34C_TOOL) $(BASE_ROM) --profile $(REGIONAL_RESOURCE_0874F34C_PROFILE) --offset $(REGIONAL_RESOURCE_0874F34C_OFFSET) --length $(REGIONAL_RESOURCE_0874F34C_LENGTH) --sha256 $(REGIONAL_RESOURCE_0874F34C_SHA256) patch --target $@ --archive $(REGIONAL_RESOURCE_0874F34C_OUTPUT)
 	@$(GBAFIX) $@ -p -t"$(TITLE)" -c$(GAME_CODE) -m$(MAKER_CODE) -r$(GAME_REVISION) --silent
 
 # ELF
@@ -624,7 +620,7 @@ ifneq (,$(filter gfx-regional-resource-0873d6d8 gfx-regional-resource-0873d6d8-a
 ALL_DEPS :=
 endif
 
-ifneq (,$(filter gfx-regional-resource-0874f34c gfx-regional-resource-0874f34c-test gfx-regional-resource-0874f34c-all gfx-regional-resource-0874f34c-patch-test gfx-regional-resource-0874f34c-edit-test gfx-regional-resource-0874f34c-edit-test-one,$(MAKECMDGOALS)))
+ifneq (,$(filter gfx-regional-resource-0874f34c gfx-regional-resource-0874f34c-all,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 
