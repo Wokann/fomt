@@ -21,6 +21,8 @@ struct DmaTransferDescriptor * func_08008F0C(struct DmaTransferDescriptor * desc
 struct DmaTransferDescriptor * func_08008F60(struct DmaTransferDescriptor * descriptor, u32 value, u32 destination, u32 byte_count);
 void func_08008FB8(struct DmaTransferDescriptor const * descriptor);
 void func_08008FE4(struct DmaTransferDescriptor const * first, struct DmaTransferDescriptor const * end);
+void func_0800901C(struct DmaTransferDescriptor const * descriptor);
+void func_08009094(struct DmaTransferDescriptor const * first, struct DmaTransferDescriptor const * end);
 
 EXTERN_C_END
 

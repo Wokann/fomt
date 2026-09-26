@@ -1,6 +1,7 @@
 #include "hardware_dma_descriptor.hh"
 
 #include "gbaio.h"
+#include "gbasvc.h"
 
 extern void func_080D0EBC(u32 source, u32 destination, u32 control, volatile u32 * registers);
 
@@ -68,6 +69,77 @@ void func_08008FE4(struct DmaTransferDescriptor const * first, struct DmaTransfe
             source = (u32)&fill_value;
         }
         func_080D0EBC(source, current->destination, current->control, registers);
+        ++current;
+    }
+}
+
+void func_0800901C(struct DmaTransferDescriptor const * descriptor)
+{
+    u32 source;
+    u32 fill_value;
+    u32 control;
+    u32 destination;
+    u32 remainder;
+    u32 aligned_count;
+
+    source = descriptor->source_or_value;
+    if (descriptor->mode == DMA_DESCRIPTOR_FILL) {
+        fill_value = source;
+        source = (u32)&fill_value;
+    }
+    control = descriptor->control;
+    destination = descriptor->destination;
+    if ((control & CPUSET_32BIT) != 0) {
+        aligned_count = control & 0xffff;
+        remainder = aligned_count & 7;
+        aligned_count -= remainder;
+        if (aligned_count != 0 || remainder == 0) {
+            CpuFastSet((void const *)source, (void *)destination, control - remainder);
+            destination += aligned_count << 2;
+            if ((control & CPUSET_SRC_FIXED) == 0)
+                source += aligned_count << 2;
+        }
+        if (remainder != 0)
+            CpuSet((void const *)source, (void *)destination, control - aligned_count);
+    } else {
+        CpuSet((void const *)source, (void *)destination, control);
+    }
+}
+
+void func_08009094(struct DmaTransferDescriptor const * first, struct DmaTransferDescriptor const * end)
+{
+    struct DmaTransferDescriptor const * stop = end;
+    struct DmaTransferDescriptor const * current = first;
+    while (current != stop) {
+        u32 source;
+        u32 fill_value;
+        u32 control;
+        u32 destination;
+        u32 remainder;
+        u32 aligned_count;
+
+        source = current->source_or_value;
+        if (current->mode == DMA_DESCRIPTOR_FILL) {
+            fill_value = source;
+            source = (u32)&fill_value;
+        }
+        control = current->control;
+        destination = current->destination;
+        if ((control & CPUSET_32BIT) != 0) {
+            aligned_count = control & 0xffff;
+            remainder = aligned_count & 7;
+            aligned_count -= remainder;
+            if (aligned_count != 0 || remainder == 0) {
+                CpuFastSet((void const *)source, (void *)destination, control - remainder);
+                destination += aligned_count << 2;
+                if ((control & CPUSET_SRC_FIXED) == 0)
+                    source += aligned_count << 2;
+            }
+            if (remainder != 0)
+                CpuSet((void const *)source, (void *)destination, control - aligned_count);
+        } else {
+            CpuSet((void const *)source, (void *)destination, control);
+        }
         ++current;
     }
 }
