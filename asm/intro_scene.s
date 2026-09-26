@@ -404,17 +404,17 @@ func_08000914:
 .Ljp_08000CB0:
     .4byte vtable_unk_080E5A0C
 .Ljp_08000CB4:
-    .4byte gUnk_084CDBDC
+    .4byte gIntroSceneIndexedArchiveCompressed
 .Ljp_08000CB8:
     .4byte 0x00006A10
 .Ljp_08000CBC:
     .4byte 0x00006A40
 .Ljp_08000CC0:
-    .4byte gUnk_084D4CC4
+    .4byte gIntroSceneSmallIndexedArchive
 .Ljp_08000CC4:
     .4byte 0x00006A70
 .Ljp_08000CC8:
-    .4byte gUnk_08311B84
+    .4byte gActorIndexedResourceArchive
 .Ljp_08000CCC:
     .4byte 0x00006AA0
 .Ljp_08000CD0:
@@ -5851,7 +5851,7 @@ func_08000914: @ 0x08000914
     bl func_08008B54
     adds r4, r5, #0
     adds r4, #0x10
-    ldr r0, .L08000CB4 @ =gUnk_08747A74
+    ldr r0, .L08000CB4 @ =gIntroSceneIndexedArchiveCompressed
     adds r1, r4, #0
     bl Unpack
     ldr r0, .L08000CB8 @ =0x00006A10
@@ -5862,13 +5862,13 @@ func_08000914: @ 0x08000914
     ldr r1, .L08000CBC @ =0x00006A40
     adds r1, r1, r5
     mov sl, r1
-    ldr r1, .L08000CC0 @ =gUnk_0874E530
+    ldr r1, .L08000CC0 @ =gIntroSceneSmallIndexedArchive
     mov r0, sl
     bl __22IndexedResourceArchivePCUc
     ldr r0, .L08000CC4 @ =0x00006A70
     adds r0, r0, r5
     mov r8, r0
-    ldr r1, .L08000CC8 @ =gUnk_0858BA28
+    ldr r1, .L08000CC8 @ =gActorIndexedResourceArchive
     bl __22IndexedResourceArchivePCUc
     ldr r1, .L08000CCC @ =0x00006AA0
     adds r4, r5, r1
@@ -6226,12 +6226,12 @@ func_08000914: @ 0x08000914
     bx r1
     .align 2, 0
 .L08000CB0: .4byte vtable_unk_080E5A0C
-.L08000CB4: .4byte gUnk_08747A74
+.L08000CB4: .4byte gIntroSceneIndexedArchiveCompressed
 .L08000CB8: .4byte 0x00006A10
 .L08000CBC: .4byte 0x00006A40
-.L08000CC0: .4byte gUnk_0874E530
+.L08000CC0: .4byte gIntroSceneSmallIndexedArchive
 .L08000CC4: .4byte 0x00006A70
-.L08000CC8: .4byte gUnk_0858BA28
+.L08000CC8: .4byte gActorIndexedResourceArchive
 .L08000CCC: .4byte 0x00006AA0
 .L08000CD0: .4byte 0x00006AC0
 .L08000CD4: .4byte 0x00000342

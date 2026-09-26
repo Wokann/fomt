@@ -28826,7 +28826,7 @@ func_080AC0AC: @ 080AC0AC
 	movs r1, #0xdb
 	lsls r1, r1, #4
 	adds r0, r5, r1
-	ldr r1, .Ljp_map_080AC25C @ =gUnk_0858BA28
+	ldr r1, .Ljp_map_080AC25C @ =gActorIndexedResourceArchive
 	bl __22IndexedResourceArchivePCUc
 	movs r2, #0xde
 	lsls r2, r2, #4
@@ -28937,7 +28937,7 @@ func_080AC0AC: @ 080AC0AC
 .Ljp_map_080AC250: .4byte 0x00000C14
 .Ljp_map_080AC254: .4byte 0x00000C15
 .Ljp_map_080AC258: .4byte 0x0000102C
-.Ljp_map_080AC25C: .4byte gUnk_08311B84
+.Ljp_map_080AC25C: .4byte gActorIndexedResourceArchive
 .Ljp_map_080AC260: .4byte gUnk_083ED9FC
 .Ljp_map_080AC264: .4byte gUnk_084A5068
 .Ljp_map_080AC268: .4byte gUnk_08480BDC
@@ -32103,7 +32103,7 @@ func_080AD9A4:
     str r0, [r1]
     movs r0, #0x30
     bl __builtin_new
-    ldr r1, .Ljp_080ADD90 @ =gUnk_08311B84
+    ldr r1, .Ljp_080ADD90 @ =gActorIndexedResourceArchive
     bl __22IndexedResourceArchivePCUc
     movs r2, #0x85
     lsls r2, r2, #3
@@ -32514,7 +32514,7 @@ func_080AD9A4:
 .Ljp_080ADD84: .4byte gUnk_084C3FAC
 .Ljp_080ADD88: .4byte gUnk_084C6708
 .Ljp_080ADD8C: .4byte 0x00000424
-.Ljp_080ADD90: .4byte gUnk_08311B84
+.Ljp_080ADD90: .4byte gActorIndexedResourceArchive
 .Ljp_080ADD94: .4byte gUnk_084C0FBC
 .Ljp_080ADD98: .4byte 0x0000042C
 .Ljp_080ADD9C: .4byte gUnk_084A3678
@@ -44147,7 +44147,7 @@ func_080B3CC8: @ 0x080B36FC
 	bne .Ljp_080B3878
 	movs r0, #0x30
 	bl __builtin_new
-	ldr r1, .Ljp_080B3B3C @ =gUnk_08311B84
+	ldr r1, .Ljp_080B3B3C @ =gActorIndexedResourceArchive
 	bl __22IndexedResourceArchivePCUc
 	ldr r4, .Ljp_080B3B40 @ =0x0000077C
 	adds r1, r6, r4
@@ -44450,7 +44450,7 @@ func_080B3CC8: @ 0x080B36FC
 .Ljp_080B3B30: .4byte 0x00000ADC
 .Ljp_080B3B34: .4byte 0x00000AE4
 .Ljp_080B3B38: .4byte 0x0000073C
-.Ljp_080B3B3C: .4byte gUnk_08311B84
+.Ljp_080B3B3C: .4byte gActorIndexedResourceArchive
 .Ljp_080B3B40: .4byte 0x0000077C
 .Ljp_080B3B44: .4byte gUnk_084C3FAC
 .Ljp_080B3B48: .4byte gUnk_084A3678
@@ -62193,7 +62193,7 @@ func_080BC938: @ 0x080BC36C
 	str r0, [r1]
 	movs r0, #0x30
 	bl __builtin_new
-	ldr r1, .L080BC6C8 @ =gUnk_08311B84
+	ldr r1, .L080BC6C8 @ =gActorIndexedResourceArchive
 	bl __22IndexedResourceArchivePCUc
 	ldr r2, .L080BC6CC @ =0x0000042C
 	adds r1, r6, r2
@@ -62502,7 +62502,7 @@ func_080BC938: @ 0x080BC36C
 .L080BC6BC: .4byte gUnk_083ED9FC
 .L080BC6C0: .4byte 0x00000424
 .L080BC6C4: .4byte gUnk_084C6708
-.L080BC6C8: .4byte gUnk_08311B84
+.L080BC6C8: .4byte gActorIndexedResourceArchive
 .L080BC6CC: .4byte 0x0000042C
 .L080BC6D0: .4byte gUnk_084A3678
 .L080BC6D4: .4byte gUnk_084B1FCC
@@ -120437,7 +120437,7 @@ func_080AC674: @ 0x080AC674
 	movs r1, #0xdb
 	lsls r1, r1, #4
 	adds r0, r5, r1
-	ldr r1, .L080AC824 @ =gUnk_0858BA28
+	ldr r1, .L080AC824 @ =gActorIndexedResourceArchive
 	bl __22IndexedResourceArchivePCUc
 	movs r2, #0xde
 	lsls r2, r2, #4
@@ -120548,7 +120548,7 @@ func_080AC674: @ 0x080AC674
 .L080AC818: .4byte 0x00000C14
 .L080AC81C: .4byte 0x00000C15
 .L080AC820: .4byte 0x0000102C
-.L080AC824: .4byte gUnk_0858BA28
+.L080AC824: .4byte gActorIndexedResourceArchive
 .L080AC828: .4byte gUnk_086678A0
 .L080AC82C: .4byte gUnk_0871EF00
 .L080AC830: .4byte gUnk_086FAA80
@@ -123667,7 +123667,7 @@ func_080ADF6C: @ 0x080ADF6C
 	str r0, [r1]
 	movs r0, #0x30
 	bl __builtin_new
-	ldr r1, .L080AE358 @ =gUnk_0858BA28
+	ldr r1, .L080AE358 @ =gActorIndexedResourceArchive
 	bl __22IndexedResourceArchivePCUc
 	movs r2, #0x85
 	lsls r2, r2, #3
@@ -124078,7 +124078,7 @@ func_080ADF6C: @ 0x080ADF6C
 .L080AE34C: .4byte gUnk_0873DE44
 .L080AE350: .4byte gUnk_087405A0
 .L080AE354: .4byte 0x00000424
-.L080AE358: .4byte gUnk_0858BA28
+.L080AE358: .4byte gActorIndexedResourceArchive
 .L080AE35C: .4byte gUnk_0873AE54
 .L080AE360: .4byte 0x0000042C
 .L080AE364: .4byte gUnk_0871D51C
@@ -135698,7 +135698,7 @@ func_080B3CC8: @ 0x080B3CC8
 	bne .L080B3E44
 	movs r0, #0x30
 	bl __builtin_new
-	ldr r1, .L080B4108 @ =gUnk_0858BA28
+	ldr r1, .L080B4108 @ =gActorIndexedResourceArchive
 	bl __22IndexedResourceArchivePCUc
 	ldr r4, .L080B410C @ =0x0000077C
 	adds r1, r6, r4
@@ -136001,7 +136001,7 @@ func_080B3CC8: @ 0x080B3CC8
 .L080B40FC: .4byte 0x00000ADC
 .L080B4100: .4byte 0x00000AE4
 .L080B4104: .4byte 0x0000073C
-.L080B4108: .4byte gUnk_0858BA28
+.L080B4108: .4byte gActorIndexedResourceArchive
 .L080B410C: .4byte 0x0000077C
 .L080B4110: .4byte gUnk_0873DE44
 .L080B4114: .4byte gUnk_0871D51C
@@ -153697,7 +153697,7 @@ func_080BC938: @ 0x080BC938
 	str r0, [r1]
 	movs r0, #0x30
 	bl __builtin_new
-	ldr r1, .L080BCC94 @ =gUnk_0858BA28
+	ldr r1, .L080BCC94 @ =gActorIndexedResourceArchive
 	bl __22IndexedResourceArchivePCUc
 	ldr r2, .L080BCC98 @ =0x0000042C
 	adds r1, r6, r2
@@ -154006,7 +154006,7 @@ func_080BC938: @ 0x080BC938
 .L080BCC88: .4byte gUnk_086678A0
 .L080BCC8C: .4byte 0x00000424
 .L080BCC90: .4byte gUnk_087405A0
-.L080BCC94: .4byte gUnk_0858BA28
+.L080BCC94: .4byte gActorIndexedResourceArchive
 .L080BCC98: .4byte 0x0000042C
 .L080BCC9C: .4byte gUnk_0871D51C
 .L080BCCA0: .4byte gUnk_0872BE64
@@ -162488,7 +162488,7 @@ func_080C0DCC: @ 0x080C0DCC
 	str r0, [r1]
 	movs r0, #0x30
 	bl __builtin_new
-	ldr r1, .L080C11D8 @ =gUnk_0858BA28
+	ldr r1, .L080C11D8 @ =gActorIndexedResourceArchive
 	bl __22IndexedResourceArchivePCUc
 	ldr r2, .L080C11DC @ =0x0000052C
 	adds r1, r6, r2
@@ -162904,7 +162904,7 @@ func_080C0DCC: @ 0x080C0DCC
 .L080C11CC: .4byte gUnk_0873DE44
 .L080C11D0: .4byte 0x00000524
 .L080C11D4: .4byte gUnk_087405A0
-.L080C11D8: .4byte gUnk_0858BA28
+.L080C11D8: .4byte gActorIndexedResourceArchive
 .L080C11DC: .4byte 0x0000052C
 .L080C11E0: .4byte gUnk_0873D5FC
 .L080C11E4: .4byte gUnk_08740908

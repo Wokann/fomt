@@ -52,7 +52,7 @@ as a shared payload.
 | `gUnk_087405A0` | `0x4C6708` | `0x7405A0` | `0x7405FC` | `0x4C7A14` | `0x368` | 2, 1, 2, 24, 1, 0 | 1 | native PNG + assembly tables, directly linked: `graphics/shared_resource_087405a0/` |
 | `gUnk_08740908` | `0x4C6A70` | `0x740908` | `0x740964` | `0x4C7D7C` | `0xDC` | 1, 1, 1, 4, 1, 0 | 1 | linked from indexed PNG, no baserom input or post-link patch: `graphics/shared_resource_08740908/` |
 | `gUnk_087409E4` | `0x4C6B4C` | `0x7409E4` | `0x740A40` | `0x4C7E58` | `0x1010` | 1, 3, 18, 120, 1, 0 | 4 | native PNG + assembly tables, directly linked: `graphics/shared_resource_087409e4/` |
-| `gUnk_0874E530` | `0x4D4CC4` | `0x74E530` | `0x74E58C` | `0x4D599C` | `0x118` | 1, 3, 3, 4, 1, 0 | 4 | linked from indexed PNG, no baserom input or post-link patch: `graphics/intro_scene/small_indexed_archive/shared/` |
+| `gIntroSceneSmallIndexedArchive` | `0x4D4CC4` | `0x74E530` | `0x74E58C` | `0x4D599C` | `0x118` | 1, 3, 3, 4, 1, 0 | 4 | linked from indexed PNG, no baserom input or post-link patch: `graphics/intro_scene/small_indexed_archive/shared/` |
 | `gUnk_0874EE38` | `0x4D5354` | `0x74EE38` | `0x74EE94` | `0x4D62A4` | `0xDC` | 1, 1, 1, 4, 1, 0 | 1 | linked from indexed PNG, no baserom input or post-link patch: `graphics/shared_resource_0874ee38/` |
 | `gUnk_0874F34C` | `0x4D5868` | `0x74F34C` | `0x74F3A8` | `0x4D67B8` | `0x1444` | 22, 22, 7, 140, 3, 0 | 22 | source-owned direct link, common selectors/palettes/index and regional descriptors/OAM/tiles: `graphics/regional_resource_0874f34c/` |
 | `gUnk_087506E0` | `0x4D668C` | `0x7506E0` | `0x75073C` | `0x4D7BFC` | `0x56C` | 4, 4, 10, 36, 1, 0 | 4 | native PNG + assembly tables, directly linked: `graphics/shared_resource_087506e0/` |

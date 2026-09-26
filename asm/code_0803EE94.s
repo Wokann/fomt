@@ -66509,7 +66509,7 @@ func_080722DC:
 	str r6, [sp, #0x2d8]
 	b .Ljp_0807313A
 .Ljp_0807303C:
-	.4byte gUnk_08311B84
+	.4byte gActorIndexedResourceArchive
 .Ljp_08073040:
 	.4byte gUnk_083ED9FC
 .Ljp_08073044:
@@ -157545,7 +157545,7 @@ func_080522F8: @ 0x080522F8
 	bl func_08008B54
 	adds r6, r7, #0
 	adds r6, #0x20
-	ldr r1, .L08052714 @ =gUnk_0858BA28
+	ldr r1, .L08052714 @ =gActorIndexedResourceArchive
 	adds r0, r6, #0
 	bl __22IndexedResourceArchivePCUc
 	movs r1, #0x50
@@ -157954,7 +157954,7 @@ func_080522F8: @ 0x080522F8
 	b .L08052758
 	.align 2, 0
 .L08052710: .4byte vtable_unk_080E7944
-.L08052714: .4byte gUnk_0858BA28
+.L08052714: .4byte gActorIndexedResourceArchive
 .L08052718: .4byte gUnk_0872DE44
 .L0805271C: .4byte gUnk_08740454
 .L08052720: .4byte gUnk_0873E5B0
@@ -169221,7 +169221,7 @@ func_0805806C: @ 0x0805806C
 	movs r6, #0xd0
 	lsls r6, r6, #1
 	add r6, sl
-	ldr r1, .L080584A4 @ =gUnk_0858BA28
+	ldr r1, .L080584A4 @ =gActorIndexedResourceArchive
 	adds r0, r6, #0
 	bl __22IndexedResourceArchivePCUc
 	movs r0, #0xe8
@@ -169608,7 +169608,7 @@ func_0805806C: @ 0x0805806C
 .L08058498: .4byte gUnk_0873ED1C
 .L0805849C: .4byte gUnk_087401A4
 .L080584A0: .4byte gUnk_08728208
-.L080584A4: .4byte gUnk_0858BA28
+.L080584A4: .4byte gActorIndexedResourceArchive
 .L080584A8: .4byte 0x00000762
 .L080584AC: .4byte 0x0000073E
 .L080584B0: .4byte 0x0000074A
@@ -225514,7 +225514,7 @@ func_080722DC: @ 0x080722DC
 	str r5, [r6, #4]
 	str r0, [r6, #0xc]
 .L080730EC:
-	ldr r1, .L080733E8 @ =gUnk_0858BA28
+	ldr r1, .L080733E8 @ =gActorIndexedResourceArchive
 	.ifdef REGION_DE
 	ldr r0, [sp, #0x2d0]
 	.else
@@ -225894,7 +225894,7 @@ func_080722DC: @ 0x080722DC
 	str r6, [sp, #0x2d8]
 	b .L080734E6
 	.align 2, 0
-.L080733E8: .4byte gUnk_0858BA28
+.L080733E8: .4byte gActorIndexedResourceArchive
 .L080733EC: .4byte gUnk_086678A0
 .L080733F0: .4byte gRecordsScreenMinigameTaskResources
 .L080733F4: .4byte 0x0000058C
@@ -267440,21 +267440,21 @@ func_08088318: @ 0x08088318
 	cmp r0, #0
 	bne .L08088484
 	ldr r0, [r6, #0x78]
-	ldr r1, .L0808847C @ =gUnk_0858BA28
+	ldr r1, .L0808847C @ =gActorIndexedResourceArchive
 	ldr r2, .L08088480 @ =0x000003DA
 	b .L080884CA
 	.align 2, 0
 .L08088478: .4byte 0x00001C70
-.L0808847C: .4byte gUnk_0858BA28
+.L0808847C: .4byte gActorIndexedResourceArchive
 .L08088480: .4byte 0x000003DA
 .L08088484:
 	ldr r0, [r6, #0x78]
-	ldr r1, .L08088490 @ =gUnk_0858BA28
+	ldr r1, .L08088490 @ =gActorIndexedResourceArchive
 	movs r2, #0xdd
 	lsls r2, r2, #2
 	b .L080884CA
 	.align 2, 0
-.L08088490: .4byte gUnk_0858BA28
+.L08088490: .4byte gActorIndexedResourceArchive
 .L08088494:
 	ldr r0, [r4]
 	bl func_0800F344
@@ -267470,22 +267470,22 @@ func_08088318: @ 0x08088318
 	cmp r0, #0
 	bne .L080884C4
 	ldr r0, [r6, #0x78]
-	ldr r1, .L080884BC @ =gUnk_0858BA28
+	ldr r1, .L080884BC @ =gActorIndexedResourceArchive
 	ldr r2, .L080884C0 @ =0x0000073D
 	b .L080884CA
 	.align 2, 0
-.L080884BC: .4byte gUnk_0858BA28
+.L080884BC: .4byte gActorIndexedResourceArchive
 .L080884C0: .4byte 0x0000073D
 .L080884C4:
 	ldr r0, [r6, #0x78]
-	ldr r1, .L080884D4 @ =gUnk_0858BA28
+	ldr r1, .L080884D4 @ =gActorIndexedResourceArchive
 	ldr r2, .L080884D8 @ =0x00000734
 .L080884CA:
 	movs r3, #1
 	bl func_080CBAF0
 	b .L080884E8
 	.align 2, 0
-.L080884D4: .4byte gUnk_0858BA28
+.L080884D4: .4byte gActorIndexedResourceArchive
 .L080884D8: .4byte 0x00000734
 .L080884DC:
 	ldr r0, [r6, #0x78]
@@ -274224,21 +274224,21 @@ func_0808BDA0: @ 0x0808BDA0
 	cmp r0, #0
 	bne .L0808BF14
 	ldr r0, [r5, #0x7c]
-	ldr r1, .L0808BF0C @ =gUnk_0858BA28
+	ldr r1, .L0808BF0C @ =gActorIndexedResourceArchive
 	ldr r2, .L0808BF10 @ =0x000003DA
 	b .L0808BF62
 	.align 2, 0
 .L0808BF08: .4byte 0x00001C70
-.L0808BF0C: .4byte gUnk_0858BA28
+.L0808BF0C: .4byte gActorIndexedResourceArchive
 .L0808BF10: .4byte 0x000003DA
 .L0808BF14:
 	ldr r0, [r5, #0x7c]
-	ldr r1, .L0808BF20 @ =gUnk_0858BA28
+	ldr r1, .L0808BF20 @ =gActorIndexedResourceArchive
 	movs r2, #0xdd
 	lsls r2, r2, #2
 	b .L0808BF62
 	.align 2, 0
-.L0808BF20: .4byte gUnk_0858BA28
+.L0808BF20: .4byte gActorIndexedResourceArchive
 .L0808BF24:
 	movs r1, #0x80
 	lsls r1, r1, #1
@@ -274257,22 +274257,22 @@ func_0808BDA0: @ 0x0808BDA0
 	cmp r0, #0
 	bne .L0808BF5C
 	ldr r0, [r5, #0x7c]
-	ldr r1, .L0808BF54 @ =gUnk_0858BA28
+	ldr r1, .L0808BF54 @ =gActorIndexedResourceArchive
 	ldr r2, .L0808BF58 @ =0x0000073D
 	b .L0808BF62
 	.align 2, 0
-.L0808BF54: .4byte gUnk_0858BA28
+.L0808BF54: .4byte gActorIndexedResourceArchive
 .L0808BF58: .4byte 0x0000073D
 .L0808BF5C:
 	ldr r0, [r5, #0x7c]
-	ldr r1, .L0808BF6C @ =gUnk_0858BA28
+	ldr r1, .L0808BF6C @ =gActorIndexedResourceArchive
 	ldr r2, .L0808BF70 @ =0x00000734
 .L0808BF62:
 	movs r3, #1
 	bl func_080CCE58
 	b .L0808BF80
 	.align 2, 0
-.L0808BF6C: .4byte gUnk_0858BA28
+.L0808BF6C: .4byte gActorIndexedResourceArchive
 .L0808BF70: .4byte 0x00000734
 .L0808BF74:
 	ldr r0, [r5, #0x7c]
@@ -275274,21 +275274,21 @@ func_0808C664: @ 0x0808C664
 	cmp r0, #0
 	bne .L0808C7D0
 	ldr r0, [r6, #0x78]
-	ldr r1, .L0808C7C8 @ =gUnk_0858BA28
+	ldr r1, .L0808C7C8 @ =gActorIndexedResourceArchive
 	ldr r2, .L0808C7CC @ =0x000003DA
 	b .L0808C816
 	.align 2, 0
 .L0808C7C4: .4byte 0x00001C70
-.L0808C7C8: .4byte gUnk_0858BA28
+.L0808C7C8: .4byte gActorIndexedResourceArchive
 .L0808C7CC: .4byte 0x000003DA
 .L0808C7D0:
 	ldr r0, [r6, #0x78]
-	ldr r1, .L0808C7DC @ =gUnk_0858BA28
+	ldr r1, .L0808C7DC @ =gActorIndexedResourceArchive
 	movs r2, #0xdd
 	lsls r2, r2, #2
 	b .L0808C816
 	.align 2, 0
-.L0808C7DC: .4byte gUnk_0858BA28
+.L0808C7DC: .4byte gActorIndexedResourceArchive
 .L0808C7E0:
 	ldr r0, [r4]
 	bl func_0800F344
@@ -275304,22 +275304,22 @@ func_0808C664: @ 0x0808C664
 	cmp r0, #0
 	bne .L0808C810
 	ldr r0, [r6, #0x78]
-	ldr r1, .L0808C808 @ =gUnk_0858BA28
+	ldr r1, .L0808C808 @ =gActorIndexedResourceArchive
 	ldr r2, .L0808C80C @ =0x0000073D
 	b .L0808C816
 	.align 2, 0
-.L0808C808: .4byte gUnk_0858BA28
+.L0808C808: .4byte gActorIndexedResourceArchive
 .L0808C80C: .4byte 0x0000073D
 .L0808C810:
 	ldr r0, [r6, #0x78]
-	ldr r1, .L0808C820 @ =gUnk_0858BA28
+	ldr r1, .L0808C820 @ =gActorIndexedResourceArchive
 	ldr r2, .L0808C824 @ =0x00000734
 .L0808C816:
 	movs r3, #1
 	bl func_080CBAF0
 	b .L0808C834
 	.align 2, 0
-.L0808C820: .4byte gUnk_0858BA28
+.L0808C820: .4byte gActorIndexedResourceArchive
 .L0808C824: .4byte 0x00000734
 .L0808C828:
 	ldr r0, [r6, #0x78]
@@ -283760,21 +283760,21 @@ func_08091094: @ 0x08091094
 	cmp r0, #0
 	bne .L08091208
 	ldr r0, [r5, #0x7c]
-	ldr r1, .L08091200 @ =gUnk_0858BA28
+	ldr r1, .L08091200 @ =gActorIndexedResourceArchive
 	ldr r2, .L08091204 @ =0x000003DA
 	b .L08091256
 	.align 2, 0
 .L080911FC: .4byte 0x00001C70
-.L08091200: .4byte gUnk_0858BA28
+.L08091200: .4byte gActorIndexedResourceArchive
 .L08091204: .4byte 0x000003DA
 .L08091208:
 	ldr r0, [r5, #0x7c]
-	ldr r1, .L08091214 @ =gUnk_0858BA28
+	ldr r1, .L08091214 @ =gActorIndexedResourceArchive
 	movs r2, #0xdd
 	lsls r2, r2, #2
 	b .L08091256
 	.align 2, 0
-.L08091214: .4byte gUnk_0858BA28
+.L08091214: .4byte gActorIndexedResourceArchive
 .L08091218:
 	movs r1, #0x80
 	lsls r1, r1, #1
@@ -283793,22 +283793,22 @@ func_08091094: @ 0x08091094
 	cmp r0, #0
 	bne .L08091250
 	ldr r0, [r5, #0x7c]
-	ldr r1, .L08091248 @ =gUnk_0858BA28
+	ldr r1, .L08091248 @ =gActorIndexedResourceArchive
 	ldr r2, .L0809124C @ =0x0000073D
 	b .L08091256
 	.align 2, 0
-.L08091248: .4byte gUnk_0858BA28
+.L08091248: .4byte gActorIndexedResourceArchive
 .L0809124C: .4byte 0x0000073D
 .L08091250:
 	ldr r0, [r5, #0x7c]
-	ldr r1, .L08091260 @ =gUnk_0858BA28
+	ldr r1, .L08091260 @ =gActorIndexedResourceArchive
 	ldr r2, .L08091264 @ =0x00000734
 .L08091256:
 	movs r3, #1
 	bl func_080CCE58
 	b .L08091274
 	.align 2, 0
-.L08091260: .4byte gUnk_0858BA28
+.L08091260: .4byte gActorIndexedResourceArchive
 .L08091264: .4byte 0x00000734
 .L08091268:
 	ldr r0, [r5, #0x7c]
@@ -286530,21 +286530,21 @@ func_08092754: @ 0x08092754
 	cmp r0, #0
 	bne .L080928C8
 	ldr r0, [r5, #0x7c]
-	ldr r1, .L080928C0 @ =gUnk_0858BA28
+	ldr r1, .L080928C0 @ =gActorIndexedResourceArchive
 	ldr r2, .L080928C4 @ =0x000003DA
 	b .L08092916
 	.align 2, 0
 .L080928BC: .4byte 0x00001C70
-.L080928C0: .4byte gUnk_0858BA28
+.L080928C0: .4byte gActorIndexedResourceArchive
 .L080928C4: .4byte 0x000003DA
 .L080928C8:
 	ldr r0, [r5, #0x7c]
-	ldr r1, .L080928D4 @ =gUnk_0858BA28
+	ldr r1, .L080928D4 @ =gActorIndexedResourceArchive
 	movs r2, #0xdd
 	lsls r2, r2, #2
 	b .L08092916
 	.align 2, 0
-.L080928D4: .4byte gUnk_0858BA28
+.L080928D4: .4byte gActorIndexedResourceArchive
 .L080928D8:
 	movs r1, #0x80
 	lsls r1, r1, #1
@@ -286563,22 +286563,22 @@ func_08092754: @ 0x08092754
 	cmp r0, #0
 	bne .L08092910
 	ldr r0, [r5, #0x7c]
-	ldr r1, .L08092908 @ =gUnk_0858BA28
+	ldr r1, .L08092908 @ =gActorIndexedResourceArchive
 	ldr r2, .L0809290C @ =0x0000073D
 	b .L08092916
 	.align 2, 0
-.L08092908: .4byte gUnk_0858BA28
+.L08092908: .4byte gActorIndexedResourceArchive
 .L0809290C: .4byte 0x0000073D
 .L08092910:
 	ldr r0, [r5, #0x7c]
-	ldr r1, .L08092920 @ =gUnk_0858BA28
+	ldr r1, .L08092920 @ =gActorIndexedResourceArchive
 	ldr r2, .L08092924 @ =0x00000734
 .L08092916:
 	movs r3, #1
 	bl func_080CCE58
 	b .L08092934
 	.align 2, 0
-.L08092920: .4byte gUnk_0858BA28
+.L08092920: .4byte gActorIndexedResourceArchive
 .L08092924: .4byte 0x00000734
 .L08092928:
 	ldr r0, [r5, #0x7c]

@@ -94746,8 +94746,8 @@ gUnk_0852D984:
 
 	@ DE places these archive payloads earlier than the corresponding US stream.
 	@ Keep their common symbols on the physical DE bytes rather than aliases.
-	.global gUnk_0858BA28
-gUnk_0858BA28:
+	.global gActorIndexedResourceArchive
+gActorIndexedResourceArchive:
     .include "graphics/sprites/actor_archive/archive.inc"
 	.global gUnk_08667060
 gUnk_08667060:
@@ -129953,8 +129953,8 @@ gUnk_08743058:
 	.global gUnk_08747A14
 gUnk_08747A14:
 	.incbin "graphics/intro_scene/shared/background_palettes.gbapal"
-	.global gUnk_08747A74
-gUnk_08747A74:
+	.global gIntroSceneIndexedArchiveCompressed
+gIntroSceneIndexedArchiveCompressed:
 	.incbin "graphics/intro_scene/indexed_archive/de/archive.lz"
 	.global gUnk_IntroSceneStartupUnpackSource_000
 gUnk_IntroSceneStartupUnpackSource_000:
@@ -129974,8 +129974,8 @@ gUnk_0874A9C0:
 	.global gUnk_0874E330
 gUnk_0874E330:
 	.incbin "graphics/intro_scene/shared/startup_visual/startup_palette_banks.gbapal"
-	.global gUnk_0874E530
-gUnk_0874E530:
+	.global gIntroSceneSmallIndexedArchive
+gIntroSceneSmallIndexedArchive:
 	.4byte 1                         @ selection count
 	.4byte 4                         @ selection
 	.4byte 3                         @ frame descriptor count

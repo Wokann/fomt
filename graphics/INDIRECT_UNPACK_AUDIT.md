@@ -57,7 +57,7 @@ to one.
 
 | Consumer | Labels | Classification |
 | --- | --- | --- |
-| `func_08000914` | `gUnk_08747A74`, `gUnk_084CDBDC` | Managed Intro Scene indexed-resource archives. The latter is the preserved JP code path; both have verified OAM descriptors, tile ranges and BGR555 palette indices. See `intro_scene/OBJECT_PIPELINE_AUDIT.md`. Their destinations are archive buffers, not direct VRAM tile uploads. |
+| `func_08000914` | `gIntroSceneIndexedArchiveCompressed` | Managed Intro Scene indexed-resource archive, with separate JP, DE and US/EU source streams under one functional symbol. Its OAM descriptors, tile ranges and BGR555 palette indices are verified in `intro_scene/OBJECT_PIPELINE_AUDIT.md`. The destination is an archive buffer, not a direct VRAM tile upload. |
 | `func_08054F40` | `gUnk_08738AD8`, `gUnk_08738CC8`, `gUnk_08738CF0`, `gUnk_08739A64` | Runtime staging inputs for the UI scene's maps and related data. They contribute to code-backed reference views, while only the separately direct-VRAM tile stream has a fixed-slot editable graphics pipeline. |
 | `func_0805AB08` | `gUnk_0872F11C`, `gUnk_0872F1BC`, `gUnk_0872F1EC`, `gUnk_0872FBFC` | Runtime map-template staging inputs for the UI scene. Their exact references are useful for inspection, but no replacement layout is inferred from a rendered PNG. |
 | Regional map-state loaders (overseas `func_080A95A4`) | Five region-local fallback palette ranges listed above | Five managed state-fallback BGR555 palette payloads. Their ordered native `.gbapal` sources retain exact fixed-slot Raw-LZ bounds; no tile or OAM layout is inferred. |

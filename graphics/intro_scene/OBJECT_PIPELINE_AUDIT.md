@@ -59,8 +59,9 @@ engine-wide OAM emitter `func_0805E99C`, which consumes caller-supplied
 eight-byte piece records and creates transient hardware OAM entries. The
 loader itself supplies no static one-record-per-object descriptor table.
 
-`func_08000914` separately unpacks `gUnk_08747A74` (or the JP/DE physical
-counterpart) and constructs an `IndexedResourceArchive` from the result.  Its
+`func_08000914` separately unpacks the regional
+`gIntroSceneIndexedArchiveCompressed` stream and constructs an
+`IndexedResourceArchive` from the result. Its
 own layout has now been verified: every selected 16-byte descriptor closes
 over its eight-byte OAM range, native tile range, and BGR555 palette index.
 `indexed_archive/{jp,us_eu,de}/full/` contains its complete OAM-composited
