@@ -72,9 +72,9 @@ by the exact complete payload, not by inventing a JP label.
 
 `gUnk_0871D51C` is the first archive intentionally kept outside the shared
 table. Code pointers and each native archive header independently establish
-the following fixed layouts. Its four `full/` source directories are rebuilt
-and patched only to their own region's range; no region is substituted for
-another.
+the following fixed layouts. Each region's native tile atlas and palette are
+converted by the generic graphics rules and linked at the archive's original
+assembly position; no post-link patch or ROM input is needed for this archive.
 
 | Region | ROM offset | Length | Header counts | Entries | SHA-256 |
 | --- | --- | --- | --- | --- | --- |
@@ -86,7 +86,9 @@ another.
 US and EU are presently byte-identical but deliberately retain independent
 authoring directories. JP's selection table contains three extra entries, and
 DE has two additional descriptors, eight extra tiles and four extra selection
-entries; those structural differences are preserved as native layout data.
+entries; those structural differences are preserved in the original assembly
+tables. The old `group_*.png` files are composited references, while each
+`full/native.png` keeps the editable tiles in ROM order.
 
 `gUnk_08728208` has one fixed archive layout in all four regions, but two
 distinct visual payloads. JP uses the dedicated `jp/` source; US, EU, and DE
