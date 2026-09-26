@@ -37,15 +37,14 @@ OAM-piece and palette selection come from runtime indexed-resource handles.
 make gfx-intro-objects-all
 ```
 
-Seventeen objects now encode directly from `.4bpp` through the C compressor:
+All twenty objects now encode directly from `.4bpp` through the C compressor:
 eleven Raw-LZ3 streams (`01`, `03`, `05`, `07`, `08`, `09`, `11`, `12`, `14`,
-`17`, `19`) and six Raw-LZ2 streams (`02`, `04`, `06`, `10`, `13`, `15`).
-Each rebuilt packed slot matches the retail bytes exactly; their
-`.original.lz` files remain only for independent comparison, not as build
-inputs. Objects `00`, `16`, and `18` still use their source-adjacent original
-streams until their Raw-LZ1 packing is independently reproduced. Edited
-streams are decoded for verification and rejected if they exceed their
-original packed slots. Assembly includes the generated `.4bpp.lz` files.
+`17`, `19`), six Raw-LZ2 streams (`02`, `04`, `06`, `10`, `13`, `15`), and three
+Raw-LZ1 streams (`00`, `16`, `18`). Each rebuilt packed slot matches the retail
+bytes exactly; their `.original.lz` files remain only for independent
+comparison, not as build inputs. Edited streams are decoded for verification
+and rejected if they exceed their original packed slots. Assembly includes the
+generated `.4bpp.lz` files.
 
 ## Regional indexed OAM archive
 

@@ -2483,17 +2483,17 @@ static unsigned char *encode_huff_lz2(unsigned char const *source, size_t size,
 
 static void usage(void)
 {
-    fail("usage: fomt-lz encode-lz2 SOURCE OUTPUT LADDER SLOT_SIZE "
+    fail("usage: fomt-lz encode-lz1|encode-lz2 SOURCE OUTPUT LADDER SLOT_SIZE "
          "[--literal-tail] | "
          "encode-lz3|encode-huff8-lz3 SOURCE OUTPUT LADDER SLOT_SIZE | "
          "rebuild-native SOURCE ORIGINAL OUTPUT [TAIL] | "
          "rebuild-huff8-lz3 SOURCE ORIGINAL OUTPUT LADDER SLOT_SIZE | "
          "rebuild-huff4-lz2|rebuild-huff8-lz2 "
          "SOURCE ORIGINAL OUTPUT LADDER SLOT_SIZE | "
-         "decode-lz2|decode-lz3|decode-huff4-lz0|decode-huff4-lz3|decode-huff8-lz3|"
+         "decode-lz1|decode-lz2|decode-lz3|decode-huff4-lz0|decode-huff4-lz3|decode-huff8-lz3|"
          "decode-huff4-lz2|decode-huff8-lz2 SOURCE OUTPUT | "
          "verify-native SOURCE PACKED [TAIL] | "
-         "verify-lz2|verify-lz3|verify-huff4-lz0|verify-huff4-lz3|verify-huff8-lz3|"
+         "verify-lz1|verify-lz2|verify-lz3|verify-huff4-lz0|verify-huff4-lz3|verify-huff8-lz3|"
          "verify-huff4-lz2|verify-huff8-lz2 SOURCE PACKED [LADDER]");
 }
 
@@ -2730,9 +2730,11 @@ int main(int argc, char **argv)
         free(decoded);
         free(original);
         free(source);
-    } else if (strcmp(argv[1], "encode-lz2") == 0 ||
+    } else if (strcmp(argv[1], "encode-lz1") == 0 ||
+        strcmp(argv[1], "encode-lz2") == 0 ||
         strcmp(argv[1], "encode-lz3") == 0 ||
         strcmp(argv[1], "encode-huff8-lz3") == 0) {
+        int lz1 = strcmp(argv[1], "encode-lz1") == 0;
         int lz2 = strcmp(argv[1], "encode-lz2") == 0;
         int huff8 = strcmp(argv[1], "encode-huff8-lz3") == 0;
         if (argc != 6 && !(lz2 && argc == 7 &&
@@ -2740,12 +2742,13 @@ int main(int argc, char **argv)
             usage();
         int literal_tail = argc == 7;
         LadderEntry ladder[7];
-        parse_ladder(argv[4], ladder, lz2 ? 7 : 3);
+        parse_ladder(argv[4], ladder, lz1 ? 4 : lz2 ? 7 : 3);
         unsigned slot_size = parse_size(argv[5]);
         size_t source_size, packed_size;
         unsigned char *source = read_file(argv[2], &source_size);
-        unsigned char *packed = lz2
-            ? encode_lz2(source, source_size, ladder, literal_tail, 9,
+        unsigned char *packed = lz1
+            ? encode_lz1(source, source_size, ladder, &packed_size)
+            : lz2 ? encode_lz2(source, source_size, ladder, literal_tail, 9,
                          &packed_size)
             : huff8 ? encode_huff8_lz3(source, source_size, ladder, &packed_size)
                     : encode_lz3(source, source_size, ladder, &packed_size);
@@ -2771,7 +2774,8 @@ int main(int argc, char **argv)
         write_file(argv[3], packed, packed_size);
         free(packed);
         free(source);
-    } else if (strcmp(argv[1], "decode-lz2") == 0 ||
+    } else if (strcmp(argv[1], "decode-lz1") == 0 ||
+               strcmp(argv[1], "decode-lz2") == 0 ||
                strcmp(argv[1], "decode-lz3") == 0 ||
                strcmp(argv[1], "decode-huff4-lz0") == 0 ||
                strcmp(argv[1], "decode-huff8-lz3") == 0 ||
@@ -2780,6 +2784,7 @@ int main(int argc, char **argv)
                strcmp(argv[1], "decode-huff8-lz2") == 0) {
         if (argc != 4)
             usage();
+        int lz1 = strcmp(argv[1], "decode-lz1") == 0;
         int lz2 = strcmp(argv[1], "decode-lz2") == 0;
         int huff4_lz0 = strcmp(argv[1], "decode-huff4-lz0") == 0;
         int huff8 = strcmp(argv[1], "decode-huff8-lz3") == 0;
@@ -2789,8 +2794,9 @@ int main(int argc, char **argv)
         size_t packed_size, decoded_size;
         unsigned char *packed = read_file(argv[2], &packed_size);
         LadderEntry ladder[7];
-        unsigned char *decoded = lz2
-            ? decode_lz2(packed, packed_size, ladder, &decoded_size)
+        unsigned char *decoded = lz1
+            ? decode_lz1(packed, packed_size, ladder, &decoded_size)
+            : lz2 ? decode_lz2(packed, packed_size, ladder, &decoded_size)
             : huff4_lz0
                 ? decode_huff4_lz0(packed, packed_size, ladder, &decoded_size)
             : (huff4_lz2 || huff8_lz2)
@@ -2852,7 +2858,8 @@ int main(int argc, char **argv)
         free(decoded);
         free(packed);
         free(source);
-    } else if (strcmp(argv[1], "verify-lz2") == 0 ||
+    } else if (strcmp(argv[1], "verify-lz1") == 0 ||
+               strcmp(argv[1], "verify-lz2") == 0 ||
                strcmp(argv[1], "verify-lz3") == 0 ||
                strcmp(argv[1], "verify-huff4-lz0") == 0 ||
                strcmp(argv[1], "verify-huff8-lz3") == 0 ||
@@ -2861,21 +2868,23 @@ int main(int argc, char **argv)
                strcmp(argv[1], "verify-huff8-lz2") == 0) {
         if (argc != 4 && argc != 5)
             usage();
+        int lz1 = strcmp(argv[1], "verify-lz1") == 0;
         int lz2 = strcmp(argv[1], "verify-lz2") == 0;
         int huff4_lz0 = strcmp(argv[1], "verify-huff4-lz0") == 0;
         int huff8 = strcmp(argv[1], "verify-huff8-lz3") == 0;
         int huff4_lz3 = strcmp(argv[1], "verify-huff4-lz3") == 0;
         int huff4_lz2 = strcmp(argv[1], "verify-huff4-lz2") == 0;
         int huff8_lz2 = strcmp(argv[1], "verify-huff8-lz2") == 0;
-        unsigned count = huff4_lz0 ? 2 : lz2 || huff4_lz2 || huff8_lz2 ? 7 : 3;
+        unsigned count = huff4_lz0 ? 2 : lz1 ? 4 : lz2 || huff4_lz2 || huff8_lz2 ? 7 : 3;
         size_t source_size, packed_size, decoded_size;
         unsigned char *source = read_file(argv[2], &source_size);
         unsigned char *packed = read_file(argv[3], &packed_size);
         LadderEntry expected[7], actual[7];
         if (argc == 5)
             parse_ladder(argv[4], expected, count);
-        unsigned char *decoded = lz2
-            ? decode_lz2(packed, packed_size, actual, &decoded_size)
+        unsigned char *decoded = lz1
+            ? decode_lz1(packed, packed_size, actual, &decoded_size)
+            : lz2 ? decode_lz2(packed, packed_size, actual, &decoded_size)
             : huff4_lz0
                 ? decode_huff4_lz0(packed, packed_size, actual, &decoded_size)
             : (huff4_lz2 || huff8_lz2)
