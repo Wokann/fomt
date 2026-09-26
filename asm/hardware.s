@@ -3035,42 +3035,9 @@ func_08008A68: @ 0x08008A68
 .L08008AD8: .4byte vtable_unk_080E5B0C
 .L08008ADC: .4byte vtable_unk_080E5B18
 
-    .section .text.hardware_nested_accessors_after, "ax", %progbits
+    .section .text.hardware_sound_after, "ax", %progbits
     .thumb
     .align 2, 0
-
-    thumb_func_start func_08008AF0
-func_08008AF0: @ 0x08008AF0
-    push {lr}
-    movs r0, #1
-    bl func_08000568
-    pop {r0}
-    bx r0
-
-    thumb_func_start func_08008AFC
-func_08008AFC: @ 0x08008AFC
-    push {lr}
-    bl m4aSoundInit
-    bl m4aSoundVSyncOff
-    pop {r0}
-    bx r0
-    .align 2, 0
-
-    thumb_func_start func_08008B0C
-func_08008B0C: @ 0x08008B0C
-    push {lr}
-    bl m4aSoundVSync
-    movs r0, #1
-    pop {r1}
-    bx r1
-
-    thumb_func_start func_08008B18
-func_08008B18: @ 0x08008B18
-    push {lr}
-    bl m4aSoundMain
-    movs r0, #1
-    pop {r1}
-    bx r1
 
     thumb_func_start func_08008B24
 func_08008B24: @ 0x08008B24
