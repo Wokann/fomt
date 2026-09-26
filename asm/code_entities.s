@@ -22880,7 +22880,7 @@ func_0802B2B0:
 .Ljp_0802B5A4:
     .4byte 0x00000281
 .Ljp_0802B5A8:
-    .4byte gActorIndexedResourceArchive - 0x20
+    .4byte gPortraitArchivePaletteTrailer
 .Ljp_0802B5AC:
     ldr	r4, [sp, #76]
     ldr r5, .Ljp_0802B678
@@ -57527,7 +57527,7 @@ func_0802B51C:
 .L802B810:
     .4byte 0x00000281
 .L802B814:
-    .4byte gActorIndexedResourceArchive - 0x20
+    .4byte gPortraitArchivePaletteTrailer
 .L802B818:
     ldr	r4, [sp, #76]
     ldr r5, .L802B8E4

@@ -1670,4 +1670,6 @@
     .4byte 183
 
     @ Unindexed native palette trailer.
+    .global gPortraitArchivePaletteTrailer
+gPortraitArchivePaletteTrailer:
     .2byte 993, 7470, 23874, 21076, 27386, 3422, 10810, 30210, 4469, 31464, 6683, 32624, 28294, 11999, 29450, 28620
