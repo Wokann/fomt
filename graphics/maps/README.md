@@ -29,6 +29,8 @@ their `.original.lz` files are comparison references, not build inputs. The
 other streams still use source-adjacent original packing metadata to preserve
 exact output. No normal build reads `baserom`; an edit that cannot fit its
 verified slot fails rather than overwriting a neighboring record.
+The map resource test checks decoded content for all 42 streams and compares
+all 26 directly encoded packed streams byte for byte against their audit copies.
 
 ```console
 make -j4 gfx-map-resources-test

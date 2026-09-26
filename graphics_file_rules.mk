@@ -1016,6 +1016,7 @@ FOMT_LZ_ENCODE_OUTPUTS := $(addsuffix .lz, \
   $(MAP_DATA_SOURCE_DIR)/map_15/layer_4.tilemap $(MAP_DATA_SOURCE_DIR)/map_08/layer_3.tilemap \
   $(MAP_DATA_SOURCE_DIR)/map_44/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_44/layer_3.tilemap \
   $(MAP_DATA_SOURCE_DIR)/map_45/layer_3.tilemap $(MAP_DATA_SOURCE_DIR)/map_31/layer_3.tilemap)
+MAP_DATA_DIRECT_PACKED := $(filter $(MAP_DATA_SOURCE_DIR)/%,$(FOMT_LZ_ENCODE_OUTPUTS))
 
 $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_0.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 125 0x28
 $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_1.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1234679 0xB0
@@ -1743,6 +1744,9 @@ gfx-map-resources: $(MAP_DATA_TILE_OUTPUTS) $(MAP_DATA_PALETTE_OUTPUTS) $(MAP_DA
 gfx-map-resources-test: gfx-map-resources $(FOMT_LZ_TOOL)
 	@set -e; for packed in $(MAP_DATA_PACKED); do \
 	  $(FOMT_LZ_TOOL) verify-native "$${packed%.lz}" "$$packed"; \
+	done
+	@set -e; for packed in $(MAP_DATA_DIRECT_PACKED); do \
+	  cmp "$$packed" "$${packed%.*.lz}.original.lz"; \
 	done
 gfx-map-resources-all: gfx-map-resources-test
 gfx-map-state-palettes: $(MAP_STATE_PALETTE_OUTPUTS)
