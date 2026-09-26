@@ -1,11 +1,17 @@
 # Large shared resource archive
 
-`full/group_000.png` through `group_101.png` are the editable,
-palette-indexed views of the 102 drawable resources in one fixed
-`0x6EA0`-byte `IndexedResourceArchive`. They are complete OAM-composited source
-images, not tile atlases or screenshots. The original archive retains its
-selector, descriptor, OAM, tile-placement, and BGR555 palette tables, so
-rebuilding requires no JSON layout sidecar.
+`full/native.png` is the editable atlas of all 768 tiles in their original
+4bpp order. The 46 palette banks are stored in three JASC files:
+`palettes_00_15.pal`, `palettes_16_31.pal`, and `palettes_32_45.pal`.
+Each file stays within the existing graphics converter's 256-color limit.
+The generic graphics rules produce source-adjacent `.4bpp` and `.gbapal`
+assets; `archive.inc` joins them with the selector, descriptor, OAM and index
+tables at each region's original assembly position. No ROM-derived rebuild,
+JSON sidecar or post-link patch is used in the normal build.
+
+`full/group_000.png` through `group_101.png` are OAM-composited reference
+views, not compilation inputs; their arrangement does not retain native tile
+order.
 
 The archive is byte-identical in all four retail FoMT ROMs:
 
@@ -22,13 +28,12 @@ known callers occur in shared runtime paths, which proves that it is an active
 resource archive but does not yet prove individual gameplay semantics. The
 group names therefore remain neutral physical IDs.
 
-`preview/` contains transparent RGBA inspection exports only; compilation
-reads `full/` only.
+`preview/` contains transparent RGBA inspection exports only. The direct-link
+layout passes JP, US, EU and DE original-ROM SHA-1 comparisons.
 
 Use the following checks after editing:
 
 ```console
 make gfx-large-shared-resource-archive-all
-make gfx-large-shared-resource-archive-patch-test
-make gfx-large-shared-resource-archive-edit-test
+make -j4 fomt_jp fomt_us fomt_eu fomt_de
 ```

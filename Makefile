@@ -304,13 +304,8 @@ $(ROM): $(REGIONAL_RESOURCE_0873A6E8_OUTPUT)
 $(ROM): $(REGIONAL_RESOURCE_0873D6D8_OUTPUT)
 $(ROM): $(REGIONAL_RESOURCE_0874F34C_OUTPUT)
 
-%.gba: %.elf $(LARGE_SHARED_RESOURCE_ARCHIVE_OUTPUT) $(SHARED_RESOURCE_08725DA0_OUTPUT)
+%.gba: %.elf $(SHARED_RESOURCE_08725DA0_OUTPUT)
 	$(OBJCOPY) -O binary $< $@
-	@$(PYTHON) $(LARGE_SHARED_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM) --profile large-shared \
-	  --offset $(LARGE_SHARED_RESOURCE_ARCHIVE_OFFSET) \
-	  --length $(LARGE_SHARED_RESOURCE_ARCHIVE_LENGTH) \
-	  --sha256 $(LARGE_SHARED_RESOURCE_ARCHIVE_SHA256) \
-	  patch --target $@ --archive $(LARGE_SHARED_RESOURCE_ARCHIVE_OUTPUT)
 	@$(PYTHON) $(SHARED_RESOURCE_08725DA0_TOOL) $(BASE_ROM) --profile shared-08725da0 \
 	  --offset $(SHARED_RESOURCE_08725DA0_OFFSET) \
 	  --length $(SHARED_RESOURCE_08725DA0_LENGTH) \
@@ -471,7 +466,7 @@ ifneq (,$(filter gfx-menu-ui-resource-archive,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 
-ifneq (,$(filter gfx-large-shared-resource-archive gfx-large-shared-resource-archive-test gfx-large-shared-resource-archive-all gfx-large-shared-resource-archive-patch-test gfx-large-shared-resource-archive-edit-test,$(MAKECMDGOALS)))
+ifneq (,$(filter gfx-large-shared-resource-archive gfx-large-shared-resource-archive-all,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 

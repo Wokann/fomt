@@ -228,9 +228,12 @@ until each icon's semantics have independent runtime evidence.
 The large shared archive is independently bounded at the four locations in the
 table. Its 102 descriptors all select drawable records, together covering one
 OAM record, 768 4bpp tiles, 46 BGR555 palettes, and 124 selection entries. Its
-complete editable PNG sources are under `graphics/large_resource_archive/`.
-The current consumer evidence establishes an active shared runtime archive, not
-the gameplay meaning of every group, so its source file names remain neutral.
+native-order editable tiles and three JASC palette segments are under
+`graphics/large_resource_archive/full/`. They are included by a shared
+source-owned `archive.inc` at all four original assembly positions; the old
+group PNGs remain OAM-composited references. The current consumer evidence
+establishes an active shared runtime archive, not the gameplay meaning of every
+group, so its source file names remain neutral.
 
 Shared archive `08725DA0` is independently bounded at the four locations in
 the table. Its six descriptors all select drawable records, together covering

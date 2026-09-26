@@ -159,19 +159,11 @@ MENU_UI_RESOURCE_ARCHIVE_SOURCES := $(wildcard $(MENU_UI_RESOURCE_ARCHIVE_SOURCE
 MENU_UI_RESOURCE_ARCHIVE_TILES := $(MENU_UI_RESOURCE_ARCHIVE_SOURCES:.png=.4bpp)
 MENU_UI_RESOURCE_ARCHIVE_PALETTE := $(MENU_UI_RESOURCE_ARCHIVE_SOURCE_DIR)/full/group_000.gbapal
 MENU_UI_RESOURCE_ARCHIVE_ASSETS := $(MENU_UI_RESOURCE_ARCHIVE_TILES) $(MENU_UI_RESOURCE_ARCHIVE_PALETTE)
-# This complete 102-entry archive has four-region-identical data. Its callers
-# span shared runtime paths, so source names remain neutral physical group IDs.
-LARGE_SHARED_RESOURCE_ARCHIVE_TOOL := tools/common_resource_archive.py
+# The four-region-identical archive keeps one source-owned table layout.
 LARGE_SHARED_RESOURCE_ARCHIVE_SOURCE_DIR := graphics/large_resource_archive
-LARGE_SHARED_RESOURCE_ARCHIVE_SOURCES := $(wildcard $(LARGE_SHARED_RESOURCE_ARCHIVE_SOURCE_DIR)/full/*.png)
-LARGE_SHARED_RESOURCE_ARCHIVE_OUTPUT := $(BUILD_DIR)/graphics/large_resource_archive/large_resource_archive.bin
-LARGE_SHARED_RESOURCE_ARCHIVE_LENGTH := 0x6EA0
-LARGE_SHARED_RESOURCE_ARCHIVE_SHA256 := f3dbd496b2e790073ecf8175ef5be7f2d2aad8d8777751ccad7d3cb7d8203878
-LARGE_SHARED_RESOURCE_ARCHIVE_OFFSET_JP := 0x4A5068
-LARGE_SHARED_RESOURCE_ARCHIVE_OFFSET_US := 0x71EF00
-LARGE_SHARED_RESOURCE_ARCHIVE_OFFSET_EU := 0x71EF5C
-LARGE_SHARED_RESOURCE_ARCHIVE_OFFSET_DE := 0x4A60CC
-LARGE_SHARED_RESOURCE_ARCHIVE_OFFSET := $(LARGE_SHARED_RESOURCE_ARCHIVE_OFFSET_$(GAME_REGION))
+LARGE_SHARED_RESOURCE_ARCHIVE_ASSETS := $(LARGE_SHARED_RESOURCE_ARCHIVE_SOURCE_DIR)/full/native.4bpp $(LARGE_SHARED_RESOURCE_ARCHIVE_SOURCE_DIR)/full/palettes_00_15.gbapal $(LARGE_SHARED_RESOURCE_ARCHIVE_SOURCE_DIR)/full/palettes_16_31.gbapal $(LARGE_SHARED_RESOURCE_ARCHIVE_SOURCE_DIR)/full/palettes_32_45.gbapal
+.SECONDARY: $(LARGE_SHARED_RESOURCE_ARCHIVE_ASSETS)
+$(BUILD_DIR)/asm/data/data_0813B288.o: $(LARGE_SHARED_RESOURCE_ARCHIVE_SOURCE_DIR)/archive.inc $(LARGE_SHARED_RESOURCE_ARCHIVE_ASSETS)
 # Shared runtime archive whose consumers are not yet semantically identified.
 # Keep its original address in the source path instead of inventing a role.
 SHARED_RESOURCE_08725DA0_TOOL := tools/common_resource_archive.py
@@ -1069,13 +1061,6 @@ $(FARM_STATUS_TILES_BIN) $(FARM_STATUS_TILES_PALETTE0_BIN) &: $(FARM_STATUS_TILE
 $(FARM_STATUS_PACKED_BIN): $(FARM_STATUS_TILES_BIN) $(FARM_STATUS_ORIGINAL) $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) rebuild-native $< $(FARM_STATUS_ORIGINAL) $@
 
-$(LARGE_SHARED_RESOURCE_ARCHIVE_OUTPUT): $(LARGE_SHARED_RESOURCE_ARCHIVE_SOURCES) $(LARGE_SHARED_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM)
-	@mkdir -p $(dir $@)
-	@$(PYTHON) $(LARGE_SHARED_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM) --profile large-shared \
-	  --offset $(LARGE_SHARED_RESOURCE_ARCHIVE_OFFSET) \
-	  --length $(LARGE_SHARED_RESOURCE_ARCHIVE_LENGTH) \
-	  --sha256 $(LARGE_SHARED_RESOURCE_ARCHIVE_SHA256) \
-	  build --source-dir $(LARGE_SHARED_RESOURCE_ARCHIVE_SOURCE_DIR) --output $@
 
 $(SHARED_RESOURCE_08725DA0_OUTPUT): $(SHARED_RESOURCE_08725DA0_SOURCES) $(SHARED_RESOURCE_08725DA0_TOOL) $(BASE_ROM)
 	@mkdir -p $(dir $@)
@@ -1211,7 +1196,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 .PHONY: gfx-small-ui-resource-archive
 .PHONY: gfx-cooking-ui-resource-archive gfx-cooking-ui-resource-archive-test gfx-cooking-ui-resource-archive-all
 .PHONY: gfx-menu-ui-resource-archive
-.PHONY: gfx-large-shared-resource-archive gfx-large-shared-resource-archive-test gfx-large-shared-resource-archive-all gfx-large-shared-resource-archive-patch-test gfx-large-shared-resource-archive-edit-test
+.PHONY: gfx-large-shared-resource-archive gfx-large-shared-resource-archive-all
 .PHONY: gfx-shared-resource-08725da0 gfx-shared-resource-08725da0-test gfx-shared-resource-08725da0-all gfx-shared-resource-08725da0-patch-test gfx-shared-resource-08725da0-edit-test
 .PHONY: gfx-shared-resource-086f2fac
 .PHONY: gfx-shared-resource-086faa80
@@ -1543,35 +1528,9 @@ gfx-cooking-ui-resource-archive: $(COOKING_UI_RESOURCE_ARCHIVE_ASSETS)
 gfx-cooking-ui-resource-archive-test: gfx-cooking-ui-resource-archive
 gfx-cooking-ui-resource-archive-all: gfx-cooking-ui-resource-archive-test
 gfx-menu-ui-resource-archive: $(MENU_UI_RESOURCE_ARCHIVE_ASSETS)
-gfx-large-shared-resource-archive: $(LARGE_SHARED_RESOURCE_ARCHIVE_OUTPUT)
-gfx-large-shared-resource-archive-test: gfx-large-shared-resource-archive $(LARGE_SHARED_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM)
-	@$(PYTHON) $(LARGE_SHARED_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM) --profile large-shared \
-	  --offset $(LARGE_SHARED_RESOURCE_ARCHIVE_OFFSET) \
-	  --length $(LARGE_SHARED_RESOURCE_ARCHIVE_LENGTH) \
-	  --sha256 $(LARGE_SHARED_RESOURCE_ARCHIVE_SHA256) \
-	  verify --source-dir $(LARGE_SHARED_RESOURCE_ARCHIVE_SOURCE_DIR)
+gfx-large-shared-resource-archive: $(LARGE_SHARED_RESOURCE_ARCHIVE_ASSETS)
 gfx-large-shared-resource-archive-all:
-	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-large-shared-resource-archive-test
-	@$(MAKE) --no-print-directory GAME_REGION=US gfx-large-shared-resource-archive-test
-	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-large-shared-resource-archive-test
-	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-large-shared-resource-archive-test
-gfx-large-shared-resource-archive-patch-test: gfx-large-shared-resource-archive-all $(LARGE_SHARED_RESOURCE_ARCHIVE_TOOL)
-	@$(PYTHON) $(LARGE_SHARED_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --profile large-shared \
-	  --offset 0x4A5068 --length $(LARGE_SHARED_RESOURCE_ARCHIVE_LENGTH) \
-	  --sha256 $(LARGE_SHARED_RESOURCE_ARCHIVE_SHA256) patch-test \
-	  --archive jp build/jp/graphics/large_resource_archive/large_resource_archive.bin \
-	  --archive us build/us/graphics/large_resource_archive/large_resource_archive.bin \
-	  --archive eu build/eu/graphics/large_resource_archive/large_resource_archive.bin \
-	  --archive de build/de/graphics/large_resource_archive/large_resource_archive.bin \
-	  --all-rom jp baserom_jp.gba 0x4A5068 \
-	  --all-rom us baserom_us.gba 0x71EF00 \
-	  --all-rom eu baserom_eu.gba 0x71EF5C \
-	  --all-rom de baserom_de.gba 0x4A60CC
-gfx-large-shared-resource-archive-edit-test: $(LARGE_SHARED_RESOURCE_ARCHIVE_TOOL) $(LARGE_SHARED_RESOURCE_ARCHIVE_SOURCES) baserom_jp.gba
-	@$(PYTHON) $(LARGE_SHARED_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --profile large-shared \
-	  --offset 0x4A5068 --length $(LARGE_SHARED_RESOURCE_ARCHIVE_LENGTH) \
-	  --sha256 $(LARGE_SHARED_RESOURCE_ARCHIVE_SHA256) edit-test \
-	  --source-dir $(LARGE_SHARED_RESOURCE_ARCHIVE_SOURCE_DIR)
+	@$(MAKE) --no-print-directory gfx-large-shared-resource-archive
 gfx-shared-resource-08725da0: $(SHARED_RESOURCE_08725DA0_OUTPUT)
 gfx-shared-resource-08725da0-test: gfx-shared-resource-08725da0 $(SHARED_RESOURCE_08725DA0_TOOL) $(BASE_ROM)
 	@$(PYTHON) $(SHARED_RESOURCE_08725DA0_TOOL) $(BASE_ROM) --profile shared-08725da0 \
@@ -2020,7 +1979,6 @@ resource-archive-audit: $(INDEXED_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba baserom_
 	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_TOOL) compare --rom jp baserom_jp.gba 0x4C30F8 --rom us baserom_us.gba 0x73CF90 --rom eu baserom_eu.gba 0x73CFEC --rom de baserom_de.gba 0x4C42FC
 	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_TOOL) compare --rom jp baserom_jp.gba 0x4C339C --rom us baserom_us.gba 0x73D234 --rom eu baserom_eu.gba 0x73D290 --rom de baserom_de.gba 0x4C45A0
 	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_TOOL) compare --rom jp baserom_jp.gba 0x4D977C --rom us baserom_us.gba 0x7537D0 --rom eu baserom_eu.gba 0x75382C --rom de baserom_de.gba 0x4DACEC
-	@$(PYTHON) $(LARGE_SHARED_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --profile large-shared --offset 0x4A5068 --length $(LARGE_SHARED_RESOURCE_ARCHIVE_LENGTH) --sha256 $(LARGE_SHARED_RESOURCE_ARCHIVE_SHA256) audit
 	@$(PYTHON) $(SHARED_RESOURCE_08725DA0_TOOL) baserom_jp.gba --profile shared-08725da0 --offset 0x4ABF08 --length $(SHARED_RESOURCE_08725DA0_LENGTH) --sha256 $(SHARED_RESOURCE_08725DA0_SHA256) audit
 	@$(PYTHON) $(SHARED_RESOURCE_08731B40_TOOL) baserom_jp.gba --profile shared-08731b40 --offset 0x4B7CA8 --length $(SHARED_RESOURCE_08731B40_LENGTH) --sha256 $(SHARED_RESOURCE_08731B40_SHA256) audit
 indexed-resource-archive-inventory: $(INDEXED_RESOURCE_ARCHIVE_INVENTORY_TOOL) $(INDEXED_RESOURCE_ARCHIVE_TOOL) asm/data/data_0813B288_de_initial.inc baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
@@ -2175,8 +2133,6 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-cooking-ui-resource-archive-all
 	@$(MAKE) --no-print-directory gfx-menu-ui-resource-archive
 	@$(MAKE) --no-print-directory gfx-large-shared-resource-archive-all
-	@$(MAKE) --no-print-directory gfx-large-shared-resource-archive-patch-test
-	@$(MAKE) --no-print-directory gfx-large-shared-resource-archive-edit-test
 	@$(MAKE) --no-print-directory gfx-shared-resource-08725da0-all
 	@$(MAKE) --no-print-directory gfx-shared-resource-08725da0-patch-test
 	@$(MAKE) --no-print-directory gfx-shared-resource-08725da0-edit-test

@@ -51,6 +51,8 @@ graphics/regional_resource_08728208/*/full/*.4bpp
 graphics/regional_resource_08728208/*/full/*.gbapal
 graphics/regional_resource_0871d51c/*/full/*.4bpp
 graphics/regional_resource_0871d51c/*/full/*.gbapal
+graphics/large_resource_archive/full/*.4bpp
+graphics/large_resource_archive/full/*.gbapal
 graphics/ui/small_resource_archive/full/*.4bpp
 graphics/ui/small_resource_archive/full/*.gbapal
 graphics/ui/menu_resource_archive/full/*.4bpp
