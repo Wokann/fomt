@@ -3120,40 +3120,8 @@ func_08008E1C:
     .align 2, 0
 .L08008E24: .4byte 0x000000D3
 
-    thumb_func_start func_08008E28
-func_08008E28:
-    push {lr}
-    cmp r2, #0
-    beq .L08008E58
-    orrs r1, r0
-    orrs r1, r2
-    movs r0, #1
-    ands r0, r1
-    cmp r0, #0
-    bne .L08008E58
-    movs r0, #3
-    ands r1, r0
-    cmp r1, #0
-    bne .L08008E4C
-    lsls r0, r2, #0xe
-    lsrs r2, r0, #0x10
-    movs r0, #0x84
-    lsls r0, r0, #0x18
-    orrs r2, r0
-    b .L08008E5A
-.L08008E4C:
-    lsls r0, r2, #0xf
-    lsrs r2, r0, #0x10
-    movs r0, #0x80
-    lsls r0, r0, #0x18
-    orrs r2, r0
-    b .L08008E5A
-.L08008E58:
-    movs r2, #0
-.L08008E5A:
-    adds r0, r2, #0
-    pop {r1}
-    bx r1
+    .section .text.hardware_dma_after, "ax", %progbits
+    .thumb
     .align 2, 0
 
     thumb_func_start func_08008E64

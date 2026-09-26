@@ -80,6 +80,8 @@ SECTIONS
         asm/hardware.o(.text.hardware_music_player_after);
         src/hardware_song.o(.text);
         asm/hardware.o(.text.hardware_song_after);
+        src/hardware_dma.o(.text);
+        asm/hardware.o(.text.hardware_dma_after);
         src/farm.o(.text);
         src/field.o(.text);
         src/shipping_bin.o(.text);
