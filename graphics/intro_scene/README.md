@@ -121,11 +121,14 @@ under `reference/startup/` were rendered from that proven row split, tile IDs,
 flip bits and palette-bank fields; they are visual references only, because a
 flat PNG cannot preserve those native map fields.
 
-The four `startup_NN.original.lz` files retain the byte-identical publisher
-streams for an unchanged source. The C `fomt-lz` tool builds each
-`startup_NN.tilemap.lz` beside its editable `.tilemap`; assembly includes that
-generated stream directly. Neither the resource build nor the link reads a
-retail ROM or patches the finished image.
+The C `fomt-lz` tool builds each `startup_NN.tilemap.lz` beside its editable
+`.tilemap`; assembly includes that generated stream directly. `startup_01` and
+`startup_02` now encode directly from source with exact retail packed bytes;
+their `.original.lz` copies are audit-only. `startup_00` and `startup_03`
+still use their source-adjacent original packing metadata. The resource test
+checks decoded content for all four and packed bytes for the two direct
+streams. Neither the resource build nor the link reads a retail ROM or patches
+the finished image.
 
 `func_080019D8` writes the two maps from each source to fixed VRAM screen
 blocks. This is a proven storage relationship, not an assertion about which
