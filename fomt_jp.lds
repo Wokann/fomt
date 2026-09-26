@@ -98,6 +98,8 @@ SECTIONS
         asm/hardware.o(.text.hardware_sound_after);
         src/hardware_music_player.o(.text);
         asm/hardware.o(.text.hardware_music_player_after);
+        src/hardware_song.o(.text);
+        asm/hardware.o(.text.hardware_song_after);
         . = 0x9A50; /* JP ROM 0x08009A50, independently matched */
         src/farm.o(.text);
         . = 0x9F94; /* JP ROM 0x08009F94, independently matched */
