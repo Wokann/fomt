@@ -85,6 +85,19 @@ JP 原本已将该连续的七个短访问器和 literal pool 写成 Thumb 指�
 
 核验：四个区域均以 WSL 构建，并与各自基准 ROM 的 SHA-1 完全一致。
 
+## `src/hardware_state_accessors.c`：连续的硬件状态字段访问器
+
+原 `asm/hardware.s` 中连续的三个 Thumb 访问器现由 `src/hardware_state_accessors.c` 编译，声明集中在 `include/hardware_state_accessors.hh`。三个函数先读取传入对象的首字段指针，再分别返回该指针加 `0x24`、`0x34`、`0x8C`；其余对象结构尚未确认，不据此猜测字段名。LDS 按原 ROM 顺序链接硬件汇编前段、这一段 C 代码、硬件汇编后段。原位置之后的未解析字节仍在原汇编文件，不计入 C 源码化。
+
+| 区域 | 三个访问器的连续物理范围 |
+| --- | --- |
+| JP | `0x08008918`–`0x0800892F` |
+| US | `0x08008910`–`0x08008927` |
+| EU | `0x08008924`–`0x0800893B` |
+| DE | `0x08008930`–`0x08008947` |
+
+各函数编译后均为原始的 8 字节指令与对齐，四版经 WSL 完整构建后均通过各自原 ROM 的 SHA-1 对照。
+
 ## `asm/code_iwram.s`：IWRAM 回调续接
 
 `func_030004DC` 在经由 `ip` 调用回调后，原先以 16 个原始 `.byte` 写出返回续接的四条 ARM 指令。现已改为直接的 `mov`、`ldr`、`add`、`strb`；其余仍为明确 literal pool、状态表或零初始化的数据字节不被误作代码改写。

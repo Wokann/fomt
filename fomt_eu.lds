@@ -67,6 +67,8 @@ SECTIONS
         asm/new_game.o(.text);
         src/hardware.o(.text);
         asm/hardware.o(.text);
+        src/hardware_state_accessors.o(.text);
+        asm/hardware.o(.text.hardware_post_accessors);
         src/farm.o(.text);
         src/field.o(.text);
         src/shipping_bin.o(.text);
