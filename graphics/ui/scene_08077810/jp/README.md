@@ -13,7 +13,10 @@ regional intro-scene code:
 The following bytes through `0x4D7878` belong to a separate interval. The
 three resources above are generated beside their editable sources with gbagfx
 and the existing C codec, then included directly in the assembly at their
-original labels. Their `.original.lz` files preserve the native byte layout.
+original labels. `tiles.4bpp.lz` is encoded directly from `tiles.4bpp` with
+the tested C codec parameters, and its `.original.lz` file is now only a
+packed-byte comparison reference. `layer_1.tilemap.lz` still uses its
+`.original.lz` template for the native byte layout.
 
 This group is not a JP rendering of the US/EU/DE `scene_08077810` resources:
 its source labels, decoded dimensions, palette, and codec boundaries differ.

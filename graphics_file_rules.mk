@@ -1004,6 +1004,9 @@ FOMT_LZ_ENCODE_OUTPUTS := $(addsuffix .lz, \
   $(INTRO_BACKGROUND_TILES_BIN) \
   $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_01.tilemap \
   $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_02.tilemap \
+  $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_01.tilemap \
+  $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_04.tilemap \
+  $(UI_SCENE_08077810_LAYER0_SOURCE) $(UI_SCENE_08077810_JP_TILES) \
   $(addprefix $(INTRO_OBJECTS_SOURCE_DIR)/object_,$(addsuffix .4bpp,00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19)) \
   $(MAP_DATA_SOURCE_DIR)/map_08/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_08/layer_2.gbapal \
   $(MAP_DATA_SOURCE_DIR)/map_09/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_09/layer_2.gbapal \
@@ -1020,6 +1023,7 @@ FOMT_LZ_ENCODE_OUTPUTS := $(addsuffix .lz, \
   $(MAP_DATA_SOURCE_DIR)/map_45/layer_3.tilemap $(MAP_DATA_SOURCE_DIR)/map_31/layer_3.tilemap)
 MAP_DATA_DIRECT_PACKED := $(filter $(MAP_DATA_SOURCE_DIR)/%,$(FOMT_LZ_ENCODE_OUTPUTS))
 INTRO_STARTUP_TILEMAPS_DIRECT_PACKED := $(filter $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/%,$(FOMT_LZ_ENCODE_OUTPUTS))
+FARM_STATUS_SECONDARY_DIRECT_PACKED := $(filter $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/%,$(FOMT_LZ_ENCODE_OUTPUTS))
 
 $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_0.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 125 0x28
 $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_1.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1234679 0xB0
@@ -1045,6 +1049,10 @@ $(UI_SCENE_0805AB08_TILES_OUTPUT): FOMT_LZ_ENCODE := encode-lz2 3,5,7,10,11,12,1
 $(INTRO_BACKGROUND_PACKED_BIN): FOMT_LZ_ENCODE := encode-lz2 3,5,8,10,12,13,15 0x49BC --literal-tail
 $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_01.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,9 0x21C --tie=first
 $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_02.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,8,11 0xF4
+$(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_01.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,6,11 0x1D8
+$(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_04.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,8,11 0x1D0
+$(UI_SCENE_08077810_LAYER0_PACKED): FOMT_LZ_ENCODE := encode-huff4-lz3 1,5,9 0x16C
+$(UI_SCENE_08077810_JP_TILES_PACKED): FOMT_LZ_ENCODE := encode-huff4-lz3 1,4,10 0x4C0
 
 # All 17 of these retail Raw-LZ3 streams were rebuilt directly and matched
 # their original packed bytes; their .original.lz copies are audit-only now.
@@ -1285,6 +1293,7 @@ gfx-ui-scene-08077810-reference: $(UI_SCENE_08077810_REFERENCE_TOOL) baserom_us.
 gfx-ui-scene-08077810-test: gfx-ui-scene-08077810 $(UI_SCENE_08077810_ACTIVE_TOOLS)
 ifeq ($(GAME_REGION),JP)
 	@$(FOMT_LZ_TOOL) verify-native $(UI_SCENE_08077810_JP_TILES) $(UI_SCENE_08077810_JP_TILES_PACKED)
+	@cmp $(UI_SCENE_08077810_JP_TILES_PACKED) $(UI_SCENE_08077810_JP_TILES_ORIGINAL)
 	@$(FOMT_LZ_TOOL) verify-native $(UI_SCENE_08077810_JP_LAYER1_SOURCE) $(UI_SCENE_08077810_JP_LAYER1_PACKED)
 	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset 0x4D4DDC --length 0x4C0 --input $(UI_SCENE_08077810_JP_TILES_PACKED)
 	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset 0x4D529C --length 0x20 --input $(UI_SCENE_08077810_JP_PALETTE)
@@ -1293,6 +1302,7 @@ else
 	@$(FOMT_LZ_TOOL) verify-huff4-lz0 $(UI_SCENE_08077810_LAYER1_SOURCE) $(UI_SCENE_08077810_LAYER1_PACKED) 1,10
 	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(UI_SCENE_08077810_LAYER1_OFFSET) --length 0x16C --input $(UI_SCENE_08077810_LAYER1_PACKED)
 	@$(FOMT_LZ_TOOL) verify-native $(UI_SCENE_08077810_LAYER0_SOURCE) $(UI_SCENE_08077810_LAYER0_PACKED)
+	@cmp $(UI_SCENE_08077810_LAYER0_PACKED) $(UI_SCENE_08077810_LAYER0_ORIGINAL)
 	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(UI_SCENE_08077810_LAYER0_OFFSET) --length 0x16C --input $(UI_SCENE_08077810_LAYER0_PACKED)
 	@$(FOMT_LZ_TOOL) verify-native $(UI_SCENE_08077810_CHARACTER_TILES) $(UI_SCENE_08077810_CHARACTER_PACKED) $(UI_SCENE_08077810_CHARACTER_TRAILER)
 	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(UI_SCENE_08077810_CHARACTER_OFFSET) --length 0x4F8 --input $(UI_SCENE_08077810_CHARACTER_PACKED)
@@ -1643,6 +1653,9 @@ gfx-farm-status-secondary-tilemaps: $(FARM_STATUS_SECONDARY_TILEMAP_OUTPUTS)
 gfx-farm-status-secondary-tilemaps-test: gfx-farm-status-secondary-tilemaps $(FOMT_LZ_TOOL)
 	@set -e; for source in $(FARM_STATUS_SECONDARY_TILEMAP_SOURCES); do \
 	  $(FOMT_LZ_TOOL) verify-native "$$source" "$$source.lz"; \
+	done
+	@set -e; for packed in $(FARM_STATUS_SECONDARY_DIRECT_PACKED); do \
+	  cmp "$$packed" "$${packed%.*.lz}.original.lz"; \
 	done
 gfx-farm-status-secondary-tilemaps-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-farm-status-secondary-tilemaps-test

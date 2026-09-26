@@ -58,8 +58,11 @@ tilemaps selected by `func_0806EC94`: two layouts, each containing three
 screen-block layers. They are source-order arrays of 16-bit BG entries, not
 rendered artwork or a sidecar layout description. The stream headers and the
 EU-only eight-byte labels remain in the assembly source. Each shared
-`.tilemap` is packed by the C codec using its source-adjacent `.original.lz`
-header and distance ladder, then included at its original runtime label.
+`.tilemap` is packed by the C codec, then included at its original runtime
+label. `secondary_01` and `secondary_04` encode directly from the editable
+tilemaps with tested codec parameters; their `.original.lz` files are used
+only to compare packed bytes. The other four still use their source-adjacent
+`.original.lz` headers and distance ladders during packing.
 
 Rebuild and compare these six streams across all four ROMs with:
 
