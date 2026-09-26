@@ -2867,7 +2867,7 @@ func_080088DC: @ 0x080088DC
     ldr r0, [r0]
     bx lr
     @ The four state controls and three display-state accessors are compiled
-    @ from consecutive C objects at this point.
+    @ from one C object in their original ROM order at this point.
     .section .text.hardware_post_accessors, "ax", %progbits
 .L08008928:
     .byte 0x00, 0x68, 0x24, 0x30, 0x70, 0x47, 0x00, 0x00
