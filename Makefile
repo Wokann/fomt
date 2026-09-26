@@ -304,13 +304,8 @@ $(ROM): $(REGIONAL_RESOURCE_0873A6E8_OUTPUT)
 $(ROM): $(REGIONAL_RESOURCE_0873D6D8_OUTPUT)
 $(ROM): $(REGIONAL_RESOURCE_0874F34C_OUTPUT)
 
-%.gba: %.elf $(SHARED_RESOURCE_08725DA0_OUTPUT)
+%.gba: %.elf
 	$(OBJCOPY) -O binary $< $@
-	@$(PYTHON) $(SHARED_RESOURCE_08725DA0_TOOL) $(BASE_ROM) --profile shared-08725da0 \
-	  --offset $(SHARED_RESOURCE_08725DA0_OFFSET) \
-	  --length $(SHARED_RESOURCE_08725DA0_LENGTH) \
-	  --sha256 $(SHARED_RESOURCE_08725DA0_SHA256) \
-	  patch --target $@ --archive $(SHARED_RESOURCE_08725DA0_OUTPUT)
 	@$(PYTHON) $(SHARED_RESOURCE_08731B40_TOOL) $(BASE_ROM) --profile shared-08731b40 --offset $(SHARED_RESOURCE_08731B40_OFFSET) --length $(SHARED_RESOURCE_08731B40_LENGTH) --sha256 $(SHARED_RESOURCE_08731B40_SHA256) patch --target $@ --archive $(SHARED_RESOURCE_08731B40_OUTPUT)
 	@$(PYTHON) $(REGIONAL_RESOURCE_0872BE64_TOOL) $(BASE_ROM) --profile $(REGIONAL_RESOURCE_0872BE64_PROFILE) --offset $(REGIONAL_RESOURCE_0872BE64_OFFSET) --length $(REGIONAL_RESOURCE_0872BE64_LENGTH) --sha256 $(REGIONAL_RESOURCE_0872BE64_SHA256) patch --target $@ --archive $(REGIONAL_RESOURCE_0872BE64_OUTPUT)
 	@$(PYTHON) $(REGIONAL_RESOURCE_0872DE44_TOOL) $(BASE_ROM) --profile $(REGIONAL_RESOURCE_0872DE44_PROFILE) --offset $(REGIONAL_RESOURCE_0872DE44_OFFSET) --length $(REGIONAL_RESOURCE_0872DE44_LENGTH) --sha256 $(REGIONAL_RESOURCE_0872DE44_SHA256) patch --target $@ --archive $(REGIONAL_RESOURCE_0872DE44_OUTPUT)
@@ -470,7 +465,7 @@ ifneq (,$(filter gfx-large-shared-resource-archive gfx-large-shared-resource-arc
 ALL_DEPS :=
 endif
 
-ifneq (,$(filter gfx-shared-resource-08725da0 gfx-shared-resource-08725da0-test gfx-shared-resource-08725da0-all gfx-shared-resource-08725da0-patch-test gfx-shared-resource-08725da0-edit-test,$(MAKECMDGOALS)))
+ifneq (,$(filter gfx-shared-resource-08725da0 gfx-shared-resource-08725da0-all,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 

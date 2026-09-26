@@ -238,9 +238,12 @@ group, so its source file names remain neutral.
 Shared archive `08725DA0` is independently bounded at the four locations in
 the table. Its six descriptors all select drawable records, together covering
 20 OAM records, 109 4bpp tiles, two BGR555 palettes, and six selection entries.
-Its editable PNG sources are under `graphics/shared_resource_08725da0/`; its
-original address is retained because individual gameplay semantics remain
-unverified.
+`full/native.png` retains native tile order and `full/native.pal` contains
+both original palette banks. Generic graphics rules generate `.4bpp` and
+`.gbapal`; the source-owned `archive.inc` directly links these with the native
+tables in all four regions. The old group PNGs are OAM-composited reference
+views. The original address is retained because individual gameplay semantics
+remain unverified.
 
 Shared archive `086F2FAC` is independently bounded at the four locations in
 the table. Its sixteen descriptors all select drawable records, together

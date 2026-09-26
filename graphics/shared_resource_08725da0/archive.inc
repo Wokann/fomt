@@ -1,0 +1,53 @@
+    @ Four-region-identical native IndexedResourceArchive in ROM order.
+    .4byte 6
+    .2byte 1, 0
+    .2byte 1, 1
+    .2byte 1, 2
+    .2byte 1, 3
+    .2byte 1, 4
+    .2byte 1, 5
+
+    .4byte 6
+    .2byte 8, 0, 39, 0, 1, 0, 0, 0
+    .2byte 8, 8, 48, 39, 1, 0, 0, 0
+    .2byte 4, 16, 22, 87, 1, 0, 0, 0
+    .2byte 8, 0, 39, 0, 1, 1, 0, 0
+    .2byte 8, 8, 48, 39, 1, 1, 0, 0
+    .2byte 4, 16, 22, 87, 1, 1, 0, 0
+
+    .4byte 20
+    .2byte 0x4000, 0x8000, 0x0000, 0x0000
+    .2byte 0x4000, 0x8020, 0x0008, 0x0000
+    .2byte 0x4000, 0x8040, 0x0010, 0x0000
+    .2byte 0x8000, 0x0060, 0x0018, 0x0000
+    .2byte 0x4010, 0x4000, 0x001A, 0x0000
+    .2byte 0x4010, 0x4020, 0x001E, 0x0000
+    .2byte 0x4010, 0x4040, 0x0022, 0x0000
+    .2byte 0x0010, 0x0060, 0x0026, 0x0000
+    .2byte 0x4000, 0x8000, 0x0000, 0x0000
+    .2byte 0x4000, 0x8020, 0x0008, 0x0000
+    .2byte 0x4000, 0x8040, 0x0010, 0x0000
+    .2byte 0x4000, 0x8060, 0x0018, 0x0000
+    .2byte 0x4010, 0x4000, 0x0020, 0x0000
+    .2byte 0x4010, 0x4020, 0x0024, 0x0000
+    .2byte 0x4010, 0x4040, 0x0028, 0x0000
+    .2byte 0x4010, 0x4060, 0x002C, 0x0000
+    .2byte 0x4000, 0x8000, 0x0000, 0x0000
+    .2byte 0x4000, 0x8020, 0x0008, 0x0000
+    .2byte 0x0000, 0x4040, 0x0010, 0x0000
+    .2byte 0x8000, 0x0050, 0x0014, 0x0000
+
+    .4byte 109
+    .incbin "graphics/shared_resource_08725da0/full/native.4bpp"
+
+    .4byte 2
+    .incbin "graphics/shared_resource_08725da0/full/native.gbapal"
+
+    .4byte 0
+    .4byte 6
+    .2byte 0, 0
+    .2byte 1, 0
+    .2byte 2, 0
+    .2byte 3, 0
+    .2byte 4, 0
+    .2byte 5, 0

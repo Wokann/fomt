@@ -35,9 +35,10 @@ grids:
   indexed-PNG OAM source views with native selector and OAM descriptors.
 - [Large shared OAM resources](large_resource_archive/full/) — 102 complete
   indexed-PNG OAM source views with neutral physical group names.
-- [Shared OAM resource `08725DA0`](shared_resource_08725da0/full/) — six
-  complete indexed-PNG OAM source views; the original address is retained until
-  the gameplay semantics are independently established.
+- [Shared OAM resource `08725DA0`](shared_resource_08725da0/full/) — one
+  editable native tile atlas and palette; six OAM-composited group views are
+  references. The original address is retained until gameplay semantics are
+  independently established.
 - [Shared OAM resource `086F2FAC`](shared_resource_086f2fac/full/) — one
   editable native tile atlas and palette; sixteen OAM-composited group views
   remain as references. The original address is retained until the gameplay
