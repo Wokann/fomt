@@ -1863,6 +1863,96 @@ static unsigned char *encode_lz0(unsigned char const *source, size_t size,
     return packed;
 }
 
+// Retail Raw-LZ0 selects the longest command at each position. A repeated
+// byte run wins an equal-length lookup and also wins when it reaches its
+// 65-byte command limit. Keep this separate from the minimum-bit planner used
+// by template-backed edited streams: both are valid, but only this strategy
+// reproduces the original map palette streams byte for byte.
+static unsigned lz0_greedy_match(unsigned char const *source, size_t size,
+                                 size_t position, unsigned maximum_distance,
+                                 unsigned *best_distance)
+{
+    unsigned best_length = 0;
+    unsigned limit = (unsigned)position;
+    if (limit > maximum_distance)
+        limit = maximum_distance;
+    *best_distance = 0;
+    for (unsigned distance = 1; distance <= limit; distance++) {
+        unsigned length = 0;
+        while (length < 66 && position + length < size &&
+               source[position + length] == source[position + length - distance])
+            length++;
+        if (length > best_length) {
+            best_length = length;
+            *best_distance = distance;
+            if (best_length == 66)
+                break;
+        }
+    }
+    return best_length;
+}
+
+static unsigned char *encode_lz0_greedy(unsigned char const *source, size_t size,
+                                        LadderEntry const ladder[2], size_t *packed_size)
+{
+    if (!size || size > 0x40000)
+        fail("Raw-LZ0 source size must be in 1..0x40000");
+    BitWriter writer = {0};
+    write_bits(&writer, 0, 8);
+    for (unsigned index = 0; index < 2; index++)
+        write_bits(&writer, ladder[index].width - 1, 4);
+    unsigned maximum_distance = ladder[1].start + (1u << ladder[1].width) - 1;
+    for (size_t position = 0; position < size;) {
+        unsigned distance, index;
+        unsigned match = lz0_greedy_match(source, size, position,
+                                           maximum_distance, &distance);
+        unsigned run = 1;
+        while (run < 65 && position + run < size &&
+               source[position + run] == source[position])
+            run++;
+        if (run >= 2 && (run >= match || run == 65)) {
+            write_bits(&writer, 3, 2);
+            write_bits(&writer, run - 2, 6);
+            write_bits(&writer, source[position], 8);
+            position += run;
+        } else if (match >= 3) {
+            index = distance < ladder[1].start ? 0 : 1;
+            write_bits(&writer, index, 2);
+            write_bits(&writer, distance - ladder[index].start, ladder[index].width);
+            write_bits(&writer, match - 3, 6);
+            position += match;
+        } else {
+            unsigned count = 1;
+            while (count < 64 && position + count < size) {
+                unsigned next_distance;
+                unsigned next_match = lz0_greedy_match(source, size,
+                    position + count, maximum_distance, &next_distance);
+                if (next_match >= 3 ||
+                    (position + count + 1 < size &&
+                     source[position + count] == source[position + count + 1]))
+                    break;
+                count++;
+            }
+            write_bits(&writer, 2, 2);
+            write_bits(&writer, count - 1, 6);
+            for (unsigned offset = 0; offset < count; offset++)
+                write_bits(&writer, source[position + offset], 8);
+            position += count;
+        }
+    }
+    finish_bits(&writer);
+    *packed_size = writer.size + 4;
+    unsigned char *packed = malloc(*packed_size);
+    if (!packed)
+        fail("out of memory");
+    uint32_t header = ((uint32_t)size << 8) | 0x70;
+    for (unsigned index = 0; index < 4; index++)
+        packed[index] = (unsigned char)(header >> (index * 8));
+    memcpy(packed + 4, writer.data, writer.size);
+    free(writer.data);
+    return packed;
+}
+
 static unsigned char *decode_huff_lz2(unsigned char const *packed, size_t packed_size,
                                       LadderEntry ladder[7], size_t *decoded_size,
                                       unsigned symbol_bits)
@@ -2486,7 +2576,7 @@ static unsigned char *encode_huff_lz2(unsigned char const *source, size_t size,
 
 static void usage(void)
 {
-    fail("usage: fomt-lz encode-lz1|encode-lz2|encode-lz3|encode-huff8-lz3 "
+    fail("usage: fomt-lz encode-lz0|encode-lz1|encode-lz2|encode-lz3|encode-huff8-lz3 "
          "SOURCE OUTPUT LADDER SLOT_SIZE [--literal-tail] [--filter=1..4] | "
          "rebuild-native SOURCE ORIGINAL OUTPUT [TAIL] | "
          "rebuild-huff8-lz3 SOURCE ORIGINAL OUTPUT LADDER SLOT_SIZE | "
@@ -2732,10 +2822,12 @@ int main(int argc, char **argv)
         free(decoded);
         free(original);
         free(source);
-    } else if (strcmp(argv[1], "encode-lz1") == 0 ||
+    } else if (strcmp(argv[1], "encode-lz0") == 0 ||
+        strcmp(argv[1], "encode-lz1") == 0 ||
         strcmp(argv[1], "encode-lz2") == 0 ||
         strcmp(argv[1], "encode-lz3") == 0 ||
         strcmp(argv[1], "encode-huff8-lz3") == 0) {
+        int lz0 = strcmp(argv[1], "encode-lz0") == 0;
         int lz1 = strcmp(argv[1], "encode-lz1") == 0;
         int lz2 = strcmp(argv[1], "encode-lz2") == 0;
         int huff8 = strcmp(argv[1], "encode-huff8-lz3") == 0;
@@ -2760,14 +2852,15 @@ int main(int argc, char **argv)
             }
         }
         LadderEntry ladder[7];
-        parse_ladder(argv[4], ladder, lz1 ? 4 : lz2 ? 7 : 3);
+        parse_ladder(argv[4], ladder, lz0 ? 2 : lz1 ? 4 : lz2 ? 7 : 3);
         unsigned slot_size = parse_size(argv[5]);
         size_t source_size, packed_size;
         unsigned char *source = read_file(argv[2], &source_size);
         unsigned char *atoms = filter
             ? inverse_differential(source, source_size, filter) : source;
-        unsigned char *packed = lz1
-            ? encode_lz1(atoms, source_size, ladder, &packed_size)
+        unsigned char *packed = lz0
+            ? encode_lz0_greedy(atoms, source_size, ladder, &packed_size)
+            : lz1 ? encode_lz1(atoms, source_size, ladder, &packed_size)
             : lz2 ? encode_lz2(atoms, source_size, ladder, literal_tail, 9,
                          &packed_size)
             : huff8 ? encode_huff8_lz3(atoms, source_size, ladder, &packed_size)
