@@ -1010,7 +1010,12 @@ FOMT_LZ_ENCODE_OUTPUTS := $(addsuffix .lz, \
   $(MAP_DATA_SOURCE_DIR)/map_09/layer_4.tilemap $(MAP_DATA_SOURCE_DIR)/map_31/layer_4.tilemap \
   $(MAP_DATA_SOURCE_DIR)/map_44/layer_4.tilemap $(MAP_DATA_SOURCE_DIR)/map_45/layer_4.tilemap \
   $(MAP_DATA_SOURCE_DIR)/map_15/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_36/layer_1.gbapal \
-  $(MAP_DATA_SOURCE_DIR)/map_44/layer_5.tilemap $(MAP_DATA_SOURCE_DIR)/map_45/layer_5.tilemap)
+  $(MAP_DATA_SOURCE_DIR)/map_44/layer_5.tilemap $(MAP_DATA_SOURCE_DIR)/map_45/layer_5.tilemap \
+  $(MAP_DATA_SOURCE_DIR)/map_14/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_14/layer_2.gbapal \
+  $(MAP_DATA_SOURCE_DIR)/map_14/layer_4.tilemap $(MAP_DATA_SOURCE_DIR)/map_14/layer_5.tilemap \
+  $(MAP_DATA_SOURCE_DIR)/map_15/layer_4.tilemap $(MAP_DATA_SOURCE_DIR)/map_08/layer_3.tilemap \
+  $(MAP_DATA_SOURCE_DIR)/map_44/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_44/layer_3.tilemap \
+  $(MAP_DATA_SOURCE_DIR)/map_45/layer_3.tilemap $(MAP_DATA_SOURCE_DIR)/map_31/layer_3.tilemap)
 
 $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_0.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 125 0x28
 $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_1.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1234679 0xB0
@@ -1075,6 +1080,16 @@ $(MAP_DATA_SOURCE_DIR)/map_44/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2
 $(MAP_DATA_SOURCE_DIR)/map_45/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,7,8,10 0x174 --filter=3
 $(MAP_DATA_SOURCE_DIR)/map_15/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz0 6,6 0xF8
 $(MAP_DATA_SOURCE_DIR)/map_36/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz0 6,8 0x124
+$(MAP_DATA_SOURCE_DIR)/map_14/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,5,5 0xF8 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_14/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,4,6 0xD8
+$(MAP_DATA_SOURCE_DIR)/map_14/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,10,14 0xC6C
+$(MAP_DATA_SOURCE_DIR)/map_14/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 9,11,13 0x7D8 --tie=reverse
+$(MAP_DATA_SOURCE_DIR)/map_15/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,10,14 0xC68 --tie=first
+$(MAP_DATA_SOURCE_DIR)/map_08/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 7,9,12 0x71C
+$(MAP_DATA_SOURCE_DIR)/map_44/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,5,7 0x108 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_44/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 5,7,9 0x254 --filter=4 --tie=first
+$(MAP_DATA_SOURCE_DIR)/map_45/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,5,8 0x220
+$(MAP_DATA_SOURCE_DIR)/map_31/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 6,7,11 0x320 --filter=3 --tie=first
 
 $(FOMT_LZ_ENCODE_OUTPUTS): %.lz: % $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) $(firstword $(FOMT_LZ_ENCODE)) $< $@ $(wordlist 2,99,$(FOMT_LZ_ENCODE))
