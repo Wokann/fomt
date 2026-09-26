@@ -76,6 +76,8 @@ SECTIONS
         src/hardware_nested_accessors.o(.text);
         src/hardware_sound.o(.text);
         asm/hardware.o(.text.hardware_sound_after);
+        src/hardware_music_player.o(.text);
+        asm/hardware.o(.text.hardware_music_player_after);
         src/farm.o(.text);
         src/field.o(.text);
         src/shipping_bin.o(.text);
