@@ -423,6 +423,11 @@ static unsigned char *encode_lz2(unsigned char const *source, size_t size,
         unsigned distance;
         unsigned length = longest_match_lz2(source, size, position,
                                              max_distance, &distance);
+        // A final three-byte lookup may be encoded as individual literals.
+        // The optional literal-tail mode also folds it into an earlier
+        // literal run when that run begins before these last three bytes.
+        if (literal_tail && length == 3 && position + length == size)
+            length = 0;
         if (length < 3) {
             unsigned run = 1;
             size_t probe = position + 1;
@@ -432,10 +437,8 @@ static unsigned char *encode_lz2(unsigned char const *source, size_t size,
                                                            max_distance,
                                                            &probe_distance);
                 if (probe_length >= 3) {
-                    // Some retail streams keep a final three-byte match in
-                    // the preceding extended literal instead of emitting a
-                    // separate lookup. This is a reusable encoder strategy,
-                    // selected explicitly for streams that use it.
+                    // Keep the final three-byte match in this preceding
+                    // literal run instead of emitting a separate lookup.
                     if (literal_tail && probe_length == 3 &&
                         probe + probe_length == size) {
                         run += probe_length;

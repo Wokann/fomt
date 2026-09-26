@@ -6,14 +6,15 @@ payload and its three BGR555 palette banks.
 
 The checked source represents the native tile order. It is not a guessed final
 screen layout: other Intro Scene resources, palette choices, display registers
-and possible composition remain distinct runtime data. The original stream is
-used byte-for-byte when source pixels are unchanged. Edited tiles are rebuilt
-to 4bpp, encoded into a valid `0x70` stream, strictly decoded, and rejected if
-they do not fit the original 0x49BC-byte allocation.
-The checked-in `shared/background_tiles.original.lz` supplies that native
-slot reference. C `gbagfx` and `fomt-lz` generate adjacent `.4bpp` and
-`.4bpp.lz` files from the PNG; assembly includes the latter directly,
-without a baserom build dependency or a `.0x70` pseudo-extension.
+and possible composition remain distinct runtime data. The C tools rebuild
+the 4bpp tiles and their `0x70` Raw-LZ2 stream directly from the PNG. The
+`--literal-tail` encoder strategy reproduces the three final retail literal
+commands, so the resulting 0x49BC-byte stream matches the original byte for
+byte without reading it during the build. The checked-in
+`shared/background_tiles.original.lz` remains only for independent comparison.
+`gbagfx` and `fomt-lz` generate adjacent `.4bpp` and `.4bpp.lz` files;
+assembly includes the latter directly, without a baserom build dependency or
+a `.0x70` pseudo-extension.
 The packed stream occupies 0x49BC bytes at JP 0x4C91C0, US 0x743058,
 EU 0x7430B4, and DE 0x4CA4CC.
 
