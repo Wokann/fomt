@@ -1006,6 +1006,9 @@ FOMT_LZ_ENCODE_OUTPUTS := $(addsuffix .lz, \
   $(MAP_DATA_SOURCE_DIR)/map_08/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_08/layer_2.gbapal \
   $(MAP_DATA_SOURCE_DIR)/map_09/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_09/layer_2.gbapal \
   $(MAP_DATA_SOURCE_DIR)/map_09/layer_5.tilemap $(MAP_DATA_SOURCE_DIR)/map_31/layer_5.tilemap \
+  $(MAP_DATA_SOURCE_DIR)/map_08/layer_4.tilemap $(MAP_DATA_SOURCE_DIR)/map_08/layer_5.tilemap \
+  $(MAP_DATA_SOURCE_DIR)/map_09/layer_4.tilemap $(MAP_DATA_SOURCE_DIR)/map_31/layer_4.tilemap \
+  $(MAP_DATA_SOURCE_DIR)/map_44/layer_4.tilemap $(MAP_DATA_SOURCE_DIR)/map_45/layer_4.tilemap \
   $(MAP_DATA_SOURCE_DIR)/map_44/layer_5.tilemap $(MAP_DATA_SOURCE_DIR)/map_45/layer_5.tilemap)
 
 $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_0.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 125 0x28
@@ -1063,6 +1066,12 @@ $(MAP_DATA_SOURCE_DIR)/map_09/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1
 $(MAP_DATA_SOURCE_DIR)/map_31/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 3,6,11 0xEC
 $(MAP_DATA_SOURCE_DIR)/map_44/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 3,5,9 0xD4 --filter=3
 $(MAP_DATA_SOURCE_DIR)/map_45/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x90 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_08/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,4,7,8,9,12 0x260 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_08/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,3,4,7,10,12,7 0x7C --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_09/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,4,7,8,9,12 0x224 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_31/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,4,5,6,7,9,7 0x104 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_44/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,6,7,9 0x134 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_45/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 2,3,4,5,7,8,10 0x174 --filter=3
 
 $(FOMT_LZ_ENCODE_OUTPUTS): %.lz: % $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) $(firstword $(FOMT_LZ_ENCODE)) $< $@ $(wordlist 2,99,$(FOMT_LZ_ENCODE))
