@@ -14,13 +14,22 @@ eight additional 4bpp tiles, therefore it is rebuilt from a separate source.
 Each domain has one drawable OAM group, one BGR555 palette and one selection
 entry.
 
-`full/group_000.png` is the editable indexed-PNG source. `preview/` is a
-readable rendering of the original OAM composition only. Descriptor, OAM,
-tile-allocation, palette and selection tables remain inside the fixed native
-archive, so this pipeline does not use a JSON layout sidecar.
+`shared/full/native.png` and `de/full/native.png` are the editable atlases in
+native 4bpp tile order. Both use the byte-identical 16-color palette in
+`shared/full/native.pal`. The ordinary graphics rules generate source-adjacent
+`.4bpp` and `.gbapal` files. One `archive.inc` places the original selection,
+descriptor, OAM and index tables around those assets at their original ROM
+positions, with a region conditional for the extra DE OAM entry and tiles.
 
-The Make build selects `de/` for `GAME_REGION=DE` and `shared/` otherwise.
-It rebuilds the exact native allocation and applies it only to the original
-regional address after link. Four-region tests verify unchanged byte recovery,
-post-link patch safety, and an editable-pixel round trip that remains within
-each region's proven fixed bounds.
+`full/group_000.png` and `preview/` in each domain are OAM-composited
+reference views, not compilation inputs. They do not preserve native tile
+order. No JSON layout sidecar is needed.
+
+The Make build selects `de/` tiles for `GAME_REGION=DE` and `shared/` tiles
+otherwise. All four ROMs match their original SHA-1 after direct linking;
+there is no ROM-derived rebuild or post-link patch for this archive.
+
+```console
+make gfx-regional-resource-0872be64-all
+make -j4 fomt_jp fomt_us fomt_eu fomt_de
+```

@@ -43,12 +43,6 @@ PROFILES = {
     "shared-08731b40": ArchiveProfile(
         (20, 20, 13, 794, 3, 0, 20), (), "shared 08731B40 resource"
     ),
-    "regional-0872be64-shared": ArchiveProfile(
-        (1, 1, 3, 56, 1, 0, 1), (), "regional 0872BE64 JP-US-EU resource"
-    ),
-    "regional-0872be64-de": ArchiveProfile(
-        (1, 1, 4, 64, 1, 0, 1), (), "regional 0872BE64 DE resource"
-    ),
     "regional-0872de44-shared": ArchiveProfile(
         (27, 27, 6, 106, 1, 0, 27), (), "regional 0872DE44 JP-US-EU resource"
     ),

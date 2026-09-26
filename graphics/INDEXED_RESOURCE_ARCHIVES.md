@@ -106,8 +106,10 @@ palette, and four selection entries. Its native descriptor, OAM, palette and
 selection records remain in the archive, so no JSON layout sidecar is needed.
 
 `gUnk_0872BE64` has a shared JP/US/EU archive and a larger DE-specific one.
-Each is rebuilt from its own indexed PNG source directory and patched only to
-its native range.
+Both variants are directly linked from their native-order PNG tiles, one
+shared PAL source, and the original ordered tables in `archive.inc`. DE has
+one extra OAM record and eight extra tiles. The old group PNGs are reference
+views, not build inputs; no ROM-derived rebuild or post-link patch remains.
 
 | Source domain | Regions | ROM offset(s) | Length | Header counts | Entries | SHA-256 |
 | --- | --- | --- | --- | --- | --- | --- |
