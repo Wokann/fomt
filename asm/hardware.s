@@ -3222,62 +3222,6 @@ func_08008EB8: @ 0x08008EB8
     .section .text.hardware_dma_descriptor_after, "ax", %progbits
     .thumb
     .align 2, 0
-.L08008FB8:
-    push {r4, lr}
-    sub sp, #4
-    adds r2, r0, #0
-    ldr r4, [r2, #4]
-    ldr r0, [r2]
-    cmp r0, #1
-    bne .L08008FCE
-    str r4, [sp]
-    mov r4, sp
-.L08008FCE:
-    ldr r1, [r2, #8]
-    ldr r2, [r2, #0xc]
-    ldr r3, .L08008FE0
-    adds r0, r4, #0
-    bl func_080D0EBC
-    add sp, #4
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08008FE0:
-    .4byte 0x040000D4
-
-    thumb_func_start func_08008FE4
-func_08008FE4: @ 0x08008FE4
-    push {r4, r5, r6, lr}
-    sub sp, #4
-    adds r5, r1, #0
-    ldr r6, .L08009018 @ =0x040000D4
-    adds r4, r0, #0
-    cmp r4, r5
-    beq .L08009010
-.L08008FF2:
-    ldr r3, [r4, #4]
-    ldr r0, [r4]
-    cmp r0, #1
-    bne .L08008FFE
-    str r3, [sp]
-    mov r3, sp
-.L08008FFE:
-    ldr r1, [r4, #8]
-    ldr r2, [r4, #0xc]
-    adds r0, r3, #0
-    adds r3, r6, #0
-    bl func_080D0EBC
-    adds r4, #0x10
-    cmp r4, r5
-    bne .L08008FF2
-.L08009010:
-    add sp, #4
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08009018: .4byte 0x040000D4
 .L0800901C:
     push {r4, r5, r6, r7, lr}
     sub sp, #8

@@ -2,6 +2,8 @@
 
 #include "gbaio.h"
 
+extern void func_080D0EBC(u32 source, u32 destination, u32 control, volatile u32 * registers);
+
 struct DmaTransferDescriptor * func_08008F0C(struct DmaTransferDescriptor * descriptor, u32 source, u32 destination, u32 byte_count)
 {
     if (source != 0 && destination != 0 && byte_count != 0 && ((source | destination | byte_count) & 1) == 0) {
@@ -40,4 +42,32 @@ struct DmaTransferDescriptor * func_08008F60(struct DmaTransferDescriptor * desc
     descriptor->destination = destination;
     descriptor->control = control;
     return descriptor;
+}
+
+void func_08008FB8(struct DmaTransferDescriptor const * descriptor)
+{
+    u32 source = descriptor->source_or_value;
+    u32 fill_value;
+    if (descriptor->mode == DMA_DESCRIPTOR_FILL) {
+        fill_value = source;
+        source = (u32)&fill_value;
+    }
+    func_080D0EBC(source, descriptor->destination, descriptor->control, &REG_DMA3SAD);
+}
+
+void func_08008FE4(struct DmaTransferDescriptor const * first, struct DmaTransferDescriptor const * end)
+{
+    struct DmaTransferDescriptor const * stop = end;
+    volatile u32 * registers = &REG_DMA3SAD;
+    struct DmaTransferDescriptor const * current = first;
+    while (current != stop) {
+        u32 source = current->source_or_value;
+        u32 fill_value;
+        if (current->mode == DMA_DESCRIPTOR_FILL) {
+            fill_value = source;
+            source = (u32)&fill_value;
+        }
+        func_080D0EBC(source, current->destination, current->control, registers);
+        ++current;
+    }
 }
