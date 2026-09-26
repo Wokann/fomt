@@ -23,7 +23,13 @@ grids:
   palettes, no table-six records, and 184 final entries, followed by a
   32-byte palette trailer.
 - [Referenced actor frames](sprites/actor_archive/full/) — OAM-aware full frame
-  PNGs; every retail-referenced descriptor is covered.
+  PNGs remain editable build inputs; every retail-referenced descriptor is
+  covered. The [native tile atlas](sprites/actor_archive/native_tiles.png)
+  retains covered pixels, while the shared [archive layout](sprites/actor_archive/archive.inc)
+  supplies the animation, OAM, palette, and timing tables without a baseline
+  ROM build input. This `0xDB638`-byte archive begins at JP `0x08311B84`,
+  US `0x0858BA28`, EU `0x0858BA84`, and DE `0x08312AC4`; its table counts are
+  2551, 3009, 4795, 24398, 162, 0, and 3990.
 - [Farm-status buildings](ui/farm_status/reference/) — complete building and
   status-layout renderings backed by their shared tiles, palette banks, and
   native tilemaps.

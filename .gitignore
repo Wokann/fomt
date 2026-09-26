@@ -86,5 +86,7 @@ graphics/intro_scene/small_indexed_archive/shared/full/frame_0000.4bpp
 graphics/intro_scene/small_indexed_archive/shared/full/frame_0000.gbapal
 graphics/portraits/shared/native_tiles.4bpp
 graphics/portraits/shared/portrait_tiles.4bpp
+graphics/sprites/actor_archive/native_tiles.4bpp
+graphics/sprites/actor_archive/actor_tiles.4bpp
 __pycache__/
 tools/textproc/fomt-*

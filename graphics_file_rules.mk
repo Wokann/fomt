@@ -48,13 +48,17 @@ PORTRAIT_ARCHIVE_OFFSET_DE := 0x2B4A20
 PORTRAIT_ARCHIVE_OFFSET := $(PORTRAIT_ARCHIVE_OFFSET_$(GAME_REGION))
 
 # The actor archive is a separate IndexedResourceArchive whose first table
-# selects timed animation frames.  Its source frames are complete
-# OAM-composited PNGs, not guessed linear tile sheets.  Rebuild preserves the
-# original archive tables and patches only table four's native 4bpp tile data.
+# selects timed animation frames. Its native atlas retains pixels covered by
+# OAM, while complete frame PNGs remain editable inputs for visible pixels.
+# The source archive uses the same tables linked into the ROM.
 ACTOR_ARCHIVE_TOOL := tools/actor_archive.py
 ACTOR_ARCHIVE_EDIT_TEST := tools/actor_archive_edit_test.py
 ACTOR_SOURCE_DIRS := graphics/sprites/actor_archive
 ACTOR_FULL_IMAGES := $(foreach directory,$(ACTOR_SOURCE_DIRS),$(wildcard $(directory)/full/*.png))
+ACTOR_ARCHIVE_LAYOUT := graphics/sprites/actor_archive/archive.inc
+ACTOR_NATIVE_TILES := graphics/sprites/actor_archive/native_tiles.4bpp
+ACTOR_SOURCE_ARCHIVE_OBJ := $(BUILD_DIR)/graphics/sprites/actor_archive/source_archive.o
+ACTOR_SOURCE_ARCHIVE_BIN := $(BUILD_DIR)/graphics/sprites/actor_archive/source_archive.bin
 # Cover every native actor selector.  The archive exporter resolves selectors
 # through the native animation table, producing 2,963 referenced frame
 # descriptors; the 46 unreferenced descriptor slots have no game caller and
@@ -963,8 +967,19 @@ $(PORTRAIT_SOURCE_ARCHIVE_BIN): $(PORTRAIT_SOURCE_ARCHIVE_OBJ)
 $(PORTRAIT_TILE_BIN): $(PORTRAIT_ARCHIVE_TOOL) $(PORTRAIT_FULL_IMAGES) $(PORTRAIT_SOURCE_ARCHIVE_BIN)
 	@$(PYTHON) $(PORTRAIT_ARCHIVE_TOOL) $(PORTRAIT_SOURCE_ARCHIVE_BIN) --offset 0 --length $(PORTRAIT_ARCHIVE_LENGTH) --sha256 $(PORTRAIT_ARCHIVE_SHA256) rebuild-full --source $(PORTRAIT_SOURCE_DIR) --output $@
 
-$(ACTOR_TILE_BIN): $(ACTOR_ARCHIVE_TOOL) $(PORTRAIT_ARCHIVE_TOOL) $(ACTOR_FULL_IMAGES) $(BASE_ROM)
-	@$(PYTHON) $(ACTOR_ARCHIVE_TOOL) $(BASE_ROM) --offset $(ACTOR_ARCHIVE_OFFSET) --length $(ACTOR_ARCHIVE_LENGTH) --sha256 $(ACTOR_ARCHIVE_SHA256) rebuild --animations $(ACTOR_ANIMATIONS) --source $(ACTOR_SOURCE_DIRS) --output $@
+# A 16-tile-wide PNG row needs two padding tiles after the 24,398 native tiles.
+# gbagfx emits only the counted native table, not those image-grid cells.
+$(ACTOR_NATIVE_TILES): GFX_TILE_COUNT := 24398
+
+$(ACTOR_SOURCE_ARCHIVE_OBJ): $(ACTOR_ARCHIVE_LAYOUT) $(ACTOR_NATIVE_TILES)
+	@mkdir -p $(dir $@)
+	@$(AS) $(ASFLAGS) --defsym ACTOR_SOURCE_ARCHIVE=1 $< -o $@
+
+$(ACTOR_SOURCE_ARCHIVE_BIN): $(ACTOR_SOURCE_ARCHIVE_OBJ)
+	@$(OBJCOPY) -O binary $< $@
+
+$(ACTOR_TILE_BIN): $(ACTOR_ARCHIVE_TOOL) $(PORTRAIT_ARCHIVE_TOOL) $(ACTOR_FULL_IMAGES) $(ACTOR_SOURCE_ARCHIVE_BIN)
+	@$(PYTHON) $(ACTOR_ARCHIVE_TOOL) $(ACTOR_SOURCE_ARCHIVE_BIN) --offset 0 --length $(ACTOR_ARCHIVE_LENGTH) --sha256 $(ACTOR_ARCHIVE_SHA256) rebuild --animations $(ACTOR_ANIMATIONS) --source $(ACTOR_SOURCE_DIRS) --output $@
 
 $(FARM_STATUS_TILES_BIN) $(FARM_STATUS_TILES_PALETTE0_BIN) &: $(FARM_STATUS_TILES_SOURCE) $(GFX_TOOL)
 	@$(GFX_TOOL) $(FARM_STATUS_TILES_SOURCE) $(FARM_STATUS_TILES_BIN)
@@ -1976,7 +1991,7 @@ gfx-verify:
 	@$(GFX_TOOL) $< $@
 
 %.4bpp: %.png $(GFX_TOOL)
-	@$(GFX_TOOL) $< $@
+	@$(GFX_TOOL) $< $@ $(if $(GFX_TILE_COUNT),-num_tiles $(GFX_TILE_COUNT))
 
 %.gbapal: %.pal $(GFX_TOOL)
 	@$(GFX_TOOL) $< $@ $(if $(GFX_PALETTE_COLORS),-num_colors $(GFX_PALETTE_COLORS))
