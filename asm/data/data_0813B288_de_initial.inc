@@ -129993,17 +129993,17 @@ gUnk_0874E530:
 	.4byte 0                         @ empty table count
 	.4byte 4                         @ animation entry count
 	.4byte 0x00060000, 0x00060001, 0x00060002, 0x00060001
-	.global gUnk_0874E648
-gUnk_0874E648:
+	.global gSharedSceneBackgroundTiles
+gSharedSceneBackgroundTiles:
 	.incbin "graphics/ui/scene_08077810/shared/tiles.4bpp.lz"
-	.global gUnk_0874EB40
-gUnk_0874EB40:
+	.global gSharedSceneBackgroundPalette
+gSharedSceneBackgroundPalette:
 	.incbin "graphics/ui/scene_08077810/shared/tiles.gbapal"
-	.global gUnk_0874EB60
-gUnk_0874EB60:
+	.global gSharedSceneBackgroundLayer1Tilemap
+gSharedSceneBackgroundLayer1Tilemap:
 	.incbin "graphics/ui/scene_08077810/shared/layer_1.tilemap.lz"
-	.global gUnk_0874ECCC
-gUnk_0874ECCC:
+	.global gSharedSceneBackgroundLayer0Tilemap
+gSharedSceneBackgroundLayer0Tilemap:
 	.incbin "graphics/ui/scene_08077810/shared/layer_0.tilemap.lz"
 	@ Position bounded by adjacent verified DE resources.
 	.global gUnk_0874EE38

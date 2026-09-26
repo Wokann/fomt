@@ -250,7 +250,8 @@ authoritative editable inputs.
 `ui/scene_08077810/shared/layer_0.tilemap` and `layer_1.tilemap` are native
 overseas BG maps. US, EU and DE share the same Huffman-4/LZ3 and
 Huffman-4/LZ0 streams, which are generated beside those sources and included
-directly at `gUnk_0874ECCC` and `gUnk_0874EB60`. JP instead has a distinct
+directly at `gSharedSceneBackgroundLayer0Tilemap` and
+`gSharedSceneBackgroundLayer1Tilemap`. JP instead has a distinct
 resource set in `ui/scene_08077810/jp/`. The maps remain native entries, not
 guessed PNG composites:
 

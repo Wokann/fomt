@@ -17,7 +17,7 @@ entire surrounding `incbin` range is a standalone palette resource.
 | `func_0805AB08` | `gUnk_0872FA9C` | `0x05000000`, `0x200` | Code-bounded palette for the UI-scene reference layers; native bytes remain owned by the enclosing ROM range. |
 | `func_0805FBB8` | `gUnk_08747A14` | `0x05000000`, `0x40` | Intro-scene background palette slice, already covered by the managed Intro Scene background pipeline. |
 | `func_0806EC94` | `gUnk_08529794`, `gUnk_0852CA40` | `0x05000000`, `0x200` | Non-winter and winter Farm Status palette selections. The former is managed with `base_palettes.png`; the overseas winter palettes remain region-aware references. |
-| `func_08077810` and `func_08000F5C` | `gUnk_0874EB40`, `gUnk_084D529C` | `0x05000000`, `0x20` | The first is the shared overseas/intro palette slice; the second is the separate JP-only palette bank associated with its independently managed `func_08077810` resource group. |
+| `func_08077810` and `func_08000F5C` | `gSharedSceneBackgroundPalette` | `0x05000000`, `0x20` | The same functional symbol resolves to the shared overseas/intro palette slice or the separate JP palette bank; its bytes are region-specific, not a common payload. |
 | `func_08077EC0` | `gUnk_08757AE0`, `gUnk_0875A358` | `0x05000020`, `0xC0` | Non-winter and winter seasonal palette selections, both represented by their managed six-bank BGR555 sources. |
 | Overseas `func_080A2BA4` | `gUnk_0874F2EC` | `0x05000000`, `0x200` | Archive-owned palette copied for the managed overseas UI scene; preserved as a read-only reference. |
 | `func_080AE7D0` / JP `func_080AE208` | `gUiResourcePagePalette` (all regions) | `0x05000000`, `0x200` | Managed UI-scene BGR555 palette. |

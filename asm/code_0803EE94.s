@@ -75343,11 +75343,11 @@ func_08077810: @ 0x080773A8
 .Ljp_08077518:
 	.4byte 0x00001E42
 .Ljp_0807751C:
-	.4byte gUnk_084D4DDC
+	.4byte gSharedSceneBackgroundTiles
 .Ljp_08077520:
-	.4byte gUnk_084D529C
+	.4byte gSharedSceneBackgroundPalette
 .Ljp_08077524:
-	.4byte gUnk_084D52BC
+	.4byte gSharedSceneBackgroundLayer1Tilemap
 .Ljp_08077528:
 	.4byte 0x05000042
 .Ljp_0807752C:
@@ -235139,16 +235139,16 @@ func_08077810: @ 0x08077810
 	adds r1, r7, #0
 	strh r1, [r2]
 	strh r1, [r0, #0xa]
-	ldr r0, .L08077990 @ =gUnk_0874E648
+	ldr r0, .L08077990 @ =gSharedSceneBackgroundTiles
 	ldr r1, .L08077994 @ =0x06008000
 	bl Unpack
-	ldr r0, .L08077998 @ =gUnk_0874EB40
+	ldr r0, .L08077998 @ =gSharedSceneBackgroundPalette
 	movs r4, #0xa0
 	lsls r4, r4, #0x13
 	adds r1, r4, #0
 	movs r2, #0x20
 	bl func_08008E64
-	ldr r0, .L0807799C @ =gUnk_0874ECCC
+	ldr r0, .L0807799C @ =gSharedSceneBackgroundLayer0Tilemap
 	mov r1, sb
 	bl Unpack
 	mov r0, sl
@@ -235224,10 +235224,10 @@ func_08077810: @ 0x08077810
 .L08077984: .4byte 0x0600F000
 .L08077988: .4byte 0x0000994A
 .L0807798C: .4byte 0x00001E42
-.L08077990: .4byte gUnk_0874E648
+.L08077990: .4byte gSharedSceneBackgroundTiles
 .L08077994: .4byte 0x06008000
-.L08077998: .4byte gUnk_0874EB40
-.L0807799C: .4byte gUnk_0874ECCC
+.L08077998: .4byte gSharedSceneBackgroundPalette
+.L0807799C: .4byte gSharedSceneBackgroundLayer0Tilemap
 .L080779A0: .4byte 0x05000042
 .L080779A4: .4byte 0x00007BDE
 .L080779A8: .4byte 0x00003DEF
