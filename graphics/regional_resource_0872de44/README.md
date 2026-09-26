@@ -13,13 +13,16 @@ same editable source. DE retains the same 27 selected groups but has three
 additional native layout records and four additional 4bpp tiles. Each source
 domain has one BGR555 palette and 27 selection entries.
 
-`full/group_*.png` contains the editable indexed-PNG sources. `preview/` is
-regenerated from the corresponding original OAM records and is reference-only.
-The native selection, descriptor, OAM, tile-allocation and palette data remain
-in their fixed archive layout; no JSON layout sidecar participates in build.
+`shared/full/native.png` and `de/full/native.png` store tiles in physical ROM
+order; `shared/full/native.pal` stores the palette used by all four regions.
+The generic graphics rules convert these sources to adjacent `.4bpp` and
+`.gbapal` build products. `archive.inc` places the common selection and final
+index tables once, selecting only the DE-specific descriptor/OAM/tile layout
+where needed. The existing `group_*.png` and `preview/` files show composed OAM
+groups for reference only; they are not compilation inputs.
 
-The Make build selects `de/` only with `GAME_REGION=DE`; JP, US, and EU select
-`shared/`. It rebuilds the native fixed allocation, then applies it only to its
-original address after link. The four-region test suite checks exact unchanged
-rebuilds, post-link patch safety, and a visible-pixel edit confined to each
-region's verified archive bounds.
+The assembler includes `archive.inc` at the original location in each region.
+The normal build neither reads a base ROM for this archive nor overwrites the
+linked ROM afterward. JP, US, EU, and DE complete builds match their original
+SHA-1 values. To regenerate both tile outputs and the palette, run
+`make gfx-regional-resource-0872de44-all` in WSL.

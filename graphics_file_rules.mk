@@ -357,34 +357,19 @@ REGIONAL_RESOURCE_0872BE64_ASSETS := $(REGIONAL_RESOURCE_0872BE64_SHARED_TILES) 
 endif
 .SECONDARY: $(REGIONAL_RESOURCE_0872BE64_SHARED_TILES) $(REGIONAL_RESOURCE_0872BE64_DE_TILES) $(REGIONAL_RESOURCE_0872BE64_PALETTE)
 $(BUILD_DIR)/asm/data/data_0813B288.o: $(REGIONAL_RESOURCE_0872BE64_SOURCE_ROOT)/archive.inc $(REGIONAL_RESOURCE_0872BE64_ASSETS)
-# ``gUnk_0872DE44`` keeps one JP/US/EU archive and a distinct DE layout.
-REGIONAL_RESOURCE_0872DE44_TOOL := tools/common_resource_archive.py
-REGIONAL_RESOURCE_0872DE44_PATCH_TEST_TOOL := $(REGIONAL_RESOURCE_0872DE44_TOOL)
+# ``gUnk_0872DE44`` shares its index/palette tables across regions. DE has
+# distinct descriptors, OAM, and tile data.
 REGIONAL_RESOURCE_0872DE44_SOURCE_ROOT := graphics/regional_resource_0872de44
+REGIONAL_RESOURCE_0872DE44_SHARED_TILES := $(REGIONAL_RESOURCE_0872DE44_SOURCE_ROOT)/shared/full/native.4bpp
+REGIONAL_RESOURCE_0872DE44_DE_TILES := $(REGIONAL_RESOURCE_0872DE44_SOURCE_ROOT)/de/full/native.4bpp
+REGIONAL_RESOURCE_0872DE44_PALETTE := $(REGIONAL_RESOURCE_0872DE44_SOURCE_ROOT)/shared/full/native.gbapal
 ifeq ($(GAME_REGION),DE)
-REGIONAL_RESOURCE_0872DE44_SOURCE_DIR := $(REGIONAL_RESOURCE_0872DE44_SOURCE_ROOT)/de
-REGIONAL_RESOURCE_0872DE44_PROFILE := regional-0872de44-de
+REGIONAL_RESOURCE_0872DE44_ASSETS := $(REGIONAL_RESOURCE_0872DE44_DE_TILES) $(REGIONAL_RESOURCE_0872DE44_PALETTE)
 else
-REGIONAL_RESOURCE_0872DE44_SOURCE_DIR := $(REGIONAL_RESOURCE_0872DE44_SOURCE_ROOT)/shared
-REGIONAL_RESOURCE_0872DE44_PROFILE := regional-0872de44-shared
+REGIONAL_RESOURCE_0872DE44_ASSETS := $(REGIONAL_RESOURCE_0872DE44_SHARED_TILES) $(REGIONAL_RESOURCE_0872DE44_PALETTE)
 endif
-REGIONAL_RESOURCE_0872DE44_SOURCES := $(wildcard $(REGIONAL_RESOURCE_0872DE44_SOURCE_DIR)/full/*.png)
-REGIONAL_RESOURCE_0872DE44_OUTPUT := $(BUILD_DIR)/graphics/regional_resource_0872de44/archive.bin
-REGIONAL_RESOURCE_0872DE44_OFFSET_JP := 0x4B3FAC
-REGIONAL_RESOURCE_0872DE44_OFFSET_US := 0x72DE44
-REGIONAL_RESOURCE_0872DE44_OFFSET_EU := 0x72DEA0
-REGIONAL_RESOURCE_0872DE44_OFFSET_DE := 0x4B5118
-REGIONAL_RESOURCE_0872DE44_LENGTH_JP := 0x1034
-REGIONAL_RESOURCE_0872DE44_LENGTH_US := 0x1034
-REGIONAL_RESOURCE_0872DE44_LENGTH_EU := 0x1034
-REGIONAL_RESOURCE_0872DE44_LENGTH_DE := 0x10CC
-REGIONAL_RESOURCE_0872DE44_SHA256_JP := fb7e5be52ccd941e7330f86a984b93f2dbec6a694a8bcbbe9e7806bc7d9087ea
-REGIONAL_RESOURCE_0872DE44_SHA256_US := fb7e5be52ccd941e7330f86a984b93f2dbec6a694a8bcbbe9e7806bc7d9087ea
-REGIONAL_RESOURCE_0872DE44_SHA256_EU := fb7e5be52ccd941e7330f86a984b93f2dbec6a694a8bcbbe9e7806bc7d9087ea
-REGIONAL_RESOURCE_0872DE44_SHA256_DE := c7787e7ae7b3b39821e29b4bebaa3af1b661517c8285f7940bd01dc0e42eccbf
-REGIONAL_RESOURCE_0872DE44_OFFSET := $(REGIONAL_RESOURCE_0872DE44_OFFSET_$(GAME_REGION))
-REGIONAL_RESOURCE_0872DE44_LENGTH := $(REGIONAL_RESOURCE_0872DE44_LENGTH_$(GAME_REGION))
-REGIONAL_RESOURCE_0872DE44_SHA256 := $(REGIONAL_RESOURCE_0872DE44_SHA256_$(GAME_REGION))
+.SECONDARY: $(REGIONAL_RESOURCE_0872DE44_SHARED_TILES) $(REGIONAL_RESOURCE_0872DE44_DE_TILES) $(REGIONAL_RESOURCE_0872DE44_PALETTE)
+$(BUILD_DIR)/asm/data/data_0813B288.o: $(REGIONAL_RESOURCE_0872DE44_SOURCE_ROOT)/archive.inc $(REGIONAL_RESOURCE_0872DE44_ASSETS)
 # ``gUnk_08738144`` has three independent source domains.  JP and DE share
 # the small native layout but not its bytes; US and EU use a larger shared one.
 REGIONAL_RESOURCE_08738144_TOOL := tools/common_resource_archive.py
@@ -1042,9 +1027,6 @@ $(FARM_STATUS_PACKED_BIN): $(FARM_STATUS_TILES_BIN) $(FARM_STATUS_ORIGINAL) $(FO
 $(SHARED_RESOURCE_08731B40_OUTPUT): $(SHARED_RESOURCE_08731B40_SOURCES) $(SHARED_RESOURCE_08731B40_TOOL) $(BASE_ROM)
 	@mkdir -p $(dir $@)
 	@$(PYTHON) $(SHARED_RESOURCE_08731B40_TOOL) $(BASE_ROM) --profile shared-08731b40 --offset $(SHARED_RESOURCE_08731B40_OFFSET) --length $(SHARED_RESOURCE_08731B40_LENGTH) --sha256 $(SHARED_RESOURCE_08731B40_SHA256) build --source-dir $(SHARED_RESOURCE_08731B40_SOURCE_DIR) --output $@
-$(REGIONAL_RESOURCE_0872DE44_OUTPUT): $(REGIONAL_RESOURCE_0872DE44_SOURCES) $(REGIONAL_RESOURCE_0872DE44_TOOL) $(BASE_ROM)
-	@mkdir -p $(dir $@)
-	@$(PYTHON) $(REGIONAL_RESOURCE_0872DE44_TOOL) $(BASE_ROM) --profile $(REGIONAL_RESOURCE_0872DE44_PROFILE) --offset $(REGIONAL_RESOURCE_0872DE44_OFFSET) --length $(REGIONAL_RESOURCE_0872DE44_LENGTH) --sha256 $(REGIONAL_RESOURCE_0872DE44_SHA256) build --source-dir $(REGIONAL_RESOURCE_0872DE44_SOURCE_DIR) --output $@
 $(REGIONAL_RESOURCE_08738144_OUTPUT): $(REGIONAL_RESOURCE_08738144_SOURCES) $(REGIONAL_RESOURCE_08738144_TOOL) $(BASE_ROM)
 	@mkdir -p $(dir $@)
 	@$(PYTHON) $(REGIONAL_RESOURCE_08738144_TOOL) $(BASE_ROM) --profile $(REGIONAL_RESOURCE_08738144_PROFILE) --offset $(REGIONAL_RESOURCE_08738144_OFFSET) --length $(REGIONAL_RESOURCE_08738144_LENGTH) --sha256 $(REGIONAL_RESOURCE_08738144_SHA256) build --source-dir $(REGIONAL_RESOURCE_08738144_SOURCE_DIR) --output $@
@@ -1202,7 +1184,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 .PHONY: gfx-regional-resource-0871d51c gfx-regional-resource-0871d51c-all
 .PHONY: gfx-regional-resource-08728208
 .PHONY: gfx-regional-resource-0872be64 gfx-regional-resource-0872be64-all
-.PHONY: gfx-regional-resource-0872de44 gfx-regional-resource-0872de44-test gfx-regional-resource-0872de44-all gfx-regional-resource-0872de44-patch-test gfx-regional-resource-0872de44-edit-test gfx-regional-resource-0872de44-edit-test-one
+.PHONY: gfx-regional-resource-0872de44 gfx-regional-resource-0872de44-all
 .PHONY: gfx-regional-resource-08738144 gfx-regional-resource-08738144-test gfx-regional-resource-08738144-all gfx-regional-resource-08738144-patch-test gfx-regional-resource-08738144-edit-test gfx-regional-resource-08738144-edit-test-one
 .PHONY: gfx-regional-resource-0873a6e8 gfx-regional-resource-0873a6e8-test gfx-regional-resource-0873a6e8-all gfx-regional-resource-0873a6e8-patch-test gfx-regional-resource-0873a6e8-edit-test gfx-regional-resource-0873a6e8-edit-test-one
 .PHONY: gfx-regional-resource-0873d6d8 gfx-regional-resource-0873d6d8-test gfx-regional-resource-0873d6d8-all gfx-regional-resource-0873d6d8-patch-test gfx-regional-resource-0873d6d8-edit-test gfx-regional-resource-0873d6d8-edit-test-one
@@ -1639,24 +1621,10 @@ gfx-regional-resource-0872be64-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-regional-resource-0872be64
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-regional-resource-0872be64
 
-gfx-regional-resource-0872de44: $(REGIONAL_RESOURCE_0872DE44_OUTPUT)
-gfx-regional-resource-0872de44-test: gfx-regional-resource-0872de44 $(REGIONAL_RESOURCE_0872DE44_TOOL) $(BASE_ROM)
-	@$(PYTHON) $(REGIONAL_RESOURCE_0872DE44_TOOL) $(BASE_ROM) --profile $(REGIONAL_RESOURCE_0872DE44_PROFILE) --offset $(REGIONAL_RESOURCE_0872DE44_OFFSET) --length $(REGIONAL_RESOURCE_0872DE44_LENGTH) --sha256 $(REGIONAL_RESOURCE_0872DE44_SHA256) verify --source-dir $(REGIONAL_RESOURCE_0872DE44_SOURCE_DIR)
+gfx-regional-resource-0872de44: $(REGIONAL_RESOURCE_0872DE44_ASSETS)
 gfx-regional-resource-0872de44-all:
-	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-regional-resource-0872de44-test
-	@$(MAKE) --no-print-directory GAME_REGION=US gfx-regional-resource-0872de44-test
-	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-regional-resource-0872de44-test
-	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-regional-resource-0872de44-test
-gfx-regional-resource-0872de44-patch-test: gfx-regional-resource-0872de44-all $(REGIONAL_RESOURCE_0872DE44_PATCH_TEST_TOOL)
-	@$(PYTHON) $(REGIONAL_RESOURCE_0872DE44_PATCH_TEST_TOOL) --case JP baserom_jp.gba 0x4B3FAC 0x1034 fb7e5be52ccd941e7330f86a984b93f2dbec6a694a8bcbbe9e7806bc7d9087ea regional-0872de44-shared build/jp/graphics/regional_resource_0872de44/archive.bin --case US baserom_us.gba 0x72DE44 0x1034 fb7e5be52ccd941e7330f86a984b93f2dbec6a694a8bcbbe9e7806bc7d9087ea regional-0872de44-shared build/us/graphics/regional_resource_0872de44/archive.bin --case EU baserom_eu.gba 0x72DEA0 0x1034 fb7e5be52ccd941e7330f86a984b93f2dbec6a694a8bcbbe9e7806bc7d9087ea regional-0872de44-shared build/eu/graphics/regional_resource_0872de44/archive.bin --case DE baserom_de.gba 0x4B5118 0x10CC c7787e7ae7b3b39821e29b4bebaa3af1b661517c8285f7940bd01dc0e42eccbf regional-0872de44-de build/de/graphics/regional_resource_0872de44/archive.bin
-gfx-regional-resource-0872de44-edit-test:
-	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-regional-resource-0872de44-edit-test-one
-	@$(MAKE) --no-print-directory GAME_REGION=US gfx-regional-resource-0872de44-edit-test-one
-	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-regional-resource-0872de44-edit-test-one
-	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-regional-resource-0872de44-edit-test-one
-.PHONY: gfx-regional-resource-0872de44-edit-test-one
-gfx-regional-resource-0872de44-edit-test-one:
-	@$(PYTHON) $(REGIONAL_RESOURCE_0872DE44_TOOL) $(BASE_ROM) --profile $(REGIONAL_RESOURCE_0872DE44_PROFILE) --offset $(REGIONAL_RESOURCE_0872DE44_OFFSET) --length $(REGIONAL_RESOURCE_0872DE44_LENGTH) --sha256 $(REGIONAL_RESOURCE_0872DE44_SHA256) edit-test --source-dir $(REGIONAL_RESOURCE_0872DE44_SOURCE_DIR)
+	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-regional-resource-0872de44
+	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-regional-resource-0872de44
 
 gfx-regional-resource-08738144: $(REGIONAL_RESOURCE_08738144_OUTPUT)
 gfx-regional-resource-08738144-test: gfx-regional-resource-08738144 $(REGIONAL_RESOURCE_08738144_TOOL) $(BASE_ROM)
@@ -2100,8 +2068,6 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-regional-resource-08728208
 	@$(MAKE) --no-print-directory gfx-regional-resource-0872be64-all
 	@$(MAKE) --no-print-directory gfx-regional-resource-0872de44-all
-	@$(MAKE) --no-print-directory gfx-regional-resource-0872de44-patch-test
-	@$(MAKE) --no-print-directory gfx-regional-resource-0872de44-edit-test
 	@$(MAKE) --no-print-directory gfx-regional-resource-08738144-all
 	@$(MAKE) --no-print-directory gfx-regional-resource-08738144-patch-test
 	@$(MAKE) --no-print-directory gfx-regional-resource-08738144-edit-test

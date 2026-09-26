@@ -122,8 +122,10 @@ one selection entry. Native layout records remain the source of truth rather
 than a separately maintained JSON layout description.
 
 `gUnk_0872DE44` has a 27-group shared JP/US/EU archive and a DE-specific
-layout. Its indexed PNG sources are rebuilt only into the corresponding native
-region ranges.
+descriptor/OAM/tile layout. Native-order PNGs and one common PAL compile through
+the generic graphics rules; a single region-conditional `archive.inc` links
+their bytes and common index tables directly at the original ROM locations.
+The older group PNGs are reference views, not build inputs.
 
 | Source domain | Regions | ROM offset(s) | Length | Header counts | Entries | SHA-256 |
 | --- | --- | --- | --- | --- | --- | --- |
