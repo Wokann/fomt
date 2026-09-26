@@ -2486,9 +2486,8 @@ static unsigned char *encode_huff_lz2(unsigned char const *source, size_t size,
 
 static void usage(void)
 {
-    fail("usage: fomt-lz encode-lz1|encode-lz2 SOURCE OUTPUT LADDER SLOT_SIZE "
-         "[--literal-tail] | "
-         "encode-lz3|encode-huff8-lz3 SOURCE OUTPUT LADDER SLOT_SIZE | "
+    fail("usage: fomt-lz encode-lz1|encode-lz2|encode-lz3|encode-huff8-lz3 "
+         "SOURCE OUTPUT LADDER SLOT_SIZE [--literal-tail] [--filter=1..4] | "
          "rebuild-native SOURCE ORIGINAL OUTPUT [TAIL] | "
          "rebuild-huff8-lz3 SOURCE ORIGINAL OUTPUT LADDER SLOT_SIZE | "
          "rebuild-huff4-lz2|rebuild-huff8-lz2 "
@@ -2740,30 +2739,52 @@ int main(int argc, char **argv)
         int lz1 = strcmp(argv[1], "encode-lz1") == 0;
         int lz2 = strcmp(argv[1], "encode-lz2") == 0;
         int huff8 = strcmp(argv[1], "encode-huff8-lz3") == 0;
-        if (argc != 6 && !(lz2 && argc == 7 &&
-                           strcmp(argv[6], "--literal-tail") == 0))
+        if (argc < 6 || argc > 8)
             usage();
-        int literal_tail = argc == 7;
+        int literal_tail = 0;
+        unsigned filter = 0;
+        int filter_seen = 0;
+        for (int index = 6; index < argc; index++) {
+            if (lz2 && !literal_tail &&
+                strcmp(argv[index], "--literal-tail") == 0) {
+                literal_tail = 1;
+            } else if (!filter_seen && strncmp(argv[index], "--filter=", 9) == 0) {
+                char *end;
+                unsigned long value = strtoul(argv[index] + 9, &end, 10);
+                if (*end || value < 1 || value > 4)
+                    usage();
+                filter = (unsigned)value;
+                filter_seen = 1;
+            } else {
+                usage();
+            }
+        }
         LadderEntry ladder[7];
         parse_ladder(argv[4], ladder, lz1 ? 4 : lz2 ? 7 : 3);
         unsigned slot_size = parse_size(argv[5]);
         size_t source_size, packed_size;
         unsigned char *source = read_file(argv[2], &source_size);
+        unsigned char *atoms = filter
+            ? inverse_differential(source, source_size, filter) : source;
         unsigned char *packed = lz1
-            ? encode_lz1(source, source_size, ladder, &packed_size)
-            : lz2 ? encode_lz2(source, source_size, ladder, literal_tail, 9,
+            ? encode_lz1(atoms, source_size, ladder, &packed_size)
+            : lz2 ? encode_lz2(atoms, source_size, ladder, literal_tail, 9,
                          &packed_size)
-            : huff8 ? encode_huff8_lz3(source, source_size, ladder, &packed_size)
-                    : encode_lz3(source, source_size, ladder, &packed_size);
+            : huff8 ? encode_huff8_lz3(atoms, source_size, ladder, &packed_size)
+                    : encode_lz3(atoms, source_size, ladder, &packed_size);
         if (huff8) {
             LadderEntry decoded_ladder[3];
             size_t decoded_size;
             unsigned char *decoded = decode_huff8_lz3(
                 packed, packed_size, decoded_ladder, &decoded_size
             );
-            if (decoded_size != source_size || memcmp(decoded, source, source_size) != 0)
+            if (decoded_size != source_size || memcmp(decoded, atoms, source_size) != 0)
                 fail("encoded Huffman-8/LZ3 stream does not reproduce its source");
             free(decoded);
+        }
+        if (filter) {
+            packed[7] |= (unsigned char)(filter << 5);
+            free(atoms);
         }
         if (slot_size && packed_size > slot_size)
             fail("encoded stream exceeds its declared slot");

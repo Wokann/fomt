@@ -1005,7 +1005,8 @@ FOMT_LZ_ENCODE_OUTPUTS := $(addsuffix .lz, \
   $(addprefix $(INTRO_OBJECTS_SOURCE_DIR)/object_,$(addsuffix .4bpp,00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19)) \
   $(MAP_DATA_SOURCE_DIR)/map_08/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_08/layer_2.gbapal \
   $(MAP_DATA_SOURCE_DIR)/map_09/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_09/layer_2.gbapal \
-  $(MAP_DATA_SOURCE_DIR)/map_09/layer_5.tilemap $(MAP_DATA_SOURCE_DIR)/map_31/layer_5.tilemap)
+  $(MAP_DATA_SOURCE_DIR)/map_09/layer_5.tilemap $(MAP_DATA_SOURCE_DIR)/map_31/layer_5.tilemap \
+  $(MAP_DATA_SOURCE_DIR)/map_44/layer_5.tilemap $(MAP_DATA_SOURCE_DIR)/map_45/layer_5.tilemap)
 
 $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_0.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 125 0x28
 $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_1.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1234679 0xB0
@@ -1060,6 +1061,8 @@ $(MAP_DATA_SOURCE_DIR)/map_09/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 4,
 $(MAP_DATA_SOURCE_DIR)/map_09/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 4,5,7 0xCC
 $(MAP_DATA_SOURCE_DIR)/map_09/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,6,12 0x6C
 $(MAP_DATA_SOURCE_DIR)/map_31/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 3,6,11 0xEC
+$(MAP_DATA_SOURCE_DIR)/map_44/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 3,5,9 0xD4 --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_45/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x90 --filter=3
 
 $(FOMT_LZ_ENCODE_OUTPUTS): %.lz: % $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) $(firstword $(FOMT_LZ_ENCODE)) $< $@ $(wordlist 2,99,$(FOMT_LZ_ENCODE))

@@ -16,9 +16,10 @@ Make rules convert seven editable PNG tile sets to `.4bpp`, eleven editable
 JASC palettes to `.gbapal`, and then use the shared `tools/fomt-lz` codec to
 make the source-adjacent `.lz` files. The other 24 sources are native u16
 `.tilemap` files, preserving tile indices, flip flags, and palette banks.
-Six Raw-LZ3 streams now encode directly from their `.tilemap` or `.gbapal`
+Eight Raw-LZ3 streams now encode directly from their `.tilemap` or `.gbapal`
 sources: map `08` layers `1`/`2`, map `09` layers `1`/`2`/`5`, and map `31`
-layer `5`. All six rebuilt packed slots match the retail bytes exactly; their
+layer `5`, plus map `44` and `45` layer `5` with the codec's 16-bit differential
+filter. All eight rebuilt packed slots match the retail bytes exactly; their
 `.original.lz` files are comparison references, not build inputs. The other
 streams still use source-adjacent original packing metadata to preserve exact
 output. No normal build reads `baserom`; an edit that cannot fit its verified
