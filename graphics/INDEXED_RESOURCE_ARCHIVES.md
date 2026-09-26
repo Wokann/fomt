@@ -166,6 +166,10 @@ use a byte-identical JP/US/EU source and a DE-specific source.
 domain and 64 in DE. Native descriptor and OAM records remain the layout
 source of truth; no sidecar description is created.
 
+`0873A6E8` now directly links the common tables and palette with native-order
+PNG tiles selected for shared or DE builds. Its old ROM-template rebuild and
+post-link patch are removed; `0873D6D8` still uses its older rebuild path.
+
 `gUnk_0874F34C` has 22 drawable groups in all regions, but its JP, US/EU and
 DE archive layouts are individually bounded and rebuilt.
 

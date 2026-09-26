@@ -40,12 +40,6 @@ class ArchiveProfile:
 
 
 PROFILES = {
-    "regional-0873a6e8-shared": ArchiveProfile(
-        (1, 1, 3, 56, 1, 0, 1), (), "regional 0873A6E8 JP-US-EU resource"
-    ),
-    "regional-0873a6e8-de": ArchiveProfile(
-        (1, 1, 3, 56, 1, 0, 1), (), "regional 0873A6E8 DE resource"
-    ),
     "regional-0873d6d8-shared": ArchiveProfile(
         (1, 1, 3, 56, 1, 0, 1), (), "regional 0873D6D8 JP-US-EU resource"
     ),
