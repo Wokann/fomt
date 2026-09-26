@@ -12,7 +12,16 @@ These are already full, editable image resources rather than arbitrary tile
 grids:
 
 - [Dialogue portraits](portraits/shared/full/) — named character portrait and
-  expression PNGs; the portrait tile stream rebuilds from them.
+  expression PNGs remain editable build inputs. The shared native
+  [tile atlas](portraits/shared/native_tiles.png) preserves covered pixels;
+  the same [archive layout](portraits/shared/archive.inc) supplies all four
+  regions' OAM and palette tables. Complete PNG edits rebuild the final tile
+  stream with shared-tile conflict checks, without reading a baseline ROM.
+  The uncompressed archive occupies `0x5E0A4` bytes at JP `0x082B3AE0`,
+  US `0x0852D984`, EU `0x0852D9E0`, and DE `0x082B4A20`. Its seven tables
+  have 184 selectors, 184 descriptors, 1037 OAM records, 11586 tiles, 52
+  palettes, no table-six records, and 184 final entries, followed by a
+  32-byte palette trailer.
 - [Referenced actor frames](sprites/actor_archive/full/) — OAM-aware full frame
   PNGs; every retail-referenced descriptor is covered.
 - [Farm-status buildings](ui/farm_status/reference/) — complete building and

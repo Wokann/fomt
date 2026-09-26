@@ -26,14 +26,18 @@ FONT_SHARED_SINGLE_OFFSET := $(FONT_SHARED_SINGLE_OFFSET_$(GAME_REGION))
 FONT_SHARED_DOUBLE_OFFSET := $(FONT_SHARED_DOUBLE_OFFSET_$(GAME_REGION))
 
 # The dialogue-portrait archive has a shared tile/OAM/palette layout in every
-# retail localization. Full portraits are the normal palette-indexed authoring
-# source; portrait_archive.py patches only their visible changes into table
-# four and detects shared-tile conflicts. Per-descriptor tile groups remain as
-# an advanced exact-edit fallback.
+# retail localization. Its native tile PNG preserves pixels hidden behind OAM;
+# the complete indexed portraits remain the normal editable image sources.
+# The source archive is assembled from the same archive.inc linked into the ROM,
+# then portrait_archive.py applies the visible edits with shared-tile checks.
 PORTRAIT_SOURCE_DIR := graphics/portraits/shared
 PORTRAIT_FULL_IMAGES := $(wildcard $(PORTRAIT_SOURCE_DIR)/full/*.png)
 PORTRAIT_ARCHIVE_TOOL := tools/portrait_archive.py
 PORTRAIT_ARCHIVE_EDIT_TEST := tools/portrait_archive_edit_test.py
+PORTRAIT_ARCHIVE_LAYOUT := $(PORTRAIT_SOURCE_DIR)/archive.inc
+PORTRAIT_NATIVE_TILES := $(PORTRAIT_SOURCE_DIR)/native_tiles.4bpp
+PORTRAIT_SOURCE_ARCHIVE_OBJ := $(BUILD_DIR)/graphics/portraits/source_archive.o
+PORTRAIT_SOURCE_ARCHIVE_BIN := $(BUILD_DIR)/graphics/portraits/source_archive.bin
 PORTRAIT_TILE_BIN := $(PORTRAIT_SOURCE_DIR)/portrait_tiles.4bpp
 PORTRAIT_ARCHIVE_LENGTH := 0x5E0A4
 PORTRAIT_ARCHIVE_SHA256 := 34c23aced1a4f23ba80d1429a87f4c8a7ca11b0458c61a37a6eb48731440bbd2
@@ -949,8 +953,15 @@ $(FONT_SHARED_DOUBLE_PADDED): $(FONT_SHARED_DOUBLE_PNG) $(GFX_TOOL)
 $(FONT_SHARED_DOUBLE_BIN): $(FONT_SHARED_DOUBLE_PADDED) $(FONT_PAD)
 	@$(FONT_PAD) trim-grid-16x12-from-16x16 $< $@ 32 6922
 
-$(PORTRAIT_TILE_BIN): $(PORTRAIT_ARCHIVE_TOOL) $(PORTRAIT_FULL_IMAGES) $(BASE_ROM)
-	@$(PYTHON) $(PORTRAIT_ARCHIVE_TOOL) $(BASE_ROM) --offset $(PORTRAIT_ARCHIVE_OFFSET) --length $(PORTRAIT_ARCHIVE_LENGTH) --sha256 $(PORTRAIT_ARCHIVE_SHA256) rebuild-full --source $(PORTRAIT_SOURCE_DIR) --output $@
+$(PORTRAIT_SOURCE_ARCHIVE_OBJ): $(PORTRAIT_ARCHIVE_LAYOUT) $(PORTRAIT_NATIVE_TILES)
+	@mkdir -p $(dir $@)
+	@$(AS) $(ASFLAGS) --defsym PORTRAIT_SOURCE_ARCHIVE=1 $< -o $@
+
+$(PORTRAIT_SOURCE_ARCHIVE_BIN): $(PORTRAIT_SOURCE_ARCHIVE_OBJ)
+	@$(OBJCOPY) -O binary $< $@
+
+$(PORTRAIT_TILE_BIN): $(PORTRAIT_ARCHIVE_TOOL) $(PORTRAIT_FULL_IMAGES) $(PORTRAIT_SOURCE_ARCHIVE_BIN)
+	@$(PYTHON) $(PORTRAIT_ARCHIVE_TOOL) $(PORTRAIT_SOURCE_ARCHIVE_BIN) --offset 0 --length $(PORTRAIT_ARCHIVE_LENGTH) --sha256 $(PORTRAIT_ARCHIVE_SHA256) rebuild-full --source $(PORTRAIT_SOURCE_DIR) --output $@
 
 $(ACTOR_TILE_BIN): $(ACTOR_ARCHIVE_TOOL) $(PORTRAIT_ARCHIVE_TOOL) $(ACTOR_FULL_IMAGES) $(BASE_ROM)
 	@$(PYTHON) $(ACTOR_ARCHIVE_TOOL) $(BASE_ROM) --offset $(ACTOR_ARCHIVE_OFFSET) --length $(ACTOR_ARCHIVE_LENGTH) --sha256 $(ACTOR_ARCHIVE_SHA256) rebuild --animations $(ACTOR_ANIMATIONS) --source $(ACTOR_SOURCE_DIRS) --output $@
