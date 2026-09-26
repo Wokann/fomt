@@ -42,61 +42,37 @@ and uses the same native format/ladder in all four regions:
 | 4 | 66 of 66 | exactly `width * height * 2` bytes |
 | 5 | 62 of 62 non-null records | exactly `width * height * 2` bytes; four records intentionally have no third map layer |
 
-Thus map assets use a single shared source tree while retaining per-region
-packed outputs at their original physical ROM locations. The physical archive
-is contiguous in every retail ROM, despite its different base address:
+The 272 references do **not** form one uninterrupted archive. A previous
+boundary assumption used the next MapData pointer as the current stream's
+end. For example, US `0x6977C8` consumes `0x158` compressed bytes and ends at
+`0x697920`, where the separate `gUnk_08697920` VRAM resource begins. Its next
+MapData pointer is at `0x69B3B8`; treating that whole gap as one editable
+stream would overwrite independent data.
 
-| Region | First layer stream | End after last stream | Archive span |
-| --- | ---: | ---: | ---: |
-| JP | `0x400244` | `0x4A3678` | `0x0A3434` |
-| US | `0x67A0E8` | `0x71D51C` | `0x0A3434` |
-| EU | `0x67A144` | `0x71D578` | `0x0A3434` |
-| DE | `0x401184` | `0x4A45B8` | `0x0A3434` |
-
-`tools/map_resources.py` derives all 272 unique stream boundaries and alias
-sets directly from the four `gMapData` tables; it does not use a JSON or other
-checked-in layout sidecar.  The tool exports `graphics/maps/shared/map_XX/`
-native source files and writes corresponding region-specific packed files
-under `build/<region>/graphics/maps/`.  The latter also contains one
-`map_visual_archive.0x70` file per region: the exact contiguous archive range
-above, assembled from the 272 rebuilt streams.  The source classification is strictly
-evidence-based: 31 layer-0 streams use `.4bpp`, 47 layer-1/2 streams use
-`.gbapal` (15 BGR555 banks each), and 194 layer-3--5 streams use `.tilemap`.
-All 272 exports total `0x22BE60` decoded bytes.
-
-The builder preserves the original packed bytes when a decoded source is
-unchanged.  When it is edited, `tools/marvelous_codec.py` routes the payload
-through the exact audited Popuri atom/LZ/differential tuple and original
-distance ladder, then strictly decodes the result before accepting it.  The
-new packed data must fit the original fixed interval; an overrun is a hard
-error rather than a silent move into the next stream. `gfx-map-resources-all`
-continues to verify unchanged output byte-for-byte for every region, while
-`gfx-map-resources-edit-test` exercises one fitting authored edit for each of
-the 14 format tuples present in this archive.
-
-The normal `%.gba` link rule then invokes `map_resources.py patch` after
-`objcopy`.  It writes the selected region's generated archive back to the
-same original physical interval, so existing MapData pointers and all C/C++ /
-assembly symbols retain their retail addresses.  Before writing, the patcher
-accepts the target range only when it equals either the matching retail
-baseline or the same generated archive; any third-party bytes in that range
-are a hard error.  `gfx-map-resources-patch-test` exercises this final-ROM
-step against all four retail images and proves that unchanged sources leave
-each complete image byte-identical.
+Only the first 42 streams have so far been moved into the direct-link source
+pipeline. Their exact contiguous interval is JP `0x400244–0x41DA7C`, US
+`0x67A0E8–0x697920`, EU `0x67A144–0x69797C`, and DE
+`0x401184–0x41E9BC` (end exclusive). Seven streams have editable PNG tile
+sources, eleven have editable JASC palette sources, and 24 retain native u16
+tilemap sources. `graphics/maps/shared/map_data.inc` lists the actual packed
+order and symbols; the assembly includes it at that original location.
+Source-adjacent `.original.lz` files preserve each original format and slot
+size. `tools/fomt_lz.c` rebuilds changed sources and rejects slot overflow;
+unchanged sources reproduce original packed bytes. The remaining 230 MapData
+streams remain source-owned original bytes in assembly, not an editable
+graphics pipeline. They need individual physical bounds before conversion.
 
 ## Current status
 
 * The six packed layer ranges, terrain-record table and terrain-index grid are
   all physically labelled in `asm/data/data_0813B288*.s` and referenced by
   `src/map_data.cc`.
-* All 272 unique visual layer streams are now a managed, source-backed,
-  fixed-slot editable graphics family with four-region byte-range verification
-  and a post-link ROM integration step. It preserves all existing direct
-  assembly labels, rather than risking a refactor of the aggregate archive
-  before every embedded label has been independently recovered.
+* The first 42 unique visual streams are source-backed and direct-linked;
+  all four unedited ROMs still match their retail SHA-1. No MapData post-link
+  patch or baserom input remains in the normal build rule.
 * Layer 0, layers 1–2 and layers 3–5 respectively have verified 4bpp tile,
-  BGR555 palette-group and u16 tilemap roles. The 47 palette sources retain
-  their native bank ordering as `.gbapal`.
+  BGR555 palette-group and u16 tilemap roles. The converted palette sources
+  retain their native bank ordering through JASC `.pal` to `.gbapal`.
 * The earlier `unknown_types.hh::MapData` sketch has a speculative
   `packed_img`/palette/tile naming scheme.  It is not used as authoritative
   evidence for this pipeline; `map_data.hh` and the runtime access above are
@@ -116,7 +92,8 @@ original `incbin` range:
 4. A source representation that preserves native ordering without JSON layout
    sidecars, a rebuild path, and four-region range-byte verification.
 
-The MapData streams satisfy points 1, 2 and 4. Layers 0, 1--2 and 3--5 also
-satisfy point 3 as native tile, palette and tilemap data respectively.
+The first 42 MapData streams satisfy points 1, 2 and 4. Their layers 0,
+1--2 and 3--5 also satisfy point 3 as native tile, palette and tilemap data
+respectively. The other 230 have not passed the physical-boundary test.
 Extraction previews may be kept as references but are never used as
 authoritative editable sources.

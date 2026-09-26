@@ -1,48 +1,38 @@
 # MapData visual resources
 
-`shared/map_00/` through `shared/map_65/` are the authoritative editable
-sources for the visual half of the game's `MapData` records.  They preserve
-the native data model instead of flattening a map into one image:
+The first physically continuous MapData stream run is now linked from this
+source tree, not copied from a ROM after linking. Its 42 streams are identical
+in JP, US, EU, and DE and occupy these verified half-open ranges:
 
-* `layer_0.4bpp` is the 1024-tile, 4bpp character stream.
-* `layer_1.gbapal` and `layer_2.gbapal` are the two distinct fifteen-bank
-  BGR555 palette groups selected by the map renderer.
-* `layer_3.tilemap` through `layer_5.tilemap` are the one to three native
-  16-bit BG tilemaps.  Their tile index, horizontal/vertical flip, and
-  palette-bank bits are retained verbatim.
+| Region | Start | End |
+| --- | ---: | ---: |
+| JP | `0x400244` | `0x41DA7C` |
+| US | `0x67A0E8` | `0x697920` |
+| EU | `0x67A144` | `0x69797C` |
+| DE | `0x401184` | `0x41E9BC` |
 
-These files are the build inputs.  `tools/map_resources.py` reads the actual
-MapData pointer tables in the four retail ROMs on every build, derives all
-aliases and physical bounds, and rebuilds each compressed stream into the
-matching regional archive range.  It does not use a checked-in JSON layout
-file.  The normal ROM link then post-link-patches only that proven continuous
-archive, retaining every existing code pointer.
-
-## Pointer-table coverage boundary
-
-Each regional `MapData` table has 66 records. On every invocation the tool
-walks the first six pointer fields of every record: the character stream, two
-palette groups, and up to three BG tilemaps. After resolving aliases, this
-produces 272 distinct non-null visual source streams. A shared source is
-accepted only when its declared bounds, compressed bytes, decoded bytes, and
-native format agree in JP, US, EU, and DE; otherwise the exporter stops rather
-than silently treating a regional resource as shared.
-
-The remaining `MapData` pointer fields are terrain/field data rather than
-proven tile, palette, map, or OAM inputs. They deliberately remain outside
-this image pipeline; adding a visual conversion requires evidence from the
-runtime consumer, not merely adjacency to a map record. Rendered screenshots
-are likewise not build inputs because they cannot retain native tilemap bits.
-
-## Verification
+`shared/map_data.inc` lists the real ROM order and labels. The ordinary
+Make rules convert seven editable PNG tile sets to `.4bpp`, eleven editable
+JASC palettes to `.gbapal`, and then use the shared `tools/fomt-lz` codec to
+make the source-adjacent `.lz` files. The other 24 sources are native u16
+`.tilemap` files, preserving tile indices, flip flags, and palette banks.
+Each `.original.lz` records the original packing parameters and fixed slot
+size; it is not read from `baserom` during a normal build. An unchanged
+source reproduces the original stream exactly. An edit that cannot fit its
+verified slot fails the build rather than overwriting a neighboring record.
 
 ```console
-make gfx-map-resources-all
-make gfx-map-resources-patch-test
-make gfx-map-resources-edit-test
+make -j4 gfx-map-resources-test
+make -j4 fomt_jp fomt_us fomt_eu fomt_de
 ```
 
-These respectively verify every unchanged native stream against JP, US, EU,
-and DE; prove that applying the generated archive preserves all four complete
-retail ROMs byte-for-byte; and exercise one capacity-fitting source edit for
-every audited compression format.
+The `gMapData` table references 272 distinct visual streams overall. The
+remaining 230 are still present as original bytes in the assembly source;
+they are **not** covered by this editable pipeline yet. In particular, the
+next stream after this run ends at the start of a separate VRAM resource,
+not at the following MapData pointer. Treating all 272 pointers as one
+uninterrupted archive would overwrite that unrelated resource. Future runs
+must be bounded from the actual decoder-consumed length and intervening ROM
+labels before moving them into this direct-link workflow.
+
+MapData fields 6 and 7 are terrain/interaction data, not image inputs.

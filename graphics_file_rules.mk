@@ -914,18 +914,16 @@ FARM_HOUSE_PALETTE_VERIFY_DE := \
   palette_04_buffer_0.gbapal:0x478F48 palette_05_buffer_0.gbapal:0x47497C palette_05_buffer_1.gbapal:0x474A2C \
   palette_06_buffer_0.gbapal:0x475B68
 
-# MapData owns 66 six-layer map records. Every unique visual stream has a
-# native decoded source. Unchanged sources retain their retail packed bytes;
-# edited sources use the audited Popuri atom/LZ/differential encoder and must
-# fit the original fixed packed interval.
-MAP_RESOURCES_TOOL := tools/map_resources.py
-MAP_RESOURCES_SOURCE_DIR := graphics/maps/shared
-MAP_RESOURCES_SOURCES := $(wildcard $(MAP_RESOURCES_SOURCE_DIR)/*/*)
-MAP_RESOURCES_OUTPUT_DIR := $(BUILD_DIR)/graphics/maps
-MAP_RESOURCES_STAMP := $(MAP_RESOURCES_OUTPUT_DIR)/.map-resources.stamp
-MAP_RESOURCES_REGION := $(INTRO_OBJECTS_REGION)
-MAP_RESOURCES_ALL_ROM_ARGS := --all-rom jp baserom_jp.gba --all-rom us baserom_us.gba --all-rom eu baserom_eu.gba --all-rom de baserom_de.gba
-MAP_RESOURCES_ROM_ARGS := --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
+# The first physical MapData run is assembled from source-adjacent packed
+# streams. Read its incbin list instead of duplicating 42 paths in make.
+MAP_DATA_SOURCE_DIR := graphics/maps/shared
+MAP_DATA_INC := $(MAP_DATA_SOURCE_DIR)/map_data.inc
+MAP_DATA_PACKED := $(shell sed -n 's/.*\.incbin "\([^"]*\)".*/\1/p' $(MAP_DATA_INC))
+MAP_DATA_TILE_OUTPUTS := $(patsubst %.png,%.4bpp,$(wildcard $(MAP_DATA_SOURCE_DIR)/map_*/*.png))
+MAP_DATA_PALETTE_OUTPUTS := $(patsubst %.pal,%.gbapal,$(wildcard $(MAP_DATA_SOURCE_DIR)/map_*/*.pal))
+$(MAP_DATA_PALETTE_OUTPUTS): GFX_PALETTE_COLORS := 240
+.SECONDARY: $(MAP_DATA_TILE_OUTPUTS) $(MAP_DATA_PALETTE_OUTPUTS)
+$(BUILD_DIR)/asm/data/data_0813B288.o: $(MAP_DATA_INC) $(MAP_DATA_PACKED)
 
 MAP_STATE_PALETTE_SOURCE_DIR := graphics/map_state_palettes/shared
 MAP_STATE_PALETTE_SOURCES := $(wildcard $(MAP_STATE_PALETTE_SOURCE_DIR)/*.gbapal)
@@ -1058,7 +1056,7 @@ GRAPHICS_ASSETS = \
 	$(UI_SCENE_080B7164_OUTPUTS) $(UI_SCENE_080C160C_OUTPUTS) $(UI_SCENE_080BCFAC_OUTPUTS) \
 	$(UI_SCENE_080B55D0_AUX_OUTPUTS) \
 	$(UI_SCENE_080B55D0_MAIN_OUTPUT) $(UI_SCENE_08054F40_TILES_OUTPUT) \
-	$(UI_SCENE_0805AB08_TILES_OUTPUT) $(MAP_RESOURCES_STAMP) \
+	$(UI_SCENE_0805AB08_TILES_OUTPUT) $(MAP_DATA_PACKED) \
 	$(RECORDS_MINIGAME_OUTPUTS) $(ANIMAL_FESTIVAL_ICON_OUTPUTS) \
 	$(RAW_VRAM_NATIVE_SOURCES)
 
@@ -1239,11 +1237,6 @@ $(UI_SCENE_08054F40_TILES_OUTPUT): $(UI_SCENE_08054F40_TILES_SOURCE) $(FOMT_LZ_T
 $(UI_SCENE_0805AB08_TILES_OUTPUT): $(UI_SCENE_0805AB08_TILES_SOURCE) $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) encode-lz2 $< $@ 3,5,7,10,11,12,14 0x880
 
-$(MAP_RESOURCES_STAMP): $(MAP_RESOURCES_SOURCES) $(MAP_RESOURCES_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(MAP_RESOURCES_TOOL) build --region $(MAP_RESOURCES_REGION) --rom $(BASE_ROM) \
-	  --source-dir $(MAP_RESOURCES_SOURCE_DIR) --output-dir $(MAP_RESOURCES_OUTPUT_DIR) $(MAP_RESOURCES_ALL_ROM_ARGS)
-	@touch $@
-
 $(MAP_STATE_PALETTE_SOURCE_DIR)/%.gbapal.lz: $(MAP_STATE_PALETTE_SOURCE_DIR)/%.gbapal $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) encode-lz3 $< $@ $(FOMT_LZ3_ARGS)
 
@@ -1251,8 +1244,8 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-resource-archive gfx-farm-status-winter gfx-farm-status-winter-test gfx-farm-status-winter-all gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-exterior-styles gfx-farm-status-exterior-styles-test gfx-farm-status-selector-icon gfx-farm-status-selector-icon-test gfx-farm-status-selector-icon-all gfx-clock-font gfx-clock-font-test gfx-clock-font-all gfx-farm-status-creature-icons gfx-farm-status-creature-icons-test gfx-farm-status-creature-icons-all gfx-farm-status-task-marker gfx-farm-status-task-marker-test gfx-farm-status-task-marker-all gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal-nonwinter-all gfx-seasonal-winter gfx-seasonal-winter-test gfx-seasonal-winter-all gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-visual gfx-intro-startup-visual-test gfx-intro-startup-visual-all gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-animal-festival-icons gfx-animal-festival-icons-test gfx-animal-festival-icons-all resource-archive-audit unpack-vram-inventory dma-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
-.PHONY: gfx-map-resources-edit-test gfx-map-state-palettes gfx-map-state-palettes-test gfx-map-state-templates gfx-map-state-templates-test gfx-map-state-templates-all unpack-inventory unpack-coverage-inventory copy-ram-inventory
+.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-resource-archive gfx-farm-status-winter gfx-farm-status-winter-test gfx-farm-status-winter-all gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-exterior-styles gfx-farm-status-exterior-styles-test gfx-farm-status-selector-icon gfx-farm-status-selector-icon-test gfx-farm-status-selector-icon-all gfx-clock-font gfx-clock-font-test gfx-clock-font-all gfx-farm-status-creature-icons gfx-farm-status-creature-icons-test gfx-farm-status-creature-icons-all gfx-farm-status-task-marker gfx-farm-status-task-marker-test gfx-farm-status-task-marker-all gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal-nonwinter-all gfx-seasonal-winter gfx-seasonal-winter-test gfx-seasonal-winter-all gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-visual gfx-intro-startup-visual-test gfx-intro-startup-visual-all gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-animal-festival-icons gfx-animal-festival-icons-test gfx-animal-festival-icons-all resource-archive-audit unpack-vram-inventory dma-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
+.PHONY: gfx-map-state-palettes gfx-map-state-palettes-test gfx-map-state-templates gfx-map-state-templates-test gfx-map-state-templates-all unpack-inventory unpack-coverage-inventory copy-ram-inventory
 .PHONY: indexed-resource-archive-inventory
 .PHONY: gfx-farm-status-task-ui-tile gfx-farm-status-task-ui-tile-test gfx-farm-status-task-ui-tile-all
 .PHONY: gfx-small-ui-resource-archive
@@ -2056,19 +2049,12 @@ gfx-intro-startup-visual: $(INTRO_STARTUP_VISUAL_PACKED_BIN) $(INTRO_STARTUP_VIS
 gfx-intro-startup-visual-test: gfx-intro-startup-visual $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) verify-native $(INTRO_STARTUP_VISUAL_TILES_BIN) $(INTRO_STARTUP_VISUAL_PACKED_BIN)
 gfx-intro-startup-visual-all: gfx-intro-startup-visual-test
-gfx-map-resources: $(MAP_RESOURCES_STAMP)
-gfx-map-resources-test: gfx-map-resources $(MAP_RESOURCES_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(MAP_RESOURCES_TOOL) verify --region $(MAP_RESOURCES_REGION) --source-dir $(MAP_RESOURCES_SOURCE_DIR) --output-dir $(MAP_RESOURCES_OUTPUT_DIR) \
-	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
-gfx-map-resources-all:
-	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-map-resources-test
-	@$(MAKE) --no-print-directory GAME_REGION=US gfx-map-resources-test
-	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-map-resources-test
-	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-map-resources-test
-gfx-map-resources-patch-test: gfx-map-resources-all $(MAP_RESOURCES_TOOL)
-	@$(PYTHON) $(MAP_RESOURCES_TOOL) patch-test --output-root build $(MAP_RESOURCES_ROM_ARGS)
-gfx-map-resources-edit-test: $(MAP_RESOURCES_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(MAP_RESOURCES_TOOL) edit-test $(MAP_RESOURCES_ROM_ARGS)
+gfx-map-resources: $(MAP_DATA_TILE_OUTPUTS) $(MAP_DATA_PALETTE_OUTPUTS) $(MAP_DATA_PACKED)
+gfx-map-resources-test: gfx-map-resources $(FOMT_LZ_TOOL)
+	@set -e; for packed in $(MAP_DATA_PACKED); do \
+	  $(FOMT_LZ_TOOL) verify-native "$${packed%.lz}" "$$packed"; \
+	done
+gfx-map-resources-all: gfx-map-resources-test
 gfx-map-state-palettes: $(MAP_STATE_PALETTE_OUTPUTS)
 gfx-map-state-palettes-test: gfx-map-state-palettes
 	@set -e; for source in $(MAP_STATE_PALETTE_SOURCES); do \
@@ -2351,8 +2337,6 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-intro-indexed-archive-edit-test
 	@$(MAKE) --no-print-directory gfx-intro-small-archive-all
 	@$(MAKE) --no-print-directory gfx-map-resources-all
-	@$(MAKE) --no-print-directory gfx-map-resources-patch-test
-	@$(MAKE) --no-print-directory gfx-map-resources-edit-test
 	@$(MAKE) --no-print-directory gfx-map-state-palettes-test
 	@$(MAKE) --no-print-directory gfx-map-state-templates-all
 	@$(MAKE) --no-print-directory resource-archive-audit
@@ -2375,7 +2359,7 @@ gfx-verify:
 	@$(GFX_TOOL) $< $@
 
 %.gbapal: %.pal $(GFX_TOOL)
-	@$(GFX_TOOL) $< $@
+	@$(GFX_TOOL) $< $@ $(if $(GFX_PALETTE_COLORS),-num_colors $(GFX_PALETTE_COLORS))
 
 %.gbapal: %.png $(GFX_TOOL)
 	@$(GFX_TOOL) $< $@
@@ -2386,4 +2370,7 @@ gfx-verify:
 	@$(FOMT_LZ_TOOL) rebuild-native $< $(word 2,$^) $@
 
 %.tilemap.lz: %.tilemap %.original.lz $(FOMT_LZ_TOOL)
+	@$(FOMT_LZ_TOOL) rebuild-native $< $(word 2,$^) $@
+
+%.gbapal.lz: %.gbapal %.original.lz $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) rebuild-native $< $(word 2,$^) $@

@@ -22,7 +22,7 @@ rather than omitted from the inventory.
 
 | Source family | Static sites | Evidence and disposition |
 | --- | ---: | --- |
-| MapData visual layers and state branches | 13 | The JP and overseas map loaders obtain `MapData` fields at runtime. The six visual pointer layers are already bounded as 272 native map streams, while the state fallback branches use the five separately managed BGR555 palette streams. These sites do not identify a new independent ROM blob. |
+| MapData visual layers and state branches | 13 | The JP and overseas map loaders obtain `MapData` fields at runtime. The six visual pointer layers reference 272 distinct native streams; 42 in the first physically continuous run are direct-linked from editable sources, while the other 230 still need individual bounds. The state fallback branches use five separately managed BGR555 palette streams. These sites do not identify a new independent ROM blob. |
 | Farm House visual descriptors | 26 | The two regional Farm House render paths select descriptors from `gFarmHouseVisualDescriptors`. Their compressed resources, palettes, and tilemaps are already owned by the Farm House visual pipeline; the call sites are conditions selecting existing descriptor entries. |
 | Intro Scene pointer tables | 3 | One site iterates the twenty `gIntroSceneUnpackSources` records; two regional startup sites select existing source arrays. The tile sources and startup presentation maps remain in their established native rebuild pipelines. |
 | Generic caller-provided decoder | 1 | `func_0806EB70` accepts its compressed pointer from the caller and expands it into a temporary buffer before rearranging it for VRAM. The helper owns no ROM source itself, so it is not evidence of a separate graphics family. |

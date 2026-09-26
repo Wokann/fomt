@@ -20,8 +20,11 @@
 !graphics/ui/farm_status/shared/secondary_tilemaps/*.original.lz
 !graphics/ui/scene_08077810/shared/*.original.lz
 !graphics/ui/scene_08077810/jp/*.original.lz
+!graphics/maps/shared/map_*/*.original.lz
 
 build/
+graphics/maps/shared/map_*/*.4bpp
+graphics/maps/shared/map_*/*.gbapal
 graphics/map_state_palettes/shared/*.0x70
 graphics/ui/scene_080ae7d0/shared/palette_banks.gbapal
 graphics/ui/scene_080b7164/shared/palettes.gbapal

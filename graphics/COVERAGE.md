@@ -88,7 +88,7 @@ image, nor that all game graphics have been extracted.
 | Records Screen task icons | `graphics/ui/records_minigame/shared/task_00.png` through `task_06.png` | seven raw 16x16 4bpp grids with individual BGR555 palettes; the runtime table uses a verified nonphysical presentation order | Yes; see `RECORDS_SCREEN_RESOURCE_AUDIT.md` |
 | Animal Festival UI icons | `graphics/ui/animal_festival/shared/icon_00.png` through `icon_09.png` | ten raw 16x16 4bpp grids with individual BGR555 palettes | Yes |
 | Direct-DMA raw UI records | `graphics/ui/raw_vram_tiles/*/{shared,jp,overseas}/*` | nineteen fixed-size raw 4bpp tile records and four BGR555 palette records; `087512ec` is split into JP and overseas source domains, while callers without a complete static layout retain native source rather than fabricating a PNG | Yes |
-| MapData visual layers | `graphics/maps/shared/map_XX/layer_N.*`; derived inspection images are generated under `build/graphics/maps/reference/` | 272 native packed streams, post-link patched at their original ROM ranges | Yes |
+| MapData visual layers | `graphics/maps/shared/map_XX/layer_N.*` | First 42 streams direct-linked from editable PNG/palette or native tilemap sources; 230 remain original assembly bytes pending physical-boundary checks | Partial |
 
 The actor archive has 3,009 frame descriptors, of which 2,963 are referenced
 by the retail animation tables.  Every referenced descriptor has a checked-in
@@ -106,10 +106,10 @@ live under `graphics/ui/farm_status/reference/winter/`; see
 ## Build linkage
 
 Most managed families are included from `asm/data/data_0813B288.s` through a
-regional `build/<region>/graphics/...` output. MapData visual layers preserve
-their original continuous archive position through a post-link replacement
-step, because their 272 pointer-bearing streams are not a single assembly
-incbin block. Most direct UI-scene streams use the same explicit post-link
+regional `build/<region>/graphics/...` output. The first 42 MapData streams
+are now included directly from source-adjacent `.lz` files; the remaining
+230 stay as original assembly bytes until their actual physical boundaries
+are verified. Most direct UI-scene streams use the same explicit post-link
 replacement rule because their region-specific physical labels are embedded in
 otherwise raw data containers. `func_080A2BA4`, `func_080AE7D0`,
 `func_080B7164`, `func_080C160C`, `func_080BCFAC`, `func_080B55D0`,
@@ -171,7 +171,7 @@ byte is visual data.
 | All static `Unpack` calls | 98 call sites; 43 table/caller-derived sources remain explicit | `UNPACK_CALL_COVERAGE.md` resolves every non-direct-label site to MapData, Farm House, Intro Scene, or a generic caller-owned decoder. The report does not invent source ranges for dynamic pointers. |
 | Literal direct DMA to video RAM | 64 scanner-qualified calls, 47 distinct labels, plus one manually checked high-register call | Every recovered label is classified in `DIRECT_DMA_VRAM_AUDIT.md`. Raw tile and palette records retain their native source when no static tilemap/OAM layout exists. |
 | Literal guarded RAM copies | 18 bounded paths, all to palette RAM | Every source is classified in `DIRECT_COPY_RAM_AUDIT.md`; a palette slice is not promoted to a standalone image unless its owning layout is proven. |
-| MapData visual layers | 272 bounded native streams | The six visual pointer layers are managed as maps; terrain, collision, and other non-visual fields remain outside the graphics pipeline. |
+| MapData visual layers | 272 distinct native stream references; 42 direct-linked | The first physically continuous run is editable; the remaining 230 require individual physical bounds. Terrain, collision, and other non-visual fields remain outside the graphics pipeline. |
 | MapData state-fallback palettes | 5 bounded Raw-LZ streams, each decoding to 15 BGR555 banks | Managed as ordered native palette sources. JP/US/EU/DE share byte-identical packed and decoded streams; every region is rebuilt and patched at its own original fixed slots. |
 | Map-state native presentation templates | 2 bounded raw tables (`0x4ECC` palette-template bytes and `0xC4E8` 16-bit tilemap-template bytes) | Managed as shared native binary sources. The renderer proves fixed copy/entry formats but not independently authored tile or palette layouts, so no guessed PNG or layout sidecar is created. Every region is rebuilt and patched at its own original range. |
 | Indirect map-state `Unpack` buffers | 17 labelled non-VRAM inputs, including five fallback payloads | `INDIRECT_UNPACK_AUDIT.md` records strict decode bounds for every input. The five regional map-state fallback payloads (overseas `func_080A95A4`) are managed native BGR555 palettes; the remaining staging data stays native until its consumer proves a visual format and layout. |
