@@ -296,14 +296,12 @@ $(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGIO
 # Keep the post-link archive replacement available before the generic ROM rule
 # runs, regardless of which regional BUILD_NAME selected the target.
 $(ROM): $(GBAFIX) config.mk
-$(ROM): $(REGIONAL_RESOURCE_08738144_OUTPUT)
 $(ROM): $(REGIONAL_RESOURCE_0873A6E8_OUTPUT)
 $(ROM): $(REGIONAL_RESOURCE_0873D6D8_OUTPUT)
 $(ROM): $(REGIONAL_RESOURCE_0874F34C_OUTPUT)
 
 %.gba: %.elf
 	$(OBJCOPY) -O binary $< $@
-	@$(PYTHON) $(REGIONAL_RESOURCE_08738144_TOOL) $(BASE_ROM) --profile $(REGIONAL_RESOURCE_08738144_PROFILE) --offset $(REGIONAL_RESOURCE_08738144_OFFSET) --length $(REGIONAL_RESOURCE_08738144_LENGTH) --sha256 $(REGIONAL_RESOURCE_08738144_SHA256) patch --target $@ --archive $(REGIONAL_RESOURCE_08738144_OUTPUT)
 	@$(PYTHON) $(REGIONAL_RESOURCE_0873A6E8_TOOL) $(BASE_ROM) --profile $(REGIONAL_RESOURCE_0873A6E8_PROFILE) --offset $(REGIONAL_RESOURCE_0873A6E8_OFFSET) --length $(REGIONAL_RESOURCE_0873A6E8_LENGTH) --sha256 $(REGIONAL_RESOURCE_0873A6E8_SHA256) patch --target $@ --archive $(REGIONAL_RESOURCE_0873A6E8_OUTPUT)
 	@$(PYTHON) $(REGIONAL_RESOURCE_0873D6D8_TOOL) $(BASE_ROM) --profile $(REGIONAL_RESOURCE_0873D6D8_PROFILE) --offset $(REGIONAL_RESOURCE_0873D6D8_OFFSET) --length $(REGIONAL_RESOURCE_0873D6D8_LENGTH) --sha256 $(REGIONAL_RESOURCE_0873D6D8_SHA256) patch --target $@ --archive $(REGIONAL_RESOURCE_0873D6D8_OUTPUT)
 	@$(PYTHON) $(REGIONAL_RESOURCE_0874F34C_TOOL) $(BASE_ROM) --profile $(REGIONAL_RESOURCE_0874F34C_PROFILE) --offset $(REGIONAL_RESOURCE_0874F34C_OFFSET) --length $(REGIONAL_RESOURCE_0874F34C_LENGTH) --sha256 $(REGIONAL_RESOURCE_0874F34C_SHA256) patch --target $@ --archive $(REGIONAL_RESOURCE_0874F34C_OUTPUT)
@@ -618,7 +616,7 @@ ifneq (,$(filter gfx-regional-resource-0872de44 gfx-regional-resource-0872de44-a
 ALL_DEPS :=
 endif
 
-ifneq (,$(filter gfx-regional-resource-08738144 gfx-regional-resource-08738144-test gfx-regional-resource-08738144-all gfx-regional-resource-08738144-patch-test gfx-regional-resource-08738144-edit-test gfx-regional-resource-08738144-edit-test-one,$(MAKECMDGOALS)))
+ifneq (,$(filter gfx-regional-resource-08738144 gfx-regional-resource-08738144-all,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 

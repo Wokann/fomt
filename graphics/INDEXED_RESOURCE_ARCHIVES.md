@@ -137,20 +137,20 @@ three additional native layout records and four additional 4bpp tiles. Its
 native records are retained as the only layout definition, not duplicated into
 a JSON sidecar.
 
-`gUnk_08738144` has three independent native source domains. US and EU are
-byte-identical, while JP and DE have equal archive dimensions but different
-bytes and therefore separate source directories.
+`gUnk_08738144` is a separate `0x994`-byte three-group archive in every
+region. Its tables and palette are identical, while JP, US/EU and DE have
+three distinct tile streams. The earlier US/EU offset for this entry referred
+to the preceding `gUnk_08731B40` archive and was not this symbol's location.
 
 | Source domain | Regions | ROM offset(s) | Length | Header counts | Entries | SHA-256 |
 | --- | --- | --- | --- | --- | --- | --- |
 | JP | JP | `0x4BE2AC` | `0x994` | `3, 3, 2, 72, 1, 0` | 3 | `fb7aa01250524014a4f84c1149116a761f6a8f93f3ddc0de6d75bd0b0cfea405` |
-| US/EU | US / EU | `0x731B40` / `0x731B9C` | `0x6604` | `20, 20, 13, 794, 3, 0` | 20 | `f7ba7a09d7fd9da4ce57d4c898240aee2a733beb30e58e95230efa83ab0d1104` |
+| US/EU | US / EU | `0x738144` / `0x7381A0` | `0x994` | `3, 3, 2, 72, 1, 0` | 3 | `29864570b9746fe320857de4f20336180608e748473d0cb8412b2971efa0c74b` |
 | DE | DE | `0x4BF4B0` | `0x994` | `3, 3, 2, 72, 1, 0` | 3 | `701e945fe2c343672a6e52b8795881ff3248c2af4f54e8213f21c4c2741a4729` |
 
-The JP and DE archives each expose three drawable OAM groups, 72 tiles and
-one BGR555 palette. US/EU exposes 20 groups, 794 tiles and three palettes.
-Their native layout data remains authoritative; no independently maintained
-JSON description is introduced.
+All four archives expose three drawable OAM groups, 72 tiles and one BGR555
+palette. Native-order PNGs, one PAL and the original-order `archive.inc` now
+link directly; no independently maintained JSON description is introduced.
 
 `gUnk_0873A6E8` and `gUnk_0873D6D8` each expose one drawable OAM group. Both
 use a byte-identical JP/US/EU source and a DE-specific source.

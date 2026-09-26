@@ -118,8 +118,8 @@ REGIONAL_LOCATIONS = {
     },
     "gUnk_08738144": {
         "jp": 0x4BE2AC,
-        "us": 0x731B40,
-        "eu": 0x731B9C,
+        "us": 0x738144,
+        "eu": 0x7381A0,
         "de": 0x4BF4B0,
     },
     "gUnk_0873A6E8": {

@@ -34,7 +34,7 @@ as a shared payload.
 | `gUnk_0872DE44` | `0x4B3FAC` | `0x72DE44` | `0x72DEA0` | `0x4B5118` | `0x1034` shared / `0x10CC` DE | 27, 27, 6, 106, 1, 0 shared / 27, 27, 9, 110, 1, 0 DE | 27 | source-owned direct link, shared/DE layouts: `graphics/regional_resource_0872de44/` |
 | `gUnk_0872EE78` | `0x4B4FE0` | `0x72EE78` | `0x72EED4` | `0x4B61E4` | `0x2A4` | 4, 4, 1, 16, 1, 0 | 4 | source-owned direct link, four-region shared: `graphics/shared_resource_0872ee78/` |
 | `gUnk_08731B40` | `0x4B7CA8` | `0x731B40` | `0x731B9C` | `0x4B8EAC` | `0x6604` | 20, 20, 13, 794, 3, 0 | 20 | source-owned direct link, four-region shared: `graphics/shared_resource_08731b40/` |
-| `gUnk_08738144` | `0x4BE2AC` | `0x731B40` | `0x731B9C` | `0x4BF4B0` | `0x994` | 3, 3, 2, 72, 1, 0 | 3 | rebuild, region-local: `graphics/regional_resource_08738144/` |
+| `gUnk_08738144` | `0x4BE2AC` | `0x738144` | `0x7381A0` | `0x4BF4B0` | `0x994` | 3, 3, 2, 72, 1, 0 | 3 | source-owned direct link, common tables / regional tiles: `graphics/regional_resource_08738144/` |
 | `gUnk_0873A6E8` | `0x4C0850` | `0x73A6E8` | `0x73A744` | `0x4C1A54` | `0x76C` | 1, 1, 3, 56, 1, 0 | 1 | rebuild, region-local: `graphics/regional_resource_0873a6e8/` |
 | `gUnk_0873AE54` | `0x4C0FBC` | `0x73AE54` | `0x73AEB0` | `0x4C21C0` | `0x174` | 2, 2, 1, 8, 1, 0 | 2 | linked from indexed PNG, no baserom input or post-link patch: `graphics/shared_resource_0873ae54/` |
 | `gUnk_0873AFC8` | `0x4C1130` | `0x73AFC8` | `0x73B024` | `0x4C2334` | `0xE5C` | 1, 1, 9, 110, 1, 0 | 1 | source-owned direct link, four-region shared: `graphics/shared_resource_0873afc8/` |
