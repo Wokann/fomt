@@ -60,11 +60,30 @@ The authoritative PNG sources follow the actual localization layouts:
 - `indexed_archive/de/full/` has eight DE frames.
 
 Each archive also selects two descriptors without drawable OAM. They have no
-fabricated blank PNG; their unchanged table data remains in the decoded
-archive. The source rebuild starts from that archive and patches only pixels
-reached by complete PNG frames. It then uses the exact regional codec (`120`
-Huffman-4/LZ2 for JP and `220` Huffman-8/LZ2 elsewhere), strictly decodes the
-result, and rejects output larger than the original regional slot.
+fabricated blank PNG; their unchanged table data remains in the source archive.
+The native seven-table layout is authored in `jp/archive.inc`,
+`us_eu/archive.inc`, and `de/archive.inc`. Each layout includes its group's
+`native_tiles.4bpp`, generated from `native_tiles.png`; this atlas preserves
+hidden pixels and shared-tile details that a composited frame cannot represent.
+The complete PNG frames remain additional editable inputs. Their visible-pixel
+edits are applied to the source-assembled archive using the native OAM records.
+
+The intermediate decoded archive stays under `build/`. The C `fomt-lz` tool
+packs it to source-adjacent `archive.lz` using the checked-in
+`archive.original.lz` for the original codec and slot size. Unchanged content
+retains the exact publisher stream; an edit is strictly decoded and rejected
+if it exceeds that slot. JP uses `120` Huffman-4/LZ2; the overseas archives use
+`220` Huffman-8/LZ2. Assembly includes `archive.lz` directly. A normal resource
+build does not read a retail ROM or patch the linked image.
+
+| Source group | ROM start | Packed size | Native tiles |
+| --- | --- | ---: | ---: |
+| JP | `0x084CDBDC` | `0x2D90` | 810 |
+| US/EU | US `0x08747A74`, EU `0x08747AD0` | `0x2764` | 569 |
+| DE | `0x084CEEE8` | `0x275C` | 571 |
+
+The ROM starts above are written with the GBA `0x08000000` base; the equivalent
+file offsets are `0x4CDBDC`, `0x747A74`, `0x747AD0`, and `0x4CEEE8`.
 
 ```console
 make gfx-intro-indexed-archive-all

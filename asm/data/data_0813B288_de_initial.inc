@@ -129955,7 +129955,7 @@ gUnk_08747A14:
 	.incbin "graphics/intro_scene/shared/background_palettes.gbapal"
 	.global gUnk_08747A74
 gUnk_08747A74:
-	.incbin "build/de/graphics/intro_scene/indexed_archive/archive.0x70"
+	.incbin "graphics/intro_scene/indexed_archive/de/archive.lz"
 	.global gUnk_IntroSceneStartupUnpackSource_000
 gUnk_IntroSceneStartupUnpackSource_000:
 	.incbin "graphics/intro_scene/shared/startup_tilemaps/startup_00.tilemap.lz"

@@ -567,10 +567,18 @@ INTRO_STARTUP_VISUAL_PALETTE_BIN := $(INTRO_STARTUP_VISUAL_SOURCE_DIR)/startup_p
 # the archive's own OAM records, so no JSON layout sidecar is necessary.
 INTRO_INDEXED_ARCHIVE_TOOL := tools/intro_scene_indexed_archive.py
 INTRO_INDEXED_ARCHIVE_SOURCE_ROOT := graphics/intro_scene/indexed_archive
-INTRO_INDEXED_ARCHIVE_SOURCES := $(wildcard $(INTRO_INDEXED_ARCHIVE_SOURCE_ROOT)/*/full/*.png) \
-	$(wildcard $(INTRO_INDEXED_ARCHIVE_SOURCE_ROOT)/*/runtime_obj_palette.gbapal)
-INTRO_INDEXED_ARCHIVE_OUTPUT := $(BUILD_DIR)/graphics/intro_scene/indexed_archive/archive.0x70
-INTRO_INDEXED_ARCHIVE_REGION := $(INTRO_OBJECTS_REGION)
+INTRO_INDEXED_ARCHIVE_REGION := $(if $(filter US EU,$(GAME_REGION)),us,$(INTRO_OBJECTS_REGION))
+INTRO_INDEXED_ARCHIVE_GROUP := $(if $(filter US EU,$(GAME_REGION)),us_eu,$(INTRO_OBJECTS_REGION))
+INTRO_INDEXED_ARCHIVE_SOURCE_DIR := $(INTRO_INDEXED_ARCHIVE_SOURCE_ROOT)/$(INTRO_INDEXED_ARCHIVE_GROUP)
+INTRO_INDEXED_ARCHIVE_LAYOUT := $(INTRO_INDEXED_ARCHIVE_SOURCE_DIR)/archive.inc
+INTRO_INDEXED_ARCHIVE_NATIVE_TILES := $(INTRO_INDEXED_ARCHIVE_SOURCE_DIR)/native_tiles.4bpp
+INTRO_INDEXED_ARCHIVE_ORIGINAL := $(INTRO_INDEXED_ARCHIVE_SOURCE_DIR)/archive.original.lz
+INTRO_INDEXED_ARCHIVE_OUTPUT := $(INTRO_INDEXED_ARCHIVE_SOURCE_DIR)/archive.lz
+INTRO_INDEXED_ARCHIVE_SOURCE_OBJ := $(BUILD_DIR)/graphics/intro_scene/indexed_archive/source_archive.o
+INTRO_INDEXED_ARCHIVE_SOURCE_BIN := $(BUILD_DIR)/graphics/intro_scene/indexed_archive/source_archive.bin
+INTRO_INDEXED_ARCHIVE_EDITED_BIN := $(BUILD_DIR)/graphics/intro_scene/indexed_archive/edited_archive.bin
+INTRO_INDEXED_ARCHIVE_FRAMES := $(wildcard $(INTRO_INDEXED_ARCHIVE_SOURCE_DIR)/full/*.png)
+INTRO_INDEXED_ARCHIVE_PALETTE := $(INTRO_INDEXED_ARCHIVE_SOURCE_DIR)/runtime_obj_palette.gbapal
 INTRO_SMALL_ARCHIVE_SOURCE_DIR := graphics/intro_scene/small_indexed_archive/shared
 INTRO_SMALL_ARCHIVE_ASSETS := $(INTRO_SMALL_ARCHIVE_SOURCE_DIR)/full/frame_0000.4bpp $(INTRO_SMALL_ARCHIVE_SOURCE_DIR)/full/frame_0000.gbapal
 INTRO_SMALL_ARCHIVE_OFFSET_JP := 0x4D4CC4
@@ -1672,25 +1680,35 @@ gfx-intro-objects-all:
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-intro-objects-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-intro-objects-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-intro-objects-test
-$(INTRO_INDEXED_ARCHIVE_OUTPUT): $(INTRO_INDEXED_ARCHIVE_TOOL) $(INTRO_INDEXED_ARCHIVE_SOURCES) $(BASE_ROM)
+$(INTRO_INDEXED_ARCHIVE_NATIVE_TILES): GFX_TILE_COUNT := $(if $(filter jp,$(INTRO_INDEXED_ARCHIVE_GROUP)),810,$(if $(filter de,$(INTRO_INDEXED_ARCHIVE_GROUP)),571,569))
+$(INTRO_INDEXED_ARCHIVE_SOURCE_OBJ): $(INTRO_INDEXED_ARCHIVE_LAYOUT) $(INTRO_INDEXED_ARCHIVE_NATIVE_TILES)
 	@mkdir -p $(dir $@)
-	@$(PYTHON) $(INTRO_INDEXED_ARCHIVE_TOOL) build --region $(INTRO_INDEXED_ARCHIVE_REGION) --rom $(BASE_ROM) --source-root $(INTRO_INDEXED_ARCHIVE_SOURCE_ROOT) --output $@
+	@$(AS) $(ASFLAGS) $< -o $@
+$(INTRO_INDEXED_ARCHIVE_SOURCE_BIN): $(INTRO_INDEXED_ARCHIVE_SOURCE_OBJ)
+	@$(OBJCOPY) -O binary $< $@
+$(INTRO_INDEXED_ARCHIVE_EDITED_BIN): $(INTRO_INDEXED_ARCHIVE_SOURCE_BIN) $(INTRO_INDEXED_ARCHIVE_FRAMES) $(INTRO_INDEXED_ARCHIVE_PALETTE) $(INTRO_INDEXED_ARCHIVE_TOOL)
+	@$(PYTHON) $(INTRO_INDEXED_ARCHIVE_TOOL) build-decoded --region $(INTRO_INDEXED_ARCHIVE_REGION) --source-archive $< --source-root $(INTRO_INDEXED_ARCHIVE_SOURCE_ROOT) --output $@
+$(INTRO_INDEXED_ARCHIVE_OUTPUT): $(INTRO_INDEXED_ARCHIVE_EDITED_BIN) $(INTRO_INDEXED_ARCHIVE_ORIGINAL) $(FOMT_LZ_TOOL)
+	@$(FOMT_LZ_TOOL) rebuild-native $< $(INTRO_INDEXED_ARCHIVE_ORIGINAL) $@
 gfx-intro-indexed-archive: $(INTRO_INDEXED_ARCHIVE_OUTPUT)
 gfx-intro-indexed-archive-test: gfx-intro-indexed-archive $(INTRO_INDEXED_ARCHIVE_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(INTRO_INDEXED_ARCHIVE_TOOL) verify --source-root $(INTRO_INDEXED_ARCHIVE_SOURCE_ROOT) --output-root build \
+	@$(PYTHON) $(INTRO_INDEXED_ARCHIVE_TOOL) verify --source-root $(INTRO_INDEXED_ARCHIVE_SOURCE_ROOT) \
 	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
 gfx-intro-indexed-archive-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-intro-indexed-archive
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-intro-indexed-archive
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-intro-indexed-archive
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-intro-indexed-archive
-	@$(PYTHON) $(INTRO_INDEXED_ARCHIVE_TOOL) verify --source-root $(INTRO_INDEXED_ARCHIVE_SOURCE_ROOT) --output-root build \
+	@$(PYTHON) $(INTRO_INDEXED_ARCHIVE_TOOL) verify --source-root $(INTRO_INDEXED_ARCHIVE_SOURCE_ROOT) \
 	  --rom jp baserom_jp.gba --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
-gfx-intro-indexed-archive-edit-test: $(INTRO_INDEXED_ARCHIVE_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(INTRO_INDEXED_ARCHIVE_TOOL) edit-test --region jp --rom baserom_jp.gba --source-root $(INTRO_INDEXED_ARCHIVE_SOURCE_ROOT)
-	@$(PYTHON) $(INTRO_INDEXED_ARCHIVE_TOOL) edit-test --region us --rom baserom_us.gba --source-root $(INTRO_INDEXED_ARCHIVE_SOURCE_ROOT)
-	@$(PYTHON) $(INTRO_INDEXED_ARCHIVE_TOOL) edit-test --region eu --rom baserom_eu.gba --source-root $(INTRO_INDEXED_ARCHIVE_SOURCE_ROOT)
-	@$(PYTHON) $(INTRO_INDEXED_ARCHIVE_TOOL) edit-test --region de --rom baserom_de.gba --source-root $(INTRO_INDEXED_ARCHIVE_SOURCE_ROOT)
+gfx-intro-indexed-archive-edit-region-test: gfx-intro-indexed-archive $(FOMT_LZ_TOOL)
+	@$(PYTHON) $(INTRO_INDEXED_ARCHIVE_TOOL) edit-test --region $(INTRO_OBJECTS_REGION) \
+	  --source-archive $(INTRO_INDEXED_ARCHIVE_SOURCE_BIN) --source-root $(INTRO_INDEXED_ARCHIVE_SOURCE_ROOT) --compressor $(FOMT_LZ_TOOL)
+gfx-intro-indexed-archive-edit-test:
+	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-intro-indexed-archive-edit-region-test
+	@$(MAKE) --no-print-directory GAME_REGION=US gfx-intro-indexed-archive-edit-region-test
+	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-intro-indexed-archive-edit-region-test
+	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-intro-indexed-archive-edit-region-test
 gfx-intro-small-archive: $(INTRO_SMALL_ARCHIVE_ASSETS)
 gfx-intro-small-archive-test: gfx-intro-small-archive $(GFX_RANGE_VERIFY) $(BASE_ROM)
 	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$(($(INTRO_SMALL_ARCHIVE_OFFSET) + 0x5C)) --length 0x80 --input $(word 1,$(INTRO_SMALL_ARCHIVE_ASSETS))

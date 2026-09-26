@@ -20,6 +20,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import shutil
+import subprocess
 import sys
 import tempfile
 from dataclasses import dataclass
@@ -35,7 +36,6 @@ from actor_archive import (  # type: ignore[import-not-found]
     selected_frame_ids,
 )
 from decompress import unpack  # type: ignore[import-not-found]
-from marvelous_codec import encode_huff4_lz2, encode_huff8_lz2  # type: ignore[import-not-found]
 from portrait_archive import (  # type: ignore[import-not-found]
     Archive,
     TABLE_STRIDES,
@@ -336,27 +336,6 @@ def patched_decoded(
     return bytes(result)
 
 
-def rebuild_stream(source: bytes, baseline: bytes, format_spec: str, ladder: str) -> bytes:
-    original, original_format, original_ladder = unpack(baseline)
-    if source == original:
-        return baseline
-    if format_spec == "120":
-        encoded = encode_huff4_lz2(source, ladder)
-    elif format_spec == "220":
-        encoded = encode_huff8_lz2(source, ladder)
-    else:
-        raise AssertionError(f"unsupported indexed archive format {format_spec}")
-    if len(encoded) > len(baseline):
-        raise ValueError(
-            f"edited archive needs {len(encoded):#x} bytes but its native slot holds {len(baseline):#x}"
-        )
-    result = encoded + bytes(len(baseline) - len(encoded))
-    checked, checked_format, checked_ladder = unpack(result)
-    if bytes(checked) != source or (checked_format, checked_ladder) != (original_format, original_ladder):
-        raise AssertionError("rebuilt indexed archive failed strict native decode validation")
-    return result
-
-
 def export(arguments: argparse.Namespace) -> None:
     inputs = {region: Path(path) for region, path in arguments.rom}
     if set(inputs) != set(REGIONS):
@@ -379,9 +358,10 @@ def export(arguments: argparse.Namespace) -> None:
     print("verified US/EU shared archive bytes; JP and DE retain independent sources")
 
 
-def build(arguments: argparse.Namespace) -> None:
-    packed, _decoded, format_spec, ladder, archive = load_region(arguments.rom, arguments.region)
-    frames = audit(archive, arguments.region, format_spec, ladder)
+def build_decoded(arguments: argparse.Namespace) -> None:
+    """Apply complete frame PNG edits to a source-assembled native archive."""
+    archive = archive_from_data(arguments.source_archive.read_bytes())
+    frames = audit(archive, arguments.region, "decoded source", "source-owned")
     directory = source_dir(arguments.source_root, arguments.region)
     source = patched_decoded(
         archive,
@@ -389,47 +369,36 @@ def build(arguments: argparse.Namespace) -> None:
         directory,
         load_runtime_obj_palette(directory),
     )
-    rebuilt = rebuild_stream(source, packed, format_spec, ladder)
     arguments.output.parent.mkdir(parents=True, exist_ok=True)
-    arguments.output.write_bytes(rebuilt)
-    print(f"rebuilt {arguments.region.upper()} indexed archive ({len(rebuilt):#x} packed bytes)")
+    arguments.output.write_bytes(source)
+    print(f"rebuilt {arguments.region.upper()} indexed archive ({len(source):#x} decoded bytes)")
 
 
 def verify(arguments: argparse.Namespace) -> None:
     for region, path in arguments.rom:
-        packed, _decoded, format_spec, ladder, archive = load_region(path, region)
+        packed, decoded, format_spec, ladder, archive = load_region(path, region)
         frames = audit(archive, region, format_spec, ladder)
         directory = source_dir(arguments.source_root, region)
-        rebuilt = rebuild_stream(
-            patched_decoded(
-                archive,
-                frames,
-                directory,
-                load_runtime_obj_palette(directory),
-            ),
-            packed,
-            format_spec,
-            ladder,
+        rebuilt = patched_decoded(
+            archive,
+            frames,
+            directory,
+            load_runtime_obj_palette(directory),
         )
-        if rebuilt != packed:
-            raise AssertionError(f"{region}: unchanged PNG sources do not reproduce retail packed bytes")
-        original_rom = path.read_bytes()
-        patched_rom = bytearray(original_rom)
-        offset = REGIONS[region].offset
-        patched_rom[offset:offset + len(rebuilt)] = rebuilt
-        if patched_rom != original_rom:
-            raise AssertionError(f"{region}: unchanged full-ROM patch differs from the retail input")
-        if arguments.output_root is not None:
-            output = arguments.output_root / region / "graphics" / "intro_scene" / "indexed_archive" / "archive.0x70"
-            if output.read_bytes() != packed:
-                raise AssertionError(f"{region}: built archive differs from retail packed bytes")
-    print("verified every regional indexed archive and unchanged full-ROM patch")
+        if rebuilt != decoded:
+            raise AssertionError(f"{region}: unchanged PNG sources do not reproduce decoded retail bytes")
+        output = directory / "archive.lz"
+        if output.read_bytes() != packed:
+            raise AssertionError(f"{region}: built archive differs from retail packed bytes")
+    print("verified every regional indexed archive against retail bytes")
 
 
 def edit_test(arguments: argparse.Namespace) -> None:
-    packed, _decoded, format_spec, ladder, archive = load_region(arguments.rom, arguments.region)
-    frames = audit(archive, arguments.region, format_spec, ladder)
-    runtime_palette = load_runtime_obj_palette(source_dir(arguments.source_root, arguments.region))
+    archive = archive_from_data(arguments.source_archive.read_bytes())
+    frames = audit(archive, arguments.region, "decoded source", "source-owned")
+    source_directory = source_dir(arguments.source_root, arguments.region)
+    original = (source_directory / "archive.original.lz").read_bytes()
+    runtime_palette = load_runtime_obj_palette(source_directory)
     drawable = next(frame_id for frame_id in frames if frame_oam(archive, frame_id))
     with tempfile.TemporaryDirectory(prefix="fomt-indexed-archive-") as temporary:
         staged_root = Path(temporary) / "sources"
@@ -447,12 +416,21 @@ def edit_test(arguments: argparse.Namespace) -> None:
             source_dir(staged_root, arguments.region),
             runtime_palette,
         )
-    rebuilt = rebuild_stream(source, packed, format_spec, ladder)
-    if rebuilt == packed:
-        raise AssertionError("indexed archive edit did not change the packed stream")
+        edited = Path(temporary) / "edited.bin"
+        rebuilt_path = Path(temporary) / "archive.lz"
+        edited.write_bytes(source)
+        subprocess.run(
+            [str(arguments.compressor), "rebuild-native", str(edited),
+             str(source_directory / "archive.original.lz"), str(rebuilt_path)],
+            check=True,
+        )
+        rebuilt = rebuilt_path.read_bytes()
+        checked, _format_spec, _ladder = unpack(rebuilt)
+        if bytes(checked) != source or rebuilt == original:
+            raise AssertionError("native C compressor did not preserve the edited image")
     print(
         f"{arguments.region.upper()} indexed archive PNG edit test: frame {drawable:04d}, pixel {index:#x}; "
-        f"packed {len(rebuilt):#x} bytes in a {len(packed):#x}-byte slot"
+        f"packed {len(rebuilt):#x} bytes in a {len(original):#x}-byte slot"
     )
 
 
@@ -463,18 +441,18 @@ def main() -> None:
     export_parser.add_argument("--source-root", type=Path, required=True)
     export_parser.add_argument("--rom", nargs=2, action="append", metavar=("REGION", "ROM"), required=True)
     export_parser.add_argument("--replace", action="store_true")
-    build_parser = commands.add_parser("build")
+    build_parser = commands.add_parser("build-decoded")
     build_parser.add_argument("--region", choices=tuple(REGIONS), required=True)
-    build_parser.add_argument("--rom", type=Path, required=True)
+    build_parser.add_argument("--source-archive", type=Path, required=True)
     build_parser.add_argument("--source-root", type=Path, required=True)
     build_parser.add_argument("--output", type=Path, required=True)
     verify_parser = commands.add_parser("verify")
     verify_parser.add_argument("--source-root", type=Path, required=True)
     verify_parser.add_argument("--rom", nargs=2, action="append", metavar=("REGION", "ROM"), required=True)
-    verify_parser.add_argument("--output-root", type=Path)
     edit_parser = commands.add_parser("edit-test")
     edit_parser.add_argument("--region", choices=tuple(REGIONS), required=True)
-    edit_parser.add_argument("--rom", type=Path, required=True)
+    edit_parser.add_argument("--source-archive", type=Path, required=True)
+    edit_parser.add_argument("--compressor", type=Path, required=True)
     edit_parser.add_argument("--source-root", type=Path, required=True)
     arguments = parser.parse_args()
     if arguments.command == "verify":
@@ -483,8 +461,8 @@ def main() -> None:
         arguments.rom = [(region, Path(path)) for region, path in arguments.rom]
     if arguments.command == "export":
         export(arguments)
-    elif arguments.command == "build":
-        build(arguments)
+    elif arguments.command == "build-decoded":
+        build_decoded(arguments)
     elif arguments.command == "verify":
         verify(arguments)
     elif arguments.command == "edit-test":
