@@ -1005,7 +1005,7 @@ FOMT_LZ_ENCODE_OUTPUTS := $(addsuffix .lz, \
   $(UI_SCENE_080BCFAC_MAP0_SOURCE) $(UI_SCENE_080BCFAC_MAP1_SOURCE) $(UI_SCENE_080BCFAC_TILES_SOURCE) \
   $(UI_SCENE_080B55D0_AUX_MAP0_SOURCE) $(UI_SCENE_080B55D0_AUX_MAP1_SOURCE) $(UI_SCENE_080B55D0_AUX_TILES_SOURCE) \
   $(UI_SCENE_08054F40_TILES_SOURCE) $(UI_SCENE_0805AB08_TILES_SOURCE) \
-  $(addprefix $(INTRO_OBJECTS_SOURCE_DIR)/object_,$(addsuffix .4bpp,01 03 05 07 08 09 11 12 14 17 19)) \
+  $(addprefix $(INTRO_OBJECTS_SOURCE_DIR)/object_,$(addsuffix .4bpp,01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 17 19)) \
   $(MAP_DATA_SOURCE_DIR)/map_08/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_08/layer_2.gbapal \
   $(MAP_DATA_SOURCE_DIR)/map_09/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_09/layer_2.gbapal \
   $(MAP_DATA_SOURCE_DIR)/map_09/layer_5.tilemap $(MAP_DATA_SOURCE_DIR)/map_31/layer_5.tilemap)
@@ -1045,6 +1045,13 @@ $(INTRO_OBJECTS_SOURCE_DIR)/object_12.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 5,8,
 $(INTRO_OBJECTS_SOURCE_DIR)/object_14.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 5,8,10 0x274
 $(INTRO_OBJECTS_SOURCE_DIR)/object_17.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,9 0x50
 $(INTRO_OBJECTS_SOURCE_DIR)/object_19.4bpp.lz: FOMT_LZ_ENCODE := encode-lz3 5,8,10 0x68
+# These six Raw-LZ2 objects also match their original packed slots exactly.
+$(INTRO_OBJECTS_SOURCE_DIR)/object_02.4bpp.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,4,6,7,8,9 0xF4
+$(INTRO_OBJECTS_SOURCE_DIR)/object_04.4bpp.lz: FOMT_LZ_ENCODE := encode-lz2 1,4,5,6,7,8,9 0x140
+$(INTRO_OBJECTS_SOURCE_DIR)/object_06.4bpp.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,4,6,7,8,10 0x120
+$(INTRO_OBJECTS_SOURCE_DIR)/object_10.4bpp.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,4,6,7,8,9 0xD8
+$(INTRO_OBJECTS_SOURCE_DIR)/object_13.4bpp.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,5,6,10 0x24
+$(INTRO_OBJECTS_SOURCE_DIR)/object_15.4bpp.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,3,4,6,8,10 0x38
 $(MAP_DATA_SOURCE_DIR)/map_08/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,5 0xE0
 $(MAP_DATA_SOURCE_DIR)/map_08/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 4,5,4 0xE4
 $(MAP_DATA_SOURCE_DIR)/map_09/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 4,5,7 0xD8
