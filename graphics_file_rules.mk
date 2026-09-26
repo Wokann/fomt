@@ -120,22 +120,11 @@ FARM_STATUS_SELECTOR_ICON_BASE_JP := 0x4D8DF8
 FARM_STATUS_SELECTOR_ICON_BASE_US := 0x752E4C
 FARM_STATUS_SELECTOR_ICON_BASE_EU := 0x752EA8
 FARM_STATUS_SELECTOR_ICON_BASE_DE := 0x4DA368
-# The Farm Status and Town Map share a compact IndexedResourceArchive.  Its
-# forty complete OAM resources use indexed full PNGs as authoring input; the
-# original descriptor/OAM/palette tables remain native archive data.  The
-# archive sits inside a larger raw data range, so the completed ROM receives
-# this fixed-size payload through the same audited post-link path as MapData.
-FARM_STATUS_RESOURCE_ARCHIVE_TOOL := tools/farm_status_resource_archive.py
+# The Farm Status / Town Map archive is linked from native tiles, palettes,
+# and its original ordered tables. Group PNGs are reference views only.
 FARM_STATUS_RESOURCE_ARCHIVE_SOURCE_DIR := graphics/ui/farm_status/resource_archive
-FARM_STATUS_RESOURCE_ARCHIVE_SOURCES := $(wildcard $(FARM_STATUS_RESOURCE_ARCHIVE_SOURCE_DIR)/full/*.png)
-FARM_STATUS_RESOURCE_ARCHIVE_OUTPUT := $(BUILD_DIR)/graphics/ui/farm_status/resource_archive/farm_status_town_map.bin
-FARM_STATUS_RESOURCE_ARCHIVE_LENGTH := 0xEA4
-FARM_STATUS_RESOURCE_ARCHIVE_SHA256 := 480a114e52b941e289d67055ddd632b6c0bbee3cfa66263523ad91c7e1d4dfc1
-FARM_STATUS_RESOURCE_ARCHIVE_OFFSET_JP := 0x4D977C
-FARM_STATUS_RESOURCE_ARCHIVE_OFFSET_US := 0x7537D0
-FARM_STATUS_RESOURCE_ARCHIVE_OFFSET_EU := 0x75382C
-FARM_STATUS_RESOURCE_ARCHIVE_OFFSET_DE := 0x4DACEC
-FARM_STATUS_RESOURCE_ARCHIVE_OFFSET := $(FARM_STATUS_RESOURCE_ARCHIVE_OFFSET_$(GAME_REGION))
+FARM_STATUS_RESOURCE_ARCHIVE_NATIVE := $(FARM_STATUS_RESOURCE_ARCHIVE_SOURCE_DIR)/full/native
+FARM_STATUS_RESOURCE_ARCHIVE_ASSETS := $(FARM_STATUS_RESOURCE_ARCHIVE_NATIVE)_0.4bpp $(FARM_STATUS_RESOURCE_ARCHIVE_NATIVE)_1.4bpp $(FARM_STATUS_RESOURCE_ARCHIVE_NATIVE).gbapal
 # The common archive supplies most item and UI OAM resources. Full indexed
 # PNGs own only visible pixels; native selectors, OAM, and palettes remain in
 # the fixed IndexedResourceArchive and are patched after the normal link.
@@ -1063,7 +1052,7 @@ GRAPHICS_ASSETS = \
 	$(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN) \
 	$(PORTRAIT_TILE_BIN) $(ACTOR_TILE_BIN) \
 	$(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN) \
-	$(FARM_STATUS_PACKED_BIN) $(FARM_STATUS_RESOURCE_ARCHIVE_OUTPUT) \
+	$(FARM_STATUS_PACKED_BIN) $(FARM_STATUS_RESOURCE_ARCHIVE_ASSETS) \
 	$(COMMON_RESOURCE_ARCHIVE_OUTPUT) $(SMALL_COMPANION_ARCHIVE_OUTPUT) \
 	$(SHARED_RESOURCE_0873D5FC_ASSETS) \
 	$(SHARED_RESOURCE_0873AE54_ASSETS) \
@@ -1126,14 +1115,6 @@ $(FARM_STATUS_TILES_BIN) $(FARM_STATUS_TILES_PALETTE0_BIN) &: $(FARM_STATUS_TILE
 
 $(FARM_STATUS_PACKED_BIN): $(FARM_STATUS_TILES_BIN) $(FARM_STATUS_ORIGINAL) $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) rebuild-native $< $(FARM_STATUS_ORIGINAL) $@
-
-$(FARM_STATUS_RESOURCE_ARCHIVE_OUTPUT): $(FARM_STATUS_RESOURCE_ARCHIVE_SOURCES) $(FARM_STATUS_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM)
-	@mkdir -p $(dir $@)
-	@$(PYTHON) $(FARM_STATUS_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM) \
-	  --offset $(FARM_STATUS_RESOURCE_ARCHIVE_OFFSET) \
-	  --length $(FARM_STATUS_RESOURCE_ARCHIVE_LENGTH) \
-	  --sha256 $(FARM_STATUS_RESOURCE_ARCHIVE_SHA256) \
-	  build --source-dir $(FARM_STATUS_RESOURCE_ARCHIVE_SOURCE_DIR) --output $@
 
 $(COMMON_RESOURCE_ARCHIVE_OUTPUT): $(COMMON_RESOURCE_ARCHIVE_SOURCES) $(COMMON_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM)
 	@mkdir -p $(dir $@)
@@ -1302,7 +1283,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-resource-archive gfx-farm-status-resource-archive-test gfx-farm-status-resource-archive-all gfx-farm-status-resource-archive-patch-test gfx-farm-status-resource-archive-edit-test gfx-farm-status-winter gfx-farm-status-winter-test gfx-farm-status-winter-all gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-exterior-styles gfx-farm-status-exterior-styles-test gfx-farm-status-selector-icon gfx-farm-status-selector-icon-test gfx-farm-status-selector-icon-all gfx-clock-font gfx-clock-font-test gfx-clock-font-all gfx-farm-status-creature-icons gfx-farm-status-creature-icons-test gfx-farm-status-creature-icons-all gfx-farm-status-task-marker gfx-farm-status-task-marker-test gfx-farm-status-task-marker-all gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal-nonwinter-all gfx-seasonal-winter gfx-seasonal-winter-test gfx-seasonal-winter-all gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-visual gfx-intro-startup-visual-test gfx-intro-startup-visual-all gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-animal-festival-icons gfx-animal-festival-icons-test gfx-animal-festival-icons-all resource-archive-audit unpack-vram-inventory dma-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
+.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-resource-archive gfx-farm-status-winter gfx-farm-status-winter-test gfx-farm-status-winter-all gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-exterior-styles gfx-farm-status-exterior-styles-test gfx-farm-status-selector-icon gfx-farm-status-selector-icon-test gfx-farm-status-selector-icon-all gfx-clock-font gfx-clock-font-test gfx-clock-font-all gfx-farm-status-creature-icons gfx-farm-status-creature-icons-test gfx-farm-status-creature-icons-all gfx-farm-status-task-marker gfx-farm-status-task-marker-test gfx-farm-status-task-marker-all gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal-nonwinter-all gfx-seasonal-winter gfx-seasonal-winter-test gfx-seasonal-winter-all gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-visual gfx-intro-startup-visual-test gfx-intro-startup-visual-all gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-map-resources-patch-test gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-animal-festival-icons gfx-animal-festival-icons-test gfx-animal-festival-icons-all resource-archive-audit unpack-vram-inventory dma-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
 .PHONY: gfx-map-resources-edit-test gfx-map-state-palettes gfx-map-state-palettes-test gfx-map-state-templates gfx-map-state-templates-test gfx-map-state-templates-all unpack-inventory unpack-coverage-inventory copy-ram-inventory
 .PHONY: indexed-resource-archive-inventory
 .PHONY: gfx-farm-status-task-ui-tile gfx-farm-status-task-ui-tile-test gfx-farm-status-task-ui-tile-all
@@ -1633,35 +1614,7 @@ gfx-farm-status-all:
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-farm-status-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-farm-status-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-farm-status-test
-gfx-farm-status-resource-archive: $(FARM_STATUS_RESOURCE_ARCHIVE_OUTPUT)
-gfx-farm-status-resource-archive-test: gfx-farm-status-resource-archive $(FARM_STATUS_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM)
-	@$(PYTHON) $(FARM_STATUS_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM) \
-	  --offset $(FARM_STATUS_RESOURCE_ARCHIVE_OFFSET) \
-	  --length $(FARM_STATUS_RESOURCE_ARCHIVE_LENGTH) \
-	  --sha256 $(FARM_STATUS_RESOURCE_ARCHIVE_SHA256) \
-	  verify --source-dir $(FARM_STATUS_RESOURCE_ARCHIVE_SOURCE_DIR)
-gfx-farm-status-resource-archive-all:
-	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-farm-status-resource-archive-test
-	@$(MAKE) --no-print-directory GAME_REGION=US gfx-farm-status-resource-archive-test
-	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-farm-status-resource-archive-test
-	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-farm-status-resource-archive-test
-gfx-farm-status-resource-archive-patch-test: gfx-farm-status-resource-archive-all $(FARM_STATUS_RESOURCE_ARCHIVE_TOOL)
-	@$(PYTHON) $(FARM_STATUS_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba \
-	  --offset 0x4D977C --length $(FARM_STATUS_RESOURCE_ARCHIVE_LENGTH) \
-	  --sha256 $(FARM_STATUS_RESOURCE_ARCHIVE_SHA256) patch-test \
-	  --archive jp build/jp/graphics/ui/farm_status/resource_archive/farm_status_town_map.bin \
-	  --archive us build/us/graphics/ui/farm_status/resource_archive/farm_status_town_map.bin \
-	  --archive eu build/eu/graphics/ui/farm_status/resource_archive/farm_status_town_map.bin \
-	  --archive de build/de/graphics/ui/farm_status/resource_archive/farm_status_town_map.bin \
-	  --all-rom jp baserom_jp.gba 0x4D977C \
-	  --all-rom us baserom_us.gba 0x7537D0 \
-	  --all-rom eu baserom_eu.gba 0x75382C \
-	  --all-rom de baserom_de.gba 0x4DACEC
-gfx-farm-status-resource-archive-edit-test: $(FARM_STATUS_RESOURCE_ARCHIVE_TOOL) $(FARM_STATUS_RESOURCE_ARCHIVE_SOURCES) baserom_jp.gba
-	@$(PYTHON) $(FARM_STATUS_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba \
-	  --offset 0x4D977C --length $(FARM_STATUS_RESOURCE_ARCHIVE_LENGTH) \
-	  --sha256 $(FARM_STATUS_RESOURCE_ARCHIVE_SHA256) edit-test \
-	  --source-dir $(FARM_STATUS_RESOURCE_ARCHIVE_SOURCE_DIR)
+gfx-farm-status-resource-archive: $(FARM_STATUS_RESOURCE_ARCHIVE_ASSETS)
 gfx-common-resource-archive: $(COMMON_RESOURCE_ARCHIVE_OUTPUT)
 gfx-common-resource-archive-test: gfx-common-resource-archive $(COMMON_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM)
 	@$(PYTHON) $(COMMON_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM) \
@@ -2220,7 +2173,7 @@ gfx-map-state-templates-all:
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-map-state-templates-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-map-state-templates-test
 
-resource-archive-audit: $(INDEXED_RESOURCE_ARCHIVE_TOOL) $(COMMON_RESOURCE_ARCHIVE_TOOL) $(FARM_STATUS_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
+resource-archive-audit: $(INDEXED_RESOURCE_ARCHIVE_TOOL) $(COMMON_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_TOOL) compare --rom jp baserom_jp.gba 0x3ED9FC --rom us baserom_us.gba 0x6678A0 --rom eu baserom_eu.gba 0x6678FC --rom de baserom_de.gba 0x3EE93C
 	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_TOOL) compare --rom jp baserom_jp.gba 0x3ED1BC --rom us baserom_us.gba 0x667060 --rom eu baserom_eu.gba 0x6670BC --rom de baserom_de.gba 0x3EE0FC
 	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_TOOL) compare --rom jp baserom_jp.gba 0x4DABB8 --rom us baserom_us.gba 0x754C0C --rom eu baserom_eu.gba 0x754C68 --rom de baserom_de.gba 0x4DC128
@@ -2246,13 +2199,13 @@ resource-archive-audit: $(INDEXED_RESOURCE_ARCHIVE_TOOL) $(COMMON_RESOURCE_ARCHI
 	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_TOOL) compare --rom jp baserom_jp.gba 0x4C3014 --rom us baserom_us.gba 0x73CEAC --rom eu baserom_eu.gba 0x73CF08 --rom de baserom_de.gba 0x4C4218
 	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_TOOL) compare --rom jp baserom_jp.gba 0x4C30F8 --rom us baserom_us.gba 0x73CF90 --rom eu baserom_eu.gba 0x73CFEC --rom de baserom_de.gba 0x4C42FC
 	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_TOOL) compare --rom jp baserom_jp.gba 0x4C339C --rom us baserom_us.gba 0x73D234 --rom eu baserom_eu.gba 0x73D290 --rom de baserom_de.gba 0x4C45A0
+	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_TOOL) compare --rom jp baserom_jp.gba 0x4D977C --rom us baserom_us.gba 0x7537D0 --rom eu baserom_eu.gba 0x75382C --rom de baserom_de.gba 0x4DACEC
 	@$(PYTHON) $(COMMON_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --offset 0x3ED9FC --length $(COMMON_RESOURCE_ARCHIVE_LENGTH) --sha256 $(COMMON_RESOURCE_ARCHIVE_SHA256) audit
 	@$(PYTHON) $(SMALL_COMPANION_ARCHIVE_TOOL) baserom_jp.gba --profile small-companion --offset 0x3ED1BC --length $(SMALL_COMPANION_ARCHIVE_LENGTH) --sha256 $(SMALL_COMPANION_ARCHIVE_SHA256) audit
 	@$(PYTHON) $(COOKING_UI_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --profile cooking-ui --offset 0x4DA620 --length $(COOKING_UI_RESOURCE_ARCHIVE_LENGTH) --sha256 $(COOKING_UI_RESOURCE_ARCHIVE_SHA256) audit
 	@$(PYTHON) $(LARGE_SHARED_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --profile large-shared --offset 0x4A5068 --length $(LARGE_SHARED_RESOURCE_ARCHIVE_LENGTH) --sha256 $(LARGE_SHARED_RESOURCE_ARCHIVE_SHA256) audit
 	@$(PYTHON) $(SHARED_RESOURCE_08725DA0_TOOL) baserom_jp.gba --profile shared-08725da0 --offset 0x4ABF08 --length $(SHARED_RESOURCE_08725DA0_LENGTH) --sha256 $(SHARED_RESOURCE_08725DA0_SHA256) audit
 	@$(PYTHON) $(SHARED_RESOURCE_08731B40_TOOL) baserom_jp.gba --profile shared-08731b40 --offset 0x4B7CA8 --length $(SHARED_RESOURCE_08731B40_LENGTH) --sha256 $(SHARED_RESOURCE_08731B40_SHA256) audit
-	@$(PYTHON) $(FARM_STATUS_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --offset 0x4D977C --length $(FARM_STATUS_RESOURCE_ARCHIVE_LENGTH) --sha256 $(FARM_STATUS_RESOURCE_ARCHIVE_SHA256) audit
 indexed-resource-archive-inventory: $(INDEXED_RESOURCE_ARCHIVE_INVENTORY_TOOL) $(INDEXED_RESOURCE_ARCHIVE_TOOL) asm/data/data_0813B288_de_initial.inc baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_INVENTORY_TOOL) \
 	  --de-inventory asm/data/data_0813B288_de_initial.inc \
@@ -2398,9 +2351,7 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-farm-house-tilemaps-all
 	@$(MAKE) --no-print-directory gfx-farm-house-palettes-all
 	@$(MAKE) --no-print-directory gfx-farm-status-all
-	@$(MAKE) --no-print-directory gfx-farm-status-resource-archive-all
-	@$(MAKE) --no-print-directory gfx-farm-status-resource-archive-patch-test
-	@$(MAKE) --no-print-directory gfx-farm-status-resource-archive-edit-test
+	@$(MAKE) --no-print-directory gfx-farm-status-resource-archive
 	@$(MAKE) --no-print-directory gfx-common-resource-archive-all
 	@$(MAKE) --no-print-directory gfx-common-resource-archive-patch-test
 	@$(MAKE) --no-print-directory gfx-common-resource-archive-edit-test

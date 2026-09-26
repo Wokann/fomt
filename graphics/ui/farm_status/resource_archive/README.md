@@ -1,10 +1,15 @@
 # Farm Status / Town Map OAM resource archive
 
-`full/resource_000.png` through `full/resource_039.png` are the forty
-editable indexed-image sources in the shared Farm Status / Town Map
-`IndexedResourceArchive`. They are complete OAM-composited resources, not
-linear tile dumps: thirty-eight are 16 by 16 pixels and two are 8 by 8 pixels.
-`preview/` contains equivalent RGBA review images and is not an input.
+`full/native_0.png` and `full/native_1.png` are the editable native-order
+indexed tile atlases (64 and 9 tiles). `full/native.pal` contains all thirteen
+16-color palette banks. The generic graphics rules produce `.4bpp` and
+`.gbapal` assets; `archive.inc` links them with the original selector,
+descriptor, OAM, and selection tables. No original ROM template or post-link
+patch is used for this archive.
+
+`full/resource_000.png` through `full/resource_039.png` are OAM-composited
+reference views, not build inputs. Thirty-eight are 16 by 16 pixels and two
+are 8 by 8 pixels. `preview/` contains equivalent RGBA review images only.
 
 The native archive is byte-identical in all four retail FoMT localizations:
 
@@ -29,21 +34,15 @@ and `func_080757E8` copies those referenced tile and palette bytes to OBJ VRAM
 and OBJ palette memory. This is the code-backed relationship that makes each
 full PNG a safe editing surface.
 
-The source PNG preserves its exact 16-color index palette. A rebuild starts
-from the original full archive and changes only visible pixels that differ
-from `full/`; descriptor tables, OAM records, BGR555 palettes, selection
-records, unused table fields, and OAM-hidden tile pixels remain intact. Some
-resources share native tile pixels. If their full PNG edits disagree, the
-build fails instead of silently picking one value.
+The source atlases preserve native tile order and color indexes, including
+tile pixels hidden in an OAM-composited view. The JASC palette preserves all
+thirteen original BGR555 banks. Shared native tiles remain shared through the
+original descriptor table, rather than being duplicated per group image.
 
 ```console
-make gfx-farm-status-resource-archive-all
-make gfx-farm-status-resource-archive-patch-test
-make gfx-farm-status-resource-archive-edit-test
+make -j4 gfx-farm-status-resource-archive
+make -j4 fomt_jp
+make -j4 fomt_us
+make -j4 fomt_eu
+make -j4 fomt_de
 ```
-
-The first command verifies unchanged source reconstruction in JP, US, EU and
-DE. The second proves applying each generated fixed-size archive to its retail
-range leaves the complete ROM unchanged. The last performs one coordinated
-visible-pixel edit across a shared native tile and proves that only the tile
-table changes.

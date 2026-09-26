@@ -459,12 +459,14 @@ selection, and palette tables remain native layout data rather than a sidecar
 layout manifest.
 
 The Farm Status screen constructs a third archive at `0x4D977C` in JP and
-`0x7537D0` in US (with the regional locations recorded by its rebuild tool).
+`0x7537D0` in US (with the other regional locations in the table above).
 Town Map uses the same complete `0xEA4` payload. Its consumer path is fully
 bounded: forty group descriptors select valid OAM, 4bpp tile, and BGR555
 palette ranges, and runtime code uploads the latter two ranges to OBJ memory.
-Complete indexed-PNG sources and the fixed-size lossless rebuild are under
-`graphics/ui/farm_status/resource_archive/`.
+Two native-order indexed-PNG atlases, the thirteen-bank palette, and ordered
+archive tables are under `graphics/ui/farm_status/resource_archive/`. Generic
+graphics conversion and direct linking replace the old ROM-template rebuild;
+the OAM-composited group PNGs remain reference views.
 
 Recheck the evidence with:
 
