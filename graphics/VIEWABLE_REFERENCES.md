@@ -21,8 +21,9 @@ grids:
 - [Farm Status / Town Map OAM resources](ui/farm_status/resource_archive/full/)
   — two editable native tile atlases and a thirteen-bank palette; the forty
   OAM-composited group PNGs are reference views.
-- [Common OAM resources](common_resource_archive/full/) — complete indexed-PNG
-  item/UI resource sources with native selector and OAM descriptors.
+- [Common OAM resources](common_resource_archive/full/) — one editable native
+  tile atlas and 22 palette files; the 498 OAM-composited group PNGs are
+  reference views.
 - [Small companion OAM resources](small_companion_archive/full/) — one editable
   native tile atlas and two-bank palette; sixteen OAM-composited group PNGs are
   reference views.

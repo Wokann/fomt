@@ -185,9 +185,11 @@ the same source-owned table layout and are linked at their original positions.
 The common archive's group-descriptor consumer is fully bounded. Every
 drawable descriptor selects valid GBA OAM, 4bpp tile, and BGR555 palette
 ranges; `func_0805E790` resolves the fields and `func_080757E8` uploads tiles
-and palettes to OBJ memory. Its 498 indexed PNG sources and fixed-size rebuild
-live under `graphics/common_resource_archive/`. The two all-zero groups (`316`,
-`429`) are native non-drawable records and are deliberately not artwork.
+and palettes to OBJ memory. Its native-order tile atlas, 22 palette source
+files, and directly linked original tables live under
+`graphics/common_resource_archive/`. The 498 group PNGs are reference views.
+The two all-zero groups (`316`, `429`) are native non-drawable records and are
+deliberately not artwork.
 
 The small companion archive follows the same fully bounded group-descriptor
 contract. Its sixteen descriptors select three native GBA OAM records, fifty-

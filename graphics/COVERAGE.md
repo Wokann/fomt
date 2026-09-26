@@ -12,7 +12,7 @@ image, nor that all game graphics have been extracted.
 | Double-width font | `graphics/font/shared/double_width_font.png` | 1bpp glyph stream | Yes |
 | Dialogue portraits | `graphics/portraits/shared/full/*.png` | portrait tile stream | Yes |
 | Actor archive, every referenced descriptor | `graphics/sprites/actor_archive/full/*.png` | actor tile stream | Yes |
-| Common OAM resource archive | `graphics/common_resource_archive/full/group_*.png` (498 drawable groups) | shared fixed `0x12848`-byte `IndexedResourceArchive`; descriptor, OAM and palette tables remain native layout data | Yes |
+| Common OAM resource archive | `graphics/common_resource_archive/full/native.png` (1,624 native tiles) and `palettes_*.pal` (342 banks in 22 files); group PNGs are reference-only | generic `.4bpp`/`.gbapal` conversion and direct linking with original tables in `archive.inc`; no ROM template or post-link patch | Yes |
 | Small companion OAM archive | `graphics/small_companion_archive/full/native.png` (52 native tiles) and `native.pal` (two palette banks); group views are reference-only | generic `.4bpp`/`.gbapal` conversion and direct linking with original tables in `archive.inc`; no ROM template or post-link patch | Yes |
 | Small shared UI OAM archive | `graphics/ui/small_resource_archive/full/group_*.png` (3 drawable groups) | shared fixed `0x548`-byte `IndexedResourceArchive`; one all-zero descriptor stays native and descriptor, OAM and palette tables remain native layout data | Yes |
 | Cooking UI OAM archive | `graphics/ui/cooking_resource_archive/full/group_*.png` (2 drawable groups) | shared fixed `0x598`-byte `IndexedResourceArchive`; one all-zero descriptor stays native and descriptor, OAM and palette tables remain native layout data | Yes |

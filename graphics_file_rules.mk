@@ -125,20 +125,13 @@ FARM_STATUS_SELECTOR_ICON_BASE_DE := 0x4DA368
 FARM_STATUS_RESOURCE_ARCHIVE_SOURCE_DIR := graphics/ui/farm_status/resource_archive
 FARM_STATUS_RESOURCE_ARCHIVE_NATIVE := $(FARM_STATUS_RESOURCE_ARCHIVE_SOURCE_DIR)/full/native
 FARM_STATUS_RESOURCE_ARCHIVE_ASSETS := $(FARM_STATUS_RESOURCE_ARCHIVE_NATIVE)_0.4bpp $(FARM_STATUS_RESOURCE_ARCHIVE_NATIVE)_1.4bpp $(FARM_STATUS_RESOURCE_ARCHIVE_NATIVE).gbapal
-# The common archive supplies most item and UI OAM resources. Full indexed
-# PNGs own only visible pixels; native selectors, OAM, and palettes remain in
-# the fixed IndexedResourceArchive and are patched after the normal link.
-COMMON_RESOURCE_ARCHIVE_TOOL := tools/common_resource_archive.py
+# The common archive links one native-order tile atlas, palette banks, and
+# original ordered tables. Group PNGs remain reference views only.
 COMMON_RESOURCE_ARCHIVE_SOURCE_DIR := graphics/common_resource_archive
-COMMON_RESOURCE_ARCHIVE_SOURCES := $(wildcard $(COMMON_RESOURCE_ARCHIVE_SOURCE_DIR)/full/*.png)
-COMMON_RESOURCE_ARCHIVE_OUTPUT := $(BUILD_DIR)/graphics/common_resource_archive/common_resource_archive.bin
-COMMON_RESOURCE_ARCHIVE_LENGTH := 0x12848
-COMMON_RESOURCE_ARCHIVE_SHA256 := c28eff40e6965f89015da48b9527ea995eeec0d7ec30c4f1f2aeda5b8f3f9f33
-COMMON_RESOURCE_ARCHIVE_OFFSET_JP := 0x3ED9FC
-COMMON_RESOURCE_ARCHIVE_OFFSET_US := 0x6678A0
-COMMON_RESOURCE_ARCHIVE_OFFSET_EU := 0x6678FC
-COMMON_RESOURCE_ARCHIVE_OFFSET_DE := 0x3EE93C
-COMMON_RESOURCE_ARCHIVE_OFFSET := $(COMMON_RESOURCE_ARCHIVE_OFFSET_$(GAME_REGION))
+COMMON_RESOURCE_ARCHIVE_NATIVE := $(COMMON_RESOURCE_ARCHIVE_SOURCE_DIR)/full/native
+COMMON_RESOURCE_ARCHIVE_PALETTE_SOURCES := $(sort $(wildcard $(COMMON_RESOURCE_ARCHIVE_SOURCE_DIR)/full/palettes_*.pal))
+COMMON_RESOURCE_ARCHIVE_PALETTES := $(patsubst %.pal,%.gbapal,$(COMMON_RESOURCE_ARCHIVE_PALETTE_SOURCES))
+COMMON_RESOURCE_ARCHIVE_ASSETS := $(COMMON_RESOURCE_ARCHIVE_NATIVE).4bpp $(COMMON_RESOURCE_ARCHIVE_PALETTES)
 # The small companion archive is linked from native tiles and palette.
 SMALL_COMPANION_ARCHIVE_SOURCE_DIR := graphics/small_companion_archive
 SMALL_COMPANION_ARCHIVE_NATIVE := $(SMALL_COMPANION_ARCHIVE_SOURCE_DIR)/full/native
@@ -1044,7 +1037,7 @@ GRAPHICS_ASSETS = \
 	$(PORTRAIT_TILE_BIN) $(ACTOR_TILE_BIN) \
 	$(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN) \
 	$(FARM_STATUS_PACKED_BIN) $(FARM_STATUS_RESOURCE_ARCHIVE_ASSETS) \
-	$(COMMON_RESOURCE_ARCHIVE_OUTPUT) $(SMALL_COMPANION_ARCHIVE_ASSETS) \
+	$(COMMON_RESOURCE_ARCHIVE_ASSETS) $(SMALL_COMPANION_ARCHIVE_ASSETS) \
 	$(SHARED_RESOURCE_0873D5FC_ASSETS) \
 	$(SHARED_RESOURCE_0873AE54_ASSETS) \
 	$(SHARED_RESOURCE_08740908_ASSETS) $(SHARED_RESOURCE_0874EE38_ASSETS) \
@@ -1106,14 +1099,6 @@ $(FARM_STATUS_TILES_BIN) $(FARM_STATUS_TILES_PALETTE0_BIN) &: $(FARM_STATUS_TILE
 
 $(FARM_STATUS_PACKED_BIN): $(FARM_STATUS_TILES_BIN) $(FARM_STATUS_ORIGINAL) $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) rebuild-native $< $(FARM_STATUS_ORIGINAL) $@
-
-$(COMMON_RESOURCE_ARCHIVE_OUTPUT): $(COMMON_RESOURCE_ARCHIVE_SOURCES) $(COMMON_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM)
-	@mkdir -p $(dir $@)
-	@$(PYTHON) $(COMMON_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM) \
-	  --offset $(COMMON_RESOURCE_ARCHIVE_OFFSET) \
-	  --length $(COMMON_RESOURCE_ARCHIVE_LENGTH) \
-	  --sha256 $(COMMON_RESOURCE_ARCHIVE_SHA256) \
-	  build --source-dir $(COMMON_RESOURCE_ARCHIVE_SOURCE_DIR) --output $@
 
 $(COOKING_UI_RESOURCE_ARCHIVE_OUTPUT): $(COOKING_UI_RESOURCE_ARCHIVE_SOURCES) $(COOKING_UI_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM)
 	@mkdir -p $(dir $@)
@@ -1318,7 +1303,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 .PHONY: gfx-regional-resource-0873d6d8 gfx-regional-resource-0873d6d8-test gfx-regional-resource-0873d6d8-all gfx-regional-resource-0873d6d8-patch-test gfx-regional-resource-0873d6d8-edit-test gfx-regional-resource-0873d6d8-edit-test-one
 .PHONY: gfx-regional-resource-0874f34c gfx-regional-resource-0874f34c-test gfx-regional-resource-0874f34c-all gfx-regional-resource-0874f34c-patch-test gfx-regional-resource-0874f34c-edit-test gfx-regional-resource-0874f34c-edit-test-one
 .PHONY: gfx-regional-resource-0875b444
-.PHONY: gfx-common-resource-archive gfx-common-resource-archive-test gfx-common-resource-archive-all gfx-common-resource-archive-patch-test gfx-common-resource-archive-edit-test
+.PHONY: gfx-common-resource-archive
 .PHONY: gfx-small-companion-archive
 .PHONY: gfx-ui-shared-tiles-test
 .PHONY: gfx-ui-scene-080a2ba4 gfx-ui-scene-080a2ba4-reference gfx-ui-scene-080a2ba4-test gfx-ui-scene-080a2ba4-all
@@ -1598,35 +1583,7 @@ gfx-farm-status-all:
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-farm-status-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-farm-status-test
 gfx-farm-status-resource-archive: $(FARM_STATUS_RESOURCE_ARCHIVE_ASSETS)
-gfx-common-resource-archive: $(COMMON_RESOURCE_ARCHIVE_OUTPUT)
-gfx-common-resource-archive-test: gfx-common-resource-archive $(COMMON_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM)
-	@$(PYTHON) $(COMMON_RESOURCE_ARCHIVE_TOOL) $(BASE_ROM) \
-	  --offset $(COMMON_RESOURCE_ARCHIVE_OFFSET) \
-	  --length $(COMMON_RESOURCE_ARCHIVE_LENGTH) \
-	  --sha256 $(COMMON_RESOURCE_ARCHIVE_SHA256) \
-	  verify --source-dir $(COMMON_RESOURCE_ARCHIVE_SOURCE_DIR)
-gfx-common-resource-archive-all:
-	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-common-resource-archive-test
-	@$(MAKE) --no-print-directory GAME_REGION=US gfx-common-resource-archive-test
-	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-common-resource-archive-test
-	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-common-resource-archive-test
-gfx-common-resource-archive-patch-test: gfx-common-resource-archive-all $(COMMON_RESOURCE_ARCHIVE_TOOL)
-	@$(PYTHON) $(COMMON_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba \
-	  --offset 0x3ED9FC --length $(COMMON_RESOURCE_ARCHIVE_LENGTH) \
-	  --sha256 $(COMMON_RESOURCE_ARCHIVE_SHA256) patch-test \
-	  --archive jp build/jp/graphics/common_resource_archive/common_resource_archive.bin \
-	  --archive us build/us/graphics/common_resource_archive/common_resource_archive.bin \
-	  --archive eu build/eu/graphics/common_resource_archive/common_resource_archive.bin \
-	  --archive de build/de/graphics/common_resource_archive/common_resource_archive.bin \
-	  --all-rom jp baserom_jp.gba 0x3ED9FC \
-	  --all-rom us baserom_us.gba 0x6678A0 \
-	  --all-rom eu baserom_eu.gba 0x6678FC \
-	  --all-rom de baserom_de.gba 0x3EE93C
-gfx-common-resource-archive-edit-test: $(COMMON_RESOURCE_ARCHIVE_TOOL) $(COMMON_RESOURCE_ARCHIVE_SOURCES) baserom_jp.gba
-	@$(PYTHON) $(COMMON_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba \
-	  --offset 0x3ED9FC --length $(COMMON_RESOURCE_ARCHIVE_LENGTH) \
-	  --sha256 $(COMMON_RESOURCE_ARCHIVE_SHA256) edit-test \
-	  --source-dir $(COMMON_RESOURCE_ARCHIVE_SOURCE_DIR)
+gfx-common-resource-archive: $(COMMON_RESOURCE_ARCHIVE_ASSETS)
 gfx-small-companion-archive: $(SMALL_COMPANION_ARCHIVE_ASSETS)
 gfx-small-ui-resource-archive: $(SMALL_UI_RESOURCE_ARCHIVE_ASSETS)
 gfx-cooking-ui-resource-archive: $(COOKING_UI_RESOURCE_ARCHIVE_OUTPUT)
@@ -2128,7 +2085,7 @@ gfx-map-state-templates-all:
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-map-state-templates-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-map-state-templates-test
 
-resource-archive-audit: $(INDEXED_RESOURCE_ARCHIVE_TOOL) $(COMMON_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
+resource-archive-audit: $(INDEXED_RESOURCE_ARCHIVE_TOOL) $(COOKING_UI_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba baserom_us.gba baserom_eu.gba baserom_de.gba
 	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_TOOL) compare --rom jp baserom_jp.gba 0x3ED9FC --rom us baserom_us.gba 0x6678A0 --rom eu baserom_eu.gba 0x6678FC --rom de baserom_de.gba 0x3EE93C
 	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_TOOL) compare --rom jp baserom_jp.gba 0x3ED1BC --rom us baserom_us.gba 0x667060 --rom eu baserom_eu.gba 0x6670BC --rom de baserom_de.gba 0x3EE0FC
 	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_TOOL) compare --rom jp baserom_jp.gba 0x4DABB8 --rom us baserom_us.gba 0x754C0C --rom eu baserom_eu.gba 0x754C68 --rom de baserom_de.gba 0x4DC128
@@ -2155,7 +2112,6 @@ resource-archive-audit: $(INDEXED_RESOURCE_ARCHIVE_TOOL) $(COMMON_RESOURCE_ARCHI
 	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_TOOL) compare --rom jp baserom_jp.gba 0x4C30F8 --rom us baserom_us.gba 0x73CF90 --rom eu baserom_eu.gba 0x73CFEC --rom de baserom_de.gba 0x4C42FC
 	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_TOOL) compare --rom jp baserom_jp.gba 0x4C339C --rom us baserom_us.gba 0x73D234 --rom eu baserom_eu.gba 0x73D290 --rom de baserom_de.gba 0x4C45A0
 	@$(PYTHON) $(INDEXED_RESOURCE_ARCHIVE_TOOL) compare --rom jp baserom_jp.gba 0x4D977C --rom us baserom_us.gba 0x7537D0 --rom eu baserom_eu.gba 0x75382C --rom de baserom_de.gba 0x4DACEC
-	@$(PYTHON) $(COMMON_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --offset 0x3ED9FC --length $(COMMON_RESOURCE_ARCHIVE_LENGTH) --sha256 $(COMMON_RESOURCE_ARCHIVE_SHA256) audit
 	@$(PYTHON) $(COOKING_UI_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --profile cooking-ui --offset 0x4DA620 --length $(COOKING_UI_RESOURCE_ARCHIVE_LENGTH) --sha256 $(COOKING_UI_RESOURCE_ARCHIVE_SHA256) audit
 	@$(PYTHON) $(LARGE_SHARED_RESOURCE_ARCHIVE_TOOL) baserom_jp.gba --profile large-shared --offset 0x4A5068 --length $(LARGE_SHARED_RESOURCE_ARCHIVE_LENGTH) --sha256 $(LARGE_SHARED_RESOURCE_ARCHIVE_SHA256) audit
 	@$(PYTHON) $(SHARED_RESOURCE_08725DA0_TOOL) baserom_jp.gba --profile shared-08725da0 --offset 0x4ABF08 --length $(SHARED_RESOURCE_08725DA0_LENGTH) --sha256 $(SHARED_RESOURCE_08725DA0_SHA256) audit
@@ -2306,9 +2262,7 @@ gfx-verify:
 	@$(MAKE) --no-print-directory gfx-farm-house-palettes-all
 	@$(MAKE) --no-print-directory gfx-farm-status-all
 	@$(MAKE) --no-print-directory gfx-farm-status-resource-archive
-	@$(MAKE) --no-print-directory gfx-common-resource-archive-all
-	@$(MAKE) --no-print-directory gfx-common-resource-archive-patch-test
-	@$(MAKE) --no-print-directory gfx-common-resource-archive-edit-test
+	@$(MAKE) --no-print-directory gfx-common-resource-archive
 	@$(MAKE) --no-print-directory gfx-small-companion-archive
 	@$(MAKE) --no-print-directory gfx-small-ui-resource-archive
 	@$(MAKE) --no-print-directory gfx-cooking-ui-resource-archive-all

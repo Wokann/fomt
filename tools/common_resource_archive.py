@@ -40,9 +40,6 @@ class ArchiveProfile:
 
 
 PROFILES = {
-    "common": ArchiveProfile(
-        (493, 500, 101, 1624, 342, 0, 532), (316, 429), "common resource"
-    ),
     "cooking-ui": ArchiveProfile(
         (1, 3, 3, 40, 1, 0, 4), (2,), "cooking UI resource"
     ),
@@ -107,7 +104,7 @@ PROFILES = {
         (22, 22, 7, 140, 3, 0, 22), (), "regional 0874F34C DE resource"
     ),
 }
-ACTIVE_PROFILE = PROFILES["common"]
+ACTIVE_PROFILE = None
 
 
 @dataclass(frozen=True)
@@ -479,7 +476,7 @@ def main() -> None:
         return
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("rom", type=Path)
-    parser.add_argument("--profile", choices=tuple(PROFILES), default="common")
+    parser.add_argument("--profile", choices=tuple(PROFILES), required=True)
     parser.add_argument("--offset", required=True, type=lambda text: int(text, 0))
     parser.add_argument("--length", default=0x12848, type=lambda text: int(text, 0))
     parser.add_argument("--sha256")
