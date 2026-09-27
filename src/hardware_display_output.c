@@ -3,6 +3,26 @@
 
 extern void func_08008E64(void const * source, void * destination, u32 size);
 
+struct HardwareDisplayState * func_080096B0(struct HardwareDisplayState * object)
+{
+    volatile u16 zero = 0;
+    CpuSet((void const *)&zero, object, 0x0100002B);
+    object->control = 0x80;
+    {
+        u16 clear = 0;
+        u16 identity = 0x100;
+        object->matrix_a[0] = identity;
+        object->matrix_a[1] = clear;
+        object->matrix_a[2] = clear;
+        object->matrix_a[3] = identity;
+        object->matrix_b[0] = identity;
+        object->matrix_b[1] = clear;
+        object->matrix_b[2] = clear;
+        object->matrix_b[3] = identity;
+    }
+    return object;
+}
+
 void func_080096F0(void * object)
 {
     func_08008E64(object, (void *)0x04000000, 0x54);

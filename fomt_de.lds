@@ -90,7 +90,6 @@ SECTIONS
         asm/hardware.o(.text.hardware_blend_after);
         src/hardware_blend_object.o(.text);
         src/hardware_interrupt_guard.o(.text);
-        asm/hardware.o(.text.hardware_interrupt_guard_after);
         src/hardware_display_output.o(.text);
         src/hardware_oam_state.o(.text);
         src/hardware_linked_list.o(.text);
