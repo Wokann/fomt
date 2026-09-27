@@ -10,6 +10,7 @@ void func_08009710(void * object);
 void * func_08009744(void * object, u8 byte1, u8 byte3);
 void func_0800977C(void * object);
 void func_08009790(void * object);
+void func_080097A4(u8 * buffer);
 
 EXTERN_C_END
 

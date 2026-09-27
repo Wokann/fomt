@@ -44,3 +44,39 @@ void func_08009790(void * object)
 {
     CpuFastSet((u8 *)object + 4, (void *)0x07000000, 0x100);
 }
+
+void func_080097A4(u8 * buffer)
+{
+    u8 * parameter_cursor = buffer + 4;
+    u8 * oam = (u8 *)0x07000000;
+    u8 * end = buffer + 4 + buffer[0] * 8;
+    u32 priority = 0;
+    do {
+        u8 * entry = buffer + 4;
+        if (entry != end) {
+            do {
+                u16 attributes = *(u16 *)(entry + 4);
+                if ((attributes & 0x0C00) == priority) {
+                    *(u32 *)oam = *(u32 *)entry;
+                    *(u16 *)(oam + 4) = attributes;
+                    *(u16 *)(oam + 6) = *(u16 *)(parameter_cursor + 6);
+                    parameter_cursor += 8;
+                    oam += 8;
+                }
+                entry += 8;
+            } while (entry != end);
+        }
+        priority += 0x400;
+    } while (priority <= 0xFFF);
+
+    if (oam != (u8 *)0x07000400) {
+        u32 hidden = 0x200;
+        u8 * last = (u8 *)0x07000400;
+        do {
+            *(u32 *)oam = hidden;
+            *(u16 *)(oam + 6) = *(u16 *)(parameter_cursor + 6);
+            parameter_cursor += 8;
+            oam += 8;
+        } while (oam != last);
+    }
+}

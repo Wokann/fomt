@@ -5,7 +5,6 @@
 
 EXTERN_C
 
-void func_080097A4(void * object);
 void func_08009834(void * object);
 void func_08009864(void * object);
 void func_08009878(void * object);
