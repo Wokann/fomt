@@ -1287,40 +1287,6 @@ func_08007E24: @ 0x08007E24
     .thumb
     .align 2, 0
 
-    thumb_func_start func_08007EA8
-func_08007EA8: @ 0x08007EA8
-    push {r4, lr}
-    adds r4, r0, #0
-    adds r0, r4, #4
-    bl func_080D6EEC
-    adds r0, r4, #0
-    adds r0, #0x80
-    bl func_080D6EEC
-    movs r1, #0
-    movs r0, #1
-    strb r0, [r4]
-    strb r1, [r4, #1]
-    pop {r4}
-    pop {r0}
-    bx r0
-
-    thumb_func_start func_08007EC8
-func_08007EC8: @ 0x08007EC8
-    push {r4, lr}
-    adds r4, r0, #0
-    adds r0, #0x80
-    bl func_080D6F5C
-    adds r0, r4, #4
-    bl func_080D6F5C
-    movs r0, #0
-    strb r0, [r4]
-    movs r0, #1
-    strb r0, [r4, #1]
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-
     thumb_func_start func_08007EE8
 func_08007EE8: @ 0x08007EE8
     push {r4, r5, lr}
