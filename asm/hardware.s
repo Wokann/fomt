@@ -502,60 +502,8 @@ func_08007578:
     bx r1
     .align 2, 0
 
-    thumb_func_start func_0800770C
-func_0800770C: @ 0x0800770C
-    movs r1, #0
-    str r1, [r0]
-    bx lr
-    .align 2, 0
-
-    thumb_func_start func_08007714
-func_08007714: @ 0x08007714
-    push {r4, r5, r6, r7, lr}
-    mov r7, r8
-    push {r7}
-    adds r7, r0, #0
-    mov r8, r1
-    ldr r0, [r7]
-    cmp r0, #0
-    beq .L08007754
-    adds r6, r0, #0
-    ldr r5, [r6, #4]
-    ldr r4, [r6]
-    cmp r4, r5
-    beq .L08007744
-.L0800772E:
-    ldr r1, [r4, #4]
-    adds r0, r4, #0
-    bl func_080073E0
-    adds r0, r4, #0
-    movs r1, #2
-    bl func_08007184
-    adds r4, #8
-    cmp r4, r5
-    bne .L0800772E
-.L08007744:
-    ldr r0, [r6]
-    cmp r0, #0
-    beq .L0800774E
-    bl free
-.L0800774E:
-    adds r0, r6, #0
-    bl __builtin_delete
-.L08007754:
-    movs r0, #1
-    mov r1, r8
-    ands r0, r1
-    cmp r0, #0
-    beq .L08007764
-    adds r0, r7, #0
-    bl __builtin_delete
-.L08007764:
-    pop {r3}
-    mov r8, r3
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
+    .section .text.hardware_resource_after, "ax", %progbits
+    .thumb
     .align 2, 0
 
     thumb_func_start func_08007770
