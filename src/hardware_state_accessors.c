@@ -4,22 +4,22 @@
 
 void func_080088B8(void * const * state)
 {
-    func_08009268((struct HardwareInputState *)*state);
+    func_08009268(&((struct HardwareCoreState *)*state)->input);
 }
 
 u16 func_080088C4(void * const * state)
 {
-    return *(u16 *)*state;
+    return ((struct HardwareCoreState *)*state)->input.held;
 }
 
 u16 func_080088CC(void * const * state)
 {
-    return *(u16 *)((u8 *)*state + 4);
+    return ((struct HardwareCoreState *)*state)->input.pressed;
 }
 
 u16 func_080088D4(void * const * state)
 {
-    return *(u16 *)((u8 *)*state + 8);
+    return ((struct HardwareCoreState *)*state)->input.repeated;
 }
 
 void * func_080088DC(void * const * state)
@@ -29,72 +29,70 @@ void * func_080088DC(void * const * state)
 
 void func_080088E0(void * const * state, u16 value)
 {
-    func_080092C8((struct HardwareInputState *)*state, value);
+    func_080092C8(&((struct HardwareCoreState *)*state)->input, value);
 }
 
 void func_080088F0(void * const * state, u16 value)
 {
-    func_080092FC((struct HardwareInputState *)*state, value);
+    func_080092FC(&((struct HardwareCoreState *)*state)->input, value);
 }
 
 u16 func_08008900(void * const * state)
 {
-    return *(u16 *)((u8 *)*state + 0xA);
+    return ((struct HardwareCoreState *)*state)->input.repeat_delay;
 }
 
 u16 func_08008908(void * const * state)
 {
-    return *(u16 *)((u8 *)*state + 0xC);
+    return ((struct HardwareCoreState *)*state)->input.repeat_interval;
 }
 
-// The owner holds one pointer to the display state. Only these offsets
-// are established here; the surrounding state layout remains unclassified.
 u8 * func_08008910(void * const * state)
 {
-    return (u8 *)*state + 0x24;
+    return (u8 *)&((struct HardwareCoreState *)*state)->unk_24;
 }
 
 u8 * func_08008918(void * const * state)
 {
-    return (u8 *)*state + 0x34;
+    return (u8 *)&((struct HardwareCoreState *)*state)->display;
 }
 
 u8 * func_08008920(void * const * state)
 {
-    return (u8 *)*state + 0x8C;
+    return ((struct HardwareCoreState *)*state)->sprite_buffer;
 }
 
 u8 * func_08008928(void * const * state)
 {
-    return (u8 *)*state + 0x24;
+    return (u8 *)&((struct HardwareCoreState *)*state)->unk_24;
 }
 
 u8 * func_08008930(void * const * state)
 {
-    return (u8 *)*state + 0x34;
+    return (u8 *)&((struct HardwareCoreState *)*state)->display;
 }
 
 u8 * func_08008938(void * const * state)
 {
-    return (u8 *)*state + 0x8C;
+    return ((struct HardwareCoreState *)*state)->sprite_buffer;
 }
 
 u8 * func_08008940(void * const * state)
 {
-    return (u8 *)*state + 0x494;
+    return (u8 *)&((struct HardwareCoreState *)*state)->links;
 }
 
 u8 * func_0800894C(void * const * state)
 {
-    return func_08008AE0((void * const *)((u8 *)*state + 0x490));
+    return func_08008AE0((void * const *)&((struct HardwareCoreState *)*state)->manager);
 }
 
 u8 * func_08008960(void * const * state)
 {
-    return (u8 *)*state + 0x494;
+    return (u8 *)&((struct HardwareCoreState *)*state)->links;
 }
 
 u8 * func_0800896C(void * const * state)
 {
-    return func_08008AE0((void * const *)((u8 *)*state + 0x490));
+    return func_08008AE0((void * const *)&((struct HardwareCoreState *)*state)->manager);
 }

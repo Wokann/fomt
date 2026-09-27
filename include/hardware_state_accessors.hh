@@ -2,6 +2,26 @@
 #define HARDWARE_STATE_ACCESSORS_HH
 
 #include "prelude.h"
+#include "hardware_display_output.hh"
+#include "hardware_input.hh"
+#include "hardware_linked_list.hh"
+
+// Layout shared by the constructors at 0x08008444-0x08008618 and the
+// state accessors below.  Keep unknown fields unnamed until their callers
+// establish their purpose.
+struct HardwareCoreState {
+    struct HardwareInputState input;
+    u32 unk_24;
+    u32 unk_28;
+    u32 unk_2C;
+    u32 unk_30;
+    struct HardwareDisplayState display;
+    u8 sprite_buffer[0x404];
+    void * manager;
+    struct HardwareLinkedList links;
+};
+
+typedef char HardwareCoreState_size_check[sizeof(struct HardwareCoreState) == 0x4B0 ? 1 : -1];
 
 EXTERN_C
 
