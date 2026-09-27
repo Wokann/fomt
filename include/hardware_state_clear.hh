@@ -11,7 +11,8 @@ struct HardwareStateEntry {
 struct HardwareStateGroup {
     struct HardwareStateEntry * start;
     struct HardwareStateEntry * end;
-    u8 unk_08[12];
+    u8 unk_08[8];
+    struct HardwareStateEntry * cursor;
 };
 
 struct HardwareStateStorage {
