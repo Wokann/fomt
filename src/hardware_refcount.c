@@ -6,14 +6,14 @@ void * func_080079D0(void * owner)
 {
     // The adjacent release routine decrements this word and frees the state
     // when it reaches zero. The rest of the pointed-to layout is unclassified.
-    ++*(u32 *)(gUnk_03000408 + 0x924);
+    ++((HardwareSharedState *)gUnk_03000408)->reference_count;
     return owner;
 }
 
 void func_080079E8(void * owner, u32 flags)
 {
-    u8 * state = gUnk_03000408;
-    u32 * refcount = (u32 *)(state + 0x924);
+    HardwareSharedState * state = (HardwareSharedState *)gUnk_03000408;
+    u32 * refcount = &state->reference_count;
     u32 remaining = *refcount - 1;
     *refcount = remaining;
     if (remaining == 0) {
