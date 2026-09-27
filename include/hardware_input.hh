@@ -23,6 +23,9 @@ u32 func_08009158(u16 * held);
 struct HardwareInputState * func_08009168(struct HardwareInputState * input);
 struct HardwareInputState * func_0800917C(struct HardwareInputState * input, u32 value);
 u32 func_08009190(struct HardwareInputState * input);
+struct HardwareInputState * func_080091A4(struct HardwareInputState * input, u16 delay, u16 interval);
+struct HardwareInputState * func_080091E8(struct HardwareInputState * input, u32 held);
+struct HardwareInputState * func_08009224(struct HardwareInputState * input, u16 delay, u16 interval, u32 held);
 
 EXTERN_C_END
 

@@ -108,7 +108,6 @@ SECTIONS
         src/hardware_dma.o(.text);
         src/hardware_dma_descriptor.o(.text);
         src/hardware_input.o(.text);
-        asm/hardware.o(.text.hardware_input_after);
         src/hardware_input_repeat.o(.text);
         src/hardware_blend.o(.text);
         asm/hardware.o(.text.hardware_blend_after);
