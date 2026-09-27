@@ -3601,69 +3601,9 @@ func_080097A4: @ 0x080097A4
 .L0800982C: .4byte 0x00000FFF
 .L08009830: .4byte 0x07000400
 
-    thumb_func_start func_08009834
-func_08009834: @ 0x08009834
-    push {r4, lr}
-    adds r2, r0, #0
-    ldrb r4, [r2]
-    ldrb r3, [r2, #1]
-    cmp r4, r3
-    bls .L08009856
-    lsls r0, r3, #3
-    adds r0, #4
-    adds r1, r2, r0
-    lsls r0, r4, #3
-    adds r0, #4
-    adds r0, r2, r0
-    movs r4, #2
-.L0800984E:
-    strb r4, [r1, #1]
-    adds r1, #8
-    cmp r1, r0
-    bne .L0800984E
-.L08009856:
-    strb r3, [r2]
-    ldrb r0, [r2, #3]
-    strb r0, [r2, #2]
-    pop {r4}
-    pop {r0}
-    bx r0
+    .section .text.hardware_oam_state_after, "ax", %progbits
+    .thumb
     .align 2, 0
-
-    thumb_func_start func_08009864
-func_08009864: @ 0x08009864
-    push {r4, lr}
-    adds r4, r0, #0
-    bl func_0800977C
-    adds r0, r4, #0
-    bl func_08009834
-    pop {r4}
-    pop {r0}
-    bx r0
-.L08009878:
-    push {r4, lr}
-    adds r4, r0, #0
-    adds r0, r4, #4
-    movs r1, #0xe0
-    lsls r1, r1, #0x13
-    movs r2, #0x80
-    lsls r2, r2, #1
-    bl CpuFastSet
-    adds r0, r4, #0
-    bl func_08009834
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08009898:
-    push {r4, lr}
-    adds r4, r0, #0
-    bl func_080097A4
-    adds r0, r4, #0
-    bl func_08009834
-    pop {r4}
-    pop {r0}
-    bx r0
 
     thumb_func_start func_080098AC
 func_080098AC: @ 0x080098AC

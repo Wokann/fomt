@@ -93,6 +93,8 @@ SECTIONS
         asm/hardware.o(.text.hardware_interrupt_guard_after);
         src/hardware_display_output.o(.text);
         asm/hardware.o(.text.hardware_display_output_after);
+        src/hardware_oam_state.o(.text);
+        asm/hardware.o(.text.hardware_oam_state_after);
         src/farm.o(.text);
         src/field.o(.text);
         src/shipping_bin.o(.text);
