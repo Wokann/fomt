@@ -5,6 +5,10 @@
 extern void func_08007C28(void * entry, void * value);
 extern void __builtin_delete(void * pointer);
 extern void free(void * pointer);
+extern void func_08007874(struct HardwareStateOwner * owner);
+extern u32 func_08007B54(struct HardwareStateOwner * owner, u32 group_index);
+extern u32 func_08007CD8(struct HardwareStateOwner * owner, void * value);
+extern u32 func_08007E24(struct HardwareStateEntry * entry, void * value);
 
 void func_0800835C(void ** slot)
 {
@@ -36,4 +40,37 @@ void func_08008364(struct HardwareStateOwner * owner, u32 flags)
     }
     if (flags & 1)
         __builtin_delete(owner);
+}
+
+struct HardwareStateOwner * func_080083D0(
+    struct HardwareStateOwner * owner,
+    struct HardwareStateStorage * const * storage_ref,
+    u32 group_index)
+{
+    struct HardwareStateStorage * storage = *storage_ref;
+    if (storage != 0) {
+        struct HardwareStateGroup * group = (struct HardwareStateGroup *)(group_index * sizeof(struct HardwareStateGroup) + (u32)storage);
+        struct HardwareStateEntry * end = group->end;
+        struct HardwareStateEntry * current = group->cursor;
+        if (current != end) {
+            struct HardwareStateEntry * first = current;
+            do {
+                struct HardwareStateEntry * candidate = current;
+                ++current;
+                if (current == end)
+                    current = group->start;
+                if (func_08007E24(candidate, candidate->unk_04) == 1) {
+                    group->cursor = current;
+                    current = candidate;
+                    break;
+                }
+            } while (current != first);
+        }
+        func_08007874(owner);
+        owner->unk_04 = func_08007CD8(owner, current->unk_04);
+    } else {
+        func_08007874(owner);
+        owner->unk_04 = func_08007B54(owner, group_index);
+    }
+    return owner;
 }

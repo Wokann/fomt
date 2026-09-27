@@ -1624,68 +1624,6 @@ func_08008190:
     .thumb
     .align 2, 0
 
-    thumb_func_start func_080083D0
-func_080083D0: @ 0x080083D0
-    push {r4, r5, r6, r7, lr}
-    mov r7, sb
-    mov r6, r8
-    push {r6, r7}
-    adds r7, r0, #0
-    adds r4, r2, #0
-    ldr r1, [r1]
-    cmp r1, #0
-    beq .L08008426
-    lsls r0, r4, #2
-    adds r0, r0, r4
-    lsls r0, r0, #2
-    adds r6, r0, r1
-    ldr r0, [r6, #4]
-    mov r8, r0
-    ldr r4, [r6, #0x10]
-    cmp r4, r8
-    beq .L08008410
-    mov sb, r4
-.L080083F6:
-    adds r5, r4, #0
-    adds r4, #8
-    cmp r4, r8
-    bne .L08008400
-    ldr r4, [r6]
-.L08008400:
-    ldr r1, [r5, #4]
-    adds r0, r5, #0
-    bl func_08007E24
-    cmp r0, #1
-    beq .L08008420
-    cmp r4, sb
-    bne .L080083F6
-.L08008410:
-    adds r0, r7, #0
-    bl func_08007874
-    ldr r1, [r4, #4]
-    adds r0, r7, #0
-    bl func_08007CD8
-    b .L08008434
-.L08008420:
-    str r4, [r6, #0x10]
-    adds r4, r5, #0
-    b .L08008410
-.L08008426:
-    adds r0, r7, #0
-    bl func_08007874
-    adds r0, r7, #0
-    adds r1, r4, #0
-    bl func_08007B54
-.L08008434:
-    str r0, [r7, #4]
-    adds r0, r7, #0
-    pop {r3, r4}
-    mov r8, r3
-    mov sb, r4
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-
     thumb_func_start func_08008444
 func_08008444: @ 0x08008444
     push {r4, r5, r6, lr}
