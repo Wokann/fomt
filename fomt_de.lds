@@ -71,6 +71,8 @@ SECTIONS
         asm/hardware.o(.text.hardware_allocator_accessors_after);
         src/hardware_resource.o(.text);
         asm/hardware.o(.text.hardware_resource_after);
+        src/hardware_mask.o(.text);
+        asm/hardware.o(.text.hardware_mask_after);
         src/hardware_refcount.o(.text);
         asm/hardware.o(.text.hardware_refcount_after);
         src/hardware_state_properties.o(.text);
