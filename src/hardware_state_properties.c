@@ -4,6 +4,7 @@
 extern void func_080D6EEC(void *);
 extern void func_080D6F5C(void *);
 extern void func_080D7118(void *, u32, u32);
+extern void func_080D734C(void *, u32, u32);
 
 u16 func_08007E8C(void)
 {
@@ -75,4 +76,50 @@ void func_08007EE8(u8 * state, u32 offset, u32 length)
     inactive = 0;
     state[0] = active;
     state[1] = inactive;
+}
+
+void func_08007F84(u8 * state, u32 offset, u32 length)
+{
+    u32 first_capacity;
+    u32 * first_length;
+    u32 * length_pointer;
+    u32 * capacity_pointer;
+    u32 selected_length;
+    u32 second_offset;
+    u32 second_length;
+    register u32 first_limit;
+    u8 * first_buffer;
+    u8 * second_buffer;
+    register u32 active;
+
+    if (offset > 0x3FF || length == 0)
+        return;
+    if (offset == 0 && length > 0x3FF) {
+        func_08007EC8(state);
+        return;
+    }
+    first_limit = 0x1FF;
+    first_buffer = state + 4;
+    if (offset <= first_limit) {
+        first_capacity = 0x200 - offset;
+        length_pointer = &length;
+        capacity_pointer = &first_capacity;
+        first_length = length > first_capacity ? capacity_pointer : length_pointer;
+        selected_length = *first_length;
+        func_080D734C(first_buffer, offset, selected_length);
+    }
+    if (offset + length > 0x200) {
+        second_offset = offset > 0x1FF ? offset - 0x200 : 0;
+        second_length = offset + length;
+        second_length -= 0x200;
+        second_length -= second_offset;
+        func_080D734C(state + 0x80, second_offset, second_length);
+    }
+    state[0] = 0;
+    active = 0;
+    if (first_buffer[1] != 0) {
+        second_buffer = state + 0x80;
+        active = (0u - second_buffer[1]) >> 31;
+    }
+    state[1] = active;
 }

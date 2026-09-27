@@ -12,6 +12,7 @@ u32 func_08007EA0(void);
 void func_08007EA8(u8 * state);
 void func_08007EC8(u8 * state);
 void func_08007EE8(u8 * state, u32 offset, u32 length);
+void func_08007F84(u8 * state, u32 offset, u32 length);
 
 EXTERN_C_END
 
