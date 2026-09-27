@@ -2264,39 +2264,6 @@ func_080087C8: @ 0x080087C8
 .L080088B0: .4byte vtable_unk_080E5BD8
 .L080088B4: .4byte 0x00000494
 
-    thumb_func_start func_080088B8
-func_080088B8: @ 0x080088B8
-    push {lr}
-    ldr r0, [r0]
-    bl func_08009268
-    pop {r0}
-    bx r0
-
-    thumb_func_start func_080088C4
-func_080088C4: @ 0x080088C4
-    ldr r0, [r0]
-    ldrh r0, [r0]
-    bx lr
-    .align 2, 0
-
-    thumb_func_start func_080088CC
-func_080088CC: @ 0x080088CC
-    ldr r0, [r0]
-    ldrh r0, [r0, #4]
-    bx lr
-    .align 2, 0
-
-    thumb_func_start func_080088D4
-func_080088D4: @ 0x080088D4
-    ldr r0, [r0]
-    ldrh r0, [r0, #8]
-    bx lr
-    .align 2, 0
-
-    thumb_func_start func_080088DC
-func_080088DC: @ 0x080088DC
-    ldr r0, [r0]
-    bx lr
     @ The consecutive state controls and accessors are compiled from one C
     @ object in their original ROM order at this point.
     .section .text.hardware_post_accessors, "ax", %progbits

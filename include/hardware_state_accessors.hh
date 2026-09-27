@@ -5,6 +5,12 @@
 
 EXTERN_C
 
+void func_080088B8(void * const * state);
+u16 func_080088C4(void * const * state);
+u16 func_080088CC(void * const * state);
+u16 func_080088D4(void * const * state);
+void * func_080088DC(void * const * state);
+
 void func_080088E0(void * const * state, u16 value);
 void func_080088F0(void * const * state, u16 value);
 u16 func_08008900(void * const * state);

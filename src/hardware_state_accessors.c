@@ -2,6 +2,31 @@
 #include "hardware_nested_accessors.hh"
 #include "hardware_input_repeat.hh"
 
+void func_080088B8(void * const * state)
+{
+    func_08009268((struct HardwareInputState *)*state);
+}
+
+u16 func_080088C4(void * const * state)
+{
+    return *(u16 *)*state;
+}
+
+u16 func_080088CC(void * const * state)
+{
+    return *(u16 *)((u8 *)*state + 4);
+}
+
+u16 func_080088D4(void * const * state)
+{
+    return *(u16 *)((u8 *)*state + 8);
+}
+
+void * func_080088DC(void * const * state)
+{
+    return *state;
+}
+
 void func_080088E0(void * const * state, u16 value)
 {
     func_080092C8((struct HardwareInputState *)*state, value);
