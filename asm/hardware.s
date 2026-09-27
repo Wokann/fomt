@@ -687,41 +687,6 @@ func_08007874: @ 0x08007874
     .thumb
     .align 2, 0
 
-    thumb_func_start func_080079E8
-func_080079E8: @ 0x080079E8
-    push {r4, r5, r6, r7, lr}
-    adds r7, r0, #0
-    adds r5, r1, #0
-    ldr r6, .L08007A20 @ =gUnk_03000408
-    ldr r2, [r6]
-    ldr r0, .L08007A24 @ =0x00000924
-    adds r1, r2, r0
-    ldr r0, [r1]
-    subs r4, r0, #1
-    str r4, [r1]
-    cmp r4, #0
-    bne .L08007A0C
-    cmp r2, #0
-    beq .L08007A0A
-    adds r0, r2, #0
-    bl __builtin_delete
-.L08007A0A:
-    str r4, [r6]
-.L08007A0C:
-    movs r0, #1
-    ands r0, r5
-    cmp r0, #0
-    beq .L08007A1A
-    adds r0, r7, #0
-    bl __builtin_delete
-.L08007A1A:
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08007A20: .4byte gUnk_03000408
-.L08007A24: .4byte 0x00000924
-
     thumb_func_start func_08007A28
 func_08007A28: @ 0x08007A28
     push {r4, r5, r6, r7, lr}

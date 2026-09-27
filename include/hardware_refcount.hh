@@ -9,6 +9,7 @@ extern u8 * gUnk_03000408;
 
 // Retain the shared hardware state and return the supplied owner unchanged.
 void * func_080079D0(void * owner);
+void func_080079E8(void * owner, u32 flags);
 
 EXTERN_C_END
 
