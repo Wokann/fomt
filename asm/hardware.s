@@ -283,20 +283,10 @@ func_08007510: @ 0x08007510
     pop {r4}
     pop {r1}
     bx r1
-    thumb_func_start func_08007564
-func_08007564:
-    ldr r0, .L08007570
-    ldr r0, [r0]
-    adds r0, #0x48
-    ldrh r0, [r0]
-    bx lr
-    .align 2, 0
-.L08007570: .4byte gUnk_03000404
 
-    thumb_func_start func_08007574
-func_08007574:
-    movs r0, #0x10
-    bx lr
+    .section .text.hardware_allocator_accessors_after, "ax", %progbits
+    .thumb
+    .align 2, 0
 
     thumb_func_start func_08007578
 func_08007578:
