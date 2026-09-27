@@ -3609,20 +3609,6 @@ func_080097A4: @ 0x080097A4
     .thumb
     .align 2, 0
 
-.L080099EC:
-    push {lr}
-    movs r2, #0
-    adds r1, r0, #0
-    adds r1, #0x10
-    ldr r0, [r0, #0xc]
-    cmp r0, r1
-    bne .L080099FC
-    movs r2, #1
-.L080099FC:
-    adds r0, r2, #0
-    pop {r1}
-    bx r1
-    .align 2, 0
 .L08009A04:
     movs r3, #0
     str r3, [r0]

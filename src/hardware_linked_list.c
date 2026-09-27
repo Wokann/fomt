@@ -121,3 +121,8 @@ void func_080099D4(struct HardwareLinkedList * first, struct HardwareLinkedList 
     *first_tail = *second_tail;
     *second_tail = first_end;
 }
+
+u32 func_080099EC(struct HardwareLinkedList * list)
+{
+    return list->first == (struct HardwareLink *)&list->tail_slot;
+}
