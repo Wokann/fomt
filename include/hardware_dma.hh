@@ -6,6 +6,8 @@
 EXTERN_C
 
 u32 func_08008E28(u32 source, u32 destination, u32 byte_count);
+void func_08008E64(u32 source, u32 destination, u32 byte_count);
+void func_08008EB8(u32 value, u32 destination, u32 byte_count);
 
 EXTERN_C_END
 
