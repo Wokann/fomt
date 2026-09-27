@@ -25,6 +25,7 @@ u8 * func_08009344(struct HardwareBlendController * controller, u8 * register_ba
 void func_0800934C(struct HardwareBlendController * controller, i16 step, u32 mode, u32 mosaic);
 void func_08009378(struct HardwareBlendController * controller, i16 step, u32 mode, u32 mosaic);
 i16 func_080093A0(struct HardwareBlendController * controller, i16 step);
+u32 func_080093AC(struct HardwareBlendController * controller);
 
 EXTERN_C_END
 

@@ -108,6 +108,8 @@ SECTIONS
         src/hardware_input_repeat.o(.text);
         src/hardware_blend.o(.text);
         asm/hardware.o(.text.hardware_blend_after);
+        src/hardware_blend_object.o(.text);
+        asm/hardware.o(.text.hardware_blend_object_after);
         . = 0x9A50; /* JP ROM 0x08009A50, independently matched */
         src/farm.o(.text);
         . = 0x9F94; /* JP ROM 0x08009F94, independently matched */
