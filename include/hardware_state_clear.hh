@@ -21,12 +21,17 @@ struct HardwareStateStorage {
 
 struct HardwareStateOwner {
     struct HardwareStateStorage * storage;
+    u32 unk_04;
 };
 
 EXTERN_C
 
 void func_0800835C(void ** slot);
 void func_08008364(struct HardwareStateOwner * owner, u32 flags);
+struct HardwareStateOwner * func_080083D0(
+    struct HardwareStateOwner * owner,
+    struct HardwareStateStorage * const * storage_ref,
+    u32 group_index);
 
 EXTERN_C_END
 
