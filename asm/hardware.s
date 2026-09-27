@@ -2129,62 +2129,6 @@ func_08008980: @ 0x08008980
 .L08008A60: .4byte vtable_unk_080E5B0C
 .L08008A64: .4byte vtable_unk_080E5B18
 
-    thumb_func_start func_08008A68
-func_08008A68: @ 0x08008A68
-    push {r4, r5, r6, r7, lr}
-    adds r6, r0, #0
-    adds r7, r1, #0
-    ldr r5, [r6]
-    cmp r5, #0
-    beq .L08008AC2
-    adds r0, r5, #0
-    adds r0, #0x68
-    ldrb r0, [r0]
-    cmp r0, #0
-    beq .L08008A82
-    bl func_08008D90
-.L08008A82:
-    adds r4, r5, #0
-    adds r4, #0x34
-    ldr r0, .L08008AD8 @ =vtable_unk_080E5B0C
-    str r0, [r4, #0x30]
-    ldr r0, .L08008ADC @ =vtable_unk_080E5B18
-    str r0, [r4, #8]
-    adds r0, r5, #0
-    adds r0, #0x50
-    movs r1, #0
-    bl func_080D7944
-    adds r0, r4, #0
-    movs r1, #2
-    bl func_0800959C
-    adds r0, r5, #0
-    adds r0, #0x28
-    movs r1, #2
-    bl func_080098AC
-    adds r0, r5, #0
-    adds r0, #0xc
-    movs r1, #2
-    bl func_0800959C
-    adds r0, r5, #0
-    movs r1, #2
-    bl func_080098AC
-    adds r0, r5, #0
-    bl __builtin_delete
-.L08008AC2:
-    movs r0, #1
-    ands r0, r7
-    cmp r0, #0
-    beq .L08008AD0
-    adds r0, r6, #0
-    bl __builtin_delete
-.L08008AD0:
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08008AD8: .4byte vtable_unk_080E5B0C
-.L08008ADC: .4byte vtable_unk_080E5B18
-
     .section .text.hardware_sound_after, "ax", %progbits
     .thumb
     .align 2, 0
