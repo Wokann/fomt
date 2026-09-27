@@ -114,9 +114,7 @@ SECTIONS
         src/hardware_display_output.o(.text);
         asm/hardware.o(.text.hardware_display_output_after);
         src/hardware_oam_state.o(.text);
-        asm/hardware.o(.text.hardware_oam_state_after);
         src/hardware_linked_list.o(.text);
-        asm/hardware.o(.text.hardware_linked_list_after);
         . = 0x9A50; /* JP ROM 0x08009A50, independently matched */
         src/farm.o(.text);
         . = 0x9F94; /* JP ROM 0x08009F94, independently matched */

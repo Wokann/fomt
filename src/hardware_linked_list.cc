@@ -2,10 +2,13 @@
 
 extern void * vtable_unk_080E5BE8[];
 extern void * vtable_unk_080E5BB4[];
+extern void * vtable_unk_080E5BD8[];
 extern void __builtin_delete(void * pointer);
 
 typedef u8 (*HardwareLinkTest)(struct HardwareLink * node);
 typedef void (*HardwareLinkRemove)(struct HardwareLinkedList * list, struct HardwareLink * node);
+
+EXTERN_C
 
 void func_080098AC(void * object, u32 flags)
 {
@@ -29,7 +32,7 @@ void func_080098DC(void * object, u32 flags)
 {
     void ** fields = (void **)object;
     fields[2] = vtable_unk_080E5BB4;
-    func_08009984(object);
+    func_08009984((struct HardwareLinkedList *)object);
     func_080098AC((u8 *)object + 0x10, 2);
     func_080098AC(object, flags);
 }
@@ -37,7 +40,7 @@ void func_080098DC(void * object, u32 flags)
 u32 func_08009908(struct HardwareLinkedList * list)
 {
     struct HardwareLink * current = list->first;
-    struct HardwareLink * sentinel = (struct HardwareLink *)&list->tail_slot;
+    struct HardwareLink * sentinel = &list->sentinel;
     struct HardwareLink * node;
     HardwareLinkTest test;
     HardwareLinkRemove remove;
@@ -60,10 +63,10 @@ void func_08009940(struct HardwareLinkedList * list, struct HardwareLink * link)
         *link->previous_slot = link->next;
         link->next->previous_slot = link->previous_slot;
     }
-    *list->tail_slot = link;
-    link->previous_slot = list->tail_slot;
-    link->next = (struct HardwareLink *)&list->tail_slot;
-    list->tail_slot = &link->next;
+    *list->sentinel.previous_slot = link;
+    link->previous_slot = list->sentinel.previous_slot;
+    link->next = &list->sentinel;
+    list->sentinel.previous_slot = &link->next;
 }
 
 void func_08009968(struct HardwareLinkedList * list, struct HardwareLink * link)
@@ -80,7 +83,7 @@ void func_08009968(struct HardwareLinkedList * list, struct HardwareLink * link)
 void func_08009984(struct HardwareLinkedList * list)
 {
     struct HardwareLink * current = list->first;
-    struct HardwareLink * sentinel = (struct HardwareLink *)&list->tail_slot;
+    struct HardwareLink * sentinel = &list->sentinel;
     struct HardwareLink * node;
     if (current != sentinel) {
         do {
@@ -91,20 +94,20 @@ void func_08009984(struct HardwareLinkedList * list)
         } while (current != sentinel);
     }
     {
-        u8 * end = (u8 *)list + 0x10;
+        u8 * end = (u8 *)&list->sentinel;
         list->first = (struct HardwareLink *)end;
-        list->tail_slot = (struct HardwareLink **)(end - 4);
+        list->sentinel.previous_slot = (struct HardwareLink **)(end - 4);
     }
 }
 
 void func_080099B0(struct HardwareLinkedList * destination, struct HardwareLinkedList * source)
 {
-    *destination->tail_slot = source->first;
-    source->first->previous_slot = destination->tail_slot;
-    *source->tail_slot = (struct HardwareLink *)&destination->tail_slot;
-    destination->tail_slot = source->tail_slot;
-    source->first = (struct HardwareLink *)&source->tail_slot;
-    source->tail_slot = &source->first;
+    *destination->sentinel.previous_slot = source->first;
+    source->first->previous_slot = destination->sentinel.previous_slot;
+    *source->sentinel.previous_slot = &destination->sentinel;
+    destination->sentinel.previous_slot = source->sentinel.previous_slot;
+    source->first = &source->sentinel;
+    source->sentinel.previous_slot = &source->first;
 }
 
 void func_080099D4(struct HardwareLinkedList * first, struct HardwareLinkedList * second)
@@ -115,8 +118,8 @@ void func_080099D4(struct HardwareLinkedList * first, struct HardwareLinkedList 
     struct HardwareLink * first_end;
     first->first = second->first;
     second->first = first_head;
-    first_tail = first->tail_slot;
-    second_tail = second->tail_slot;
+    first_tail = first->sentinel.previous_slot;
+    second_tail = second->sentinel.previous_slot;
     first_end = *first_tail;
     *first_tail = *second_tail;
     *second_tail = first_end;
@@ -124,5 +127,37 @@ void func_080099D4(struct HardwareLinkedList * first, struct HardwareLinkedList 
 
 u32 func_080099EC(struct HardwareLinkedList * list)
 {
-    return list->first == (struct HardwareLink *)&list->tail_slot;
+    return list->first == &list->sentinel;
 }
+
+EXTERN_C_END
+
+inline HardwareLink::HardwareLink()
+    : previous_slot(0), next(0), vtable(vtable_unk_080E5BD8)
+{
+}
+
+HardwareLinkedList::HardwareLinkedList()
+    : unk_00(0), unk_04(0), vtable(vtable_unk_080E5BB4),
+      first(&sentinel), sentinel()
+{
+    sentinel.previous_slot = &first;
+    sentinel.next = &sentinel;
+}
+
+EXTERN_C
+
+u32 func_08009A2C(struct HardwareLink * link)
+{
+    u32 value = (u32)link->previous_slot;
+    return ((0 - value) | value) >> 31;
+}
+
+void func_08009A38(struct HardwareLink * link)
+{
+    link->vtable = vtable_unk_080E5BE8;
+    link->previous_slot = 0;
+    link->next = 0;
+}
+
+EXTERN_C_END

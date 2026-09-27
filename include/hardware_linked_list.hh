@@ -7,6 +7,9 @@ struct HardwareLink {
     struct HardwareLink ** previous_slot;
     struct HardwareLink * next;
     void ** vtable;
+#ifdef __cplusplus
+    HardwareLink();
+#endif
 };
 
 struct HardwareLinkedList {
@@ -14,7 +17,10 @@ struct HardwareLinkedList {
     void * unk_04;
     void ** vtable;
     struct HardwareLink * first;
-    struct HardwareLink ** tail_slot;
+    struct HardwareLink sentinel;
+#ifdef __cplusplus
+    HardwareLinkedList() asm("func_08009A04");
+#endif
 };
 
 EXTERN_C
@@ -29,6 +35,8 @@ void func_08009984(struct HardwareLinkedList * list);
 void func_080099B0(struct HardwareLinkedList * destination, struct HardwareLinkedList * source);
 void func_080099D4(struct HardwareLinkedList * first, struct HardwareLinkedList * second);
 u32 func_080099EC(struct HardwareLinkedList * list);
+u32 func_08009A2C(struct HardwareLink * link);
+void func_08009A38(struct HardwareLink * link);
 
 EXTERN_C_END
 
