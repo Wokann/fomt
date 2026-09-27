@@ -18,6 +18,8 @@ struct HardwareResourceStorage {
 struct HardwareResource {
     struct HardwareResourceStorage * storage;
     u32 handle;
+
+    HardwareResource(HardwareResource const & other) asm("func_08007770");
 };
 
 EXTERN_C
