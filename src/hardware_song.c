@@ -4,6 +4,16 @@
 #include "hardware_music_player.hh"
 #include "m4a.h"
 
+void func_08008D2C(u32 * value)
+{
+    *value += 0x40;
+}
+
+void func_08008D34(u32 * value)
+{
+    *value -= 0x40;
+}
+
 struct MusicPlayer * func_08008D3C(u16 song_id)
 {
     struct MusicPlayer * player;

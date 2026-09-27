@@ -2482,20 +2482,6 @@ func_08008D10: @ 0x08008D10
     .align 2, 0
 .L08008D28: .4byte 0x00000005
 
-    thumb_func_start func_08008D2C
-func_08008D2C: @ 0x08008D2C
-    ldr r1, [r0]
-    adds r1, #0x40
-    str r1, [r0]
-    bx lr
-
-    thumb_func_start func_08008D34
-func_08008D34: @ 0x08008D34
-    ldr r1, [r0]
-    subs r1, #0x40
-    str r1, [r0]
-    bx lr
-
     .section .text.hardware_song_after, "ax", %progbits
     .thumb
     .align 2, 0
