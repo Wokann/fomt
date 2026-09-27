@@ -1620,11 +1620,8 @@ func_08008190:
     pop {r1}
     bx r1
 
-    thumb_func_start func_0800835C
-func_0800835C: @ 0x0800835C
-    movs r1, #0
-    str r1, [r0]
-    bx lr
+    .section .text.hardware_state_clear_after, "ax", %progbits
+    .thumb
     .align 2, 0
 
     thumb_func_start func_08008364
