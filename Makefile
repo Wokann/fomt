@@ -275,7 +275,7 @@ $(GUIDE_GENERATED_SOURCE): $(GUIDE_COLLECTION_MANIFEST) $(GUIDE_PAGE_SOURCES) $(
 	$(TEXT_TOOL) guide-collection charmap.txt $(GAME_REGION) $(GUIDE_COLLECTION_MANIFEST) $@
 
 $(BUILD_DIR)/src/reference_guide.d: $(GUIDE_GENERATED_SOURCE)
-	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MT $(BUILD_DIR)/src/reference_guide.o
+	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MP -MT $(BUILD_DIR)/src/reference_guide.o
 
 $(BUILD_DIR)/src/reference_guide.o: $(GUIDE_GENERATED_SOURCE) $(BUILD_DIR)/src/reference_guide.d $(TEXT_TOOLS) charmap.txt
 	@echo "CP $<"
@@ -286,7 +286,7 @@ $(BUILD_DIR)/src/reference_guide.o: $(GUIDE_GENERATED_SOURCE) $(BUILD_DIR)/src/r
 # every other C++ translation unit; no text-specific staging source is made.
 $(REGION_TEXT_ORDINARY_DEPS): $(BUILD_DIR)/data/text/%.d: data/text/$(TEXT_REGION)/%.cc
 	@mkdir -p $(dir $@)
-	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MT $@ -MT $(BUILD_DIR)/data/text/$*.o
+	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MP -MT $@ -MT $(BUILD_DIR)/data/text/$*.o
 
 $(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGION)/%.cc $(BUILD_DIR)/data/text/%.d $(TEXT_TOOLS) charmap.txt
 	@echo "CP $<"
@@ -308,7 +308,7 @@ $(ELF): $(ALL_OBJS) $(LDS)
 # C dependency file
 $(BUILD_DIR)/%.d: %.c
 	@mkdir -p $(dir $@)
-	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MT $@ -MT $(BUILD_DIR)/$*.o
+	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MP -MT $@ -MT $(BUILD_DIR)/$*.o
 
 # C object
 $(BUILD_DIR)/%.o: %.c $(BUILD_DIR)/%.d $(TEXT_TOOLS) charmap.txt
@@ -318,7 +318,7 @@ $(BUILD_DIR)/%.o: %.c $(BUILD_DIR)/%.d $(TEXT_TOOLS) charmap.txt
 # C++ dependency file
 $(BUILD_DIR)/%.d: %.cc
 	@mkdir -p $(dir $@)
-	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MT $@ -MT $(BUILD_DIR)/$*.o
+	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MP -MT $@ -MT $(BUILD_DIR)/$*.o
 
 # C++ object
 $(BUILD_DIR)/%.o: %.cc $(BUILD_DIR)/%.d $(TEXT_TOOLS) charmap.txt
