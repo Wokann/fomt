@@ -5,6 +5,7 @@ extern void func_080D6EEC(void *);
 extern void func_080D6F5C(void *);
 extern void func_080D7118(void *, u32, u32);
 extern void func_080D734C(void *, u32, u32);
+extern u32 func_080D7568(void *, u32);
 
 u16 func_08007E8C(void)
 {
@@ -122,4 +123,39 @@ void func_08007F84(u8 * state, u32 offset, u32 length)
         active = (0u - second_buffer[1]) >> 31;
     }
     state[1] = active;
+}
+
+u32 func_08008020(u8 * state, u32 kind)
+{
+    u32 index;
+    u8 * buffer;
+
+    if (kind <= 9) {
+        for (index = 0, buffer = state + 4; (int)index <= 1; buffer += 0x7C, index++) {
+            u32 offset;
+            u32 active;
+            u32 valid;
+            // Keep the flag live across the helper call with the old compiler.
+            register u8 empty __asm__("r5");
+            empty = buffer[0];
+            if (empty == 0) {
+                offset = func_080D7568(buffer, kind);
+                valid = 0;
+                if (offset <= 0x1FF)
+                    valid = 1;
+                if (valid != 0) {
+                    state[1] = empty;
+                    active = 0;
+                    if (state[4] != 0)
+                        active = (0u - state[0x80]) >> 31;
+                    state[0] = active;
+                    return (index << 9) | offset;
+                }
+            }
+        }
+    } else if (kind == 10 && state[1] != 0) {
+        func_08007EA8(state);
+        return 0;
+    }
+    return 0x400;
 }
