@@ -109,7 +109,6 @@ FARM_STATUS_TILES_BIN := $(FARM_STATUS_OUTPUT_DIR)/base_tiles.4bpp
 FARM_STATUS_TILES_PALETTE0_BIN := $(FARM_STATUS_OUTPUT_DIR)/base_tiles_palette0.gbapal
 FARM_STATUS_PALETTE_BIN := $(FARM_STATUS_PALETTE_SOURCE:.png=.gbapal)
 FARM_STATUS_PACKED_BIN := $(FARM_STATUS_TILES_BIN).lz
-FARM_STATUS_CODEC := tools/marvelous_codec.py
 FARM_STATUS_PREVIEW_TOOL := tools/farm_status_previews.py
 FARM_STATUS_REFERENCE_DIR := graphics/ui/farm_status/reference
 FARM_STATUS_TILEMAP_SOURCE_DIR := graphics/ui/farm_status/shared/tilemaps
