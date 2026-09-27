@@ -6,6 +6,7 @@ extern void func_080D6F5C(void *);
 extern void func_080D7118(void *, u32, u32);
 extern void func_080D734C(void *, u32, u32);
 extern u32 func_080D7568(void *, u32);
+extern void func_080D76C0(void *, u32, u32);
 
 u16 func_08007E8C(void)
 {
@@ -158,4 +159,31 @@ u32 func_08008020(u8 * state, u32 kind)
         return 0;
     }
     return 0x400;
+}
+
+void func_080080A0(u8 * state, u32 offset, u32 kind)
+{
+    u8 * first_buffer;
+    u8 * chosen_buffer;
+    u8 * second_buffer;
+    u32 active;
+    u32 use_second;
+
+    if (kind <= 9) {
+        use_second = offset & 0x200;
+        first_buffer = state + 4;
+        chosen_buffer = first_buffer;
+        if (use_second)
+            chosen_buffer = state + 0x80;
+        func_080D76C0(chosen_buffer, offset, kind);
+        state[0] = 0;
+        active = 0;
+        if (first_buffer[1] != 0) {
+            second_buffer = state + 0x80;
+            active = (0u - second_buffer[1]) >> 31;
+        }
+        state[1] = active;
+    } else if (kind == 10) {
+        func_08007EC8(state);
+    }
 }
