@@ -81,7 +81,6 @@ SECTIONS
         src/hardware_bootstrap.o(.text);
         asm/hardware.o(.text.hardware_bootstrap_after);
         src/hardware_state_accessors.o(.text);
-        asm/hardware.o(.text.hardware_post_accessors);
         src/hardware_manager.o(.text);
         src/hardware_nested_accessors.o(.text);
         src/hardware_sound.o(.text);
