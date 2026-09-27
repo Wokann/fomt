@@ -187,3 +187,13 @@ void func_080080A0(u8 * state, u32 offset, u32 kind)
         func_08007EC8(state);
     }
 }
+
+u8 func_080080EC(u8 const * state)
+{
+    return state[1];
+}
+
+u8 func_080080F0(u8 const * state)
+{
+    return state[0];
+}

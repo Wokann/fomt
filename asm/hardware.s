@@ -1287,16 +1287,6 @@ func_08007E24: @ 0x08007E24
     .thumb
     .align 2, 0
 
-    thumb_func_start func_080080EC
-func_080080EC:
-    ldrb r0, [r0, #1]
-    bx lr
-
-    thumb_func_start func_080080F0
-func_080080F0:
-    ldrb r0, [r0]
-    bx lr
-
     thumb_func_start func_080080F4
 func_080080F4:
     push {r4, r5, r6, r7, lr}
