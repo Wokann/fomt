@@ -61,6 +61,8 @@ SECTIONS
         src/sram_proxy_2.o(.text);
         src/scene.o(.text);
         asm/intro_scene.o(.text);
+        src/intro_scene.o(.text.intro_scene_core_run);
+        asm/intro_scene.o(.text.intro_scene_core_after_run);
         src/intro_scene.o(.text);
         asm/new_game.o(.text);
         src/hardware.o(.text);
@@ -416,6 +418,10 @@ SECTIONS
         asm/code_libc_string.o(.text);
 
         asm/code_linkonce.o(.text.code_080D3BC0);
+        src/intro_scene.o(.text.intro_scene_transitions);
+        *(.gnu.linkonce.t._._19IntroMenuTransition);
+        *(.gnu.linkonce.t._._24IntroNameEntryTransition);
+        asm/code_linkonce.o(.text.code_080D3C78);
         *(.gnu.linkonce.t.__as__6AnimalRC6Animal);
         asm/code_linkonce.o(.text.code_080D68C0);
         src/hardware.o(.text.hardware_free_list);
@@ -433,6 +439,8 @@ SECTIONS
 
         *(.gnu.linkonce.d.__vt_6AScene);
         *(.gnu.linkonce.d.__vt_15SceneTransition);
+        *(.gnu.linkonce.d.__vt_19IntroMenuTransition);
+        *(.gnu.linkonce.d.__vt_24IntroNameEntryTransition);
         . = ALIGN(4); src/vtables.o(.rodata);
         *(.gnu.linkonce.d.__vt_7AEntity);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6284);

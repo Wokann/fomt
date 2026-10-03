@@ -6,9 +6,9 @@
 
 typedef void (*IntroSceneVTableFunction)(void);
 
-struct IntroSceneCorePrefix;
+struct IntroSceneCore;
 
-typedef void (*IntroSceneCoreDestroyFunction)(IntroSceneCorePrefix *, int);
+typedef void (*IntroSceneCoreDestroyFunction)(IntroSceneCore *, int);
 
 struct IntroSceneCoreVTable
 {
@@ -17,18 +17,37 @@ struct IntroSceneCoreVTable
     IntroSceneCoreDestroyFunction destroy;
 };
 
-// Only the fields used by the scene destructor are known. The full core
-// allocation is larger and remains in asm/intro_scene.s.
-struct IntroSceneCorePrefix
+// The unknown runs preserve fields still used by the assembly core. Only
+// the vtable, selected continuation and run-state fields are decoded here.
+struct IntroSceneCore
 {
     void * unk_00;
     IntroSceneCoreVTable const * vtable;
+    u8 unk_0008[0x6C66];
+    i8 continuation;
+    u8 unk_6C6F[0xB9];
+    u32 run_state;
+    u8 unk_6D2C[8];
 };
+
+typedef char IntroSceneCoreSizeCheck[(sizeof(IntroSceneCore) == 0x6D34) ? 1 : -1];
+typedef char IntroSceneCoreContinuationOffsetCheck[(offsetof(IntroSceneCore, continuation) == 0x6C6E) ? 1 : -1];
+typedef char IntroSceneCoreRunStateOffsetCheck[(offsetof(IntroSceneCore, run_state) == 0x6D28) ? 1 : -1];
 
 struct GameIntroScene
 {
     IntroSceneVTableFunction const * vtable;
-    IntroSceneCorePrefix * core;
+    IntroSceneCore * core;
+};
+
+struct IntroNameEntryTransition : SceneTransition
+{
+    virtual SceneOwner CreateScene() SECTION(".text.intro_scene_transitions");
+};
+
+struct IntroMenuTransition : SceneTransition
+{
+    virtual SceneOwner CreateScene() SECTION(".text.intro_scene_transitions");
 };
 
 EXTERN_C
@@ -37,7 +56,7 @@ extern IntroSceneVTableFunction const vtable_unk_080E5A18[];
 GameIntroScene * ConstructGameIntroScene(GameIntroScene * scene);
 void DestroyGameIntroScene(GameIntroScene * scene, int flags);
 SceneTransitionOwner RunGameIntroScene(GameIntroScene * scene);
-SceneTransitionOwner func_08000D64(IntroSceneCorePrefix * core);
+SceneTransitionOwner RunIntroSceneCore(IntroSceneCore * core) SECTION(".text.intro_scene_core_run");
 
 EXTERN_C_END
 

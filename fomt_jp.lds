@@ -77,6 +77,8 @@ SECTIONS
         src/scene.o(.text);
         . = 0x914; /* JP ROM 0x08000914, independently matched */
         asm/intro_scene.o(.text);
+        src/intro_scene.o(.text.intro_scene_core_run);
+        asm/intro_scene.o(.text.intro_scene_core_after_run);
         src/intro_scene.o(.text);
         . = 0x37A8; /* JP ROM 0x080037A8, independently matched */
         asm/new_game.o(.text);
@@ -482,6 +484,10 @@ SECTIONS
         . = 0xD3378; /* JP ROM 0x080D3378, independently matched */
 
         asm/code_linkonce.o(.text.code_080D3BC0);
+        src/intro_scene.o(.text.intro_scene_transitions);
+        *(.gnu.linkonce.t._._19IntroMenuTransition);
+        *(.gnu.linkonce.t._._24IntroNameEntryTransition);
+        asm/code_linkonce.o(.text.code_080D3C78);
         *(.gnu.linkonce.t.__as__6AnimalRC6Animal);
         . = 0xD6078; /* JP ROM 0x080D6078, independently matched */
         asm/code_linkonce.o(.text.code_080D68C0);
@@ -503,6 +509,8 @@ SECTIONS
         . = 0xE4E0C; /* JP C++ table region begins after code_linkonce. */
         *(.gnu.linkonce.d.__vt_6AScene);
         *(.gnu.linkonce.d.__vt_15SceneTransition);
+        *(.gnu.linkonce.d.__vt_19IntroMenuTransition);
+        *(.gnu.linkonce.d.__vt_24IntroNameEntryTransition);
         . = ALIGN(4); src/vtables.o(.rodata);
         *(.gnu.linkonce.d.__vt_7AEntity);
         . = ALIGN(4); src/vtables.o(.rodata.vtable_6284);
