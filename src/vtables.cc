@@ -929,7 +929,6 @@ extern void func_080D782C(void);
 extern void func_080D7868(void);
 extern void func_080D7874(void);
 extern void func_080D7880(void);
-extern void func_0800374C(void);
 
 extern RawVTableFunction const vtable_unk_080E59EC[] = {
     nullptr,
@@ -955,7 +954,7 @@ extern RawVTableFunction const vtable_unk_080E5A18[] = {
     nullptr,
     nullptr,
     reinterpret_cast<RawVTableFunction>(DestroyGameIntroScene),
-    func_0800374C,
+    reinterpret_cast<RawVTableFunction>(RunGameIntroScene),
 };
 
 extern RawVTableFunction const vtable_unk_080E5A28[] = {

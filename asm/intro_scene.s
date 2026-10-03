@@ -5791,41 +5791,6 @@ func_080035C0:
     .4byte 0x00006B84
 .Ljp_08003714:
     .4byte 0x00006CE8
-    .section .text.intro_scene_post, "ax", %progbits
-    .thumb
-    .align 2, 0
-    .global func_0800374C
-    .thumb_func
-func_0800374C:
-    push	{r4, lr}
-    sub	sp, #12
-    adds	r4, r0, #0
-    ldr	r1, [r1, #4]
-    mov	r0, sp
-    bl func_08000D64
-    ldr	r2, [sp, #0]
-    mov	r0, sp
-    str	r0, [sp, #4]
-    str	r2, [sp, #8]
-    adds	r1, r0, #0
-    movs	r0, #0
-    str	r0, [r1, #0]
-    str	r2, [r4, #0]
-    ldr	r1, [sp, #0]
-    cmp	r1, #0
-    beq .Ljp_0800379C
-    ldr	r0, [r1, #0]
-    ldr	r2, [r0, #8]
-    adds	r0, r1, #0
-    movs	r1, #3
-    bl _call_via_r2
-.Ljp_0800379C:
-    adds	r0, r4, #0
-    add	sp, #12
-    pop	{r4}
-    pop	{r1}
-    bx	r1
-    .align 2, 0
     .else
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
@@ -11240,36 +11205,4 @@ func_080035C0: @ 0x080035C0
 .L080036F0: .4byte 0x00006B84
 .L080036F4: .4byte 0x00006CE8
 
-    .section .text.intro_scene_post, "ax", %progbits
-    thumb_func_start func_0800374C
-func_0800374C: @ 0x0800374C
-    push {r4, lr}
-    sub sp, #0xc
-    adds r4, r0, #0
-    ldr r1, [r1, #4]
-    mov r0, sp
-    bl func_08000D64
-    ldr r2, [sp]
-    mov r0, sp
-    str r0, [sp, #4]
-    str r2, [sp, #8]
-    adds r1, r0, #0
-    movs r0, #0
-    str r0, [r1]
-    str r2, [r4]
-    ldr r1, [sp]
-    cmp r1, #0
-    beq .L0800377C
-    ldr r0, [r1]
-    ldr r2, [r0, #8]
-    adds r0, r1, #0
-    movs r1, #3
-    bl _call_via_r2
-.L0800377C:
-	adds r0, r4, #0
-	add sp, #0xc
-	pop {r4}
-	pop {r1}
-	bx r1
-	.align 2, 0
     .endif

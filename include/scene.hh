@@ -26,6 +26,7 @@ struct SceneTransitionOwnerTransfer
 
     SceneTransitionOwnerTransfer(SceneTransitionOwner * owner, SceneTransition * transition)
         : source(owner), value(transition) {}
+    SceneTransition * release();
 };
 
 // Both owners occupy one word. SceneMain currently implements their moves and
@@ -65,7 +66,7 @@ struct SceneTransitionOwner
 
     explicit SceneTransitionOwner(SceneTransition * transition = nullptr) : value(transition) {}
     SceneTransitionOwner(SceneTransitionOwner & other) : value(other.release()) {}
-    SceneTransitionOwner(SceneTransitionOwnerTransfer transfer) : value(transfer.value) {}
+    SceneTransitionOwner(SceneTransitionOwnerTransfer transfer);
     ~SceneTransitionOwner();
 
     SceneTransition * get() const { return value; }
@@ -78,9 +79,9 @@ struct SceneTransitionOwner
     }
     operator SceneTransitionOwnerTransfer()
     {
-        SceneTransitionOwnerTransfer transfer(this, value);
-        transfer.source->value = nullptr;
-        return transfer;
+        // The descriptor is consumed by the receiving owner, which captures
+        // its pointer before clearing the source owner.
+        return SceneTransitionOwnerTransfer(this, value);
     }
 };
 
@@ -126,6 +127,16 @@ inline void SceneOwner::reset(AScene * scene)
 }
 
 inline SceneTransitionOwner::~SceneTransitionOwner() { delete value; }
+
+inline SceneTransition * SceneTransitionOwnerTransfer::release()
+{
+    SceneTransition * transition = value;
+    source->value = nullptr;
+    return transition;
+}
+
+inline SceneTransitionOwner::SceneTransitionOwner(SceneTransitionOwnerTransfer transfer)
+    : value(transfer.release()) {}
 
 extern "C" void SceneMain(SceneOwner scene);
 

@@ -2,6 +2,7 @@
 #define INTRO_SCENE_HH
 
 #include "prelude.h"
+#include "scene.hh"
 
 typedef void (*IntroSceneVTableFunction)(void);
 
@@ -35,6 +36,8 @@ EXTERN_C
 extern IntroSceneVTableFunction const vtable_unk_080E5A18[];
 GameIntroScene * ConstructGameIntroScene(GameIntroScene * scene);
 void DestroyGameIntroScene(GameIntroScene * scene, int flags);
+SceneTransitionOwner RunGameIntroScene(GameIntroScene * scene);
+SceneTransitionOwner func_08000D64(IntroSceneCorePrefix * core);
 
 EXTERN_C_END
 

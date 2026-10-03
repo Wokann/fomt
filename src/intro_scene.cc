@@ -26,3 +26,8 @@ void DestroyGameIntroScene(GameIntroScene * scene, int flags)
         core->vtable->destroy(core, 3);
     func_080007EC(scene, flags);
 }
+
+SceneTransitionOwner RunGameIntroScene(GameIntroScene * scene)
+{
+    return func_08000D64(scene->core);
+}
