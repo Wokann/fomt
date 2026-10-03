@@ -70,7 +70,8 @@ EXTERN_C
 
 void func_080088B8(void * const * state);
 u16 func_080088C4(void * const * state);
-u16 func_080088CC(void * const * state);
+// The halfword input field is returned zero-extended in the ARM ABI word.
+u32 func_080088CC(void * const * state);
 u16 func_080088D4(void * const * state);
 void * func_080088DC(void * const * state);
 

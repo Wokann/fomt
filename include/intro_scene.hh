@@ -90,13 +90,16 @@ struct IntroSceneCore
     IntroSceneHardwareStateHandle state_handle_6D18;
     IntroSceneHardwarePoolHandle pool_handle_6D20;
     u32 run_state;
-    u32 unk_6D2C;
-    u32 unk_6D30;
+    i32 startup_hold_frames;
+    u16 unk_6D30;
+    i16 startup_phase;
 };
 
 typedef char IntroSceneCoreSizeCheck[(sizeof(IntroSceneCore) == 0x6D34) ? 1 : -1];
 typedef char IntroSceneCoreContinuationOffsetCheck[(offsetof(IntroSceneCore, continuation) == 0x6C6E) ? 1 : -1];
 typedef char IntroSceneCoreRunStateOffsetCheck[(offsetof(IntroSceneCore, run_state) == 0x6D28) ? 1 : -1];
+typedef char IntroSceneCoreStartupHoldOffsetCheck[(offsetof(IntroSceneCore, startup_hold_frames) == 0x6D2C) ? 1 : -1];
+typedef char IntroSceneCoreStartupPhaseOffsetCheck[(offsetof(IntroSceneCore, startup_phase) == 0x6D32) ? 1 : -1];
 typedef char IntroSceneResourceStateSizeCheck[(sizeof(IntroSceneResourceState) == 0x20) ? 1 : -1];
 typedef char IntroSceneCoreArchiveOffsetCheck[(offsetof(IntroSceneCore, intro_archive) == 0x6A10) ? 1 : -1];
 typedef char IntroSceneCoreResourcesOffsetCheck[(offsetof(IntroSceneCore, resources) == 0x6AA0) ? 1 : -1];
@@ -126,7 +129,8 @@ extern u8 const gIntroSceneSmallIndexedArchive[];
 extern u8 const gActorIndexedResourceArchive[];
 extern IntroSceneVTableFunction const vtable_unk_080E5A18[];
 IntroSceneCore * ConstructIntroSceneCore(void * core) SECTION(".text.intro_scene_core_constructor");
-void func_08000E1C(IntroSceneCore * core);
+void StartIntroSceneCore(IntroSceneCore * core) SECTION(".text.intro_scene_core_startup");
+void func_08000F5C(IntroSceneCore * core);
 int func_08000FF8(IntroSceneCore * core);
 GameIntroScene * ConstructGameIntroScene(GameIntroScene * scene);
 void DestroyGameIntroScene(GameIntroScene * scene, int flags);

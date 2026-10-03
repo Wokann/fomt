@@ -2,6 +2,9 @@
 #include "hardware.hh"
 #include "hardware_allocator.hh"
 #include "hardware_bootstrap.hh"
+#include "hardware_blend_object.hh"
+#include "hardware_display_output.hh"
+#include "hardware_state_accessors.hh"
 
 EXTERN_C
 
@@ -108,7 +111,7 @@ IntroSceneCore * ConstructIntroSceneCore(void * object)
     InitializeIntroSceneHardwareStateHandle(&core->state_handle_6D18, 2);
     InitializeIntroSceneHardwarePoolHandle(&core->pool_handle_6D20);
     core->run_state = 0;
-    core->unk_6D2C = 0;
+    core->startup_hold_frames = 0;
     core->unk_6C6D = 0;
     core->continuation = 0;
     return core;
@@ -143,7 +146,7 @@ SceneTransitionOwner RunIntroSceneCore(IntroSceneCore * core)
         switch (core->run_state)
         {
         case 0:
-            func_08000E1C(core);
+            StartIntroSceneCore(core);
             core->run_state = 1;
             break;
         case 1:
@@ -159,6 +162,61 @@ choose_continuation:
         return SceneTransitionOwner(new IntroNameEntryTransition);
     else
         return SceneTransitionOwner(new IntroMenuTransition);
+}
+
+static inline void QueueIntroSceneBlend(IntroSceneCore * core, HardwareBlendOwner const & owner)
+{
+    u8 * list = func_08008940(reinterpret_cast<void * const *>(core));
+    void * const * vtable = *reinterpret_cast<void * const **>(list + 8);
+    ((void (*)(u8 *, HardwareBlendObject *))vtable[4])(list, owner.object);
+}
+
+void StartIntroSceneCore(IntroSceneCore * core)
+{
+    func_08008724(reinterpret_cast<HardwareBootstrap *>(core));
+    func_08000F5C(core);
+    reinterpret_cast<HardwareDisplayState *>(
+        func_08008918(reinterpret_cast<void * const *>(core)))->SetBlendControl(0x3F);
+
+    HardwareBlendOwner owner(new HardwareBlendObject(
+        func_08008918(reinterpret_cast<void * const *>(core))));
+    func_0800934C(&owner.object->blend, 0x889, 1, 0);
+    QueueIntroSceneBlend(core, owner);
+    core->startup_phase = 0;
+    func_08008B6C(core->music_players, 0);
+
+    bool finished = false;
+    do
+    {
+        func_080087C8(reinterpret_cast<HardwareBootstrap *>(core));
+        func_080088B8(reinterpret_cast<void * const *>(core));
+        switch (core->startup_phase)
+        {
+        case 0:
+            if (!owner.IsQueued())
+            {
+                core->startup_hold_frames = 120;
+                core->startup_phase = 1;
+            }
+            break;
+        case 1:
+            --core->startup_hold_frames;
+            // START skips the hold, but both fades still run to completion.
+            if (static_cast<u16>(func_080088CC(reinterpret_cast<void * const *>(core)) & 8))
+                core->startup_hold_frames = 0;
+            if (core->startup_hold_frames <= 0)
+            {
+                func_08009378(&owner.object->blend, 0x889, 1, 0);
+                QueueIntroSceneBlend(core, owner);
+                core->startup_phase = 2;
+            }
+            break;
+        case 2:
+            if (!owner.IsQueued())
+                finished = true;
+            break;
+        }
+    } while (!finished);
 }
 
 SceneOwner IntroNameEntryTransition::CreateScene()
