@@ -119,7 +119,7 @@ func_08010158:
 .Ljp_0801016A:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -453,7 +453,7 @@ func_08010158: @ 0x08010158
 .L0801018A:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0

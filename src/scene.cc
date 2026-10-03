@@ -4,4 +4,15 @@ AScene::~AScene() {}
 
 SceneTransition::~SceneTransition() {}
 
-EC void func_080007EC() ALIAS(_._6AScene);
+void SceneMain(SceneOwner scene)
+{
+    while (scene.get() != nullptr)
+    {
+        SceneTransitionOwner transition = scene->Run();
+        scene = nullptr;
+        if (transition.get() == nullptr)
+            break;
+        SceneOwner next = transition->CreateScene();
+        scene = next;
+    }
+}

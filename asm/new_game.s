@@ -2529,7 +2529,7 @@ func_08004BDC:
 .Ljp_08004C10:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -2584,7 +2584,7 @@ func_08004C54:
     push {lr}
     ldr r2, .Ljp_08004C8C
     str r2, [r0]
-    bl func_080007EC
+    bl _._6AScene
     pop {r0}
     bx r0
     .align 2, 0
@@ -4112,7 +4112,7 @@ func_080059D0:
 .Ljp_080059EC:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -7186,7 +7186,7 @@ func_080070A4:
 .Ljp_080070C0:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -9760,7 +9760,7 @@ func_08004BDC: @ 0x08004BDC
 .L08004BF8:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -9812,7 +9812,7 @@ func_08004C54: @ 0x08004C54
     push {lr}
     ldr r2, .L08004C64 @ =vtable_unk_080E5A88
     str r2, [r0]
-    bl func_080007EC
+    bl _._6AScene
     pop {r0}
     bx r0
     .align 2, 0
@@ -11474,7 +11474,7 @@ func_080059D0: @ 0x080059D0
 .L080059EC:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -16530,7 +16530,7 @@ func_080070A4: @ 0x080070A4
 .L080070C0:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0

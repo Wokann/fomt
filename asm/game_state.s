@@ -3492,7 +3492,7 @@ func_08011FE8:
 .Ljp_08011EE2:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -26960,7 +26960,7 @@ func_08011FE8: @ 0x08011FE8
 .L08012012:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0

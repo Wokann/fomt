@@ -3,7 +3,6 @@
 EXTERN_C
 
 IntroSceneCorePrefix * func_08000914(void * core);
-void func_080007EC(GameIntroScene * scene, int flags);
 
 EXTERN_C_END
 
@@ -24,7 +23,7 @@ void DestroyGameIntroScene(GameIntroScene * scene, int flags)
     IntroSceneCorePrefix * core = scene->core;
     if (core != nullptr)
         core->vtable->destroy(core, 3);
-    func_080007EC(scene, flags);
+    DestroySceneBase(reinterpret_cast<AScene *>(scene), flags);
 }
 
 SceneTransitionOwner RunGameIntroScene(GameIntroScene * scene)

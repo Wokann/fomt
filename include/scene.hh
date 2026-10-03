@@ -17,6 +17,7 @@ struct SceneOwnerTransfer
 
     SceneOwnerTransfer(SceneOwner * owner, AScene * scene)
         : source(owner), value(scene) {}
+    AScene * release();
 };
 
 struct SceneTransitionOwnerTransfer
@@ -29,16 +30,16 @@ struct SceneTransitionOwnerTransfer
     SceneTransition * release();
 };
 
-// Both owners occupy one word. SceneMain currently implements their moves and
-// destruction in ASM; these module-specific types describe that ABI without
-// assigning the same unverified ownership semantics to unrelated pointers.
+// Both owners occupy one word. Their two-word transfer descriptors are
+// consumed by the receiving owner; unrelated pointer wrappers do not share
+// these scene-specific ownership operations.
 struct SceneOwner
 {
     AScene * value;
 
     explicit SceneOwner(AScene * scene = nullptr) : value(scene) {}
     SceneOwner(SceneOwner & other) : value(other.release()) {}
-    SceneOwner(SceneOwnerTransfer transfer) : value(transfer.value) {}
+    SceneOwner(SceneOwnerTransfer transfer);
     ~SceneOwner();
 
     SceneOwner & operator=(SceneOwner & other);
@@ -54,9 +55,7 @@ struct SceneOwner
     void reset(AScene * scene = nullptr);
     operator SceneOwnerTransfer()
     {
-        SceneOwnerTransfer transfer(this, value);
-        transfer.source->value = nullptr;
-        return transfer;
+        return SceneOwnerTransfer(this, value);
     }
 };
 
@@ -100,6 +99,16 @@ struct SceneTransition
 
 inline SceneOwner::~SceneOwner() { delete value; }
 
+inline AScene * SceneOwnerTransfer::release()
+{
+    AScene * scene = value;
+    source->value = nullptr;
+    return scene;
+}
+
+inline SceneOwner::SceneOwner(SceneOwnerTransfer transfer)
+    : value(transfer.release()) {}
+
 inline SceneOwner & SceneOwner::operator=(SceneOwner & other)
 {
     AScene * scene = other.release();
@@ -139,5 +148,9 @@ inline SceneTransitionOwner::SceneTransitionOwner(SceneTransitionOwnerTransfer t
     : value(transfer.release()) {}
 
 extern "C" void SceneMain(SceneOwner scene);
+
+// Direct ABI declaration of the compiler-generated base destructor. The
+// ABI-compatible derived destroyer forwards its original flags here.
+extern "C" void DestroySceneBase(AScene * scene, int flags) asm("_._6AScene");
 
 #endif // SCENE_HH

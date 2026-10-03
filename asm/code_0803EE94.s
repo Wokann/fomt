@@ -10283,7 +10283,7 @@ func_080521BC: @ 0x08051F4C
 .Ljp_08051F7A:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -15952,7 +15952,7 @@ func_08057BAC:
 .Ljp_08057BDA:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -21473,7 +21473,7 @@ func_0805CC44:
     .Lauto_0805CC72:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -22466,7 +22466,7 @@ func_0805E39C:
     .Lauto_0805E3CA:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -25062,7 +25062,7 @@ func_0805FA48:
 .L0805FD32:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -47164,7 +47164,7 @@ func_08069E58:
 .Ljp_08069D16:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -54851,7 +54851,7 @@ func_0806D918:
 .Ljp_0806D72C:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -56783,7 +56783,7 @@ func_0806EA00:
 .Ljp_0806E678:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -60897,7 +60897,7 @@ func_080709D8:
 .Ljp_08070650:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -71129,7 +71129,7 @@ func_0807561C: @ 0x08075278
 .Ljp_080752A6:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -89593,7 +89593,7 @@ func_0807E9AC: @ 0x0807E9AC
 .Ljp_0807E9DA:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -90560,7 +90560,7 @@ func_0807F118: @ 0x0807F118
 .Ljp_0807F146:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -91215,7 +91215,7 @@ func_0807FFF4: @ 0x0807FFF4
 .Ljp_08080022:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -92379,7 +92379,7 @@ func_0808093C: @ 0x0808093C
 .Ljp_0808096A:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -93927,7 +93927,7 @@ func_080815E8: @ 0x080815E8
 .Ljp_08081616:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -94791,7 +94791,7 @@ func_08081CBC: @ 0x08081CBC
 .Ljp_08081CEA:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -97972,7 +97972,7 @@ func_08083664: @ 0x08083664
 .Ljp_08083692:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -99259,7 +99259,7 @@ func_080850A0: @ 0x080850A0
 .Ljp_080850CE:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -102821,7 +102821,7 @@ func_08087CEC: @ 0x08087CEC
 .Ljp_08087D1A:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -105450,7 +105450,7 @@ func_0808A6A8:
 .Ljp_0808A6D6:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -108287,7 +108287,7 @@ func_0808C0DC:
     .Lauto_0808C10A:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -109514,7 +109514,7 @@ func_0808E848:
 .Ljp_0808E876:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -113167,7 +113167,7 @@ func_080909C4:
 .Ljp_080909F2:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -114468,7 +114468,7 @@ func_08092090:
 .Ljp_080920BE:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -115808,7 +115808,7 @@ func_08092CAC:
 .Ljp_08092CDA:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -116178,7 +116178,7 @@ func_08093554:
 .Ljp_08093582:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -121362,7 +121362,7 @@ func_08099F50:
 .Ljp_08099F7E:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -157356,7 +157356,7 @@ func_080521BC: @ 0x080521BC
 .L080521EA:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -168819,7 +168819,7 @@ func_08057E1C: @ 0x08057E1C
 .L08057E4A:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -178718,7 +178718,7 @@ func_0805CEFC: @ 0x0805CEFC
 .L0805CF2A:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -181566,7 +181566,7 @@ func_0805E658: @ 0x0805E658
 .L0805E686:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -184157,7 +184157,7 @@ func_0805FD04: @ 0x0805FD04
 .L0805FD32:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -205938,7 +205938,7 @@ func_08069E58: @ 0x08069E58
 .L08069E86:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -213555,7 +213555,7 @@ func_0806D918: @ 0x0806D918
 .L0806D934:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -215834,7 +215834,7 @@ func_0806EA00: @ 0x0806EA00
 .L0806EA1C:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -219900,7 +219900,7 @@ func_080709D8: @ 0x080709D8
 .L080709F4:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -230750,7 +230750,7 @@ func_0807561C: @ 0x0807561C
 .L0807564A:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -247202,7 +247202,7 @@ func_0807DD68: @ 0x0807DD68
 .L0807DD96:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -249228,7 +249228,7 @@ func_0807EE44: @ 0x0807EE44
 .L0807EE72:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -250172,7 +250172,7 @@ func_0807F5B0: @ 0x0807F5B0
 .L0807F5DE:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -252012,7 +252012,7 @@ func_0808048C: @ 0x0808048C
 .L080804BA:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -253154,7 +253154,7 @@ func_08080DC4: @ 0x08080DC4
 .L08080DF2:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -254699,7 +254699,7 @@ func_08081A70: @ 0x08081A70
 .L08081A9E:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -255558,7 +255558,7 @@ func_08082144: @ 0x08082144
 .L08082172:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -258727,7 +258727,7 @@ func_08083AEC: @ 0x08083AEC
 .L08083B1A:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -261342,7 +261342,7 @@ func_08085528: @ 0x08085528
 .L08085556:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -267123,7 +267123,7 @@ func_080881AC: @ 0x080881AC
 .L080881DA:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -271981,7 +271981,7 @@ func_0808AB68: @ 0x0808AB68
 .L0808AB96:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -275037,7 +275037,7 @@ func_0808C59C: @ 0x0808C59C
 .L0808C5CA:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -279566,7 +279566,7 @@ func_0808ED08: @ 0x0808ED08
 .L0808ED36:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -283363,7 +283363,7 @@ func_08090E84: @ 0x08090E84
 .L08090EB2:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -286122,7 +286122,7 @@ func_080925C4: @ 0x080925C4
 .L080925F2:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -287649,7 +287649,7 @@ func_080931E0: @ 0x080931E0
 .L0809320E:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -288662,7 +288662,7 @@ func_08093A88: @ 0x08093A88
 .L08093AB6:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -302289,7 +302289,7 @@ func_0809A518: @ 0x0809A518
 .L0809A546:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0

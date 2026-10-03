@@ -75,8 +75,6 @@ SECTIONS
         src/sram_proxy_2.o(.text);
         . = 0x7EC; /* JP ROM 0x080007EC, independently matched */
         src/scene.o(.text);
-        . = 0x82C; /* JP ROM 0x0800082C, independently matched */
-        asm/scene.o(.text);
         . = 0x914; /* JP ROM 0x08000914, independently matched */
         asm/intro_scene.o(.text);
         src/intro_scene.o(.text);

@@ -14764,7 +14764,7 @@ func_080DC404:
     .Lauto_080DBBD0:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -19545,7 +19545,7 @@ func_080E0908:
     bl func_080086BC
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -19554,7 +19554,7 @@ func_080E0908:
     .thumb_func
 func_080E09B0:
     push {lr}
-    bl func_080007EC
+    bl _._6AScene
     pop {r0}
     bx r0
     .byte 0x00, 0x00
@@ -28755,7 +28755,7 @@ func_080DC404: @ 0x080DC404
 .L080DC41C:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -37549,7 +37549,7 @@ func_080E0908: @ 0x080E0908
 	bl func_080086BC
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -37561,7 +37561,7 @@ func_080E0908: @ 0x080E0908
 	thumb_func_start func_080E09B0
 func_080E09B0: @ 0x080E09B0
 	push {lr}
-	bl func_080007EC
+	bl _._6AScene
 	pop {r0}
 	bx r0
 	.align 2, 0
@@ -43919,7 +43919,7 @@ func_080E3948:
     .Lauto_080E3972:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -43940,7 +43940,7 @@ func_080E3980:
     .Lauto_080E3998:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -43962,7 +43962,7 @@ func_080E39A8:
     .Lauto_080E39C0:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -52955,7 +52955,7 @@ func_080E41B0: @ 0x080E41B0
 .L080E41DA:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -52976,7 +52976,7 @@ func_080E41E8: @ 0x080E41E8
 .L080E4200:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -52998,7 +52998,7 @@ func_080E4210: @ 0x080E4210
 .L080E4228:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0

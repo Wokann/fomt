@@ -10589,7 +10589,7 @@ func_080A3BF4: @ 0x080A362C
 .Ljp_080A3C10:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -10630,7 +10630,7 @@ func_080A3C40: @ 0x080A3678
 .Ljp_080A3C5C:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -10671,7 +10671,7 @@ func_080A3C8C: @ 0x080A36C4
 .Ljp_080A3CA8:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -43870,7 +43870,7 @@ func_080B3640: @ 0x080B3640
 .Ljp_080B365C:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -62068,7 +62068,7 @@ func_080BC2F4: @ 0x080BC2F4
 .Ljp_080BC310:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -69019,7 +69019,7 @@ func_080C0770:
     .Lauto_080C078C:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -76899,7 +76899,7 @@ func_080C78F4:
     .Lauto_080C7910:
     adds r0, r4, #0
     adds r1, r5, #0
-    bl func_080007EC
+    bl _._6AScene
     pop {r4, r5}
     pop {r0}
     bx r0
@@ -102274,7 +102274,7 @@ func_080A3BF4: @ 0x080A3BF4
 .L080A3C10:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -102314,7 +102314,7 @@ func_080A3C40: @ 0x080A3C40
 .L080A3C5C:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -102354,7 +102354,7 @@ func_080A3C8C: @ 0x080A3C8C
 .L080A3CA8:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -135423,7 +135423,7 @@ func_080B3C0C: @ 0x080B3C0C
 .L080B3C28:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -153572,7 +153572,7 @@ func_080BC8C0: @ 0x080BC8C0
 .L080BC8DC:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -162359,7 +162359,7 @@ func_080C0D44: @ 0x080C0D44
 .L080C0D60:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -176905,7 +176905,7 @@ func_080C7ED0: @ 0x080C7ED0
 .L080C7EEC:
 	adds r0, r4, #0
 	adds r1, r5, #0
-	bl func_080007EC
+	bl _._6AScene
 	pop {r4, r5}
 	pop {r0}
 	bx r0
