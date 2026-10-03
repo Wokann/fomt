@@ -1,7 +1,7 @@
     @ JP Intro Scene IndexedResourceArchive: seven native tables.
     @ Format 120, ladder 36810121315; decoded SHA-256 f59d0e0791ea60134b32239b3108c09bfc53de6e384f024b7a0288df2af0c58a.
-    @ The native tile atlas preserves hidden/shared tile pixels. Complete
-    @ frame PNGs are additional editable inputs over this baseline.
+    @ Separate native 8bpp title and 4bpp frame PNGs preserve every tile.
+    @ Complete OAM frame PNGs are references, not competing build inputs.
 
     @ Table 1: 9 records, 4 bytes each.
     .4byte 9
@@ -72,28 +72,13 @@
 
     @ Table 4: 810 records, 32 bytes each.
     .4byte 810
-    .incbin "graphics/intro_scene/indexed_archive/jp/native_tiles.4bpp"
+    .incbin "graphics/intro_scene/indexed_archive/jp/title_tiles.8bpp"
+    .incbin "graphics/intro_scene/indexed_archive/jp/frame_tiles.4bpp"
 
     @ Table 5: 18 records, 32 bytes each.
     .4byte 18
-    .2byte 25368, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-    .2byte 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-    .2byte 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-    .2byte 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-    .2byte 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-    .2byte 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-    .2byte 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-    .2byte 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-    .2byte 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-    .2byte 0, 3275, 2351, 3408, 3474, 10674, 3540, 2549, 3573, 7767, 31947, 16057, 21275, 24413, 27517, 30687
-    .2byte 0, 3242, 4334, 2350, 3408, 4498, 5587, 3605, 31947, 11895, 18105, 20251, 23356, 26493, 29630, 31743
-    .2byte 0, 4300, 5359, 2384, 4466, 3508, 2549, 3573, 2583, 10838, 6809, 16024, 18171, 23355, 27550, 32767
-    .2byte 0, 6432, 8546, 31947, 10725, 16970, 20143, 8012, 22291, 25431, 1918, 10141, 28538, 21438, 30686, 32767
-    .2byte 0, 6432, 6624, 8739, 6820, 11884, 5863, 4904, 3883, 16144, 2897, 2903, 1886, 25464, 29629, 32767
-    .2byte 0, 5746, 3799, 20149, 2808, 1851, 21272, 862, 1918, 9118, 28539, 17342, 22463, 27615, 32734, 32767
-    .2byte 0, 6432, 31947, 12807, 2545, 4750, 3667, 4905, 695, 16051, 794, 20216, 862, 27514, 30653, 32767
-    .2byte 31775, 0, 24311, 17216, 20352, 22432, 22432, 21408, 23488, 24513, 25539, 29639, 28539, 32752, 32731, 32767
-    .2byte 992, 0, 2113, 4226, 8453, 11623, 13767, 14794, 16907, 20076, 22194, 24309, 26423, 29595, 31710, 32767
+    .incbin "graphics/intro_scene/indexed_archive/jp/palettes_00_15.gbapal"
+    .incbin "graphics/intro_scene/indexed_archive/jp/palettes_16_17.gbapal"
 
     @ Table 6: 0 records, 8 bytes each.
     .4byte 0

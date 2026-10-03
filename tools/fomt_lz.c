@@ -1354,9 +1354,10 @@ static void huff_byte_model(unsigned char const *source, size_t size,
 static void write_huff_atom_byte(BitWriter *writer, HuffModel const *model,
                                   unsigned value, unsigned symbol_bits);
 
-// The retail Huffman/LZ3 compressor orders equal-depth leaves by descending
-// literal frequency. Equal-frequency leaves can use symbol, source, or reverse
-// symbol order; this choice is encoding metadata, just like the LZ ladder.
+// The greedy Huffman/LZ compressor orders equal-depth leaves by descending
+// literal frequency. The default keeps selection-sort traversal; explicit
+// tie policies use first occurrence or reverse symbol order. This is an
+// encoding choice, just like the LZ ladder, not a saved tree or symbol list.
 static void huff_model_frequency_order(HuffModel *model,
                                         unsigned char const *literals,
                                         size_t literal_size, unsigned symbol_bits,
@@ -2633,47 +2634,77 @@ static unsigned char *encode_huff4_lz0(unsigned char const *source, size_t size,
     return packed;
 }
 
-static unsigned char *encode_huff_lz2(unsigned char const *source, size_t size,
-                                      LadderEntry const ladder[7],
-                                      unsigned symbol_bits, unsigned filter,
-                                      size_t *packed_size)
+static unsigned char *encode_huff_lz2_strategy(unsigned char const *source, size_t size,
+                                               LadderEntry const ladder[7],
+                                               unsigned symbol_bits, unsigned filter,
+                                               int greedy, size_t *packed_size)
 {
     if (!size || size > 0x40000)
         fail("Huffman/LZ2 source size must be in 1..0x40000");
     unsigned char *atoms = inverse_differential(source, size, filter);
-    Lz2Matches *matches = precompute_lz2_matches(atoms, size, ladder);
     unsigned char *literals = malloc(size);
     if (!literals)
         fail("out of memory");
     HuffModel model, next_model;
-    huff_byte_model(atoms, size, &model, symbol_bits, 0);
     Lz2Operation *operations = NULL;
     size_t operation_count = 0;
-    int converged = 0;
-    for (unsigned iteration = 0; iteration < 8; iteration++) {
-        operations = plan_huff_lz2(atoms, size, &model, ladder, matches,
-                                    symbol_bits, &operation_count);
+    if (greedy) {
+        operations = malloc(size * sizeof(*operations));
+        if (!operations)
+            fail("out of memory");
+        unsigned maximum_distance = ladder[6].start + (1u << ladder[6].width) - 1;
         size_t literal_size = 0;
-        size_t position = 0;
-        for (size_t index = 0; index < operation_count; index++) {
-            if (!operations[index].kind)
-                literals[literal_size++] = atoms[position];
-            position += operations[index].length;
+        for (size_t position = 0; position < size;) {
+            unsigned distance;
+            unsigned length = longest_match_lz2(atoms, size, position,
+                                                maximum_distance, &distance);
+            if (length < 3) {
+                operations[operation_count++] = (Lz2Operation){0, 1, 0, 0};
+                literals[literal_size++] = atoms[position++];
+            } else {
+                unsigned index = 0;
+                while (index < 7 &&
+                       distance >= ladder[index].start + (1u << ladder[index].width))
+                    index++;
+                if (index == 7)
+                    fail("Huffman/LZ2 match exceeds its distance ladder");
+                operations[operation_count++] = (Lz2Operation){1, length, index, distance};
+                position += length;
+            }
         }
-        huff_byte_model(literals, literal_size, &next_model, symbol_bits, 0);
-        if (huff_model_equal(&model, &next_model)) {
-            converged = 1;
-            break;
+        if (!literal_size)
+            fail("Huffman/LZ2 literal stream is empty");
+        huff_byte_model(literals, literal_size, &model, symbol_bits, 0);
+        huff_model_frequency_order(&model, literals, literal_size, symbol_bits, 0);
+    } else {
+        Lz2Matches *matches = precompute_lz2_matches(atoms, size, ladder);
+        huff_byte_model(atoms, size, &model, symbol_bits, 0);
+        int converged = 0;
+        for (unsigned iteration = 0; iteration < 8; iteration++) {
+            operations = plan_huff_lz2(atoms, size, &model, ladder, matches,
+                                        symbol_bits, &operation_count);
+            size_t literal_size = 0;
+            size_t position = 0;
+            for (size_t index = 0; index < operation_count; index++) {
+                if (!operations[index].kind)
+                    literals[literal_size++] = atoms[position];
+                position += operations[index].length;
+            }
+            huff_byte_model(literals, literal_size, &next_model, symbol_bits, 0);
+            if (huff_model_equal(&model, &next_model)) {
+                converged = 1;
+                break;
+            }
+            model = next_model;
+            free(operations);
+            operations = NULL;
         }
-        model = next_model;
-        free(operations);
-        operations = NULL;
+        if (!converged)
+            operations = plan_huff_lz2(atoms, size, &model, ladder, matches,
+                                        symbol_bits, &operation_count);
+        free(matches);
     }
-    if (!converged)
-        operations = plan_huff_lz2(atoms, size, &model, ladder, matches,
-                                    symbol_bits, &operation_count);
     free(literals);
-    free(matches);
 
     BitWriter writer = {0};
     write_bits(&writer, (filter << 5) | (symbol_bits == 4 ? 0x0Au : 0x12u), 8);
@@ -2691,7 +2722,9 @@ static unsigned char *encode_huff_lz2(unsigned char const *source, size_t size,
                 following++;
             }
             unsigned extended_cost = 1 + 3 + vli_bit_cost(run - 1, 4) + 1;
-            if (extended_cost < run) {
+            // Retail greedy streams use an extended run starting at nine
+            // literals. The iterative strategy selects it by bit cost.
+            if (greedy ? run >= 9 : extended_cost < run) {
                 write_bits(&writer, 1, 1);
                 write_bits(&writer, 7, 3);
                 write_vli_bits(&writer, run - 1, 4);
@@ -2739,10 +2772,20 @@ static unsigned char *encode_huff_lz2(unsigned char const *source, size_t size,
     return packed;
 }
 
+static unsigned char *encode_huff_lz2(unsigned char const *source, size_t size,
+                                      LadderEntry const ladder[7],
+                                      unsigned symbol_bits, unsigned filter,
+                                      size_t *packed_size)
+{
+    return encode_huff_lz2_strategy(source, size, ladder, symbol_bits, filter,
+                                     0, packed_size);
+}
+
 static void usage(void)
 {
     fail("usage: fomt-lz encode-lz0|encode-lz1|encode-lz2|encode-lz3|"
-         "encode-huff4-lz3|encode-huff8-lz3 SOURCE OUTPUT LADDER SLOT_SIZE "
+         "encode-huff4-lz2|encode-huff8-lz2|encode-huff4-lz3|encode-huff8-lz3 "
+         "SOURCE OUTPUT LADDER SLOT_SIZE "
          "[--literal-tail] [--filter=1..4] [--tie=first|reverse] "
          "[--parent-first] | "
          "rebuild-native SOURCE ORIGINAL OUTPUT [TAIL] | "
@@ -2993,6 +3036,8 @@ int main(int argc, char **argv)
         strcmp(argv[1], "encode-lz1") == 0 ||
         strcmp(argv[1], "encode-lz2") == 0 ||
         strcmp(argv[1], "encode-lz3") == 0 ||
+        strcmp(argv[1], "encode-huff4-lz2") == 0 ||
+        strcmp(argv[1], "encode-huff8-lz2") == 0 ||
         strcmp(argv[1], "encode-huff4-lz3") == 0 ||
         strcmp(argv[1], "encode-huff8-lz3") == 0) {
         int lz0 = strcmp(argv[1], "encode-lz0") == 0;
@@ -3000,6 +3045,8 @@ int main(int argc, char **argv)
         int lz2 = strcmp(argv[1], "encode-lz2") == 0;
         int huff4 = strcmp(argv[1], "encode-huff4-lz3") == 0;
         int huff8 = strcmp(argv[1], "encode-huff8-lz3") == 0;
+        int huff4_lz2 = strcmp(argv[1], "encode-huff4-lz2") == 0;
+        int huff8_lz2 = strcmp(argv[1], "encode-huff8-lz2") == 0;
         if (argc < 6 || argc > 9)
             usage();
         int literal_tail = 0;
@@ -3034,7 +3081,8 @@ int main(int argc, char **argv)
             }
         }
         LadderEntry ladder[7];
-        parse_ladder(argv[4], ladder, lz0 ? 2 : lz1 ? 4 : lz2 ? 7 : 3);
+        parse_ladder(argv[4], ladder, lz0 ? 2 : lz1 ? 4 :
+                     lz2 || huff4_lz2 || huff8_lz2 ? 7 : 3);
         unsigned slot_size = parse_size(argv[5]);
         size_t source_size, packed_size;
         unsigned char *source = read_file(argv[2], &source_size);
@@ -3045,20 +3093,26 @@ int main(int argc, char **argv)
             : lz1 ? encode_lz1(atoms, source_size, ladder, &packed_size)
             : lz2 ? encode_lz2(atoms, source_size, ladder, literal_tail, 9,
                          &packed_size)
+            : huff4_lz2 || huff8_lz2
+                ? encode_huff_lz2_strategy(atoms, source_size, ladder,
+                                            huff4_lz2 ? 4 : 8, 0, 1, &packed_size)
             : huff4 ? encode_huff4_lz3_greedy(atoms, source_size, ladder,
                                                tie_order, parent_first, &packed_size)
             : huff8 ? encode_huff8_lz3(atoms, source_size, ladder, &packed_size)
                     : encode_lz3(atoms, source_size, ladder, &packed_size);
-        if (huff4 || huff8) {
-            LadderEntry decoded_ladder[3];
+        if (huff4 || huff8 || huff4_lz2 || huff8_lz2) {
+            LadderEntry decoded_ladder[7];
             size_t decoded_size;
-            unsigned char *decoded = huff4
+            unsigned char *decoded = huff4_lz2 || huff8_lz2
+                ? decode_huff_lz2(packed, packed_size, decoded_ladder,
+                                   &decoded_size, huff4_lz2 ? 4 : 8)
+                : huff4
                 ? decode_huff_lz3(packed, packed_size, decoded_ladder,
                                    &decoded_size, 4)
                 : decode_huff8_lz3(packed, packed_size, decoded_ladder,
                                     &decoded_size);
             if (decoded_size != source_size || memcmp(decoded, atoms, source_size) != 0)
-                fail("encoded Huffman/LZ3 stream does not reproduce its source");
+                fail("encoded Huffman/LZ stream does not reproduce its source");
             free(decoded);
         }
         if (filter) {

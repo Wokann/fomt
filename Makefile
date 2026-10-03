@@ -418,7 +418,7 @@ ifneq (,$(filter gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal
 ALL_DEPS :=
 endif
 
-ifneq (,$(filter gfx-intro-indexed-archive gfx-intro-indexed-archive-test gfx-intro-indexed-archive-all gfx-intro-indexed-archive-edit-test,$(MAKECMDGOALS)))
+ifneq (,$(filter gfx-intro-indexed-archive gfx-intro-indexed-archive-test gfx-intro-indexed-archive-all,$(MAKECMDGOALS)))
 ALL_DEPS :=
 endif
 

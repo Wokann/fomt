@@ -52,45 +52,60 @@ generated `.4bpp.lz` files.
 `func_08000914` separately expands an `IndexedResourceArchive` immediately
 after the background stream. Unlike the twenty object-tile streams, this
 archive contains a complete native frame layout: animation selectors, 16-byte
-frame descriptors, eight-byte GBA OAM records, 4bpp tiles, BGR555 palettes,
+frame descriptors, eight-byte GBA OAM records, mixed-depth tiles, BGR555 palettes,
 and frame entries. The data proves complete OAM-composited PNG frames without
 inventing a layout sidecar.
 
-The authoritative PNG sources follow the actual localization layouts:
+Each of `indexed_archive/jp/`, `us_eu/`, and `de/` contains the actual
+regional sources. `title_tiles.png` stores 8bpp title tiles; `frame_tiles.png`
+stores 4bpp frame tiles. The OAM color-depth bit verifies the split. This
+replaces the old mixed-depth atlas incorrectly presented as a single 4bpp
+image. Every physical tile, including hidden and shared pixels, is retained.
+The PNG palette used to preview the title is not a palette compilation input.
 
-- `indexed_archive/jp/full/` has nine drawable JP frames;
-- `indexed_archive/us_eu/full/` has eight shared US/EU frames; and
-- `indexed_archive/de/full/` has eight DE frames.
+Independent `palettes_00_15.pal` and `palettes_16_17.pal` (JP) or
+`palettes_16_18.pal` (overseas) preserve the counted palette table, including
+its indexed zero banks. Ordinary gbagfx suffix rules generate adjacent
+`.8bpp`, `.4bpp`, and `.gbapal` files. The final image-grid cells and palette
+file sizes are controlled by the verified native counts, not extra ROM padding.
 
-Each archive also selects two descriptors without drawable OAM. They have no
-fabricated blank PNG; their unchanged table data remains in the source archive.
-The native seven-table layout is authored in `jp/archive.inc`,
-`us_eu/archive.inc`, and `de/archive.inc`. Each layout includes its group's
-`native_tiles.4bpp`, generated from `native_tiles.png`; this atlas preserves
-hidden pixels and shared-tile details that a composited frame cannot represent.
-The complete PNG frames remain additional editable inputs. Their visible-pixel
-edits are applied to the source-assembled archive using the native OAM records.
+The native seven-table layout remains in each group's `archive.inc`. It
+includes title tiles, frame tiles, then palettes in their physical order;
+descriptors without drawable OAM remain ordinary records. An assembly object
+under `build/` produces the source-adjacent decoded `archive.bin`; the
+compressed resource is `archive.lz`, directly included by ROM assembly.
+There is no Python frame overlay, duplicate decoded-edit stage, baserom
+extraction, or post-link patch in this archive's normal build.
 
-The intermediate decoded archive stays under `build/`. The C `fomt-lz` tool
-packs it to source-adjacent `archive.lz` using the checked-in
-`archive.original.lz` for the original codec and slot size. Unchanged content
-retains the exact publisher stream; an edit is strictly decoded and rejected
-if it exceeds that slot. JP uses `120` Huffman-4/LZ2; the overseas archives use
-`220` Huffman-8/LZ2. Assembly includes `archive.lz` directly. A normal resource
-build does not read a retail ROM or patch the linked image.
+JP's `120` Huffman-4/LZ2 stream is now encoded directly from `archive.bin` by
+the generic C `encode-huff4-lz2` command. Its greedy matches, literal grouping,
+and frequency-derived Huffman tree reproduce all `0x2D90` retail bytes.
+The command verifies its decoded output and rejects overflow. JP's
+`archive.original.lz` is audit-only, not a build input.
 
-| Source group | ROM start | Packed size | Native tiles |
-| --- | --- | ---: | ---: |
-| JP | `0x084CDBDC` | `0x2D90` | 810 |
-| US/EU | US `0x08747A74`, EU `0x08747AD0` | `0x2764` | 569 |
-| DE | `0x084CEEE8` | `0x275C` | 571 |
+US/EU and DE use `220` Huffman-8/LZ2. Their authoring and assembly paths are
+the same, but their Huffman tie ordering has not yet been reproduced. They
+still require `archive.original.lz` through `rebuild-native`; they are **not**
+counted as independent direct-compression builds. A correct decoded round trip
+or equal packed length is insufficient to claim byte-identical encoding.
+
+| Source group | ROM start | Packed size | 8bpp title tiles | 4bpp frame tiles |
+| --- | --- | ---: | ---: | ---: |
+| JP | `0x084CDBDC` | `0x2D90` | 361 | 88 |
+| US/EU | US `0x08747A74`, EU `0x08747AD0` | `0x2764` | 237 | 95 |
+| DE | `0x084CEEE8` | `0x275C` | 237 | 97 |
+
+The archive's tile count measures 32-byte OBJ units: an 8bpp tile occupies
+two units. Its unchanged total counts therefore remain 810, 569, and 571.
+`full/` holds nine JP or eight overseas OAM-composited reference images, not
+a second set of authoring inputs. `runtime_obj_palette.gbapal` is likewise
+a captured display reference; its low banks are loaded outside this archive.
 
 The ROM starts above are written with the GBA `0x08000000` base; the equivalent
 file offsets are `0x4CDBDC`, `0x747A74`, `0x747AD0`, and `0x4CEEE8`.
 
 ```console
 make gfx-intro-indexed-archive-all
-make gfx-intro-indexed-archive-edit-test
 ```
 
 The same initializer also consumes `small_indexed_archive/shared/full/`: a
