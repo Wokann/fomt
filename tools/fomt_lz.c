@@ -753,7 +753,7 @@ static unsigned char *decode_huff8_lz3(unsigned char const *packed, size_t packe
 }
 
 static int huff_build_less(HuffBuildNode const *nodes, int left, int right,
-                           int parent_first)
+                           int parent_first, int last_first)
 {
     if (nodes[left].frequency != nodes[right].frequency)
         return nodes[left].frequency < nodes[right].frequency;
@@ -762,7 +762,8 @@ static int huff_build_less(HuffBuildNode const *nodes, int left, int right,
     // creation order instead. No symbol or asset-specific tree is stored.
     if (parent_first && (nodes[left].symbol < 0) != (nodes[right].symbol < 0))
         return nodes[left].symbol < 0;
-    return nodes[left].serial < nodes[right].serial;
+    return last_first ? nodes[left].serial > nodes[right].serial
+                      : nodes[left].serial < nodes[right].serial;
 }
 
 static void huff_assign_depths(HuffBuildNode const *nodes, int node,
@@ -813,8 +814,9 @@ static void huff_balanced_lengths(uint64_t const frequency[256],
         lengths[symbols[index]] = shallow + (index >= shallow_count);
 }
 
-static void huff_model(unsigned char const *data, size_t size, HuffModel *model,
-                       unsigned symbol_bits, int parent_first)
+static void huff_model_strategy(unsigned char const *data, size_t size,
+                                HuffModel *model, unsigned symbol_bits,
+                                int parent_first, int last_first)
 {
     if (!size)
         fail("Huffman literal stream is empty");
@@ -835,6 +837,15 @@ static void huff_model(unsigned char const *data, size_t size, HuffModel *model,
         frequency[extra] = 1;
         order[count++] = extra;
     }
+    // This deterministic tie policy begins with alphabetic leaves and picks
+    // the last-created node among equal weights. It does not depend on an
+    // existing compressed tree or on a resource-specific symbol permutation.
+    if (last_first) {
+        unsigned index = 0;
+        for (unsigned symbol = 0; symbol < alphabet_size; symbol++)
+            if (frequency[symbol])
+                order[index++] = symbol;
+    }
     HuffBuildNode nodes[512];
     int active[512];
     unsigned node_count = 0;
@@ -847,13 +858,13 @@ static void huff_model(unsigned char const *data, size_t size, HuffModel *model,
     while (active_count > 1) {
         unsigned first = 0;
         for (unsigned index = 1; index < active_count; index++)
-            if (huff_build_less(nodes, active[index], active[first], parent_first))
+            if (huff_build_less(nodes, active[index], active[first], parent_first, last_first))
                 first = index;
         int left = active[first];
         active[first] = active[--active_count];
         unsigned second = 0;
         for (unsigned index = 1; index < active_count; index++)
-            if (huff_build_less(nodes, active[index], active[second], parent_first))
+            if (huff_build_less(nodes, active[index], active[second], parent_first, last_first))
                 second = index;
         int right = active[second];
         active[second] = active[--active_count];
@@ -883,11 +894,34 @@ static void huff_model(unsigned char const *data, size_t size, HuffModel *model,
         memset(lengths, 0, sizeof(lengths));
         huff_balanced_lengths(frequency, lengths, count, symbol_bits);
     }
+    unsigned symbols[256];
+    for (unsigned symbol = 0; symbol < alphabet_size; symbol++)
+        symbols[symbol] = symbol;
+    if (last_first) {
+        // Selection by depth before frequency also defines the order of tied
+        // leaves after earlier entries have moved. Sorting frequency first and
+        // only then visiting depths is a different, valid encoding policy.
+        for (unsigned left = 0; left < alphabet_size; left++) {
+            unsigned best = left;
+            for (unsigned right = left + 1; right < alphabet_size; right++) {
+                unsigned a = symbols[right], b = symbols[best];
+                unsigned a_depth = lengths[a] ? lengths[a] : symbol_bits * 2 + 1;
+                unsigned b_depth = lengths[b] ? lengths[b] : symbol_bits * 2 + 1;
+                if (a_depth < b_depth ||
+                    (a_depth == b_depth && frequency[a] > frequency[b]))
+                    best = right;
+            }
+            unsigned swap = symbols[left];
+            symbols[left] = symbols[best];
+            symbols[best] = swap;
+        }
+    }
     memset(model, 0, sizeof(*model));
     unsigned code = 0;
     for (unsigned length = 1; length <= symbol_bits * 2; length++) {
         code <<= 1;
-        for (unsigned symbol = 0; symbol < alphabet_size; symbol++) {
+        for (unsigned index = 0; index < alphabet_size; index++) {
+            unsigned symbol = symbols[index];
             if (lengths[symbol] != length)
                 continue;
             model->code[symbol] = code++;
@@ -897,6 +931,12 @@ static void huff_model(unsigned char const *data, size_t size, HuffModel *model,
         if (model->count[length - 1] >= alphabet_size)
             fail("Huffman depth count exceeds its native field");
     }
+}
+
+static void huff_model(unsigned char const *data, size_t size, HuffModel *model,
+                       unsigned symbol_bits, int parent_first)
+{
+    huff_model_strategy(data, size, model, symbol_bits, parent_first, 0);
 }
 
 static int huff_model_equal(HuffModel const *left, HuffModel const *right)
@@ -2361,12 +2401,15 @@ static Lz2Operation *plan_huff_lz2(unsigned char const *source, size_t size,
     return operations;
 }
 
-static void huff_byte_model(unsigned char const *source, size_t size,
-                            HuffModel *model, unsigned symbol_bits,
-                            int parent_first)
+static void huff_byte_model_strategy(unsigned char const *source, size_t size,
+                                     HuffModel *model, unsigned symbol_bits,
+                                     int parent_first, int last_first)
 {
     if (symbol_bits == 8) {
-        huff_model(source, size, model, 8, parent_first);
+        if (last_first)
+            huff_model_strategy(source, size, model, 8, parent_first, 1);
+        else
+            huff_model(source, size, model, 8, parent_first);
         return;
     }
     unsigned char *symbols = malloc(size * 2);
@@ -2376,8 +2419,18 @@ static void huff_byte_model(unsigned char const *source, size_t size,
         symbols[index * 2] = source[index] >> 4;
         symbols[index * 2 + 1] = source[index] & 15u;
     }
-    huff_model(symbols, size * 2, model, 4, parent_first);
+    if (last_first)
+        huff_model_strategy(symbols, size * 2, model, 4, parent_first, 1);
+    else
+        huff_model(symbols, size * 2, model, 4, parent_first);
     free(symbols);
+}
+
+static void huff_byte_model(unsigned char const *source, size_t size,
+                            HuffModel *model, unsigned symbol_bits,
+                            int parent_first)
+{
+    huff_byte_model_strategy(source, size, model, symbol_bits, parent_first, 0);
 }
 
 static void write_huff_atom_byte(BitWriter *writer, HuffModel const *model,
@@ -2703,7 +2756,8 @@ static unsigned char *encode_huff4_lz0(unsigned char const *source, size_t size,
 static unsigned char *encode_huff_lz2_strategy(unsigned char const *source, size_t size,
                                                LadderEntry const ladder[7],
                                                unsigned symbol_bits, unsigned filter,
-                                               int greedy, size_t *packed_size)
+                                               int greedy, int last_first,
+                                               size_t *packed_size)
 {
     if (!size || size > 0x40000)
         fail("Huffman/LZ2 source size must be in 1..0x40000");
@@ -2740,8 +2794,9 @@ static unsigned char *encode_huff_lz2_strategy(unsigned char const *source, size
         }
         if (!literal_size)
             fail("Huffman/LZ2 literal stream is empty");
-        huff_byte_model(literals, literal_size, &model, symbol_bits, 0);
-        huff_model_frequency_order(&model, literals, literal_size, symbol_bits, 0);
+        huff_byte_model_strategy(literals, literal_size, &model, symbol_bits, 0, last_first);
+        if (!last_first)
+            huff_model_frequency_order(&model, literals, literal_size, symbol_bits, 0);
     } else {
         Lz2Matches *matches = precompute_lz2_matches(atoms, size, ladder);
         huff_byte_model(atoms, size, &model, symbol_bits, 0);
@@ -2844,7 +2899,7 @@ static unsigned char *encode_huff_lz2(unsigned char const *source, size_t size,
                                       size_t *packed_size)
 {
     return encode_huff_lz2_strategy(source, size, ladder, symbol_bits, filter,
-                                     0, packed_size);
+                                     0, 0, packed_size);
 }
 
 static void usage(void)
@@ -2852,7 +2907,7 @@ static void usage(void)
     fail("usage: fomt-lz encode-lz0|encode-lz1|encode-lz2|encode-lz3|encode-huff4-lz0|"
          "encode-huff4-lz2|encode-huff8-lz2|encode-huff4-lz3|encode-huff8-lz3 "
          "SOURCE OUTPUT LADDER SLOT_SIZE "
-         "[--literal-tail] [--filter=1..4] [--tie=first|reverse] "
+         "[--literal-tail] [--filter=1..4] [--tie=first|reverse|last] "
          "[--parent-first] | "
          "rebuild-native SOURCE ORIGINAL OUTPUT [TAIL] | "
          "rebuild-huff8-lz3 SOURCE ORIGINAL OUTPUT LADDER SLOT_SIZE | "
@@ -2863,7 +2918,23 @@ static void usage(void)
          "verify-native SOURCE PACKED [TAIL] | "
          "verify-lz1|verify-lz2|verify-lz3|verify-huff4-lz0|verify-huff4-lz3|verify-huff8-lz3|"
          "verify-huff4-lz2|verify-huff8-lz2 SOURCE PACKED [LADDER] | "
-         "test-huff4-lz0");
+         "test-huff4-lz0|test-huff-lz2");
+}
+
+static void fill_codec_test_source(unsigned char *source, size_t size, unsigned pattern)
+{
+    unsigned random_state = 0x1234567u;
+    for (size_t byte = 0; byte < size; byte++) {
+        random_state = random_state * 1664525u + 1013904223u;
+        source[byte] = pattern == 0 ? 0
+            : pattern == 1 ? 0xFF
+            : pattern == 2 ? (unsigned char)byte
+            : pattern == 3 ? (unsigned char)(random_state >> 24)
+            : pattern == 4 ? (unsigned char)(byte % 2 ? 0xA5 : 0x5A)
+            : pattern == 5 ? (unsigned char)(byte / 65)
+            : pattern == 6 ? (unsigned char)((byte % 1027) * 73u)
+            : (unsigned char)(byte % 256 * 17u);
+    }
 }
 
 static void test_huff4_lz0(void)
@@ -2881,18 +2952,7 @@ static void test_huff4_lz0(void)
                 unsigned char *source = malloc(size);
                 if (!source)
                     fail("out of memory");
-                unsigned random_state = 0x1234567u;
-                for (size_t byte = 0; byte < size; byte++) {
-                    random_state = random_state * 1664525u + 1013904223u;
-                    source[byte] = pattern == 0 ? 0
-                        : pattern == 1 ? 0xFF
-                        : pattern == 2 ? (unsigned char)byte
-                        : pattern == 3 ? (unsigned char)(random_state >> 24)
-                        : pattern == 4 ? (unsigned char)(byte % 2 ? 0xA5 : 0x5A)
-                        : pattern == 5 ? (unsigned char)(byte / 65)
-                        : pattern == 6 ? (unsigned char)((byte % 1027) * 73u)
-                        : (unsigned char)(byte % 256 * 17u);
-                }
+                fill_codec_test_source(source, size, pattern);
                 size_t packed_size, decoded_size;
                 unsigned char *packed = encode_huff4_lz0_strategy(source, size,
                                                                    ladder, 1, &packed_size);
@@ -2915,10 +2975,61 @@ static void test_huff4_lz0(void)
     printf("Huffman-4/LZ0 source/decoder boundary cases: %u OK\n", cases);
 }
 
+static void test_huff_lz2(void)
+{
+    unsigned const sizes[] = {1, 2, 3, 4, 7, 8, 9, 16, 17, 18, 19, 20, 32,
+        63, 64, 65, 66, 67, 127, 128, 129, 255, 256, 257, 511, 512, 513,
+        1025, 1026, 1027, 4096};
+    char const *ladder_values[] = {"1,2,3,4,5,6,10", "2,4,5,6,7,8,11"};
+    unsigned cases = 0;
+    for (unsigned ladder_index = 0; ladder_index < 2; ladder_index++) {
+        LadderEntry ladder[7];
+        parse_ladder(ladder_values[ladder_index], ladder, 7);
+        for (unsigned symbol_bits = 4; symbol_bits <= 8; symbol_bits += 4) {
+            for (unsigned last_first = 0; last_first < 2; last_first++) {
+                for (unsigned index = 0; index < sizeof(sizes) / sizeof(*sizes); index++) {
+                    size_t size = sizes[index];
+                    for (unsigned pattern = 0; pattern < 8; pattern++) {
+                        unsigned char *source = malloc(size);
+                        if (!source)
+                            fail("out of memory");
+                        fill_codec_test_source(source, size, pattern);
+                        unsigned filters = size == 128 ? 5 : 1;
+                        for (unsigned filter = 0; filter < filters; filter++) {
+                            size_t packed_size, decoded_size;
+                            unsigned char *packed = encode_huff_lz2_strategy(source, size,
+                                ladder, symbol_bits, filter, 1, last_first, &packed_size);
+                            LadderEntry decoded_ladder[7];
+                            unsigned char *decoded = decode_huff_lz2(packed, packed_size,
+                                decoded_ladder, &decoded_size, symbol_bits);
+                            if (decoded_size != size || memcmp(source, decoded, size) ||
+                                memcmp(ladder, decoded_ladder, sizeof(ladder))) {
+                                fprintf(stderr, "Huffman/LZ2 case failed: ladder=%u symbol_bits=%u "
+                                    "last_first=%u size=%zu pattern=%u filter=%u\n", ladder_index,
+                                    symbol_bits, last_first, size, pattern, filter);
+                                fail("Huffman/LZ2 self-test failed");
+                            }
+                            free(decoded);
+                            free(packed);
+                            cases++;
+                        }
+                        free(source);
+                    }
+                }
+            }
+        }
+    }
+    printf("Huffman-4/8 LZ2 source/decoder boundary cases: %u OK\n", cases);
+}
+
 int main(int argc, char **argv)
 {
     if (argc == 2 && strcmp(argv[1], "test-huff4-lz0") == 0) {
         test_huff4_lz0();
+        return 0;
+    }
+    if (argc == 2 && strcmp(argv[1], "test-huff-lz2") == 0) {
+        test_huff_lz2();
         return 0;
     }
     if (argc < 4)
@@ -3198,6 +3309,10 @@ int main(int argc, char **argv)
                        strcmp(argv[index], "--tie=reverse") == 0) {
                 tie_order = 2;
                 tie_seen = 1;
+            } else if ((huff4_lz2 || huff8_lz2) && !tie_seen &&
+                       strcmp(argv[index], "--tie=last") == 0) {
+                tie_order = 3;
+                tie_seen = 1;
             } else {
                 usage();
             }
@@ -3219,7 +3334,8 @@ int main(int argc, char **argv)
                          &packed_size)
             : huff4_lz2 || huff8_lz2
                 ? encode_huff_lz2_strategy(atoms, source_size, ladder,
-                                            huff4_lz2 ? 4 : 8, 0, 1, &packed_size)
+                                            huff4_lz2 ? 4 : 8, 0, 1,
+                                            tie_order == 3, &packed_size)
             : huff4 ? encode_huff4_lz3_greedy(atoms, source_size, ladder,
                                                tie_order, parent_first, &packed_size)
             : huff8 ? encode_huff8_lz3(atoms, source_size, ladder, &packed_size)
