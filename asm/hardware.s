@@ -1417,7 +1417,7 @@ func_080087C8: @ 0x080087C8
     movs r1, #0
     str r1, [sp]
     str r1, [sp, #4]
-    ldr r0, .L080088A0 @ =vtable_unk_080E5AF0
+    ldr r0, .L080088A0 @ =gHardwareDisplayCommandVTable
     str r0, [sp, #8]
     str r2, [sp, #0xc]
     add r0, sp, #0x10
@@ -1425,14 +1425,14 @@ func_080087C8: @ 0x080087C8
     adds r2, #0x58
     str r1, [sp, #0x10]
     str r1, [r0, #4]
-    ldr r0, .L080088A4 @ =vtable_unk_080E5AE0
+    ldr r0, .L080088A4 @ =gHardwareSpriteBufferCommandVTable
     str r0, [sp, #0x18]
     str r2, [sp, #0x1c]
     add r6, sp, #0x20
     subs r2, #0x68
     str r1, [sp, #0x20]
     str r1, [r6, #4]
-    ldr r0, .L080088A8 @ =vtable_unk_080E5AD0
+    ldr r0, .L080088A8 @ =gHardwareDmaQueueCommandVTable
     str r0, [sp, #0x28]
     str r2, [sp, #0x2c]
     add r4, sp, #0x30
@@ -1500,9 +1500,9 @@ func_080087C8: @ 0x080087C8
     bx r0
     .align 2, 0
 .L0800889C: .4byte vtable_unk_080E5BE8
-.L080088A0: .4byte vtable_unk_080E5AF0
-.L080088A4: .4byte vtable_unk_080E5AE0
-.L080088A8: .4byte vtable_unk_080E5AD0
+.L080088A0: .4byte gHardwareDisplayCommandVTable
+.L080088A4: .4byte gHardwareSpriteBufferCommandVTable
+.L080088A8: .4byte gHardwareDmaQueueCommandVTable
 .L080088AC: .4byte vtable_unk_080E5BB4
 .L080088B0: .4byte vtable_unk_080E5BD8
 .L080088B4: .4byte 0x00000494

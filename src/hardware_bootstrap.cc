@@ -1,11 +1,12 @@
 #include "hardware_bootstrap.hh"
+#include "hardware_state_accessors.hh"
 #include "hardware_nested_accessors.hh"
+#include "hardware_oam_state.hh"
 #include "gbaio.h"
 #include <new>
 
 EXTERN_C
 extern void * vtable_unk_080E5B00[];
-extern void * vtable_unk_080E5AF0[];
 extern void func_08008AF0(void * object);
 extern void __builtin_delete(void * pointer);
 extern void free(void * pointer);
@@ -90,9 +91,9 @@ void func_08008724(struct HardwareBootstrap * owner)
     u16 * control = (u16 *)&state->display.control;
     u32 zero = 0;
     *control |= 0x80;
-    command.previous_slot = (void *)zero;
-    command.next = (void *)zero;
-    command.vtable = vtable_unk_080E5AF0;
+    command.previous_slot = (HardwareLink **)zero;
+    command.next = (HardwareLink *)zero;
+    command.vtable = &gHardwareDisplayCommandVTable;
     command.display = &state->display;
 
     void * manager = &state->manager;
@@ -110,9 +111,9 @@ void func_08008774(struct HardwareBootstrap * owner)
     u16 * control = (u16 *)&state->display.control;
     u32 zero = 0;
     *control &= 0xFF7F;
-    command.previous_slot = (void *)zero;
-    command.next = (void *)zero;
-    command.vtable = vtable_unk_080E5AF0;
+    command.previous_slot = (HardwareLink **)zero;
+    command.next = (HardwareLink *)zero;
+    command.vtable = &gHardwareDisplayCommandVTable;
     command.display = &state->display;
 
     void * manager = &state->manager;
@@ -121,4 +122,31 @@ void func_08008774(struct HardwareBootstrap * owner)
     ((void (*)(void *, struct HardwareDisplayCommand *))vtable[4])(object, &command);
     func_08008AF0(manager);
     func_080098AC(&command, 2);
+}
+
+u32 RunHardwareDisplayCommand(struct HardwareDisplayCommand * command)
+{
+    func_080096F0(command->display);
+    return 0;
+}
+
+u32 RunHardwareSpriteBufferCommand(struct HardwareSpriteBufferCommand * command)
+{
+    func_08009864(command->buffer);
+    return 0;
+}
+
+void DestroyHardwareDmaQueueCommand(struct HardwareDmaQueueCommand * command, u32 flags)
+{
+    func_080098AC(command, flags);
+}
+
+void DestroyHardwareSpriteBufferCommand(struct HardwareSpriteBufferCommand * command, u32 flags)
+{
+    func_080098AC(command, flags);
+}
+
+void DestroyHardwareDisplayCommand(struct HardwareDisplayCommand * command, u32 flags)
+{
+    func_080098AC(command, flags);
 }

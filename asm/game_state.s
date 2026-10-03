@@ -3254,20 +3254,20 @@ func_08011CD8:
     movs r2, #0
     str r2, [sp]
     str r2, [sp, #4]
-    ldr r0, .Ljp_08011D90 @ =vtable_unk_080E5AF0
+    ldr r0, .Ljp_08011D90 @ =gHardwareDisplayCommandVTable
     str r0, [sp, #8]
     str r3, [sp, #0xc]
     add r0, sp, #0x10
     mov r8, r0
     str r2, [sp, #0x10]
     str r2, [r0, #4]
-    ldr r0, .Ljp_08011D94 @ =vtable_unk_080E5AE0
+    ldr r0, .Ljp_08011D94 @ =gHardwareSpriteBufferCommandVTable
     str r0, [sp, #0x18]
     str r1, [sp, #0x1c]
     add r6, sp, #0x20
     str r2, [sp, #0x20]
     str r2, [r6, #4]
-    ldr r0, .Ljp_08011D98 @ =vtable_unk_080E5AD0
+    ldr r0, .Ljp_08011D98 @ =gHardwareDmaQueueCommandVTable
     str r0, [sp, #0x28]
     str r5, [sp, #0x2c]
     add r4, sp, #0x30
@@ -3335,9 +3335,9 @@ func_08011CD8:
     bx r0
     .align 2, 0
 .Ljp_08011D8C: .4byte vtable_unk_080E5BE8
-.Ljp_08011D90: .4byte vtable_unk_080E5AF0
-.Ljp_08011D94: .4byte vtable_unk_080E5AE0
-.Ljp_08011D98: .4byte vtable_unk_080E5AD0
+.Ljp_08011D90: .4byte gHardwareDisplayCommandVTable
+.Ljp_08011D94: .4byte gHardwareSpriteBufferCommandVTable
+.Ljp_08011D98: .4byte gHardwareDmaQueueCommandVTable
 .Ljp_08011D9C: .4byte vtable_unk_080E5BB4
 .Ljp_08011DA0: .4byte vtable_unk_080E5BD8
     .global func_08011DC4
@@ -26685,20 +26685,20 @@ func_08011CD8: @ 0x08011CD8
     movs r2, #0
     str r2, [sp]
     str r2, [sp, #4]
-    ldr r0, .L08011DB0 @ =vtable_unk_080E5AF0
+    ldr r0, .L08011DB0 @ =gHardwareDisplayCommandVTable
     str r0, [sp, #8]
     str r3, [sp, #0xc]
     add r0, sp, #0x10
     mov r8, r0
     str r2, [sp, #0x10]
     str r2, [r0, #4]
-    ldr r0, .L08011DB4 @ =vtable_unk_080E5AE0
+    ldr r0, .L08011DB4 @ =gHardwareSpriteBufferCommandVTable
     str r0, [sp, #0x18]
     str r1, [sp, #0x1c]
     add r6, sp, #0x20
     str r2, [sp, #0x20]
     str r2, [r6, #4]
-    ldr r0, .L08011DB8 @ =vtable_unk_080E5AD0
+    ldr r0, .L08011DB8 @ =gHardwareDmaQueueCommandVTable
     str r0, [sp, #0x28]
     str r5, [sp, #0x2c]
     add r4, sp, #0x30
@@ -26766,9 +26766,9 @@ func_08011CD8: @ 0x08011CD8
     bx r0
     .align 2, 0
 .L08011DAC: .4byte vtable_unk_080E5BE8
-.L08011DB0: .4byte vtable_unk_080E5AF0
-.L08011DB4: .4byte vtable_unk_080E5AE0
-.L08011DB8: .4byte vtable_unk_080E5AD0
+.L08011DB0: .4byte gHardwareDisplayCommandVTable
+.L08011DB4: .4byte gHardwareSpriteBufferCommandVTable
+.L08011DB8: .4byte gHardwareDmaQueueCommandVTable
 .L08011DBC: .4byte vtable_unk_080E5BB4
 .L08011DC0: .4byte vtable_unk_080E5BD8
 

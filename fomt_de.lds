@@ -427,6 +427,10 @@ SECTIONS
         asm/code_linkonce.o(.text.code_080D68C0);
         src/hardware.o(.text.hardware_free_list);
         asm/code_linkonce.o(.text.code_080D6DB8);
+        src/hardware_bootstrap.o(.text.hardware_frame_commands);
+        asm/code_linkonce.o(.text.hardware_dma_command);
+        src/hardware_bootstrap.o(.text.hardware_frame_command_cleanup);
+        asm/code_linkonce.o(.text.hardware_frame_commands_after);
         *(.gnu.linkonce.t.__as__5SheepRC5Sheep);
         *(.gnu.linkonce.t.__as__3CowRC3Cow);
         *(.gnu.linkonce.t.__as__9LivestockRC9Livestock);

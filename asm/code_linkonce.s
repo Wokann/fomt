@@ -7456,29 +7456,12 @@ func_080D772C:
     pop {r0}
     bx r0
     .byte 0x00, 0x00
-    .global func_080D780C
+    .section .text.hardware_dma_command, "ax", %progbits
+    .align 2, 0
+
+    .global RunHardwareDmaQueueCommand
     .thumb_func
-func_080D780C:
-    push {lr}
-    ldr r0, [r0, #0xc]
-    bl func_080096F0
-    movs r0, #0
-    pop {r1}
-    bx r1
-    .byte 0x00, 0x00
-    .global func_080D781C
-    .thumb_func
-func_080D781C:
-    push {lr}
-    ldr r0, [r0, #0xc]
-    bl func_08009864
-    movs r0, #0
-    pop {r1}
-    bx r1
-    .byte 0x00, 0x00
-    .global func_080D782C
-    .thumb_func
-func_080D782C:
+RunHardwareDmaQueueCommand:
     push {r4, lr}
     ldr r4, [r0, #0xc]
     movs r2, #0
@@ -7512,30 +7495,9 @@ func_080D782C:
     pop {r1}
     bx r1
     .byte 0x00, 0x00
-    .global func_080D7868
-    .thumb_func
-func_080D7868:
-    push {lr}
-    bl func_080098AC
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
-    .global func_080D7874
-    .thumb_func
-func_080D7874:
-    push {lr}
-    bl func_080098AC
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
-    .global func_080D7880
-    .thumb_func
-func_080D7880:
-    push {lr}
-    bl func_080098AC
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00, 0x70, 0xB5, 0x81, 0xB0, 0x06, 0x1C, 0x6D, 0x46, 0x01, 0x24, 0x01, 0x20, 0x29, 0xF7
+    .section .text.hardware_frame_commands_after, "ax", %progbits
+    .align 2, 0
+    .byte 0x70, 0xB5, 0x81, 0xB0, 0x06, 0x1C, 0x6D, 0x46, 0x01, 0x24, 0x01, 0x20, 0x29, 0xF7
     .byte 0x6A, 0xFA, 0x04, 0x40, 0x2C, 0x80, 0x30, 0x1C, 0x32, 0xF7, 0x97, 0xFC, 0x69, 0x46, 0x08, 0x88
     .byte 0x00, 0x28, 0x01, 0xD0, 0x29, 0xF7, 0x45, 0xFA, 0x01, 0xB0, 0x70, 0xBC, 0x01, 0xBC, 0x00, 0x47
     .byte 0x00, 0x00, 0x30, 0xB5, 0x04, 0x1C, 0x0D, 0x1C, 0x06, 0x48, 0xA0, 0x60, 0x20, 0x1C, 0x32, 0xF7
@@ -9908,28 +9870,11 @@ func_080D772C: @ 0x080D772C
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_080D780C
-func_080D780C: @ 0x080D780C
-	push {lr}
-	ldr r0, [r0, #0xc]
-	bl func_080096F0
-	movs r0, #0
-	pop {r1}
-	bx r1
-	.align 2, 0
+    .section .text.hardware_dma_command, "ax", %progbits
+    .align 2, 0
 
-	thumb_func_start func_080D781C
-func_080D781C: @ 0x080D781C
-	push {lr}
-	ldr r0, [r0, #0xc]
-	bl func_08009864
-	movs r0, #0
-	pop {r1}
-	bx r1
-	.align 2, 0
-
-	thumb_func_start func_080D782C
-func_080D782C: @ 0x080D782C
+	thumb_func_start RunHardwareDmaQueueCommand
+RunHardwareDmaQueueCommand: @ 0x080D782C
 	push {r4, lr}
 	ldr r4, [r0, #0xc]
 	movs r2, #0
@@ -9964,29 +9909,8 @@ func_080D782C: @ 0x080D782C
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_080D7868
-func_080D7868: @ 0x080D7868
-	push {lr}
-	bl func_080098AC
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080D7874
-func_080D7874: @ 0x080D7874
-	push {lr}
-	bl func_080098AC
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080D7880
-func_080D7880: @ 0x080D7880
-	push {lr}
-	bl func_080098AC
-	pop {r0}
-	bx r0
-	.align 2, 0
+    .section .text.hardware_frame_commands_after, "ax", %progbits
+    .align 2, 0
 .L080D788C:
 	push {r4, r5, r6, lr}
 	sub sp, #4
@@ -20534,7 +20458,7 @@ sub_080D8178: @ 0x080D8178
 	add r4, sp
 	str r2, [r4]
 	str r2, [r4, #4]
-	ldr r0, .L080D82E0 @ =vtable_unk_080E5AF0
+	ldr r0, .L080D82E0 @ =gHardwareDisplayCommandVTable
 	str r0, [r4, #8]
 	str r7, [r4, #0xc]
 	mov r5, sl
@@ -20674,7 +20598,7 @@ sub_080D8178: @ 0x080D8178
 	.align 2, 0
 .L080D82D8: .4byte 0xFFFFFA70
 .L080D82DC: .4byte 0x000004DC
-.L080D82E0: .4byte vtable_unk_080E5AF0
+.L080D82E0: .4byte gHardwareDisplayCommandVTable
 .L080D82E4: .4byte 0x0000046C
 .L080D82E8: .4byte 0x00000544
 .L080D82EC: .4byte 0x0000056C
