@@ -25,59 +25,33 @@ FONT_SHARED_DOUBLE_OFFSET_DE := 0x71F6A8
 FONT_SHARED_SINGLE_OFFSET := $(FONT_SHARED_SINGLE_OFFSET_$(GAME_REGION))
 FONT_SHARED_DOUBLE_OFFSET := $(FONT_SHARED_DOUBLE_OFFSET_$(GAME_REGION))
 
-# The dialogue-portrait archive has a shared tile/OAM/palette layout in every
-# retail localization. Its native tile PNG preserves pixels hidden behind OAM;
-# the complete indexed portraits remain the normal editable image sources.
-# The source archive is assembled from the same archive.inc linked into the ROM,
-# then portrait_archive.py applies the visible edits with shared-tile checks.
+# The dialogue-portrait archive has the same native layout in every region.
+# Author the physical tile atlas and independent PAL banks directly. Full OAM
+# portraits are reference views, not a second set of overlapping build inputs.
 PORTRAIT_SOURCE_DIR := graphics/portraits/shared
 PORTRAIT_FULL_IMAGES := $(wildcard $(PORTRAIT_SOURCE_DIR)/full/*.png)
-PORTRAIT_ARCHIVE_TOOL := tools/portrait_archive.py
-PORTRAIT_ARCHIVE_EDIT_TEST := tools/portrait_archive_edit_test.py
 PORTRAIT_ARCHIVE_LAYOUT := $(PORTRAIT_SOURCE_DIR)/archive.inc
 PORTRAIT_NATIVE_TILES := $(PORTRAIT_SOURCE_DIR)/native_tiles.4bpp
-PORTRAIT_SOURCE_ARCHIVE_OBJ := $(BUILD_DIR)/graphics/portraits/source_archive.o
-PORTRAIT_SOURCE_ARCHIVE_BIN := $(BUILD_DIR)/graphics/portraits/source_archive.bin
-PORTRAIT_TILE_BIN := $(PORTRAIT_SOURCE_DIR)/portrait_tiles.4bpp
+PORTRAIT_PALETTES := $(patsubst %.pal,%.gbapal,$(sort $(wildcard $(PORTRAIT_SOURCE_DIR)/palettes_*.pal)))
+PORTRAIT_TRAILER_PALETTE := $(PORTRAIT_SOURCE_DIR)/palette_trailer.gbapal
 PORTRAIT_ARCHIVE_LENGTH := 0x5E0A4
-PORTRAIT_ARCHIVE_SHA256 := 34c23aced1a4f23ba80d1429a87f4c8a7ca11b0458c61a37a6eb48731440bbd2
 PORTRAIT_ARCHIVE_OFFSET_JP := 0x2B3AE0
 PORTRAIT_ARCHIVE_OFFSET_US := 0x52D984
 PORTRAIT_ARCHIVE_OFFSET_EU := 0x52D9E0
 PORTRAIT_ARCHIVE_OFFSET_DE := 0x2B4A20
 PORTRAIT_ARCHIVE_OFFSET := $(PORTRAIT_ARCHIVE_OFFSET_$(GAME_REGION))
 
-# The actor archive is a separate IndexedResourceArchive whose first table
-# selects timed animation frames. Its native atlas retains pixels covered by
-# OAM, while complete frame PNGs remain editable inputs for visible pixels.
-# The source archive uses the same tables linked into the ROM.
-ACTOR_ARCHIVE_TOOL := tools/actor_archive.py
-ACTOR_ARCHIVE_EDIT_TEST := tools/actor_archive_edit_test.py
-ACTOR_SOURCE_DIRS := graphics/sprites/actor_archive
-ACTOR_FULL_IMAGES := $(foreach directory,$(ACTOR_SOURCE_DIRS),$(wildcard $(directory)/full/*.png))
+# The actor archive uses one shared physical atlas, including covered pixels
+# and unreferenced descriptor tiles. Compile it directly with gbagfx, rather
+# than rebuilding a baseline archive and applying visible-frame patches.
 ACTOR_ARCHIVE_LAYOUT := graphics/sprites/actor_archive/archive.inc
 ACTOR_NATIVE_TILES := graphics/sprites/actor_archive/native_tiles.4bpp
-ACTOR_SOURCE_ARCHIVE_OBJ := $(BUILD_DIR)/graphics/sprites/actor_archive/source_archive.o
-ACTOR_SOURCE_ARCHIVE_BIN := $(BUILD_DIR)/graphics/sprites/actor_archive/source_archive.bin
-# Cover every native actor selector.  The archive exporter resolves selectors
-# through the native animation table, producing 2,963 referenced frame
-# descriptors; the 46 unreferenced descriptor slots have no game caller and
-# therefore are deliberately not treated as authored animation frames.
-ACTOR_ANIMATIONS := 0x000-0x9F6
-ACTOR_TILE_BIN := graphics/sprites/actor_archive/actor_tiles.4bpp
-ACTOR_ARCHIVE_LENGTH := 0xDB638
-ACTOR_ARCHIVE_SHA256 := 19a8733e132573478713e9b6e48e9650a702e62516209159787d26f270933736
-ACTOR_TILE_SHA256 := 5feee08fb08ead63211d9cc17dfc46c5b7f1722599aad36883c10ef3d18334f6
+ACTOR_PALETTES := $(patsubst %.pal,%.gbapal,$(sort $(wildcard graphics/sprites/actor_archive/palettes_*.pal)))
 ACTOR_TILE_OFFSET_JP := 0x329558
 ACTOR_TILE_OFFSET_US := 0x5A33FC
 ACTOR_TILE_OFFSET_EU := 0x5A3458
 ACTOR_TILE_OFFSET_DE := 0x32A498
-ACTOR_ARCHIVE_OFFSET_JP := 0x311B84
-ACTOR_ARCHIVE_OFFSET_US := 0x58BA28
-ACTOR_ARCHIVE_OFFSET_EU := 0x58BA84
-ACTOR_ARCHIVE_OFFSET_DE := 0x312AC4
 ACTOR_TILE_OFFSET := $(ACTOR_TILE_OFFSET_$(GAME_REGION))
-ACTOR_ARCHIVE_OFFSET := $(ACTOR_ARCHIVE_OFFSET_$(GAME_REGION))
 
 # UiSharedResourceData explicitly identifies this 0x120-byte VRAM payload and
 # its immediately following 32-byte palette.  It is a simple 24x24 linear
@@ -901,7 +875,8 @@ FARM_STATUS_TASK_UI_TILE_BASE_DE := 0x4D8168
 # per-object .incbin dependencies for incremental rebuilds.
 GRAPHICS_ASSETS = \
 	$(FONT_SHARED_SINGLE_BIN) $(FONT_REGION_DOUBLE_BIN) \
-	$(PORTRAIT_TILE_BIN) $(ACTOR_TILE_BIN) \
+	$(PORTRAIT_NATIVE_TILES) $(PORTRAIT_PALETTES) $(PORTRAIT_TRAILER_PALETTE) \
+	$(ACTOR_NATIVE_TILES) $(ACTOR_PALETTES) \
 	$(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN) \
 	$(FARM_STATUS_PACKED_BIN) $(FARM_STATUS_RESOURCE_ARCHIVE_ASSETS) \
 	$(COMMON_RESOURCE_ARCHIVE_ASSETS) $(SMALL_COMPANION_ARCHIVE_ASSETS) $(COOKING_UI_RESOURCE_ARCHIVE_ASSETS) \
@@ -954,29 +929,10 @@ $(FONT_SHARED_DOUBLE_PADDED): $(FONT_SHARED_DOUBLE_PNG) $(GFX_TOOL)
 $(FONT_SHARED_DOUBLE_BIN): $(FONT_SHARED_DOUBLE_PADDED) $(FONT_PAD)
 	@$(FONT_PAD) trim-grid-16x12-from-16x16 $< $@ 32 6922
 
-$(PORTRAIT_SOURCE_ARCHIVE_OBJ): $(PORTRAIT_ARCHIVE_LAYOUT) $(PORTRAIT_NATIVE_TILES)
-	@mkdir -p $(dir $@)
-	@$(AS) $(ASFLAGS) --defsym PORTRAIT_SOURCE_ARCHIVE=1 $< -o $@
-
-$(PORTRAIT_SOURCE_ARCHIVE_BIN): $(PORTRAIT_SOURCE_ARCHIVE_OBJ)
-	@$(OBJCOPY) -O binary $< $@
-
-$(PORTRAIT_TILE_BIN): $(PORTRAIT_ARCHIVE_TOOL) $(PORTRAIT_FULL_IMAGES) $(PORTRAIT_SOURCE_ARCHIVE_BIN)
-	@$(PYTHON) $(PORTRAIT_ARCHIVE_TOOL) $(PORTRAIT_SOURCE_ARCHIVE_BIN) --offset 0 --length $(PORTRAIT_ARCHIVE_LENGTH) --sha256 $(PORTRAIT_ARCHIVE_SHA256) rebuild-full --source $(PORTRAIT_SOURCE_DIR) --output $@
-
-# A 16-tile-wide PNG row needs two padding tiles after the 24,398 native tiles.
-# gbagfx emits only the counted native table, not those image-grid cells.
+# The 16-tile-wide atlases end with 14 and 2 unused image-grid cells.
+# Emit only the actual native table records through the generic PNG rule.
+$(PORTRAIT_NATIVE_TILES): GFX_TILE_COUNT := 11586
 $(ACTOR_NATIVE_TILES): GFX_TILE_COUNT := 24398
-
-$(ACTOR_SOURCE_ARCHIVE_OBJ): $(ACTOR_ARCHIVE_LAYOUT) $(ACTOR_NATIVE_TILES)
-	@mkdir -p $(dir $@)
-	@$(AS) $(ASFLAGS) --defsym ACTOR_SOURCE_ARCHIVE=1 $< -o $@
-
-$(ACTOR_SOURCE_ARCHIVE_BIN): $(ACTOR_SOURCE_ARCHIVE_OBJ)
-	@$(OBJCOPY) -O binary $< $@
-
-$(ACTOR_TILE_BIN): $(ACTOR_ARCHIVE_TOOL) $(PORTRAIT_ARCHIVE_TOOL) $(ACTOR_FULL_IMAGES) $(ACTOR_SOURCE_ARCHIVE_BIN)
-	@$(PYTHON) $(ACTOR_ARCHIVE_TOOL) $(ACTOR_SOURCE_ARCHIVE_BIN) --offset 0 --length $(ACTOR_ARCHIVE_LENGTH) --sha256 $(ACTOR_ARCHIVE_SHA256) rebuild --animations $(ACTOR_ANIMATIONS) --source $(ACTOR_SOURCE_DIRS) --output $@
 
 $(FARM_STATUS_TILES_BIN) $(FARM_STATUS_TILES_PALETTE0_BIN) &: $(FARM_STATUS_TILES_SOURCE) $(GFX_TOOL)
 	@$(GFX_TOOL) $(FARM_STATUS_TILES_SOURCE) $(FARM_STATUS_TILES_BIN)
@@ -1125,7 +1081,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 
 # Rebuild the active localization's verified font payloads without causing GNU
 # make to update every optional assembler dependency file in a fresh worktree.
-.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-actors-edit-test gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-resource-archive gfx-farm-status-winter gfx-farm-status-winter-test gfx-farm-status-winter-all gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-exterior-styles gfx-farm-status-exterior-styles-test gfx-farm-status-selector-icon gfx-farm-status-selector-icon-test gfx-farm-status-selector-icon-all gfx-clock-font gfx-clock-font-test gfx-clock-font-all gfx-farm-status-creature-icons gfx-farm-status-creature-icons-test gfx-farm-status-creature-icons-all gfx-farm-status-task-marker gfx-farm-status-task-marker-test gfx-farm-status-task-marker-all gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal-nonwinter-all gfx-seasonal-winter gfx-seasonal-winter-test gfx-seasonal-winter-all gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-visual gfx-intro-startup-visual-test gfx-intro-startup-visual-all gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-animal-festival-icons gfx-animal-festival-icons-test gfx-animal-festival-icons-all resource-archive-audit unpack-vram-inventory dma-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
+.PHONY: gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-ui gfx-ui-test gfx-ui-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-resource-archive gfx-farm-status-winter gfx-farm-status-winter-test gfx-farm-status-winter-all gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-all gfx-farm-status-secondary-tilemaps-test gfx-farm-status-exterior-styles gfx-farm-status-exterior-styles-test gfx-farm-status-selector-icon gfx-farm-status-selector-icon-test gfx-farm-status-selector-icon-all gfx-clock-font gfx-clock-font-test gfx-clock-font-all gfx-farm-status-creature-icons gfx-farm-status-creature-icons-test gfx-farm-status-creature-icons-all gfx-farm-status-task-marker gfx-farm-status-task-marker-test gfx-farm-status-task-marker-all gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal-nonwinter-all gfx-seasonal-winter gfx-seasonal-winter-test gfx-seasonal-winter-all gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-startup-tilemaps gfx-intro-startup-tilemaps-test gfx-intro-startup-tilemaps-all gfx-intro-startup-visual gfx-intro-startup-visual-test gfx-intro-startup-visual-all gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all gfx-animal-festival-icons gfx-animal-festival-icons-test gfx-animal-festival-icons-all resource-archive-audit unpack-vram-inventory dma-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit
 .PHONY: gfx-map-state-palettes gfx-map-state-palettes-test gfx-map-state-templates gfx-map-state-templates-test gfx-map-state-templates-all unpack-inventory unpack-coverage-inventory copy-ram-inventory
 .PHONY: indexed-resource-archive-inventory
 .PHONY: gfx-farm-status-task-ui-tile gfx-farm-status-task-ui-tile-test gfx-farm-status-task-ui-tile-all
@@ -1245,28 +1201,34 @@ gfx-fonts-test:
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-font-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-font-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-font-test
-gfx-portraits: $(PORTRAIT_TILE_BIN)
+gfx-portraits: $(PORTRAIT_NATIVE_TILES) $(PORTRAIT_PALETTES) $(PORTRAIT_TRAILER_PALETTE)
 .PHONY: gfx-portraits-test
-gfx-portraits-test: gfx-portraits $(PORTRAIT_ARCHIVE_TOOL) $(BASE_ROM) $(PORTRAIT_FULL_IMAGES)
-	@$(PYTHON) $(PORTRAIT_ARCHIVE_TOOL) $(BASE_ROM) --offset $(PORTRAIT_ARCHIVE_OFFSET) --length $(PORTRAIT_ARCHIVE_LENGTH) --sha256 $(PORTRAIT_ARCHIVE_SHA256) verify-full --source $(PORTRAIT_SOURCE_DIR)
-.PHONY: gfx-portraits-edit-test
-gfx-portraits-edit-test: $(PORTRAIT_ARCHIVE_EDIT_TEST) $(PORTRAIT_ARCHIVE_TOOL) baserom_jp.gba $(PORTRAIT_FULL_IMAGES)
-	@$(PYTHON) $(PORTRAIT_ARCHIVE_EDIT_TEST) baserom_jp.gba --offset $(PORTRAIT_ARCHIVE_OFFSET_JP) --length $(PORTRAIT_ARCHIVE_LENGTH) --source $(PORTRAIT_SOURCE_DIR)
+gfx-portraits-test: gfx-portraits $(BASE_ROM) $(GFX_RANGE_VERIFY)
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$(($(PORTRAIT_ARCHIVE_OFFSET) + 0x2ED8)) --length 0x5A840 --input $(PORTRAIT_NATIVE_TILES)
+	@set -e; offset=$$(($(PORTRAIT_ARCHIVE_OFFSET) + 0x5D71C)); \
+	  for palette in $(PORTRAIT_PALETTES); do \
+	    $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$offset --input $$palette; \
+	    offset=$$((offset + $$(wc -c < $$palette))); \
+	  done
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$(($(PORTRAIT_ARCHIVE_OFFSET) + $(PORTRAIT_ARCHIVE_LENGTH) - 0x20)) --input $(PORTRAIT_TRAILER_PALETTE)
 gfx-portraits-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-portraits-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-portraits-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-portraits-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-portraits-test
-gfx-actors: $(ACTOR_TILE_BIN)
+gfx-actors: $(ACTOR_NATIVE_TILES) $(ACTOR_PALETTES)
 gfx-actors-test: gfx-actors $(BASE_ROM) $(GFX_RANGE_VERIFY)
-	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(ACTOR_TILE_OFFSET) --input $(ACTOR_TILE_BIN)
+	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(ACTOR_TILE_OFFSET) --length 0xBE9C0 --input $(ACTOR_NATIVE_TILES)
+	@set -e; offset=$$(($(ACTOR_TILE_OFFSET) + 0xBE9C4)); \
+	  for palette in $(ACTOR_PALETTES); do \
+	    $(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $$offset --input $$palette; \
+	    offset=$$((offset + $$(wc -c < $$palette))); \
+	  done
 gfx-actors-all:
 	@$(MAKE) --no-print-directory GAME_REGION=JP gfx-actors-test
 	@$(MAKE) --no-print-directory GAME_REGION=US gfx-actors-test
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-actors-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-actors-test
-gfx-actors-edit-test: $(ACTOR_ARCHIVE_EDIT_TEST) $(ACTOR_ARCHIVE_TOOL) $(PORTRAIT_ARCHIVE_TOOL) baserom_us.gba $(ACTOR_SOURCE_DIRS)
-	@$(PYTHON) $(ACTOR_ARCHIVE_EDIT_TEST) baserom_us.gba --offset $(ACTOR_ARCHIVE_OFFSET_US) --length $(ACTOR_ARCHIVE_LENGTH) --source graphics/sprites/actor_archive
 gfx-ui: $(UI_SHARED_RESOURCE_TILE_BIN) $(UI_SHARED_RESOURCE_PALETTE_BIN)
 gfx-ui-test: gfx-ui $(BASE_ROM) $(GFX_RANGE_VERIFY)
 	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(UI_SHARED_RESOURCE_TILE_OFFSET) --input $(UI_SHARED_RESOURCE_TILE_BIN)
@@ -1943,9 +1905,7 @@ gfx-assets: gfx-regional-resource-0874f34c
 gfx-verify:
 	@$(MAKE) --no-print-directory gfx-fonts-test
 	@$(MAKE) --no-print-directory gfx-portraits-all
-	@$(MAKE) --no-print-directory gfx-portraits-edit-test
 	@$(MAKE) --no-print-directory gfx-actors-all
-	@$(MAKE) --no-print-directory gfx-actors-edit-test
 	@$(MAKE) --no-print-directory gfx-ui-all
 	@$(MAKE) --no-print-directory gfx-ui-scene-080a2ba4-all
 	@$(MAKE) --no-print-directory gfx-ui-scene-08077810-all

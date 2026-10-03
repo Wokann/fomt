@@ -1,21 +1,25 @@
-# Actor archive frames
+# Actor archive
 
-`full/` is the sole editable source set for the native actor archive.  It has
-one palette-indexed, OAM-composited PNG for each frame descriptor referenced by
-the retail animation table: `frame_0000.png` through the highest referenced
-descriptor ID.  A file name is deliberately the native frame ID, not an
-inferred character name, because one frame may be shared by multiple animation
-selectors.
+Edit `native_tiles.png` for pixels and the independent `palettes_*.pal` files
+for colors. Each 4-bit grayscale atlas pixel stores a native palette index,
+not an RGB color. The atlas stores all 24,398 tiles in physical table order,
+including OAM-covered pixels and tiles belonging to unreferenced descriptors.
+Preserve palette indexes even when two entries have the same RGB color.
 
-`tools/actor_archive.py` obtains geometry, OAM composition, tile ownership and
-palette selection directly from the archive in the selected base ROM.  No JSON
-layout file participates in export, rebuild or link.  The Makefile passes the
-full native selector range (`0x000-0x9F6`) to the tool and rebuilds its shared
-tile table into `build/<region>/graphics/sprites/shared/actor_tiles.4bpp`.
+Generic gbagfx rules produce `native_tiles.4bpp` and the `.gbapal` files beside
+their sources. The atlas rule excludes its final two image-grid padding cells.
+Each PAL has at most 256 colors (sixteen banks); the last PAL contains exactly
+32 colors. `archive.inc` directly includes these outputs between the explicit
+native archive tables. JP, US, EU, and DE use the same archive bytes at their
+respective physical addresses. No Python overlay, baseline ROM, intermediate
+source-archive template, or post-link patch is part of this compilation path.
 
-The archive contains 3,009 descriptor slots, but only 2,963 are referenced by
-the game animation table.  The remaining 46 have no retail caller and are
-preserved from the original native table rather than exported as invented
-assets.  The existing character-specific README files document selector groups
-that have been independently identified; they are descriptive references, not
-additional build inputs.
+`full/frame_NNNN.png` is an OAM-composited reference view, not a build input.
+The archive contains 3,009 descriptor slots, of which 2,963 are referenced by
+the game animation table. The remaining 46 are preserved in the source tables
+and native atlas. Frame names retain the descriptor IDs because several
+animation selectors can share a frame. Existing character-specific READMEs
+document identified selector groups and are not additional build inputs.
+
+Use `make gfx-actors` to compile this archive's images and palettes, or
+`make gfx-actors-all` for optional byte comparisons against all four ROMs.

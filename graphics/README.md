@@ -86,77 +86,77 @@ the tracked source images.
 
 ## Shared dialogue portraits
 
-`portraits/shared` contains a complete indexed-resource archive for the 184
-dialogue portraits. The normal authoring input is the fully composed colored
-image in `full/`, for example `000_TALK_PORTRAIT_RICK_NORMAL.png`. It is an
-indexed-color source, not merely an RGBA screenshot: preserving the palette
-index is necessary because some native palettes contain visually identical
-colors at different indexes. The `preview/` directory is a rendered reference
-copy. `tiles/` preserves each descriptor's separate tile group for advanced
-edits that must touch hidden OAM pixels directly. Ordinary art changes belong
-only in `full/`; the verified native archive remains the single source for its
-OAM layout and is not duplicated as editable metadata.
+`portraits/shared/native_tiles.png` is the editable 4-bit grayscale atlas in
+the archive's physical tile order. Each grayscale value is a native palette
+index, not the displayed RGB color. Its 11,586 native tiles include pixels
+covered by OAM and pixels shared by several descriptors. The generic gbagfx
+rule emits `native_tiles.4bpp` beside the PNG, excluding the fourteen unused
+image-grid cells at the end. Edit palette indexes, not RGB-matched colors:
+different indexes may intentionally have the same visible color.
 
-The 184 descriptors reference 1,037 OAM entries, 11,586 4bpp tiles and 52
-palettes. The complete archive is byte-identical in JP, US, EU, and DE, even
-though each ROM places it at a different address. The build rules declare
-those physical positions directly; the common full-archive SHA-256 is:
+The 52 independent palette banks are maintained in `palettes_00_15.pal`,
+`palettes_16_31.pal`, `palettes_32_47.pal`, and `palettes_48_51.pal`.
+`palette_trailer.pal` holds the separate, unindexed final bank referenced by
+`gPortraitArchivePaletteTrailer`. Each PAL is converted directly to its
+source-adjacent `.gbapal`; no palette is extracted from the atlas PNG.
+
+`archive.inc` keeps the native order of the 184 selection records, 184
+descriptors, 1,037 OAM entries, tiles, palette banks, trailing index table, and
+palette trailer. All four regional assembly entries include this same file.
+The complete archive is byte-identical in JP, US, EU, and DE; only its physical
+ROM address changes. Its SHA-256 is
 `34c23aced1a4f23ba80d1429a87f4c8a7ca11b0458c61a37a6eb48731440bbd2`.
+
+`full/`, `preview/`, and `tiles/` are OAM-composited or per-descriptor
+reference views, not additional build inputs. A shared native tile is authored
+once in the atlas, so edits affect every descriptor that uses it; there is no
+second image overlay or arbitration between conflicting frame copies.
+The formal build does not assemble an intermediate baseline archive, invoke
+Python, read a retail ROM, or apply a post-link patch for these portraits.
 
 ```console
 make GAME_REGION=JP gfx-portraits
 make gfx-portraits-all
 ```
 
-`portrait_archive.py` rebuilds the native 0x5A840-byte tile stream from the
-full source PNGs. It first renders the original archive, then writes only a
-visible pixel that actually changed in `full/`; hidden OAM pixels therefore
-remain untouched and an unedited source round-trips byte-for-byte. The
-`gfx-portraits-all` target also compares the rebuilt table-four tile interval
-against each regional retail archive; it is not merely a four-directory
-generation target. It verifies every descriptor, OAM range, palette and PNG
-dimension. Sixty-eight tile slots are intentionally shared between descriptors;
-if two edited source images
-assign different values to such a slot, the build fails rather than arbitrarily
-selecting one edit. The four regional assembly paths split their original
-archive at the tile stream and retain every header, layout record, palette and
-trailing byte around it.
-
-`make gfx-portraits-edit-test` changes one visible pixel in a temporary copy
-of portrait 000. It proves that the resulting native tile change stays within
-that descriptor's original tile range; repository PNGs are never modified.
+`gfx-portraits-all` explicitly compares the generated tile interval and every
+palette bank against all four retail ROMs. These are optional regression
+checks; only PNG, PAL, archive tables, and the C converter are build inputs.
+The obsolete complete-frame overlay edit test has been removed.
 
 ## Actor animation frames
 
-`sprites/actor_archive/full` contains every one of the 2,963 actor frame
-descriptors referenced by the retail animation table.  Each source is named
-`frame_NNNN.png`, where `NNNN` is the stable native frame-descriptor ID; it is
-not a guessed tile position.  The older per-character READMEs retain verified
-selector-to-frame notes for the groups already semantically identified.  The
-files are not linear tile dumps: every image is composed from the native
-animation entry, frame descriptor, OAM records, 4bpp tiles, and its selected
-palette.
+`sprites/actor_archive/native_tiles.png` is the single 4-bit grayscale atlas for the
+24,398 actor tiles, in their original physical order. The generic PNG rule
+emits `native_tiles.4bpp` without the two unused image-grid cells.
+`palettes_000_015.pal` through `palettes_160_161.pal` independently maintain
+the 162 palette banks in numeric order, with at most sixteen banks per PAL.
+The converter reads the actual color count, including the final two banks;
+it does not pad them to another 256-color palette.
+
+`archive.inc` retains the native animation table, 3,009 frame descriptors,
+4,795 OAM entries, atlas, palette banks, and trailing timed-frame entries.
+The same archive is directly included at its true position in every region;
+no source-archive template or frame patch participates in the build.
+Its complete SHA-256 is
+`19a8733e132573478713e9b6e48e9650a702e62516209159787d26f270933736`.
+
+`full/frame_NNNN.png` provides OAM-composited reference images for the 2,963
+descriptors used by animation selectors `0x000-0x9F6`. The other 46 descriptor
+slots and their atlas pixels are preserved as explicit source data, not
+recovered from a ROM during compilation. Existing character-specific READMEs
+document identified selectors; guessed six-tile character exports must not
+be used as source material.
 
 ```console
 make GAME_REGION=JP gfx-actors
 make gfx-actors-all
 ```
 
-`tools/actor_archive.py` reads those table relationships directly from the
-retail archive; it has no manually maintained layout JSON.  During a rebuild,
-it starts with the original complete 24,398-tile stream and changes only
-visible pixels that differ from the source PNG.  OAM-covered pixels that are
-not visible in the composited image remain byte-for-byte intact.  The rebuild
-rejects changed PNG dimensions, palettes, OAM-out-of-bounds pixels, invalid
-table references, and conflicting writes to a shared native pixel.  The full
-actor archive and Rick's source frame payload are identical in JP, US, EU, and
-DE; only their physical ROM offsets differ.
-
-The complete actor animation stream now has one authoritative editable source
-set.  Semantic actor names may be added later as documentation around their
-native selector/frame IDs; they must not introduce duplicate editable PNGs.
-Earlier guessed six-tile character-frame exports were removed and must not be
-used as source material.
+`gfx-actors-all` compares the generated atlas and all independent palette banks
+against each regional ROM. Normal builds need only the grayscale-index atlas, PAL
+sources, native archive tables, and gbagfx. The former Python full-frame overlay
+and its dedicated edit-test script have been removed.
 
 
 
@@ -566,20 +566,11 @@ byte-identical production resource class. The C tool reports the original
 descriptor/OAM fields for each non-matching comparison, so further common
 profiles can be added and validated without relying on a JSON layout file.
 
-After editing `full/`, refresh the convenient RGBA reference images with the
-same in-memory rebuild and OAM compositor used by the build:
-
-```console
-python tools/portrait_archive.py baserom_jp.gba \
-  --offset 0x2B3AE0 --length 0x5E0A4 \
-  --sha256 34c23aced1a4f23ba80d1429a87f4c8a7ca11b0458c61a37a6eb48731440bbd2 \
-  render-full-preview --source graphics/portraits/shared
-```
-
-This only rewrites `preview/`; it does not modify the ROM, `full/`, OAM layout,
-or `tiles/`.
-
-Regenerate the source image from any verified retail ROM:
+The legacy Python archive inspector is only an optional retail-ROM audit and
+reference exporter. It is not the compositor used by the production build,
+and its full-frame overlay commands do not edit the authoritative native
+atlas. Export into a temporary directory so existing authored PNG/PAL sources
+cannot be overwritten:
 
 ```console
 python tools/portrait_archive.py baserom_jp.gba \
@@ -591,5 +582,5 @@ python tools/portrait_archive.py baserom_jp.gba \
   --offset 0x2B3AE0 --length 0x5E0A4 \
   --sha256 34c23aced1a4f23ba80d1429a87f4c8a7ca11b0458c61a37a6eb48731440bbd2 \
   --names-header include/fomt_constants.mary.h \
-  export --output graphics/portraits/shared
+  export --output /tmp/fomt_portrait_reference
 ```
