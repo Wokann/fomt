@@ -122,11 +122,13 @@ flip bits and palette-bank fields; they are visual references only, because a
 flat PNG cannot preserve those native map fields.
 
 The C `fomt-lz` tool builds each `startup_NN.tilemap.lz` beside its editable
-`.tilemap`; assembly includes that generated stream directly. `startup_01` and
-`startup_02` now encode directly from source with exact retail packed bytes;
-their `.original.lz` copies are audit-only. `startup_00` and `startup_03`
-still use their source-adjacent original packing metadata. The resource test
-checks decoded content for all four and packed bytes for the two direct
+`.tilemap`; assembly includes that generated stream directly. `startup_00`,
+`startup_01` and `startup_02` now encode directly from source with exact retail
+packed bytes; their `.original.lz` copies are audit-only. `startup_00` uses
+the C codec's generic `--parent-first` tie policy to build its Huffman tree
+from literal frequencies, not from a saved tree. `startup_03` still uses its
+source-adjacent original packing metadata. The resource test checks decoded
+content for all four and packed bytes for the three direct
 streams. Neither the resource build nor the link reads a retail ROM or patches
 the finished image.
 
