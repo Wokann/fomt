@@ -3,6 +3,15 @@
 
 #include "prelude.h"
 
+// This lifetime owner only retains/reserves the shared state. Its original
+// constructor does not write the owner's four-byte storage.
+struct HardwareSharedStateOwner {
+    u32 unk_00;
+#ifdef __cplusplus
+    void Reserve(u32 first, u32 count) asm("func_08007A28");
+#endif
+};
+
 EXTERN_C
 
 extern u8 * gUnk_03000408;
@@ -19,8 +28,10 @@ typedef struct HardwareSharedState {
 } HardwareSharedState;
 
 // Retain the shared hardware state and return the supplied owner unchanged.
+void * func_08007874(void * owner); // Constructs the shared state if needed.
 void * func_080079D0(void * owner);
 void func_080079E8(void * owner, u32 flags);
+u32 func_08007B54(void * owner, u32 group_index); // Still in asm/hardware.s.
 
 EXTERN_C_END
 

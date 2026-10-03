@@ -76,7 +76,7 @@ SECTIONS
         . = 0x7EC; /* JP ROM 0x080007EC, independently matched */
         src/scene.o(.text);
         . = 0x914; /* JP ROM 0x08000914, independently matched */
-        asm/intro_scene.o(.text);
+        src/intro_scene.o(.text.intro_scene_core_constructor);
         src/intro_scene.o(.text.intro_scene_core_run);
         asm/intro_scene.o(.text.intro_scene_core_after_run);
         src/intro_scene.o(.text);

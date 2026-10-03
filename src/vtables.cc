@@ -926,10 +926,10 @@ extern void func_080D7868(void);
 extern void func_080D7874(void);
 extern void func_080D7880(void);
 
-extern RawVTableFunction const vtable_unk_080E5A0C[] = {
+extern IntroSceneCoreVTable const vtable_unk_080E5A0C = {
     nullptr,
     nullptr,
-    func_080D3C78,
+    reinterpret_cast<IntroSceneCoreDestroyFunction>(func_080D3C78),
 };
 
 extern RawVTableFunction const vtable_unk_080E5A18[] = {

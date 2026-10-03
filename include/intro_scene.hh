@@ -3,6 +3,37 @@
 
 #include "prelude.h"
 #include "scene.hh"
+#include "hardware_music_player.hh"
+#include "hardware_refcount.hh"
+#include "resource_handle.hh"
+
+struct HardwareCoreState;
+
+struct IntroSceneUnpackedResources
+{
+    u8 bytes[0x6A00];
+    void Initialize(u8 const * source);
+};
+
+struct IntroSceneResourceState
+{
+    IndexedResourceHandle handle;
+    u32 unk_14;
+    u32 unk_18;
+    u32 unk_1C;
+};
+
+struct IntroSceneHardwareStateHandle
+{
+    u32 unk_00;
+    u32 handle;
+};
+
+struct IntroSceneHardwarePoolHandle
+{
+    u32 unk_00;
+    u32 handle;
+};
 
 typedef void (*IntroSceneVTableFunction)(void);
 
@@ -17,22 +48,59 @@ struct IntroSceneCoreVTable
     IntroSceneCoreDestroyFunction destroy;
 };
 
-// The unknown runs preserve fields still used by the assembly core. Only
-// the vtable, selected continuation and run-state fields are decoded here.
+// Member widths follow the constructor and the later assembly consumers.
+// Unknown animation state and lifetime-owner bytes are not given meanings
+// merely because their initialization or their physical extent is known.
 struct IntroSceneCore
 {
-    void * unk_00;
+    HardwareCoreState * hardware_state;
     IntroSceneCoreVTable const * vtable;
-    u8 unk_0008[0x6C66];
+    MusicPlayer * music_players[2];
+    IntroSceneUnpackedResources unpacked_resources;
+    IndexedResourceArchive intro_archive;
+    IndexedResourceArchive small_archive;
+    IndexedResourceArchive actor_archive;
+    IntroSceneResourceState resources[14];
+    u8 unk_6C60[0x0D];
+    u8 unk_6C6D;
     i8 continuation;
-    u8 unk_6C6F[0xB9];
+    u8 unk_6C6F;
+    HardwareSharedStateOwner state_reservation;
+    u32 unk_6C74;
+    IntroSceneHardwareStateHandle state_handle_6C78;
+    IntroSceneHardwarePoolHandle pool_handle_6C80;
+    IntroSceneHardwareStateHandle state_handle_6C88;
+    IntroSceneHardwarePoolHandle pool_handle_6C90;
+    IntroSceneHardwareStateHandle state_handle_6C98;
+    IntroSceneHardwarePoolHandle pool_handle_6CA0;
+    IntroSceneHardwareStateHandle state_handle_6CA8;
+    IntroSceneHardwareStateHandle state_handle_6CB0;
+    IntroSceneHardwarePoolHandle pool_handle_6CB8;
+    IntroSceneHardwareStateHandle state_handle_6CC0;
+    IntroSceneHardwarePoolHandle pool_handle_6CC8;
+    IntroSceneHardwareStateHandle state_handle_6CD0;
+    IntroSceneHardwareStateHandle state_handle_6CD8;
+    IntroSceneHardwareStateHandle state_handle_6CE0;
+    IntroSceneHardwarePoolHandle pool_handle_6CE8;
+    IntroSceneHardwareStateHandle state_handle_6CF0;
+    IntroSceneHardwareStateHandle state_handle_6CF8;
+    IntroSceneHardwarePoolHandle pool_handle_6D00;
+    IntroSceneHardwareStateHandle state_handle_6D08;
+    IntroSceneHardwarePoolHandle pool_handle_6D10;
+    IntroSceneHardwareStateHandle state_handle_6D18;
+    IntroSceneHardwarePoolHandle pool_handle_6D20;
     u32 run_state;
-    u8 unk_6D2C[8];
+    u32 unk_6D2C;
+    u32 unk_6D30;
 };
 
 typedef char IntroSceneCoreSizeCheck[(sizeof(IntroSceneCore) == 0x6D34) ? 1 : -1];
 typedef char IntroSceneCoreContinuationOffsetCheck[(offsetof(IntroSceneCore, continuation) == 0x6C6E) ? 1 : -1];
 typedef char IntroSceneCoreRunStateOffsetCheck[(offsetof(IntroSceneCore, run_state) == 0x6D28) ? 1 : -1];
+typedef char IntroSceneResourceStateSizeCheck[(sizeof(IntroSceneResourceState) == 0x20) ? 1 : -1];
+typedef char IntroSceneCoreArchiveOffsetCheck[(offsetof(IntroSceneCore, intro_archive) == 0x6A10) ? 1 : -1];
+typedef char IntroSceneCoreResourcesOffsetCheck[(offsetof(IntroSceneCore, resources) == 0x6AA0) ? 1 : -1];
+typedef char IntroSceneCoreHardwareHandlesOffsetCheck[(offsetof(IntroSceneCore, state_handle_6C78) == 0x6C78) ? 1 : -1];
 
 struct GameIntroScene
 {
@@ -52,7 +120,14 @@ struct IntroMenuTransition : SceneTransition
 
 EXTERN_C
 
+extern IntroSceneCoreVTable const vtable_unk_080E5A0C;
+extern u8 const gIntroSceneIndexedArchiveCompressed[];
+extern u8 const gIntroSceneSmallIndexedArchive[];
+extern u8 const gActorIndexedResourceArchive[];
 extern IntroSceneVTableFunction const vtable_unk_080E5A18[];
+IntroSceneCore * ConstructIntroSceneCore(void * core) SECTION(".text.intro_scene_core_constructor");
+void func_08000E1C(IntroSceneCore * core);
+int func_08000FF8(IntroSceneCore * core);
 GameIntroScene * ConstructGameIntroScene(GameIntroScene * scene);
 void DestroyGameIntroScene(GameIntroScene * scene, int flags);
 SceneTransitionOwner RunGameIntroScene(GameIntroScene * scene);

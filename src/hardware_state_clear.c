@@ -5,8 +5,6 @@
 extern void func_08007C28(void * entry, void * value);
 extern void __builtin_delete(void * pointer);
 extern void free(void * pointer);
-extern void func_08007874(struct HardwareStateOwner * owner);
-extern u32 func_08007B54(struct HardwareStateOwner * owner, u32 group_index);
 extern u32 func_08007CD8(struct HardwareStateOwner * owner, void * value);
 extern u32 func_08007E24(struct HardwareStateEntry * entry, void * value);
 
