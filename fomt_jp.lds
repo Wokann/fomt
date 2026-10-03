@@ -156,6 +156,8 @@ SECTIONS
         src/rucksack.o(.text);
         . = 0xFF6C; /* JP ROM 0x0800FF6C, independently matched */
         asm/more_items.o(.text);
+        src/more_items.o(.text);
+        asm/more_items.o(.text.more_items_post);
         . = 0x1002C; /* JP ROM 0x0801002C, independently matched */
         asm/game_scene.o(.text);
         . = 0x10328; /* JP ROM 0x08010328, bounded by game_scene and entity */
