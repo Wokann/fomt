@@ -7,7 +7,7 @@ regional intro-scene code:
 | Source | JP ROM range | Native contract | Editable representation |
 | --- | ---: | --- | --- |
 | `tiles.4bpp.lz` | `0x4D4DDC..0x4D529C` | `0xC00` bytes, format `130`, ladder `1410` | `tiles.png`, 128×48 indexed 4bpp |
-| `tiles.gbapal` | `0x4D529C..0x4D52BC` | one 16-colour BGR555 bank | palette embedded in `tiles.png` |
+| `tiles.gbapal` | `0x4D529C..0x4D52BC` | one 16-colour BGR555 bank | independent `tiles.pal` |
 | `layer_1.tilemap.lz` | `0x4D52BC..0x4D5354` | `0x500` bytes, format `120`, ladder `12345610` | `layer_1.tilemap`, native 16-bit entries |
 
 The following bytes through `0x4D7878` belong to a separate interval. The

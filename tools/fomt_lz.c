@@ -2550,49 +2550,109 @@ static Lz0Operation *plan_huff4_lz0(unsigned char const *source, size_t size,
     return operations;
 }
 
-static unsigned char *encode_huff4_lz0(unsigned char const *source, size_t size,
-                                       LadderEntry const ladder[2], size_t *packed_size)
+static Lz0Operation *plan_huff4_lz0_greedy(unsigned char const *source, size_t size,
+                                          LadderEntry const ladder[2],
+                                          unsigned char *literals,
+                                          size_t *literal_size, size_t *count)
+{
+    Lz0Operation *operations = malloc(size * sizeof(*operations));
+    if (!operations)
+        fail("out of memory");
+    *count = 0;
+    *literal_size = 0;
+    unsigned maximum_distance = ladder[1].start + (1u << ladder[1].width) - 1;
+    for (size_t position = 0; position < size;) {
+        unsigned distance;
+        unsigned match = lz0_greedy_match(source, size, position,
+                                           maximum_distance, &distance);
+        unsigned run = 1;
+        while (run < 65 && position + run < size &&
+               source[position + run] == source[position])
+            run++;
+        if (run >= 2 && (run >= match || run == 65)) {
+            operations[(*count)++] = (Lz0Operation){1, run, 0, 0};
+            position += run;
+        } else if (match >= 3) {
+            unsigned index = distance < ladder[1].start ? 0 : 1;
+            operations[(*count)++] = (Lz0Operation){2, match, index, distance};
+            position += match;
+        } else {
+            unsigned length = 1;
+            while (length < 64 && position + length < size) {
+                unsigned next_distance;
+                unsigned next_match = lz0_greedy_match(source, size,
+                    position + length, maximum_distance, &next_distance);
+                if (next_match >= 3 ||
+                    (position + length + 1 < size &&
+                     source[position + length] == source[position + length + 1]))
+                    break;
+                length++;
+            }
+            operations[(*count)++] = (Lz0Operation){0, length, 0, 0};
+            memcpy(literals + *literal_size, source + position, length);
+            *literal_size += length;
+            position += length;
+        }
+    }
+    return operations;
+}
+
+static unsigned char *encode_huff4_lz0_strategy(unsigned char const *source, size_t size,
+                                                LadderEntry const ladder[2],
+                                                int greedy, size_t *packed_size)
 {
     if (!size || size > 0x40000)
         fail("Huffman-4/LZ0 source size must be in 1..0x40000");
     HuffModel model, next_model;
-    huff_byte_model(source, size, &model, 4, 0);
     unsigned char *literals = malloc(size);
     if (!literals)
         fail("out of memory");
     size_t operation_count = 0;
     Lz0Operation *operations = NULL;
-    int converged = 0;
-    for (unsigned iteration = 0; iteration < 8; iteration++) {
-        operations = plan_huff4_lz0(source, size, &model, ladder,
-                                    &operation_count);
+    if (greedy) {
         size_t literal_size = 0;
-        size_t position = 0;
-        for (size_t index = 0; index < operation_count; index++) {
-            Lz0Operation const *operation = &operations[index];
-            if (operation->kind == 0) {
-                memcpy(literals + literal_size, source + position,
-                       operation->length);
-                literal_size += operation->length;
+        operations = plan_huff4_lz0_greedy(source, size, ladder, literals,
+                                            &literal_size, &operation_count);
+        // An all-RLE stream still has a tree header, though no command reads
+        // that tree. Seed it from the source rather than requiring literals.
+        if (!literal_size)
+            literals[literal_size++] = source[0];
+        huff_byte_model(literals, literal_size, &model, 4, 0);
+        huff_model_frequency_order(&model, literals, literal_size, 4, 0);
+    } else {
+        huff_byte_model(source, size, &model, 4, 0);
+        int converged = 0;
+        for (unsigned iteration = 0; iteration < 8; iteration++) {
+            operations = plan_huff4_lz0(source, size, &model, ladder,
+                                        &operation_count);
+            size_t literal_size = 0;
+            size_t position = 0;
+            for (size_t index = 0; index < operation_count; index++) {
+                Lz0Operation const *operation = &operations[index];
+                if (operation->kind == 0) {
+                    memcpy(literals + literal_size, source + position,
+                           operation->length);
+                    literal_size += operation->length;
+                }
+                position += operation->length;
             }
-            position += operation->length;
+            if (!literal_size) {
+                converged = 1;
+                break;
+            }
+            huff_byte_model(literals, literal_size, &next_model, 4, 0);
+            if (huff_model_equal(&model, &next_model)) {
+                converged = 1;
+                break;
+            }
+            model = next_model;
+            free(operations);
+            operations = NULL;
         }
-        if (!literal_size) {
-            converged = 1;
-            break;
-        }
-        huff_byte_model(literals, literal_size, &next_model, 4, 0);
-        if (huff_model_equal(&model, &next_model)) {
-            converged = 1;
-            break;
-        }
-        model = next_model;
-        free(operations);
-        operations = NULL;
+        if (!converged)
+            operations = plan_huff4_lz0(source, size, &model, ladder,
+                                        &operation_count);
     }
-    if (!converged)
-        operations = plan_huff4_lz0(source, size, &model, ladder,
-                                    &operation_count);
     free(literals);
     BitWriter writer = {0};
     write_bits(&writer, 0x08, 8);
@@ -2632,6 +2692,12 @@ static unsigned char *encode_huff4_lz0(unsigned char const *source, size_t size,
     memcpy(packed + 4, writer.data, writer.size);
     free(writer.data);
     return packed;
+}
+
+static unsigned char *encode_huff4_lz0(unsigned char const *source, size_t size,
+                                       LadderEntry const ladder[2], size_t *packed_size)
+{
+    return encode_huff4_lz0_strategy(source, size, ladder, 0, packed_size);
 }
 
 static unsigned char *encode_huff_lz2_strategy(unsigned char const *source, size_t size,
@@ -2783,7 +2849,7 @@ static unsigned char *encode_huff_lz2(unsigned char const *source, size_t size,
 
 static void usage(void)
 {
-    fail("usage: fomt-lz encode-lz0|encode-lz1|encode-lz2|encode-lz3|"
+    fail("usage: fomt-lz encode-lz0|encode-lz1|encode-lz2|encode-lz3|encode-huff4-lz0|"
          "encode-huff4-lz2|encode-huff8-lz2|encode-huff4-lz3|encode-huff8-lz3 "
          "SOURCE OUTPUT LADDER SLOT_SIZE "
          "[--literal-tail] [--filter=1..4] [--tie=first|reverse] "
@@ -2796,11 +2862,65 @@ static void usage(void)
          "decode-huff4-lz2|decode-huff8-lz2 SOURCE OUTPUT | "
          "verify-native SOURCE PACKED [TAIL] | "
          "verify-lz1|verify-lz2|verify-lz3|verify-huff4-lz0|verify-huff4-lz3|verify-huff8-lz3|"
-         "verify-huff4-lz2|verify-huff8-lz2 SOURCE PACKED [LADDER]");
+         "verify-huff4-lz2|verify-huff8-lz2 SOURCE PACKED [LADDER] | "
+         "test-huff4-lz0");
+}
+
+static void test_huff4_lz0(void)
+{
+    unsigned const sizes[] = {1, 2, 3, 4, 7, 8, 9, 16, 32, 63, 64, 65, 66, 67,
+        127, 128, 129, 255, 256, 257, 511, 512, 513, 1025, 1026, 1027, 4096};
+    char const *ladder_values[] = {"1,10", "6,4"};
+    unsigned cases = 0;
+    for (unsigned ladder_index = 0; ladder_index < 2; ladder_index++) {
+        LadderEntry ladder[2];
+        parse_ladder(ladder_values[ladder_index], ladder, 2);
+        for (unsigned index = 0; index < sizeof(sizes) / sizeof(*sizes); index++) {
+            size_t size = sizes[index];
+            for (unsigned pattern = 0; pattern < 8; pattern++) {
+                unsigned char *source = malloc(size);
+                if (!source)
+                    fail("out of memory");
+                unsigned random_state = 0x1234567u;
+                for (size_t byte = 0; byte < size; byte++) {
+                    random_state = random_state * 1664525u + 1013904223u;
+                    source[byte] = pattern == 0 ? 0
+                        : pattern == 1 ? 0xFF
+                        : pattern == 2 ? (unsigned char)byte
+                        : pattern == 3 ? (unsigned char)(random_state >> 24)
+                        : pattern == 4 ? (unsigned char)(byte % 2 ? 0xA5 : 0x5A)
+                        : pattern == 5 ? (unsigned char)(byte / 65)
+                        : pattern == 6 ? (unsigned char)((byte % 1027) * 73u)
+                        : (unsigned char)(byte % 256 * 17u);
+                }
+                size_t packed_size, decoded_size;
+                unsigned char *packed = encode_huff4_lz0_strategy(source, size,
+                                                                   ladder, 1, &packed_size);
+                LadderEntry decoded_ladder[2];
+                unsigned char *decoded = decode_huff4_lz0(packed, packed_size,
+                                                            decoded_ladder, &decoded_size);
+                if (decoded_size != size || memcmp(source, decoded, size) ||
+                    memcmp(ladder, decoded_ladder, sizeof(ladder))) {
+                    fprintf(stderr, "Huffman-4/LZ0 case failed: ladder=%u size=%zu pattern=%u\n",
+                            ladder_index, size, pattern);
+                    fail("Huffman-4/LZ0 self-test failed");
+                }
+                free(decoded);
+                free(packed);
+                free(source);
+                cases++;
+            }
+        }
+    }
+    printf("Huffman-4/LZ0 source/decoder boundary cases: %u OK\n", cases);
 }
 
 int main(int argc, char **argv)
 {
+    if (argc == 2 && strcmp(argv[1], "test-huff4-lz0") == 0) {
+        test_huff4_lz0();
+        return 0;
+    }
     if (argc < 4)
         usage();
     if (strcmp(argv[1], "rebuild-native") == 0) {
@@ -3033,6 +3153,7 @@ int main(int argc, char **argv)
         free(original);
         free(source);
     } else if (strcmp(argv[1], "encode-lz0") == 0 ||
+        strcmp(argv[1], "encode-huff4-lz0") == 0 ||
         strcmp(argv[1], "encode-lz1") == 0 ||
         strcmp(argv[1], "encode-lz2") == 0 ||
         strcmp(argv[1], "encode-lz3") == 0 ||
@@ -3041,6 +3162,7 @@ int main(int argc, char **argv)
         strcmp(argv[1], "encode-huff4-lz3") == 0 ||
         strcmp(argv[1], "encode-huff8-lz3") == 0) {
         int lz0 = strcmp(argv[1], "encode-lz0") == 0;
+        int huff4_lz0 = strcmp(argv[1], "encode-huff4-lz0") == 0;
         int lz1 = strcmp(argv[1], "encode-lz1") == 0;
         int lz2 = strcmp(argv[1], "encode-lz2") == 0;
         int huff4 = strcmp(argv[1], "encode-huff4-lz3") == 0;
@@ -3081,7 +3203,7 @@ int main(int argc, char **argv)
             }
         }
         LadderEntry ladder[7];
-        parse_ladder(argv[4], ladder, lz0 ? 2 : lz1 ? 4 :
+        parse_ladder(argv[4], ladder, lz0 || huff4_lz0 ? 2 : lz1 ? 4 :
                      lz2 || huff4_lz2 || huff8_lz2 ? 7 : 3);
         unsigned slot_size = parse_size(argv[5]);
         size_t source_size, packed_size;
@@ -3090,6 +3212,8 @@ int main(int argc, char **argv)
             ? inverse_differential(source, source_size, filter) : source;
         unsigned char *packed = lz0
             ? encode_lz0_greedy(atoms, source_size, ladder, &packed_size)
+            : huff4_lz0 ? encode_huff4_lz0_strategy(atoms, source_size, ladder, 1,
+                                                    &packed_size)
             : lz1 ? encode_lz1(atoms, source_size, ladder, &packed_size)
             : lz2 ? encode_lz2(atoms, source_size, ladder, literal_tail, 9,
                          &packed_size)
@@ -3100,10 +3224,12 @@ int main(int argc, char **argv)
                                                tie_order, parent_first, &packed_size)
             : huff8 ? encode_huff8_lz3(atoms, source_size, ladder, &packed_size)
                     : encode_lz3(atoms, source_size, ladder, &packed_size);
-        if (huff4 || huff8 || huff4_lz2 || huff8_lz2) {
+        if (huff4_lz0 || huff4 || huff8 || huff4_lz2 || huff8_lz2) {
             LadderEntry decoded_ladder[7];
             size_t decoded_size;
-            unsigned char *decoded = huff4_lz2 || huff8_lz2
+            unsigned char *decoded = huff4_lz0
+                ? decode_huff4_lz0(packed, packed_size, decoded_ladder, &decoded_size)
+                : huff4_lz2 || huff8_lz2
                 ? decode_huff_lz2(packed, packed_size, decoded_ladder,
                                    &decoded_size, huff4_lz2 ? 4 : 8)
                 : huff4

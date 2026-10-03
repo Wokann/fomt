@@ -557,9 +557,7 @@ UI_SCENE_080A2BA4_OUTPUTS := $(addsuffix .lz,$(UI_SCENE_080A2BA4_SOURCES))
 
 # Overseas func_08077810 consumes two shared BG tilemaps and character tiles;
 # JP uses a different code/data layout and its own resource group.
-UI_SCENE_08077810_REFERENCE_TOOL := tools/ui_scene_08077810_reference.py
 UI_SCENE_08077810_SOURCE_DIR := graphics/ui/scene_08077810/shared
-UI_SCENE_08077810_REFERENCE_DIR := graphics/ui/scene_08077810/reference/overseas
 UI_SCENE_08077810_CHARACTER_TILES := $(UI_SCENE_08077810_SOURCE_DIR)/tiles.4bpp
 UI_SCENE_08077810_CHARACTER_ORIGINAL := $(UI_SCENE_08077810_SOURCE_DIR)/tiles.original.lz
 UI_SCENE_08077810_CHARACTER_PACKED := $(UI_SCENE_08077810_CHARACTER_TILES).lz
@@ -965,7 +963,7 @@ FOMT_LZ_ENCODE_OUTPUTS := $(addsuffix .lz, \
   $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_02.tilemap \
   $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_01.tilemap \
   $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_04.tilemap \
-  $(UI_SCENE_08077810_LAYER0_SOURCE) $(UI_SCENE_08077810_JP_TILES) \
+  $(UI_SCENE_08077810_LAYER0_SOURCE) $(UI_SCENE_08077810_LAYER1_SOURCE) $(UI_SCENE_08077810_JP_TILES) \
   $(addprefix $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_,$(addsuffix .4bpp,01 02 05)) \
   $(addprefix $(INTRO_OBJECTS_SOURCE_DIR)/object_,$(addsuffix .4bpp,00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19)) \
   $(MAP_DATA_SOURCE_DIR)/map_08/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_08/layer_2.gbapal \
@@ -1015,6 +1013,7 @@ $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_02.tilemap.lz: FOMT_LZ_ENCODE := en
 $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_01.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,6,11 0x1D8
 $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_04.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,8,11 0x1D0
 $(UI_SCENE_08077810_LAYER0_PACKED): FOMT_LZ_ENCODE := encode-huff4-lz3 1,5,9 0x16C
+$(UI_SCENE_08077810_LAYER1_PACKED): FOMT_LZ_ENCODE := encode-huff4-lz0 1,10 0
 $(UI_SCENE_08077810_JP_TILES_PACKED): FOMT_LZ_ENCODE := encode-huff4-lz3 1,4,10 0x4C0
 $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_01.4bpp.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,4,5,6,7,8,11 0x424 --filter=1
 $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_02.4bpp.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,4,5,6,7,8,10 0x418 --filter=1
@@ -1145,7 +1144,7 @@ FONT_REGION_DOUBLE_BIN := $(FONT_SHARED_DOUBLE_BIN)
 .PHONY: gfx-small-companion-archive
 .PHONY: gfx-ui-shared-tiles-test
 .PHONY: gfx-ui-scene-080a2ba4 gfx-ui-scene-080a2ba4-reference gfx-ui-scene-080a2ba4-test gfx-ui-scene-080a2ba4-all
-.PHONY: gfx-ui-scene-08077810 gfx-ui-scene-08077810-reference gfx-ui-scene-08077810-test gfx-ui-scene-08077810-all
+.PHONY: gfx-ui-scene-08077810 gfx-ui-scene-08077810-test gfx-ui-scene-08077810-all
 .PHONY: gfx-ui-scene-080ae7d0 gfx-ui-scene-080ae7d0-preview gfx-ui-scene-080ae7d0-test gfx-ui-scene-080ae7d0-all
 .PHONY: gfx-ui-scene-080b7164 gfx-ui-scene-080b7164-preview gfx-ui-scene-080b7164-test gfx-ui-scene-080b7164-all
 .PHONY: gfx-ui-scene-080c160c gfx-ui-scene-080c160c-preview gfx-ui-scene-080c160c-test gfx-ui-scene-080c160c-all
@@ -1261,9 +1260,6 @@ gfx-ui-scene-080a2ba4-all:
 	@$(MAKE) --no-print-directory GAME_REGION=EU gfx-ui-scene-080a2ba4-test
 	@$(MAKE) --no-print-directory GAME_REGION=DE gfx-ui-scene-080a2ba4-test
 gfx-ui-scene-08077810: $(UI_SCENE_08077810_ACTIVE_ASSETS)
-gfx-ui-scene-08077810-reference: $(UI_SCENE_08077810_REFERENCE_TOOL) baserom_us.gba baserom_eu.gba baserom_de.gba
-	@$(PYTHON) $(UI_SCENE_08077810_REFERENCE_TOOL) --reference-dir $(UI_SCENE_08077810_REFERENCE_DIR) \
-	  --rom us baserom_us.gba --rom eu baserom_eu.gba --rom de baserom_de.gba
 gfx-ui-scene-08077810-test: gfx-ui-scene-08077810 $(UI_SCENE_08077810_ACTIVE_TOOLS)
 ifeq ($(GAME_REGION),JP)
 	@$(FOMT_LZ_TOOL) verify-native $(UI_SCENE_08077810_JP_TILES) $(UI_SCENE_08077810_JP_TILES_PACKED)
@@ -1274,6 +1270,7 @@ ifeq ($(GAME_REGION),JP)
 	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset 0x4D52BC --length 0x98 --input $(UI_SCENE_08077810_JP_LAYER1_PACKED)
 else
 	@$(FOMT_LZ_TOOL) verify-huff4-lz0 $(UI_SCENE_08077810_LAYER1_SOURCE) $(UI_SCENE_08077810_LAYER1_PACKED) 1,10
+	@cmp $(UI_SCENE_08077810_LAYER1_PACKED) $(UI_SCENE_08077810_LAYER1_ORIGINAL)
 	@$(GFX_RANGE_VERIFY) $(BASE_ROM) --offset $(UI_SCENE_08077810_LAYER1_OFFSET) --length 0x16C --input $(UI_SCENE_08077810_LAYER1_PACKED)
 	@$(FOMT_LZ_TOOL) verify-native $(UI_SCENE_08077810_LAYER0_SOURCE) $(UI_SCENE_08077810_LAYER0_PACKED)
 	@cmp $(UI_SCENE_08077810_LAYER0_PACKED) $(UI_SCENE_08077810_LAYER0_ORIGINAL)
