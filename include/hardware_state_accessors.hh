@@ -5,23 +5,66 @@
 #include "hardware_display_output.hh"
 #include "hardware_input.hh"
 #include "hardware_linked_list.hh"
+#include "hardware_manager.hh"
+#include "hardware_dma_descriptor.hh"
 
-// Layout shared by the constructors at 0x08008444-0x08008618 and the
-// state accessors below.  Keep unknown fields unnamed until their callers
-// establish their purpose.
+// The queue is grown with malloc in descriptor-sized (0x10-byte) steps.
+// Its allocator has no state; the allocated range ends at offset +0x0C.
+struct HardwareDmaQueueAllocator {
+#ifdef __cplusplus
+    HardwareDmaQueueAllocator() {}
+    HardwareDmaQueueAllocator(HardwareDmaQueueAllocator const &) {}
+#else
+    u8 unk_00;
+#endif
+};
+
+struct HardwareDmaQueueAllocation {
+    struct HardwareDmaQueueAllocator allocator;
+    struct DmaTransferDescriptor * end;
+#ifdef __cplusplus
+    HardwareDmaQueueAllocation(HardwareDmaQueueAllocator const & value)
+        : allocator(value), end(nullptr) {}
+#endif
+};
+
+struct HardwareDmaQueue {
+    struct DmaTransferDescriptor * first;
+    struct DmaTransferDescriptor * last;
+    struct HardwareDmaQueueAllocation allocation;
+#ifdef __cplusplus
+    HardwareDmaQueue(HardwareDmaQueueAllocator const & allocator = HardwareDmaQueueAllocator())
+        : first(nullptr), last(nullptr), allocation(allocator) {}
+#endif
+};
+
+// Layout shared by the four bootstrap constructors and these accessors.
+// Unresolved sprite parameters and display fields retain unknown names.
 struct HardwareCoreState {
     struct HardwareInputState input;
-    u32 unk_24;
-    u32 unk_28;
-    u32 unk_2C;
-    u32 unk_30;
+    struct HardwareDmaQueue dma_queue;
     struct HardwareDisplayState display;
-    u8 sprite_buffer[0x404];
-    void * manager;
+    struct HardwareSpriteBufferState sprite_buffer;
+    struct HardwareManagerOwner manager;
     struct HardwareLinkedList links;
+#ifdef __cplusplus
+    HardwareCoreState(u16 delay, u16 interval, u8 byte1, u8 byte3)
+        : input(delay, interval), dma_queue(), display(),
+          sprite_buffer(byte1, byte3), manager(), links() {}
+    HardwareCoreState(u16 delay, u16 interval, HardwareSpriteBufferParameters const & buffer)
+        : input(delay, interval), dma_queue(), display(),
+          sprite_buffer(buffer.byte1, buffer.byte3), manager(), links() {}
+#endif
 };
 
 typedef char HardwareCoreState_size_check[sizeof(struct HardwareCoreState) == 0x4B0 ? 1 : -1];
+typedef char HardwareDmaQueue_size_check[sizeof(struct HardwareDmaQueue) == 0x10 ? 1 : -1];
+typedef char HardwareDmaQueue_end_check[offsetof(struct HardwareDmaQueue, allocation.end) == 0x0C ? 1 : -1];
+typedef char HardwareCoreState_dma_queue_check[offsetof(struct HardwareCoreState, dma_queue) == 0x24 ? 1 : -1];
+typedef char HardwareCoreState_display_check[offsetof(struct HardwareCoreState, display) == 0x34 ? 1 : -1];
+typedef char HardwareCoreState_sprite_buffer_check[offsetof(struct HardwareCoreState, sprite_buffer) == 0x8C ? 1 : -1];
+typedef char HardwareCoreState_manager_check[offsetof(struct HardwareCoreState, manager) == 0x490 ? 1 : -1];
+typedef char HardwareCoreState_links_check[offsetof(struct HardwareCoreState, links) == 0x494 ? 1 : -1];
 
 EXTERN_C
 

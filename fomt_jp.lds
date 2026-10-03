@@ -96,7 +96,6 @@ SECTIONS
         src/hardware_state_properties.o(.text);
         asm/hardware.o(.text.hardware_state_properties_after);
         src/hardware_state_clear.o(.text);
-        asm/hardware.o(.text.hardware_state_clear_after);
         src/hardware_bootstrap.o(.text);
         asm/hardware.o(.text.hardware_bootstrap_after);
         src/hardware_state_accessors.o(.text);
@@ -119,6 +118,8 @@ SECTIONS
         src/hardware_display_output.o(.text);
         src/hardware_oam_state.o(.text);
         src/hardware_linked_list.o(.text);
+        src/hardware_linked_list.o(.text.hardware_linked_list_constructor);
+        src/hardware_linked_list.o(.text.hardware_linked_list_tail);
         . = 0x9A50; /* JP ROM 0x08009A50, independently matched */
         src/farm.o(.text);
         . = 0x9F94; /* JP ROM 0x08009F94, independently matched */

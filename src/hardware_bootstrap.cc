@@ -1,14 +1,63 @@
 #include "hardware_bootstrap.hh"
 #include "hardware_nested_accessors.hh"
+#include "gbaio.h"
+#include <new>
 
 EXTERN_C
 extern void * vtable_unk_080E5B00[];
 extern void * vtable_unk_080E5AF0[];
-extern void func_08008A68(void * object, u32 flags);
 extern void func_08008AF0(void * object);
 extern void __builtin_delete(void * pointer);
 extern void free(void * pointer);
 EXTERN_C_END
+
+struct HardwareBootstrap * func_08008444(struct HardwareBootstrap * owner)
+{
+    owner->vtable = vtable_unk_080E5B00;
+    struct HardwareCoreState * state = new HardwareCoreState(30, 4, 0, 0x20);
+    u16 status = state->display.status;
+    status |= 8;
+    state->display.status = status;
+    REG_DISPSTAT = status;
+    owner->state = state;
+    return owner;
+}
+
+struct HardwareBootstrap * func_080084DC(struct HardwareBootstrap * owner, struct HardwareInputRepeatParameters const * input)
+{
+    owner->vtable = vtable_unk_080E5B00;
+    struct HardwareCoreState * state = new HardwareCoreState(input->delay, input->interval, 0, 0x20);
+    u16 status = state->display.status;
+    status |= 8;
+    state->display.status = status;
+    REG_DISPSTAT = status;
+    owner->state = state;
+    return owner;
+}
+
+struct HardwareBootstrap * func_08008574(struct HardwareBootstrap * owner, struct HardwareSpriteBufferParameters const * buffer)
+{
+    owner->vtable = vtable_unk_080E5B00;
+    struct HardwareCoreState * state = new HardwareCoreState(30, 4, *buffer);
+    u16 status = state->display.status;
+    status |= 8;
+    state->display.status = status;
+    REG_DISPSTAT = status;
+    owner->state = state;
+    return owner;
+}
+
+struct HardwareBootstrap * func_08008618(struct HardwareBootstrap * owner, struct HardwareInputRepeatParameters const * input, struct HardwareSpriteBufferParameters const * buffer)
+{
+    owner->vtable = vtable_unk_080E5B00;
+    struct HardwareCoreState * state = new HardwareCoreState(input->delay, input->interval, *buffer);
+    u16 status = state->display.status;
+    status |= 8;
+    state->display.status = status;
+    REG_DISPSTAT = status;
+    owner->state = state;
+    return owner;
+}
 
 void func_080086BC(struct HardwareBootstrap * owner, u32 flags)
 {
@@ -16,18 +65,18 @@ void func_080086BC(struct HardwareBootstrap * owner, u32 flags)
     owner->vtable = vtable_unk_080E5B00;
     if (owner->state != 0) {
         state = owner->state;
-        u32 * buffer;
-        u32 current;
-        u32 end;
+        struct HardwareDmaQueue * queue;
+        struct DmaTransferDescriptor * current;
+        struct DmaTransferDescriptor * end;
         func_080098DC(&state->links, 2);
         func_08008A68(&state->manager, 2);
-        buffer = &state->unk_24;
-        end = buffer[1];
-        current = buffer[0];
+        queue = &state->dma_queue;
+        end = queue->last;
+        current = queue->first;
         while (current != end)
-            current += 0x10;
-        if (buffer[0] != 0)
-            free((void *)buffer[0]);
+            current++;
+        if (queue->first != nullptr)
+            free(queue->first);
         __builtin_delete(state);
     }
     if (flags & 1)

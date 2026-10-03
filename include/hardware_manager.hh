@@ -15,6 +15,9 @@ typedef char HardwareManagerState_size_check[sizeof(struct HardwareManagerState)
 
 struct HardwareManagerOwner {
     struct HardwareManagerState * state;
+#ifdef __cplusplus
+    HardwareManagerOwner() asm("func_08008980");
+#endif
 };
 
 EXTERN_C

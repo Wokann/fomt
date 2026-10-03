@@ -1,3 +1,5 @@
+#include "prelude.h"
+#pragma implementation "hardware_linked_list.hh"
 #include "hardware_linked_list.hh"
 
 extern void * vtable_unk_080E5BE8[];
@@ -131,19 +133,6 @@ u32 func_080099EC(struct HardwareLinkedList * list)
 }
 
 EXTERN_C_END
-
-inline HardwareLink::HardwareLink()
-    : previous_slot(0), next(0), vtable(vtable_unk_080E5BD8)
-{
-}
-
-HardwareLinkedList::HardwareLinkedList()
-    : unk_00(0), unk_04(0), vtable(vtable_unk_080E5BB4),
-      first(&sentinel), sentinel()
-{
-    sentinel.previous_slot = &first;
-    sentinel.next = &sentinel;
-}
 
 EXTERN_C
 

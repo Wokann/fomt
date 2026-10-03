@@ -3,6 +3,11 @@
 
 #include "prelude.h"
 
+struct HardwareInputRepeatParameters {
+    u16 delay;
+    u16 interval;
+};
+
 struct HardwareInputState {
     u16 held;
     u16 unk_02;
@@ -12,6 +17,9 @@ struct HardwareInputState {
     u16 repeat_delay;
     u16 repeat_interval;
     i16 held_frames[10];
+#ifdef __cplusplus
+    HardwareInputState(u16 delay, u16 interval) asm("func_080091A4");
+#endif
 };
 
 EXTERN_C

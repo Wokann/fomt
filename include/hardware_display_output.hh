@@ -5,11 +5,27 @@
 
 struct HardwareDisplayState {
     u32 control;
-    u8 unk_04[0x1C];
+    u16 status;
+    u8 unk_06[0x1A];
     u16 matrix_a[4];
     u8 unk_28[8];
     u16 matrix_b[4];
     u8 unk_38[0x20];
+#ifdef __cplusplus
+    HardwareDisplayState() asm("func_080096B0");
+#endif
+};
+
+struct HardwareSpriteBufferState {
+    u8 bytes[0x404];
+#ifdef __cplusplus
+    HardwareSpriteBufferState(u8 byte1, u8 byte3) asm("func_08009744");
+#endif
+};
+
+struct HardwareSpriteBufferParameters {
+    u8 byte1;
+    u8 byte3;
 };
 
 EXTERN_C
