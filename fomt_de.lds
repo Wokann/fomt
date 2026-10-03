@@ -67,8 +67,8 @@ SECTIONS
         asm/new_game.o(.text);
         src/hardware.o(.text);
         asm/hardware.o(.text);
-        src/hardware_allocator_accessors.o(.text);
-        asm/hardware.o(.text.hardware_allocator_accessors_after);
+        src/hardware_allocator.o(.text);
+        asm/hardware.o(.text.hardware_allocator_after);
         src/hardware_resource.o(.text);
         src/hardware_mask.o(.text);
         asm/hardware.o(.text.hardware_mask_after);

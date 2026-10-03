@@ -1,15 +1,13 @@
 #include "hardware_resource.hh"
 
+#include "hardware_allocator.hh"
+
 extern void __builtin_delete(void * pointer);
 
 EXTERN_C
 
-extern void func_080073E0(HardwareResourceEntry * entry, u32 handle);
 extern void func_08007184(HardwareResourceEntry * entry, u32 flags);
 extern HardwareResource * func_08007128(HardwareResource * object);
-extern u32 func_0800736C(HardwareResource * object);
-extern u32 func_0800745C(HardwareResource * object, u32 handle);
-extern u32 func_08007510(HardwareResourceEntry * entry, u32 handle);
 extern void free(void * pointer);
 
 void func_0800770C(HardwareResource * object)
