@@ -121,6 +121,8 @@ SECTIONS
         src/more_items.o(.text);
         asm/more_items.o(.text.more_items_post);
         asm/game_scene.o(.text);
+        src/game_scene.o(.text);
+        asm/game_scene.o(.text.game_scene_post);
         asm/game_state.o(.text);
         src/entity.o(.text);
         src/code_entity_08020018.o(.text);

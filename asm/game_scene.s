@@ -87,65 +87,9 @@ func_0801004C:
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-.Ljp_080100D0:
-    ldr r0, .Ljp_080100DC
-    ldr r0, [r0, #0]
-    ldr r1, .Ljp_080100E0
-    adds r0, r0, r1
-    bx lr
+    .section .text.game_scene_post, "ax", %progbits
+    .thumb
     .align 2, 0
-.Ljp_080100DC:
-    .4byte gUnk_0300040C
-.Ljp_080100E0:
-    .4byte 0x00000524
-.Ljp_080100E4:
-    ldr r0, .Ljp_080100F0
-    ldr r0, [r0, #0]
-    ldr r1, .Ljp_080100F4
-    adds r0, r0, r1
-    bx lr
-    .align 2, 0
-.Ljp_080100F0:
-    .4byte gUnk_0300040C
-.Ljp_080100F4:
-    .4byte 0x000004DC
-.Ljp_080100F8:
-    ldr r0, .Ljp_08010104
-    ldr r0, [r0, #0]
-    movs r1, #222 @ 0xde
-    lsls r1, r1, #2
-    adds r0, r0, r1
-    bx lr
-.Ljp_08010104:
-    .4byte gUnk_0300040C
-.Ljp_08010108:
-    ldr r0, .Ljp_08010114
-    ldr r0, [r0, #0]
-    movs r1, #219 @ 0xdb
-    lsls r1, r1, #2
-    adds r0, r0, r1
-    bx lr
-.Ljp_08010114:
-    .4byte gUnk_0300040C
-.Ljp_08010118:
-    ldr r0, .Ljp_08010124
-    ldr r0, [r0, #0]
-    movs r1, #218 @ 0xda
-    lsls r1, r1, #2
-    adds r0, r0, r1
-    bx lr
-.Ljp_08010124:
-    .4byte gUnk_0300040C
-.Ljp_08010128:
-    movs r0, #25
-    bx lr
-.Ljp_0801012C:
-    ldr r0, .Ljp_08010134
-    ldr r0, [r0, #0]
-    adds r0, #8
-    bx lr
-.Ljp_08010134:
-    .4byte gUnk_0300040C
 
     .global func_08010158
     .thumb_func
@@ -478,63 +422,9 @@ func_0801004C: @ 0x0801004C
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-.L080100F0:
-    ldr r0, .L080100FC
-    ldr r0, [r0]
-    ldr r1, .L08010100
-    adds r0, r0, r1
-    bx lr
+    .section .text.game_scene_post, "ax", %progbits
+    .thumb
     .align 2, 0
-.L080100FC: .4byte gUnk_0300040C
-.L08010100: .4byte 0x00000524
-
-.L08010104:
-    ldr r0, .L08010110
-    ldr r0, [r0]
-    ldr r1, .L08010114
-    adds r0, r0, r1
-    bx lr
-    .align 2, 0
-.L08010110: .4byte gUnk_0300040C
-.L08010114: .4byte 0x000004DC
-
-.L08010118:
-    ldr r0, .L08010124
-    ldr r0, [r0]
-    movs r1, #0xde
-    lsls r1, r1, #2
-    adds r0, r0, r1
-    bx lr
-.L08010124: .4byte gUnk_0300040C
-
-.L08010128:
-    ldr r0, .L08010134
-    ldr r0, [r0]
-    movs r1, #0xdb
-    lsls r1, r1, #2
-    adds r0, r0, r1
-    bx lr
-.L08010134: .4byte gUnk_0300040C
-
-.L08010138:
-    ldr r0, .L08010144
-    ldr r0, [r0]
-    movs r1, #0xda
-    lsls r1, r1, #2
-    adds r0, r0, r1
-    bx lr
-.L08010144: .4byte gUnk_0300040C
-
-.L08010148:
-    movs r0, #25
-    bx lr
-
-.L0801014C:
-    ldr r0, .L08010154
-    ldr r0, [r0]
-    adds r0, #8
-    bx lr
-.L08010154: .4byte gUnk_0300040C
 
     thumb_func_start func_08010158
 func_08010158: @ 0x08010158
