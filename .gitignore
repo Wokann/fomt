@@ -92,5 +92,7 @@ graphics/intro_scene/indexed_archive/*/title_tiles.8bpp
 graphics/intro_scene/indexed_archive/*/frame_tiles.4bpp
 graphics/intro_scene/indexed_archive/*/palettes_*.gbapal
 graphics/intro_scene/indexed_archive/*/archive.bin
+graphics/farm_house_visual/shared/*.4bpp
+graphics/farm_house_visual/shared/palettes/*.gbapal
 __pycache__/
 tools/textproc/fomt-*

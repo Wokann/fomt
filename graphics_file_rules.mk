@@ -704,11 +704,17 @@ UI_SCENE_0805AB08_REFERENCE_TOOL := tools/ui_scene_0805ab08_reference.py
 UI_SCENE_0805AB08_REFERENCE_DIR := graphics/ui/scene_0805ab08_tiles/reference
 
 # Seven FarmHouse visual descriptors each pass a separately bounded native
-# 0x70 stream directly to Unpack. The four regions share these source tiles
-# and publisher streams; C rebuilds compressed output beside the source.
+# 0x70 stream directly to Unpack. Shared native-index PNGs and independent
+# PALs use the ordinary source-adjacent conversions below.
 FARM_HOUSE_VISUAL_SOURCE_DIR := graphics/farm_house_visual/shared
-FARM_HOUSE_VISUAL_SOURCES := $(wildcard $(FARM_HOUSE_VISUAL_SOURCE_DIR)/*.4bpp)
+FARM_HOUSE_VISUAL_SOURCES := $(patsubst %.png,%.4bpp,$(wildcard $(FARM_HOUSE_VISUAL_SOURCE_DIR)/*.png))
 FARM_HOUSE_VISUAL_OUTPUTS := $(FARM_HOUSE_VISUAL_SOURCES:%=%.lz)
+$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_00.4bpp: GFX_TILE_COUNT := 64
+$(addprefix $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_,$(addsuffix .4bpp,01 02 05)): GFX_TILE_COUNT := 63
+$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_03.4bpp: GFX_TILE_COUNT := 159
+$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_04.4bpp: GFX_TILE_COUNT := 351
+$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_06.4bpp: GFX_TILE_COUNT := 223
+.SECONDARY: $(FARM_HOUSE_VISUAL_SOURCES)
 # The same seven descriptors also contain fourteen bounded 16-bit tilemap
 # patches.  Their lookup and palette domains deliberately remain untouched.
 FARM_HOUSE_TILEMAP_SOURCE_DIR := graphics/farm_house_visual/shared/tilemap_patches
@@ -729,10 +735,10 @@ FARM_HOUSE_TILEMAP_VERIFY_DELTA_US := 0x279EA4
 FARM_HOUSE_TILEMAP_VERIFY_DELTA_EU := 0x279F00
 FARM_HOUSE_TILEMAP_VERIFY_DELTA_DE := 0xF40
 # Each descriptor's +0x20 source is copied as a known number of native
-# BGR555 palette banks. Keep it binary, separate from both tile and tilemap
-# authoring data.
+# BGR555 palette banks. PAL sources remain separate from tile PNGs and maps.
 FARM_HOUSE_PALETTE_SOURCE_DIR := graphics/farm_house_visual/shared/palettes
-FARM_HOUSE_PALETTE_SOURCES := $(wildcard $(FARM_HOUSE_PALETTE_SOURCE_DIR)/*.gbapal)
+FARM_HOUSE_PALETTE_SOURCES := $(patsubst %.pal,%.gbapal,$(wildcard $(FARM_HOUSE_PALETTE_SOURCE_DIR)/*.pal))
+.SECONDARY: $(FARM_HOUSE_PALETTE_SOURCES)
 FARM_HOUSE_PALETTE_VERIFY_JP := \
   palette_00_buffer_0.gbapal:0x472FCC palette_01_buffer_0.gbapal:0x473470 palette_01_buffer_1.gbapal:0x473678 \
   palette_02_buffer_0.gbapal:0x478EA0 palette_02_buffer_1.gbapal:0x4790A8 palette_03_buffer_0.gbapal:0x47668C \
@@ -960,6 +966,7 @@ FOMT_LZ_ENCODE_OUTPUTS := $(addsuffix .lz, \
   $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_01.tilemap \
   $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_04.tilemap \
   $(UI_SCENE_08077810_LAYER0_SOURCE) $(UI_SCENE_08077810_JP_TILES) \
+  $(addprefix $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_,$(addsuffix .4bpp,01 02 05)) \
   $(addprefix $(INTRO_OBJECTS_SOURCE_DIR)/object_,$(addsuffix .4bpp,00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19)) \
   $(MAP_DATA_SOURCE_DIR)/map_08/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_08/layer_2.gbapal \
   $(MAP_DATA_SOURCE_DIR)/map_09/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_09/layer_2.gbapal \
@@ -978,6 +985,7 @@ FOMT_LZ_ENCODE_OUTPUTS := $(addsuffix .lz, \
 MAP_DATA_DIRECT_PACKED := $(filter $(MAP_DATA_SOURCE_DIR)/%,$(FOMT_LZ_ENCODE_OUTPUTS))
 INTRO_STARTUP_TILEMAPS_DIRECT_PACKED := $(filter $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/%,$(FOMT_LZ_ENCODE_OUTPUTS))
 FARM_STATUS_SECONDARY_DIRECT_PACKED := $(filter $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/%,$(FOMT_LZ_ENCODE_OUTPUTS))
+FARM_HOUSE_VISUAL_DIRECT_PACKED := $(filter $(FARM_HOUSE_VISUAL_SOURCE_DIR)/%,$(FOMT_LZ_ENCODE_OUTPUTS))
 
 $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_0.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 125 0x28
 $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_1.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1234679 0xB0
@@ -1008,6 +1016,9 @@ $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_01.tilemap.lz: FOMT_LZ_ENC
 $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_04.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,8,11 0x1D0
 $(UI_SCENE_08077810_LAYER0_PACKED): FOMT_LZ_ENCODE := encode-huff4-lz3 1,5,9 0x16C
 $(UI_SCENE_08077810_JP_TILES_PACKED): FOMT_LZ_ENCODE := encode-huff4-lz3 1,4,10 0x4C0
+$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_01.4bpp.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,4,5,6,7,8,11 0x424 --filter=1
+$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_02.4bpp.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,4,5,6,7,8,10 0x418 --filter=1
+$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_05.4bpp.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,4,5,6,7,8,8 0x364
 
 # All 17 of these retail Raw-LZ3 streams were rebuilt directly and matched
 # their original packed bytes; their .original.lz copies are audit-only now.
@@ -1384,6 +1395,9 @@ gfx-farm-house-visual: $(FARM_HOUSE_VISUAL_OUTPUTS)
 gfx-farm-house-visual-test: gfx-farm-house-visual $(FOMT_LZ_TOOL)
 	@set -e; for source in $(FARM_HOUSE_VISUAL_SOURCES); do \
 	  $(FOMT_LZ_TOOL) verify-native "$$source" "$$source.lz"; \
+	done
+	@set -e; for packed in $(FARM_HOUSE_VISUAL_DIRECT_PACKED); do \
+	  cmp "$$packed" "$${packed%.*.lz}.original.lz"; \
 	done
 gfx-farm-house-visual-all: gfx-farm-house-visual-test
 gfx-farm-house-tilemaps: $(FARM_HOUSE_TILEMAP_SOURCES)
