@@ -153,7 +153,7 @@ func_08007578:
     cmp r0, #0
     bne .L08007636
     adds r0, r4, #0
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
 .L08007636:
     ldr r1, [r7]
     b .L08007640
@@ -1264,7 +1264,7 @@ func_08008190:
     cmp r0, #0
     bne .L08008266
     adds r0, r4, #0
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
 .L08008266:
     ldr r1, [r7]
     b .L08008270

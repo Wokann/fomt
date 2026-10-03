@@ -805,7 +805,7 @@ func_0803AA6C:
     cmp	r0, #0
     bne .Ljp_0803AB1E
     mov	r0, r8
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
 .Ljp_0803AB1E:
     ldr	r1, [r5, #0]
     b .Ljp_0803AB26
@@ -1393,7 +1393,7 @@ func_0803AEBC:
     cmp	r0, #0
     bne .Ljp_0803AF76
     mov	r0, r9
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
 .Ljp_0803AF76:
     ldr	r1, [r7, #0]
     b .Ljp_0803AF7E
@@ -9790,7 +9790,7 @@ func_0803ACD8:
     cmp	r0, #0
     bne .Leu_0803AD9E
     mov	r0, r8
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
 .Leu_0803AD9E:
     ldr	r1, [r5, #0]
     b .Leu_0803ADA6
@@ -10378,7 +10378,7 @@ func_0803B128:
     cmp	r0, #0
     bne .Leu_0803B1F6
     mov	r0, r9
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
 .Leu_0803B1F6:
     ldr	r1, [r7, #0]
     b .Leu_0803B1FE
@@ -18849,7 +18849,7 @@ func_0803ACD8:
     cmp	r0, #0
     bne .Lde_0803AC9E
     mov	r0, r8
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
 .Lde_0803AC9E:
     ldr	r1, [r5, #0]
     b .Lde_0803ACA6
@@ -19437,7 +19437,7 @@ func_0803B128:
     cmp	r0, #0
     bne .Lde_0803B0F6
     mov	r0, r9
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
 .Lde_0803B0F6:
     ldr	r1, [r7, #0]
     b .Lde_0803B0FE
@@ -27886,7 +27886,7 @@ func_0803ACD8:
     cmp	r0, #0
     bne .Lus_0803AD8A
     mov	r0, r8
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
 .Lus_0803AD8A:
     ldr	r1, [r5, #0]
     b .Lus_0803AD92
@@ -28474,7 +28474,7 @@ func_0803B128:
     cmp	r0, #0
     bne .Lus_0803B1E2
     mov	r0, r9
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
 .Lus_0803B1E2:
     ldr	r1, [r7, #0]
     b .Lus_0803B1EA

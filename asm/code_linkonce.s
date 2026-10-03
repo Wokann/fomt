@@ -2,31 +2,6 @@
 	.INCLUDE "asm/macro.inc"
 	.SYNTAX UNIFIED
 
-	.section ".text.code_080D3BC0"
-
-	thumb_func_start func_080D3BC0
-func_080D3BC0: @ 0x080D3BC0
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	ldr r5, .L080D3BD0 @ =gUnk_03000CD4
-.L080D3BC6:
-	ldr r0, [r5]
-	cmp r0, #0
-	bne .L080D3BD4
-.L080D3BCC:
-	b .L080D3BCC
-	.align 2, 0
-.L080D3BD0: .4byte gUnk_03000CD4
-.L080D3BD4:
-	bl _call_via_r0
-	adds r0, r4, #0
-	bl malloc
-	cmp r0, #0
-	beq .L080D3BC6
-	pop {r4, r5}
-	pop {r1}
-	bx r1
-
 	.section ".text.code_080D3C78"
 
 	thumb_func_start func_080D3C78
@@ -6051,7 +6026,7 @@ func_080D6DB8:
     cmp r0, #0
     bne .Lauto_080D65B6
     mov r0, r8
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .Lauto_080D65B6
     .Lauto_080D65B2:
     movs r0, #0
@@ -6110,7 +6085,7 @@ func_080D6DB8:
     cmp r0, #0
     bne .Lauto_080D662A
     mov r0, r8
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .Lauto_080D662A
     .Lauto_080D6626:
     movs r0, #0
@@ -7395,7 +7370,7 @@ func_080D772C:
     cmp r0, #0
     bne .Lauto_080D6F2A
     mov r0, r8
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .Lauto_080D6F2A
     .Lauto_080D6F26:
     movs r0, #0
@@ -7454,7 +7429,7 @@ func_080D772C:
     cmp r0, #0
     bne .Lauto_080D6F9E
     mov r0, r8
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .Lauto_080D6F9E
     .Lauto_080D6F9A:
     movs r0, #0
@@ -8495,7 +8470,7 @@ func_080D6DB8: @ 0x080D6DB8
 	cmp r0, #0
 	bne .L080D6DFE
 	mov r0, r8
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	b .L080D6DFE
 .L080D6DFA:
 	movs r0, #0
@@ -8554,7 +8529,7 @@ func_080D6DB8: @ 0x080D6DB8
 	cmp r0, #0
 	bne .L080D6E72
 	mov r0, r8
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	b .L080D6E72
 .L080D6E6E:
 	movs r0, #0
@@ -9846,7 +9821,7 @@ func_080D772C: @ 0x080D772C
 	cmp r0, #0
 	bne .L080D7772
 	mov r0, r8
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	b .L080D7772
 .L080D776E:
 	movs r0, #0
@@ -9905,7 +9880,7 @@ func_080D772C: @ 0x080D772C
 	cmp r0, #0
 	bne .L080D77E6
 	mov r0, r8
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	b .L080D77E6
 .L080D77E2:
 	movs r0, #0
@@ -10828,7 +10803,7 @@ sub_080D8178:
     cmp r0, #0
     bne .Lauto_080D7B10
     mov r0, sb
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .Lauto_080D7B10
     .byte 0x74, 0x04, 0x00, 0x00
     .Lauto_080D7B0C:
@@ -11014,7 +10989,7 @@ sub_080D8178:
     cmp r0, #0
     bne .Lauto_080D7C9C
     mov r0, r8
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .Lauto_080D7C9C
     .byte 0x7C, 0x04, 0x00, 0x00
     .Lauto_080D7C98:
@@ -11125,7 +11100,7 @@ sub_080D8178:
     cmp r0, #0
     bne .Lauto_080D7D7C
     mov r0, r8
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .Lauto_080D7D7C
     .byte 0x8C, 0x04, 0x00, 0x00
     .Lauto_080D7D78:
@@ -11237,7 +11212,7 @@ sub_080D8178:
     cmp r0, #0
     bne .Lauto_080D7E54
     mov r0, r8
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .Lauto_080D7E54
     .byte 0x94, 0x04, 0x00, 0x00
     .Lauto_080D7E50:
@@ -18788,7 +18763,7 @@ func_080E0094:
     cmp r0, #0
     bne .Lauto_080DF90A
     mov r0, sb
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .Lauto_080DF90A
     .Lauto_080DF906:
     movs r0, #0
@@ -18895,7 +18870,7 @@ func_080E0094:
     cmp r0, #0
     bne .Lauto_080DF9D2
     mov r0, sb
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .Lauto_080DF9D2
     .Lauto_080DF9CE:
     movs r0, #0
@@ -18985,7 +18960,7 @@ func_080E0094:
     cmp r0, #0
     bne .Lauto_080DFA78
     mov r0, sb
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .Lauto_080DFA78
     .Lauto_080DFA74:
     movs r0, #0
@@ -19075,7 +19050,7 @@ func_080E0094:
     cmp r0, #0
     bne .Lauto_080DFB1E
     mov r0, sb
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .Lauto_080DFB1E
     .Lauto_080DFB1A:
     movs r0, #0
@@ -20743,7 +20718,7 @@ sub_080D8178: @ 0x080D8178
 	cmp r0, #0
 	bne .L080D8358
 	mov r0, sb
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	b .L080D8358
 	.align 2, 0
 .L080D8350: .4byte 0x00000474
@@ -20938,7 +20913,7 @@ sub_080D8178: @ 0x080D8178
 	cmp r0, #0
 	bne .L080D84E4
 	mov r0, r8
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	b .L080D84E4
 	.align 2, 0
 .L080D84DC: .4byte 0x0000047C
@@ -21054,7 +21029,7 @@ sub_080D8178: @ 0x080D8178
 	cmp r0, #0
 	bne .L080D85C4
 	mov r0, r8
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	b .L080D85C4
 	.align 2, 0
 .L080D85BC: .4byte 0x0000048C
@@ -21168,7 +21143,7 @@ sub_080D8178: @ 0x080D8178
 	cmp r0, #0
 	bne .L080D869C
 	mov r0, r8
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	b .L080D869C
 	.align 2, 0
 .L080D8694: .4byte 0x00000494
@@ -25280,7 +25255,7 @@ sub_080DA76C: @ 0x080DA76C
 	cmp r0, #0
 	bne .L080DA936
 	adds r0, r4, #0
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	b .L080DA936
 	.align 2, 0
 .L080DA924: .4byte 0x00000584
@@ -25641,7 +25616,7 @@ sub_080DA76C: @ 0x080DA76C
 	cmp r0, #0
 	bne .L080DABEC
 	mov r0, sb
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	b .L080DABEC
 	.align 2, 0
 .L080DABE4: .4byte 0x000004C4
@@ -36400,7 +36375,7 @@ func_080E0094: @ 0x080E0094
 	cmp r0, #0
 	bne .L080E0156
 	mov r0, sb
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	b .L080E0156
 .L080E0152:
 	movs r0, #0
@@ -36507,7 +36482,7 @@ func_080E0094: @ 0x080E0094
 	cmp r0, #0
 	bne .L080E021E
 	mov r0, sb
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	b .L080E021E
 .L080E021A:
 	movs r0, #0
@@ -36597,7 +36572,7 @@ func_080E0094: @ 0x080E0094
 	cmp r0, #0
 	bne .L080E02C4
 	mov r0, sb
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	b .L080E02C4
 .L080E02C0:
 	movs r0, #0
@@ -36687,7 +36662,7 @@ func_080E0094: @ 0x080E0094
 	cmp r0, #0
 	bne .L080E036A
 	mov r0, sb
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	b .L080E036A
 .L080E0366:
 	movs r0, #0
@@ -37265,7 +37240,7 @@ func_080E0094: @ 0x080E0094
 	cmp r0, #0
 	bne .L080E0816
 	mov r0, sb
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	b .L080E0816
 .L080E0812:
 	movs r0, #0
@@ -41217,7 +41192,7 @@ func_080E2568:
     cmp r0, #0
     bne .Lauto_080E2588
     movs r0, #0x18
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     .Lauto_080E2588:
     str r0, [r4, #4]
     str r5, [r4, #8]
@@ -41239,7 +41214,7 @@ func_080E2568:
     cmp r0, #0
     bne .Lauto_080E25B8
     movs r0, #0x18
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     .Lauto_080E25B8:
     str r0, [r4, #4]
     str r5, [r4, #8]
@@ -41358,7 +41333,7 @@ func_080E2EA4:
     cmp r1, #0
     bne .Lauto_080E2692
     movs r0, #0x18
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     adds r1, r0, #0
     .Lauto_080E2692:
     adds r2, r1, #0
@@ -41392,7 +41367,7 @@ func_080E2EA4:
     cmp r1, #0
     bne .Lauto_080E26D2
     movs r0, #0x18
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     adds r1, r0, #0
     .Lauto_080E26D2:
     adds r2, r1, #0
@@ -43931,7 +43906,7 @@ func_080E39D0:
     cmp r2, #0
     bne .Lauto_080E3A1A
     movs r0, #0x18
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     adds r2, r0, #0
     .Lauto_080E3A1A:
     adds r1, r2, #0
@@ -43965,7 +43940,7 @@ func_080E39D0:
     cmp r2, #0
     bne .Lauto_080E3A5A
     movs r0, #0x18
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     adds r2, r0, #0
     .Lauto_080E3A5A:
     adds r1, r2, #0
@@ -44158,7 +44133,7 @@ func_080E43FC:
     cmp r0, #0
     bne .Lauto_080E3BB2
     movs r0, #0x18
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     .Lauto_080E3BB2:
     str r0, [r4, #4]
     str r5, [r4, #8]
@@ -48664,7 +48639,7 @@ func_080E2294: @ 0x080E2294
 	cmp r2, #0
 	bne .L080E22D2
 	movs r0, #0x18
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	adds r2, r0, #0
 .L080E22D2:
 	adds r1, r2, #0
@@ -48698,7 +48673,7 @@ func_080E2294: @ 0x080E2294
 	cmp r2, #0
 	bne .L080E2312
 	movs r0, #0x18
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	adds r2, r0, #0
 .L080E2312:
 	adds r1, r2, #0
@@ -49448,7 +49423,7 @@ func_080E27FC: @ 0x080E27FC
 	cmp r2, #0
 	bne .L080E283A
 	movs r0, #0x18
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	adds r2, r0, #0
 .L080E283A:
 	adds r1, r2, #0
@@ -49482,7 +49457,7 @@ func_080E27FC: @ 0x080E27FC
 	cmp r2, #0
 	bne .L080E287A
 	movs r0, #0x18
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	adds r2, r0, #0
 .L080E287A:
 	adds r1, r2, #0
@@ -50251,7 +50226,7 @@ func_080E2DC8: @ 0x080E2DC8
 	cmp r0, #0
 	bne .L080E2DE8
 	movs r0, #0x18
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 .L080E2DE8:
 	str r0, [r4, #4]
 	str r5, [r4, #8]
@@ -50273,7 +50248,7 @@ func_080E2DC8: @ 0x080E2DC8
 	cmp r0, #0
 	bne .L080E2E18
 	movs r0, #0x18
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 .L080E2E18:
 	str r0, [r4, #4]
 	str r5, [r4, #8]
@@ -50374,7 +50349,7 @@ func_080E2EA4: @ 0x080E2EA4
 	cmp r1, #0
 	bne .L080E2EF2
 	movs r0, #0x18
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	adds r1, r0, #0
 .L080E2EF2:
 	adds r2, r1, #0
@@ -50408,7 +50383,7 @@ func_080E2EA4: @ 0x080E2EA4
 	cmp r1, #0
 	bne .L080E2F32
 	movs r0, #0x18
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	adds r1, r0, #0
 .L080E2F32:
 	adds r2, r1, #0
@@ -52967,7 +52942,7 @@ func_080E4244: @ 0x080E4244
 	cmp r2, #0
 	bne .L080E4282
 	movs r0, #0x18
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	adds r2, r0, #0
 .L080E4282:
 	adds r1, r2, #0
@@ -53001,7 +52976,7 @@ func_080E4244: @ 0x080E4244
 	cmp r2, #0
 	bne .L080E42C2
 	movs r0, #0x18
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	adds r2, r0, #0
 .L080E42C2:
 	adds r1, r2, #0
@@ -53191,7 +53166,7 @@ func_080E43FC: @ 0x080E43FC
 	cmp r0, #0
 	bne .L080E441A
 	movs r0, #0x18
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 .L080E441A:
 	str r0, [r4, #4]
 	str r5, [r4, #8]
@@ -55202,7 +55177,7 @@ func_080E54F0: @ 0x080E54F0
 	cmp r2, #0
 	bne .L080E552E
 	movs r0, #0x18
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	adds r2, r0, #0
 .L080E552E:
 	adds r1, r2, #0
@@ -55236,7 +55211,7 @@ func_080E54F0: @ 0x080E54F0
 	cmp r2, #0
 	bne .L080E556E
 	movs r0, #0x18
-	bl func_080D3BC0
+	bl RetryMemoryAllocation
 	adds r2, r0, #0
 .L080E556E:
 	adds r1, r2, #0

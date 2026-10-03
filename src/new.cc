@@ -2,11 +2,10 @@
  * implementation of the new and delete operators
  */
 
-#include "prelude.h"
+#include "new.hh"
 
 #include <stddef.h>
 #include <stdlib.h>
-#include <new>
 
 extern std::new_handler __new_handler;
 
@@ -76,4 +75,20 @@ void operator delete(void * ptr, std::nothrow_t const & nothrow)
 void operator delete[](void * ptr, std::nothrow_t const & nothrow)
 {
     operator delete(ptr, nothrow);
+}
+
+void * RetryMemoryAllocation(size_t size)
+{
+    for (;;)
+    {
+        std::new_handler handler = gUnk_03000CD4;
+        if (handler == nullptr)
+        {
+            for (;;) {}
+        }
+        handler();
+        void * result = malloc(size);
+        if (result != nullptr)
+            return result;
+    }
 }

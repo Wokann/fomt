@@ -3635,7 +3635,7 @@ func_08005278:
     cmp r0, #0
     bne .Ljp_0800552A
     mov r0, sb
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .Ljp_0800552A
 .Ljp_08005526:
     movs r0, #0
@@ -4754,7 +4754,7 @@ func_08005CDC:
     cmp	r0, #0
     bne .Ljp_00005E2A
     mov	r0, r9
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .Ljp_00005E2A
 .Ljp_00005E26:
     movs	r0, #0
@@ -4942,7 +4942,7 @@ func_08005CDC:
     cmp	r0, #0
     bne .Ljp_00005F94
     mov	r0, r8
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .Ljp_00005F94
 .Ljp_00005F90:
     movs	r0, #0
@@ -5391,7 +5391,7 @@ func_0800637C:
     cmp r0, #0
     bne .Ljp_08006326
     mov r0, r8
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .Ljp_08006326
 .Ljp_08006322:
     movs r0, #0
@@ -5636,7 +5636,7 @@ func_080064E8:
     cmp r0, #0
     bne .Ljp_080064F0
     mov r0, r9
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .Ljp_080064F0
 .Ljp_080064EC:
     movs r0, #0
@@ -5859,7 +5859,7 @@ func_080064E8:
     cmp r0, #0
     bne .Ljp_0800668C
     mov r0, r8
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .Ljp_0800668C
 .Ljp_08006688:
     movs r0, #0
@@ -10838,7 +10838,7 @@ func_08005278: @ 0x08005278
     cmp r0, #0
     bne .L08005504
     mov r0, sb
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .L08005504
 .L08005500:
     movs r0, #0
@@ -11014,7 +11014,7 @@ func_08005278: @ 0x08005278
     cmp r0, #0
     bne .L08005648
     mov r0, sb
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .L08005648
 .L08005644:
     movs r0, #0
@@ -12226,7 +12226,7 @@ mov	r9, r4
 cmp	r0, #0
 bne.n	.LNewGameDE_08005F64
 mov	r0, r9
-bl	func_080D3BC0
+bl	RetryMemoryAllocation
 b.n	.LNewGameDE_08005F64
 .LNewGameDE_08005F60:
 movs	r0, #0
@@ -12415,7 +12415,7 @@ mov	r8, r4
 cmp	r0, #0
 bne.n	.LNewGameDE_080060CC
 mov	r0, r8
-bl	func_080D3BC0
+bl	RetryMemoryAllocation
 b.n	.LNewGameDE_080060CC
 .LNewGameDE_080060C8:
 movs	r0, #0
@@ -12833,7 +12833,7 @@ bx	r0
     cmp r0, #0
     bne .L08005F56
     mov r0, sb
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .L08005F56
 .L08005F52:
     movs r0, #0
@@ -13021,7 +13021,7 @@ bx	r0
     cmp r0, #0
     bne .L080060BC
     mov r0, r8
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .L080060BC
 .L080060B8:
     movs r0, #0
@@ -13542,7 +13542,7 @@ mov	r8, r4
 cmp	r0, #0
 bne.n	.LNewGameDE_08006462
 mov	r0, r8
-bl	func_080D3BC0
+bl	RetryMemoryAllocation
 b.n	.LNewGameDE_08006462
 .LNewGameDE_0800645E:
 movs	r0, #0
@@ -13736,7 +13736,7 @@ bx	r0
     cmp r0, #0
     bne .L08006452
     mov r0, r8
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .L08006452
 .L0800644E:
     movs r0, #0
@@ -13984,7 +13984,7 @@ mov	r9, r4
 cmp	r0, #0
 bne.n	.LNewGameDE_08006630
 mov	r0, r9
-bl	func_080D3BC0
+bl	RetryMemoryAllocation
 b.n	.LNewGameDE_08006630
 .LNewGameDE_0800662C:
 movs	r0, #0
@@ -14201,7 +14201,7 @@ mov	r8, r4
 cmp	r0, #0
 bne.n	.LNewGameDE_080067C8
 mov	r0, r8
-bl	func_080D3BC0
+bl	RetryMemoryAllocation
 b.n	.LNewGameDE_080067C8
 .LNewGameDE_080067C4:
 movs	r0, #0
@@ -14452,7 +14452,7 @@ bx	r0
     cmp r0, #0
     bne .L08006618
     mov r0, sb
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .L08006618
 .L08006614:
     movs r0, #0
@@ -14672,7 +14672,7 @@ bx	r0
     cmp r0, #0
     bne .L080067B0
     mov r0, r8
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .L080067B0
 .L080067AC:
     movs r0, #0

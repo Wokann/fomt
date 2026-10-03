@@ -407,7 +407,7 @@ SECTIONS
         /* *libc.a:strlen.o(.text); */
         asm/code_libc_string.o(.text);
 
-        asm/code_linkonce.o(.text.code_080D3BC0);
+        src/new.o(.text.new_retry);
         src/intro_scene.o(.text.intro_scene_transitions);
         *(.gnu.linkonce.t._._19IntroMenuTransition);
         *(.gnu.linkonce.t._._24IntroNameEntryTransition);

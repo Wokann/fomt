@@ -4078,7 +4078,7 @@ func_080024E0:
     cmp	r0, #0
     bne .Ljp_08002AEA
     mov	r0, sl
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .Ljp_08002AEA
 .Ljp_08002AE6:
     movs	r0, #0
@@ -4349,7 +4349,7 @@ func_080024E0:
     cmp	r0, #0
     bne .Ljp_08002CF8
     mov	r0, sl
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .Ljp_08002CF8
 .Ljp_08002CF4:
     movs	r0, #0
@@ -4614,7 +4614,7 @@ func_080024E0:
     cmp	r0, #0
     bne .Ljp_08002EF8
     mov	r0, sl
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .Ljp_08002EF8
 .Ljp_08002EF4:
     movs	r0, #0
@@ -4911,7 +4911,7 @@ func_080024E0:
     cmp	r0, #0
     bne .Ljp_0800313A
     mov	r0, sl
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .Ljp_0800313A
 .Ljp_08003136:
     movs	r0, #0
@@ -5164,7 +5164,7 @@ func_080024E0:
     cmp	r0, #0
     bne .Ljp_08003324
     mov	r0, sl
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .Ljp_08003324
 .Ljp_08003320:
     movs	r0, #0
@@ -5416,7 +5416,7 @@ func_080024E0:
     cmp	r0, #0
     bne .Ljp_0800350C
     mov	r0, r9
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .Ljp_0800350C
 .Ljp_08003508:
     movs	r0, #0
@@ -9437,7 +9437,7 @@ func_080024E0: @ 0x080024E0
     cmp r0, #0
     bne .L08002ACA
     mov r0, sl
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .L08002ACA
 .L08002AC6:
     movs r0, #0
@@ -9701,7 +9701,7 @@ func_080024E0: @ 0x080024E0
     cmp r0, #0
     bne .L08002CD8
     mov r0, sl
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .L08002CD8
 .L08002CD4:
     movs r0, #0
@@ -9960,7 +9960,7 @@ func_080024E0: @ 0x080024E0
     cmp r0, #0
     bne .L08002ED8
     mov r0, sl
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .L08002ED8
 .L08002ED4:
     movs r0, #0
@@ -10250,7 +10250,7 @@ func_080024E0: @ 0x080024E0
     cmp r0, #0
     bne .L0800311A
     mov r0, sl
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .L0800311A
 .L08003116:
     movs r0, #0
@@ -10499,7 +10499,7 @@ func_080024E0: @ 0x080024E0
     cmp r0, #0
     bne .L08003304
     mov r0, sl
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .L08003304
 .L08003300:
     movs r0, #0
@@ -10746,7 +10746,7 @@ func_080024E0: @ 0x080024E0
     cmp r0, #0
     bne .L080034EC
     mov r0, sb
-    bl func_080D3BC0
+    bl RetryMemoryAllocation
     b .L080034EC
 .L080034E8:
     movs r0, #0
