@@ -1,11 +1,6 @@
 #include "hardware.hh"
 
-struct Unk_hardware_H
-{
-    ~Unk_hardware_H();
-};
-
-EC Unk_hardware_H * func_08007128(Unk_hardware_H * self)
+EC void * func_08007128(void * self)
 {
     if (gUnk_03000404 == nullptr)
     {
@@ -17,14 +12,14 @@ EC Unk_hardware_H * func_08007128(Unk_hardware_H * self)
     return self;
 }
 
-EC Unk_hardware_H * func_08007174(Unk_hardware_H * self, Unk_hardware_H const & other)
+EC void * func_08007174(void * self, void const * other)
 {
     gUnk_03000404->unk_4C++;
 
     return self;
 }
 
-Unk_hardware_H::~Unk_hardware_H()
+HardwarePoolOwner::~HardwarePoolOwner()
 {
     gUnk_03000404->unk_4C--;
 
@@ -37,9 +32,7 @@ Unk_hardware_H::~Unk_hardware_H()
     }
 }
 
-EC void func_08007184(Unk_hardware_H * self) ALIAS(_._14Unk_hardware_H);
-
-EC void func_080071BC(Unk_hardware_H * self, unsigned int from, unsigned int count)
+EC void func_080071BC(void * self, unsigned int from, unsigned int count)
 {
     // https://decomp.me/scratch/e4deE (solved, but messy)
 
@@ -113,4 +106,21 @@ EC void func_080071BC(Unk_hardware_H * self, unsigned int from, unsigned int cou
         h->unk_50 = from;
         h->unk_51 = count;
     }
+}
+
+// The original shared helper lives later in the linkonce code area, rather
+// than beside the pool's lifetime and reservation entries above.
+EC SECTION(".text.hardware_free_list") Unk_hardware_ent_080D6D98 * InitializeHardwareFreeList(
+    Unk_hardware_ent_080D6D98 * entries, int count,
+    Unk_hardware_ent_080D6D98 * tail)
+{
+    Unk_hardware_ent_080D6D98 * cursor = entries + (count - 1);
+    cursor->next_free = tail;
+    while (cursor != entries)
+    {
+        Unk_hardware_ent_080D6D98 * next = cursor;
+        --cursor;
+        cursor->next_free = next;
+    }
+    return cursor;
 }

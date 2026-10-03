@@ -3,6 +3,19 @@
 
 #include "prelude.h"
 
+// A lifetime reference to the shared hardware pool; its destructor updates
+// the global owner count rather than reading fields from the receiver.
+struct HardwarePoolOwner
+{
+    ~HardwarePoolOwner();
+};
+
+EXTERN_C
+void * func_08007128(void * self);
+void * func_08007174(void * self, void const * other);
+void func_080071BC(void * self, unsigned int from, unsigned int count);
+EXTERN_C_END
+
 union Unk_hardware_ent_080D6D98
 {
     Unk_hardware_ent_080D6D98 * next_free;
@@ -14,13 +27,15 @@ union Unk_hardware_ent_080D6D98
     } params;
 };
 
-EC Unk_hardware_ent_080D6D98 * func_080D6D98(Unk_hardware_ent_080D6D98 * self, int num, int val);
+EC Unk_hardware_ent_080D6D98 * InitializeHardwareFreeList(
+    Unk_hardware_ent_080D6D98 * entries, int count,
+    Unk_hardware_ent_080D6D98 * tail);
 
 struct Unk_hardware_03000404
 {
     Unk_hardware_03000404()
     {
-        unk_00 = func_080D6D98(unk_04, 0x10, 0);
+        unk_00 = InitializeHardwareFreeList(unk_04, 0x10, 0);
         unk_44 = 0;
         unk_48 = 0;
         unk_4C = 0;

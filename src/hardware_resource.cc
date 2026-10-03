@@ -6,8 +6,6 @@ extern void __builtin_delete(void * pointer);
 
 EXTERN_C
 
-extern void func_08007184(HardwareResourceEntry * entry, u32 flags);
-extern HardwareResource * func_08007128(HardwareResource * object);
 extern void free(void * pointer);
 
 void func_0800770C(HardwareResource * object)
@@ -23,7 +21,7 @@ void func_08007714(HardwareResource * object, u32 flags)
         HardwareResourceEntry * cursor = storage->start;
         while (cursor != end) {
             func_080073E0(cursor, cursor->handle);
-            func_08007184(cursor, 2);
+            reinterpret_cast<HardwarePoolOwner *>(cursor)->~HardwarePoolOwner();
             cursor++;
         }
         if (storage->start != 0)

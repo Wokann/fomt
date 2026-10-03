@@ -238,7 +238,7 @@ func_08007578:
     bl func_080073E0
     adds r0, r4, #0
     movs r1, #2
-    bl func_08007184
+    bl _._17HardwarePoolOwner
     adds r4, #8
     cmp r4, r6
     bne .L080076BE
@@ -260,7 +260,7 @@ func_08007578:
     bl func_080073E0
     mov r0, r9
     movs r1, #2
-    bl func_08007184
+    bl _._17HardwarePoolOwner
     ldr r2, [sp, #0x1c]
     lsls r0, r2, #0x18
     lsrs r6, r0, #0x18
