@@ -47,6 +47,12 @@ typedef struct {
     int symbol;
 } HuffBuildNode;
 
+enum {
+    HUFF_BUILD_FIRST,
+    HUFF_BUILD_LAST,
+    HUFF_BUILD_HEAP
+};
+
 static void fail(char const *message)
 {
     fprintf(stderr, "fomt-lz: %s\n", message);
@@ -766,6 +772,59 @@ static int huff_build_less(HuffBuildNode const *nodes, int left, int right,
                       : nodes[left].serial < nodes[right].serial;
 }
 
+static int huff_heap_less(HuffBuildNode const *nodes, int left, int right,
+                         int parent_first)
+{
+    if (nodes[left].frequency != nodes[right].frequency)
+        return nodes[left].frequency < nodes[right].frequency;
+    return parent_first && (nodes[left].symbol < 0) != (nodes[right].symbol < 0)
+        && nodes[left].symbol < 0;
+}
+
+static void huff_heap_push(HuffBuildNode const *nodes, int heap[512],
+                          unsigned hole, unsigned top, int value, int parent_first)
+{
+    while (hole > top) {
+        unsigned parent = (hole - 1) / 2;
+        if (!huff_heap_less(nodes, value, heap[parent], parent_first))
+            break;
+        heap[hole] = heap[parent];
+        hole = parent;
+    }
+    heap[hole] = value;
+}
+
+static void huff_heap_adjust(HuffBuildNode const *nodes, int heap[512],
+                            unsigned hole, unsigned count, int value, int parent_first)
+{
+    unsigned top = hole;
+    unsigned child = hole * 2 + 2;
+    while (child < count) {
+        // Equal children choose the right branch. Descend to a leaf before
+        // reinserting the replacement, so no creation-order tie is invented.
+        if (huff_heap_less(nodes, heap[child - 1], heap[child], parent_first))
+            child--;
+        heap[hole] = heap[child];
+        hole = child;
+        child = hole * 2 + 2;
+    }
+    if (child == count) {
+        heap[hole] = heap[child - 1];
+        hole = child - 1;
+    }
+    huff_heap_push(nodes, heap, hole, top, value, parent_first);
+}
+
+static int huff_heap_pop(HuffBuildNode const *nodes, int heap[512],
+                        unsigned *count, int parent_first)
+{
+    int result = heap[0];
+    int replacement = heap[--*count];
+    if (*count)
+        huff_heap_adjust(nodes, heap, 0, *count, replacement, parent_first);
+    return result;
+}
+
 static void huff_assign_depths(HuffBuildNode const *nodes, int node,
                                unsigned depth, unsigned lengths[256])
 {
@@ -816,7 +875,7 @@ static void huff_balanced_lengths(uint64_t const frequency[256],
 
 static void huff_model_strategy(unsigned char const *data, size_t size,
                                 HuffModel *model, unsigned symbol_bits,
-                                int parent_first, int last_first)
+                                int parent_first, unsigned build_strategy)
 {
     if (!size)
         fail("Huffman literal stream is empty");
@@ -837,10 +896,10 @@ static void huff_model_strategy(unsigned char const *data, size_t size,
         frequency[extra] = 1;
         order[count++] = extra;
     }
-    // This deterministic tie policy begins with alphabetic leaves and picks
-    // the last-created node among equal weights. It does not depend on an
-    // existing compressed tree or on a resource-specific symbol permutation.
-    if (last_first) {
+    // Both alternative constructions start with alphabetic leaves. One picks
+    // the last-created equal-weight node; the other uses heap traversal. They
+    // never depend on a compressed template or a saved symbol permutation.
+    if (build_strategy != HUFF_BUILD_FIRST) {
         unsigned index = 0;
         for (unsigned symbol = 0; symbol < alphabet_size; symbol++)
             if (frequency[symbol])
@@ -855,24 +914,49 @@ static void huff_model_strategy(unsigned char const *data, size_t size,
         nodes[node_count] = (HuffBuildNode){frequency[symbol], node_count, -1, -1, (int)symbol};
         active[active_count++] = (int)node_count++;
     }
-    while (active_count > 1) {
-        unsigned first = 0;
+    if (build_strategy == HUFF_BUILD_HEAP) {
         for (unsigned index = 1; index < active_count; index++)
-            if (huff_build_less(nodes, active[index], active[first], parent_first, last_first))
-                first = index;
-        int left = active[first];
-        active[first] = active[--active_count];
-        unsigned second = 0;
-        for (unsigned index = 1; index < active_count; index++)
-            if (huff_build_less(nodes, active[index], active[second], parent_first, last_first))
-                second = index;
-        int right = active[second];
-        active[second] = active[--active_count];
-        nodes[node_count] = (HuffBuildNode){
-            nodes[left].frequency + nodes[right].frequency, node_count,
-            left, right, -1
-        };
-        active[active_count++] = (int)node_count++;
+            huff_heap_push(nodes, active, index, 0, active[index], parent_first);
+        unsigned removed_count = 0;
+        while (active_count > 1) {
+            int left = huff_heap_pop(nodes, active, &active_count, parent_first);
+            int right = huff_heap_pop(nodes, active, &active_count, parent_first);
+            if (nodes[left].symbol >= 0)
+                order[removed_count++] = (unsigned)nodes[left].symbol;
+            if (nodes[right].symbol >= 0)
+                order[removed_count++] = (unsigned)nodes[right].symbol;
+            nodes[node_count] = (HuffBuildNode){
+                nodes[left].frequency + nodes[right].frequency, node_count,
+                left, right, -1
+            };
+            huff_heap_push(nodes, active, active_count, 0, (int)node_count, parent_first);
+            node_count++;
+            active_count++;
+        }
+        if (removed_count != count)
+            fail("Huffman heap did not consume its alphabet");
+    } else {
+        while (active_count > 1) {
+            unsigned first = 0;
+            for (unsigned index = 1; index < active_count; index++)
+                if (huff_build_less(nodes, active[index], active[first], parent_first,
+                                    build_strategy == HUFF_BUILD_LAST))
+                    first = index;
+            int left = active[first];
+            active[first] = active[--active_count];
+            unsigned second = 0;
+            for (unsigned index = 1; index < active_count; index++)
+                if (huff_build_less(nodes, active[index], active[second], parent_first,
+                                    build_strategy == HUFF_BUILD_LAST))
+                    second = index;
+            int right = active[second];
+            active[second] = active[--active_count];
+            nodes[node_count] = (HuffBuildNode){
+                nodes[left].frequency + nodes[right].frequency, node_count,
+                left, right, -1
+            };
+            active[active_count++] = (int)node_count++;
+        }
     }
     unsigned lengths[256] = {0};
     huff_assign_depths(nodes, active[0], 0, lengths);
@@ -897,7 +981,14 @@ static void huff_model_strategy(unsigned char const *data, size_t size,
     unsigned symbols[256];
     for (unsigned symbol = 0; symbol < alphabet_size; symbol++)
         symbols[symbol] = symbol;
-    if (last_first) {
+    unsigned symbol_count = alphabet_size;
+    if (build_strategy == HUFF_BUILD_HEAP) {
+        // Canonical codes retain reverse leaf-removal order within each
+        // depth. This is computed from current frequencies, never a template.
+        symbol_count = count;
+        for (unsigned index = 0; index < count; index++)
+            symbols[index] = order[count - index - 1];
+    } else if (build_strategy == HUFF_BUILD_LAST) {
         // Selection by depth before frequency also defines the order of tied
         // leaves after earlier entries have moved. Sorting frequency first and
         // only then visiting depths is a different, valid encoding policy.
@@ -920,7 +1011,7 @@ static void huff_model_strategy(unsigned char const *data, size_t size,
     unsigned code = 0;
     for (unsigned length = 1; length <= symbol_bits * 2; length++) {
         code <<= 1;
-        for (unsigned index = 0; index < alphabet_size; index++) {
+        for (unsigned index = 0; index < symbol_count; index++) {
             unsigned symbol = symbols[index];
             if (lengths[symbol] != length)
                 continue;
@@ -931,12 +1022,6 @@ static void huff_model_strategy(unsigned char const *data, size_t size,
         if (model->count[length - 1] >= alphabet_size)
             fail("Huffman depth count exceeds its native field");
     }
-}
-
-static void huff_model(unsigned char const *data, size_t size, HuffModel *model,
-                       unsigned symbol_bits, int parent_first)
-{
-    huff_model_strategy(data, size, model, symbol_bits, parent_first, 0);
 }
 
 static int huff_model_equal(HuffModel const *left, HuffModel const *right)
@@ -1393,15 +1478,15 @@ static void huff_byte_model(unsigned char const *source, size_t size,
                             int parent_first);
 static void huff_byte_model_strategy(unsigned char const *source, size_t size,
                                      HuffModel *model, unsigned symbol_bits,
-                                     int parent_first, int last_first);
+                                     int parent_first, unsigned build_strategy);
 static void write_huff_atom_byte(BitWriter *writer, HuffModel const *model,
                                   unsigned value, unsigned symbol_bits);
 
 // The greedy Huffman/LZ compressor orders equal-depth leaves by descending
 // literal frequency. The default keeps selection-sort traversal; explicit
 // tie policies use first occurrence, reverse symbol order, or reverse
-// ascending selection. This is an encoding choice, just like the LZ ladder,
-// not a saved tree or symbol list.
+// ascending selection. Shell sorting can also reassign the computed length
+// histogram. These are encoding choices, not saved trees or symbol lists.
 static void huff_model_frequency_order(HuffModel *model,
                                         unsigned char const *literals,
                                         size_t literal_size, unsigned symbol_bits,
@@ -1409,21 +1494,76 @@ static void huff_model_frequency_order(HuffModel *model,
 {
     unsigned alphabet = 1u << symbol_bits;
     unsigned frequency[256] = {0}, first[256], order[256];
+    unsigned symbol_count = alphabet, encountered = 0;
     for (unsigned symbol = 0; symbol < alphabet; symbol++) {
         first[symbol] = (unsigned)literal_size * 2;
         order[symbol] = symbol;
     }
     for (size_t byte = 0; byte < literal_size; byte++) {
         unsigned high = symbol_bits == 4 ? literals[byte] >> 4 : literals[byte];
-        if (!frequency[high])
+        if (!frequency[high]) {
             first[high] = (unsigned)byte * 2;
+            if (tie_order == 6)
+                order[encountered++] = high;
+        }
         frequency[high]++;
         if (symbol_bits == 4) {
             unsigned low = literals[byte] & 15u;
-            if (!frequency[low])
+            if (!frequency[low]) {
                 first[low] = (unsigned)byte * 2 + 1;
+                if (tie_order == 6)
+                    order[encountered++] = low;
+            }
             frequency[low]++;
         }
+    }
+    if (tie_order == 6) {
+        // Start with encountered leaves, including the synthetic second leaf
+        // of a one-symbol alphabet. Knuth gaps 1, 4, 13, ... define this Shell
+        // sort completely; no per-resource tie permutation is supplied.
+        symbol_count = encountered;
+        for (unsigned symbol = 0; symbol < alphabet; symbol++)
+            if (model->bits[symbol] && !frequency[symbol])
+                order[symbol_count++] = symbol;
+        unsigned gap = 1;
+        while (gap < symbol_count)
+            gap = gap * 3 + 1;
+        while (gap > 1) {
+            gap = (gap - 1) / 3;
+            for (unsigned index = gap; index < symbol_count; index++) {
+                unsigned symbol = order[index], position = index;
+                while (position >= gap && frequency[symbol] < frequency[order[position - gap]]) {
+                    order[position] = order[position - gap];
+                    position -= gap;
+                }
+                order[position] = symbol;
+            }
+        }
+        for (unsigned left = 0; left < symbol_count / 2; left++) {
+            unsigned right = symbol_count - left - 1;
+            unsigned swap = order[left];
+            order[left] = order[right];
+            order[right] = swap;
+        }
+        // Assign the computed length histogram to decreasing frequencies.
+        // Equal-weight leaves may exchange depths without changing Huffman
+        // cost. The histogram still comes from the current input's tree.
+        memset(model->bits, 0, sizeof(model->bits));
+        memset(model->code, 0, sizeof(model->code));
+        unsigned code = 0, assigned = 0;
+        for (unsigned length = 1; length <= symbol_bits * 2; length++) {
+            code <<= 1;
+            for (unsigned index = 0; index < model->count[length - 1]; index++) {
+                if (assigned == symbol_count)
+                    fail("Huffman length histogram exceeds its alphabet");
+                unsigned symbol = order[assigned++];
+                model->bits[symbol] = length;
+                model->code[symbol] = code++;
+            }
+        }
+        if (assigned != symbol_count)
+            fail("Huffman length histogram did not consume its alphabet");
+        return;
     }
     for (unsigned left = 0; left < alphabet; left++) {
         unsigned best = left;
@@ -1502,8 +1642,10 @@ static unsigned char *encode_huff_lz3_greedy(unsigned char const *source,
     }
     HuffModel model;
     huff_byte_model_strategy(literals, literal_size, &model, symbol_bits,
-                             parent_first, tie_order == 3);
-    if (tie_order != 3)
+                             parent_first, tie_order == 5 ? HUFF_BUILD_HEAP
+                                 : tie_order == 3 || tie_order == 6
+                                     ? HUFF_BUILD_LAST : HUFF_BUILD_FIRST);
+    if (tie_order != 3 && tie_order != 5)
         huff_model_frequency_order(&model, literals, literal_size, symbol_bits, tie_order);
     free(literals);
 
@@ -2425,13 +2567,10 @@ static Lz2Operation *plan_huff_lz2(unsigned char const *source, size_t size,
 
 static void huff_byte_model_strategy(unsigned char const *source, size_t size,
                                      HuffModel *model, unsigned symbol_bits,
-                                     int parent_first, int last_first)
+                                     int parent_first, unsigned build_strategy)
 {
     if (symbol_bits == 8) {
-        if (last_first)
-            huff_model_strategy(source, size, model, 8, parent_first, 1);
-        else
-            huff_model(source, size, model, 8, parent_first);
+        huff_model_strategy(source, size, model, 8, parent_first, build_strategy);
         return;
     }
     unsigned char *symbols = malloc(size * 2);
@@ -2441,10 +2580,7 @@ static void huff_byte_model_strategy(unsigned char const *source, size_t size,
         symbols[index * 2] = source[index] >> 4;
         symbols[index * 2 + 1] = source[index] & 15u;
     }
-    if (last_first)
-        huff_model_strategy(symbols, size * 2, model, 4, parent_first, 1);
-    else
-        huff_model(symbols, size * 2, model, 4, parent_first);
+    huff_model_strategy(symbols, size * 2, model, 4, parent_first, build_strategy);
     free(symbols);
 }
 
@@ -2929,7 +3065,7 @@ static void usage(void)
     fail("usage: fomt-lz encode-lz0|encode-lz1|encode-lz2|encode-lz3|encode-huff4-lz0|"
          "encode-huff4-lz2|encode-huff8-lz2|encode-huff4-lz3|encode-huff8-lz3 "
          "SOURCE OUTPUT LADDER SLOT_SIZE "
-         "[--literal-tail] [--filter=1..4] [--tie=first|reverse|last|reverse-select] "
+         "[--literal-tail] [--filter=1..4] [--tie=first|reverse|last|reverse-select|heap|shell] "
          "[--parent-first] [--greedy] | "
          "rebuild-native SOURCE ORIGINAL OUTPUT [TAIL] | "
          "rebuild-huff8-lz3 SOURCE ORIGINAL OUTPUT LADDER SLOT_SIZE | "
@@ -3055,7 +3191,7 @@ static void test_huff_lz3(void)
         parse_ladder(ladder_values[ladder_index], ladder, 3);
         for (unsigned symbol_bits = 4; symbol_bits <= 8; symbol_bits += 4) {
             for (unsigned parent_first = 0; parent_first < 2; parent_first++) {
-                for (unsigned tie_order = 0; tie_order < 5; tie_order++) {
+                for (unsigned tie_order = 0; tie_order < 7; tie_order++) {
                     for (unsigned index = 0; index < sizeof(sizes) / sizeof(*sizes); index++) {
                         size_t size = sizes[index];
                         for (unsigned pattern = 0; pattern < 8; pattern++) {
@@ -3388,6 +3524,14 @@ int main(int argc, char **argv)
             } else if ((huff4 || huff8) && !tie_seen &&
                        strcmp(argv[index], "--tie=reverse-select") == 0) {
                 tie_order = 4;
+                tie_seen = 1;
+            } else if ((huff4 || huff8) && !tie_seen &&
+                       strcmp(argv[index], "--tie=heap") == 0) {
+                tie_order = 5;
+                tie_seen = 1;
+            } else if ((huff4 || huff8) && !tie_seen &&
+                       strcmp(argv[index], "--tie=shell") == 0) {
+                tie_order = 6;
                 tie_seen = 1;
             } else if ((huff4_lz2 || huff8_lz2 || huff4 || huff8) && !tie_seen &&
                        strcmp(argv[index], "--tie=last") == 0) {
