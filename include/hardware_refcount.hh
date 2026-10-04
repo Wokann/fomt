@@ -69,30 +69,45 @@ typedef u8 HardwareTileTreeFlag;
 
 typedef struct HardwareTileBitmap32 {
     u32 bits;
+#ifdef __cplusplus
+    HardwareTileBitmap32() : bits(0) {}
+#endif
 } HardwareTileBitmap32;
 
 typedef struct HardwareTileTree64 {
     HardwareTileTreeFlag full;
     HardwareTileTreeFlag empty;
     HardwareTileBitmap32 children[2];
+#ifdef __cplusplus
+    HardwareTileTree64() : full(false), empty(true) {}
+#endif
 } HardwareTileTree64;
 
 typedef struct HardwareTileTree128 {
     HardwareTileTreeFlag full;
     HardwareTileTreeFlag empty;
     HardwareTileTree64 children[2];
+#ifdef __cplusplus
+    HardwareTileTree128() : full(false), empty(true) {}
+#endif
 } HardwareTileTree128;
 
 typedef struct HardwareTileTree256 {
     HardwareTileTreeFlag full;
     HardwareTileTreeFlag empty;
     HardwareTileTree128 children[2];
+#ifdef __cplusplus
+    HardwareTileTree256() : full(false), empty(true) {}
+#endif
 } HardwareTileTree256;
 
 typedef struct HardwareTileTree512 {
     HardwareTileTreeFlag full;
     HardwareTileTreeFlag empty;
     HardwareTileTree256 children[2];
+#ifdef __cplusplus
+    HardwareTileTree512() : full(false), empty(true) {}
+#endif
 } HardwareTileTree512;
 
 typedef struct HardwareTileTree1024 {
@@ -100,6 +115,7 @@ typedef struct HardwareTileTree1024 {
     HardwareTileTreeFlag empty;
     HardwareTileTree512 children[2];
 #ifdef __cplusplus
+    HardwareTileTree1024();
     // Allocate 2^size_shift tiles, or return 1024 when no range is available.
     u32 Allocate(u32 size_shift);
 #endif

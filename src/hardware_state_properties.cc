@@ -197,3 +197,7 @@ u8 func_080080F0(u8 const * state)
 {
     return state[0];
 }
+
+HardwareTileTree1024::HardwareTileTree1024() : full(false), empty(true)
+{
+}
