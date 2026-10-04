@@ -71,6 +71,8 @@ typedef struct HardwareTileBitmap32 {
     u32 bits;
 #ifdef __cplusplus
     HardwareTileBitmap32() : bits(0) {}
+    bool IsFull() const { return bits + 1 == 0; }
+    bool IsEmpty() const { return bits == 0; }
 #endif
 } HardwareTileBitmap32;
 
@@ -80,6 +82,9 @@ typedef struct HardwareTileTree64 {
     HardwareTileBitmap32 children[2];
 #ifdef __cplusplus
     HardwareTileTree64() : full(false), empty(true) {}
+    // Allocate 2^size_shift tiles, or return this node's capacity on failure.
+    u32 Allocate(u32 size_shift) SECTION(".text.hardware_shared_state_tile_tree_operations");
+    void Free(u32 offset, u32 size_shift) SECTION(".text.hardware_shared_state_tile_tree_operations");
 #endif
 } HardwareTileTree64;
 
@@ -89,6 +94,8 @@ typedef struct HardwareTileTree128 {
     HardwareTileTree64 children[2];
 #ifdef __cplusplus
     HardwareTileTree128() : full(false), empty(true) {}
+    u32 Allocate(u32 size_shift) SECTION(".text.hardware_shared_state_tile_tree_operations");
+    void Free(u32 offset, u32 size_shift) SECTION(".text.hardware_shared_state_tile_tree_operations");
 #endif
 } HardwareTileTree128;
 
@@ -98,6 +105,8 @@ typedef struct HardwareTileTree256 {
     HardwareTileTree128 children[2];
 #ifdef __cplusplus
     HardwareTileTree256() : full(false), empty(true) {}
+    u32 Allocate(u32 size_shift) SECTION(".text.hardware_shared_state_tile_tree_operations");
+    void Free(u32 offset, u32 size_shift) SECTION(".text.hardware_shared_state_tile_tree_operations");
 #endif
 } HardwareTileTree256;
 
@@ -107,6 +116,8 @@ typedef struct HardwareTileTree512 {
     HardwareTileTree256 children[2];
 #ifdef __cplusplus
     HardwareTileTree512() : full(false), empty(true) {}
+    u32 Allocate(u32 size_shift) SECTION(".text.hardware_shared_state_tile_tree_operations");
+    void Free(u32 offset, u32 size_shift) SECTION(".text.hardware_shared_state_tile_tree_operations");
 #endif
 } HardwareTileTree512;
 

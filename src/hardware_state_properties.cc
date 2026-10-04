@@ -4,8 +4,6 @@
 EXTERN_C
 void func_080D7118(void *, u32, u32);
 void func_080D734C(void *, u32, u32);
-u32 func_080D7568(void *, u32);
-void func_080D76C0(void *, u32, u32);
 EXTERN_C_END
 
 u16 func_08007E8C(void)
@@ -140,7 +138,7 @@ u32 HardwareTileTree1024::Allocate(u32 size_shift)
             // Snapshot the flag before the child allocator changes its state.
             u8 const child_full = child->full;
             if (child_full == 0) {
-                offset = func_080D7568(child, size_shift);
+                offset = child->Allocate(size_shift);
                 valid = 0;
                 if (offset <= 0x1FF)
                     valid = 1;
@@ -175,7 +173,7 @@ void func_080080A0(u8 * state, u32 offset, u32 kind)
         chosen_buffer = first_buffer;
         if (use_second)
             chosen_buffer = state + 0x80;
-        func_080D76C0(chosen_buffer, offset, kind);
+        reinterpret_cast<HardwareTileTree512 *>(chosen_buffer)->Free(offset, kind);
         state[0] = 0;
         active = 0;
         if (first_buffer[1] != 0) {

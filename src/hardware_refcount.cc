@@ -1,5 +1,6 @@
 #include "hardware_refcount.hh"
 #include "hardware_state_properties.hh"
+#include "hardware_mask.hh"
 
 EXTERN_C
 void __builtin_delete(void *);
@@ -251,6 +252,208 @@ void ClearHardwareTileTree512(HardwareTileTree512 * tree)
     ClearHardwareTileTree256(&tree->children[0]);
     tree->full = 0;
     tree->empty = 1;
+}
+
+// Each level selects the first non-full child and keeps the parent's flags
+// consistent with the children. The return value is a tile offset, not a handle.
+u32 HardwareTileTree64::Allocate(u32 size_shift)
+{
+    u32 index;
+    HardwareTileBitmap32 * child;
+    if (size_shift <= 5) {
+        for (index = 0, child = children; (int)index <= 1; ++child, ++index) {
+            u8 const child_full = child->IsFull();
+            if (child_full == 0) {
+                u32 offset = func_080077DC(&child->bits, size_shift);
+                u32 valid = 0;
+                if (offset <= 0x1F)
+                    valid = 1;
+                if (valid != 0) {
+                    empty = child_full;
+                    u32 active = 0;
+                    if (children[0].IsFull())
+                        if (children[1].IsFull())
+                            active = 1;
+                    full = active;
+                    return (index << 5) | offset;
+                }
+            }
+        }
+    } else if (size_shift == 6 && empty != 0) {
+        FillHardwareTileTree64(this);
+        return 0;
+    }
+    return 64;
+}
+
+u32 HardwareTileTree128::Allocate(u32 size_shift)
+{
+    u32 index;
+    HardwareTileTree64 * child;
+    if (size_shift <= 6) {
+        for (index = 0, child = children; (int)index <= 1; ++child, ++index) {
+            u8 const child_full = child->full;
+            if (child_full == 0) {
+                u32 offset = child->Allocate(size_shift);
+                u32 valid = 0;
+                if (offset <= 0x3F)
+                    valid = 1;
+                if (valid != 0) {
+                    empty = child_full;
+                    u32 active = 0;
+                    if (children[0].full != 0)
+                        active = (0u - children[1].full) >> 31;
+                    full = active;
+                    return (index << 6) | offset;
+                }
+            }
+        }
+    } else if (size_shift == 7 && empty != 0) {
+        FillHardwareTileTree128(this);
+        return 0;
+    }
+    return 128;
+}
+
+u32 HardwareTileTree256::Allocate(u32 size_shift)
+{
+    u32 index;
+    HardwareTileTree128 * child;
+    if (size_shift <= 7) {
+        for (index = 0, child = children; (int)index <= 1; ++child, ++index) {
+            u8 const child_full = child->full;
+            if (child_full == 0) {
+                u32 offset = child->Allocate(size_shift);
+                u32 valid = 0;
+                if (offset <= 0x7F)
+                    valid = 1;
+                if (valid != 0) {
+                    empty = child_full;
+                    u32 active = 0;
+                    if (children[0].full != 0)
+                        active = (0u - children[1].full) >> 31;
+                    full = active;
+                    return (index << 7) | offset;
+                }
+            }
+        }
+    } else if (size_shift == 8 && empty != 0) {
+        FillHardwareTileTree256(this);
+        return 0;
+    }
+    return 256;
+}
+
+u32 HardwareTileTree512::Allocate(u32 size_shift)
+{
+    u32 index;
+    HardwareTileTree256 * child;
+    if (size_shift <= 8) {
+        for (index = 0, child = children; (int)index <= 1; ++child, ++index) {
+            u8 const child_full = child->full;
+            if (child_full == 0) {
+                u32 offset = child->Allocate(size_shift);
+                u32 valid = 0;
+                if (offset <= 0xFF)
+                    valid = 1;
+                if (valid != 0) {
+                    empty = child_full;
+                    u32 active = 0;
+                    if (children[0].full != 0)
+                        active = (0u - children[1].full) >> 31;
+                    full = active;
+                    return (index << 8) | offset;
+                }
+            }
+        }
+    } else if (size_shift == 9 && empty != 0) {
+        FillHardwareTileTree512(this);
+        return 0;
+    }
+    return 512;
+}
+
+// The offset stays relative to the root: each child selects its own half,
+// and the existing 32-tile leaf helper masks off the upper index bits.
+void HardwareTileTree64::Free(u32 offset, u32 size_shift)
+{
+    if (size_shift <= 5) {
+        u32 use_second = offset & 32;
+        HardwareTileBitmap32 * first = &children[0];
+        HardwareTileBitmap32 * child = first;
+        if (use_second)
+            child = &children[1];
+        func_08007844(&child->bits, offset, size_shift);
+        full = false;
+        u32 active = 0;
+        if (first->IsEmpty())
+            if (children[1].IsEmpty())
+                active = 1;
+        empty = active;
+    } else if (size_shift == 6) {
+        ClearHardwareTileTree64(this);
+    }
+}
+
+void HardwareTileTree128::Free(u32 offset, u32 size_shift)
+{
+    if (size_shift <= 6) {
+        u32 use_second = offset & 64;
+        HardwareTileTree64 * first = &children[0];
+        HardwareTileTree64 * child = first;
+        if (use_second)
+            child = &children[1];
+        child->Free(offset, size_shift);
+        full = false;
+        u32 active = 0;
+        if (first->empty != 0)
+            active = (0u - children[1].empty) >> 31;
+        empty = active;
+    } else if (size_shift == 7) {
+        ClearHardwareTileTree128(this);
+    }
+}
+
+void HardwareTileTree256::Free(u32 offset, u32 size_shift)
+{
+    if (size_shift <= 7) {
+        u32 use_second = offset & 128;
+        HardwareTileTree128 * first = &children[0];
+        HardwareTileTree128 * child = first;
+        if (use_second)
+            child = &children[1];
+        child->Free(offset, size_shift);
+        full = false;
+        u32 active = 0;
+        if (first->empty != 0) {
+            HardwareTileTree128 * second = &children[1];
+            active = (0u - second->empty) >> 31;
+        }
+        empty = active;
+    } else if (size_shift == 8) {
+        ClearHardwareTileTree256(this);
+    }
+}
+
+void HardwareTileTree512::Free(u32 offset, u32 size_shift)
+{
+    if (size_shift <= 8) {
+        u32 use_second = offset & 256;
+        HardwareTileTree256 * first = &children[0];
+        HardwareTileTree256 * child = first;
+        if (use_second)
+            child = &children[1];
+        child->Free(offset, size_shift);
+        full = false;
+        u32 active = 0;
+        if (first->empty != 0) {
+            HardwareTileTree256 * second = &children[1];
+            active = (0u - second->empty) >> 31;
+        }
+        empty = active;
+    } else if (size_shift == 9) {
+        ClearHardwareTileTree512(this);
+    }
 }
 
 HardwareSharedStateEntry * InitializeHardwareSharedStateFreeList(
