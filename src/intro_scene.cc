@@ -190,7 +190,7 @@ void StartIntroSceneCore(IntroSceneCore * core)
     bool finished = false;
     do
     {
-        func_080087C8(reinterpret_cast<HardwareBootstrap *>(core));
+        UpdateHardwareFrame(reinterpret_cast<HardwareBootstrap *>(core));
         func_080088B8(reinterpret_cast<void * const *>(core));
         switch (core->startup_phase)
         {
@@ -248,7 +248,7 @@ int RunIntroSceneSequence(IntroSceneCore * core)
     do
     {
         rand();
-        func_080087C8(reinterpret_cast<HardwareBootstrap *>(core));
+        UpdateHardwareFrame(reinterpret_cast<HardwareBootstrap *>(core));
         func_080088B8(reinterpret_cast<void * const *>(core));
         if (!skipped)
         {

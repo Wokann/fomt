@@ -16973,7 +16973,7 @@ func_080E0094:
     ldr r0, [r0]
     bl func_080093AC
     mov r0, sl
-    bl func_080087C8
+    bl UpdateHardwareFrame
     b loc_080DFBFE
     .byte 0x1F, 0x98, 0x2B, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC, 0x02, 0xBC
     .byte 0x08, 0x47, 0x00, 0x00
@@ -34968,7 +34968,7 @@ func_080E0094: @ 0x080E0094
 	ldr r0, [r0]
 	bl func_080093AC
 	mov r0, sl
-	bl func_080087C8
+	bl UpdateHardwareFrame
 	b .L080E044A
 .L080E08F4:
 	ldr r0, [sp, #0x7c]

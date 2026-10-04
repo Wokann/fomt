@@ -719,15 +719,6 @@ extern void func_080095C0(void);
 extern void func_080095FC(void);
 extern void func_08009638(void);
 extern void func_08009674(void);
-extern void func_080098AC(void);
-extern void func_080098D8(void);
-extern void func_080098DC(void);
-extern void func_08009908(void);
-extern void func_08009940(void);
-extern void func_08009968(void);
-extern void func_08009984(void);
-extern void func_080099B0(void);
-extern void func_080099D4(void);
 extern void func_0801004C(void);
 extern void func_08010158(void);
 extern void func_08011FE8(void);
@@ -1042,7 +1033,7 @@ extern RawVTableWithOffset const vtable_unk_080E5B0C = {
 extern RawVTableFunction const vtable_unk_080E5B18[] = {
     nullptr,
     nullptr,
-    func_08009908,
+    reinterpret_cast<RawVTableFunction>(func_08009908),
     func_080D7AD4,
     func_080095C0,
     func_080095FC,
@@ -1093,7 +1084,7 @@ extern RawVTableFunction const vtable_unk_080E5B80[] = {
 extern RawVTableFunction const vtable_unk_080E5B90[] = {
     nullptr,
     nullptr,
-    func_08009908,
+    reinterpret_cast<RawVTableFunction>(func_08009908),
     func_0800959C,
     func_080095C0,
     func_080095FC,
@@ -1105,19 +1096,19 @@ extern RawVTableFunction const vtable_unk_080E5B90[] = {
 extern RawVTableFunction const vtable_unk_080E5BB4[] = {
     nullptr,
     nullptr,
-    func_08009908,
-    func_080098DC,
-    func_08009940,
-    func_08009968,
-    func_08009984,
-    func_080099B0,
-    func_080099D4,
+    reinterpret_cast<RawVTableFunction>(func_08009908),
+    reinterpret_cast<RawVTableFunction>(func_080098DC),
+    reinterpret_cast<RawVTableFunction>(func_08009940),
+    reinterpret_cast<RawVTableFunction>(func_08009968),
+    reinterpret_cast<RawVTableFunction>(func_08009984),
+    reinterpret_cast<RawVTableFunction>(func_080099B0),
+    reinterpret_cast<RawVTableFunction>(func_080099D4),
 };
 
 extern RawVTableFunction const vtable_unk_080E5BD8[] = {
     nullptr,
     nullptr,
-    func_080098D8,
+    reinterpret_cast<RawVTableFunction>(func_080098D8),
     func_080D7B44,
 };
 
@@ -1125,7 +1116,7 @@ extern RawVTableFunction const vtable_unk_080E5BE8[] = {
     nullptr,
     nullptr,
     __pure_virtual,
-    func_080098AC,
+    reinterpret_cast<RawVTableFunction>(func_080098AC),
 };
 
 extern RawVTableFunction const vtable_unk_080E5BF8[] = {

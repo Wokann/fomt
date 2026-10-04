@@ -2,9 +2,6 @@
 #pragma implementation "hardware_linked_list.hh"
 #include "hardware_linked_list.hh"
 
-extern void * vtable_unk_080E5BE8[];
-extern void * vtable_unk_080E5BB4[];
-extern void * vtable_unk_080E5BD8[];
 extern void __builtin_delete(void * pointer);
 
 typedef u8 (*HardwareLinkTest)(struct HardwareLink * node);
@@ -15,7 +12,7 @@ EXTERN_C
 void func_080098AC(void * object, u32 flags)
 {
     struct HardwareLink * link = (struct HardwareLink *)object;
-    link->vtable = vtable_unk_080E5BE8;
+    link->vtable = (void **)vtable_unk_080E5BE8;
     if (link->previous_slot != 0) {
         struct HardwareLink ** previous_slot = link->previous_slot;
         *previous_slot = link->next;
@@ -33,7 +30,7 @@ u32 func_080098D8(void)
 void func_080098DC(void * object, u32 flags)
 {
     void ** fields = (void **)object;
-    fields[2] = vtable_unk_080E5BB4;
+    fields[2] = (void *)vtable_unk_080E5BB4;
     func_08009984((struct HardwareLinkedList *)object);
     func_080098AC((u8 *)object + 0x10, 2);
     func_080098AC(object, flags);
@@ -140,13 +137,6 @@ u32 func_08009A2C(struct HardwareLink * link)
 {
     u32 value = (u32)link->previous_slot;
     return ((0 - value) | value) >> 31;
-}
-
-void func_08009A38(struct HardwareLink * link)
-{
-    link->vtable = vtable_unk_080E5BE8;
-    link->previous_slot = 0;
-    link->next = 0;
 }
 
 EXTERN_C_END

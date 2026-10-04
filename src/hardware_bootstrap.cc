@@ -87,13 +87,13 @@ void func_080086BC(struct HardwareBootstrap * owner, u32 flags)
 void func_08008724(struct HardwareBootstrap * owner)
 {
     struct HardwareCoreState * state = owner->state;
-    struct HardwareDisplayCommand command;
     u16 * control = (u16 *)&state->display.control;
+    HardwareDisplayCommand command;
     u32 zero = 0;
     *control |= 0x80;
     command.previous_slot = (HardwareLink **)zero;
     command.next = (HardwareLink *)zero;
-    command.vtable = &gHardwareDisplayCommandVTable;
+    command.vtable = (void **)&gHardwareDisplayCommandVTable;
     command.display = &state->display;
 
     void * manager = &state->manager;
@@ -107,13 +107,13 @@ void func_08008724(struct HardwareBootstrap * owner)
 void func_08008774(struct HardwareBootstrap * owner)
 {
     struct HardwareCoreState * state = owner->state;
-    struct HardwareDisplayCommand command;
     u16 * control = (u16 *)&state->display.control;
+    HardwareDisplayCommand command;
     u32 zero = 0;
     *control &= 0xFF7F;
     command.previous_slot = (HardwareLink **)zero;
     command.next = (HardwareLink *)zero;
-    command.vtable = &gHardwareDisplayCommandVTable;
+    command.vtable = (void **)&gHardwareDisplayCommandVTable;
     command.display = &state->display;
 
     void * manager = &state->manager;
@@ -122,6 +122,34 @@ void func_08008774(struct HardwareBootstrap * owner)
     ((void (*)(void *, struct HardwareDisplayCommand *))vtable[4])(object, &command);
     func_08008AF0(manager);
     func_080098AC(&command, 2);
+}
+
+void UpdateHardwareFrame(struct HardwareBootstrap * owner)
+{
+    struct HardwareCoreState * state = owner->state;
+    HardwareDisplayCommand display(&state->display);
+    HardwareSpriteBufferCommand sprite(&state->sprite_buffer);
+    HardwareDmaQueueCommand dma(&state->dma_queue);
+    HardwareLinkedList commands;
+
+    func_08009940(&commands, reinterpret_cast<HardwareLink *>(&state->links));
+    func_08009940(&commands, reinterpret_cast<HardwareLink *>(&display));
+    func_08009940(&commands, reinterpret_cast<HardwareLink *>(&dma));
+    func_08009940(&commands, reinterpret_cast<HardwareLink *>(&sprite));
+
+    void * manager = &state->manager;
+    void * object = func_08008AE0(reinterpret_cast<void * const *>(manager));
+    void ** vtable = *reinterpret_cast<void ***>((u8 *)object + 8);
+    ((void (*)(void *, HardwareLinkedList *))vtable[4])(object, &commands);
+    func_08008AF0(manager);
+    object = func_08008AE0(reinterpret_cast<void * const *>(manager));
+    vtable = *reinterpret_cast<void ***>((u8 *)object + 8);
+    ((void (*)(void *, HardwareLinkedList *))vtable[5])(object, &commands);
+
+    func_080098DC(&commands, 2);
+    func_080098AC(&dma, 2);
+    func_080098AC(&sprite, 2);
+    func_080098AC(&display, 2);
 }
 
 u32 RunHardwareDisplayCommand(struct HardwareDisplayCommand * command)

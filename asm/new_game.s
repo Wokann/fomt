@@ -504,7 +504,7 @@ func_08003B40:
 .Ljp_08003BA8: .4byte 0x00000889
 .Ljp_08003BAC:
     adds	r0, r5, #0
-    bl func_080087C8
+    bl UpdateHardwareFrame
 .Ljp_08003BB2:
     ldr	r1, [sp, #4]
     negs	r0, r1
@@ -558,7 +558,7 @@ func_08003BB4:
 .Ljp_08003C1C: .4byte 0x00000889
 .Ljp_08003C20:
     adds	r0, r5, #0
-    bl func_080087C8
+    bl UpdateHardwareFrame
 .Ljp_08003C26:
     ldr	r1, [sp, #4]
     negs	r0, r1
@@ -1836,7 +1836,7 @@ func_08004570:
     mov	sl, r0
 .Ljp_0800468C:
     adds	r0, r6, #0
-    bl func_080087C8
+    bl UpdateHardwareFrame
     adds	r0, r6, #0
     bl func_080088B8
     adds	r0, r6, #0
@@ -3227,7 +3227,7 @@ func_080050F8:
     mov r8, r0
 .Ljp_08005174:
     adds r0, r6, #0
-    bl func_080087C8
+    bl UpdateHardwareFrame
     adds r0, r6, #0
     bl func_080088B8
     adds r0, r6, #0
@@ -4372,7 +4372,7 @@ func_08005B68:
     bge .Ljp_08005C58
 .Ljp_08005C0E:
     adds r0, r6, #0
-    bl func_080087C8
+    bl UpdateHardwareFrame
     ldr r0, [sp, #0xc]
     rsbs r1, r0, #0
     orrs r1, r0
@@ -4398,7 +4398,7 @@ func_08005B68:
     adds r0, r6, #0
     bl func_08006ED8
     adds r0, r6, #0
-    bl func_080087C8
+    bl UpdateHardwareFrame
 .Ljp_08005C58:
     ldr r1, .Ljp_08005C80 @ =0x00004576
     adds r0, r6, r1
@@ -4422,7 +4422,7 @@ func_08005B68:
 .Ljp_08005C84: .4byte 0x00000889
 .Ljp_08005C88:
     adds r0, r6, #0
-    bl func_080087C8
+    bl UpdateHardwareFrame
 .Ljp_08005C8E:
     ldr r1, [sp, #0xc]
     rsbs r0, r1, #0
@@ -7739,7 +7739,7 @@ func_08003B40: @ 0x08003B40
 .L08003B90: .4byte 0x00000889
 .L08003B94:
     adds r0, r5, #0
-    bl func_080087C8
+    bl UpdateHardwareFrame
 .L08003B9A:
     ldr r1, [sp, #4]
     rsbs r0, r1, #0
@@ -7793,7 +7793,7 @@ func_08003BB4: @ 0x08003BB4
 .L08003C04: .4byte 0x00000889
 .L08003C08:
     adds r0, r5, #0
-    bl func_080087C8
+    bl UpdateHardwareFrame
 .L08003C0E:
     ldr r1, [sp, #4]
     rsbs r0, r1, #0
@@ -9069,7 +9069,7 @@ func_08004570: @ 0x08004570
     mov sl, r0
 .L08004674:
     adds r0, r6, #0
-    bl func_080087C8
+    bl UpdateHardwareFrame
     adds r0, r6, #0
     bl func_080088B8
     adds r0, r6, #0
@@ -10412,7 +10412,7 @@ func_080050F8: @ 0x080050F8
     mov r8, r0
 .L08005174:
     adds r0, r6, #0
-    bl func_080087C8
+    bl UpdateHardwareFrame
     adds r0, r6, #0
     bl func_080088B8
     adds r0, r6, #0
@@ -11836,7 +11836,7 @@ func_08005B68: @ 0x08005B68
     bge .L08005C58
 .L08005C0E:
     adds r0, r6, #0
-    bl func_080087C8
+    bl UpdateHardwareFrame
     ldr r0, [sp, #0xc]
     rsbs r1, r0, #0
     orrs r1, r0
@@ -11862,7 +11862,7 @@ func_08005B68: @ 0x08005B68
     adds r0, r6, #0
     bl func_08006ED8
     adds r0, r6, #0
-    bl func_080087C8
+    bl UpdateHardwareFrame
 .L08005C58:
     ldr r1, .L08005C80 @ =0x00004636
     adds r0, r6, r1
@@ -11891,7 +11891,7 @@ func_08005B68: @ 0x08005B68
 .L08005C84: .4byte 0x00000889
 .L08005C88:
     adds r0, r6, #0
-    bl func_080087C8
+    bl UpdateHardwareFrame
 .L08005C8E:
     ldr r1, [sp, #0xc]
     rsbs r0, r1, #0
