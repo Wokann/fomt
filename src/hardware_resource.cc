@@ -58,6 +58,6 @@ HardwareResource::HardwareResource(HardwareResource const & other)
         handle = func_0800745C(this, cursor->handle);
     } else {
         func_08007128(this);
-        handle = func_0800736C(this);
+        handle = AllocateHardwarePoolHandle(this);
     }
 }

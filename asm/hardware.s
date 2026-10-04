@@ -1,69 +1,6 @@
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
 
-    thumb_func_start func_0800736C
-func_0800736C: @ 0x0800736C
-    push {r4, r5, lr}
-    ldr r0, .L080073CC @ =gUnk_03000404
-    ldr r2, [r0]
-    ldr r3, [r2]
-    adds r5, r3, #0
-    cmp r3, #0
-    beq .L080073D4
-    ldr r0, [r3]
-    str r0, [r2]
-    cmp r3, #0
-    beq .L080073D4
-    subs r0, r3, #4
-    subs r0, r0, r2
-    asrs r4, r0, #2
-    cmp r4, #0xf
-    bhi .L0800739A
-    movs r0, #0x1f
-    ands r0, r4
-    movs r1, #1
-    lsls r1, r0
-    ldr r0, [r2, #0x44]
-    orrs r0, r1
-    str r0, [r2, #0x44]
-.L0800739A:
-    adds r1, r2, #0
-    adds r1, #0x48
-    ldrh r0, [r1]
-    adds r0, #1
-    strh r0, [r1]
-    movs r0, #1
-    strh r0, [r3]
-    adds r1, #2
-    ldrh r0, [r1]
-    adds r0, #1
-    ldr r2, .L080073D0 @ =0x0000FFFF
-    cmp r0, r2
-    bls .L080073B6
-    movs r0, #1
-.L080073B6:
-    strh r0, [r5, #2]
-    strh r0, [r1]
-    movs r1, #0xf
-    ldrh r0, [r5, #2]
-    ands r0, r2
-    lsls r0, r0, #4
-    adds r2, r4, #0
-    ands r2, r1
-    orrs r2, r0
-    b .L080073D6
-    .align 2, 0
-.L080073CC: .4byte gUnk_03000404
-.L080073D0: .4byte 0x0000FFFF
-.L080073D4:
-    movs r2, #0
-.L080073D6:
-    adds r0, r2, #0
-    pop {r4, r5}
-    pop {r1}
-    bx r1
-    .align 2, 0
-
     .section .text.hardware_allocator_after, "ax", %progbits
     .thumb
     .align 2, 0
@@ -105,7 +42,7 @@ func_08007578:
     mov r0, r9
     bl func_08007128
     mov r0, r9
-    bl func_0800736C
+    bl AllocateHardwarePoolHandle
     str r0, [sp, #8]
 .L080075D8:
     ldr r4, [r7, #4]

@@ -2,6 +2,31 @@
 
 EXTERN_C
 
+u32 AllocateHardwarePoolHandle(void *)
+{
+    Unk_hardware_03000404 * state = gUnk_03000404;
+    Unk_hardware_ent_080D6D98 * const current = state->unk_00;
+    Unk_hardware_ent_080D6D98 * entry = state->AllocEntry(current);
+    u32 result;
+    if (entry != 0) {
+        u32 index = state->IndexOf(entry);
+        state->inl_func_1(index);
+        ++state->unk_48;
+        entry->params.unk_00 = 1;
+        u32 generation = state->unk_4A + 1;
+        if (generation > 0xFFFF)
+            generation = 1;
+        current->params.unk_02 = generation;
+        state->unk_4A = generation;
+        HardwareHandle handle(index, *current);
+        result = handle.value;
+        goto done;
+    }
+    result = 0;
+done:
+    return result;
+}
+
 void func_080073E0(void * self, u32 handle)
 {
     Unk_hardware_03000404 * h = gUnk_03000404;

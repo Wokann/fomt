@@ -88,7 +88,6 @@ SECTIONS
         . = 0x7130; /* JP ROM 0x08007130, independently matched */
         src/hardware.o(.text);
         . = 0x7374; /* JP ROM 0x08007374, independently matched */
-        asm/hardware.o(.text);
         src/hardware_allocator.o(.text);
         asm/hardware.o(.text.hardware_allocator_after);
         src/hardware_resource.o(.text);

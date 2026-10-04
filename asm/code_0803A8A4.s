@@ -3944,7 +3944,7 @@ func_0803C5B0:
     adds	r0, r4, #0
     bl func_08007128
     adds	r0, r4, #0
-    bl func_0800736C
+    bl AllocateHardwarePoolHandle
     str	r0, [r4, #4]
     adds	r0, r7, #0
     adds	r0, #104	@ 0x68
@@ -4046,7 +4046,7 @@ func_0803C5B0:
     adds	r0, r5, #0
     bl func_08007128
     adds	r0, r5, #0
-    bl func_0800736C
+    bl AllocateHardwarePoolHandle
     str	r0, [r5, #4]
     movs	r1, #191	@ 0xbf
     lsls	r1, r1, #2
@@ -12931,7 +12931,7 @@ func_0803C5B0:
     adds	r0, r4, #0
     bl func_08007128
     adds	r0, r4, #0
-    bl func_0800736C
+    bl AllocateHardwarePoolHandle
     str	r0, [r4, #4]
     adds	r0, r7, #0
     adds	r0, #104	@ 0x68
@@ -13029,7 +13029,7 @@ func_0803C5B0:
     adds	r0, r5, #0
     bl func_08007128
     adds	r0, r5, #0
-    bl func_0800736C
+    bl AllocateHardwarePoolHandle
     str	r0, [r5, #4]
     movs	r1, #191	@ 0xbf
     lsls	r1, r1, #2
@@ -21990,7 +21990,7 @@ func_0803C5B0:
     adds	r0, r4, #0
     bl func_08007128
     adds	r0, r4, #0
-    bl func_0800736C
+    bl AllocateHardwarePoolHandle
     str	r0, [r4, #4]
     adds	r0, r7, #0
     adds	r0, #104	@ 0x68
@@ -22088,7 +22088,7 @@ func_0803C5B0:
     adds	r0, r5, #0
     bl func_08007128
     adds	r0, r5, #0
-    bl func_0800736C
+    bl AllocateHardwarePoolHandle
     str	r0, [r5, #4]
     movs	r1, #191	@ 0xbf
     lsls	r1, r1, #2
@@ -31027,7 +31027,7 @@ func_0803C5B0:
     adds	r0, r4, #0
     bl func_08007128
     adds	r0, r4, #0
-    bl func_0800736C
+    bl AllocateHardwarePoolHandle
     str	r0, [r4, #4]
     adds	r0, r7, #0
     adds	r0, #104	@ 0x68
@@ -31125,7 +31125,7 @@ func_0803C5B0:
     adds	r0, r5, #0
     bl func_08007128
     adds	r0, r5, #0
-    bl func_0800736C
+    bl AllocateHardwarePoolHandle
     str	r0, [r5, #4]
     movs	r1, #191	@ 0xbf
     lsls	r1, r1, #2

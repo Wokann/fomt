@@ -7488,7 +7488,7 @@ func_080A220C: @ 0x080A1C44
 	adds r0, r4, #0
 	bl func_08007128
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r4, #4]
 	movs r2, #0xc2
 	lsls r2, r2, #1
@@ -7496,7 +7496,7 @@ func_080A220C: @ 0x080A1C44
 	adds r0, r4, #0
 	bl func_08007128
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r4, #4]
 	movs r3, #0xc6
 	lsls r3, r3, #1
@@ -7504,7 +7504,7 @@ func_080A220C: @ 0x080A1C44
 	adds r0, r4, #0
 	bl func_08007128
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r4, #4]
 	movs r0, #0xca
 	lsls r0, r0, #1
@@ -7521,7 +7521,7 @@ func_080A220C: @ 0x080A1C44
 	adds r0, r4, #0
 	bl func_08007128
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r4, #4]
 	movs r2, #0xd2
 	lsls r2, r2, #1
@@ -7538,7 +7538,7 @@ func_080A220C: @ 0x080A1C44
 	adds r0, r4, #0
 	bl func_08007128
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r4, #4]
 	movs r0, #0xef
 	lsls r0, r0, #1
@@ -28803,7 +28803,7 @@ func_080AC0AC: @ 080AC0AC
 	adds r0, r4, #0
 	bl func_08007128
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	adds r1, r0, #0
 	str r1, [r4, #4]
 	adds r0, r4, #0
@@ -44791,7 +44791,7 @@ func_080B3CC8: @ 0x080B36FC
 	adds r0, r4, #0
 	bl func_080073E0
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r4, #4]
 	ldr r0, .Ljp_080B3F08 @ =0x00000724
 	adds r4, r6, r0
@@ -44799,7 +44799,7 @@ func_080B3CC8: @ 0x080B36FC
 	adds r0, r4, #0
 	bl func_080073E0
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r4, #4]
 	movs r7, #0
 	movs r1, #0xe6
@@ -44814,7 +44814,7 @@ func_080B3CC8: @ 0x080B36FC
 	adds r0, r4, #0
 	bl func_080073E0
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r5]
 	adds r5, #8
 	adds r7, #1
@@ -44833,7 +44833,7 @@ func_080B3CC8: @ 0x080B36FC
 	adds r0, r4, #0
 	bl func_080073E0
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r5]
 	adds r5, #8
 	adds r7, #1
@@ -45230,7 +45230,7 @@ func_080B469C: @ 0x080B40D0
 	add r0, sp, #0x34
 	bl func_08007128
 	add r0, sp, #0x34
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [sp, #0x38]
 	movs r0, #0x79
 	str r0, [sp, #0x90]
@@ -51303,7 +51303,7 @@ func_080B7648: @ 0x080B707C
 	add r0, sp, #0x30
 	bl func_08007128
 	add r0, sp, #0x30
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [sp, #0x34]
 	movs r0, #0x14
 	bl __builtin_new
@@ -53672,7 +53672,7 @@ func_080B888C: @ 0x080B82C0
 	add r0, sp, #0x34
 	bl func_08007128
 	add r0, sp, #0x34
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [sp, #0x38]
 	mov r1, sb
 	strb r1, [r7, #8]
@@ -77021,7 +77021,7 @@ func_080C797C:
     adds r0, r4, #0
     bl func_08007128
     adds r0, r4, #0
-    bl func_0800736C
+    bl AllocateHardwarePoolHandle
     str r0, [r4, #4]
     movs r0, #0xd9
     lsls r0, r0, #2
@@ -77038,7 +77038,7 @@ func_080C797C:
     adds r0, r4, #0
     bl func_08007128
     adds r0, r4, #0
-    bl func_0800736C
+    bl AllocateHardwarePoolHandle
     str r0, [r4, #4]
     movs r0, #0xdd
     lsls r0, r0, #2
@@ -77064,7 +77064,7 @@ func_080C797C:
     adds r0, r4, #0
     bl func_08007128
     adds r0, r4, #0
-    bl func_0800736C
+    bl AllocateHardwarePoolHandle
     str r0, [r4, #4]
     movs r1, #0xe3
     lsls r1, r1, #2
@@ -77090,7 +77090,7 @@ func_080C797C:
     adds r0, r4, #0
     bl func_08007128
     adds r0, r4, #0
-    bl func_0800736C
+    bl AllocateHardwarePoolHandle
     str r0, [r4, #4]
     movs r0, #0xe9
     lsls r0, r0, #2
@@ -77375,7 +77375,7 @@ func_080C797C:
     adds r0, r5, #0
     bl func_080073E0
     adds r0, r5, #0
-    bl func_0800736C
+    bl AllocateHardwarePoolHandle
     str r0, [r6, #0x48]
     adds r6, #8
     movs r1, #1
@@ -83734,7 +83734,7 @@ func_080CB96C:
     adds r0, r5, #0
     bl func_080073E0
     adds r0, r5, #0
-    bl func_0800736C
+    bl AllocateHardwarePoolHandle
     str r0, [r6, #0x40]
     adds r6, #8
     movs r5, #1
@@ -83762,7 +83762,7 @@ func_080CB96C:
     adds r0, r4, #0
     bl func_080073E0
     adds r0, r4, #0
-    bl func_0800736C
+    bl AllocateHardwarePoolHandle
     str r0, [r4, #4]
     .Lauto_080CBB08:
     adds r0, r7, #0
@@ -85324,7 +85324,7 @@ func_080CD9B0:
     adds r0, r4, #0
     bl func_08007128
     adds r0, r4, #0
-    bl func_0800736C
+    bl AllocateHardwarePoolHandle
     str r0, [r4, #4]
     adds r6, r7, #0
     adds r6, #0x24
@@ -86539,7 +86539,7 @@ func_080CE2FC:
     adds r0, r4, #0
     bl func_08007128
     adds r0, r4, #0
-    bl func_0800736C
+    bl AllocateHardwarePoolHandle
     str r0, [r4, #4]
     adds r6, r7, #0
     adds r6, #0x1c
@@ -87717,7 +87717,7 @@ func_080CEC00:
     adds r0, r4, #0
     bl func_08007128
     adds r0, r4, #0
-    bl func_0800736C
+    bl AllocateHardwarePoolHandle
     str r0, [r4, #4]
     movs r0, #0x12
     str r0, [r7, #0x7c]
@@ -98609,7 +98609,7 @@ func_080A220C: @ 0x080A220C
 	adds r0, r4, #0
 	bl func_08007128
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r4, #4]
 	movs r2, #0xc2
 	lsls r2, r2, #1
@@ -98617,7 +98617,7 @@ func_080A220C: @ 0x080A220C
 	adds r0, r4, #0
 	bl func_08007128
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r4, #4]
 	movs r3, #0xc6
 	lsls r3, r3, #1
@@ -98625,7 +98625,7 @@ func_080A220C: @ 0x080A220C
 	adds r0, r4, #0
 	bl func_08007128
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r4, #4]
 	movs r0, #0xca
 	lsls r0, r0, #1
@@ -98642,7 +98642,7 @@ func_080A220C: @ 0x080A220C
 	adds r0, r4, #0
 	bl func_08007128
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r4, #4]
 	movs r2, #0xd2
 	lsls r2, r2, #1
@@ -98659,7 +98659,7 @@ func_080A220C: @ 0x080A220C
 	adds r0, r4, #0
 	bl func_08007128
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r4, #4]
 	movs r0, #0xef
 	lsls r0, r0, #1
@@ -119840,7 +119840,7 @@ func_080AC674: @ 0x080AC674
 	adds r0, r4, #0
 	bl func_08007128
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	adds r1, r0, #0
 	str r1, [r4, #4]
 	adds r0, r4, #0
@@ -135768,7 +135768,7 @@ func_080B3CC8: @ 0x080B3CC8
 	adds r0, r4, #0
 	bl func_080073E0
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r4, #4]
 	ldr r0, .L080B44D4 @ =0x00000724
 	adds r4, r6, r0
@@ -135776,7 +135776,7 @@ func_080B3CC8: @ 0x080B3CC8
 	adds r0, r4, #0
 	bl func_080073E0
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r4, #4]
 	movs r7, #0
 	movs r1, #0xe6
@@ -135791,7 +135791,7 @@ func_080B3CC8: @ 0x080B3CC8
 	adds r0, r4, #0
 	bl func_080073E0
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r5]
 	adds r5, #8
 	adds r7, #1
@@ -135810,7 +135810,7 @@ func_080B3CC8: @ 0x080B3CC8
 	adds r0, r4, #0
 	bl func_080073E0
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r5]
 	adds r5, #8
 	adds r7, #1
@@ -136202,7 +136202,7 @@ func_080B469C: @ 0x080B469C
 	add r0, sp, #0x34
 	bl func_08007128
 	add r0, sp, #0x34
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [sp, #0x38]
 	movs r0, #0x79
 	str r0, [sp, #0x90]
@@ -142269,7 +142269,7 @@ func_080B7648: @ 0x080B7648
 	add r0, sp, #0x30
 	bl func_08007128
 	add r0, sp, #0x30
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [sp, #0x34]
 	movs r0, #0x14
 	bl __builtin_new
@@ -144635,7 +144635,7 @@ func_080B888C: @ 0x080B888C
 	add r0, sp, #0x34
 	bl func_08007128
 	add r0, sp, #0x34
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [sp, #0x38]
 	mov r1, sb
 	strb r1, [r7, #8]
@@ -176455,7 +176455,7 @@ func_080C7F58: @ 0x080C7F58
 	adds r0, r4, #0
 	bl func_08007128
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r4, #4]
 	movs r0, #0xd9
 	lsls r0, r0, #2
@@ -176472,7 +176472,7 @@ func_080C7F58: @ 0x080C7F58
 	adds r0, r4, #0
 	bl func_08007128
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r4, #4]
 	movs r0, #0xdd
 	lsls r0, r0, #2
@@ -176498,7 +176498,7 @@ func_080C7F58: @ 0x080C7F58
 	adds r0, r4, #0
 	bl func_08007128
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r4, #4]
 	movs r1, #0xe3
 	lsls r1, r1, #2
@@ -176524,7 +176524,7 @@ func_080C7F58: @ 0x080C7F58
 	adds r0, r4, #0
 	bl func_08007128
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r4, #4]
 	movs r0, #0xe9
 	lsls r0, r0, #2
@@ -176809,7 +176809,7 @@ func_080C7F58: @ 0x080C7F58
 	adds r0, r5, #0
 	bl func_080073E0
 	adds r0, r5, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r6, #0x48]
 	adds r6, #8
 	movs r1, #1
@@ -185221,7 +185221,7 @@ func_080CC15C: @ 0x080CC15C
 	adds r0, r5, #0
 	bl func_080073E0
 	adds r0, r5, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r6, #0x40]
 	adds r6, #8
 	movs r5, #1
@@ -185249,7 +185249,7 @@ func_080CC15C: @ 0x080CC15C
 	adds r0, r4, #0
 	bl func_080073E0
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r4, #4]
 .L080CC2F8:
 	adds r0, r7, #0
@@ -188193,7 +188193,7 @@ func_080CD9B0: @ 0x080CD9B0
 	adds r0, r4, #0
 	bl func_08007128
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r4, #4]
 	adds r6, r7, #0
 	adds r6, #0x24
@@ -189430,7 +189430,7 @@ func_080CE2FC: @ 0x080CE2FC
 	adds r0, r4, #0
 	bl func_08007128
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r4, #4]
 	adds r6, r7, #0
 	adds r6, #0x1c
@@ -190620,7 +190620,7 @@ func_080CEC00: @ 0x080CEC00
 	adds r0, r4, #0
 	bl func_08007128
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r4, #4]
 	movs r0, #0x12
 	str r0, [r7, #0x7c]

@@ -43,7 +43,7 @@ static inline void InitializeIntroSceneHardwareStateHandle(
 static inline void InitializeIntroSceneHardwarePoolHandle(IntroSceneHardwarePoolHandle * owner)
 {
     func_08007128(owner);
-    owner->handle = func_0800736C(owner);
+    owner->handle = AllocateHardwarePoolHandle(owner);
 }
 
 static inline void InitializeIntroSceneHardwareStateReservation(

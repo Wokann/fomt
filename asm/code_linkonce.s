@@ -19365,7 +19365,7 @@ func_080E0A94:
     adds r0, r4, #0
     bl func_08007128
     adds r0, r4, #0
-    bl func_0800736C
+    bl AllocateHardwarePoolHandle
     str r0, [r4, #4]
     adds r0, r7, #0
     adds r0, #0x38
@@ -37373,7 +37373,7 @@ func_080E0A94: @ 0x080E0A94
 	adds r0, r4, #0
 	bl func_08007128
 	adds r0, r4, #0
-	bl func_0800736C
+	bl AllocateHardwarePoolHandle
 	str r0, [r4, #4]
 	adds r0, r7, #0
 	adds r0, #0x38
