@@ -5399,7 +5399,7 @@ func_0804F288: @ 0x0804F014
     adds r0, #0x18
     ldr r1, [sp, #0x44]
     movs r2, #2
-    bl func_080083D0
+    bl Get__C18HardwareStateOwnerUi
     mov r2, r8
     adds r2, #0x20
     mov r1, r8
@@ -5535,7 +5535,7 @@ func_0804F288: @ 0x0804F014
     mov r0, sp
     ldr r1, [sp, #0x44]
     movs r2, #3
-    bl func_080083D0
+    bl Get__C18HardwareStateOwnerUi
     adds r4, r5, #4
     cmp sp, r4
     beq .Ljp_0804F1D4
@@ -5719,7 +5719,7 @@ func_0804F288: @ 0x0804F014
     add r0, r8
     ldr r1, [sp, #0x44]
     movs r2, #7
-    bl func_080083D0
+    bl Get__C18HardwareStateOwnerUi
     movs r2, #0xee
     lsls r2, r2, #1
     add r2, r8
@@ -8970,7 +8970,9 @@ func_08050D2C:
     .byte 0x20, 0x1C, 0x02, 0x21, 0xB6, 0xF7, 0x2A, 0xFD, 0x28, 0x68, 0xAF, 0xF7, 0x33, 0xFB, 0xAE, 0x42
     .byte 0xF0, 0xD1, 0x30, 0x1C, 0xAF, 0xF7, 0x2E, 0xFB, 0x42, 0x46, 0x3A, 0x60, 0x00, 0x20, 0x80, 0x46
     .byte 0x56, 0x46, 0x4E, 0x44, 0x08, 0x36, 0x02, 0xAF, 0x31, 0x68, 0x42, 0x46, 0x10, 0x01, 0x0D, 0x18
-    .byte 0x68, 0x46, 0x03, 0x99, 0x03, 0x22, 0xB7, 0xF7, 0x05, 0xFA, 0x2C, 0x1D, 0xA5, 0x45, 0x08, 0xD0
+    .byte 0x68, 0x46, 0x03, 0x99, 0x03, 0x22
+    bl Get__C18HardwareStateOwnerUi
+    .byte 0x2C, 0x1D, 0xA5, 0x45, 0x08, 0xD0
     .byte 0x61, 0x68, 0x20, 0x1C, 0xB6, 0xF7, 0x2A, 0xFE, 0x01, 0x99, 0x20, 0x1C, 0xB6, 0xF7, 0x7E, 0xFE
     .byte 0x60, 0x60, 0x01, 0x99, 0x68, 0x46, 0xB6, 0xF7, 0x21, 0xFE, 0x68, 0x46, 0x02, 0x21, 0xB6, 0xF7
     .byte 0xFD, 0xFC, 0x61, 0x68, 0x48, 0x42, 0x08, 0x43, 0xC0, 0x0F, 0x00, 0x28, 0x0A, 0xD0, 0x29, 0x68
@@ -10439,7 +10441,7 @@ func_080522F8:
     bl __builtin_new
     mov r8, r0
     add r0, sp, #0xc
-    bl func_0800835C
+    bl __18HardwareStateOwner
     add r6, sp, #0x10
     adds r0, r6, #0
     bl func_0800770C
@@ -10459,7 +10461,7 @@ func_080522F8:
     bl func_08007714
     add r0, sp, #0xc
     movs r1, #2
-    bl func_08008364
+    bl _._18HardwareStateOwner
     adds r0, r7, #0
     adds r0, #0x14
     movs r1, #1
@@ -16269,7 +16271,7 @@ func_08057CF4:
     bl __builtin_new
     mov r8, r0
     add r0, sp, #0xc
-    bl func_0800835C
+    bl __18HardwareStateOwner
     add r6, sp, #0x10
     adds r0, r6, #0
     bl func_0800770C
@@ -16291,7 +16293,7 @@ func_08057CF4:
     bl func_08007714
     add r0, sp, #0xc
     movs r1, #2
-    bl func_08008364
+    bl _._18HardwareStateOwner
     mov r0, sl
     adds r0, #0x14
     movs r1, #1
@@ -21533,7 +21535,7 @@ func_0805CF70:
     bl __builtin_new
     adds r6, r0, #0
     add r0, sp, #0xc
-    bl func_0800835C
+    bl __18HardwareStateOwner
     add r4, sp, #0x10
     adds r0, r4, #0
     bl func_0800770C
@@ -21553,7 +21555,7 @@ func_0805CF70:
     bl func_08007714
     add r0, sp, #0xc
     movs r1, #2
-    bl func_08008364
+    bl _._18HardwareStateOwner
     adds r0, r7, #0
     adds r0, #0x14
     movs r1, #1
@@ -23169,7 +23171,7 @@ func_0805ED4C:
 	bl __builtin_new
 	adds r6, r0, #0
 	add r0, sp, #0xc
-	bl func_0800835C
+	bl __18HardwareStateOwner
 	add r5, sp, #0x10
 	adds r0, r5, #0
 	bl func_0800770C
@@ -23189,7 +23191,7 @@ func_0805ED4C:
 	bl func_08007714
 	add r0, sp, #0xc
 	movs r1, #2
-	bl func_08008364
+	bl _._18HardwareStateOwner
 	adds r0, r4, #0
 	adds r0, #0x14
 	movs r1, #1
@@ -47284,7 +47286,7 @@ func_08069F14:
 	strb r0, [r1]
 	str r4, [r6, #0x3c]
 	add r0, sp, #0xc
-	bl func_0800835C
+	bl __18HardwareStateOwner
 	add r5, sp, #0x10
 	adds r0, r5, #0
 	bl func_0800770C
@@ -47304,7 +47306,7 @@ func_08069F14:
 	bl func_08007714
 	add r0, sp, #0xc
 	movs r1, #2
-	bl func_08008364
+	bl _._18HardwareStateOwner
 	movs r1, #0x9c
 	lsls r1, r1, #1
 	adds r0, r7, r1
@@ -54844,7 +54846,7 @@ func_0806D990:
 	bl __builtin_new
 	adds r5, r0, #0
 	add r0, sp, #0xc
-	bl func_0800835C
+	bl __18HardwareStateOwner
 	add r4, sp, #0x10
 	adds r0, r4, #0
 	bl func_0800770C
@@ -54864,7 +54866,7 @@ func_0806D990:
 	bl func_08007714
 	add r0, sp, #0xc
 	movs r1, #2
-	bl func_08008364
+	bl _._18HardwareStateOwner
 	adds r0, r7, #0
 	adds r0, #0x10
 	movs r1, #1
@@ -76906,7 +76908,7 @@ func_0807865C: @ 0x0807865C
 	str r6, [r7, #0x10]
 	strb r1, [r7, #0x14]
 	adds r0, r5, #0
-	bl func_0800835C
+	bl __18HardwareStateOwner
 	add r0, sp, #0x14
 	bl func_0800770C
 	add r4, sp, #0x14
@@ -76925,7 +76927,7 @@ func_0807865C: @ 0x0807865C
 	bl func_08007714
 	adds r0, r5, #0
 	movs r1, #2
-	bl func_08008364
+	bl _._18HardwareStateOwner
 	adds r0, r7, #0
 	adds r0, #0x1c
 	bl func_0803C5B0
@@ -115798,7 +115800,7 @@ func_08093220:
 	adds r0, r7, r1
 	str r5, [r0]
 	add r0, sp, #0xc
-	bl func_0800835C
+	bl __18HardwareStateOwner
 	add r4, sp, #0x10
 	adds r0, r4, #0
 	bl func_0800770C
@@ -115819,7 +115821,7 @@ func_08093220:
 	bl func_08007714
 	add r0, sp, #0xc
 	movs r1, #2
-	bl func_08008364
+	bl _._18HardwareStateOwner
 	movs r2, #0xea
 	lsls r2, r2, #1
 	adds r0, r7, r2
@@ -151948,7 +151950,7 @@ func_0804F288: @ 0x0804F288
 	adds r0, #0x18
 	ldr r1, [sp, #0x44]
 	movs r2, #2
-	bl func_080083D0
+	bl Get__C18HardwareStateOwnerUi
 	mov r2, r8
 	adds r2, #0x20
 	mov r1, r8
@@ -152084,7 +152086,7 @@ func_0804F288: @ 0x0804F288
 	mov r0, sp
 	ldr r1, [sp, #0x44]
 	movs r2, #3
-	bl func_080083D0
+	bl Get__C18HardwareStateOwnerUi
 	adds r4, r5, #4
 	cmp sp, r4
 	beq .L0804F448
@@ -152268,7 +152270,7 @@ func_0804F288: @ 0x0804F288
 	add r0, r8
 	ldr r1, [sp, #0x44]
 	movs r2, #7
-	bl func_080083D0
+	bl Get__C18HardwareStateOwnerUi
 	movs r2, #0xee
 	lsls r2, r2, #1
 	add r2, r8
@@ -155451,7 +155453,7 @@ func_08050F74: @ 0x08050F74
 	bl __builtin_delete
 	.byte 0x42, 0x46, 0x3A, 0x60, 0x00, 0x20, 0x80, 0x46, 0x56, 0x46, 0x4E, 0x44, 0x08, 0x36, 0x02, 0xAF
 	.byte 0x31, 0x68, 0x42, 0x46, 0x10, 0x01, 0x0D, 0x18, 0x68, 0x46, 0x03, 0x99, 0x03, 0x22
-	bl func_080083D0
+	bl Get__C18HardwareStateOwnerUi
 	.byte 0x2C, 0x1D, 0xA5, 0x45, 0x08, 0xD0, 0x61, 0x68, 0x20, 0x1C
 	bl ReleaseHardwareSharedStateHandle
 	.byte 0x01, 0x99, 0x20, 0x1C
@@ -157452,7 +157454,7 @@ func_080522F8: @ 0x080522F8
 	bl __builtin_new
 	mov r8, r0
 	add r0, sp, #0xc
-	bl func_0800835C
+	bl __18HardwareStateOwner
 	add r6, sp, #0x10
 	adds r0, r6, #0
 	bl func_0800770C
@@ -157472,7 +157474,7 @@ func_080522F8: @ 0x080522F8
 	bl func_08007714
 	add r0, sp, #0xc
 	movs r1, #2
-	bl func_08008364
+	bl _._18HardwareStateOwner
 	adds r0, r7, #0
 	adds r0, #0x14
 	movs r1, #1
@@ -169081,7 +169083,7 @@ func_0805806C: @ 0x0805806C
 	bl __builtin_new
 	mov r8, r0
 	add r0, sp, #0xc
-	bl func_0800835C
+	bl __18HardwareStateOwner
 	add r6, sp, #0x10
 	adds r0, r6, #0
 	bl func_0800770C
@@ -169103,7 +169105,7 @@ func_0805806C: @ 0x0805806C
 	bl func_08007714
 	add r0, sp, #0xc
 	movs r1, #2
-	bl func_08008364
+	bl _._18HardwareStateOwner
 	mov r0, sl
 	adds r0, #0x14
 	movs r1, #1
@@ -178721,7 +178723,7 @@ func_0805CF70: @ 0x0805CF70
 	bl __builtin_new
 	adds r6, r0, #0
 	add r0, sp, #0xc
-	bl func_0800835C
+	bl __18HardwareStateOwner
 	add r4, sp, #0x10
 	adds r0, r4, #0
 	bl func_0800770C
@@ -178741,7 +178743,7 @@ func_0805CF70: @ 0x0805CF70
 	bl func_08007714
 	add r0, sp, #0xc
 	movs r1, #2
-	bl func_08008364
+	bl _._18HardwareStateOwner
 	adds r0, r7, #0
 	adds r0, #0x14
 	movs r1, #1
@@ -182213,7 +182215,7 @@ func_0805ED4C: @ 0x0805ED4C
 	bl __builtin_new
 	adds r6, r0, #0
 	add r0, sp, #0xc
-	bl func_0800835C
+	bl __18HardwareStateOwner
 	add r5, sp, #0x10
 	adds r0, r5, #0
 	bl func_0800770C
@@ -182233,7 +182235,7 @@ func_0805ED4C: @ 0x0805ED4C
 	bl func_08007714
 	add r0, sp, #0xc
 	movs r1, #2
-	bl func_08008364
+	bl _._18HardwareStateOwner
 	adds r0, r4, #0
 	adds r0, #0x14
 	movs r1, #1
@@ -206002,7 +206004,7 @@ func_08069F14: @ 0x08069F14
 	strb r0, [r1]
 	str r4, [r6, #0x3c]
 	add r0, sp, #0xc
-	bl func_0800835C
+	bl __18HardwareStateOwner
 	add r5, sp, #0x10
 	adds r0, r5, #0
 	bl func_0800770C
@@ -206022,7 +206024,7 @@ func_08069F14: @ 0x08069F14
 	bl func_08007714
 	add r0, sp, #0xc
 	movs r1, #2
-	bl func_08008364
+	bl _._18HardwareStateOwner
 	movs r1, #0x9c
 	lsls r1, r1, #1
 	adds r0, r7, r1
@@ -213492,7 +213494,7 @@ func_0806D990: @ 0x0806D990
 	bl __builtin_new
 	adds r5, r0, #0
 	add r0, sp, #0xc
-	bl func_0800835C
+	bl __18HardwareStateOwner
 	add r4, sp, #0x10
 	adds r0, r4, #0
 	bl func_0800770C
@@ -213512,7 +213514,7 @@ func_0806D990: @ 0x0806D990
 	bl func_08007714
 	add r0, sp, #0xc
 	movs r1, #2
-	bl func_08008364
+	bl _._18HardwareStateOwner
 	adds r0, r7, #0
 	adds r0, #0x10
 	movs r1, #1
@@ -236713,7 +236715,7 @@ func_0807865C: @ 0x0807865C
 	str r6, [r7, #0x10]
 	strb r1, [r7, #0x14]
 	adds r0, r5, #0
-	bl func_0800835C
+	bl __18HardwareStateOwner
 	add r0, sp, #0x14
 	bl func_0800770C
 	add r4, sp, #0x14
@@ -236732,7 +236734,7 @@ func_0807865C: @ 0x0807865C
 	bl func_08007714
 	adds r0, r5, #0
 	movs r1, #2
-	bl func_08008364
+	bl _._18HardwareStateOwner
 	adds r0, r7, #0
 	adds r0, #0x1c
 	bl func_0803C5B0
@@ -287583,7 +287585,7 @@ func_0809323C: @ 0x0809323C
 	adds r0, r7, r1
 	str r5, [r0]
 	add r0, sp, #0xc
-	bl func_0800835C
+	bl __18HardwareStateOwner
 	add r4, sp, #0x10
 	adds r0, r4, #0
 	bl func_0800770C
@@ -287604,7 +287606,7 @@ func_0809323C: @ 0x0809323C
 	bl func_08007714
 	add r0, sp, #0xc
 	movs r1, #2
-	bl func_08008364
+	bl _._18HardwareStateOwner
 	movs r2, #0xea
 	lsls r2, r2, #1
 	adds r0, r7, r2

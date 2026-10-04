@@ -8,6 +8,12 @@ struct HardwareStateEntry {
     struct HardwareSharedStateOwner owner;
     u32 handle;
 #ifdef __cplusplus
+    HardwareStateEntry(u32 size_shift)
+    {
+        func_08007874(this);
+        handle = AllocateHardwareSharedStateHandle(this, size_shift);
+    }
+
     HardwareStateEntry(HardwareStateEntry const & value)
     {
         func_08007874(this);
@@ -45,7 +51,13 @@ struct HardwareStateStorage {
 
 struct HardwareStateOwner {
     struct HardwareStateStorage * storage;
-    u32 unk_04;
+#ifdef __cplusplus
+    HardwareStateOwner();
+    ~HardwareStateOwner();
+    // Return a retained entry, not another owner. Without storage, allocate
+    // an independent entry with group_index as the tile-size shift.
+    HardwareStateEntry Get(u32 group_index) const;
+#endif
 };
 
 typedef char HardwareStateEntrySizeCheck[sizeof(struct HardwareStateEntry) == 8 ? 1 : -1];
@@ -54,16 +66,6 @@ typedef char HardwareStateGroupSizeCheck[sizeof(struct HardwareStateGroup) == 20
 typedef char HardwareStateGroupCapacityCheck[offsetof(struct HardwareStateGroup, capacity_end) == 12 ? 1 : -1];
 typedef char HardwareStateGroupCursorCheck[offsetof(struct HardwareStateGroup, cursor) == 16 ? 1 : -1];
 typedef char HardwareStateStorageSizeCheck[sizeof(struct HardwareStateStorage) == 160 ? 1 : -1];
-
-EXTERN_C
-
-void func_0800835C(void ** slot);
-void func_08008364(struct HardwareStateOwner * owner, u32 flags);
-struct HardwareStateOwner * func_080083D0(
-    struct HardwareStateOwner * owner,
-    struct HardwareStateStorage * const * storage_ref,
-    u32 group_index);
-
-EXTERN_C_END
+typedef char HardwareStateOwnerSizeCheck[sizeof(struct HardwareStateOwner) == 4 ? 1 : -1];
 
 #endif // HARDWARE_STATE_CLEAR_HH

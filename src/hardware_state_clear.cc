@@ -58,17 +58,16 @@ void HardwareStateGroup::Reserve(u32 count)
     }
 }
 
-void func_0800835C(void ** slot)
+HardwareStateOwner::HardwareStateOwner() : storage(0)
 {
-    *slot = 0;
 }
 
-void func_08008364(struct HardwareStateOwner * owner, u32 flags)
+HardwareStateOwner::~HardwareStateOwner()
 {
-    if (owner->storage != 0) {
-        struct HardwareStateStorage * storage = owner->storage;
-        struct HardwareStateGroup * group = storage->groups + 8;
-        while (storage->groups != group) {
+    if (storage != 0) {
+        struct HardwareStateStorage * saved = storage;
+        struct HardwareStateGroup * group = saved->groups + 8;
+        while (saved->groups != group) {
             struct HardwareStateEntry * entry;
             struct HardwareStateEntry * end;
             --group;
@@ -84,20 +83,16 @@ void func_08008364(struct HardwareStateOwner * owner, u32 flags)
             if (group->start != 0)
                 free(group->start);
         }
-        __builtin_delete(storage);
+        __builtin_delete(saved);
     }
-    if (flags & 1)
-        __builtin_delete(owner);
 }
 
-struct HardwareStateOwner * func_080083D0(
-    struct HardwareStateOwner * owner,
-    struct HardwareStateStorage * const * storage_ref,
-    u32 group_index)
+HardwareStateEntry HardwareStateOwner::Get(u32 group_index) const
 {
-    struct HardwareStateStorage * storage = *storage_ref;
-    if (storage != 0) {
-        struct HardwareStateGroup * group = (struct HardwareStateGroup *)(group_index * sizeof(struct HardwareStateGroup) + (u32)storage);
+    HardwareStateStorage * saved = storage;
+    if (saved != 0) {
+        HardwareStateGroup * group = reinterpret_cast<HardwareStateGroup *>(
+            group_index * sizeof(HardwareStateGroup) + reinterpret_cast<u32>(saved));
         struct HardwareStateEntry * end = group->end;
         struct HardwareStateEntry * current = group->cursor;
         if (current != end) {
@@ -114,11 +109,7 @@ struct HardwareStateOwner * func_080083D0(
                 }
             } while (current != first);
         }
-        func_08007874(owner);
-        owner->unk_04 = RetainHardwareSharedStateHandle(owner, current->handle);
-    } else {
-        func_08007874(owner);
-        owner->unk_04 = AllocateHardwareSharedStateHandle(owner, group_index);
+        return *current;
     }
-    return owner;
+    return HardwareStateEntry(group_index);
 }
