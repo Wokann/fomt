@@ -42,8 +42,8 @@ INTRO_BACKGROUND_TILES_BIN := $(INTRO_BACKGROUND_TILES_SOURCE:.png=.4bpp)
 INTRO_BACKGROUND_PACKED_BIN := $(INTRO_BACKGROUND_TILES_BIN).lz
 
 # Intro Scene object tiles are twenty independently packed, byte-identical
-# Raw-LZ streams.  Their 0x500-byte decoded sources preserve native tile
-# order; OAM composition is deliberately kept separate until it is proven.
+# Raw-LZ streams. Native PNG tile atlases generate each 0x500-byte .4bpp
+# through the shared suffix rule; OAM composition remains unproven.
 INTRO_OBJECTS_SOURCE_DIR := graphics/intro_scene/shared/object_tiles
 INTRO_OBJECTS_REGION := $(shell echo "$(GAME_REGION)" | tr '[:upper:]' '[:lower:]')
 

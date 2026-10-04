@@ -26,20 +26,22 @@ a `.0x70` pseudo-extension.
 The packed stream occupies 0x49BC bytes at JP 0x4C91C0, US 0x743058,
 EU 0x7430B4, and DE 0x4CA4CC.
 
-`shared/object_tiles/object_00.4bpp` through `object_19.4bpp` are the twenty
-additional streams loaded by the same routine. Each decodes to exactly `0x500`
-bytes and is copied into the intro object's tile staging area before the
-runtime object code uploads it to OBJ VRAM. All twenty packed streams and
-decoded payloads are byte-identical in JP, US, EU and DE.
+`shared/object_tiles/object_00.png` through `object_19.png` are the twenty
+native tile atlases consumed by the separate loader `func_0805FBB8`. Each
+64-by-40-pixel image holds 40 tiles in the original linear order. The shared
+PNG-to-4bpp suffix rule generates exactly `0x500` bytes beside each source;
+the existing Raw-LZ rule then generates its `.4bpp.lz`. The runtime stages
+the decoded tiles in RAM before the later OBJ upload path. All twenty packed
+streams and decoded payloads are byte-identical in JP, US, EU and DE.
 
-They are intentionally checked in as native 4bpp tile sources, not fabricated
-full-image PNGs: their OAM composition and per-object palette selection are
-still runtime data and have not yet been independently reconstructed. This is
-an editable and lossless source representation without a JSON layout sidecar;
-it is also the appropriate input for a later verified OAM/full-PNG tool.
+The grayscale values preserve the sixteen native pixel indices, not an
+assumed game palette. These are editable tile sources, not reconstructed
+full sprites: OAM composition and per-object palette selection are still
+runtime data and have not yet been independently reconstructed. There is no
+JSON layout sidecar, new converter, or per-image Make rule.
 
 `OBJECT_PIPELINE_AUDIT.md` records the code-backed boundary: the twenty
-streams are a fixed VRAM loading sequence, while the scene's actual frame,
+streams are a fixed RAM staging sequence, while the scene's actual frame,
 OAM-piece and palette selection come from runtime indexed-resource handles.
 
 All twenty objects now encode directly from `.4bpp` through the C compressor:

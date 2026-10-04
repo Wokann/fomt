@@ -23,8 +23,8 @@ address passed by a static resource table: the sole caller, `func_0805EE44`,
 passes its live scene context as the argument after initializing its own
 state. Consequently:
 
-- every `object_00.4bpp` through `object_19.4bpp` source is exactly `0x500`
-  decoded bytes (40 native 4bpp tiles);
+- every `object_00.png` through `object_19.png` native tile atlas generates
+  exactly `0x500` decoded bytes (40 native 4bpp tiles) through gbagfx;
 - the numbered source order is a real runtime staging order, not an inferred
   animation or character order;
 - the shared source set can be rebuilt as twenty independent fixed-capacity
@@ -58,7 +58,8 @@ legitimately infer an OAM layout merely from the loading stride.
 The four retail FoMT regions have identical packed payloads and identical
 decoded payloads for all twenty source streams.  Only their ROM offsets vary.
 `make gfx-intro-objects-all` verifies every region against its own original
-range.
+range (historical target; the current shared build rules reproduce the same
+bytes without a ROM input).
 
 ## Verified separation from nearby archives
 
@@ -119,7 +120,8 @@ updater subsequently delegates rendering to the generic OAM path, whose piece
 records and palette choice remain runtime state.  The confirmed selection step
 therefore narrows the required trace to a selected source slot, but it cannot
 legitimately be used to assign rectangle dimensions, position, palette, or
-draw order for a PNG editing source.
+draw order for a complete, OAM-composited PNG editing source. A native linear
+tile atlas needs none of those assumptions and retains all original indices.
 
 ## Address-space constraint for ROM analysis
 
@@ -138,7 +140,7 @@ emitter format, but it does **not** attach any static Intro object stream to a
 particular piece-record sequence.  This distinction is why the source-order
 list still cannot be converted into independent full PNG assets.
 
-## Why a complete PNG cannot yet be emitted
+## Native tile PNGs versus unproven complete frames
 
 The same initialization path subsequently drives the Intro Scene through
 runtime `IndexedResourceHandle` objects.  In the JP-disassembled scene code,
@@ -147,16 +149,23 @@ its draw/update paths resolve resource entries and submit transient draw
 records.  The object loader's twenty compressed streams are not accompanied by
 a static, one-record-per-stream OAM table in the data block.
 
-Thus a renderer that simply lays each 40-tile payload into a rectangle would
-invent all of the following:
+The current 64-by-40-pixel native PNGs arrange each 40-tile payload in its
+original linear order. Grayscale values represent native pixel indices;
+no game palette or full-frame composition is claimed. Ordinary gbagfx
+conversion recreates the exact `.4bpp` payload and the existing C compressor
+recreates its original stream. These tile atlases are valid editable sources.
+
+Claiming that such a rectangle is a complete sprite or animation frame,
+however, would invent all of the following:
 
 1. which resource entry selects which tile range;
 2. OAM shape, size, tile offset, flipping, and draw order;
 3. frame position and animation timing; and
 4. the palette bank selected for that draw.
 
-That would be a reference illustration at best, not an editable source or a
-verified reconstruction.  No such PNG is checked in.
+No PNG claiming those unproven full-frame properties is checked in. Native
+tile PNGs do not establish any of them, and must not be counted as recovered
+character/frame descriptors.
 
 ## Required next evidence
 
@@ -171,6 +180,7 @@ traced end-to-end:
 5. verify the unchanged rebuild against JP, US, EU, and DE, followed by a
    one-pixel fixed-slot edit fixture.
 
-The source representation will remain the native `.4bpp` payloads.  Any
-future full PNG is an editing view derived from the runtime descriptors, not a
+The maintained sources are now native tile PNGs; `.4bpp` and `.4bpp.lz`
+are generated beside them by the existing shared rules. Any future complete
+frame view must be derived from the actual runtime descriptors, not a
 JSON-controlled replacement layout.
