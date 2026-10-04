@@ -161,6 +161,12 @@ u32 RetainHardwareSharedStateHandle(void * owner, u32 handle);
 // The last reference frees the tile range and returns the slot to its free list.
 void ReleaseHardwareSharedStateHandle(void * owner, u32 handle);
 
+// Fill both children before marking the parent tile range full.
+void FillHardwareTileTree64(HardwareTileTree64 * tree);
+void FillHardwareTileTree128(HardwareTileTree128 * tree);
+void FillHardwareTileTree256(HardwareTileTree256 * tree);
+void FillHardwareTileTree512(HardwareTileTree512 * tree);
+
 // Clear both children before marking the parent tile range empty.
 void ClearHardwareTileTree64(HardwareTileTree64 * tree);
 void ClearHardwareTileTree128(HardwareTileTree128 * tree);

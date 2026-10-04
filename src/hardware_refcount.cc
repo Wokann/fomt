@@ -173,8 +173,48 @@ u32 GetHardwareSharedStateReferenceCount(void *, u32 value)
     return 0;
 }
 
+void FillHardwareTileTree64(HardwareTileTree64 *)
+    SECTION(".text.hardware_shared_state_tile_tree");
+void FillHardwareTileTree64(HardwareTileTree64 * tree)
+{
+    tree->children[0].bits = ~0u;
+    tree->children[1].bits = ~0u;
+    tree->full = true;
+    tree->empty = false;
+}
+
+void FillHardwareTileTree128(HardwareTileTree128 *)
+    SECTION(".text.hardware_shared_state_tile_tree");
+void FillHardwareTileTree128(HardwareTileTree128 * tree)
+{
+    FillHardwareTileTree64(&tree->children[0]);
+    FillHardwareTileTree64(&tree->children[1]);
+    tree->full = true;
+    tree->empty = false;
+}
+
+void FillHardwareTileTree256(HardwareTileTree256 *)
+    SECTION(".text.hardware_shared_state_tile_tree");
+void FillHardwareTileTree256(HardwareTileTree256 * tree)
+{
+    FillHardwareTileTree128(&tree->children[0]);
+    FillHardwareTileTree128(&tree->children[1]);
+    tree->full = true;
+    tree->empty = false;
+}
+
+void FillHardwareTileTree512(HardwareTileTree512 *)
+    SECTION(".text.hardware_shared_state_tile_tree");
+void FillHardwareTileTree512(HardwareTileTree512 * tree)
+{
+    FillHardwareTileTree256(&tree->children[0]);
+    FillHardwareTileTree256(&tree->children[1]);
+    tree->full = true;
+    tree->empty = false;
+}
+
 void ClearHardwareTileTree64(HardwareTileTree64 *)
-    SECTION(".text.hardware_shared_state_tree_clear");
+    SECTION(".text.hardware_shared_state_tile_tree");
 void ClearHardwareTileTree64(HardwareTileTree64 * tree)
 {
     tree->children[1].bits = 0;
@@ -184,7 +224,7 @@ void ClearHardwareTileTree64(HardwareTileTree64 * tree)
 }
 
 void ClearHardwareTileTree128(HardwareTileTree128 *)
-    SECTION(".text.hardware_shared_state_tree_clear");
+    SECTION(".text.hardware_shared_state_tile_tree");
 void ClearHardwareTileTree128(HardwareTileTree128 * tree)
 {
     ClearHardwareTileTree64(&tree->children[1]);
@@ -194,7 +234,7 @@ void ClearHardwareTileTree128(HardwareTileTree128 * tree)
 }
 
 void ClearHardwareTileTree256(HardwareTileTree256 *)
-    SECTION(".text.hardware_shared_state_tree_clear");
+    SECTION(".text.hardware_shared_state_tile_tree");
 void ClearHardwareTileTree256(HardwareTileTree256 * tree)
 {
     ClearHardwareTileTree128(&tree->children[1]);
@@ -204,7 +244,7 @@ void ClearHardwareTileTree256(HardwareTileTree256 * tree)
 }
 
 void ClearHardwareTileTree512(HardwareTileTree512 *)
-    SECTION(".text.hardware_shared_state_tree_clear");
+    SECTION(".text.hardware_shared_state_tile_tree");
 void ClearHardwareTileTree512(HardwareTileTree512 * tree)
 {
     ClearHardwareTileTree256(&tree->children[1]);

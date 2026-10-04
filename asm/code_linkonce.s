@@ -6112,71 +6112,7 @@ func_080D6DB8:
     pop {r0}
     bx r0
     .byte 0x00, 0x00
-    .global func_080D6E98
-    .thumb_func
-func_080D6E98:
-    movs r1, #1
-    rsbs r1, r1, #0
-    str r1, [r0, #4]
-    str r1, [r0, #8]
-    movs r2, #0
-    movs r1, #1
-    strb r1, [r0]
-    strb r2, [r0, #1]
-    bx lr
-    .byte 0x00, 0x00
-    .global func_080D6EAC
-    .thumb_func
-func_080D6EAC:
-    push {r4, lr}
-    adds r4, r0, #0
-    adds r0, r4, #4
-    bl func_080D6E98
-    adds r0, r4, #0
-    adds r0, #0x10
-    bl func_080D6E98
-    movs r1, #0
-    movs r0, #1
-    strb r0, [r4]
-    strb r1, [r4, #1]
-    pop {r4}
-    pop {r0}
-    bx r0
-    .global func_080D6ECC
-    .thumb_func
-func_080D6ECC:
-    push {r4, lr}
-    adds r4, r0, #0
-    adds r0, r4, #4
-    bl func_080D6EAC
-    adds r0, r4, #0
-    adds r0, #0x20
-    bl func_080D6EAC
-    movs r1, #0
-    movs r0, #1
-    strb r0, [r4]
-    strb r1, [r4, #1]
-    pop {r4}
-    pop {r0}
-    bx r0
-    .global func_080D6EEC
-    .thumb_func
-func_080D6EEC:
-    push {r4, lr}
-    adds r4, r0, #0
-    adds r0, r4, #4
-    bl func_080D6ECC
-    adds r0, r4, #0
-    adds r0, #0x40
-    bl func_080D6ECC
-    movs r1, #0
-    movs r0, #1
-    strb r0, [r4]
-    strb r1, [r4, #1]
-    pop {r4}
-    pop {r0}
-    bx r0
-    .section .text.hardware_shared_state_tree_clear_after, "ax", %progbits
+    .section .text.hardware_shared_state_tile_tree_after, "ax", %progbits
     .thumb
 
     .global func_080D6F7C
@@ -6195,7 +6131,7 @@ func_080D6F7C:
     bne .Lauto_080D6754
     cmp r2, #0x3f
     bls .Lauto_080D6754
-    bl func_080D6E98
+    bl FillHardwareTileTree64
     b .Lauto_080D67C4
     .Lauto_080D6754:
     cmp r3, #0x1f
@@ -6284,7 +6220,7 @@ func_080D7014:
     cmp r0, #0x7f
     bls .Lauto_080D67F0
     adds r0, r5, #0
-    bl func_080D6EAC
+    bl FillHardwareTileTree128
     b .Lauto_080D6844
     .Lauto_080D67F0:
     cmp r4, #0x3f
@@ -6355,7 +6291,7 @@ func_080D7094:
     cmp r0, #0xff
     bls .Lauto_080D6870
     adds r0, r5, #0
-    bl func_080D6ECC
+    bl FillHardwareTileTree256
     b .Lauto_080D68C8
     .Lauto_080D6870:
     cmp r4, #0x7f
@@ -6429,7 +6365,7 @@ func_080D7118:
     cmp r0, r1
     bls .Lauto_080D68FC
     adds r0, r5, #0
-    bl func_080D6EEC
+    bl FillHardwareTileTree512
     b .Lauto_080D6958
     .byte 0x00, 0x00, 0xFF, 0x01, 0x00, 0x00
     .Lauto_080D68FC:
@@ -6877,7 +6813,7 @@ func_080D73E4:
     cmp r0, #0
     beq .Lauto_080D6C2A
     adds r0, r6, #0
-    bl func_080D6E98
+    bl FillHardwareTileTree64
     movs r0, #0
     b .Lauto_080D6C2C
     .Lauto_080D6C2A:
@@ -6943,7 +6879,7 @@ func_080D7480:
     cmp r0, #0
     beq .Lauto_080D6C9E
     adds r0, r6, #0
-    bl func_080D6EAC
+    bl FillHardwareTileTree128
     movs r0, #0
     b .Lauto_080D6CA0
     .Lauto_080D6C9E:
@@ -7009,7 +6945,7 @@ func_080D74F0:
     cmp r0, #0
     beq .Lauto_080D6D12
     adds r0, r6, #0
-    bl func_080D6ECC
+    bl FillHardwareTileTree256
     movs r0, #0
     b .Lauto_080D6D16
     .Lauto_080D6D12:
@@ -7074,7 +7010,7 @@ func_080D7568:
     cmp r0, #0
     beq .Lauto_080D6D8A
     adds r0, r6, #0
-    bl func_080D6EEC
+    bl FillHardwareTileTree512
     movs r0, #0
     b .Lauto_080D6D8E
     .Lauto_080D6D8A:
@@ -8442,71 +8378,7 @@ func_080D6DB8: @ 0x080D6DB8
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_080D6E98
-func_080D6E98: @ 0x080D6E98
-	movs r1, #1
-	rsbs r1, r1, #0
-	str r1, [r0, #4]
-	str r1, [r0, #8]
-	movs r2, #0
-	movs r1, #1
-	strb r1, [r0]
-	strb r2, [r0, #1]
-	bx lr
-	.align 2, 0
-
-	thumb_func_start func_080D6EAC
-func_080D6EAC: @ 0x080D6EAC
-	push {r4, lr}
-	adds r4, r0, #0
-	adds r0, r4, #4
-	bl func_080D6E98
-	adds r0, r4, #0
-	adds r0, #0x10
-	bl func_080D6E98
-	movs r1, #0
-	movs r0, #1
-	strb r0, [r4]
-	strb r1, [r4, #1]
-	pop {r4}
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_080D6ECC
-func_080D6ECC: @ 0x080D6ECC
-	push {r4, lr}
-	adds r4, r0, #0
-	adds r0, r4, #4
-	bl func_080D6EAC
-	adds r0, r4, #0
-	adds r0, #0x20
-	bl func_080D6EAC
-	movs r1, #0
-	movs r0, #1
-	strb r0, [r4]
-	strb r1, [r4, #1]
-	pop {r4}
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_080D6EEC
-func_080D6EEC: @ 0x080D6EEC
-	push {r4, lr}
-	adds r4, r0, #0
-	adds r0, r4, #4
-	bl func_080D6ECC
-	adds r0, r4, #0
-	adds r0, #0x40
-	bl func_080D6ECC
-	movs r1, #0
-	movs r0, #1
-	strb r0, [r4]
-	strb r1, [r4, #1]
-	pop {r4}
-	pop {r0}
-	bx r0
-
-    .section .text.hardware_shared_state_tree_clear_after, "ax", %progbits
+    .section .text.hardware_shared_state_tile_tree_after, "ax", %progbits
     .thumb
 
 	thumb_func_start func_080D6F7C
@@ -8524,7 +8396,7 @@ func_080D6F7C: @ 0x080D6F7C
 	bne .L080D6F9C
 	cmp r2, #0x3f
 	bls .L080D6F9C
-	bl func_080D6E98
+	bl FillHardwareTileTree64
 	b .L080D700C
 .L080D6F9C:
 	cmp r3, #0x1f
@@ -8613,7 +8485,7 @@ func_080D7014: @ 0x080D7014
 	cmp r0, #0x7f
 	bls .L080D7038
 	adds r0, r5, #0
-	bl func_080D6EAC
+	bl FillHardwareTileTree128
 	b .L080D708C
 .L080D7038:
 	cmp r4, #0x3f
@@ -8684,7 +8556,7 @@ func_080D7094: @ 0x080D7094
 	cmp r0, #0xff
 	bls .L080D70B8
 	adds r0, r5, #0
-	bl func_080D6ECC
+	bl FillHardwareTileTree256
 	b .L080D7110
 .L080D70B8:
 	cmp r4, #0x7f
@@ -8758,7 +8630,7 @@ func_080D7118: @ 0x080D7118
 	cmp r0, r1
 	bls .L080D7144
 	adds r0, r5, #0
-	bl func_080D6EEC
+	bl FillHardwareTileTree512
 	b .L080D71A0
 	.align 2, 0
 .L080D7140: .4byte 0x000001FF
@@ -9210,7 +9082,7 @@ func_080D73E4: @ 0x080D73E4
 	cmp r0, #0
 	beq .L080D7472
 	adds r0, r6, #0
-	bl func_080D6E98
+	bl FillHardwareTileTree64
 	movs r0, #0
 	b .L080D7474
 .L080D7472:
@@ -9276,7 +9148,7 @@ func_080D7480: @ 0x080D7480
 	cmp r0, #0
 	beq .L080D74E6
 	adds r0, r6, #0
-	bl func_080D6EAC
+	bl FillHardwareTileTree128
 	movs r0, #0
 	b .L080D74E8
 .L080D74E6:
@@ -9342,7 +9214,7 @@ func_080D74F0: @ 0x080D74F0
 	cmp r0, #0
 	beq .L080D755A
 	adds r0, r6, #0
-	bl func_080D6ECC
+	bl FillHardwareTileTree256
 	movs r0, #0
 	b .L080D755E
 .L080D755A:
@@ -9410,7 +9282,7 @@ func_080D7568: @ 0x080D7568
 	cmp r0, #0
 	beq .L080D75D2
 	adds r0, r6, #0
-	bl func_080D6EEC
+	bl FillHardwareTileTree512
 	movs r0, #0
 	b .L080D75D6
 .L080D75D2:
