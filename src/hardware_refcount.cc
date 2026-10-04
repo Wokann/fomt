@@ -27,6 +27,46 @@ void func_080079E8(void * owner, u32 flags)
         __builtin_delete(owner);
 }
 
+u32 AllocateHardwareSharedStateHandle(void *, u32 size_shift)
+    SECTION(".text.hardware_shared_state_handles");
+u32 AllocateHardwareSharedStateHandle(void *, u32 size_shift)
+{
+    HardwareSharedState * state = reinterpret_cast<HardwareSharedState *>(gUnk_03000408);
+    u8 * tree = reinterpret_cast<u8 *>(&state->tile_tree);
+    u32 value;
+    u32 const first = func_08008020(tree, size_shift);
+    bool valid = first < 1024;
+    if (valid) {
+        HardwareSharedStatePool & pool = state->pool;
+        HardwareSharedStateEntry * current = pool.first_free;
+        HardwareSharedStateEntry * entry = pool.AllocEntry(current);
+        if (entry != 0) {
+            u32 index = entry - pool.entries;
+            if (index < 256)
+                state->occupied[index / 32] |= 1u << (index % 32u);
+            ++state->allocation_count;
+            entry->data.params.tile_index = first;
+            entry->data.params.size_shift = size_shift;
+            entry->data.params.reference_count = 1;
+            u32 generation = state->next_generation + 1;
+            if (generation > 0xFFFF)
+                generation = 1;
+            current->generation = generation;
+            state->next_generation = generation;
+            HardwareSharedStateHandle result;
+            result.value = 0;
+            result.fields.index = index;
+            result.fields.generation = current->generation;
+            value = result.value;
+            goto done;
+        }
+        func_080080A0(tree, first, size_shift);
+    }
+    value = 0;
+done:
+    return value;
+}
+
 void ReleaseHardwareSharedStateHandle(void *, u32 value)
     SECTION(".text.hardware_shared_state_handles");
 void ReleaseHardwareSharedStateHandle(void *, u32 value)

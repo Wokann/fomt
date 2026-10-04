@@ -19383,7 +19383,7 @@ func_080E0A94:
     bl func_08007874
     adds r0, r5, #0
     movs r1, #2
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r5, #4]
     adds r0, r5, #0
     adds r0, #8
@@ -19465,7 +19465,7 @@ func_080E0A94:
     bl ReleaseHardwareSharedStateHandle
     adds r0, r4, #0
     movs r1, #3
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r5]
     adds r5, #8
     adds r6, #1
@@ -19490,7 +19490,7 @@ func_080E0A94:
     bl func_08007874
     adds r0, r4, #0
     movs r1, #2
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r4, #4]
     adds r1, r4, #0
     adds r1, #8
@@ -37391,7 +37391,7 @@ func_080E0A94: @ 0x080E0A94
 	bl func_08007874
 	adds r0, r5, #0
 	movs r1, #2
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r5, #4]
 	adds r0, r5, #0
 	adds r0, #8
@@ -37473,7 +37473,7 @@ func_080E0A94: @ 0x080E0A94
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #3
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r5]
 	adds r5, #8
 	adds r6, #1
@@ -37498,7 +37498,7 @@ func_080E0A94: @ 0x080E0A94
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	adds r1, r4, #0
 	adds r1, #8

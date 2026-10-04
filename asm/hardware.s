@@ -620,114 +620,6 @@ func_08007A28: @ 0x08007A28
 .L08007B4C: .4byte 0x00000824
 .L08007B50: .4byte 0x00000928
 
-    thumb_func_start func_08007B54
-func_08007B54: @ 0x08007B54
-    push {r4, r5, r6, r7, lr}
-    adds r7, r1, #0
-    ldr r0, .L08007BFC @ =gUnk_03000408
-    ldr r4, [r0]
-    ldr r0, .L08007C00 @ =0x00000824
-    adds r6, r4, r0
-    adds r0, r6, #0
-    bl func_08008020
-    adds r5, r0, #0
-    adds r1, r5, #0
-    movs r0, #0
-    ldr r2, .L08007C04 @ =0x000003FF
-    mov ip, r2
-    cmp r5, ip
-    bhi .L08007B76
-    movs r0, #1
-.L08007B76:
-    cmp r0, #0
-    beq .L08007C1C
-    adds r2, r4, #0
-    adds r2, #0x20
-    ldr r3, [r4, #0x20]
-    cmp r3, #0
-    beq .L08007C14
-    ldr r0, [r3]
-    str r0, [r4, #0x20]
-    cmp r3, #0
-    beq .L08007C14
-    subs r0, r3, #4
-    subs r0, r0, r2
-    asrs r6, r0, #3
-    cmp r6, #0xff
-    bhi .L08007BAA
-    lsrs r2, r6, #5
-    lsls r2, r2, #2
-    adds r2, r4, r2
-    movs r0, #0x1f
-    ands r0, r6
-    movs r1, #1
-    lsls r1, r0
-    ldr r0, [r2]
-    orrs r0, r1
-    str r0, [r2]
-.L08007BAA:
-    movs r0, #0x92
-    lsls r0, r0, #4
-    adds r1, r4, r0
-    ldrh r0, [r1]
-    adds r0, #1
-    strh r0, [r1]
-    mov r2, ip
-    ands r5, r2
-    ldrh r1, [r3]
-    ldr r0, .L08007C08 @ =0xFFFFFC00
-    ands r0, r1
-    orrs r0, r5
-    strh r0, [r3]
-    movs r0, #0xf
-    ands r7, r0
-    lsls r2, r7, #2
-    ldrb r1, [r3, #1]
-    movs r0, #0x3d
-    rsbs r0, r0, #0
-    ands r0, r1
-    orrs r0, r2
-    strb r0, [r3, #1]
-    movs r0, #1
-    strh r0, [r3, #2]
-    ldr r0, .L08007C0C @ =0x00000922
-    adds r1, r4, r0
-    ldrh r0, [r1]
-    adds r0, #1
-    ldr r2, .L08007C10 @ =0x0000FFFF
-    cmp r0, r2
-    bls .L08007BEA
-    movs r0, #1
-.L08007BEA:
-    strh r0, [r3, #4]
-    strh r0, [r1]
-    lsls r1, r6, #0x18
-    ldrh r0, [r3, #4]
-    ands r0, r2
-    lsls r0, r0, #8
-    lsrs r1, r1, #0x18
-    orrs r1, r0
-    b .L08007C1E
-    .align 2, 0
-.L08007BFC: .4byte gUnk_03000408
-.L08007C00: .4byte 0x00000824
-.L08007C04: .4byte 0x000003FF
-.L08007C08: .4byte 0xFFFFFC00
-.L08007C0C: .4byte 0x00000922
-.L08007C10: .4byte 0x0000FFFF
-.L08007C14:
-    adds r0, r6, #0
-    adds r2, r7, #0
-    bl func_080080A0
-.L08007C1C:
-    movs r1, #0
-.L08007C1E:
-    adds r0, r1, #0
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .align 2, 0
-
     .section .text.hardware_state_properties_after, "ax", %progbits
     .thumb
     .align 2, 0
@@ -881,7 +773,7 @@ func_08008190:
     bl func_08007874
     mov r0, r9
     ldr r1, [sp, #0x20]
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [sp, #8]
     ldr r4, [r7, #4]
     ldr r0, [r7, #0xc]

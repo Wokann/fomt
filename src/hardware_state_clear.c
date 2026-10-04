@@ -65,7 +65,7 @@ struct HardwareStateOwner * func_080083D0(
         owner->unk_04 = RetainHardwareSharedStateHandle(owner, (u32)current->unk_04);
     } else {
         func_08007874(owner);
-        owner->unk_04 = func_08007B54(owner, group_index);
+        owner->unk_04 = AllocateHardwareSharedStateHandle(owner, group_index);
     }
     return owner;
 }

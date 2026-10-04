@@ -46,6 +46,15 @@ typedef struct HardwareSharedStatePool {
     HardwareSharedStateEntry entries[256];
 #ifdef __cplusplus
     HardwareSharedStateEntry & GetEntry(u32 index) { return entries[index]; }
+
+    // The caller passes the current head; return the pool's previous head.
+    HardwareSharedStateEntry * AllocEntry(HardwareSharedStateEntry * entry)
+    {
+        HardwareSharedStateEntry * previous = first_free;
+        if (entry != 0)
+            first_free = entry->data.next_free;
+        return previous;
+    }
 #endif
 } HardwareSharedStatePool;
 
@@ -130,7 +139,10 @@ extern u8 * gUnk_03000408;
 void * func_08007874(void * owner); // Constructs the shared state if needed.
 void * func_080079D0(void * owner);
 void func_080079E8(void * owner, u32 flags);
-u32 func_08007B54(void * owner, u32 size_shift); // Still in asm/hardware.s.
+
+// Allocate a 2^size_shift tile range and a generation-checked slot handle.
+// A failed slot allocation returns the tile range and yields the zero handle.
+u32 AllocateHardwareSharedStateHandle(void * owner, u32 size_shift);
 
 // Returns the same validated handle; overflow restores the count and returns 0.
 u32 RetainHardwareSharedStateHandle(void * owner, u32 handle);

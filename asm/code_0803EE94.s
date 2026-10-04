@@ -9209,7 +9209,7 @@ func_0805143C: @ 0x080511C8
     bl func_08007874
     adds r0, r4, #0
     movs r1, #4
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r4, #4]
     adds r4, #8
     adds r0, r4, #0
@@ -10794,7 +10794,7 @@ func_080522F8:
     bl func_08007874
     adds r0, r4, #0
     movs r1, #4
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r4, #4]
     movs r0, #0x8e
     lsls r0, r0, #3
@@ -10811,7 +10811,7 @@ func_080522F8:
     bl func_08007874
     adds r0, r4, #0
     movs r1, #7
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r4, #4]
     movs r2, #0x90
     lsls r2, r2, #3
@@ -10828,7 +10828,7 @@ func_080522F8:
     bl func_08007874
     adds r0, r4, #0
     movs r1, #3
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r4, #4]
     movs r1, #0x92
     lsls r1, r1, #3
@@ -10845,7 +10845,7 @@ func_080522F8:
     bl func_08007874
     adds r0, r4, #0
     movs r1, #6
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r4, #4]
     movs r0, #0x94
     lsls r0, r0, #3
@@ -10862,7 +10862,7 @@ func_080522F8:
     bl func_08007874
     adds r0, r4, #0
     movs r1, #2
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r4, #4]
     movs r2, #0x96
     lsls r2, r2, #3
@@ -10879,7 +10879,7 @@ func_080522F8:
     bl func_08007874
     adds r0, r4, #0
     movs r1, #2
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     b .Lauto_080524E8
     .byte 0x00, 0x00, 0x74, 0x6D, 0x0E, 0x08, 0x84, 0x1B, 0x31, 0x08, 0xAC, 0x3F, 0x4B, 0x08, 0xBC, 0x65
     .byte 0x4C, 0x08, 0x18, 0x47, 0x4C, 0x08, 0xAC, 0x3F, 0x4C, 0x08, 0x40, 0x38, 0x4C, 0x08, 0xFC, 0xD9
@@ -10903,7 +10903,7 @@ func_080522F8:
     bl func_08007874
     adds r0, r4, #0
     movs r1, #3
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r4, #4]
     movs r0, #0x9a
     lsls r0, r0, #3
@@ -10912,7 +10912,7 @@ func_080522F8:
     bl func_08007874
     adds r0, r4, #0
     movs r1, #3
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r4, #4]
     movs r1, #0x9b
     lsls r1, r1, #3
@@ -10929,7 +10929,7 @@ func_080522F8:
     bl func_08007874
     adds r0, r4, #0
     movs r1, #3
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r4, #4]
     movs r0, #0x9d
     lsls r0, r0, #3
@@ -10944,7 +10944,7 @@ func_080522F8:
     bl func_08007874
     adds r0, r4, #0
     movs r1, #3
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r4, #4]
     movs r2, #0x9f
     lsls r2, r2, #3
@@ -10961,7 +10961,7 @@ func_080522F8:
     bl func_08007874
     adds r0, r5, #0
     movs r1, #4
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r5, #4]
     adds r4, r5, #0
     adds r4, #8
@@ -10982,7 +10982,7 @@ func_080522F8:
     bl func_08007874
     mov r0, r8
     movs r1, #4
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     mov r2, r8
     str r0, [r2, #4]
     movs r0, #0xa9
@@ -16805,7 +16805,7 @@ func_08057CF4:
     bl func_08007874
     adds r0, r5, #0
     movs r1, #4
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r5, #4]
     movs r5, #0xb9
     lsls r5, r5, #3
@@ -16820,7 +16820,7 @@ func_08057CF4:
     bl func_08007874
     adds r0, r5, #0
     movs r1, #4
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r5, #4]
     movs r5, #0xbb
     lsls r5, r5, #3
@@ -16835,7 +16835,7 @@ func_08057CF4:
     bl func_08007874
     adds r0, r5, #0
     movs r1, #5
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r5, #4]
     movs r5, #0xbd
     lsls r5, r5, #3
@@ -16850,7 +16850,7 @@ func_08057CF4:
     bl func_08007874
     adds r0, r5, #0
     movs r1, #6
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r5, #4]
     movs r5, #0xbf
     lsls r5, r5, #3
@@ -16865,7 +16865,7 @@ func_08057CF4:
     bl func_08007874
     adds r0, r5, #0
     movs r1, #4
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r5, #4]
     movs r5, #0xc1
     lsls r5, r5, #3
@@ -16882,7 +16882,7 @@ func_08057CF4:
     bl func_08007874
     adds r0, r5, #0
     movs r1, #7
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r5, #4]
     movs r5, #0xc3
     lsls r5, r5, #3
@@ -16907,7 +16907,7 @@ func_08057CF4:
     bl func_08007874
     adds r0, r5, #0
     movs r1, #4
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r5, #4]
     movs r5, #0xc6
     lsls r5, r5, #3
@@ -16916,7 +16916,7 @@ func_08057CF4:
     bl func_08007874
     adds r0, r5, #0
     movs r1, #4
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r5, #4]
     movs r5, #0xc7
     lsls r5, r5, #3
@@ -16931,7 +16931,7 @@ func_08057CF4:
     bl func_08007874
     adds r0, r4, #0
     movs r1, #2
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r4, #4]
     movs r4, #0xc9
     lsls r4, r4, #3
@@ -16948,7 +16948,7 @@ func_08057CF4:
     bl func_08007874
     adds r0, r4, #0
     movs r1, #3
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r4, #4]
     movs r0, #0xcb
     lsls r0, r0, #3
@@ -16959,7 +16959,7 @@ func_08057CF4:
     bl func_08007874
     adds r0, r6, #0
     movs r1, #5
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r6, #4]
     adds r4, r6, #0
     adds r4, #8
@@ -21649,7 +21649,7 @@ func_0805CF70:
     bl func_08007874
     adds r0, r4, #0
     movs r1, #7
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r4, #4]
     movs r1, #0x92
     lsls r1, r1, #1
@@ -21666,7 +21666,7 @@ func_0805CF70:
     bl func_08007874
     adds r0, r4, #0
     movs r1, #4
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r4, #4]
     movs r0, #0x9a
     lsls r0, r0, #1
@@ -21683,7 +21683,7 @@ func_0805CF70:
     bl func_08007874
     adds r0, r4, #0
     movs r1, #2
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r4, #4]
     movs r3, #0xa2
     lsls r3, r3, #1
@@ -47335,7 +47335,7 @@ func_08069F14:
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #1
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	ldr r1, .Ljp_08069FCC
 	adds r4, r7, r1
@@ -47351,7 +47351,7 @@ func_08069F14:
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	ldr r0, .Ljp_08069FD0
 	adds r4, r7, r0
@@ -47472,7 +47472,7 @@ func_08069F14:
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r6]
 	adds r5, r5, r7
 	ldr r1, .Ljp_0806A080
@@ -54879,7 +54879,7 @@ func_0806D990:
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #7
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	adds r4, #8
 	adds r0, r4, #0
@@ -54892,7 +54892,7 @@ func_0806D990:
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #3
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	adds r4, #8
 	adds r0, r4, #0
@@ -71306,12 +71306,15 @@ func_080757E8:
     .byte 0x21, 0x53, 0x00, 0x00, 0xD2, 0x68, 0x00, 0x2A, 0xEE, 0xD1, 0x2B, 0x60, 0x00, 0x23, 0x41, 0x46
     .byte 0x48, 0x68, 0x01, 0x90, 0x00, 0x22, 0x00, 0x99, 0x81, 0x42, 0x00, 0xD1, 0x01, 0x22, 0x00, 0x2A
     .byte 0x03, 0xD1, 0x09, 0x69, 0x07, 0x98, 0x81, 0x42, 0x00, 0xD0, 0x01, 0x23, 0x00, 0x2B, 0x1F, 0xD0
-    .byte 0x48, 0x46, 0x31, 0x1C, 0x92, 0xF7, 0x28, 0xFB, 0x05, 0x1C, 0x00, 0x2D, 0x4F, 0xD0, 0x00, 0x99
+    .byte 0x48, 0x46, 0x31, 0x1C
+    bl AllocateHardwareSharedStateHandle
+    .byte 0x05, 0x1C, 0x00, 0x2D, 0x4F, 0xD0, 0x00, 0x99
     .byte 0x03, 0x91, 0x07, 0x98, 0x04, 0x90, 0x05, 0x95, 0x06, 0x91, 0x02, 0xA8, 0x41, 0x46, 0x06, 0xAA
     .byte 0x04, 0xAB, 0x6C, 0xF0, 0x5D, 0xFB, 0x07, 0x9C, 0x48, 0x46, 0x29, 0x1C, 0x92, 0xF7, 0x10, 0xFC
     .byte 0x01, 0x1C, 0x49, 0x01, 0x01, 0x4A, 0x89, 0x18, 0x1D, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x01, 0x06
     .byte 0x00, 0x98, 0x41, 0x69, 0x48, 0x46, 0x92, 0xF7, 0x39, 0xFC, 0xB0, 0x42, 0x2F, 0xD2, 0x00, 0x98
-    .byte 0x41, 0x69, 0x48, 0x46, 0x92, 0xF7, 0x6A, 0xFB, 0x48, 0x46, 0x31, 0x1C, 0x92, 0xF7, 0xFC, 0xFA
+    .byte 0x41, 0x69, 0x48, 0x46, 0x92, 0xF7, 0x6A, 0xFB, 0x48, 0x46, 0x31, 0x1C
+    bl AllocateHardwareSharedStateHandle
     .byte 0x01, 0x1C, 0x00, 0x29, 0x10, 0xD0, 0x07, 0x9C, 0x48, 0x46, 0x92, 0xF7, 0xF1, 0xFB, 0x01, 0x1C
     .byte 0x49, 0x01, 0x04, 0x48, 0x09, 0x18, 0x20, 0x22, 0xB2, 0x40, 0x20, 0x1C, 0x93, 0xF7, 0x74, 0xFC
     .byte 0x15, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x01, 0x06, 0x00, 0x98, 0x02, 0x90, 0x03, 0x90, 0x41, 0x46
@@ -77645,7 +77648,7 @@ func_08078E40: @ 0x08078E40
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #4
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	ldr r1, .Ljp_0807902C @ =0x00000818
 	adds r4, r6, r1
@@ -77661,7 +77664,7 @@ func_08078E40: @ 0x08078E40
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #6
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	ldr r0, .Ljp_08079030 @ =0x00000828
 	adds r4, r6, r0
@@ -77677,7 +77680,7 @@ func_08078E40: @ 0x08078E40
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	ldr r3, .Ljp_08079034 @ =0x00000838
 	adds r4, r6, r3
@@ -118843,7 +118846,7 @@ func_08094594:
     bl func_08007874
     adds r0, r5, #0
     movs r1, #2
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r5, #4]
     movs r0, #0xba
     lsls r0, r0, #2
@@ -118858,7 +118861,7 @@ func_08094594:
     bl func_08007874
     adds r0, r5, #0
     movs r1, #2
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r5, #4]
     movs r2, #0xbe
     lsls r2, r2, #2
@@ -118875,7 +118878,7 @@ func_08094594:
     bl func_08007874
     adds r0, r5, #0
     movs r1, #6
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r5, #4]
     movs r0, #0xc2
     lsls r0, r0, #2
@@ -118890,7 +118893,7 @@ func_08094594:
     bl func_08007874
     adds r0, r5, #0
     movs r1, #4
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r5, #4]
     movs r2, #0xc6
     lsls r2, r2, #2
@@ -118899,7 +118902,7 @@ func_08094594:
     bl func_08007874
     adds r0, r5, #0
     movs r1, #4
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r5, #4]
     movs r3, #0xc8
     lsls r3, r3, #2
@@ -118914,7 +118917,7 @@ func_08094594:
     bl func_08007874
     adds r0, r5, #0
     movs r1, #7
-    bl func_08007B54
+    bl AllocateHardwareSharedStateHandle
     str r0, [r5, #4]
     movs r2, #0xcd
     lsls r2, r2, #2
@@ -155678,7 +155681,7 @@ func_0805143C: @ 0x0805143C
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #4
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	adds r4, #8
 	adds r0, r4, #0
@@ -157786,7 +157789,7 @@ func_080522F8: @ 0x080522F8
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #4
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	movs r0, #0x8e
 	lsls r0, r0, #3
@@ -157803,7 +157806,7 @@ func_080522F8: @ 0x080522F8
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #7
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	movs r2, #0x90
 	lsls r2, r2, #3
@@ -157820,7 +157823,7 @@ func_080522F8: @ 0x080522F8
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #3
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	movs r1, #0x92
 	lsls r1, r1, #3
@@ -157837,7 +157840,7 @@ func_080522F8: @ 0x080522F8
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #6
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	movs r0, #0x94
 	lsls r0, r0, #3
@@ -157854,7 +157857,7 @@ func_080522F8: @ 0x080522F8
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	movs r2, #0x96
 	lsls r2, r2, #3
@@ -157871,7 +157874,7 @@ func_080522F8: @ 0x080522F8
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	b .L08052758
 	.align 2, 0
 .L08052710: .4byte vtable_unk_080E7944
@@ -157909,7 +157912,7 @@ func_080522F8: @ 0x080522F8
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #3
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	movs r0, #0x9a
 	lsls r0, r0, #3
@@ -157918,7 +157921,7 @@ func_080522F8: @ 0x080522F8
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #3
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	movs r1, #0x9b
 	lsls r1, r1, #3
@@ -157935,7 +157938,7 @@ func_080522F8: @ 0x080522F8
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #3
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	movs r0, #0x9d
 	lsls r0, r0, #3
@@ -157950,7 +157953,7 @@ func_080522F8: @ 0x080522F8
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #3
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	movs r2, #0x9f
 	lsls r2, r2, #3
@@ -157967,7 +157970,7 @@ func_080522F8: @ 0x080522F8
 	bl func_08007874
 	adds r0, r5, #0
 	movs r1, #4
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r5, #4]
 	adds r4, r5, #0
 	adds r4, #8
@@ -157988,7 +157991,7 @@ func_080522F8: @ 0x080522F8
 	bl func_08007874
 	mov r0, r8
 	movs r1, #4
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	mov r2, r8
 	str r0, [r2, #4]
 	movs r0, #0xa9
@@ -169615,7 +169618,7 @@ func_0805806C: @ 0x0805806C
 	bl func_08007874
 	adds r0, r5, #0
 	movs r1, #4
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r5, #4]
 	movs r5, #0xb9
 	lsls r5, r5, #3
@@ -169630,7 +169633,7 @@ func_0805806C: @ 0x0805806C
 	bl func_08007874
 	adds r0, r5, #0
 	movs r1, #4
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r5, #4]
 	movs r5, #0xbb
 	lsls r5, r5, #3
@@ -169645,7 +169648,7 @@ func_0805806C: @ 0x0805806C
 	bl func_08007874
 	adds r0, r5, #0
 	movs r1, #5
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r5, #4]
 	movs r5, #0xbd
 	lsls r5, r5, #3
@@ -169660,7 +169663,7 @@ func_0805806C: @ 0x0805806C
 	bl func_08007874
 	adds r0, r5, #0
 	movs r1, #6
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r5, #4]
 	movs r5, #0xbf
 	lsls r5, r5, #3
@@ -169675,7 +169678,7 @@ func_0805806C: @ 0x0805806C
 	bl func_08007874
 	adds r0, r5, #0
 	movs r1, #4
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r5, #4]
 	movs r5, #0xc1
 	lsls r5, r5, #3
@@ -169692,7 +169695,7 @@ func_0805806C: @ 0x0805806C
 	bl func_08007874
 	adds r0, r5, #0
 	movs r1, #7
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r5, #4]
 	movs r5, #0xc3
 	lsls r5, r5, #3
@@ -169717,7 +169720,7 @@ func_0805806C: @ 0x0805806C
 	bl func_08007874
 	adds r0, r5, #0
 	movs r1, #4
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r5, #4]
 	movs r5, #0xc6
 	lsls r5, r5, #3
@@ -169726,7 +169729,7 @@ func_0805806C: @ 0x0805806C
 	bl func_08007874
 	adds r0, r5, #0
 	movs r1, #4
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r5, #4]
 	movs r5, #0xc7
 	lsls r5, r5, #3
@@ -169741,7 +169744,7 @@ func_0805806C: @ 0x0805806C
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	movs r4, #0xc9
 	lsls r4, r4, #3
@@ -169758,7 +169761,7 @@ func_0805806C: @ 0x0805806C
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #3
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	movs r0, #0xcb
 	lsls r0, r0, #3
@@ -169769,7 +169772,7 @@ func_0805806C: @ 0x0805806C
 	bl func_08007874
 	adds r0, r6, #0
 	movs r1, #5
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r6, #4]
 	adds r4, r6, #0
 	adds r4, #8
@@ -178816,7 +178819,7 @@ func_0805CF70: @ 0x0805CF70
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #7
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	movs r1, #0x92
 	lsls r1, r1, #1
@@ -178833,7 +178836,7 @@ func_0805CF70: @ 0x0805CF70
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #4
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	movs r0, #0x9a
 	lsls r0, r0, #1
@@ -178850,7 +178853,7 @@ func_0805CF70: @ 0x0805CF70
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	movs r3, #0xa2
 	lsls r3, r3, #1
@@ -206032,7 +206035,7 @@ func_08069F14: @ 0x08069F14
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #1
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	ldr r1, .L0806A138 @ =0x000040B8
 	adds r4, r7, r1
@@ -206047,7 +206050,7 @@ func_08069F14: @ 0x08069F14
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	ldr r0, .L0806A140 @ =0x000040C8
 	adds r4, r7, r0
@@ -206157,7 +206160,7 @@ func_08069F14: @ 0x08069F14
 	bl ReleaseHardwareSharedStateHandle
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r6]
 	adds r5, r5, r7
 	ldr r1, .L0806A1F0 @ =0x00004120
@@ -213506,7 +213509,7 @@ func_0806D990: @ 0x0806D990
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #7
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	adds r4, #8
 	adds r0, r4, #0
@@ -213519,7 +213522,7 @@ func_0806D990: @ 0x0806D990
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #3
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	adds r4, #8
 	adds r0, r4, #0
@@ -230917,7 +230920,7 @@ func_080757E8: @ 0x080757E8
 	beq .L080758E8
 	mov r0, sb
 	adds r1, r6, #0
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	adds r5, r0, #0
 	cmp r5, #0
 	beq .L08075956
@@ -230956,7 +230959,7 @@ func_080757E8: @ 0x080757E8
 	bl ReleaseHardwareSharedStateHandle
 	mov r0, sb
 	adds r1, r6, #0
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	adds r1, r0, #0
 	cmp r1, #0
 	beq .L08075930
@@ -237430,7 +237433,7 @@ func_08078E40: @ 0x08078E40
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #4
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	ldr r1, .L0807902C @ =0x00000818
 	adds r4, r6, r1
@@ -237446,7 +237449,7 @@ func_08078E40: @ 0x08078E40
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #6
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	ldr r0, .L08079030 @ =0x00000828
 	adds r4, r6, r0
@@ -237462,7 +237465,7 @@ func_08078E40: @ 0x08078E40
 	bl func_08007874
 	adds r0, r4, #0
 	movs r1, #2
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r4, #4]
 	ldr r3, .L08079034 @ =0x00000838
 	adds r4, r6, r3
@@ -291070,7 +291073,7 @@ func_08094AC0: @ 0x08094AC0
 	bl func_08007874
 	adds r0, r5, #0
 	movs r1, #2
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r5, #4]
 	movs r0, #0xba
 	lsls r0, r0, #2
@@ -291085,7 +291088,7 @@ func_08094AC0: @ 0x08094AC0
 	bl func_08007874
 	adds r0, r5, #0
 	movs r1, #2
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r5, #4]
 	movs r2, #0xbe
 	lsls r2, r2, #2
@@ -291102,7 +291105,7 @@ func_08094AC0: @ 0x08094AC0
 	bl func_08007874
 	adds r0, r5, #0
 	movs r1, #6
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r5, #4]
 	movs r0, #0xc2
 	lsls r0, r0, #2
@@ -291117,7 +291120,7 @@ func_08094AC0: @ 0x08094AC0
 	bl func_08007874
 	adds r0, r5, #0
 	movs r1, #4
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r5, #4]
 	movs r2, #0xc6
 	lsls r2, r2, #2
@@ -291126,7 +291129,7 @@ func_08094AC0: @ 0x08094AC0
 	bl func_08007874
 	adds r0, r5, #0
 	movs r1, #4
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r5, #4]
 	movs r3, #0xc8
 	lsls r3, r3, #2
@@ -291141,7 +291144,7 @@ func_08094AC0: @ 0x08094AC0
 	bl func_08007874
 	adds r0, r5, #0
 	movs r1, #7
-	bl func_08007B54
+	bl AllocateHardwareSharedStateHandle
 	str r0, [r5, #4]
 	movs r2, #0xcd
 	lsls r2, r2, #2
