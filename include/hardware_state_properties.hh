@@ -13,7 +13,6 @@ void func_08007EA8(u8 * state);
 void func_08007EC8(u8 * state);
 void func_08007EE8(u8 * state, u32 offset, u32 length);
 void func_08007F84(u8 * state, u32 offset, u32 length);
-u32 func_08008020(u8 * state, u32 kind);
 void func_080080A0(u8 * state, u32 offset, u32 kind);
 u8 func_080080EC(u8 const * state);
 u8 func_080080F0(u8 const * state);

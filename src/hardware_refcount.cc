@@ -34,7 +34,7 @@ u32 AllocateHardwareSharedStateHandle(void *, u32 size_shift)
     HardwareSharedState * state = reinterpret_cast<HardwareSharedState *>(gUnk_03000408);
     u8 * tree = reinterpret_cast<u8 *>(&state->tile_tree);
     u32 value;
-    u32 const first = func_08008020(tree, size_shift);
+    u32 const first = state->tile_tree.Allocate(size_shift);
     bool valid = first < 1024;
     if (valid) {
         HardwareSharedStatePool & pool = state->pool;

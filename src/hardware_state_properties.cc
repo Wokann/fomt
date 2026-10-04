@@ -1,11 +1,13 @@
 #include "hardware_state_properties.hh"
 #include "hardware_refcount.hh"
 
-extern void func_080D6EEC(void *);
-extern void func_080D7118(void *, u32, u32);
-extern void func_080D734C(void *, u32, u32);
-extern u32 func_080D7568(void *, u32);
-extern void func_080D76C0(void *, u32, u32);
+EXTERN_C
+void func_080D6EEC(void *);
+void func_080D7118(void *, u32, u32);
+void func_080D734C(void *, u32, u32);
+u32 func_080D7568(void *, u32);
+void func_080D76C0(void *, u32, u32);
+EXTERN_C_END
 
 u16 func_08007E8C(void)
 {
@@ -19,8 +21,8 @@ u32 func_08007EA0(void)
 
 void func_08007EA8(u8 * state)
 {
-    register u32 inactive;
-    register u32 active;
+    u32 inactive;
+    u32 active;
     func_080D6EEC(state + 4);
     func_080D6EEC(state + 0x80);
     inactive = 0;
@@ -47,8 +49,8 @@ void func_08007EE8(u8 * state, u32 offset, u32 length)
     u32 selected_length;
     u32 second_offset;
     u32 second_length;
-    register u32 active;
-    register u32 inactive;
+    u32 active;
+    u32 inactive;
 
     if (offset > 0x3FF || length == 0)
         return;
@@ -88,10 +90,10 @@ void func_08007F84(u8 * state, u32 offset, u32 length)
     u32 selected_length;
     u32 second_offset;
     u32 second_length;
-    register u32 first_limit;
+    u32 first_limit;
     u8 * first_buffer;
     u8 * second_buffer;
-    register u32 active;
+    u32 active;
 
     if (offset > 0x3FF || length == 0)
         return;
@@ -125,36 +127,35 @@ void func_08007F84(u8 * state, u32 offset, u32 length)
     state[1] = active;
 }
 
-u32 func_08008020(u8 * state, u32 kind)
+u32 HardwareTileTree1024::Allocate(u32 size_shift)
 {
     u32 index;
-    u8 * buffer;
+    HardwareTileTree512 * child;
 
-    if (kind <= 9) {
-        for (index = 0, buffer = state + 4; (int)index <= 1; buffer += 0x7C, index++) {
+    if (size_shift <= 9) {
+        for (index = 0, child = children; (int)index <= 1; ++child, ++index) {
             u32 offset;
             u32 active;
             u32 valid;
-            // Keep the flag live across the helper call with the old compiler.
-            register u8 empty __asm__("r5");
-            empty = buffer[0];
-            if (empty == 0) {
-                offset = func_080D7568(buffer, kind);
+            // Snapshot the flag before the child allocator changes its state.
+            u8 const child_full = child->full;
+            if (child_full == 0) {
+                offset = func_080D7568(child, size_shift);
                 valid = 0;
                 if (offset <= 0x1FF)
                     valid = 1;
                 if (valid != 0) {
-                    state[1] = empty;
+                    empty = child_full;
                     active = 0;
-                    if (state[4] != 0)
-                        active = (0u - state[0x80]) >> 31;
-                    state[0] = active;
+                    if (children[0].full != 0)
+                        active = (0u - children[1].full) >> 31;
+                    full = active;
                     return (index << 9) | offset;
                 }
             }
         }
-    } else if (kind == 10 && state[1] != 0) {
-        func_08007EA8(state);
+    } else if (size_shift == 10 && empty != 0) {
+        func_08007EA8(reinterpret_cast<u8 *>(this));
         return 0;
     }
     return 0x400;
