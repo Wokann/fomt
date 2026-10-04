@@ -325973,22 +325973,22 @@ gUnk_0852A684:
 	.incbin "graphics/ui/farm_status/shared/tilemaps/barn_level_0_primary.tilemap"
 	.global gUnk_0852A734
 gUnk_0852A734:
-	.byte 0x70, 0x00, 0x16, 0x00, 0x50, 0x00, 0x11, 0x0B
+	.incbin "graphics/ui/farm_status/shared/secondary_tilemaps/secondary_03.tilemap.lz", 0, 0x8
 	.global gUnk_0852A6D8
 	gUnk_0852A6D8:
-	.incbin "graphics/ui/farm_status/shared/secondary_tilemaps/secondary_03.tilemap.lz", 0x8, 0x10C
+	.incbin "graphics/ui/farm_status/shared/secondary_tilemaps/secondary_03.tilemap.lz", 0x8
 	.global gUnk_0852A848
 gUnk_0852A848:
-	.byte 0x70, 0x00, 0x16, 0x00, 0x13, 0x40, 0x00, 0x0B
+	.incbin "graphics/ui/farm_status/shared/secondary_tilemaps/secondary_04.tilemap.lz", 0, 0x8
 	.global gUnk_0852A7EC
 	gUnk_0852A7EC:
-	.incbin "graphics/ui/farm_status/shared/secondary_tilemaps/secondary_04.tilemap.lz", 0x8, 0x1C8
+	.incbin "graphics/ui/farm_status/shared/secondary_tilemaps/secondary_04.tilemap.lz", 0x8
 	.global gUnk_0852AA18
 gUnk_0852AA18:
-	.byte 0x70, 0x00, 0x16, 0x00, 0x72, 0x13, 0x01, 0x0B
+	.incbin "graphics/ui/farm_status/shared/secondary_tilemaps/secondary_05.tilemap.lz", 0, 0x8
 	.global gUnk_0852A9BC
 	gUnk_0852A9BC:
-	.incbin "graphics/ui/farm_status/shared/secondary_tilemaps/secondary_05.tilemap.lz", 0x8, 0xA8
+	.incbin "graphics/ui/farm_status/shared/secondary_tilemaps/secondary_05.tilemap.lz", 0x8
 	.global gUnk_0852AAC8
 gUnk_0852AAC8:
 	.incbin "graphics/ui/farm_status/winter/shared/winter_tiles.4bpp.lz", 0, 0x8

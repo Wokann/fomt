@@ -4,7 +4,7 @@
 > and Python extraction, preview, and inventory helpers have been retired.
 > Their audit observations below are retained as historical evidence, not as
 > current build instructions. Assets are generated beside authored sources
-> and included at link time; see the [current workflow](../../README.md).
+> and included at link time; see the [current workflow](../../../README.md).
 > Removed helpers can be recovered from Git revision `31411d1d` if an old
 > audit must be reproduced. Normal builds do not read baserom or patch ROMs.
 
@@ -50,14 +50,29 @@ screen-block layers. They are source-order arrays of 16-bit BG entries, not
 rendered artwork or a sidecar layout description. The stream headers and the
 EU-only eight-byte labels remain in the assembly source. Each shared
 `.tilemap` is packed by the C codec, then included at its original runtime
-label. `secondary_01` and `secondary_04` encode directly from the editable
-tilemaps with tested codec parameters; their `.original.lz` files are used
-only to compare packed bytes. The other four still use their source-adjacent
-`.original.lz` headers and distance ladders during packing.
+label. `secondary_00`, `secondary_01`, `secondary_03`, and `secondary_04` encode
+directly from the editable tilemaps through the shared suffix rule. Only
+`secondary_02` and `secondary_05` still read their source-adjacent `.original.lz`
+headers and distance ladders during packing.
 
-Their native packed slots are deliberately fixed. A source edit that expands
-past its original compressed slot is rejected rather than overwriting the next
-resource.
+`secondary_03` uses native Huffman-4/LZ3, ladder widths `3,8,12`, and
+`--tie=heap-sort`. Its 5632-byte source encodes to the exact original 276 bytes,
+without a compressed template or fixed-size padding. Its obsolete
+`secondary_03.original.lz` has been removed. The EU headers for maps 03-05 are
+included from the generated streams rather than hard-coded; their historical
+header/payload labels remain at the real eight-byte boundary. The payload
+includes consume the remainder of each generated stream, not a fixed byte count.
+
+农场状态的六份附加地图中，00、01、03、04 已从可编辑 `.tilemap` 直接编码；
+02、05 仍依赖压缩模板。03 使用通用 Huffman 堆排序策略，将 5632 字节源码
+重压为与原版完全一致的 276 字节，原模板已移除。EU 的 03-05 压缩头和后续
+数据都由生成的 `.lz` 提供，不再写死编码表头或截取固定长度。
+
+Template-dependent streams and independent encoders with a nonzero slot size
+still reject packed output larger than their declared slot. A zero slot size
+does not pad or limit the output; ROM growth remains subject to each region's
+existing linking and resource-reference constraints. An edited-stream round
+trip alone does not prove that an arbitrary larger ROM layout is safe.
 
 `shared/exterior_styles/` contains the three raw style groups selected by
 `func_0806EC94`: `doghouse/`, `mailbox/`, and `window/`.  Each contains three

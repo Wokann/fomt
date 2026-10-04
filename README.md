@@ -103,6 +103,12 @@ three-way frequency sort, then assigns the computed Huffman length histogram
 in decreasing frequency order. The sort is implemented in the native codec,
 not delegated to a host-dependent `qsort`. The fourth shared startup tilemap
 now uses this policy without an original-stream input or output-size padding.
+`--tie=heap-sort` builds from reverse-alphabet leaves, preferring the last-created
+node on equal weights, then heap-sorts the leaves by their current frequencies.
+Canonical codes keep the tree's computed leaf depths. Unlike `--tie=heap`, this
+policy sorts the canonical code table rather than using heap traversal to build
+the tree. The shared Farm Status `secondary_03.tilemap` now uses this source-only
+policy with no original-stream input, stored permutation, or fixed-size padding.
 Run `tools/fomt-lz test-huff-lz3` for the native boundary self-tests.
 
 The upstream [scaninc](./tools/scaninc/README.md) scans assembly includes and

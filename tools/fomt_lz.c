@@ -50,7 +50,8 @@ typedef struct {
 enum {
     HUFF_BUILD_FIRST,
     HUFF_BUILD_LAST,
-    HUFF_BUILD_HEAP
+    HUFF_BUILD_HEAP,
+    HUFF_BUILD_REVERSE_LAST
 };
 
 static void fail(char const *message)
@@ -896,19 +897,23 @@ static void huff_model_strategy(unsigned char const *data, size_t size,
         frequency[extra] = 1;
         order[count++] = extra;
     }
-    // Both alternative constructions start with alphabetic leaves. One picks
-    // the last-created equal-weight node; the other uses heap traversal. They
-    // never depend on a compressed template or a saved symbol permutation.
+    // Alphabet-based constructions select first/last-created equal-weight
+    // nodes or use heap traversal. They never depend on a compressed template
+    // or a saved symbol permutation.
     if (build_strategy != HUFF_BUILD_FIRST) {
         unsigned index = 0;
-        for (unsigned symbol = 0; symbol < alphabet_size; symbol++)
+        for (unsigned step = 0; step < alphabet_size; step++) {
+            unsigned symbol = build_strategy == HUFF_BUILD_REVERSE_LAST
+                ? alphabet_size - step - 1 : step;
             if (frequency[symbol])
                 order[index++] = symbol;
+        }
     }
     HuffBuildNode nodes[512];
     int active[512];
     unsigned node_count = 0;
     unsigned active_count = 0;
+    int last_created = build_strategy == HUFF_BUILD_LAST || build_strategy == HUFF_BUILD_REVERSE_LAST;
     for (unsigned index = 0; index < count; index++) {
         unsigned symbol = order[index];
         nodes[node_count] = (HuffBuildNode){frequency[symbol], node_count, -1, -1, (int)symbol};
@@ -940,14 +945,14 @@ static void huff_model_strategy(unsigned char const *data, size_t size,
             unsigned first = 0;
             for (unsigned index = 1; index < active_count; index++)
                 if (huff_build_less(nodes, active[index], active[first], parent_first,
-                                    build_strategy == HUFF_BUILD_LAST))
+                                    last_created))
                     first = index;
             int left = active[first];
             active[first] = active[--active_count];
             unsigned second = 0;
             for (unsigned index = 1; index < active_count; index++)
                 if (huff_build_less(nodes, active[index], active[second], parent_first,
-                                    build_strategy == HUFF_BUILD_LAST))
+                                    last_created))
                     second = index;
             int right = active[second];
             active[second] = active[--active_count];
@@ -1590,6 +1595,38 @@ static void huff_frequency_quick_sort(unsigned *order, unsigned count,
     }
 }
 
+static void huff_frequency_heap_sift(unsigned *order, unsigned hole,
+                                      unsigned count, unsigned const *frequency)
+{
+    unsigned value = order[hole];
+    while (hole * 2 + 1 < count) {
+        unsigned child = hole * 2 + 1;
+        // Equal-frequency children keep the left branch. Stop when the
+        // displaced value is already at least as frequent as its children.
+        if (child + 1 < count && frequency[order[child]] < frequency[order[child + 1]])
+            child++;
+        if (frequency[value] >= frequency[order[child]])
+            break;
+        order[hole] = order[child];
+        hole = child;
+    }
+    order[hole] = value;
+}
+
+static void huff_frequency_heap_sort(unsigned *order, unsigned count,
+                                      unsigned const *frequency)
+{
+    for (unsigned parent = count / 2; parent > 0; parent--)
+        huff_frequency_heap_sift(order, parent - 1, count, frequency);
+    for (unsigned last = count; last > 1;) {
+        last--;
+        unsigned swap = order[0];
+        order[0] = order[last];
+        order[last] = swap;
+        huff_frequency_heap_sift(order, 0, last, frequency);
+    }
+}
+
 static void huff_model_frequency_order(HuffModel *model,
                                         unsigned char const *literals,
                                         size_t literal_size, unsigned symbol_bits,
@@ -1677,19 +1714,36 @@ static void huff_model_frequency_order(HuffModel *model,
             fail("Huffman length histogram did not consume its alphabet");
         return;
     }
-    for (unsigned left = 0; left < alphabet; left++) {
-        unsigned best = left;
-        for (unsigned right = left + 1; right < alphabet; right++) {
-            unsigned a = order[right], b = order[best];
-            if (tie_order == 4 ? frequency[a] <= frequency[b]
-                : frequency[a] > frequency[b] ||
-                  (frequency[a] == frequency[b] && tie_order == 1 && first[a] < first[b]) ||
-                  (frequency[a] == frequency[b] && tie_order == 2 && a > b))
-                best = right;
+    if (tie_order == 8) {
+        // Reverse-alphabet leaves, a conventional frequency heap sort, then
+        // descending frequency order. Keep each leaf's computed tree depth;
+        // this is distinct from the --tie=heap tree-construction policy.
+        symbol_count = 0;
+        for (unsigned symbol = alphabet; symbol > 0; symbol--)
+            if (model->bits[symbol - 1])
+                order[symbol_count++] = symbol - 1;
+        huff_frequency_heap_sort(order, symbol_count, frequency);
+        for (unsigned left = 0; left < symbol_count / 2; left++) {
+            unsigned right = symbol_count - left - 1;
+            unsigned swap = order[left];
+            order[left] = order[right];
+            order[right] = swap;
         }
-        unsigned swap = order[left];
-        order[left] = order[best];
-        order[best] = swap;
+    } else {
+        for (unsigned left = 0; left < alphabet; left++) {
+            unsigned best = left;
+            for (unsigned right = left + 1; right < alphabet; right++) {
+                unsigned a = order[right], b = order[best];
+                if (tie_order == 4 ? frequency[a] <= frequency[b]
+                    : frequency[a] > frequency[b] ||
+                      (frequency[a] == frequency[b] && tie_order == 1 && first[a] < first[b]) ||
+                      (frequency[a] == frequency[b] && tie_order == 2 && a > b))
+                    best = right;
+            }
+            unsigned swap = order[left];
+            order[left] = order[best];
+            order[best] = swap;
+        }
     }
     // Ascending selection chooses the last equal-weight entry. Reversing the
     // result gives decreasing frequencies but a different, deterministic tie
@@ -1706,7 +1760,7 @@ static void huff_model_frequency_order(HuffModel *model,
     unsigned code = 0;
     for (unsigned length = 1; length <= symbol_bits * 2; length++) {
         code <<= 1;
-        for (unsigned index = 0; index < alphabet; index++) {
+        for (unsigned index = 0; index < symbol_count; index++) {
             unsigned symbol = order[index];
             if (model->bits[symbol] == length)
                 model->code[symbol] = code++;
@@ -1754,7 +1808,8 @@ static unsigned char *encode_huff_lz3_greedy(unsigned char const *source,
     }
     HuffModel model;
     huff_byte_model_strategy(literals, literal_size, &model, symbol_bits,
-                             parent_first, tie_order == 5 ? HUFF_BUILD_HEAP
+                             parent_first, tie_order == 8 ? HUFF_BUILD_REVERSE_LAST
+                                 : tie_order == 5 ? HUFF_BUILD_HEAP
                                  : tie_order == 3 || tie_order == 6 || tie_order == 7
                                      ? HUFF_BUILD_LAST : HUFF_BUILD_FIRST);
     if (tie_order != 3 && tie_order != 5)
@@ -3177,7 +3232,7 @@ static void usage(void)
     fail("usage: fomt-lz encode-lz0|encode-lz1|encode-lz2|encode-lz3|encode-huff4-lz0|"
          "encode-huff4-lz2|encode-huff8-lz2|encode-huff4-lz3|encode-huff8-lz3 "
          "SOURCE OUTPUT LADDER SLOT_SIZE "
-         "[--literal-tail] [--filter=1..4] [--tie=first|reverse|last|reverse-select|heap|shell|quick] "
+         "[--literal-tail] [--filter=1..4] [--tie=first|reverse|last|reverse-select|heap|shell|quick|heap-sort] "
          "[--parent-first] [--greedy] | "
          "rebuild-native SOURCE ORIGINAL OUTPUT [TAIL] | "
          "rebuild-huff8-lz3 SOURCE ORIGINAL OUTPUT LADDER SLOT_SIZE | "
@@ -3303,7 +3358,7 @@ static void test_huff_lz3(void)
         parse_ladder(ladder_values[ladder_index], ladder, 3);
         for (unsigned symbol_bits = 4; symbol_bits <= 8; symbol_bits += 4) {
             for (unsigned parent_first = 0; parent_first < 2; parent_first++) {
-                for (unsigned tie_order = 0; tie_order < 8; tie_order++) {
+                for (unsigned tie_order = 0; tie_order < 9; tie_order++) {
                     for (unsigned index = 0; index < sizeof(sizes) / sizeof(*sizes); index++) {
                         size_t size = sizes[index];
                         for (unsigned pattern = 0; pattern < 8; pattern++) {
@@ -3648,6 +3703,10 @@ int main(int argc, char **argv)
             } else if ((huff4 || huff8) && !tie_seen &&
                        strcmp(argv[index], "--tie=quick") == 0) {
                 tie_order = 7;
+                tie_seen = 1;
+            } else if ((huff4 || huff8) && !tie_seen &&
+                       strcmp(argv[index], "--tie=heap-sort") == 0) {
+                tie_order = 8;
                 tie_seen = 1;
             } else if ((huff4_lz2 || huff8_lz2 || huff4 || huff8) && !tie_seen &&
                        strcmp(argv[index], "--tie=last") == 0) {
