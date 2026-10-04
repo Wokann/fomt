@@ -805,19 +805,6 @@ func_08008190:
     pop {r1}
     bx r1
 
-    .section .text.hardware_song_after, "ax", %progbits
-    .thumb
-    .align 2, 0
-
-    thumb_func_start func_08008E1C
-func_08008E1C:
-    ldr r0, .L08008E24
-    lsls r0, r0, #0x18
-    lsrs r0, r0, #0x18
-    bx lr
-    .align 2, 0
-.L08008E24: .4byte 0x000000D3
-
     .section .text.hardware_blend_after, "ax", %progbits
     .thumb
     .align 2, 0

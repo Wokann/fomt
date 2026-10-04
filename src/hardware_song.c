@@ -85,3 +85,8 @@ u8 GetHardwareMusicPlayerCount(void)
 {
     return NUM_MUSIC_PLAYERS;
 }
+
+u8 GetHardwareSongCount(void)
+{
+    return (u16)_M4aNumSongs;
+}

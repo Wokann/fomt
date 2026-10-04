@@ -107,7 +107,6 @@ SECTIONS
         src/hardware_sound.o(.text);
         src/hardware_music_player.o(.text);
         src/hardware_song.o(.text);
-        asm/hardware.o(.text.hardware_song_after);
         src/hardware_dma.o(.text);
         src/hardware_dma_descriptor.o(.text);
         src/hardware_input.o(.text);
@@ -929,6 +928,8 @@ SECTIONS
         . = ABSOLUTE(0x0813AEA4); src/m4a.o(.rodata.gM4aVoiceGroups);
         . = ABSOLUTE(0x0813BCF8); src/m4a.o(.rodata.gMusicPlayerTable);
         src/m4a.o(.rodata.gSongTable);
+        /* SongEnt is eight bytes; use the actual table length, including unused slots. */
+        _M4aNumSongs = ABSOLUTE((. - gSongTable) / 8);
         . = ABSOLUTE(0x0813C3CC); /* JP asset container, independently matched. */
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
         . = ABSOLUTE(0x084E0CE0); data/scripts/scripts.o(.rodata.mary_scripts);

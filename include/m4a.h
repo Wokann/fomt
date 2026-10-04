@@ -375,6 +375,8 @@ struct SongEnt
     /* +06 */ u16 me;
 };
 
+typedef char SongEntSizeCheck[sizeof(struct SongEnt) == 8 ? 1 : -1];
+
 extern struct MusicPlayerEnt const gMusicPlayerTable[];
 extern struct SongEnt const gSongTable[];
 
@@ -382,6 +384,10 @@ extern struct SongEnt const gSongTable[];
 // same configured count used by the m4a engine and hardware player lookup.
 extern char _M4aNumMusicPlayers[];
 #define NUM_MUSIC_PLAYERS ((u16) _M4aNumMusicPlayers)
+
+// Absolute count derived from the linked SongEnt array, not an address to read.
+// Includes unused slots, just like the original hardware song-count query.
+extern char _M4aNumSongs[];
 
 void m4aSoundInit(void);
 void m4aSoundMode(u32 mode);
