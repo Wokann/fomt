@@ -6176,68 +6176,9 @@ func_080D6EEC:
     pop {r4}
     pop {r0}
     bx r0
-    .global func_080D6F0C
-    .thumb_func
-func_080D6F0C:
-    movs r1, #0
-    str r1, [r0, #8]
-    str r1, [r0, #4]
-    strb r1, [r0]
-    movs r1, #1
-    strb r1, [r0, #1]
-    bx lr
-    .byte 0x00, 0x00
-    .global func_080D6F1C
-    .thumb_func
-func_080D6F1C:
-    push {r4, lr}
-    adds r4, r0, #0
-    adds r0, #0x10
-    bl func_080D6F0C
-    adds r0, r4, #4
-    bl func_080D6F0C
-    movs r0, #0
-    strb r0, [r4]
-    movs r0, #1
-    strb r0, [r4, #1]
-    pop {r4}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
-    .global func_080D6F3C
-    .thumb_func
-func_080D6F3C:
-    push {r4, lr}
-    adds r4, r0, #0
-    adds r0, #0x20
-    bl func_080D6F1C
-    adds r0, r4, #4
-    bl func_080D6F1C
-    movs r0, #0
-    strb r0, [r4]
-    movs r0, #1
-    strb r0, [r4, #1]
-    pop {r4}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
-    .global func_080D6F5C
-    .thumb_func
-func_080D6F5C:
-    push {r4, lr}
-    adds r4, r0, #0
-    adds r0, #0x40
-    bl func_080D6F3C
-    adds r0, r4, #4
-    bl func_080D6F3C
-    movs r0, #0
-    strb r0, [r4]
-    movs r0, #1
-    strb r0, [r4, #1]
-    pop {r4}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00
+    .section .text.hardware_shared_state_tree_clear_after, "ax", %progbits
+    .thumb
+
     .global func_080D6F7C
     .thumb_func
 func_080D6F7C:
@@ -6563,7 +6504,7 @@ func_080D71AC:
     bne .Lauto_080D6984
     cmp r2, #0x3f
     bls .Lauto_080D6984
-    bl func_080D6F0C
+    bl ClearHardwareTileTree64
     b .Lauto_080D69F0
     .Lauto_080D6984:
     cmp r3, #0x1f
@@ -6650,7 +6591,7 @@ func_080D7240:
     cmp r0, #0x7f
     bls .Lauto_080D6A1C
     adds r0, r5, #0
-    bl func_080D6F1C
+    bl ClearHardwareTileTree128
     b .Lauto_080D6A72
     .Lauto_080D6A1C:
     adds r6, r5, #4
@@ -6723,7 +6664,7 @@ func_080D72C4:
     cmp r0, #0xff
     bls .Lauto_080D6AA0
     adds r0, r5, #0
-    bl func_080D6F3C
+    bl ClearHardwareTileTree256
     b .Lauto_080D6AFA
     .Lauto_080D6AA0:
     adds r6, r5, #4
@@ -6799,7 +6740,7 @@ func_080D734C:
     cmp r0, r1
     bls .Lauto_080D6B30
     adds r0, r5, #0
-    bl func_080D6F5C
+    bl ClearHardwareTileTree512
     b .Lauto_080D6B8E
     .byte 0x00, 0x00, 0xFF, 0x01, 0x00, 0x00
     .Lauto_080D6B30:
@@ -7188,7 +7129,7 @@ func_080D75E0:
     cmp r2, #6
     bne .Lauto_080D6DE4
     adds r0, r4, #0
-    bl func_080D6F0C
+    bl ClearHardwareTileTree64
     .Lauto_080D6DE4:
     pop {r4}
     pop {r0}
@@ -7228,7 +7169,7 @@ func_080D7634:
     cmp r2, #7
     bne .Lauto_080D6E2A
     adds r0, r4, #0
-    bl func_080D6F1C
+    bl ClearHardwareTileTree128
     .Lauto_080D6E2A:
     pop {r4, r5}
     pop {r0}
@@ -7269,7 +7210,7 @@ func_080D7678:
     cmp r2, #8
     bne .Lauto_080D6E72
     adds r0, r4, #0
-    bl func_080D6F3C
+    bl ClearHardwareTileTree256
     .Lauto_080D6E72:
     pop {r4, r5}
     pop {r0}
@@ -7311,7 +7252,7 @@ func_080D76C0:
     cmp r2, #9
     bne .Lauto_080D6EBC
     adds r0, r4, #0
-    bl func_080D6F5C
+    bl ClearHardwareTileTree512
     .Lauto_080D6EBC:
     pop {r4, r5}
     pop {r0}
@@ -8565,67 +8506,8 @@ func_080D6EEC: @ 0x080D6EEC
 	pop {r0}
 	bx r0
 
-	thumb_func_start func_080D6F0C
-func_080D6F0C: @ 0x080D6F0C
-	movs r1, #0
-	str r1, [r0, #8]
-	str r1, [r0, #4]
-	strb r1, [r0]
-	movs r1, #1
-	strb r1, [r0, #1]
-	bx lr
-	.align 2, 0
-
-	thumb_func_start func_080D6F1C
-func_080D6F1C: @ 0x080D6F1C
-	push {r4, lr}
-	adds r4, r0, #0
-	adds r0, #0x10
-	bl func_080D6F0C
-	adds r0, r4, #4
-	bl func_080D6F0C
-	movs r0, #0
-	strb r0, [r4]
-	movs r0, #1
-	strb r0, [r4, #1]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080D6F3C
-func_080D6F3C: @ 0x080D6F3C
-	push {r4, lr}
-	adds r4, r0, #0
-	adds r0, #0x20
-	bl func_080D6F1C
-	adds r0, r4, #4
-	bl func_080D6F1C
-	movs r0, #0
-	strb r0, [r4]
-	movs r0, #1
-	strb r0, [r4, #1]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.align 2, 0
-
-	thumb_func_start func_080D6F5C
-func_080D6F5C: @ 0x080D6F5C
-	push {r4, lr}
-	adds r4, r0, #0
-	adds r0, #0x40
-	bl func_080D6F3C
-	adds r0, r4, #4
-	bl func_080D6F3C
-	movs r0, #0
-	strb r0, [r4]
-	movs r0, #1
-	strb r0, [r4, #1]
-	pop {r4}
-	pop {r0}
-	bx r0
-	.align 2, 0
+    .section .text.hardware_shared_state_tree_clear_after, "ax", %progbits
+    .thumb
 
 	thumb_func_start func_080D6F7C
 func_080D6F7C: @ 0x080D6F7C
@@ -8953,7 +8835,7 @@ func_080D71AC: @ 0x080D71AC
 	bne .L080D71CC
 	cmp r2, #0x3f
 	bls .L080D71CC
-	bl func_080D6F0C
+	bl ClearHardwareTileTree64
 	b .L080D7238
 .L080D71CC:
 	cmp r3, #0x1f
@@ -9040,7 +8922,7 @@ func_080D7240: @ 0x080D7240
 	cmp r0, #0x7f
 	bls .L080D7264
 	adds r0, r5, #0
-	bl func_080D6F1C
+	bl ClearHardwareTileTree128
 	b .L080D72BA
 .L080D7264:
 	adds r6, r5, #4
@@ -9113,7 +8995,7 @@ func_080D72C4: @ 0x080D72C4
 	cmp r0, #0xff
 	bls .L080D72E8
 	adds r0, r5, #0
-	bl func_080D6F3C
+	bl ClearHardwareTileTree256
 	b .L080D7342
 .L080D72E8:
 	adds r6, r5, #4
@@ -9189,7 +9071,7 @@ func_080D734C: @ 0x080D734C
 	cmp r0, r1
 	bls .L080D7378
 	adds r0, r5, #0
-	bl func_080D6F5C
+	bl ClearHardwareTileTree512
 	b .L080D73D6
 	.align 2, 0
 .L080D7374: .4byte 0x000001FF
@@ -9583,7 +9465,7 @@ func_080D75E0: @ 0x080D75E0
 	cmp r2, #6
 	bne .L080D762C
 	adds r0, r4, #0
-	bl func_080D6F0C
+	bl ClearHardwareTileTree64
 .L080D762C:
 	pop {r4}
 	pop {r0}
@@ -9623,7 +9505,7 @@ func_080D7634: @ 0x080D7634
 	cmp r2, #7
 	bne .L080D7672
 	adds r0, r4, #0
-	bl func_080D6F1C
+	bl ClearHardwareTileTree128
 .L080D7672:
 	pop {r4, r5}
 	pop {r0}
@@ -9664,7 +9546,7 @@ func_080D7678: @ 0x080D7678
 	cmp r2, #8
 	bne .L080D76BA
 	adds r0, r4, #0
-	bl func_080D6F3C
+	bl ClearHardwareTileTree256
 .L080D76BA:
 	pop {r4, r5}
 	pop {r0}
@@ -9706,7 +9588,7 @@ func_080D76C0: @ 0x080D76C0
 	cmp r2, #9
 	bne .L080D7704
 	adds r0, r4, #0
-	bl func_080D6F5C
+	bl ClearHardwareTileTree512
 .L080D7704:
 	pop {r4, r5}
 	pop {r0}

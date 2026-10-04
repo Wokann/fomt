@@ -130,12 +130,18 @@ extern u8 * gUnk_03000408;
 void * func_08007874(void * owner); // Constructs the shared state if needed.
 void * func_080079D0(void * owner);
 void func_080079E8(void * owner, u32 flags);
-u32 func_08007B54(void * owner, u32 group_index); // Still in asm/hardware.s.
+u32 func_08007B54(void * owner, u32 size_shift); // Still in asm/hardware.s.
 
 // Returns the same validated handle; overflow restores the count and returns 0.
 u32 RetainHardwareSharedStateHandle(void * owner, u32 handle);
 // The last reference frees the tile range and returns the slot to its free list.
 void ReleaseHardwareSharedStateHandle(void * owner, u32 handle);
+
+// Clear both children before marking the parent tile range empty.
+void ClearHardwareTileTree64(HardwareTileTree64 * tree);
+void ClearHardwareTileTree128(HardwareTileTree128 * tree);
+void ClearHardwareTileTree256(HardwareTileTree256 * tree);
+void ClearHardwareTileTree512(HardwareTileTree512 * tree);
 
 // count must be positive; each eight-byte entry links to the following entry.
 HardwareSharedStateEntry * InitializeHardwareSharedStateFreeList(

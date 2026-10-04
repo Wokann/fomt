@@ -2,7 +2,6 @@
 #include "hardware_refcount.hh"
 
 extern void func_080D6EEC(void *);
-extern void func_080D6F5C(void *);
 extern void func_080D7118(void *, u32, u32);
 extern void func_080D734C(void *, u32, u32);
 extern u32 func_080D7568(void *, u32);
@@ -32,10 +31,11 @@ void func_08007EA8(u8 * state)
 
 void func_08007EC8(u8 * state)
 {
-    func_080D6F5C(state + 0x80);
-    func_080D6F5C(state + 4);
-    state[0] = 0;
-    state[1] = 1;
+    HardwareTileTree1024 * tree = (HardwareTileTree1024 *)state;
+    ClearHardwareTileTree512(&tree->children[1]);
+    ClearHardwareTileTree512(&tree->children[0]);
+    tree->full = 0;
+    tree->empty = 1;
 }
 
 void func_08007EE8(u8 * state, u32 offset, u32 length)

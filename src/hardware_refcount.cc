@@ -133,6 +133,46 @@ u32 GetHardwareSharedStateReferenceCount(void *, u32 value)
     return 0;
 }
 
+void ClearHardwareTileTree64(HardwareTileTree64 *)
+    SECTION(".text.hardware_shared_state_tree_clear");
+void ClearHardwareTileTree64(HardwareTileTree64 * tree)
+{
+    tree->children[1].bits = 0;
+    tree->children[0].bits = 0;
+    tree->full = 0;
+    tree->empty = 1;
+}
+
+void ClearHardwareTileTree128(HardwareTileTree128 *)
+    SECTION(".text.hardware_shared_state_tree_clear");
+void ClearHardwareTileTree128(HardwareTileTree128 * tree)
+{
+    ClearHardwareTileTree64(&tree->children[1]);
+    ClearHardwareTileTree64(&tree->children[0]);
+    tree->full = 0;
+    tree->empty = 1;
+}
+
+void ClearHardwareTileTree256(HardwareTileTree256 *)
+    SECTION(".text.hardware_shared_state_tree_clear");
+void ClearHardwareTileTree256(HardwareTileTree256 * tree)
+{
+    ClearHardwareTileTree128(&tree->children[1]);
+    ClearHardwareTileTree128(&tree->children[0]);
+    tree->full = 0;
+    tree->empty = 1;
+}
+
+void ClearHardwareTileTree512(HardwareTileTree512 *)
+    SECTION(".text.hardware_shared_state_tree_clear");
+void ClearHardwareTileTree512(HardwareTileTree512 * tree)
+{
+    ClearHardwareTileTree256(&tree->children[1]);
+    ClearHardwareTileTree256(&tree->children[0]);
+    tree->full = 0;
+    tree->empty = 1;
+}
+
 HardwareSharedStateEntry * InitializeHardwareSharedStateFreeList(
     HardwareSharedStateEntry *, i32, HardwareSharedStateEntry *)
     SECTION(".text.hardware_shared_state_free_list");

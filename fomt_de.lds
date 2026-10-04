@@ -431,6 +431,8 @@ SECTIONS
         asm/code_linkonce.o(.text.code_080D68C0);
         src/hardware.o(.text.hardware_free_list);
         asm/code_linkonce.o(.text.code_080D6DB8);
+        src/hardware_refcount.o(.text.hardware_shared_state_tree_clear);
+        asm/code_linkonce.o(.text.hardware_shared_state_tree_clear_after);
         src/hardware_refcount.o(.text.hardware_shared_state_free_list);
         asm/code_linkonce.o(.text.hardware_shared_state_free_list_after);
         src/hardware_bootstrap.o(.text.hardware_frame_commands);
