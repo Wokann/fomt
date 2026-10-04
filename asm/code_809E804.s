@@ -195410,7 +195410,7 @@ rand:
     bx lr
     .align 2, 0
 .L080D11F8:
-    .4byte 0x03000A50
+    .4byte gRandomSeed
     .4byte 0x41C64E6D
     .4byte 12345
 

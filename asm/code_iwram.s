@@ -420,7 +420,7 @@ func_03000958:
     .arm
 func_03000A1C:
     cmp lr, #0x8000000
-    ldr r3, [pc, #0x24]
+    ldr r3, .LInterruptEnableRegister
     ldrblo r2, [r3, #8]
     movhs r2, #1
     orrhs ip, r0, #0x20000000
@@ -431,7 +431,16 @@ func_03000A1C:
     strh r1, [r3]
     strb r2, [r3, #8]
     bx lr
-    .byte 0x00, 0x02, 0x00, 0x04, 0x01, 0x00, 0x00, 0x00
+.LInterruptEnableRegister:
+    .4byte 0x04000200
+
+    @ The ROM image initializes rand's writable IWRAM seed to one.
+    .global gRandomSeed
+    .type gRandomSeed, object
+gRandomSeed:
+    .4byte 1
+    .size gRandomSeed, . - gRandomSeed
+
     .global loc_03000A54
     .type loc_03000A54, function
     loc_03000A54:
