@@ -81,7 +81,7 @@ func_0803A8A4:
     .align 2, 0
     push	{lr}
     adds	r0, #48	@ 0x30
-    bl func_0805E894
+    bl WouldIndexedResourceHandleWrap
     pop	{r1}
     bx	r1
     push	{lr}

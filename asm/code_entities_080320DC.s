@@ -814,7 +814,7 @@ func_08032A30:
 .Ljp_080327EC:
     push	{lr}
     adds	r0, #48	@ 0x30
-    bl func_0805E894
+    bl WouldIndexedResourceHandleWrap
     pop	{r1}
     bx	r1
 .Ljp_080327F8:

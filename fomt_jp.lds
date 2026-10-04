@@ -294,7 +294,8 @@ SECTIONS
         src/resource_handle.o(.text.initialize_indexed_resource_handle);
         . = 0x5E5A4; /* JP/US-shared indexed resource-handle resolver. */
         src/resource_handle.o(.text.resolve_indexed_resource_handle);
-        . = 0x5E5D8; asm/code_0803EE94.o(.text.indexed_resource_handle_constructor_after);
+        . = 0x5E5D8; src/resource_handle.o(.text.indexed_resource_handle_predict_wrap);
+        asm/code_0803EE94.o(.text.indexed_resource_handle_constructor_after);
         . = 0x75A14; /* JP/US-shared scroll-position reset. */
         src/scroll_state.o(.text.reset_scroll_position);
         . = 0x75A30; /* JP/US-shared scroll-buffer clear. */

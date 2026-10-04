@@ -149,3 +149,43 @@ extern "C" void ResolveIndexedResourceHandle(IndexedResourceHandle * handle, u32
     handle->metric_scaled = handle->resolved_resource.entries->metric << 8;
     handle->initialized = 1;
 }
+
+// Predict a forward/reverse wrap without changing the handle. An entry with
+// a zero metric stops traversal before a later boundary can be reached.
+extern "C" bool WouldIndexedResourceHandleWrap(IndexedResourceHandle const * handle)
+{
+    i32 delta = handle->scroll_delta;
+    i32 remaining = handle->metric_scaled;
+    if (delta != 0 && remaining != 0)
+    {
+        i32 amount = delta;
+        if (delta < 0)
+            amount = -delta;
+        remaining -= amount;
+        if (remaining <= 0)
+        {
+            u32 index = handle->current_entry_index;
+            u32 count = handle->resolved_resource.Count();
+            do
+            {
+                if (delta > 0)
+                {
+                    ++index;
+                    if (index >= count)
+                        return true;
+                }
+                else
+                {
+                    if (index == 0)
+                        return true;
+                    --index;
+                }
+                i32 metric = handle->resolved_resource[index].metric;
+                if (metric == 0)
+                    return false;
+                remaining += metric << 8;
+            } while (remaining <= 0);
+        }
+    }
+    return false;
+}

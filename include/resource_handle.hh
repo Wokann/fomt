@@ -14,6 +14,7 @@ struct IndexedResourceEntry
 struct IndexedResourceResult
 {
     IndexedResourceEntry & operator[](u32 index) const { return entries[index]; }
+    u32 Count() const { return entries ? entry_count : 0; }
 
     IndexedResourceResult(IndexedResourceEntry * a_entries, u16 a_entry_count)
         : entries(a_entries), entry_count(a_entry_count) {}
@@ -169,6 +170,8 @@ void InitializeIndexedResourceHandle(IndexedResourceHandle *, IndexedResourcePro
     SECTION(".text.initialize_indexed_resource_handle");
 void ResolveIndexedResourceHandle(IndexedResourceHandle *, u32)
     SECTION(".text.resolve_indexed_resource_handle");
+bool WouldIndexedResourceHandleWrap(IndexedResourceHandle const *)
+    SECTION(".text.indexed_resource_handle_predict_wrap");
 
 EXTERN_C_END
 

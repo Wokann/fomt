@@ -155,7 +155,7 @@ func_0801FEC4:
     cmp r1, #0
     beq .Ljp_0801FEF4
     adds r0, r2, #0
-    bl func_0805E894
+    bl WouldIndexedResourceHandleWrap
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .Ljp_0801FEF6
@@ -36569,7 +36569,7 @@ func_08020130: @ 0x08020130
     cmp r1, #0
     beq .L08020160
     adds r0, r2, #0
-    bl func_0805E894
+    bl WouldIndexedResourceHandleWrap
     lsls r0, r0, #0x18
     cmp r0, #0
     beq .L08020162

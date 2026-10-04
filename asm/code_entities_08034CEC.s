@@ -14774,7 +14774,7 @@ func_08037098:
     cmp	r1, #0
     beq .Leu_0803711C
     adds	r0, r2, #0
-    bl func_0805E894
+    bl WouldIndexedResourceHandleWrap
     lsls	r0, r0, #24
     cmp	r0, #0
     beq .Leu_0803711E
@@ -21778,7 +21778,7 @@ func_0803A798:
     .align 2, 0
     push	{lr}
     adds	r0, #48	@ 0x30
-    bl func_0805E894
+    bl WouldIndexedResourceHandleWrap
     pop	{r1}
     bx	r1
     push	{lr}
@@ -25830,7 +25830,7 @@ func_08037098:
     cmp	r1, #0
     beq .Lde_0803701C
     adds	r0, r2, #0
-    bl func_0805E894
+    bl WouldIndexedResourceHandleWrap
     lsls	r0, r0, #24
     cmp	r0, #0
     beq .Lde_0803701E
@@ -32834,7 +32834,7 @@ func_0803A798:
     .align 2, 0
     push	{lr}
     adds	r0, #48	@ 0x30
-    bl func_0805E894
+    bl WouldIndexedResourceHandleWrap
     pop	{r1}
     bx	r1
     push	{lr}
@@ -36885,7 +36885,7 @@ func_08037098:
     cmp	r1, #0
     beq .Lus_08037108
     adds	r0, r2, #0
-    bl func_0805E894
+    bl WouldIndexedResourceHandleWrap
     lsls	r0, r0, #24
     cmp	r0, #0
     beq .Lus_0803710A
@@ -43889,7 +43889,7 @@ func_0803A798:
     .align 2, 0
     push	{lr}
     adds	r0, #48	@ 0x30
-    bl func_0805E894
+    bl WouldIndexedResourceHandleWrap
     pop	{r1}
     bx	r1
     push	{lr}
