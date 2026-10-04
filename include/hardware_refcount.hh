@@ -180,7 +180,7 @@ typedef char HardwareSharedStateSizeCheck[sizeof(HardwareSharedState) == 0x92C ?
 
 EXTERN_C
 
-extern u8 * gUnk_03000408;
+extern HardwareSharedState * gUnk_03000408;
 
 // Retain the shared hardware state and return the supplied owner unchanged.
 void * func_08007874(void * owner); // Constructs the shared state if needed.

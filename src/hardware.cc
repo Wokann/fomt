@@ -1,5 +1,7 @@
 #include "hardware.hh"
 
+Unk_hardware_03000404 * gUnk_03000404;
+
 EC void * func_08007128(void * self)
 {
     if (gUnk_03000404 == nullptr)

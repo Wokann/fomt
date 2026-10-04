@@ -5,8 +5,6 @@
 
 EXTERN_C
 
-extern u8 * gUnk_03000408;
-
 u16 func_08007E8C(void);
 u32 func_08007EA0(void);
 

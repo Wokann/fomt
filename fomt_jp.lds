@@ -45,8 +45,8 @@ SECTIONS
         . = ALIGN(4);
         . = 0x000400; gUnk_03000400 = .;
         . = 0x000402; gUnk_03000402 = .;
-        . = 0x000404; gUnk_03000404 = .;
-        . = 0x000408; gUnk_03000408 = .;
+        . = 0x000404; src/hardware.o(.bss COMMON);
+        . = 0x000408; src/hardware_refcount.o(.bss COMMON);
         . = 0x00040C; gUnk_0300040C = .;
         . = 0x000410; gUnk_03000410 = .;
         . = 0x000414; gUnk_03000414 = .;

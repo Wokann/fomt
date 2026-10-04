@@ -2,6 +2,8 @@
 #include "hardware_state_properties.hh"
 #include <algorithm>
 
+HardwareSharedState * gUnk_03000408;
+
 EXTERN_C
 void __builtin_delete(void *);
 EXTERN_C_END
@@ -9,20 +11,20 @@ EXTERN_C_END
 void * func_080079D0(void * owner)
 {
     // The adjacent release routine frees the shared state at zero owners.
-    ++((HardwareSharedState *)gUnk_03000408)->reference_count;
+    ++gUnk_03000408->reference_count;
     return owner;
 }
 
 void func_080079E8(void * owner, u32 flags)
 {
-    HardwareSharedState * state = (HardwareSharedState *)gUnk_03000408;
+    HardwareSharedState * state = gUnk_03000408;
     u32 * refcount = &state->reference_count;
     u32 remaining = *refcount - 1;
     *refcount = remaining;
     if (remaining == 0) {
         if (state != 0)
             __builtin_delete(state);
-        gUnk_03000408 = (u8 *)remaining;
+        gUnk_03000408 = (HardwareSharedState *)remaining;
     }
     if (flags & 1)
         __builtin_delete(owner);
@@ -32,7 +34,7 @@ u32 AllocateHardwareSharedStateHandle(void *, u32 size_shift)
     SECTION(".text.hardware_shared_state_handles");
 u32 AllocateHardwareSharedStateHandle(void *, u32 size_shift)
 {
-    HardwareSharedState * state = reinterpret_cast<HardwareSharedState *>(gUnk_03000408);
+    HardwareSharedState * state = gUnk_03000408;
     u32 value;
     u32 const first = state->tile_tree.Allocate(size_shift);
     bool valid = first < 1024;
@@ -71,7 +73,7 @@ void ReleaseHardwareSharedStateHandle(void *, u32 value)
     SECTION(".text.hardware_shared_state_handles");
 void ReleaseHardwareSharedStateHandle(void *, u32 value)
 {
-    HardwareSharedState * state = reinterpret_cast<HardwareSharedState *>(gUnk_03000408);
+    HardwareSharedState * state = gUnk_03000408;
     if (value != 0) {
         HardwareSharedStateHandle handle;
         handle.value = value;
@@ -99,7 +101,7 @@ u32 RetainHardwareSharedStateHandle(void *, u32 value)
     SECTION(".text.hardware_shared_state_handles");
 u32 RetainHardwareSharedStateHandle(void *, u32 value)
 {
-    HardwareSharedState * state = reinterpret_cast<HardwareSharedState *>(gUnk_03000408);
+    HardwareSharedState * state = gUnk_03000408;
     if (value != 0) {
         HardwareSharedStateHandle handle;
         handle.value = value;
@@ -121,7 +123,7 @@ u32 GetHardwareSharedStateTileIndex(void *, u32 value)
     SECTION(".text.hardware_shared_state_handles");
 u32 GetHardwareSharedStateTileIndex(void *, u32 value)
 {
-    HardwareSharedState * state = reinterpret_cast<HardwareSharedState *>(gUnk_03000408);
+    HardwareSharedState * state = gUnk_03000408;
     if (value != 0) {
         HardwareSharedStateHandle handle;
         handle.value = value;
@@ -139,7 +141,7 @@ u32 GetHardwareSharedStateSizeShift(void *, u32 value)
     SECTION(".text.hardware_shared_state_handles");
 u32 GetHardwareSharedStateSizeShift(void *, u32 value)
 {
-    HardwareSharedState * state = reinterpret_cast<HardwareSharedState *>(gUnk_03000408);
+    HardwareSharedState * state = gUnk_03000408;
     if (value != 0) {
         HardwareSharedStateHandle handle;
         handle.value = value;
@@ -158,7 +160,7 @@ u32 GetHardwareSharedStateReferenceCount(void *, u32 value)
     SECTION(".text.hardware_shared_state_handles");
 u32 GetHardwareSharedStateReferenceCount(void *, u32 value)
 {
-    HardwareSharedState * state = reinterpret_cast<HardwareSharedState *>(gUnk_03000408);
+    HardwareSharedState * state = gUnk_03000408;
     if (value != 0) {
         HardwareSharedStateHandle handle;
         handle.value = value;

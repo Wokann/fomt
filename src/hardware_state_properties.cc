@@ -4,7 +4,7 @@
 
 u16 func_08007E8C(void)
 {
-    return ((HardwareSharedState *)gUnk_03000408)->allocation_count;
+    return gUnk_03000408->allocation_count;
 }
 
 u32 func_08007EA0(void)
