@@ -1,6 +1,5 @@
 #include "hardware_refcount.hh"
 #include "hardware_state_properties.hh"
-#include "hardware_mask.hh"
 #include <algorithm>
 
 EXTERN_C
@@ -376,7 +375,7 @@ u32 HardwareTileTree64::Allocate(u32 size_shift)
         for (index = 0, child = children; (int)index <= 1; ++child, ++index) {
             u8 const child_full = child->IsFull();
             if (child_full == 0) {
-                u32 offset = func_080077DC(&child->bits, size_shift);
+                u32 offset = child->Allocate(size_shift);
                 u32 valid = 0;
                 if (offset <= 0x1F)
                     valid = 1;
@@ -495,7 +494,7 @@ void HardwareTileTree64::Free(u32 offset, u32 size_shift)
         HardwareTileBitmap32 * child = first;
         if (use_second)
             child = &children[1];
-        func_08007844(&child->bits, offset, size_shift);
+        child->Free(offset, size_shift);
         full = false;
         u32 active = 0;
         if (first->IsEmpty())

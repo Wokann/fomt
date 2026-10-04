@@ -2,6 +2,7 @@
 #define HARDWARE_REFCOUNT_HH
 
 #include "prelude.h"
+#include "hardware_mask.hh"
 
 // This lifetime owner only retains/reserves the shared state. Its original
 // constructor does not write the owner's four-byte storage.
@@ -66,15 +67,6 @@ typedef bool HardwareTileTreeFlag;
 #else
 typedef u8 HardwareTileTreeFlag;
 #endif
-
-typedef struct HardwareTileBitmap32 {
-    u32 bits;
-#ifdef __cplusplus
-    HardwareTileBitmap32() : bits(0) {}
-    bool IsFull() const { return bits + 1 == 0; }
-    bool IsEmpty() const { return bits == 0; }
-#endif
-} HardwareTileBitmap32;
 
 typedef struct HardwareTileTree64 {
     HardwareTileTreeFlag full;
@@ -172,7 +164,6 @@ typedef char HardwareSharedStateEntryRefcountCheck[offsetof(HardwareSharedStateE
 typedef char HardwareSharedStateEntryGenerationCheck[offsetof(HardwareSharedStateEntry, generation) == 4 ? 1 : -1];
 typedef char HardwareSharedStatePoolEntriesCheck[offsetof(HardwareSharedStatePool, entries) == 4 ? 1 : -1];
 typedef char HardwareTileTreeFlagSizeCheck[sizeof(HardwareTileTreeFlag) == 1 ? 1 : -1];
-typedef char HardwareTileBitmap32SizeCheck[sizeof(HardwareTileBitmap32) == 4 ? 1 : -1];
 typedef char HardwareTileTree64SizeCheck[sizeof(HardwareTileTree64) == 0xC ? 1 : -1];
 typedef char HardwareTileTree128SizeCheck[sizeof(HardwareTileTree128) == 0x1C ? 1 : -1];
 typedef char HardwareTileTree256SizeCheck[sizeof(HardwareTileTree256) == 0x3C ? 1 : -1];

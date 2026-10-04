@@ -3,11 +3,20 @@
 
 #include "prelude.h"
 
-EXTERN_C
+// The leaves of the OBJ tile tree each track 32 contiguous tiles.
+typedef struct HardwareTileBitmap32 {
+    u32 bits;
+#ifdef __cplusplus
+    HardwareTileBitmap32() : bits(0) {}
+    bool IsFull() const { return bits + 1 == 0; }
+    bool IsEmpty() const { return bits == 0; }
+    // Allocate 2^size_shift tiles, or return 32 when no range is available.
+    u32 Allocate(u32 size_shift);
+    // The offset remains relative to the tree; only its low five bits matter.
+    void Free(u32 offset, u32 size_shift);
+#endif
+} HardwareTileBitmap32;
 
-u32 func_080077DC(u32 * mask, u32 size);
-void func_08007844(u32 * mask, u32 offset, u32 size);
-
-EXTERN_C_END
+typedef char HardwareTileBitmap32SizeCheck[sizeof(HardwareTileBitmap32) == 4 ? 1 : -1];
 
 #endif // HARDWARE_MASK_HH
