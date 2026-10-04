@@ -53,7 +53,8 @@ enum NumTilesMode {
 void ReadImage(char *path, int tilesWidth, int bitDepth, int metatileWidth, int metatileHeight, struct Image *image, bool invertColors);
 void WriteImage(char *path, enum NumTilesMode numTilesMode, int numTiles, int bitDepth, int metatileWidth, int metatileHeight, struct Image *image, bool invertColors);
 void FreeImage(struct Image *image);
-void ReadGbaPalette(char *path, struct Palette *palette);
+// Returns the native color count; the palette buffer keeps PNG padding.
+int ReadGbaPalette(char *path, struct Palette *palette);
 void WriteGbaPalette(char *path, struct Palette *palette);
 
 #endif // GFX_H

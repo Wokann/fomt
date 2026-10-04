@@ -28,16 +28,11 @@ ACTOR_NATIVE_TILES := graphics/sprites/actor_archive/native_tiles.4bpp
 # native stream is a shared 0x70/Huffman/LZ payload.  The compressor keeps the
 # original packed bytes when the editable PNG has not changed; edited tiles
 # are strictly decompressed and must still fit the original 0x21C4-byte slot.
-FARM_STATUS_TILES_SOURCE := graphics/ui/farm_status/shared/base_tiles.png
-FARM_STATUS_OUTPUT_DIR := graphics/ui/farm_status/shared
-FARM_STATUS_TILES_BIN := $(FARM_STATUS_OUTPUT_DIR)/base_tiles.4bpp
-FARM_STATUS_TILES_PALETTE0_BIN := $(FARM_STATUS_OUTPUT_DIR)/base_tiles_palette0.gbapal
 FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR := graphics/ui/farm_status/shared/secondary_tilemaps
 
 FARM_STATUS_WINTER_TILES_SOURCE := graphics/ui/farm_status/winter/shared/tiles.png
 FARM_STATUS_WINTER_OUTPUT_DIR := graphics/ui/farm_status/winter/shared
 FARM_STATUS_WINTER_TILES_BIN := $(FARM_STATUS_WINTER_OUTPUT_DIR)/winter_tiles.4bpp
-FARM_STATUS_WINTER_PALETTE_BIN := $(FARM_STATUS_WINTER_OUTPUT_DIR)/winter_palette0.gbapal
 
 # Intro Scene loading sends this 0x70 output straight to VRAM. The decoded
 # 0x6E00-byte resource is a 40-by-22 linear 4bpp tile image (320 by 176
@@ -197,13 +192,8 @@ $(FONT_SHARED_DOUBLE_BIN): $(FONT_SHARED_DOUBLE_PADDED) $(FONT_PAD)
 $(PORTRAIT_NATIVE_TILES): GFX_TILE_COUNT := 11586
 $(ACTOR_NATIVE_TILES): GFX_TILE_COUNT := 24398
 
-$(FARM_STATUS_TILES_BIN) $(FARM_STATUS_TILES_PALETTE0_BIN) &: $(FARM_STATUS_TILES_SOURCE) $(GFX_TOOL)
-	@$(GFX_TOOL) $(FARM_STATUS_TILES_SOURCE) $(FARM_STATUS_TILES_BIN)
-	@$(GFX_TOOL) $(FARM_STATUS_TILES_SOURCE) $(FARM_STATUS_TILES_PALETTE0_BIN)
-
-$(FARM_STATUS_WINTER_TILES_BIN) $(FARM_STATUS_WINTER_PALETTE_BIN) &: $(FARM_STATUS_WINTER_TILES_SOURCE) $(GFX_TOOL)
+$(FARM_STATUS_WINTER_TILES_BIN): $(FARM_STATUS_WINTER_TILES_SOURCE) $(GFX_TOOL)
 	@$(GFX_TOOL) $(FARM_STATUS_WINTER_TILES_SOURCE) $(FARM_STATUS_WINTER_TILES_BIN)
-	@$(GFX_TOOL) $(FARM_STATUS_WINTER_TILES_SOURCE) $(FARM_STATUS_WINTER_PALETTE_BIN)
 
 # These known native streams share one source-to-packed rule.  Only the codec
 # variant, tested encoder search ladder, and original slot size vary by asset.
@@ -389,9 +379,6 @@ endif
 
 %.gbapal: %.pal $(GFX_TOOL)
 	@$(GFX_TOOL) $< $@ $(if $(GFX_PALETTE_COLORS),-num_colors $(GFX_PALETTE_COLORS))
-
-%.gbapal: %.png $(GFX_TOOL)
-	@$(GFX_TOOL) $< $@
 
 # FoMT's native packed streams retain their original slot metadata beside the
 # editable tiles or tilemap. The same codec and rule serve every region.

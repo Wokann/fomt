@@ -479,13 +479,15 @@ void FreeImage(struct Image *image)
 	image->pixels = NULL;
 }
 
-void ReadGbaPalette(char *path, struct Palette *palette)
+int ReadGbaPalette(char *path, struct Palette *palette)
 {
 	int fileSize;
 	unsigned char *data = ReadWholeFile(path, &fileSize);
 
 	if (fileSize % 2 != 0)
 		FATAL_ERROR("The file size (%d) is not a multiple of 2.\n", fileSize);
+	if (fileSize < 2 || fileSize > 512)
+		FATAL_ERROR("A GBA palette must contain between 1 and 256 colors.\n");
 
 	palette->numColors = fileSize / 2;
 
@@ -503,6 +505,7 @@ void ReadGbaPalette(char *path, struct Palette *palette)
     }
 
 	free(data);
+	return fileSize / 2;
 }
 
 void WriteGbaPalette(char *path, struct Palette *palette)

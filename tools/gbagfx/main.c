@@ -265,7 +265,7 @@ void HandleGbaToJascPaletteCommand(char *inputPath, char *outputPath, int argc U
 {
     struct Palette palette = {};
 
-    ReadGbaPalette(inputPath, &palette);
+    palette.numColors = ReadGbaPalette(inputPath, &palette);
     WriteJascPalette(outputPath, &palette);
 }
 
