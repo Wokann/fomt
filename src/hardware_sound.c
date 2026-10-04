@@ -25,3 +25,11 @@ u32 func_08008B18(void)
     m4aSoundMain();
     return 1;
 }
+
+struct MusicPlayer * GetHardwareMusicPlayer(u32 index)
+{
+    u32 count = NUM_MUSIC_PLAYERS;
+    if (index >= count)
+        index %= count;
+    return gMusicPlayerTable[index].music_player;
+}

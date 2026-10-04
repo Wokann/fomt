@@ -17,10 +17,8 @@ SECTION(".gMusicPlayerE")
 struct MusicPlayer gMusicPlayerE = { 0 };
 
 // defined in lds
-extern char _M4aNumMusicPlayers[];
 extern char _M4aMaxLines[];
 
-#define NUM_MUSIC_PLAYERS ((u16) _M4aNumMusicPlayers)
 #define MAX_LINES ((u32) _M4aMaxLines)
 
 #define SOUND_MODE \

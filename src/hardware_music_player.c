@@ -1,12 +1,11 @@
 #include "hardware_music_player.hh"
 
+#include "hardware_sound.hh"
 #include "m4a.h"
-
-extern struct MusicPlayer * func_08008B24(u32 index);
 
 struct MusicPlayer ** func_08008B54(struct MusicPlayer ** holder, u8 index)
 {
-    *holder = func_08008B24(index);
+    *holder = GetHardwareMusicPlayer(index);
     return holder;
 }
 
@@ -122,5 +121,14 @@ struct MusicPlayer * func_08008CFC(void)
 {
     struct MusicPlayer * player;
     func_08008B54(&player, 0);
+    return player;
+}
+
+struct MusicPlayer * func_08008D10(void)
+{
+    struct MusicPlayer * player;
+    // The original entry passes the count, whose modulo lookup selects 0.
+    // Keep this distinct from the preceding entry's direct zero index.
+    func_08008B54(&player, NUM_MUSIC_PLAYERS);
     return player;
 }

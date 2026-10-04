@@ -105,9 +105,7 @@ SECTIONS
         src/hardware_manager.o(.text);
         src/hardware_nested_accessors.o(.text);
         src/hardware_sound.o(.text);
-        asm/hardware.o(.text.hardware_sound_after);
         src/hardware_music_player.o(.text);
-        asm/hardware.o(.text.hardware_music_player_after);
         src/hardware_song.o(.text);
         asm/hardware.o(.text.hardware_song_after);
         src/hardware_dma.o(.text);

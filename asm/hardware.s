@@ -805,67 +805,9 @@ func_08008190:
     pop {r1}
     bx r1
 
-    .section .text.hardware_sound_after, "ax", %progbits
-    .thumb
-    .align 2, 0
-
-    thumb_func_start func_08008B24
-func_08008B24: @ 0x08008B24
-    push {lr}
-    adds r2, r0, #0
-    ldr r0, .L08008B4C @ =0x00000005
-    lsls r0, r0, #0x10
-    lsrs r1, r0, #0x10
-    cmp r2, r1
-    blo .L08008B3A
-    adds r0, r2, #0
-    bl __umodsi3
-    adds r2, r0, #0
-.L08008B3A:
-    ldr r0, .L08008B50 @ =gMusicPlayerTable
-    lsls r1, r2, #1
-    adds r1, r1, r2
-    lsls r1, r1, #2
-    adds r1, r1, r0
-    ldr r0, [r1]
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L08008B4C: .4byte 0x00000005
-.L08008B50: .4byte gMusicPlayerTable
-
-    .section .text.hardware_music_player_after, "ax", %progbits
-    .thumb
-    .align 2, 0
-
-    thumb_func_start func_08008D10
-func_08008D10: @ 0x08008D10
-    push {lr}
-    sub sp, #4
-    ldr r1, .L08008D28 @ =0x00000005
-    lsls r1, r1, #0x18
-    lsrs r1, r1, #0x18
-    mov r0, sp
-    bl func_08008B54
-    ldr r0, [sp]
-    add sp, #4
-    pop {r1}
-    bx r1
-    .align 2, 0
-.L08008D28: .4byte 0x00000005
-
     .section .text.hardware_song_after, "ax", %progbits
     .thumb
     .align 2, 0
-
-    thumb_func_start func_08008E10
-func_08008E10:
-    ldr r0, .L08008E18
-    lsls r0, r0, #0x18
-    lsrs r0, r0, #0x18
-    bx lr
-    .align 2, 0
-.L08008E18: .4byte 0x00000005
 
     thumb_func_start func_08008E1C
 func_08008E1C:

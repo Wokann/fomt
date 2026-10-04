@@ -378,6 +378,11 @@ struct SongEnt
 extern struct MusicPlayerEnt const gMusicPlayerTable[];
 extern struct SongEnt const gSongTable[];
 
+// Absolute linker symbol, not a byte stored at that address. This is the
+// same configured count used by the m4a engine and hardware player lookup.
+extern char _M4aNumMusicPlayers[];
+#define NUM_MUSIC_PLAYERS ((u16) _M4aNumMusicPlayers)
+
 void m4aSoundInit(void);
 void m4aSoundMode(u32 mode);
 void m4aSoundMain(void);

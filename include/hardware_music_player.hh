@@ -29,6 +29,7 @@ u8 func_08008CE4(struct MusicPlayer ** holder);
 u8 func_08008CEC(struct MusicPlayer ** holder);
 u32 func_08008CF4(struct MusicPlayer ** holder);
 struct MusicPlayer * func_08008CFC(void);
+struct MusicPlayer * func_08008D10(void);
 
 EXTERN_C_END
 

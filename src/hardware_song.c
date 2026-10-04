@@ -80,3 +80,8 @@ void func_08008E04(void)
 {
     m4aMPlayAllContinue();
 }
+
+u8 GetHardwareMusicPlayerCount(void)
+{
+    return NUM_MUSIC_PLAYERS;
+}

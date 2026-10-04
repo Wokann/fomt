@@ -23,6 +23,7 @@ void func_08008DD8(u16 song_id);
 void func_08008DE8(void);
 void func_08008DF4(u16 song_id);
 void func_08008E04(void);
+u8 GetHardwareMusicPlayerCount(void);
 
 EXTERN_C_END
 
