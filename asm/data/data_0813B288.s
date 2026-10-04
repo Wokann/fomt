@@ -325899,14 +325899,14 @@ gUnk_085273A4:
 	.incbin "graphics/ui/farm_status/shared/secondary_tilemaps/secondary_01.tilemap.lz", 0x8, 0x1D0
 	.global gUnk_0852757C
 gUnk_0852757C:
-	.byte 0x70, 0x00, 0x16, 0x00, 0x72, 0x13, 0x01, 0x0B
+	.incbin "graphics/ui/farm_status/shared/secondary_tilemaps/secondary_02.tilemap.lz", 0, 0x8
 	.else
 	.incbin "graphics/ui/farm_status/shared/secondary_tilemaps/secondary_01.tilemap.lz"
 	.endif
 
 	non_de_asset_label gUnk_08527520
 	.ifdef REGION_EU
-	.incbin "graphics/ui/farm_status/shared/secondary_tilemaps/secondary_02.tilemap.lz", 0x8, 0xA8
+	.incbin "graphics/ui/farm_status/shared/secondary_tilemaps/secondary_02.tilemap.lz", 0x8
 	.global gUnk_0852762C
 gUnk_0852762C:
 	.incbin "graphics/ui/farm_status/shared/base_tiles.4bpp.lz", 0, 0x8

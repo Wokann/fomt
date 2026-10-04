@@ -50,10 +50,15 @@ screen-block layers. They are source-order arrays of 16-bit BG entries, not
 rendered artwork or a sidecar layout description. The stream headers and the
 EU-only eight-byte labels remain in the assembly source. Each shared
 `.tilemap` is packed by the C codec, then included at its original runtime
-label. `secondary_00`, `secondary_01`, `secondary_03`, and `secondary_04` encode
-directly from the editable tilemaps through the shared suffix rule. Only
-`secondary_02` and `secondary_05` still read their source-adjacent `.original.lz`
-headers and distance ladders during packing.
+label. All six encode directly from the editable tilemaps through the shared
+suffix rule, without reading a compressed template.
+
+`secondary_02` and `secondary_05` have identical 5632-byte source contents, but
+keep their separate resource identities. Both use native Huffman-4/LZ3, ladder
+widths `3,6,10`, and the generic `--tie=exchange` frequency sort. Their output is
+the exact original 176 bytes, with no fixed-size padding. Both obsolete
+`.original.lz` files have been removed; the EU map 02 header now comes from
+the generated stream, and its payload include consumes the entire remainder.
 
 `secondary_03` uses native Huffman-4/LZ3, ladder widths `3,8,12`, and
 `--tie=heap-sort`. Its 5632-byte source encodes to the exact original 276 bytes,
@@ -63,10 +68,11 @@ included from the generated streams rather than hard-coded; their historical
 header/payload labels remain at the real eight-byte boundary. The payload
 includes consume the remainder of each generated stream, not a fixed byte count.
 
-农场状态的六份附加地图中，00、01、03、04 已从可编辑 `.tilemap` 直接编码；
-02、05 仍依赖压缩模板。03 使用通用 Huffman 堆排序策略，将 5632 字节源码
-重压为与原版完全一致的 276 字节，原模板已移除。EU 的 03-05 压缩头和后续
-数据都由生成的 `.lz` 提供，不再写死编码表头或截取固定长度。
+农场状态的六份附加地图均已从可编辑 `.tilemap` 直接编码，不读取压缩模板。
+02、05 的源码内容相同，但保留各自的资源身份；通用交换排序策略将两份
+5632 字节源码各自重压为原版的 176 字节，两份旧模板已移除。03 使用通用
+Huffman 堆排序策略重压为原版的 276 字节。EU 的 02-05 压缩头和后续数据
+都由生成的 `.lz` 提供，不再写死编码表头或截取固定长度。
 
 Template-dependent streams and independent encoders with a nonzero slot size
 still reject packed output larger than their declared slot. A zero slot size

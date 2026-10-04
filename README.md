@@ -109,6 +109,10 @@ Canonical codes keep the tree's computed leaf depths. Unlike `--tie=heap`, this
 policy sorts the canonical code table rather than using heap traversal to build
 the tree. The shared Farm Status `secondary_03.tilemap` now uses this source-only
 policy with no original-stream input, stored permutation, or fixed-size padding.
+`--tie=exchange` uses ordinary descending exchange sorting of the current
+literal frequencies, keeping each leaf's computed depth. Farm Status
+`secondary_02` and `secondary_05` use it to encode their 5632-byte sources to
+the exact original 176 bytes; neither reads a compressed template or pads a slot.
 Run `tools/fomt-lz test-huff-lz3` for the native boundary self-tests.
 
 The upstream [scaninc](./tools/scaninc/README.md) scans assembly includes and

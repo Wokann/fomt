@@ -1491,7 +1491,9 @@ static void write_huff_atom_byte(BitWriter *writer, HuffModel const *model,
 // literal frequency. The default keeps selection-sort traversal; explicit
 // tie policies use first occurrence, reverse symbol order, or reverse
 // ascending selection. Shell and three-way quick sorting can also reassign
-// the computed length histogram. These are encoding choices, not saved trees
+// the computed length histogram. Exchange sorting swaps immediately on each
+// higher-frequency entry rather than selecting one best entry per pass.
+// These are encoding choices, not saved trees
 // or symbol lists.
 static void huff_frequency_swap(unsigned *left, unsigned *right)
 {
@@ -1729,6 +1731,14 @@ static void huff_model_frequency_order(HuffModel *model,
             order[left] = order[right];
             order[right] = swap;
         }
+    } else if (tie_order == 9) {
+        // Ordinary descending exchange sort, starting with the alphabet.
+        // Strict comparison leaves equal entries untouched at each swap, but
+        // exchanges with other weights can still change their final order.
+        for (unsigned left = 0; left < alphabet; left++)
+            for (unsigned right = left + 1; right < alphabet; right++)
+                if (frequency[order[right]] > frequency[order[left]])
+                    huff_frequency_swap(order + left, order + right);
     } else {
         for (unsigned left = 0; left < alphabet; left++) {
             unsigned best = left;
@@ -3232,7 +3242,7 @@ static void usage(void)
     fail("usage: fomt-lz encode-lz0|encode-lz1|encode-lz2|encode-lz3|encode-huff4-lz0|"
          "encode-huff4-lz2|encode-huff8-lz2|encode-huff4-lz3|encode-huff8-lz3 "
          "SOURCE OUTPUT LADDER SLOT_SIZE "
-         "[--literal-tail] [--filter=1..4] [--tie=first|reverse|last|reverse-select|heap|shell|quick|heap-sort] "
+         "[--literal-tail] [--filter=1..4] [--tie=first|reverse|last|reverse-select|heap|shell|quick|heap-sort|exchange] "
          "[--parent-first] [--greedy] | "
          "rebuild-native SOURCE ORIGINAL OUTPUT [TAIL] | "
          "rebuild-huff8-lz3 SOURCE ORIGINAL OUTPUT LADDER SLOT_SIZE | "
@@ -3358,7 +3368,7 @@ static void test_huff_lz3(void)
         parse_ladder(ladder_values[ladder_index], ladder, 3);
         for (unsigned symbol_bits = 4; symbol_bits <= 8; symbol_bits += 4) {
             for (unsigned parent_first = 0; parent_first < 2; parent_first++) {
-                for (unsigned tie_order = 0; tie_order < 9; tie_order++) {
+                for (unsigned tie_order = 0; tie_order < 10; tie_order++) {
                     for (unsigned index = 0; index < sizeof(sizes) / sizeof(*sizes); index++) {
                         size_t size = sizes[index];
                         for (unsigned pattern = 0; pattern < 8; pattern++) {
@@ -3707,6 +3717,10 @@ int main(int argc, char **argv)
             } else if ((huff4 || huff8) && !tie_seen &&
                        strcmp(argv[index], "--tie=heap-sort") == 0) {
                 tie_order = 8;
+                tie_seen = 1;
+            } else if ((huff4 || huff8) && !tie_seen &&
+                       strcmp(argv[index], "--tie=exchange") == 0) {
+                tie_order = 9;
                 tie_seen = 1;
             } else if ((huff4_lz2 || huff8_lz2 || huff4 || huff8) && !tie_seen &&
                        strcmp(argv[index], "--tie=last") == 0) {
