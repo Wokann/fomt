@@ -85,6 +85,8 @@ typedef struct HardwareTileTree64 {
     // Allocate 2^size_shift tiles, or return this node's capacity on failure.
     u32 Allocate(u32 size_shift) SECTION(".text.hardware_shared_state_tile_tree_operations");
     void Free(u32 offset, u32 size_shift) SECTION(".text.hardware_shared_state_tile_tree_operations");
+    void Reserve(u32 offset, u32 length) SECTION(".text.hardware_shared_state_tile_tree");
+    void Unreserve(u32 offset, u32 length) SECTION(".text.hardware_shared_state_tile_tree_unreserve");
 #endif
 } HardwareTileTree64;
 

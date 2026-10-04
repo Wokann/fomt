@@ -2,6 +2,42 @@
 
 本文件记录已从原始代码 `incbin` 或字节块提升为 C/C++ 或实际 ARM/Thumb 汇编的连续模块。地址以各地区基准 ROM 的物理地址为准；一个模块即使在原始布局中被已编译的 C/C++ 输入节穿插，也仍由同一个源文件维护。
 
+## 开场调用链：64 图块叶节点的区间预留与取消预留
+
+原 `func_080D6F7C`、`func_080D71AC` 已由现有
+`src/hardware_refcount.cc` 的原生 C++
+`HardwareTileTree64::Reserve(offset, length)`、
+`HardwareTileTree64::Unreserve(offset, length)` 生成；声明和实际
+位图结构仍在同名 `include/hardware_refcount.hh`。
+两处入口使用工具链已有 `<algorithm>` 中的 `std::min`，按两个
+32 图块子位图区分跨边界区间，并维护 full／empty 标志。
+没有新增匹配辅助模板、寄存器约束、汇编别名或编译后补丁。
+
+| 区域 | Reserve 半开 ROM 区间 | Unreserve 半开 ROM 区间 | 新增 C++ 字节数 |
+| --- | --- | --- | ---: |
+| JP | `0x080D6734–0x080D67CC` | `0x080D6964–0x080D69F8` | 300 |
+| US | `0x080D6F7C–0x080D7014` | `0x080D71AC–0x080D7240` | 300 |
+| EU | `0x080D6FC8–0x080D7060` | `0x080D71F8–0x080D728C` | 300 |
+| DE | `0x080D6EE0–0x080D6F78` | `0x080D7110–0x080D71A4` | 300 |
+
+已删除 JP／海外两份重复汇编定义。每版两处 Reserve 调用及两处
+Unreserve 调用直接重定位到编译器生成的成员符号；各入口内部的
+Fill／Clear 调用同样由编译器产生真实重定位。原始及 Thumb
+入口地址字检索无额外硬编码指针，可执行 ROM 范围的 BL 解码
+也与当前四处符号调用逐项对应。
+
+物理排列继续为：C++ Fill／Clear＋Reserve64（380 字节），
+原位汇编 Reserve128／256／512（408 字节），C++ Unreserve64
+（148 字节），原位汇编 Unreserve128／256／512（420 字节），
+以及既有 C++ Allocate／Free（808 字节）。LDS 未新增固定地址；
+尚未匹配的六处祖先层入口合计 828 字节，仍明确保留为汇编，
+不能算作已恢复的 C++。
+
+四版本 WSL `make -j4 ... compare`、完整 ROM 字节比较、两处
+入口字节和四处调用重定位均已通过。资源构建依赖另行重新盘点：
+JP 仍有 23 份 `.original.lz` 输入，US／EU／DE 各有 24 份；
+本次未修改其编码规则，尚不能宣称已完成无压缩模板构建。
+
 ## 开场调用链：OBJ 分配树的四层分配和释放成员
 
 原 `func_080D73E4／func_080D7480／func_080D74F0／func_080D7568`

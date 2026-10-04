@@ -1,6 +1,7 @@
 #include "hardware_refcount.hh"
 #include "hardware_state_properties.hh"
 #include "hardware_mask.hh"
+#include <algorithm>
 
 EXTERN_C
 void __builtin_delete(void *);
@@ -252,6 +253,62 @@ void ClearHardwareTileTree512(HardwareTileTree512 * tree)
     ClearHardwareTileTree256(&tree->children[0]);
     tree->full = 0;
     tree->empty = 1;
+}
+
+void HardwareTileTree64::Reserve(u32 offset, u32 length)
+{
+    if (offset > 63 || length == 0)
+        return;
+    if (offset == 0 && length > 63) {
+        FillHardwareTileTree64(this);
+        return;
+    }
+    if (offset <= 31) {
+        u32 first_capacity = 32 - offset;
+        u32 count = std::min(length, first_capacity);
+        children[0].bits |= ((1u << count) - 1) << offset;
+    }
+    if (offset + length > 32) {
+        u32 second_offset = offset > 31 ? offset - 32 : 0;
+        u32 second_length = offset + length;
+        second_length -= 32;
+        second_length -= second_offset;
+        children[1].bits |= ((1u << second_length) - 1) << second_offset;
+    }
+    u32 active = 0;
+    if (children[0].IsFull())
+        if (children[1].IsFull())
+            active = 1;
+    full = active;
+    empty = false;
+}
+
+void HardwareTileTree64::Unreserve(u32 offset, u32 length)
+{
+    if (offset > 63 || length == 0)
+        return;
+    if (offset == 0 && length > 63) {
+        ClearHardwareTileTree64(this);
+        return;
+    }
+    if (offset <= 31) {
+        u32 first_capacity = 32 - offset;
+        u32 count = std::min(length, first_capacity);
+        children[0].bits &= ~(((1u << count) - 1) << offset);
+    }
+    if (offset + length > 32) {
+        u32 second_offset = offset > 31 ? offset - 32 : 0;
+        u32 second_length = offset + length;
+        second_length -= 32;
+        second_length -= second_offset;
+        children[1].bits &= ~(((1u << second_length) - 1) << second_offset);
+    }
+    full = false;
+    u32 active = 0;
+    if (children[0].IsEmpty())
+        if (children[1].IsEmpty())
+            active = 1;
+    empty = active;
 }
 
 // Each level selects the first non-full child and keeps the parent's flags
