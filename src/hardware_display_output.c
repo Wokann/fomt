@@ -1,8 +1,7 @@
 #include "hardware_display_output.hh"
+#include "hardware_dma.hh"
 #include "gbaio.h"
 #include "gbasvc.h"
-
-extern void func_08008E64(void const * source, void * destination, u32 size);
 
 struct HardwareDisplayState * func_080096B0(struct HardwareDisplayState * object)
 {

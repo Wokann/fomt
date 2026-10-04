@@ -10,15 +10,23 @@ enum DmaDescriptorMode {
 
 struct DmaTransferDescriptor {
     u32 mode;
-    u32 source_or_value;
-    u32 destination;
+    union {
+        void const * source;
+        u32 fill_value;
+    } source_or_value;
+    void * destination;
     u32 control;
 };
 
+typedef char DmaTransferDescriptor_size_check[(sizeof(struct DmaTransferDescriptor) == 0x10) ? 1 : -1];
+typedef char DmaTransferDescriptor_source_offset_check[(offsetof(struct DmaTransferDescriptor, source_or_value) == 4) ? 1 : -1];
+typedef char DmaTransferDescriptor_destination_offset_check[(offsetof(struct DmaTransferDescriptor, destination) == 8) ? 1 : -1];
+typedef char DmaTransferDescriptor_control_offset_check[(offsetof(struct DmaTransferDescriptor, control) == 0x0C) ? 1 : -1];
+
 EXTERN_C
 
-struct DmaTransferDescriptor * func_08008F0C(struct DmaTransferDescriptor * descriptor, u32 source, u32 destination, u32 byte_count);
-struct DmaTransferDescriptor * func_08008F60(struct DmaTransferDescriptor * descriptor, u32 value, u32 destination, u32 byte_count);
+struct DmaTransferDescriptor * func_08008F0C(struct DmaTransferDescriptor * descriptor, void const * source, void * destination, u32 byte_count);
+struct DmaTransferDescriptor * func_08008F60(struct DmaTransferDescriptor * descriptor, u32 value, void * destination, u32 byte_count);
 void func_08008FB8(struct DmaTransferDescriptor const * descriptor);
 void func_08008FE4(struct DmaTransferDescriptor const * first, struct DmaTransferDescriptor const * end);
 void func_0800901C(struct DmaTransferDescriptor const * descriptor);
