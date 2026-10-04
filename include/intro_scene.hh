@@ -44,6 +44,36 @@ struct IntroSceneHardwarePoolHandle
     u32 handle;
 };
 
+// Parameters consumed by the sprite renderer at func_0805E99C. The two
+// positions are signed halfwords; palette/tile offsets are added to each
+// descriptor's OAM attributes. Unresolved control fields keep unknown names.
+struct IntroSceneSpriteParameters
+{
+    i16 x;
+    i16 y;
+    u16 palette_offset;
+    u16 tile_offset;
+    u16 priority;
+    u32 unk_0C;
+    u8 flips;
+    u8 affine_index;
+    u32 affine_mode;
+    u8 color_mode;
+    IndexedResourceGroupResult group;
+
+    IntroSceneSpriteParameters()
+        : x(0), y(0), palette_offset(0), tile_offset(0), priority(0),
+          unk_0C(0), flips(0), affine_index(0), affine_mode(0), color_mode(0),
+          group(0, 0, 0, 0, 0, 0, 0, 0) {}
+};
+
+typedef char IntroSceneSpriteParametersSizeCheck[sizeof(IntroSceneSpriteParameters) == 60 ? 1 : -1];
+typedef char IntroSceneSpritePaletteOffsetCheck[offsetof(IntroSceneSpriteParameters, palette_offset) == 4 ? 1 : -1];
+typedef char IntroSceneSpriteTileOffsetCheck[offsetof(IntroSceneSpriteParameters, tile_offset) == 6 ? 1 : -1];
+typedef char IntroSceneSpriteAffineModeOffsetCheck[offsetof(IntroSceneSpriteParameters, affine_mode) == 20 ? 1 : -1];
+typedef char IntroSceneSpriteColorModeOffsetCheck[offsetof(IntroSceneSpriteParameters, color_mode) == 24 ? 1 : -1];
+typedef char IntroSceneSpriteGroupOffsetCheck[offsetof(IntroSceneSpriteParameters, group) == 28 ? 1 : -1];
+
 typedef void (*IntroSceneVTableFunction)(void);
 
 struct IntroSceneCore;
@@ -153,6 +183,10 @@ void func_08000F5C(IntroSceneCore * core);
 int RunIntroSceneSequence(IntroSceneCore * core) SECTION(".text.intro_scene_core_sequence");
 void func_080019D8(IntroSceneCore * core);
 void func_080024E0(IntroSceneCore * core);
+void SubmitIntroSceneSprite(IntroSceneCore * core, int x, int y, int type)
+    SECTION(".text.intro_scene_sprite_submission");
+void func_0805E99C(u8 * buffer, IndexedResourceArchiveDescriptor8 const * descriptors,
+    u32 count, IntroSceneSpriteParameters const * parameters);
 GameIntroScene * ConstructGameIntroScene(GameIntroScene * scene);
 void DestroyGameIntroScene(GameIntroScene * scene, int flags);
 SceneTransitionOwner RunGameIntroScene(GameIntroScene * scene);

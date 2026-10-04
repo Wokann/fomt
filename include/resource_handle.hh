@@ -13,6 +13,8 @@ struct IndexedResourceEntry
 
 struct IndexedResourceResult
 {
+    IndexedResourceEntry & operator[](u32 index) const { return entries[index]; }
+
     IndexedResourceResult(IndexedResourceEntry * a_entries, u16 a_entry_count)
         : entries(a_entries), entry_count(a_entry_count) {}
 
@@ -26,6 +28,9 @@ struct IndexedResourceArchiveDescriptor32 { u8 unknown_00[32]; };
 
 struct IndexedResourceDescriptor8Range
 {
+    IndexedResourceArchiveDescriptor8 * Data() const { return data; }
+    u32 Count() const { return data ? count : 0; }
+
     IndexedResourceDescriptor8Range(IndexedResourceArchiveDescriptor8 * a_data, u16 a_count)
         : data(a_data), count(a_count) {}
 

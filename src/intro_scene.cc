@@ -590,6 +590,53 @@ int RunIntroSceneSequence(IntroSceneCore * core)
     return confirmed;
 }
 
+static inline u32 GetIntroSceneTileIndex(IntroSceneHardwareStateHandle & state)
+{
+    return GetHardwareSharedStateTileIndex(&state, state.handle);
+}
+
+static inline u32 GetIntroScenePaletteIndex(IntroSceneHardwarePoolHandle & state)
+{
+    return func_080074C0(&state, state.handle);
+}
+
+static inline IndexedResourceGroupResult LoadIntroSceneResourceGroup(IndexedResourceHandle const & handle)
+{
+    return handle.resource->vtable->get_group_data(handle.resource,
+        handle.resolved_resource[handle.current_entry_index].unknown_00);
+}
+
+void SubmitIntroSceneSprite(IntroSceneCore * core, int x, int y, int type)
+{
+    IntroSceneSpriteParameters parameters;
+    switch (type)
+    {
+    case 0:
+        ResolveIndexedResourceHandle(&core->resources[7].handle, 0x91A);
+        parameters.tile_offset = GetIntroSceneTileIndex(core->state_handle_6CD0);
+        break;
+    case 1:
+        ResolveIndexedResourceHandle(&core->resources[7].handle, 0x91B);
+        parameters.tile_offset = GetIntroSceneTileIndex(core->state_handle_6CD8);
+        break;
+    case 2:
+        ResolveIndexedResourceHandle(&core->resources[7].handle, 0x91C);
+        parameters.tile_offset = GetIntroSceneTileIndex(core->state_handle_6CE0);
+        break;
+    }
+
+    IndexedResourceGroupResult & group = parameters.group;
+    IndexedResourceHandle const & handle = core->resources[7].handle;
+    group = LoadIntroSceneResourceGroup(handle);
+    parameters.x = x;
+    parameters.y = y;
+    parameters.priority = 0;
+    parameters.palette_offset = GetIntroScenePaletteIndex(core->pool_handle_6CE8);
+    parameters.color_mode = 1;
+    func_0805E99C(func_08008920(reinterpret_cast<void * const *>(core)),
+        group.third.Data(), group.third.Count(), &parameters);
+}
+
 SceneOwner IntroNameEntryTransition::CreateScene()
 {
     // The existing constructor installs the name-entry scene's vtable.

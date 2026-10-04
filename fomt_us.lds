@@ -66,6 +66,7 @@ SECTIONS
         asm/intro_scene.o(.text.intro_scene_core_after_startup);
         src/intro_scene.o(.text.intro_scene_core_sequence);
         asm/intro_scene.o(.text.intro_scene_core_after_sequence);
+        src/intro_scene.o(.text.intro_scene_sprite_submission);
         src/intro_scene.o(.text);
         asm/new_game.o(.text);
         src/hardware.o(.text);

@@ -2297,7 +2297,7 @@ func_080024E0:
     ldrsh	r2, [r0, r6]
     adds	r0, r7, #0
     movs	r3, #1
-    bl func_080035C0
+    bl SubmitIntroSceneSprite
     ldr r0, .Ljp_08002CA8
     adds	r4, r7, r0
     ldr	r1, [r4, #0]
@@ -2548,7 +2548,7 @@ func_080024E0:
     ldrsh	r2, [r0, r6]
     adds	r0, r7, #0
     movs	r3, #0
-    bl func_080035C0
+    bl SubmitIntroSceneSprite
     ldr r1, .Ljp_08002EA0
     adds	r0, r7, r1
     ldrb	r0, [r0, #0]
@@ -2816,7 +2816,7 @@ func_080024E0:
     adds	r0, r7, #0
     movs	r2, #148	@ 0x94
     movs	r3, #0
-    bl func_080035C0
+    bl SubmitIntroSceneSprite
 .Ljp_08002FC0:
     ldr r6, .Ljp_080030E0
     adds	r2, r7, r6
@@ -2848,7 +2848,7 @@ func_080024E0:
     adds	r0, r7, #0
     movs	r2, #148	@ 0x94
     movs	r3, #0
-    bl func_080035C0
+    bl SubmitIntroSceneSprite
 .Ljp_08003002:
     ldr r6, .Ljp_080030E4
     adds	r4, r7, r6
@@ -3110,7 +3110,7 @@ func_080024E0:
     ldrsh	r2, [r0, r6]
     adds	r0, r7, #0
     movs	r3, #2
-    bl func_080035C0
+    bl SubmitIntroSceneSprite
     movs	r0, #214	@ 0xd6
     lsls	r0, r0, #7
     adds	r4, r7, r0
@@ -3363,7 +3363,7 @@ func_080024E0:
     ldrsh	r2, [r0, r6]
     adds	r0, r7, #0
     movs	r3, #2
-    bl func_080035C0
+    bl SubmitIntroSceneSprite
     ldr r0, .Ljp_080034B8
     adds	r5, r7, r0
     ldr	r1, [r5, #0]
@@ -3615,7 +3615,7 @@ func_080024E0:
     ldrsh	r2, [r0, r3]
     adds	r0, r7, #0
     movs	r3, #2
-    bl func_080035C0
+    bl SubmitIntroSceneSprite
     add	sp, #164	@ 0xa4
     pop	{r3, r4, r5}
     mov	r8, r3
@@ -3625,164 +3625,6 @@ func_080024E0:
     pop	{r0}
     bx	r0
     .align 2, 0
-    .global func_080035C0
-    .thumb_func
-func_080035C0:
-    push	{r4, r5, r6, r7, lr}
-    mov	r7, r8
-    push	{r7}
-    sub	sp, #92	@ 0x5c
-    adds	r5, r0, #0
-    adds	r6, r1, #0
-    adds	r7, r2, #0
-    mov	r1, sp
-    movs	r2, #0
-    movs	r0, #0
-    strh	r0, [r1, #0]
-    strh	r0, [r1, #2]
-    strh	r0, [r1, #4]
-    strh	r0, [r1, #6]
-    strh	r0, [r1, #8]
-    str	r0, [sp, #12]
-    strb	r2, [r1, #16]
-    strb	r2, [r1, #17]
-    str	r0, [sp, #20]
-    strb	r2, [r1, #24]
-    add	r2, sp, #28
-    str	r0, [sp, #28]
-    strh	r0, [r2, #4]
-    add	r1, sp, #36	@ 0x24
-    str	r0, [sp, #36]	@ 0x24
-    strh	r0, [r1, #4]
-    add	r1, sp, #44	@ 0x2c
-    str	r0, [sp, #44]	@ 0x2c
-    strh	r0, [r1, #4]
-    add	r1, sp, #52	@ 0x34
-    str	r0, [sp, #52]	@ 0x34
-    strh	r0, [r1, #4]
-    mov	r8, r2
-    cmp	r3, #1
-    beq .Ljp_08003650
-    cmp	r3, #1
-    bgt .Ljp_08003630
-    cmp	r3, #0
-    beq .Ljp_08003636
-    b .Ljp_08003686
-.Ljp_08003630:
-    cmp	r3, #2
-    beq .Ljp_0800366C
-    b .Ljp_08003686
-.Ljp_08003636:
-    movs	r1, #215	@ 0xd7
-    lsls	r1, r1, #7
-    adds	r0, r5, r1
-    ldr r1, .Ljp_08003648
-    bl ResolveIndexedResourceHandle
-    ldr r2, .Ljp_0800364C
-    b .Ljp_0800367A
-    .align 2, 0
-.Ljp_08003648:
-    .4byte 0x0000091A
-.Ljp_0800364C:
-    .4byte 0x00006CD0
-.Ljp_08003650:
-    movs	r3, #215	@ 0xd7
-    lsls	r3, r3, #7
-    adds	r0, r5, r3
-    ldr r1, .Ljp_08003664
-    bl ResolveIndexedResourceHandle
-    ldr r4, .Ljp_08003668
-    adds	r0, r5, r4
-    b .Ljp_0800367C
-    .align 2, 0
-.Ljp_08003664:
-    .4byte 0x0000091B
-.Ljp_08003668:
-    .4byte 0x00006CD8
-.Ljp_0800366C:
-    movs	r1, #215	@ 0xd7
-    lsls	r1, r1, #7
-    adds	r0, r5, r1
-    ldr r1, .Ljp_08003708
-    bl ResolveIndexedResourceHandle
-    ldr r2, .Ljp_0800370C
-.Ljp_0800367A:
-    adds	r0, r5, r2
-.Ljp_0800367C:
-    ldr	r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
-    mov	r1, sp
-    strh	r0, [r1, #6]
-.Ljp_08003686:
-    movs	r3, #215	@ 0xd7
-    lsls	r3, r3, #7
-    adds	r0, r5, r3
-    ldr	r1, [r0, #0]
-    ldr	r3, [r1, #0]
-    ldrh	r2, [r0, #12]
-    ldr r4, .Ljp_08003710
-    adds	r0, r5, r4
-    lsls	r2, r2, #2
-    ldr	r0, [r0, #0]
-    adds	r0, r0, r2
-    ldrh	r2, [r0, #0]
-    add	r0, sp, #60	@ 0x3c
-    ldr	r3, [r3, #16]
-    bl _call_via_r3
-    add	r4, sp, #60	@ 0x3c
-    adds	r0, r4, #0
-    adds	r1, r4, #0
-    movs	r2, #32
-    bl memcpy
-    mov	r0, r8
-    ldmia	r4!, {r1, r2, r3}
-    stmia	r0!, {r1, r2, r3}
-    ldmia	r4!, {r1, r2, r3}
-    stmia	r0!, {r1, r2, r3}
-    ldmia	r4!, {r1, r2}
-    stmia	r0!, {r1, r2}
-    mov	r0, sp
-    movs	r1, #0
-    strh	r6, [r0, #0]
-    strh	r7, [r0, #2]
-    strh	r1, [r0, #8]
-    ldr r3, .Ljp_08003714
-    adds	r0, r5, r3
-    ldr	r1, [r0, #4]
-    bl func_080074C0
-    mov	r1, sp
-    strh	r0, [r1, #4]
-    movs	r0, #1
-    strb	r0, [r1, #24]
-    adds	r0, r5, #0
-    bl func_08008920
-    adds	r3, r0, #0
-    ldr	r0, [sp, #28]
-    adds	r1, r0, #0
-    movs	r2, #0
-    cmp	r1, #0
-    beq .Ljp_080036F2
-    mov	r4, r8
-    ldrh	r2, [r4, #4]
-.Ljp_080036F2:
-    adds	r0, r3, #0
-    mov	r3, sp
-    bl func_0805E99C
-    add	sp, #92	@ 0x5c
-    pop	{r3}
-    mov	r8, r3
-    pop	{r4, r5, r6, r7}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-.Ljp_08003708:
-    .4byte 0x0000091C
-.Ljp_0800370C:
-    .4byte 0x00006CE0
-.Ljp_08003710:
-    .4byte 0x00006B84
-.Ljp_08003714:
-    .4byte 0x00006CE8
     .else
     thumb_func_start func_080019D8
 func_080019D8: @ 0x080019D8
@@ -5829,7 +5671,7 @@ func_080024E0: @ 0x080024E0
     ldrsh r2, [r0, r6]
     adds r0, r7, #0
     movs r3, #1
-    bl func_080035C0
+    bl SubmitIntroSceneSprite
     ldr r0, .L08002C88 @ =0x00006AC0
     adds r4, r7, r0
     ldr r1, [r4]
@@ -6076,7 +5918,7 @@ func_080024E0: @ 0x080024E0
     ldrsh r2, [r0, r6]
     adds r0, r7, #0
     movs r3, #0
-    bl func_080035C0
+    bl SubmitIntroSceneSprite
     ldr r1, .L08002E80 @ =0x00006C6C
     adds r0, r7, r1
     ldrb r0, [r0]
@@ -6338,7 +6180,7 @@ func_080024E0: @ 0x080024E0
     adds r0, r7, #0
     movs r2, #0x94
     movs r3, #0
-    bl func_080035C0
+    bl SubmitIntroSceneSprite
 .L08002FA0:
     ldr r6, .L080030C0 @ =0x00006B60
     adds r2, r7, r6
@@ -6370,7 +6212,7 @@ func_080024E0: @ 0x080024E0
     adds r0, r7, #0
     movs r2, #0x94
     movs r3, #0
-    bl func_080035C0
+    bl SubmitIntroSceneSprite
 .L08002FE2:
     ldr r6, .L080030C4 @ =0x00006AE0
     adds r4, r7, r6
@@ -6625,7 +6467,7 @@ func_080024E0: @ 0x080024E0
     ldrsh r2, [r0, r6]
     adds r0, r7, #0
     movs r3, #2
-    bl func_080035C0
+    bl SubmitIntroSceneSprite
     movs r0, #0xd6
     lsls r0, r0, #7
     adds r4, r7, r0
@@ -6874,7 +6716,7 @@ func_080024E0: @ 0x080024E0
     ldrsh r2, [r0, r6]
     adds r0, r7, #0
     movs r3, #2
-    bl func_080035C0
+    bl SubmitIntroSceneSprite
     ldr r0, .L08003498 @ =0x00006B20
     adds r5, r7, r0
     ldr r1, [r5]
@@ -7121,7 +6963,7 @@ func_080024E0: @ 0x080024E0
     ldrsh r2, [r0, r3]
     adds r0, r7, #0
     movs r3, #2
-    bl func_080035C0
+    bl SubmitIntroSceneSprite
     add sp, #0xa4
     pop {r3, r4, r5}
     mov r8, r3
@@ -7131,155 +6973,5 @@ func_080024E0: @ 0x080024E0
     pop {r0}
     bx r0
     .align 2, 0
-
-    thumb_func_start func_080035C0
-func_080035C0: @ 0x080035C0
-    push {r4, r5, r6, r7, lr}
-    mov r7, r8
-    push {r7}
-    sub sp, #0x5c
-    adds r5, r0, #0
-    adds r6, r1, #0
-    adds r7, r2, #0
-    mov r1, sp
-    movs r2, #0
-    movs r0, #0
-    strh r0, [r1]
-    strh r0, [r1, #2]
-    strh r0, [r1, #4]
-    strh r0, [r1, #6]
-    strh r0, [r1, #8]
-    str r0, [sp, #0xc]
-    strb r2, [r1, #0x10]
-    strb r2, [r1, #0x11]
-    str r0, [sp, #0x14]
-    strb r2, [r1, #0x18]
-    add r2, sp, #0x1c
-    str r0, [sp, #0x1c]
-    strh r0, [r2, #4]
-    add r1, sp, #0x24
-    str r0, [sp, #0x24]
-    strh r0, [r1, #4]
-    add r1, sp, #0x2c
-    str r0, [sp, #0x2c]
-    strh r0, [r1, #4]
-    add r1, sp, #0x34
-    str r0, [sp, #0x34]
-    strh r0, [r1, #4]
-    mov r8, r2
-    cmp r3, #1
-    beq .L08003630
-    cmp r3, #1
-    bgt .L08003610
-    cmp r3, #0
-    beq .L08003616
-    b .L08003666
-.L08003610:
-    cmp r3, #2
-    beq .L0800364C
-    b .L08003666
-.L08003616:
-    movs r1, #0xd7
-    lsls r1, r1, #7
-    adds r0, r5, r1
-    ldr r1, .L08003628 @ =0x0000091A
-    bl ResolveIndexedResourceHandle
-    ldr r2, .L0800362C @ =0x00006CD0
-    b .L0800365A
-    .align 2, 0
-.L08003628: .4byte 0x0000091A
-.L0800362C: .4byte 0x00006CD0
-.L08003630:
-    movs r3, #0xd7
-    lsls r3, r3, #7
-    adds r0, r5, r3
-    ldr r1, .L08003644 @ =0x0000091B
-    bl ResolveIndexedResourceHandle
-    ldr r4, .L08003648 @ =0x00006CD8
-    adds r0, r5, r4
-    b .L0800365C
-    .align 2, 0
-.L08003644: .4byte 0x0000091B
-.L08003648: .4byte 0x00006CD8
-.L0800364C:
-    movs r1, #0xd7
-    lsls r1, r1, #7
-    adds r0, r5, r1
-    ldr r1, .L080036E8 @ =0x0000091C
-    bl ResolveIndexedResourceHandle
-    ldr r2, .L080036EC @ =0x00006CE0
-.L0800365A:
-    adds r0, r5, r2
-.L0800365C:
-    ldr r1, [r0, #4]
-    bl GetHardwareSharedStateTileIndex
-    mov r1, sp
-    strh r0, [r1, #6]
-.L08003666:
-    movs r3, #0xd7
-    lsls r3, r3, #7
-    adds r0, r5, r3
-    ldr r1, [r0]
-    ldr r3, [r1]
-    ldrh r2, [r0, #0xc]
-    ldr r4, .L080036F0 @ =0x00006B84
-    adds r0, r5, r4
-    lsls r2, r2, #2
-    ldr r0, [r0]
-    adds r0, r0, r2
-    ldrh r2, [r0]
-    add r0, sp, #0x3c
-    ldr r3, [r3, #0x10]
-    bl _call_via_r3
-    add r4, sp, #0x3c
-    adds r0, r4, #0
-    adds r1, r4, #0
-    movs r2, #0x20
-    bl memcpy
-    mov r0, r8
-    ldm r4!, {r1, r2, r3}
-    stm r0!, {r1, r2, r3}
-    ldm r4!, {r1, r2, r3}
-    stm r0!, {r1, r2, r3}
-    ldm r4!, {r1, r2}
-    stm r0!, {r1, r2}
-    mov r0, sp
-    movs r1, #0
-    strh r6, [r0]
-    strh r7, [r0, #2]
-    strh r1, [r0, #8]
-    ldr r3, .L080036F4 @ =0x00006CE8
-    adds r0, r5, r3
-    ldr r1, [r0, #4]
-    bl func_080074C0
-    mov r1, sp
-    strh r0, [r1, #4]
-    movs r0, #1
-    strb r0, [r1, #0x18]
-    adds r0, r5, #0
-    bl func_08008920
-    adds r3, r0, #0
-    ldr r0, [sp, #0x1c]
-    adds r1, r0, #0
-    movs r2, #0
-    cmp r1, #0
-    beq .L080036D2
-    mov r4, r8
-    ldrh r2, [r4, #4]
-.L080036D2:
-    adds r0, r3, #0
-    mov r3, sp
-    bl func_0805E99C
-    add sp, #0x5c
-    pop {r3}
-    mov r8, r3
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L080036E8: .4byte 0x0000091C
-.L080036EC: .4byte 0x00006CE0
-.L080036F0: .4byte 0x00006B84
-.L080036F4: .4byte 0x00006CE8
 
     .endif
