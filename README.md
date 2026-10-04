@@ -86,6 +86,15 @@ sources to `.gbapal`. FoMT's native compression uses `tools/fomt-lz`, not
 the GBA BIOS LZ codec. Rules that still take `.original.lz` remain template
 dependent; these have not all been replaced with independent encoders.
 
+Native Huffman/LZ3 encoding supports the same source-only greedy algorithm
+for 4-bit and 8-bit literals. Huffman-4 uses it by default; Huffman-8 requires
+`--greedy`, preserving the existing default planner. `--tie=last` selects
+the same deterministic equal-weight policy used by Huffman/LZ2. It builds
+the tree from the current literals rather than reading a saved tree.
+Three additional map palette/tilemap streams now use this policy through
+the existing shared rule; other template-dependent streams remain unfinished.
+Run `tools/fomt-lz test-huff-lz3` for the native boundary self-tests.
+
 The upstream [scaninc](./tools/scaninc/README.md) scans assembly includes and
 resource references before assembly, including on the first build. Make loads
 the generated `.d` files and builds missing resources through the graphics
