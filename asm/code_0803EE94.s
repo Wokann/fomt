@@ -5299,7 +5299,7 @@ func_0804F19C: @ 0x0804EF28
     add r0, sp, #0x10
     adds r1, r4, #0
     movs r2, #0
-    bl func_0805E790
+    bl GetGroupData__C22IndexedResourceArchiveUi
     ldr r0, [sp, #0x20]
     ldrb r1, [r5, #0xe]
     lsls r1, r1, #0x19
@@ -12456,7 +12456,7 @@ func_08054D34:
     mov r0, sb
     ldr r1, [sp, #0x54]
     adds r2, r5, #0
-    bl func_0805E4D4
+    bl GetGroupData__C22IndexedResourceArchiveUi
     mov r1, sp
     mov r0, sb
     ldm r0!, {r2, r3, r4}
@@ -12981,7 +12981,7 @@ func_080558C4:
     adds r1, #0xe0
     mov r0, sb
     movs r2, #0
-    bl func_0805E4D4
+    bl GetGroupData__C22IndexedResourceArchiveUi
     add r1, sp, #0x20
     mov r0, sb
     ldm r0!, {r3, r4, r5}
@@ -13385,7 +13385,7 @@ func_080558C4:
     adds r1, #0xb0
     mov r0, sb
     movs r2, #0
-    bl func_0805E4D4
+    bl GetGroupData__C22IndexedResourceArchiveUi
     add r1, sp, #0x20
     mov r0, sb
     ldm r0!, {r3, r5, r7}
@@ -13740,7 +13740,7 @@ func_080558C4:
     adds r1, r6, r4
     mov r0, sb
     movs r2, #0
-    bl func_0805E4D4
+    bl GetGroupData__C22IndexedResourceArchiveUi
     add r1, sp, #0x20
     mov r0, sb
     ldm r0!, {r2, r5, r7}
@@ -14099,7 +14099,7 @@ func_080558C4:
     adds r1, r6, r4
     mov r0, sb
     movs r2, #0
-    bl func_0805E4D4
+    bl GetGroupData__C22IndexedResourceArchiveUi
     add r1, sp, #0x20
     mov r0, sb
     ldm r0!, {r2, r5, r7}
@@ -15841,7 +15841,7 @@ func_08057D34:
     adds r1, #0x50
     adds r0, r7, #0
     adds r2, r4, #0
-    bl func_0805E4D4
+    bl GetGroupData__C22IndexedResourceArchiveUi
     mov r0, sp
     strh r6, [r0]
     mov r1, r8
@@ -17923,7 +17923,7 @@ func_08059FE0:
     add r1, r8
     add r0, sp, #0xc
     movs r2, #0
-    bl func_0805E4D4
+    bl GetGroupData__C22IndexedResourceArchiveUi
     add r5, sp, #0x1c
     ldr r4, [sp, #0x1c]
     movs r0, #0xc9
@@ -19799,7 +19799,7 @@ func_0805A6E4:
     ldr r1, [sp, #0x6c]
     add r0, sp, #0x20
     movs r2, #0
-    bl func_0805E4D4
+    bl GetGroupData__C22IndexedResourceArchiveUi
     mov r1, sp
     add r0, sp, #0x20
     ldm r0!, {r2, r3, r4}
@@ -19847,7 +19847,7 @@ func_0805A6E4:
     add r0, sp, #0x20
     ldr r1, [sp, #0x6c]
     movs r2, #1
-    bl func_0805E4D4
+    bl GetGroupData__C22IndexedResourceArchiveUi
     mov r1, sp
     add r0, sp, #0x20
     ldm r0!, {r2, r5, r7}
@@ -20015,7 +20015,7 @@ func_0805A6E4:
     add r0, sp, #0x20
     ldr r1, [sp, #0x84]
     movs r2, #0
-    bl func_0805E4D4
+    bl GetGroupData__C22IndexedResourceArchiveUi
     mov r1, sp
     add r0, sp, #0x20
     ldm r0!, {r2, r3, r4}
@@ -20369,7 +20369,7 @@ func_0805A6E4:
     adds r1, #0xe0
     adds r0, r2, #0
     movs r2, #0
-    bl func_0805E4D4
+    bl GetGroupData__C22IndexedResourceArchiveUi
     add r1, sp, #0x20
     ldr r0, [sp, #0x84]
     ldm r0!, {r3, r6, r7}
@@ -22009,7 +22009,7 @@ func_0805DC24:
     adds r1, #0x50
     adds r0, r4, #0
     movs r2, #0
-    bl func_0805E4D4
+    bl GetGroupData__C22IndexedResourceArchiveUi
     add r1, sp, #0xc
     adds r0, r4, #0
     ldm r0!, {r2, r3, r4}
@@ -22499,85 +22499,6 @@ func_0805E3DC:
     pop {r4, r5}
     pop {r1}
     bx r1
-    .section .text.indexed_resource_archive_resolve_after
-    .global func_0805E790
-    .thumb_func
-func_0805E790:
-    .global func_0805E4D4
-    .thumb_func
-func_0805E4D4:
-    push {r4, r5, r6, r7, lr}
-    mov r7, sb
-    mov r6, r8
-    push {r6, r7}
-    mov ip, r0
-    adds r7, r1, #0
-    ldrh r0, [r7, #0x22]
-    cmp r2, r0
-    bhs .Ljp_0805E534
-    lsls r1, r2, #4
-    ldr r0, [r7, #8]
-    adds r0, r0, r1
-    ldrh r3, [r0, #2]
-    ldrh r1, [r0]
-    mov sb, r1
-    ldrh r4, [r0, #6]
-    lsls r4, r4, #5
-    ldr r1, [r7, #0x10]
-    adds r4, r4, r1
-    ldrh r6, [r0, #4]
-    ldrh r2, [r0, #0xa]
-    lsls r2, r2, #5
-    ldr r1, [r7, #0x14]
-    adds r2, r2, r1
-    ldrh r5, [r0, #8]
-    ldrh r1, [r0, #0xe]
-    ldrh r0, [r0, #0xc]
-    mov r8, r0
-    lsls r3, r3, #3
-    ldr r0, [r7, #0xc]
-    adds r3, r3, r0
-    lsls r6, r6, #5
-    lsls r5, r5, #5
-    lsls r1, r1, #3
-    ldr r0, [r7, #0x18]
-    adds r1, r1, r0
-    mov r0, ip
-    str r3, [r0]
-    mov r3, sb
-    strh r3, [r0, #4]
-    str r4, [r0, #8]
-    strh r6, [r0, #0xc]
-    str r2, [r0, #0x10]
-    strh r5, [r0, #0x14]
-    str r1, [r0, #0x18]
-    mov r1, r8
-    strh r1, [r0, #0x1c]
-    b .Ljp_0805E550
-.Ljp_0805E534:
-    movs r0, #0
-    mov r2, ip
-    str r0, [r2]
-    strh r0, [r2, #4]
-    mov r1, ip
-    adds r1, #8
-    str r0, [r2, #8]
-    strh r0, [r1, #4]
-    adds r1, #8
-    str r0, [r2, #0x10]
-    strh r0, [r1, #4]
-    adds r1, #8
-    str r0, [r2, #0x18]
-    strh r0, [r1, #4]
-.Ljp_0805E550:
-    mov r0, ip
-    pop {r3, r4}
-    mov r8, r3
-    mov sb, r4
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .align 2, 0
     .section .text.indexed_resource_handle_constructor_after
     .global func_0805E894
     .thumb_func
@@ -60001,7 +59922,7 @@ func_080701BC:
 	add r0, sp, #0xc
 	mov r1, sb
 	adds r2, r4, #0
-	bl func_0805E4D4
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	adds r0, r7, #0
 	adds r0, #0x18
 	add r1, sp, #0xc
@@ -60019,7 +59940,7 @@ func_080701BC:
 	add r0, sp, #0xc
 	mov r1, r8
 	adds r2, r4, #0
-	bl func_0805E4D4
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	adds r0, r7, #0
 	adds r0, #0x18
 	add r1, sp, #0xc
@@ -77016,7 +76937,7 @@ func_0807865C: @ 0x0807865C
 	adds r0, #0x58
 	adds r1, r5, #0
 	movs r2, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	adds r0, r7, #0
 	adds r0, #0x78
 	adds r1, r5, #0
@@ -77107,7 +77028,7 @@ func_0807865C: @ 0x0807865C
 	adds r1, r7, #0
 	adds r1, #0x28
 	adds r2, r4, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	adds r0, r7, #0
 	adds r0, #0x20
 	add r1, sp, #0x24
@@ -77154,7 +77075,7 @@ func_0807865C: @ 0x0807865C
 	ldrh r2, [r1]
 	add r0, sp, #0x44
 	mov r1, sb
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	adds r0, r7, #0
 	adds r0, #0x20
 	add r1, sp, #0x44
@@ -80981,7 +80902,7 @@ func_0807A878:
 	adds r1, r5, r2
 	adds r0, r4, #0
 	movs r2, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	mov r1, sp
 	adds r0, r4, #0
 	ldm r0!, {r3, r4, r6}
@@ -151907,7 +151828,7 @@ func_0804F19C: @ 0x0804F19C
 	add r0, sp, #0x10
 	adds r1, r4, #0
 	movs r2, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	ldr r0, [sp, #0x20]
 	ldrb r1, [r5, #0xe]
 	lsls r1, r1, #0x19
@@ -163379,7 +163300,7 @@ func_08055264: @ 0x08055264
 	mov r0, sb
 	ldr r1, [sp, #0x54]
 	adds r2, r5, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	mov r1, sp
 	mov r0, sb
 	ldm r0!, {r2, r3, r4}
@@ -163931,7 +163852,7 @@ func_080558C4: @ 0x080558C4
 	adds r1, #0xe0
 	mov r0, sb
 	movs r2, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	add r1, sp, #0x20
 	mov r0, sb
 	ldm r0!, {r3, r4, r5}
@@ -164337,7 +164258,7 @@ func_080558C4: @ 0x080558C4
 	adds r1, #0xb0
 	mov r0, sb
 	movs r2, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	add r1, sp, #0x20
 	mov r0, sb
 	ldm r0!, {r3, r5, r7}
@@ -164696,7 +164617,7 @@ func_080558C4: @ 0x080558C4
 	adds r1, r6, r4
 	mov r0, sb
 	movs r2, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	add r1, sp, #0x20
 	mov r0, sb
 	ldm r0!, {r2, r5, r7}
@@ -165059,7 +164980,7 @@ func_080558C4: @ 0x080558C4
 	adds r1, r6, r4
 	mov r0, sb
 	movs r2, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	add r1, sp, #0x20
 	mov r0, sb
 	ldm r0!, {r2, r5, r7}
@@ -168705,7 +168626,7 @@ func_08057D34: @ 0x08057D34
 	adds r1, #0x50
 	adds r0, r7, #0
 	adds r2, r4, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	mov r0, sp
 	strh r6, [r0]
 	mov r1, r8
@@ -172782,7 +172703,7 @@ func_08059FE0: @ 0x08059FE0
 	add r1, r8
 	add r0, sp, #0xc
 	movs r2, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	add r5, sp, #0x1c
 	ldr r4, [sp, #0x1c]
 	movs r0, #0xc9
@@ -175767,7 +175688,7 @@ func_0805B38C: @ 0x0805B38C
 	ldr r1, [sp, #0x6c]
 	add r0, sp, #0x20
 	movs r2, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	mov r1, sp
 	add r0, sp, #0x20
 	ldm r0!, {r2, r3, r4}
@@ -175815,7 +175736,7 @@ func_0805B38C: @ 0x0805B38C
 	add r0, sp, #0x20
 	ldr r1, [sp, #0x6c]
 	movs r2, #1
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	mov r1, sp
 	add r0, sp, #0x20
 	ldm r0!, {r2, r5, r7}
@@ -175983,7 +175904,7 @@ func_0805B38C: @ 0x0805B38C
 	add r0, sp, #0x20
 	ldr r1, [sp, #0x84]
 	movs r2, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	mov r1, sp
 	add r0, sp, #0x20
 	ldm r0!, {r2, r3, r4}
@@ -176343,7 +176264,7 @@ func_0805BC34: @ 0x0805BC34
 	adds r1, #0xe0
 	adds r0, r2, #0
 	movs r2, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	add r1, sp, #0x20
 	ldr r0, [sp, #0x84]
 	ldm r0!, {r3, r6, r7}
@@ -177473,7 +177394,7 @@ func_0805BC34: @ 0x0805BC34
 	adds r1, r5, #0
 	adds r1, #0x50
 	adds r2, r4, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	add r1, sp, #0x20
 	mov r0, r8
 	ldm r0!, {r2, r3, r6}
@@ -180306,7 +180227,7 @@ func_0805DC24: @ 0x0805DC24
 	adds r1, #0x50
 	adds r0, r4, #0
 	movs r2, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	add r1, sp, #0xc
 	adds r0, r4, #0
 	ldm r0!, {r2, r3, r4}
@@ -181601,82 +181522,6 @@ func_0805E698: @ 0x0805E698
 	pop {r1}
 	bx r1
 
-	.section .text.indexed_resource_archive_resolve_after
-
-	thumb_func_start func_0805E790
-func_0805E790: @ 0x0805E790
-	push {r4, r5, r6, r7, lr}
-	mov r7, sb
-	mov r6, r8
-	push {r6, r7}
-	mov ip, r0
-	adds r7, r1, #0
-	ldrh r0, [r7, #0x22]
-	cmp r2, r0
-	bhs .L0805E7F0
-	lsls r1, r2, #4
-	ldr r0, [r7, #8]
-	adds r0, r0, r1
-	ldrh r3, [r0, #2]
-	ldrh r1, [r0]
-	mov sb, r1
-	ldrh r4, [r0, #6]
-	lsls r4, r4, #5
-	ldr r1, [r7, #0x10]
-	adds r4, r4, r1
-	ldrh r6, [r0, #4]
-	ldrh r2, [r0, #0xa]
-	lsls r2, r2, #5
-	ldr r1, [r7, #0x14]
-	adds r2, r2, r1
-	ldrh r5, [r0, #8]
-	ldrh r1, [r0, #0xe]
-	ldrh r0, [r0, #0xc]
-	mov r8, r0
-	lsls r3, r3, #3
-	ldr r0, [r7, #0xc]
-	adds r3, r3, r0
-	lsls r6, r6, #5
-	lsls r5, r5, #5
-	lsls r1, r1, #3
-	ldr r0, [r7, #0x18]
-	adds r1, r1, r0
-	mov r0, ip
-	str r3, [r0]
-	mov r3, sb
-	strh r3, [r0, #4]
-	str r4, [r0, #8]
-	strh r6, [r0, #0xc]
-	str r2, [r0, #0x10]
-	strh r5, [r0, #0x14]
-	str r1, [r0, #0x18]
-	mov r1, r8
-	strh r1, [r0, #0x1c]
-	b .L0805E80C
-.L0805E7F0:
-	movs r0, #0
-	mov r2, ip
-	str r0, [r2]
-	strh r0, [r2, #4]
-	mov r1, ip
-	adds r1, #8
-	str r0, [r2, #8]
-	strh r0, [r1, #4]
-	adds r1, #8
-	str r0, [r2, #0x10]
-	strh r0, [r1, #4]
-	adds r1, #8
-	str r0, [r2, #0x18]
-	strh r0, [r1, #4]
-.L0805E80C:
-	mov r0, ip
-	pop {r3, r4}
-	mov r8, r3
-	mov sb, r4
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
 	.section .text.indexed_resource_handle_constructor_after
 
 	thumb_func_start func_0805E894
@@ -219025,7 +218870,7 @@ func_080701BC: @ 0x080701BC
 	add r0, sp, #0xc
 	mov r1, sb
 	adds r2, r4, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	adds r0, r7, #0
 	adds r0, #0x18
 	add r1, sp, #0xc
@@ -219043,7 +218888,7 @@ func_080701BC: @ 0x080701BC
 	add r0, sp, #0xc
 	mov r1, r8
 	adds r2, r4, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	adds r0, r7, #0
 	adds r0, #0x18
 	add r1, sp, #0xc
@@ -236882,7 +236727,7 @@ func_0807865C: @ 0x0807865C
 	adds r0, #0x58
 	adds r1, r5, #0
 	movs r2, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	adds r0, r7, #0
 	adds r0, #0x78
 	adds r1, r5, #0
@@ -236973,7 +236818,7 @@ func_0807865C: @ 0x0807865C
 	adds r1, r7, #0
 	adds r1, #0x28
 	adds r2, r4, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	adds r0, r7, #0
 	adds r0, #0x20
 	add r1, sp, #0x24
@@ -237020,7 +236865,7 @@ func_0807865C: @ 0x0807865C
 	ldrh r2, [r1]
 	add r0, sp, #0x44
 	mov r1, sb
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	adds r0, r7, #0
 	adds r0, #0x20
 	add r1, sp, #0x44
@@ -240780,7 +240625,7 @@ func_0807A878: @ 0x0807A878
 	adds r1, r5, r2
 	adds r0, r4, #0
 	movs r2, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	mov r1, sp
 	adds r0, r4, #0
 	ldm r0!, {r3, r4, r6}
@@ -297903,7 +297748,7 @@ func_0809800C: @ 0x0809800C
 	mov r0, sb
 	ldr r1, [sp, #0xac]
 	movs r2, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	ldr r1, [sp, #0xa4]
 	mov r0, sb
 	ldm r0!, {r2, r3, r4}
@@ -299402,7 +299247,7 @@ func_08098CE8: @ 0x08098CE8
 	mov r0, sb
 	ldr r1, [sp, #0xa0]
 	movs r2, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	add r1, sp, #0xc
 	mov r0, sb
 	ldm r0!, {r2, r3, r4}
@@ -300712,7 +300557,7 @@ func_0809964C: @ 0x0809964C
 	ldr r0, [sp, #0xc4]
 	ldr r1, [sp, #0xb0]
 	movs r2, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	ldr r1, [sp, #0xb8]
 	ldr r0, [sp, #0xc4]
 	ldm r0!, {r2, r3, r4}

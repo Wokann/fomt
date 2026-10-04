@@ -1336,7 +1336,7 @@ func_080019D8:
     adds	r1, r7, r2
     adds	r0, r6, #0
     movs	r2, #0
-    bl func_0805E4D4
+    bl GetGroupData__C22IndexedResourceArchiveUi
     mov	r1, sp
     adds	r0, r6, #0
     ldmia	r0!, {r2, r3, r4}
@@ -4946,7 +4946,7 @@ func_080019D8: @ 0x080019D8
     adds r1, r7, r2
     adds r0, r6, #0
     movs r2, #0
-    bl func_0805E790
+    bl GetGroupData__C22IndexedResourceArchiveUi
     mov r1, sp
     adds r0, r6, #0
     ldm r0!, {r2, r3, r4}

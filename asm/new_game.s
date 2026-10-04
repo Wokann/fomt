@@ -1441,7 +1441,7 @@ func_080041DC:
     ldr	r0, [sp, #108]
     mov	r1, sl
     movs	r2, #0
-    bl func_0805E790
+    bl GetGroupData__C22IndexedResourceArchiveUi
     ldr	r0, [sp, #20]
     ldr	r1, [r0, #4]
     ldr	r0, [r0, #0]
@@ -1794,7 +1794,7 @@ func_08004570:
     adds	r1, r6, #0
     adds	r1, #28
     movs	r2, #0
-    bl func_0805E790
+    bl GetGroupData__C22IndexedResourceArchiveUi
     ldr	r4, [sp, #24]
     adds	r0, r6, #0
     adds	r0, #76
@@ -8674,7 +8674,7 @@ func_080041DC: @ 0x080041DC
     ldr r0, [sp, #0x6c]
     mov r1, sl
     movs r2, #0
-    bl func_0805E790
+    bl GetGroupData__C22IndexedResourceArchiveUi
     ldr r0, [sp, #0x14]
     ldr r1, [r0, #4]
     ldr r0, [r0]
@@ -9027,7 +9027,7 @@ func_08004570: @ 0x08004570
     adds r1, r6, #0
     adds r1, #0x1c
     movs r2, #0
-    bl func_0805E790
+    bl GetGroupData__C22IndexedResourceArchiveUi
     ldr r4, [sp, #0x18]
     adds r0, r6, #0
     adds r0, #0x4c

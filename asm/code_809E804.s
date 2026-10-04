@@ -8647,7 +8647,7 @@ func_080A2BA4: @ 0x080A25DC
 	add r4, sp, #0x24
 	adds r0, r4, #0
 	movs r2, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	adds r1, r5, #0
 	adds r0, r4, #0
 	ldm r0!, {r2, r3, r6}
@@ -99765,7 +99765,7 @@ func_080A2BA4: @ 0x080A2BA4
 	add r4, sp, #0x24
 	adds r0, r4, #0
 	movs r2, #0
-	bl func_0805E790
+	bl GetGroupData__C22IndexedResourceArchiveUi
 	adds r1, r5, #0
 	adds r0, r4, #0
 	ldm r0!, {r2, r3, r6}

@@ -187,7 +187,6 @@ extern void func_08093D80(void);
 extern void func_080E2C34(void);
 extern void func_080E2C7C(void);
 extern void func_080E14B8(void);
-extern void func_0805E4D4(void);
 extern void func_0805FA48(void);
 extern void func_0805FA88(void);
 extern void func_08063E58(void);
@@ -496,7 +495,6 @@ extern void func_08081B00(void);
 extern void func_080E1E28(void);
 extern void func_0805E658(void);
 extern void func_0805E698(void);
-extern void func_0805E790(void);
 extern void func_0805FD04(void);
 extern void func_0805FD44(void);
 extern void func_08063E58(void);
@@ -678,6 +676,7 @@ extern void func_08070C88(void);
 extern void func_08075DEC(void);
 extern void func_08075328(void);
 extern void Resolve__C22IndexedResourceArchiveUi(void);
+extern void GetGroupData__C22IndexedResourceArchiveUi(void);
 extern void func_0804EF20(void);
 extern void func_0804EFAC(void);
 extern void func_0804F060(void);
@@ -5113,13 +5112,13 @@ extern RawVTableFunction const vtable_unk_080E79B8[]
 extern RawVTableFunction const vtable_unk_080E79C8[]
     SECTION(".rodata.vtable_79c8") = {
 #if defined(REGION_JP)
-        func_0805E4D4,
+        GetGroupData__C22IndexedResourceArchiveUi,
 #else
         nullptr,
         nullptr,
         func_080E1984,
         Resolve__C22IndexedResourceArchiveUi,
-        func_0805E790,
+        GetGroupData__C22IndexedResourceArchiveUi,
 #endif
     };
 

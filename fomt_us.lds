@@ -233,7 +233,7 @@ SECTIONS
         src/resource_handle.o(.text.indexed_resource_archive_constructor);
         . = 0x5E760; /* JP/US-shared indexed resource-archive resolver. */
         src/resource_handle.o(.text.indexed_resource_archive_resolve);
-        . = 0x5E790; asm/code_0803EE94.o(.text.indexed_resource_archive_resolve_after);
+        . = 0x5E790; src/resource_handle.o(.text.indexed_resource_archive_get_group_data);
         . = 0x5E81C; /* JP/US-shared indexed resource-archive group count. */
         src/resource_handle.o(.text.indexed_resource_archive_get_group_descriptor_count);
         . = 0x5E820; /* JP/US-shared indexed resource-archive entry count. */

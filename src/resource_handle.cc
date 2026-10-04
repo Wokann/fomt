@@ -84,6 +84,34 @@ IndexedResourceResult IndexedResourceArchive::Resolve(u32 index) const
     return IndexedResourceResult(0, 0);
 }
 
+IndexedResourceGroupResult IndexedResourceArchive::GetGroupData(u32 index) const
+{
+    if (index < group_descriptor_count)
+    {
+        IndexedResourceArchiveGroupDescriptor const * descriptor = group_descriptors + index;
+        u16 third_first_index = descriptor->third_first_index;
+        u16 third_count = descriptor->third_count;
+        u32 fourth_address = descriptor->fourth_first_index << 5;
+        fourth_address += (u32)fourth_descriptors;
+        u16 fourth_count = descriptor->fourth_count;
+        u32 fifth_address = descriptor->fifth_first_index << 5;
+        fifth_address += (u32)fifth_descriptors;
+        u16 fifth_count = descriptor->fifth_count;
+        u16 sixth_first_index = descriptor->sixth_first_index;
+        u16 sixth_count = descriptor->sixth_count;
+        u32 third_address = third_first_index << 3;
+        third_address += (u32)third_descriptors;
+
+        return IndexedResourceGroupResult(
+            (IndexedResourceArchiveDescriptor8 *)third_address, third_count,
+            (IndexedResourceArchiveDescriptor32 *)fourth_address, fourth_count << 5,
+            (IndexedResourceArchiveDescriptor32 *)fifth_address, fifth_count << 5,
+            sixth_descriptors + sixth_first_index, sixth_count);
+    }
+
+    return IndexedResourceGroupResult(0, 0, 0, 0, 0, 0, 0, 0);
+}
+
 u16 IndexedResourceArchive::GetGroupDescriptorCount() const
 {
     return group_descriptor_count;
