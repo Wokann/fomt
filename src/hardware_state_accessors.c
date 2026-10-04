@@ -52,9 +52,9 @@ u8 * func_08008910(void * const * state)
     return (u8 *)&((struct HardwareCoreState *)*state)->dma_queue;
 }
 
-u8 * func_08008918(void * const * state)
+struct HardwareDisplayState * func_08008918(void * const * state)
 {
-    return (u8 *)&((struct HardwareCoreState *)*state)->display;
+    return &((struct HardwareCoreState *)*state)->display;
 }
 
 u8 * func_08008920(void * const * state)
@@ -67,9 +67,9 @@ u8 * func_08008928(void * const * state)
     return (u8 *)&((struct HardwareCoreState *)*state)->dma_queue;
 }
 
-u8 * func_08008930(void * const * state)
+struct HardwareDisplayState * func_08008930(void * const * state)
 {
-    return (u8 *)&((struct HardwareCoreState *)*state)->display;
+    return &((struct HardwareCoreState *)*state)->display;
 }
 
 u8 * func_08008938(void * const * state)

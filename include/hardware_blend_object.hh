@@ -13,7 +13,7 @@ struct HardwareBlendObject {
     void * const * vtable;
     struct HardwareBlendController blend;
 #ifdef __cplusplus
-    HardwareBlendObject(u8 * register_base) asm("func_08009548");
+    HardwareBlendObject(HardwareDisplayState * display) asm("func_08009548");
 #endif
 };
 
@@ -31,16 +31,16 @@ i16 func_080094F8(struct HardwareBlendObject * object);
 i16 func_08009508(struct HardwareBlendObject * object, i16 step);
 void func_0800951C(struct HardwareBlendObject * object, i16 step, u32 mode, u32 mosaic);
 void func_0800952C(struct HardwareBlendObject * object, i16 step, u32 mode, u32 mosaic);
-u8 * func_0800953C(struct HardwareBlendObject * object, u8 * register_base);
-struct HardwareBlendObject * func_08009548(struct HardwareBlendObject * object, u8 * register_base);
+struct HardwareDisplayState * func_0800953C(struct HardwareBlendObject * object, struct HardwareDisplayState * display);
+struct HardwareBlendObject * func_08009548(struct HardwareBlendObject * object, struct HardwareDisplayState * display);
 
 EXTERN_C_END
 
 #ifdef __cplusplus
-inline HardwareBlendObject::HardwareBlendObject(u8 * register_base)
+inline HardwareBlendObject::HardwareBlendObject(HardwareDisplayState * display)
     : unk_00(nullptr), unk_04(nullptr), vtable(vtable_unk_080E5B80)
 {
-    func_08009300(&blend, register_base);
+    func_08009300(&blend, display);
 }
 
 // One-word owner used by scenes while a blend command is on the hardware

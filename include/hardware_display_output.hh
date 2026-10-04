@@ -36,7 +36,9 @@ struct HardwareDisplayState {
     u16 matrix_a[4];
     u8 unk_28[8];
     u16 matrix_b[4];
-    u8 unk_38[0x18];
+    u8 unk_38[0x14];
+    u16 mosaic;
+    u16 unk_4E;
     u16 blend_control;
     u16 blend_alpha;
     u16 blend_brightness;
@@ -54,6 +56,7 @@ struct HardwareDisplayState {
 typedef char HardwareDisplayState_size_check[(sizeof(struct HardwareDisplayState) == 0x58) ? 1 : -1];
 typedef char HardwareDisplayState_background_control_offset_check[(offsetof(struct HardwareDisplayState, background_control) == 0x08) ? 1 : -1];
 typedef char HardwareDisplayState_background_scroll_offset_check[(offsetof(struct HardwareDisplayState, background_scroll) == 0x10) ? 1 : -1];
+typedef char HardwareDisplayState_mosaic_offset_check[(offsetof(struct HardwareDisplayState, mosaic) == 0x4C) ? 1 : -1];
 typedef char HardwareDisplayState_blend_control_offset_check[(offsetof(struct HardwareDisplayState, blend_control) == 0x50) ? 1 : -1];
 
 struct HardwareSpriteBufferState {

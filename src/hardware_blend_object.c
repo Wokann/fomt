@@ -45,16 +45,16 @@ void func_0800952C(struct HardwareBlendObject * object, i16 step, u32 mode, u32 
     func_0800934C(&object->blend, step, mode, mosaic);
 }
 
-u8 * func_0800953C(struct HardwareBlendObject * object, u8 * register_base)
+struct HardwareDisplayState * func_0800953C(struct HardwareBlendObject * object, struct HardwareDisplayState * display)
 {
-    return func_08009344(&object->blend, register_base);
+    return func_08009344(&object->blend, display);
 }
 
-struct HardwareBlendObject * func_08009548(struct HardwareBlendObject * object, u8 * register_base)
+struct HardwareBlendObject * func_08009548(struct HardwareBlendObject * object, struct HardwareDisplayState * display)
 {
     object->unk_00 = 0;
     object->unk_04 = 0;
     object->vtable = vtable_unk_080E5B80;
-    func_08009300(&object->blend, register_base);
+    func_08009300(&object->blend, display);
     return object;
 }

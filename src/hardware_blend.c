@@ -3,10 +3,10 @@
 extern void * __builtin_new(u32 size);
 extern void __builtin_delete(void * pointer);
 
-struct HardwareBlendController * func_08009300(struct HardwareBlendController * controller, u8 * register_base)
+struct HardwareBlendController * func_08009300(struct HardwareBlendController * controller, struct HardwareDisplayState * display)
 {
     struct HardwareBlendState * state = __builtin_new(sizeof(*state));
-    state->register_base = register_base;
+    state->display = display;
     state->step = 0;
     state->mode = 0;
     state->mosaic_enabled = 0;
@@ -22,10 +22,10 @@ void func_08009324(struct HardwareBlendController * controller, u32 flags)
         __builtin_delete(controller);
 }
 
-u8 * func_08009344(struct HardwareBlendController * controller, u8 * register_base)
+struct HardwareDisplayState * func_08009344(struct HardwareBlendController * controller, struct HardwareDisplayState * display)
 {
-    u8 * previous = controller->state->register_base;
-    controller->state->register_base = register_base;
+    struct HardwareDisplayState * previous = controller->state->display;
+    controller->state->display = display;
     return previous;
 }
 
