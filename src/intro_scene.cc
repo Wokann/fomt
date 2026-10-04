@@ -5,6 +5,9 @@
 #include "hardware_blend_object.hh"
 #include "hardware_display_output.hh"
 #include "hardware_state_accessors.hh"
+#include "sram_proxy_1.hh"
+#include "sram_proxy_2.hh"
+#include <stdlib.h>
 
 EXTERN_C
 
@@ -150,7 +153,7 @@ SceneTransitionOwner RunIntroSceneCore(IntroSceneCore * core)
             core->run_state = 1;
             break;
         case 1:
-            if (func_08000FF8(core) == 1)
+            if (RunIntroSceneSequence(core) == 1)
                 goto choose_continuation;
             core->run_state = 0;
             break;
@@ -216,6 +219,375 @@ void StartIntroSceneCore(IntroSceneCore * core)
             break;
         }
     } while (!finished);
+}
+
+int RunIntroSceneSequence(IntroSceneCore * core)
+{
+    func_08008724(reinterpret_cast<HardwareBootstrap *>(core));
+    func_080019D8(core);
+    func_08008918(reinterpret_cast<void * const *>(core))->SetBlendControl(0x3F);
+    HardwareBlendOwner owner(new HardwareBlendObject(
+        func_08008918(reinterpret_cast<void * const *>(core))));
+    func_0800934C(&owner.object->blend, 0x889, 1, 0);
+    QueueIntroSceneBlend(core, owner);
+    func_08008B6C(core->music_players, 0x23);
+    core->unk_6C64 = 0x400;
+    core->unk_6C66 = 0;
+    core->unk_6C68 = 0;
+    core->unk_6C6A = 0x400;
+    core->startup_phase = 3;
+    core->unk_6D30 = 224;
+    core->unk_6C6D = 0;
+    core->unk_6C6C = 0;
+
+    i8 countdown = 0;
+    i16 left_state = 0;
+    i16 right_state = 0;
+    i16 sound_state = 0;
+    bool skipped = false, reset_pending = false, confirmed = false, finished = false;
+    do
+    {
+        rand();
+        func_080087C8(reinterpret_cast<HardwareBootstrap *>(core));
+        func_080088B8(reinterpret_cast<void * const *>(core));
+        if (!skipped)
+        {
+            bool pressed = false;
+            if (static_cast<u16>(func_080088CC(reinterpret_cast<void * const *>(core)) & 1)
+                || static_cast<u16>(func_080088CC(reinterpret_cast<void * const *>(core)) & 2)
+                || static_cast<u16>(func_080088CC(reinterpret_cast<void * const *>(core)) & 8))
+                pressed = true;
+            if (pressed)
+                core->startup_phase = 11;
+        }
+
+        switch (core->startup_phase)
+        {
+        case 3:
+            if (!owner.IsQueued())
+                core->startup_phase = 4;
+            break;
+        case 4:
+            if (static_cast<i16>(--core->unk_6D30) < 0)
+                core->unk_6D30 = 0;
+            core->resources[0].unk_18 -= 0xB000;
+            if (core->resources[0].unk_18 <= 0x6FFFFF)
+                core->resources[0].unk_18 = 0x700000;
+            if (static_cast<i16>(core->unk_6D30) == 0 && core->resources[0].unk_18 == 0x700000)
+            {
+                ResolveIndexedResourceHandle(&core->resources[0].handle, 0x194);
+                core->startup_hold_frames = 90;
+                core->startup_phase = 5;
+            }
+            break;
+        case 5:
+            --core->startup_hold_frames;
+            switch (core->startup_hold_frames)
+            {
+            case 60:
+                ResolveIndexedResourceHandle(&core->resources[0].handle, 0x192);
+                break;
+            case 30:
+                ResolveIndexedResourceHandle(&core->resources[0].handle, 0x195);
+                break;
+            }
+            if (core->startup_hold_frames <= 0)
+            {
+                ResolveIndexedResourceHandle(&core->resources[0].handle, 0x1FD);
+                func_08008B6C(core->music_players + 1, 0x67);
+                core->startup_phase = 6;
+            }
+            break;
+        case 6:
+            if (core->resources[0].flags.unk_2 < 0)
+            {
+                ResolveIndexedResourceHandle(&core->resources[0].handle, 0x195);
+                right_state = left_state = 1;
+                core->startup_phase = 7;
+            }
+            break;
+        case 7:
+            core->resources[1].unk_18 -= 0x14000;
+            if (core->resources[1].unk_18 <= 0x800000)
+            {
+                core->startup_hold_frames = 60;
+                ResolveIndexedResourceHandle(&core->resources[0].handle, 0x1C2);
+                sound_state = 1;
+                core->resources[1].unk_18 = 0x800000;
+                core->startup_phase = 8;
+            }
+            break;
+        case 8:
+            if (--core->startup_hold_frames <= 0)
+                core->startup_phase = 9;
+            break;
+        case 9:
+            core->resources[8].unk_1C += 0x18000;
+            if (core->resources[8].unk_1C >= 0)
+            {
+                core->resources[8].unk_1C = 0;
+                core->unk_6C6C = 1;
+                reset_pending = true;
+                sound_state = 3;
+                core->startup_phase = 10;
+            }
+            break;
+        case 10:
+            core->unk_6C64 -= 16;
+            core->unk_6C6A -= 16;
+            if (core->unk_6C64 == 0x100)
+            {
+                skipped = true;
+                core->startup_phase = 12;
+            }
+            break;
+        case 11:
+            core->unk_6D30 = 0;
+            core->resources[0].unk_18 = 0x700000;
+            ResolveIndexedResourceHandle(&core->resources[0].handle, 0x192);
+            ResolveIndexedResourceHandle(&core->resources[1].handle, 0x338);
+            core->resources[1].unk_18 = 0x800000;
+            reset_pending = false;
+            sound_state = 0;
+            right_state = left_state = 2;
+            core->unk_6C6C = 9;
+            core->resources[8].unk_1C = 0;
+            core->unk_6C64 = 0x100;
+            core->unk_6C6A = 0x100;
+            skipped = true;
+            core->startup_phase = 12;
+            break;
+        case 12:
+        {
+            SramAccess access;
+            if (func_080003A0(&access) == 0)
+            {
+                core->unk_6C6D = 1;
+                core->continuation = 0;
+                core->resources[10].unk_18 = 0x500000;
+#if defined(REGION_JP)
+                ResolveIndexedResourceHandle(&core->resources[10].handle, 3);
+#else
+                ResolveIndexedResourceHandle(&core->resources[10].handle, 2);
+#endif
+                core->resources[13].unk_18 = 0x500000;
+            }
+            else
+            {
+                core->unk_6C6D = 2;
+                core->continuation = 1;
+                core->resources[10].unk_18 = 0x180000;
+                core->resources[11].unk_18 = 0x880000;
+#if defined(REGION_JP)
+                ResolveIndexedResourceHandle(&core->resources[11].handle, 6);
+#else
+                ResolveIndexedResourceHandle(&core->resources[11].handle, 5);
+#endif
+                core->resources[13].unk_18 = 0x880000;
+            }
+            core->startup_hold_frames = 0x924;
+            core->startup_phase = 13;
+            break;
+        }
+        case 13:
+        {
+            if (core->unk_6C6D == 2)
+            {
+                bool moved = false;
+                if (static_cast<u16>(func_080088CC(reinterpret_cast<void * const *>(core)) & 32)
+                    || static_cast<u16>(func_080088CC(reinterpret_cast<void * const *>(core)) & 16))
+                    moved = true;
+                if (moved)
+                {
+                    core->continuation ^= 1;
+                    if (core->continuation == 0)
+                    {
+#if defined(REGION_JP)
+                        ResolveIndexedResourceHandle(&core->resources[10].handle, 3);
+                        ResolveIndexedResourceHandle(&core->resources[11].handle, 5);
+#else
+                        ResolveIndexedResourceHandle(&core->resources[10].handle, 2);
+                        ResolveIndexedResourceHandle(&core->resources[11].handle, 4);
+#endif
+                        core->resources[13].unk_18 = 0x180000;
+                    }
+                    else
+                    {
+#if defined(REGION_JP)
+                        ResolveIndexedResourceHandle(&core->resources[10].handle, 2);
+                        ResolveIndexedResourceHandle(&core->resources[11].handle, 6);
+#else
+                        ResolveIndexedResourceHandle(&core->resources[10].handle, 1);
+                        ResolveIndexedResourceHandle(&core->resources[11].handle, 5);
+#endif
+                        core->resources[13].unk_18 = 0x880000;
+                    }
+                    core->startup_hold_frames = 0x708;
+                    func_08008B6C(core->music_players + 1, 0xCB);
+                }
+            }
+
+            bool pressed = false;
+            if (static_cast<u16>(func_080088CC(reinterpret_cast<void * const *>(core)) & 1)
+                || static_cast<u16>(func_080088CC(reinterpret_cast<void * const *>(core)) & 8))
+                pressed = true;
+            if (pressed)
+            {
+                if (core->continuation == 0)
+                {
+#if defined(REGION_JP)
+                    ResolveIndexedResourceHandle(&core->resources[10].handle, 4);
+#else
+                    ResolveIndexedResourceHandle(&core->resources[10].handle, 3);
+#endif
+                }
+                else
+                {
+#if defined(REGION_JP)
+                    ResolveIndexedResourceHandle(&core->resources[11].handle, 7);
+#else
+                    ResolveIndexedResourceHandle(&core->resources[11].handle, 6);
+#endif
+                }
+                core->startup_hold_frames = 60;
+                func_08008B6C(core->music_players + 1, 0xC5);
+                core->startup_phase = 14;
+            }
+            else if (--core->startup_hold_frames <= 0)
+                core->startup_phase = 15;
+            break;
+        }
+        case 14:
+            if (--core->startup_hold_frames <= 0)
+            {
+                confirmed = true;
+                core->startup_phase = 15;
+            }
+            break;
+        case 15:
+        {
+            HardwareBlendObject * object = owner.object;
+            i16 step = 0x889;
+            func_08009378(&object->blend, step, 1, 0);
+            QueueIntroSceneBlend(core, owner);
+            core->startup_phase = 16;
+            break;
+        }
+        case 16:
+            if (!owner.IsQueued())
+                finished = true;
+            break;
+        }
+
+        if (reset_pending && core->resources[0].flags.unk_2 < 0)
+        {
+            ResolveIndexedResourceHandle(&core->resources[0].handle, 0x192);
+            reset_pending = false;
+        }
+
+        switch (sound_state)
+        {
+        case 1:
+            ResolveIndexedResourceHandle(&core->resources[1].handle, 0x370);
+            func_08008B6C(core->music_players + 1, 0xA9);
+            sound_state = 2;
+            break;
+        case 2:
+            if (core->resources[1].flags.unk_2 < 0)
+                func_08008B88(core->music_players + 1, 0xA9);
+            break;
+        case 3:
+            if (core->resources[1].flags.unk_2 < 0)
+            {
+                ResolveIndexedResourceHandle(&core->resources[1].handle, 0x338);
+                sound_state = 0;
+            }
+            break;
+        }
+
+        switch (left_state)
+        {
+        case 1:
+            if (core->resources[3].unk_18 > 0xBC0000)
+            {
+                core->resources[3].unk_18 -= 0x6000;
+                break;
+            }
+            // Reaching the target enters the same finalization as state 2.
+        case 2:
+            ResolveIndexedResourceHandle(&core->resources[3].handle, 0x2B6);
+            core->resources[3].unk_18 = 0xBC0000;
+            left_state = 0;
+            break;
+        }
+
+        switch (right_state)
+        {
+        case 1:
+            if (core->resources[4].unk_18 <= 0x3FFFFF)
+            {
+                core->resources[4].unk_18 += 0x8000;
+                break;
+            }
+            // Reaching the target enters the same finalization as state 2.
+        case 2:
+            ResolveIndexedResourceHandle(&core->resources[4].handle, 0x928);
+            core->resources[4].unk_18 = 0x400000;
+            right_state = 0;
+            break;
+        }
+
+        switch (core->unk_6C6C)
+        {
+        case 1:
+            core->resources[5].unk_1C += 0x10000;
+            core->resources[6].unk_1C = core->resources[5].unk_1C;
+            core->resources[5].unk_18 -= 0x10000;
+            core->resources[6].unk_18 += 0x10000;
+            if (core->resources[5].unk_1C > 0x5FFFFF)
+                core->unk_6C6C = 2;
+            break;
+        case 2:
+            core->resources[5].unk_1C += 0x10000;
+            core->resources[6].unk_1C = core->resources[5].unk_1C;
+            core->resources[5].unk_18 += 0x10000;
+            core->resources[6].unk_18 -= 0x10000;
+            if (core->resources[5].unk_1C <= 0x93FFFF)
+                break;
+            core->unk_6C6C = 3;
+            // Start the hold immediately when this movement completes.
+        case 3:
+        case 9:
+            core->resources[5].unk_18 = 0x1C0000;
+            core->resources[6].unk_18 = 0xD40000;
+            core->resources[6].unk_1C = core->resources[5].unk_1C = 0x940000;
+            if (core->unk_6C6C == 3)
+                countdown = 30;
+            else
+            {
+                ResolveIndexedResourceHandle(&core->resources[5].handle, 0x71C);
+                ResolveIndexedResourceHandle(&core->resources[6].handle, 0x71C);
+                countdown = 0;
+            }
+            core->unk_6C6C = 4;
+            // The first countdown tick belongs to the same frame.
+        case 4:
+            if (--countdown < 0)
+            {
+                ResolveIndexedResourceHandle(&core->resources[5].handle, 0x71C);
+                ResolveIndexedResourceHandle(&core->resources[6].handle, 0x71C);
+                core->unk_6C6C = 5;
+            }
+            break;
+        }
+
+        func_08008918(reinterpret_cast<void * const *>(core))->SetBackgroundX(0, core->unk_6D30);
+        func_08008918(reinterpret_cast<void * const *>(core))->SetBackgroundX(1, core->unk_6D30);
+        func_08008918(reinterpret_cast<void * const *>(core))->SetBackgroundX(2, core->unk_6D30);
+        func_08008918(reinterpret_cast<void * const *>(core))->SetBackgroundX(3, core->unk_6D30);
+        func_080024E0(core);
+    } while (!finished);
+    return confirmed;
 }
 
 SceneOwner IntroNameEntryTransition::CreateScene()

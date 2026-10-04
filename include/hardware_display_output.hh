@@ -12,10 +12,20 @@ inline void WriteHardwareDisplayHalfword(u16 & destination, u16 value)
     destination = value;
 }
 
+inline u16 ReadHardwareDisplayHalfword(u16 const & value)
+{
+    return value;
+}
+
 struct HardwareDisplayRegisterValue {
     u16 value;
 
-    HardwareDisplayRegisterValue(u16 input)
+    HardwareDisplayRegisterValue(int input)
+    {
+        WriteHardwareDisplayHalfword(value, input);
+    }
+
+    HardwareDisplayRegisterValue(u16 const & input)
     {
         WriteHardwareDisplayHalfword(value, input);
     }
@@ -49,6 +59,12 @@ struct HardwareDisplayState {
     void SetBlendControl(HardwareDisplayRegisterValue const & control)
     {
         WriteHardwareDisplayHalfword(blend_control, control.value);
+    }
+
+    void SetBackgroundX(unsigned int index, HardwareDisplayRegisterValue const & input)
+    {
+        WriteHardwareDisplayHalfword(background_scroll[index][0],
+            ReadHardwareDisplayHalfword(input.value));
     }
 #endif
 };

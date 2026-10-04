@@ -17,4 +17,20 @@ void func_08000728(void *destination, u16 flag);
 
 EXTERN_C_END
 
+// MainBootFrame and the name-entry core both reserve two words for this
+// access context. Its constructor initializes the shared SRAM service;
+// the contents of the context itself remain unknown here.
+struct SramAccess
+{
+    u32 unk_00[2];
+#ifdef __cplusplus
+    SramAccess()
+    {
+        func_08000640(this);
+    }
+#endif
+};
+
+typedef char SramAccessSizeCheck[(sizeof(struct SramAccess) == 8) ? 1 : -1];
+
 #endif // SRAM_PROXY_2_HH
