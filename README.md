@@ -93,6 +93,11 @@ the same deterministic equal-weight policy used by Huffman/LZ2. It builds
 the tree from the current literals rather than reading a saved tree.
 Three additional map palette/tilemap streams now use this policy through
 the existing shared rule; other template-dependent streams remain unfinished.
+`--tie=reverse-select` orders equal-weight symbols by reversing an ascending
+selection sort computed from the current literal frequencies. The shared
+`map_15/layer_5.tilemap` now also encodes directly with this generic policy;
+it does not read an original stream, save a symbol permutation, or pad to a
+fixed output size.
 Run `tools/fomt-lz test-huff-lz3` for the native boundary self-tests.
 
 The upstream [scaninc](./tools/scaninc/README.md) scans assembly includes and

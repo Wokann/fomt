@@ -1399,8 +1399,9 @@ static void write_huff_atom_byte(BitWriter *writer, HuffModel const *model,
 
 // The greedy Huffman/LZ compressor orders equal-depth leaves by descending
 // literal frequency. The default keeps selection-sort traversal; explicit
-// tie policies use first occurrence or reverse symbol order. This is an
-// encoding choice, just like the LZ ladder, not a saved tree or symbol list.
+// tie policies use first occurrence, reverse symbol order, or reverse
+// ascending selection. This is an encoding choice, just like the LZ ladder,
+// not a saved tree or symbol list.
 static void huff_model_frequency_order(HuffModel *model,
                                         unsigned char const *literals,
                                         size_t literal_size, unsigned symbol_bits,
@@ -1428,14 +1429,27 @@ static void huff_model_frequency_order(HuffModel *model,
         unsigned best = left;
         for (unsigned right = left + 1; right < alphabet; right++) {
             unsigned a = order[right], b = order[best];
-            if (frequency[a] > frequency[b] ||
-                (frequency[a] == frequency[b] && tie_order == 1 && first[a] < first[b]) ||
-                (frequency[a] == frequency[b] && tie_order == 2 && a > b))
+            if (tie_order == 4 ? frequency[a] <= frequency[b]
+                : frequency[a] > frequency[b] ||
+                  (frequency[a] == frequency[b] && tie_order == 1 && first[a] < first[b]) ||
+                  (frequency[a] == frequency[b] && tie_order == 2 && a > b))
                 best = right;
         }
         unsigned swap = order[left];
         order[left] = order[best];
         order[best] = swap;
+    }
+    // Ascending selection chooses the last equal-weight entry. Reversing the
+    // result gives decreasing frequencies but a different, deterministic tie
+    // order than selecting directly in decreasing order. The policy is derived
+    // from the current histogram; it never stores a retail symbol permutation.
+    if (tie_order == 4) {
+        for (unsigned left = 0; left < alphabet / 2; left++) {
+            unsigned right = alphabet - left - 1;
+            unsigned swap = order[left];
+            order[left] = order[right];
+            order[right] = swap;
+        }
     }
     unsigned code = 0;
     for (unsigned length = 1; length <= symbol_bits * 2; length++) {
@@ -2915,7 +2929,7 @@ static void usage(void)
     fail("usage: fomt-lz encode-lz0|encode-lz1|encode-lz2|encode-lz3|encode-huff4-lz0|"
          "encode-huff4-lz2|encode-huff8-lz2|encode-huff4-lz3|encode-huff8-lz3 "
          "SOURCE OUTPUT LADDER SLOT_SIZE "
-         "[--literal-tail] [--filter=1..4] [--tie=first|reverse|last] "
+         "[--literal-tail] [--filter=1..4] [--tie=first|reverse|last|reverse-select] "
          "[--parent-first] [--greedy] | "
          "rebuild-native SOURCE ORIGINAL OUTPUT [TAIL] | "
          "rebuild-huff8-lz3 SOURCE ORIGINAL OUTPUT LADDER SLOT_SIZE | "
@@ -3041,7 +3055,7 @@ static void test_huff_lz3(void)
         parse_ladder(ladder_values[ladder_index], ladder, 3);
         for (unsigned symbol_bits = 4; symbol_bits <= 8; symbol_bits += 4) {
             for (unsigned parent_first = 0; parent_first < 2; parent_first++) {
-                for (unsigned tie_order = 0; tie_order < 4; tie_order++) {
+                for (unsigned tie_order = 0; tie_order < 5; tie_order++) {
                     for (unsigned index = 0; index < sizeof(sizes) / sizeof(*sizes); index++) {
                         size_t size = sizes[index];
                         for (unsigned pattern = 0; pattern < 8; pattern++) {
@@ -3370,6 +3384,10 @@ int main(int argc, char **argv)
             } else if ((huff4 || huff8) && !tie_seen &&
                        strcmp(argv[index], "--tie=reverse") == 0) {
                 tie_order = 2;
+                tie_seen = 1;
+            } else if ((huff4 || huff8) && !tie_seen &&
+                       strcmp(argv[index], "--tie=reverse-select") == 0) {
+                tie_order = 4;
                 tie_seen = 1;
             } else if ((huff4_lz2 || huff8_lz2 || huff4 || huff8) && !tie_seen &&
                        strcmp(argv[index], "--tie=last") == 0) {
