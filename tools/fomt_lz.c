@@ -1757,6 +1757,18 @@ static void huff_model_frequency_order(HuffModel *model,
             for (unsigned right = left + 1; right < alphabet; right++)
                 if (frequency[order[right]] > frequency[order[left]])
                     huff_frequency_swap(order + left, order + right);
+        // Canonical leaves are exchange-sorted a second time by their
+        // computed depth. This is not a stable grouping by depth: exchanges
+        // across depths can reorder equal-frequency leaves. Keep synthetic
+        // leaves of one-symbol inputs, but omit symbols absent from the tree.
+        symbol_count = 0;
+        for (unsigned index = 0; index < alphabet; index++)
+            if (model->bits[order[index]])
+                order[symbol_count++] = order[index];
+        for (unsigned left = 0; left < symbol_count; left++)
+            for (unsigned right = left + 1; right < symbol_count; right++)
+                if (model->bits[order[right]] < model->bits[order[left]])
+                    huff_frequency_swap(order + left, order + right);
     } else {
         for (unsigned left = 0; left < alphabet; left++) {
             unsigned best = left;

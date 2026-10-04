@@ -223,7 +223,8 @@ FOMT_LZ_ENCODE_OUTPUTS := $(addsuffix .lz, \
   $(UI_SCENE_08077810_LAYER0_SOURCE) $(UI_SCENE_08077810_LAYER1_SOURCE) \
   $(UI_SCENE_08077810_JP_TILES) $(UI_SCENE_08077810_JP_LAYER1_SOURCE) \
   $(addprefix $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_,$(addsuffix .4bpp,00 01 02 03 05 06)) \
-  $(addprefix $(MAP_DATA_SOURCE_DIR)/map_,$(addsuffix /layer_0.4bpp,08 09 14 36 44 53)) \
+  $(addprefix $(MAP_DATA_SOURCE_DIR)/map_,$(addsuffix /layer_0.4bpp,08 09 14 15 36 44 53)) \
+  $(addprefix $(MAP_DATA_SOURCE_DIR)/map_,$(addsuffix /layer_3.tilemap,14 15)) \
   $(addprefix $(INTRO_OBJECTS_SOURCE_DIR)/object_,$(addsuffix .4bpp,00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19)) \
   $(MAP_DATA_SOURCE_DIR)/map_08/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_08/layer_2.gbapal \
   $(MAP_DATA_SOURCE_DIR)/map_09/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_09/layer_2.gbapal \
@@ -318,6 +319,8 @@ $(MAP_DATA_SOURCE_DIR)/map_08/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,
 $(MAP_DATA_SOURCE_DIR)/map_08/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,9,14 0 --greedy --tie=exchange --filter=1
 $(MAP_DATA_SOURCE_DIR)/map_09/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,9,13 0 --greedy --tie=exchange --filter=1
 $(MAP_DATA_SOURCE_DIR)/map_14/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 6,11,14 0 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_15/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 6,11,14 0 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_14/layer_3.tilemap.lz $(MAP_DATA_SOURCE_DIR)/map_15/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 8,10,14 0 --greedy --tie=exchange
 $(MAP_DATA_SOURCE_DIR)/map_36/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,9,13 0 --greedy --tie=exchange
 $(MAP_DATA_SOURCE_DIR)/map_44/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,10,13 0 --greedy --tie=exchange --filter=1
 $(MAP_DATA_SOURCE_DIR)/map_53/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,9,12 0 --greedy --tie=exchange --filter=1

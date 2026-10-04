@@ -111,12 +111,13 @@ the tree. The shared Farm Status `secondary_03.tilemap` now uses this source-onl
 policy with no original-stream input, stored permutation, or fixed-size padding.
 `--tie=exchange` sorts the full alphabet by current literal frequency using
 ordinary descending pairwise exchanges, then omits unused leaves. Tree merges
-prefer the last-created node on equal weights; canonical codes retain each
-leaf's computed depth. It uses neither a saved permutation nor a template.
-Besides Farm Status `secondary_02` and `secondary_05`, fourteen Huffman-8/LZ3
-streams now use this policy through the shared rule: six map tile sets, three
-FarmHouse visuals, startup tiles, Farm Status tiles, winter background tiles,
-and two scene tile sets. All fourteen reproduce the complete retail streams
+prefer the last-created node on equal weights. Canonical leaves undergo a
+second exchange sort by computed depth, not a stable grouping; each leaf
+retains its computed depth. It uses neither a saved permutation nor a template.
+Besides Farm Status `secondary_02` and `secondary_05`, seventeen Huffman-8/LZ3
+streams now use this policy through the shared rule: seven map tile sets,
+two map tilemaps, three FarmHouse visuals, startup tiles, Farm Status tiles,
+winter background tiles, and two scene tile sets. All seventeen reproduce the complete retail streams
 without fixed-size output padding; their obsolete packing templates are removed.
 `--tail=FILE` optionally appends another source before encoding. It is used
 only by the scene whose decoded payload really has a separate two-byte trailer,
@@ -124,10 +125,11 @@ not as a general archive builder or a ROM-derived padding step.
 Run `tools/fomt-lz test-huff-lz3` for the native boundary self-tests.
 
 通用交换排序策略根据当前源码的频率建立 Huffman 树并生成规范码，
-不读取原版编码表。本次十四份 Huffman-8/LZ3 流均已独立逐字节匹配，
+不读取原版编码表。规范码还须按计算出的深度再作一次交换排序，不能
+用稳定分组代替。目前十七份 Huffman-8/LZ3 流均已独立逐字节匹配，
 移除了压缩模板；有真实两字节尾部的场景才使用通用 `--tail=FILE` 拼接。
-实际 Make 依赖中仍有 JP 六份、US/EU/DE 各七份 `.original.lz` 输入，
-它们尚未完成独立编码匹配，不能据此宣布整个资源链已经完成。
+实际 Make 依赖中仍有 JP 三份、US/EU/DE 各四份 `.original.lz` 输入，
+均为尚未独立匹配的 Huffman-8/LZ2，不能据此宣布整个资源链已经完成。
 
 The upstream [scaninc](./tools/scaninc/README.md) scans assembly includes and
 resource references before assembly, including on the first build. Make loads

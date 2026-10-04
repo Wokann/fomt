@@ -24,7 +24,7 @@ Make rules convert seven editable PNG tile sets to `.4bpp`, eleven editable
 JASC palettes to `.gbapal`, and then use the shared `tools/fomt-lz` codec to
 make the source-adjacent `.lz` files. The other 24 sources are native u16
 `.tilemap` files, preserving tile indices, flip flags, and palette banks.
-Thirty-nine streams now encode directly from their tile, palette or tilemap
+All forty-two streams now encode directly from their tile, palette or tilemap
 sources. These include map `08` layers `1`/`2`, map `09` layers `1`/`2`/`5`, and map `31`
 layer `5`, plus map `44` and `45` layer `5` with the codec's 16-bit differential
 filter. The same filter also directly encodes Raw-LZ2 tilemaps: map `08`
@@ -39,20 +39,24 @@ it does not copy a tree or command stream from a reference file.
 Map `08`, `09`, `14`, `36`, `44`, and `53` layer `0` tiles now also use
 source-only Huffman-8/LZ3 with `--greedy --tie=exchange`; all but `36` apply
 the verified four-bit differential filter. The six obsolete packing templates
-are removed. Together with the previously completed streams, all 39 direct
-encoders match the complete retail bytes. Retained `.original.lz` samples
+are removed. Map `14` layer `3`, and map `15` layers `0` and `3`, now use the
+same source-only Huffman-8/LZ3 policy. Its canonical leaves must be exchange-
+sorted by depth after frequency sorting, not simply grouped stably by depth.
+The computed depths remain unchanged. These three final templates are removed,
+and all 42 direct encoders match the complete retail bytes. Retained `.original.lz` samples
 for those streams are audit copies, not build inputs.
 
-Only map `14` layer `3`, and map `15` layers `0` and `3`, still require
-source-adjacent original packing metadata. No normal build reads `baserom`.
+None of these 42 streams requires original packing metadata as a build input.
+No normal build reads `baserom`.
 Nonzero compressor slots reject oversize output; slot zero uses the natural
 compressed length. The existing ROM link boundaries and unresolved references
 still constrain growth. Native decoder checks and complete four-region ROM
 comparisons verify output; they do not prove arbitrary layout changes safe.
 
-这段连续地图资源共 42 份，39 份已独立从源码编码；本次新增六份
-layer_0 图块并移除其压缩模板。仍未完成的是 map_14/layer_3、
-map_15/layer_0 和 map_15/layer_3，不能把它们计入独立编码完成量。
+这段连续地图资源共 42 份，现已全部独立从源码编码。最后三份
+map_14/layer_3、map_15/layer_0 和 map_15/layer_3 复用通用编码器，
+由当前频率建树，规范码再按深度交换排序，未添加资源专用排列或
+补丁。三份旧模板移除；这不扩大对后续 230 份原始资源的完成量。
 
 The `gMapData` table references 272 distinct visual streams overall. The
 remaining 230 are still present as original bytes in the assembly source;
