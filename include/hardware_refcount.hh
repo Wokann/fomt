@@ -98,6 +98,9 @@ typedef struct HardwareTileTree128 {
     HardwareTileTree128() : full(false), empty(true) {}
     u32 Allocate(u32 size_shift) SECTION(".text.hardware_shared_state_tile_tree_operations");
     void Free(u32 offset, u32 size_shift) SECTION(".text.hardware_shared_state_tile_tree_operations");
+    // These two bodies remain in asm/code_linkonce.s with this member ABI.
+    void Reserve(u32 offset, u32 length);
+    void Unreserve(u32 offset, u32 length);
 #endif
 } HardwareTileTree128;
 
@@ -109,6 +112,9 @@ typedef struct HardwareTileTree256 {
     HardwareTileTree256() : full(false), empty(true) {}
     u32 Allocate(u32 size_shift) SECTION(".text.hardware_shared_state_tile_tree_operations");
     void Free(u32 offset, u32 size_shift) SECTION(".text.hardware_shared_state_tile_tree_operations");
+    // These two bodies remain in asm/code_linkonce.s with this member ABI.
+    void Reserve(u32 offset, u32 length);
+    void Unreserve(u32 offset, u32 length);
 #endif
 } HardwareTileTree256;
 
@@ -120,6 +126,8 @@ typedef struct HardwareTileTree512 {
     HardwareTileTree512() : full(false), empty(true) {}
     u32 Allocate(u32 size_shift) SECTION(".text.hardware_shared_state_tile_tree_operations");
     void Free(u32 offset, u32 size_shift) SECTION(".text.hardware_shared_state_tile_tree_operations");
+    void Reserve(u32 offset, u32 length) SECTION(".text.hardware_shared_state_tile_tree_after");
+    void Unreserve(u32 offset, u32 length) SECTION(".text.hardware_shared_state_tile_tree_unreserve_after");
 #endif
 } HardwareTileTree512;
 
@@ -131,6 +139,7 @@ typedef struct HardwareTileTree1024 {
     HardwareTileTree1024();
     // Allocate 2^size_shift tiles, or return 1024 when no range is available.
     u32 Allocate(u32 size_shift);
+    void Free(u32 offset, u32 size_shift);
 #endif
 } HardwareTileTree1024;
 

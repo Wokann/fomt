@@ -1,11 +1,6 @@
 #include "hardware_state_properties.hh"
 #include "hardware_refcount.hh"
 
-EXTERN_C
-void func_080D7118(void *, u32, u32);
-void func_080D734C(void *, u32, u32);
-EXTERN_C_END
-
 u16 func_08007E8C(void)
 {
     return ((HardwareSharedState *)gUnk_03000408)->allocation_count;
@@ -62,14 +57,14 @@ void func_08007EE8(u8 * state, u32 offset, u32 length)
         capacity_pointer = &first_capacity;
         first_length = length > first_capacity ? capacity_pointer : length_pointer;
         selected_length = *first_length;
-        func_080D7118(state + 4, offset, selected_length);
+        reinterpret_cast<HardwareTileTree1024 *>(state)->children[0].Reserve(offset, selected_length);
     }
     if (offset + length > 0x200) {
         second_offset = offset > 0x1FF ? offset - 0x200 : 0;
         second_length = offset + length;
         second_length -= 0x200;
         second_length -= second_offset;
-        func_080D7118(state + 0x80, second_offset, second_length);
+        reinterpret_cast<HardwareTileTree1024 *>(state)->children[1].Reserve(second_offset, second_length);
     }
     active = 0;
     if (state[4] != 0)
@@ -107,14 +102,14 @@ void func_08007F84(u8 * state, u32 offset, u32 length)
         capacity_pointer = &first_capacity;
         first_length = length > first_capacity ? capacity_pointer : length_pointer;
         selected_length = *first_length;
-        func_080D734C(first_buffer, offset, selected_length);
+        reinterpret_cast<HardwareTileTree512 *>(first_buffer)->Unreserve(offset, selected_length);
     }
     if (offset + length > 0x200) {
         second_offset = offset > 0x1FF ? offset - 0x200 : 0;
         second_length = offset + length;
         second_length -= 0x200;
         second_length -= second_offset;
-        func_080D734C(state + 0x80, second_offset, second_length);
+        reinterpret_cast<HardwareTileTree1024 *>(state)->children[1].Unreserve(second_offset, second_length);
     }
     state[0] = 0;
     active = 0;
@@ -159,30 +154,24 @@ u32 HardwareTileTree1024::Allocate(u32 size_shift)
     return 0x400;
 }
 
-void func_080080A0(u8 * state, u32 offset, u32 kind)
+void HardwareTileTree1024::Free(u32 offset, u32 size_shift)
 {
-    u8 * first_buffer;
-    u8 * chosen_buffer;
-    u8 * second_buffer;
-    u32 active;
-    u32 use_second;
-
-    if (kind <= 9) {
-        use_second = offset & 0x200;
-        first_buffer = state + 4;
-        chosen_buffer = first_buffer;
+    if (size_shift <= 9) {
+        u32 use_second = offset & 512;
+        HardwareTileTree512 * first = &children[0];
+        HardwareTileTree512 * child = first;
         if (use_second)
-            chosen_buffer = state + 0x80;
-        reinterpret_cast<HardwareTileTree512 *>(chosen_buffer)->Free(offset, kind);
-        state[0] = 0;
-        active = 0;
-        if (first_buffer[1] != 0) {
-            second_buffer = state + 0x80;
-            active = (0u - second_buffer[1]) >> 31;
+            child = &children[1];
+        child->Free(offset, size_shift);
+        full = false;
+        u32 active = 0;
+        if (first->empty != 0) {
+            HardwareTileTree512 * second = &children[1];
+            active = (0u - second->empty) >> 31;
         }
-        state[1] = active;
-    } else if (kind == 10) {
-        func_08007EC8(state);
+        empty = active;
+    } else if (size_shift == 10) {
+        func_08007EC8(reinterpret_cast<u8 *>(this));
     }
 }
 

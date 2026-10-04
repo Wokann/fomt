@@ -494,7 +494,7 @@ func_08007A28: @ 0x08007A28
     adds r1, r3, #0
     lsrs r2, r2, #0x1c
     ldr r0, [sp, #0xc]
-    bl func_080080A0
+    bl Free__20HardwareTileTree1024UiUi
     movs r0, #0
     strh r0, [r6, #4]
     ldr r0, [r5, #0x20]

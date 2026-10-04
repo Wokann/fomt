@@ -34,7 +34,6 @@ u32 AllocateHardwareSharedStateHandle(void *, u32 size_shift)
 u32 AllocateHardwareSharedStateHandle(void *, u32 size_shift)
 {
     HardwareSharedState * state = reinterpret_cast<HardwareSharedState *>(gUnk_03000408);
-    u8 * tree = reinterpret_cast<u8 *>(&state->tile_tree);
     u32 value;
     u32 const first = state->tile_tree.Allocate(size_shift);
     bool valid = first < 1024;
@@ -62,7 +61,7 @@ u32 AllocateHardwareSharedStateHandle(void *, u32 size_shift)
             value = result.value;
             goto done;
         }
-        func_080080A0(tree, first, size_shift);
+        state->tile_tree.Free(first, size_shift);
     }
     value = 0;
 done:
@@ -84,8 +83,7 @@ void ReleaseHardwareSharedStateHandle(void *, u32 value)
             if (valid) {
                 u16 remaining = --entry.data.params.reference_count;
                 if (remaining == 0) {
-                    func_080080A0(reinterpret_cast<u8 *>(&state->tile_tree),
-                        entry.data.params.tile_index, entry.data.params.size_shift);
+                    state->tile_tree.Free(entry.data.params.tile_index, entry.data.params.size_shift);
                     entry.generation = remaining;
                     entry.data.next_free = state->pool.first_free;
                     state->pool.first_free = &entry;
@@ -308,6 +306,63 @@ void HardwareTileTree64::Unreserve(u32 offset, u32 length)
     if (children[0].IsEmpty())
         if (children[1].IsEmpty())
             active = 1;
+    empty = active;
+}
+
+void HardwareTileTree512::Reserve(u32 offset, u32 length)
+{
+    if (offset > 511 || length == 0)
+        return;
+    if (offset == 0 && length > 511) {
+        FillHardwareTileTree512(this);
+        return;
+    }
+    if (offset <= 255) {
+        u32 first_capacity = 256 - offset;
+        u32 count = std::min(length, first_capacity);
+        children[0].Reserve(offset, count);
+    }
+    if (offset + length > 256) {
+        u32 second_offset = offset > 255 ? offset - 256 : 0;
+        u32 second_length = offset + length;
+        second_length -= 256;
+        second_length -= second_offset;
+        children[1].Reserve(second_offset, second_length);
+    }
+    u32 active = 0;
+    if (children[0].full != 0)
+        active = (0u - children[1].full) >> 31;
+    full = active;
+    empty = false;
+}
+
+void HardwareTileTree512::Unreserve(u32 offset, u32 length)
+{
+    if (offset > 511 || length == 0)
+        return;
+    if (offset == 0 && length > 511) {
+        ClearHardwareTileTree512(this);
+        return;
+    }
+    HardwareTileTree256 * first = &children[0];
+    if (offset <= 255) {
+        u32 first_capacity = 256 - offset;
+        u32 count = std::min(length, first_capacity);
+        first->Unreserve(offset, count);
+    }
+    if (offset + length > 256) {
+        u32 second_offset = offset > 255 ? offset - 256 : 0;
+        u32 second_length = offset + length;
+        second_length -= 256;
+        second_length -= second_offset;
+        children[1].Unreserve(second_offset, second_length);
+    }
+    full = false;
+    u32 active = 0;
+    if (first->empty != 0) {
+        HardwareTileTree256 * second = &children[1];
+        active = (0u - second->empty) >> 31;
+    }
     empty = active;
 }
 
