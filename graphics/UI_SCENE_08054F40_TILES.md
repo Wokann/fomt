@@ -1,5 +1,13 @@
 # `func_08054F40` direct BG tile stream
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `func_08054F40` directly unpacks `gUnk_08738D1C` to `0x06000000`, BG
 character block 0 (not OBJ VRAM). The decoded payload is exactly 328 4bpp
 tiles. It also installs a 32-by-20 static BG3 map at `0x0600E000`, configured
@@ -28,11 +36,6 @@ The stream is byte-identical in all four retail FoMT regions:
 
 The later BG layers and dynamic calendar/menu data are updated through RAM at
 runtime, so this does not claim to be the routine's whole final screen.
-
-```console
-make gfx-ui-scene-08054f40-tiles-all
-make gfx-ui-scene-08054f40-reference
-```
 
 The compiled C `fomt-lz` tool converts the editable tiles into a
 source-adjacent `tiles.4bpp.lz` with the verified Raw-LZ2 ladder and fixed

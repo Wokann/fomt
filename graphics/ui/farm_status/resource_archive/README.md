@@ -1,5 +1,13 @@
 # Farm Status / Town Map OAM resource archive
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../../../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `full/native_0.png` and `full/native_1.png` are the editable native-order
 indexed tile atlases (64 and 9 tiles). `full/native.pal` contains all thirteen
 16-color palette banks. The generic graphics rules produce `.4bpp` and
@@ -38,11 +46,3 @@ The source atlases preserve native tile order and color indexes, including
 tile pixels hidden in an OAM-composited view. The JASC palette preserves all
 thirteen original BGR555 banks. Shared native tiles remain shared through the
 original descriptor table, rather than being duplicated per group image.
-
-```console
-make -j4 gfx-farm-status-resource-archive
-make -j4 fomt_jp
-make -j4 fomt_us
-make -j4 fomt_eu
-make -j4 fomt_de
-```

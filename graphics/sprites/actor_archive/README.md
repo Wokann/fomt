@@ -21,5 +21,8 @@ and native atlas. Frame names retain the descriptor IDs because several
 animation selectors can share a frame. Existing character-specific READMEs
 document identified selector groups and are not additional build inputs.
 
-Use `make gfx-actors` to compile this archive's images and palettes, or
-`make gfx-actors-all` for optional byte comparisons against all four ROMs.
+Normal regional ROM builds discover the archive's generated tile and palette
+dependencies from its source references. To rebuild only the atlas, use
+`make NODEP=1 graphics/sprites/actor_archive/native_tiles.4bpp`; use the four
+regional `compare` targets for complete ROM verification. There is no
+per-archive build wrapper or ROM-driven overlay step.

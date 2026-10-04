@@ -1,5 +1,13 @@
 # Records Screen task icons
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `shared/task_00.png` through `task_06.png` are the seven physical task-icon
 records used by the Records Screen.  Each file is a complete 16-by-16 indexed
 4bpp source with the original record's own sixteen-colour BGR555 palette.
@@ -27,10 +35,6 @@ generated tile/palette file with the corresponding retail ROM range.
 The normal build uses the shared `PNG -> .4bpp/.gbapal` Make rules and
 `gbagfx`, one PNG at a time. The shared range verifier is used only by the
 explicit test target, not by the conversion path.
-
-```console
-make gfx-records-minigame-all
-```
 
 This rebuilds the source-adjacent `shared/task_XX.4bpp` and
 `shared/task_XX.gbapal` inputs, then verifies every generated tile/palette

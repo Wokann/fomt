@@ -1,5 +1,13 @@
 # Lillia actor-animation source
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../../../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 > The canonical editable PNGs now live in `graphics/sprites/actor_archive/full`.
 > This document preserves the verified Lillia selector-to-frame mapping only.
 
@@ -17,13 +25,6 @@ layout definition.
 
 All four retail FoMT localizations use the same archive bytes, relocated per
 ROM. To regenerate from a verified US ROM:
-
-```console
-py -3 tools/actor_archive.py baserom_us.gba --offset 0x58BA28 \
-  --sha256 19a8733e132573478713e9b6e48e9650a702e62516209159787d26f270933736 \
-  export --animations 0x25F,0x260,0x261,0x262,0x263,0x264,0x265,0x266 \
-  --output graphics/sprites/lillia/overworld
-```
 
 Existing images are preserved only when their indexed pixels and native
 palette still match the ROM. Replacing an authored image needs `--replace`.

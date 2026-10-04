@@ -1,5 +1,13 @@
 # `func_080B55D0` auxiliary BG resource set
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `func_080B55D0` loads a larger scene with several unrelated resource classes.
 Its main `gUnk_086FB004` stream is separately managed as the native source in
 `graphics/ui/scene_080b55d0_main/`. This pipeline manages the later,
@@ -36,12 +44,6 @@ only the auxiliary BG composition: the routine's larger unhandled main stream
 and later objects may add further runtime content. Before emitting the PNGs,
 the renderer verifies the two palette operations, their decoded format, and
 all four retail regions. No JSON layout sidecar is used.
-
-```console
-make gfx-ui-scene-080b55d0-aux-all
-make gfx-ui-scene-080b55d0-aux-reference
-make gfx-ui-scene-080b55d0-aux-test
-```
 
 The normal ROM recipe builds these three streams beside their native sources
 with the C Raw-LZ tool and includes them directly in the linked data object.

@@ -1,5 +1,13 @@
 # Farm Status Harvest Sprite task UI tile
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../../../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `shared/harvest_sprite_task_ui_tile.png` is one complete 8-by-8 indexed 4bpp
 OBJ image with its own sixteen-colour BGR555 palette.  Unlike the surrounding
 raw UI tiles, this does not need a tilemap or a multi-piece OAM layout: the
@@ -27,10 +35,6 @@ byte by all four retail FoMT ROMs:
 Harvest Sprite task/experience menu family.  The PNG is therefore an authored
 source for the complete physical UI tile, not a reference montage or a
 JSON-controlled layout.
-
-```console
-make gfx-farm-status-task-ui-tile-all
-```
 
 The command regenerates 4bpp and BGR555 outputs for every region and verifies
 both ranges against JP, US, EU, and DE.

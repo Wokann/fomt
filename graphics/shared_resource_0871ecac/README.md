@@ -1,5 +1,13 @@
 # Shared resource `0871ECAC`
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `full/group_000.png` through `group_003.png` are the editable,
 palette-indexed views of four drawable resources in one fixed `0x128`-byte
 `IndexedResourceArchive`. They are complete OAM-composited source images, not
@@ -30,8 +38,3 @@ the table source directly in all four regions, without a separate archive
 builder or post-link replacement.
 
 Use the following checks after editing:
-
-```console
-make gfx-shared-resource-0871ecac
-make compare compare_eu compare_de
-```

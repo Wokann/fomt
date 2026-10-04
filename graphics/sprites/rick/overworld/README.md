@@ -1,5 +1,13 @@
 # Rick actor animation source
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../../../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 > The canonical editable PNGs now live in `graphics/sprites/actor_archive/full`.
 > This document preserves the verified Rick selector-to-frame mapping only.
 
@@ -27,13 +35,6 @@ resolves the native animation entry.
 All four retail FoMT localizations contain the same complete actor archive
 payload. Only its ROM address differs, so this source set is shared by JP, US,
 EU, and DE. To regenerate it from a verified US ROM:
-
-```console
-py -3 tools/actor_archive.py baserom_us.gba --offset 0x58BA28 \
-  --sha256 19a8733e132573478713e9b6e48e9650a702e62516209159787d26f270933736 \
-  export --animations 0x212,0x213,0x214,0x215,0x216,0x217,0x218,0x219,0x21A,0x21B,0x21C,0x21D,0x21E,0x21F,0x220,0x221,0x222,0x223,0x224,0x225,0x226,0x227,0x228,0x229,0x22A,0x22B,0x22C,0x22D \
-  --output graphics/sprites/rick/overworld
-```
 
 The export command preserves an existing PNG when its indexed pixels and
 palette already match the ROM. It refuses to overwrite a changed authored

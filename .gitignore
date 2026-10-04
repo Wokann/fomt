@@ -23,6 +23,7 @@
 !graphics/maps/shared/map_*/*.original.lz
 
 build/
+graphics/font/shared/*.1bpp
 graphics/maps/shared/map_*/*.4bpp
 graphics/maps/shared/map_*/*.gbapal
 graphics/map_state_palettes/shared/*.0x70

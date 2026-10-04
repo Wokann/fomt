@@ -1,5 +1,13 @@
 # Shared resource `0871EDD4`
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `full/group_000.png` through `group_003.png` are the editable,
 palette-indexed views of four drawable resources in one fixed `0x12C`-byte
 `IndexedResourceArchive`. They are complete OAM-composited source images, not
@@ -27,8 +35,3 @@ The assembler includes the table source during the ordinary link; no original
 ROM input, intermediate archive, or post-link patch is used for this range.
 
 Use the following checks after editing:
-
-```console
-make gfx-shared-resource-0871edd4
-make compare compare_eu compare_de
-```

@@ -1,5 +1,13 @@
 # Menu UI resource archive
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `full/group_000.png` through `group_007.png` are the editable,
 palette-indexed views of the eight drawable resources in one `0x504`-byte
 `IndexedResourceArchive`. They are complete OAM-composited source images, not
@@ -27,8 +35,3 @@ IDs until individual menu-icon semantics are independently established.
 reads `full/` only.
 
 Use the following checks after editing:
-
-```console
-make gfx-menu-ui-resource-archive
-make -j4 fomt_jp fomt_us fomt_eu fomt_de
-```

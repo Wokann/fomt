@@ -1,5 +1,13 @@
 # Child actor-animation source
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../../../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 > The canonical editable PNGs now live in `graphics/sprites/actor_archive/full`.
 > This document preserves the verified Child selector-to-frame mapping only.
 
@@ -19,13 +27,6 @@ tile reference, flip and palette from the archive itself.
 
 All four retail FoMT localizations share the exact archive bytes, relocated
 within each ROM. Regenerate this source set from a verified US ROM:
-
-```console
-py -3 tools/actor_archive.py baserom_us.gba --offset 0x58BA28 \
-  --sha256 19a8733e132573478713e9b6e48e9650a702e62516209159787d26f270933736 \
-  export --animations 0x267,0x268,0x269,0x26A,0x26B,0x26C,0x26D,0x26E,0x26F,0x270,0x271,0x272,0x273,0x274,0x275,0x276,0x277,0x278,0x279,0x27A \
-  --output graphics/sprites/child/overworld
-```
 
 The exporter preserves an existing image only when its indexed pixels and
 native palette match the ROM; replacing an authored edit requires `--replace`.

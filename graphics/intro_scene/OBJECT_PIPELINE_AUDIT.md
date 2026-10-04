@@ -1,5 +1,13 @@
 # Intro Scene object pipeline audit
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 This note records what is proven about the twenty editable native object-tile
 streams.  It deliberately does **not** assign character names, frame sizes, or
 palette banks to those streams: those properties have not yet been recovered

@@ -1,5 +1,13 @@
 # Regional `0875B444` indexed OAM archive
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `gUnk_0875B444` has one fixed `IndexedResourceArchive` layout in every retail
 FoMT region: six selection records, six group descriptors, one BGR555 palette,
 twenty-four 4bpp tiles, and six drawable OAM groups.  The complete JP payload
@@ -18,12 +26,6 @@ at their original locations by `asm/data/data_0813B288.s` (and its DE
 initial fragment). The linker assembles the archive directly; the build
 does not read a base ROM or patch the linked ROM for this resource.
 `preview/group_*.png` are OAM-rendered inspection images only.
-
-```console
-make gfx-regional-resource-0875b444 GAME_REGION=JP
-make -j4 fomt_jp
-make -j4 fomt_us
-```
 
 The first command generates JP tiles and palette from PNG. The ROM targets
 link the selected assets and can be checked against their retail SHA-1 values.

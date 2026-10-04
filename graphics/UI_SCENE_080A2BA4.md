@@ -1,5 +1,13 @@
 # `func_080A2BA4` BG resource set
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `func_080A2BA4` is an overseas-only, as-yet unnamed UI-scene setup routine.
 Its resource labels and VRAM loads are nevertheless concrete: the routine clears VRAM
 screen blocks, passes four labelled ROM streams to `Unpack`, then configures
@@ -68,11 +76,6 @@ is byte-identical to all four retail ROMs for the checked-in sources. An edit
 that does not fit the current fixed slot fails at resource conversion.
 
 ## Build and linkage
-
-```console
-make gfx-ui-scene-080a2ba4-all
-make gfx-ui-scene-080a2ba4-reference
-```
 
 The assembly source includes these four generated files directly under the
 shared semantic labels `gUiSceneBackgroundLayer0Tilemap`,

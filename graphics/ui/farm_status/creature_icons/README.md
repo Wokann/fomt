@@ -1,5 +1,13 @@
 # Farm Status 16-by-16 UI icon records
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../../../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `shared/icon_00.png` through `icon_19.png` are twenty complete, independent
 16-by-16 indexed 4bpp records. Each PNG owns the exact sixteen-colour BGR555
 palette stored directly after its 0x80-byte tile grid. They are editable source
@@ -38,10 +46,6 @@ sequence, the sheep-list code selects `icon_15` for growth stage one,
 `icon_16` after shearing, `icon_17` when pregnant, and `icon_18` for the other
 growth-stage branch. The other names intentionally retain physical order until
 their gameplay roles have equally direct evidence.
-
-```console
-make gfx-farm-status-creature-icons-all
-```
 
 The target rebuilds source-adjacent `shared/icon_XX.4bpp` and
 `shared/icon_XX.gbapal` files, then checks unchanged PNGs against JP, US, EU,

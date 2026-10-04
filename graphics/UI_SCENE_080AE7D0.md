@@ -1,5 +1,13 @@
 # `func_080AE7D0` BG resource set
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `func_080AE7D0` is a currently unnamed UI-scene setup routine. It clears the
 screen blocks at `0x0600F000` and `0x0600F800`, unpacks two labelled 32-by-32
 tilemaps into them, and unpacks its tile source to `0x06000000`. It configures
@@ -43,12 +51,6 @@ f00f6c6244f3c5497846998979764889717faf5eb805d1630b36001e60ece437
 ```
 
 ## Build and linkage
-
-```console
-make gfx-ui-scene-080ae7d0-all
-make gfx-ui-scene-080ae7d0-test
-make gfx-ui-scene-080ae7d0-preview
-```
 
 The normal build generates the three compressed streams and BGR555 palette
 beside their editable sources, then links them in ROM order under four symbols.

@@ -1,5 +1,13 @@
 # Regional resource `0872DE44`
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `gUnk_0872DE44` is a 27-group `IndexedResourceArchive` with a byte-identical
 JP/US/EU source domain and a distinct DE domain:
 

@@ -1,5 +1,13 @@
 # Indexed resource archive audit
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 This document records ROM ranges consumed by `IndexedResourceArchive` in
 `src/resource_handle.cc`. They are **not** automatically image resources:
 their descriptor payloads may select graphics, animation data, layout records,
@@ -492,55 +500,6 @@ Two native-order indexed-PNG atlases, the thirteen-bank palette, and ordered
 archive tables are under `graphics/ui/farm_status/resource_archive/`. Generic
 graphics conversion and direct linking replace the old ROM-template rebuild;
 the OAM-composited group PNGs remain reference views.
-
-Recheck the evidence with:
-
-```console
-python tools/indexed_resource_archive.py compare ^
-  --rom jp baserom_jp.gba 0x3ED9FC ^
-  --rom us baserom_us.gba 0x6678A0 ^
-  --rom eu baserom_eu.gba 0x6678FC ^
-  --rom de baserom_de.gba 0x3EE93C
-
-python tools/indexed_resource_archive.py compare ^
-  --rom jp baserom_jp.gba 0x3ED1BC ^
-  --rom us baserom_us.gba 0x667060 ^
-  --rom eu baserom_eu.gba 0x6670BC ^
-  --rom de baserom_de.gba 0x3EE0FC
-
-python tools/indexed_resource_archive.py compare ^
-  --rom jp baserom_jp.gba 0x4DABB8 ^
-  --rom us baserom_us.gba 0x754C0C ^
-  --rom eu baserom_eu.gba 0x754C68 ^
-  --rom de baserom_de.gba 0x4DC128
-
-python tools/indexed_resource_archive.py compare ^
-  --rom jp baserom_jp.gba 0x4DA620 ^
-  --rom us baserom_us.gba 0x754674 ^
-  --rom eu baserom_eu.gba 0x7546D0 ^
-  --rom de baserom_de.gba 0x4DBB90
-
-python tools/indexed_resource_archive.py compare ^
-  --rom jp baserom_jp.gba 0x4A4910 ^
-  --rom us baserom_us.gba 0x71E7A8 ^
-  --rom eu baserom_eu.gba 0x71E804 ^
-  --rom de baserom_de.gba 0x4A5974
-
-python tools/indexed_resource_archive.py compare ^
-  --rom jp baserom_jp.gba 0x4A5068 ^
-  --rom us baserom_us.gba 0x71EF00 ^
-  --rom eu baserom_eu.gba 0x71EF5C ^
-  --rom de baserom_de.gba 0x4A60CC
-
-python tools/indexed_resource_archive.py compare ^
-  --rom jp baserom_jp.gba 0x4ABF08 ^
-  --rom us baserom_us.gba 0x725DA0 ^
-  --rom eu baserom_eu.gba 0x725DFC ^
-  --rom de baserom_de.gba 0x4ACF6C
-```
-
-The `^` continuation marker is for `cmd.exe`; remove it or use the shell's
-own continuation syntax elsewhere.
 
 ## Consequence for the graphics pipeline
 

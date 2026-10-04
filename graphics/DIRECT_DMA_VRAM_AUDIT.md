@@ -1,5 +1,13 @@
 # Direct DMA-to-video-RAM audit
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `tools/dma_vram_inventory.py` recognises only calls to `func_08008F0C` where
 the preceding assembly establishes all three values: a named `g*` ROM source
 in `r1`, a literal character-VRAM or palette-RAM destination in `r2`, and a
@@ -89,9 +97,3 @@ This does not
 claim that every ROM graphic has been found: calls through pointers, runtime
 descriptors, archive dispatch, or non-literal VRAM destinations remain outside
 this scanner's deliberately narrow scope.
-
-Generate the machine-readable scan with:
-
-```console
-python tools/dma_vram_inventory.py . --csv build/dma_vram_inventory.csv
-```

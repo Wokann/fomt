@@ -1,5 +1,13 @@
 # MapData state-fallback palettes
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `shared/fallback_00.gbapal` through `shared/fallback_04.gbapal` are five
 editable, ordered BGR555 palette groups.  Each is exactly `0x1E0` bytes:
 fifteen 16-colour GBA palette banks.  They are deliberately native palette
@@ -29,11 +37,6 @@ includes that stream directly; no post-link ROM patch is involved.
 rules declare their native ladder and slot size; the tool pads only to that
 slot, rejects overflow, and can decode the output for validation. The source
 asset and the assembled stream are independent of the reference ROM.
-
-```console
-make GAME_REGION=JP gfx-map-state-palettes-test
-make GAME_REGION=JP compare
-```
 
 Repeat the compare for US, EU, and DE after an asset or codec change. The
 first command checks each generated stream against its source; the ROM compare

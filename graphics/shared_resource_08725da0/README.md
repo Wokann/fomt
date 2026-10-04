@@ -1,5 +1,13 @@
 # Shared resource `08725DA0`
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `full/native.png` is the editable atlas of all 109 tiles in native 4bpp order.
 It is one tile wide so the generic PNG converter writes exactly 109 tiles,
 without an invented padding tile. `full/native.pal` contains both original
@@ -31,8 +39,3 @@ retained in the source path rather than inventing a gameplay-specific name.
 layout passes all four original-ROM SHA-1 comparisons.
 
 Use the following checks after editing:
-
-```console
-make gfx-shared-resource-08725da0-all
-make -j4 fomt_jp fomt_us fomt_eu fomt_de
-```

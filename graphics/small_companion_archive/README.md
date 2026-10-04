@@ -1,5 +1,13 @@
 # Small companion OAM archive
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 This directory is the editable source for the shared `0x840`-byte
 `IndexedResourceArchive` at JP `0x3ED1BC`, US `0x667060`, EU `0x6670BC`, and
 DE `0x3EE0FC`. The four retail payloads are byte-identical:
@@ -22,11 +30,3 @@ The archive contains three selector descriptors, sixteen group descriptors,
 three OAM records, fifty-two 4bpp tiles, two BGR555 palettes, and sixteen
 selection entries. The native source atlas includes pixels hidden by the OAM
 composition; the original tables preserve sharing between group views.
-
-```console
-make -j4 gfx-small-companion-archive
-make -j4 fomt_jp
-make -j4 fomt_us
-make -j4 fomt_eu
-make -j4 fomt_de
-```

@@ -1,5 +1,13 @@
 # Cliff actor-animation source
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../../../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 > The canonical editable PNGs now live in `graphics/sprites/actor_archive/full`.
 > This document preserves the verified Cliff selector-to-frame mapping only.
 
@@ -24,13 +32,6 @@ or raw linear tile sheet participates in the build.
 
 The four retail localizations share these archive bytes; only their ROM
 offsets differ. To regenerate from a verified US ROM:
-
-```console
-py -3 tools/actor_archive.py baserom_us.gba --offset 0x58BA28 \
-  --sha256 19a8733e132573478713e9b6e48e9650a702e62516209159787d26f270933736 \
-  export --animations 0x27B,0x27C,0x27D,0x27E,0x27F,0x280,0x281,0x282,0x283,0x284,0x285,0x286,0x287,0x288,0x289,0x28A,0x28B,0x28C,0x28D,0x28E,0x28F,0x290,0x291,0x292,0x293,0x294,0x295,0x296,0x297,0x298,0x299,0x29A,0x29B,0x29C,0x29D,0x29E \
-  --output graphics/sprites/cliff/overworld
-```
 
 The exporter preserves matching images and native palettes; `--replace` is
 required before it replaces an authored image.

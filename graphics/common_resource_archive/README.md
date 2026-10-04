@@ -1,5 +1,13 @@
 # Common OAM resource archive
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `full/native.png` is the editable, native-order indexed atlas of all 1,624
 4bpp tiles. `full/palettes_00.pal` through `palettes_21.pal` contain the 342
 original 16-color banks in ROM order. Each JASC file holds at most sixteen
@@ -44,11 +52,3 @@ The atlas stores the complete tile stream, including pixels hidden in a group
 view. The palette files store all palette banks, rather than borrowing palette
 bytes from a baseline ROM. The two empty groups remain explicit zero entries
 in the ordered tables.
-
-```console
-make -j4 gfx-common-resource-archive
-make -j4 fomt_jp
-make -j4 fomt_us
-make -j4 fomt_eu
-make -j4 fomt_de
-```

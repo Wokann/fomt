@@ -1,5 +1,13 @@
 # Regional resource `0872BE64`
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `gUnk_0872BE64` is a one-group `IndexedResourceArchive` with a byte-identical
 JP/US/EU source domain and a distinct, larger DE domain:
 
@@ -28,8 +36,3 @@ order. No JSON layout sidecar is needed.
 The Make build selects `de/` tiles for `GAME_REGION=DE` and `shared/` tiles
 otherwise. All four ROMs match their original SHA-1 after direct linking;
 there is no ROM-derived rebuild or post-link patch for this archive.
-
-```console
-make gfx-regional-resource-0872be64-all
-make -j4 fomt_jp fomt_us fomt_eu fomt_de
-```

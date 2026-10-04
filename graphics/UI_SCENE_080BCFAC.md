@@ -1,5 +1,13 @@
 # `func_080BCFAC` BG resource set
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `func_080BCFAC` is the direct consumer of this resource group. It unpacks two
 labelled 32-by-32 background tilemaps to `0x0600F800` and `0x0600F000`, then
 unpacks a native 4bpp tile buffer at `0x06000000`. It configures BG controls
@@ -53,12 +61,6 @@ is a view, not a build input. `reference/layer_0.png`, `layer_1.png`, and
 the upper layer over the lower one with palette index zero transparent. These
 references are not a replacement for the native tilemaps, and no JSON layout
 sidecar is used.
-
-```console
-make gfx-ui-scene-080bcfac-all
-make gfx-ui-scene-080bcfac-preview
-make fomt_jp fomt_us fomt_eu fomt_de
-```
 
 The C Raw-LZ tool builds source-adjacent `.tilemap.lz` and `.4bpp.lz`
 files, which assembly includes directly under relocatable symbols. The

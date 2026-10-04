@@ -1,5 +1,13 @@
 # Label-bound IndexedResourceArchive inventory
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 This inventory was originally generated from DE records already bounded by
 the project, then validated against the native archive header. Some rows have
 since moved to source-owned linking; their physical bounds remain recorded.
@@ -65,8 +73,4 @@ as a shared payload.
 | `gUnk_08755154` | `0x4DB100` | `0x755154` | `0x7551B0` | `0x4DC670` | `0xDC` | 1, 1, 1, 4, 1, 0 | 1 | linked from indexed PNG, no baserom input or post-link patch: `graphics/shared_resource_08755154/` |
 | `gUnk_0875B444` | `0x4E07CC` | `0x75B444` | `0x75B4A0` | `0x4E2960` | `0x3D4` | 6, 6, 1, 24, 1, 0 | 6 | source-owned direct link, JP/overseas assets: `graphics/regional_resource_0875b444/` |
 
-Generated records: 51 (42 rebuilt shared, 9 rebuilt regional, 0 unmanaged but four-region identical, 0 regionally different). Regenerate with:
-
-```console
-make indexed-resource-archive-inventory
-```
+Generated records: 51 (42 rebuilt shared, 9 rebuilt regional, 0 unmanaged but four-region identical, 0 regionally different).

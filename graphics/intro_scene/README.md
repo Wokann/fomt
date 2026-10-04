@@ -1,5 +1,13 @@
 # Intro Scene graphics
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `shared/background_tiles.png` and `shared/background_palettes.png` are the
 authoritative editable sources for the decoded linear 4bpp Intro Scene VRAM
 payload and its three BGR555 palette banks.
@@ -33,10 +41,6 @@ it is also the appropriate input for a later verified OAM/full-PNG tool.
 `OBJECT_PIPELINE_AUDIT.md` records the code-backed boundary: the twenty
 streams are a fixed VRAM loading sequence, while the scene's actual frame,
 OAM-piece and palette selection come from runtime indexed-resource handles.
-
-```console
-make gfx-intro-objects-all
-```
 
 All twenty objects now encode directly from `.4bpp` through the C compressor:
 eleven Raw-LZ3 streams (`01`, `03`, `05`, `07`, `08`, `09`, `11`, `12`, `14`,
@@ -104,10 +108,6 @@ a captured display reference; its low banks are loaded outside this archive.
 The ROM starts above are written with the GBA `0x08000000` base; the equivalent
 file offsets are `0x4CDBDC`, `0x747A74`, `0x747AD0`, and `0x4CEEE8`.
 
-```console
-make gfx-intro-indexed-archive-all
-```
-
 The same initializer also consumes `small_indexed_archive/shared/full/`: a
 separate, raw `0x118`-byte archive with three complete 16-by-16 OAM frames.
 Its native bytes are identical in JP, US, EU, and DE. All three views share
@@ -116,10 +116,6 @@ byte-for-byte duplicates. One `frame_0000.png` therefore supplies both
 assets through the ordinary C `gbagfx` rules. The selection, descriptor,
 OAM, and animation records are written directly in the assembly source;
 there is no ROM-template rebuild or post-link patch for this archive.
-
-```console
-make gfx-intro-small-archive-all
-```
 
 ## Startup background layers
 
@@ -171,8 +167,3 @@ Edited tiles are decoded after H8/LZ3 encoding and rejected if they exceed the
 original `0x3970` slot. Assembly links these generated resources directly,
 without reading a ROM or patching the linked image. The native startup maps
 remain independently editable through their Huffman-4/LZ3 path.
-
-```console
-make gfx-intro-startup-visual-test
-make gfx-intro-startup-tilemaps-all
-```

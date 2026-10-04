@@ -1,5 +1,13 @@
 # Large shared resource archive
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `full/native.png` is the editable atlas of all 768 tiles in their original
 4bpp order. The 46 palette banks are stored in three JASC files:
 `palettes_00_15.pal`, `palettes_16_31.pal`, and `palettes_32_45.pal`.
@@ -32,8 +40,3 @@ group names therefore remain neutral physical IDs.
 layout passes JP, US, EU and DE original-ROM SHA-1 comparisons.
 
 Use the following checks after editing:
-
-```console
-make gfx-large-shared-resource-archive-all
-make -j4 fomt_jp fomt_us fomt_eu fomt_de
-```

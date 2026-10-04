@@ -1,5 +1,13 @@
 # Animal Festival UI icons
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `shared/icon_00.png` through `icon_09.png` are ten complete, independent
 16-by-16 indexed 4bpp icon records.  Every PNG owns the exact sixteen-colour
 BGR555 palette that follows its 0x80-byte tile grid in ROM.  They are source
@@ -27,10 +35,6 @@ The normal build uses the shared `PNG -> .4bpp/.gbapal` Make rules and
 against the retail ROM with the shared verifier. Assembly
 keeps all original address labels and directly includes the source-adjacent
 tile/palette files.
-
-```console
-make gfx-animal-festival-icons-all
-```
 
 This builds source-adjacent `shared/icon_XX.4bpp` and `shared/icon_XX.gbapal`
 files, then verifies the authored PNGs against JP, US, EU and DE.  The

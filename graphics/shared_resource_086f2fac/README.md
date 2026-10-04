@@ -1,5 +1,13 @@
 # Shared resource `086F2FAC`
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `full/native.png` is the editable, indexed atlas of all 384 native 4bpp tiles.
 `full/native.pal` is the editable JASC palette containing the four original
 16-color banks. The generic graphics rules produce `native.4bpp` and
@@ -27,11 +35,3 @@ the source directory retains the original address rather than inventing a
 semantic name.
 
 Use the following checks after editing:
-
-```console
-make -j4 gfx-shared-resource-086f2fac
-make -j4 fomt_jp
-make -j4 fomt_us
-make -j4 fomt_eu
-make -j4 fomt_de
-```

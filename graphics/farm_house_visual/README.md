@@ -1,5 +1,13 @@
 # FarmHouse visual resources
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `shared/visual_00.png` through `shared/visual_06.png` are the seven native-index
 4bpp tile atlases selected by `gFarmHouseVisualDescriptors`.
 The house setup branch at `0x080A924C` reads each descriptor's source pointer
@@ -57,14 +65,6 @@ and copied by the retail DMA helper into `palette_bank`. Every colour was
 checked for a clear unused high bit and each PAL round-trip reproduces the
 original bytes. gbagfx generates `.gbapal` beside each PAL, independently
 of the tile PNGs. This does not infer a static destination bank or layout.
-
-Build and verify the shared visual streams and the neighboring source assets:
-
-```console
-make gfx-farm-house-visual-all
-make gfx-farm-house-tilemaps-all
-make gfx-farm-house-palettes-all
-```
 
 The visual test checks all seven decoded payloads and compares the three
 directly encoded streams against independent retail samples. Each uses its

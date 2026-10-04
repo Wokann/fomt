@@ -1,5 +1,13 @@
 # MapData visual resources
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 The first physically continuous MapData stream run is now linked from this
 source tree, not copied from a ROM after linking. Its 42 streams are identical
 in JP, US, EU, and DE and occupy these verified half-open ranges:
@@ -35,11 +43,6 @@ exact output. No normal build reads `baserom`; an edit that cannot fit its
 verified slot fails rather than overwriting a neighboring record.
 The map resource test checks decoded content for all 42 streams and compares
 all 28 directly encoded packed streams byte for byte against their audit copies.
-
-```console
-make -j4 gfx-map-resources-test
-make -j4 fomt_jp fomt_us fomt_eu fomt_de
-```
 
 The `gMapData` table references 272 distinct visual streams overall. The
 remaining 230 are still present as original bytes in the assembly source;

@@ -1,5 +1,13 @@
 # Winter seasonal background
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../../../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `func_08077EC0` selects this presentation when the season value is `3`.
 The routine expands `winter_tiles.png` as an 0x8000-byte 4bpp H8/LZ3 stream,
 copies the six BGR555 palette banks in `winter_palette_banks.png`, and copies
@@ -18,10 +26,6 @@ resources. The C `fomt-lz` tool then builds `winter_tiles.4bpp.lz`, preserving
 the checked-in publisher stream for unchanged pixels. Assembly includes these
 resources directly; the build neither reads a retail ROM nor patches the
 linked image. Edited streams must fit the original 0x212C-byte slot.
-
-```console
-make gfx-seasonal-winter-test
-```
 
 This command verifies that the generated stream decodes to the editable tile
 source. The PNGs under `../reference/` were rendered from the same native tile

@@ -1,5 +1,13 @@
 # Direct `func_08008E64` RAM-copy audit
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `func_08008E64` is the ordinary guarded memory-copy helper used by the game.
 Unlike `Unpack` and `func_08008F0C`, it does not itself identify an encoded
 format. `tools/copy_ram_inventory.py` therefore follows only bounded
@@ -32,7 +40,3 @@ does not cover source addresses resolved through tables, caller-provided
 pointers, or dynamic destinations; those require a separate consumer audit.
 
 Run the reproducible scan with:
-
-```console
-make copy-ram-inventory
-```

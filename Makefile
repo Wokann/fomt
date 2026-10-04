@@ -1,4 +1,7 @@
 .SUFFIXES:
+.SECONDARY:
+.DELETE_ON_ERROR:
+.DEFAULT_GOAL := all
 
 # ==================
 # = PROJECT CONFIG =
@@ -36,10 +39,8 @@ export STRIP := $(PREFIX)strip
 
 ifeq ($(OS),Windows_NT)
   EXE := .exe
-  PYTHON ?= py -3
 else
   EXE :=
-  PYTHON ?= python3
 endif
 
 CC1      := tools/agbcc/bin/agbcc$(EXE)
@@ -116,6 +117,8 @@ $(shell mkdir -p $(SUBDIRS))
 # = RECIPES =
 # ===========
 
+all: $(ROM)
+
 fomt_us:
 	@$(MAKE) GAME_REGION=US GAME_REVISION=0 compare
 
@@ -140,7 +143,7 @@ compare_de:
 compare: $(ROM)
 	tr -d '\r' < $(BUILD_NAME).sha1 | sha1sum -c -
 
-.PHONY: fomt_us fomt_jp fomt_eu fomt_de compare_eu compare_de compare
+.PHONY: all fomt_us fomt_jp fomt_eu fomt_de compare_eu compare_de compare
 
 TEXT_TOOL_DIR := tools/textproc
 TEXT_TOOL := $(TEXT_TOOL_DIR)/fomt-text$(EXE)
@@ -351,275 +354,14 @@ clean:
 
 .PHONY: clean
 
-# Audit/build-only graphics targets do not need C/C++ dependency discovery.
-ifneq (,$(filter gfx-ui-scene-080a2ba4 gfx-ui-scene-080a2ba4-reference gfx-ui-scene-080a2ba4-test gfx-ui-scene-080a2ba4-all gfx-ui-scene-080ae7d0 gfx-ui-scene-080ae7d0-preview gfx-ui-scene-080ae7d0-test gfx-ui-scene-080ae7d0-all gfx-ui-scene-080b7164 gfx-ui-scene-080b7164-preview gfx-ui-scene-080b7164-test gfx-ui-scene-080b7164-all gfx-ui-scene-080c160c gfx-ui-scene-080c160c-preview gfx-ui-scene-080c160c-test gfx-ui-scene-080c160c-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-ui-scene-080bcfac gfx-ui-scene-080bcfac-preview gfx-ui-scene-080bcfac-test gfx-ui-scene-080bcfac-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-ui-scene-080b55d0-aux gfx-ui-scene-080b55d0-aux-reference gfx-ui-scene-080b55d0-aux-test gfx-ui-scene-080b55d0-aux-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-farm-status-task-ui-tile gfx-farm-status-task-ui-tile-test gfx-farm-status-task-ui-tile-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-ui-shared-tiles-test,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-ui-scene-08054f40-tiles gfx-ui-scene-08054f40-reference gfx-ui-scene-08054f40-tiles-test gfx-ui-scene-08054f40-tiles-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-ui-scene-0805ab08-tiles gfx-ui-scene-0805ab08-reference gfx-ui-scene-0805ab08-tiles-test gfx-ui-scene-0805ab08-tiles-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-seasonal-nonwinter gfx-seasonal-nonwinter-test gfx-seasonal-nonwinter-all gfx-seasonal-winter gfx-seasonal-winter-test gfx-seasonal-winter-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-intro-indexed-archive gfx-intro-indexed-archive-test gfx-intro-indexed-archive-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-intro-small-archive gfx-intro-small-archive-test gfx-intro-small-archive-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-farm-status-resource-archive,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-small-companion-archive,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-small-ui-resource-archive,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-cooking-ui-resource-archive gfx-cooking-ui-resource-archive-test gfx-cooking-ui-resource-archive-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-menu-ui-resource-archive,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-large-shared-resource-archive gfx-large-shared-resource-archive-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-08725da0 gfx-shared-resource-08725da0-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-086f2fac,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-086faa80,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-0871ecac,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-0871edd4,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-ifneq (,$(filter gfx-shared-resource-08527094,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-08726ccc,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-08727368,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-08727a74,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-08728320,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-0872937c,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-08729460,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-0872ee78,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-08731b40 gfx-shared-resource-08731b40-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-0873ae54 gfx-shared-resource-0873ae54-test gfx-shared-resource-0873ae54-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-0873afc8,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-0873ccb4,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-0873ceac,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-0873cf90,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-0873d234,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-0873d5fc gfx-shared-resource-0873d5fc-test gfx-shared-resource-0873d5fc-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-0873de44,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-0873e5b0,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-0873ed1c,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-087401a4,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-08740454,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-087405a0,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-08740908 gfx-shared-resource-08740908-test gfx-shared-resource-08740908-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-087409e4,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-0874ee38 gfx-shared-resource-0874ee38-test gfx-shared-resource-0874ee38-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-087506e0,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-0875352c gfx-shared-resource-0875352c-test gfx-shared-resource-0875352c-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-08753608 gfx-shared-resource-08753608-test gfx-shared-resource-08753608-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-087536e4,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-shared-resource-08755154 gfx-shared-resource-08755154-test gfx-shared-resource-08755154-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-regional-resource-0875b444,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-regional-resource-0871d51c gfx-regional-resource-0871d51c-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-regional-resource-08728208,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-regional-resource-0872be64 gfx-regional-resource-0872be64-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-regional-resource-0872de44 gfx-regional-resource-0872de44-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-regional-resource-08738144 gfx-regional-resource-08738144-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-regional-resource-0873a6e8 gfx-regional-resource-0873a6e8-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-regional-resource-0873d6d8 gfx-regional-resource-0873d6d8-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-regional-resource-0874f34c gfx-regional-resource-0874f34c-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter indexed-resource-archive-inventory,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-common-resource-archive,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-farm-house-tilemaps gfx-farm-house-tilemaps-test gfx-farm-house-tilemaps-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (,$(filter gfx-portraits gfx-portraits-test gfx-portraits-all,$(MAKECMDGOALS)))
-ALL_DEPS :=
-endif
-
-ifneq (clean,$(MAKECMDGOALS))
-ifeq (unpack-coverage-inventory,$(strip $(MAKECMDGOALS)))
-# This target needs only the Python audit tool, never the default ROM build.
-else
-# The regional fomt_* wrappers recurse into compare. Missing dependency files
-# must be scanned before object assembly, including on the first compare build.
-# This lets the source references select assets through normal pattern rules.
-ifneq (,$(filter compare,$(MAKECMDGOALS)))
+# Region wrappers recurse into compare; only the actual build invocation
+# needs compiler/assembler dependency discovery. NODEP=1 is available for
+# direct host-tool or resource-only commands, as in pret's Makefile.
+NODEP ?= 0
+RULES_NO_SCAN := clean fomt_us fomt_jp fomt_eu fomt_de compare_eu compare_de
+ifneq ($(NODEP),1)
+ifneq (,$(filter-out $(RULES_NO_SCAN),$(if $(MAKECMDGOALS),$(MAKECMDGOALS),all)))
 -include $(ALL_DEPS)
 endif
-ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-ui gfx-ui-test gfx-ui-all gfx-ui-scene-080a2ba4 gfx-ui-scene-080a2ba4-test gfx-ui-scene-080a2ba4-all gfx-ui-scene-08077810 gfx-ui-scene-08077810-test gfx-ui-scene-08077810-all gfx-ui-scene-080ae7d0 gfx-ui-scene-080ae7d0-preview gfx-ui-scene-080ae7d0-test gfx-ui-scene-080ae7d0-all gfx-ui-scene-080b7164 gfx-ui-scene-080b7164-preview gfx-ui-scene-080b7164-test gfx-ui-scene-080b7164-all gfx-ui-scene-080c160c gfx-ui-scene-080c160c-test gfx-ui-scene-080c160c-all gfx-ui-scene-080b55d0-aux gfx-ui-scene-080b55d0-aux-reference gfx-ui-scene-080b55d0-aux-test gfx-ui-scene-080b55d0-aux-all gfx-ui-scene-080b55d0-main gfx-ui-scene-080b55d0-main-test gfx-ui-scene-080b55d0-main-all gfx-ui-scene-08054f40-reference gfx-farm-house-tilemaps gfx-farm-house-tilemaps-test gfx-farm-house-tilemaps-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-winter gfx-farm-status-winter-test gfx-farm-status-winter-all gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-test gfx-farm-status-secondary-tilemaps-all gfx-farm-status-exterior-styles gfx-farm-status-exterior-styles-test gfx-farm-status-selector-icon gfx-farm-status-selector-icon-test gfx-farm-status-selector-icon-all gfx-clock-font gfx-clock-font-test gfx-clock-font-all gfx-farm-status-creature-icons gfx-farm-status-creature-icons-test gfx-farm-status-creature-icons-all gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-startup-visual gfx-intro-startup-visual-test gfx-intro-startup-visual-all gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all resource-archive-audit unpack-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit,$(MAKECMDGOALS)))
--include $(ALL_DEPS)
 endif
 .PRECIOUS: $(BUILD_DIR)/%.d
-endif
-endif

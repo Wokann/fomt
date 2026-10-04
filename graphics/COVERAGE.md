@@ -1,5 +1,13 @@
 # Graphics coverage
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 This is a conservative inventory of graphics resources with a verified,
 editable rebuild path.  It is not a claim that every ROM `incbin` range is an
 image, nor that all game graphics have been extracted.
@@ -134,11 +142,6 @@ toolset. Remaining unclassified resources must still be identified from
 their consuming code, exact bounds, format and four-region byte round trip;
 the absence of direct ROM includes does not mean every resource has an
 editable source. The code-backed Unpack inventories remain available:
-
-```console
-python tools/unpack_vram_inventory.py . --csv build/unpack_vram_inventory.csv
-make unpack-coverage-inventory
-```
 
 All generated CSV files are local audit artifacts, not source artwork. The
 Unpack-to-VRAM inventory follows only simple literal

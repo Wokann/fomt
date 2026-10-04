@@ -1,16 +1,18 @@
 # Static `Unpack` call coverage
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `tools/unpack_inventory.py --coverage-csv` supplements the conservative
 named-source report. It lists every statically visible `bl Unpack` call in the
 checked-in assembly and marks a source as `<unresolved>` when the small
 data-flow model cannot recover a direct `g*` symbol. It does not dereference
 runtime pointers, guess a ROM range, or promote a decoded buffer to graphics.
-
-Run the reproducible audit with:
-
-```console
-make unpack-coverage-inventory
-```
 
 The current four-region assembly contains 98 distinct static call sites. The
 CSV may contain more rows because a control-flow join can conservatively retain

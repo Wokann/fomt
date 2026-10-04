@@ -1,5 +1,13 @@
 # Farm Status graphics
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 `shared/base_tiles.png` is the editable, linear 4bpp tile source. Its pixels
 retain their native values from 0 through 15; it deliberately displays only
 palette bank zero.
@@ -23,12 +31,6 @@ bank, so a rendered PNG cannot losslessly replace it. These `.tilemap` source
 files are deliberately direct native resources rather than a JSON layout
 sidecar. `reference/` contains their convenient generated PNG previews.
 
-Rebuild the tilemap bundle and verify it against all four ROMs with:
-
-```console
-make gfx-farm-status-tilemaps-all
-```
-
 `winter/shared/tiles.png` is the separate 256-by-144 native 4bpp source used
 by the overseas winter branch. It rebuilds the identical US/EU/DE tile stream
 inside its original `0x1FD4`-byte slot; regional palette data remains
@@ -37,17 +39,6 @@ reference-only because EU stores it in a distinct archive.
 and fixed-slot reference to the same C `fomt-lz` rule.
 The winter stream occupies 0x1FD4 bytes at US 0x52AA6C, EU 0x52AAC8,
 and DE 0x2B1B08; this specific resource is not present in the JP layout.
-
-```console
-make gfx-farm-status-winter-all
-make gfx-farm-status-winter-edit-test
-```
-
-Regenerate the reference PNGs with:
-
-```console
-make gfx-farm-status-previews
-```
 
 The tilemap build verifies all fourteen payloads are byte-identical in JP, US,
 EU, and DE. The assembler then includes the selected regional bundle at each
@@ -63,12 +54,6 @@ label. `secondary_01` and `secondary_04` encode directly from the editable
 tilemaps with tested codec parameters; their `.original.lz` files are used
 only to compare packed bytes. The other four still use their source-adjacent
 `.original.lz` headers and distance ladders during packing.
-
-Rebuild and compare these six streams across all four ROMs with:
-
-```console
-make gfx-farm-status-secondary-tilemaps-all
-```
 
 Their native packed slots are deliberately fixed. A source edit that expands
 past its original compressed slot is rejected rather than overwriting the next
@@ -86,12 +71,6 @@ each PNG to an adjacent `.4bpp`; assembly then writes the native two-word
 count header and includes the three styles in source order. No packing script
 or layout sidecar is used.
 
-Build all three groups in JP, US, EU, and DE with:
-
-```console
-make gfx-farm-status-exterior-styles-all
-```
-
 All three original physical ranges are byte-identical across the four retail
 ROMs, so one shared source tree is authoritative. The normal ROM compare checks
 the complete linked layout and byte content.
@@ -103,11 +82,6 @@ is unchanged; after an edit it emits a strictly decoder-compatible
 Huffman-8/LZ3 stream and rejects any output that exceeds the original
 `0x1FD4`-byte slot. Run the overseas byte check and the changed-pixel capacity
 fixture with:
-
-```console
-make gfx-farm-status-winter-all
-make gfx-farm-status-winter-edit-test
-```
 
 `reference/winter/tiles_us_de.png` and `palettes_us_de.png`, together with the
 EU-specific `tiles_eu.png` and `palettes_eu.png`, remain verified readable

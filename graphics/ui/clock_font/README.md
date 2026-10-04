@@ -1,5 +1,13 @@
 # Overseas clock and calendar glyphs
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 The overseas code copies the `gClockFont` resource as 128 individual
 `0x20`-byte records, using `glyph_index << 5` as the source offset.  Each
 record is one 8-by-8 indexed 4bpp glyph.  `us_eu/glyph_indices.png` and
@@ -16,10 +24,6 @@ being misrepresented as a glyph.
 
 Build and verify the US, EU, and DE source ranges, then assemble the unchanged
 JP/US/EU/DE data container with:
-
-```console
-make gfx-clock-font-all
-```
 
 The shared gbagfx rule converts each PNG to its source-adjacent
 `glyph_indices.4bpp`. Assembly includes that tile data followed by the

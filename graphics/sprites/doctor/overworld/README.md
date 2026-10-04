@@ -1,5 +1,13 @@
 # Doctor actor-animation source
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](../../../README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 > The canonical editable PNGs now live in `graphics/sprites/actor_archive/full`.
 > This document preserves the verified Doctor selector-to-frame mapping only.
 
@@ -18,9 +26,3 @@ obtains geometry, palette and tile associations from the ROM resource tables.
 | `0x334`-`0x337` | `ANIMATION_DOCTOR_WEDDING_KISS` | 1234, 1241, 1242 |
 
 To regenerate from a verified US ROM:
-
-```console
-py -3 tools/actor_archive.py baserom_us.gba --offset 0x58BA28 \
-  --sha256 19a8733e132573478713e9b6e48e9650a702e62516209159787d26f270933736 \
-  export --animations 0x320-0x337 --output graphics/sprites/doctor/overworld
-```

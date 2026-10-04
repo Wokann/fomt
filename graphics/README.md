@@ -1,46 +1,66 @@
 # Graphics resources
 
-This directory contains image resources that replace verified raw ROM ranges.
-Source images are edited here; `make` rebuilds their GBA-native binary payloads
-under `build/<region>/graphics/`.
+This directory contains authored graphics sources and their source-adjacent
+generated GBA payloads. Normal builds use source references and automatic
+dependencies, not a separate per-family export, patch, or verification stage.
 
 ## Build inputs and reference images
 
-Every managed resource has exactly one final-ROM delivery path:
+PNG tile sources become `.1bpp`, `.4bpp`, or `.8bpp`; independent `.pal`
+sources become `.gbapal`. Tilemaps and native records remain independent
+sources rather than being reconstructed from a preview PNG. `archive.inc`
+files preserve the actual ordered archive tables and include their generated
+tiles and palettes. Compiled resources stay beside their authoring files;
+`build/<region>` holds code objects, generated assembly, and compiler/linker
+intermediates.
 
-- **Link-time inclusion.**  A source PNG, palette, tilemap, or native 4bpp
-  source is converted under `build/<region>/graphics/`, then the owning C or
-  assembly data object includes that binary.  This is the normal path for a
-  continuous resource whose original data label is also its build boundary.
-- **Bounded post-link replacement.**  A source is converted under the same
-  build directory, then the final ROM recipe replaces only its independently
-  verified original byte interval.  This is used for pointer-bearing MapData,
-  region-local records embedded in larger raw containers, and direct-DMA
-  records whose surrounding layout is not yet a standalone data object.
-  The patch tool verifies both the input length and the target interval; it
-  does not search for a matching byte sequence.
-- **Reference only.**  Files below a `reference/` directory are readable
-  renderings or extraction evidence.  They are never build inputs and cannot
-  be used to regenerate ROM bytes.
+Each payload has one link-time delivery path through its actual C/C++ or
+assembly reference. `scaninc` discovers assembly `.include` and `.incbin`
+dependencies; the C preprocessor resolves headers and regional macros.
+Missing resources are built by shared suffix rules in
+`graphics_file_rules.mk`. Normal ROM recipes only link, use `objcopy`, and
+apply the standard `gbafix` header/padding operation. They do not read
+baserom or perform post-link resource replacement.
 
-The two build paths are equivalent in authority: both consume checked-in
-editable sources and both are range-verified for JP, US, EU, and DE.  They
-must not be applied to the same range twice.  `COVERAGE.md` records the
-selected delivery path for every managed family.
+FoMT's native compression is implemented by the C tool `tools/fomt-lz`.
+Known source-only encoders use one shared `.lz` recipe with codec parameters
+as target metadata. Remaining `.original.lz` dependencies are unfinished
+compression templates, not independently rebuilt resources; they must not
+be described as complete merely because a ROM matches. Do not substitute
+the GBA BIOS LZ format for FoMT's native format.
+
+Files under `reference/` and OAM-composited `full/frame_NNNN.png` renderings
+are reference views unless a local README explicitly identifies them as
+authoring sources. In particular, actor and portrait archives are authored
+as their native tile atlases, independent palette banks, and `archive.inc`
+tables; rendered frames are not a second set of editable build inputs.
 
 For directly viewable complete images and code-backed static scene references,
 see [VIEWABLE_REFERENCES.md](VIEWABLE_REFERENCES.md). It deliberately keeps
 those readable views distinct from the native source formats used for rebuilds.
 
-Run the complete managed-graphics verification gate with:
+Build and verify the selected region with:
 
 ```console
-make gfx-verify
+make -j4 GAME_REGION=JP compare
+make -j4 GAME_REGION=US compare
+make -j4 GAME_REGION=EU compare
+make -j4 GAME_REGION=DE compare
 ```
 
-It checks every currently managed payload against the appropriate retail ROM
-range in JP, US, EU, and DE. It stops before a full ROM link; the project has
-an unrelated C-source build failure outside the graphics path.
+These targets verify complete ROM SHA-1 values. To build just one resource,
+request its actual output path, without adding a wrapper or an asset list:
+
+```console
+make NODEP=1 graphics/font/shared/single_width_font.1bpp
+```
+
+The old per-family `gfx-*` wrappers, Python extraction/preview/inventory
+helpers, and their ROM-address verification recipes have been retired.
+They can be recovered from Git revision `31411d1d` for reproducing an old
+audit; they are not current project build dependencies. The format and
+address investigations below, and linked older audit reports, retain their
+historical observations rather than defining the present build workflow.
 
 `tools/gbagfx` is vendored from pokeemerald and performs PNG/indexed-GBA tile
 and palette conversion. FoMT fonts are 1bpp records with twelve active rows,
@@ -64,15 +84,8 @@ ROM addresses: JP / US / EU / DE source addresses differ, but each range hashes
 to the same authoritative payload. Therefore the project deliberately maintains
 one editable PNG per stream rather than four redundant copies.
 
-Rebuild and verify this asset without linking the whole ROM:
-
-```console
-make GAME_REGION=JP gfx-font-test
-make gfx-fonts-test
-```
-
-`gfx-font` rebuilds the active region; `gfx-fonts` verifies all four regional
-build paths. The single-width output is 0x16D4 bytes and hashes to
+Rebuild this asset by requesting its actual output path, as shown above.
+The single-width output is 0x16D4 bytes and hashes to
 `92bc2a39dd9caf5e0f02a8ce7518f223eabe6c491bc4e05b8d1d2104f731754c`.
 The double-width output is 0x288F0 bytes and hashes to
 `bb7ffb1ed47acb9a05d2789eae9f3236945a4892df746c5a4f9f1dde706c4d3e`.
@@ -80,7 +93,7 @@ The double-width output is 0x288F0 bytes and hashes to
 The PNG files are the authored resources; no JSON manifest maps them onto
 ROM ranges. The original single-width JP interval is `0x7515A8` with length
 `0x16D4`; US / EU / DE use `0x4F90CC` / `0x4F9128` / `0x71DDD4`.
-Use `make gfx-fonts-test` to compare rebuilt bytes with the four retail ROMs.
+Use the four regional `compare` targets for full-ROM verification.
 The old one-off ROM-to-PNG extraction script is not needed to build or check
 the tracked source images.
 
@@ -114,11 +127,6 @@ second image overlay or arbitration between conflicting frame copies.
 The formal build does not assemble an intermediate baseline archive, invoke
 Python, read a retail ROM, or apply a post-link patch for these portraits.
 
-```console
-make GAME_REGION=JP gfx-portraits
-make gfx-portraits-all
-```
-
 `gfx-portraits-all` explicitly compares the generated tile interval and every
 palette bank against all four retail ROMs. These are optional regression
 checks; only PNG, PAL, archive tables, and the C converter are build inputs.
@@ -148,17 +156,10 @@ recovered from a ROM during compilation. Existing character-specific READMEs
 document identified selectors; guessed six-tile character exports must not
 be used as source material.
 
-```console
-make GAME_REGION=JP gfx-actors
-make gfx-actors-all
-```
-
 `gfx-actors-all` compares the generated atlas and all independent palette banks
 against each regional ROM. Normal builds need only the grayscale-index atlas, PAL
 sources, native archive tables, and gbagfx. The former Python full-frame overlay
 and its dedicated edit-test script have been removed.
-
-
 
 ## Linear 4bpp tile grids
 
@@ -168,8 +169,8 @@ authoring source. The C `gbagfx` tool converts it to native 4bpp tiles and
 BGR555 palette bytes; no Python tile-grid conversion runs in this build path.
 
 ```console
-make graphics/ui/shared_resource/shared_resource.4bpp
-make graphics/ui/shared_resource/shared_resource.gbapal
+make NODEP=1 graphics/ui/shared_resource/shared_resource.4bpp
+make NODEP=1 graphics/ui/shared_resource/shared_resource.gbapal
 ```
 
 `make tile-grid-test` compares both generated files with all four retail ROMs.
@@ -186,14 +187,6 @@ banks and `ui/scene_080b7164/reference/` contains the two actual rendered
 256-by-256 layers plus their runtime-priority composition. The same verified
 route now also covers `ui/scene_080bcfac/`, `ui/scene_080c160c/` (the last
 loads its palette beginning at BG bank 1), and `ui/scene_080ae7d0/`.
-Regenerate a reference set with:
-
-```console
-make gfx-ui-scene-080b7164-preview
-make gfx-ui-scene-080bcfac-preview
-make gfx-ui-scene-080c160c-preview
-make gfx-ui-scene-080ae7d0-preview
-```
 
 This is not a guessed screenshot and does not use a JSON layout sidecar: the
 renderer reads the same checked-in 4bpp tiles, native tilemap entries and
@@ -204,18 +197,10 @@ Some code-proven views cannot safely become editable palette sources. For
 `reference/<region>/screen.png` is consequently a checked read-only rendering,
 not an authoring input. Regenerate and validate all four views with:
 
-```console
-make gfx-ui-scene-080a2ba4-reference
-```
-
 `ui/scene_080b55d0_aux/reference/` follows the same read-only rule. Its two
 visible BG maps depend on palette operations that overlap other resource
 classes; the preview is a verified auxiliary-layer composition, not a claim to
 show the routine's full final screen. Regenerate it with:
-
-```console
-make gfx-ui-scene-080b55d0-aux-reference
-```
 
 `ui/scene_08054f40_tiles/reference/` similarly exposes the routine's proven
 static beach BG3 base. Its map and palette are runtime inputs rather than
@@ -225,20 +210,12 @@ reversible 4bpp tile stream is included directly by the original
 `gUnk_08738D1C` assembly symbol. Regenerate the checked preview for all four
 retail regions with:
 
-```console
-make gfx-ui-scene-08054f40-reference
-```
-
 `ui/scene_0805ab08_tiles/reference/` is a further code-backed static view:
 the initializer expands four row templates into three BG maps and configures
 their priorities. Its palette copy also crosses a resource-label boundary, so
 the PNGs are checked references while `tiles.4bpp` remains the editable source
 included directly by the original `gUnk_0872F21C` assembly symbol. Regenerate
 it with:
-
-```console
-make gfx-ui-scene-0805ab08-reference
-```
 
 `ui/scene_080ae7d0/shared/` is fully connected to the original loading code:
 its two tilemaps, tile stream, and sixteen BGR555 palette banks are included at
@@ -255,10 +232,6 @@ directly at `gSharedSceneBackgroundLayer0Tilemap` and
 resource set in `ui/scene_08077810/jp/`. The maps remain native entries, not
 guessed PNG composites:
 
-```console
-make gfx-ui-scene-08077810-all
-```
-
 ## FarmHouse descriptor source buffers
 
 The ten native BGR555 buffers in `farm_house_visual/shared/palettes/` are
@@ -271,11 +244,6 @@ The descriptor pointers continue to refer to those positions; the formal ROM
 build does not copy these buffers through a generated directory or patch them
 after linking. Independently compare both families with all four retail ROMs
 using the C range verifier:
-
-```console
-make gfx-farm-house-tilemaps-all
-make gfx-farm-house-palettes-all
-```
 
 ## Map-state fallback palettes
 
@@ -290,12 +258,6 @@ layout, BG tilemap, or a final composited image.
 JP, US, EU and DE use byte-identical source streams at different physical ROM
 offsets. `tools/fomt_lz.c` compiles the native `.gbapal.lz` streams beside the
 sources; assembly includes them directly without patching the linked ROM.
-Rebuild and validate the exact fixed-slot Raw-LZ encoding with:
-
-```console
-make GAME_REGION=JP gfx-map-state-palettes-test
-make GAME_REGION=JP compare
-```
 
 ## Map-state native presentation templates
 
@@ -321,10 +283,6 @@ there is no ROM-template build input or post-link patch:
 | `map_state_palette_templates.bin` | `0x45D654` | `0x6D74F8` | `0x6D7554` | `0x45E594` | `0x4ECC` |
 | `map_state_tilemap_templates.bin` | `0x464950` | `0x6DE7F4` | `0x6DE850` | `0x465890` | `0xC4E8` |
 
-```console
-make gfx-map-state-templates-all
-```
-
 ## Shared UI tile grid
 
 `ui/shared_resource/shared_resource.png` is the first production use of the
@@ -337,23 +295,10 @@ localizations, while their locations differ: JP `0x4E0BA0` / `0x4E0CC0`, US
 `0ccf3327b9f4b30e2b1e47d763f56c9a15d8dff94ff3e44c79b8e87c89a8992c` and
 `4c62773b262255ca7aa361ffb127e7d1a36397b9057ab59ff44ba4d5ac357a2c`.
 
-```console
-make GAME_REGION=JP gfx-ui-test
-make gfx-ui-all
-```
-
 The assembler consumes only the generated `shared_resource.4bpp` and
 `shared_resource.gbapal` files for the selected localization. The original
 surrounding archive bytes and its typed C++ table remain in place. Regenerate
 the authored indexed PNG from a verified US ROM with:
-
-```console
-python tools/tile_grid.py export baserom_us.gba \
-  --tiles-offset 0x75B818 --tiles-length 0x120 \
-  --palette-offset 0x75B938 --width 24 \
-  --sha256 0ccf3327b9f4b30e2b1e47d763f56c9a15d8dff94ff3e44c79b8e87c89a8992c \
-  --output graphics/ui/shared_resource/shared_resource.png --replace
-```
 
 ## Intro Scene background
 
@@ -370,10 +315,6 @@ packed stream and all three palette banks are byte-identical in JP, US, EU,
 and DE: stream locations are JP `0x4C91C0`, US `0x743058`, EU `0x7430B4`, DE
 `0x4CA4CC`; palette locations are JP `0x4CDB7C`, US `0x747A14`, EU `0x747A70`,
 DE `0x4CEE88`.
-
-```console
-make gfx-intro-background-all
-```
 
 Unchanged source preserves the retail `0x70` stream. An edited source is
 repacked with the strict native-compatible encoder and must fit the original
@@ -397,26 +338,10 @@ The checked-in `.4bpp` files are lossless editable source data with no JSON
 layout sidecar. A future verified OAM tool can build full PNG inputs from them
 without replacing or guessing their native order.
 
-```console
-make gfx-intro-objects-all
-```
-
 The build preserves each original stream byte-for-byte while its source is
 unchanged. After an edit it uses that stream's original Raw-LZ format and
 distance ladder, strictly validates the decoded result, and rejects an edit
 that no longer fits the native packed range.
-
-Regenerate the editable sources from a verified US ROM with:
-
-```console
-python tools/tile_grid.py export-unpacked baserom_us.gba \
-  --stream-offset 0x743058 --stream-length 0x49BC \
-  --stream-sha256 f0c828f16cafc75c3b277841bca74d1b7f62bbdf3551c9b591103c0f46213d4f \
-  --tiles-length 0x6E00 --palette-offset 0x747A14 --width 320 --bpp 4 \
-  --sha256 ee0ea9e581dab0baad7a55f2eed3c44dbc63518a2a5b8da5f79d4ef03d0b91c7 \
-  --palette-sha256 7b7ceecd51340e503d145875c32b894e8ddfe22dd4d690820664e117fcc27ba3 \
-  --output graphics/intro_scene/shared/background_tiles.png --replace
-```
 
 The committed palette PNG is the editable source. The shared gbagfx rule
 builds its source-adjacent `background_palettes.gbapal`; the four-region
@@ -437,10 +362,6 @@ offsets are JP `0x4D7EB8`, US `0x751F0C`, EU `0x751F68`, DE `0x4D9428`, with
 `0xA0` bytes per record.  The assembler replaces every one of these fourteen
 pointer-table targets with a generated file for the selected region.
 
-```console
-make gfx-records-minigame-all
-```
-
 The generic `%.4bpp` and `%.gbapal` rules rebuild the shared outputs beside
 their PNG sources; the audit then verifies all fourteen tile/palette ranges
 against all four ROMs.  See
@@ -454,10 +375,6 @@ is a complete 8x8 indexed 4bpp OBJ tile.  The Farm Status initializer
 uploads its single tile and adjacent BGR555 palette together, so this is a
 genuine editable PNG source rather than a guessed tile arrangement.  It
 rebuilds through:
-
-```console
-make gfx-farm-status-task-ui-tile-all
-```
 
 See `ui/farm_status/harvest_sprite_task_ui_tile/README.md` for the verified ROM
 offsets and runtime evidence.
@@ -486,37 +403,12 @@ strictly unpacks its 0x4800-byte 4bpp payload. The shared gbagfx rule
 converts the indexed palette PNG to all 256 BGR555 entries, including
 entries that look alike but have distinct native indices.
 
-```console
-make gfx-farm-status-all
-make gfx-farm-status-tilemaps-all
-```
-
 The first command verifies both generated ranges byte-for-byte against every
 retail ROM.  An unchanged PNG deliberately reuses the original compressed
 stream, so this verification stays exact. An edited tile source is rebuilt to
 4bpp then encoded through `marvelous_codec.py`; the strict unpacker checks it again
 and the build fails if it exceeds the original 0x21C4-byte allocation.
 No JSON layout sidecar participates in either path.
-
-Regenerate the source from a verified US ROM with:
-
-```console
-python tools/tile_grid.py export-unpacked baserom_us.gba \
-  --stream-offset 0x5275D0 --stream-length 0x21C4 \
-  --stream-sha256 669dec9d78bbe0d2ceb08383495eea9da863086b00c7dbd4687d90e5c01cddc5 \
-  --tiles-length 0x4800 --palette-offset 0x529794 --width 256 --bpp 4 \
-  --sha256 0039e4aa2bb252d5ae17cb2028406e47a79c4461990ad6c1e7e384a962b719e8 \
-  --palette-sha256 4538f7889f19367690ca80129ed8a36290924f4defb11261c57f4b095593ca48 \
-  --output graphics/ui/farm_status/shared/base_tiles.png --replace
-
-python tools/farm_status_previews.py \
-  --tiles-source graphics/ui/farm_status/shared/base_tiles.png \
-  --palettes-source graphics/ui/farm_status/shared/base_palettes.png \
-  --tilemaps-source graphics/ui/farm_status/shared/tilemaps \
-  --rom baserom_us.gba --region us --output graphics/ui/farm_status/reference --replace \
-  --verify-jp baserom_jp.gba --verify-us baserom_us.gba \
-  --verify-eu baserom_eu.gba --verify-de baserom_de.gba
-```
 
 The native `.tilemap` sources are assembled directly in ROM order. They do
 not require a Python-generated bundle; `make gfx-farm-status-tilemaps-test`
@@ -531,19 +423,6 @@ and eight-byte GBA OAM templates, then renders the generated tile/OAM bytes
 back to require an exact indexed-pixel match. It can also compare every emitted
 stream with a selected portrait in a retail ROM. The ROM is a regression oracle
 only; it is not read by the normal image build and no JSON layout is involved.
-
-```console
-make oam-pack
-make oam-pack-test
-make oam-pack-audit
-tools/oam_pack/oam_pack.exe graphics/portraits/shared/full/000_TALK_PORTRAIT_RICK_NORMAL.png \
-  --tiles build/jp/graphics/portrait_000.4bpp \
-  --palette build/jp/graphics/portrait_000.gbapal \
-  --oam build/jp/graphics/portrait_000.oam \
-  --origin-x -24 --origin-y -72 --strategy canvas \
-  --reference-rom baserom_jp.gba --reference-offset 0x2B3AE0 --portrait-id 0 \
-  --reference-dump
-```
 
 The `canvas` profile has already reproduced the original tile stream, palette,
 and six OAM entries for the Rick normal, surprised, and wedding portraits
@@ -571,16 +450,3 @@ reference exporter. It is not the compositor used by the production build,
 and its full-frame overlay commands do not edit the authoritative native
 atlas. Export into a temporary directory so existing authored PNG/PAL sources
 cannot be overwritten:
-
-```console
-python tools/portrait_archive.py baserom_jp.gba \
-  --offset 0x2B3AE0 --length 0x5E0A4 \
-  --sha256 34c23aced1a4f23ba80d1429a87f4c8a7ca11b0458c61a37a6eb48731440bbd2 \
-  audit
-
-python tools/portrait_archive.py baserom_jp.gba \
-  --offset 0x2B3AE0 --length 0x5E0A4 \
-  --sha256 34c23aced1a4f23ba80d1429a87f4c8a7ca11b0458c61a37a6eb48731440bbd2 \
-  --names-header include/fomt_constants.mary.h \
-  export --output /tmp/fomt_portrait_reference
-```

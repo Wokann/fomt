@@ -1,5 +1,13 @@
 # Records Screen resource audit
 
+> Build-workflow update (2026-10-04): The old per-family `gfx-*` targets
+> and Python extraction, preview, and inventory helpers have been retired.
+> Their audit observations below are retained as historical evidence, not as
+> current build instructions. Assets are generated beside authored sources
+> and included at link time; see the [current workflow](README.md).
+> Removed helpers can be recovered from Git revision `31411d1d` if an old
+> audit must be reproduced. Normal builds do not read baserom or patch ROMs.
+
 This audit closes the former "other Records-screen resources" lead without
 promoting adjacent ROM bytes to artwork.  The conclusion is based on the
 compiled data object, its assembly callers, and the fixed resource bounds;
@@ -52,10 +60,6 @@ seasonal-background families.  Therefore a scan of surrounding bytes is not
 evidence for another Records Screen image family.
 
 ## Verification
-
-```console
-make gfx-records-minigame-all
-```
 
 The target rebuilds the seven sources for every region and compares each
 generated tile/palette pair with its original JP, US, EU, and DE slot.  This
