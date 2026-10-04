@@ -2,7 +2,6 @@
 
 #include "hardware_refcount.hh"
 
-extern void func_08007C28(void * entry, void * value);
 extern void __builtin_delete(void * pointer);
 extern void free(void * pointer);
 
@@ -24,7 +23,7 @@ void func_08008364(struct HardwareStateOwner * owner, u32 flags)
             entry = group->start;
             if (entry != end) {
                 do {
-                    func_08007C28(entry, entry->unk_04);
+                    ReleaseHardwareSharedStateHandle(entry, (u32)entry->unk_04);
                     func_080079E8(entry, 2);
                     ++entry;
                 } while (entry != end);

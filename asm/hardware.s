@@ -728,99 +728,6 @@ func_08007B54: @ 0x08007B54
     bx r1
     .align 2, 0
 
-    thumb_func_start func_08007C28
-func_08007C28: @ 0x08007C28
-    push {r4, r5, r6, r7, lr}
-    sub sp, #4
-    adds r3, r1, #0
-    ldr r0, .L08007CD0 @ =gUnk_03000408
-    ldr r6, [r0]
-    cmp r3, #0
-    beq .L08007CC8
-    str r3, [sp]
-    mov r0, sp
-    ldrb r5, [r0]
-    movs r0, #0
-    cmp r5, #0xff
-    bhi .L08007C5A
-    lsrs r1, r5, #5
-    lsls r1, r1, #2
-    adds r1, r6, r1
-    movs r0, #0x1f
-    ands r0, r5
-    movs r2, #1
-    lsls r2, r0
-    ldr r1, [r1]
-    ands r1, r2
-    rsbs r0, r1, #0
-    orrs r0, r1
-    lsrs r0, r0, #0x1f
-.L08007C5A:
-    cmp r0, #0
-    beq .L08007CC8
-    adds r0, r6, #0
-    adds r0, #0x20
-    lsls r1, r5, #3
-    adds r1, #4
-    adds r4, r0, r1
-    movs r1, #0
-    lsls r0, r3, #8
-    lsrs r0, r0, #0x10
-    ldrh r2, [r4, #4]
-    cmp r0, r2
-    bne .L08007C76
-    movs r1, #1
-.L08007C76:
-    cmp r1, #0
-    beq .L08007CC8
-    ldrh r0, [r4, #2]
-    subs r0, #1
-    strh r0, [r4, #2]
-    lsls r0, r0, #0x10
-    lsrs r7, r0, #0x10
-    cmp r7, #0
-    bne .L08007CC8
-    ldr r1, .L08007CD4 @ =0x00000824
-    adds r0, r6, r1
-    ldrh r1, [r4]
-    lsls r1, r1, #0x16
-    lsrs r1, r1, #0x16
-    ldrb r2, [r4, #1]
-    lsls r2, r2, #0x1a
-    lsrs r2, r2, #0x1c
-    bl func_080080A0
-    strh r7, [r4, #4]
-    ldr r0, [r6, #0x20]
-    str r0, [r4]
-    str r4, [r6, #0x20]
-    cmp r5, #0xff
-    bhi .L08007CBC
-    lsrs r2, r5, #5
-    lsls r2, r2, #2
-    adds r2, r6, r2
-    movs r0, #0x1f
-    ands r5, r0
-    movs r1, #1
-    lsls r1, r5
-    ldr r0, [r2]
-    bics r0, r1
-    str r0, [r2]
-.L08007CBC:
-    movs r2, #0x92
-    lsls r2, r2, #4
-    adds r1, r6, r2
-    ldrh r0, [r1]
-    subs r0, #1
-    strh r0, [r1]
-.L08007CC8:
-    add sp, #4
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08007CD0: .4byte gUnk_03000408
-.L08007CD4: .4byte 0x00000824
-
     .section .text.hardware_state_properties_after, "ax", %progbits
     .thumb
     .align 2, 0
@@ -1104,7 +1011,7 @@ func_08008190:
 .L080082EE:
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl func_08007C28
+    bl ReleaseHardwareSharedStateHandle
     adds r0, r4, #0
     movs r1, #2
     bl func_080079E8
@@ -1126,7 +1033,7 @@ func_08008190:
 .L0800831A:
     ldr r1, [sp, #8]
     mov r0, r9
-    bl func_08007C28
+    bl ReleaseHardwareSharedStateHandle
     mov r0, r9
     movs r1, #2
     bl func_080079E8

@@ -10,8 +10,7 @@ extern void func_080D76C0(void *, u32, u32);
 
 u16 func_08007E8C(void)
 {
-    // The meaning of the halfword at this state offset is not yet known.
-    return ((HardwareSharedState *)gUnk_03000408)->unk_920;
+    return ((HardwareSharedState *)gUnk_03000408)->allocation_count;
 }
 
 u32 func_08007EA0(void)

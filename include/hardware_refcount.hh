@@ -49,15 +49,51 @@ typedef struct HardwareSharedStatePool {
 #endif
 } HardwareSharedStatePool;
 
+// The 1024-tile allocation tree has two children per level and 32-bit leaves.
+// The native clear/reserve routines use the two flag bytes at each node head.
+typedef struct HardwareTileBitmap32 {
+    u32 bits;
+} HardwareTileBitmap32;
+
+typedef struct HardwareTileTree64 {
+    u8 full;
+    u8 empty;
+    HardwareTileBitmap32 children[2];
+} HardwareTileTree64;
+
+typedef struct HardwareTileTree128 {
+    u8 full;
+    u8 empty;
+    HardwareTileTree64 children[2];
+} HardwareTileTree128;
+
+typedef struct HardwareTileTree256 {
+    u8 full;
+    u8 empty;
+    HardwareTileTree128 children[2];
+} HardwareTileTree256;
+
+typedef struct HardwareTileTree512 {
+    u8 full;
+    u8 empty;
+    HardwareTileTree256 children[2];
+} HardwareTileTree512;
+
+typedef struct HardwareTileTree1024 {
+    u8 full;
+    u8 empty;
+    HardwareTileTree512 children[2];
+} HardwareTileTree1024;
+
 typedef struct HardwareSharedState {
     u32 occupied[8];
     HardwareSharedStatePool pool;
-    u8 unk_824[0xFC];
-    u16 unk_920;
-    u16 unk_922;
+    HardwareTileTree1024 tile_tree;
+    u16 allocation_count;
+    u16 next_generation;
     u32 reference_count;
-    u16 unk_928;
-    u16 unk_92A;
+    u16 reserved_first;
+    u16 reserved_count;
 #ifdef __cplusplus
     bool IsAllocated(u32 index) const
     {
@@ -71,9 +107,19 @@ typedef char HardwareSharedStateEntrySizeCheck[sizeof(HardwareSharedStateEntry) 
 typedef char HardwareSharedStateEntryRefcountCheck[offsetof(HardwareSharedStateEntry, data.params.reference_count) == 2 ? 1 : -1];
 typedef char HardwareSharedStateEntryGenerationCheck[offsetof(HardwareSharedStateEntry, generation) == 4 ? 1 : -1];
 typedef char HardwareSharedStatePoolEntriesCheck[offsetof(HardwareSharedStatePool, entries) == 4 ? 1 : -1];
+typedef char HardwareTileBitmap32SizeCheck[sizeof(HardwareTileBitmap32) == 4 ? 1 : -1];
+typedef char HardwareTileTree64SizeCheck[sizeof(HardwareTileTree64) == 0xC ? 1 : -1];
+typedef char HardwareTileTree128SizeCheck[sizeof(HardwareTileTree128) == 0x1C ? 1 : -1];
+typedef char HardwareTileTree256SizeCheck[sizeof(HardwareTileTree256) == 0x3C ? 1 : -1];
+typedef char HardwareTileTree512SizeCheck[sizeof(HardwareTileTree512) == 0x7C ? 1 : -1];
+typedef char HardwareTileTree1024SizeCheck[sizeof(HardwareTileTree1024) == 0xFC ? 1 : -1];
+typedef char HardwareTileTreeChildrenOffsetCheck[offsetof(HardwareTileTree1024, children) == 4 ? 1 : -1];
 typedef char HardwareSharedStatePoolOffsetCheck[offsetof(HardwareSharedState, pool) == 0x20 ? 1 : -1];
-typedef char HardwareSharedStateTailOffsetCheck[offsetof(HardwareSharedState, unk_824) == 0x824 ? 1 : -1];
+typedef char HardwareSharedStateTreeOffsetCheck[offsetof(HardwareSharedState, tile_tree) == 0x824 ? 1 : -1];
+typedef char HardwareSharedStateCountOffsetCheck[offsetof(HardwareSharedState, allocation_count) == 0x920 ? 1 : -1];
+typedef char HardwareSharedStateGenerationOffsetCheck[offsetof(HardwareSharedState, next_generation) == 0x922 ? 1 : -1];
 typedef char HardwareSharedStateRefcountOffsetCheck[offsetof(HardwareSharedState, reference_count) == 0x924 ? 1 : -1];
+typedef char HardwareSharedStateReservedOffsetCheck[offsetof(HardwareSharedState, reserved_first) == 0x928 ? 1 : -1];
 typedef char HardwareSharedStateSizeCheck[sizeof(HardwareSharedState) == 0x92C ? 1 : -1];
 
 EXTERN_C
@@ -88,6 +134,8 @@ u32 func_08007B54(void * owner, u32 group_index); // Still in asm/hardware.s.
 
 // Returns the same validated handle; overflow restores the count and returns 0.
 u32 RetainHardwareSharedStateHandle(void * owner, u32 handle);
+// The last reference frees the tile range and returns the slot to its free list.
+void ReleaseHardwareSharedStateHandle(void * owner, u32 handle);
 
 // count must be positive; each eight-byte entry links to the following entry.
 HardwareSharedStateEntry * InitializeHardwareSharedStateFreeList(

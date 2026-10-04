@@ -1,4 +1,5 @@
 #include "hardware_refcount.hh"
+#include "hardware_state_properties.hh"
 
 EXTERN_C
 void __builtin_delete(void *);
@@ -24,6 +25,35 @@ void func_080079E8(void * owner, u32 flags)
     }
     if (flags & 1)
         __builtin_delete(owner);
+}
+
+void ReleaseHardwareSharedStateHandle(void *, u32 value)
+    SECTION(".text.hardware_shared_state_handles");
+void ReleaseHardwareSharedStateHandle(void *, u32 value)
+{
+    HardwareSharedState * state = reinterpret_cast<HardwareSharedState *>(gUnk_03000408);
+    if (value != 0) {
+        HardwareSharedStateHandle handle;
+        handle.value = value;
+        u32 const index = handle.Index();
+        if (state->IsAllocated(index)) {
+            HardwareSharedStateEntry & entry = state->pool.GetEntry(index);
+            bool valid = handle.fields.generation == entry.generation;
+            if (valid) {
+                u16 remaining = --entry.data.params.reference_count;
+                if (remaining == 0) {
+                    func_080080A0(reinterpret_cast<u8 *>(&state->tile_tree),
+                        entry.data.params.tile_index, entry.data.params.size_shift);
+                    entry.generation = remaining;
+                    entry.data.next_free = state->pool.first_free;
+                    state->pool.first_free = &entry;
+                    if (index < 256)
+                        state->occupied[index / 32] &= ~(1u << (index % 32u));
+                    --state->allocation_count;
+                }
+            }
+        }
+    }
 }
 
 u32 RetainHardwareSharedStateHandle(void *, u32 value)
