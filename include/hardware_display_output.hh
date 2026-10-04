@@ -30,7 +30,9 @@ struct HardwareDisplayRegisterValue {
 struct HardwareDisplayState {
     u32 control;
     u16 status;
-    u8 unk_06[0x1A];
+    u8 unk_06[2];
+    u16 background_control[4];
+    u16 background_scroll[4][2];
     u16 matrix_a[4];
     u8 unk_28[8];
     u16 matrix_b[4];
@@ -50,6 +52,8 @@ struct HardwareDisplayState {
 };
 
 typedef char HardwareDisplayState_size_check[(sizeof(struct HardwareDisplayState) == 0x58) ? 1 : -1];
+typedef char HardwareDisplayState_background_control_offset_check[(offsetof(struct HardwareDisplayState, background_control) == 0x08) ? 1 : -1];
+typedef char HardwareDisplayState_background_scroll_offset_check[(offsetof(struct HardwareDisplayState, background_scroll) == 0x10) ? 1 : -1];
 typedef char HardwareDisplayState_blend_control_offset_check[(offsetof(struct HardwareDisplayState, blend_control) == 0x50) ? 1 : -1];
 
 struct HardwareSpriteBufferState {
@@ -67,8 +71,8 @@ struct HardwareSpriteBufferParameters {
 EXTERN_C
 
 struct HardwareDisplayState * func_080096B0(struct HardwareDisplayState * object);
-void func_080096F0(void * object);
-void func_08009710(void * object);
+void WriteHardwareDisplayState(struct HardwareDisplayState * object);
+void func_08009710(struct HardwareDisplayState * object);
 void * func_08009744(void * object, u8 byte1, u8 byte3);
 void func_0800977C(void * object);
 void func_08009790(void * object);

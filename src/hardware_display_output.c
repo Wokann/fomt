@@ -1,4 +1,5 @@
 #include "hardware_display_output.hh"
+#include "gbaio.h"
 #include "gbasvc.h"
 
 extern void func_08008E64(void const * source, void * destination, u32 size);
@@ -23,17 +24,20 @@ struct HardwareDisplayState * func_080096B0(struct HardwareDisplayState * object
     return object;
 }
 
-void func_080096F0(void * object)
+void WriteHardwareDisplayState(struct HardwareDisplayState * object)
 {
-    func_08008E64(object, (void *)0x04000000, 0x54);
-    *(volatile u16 *)0x04000054 = *(u16 *)((u8 *)object + 0x54);
+    func_08008E64(object, (void *)&REG_DISPCNT,
+        offsetof(struct HardwareDisplayState, blend_brightness));
+    // The original routine writes BLDY as a halfword, not REG_BLDY's byte view.
+    REG(u16, 0x04000054) = object->blend_brightness;
 }
 
-void func_08009710(void * object)
+void func_08009710(struct HardwareDisplayState * object)
 {
     CpuFastSet(object, (void *)0x04000000, 0x10);
     CpuSet((u8 *)object + 0x40, (void *)0x04000040, 0x04000005);
-    *(volatile u16 *)0x04000014 = *(u16 *)((u8 *)object + 0x14);
+    // Keep this routine's distinct final BG1 write; it does not mirror BLDY.
+    REG_BG1HOFS = object->background_scroll[1][0];
 }
 
 void * func_08009744(void * object, u8 byte1, u8 byte3)

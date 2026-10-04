@@ -126,7 +126,7 @@ void func_08008774(struct HardwareBootstrap * owner)
 
 u32 RunHardwareDisplayCommand(struct HardwareDisplayCommand * command)
 {
-    func_080096F0(command->display);
+    WriteHardwareDisplayState(command->display);
     return 0;
 }
 
