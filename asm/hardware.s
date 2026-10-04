@@ -603,7 +603,7 @@ func_08008190:
     ldrb r6, [r0]
     adds r0, r7, #0
     adds r1, r6, #0
-    bl func_080D772C
+    bl Reserve__18HardwareStateGroupUi
     subs r0, r6, #1
     lsls r0, r0, #0x18
     lsrs r6, r0, #0x18
