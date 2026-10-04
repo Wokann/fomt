@@ -1485,8 +1485,111 @@ static void write_huff_atom_byte(BitWriter *writer, HuffModel const *model,
 // The greedy Huffman/LZ compressor orders equal-depth leaves by descending
 // literal frequency. The default keeps selection-sort traversal; explicit
 // tie policies use first occurrence, reverse symbol order, or reverse
-// ascending selection. Shell sorting can also reassign the computed length
-// histogram. These are encoding choices, not saved trees or symbol lists.
+// ascending selection. Shell and three-way quick sorting can also reassign
+// the computed length histogram. These are encoding choices, not saved trees
+// or symbol lists.
+static void huff_frequency_swap(unsigned *left, unsigned *right)
+{
+    unsigned symbol = *left;
+    *left = *right;
+    *right = symbol;
+}
+
+static unsigned huff_frequency_median(unsigned const *order,
+                                       unsigned const *frequency,
+                                       unsigned left, unsigned middle,
+                                       unsigned right)
+{
+    unsigned a = frequency[order[left]], b = frequency[order[middle]];
+    unsigned c = frequency[order[right]];
+    if (a < b)
+        return b < c ? middle : a < c ? right : left;
+    return b > c ? middle : a < c ? left : right;
+}
+
+static void huff_frequency_insertion(unsigned *order, unsigned count,
+                                      unsigned const *frequency)
+{
+    for (unsigned index = 1; index < count; index++) {
+        unsigned symbol = order[index], position = index;
+        while (position && frequency[order[position - 1]] > frequency[symbol]) {
+            order[position] = order[position - 1];
+            position--;
+        }
+        order[position] = symbol;
+    }
+}
+
+// A fully specified three-way frequency sort. Equal entries are collected at
+// both ends and then returned to the middle. Small partitions use insertion;
+// larger ones use median-of-three (or three such samples above 40 leaves).
+// Implement the traversal here: libc qsort does not specify equal-key order
+// and would make compressed bytes depend on the build host's C library.
+static void huff_frequency_quick_sort(unsigned *order, unsigned count,
+                                       unsigned const *frequency)
+{
+    while (count > 1) {
+        if (count < 7) {
+            huff_frequency_insertion(order, count, frequency);
+            return;
+        }
+        unsigned pivot = count / 2;
+        if (count > 7) {
+            unsigned left = 0, middle = pivot, right = count - 1;
+            if (count > 40) {
+                unsigned gap = count / 8;
+                left = huff_frequency_median(order, frequency, 0, gap, gap * 2);
+                middle = huff_frequency_median(order, frequency,
+                                                pivot - gap, pivot, pivot + gap);
+                right = huff_frequency_median(order, frequency,
+                                               right - gap * 2, right - gap, right);
+            }
+            pivot = huff_frequency_median(order, frequency, left, middle, right);
+        }
+        huff_frequency_swap(order, order + pivot);
+        unsigned weight = frequency[order[0]];
+        unsigned left_equal = 1, left = 1, right_equal = count - 1;
+        unsigned right = count - 1;
+        int moved = 0;
+        for (;;) {
+            while (left <= right && frequency[order[left]] <= weight) {
+                if (frequency[order[left]] == weight) {
+                    huff_frequency_swap(order + left_equal++, order + left);
+                    moved = 1;
+                }
+                left++;
+            }
+            while (left <= right && frequency[order[right]] >= weight) {
+                if (frequency[order[right]] == weight) {
+                    huff_frequency_swap(order + right, order + right_equal--);
+                    moved = 1;
+                }
+                right--;
+            }
+            if (left > right)
+                break;
+            huff_frequency_swap(order + left++, order + right--);
+            moved = 1;
+        }
+        if (!moved) {
+            huff_frequency_insertion(order, count, frequency);
+            return;
+        }
+        unsigned lower = left - left_equal, upper = right_equal - right;
+        unsigned front = left_equal < lower ? left_equal : lower;
+        for (unsigned index = 0; index < front; index++)
+            huff_frequency_swap(order + index, order + left - front + index);
+        unsigned back = count - right_equal - 1;
+        if (back > upper)
+            back = upper;
+        for (unsigned index = 0; index < back; index++)
+            huff_frequency_swap(order + left + index, order + count - back + index);
+        huff_frequency_quick_sort(order, lower, frequency);
+        order += count - upper;
+        count = upper;
+    }
+}
+
 static void huff_model_frequency_order(HuffModel *model,
                                         unsigned char const *literals,
                                         size_t literal_size, unsigned symbol_bits,
@@ -1517,26 +1620,35 @@ static void huff_model_frequency_order(HuffModel *model,
             frequency[low]++;
         }
     }
-    if (tie_order == 6) {
-        // Start with encountered leaves, including the synthetic second leaf
-        // of a one-symbol alphabet. Knuth gaps 1, 4, 13, ... define this Shell
-        // sort completely; no per-resource tie permutation is supplied.
-        symbol_count = encountered;
-        for (unsigned symbol = 0; symbol < alphabet; symbol++)
-            if (model->bits[symbol] && !frequency[symbol])
-                order[symbol_count++] = symbol;
-        unsigned gap = 1;
-        while (gap < symbol_count)
-            gap = gap * 3 + 1;
-        while (gap > 1) {
-            gap = (gap - 1) / 3;
-            for (unsigned index = gap; index < symbol_count; index++) {
-                unsigned symbol = order[index], position = index;
-                while (position >= gap && frequency[symbol] < frequency[order[position - gap]]) {
-                    order[position] = order[position - gap];
-                    position -= gap;
+    if (tie_order == 6 || tie_order == 7) {
+        if (tie_order == 7) {
+            // Reverse alphabetic leaves, including the synthetic second leaf
+            // of a one-symbol input, followed by the specified quick sort.
+            symbol_count = 0;
+            for (unsigned symbol = alphabet; symbol > 0; symbol--)
+                if (model->bits[symbol - 1])
+                    order[symbol_count++] = symbol - 1;
+            huff_frequency_quick_sort(order, symbol_count, frequency);
+        } else {
+            // Encountered leaves and Knuth gaps 1, 4, 13, ... define Shell
+            // sorting. No per-resource tie permutation is supplied.
+            symbol_count = encountered;
+            for (unsigned symbol = 0; symbol < alphabet; symbol++)
+                if (model->bits[symbol] && !frequency[symbol])
+                    order[symbol_count++] = symbol;
+            unsigned gap = 1;
+            while (gap < symbol_count)
+                gap = gap * 3 + 1;
+            while (gap > 1) {
+                gap = (gap - 1) / 3;
+                for (unsigned index = gap; index < symbol_count; index++) {
+                    unsigned symbol = order[index], position = index;
+                    while (position >= gap && frequency[symbol] < frequency[order[position - gap]]) {
+                        order[position] = order[position - gap];
+                        position -= gap;
+                    }
+                    order[position] = symbol;
                 }
-                order[position] = symbol;
             }
         }
         for (unsigned left = 0; left < symbol_count / 2; left++) {
@@ -1643,7 +1755,7 @@ static unsigned char *encode_huff_lz3_greedy(unsigned char const *source,
     HuffModel model;
     huff_byte_model_strategy(literals, literal_size, &model, symbol_bits,
                              parent_first, tie_order == 5 ? HUFF_BUILD_HEAP
-                                 : tie_order == 3 || tie_order == 6
+                                 : tie_order == 3 || tie_order == 6 || tie_order == 7
                                      ? HUFF_BUILD_LAST : HUFF_BUILD_FIRST);
     if (tie_order != 3 && tie_order != 5)
         huff_model_frequency_order(&model, literals, literal_size, symbol_bits, tie_order);
@@ -3065,7 +3177,7 @@ static void usage(void)
     fail("usage: fomt-lz encode-lz0|encode-lz1|encode-lz2|encode-lz3|encode-huff4-lz0|"
          "encode-huff4-lz2|encode-huff8-lz2|encode-huff4-lz3|encode-huff8-lz3 "
          "SOURCE OUTPUT LADDER SLOT_SIZE "
-         "[--literal-tail] [--filter=1..4] [--tie=first|reverse|last|reverse-select|heap|shell] "
+         "[--literal-tail] [--filter=1..4] [--tie=first|reverse|last|reverse-select|heap|shell|quick] "
          "[--parent-first] [--greedy] | "
          "rebuild-native SOURCE ORIGINAL OUTPUT [TAIL] | "
          "rebuild-huff8-lz3 SOURCE ORIGINAL OUTPUT LADDER SLOT_SIZE | "
@@ -3191,7 +3303,7 @@ static void test_huff_lz3(void)
         parse_ladder(ladder_values[ladder_index], ladder, 3);
         for (unsigned symbol_bits = 4; symbol_bits <= 8; symbol_bits += 4) {
             for (unsigned parent_first = 0; parent_first < 2; parent_first++) {
-                for (unsigned tie_order = 0; tie_order < 7; tie_order++) {
+                for (unsigned tie_order = 0; tie_order < 8; tie_order++) {
                     for (unsigned index = 0; index < sizeof(sizes) / sizeof(*sizes); index++) {
                         size_t size = sizes[index];
                         for (unsigned pattern = 0; pattern < 8; pattern++) {
@@ -3532,6 +3644,10 @@ int main(int argc, char **argv)
             } else if ((huff4 || huff8) && !tie_seen &&
                        strcmp(argv[index], "--tie=shell") == 0) {
                 tie_order = 6;
+                tie_seen = 1;
+            } else if ((huff4 || huff8) && !tie_seen &&
+                       strcmp(argv[index], "--tie=quick") == 0) {
+                tie_order = 7;
                 tie_seen = 1;
             } else if ((huff4_lz2 || huff8_lz2 || huff4 || huff8) && !tie_seen &&
                        strcmp(argv[index], "--tie=last") == 0) {

@@ -98,6 +98,11 @@ selection sort computed from the current literal frequencies. The shared
 `map_15/layer_5.tilemap` now also encodes directly with this generic policy;
 it does not read an original stream, save a symbol permutation, or pad to a
 fixed output size.
+`--tie=quick` starts with reverse alphabetic leaves and uses a deterministic
+three-way frequency sort, then assigns the computed Huffman length histogram
+in decreasing frequency order. The sort is implemented in the native codec,
+not delegated to a host-dependent `qsort`. The fourth shared startup tilemap
+now uses this policy without an original-stream input or output-size padding.
 Run `tools/fomt-lz test-huff-lz3` for the native boundary self-tests.
 
 The upstream [scaninc](./tools/scaninc/README.md) scans assembly includes and

@@ -223,6 +223,7 @@ FOMT_LZ_ENCODE_OUTPUTS := $(addsuffix .lz, \
   $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_00.tilemap \
   $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_01.tilemap \
   $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_02.tilemap \
+  $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_03.tilemap \
   $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_00.tilemap \
   $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_01.tilemap \
   $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_04.tilemap \
@@ -273,6 +274,7 @@ $(INTRO_BACKGROUND_PACKED_BIN): FOMT_LZ_ENCODE := encode-lz2 3,5,8,10,12,13,15 0
 $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_00.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,9 0x3DC --parent-first
 $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_01.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,9 0x21C --tie=first
 $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_02.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,8,11 0xF4
+$(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_03.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,7,10 0 --tie=quick
 $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_00.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,8,12 0 --tie=heap
 $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_01.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,6,11 0x1D8
 $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_04.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,8,11 0x1D0
