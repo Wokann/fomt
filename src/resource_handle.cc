@@ -26,10 +26,10 @@ IndexedResourceArchive::IndexedResourceArchive(u8 const * data)
         group_descriptors = (IndexedResourceArchiveGroupDescriptor *)data;
         data += group_descriptor_count * 16;
 
-        third_descriptor_count = *(u16 const *)data;
+        sprite_descriptor_count = *(u16 const *)data;
         data += 4;
-        third_descriptors = (IndexedResourceArchiveDescriptor8 *)data;
-        data += third_descriptor_count * 8;
+        sprite_descriptors = (HardwareSpriteOamRecord *)data;
+        data += sprite_descriptor_count * sizeof(HardwareSpriteOamRecord);
 
         fourth_descriptor_count = *(u16 const *)data;
         data += 4;
@@ -55,8 +55,8 @@ IndexedResourceArchive::IndexedResourceArchive(u8 const * data)
         entry_descriptors = 0;
         group_descriptor_count = 0;
         group_descriptors = 0;
-        third_descriptor_count = 0;
-        third_descriptors = 0;
+        sprite_descriptor_count = 0;
+        sprite_descriptors = 0;
         fourth_descriptor_count = 0;
         fourth_descriptors = 0;
         fifth_descriptor_count = 0;
@@ -89,8 +89,8 @@ IndexedResourceGroupResult IndexedResourceArchive::GetGroupData(u32 index) const
     if (index < group_descriptor_count)
     {
         IndexedResourceArchiveGroupDescriptor const * descriptor = group_descriptors + index;
-        u16 third_first_index = descriptor->third_first_index;
-        u16 third_count = descriptor->third_count;
+        u16 sprite_first_index = descriptor->sprite_first_index;
+        u16 sprite_count = descriptor->sprite_count;
         u32 fourth_address = descriptor->fourth_first_index << 5;
         fourth_address += (u32)fourth_descriptors;
         u16 fourth_count = descriptor->fourth_count;
@@ -99,11 +99,11 @@ IndexedResourceGroupResult IndexedResourceArchive::GetGroupData(u32 index) const
         u16 fifth_count = descriptor->fifth_count;
         u16 sixth_first_index = descriptor->sixth_first_index;
         u16 sixth_count = descriptor->sixth_count;
-        u32 third_address = third_first_index << 3;
-        third_address += (u32)third_descriptors;
+        u32 sprite_address = sprite_first_index * sizeof(HardwareSpriteOamRecord);
+        sprite_address += (u32)sprite_descriptors;
 
         return IndexedResourceGroupResult(
-            (IndexedResourceArchiveDescriptor8 *)third_address, third_count,
+            (HardwareSpriteOamRecord *)sprite_address, sprite_count,
             (IndexedResourceArchiveDescriptor32 *)fourth_address, fourth_count << 5,
             (IndexedResourceArchiveDescriptor32 *)fifth_address, fifth_count << 5,
             sixth_descriptors + sixth_first_index, sixth_count);

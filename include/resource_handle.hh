@@ -2,6 +2,7 @@
 #define RESOURCE_HANDLE_HH
 
 #include "prelude.h"
+#include "hardware_display_output.hh"
 
 struct IndexedResourceProvider;
 
@@ -26,6 +27,18 @@ struct IndexedResourceResult
 
 struct IndexedResourceArchiveDescriptor8 { u8 unknown_00[8]; };
 struct IndexedResourceArchiveDescriptor32 { u8 unknown_00[32]; };
+
+struct IndexedResourceSpriteRange
+{
+    HardwareSpriteOamRecord * Data() const { return data; }
+    u32 Count() const { return data ? count : 0; }
+
+    IndexedResourceSpriteRange(HardwareSpriteOamRecord * a_data, u16 a_count)
+        : data(a_data), count(a_count) {}
+
+    HardwareSpriteOamRecord * data;
+    u16 count;
+};
 
 struct IndexedResourceSpriteMatrix
 {
@@ -56,20 +69,21 @@ struct IndexedResourceDescriptor32Range
     u16 byte_count;
 };
 
-// Third/sixth lengths count eight-byte descriptors. Fourth/fifth lengths
+// The third table contains native OAM records; the sixth descriptor format
+// remains unresolved. Both lengths count eight-byte entries. Fourth/fifth lengths
 // are bytes, as consumed by the resource upload routines. The two-byte
 // gaps in each range are ordinary ABI padding, not additional stored data.
 struct IndexedResourceGroupResult
 {
     IndexedResourceGroupResult(
-        IndexedResourceArchiveDescriptor8 * third_data, u16 third_count,
+        HardwareSpriteOamRecord * sprite_data, u16 sprite_count,
         IndexedResourceArchiveDescriptor32 * fourth_data, u16 fourth_byte_count,
         IndexedResourceArchiveDescriptor32 * fifth_data, u16 fifth_byte_count,
         IndexedResourceArchiveDescriptor8 * sixth_data, u16 sixth_count)
-        : third(third_data, third_count), fourth(fourth_data, fourth_byte_count),
+        : sprites(sprite_data, sprite_count), fourth(fourth_data, fourth_byte_count),
           fifth(fifth_data, fifth_byte_count), sixth(sixth_data, sixth_count) {}
 
-    IndexedResourceDescriptor8Range third;
+    IndexedResourceSpriteRange sprites;
     IndexedResourceDescriptor32Range fourth;
     IndexedResourceDescriptor32Range fifth;
     IndexedResourceDescriptor8Range sixth;
@@ -98,8 +112,8 @@ struct IndexedResourceArchiveEntry
 
 struct IndexedResourceArchiveGroupDescriptor
 {
-    u16 third_count;
-    u16 third_first_index;
+    u16 sprite_count;
+    u16 sprite_first_index;
     u16 fourth_count;
     u16 fourth_first_index;
     u16 fifth_count;
@@ -116,14 +130,14 @@ struct IndexedResourceArchive
     IndexedResourceProviderVTable * vtable;
     IndexedResourceArchiveEntry * entry_descriptors;
     IndexedResourceArchiveGroupDescriptor * group_descriptors;
-    IndexedResourceArchiveDescriptor8 * third_descriptors;
+    HardwareSpriteOamRecord * sprite_descriptors;
     IndexedResourceArchiveDescriptor32 * fourth_descriptors;
     IndexedResourceArchiveDescriptor32 * fifth_descriptors;
     IndexedResourceArchiveDescriptor8 * sixth_descriptors;
     IndexedResourceEntry * entries;
     u16 entry_descriptor_count;
     u16 group_descriptor_count;
-    u16 third_descriptor_count;
+    u16 sprite_descriptor_count;
     u16 fourth_descriptor_count;
     u16 fifth_descriptor_count;
     u16 sixth_descriptor_count;
@@ -157,6 +171,7 @@ typedef char IndexedResourceResultSizeCheck[sizeof(IndexedResourceResult) == 8 ?
 typedef char IndexedResourceHandleSizeCheck[sizeof(IndexedResourceHandle) == 0x14 ? 1 : -1];
 typedef char IndexedResourceGroupDescriptorSizeCheck[sizeof(IndexedResourceArchiveGroupDescriptor) == 16 ? 1 : -1];
 typedef char IndexedResourceDescriptor8RangeSizeCheck[sizeof(IndexedResourceDescriptor8Range) == 8 ? 1 : -1];
+typedef char IndexedResourceSpriteRangeSizeCheck[sizeof(IndexedResourceSpriteRange) == 8 ? 1 : -1];
 typedef char IndexedResourceDescriptor32RangeSizeCheck[sizeof(IndexedResourceDescriptor32Range) == 8 ? 1 : -1];
 typedef char IndexedResourceGroupResultSizeCheck[sizeof(IndexedResourceGroupResult) == 32 ? 1 : -1];
 typedef char IndexedResourceGroupFourthOffsetCheck[offsetof(IndexedResourceGroupResult, fourth) == 8 ? 1 : -1];

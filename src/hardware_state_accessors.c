@@ -57,9 +57,9 @@ struct HardwareDisplayState * func_08008918(void * const * state)
     return &((struct HardwareCoreState *)*state)->display;
 }
 
-u8 * func_08008920(void * const * state)
+struct HardwareSpriteBufferState * func_08008920(void * const * state)
 {
-    return ((struct HardwareCoreState *)*state)->sprite_buffer.bytes;
+    return &((struct HardwareCoreState *)*state)->sprite_buffer;
 }
 
 u8 * func_08008928(void * const * state)
@@ -72,9 +72,9 @@ struct HardwareDisplayState * func_08008930(void * const * state)
     return &((struct HardwareCoreState *)*state)->display;
 }
 
-u8 * func_08008938(void * const * state)
+struct HardwareSpriteBufferState * func_08008938(void * const * state)
 {
-    return ((struct HardwareCoreState *)*state)->sprite_buffer.bytes;
+    return &((struct HardwareCoreState *)*state)->sprite_buffer;
 }
 
 u8 * func_08008940(void * const * state)

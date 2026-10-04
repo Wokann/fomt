@@ -75,12 +75,43 @@ typedef char HardwareDisplayState_background_scroll_offset_check[(offsetof(struc
 typedef char HardwareDisplayState_mosaic_offset_check[(offsetof(struct HardwareDisplayState, mosaic) == 0x4C) ? 1 : -1];
 typedef char HardwareDisplayState_blend_control_offset_check[(offsetof(struct HardwareDisplayState, blend_control) == 0x50) ? 1 : -1];
 
+// The indexed sprite archive and the hardware buffer use the same native
+// eight-byte OAM record. Coordinates are signed offsets in archive records;
+// hardware writes retain their wrapped eight-/nine-bit representation.
+// The top two matrix-index bits are the flip bits in non-affine mode.
+struct HardwareSpriteOamRecord {
+    i32 y : 8;
+    u32 affine_mode : 2;
+    u32 object_mode : 2;
+    u32 mosaic : 1;
+    u32 color_mode : 1;
+    u32 shape : 2;
+    i32 x : 9;
+    u32 affine_index_low : 3;
+    u32 horizontal_flip : 1;
+    u32 vertical_flip : 1;
+    u32 size : 2;
+    u16 tile_index : 10;
+    u16 priority : 2;
+    u16 palette_bank : 4;
+    u16 affine_coefficient;
+};
+
 struct HardwareSpriteBufferState {
-    u8 bytes[0x404];
+    u8 sprite_count;
+    u8 reset_sprite_count;
+    u8 matrix_count;
+    u8 reset_matrix_count;
+    struct HardwareSpriteOamRecord sprites[128];
 #ifdef __cplusplus
     HardwareSpriteBufferState(u8 byte1, u8 byte3) asm("func_08009744");
 #endif
 };
+
+typedef char HardwareSpriteOamRecord_size_check[sizeof(struct HardwareSpriteOamRecord) == 8 ? 1 : -1];
+typedef char HardwareSpriteOamRecord_coefficient_offset_check[offsetof(struct HardwareSpriteOamRecord, affine_coefficient) == 6 ? 1 : -1];
+typedef char HardwareSpriteBufferState_size_check[sizeof(struct HardwareSpriteBufferState) == 0x404 ? 1 : -1];
+typedef char HardwareSpriteBufferState_sprites_offset_check[offsetof(struct HardwareSpriteBufferState, sprites) == 4 ? 1 : -1];
 
 struct HardwareSpriteBufferParameters {
     u8 byte1;

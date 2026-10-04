@@ -187,7 +187,7 @@ void func_080019D8(IntroSceneCore * core);
 void func_080024E0(IntroSceneCore * core);
 void SubmitIntroSceneSprite(IntroSceneCore * core, int x, int y, int type)
     SECTION(".text.intro_scene_sprite_submission");
-void func_0805E99C(u8 * buffer, IndexedResourceArchiveDescriptor8 const * descriptors,
+void func_0805E99C(HardwareSpriteBufferState * buffer, HardwareSpriteOamRecord const * descriptors,
     u32 count, IntroSceneSpriteParameters const * parameters);
 GameIntroScene * ConstructGameIntroScene(GameIntroScene * scene);
 void DestroyGameIntroScene(GameIntroScene * scene, int flags);

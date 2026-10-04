@@ -41,16 +41,16 @@ void func_08009710(struct HardwareDisplayState * object)
 
 void * func_08009744(void * object, u8 byte1, u8 byte3)
 {
-    u8 * bytes = (u8 *)object;
+    struct HardwareSpriteBufferState * buffer = (struct HardwareSpriteBufferState *)object;
     u8 * entry;
     u8 * end;
 
-    bytes[1] = byte1 & 0x7F;
-    bytes[0] = byte1 & 0x7F;
-    bytes[3] = byte3 & 0x1F;
-    bytes[2] = byte3 & 0x1F;
-    entry = bytes + 4;
-    end = bytes + 0x404;
+    buffer->reset_sprite_count = byte1 & 0x7F;
+    buffer->sprite_count = byte1 & 0x7F;
+    buffer->reset_matrix_count = byte3 & 0x1F;
+    buffer->matrix_count = byte3 & 0x1F;
+    entry = (u8 *)buffer->sprites;
+    end = (u8 *)(buffer->sprites + ARRAY_COUNT(buffer->sprites));
     do {
         entry[1] = 2;
         entry += 8;
@@ -72,7 +72,8 @@ void func_080097A4(u8 * buffer)
 {
     u8 * parameter_cursor = buffer + 4;
     u8 * oam = (u8 *)0x07000000;
-    u8 * end = buffer + 4 + buffer[0] * 8;
+    u8 * end = buffer + 4 + ((struct HardwareSpriteBufferState *)buffer)->sprite_count *
+        sizeof(struct HardwareSpriteOamRecord);
     u32 priority = 0;
     do {
         u8 * entry = buffer + 4;

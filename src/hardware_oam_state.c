@@ -4,19 +4,19 @@
 
 void func_08009834(void * object)
 {
-    u8 * bytes = (u8 *)object;
-    u8 old_count = bytes[0];
-    u8 new_count = bytes[1];
+    struct HardwareSpriteBufferState * buffer = (struct HardwareSpriteBufferState *)object;
+    u8 old_count = buffer->sprite_count;
+    u8 new_count = buffer->reset_sprite_count;
     if (old_count > new_count) {
-        u8 * entry = bytes + 4 + (new_count << 3);
-        u8 * end = bytes + 4 + (old_count << 3);
+        u8 * entry = (u8 *)(buffer->sprites + new_count);
+        u8 * end = (u8 *)(buffer->sprites + old_count);
         do {
             entry[1] = 2;
             entry += 8;
         } while (entry != end);
     }
-    bytes[0] = new_count;
-    bytes[2] = bytes[3];
+    buffer->sprite_count = new_count;
+    buffer->matrix_count = buffer->reset_matrix_count;
 }
 
 void func_08009864(void * object)
