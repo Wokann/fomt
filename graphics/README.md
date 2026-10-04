@@ -23,11 +23,13 @@ apply the standard `gbafix` header/padding operation. They do not read
 baserom or perform post-link resource replacement.
 
 FoMT's native compression is implemented by the C tool `tools/fomt-lz`.
-Known source-only encoders use one shared `.lz` recipe with codec parameters
-as target metadata. Remaining `.original.lz` dependencies are unfinished
-compression templates, not independently rebuilt resources; they must not
-be described as complete merely because a ROM matches. Do not substitute
-the GBA BIOS LZ format for FoMT's native format.
+Source-only encoders use one shared `.lz` recipe with codec parameters as
+target metadata. All four normal ROM dependency graphs now have zero
+`.original.lz` inputs, and the template-rebuild suffix rules are removed.
+Old packed samples that remain in the repository are independent audit data,
+not build inputs. This does not make still-raw resource data semantic artwork
+or prove that every resource reference is relocatable. Do not substitute the
+GBA BIOS LZ format for FoMT's native format.
 
 Files under `reference/` and OAM-composited `full/frame_NNNN.png` renderings
 are reference views unless a local README explicitly identifies them as
@@ -409,21 +411,34 @@ full palette-bank source and the checked-in tilemaps.
 The packed 0x70 stream and the 0x200-byte BGR555 palette are identical in all
 four retail FoMT regions.  Their physical locations are JP `0x2AD72C` /
 `0x2AF8F0`, US `0x5275D0` / `0x529794`, EU `0x52762C` / `0x5297F0`, and DE
-`0x2AE66C` / `0x2B0830`. `tile_grid.py` validates the compressed stream and
-strictly unpacks its 0x4800-byte 4bpp payload. The shared gbagfx rule
+`0x2AE66C` / `0x2B0830`. The source-only C Huffman-8/LZ3 encoder regenerates
+the complete 0x21C4-byte packed stream from its 0x4800-byte 4bpp source with
+ladder `4,8,13` and `--greedy --tie=exchange`. The shared gbagfx rule
 converts the indexed palette PNG to all 256 BGR555 entries, including
 entries that look alike but have distinct native indices.
 
-The first command verifies both generated ranges byte-for-byte against every
-retail ROM.  An unchanged PNG deliberately reuses the original compressed
-stream, so this verification stays exact. An edited tile source is rebuilt to
-4bpp then encoded through `marvelous_codec.py`; the strict unpacker checks it again
-and the build fails if it exceeds the original 0x21C4-byte allocation.
-No JSON layout sidecar participates in either path.
+The original compressed template has been removed; no unchanged-source
+shortcut or Python encoder participates. Changed tile sources are encoded
+with the same native C algorithm and checked by its decoder. The encoder's
+zero slot size emits the natural packed length without padding or truncation;
+the existing ROM link boundaries and unresolved references still constrain
+layout changes. Full four-region builds reproduce the complete retail bytes.
 
-The native `.tilemap` sources are assembled directly in ROM order. They do
-not require a Python-generated bundle; `make gfx-farm-status-tilemaps-test`
-compares all 14 source records against each of the four retail ROMs.
+The native `.tilemap` sources are assembled directly in ROM order, without a
+Python-generated bundle. Normal four-region ROM comparisons cover all fourteen
+source records.
+
+The separate `winter/shared/tiles.png` stream also encodes directly with
+Huffman-8/LZ2, ladder `3,5,7,8,10,12,14`, and the same `--tie=exchange` policy.
+Its 0x4800-byte source reproduces all 0x1FD4 packed bytes in JP, US, EU, and
+DE. JP now includes the same generated resource rather than raw `.byte` data.
+The obsolete winter template and fixed payload-length clips are removed.
+
+The nonwinter seasonal backdrop uses
+`ui/seasonal_background/shared/nonwinter_tiles.png`. Its 0x8000-byte source
+encodes to the exact 0x2298-byte native Huffman-8/LZ2 stream with ladder
+`2,5,8,10,11,12,14` and `--tie=exchange`. Both seasonal tile sources retain
+native indices; their palettes and maps remain separate runtime resources.
 
 ## Experimental forward OAM compiler
 

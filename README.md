@@ -83,16 +83,17 @@ See [INSTALL.md](./INSTALL.md).
 Graphics are generated beside their authored sources: shared suffix rules
 convert PNG tiles to `.1bpp`, `.4bpp`, or `.8bpp`, and independent `.pal`
 sources to `.gbapal`. FoMT's native compression uses `tools/fomt-lz`, not
-the GBA BIOS LZ codec. Rules that still take `.original.lz` remain template
-dependent; these have not all been replaced with independent encoders.
+the GBA BIOS LZ codec. All packed resources in the normal Make dependency
+graph now encode from their current sources; no `.original.lz` input or
+template-rebuild fallback remains. Retained old packed samples are audit-only.
 
 Native Huffman/LZ3 encoding supports the same source-only greedy algorithm
 for 4-bit and 8-bit literals. Huffman-4 uses it by default; Huffman-8 requires
 `--greedy`, preserving the existing default planner. `--tie=last` selects
 the same deterministic equal-weight policy used by Huffman/LZ2. It builds
 the tree from the current literals rather than reading a saved tree.
-Three additional map palette/tilemap streams now use this policy through
-the existing shared rule; other template-dependent streams remain unfinished.
+Three additional map palette/tilemap streams use this policy through
+the existing shared rule.
 `--tie=reverse-select` orders equal-weight symbols by reversing an ascending
 selection sort computed from the current literal frequencies. The shared
 `map_15/layer_5.tilemap` now also encodes directly with this generic policy;
@@ -119,17 +120,27 @@ streams now use this policy through the shared rule: seven map tile sets,
 two map tilemaps, three FarmHouse visuals, startup tiles, Farm Status tiles,
 winter background tiles, and two scene tile sets. All seventeen reproduce the complete retail streams
 without fixed-size output padding; their obsolete packing templates are removed.
+The same exchange policy now handles five Huffman-8/LZ2 source groups:
+FarmHouse visual 04, Farm Status winter tiles, nonwinter background tiles,
+and the US/EU and DE Intro Scene indexed archives. It reproduces all five
+complete retail streams without a template or fixed-size padding. JP's
+identical Farm Status winter stream also includes the shared generated tiles.
+The actual seven-table Intro Scene composition produces `archive.bin`, then
+joins the same shared `.lz` recipe as the other resources to make `archive.bin.lz`.
 `--tail=FILE` optionally appends another source before encoding. It is used
 only by the scene whose decoded payload really has a separate two-byte trailer,
 not as a general archive builder or a ROM-derived padding step.
-Run `tools/fomt-lz test-huff-lz3` for the native boundary self-tests.
+Run `tools/fomt-lz test-huff-lz2` and `test-huff-lz3` for native boundary self-tests.
 
 通用交换排序策略根据当前源码的频率建立 Huffman 树并生成规范码，
 不读取原版编码表。规范码还须按计算出的深度再作一次交换排序，不能
 用稳定分组代替。目前十七份 Huffman-8/LZ3 流均已独立逐字节匹配，
 移除了压缩模板；有真实两字节尾部的场景才使用通用 `--tail=FILE` 拼接。
-实际 Make 依赖中仍有 JP 三份、US/EU/DE 各四份 `.original.lz` 输入，
-均为尚未独立匹配的 Huffman-8/LZ2，不能据此宣布整个资源链已经完成。
+最后五份 Huffman-8/LZ2 也使用同一交换排序策略从源码独立编码，
+相应旧模板已移除。JP 的冬季图块原始字节块与海外资源完全相同，
+现已直接包含共享的生成图块，不再保持较低解析层级。四版实际 Make
+依赖均无 `.original.lz` 输入，也不保留模板回退规则。这只证明现有
+构建资源不依赖原压缩流；其他原始数据、语义重构和未符号化引用仍需推进。
 
 The upstream [scaninc](./tools/scaninc/README.md) scans assembly includes and
 resource references before assembly, including on the first build. Make loads

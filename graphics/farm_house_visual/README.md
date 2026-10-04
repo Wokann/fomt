@@ -28,10 +28,11 @@ packed copies are independent comparison samples only. `visual_00`,
 `visual_03` and `visual_06` now use source-only `encode-huff8-lz3`, with
 `--greedy --tie=exchange` and ladders `1,4,8`, `1,8,11`, and `1,8,12`.
 Their complete retail streams match without output-size padding, and their
-obsolete templates are removed. Only `visual_04` still uses `rebuild-native`
-with its original packing input; this unfinished Huffman-8/LZ2 dependency
-must not be counted as completed. All resources are generated beside their
-sources, without post-link patches.
+obsolete templates are removed. `visual_04` now uses source-only
+`encode-huff8-lz2`, ladder `2,6,7,8,9,11,13`, and the same `--tie=exchange`
+policy. Its complete 5868-byte stream matches without a template or slot
+padding; its obsolete original stream is removed. All seven resources are
+generated beside their sources, without post-link patches.
 
 | Stream | Codec | Decoded size | Original packed size | Build input |
 | --- | --- | --- | --- | --- |
@@ -39,7 +40,7 @@ sources, without post-link patches.
 | `visual_01` | Differential-4-bit Huffman-4/LZ2 | `0x7E0` | `0x424` | Tiles only |
 | `visual_02` | Differential-4-bit Huffman-4/LZ2 | `0x7E0` | `0x418` | Tiles only |
 | `visual_03` | Huffman-8/LZ3 | `0x13E0` | `0xB9C` | Tiles only |
-| `visual_04` | Huffman-8/LZ2 | `0x2BE0` | `0x16EC` | Tiles + original packing reference |
+| `visual_04` | Huffman-8/LZ2 | `0x2BE0` | `0x16EC` | Tiles only |
 | `visual_05` | Huffman-4/LZ2 | `0x7E0` | `0x364` | Tiles only |
 | `visual_06` | Huffman-8/LZ3 | `0x1BE0` | `0x10DC` | Tiles only |
 
@@ -70,9 +71,9 @@ original bytes. gbagfx generates `.gbapal` beside each PAL, independently
 of the tile PNGs. This does not infer a static destination bank or layout.
 
 The codec checks decoded output using the selected native format, filter and
-distance ladder. WSL ROM comparisons verify all six directly encoded streams
-against the retail bytes. The Huffman-8/LZ3 sources were additionally edited
-in three ways each and verified through the native decoder.
+distance ladder. WSL ROM comparisons verify all seven directly encoded streams
+against the retail bytes. Each Huffman-8 source was additionally edited
+in three ways and verified through the native decoder.
 
 The PNG, PAL and native tilemap files are authoring sources, not JSON
 sidecars. A future full-scene renderer must first prove the runtime palette
@@ -81,11 +82,11 @@ and layout selection; it must not override these native-index atlases.
 and the remaining evidence needed for such a renderer.
 
 Encoders with a nonzero slot still reject output beyond that declared size.
-The three newly independent Huffman-8/LZ3 streams use slot zero: their natural
+The four independent Huffman-8 streams use slot zero: their natural
 length is neither padded nor limited by the compressor. ROM growth is still
 subject to the existing link boundaries and unresolved references elsewhere;
 a codec round trip does not establish arbitrary layout-change safety.
 
-七份房屋图块中六份已直接从源码编码，00、03、06 本次移除旧压缩模板；
-仅 04 的 Huffman-8/LZ2 仍依赖模板。新编码流使用自然压缩长度，
+七份房屋图块均已直接从源码编码；04 的 Huffman-8/LZ2 也使用通用交换
+排序策略逐字节匹配，最后一份构建模板已移除。Huffman-8 流使用自然压缩长度，
 不因此承诺整个未完成反编译的 ROM 可以任意扩展。

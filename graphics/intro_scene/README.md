@@ -77,7 +77,7 @@ The native seven-table layout remains in each group's `archive.inc`. It
 includes title tiles, frame tiles, then palettes in their physical order;
 descriptors without drawable OAM remain ordinary records. An assembly object
 under `build/` produces the source-adjacent decoded `archive.bin`; the
-compressed resource is `archive.lz`, directly included by ROM assembly.
+compressed resource is `archive.bin.lz`, directly included by ROM assembly.
 There is no Python frame overlay, duplicate decoded-edit stage, baserom
 extraction, or post-link patch in this archive's normal build.
 
@@ -88,10 +88,17 @@ The command verifies its decoded output and rejects overflow. JP's
 `archive.original.lz` is audit-only, not a build input.
 
 US/EU and DE use `220` Huffman-8/LZ2. Their authoring and assembly paths are
-the same, but their Huffman tie ordering has not yet been reproduced. They
-still require `archive.original.lz` through `rebuild-native`; they are **not**
-counted as independent direct-compression builds. A correct decoded round trip
-or equal packed length is insufficient to claim byte-identical encoding.
+the same; `encode-huff8-lz2` now reproduces their complete packed bytes with
+ladder `3,6,8,10,11,13,15` and the generic `--tie=exchange` policy. Both old
+`archive.original.lz` inputs are removed. All regional archive outputs use the
+same shared `.lz` recipe; only the real seven-table composition needs an
+explicit assembly-to-binary rule. The overseas encoders use slot zero rather
+than fixed-size padding. Three changed-source fixtures per group also pass
+native decode checks; the normal four-region ROM builds match every byte.
+
+三种开场归档均由实际七表源码、图块 PNG 和独立 PAL 编译为 `archive.bin`，
+再通过共享压缩规则生成 `archive.bin.lz`。US/EU 和 DE 的 Huffman-8/LZ2
+已使用通用交换排序策略独立匹配，旧模板移除；不新增归档重建脚本或补丁。
 
 | Source group | ROM start | Packed size | 8bpp title tiles | 4bpp frame tiles |
 | --- | --- | ---: | ---: | ---: |

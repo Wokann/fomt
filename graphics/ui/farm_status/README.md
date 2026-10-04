@@ -34,14 +34,17 @@ bank, so a rendered PNG cannot losslessly replace it. These `.tilemap` source
 files are deliberately direct native resources rather than a JSON layout
 sidecar. `reference/` contains their convenient generated PNG previews.
 
-`winter/shared/tiles.png` is the separate 256-by-144 native 4bpp source used
-by the overseas winter branch. It rebuilds the identical US/EU/DE tile stream
-inside its original `0x1FD4`-byte slot; regional palette data remains
-reference-only because EU stores it in a distinct archive.
-`winter/shared/winter_tiles.original.lz` supplies the native codec header
-and fixed-slot reference to the same C `fomt-lz` rule.
-The winter stream occupies 0x1FD4 bytes at US 0x52AA6C, EU 0x52AAC8,
-and DE 0x2B1B08; this specific resource is not present in the JP layout.
+`winter/shared/tiles.png` is the separate 256-by-144 native 4bpp source.
+The shared C `encode-huff8-lz2` rule uses ladder `3,5,7,8,10,12,14` and
+`--tie=exchange` to reproduce the complete `0x1FD4`-byte stream directly
+from its `0x4800` source bytes. The old compressed template is removed.
+Slot zero permits a natural packed length; includes consume the full output,
+preserving EU's real eight-byte header/payload boundary without a fixed clip.
+Regional palettes remain separate resources rather than PNG-derived inputs.
+The stream is byte-identical at JP 0x2B0BC8, US 0x52AA6C, EU 0x52AAC8,
+and DE 0x2B1B08. JP's original 8148-byte `.byte` block now includes the same
+generated resource at its actual `gUnk_0852AA6C` label. The earlier statement
+that this stream was absent from JP was incorrect.
 
 The tilemap build verifies all fourteen payloads are byte-identical in JP, US,
 EU, and DE. The assembler then includes the selected regional bundle at each
@@ -78,11 +81,13 @@ Huffman 堆排序策略重压为原版的 276 字节。EU 的 02-05 压缩头和
 都由生成的 `.lz` 提供，不再写死编码表头或截取固定长度。
 
 主图块 base_tiles 也已用通用交换排序策略独立重压为原版 8644 字节，
-其旧压缩模板已移除；三种实际图块修改均可准确往返。海外版独有的
-冬季图块是另一份 Huffman-8/LZ2 资源，目前仍依赖原压缩模板。
+其旧压缩模板已移除；三种实际图块修改均可准确往返。冬季图块的
+Huffman-8/LZ2 同样从源码独立编码，旧模板移除。它的完整流也存在于
+JP 的 0x2B0BC8，JP 已与其他三版一样引用生成资源；此前“海外独有”的
+描述已更正。三种冬季源码修改均可准确往返。
 
-Template-dependent streams and independent encoders with a nonzero slot size
-still reject packed output larger than their declared slot. A zero slot size
+Independent encoders with a nonzero slot size still reject packed output
+larger than their declared slot. A zero slot size
 does not pad or limit the output; ROM growth remains subject to each region's
 existing linking and resource-reference constraints. An edited-stream round
 trip alone does not prove that an arbitrary larger ROM layout is safe.
@@ -103,17 +108,10 @@ All three original physical ranges are byte-identical across the four retail
 ROMs, so one shared source tree is authoritative. The normal ROM compare checks
 the complete linked layout and byte content.
 
-`winter/shared/tiles.png` is the editable native 4bpp tile grid selected by
-`func_0806EC94` when the season is winter. Its pixel indices are shared by US,
-EU and DE. The build preserves the retail format-`220` stream while this source
-is unchanged; after an edit it emits a strictly decoder-compatible
-Huffman-8/LZ3 stream and rejects any output that exceeds the original
-`0x1FD4`-byte slot. Run the overseas byte check and the changed-pixel capacity
-fixture with:
-
 `reference/winter/tiles_us_de.png` and `palettes_us_de.png`, together with the
 EU-specific `tiles_eu.png` and `palettes_eu.png`, remain verified readable
 exports. The selected palette is identical only in US/DE; EU supplies a
 different payload behind an eight-byte archive header, so the palette files
-are deliberately references rather than editable build inputs. JP uses a
-separate resource layout and remains direct ROM data in this family.
+are deliberately references rather than editable build inputs. The shared
+tile stream's identity does not imply that all regional palette/layout data
+are identical or fully converted.

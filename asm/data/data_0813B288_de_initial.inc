@@ -94506,7 +94506,7 @@ gUnk_0852A9BC:
 	.incbin "graphics/ui/farm_status/shared/secondary_tilemaps/secondary_05.tilemap.lz"
 	.global gUnk_0852AA6C
 gUnk_0852AA6C:
-	.incbin "graphics/ui/farm_status/winter/shared/winter_tiles.4bpp.lz", 0, 0x1FD4
+	.incbin "graphics/ui/farm_status/winter/shared/winter_tiles.4bpp.lz"
 	.global gUnk_0852CA40
 gUnk_0852CA40:
 	.byte 0xE0, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
@@ -129955,7 +129955,7 @@ gUnk_08747A14:
 	.incbin "graphics/intro_scene/shared/background_palettes.gbapal"
 	.global gIntroSceneIndexedArchiveCompressed
 gIntroSceneIndexedArchiveCompressed:
-	.incbin "graphics/intro_scene/indexed_archive/de/archive.lz"
+	.incbin "graphics/intro_scene/indexed_archive/de/archive.bin.lz"
 	.global gUnk_IntroSceneStartupUnpackSource_000
 gUnk_IntroSceneStartupUnpackSource_000:
 	.incbin "graphics/intro_scene/shared/startup_tilemaps/startup_00.tilemap.lz"

@@ -63,9 +63,9 @@ INTRO_INDEXED_ARCHIVE_LAYOUT := $(INTRO_INDEXED_ARCHIVE_SOURCE_DIR)/archive.inc
 INTRO_INDEXED_ARCHIVE_TITLE_TILES := $(INTRO_INDEXED_ARCHIVE_SOURCE_DIR)/title_tiles.8bpp
 INTRO_INDEXED_ARCHIVE_FRAME_TILES := $(INTRO_INDEXED_ARCHIVE_SOURCE_DIR)/frame_tiles.4bpp
 INTRO_INDEXED_ARCHIVE_PALETTES := $(patsubst %.pal,%.gbapal,$(wildcard $(INTRO_INDEXED_ARCHIVE_SOURCE_DIR)/palettes_*.pal))
-INTRO_INDEXED_ARCHIVE_OUTPUT := $(INTRO_INDEXED_ARCHIVE_SOURCE_DIR)/archive.lz
 INTRO_INDEXED_ARCHIVE_SOURCE_OBJ := $(BUILD_DIR)/graphics/intro_scene/indexed_archive/archive.o
 INTRO_INDEXED_ARCHIVE_SOURCE_BIN := $(INTRO_INDEXED_ARCHIVE_SOURCE_DIR)/archive.bin
+INTRO_INDEXED_ARCHIVE_OUTPUT := $(INTRO_INDEXED_ARCHIVE_SOURCE_BIN).lz
 
 # func_080A2BA4 loads three 32-by-20 BG tilemaps and one 160-tile 4bpp
 # character stream into fixed VRAM locations. Its adjacent palette bytes are
@@ -206,9 +206,12 @@ FOMT_LZ_ENCODE_OUTPUTS := $(addsuffix .lz, \
   $(UI_SCENE_080B55D0_AUX_MAP0_SOURCE) $(UI_SCENE_080B55D0_AUX_MAP1_SOURCE) $(UI_SCENE_080B55D0_AUX_TILES_SOURCE) \
   $(UI_SCENE_08054F40_TILES_SOURCE) $(UI_SCENE_0805AB08_TILES_SOURCE) \
   $(INTRO_BACKGROUND_TILES_BIN) \
+  $(INTRO_INDEXED_ARCHIVE_SOURCE_BIN) \
   graphics/intro_scene/shared/startup_visual/startup_tiles.4bpp \
   graphics/ui/farm_status/shared/base_tiles.4bpp \
   graphics/ui/seasonal_background/winter/winter_tiles.4bpp \
+  graphics/ui/seasonal_background/shared/nonwinter_tiles.4bpp \
+  $(FARM_STATUS_WINTER_TILES_BIN) \
   $(UI_SCENE_080B55D0_MAIN_SOURCE) \
   $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_00.tilemap \
   $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_01.tilemap \
@@ -222,7 +225,7 @@ FOMT_LZ_ENCODE_OUTPUTS := $(addsuffix .lz, \
   $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_05.tilemap \
   $(UI_SCENE_08077810_LAYER0_SOURCE) $(UI_SCENE_08077810_LAYER1_SOURCE) \
   $(UI_SCENE_08077810_JP_TILES) $(UI_SCENE_08077810_JP_LAYER1_SOURCE) \
-  $(addprefix $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_,$(addsuffix .4bpp,00 01 02 03 05 06)) \
+  $(addprefix $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_,$(addsuffix .4bpp,00 01 02 03 04 05 06)) \
   $(addprefix $(MAP_DATA_SOURCE_DIR)/map_,$(addsuffix /layer_0.4bpp,08 09 14 15 36 44 53)) \
   $(addprefix $(MAP_DATA_SOURCE_DIR)/map_,$(addsuffix /layer_3.tilemap,14 15)) \
   $(addprefix $(INTRO_OBJECTS_SOURCE_DIR)/object_,$(addsuffix .4bpp,00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19)) \
@@ -269,6 +272,8 @@ $(INTRO_BACKGROUND_PACKED_BIN): FOMT_LZ_ENCODE := encode-lz2 3,5,8,10,12,13,15 0
 graphics/intro_scene/shared/startup_visual/startup_tiles.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,10,14 0 --greedy --tie=exchange
 graphics/ui/farm_status/shared/base_tiles.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,8,13 0 --greedy --tie=exchange
 graphics/ui/seasonal_background/winter/winter_tiles.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,10,13 0 --greedy --tie=exchange
+graphics/ui/seasonal_background/shared/nonwinter_tiles.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz2 2,5,8,10,11,12,14 0 --tie=exchange
+$(FARM_STATUS_WINTER_TILES_BIN).lz: FOMT_LZ_ENCODE := encode-huff8-lz2 3,5,7,8,10,12,14 0 --tie=exchange
 $(UI_SCENE_080B55D0_MAIN_SOURCE).lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,10,12 0 --greedy --tie=exchange
 $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_00.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,9 0x3DC --parent-first
 $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_01.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,9 0x21C --tie=first
@@ -288,6 +293,7 @@ $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_00.4bpp.lz: FOMT_LZ_ENCODE := encode-huff
 $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_01.4bpp.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,4,5,6,7,8,11 0x424 --filter=1
 $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_02.4bpp.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,4,5,6,7,8,10 0x418 --filter=1
 $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_03.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 1,8,11 0 --greedy --tie=exchange
+$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_04.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz2 2,6,7,8,9,11,13 0 --tie=exchange
 $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_05.4bpp.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,4,5,6,7,8,8 0x364
 $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_06.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 1,8,12 0 --greedy --tie=exchange
 
@@ -375,14 +381,9 @@ $(INTRO_INDEXED_ARCHIVE_SOURCE_OBJ): $(INTRO_INDEXED_ARCHIVE_LAYOUT) $(INTRO_IND
 $(INTRO_INDEXED_ARCHIVE_SOURCE_BIN): $(INTRO_INDEXED_ARCHIVE_SOURCE_OBJ)
 	@$(OBJCOPY) -O binary $< $@
 ifeq ($(GAME_REGION),JP)
-$(INTRO_INDEXED_ARCHIVE_OUTPUT): $(INTRO_INDEXED_ARCHIVE_SOURCE_BIN) $(FOMT_LZ_TOOL)
-	@$(FOMT_LZ_TOOL) encode-huff4-lz2 $< $@ 3,6,8,10,12,13,15 0x2D90
+$(INTRO_INDEXED_ARCHIVE_OUTPUT): FOMT_LZ_ENCODE := encode-huff4-lz2 3,6,8,10,12,13,15 0x2D90
 else
-# The overseas Huffman-8 tie order is not yet byte-identical. Do not replace
-# its original packing input with a merely valid but different encoding.
-INTRO_INDEXED_ARCHIVE_ORIGINAL := $(INTRO_INDEXED_ARCHIVE_SOURCE_DIR)/archive.original.lz
-$(INTRO_INDEXED_ARCHIVE_OUTPUT): $(INTRO_INDEXED_ARCHIVE_SOURCE_BIN) $(INTRO_INDEXED_ARCHIVE_ORIGINAL) $(FOMT_LZ_TOOL)
-	@$(FOMT_LZ_TOOL) rebuild-native $< $(INTRO_INDEXED_ARCHIVE_ORIGINAL) $@
+$(INTRO_INDEXED_ARCHIVE_OUTPUT): FOMT_LZ_ENCODE := encode-huff8-lz2 3,6,8,10,11,13,15 0 --tie=exchange
 endif
 
 # Standard source-adjacent conversions mirror pret's graphics_file_rules.mk.
@@ -399,14 +400,3 @@ endif
 
 %.gbapal: %.pal $(GFX_TOOL)
 	@$(GFX_TOOL) $< $@ $(if $(GFX_PALETTE_COLORS),-num_colors $(GFX_PALETTE_COLORS))
-
-# FoMT's native packed streams retain their original slot metadata beside the
-# editable tiles or tilemap. The same codec and rule serve every region.
-%.4bpp.lz: %.4bpp %.original.lz $(FOMT_LZ_TOOL)
-	@$(FOMT_LZ_TOOL) rebuild-native $< $(word 2,$^) $@
-
-%.tilemap.lz: %.tilemap %.original.lz $(FOMT_LZ_TOOL)
-	@$(FOMT_LZ_TOOL) rebuild-native $< $(word 2,$^) $@
-
-%.gbapal.lz: %.gbapal %.original.lz $(FOMT_LZ_TOOL)
-	@$(FOMT_LZ_TOOL) rebuild-native $< $(word 2,$^) $@

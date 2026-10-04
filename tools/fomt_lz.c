@@ -3122,7 +3122,7 @@ static unsigned char *encode_huff4_lz0(unsigned char const *source, size_t size,
 static unsigned char *encode_huff_lz2_strategy(unsigned char const *source, size_t size,
                                                LadderEntry const ladder[7],
                                                unsigned symbol_bits, unsigned filter,
-                                               int greedy, int last_first,
+                                               int greedy, unsigned build_strategy,
                                                size_t *packed_size)
 {
     if (!size || size > 0x40000)
@@ -3160,8 +3160,10 @@ static unsigned char *encode_huff_lz2_strategy(unsigned char const *source, size
         }
         if (!literal_size)
             fail("Huffman/LZ2 literal stream is empty");
-        huff_byte_model_strategy(literals, literal_size, &model, symbol_bits, 0, last_first);
-        if (!last_first)
+        huff_byte_model_strategy(literals, literal_size, &model, symbol_bits, 0, build_strategy);
+        if (build_strategy == HUFF_BUILD_EXCHANGE_LAST)
+            huff_model_frequency_order(&model, literals, literal_size, symbol_bits, 9);
+        else if (build_strategy == HUFF_BUILD_FIRST)
             huff_model_frequency_order(&model, literals, literal_size, symbol_bits, 0);
     } else {
         Lz2Matches *matches = precompute_lz2_matches(atoms, size, ladder);
@@ -3347,12 +3349,13 @@ static void test_huff_lz2(void)
         63, 64, 65, 66, 67, 127, 128, 129, 255, 256, 257, 511, 512, 513,
         1025, 1026, 1027, 4096};
     char const *ladder_values[] = {"1,2,3,4,5,6,10", "2,4,5,6,7,8,11"};
+    unsigned const strategies[] = {HUFF_BUILD_FIRST, HUFF_BUILD_LAST, HUFF_BUILD_EXCHANGE_LAST};
     unsigned cases = 0;
     for (unsigned ladder_index = 0; ladder_index < 2; ladder_index++) {
         LadderEntry ladder[7];
         parse_ladder(ladder_values[ladder_index], ladder, 7);
         for (unsigned symbol_bits = 4; symbol_bits <= 8; symbol_bits += 4) {
-            for (unsigned last_first = 0; last_first < 2; last_first++) {
+            for (unsigned strategy = 0; strategy < sizeof(strategies) / sizeof(*strategies); strategy++) {
                 for (unsigned index = 0; index < sizeof(sizes) / sizeof(*sizes); index++) {
                     size_t size = sizes[index];
                     for (unsigned pattern = 0; pattern < 8; pattern++) {
@@ -3364,15 +3367,15 @@ static void test_huff_lz2(void)
                         for (unsigned filter = 0; filter < filters; filter++) {
                             size_t packed_size, decoded_size;
                             unsigned char *packed = encode_huff_lz2_strategy(source, size,
-                                ladder, symbol_bits, filter, 1, last_first, &packed_size);
+                                ladder, symbol_bits, filter, 1, strategies[strategy], &packed_size);
                             LadderEntry decoded_ladder[7];
                             unsigned char *decoded = decode_huff_lz2(packed, packed_size,
                                 decoded_ladder, &decoded_size, symbol_bits);
                             if (decoded_size != size || memcmp(source, decoded, size) ||
                                 memcmp(ladder, decoded_ladder, sizeof(ladder))) {
                                 fprintf(stderr, "Huffman/LZ2 case failed: ladder=%u symbol_bits=%u "
-                                    "last_first=%u size=%zu pattern=%u filter=%u\n", ladder_index,
-                                    symbol_bits, last_first, size, pattern, filter);
+                                    "build_strategy=%u size=%zu pattern=%u filter=%u\n", ladder_index,
+                                    symbol_bits, strategies[strategy], size, pattern, filter);
                                 fail("Huffman/LZ2 self-test failed");
                             }
                             free(decoded);
@@ -3750,7 +3753,7 @@ int main(int argc, char **argv)
                        strcmp(argv[index], "--tie=heap-sort") == 0) {
                 tie_order = 8;
                 tie_seen = 1;
-            } else if ((huff4 || huff8) && !tie_seen &&
+            } else if ((huff4_lz2 || huff8_lz2 || huff4 || huff8) && !tie_seen &&
                        strcmp(argv[index], "--tie=exchange") == 0) {
                 tie_order = 9;
                 tie_seen = 1;
@@ -3784,7 +3787,9 @@ int main(int argc, char **argv)
             : huff4_lz2 || huff8_lz2
                 ? encode_huff_lz2_strategy(atoms, source_size, ladder,
                                             huff4_lz2 ? 4 : 8, 0, 1,
-                                            tie_order == 3, &packed_size)
+                                            tie_order == 9 ? HUFF_BUILD_EXCHANGE_LAST
+                                                : tie_order == 3 ? HUFF_BUILD_LAST : HUFF_BUILD_FIRST,
+                                            &packed_size)
             : huff4 || (huff8 && greedy)
                 ? encode_huff_lz3_greedy(atoms, source_size, ladder,
                                          huff4 ? 4 : 8, tie_order,
