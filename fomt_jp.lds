@@ -58,7 +58,7 @@ SECTIONS
         . = 0x000490; /* end */
     } > IWRAM
 
-    .rom : ALIGN(4)
+    .text : ALIGN(4)
     {
         . = 0x0; /* JP ROM 0x08000000, independently matched */
         src/crt0.o(.rom_header);
@@ -512,7 +512,11 @@ SECTIONS
         . = 0xE0690; /* JP ROM 0x080E0690, independently matched */
         asm/code_linkonce.o(.text.code_080E0EF0);
 
-        . = 0xE4E0C; /* JP C++ table region begins after code_linkonce. */
+    } > ROM = 0xFF
+
+    .rodata : ALIGN(4)
+    {
+        . = ABSOLUTE(0x080E4E0C); /* JP C++ table region begins after code_linkonce. */
         *(.gnu.linkonce.d.__vt_6AScene);
         *(.gnu.linkonce.d.__vt_15SceneTransition);
         *(.gnu.linkonce.d.__vt_19IntroMenuTransition);
@@ -761,7 +765,7 @@ SECTIONS
 . = ALIGN(4); src/vtables.o(.rodata.vtable_85e8);
 
         /* Source-owned localization island; Mary script table is its upper bound. */
-        . = 0xE7A40;
+        . = ABSOLUTE(0x080E7A40);
         src/crt0_data.o(.rodata);
         FILL(0x00);
         . = ALIGN(4);
@@ -791,9 +795,9 @@ SECTIONS
         src/data_schedules.o(.rodata);
         /* Entity UI resource-selector data follows schedule data. */
         . = ALIGN(4); src/entity_ui_resource_selector.o(.rodata);
-        . = 0xF8230; data/scripts/script_table.o(.rodata.mary_script_table);
+        . = ABSOLUTE(0x080F8230); data/scripts/script_table.o(.rodata.mary_script_table);
         /* Source-owned localization island; raw static resources are its upper bound. */
-        . = 0xF96F4; src/script_engine.o(.rodata);
+        . = ABSOLUTE(0x080F96F4); src/script_engine.o(.rodata);
         src/cooking_festival.o(.rodata);
         src/thomas_stocking.o(.rodata);
         FILL(0x00);
@@ -908,15 +912,15 @@ SECTIONS
         src/reference_guide.o(.rodata.reference_guide);
         src/shop_common.o(.rodata);
         src/font.o(.rodata);
-        . = 0x118D18; asm/data/static_resources.o(.rodata);
-        . = 0x13ABCC; src/m4a.o(.rodata);
-        . = 0x13AEA4; src/m4a.o(.rodata.gM4aVoiceGroups);
-        . = 0x13BCF8; src/m4a.o(.rodata.gMusicPlayerTable);
+        . = ABSOLUTE(0x08118D18); asm/data/static_resources.o(.rodata);
+        . = ABSOLUTE(0x0813ABCC); src/m4a.o(.rodata);
+        . = ABSOLUTE(0x0813AEA4); src/m4a.o(.rodata.gM4aVoiceGroups);
+        . = ABSOLUTE(0x0813BCF8); src/m4a.o(.rodata.gMusicPlayerTable);
         src/m4a.o(.rodata.gSongTable);
-        . = 0x13C3CC; /* JP asset container, independently matched. */
+        . = ABSOLUTE(0x0813C3CC); /* JP asset container, independently matched. */
         . = ALIGN(4); asm/data/data_0813B288.o(.rodata);
-        . = 0x4E0CE0; data/scripts/scripts.o(.rodata.mary_scripts);
-        . = 0x7515A8; asm/data/data_0813B288.o(.rodata.mary_scripts_tail);
+        . = ABSOLUTE(0x084E0CE0); data/scripts/scripts.o(.rodata.mary_scripts);
+        . = ABSOLUTE(0x087515A8); asm/data/data_0813B288.o(.rodata.mary_scripts_tail);
     } > ROM = 0xFF
 
     .iwram : ALIGN(4)

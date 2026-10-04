@@ -108,7 +108,12 @@ graphics stage. C/C++ header and regional macro dependencies continue to be
 resolved by the actual C preprocessor.
 
 Source objects are compiled in `build/<region>`, linked with the regional LDS,
-and converted with `objcopy` and `gbafix`. The four ROM targets do not read
+and converted with `objcopy` and `gbafix`. Each LDS now lists code and read-only
+data in separate `.text` and `.rodata` output sections, retaining the existing
+RAM sections and verified physical order. Partial-decompilation boundaries
+remain explicit absolute ROM addresses; splitting the output sections does
+not remove those bounds or establish that every pointer is relocatable.
+The four ROM targets do not read
 baserom, run Python resource generators, or patch resources after linking.
 Ignored base ROMs and auxiliary audit tools remain outside this build path.
 
