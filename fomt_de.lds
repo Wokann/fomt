@@ -429,7 +429,7 @@ SECTIONS
         *(.gnu.linkonce.t.__as__6AnimalRC6Animal);
         asm/code_linkonce.o(.text.code_080D68C0);
         src/hardware.o(.text.hardware_free_list);
-        asm/code_linkonce.o(.text.code_080D6DB8);
+        src/hardware_resource.o(.text.code_080D6DB8);
         src/hardware_refcount.o(.text.hardware_shared_state_tile_tree);
         asm/code_linkonce.o(.text.hardware_shared_state_tile_tree_after);
         src/hardware_refcount.o(.text.hardware_shared_state_tile_tree_after);
