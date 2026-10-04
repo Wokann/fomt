@@ -137,9 +137,15 @@ typedef struct HardwareTileTree1024 {
     HardwareTileTree512 children[2];
 #ifdef __cplusplus
     HardwareTileTree1024();
+    void Fill();
+    void Clear();
+    void Reserve(u32 offset, u32 length);
+    void Unreserve(u32 offset, u32 length);
     // Allocate 2^size_shift tiles, or return 1024 when no range is available.
     u32 Allocate(u32 size_shift);
     void Free(u32 offset, u32 size_shift);
+    bool IsEmpty() const;
+    bool IsFull() const;
 #endif
 } HardwareTileTree1024;
 

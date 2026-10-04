@@ -371,7 +371,7 @@ func_08007874: @ 0x08007874
     bne .L08007980
 .L08007986:
     ldr r0, [sp, #0xc]
-    bl func_08007EC8
+    bl Clear__20HardwareTileTree1024
     mov r2, r8
     ldr r0, .L080079B4 @ =gUnk_03000408
     str r2, [r0]
@@ -427,7 +427,7 @@ func_08007A28: @ 0x08007A28
     adds r1, r5, r2
     ldrh r1, [r1]
     ldrh r2, [r4]
-    bl func_08007F84
+    bl Unreserve__20HardwareTileTree1024UiUi
     movs r0, #0
     strh r0, [r4]
 .L08007A5A:
@@ -533,7 +533,7 @@ func_08007A28: @ 0x08007A28
     ldr r0, [sp, #0xc]
     ldr r1, [sp]
     ldr r2, [sp, #4]
-    bl func_08007EE8
+    bl Reserve__20HardwareTileTree1024UiUi
     mov r2, sp
     ldrh r0, [r2]
     ldr r2, [sp, #0x10]

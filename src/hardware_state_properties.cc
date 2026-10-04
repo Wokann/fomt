@@ -1,5 +1,6 @@
 #include "hardware_state_properties.hh"
 #include "hardware_refcount.hh"
+#include <algorithm>
 
 u16 func_08007E8C(void)
 {
@@ -11,113 +12,78 @@ u32 func_08007EA0(void)
     return 0x100;
 }
 
-void func_08007EA8(u8 * state)
+void HardwareTileTree1024::Fill()
 {
-    HardwareTileTree1024 * tree = reinterpret_cast<HardwareTileTree1024 *>(state);
-    u32 inactive;
-    u32 active;
-    FillHardwareTileTree512(&tree->children[0]);
-    FillHardwareTileTree512(&tree->children[1]);
-    inactive = 0;
-    active = 1;
-    tree->full = active;
-    tree->empty = inactive;
+    FillHardwareTileTree512(&children[0]);
+    FillHardwareTileTree512(&children[1]);
+    full = true;
+    empty = false;
 }
 
-void func_08007EC8(u8 * state)
+void HardwareTileTree1024::Clear()
 {
-    HardwareTileTree1024 * tree = (HardwareTileTree1024 *)state;
-    ClearHardwareTileTree512(&tree->children[1]);
-    ClearHardwareTileTree512(&tree->children[0]);
-    tree->full = 0;
-    tree->empty = 1;
+    ClearHardwareTileTree512(&children[1]);
+    ClearHardwareTileTree512(&children[0]);
+    full = false;
+    empty = true;
 }
 
-void func_08007EE8(u8 * state, u32 offset, u32 length)
+void HardwareTileTree1024::Reserve(u32 offset, u32 length)
 {
-    u32 first_capacity;
-    u32 * first_length;
-    u32 * length_pointer;
-    u32 * capacity_pointer;
-    u32 selected_length;
-    u32 second_offset;
-    u32 second_length;
-    u32 active;
-    u32 inactive;
-
-    if (offset > 0x3FF || length == 0)
+    if (offset > 1023 || length == 0)
         return;
-    if (offset == 0 && length > 0x3FF) {
-        func_08007EA8(state);
+    if (offset == 0 && length > 1023) {
+        Fill();
         return;
     }
-    if (offset <= 0x1FF) {
-        first_capacity = 0x200 - offset;
-        length_pointer = &length;
-        capacity_pointer = &first_capacity;
-        first_length = length > first_capacity ? capacity_pointer : length_pointer;
-        selected_length = *first_length;
-        reinterpret_cast<HardwareTileTree1024 *>(state)->children[0].Reserve(offset, selected_length);
+    if (offset <= 511) {
+        u32 first_capacity = 512 - offset;
+        u32 count = std::min(length, first_capacity);
+        children[0].Reserve(offset, count);
     }
-    if (offset + length > 0x200) {
-        second_offset = offset > 0x1FF ? offset - 0x200 : 0;
-        second_length = offset + length;
-        second_length -= 0x200;
+    if (offset + length > 512) {
+        u32 second_offset = offset > 511 ? offset - 512 : 0;
+        u32 second_length = offset + length;
+        second_length -= 512;
         second_length -= second_offset;
-        reinterpret_cast<HardwareTileTree1024 *>(state)->children[1].Reserve(second_offset, second_length);
+        children[1].Reserve(second_offset, second_length);
     }
-    active = 0;
-    if (state[4] != 0)
-        active = (0u - state[0x80]) >> 31;
-    inactive = 0;
-    state[0] = active;
-    state[1] = inactive;
+    u32 active = 0;
+    if (children[0].full != 0)
+        active = (0u - children[1].full) >> 31;
+    full = active;
+    empty = false;
 }
 
-void func_08007F84(u8 * state, u32 offset, u32 length)
+void HardwareTileTree1024::Unreserve(u32 offset, u32 length)
 {
-    u32 first_capacity;
-    u32 * first_length;
-    u32 * length_pointer;
-    u32 * capacity_pointer;
-    u32 selected_length;
-    u32 second_offset;
-    u32 second_length;
-    u32 first_limit;
-    u8 * first_buffer;
-    u8 * second_buffer;
-    u32 active;
-
-    if (offset > 0x3FF || length == 0)
+    if (offset > 1023 || length == 0)
         return;
-    if (offset == 0 && length > 0x3FF) {
-        func_08007EC8(state);
+    if (offset == 0 && length > 1023) {
+        Clear();
         return;
     }
-    first_limit = 0x1FF;
-    first_buffer = state + 4;
+    u32 first_limit = 511;
+    HardwareTileTree512 * first = &children[0];
     if (offset <= first_limit) {
-        first_capacity = 0x200 - offset;
-        length_pointer = &length;
-        capacity_pointer = &first_capacity;
-        first_length = length > first_capacity ? capacity_pointer : length_pointer;
-        selected_length = *first_length;
-        reinterpret_cast<HardwareTileTree512 *>(first_buffer)->Unreserve(offset, selected_length);
+        u32 first_capacity = 512 - offset;
+        u32 count = std::min(length, first_capacity);
+        first->Unreserve(offset, count);
     }
-    if (offset + length > 0x200) {
-        second_offset = offset > 0x1FF ? offset - 0x200 : 0;
-        second_length = offset + length;
-        second_length -= 0x200;
+    if (offset + length > 512) {
+        u32 second_offset = offset > 511 ? offset - 512 : 0;
+        u32 second_length = offset + length;
+        second_length -= 512;
         second_length -= second_offset;
-        reinterpret_cast<HardwareTileTree1024 *>(state)->children[1].Unreserve(second_offset, second_length);
+        children[1].Unreserve(second_offset, second_length);
     }
-    state[0] = 0;
-    active = 0;
-    if (first_buffer[1] != 0) {
-        second_buffer = state + 0x80;
-        active = (0u - second_buffer[1]) >> 31;
+    full = false;
+    u32 active = 0;
+    if (first->empty != 0) {
+        HardwareTileTree512 * second = &children[1];
+        active = (0u - second->empty) >> 31;
     }
-    state[1] = active;
+    empty = active;
 }
 
 u32 HardwareTileTree1024::Allocate(u32 size_shift)
@@ -148,7 +114,7 @@ u32 HardwareTileTree1024::Allocate(u32 size_shift)
             }
         }
     } else if (size_shift == 10 && empty != 0) {
-        func_08007EA8(reinterpret_cast<u8 *>(this));
+        Fill();
         return 0;
     }
     return 0x400;
@@ -171,18 +137,18 @@ void HardwareTileTree1024::Free(u32 offset, u32 size_shift)
         }
         empty = active;
     } else if (size_shift == 10) {
-        func_08007EC8(reinterpret_cast<u8 *>(this));
+        Clear();
     }
 }
 
-u8 func_080080EC(u8 const * state)
+bool HardwareTileTree1024::IsEmpty() const
 {
-    return state[1];
+    return empty;
 }
 
-u8 func_080080F0(u8 const * state)
+bool HardwareTileTree1024::IsFull() const
 {
-    return state[0];
+    return full;
 }
 
 HardwareTileTree1024::HardwareTileTree1024() : full(false), empty(true)
