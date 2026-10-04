@@ -26,8 +26,30 @@ void func_080079E8(void * owner, u32 flags)
         __builtin_delete(owner);
 }
 
+u32 RetainHardwareSharedStateHandle(void *, u32 value)
+    SECTION(".text.hardware_shared_state_handles");
+u32 RetainHardwareSharedStateHandle(void *, u32 value)
+{
+    HardwareSharedState * state = reinterpret_cast<HardwareSharedState *>(gUnk_03000408);
+    if (value != 0) {
+        HardwareSharedStateHandle handle;
+        handle.value = value;
+        if (state->IsAllocated(handle.Index())) {
+            HardwareSharedStateEntry & entry = state->pool.GetEntry(handle.Index());
+            bool valid = handle.fields.generation == entry.generation;
+            if (valid) {
+                u16 previous = entry.data.params.reference_count;
+                if (++entry.data.params.reference_count != 0)
+                    return value;
+                entry.data.params.reference_count = previous;
+            }
+        }
+    }
+    return 0;
+}
+
 u32 GetHardwareSharedStateTileIndex(void *, u32 value)
-    SECTION(".text.hardware_shared_state_queries");
+    SECTION(".text.hardware_shared_state_handles");
 u32 GetHardwareSharedStateTileIndex(void *, u32 value)
 {
     HardwareSharedState * state = reinterpret_cast<HardwareSharedState *>(gUnk_03000408);
@@ -45,7 +67,7 @@ u32 GetHardwareSharedStateTileIndex(void *, u32 value)
 }
 
 u32 GetHardwareSharedStateSizeShift(void *, u32 value)
-    SECTION(".text.hardware_shared_state_queries");
+    SECTION(".text.hardware_shared_state_handles");
 u32 GetHardwareSharedStateSizeShift(void *, u32 value)
 {
     HardwareSharedState * state = reinterpret_cast<HardwareSharedState *>(gUnk_03000408);
@@ -64,7 +86,7 @@ u32 GetHardwareSharedStateSizeShift(void *, u32 value)
 }
 
 u32 GetHardwareSharedStateReferenceCount(void *, u32 value)
-    SECTION(".text.hardware_shared_state_queries");
+    SECTION(".text.hardware_shared_state_handles");
 u32 GetHardwareSharedStateReferenceCount(void *, u32 value)
 {
     HardwareSharedState * state = reinterpret_cast<HardwareSharedState *>(gUnk_03000408);
@@ -79,4 +101,20 @@ u32 GetHardwareSharedStateReferenceCount(void *, u32 value)
         }
     }
     return 0;
+}
+
+HardwareSharedStateEntry * InitializeHardwareSharedStateFreeList(
+    HardwareSharedStateEntry *, i32, HardwareSharedStateEntry *)
+    SECTION(".text.hardware_shared_state_free_list");
+HardwareSharedStateEntry * InitializeHardwareSharedStateFreeList(
+    HardwareSharedStateEntry * entries, i32 count, HardwareSharedStateEntry * tail)
+{
+    HardwareSharedStateEntry * entry = entries + (count - 1);
+    entry->data.next_free = tail;
+    while (entry != entries) {
+        HardwareSharedStateEntry * next = entry;
+        --entry;
+        entry->data.next_free = next;
+    }
+    return entry;
 }

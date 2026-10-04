@@ -31,10 +31,10 @@ struct HardwareSharedStateEntry {
     union {
         HardwareSharedStateEntry * next_free;
         struct {
-            u32 tile_index : 10;
-            u32 size_shift : 4;
-            u32 unk_0E : 2;
-            u32 reference_count : 16;
+            u16 tile_index : 10;
+            u16 size_shift : 4;
+            u16 unk_0E : 2;
+            u16 reference_count;
         } params;
     } data;
     u16 generation;
@@ -68,6 +68,7 @@ typedef struct HardwareSharedState {
 
 typedef char HardwareSharedStateHandleSizeCheck[sizeof(HardwareSharedStateHandle) == 4 ? 1 : -1];
 typedef char HardwareSharedStateEntrySizeCheck[sizeof(HardwareSharedStateEntry) == 8 ? 1 : -1];
+typedef char HardwareSharedStateEntryRefcountCheck[offsetof(HardwareSharedStateEntry, data.params.reference_count) == 2 ? 1 : -1];
 typedef char HardwareSharedStateEntryGenerationCheck[offsetof(HardwareSharedStateEntry, generation) == 4 ? 1 : -1];
 typedef char HardwareSharedStatePoolEntriesCheck[offsetof(HardwareSharedStatePool, entries) == 4 ? 1 : -1];
 typedef char HardwareSharedStatePoolOffsetCheck[offsetof(HardwareSharedState, pool) == 0x20 ? 1 : -1];
@@ -84,6 +85,13 @@ void * func_08007874(void * owner); // Constructs the shared state if needed.
 void * func_080079D0(void * owner);
 void func_080079E8(void * owner, u32 flags);
 u32 func_08007B54(void * owner, u32 group_index); // Still in asm/hardware.s.
+
+// Returns the same validated handle; overflow restores the count and returns 0.
+u32 RetainHardwareSharedStateHandle(void * owner, u32 handle);
+
+// count must be positive; each eight-byte entry links to the following entry.
+HardwareSharedStateEntry * InitializeHardwareSharedStateFreeList(
+    HardwareSharedStateEntry * entries, i32 count, HardwareSharedStateEntry * tail);
 
 // The receiver is unused; each query validates a handle in the shared pool.
 u32 GetHardwareSharedStateTileIndex(void * owner, u32 handle);

@@ -5544,7 +5544,7 @@ func_0804F288: @ 0x0804F014
     bl func_08007C28
     ldr r1, [sp, #4]
     adds r0, r4, #0
-    bl func_08007CD8
+    bl RetainHardwareSharedStateHandle
     str r0, [r4, #4]
 .Ljp_0804F1D4:
     ldr r1, [sp, #4]
@@ -152072,7 +152072,7 @@ func_0804F288: @ 0x0804F288
 	bl func_08007C28
 	ldr r1, [sp, #4]
 	adds r0, r4, #0
-	bl func_08007CD8
+	bl RetainHardwareSharedStateHandle
 	str r0, [r4, #4]
 .L0804F448:
 	ldr r1, [sp, #4]
@@ -155434,7 +155434,7 @@ func_08050F74: @ 0x08050F74
 	.byte 0x2C, 0x1D, 0xA5, 0x45, 0x08, 0xD0, 0x61, 0x68, 0x20, 0x1C
 	bl func_08007C28
 	.byte 0x01, 0x99, 0x20, 0x1C
-	bl func_08007CD8
+	bl RetainHardwareSharedStateHandle
 	.byte 0x60, 0x60, 0x01, 0x99, 0x68, 0x46
 	bl func_08007C28
 	.byte 0x68, 0x46, 0x02, 0x21

@@ -5,7 +5,6 @@
 extern void func_08007C28(void * entry, void * value);
 extern void __builtin_delete(void * pointer);
 extern void free(void * pointer);
-extern u32 func_08007CD8(struct HardwareStateOwner * owner, void * value);
 
 void func_0800835C(void ** slot)
 {
@@ -64,7 +63,7 @@ struct HardwareStateOwner * func_080083D0(
             } while (current != first);
         }
         func_08007874(owner);
-        owner->unk_04 = func_08007CD8(owner, current->unk_04);
+        owner->unk_04 = RetainHardwareSharedStateHandle(owner, (u32)current->unk_04);
     } else {
         func_08007874(owner);
         owner->unk_04 = func_08007B54(owner, group_index);

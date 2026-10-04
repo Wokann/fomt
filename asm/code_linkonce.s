@@ -7317,27 +7317,9 @@ func_080D76C0:
     pop {r0}
     bx r0
     .byte 0x00, 0x00
-    .global func_080D770C
-    .thumb_func
-func_080D770C:
-    push {lr}
-    adds r3, r0, #0
-    lsls r1, r1, #3
-    subs r1, #8
-    adds r1, r3, r1
-    str r2, [r1]
-    cmp r1, r3
-    beq .Lauto_080D6EDE
-    .Lauto_080D6ED4:
-    adds r0, r1, #0
-    subs r1, #8
-    str r0, [r1]
-    cmp r1, r3
-    bne .Lauto_080D6ED4
-    .Lauto_080D6EDE:
-    adds r0, r1, #0
-    pop {r1}
-    bx r1
+    .section .text.hardware_shared_state_free_list_after, "ax", %progbits
+    .thumb
+    .align 2, 0
     .global func_080D772C
     .thumb_func
 func_080D772C:
@@ -7390,7 +7372,7 @@ func_080D772C:
     bl func_08007874
     ldr r1, [r5, #4]
     adds r0, r4, #0
-    bl func_08007CD8
+    bl RetainHardwareSharedStateHandle
     str r0, [r4, #4]
     .Lauto_080D6F4C:
     adds r5, #8
@@ -9731,26 +9713,9 @@ func_080D76C0: @ 0x080D76C0
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_080D770C
-func_080D770C: @ 0x080D770C
-	push {lr}
-	adds r3, r0, #0
-	lsls r1, r1, #3
-	subs r1, #8
-	adds r1, r3, r1
-	str r2, [r1]
-	cmp r1, r3
-	beq .L080D7726
-.L080D771C:
-	adds r0, r1, #0
-	subs r1, #8
-	str r0, [r1]
-	cmp r1, r3
-	bne .L080D771C
-.L080D7726:
-	adds r0, r1, #0
-	pop {r1}
-	bx r1
+    .section .text.hardware_shared_state_free_list_after, "ax", %progbits
+    .thumb
+    .align 2, 0
 
 	thumb_func_start func_080D772C
 func_080D772C: @ 0x080D772C
@@ -9803,7 +9768,7 @@ func_080D772C: @ 0x080D772C
 	bl func_08007874
 	ldr r1, [r5, #4]
 	adds r0, r4, #0
-	bl func_08007CD8
+	bl RetainHardwareSharedStateHandle
 	str r0, [r4, #4]
 .L080D7794:
 	adds r5, #8
@@ -15166,7 +15131,7 @@ func_080DC840:
     bl func_08007874
     ldr r1, [r6, #4]
     adds r0, r4, #0
-    bl func_08007CD8
+    bl RetainHardwareSharedStateHandle
     str r0, [r4, #4]
     ldrh r0, [r5, #0xc]
     movs r1, #0
@@ -29041,7 +29006,7 @@ func_080DC840: @ 0x080DC840
 	bl func_08007874
 	ldr r1, [r6, #4]
 	adds r0, r4, #0
-	bl func_08007CD8
+	bl RetainHardwareSharedStateHandle
 	str r0, [r4, #4]
 	ldrh r0, [r5, #0xc]
 	movs r1, #0
@@ -44124,7 +44089,7 @@ func_080E4438:
     bl func_08007C28
     ldr r1, [r5, #4]
     adds r0, r4, #0
-    bl func_08007CD8
+    bl RetainHardwareSharedStateHandle
     str r0, [r4, #4]
     .Lauto_080E3C32:
     adds r4, #8
@@ -53157,7 +53122,7 @@ func_080E4438: @ 0x080E4438
 	bl func_08007C28
 	ldr r1, [r5, #4]
 	adds r0, r4, #0
-	bl func_08007CD8
+	bl RetainHardwareSharedStateHandle
 	str r0, [r4, #4]
 .L080E449A:
 	adds r4, #8

@@ -1069,7 +1069,7 @@ func_0803AEA0:
     bl func_08007874
     ldr	r1, [r5, #4]
     adds	r0, r4, #0
-    bl func_08007CD8
+    bl RetainHardwareSharedStateHandle
     str	r0, [r4, #4]
 .Ljp_0803AD10:
     ldr	r0, [r6, #4]
@@ -10054,7 +10054,7 @@ func_0803AEA0:
     bl func_08007874
     ldr	r1, [r5, #4]
     adds	r0, r4, #0
-    bl func_08007CD8
+    bl RetainHardwareSharedStateHandle
     str	r0, [r4, #4]
 .Leu_0803AF90:
     ldr	r0, [r6, #4]
@@ -19113,7 +19113,7 @@ func_0803AEA0:
     bl func_08007874
     ldr	r1, [r5, #4]
     adds	r0, r4, #0
-    bl func_08007CD8
+    bl RetainHardwareSharedStateHandle
     str	r0, [r4, #4]
 .Lde_0803AE90:
     ldr	r0, [r6, #4]
@@ -28150,7 +28150,7 @@ func_0803AEA0:
     bl func_08007874
     ldr	r1, [r5, #4]
     adds	r0, r4, #0
-    bl func_08007CD8
+    bl RetainHardwareSharedStateHandle
     str	r0, [r4, #4]
 .Lus_0803AF7C:
     ldr	r0, [r6, #4]

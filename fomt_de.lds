@@ -77,7 +77,7 @@ SECTIONS
         asm/hardware.o(.text.hardware_mask_after);
         src/hardware_refcount.o(.text);
         asm/hardware.o(.text.hardware_refcount_after);
-        src/hardware_refcount.o(.text.hardware_shared_state_queries);
+        src/hardware_refcount.o(.text.hardware_shared_state_handles);
         src/hardware_state_properties.o(.text);
         asm/hardware.o(.text.hardware_state_properties_after);
         src/hardware_state_clear.o(.text);
@@ -431,6 +431,8 @@ SECTIONS
         asm/code_linkonce.o(.text.code_080D68C0);
         src/hardware.o(.text.hardware_free_list);
         asm/code_linkonce.o(.text.code_080D6DB8);
+        src/hardware_refcount.o(.text.hardware_shared_state_free_list);
+        asm/code_linkonce.o(.text.hardware_shared_state_free_list_after);
         src/hardware_bootstrap.o(.text.hardware_frame_commands);
         asm/code_linkonce.o(.text.hardware_dma_command);
         src/hardware_bootstrap.o(.text.hardware_frame_command_cleanup);
