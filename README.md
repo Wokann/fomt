@@ -6,8 +6,8 @@ It builds the following ROM:
 
 * **[fomt_us.gba]** `sha1: a2fc3574f0a65a4fcf7682fb274b9d7eebdef963` — byte-exact
 * **fomt_jp.gba** `sha1: a655b2789aed14a6ac78c6075fbc533d3062dbe3` — byte-exact
-* **fomt_eu.gba** `sha1: 7ba1ec1e46ce424e3c6fd72e4e8d5e9eb5ede247` — target baseline registered
-* **fomt_de.gba** `sha1: 60f2a30b55c0e32754897b4d5df6ce06f8b71a37` — target baseline registered
+* **fomt_eu.gba** `sha1: 7ba1ec1e46ce424e3c6fd72e4e8d5e9eb5ede247` — byte-exact
+* **fomt_de.gba** `sha1: 60f2a30b55c0e32754897b4d5df6ce06f8b71a37` — byte-exact
 
 [fomt_us.gba]: https://datomatic.no-intro.org/index.php?page=show_record&s=23&n=1249
 
@@ -28,10 +28,9 @@ make fomt_eu
 make fomt_de
 ```
 
-`fomt_us` and `fomt_jp` also run their SHA-1 comparison. `fomt_eu` and
-`fomt_de` currently provide independently compiled regional baselines;
-`compare_eu` and `compare_de` deliberately remain explicit until their full
-regional linker layouts and remaining raw asset blocks have been matched.
+All four `fomt_*` targets build their region and run its SHA-1 comparison.
+Use `make -j4 fomt_jp` (or the corresponding regional target) under WSL.
+`compare_eu` and `compare_de` are aliases for their regional comparisons.
 
 The build defines exactly one of `REGION_US`, `REGION_JP`, `REGION_EU`, and
 `REGION_DE`. A recovered function belongs in one owning C/C++ or assembly
@@ -78,6 +77,26 @@ declarations stay centralized in `src/reference_guide.cc` and
 ## Setting up
 
 See [INSTALL.md](./INSTALL.md).
+
+## Build workflow
+
+Graphics are generated beside their authored sources: shared suffix rules
+convert PNG tiles to `.1bpp`, `.4bpp`, or `.8bpp`, and independent `.pal`
+sources to `.gbapal`. FoMT's native compression uses `tools/fomt-lz`, not
+the GBA BIOS LZ codec. Rules that still take `.original.lz` remain template
+dependent; these have not all been replaced with independent encoders.
+
+The upstream [scaninc](./tools/scaninc/README.md) scans assembly includes and
+resource references before assembly, including on the first build. Make loads
+the generated `.d` files and builds missing resources through the graphics
+rules. There is no duplicate per-object asset inventory or separate global
+graphics stage. C/C++ header and regional macro dependencies continue to be
+resolved by the actual C preprocessor.
+
+Source objects are compiled in `build/<region>`, linked with the regional LDS,
+and converted with `objcopy` and `gbafix`. The four ROM targets do not read
+baserom, run Python resource generators, or patch resources after linking.
+Ignored base ROMs and auxiliary audit tools remain outside this build path.
 
 ## Contributing
 

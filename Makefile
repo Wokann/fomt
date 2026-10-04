@@ -60,6 +60,9 @@ GFX_TOOL_DIR := tools/gbagfx
 GFX_TOOL := $(GFX_TOOL_DIR)/gbagfx$(EXE)
 FOMT_LZ_TOOL := tools/fomt-lz$(EXE)
 GFX_TOOL_SOURCES := $(wildcard $(GFX_TOOL_DIR)/*.c $(GFX_TOOL_DIR)/*.h) $(GFX_TOOL_DIR)/Makefile
+SCANINC_DIR := tools/scaninc
+SCANINC := $(SCANINC_DIR)/scaninc$(EXE)
+SCANINC_SOURCES := $(wildcard $(SCANINC_DIR)/*.cpp $(SCANINC_DIR)/*.h) $(SCANINC_DIR)/Makefile
 FONT_PAD_DIR := tools/fontpad
 FONT_PAD := $(FONT_PAD_DIR)/fontpad$(EXE)
 OAM_PACK_DIR := tools/oam_pack
@@ -214,16 +217,14 @@ $(TEXT_TOOLS): $(TEXT_TOOL_DIR)/fomt_text.cpp $(TEXT_TOOL_DIR)/fomt_preproc.cpp 
 $(GBAFIX): $(GBAFIX_DIR)/gbafix.c $(GBAFIX_DIR)/Makefile
 	@$(MAKE) -C $(GBAFIX_DIR) $(notdir $@)
 
+$(SCANINC): $(SCANINC_SOURCES)
+	@$(MAKE) -C $(SCANINC_DIR) $(notdir $@)
+
 $(FOMT_LZ_TOOL): tools/fomt_lz.c
 	@$(HOSTCC) -std=c11 -Wall -Wextra -Werror -O2 $< -o $@
 
 $(GFX_RANGE_VERIFY): tools/verify_gfx_range.c
 	@$(HOSTCC) -std=c11 -Wall -Wextra -Werror -O2 $< -o $@
-
-# graphics_file_rules.mk owns every image conversion dependency.  Assemble
-# only after it has produced the source-adjacent assets; GAS then records each
-# real .incbin input in its ordinary generated dependency file.
-$(ASM_OBJS) $(DATA_ASM_OBJS): | graphics
 
 # Mary owns the complete packed RIFF script stream.  Its three headers remain
 # explicit inputs: callables and slot names live with the selected scripts,
@@ -329,51 +330,16 @@ $(BUILD_DIR)/%.o: %.cc $(BUILD_DIR)/%.d $(TEXT_TOOLS) charmap.txt
 $(BUILD_DIR)/src/staff_credits.o: FOMT_TEXT_SOURCE_ARGS := $(STAFF_CREDITS_SOURCE)
 $(BUILD_DIR)/src/staff_credits.o: $(STAFF_CREDITS_SOURCE)
 
-# ASM dependency file (dummy, generated with the object)
-$(BUILD_DIR)/%.d: $(BUILD_DIR)/%.o
-	@touch $@
+# Scan before assembly so a missing generated resource can be built from its
+# authored source. Nested include edits also update the dependency graph.
+$(BUILD_DIR)/%.d: %.s $(SCANINC)
+	@mkdir -p $(dir $@)
+	@$(SCANINC) -M $@ $(INCFLAGS) -I . -I include $<
 
 # ASM object
-$(BUILD_DIR)/%.o: %.s
+$(BUILD_DIR)/%.o: %.s $(BUILD_DIR)/%.d
 	@echo "AS $<"
-	@$(AS) $(ASFLAGS) $< -o $@ --MD $(BUILD_DIR)/$*.d
-
-# This source directly includes the generated palette streams. Keep the asset
-# conversion in the same ordinary prerequisite path as the assembler input.
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(MAP_STATE_PALETTE_OUTPUTS) $(MAP_STATE_TEMPLATE_SOURCES) $(FARM_HOUSE_VISUAL_OUTPUTS) $(FARM_HOUSE_PALETTE_SOURCES) $(FARM_HOUSE_TILEMAP_SOURCES) $(UI_SCENE_080A2BA4_OUTPUTS) $(UI_SCENE_08077810_ACTIVE_ASSETS) $(UI_SCENE_08054F40_TILES_OUTPUT) $(UI_SCENE_0805AB08_TILES_OUTPUT) $(UI_SCENE_080B7164_OUTPUTS) $(UI_SCENE_080C160C_OUTPUTS) $(UI_SCENE_080BCFAC_OUTPUTS) $(UI_SCENE_080B55D0_AUX_OUTPUTS) $(UI_SCENE_080B55D0_MAIN_OUTPUT) $(UI_SCENE_080AE7D0_OUTPUTS) $(SHARED_RESOURCE_0873AE54_ASSETS) $(SHARED_RESOURCE_0873D5FC_ASSETS) $(SHARED_RESOURCE_08740908_ASSETS) $(SHARED_RESOURCE_0874EE38_ASSETS) $(SHARED_RESOURCE_0875352C_ASSETS) $(SHARED_RESOURCE_08753608_ASSETS) $(SHARED_RESOURCE_08755154_ASSETS) $(INTRO_SMALL_ARCHIVE_ASSETS) $(SHARED_RESOURCE_0871ECAC_ASSETS) $(SHARED_RESOURCE_0871ECAC_SOURCE_DIR)/archive.inc $(SHARED_RESOURCE_0871EDD4_ASSETS) $(SHARED_RESOURCE_0871EDD4_SOURCE_DIR)/archive.inc $(SMALL_UI_RESOURCE_ARCHIVE_ASSETS) $(SMALL_UI_RESOURCE_ARCHIVE_SOURCE_DIR)/archive.inc $(MENU_UI_RESOURCE_ARCHIVE_ASSETS) $(MENU_UI_RESOURCE_ARCHIVE_SOURCE_DIR)/archive.inc
-
-$(BUILD_DIR)/asm/data/data_0813B288.o: asm/data/data_0813B288_de_initial.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(PORTRAIT_ARCHIVE_LAYOUT)
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(ACTOR_ARCHIVE_LAYOUT)
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_0873CEAC_ASSETS) $(SHARED_RESOURCE_0873CEAC_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_0873CF90_ASSETS) $(SHARED_RESOURCE_0873CF90_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_0873CCB4_ASSETS) $(SHARED_RESOURCE_0873CCB4_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_0873D234_ASSETS) $(SHARED_RESOURCE_0873D234_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_0873DE44_ASSETS) $(SHARED_RESOURCE_0873DE44_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_0873E5B0_ASSETS) $(SHARED_RESOURCE_0873E5B0_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_0873ED1C_ASSETS) $(SHARED_RESOURCE_0873ED1C_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_087401A4_ASSETS) $(SHARED_RESOURCE_087401A4_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_08740454_ASSETS) $(SHARED_RESOURCE_08740454_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_087405A0_ASSETS) $(SHARED_RESOURCE_087405A0_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_087409E4_ASSETS) $(SHARED_RESOURCE_087409E4_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_087506E0_ASSETS) $(SHARED_RESOURCE_087506E0_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_087536E4_ASSETS) $(SHARED_RESOURCE_087536E4_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_08527094_ASSETS) $(SHARED_RESOURCE_08527094_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_086FAA80_ASSETS) $(SHARED_RESOURCE_086FAA80_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_08726CCC_ASSETS) $(SHARED_RESOURCE_08726CCC_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_08727368_ASSETS) $(SHARED_RESOURCE_08727368_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_08727A74_ASSETS) $(SHARED_RESOURCE_08727A74_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_08728320_ASSETS) $(SHARED_RESOURCE_08728320_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_0872937C_ASSETS) $(SHARED_RESOURCE_0872937C_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_0872EE78_ASSETS) $(SHARED_RESOURCE_0872EE78_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_08729460_ASSETS) $(SHARED_RESOURCE_08729460_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_0873AFC8_ASSETS) $(SHARED_RESOURCE_0873AFC8_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(REGIONAL_RESOURCE_0875B444_ASSETS) $(REGIONAL_RESOURCE_0875B444_SOURCE_ROOT)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(REGIONAL_RESOURCE_08728208_ASSETS) $(REGIONAL_RESOURCE_08728208_SOURCE_ROOT)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SHARED_RESOURCE_086F2FAC_ASSETS) $(SHARED_RESOURCE_086F2FAC_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(FARM_STATUS_RESOURCE_ARCHIVE_ASSETS) $(FARM_STATUS_RESOURCE_ARCHIVE_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(SMALL_COMPANION_ARCHIVE_ASSETS) $(SMALL_COMPANION_ARCHIVE_SOURCE_DIR)/archive.inc
-$(BUILD_DIR)/asm/data/data_0813B288.o: $(COMMON_RESOURCE_ARCHIVE_ASSETS) $(COMMON_RESOURCE_ARCHIVE_SOURCE_DIR)/archive.inc
+	@$(AS) $(ASFLAGS) $< -o $@
 
 # overrides for matching
 $(BUILD_DIR)/src/m4a.o: CC1 := $(OLD_CC1)
@@ -645,11 +611,11 @@ ifneq (clean,$(MAKECMDGOALS))
 ifeq (unpack-coverage-inventory,$(strip $(MAKECMDGOALS)))
 # This target needs only the Python audit tool, never the default ROM build.
 else
-# The regional fomt_* wrappers recurse into compare.  Load only dependency
-# files that already exist: a clean build creates each .d with its object,
-# while an incremental compare must notice edited .incbin graphics inputs.
+# The regional fomt_* wrappers recurse into compare. Missing dependency files
+# must be scanned before object assembly, including on the first compare build.
+# This lets the source references select assets through normal pattern rules.
 ifneq (,$(filter compare,$(MAKECMDGOALS)))
--include $(wildcard $(ALL_DEPS))
+-include $(ALL_DEPS)
 endif
 ifeq (,$(filter fomt_us fomt_jp fomt_eu fomt_de compare compare_eu compare_de gfx-font gfx-jp-font gfx-fonts gfx-font-test gfx-fonts-test gfx-portraits gfx-portraits-all gfx-actors gfx-actors-test gfx-actors-all gfx-ui gfx-ui-test gfx-ui-all gfx-ui-scene-080a2ba4 gfx-ui-scene-080a2ba4-test gfx-ui-scene-080a2ba4-all gfx-ui-scene-08077810 gfx-ui-scene-08077810-test gfx-ui-scene-08077810-all gfx-ui-scene-080ae7d0 gfx-ui-scene-080ae7d0-preview gfx-ui-scene-080ae7d0-test gfx-ui-scene-080ae7d0-all gfx-ui-scene-080b7164 gfx-ui-scene-080b7164-preview gfx-ui-scene-080b7164-test gfx-ui-scene-080b7164-all gfx-ui-scene-080c160c gfx-ui-scene-080c160c-test gfx-ui-scene-080c160c-all gfx-ui-scene-080b55d0-aux gfx-ui-scene-080b55d0-aux-reference gfx-ui-scene-080b55d0-aux-test gfx-ui-scene-080b55d0-aux-all gfx-ui-scene-080b55d0-main gfx-ui-scene-080b55d0-main-test gfx-ui-scene-080b55d0-main-all gfx-ui-scene-08054f40-reference gfx-farm-house-tilemaps gfx-farm-house-tilemaps-test gfx-farm-house-tilemaps-all gfx-farm-status gfx-farm-status-test gfx-farm-status-all gfx-farm-status-winter gfx-farm-status-winter-test gfx-farm-status-winter-all gfx-farm-status-previews gfx-farm-status-tilemaps gfx-farm-status-tilemaps-test gfx-farm-status-tilemaps-all gfx-farm-status-secondary-tilemaps gfx-farm-status-secondary-tilemaps-test gfx-farm-status-secondary-tilemaps-all gfx-farm-status-exterior-styles gfx-farm-status-exterior-styles-test gfx-farm-status-selector-icon gfx-farm-status-selector-icon-test gfx-farm-status-selector-icon-all gfx-clock-font gfx-clock-font-test gfx-clock-font-all gfx-farm-status-creature-icons gfx-farm-status-creature-icons-test gfx-farm-status-creature-icons-all gfx-intro-background gfx-intro-background-test gfx-intro-background-all gfx-intro-objects gfx-intro-objects-all gfx-intro-objects-test gfx-intro-startup-visual gfx-intro-startup-visual-test gfx-intro-startup-visual-all gfx-map-resources gfx-map-resources-test gfx-map-resources-all gfx-records-minigame gfx-records-minigame-test gfx-records-minigame-all resource-archive-audit unpack-vram-inventory gfx-assets gfx-verify tile-grid-region-test tile-grid-test oam-pack oam-pack-test oam-pack-audit,$(MAKECMDGOALS)))
 -include $(ALL_DEPS)

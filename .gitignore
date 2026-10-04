@@ -82,6 +82,8 @@ graphics/common_resource_archive/full/*.4bpp
 graphics/common_resource_archive/full/*.gbapal
 tools/verify-gfx-range
 tools/verify-gfx-range.exe
+tools/scaninc/scaninc
+tools/scaninc/scaninc.exe
 graphics/intro_scene/small_indexed_archive/shared/full/frame_0000.4bpp
 graphics/intro_scene/small_indexed_archive/shared/full/frame_0000.gbapal
 graphics/portraits/shared/native_tiles.4bpp
