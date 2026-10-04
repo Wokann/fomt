@@ -24,7 +24,6 @@ endif
 
 ifeq ($(GAME_REGION),US)
   BUILD_NAME := fomt_us
-  BASE_ROM := baserom_us.gba
   REGION_DIR := us
   REGION_DEFINE := REGION_US
   TITLE := HARVESTMOGBA
@@ -34,7 +33,6 @@ ifeq ($(GAME_REGION),US)
   LDS_LINK_PATH := ../../fomt_us.lds
 else ifeq ($(GAME_REGION),JP)
   BUILD_NAME := fomt_jp
-  BASE_ROM := baserom_jp.gba
   REGION_DIR := jp
   REGION_DEFINE := REGION_JP
   TITLE := BOKUMONOGBA
@@ -44,7 +42,6 @@ else ifeq ($(GAME_REGION),JP)
   LDS_LINK_PATH := ../../fomt_jp.lds
 else ifeq ($(GAME_REGION),EU)
   BUILD_NAME := fomt_eu
-  BASE_ROM := baserom_eu.gba
   REGION_DIR := eu
   REGION_DEFINE := REGION_EU
   TITLE := HARVESTMOGBA
@@ -54,7 +51,6 @@ else ifeq ($(GAME_REGION),EU)
   LDS_LINK_PATH := ../../fomt_eu.lds
 else ifeq ($(GAME_REGION),DE)
   BUILD_NAME := fomt_de
-  BASE_ROM := baserom_de.gba
   REGION_DIR := de
   REGION_DEFINE := REGION_DE
   TITLE := HARVESTMOGER
