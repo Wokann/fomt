@@ -12,36 +12,32 @@ EXTERN_C
 
 extern void free(void * pointer);
 
-void func_0800770C(HardwareResource * object)
-{
-    object->storage = 0;
-}
-
-void func_08007714(HardwareResource * object, u32 flags)
-{
-    if (object->storage != 0) {
-        HardwareResourceStorage * storage = object->storage;
-        HardwareResourceEntry * end = storage->end;
-        HardwareResourceEntry * cursor = storage->start;
-        while (cursor != end) {
-            func_080073E0(cursor, cursor->handle);
-            reinterpret_cast<HardwarePoolOwner *>(cursor)->~HardwarePoolOwner();
-            cursor++;
-        }
-        if (storage->start != 0)
-            free(storage->start);
-        __builtin_delete(storage);
-    }
-    if (flags & 1)
-        __builtin_delete(object);
-}
-
 EXTERN_C_END
 
-HardwareResource::HardwareResource(HardwareResource const & other)
+HardwareResource::HardwareResource() : storage(0)
 {
-    if (other.storage != nullptr) {
-        HardwareResourceStorage * current = other.storage;
+}
+
+HardwareResource::~HardwareResource()
+{
+    if (storage != 0) {
+        HardwareResourceStorage * saved = storage;
+        HardwareResourceEntry * end = saved->end;
+        HardwareResourceEntry * cursor = saved->start;
+        while (cursor != end) {
+            cursor->~HardwareResourceEntry();
+            cursor++;
+        }
+        if (saved->start != 0)
+            free(saved->start);
+        __builtin_delete(saved);
+    }
+}
+
+HardwareResourceEntry HardwareResource::Get() const
+{
+    if (storage != 0) {
+        HardwareResourceStorage * current = storage;
         HardwareResourceEntry * end = current->end;
         HardwareResourceEntry * cursor = current->cursor;
         if (cursor != end) {
@@ -58,12 +54,9 @@ HardwareResource::HardwareResource(HardwareResource const & other)
                 }
             } while (cursor != first);
         }
-        func_08007128(this);
-        handle = func_0800745C(this, cursor->handle);
-    } else {
-        func_08007128(this);
-        handle = AllocateHardwarePoolHandle(this);
+        return *cursor;
     }
+    return HardwareResourceEntry();
 }
 
 inline void * HardwareResourceStorage::AllocateBytes(u32 bytes)

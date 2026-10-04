@@ -4231,7 +4231,7 @@ func_080124D0:
     add r0, sp, #0xc
     bl __18HardwareStateOwner
     add r0, sp, #0x10
-    bl func_0800770C
+    bl __16HardwareResource
     add r1, sp, #0x10
     movs r0, #1
     str r0, [sp]
@@ -4256,7 +4256,7 @@ func_080124D0:
     str r4, [r5]
     add r0, sp, #0x10
     movs r1, #2
-    bl func_08007714
+    bl _._16HardwareResource
     add r0, sp, #0xc
     movs r1, #2
     bl _._18HardwareStateOwner
@@ -4268,7 +4268,7 @@ func_080124D0:
     add r0, sp, #0xc
     bl __18HardwareStateOwner
     add r0, sp, #0x10
-    bl func_0800770C
+    bl __16HardwareResource
     add r0, sp, #0x10
     str r5, [sp]
     add r1, sp, #0xc
@@ -4292,7 +4292,7 @@ func_080124D0:
     str r4, [r5]
     add r0, sp, #0x10
     movs r1, #2
-    bl func_08007714
+    bl _._16HardwareResource
     add r0, sp, #0xc
     movs r1, #2
     bl _._18HardwareStateOwner
@@ -27673,7 +27673,7 @@ func_080124D0: @ 0x080124D0
     add r0, sp, #0xc
     bl __18HardwareStateOwner
     add r0, sp, #0x10
-    bl func_0800770C
+    bl __16HardwareResource
     add r1, sp, #0x10
     movs r0, #1
     str r0, [sp]
@@ -27698,7 +27698,7 @@ func_080124D0: @ 0x080124D0
     str r4, [r5]
     add r0, sp, #0x10
     movs r1, #2
-    bl func_08007714
+    bl _._16HardwareResource
     add r0, sp, #0xc
     movs r1, #2
     bl _._18HardwareStateOwner
@@ -27710,7 +27710,7 @@ func_080124D0: @ 0x080124D0
     add r0, sp, #0xc
     bl __18HardwareStateOwner
     add r0, sp, #0x10
-    bl func_0800770C
+    bl __16HardwareResource
     add r0, sp, #0x10
     str r5, [sp]
     add r1, sp, #0xc
@@ -27734,7 +27734,7 @@ func_080124D0: @ 0x080124D0
     str r4, [r5]
     add r0, sp, #0x10
     movs r1, #2
-    bl func_08007714
+    bl _._16HardwareResource
     add r0, sp, #0xc
     movs r1, #2
     bl _._18HardwareStateOwner

@@ -10,6 +10,12 @@ struct HardwareResourceEntry {
     HardwarePoolOwner owner;
     u32 handle;
 
+    HardwareResourceEntry()
+    {
+        func_08007128(this);
+        handle = AllocateHardwarePoolHandle(this);
+    }
+
     HardwareResourceEntry(HardwareResourceEntry const & value)
     {
         func_08007128(this);
@@ -46,16 +52,13 @@ typedef char HardwareResourceStorageCursorCheck[offsetof(HardwareResourceStorage
 
 struct HardwareResource {
     struct HardwareResourceStorage * storage;
-    u32 handle;
 
-    HardwareResource(HardwareResource const & other) asm("func_08007770");
+    HardwareResource();
+    ~HardwareResource();
+    // Copy a retained pool entry, or allocate one when storage is absent.
+    HardwareResourceEntry Get() const;
 };
 
-EXTERN_C
-
-void func_0800770C(struct HardwareResource * object);
-void func_08007714(struct HardwareResource * object, u32 flags);
-
-EXTERN_C_END
+typedef char HardwareResourceSizeCheck[sizeof(HardwareResource) == 4 ? 1 : -1];
 
 #endif // HARDWARE_RESOURCE_HH
