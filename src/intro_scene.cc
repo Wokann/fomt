@@ -632,7 +632,7 @@ void SubmitIntroSceneSprite(IntroSceneCore * core, int x, int y, int type)
     parameters.y = y;
     parameters.priority = 0;
     parameters.palette_offset = GetIntroScenePaletteIndex(core->pool_handle_6CE8);
-    parameters.color_mode = 1;
+    parameters.mosaic = 1;
     func_0805E99C(func_08008920(reinterpret_cast<void * const *>(core)),
         group.third.Data(), group.third.Count(), &parameters);
 }

@@ -27,6 +27,14 @@ struct IndexedResourceResult
 struct IndexedResourceArchiveDescriptor8 { u8 unknown_00[8]; };
 struct IndexedResourceArchiveDescriptor32 { u8 unknown_00[32]; };
 
+struct IndexedResourceSpriteMatrix
+{
+    i16 pa;
+    i16 pb;
+    i16 pc;
+    i16 pd;
+};
+
 struct IndexedResourceDescriptor8Range
 {
     IndexedResourceArchiveDescriptor8 * Data() const { return data; }
@@ -155,6 +163,7 @@ typedef char IndexedResourceGroupFourthOffsetCheck[offsetof(IndexedResourceGroup
 typedef char IndexedResourceGroupFifthOffsetCheck[offsetof(IndexedResourceGroupResult, fifth) == 16 ? 1 : -1];
 typedef char IndexedResourceGroupSixthOffsetCheck[offsetof(IndexedResourceGroupResult, sixth) == 24 ? 1 : -1];
 typedef char IndexedResourceGroupResolverOffsetCheck[offsetof(IndexedResourceProviderVTable, get_group_data) == 0x10 ? 1 : -1];
+typedef char IndexedResourceSpriteMatrixSizeCheck[sizeof(IndexedResourceSpriteMatrix) == 8 ? 1 : -1];
 
 EXTERN_C
 
@@ -172,6 +181,9 @@ void ResolveIndexedResourceHandle(IndexedResourceHandle *, u32)
     SECTION(".text.resolve_indexed_resource_handle");
 bool WouldIndexedResourceHandleWrap(IndexedResourceHandle const *)
     SECTION(".text.indexed_resource_handle_predict_wrap");
+void TransformIndexedResourceSpritePosition(i32 *, i32 *, u32, u32,
+    IndexedResourceSpriteMatrix const *)
+    SECTION(".text.indexed_resource_sprite_transform");
 
 EXTERN_C_END
 

@@ -189,3 +189,42 @@ extern "C" bool WouldIndexedResourceHandleWrap(IndexedResourceHandle const * han
     }
     return false;
 }
+
+extern "C" void TransformIndexedResourceSpritePosition(
+    i32 * x, i32 * y, u32 width, u32 height,
+    IndexedResourceSpriteMatrix const * matrix)
+{
+    i32 center_x = (*x + width / 2) * 256;
+    i32 center_y = (*y + height / 2) * 256;
+    // Keep the renderer's original 17/16 coefficient adjustment and the
+    // signed halfword truncation before computing the determinant.
+    i16 pa = matrix->pa * 272 / 256;
+    i16 pb = matrix->pb * 272 / 256;
+    i16 pc = matrix->pc * 272 / 256;
+    i16 pd = matrix->pd * 272 / 256;
+    i32 determinant = (pa * pd - pb * pc) / 256;
+    if (determinant != 0)
+    {
+        i32 transformed_x = pd * center_x - pb * center_y;
+        i32 transformed_y = pa * center_y - pc * center_x;
+        i32 position_x;
+        i32 position_y;
+        if (determinant == 256)
+        {
+            position_x = transformed_x / 256;
+            position_y = transformed_y / 256;
+        }
+        else if (determinant == -256)
+        {
+            position_x = transformed_x / -256;
+            position_y = transformed_y / -256;
+        }
+        else
+        {
+            position_x = transformed_x / determinant;
+            position_y = transformed_y / determinant;
+        }
+        *x += (position_x - center_x) >> 8;
+        *y += (position_y - center_y) >> 8;
+    }
+}

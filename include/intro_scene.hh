@@ -46,7 +46,8 @@ struct IntroSceneHardwarePoolHandle
 
 // Parameters consumed by the sprite renderer at func_0805E99C. The two
 // positions are signed halfwords; palette/tile offsets are added to each
-// descriptor's OAM attributes. Unresolved control fields keep unknown names.
+// descriptor's OAM attributes. Object mode and mosaic are the actual OAM
+// attr0 bits 10-11 and 12; mosaic is distinct from attr0's color-depth bit 13.
 struct IntroSceneSpriteParameters
 {
     i16 x;
@@ -54,16 +55,16 @@ struct IntroSceneSpriteParameters
     u16 palette_offset;
     u16 tile_offset;
     u16 priority;
-    u32 unk_0C;
+    u32 object_mode;
     u8 flips;
     u8 affine_index;
     u32 affine_mode;
-    u8 color_mode;
+    u8 mosaic;
     IndexedResourceGroupResult group;
 
     IntroSceneSpriteParameters()
         : x(0), y(0), palette_offset(0), tile_offset(0), priority(0),
-          unk_0C(0), flips(0), affine_index(0), affine_mode(0), color_mode(0),
+          object_mode(0), flips(0), affine_index(0), affine_mode(0), mosaic(0),
           group(0, 0, 0, 0, 0, 0, 0, 0) {}
 };
 
@@ -71,7 +72,8 @@ typedef char IntroSceneSpriteParametersSizeCheck[sizeof(IntroSceneSpriteParamete
 typedef char IntroSceneSpritePaletteOffsetCheck[offsetof(IntroSceneSpriteParameters, palette_offset) == 4 ? 1 : -1];
 typedef char IntroSceneSpriteTileOffsetCheck[offsetof(IntroSceneSpriteParameters, tile_offset) == 6 ? 1 : -1];
 typedef char IntroSceneSpriteAffineModeOffsetCheck[offsetof(IntroSceneSpriteParameters, affine_mode) == 20 ? 1 : -1];
-typedef char IntroSceneSpriteColorModeOffsetCheck[offsetof(IntroSceneSpriteParameters, color_mode) == 24 ? 1 : -1];
+typedef char IntroSceneSpriteObjectModeOffsetCheck[offsetof(IntroSceneSpriteParameters, object_mode) == 12 ? 1 : -1];
+typedef char IntroSceneSpriteMosaicOffsetCheck[offsetof(IntroSceneSpriteParameters, mosaic) == 24 ? 1 : -1];
 typedef char IntroSceneSpriteGroupOffsetCheck[offsetof(IntroSceneSpriteParameters, group) == 28 ? 1 : -1];
 
 typedef void (*IntroSceneVTableFunction)(void);
