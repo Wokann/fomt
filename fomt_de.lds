@@ -77,6 +77,7 @@ SECTIONS
         asm/hardware.o(.text.hardware_mask_after);
         src/hardware_refcount.o(.text);
         asm/hardware.o(.text.hardware_refcount_after);
+        src/hardware_refcount.o(.text.hardware_shared_state_queries);
         src/hardware_state_properties.o(.text);
         asm/hardware.o(.text.hardware_state_properties_after);
         src/hardware_state_clear.o(.text);

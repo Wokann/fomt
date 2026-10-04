@@ -6269,7 +6269,7 @@ func_0804F7A4: @ 0x0804F530
     ldr r5, [sp, #0x14]
     ldr r1, [r1, #4]
     mov r0, sb
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     adds r2, r0, #0
     add r1, sp, #0x14
     ldr r0, [sp, #0x14]
@@ -6419,7 +6419,7 @@ func_0804F7A4: @ 0x0804F530
     mov r5, sb
     ldr r1, [r5, #4]
     mov r0, sb
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     lsls r0, r0, #0x16
     lsrs r0, r0, #0x16
     ldr r2, .Ljp_0804FA60 @ =0xFFFFFC00
@@ -6595,7 +6595,7 @@ func_0804F7A4: @ 0x0804F530
     cmp r0, #0
     bge .Ljp_0804FA70
     adds r0, r6, #0
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     lsls r0, r0, #0x16
     lsrs r0, r0, #0x16
     ldr r3, .Ljp_0804FA60 @ =0xFFFFFC00
@@ -6787,7 +6787,7 @@ func_0804F7A4: @ 0x0804F530
 .Ljp_0804FBB6:
     mov r0, sb
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     adds r2, r0, #0
     adds r4, r7, #0
     adds r4, #0x3c
@@ -6879,7 +6879,7 @@ func_0804F7A4: @ 0x0804F530
     lsls r3, r3, #1
     adds r0, r7, r3
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     adds r0, #0x78
     strh r0, [r4, #6]
     movs r5, #0xa9
@@ -6933,7 +6933,7 @@ func_0804F7A4: @ 0x0804F530
     lsls r1, r1, #1
     adds r0, r7, r1
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     adds r2, r0, #0
     adds r4, r7, #0
     adds r4, #0x3c
@@ -7034,7 +7034,7 @@ func_0804F7A4: @ 0x0804F530
     lsls r5, r5, #1
     adds r0, r7, r5
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     strh r0, [r4, #6]
     movs r1, #0xf4
     lsls r1, r1, #1
@@ -7127,7 +7127,7 @@ func_0804F7A4: @ 0x0804F530
     bge .Ljp_0804FED6
     adds r0, r4, #0
     adds r1, r2, #0
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     movs r2, #0
     mov sb, r2
     adds r4, r7, #0
@@ -7215,7 +7215,7 @@ func_0804F7A4: @ 0x0804F530
     lsls r1, r1, #1
     adds r0, r7, r1
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     adds r0, #0x60
     lsls r0, r0, #0x16
     lsrs r0, r0, #0x16
@@ -9779,7 +9779,7 @@ func_08051B00:
     adds r4, #0xa8
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     mov r1, sp
     strh r0, [r1, #6]
     adds r0, r7, #0
@@ -9802,7 +9802,7 @@ func_08051B00:
     mov r8, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     adds r2, r0, #0
     ldr r0, [sp, #0x24]
     movs r3, #0
@@ -10026,7 +10026,7 @@ func_08051B00:
     adds r4, #0xa8
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     mov r1, sp
     adds r0, #4
     strh r0, [r1, #6]
@@ -10050,7 +10050,7 @@ func_08051B00:
     mov r8, r3
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     adds r2, r0, #0
     ldr r0, [sp, #0x24]
     movs r3, #0
@@ -12372,7 +12372,7 @@ func_08054D34:
     lsls r1, r1, #3
     adds r0, r7, r1
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     adds r0, r0, r6
     lsls r0, r0, #5
     ldr r2, [pc, #0x2ac]
@@ -12468,7 +12468,7 @@ func_08054D34:
     ldr r4, [sp, #8]
     mov r0, r8
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     adds r0, r0, r6
     lsls r0, r0, #5
     ldr r2, [pc, #0x1e4]
@@ -12554,7 +12554,7 @@ func_08054D34:
     adds r5, r7, r1
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     lsls r0, r0, #5
     ldr r2, [pc, #0x134]
     adds r1, r0, r2
@@ -12596,7 +12596,7 @@ func_08054D34:
     ldr r6, [sp, #8]
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     lsls r0, r0, #5
     ldr r5, [pc, #0xe4]
     adds r1, r0, r5
@@ -12786,7 +12786,7 @@ func_08054D34:
     ldr r4, [sp, #8]
     ldr r1, [r5, #4]
     adds r0, r5, #0
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     lsls r0, r0, #5
     ldr r2, [pc, #0x50]
     adds r1, r0, r2
@@ -12893,7 +12893,7 @@ func_08054D34:
     lsls r1, r1, #3
     adds r0, r7, r1
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     lsls r0, r0, #5
     ldr r2, [pc, #0x4c]
     adds r1, r0, r2
@@ -12998,7 +12998,7 @@ func_080558C4:
     lsls r7, r7, #3
     adds r0, r6, r7
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     adds r2, r0, #0
     ldr r0, [sp, #0x28]
     movs r3, #0
@@ -13321,7 +13321,7 @@ func_080558C4:
     lsls r4, r4, #3
     adds r0, r6, r4
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     add r1, sp, #4
     strh r0, [r1, #6]
     movs r0, #2
@@ -13410,7 +13410,7 @@ func_080558C4:
     lsls r1, r1, #3
     adds r0, r6, r1
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     adds r2, r0, #0
     ldr r0, [sp, #0x28]
     movs r3, #0
@@ -13764,7 +13764,7 @@ func_080558C4:
     lsls r7, r7, #3
     adds r0, r6, r7
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     adds r2, r0, #0
     ldr r0, [sp, #0x28]
     movs r3, #0
@@ -14123,7 +14123,7 @@ func_080558C4:
     lsls r7, r7, #3
     adds r0, r6, r7
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     adds r2, r0, #0
     ldr r0, [sp, #0x28]
     movs r3, #0
@@ -14468,7 +14468,7 @@ func_080558C4:
     lsls r5, r5, #3
     adds r0, r6, r5
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     add r1, sp, #4
     strh r0, [r1, #6]
     movs r0, #2
@@ -14554,7 +14554,7 @@ func_080558C4:
     lsls r1, r1, #3
     adds r0, r6, r1
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     ldrh r2, [r5, #0xc]
     lsls r2, r2, #2
     ldr r3, [sp, #0x114]
@@ -14730,7 +14730,7 @@ func_080558C4:
     adds r4, r6, r5
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     add r1, sp, #4
     strh r0, [r1, #6]
     movs r7, #0xa9
@@ -14761,7 +14761,7 @@ func_080558C4:
     mov r8, r7
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     adds r2, r0, #0
     ldr r0, [sp, #0x28]
     movs r3, #0
@@ -15331,7 +15331,7 @@ func_080558C4:
     adds r4, r6, r7
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     add r1, sp, #4
     strh r0, [r1, #6]
     movs r1, #0x9b
@@ -15429,7 +15429,7 @@ func_080558C4:
     adds r4, r6, r0
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     add r1, sp, #4
     strh r0, [r1, #6]
     movs r1, #0x8e
@@ -15857,7 +15857,7 @@ func_08057D34:
     lsls r1, r1, #3
     adds r0, r5, r1
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     mov r2, sp
     lsls r4, r4, #2
     ldr r3, [pc, #0x3c]
@@ -17948,7 +17948,7 @@ func_08059FE0:
     lsls r0, r0, #3
     add r0, r8
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     lsls r0, r0, #5
     ldr r2, [pc, #0x58]
     adds r1, r0, r2
@@ -17965,7 +17965,7 @@ func_08059FE0:
     lsls r0, r0, #3
     add r0, r8
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     adds r1, r0, #0
     lsls r1, r1, #5
     ldr r3, [pc, #0x3c]
@@ -17994,7 +17994,7 @@ func_08059FE0:
     lsls r0, r0, #3
     add r0, r8
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     adds r1, r0, #0
     lsls r1, r1, #5
     ldr r7, [pc, #0xd0]
@@ -18760,7 +18760,7 @@ func_0805A6E4:
     lsls r3, r3, #3
     adds r0, r5, r3
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     mov r1, sp
     strh r0, [r1, #6]
     movs r4, #0xc9
@@ -18845,7 +18845,7 @@ func_0805A6E4:
     lsls r1, r1, #3
     adds r0, r5, r1
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     lsls r1, r6, #2
     adds r0, r0, r1
     strh r0, [r4, #6]
@@ -19404,7 +19404,7 @@ func_0805A6E4:
     lsls r0, r0, #3
     add r0, r8
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     adds r0, r0, r7
     lsls r0, r0, #5
     ldr r2, [pc, #0x200]
@@ -19831,7 +19831,7 @@ func_0805A6E4:
     add r4, r8
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     lsls r0, r0, #5
     ldr r2, [pc, #0x300]
     adds r1, r0, r2
@@ -19859,7 +19859,7 @@ func_0805A6E4:
     ldr r5, [sp, #8]
     ldr r1, [r4, #4]
     adds r0, r4, #0
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     lsls r0, r0, #5
     ldr r4, [pc, #0x2c8]
     adds r1, r0, r4
@@ -19982,7 +19982,7 @@ func_0805A6E4:
     lsls r0, r0, #3
     add r0, r8
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     adds r0, r0, r7
     lsls r0, r0, #5
     ldr r2, [pc, #0x1c4]
@@ -20047,7 +20047,7 @@ func_0805A6E4:
     lsls r0, r0, #3
     add r0, r8
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     lsls r0, r0, #5
     ldr r2, [pc, #0x140]
     adds r1, r0, r2
@@ -20106,7 +20106,7 @@ func_0805A6E4:
     lsls r0, r0, #3
     add r0, r8
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     adds r0, r0, r7
     lsls r0, r0, #5
     ldr r2, [pc, #0xc0]
@@ -20226,7 +20226,7 @@ func_0805A6E4:
     lsls r0, r0, #3
     add r0, r8
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     adds r0, r0, r7
     lsls r0, r0, #5
     ldr r2, [pc, #0x98]
@@ -20283,7 +20283,7 @@ func_0805A6E4:
     lsls r0, r0, #3
     add r0, r8
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     lsls r0, r0, #5
     ldr r5, [pc, #0x24]
     adds r1, r0, r5
@@ -20393,7 +20393,7 @@ func_0805A6E4:
     lsls r6, r6, #3
     adds r0, r5, r6
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     add r1, sp, #4
     strh r0, [r1, #6]
     movs r0, #2
@@ -20487,7 +20487,7 @@ func_0805A6E4:
     lsls r1, r1, #3
     adds r0, r5, r1
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     mov r2, sl
     lsls r1, r2, #2
     adds r0, r0, r1
@@ -20838,7 +20838,7 @@ func_0805A6E4:
     lsls r3, r3, #3
     adds r0, r5, r3
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     ldr r1, [sp, #0x68]
     ldrh r2, [r1, #0xc]
     lsls r2, r2, #2
@@ -20930,7 +20930,7 @@ func_0805A6E4:
     lsls r2, r2, #3
     adds r0, r5, r2
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     ldrh r2, [r7, #0xc]
     lsls r2, r2, #2
     ldr r1, [r7, #4]
@@ -21069,7 +21069,7 @@ func_0805A6E4:
     lsls r2, r2, #3
     adds r0, r0, r2
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     mov r3, r8
     strh r0, [r3, #6]
     movs r6, #1
@@ -22039,7 +22039,7 @@ func_0805DC24:
     lsls r0, r0, #1
     add r0, r8
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     lsls r0, r0, #5
     ldr r7, [pc, #0x118]
     adds r1, r0, r7
@@ -53375,7 +53375,7 @@ func_0806A1F4:
 	adds r5, r7, r0
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r1, sl
 	strh r0, [r1, #6]
 	strb r4, [r1, #0x18]
@@ -53399,7 +53399,7 @@ func_0806A1F4:
 	mov r8, r2
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -53627,7 +53627,7 @@ func_0806A1F4:
 	adds r5, r7, r6
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r1, sl
 	strh r0, [r1, #6]
 	adds r0, r7, #0
@@ -53648,7 +53648,7 @@ func_0806A1F4:
 	mov r8, r2
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -53863,7 +53863,7 @@ func_0806A1F4:
 	adds r5, r7, r0
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	strh r0, [r4, #6]
 	adds r0, r7, #0
 	bl func_08008920
@@ -53883,7 +53883,7 @@ func_0806A1F4:
 	mov r8, r1
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -54100,7 +54100,7 @@ func_0806A1F4:
 	ldr r1, .Ljp_0806D2BC
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	str r0, [sp, #0x2b4]
 	adds r4, r4, r7
 	ldr r2, .Ljp_0806D2C0
@@ -56042,7 +56042,7 @@ func_0806DB38:
 	adds r0, r7, #0
 	adds r0, #0x18
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	lsls r0, r4, #2
 	adds r1, r1, r0
@@ -56154,7 +56154,7 @@ func_0806DB38:
 	adds r4, #0x28
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r3, r8
 	adds r3, #0x40
 	ldr r2, .Ljp_0806E2DC
@@ -56189,7 +56189,7 @@ func_0806DB38:
 .Ljp_0806E272:
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r0, r0, r7
 	lsls r0, r0, #5
 	lsls r1, r5, #2
@@ -56571,7 +56571,7 @@ func_0806E78C:
 	adds r0, r5, #0
 	adds r0, #0x18
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r5, #0
 	adds r1, #0x4a
 	adds r1, r1, r4
@@ -79300,7 +79300,7 @@ func_08079A64:
 	lsls r3, r3, #4
 	adds r0, r4, r3
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	lsls r1, r1, #5
 	ldr r0, .Ljp_library_page_08079950
@@ -79370,7 +79370,7 @@ func_08079A64:
 	lsls r3, r3, #4
 	adds r0, r4, r3
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	lsls r0, r6, #2
 	adds r1, r1, r0
@@ -79970,7 +79970,7 @@ func_08079F8C:
 	lsls r0, r0, #4
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	lsls r1, r1, #5
 	ldr r0, .Ljp_library_render_08079E50
@@ -80034,7 +80034,7 @@ func_08079F8C:
 	lsls r0, r0, #4
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	mov r2, sl
 	lsls r0, r2, #2
@@ -80932,7 +80932,7 @@ func_0807A878:
 	lsls r1, r1, #4
 	adds r0, r5, r1
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r0, r0, #5
 	ldr r2, .Ljp_0807A988 @ =0x06010000
 	adds r1, r0, r2
@@ -81063,7 +81063,7 @@ func_0807A98C:
 	str r0, [sp, #0x5c]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r1, r4, #2
 	adds r0, r0, r1
 	lsls r0, r0, #0x16
@@ -81152,7 +81152,7 @@ func_0807A98C:
 	add r4, r8
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r1, sp
 	strh r0, [r1, #6]
 	ldr r0, .Ljp_library_selection_0807A76C
@@ -81174,7 +81174,7 @@ func_0807A98C:
 	ldr r6, [sp, #0x24]
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x24]
 	movs r3, #0
@@ -81430,7 +81430,7 @@ func_0807A98C:
 	add r4, r8
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r1, sp
 	adds r0, #4
 	strh r0, [r1, #6]
@@ -81452,7 +81452,7 @@ func_0807A98C:
 	mov sb, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x24]
 	movs r3, #0
@@ -81683,7 +81683,7 @@ func_0807A98C:
 	lsls r0, r0, #4
 	add r0, r8
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r1, sp
 	strh r0, [r1, #6]
 	ldr r0, .Ljp_library_selection_0807AB18
@@ -121186,7 +121186,7 @@ func_08099E18:
     lsls r3, r3, #2
     adds r0, r5, r3
     ldr r1, [r0, #4]
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     mov r1, sp
     strh r0, [r1, #6]
     subs r4, #0x68
@@ -152793,7 +152793,7 @@ func_0804F7A4: @ 0x0804F7A4
 	ldr r5, [sp, #0x14]
 	ldr r1, [r1, #4]
 	mov r0, sb
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	add r1, sp, #0x14
 	ldr r0, [sp, #0x14]
@@ -152943,7 +152943,7 @@ func_0804F7A4: @ 0x0804F7A4
 	mov r5, sb
 	ldr r1, [r5, #4]
 	mov r0, sb
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r0, r0, #0x16
 	lsrs r0, r0, #0x16
 	ldr r2, .L0804FCD4 @ =0xFFFFFC00
@@ -153119,7 +153119,7 @@ func_0804F7A4: @ 0x0804F7A4
 	cmp r0, #0
 	bge .L0804FCE4
 	adds r0, r6, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r0, r0, #0x16
 	lsrs r0, r0, #0x16
 	ldr r3, .L0804FCD4 @ =0xFFFFFC00
@@ -153311,7 +153311,7 @@ func_0804F7A4: @ 0x0804F7A4
 .L0804FE2A:
 	mov r0, sb
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	adds r4, r7, #0
 	adds r4, #0x3c
@@ -153403,7 +153403,7 @@ func_0804F7A4: @ 0x0804F7A4
 	lsls r3, r3, #1
 	adds r0, r7, r3
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r0, #0x78
 	strh r0, [r4, #6]
 	movs r5, #0xa9
@@ -153457,7 +153457,7 @@ func_0804F7A4: @ 0x0804F7A4
 	lsls r1, r1, #1
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	adds r4, r7, #0
 	adds r4, #0x3c
@@ -153558,7 +153558,7 @@ func_0804F7A4: @ 0x0804F7A4
 	lsls r5, r5, #1
 	adds r0, r7, r5
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	strh r0, [r4, #6]
 	movs r1, #0xf4
 	lsls r1, r1, #1
@@ -153651,7 +153651,7 @@ func_0804F7A4: @ 0x0804F7A4
 	bge .L0805014A
 	adds r0, r4, #0
 	adds r1, r2, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	movs r2, #0
 	mov sb, r2
 	adds r4, r7, #0
@@ -153739,7 +153739,7 @@ func_0804F7A4: @ 0x0804F7A4
 	lsls r1, r1, #1
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r0, #0x60
 	lsls r0, r0, #0x16
 	lsrs r0, r0, #0x16
@@ -155383,7 +155383,7 @@ func_08050F74: @ 0x08050F74
 	.byte 0x40, 0x01, 0x00, 0x9A, 0x02, 0x43, 0x0E, 0x48, 0x02, 0x40, 0x80, 0x20, 0xC0, 0x01, 0x02, 0x43
 	.byte 0x0C, 0x48, 0x02, 0x40, 0x80, 0x20, 0x00, 0x06, 0x02, 0x43, 0x00, 0x92, 0xA9, 0x68, 0x48, 0x42
 	.byte 0x08, 0x43, 0x00, 0x28, 0x12, 0xDA, 0x30, 0x1C, 0x08, 0x93
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	.byte 0x80, 0x05
 	.byte 0x80, 0x0D, 0x05, 0x4A, 0x01, 0x99, 0x11, 0x40, 0x01, 0x43, 0x01, 0x91, 0x08, 0x9B, 0x0B, 0xE0
 	.byte 0xFF, 0x3F, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x3F, 0x00, 0xFC, 0xFF, 0xFF, 0x22, 0x48, 0x10, 0x40
@@ -155400,7 +155400,7 @@ func_08050F74: @ 0x08050F74
 	.byte 0x80, 0x46, 0x00, 0x21, 0x00, 0x27, 0x88, 0x00, 0x01, 0x31, 0x89, 0x46, 0x41, 0x46, 0x46, 0x18
 	.byte 0x08, 0x36, 0x30, 0x68, 0x39, 0x01, 0x45, 0x18, 0x28, 0x7B, 0x00, 0x28, 0x14, 0xD0, 0x2A, 0x1D
 	.byte 0x51, 0x68, 0x48, 0x42, 0x08, 0x43, 0x00, 0x28, 0x0C, 0xDA, 0x2C, 0x68, 0x04, 0x34, 0x10, 0x1C
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	.byte 0x01, 0x1C, 0x49, 0x01, 0x0F, 0x48, 0x09, 0x18, 0x20, 0x1C, 0x40, 0x22
 	bl CpuFastSet
 	.byte 0x00, 0x20, 0x28, 0x73, 0x01, 0x37, 0x06, 0x2F, 0xE1, 0xDD, 0x49, 0x46, 0x02, 0x29, 0xD7, 0xDD
@@ -156768,7 +156768,7 @@ func_08051D70: @ 0x08051D70
 	adds r4, #0xa8
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r1, sp
 	strh r0, [r1, #6]
 	adds r0, r7, #0
@@ -156791,7 +156791,7 @@ func_08051D70: @ 0x08051D70
 	mov r8, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x24]
 	movs r3, #0
@@ -157017,7 +157017,7 @@ func_08051D70: @ 0x08051D70
 	adds r4, #0xa8
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r1, sp
 	adds r0, #4
 	strh r0, [r1, #6]
@@ -157041,7 +157041,7 @@ func_08051D70: @ 0x08051D70
 	mov r8, r3
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x24]
 	movs r3, #0
@@ -162064,7 +162064,7 @@ func_08053960: @ 0x08053960
 	lsls r3, r3, #3
 	adds r0, r6, r3
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #8]
 	movs r3, #0
@@ -163216,7 +163216,7 @@ func_08055264: @ 0x08055264
 	lsls r1, r1, #3
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r0, r0, r6
 	lsls r0, r0, #5
 	ldr r2, .L08055694 @ =0x06010000
@@ -163312,7 +163312,7 @@ func_08055264: @ 0x08055264
 	ldr r4, [sp, #8]
 	mov r0, r8
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r0, r0, r6
 	lsls r0, r0, #5
 	ldr r2, .L08055694 @ =0x06010000
@@ -163398,7 +163398,7 @@ func_08055264: @ 0x08055264
 	adds r5, r7, r1
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r0, r0, #5
 	ldr r2, .L08055694 @ =0x06010000
 	adds r1, r0, r2
@@ -163440,7 +163440,7 @@ func_08055264: @ 0x08055264
 	ldr r6, [sp, #8]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r0, r0, #5
 	ldr r5, .L080556A0 @ =0x06010040
 	adds r1, r0, r5
@@ -163635,7 +163635,7 @@ func_08055264: @ 0x08055264
 	ldr r4, [sp, #8]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r0, r0, #5
 	ldr r2, .L080557B0 @ =0x06010000
 	adds r1, r0, r2
@@ -163760,7 +163760,7 @@ func_08055264: @ 0x08055264
 	lsls r1, r1, #3
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r0, r0, #5
 	ldr r2, .L080558B8 @ =0x06010000
 	adds r1, r0, r2
@@ -163869,7 +163869,7 @@ func_080558C4: @ 0x080558C4
 	lsls r7, r7, #3
 	adds r0, r6, r7
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x28]
 	movs r3, #0
@@ -164195,7 +164195,7 @@ func_080558C4: @ 0x080558C4
 	lsls r4, r4, #3
 	adds r0, r6, r4
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	add r1, sp, #4
 	strh r0, [r1, #6]
 	movs r0, #2
@@ -164283,7 +164283,7 @@ func_080558C4: @ 0x080558C4
 	lsls r1, r1, #3
 	adds r0, r6, r1
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x28]
 	movs r3, #0
@@ -164641,7 +164641,7 @@ func_080558C4: @ 0x080558C4
 	lsls r7, r7, #3
 	adds r0, r6, r7
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x28]
 	movs r3, #0
@@ -165004,7 +165004,7 @@ func_080558C4: @ 0x080558C4
 	lsls r7, r7, #3
 	adds r0, r6, r7
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x28]
 	movs r3, #0
@@ -165352,7 +165352,7 @@ func_080558C4: @ 0x080558C4
 	lsls r5, r5, #3
 	adds r0, r6, r5
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	add r1, sp, #4
 	strh r0, [r1, #6]
 	movs r0, #2
@@ -165440,7 +165440,7 @@ sub_08056442: @ 0x08056442
 	lsls r1, r1, #3
 	adds r0, r6, r1
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	ldrh r2, [r5, #0xc]
 	lsls r2, r2, #2
 	ldr r3, [sp, #0x114]
@@ -165556,7 +165556,7 @@ sub_08056442: @ 0x08056442
 	lsls r1, r1, #3
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	strh r0, [r5, #6]
 	ldrh r0, [r7, #2]
 	lsls r0, r0, #4
@@ -165637,7 +165637,7 @@ sub_08056442: @ 0x08056442
 	lsls r1, r1, #3
 	adds r0, r6, r1
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r0, #2
 	strh r0, [r5, #6]
 	movs r2, #0x96
@@ -165728,7 +165728,7 @@ sub_08056442: @ 0x08056442
 	adds r4, r6, r5
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	add r1, sp, #4
 	strh r0, [r1, #6]
 	movs r7, #0xa9
@@ -165759,7 +165759,7 @@ sub_08056442: @ 0x08056442
 	mov r8, r7
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x28]
 	movs r3, #0
@@ -166338,7 +166338,7 @@ sub_08056442: @ 0x08056442
 	adds r4, r6, r7
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	add r1, sp, #4
 	strh r0, [r1, #6]
 	movs r1, #0x9b
@@ -166367,7 +166367,7 @@ sub_08056442: @ 0x08056442
 	mov r8, r7
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x28]
 	movs r3, #0
@@ -166596,7 +166596,7 @@ sub_08056442: @ 0x08056442
 	adds r4, r6, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	add r1, sp, #4
 	strh r0, [r1, #6]
 	movs r1, #0x8e
@@ -166627,7 +166627,7 @@ sub_08056442: @ 0x08056442
 	mov r8, r7
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x28]
 	movs r3, #0
@@ -166866,7 +166866,7 @@ sub_08056442: @ 0x08056442
 	adds r4, r6, r7
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	add r1, sp, #4
 	strh r0, [r1, #6]
 	movs r1, #0x9d
@@ -166895,7 +166895,7 @@ sub_08056442: @ 0x08056442
 	mov r8, r7
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x28]
 	movs r3, #0
@@ -167139,7 +167139,7 @@ sub_08056442: @ 0x08056442
 	adds r4, r6, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	add r1, sp, #4
 	strh r0, [r1, #6]
 	movs r1, #0x9f
@@ -167168,7 +167168,7 @@ sub_08056442: @ 0x08056442
 	mov r8, r7
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x28]
 	movs r3, #0
@@ -167412,7 +167412,7 @@ sub_08056442: @ 0x08056442
 	adds r4, r6, r7
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	add r1, sp, #4
 	strh r0, [r1, #6]
 	movs r1, #0x9b
@@ -167441,7 +167441,7 @@ sub_08056442: @ 0x08056442
 	mov r8, r7
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x28]
 	movs r3, #0
@@ -167681,7 +167681,7 @@ sub_08056442: @ 0x08056442
 	adds r4, r6, r7
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	add r1, sp, #4
 	strh r0, [r1, #6]
 	movs r1, #0x98
@@ -167710,7 +167710,7 @@ sub_08056442: @ 0x08056442
 	mov r8, r7
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x28]
 	movs r3, #0
@@ -167938,7 +167938,7 @@ sub_08056442: @ 0x08056442
 	lsls r4, r4, #3
 	adds r0, r6, r4
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	add r1, sp, #4
 	adds r0, #2
 	strh r0, [r1, #6]
@@ -168030,7 +168030,7 @@ sub_08056442: @ 0x08056442
 	adds r7, r6, r3
 	ldr r1, [r7, #4]
 	adds r0, r7, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	add r1, sp, #4
 	strh r0, [r1, #6]
 	movs r0, #0x96
@@ -168114,7 +168114,7 @@ sub_08056442: @ 0x08056442
 	strh r1, [r0, #8]
 	ldr r1, [r7, #4]
 	adds r0, r7, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	add r1, sp, #4
 	strh r0, [r1, #6]
 	ldr r1, [r4, #4]
@@ -168642,7 +168642,7 @@ func_08057D34: @ 0x08057D34
 	lsls r1, r1, #3
 	adds r0, r5, r1
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r2, sp
 	lsls r4, r4, #2
 	ldr r3, .L08057DD4 @ =0x00002334
@@ -172448,7 +172448,7 @@ func_08059C94: @ 0x08059C94
 	lsls r1, r1, #3
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	add r0, sb
 	lsls r0, r0, #5
 	ldr r2, .L08059F9C @ =0x06010000
@@ -172643,7 +172643,7 @@ func_08059C94: @ 0x08059C94
 	lsls r3, r3, #3
 	adds r0, r7, r3
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	adds r1, r1, r4
 	lsls r1, r1, #5
@@ -172728,7 +172728,7 @@ func_08059FE0: @ 0x08059FE0
 	lsls r0, r0, #3
 	add r0, r8
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r0, r0, #5
 	ldr r2, .L0805A09C @ =0x06010000
 	adds r1, r0, r2
@@ -172745,7 +172745,7 @@ func_08059FE0: @ 0x08059FE0
 	lsls r0, r0, #3
 	add r0, r8
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	lsls r1, r1, #5
 	ldr r3, .L0805A0A4 @ =0x06010600
@@ -172780,7 +172780,7 @@ func_08059FE0: @ 0x08059FE0
 	lsls r0, r0, #3
 	add r0, r8
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	lsls r1, r1, #5
 	ldr r7, .L0805A190 @ =0x06010600
@@ -173688,7 +173688,7 @@ func_0805A744: @ 0x0805A744
 	lsls r3, r3, #3
 	adds r0, r5, r3
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r1, sp
 	strh r0, [r1, #6]
 	movs r4, #0xc9
@@ -173773,7 +173773,7 @@ func_0805A744: @ 0x0805A744
 	lsls r1, r1, #3
 	adds r0, r5, r1
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r1, r6, #2
 	adds r0, r0, r1
 	strh r0, [r4, #6]
@@ -173900,7 +173900,7 @@ func_0805A744: @ 0x0805A744
 	lsls r1, r1, #3
 	adds r0, r5, r1
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	movs r2, #0
 	ldrsh r1, [r4, r2]
 	lsls r1, r1, #3
@@ -175289,7 +175289,7 @@ func_0805B38C: @ 0x0805B38C
 	lsls r0, r0, #3
 	add r0, r8
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r0, r0, r7
 	lsls r0, r0, #5
 	ldr r2, .L0805B6C8 @ =0x06010000
@@ -175720,7 +175720,7 @@ func_0805B38C: @ 0x0805B38C
 	add r4, r8
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r0, r0, #5
 	ldr r2, .L0805BB4C @ =0x06010000
 	adds r1, r0, r2
@@ -175748,7 +175748,7 @@ func_0805B38C: @ 0x0805B38C
 	ldr r5, [sp, #8]
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r0, r0, #5
 	ldr r4, .L0805BB50 @ =0x06010100
 	adds r1, r0, r4
@@ -175871,7 +175871,7 @@ func_0805B38C: @ 0x0805B38C
 	lsls r0, r0, #3
 	add r0, r8
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r0, r0, r7
 	lsls r0, r0, #5
 	ldr r2, .L0805BB4C @ =0x06010000
@@ -175936,7 +175936,7 @@ func_0805B38C: @ 0x0805B38C
 	lsls r0, r0, #3
 	add r0, r8
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r0, r0, #5
 	ldr r2, .L0805BB4C @ =0x06010000
 	adds r1, r0, r2
@@ -175995,7 +175995,7 @@ func_0805B38C: @ 0x0805B38C
 	lsls r0, r0, #3
 	add r0, r8
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r0, r0, r7
 	lsls r0, r0, #5
 	ldr r2, .L0805BB4C @ =0x06010000
@@ -176120,7 +176120,7 @@ func_0805B38C: @ 0x0805B38C
 	lsls r0, r0, #3
 	add r0, r8
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r0, r0, r7
 	lsls r0, r0, #5
 	ldr r2, .L0805BC30 @ =0x06010000
@@ -176177,7 +176177,7 @@ func_0805B38C: @ 0x0805B38C
 	lsls r0, r0, #3
 	add r0, r8
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r0, r0, #5
 	ldr r5, .L0805BC30 @ =0x06010000
 	adds r1, r0, r5
@@ -176288,7 +176288,7 @@ func_0805BC34: @ 0x0805BC34
 	lsls r6, r6, #3
 	adds r0, r5, r6
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	add r1, sp, #4
 	strh r0, [r1, #6]
 	movs r0, #2
@@ -176382,7 +176382,7 @@ func_0805BC34: @ 0x0805BC34
 	lsls r1, r1, #3
 	adds r0, r5, r1
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r2, sl
 	lsls r1, r2, #2
 	adds r0, r0, r1
@@ -176742,7 +176742,7 @@ func_0805BC34: @ 0x0805BC34
 	lsls r3, r3, #3
 	adds r0, r5, r3
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	ldr r1, [sp, #0x68]
 	ldrh r2, [r1, #0xc]
 	lsls r2, r2, #2
@@ -176834,7 +176834,7 @@ func_0805BC34: @ 0x0805BC34
 	lsls r2, r2, #3
 	adds r0, r5, r2
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	ldrh r2, [r7, #0xc]
 	lsls r2, r2, #2
 	ldr r1, [r7, #4]
@@ -176978,7 +176978,7 @@ func_0805BC34: @ 0x0805BC34
 	lsls r2, r2, #3
 	adds r0, r0, r2
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r3, r8
 	strh r0, [r3, #6]
 	movs r6, #1
@@ -177005,7 +177005,7 @@ func_0805BC34: @ 0x0805BC34
 	lsls r2, r2, #3
 	adds r0, r0, r2
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x28]
 	movs r3, #0
@@ -177250,7 +177250,7 @@ func_0805BC34: @ 0x0805BC34
 	lsls r1, r1, #3
 	adds r0, r5, r1
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	ldr r3, [sp, #0x78]
 	ldrh r2, [r3, #0xc]
 	lsls r2, r2, #2
@@ -177341,7 +177341,7 @@ func_0805BC34: @ 0x0805BC34
 	lsls r7, r7, #3
 	adds r0, r5, r7
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	strh r0, [r6, #6]
 	movs r0, #1
 	strb r0, [r6, #0x18]
@@ -177426,7 +177426,7 @@ func_0805BC34: @ 0x0805BC34
 	lsls r2, r2, #3
 	adds r0, r5, r2
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r4, r4, #3
 	adds r0, r0, r4
 	strh r0, [r7, #6]
@@ -180116,7 +180116,7 @@ func_0805D9C0: @ 0x0805D9C0
 	bl func_0804E5AC
 	ldr r1, [r6, #4]
 	adds r0, r6, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	adds r1, r1, r4
 	lsls r1, r1, #5
@@ -180257,7 +180257,7 @@ func_0805DC24: @ 0x0805DC24
 	lsls r0, r0, #1
 	add r0, r8
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r0, r0, #5
 	ldr r7, .L0805DE14 @ =0x06010000
 	adds r1, r0, r7
@@ -180719,7 +180719,7 @@ func_0805DFC4: @ 0x0805DFC4
 	lsls r1, r1, #1
 	adds r0, r6, r1
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r1, sp
 	strh r0, [r1, #6]
 	movs r2, #0xa2
@@ -180807,7 +180807,7 @@ func_0805DFC4: @ 0x0805DFC4
 	adds r4, r6, r5
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r1, sp
 	adds r0, #4
 	strh r0, [r1, #6]
@@ -180832,7 +180832,7 @@ func_0805DFC4: @ 0x0805DFC4
 	mov r8, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x24]
 	movs r3, #0
@@ -181066,7 +181066,7 @@ func_0805DFC4: @ 0x0805DFC4
 	adds r4, r6, r5
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r1, sp
 	adds r0, #8
 	strh r0, [r1, #6]
@@ -181091,7 +181091,7 @@ func_0805DFC4: @ 0x0805DFC4
 	mov r8, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x24]
 	movs r3, #0
@@ -181367,7 +181367,7 @@ func_0805DFC4: @ 0x0805DFC4
 	lsls r7, r7, #1
 	adds r0, r6, r7
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	movs r1, #0
 	ldrsh r2, [r4, r1]
 	lsls r2, r2, #3
@@ -212017,7 +212017,7 @@ sub_0806C492: @ 0x0806C492
 	adds r5, r7, r0
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r1, sl
 	strh r0, [r1, #6]
 	strb r4, [r1, #0x18]
@@ -212039,7 +212039,7 @@ sub_0806C492: @ 0x0806C492
 	mov r8, r2
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -212261,7 +212261,7 @@ sub_0806C492: @ 0x0806C492
 	adds r5, r7, r6
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r1, sl
 	strh r0, [r1, #6]
 	adds r0, r7, #0
@@ -212282,7 +212282,7 @@ sub_0806C492: @ 0x0806C492
 	mov r8, r2
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -212495,7 +212495,7 @@ sub_0806C492: @ 0x0806C492
 	adds r5, r7, r0
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	strh r0, [r4, #6]
 	adds r0, r7, #0
 	bl func_08008920
@@ -212515,7 +212515,7 @@ sub_0806C492: @ 0x0806C492
 	mov r8, r1
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [r4]
 	movs r3, #0
@@ -212732,7 +212732,7 @@ sub_0806C492: @ 0x0806C492
 	ldr r1, .L0806D4C4 @ =0x000040D0
 	adds r0, r0, r1
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	str r0, [sp, #0x274]
 	adds r4, r4, r7
 	ldr r2, .L0806D4C8 @ =0x00004120
@@ -214858,7 +214858,7 @@ func_0806E234: @ 0x0806E234
 	bl func_0804E5AC
 	ldr r1, [r6, #4]
 	adds r0, r6, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	adds r1, r1, r4
 	lsls r1, r1, #5
@@ -214959,7 +214959,7 @@ func_0806E43C: @ 0x0806E43C
 	adds r4, #0x28
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r3, r8
 	adds r3, #0x40
 	ldr r2, .L0806E560 @ =0x000003FF
@@ -214994,7 +214994,7 @@ func_0806E43C: @ 0x0806E43C
 .L0806E4FA:
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r0, r0, r7
 	lsls r0, r0, #5
 	lsls r1, r5, #2
@@ -215483,7 +215483,7 @@ func_0806E7E0: @ 0x0806E7E0
 	adds r0, r5, #0
 	adds r0, #0x18
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r5, #0
 	adds r1, #0x4a
 	adds r1, r1, r4
@@ -230935,7 +230935,7 @@ func_080757E8: @ 0x080757E8
 	ldr r4, [sp, #0x1c]
 	mov r0, sb
 	adds r1, r5, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	lsls r1, r1, #5
 	ldr r2, .L080758E4 @ =0x06010000
@@ -230947,7 +230947,7 @@ func_080757E8: @ 0x080757E8
 	ldr r0, [sp]
 	ldr r1, [r0, #0x14]
 	mov r0, sb
-	bl func_08007DB8
+	bl GetHardwareSharedStateSizeShift
 	cmp r0, r6
 	bhs .L08075956
 	ldr r0, [sp]
@@ -230962,7 +230962,7 @@ func_080757E8: @ 0x080757E8
 	beq .L08075930
 	ldr r4, [sp, #0x1c]
 	mov r0, sb
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	lsls r1, r1, #5
 	ldr r0, .L0807592C @ =0x06010000
@@ -231102,7 +231102,7 @@ func_080757E8: @ 0x080757E8
 	.byte 0x73, 0x68, 0x9C, 0x42, 0x07, 0xD0, 0x00, 0x22, 0x39, 0x68, 0x20, 0x69, 0x81, 0x42, 0x00, 0xD2
 	.byte 0x01, 0x22, 0x00, 0x2A, 0x00, 0xD0, 0x1C, 0x1C, 0xA9, 0x68, 0x61, 0x40, 0x48, 0x42, 0x08, 0x43
 	.byte 0x00, 0x28, 0x04, 0xDA, 0x61, 0x69, 0x28, 0x1C
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	.byte 0x01, 0xE0, 0x01, 0x20
 	.byte 0x40, 0x42, 0x01, 0xB0, 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00, 0xF0, 0xB5, 0x81, 0xB0
 	.byte 0x05, 0x68, 0x00, 0x91, 0x2E, 0x1C, 0x18, 0x36, 0x6F, 0x46, 0x74, 0x68, 0x62, 0x68, 0x00, 0x2A
@@ -239063,7 +239063,7 @@ func_08079A64: @ 0x08079A64
 	lsls r1, r1, #4
 	adds r0, r5, r1
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	lsls r1, r1, #5
 	ldr r2, .L08079DB4 @ =0x06010000
@@ -239122,7 +239122,7 @@ func_08079A64: @ 0x08079A64
 	lsls r3, r3, #4
 	adds r0, r5, r3
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	lsls r0, r6, #1
 	adds r1, r1, r0
@@ -239707,7 +239707,7 @@ func_08079F8C: @ 0x08079F8C
 	lsls r0, r0, #4
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	lsls r1, r1, #5
 	ldr r3, .L0807A2A8 @ =0x06010000
@@ -239768,7 +239768,7 @@ func_08079F8C: @ 0x08079F8C
 	lsls r0, r0, #4
 	add r0, sb
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	lsls r0, r5, #1
 	adds r1, r1, r0
@@ -240655,7 +240655,7 @@ func_0807A878: @ 0x0807A878
 	lsls r1, r1, #4
 	adds r0, r5, r1
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r0, r0, #5
 	ldr r2, .L0807A988 @ =0x06010000
 	adds r1, r0, r2
@@ -240786,7 +240786,7 @@ func_0807A98C: @ 0x0807A98C
 	str r0, [sp, #0x5c]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r1, r4, #1
 	adds r0, r0, r1
 	lsls r0, r0, #0x16
@@ -240875,7 +240875,7 @@ func_0807A98C: @ 0x0807A98C
 	add r4, r8
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r1, sp
 	strh r0, [r1, #6]
 	ldr r0, .L0807ABC8 @ =0x00000818
@@ -240897,7 +240897,7 @@ func_0807A98C: @ 0x0807A98C
 	ldr r6, [sp, #0x24]
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x24]
 	movs r3, #0
@@ -241135,7 +241135,7 @@ func_0807A98C: @ 0x0807A98C
 	add r4, r8
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r1, sp
 	adds r0, #4
 	strh r0, [r1, #6]
@@ -241157,7 +241157,7 @@ func_0807A98C: @ 0x0807A98C
 	mov sb, r0
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x24]
 	movs r3, #0
@@ -241383,7 +241383,7 @@ func_0807A98C: @ 0x0807A98C
 	lsls r0, r0, #4
 	add r0, r8
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r1, sp
 	strh r0, [r1, #6]
 	ldr r0, .L0807AF74 @ =0x00000838
@@ -297681,7 +297681,7 @@ func_0809800C: @ 0x0809800C
 	lsls r0, r0, #2
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	lsls r1, r1, #5
 	ldr r7, .L080983D4 @ =0x06010000
@@ -297779,7 +297779,7 @@ func_0809800C: @ 0x0809800C
 	lsls r0, r0, #2
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r0, r0, #5
 	adds r1, r0, r7
 	ldr r0, [sp, #0x18]
@@ -297795,7 +297795,7 @@ func_0809800C: @ 0x0809800C
 	lsls r0, r0, #2
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	lsls r1, r1, #5
 	adds r1, r1, r7
@@ -297845,7 +297845,7 @@ func_0809800C: @ 0x0809800C
 	lsls r0, r0, #2
 	add r0, sl
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	lsls r0, r5, #1
 	adds r1, r1, r0
@@ -298028,7 +298028,7 @@ func_080983E8: @ 0x080983E8
 	str r0, [sp, #0x5c]
 	ldr r1, [r5, #4]
 	adds r0, r5, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r1, r4, #1
 	adds r0, r0, r1
 	lsls r0, r0, #0x16
@@ -298134,7 +298134,7 @@ func_080983E8: @ 0x080983E8
 	str r0, [sp, #0x64]
 	ldr r0, [sp, #0x84]
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	ldr r1, .L08098704 @ =0x00000369
 	add r1, r8
 	adds r1, r1, r4
@@ -298220,7 +298220,7 @@ func_080983E8: @ 0x080983E8
 	add r4, r8
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r1, sp
 	strh r0, [r1, #6]
 	movs r0, #0xba
@@ -298249,7 +298249,7 @@ func_080983E8: @ 0x080983E8
 	ldr r7, [sp, #0x24]
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x24]
 	movs r3, #0
@@ -298478,7 +298478,7 @@ func_080983E8: @ 0x080983E8
 	add r4, r8
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r1, sp
 	adds r0, #2
 	strh r0, [r1, #6]
@@ -298508,7 +298508,7 @@ func_080983E8: @ 0x080983E8
 	ldr r7, [sp, #0x24]
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x24]
 	movs r3, #0
@@ -299278,7 +299278,7 @@ func_08098CE8: @ 0x08098CE8
 	lsls r0, r0, #2
 	add r0, r8
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r0, r0, #5
 	ldr r5, .L08098FEC @ =0x06010000
 	adds r1, r0, r5
@@ -299295,7 +299295,7 @@ func_08098CE8: @ 0x08098CE8
 	lsls r0, r0, #2
 	add r0, r8
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	lsls r1, r1, #5
 	adds r1, r1, r5
@@ -299350,7 +299350,7 @@ func_08098CE8: @ 0x08098CE8
 	lsls r0, r0, #2
 	add r0, r8
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	mov r2, sl
 	adds r0, r2, r7
@@ -299512,7 +299512,7 @@ func_08099000: @ 0x08099000
 	lsls r1, r1, #2
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r1, r5, #1
 	add r1, r8
 	adds r0, r0, r1
@@ -299664,7 +299664,7 @@ func_08099144: @ 0x08099144
 	add r7, sb
 	ldr r1, [r7, #4]
 	adds r0, r7, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r1, sp
 	strh r0, [r1, #6]
 	movs r0, #0xc8
@@ -299702,7 +299702,7 @@ func_08099144: @ 0x08099144
 	ldr r5, [sp, #0x24]
 	ldr r1, [r7, #4]
 	adds r0, r7, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x24]
 	movs r3, #0
@@ -300010,7 +300010,7 @@ func_08099144: @ 0x08099144
 	add r4, sb
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r1, sp
 	strh r0, [r1, #6]
 	movs r0, #0xc8
@@ -300050,7 +300050,7 @@ func_08099144: @ 0x08099144
 	ldr r7, [sp, #0x24]
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x24]
 	movs r3, #0
@@ -300441,7 +300441,7 @@ func_0809964C: @ 0x0809964C
 	lsls r3, r3, #2
 	adds r0, r7, r3
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	lsls r1, r1, #5
 	ldr r0, .L08099AA0 @ =0x06010000
@@ -300589,7 +300589,7 @@ func_0809964C: @ 0x0809964C
 	lsls r1, r1, #2
 	adds r0, r7, r1
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r0, r0, #5
 	ldr r2, .L08099AA0 @ =0x06010000
 	adds r1, r0, r2
@@ -300606,7 +300606,7 @@ func_0809964C: @ 0x0809964C
 	lsls r4, r4, #2
 	adds r0, r7, r4
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	lsls r1, r1, #5
 	ldr r0, .L08099AA0 @ =0x06010000
@@ -300659,7 +300659,7 @@ func_0809964C: @ 0x0809964C
 	lsls r3, r3, #2
 	adds r0, r7, r3
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	lsls r0, r5, #1
 	adds r1, r1, r0
@@ -300910,7 +300910,7 @@ func_08099ACC: @ 0x08099ACC
 	str r0, [sp, #0x5c]
 	ldr r0, [sp, #0x8c]
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r1, r4, #1
 	adds r0, r0, r1
 	ldr r1, [sp, #0x7c]
@@ -301002,7 +301002,7 @@ func_08099ACC: @ 0x08099ACC
 	ldr r6, [sp, #0x90]
 	ldr r1, [r6, #4]
 	adds r0, r6, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	lsls r1, r5, #1
 	adds r0, r0, r1
 	ldr r1, [sp, #0x7c]
@@ -301082,7 +301082,7 @@ func_08099ACC: @ 0x08099ACC
 	ldr r6, [sp, #0x90]
 	ldr r1, [r6, #4]
 	adds r0, r6, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	ldr r2, .L08099E88 @ =0x00000369
 	adds r1, r7, r2
 	adds r1, r1, r5
@@ -301167,7 +301167,7 @@ func_08099ACC: @ 0x08099ACC
 	adds r4, r7, r6
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r1, sp
 	strh r0, [r1, #6]
 	movs r1, #0xc8
@@ -301208,7 +301208,7 @@ func_08099ACC: @ 0x08099ACC
 	mov r8, r6
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x24]
 	movs r3, #0
@@ -301492,7 +301492,7 @@ func_08099ACC: @ 0x08099ACC
 	adds r4, r7, r6
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r1, sp
 	strh r0, [r1, #6]
 	movs r1, #0xba
@@ -301522,7 +301522,7 @@ func_08099ACC: @ 0x08099ACC
 	mov r8, r6
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x24]
 	movs r3, #0
@@ -301746,7 +301746,7 @@ func_08099ACC: @ 0x08099ACC
 	adds r4, r7, r3
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r1, sp
 	adds r0, #2
 	strh r0, [r1, #6]
@@ -301777,7 +301777,7 @@ func_08099ACC: @ 0x08099ACC
 	mov r8, r6
 	ldr r1, [r4, #4]
 	adds r0, r4, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r2, r0, #0
 	ldr r0, [sp, #0x24]
 	movs r3, #0
@@ -302039,7 +302039,7 @@ func_0809A3E0: @ 0x0809A3E0
 	lsls r3, r3, #2
 	adds r0, r5, r3
 	ldr r1, [r0, #4]
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	mov r1, sp
 	strh r0, [r1, #6]
 	subs r4, #0x68

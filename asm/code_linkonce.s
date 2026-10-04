@@ -38153,7 +38153,7 @@ func_080E0F90:
     ldr r4, [r5]
     adds r4, #4
     adds r0, r2, #0
-    bl func_08007D4C
+    bl GetHardwareSharedStateTileIndex
     adds r1, r0, #0
     lsls r1, r1, #5
     ldr r0, [pc, #0x40]
@@ -46121,7 +46121,7 @@ func_080E0F90: @ 0x080E0F90
 	ldr r4, [r5]
 	adds r4, #4
 	adds r0, r2, #0
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	adds r1, r0, #0
 	lsls r1, r1, #5
 	ldr r0, .L080E1014 @ =0x06010000
@@ -49992,7 +49992,7 @@ func_080E2BB4: @ 0x080E2BB4
 	bge .L080E2CBE
 	ldr r1, [r4, #0x14]
 	mov r0, sl
-	bl func_08007D4C
+	bl GetHardwareSharedStateTileIndex
 	b .L080E2CC2
 .L080E2CBE:
 	movs r0, #1

@@ -6,7 +6,6 @@ extern void func_08007C28(void * entry, void * value);
 extern void __builtin_delete(void * pointer);
 extern void free(void * pointer);
 extern u32 func_08007CD8(struct HardwareStateOwner * owner, void * value);
-extern u32 func_08007E24(struct HardwareStateEntry * entry, void * value);
 
 void func_0800835C(void ** slot)
 {
@@ -57,7 +56,7 @@ struct HardwareStateOwner * func_080083D0(
                 ++current;
                 if (current == end)
                     current = group->start;
-                if (func_08007E24(candidate, candidate->unk_04) == 1) {
+                if (GetHardwareSharedStateReferenceCount(candidate, (u32)candidate->unk_04) == 1) {
                     group->cursor = current;
                     current = candidate;
                     break;
