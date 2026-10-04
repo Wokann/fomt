@@ -129705,10 +129705,16 @@ gUnk_IntroSceneStartupUnpackSource_002:
     .global gUnk_IntroSceneStartupUnpackSource_003
 gUnk_IntroSceneStartupUnpackSource_003:
     .incbin "graphics/intro_scene/shared/startup_tilemaps/startup_03.tilemap.lz"
+    .global gIntroSceneStartupTiles
+    .type gIntroSceneStartupTiles, %object
+gIntroSceneStartupTiles:
     .incbin "graphics/intro_scene/shared/startup_visual/startup_tiles.4bpp.lz"
-    .global gUnk_084D4AC4
-gUnk_084D4AC4:
+    .size gIntroSceneStartupTiles, . - gIntroSceneStartupTiles
+    .global gIntroSceneStartupPaletteBanks
+    .type gIntroSceneStartupPaletteBanks, %object
+gIntroSceneStartupPaletteBanks:
     .incbin "graphics/intro_scene/shared/startup_visual/startup_palette_banks.gbapal"
+    .size gIntroSceneStartupPaletteBanks, . - gIntroSceneStartupPaletteBanks
     .global gIntroSceneSmallIndexedArchive
 gIntroSceneSmallIndexedArchive:
     .4byte 1                         @ selection count
@@ -602825,13 +602831,17 @@ gUnk_IntroSceneStartupUnpackSource_002:
 gUnk_IntroSceneStartupUnpackSource_003:
 	.incbin "graphics/intro_scene/shared/startup_tilemaps/startup_03.tilemap.lz"
 
-	.global gUnk_0874A9C0
-gUnk_0874A9C0:
+	.global gIntroSceneStartupTiles
+	.type gIntroSceneStartupTiles, %object
+gIntroSceneStartupTiles:
 	.incbin "graphics/intro_scene/shared/startup_visual/startup_tiles.4bpp.lz"
+	.size gIntroSceneStartupTiles, . - gIntroSceneStartupTiles
 
-	.global gUnk_0874E330
-gUnk_0874E330:
+	.global gIntroSceneStartupPaletteBanks
+	.type gIntroSceneStartupPaletteBanks, %object
+gIntroSceneStartupPaletteBanks:
 	.incbin "graphics/intro_scene/shared/startup_visual/startup_palette_banks.gbapal"
+	.size gIntroSceneStartupPaletteBanks, . - gIntroSceneStartupPaletteBanks
 
 	.global gIntroSceneSmallIndexedArchive
 gIntroSceneSmallIndexedArchive:

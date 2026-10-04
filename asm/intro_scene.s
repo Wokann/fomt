@@ -560,9 +560,9 @@ func_080019D8:
 .Ljp_08001DC0:
     .4byte 0x0600F000
 .Ljp_08001DC4:
-    .4byte gUnk_IntroSceneStartupUnpackSource_003 + 0xFC
+    .4byte gIntroSceneStartupTiles
 .Ljp_08001DC8:
-    .4byte gUnk_084D4AC4
+    .4byte gIntroSceneStartupPaletteBanks
 .Ljp_08001DCC:
     .4byte 0x00001030
 .Ljp_08001DD0:
@@ -3818,11 +3818,11 @@ func_080019D8: @ 0x080019D8
     adds r0, r4, #0
     adds r2, r5, #0
     bl func_08008EB8
-    ldr r0, .L08001DC4 @ =gUnk_0874A9C0
+    ldr r0, .L08001DC4 @ =gIntroSceneStartupTiles
     movs r1, #0xc0
     lsls r1, r1, #0x13
     bl Unpack
-    ldr r0, .L08001DC8 @ =gUnk_0874E330
+    ldr r0, .L08001DC8 @ =gIntroSceneStartupPaletteBanks
     movs r1, #0xa0
     lsls r1, r1, #0x13
     movs r2, #0x80
@@ -4254,8 +4254,8 @@ func_080019D8: @ 0x080019D8
 .L08001DB8: .4byte 0x0600D000
 .L08001DBC: .4byte 0x0600E000
 .L08001DC0: .4byte 0x0600F000
-.L08001DC4: .4byte gUnk_0874A9C0
-.L08001DC8: .4byte gUnk_0874E330
+.L08001DC4: .4byte gIntroSceneStartupTiles
+.L08001DC8: .4byte gIntroSceneStartupPaletteBanks
 .L08001DCC: .4byte 0x00001030
 .L08001DD0: .4byte 0x00001034
 .L08001DD4: .4byte 0x00006BA4
