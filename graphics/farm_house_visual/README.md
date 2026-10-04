@@ -23,22 +23,25 @@ continues to include the corresponding `.4bpp.lz` file.
 All seven original packed streams and all seven decoded payloads are
 byte-identical in the JP, US, EU, and DE retail ROMs.  Their **addresses** are
 not identical. `visual_01`, `visual_02` and `visual_05` use the generic C
-`encode-huff4-lz2` encoder without reading `.original.lz`. Their original
-packed copies are independent comparison samples only. The other four
-streams still use `rebuild-native` with their original packing input;
-valid independently encoded output is not yet byte-identical. This
-remaining template dependency must not be counted as completed. All output
-resources are generated beside their sources, without post-link patches.
+`encode-huff4-lz2` encoder without reading `.original.lz`. Their retained
+packed copies are independent comparison samples only. `visual_00`,
+`visual_03` and `visual_06` now use source-only `encode-huff8-lz3`, with
+`--greedy --tie=exchange` and ladders `1,4,8`, `1,8,11`, and `1,8,12`.
+Their complete retail streams match without output-size padding, and their
+obsolete templates are removed. Only `visual_04` still uses `rebuild-native`
+with its original packing input; this unfinished Huffman-8/LZ2 dependency
+must not be counted as completed. All resources are generated beside their
+sources, without post-link patches.
 
-| Stream | Codec | Decoded size | Packed slot | Build input |
+| Stream | Codec | Decoded size | Original packed size | Build input |
 | --- | --- | --- | --- | --- |
-| `visual_00` | Huffman-8/LZ3 | `0x800` | `0x3C4` | Tiles + original packing reference |
+| `visual_00` | Huffman-8/LZ3 | `0x800` | `0x3C4` | Tiles only |
 | `visual_01` | Differential-4-bit Huffman-4/LZ2 | `0x7E0` | `0x424` | Tiles only |
 | `visual_02` | Differential-4-bit Huffman-4/LZ2 | `0x7E0` | `0x418` | Tiles only |
-| `visual_03` | Huffman-8/LZ3 | `0x13E0` | `0xB9C` | Tiles + original packing reference |
+| `visual_03` | Huffman-8/LZ3 | `0x13E0` | `0xB9C` | Tiles only |
 | `visual_04` | Huffman-8/LZ2 | `0x2BE0` | `0x16EC` | Tiles + original packing reference |
 | `visual_05` | Huffman-4/LZ2 | `0x7E0` | `0x364` | Tiles only |
-| `visual_06` | Huffman-8/LZ3 | `0x1BE0` | `0x10DC` | Tiles + original packing reference |
+| `visual_06` | Huffman-8/LZ3 | `0x1BE0` | `0x10DC` | Tiles only |
 
 Each descriptor also supplies two non-null native 16-bit tilemap patch
 buffers.  They are exposed as
@@ -66,11 +69,10 @@ checked for a clear unused high bit and each PAL round-trip reproduces the
 original bytes. gbagfx generates `.gbapal` beside each PAL, independently
 of the tile PNGs. This does not infer a static destination bank or layout.
 
-The visual test checks all seven decoded payloads and compares the three
-directly encoded streams against independent retail samples. Each uses its
-measured format, differential filter and distance ladder, then decodes its
-output for verification. The build rejects edits exceeding the original
-fixed slot instead of overwriting the following resource.
+The codec checks decoded output using the selected native format, filter and
+distance ladder. WSL ROM comparisons verify all six directly encoded streams
+against the retail bytes. The Huffman-8/LZ3 sources were additionally edited
+in three ways each and verified through the native decoder.
 
 The PNG, PAL and native tilemap files are authoring sources, not JSON
 sidecars. A future full-scene renderer must first prove the runtime palette
@@ -78,7 +80,12 @@ and layout selection; it must not override these native-index atlases.
 `LAYOUT_AUDIT.md` records the exact state-dependent tilemap-patch operation
 and the remaining evidence needed for such a renderer.
 
-Every stream remains bounded by its original packed interval.  An edit that
-recompresses beyond that interval is rejected with the exact required and
-available sizes; this is an intentional no-overwrite boundary, not silent
-truncation or a claim that every pixel change is guaranteed to fit.
+Encoders with a nonzero slot still reject output beyond that declared size.
+The three newly independent Huffman-8/LZ3 streams use slot zero: their natural
+length is neither padded nor limited by the compressor. ROM growth is still
+subject to the existing link boundaries and unresolved references elsewhere;
+a codec round trip does not establish arbitrary layout-change safety.
+
+七份房屋图块中六份已直接从源码编码，00、03、06 本次移除旧压缩模板；
+仅 04 的 Huffman-8/LZ2 仍依赖模板。新编码流使用自然压缩长度，
+不因此承诺整个未完成反编译的 ROM 可以任意扩展。

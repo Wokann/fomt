@@ -25,9 +25,8 @@ PORTRAIT_NATIVE_TILES := $(PORTRAIT_SOURCE_DIR)/native_tiles.4bpp
 ACTOR_NATIVE_TILES := graphics/sprites/actor_archive/native_tiles.4bpp
 
 # Farm-status background tiles are a 16-palette-bank, linear 4bpp grid.  The
-# native stream is a shared 0x70/Huffman/LZ payload.  The compressor keeps the
-# original packed bytes when the editable PNG has not changed; edited tiles
-# are strictly decompressed and must still fit the original 0x21C4-byte slot.
+# native Huffman/LZ3 stream is encoded directly from the current PNG-generated
+# tile bytes, using the same generic C encoder as the other packed resources.
 FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR := graphics/ui/farm_status/shared/secondary_tilemaps
 
 FARM_STATUS_WINTER_TILES_SOURCE := graphics/ui/farm_status/winter/shared/tiles.png
@@ -78,7 +77,6 @@ UI_SCENE_080A2BA4_SOURCE_DIR := graphics/ui/scene_080a2ba4/shared
 # JP uses a different code/data layout and its own resource group.
 UI_SCENE_08077810_SOURCE_DIR := graphics/ui/scene_08077810/shared
 UI_SCENE_08077810_CHARACTER_TILES := $(UI_SCENE_08077810_SOURCE_DIR)/tiles.4bpp
-UI_SCENE_08077810_CHARACTER_ORIGINAL := $(UI_SCENE_08077810_SOURCE_DIR)/tiles.original.lz
 UI_SCENE_08077810_CHARACTER_PACKED := $(UI_SCENE_08077810_CHARACTER_TILES).lz
 UI_SCENE_08077810_CHARACTER_TRAILER := $(UI_SCENE_08077810_SOURCE_DIR)/tiles_trailer.bin
 UI_SCENE_08077810_LAYER0_SOURCE := $(UI_SCENE_08077810_SOURCE_DIR)/layer_0.tilemap
@@ -132,8 +130,6 @@ UI_SCENE_080B55D0_AUX_TILES_SOURCE := $(UI_SCENE_080B55D0_AUX_SOURCE_DIR)/tiles.
 # asserted full-scene layout yet.
 UI_SCENE_080B55D0_MAIN_SOURCE_DIR := graphics/ui/scene_080b55d0_main/shared
 UI_SCENE_080B55D0_MAIN_SOURCE := $(UI_SCENE_080B55D0_MAIN_SOURCE_DIR)/main_tiles.4bpp
-UI_SCENE_080B55D0_MAIN_ORIGINAL := $(UI_SCENE_080B55D0_MAIN_SOURCE_DIR)/main_tiles.original.lz
-UI_SCENE_080B55D0_MAIN_OUTPUT := $(UI_SCENE_080B55D0_MAIN_SOURCE).lz
 
 UI_SCENE_08054F40_TILES_SOURCE_DIR := graphics/ui/scene_08054f40_tiles/shared
 UI_SCENE_08054F40_TILES_SOURCE := $(UI_SCENE_08054F40_TILES_SOURCE_DIR)/tiles.4bpp
@@ -210,6 +206,10 @@ FOMT_LZ_ENCODE_OUTPUTS := $(addsuffix .lz, \
   $(UI_SCENE_080B55D0_AUX_MAP0_SOURCE) $(UI_SCENE_080B55D0_AUX_MAP1_SOURCE) $(UI_SCENE_080B55D0_AUX_TILES_SOURCE) \
   $(UI_SCENE_08054F40_TILES_SOURCE) $(UI_SCENE_0805AB08_TILES_SOURCE) \
   $(INTRO_BACKGROUND_TILES_BIN) \
+  graphics/intro_scene/shared/startup_visual/startup_tiles.4bpp \
+  graphics/ui/farm_status/shared/base_tiles.4bpp \
+  graphics/ui/seasonal_background/winter/winter_tiles.4bpp \
+  $(UI_SCENE_080B55D0_MAIN_SOURCE) \
   $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_00.tilemap \
   $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_01.tilemap \
   $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_02.tilemap \
@@ -222,7 +222,8 @@ FOMT_LZ_ENCODE_OUTPUTS := $(addsuffix .lz, \
   $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_05.tilemap \
   $(UI_SCENE_08077810_LAYER0_SOURCE) $(UI_SCENE_08077810_LAYER1_SOURCE) \
   $(UI_SCENE_08077810_JP_TILES) $(UI_SCENE_08077810_JP_LAYER1_SOURCE) \
-  $(addprefix $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_,$(addsuffix .4bpp,01 02 05)) \
+  $(addprefix $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_,$(addsuffix .4bpp,00 01 02 03 05 06)) \
+  $(addprefix $(MAP_DATA_SOURCE_DIR)/map_,$(addsuffix /layer_0.4bpp,08 09 14 36 44 53)) \
   $(addprefix $(INTRO_OBJECTS_SOURCE_DIR)/object_,$(addsuffix .4bpp,00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19)) \
   $(MAP_DATA_SOURCE_DIR)/map_08/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_08/layer_2.gbapal \
   $(MAP_DATA_SOURCE_DIR)/map_09/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_09/layer_2.gbapal \
@@ -264,6 +265,10 @@ $(UI_SCENE_080B55D0_AUX_TILES_SOURCE).lz: FOMT_LZ_ENCODE := encode-lz2 2,5,8,9,1
 $(UI_SCENE_08054F40_TILES_OUTPUT): FOMT_LZ_ENCODE := encode-lz2 2,5,7,8,10,13,14 0xCA8
 $(UI_SCENE_0805AB08_TILES_OUTPUT): FOMT_LZ_ENCODE := encode-lz2 3,5,7,10,11,12,14 0x880
 $(INTRO_BACKGROUND_PACKED_BIN): FOMT_LZ_ENCODE := encode-lz2 3,5,8,10,12,13,15 0x49BC --literal-tail
+graphics/intro_scene/shared/startup_visual/startup_tiles.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,10,14 0 --greedy --tie=exchange
+graphics/ui/farm_status/shared/base_tiles.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,8,13 0 --greedy --tie=exchange
+graphics/ui/seasonal_background/winter/winter_tiles.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,10,13 0 --greedy --tie=exchange
+$(UI_SCENE_080B55D0_MAIN_SOURCE).lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,10,12 0 --greedy --tie=exchange
 $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_00.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,9 0x3DC --parent-first
 $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_01.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 4,7,9 0x21C --tie=first
 $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_02.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 3,8,11 0xF4
@@ -278,9 +283,12 @@ $(UI_SCENE_08077810_LAYER0_PACKED): FOMT_LZ_ENCODE := encode-huff4-lz3 1,5,9 0x1
 $(UI_SCENE_08077810_LAYER1_PACKED): FOMT_LZ_ENCODE := encode-huff4-lz0 1,10 0
 $(UI_SCENE_08077810_JP_TILES_PACKED): FOMT_LZ_ENCODE := encode-huff4-lz3 1,4,10 0x4C0
 $(UI_SCENE_08077810_JP_LAYER1_PACKED): FOMT_LZ_ENCODE := encode-huff4-lz2 1,2,3,4,5,6,10 0 --tie=last
+$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_00.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 1,4,8 0 --greedy --tie=exchange
 $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_01.4bpp.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,4,5,6,7,8,11 0x424 --filter=1
 $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_02.4bpp.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,4,5,6,7,8,10 0x418 --filter=1
+$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_03.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 1,8,11 0 --greedy --tie=exchange
 $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_05.4bpp.lz: FOMT_LZ_ENCODE := encode-huff4-lz2 2,4,5,6,7,8,8 0x364
+$(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_06.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 1,8,12 0 --greedy --tie=exchange
 
 # All 17 of these retail Raw-LZ3 streams were rebuilt directly and matched
 # their original packed bytes; their .original.lz copies are audit-only now.
@@ -307,6 +315,12 @@ $(INTRO_OBJECTS_SOURCE_DIR)/object_00.4bpp.lz: FOMT_LZ_ENCODE := encode-lz1 2,6,
 $(INTRO_OBJECTS_SOURCE_DIR)/object_16.4bpp.lz: FOMT_LZ_ENCODE := encode-lz1 4,6,8,10 0x304
 $(INTRO_OBJECTS_SOURCE_DIR)/object_18.4bpp.lz: FOMT_LZ_ENCODE := encode-lz1 4,6,9,11 0x30C
 $(MAP_DATA_SOURCE_DIR)/map_08/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,5 0xE0
+$(MAP_DATA_SOURCE_DIR)/map_08/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,9,14 0 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_09/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,9,13 0 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_14/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 6,11,14 0 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_36/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,9,13 0 --greedy --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_44/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 5,10,13 0 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_53/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,9,12 0 --greedy --tie=exchange --filter=1
 $(MAP_DATA_SOURCE_DIR)/map_08/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 4,5,4 0xE4
 $(MAP_DATA_SOURCE_DIR)/map_09/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 4,5,7 0xD8
 $(MAP_DATA_SOURCE_DIR)/map_09/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 4,5,7 0xCC
@@ -343,11 +357,8 @@ $(MAP_DATA_SOURCE_DIR)/map_40/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4
 $(FOMT_LZ_ENCODE_OUTPUTS): %.lz: % $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) $(firstword $(FOMT_LZ_ENCODE)) $< $@ $(wordlist 2,99,$(FOMT_LZ_ENCODE))
 
-$(UI_SCENE_08077810_CHARACTER_PACKED): $(UI_SCENE_08077810_CHARACTER_TILES) $(UI_SCENE_08077810_CHARACTER_ORIGINAL) $(UI_SCENE_08077810_CHARACTER_TRAILER) $(FOMT_LZ_TOOL)
-	@$(FOMT_LZ_TOOL) rebuild-native $< $(UI_SCENE_08077810_CHARACTER_ORIGINAL) $@ $(UI_SCENE_08077810_CHARACTER_TRAILER)
-
-$(UI_SCENE_080B55D0_MAIN_OUTPUT): $(UI_SCENE_080B55D0_MAIN_SOURCE) $(UI_SCENE_080B55D0_MAIN_ORIGINAL) $(FOMT_LZ_TOOL)
-	@$(FOMT_LZ_TOOL) rebuild-huff8-lz3 $< $(UI_SCENE_080B55D0_MAIN_ORIGINAL) $@ 4,10,12 0x2198
+$(UI_SCENE_08077810_CHARACTER_PACKED): $(UI_SCENE_08077810_CHARACTER_TILES) $(UI_SCENE_08077810_CHARACTER_TRAILER) $(FOMT_LZ_TOOL)
+	@$(FOMT_LZ_TOOL) encode-huff8-lz3 $< $@ 6,10,12 0 --greedy --tie=exchange --tail=$(UI_SCENE_08077810_CHARACTER_TRAILER)
 
 $(MAP_STATE_PALETTE_SOURCE_DIR)/%.gbapal.lz: $(MAP_STATE_PALETTE_SOURCE_DIR)/%.gbapal $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) encode-lz3 $< $@ $(FOMT_LZ3_ARGS)

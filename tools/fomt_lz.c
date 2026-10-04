@@ -51,7 +51,8 @@ enum {
     HUFF_BUILD_FIRST,
     HUFF_BUILD_LAST,
     HUFF_BUILD_HEAP,
-    HUFF_BUILD_REVERSE_LAST
+    HUFF_BUILD_REVERSE_LAST,
+    HUFF_BUILD_EXCHANGE_LAST
 };
 
 static void fail(char const *message)
@@ -900,7 +901,23 @@ static void huff_model_strategy(unsigned char const *data, size_t size,
     // Alphabet-based constructions select first/last-created equal-weight
     // nodes or use heap traversal. They never depend on a compressed template
     // or a saved symbol permutation.
-    if (build_strategy != HUFF_BUILD_FIRST) {
+    if (build_strategy == HUFF_BUILD_EXCHANGE_LAST) {
+        // Sort the full alphabet before omitting unused leaves. Removing zero
+        // entries first would change equal-weight traversal after exchanges.
+        for (unsigned symbol = 0; symbol < alphabet_size; symbol++)
+            order[symbol] = symbol;
+        for (unsigned left = 0; left < alphabet_size; left++)
+            for (unsigned right = left + 1; right < alphabet_size; right++)
+                if (frequency[order[right]] > frequency[order[left]]) {
+                    unsigned swap = order[left];
+                    order[left] = order[right];
+                    order[right] = swap;
+                }
+        unsigned index = 0;
+        for (unsigned step = 0; step < alphabet_size; step++)
+            if (frequency[order[step]])
+                order[index++] = order[step];
+    } else if (build_strategy != HUFF_BUILD_FIRST) {
         unsigned index = 0;
         for (unsigned step = 0; step < alphabet_size; step++) {
             unsigned symbol = build_strategy == HUFF_BUILD_REVERSE_LAST
@@ -913,7 +930,8 @@ static void huff_model_strategy(unsigned char const *data, size_t size,
     int active[512];
     unsigned node_count = 0;
     unsigned active_count = 0;
-    int last_created = build_strategy == HUFF_BUILD_LAST || build_strategy == HUFF_BUILD_REVERSE_LAST;
+    int last_created = build_strategy == HUFF_BUILD_LAST || build_strategy == HUFF_BUILD_REVERSE_LAST ||
+                       build_strategy == HUFF_BUILD_EXCHANGE_LAST;
     for (unsigned index = 0; index < count; index++) {
         unsigned symbol = order[index];
         nodes[node_count] = (HuffBuildNode){frequency[symbol], node_count, -1, -1, (int)symbol};
@@ -1818,7 +1836,8 @@ static unsigned char *encode_huff_lz3_greedy(unsigned char const *source,
     }
     HuffModel model;
     huff_byte_model_strategy(literals, literal_size, &model, symbol_bits,
-                             parent_first, tie_order == 8 ? HUFF_BUILD_REVERSE_LAST
+                             parent_first, tie_order == 9 ? HUFF_BUILD_EXCHANGE_LAST
+                                 : tie_order == 8 ? HUFF_BUILD_REVERSE_LAST
                                  : tie_order == 5 ? HUFF_BUILD_HEAP
                                  : tie_order == 3 || tie_order == 6 || tie_order == 7
                                      ? HUFF_BUILD_LAST : HUFF_BUILD_FIRST);
@@ -3243,7 +3262,7 @@ static void usage(void)
          "encode-huff4-lz2|encode-huff8-lz2|encode-huff4-lz3|encode-huff8-lz3 "
          "SOURCE OUTPUT LADDER SLOT_SIZE "
          "[--literal-tail] [--filter=1..4] [--tie=first|reverse|last|reverse-select|heap|shell|quick|heap-sort|exchange] "
-         "[--parent-first] [--greedy] | "
+         "[--parent-first] [--greedy] [--tail=FILE] | "
          "rebuild-native SOURCE ORIGINAL OUTPUT [TAIL] | "
          "rebuild-huff8-lz3 SOURCE ORIGINAL OUTPUT LADDER SLOT_SIZE | "
          "rebuild-huff4-lz2|rebuild-huff8-lz2 "
@@ -3664,7 +3683,7 @@ int main(int argc, char **argv)
         int huff8 = strcmp(argv[1], "encode-huff8-lz3") == 0;
         int huff4_lz2 = strcmp(argv[1], "encode-huff4-lz2") == 0;
         int huff8_lz2 = strcmp(argv[1], "encode-huff8-lz2") == 0;
-        if (argc < 6 || argc > 10)
+        if (argc < 6 || argc > 11)
             usage();
         int literal_tail = 0;
         int parent_first = 0;
@@ -3674,6 +3693,7 @@ int main(int argc, char **argv)
         int tie_seen = 0;
         unsigned filter = 0;
         int filter_seen = 0;
+        char const *tail_path = NULL;
         for (int index = 6; index < argc; index++) {
             if (lz2 && !literal_tail &&
                 strcmp(argv[index], "--literal-tail") == 0) {
@@ -3726,6 +3746,8 @@ int main(int argc, char **argv)
                        strcmp(argv[index], "--tie=last") == 0) {
                 tie_order = 3;
                 tie_seen = 1;
+            } else if (!tail_path && strncmp(argv[index], "--tail=", 7) == 0 && argv[index][7]) {
+                tail_path = argv[index] + 7;
             } else {
                 usage();
             }
@@ -3737,7 +3759,7 @@ int main(int argc, char **argv)
                      lz2 || huff4_lz2 || huff8_lz2 ? 7 : 3);
         unsigned slot_size = parse_size(argv[5]);
         size_t source_size, packed_size;
-        unsigned char *source = read_file(argv[2], &source_size);
+        unsigned char *source = read_file_parts(argv[2], tail_path, &source_size);
         unsigned char *atoms = filter
             ? inverse_differential(source, source_size, filter) : source;
         unsigned char *packed = lz0

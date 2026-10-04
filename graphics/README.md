@@ -232,6 +232,17 @@ directly at `gSharedSceneBackgroundLayer0Tilemap` and
 resource set in `ui/scene_08077810/jp/`. The maps remain native entries, not
 guessed PNG composites:
 
+The overseas scene's `tiles.4bpp` source is 11232 bytes, followed by the
+actual two-byte `tiles_trailer.bin`. The generic C encoder's `--tail=FILE`
+concatenates only these proven source parts before source-only Huffman-8/LZ3
+encoding (`6,10,12`, `--greedy --tie=exchange`). Its complete 1272-byte retail
+stream matches, including the trailer, and the old packing template is removed.
+No concatenation helper script or additional archive directory is introduced;
+JP continues to use its already independent, different resource set.
+
+海外版这份图块的 11232 字节与真实两字节尾部由通用工具拼接后编码，
+完整重压为原版 1272 字节；JP 使用不同的现有独立资源，不能混为一份。
+
 ## FarmHouse descriptor source buffers
 
 The ten native BGR555 buffers in `farm_house_visual/shared/palettes/` are

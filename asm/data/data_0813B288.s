@@ -325915,7 +325915,7 @@ gUnk_0852762C:
 	.endif
 
 	.ifdef REGION_EU
-	.incbin "graphics/ui/farm_status/shared/base_tiles.4bpp.lz", 0x8, 0x21BC
+	.incbin "graphics/ui/farm_status/shared/base_tiles.4bpp.lz", 0x8
 	.global gUnk_085297F0
 gUnk_085297F0:
 	.incbin "graphics/ui/farm_status/shared/base_palettes.gbapal", 0, 0x8

@@ -22,12 +22,19 @@ the native 0x30C-byte map representation; it retains tile IDs, flips and
 palette-bank selection that a flattened image would lose.
 
 `gbagfx` converts the PNGs into source-adjacent `.4bpp` and `.gbapal`
-resources. The C `fomt-lz` tool then builds `winter_tiles.4bpp.lz`, preserving
-the checked-in publisher stream for unchanged pixels. Assembly includes these
+resources. The C `fomt-lz` tool directly encodes `winter_tiles.4bpp.lz` with
+native Huffman-8/LZ3, ladder `4,10,13`, and `--greedy --tie=exchange`.
+The complete original 8492-byte stream matches without fixed-size padding;
+the obsolete `winter_tiles.original.lz` is removed. Assembly includes these
 resources directly; the build neither reads a retail ROM nor patches the
-linked image. Edited streams must fit the original 0x212C-byte slot.
+linked image. The compressor uses natural output length, but growth remains
+subject to the existing ROM boundaries and unresolved references.
 
-This command verifies that the generated stream decodes to the editable tile
-source. The PNGs under `../reference/` were rendered from the same native tile
+Native decoder checks verify the original source and three edited sources.
+Complete WSL comparisons verify all four regional ROMs. The PNGs under
+`../reference/` were rendered from the same native tile
 grid, palette banks and BG entries. They are inspection views, not build inputs
 or a claim of the game's final composited screen.
+
+季节背景的冬季图块已独立从当前源码重压为原版 8492 字节，旧模板移除；
+不再补齐固定压缩槽，但未解析的 ROM 边界仍限制资源扩展。

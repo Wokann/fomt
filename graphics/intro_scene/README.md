@@ -161,9 +161,14 @@ interleaving; the rendered layer PNGs must not replace them as source data.
 
 The startup tile payload uses the `230` Huffman-8/LZ3 family. `gbagfx` converts
 the tile and palette PNGs into source-adjacent `.4bpp` and `.gbapal` resources;
-the C `fomt-lz` tool then packs the tiles into `.4bpp.lz`. The checked-in
-`startup_tiles.original.lz` preserves the publisher stream for unchanged art.
-Edited tiles are decoded after H8/LZ3 encoding and rejected if they exceed the
-original `0x3970` slot. Assembly links these generated resources directly,
+the C `fomt-lz` tool directly packs the tiles into `.4bpp.lz`, using ladder
+`5,10,14` and `--greedy --tie=exchange`. The complete 14704-byte retail stream
+matches without output-size padding; `startup_tiles.original.lz` is removed.
+Three edited tile sources decode exactly. The compressor uses natural output
+length; the existing ROM bounds and unresolved references still constrain
+growth. Assembly links these generated resources directly,
 without reading a ROM or patching the linked image. The native startup maps
 remain independently editable through their Huffman-4/LZ3 path.
+
+启动图块已独立从源码重压为原版 14704 字节，旧模板移除；
+这不代表尚依赖模板的海外版开场索引资源归档也已完成。

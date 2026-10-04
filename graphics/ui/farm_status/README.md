@@ -12,11 +12,14 @@
 retain their native values from 0 through 15; it deliberately displays only
 palette bank zero.
 
-`shared/base_tiles.original.lz` is the checked-in native Huffman/LZ stream
-for this tile grid. The ordinary C `gbagfx` and `fomt-lz` tools produce
-`base_tiles.4bpp` and `base_tiles.4bpp.lz` beside the PNG; assembly includes
-the packed resource directly. The source build does not read a retail ROM.
-The packed stream occupies 0x21C4 bytes at JP 0x2AD72C, US 0x5275D0,
+The ordinary C `gbagfx` and `fomt-lz` tools produce `base_tiles.4bpp` and
+`base_tiles.4bpp.lz` beside the PNG. The native Huffman-8/LZ3 encoder uses
+ladder `4,8,13` and `--greedy --tie=exchange`, matching all 8644 retail bytes
+directly from the current tile source, with no slot padding or compressed
+template. The obsolete `shared/base_tiles.original.lz` is removed. Assembly
+includes the packed resource directly; EU's real eight-byte header/payload
+labels remain in place and include the complete generated remainder.
+The original packed stream occupies 0x21C4 bytes at JP 0x2AD72C, US 0x5275D0,
 EU 0x52762C, and DE 0x2AE66C.
 
 `shared/base_palettes.png` is the editable sixteen-bank BGR555 palette source.
@@ -73,6 +76,10 @@ includes consume the remainder of each generated stream, not a fixed byte count.
 5632 字节源码各自重压为原版的 176 字节，两份旧模板已移除。03 使用通用
 Huffman 堆排序策略重压为原版的 276 字节。EU 的 02-05 压缩头和后续数据
 都由生成的 `.lz` 提供，不再写死编码表头或截取固定长度。
+
+主图块 base_tiles 也已用通用交换排序策略独立重压为原版 8644 字节，
+其旧压缩模板已移除；三种实际图块修改均可准确往返。海外版独有的
+冬季图块是另一份 Huffman-8/LZ2 资源，目前仍依赖原压缩模板。
 
 Template-dependent streams and independent encoders with a nonzero slot size
 still reject packed output larger than their declared slot. A zero slot size
