@@ -1,5 +1,6 @@
 #include "prelude.h"
 #include "intro_scene.hh"
+#include "new_game.hh"
 #include "hardware_bootstrap.hh"
 
 EXTERN_C
@@ -699,9 +700,6 @@ extern void func_080D4004(void);
 extern void func_080D4040(void);
 extern void func_080D404C(void);
 extern void func_080D406C(void);
-extern void func_08004BDC(void);
-extern void func_08004C0C(void);
-extern void func_08004C54(void);
 extern void func_08004C68(void);
 extern void func_080050C8(void);
 extern void func_080059D0(void);
@@ -954,8 +952,8 @@ extern RawVTableFunction const vtable_unk_080E5A5C[] = {
 extern RawVTableFunction const vtable_unk_080E5A68[] = {
     nullptr,
     nullptr,
-    func_08004BDC,
-    func_08004C0C,
+    reinterpret_cast<RawVTableFunction>(func_08004BDC),
+    reinterpret_cast<RawVTableFunction>(func_08004C0C),
 };
 
 extern RawVTableFunction const vtable_unk_080E5A78[] = {
@@ -968,7 +966,7 @@ extern RawVTableFunction const vtable_unk_080E5A78[] = {
 extern RawVTableFunction const vtable_unk_080E5A88[] = {
     nullptr,
     nullptr,
-    func_08004C54,
+    reinterpret_cast<RawVTableFunction>(func_08004C54),
     func_08004C68,
 };
 

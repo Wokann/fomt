@@ -71,6 +71,8 @@ SECTIONS
         asm/new_game.o(.text);
         src/new_game.o(.text);
         asm/new_game.o(.text.new_game_after_fades);
+        src/new_game.o(.text.new_game_scene_lifecycle);
+        asm/new_game.o(.text.new_game_after_scene_lifecycle);
         src/hardware.o(.text);
         src/hardware_allocator.o(.text);
         asm/hardware.o(.text.hardware_allocator_after);

@@ -4,8 +4,6 @@
 #include "prelude.h"
 #include "hardware_allocator.hh"
 
-#include <new>
-
 struct HardwareResourceEntry {
     HardwarePoolOwner owner;
     u32 handle;

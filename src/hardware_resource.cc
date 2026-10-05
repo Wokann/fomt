@@ -4,6 +4,7 @@
 #include "new.hh"
 
 #include <memory>
+#include <new>
 #include <stdlib.h>
 
 extern void __builtin_delete(void * pointer);

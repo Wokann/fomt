@@ -52,3 +52,30 @@ void func_08003C28(NewGameMenuCore * core)
     MusicPlayer ** music = &core->music_players[0];
     func_08050D3C(owner, state, sprites, display, links, manager, music);
 }
+
+void func_08004BDC(NewGameMenuScene * scene, int flags)
+{
+    scene->vtable = vtable_unk_080E5A68;
+    NewGameMenuCore * core = scene->core;
+    if (core != nullptr)
+        ((void (*)(NewGameMenuCore *, int))core->vtable[2])(core, 3);
+    DestroySceneBase(reinterpret_cast<AScene *>(scene), flags);
+}
+
+SceneTransitionOwner func_08004C0C(NewGameMenuScene * scene)
+{
+    return func_08004570(scene->core);
+}
+
+AScene * func_08004C48(void * object)
+{
+    NewGameNameEntryScene * scene = static_cast<NewGameNameEntryScene *>(object);
+    scene->vtable = vtable_unk_080E5A88;
+    return reinterpret_cast<AScene *>(scene);
+}
+
+void func_08004C54(NewGameNameEntryScene * scene, int flags)
+{
+    scene->vtable = vtable_unk_080E5A88;
+    DestroySceneBase(reinterpret_cast<AScene *>(scene), flags);
+}

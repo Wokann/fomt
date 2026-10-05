@@ -32,6 +32,21 @@ typedef char NewGameMenuCoreResourcesCheck[offsetof(NewGameMenuCore, resources) 
 typedef char NewGameMenuCoreStateEntryCheck[offsetof(NewGameMenuCore, state_entry) == 0x4C ? 1 : -1];
 typedef char NewGameMenuCoreResourceEntryCheck[offsetof(NewGameMenuCore, resource_entry) == 0x54 ? 1 : -1];
 
+// Original ABI tables contain two metadata words before their callbacks.
+typedef void (*NewGameSceneVTableFunction)(void);
+
+struct NewGameMenuScene {
+    NewGameSceneVTableFunction const * vtable;
+    NewGameMenuCore * core;
+};
+
+struct NewGameNameEntryScene {
+    NewGameSceneVTableFunction const * vtable;
+};
+
+typedef char NewGameMenuSceneSizeCheck[sizeof(NewGameMenuScene) == 8 ? 1 : -1];
+typedef char NewGameNameEntrySceneSizeCheck[sizeof(NewGameNameEntryScene) == 4 ? 1 : -1];
+
 EXTERN_C
 
 // Both menu transitions wait until their stack-owned blend command leaves
@@ -39,6 +54,23 @@ EXTERN_C
 void func_08003B40(struct HardwareBootstrap * core);
 void func_08003BB4(struct HardwareBootstrap * core);
 void func_08003C28(struct NewGameMenuCore * core);
+
+// The menu core's run routine and the two menu constructors remain assembly.
+SceneTransitionOwner func_08004570(struct NewGameMenuCore * core);
+AScene * func_08004B58(void * object);
+
+extern NewGameSceneVTableFunction const vtable_unk_080E5A68[];
+extern NewGameSceneVTableFunction const vtable_unk_080E5A88[];
+
+// One contiguous scene lifecycle interval, after the two menu constructors.
+void func_08004BDC(struct NewGameMenuScene * scene, int flags)
+    SECTION(".text.new_game_scene_lifecycle");
+SceneTransitionOwner func_08004C0C(struct NewGameMenuScene * scene)
+    SECTION(".text.new_game_scene_lifecycle");
+AScene * func_08004C48(void * object)
+    SECTION(".text.new_game_scene_lifecycle");
+void func_08004C54(struct NewGameNameEntryScene * scene, int flags)
+    SECTION(".text.new_game_scene_lifecycle");
 
 EXTERN_C_END
 

@@ -1,4 +1,5 @@
 #include "intro_scene.hh"
+#include "new_game.hh"
 #include "hardware.hh"
 #include "hardware_allocator.hh"
 #include "hardware_bootstrap.hh"
@@ -12,8 +13,6 @@
 EXTERN_C
 
 void Unpack(u8 const * source, void * destination);
-AScene * func_08004C48(void * scene);
-AScene * func_08004B58(void * scene);
 
 EXTERN_C_END
 
