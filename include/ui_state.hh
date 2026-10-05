@@ -29,9 +29,11 @@ enum
     UI_TEXT_LAYOUT_SLOT_COUNT = 6,
 };
 
-// These native objects physically precede the layout-position table.  Their
-// consuming code has not yet been recovered, so their names describe only
-// their proven byte layout and literal contents.
+// These native objects physically precede the layout-position table.  The
+// full-width decimal formatter func_0804E98C reads two encoded bytes from
+// each three-byte digit row, or from the space/hyphen strings.  Its checked
+// ASCII index uses (DigitRows - '0' * 3) + character * 3; the terminator is
+// not copied.  Existing names still describe the verified physical layout.
 extern char const gCppRuntimeBadAlloc_PreUiTextLayout[];
 extern char const gUnk_PreUiTextLayoutDigitRows[10][3];
 extern char const gUnk_PreUiTextLayoutFullWidthSpace[];

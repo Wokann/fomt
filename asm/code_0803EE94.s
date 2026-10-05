@@ -4431,24 +4431,24 @@ func_0804E98C:
     mov sb, r1
     adds r7, r2, #0
     cmp r7, #0
-    beq .Lauto_0804EA2C
+    beq .Lfull_width_automatic_width
     movs r0, #0
     mov sl, r0
     cmp r6, #0
-    bge .Lauto_0804E9B0
+    bge .Lfull_width_unsigned_value
     rsbs r6, r6, #0
     movs r1, #1
     mov sl, r1
-    .Lauto_0804E9B0:
+    .Lfull_width_unsigned_value:
     movs r5, #0
     mov r0, sp
     adds r0, r0, r7
     str r0, [sp, #0x18]
     cmp r5, r7
-    bhs .Lauto_0804E9FA
+    bhs .Lfull_width_check_sign
     add r1, sp, #0xc
     mov r8, r1
-    .Lauto_0804E9C0:
+    .Lfull_width_write_digit:
     mov r0, r8
     adds r4, r0, r5
     adds r0, r6, #0
@@ -4461,83 +4461,114 @@ func_0804E98C:
     bl __divsi3
     adds r6, r0, #0
     cmp r6, #0
-    bne .Lauto_0804E9F4
+    bne .Lfull_width_more_digits
     adds r5, #1
     cmp r5, r7
-    bhs .Lauto_0804E9FA
+    bhs .Lfull_width_check_sign
     mov r4, r8
     movs r1, #0x20
-    .Lauto_0804E9E8:
+    .Lfull_width_pad_spaces:
     adds r0, r4, r5
     strb r1, [r0]
     adds r5, #1
     cmp r5, r7
-    blo .Lauto_0804E9E8
-    b .Lauto_0804E9FA
-    .Lauto_0804E9F4:
+    blo .Lfull_width_pad_spaces
+    b .Lfull_width_check_sign
+    .Lfull_width_more_digits:
     adds r5, #1
     cmp r5, r7
-    blo .Lauto_0804E9C0
-    .Lauto_0804E9FA:
+    blo .Lfull_width_write_digit
+    .Lfull_width_check_sign:
     mov r1, sl
     cmp r1, #0
-    beq .Lauto_0804EA08
+    beq .Lfull_width_reverse
     add r0, sp, #0xc
     adds r0, r0, r5
     movs r1, #0x2d
     strb r1, [r0]
-    .Lauto_0804EA08:
+    .Lfull_width_reverse:
     movs r2, #0
     cmp r2, r7
-    bhs .Lauto_0804EA24
+    bhs .Lfull_width_fixed_terminator
     add r3, sp, #0xc
     mov r0, sp
     subs r0, #1
     adds r1, r7, r0
-    .Lauto_0804EA16:
+    .Lfull_width_reverse_character:
     adds r0, r3, r2
     ldrb r0, [r0]
     strb r0, [r1]
     subs r1, #1
     adds r2, #1
     cmp r2, r7
-    blo .Lauto_0804EA16
-    .Lauto_0804EA24:
+    blo .Lfull_width_reverse_character
+    .Lfull_width_fixed_terminator:
     movs r0, #0
     ldr r6, [sp, #0x18]
     strb r0, [r6]
-    b .Lauto_0804EA46
-    .Lauto_0804EA2C:
+    b .Lfull_width_convert
+    .Lfull_width_automatic_width:
     adds r2, r6, #0
     mov r1, sp
     cmp r2, #0
-    bge .Lauto_0804EA3C
+    bge .Lfull_width_unsigned_decimal
     movs r0, #0x2d
     strb r0, [r1]
     adds r1, #1
     rsbs r2, r2, #0
-    .Lauto_0804EA3C:
+    .Lfull_width_unsigned_decimal:
     adds r0, r2, #0
     bl loc_080E069C
     mov r0, sp
     strb r7, [r0, #0xa]
-    .Lauto_0804EA46:
+    .Lfull_width_convert:
     mov r2, sp
-    ldr r5, [pc, #4]
-    ldr r4, [pc, #8]
-    ldr r3, [pc, #8]
-    b .Lauto_0804EA6C
-    .byte 0xD4, 0x96, 0x0F, 0x08, 0x84, 0x97, 0x0F, 0x08, 0x88, 0x97, 0x0F, 0x08, 0x08, 0x78, 0x4E, 0x46
-    .byte 0x30, 0x70, 0x48, 0x78, 0x70, 0x70, 0x02, 0x20, 0x81, 0x44, 0x01, 0x32
-    .Lauto_0804EA6C:
+    ldr r5, .Lfull_width_digit_base
+    ldr r4, .Lfull_width_space
+    ldr r3, .Lfull_width_hyphen
+    b .Lfull_width_next_character
+.Lfull_width_digit_base:
+    @ The loop uses the checked ASCII byte, not (byte - '0'), as its index.
+    @ Each digit row has two encoded bytes and its own string terminator.
+    .4byte gUnk_PreUiTextLayoutDigitRows - ('0' * 3)
+.Lfull_width_space:
+    .4byte gUnk_PreUiTextLayoutFullWidthSpace
+.Lfull_width_hyphen:
+    .4byte gUnk_PreUiTextLayoutFullWidthHyphen
+.Lfull_width_copy_character:
+    ldrb r0, [r1]
+    mov r6, sb
+    strb r0, [r6]
+    ldrb r0, [r1, #1]
+    strb r0, [r6, #1]
+    movs r0, #2
+    add sb, r0
+    adds r2, #1
+.Lfull_width_next_character:
     ldrb r1, [r2]
     cmp r1, #0
-    beq .Lauto_0804EA96
+    beq .Lfull_width_done
     adds r0, r1, #0
-    .byte 0x30, 0x38, 0x00, 0x06, 0x00, 0x0E, 0x09, 0x28, 0x03, 0xD8, 0x48, 0x00, 0x40, 0x18, 0x41, 0x19
-    .byte 0xEA, 0xE7, 0x20, 0x29, 0x01, 0xD1, 0x21, 0x1C, 0xE6, 0xE7, 0x2D, 0x29, 0x01, 0xD1, 0x19, 0x1C
-    .byte 0xE2, 0xE7
-    .Lauto_0804EA96:
+    subs r0, #0x30
+    lsls r0, #0x18
+    lsrs r0, #0x18
+    cmp r0, #9
+    bhi .Lfull_width_non_digit
+    lsls r0, r1, #1
+    adds r0, r0, r1
+    adds r1, r0, r5
+    b .Lfull_width_copy_character
+.Lfull_width_non_digit:
+    cmp r1, #0x20
+    bne .Lfull_width_check_hyphen
+    adds r1, r4, #0
+    b .Lfull_width_copy_character
+.Lfull_width_check_hyphen:
+    cmp r1, #0x2d
+    bne .Lfull_width_done
+    adds r1, r3, #0
+    b .Lfull_width_copy_character
+.Lfull_width_done:
     movs r0, #0
     mov r1, sb
     strb r0, [r1]
@@ -150823,33 +150854,168 @@ func_0804EA94: @ 0x0804EA94
 .L0804EB58: .4byte 0xFFFFF3FF
 .L0804EB5C: .4byte 0xFFFF3FFF
 .L0804EB60: .4byte 0x3FFFFFFF
-.L0804EB64:
-	.byte 0xF0, 0xB5, 0x57, 0x46, 0x4E, 0x46, 0x45, 0x46, 0xE0, 0xB4, 0x87, 0xB0
-	.byte 0x06, 0x1C, 0x89, 0x46, 0x17, 0x1C, 0x00, 0x2F, 0x44, 0xD0, 0x00, 0x20, 0x82, 0x46, 0x00, 0x2E
-	.byte 0x02, 0xDA, 0x76, 0x42, 0x01, 0x21, 0x8A, 0x46, 0x00, 0x25, 0x68, 0x46, 0xC0, 0x19, 0x06, 0x90
-	.byte 0xBD, 0x42, 0x1E, 0xD2, 0x03, 0xA9, 0x88, 0x46, 0x40, 0x46, 0x44, 0x19, 0x30, 0x1C, 0x0A, 0x21
+	.global func_0804E98C
+	.thumb_func
+func_0804E98C:
+	push {r4, r5, r6, r7, lr}
+	mov r7, sl
+	mov r6, sb
+	mov r5, r8
+	push {r5, r6, r7}
+	sub sp, #0x1c
+	adds r6, r0, #0
+	mov sb, r1
+	adds r7, r2, #0
+	cmp r7, #0
+	beq .Lfull_width_automatic_width
+	movs r0, #0
+	mov sl, r0
+	cmp r6, #0
+	bge .Lfull_width_unsigned_value
+	rsbs r6, r6, #0
+	movs r1, #1
+	mov sl, r1
+	.Lfull_width_unsigned_value:
+	movs r5, #0
+	mov r0, sp
+	adds r0, r0, r7
+	str r0, [sp, #0x18]
+	cmp r5, r7
+	bhs .Lfull_width_check_sign
+	add r1, sp, #0xc
+	mov r8, r1
+	.Lfull_width_write_digit:
+	mov r0, r8
+	adds r4, r0, r5
+	adds r0, r6, #0
+	movs r1, #0xa
 	bl __modsi3
-	.byte 0x30, 0x30, 0x20, 0x70, 0x30, 0x1C, 0x0A, 0x21
+	adds r0, #0x30
+	strb r0, [r4]
+	adds r0, r6, #0
+	movs r1, #0xa
 	bl __divsi3
-	.byte 0x06, 0x1C, 0x00, 0x2E, 0x0A, 0xD1, 0x01, 0x35, 0xBD, 0x42, 0x0A, 0xD2, 0x44, 0x46, 0x20, 0x21
-	.byte 0x60, 0x19, 0x01, 0x70, 0x01, 0x35, 0xBD, 0x42, 0xFA, 0xD3, 0x02, 0xE0, 0x01, 0x35, 0xBD, 0x42
-	.byte 0xE2, 0xD3, 0x51, 0x46, 0x00, 0x29, 0x03, 0xD0, 0x03, 0xA8, 0x40, 0x19, 0x2D, 0x21, 0x01, 0x70
-	.byte 0x00, 0x22, 0xBA, 0x42, 0x0A, 0xD2, 0x03, 0xAB, 0x68, 0x46, 0x01, 0x38, 0x39, 0x18, 0x98, 0x18
-	.byte 0x00, 0x78, 0x08, 0x70, 0x01, 0x39, 0x01, 0x32, 0xBA, 0x42, 0xF8, 0xD3, 0x00, 0x20, 0x06, 0x9E
-	.byte 0x30, 0x70, 0x0C, 0xE0, 0x32, 0x1C, 0x69, 0x46, 0x00, 0x2A, 0x03, 0xDA, 0x2D, 0x20, 0x08, 0x70
-	.byte 0x01, 0x31, 0x52, 0x42, 0x10, 0x1C
+	adds r6, r0, #0
+	cmp r6, #0
+	bne .Lfull_width_more_digits
+	adds r5, #1
+	cmp r5, r7
+	bhs .Lfull_width_check_sign
+	mov r4, r8
+	movs r1, #0x20
+	.Lfull_width_pad_spaces:
+	adds r0, r4, r5
+	strb r1, [r0]
+	adds r5, #1
+	cmp r5, r7
+	blo .Lfull_width_pad_spaces
+	b .Lfull_width_check_sign
+	.Lfull_width_more_digits:
+	adds r5, #1
+	cmp r5, r7
+	blo .Lfull_width_write_digit
+	.Lfull_width_check_sign:
+	mov r1, sl
+	cmp r1, #0
+	beq .Lfull_width_reverse
+	add r0, sp, #0xc
+	adds r0, r0, r5
+	movs r1, #0x2d
+	strb r1, [r0]
+	.Lfull_width_reverse:
+	movs r2, #0
+	cmp r2, r7
+	bhs .Lfull_width_fixed_terminator
+	add r3, sp, #0xc
+	mov r0, sp
+	subs r0, #1
+	adds r1, r7, r0
+	.Lfull_width_reverse_character:
+	adds r0, r3, r2
+	ldrb r0, [r0]
+	strb r0, [r1]
+	subs r1, #1
+	adds r2, #1
+	cmp r2, r7
+	blo .Lfull_width_reverse_character
+	.Lfull_width_fixed_terminator:
+	movs r0, #0
+	ldr r6, [sp, #0x18]
+	strb r0, [r6]
+	b .Lfull_width_convert
+	.Lfull_width_automatic_width:
+	adds r2, r6, #0
+	mov r1, sp
+	cmp r2, #0
+	bge .Lfull_width_unsigned_decimal
+	movs r0, #0x2d
+	strb r0, [r1]
+	adds r1, #1
+	rsbs r2, r2, #0
+	.Lfull_width_unsigned_decimal:
+	adds r0, r2, #0
 	bl func_080E0EFC
-	.byte 0x68, 0x46, 0x87, 0x72, 0x6A, 0x46
-	.byte 0x01, 0x4D, 0x02, 0x4C, 0x02, 0x4B, 0x0D, 0xE0
-	.4byte gMaryScriptTable + 0x14A4
+	mov r0, sp
+	strb r7, [r0, #0xa]
+	.Lfull_width_convert:
+	mov r2, sp
+	ldr r5, .Lfull_width_digit_base
+	ldr r4, .Lfull_width_space
+	ldr r3, .Lfull_width_hyphen
+	b .Lfull_width_next_character
+.Lfull_width_digit_base:
+	@ The loop uses the checked ASCII byte, not (byte - '0'), as its index.
+	@ Each digit row has two encoded bytes and its own string terminator.
+	.4byte gUnk_PreUiTextLayoutDigitRows - ('0' * 3)
+.Lfull_width_space:
 	.4byte gUnk_PreUiTextLayoutFullWidthSpace
+.Lfull_width_hyphen:
 	.4byte gUnk_PreUiTextLayoutFullWidthHyphen
-	.byte 0x08, 0x78, 0x4E, 0x46, 0x30, 0x70, 0x48, 0x78, 0x70, 0x70, 0x02, 0x20
-	.byte 0x81, 0x44, 0x01, 0x32, 0x11, 0x78, 0x00, 0x29, 0x11, 0xD0, 0x08, 0x1C, 0x30, 0x38, 0x00, 0x06
-	.byte 0x00, 0x0E, 0x09, 0x28, 0x03, 0xD8, 0x48, 0x00, 0x40, 0x18, 0x41, 0x19, 0xEA, 0xE7, 0x20, 0x29
-	.byte 0x01, 0xD1, 0x21, 0x1C, 0xE6, 0xE7, 0x2D, 0x29, 0x01, 0xD1, 0x19, 0x1C, 0xE2, 0xE7, 0x00, 0x20
-	.byte 0x49, 0x46, 0x08, 0x70, 0x07, 0xB0, 0x38, 0xBC, 0x98, 0x46, 0xA1, 0x46, 0xAA, 0x46, 0xF0, 0xBC
-	.byte 0x01, 0xBC, 0x00, 0x47
+.Lfull_width_copy_character:
+	ldrb r0, [r1]
+	mov r6, sb
+	strb r0, [r6]
+	ldrb r0, [r1, #1]
+	strb r0, [r6, #1]
+	movs r0, #2
+	add sb, r0
+	adds r2, #1
+.Lfull_width_next_character:
+	ldrb r1, [r2]
+	cmp r1, #0
+	beq .Lfull_width_done
+	adds r0, r1, #0
+	subs r0, #0x30
+	lsls r0, #0x18
+	lsrs r0, #0x18
+	cmp r0, #9
+	bhi .Lfull_width_non_digit
+	lsls r0, r1, #1
+	adds r0, r0, r1
+	adds r1, r0, r5
+	b .Lfull_width_copy_character
+.Lfull_width_non_digit:
+	cmp r1, #0x20
+	bne .Lfull_width_check_hyphen
+	adds r1, r4, #0
+	b .Lfull_width_copy_character
+.Lfull_width_check_hyphen:
+	cmp r1, #0x2d
+	bne .Lfull_width_done
+	adds r1, r3, #0
+	b .Lfull_width_copy_character
+.Lfull_width_done:
+	movs r0, #0
+	mov r1, sb
+	strb r0, [r1]
+	add sp, #0x1c
+	pop {r3, r4, r5}
+	mov r8, r3
+	mov sb, r4
+	mov sl, r5
+	pop {r4, r5, r6, r7}
+	pop {r0}
+	bx r0
 
 	thumb_func_start func_0804EC84
 func_0804EC84: @ 0x0804EC84
