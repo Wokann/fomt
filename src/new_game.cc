@@ -2,6 +2,7 @@
 #include "hardware_bootstrap.hh"
 #include "hardware_state_accessors.hh"
 #include "hardware_blend_object.hh"
+#include "ui_state.hh"
 
 static inline void QueueMenuBlend(HardwareBootstrap * core, HardwareBlendObject & blend)
 {
@@ -37,4 +38,17 @@ void func_08003BB4(HardwareBootstrap * core)
     while (MenuBlendIsQueued(blend))
         UpdateHardwareFrame(core);
     func_080094B8(&blend, 2);
+}
+
+void func_08003C28(NewGameMenuCore * core)
+{
+    void * const * hardware = reinterpret_cast<void * const *>(core);
+    HardwareCoreState * state = static_cast<HardwareCoreState *>(func_080088DC(hardware));
+    HardwareSpriteBufferState * sprites = func_08008920(hardware);
+    HardwareDisplayState * display = func_08008918(hardware);
+    u8 * links = func_08008940(hardware);
+    u8 * manager = func_0800894C(hardware);
+    u8 ** owner = &core->unk_10;
+    MusicPlayer ** music = &core->music_players[0];
+    func_08050D3C(owner, state, sprites, display, links, manager, music);
 }

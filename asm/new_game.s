@@ -467,48 +467,6 @@ func_08003788:
 .Ljp_08003B54: .4byte 0x00001BD8
     .section .text.new_game_after_fades
 
-    .global func_08003C28
-    .thumb_func
-func_08003C28:
-    push	{r4, r5, r6, lr}
-    mov	r6, r9
-    mov	r5, r8
-    push	{r5, r6}
-    sub	sp, #12
-    adds	r4, r0, #0
-    bl func_080088DC
-    mov	r9, r0
-    adds	r0, r4, #0
-    bl func_08008920
-    mov	r8, r0
-    adds	r0, r4, #0
-    bl func_08008918
-    adds	r6, r0, #0
-    adds	r0, r4, #0
-    bl func_08008940
-    adds	r5, r0, #0
-    adds	r0, r4, #0
-    bl func_0800894C
-    adds	r1, r4, #0
-    adds	r1, #16
-    adds	r4, #20
-    str	r5, [sp, #0]
-    str	r0, [sp, #4]
-    str	r4, [sp, #8]
-    adds	r0, r1, #0
-    mov	r1, r9
-    mov	r2, r8
-    adds	r3, r6, #0
-    bl func_08050D3C
-    add	sp, #12
-    pop	{r3, r4}
-    mov	r8, r3
-    mov	r9, r4
-    pop	{r4, r5, r6}
-    pop	{r0}
-    bx	r0
-    .align 2, 0
-
     .global func_08003C80
     .thumb_func
 func_08003C80:
@@ -7596,47 +7554,6 @@ func_08003788: @ 0x08003788
 .L08003B3C: .4byte 0x00001BD8
 
     .section .text.new_game_after_fades
-
-    thumb_func_start func_08003C28
-func_08003C28: @ 0x08003C28
-    push {r4, r5, r6, lr}
-    mov r6, sb
-    mov r5, r8
-    push {r5, r6}
-    sub sp, #0xc
-    adds r4, r0, #0
-    bl func_080088DC
-    mov sb, r0
-    adds r0, r4, #0
-    bl func_08008920
-    mov r8, r0
-    adds r0, r4, #0
-    bl func_08008918
-    adds r6, r0, #0
-    adds r0, r4, #0
-    bl func_08008940
-    adds r5, r0, #0
-    adds r0, r4, #0
-    bl func_0800894C
-    adds r1, r4, #0
-    adds r1, #0x10
-    adds r4, #0x14
-    str r5, [sp]
-    str r0, [sp, #4]
-    str r4, [sp, #8]
-    adds r0, r1, #0
-    mov r1, sb
-    mov r2, r8
-    adds r3, r6, #0
-    bl func_08050D3C
-    add sp, #0xc
-    pop {r3, r4}
-    mov r8, r3
-    mov sb, r4
-    pop {r4, r5, r6}
-    pop {r0}
-    bx r0
-    .align 2, 0
 
     thumb_func_start func_08003C80
 func_08003C80: @ 0x08003C80

@@ -3,6 +3,21 @@
 
 #include "prelude.h"
 
+struct HardwareCoreState;
+struct HardwareSpriteBufferState;
+struct HardwareDisplayState;
+struct MusicPlayer;
+
+EXTERN_C
+
+// The still-assembled UI adapter dereferences the owner once and forwards
+// these hardware objects to its payload; it does not replace the owner.
+void func_08050D3C(u8 * const * owner, struct HardwareCoreState * state,
+    struct HardwareSpriteBufferState * sprites, struct HardwareDisplayState * display,
+    u8 * links, u8 * manager, struct MusicPlayer ** music);
+
+EXTERN_C_END
+
 enum
 {
     UI_TEXT_LAYOUT_VARIANT_COUNT = 8,
