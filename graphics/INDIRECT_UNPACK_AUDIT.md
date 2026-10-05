@@ -79,20 +79,20 @@ any final tile/OAM presentation.
 
 ## Adjacent uncompressed presentation templates
 
-The same map-state renderer contains two direct, uncompressed source-table
-paths which are not `Unpack` inputs and therefore are intentionally outside
-the seventeen-row inventory above.  Both are verified byte-identical across
-JP, US, EU and DE and now have fixed-range native-source rebuild paths in
-`graphics/map_state_templates/shared/`.
+The following ranges were originally exported as two native aggregate files.
+Their bytes match across JP, US, EU and DE, but a later complete MapData audit
+shows that the first range is not one uncompressed table: only its initial
+`0x60` bytes precede 25 separate compressed map inputs. These inputs now build
+from their PNG/PAL/tilemap sources; the old palette aggregate is retired.
+The second container remains native data pending its own record audit.
 
 | Native source | JP range | US range | EU range | DE range | Proven consumer format |
 | --- | ---: | ---: | ---: | ---: | --- |
-| `map_state_palette_templates.bin` | `0x45D654..0x462520` | `0x6D74F8..0x6DC3C4` | `0x6D7554..0x6DC420` | `0x45E594..0x463460` | `func_080A8FDC` copies the selected base in `0x60`-byte units into caller-owned palette staging storage. |
+| Former `map_state_palette_templates.bin` aggregate | `0x45D654..0x462520` | `0x6D74F8..0x6DC3C4` | `0x6D7554..0x6DC420` | `0x45E594..0x463460` | `func_080A8FDC` proves a selected `0x60`-byte copy, not the format of the whole range; the following 25 streams are MapData visual inputs. |
 | `map_state_tilemap_templates.bin` | `0x464950..0x470E38` | `0x6DE7F4..0x6EACDC` | `0x6DE850..0x6EAD38` | `0x465890..0x471D78` | `func_080AA400` selects the table for map-state type `0x0F` and reads it as 16-bit BG tilemap entries. |
 
-The first table begins with BGR555-looking data and the second begins with
-tilemap-looking words, but that is deliberately not promoted into a presumed
-per-record PNG format: the functions prove only their copy/entry behaviour,
-not all individual record boundaries, palette ownership, or a final rendered
-screen.  The checked-in binaries are the reversible source of truth, and the
-tool verifies the exact original region range before patching.
+The palette prefix and remaining tilemap container are not promoted to guessed
+PNG layouts: their consumers do not establish every entry's palette ownership
+or a final rendered screen. All current sources link directly; there is no
+post-link resource patch. The complete map visual graph, separate physical
+runs and verified real pointer relocations are documented in `maps/README.md`.

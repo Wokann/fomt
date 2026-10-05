@@ -3,8 +3,8 @@
 
 extern "C" {
 
-// Compressed map visual payloads. Decoded tiles, palettes and maps build from
-// editable sources where recovered; the remaining streams keep their raw bytes.
+// All 272 distinct compressed visual payloads build from PNG/PAL/native maps.
+// Shared fields reference the same physical payload, not copied assets.
 extern u8 const gUnk_MapDataResource_000[];
 extern u8 const gUnk_MapDataResource_001[];
 extern u8 const gUnk_MapDataResource_002[];

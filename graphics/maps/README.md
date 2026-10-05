@@ -148,14 +148,68 @@ actual generated-asset dependency checks pass. This audit covers the selected
 98 streams; it does not prove interior pointer references or the remaining raw
 resources safe for arbitrary relocation.
 
-The `gMapData` table references 272 distinct visual streams overall. These three
-blocks now cover 146 of them. The remaining 126 are still present as original
-bytes in the assembly source; they are **not** covered by this editable
-pipeline yet. In particular, the first 42-stream run ends at the start of
-a separate VRAM resource, not at the following MapData pointer. Treating all
-272 pointers as one
-uninterrupted archive would overwrite that unrelated resource. Future runs
-must be bounded from the actual decoder-consumed length and intervening ROM
-labels before moving them into this direct-link workflow.
+At that stage, these three blocks covered 146 of `gMapData`'s 272 distinct
+visual streams. The other 126 had not yet joined the complete editable
+pipeline: some were explicit assembly bytes, some were slices of a legacy
+binary container, and one already reused a source-generated UI tile stream.
+The first 42-stream run ends before a separate VRAM resource; treating all
+272 pointers as one uninterrupted archive would overwrite unrelated data.
+The final source-backed coverage and actual intervening gaps are below.
 
 MapData fields 6 and 7 are terrain/interaction data, not image inputs.
+
+## Complete visual-source coverage: 272 distinct streams
+
+The last 126 streams now use the same generic source-adjacent workflow. They
+contain 221,508 packed bytes and 985,136 decoded bytes, identical in all four
+regions. Their nine separate physical runs retain every intervening resource
+and byte; the complete regional address ranges are recorded in
+`CODE_ROM_LAYOUT.md`. Their physical order does not follow map IDs.
+
+Thirteen indexed 128-by-512 PNG atlases and 21 independent 240-colour PAL
+sources replace tracked converter outputs; 92 existing u16 tilemaps keep their
+native tile/flip/palette records. PNG palette previews show only the first
+bank, not a reconstructed complete scene. Map `02` shares its tiles with
+`gUiScene080B55D0MainTilesLz`, so both callers use the existing UI source path
+`graphics/ui/scene_080b55d0_main/shared/main_tiles.png`. No duplicate tile
+asset or new resource-specific tool is introduced.
+
+All natural encodings already match the original bytes. Necessary ladder,
+filter, tie and storage-budget parameters are target metadata for the existing
+C compressor, not lists of per-resource build recipes. Every `.lz` dependency
+is discovered from its direct assembly reference. The complete 272-stream
+graph was force-built from its authored PNG/PAL/native-map inputs; no original
+ROM, `.original.lz`, packing template or post-link patch is a build input.
+
+The selected JP/US base-offset definitions and EU `+4` adjustments are gone:
+378 `.set` definitions become real physical labels. Equal bytes at the three
+distinct starts `gUnk_MapDataResource_341`, `_356` and `_366` keep three distinct
+resources; content equality does not imply pointer identity. Whole-ROM
+relocation inspection confirms 170 actual start references per region,
+including the existing UI caller. JP `0xD683` crosses `ldrh; ldr; ands`, and DE
+`0xD2719` crosses `beq; ldr; ldrb`; those two unaligned byte coincidences are
+instructions, not pointers. Interior references and unresolved neighboring
+data remain outside that start-pointer claim.
+
+The former `map_state_palette_templates.bin` was not one giant uncompressed
+palette table: its first `0x60` bytes remain explicit native data, followed by
+25 of these compressed streams. The aggregate binary is no longer needed.
+The separate legacy tilemap container remains unresolved native data and is
+not included in this visual-source completion count. The assembly also drops
+233 region conditionals contradicted by their enclosing region, including
+unused old DE copies, without changing any regional ROM bytes.
+
+Region-filtered dependency checks also exposed the earlier 42-stream DE run
+at `0x08401184..0x0841E9BC`: its 120,888 bytes were still raw copies despite
+the common source manifest. Those DE bodies now reference the same existing
+42 generated streams directly, retaining all physical labels. Completion is
+checked against each region's actual dependency graph and real symbols, not
+against inactive branches' paths. The existing C++ scaninc accepts generic
+`-D`/`-U` known symbols and conservatively retains unknown conditions; 47
+regression checks, including 32 comparisons with real GAS dependencies, pass.
+
+All 34 PNG/PAL byte round trips and 378 modified-source encode/decode checks
+pass. JP/US/EU/DE WSL `-j4` builds, complete byte/SHA-1 comparisons and actual
+dependency checks pass. **272/272 covers only MapData's visual inputs**, not
+all FoMT graphics, terrain data or C/C++ function decompilation. Verified
+storage budgets still reject oversize edits before shifting unknown neighbors.

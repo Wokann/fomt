@@ -263,8 +263,8 @@ using the C range verifier:
 `func_080A95A4` selects one of five state-dependent palette streams while
 loading a `MapData` record.  Each stream strictly expands to fifteen complete
 16-colour BGR555 banks (`0x1E0` bytes), so the authoritative editable sources
-are the ordered native files
-`map_state_palettes/shared/fallback_00.gbapal` through `fallback_04.gbapal`.
+are the ordered PAL files
+`map_state_palettes/shared/fallback_00.pal` through `fallback_04.pal`.
 They are palette sources, not rendered PNGs: the routine does not prove an OBJ
 layout, BG tilemap, or a final composited image.
 
@@ -274,22 +274,21 @@ sources; assembly includes them directly without patching the linked ROM.
 
 ## Map-state native presentation templates
 
-The map-state renderer also reads two much larger, uncompressed shared tables:
-`map_state_templates/shared/map_state_palette_templates.bin` and
-`map_state_templates/shared/map_state_tilemap_templates.bin`.  They are
-byte-identical in JP, US, EU and DE, despite occupying different ROM ranges in
-each localization.
+The renderer's palette-copy path proves a native `0x60`-byte unit, not a whole
+`0x4ECC`-byte palette table. A later complete MapData audit established that
+the old `map_state_palette_templates.bin` aggregate joined this prefix to 25
+independent compressed map streams. Those streams now build from the normal
+PNG/PAL/tilemap inputs, and the prefix remains explicit original-position data.
+The misleading aggregate file is retired; see `maps/README.md` and
+`CODE_ROM_LAYOUT.md` for actual stream boundaries.
 
-The first is copied in fixed `0x60`-byte units into caller-owned palette
-staging storage; the second is selected by map-state type and read as 16-bit
-BG tilemap entries.  Neither path proves standalone record boundaries, a tile
-sheet, or an owning palette for every entry.  Their authoritative editable
-form therefore remains native binary rather than a guessed PNG or a JSON
-layout sidecar. Both tables are now linked directly from these source files at
-their original assembly positions. DE labels inside the tables remain at their
-original offsets, so its source is included in bounded pieces around them.
-The independent range test checks both sources against each original ROM;
-there is no ROM-template build input or post-link patch:
+`map_state_templates/shared/map_state_tilemap_templates.bin` remains a
+separate native data container. The map-state type selects data read as
+16-bit BG tilemap entries; individual record ownership is not yet fully
+resolved. Its source is still included at the original positions, retaining
+the DE labels around bounded pieces. It has no ROM-template build input or
+post-link patch. The original aggregate ranges are recorded below; the first
+row is historical, not an assertion that its entire range is one table:
 
 | Source | JP | US | EU | DE | Size |
 | --- | ---: | ---: | ---: | ---: | ---: |
