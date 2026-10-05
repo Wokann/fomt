@@ -69,6 +69,8 @@ SECTIONS
         src/intro_scene.o(.text.intro_scene_sprite_submission);
         src/intro_scene.o(.text);
         asm/new_game.o(.text);
+        src/new_game.o(.text);
+        asm/new_game.o(.text.new_game_after_fades);
         src/hardware.o(.text);
         src/hardware_allocator.o(.text);
         asm/hardware.o(.text.hardware_allocator_after);

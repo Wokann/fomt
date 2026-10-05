@@ -86,6 +86,8 @@ SECTIONS
         src/intro_scene.o(.text);
         . = 0x37A8; /* JP ROM 0x080037A8, independently matched */
         asm/new_game.o(.text);
+        src/new_game.o(.text);
+        asm/new_game.o(.text.new_game_after_fades);
         . = 0x7130; /* JP ROM 0x08007130, independently matched */
         src/hardware.o(.text);
         . = 0x7374; /* JP ROM 0x08007374, independently matched */
