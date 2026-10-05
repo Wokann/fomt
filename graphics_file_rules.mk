@@ -191,61 +191,9 @@ $(ACTOR_NATIVE_TILES): GFX_TILE_COUNT := 24398
 $(FARM_STATUS_WINTER_TILES_BIN): $(FARM_STATUS_WINTER_TILES_SOURCE) $(GFX_TOOL)
 	@$(GFX_TOOL) $(FARM_STATUS_WINTER_TILES_SOURCE) $(FARM_STATUS_WINTER_TILES_BIN)
 
-# These known native streams share one source-to-packed rule.  Only the codec
-# variant, tested encoder search ladder, and original slot size vary by asset.
-# Keeping those values as target metadata avoids one shell recipe per stream.
-FOMT_LZ_ENCODE_OUTPUTS := $(addsuffix .lz, \
-  $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_0.tilemap \
-  $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_1.tilemap \
-  $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_2.tilemap \
-  $(UI_SCENE_080A2BA4_SOURCE_DIR)/tiles.4bpp \
-  $(UI_SCENE_080AE7D0_MAP0_SOURCE) $(UI_SCENE_080AE7D0_MAP1_SOURCE) $(UI_SCENE_080AE7D0_TILES_SOURCE) \
-  $(UI_SCENE_080B7164_MAP0_SOURCE) $(UI_SCENE_080B7164_MAP1_SOURCE) $(UI_SCENE_080B7164_TILES_SOURCE) \
-  $(UI_SCENE_080C160C_MAP0_SOURCE) $(UI_SCENE_080C160C_MAP1_SOURCE) $(UI_SCENE_080C160C_TILES_SOURCE) \
-  $(UI_SCENE_080BCFAC_MAP0_SOURCE) $(UI_SCENE_080BCFAC_MAP1_SOURCE) $(UI_SCENE_080BCFAC_TILES_SOURCE) \
-  $(UI_SCENE_080B55D0_AUX_MAP0_SOURCE) $(UI_SCENE_080B55D0_AUX_MAP1_SOURCE) $(UI_SCENE_080B55D0_AUX_TILES_SOURCE) \
-  $(UI_SCENE_08054F40_TILES_SOURCE) $(UI_SCENE_0805AB08_TILES_SOURCE) \
-  $(INTRO_BACKGROUND_TILES_BIN) \
-  $(INTRO_INDEXED_ARCHIVE_SOURCE_BIN) \
-  graphics/intro_scene/shared/startup_visual/startup_tiles.4bpp \
-  graphics/ui/farm_status/shared/base_tiles.4bpp \
-  graphics/ui/seasonal_background/winter/winter_tiles.4bpp \
-  graphics/ui/seasonal_background/shared/nonwinter_tiles.4bpp \
-  $(FARM_STATUS_WINTER_TILES_BIN) \
-  $(UI_SCENE_080B55D0_MAIN_SOURCE) \
-  $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_00.tilemap \
-  $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_01.tilemap \
-  $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_02.tilemap \
-  $(INTRO_STARTUP_TILEMAPS_SOURCE_DIR)/startup_03.tilemap \
-  $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_00.tilemap \
-  $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_01.tilemap \
-  $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_02.tilemap \
-  $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_03.tilemap \
-  $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_04.tilemap \
-  $(FARM_STATUS_SECONDARY_TILEMAP_SOURCE_DIR)/secondary_05.tilemap \
-  $(UI_SCENE_08077810_LAYER0_SOURCE) $(UI_SCENE_08077810_LAYER1_SOURCE) \
-  $(UI_SCENE_08077810_JP_TILES) $(UI_SCENE_08077810_JP_LAYER1_SOURCE) \
-  $(addprefix $(FARM_HOUSE_VISUAL_SOURCE_DIR)/visual_,$(addsuffix .4bpp,00 01 02 03 04 05 06)) \
-  $(addprefix $(MAP_DATA_SOURCE_DIR)/map_,$(addsuffix /layer_0.4bpp,08 09 14 15 36 44 53)) \
-  $(addprefix $(MAP_DATA_SOURCE_DIR)/map_,$(addsuffix /layer_3.tilemap,14 15)) \
-  $(addprefix $(INTRO_OBJECTS_SOURCE_DIR)/object_,$(addsuffix .4bpp,00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19)) \
-  $(MAP_DATA_SOURCE_DIR)/map_08/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_08/layer_2.gbapal \
-  $(MAP_DATA_SOURCE_DIR)/map_09/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_09/layer_2.gbapal \
-  $(MAP_DATA_SOURCE_DIR)/map_09/layer_5.tilemap $(MAP_DATA_SOURCE_DIR)/map_31/layer_5.tilemap \
-  $(MAP_DATA_SOURCE_DIR)/map_08/layer_4.tilemap $(MAP_DATA_SOURCE_DIR)/map_08/layer_5.tilemap \
-  $(MAP_DATA_SOURCE_DIR)/map_09/layer_4.tilemap $(MAP_DATA_SOURCE_DIR)/map_31/layer_4.tilemap \
-  $(MAP_DATA_SOURCE_DIR)/map_44/layer_4.tilemap $(MAP_DATA_SOURCE_DIR)/map_45/layer_4.tilemap \
-  $(MAP_DATA_SOURCE_DIR)/map_15/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_36/layer_1.gbapal \
-  $(MAP_DATA_SOURCE_DIR)/map_44/layer_5.tilemap $(MAP_DATA_SOURCE_DIR)/map_45/layer_5.tilemap \
-  $(MAP_DATA_SOURCE_DIR)/map_14/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_14/layer_2.gbapal \
-  $(MAP_DATA_SOURCE_DIR)/map_14/layer_4.tilemap $(MAP_DATA_SOURCE_DIR)/map_14/layer_5.tilemap \
-  $(MAP_DATA_SOURCE_DIR)/map_15/layer_4.tilemap $(MAP_DATA_SOURCE_DIR)/map_08/layer_3.tilemap \
-  $(MAP_DATA_SOURCE_DIR)/map_44/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_44/layer_3.tilemap \
-  $(MAP_DATA_SOURCE_DIR)/map_45/layer_3.tilemap $(MAP_DATA_SOURCE_DIR)/map_31/layer_3.tilemap \
-  $(MAP_DATA_SOURCE_DIR)/map_09/layer_3.tilemap $(MAP_DATA_SOURCE_DIR)/map_40/layer_4.tilemap \
-  $(MAP_DATA_SOURCE_DIR)/map_15/layer_2.gbapal $(MAP_DATA_SOURCE_DIR)/map_40/layer_3.tilemap \
-  $(MAP_DATA_SOURCE_DIR)/map_53/layer_1.gbapal $(MAP_DATA_SOURCE_DIR)/map_15/layer_5.tilemap \
-  $(MAP_DATA_SOURCE_DIR)/map_40/layer_5.tilemap)
+# Native streams share one suffix rule. Codec variants, search ladders and
+# verified storage budgets are target metadata; scaninc discovers the actual
+# requested outputs from source references, without a second resource list.
 
 $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_0.tilemap.lz: FOMT_LZ_ENCODE := encode-lz3 125 0x28
 $(UI_SCENE_080A2BA4_SOURCE_DIR)/layer_1.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1234679 0xB0
@@ -321,6 +269,15 @@ $(INTRO_OBJECTS_SOURCE_DIR)/object_15.4bpp.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,
 $(INTRO_OBJECTS_SOURCE_DIR)/object_00.4bpp.lz: FOMT_LZ_ENCODE := encode-lz1 2,6,8,10 0x2FC
 $(INTRO_OBJECTS_SOURCE_DIR)/object_16.4bpp.lz: FOMT_LZ_ENCODE := encode-lz1 4,6,8,10 0x304
 $(INTRO_OBJECTS_SOURCE_DIR)/object_18.4bpp.lz: FOMT_LZ_ENCODE := encode-lz1 4,6,9,11 0x30C
+# This complete MapData run is bounded by still-raw neighboring resources.
+# All six natural encodings already match; retain their verified storage
+# budgets until those neighboring references are also relocatable.
+$(MAP_DATA_SOURCE_DIR)/map_00/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,9,14 0x3BB0 --greedy --tie=exchange --filter=1
+$(MAP_DATA_SOURCE_DIR)/map_00/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 1,5,4 0xF4 --tie=first --filter=3
+$(MAP_DATA_SOURCE_DIR)/map_00/layer_2.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,6 0xF4
+$(MAP_DATA_SOURCE_DIR)/map_00/layer_3.tilemap.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,10,14 0x7AC --greedy --tie=exchange
+$(MAP_DATA_SOURCE_DIR)/map_00/layer_4.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 8,10,13 0x488 --tie=quick --filter=4
+$(MAP_DATA_SOURCE_DIR)/map_00/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-lz2 1,2,8,10,11,12,11 0x90 --filter=4
 $(MAP_DATA_SOURCE_DIR)/map_08/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-lz3 1,5,5 0xE0
 $(MAP_DATA_SOURCE_DIR)/map_08/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,9,14 0 --greedy --tie=exchange --filter=1
 $(MAP_DATA_SOURCE_DIR)/map_09/layer_0.4bpp.lz: FOMT_LZ_ENCODE := encode-huff8-lz3 4,9,13 0 --greedy --tie=exchange --filter=1
@@ -363,8 +320,8 @@ $(MAP_DATA_SOURCE_DIR)/map_53/layer_1.gbapal.lz: FOMT_LZ_ENCODE := encode-huff4-
 $(MAP_DATA_SOURCE_DIR)/map_15/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 8,10,14 0 --tie=reverse-select
 $(MAP_DATA_SOURCE_DIR)/map_40/layer_5.tilemap.lz: FOMT_LZ_ENCODE := encode-huff4-lz3 2,5,7 0 --tie=shell
 
-$(FOMT_LZ_ENCODE_OUTPUTS): %.lz: % $(FOMT_LZ_TOOL)
-	@$(FOMT_LZ_TOOL) $(firstword $(FOMT_LZ_ENCODE)) $< $@ $(wordlist 2,99,$(FOMT_LZ_ENCODE))
+%.lz: % $(FOMT_LZ_TOOL)
+	@$(if $(FOMT_LZ_ENCODE),$(FOMT_LZ_TOOL) $(firstword $(FOMT_LZ_ENCODE)) $< $@ $(wordlist 2,99,$(FOMT_LZ_ENCODE)),$(error Missing FoMT codec parameters for $@))
 
 $(UI_SCENE_08077810_CHARACTER_PACKED): $(UI_SCENE_08077810_CHARACTER_TILES) $(UI_SCENE_08077810_CHARACTER_TRAILER) $(FOMT_LZ_TOOL)
 	@$(FOMT_LZ_TOOL) encode-huff8-lz3 $< $@ 6,10,12 0 --greedy --tie=exchange --tail=$(UI_SCENE_08077810_CHARACTER_TRAILER)

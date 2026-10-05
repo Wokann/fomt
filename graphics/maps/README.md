@@ -58,11 +58,52 @@ map_14/layer_3、map_15/layer_0 和 map_15/layer_3 复用通用编码器，
 由当前频率建树，规范码再按深度交换排序，未添加资源专用排列或
 补丁。三份旧模板移除；这不扩大对后续 230 份原始资源的完成量。
 
-The `gMapData` table references 272 distinct visual streams overall. The
-remaining 230 are still present as original bytes in the assembly source;
-they are **not** covered by this editable pipeline yet. In particular, the
-next stream after this run ends at the start of a separate VRAM resource,
-not at the following MapData pointer. Treating all 272 pointers as one
+## Next source-backed block: map 00
+
+The six visual streams for map `00` now use the same source-adjacent build
+workflow. Their physical order is `0, 1, 3, 4, 5, 2`, not the pointer-field
+order. The complete block contains 19,036 packed bytes and 101,312 decoded
+bytes, identical in all four regions:
+
+| Region | Start | End |
+| --- | ---: | ---: |
+| JP | `0x42188C` | `0x4262E8` |
+| US | `0x69B730` | `0x6A018C` |
+| EU | `0x69B78C` | `0x6A01E8` |
+| DE | `0x4227CC` | `0x427228` |
+
+`map_00/layer_0.png` is an indexed 128-by-512 native tile atlas. Its first
+palette bank previews the tile indices only; the final map's palette-bank
+selection and composition remain in its independent tilemaps. Both 240-colour
+palettes are authored separately as `layer_1.pal` and `layer_2.pal`, never
+derived from the tile PNG. The existing three `.tilemap` files remain native
+u16 map records. The old tracked `.4bpp` and `.gbapal` files are now generated
+artifacts, using the normal gbagfx suffix rules.
+
+Raw/Huffman LZ2/LZ3, differential filters and frequency-derived Huffman tie
+policies all use the existing C encoder. Every natural packed output already
+matches the original; no original stream is a build input or a packing
+template. Each stream retains its verified storage budget so an oversize edit
+fails before shifting unresolved neighbors. All six real payload labels are
+defined directly at their first byte, removing the JP/US base-offset bindings
+and EU `+4` `.set` adjustments for this block. No new input section, helper
+manifest or link-time patch was added.
+
+The `.lz` suffix rule now builds the outputs discovered from source references,
+without a second list of output filenames. Only the necessary codec parameters
+are target metadata; missing parameters are an explicit build error. PNG/PAL
+byte round trips and three edits per decoded source verify the source path.
+All twelve occurrences of these six payload-start pointers in each complete
+ROM correspond exactly to `map_data.o`'s `R_ARM_ABS32` relocations. Complete
+JP/US/EU/DE WSL `-j4` builds, byte comparisons and SHA-1 checks pass. This
+pointer audit covers this block only, not the remaining raw streams.
+
+The `gMapData` table references 272 distinct visual streams overall. These two
+blocks now cover 48 of them. The remaining 224 are still present as original
+bytes in the assembly source; they are **not** covered by this editable
+pipeline yet. In particular, the first 42-stream run ends at the start of
+a separate VRAM resource, not at the following MapData pointer. Treating all
+272 pointers as one
 uninterrupted archive would overwrite that unrelated resource. Future runs
 must be bounded from the actual decoder-consumed length and intervening ROM
 labels before moving them into this direct-link workflow.
