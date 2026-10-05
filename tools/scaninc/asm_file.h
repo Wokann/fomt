@@ -22,7 +22,9 @@
 #define ASM_FILE_H
 
 #include <cctype>
+#include <map>
 #include <string>
+#include <vector>
 #include "scaninc.h"
 
 enum class IncDirectiveType
@@ -35,7 +37,7 @@ enum class IncDirectiveType
 class AsmFile
 {
 public:
-    AsmFile(std::string path);
+    AsmFile(std::string path, std::map<std::string, bool> const& definitions = {});
     ~AsmFile();
     IncDirectiveType ReadUntilIncDirective(std::string& path);
 
@@ -45,6 +47,19 @@ private:
     int m_size = 0;
     int m_lineNum = 1;
     std::string m_path;
+    std::map<std::string, bool> m_definitions;
+
+    struct Conditional
+    {
+        bool parent;
+        bool active;
+        bool remaining;
+        bool hasElse;
+    };
+    std::vector<Conditional> m_conditionals;
+
+    bool IsActive() const;
+    bool ReadConditionalDirective();
 
     int GetChar()
     {

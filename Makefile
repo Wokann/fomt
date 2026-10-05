@@ -79,6 +79,7 @@ CPPFLAGS := $(INCFLAGS) -I . -iquote . -iquote include -Wno-trigraphs -fno-excep
 CFLAGS   := -g -mthumb-interwork -Wimplicit -Wparentheses -Werror -O2 -fhex-asm -fdata-sections
 CXXFLAGS := -quiet -fno-exceptions -fno-rtti -fvtable-thunks $(CFLAGS)
 ASFLAGS  := $(INCFLAGS) -I . -I include -mcpu=arm7tdmi --defsym $(REGION_DEFINE)=1
+SCANINC_DEFINES := -D$(REGION_DEFINE) $(addprefix -U,$(filter-out $(REGION_DEFINE),REGION_JP REGION_US REGION_EU REGION_DE))
 
 ROM := $(BUILD_NAME).gba
 ELF := $(ROM:.gba=.elf)
@@ -335,9 +336,9 @@ $(BUILD_DIR)/src/staff_credits.o: $(STAFF_CREDITS_SOURCE)
 
 # Scan before assembly so a missing generated resource can be built from its
 # authored source. Nested include edits also update the dependency graph.
-$(BUILD_DIR)/%.d: %.s $(SCANINC)
+$(BUILD_DIR)/%.d: %.s $(SCANINC) Makefile config.mk
 	@mkdir -p $(dir $@)
-	@$(SCANINC) -M $@ $(INCFLAGS) -I . -I include $<
+	@$(SCANINC) -M $@ $(SCANINC_DEFINES) $(INCFLAGS) -I . -I include $<
 
 # ASM object
 $(BUILD_DIR)/%.o: %.s $(BUILD_DIR)/%.d

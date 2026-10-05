@@ -56,7 +56,7 @@ std::string GetDir(std::string& path)
         return std::string("");
 }
 
-SourceFile::SourceFile(std::string path)
+SourceFile::SourceFile(std::string path, std::map<std::string, bool> const& definitions)
 {
     m_file_type = GetFileType(path);
 
@@ -70,7 +70,7 @@ SourceFile::SourceFile(std::string path)
     }
     else
     {
-        AsmFile file(path);
+        AsmFile file(path, definitions);
         std::set<std::string> incbins;
         std::set<Incgfx> incgfxs;
         std::set<std::string> includes;

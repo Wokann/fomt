@@ -23,7 +23,8 @@
 #include "scaninc.h"
 #include "asm_file.h"
 
-AsmFile::AsmFile(std::string path)
+AsmFile::AsmFile(std::string path, std::map<std::string, bool> const& definitions)
+    : m_definitions(definitions)
 {
     m_path = path;
 
@@ -62,6 +63,73 @@ AsmFile::~AsmFile()
     if (m_size > 0) delete[] m_buffer;
 }
 
+bool AsmFile::IsActive() const
+{
+    return m_conditionals.empty() || m_conditionals.back().active;
+}
+
+bool AsmFile::ReadConditionalDirective()
+{
+    int end = m_pos;
+    while (end < m_size && std::isalpha(static_cast<unsigned char>(m_buffer[end])))
+        end++;
+    std::string directive(m_buffer + m_pos, end - m_pos);
+    for (char& c : directive)
+        c = std::tolower(static_cast<unsigned char>(c));
+
+    bool startsIf = directive.compare(0, 2, "if") == 0;
+    if (!startsIf && directive != "else" && directive != "elseif" && directive != "endif")
+        return false;
+    if (end < m_size && !std::isspace(static_cast<unsigned char>(m_buffer[end]))
+            && m_buffer[end] != '@' && m_buffer[end] != ';')
+        return false;
+    m_pos = end;
+
+    if (directive == "endif")
+    {
+        if (m_conditionals.empty())
+            FATAL_INPUT_ERROR("unmatched .endif\n");
+        m_conditionals.pop_back();
+        return true;
+    }
+    if (directive == "else" || directive == "elseif")
+    {
+        if (m_conditionals.empty() || m_conditionals.back().hasElse)
+            FATAL_INPUT_ERROR("unexpected .%s\n", directive.c_str());
+        Conditional& condition = m_conditionals.back();
+        condition.active = condition.parent && condition.remaining;
+        // An unevaluated .elseif expression can be either true or false.
+        // Keep its branch and all remaining alternatives conservatively.
+        if (directive == "else")
+        {
+            condition.remaining = false;
+            condition.hasElse = true;
+        }
+        return true;
+    }
+
+    bool mayTake = true;
+    bool maySkip = true;
+    if (directive == "ifdef" || directive == "ifndef" || directive == "ifnotdef")
+    {
+        SkipTabsAndSpaces();
+        int start = m_pos;
+        while (m_pos < m_size && (std::isalnum(static_cast<unsigned char>(m_buffer[m_pos]))
+                                 || m_buffer[m_pos] == '_'))
+            m_pos++;
+        std::string name(m_buffer + start, m_pos - start);
+        auto known = m_definitions.find(name);
+        if (known != m_definitions.end())
+        {
+            mayTake = directive == "ifdef" ? known->second : !known->second;
+            maySkip = !mayTake;
+        }
+    }
+    bool parent = IsActive();
+    m_conditionals.push_back({parent, parent && mayTake, maySkip, false});
+    return true;
+}
+
 IncDirectiveType AsmFile::ReadUntilIncDirective(std::string &path)
 {
     // At the beginning of each loop iteration, the current file position
@@ -77,7 +145,15 @@ IncDirectiveType AsmFile::ReadUntilIncDirective(std::string &path)
         {
             m_pos++;
 
-            if (MatchIncDirective("incbin", path))
+            if (c == '.' && ReadConditionalDirective())
+            {
+                // Conditionals are tracked even inside an inactive branch.
+            }
+            else if (!IsActive())
+            {
+                // Do not parse a filename from an excluded directive.
+            }
+            else if (MatchIncDirective("incbin", path))
                 incDirectiveType = IncDirectiveType::Incbin;
             else if (MatchIncDirective("include", path))
                 incDirectiveType = IncDirectiveType::Include;
@@ -88,7 +164,11 @@ IncDirectiveType AsmFile::ReadUntilIncDirective(std::string &path)
             int c = GetChar();
 
             if (c == -1)
+            {
+                if (!m_conditionals.empty())
+                    FATAL_INPUT_ERROR("unterminated assembly conditional\n");
                 return incDirectiveType;
+            }
 
             if (c == ';' || c == '@')
             {

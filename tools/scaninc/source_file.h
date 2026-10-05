@@ -40,7 +40,7 @@ class SourceFile
 {
 public:
 
-    SourceFile(std::string path);
+    SourceFile(std::string path, std::map<std::string, bool> const& definitions = {});
     ~SourceFile();
     SourceFile(SourceFile const&) = delete;
     SourceFile(SourceFile&&) = delete;

@@ -44,7 +44,7 @@ bool CanOpenFile(std::string path)
     return true;
 }
 
-const char *const USAGE = "Usage: scaninc [-I INCLUDE_PATH] [-M DEPENDENCY_OUT_PATH] [-g PATH] FILE_PATH\n";
+const char *const USAGE = "Usage: scaninc [-I INCLUDE_PATH] [-M DEPENDENCY_OUT_PATH] [-g PATH] [-D NAME] [-U NAME] FILE_PATH\n";
 
 int main(int argc, char **argv)
 {
@@ -54,6 +54,7 @@ int main(int argc, char **argv)
     std::map<std::string, std::pair<std::string, std::string>> dependencies_gfx_rules;
 
     std::vector<std::string> includeDirs;
+    std::map<std::string, bool> definitions;
 
     bool makeformat = false;
     std::string make_outfile;
@@ -79,6 +80,21 @@ int main(int argc, char **argv)
                 includeDir += '/';
             }
             includeDirs.push_back(includeDir);
+        }
+        else if (arg.substr(0, 2) == "-D" || arg.substr(0, 2) == "-U")
+        {
+            bool defined = arg[1] == 'D';
+            std::string name = arg.substr(2);
+            if (name.empty())
+            {
+                argc--;
+                argv++;
+                name = std::string(argv[0]);
+            }
+            if (name.empty() || (!std::isalpha(static_cast<unsigned char>(name[0])) && name[0] != '_')
+                    || name.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_") != std::string::npos)
+                FATAL_ERROR("Invalid -D/-U symbol name \"%s\".\n", name.c_str());
+            definitions[name] = defined;
         }
         else if(arg.substr(0, 2) == "-M")
         {
@@ -117,7 +133,7 @@ int main(int argc, char **argv)
     while (!filesToProcess.empty())
     {
         std::string filePath = filesToProcess.front();
-        SourceFile file(filePath);
+        SourceFile file(filePath, definitions);
         filesToProcess.pop();
 
         includeDirs.push_back(file.GetSrcDir());
