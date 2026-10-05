@@ -16,6 +16,11 @@ void func_08050D3C(u8 * const * owner, struct HardwareCoreState * state,
     struct HardwareSpriteBufferState * sprites, struct HardwareDisplayState * display,
     u8 * links, u8 * manager, struct MusicPlayer ** music);
 
+// Existing UI adapter ABI. The menu supplies a text address as arg_r1;
+// the payload's other scalar argument domains are still unresolved.
+void func_08050DC8(void * const * object, u32 arg_r1, u16 arg_r2,
+    u32 arg_r3) SECTION(".text.ui_state_adapters");
+
 EXTERN_C_END
 
 enum

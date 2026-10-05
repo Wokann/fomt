@@ -1,4 +1,5 @@
 #include "new_game.hh"
+#include "new_game_data.hh"
 #include "hardware_bootstrap.hh"
 #include "hardware_state_accessors.hh"
 #include "hardware_blend_object.hh"
@@ -51,6 +52,41 @@ void func_08003C28(NewGameMenuCore * core)
     u8 ** owner = &core->unk_10;
     MusicPlayer ** music = &core->music_players[0];
     func_08050D3C(owner, state, sprites, display, links, manager, music);
+}
+
+void func_08003EEC(NewGameMenuCore * core)
+{
+    char const * text = nullptr;
+    switch (core->active_row) {
+    case 0:
+        text = core->choices[0] != 0 ? gText_NewGameStatus_ReadDiary :
+            gText_NewGameStatus_WriteDiary;
+        break;
+    case 1: {
+        bool empty = core->save_slot_status[core->choices[1]].IsEmpty();
+        if (!empty)
+            text = core->save_slot_status[core->choices[1]].Data();
+        else
+            text = gText_NewGameStatus_NoSavedData;
+        break;
+    }
+    case 2:
+        text = gText_NewGameHelp_Controls;
+        break;
+    case 3:
+        text = gText_NewGameHelp_ClockDisplay;
+        break;
+    case 4:
+        text = gText_NewGameHelp_FaceDisplay;
+        break;
+    case 5:
+        text = gText_NewGameHelp_NameDisplay;
+        break;
+    }
+    void * const * owner = reinterpret_cast<void * const *>(&core->unk_10);
+    func_08050DC8(owner,
+        reinterpret_cast<u32>(text != nullptr ? text : gText_NewGameMenu_Blank),
+        0, 0);
 }
 
 void func_08004BDC(NewGameMenuScene * scene, int flags)

@@ -10,6 +10,17 @@
 
 struct MusicPlayer;
 
+// Runtime save-summary text, filled by func_08003788 and selected by the
+// menu's second choice. These two 128-byte buffers are not ROM literals.
+struct NewGameMenuSaveSlotStatus {
+    char text[0x80];
+
+    bool IsEmpty() const { return text[0] == '\0'; }
+    char const * Data() const { return text; }
+};
+
+typedef char NewGameMenuSaveSlotStatusSizeCheck[sizeof(NewGameMenuSaveSlotStatus) == 0x80 ? 1 : -1];
+
 // The menu constructor allocates 0x1A0 bytes. Only fields confirmed by its
 // constructor, cleanup, and hardware/UI consumers are modeled here; the
 // remaining payload is not yet a recovered high-level class.
@@ -22,7 +33,12 @@ struct NewGameMenuCore : HardwareBootstrap {
     HardwareStateEntry state_entry;
     HardwareResourceEntry resource_entry;
     u32 unk_5C[2];
-    u8 unk_64[0x13C];
+    u8 unk_64[0x1C];
+    u32 active_row;
+    u8 choices[6];
+    u8 unk_8A[0x0E];
+    NewGameMenuSaveSlotStatus save_slot_status[2];
+    u8 unk_198[8];
 };
 
 typedef char NewGameMenuCoreSizeCheck[sizeof(NewGameMenuCore) == 0x1A0 ? 1 : -1];
@@ -31,6 +47,9 @@ typedef char NewGameMenuCoreMusicCheck[offsetof(NewGameMenuCore, music_players) 
 typedef char NewGameMenuCoreResourcesCheck[offsetof(NewGameMenuCore, resources) == 0x1C ? 1 : -1];
 typedef char NewGameMenuCoreStateEntryCheck[offsetof(NewGameMenuCore, state_entry) == 0x4C ? 1 : -1];
 typedef char NewGameMenuCoreResourceEntryCheck[offsetof(NewGameMenuCore, resource_entry) == 0x54 ? 1 : -1];
+typedef char NewGameMenuCoreActiveRowCheck[offsetof(NewGameMenuCore, active_row) == 0x80 ? 1 : -1];
+typedef char NewGameMenuCoreChoicesCheck[offsetof(NewGameMenuCore, choices) == 0x84 ? 1 : -1];
+typedef char NewGameMenuCoreSaveSlotStatusCheck[offsetof(NewGameMenuCore, save_slot_status) == 0x98 ? 1 : -1];
 
 // Original ABI tables contain two metadata words before their callbacks.
 typedef void (*NewGameSceneVTableFunction)(void);
@@ -54,6 +73,10 @@ EXTERN_C
 void func_08003B40(struct HardwareBootstrap * core);
 void func_08003BB4(struct HardwareBootstrap * core);
 void func_08003C28(struct NewGameMenuCore * core);
+
+// The surrounding label graphics and OAM updates remain assembly.
+void func_08003EEC(struct NewGameMenuCore * core)
+    SECTION(".text.new_game_status_update");
 
 // The menu core's run routine and the two menu constructors remain assembly.
 SceneTransitionOwner func_08004570(struct NewGameMenuCore * core);

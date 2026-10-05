@@ -83,9 +83,6 @@ EC void func_08050DA0(void * const * object, u32 arg_r1, u32 arg_r2)
     SECTION(".text.ui_state_adapters");
 EC void func_08050DB4(void * const * object, u32 arg_r1, u16 arg_r2)
     SECTION(".text.ui_state_adapters");
-EC void func_08050DC8(void * const * object, u32 arg_r1, u16 arg_r2,
-    u32 arg_r3) SECTION(".text.ui_state_adapters");
-
 EC u8 func_08050DD8(void * const * object)
     SECTION(".text.ui_state_adapters");
 EC u8 func_08050DE4(void * const * object)
