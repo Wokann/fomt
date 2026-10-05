@@ -1961,7 +1961,7 @@ func_0803B4DC:
 .Ljp_0803B3BC:
     ldr	r0, [r5, #4]
     adds	r0, #20
-    bl method_08009AF4__C4Farm
+    bl GetName__C4Farm
     adds	r5, r0, #0
     b .Ljp_0803B406
 .Ljp_0803B3C8:
@@ -10948,7 +10948,7 @@ func_0803B4DC:
 .Leu_0803B63C:
     ldr	r0, [r5, #4]
     adds	r0, #20
-    bl method_08009AF4__C4Farm
+    bl GetName__C4Farm
     adds	r5, r0, #0
     b .Leu_0803B686
 .Leu_0803B648:
@@ -20007,7 +20007,7 @@ func_0803B4DC:
 .Lde_0803B53C:
     ldr	r0, [r5, #4]
     adds	r0, #20
-    bl method_08009AF4__C4Farm
+    bl GetName__C4Farm
     adds	r5, r0, #0
     b .Lde_0803B586
 .Lde_0803B548:
@@ -29044,7 +29044,7 @@ func_0803B4DC:
 .Lus_0803B628:
     ldr	r0, [r5, #4]
     adds	r0, #20
-    bl method_08009AF4__C4Farm
+    bl GetName__C4Farm
     adds	r5, r0, #0
     b .Lus_0803B672
 .Lus_0803B634:

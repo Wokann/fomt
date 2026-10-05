@@ -341,7 +341,7 @@ func_08003788:
 .Ljp_08003A44:
     mov	r0, sl
     adds	r0, #20
-    bl method_08009AF4__C4Farm
+    bl GetName__C4Farm
     mov	r8, r0
     mov	r4, r8
     adds	r0, r6, #0
@@ -7260,7 +7260,7 @@ func_08003788: @ 0x08003788
 .L08003A2A:
     ldr r0, [sp, #0x24]
     adds r0, #0x14
-    bl method_08009AF4__C4Farm
+    bl GetName__C4Farm
     mov r8, r0
     mov r4, r8
     adds r0, r6, #0

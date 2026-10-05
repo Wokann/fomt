@@ -9708,7 +9708,7 @@ func_08014C70:
     adds r0, #140
     ldr r0, [r0, #0]
     adds r0, #20
-    bl method_08009AF4__C4Farm
+    bl GetName__C4Farm
     mov r8, r0
     mov r6, r9
     mov r4, r8
@@ -10297,7 +10297,7 @@ func_08015150:
     adds	r0, #140
     ldr	r0, [r0, #0]
     adds	r0, #20
-    bl method_08009AF4__C4Farm
+    bl GetName__C4Farm
     mov	r8, r0
     mov	r6, r9
     mov	r4, r8
@@ -33101,7 +33101,7 @@ func_08014D9C: @ 0x08014D9C
     adds r0, #0x8c
     ldr r0, [r0]
     adds r0, #0x14
-    bl method_08009AF4__C4Farm
+    bl GetName__C4Farm
     mov r8, r0
     mov r4, r8
     adds r0, r6, #0
@@ -33853,7 +33853,7 @@ func_0801531C: @ 0x0801531C
     adds r0, #0x8c
     ldr r0, [r0]
     adds r0, #0x14
-    bl method_08009AF4__C4Farm
+    bl GetName__C4Farm
     mov r8, r0
     mov r4, r8
     adds r0, r6, #0

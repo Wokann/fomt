@@ -25036,7 +25036,7 @@ func_0805FF14:
 	mov sl, r2
 	mov r0, sl
 	adds r0, #0x14
-	bl method_08009AF4__C4Farm
+	bl GetName__C4Farm
 	adds r6, r0, #0
 	add r5, sp, #0x20
 	bl strlen
@@ -76879,7 +76879,7 @@ func_0807865C: @ 0x0807865C
 	bls .Ljp_080787DE
 	ldr r0, [r7, #8]
 	adds r0, #0x14
-	bl method_08009AF4__C4Farm
+	bl GetName__C4Farm
 	mov sb, r0
 	ldr r6, [sp, #0x8c]
 	mov r4, sb
@@ -76959,7 +76959,7 @@ func_0807865C: @ 0x0807865C
 .Ljp_080788DA:
 	ldr r0, [r7, #8]
 	adds r0, #0x14
-	bl method_08009AF4__C4Farm
+	bl GetName__C4Farm
 	mov sb, r0
 	ldr r6, [sp, #0x84]
 	mov r4, sb
@@ -80505,7 +80505,7 @@ func_0807A708:
 	mov r2, r8
 	ldr r0, [r2, #8]
 	adds r0, #0x14
-	bl method_08009AF4__C4Farm
+	bl GetName__C4Farm
 	adds r0, r0, r4
 	ldrb r0, [r0]
 	strb r0, [r5]
@@ -80517,7 +80517,7 @@ func_0807A708:
 	mov r1, r8
 	ldr r0, [r1, #8]
 	adds r0, #0x14
-	bl method_08009AF4__C4Farm
+	bl GetName__C4Farm
 	adds r0, r0, r4
 	ldrb r0, [r0]
 	cmp r0, #0
@@ -102452,7 +102452,9 @@ func_08086A08:
     .byte 0x37, 0x48, 0x80, 0x46, 0x28, 0x1C, 0x4B, 0xF0, 0x05, 0xFC, 0x2E, 0x18, 0x7F, 0x21, 0x0D, 0x1A
     .byte 0x00, 0x2D, 0x0E, 0xD0, 0x40, 0x46, 0x4B, 0xF0, 0xFD, 0xFB, 0x04, 0x1C, 0xAC, 0x42, 0x00, 0xD9
     .byte 0x2C, 0x1C, 0x30, 0x1C, 0x41, 0x46, 0x22, 0x1C, 0x4B, 0xF0, 0x02, 0xFB, 0x30, 0x19, 0x49, 0x46
-    .byte 0x01, 0x70, 0xB8, 0x68, 0x14, 0x30, 0x81, 0xF7, 0xD3, 0xFF, 0x81, 0x46, 0x26, 0x4A, 0xBC, 0x18
+    .byte 0x01, 0x70, 0xB8, 0x68, 0x14, 0x30
+    bl GetName__C4Farm
+    .byte 0x81, 0x46, 0x26, 0x4A, 0xBC, 0x18
     .byte 0xC8, 0x46, 0x20, 0x1C, 0x4B, 0xF0, 0xE6, 0xFB, 0x26, 0x18, 0x7F, 0x21, 0x0D, 0x1A, 0x00, 0x2D
     .byte 0x0E, 0xD0, 0x40, 0x46, 0x4B, 0xF0, 0xDE, 0xFB, 0x04, 0x1C, 0xAC, 0x42, 0x00, 0xD9, 0x2C, 0x1C
     .byte 0x30, 0x1C, 0x49, 0x46, 0x22, 0x1C, 0x4B, 0xF0, 0xE3, 0xFA, 0x31, 0x19, 0x00, 0x20, 0x08, 0x70
@@ -118022,7 +118024,7 @@ func_08094844:
     ldr r1, [r1, #4]
     str r1, [sp]
     adds r0, #0x14
-    bl method_08009AF4__C4Farm
+    bl GetName__C4Farm
     mov r9, r0
     ldr r0, [r4]
     ldr r1, .Ljp_08094398
@@ -183871,7 +183873,7 @@ func_0805FF14: @ 0x0805FF14
 	mov sl, r2
 	mov r0, sl
 	adds r0, #0x14
-	bl method_08009AF4__C4Farm
+	bl GetName__C4Farm
 	adds r6, r0, #0
 	add r5, sp, #0x20
 	bl strlen
@@ -236482,7 +236484,7 @@ func_0807865C: @ 0x0807865C
 	bls .L080787DE
 	ldr r0, [r7, #8]
 	adds r0, #0x14
-	bl method_08009AF4__C4Farm
+	bl GetName__C4Farm
 	mov sb, r0
 	ldr r6, [sp, #0x8c]
 	mov r4, sb
@@ -236562,7 +236564,7 @@ func_0807865C: @ 0x0807865C
 .L080788DA:
 	ldr r0, [r7, #8]
 	adds r0, #0x14
-	bl method_08009AF4__C4Farm
+	bl GetName__C4Farm
 	mov sb, r0
 	ldr r6, [sp, #0x84]
 	mov r4, sb
@@ -240042,7 +240044,7 @@ func_0807A708: @ 0x0807A708
 	mov r2, r8
 	ldr r0, [r2, #8]
 	adds r0, #0x14
-	bl method_08009AF4__C4Farm
+	bl GetName__C4Farm
 	adds r0, r0, r4
 	ldrb r0, [r0]
 	strb r0, [r5]
@@ -240054,7 +240056,7 @@ func_0807A708: @ 0x0807A708
 	mov r1, r8
 	ldr r0, [r1, #8]
 	adds r0, #0x14
-	bl method_08009AF4__C4Farm
+	bl GetName__C4Farm
 	adds r0, r0, r4
 	ldrb r0, [r0]
 	cmp r0, #0
@@ -266109,7 +266111,7 @@ sub_08087710: @ 0x08087710
 	@ Keep this as the original Thumb control flow, not a binary replacement.
 	ldr r0, [r7, #8]
 	adds r0, #0x14
-	bl method_08009AF4__C4Farm
+	bl GetName__C4Farm
 	mov sb, r0
 	ldr r2, .L080880B4 @ =0x00003AB4
 	adds r6, r7, r2
@@ -266298,7 +266300,7 @@ sub_08087710: @ 0x08087710
 	.else
 	ldr r0, [r7, #8]
 	adds r0, #0x14
-	bl method_08009AF4__C4Farm
+	bl GetName__C4Farm
 	mov sb, r0
 	ldr r2, .L080880B4 @ =0x00003AB4
 	adds r4, r7, r2
@@ -290088,7 +290090,7 @@ func_08094844: @ 0x08094844
 	ldr r1, [r1, #4]
 	str r1, [sp]
 	adds r0, #0x14
-	bl method_08009AF4__C4Farm
+	bl GetName__C4Farm
 	mov sb, r0
 	ldr r0, [r4]
 	ldr r1, .L080948D4 @ =0x00001BD8
