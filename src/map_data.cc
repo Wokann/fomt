@@ -3,7 +3,8 @@
 
 extern "C" {
 
-// These labels point into still-raw map assets.  Their payload types are not decoded yet.
+// Compressed map visual payloads. Decoded tiles, palettes and maps build from
+// editable sources where recovered; the remaining streams keep their raw bytes.
 extern u8 const gUnk_MapDataResource_000[];
 extern u8 const gUnk_MapDataResource_001[];
 extern u8 const gUnk_MapDataResource_002[];

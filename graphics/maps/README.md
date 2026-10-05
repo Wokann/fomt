@@ -56,7 +56,7 @@ comparisons verify output; they do not prove arbitrary layout changes safe.
 这段连续地图资源共 42 份，现已全部独立从源码编码。最后三份
 map_14/layer_3、map_15/layer_0 和 map_15/layer_3 复用通用编码器，
 由当前频率建树，规范码再按深度交换排序，未添加资源专用排列或
-补丁。三份旧模板移除；这不扩大对后续 230 份原始资源的完成量。
+补丁。三份旧模板移除；该批只覆盖 42 份，后续资源的当前进度见下方。
 
 ## Next source-backed block: map 00
 
@@ -98,8 +98,58 @@ ROM correspond exactly to `map_data.o`'s `R_ARM_ABS32` relocations. Complete
 JP/US/EU/DE WSL `-j4` builds, byte comparisons and SHA-1 checks pass. This
 pointer audit covers this block only, not the remaining raw streams.
 
-The `gMapData` table references 272 distinct visual streams overall. These two
-blocks now cover 48 of them. The remaining 224 are still present as original
+## Following continuous run: shared and interleaved map resources
+
+The next physical run contains 98 distinct streams, 157,588 packed bytes and
+687,704 decoded bytes. All four regions contain the same complete stream
+bytes, bounded by the existing DE physical payload labels and verified against
+the other regions, rather than guessed from successive map numbers:
+
+| Region | Start | End |
+| --- | ---: | ---: |
+| JP | `0x4262E8` | `0x44CA7C` |
+| US | `0x6A018C` | `0x6C6920` |
+| EU | `0x6A01E8` | `0x6C697C` |
+| DE | `0x427228` | `0x44D9BC` |
+
+Map `01` immediately follows map `00`. Maps `10`/`12` and `11`/`13` share
+tiles and palettes, but their individual tilemaps occupy different positions
+inside this larger run. Other maps share tiles or use the same palette in both
+palette fields. Each unique payload keeps one physical label and one source;
+the common `gMapData` table continues to reference it directly. No duplicate
+asset, artificial alias, new archive manifest or additional section is needed.
+
+Ten new 128-by-512 indexed PNG atlases preserve native tile indices. Thirteen
+independent 240-colour JASC `.pal` files preserve the complete BGR555 palettes;
+the PNGs preview only the first palette bank. The other 75 existing `.tilemap`
+files remain native u16 records. The 23 old tracked `.4bpp`/`.gbapal` inputs
+are now ignored generated files, all with byte-identical PNG/PAL round trips.
+The existing suffix rules and dependency scanner discover every new `.lz`
+reference; only ordinary codec parameters are added as target metadata.
+
+All 98 natural encodings already match the retail bytes without slot padding,
+original Huffman tables or packing templates. Raw/Huffman LZ0/LZ2/LZ3 and
+four-bit/16-bit differential filters reuse the existing C tool and its generic
+frequency-derived tie policies. Three source mutations per stream, 294 checks
+in total, encode and decode losslessly. Verified original storage budgets still
+reject oversize edits before shifting unresolved neighboring resources.
+
+The JP/US base-offset definitions and EU `+4` adjustments are removed: 294
+`.set` aliases become real labels at the first payload byte in the original
+assembly positions. Each region has 141 actual payload-start pointer references,
+all matching `map_data.o`'s real `R_ARM_ABS32` relocations. The whole-ROM word
+scan also finds three non-pointer coincidences: US `0x231612` lies among
+`gM4aWaveData_073`'s signed PCM samples; DE `0xCFCD3` and `0xCFDD3` straddle
+the reachable Thumb sequence `ldr r0,[sp,#32]; add r0,r8; ldr r1,[sp,#32]`
+inside `func_080CFC7C`. These sample/instruction bytes are not patched.
+
+Full JP/US/EU/DE WSL `-j4` builds, complete-ROM byte/SHA-1 comparisons and
+actual generated-asset dependency checks pass. This audit covers the selected
+98 streams; it does not prove interior pointer references or the remaining raw
+resources safe for arbitrary relocation.
+
+The `gMapData` table references 272 distinct visual streams overall. These three
+blocks now cover 146 of them. The remaining 126 are still present as original
 bytes in the assembly source; they are **not** covered by this editable
 pipeline yet. In particular, the first 42-stream run ends at the start of
 a separate VRAM resource, not at the following MapData pointer. Treating all
