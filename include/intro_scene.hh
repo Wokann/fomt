@@ -102,7 +102,11 @@ struct IntroSceneCore
     IndexedResourceArchive small_archive;
     IndexedResourceArchive actor_archive;
     IntroSceneResourceState resources[14];
-    u32 unk_6C60;
+    // Initialization stores a halfword; the next upload sign-extends it.
+    // Preserve the following unknown bytes, rather than widening that store
+    // or assuming the uninspected bytes are initialized alignment padding.
+    i16 unk_6C60;
+    u8 unk_6C62[2];
     i16 unk_6C64;
     i16 unk_6C66;
     i16 unk_6C68;
@@ -150,6 +154,9 @@ typedef char IntroSceneResourceStateSizeCheck[(sizeof(IntroSceneResourceState) =
 typedef char IntroSceneResourceFlagsOffsetCheck[(offsetof(IntroSceneResourceState, flags) == 0x14) ? 1 : -1];
 typedef char IntroSceneResourceXOffsetCheck[(offsetof(IntroSceneResourceState, unk_18) == 0x18) ? 1 : -1];
 typedef char IntroSceneResourceYOffsetCheck[(offsetof(IntroSceneResourceState, unk_1C) == 0x1C) ? 1 : -1];
+typedef char IntroSceneCoreField6C60OffsetCheck[(offsetof(IntroSceneCore, unk_6C60) == 0x6C60) ? 1 : -1];
+typedef char IntroSceneCoreField6C60WidthCheck[(sizeof(((IntroSceneCore *)0)->unk_6C60) == 2) ? 1 : -1];
+typedef char IntroSceneCoreUnknown6C62OffsetCheck[(offsetof(IntroSceneCore, unk_6C62) == 0x6C62) ? 1 : -1];
 typedef char IntroSceneCoreField6C64OffsetCheck[(offsetof(IntroSceneCore, unk_6C64) == 0x6C64) ? 1 : -1];
 typedef char IntroSceneCoreAnimationStateOffsetCheck[(offsetof(IntroSceneCore, unk_6C6C) == 0x6C6C) ? 1 : -1];
 typedef char IntroSceneCoreArchiveOffsetCheck[(offsetof(IntroSceneCore, intro_archive) == 0x6A10) ? 1 : -1];
