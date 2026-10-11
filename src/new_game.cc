@@ -381,6 +381,26 @@ void func_08004C54(NewGameNameEntryScene * scene, int flags)
     DestroySceneBase(reinterpret_cast<AScene *>(scene), flags);
 }
 
+void func_080050C8(NewGameIdentityCore * core, int flags)
+{
+    core->vtable = reinterpret_cast<void **>(
+        const_cast<NewGameSceneVTableFunction *>(vtable_unk_080E5A98));
+    if (core->ui_state != nullptr)
+        delete core->ui_state;
+    func_080086BC(core, flags);
+}
+
+void func_08005254(NewGameIdentityCore * core)
+{
+    func_08008724(core);
+}
+
+void func_08005260(NewGameIdentityCore * core)
+{
+    core->unk_1A75 = 0;
+    core->unk_1A74 = 0;
+}
+
 NewGameIdentityScene * func_0800598C(NewGameIdentityScene * scene,
     char const * player_name, u32 birthday, char const * farm_name, char const * dog_name)
 {

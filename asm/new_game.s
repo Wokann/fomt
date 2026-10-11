@@ -1922,31 +1922,7 @@ func_08004EFC:
 .Ljp_08005130: .4byte 0x00001854
 .Ljp_08005134: .4byte 0x00001864
 
-    .global func_080050C8
-    .thumb_func
-func_080050C8:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, .Ljp_08005160
-    str r0, [r4, #4]
-    ldr r1, .Ljp_08005164
-    adds r0, r4, r1
-    ldr r0, [r0]
-    cmp r0, #0
-    beq .Ljp_08005152
-    movs r1, #3
-    bl _._12UiStateOwner
-.Ljp_08005152:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl func_080086BC
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_08005160: .4byte vtable_unk_080E5A98
-.Ljp_08005164: .4byte 0x0000182C
+    .section .text.new_game_identity_core_run
 
     .global func_080050F8
     .thumb_func
@@ -2112,29 +2088,7 @@ func_080050F8:
     bx r1
     .align 2, 0
 
-    .global func_08005254
-    .thumb_func
-func_08005254:
-    push {lr}
-    bl func_08008724
-    pop {r0}
-    bx r0
-    .align 2, 0
-
-    .global func_08005260
-    .thumb_func
-func_08005260:
-    ldr r2, .Ljp_08005270 @ =0x00001875
-    adds r1, r0, r2
-    movs r2, #0
-    strb r2, [r1]
-    ldr r1, .Ljp_08005274 @ =0x00001874
-    adds r0, r0, r1
-    strb r2, [r0]
-    bx lr
-    .align 2, 0
-.Ljp_08005270: .4byte 0x00001875
-.Ljp_08005274: .4byte 0x00001874
+    .section .text.new_game_identity_core_after_initialization
 
     .global func_08005278
     .thumb_func
@@ -7784,30 +7738,7 @@ func_08004EFC: @ 0x08004EFC
 .L080050C0: .4byte 0x00001A54
 .L080050C4: .4byte 0x00001A64
 
-    thumb_func_start func_080050C8
-func_080050C8: @ 0x080050C8
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, .L080050F0 @ =vtable_unk_080E5A98
-    str r0, [r4, #4]
-    ldr r1, .L080050F4 @ =0x00001A2C
-    adds r0, r4, r1
-    ldr r0, [r0]
-    cmp r0, #0
-    beq .L080050E2
-    movs r1, #3
-    bl _._12UiStateOwner
-.L080050E2:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl func_080086BC
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L080050F0: .4byte vtable_unk_080E5A98
-.L080050F4: .4byte 0x00001A2C
+    .section .text.new_game_identity_core_run
 
     thumb_func_start func_080050F8
 func_080050F8: @ 0x080050F8
@@ -7972,27 +7903,7 @@ func_080050F8: @ 0x080050F8
     bx r1
     .align 2, 0
 
-    thumb_func_start func_08005254
-func_08005254: @ 0x08005254
-    push {lr}
-    bl func_08008724
-    pop {r0}
-    bx r0
-    .align 2, 0
-
-    thumb_func_start func_08005260
-func_08005260: @ 0x08005260
-    ldr r2, .L08005270 @ =0x00001A75
-    adds r1, r0, r2
-    movs r2, #0
-    strb r2, [r1]
-    ldr r1, .L08005274 @ =0x00001A74
-    adds r0, r0, r1
-    strb r2, [r0]
-    bx lr
-    .align 2, 0
-.L08005270: .4byte 0x00001A75
-.L08005274: .4byte 0x00001A74
+    .section .text.new_game_identity_core_after_initialization
 
     thumb_func_start func_08005278
 func_08005278: @ 0x08005278

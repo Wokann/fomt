@@ -237,6 +237,13 @@ void func_08004C54(struct NewGameNameEntryScene * scene, int flags)
 NewGameIdentityCore * func_08004EFC(NewGameIdentityCore * core,
     char const * player_name, u32 birthday, char const * farm_name, char const * dog_name);
 SceneTransitionOwner func_080050F8(NewGameIdentityCore * core);
+void func_080050C8(NewGameIdentityCore * core, int flags)
+    SECTION(".text.new_game_identity_core_cleanup");
+void func_08005254(NewGameIdentityCore * core)
+    SECTION(".text.new_game_identity_core_initialization");
+void func_08005260(NewGameIdentityCore * core)
+    SECTION(".text.new_game_identity_core_initialization");
+extern NewGameSceneVTableFunction const vtable_unk_080E5A98[];
 extern NewGameSceneVTableFunction const vtable_unk_080E5AA4[];
 
 // One consecutive scene interval: construction, cleanup, running and the

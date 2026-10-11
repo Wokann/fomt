@@ -92,6 +92,10 @@ SECTIONS
         asm/new_game.o(.text.new_game_after_status_update);
         src/new_game.o(.text.new_game_scene_lifecycle);
         asm/new_game.o(.text.new_game_after_scene_lifecycle);
+        src/new_game.o(.text.new_game_identity_core_cleanup);
+        asm/new_game.o(.text.new_game_identity_core_run);
+        src/new_game.o(.text.new_game_identity_core_initialization);
+        asm/new_game.o(.text.new_game_identity_core_after_initialization);
         src/new_game.o(.text.new_game_identity_scene);
         asm/new_game.o(.text.new_game_after_identity_scene);
         . = 0x7130; /* JP ROM 0x08007130, independently matched */
