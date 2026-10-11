@@ -6,6 +6,7 @@
 #include "hardware_state_clear.hh"
 #include "hardware_blend_object.hh"
 #include "hardware_display_output.hh"
+#include "hardware_dma.hh"
 #include "hardware_interrupt_guard.hh"
 #include "hardware_music_player.hh"
 #include "sram_proxy_1.hh"
@@ -647,6 +648,49 @@ SceneTransitionOwner func_08005B68(NewGameNameInputCore * core)
     while (MenuBlendIsQueued(blend))
         UpdateHardwareFrame(core);
     return SceneTransitionOwner();
+}
+
+void func_080061A0(NewGameNameInputCore * core, u32 tile_index)
+{
+    func_08008EB8(0, &core->sprites[0].attributes,
+        sizeof(core->sprites[0].attributes));
+    func_08008EB8(0, &core->sprites[1].attributes,
+        sizeof(core->sprites[1].attributes));
+#if defined(REGION_JP)
+    core->sprites[0].attributes.size = 1;
+    core->sprites[1].attributes.size = 1;
+#else
+    core->sprites[0].attributes.size = 0;
+    core->sprites[1].attributes.size = 0;
+    core->sprites[1].attributes.shape = 2;
+#endif
+    core->sprites[0].attributes.object_mode = 1;
+    core->sprites[1].attributes.object_mode = 1;
+    core->sprites[1].attributes.tile_index =
+        core->sprites[0].attributes.tile_index = tile_index;
+    core->sprites[0].attributes.palette_bank = 4;
+    core->sprites[1].attributes.palette_bank = 4;
+
+    u8 row = 0;
+    u32 const offset = tile_index * 32;
+    for (; row <= 7; ++row) {
+        u32 const pixel_offset = offset + row * 4;
+        *reinterpret_cast<u32 *>(0x06010000 + pixel_offset) = 0x88888888;
+        *reinterpret_cast<u32 *>(0x06010020 + pixel_offset) = 0x88888888;
+        *reinterpret_cast<u32 *>(0x06010040 + pixel_offset) = 0x88888888;
+        *reinterpret_cast<u32 *>(0x06010060 + pixel_offset) = 0x88888888;
+        *reinterpret_cast<u32 *>(0x06010080 + pixel_offset) = 0x88888888;
+        *reinterpret_cast<u32 *>(0x060100A0 + pixel_offset) = 0x88888888;
+        *reinterpret_cast<u32 *>(0x060100C0 + pixel_offset) = 0x88888888;
+        *reinterpret_cast<u32 *>(0x060100E0 + pixel_offset) = 0x88888888;
+    }
+    reinterpret_cast<u16 *>(0x05000200)[4 * 16 + 8] = 0x027F;
+    core->sprites[1].attributes.x = 144;
+    core->sprites[1].attributes.y = 8;
+    core->sprites[0].attributes.x = 0;
+    core->sprites[0].attributes.y = 32;
+    core->sprites[1].attributes.priority = 2;
+    core->sprites[0].attributes.priority = 2;
 }
 
 void func_08006334(NewGameNameInputCore * core)

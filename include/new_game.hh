@@ -419,7 +419,8 @@ void func_08005B38(NewGameNameInputCore * core, int flags)
 SceneTransitionOwner func_08005B68(NewGameNameInputCore * core)
     SECTION(".text.new_game_name_input_core_run");
 void func_08005CDC(NewGameNameInputCore * core);
-void func_080061A0(NewGameNameInputCore * core, u32 tile_index);
+void func_080061A0(NewGameNameInputCore * core, u32 tile_index)
+    SECTION(".text.new_game_name_input_sprites");
 // Reset only the native control fields; sprite OAM and input text are untouched.
 void func_08006334(NewGameNameInputCore * core)
     SECTION(".text.new_game_name_input_reset");
