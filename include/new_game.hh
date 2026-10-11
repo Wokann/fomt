@@ -232,17 +232,20 @@ AScene * func_08004C48(void * object)
 void func_08004C54(struct NewGameNameEntryScene * scene, int flags)
     SECTION(".text.new_game_scene_lifecycle");
 
-// Native form construction/update still remain assembly. These declarations
-// preserve their real allocation and return-owner ABI for the scene below.
+// Native form construction and UI setup/update still remain assembly. The
+// running core and scene below share their real allocation and return-owner ABI.
 NewGameIdentityCore * func_08004EFC(NewGameIdentityCore * core,
     char const * player_name, u32 birthday, char const * farm_name, char const * dog_name);
-SceneTransitionOwner func_080050F8(NewGameIdentityCore * core);
 void func_080050C8(NewGameIdentityCore * core, int flags)
     SECTION(".text.new_game_identity_core_cleanup");
+SceneTransitionOwner func_080050F8(NewGameIdentityCore * core)
+    SECTION(".text.new_game_identity_core_run");
 void func_08005254(NewGameIdentityCore * core)
     SECTION(".text.new_game_identity_core_initialization");
 void func_08005260(NewGameIdentityCore * core)
     SECTION(".text.new_game_identity_core_initialization");
+void func_08005278(NewGameIdentityCore * core);
+void func_08005800(NewGameIdentityCore * core);
 extern NewGameSceneVTableFunction const vtable_unk_080E5A98[];
 extern NewGameSceneVTableFunction const vtable_unk_080E5AA4[];
 

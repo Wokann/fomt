@@ -23,6 +23,13 @@ static inline void QueueMenuBlend(HardwareBootstrap * core, HardwareBlendObject 
     ((void (*)(u8 *, HardwareBlendObject *))vtable[4])(list, &blend);
 }
 
+static inline void QueueMenuBlend(HardwareBootstrap * core, HardwareBlendOwner const & owner)
+{
+    u8 * list = func_08008940(reinterpret_cast<void * const *>(core));
+    void * const * vtable = *reinterpret_cast<void * const **>(list + 8);
+    ((void (*)(u8 *, HardwareBlendObject *))vtable[4])(list, owner.object);
+}
+
 static inline bool MenuBlendIsQueued(HardwareBlendObject const & blend)
 {
     return blend.unk_00 != nullptr;
@@ -388,6 +395,54 @@ void func_080050C8(NewGameIdentityCore * core, int flags)
     if (core->ui_state != nullptr)
         delete core->ui_state;
     func_080086BC(core, flags);
+}
+
+SceneTransitionOwner func_080050F8(NewGameIdentityCore * core)
+{
+    func_08005254(core);
+    func_08005260(core);
+    func_08005278(core);
+
+    HardwareDisplayState * display =
+        func_08008918(reinterpret_cast<void * const *>(core));
+    HardwareDisplayRegisterValue control(0x3F);
+    display->SetBlendControl(control);
+
+    HardwareBlendOwner owner(new HardwareBlendObject(
+        func_08008918(reinterpret_cast<void * const *>(core))));
+    func_0800934C(&owner.object->blend, 0x889, 1, 1);
+    QueueMenuBlend(core, owner);
+
+    i16 phase = 0;
+    bool finished = false;
+    do
+    {
+        UpdateHardwareFrame(core);
+        func_080088B8(reinterpret_cast<void * const *>(core));
+        func_080088D4(reinterpret_cast<void * const *>(core));
+        switch (phase)
+        {
+        case 0:
+            if (!owner.IsQueued())
+                phase = 1;
+            break;
+        case 1:
+            func_08005800(core);
+            if (core->unk_1A74 != 0)
+                phase = 2;
+            break;
+        case 2:
+            func_08009378(&owner.object->blend, 0x889, 1, 1);
+            QueueMenuBlend(core, owner);
+            phase = 3;
+            break;
+        case 3:
+            if (!owner.IsQueued())
+                finished = true;
+            break;
+        }
+    } while (!finished);
+    return SceneTransitionOwner();
 }
 
 void func_08005254(NewGameIdentityCore * core)
