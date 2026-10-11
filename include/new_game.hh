@@ -194,16 +194,18 @@ struct NewGameIdentityScene {
 };
 
 // The keyboard scene owns a separate regional core. Only its allocation
-// size and thirteen-byte runtime name storage have been recovered here;
+// size, UI owner and thirteen-byte runtime name storage are recovered here;
 // the remaining payload is not yet a high-level field layout.
 struct NewGameNameInputCore : HardwareBootstrap {
 #if defined(REGION_JP)
-    u8 unk_08[0x4554];
+    u8 unk_08[0x4530];
 #elif defined(REGION_DE)
-    u8 unk_08[0x4D98];
+    u8 unk_08[0x4D74];
 #else
-    u8 unk_08[0x4614];
+    u8 unk_08[0x45F0];
 #endif
+    UiStateOwner * ui_state;
+    u8 unk_after_ui[0x20];
     char name[13];
     u8 unk_after_name[0x17];
 };
@@ -240,12 +242,15 @@ typedef char NewGameIdentitySceneCoreCheck[offsetof(NewGameIdentityScene, core) 
 
 #if defined(REGION_JP)
 typedef char NewGameNameInputCoreSizeCheck[sizeof(NewGameNameInputCore) == 0x4580 ? 1 : -1];
+typedef char NewGameNameInputCoreUiCheck[offsetof(NewGameNameInputCore, ui_state) == 0x4538 ? 1 : -1];
 typedef char NewGameNameInputCoreNameCheck[offsetof(NewGameNameInputCore, name) == 0x455C ? 1 : -1];
 #elif defined(REGION_DE)
 typedef char NewGameNameInputCoreSizeCheck[sizeof(NewGameNameInputCore) == 0x4DC4 ? 1 : -1];
+typedef char NewGameNameInputCoreUiCheck[offsetof(NewGameNameInputCore, ui_state) == 0x4D7C ? 1 : -1];
 typedef char NewGameNameInputCoreNameCheck[offsetof(NewGameNameInputCore, name) == 0x4DA0 ? 1 : -1];
 #else
 typedef char NewGameNameInputCoreSizeCheck[sizeof(NewGameNameInputCore) == 0x4640 ? 1 : -1];
+typedef char NewGameNameInputCoreUiCheck[offsetof(NewGameNameInputCore, ui_state) == 0x45F8 ? 1 : -1];
 typedef char NewGameNameInputCoreNameCheck[offsetof(NewGameNameInputCore, name) == 0x461C ? 1 : -1];
 #endif
 typedef char NewGameNameInputSceneSizeCheck[sizeof(NewGameNameInputScene) == 8 ? 1 : -1];
@@ -344,7 +349,10 @@ u8 func_08005A4C(NewGameIdentityCore const * core)
 // The native keyboard core constructor and running loop remain assembly.
 NewGameNameInputCore * func_08005A58(NewGameNameInputCore * core,
     char const * prompt, char const * initial_name);
+void func_08005B38(NewGameNameInputCore * core, int flags)
+    SECTION(".text.new_game_name_input_core_cleanup");
 SceneTransitionOwner func_08005B68(NewGameNameInputCore * core);
+extern NewGameSceneVTableFunction const vtable_unk_080E5AB4[];
 extern NewGameSceneVTableFunction const vtable_unk_080E5AC0[];
 
 // One consecutive keyboard-scene interval: construction, cleanup, running,

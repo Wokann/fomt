@@ -558,6 +558,15 @@ u8 func_08005A4C(NewGameIdentityCore const * core)
     return core->unk_1A76;
 }
 
+void func_08005B38(NewGameNameInputCore * core, int flags)
+{
+    core->vtable = reinterpret_cast<void **>(
+        const_cast<NewGameSceneVTableFunction *>(vtable_unk_080E5AB4));
+    if (core->ui_state != nullptr)
+        delete core->ui_state;
+    func_080086BC(core, flags);
+}
+
 NewGameNameInputScene * func_08007078(NewGameNameInputScene * scene,
     char const * prompt, char const * initial_name)
 {

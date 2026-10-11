@@ -2538,32 +2538,7 @@ func_08005A58:
 .Ljp_08005B30: .4byte 0x0000455C
 .Ljp_08005B34: .4byte gText_NewGameNameEntry_Placeholder
 
-    .global func_08005B38
-    .thumb_func
-func_08005B38:
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, .Ljp_08005B60 @ =vtable_unk_080E5AB4
-    str r0, [r4, #4]
-    ldr r1, .Ljp_08005B64 @ =0x00004538
-    adds r0, r4, r1
-    ldr r0, [r0]
-    cmp r0, #0
-    beq .Ljp_08005B52
-    movs r1, #3
-    bl _._12UiStateOwner
-.Ljp_08005B52:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl func_080086BC
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_08005B60: .4byte vtable_unk_080E5AB4
-.Ljp_08005B64: .4byte 0x00004538
-
+    .section .text.new_game_name_input_after_core_cleanup
     .global func_08005B68
     .thumb_func
 func_08005B68:
@@ -8198,36 +8173,7 @@ func_08005A58: @ 0x08005A58
 .L08005B34: .4byte gText_NewGameNameEntry_Placeholder
     .endif
 
-    thumb_func_start func_08005B38
-func_08005B38: @ 0x08005B38
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    ldr r0, .L08005B60 @ =vtable_unk_080E5AB4
-    str r0, [r4, #4]
-    ldr r1, .L08005B64 @ =0x000045F8
-    adds r0, r4, r1
-    ldr r0, [r0]
-    cmp r0, #0
-    beq .L08005B52
-    movs r1, #3
-    bl _._12UiStateOwner
-.L08005B52:
-    adds r0, r4, #0
-    adds r1, r5, #0
-    bl func_080086BC
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08005B60: .4byte vtable_unk_080E5AB4
-.L08005B64:
-    .ifdef REGION_DE
-    .4byte 0x00004D7C
-    .else
-    .4byte 0x000045F8
-    .endif
-
+    .section .text.new_game_name_input_after_core_cleanup
     thumb_func_start func_08005B68
 func_08005B68: @ 0x08005B68
     push {r4, r5, r6, r7, lr}
