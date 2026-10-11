@@ -380,3 +380,36 @@ void func_08004C54(NewGameNameEntryScene * scene, int flags)
     scene->vtable = vtable_unk_080E5A88;
     DestroySceneBase(reinterpret_cast<AScene *>(scene), flags);
 }
+
+NewGameIdentityScene * func_0800598C(NewGameIdentityScene * scene,
+    char const * player_name, u32 birthday, char const * farm_name, char const * dog_name)
+{
+    scene->vtable = vtable_unk_080E5AA4;
+    scene->core = func_08004EFC(static_cast<NewGameIdentityCore *>(
+        ::operator new(sizeof(NewGameIdentityCore))), player_name, birthday, farm_name, dog_name);
+    return scene;
+}
+
+void func_080059D0(NewGameIdentityScene * scene, int flags)
+{
+    scene->vtable = vtable_unk_080E5AA4;
+    NewGameIdentityCore * core = scene->core;
+    if (core != nullptr)
+        ((void (*)(NewGameIdentityCore *, int))core->vtable[2])(core, 3);
+    DestroySceneBase(reinterpret_cast<AScene *>(scene), flags);
+}
+
+SceneTransitionOwner func_08005A00(NewGameIdentityScene * scene)
+{
+    return func_080050F8(scene->core);
+}
+
+u8 func_08005A3C(NewGameIdentityScene const * scene)
+{
+    return scene->core->unk_1A76;
+}
+
+u8 func_08005A4C(NewGameIdentityCore const * core)
+{
+    return core->unk_1A76;
+}
