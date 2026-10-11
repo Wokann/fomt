@@ -8712,50 +8712,7 @@ func_08050F4C: @ 0x08050CD8
     bx r1
     .align 2, 0
 
-    .global func_08050F60
-    .thumb_func
-func_08050F60: @ 0x08050CEC
-    ldr r3, .Ljp_08050CF8
-    str r3, [r0]
-    ldr r1, [r1]
-    str r1, [r0, #4]
-    strb r2, [r0, #8]
-    bx lr
-    .align 2, 0
-.Ljp_08050CF8: .4byte vtable_unk_080E7898
-
-    .global func_08050F70
-    .thumb_func
-func_08050F70: @ 0x08050CFC
-    ldrb r0, [r0, #0x1a]
-    bx lr
-
-    .global func_08050F74
-    .thumb_func
-func_08050F74: @ 0x08050D00
-    push {r4, r5, lr}
-    adds r4, r0, #0
-    adds r5, r1, #0
-    adds r0, r2, #0
-    cmp r0, #2
-    bls .Ljp_08050D14
-    movs r1, #3
-    bl __umodsi3
-.Ljp_08050D14:
-    strh r0, [r4, #0x16]
-    adds r0, r5, #0
-    cmp r0, #0x1b
-    bls .Ljp_08050D26
-    movs r1, #0x1c
-    bl __umodsi3
-.Ljp_08050D26:
-    strh r0, [r4, #0x14]
-    movs r0, #0
-    strb r0, [r4, #0x19]
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-
+    .section .text.ui_state_helpers_after
     @ The next physical entry has no recovered cross-region name yet.
     .global func_08050D2C
     .thumb_func
@@ -155057,46 +155014,7 @@ func_08050F4C: @ 0x08050F4C
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_08050F60
-func_08050F60: @ 0x08050F60
-	ldr r3, .L08050F6C
-	str r3, [r0]
-	ldr r1, [r1]
-	str r1, [r0, #4]
-	strb r2, [r0, #8]
-	bx lr
-	.align 2, 0
-.L08050F6C: .4byte vtable_unk_080E78A8
-
-	thumb_func_start func_08050F70
-func_08050F70: @ 0x08050F70
-	ldrb r0, [r0, #0x1a]
-	bx lr
-
-	thumb_func_start func_08050F74
-func_08050F74: @ 0x08050F74
-	push {r4, r5, lr}
-	adds r4, r0, #0
-	adds r5, r1, #0
-	adds r0, r2, #0
-	cmp r0, #2
-	bls .L08050F88
-	movs r1, #3
-	bl __umodsi3
-.L08050F88:
-	strh r0, [r4, #0x16]
-	adds r0, r5, #0
-	cmp r0, #0x1b
-	bls .L08050F9A
-	movs r1, #0x1c
-	bl __umodsi3
-.L08050F9A:
-	strh r0, [r4, #0x14]
-	movs r0, #0
-	strb r0, [r4, #0x19]
-	pop {r4, r5}
-	pop {r0}
-	bx r0
+	.section .text.ui_state_helpers_after
 	.byte 0xF0, 0xB5, 0x57, 0x46, 0x4E, 0x46, 0x45, 0x46, 0xE0, 0xB4, 0x8A, 0xB0, 0x04, 0x90, 0x09, 0x91
 	.byte 0x40, 0x68, 0x41, 0x68
 	bl func_080074C0

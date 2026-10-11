@@ -278,6 +278,8 @@ SECTIONS
         . = 0x50A4C; /* JP ROM contiguous UI owner and adapter block. */
         src/ui_state.o(.text.ui_state_adapters);
         asm/code_0803EE94.o(.text.code_08050E50);
+        src/ui_state.o(.text);
+        asm/code_0803EE94.o(.text.ui_state_helpers_after);
         . = 0x52068; /* JP/US-shared animal-festival ranking entry copy. */
         src/animal_festival_ranking.o(.text.copy_animal_festival_ranking_entry);
         . = 0x52078; /* JP/US-shared animal-festival ranking entry setter. */

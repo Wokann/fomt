@@ -107,14 +107,45 @@ struct UnkUiPackedLinkCommand : HardwareLinkBase
 typedef char UnkUiPackedLinkCommandSizeCheck[
     sizeof(UnkUiPackedLinkCommand) == 0x10 ? 1 : -1];
 
+// Native field views for the following UI helpers. Unknown prefixes and
+// byte fields remain unknown until their owning classes are recovered.
+struct UnkUiReferenceObject
+{
+    HardwareLinkVirtualFunction const * vtable;
+    void * value;
+    u8 unk_08;
+};
+
+struct UnkUiSelectionData
+{
+    u8 unk_00[0x14];
+    u16 unk_14;
+    u16 unk_16;
+    u8 unk_18;
+    u8 unk_19;
+    u8 unk_1a;
+};
+
+typedef char UnkUiReferenceObjectSizeCheck[
+    sizeof(UnkUiReferenceObject) == 0x0C ? 1 : -1];
+typedef char UnkUiSelectionDataSizeCheck[
+    sizeof(UnkUiSelectionData) == 0x1C ? 1 : -1];
+
 EXTERN_C
 
 extern HardwareLinkVirtualFunction const vtable_unk_080E7868[];
 extern HardwareLinkVirtualFunction const vtable_unk_080E7878[];
+extern HardwareLinkVirtualFunction const vtable_unk_080E7898[];
+extern HardwareLinkVirtualFunction const vtable_unk_080E78A8[];
 
 UnkUiPackedLinkCommand * func_08050EE4(UnkUiPackedLinkCommand * object,
     u32 arg_1, u32 arg_2, u32 arg_3, u32 arg_4)
     SECTION(".text.ui_state_adapters");
+
+UnkUiReferenceObject * func_08050F60(UnkUiReferenceObject * object,
+    void * const * value, u8 arg_2);
+u8 func_08050F70(UnkUiSelectionData const * object);
+void func_08050F74(UnkUiSelectionData * object, u32 arg_1, u32 arg_2);
 
 // Existing UI adapter ABI. The menu supplies a text address as arg_r1;
 // the payload's other scalar argument domains are still unresolved.

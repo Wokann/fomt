@@ -293,3 +293,36 @@ EC UnkUiPackedLinkCommand * func_08050EE4(UnkUiPackedLinkCommand * object,
     object->unk_0c_19 = arg_4;
     return object;
 }
+
+EC UnkUiReferenceObject * func_08050F60(UnkUiReferenceObject * object,
+    void * const * value, u8 arg_2)
+{
+#if defined(REGION_JP)
+    object->vtable = vtable_unk_080E7898;
+#else
+    object->vtable = vtable_unk_080E78A8;
+#endif
+    object->value = *value;
+    object->unk_08 = arg_2;
+    return object;
+}
+
+EC u8 func_08050F70(UnkUiSelectionData const * object)
+{
+    return object->unk_1a;
+}
+
+EC void func_08050F74(UnkUiSelectionData * object, u32 const arg_1,
+    u32 const arg_2)
+{
+    u32 second_index = arg_2;
+    if (second_index > 2)
+        second_index %= 3;
+    object->unk_16 = second_index;
+
+    u32 first_index = arg_1;
+    if (first_index > 27)
+        first_index %= 28;
+    object->unk_14 = first_index;
+    object->unk_19 = 0;
+}
