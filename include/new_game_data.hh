@@ -89,7 +89,9 @@ enum
 // Each row is a fixed-width, single-terminated ROM string.
 extern char const gNewGameNameEntryCharacterRows[NEW_GAME_NAME_ENTRY_ROW_COUNT][NEW_GAME_NAME_ENTRY_ROW_WIDTH];
 
-extern char const gText_NewGameNameEntry_Placeholder[];
+// All four ROMs align this 13-byte placeholder to a word boundary; the
+// name-input constructor copies it into the equally aligned RAM name field.
+extern char const gText_NewGameNameEntry_Placeholder[] ALIGN(4);
 extern char const gText_NewGameNameEntry_NameLabel[];
 extern char const gText_NewGameNameEntry_Confirm[];
 extern char const gText_NewGameNameEntry_Yes[];

@@ -558,6 +558,41 @@ u8 func_08005A4C(NewGameIdentityCore const * core)
     return core->unk_1A76;
 }
 
+NewGameNameInputCore * func_08005A58(NewGameNameInputCore * core,
+    char const * prompt, char const * initial_name)
+{
+    func_08008444(core);
+    core->vtable = reinterpret_cast<void **>(
+        const_cast<NewGameSceneVTableFunction *>(vtable_unk_080E5AB4));
+    new (core->keyboard_buffers) NewGameTextTileBuffer<30>[
+        ARRAY_COUNT(core->keyboard_buffers)];
+    new (&core->name_buffer) NewGameTextTileBuffer<30>;
+#if defined(REGION_JP)
+    new (&core->prompt_buffer) NewGameTextTileBuffer<6>;
+#else
+    new (&core->prompt_buffer) NewGameTextTileBuffer<9>;
+#endif
+    func_08008B54(&core->music_players[0], 1);
+    func_08008B54(&core->music_players[1], 2);
+
+    // Publish the constructed UI before these temporary resource owners leave
+    // scope, preserving the native allocation, construction and cleanup order.
+    void * ui_storage = ::operator new(sizeof(UiStateOwner));
+    {
+        HardwareStateOwner shared;
+        HardwareResource resources;
+        UiStateOwner * ui = new (ui_storage) UiStateOwner(0, 15, 4, 0, shared, resources);
+        core->ui_state = ui;
+    }
+    core->prompt = prompt;
+    memcpy(core->name, gText_NewGameNameEntry_Placeholder, sizeof(core->name));
+    if (initial_name != nullptr) {
+        for (int index = 0; index < 13 && initial_name[index]; ++index)
+            core->name[index] = initial_name[index];
+    }
+    return core;
+}
+
 void func_08005B38(NewGameNameInputCore * core, int flags)
 {
     core->vtable = reinterpret_cast<void **>(

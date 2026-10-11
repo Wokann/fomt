@@ -138,22 +138,22 @@ struct NewGameNameEntryScene {
 
 // Clear2DGfxBuffer and DrawStringTo2DGfxBuffer consume the tile words after
 // the untouched four-byte prefix. Each 4bpp tile occupies eight words and
-// every identity row is two tiles high. The original constructor leaves
-// these objects uninitialized; func_08005278 clears and draws their tiles.
+// these new-game text buffers are two tiles high. Their native construction
+// leaves them uninitialized; the corresponding UI setup draws their tiles.
 template <u32 Width>
-struct NewGameIdentityTileBuffer {
-    NewGameIdentityTileBuffer() {}
+struct NewGameTextTileBuffer {
+    NewGameTextTileBuffer() {}
 
     u32 unk_00;
     u32 tiles[Width * 2 * 8];
 };
 
 typedef char NewGameIdentityValueBufferSizeCheck[
-    sizeof(NewGameIdentityTileBuffer<12>) == 0x304 ? 1 : -1];
+    sizeof(NewGameTextTileBuffer<12>) == 0x304 ? 1 : -1];
 typedef char NewGameIdentityLabelBufferSizeCheck[
-    sizeof(NewGameIdentityTileBuffer<14>) == 0x384 ? 1 : -1];
+    sizeof(NewGameTextTileBuffer<14>) == 0x384 ? 1 : -1];
 typedef char NewGameIdentityTilesOffsetCheck[
-    offsetof(NewGameIdentityTileBuffer<12>, tiles) == 4 ? 1 : -1];
+    offsetof(NewGameTextTileBuffer<12>, tiles) == 4 ? 1 : -1];
 typedef char NewGameIdentityTextBufferSizeCheck[sizeof(FixedStr<15>) == 0x10 ? 1 : -1];
 
 // Physical field order: player name, birthday, farm name, dog name. Native
@@ -173,10 +173,10 @@ enum NewGameIdentityField {
 // The unknown scalar and control-byte names retain their original US offsets.
 struct NewGameIdentityCore : HardwareBootstrap {
 #if defined(REGION_JP)
-    NewGameIdentityTileBuffer<12> buffers[8];
+    NewGameTextTileBuffer<12> buffers[8];
 #else
-    NewGameIdentityTileBuffer<12> value_buffers[4];
-    NewGameIdentityTileBuffer<14> label_buffers[4];
+    NewGameTextTileBuffer<12> value_buffers[4];
+    NewGameTextTileBuffer<14> label_buffers[4];
 #endif
     u32 unk_1A28;
     UiStateOwner * ui_state;
@@ -193,19 +193,26 @@ struct NewGameIdentityScene {
     NewGameIdentityCore * core;
 };
 
-// The keyboard scene owns a separate regional core. Only its allocation
-// size, UI owner and thirteen-byte runtime name storage are recovered here;
-// the remaining payload is not yet a high-level field layout.
+// The keyboard scene owns eight two-tile-high, 30-tile-wide text buffers
+// (nine in DE), followed by the current name and optional prompt buffers.
+// Construction and the drawing/upload consumers confirm this physical order.
+// Remaining control fields keep their unknown names; name is RAM storage.
 struct NewGameNameInputCore : HardwareBootstrap {
-#if defined(REGION_JP)
-    u8 unk_08[0x4530];
-#elif defined(REGION_DE)
-    u8 unk_08[0x4D74];
+#if defined(REGION_DE)
+    NewGameTextTileBuffer<30> keyboard_buffers[9];
 #else
-    u8 unk_08[0x45F0];
+    NewGameTextTileBuffer<30> keyboard_buffers[8];
 #endif
+    NewGameTextTileBuffer<30> name_buffer;
+#if defined(REGION_JP)
+    NewGameTextTileBuffer<6> prompt_buffer;
+#else
+    NewGameTextTileBuffer<9> prompt_buffer;
+#endif
+    MusicPlayer * music_players[2];
     UiStateOwner * ui_state;
-    u8 unk_after_ui[0x20];
+    char const * prompt;
+    u8 unk_after_prompt[0x1C];
     char name[13];
     u8 unk_after_name[0x17];
 };
@@ -214,6 +221,15 @@ struct NewGameNameInputScene {
     NewGameSceneVTableFunction const * vtable;
     NewGameNameInputCore * core;
 };
+
+typedef char NewGameNameInputKeyboardBufferSizeCheck[
+    sizeof(NewGameTextTileBuffer<30>) == 0x784 ? 1 : -1];
+typedef char NewGameNameInputJpPromptBufferSizeCheck[
+    sizeof(NewGameTextTileBuffer<6>) == 0x184 ? 1 : -1];
+typedef char NewGameNameInputOverseasPromptBufferSizeCheck[
+    sizeof(NewGameTextTileBuffer<9>) == 0x244 ? 1 : -1];
+typedef char NewGameNameInputKeyboardCheck[
+    offsetof(NewGameNameInputCore, keyboard_buffers) == 8 ? 1 : -1];
 
 typedef char NewGameMenuSceneSizeCheck[sizeof(NewGameMenuScene) == 8 ? 1 : -1];
 typedef char NewGameNameEntrySceneSizeCheck[sizeof(NewGameNameEntryScene) == 4 ? 1 : -1];
@@ -242,15 +258,27 @@ typedef char NewGameIdentitySceneCoreCheck[offsetof(NewGameIdentityScene, core) 
 
 #if defined(REGION_JP)
 typedef char NewGameNameInputCoreSizeCheck[sizeof(NewGameNameInputCore) == 0x4580 ? 1 : -1];
+typedef char NewGameNameInputCoreNameBufferCheck[offsetof(NewGameNameInputCore, name_buffer) == 0x3C28 ? 1 : -1];
+typedef char NewGameNameInputCorePromptBufferCheck[offsetof(NewGameNameInputCore, prompt_buffer) == 0x43AC ? 1 : -1];
+typedef char NewGameNameInputCoreMusicCheck[offsetof(NewGameNameInputCore, music_players) == 0x4530 ? 1 : -1];
 typedef char NewGameNameInputCoreUiCheck[offsetof(NewGameNameInputCore, ui_state) == 0x4538 ? 1 : -1];
+typedef char NewGameNameInputCorePromptCheck[offsetof(NewGameNameInputCore, prompt) == 0x453C ? 1 : -1];
 typedef char NewGameNameInputCoreNameCheck[offsetof(NewGameNameInputCore, name) == 0x455C ? 1 : -1];
 #elif defined(REGION_DE)
 typedef char NewGameNameInputCoreSizeCheck[sizeof(NewGameNameInputCore) == 0x4DC4 ? 1 : -1];
+typedef char NewGameNameInputCoreNameBufferCheck[offsetof(NewGameNameInputCore, name_buffer) == 0x43AC ? 1 : -1];
+typedef char NewGameNameInputCorePromptBufferCheck[offsetof(NewGameNameInputCore, prompt_buffer) == 0x4B30 ? 1 : -1];
+typedef char NewGameNameInputCoreMusicCheck[offsetof(NewGameNameInputCore, music_players) == 0x4D74 ? 1 : -1];
 typedef char NewGameNameInputCoreUiCheck[offsetof(NewGameNameInputCore, ui_state) == 0x4D7C ? 1 : -1];
+typedef char NewGameNameInputCorePromptCheck[offsetof(NewGameNameInputCore, prompt) == 0x4D80 ? 1 : -1];
 typedef char NewGameNameInputCoreNameCheck[offsetof(NewGameNameInputCore, name) == 0x4DA0 ? 1 : -1];
 #else
 typedef char NewGameNameInputCoreSizeCheck[sizeof(NewGameNameInputCore) == 0x4640 ? 1 : -1];
+typedef char NewGameNameInputCoreNameBufferCheck[offsetof(NewGameNameInputCore, name_buffer) == 0x3C28 ? 1 : -1];
+typedef char NewGameNameInputCorePromptBufferCheck[offsetof(NewGameNameInputCore, prompt_buffer) == 0x43AC ? 1 : -1];
+typedef char NewGameNameInputCoreMusicCheck[offsetof(NewGameNameInputCore, music_players) == 0x45F0 ? 1 : -1];
 typedef char NewGameNameInputCoreUiCheck[offsetof(NewGameNameInputCore, ui_state) == 0x45F8 ? 1 : -1];
+typedef char NewGameNameInputCorePromptCheck[offsetof(NewGameNameInputCore, prompt) == 0x45FC ? 1 : -1];
 typedef char NewGameNameInputCoreNameCheck[offsetof(NewGameNameInputCore, name) == 0x461C ? 1 : -1];
 #endif
 typedef char NewGameNameInputSceneSizeCheck[sizeof(NewGameNameInputScene) == 8 ? 1 : -1];
@@ -346,9 +374,11 @@ u8 func_08005A3C(NewGameIdentityScene const * scene)
 u8 func_08005A4C(NewGameIdentityCore const * core)
     SECTION(".text.new_game_identity_scene");
 
-// The native keyboard core constructor and running loop remain assembly.
+// Native keyboard construction uses the regional member layout above.
+// Its running loop and UI setup still remain assembly.
 NewGameNameInputCore * func_08005A58(NewGameNameInputCore * core,
-    char const * prompt, char const * initial_name);
+    char const * prompt, char const * initial_name)
+    SECTION(".text.new_game_name_input_core_constructor");
 void func_08005B38(NewGameNameInputCore * core, int flags)
     SECTION(".text.new_game_name_input_core_cleanup");
 SceneTransitionOwner func_08005B68(NewGameNameInputCore * core);
