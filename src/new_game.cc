@@ -740,6 +740,75 @@ void func_08006858(NewGameNameInputCore * core)
     }
 }
 
+void func_08006ED8(NewGameNameInputCore * core)
+{
+    if (core->unk_463c != 0) {
+        i32 previous_state = core->ui_state->GetState();
+        UiStateOwner * ui = core->ui_state;
+        HardwareCoreState * state = static_cast<HardwareCoreState *>(
+            func_080088DC(reinterpret_cast<void * const *>(core)));
+        HardwareSpriteBufferState * sprites =
+            func_08008920(reinterpret_cast<void * const *>(core));
+        HardwareDisplayState * display =
+            func_08008918(reinterpret_cast<void * const *>(core));
+        u8 * links = func_08008940(reinterpret_cast<void * const *>(core));
+        u8 * manager = func_0800894C(reinterpret_cast<void * const *>(core));
+        MusicPlayer ** music = core->music_players;
+        switch (ui->Update(state, sprites, display, links, manager, music)) {
+        case 0:
+            if (core->unk_after_keyboard_redraw[0]) {
+                core->unk_463c = 0;
+                core->unk_after_keyboard_redraw[0] = 0;
+            }
+            if (core->unk_after_keyboard_redraw[1]) {
+                core->unk_after_keyboard_redraw[1] = 0;
+                core->finished = 1;
+                strcpy(core->name, reinterpret_cast<char const *>(core->unk_after_name));
+            }
+            func_08050D5C(reinterpret_cast<void * const *>(core->ui_state));
+            break;
+        case 3:
+            switch (previous_state) {
+            default:
+                func_08050D74(reinterpret_cast<void * const *>(core->ui_state));
+                break;
+            case 1:
+                if (core->unk_463c == 1) {
+                    func_08050E30(reinterpret_cast<void * const *>(core->ui_state),
+                        reinterpret_cast<u32>(gText_NewGameNameEntry_Confirm),
+                        reinterpret_cast<u32>(gText_NewGameNameEntry_Yes),
+                        reinterpret_cast<u32>(gText_NewGameNameEntry_No), 0, 0, 0);
+                }
+                break;
+            case 4:
+            case 5:
+                break;
+            case 6:
+                {
+                    u32 selection = reinterpret_cast<u32>(func_08050DF0(
+                        reinterpret_cast<void * const *>(core->ui_state)));
+                    switch (selection) {
+                    case 1:
+                        core->unk_after_keyboard_redraw[1] = selection;
+                        break;
+                    case 2:
+                        core->unk_after_keyboard_redraw[0] = 1;
+                        break;
+                    }
+                }
+                break;
+            }
+            break;
+        case 1:
+        case 2:
+        case 4:
+        case 5:
+        case 6:
+            break;
+        }
+    }
+}
+
 NewGameNameInputScene * func_08007078(NewGameNameInputScene * scene,
     char const * prompt, char const * initial_name)
 {

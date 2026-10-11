@@ -90,6 +90,7 @@ SECTIONS
         asm/new_game.o(.text.new_game_name_input_after_reset);
         src/new_game.o(.text.new_game_name_input_submit_sprites);
         asm/new_game.o(.text.new_game_name_input_after_submit_sprites);
+        src/new_game.o(.text.new_game_name_input_confirmation);
         src/new_game.o(.text.new_game_name_input_scene);
         src/hardware.o(.text);
         src/hardware_allocator.o(.text);

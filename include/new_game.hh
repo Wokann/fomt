@@ -430,7 +430,8 @@ void func_08006858(NewGameNameInputCore * core)
     SECTION(".text.new_game_name_input_submit_sprites");
 void func_080068CC(NewGameNameInputCore * core);
 void func_08006CDC(NewGameNameInputCore * core);
-void func_08006ED8(NewGameNameInputCore * core);
+void func_08006ED8(NewGameNameInputCore * core)
+    SECTION(".text.new_game_name_input_confirmation");
 extern NewGameSceneVTableFunction const vtable_unk_080E5AB4[];
 extern NewGameSceneVTableFunction const vtable_unk_080E5AC0[];
 
