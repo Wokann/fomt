@@ -16,6 +16,10 @@ struct HardwareBlendState {
 
 struct HardwareBlendController {
     struct HardwareBlendState * state;
+#ifdef __cplusplus
+    void Begin(i16 step, u32 mode, u32 mosaic);
+    void End(i16 step, u32 mode, u32 mosaic);
+#endif
 };
 
 typedef char HardwareBlendState_size_check[(sizeof(struct HardwareBlendState) == 0x10) ? 1 : -1];
@@ -32,5 +36,17 @@ i16 func_080093A0(struct HardwareBlendController * controller, i16 step);
 u32 func_080093AC(struct HardwareBlendController * controller);
 
 EXTERN_C_END
+
+#ifdef __cplusplus
+inline void HardwareBlendController::Begin(i16 step, u32 mode, u32 mosaic)
+{
+    func_0800934C(this, step, mode, mosaic);
+}
+
+inline void HardwareBlendController::End(i16 step, u32 mode, u32 mosaic)
+{
+    func_08009378(this, step, mode, mosaic);
+}
+#endif
 
 #endif // HARDWARE_BLEND_HH

@@ -3,6 +3,7 @@
 #include "game_state.hh"
 #include "hardware_bootstrap.hh"
 #include "hardware_state_accessors.hh"
+#include "hardware_state_clear.hh"
 #include "hardware_blend_object.hh"
 #include "hardware_display_output.hh"
 #include "hardware_interrupt_guard.hh"
@@ -44,7 +45,6 @@ void func_08003B40(HardwareBootstrap * core)
     QueueMenuBlend(core, blend);
     while (MenuBlendIsQueued(blend))
         UpdateHardwareFrame(core);
-    func_080094B8(&blend, 2);
 }
 
 void func_08003BB4(HardwareBootstrap * core)
@@ -56,7 +56,6 @@ void func_08003BB4(HardwareBootstrap * core)
     QueueMenuBlend(core, blend);
     while (MenuBlendIsQueued(blend))
         UpdateHardwareFrame(core);
-    func_080094B8(&blend, 2);
 }
 
 void func_08003C28(NewGameMenuCore * core)
@@ -600,6 +599,54 @@ void func_08005B38(NewGameNameInputCore * core, int flags)
     if (core->ui_state != nullptr)
         delete core->ui_state;
     func_080086BC(core, flags);
+}
+
+SceneTransitionOwner func_08005B68(NewGameNameInputCore * core)
+{
+    func_08008724(core);
+    HardwareStateEntry tiles;
+    ReleaseHardwareSharedStateHandle(&tiles, tiles.handle);
+    tiles.handle = AllocateHardwareSharedStateHandle(&tiles, 3);
+    u32 tile_index = GetHardwareSharedStateTileIndex(&tiles, tiles.handle);
+    func_08005CDC(core);
+    func_080061A0(core, tile_index);
+    func_08006334(core);
+    func_0800637C(core);
+
+    HardwareDisplayState * display =
+        func_08008918(reinterpret_cast<void * const *>(core));
+    HardwareDisplayRegisterValue control(0x3F);
+    display->SetBlendControl(control);
+    HardwareBlendObject blend(func_08008918(reinterpret_cast<void * const *>(core)));
+    {
+        i16 step = 0x889;
+        blend.blend.Begin(step, 1, 1);
+    }
+    QueueMenuBlend(core, blend);
+    while (MenuBlendIsQueued(blend))
+        UpdateHardwareFrame(core);
+
+    while (core->finished == 0)
+    {
+        func_080088B8(reinterpret_cast<void * const *>(core));
+        func_08006CDC(core);
+        func_080068CC(core);
+        func_0800637C(core);
+        func_080064E8(core);
+        func_08006858(core);
+        func_08006ED8(core);
+        UpdateHardwareFrame(core);
+    }
+    {
+        i16 step = 0x889;
+        blend.blend.End(step, 1, 1);
+    }
+    // Re-enqueue the same stack command for the exit blend.
+    HardwareBlendObject & linked_blend = blend;
+    QueueMenuBlend(core, linked_blend);
+    while (MenuBlendIsQueued(blend))
+        UpdateHardwareFrame(core);
+    return SceneTransitionOwner();
 }
 
 NewGameNameInputScene * func_08007078(NewGameNameInputScene * scene,

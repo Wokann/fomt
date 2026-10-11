@@ -214,7 +214,9 @@ struct NewGameNameInputCore : HardwareBootstrap {
     char const * prompt;
     u8 unk_after_prompt[0x1C];
     char name[13];
-    u8 unk_after_name[0x17];
+    u8 unk_after_name[0x0D];
+    u8 finished;
+    u8 unk_after_finished[9];
 };
 
 struct NewGameNameInputScene {
@@ -264,6 +266,7 @@ typedef char NewGameNameInputCoreMusicCheck[offsetof(NewGameNameInputCore, music
 typedef char NewGameNameInputCoreUiCheck[offsetof(NewGameNameInputCore, ui_state) == 0x4538 ? 1 : -1];
 typedef char NewGameNameInputCorePromptCheck[offsetof(NewGameNameInputCore, prompt) == 0x453C ? 1 : -1];
 typedef char NewGameNameInputCoreNameCheck[offsetof(NewGameNameInputCore, name) == 0x455C ? 1 : -1];
+typedef char NewGameNameInputCoreFinishedCheck[offsetof(NewGameNameInputCore, finished) == 0x4576 ? 1 : -1];
 #elif defined(REGION_DE)
 typedef char NewGameNameInputCoreSizeCheck[sizeof(NewGameNameInputCore) == 0x4DC4 ? 1 : -1];
 typedef char NewGameNameInputCoreNameBufferCheck[offsetof(NewGameNameInputCore, name_buffer) == 0x43AC ? 1 : -1];
@@ -272,6 +275,7 @@ typedef char NewGameNameInputCoreMusicCheck[offsetof(NewGameNameInputCore, music
 typedef char NewGameNameInputCoreUiCheck[offsetof(NewGameNameInputCore, ui_state) == 0x4D7C ? 1 : -1];
 typedef char NewGameNameInputCorePromptCheck[offsetof(NewGameNameInputCore, prompt) == 0x4D80 ? 1 : -1];
 typedef char NewGameNameInputCoreNameCheck[offsetof(NewGameNameInputCore, name) == 0x4DA0 ? 1 : -1];
+typedef char NewGameNameInputCoreFinishedCheck[offsetof(NewGameNameInputCore, finished) == 0x4DBA ? 1 : -1];
 #else
 typedef char NewGameNameInputCoreSizeCheck[sizeof(NewGameNameInputCore) == 0x4640 ? 1 : -1];
 typedef char NewGameNameInputCoreNameBufferCheck[offsetof(NewGameNameInputCore, name_buffer) == 0x3C28 ? 1 : -1];
@@ -280,6 +284,7 @@ typedef char NewGameNameInputCoreMusicCheck[offsetof(NewGameNameInputCore, music
 typedef char NewGameNameInputCoreUiCheck[offsetof(NewGameNameInputCore, ui_state) == 0x45F8 ? 1 : -1];
 typedef char NewGameNameInputCorePromptCheck[offsetof(NewGameNameInputCore, prompt) == 0x45FC ? 1 : -1];
 typedef char NewGameNameInputCoreNameCheck[offsetof(NewGameNameInputCore, name) == 0x461C ? 1 : -1];
+typedef char NewGameNameInputCoreFinishedCheck[offsetof(NewGameNameInputCore, finished) == 0x4636 ? 1 : -1];
 #endif
 typedef char NewGameNameInputSceneSizeCheck[sizeof(NewGameNameInputScene) == 8 ? 1 : -1];
 typedef char NewGameNameInputSceneCoreCheck[offsetof(NewGameNameInputScene, core) == 4 ? 1 : -1];
@@ -374,14 +379,24 @@ u8 func_08005A3C(NewGameIdentityScene const * scene)
 u8 func_08005A4C(NewGameIdentityCore const * core)
     SECTION(".text.new_game_identity_scene");
 
-// Native keyboard construction uses the regional member layout above.
-// Its running loop and UI setup still remain assembly.
+// Native keyboard construction and its running loop share the regional
+// member layout above. Drawing and input helpers still remain assembly.
 NewGameNameInputCore * func_08005A58(NewGameNameInputCore * core,
     char const * prompt, char const * initial_name)
     SECTION(".text.new_game_name_input_core_constructor");
 void func_08005B38(NewGameNameInputCore * core, int flags)
     SECTION(".text.new_game_name_input_core_cleanup");
-SceneTransitionOwner func_08005B68(NewGameNameInputCore * core);
+SceneTransitionOwner func_08005B68(NewGameNameInputCore * core)
+    SECTION(".text.new_game_name_input_core_run");
+void func_08005CDC(NewGameNameInputCore * core);
+void func_080061A0(NewGameNameInputCore * core, u32 tile_index);
+void func_08006334(NewGameNameInputCore * core);
+void func_0800637C(NewGameNameInputCore * core);
+void func_080064E8(NewGameNameInputCore * core);
+void func_08006858(NewGameNameInputCore * core);
+void func_080068CC(NewGameNameInputCore * core);
+void func_08006CDC(NewGameNameInputCore * core);
+void func_08006ED8(NewGameNameInputCore * core);
 extern NewGameSceneVTableFunction const vtable_unk_080E5AB4[];
 extern NewGameSceneVTableFunction const vtable_unk_080E5AC0[];
 

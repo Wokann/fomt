@@ -14,6 +14,9 @@ struct HardwareBlendObject {
     struct HardwareBlendController blend;
 #ifdef __cplusplus
     HardwareBlendObject(HardwareDisplayState * display) asm("func_08009548");
+    // The native destructor accepts the old C++ allocation flags (2 on the
+    // stack, 3 when deleting an owned command) and unlinks the command.
+    ~HardwareBlendObject() asm("func_080094B8");
 #endif
 };
 
