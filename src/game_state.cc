@@ -1,6 +1,14 @@
 #include "game_state.hh"
 #include "unknown_types.hh"
 
+void InitializeGameDisplayOptions(GameDisplayOptions * options)
+{
+    options->control_scheme = 0;
+    options->show_clock = 1;
+    options->show_portrait = 1;
+    options->show_nameplate = 1;
+}
+
 // Calendar text begins this physical rodata block.
 #include FOMT_TEXT_INCLUDE(game_state_1.cc)
 

@@ -788,7 +788,7 @@ func_080041DC:
     negs	r6, r6
 .Ljp_0800432E:
     adds	r0, r4, #0
-    bl func_080114F8
+    bl InitializeGameDisplayOptions
     adds	r4, #4
     subs	r5, #1
     cmp	r5, r6
@@ -7232,7 +7232,7 @@ func_080041DC: @ 0x080041DC
     rsbs r6, r6, #0
 .L08004316:
     adds r0, r4, #0
-    bl func_080114F8
+    bl InitializeGameDisplayOptions
     adds r4, #4
     subs r5, #1
     cmp r5, r6

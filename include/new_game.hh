@@ -65,7 +65,7 @@ struct NewGameMenuCore : HardwareBootstrap {
     u32 unk_8C;
     SramAccess sram;
     NewGameMenuSaveSlotStatus save_slot_status[2];
-    u8 unk_198[8];
+    GameDisplayOptions saved_display_options[2];
 };
 
 typedef char NewGameMenuCoreSizeCheck[sizeof(NewGameMenuCore) == 0x1A0 ? 1 : -1];
@@ -79,6 +79,7 @@ typedef char NewGameMenuCoreChoicesCheck[offsetof(NewGameMenuCore, choices) == 0
 typedef char NewGameMenuCoreUnk8CCheck[offsetof(NewGameMenuCore, unk_8C) == 0x8C ? 1 : -1];
 typedef char NewGameMenuCoreSramCheck[offsetof(NewGameMenuCore, sram) == 0x90 ? 1 : -1];
 typedef char NewGameMenuCoreSaveSlotStatusCheck[offsetof(NewGameMenuCore, save_slot_status) == 0x98 ? 1 : -1];
+typedef char NewGameMenuCoreSavedDisplayOptionsCheck[offsetof(NewGameMenuCore, saved_display_options) == 0x198 ? 1 : -1];
 
 // Original ABI tables contain two metadata words before their callbacks.
 typedef void (*NewGameSceneVTableFunction)(void);

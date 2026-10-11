@@ -5,7 +5,22 @@
 
 struct SramAccess;
 
+// The save image stores these options at +0x2210. The menu keeps two
+// four-byte copies at +0x198/+0x19C, one for each SRAM slot. Only the low
+// four bits have verified meanings; initializing them preserves all others.
+struct GameDisplayOptions {
+    u32 control_scheme : 1; // 0: D-pad walks / R runs; 1: D-pad runs / R walks.
+    u32 show_clock : 1;
+    u32 show_portrait : 1;
+    u32 show_nameplate : 1;
+    u32 unk_4 : 28;
+};
+
+typedef char GameDisplayOptionsSizeCheck[sizeof(GameDisplayOptions) == 4 ? 1 : -1];
+
 EXTERN_C
+
+void InitializeGameDisplayOptions(struct GameDisplayOptions * options);
 
 // Writes the original save image and its checksum at the selected SRAM
 // offset. Zero denotes success; nonzero values carry the SRAM error flags.

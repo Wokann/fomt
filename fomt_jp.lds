@@ -170,6 +170,8 @@ SECTIONS
         asm/game_scene.o(.text.game_scene_post);
         . = 0x10328; /* JP ROM 0x08010328, bounded by game_scene and entity */
         asm/game_state.o(.text);
+        src/game_state.o(.text);
+        asm/game_state.o(.text.game_state_after_display_options);
         . = 0x1FB0C; /* JP ROM 0x0801FB0C, independently matched */
         src/entity.o(.text);
         . = 0x1FDAC; /* JP ROM 0x0801FDAC, independently matched */

@@ -222,7 +222,7 @@ func_08010358:
     ldr r1, [sp, #0x48]
     ldr r2, .Ljp_0801060C @ =0x00002210
     adds r0, r1, r2
-    bl func_080114F8
+    bl InitializeGameDisplayOptions
     ldr r3, [sp, #0x48]
     ldr r1, .Ljp_08010610 @ =0x00002214
     adds r0, r3, r1
@@ -2244,21 +2244,7 @@ func_080114C8:
     pop {r1}
     bx r1
     .align 2, 0
-    .global func_080114F8
-    .thumb_func
-func_080114F8:
-    ldrb r2, [r0]
-    movs r1, #2
-    rsbs r1, r1, #0
-    ands r1, r2
-    movs r2, #2
-    orrs r1, r2
-    movs r2, #4
-    orrs r1, r2
-    movs r2, #8
-    orrs r1, r2
-    strb r1, [r0]
-    bx lr
+    .section .text.game_state_after_display_options
     .global func_08011510
     .thumb_func
 func_08011510:
@@ -2602,7 +2588,7 @@ func_08011650:
     bgt .Ljp_08011752
     ldr r1, .Ljp_08011884 @ =0x00002210
     adds r0, r7, r1
-    bl func_080114F8
+    bl InitializeGameDisplayOptions
     ldr r2, .Ljp_08011888 @ =0x00002214
     adds r0, r7, r2
     bl func_0809A2E4
@@ -23656,7 +23642,7 @@ func_08010358: @ 0x08010358
     ldr r1, [sp, #0x48]
     ldr r2, .L0801062C @ =0x00002210
     adds r0, r1, r2
-    bl func_080114F8
+    bl InitializeGameDisplayOptions
     ldr r3, [sp, #0x48]
     ldr r1, .L08010630 @ =0x00002214
     adds r0, r3, r1
@@ -25679,20 +25665,7 @@ func_080114C8: @ 0x080114C8
     bx r1
     .align 2, 0
 
-    thumb_func_start func_080114F8
-func_080114F8: @ 0x080114F8
-    ldrb r2, [r0]
-    movs r1, #2
-    rsbs r1, r1, #0
-    ands r1, r2
-    movs r2, #2
-    orrs r1, r2
-    movs r2, #4
-    orrs r1, r2
-    movs r2, #8
-    orrs r1, r2
-    strb r1, [r0]
-    bx lr
+    .section .text.game_state_after_display_options
 
     thumb_func_start func_08011510
 func_08011510: @ 0x08011510
@@ -26034,7 +26007,7 @@ func_08011650: @ 0x08011650
     bgt .L08011772
     ldr r1, .L080118A4 @ =0x00002210
     adds r0, r7, r1
-    bl func_080114F8
+    bl InitializeGameDisplayOptions
     ldr r2, .L080118A8 @ =0x00002214
     adds r0, r7, r2
     bl func_0809A8AC
