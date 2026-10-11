@@ -225,9 +225,9 @@ SECTIONS
         . = 0x50C2C; /* JP/US-shared UI action-state second-flag clearer. */
         src/ui_state.o(.text.clear_ui_action_state_flag_01f0);
         . = 0x50C40; asm/code_0803EE94.o(.text.clear_ui_action_state_flag_01f0_after);
-        . = 0x50D70; /* US ROM contiguous UI-state adapter block. */
+        . = 0x50CD4; /* EU ROM contiguous UI owner and adapter block. */
         src/ui_state.o(.text.ui_state_adapters);
-        . = 0x50EF8; /* US ROM 0x08050EE4, remaining raw UI-adjacent code. */
+        . = 0x50EF8; /* EU ROM 0x08050EF8, remaining UI-adjacent code. */
         asm/code_0803EE94.o(.text.code_08050E50);
         . = 0x522EC; /* JP/US-shared animal-festival ranking entry copy. */
         src/animal_festival_ranking.o(.text.copy_animal_festival_ranking_entry);

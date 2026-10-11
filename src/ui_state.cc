@@ -1,25 +1,5 @@
 #include "ui_state.hh"
 
-struct UiObjectState
-{
-    u8 unknown_00[8];
-    i32 state;
-};
-
-struct UiActionStateFlags
-{
-    u8 active : 1;
-    u8 unknown_01 : 7;
-};
-
-struct UiActionState
-{
-    u8 unknown_00[0x1DC];
-    UiActionStateFlags flags_01dc;
-    u8 unknown_01e0[0x10];
-    UiActionStateFlags flags_01f0;
-};
-
 extern "C" void SetUiObjectStateTwoIfNonzero(void * object)
     SECTION(".text.set_ui_object_state_two_if_nonzero");
 
@@ -66,7 +46,30 @@ extern "C" void ClearUiActionStateFlag01F0(void * object)
     state->flags_01f0.active = 0;
 }
 
-// These adapters form one contiguous UI-state block in the original ROM.
+UiStateOwner::UiStateOwner(u32 arg_1, u32 arg_2, u32 arg_3, u32 arg_4,
+    HardwareStateOwner const & shared, HardwareResource const & resources)
+{
+    value = new UiStatePayload(arg_1, arg_2, arg_3, arg_4, shared, resources);
+}
+
+UiStateOwner::~UiStateOwner()
+{
+    delete value;
+}
+
+i32 UiStateOwner::GetState() const
+{
+    return value->state;
+}
+
+i32 UiStateOwner::Update(HardwareCoreState * state,
+    HardwareSpriteBufferState * sprites, HardwareDisplayState * display,
+    u8 * links, u8 * manager, MusicPlayer ** music) const
+{
+    return value->Update(state, sprites, display, links, manager, music);
+}
+
+// These adapters follow the owner methods in the same native ROM block.
 // The owning high-level UI class is still unknown, so retain the recovered
 // entry-point names and only model fields that the code demonstrably uses.
 EC void func_08050D5C(void * const * object)
@@ -161,12 +164,6 @@ EC void func_08050DC8(void * const * object, u32 arg_r1, u16 arg_r2,
     func_08050424(*object, arg_r1, arg_r2, arg_r3);
 }
 
-struct FirstFieldStatusByte
-{
-    u8 unused_00[0x0D];
-    u8 value;
-};
-
 EC u8 func_08050DD8(void * const * object)
 {
     FirstFieldStatusByte * const status = static_cast<FirstFieldStatusByte *>(*object);
@@ -182,14 +179,6 @@ EC u8 func_08050DE4(void * const * object)
     status->value = 1;
     return value;
 }
-
-struct FirstFieldQueryData
-{
-    u8 unused_00[8];
-    u32 mode;
-    u8 unused_0c[0x14C];
-    void * result;
-};
 
 EC void * func_08050DF0(void * const * object)
 {
@@ -266,18 +255,6 @@ EC void func_08050E8C(void * const * object)
 {
     func_08050C64(*object);
 }
-
-struct FirstFieldUiFlags
-{
-    u8 unused_00[0x550];
-    unsigned low_flags : 6;
-    unsigned unused_flags : 2;
-};
-
-struct FirstFieldUiOwner
-{
-    FirstFieldUiFlags * data;
-};
 
 EC u32 func_08050E98(FirstFieldUiOwner & object, u32 const flag_mask)
     SECTION(".text.ui_state_adapters");

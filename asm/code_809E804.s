@@ -7376,7 +7376,7 @@ func_080A220C: @ 0x080A1C44
 	movs r1, #0
 	movs r2, #0x1f
 	movs r3, #0xf
-	bl func_08050CC0
+	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
 	str r0, [r7, #0x10]
 	adds r0, r4, #0
 	movs r1, #2
@@ -8269,7 +8269,7 @@ func_080A2940: @ 0x080A2378
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	cmp r0, #6
 	bls .Ljp_080A2992
 	b .Ljp_080A2B90
@@ -32068,7 +32068,7 @@ func_080AD9A4:
     movs r1, #0
     movs r2, #0x18
     movs r3, #0
-    bl func_08050CC0
+    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
     movs r2, #0x83
     lsls r2, r2, #3
     adds r1, r6, r2
@@ -32841,7 +32841,7 @@ func_080ADF1C:
     mov r1, r8
     adds r2, r6, #0
     adds r3, r5, #0
-    bl func_08050D3C
+    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
     adds r0, r7, #0
     bl func_080AF24C
     ldr r1, .Ljp_080AE0F0 @ =0x0000043C
@@ -37805,7 +37805,7 @@ func_080B05FC: @ 0x080B05FC
 	ldr r1, [sp, #0x9c]
 	ldr r2, [sp, #0xa0]
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	ldr r4, [r6]
 	adds r0, r7, #0
 	bl func_080B3444
@@ -37833,7 +37833,7 @@ sub_080B0704: @ 0x080B0704
 	lsls r5, r5, #3
 	adds r4, r7, r5
 	ldr r0, [r4]
-	bl func_08050D34
+	bl GetState__C12UiStateOwner
 	adds r6, r0, #0
 	ldr r4, [r4]
 	mov r8, r4
@@ -37861,7 +37861,7 @@ sub_080B0704: @ 0x080B0704
 	ldr r1, [sp, #0xa4]
 	mov r2, sb
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	cmp r0, #6
 	bls .Ljp_080B0766
 	b .Ljp_080B0B2C
@@ -39706,7 +39706,7 @@ func_080B1584: @ 0x080B1584
 	mov r1, sb
 	mov r2, r8
 	adds r3, r6, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	b .Ljp_080B1740
 	.align 2, 0
 .Ljp_080B164C: .4byte 0x0000090E
@@ -39721,7 +39721,7 @@ func_080B1584: @ 0x080B1584
 	lsls r0, r0, #3
 	adds r4, r7, r0
 	ldr r0, [r4]
-	bl func_08050D34
+	bl GetState__C12UiStateOwner
 	mov sl, r0
 	ldr r4, [r4]
 	mov sb, r4
@@ -39749,7 +39749,7 @@ func_080B1584: @ 0x080B1584
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	cmp r0, #6
 	bhi .Ljp_080B1740
 	lsls r0, r0, #2
@@ -40483,7 +40483,7 @@ func_080B1B48: @ 0x080B1B48
 	cmp r0, #0
 	beq .Ljp_080B1C4E
 	movs r1, #3
-	bl func_08050D0C
+	bl _._12UiStateOwner
 .Ljp_080B1C4E:
 	movs r0, #0
 	str r0, [r4]
@@ -40503,7 +40503,7 @@ func_080B1B48: @ 0x080B1B48
 	movs r1, #0
 	movs r2, #0x18
 	movs r3, #0
-	bl func_08050CC0
+	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
 	movs r5, #0x83
 	lsls r5, r5, #3
 	add r5, sl
@@ -40514,7 +40514,7 @@ func_080B1B48: @ 0x080B1B48
 	cmp r0, #0
 	beq .Ljp_080B1C94
 	movs r1, #3
-	bl func_08050D0C
+	bl _._12UiStateOwner
 .Ljp_080B1C94:
 	str r4, [r5]
 	adds r0, r6, #0
@@ -40552,7 +40552,7 @@ func_080B1B48: @ 0x080B1B48
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	movs r0, #0
 	ldr r1, [sp, #0x110]
 	movs r2, #0
@@ -42187,7 +42187,7 @@ func_080B1B48: @ 0x080B1B48
 	lsls r4, r4, #3
 	add r4, sl
 	ldr r0, [r4]
-	bl func_08050D34
+	bl GetState__C12UiStateOwner
 	adds r7, r0, #0
 	ldr r4, [r4]
 	mov sb, r4
@@ -42215,7 +42215,7 @@ func_080B1B48: @ 0x080B1B48
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	cmp r0, #6
 	bhi .Ljp_080B2A04
 	lsls r0, r0, #2
@@ -44018,7 +44018,7 @@ func_080B3CC8: @ 0x080B36FC
 	movs r1, #0
 	movs r2, #0xf
 	movs r3, #0
-	bl func_08050CC0
+	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
 	movs r3, #0xe3
 	lsls r3, r3, #3
 	adds r1, r6, r3
@@ -45092,7 +45092,7 @@ func_080B45F0: @ 0x080B4024
 	mov r1, sb
 	mov r2, r8
 	adds r3, r6, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	add sp, #0xc
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -45127,7 +45127,7 @@ func_080B469C: @ 0x080B40D0
 	cmp r0, #0
 	beq .Ljp_080B40F6
 	movs r1, #3
-	bl func_08050D0C
+	bl _._12UiStateOwner
 .Ljp_080B40F6:
 	str r5, [r4]
 	movs r0, #4
@@ -45147,7 +45147,7 @@ func_080B469C: @ 0x080B40D0
 	movs r1, #0
 	movs r2, #0xf
 	movs r3, #0
-	bl func_08050CC0
+	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
 	movs r2, #0xe3
 	lsls r2, r2, #3
 	adds r6, r7, r2
@@ -45158,7 +45158,7 @@ func_080B469C: @ 0x080B40D0
 	cmp r0, #0
 	beq .Ljp_080B413C
 	movs r1, #3
-	bl func_08050D0C
+	bl _._12UiStateOwner
 .Ljp_080B413C:
 	str r5, [r6]
 	adds r0, r4, #0
@@ -45796,7 +45796,7 @@ func_080B469C: @ 0x080B40D0
 	lsls r5, r5, #3
 	adds r4, r7, r5
 	ldr r0, [r4]
-	bl func_08050D34
+	bl GetState__C12UiStateOwner
 	mov sl, r0
 	ldr r4, [r4]
 	mov sb, r4
@@ -45824,7 +45824,7 @@ func_080B469C: @ 0x080B40D0
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	cmp r0, #6
 	bls .Ljp_080B46A6
 	b .Ljp_080B4882
@@ -47171,7 +47171,7 @@ func_080B55D0: @ 0x080B5004
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	ldr r3, .Ljp_080B51B8 @ =0x00002010
 	add sp, r3
 	pop {r3, r4}
@@ -53528,7 +53528,7 @@ func_080B87C4: @ 0x080B81F8
 	mov r1, sb
 	mov r2, r8
 	adds r3, r6, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	adds r1, r4, #0
 	adds r1, #0xdd
 	movs r0, #1
@@ -53569,7 +53569,7 @@ func_080B888C: @ 0x080B82C0
 	cmp r0, #0
 	beq .Ljp_080B82E6
 	movs r1, #3
-	bl func_08050D0C
+	bl _._12UiStateOwner
 .Ljp_080B82E6:
 	str r5, [r4]
 	movs r0, #4
@@ -53589,7 +53589,7 @@ func_080B888C: @ 0x080B82C0
 	movs r1, #0
 	movs r2, #0xf
 	movs r3, #0
-	bl func_08050CC0
+	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
 	movs r2, #0xe3
 	lsls r2, r2, #3
 	adds r6, r7, r2
@@ -53600,7 +53600,7 @@ func_080B888C: @ 0x080B82C0
 	cmp r0, #0
 	beq .Ljp_080B832C
 	movs r1, #3
-	bl func_08050D0C
+	bl _._12UiStateOwner
 .Ljp_080B832C:
 	str r5, [r6]
 	adds r0, r4, #0
@@ -53773,7 +53773,7 @@ func_080B888C: @ 0x080B82C0
 	bl func_080088B8
 	mov r2, sl
 	ldr r0, [r2]
-	bl func_08050D34
+	bl GetState__C12UiStateOwner
 	str r0, [sp, #0x58]
 	mov r3, sl
 	ldr r3, [r3]
@@ -53802,7 +53802,7 @@ func_080B888C: @ 0x080B82C0
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	ldr r3, [sp, #0x54]
 	cmp r3, #0
 	beq .Ljp_080B8524
@@ -57049,7 +57049,7 @@ func_080BA2C4: @ 0x080B9CF8
 	lsls r0, r0, #3
 	adds r4, r7, r0
 	ldr r0, [r4]
-	bl func_08050D34
+	bl GetState__C12UiStateOwner
 	adds r6, r0, #0
 	ldr r4, [r4]
 	str r4, [sp, #0xc]
@@ -57077,7 +57077,7 @@ func_080BA2C4: @ 0x080B9CF8
 	mov r1, r8
 	mov r2, sb
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	cmp r0, #6
 	bls .Ljp_080B9D5E
 	b .Ljp_080B9F7E
@@ -62150,7 +62150,7 @@ func_080BC938: @ 0x080BC36C
 	movs r1, #0
 	movs r2, #0x18
 	movs r3, #0
-	bl func_08050CC0
+	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
 	movs r2, #0x83
 	lsls r2, r2, #3
 	adds r1, r6, r2
@@ -62674,7 +62674,7 @@ func_080BCCD4:
     mov r1, r8
     adds r2, r6, #0
     adds r3, r5, #0
-    bl func_08050D3C
+    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
     adds r0, r7, #0
     bl loc_080BD974
     ldr r1, [pc, #0x48]
@@ -65981,17 +65981,23 @@ func_080BEA34:
     .byte 0x38, 0x1C, 0x4A, 0xF7, 0xC0, 0xF9, 0x81, 0x46, 0x38, 0x1C, 0x4A, 0xF7, 0xDE, 0xF9, 0x08, 0x90
     .byte 0x38, 0x1C, 0x4A, 0xF7, 0xD6, 0xF9, 0x05, 0x1C, 0x38, 0x1C, 0x4A, 0xF7, 0xE6, 0xF9, 0x04, 0x1C
     .byte 0x38, 0x1C, 0x4A, 0xF7, 0xE8, 0xF9, 0x0D, 0x4A, 0xB9, 0x18, 0x00, 0x94, 0x01, 0x90, 0x02, 0x91
-    .byte 0x50, 0x46, 0x49, 0x46, 0x08, 0x9A, 0x2B, 0x1C, 0x92, 0xF7, 0x97, 0xFA, 0x43, 0x46, 0x1C, 0x68
+    .byte 0x50, 0x46, 0x49, 0x46, 0x08, 0x9A, 0x2B, 0x1C
+    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
+    .byte 0x43, 0x46, 0x1C, 0x68
     .byte 0x38, 0x1C, 0x01, 0xF0, 0xF0, 0xFF, 0x01, 0x1C, 0x09, 0x04, 0x09, 0x0C, 0x20, 0x1C, 0x92, 0xF7
     .byte 0x16, 0xFB, 0xAA, 0xE2, 0x00, 0x00, 0x11, 0x06, 0x00, 0x00, 0x12, 0x06, 0x00, 0x00, 0x7C, 0x05
     .byte 0x00, 0x00, 0x38, 0x1C
     bl UpdateHardwareFrame @ JP ROM 0x080BE5C2
     .byte 0x38, 0x1C, 0x4A, 0xF7, 0x7A, 0xF9, 0x83, 0x22
-    .byte 0xD2, 0x00, 0xBC, 0x18, 0x20, 0x68, 0x92, 0xF7, 0x74, 0xFA, 0x06, 0x1C, 0x24, 0x68, 0xA1, 0x46
+    .byte 0xD2, 0x00, 0xBC, 0x18, 0x20, 0x68
+    bl GetState__C12UiStateOwner
+    .byte 0x06, 0x1C, 0x24, 0x68, 0xA1, 0x46
     .byte 0x38, 0x1C, 0x4A, 0xF7, 0x80, 0xF9, 0x80, 0x46, 0x38, 0x1C, 0x4A, 0xF7, 0x9E, 0xF9, 0x82, 0x46
     .byte 0x38, 0x1C, 0x4A, 0xF7, 0x96, 0xF9, 0x05, 0x1C, 0x38, 0x1C, 0x4A, 0xF7, 0xA6, 0xF9, 0x04, 0x1C
     .byte 0x38, 0x1C, 0x4A, 0xF7, 0xA8, 0xF9, 0x09, 0x4B, 0xF9, 0x18, 0x00, 0x94, 0x01, 0x90, 0x02, 0x91
-    .byte 0x48, 0x46, 0x41, 0x46, 0x52, 0x46, 0x2B, 0x1C, 0x92, 0xF7, 0x57, 0xFA, 0x06, 0x28, 0x00, 0xD9
+    .byte 0x48, 0x46, 0x41, 0x46, 0x52, 0x46, 0x2B, 0x1C
+    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
+    .byte 0x06, 0x28, 0x00, 0xD9
     .byte 0x60, 0xE1, 0x80, 0x00, 0x03, 0x49, 0x40, 0x18, 0x00, 0x68, 0x87, 0x46, 0x00, 0x00, 0x7C, 0x05
     .byte 0x00, 0x00, 0x34, 0xE6, 0x0B, 0x08, 0x50, 0xE6, 0x0B, 0x08, 0xE2, 0xE8, 0x0B, 0x08, 0xE2, 0xE8
     .byte 0x0B, 0x08, 0xF8, 0xE6, 0x0B, 0x08, 0xC6, 0xE8, 0x0B, 0x08, 0xE2, 0xE8, 0x0B, 0x08, 0xE2, 0xE8
@@ -66098,18 +66104,23 @@ func_080BEA34:
     .byte 0x24, 0x68, 0xA2, 0x46, 0x38, 0x1C, 0x49, 0xF7, 0x97, 0xFE, 0x81, 0x46, 0x38, 0x1C, 0x49, 0xF7
     .byte 0xB5, 0xFE, 0x80, 0x46, 0x38, 0x1C, 0x49, 0xF7, 0xAD, 0xFE, 0x06, 0x1C, 0x38, 0x1C, 0x49, 0xF7
     .byte 0xBD, 0xFE, 0x04, 0x1C, 0x38, 0x1C, 0x49, 0xF7, 0xBF, 0xFE, 0x0B, 0x4A, 0xB9, 0x18, 0x00, 0x94
-    .byte 0x01, 0x90, 0x02, 0x91, 0x50, 0x46, 0x49, 0x46, 0x42, 0x46, 0x33, 0x1C, 0x91, 0xF7, 0x6E, 0xFF
+    .byte 0x01, 0x90, 0x02, 0x91, 0x50, 0x46, 0x49, 0x46, 0x42, 0x46, 0x33, 0x1C
+    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
     .byte 0x38, 0x1C, 0xFE, 0xF7, 0xC1, 0xFE, 0xB4, 0x23, 0xDB, 0x00, 0xF8, 0x18, 0x82, 0xE0, 0x00, 0x00
     .4byte gText_HarvestSpriteMiniGame_Harvest_ScorePrefix
     .4byte gText_HarvestSpriteMiniGame_Harvest_ScoreResultSuffix
     .byte 0x7C, 0x05, 0x00, 0x00, 0x38, 0x1C
     bl UpdateHardwareFrame @ JP ROM 0x080BEC0A
     .byte 0x38, 0x1C, 0x49, 0xF7, 0x56, 0xFE
-    .byte 0x83, 0x20, 0xC0, 0x00, 0x3C, 0x18, 0x20, 0x68, 0x91, 0xF7, 0x50, 0xFF, 0x82, 0x46, 0x24, 0x68
+    .byte 0x83, 0x20, 0xC0, 0x00, 0x3C, 0x18, 0x20, 0x68
+    bl GetState__C12UiStateOwner
+    .byte 0x82, 0x46, 0x24, 0x68
     .byte 0xA1, 0x46, 0x38, 0x1C, 0x49, 0xF7, 0x5C, 0xFE, 0x80, 0x46, 0x38, 0x1C, 0x49, 0xF7, 0x7A, 0xFE
     .byte 0x06, 0x1C, 0x38, 0x1C, 0x49, 0xF7, 0x72, 0xFE, 0x05, 0x1C, 0x38, 0x1C, 0x49, 0xF7, 0x82, 0xFE
     .byte 0x04, 0x1C, 0x38, 0x1C, 0x49, 0xF7, 0x84, 0xFE, 0x08, 0x4A, 0xB9, 0x18, 0x00, 0x94, 0x01, 0x90
-    .byte 0x02, 0x91, 0x48, 0x46, 0x41, 0x46, 0x32, 0x1C, 0x2B, 0x1C, 0x91, 0xF7, 0x33, 0xFF, 0x06, 0x28
+    .byte 0x02, 0x91, 0x48, 0x46, 0x41, 0x46, 0x32, 0x1C, 0x2B, 0x1C
+    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
+    .byte 0x06, 0x28
     .byte 0x35, 0xD8, 0x80, 0x00, 0x02, 0x49, 0x40, 0x18, 0x00, 0x68, 0x87, 0x46, 0x7C, 0x05, 0x00, 0x00
     .byte 0x78, 0xEC, 0x0B, 0x08, 0x94, 0xEC, 0x0B, 0x08, 0xD2, 0xEC, 0x0B, 0x08, 0xD2, 0xEC, 0x0B, 0x08
     .byte 0xB4, 0xEC, 0x0B, 0x08, 0xD2, 0xEC, 0x0B, 0x08, 0xD2, 0xEC, 0x0B, 0x08, 0xD2, 0xEC, 0x0B, 0x08
@@ -66255,7 +66266,7 @@ func_080BF764:
     cmp r0, #0
     beq .Lauto_080BF20A
     movs r1, #3
-    bl func_08050D0C
+    bl _._12UiStateOwner
     .Lauto_080BF20A:
     movs r0, #0
     str r0, [r5]
@@ -66276,7 +66287,7 @@ func_080BF764:
     movs r1, #0
     movs r2, #0x18
     movs r3, #0
-    bl func_08050CC0
+    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
     movs r6, #0x83
     lsls r6, r6, #3
     add r6, sl
@@ -66287,7 +66298,7 @@ func_080BF764:
     cmp r0, #0
     beq .Lauto_080BF252
     movs r1, #3
-    bl func_08050D0C
+    bl _._12UiStateOwner
     .Lauto_080BF252:
     str r5, [r6]
     adds r0, r4, #0
@@ -66324,7 +66335,7 @@ func_080BF764:
     mov r1, r8
     adds r2, r6, #0
     adds r3, r5, #0
-    bl func_08050D3C
+    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
     movs r0, #0x14
     bl __builtin_new
     ldr r1, [pc, #0x12c]
@@ -67749,7 +67760,7 @@ func_080BF764:
     lsls r4, r4, #3
     add r4, sl
     ldr r0, [r4]
-    bl func_08050D34
+    bl GetState__C12UiStateOwner
     adds r7, r0, #0
     ldr r4, [r4]
     mov sb, r4
@@ -67776,7 +67787,7 @@ func_080BF764:
     mov r1, r8
     adds r2, r6, #0
     adds r3, r5, #0
-    bl func_08050D3C
+    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
     cmp r0, #6
     bhi .Lauto_080BFE38
     lsls r0, r0, #2
@@ -69119,7 +69130,7 @@ func_080C0D90:
     movs r1, #0
     movs r2, #0x18
     movs r3, #0
-    bl func_08050CC0
+    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
     ldr r2, [pc, #0x3a4]
     adds r1, r6, r2
     str r0, [r1]
@@ -69779,7 +69790,7 @@ func_080C12B8:
     mov r1, r8
     adds r2, r6, #0
     adds r3, r5, #0
-    bl func_08050D3C
+    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
     adds r0, r7, #0
     bl loc_080C2780
     ldr r1, [pc, #0x4c]
@@ -74626,7 +74637,9 @@ func_080C3C18:
     .byte 0x81, 0x46, 0x38, 0x1C, 0x45, 0xF7, 0xC6, 0xF8, 0x29, 0x90, 0x38, 0x1C, 0x45, 0xF7, 0xBE, 0xF8
     .byte 0x05, 0x1C, 0x38, 0x1C, 0x45, 0xF7, 0xCE, 0xF8, 0x04, 0x1C, 0x38, 0x1C, 0x45, 0xF7, 0xD0, 0xF8
     .byte 0x0E, 0x4A, 0xB9, 0x18, 0x00, 0x94, 0x01, 0x90, 0x02, 0x91, 0x50, 0x46, 0x49, 0x46, 0x29, 0x9A
-    .byte 0x2B, 0x1C, 0x8D, 0xF7, 0x7F, 0xF9, 0xF4, 0x59, 0x38, 0x1C, 0x03, 0xF0, 0xDB, 0xFE, 0x01, 0x1C
+    .byte 0x2B, 0x1C
+    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
+    .byte 0xF4, 0x59, 0x38, 0x1C, 0x03, 0xF0, 0xDB, 0xFE, 0x01, 0x1C
     .byte 0x09, 0x04, 0x09, 0x0C, 0x20, 0x1C, 0x8D, 0xF7, 0xFF, 0xF9, 0x05, 0x4B, 0xF8, 0x18, 0x01, 0xF0
     .byte 0xC9, 0xF9, 0x00, 0x00, 0x04, 0x09, 0x00, 0x00, 0x1C, 0x05, 0x00, 0x00, 0x14, 0x08, 0x00, 0x00
     .byte 0x9C, 0x08, 0x00, 0x00
@@ -74640,7 +74653,7 @@ func_080C3C18:
     ldr r6, [pc, #0x58]
     adds r4, r7, r6
     ldr r0, [r4]
-    bl func_08050D34
+    bl GetState__C12UiStateOwner
     adds r6, r0, #0
     ldr r4, [r4]
     mov sb, r4
@@ -74667,7 +74680,7 @@ func_080C3C18:
     mov r1, r8
     mov r2, sl
     adds r3, r5, #0
-    bl func_08050D3C
+    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
     cmp r0, #6
     bls .Lauto_080C3856
     b loc_080C3B5C
@@ -75700,17 +75713,22 @@ sub_080C4BBC:
     .byte 0xDA, 0xFF, 0x24, 0x68, 0xA1, 0x46, 0x38, 0x1C, 0x43, 0xF7, 0x53, 0xFE, 0x80, 0x46, 0x38, 0x1C
     .byte 0x43, 0xF7, 0x71, 0xFE, 0x06, 0x1C, 0x38, 0x1C, 0x43, 0xF7, 0x69, 0xFE, 0x05, 0x1C, 0x38, 0x1C
     .byte 0x43, 0xF7, 0x79, 0xFE, 0x04, 0x1C, 0x38, 0x1C, 0x43, 0xF7, 0x7B, 0xFE, 0x0B, 0x4A, 0xB9, 0x18
-    .byte 0x00, 0x94, 0x01, 0x90, 0x02, 0x91, 0x48, 0x46, 0x41, 0x46, 0x32, 0x1C, 0x2B, 0x1C, 0x8B, 0xF7
-    .byte 0x2A, 0xFF, 0x7D, 0xE0, 0x00, 0x00, 0x7C, 0x09, 0x00, 0x00
+    .byte 0x00, 0x94, 0x01, 0x90, 0x02, 0x91, 0x48, 0x46, 0x41, 0x46, 0x32, 0x1C, 0x2B, 0x1C
+    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
+    .byte 0x7D, 0xE0, 0x00, 0x00, 0x7C, 0x09, 0x00, 0x00
     .4byte gText_HarvestSpriteMiniGame_Watering_ScorePrefix
     .4byte gText_HarvestSpriteMiniGame_Watering_ScoreResultSuffix
     .byte 0x04, 0x09, 0x00, 0x00, 0x1C, 0x05, 0x00, 0x00, 0x14, 0x08, 0x00, 0x00, 0x38, 0x1C
     bl UpdateHardwareFrame @ JP ROM 0x080C4C92
-    .byte 0x16, 0x48, 0x3C, 0x18, 0x20, 0x68, 0x8B, 0xF7, 0x10, 0xFF, 0x82, 0x46, 0x24, 0x68
+    .byte 0x16, 0x48, 0x3C, 0x18, 0x20, 0x68
+    bl GetState__C12UiStateOwner
+    .byte 0x82, 0x46, 0x24, 0x68
     .byte 0xA1, 0x46, 0x38, 0x1C, 0x43, 0xF7, 0x1C, 0xFE, 0x80, 0x46, 0x38, 0x1C, 0x43, 0xF7, 0x3A, 0xFE
     .byte 0x06, 0x1C, 0x38, 0x1C, 0x43, 0xF7, 0x32, 0xFE, 0x05, 0x1C, 0x38, 0x1C, 0x43, 0xF7, 0x42, 0xFE
     .byte 0x04, 0x1C, 0x38, 0x1C, 0x43, 0xF7, 0x44, 0xFE, 0x09, 0x4A, 0xB9, 0x18, 0x00, 0x94, 0x01, 0x90
-    .byte 0x02, 0x91, 0x48, 0x46, 0x41, 0x46, 0x32, 0x1C, 0x2B, 0x1C, 0x8B, 0xF7, 0xF3, 0xFE, 0x06, 0x28
+    .byte 0x02, 0x91, 0x48, 0x46, 0x41, 0x46, 0x32, 0x1C, 0x2B, 0x1C
+    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
+    .byte 0x06, 0x28
     .byte 0x45, 0xD8, 0x80, 0x00, 0x03, 0x49, 0x40, 0x18, 0x00, 0x68, 0x87, 0x46, 0x1C, 0x05, 0x00, 0x00
     .byte 0x14, 0x08, 0x00, 0x00, 0xFC, 0x4C, 0x0C, 0x08, 0x18, 0x4D, 0x0C, 0x08, 0x58, 0x4D, 0x0C, 0x08
     .byte 0x58, 0x4D, 0x0C, 0x08, 0x3C, 0x4D, 0x0C, 0x08, 0x58, 0x4D, 0x0C, 0x08, 0x58, 0x4D, 0x0C, 0x08
@@ -76021,15 +76039,20 @@ func_080C5648:
     .byte 0x10, 0x22, 0x0D, 0xF0, 0x1A, 0xFB, 0x04, 0xA8, 0x29, 0x1C, 0x10, 0x22, 0x0D, 0xF0, 0x15, 0xFB
     .byte 0x50, 0x46, 0x42, 0xF7, 0xFC, 0xFE, 0xBA, 0x22, 0x52, 0x01, 0x11, 0x1C, 0x21, 0x80, 0x01, 0x80
     .byte 0x36, 0x4D, 0x55, 0x44, 0x00, 0x26, 0x28, 0x68, 0x86, 0x42, 0x04, 0xD0, 0x00, 0x28, 0x02, 0xD0
-    .byte 0x03, 0x21, 0x8A, 0xF7, 0xA8, 0xFF, 0x2E, 0x60, 0x04, 0x20, 0x3A, 0xF7, 0x42, 0xFD, 0x05, 0x1C
+    .byte 0x03, 0x21
+    bl _._12UiStateOwner
+    .byte 0x2E, 0x60, 0x04, 0x20, 0x3A, 0xF7, 0x42, 0xFD, 0x05, 0x1C
     .byte 0x0C, 0xA8
     bl __18HardwareStateOwner
     .byte 0x0D, 0xAC, 0x20, 0x1C
     bl __16HardwareResource
     .byte 0x00, 0x20
     .byte 0x00, 0x90, 0x0C, 0xAB, 0x01, 0x93, 0x02, 0x94, 0x28, 0x1C, 0x00, 0x21, 0x18, 0x22, 0x00, 0x23
-    .byte 0x8A, 0xF7, 0x6B, 0xFF, 0x25, 0x4E, 0x56, 0x44, 0x05, 0x1C, 0x30, 0x68, 0x85, 0x42, 0x04, 0xD0
-    .byte 0x00, 0x28, 0x02, 0xD0, 0x03, 0x21, 0x8A, 0xF7, 0x86, 0xFF, 0x35, 0x60, 0x20, 0x1C, 0x02, 0x21
+    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
+    .byte 0x25, 0x4E, 0x56, 0x44, 0x05, 0x1C, 0x30, 0x68, 0x85, 0x42, 0x04, 0xD0
+    .byte 0x00, 0x28, 0x02, 0xD0, 0x03, 0x21
+    bl _._12UiStateOwner
+    .byte 0x35, 0x60, 0x20, 0x1C, 0x02, 0x21
     bl _._16HardwareResource
     .byte 0x0C, 0xA8, 0x02, 0x21
     bl _._18HardwareStateOwner
@@ -76037,7 +76060,8 @@ func_080C5648:
     .byte 0x00, 0x68, 0x81, 0x46, 0x50, 0x46, 0x42, 0xF7, 0x9C, 0xFE, 0x80, 0x46, 0x50, 0x46, 0x42, 0xF7
     .byte 0xBA, 0xFE, 0x06, 0x1C, 0x50, 0x46, 0x42, 0xF7, 0xB2, 0xFE, 0x05, 0x1C, 0x50, 0x46, 0x42, 0xF7
     .byte 0xC2, 0xFE, 0x04, 0x1C, 0x50, 0x46, 0x42, 0xF7, 0xC4, 0xFE, 0x10, 0x49, 0x51, 0x44, 0x00, 0x94
-    .byte 0x01, 0x90, 0x02, 0x91, 0x48, 0x46, 0x41, 0x46, 0x32, 0x1C, 0x2B, 0x1C, 0x8A, 0xF7, 0x73, 0xFF
+    .byte 0x01, 0x90, 0x02, 0x91, 0x48, 0x46, 0x41, 0x46, 0x32, 0x1C, 0x2B, 0x1C
+    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
     .byte 0x09, 0x48, 0x50, 0x44, 0x00, 0x78, 0x00, 0x28, 0x13, 0xD1, 0x14, 0x20, 0x3A, 0xF7, 0xF1, 0xFC
     .byte 0xA8, 0x21, 0xC9, 0x00, 0x11, 0xE0, 0x6E, 0x09, 0x00, 0x00, 0x78, 0x09, 0x00, 0x00, 0x74, 0x09
     .byte 0x00, 0x00, 0x7C, 0x09, 0x00, 0x00, 0x6A, 0x09, 0x00, 0x00, 0x1C, 0x05, 0x00, 0x00, 0x14, 0x08
@@ -76281,11 +76305,15 @@ func_080C5648:
     .byte 0x50, 0x46, 0x41, 0xF7, 0xF4, 0xFE, 0x07, 0x49, 0x51, 0x44, 0x08, 0x68, 0x00, 0x28, 0x0C, 0xD1
     .byte 0x3F, 0x9C, 0x01, 0x34, 0x3F, 0x94, 0x78, 0x2C, 0x00, 0xD0, 0xF0, 0xE2, 0x00, 0x25, 0x3F, 0x95
     .byte 0x01, 0x20, 0xEB, 0xE2, 0x00, 0x00, 0xA8, 0x08, 0x00, 0x00, 0x50, 0x46, 0x41, 0xF7, 0xED, 0xFE
-    .byte 0x43, 0x90, 0x16, 0x4C, 0x54, 0x44, 0x20, 0x68, 0x89, 0xF7, 0xD9, 0xFF, 0x07, 0x1C, 0x24, 0x68
+    .byte 0x43, 0x90, 0x16, 0x4C, 0x54, 0x44, 0x20, 0x68
+    bl GetState__C12UiStateOwner
+    .byte 0x07, 0x1C, 0x24, 0x68
     .byte 0xA1, 0x46, 0x50, 0x46, 0x41, 0xF7, 0xE5, 0xFE, 0x80, 0x46, 0x50, 0x46, 0x41, 0xF7, 0x03, 0xFF
     .byte 0x06, 0x1C, 0x50, 0x46, 0x41, 0xF7, 0xFB, 0xFE, 0x05, 0x1C, 0x50, 0x46, 0x41, 0xF7, 0x0B, 0xFF
     .byte 0x04, 0x1C, 0x50, 0x46, 0x41, 0xF7, 0x0D, 0xFF, 0x0A, 0x49, 0x51, 0x44, 0x00, 0x94, 0x01, 0x90
-    .byte 0x02, 0x91, 0x48, 0x46, 0x41, 0x46, 0x32, 0x1C, 0x2B, 0x1C, 0x89, 0xF7, 0xBC, 0xFF, 0x06, 0x28
+    .byte 0x02, 0x91, 0x48, 0x46, 0x41, 0x46, 0x32, 0x1C, 0x2B, 0x1C
+    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
+    .byte 0x06, 0x28
     .byte 0x2F, 0xD8, 0x80, 0x00, 0x04, 0x49, 0x40, 0x18, 0x00, 0x68, 0x87, 0x46, 0x00, 0x00, 0x1C, 0x05
     .byte 0x00, 0x00, 0x14, 0x08, 0x00, 0x00, 0x6C, 0x6B, 0x0C, 0x08, 0x88, 0x6B, 0x0C, 0x08, 0xB4, 0x6B
     .byte 0x0C, 0x08, 0xB4, 0x6B, 0x0C, 0x08, 0x98, 0x6B, 0x0C, 0x08, 0xB4, 0x6B, 0x0C, 0x08, 0xB4, 0x6B
@@ -77025,7 +77053,7 @@ func_080C797C:
     movs r1, #0
     movs r2, #0x1c
     movs r3, #0
-    bl func_08050CC0
+    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
     adds r0, r5, #0
     movs r1, #2
     bl _._16HardwareResource
@@ -77595,7 +77623,7 @@ func_080C8360:
     lsls r1, r1, #2
     adds r0, r5, r1
     movs r1, #2
-    bl func_08050D0C
+    bl _._12UiStateOwner
     ldr r0, [r5, #0x20]
     lsls r0, r0, #4
     adds r0, #4
@@ -78874,7 +78902,7 @@ func_080C90D0:
     add r2, sl
     mov r8, r2
     mov r0, r8
-    bl func_08050D34
+    bl GetState__C12UiStateOwner
     movs r1, #0xd3
     lsls r1, r1, #2
     add r1, sl
@@ -78902,7 +78930,7 @@ func_080C90D0:
     mov r1, sb
     adds r2, r6, #0
     adds r3, r5, #0
-    bl func_08050D3C
+    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
     movs r1, #0xd4
     lsls r1, r1, #2
     add r1, sl
@@ -85128,7 +85156,7 @@ func_080CCD88:
     movs r1, #0
     movs r2, #0x1d
     movs r3, #0
-    bl func_08050CC0
+    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
     adds r0, r5, #0
     movs r1, #2
     bl _._16HardwareResource
@@ -85232,7 +85260,7 @@ func_080CCD88:
     movs r0, #0x80
     adds r0, r0, r7
     mov r8, r0
-    bl func_08050D34
+    bl GetState__C12UiStateOwner
     adds r1, r7, #0
     adds r1, #0x84
     str r0, [r1]
@@ -85259,7 +85287,7 @@ func_080CCD88:
     mov r1, sb
     adds r2, r6, #0
     adds r3, r5, #0
-    bl func_08050D3C
+    bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
     adds r1, r7, #0
     adds r1, #0x88
     str r0, [r1]
@@ -98523,7 +98551,7 @@ func_080A220C: @ 0x080A220C
 	movs r1, #0
 	movs r2, #0x1f
 	movs r3, #0xf
-	bl func_08050CC0
+	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
 	str r0, [r7, #0x10]
 	adds r0, r4, #0
 	movs r1, #2
@@ -99414,7 +99442,7 @@ func_080A2940: @ 0x080A2940
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	cmp r0, #6
 	bls .L080A2992
 	b .L080A2B90
@@ -123084,7 +123112,7 @@ func_080ADF6C: @ 0x080ADF6C
 	movs r1, #0
 	movs r2, #0x18
 	movs r3, #0
-	bl func_08050CC0
+	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
 	movs r2, #0x83
 	lsls r2, r2, #3
 	adds r1, r6, r2
@@ -123855,7 +123883,7 @@ func_080AE4E4: @ 0x080AE4E4
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	adds r0, r7, #0
 	bl func_080AF814
 	ldr r1, .L080AE6B8 @ =0x0000043C
@@ -128812,7 +128840,7 @@ func_080B0BB8: @ 0x080B0BB8
 	ldr r1, [sp, #0x9c]
 	ldr r2, [sp, #0xa0]
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	ldr r4, [r6]
 	adds r0, r7, #0
 	bl func_080B3A10
@@ -128839,7 +128867,7 @@ sub_080B0CC0: @ 0x080B0CC0
 	lsls r5, r5, #3
 	adds r4, r7, r5
 	ldr r0, [r4]
-	bl func_08050D34
+	bl GetState__C12UiStateOwner
 	adds r6, r0, #0
 	ldr r4, [r4]
 	mov r8, r4
@@ -128867,7 +128895,7 @@ sub_080B0CC0: @ 0x080B0CC0
 	ldr r1, [sp, #0xa4]
 	mov r2, sb
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	cmp r0, #6
 	bls .L080B0D22
 	b .L080B10E8
@@ -130718,7 +130746,7 @@ func_080B1B40: @ 0x080B1B40
 	mov r1, sb
 	mov r2, r8
 	adds r3, r6, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	b .L080B1D0C
 	.align 2, 0
 .L080B1C14: .4byte 0x0000090E
@@ -130734,7 +130762,7 @@ func_080B1B40: @ 0x080B1B40
 	lsls r0, r0, #3
 	adds r4, r7, r0
 	ldr r0, [r4]
-	bl func_08050D34
+	bl GetState__C12UiStateOwner
 	mov sl, r0
 	ldr r4, [r4]
 	mov sb, r4
@@ -130762,7 +130790,7 @@ func_080B1B40: @ 0x080B1B40
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	cmp r0, #6
 	bhi .L080B1D0C
 	lsls r0, r0, #2
@@ -131494,7 +131522,7 @@ func_080B2114: @ 0x080B2114
 	cmp r0, #0
 	beq .L080B221A
 	movs r1, #3
-	bl func_08050D0C
+	bl _._12UiStateOwner
 .L080B221A:
 	movs r0, #0
 	str r0, [r4]
@@ -131514,7 +131542,7 @@ func_080B2114: @ 0x080B2114
 	movs r1, #0
 	movs r2, #0x18
 	movs r3, #0
-	bl func_08050CC0
+	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
 	movs r5, #0x83
 	lsls r5, r5, #3
 	add r5, sl
@@ -131525,7 +131553,7 @@ func_080B2114: @ 0x080B2114
 	cmp r0, #0
 	beq .L080B2260
 	movs r1, #3
-	bl func_08050D0C
+	bl _._12UiStateOwner
 .L080B2260:
 	str r4, [r5]
 	adds r0, r6, #0
@@ -131563,7 +131591,7 @@ func_080B2114: @ 0x080B2114
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	movs r0, #0
 	ldr r1, [sp, #0x110]
 	movs r2, #0
@@ -133198,7 +133226,7 @@ func_080B2114: @ 0x080B2114
 	lsls r4, r4, #3
 	add r4, sl
 	ldr r0, [r4]
-	bl func_08050D34
+	bl GetState__C12UiStateOwner
 	adds r7, r0, #0
 	ldr r4, [r4]
 	mov sb, r4
@@ -133226,7 +133254,7 @@ func_080B2114: @ 0x080B2114
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	cmp r0, #6
 	bhi .L080B2FD0
 	lsls r0, r0, #2
@@ -135021,7 +135049,7 @@ func_080B3CC8: @ 0x080B3CC8
 	movs r1, #0
 	movs r2, #0xf
 	movs r3, #0
-	bl func_08050CC0
+	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
 	movs r3, #0xe3
 	lsls r3, r3, #3
 	adds r1, r6, r3
@@ -136091,7 +136119,7 @@ func_080B45F0: @ 0x080B45F0
 	mov r1, sb
 	mov r2, r8
 	adds r3, r6, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	add sp, #0xc
 	pop {r3, r4, r5}
 	mov r8, r3
@@ -136125,7 +136153,7 @@ func_080B469C: @ 0x080B469C
 	cmp r0, #0
 	beq .L080B46C2
 	movs r1, #3
-	bl func_08050D0C
+	bl _._12UiStateOwner
 .L080B46C2:
 	str r5, [r4]
 	movs r0, #4
@@ -136145,7 +136173,7 @@ func_080B469C: @ 0x080B469C
 	movs r1, #0
 	movs r2, #0xf
 	movs r3, #0
-	bl func_08050CC0
+	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
 	movs r2, #0xe3
 	lsls r2, r2, #3
 	adds r6, r7, r2
@@ -136156,7 +136184,7 @@ func_080B469C: @ 0x080B469C
 	cmp r0, #0
 	beq .L080B4708
 	movs r1, #3
-	bl func_08050D0C
+	bl _._12UiStateOwner
 .L080B4708:
 	str r5, [r6]
 	adds r0, r4, #0
@@ -136794,7 +136822,7 @@ func_080B469C: @ 0x080B469C
 	lsls r5, r5, #3
 	adds r4, r7, r5
 	ldr r0, [r4]
-	bl func_08050D34
+	bl GetState__C12UiStateOwner
 	mov sl, r0
 	ldr r4, [r4]
 	mov sb, r4
@@ -136822,7 +136850,7 @@ func_080B469C: @ 0x080B469C
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	cmp r0, #6
 	bls .L080B4C72
 	b .L080B4E4E
@@ -138165,7 +138193,7 @@ func_080B55D0: @ 0x080B55D0
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	ldr r3, .L080B5784 @ =0x00002010
 	add sp, r3
 	pop {r3, r4}
@@ -144518,7 +144546,7 @@ func_080B87C4: @ 0x080B87C4
 	mov r1, sb
 	mov r2, r8
 	adds r3, r6, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	adds r1, r4, #0
 	adds r1, #0xdd
 	movs r0, #1
@@ -144558,7 +144586,7 @@ func_080B888C: @ 0x080B888C
 	cmp r0, #0
 	beq .L080B88B2
 	movs r1, #3
-	bl func_08050D0C
+	bl _._12UiStateOwner
 .L080B88B2:
 	str r5, [r4]
 	movs r0, #4
@@ -144578,7 +144606,7 @@ func_080B888C: @ 0x080B888C
 	movs r1, #0
 	movs r2, #0xf
 	movs r3, #0
-	bl func_08050CC0
+	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
 	movs r2, #0xe3
 	lsls r2, r2, #3
 	adds r6, r7, r2
@@ -144589,7 +144617,7 @@ func_080B888C: @ 0x080B888C
 	cmp r0, #0
 	beq .L080B88F8
 	movs r1, #3
-	bl func_08050D0C
+	bl _._12UiStateOwner
 .L080B88F8:
 	str r5, [r6]
 	adds r0, r4, #0
@@ -144762,7 +144790,7 @@ func_080B888C: @ 0x080B888C
 	bl func_080088B8
 	mov r2, sl
 	ldr r0, [r2]
-	bl func_08050D34
+	bl GetState__C12UiStateOwner
 	str r0, [sp, #0x58]
 	mov r3, sl
 	ldr r3, [r3]
@@ -144791,7 +144819,7 @@ func_080B888C: @ 0x080B888C
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	ldr r3, [sp, #0x54]
 	cmp r3, #0
 	beq .L080B8AF0
@@ -148011,7 +148039,7 @@ func_080BA2C4: @ 0x080BA2C4
 	lsls r0, r0, #3
 	adds r4, r7, r0
 	ldr r0, [r4]
-	bl func_08050D34
+	bl GetState__C12UiStateOwner
 	adds r6, r0, #0
 	ldr r4, [r4]
 	str r4, [sp, #0xc]
@@ -148039,7 +148067,7 @@ func_080BA2C4: @ 0x080BA2C4
 	mov r1, r8
 	mov r2, sb
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	cmp r0, #6
 	bls .L080BA32A
 	b .L080BA54A
@@ -153106,7 +153134,7 @@ func_080BC938: @ 0x080BC938
 	movs r1, #0
 	movs r2, #0x18
 	movs r3, #0
-	bl func_08050CC0
+	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
 	movs r2, #0x83
 	lsls r2, r2, #3
 	adds r1, r6, r2
@@ -153654,7 +153682,7 @@ func_080BCCE0: @ 0x080BCCE0
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	adds r0, r7, #0
 	bl func_080BDF40
 	ldr r1, .L080BCEB0 @ =0x0000043C
@@ -157439,7 +157467,7 @@ func_080BEAD4: @ 0x080BEAD4
 	mov r1, sb
 	ldr r2, [sp, #0x20]
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	mov r3, r8
 	ldr r4, [r3]
 	adds r0, r7, #0
@@ -157463,7 +157491,7 @@ func_080BEAD4: @ 0x080BEAD4
 	lsls r2, r2, #3
 	adds r4, r7, r2
 	ldr r0, [r4]
-	bl func_08050D34
+	bl GetState__C12UiStateOwner
 	adds r6, r0, #0
 	ldr r4, [r4]
 	mov sb, r4
@@ -157490,7 +157518,7 @@ func_080BEAD4: @ 0x080BEAD4
 	mov r1, r8
 	mov r2, sl
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	cmp r0, #6
 	bls .L080BEBE4
 	b .L080BEEA6
@@ -158228,7 +158256,7 @@ func_080BF0EC: @ 0x080BF0EC
 	mov r1, sb
 	mov r2, r8
 	adds r3, r6, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	adds r0, r7, #0
 	bl func_080BDF40
 	movs r3, #0xb4
@@ -158249,7 +158277,7 @@ func_080BF0EC: @ 0x080BF0EC
 	lsls r0, r0, #3
 	adds r4, r7, r0
 	ldr r0, [r4]
-	bl func_08050D34
+	bl GetState__C12UiStateOwner
 	mov sl, r0
 	ldr r4, [r4]
 	mov sb, r4
@@ -158276,7 +158304,7 @@ func_080BF0EC: @ 0x080BF0EC
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	cmp r0, #6
 	bhi .L080BF2A6
 	lsls r0, r0, #2
@@ -159012,7 +159040,7 @@ func_080BF764: @ 0x080BF764
 	cmp r0, #0
 	beq .L080BF7DE
 	movs r1, #3
-	bl func_08050D0C
+	bl _._12UiStateOwner
 .L080BF7DE:
 	movs r0, #0
 	str r0, [r5]
@@ -159033,7 +159061,7 @@ func_080BF764: @ 0x080BF764
 	movs r1, #0
 	movs r2, #0x18
 	movs r3, #0
-	bl func_08050CC0
+	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
 	movs r6, #0x83
 	lsls r6, r6, #3
 	add r6, sl
@@ -159044,7 +159072,7 @@ func_080BF764: @ 0x080BF764
 	cmp r0, #0
 	beq .L080BF826
 	movs r1, #3
-	bl func_08050D0C
+	bl _._12UiStateOwner
 .L080BF826:
 	str r5, [r6]
 	adds r0, r4, #0
@@ -159081,7 +159109,7 @@ func_080BF764: @ 0x080BF764
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	movs r0, #0x14
 	bl __builtin_new
 	ldr r1, .L080BF9B4 @ =0x00000424
@@ -160520,7 +160548,7 @@ func_080BF764: @ 0x080BF764
 	lsls r4, r4, #3
 	add r4, sl
 	ldr r0, [r4]
-	bl func_08050D34
+	bl GetState__C12UiStateOwner
 	adds r7, r0, #0
 	ldr r4, [r4]
 	mov sb, r4
@@ -160547,7 +160575,7 @@ func_080BF764: @ 0x080BF764
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	cmp r0, #6
 	bhi .L080C040C
 	lsls r0, r0, #2
@@ -161905,7 +161933,7 @@ func_080C0DCC: @ 0x080C0DCC
 	movs r1, #0
 	movs r2, #0x18
 	movs r3, #0
-	bl func_08050CC0
+	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
 	ldr r2, .L080C11C4 @ =0x0000051C
 	adds r1, r6, r2
 	str r0, [r1]
@@ -162625,7 +162653,7 @@ func_080C12C4: @ 0x080C12C4
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	adds r0, r7, #0
 	bl func_080C2D54
 	ldr r1, .L080C14AC @ =0x00000544
@@ -167975,7 +168003,7 @@ func_080C3D04: @ 0x080C3D04
 	mov r1, sb
 	ldr r2, [sp, #0xa4]
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	ldr r4, [r6, r7]
 	adds r0, r7, #0
 	bl func_080C7B64
@@ -168002,7 +168030,7 @@ sub_080C3DC4: @ 0x080C3DC4
 	ldr r6, .L080C3E2C @ =0x0000051C
 	adds r4, r7, r6
 	ldr r0, [r4]
-	bl func_08050D34
+	bl GetState__C12UiStateOwner
 	adds r6, r0, #0
 	ldr r4, [r4]
 	mov sb, r4
@@ -168029,7 +168057,7 @@ sub_080C3DC4: @ 0x080C3DC4
 	mov r1, r8
 	mov r2, sl
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	cmp r0, #6
 	bls .L080C3E22
 	b .L080C4128
@@ -170423,7 +170451,7 @@ func_080C516C: @ 0x080C516C
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	b .L080C534E
 	.align 2, 0
 .L080C5250: .4byte 0x0000097C
@@ -170525,7 +170553,7 @@ func_080C516C: @ 0x080C516C
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	b .L080C534E
 	.align 2, 0
 .L080C5250: .4byte 0x0000097C
@@ -170547,7 +170575,7 @@ func_080C516C: @ 0x080C516C
 	adds r4, r7, r2
 	.endif
 	ldr r0, [r4]
-	bl func_08050D34
+	bl GetState__C12UiStateOwner
 	mov sl, r0
 	ldr r4, [r4]
 	mov sb, r4
@@ -170574,7 +170602,7 @@ func_080C516C: @ 0x080C516C
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	cmp r0, #6
 	bhi .L080C534E
 	lsls r0, r0, #2
@@ -172476,7 +172504,7 @@ func_080C608C: @ 0x080C608C
 	cmp r0, #0
 	beq .L080C6124
 	movs r1, #3
-	bl func_08050D0C
+	bl _._12UiStateOwner
 .L080C6124:
 	str r6, [r5]
 	movs r0, #4
@@ -172496,7 +172524,7 @@ func_080C608C: @ 0x080C608C
 	movs r1, #0
 	movs r2, #0x18
 	movs r3, #0
-	bl func_08050CC0
+	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
 	ldr r6, .L080C61E8 @ =0x0000051C
 	add r6, sl
 	adds r5, r0, #0
@@ -172506,7 +172534,7 @@ func_080C608C: @ 0x080C608C
 	cmp r0, #0
 	beq .L080C6168
 	movs r1, #3
-	bl func_08050D0C
+	bl _._12UiStateOwner
 .L080C6168:
 	str r5, [r6]
 	adds r0, r4, #0
@@ -172542,7 +172570,7 @@ func_080C608C: @ 0x080C608C
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	ldr r0, .L080C61E4 @ =0x0000096A
 	add r0, sl
 	ldrb r0, [r0]
@@ -174551,7 +174579,7 @@ func_080C608C: @ 0x080C608C
 	ldr r4, .L080C713C @ =0x0000051C
 	add r4, sl
 	ldr r0, [r4]
-	bl func_08050D34
+	bl GetState__C12UiStateOwner
 	adds r7, r0, #0
 	ldr r4, [r4]
 	mov sb, r4
@@ -174578,7 +174606,7 @@ func_080C608C: @ 0x080C608C
 	mov r1, r8
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	cmp r0, #6
 	bhi .L080C7190
 	lsls r0, r0, #2
@@ -176459,7 +176487,7 @@ func_080C7F58: @ 0x080C7F58
 	movs r1, #0
 	movs r2, #0x1c
 	movs r3, #0
-	bl func_08050CC0
+	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
 	adds r0, r5, #0
 	movs r1, #2
 	bl _._16HardwareResource
@@ -177045,7 +177073,7 @@ func_080C8360: @ 0x080C8360
 	lsls r1, r1, #2
 	adds r0, r5, r1
 	movs r1, #2
-	bl func_08050D0C
+	bl _._12UiStateOwner
 	ldr r0, [r5, #0x20]
 	lsls r0, r0, #4
 	adds r0, #4
@@ -179477,7 +179505,7 @@ func_080C96C4: @ 0x080C96C4
 	add r2, sl
 	mov r8, r2
 	mov r0, r8
-	bl func_08050D34
+	bl GetState__C12UiStateOwner
 	movs r1, #0xd3
 	lsls r1, r1, #2
 	add r1, sl
@@ -179505,7 +179533,7 @@ func_080C96C4: @ 0x080C96C4
 	mov r1, sb
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	movs r1, #0xd4
 	lsls r1, r1, #2
 	add r1, sl
@@ -187755,7 +187783,7 @@ func_080CD578: @ 0x080CD578
 	movs r1, #0
 	movs r2, #0x1d
 	movs r3, #0
-	bl func_08050CC0
+	bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
 	adds r0, r5, #0
 	movs r1, #2
 	bl _._16HardwareResource
@@ -188094,7 +188122,7 @@ func_080CD8A0: @ 0x080CD8A0
 	movs r0, #0x80
 	adds r0, r0, r7
 	mov r8, r0
-	bl func_08050D34
+	bl GetState__C12UiStateOwner
 	adds r1, r7, #0
 	adds r1, #0x84
 	str r0, [r1]
@@ -188121,7 +188149,7 @@ func_080CD8A0: @ 0x080CD8A0
 	mov r1, sb
 	adds r2, r6, #0
 	adds r3, r5, #0
-	bl func_08050D3C
+	bl Update__C12UiStateOwnerP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStatePUcT4PP11MusicPlayer
 	adds r1, r7, #0
 	adds r1, #0x88
 	str r0, [r1]

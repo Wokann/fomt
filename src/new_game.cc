@@ -58,9 +58,9 @@ void func_08003C28(NewGameMenuCore * core)
     HardwareDisplayState * display = func_08008918(hardware);
     u8 * links = func_08008940(hardware);
     u8 * manager = func_0800894C(hardware);
-    u8 ** owner = &core->unk_10;
+    UiStateOwner const * owner = reinterpret_cast<UiStateOwner const *>(&core->unk_10);
     MusicPlayer ** music = &core->music_players[0];
-    func_08050D3C(owner, state, sprites, display, links, manager, music);
+    owner->Update(state, sprites, display, links, manager, music);
 }
 
 static inline void StoreMenuSpriteAttributes(HardwareSpriteBufferState * buffer,

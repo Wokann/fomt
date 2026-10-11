@@ -6,15 +6,92 @@
 struct HardwareCoreState;
 struct HardwareSpriteBufferState;
 struct HardwareDisplayState;
+struct HardwareStateOwner;
+struct HardwareResource;
 struct MusicPlayer;
 
-EXTERN_C
+// Verified views of the state fields consumed by the native UI adapters.
+struct UiObjectState
+{
+    u8 unknown_00[8];
+    i32 state;
+};
 
-// The still-assembled UI adapter dereferences the owner once and forwards
-// these hardware objects to its payload; it does not replace the owner.
-void func_08050D3C(u8 * const * owner, struct HardwareCoreState * state,
-    struct HardwareSpriteBufferState * sprites, struct HardwareDisplayState * display,
-    u8 * links, u8 * manager, struct MusicPlayer ** music);
+struct UiActionStateFlags
+{
+    u8 active : 1;
+    u8 unknown_01 : 7;
+};
+
+struct UiActionState
+{
+    u8 unknown_00[0x1DC];
+    UiActionStateFlags flags_01dc;
+    u8 unknown_01e0[0x10];
+    UiActionStateFlags flags_01f0;
+};
+
+struct FirstFieldStatusByte
+{
+    u8 unused_00[0x0D];
+    u8 value;
+};
+
+struct FirstFieldQueryData
+{
+    u8 unused_00[8];
+    u32 mode;
+    u8 unused_0c[0x14C];
+    void * result;
+};
+
+struct FirstFieldUiFlags
+{
+    u8 unused_00[0x550];
+    unsigned low_flags : 6;
+    unsigned unused_flags : 2;
+};
+
+struct FirstFieldUiOwner
+{
+    FirstFieldUiFlags * data;
+};
+
+// The payload's allocation size and state field are verified. Its constructor,
+// destructor and update routine still have their original assembly bodies;
+// the remaining fields must not be treated as recovered high-level data.
+struct UiStatePayload
+{
+    UiStatePayload(u32 arg_1, u32 arg_2, u32 arg_3, u32 arg_4,
+        HardwareStateOwner const & shared, HardwareResource const & resources);
+    ~UiStatePayload();
+    i32 Update(HardwareCoreState * state, HardwareSpriteBufferState * sprites,
+        HardwareDisplayState * display, u8 * links, u8 * manager,
+        MusicPlayer ** music);
+
+    u8 unknown_00[8];
+    i32 state;
+    u8 unknown_0c[0x548];
+};
+
+struct UiStateOwner
+{
+    UiStateOwner(u32 arg_1, u32 arg_2, u32 arg_3, u32 arg_4,
+        HardwareStateOwner const & shared, HardwareResource const & resources)
+        SECTION(".text.ui_state_adapters");
+    ~UiStateOwner() SECTION(".text.ui_state_adapters");
+    i32 GetState() const SECTION(".text.ui_state_adapters");
+    i32 Update(HardwareCoreState * state, HardwareSpriteBufferState * sprites,
+        HardwareDisplayState * display, u8 * links, u8 * manager,
+        MusicPlayer ** music) const SECTION(".text.ui_state_adapters");
+
+    UiStatePayload * value;
+};
+
+typedef char UiStatePayloadSizeCheck[sizeof(UiStatePayload) == 0x554 ? 1 : -1];
+typedef char UiStateOwnerSizeCheck[sizeof(UiStateOwner) == 4 ? 1 : -1];
+
+EXTERN_C
 
 // Existing UI adapter ABI. The menu supplies a text address as arg_r1;
 // the payload's other scalar argument domains are still unresolved.

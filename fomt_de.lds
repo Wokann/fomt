@@ -226,7 +226,7 @@ SECTIONS
         . = 0x50B10; /* DE ROM 0x08050B10, UI action-state second-flag clearer. */
         src/ui_state.o(.text.clear_ui_action_state_flag_01f0);
         . = 0x50B24; asm/code_0803EE94.o(.text.clear_ui_action_state_flag_01f0_after);
-        . = 0x50C54; /* DE ROM 0x08050C54, UI-state adapter block. */
+        . = 0x50BB8; /* DE ROM 0x08050BB8, UI owner and adapter block. */
         src/ui_state.o(.text.ui_state_adapters);
         . = 0x50DDC; /* DE ROM 0x08050DDC, remaining UI-adjacent code. */
         asm/code_0803EE94.o(.text.code_08050E50);

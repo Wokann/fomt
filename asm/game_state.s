@@ -4228,7 +4228,7 @@ func_080124D0:
     movs r1, #0
     movs r2, #0x1f
     movs r3, #0
-    bl func_08050CC0
+    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
     adds r5, r6, #0
     adds r4, r0, #0
     ldr r0, [r6]
@@ -4237,7 +4237,7 @@ func_080124D0:
     cmp r0, #0
     beq .Ljp_08012436
     movs r1, #3
-    bl func_08050D0C
+    bl _._12UiStateOwner
 .Ljp_08012436:
     str r4, [r5]
     add r0, sp, #0x10
@@ -4264,7 +4264,7 @@ func_080124D0:
     movs r1, #0
     movs r2, #0x1f
     movs r3, #0
-    bl func_08050CC0
+    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
     adds r5, r6, #0
     adds r4, r0, #0
     ldr r0, [r6]
@@ -4273,7 +4273,7 @@ func_080124D0:
     cmp r0, #0
     beq .Ljp_08012488
     movs r1, #3
-    bl func_08050D0C
+    bl _._12UiStateOwner
 .Ljp_08012488:
     str r4, [r5]
     add r0, sp, #0x10
@@ -4284,7 +4284,7 @@ func_080124D0:
     bl _._18HardwareStateOwner
 .Ljp_0801249A:
     ldr r0, [r6]
-    bl func_08050D34
+    bl GetState__C12UiStateOwner
     cmp r0, #3
     beq .Ljp_080124B2
     ldr r0, [r6]
@@ -4344,7 +4344,7 @@ func_080125EC:
     cmp r0, #0
     beq .Ljp_08012512
     movs r1, #3
-    bl func_08050D0C
+    bl _._12UiStateOwner
 .Ljp_08012512:
     str r6, [r5]
     ldrh r1, [r4, #0x10]
@@ -27657,7 +27657,7 @@ func_080124D0: @ 0x080124D0
     movs r1, #0
     movs r2, #0x1f
     movs r3, #0
-    bl func_08050CC0
+    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
     adds r5, r6, #0
     adds r4, r0, #0
     ldr r0, [r6]
@@ -27666,7 +27666,7 @@ func_080124D0: @ 0x080124D0
     cmp r0, #0
     beq .L08012566
     movs r1, #3
-    bl func_08050D0C
+    bl _._12UiStateOwner
 .L08012566:
     str r4, [r5]
     add r0, sp, #0x10
@@ -27693,7 +27693,7 @@ func_080124D0: @ 0x080124D0
     movs r1, #0
     movs r2, #0x1f
     movs r3, #0
-    bl func_08050CC0
+    bl __12UiStateOwnerUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource
     adds r5, r6, #0
     adds r4, r0, #0
     ldr r0, [r6]
@@ -27702,7 +27702,7 @@ func_080124D0: @ 0x080124D0
     cmp r0, #0
     beq .L080125B8
     movs r1, #3
-    bl func_08050D0C
+    bl _._12UiStateOwner
 .L080125B8:
     str r4, [r5]
     add r0, sp, #0x10
@@ -27713,7 +27713,7 @@ func_080124D0: @ 0x080124D0
     bl _._18HardwareStateOwner
 .L080125CA:
     ldr r0, [r6]
-    bl func_08050D34
+    bl GetState__C12UiStateOwner
     cmp r0, #3
     beq .L080125E2
     ldr r0, [r6]
@@ -27772,7 +27772,7 @@ func_080125EC: @ 0x080125EC
     cmp r0, #0
     beq .L08012642
     movs r1, #3
-    bl func_08050D0C
+    bl _._12UiStateOwner
 .L08012642:
     str r6, [r5]
     ldrh r1, [r4, #0x10]
