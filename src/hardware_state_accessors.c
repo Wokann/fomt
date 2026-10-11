@@ -17,7 +17,7 @@ u32 func_080088CC(void * const * state)
     return ((struct HardwareCoreState *)*state)->input.pressed;
 }
 
-u16 func_080088D4(void * const * state)
+u32 func_080088D4(void * const * state)
 {
     return ((struct HardwareCoreState *)*state)->input.repeated;
 }

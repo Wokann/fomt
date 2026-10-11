@@ -109,6 +109,7 @@ SECTIONS
         asm/new_game.o(.text.new_game_name_input_after_submit_sprites);
         src/new_game.o(.text.new_game_name_input_erase_character);
         asm/new_game.o(.text.new_game_name_input_after_erase_character);
+        src/new_game.o(.text.new_game_name_input_keys);
         src/new_game.o(.text.new_game_name_input_confirmation);
         src/new_game.o(.text.new_game_name_input_scene);
         . = 0x7130; /* JP ROM 0x08007130, independently matched */

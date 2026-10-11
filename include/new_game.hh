@@ -433,7 +433,17 @@ void func_080068CC(NewGameNameInputCore * core);
 // JP has six two-byte slots; overseas versions have twelve one-byte slots.
 void EraseNameInputCharacter(NewGameNameInputCore * core, u8 index)
     SECTION(".text.new_game_name_input_erase_character");
-void func_08006CDC(NewGameNameInputCore * core);
+#if defined(REGION_JP)
+void func_080068D4(NewGameNameInputCore * core);
+void func_08006AC0(NewGameNameInputCore * core);
+bool func_08006C0C(NewGameNameInputCore * core);
+#else
+void func_080069F4(NewGameNameInputCore * core);
+void func_08006B90(NewGameNameInputCore * core);
+bool func_08006C60(NewGameNameInputCore * core);
+#endif
+void ProcessNameInputKeys(NewGameNameInputCore * core)
+    SECTION(".text.new_game_name_input_keys");
 void func_08006ED8(NewGameNameInputCore * core)
     SECTION(".text.new_game_name_input_confirmation");
 extern NewGameSceneVTableFunction const vtable_unk_080E5AB4[];

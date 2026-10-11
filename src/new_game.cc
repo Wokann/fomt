@@ -630,7 +630,7 @@ SceneTransitionOwner func_08005B68(NewGameNameInputCore * core)
     while (core->finished == 0)
     {
         func_080088B8(reinterpret_cast<void * const *>(core));
-        func_08006CDC(core);
+        ProcessNameInputKeys(core);
         func_080068CC(core);
         func_0800637C(core);
         func_080064E8(core);
@@ -755,6 +755,130 @@ void EraseNameInputCharacter(NewGameNameInputCore * core, u8 index)
         core->name[index] = core->name[index + 1];
     core->name[11] = '_';
 #endif
+}
+
+void ProcessNameInputKeys(NewGameNameInputCore * core)
+{
+    if (core->unk_463c != 0)
+        return;
+#if defined(REGION_JP)
+    func_080068D4(core);
+#else
+    func_080069F4(core);
+#endif
+    u32 input = func_080088D4(reinterpret_cast<void * const *>(core));
+    if (reinterpret_cast<u8 const *>(&input)[0] & 1) {
+#if defined(REGION_DE)
+        if (static_cast<i8>(core->sprites[0].unk_00[1]) <= 6) {
+#else
+        if (static_cast<i8>(core->sprites[0].unk_00[1]) <= 5) {
+#endif
+            func_08008B6C(&core->music_players[1], 0x6A);
+#if defined(REGION_JP)
+            func_08006AC0(core);
+#else
+            func_08006B90(core);
+#endif
+        } else {
+            if (static_cast<i8>(core->sprites[0].unk_00[0]) <= 4) {
+                if (core->keyboard_page == 2)
+                    core->keyboard_page = 0;
+                else
+                    core->keyboard_page++;
+                core->keyboard_redraw_pending = 1;
+                func_08008B6C(&core->music_players[1], 0xCA);
+            } else if (static_cast<u8>(core->sprites[0].unk_00[0] - 5) <= 4) {
+                if (core->keyboard_page == 0)
+                    core->keyboard_page = 2;
+                else
+                    core->keyboard_page--;
+                core->keyboard_redraw_pending = 1;
+                func_08008B6C(&core->music_players[1], 0xCA);
+            } else {
+#if defined(REGION_JP)
+                if (func_08006C0C(core)) {
+#else
+                if (func_08006C60(core)) {
+#endif
+                    core->unk_463c = 1;
+                    func_08008B6C(&core->music_players[1], 0xC5);
+                } else
+                    func_08008B6C(&core->music_players[1], 0xC7);
+            }
+        }
+    } else if (reinterpret_cast<u8 const *>(&input)[0] & 2) {
+        if (core->sprites[1].unk_00[0] != 0) {
+            core->sprites[1].unk_00[0]--;
+            EraseNameInputCharacter(core, core->sprites[1].unk_00[0]);
+            func_08008B6C(&core->music_players[1], 0x6C);
+        } else {
+            u8 placeholder_count = 0;
+#if defined(REGION_JP)
+            for (int index = 0; index < 12; index += 2) {
+                u16 character = (static_cast<u8>(core->name[index]) << 8)
+                    | static_cast<u8>(core->name[index + 1]);
+                if (character == 0x8151)
+                    placeholder_count++;
+            }
+            if (placeholder_count == 6)
+#else
+            for (int index = 0; index < 12; index++)
+                if (core->name[index] == '_')
+                    placeholder_count++;
+            if (placeholder_count == 12)
+#endif
+                func_08008B6C(&core->music_players[1], 0xC7);
+            else {
+                EraseNameInputCharacter(core, 0);
+                func_08008B6C(&core->music_players[1], 0x6C);
+            }
+        }
+#if defined(REGION_JP)
+    } else if (reinterpret_cast<u8 const *>(&input)[0] & 4) {
+        if (core->keyboard_page == 2)
+            core->keyboard_page = 0;
+        else
+            core->keyboard_page++;
+        core->keyboard_redraw_pending = 1;
+        func_08008B6C(&core->music_players[1], 0xCA);
+#endif
+    } else if (reinterpret_cast<u8 const *>(&input)[0] & 8) {
+#if defined(REGION_DE)
+        if (static_cast<i8>(core->sprites[0].unk_00[1]) == 7
+#else
+        if (static_cast<i8>(core->sprites[0].unk_00[1]) == 6
+#endif
+                && static_cast<i8>(core->sprites[0].unk_00[0]) > 9
+                && static_cast<i8>(core->sprites[0].unk_00[0]) <= 14) {
+#if defined(REGION_JP)
+            if (func_08006C0C(core))
+#else
+            if (func_08006C60(core))
+#endif
+                core->unk_463c = 1;
+            func_08008B6C(&core->music_players[1], 0xC5);
+        } else {
+            core->sprites[0].unk_00[0] = 12;
+#if defined(REGION_DE)
+            core->sprites[0].unk_00[1] = 7;
+#else
+            core->sprites[0].unk_00[1] = 6;
+#endif
+            func_08008B6C(&core->music_players[1], 0xCB);
+        }
+    } else if (reinterpret_cast<u8 const *>(&input)[1] & 2) {
+        if (core->sprites[1].unk_00[0] != 0)
+            core->sprites[1].unk_00[0]--;
+        func_08008B6C(&core->music_players[1], 0xCB);
+    } else if (reinterpret_cast<u8 const *>(&input)[1] & 1) {
+#if defined(REGION_JP)
+        if (core->sprites[1].unk_00[0] != 5)
+#else
+        if (core->sprites[1].unk_00[0] != 11)
+#endif
+            core->sprites[1].unk_00[0]++;
+        func_08008B6C(&core->music_players[1], 0xCB);
+    }
 }
 
 void func_08006ED8(NewGameNameInputCore * core)
