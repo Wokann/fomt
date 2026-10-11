@@ -99,6 +99,7 @@ SECTIONS
         src/new_game.o(.text.new_game_identity_core_update);
         src/new_game.o(.text.new_game_identity_scene);
         asm/new_game.o(.text.new_game_after_identity_scene);
+        src/new_game.o(.text.new_game_name_input_scene);
         . = 0x7130; /* JP ROM 0x08007130, independently matched */
         src/hardware.o(.text);
         . = 0x7374; /* JP ROM 0x08007374, independently matched */

@@ -702,8 +702,6 @@ extern void func_080D404C(void);
 extern void func_080D406C(void);
 extern void func_08004C68(void);
 extern void func_08005B38(void);
-extern void func_080070A4(void);
-extern void func_080070D4(void);
 extern void func_08008B0C(void);
 extern void func_08008B18(void);
 extern void func_080094AC(void);
@@ -989,8 +987,8 @@ extern RawVTableFunction const vtable_unk_080E5AB4[] = {
 extern RawVTableFunction const vtable_unk_080E5AC0[] = {
     nullptr,
     nullptr,
-    func_080070A4,
-    func_080070D4,
+    reinterpret_cast<RawVTableFunction>(func_080070A4),
+    reinterpret_cast<RawVTableFunction>(func_080070D4),
 };
 
 extern HardwareDmaQueueCommandVTable const gHardwareDmaQueueCommandVTable = {

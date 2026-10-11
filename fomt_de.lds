@@ -82,6 +82,7 @@ SECTIONS
         src/new_game.o(.text.new_game_identity_core_update);
         src/new_game.o(.text.new_game_identity_scene);
         asm/new_game.o(.text.new_game_after_identity_scene);
+        src/new_game.o(.text.new_game_name_input_scene);
         src/hardware.o(.text);
         src/hardware_allocator.o(.text);
         asm/hardware.o(.text.hardware_allocator_after);

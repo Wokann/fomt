@@ -557,3 +557,36 @@ u8 func_08005A4C(NewGameIdentityCore const * core)
 {
     return core->unk_1A76;
 }
+
+NewGameNameInputScene * func_08007078(NewGameNameInputScene * scene,
+    char const * prompt, char const * initial_name)
+{
+    scene->vtable = vtable_unk_080E5AC0;
+    scene->core = func_08005A58(static_cast<NewGameNameInputCore *>(
+        ::operator new(sizeof(NewGameNameInputCore))), prompt, initial_name);
+    return scene;
+}
+
+void func_080070A4(NewGameNameInputScene * scene, int flags)
+{
+    scene->vtable = vtable_unk_080E5AC0;
+    NewGameNameInputCore * core = scene->core;
+    if (core != nullptr)
+        ((void (*)(NewGameNameInputCore *, int))core->vtable[2])(core, 3);
+    DestroySceneBase(reinterpret_cast<AScene *>(scene), flags);
+}
+
+SceneTransitionOwner func_080070D4(NewGameNameInputScene * scene)
+{
+    return func_08005B68(scene->core);
+}
+
+char const * func_08007110(NewGameNameInputScene const * scene)
+{
+    return scene->core->name;
+}
+
+char const * func_0800711C(NewGameNameInputCore const * core)
+{
+    return core->name;
+}
