@@ -5,6 +5,8 @@
 #include "hardware_blend_object.hh"
 #include "ui_state.hh"
 
+void * operator new(unsigned long);
+
 static inline void QueueMenuBlend(HardwareBootstrap * core, HardwareBlendObject & blend)
 {
     u8 * list = func_08008940(reinterpret_cast<void * const *>(core));
@@ -87,6 +89,33 @@ void func_08003EEC(NewGameMenuCore * core)
     func_08050DC8(owner,
         reinterpret_cast<u32>(text != nullptr ? text : gText_NewGameMenu_Blank),
         0, 0);
+}
+
+static inline SceneTransition * CreateMenuIntroContinuation()
+{
+    NewGameSceneVTableFunction const ** object =
+        static_cast<NewGameSceneVTableFunction const **>(::operator new(sizeof(SceneTransition)));
+    *object = vtable_unk_080E5A3C;
+    return reinterpret_cast<SceneTransition *>(object);
+}
+
+AScene * func_08004B58(void * object)
+{
+    NewGameMenuScene * scene = static_cast<NewGameMenuScene *>(object);
+    scene->vtable = vtable_unk_080E5A68;
+    SceneTransition * continuation = CreateMenuIntroContinuation();
+    scene->core = func_080041DC(::operator new(sizeof(NewGameMenuCore)), nullptr,
+        &continuation);
+    return reinterpret_cast<AScene *>(scene);
+}
+
+AScene * func_08004B94(void * object, void * state, SceneTransitionOwner continuation)
+{
+    NewGameMenuScene * scene = static_cast<NewGameMenuScene *>(object);
+    scene->vtable = vtable_unk_080E5A68;
+    SceneTransition * next = continuation.release();
+    scene->core = func_080041DC(::operator new(sizeof(NewGameMenuCore)), state, &next);
+    return reinterpret_cast<AScene *>(scene);
 }
 
 void func_08004BDC(NewGameMenuScene * scene, int flags)

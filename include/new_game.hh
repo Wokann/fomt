@@ -78,14 +78,21 @@ void func_08003C28(struct NewGameMenuCore * core);
 void func_08003EEC(struct NewGameMenuCore * core)
     SECTION(".text.new_game_status_update");
 
-// The menu core's run routine and the two menu constructors remain assembly.
+// The core constructor consumes *continuation, clears that word, and stores
+// the transition at core +0x0C. Its remaining body is still assembly.
+NewGameMenuCore * func_080041DC(void * object, void * state,
+    SceneTransition ** continuation);
 SceneTransitionOwner func_08004570(struct NewGameMenuCore * core);
-AScene * func_08004B58(void * object);
+AScene * func_08004B58(void * object)
+    SECTION(".text.new_game_scene_lifecycle");
+AScene * func_08004B94(void * object, void * state, SceneTransitionOwner continuation)
+    SECTION(".text.new_game_scene_lifecycle");
 
+extern NewGameSceneVTableFunction const vtable_unk_080E5A3C[];
 extern NewGameSceneVTableFunction const vtable_unk_080E5A68[];
 extern NewGameSceneVTableFunction const vtable_unk_080E5A88[];
 
-// One contiguous scene lifecycle interval, after the two menu constructors.
+// One contiguous scene lifecycle interval, beginning with both constructors.
 void func_08004BDC(struct NewGameMenuScene * scene, int flags)
     SECTION(".text.new_game_scene_lifecycle");
 SceneTransitionOwner func_08004C0C(struct NewGameMenuScene * scene)
