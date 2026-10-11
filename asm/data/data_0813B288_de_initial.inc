@@ -98888,8 +98888,8 @@ gUnk_08727368:
 	.global gUnk_08727A74
 gUnk_08727A74:
 	.include "graphics/shared_resource_08727a74/archive.inc"
-	.global gUnk_08728208
-gUnk_08728208:
+	.global gUiHandCursorArchive
+gUiHandCursorArchive:
     .include "graphics/regional_resource_08728208/archive.inc"
 	.global gUnk_08728320
 gUnk_08728320:

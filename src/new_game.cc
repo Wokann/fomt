@@ -13,6 +13,8 @@
 
 void * operator new(unsigned long);
 void operator delete(void *);
+inline void * operator new(unsigned long, void * location) { return location; }
+inline void * operator new[](unsigned long, void * location) { return location; }
 
 static inline void QueueMenuBlend(HardwareBootstrap * core, HardwareBlendObject & blend)
 {
@@ -208,6 +210,120 @@ bool func_080040A0(NewGameMenuCore * core)
     return false;
 }
 
+static inline GameDisplayOptions const & SavedDisplayOptions(void const * image)
+{
+    return static_cast<GameStateSaveImage const *>(image)->display_options;
+}
+
+static inline void CopySavedDisplayOptions(GameDisplayOptions & destination,
+    void const * image)
+{
+    destination = SavedDisplayOptions(image);
+}
+
+static inline NewGameMenuSpriteAttributes const & MenuSpriteAttributes(
+    HardwareSpriteOamRecord const & attributes)
+{
+    return reinterpret_cast<NewGameMenuSpriteAttributes const &>(attributes);
+}
+
+static inline void SetInitialChoices(NewGameMenuCore * core,
+    GameDisplayOptions const & options)
+{
+    core->choices[2] = options.control_scheme == 1;
+    func_08003DF0(core, 2, MenuSpriteAttributes(core->option_attributes));
+    core->choices[3] = !options.show_clock;
+    func_08003DF0(core, 3, MenuSpriteAttributes(core->option_attributes));
+    core->choices[4] = !options.show_portrait;
+    func_08003DF0(core, 4, MenuSpriteAttributes(core->option_attributes));
+    core->choices[5] = !options.show_nameplate;
+    func_08003DF0(core, 5, MenuSpriteAttributes(core->option_attributes));
+}
+
+static inline bool HasSaveSlot(SramAccess & access, u32 slot)
+{
+    return (1 << slot) & func_080003A0(&access);
+}
+
+static inline u32 SpriteTileIndex(HardwareStateEntry & entry)
+{
+    return GetHardwareSharedStateTileIndex(&entry, entry.handle);
+}
+
+static inline u32 SpritePaletteBank(HardwareResourceEntry & entry)
+{
+    return func_080074C0(&entry, entry.handle);
+}
+
+NewGameMenuCore * func_080041DC(NewGameMenuCore * core, void * state,
+    SceneTransition *& continuation)
+{
+    HardwareSpriteBufferParameters buffers(7, 0);
+    func_08008574(core, &buffers);
+    core->vtable = reinterpret_cast<void **>(
+        const_cast<NewGameSceneVTableFunction *>(vtable_unk_080E5A5C));
+    core->unk_08 = state;
+    SceneTransition * next = continuation;
+    continuation = nullptr;
+    core->continuation.value = next;
+    {
+        HardwareStateOwner shared;
+        HardwareResource resources;
+        new (&core->ui_state) UiStateOwner(0, 31, 15, 0, shared, resources);
+    }
+    func_08008B54(&core->music_players[0], 1);
+    func_08008B54(&core->music_players[1], 2);
+    new (&core->resources) IndexedResourceArchive(gUiHandCursorArchive);
+    new (&core->state_entry) HardwareStateEntry(2);
+    new (&core->resource_entry) HardwareResourceEntry;
+    HardwareSpriteOamRecord initial_sprite = {};
+    core->option_attributes = initial_sprite;
+    new (&core->selector_resource) IndexedResourceHandle(
+        reinterpret_cast<IndexedResourceProvider *>(&core->resources), 0, 256);
+    core->active_row = 0;
+    core->unk_8C = 0;
+    func_08000640(&core->sram);
+    new (core->save_slot_status) NewGameMenuSaveSlotStatus[2];
+    new (core->saved_display_options) GameDisplayOptions[2];
+    IndexedResourceGroupResult group = core->resources.GetGroupData(0);
+    core->option_attributes = group.sprites.Data()[0];
+    core->option_attributes.tile_index = SpriteTileIndex(core->state_entry);
+    core->option_attributes.palette_bank = SpritePaletteBank(core->resource_entry);
+    core->option_attributes.mosaic = 1;
+    core->selector_attributes = core->option_attributes;
+    for (u32 slot = 0; slot < 2; ++slot) {
+        if (HasSaveSlot(core->sram, slot)) {
+            u32 offset = func_080003DC(reinterpret_cast<u32>(&core->sram), slot);
+            u32 status = 0;
+            int retries = 3;
+            do {
+                NewGameLoadedSaveOwner loaded(func_08011650(
+                    ::operator new(sizeof(GameStateSaveImage)), &core->sram,
+                    offset, &status));
+                if (status == 0) {
+                    func_08003788(core, core->save_slot_status[slot], loaded.get());
+                    CopySavedDisplayOptions(core->saved_display_options[slot], loaded.get());
+                    break;
+                }
+                ::operator delete(loaded.release());
+            } while (--retries != -1);
+        }
+    }
+    u32 recent_slot = func_08000488(&core->sram);
+    if (core->unk_08 != nullptr) {
+        core->choices[0] = 0;
+        core->choices[1] = recent_slot != 0;
+        SetInitialChoices(core, SavedDisplayOptions(core->unk_08));
+    } else {
+        core->active_row = 1;
+        core->choices[0] = 1;
+        core->choices[1] = recent_slot != 0;
+        SetInitialChoices(core, core->saved_display_options[core->choices[1]]);
+    }
+    delete continuation;
+    return core;
+}
+
 static inline SceneTransition * CreateMenuIntroContinuation()
 {
     NewGameSceneVTableFunction const ** object =
@@ -221,8 +337,9 @@ AScene * func_08004B58(void * object)
     NewGameMenuScene * scene = static_cast<NewGameMenuScene *>(object);
     scene->vtable = vtable_unk_080E5A68;
     SceneTransition * continuation = CreateMenuIntroContinuation();
-    scene->core = func_080041DC(::operator new(sizeof(NewGameMenuCore)), nullptr,
-        &continuation);
+    scene->core = func_080041DC(
+        static_cast<NewGameMenuCore *>(::operator new(sizeof(NewGameMenuCore))),
+        nullptr, continuation);
     return reinterpret_cast<AScene *>(scene);
 }
 
@@ -231,7 +348,9 @@ AScene * func_08004B94(void * object, void * state, SceneTransitionOwner continu
     NewGameMenuScene * scene = static_cast<NewGameMenuScene *>(object);
     scene->vtable = vtable_unk_080E5A68;
     SceneTransition * next = continuation.release();
-    scene->core = func_080041DC(::operator new(sizeof(NewGameMenuCore)), state, &next);
+    scene->core = func_080041DC(
+        static_cast<NewGameMenuCore *>(::operator new(sizeof(NewGameMenuCore))),
+        state, next);
     return reinterpret_cast<AScene *>(scene);
 }
 

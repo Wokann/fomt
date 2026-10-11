@@ -116,6 +116,10 @@ typedef char HardwareSpriteBufferState_sprites_offset_check[offsetof(struct Hard
 struct HardwareSpriteBufferParameters {
     u8 byte1;
     u8 byte3;
+#ifdef __cplusplus
+    HardwareSpriteBufferParameters(u8 a_byte1, u8 a_byte3)
+        : byte1(a_byte1), byte3(a_byte3) {}
+#endif
 };
 
 EXTERN_C

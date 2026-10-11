@@ -9,14 +9,27 @@ struct SramAccess;
 // four-byte copies at +0x198/+0x19C, one for each SRAM slot. Only the low
 // four bits have verified meanings; initializing them preserves all others.
 struct GameDisplayOptions {
+    GameDisplayOptions();
+
     u32 control_scheme : 1; // 0: D-pad walks / R runs; 1: D-pad runs / R walks.
-    u32 show_clock : 1;
-    u32 show_portrait : 1;
-    u32 show_nameplate : 1;
+    u8 show_clock : 1;
+    u8 show_portrait : 1;
+    u8 show_nameplate : 1;
     u32 unk_4 : 28;
 };
 
 typedef char GameDisplayOptionsSizeCheck[sizeof(GameDisplayOptions) == 4 ? 1 : -1];
+
+// Only the display options and total allocation size are recovered here.
+// The remaining save-image fields retain explicit unknown storage.
+struct GameStateSaveImage {
+    u8 unk_0000[0x2210];
+    GameDisplayOptions display_options;
+    u8 unk_2214[0x12E0];
+};
+
+typedef char GameStateSaveImageSizeCheck[sizeof(GameStateSaveImage) == 0x34F4 ? 1 : -1];
+typedef char GameStateSaveImageOptionsCheck[offsetof(GameStateSaveImage, display_options) == 0x2210 ? 1 : -1];
 
 EXTERN_C
 
@@ -36,6 +49,11 @@ void * func_080D4178(void * object, void const * source);
 void func_080D4480(void * object, u32 flags);
 
 EXTERN_C_END
+
+inline GameDisplayOptions::GameDisplayOptions()
+{
+    InitializeGameDisplayOptions(this);
+}
 
 #if defined(REGION_JP)
 extern char const gText_Calendar_SeasonNames[4][3];

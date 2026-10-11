@@ -101314,11 +101314,11 @@ gUnk_084ADBDC:
     .byte 0xBF, 0x57, 0x5F, 0x4F, 0xFF, 0x42, 0x9F, 0x3A, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00
     .byte 0x00, 0x00, 0xC8, 0x00
 
-    @ UI resource archive payloads referenced directly by the JP UI constructor.
-    @ The formats remain undecoded, but each label names byte zero of its
-    @ physical JP record so callers use ordinary relocations.
-    .global gUnk_084AE370
-gUnk_084AE370:
+    @ Native UI archive records, each labeled at byte zero for relocations.
+    @ The hand cursor uses source-owned tables and editable PNG/PAL assets;
+    @ other records below retain their current documented decoding boundaries.
+    .global gUiHandCursorArchive
+gUiHandCursorArchive:
     .include "graphics/regional_resource_08728208/archive.inc"
     .global gUnk_084AE488
 gUnk_084AE488:
@@ -305413,8 +305413,8 @@ gFontShiftJisGlyphIndices:
 	non_de_asset_label gUnk_08727A74
 	.include "graphics/shared_resource_08727a74/archive.inc"
 
-	.global gUnk_08728208
-gUnk_08728208:
+	.global gUiHandCursorArchive
+gUiHandCursorArchive:
     .include "graphics/regional_resource_08728208/archive.inc"
 
 	non_de_asset_label gUnk_08728320

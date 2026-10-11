@@ -7409,7 +7409,7 @@ func_080A220C: @ 0x080A1C44
 	movs r1, #0x80
 	adds r1, r1, r7
 	mov sb, r1
-	ldr r1, .Ljp_080A2468 @ =gUnk_08728208
+	ldr r1, .Ljp_080A2468 @ =gUiHandCursorArchive
 	mov r0, sb
 	bl __22IndexedResourceArchivePCUc
 	adds r0, r7, #0
@@ -7604,7 +7604,7 @@ func_080A220C: @ 0x080A1C44
 .Ljp_080A245C: .4byte vtable_unk_080E824C
 .Ljp_080A2460: .4byte gUnk_0874F34C
 .Ljp_080A2464: .4byte gUnk_084D668C
-.Ljp_080A2468: .4byte gUnk_084AE370
+.Ljp_080A2468: .4byte gUiHandCursorArchive
 .Ljp_080A246C: .4byte vtable_unk_080E824C + 0xC @ JP fourth vtable slot
 .Ljp_080A2470:
 	subs r2, #1
@@ -77448,7 +77448,8 @@ func_080C797C:
     bx r1
     .byte 0xA0, 0x79, 0x0E, 0x08, 0x7C, 0x05, 0x00, 0x00, 0xB4, 0x05, 0x00, 0x00, 0xEC, 0x05, 0x00, 0x00
     .byte 0x24, 0x06, 0x00, 0x00, 0x4C, 0x06, 0x00, 0x00, 0x7C, 0x06, 0x00, 0x00, 0x34, 0x04, 0x00, 0x00
-    .byte 0xD4, 0x04, 0x00, 0x00, 0xF0, 0xD1, 0x2A, 0x08, 0x04, 0x05, 0x00, 0x00, 0x70, 0xE3, 0x4A, 0x08
+    .byte 0xD4, 0x04, 0x00, 0x00, 0xF0, 0xD1, 0x2A, 0x08, 0x04, 0x05, 0x00, 0x00
+    .4byte gUiHandCursorArchive
     .byte 0x34, 0x05, 0x00, 0x00, 0x90, 0x96, 0x4D, 0x08, 0x64, 0x05, 0x00, 0x00, 0x9C, 0x05, 0x00, 0x00
     .byte 0xD4, 0x05, 0x00, 0x00, 0x0C, 0x06, 0x00, 0x00, 0x44, 0x06, 0x00, 0x00, 0x84, 0x06, 0x00, 0x00
     .global func_080C8360
@@ -85427,7 +85428,7 @@ func_080CD9B0:
     pop {r4, r5, r6, r7}
     pop {r1}
     bx r1
-    .byte 0x70, 0xE3, 0x4A, 0x08
+    .4byte gUiHandCursorArchive
     .global func_080CDA44
     .thumb_func
 func_080CDA44: @ 0x080CD254
@@ -98584,7 +98585,7 @@ func_080A220C: @ 0x080A220C
 	movs r1, #0x80
 	adds r1, r1, r7
 	mov sb, r1
-	ldr r1, .L080A2468 @ =gUnk_08728208
+	ldr r1, .L080A2468 @ =gUiHandCursorArchive
 	mov r0, sb
 	bl __22IndexedResourceArchivePCUc
 	adds r0, r7, #0
@@ -98779,7 +98780,7 @@ func_080A220C: @ 0x080A220C
 .L080A245C: .4byte vtable_unk_080E825C
 .L080A2460: .4byte gUnk_0874F34C
 .L080A2464: .4byte gUnk_087506E0
-.L080A2468: .4byte gUnk_08728208
+.L080A2468: .4byte gUiHandCursorArchive
 .L080A246C: .4byte vtable_unk_080E8268
 .L080A2470:
 	subs r2, #1
@@ -176691,7 +176692,7 @@ func_080C7F58: @ 0x080C7F58
 	ldr r1, .L080C8338 @ =0x00000504
 	adds r1, r7, r1
 	str r1, [sp, #0x18]
-	ldr r1, .L080C833C @ =gUnk_08728208
+	ldr r1, .L080C833C @ =gUiHandCursorArchive
 	ldr r0, [sp, #0x18]
 	bl __22IndexedResourceArchivePCUc
 	ldr r0, .L080C8340 @ =0x00000534
@@ -176892,7 +176893,7 @@ func_080C7F58: @ 0x080C7F58
 .L080C8330: .4byte 0x000004D4
 .L080C8334: .4byte gUnk_08527094
 .L080C8338: .4byte 0x00000504
-.L080C833C: .4byte gUnk_08728208
+.L080C833C: .4byte gUiHandCursorArchive
 .L080C8340: .4byte 0x00000534
 .L080C8344: .4byte gUnk_087536E4
 .L080C8348: .4byte 0x00000564
@@ -188251,7 +188252,7 @@ func_080CD9B0: @ 0x080CD9B0
 	str r0, [r4, #4]
 	adds r6, r7, #0
 	adds r6, #0x24
-	ldr r1, .L080CDA40 @ =gUnk_08728208
+	ldr r1, .L080CDA40 @ =gUiHandCursorArchive
 	adds r0, r6, #0
 	bl __22IndexedResourceArchivePCUc
 	adds r0, r7, #0
@@ -188297,7 +188298,7 @@ func_080CD9B0: @ 0x080CD9B0
 	pop {r1}
 	bx r1
 	.align 2, 0
-.L080CDA40: .4byte gUnk_08728208
+.L080CDA40: .4byte gUiHandCursorArchive
 
 	thumb_func_start func_080CDA44
 func_080CDA44: @ 0x080CDA44

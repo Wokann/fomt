@@ -1,6 +1,6 @@
 # Regional resource `08728208`
 
-`gUnk_08728208` is one logical `IndexedResourceArchive` whose native archive
+`gUiHandCursorArchive` is one logical `IndexedResourceArchive` whose native archive
 format is identical in all four retail regions, but whose visual payload has
 two independently verified byte domains:
 

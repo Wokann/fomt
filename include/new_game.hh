@@ -41,6 +41,7 @@ typedef char NewGameMenuSpriteAttributesCoefficientCheck[offsetof(NewGameMenuSpr
 struct NewGameMenuSaveSlotStatus {
     char text[0x80];
 
+    NewGameMenuSaveSlotStatus() { text[0] = '\0'; }
     bool IsEmpty() const { return text[0] == '\0'; }
     char const * Data() const { return text; }
 };
@@ -145,7 +146,8 @@ void func_08003B40(struct HardwareBootstrap * core);
 void func_08003BB4(struct HardwareBootstrap * core);
 void func_08003C28(struct NewGameMenuCore * core);
 
-// One contiguous interval: option OAM, selector OAM, status, saving, loading.
+// One contiguous interval: option OAM, selector OAM, status, saving, loading,
+// and core construction.
 // The preceding label graphics renderer still remains assembly.
 void func_08003DF0(struct NewGameMenuCore * core, u32 row,
     NewGameMenuSpriteAttributes attributes)
@@ -165,10 +167,12 @@ bool func_080040A0(struct NewGameMenuCore * core)
 void func_08003788(struct NewGameMenuCore * core,
     NewGameMenuSaveSlotStatus & output, void const * snapshot);
 
-// The core constructor consumes *continuation, clears that word, and stores
-// the transition at core +0x0C. Its remaining body is still assembly.
-NewGameMenuCore * func_080041DC(void * object, void * state,
-    SceneTransition ** continuation);
+// Initialize the supplied storage and consume the transition pointer word.
+// This explicit pointer-reference view preserves the native ownership ABI;
+// cleanup of the consumed input also belongs to the callee.
+NewGameMenuCore * func_080041DC(NewGameMenuCore * core, void * state,
+    SceneTransition *& continuation)
+    SECTION(".text.new_game_menu_update");
 SceneTransitionOwner func_08004570(struct NewGameMenuCore * core);
 AScene * func_08004B58(void * object)
     SECTION(".text.new_game_scene_lifecycle");
@@ -177,8 +181,10 @@ AScene * func_08004B94(void * object, void * state, SceneTransitionOwner continu
 
 extern NewGameSceneVTableFunction const vtable_unk_080E5A3C[];
 extern NewGameSceneVTableFunction const vtable_unk_080E5A4C[];
+extern NewGameSceneVTableFunction const vtable_unk_080E5A5C[];
 extern NewGameSceneVTableFunction const vtable_unk_080E5A68[];
 extern NewGameSceneVTableFunction const vtable_unk_080E5A88[];
+extern u8 const gUiHandCursorArchive[];
 
 // One contiguous scene lifecycle interval, beginning with both constructors.
 void func_08004BDC(struct NewGameMenuScene * scene, int flags)

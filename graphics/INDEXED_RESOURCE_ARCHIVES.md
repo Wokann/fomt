@@ -98,7 +98,7 @@ entries; those structural differences are preserved in the original assembly
 tables. The old `group_*.png` files are composited references, while each
 `full/native.png` keeps the editable tiles in ROM order.
 
-`gUnk_08728208` has one fixed archive layout in all four regions, but two
+`gUiHandCursorArchive` has one fixed archive layout in all four regions, but two
 distinct visual payloads. JP uses the dedicated `jp/` source; US, EU, and DE
 are byte-identical and therefore use the shared `overseas/` source. The
 generic graphics rules convert `group_000.png` to native tiles and palette;

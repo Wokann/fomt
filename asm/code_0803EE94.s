@@ -5324,7 +5324,7 @@ func_0804F19C: @ 0x0804EF28
     movs r2, #8
     bl CpuFastSet
     add r4, sp, #0x30
-    ldr r1, .Ljp_0804F008 @ =gUnk_084AE370
+    ldr r1, .Ljp_0804F008 @ =gUiHandCursorArchive
     adds r0, r4, #0
     bl __22IndexedResourceArchivePCUc
     add r0, sp, #0x10
@@ -5351,7 +5351,7 @@ func_0804F19C: @ 0x0804EF28
 .Ljp_0804EFFC: .4byte 0x000003FF
 .Ljp_0804F000: .4byte 0x010000A0
 .Ljp_0804F004: .4byte gUiSharedResourceData + 8
-.Ljp_0804F008: .4byte gUnk_084AE370
+.Ljp_0804F008: .4byte gUiHandCursorArchive
 .Ljp_0804F00C: .4byte 0x05000200
 .Ljp_0804F010: .4byte vtable_unk_080E5A28
 
@@ -5729,7 +5729,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F0
     movs r0, #0xb0
     lsls r0, r0, #1
     add r0, r8
-    ldr r1, .Ljp_0804F414 @ =gUnk_084AE370
+    ldr r1, .Ljp_0804F414 @ =gUiHandCursorArchive
     bl __22IndexedResourceArchivePCUc
     movs r4, #0xc8
     lsls r4, r4, #1
@@ -5840,7 +5840,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F0
 .Ljp_0804F408: .4byte vtable_unk_080E7868
 .Ljp_0804F40C: .4byte 0xFFFF801F
 .Ljp_0804F410: .4byte 0xFFF87FFF
-.Ljp_0804F414: .4byte gUnk_084AE370
+.Ljp_0804F414: .4byte gUiHandCursorArchive
 .Ljp_0804F418: .4byte gUnk_084AF4E4
 .Ljp_0804F41C: .4byte 0x00000504
 .Ljp_0804F420: .4byte gUnk_084AE488
@@ -16677,7 +16677,8 @@ func_08057CF4:
     b .Lauto_08058274
     .byte 0xA0, 0x6D, 0x0E, 0x08, 0xE0, 0x4F, 0x4B, 0x08, 0x1C, 0x2E, 0x4C, 0x08, 0x9C, 0x33, 0x4C, 0x08
     .byte 0xF8, 0x30, 0x4C, 0x08, 0xAC, 0x3F, 0x4C, 0x08, 0x84, 0x4E, 0x4C, 0x08, 0x0C, 0x63, 0x4C, 0x08
-    .byte 0x70, 0xE3, 0x4A, 0x08, 0x84, 0x1B, 0x31, 0x08, 0x62, 0x07, 0x00, 0x00, 0x3E, 0x07, 0x00, 0x00
+    .4byte gUiHandCursorArchive
+    .byte 0x84, 0x1B, 0x31, 0x08, 0x62, 0x07, 0x00, 0x00, 0x3E, 0x07, 0x00, 0x00
     .byte 0x4A, 0x07, 0x00, 0x00, 0x56, 0x07, 0x00, 0x00, 0x6E, 0x07, 0x00, 0x00, 0x14, 0x04, 0x00, 0x00
     .byte 0x34, 0x04, 0x00, 0x00, 0x4C, 0x04, 0x00, 0x00, 0x6C, 0x04, 0x00, 0x00, 0x84, 0x04, 0x00, 0x00
     .byte 0xA4, 0x04, 0x00, 0x00, 0xBC, 0x04, 0x00, 0x00, 0xDC, 0x04, 0x00, 0x00, 0xF4, 0x04, 0x00, 0x00
@@ -21656,7 +21657,8 @@ func_0805CF70:
     .byte 0x00, 0x68, 0x40, 0x03, 0xC0, 0x0B, 0x10, 0x60, 0x0D, 0x49, 0x88, 0x42, 0x00, 0xDD, 0x11, 0x60
     .byte 0xA6, 0x21, 0x49, 0x00, 0x78, 0x18, 0x05, 0x80, 0x38, 0x1C, 0x06, 0xB0, 0x08, 0xBC, 0x98, 0x46
     .byte 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00, 0xCC, 0x6D, 0x0E, 0x08, 0xF0, 0xD1, 0x2A, 0x08
-    .byte 0x70, 0xE3, 0x4A, 0x08, 0xEC, 0x0A, 0x00, 0x00, 0xD8, 0x6D, 0x0E, 0x08, 0x48, 0x2C, 0x00, 0x00
+    .4byte gUiHandCursorArchive
+    .byte 0xEC, 0x0A, 0x00, 0x00, 0xD8, 0x6D, 0x0E, 0x08, 0x48, 0x2C, 0x00, 0x00
     .byte 0x9F, 0x86, 0x01, 0x00
     .global loc_0805CEB8
     .thumb_func
@@ -47150,7 +47152,7 @@ func_08069F14:
 .Ljp_08069FB8:
 	.4byte gUnk_082AD1F0
 .Ljp_08069FBC:
-	.4byte gUnk_084AE370
+	.4byte gUiHandCursorArchive
 .Ljp_08069FC0:
 	.4byte 0x00003920
 .Ljp_08069FC4:
@@ -76670,7 +76672,7 @@ func_0807865C: @ 0x0807865C
 	bl func_080756B0
 	adds r5, r7, #0
 	adds r5, #0x28
-	ldr r1, .Ljp_08078A00 @ =gUnk_084AE370
+	ldr r1, .Ljp_08078A00 @ =gUiHandCursorArchive
 	adds r0, r5, #0
 	bl __22IndexedResourceArchivePCUc
 	adds r0, r7, #0
@@ -77038,7 +77040,7 @@ func_0807865C: @ 0x0807865C
 	.align 2, 0
 .Ljp_080789F8: .4byte vtable_unk_080E6FF0
 .Ljp_080789FC: .4byte vtable_unk_080E7BA4
-.Ljp_08078A00: .4byte gUnk_084AE370
+.Ljp_08078A00: .4byte gUiHandCursorArchive
 .Ljp_08078A04: .4byte gUnk_084D977C
 .Ljp_08078A08: .4byte gTownMapResourceIds
 .Ljp_08078A0C: .4byte gText_TownMap_PlayerFarmNameSuffix
@@ -77303,7 +77305,7 @@ func_08078E40: @ 0x08078E40
 	bl __22IndexedResourceArchivePCUc
 	ldr r3, .Ljp_08079018 @ =0x00000744
 	adds r5, r6, r3
-	ldr r1, .Ljp_0807901C @ =gUnk_084AE370
+	ldr r1, .Ljp_0807901C @ =gUiHandCursorArchive
 	adds r0, r5, #0
 	bl __22IndexedResourceArchivePCUc
 	ldr r1, .Ljp_08079020 @ =0x00000774
@@ -77473,7 +77475,7 @@ func_08078E40: @ 0x08078E40
 .Ljp_08079010: .4byte 0x00000714
 .Ljp_08079014: .4byte gUnk_082AD1F0
 .Ljp_08079018: .4byte 0x00000744
-.Ljp_0807901C: .4byte gUnk_084AE370
+.Ljp_0807901C: .4byte gUiHandCursorArchive
 .Ljp_08079020: .4byte 0x00000774
 .Ljp_08079024: .4byte 0x000007BC
 .Ljp_08079028: .4byte 0x000007DC
@@ -118399,7 +118401,7 @@ func_08094594:
     movs r0, #0xc8
     adds r0, r0, r7
     mov r8, r0
-    ldr r1, .Ljp_08094978 @ =gUnk_08728208
+    ldr r1, .Ljp_08094978 @ =gUiHandCursorArchive
     bl __22IndexedResourceArchivePCUc
     movs r1, #0xf8
     adds r1, r1, r7
@@ -118834,7 +118836,7 @@ func_08094594:
     .align 2, 0
 .Ljp_08094970: .4byte gUnk_080E7660
 .Ljp_08094974: .4byte gUnk_082AD1F0
-.Ljp_08094978: .4byte gUnk_084AE370
+.Ljp_08094978: .4byte gUiHandCursorArchive
 .Ljp_0809497C: .4byte gUnk_084DABB8
 .Ljp_08094980: .4byte gUnk_084DA620
 .Ljp_08094984: .4byte 0xFFFFF000
@@ -151734,7 +151736,7 @@ func_0804F19C: @ 0x0804F19C
 	movs r2, #8
 	bl CpuFastSet
 	add r4, sp, #0x30
-	ldr r1, .L0804F27C @ =gUnk_08728208
+	ldr r1, .L0804F27C @ =gUiHandCursorArchive
 	adds r0, r4, #0
 	bl __22IndexedResourceArchivePCUc
 	add r0, sp, #0x10
@@ -151761,7 +151763,7 @@ func_0804F19C: @ 0x0804F19C
 .L0804F270: .4byte 0x000003FF
 .L0804F274: .4byte 0x010000A0
 .L0804F278: .4byte gUiSharedResourceData + 8
-.L0804F27C: .4byte gUnk_08728208
+.L0804F27C: .4byte gUiHandCursorArchive
 .L0804F280: .4byte 0x05000200
 .L0804F284: .4byte vtable_unk_080E5A28
 
@@ -152138,7 +152140,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F2
 	movs r0, #0xb0
 	lsls r0, r0, #1
 	add r0, r8
-	ldr r1, .L0804F688 @ =gUnk_08728208
+	ldr r1, .L0804F688 @ =gUiHandCursorArchive
 	bl __22IndexedResourceArchivePCUc
 	movs r4, #0xc8
 	lsls r4, r4, #1
@@ -152249,7 +152251,7 @@ __14UiStatePayloadUiUiUiUiRC18HardwareStateOwnerRC16HardwareResource: @ 0x0804F2
 .L0804F67C: .4byte vtable_unk_080E7878
 .L0804F680: .4byte 0xFFFF801F
 .L0804F684: .4byte 0xFFF87FFF
-.L0804F688: .4byte gUnk_08728208
+.L0804F688: .4byte gUiHandCursorArchive
 .L0804F68C: .4byte gUnk_0872937C
 .L0804F690: .4byte 0x00000504
 .L0804F694: .4byte gUnk_08728320
@@ -168963,7 +168965,7 @@ func_0805806C: @ 0x0805806C
 	lsls r0, r0, #1
 	add r0, sl
 	str r0, [sp, #0x24]
-	ldr r1, .L080584A0 @ =gUnk_08728208
+	ldr r1, .L080584A0 @ =gUiHandCursorArchive
 	bl __22IndexedResourceArchivePCUc
 	movs r6, #0xd0
 	lsls r6, r6, #1
@@ -169354,7 +169356,7 @@ func_0805806C: @ 0x0805806C
 .L08058494: .4byte gUnk_0873DE44
 .L08058498: .4byte gUnk_0873ED1C
 .L0805849C: .4byte gUnk_087401A4
-.L080584A0: .4byte gUnk_08728208
+.L080584A0: .4byte gUiHandCursorArchive
 .L080584A4: .4byte gActorIndexedResourceArchive
 .L080584A8: .4byte 0x00000762
 .L080584AC: .4byte 0x0000073E
@@ -178566,7 +178568,7 @@ func_0805CF70: @ 0x0805CF70
 	bl __22IndexedResourceArchivePCUc
 	adds r6, r7, #0
 	adds r6, #0x50
-	ldr r1, .L0805D15C @ =gUnk_08728208
+	ldr r1, .L0805D15C @ =gUiHandCursorArchive
 	adds r0, r6, #0
 	bl __22IndexedResourceArchivePCUc
 	adds r0, r7, #0
@@ -178720,7 +178722,7 @@ func_0805CF70: @ 0x0805CF70
 	.align 2, 0
 .L0805D154: .4byte vtable_unk_080E799C
 .L0805D158: .4byte gUnk_08527094
-.L0805D15C: .4byte gUnk_08728208
+.L0805D15C: .4byte gUiHandCursorArchive
 .L0805D160: .4byte 0x00000AEC
 .L0805D164: .4byte vtable_unk_080E79A8
 .L0805D168: .4byte 0x00002C48
@@ -205506,7 +205508,7 @@ func_08069F14: @ 0x08069F14
 	movs r1, #0x54
 	adds r1, r1, r7
 	mov r8, r1
-	ldr r1, .L0806A128 @ =gUnk_08728208
+	ldr r1, .L0806A128 @ =gUiHandCursorArchive
 	mov r0, r8
 	bl __22IndexedResourceArchivePCUc
 	adds r0, r7, #0
@@ -205716,7 +205718,7 @@ func_08069F14: @ 0x08069F14
 	.align 2, 0
 .L0806A120: .4byte vtable_unk_080E7AA8
 .L0806A124: .4byte gUnk_08527094
-.L0806A128: .4byte gUnk_08728208
+.L0806A128: .4byte gUiHandCursorArchive
 .L0806A12C: .4byte 0x00003EA0
 .L0806A130: .4byte 0x00003FA4
 .L0806A134: .4byte 0x000040B0
@@ -236329,7 +236331,7 @@ func_0807865C: @ 0x0807865C
 	bl func_080756B0
 	adds r5, r7, #0
 	adds r5, #0x28
-	ldr r1, .L08078A00 @ =gUnk_08728208
+	ldr r1, .L08078A00 @ =gUiHandCursorArchive
 	adds r0, r5, #0
 	bl __22IndexedResourceArchivePCUc
 	adds r0, r7, #0
@@ -236697,7 +236699,7 @@ func_0807865C: @ 0x0807865C
 	.align 2, 0
 .L080789F8: .4byte vtable_unk_080E7BC0
 .L080789FC: .4byte vtable_unk_080E7BB4
-.L08078A00: .4byte gUnk_08728208
+.L08078A00: .4byte gUiHandCursorArchive
 .L08078A04: .4byte gUnk_087537D0
 .L08078A08: .4byte gTownMapResourceIds
 .L08078A0C: .4byte gText_TownMap_PlayerFarmNameSuffix
@@ -236957,7 +236959,7 @@ func_08078E40: @ 0x08078E40
 	bl __22IndexedResourceArchivePCUc
 	ldr r3, .L08079018 @ =0x00000744
 	adds r5, r6, r3
-	ldr r1, .L0807901C @ =gUnk_08728208
+	ldr r1, .L0807901C @ =gUiHandCursorArchive
 	adds r0, r5, #0
 	bl __22IndexedResourceArchivePCUc
 	ldr r1, .L08079020 @ =0x00000774
@@ -237127,7 +237129,7 @@ func_08078E40: @ 0x08078E40
 .L08079010: .4byte 0x00000714
 .L08079014: .4byte gUnk_08527094
 .L08079018: .4byte 0x00000744
-.L0807901C: .4byte gUnk_08728208
+.L0807901C: .4byte gUiHandCursorArchive
 .L08079020: .4byte 0x00000774
 .L08079024: .4byte 0x000007BC
 .L08079028: .4byte 0x000007DC
@@ -290483,7 +290485,7 @@ func_08094AC0: @ 0x08094AC0
 	movs r0, #0xc8
 	adds r0, r0, r7
 	mov r8, r0
-	ldr r1, .L08094EA4 @ =gUnk_08728208
+	ldr r1, .L08094EA4 @ =gUiHandCursorArchive
 	bl __22IndexedResourceArchivePCUc
 	movs r1, #0xf8
 	adds r1, r1, r7
@@ -290918,7 +290920,7 @@ func_08094AC0: @ 0x08094AC0
 	.align 2, 0
 .L08094E9C: .4byte vtable_unk_080E8230
 .L08094EA0: .4byte gUnk_08527094
-.L08094EA4: .4byte gUnk_08728208
+.L08094EA4: .4byte gUiHandCursorArchive
 .L08094EA8: .4byte gUnk_08754C0C
 .L08094EAC: .4byte gUnk_08754674
 .L08094EB0: .4byte 0xFFFFF000
