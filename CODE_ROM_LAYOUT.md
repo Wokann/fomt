@@ -2,6 +2,34 @@
 
 本文件记录已从原始代码 `incbin` 或字节块提升为 C/C++ 或实际 ARM/Thumb 汇编的连续模块。地址以各地区基准 ROM 的物理地址为准；一个模块即使在原始布局中被已编译的 C/C++ 输入节穿插，也仍由同一个源文件维护。
 
+## `src/new_game.cc`：菜单 core 的已核实成员类型
+
+`include/new_game.hh` 中的 `NewGameMenuCore` 仍为 `0x1A0` 字节。
+根据原构造、更新及资源使用指令，四区共同恢复以下实际成员，
+替换对应裸指针与字节占位；没有增加另一套布局视图或源文件：
+
+| 成员偏移 | 类型与作用 |
+| --- | --- |
+| `+0x10` | `UiStateOwner ui_state`，持有菜单 UI 对象 |
+| `+0x5C` | `HardwareSpriteOamRecord option_attributes`，选项 OAM 属性 |
+| `+0x64` | `IndexedResourceHandle selector_resource`，索引资源句柄 |
+| `+0x78` | `HardwareSpriteOamRecord selector_attributes`，第二份 OAM 属性 |
+
+大小及各成员偏移均由旧编译器编译期检查。更新函数通过真实
+`ui_state` 成员取得 owner，不再将未知裸指针强转成 owner。
+局部 owner、音乐指针的求值顺序保留原状：改为直接成员表达式
+会使旧编译器交换等价地址计算，不满足原版逐字节匹配。
+
+验证：四区 WSL `make -j4 REGION=<区域> compare`、完整 8 MiB
+原版字节与 SHA-1 均通过。与修改前对象对照，全部可分配节的
+字节、大小、对齐、全局符号和出站重定位均相同；绕过汇编
+预处理器直接编译也得到相同结果。完整保留重定位的审核链接
+确认更新入口仍由两处真实 `R_ARM_THM_CALL` 调用。
+
+本项新增 C++ 指令为零，已有菜单 C++ 仍为 1,596 字节；
+不得将类型恢复重复计入代码进度。完整 916 字节 core 构造器
+尚未匹配，继续保留原汇编；UI payload 也尚未完整高级语言化。
+
 ## `src/ui_state.cc`：菜单依赖的真实 C++ UI 对象生命周期
 
 原 `func_08050CC0/08050D0C/08050D34/08050D3C` 四个连续入口已由

@@ -58,7 +58,7 @@ void func_08003C28(NewGameMenuCore * core)
     HardwareDisplayState * display = func_08008918(hardware);
     u8 * links = func_08008940(hardware);
     u8 * manager = func_0800894C(hardware);
-    UiStateOwner const * owner = reinterpret_cast<UiStateOwner const *>(&core->unk_10);
+    UiStateOwner const * owner = &core->ui_state;
     MusicPlayer ** music = &core->music_players[0];
     owner->Update(state, sprites, display, links, manager, music);
 }
@@ -127,7 +127,7 @@ void func_08003EEC(NewGameMenuCore * core)
         text = gText_NewGameHelp_NameDisplay;
         break;
     }
-    void * const * owner = reinterpret_cast<void * const *>(&core->unk_10);
+    void * const * owner = reinterpret_cast<void * const *>(&core->ui_state);
     func_08050DC8(owner,
         reinterpret_cast<u32>(text != nullptr ? text : gText_NewGameMenu_Blank),
         0, 0);
@@ -143,7 +143,7 @@ bool func_08003F9C(NewGameMenuCore * core)
             InterruptGuard guard(0x1000);
             if (func_080115B0(core->unk_08, &core->sram, offset) == 0) {
                 func_08003788(core, core->save_slot_status[slot], core->unk_08);
-                func_08050DC8(reinterpret_cast<void * const *>(&core->unk_10),
+                func_08050DC8(reinterpret_cast<void * const *>(&core->ui_state),
                     reinterpret_cast<u32>(core->save_slot_status[slot].Data()), 0, 0);
                 core->unk_8C = 3;
                 func_08008B6C(&core->music_players[1], 0xC5);
@@ -153,7 +153,7 @@ bool func_08003F9C(NewGameMenuCore * core)
             }
         } while (--attempts != 0);
     }
-    func_08050DC8(reinterpret_cast<void * const *>(&core->unk_10),
+    func_08050DC8(reinterpret_cast<void * const *>(&core->ui_state),
         reinterpret_cast<u32>(gText_NewGameSave_SaveFailed), 0, 0);
     core->unk_8C = 3;
     func_08008B6C(&core->music_players[1], 0xC7);
@@ -201,7 +201,7 @@ bool func_080040A0(NewGameMenuCore * core)
         ::operator delete(loaded.release());
     } while (--attempts != 0);
 
-    func_08050DC8(reinterpret_cast<void * const *>(&core->unk_10),
+    func_08050DC8(reinterpret_cast<void * const *>(&core->ui_state),
         reinterpret_cast<u32>(gText_NewGameSave_LoadFailed), 0, 0);
     core->unk_8C = 3;
     func_08008B6C(&core->music_players[1], 0xC7);

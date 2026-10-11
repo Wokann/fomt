@@ -9,6 +9,7 @@
 #include "resource_handle.hh"
 #include "scene.hh"
 #include "sram_proxy_2.hh"
+#include "ui_state.hh"
 
 struct MusicPlayer;
 
@@ -52,13 +53,14 @@ typedef char NewGameMenuSaveSlotStatusSizeCheck[sizeof(NewGameMenuSaveSlotStatus
 struct NewGameMenuCore : HardwareBootstrap {
     void * unk_08;
     SceneTransitionOwner continuation;
-    u8 * unk_10; // Owned 0x554-byte UI payload; its full layout is unresolved.
+    UiStateOwner ui_state;
     MusicPlayer * music_players[2];
     IndexedResourceArchive resources;
     HardwareStateEntry state_entry;
     HardwareResourceEntry resource_entry;
-    u32 unk_5C[2];
-    u8 unk_64[0x1C];
+    HardwareSpriteOamRecord option_attributes;
+    IndexedResourceHandle selector_resource;
+    HardwareSpriteOamRecord selector_attributes;
     u32 active_row;
     u8 choices[6];
     u8 unk_8A[2];
@@ -69,11 +71,14 @@ struct NewGameMenuCore : HardwareBootstrap {
 };
 
 typedef char NewGameMenuCoreSizeCheck[sizeof(NewGameMenuCore) == 0x1A0 ? 1 : -1];
-typedef char NewGameMenuCoreUiCheck[offsetof(NewGameMenuCore, unk_10) == 0x10 ? 1 : -1];
+typedef char NewGameMenuCoreUiCheck[offsetof(NewGameMenuCore, ui_state) == 0x10 ? 1 : -1];
 typedef char NewGameMenuCoreMusicCheck[offsetof(NewGameMenuCore, music_players) == 0x14 ? 1 : -1];
 typedef char NewGameMenuCoreResourcesCheck[offsetof(NewGameMenuCore, resources) == 0x1C ? 1 : -1];
 typedef char NewGameMenuCoreStateEntryCheck[offsetof(NewGameMenuCore, state_entry) == 0x4C ? 1 : -1];
 typedef char NewGameMenuCoreResourceEntryCheck[offsetof(NewGameMenuCore, resource_entry) == 0x54 ? 1 : -1];
+typedef char NewGameMenuCoreOptionAttributesCheck[offsetof(NewGameMenuCore, option_attributes) == 0x5C ? 1 : -1];
+typedef char NewGameMenuCoreSelectorResourceCheck[offsetof(NewGameMenuCore, selector_resource) == 0x64 ? 1 : -1];
+typedef char NewGameMenuCoreSelectorAttributesCheck[offsetof(NewGameMenuCore, selector_attributes) == 0x78 ? 1 : -1];
 typedef char NewGameMenuCoreActiveRowCheck[offsetof(NewGameMenuCore, active_row) == 0x80 ? 1 : -1];
 typedef char NewGameMenuCoreChoicesCheck[offsetof(NewGameMenuCore, choices) == 0x84 ? 1 : -1];
 typedef char NewGameMenuCoreUnk8CCheck[offsetof(NewGameMenuCore, unk_8C) == 0x8C ? 1 : -1];
