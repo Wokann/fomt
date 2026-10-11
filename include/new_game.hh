@@ -10,6 +10,7 @@
 #include "scene.hh"
 #include "sram_proxy_2.hh"
 #include "ui_state.hh"
+#include "utility/fixed_str.hh"
 
 struct MusicPlayer;
 
@@ -135,19 +136,52 @@ struct NewGameNameEntryScene {
     NewGameSceneVTableFunction const * vtable;
 };
 
+// Clear2DGfxBuffer and DrawStringTo2DGfxBuffer consume the tile words after
+// the untouched four-byte prefix. Each 4bpp tile occupies eight words and
+// every identity row is two tiles high. The original constructor leaves
+// these objects uninitialized; func_08005278 clears and draws their tiles.
+template <u32 Width>
+struct NewGameIdentityTileBuffer {
+    NewGameIdentityTileBuffer() {}
+
+    u32 unk_00;
+    u32 tiles[Width * 2 * 8];
+};
+
+typedef char NewGameIdentityValueBufferSizeCheck[
+    sizeof(NewGameIdentityTileBuffer<12>) == 0x304 ? 1 : -1];
+typedef char NewGameIdentityLabelBufferSizeCheck[
+    sizeof(NewGameIdentityTileBuffer<14>) == 0x384 ? 1 : -1];
+typedef char NewGameIdentityTilesOffsetCheck[
+    offsetof(NewGameIdentityTileBuffer<12>, tiles) == 4 ? 1 : -1];
+typedef char NewGameIdentityTextBufferSizeCheck[sizeof(FixedStr<15>) == 0x10 ? 1 : -1];
+
+// Physical field order: player name, birthday, farm name, dog name. Native
+// construction bounds each byte string to 15 bytes plus its terminator;
+// func_08005278 renders these four consecutive values in the same order.
+enum NewGameIdentityField {
+    NEW_GAME_IDENTITY_PLAYER_NAME,
+    NEW_GAME_IDENTITY_BIRTHDAY,
+    NEW_GAME_IDENTITY_FARM_NAME,
+    NEW_GAME_IDENTITY_DOG_NAME,
+    NEW_GAME_IDENTITY_FIELD_COUNT,
+};
+
 // The identity-confirmation form owns a 0x1878-byte JP core or a 0x1A78-byte
-// overseas core. Its full resource and text-buffer layout still remains
-// assembly; only the directly verified owner/music pointers and control bytes are
-// exposed here. The opaque tail names retain their US offsets.
+// overseas core. JP uses eight equal-width buffers: four values followed by
+// four labels. Overseas labels are wider and form their own four-entry array.
+// The unknown scalar and control-byte names retain their original US offsets.
 struct NewGameIdentityCore : HardwareBootstrap {
 #if defined(REGION_JP)
-    u8 unk_08[0x1824];
+    NewGameIdentityTileBuffer<12> buffers[8];
 #else
-    u8 unk_08[0x1A24];
+    NewGameIdentityTileBuffer<12> value_buffers[4];
+    NewGameIdentityTileBuffer<14> label_buffers[4];
 #endif
+    u32 unk_1A28;
     UiStateOwner * ui_state;
     MusicPlayer * music;
-    u8 unk_1A34[0x40];
+    FixedStr<15> fields[NEW_GAME_IDENTITY_FIELD_COUNT];
     u8 unk_1A74;
     u8 unk_1A75;
     u8 unk_1A76;
@@ -163,14 +197,21 @@ typedef char NewGameMenuSceneSizeCheck[sizeof(NewGameMenuScene) == 8 ? 1 : -1];
 typedef char NewGameNameEntrySceneSizeCheck[sizeof(NewGameNameEntryScene) == 4 ? 1 : -1];
 #if defined(REGION_JP)
 typedef char NewGameIdentityCoreSizeCheck[sizeof(NewGameIdentityCore) == 0x1878 ? 1 : -1];
+typedef char NewGameIdentityCoreBuffersCheck[offsetof(NewGameIdentityCore, buffers) == 8 ? 1 : -1];
+typedef char NewGameIdentityCoreUnk1A28Check[offsetof(NewGameIdentityCore, unk_1A28) == 0x1828 ? 1 : -1];
 typedef char NewGameIdentityCoreUiCheck[offsetof(NewGameIdentityCore, ui_state) == 0x182C ? 1 : -1];
 typedef char NewGameIdentityCoreMusicCheck[offsetof(NewGameIdentityCore, music) == 0x1830 ? 1 : -1];
+typedef char NewGameIdentityCoreFieldsCheck[offsetof(NewGameIdentityCore, fields) == 0x1834 ? 1 : -1];
 typedef char NewGameIdentityCoreControlCheck[offsetof(NewGameIdentityCore, unk_1A74) == 0x1874 ? 1 : -1];
 typedef char NewGameIdentityCoreResultCheck[offsetof(NewGameIdentityCore, unk_1A76) == 0x1876 ? 1 : -1];
 #else
 typedef char NewGameIdentityCoreSizeCheck[sizeof(NewGameIdentityCore) == 0x1A78 ? 1 : -1];
+typedef char NewGameIdentityCoreValueBuffersCheck[offsetof(NewGameIdentityCore, value_buffers) == 8 ? 1 : -1];
+typedef char NewGameIdentityCoreLabelBuffersCheck[offsetof(NewGameIdentityCore, label_buffers) == 0xC18 ? 1 : -1];
+typedef char NewGameIdentityCoreUnk1A28Check[offsetof(NewGameIdentityCore, unk_1A28) == 0x1A28 ? 1 : -1];
 typedef char NewGameIdentityCoreUiCheck[offsetof(NewGameIdentityCore, ui_state) == 0x1A2C ? 1 : -1];
 typedef char NewGameIdentityCoreMusicCheck[offsetof(NewGameIdentityCore, music) == 0x1A30 ? 1 : -1];
+typedef char NewGameIdentityCoreFieldsCheck[offsetof(NewGameIdentityCore, fields) == 0x1A34 ? 1 : -1];
 typedef char NewGameIdentityCoreControlCheck[offsetof(NewGameIdentityCore, unk_1A74) == 0x1A74 ? 1 : -1];
 typedef char NewGameIdentityCoreResultCheck[offsetof(NewGameIdentityCore, unk_1A76) == 0x1A76 ? 1 : -1];
 #endif
