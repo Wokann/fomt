@@ -307,17 +307,12 @@ struct UiTextLayoutPositionTable
 
 extern UiTextLayoutPositionTable const gUiTextLayoutPositionTable;
 
-// Multiple UI constructors copy unk_00 for unk_04 bytes into VRAM and copy
-// unk_08 into palette RAM.  The encoded resource payload formats remain raw.
-struct UiSharedResourceData
-{
-    u8 const * unk_00;
-    u32 unk_04;
-    u8 const * unk_08;
-};
-
+// These adjacent objects are loaded independently by the native UI callers.
+// Keep their physical order in ui_state.cc; each has its own real relocation.
 extern u8 const gUnk_UiSharedResourceData_000[];
 extern u8 const gUnk_UiSharedResourceData_001[];
-extern UiSharedResourceData const gUiSharedResourceData;
+extern u8 const * const gUiSharedTiles;
+extern u32 const gUiSharedTileByteCount;
+extern u8 const * const gUiSharedPalette;
 
 #endif // UI_STATE_HH

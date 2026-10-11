@@ -2,6 +2,37 @@
 
 本文件记录已从原始代码 `incbin` 或字节块提升为 C/C++ 或实际 ARM/Thumb 汇编的连续模块。地址以各地区基准 ROM 的物理地址为准；一个模块即使在原始布局中被已编译的 C/C++ 输入节穿插，也仍由同一个源文件维护。
 
+## 公共 UI 资源：三个真实对象与四区完整引用重定位
+
+`src/ui_state.cc` 按原物理顺序维护 `gUiSharedTiles`、
+`gUiSharedTileByteCount`、`gUiSharedPalette` 三个四字节对象。
+原生调用分别读取图块指针、`0x120` 字节长度和调色板指针；
+不再用一个未证实的结构标签及 `+4/+8` 代替独立对象。声明集中在
+同名 `include/ui_state.hh`，没有汇编别名或新增细分 section。
+
+| 区域 | 三对象半开区间 | 图块／长度／色板对象偏移 | 已重定位引用 |
+| --- | --- | --- | ---: |
+| JP | `0x080F97CC–0x080F97D8` | `+0 / +4 / +8` | 53 |
+| US | `0x080F9F70–0x080F9F7C` | `+0 / +4 / +8` | 53 |
+| EU | `0x080F9FBC–0x080F9FC8` | `+0 / +4 / +8` | 53 |
+| DE | `0x080FA458–0x080FA464` | `+0 / +4 / +8` | 53 |
+
+名称输入和其他 UI 汇编调用直接引用三个真实符号。全 ROM 任意
+字节偏移检索发现 JP 原来另有 23 个地址仍藏在 `.byte` 中，分布于
+`asm/code_0803EE94.s` 和 `asm/code_809E804.s`；逐个确认其被
+Thumb PC 相对 LDR 加对象解引用读取，现改为 `.4byte` 符号，
+没有改变指令、相邻数据或对齐。四区共 212 个地址命中全部具有
+对应对象的 `R_ARM_ABS32`，不存在此三对象的残留硬编码地址。
+
+验证：四区 WSL `make -j4 GAME_REGION=<JP|US|EU|DE> compare`
+通过；JP 补全上述 23 个引用后另行构建验证。完整 8 MiB ROM
+逐字节及 SHA-1 不变，独立保留重定位链接再次一致。825 个既有
+源码对象的分配节全部核对，只有三个数据对象拆分及所列资源引用
+变化；其他字节、大小、属性、对齐和链接符号地址保持不变。
+
+这一项完成公共资源对象及其引用，不将仍以原始字节保留的 JP
+调用函数计作高级语言化，也不代表全部 ROM 指针已动态化。
+
 ## 新游戏姓名输入核心：共用 C++ 主循环与真实自动析构
 
 `func_08005B68` 已从区域汇编移入现有 `src/new_game.cc`，四区共用
@@ -5197,7 +5228,8 @@ JP 的动物状态界面构造与主处理代码也已整块提升：共享语�
 代码 `incbin` 已完全展开，内部计算跳转目标和常量池均按真实边界显式表达。
 
 界面公共资源与动物状态文本不再保留 ROM 绝对地址：代码直接引用
-`gUiSharedResourceData`、`gAnimalStatusScreenPrefixText` 和 `gAnimalStatusScreenText`；其中
+`gUiSharedTiles`、`gUiSharedTileByteCount`、`gUiSharedPalette`、
+`gAnimalStatusScreenPrefixText` 和 `gAnimalStatusScreenText`；其中
 `+ 4`、`+ 6`、`+ 8` 至 `+ 0x2C` 均是这些既有固定布局对象中经核验的真实字段位置，与普通
 三区现有实现一致，不是跨对象伪匹配。已提升范围不含代码 `.incbin`、原始 `.byte`/`.2byte`、
 `.set`、`.thumb_set`、原始 ROM 指针或未命名调用目标。JP、US、EU、DE 均已完成完整构建并通过
@@ -5214,7 +5246,7 @@ JP vtable 对象差异仍由 `vtable_unk_080E7AA8` 表达。范围末尾的 12 �
 动物状态界面后续主流程 `func_0806D990` 也已在 JP 整段提升，真实物理范围为
 `0x0806D788`–`0x0806E473`，共 `0xCEC`（`3,308`）字节。两个计算跳转表分别保留在
 `0x0806D9F0` 与 `0x0806DBF4`，表项直接指向块内真实标签；界面公共资源继续通过
-`gUiSharedResourceData` 的既有字段位置引用，预载字形直接引用
+`gUiSharedTiles`、`gUiSharedTileByteCount`、`gUiSharedPalette` 直接引用，预载字形直接引用
 `gFarmStatusScreenPreloadedGlyphs`，动物竞赛确认文本使用已有区域文本标签。
 
 该 JP 范围不再包含代码 `.incbin`、`.byte`/`.2byte`、固定 ROM 指针、`.set`、`.thumb_set`
@@ -5325,7 +5357,7 @@ JP、US、EU、DE 均已完成完整构建并通过各自基准 ROM 的 SHA-1 �
 指令实现处于同一反编译层级。JP 真实物理范围为 `0x08075AD8`–`0x08075EEB`，长度
 `0x414`（`1044`）字节；普通三区范围为 `0x08075E7C`–`0x0807628B`，长度
 `0x410`（`1040`）字节。区域差异包括 JP 较大的栈内临时区、资源/vtable 地址和对应的控制流，
-均以真实指令、符号或经结构验证的 `gUiSharedResourceData + 4/+8` 字段引用表达，不再保留 JP
+均以真实指令和独立的公共 UI 图块／长度／色板符号引用表达，不再保留 JP
 代码 `incbin`。
 
 紧随其后的记录画面更新函数 `func_0807628C` 已在 JP 改为完整显式 Thumb 指令。JP 真实物理范围为
@@ -5342,7 +5374,7 @@ JP 代码 `incbin` 宏或原始跳转表字节。
 
 图书馆画面资源初始化函数 `func_08079860` 已在 JP 改为完整显式 Thumb 指令。JP 真实物理范围为
 `0x080793E8`–`0x080795EB`，普通三区范围为 `0x08079860`–`0x08079A63`，长度均为
-`0x204`（`516`）字节。共享 UI 资源的三个字段分别以 `gUiSharedResourceData`、`+ 4`、`+ 8`
+`0x204`（`516`）字节。共享 UI 资源分别以 `gUiSharedTiles`、`gUiSharedTileByteCount`、`gUiSharedPalette`
 表达，调色板/VRAM 硬件地址保留为直接常量；JP 局部标签使用独立命名空间，避免与前一函数的
 语义地址标签碰撞。该函数不再保留代码 `incbin`。
 

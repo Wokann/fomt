@@ -199,11 +199,9 @@ UiTextLayoutPositionTable const gUiTextLayoutPositionTable = {
     },
 };
 
-UiSharedResourceData const gUiSharedResourceData = {
-    gUnk_UiSharedResourceData_000,
-    0x120,
-    gUnk_UiSharedResourceData_001,
-};
+u8 const * const gUiSharedTiles = gUnk_UiSharedResourceData_000;
+u32 const gUiSharedTileByteCount = 0x120;
+u8 const * const gUiSharedPalette = gUnk_UiSharedResourceData_001;
 
 EC void func_08050E0C(void * const * object, u32 arg_r1, u32 arg_r2,
     u32 arg_r3, u32 arg_sp0, u32 arg_sp1, u32 arg_sp2, u32 arg_sp3)

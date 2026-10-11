@@ -779,12 +779,12 @@ func_08004570:
     beq.n .Ljp_080046EE
     b.n .Ljp_0800468C
     .align 2, 0
-.Ljp_080046BC: .4byte gUiSharedResourceData + 8
+.Ljp_080046BC: .4byte gUiSharedPalette
 .Ljp_080046C0: .4byte gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue
 .Ljp_080046C4: .4byte 0x00001E4C
-.Ljp_080046C8: .4byte gUiSharedResourceData
+.Ljp_080046C8: .4byte gUiSharedTiles
 .Ljp_080046CC: .4byte 0x0600C000
-.Ljp_080046D0: .4byte gUiSharedResourceData + 4
+.Ljp_080046D0: .4byte gUiSharedTileByteCount
 .Ljp_080046D4: .4byte 0x0600F000
 .Ljp_080046D8: .4byte 0x06010000
 .Ljp_080046DC: .4byte 0x05000200
@@ -2145,13 +2145,13 @@ func_08005278:
     str r0, [r6, #4]
     b .Ljp_080055BA
 .Ljp_080054B0:
-    .4byte gUiSharedResourceData
+    .4byte gUiSharedTiles
 .Ljp_080054B4:
     .4byte 0x06004B00
 .Ljp_080054B8:
-    .4byte gUiSharedResourceData + 4
+    .4byte gUiSharedTileByteCount
 .Ljp_080054BC:
-    .4byte gUiSharedResourceData + 8
+    .4byte gUiSharedPalette
 .Ljp_080054C0:
     .4byte 0x00001841
 .Ljp_080054C4:
@@ -2681,10 +2681,10 @@ func_08005CDC:
     str	r0, [r6, #4]
     b .Ljp_00005EB4
     .align 2, 0
-.Ljp_00005D9C: .4byte gUiSharedResourceData
+.Ljp_00005D9C: .4byte gUiSharedTiles
 .Ljp_00005DA0: .4byte 0x06004B00
-.Ljp_00005DA4: .4byte gUiSharedResourceData + 4
-.Ljp_00005DA8: .4byte gUiSharedResourceData + 8
+.Ljp_00005DA4: .4byte gUiSharedTileByteCount
+.Ljp_00005DA8: .4byte gUiSharedPalette
 .Ljp_00005DAC: .4byte 0x00001841
 .Ljp_00005DB0: .4byte 0x00001F02
 .Ljp_00005DB4: .4byte 0x0600F800
@@ -5773,7 +5773,7 @@ func_08004570: @ 0x08004570
     strh r1, [r0]
     movs r4, #0
     strh r1, [r5]
-    ldr r0, .L080046A4 @ =gUiSharedResourceData + 8
+    ldr r0, .L080046A4 @ =gUiSharedPalette
     ldr r0, [r0]
     movs r1, #0xa0
     lsls r1, r1, #0x13
@@ -5785,10 +5785,10 @@ func_08004570: @ 0x08004570
     adds r0, r2, #0
     strh r0, [r1]
     strh r0, [r5, #0xe]
-    ldr r0, .L080046B0 @ =gUiSharedResourceData
+    ldr r0, .L080046B0 @ =gUiSharedTiles
     ldr r0, [r0]
     ldr r1, .L080046B4 @ =0x0600C000
-    ldr r2, .L080046B8 @ =gUiSharedResourceData + 4
+    ldr r2, .L080046B8 @ =gUiSharedTileByteCount
     ldr r2, [r2]
     bl func_08008E64
     ldr r0, .L080046BC @ =0x0600F000
@@ -5889,12 +5889,12 @@ func_08004570: @ 0x08004570
     beq .L080046D6
     b .L08004674
     .align 2, 0
-.L080046A4: .4byte gUiSharedResourceData + 8
+.L080046A4: .4byte gUiSharedPalette
 .L080046A8: .4byte gUnk_NewGameNameEntryPresetAnimalNamesPrefixValue
 .L080046AC: .4byte 0x00001E4C
-.L080046B0: .4byte gUiSharedResourceData
+.L080046B0: .4byte gUiSharedTiles
 .L080046B4: .4byte 0x0600C000
-.L080046B8: .4byte gUiSharedResourceData + 4
+.L080046B8: .4byte gUiSharedTileByteCount
 .L080046BC: .4byte 0x0600F000
 .L080046C0: .4byte 0x06010000
 .L080046C4: .4byte 0x05000200
@@ -7003,13 +7003,13 @@ func_08005278: @ 0x08005278
     push {r5, r6, r7}
     sub sp, #0x94
     mov sl, r0
-    ldr r0, .L08005488 @ =gUiSharedResourceData
+    ldr r0, .L08005488 @ =gUiSharedTiles
     ldr r0, [r0]
     ldr r1, .L0800548C @ =0x06004B00
-    ldr r2, .L08005490 @ =gUiSharedResourceData + 4
+    ldr r2, .L08005490 @ =gUiSharedTileByteCount
     ldr r2, [r2]
     bl func_08008E64
-    ldr r0, .L08005494 @ =gUiSharedResourceData + 8
+    ldr r0, .L08005494 @ =gUiSharedPalette
     ldr r0, [r0]
     movs r1, #0xa0
     lsls r1, r1, #0x13
@@ -7249,10 +7249,10 @@ func_08005278: @ 0x08005278
     str r5, [sp, #0x60]
     b .L08005596
     .align 2, 0
-.L08005488: .4byte gUiSharedResourceData
+.L08005488: .4byte gUiSharedTiles
 .L0800548C: .4byte 0x06004B00
-.L08005490: .4byte gUiSharedResourceData + 4
-.L08005494: .4byte gUiSharedResourceData + 8
+.L08005490: .4byte gUiSharedTileByteCount
+.L08005494: .4byte gUiSharedPalette
 .L08005498: .4byte 0x00001841
 .L0800549C: .4byte 0x00001F01
 .L080054A0: .4byte 0x0600F800
@@ -7950,10 +7950,10 @@ adds	r0, #16
 str	r0, [r6, #4]
 b.n	.LNewGameDE_08005FEE
     .align 2, 0
-.LNewGameDE_08005ED4: .4byte gUiSharedResourceData
+.LNewGameDE_08005ED4: .4byte gUiSharedTiles
 .LNewGameDE_08005ED8: .4byte 0x06004D80
-.LNewGameDE_08005EDC: .4byte gUiSharedResourceData + 4
-.LNewGameDE_08005EE0: .4byte gUiSharedResourceData + 8
+.LNewGameDE_08005EDC: .4byte gUiSharedTileByteCount
+.LNewGameDE_08005EE0: .4byte gUiSharedPalette
 .LNewGameDE_08005EE4: .4byte 0x00001841
 .LNewGameDE_08005EE8: .4byte 0x00001F02
 .LNewGameDE_08005EEC: .4byte 0x0600F800
@@ -8321,13 +8321,13 @@ bx	r0
     push {r5, r6, r7}
     sub sp, #0x54
     mov sl, r0
-    ldr r0, .L08005EC8 @ =gUiSharedResourceData
+    ldr r0, .L08005EC8 @ =gUiSharedTiles
     ldr r0, [r0]
     ldr r1, .L08005ECC @ =0x06004B00
-    ldr r2, .L08005ED0 @ =gUiSharedResourceData + 4
+    ldr r2, .L08005ED0 @ =gUiSharedTileByteCount
     ldr r2, [r2]
     bl func_08008E64
-    ldr r0, .L08005ED4 @ =gUiSharedResourceData + 8
+    ldr r0, .L08005ED4 @ =gUiSharedPalette
     ldr r0, [r0]
     movs r1, #0xa0
     lsls r1, r1, #0x13
@@ -8558,10 +8558,10 @@ bx	r0
     str r0, [r6, #4]
     b .L08005FE0
     .align 2, 0
-.L08005EC8: .4byte gUiSharedResourceData
+.L08005EC8: .4byte gUiSharedTiles
 .L08005ECC: .4byte 0x06004B00
-.L08005ED0: .4byte gUiSharedResourceData + 4
-.L08005ED4: .4byte gUiSharedResourceData + 8
+.L08005ED0: .4byte gUiSharedTileByteCount
+.L08005ED4: .4byte gUiSharedPalette
 .L08005ED8: .4byte 0x00001841
 .L08005EDC: .4byte 0x00001F02
 .L08005EE0: .4byte 0x0600F800

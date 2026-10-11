@@ -2301,7 +2301,7 @@ func_0803B840:
 .Ljp_0803B658:
     .4byte 0x010000A0
 .Ljp_0803B65C:
-    .4byte gUiSharedResourceData + 0x8
+    .4byte gUiSharedPalette
     .global func_0803B660
     .thumb_func
 func_0803B660:
@@ -2537,9 +2537,9 @@ func_0803B660:
 .Ljp_0803B824:
     .4byte vtable_unk_080E5BD8
 .Ljp_0803B828:
-    .4byte gUiSharedResourceData + 0x4
+    .4byte gUiSharedTileByteCount
 .Ljp_0803B82C:
-    .4byte gUiSharedResourceData
+    .4byte gUiSharedTiles
 .Ljp_0803B830:
     .4byte vtable_unk_080E7768
 .Ljp_0803B834:
@@ -11288,7 +11288,7 @@ func_0803B840:
 .Leu_0803B8D8:
     .4byte 0x010000A0
 .Leu_0803B8DC:
-    .4byte gUiSharedResourceData + 0x8
+    .4byte gUiSharedPalette
     .global func_0803B8CC
     .thumb_func
 func_0803B8CC:
@@ -11524,9 +11524,9 @@ func_0803B8CC:
 .Leu_0803BAA4:
     .4byte vtable_unk_080E5BD8
 .Leu_0803BAA8:
-    .4byte gUiSharedResourceData + 0x4
+    .4byte gUiSharedTileByteCount
 .Leu_0803BAAC:
-    .4byte gUiSharedResourceData
+    .4byte gUiSharedTiles
 .Leu_0803BAB0:
     .4byte vtable_unk_080E7768
 .Leu_0803BAB4:
@@ -20347,7 +20347,7 @@ func_0803B840:
 .Lde_0803B7D8:
     .4byte 0x010000A0
 .Lde_0803B7DC:
-    .4byte gUiSharedResourceData + 0x8
+    .4byte gUiSharedPalette
     .global func_0803B8CC
     .thumb_func
 func_0803B8CC:
@@ -20583,9 +20583,9 @@ func_0803B8CC:
 .Lde_0803B9A4:
     .4byte vtable_unk_080E5BD8
 .Lde_0803B9A8:
-    .4byte gUiSharedResourceData + 0x4
+    .4byte gUiSharedTileByteCount
 .Lde_0803B9AC:
-    .4byte gUiSharedResourceData
+    .4byte gUiSharedTiles
 .Lde_0803B9B0:
     .4byte vtable_unk_080E7768
 .Lde_0803B9B4:
@@ -29384,7 +29384,7 @@ func_0803B840:
 .Lus_0803B8C4:
     .4byte 0x010000A0
 .Lus_0803B8C8:
-    .4byte gUiSharedResourceData + 0x8
+    .4byte gUiSharedPalette
     .global func_0803B8CC
     .thumb_func
 func_0803B8CC:
@@ -29620,9 +29620,9 @@ func_0803B8CC:
 .Lus_0803BA90:
     .4byte vtable_unk_080E5BD8
 .Lus_0803BA94:
-    .4byte gUiSharedResourceData + 0x4
+    .4byte gUiSharedTileByteCount
 .Lus_0803BA98:
-    .4byte gUiSharedResourceData
+    .4byte gUiSharedTiles
 .Lus_0803BA9C:
     .4byte vtable_unk_080E7768
 .Lus_0803BAA0:
