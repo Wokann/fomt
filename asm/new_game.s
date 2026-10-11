@@ -4234,50 +4234,7 @@ func_08006AC0:
 .Ljp_08006BB4: .4byte 0x00004544
 .Ljp_08006BB8: .4byte 0x00004545
 
-    .global func_08006BBC
-    .thumb_func
-func_08006BBC:
-    push {r4, r5, lr}
-    adds r5, r0, #0
-    lsls r1, r1, #0x19
-    lsrs r3, r1, #0x18
-    cmp r3, #9
-    bhi .Ljp_08006BEA
-    ldr r0, .Ljp_08006C00
-    adds r4, r5, r0
-.Ljp_08006BCC:
-    adds r1, r4, r3
-    adds r2, r3, #2
-    adds r0, r4, r2
-    ldrb r0, [r0]
-    strb r0, [r1]
-    adds r1, r3, #1
-    adds r1, r4, r1
-    adds r0, r3, #3
-    adds r0, r4, r0
-    ldrb r0, [r0]
-    strb r0, [r1]
-    lsls r2, r2, #0x18
-    lsrs r3, r2, #0x18
-    cmp r3, #9
-    bls .Ljp_08006BCC
-.Ljp_08006BEA:
-    ldr r0, .Ljp_08006C04
-    adds r1, r5, r0
-    movs r0, #0x81
-    strb r0, [r1]
-    ldr r0, .Ljp_08006C08
-    adds r1, r5, r0
-    movs r0, #0x51
-    strb r0, [r1]
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_08006C00: .4byte 0x0000455C
-.Ljp_08006C04: .4byte 0x00004566
-.Ljp_08006C08: .4byte 0x00004567
-
+    .section .text.new_game_name_input_after_erase_character
     .global func_08006C0C
     .thumb_func
 func_08006C0C:
@@ -4512,7 +4469,7 @@ func_08006CDC:
     adds r0, r4, #0
     movs r1, #0
 .Ljp_08006DCC:
-    bl func_08006BBC
+    bl EraseNameInputCharacter
     ldr r1, .Ljp_08006DDC
     adds r0, r4, r1
     movs r1, #0x6c
@@ -10482,48 +10439,7 @@ bx	r0
 .L08006C24: .4byte 0x00004605
     .endif
 
-    thumb_func_start func_08006C28
-func_08006C28: @ 0x08006C28
-    push {r4, lr}
-    adds r4, r0, #0
-    lsls r1, r1, #0x18
-    lsrs r1, r1, #0x18
-    cmp r1, #0xa
-    bhi .L08006C4A
-    ldr r0, .L08006C58 @ =0x0000461C
-    adds r3, r4, r0
-.L08006C38:
-    adds r2, r3, r1
-    adds r1, #1
-    adds r0, r3, r1
-    ldrb r0, [r0]
-    strb r0, [r2]
-    lsls r1, r1, #0x18
-    lsrs r1, r1, #0x18
-    cmp r1, #0xa
-    bls .L08006C38
-.L08006C4A:
-    ldr r0, .L08006C5C @ =0x00004627
-    adds r1, r4, r0
-    movs r0, #0x5f
-    strb r0, [r1]
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.L08006C58:
-    .ifdef REGION_DE
-    .4byte 0x00004DA0
-    .else
-    .4byte 0x0000461C
-    .endif
-.L08006C5C:
-    .ifdef REGION_DE
-    .4byte 0x00004DAB
-    .else
-    .4byte 0x00004627
-    .endif
-
+    .section .text.new_game_name_input_after_erase_character
     thumb_func_start func_08006C60
 func_08006C60: @ 0x08006C60
     push {r4, r5, r6, r7, lr}
@@ -10753,7 +10669,7 @@ b .LNewGameDE_08006EE8
 adds	r0, r4, #0
 movs	r1, #0
 .LNewGameDE_08006E20:
-bl	func_08006C28
+bl	EraseNameInputCharacter
 ldr	r1, [pc, #8]
 adds	r0, r4, r1
 movs	r1, #108
@@ -11007,7 +10923,7 @@ bx	r0
     adds r0, r4, #0
     movs r1, #0
 .L08006E00:
-    bl func_08006C28
+    bl EraseNameInputCharacter
     ldr r1, .L08006E10 @ =0x000045F4
     adds r0, r4, r1
     movs r1, #0x6c

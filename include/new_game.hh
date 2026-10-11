@@ -429,6 +429,10 @@ void func_080064E8(NewGameNameInputCore * core);
 void func_08006858(NewGameNameInputCore * core)
     SECTION(".text.new_game_name_input_submit_sprites");
 void func_080068CC(NewGameNameInputCore * core);
+// Shift the remaining fixed name slots left and restore the final placeholder.
+// JP has six two-byte slots; overseas versions have twelve one-byte slots.
+void EraseNameInputCharacter(NewGameNameInputCore * core, u8 index)
+    SECTION(".text.new_game_name_input_erase_character");
 void func_08006CDC(NewGameNameInputCore * core);
 void func_08006ED8(NewGameNameInputCore * core)
     SECTION(".text.new_game_name_input_confirmation");

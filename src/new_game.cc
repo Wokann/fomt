@@ -740,6 +740,23 @@ void func_08006858(NewGameNameInputCore * core)
     }
 }
 
+void EraseNameInputCharacter(NewGameNameInputCore * core, u8 index)
+{
+#if defined(REGION_JP)
+    u8 byte_index = index * 2;
+    for (; byte_index < 10; byte_index += 2) {
+        core->name[byte_index] = core->name[byte_index + 2];
+        core->name[byte_index + 1] = core->name[byte_index + 3];
+    }
+    core->name[10] = 0x81;
+    core->name[11] = 0x51;
+#else
+    for (; index < 11; index++)
+        core->name[index] = core->name[index + 1];
+    core->name[11] = '_';
+#endif
+}
+
 void func_08006ED8(NewGameNameInputCore * core)
 {
     if (core->unk_463c != 0) {
