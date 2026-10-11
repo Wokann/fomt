@@ -267,8 +267,14 @@ UnkUiSelectionLinkCommand * func_080512D8(UnkUiSelectionLinkCommand * object,
 
 // Existing UI adapter ABI. The menu supplies a text address as arg_r1;
 // the payload's other scalar argument domains are still unresolved.
+void func_08050D5C(void * const * object) SECTION(".text.ui_state_adapters");
+void func_08050D74(void * const * object) SECTION(".text.ui_state_adapters");
+void * func_08050DF0(void * const * object) SECTION(".text.ui_state_adapters");
 void func_08050DC8(void * const * object, u32 arg_r1, u16 arg_r2,
     u32 arg_r3) SECTION(".text.ui_state_adapters");
+void func_08050E30(void * const * object, u32 arg_r1, u32 arg_r2,
+    u32 arg_r3, u32 arg_sp0, u32 arg_sp1, u32 arg_sp2)
+    SECTION(".text.ui_state_adapters");
 
 EXTERN_C_END
 

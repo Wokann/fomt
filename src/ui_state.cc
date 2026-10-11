@@ -74,11 +74,7 @@ i32 UiStateOwner::Update(HardwareCoreState * state,
 // These adapters follow the owner methods in the same native ROM block.
 // The owning high-level UI class is still unknown, so retain the recovered
 // entry-point names and only model fields that the code demonstrably uses.
-EC void func_08050D5C(void * const * object)
-    SECTION(".text.ui_state_adapters");
 EC void func_08050D68(void * const * object)
-    SECTION(".text.ui_state_adapters");
-EC void func_08050D74(void * const * object)
     SECTION(".text.ui_state_adapters");
 EC void func_08050D80(void * const * object)
     SECTION(".text.ui_state_adapters");
@@ -92,13 +88,8 @@ EC u8 func_08050DD8(void * const * object)
     SECTION(".text.ui_state_adapters");
 EC u8 func_08050DE4(void * const * object)
     SECTION(".text.ui_state_adapters");
-EC void * func_08050DF0(void * const * object)
-    SECTION(".text.ui_state_adapters");
 EC void func_08050E0C(void * const * object, u32 arg_r1, u32 arg_r2,
     u32 arg_r3, u32 arg_sp0, u32 arg_sp1, u32 arg_sp2, u32 arg_sp3)
-    SECTION(".text.ui_state_adapters");
-EC void func_08050E30(void * const * object, u32 arg_r1, u32 arg_r2,
-    u32 arg_r3, u32 arg_sp0, u32 arg_sp1, u32 arg_sp2)
     SECTION(".text.ui_state_adapters");
 EC void func_08050E50(void * const * object, u32 arg_r1)
     SECTION(".text.ui_state_adapters");

@@ -137,7 +137,7 @@ struct NewGameNameEntryScene {
 
 // The identity-confirmation form owns a 0x1878-byte JP core or a 0x1A78-byte
 // overseas core. Its full resource and text-buffer layout still remains
-// assembly; only the directly verified owner pointer and control bytes are
+// assembly; only the directly verified owner/music pointers and control bytes are
 // exposed here. The opaque tail names retain their US offsets.
 struct NewGameIdentityCore : HardwareBootstrap {
 #if defined(REGION_JP)
@@ -146,7 +146,8 @@ struct NewGameIdentityCore : HardwareBootstrap {
     u8 unk_08[0x1A24];
 #endif
     UiStateOwner * ui_state;
-    u8 unk_1A30[0x44];
+    MusicPlayer * music;
+    u8 unk_1A34[0x40];
     u8 unk_1A74;
     u8 unk_1A75;
     u8 unk_1A76;
@@ -163,11 +164,13 @@ typedef char NewGameNameEntrySceneSizeCheck[sizeof(NewGameNameEntryScene) == 4 ?
 #if defined(REGION_JP)
 typedef char NewGameIdentityCoreSizeCheck[sizeof(NewGameIdentityCore) == 0x1878 ? 1 : -1];
 typedef char NewGameIdentityCoreUiCheck[offsetof(NewGameIdentityCore, ui_state) == 0x182C ? 1 : -1];
+typedef char NewGameIdentityCoreMusicCheck[offsetof(NewGameIdentityCore, music) == 0x1830 ? 1 : -1];
 typedef char NewGameIdentityCoreControlCheck[offsetof(NewGameIdentityCore, unk_1A74) == 0x1874 ? 1 : -1];
 typedef char NewGameIdentityCoreResultCheck[offsetof(NewGameIdentityCore, unk_1A76) == 0x1876 ? 1 : -1];
 #else
 typedef char NewGameIdentityCoreSizeCheck[sizeof(NewGameIdentityCore) == 0x1A78 ? 1 : -1];
 typedef char NewGameIdentityCoreUiCheck[offsetof(NewGameIdentityCore, ui_state) == 0x1A2C ? 1 : -1];
+typedef char NewGameIdentityCoreMusicCheck[offsetof(NewGameIdentityCore, music) == 0x1A30 ? 1 : -1];
 typedef char NewGameIdentityCoreControlCheck[offsetof(NewGameIdentityCore, unk_1A74) == 0x1A74 ? 1 : -1];
 typedef char NewGameIdentityCoreResultCheck[offsetof(NewGameIdentityCore, unk_1A76) == 0x1A76 ? 1 : -1];
 #endif
@@ -232,7 +235,7 @@ AScene * func_08004C48(void * object)
 void func_08004C54(struct NewGameNameEntryScene * scene, int flags)
     SECTION(".text.new_game_scene_lifecycle");
 
-// Native form construction and UI setup/update still remain assembly. The
+// Native form construction and UI setup still remain assembly. The
 // running core and scene below share their real allocation and return-owner ABI.
 NewGameIdentityCore * func_08004EFC(NewGameIdentityCore * core,
     char const * player_name, u32 birthday, char const * farm_name, char const * dog_name);
@@ -245,7 +248,8 @@ void func_08005254(NewGameIdentityCore * core)
 void func_08005260(NewGameIdentityCore * core)
     SECTION(".text.new_game_identity_core_initialization");
 void func_08005278(NewGameIdentityCore * core);
-void func_08005800(NewGameIdentityCore * core);
+void func_08005800(NewGameIdentityCore * core)
+    SECTION(".text.new_game_identity_core_update");
 extern NewGameSceneVTableFunction const vtable_unk_080E5A98[];
 extern NewGameSceneVTableFunction const vtable_unk_080E5AA4[];
 

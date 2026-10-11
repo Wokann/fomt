@@ -456,6 +456,75 @@ void func_08005260(NewGameIdentityCore * core)
     core->unk_1A74 = 0;
 }
 
+void func_08005800(NewGameIdentityCore * core)
+{
+    int state = core->ui_state->GetState();
+    UiStateOwner * owner = core->ui_state;
+    HardwareCoreState * hardware = static_cast<HardwareCoreState *>(
+        func_080088DC(reinterpret_cast<void * const *>(core)));
+    HardwareSpriteBufferState * sprites =
+        func_08008920(reinterpret_cast<void * const *>(core));
+    HardwareDisplayState * display =
+        func_08008918(reinterpret_cast<void * const *>(core));
+    u8 * links = func_08008940(reinterpret_cast<void * const *>(core));
+    u8 * manager = func_0800894C(reinterpret_cast<void * const *>(core));
+    MusicPlayer ** music = &core->music;
+    int action = owner->Update(hardware, sprites, display, links, manager, music);
+
+    switch (action)
+    {
+    case 0:
+        if (core->unk_1A75 != 0)
+            core->unk_1A74 = 1;
+        func_08050D5C(reinterpret_cast<void * const *>(core->ui_state));
+        break;
+    case 3:
+        switch (state)
+        {
+        case 4:
+        case 5:
+            break;
+        default:
+            func_08050D74(reinterpret_cast<void * const *>(core->ui_state));
+            break;
+        case 1:
+            func_08050E30(reinterpret_cast<void * const *>(core->ui_state),
+                reinterpret_cast<u32>(gText_NewGameIdentity_Confirm),
+                reinterpret_cast<u32>(gText_NewGameIdentity_Yes),
+                reinterpret_cast<u32>(gText_NewGameIdentity_No), 0, 0, 0);
+            break;
+        case 6:
+            // This form reads the adapter's address-sized result as a choice.
+            switch (reinterpret_cast<u32>(func_08050DF0(
+                reinterpret_cast<void * const *>(core->ui_state))))
+            {
+            case 1:
+                core->unk_1A75 = 1;
+                core->unk_1A76 = 1;
+                break;
+            case 2:
+                core->unk_1A75 = 1;
+                core->unk_1A76 = 0;
+                break;
+            case 0:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+                break;
+            }
+            break;
+        }
+        break;
+    case 1:
+    case 2:
+    case 4:
+    case 5:
+    case 6:
+        break;
+    }
+}
+
 NewGameIdentityScene * func_0800598C(NewGameIdentityScene * scene,
     char const * player_name, u32 birthday, char const * farm_name, char const * dog_name)
 {
