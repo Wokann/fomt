@@ -801,6 +801,66 @@ void EraseNameInputCharacter(NewGameNameInputCore * core, u8 index)
 #endif
 }
 
+bool NormalizeNameInput(NewGameNameInputCore * core)
+{
+    int length = 0;
+    int blank_count = 0;
+    strcpy(reinterpret_cast<char *>(core->normalized_name), core->name);
+
+    // Scan all fixed slots, not strlen(name). Spaces count as blank characters
+    // but remain significant at the end of a nonblank name; placeholders do not.
+    for (int index = 0, next = 0; index < 12; index = next) {
+#if defined(REGION_JP)
+        u32 high = core->normalized_name[index] << 8;
+        u32 character = core->normalized_name[index + 1] | high;
+        if (character == 0x8151) {
+            blank_count++;
+            next = index + 2;
+        } else {
+            if (character == 0x8140)
+                blank_count++;
+            length = index + 2;
+            next = length;
+        }
+#else
+        u32 character = core->normalized_name[index];
+        if (character == '_') {
+            blank_count++;
+            next = index + 1;
+        } else {
+            if (character == ' ')
+                blank_count++;
+            length = index + 1;
+            next = length;
+        }
+#endif
+    }
+#if defined(REGION_JP)
+    if (blank_count == 6)
+#else
+    if (blank_count == 12)
+#endif
+        length = 0;
+    else {
+#if defined(REGION_JP)
+        for (int index = 0; index < length; index += 2) {
+            u32 high = core->normalized_name[index] << 8;
+            u32 character = core->normalized_name[index + 1] | high;
+            if (character == 0x8151) {
+                core->normalized_name[index] = 0x81;
+                core->normalized_name[index + 1] = 0x40;
+            }
+        }
+#else
+        for (int index = 0; index < length; index++)
+            if (core->normalized_name[index] == '_')
+                core->normalized_name[index] = ' ';
+#endif
+    }
+    core->normalized_name[length] = 0;
+    return length != 0;
+}
+
 void ProcessNameInputKeys(NewGameNameInputCore * core)
 {
     if (core->unk_463c != 0)
@@ -835,11 +895,7 @@ void ProcessNameInputKeys(NewGameNameInputCore * core)
                 core->keyboard_redraw_pending = 1;
                 func_08008B6C(&core->music_players[1], 0xCA);
             } else {
-#if defined(REGION_JP)
-                if (func_08006C0C(core)) {
-#else
-                if (func_08006C60(core)) {
-#endif
+                if (NormalizeNameInput(core)) {
                     core->unk_463c = 1;
                     func_08008B6C(&core->music_players[1], 0xC5);
                 } else
@@ -890,11 +946,7 @@ void ProcessNameInputKeys(NewGameNameInputCore * core)
 #endif
                 && static_cast<i8>(core->sprites[0].unk_00[0]) > 9
                 && static_cast<i8>(core->sprites[0].unk_00[0]) <= 14) {
-#if defined(REGION_JP)
-            if (func_08006C0C(core))
-#else
-            if (func_08006C60(core))
-#endif
+            if (NormalizeNameInput(core))
                 core->unk_463c = 1;
             func_08008B6C(&core->music_players[1], 0xC5);
         } else {
@@ -944,7 +996,7 @@ void func_08006ED8(NewGameNameInputCore * core)
             if (core->unk_after_keyboard_redraw[1]) {
                 core->unk_after_keyboard_redraw[1] = 0;
                 core->finished = 1;
-                strcpy(core->name, reinterpret_cast<char const *>(core->unk_after_name));
+                strcpy(core->name, reinterpret_cast<char const *>(core->normalized_name));
             }
             func_08050D5C(reinterpret_cast<void * const *>(core->ui_state));
             break;

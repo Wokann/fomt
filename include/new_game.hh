@@ -227,7 +227,8 @@ struct NewGameNameInputCore : HardwareBootstrap {
     u32 keyboard_page;
     NewGameNameInputSpriteState sprites[2];
     char name[13];
-    u8 unk_after_name[0x0D];
+    // Confirmation uses this separate, terminated copy; editing keeps name intact.
+    u8 normalized_name[13];
     u8 finished;
     u8 keyboard_redraw_pending;
     u8 unk_after_keyboard_redraw[4];
@@ -238,6 +239,10 @@ struct NewGameNameInputScene {
     NewGameSceneVTableFunction const * vtable;
     NewGameNameInputCore * core;
 };
+
+typedef char NewGameNameInputNormalizedNameCheck[
+    offsetof(NewGameNameInputCore, normalized_name) ==
+        offsetof(NewGameNameInputCore, name) + 13 ? 1 : -1];
 
 typedef char NewGameNameInputKeyboardBufferSizeCheck[
     sizeof(NewGameTextTileBuffer<30>) == 0x784 ? 1 : -1];
@@ -436,12 +441,14 @@ void InsertNameInputCharacter(NewGameNameInputCore * core)
 // JP has six two-byte slots; overseas versions have twelve one-byte slots.
 void EraseNameInputCharacter(NewGameNameInputCore * core, u8 index)
     SECTION(".text.new_game_name_input_erase_character");
+// Trim trailing placeholders and replace interior placeholders with spaces.
+// Reject names made entirely of placeholders and spaces, without changing name.
+bool NormalizeNameInput(NewGameNameInputCore * core)
+    SECTION(".text.new_game_name_input_normalization");
 #if defined(REGION_JP)
 void func_080068D4(NewGameNameInputCore * core);
-bool func_08006C0C(NewGameNameInputCore * core);
 #else
 void func_080069F4(NewGameNameInputCore * core);
-bool func_08006C60(NewGameNameInputCore * core);
 #endif
 void ProcessNameInputKeys(NewGameNameInputCore * core)
     SECTION(".text.new_game_name_input_keys");
