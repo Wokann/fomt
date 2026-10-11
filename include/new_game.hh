@@ -410,7 +410,7 @@ u8 func_08005A4C(NewGameIdentityCore const * core)
     SECTION(".text.new_game_identity_scene");
 
 // Native keyboard construction and its running loop share the regional
-// member layout above. Drawing and input helpers still remain assembly.
+// member layout above. Keyboard drawing and input helpers remain assembly.
 NewGameNameInputCore * func_08005A58(NewGameNameInputCore * core,
     char const * prompt, char const * initial_name)
     SECTION(".text.new_game_name_input_core_constructor");
@@ -426,7 +426,8 @@ void func_08006334(NewGameNameInputCore * core)
     SECTION(".text.new_game_name_input_reset");
 void func_0800637C(NewGameNameInputCore * core);
 void func_080064E8(NewGameNameInputCore * core);
-void func_08006858(NewGameNameInputCore * core);
+void func_08006858(NewGameNameInputCore * core)
+    SECTION(".text.new_game_name_input_submit_sprites");
 void func_080068CC(NewGameNameInputCore * core);
 void func_08006CDC(NewGameNameInputCore * core);
 void func_08006ED8(NewGameNameInputCore * core);

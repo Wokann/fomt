@@ -706,6 +706,40 @@ void func_08006334(NewGameNameInputCore * core)
     core->unk_463c = 0;
 }
 
+void func_08006858(NewGameNameInputCore * core)
+{
+    // Submit only the six OAM attribute bytes. The destination's affine
+    // coefficient is owned by the sprite buffer and must remain untouched.
+    if (core->unk_463c == 0) {
+        HardwareSpriteBufferState * buffer =
+            func_08008920(reinterpret_cast<void * const *>(core));
+        u32 const & position_and_mode =
+            reinterpret_cast<u32 const &>(core->sprites[0].attributes);
+        u32 count = buffer->sprite_count;
+        if (count < ARRAY_COUNT(buffer->sprites)) {
+            HardwareSpriteOamRecord & destination = buffer->sprites[count];
+            reinterpret_cast<u32 *>(&destination)[0] = position_and_mode;
+            reinterpret_cast<u16 *>(&destination)[2] =
+                reinterpret_cast<u16 const *>(&core->sprites[0].attributes)[2];
+            buffer->sprite_count = count + 1;
+        }
+    }
+    {
+        HardwareSpriteBufferState * buffer =
+            func_08008920(reinterpret_cast<void * const *>(core));
+        u32 const & position_and_mode =
+            reinterpret_cast<u32 const &>(core->sprites[1].attributes);
+        u32 count = buffer->sprite_count;
+        if (count < ARRAY_COUNT(buffer->sprites)) {
+            HardwareSpriteOamRecord & destination = buffer->sprites[count];
+            reinterpret_cast<u32 *>(&destination)[0] = position_and_mode;
+            reinterpret_cast<u16 *>(&destination)[2] =
+                reinterpret_cast<u16 const *>(&core->sprites[1].attributes)[2];
+            buffer->sprite_count = count + 1;
+        }
+    }
+}
+
 NewGameNameInputScene * func_08007078(NewGameNameInputScene * scene,
     char const * prompt, char const * initial_name)
 {
