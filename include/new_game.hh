@@ -7,6 +7,7 @@
 #include "hardware_resource.hh"
 #include "resource_handle.hh"
 #include "scene.hh"
+#include "sram_proxy_2.hh"
 
 struct MusicPlayer;
 
@@ -59,7 +60,9 @@ struct NewGameMenuCore : HardwareBootstrap {
     u8 unk_64[0x1C];
     u32 active_row;
     u8 choices[6];
-    u8 unk_8A[0x0E];
+    u8 unk_8A[2];
+    u32 unk_8C;
+    SramAccess sram;
     NewGameMenuSaveSlotStatus save_slot_status[2];
     u8 unk_198[8];
 };
@@ -72,6 +75,8 @@ typedef char NewGameMenuCoreStateEntryCheck[offsetof(NewGameMenuCore, state_entr
 typedef char NewGameMenuCoreResourceEntryCheck[offsetof(NewGameMenuCore, resource_entry) == 0x54 ? 1 : -1];
 typedef char NewGameMenuCoreActiveRowCheck[offsetof(NewGameMenuCore, active_row) == 0x80 ? 1 : -1];
 typedef char NewGameMenuCoreChoicesCheck[offsetof(NewGameMenuCore, choices) == 0x84 ? 1 : -1];
+typedef char NewGameMenuCoreUnk8CCheck[offsetof(NewGameMenuCore, unk_8C) == 0x8C ? 1 : -1];
+typedef char NewGameMenuCoreSramCheck[offsetof(NewGameMenuCore, sram) == 0x90 ? 1 : -1];
 typedef char NewGameMenuCoreSaveSlotStatusCheck[offsetof(NewGameMenuCore, save_slot_status) == 0x98 ? 1 : -1];
 
 // Original ABI tables contain two metadata words before their callbacks.
@@ -97,8 +102,8 @@ void func_08003B40(struct HardwareBootstrap * core);
 void func_08003BB4(struct HardwareBootstrap * core);
 void func_08003C28(struct NewGameMenuCore * core);
 
-// One contiguous menu update interval: option OAM, selector OAM, then status
-// text. The preceding label graphics renderer still remains assembly.
+// One contiguous interval: option OAM, selector OAM, status text, then saving.
+// The preceding label graphics renderer still remains assembly.
 void func_08003DF0(struct NewGameMenuCore * core, u32 row,
     NewGameMenuSpriteAttributes attributes)
     SECTION(".text.new_game_menu_update");
@@ -107,6 +112,13 @@ void func_08003E88(struct NewGameMenuCore * core, u32 row,
     SECTION(".text.new_game_menu_update");
 void func_08003EEC(struct NewGameMenuCore * core)
     SECTION(".text.new_game_menu_update");
+bool func_08003F9C(struct NewGameMenuCore * core)
+    SECTION(".text.new_game_menu_update");
+
+// Formats one runtime save-summary buffer; the source image's full layout
+// and the formatter body still remain unresolved assembly.
+void func_08003788(struct NewGameMenuCore * core,
+    NewGameMenuSaveSlotStatus & output, void const * snapshot);
 
 // The core constructor consumes *continuation, clears that word, and stores
 // the transition at core +0x0C. Its remaining body is still assembly.

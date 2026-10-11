@@ -3,6 +3,16 @@
 
 #include "prelude.h"
 
+struct SramAccess;
+
+EXTERN_C
+
+// Writes the original save image and its checksum at the selected SRAM
+// offset. Zero denotes success; nonzero values carry the SRAM error flags.
+u32 func_080115B0(void const * snapshot, struct SramAccess * access, u32 offset);
+
+EXTERN_C_END
+
 #if defined(REGION_JP)
 extern char const gText_Calendar_SeasonNames[4][3];
 extern char const gText_Calendar_WeekdayNames[7][3];

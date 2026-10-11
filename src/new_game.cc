@@ -1,9 +1,13 @@
 #include "new_game.hh"
 #include "new_game_data.hh"
+#include "game_state.hh"
 #include "hardware_bootstrap.hh"
 #include "hardware_state_accessors.hh"
 #include "hardware_blend_object.hh"
 #include "hardware_display_output.hh"
+#include "hardware_interrupt_guard.hh"
+#include "hardware_music_player.hh"
+#include "sram_proxy_1.hh"
 #include "ui_state.hh"
 #include <string.h>
 
@@ -126,6 +130,33 @@ void func_08003EEC(NewGameMenuCore * core)
     func_08050DC8(owner,
         reinterpret_cast<u32>(text != nullptr ? text : gText_NewGameMenu_Blank),
         0, 0);
+}
+
+bool func_08003F9C(NewGameMenuCore * core)
+{
+    if (core->unk_08 != nullptr) {
+        u32 slot = core->choices[1];
+        u32 offset = func_080003DC(reinterpret_cast<u32>(&core->sram), slot);
+        u32 attempts = 3;
+        do {
+            InterruptGuard guard(0x1000);
+            if (func_080115B0(core->unk_08, &core->sram, offset) == 0) {
+                func_08003788(core, core->save_slot_status[slot], core->unk_08);
+                func_08050DC8(reinterpret_cast<void * const *>(&core->unk_10),
+                    reinterpret_cast<u32>(core->save_slot_status[slot].Data()), 0, 0);
+                core->unk_8C = 3;
+                func_08008B6C(&core->music_players[1], 0xC5);
+                func_080003E8(&core->sram, slot);
+                func_08000470(&core->sram, slot);
+                return true;
+            }
+        } while (--attempts != 0);
+    }
+    func_08050DC8(reinterpret_cast<void * const *>(&core->unk_10),
+        reinterpret_cast<u32>(gText_NewGameSave_SaveFailed), 0, 0);
+    core->unk_8C = 3;
+    func_08008B6C(&core->music_players[1], 0xC7);
+    return false;
 }
 
 static inline SceneTransition * CreateMenuIntroContinuation()

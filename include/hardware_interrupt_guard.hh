@@ -2,6 +2,24 @@
 #define HARDWARE_INTERRUPT_GUARD_HH
 
 #include "hardware_blend_object.hh"
+#include "interrupt.hh"
+
+#ifdef __cplusplus
+// Restore only the interrupt bits that were enabled on entry. SRAM writes
+// and hardware command updates use the same scoped protection.
+class InterruptGuard {
+public:
+    explicit InterruptGuard(u16 mask) : enabled(mask & func_08000528(mask)) {}
+    ~InterruptGuard()
+    {
+        if (enabled)
+            func_080004F4(enabled);
+    }
+
+private:
+    u16 enabled;
+};
+#endif
 
 EXTERN_C
 

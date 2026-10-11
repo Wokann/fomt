@@ -1,5 +1,4 @@
 #include "hardware_interrupt_guard.hh"
-#include "interrupt.hh"
 
 extern void * const vtable_unk_080E5B90[];
 
@@ -11,19 +10,6 @@ void func_08009968(void * object, u32 value);
 void func_080099B0(void * object, u32 value);
 void func_080099D4(void * object, u32 value);
 EXTERN_C_END
-
-class InterruptGuard {
-public:
-    explicit InterruptGuard(u16 mask) : enabled(mask & func_08000528(mask)) {}
-    ~InterruptGuard()
-    {
-        if (enabled)
-            func_080004F4(enabled);
-    }
-
-private:
-    u16 enabled;
-};
 
 EXTERN_C
 
