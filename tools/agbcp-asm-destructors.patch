@@ -1,0 +1,421 @@
+diff --git a/g++/cp/cp-tree.h b/g++/cp/cp-tree.h
+--- a/g++/cp/cp-tree.h
++++ b/g++/cp/cp-tree.h
+@@ -1200,7 +1200,7 @@
+   unsigned needs_final_overrider : 1;
+   unsigned bitfield : 1;
+   unsigned defined_in_class : 1;
+-  unsigned dummy : 1;
++  unsigned destructor_attr : 1;
+ 
+   tree access;
+   tree context;
+@@ -1236,10 +1236,11 @@
+ /* For FUNCTION_DECLs: nonzero means that this function is a constructor.  */
+ #define DECL_CONSTRUCTOR_P(NODE) (DECL_LANG_SPECIFIC(NODE)->decl_flags.constructor_attr)
+ 
+-/* There ought to be a better way to find out whether or not something is
+-   a destructor.  */
++/* Keep the source-level kind when an asm specifier replaces the mangled
++   name.  Retain the name test for older synthesized declarations.  */
+ #define DECL_DESTRUCTOR_P(NODE)				\
+-  (DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (NODE))	\
++  ((DECL_LANG_SPECIFIC(NODE)->decl_flags.destructor_attr \
++    || DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (NODE))) \
+    && DECL_LANGUAGE (NODE) == lang_cplusplus)
+ 
+ #define DECL_CONV_FN_P(NODE)						     \
+diff --git a/g++/cp/decl2.c b/g++/cp/decl2.c
+--- a/g++/cp/decl2.c
++++ b/g++/cp/decl2.c
+@@ -1032,6 +1032,7 @@
+ 
+   if (flags == DTOR_FLAG)
+     {
++      DECL_LANG_SPECIFIC (function)->decl_flags.destructor_attr = 1;
+       DECL_ASSEMBLER_NAME (function) = build_destructor_name (ctype);
+       TYPE_HAS_DESTRUCTOR (ctype) = 1;
+     }
+@@ -1376,7 +1377,7 @@
+ 	  && DECL_CONSTRUCTOR_P (function))
+ 	goto got_it;
+       if (*++methods && fn_name == DECL_NAME (OVL_CURRENT (*methods))
+-	  && DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (function)))
++	  && DECL_DESTRUCTOR_P (function))
+ 	goto got_it;
+ 
+       while (++methods != end && *methods)
+@@ -1397,7 +1398,7 @@
+ 		     we can't use this short-cut for them, either.
+ 		     (It's not legal to declare arguments for a
+ 		     destructor, but some people try.)  */
+-		  if (!DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (function))
++		  if (!DECL_DESTRUCTOR_P (function)
+ 		      && (DECL_ASSEMBLER_NAME (function)
+ 			  != DECL_NAME (function))
+ 		      && (DECL_ASSEMBLER_NAME (fndecl)
+@@ -1911,7 +1912,7 @@
+       /* pure virtual destructors must be defined.  */
+       /* pure virtual needs to be defined (as abort) only when put in 
+ 	 vtbl. For wellformed call, it should be itself. pr4737 */
+-      if (!DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (decl)))
++      if (!DECL_DESTRUCTOR_P (decl))
+ 	{
+ 	  extern tree abort_fndecl;
+ 	  /* Give this node rtl from `abort'.  */
+diff --git a/g++/cp/decl.c b/g++/cp/decl.c
+--- a/g++/cp/decl.c
++++ b/g++/cp/decl.c
+@@ -13268,8 +13268,7 @@
+ 
+   ++function_depth;
+ 
+-  if (DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (decl1))
+-      && DECL_LANGUAGE (decl1) == lang_cplusplus)
++  if (DECL_DESTRUCTOR_P (decl1))
+     {
+       dtor_label = build_decl (LABEL_DECL, NULL_TREE, NULL_TREE);
+       ctor_label = NULL_TREE;
+diff --git a/g++/cp/class.c b/g++/cp/class.c
+--- a/g++/cp/class.c
++++ b/g++/cp/class.c
+@@ -1162,7 +1162,7 @@
+ 	  /* A new constructor or destructor.  Constructors go in 
+ 	     slot 0; destructors go in slot 1.  */
+ 	  int slot 
+-	    = DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (method)) ? 1 : 0;
++	    = DECL_DESTRUCTOR_P (method) ? 1 : 0;
+ 
+ 	  TREE_VEC_ELT (method_vec, slot)
+ 	    = build_overload (method, TREE_VEC_ELT (method_vec, slot));
+@@ -2394,11 +2394,11 @@
+      tree fndecl, base_fndecl;
+ {
+   /* Destructors have special names.  */
+-  if (DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (base_fndecl))
+-      && DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (fndecl)))
++  if (DECL_DESTRUCTOR_P (base_fndecl)
++      && DECL_DESTRUCTOR_P (fndecl))
+     return 1;
+-  if (DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (base_fndecl))
+-      || DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (fndecl)))
++  if (DECL_DESTRUCTOR_P (base_fndecl)
++      || DECL_DESTRUCTOR_P (fndecl))
+     return 0;
+   if (DECL_NAME (fndecl) == DECL_NAME (base_fndecl))
+     {
+@@ -3011,7 +3011,7 @@
+ 	{
+ 	  tree tmp = get_matching_virtual
+ 	    (base_binfo, decl,
+-	     DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (decl)));
++	     DECL_DESTRUCTOR_P (decl));
+ 	  if (tmp)
+ 	    {
+ 	      /* If this function overrides some virtual in some base
+diff --git a/g++/cp/method.c b/g++/cp/method.c
+--- a/g++/cp/method.c
++++ b/g++/cp/method.c
+@@ -2449,7 +2449,7 @@
+ 
+   if (DECL_NAME (fndecl) == ansi_opname[MODIFY_EXPR])
+     do_build_assign_ref (fndecl);
+-  else if (DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (fndecl)))
++  else if (DECL_DESTRUCTOR_P (fndecl))
+     ;
+   else
+     {
+diff --git a/g++/cp/error.c b/g++/cp/error.c
+--- a/g++/cp/error.c
++++ b/g++/cp/error.c
+@@ -1018,7 +1018,7 @@
+       OB_PUTC2 (':',':');
+     }
+ 
+-  if (DESTRUCTOR_NAME_P (name) && DECL_LANGUAGE (t) == lang_cplusplus)
++  if (DECL_DESTRUCTOR_P (t))
+     parmtypes = TREE_CHAIN (parmtypes);
+   
+   dump_function_name (t);
+diff --git a/g++_arm/cp/cp-tree.h b/g++_arm/cp/cp-tree.h
+--- a/g++_arm/cp/cp-tree.h
++++ b/g++_arm/cp/cp-tree.h
+@@ -1200,7 +1200,7 @@
+   unsigned needs_final_overrider : 1;
+   unsigned bitfield : 1;
+   unsigned defined_in_class : 1;
+-  unsigned dummy : 1;
++  unsigned destructor_attr : 1;
+ 
+   tree access;
+   tree context;
+@@ -1236,10 +1236,11 @@
+ /* For FUNCTION_DECLs: nonzero means that this function is a constructor.  */
+ #define DECL_CONSTRUCTOR_P(NODE) (DECL_LANG_SPECIFIC(NODE)->decl_flags.constructor_attr)
+ 
+-/* There ought to be a better way to find out whether or not something is
+-   a destructor.  */
++/* Keep the source-level kind when an asm specifier replaces the mangled
++   name.  Retain the name test for older synthesized declarations.  */
+ #define DECL_DESTRUCTOR_P(NODE)				\
+-  (DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (NODE))	\
++  ((DECL_LANG_SPECIFIC(NODE)->decl_flags.destructor_attr \
++    || DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (NODE))) \
+    && DECL_LANGUAGE (NODE) == lang_cplusplus)
+ 
+ #define DECL_CONV_FN_P(NODE)						     \
+diff --git a/g++_arm/cp/decl2.c b/g++_arm/cp/decl2.c
+--- a/g++_arm/cp/decl2.c
++++ b/g++_arm/cp/decl2.c
+@@ -1032,6 +1032,7 @@
+ 
+   if (flags == DTOR_FLAG)
+     {
++      DECL_LANG_SPECIFIC (function)->decl_flags.destructor_attr = 1;
+       DECL_ASSEMBLER_NAME (function) = build_destructor_name (ctype);
+       TYPE_HAS_DESTRUCTOR (ctype) = 1;
+     }
+@@ -1376,7 +1377,7 @@
+ 	  && DECL_CONSTRUCTOR_P (function))
+ 	goto got_it;
+       if (*++methods && fn_name == DECL_NAME (OVL_CURRENT (*methods))
+-	  && DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (function)))
++	  && DECL_DESTRUCTOR_P (function))
+ 	goto got_it;
+ 
+       while (++methods != end && *methods)
+@@ -1397,7 +1398,7 @@
+ 		     we can't use this short-cut for them, either.
+ 		     (It's not legal to declare arguments for a
+ 		     destructor, but some people try.)  */
+-		  if (!DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (function))
++		  if (!DECL_DESTRUCTOR_P (function)
+ 		      && (DECL_ASSEMBLER_NAME (function)
+ 			  != DECL_NAME (function))
+ 		      && (DECL_ASSEMBLER_NAME (fndecl)
+@@ -1911,7 +1912,7 @@
+       /* pure virtual destructors must be defined.  */
+       /* pure virtual needs to be defined (as abort) only when put in 
+ 	 vtbl. For wellformed call, it should be itself. pr4737 */
+-      if (!DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (decl)))
++      if (!DECL_DESTRUCTOR_P (decl))
+ 	{
+ 	  extern tree abort_fndecl;
+ 	  /* Give this node rtl from `abort'.  */
+diff --git a/g++_arm/cp/decl.c b/g++_arm/cp/decl.c
+--- a/g++_arm/cp/decl.c
++++ b/g++_arm/cp/decl.c
+@@ -13268,8 +13268,7 @@
+ 
+   ++function_depth;
+ 
+-  if (DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (decl1))
+-      && DECL_LANGUAGE (decl1) == lang_cplusplus)
++  if (DECL_DESTRUCTOR_P (decl1))
+     {
+       dtor_label = build_decl (LABEL_DECL, NULL_TREE, NULL_TREE);
+       ctor_label = NULL_TREE;
+diff --git a/g++_arm/cp/class.c b/g++_arm/cp/class.c
+--- a/g++_arm/cp/class.c
++++ b/g++_arm/cp/class.c
+@@ -1162,7 +1162,7 @@
+ 	  /* A new constructor or destructor.  Constructors go in 
+ 	     slot 0; destructors go in slot 1.  */
+ 	  int slot 
+-	    = DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (method)) ? 1 : 0;
++	    = DECL_DESTRUCTOR_P (method) ? 1 : 0;
+ 
+ 	  TREE_VEC_ELT (method_vec, slot)
+ 	    = build_overload (method, TREE_VEC_ELT (method_vec, slot));
+@@ -2394,11 +2394,11 @@
+      tree fndecl, base_fndecl;
+ {
+   /* Destructors have special names.  */
+-  if (DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (base_fndecl))
+-      && DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (fndecl)))
++  if (DECL_DESTRUCTOR_P (base_fndecl)
++      && DECL_DESTRUCTOR_P (fndecl))
+     return 1;
+-  if (DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (base_fndecl))
+-      || DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (fndecl)))
++  if (DECL_DESTRUCTOR_P (base_fndecl)
++      || DECL_DESTRUCTOR_P (fndecl))
+     return 0;
+   if (DECL_NAME (fndecl) == DECL_NAME (base_fndecl))
+     {
+@@ -3011,7 +3011,7 @@
+ 	{
+ 	  tree tmp = get_matching_virtual
+ 	    (base_binfo, decl,
+-	     DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (decl)));
++	     DECL_DESTRUCTOR_P (decl));
+ 	  if (tmp)
+ 	    {
+ 	      /* If this function overrides some virtual in some base
+diff --git a/g++_arm/cp/method.c b/g++_arm/cp/method.c
+--- a/g++_arm/cp/method.c
++++ b/g++_arm/cp/method.c
+@@ -2449,7 +2449,7 @@
+ 
+   if (DECL_NAME (fndecl) == ansi_opname[MODIFY_EXPR])
+     do_build_assign_ref (fndecl);
+-  else if (DESTRUCTOR_NAME_P (DECL_ASSEMBLER_NAME (fndecl)))
++  else if (DECL_DESTRUCTOR_P (fndecl))
+     ;
+   else
+     {
+diff --git a/g++_arm/cp/error.c b/g++_arm/cp/error.c
+--- a/g++_arm/cp/error.c
++++ b/g++_arm/cp/error.c
+@@ -1018,7 +1018,7 @@
+       OB_PUTC2 (':',':');
+     }
+ 
+-  if (DESTRUCTOR_NAME_P (name) && DECL_LANGUAGE (t) == lang_cplusplus)
++  if (DECL_DESTRUCTOR_P (t))
+     parmtypes = TREE_CHAIN (parmtypes);
+   
+   dump_function_name (t);
+diff --git a/tests/asm-destructor.cc b/tests/asm-destructor.cc
+new file mode 100644
+--- /dev/null
++++ b/tests/asm-destructor.cc
+@@ -0,0 +1,53 @@
++// Execution regression for GNU C++'s asm-labelled destructor declarations.
++// The asm labels identify implementations, not the source-level method kind.
++static int order;
++static int deletions;
++static union { unsigned long align; char bytes[64]; } allocation;
++
++void * operator new(unsigned long) { return allocation.bytes; }
++void operator delete(void *) { ++deletions; }
++extern "C" void __gccmain(void) {}
++
++struct Leaf {
++    int value;
++    Leaf(int v = 3) : value(v) {}
++    ~Leaf() asm("leaf_cleanup");
++};
++Leaf::~Leaf() { order = order * 10 + value; }
++
++struct Base {
++    virtual int Value() { return 9; }
++    virtual ~Base() asm("base_cleanup");
++};
++Base::~Base() { order = order * 10 + 9; }
++
++struct Derived : Base {
++    int Value() { return 4; }
++    ~Derived() asm("derived_cleanup");
++};
++Derived::~Derived() { order = order * 10 + 4; }
++
++template<class T> struct Holder {
++    T value;
++    Holder(int v) : value(v) {}
++    ~Holder();
++};
++template<class T> Holder<T>::~Holder() { order = order * 10 + 7; }
++
++int main()
++{
++    { Leaf first(1); Leaf second(2); }
++    if (order != 21) return 1;
++    order = 0;
++    { Leaf array[2]; }
++    if (order != 33) return 2;
++    order = 0;
++    Base * base = new Derived;
++    if (base->Value() != 4) return 3;
++    delete base;
++    if (order != 49 || deletions != 1) return 4;
++    order = 0;
++    { Holder<Leaf> holder(5); }
++    if (order != 75) return 5;
++    return 0;
++}
+diff --git a/tests/asm-destructor-start.s b/tests/asm-destructor-start.s
+new file mode 100644
+--- /dev/null
++++ b/tests/asm-destructor-start.s
+@@ -0,0 +1,19 @@
++.syntax unified
++.arm
++.section .text.start
++.global _start
++_start:
++    ldr r3, =main
++    mov lr, pc
++    bx r3
++    mov r7, #1
++    svc #0
++.thumb
++.thumb_func
++.global _call_via_r1
++_call_via_r1:
++    bx r1
++.thumb_func
++.global _call_via_r2
++_call_via_r2:
++    bx r2
+diff --git a/tests/README.asm-destructor.md b/tests/README.asm-destructor.md
+new file mode 100644
+--- /dev/null
++++ b/tests/README.asm-destructor.md
+@@ -0,0 +1,56 @@
++# Asm-labelled destructor regression
++
++GNU C++ permits a destructor declaration to select a different assembler
++symbol. The source-level destructor kind must survive that name replacement.
++The old frontend instead identifies destructors by their mangled assembler
++name: an out-of-line definition can be rejected, and a declared external
++destructor can silently disappear from automatic cleanup.
++
++The correction stores that kind in the existing spare declaration-flag bit
++and uses it in method lookup, cleanup, overriding and diagnostics. The old
++name test remains for synthesized declarations. Both ARM and Thumb C++
++frontends receive the same change; instruction selection and optimization
++options are unchanged. No game address or function-specific rule is involved.
++
++`asm-destructor.cc` checks reverse stack destruction, array destruction,
++virtual dispatch plus deleting destruction, and destruction of an
++asm-labelled member in an ordinary template holder. It does not test or
++claim support for attaching asm labels to template destructor instantiations.
++
++After the normal `./build.sh`, the following commands run the regression
++under Linux with `arm-none-eabi` binutils and `qemu-arm`:
++
++```sh
++tmpdir=$(mktemp -d)
++arm-none-eabi-cpp -P tests/asm-destructor.cc > "$tmpdir/test.i"
++arm-none-eabi-as -mcpu=arm7tdmi tests/asm-destructor-start.s -o "$tmpdir/start.o"
++for mode in thumb arm; do
++    if [ "$mode" = thumb ]; then
++        compiler=./agbcp
++    else
++        compiler=./agbcp_arm
++    fi
++    "$compiler" -quiet -fno-exceptions -fno-rtti -fvtable-thunks \
++        -mthumb-interwork -O2 -o "$tmpdir/$mode.s" < "$tmpdir/test.i"
++    arm-none-eabi-as -mcpu=arm7tdmi "$tmpdir/$mode.s" -o "$tmpdir/$mode.o"
++    arm-none-eabi-ld -Ttext=0x10000 -e _start "$tmpdir/start.o" \
++        "$tmpdir/$mode.o" -o "$tmpdir/$mode.elf"
++    qemu-arm "$tmpdir/$mode.elf" || exit "$?"
++done
++```
++
++Both executions must return zero. The original `cp` revision rejects the
++out-of-line `Leaf::~Leaf()` definition in the same source.
++
++## 中文说明
++
++GNU C++ 允许析构声明指定不同的汇编符号。旧前端依据汇编符号的
++名称识别析构函数，改名后会拒绝类外定义，或者静默漏掉自动析构。
++修复复用声明标志中已有的空闲位，保留源语言中的析构身份，并在
++查找、清理、虚函数覆盖和诊断中统一使用；旧名称判断仍为自动生成
++的声明保留。ARM、Thumb 两套前端同步修复，不改指令选择、优化
++选项，也不判断任何游戏函数或地址。
++
++上述测试实际执行栈对象逆序析构、数组析构、虚函数删除及模板成员
++析构，两种模式均应返回零。模板容器本身使用普通析构声明；此测试
++不声称支持为模板析构实例指定汇编名。

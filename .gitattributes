@@ -6,3 +6,7 @@ charmap_jp.txt whitespace=-trailing-space
 *.tilemap binary
 *.bin binary
 *.pal text eol=crlf
+
+# Compiler patches retain verbatim upstream whitespace and LF context lines.
+*.patch text eol=lf -whitespace
+tools/install_agbcp.sh text eol=lf
