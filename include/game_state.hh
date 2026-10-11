@@ -11,6 +11,15 @@ EXTERN_C
 // offset. Zero denotes success; nonzero values carry the SRAM error flags.
 u32 func_080115B0(void const * snapshot, struct SramAccess * access, u32 offset);
 
+// Initializes and reads a save image into the supplied allocation. The
+// status output is zero on success; the complete image layout is unresolved.
+void * func_08011650(void * object, struct SramAccess * access, u32 offset,
+    u32 * status);
+// Copy-construction into existing storage and the original destructor ABI.
+// Destructor flag bit zero requests deallocation after member cleanup.
+void * func_080D4178(void * object, void const * source);
+void func_080D4480(void * object, u32 flags);
+
 EXTERN_C_END
 
 #if defined(REGION_JP)

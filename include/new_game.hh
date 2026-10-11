@@ -2,6 +2,7 @@
 #define NEW_GAME_HH
 
 #include "prelude.h"
+#include "game_state.hh"
 #include "hardware_bootstrap.hh"
 #include "hardware_state_clear.hh"
 #include "hardware_resource.hh"
@@ -82,6 +83,42 @@ typedef char NewGameMenuCoreSaveSlotStatusCheck[offsetof(NewGameMenuCore, save_s
 // Original ABI tables contain two metadata words before their callbacks.
 typedef void (*NewGameSceneVTableFunction)(void);
 
+// This one-word owner scopes the allocation returned by the save read. Its
+// layout stays opaque; cleanup uses the existing image destructor. Failed
+// reads release the allocation for the caller's original raw-delete path.
+class NewGameLoadedSaveOwner {
+public:
+    explicit NewGameLoadedSaveOwner(void * state) : value(state) {}
+    ~NewGameLoadedSaveOwner()
+    {
+        if (value != nullptr)
+            func_080D4480(value, 3);
+    }
+    void * get() const { return value; }
+    void * release()
+    {
+        void * state = value;
+        value = nullptr;
+        return state;
+    }
+
+private:
+    void * value;
+    NewGameLoadedSaveOwner(NewGameLoadedSaveOwner const &);
+    NewGameLoadedSaveOwner & operator=(NewGameLoadedSaveOwner const &);
+};
+
+// The existing +0x0C virtual callback creates the next game scene; its
+// destructor cleans up the save image stored immediately after the vtable.
+struct NewGameLoadedSaveTransition {
+    NewGameSceneVTableFunction const * vtable;
+    void * state;
+};
+
+typedef char NewGameLoadedSaveOwnerSizeCheck[sizeof(NewGameLoadedSaveOwner) == 4 ? 1 : -1];
+typedef char NewGameLoadedSaveTransitionSizeCheck[sizeof(NewGameLoadedSaveTransition) == 8 ? 1 : -1];
+typedef char NewGameLoadedSaveTransitionStateCheck[offsetof(NewGameLoadedSaveTransition, state) == 4 ? 1 : -1];
+
 struct NewGameMenuScene {
     NewGameSceneVTableFunction const * vtable;
     NewGameMenuCore * core;
@@ -102,7 +139,7 @@ void func_08003B40(struct HardwareBootstrap * core);
 void func_08003BB4(struct HardwareBootstrap * core);
 void func_08003C28(struct NewGameMenuCore * core);
 
-// One contiguous interval: option OAM, selector OAM, status text, then saving.
+// One contiguous interval: option OAM, selector OAM, status, saving, loading.
 // The preceding label graphics renderer still remains assembly.
 void func_08003DF0(struct NewGameMenuCore * core, u32 row,
     NewGameMenuSpriteAttributes attributes)
@@ -113,6 +150,8 @@ void func_08003E88(struct NewGameMenuCore * core, u32 row,
 void func_08003EEC(struct NewGameMenuCore * core)
     SECTION(".text.new_game_menu_update");
 bool func_08003F9C(struct NewGameMenuCore * core)
+    SECTION(".text.new_game_menu_update");
+bool func_080040A0(struct NewGameMenuCore * core)
     SECTION(".text.new_game_menu_update");
 
 // Formats one runtime save-summary buffer; the source image's full layout
@@ -131,6 +170,7 @@ AScene * func_08004B94(void * object, void * state, SceneTransitionOwner continu
     SECTION(".text.new_game_scene_lifecycle");
 
 extern NewGameSceneVTableFunction const vtable_unk_080E5A3C[];
+extern NewGameSceneVTableFunction const vtable_unk_080E5A4C[];
 extern NewGameSceneVTableFunction const vtable_unk_080E5A68[];
 extern NewGameSceneVTableFunction const vtable_unk_080E5A88[];
 
