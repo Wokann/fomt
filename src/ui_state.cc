@@ -1,4 +1,6 @@
 #include "ui_state.hh"
+#include "font.hh"
+#include "gbasvc.h"
 
 extern "C" void SetUiObjectStateTwoIfNonzero(void * object)
     SECTION(".text.set_ui_object_state_two_if_nonzero");
@@ -325,4 +327,116 @@ EC void func_08050F74(UnkUiSelectionData * object, u32 const arg_1,
         first_index %= 28;
     object->unk_14 = first_index;
     object->unk_19 = 0;
+}
+
+static inline bool HasUiSelectionState(HardwareStateEntry const & state)
+{
+    return state.handle != 0;
+}
+
+static inline u32 UiSelectionTileIndex(HardwareStateEntry & state)
+{
+    return GetHardwareSharedStateTileIndex(&state, state.handle);
+}
+
+EC void func_080510E8(UnkUiSelectionData * object)
+{
+    for (int row = 0; row <= 2; ++row)
+    {
+        int column = 0;
+        for (; column <= 6; ++column)
+        {
+            UnkUiSelectionEntry & entry = object->Entry(row, column);
+            if (entry.changed)
+            {
+                if (HasUiSelectionState(entry.state))
+                {
+                    u32 const * pixels = entry.pixels.value->tiles;
+                    u32 const index = UiSelectionTileIndex(entry.state);
+                    CpuFastSet(pixels, reinterpret_cast<void *>(0x06010000 + index * 32), 64);
+                }
+                entry.changed = false;
+            }
+        }
+    }
+    if (object->unk_19)
+        object->unk_19 = 0;
+    if (object->unk_1a)
+        object->unk_1a = 0;
+}
+
+EC UnkUiSelectionData * func_0805116C(UnkUiSelectionData * object,
+    HardwareResourceEntry * palette, HardwareStateOwner const & state)
+{
+#if defined(REGION_JP)
+    object->vtable = vtable_unk_080E78B0;
+#else
+    object->vtable = vtable_unk_080E78C0;
+#endif
+    object->palette = palette;
+    UnkUiSelectionRowOwner * first_row = object->rows;
+    for (int count = 2; count != -1; --count)
+        (first_row++)->value = nullptr;
+    object->unk_14 = 0;
+    object->unk_16 = 0;
+    object->unk_18 = 0;
+    object->unk_19 = 0;
+    object->unk_1a = 0;
+    object->unk_1b = 0;
+    for (int row = 0; row <= 2; ++row)
+    {
+        object->rows[row] = new UnkUiSelectionRow;
+        for (int column = 0; column <= 6; ++column)
+        {
+            UnkUiSelectionEntry * entry = &object->Entry(row, column);
+            entry->state = state.Get(3);
+            bool available = HasUiSelectionState(entry->state);
+            if (available)
+            {
+                UnkUiSelectionTileBuffer * const buffer = entry->pixels.value;
+                UnkUiSelectionDimensions dimensions(4, 2);
+                Clear2DGfxBuffer(reinterpret_cast<u32 const &>(dimensions), buffer->tiles, 0);
+                available = true;
+            }
+            entry->changed = available;
+        }
+    }
+    object->unk_1a = 1;
+    return object;
+}
+
+EC int func_080512B8(UnkUiSelectionData const * object, int index)
+{
+    int result = index + object->unk_18;
+    if (result > 2)
+        result -= 3;
+    return result;
+}
+
+EC UnkUiSelectionRow * func_080512C8(UnkUiSelectionData const * object, u32 index)
+{
+    return object->rows[index].Get();
+}
+
+EC UnkUiSelectionRow * func_080512D0(UnkUiSelectionData const * object, u32 index)
+{
+    return object->rows[index].Get();
+}
+
+EC UnkUiSelectionLinkCommand * func_080512D8(UnkUiSelectionLinkCommand * object,
+    u32 arg_1, u32 arg_2, u32 arg_3, bool arg_4)
+{
+    object->previous_slot = nullptr;
+    object->next = nullptr;
+#if defined(REGION_JP)
+    object->vtable = (void **)vtable_unk_080E78D0;
+#else
+    object->vtable = (void **)vtable_unk_080E78E0;
+#endif
+    object->unk_0c = arg_1;
+    object->unk_10 = arg_2;
+    object->unk_14_00 = arg_3;
+    object->unk_14_14 = 0;
+    object->unk_14_15 = arg_4;
+    return object;
 }

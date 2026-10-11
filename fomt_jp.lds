@@ -280,6 +280,8 @@ SECTIONS
         asm/code_0803EE94.o(.text.code_08050E50);
         src/ui_state.o(.text);
         asm/code_0803EE94.o(.text.ui_state_helpers_after);
+        src/ui_state.o(.text.ui_state_selection);
+        asm/code_0803EE94.o(.text.ui_state_selection_after);
         . = 0x52068; /* JP/US-shared animal-festival ranking entry copy. */
         src/animal_festival_ranking.o(.text.copy_animal_festival_ranking_entry);
         . = 0x52078; /* JP/US-shared animal-festival ranking entry setter. */

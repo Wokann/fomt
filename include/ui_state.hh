@@ -3,12 +3,14 @@
 
 #include "prelude.h"
 #include "hardware_linked_list.hh"
+#include "hardware_state_clear.hh"
 
 struct HardwareCoreState;
 struct HardwareSpriteBufferState;
 struct HardwareDisplayState;
 struct HardwareStateOwner;
 struct HardwareResource;
+struct HardwareResourceEntry;
 struct MusicPlayer;
 
 // Verified views of the state fields consumed by the native UI adapters.
@@ -116,20 +118,113 @@ struct UnkUiReferenceObject
     u8 unk_08;
 };
 
+// Native selection storage: three owned rows, each with seven 16-byte
+// entries. The buffer prefix and scalar control fields remain unknown.
+struct UnkUiSelectionTileBuffer
+{
+    u32 unk_00;
+    u32 tiles[64];
+};
+
+struct UnkUiSelectionPixels
+{
+    UnkUiSelectionTileBuffer * value;
+    UnkUiSelectionPixels() : value(new UnkUiSelectionTileBuffer) {}
+    ~UnkUiSelectionPixels() { delete value; }
+};
+
+struct UnkUiSelectionEntry
+{
+    UnkUiSelectionPixels pixels;
+    HardwareStateEntry state;
+    bool changed;
+    UnkUiSelectionEntry() : changed(false) {}
+};
+
+struct UnkUiSelectionRow
+{
+    UnkUiSelectionEntry entries[7];
+    UnkUiSelectionEntry & Entry(unsigned index) { return entries[index]; }
+};
+
+struct UnkUiSelectionRowOwner
+{
+    UnkUiSelectionRow * value;
+    UnkUiSelectionRowOwner() : value(nullptr) {}
+    ~UnkUiSelectionRowOwner() { delete value; }
+    UnkUiSelectionRow * Get() const { return value; }
+    UnkUiSelectionRow * operator->() const { return value; }
+    UnkUiSelectionRowOwner & operator=(UnkUiSelectionRow * input)
+    {
+        UnkUiSelectionRow * const previous = value;
+        if (input != previous && previous != nullptr)
+            delete previous;
+        value = input;
+        return *this;
+    }
+};
+
 struct UnkUiSelectionData
 {
-    u8 unk_00[0x14];
+    HardwareLinkVirtualFunction const * vtable;
+    HardwareResourceEntry * palette;
+    UnkUiSelectionRowOwner rows[3];
     u16 unk_14;
     u16 unk_16;
     u8 unk_18;
     u8 unk_19;
     u8 unk_1a;
+    u8 unk_1b;
+    UnkUiSelectionEntry & Entry(int row, int column)
+    {
+        return rows[row]->Entry(column);
+    }
+};
+
+struct UnkUiSelectionDimensions
+{
+    u16 width;
+    u16 height;
+    UnkUiSelectionDimensions(u16 first, u16 second) : width(first), height(second) {}
+};
+
+struct UnkUiSelectionLinkCommand : HardwareLinkBase
+{
+    u32 unk_0c;
+    u32 unk_10;
+    u16 unk_14_00 : 14;
+    u16 unk_14_14 : 1;
+    u16 unk_14_15 : 1;
 };
 
 typedef char UnkUiReferenceObjectSizeCheck[
     sizeof(UnkUiReferenceObject) == 0x0C ? 1 : -1];
 typedef char UnkUiSelectionDataSizeCheck[
     sizeof(UnkUiSelectionData) == 0x1C ? 1 : -1];
+typedef char UnkUiSelectionTileBufferSizeCheck[
+    sizeof(UnkUiSelectionTileBuffer) == 0x104 ? 1 : -1];
+typedef char UnkUiSelectionTileBufferTilesCheck[
+    offsetof(UnkUiSelectionTileBuffer, tiles) == 4 ? 1 : -1];
+typedef char UnkUiSelectionPixelsSizeCheck[
+    sizeof(UnkUiSelectionPixels) == 4 ? 1 : -1];
+typedef char UnkUiSelectionEntrySizeCheck[
+    sizeof(UnkUiSelectionEntry) == 16 ? 1 : -1];
+typedef char UnkUiSelectionEntryStateCheck[
+    offsetof(UnkUiSelectionEntry, state) == 4 ? 1 : -1];
+typedef char UnkUiSelectionEntryChangedCheck[
+    offsetof(UnkUiSelectionEntry, changed) == 12 ? 1 : -1];
+typedef char UnkUiSelectionRowSizeCheck[
+    sizeof(UnkUiSelectionRow) == 112 ? 1 : -1];
+typedef char UnkUiSelectionRowOwnerSizeCheck[
+    sizeof(UnkUiSelectionRowOwner) == 4 ? 1 : -1];
+typedef char UnkUiSelectionDataRowsCheck[
+    offsetof(UnkUiSelectionData, rows) == 8 ? 1 : -1];
+typedef char UnkUiSelectionDataControlCheck[
+    offsetof(UnkUiSelectionData, unk_14) == 0x14 ? 1 : -1];
+typedef char UnkUiSelectionDimensionsSizeCheck[
+    sizeof(UnkUiSelectionDimensions) == 4 ? 1 : -1];
+typedef char UnkUiSelectionLinkCommandSizeCheck[
+    sizeof(UnkUiSelectionLinkCommand) == 0x18 ? 1 : -1];
 
 EXTERN_C
 
@@ -137,6 +232,10 @@ extern HardwareLinkVirtualFunction const vtable_unk_080E7868[];
 extern HardwareLinkVirtualFunction const vtable_unk_080E7878[];
 extern HardwareLinkVirtualFunction const vtable_unk_080E7898[];
 extern HardwareLinkVirtualFunction const vtable_unk_080E78A8[];
+extern HardwareLinkVirtualFunction const vtable_unk_080E78B0[];
+extern HardwareLinkVirtualFunction const vtable_unk_080E78C0[];
+extern HardwareLinkVirtualFunction const vtable_unk_080E78D0[];
+extern HardwareLinkVirtualFunction const vtable_unk_080E78E0[];
 
 UnkUiPackedLinkCommand * func_08050EE4(UnkUiPackedLinkCommand * object,
     u32 arg_1, u32 arg_2, u32 arg_3, u32 arg_4)
@@ -146,6 +245,21 @@ UnkUiReferenceObject * func_08050F60(UnkUiReferenceObject * object,
     void * const * value, u8 arg_2);
 u8 func_08050F70(UnkUiSelectionData const * object);
 void func_08050F74(UnkUiSelectionData * object, u32 arg_1, u32 arg_2);
+
+void func_080510E8(UnkUiSelectionData * object)
+    SECTION(".text.ui_state_selection");
+UnkUiSelectionData * func_0805116C(UnkUiSelectionData * object,
+    HardwareResourceEntry * palette, HardwareStateOwner const & state)
+    SECTION(".text.ui_state_selection");
+int func_080512B8(UnkUiSelectionData const * object, int index)
+    SECTION(".text.ui_state_selection");
+UnkUiSelectionRow * func_080512C8(UnkUiSelectionData const * object, u32 index)
+    SECTION(".text.ui_state_selection");
+UnkUiSelectionRow * func_080512D0(UnkUiSelectionData const * object, u32 index)
+    SECTION(".text.ui_state_selection");
+UnkUiSelectionLinkCommand * func_080512D8(UnkUiSelectionLinkCommand * object,
+    u32 arg_1, u32 arg_2, u32 arg_3, bool arg_4)
+    SECTION(".text.ui_state_selection");
 
 // Existing UI adapter ABI. The menu supplies a text address as arg_r1;
 // the payload's other scalar argument domains are still unresolved.

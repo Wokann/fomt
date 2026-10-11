@@ -231,6 +231,8 @@ SECTIONS
         asm/code_0803EE94.o(.text.code_08050E50);
         src/ui_state.o(.text);
         asm/code_0803EE94.o(.text.ui_state_helpers_after);
+        src/ui_state.o(.text.ui_state_selection);
+        asm/code_0803EE94.o(.text.ui_state_selection_after);
         . = 0x521D0; /* DE ROM 0x080521D0, animal-festival ranking entry copy. */
         src/animal_festival_ranking.o(.text.copy_animal_festival_ranking_entry);
         . = 0x521E0; /* DE ROM 0x080521E0, animal-festival ranking entry setter. */

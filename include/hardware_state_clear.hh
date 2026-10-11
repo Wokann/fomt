@@ -8,6 +8,22 @@ struct HardwareStateEntry {
     struct HardwareSharedStateOwner owner;
     u32 handle;
 #ifdef __cplusplus
+    HardwareStateEntry()
+    {
+        func_08007874(this);
+        handle = 0;
+    }
+
+    HardwareStateEntry & operator=(HardwareStateEntry const & value)
+    {
+        if (&value != this)
+        {
+            ReleaseHardwareSharedStateHandle(this, handle);
+            handle = RetainHardwareSharedStateHandle(this, value.handle);
+        }
+        return *this;
+    }
+
     HardwareStateEntry(u32 size_shift)
     {
         func_08007874(this);
