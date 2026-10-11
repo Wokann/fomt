@@ -9173,7 +9173,7 @@ func_0805143C: @ 0x080511C8
     bx r1
     .align 2, 0
 .Ljp_08051284: .4byte vtable_unk_080E7918
-.Ljp_08051288: .4byte gUnk_082AD1F0
+.Ljp_08051288: .4byte gUnk_08527094
 .Ljp_0805128C: .4byte 0x000008B8
 
     .global func_08051504
@@ -21656,7 +21656,8 @@ func_0805CF70:
     adds r0, r0, r3
     .byte 0x00, 0x68, 0x40, 0x03, 0xC0, 0x0B, 0x10, 0x60, 0x0D, 0x49, 0x88, 0x42, 0x00, 0xDD, 0x11, 0x60
     .byte 0xA6, 0x21, 0x49, 0x00, 0x78, 0x18, 0x05, 0x80, 0x38, 0x1C, 0x06, 0xB0, 0x08, 0xBC, 0x98, 0x46
-    .byte 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00, 0xCC, 0x6D, 0x0E, 0x08, 0xF0, 0xD1, 0x2A, 0x08
+    .byte 0xF0, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00, 0xCC, 0x6D, 0x0E, 0x08
+    .4byte gUnk_08527094
     .4byte gUiHandCursorArchive
     .byte 0xEC, 0x0A, 0x00, 0x00, 0xD8, 0x6D, 0x0E, 0x08, 0x48, 0x2C, 0x00, 0x00
     .byte 0x9F, 0x86, 0x01, 0x00
@@ -47150,7 +47151,7 @@ func_08069F14:
 .Ljp_08069FB4:
 	.4byte vtable_unk_080E7A98
 .Ljp_08069FB8:
-	.4byte gUnk_082AD1F0
+	.4byte gUnk_08527094
 .Ljp_08069FBC:
 	.4byte gUiHandCursorArchive
 .Ljp_08069FC0:
@@ -59942,7 +59943,7 @@ func_080701BC:
 .Ljp_0807014C:
 	.4byte vtable_unk_080E7AD0
 .Ljp_08070150:
-	.4byte gUnk_082AD1F0
+	.4byte gUnk_08527094
 .Ljp_08070154:
 	.4byte gUnk_084D977C
 .Ljp_08070158:
@@ -71925,7 +71926,7 @@ func_08075E7C:
 .Ljp_08075DBC:
 	.4byte vtable_unk_080E7B68
 .Ljp_08075DC0:
-	.4byte gUnk_082AD1F0
+	.4byte gUnk_08527094
 .Ljp_08075DC4:
 	.4byte 0x00001E41
 .Ljp_08075DC8:
@@ -77300,7 +77301,7 @@ func_08078E40: @ 0x08078E40
 	bl Clear2DGfxBuffer
 	ldr r1, .Ljp_08079010 @ =0x00000714
 	adds r4, r6, r1
-	ldr r1, .Ljp_08079014 @ =gUnk_082AD1F0
+	ldr r1, .Ljp_08079014 @ =gUnk_08527094
 	adds r0, r4, #0
 	bl __22IndexedResourceArchivePCUc
 	ldr r3, .Ljp_08079018 @ =0x00000744
@@ -77473,7 +77474,7 @@ func_08078E40: @ 0x08078E40
 	.align 2, 0
 .Ljp_0807900C: .4byte vtable_unk_080E7BC0
 .Ljp_08079010: .4byte 0x00000714
-.Ljp_08079014: .4byte gUnk_082AD1F0
+.Ljp_08079014: .4byte gUnk_08527094
 .Ljp_08079018: .4byte 0x00000744
 .Ljp_0807901C: .4byte gUiHandCursorArchive
 .Ljp_08079020: .4byte 0x00000774
@@ -118835,7 +118836,7 @@ func_08094594:
     b .Ljp_0809499C
     .align 2, 0
 .Ljp_08094970: .4byte gUnk_080E7660
-.Ljp_08094974: .4byte gUnk_082AD1F0
+.Ljp_08094974: .4byte gUnk_08527094
 .Ljp_08094978: .4byte gUiHandCursorArchive
 .Ljp_0809497C: .4byte gUnk_084DABB8
 .Ljp_08094980: .4byte gUnk_084DA620

@@ -21,4 +21,10 @@ records, four native 4bpp tiles, one BGR555 palette, eight entries, and four
 native flipped OAM compositions. The original address remains the source name
 until a runtime purpose is independently established.
 
+All four regional branches now include this same `archive.inc` and define
+`gUnk_08527094` directly at their own archive start. JP no longer keeps a
+second address-named definition or a raw byte copy of this archive. Every
+verified archive pointer, including three former JP literal-pool byte words,
+uses a real relocation to that definition rather than an alias or offset.
+
 `preview/` is reference-only; compilation reads `full/native.png` only.
