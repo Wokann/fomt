@@ -8697,58 +8697,6 @@ func_08050CB0: @ 0x08050A3C
 .Ljp_08050A48: .4byte 0xFFFFFF00
 
     .section .text.code_08050E50
-    .global func_08050EE4
-    .thumb_func
-func_08050EE4: @ 0x08050C70
-    push {r4, r5, r6, lr}
-    ldr r6, [sp, #0x10]
-    movs r4, #0
-    str r4, [r0]
-    str r4, [r0, #4]
-    ldr r4, .Ljp_08050CC8
-    str r4, [r0, #8]
-    movs r4, #0x1f
-    ands r1, r4
-    ldrb r5, [r0, #0xc]
-    movs r4, #0x20
-    negs r4, r4
-    ands r4, r5
-    orrs r4, r1
-    strb r4, [r0, #0xc]
-    ldr r4, .Ljp_08050CCC
-    adds r1, r4, #0
-    ands r2, r1
-    lsls r2, r2, #5
-    ldrh r4, [r0, #0xc]
-    ldr r1, .Ljp_08050CD0
-    ands r1, r4
-    orrs r1, r2
-    strh r1, [r0, #0xc]
-    movs r2, #0xf
-    ands r2, r3
-    lsls r2, r2, #15
-    ldr r1, [r0, #0xc]
-    ldr r3, .Ljp_08050CD4
-    ands r1, r3
-    orrs r1, r2
-    str r1, [r0, #0xc]
-    movs r1, #0xf
-    ands r6, r1
-    lsls r6, r6, #3
-    ldrb r2, [r0, #0xe]
-    movs r1, #0x79
-    negs r1, r1
-    ands r1, r2
-    orrs r1, r6
-    strb r1, [r0, #0xe]
-    pop {r4, r5, r6}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.Ljp_08050CC8: .4byte vtable_unk_080E7868
-.Ljp_08050CCC: .4byte 0x000003FF
-.Ljp_08050CD0: .4byte 0xFFFF801F
-.Ljp_08050CD4: .4byte 0xFFF87FFF
     .global func_08050F4C
     .thumb_func
 func_08050F4C: @ 0x08050CD8
@@ -155095,58 +155043,6 @@ func_08050CB0: @ 0x08050CB0
 .L08050CBC: .4byte 0xFFFFFF00
 
 	.section .text.code_08050E50
-	thumb_func_start func_08050EE4
-func_08050EE4: @ 0x08050EE4
-	push {r4, r5, r6, lr}
-	ldr r6, [sp, #0x10]
-	movs r4, #0
-	str r4, [r0]
-	str r4, [r0, #4]
-	ldr r4, .L08050F3C
-	str r4, [r0, #8]
-	movs r4, #0x1f
-	ands r1, r4
-	ldrb r5, [r0, #0xc]
-	movs r4, #0x20
-	negs r4, r4
-	ands r4, r5
-	orrs r4, r1
-	strb r4, [r0, #0xc]
-	ldr r4, .L08050F40
-	adds r1, r4, #0
-	ands r2, r1
-	lsls r2, r2, #5
-	ldrh r4, [r0, #0xc]
-	ldr r1, .L08050F44
-	ands r1, r4
-	orrs r1, r2
-	strh r1, [r0, #0xc]
-	movs r2, #0xf
-	ands r2, r3
-	lsls r2, r2, #15
-	ldr r1, [r0, #0xc]
-	ldr r3, .L08050F48
-	ands r1, r3
-	orrs r1, r2
-	str r1, [r0, #0xc]
-	movs r1, #0xf
-	ands r6, r1
-	lsls r6, r6, #3
-	ldrb r2, [r0, #0xe]
-	movs r1, #0x79
-	negs r1, r1
-	ands r1, r2
-	orrs r1, r6
-	strb r1, [r0, #0xe]
-	pop {r4, r5, r6}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L08050F3C: .4byte vtable_unk_080E7878
-.L08050F40: .4byte 0x000003FF
-.L08050F44: .4byte 0xFFFF801F
-.L08050F48: .4byte 0xFFF87FFF
-
 	thumb_func_start func_08050F4C
 func_08050F4C: @ 0x08050F4C
 	push {lr}

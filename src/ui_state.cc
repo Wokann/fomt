@@ -276,3 +276,20 @@ EC u32 func_08050EBC(FirstFieldUiOwner & object, u32 const flag_mask)
     data->low_flags |= flag_mask;
     return old_flags;
 }
+
+EC UnkUiPackedLinkCommand * func_08050EE4(UnkUiPackedLinkCommand * object,
+    u32 arg_1, u32 arg_2, u32 arg_3, u32 arg_4)
+{
+    object->previous_slot = nullptr;
+    object->next = nullptr;
+#if defined(REGION_JP)
+    object->vtable = (void **)vtable_unk_080E7868;
+#else
+    object->vtable = (void **)vtable_unk_080E7878;
+#endif
+    object->unk_0c_00 = arg_1;
+    object->unk_0c_05 = arg_2;
+    object->unk_0c_15 = arg_3;
+    object->unk_0c_19 = arg_4;
+    return object;
+}

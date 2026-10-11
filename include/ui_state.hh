@@ -2,6 +2,7 @@
 #define UI_STATE_HH
 
 #include "prelude.h"
+#include "hardware_linked_list.hh"
 
 struct HardwareCoreState;
 struct HardwareSpriteBufferState;
@@ -91,7 +92,29 @@ struct UiStateOwner
 typedef char UiStatePayloadSizeCheck[sizeof(UiStatePayload) == 0x554 ? 1 : -1];
 typedef char UiStateOwnerSizeCheck[sizeof(UiStateOwner) == 4 ? 1 : -1];
 
+// Verified field view of the native linked command. Initialization writes
+// only these four fields; the upper nine bits retain their previous value.
+// Their runtime meanings have not been established.
+struct UnkUiPackedLinkCommand : HardwareLinkBase
+{
+    unsigned unk_0c_00 : 5;
+    unsigned unk_0c_05 : 10;
+    unsigned unk_0c_15 : 4;
+    unsigned unk_0c_19 : 4;
+    unsigned unk_0c_23 : 9;
+};
+
+typedef char UnkUiPackedLinkCommandSizeCheck[
+    sizeof(UnkUiPackedLinkCommand) == 0x10 ? 1 : -1];
+
 EXTERN_C
+
+extern HardwareLinkVirtualFunction const vtable_unk_080E7868[];
+extern HardwareLinkVirtualFunction const vtable_unk_080E7878[];
+
+UnkUiPackedLinkCommand * func_08050EE4(UnkUiPackedLinkCommand * object,
+    u32 arg_1, u32 arg_2, u32 arg_3, u32 arg_4)
+    SECTION(".text.ui_state_adapters");
 
 // Existing UI adapter ABI. The menu supplies a text address as arg_r1;
 // the payload's other scalar argument domains are still unresolved.

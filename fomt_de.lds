@@ -228,7 +228,6 @@ SECTIONS
         . = 0x50B24; asm/code_0803EE94.o(.text.clear_ui_action_state_flag_01f0_after);
         . = 0x50BB8; /* DE ROM 0x08050BB8, UI owner and adapter block. */
         src/ui_state.o(.text.ui_state_adapters);
-        . = 0x50DDC; /* DE ROM 0x08050DDC, remaining UI-adjacent code. */
         asm/code_0803EE94.o(.text.code_08050E50);
         . = 0x521D0; /* DE ROM 0x080521D0, animal-festival ranking entry copy. */
         src/animal_festival_ranking.o(.text.copy_animal_festival_ranking_entry);

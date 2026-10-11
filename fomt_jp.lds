@@ -277,7 +277,6 @@ SECTIONS
         . = 0x509B8; asm/code_0803EE94.o(.text.clear_ui_action_state_flag_01f0_after);
         . = 0x50A4C; /* JP ROM contiguous UI owner and adapter block. */
         src/ui_state.o(.text.ui_state_adapters);
-        . = 0x50C70; /* JP ROM 0x08050C70, remaining raw UI-adjacent code. */
         asm/code_0803EE94.o(.text.code_08050E50);
         . = 0x52068; /* JP/US-shared animal-festival ranking entry copy. */
         src/animal_festival_ranking.o(.text.copy_animal_festival_ranking_entry);
