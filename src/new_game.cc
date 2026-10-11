@@ -3,7 +3,9 @@
 #include "hardware_bootstrap.hh"
 #include "hardware_state_accessors.hh"
 #include "hardware_blend_object.hh"
+#include "hardware_display_output.hh"
 #include "ui_state.hh"
+#include <string.h>
 
 void * operator new(unsigned long);
 
@@ -54,6 +56,41 @@ void func_08003C28(NewGameMenuCore * core)
     u8 ** owner = &core->unk_10;
     MusicPlayer ** music = &core->music_players[0];
     func_08050D3C(owner, state, sprites, display, links, manager, music);
+}
+
+static inline void StoreMenuSpriteAttributes(HardwareSpriteBufferState * buffer,
+    u32 index, NewGameMenuSpriteAttributes const & attributes)
+{
+    HardwareSpriteOamRecord * destination = &buffer->sprites[index & 0x7F];
+    memcpy(destination, &attributes,
+        offsetof(HardwareSpriteOamRecord, affine_coefficient));
+}
+
+void func_08003DF0(NewGameMenuCore * core, u32 row,
+    NewGameMenuSpriteAttributes attributes)
+{
+    attributes.y += 8 + (row * 2 + 1) * 8;
+    attributes.x += core->choices[row] != 0 ? 192 : 128;
+    if (row == 1 && core->active_row != 1)
+        attributes.affine_mode = 2;
+
+    HardwareSpriteBufferState * buffer = func_08008920(
+        reinterpret_cast<void * const *>(core));
+    StoreMenuSpriteAttributes(buffer, row, attributes);
+}
+
+void func_08003E88(NewGameMenuCore * core, u32 row,
+    NewGameMenuSpriteAttributes const initial)
+{
+    if (row == 1)
+        row = 0;
+    NewGameMenuSpriteAttributes attributes = initial;
+    attributes.y += 8 + (row * 2 + 1) * 8;
+    attributes.x += 16;
+
+    HardwareSpriteBufferState * buffer = func_08008920(
+        reinterpret_cast<void * const *>(core));
+    StoreMenuSpriteAttributes(buffer, 6, attributes);
 }
 
 void func_08003EEC(NewGameMenuCore * core)

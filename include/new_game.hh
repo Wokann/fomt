@@ -10,6 +10,29 @@
 
 struct MusicPlayer;
 
+// Menu OAM coordinates use their wrapped hardware representation, not the
+// signed offsets stored in sprite archives. Only the first six bytes are
+// copied to OAM; the destination's affine coefficient is left untouched.
+struct NewGameMenuSpriteAttributes {
+    u32 y : 8;
+    u32 affine_mode : 2;
+    u32 object_mode : 2;
+    u32 mosaic : 1;
+    u32 color_mode : 1;
+    u32 shape : 2;
+    u32 x : 9;
+    u32 affine_index_low : 3;
+    u32 horizontal_flip : 1;
+    u32 vertical_flip : 1;
+    u32 size : 2;
+    u16 tile_attributes;
+    u16 affine_coefficient;
+};
+
+typedef char NewGameMenuSpriteAttributesSizeCheck[sizeof(NewGameMenuSpriteAttributes) == 8 ? 1 : -1];
+typedef char NewGameMenuSpriteAttributesTileCheck[offsetof(NewGameMenuSpriteAttributes, tile_attributes) == 4 ? 1 : -1];
+typedef char NewGameMenuSpriteAttributesCoefficientCheck[offsetof(NewGameMenuSpriteAttributes, affine_coefficient) == 6 ? 1 : -1];
+
 // Runtime save-summary text, filled by func_08003788 and selected by the
 // menu's second choice. These two 128-byte buffers are not ROM literals.
 struct NewGameMenuSaveSlotStatus {
@@ -74,9 +97,16 @@ void func_08003B40(struct HardwareBootstrap * core);
 void func_08003BB4(struct HardwareBootstrap * core);
 void func_08003C28(struct NewGameMenuCore * core);
 
-// The surrounding label graphics and OAM updates remain assembly.
+// One contiguous menu update interval: option OAM, selector OAM, then status
+// text. The preceding label graphics renderer still remains assembly.
+void func_08003DF0(struct NewGameMenuCore * core, u32 row,
+    NewGameMenuSpriteAttributes attributes)
+    SECTION(".text.new_game_menu_update");
+void func_08003E88(struct NewGameMenuCore * core, u32 row,
+    NewGameMenuSpriteAttributes const initial)
+    SECTION(".text.new_game_menu_update");
 void func_08003EEC(struct NewGameMenuCore * core)
-    SECTION(".text.new_game_status_update");
+    SECTION(".text.new_game_menu_update");
 
 // The core constructor consumes *continuation, clears that word, and stores
 // the transition at core +0x0C. Its remaining body is still assembly.

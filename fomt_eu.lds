@@ -71,7 +71,7 @@ SECTIONS
         asm/new_game.o(.text);
         src/new_game.o(.text);
         asm/new_game.o(.text.new_game_after_fades);
-        src/new_game.o(.text.new_game_status_update);
+        src/new_game.o(.text.new_game_menu_update);
         asm/new_game.o(.text.new_game_after_status_update);
         src/new_game.o(.text.new_game_scene_lifecycle);
         asm/new_game.o(.text.new_game_after_scene_lifecycle);
