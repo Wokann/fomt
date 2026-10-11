@@ -3225,43 +3225,7 @@ func_080061A0:
 .Ljp_08006200: .4byte 0x00004556
 .Ljp_08006204: .4byte 0xFFFFFE00
 
-    .global func_08006334
-    .thumb_func
-func_08006334:
-    ldr r2, .Ljp_08006244 @ =0x00004579
-    adds r1, r0, r2
-    movs r2, #0
-    strb r2, [r1]
-    ldr r3, .Ljp_08006248 @ =0x00004578
-    adds r1, r0, r3
-    strb r2, [r1]
-    subs r3, #2
-    adds r1, r0, r3
-    strb r2, [r1]
-    adds r3, #1
-    adds r1, r0, r3
-    strb r2, [r1]
-    subs r3, #0x32
-    adds r1, r0, r3
-    strb r2, [r1]
-    subs r3, #1
-    adds r1, r0, r3
-    strb r2, [r1]
-    subs r3, #4
-    adds r1, r0, r3
-    str r2, [r1]
-    adds r3, #0x10
-    adds r1, r0, r3
-    strb r2, [r1]
-    ldr r1, .Ljp_0800624C @ =0x0000457C
-    adds r0, r0, r1
-    str r2, [r0]
-    bx lr
-    .align 2, 0
-.Ljp_08006244: .4byte 0x00004579
-.Ljp_08006248: .4byte 0x00004578
-.Ljp_0800624C: .4byte 0x0000457C
-
+    .section .text.new_game_name_input_after_reset
     .global func_0800637C
     .thumb_func
 func_0800637C:
@@ -9163,57 +9127,7 @@ func_080061A0: @ 0x080061A0
     .4byte 0x0000460A
     .endif
 
-    thumb_func_start func_08006334
-func_08006334: @ 0x08006334
-    ldr r2, .L08006370 @ =0x00004639
-    adds r1, r0, r2
-    movs r2, #0
-    strb r2, [r1]
-    ldr r3, .L08006374 @ =0x00004638
-    adds r1, r0, r3
-    strb r2, [r1]
-    subs r3, #2
-    adds r1, r0, r3
-    strb r2, [r1]
-    adds r3, #1
-    adds r1, r0, r3
-    strb r2, [r1]
-    subs r3, #0x32
-    adds r1, r0, r3
-    strb r2, [r1]
-    subs r3, #1
-    adds r1, r0, r3
-    strb r2, [r1]
-    subs r3, #4
-    adds r1, r0, r3
-    str r2, [r1]
-    adds r3, #0x10
-    adds r1, r0, r3
-    strb r2, [r1]
-    ldr r1, .L08006378 @ =0x0000463C
-    adds r0, r0, r1
-    str r2, [r0]
-    bx lr
-    .align 2, 0
-.L08006370:
-    .ifdef REGION_DE
-    .4byte 0x00004DBD
-    .else
-    .4byte 0x00004639
-    .endif
-.L08006374:
-    .ifdef REGION_DE
-    .4byte 0x00004DBC
-    .else
-    .4byte 0x00004638
-    .endif
-.L08006378:
-    .ifdef REGION_DE
-    .4byte 0x00004DC0
-    .else
-    .4byte 0x0000463C
-    .endif
-
+    .section .text.new_game_name_input_after_reset
     thumb_func_start func_0800637C
 func_0800637C: @ 0x0800637C
     .ifdef REGION_DE

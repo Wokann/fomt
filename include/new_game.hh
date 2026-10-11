@@ -193,6 +193,18 @@ struct NewGameIdentityScene {
     NewGameIdentityCore * core;
 };
 
+// Each name-input sprite has four still-unresolved control bytes before its
+// native eight-byte OAM record. The initializer clears only the OAM record.
+struct NewGameNameInputSpriteState {
+    u8 unk_00[4];
+    HardwareSpriteOamRecord attributes;
+};
+
+typedef char NewGameNameInputSpriteStateSizeCheck[
+    sizeof(NewGameNameInputSpriteState) == 12 ? 1 : -1];
+typedef char NewGameNameInputSpriteStateAttributesCheck[
+    offsetof(NewGameNameInputSpriteState, attributes) == 4 ? 1 : -1];
+
 // The keyboard scene owns eight two-tile-high, 30-tile-wide text buffers
 // (nine in DE), followed by the current name and optional prompt buffers.
 // Construction and the drawing/upload consumers confirm this physical order.
@@ -212,11 +224,14 @@ struct NewGameNameInputCore : HardwareBootstrap {
     MusicPlayer * music_players[2];
     UiStateOwner * ui_state;
     char const * prompt;
-    u8 unk_after_prompt[0x1C];
+    u32 keyboard_page;
+    NewGameNameInputSpriteState sprites[2];
     char name[13];
     u8 unk_after_name[0x0D];
     u8 finished;
-    u8 unk_after_finished[9];
+    u8 keyboard_redraw_pending;
+    u8 unk_after_keyboard_redraw[4];
+    u32 unk_463c;
 };
 
 struct NewGameNameInputScene {
@@ -232,6 +247,21 @@ typedef char NewGameNameInputOverseasPromptBufferSizeCheck[
     sizeof(NewGameTextTileBuffer<9>) == 0x244 ? 1 : -1];
 typedef char NewGameNameInputKeyboardCheck[
     offsetof(NewGameNameInputCore, keyboard_buffers) == 8 ? 1 : -1];
+typedef char NewGameNameInputPageCheck[
+    offsetof(NewGameNameInputCore, keyboard_page)
+        == offsetof(NewGameNameInputCore, prompt) + 4 ? 1 : -1];
+typedef char NewGameNameInputSpritesCheck[
+    offsetof(NewGameNameInputCore, sprites)
+        == offsetof(NewGameNameInputCore, keyboard_page) + 4 ? 1 : -1];
+typedef char NewGameNameInputSpritesEndCheck[
+    offsetof(NewGameNameInputCore, name)
+        == offsetof(NewGameNameInputCore, sprites) + 24 ? 1 : -1];
+typedef char NewGameNameInputRedrawCheck[
+    offsetof(NewGameNameInputCore, keyboard_redraw_pending)
+        == offsetof(NewGameNameInputCore, finished) + 1 ? 1 : -1];
+typedef char NewGameNameInputFinalWordCheck[
+    offsetof(NewGameNameInputCore, unk_463c)
+        == sizeof(NewGameNameInputCore) - 4 ? 1 : -1];
 
 typedef char NewGameMenuSceneSizeCheck[sizeof(NewGameMenuScene) == 8 ? 1 : -1];
 typedef char NewGameNameEntrySceneSizeCheck[sizeof(NewGameNameEntryScene) == 4 ? 1 : -1];
@@ -390,7 +420,9 @@ SceneTransitionOwner func_08005B68(NewGameNameInputCore * core)
     SECTION(".text.new_game_name_input_core_run");
 void func_08005CDC(NewGameNameInputCore * core);
 void func_080061A0(NewGameNameInputCore * core, u32 tile_index);
-void func_08006334(NewGameNameInputCore * core);
+// Reset only the native control fields; sprite OAM and input text are untouched.
+void func_08006334(NewGameNameInputCore * core)
+    SECTION(".text.new_game_name_input_reset");
 void func_0800637C(NewGameNameInputCore * core);
 void func_080064E8(NewGameNameInputCore * core);
 void func_08006858(NewGameNameInputCore * core);

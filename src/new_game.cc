@@ -649,6 +649,19 @@ SceneTransitionOwner func_08005B68(NewGameNameInputCore * core)
     return SceneTransitionOwner();
 }
 
+void func_08006334(NewGameNameInputCore * core)
+{
+    core->unk_after_keyboard_redraw[1] = 0;
+    core->unk_after_keyboard_redraw[0] = 0;
+    core->finished = 0;
+    core->keyboard_redraw_pending = 0;
+    core->sprites[0].unk_00[1] = 0;
+    core->sprites[0].unk_00[0] = 0;
+    core->keyboard_page = 0;
+    core->sprites[1].unk_00[0] = 0;
+    core->unk_463c = 0;
+}
+
 NewGameNameInputScene * func_08007078(NewGameNameInputScene * scene,
     char const * prompt, char const * initial_name)
 {
