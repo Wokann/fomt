@@ -112,7 +112,7 @@ char const gText_NewGameIdentity_No[] ALIGN(4) =
 char const gCppRuntimeBadAlloc_NewGameIdentityLabels[] ALIGN(4) =
     "bad_alloc";
 
-char const gNewGameNameEntryCharacterRows[18][31] ALIGN(1) = {
+NewGameNameEntryCharacterTable const gNewGameNameEntryCharacterRows ALIGN(1) = {{
     // Hiragana keyboard.
     "あいうえおまみむめもがぎぐげご",
     "かきくけこや　ゆ　よざじずぜぞ",
@@ -136,7 +136,7 @@ char const gNewGameNameEntryCharacterRows[18][31] ALIGN(1) = {
     "ｐｑｒｓｔｕｖｗｘｙｚ’．·＊",
     "０１２３４５６７８９＋－×～／",
     "＜＞（）「」＆！？♀♂♪♡　　",
-};
+}};
 
 char const gText_NewGameNameEntry_Placeholder[] =
     "＿＿＿＿＿＿";

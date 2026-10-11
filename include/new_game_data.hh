@@ -86,8 +86,18 @@ enum
     NEW_GAME_NAME_ENTRY_ROW_WIDTH = 31
 };
 
-// Each row is a fixed-width, single-terminated ROM string.
-extern char const gNewGameNameEntryCharacterRows[NEW_GAME_NAME_ENTRY_ROW_COUNT][NEW_GAME_NAME_ENTRY_ROW_WIDTH];
+// Rendering reads fixed-width, single-terminated rows; character insertion
+// addresses the same contiguous storage by page, row and byte-column offsets.
+union NewGameNameEntryCharacterTable {
+    char rows[NEW_GAME_NAME_ENTRY_ROW_COUNT][NEW_GAME_NAME_ENTRY_ROW_WIDTH];
+    char bytes[NEW_GAME_NAME_ENTRY_ROW_COUNT * NEW_GAME_NAME_ENTRY_ROW_WIDTH];
+} __attribute__((packed));
+
+typedef char NewGameNameEntryCharacterTableSizeCheck[
+    sizeof(NewGameNameEntryCharacterTable)
+        == NEW_GAME_NAME_ENTRY_ROW_COUNT * NEW_GAME_NAME_ENTRY_ROW_WIDTH ? 1 : -1];
+
+extern NewGameNameEntryCharacterTable const gNewGameNameEntryCharacterRows;
 
 // All four ROMs align this 13-byte placeholder to a word boundary; the
 // name-input constructor copies it into the equally aligned RAM name field.

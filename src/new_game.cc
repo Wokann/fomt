@@ -740,6 +740,50 @@ void func_08006858(NewGameNameInputCore * core)
     }
 }
 
+void InsertNameInputCharacter(NewGameNameInputCore * core)
+{
+    char character[2];
+    character[0] = gNewGameNameEntryCharacterRows.bytes[
+        static_cast<i8>(core->sprites[0].unk_00[0]) * 2
+        + static_cast<i8>(core->sprites[0].unk_00[1]) * NEW_GAME_NAME_ENTRY_ROW_WIDTH
+        + core->keyboard_page * (NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE * NEW_GAME_NAME_ENTRY_ROW_WIDTH)];
+#if defined(REGION_JP)
+    character[1] = gNewGameNameEntryCharacterRows.bytes[
+        (static_cast<i8>(core->sprites[0].unk_00[0]) * 2 + 1)
+        + static_cast<i8>(core->sprites[0].unk_00[1]) * NEW_GAME_NAME_ENTRY_ROW_WIDTH
+        + core->keyboard_page * (NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE * NEW_GAME_NAME_ENTRY_ROW_WIDTH)];
+    if (core->name[core->sprites[1].unk_00[0] * 2] == character[0]
+            && core->name[core->sprites[1].unk_00[0] * 2 + 1] == character[1])
+        core->sprites[1].unk_00[0]++;
+    else {
+        core->name[core->sprites[1].unk_00[0] * 2] = character[0];
+        core->name[core->sprites[1].unk_00[0] * 2 + 1] = character[1];
+        core->sprites[1].unk_00[0]++;
+    }
+    if (core->sprites[1].unk_00[0] > 5) {
+        core->sprites[0].unk_00[0] = 12;
+        core->sprites[0].unk_00[1] = 6;
+        core->sprites[1].unk_00[0] = 5;
+    }
+#else
+    if (core->name[core->sprites[1].unk_00[0]] == character[0])
+        core->sprites[1].unk_00[0]++;
+    else {
+        core->name[core->sprites[1].unk_00[0]] = character[0];
+        core->sprites[1].unk_00[0]++;
+    }
+    if (core->sprites[1].unk_00[0] > 11) {
+        core->sprites[0].unk_00[0] = 12;
+#if defined(REGION_DE)
+        core->sprites[0].unk_00[1] = 7;
+#else
+        core->sprites[0].unk_00[1] = 6;
+#endif
+        core->sprites[1].unk_00[0] = 11;
+    }
+#endif
+}
+
 void EraseNameInputCharacter(NewGameNameInputCore * core, u8 index)
 {
 #if defined(REGION_JP)
@@ -774,11 +818,7 @@ void ProcessNameInputKeys(NewGameNameInputCore * core)
         if (static_cast<i8>(core->sprites[0].unk_00[1]) <= 5) {
 #endif
             func_08008B6C(&core->music_players[1], 0x6A);
-#if defined(REGION_JP)
-            func_08006AC0(core);
-#else
-            func_08006B90(core);
-#endif
+            InsertNameInputCharacter(core);
         } else {
             if (static_cast<i8>(core->sprites[0].unk_00[0]) <= 4) {
                 if (core->keyboard_page == 2)

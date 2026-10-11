@@ -102,7 +102,7 @@ char const gText_NewGameIdentity_No[] ALIGN(4) =
 char const gCppRuntimeBadAlloc_NewGameIdentityLabels[] ALIGN(4) =
     "bad_alloc";
 
-char const gNewGameNameEntryCharacterRows[21][31] ALIGN(1) = {
+NewGameNameEntryCharacterTable const gNewGameNameEntryCharacterRows ALIGN(1) = {{
     // Latin keyboard.
     "A B C D E F G H I J K L M N O ",
     "P Q R S T U V W X Y Z o \xB6 \xB7 % ",
@@ -128,7 +128,7 @@ char const gNewGameNameEntryCharacterRows[21][31] ALIGN(1) = {
     "０１２３４５６７８９＋－×～／",
     "＜＞（）「」＆！？\x81\x8A\x81\x89\x81\xF4\x81\xCD　　",
     "",
-};
+}};
 
 char const gText_NewGameNameEntry_Placeholder[] =
     "____________";

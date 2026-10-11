@@ -429,17 +429,18 @@ void func_080064E8(NewGameNameInputCore * core);
 void func_08006858(NewGameNameInputCore * core)
     SECTION(".text.new_game_name_input_submit_sprites");
 void func_080068CC(NewGameNameInputCore * core);
+// Insert the selected keyboard character and advance the fixed name-slot caret.
+void InsertNameInputCharacter(NewGameNameInputCore * core)
+    SECTION(".text.new_game_name_input_insert_character");
 // Shift the remaining fixed name slots left and restore the final placeholder.
 // JP has six two-byte slots; overseas versions have twelve one-byte slots.
 void EraseNameInputCharacter(NewGameNameInputCore * core, u8 index)
     SECTION(".text.new_game_name_input_erase_character");
 #if defined(REGION_JP)
 void func_080068D4(NewGameNameInputCore * core);
-void func_08006AC0(NewGameNameInputCore * core);
 bool func_08006C0C(NewGameNameInputCore * core);
 #else
 void func_080069F4(NewGameNameInputCore * core);
-void func_08006B90(NewGameNameInputCore * core);
 bool func_08006C60(NewGameNameInputCore * core);
 #endif
 void ProcessNameInputKeys(NewGameNameInputCore * core)
