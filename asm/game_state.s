@@ -215,7 +215,7 @@ func_08010358:
     ldr r3, [sp, #0x48]
     ldr r1, .Ljp_08010610 @ =0x00002214
     adds r0, r3, r1
-    bl func_0809A2E4
+    bl __22CookingRecipeInventory
     ldr r3, [sp, #0x48]
     ldr r0, .Ljp_08010614 @ =0x00002C1C
     adds r2, r3, r0
@@ -2388,7 +2388,7 @@ func_08011650:
     bl InitializeGameDisplayOptions
     ldr r2, .Ljp_08011888 @ =0x00002214
     adds r0, r7, r2
-    bl func_0809A2E4
+    bl __22CookingRecipeInventory
     ldr r3, .Ljp_0801188C @ =0x00002C1C
     adds r2, r7, r3
     ldrb r0, [r4]
@@ -13325,7 +13325,7 @@ func_08016B44:
     ldr r0, [r5]
     ldr r1, [pc, #0x58]
     adds r0, r0, r1
-    bl func_0809AAD4
+    bl CountLearnedFoodRecipes__C22CookingRecipeInventory
     adds r4, r0, #0
     adds r4, #2
     bl rand
@@ -23432,7 +23432,7 @@ func_08010358: @ 0x08010358
     ldr r3, [sp, #0x48]
     ldr r1, .L08010630 @ =0x00002214
     adds r0, r3, r1
-    bl func_0809A8AC
+    bl __22CookingRecipeInventory
     ldr r3, [sp, #0x48]
     ldr r0, .L08010634 @ =0x00002C1C
     adds r2, r3, r0
@@ -25605,7 +25605,7 @@ func_08011650: @ 0x08011650
     bl InitializeGameDisplayOptions
     ldr r2, .L080118A8 @ =0x00002214
     adds r0, r7, r2
-    bl func_0809A8AC
+    bl __22CookingRecipeInventory
     ldr r3, .L080118AC @ =0x00002C1C
     adds r2, r7, r3
     ldrb r0, [r4]
@@ -36919,7 +36919,7 @@ func_08016DB0: @ 0x08016DB0
     ldr r0, [r5]
     ldr r1, .L08016E30 @ =0x00002214
     adds r0, r0, r1
-    bl func_0809AAD4
+    bl CountLearnedFoodRecipes__C22CookingRecipeInventory
     adds r4, r0, #0
     adds r4, #2
     bl rand

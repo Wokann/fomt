@@ -9,6 +9,7 @@
 #include "time_of_day.hh"
 #include "money_account.hh"
 #include "actor_state.hh"
+#include "cooking_recipe_inventory_data.hh"
 
 struct SramAccess;
 
@@ -53,7 +54,8 @@ struct GameStateSaveImage {
     MoreItems more_items;
     u8 unk_1CCC[0x544];
     GameDisplayOptions display_options;
-    u8 unk_2214[0xA60];
+    CookingRecipeInventory cooking_recipes;
+    u8 unk_2C1C[0x58];
     TVShoppingOrderState tv_shopping;
     u8 unk_2C80[0x1D8];
     ActorStateGrid actor_state_grid;
@@ -69,6 +71,8 @@ typedef char GameStateSaveImageDogCheck[offsetof(GameStateSaveImage, dog) == 0x1
 typedef char GameStateSaveImageMoreItemsCheck[offsetof(GameStateSaveImage, more_items) == 0x1CA0 ? 1 : -1];
 typedef char GameStateSaveImageAfterMoreItemsCheck[offsetof(GameStateSaveImage, unk_1CCC) == 0x1CCC ? 1 : -1];
 typedef char GameStateSaveImageOptionsCheck[offsetof(GameStateSaveImage, display_options) == 0x2210 ? 1 : -1];
+typedef char GameStateSaveImageCookingCheck[offsetof(GameStateSaveImage, cooking_recipes) == 0x2214 ? 1 : -1];
+typedef char GameStateSaveImageAfterCookingCheck[offsetof(GameStateSaveImage, unk_2C1C) == 0x2C1C ? 1 : -1];
 typedef char GameStateSaveImageShoppingCheck[offsetof(GameStateSaveImage, tv_shopping) == 0x2C74 ? 1 : -1];
 typedef char GameStateSaveImageAfterShoppingCheck[offsetof(GameStateSaveImage, unk_2C80) == 0x2C80 ? 1 : -1];
 typedef char GameStateSaveImageActorGridCheck[offsetof(GameStateSaveImage, actor_state_grid) == 0x2E58 ? 1 : -1];

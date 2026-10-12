@@ -1688,7 +1688,9 @@ func_0803F8DC:
     .byte 0xD5, 0x26, 0xB6, 0x00, 0xA8, 0x19, 0x00, 0x68, 0x00, 0x28, 0x01, 0xD1, 0xFC, 0xF7, 0x07, 0xF9
     .byte 0xD1, 0xF7, 0xEA, 0xFD, 0xFC, 0xF7, 0x03, 0xF9, 0xD5, 0x21, 0x89, 0x00, 0x68, 0x18, 0x00, 0x68
     .byte 0x00, 0x28, 0x70, 0xD0, 0xD1, 0xF7, 0x08, 0xFA, 0x6D, 0xE0, 0xD4, 0x22, 0x92, 0x00, 0xA8, 0x18
-    .byte 0x00, 0x68, 0x09, 0x4B, 0xC0, 0x18, 0x55, 0xF0, 0xA3, 0xF9, 0x04, 0x1C, 0x2A, 0x1C, 0x24, 0x32
+    .byte 0x00, 0x68, 0x09, 0x4B, 0xC0, 0x18
+    bl CountLearnedRecipes__C22CookingRecipeInventory
+    .byte 0x04, 0x1C, 0x2A, 0x1C, 0x24, 0x32
     .byte 0xDA, 0x26, 0x76, 0x00, 0xA9, 0x19, 0x0B, 0x68, 0x63, 0x2B, 0x5C, 0xD8, 0x98, 0x00, 0x10, 0x18
     .byte 0x04, 0x60, 0x58, 0x1C, 0x08, 0x60, 0x56, 0xE0, 0x14, 0x22, 0x00, 0x00, 0xDA, 0x20, 0x40, 0x00
     .byte 0x2B, 0x18, 0x1A, 0x68, 0x90, 0x00, 0x40, 0x19, 0x01, 0x6A, 0x00, 0x2A, 0x01, 0xD0, 0x50, 0x1E
@@ -30681,7 +30683,7 @@ sub_08061E00:
 	ldr r0, [r0]
 	ldr r3, .L08062D54 @ =0x00002214
 	adds r0, r0, r3
-	bl func_0809AA28
+	bl CountLearnedRecipes__C22CookingRecipeInventory
 	ldr r4, [sp, #0x1cc]
 	ldr r1, [r4, #0x18]
 	ldr r5, [sp, #0x220]
@@ -118618,8 +118620,9 @@ func_08094A40:
     .byte 0x50, 0x82, 0xD1, 0x7C, 0x11, 0x20, 0x40, 0x42, 0x08, 0x40, 0xD0, 0x74, 0x34, 0x1C, 0x94, 0x34
     .byte 0x15, 0x1C, 0x30, 0x1C, 0x8C, 0x30, 0x02, 0x32, 0x00, 0x23, 0x06, 0xA9, 0x0B, 0x80, 0x02, 0x39
     .byte 0x91, 0x42, 0xFB, 0xDA, 0x00, 0x68, 0x12, 0x49, 0x40, 0x18, 0x12, 0x4A, 0xB1, 0x18, 0x0A, 0x78
-    .byte 0xD9, 0x23, 0x9B, 0x00, 0xF1, 0x18, 0xD2, 0x00, 0x09, 0x78, 0x52, 0x18, 0x29, 0x1C, 0x05, 0xF0
-    .byte 0x38, 0xFA, 0xE9, 0x7C, 0x10, 0x20, 0x08, 0x40, 0x00, 0x28, 0x16, 0xD0, 0x20, 0x1C, 0xC5, 0x21
+    .byte 0xD9, 0x23, 0x9B, 0x00, 0xF1, 0x18, 0xD2, 0x00, 0x09, 0x78, 0x52, 0x18, 0x29, 0x1C
+    bl CopyRecipe__C22CookingRecipeInventoryP19CookingRecipeRecordUi
+    .byte 0xE9, 0x7C, 0x10, 0x20, 0x08, 0x40, 0x00, 0x28, 0x16, 0xD0, 0x20, 0x1C, 0xC5, 0x21
     .byte 0x73, 0xF7, 0x15, 0xFE, 0xCD, 0x24, 0xA4, 0x00, 0x31, 0x19, 0x28, 0x1C, 0x1C, 0xC8, 0x1C, 0xC1
     .byte 0x0C, 0xC8, 0x0C, 0xC1, 0x01, 0x24, 0xA1, 0x46, 0x03, 0x27, 0x3C, 0xE0, 0x00, 0x00, 0x00, 0xF0
     .byte 0xFF, 0xFF, 0x14, 0x22, 0x00, 0x00, 0x66, 0x03, 0x00, 0x00, 0x20, 0x1C, 0xC7, 0x21, 0x73, 0xF7
@@ -118646,7 +118649,8 @@ func_08094A40:
     .byte 0x14, 0x22, 0x02, 0x80, 0x02, 0x26, 0x17, 0x9B, 0x5E, 0x80, 0x0F, 0x98, 0xDD, 0x27, 0xBF, 0x00
     .byte 0xC9, 0x19, 0x00, 0x22, 0xB9, 0xF7, 0x7D, 0xFA, 0x15, 0x98, 0x42, 0x19, 0xDA, 0x20, 0x80, 0x00
     .byte 0x50, 0x44, 0xA1, 0x46, 0x69, 0x1C, 0x18, 0x91, 0x00, 0x78, 0x82, 0x42, 0x00, 0xDB, 0x7E, 0xE0
-    .byte 0x50, 0x46, 0x8C, 0x30, 0x00, 0x68, 0x0C, 0x4B, 0xC0, 0x18, 0x03, 0xA9, 0x05, 0xF0, 0x59, 0xF9
+    .byte 0x50, 0x46, 0x8C, 0x30, 0x00, 0x68, 0x0C, 0x4B, 0xC0, 0x18, 0x03, 0xA9
+    bl CopyRecipe__C22CookingRecipeInventoryP19CookingRecipeRecordUi
     .byte 0x03, 0xA8, 0x00, 0x88, 0xAB, 0x28, 0x12, 0xD8, 0x03, 0xA8, 0x01, 0x88, 0x01, 0x39, 0x16, 0x98
     .byte 0x78, 0xF7, 0xBF, 0xFD, 0x16, 0x98, 0x78, 0xF7, 0xC4, 0xFD, 0x12, 0xE0, 0x00, 0x00, 0x00, 0xF0
     .byte 0xFF, 0xFF, 0x66, 0x03, 0x00, 0x00, 0x65, 0x03, 0x00, 0x00, 0x14, 0x22, 0x00, 0x00, 0x10, 0xAC
@@ -119422,16 +119426,21 @@ func_08096EE8:
     .byte 0x20, 0x88, 0x05, 0xB0, 0x70, 0xBC, 0x02, 0xBC, 0x08, 0x47, 0x00, 0x00, 0xF0, 0xB5, 0x57, 0x46
     .byte 0x4E, 0x46, 0x45, 0x46, 0xE0, 0xB4, 0x8B, 0xB0, 0x07, 0x1C, 0x89, 0x46, 0x08, 0x88, 0x9B, 0x38
     .byte 0x00, 0x04, 0x00, 0x0C, 0x05, 0x28, 0x21, 0xD8, 0x3C, 0x1C, 0x8C, 0x34, 0x20, 0x68, 0x0D, 0x49
-    .byte 0x40, 0x18, 0x4A, 0x46, 0x11, 0x88, 0x03, 0xF0, 0xD3, 0xF8, 0x00, 0x06, 0x00, 0x28, 0x0E, 0xD0
+    .byte 0x40, 0x18, 0x4A, 0x46, 0x11, 0x88
+    bl RecordFailedDish__22CookingRecipeInventoryUs
+    .byte 0x00, 0x06, 0x00, 0x28, 0x0E, 0xD0
     .byte 0x22, 0x68, 0x09, 0x4B, 0xD2, 0x18, 0x13, 0x78, 0x59, 0x06, 0x09, 0x0F, 0x01, 0x31, 0x0F, 0x20
     .byte 0x01, 0x40, 0xC9, 0x00, 0x79, 0x20, 0x40, 0x42, 0x18, 0x40, 0x08, 0x43, 0x10, 0x70, 0x00, 0x20
     .byte 0x3A, 0xE1, 0x00, 0x00, 0x14, 0x22, 0x00, 0x00, 0xC3, 0x21, 0x00, 0x00, 0x00, 0x24, 0xDA, 0x26
     .byte 0xB6, 0x00, 0xB8, 0x19, 0x00, 0x78, 0x84, 0x42, 0x51, 0xDA, 0x8C, 0x20, 0xC0, 0x19, 0x80, 0x46
     .byte 0x14, 0x4B, 0xD2, 0x21, 0x89, 0x00, 0x7E, 0x18, 0xCD, 0x22, 0x92, 0x00, 0xBD, 0x18, 0x41, 0x46
-    .byte 0x08, 0x68, 0xC0, 0x18, 0x29, 0x1C, 0x22, 0x1C, 0x0A, 0x93, 0x03, 0xF0, 0x2D, 0xF8, 0x30, 0x88
+    .byte 0x08, 0x68, 0xC0, 0x18, 0x29, 0x1C, 0x22, 0x1C, 0x0A, 0x93
+    bl CopyRecipe__C22CookingRecipeInventoryP19CookingRecipeRecordUi
+    .byte 0x30, 0x88
     .byte 0x0A, 0x9B, 0x2A, 0x88, 0x90, 0x42, 0x33, 0xD1, 0x0B, 0x4C, 0x38, 0x19, 0x01, 0x78, 0x10, 0x20
-    .byte 0x08, 0x40, 0x00, 0x28, 0x33, 0xD1, 0x41, 0x46, 0x08, 0x68, 0xC0, 0x18, 0x31, 0x1C, 0x03, 0xF0
-    .byte 0x43, 0xF8, 0x4A, 0x46, 0x10, 0x88, 0x50, 0x28, 0x0C, 0xD0, 0x50, 0x28, 0x06, 0xDC, 0x19, 0x28
+    .byte 0x08, 0x40, 0x00, 0x28, 0x33, 0xD1, 0x41, 0x46, 0x08, 0x68, 0xC0, 0x18, 0x31, 0x1C
+    bl LearnRecipe__22CookingRecipeInventoryPC19CookingRecipeRecord
+    .byte 0x4A, 0x46, 0x10, 0x88, 0x50, 0x28, 0x0C, 0xD0, 0x50, 0x28, 0x06, 0xDC, 0x19, 0x28
     .byte 0x08, 0xD0, 0x18, 0xE0, 0x14, 0x22, 0x00, 0x00, 0x47, 0x03, 0x00, 0x00, 0x7E, 0x28, 0x01, 0xD0
     .byte 0x8D, 0x28, 0x10, 0xD1, 0x44, 0x46, 0x23, 0x68, 0x08, 0x4E, 0x9B, 0x19, 0x1A, 0x78, 0x50, 0x06
     .byte 0x00, 0x0F, 0x01, 0x30, 0x0F, 0x21, 0x08, 0x40, 0xC0, 0x00, 0x79, 0x24, 0x64, 0x42, 0x21, 0x1C
@@ -119490,8 +119499,9 @@ func_08096EE8:
     .byte 0x00, 0x16, 0x02, 0x28, 0x4F, 0xD1, 0x07, 0x4A, 0xB0, 0x18, 0x00, 0x78, 0x00, 0x06, 0x00, 0x16
     .byte 0x01, 0x28, 0x1D, 0xD0, 0x01, 0x28, 0x07, 0xDC, 0x00, 0x28, 0x08, 0xD0, 0x43, 0xE0, 0x00, 0x00
     .byte 0xD2, 0x33, 0x00, 0x00, 0xD3, 0x33, 0x00, 0x00, 0x02, 0x28, 0x16, 0xD0, 0x3B, 0xE0, 0x30, 0x1C
-    .byte 0x8C, 0x30, 0x00, 0x68, 0x05, 0x49, 0x40, 0x18, 0xD2, 0x22, 0x92, 0x00, 0xB1, 0x18, 0x02, 0xF0
-    .byte 0x7B, 0xFE, 0x01, 0x20, 0x40, 0x42, 0x81, 0x46, 0x02, 0x27, 0x2C, 0xE0, 0x14, 0x22, 0x00, 0x00
+    .byte 0x8C, 0x30, 0x00, 0x68, 0x05, 0x49, 0x40, 0x18, 0xD2, 0x22, 0x92, 0x00, 0xB1, 0x18
+    bl LearnRecipe__22CookingRecipeInventoryPC19CookingRecipeRecord
+    .byte 0x01, 0x20, 0x40, 0x42, 0x81, 0x46, 0x02, 0x27, 0x2C, 0xE0, 0x14, 0x22, 0x00, 0x00
     .byte 0x01, 0x21, 0x49, 0x42, 0x89, 0x46, 0x02, 0x27, 0x25, 0xE0, 0x01, 0x22, 0x91, 0x46, 0x02, 0x27
     .byte 0x21, 0xE0, 0x30, 0x1C, 0x80, 0x30, 0x0A, 0x49, 0xB9, 0xF7, 0xF6, 0xF9, 0x01, 0x98, 0x0C, 0x30
     .byte 0x08, 0x49, 0x01, 0x22, 0x01, 0x23, 0x71, 0xF7, 0x23, 0xFE, 0x30, 0x1C, 0x71, 0xF7, 0x04, 0xF9
@@ -121100,335 +121110,7 @@ func_08099FC4:
     bx r1
     .align 2, 0
 
-    .global func_0809A2E4
-    .thumb_func
-func_0809A2E4:
-    push {r4, r5, r6, r7, lr}
-    mov r7, sb
-    mov r6, r8
-    push {r6, r7}
-    adds r5, r0, #0
-    adds r2, r5, #0
-    movs r4, #0x7f
-    ldr r0, .Ljp_0809A364 @ =gCookingRecipeDefinitions
-    mov sb, r0
-    movs r6, #0
-    ldr r1, .Ljp_0809A368 @ =0xFFFFF000
-    mov r8, r1
-    movs r0, #0x11
-    rsbs r0, r0, #0
-    mov ip, r0
-    movs r7, #1
-    rsbs r7, r7, #0
-.Ljp_0809A306:
-    strh r6, [r2]
-    ldrh r1, [r2, #0x12]
-    mov r0, r8
-    ands r0, r1
-    strh r0, [r2, #0x12]
-    ldrb r1, [r2, #0x13]
-    mov r0, ip
-    ands r0, r1
-    strb r0, [r2, #0x13]
-    adds r3, r2, #0
-    adds r3, #0x14
-    subs r4, #1
-    movs r1, #7
-    adds r0, r2, #0
-    adds r0, #0x10
-.Ljp_0809A324:
-    strh r6, [r0]
-    subs r0, #2
-    subs r1, #1
-    cmp r1, #0
-    bge .Ljp_0809A324
-    adds r2, r3, #0
-    cmp r4, r7
-    bne .Ljp_0809A306
-    movs r1, #0xa0
-    lsls r1, r1, #4
-    adds r0, r5, r1
-    movs r1, #0
-    strb r1, [r0]
-    ldr r2, .Ljp_0809A36C @ =0x00000A01
-    adds r0, r5, r2
-    strb r1, [r0]
-    adds r2, #1
-    adds r0, r5, r2
-    strb r1, [r0]
-    adds r2, #1
-    adds r0, r5, r2
-    strb r1, [r0]
-    adds r2, #1
-    adds r0, r5, r2
-    strb r1, [r0]
-    adds r2, #1
-    adds r0, r5, r2
-    strb r1, [r0]
-    movs r0, #0
-    movs r3, #0
-    mov r2, sb
-    b .Ljp_0809A388
-    .align 2, 0
-.Ljp_0809A364: .4byte gCookingRecipeDefinitions
-.Ljp_0809A368: .4byte 0xFFFFF000
-.Ljp_0809A36C: .4byte 0x00000A01
-.Ljp_0809A370:
-    cmp r1, r0
-    beq .Ljp_0809A386
-    lsls r0, r3, #2
-    adds r0, r0, r3
-    lsls r0, r0, #2
-    adds r0, r5, r0
-    strh r1, [r0]
-    adds r0, r3, #1
-    lsls r0, r0, #0x10
-    lsrs r3, r0, #0x10
-    ldrh r0, [r2]
-.Ljp_0809A386:
-    adds r2, #0x14
-.Ljp_0809A388:
-    ldrh r1, [r2]
-    cmp r1, #0
-    bne .Ljp_0809A370
-    ldr r1, .Ljp_0809A3A4 @ =0x00000A06
-    adds r0, r5, r1
-    strb r3, [r0]
-    adds r0, r5, #0
-    pop {r3, r4}
-    mov r8, r3
-    mov sb, r4
-    pop {r4, r5, r6, r7}
-    pop {r1}
-    bx r1
-    .align 2, 0
-.Ljp_0809A3A4: .4byte 0x00000A06
-
-    .global func_0809A970
-    .thumb_func
-func_0809A970:
-    push {r4, lr}
-    lsls r3, r2, #2
-    adds r3, r3, r2
-    lsls r3, r3, #2
-    adds r0, r0, r3
-    ldrh r2, [r0]
-    strh r2, [r1]
-    ldrh r3, [r0, #0x12]
-    lsls r3, r3, #0x14
-    lsrs r3, r3, #0x14
-    ldrh r4, [r1, #0x12]
-    ldr r2, .Ljp_0809A3F4
-    ands r2, r4
-    orrs r2, r3
-    strh r2, [r1, #0x12]
-    ldrb r2, [r0, #0x13]
-    movs r3, #0x10
-    ands r3, r2
-    ldrb r4, [r1, #0x13]
-    movs r2, #0x11
-    rsbs r2, r2, #0
-    ands r2, r4
-    orrs r2, r3
-    strb r2, [r1, #0x13]
-    adds r2, r0, #2
-    adds r1, #2
-    movs r3, #7
-.Ljp_0809A3DE:
-    ldrh r0, [r2]
-    strh r0, [r1]
-    adds r2, #2
-    adds r1, #2
-    subs r3, #1
-    cmp r3, #0
-    bge .Ljp_0809A3DE
-    pop {r4}
-    pop {r0}
-    bx r0
-    .align 2, 0
-.Ljp_0809A3F4: .4byte 0xFFFFF000
-    .global func_0809A9C0
-    .thumb_func
-func_0809A9C0:
-    push {r4, r5, r6, r7, lr}
-    adds r2, r1, #0
-    adds r3, r0, #0
-    movs r1, #0
-    ldr r4, .Ljp_0809A448
-    adds r0, r3, r4
-    ldrb r4, [r0]
-    cmp r1, r4
-    bge .Ljp_0809A45A
-    ldrh r5, [r2]
-    ldr r7, .Ljp_0809A44C
-    adds r6, r2, #2
-    adds r4, r0, #0
-.Ljp_0809A412:
-    ldrh r0, [r3]
-    cmp r0, r5
-    bne .Ljp_0809A450
-    ldrb r0, [r3, #0x13]
-    movs r1, #0x10
-    orrs r0, r1
-    strb r0, [r3, #0x13]
-    ldrh r1, [r2, #0x12]
-    lsls r1, r1, #0x14
-    lsrs r1, r1, #0x14
-    ldrh r2, [r3, #0x12]
-    adds r0, r7, #0
-    ands r0, r2
-    orrs r0, r1
-    strh r0, [r3, #0x12]
-    adds r2, r6, #0
-    adds r1, r3, #2
-    movs r3, #7
-.Ljp_0809A436:
-    ldrh r0, [r2]
-    strh r0, [r1]
-    adds r2, #2
-    adds r1, #2
-    subs r3, #1
-    cmp r3, #0
-    bge .Ljp_0809A436
-    b .Ljp_0809A45A
-    .align 2, 0
-.Ljp_0809A448: .4byte 0x00000A06
-.Ljp_0809A44C: .4byte 0xFFFFF000
-.Ljp_0809A450:
-    adds r3, #0x14
-    adds r1, #1
-    ldrb r0, [r4]
-    cmp r1, r0
-    blt .Ljp_0809A412
-.Ljp_0809A45A:
-    pop {r4, r5, r6, r7}
-    pop {r0}
-    bx r0
-    .global func_0809AA28
-    .thumb_func
-func_0809AA28:
-    push {lr}
-    adds r1, r0, #0
-    movs r3, #0
-    ldr r2, .Ljp_0809A48C
-    adds r0, r1, r2
-    ldrb r0, [r0]
-    cmp r3, r0
-    bge .Ljp_0809A486
-    adds r2, r1, #0
-    adds r1, r0, #0
-.Ljp_0809A474:
-    ldrb r0, [r2, #0x13]
-    lsls r0, r0, #0x1B
-    cmp r0, #0
-    bge .Ljp_0809A47E
-    adds r3, #1
-.Ljp_0809A47E:
-    adds r2, #0x14
-    subs r1, #1
-    cmp r1, #0
-    bne .Ljp_0809A474
-.Ljp_0809A486:
-    adds r0, r3, #0
-    pop {r1}
-    bx r1
-    .align 2, 0
-.Ljp_0809A48C: .4byte 0x00000A06
-    .global func_0809AA58
-    .thumb_func
-func_0809AA58:
-    push {lr}
-    adds r2, r0, #0
-    lsls r1, r1, #0x10
-    lsrs r1, r1, #0x10
-    movs r3, #0
-    adds r0, r1, #0
-    subs r0, #0x9B
-    cmp r0, #5
-    bhi .Ljp_0809A500
-    lsls r0, r0, #2
-    ldr r1, .Ljp_0809A4AC
-    adds r0, r0, r1
-    ldr r0, [r0]
-    mov pc, r0
-    .align 2, 0
-.Ljp_0809A4AC: .4byte .Ljp_0809A4B0
-.Ljp_0809A4B0:
-    .4byte .Ljp_0809A4C8
-    .4byte .Ljp_0809A4CE
-    .4byte .Ljp_0809A4D8
-    .4byte .Ljp_0809A4E0
-    .4byte .Ljp_0809A4E8
-    .4byte .Ljp_0809A4F0
-.Ljp_0809A4C8:
-    movs r0, #0xA0
-    lsls r0, r0, #4
-    b .Ljp_0809A4F2
-.Ljp_0809A4CE:
-    ldr r0, .Ljp_0809A4D4
-    b .Ljp_0809A4F2
-    .align 2, 0
-.Ljp_0809A4D4: .4byte 0x00000A01
-.Ljp_0809A4D8:
-    ldr r0, .Ljp_0809A4DC
-    b .Ljp_0809A4F2
-.Ljp_0809A4DC: .4byte 0x00000A02
-.Ljp_0809A4E0:
-    ldr r0, .Ljp_0809A4E4
-    b .Ljp_0809A4F2
-.Ljp_0809A4E4: .4byte 0x00000A03
-.Ljp_0809A4E8:
-    ldr r0, .Ljp_0809A4EC
-    b .Ljp_0809A4F2
-.Ljp_0809A4EC: .4byte 0x00000A04
-.Ljp_0809A4F0:
-    ldr r0, .Ljp_0809A508
-.Ljp_0809A4F2:
-    adds r1, r2, r0
-    ldrb r0, [r1]
-    cmp r0, #0
-    bne .Ljp_0809A500
-    movs r0, #1
-    strb r0, [r1]
-    movs r3, #1
-.Ljp_0809A500:
-    adds r0, r3, #0
-    pop {r1}
-    bx r1
-    .align 2, 0
-.Ljp_0809A508: .4byte 0x00000A05
-    .global func_0809AAD4
-    .thumb_func
-func_0809AAD4:
-    push {lr}
-    adds r1, r0, #0
-    movs r3, #0
-    ldr r2, .Ljp_0809A53C
-    adds r0, r1, r2
-    ldrb r0, [r0]
-    cmp r3, r0
-    bge .Ljp_0809A536
-    adds r2, r0, #0
-.Ljp_0809A51E:
-    ldrh r0, [r1]
-    cmp r0, #0xAB
-    bhi .Ljp_0809A52E
-    ldrb r0, [r1, #0x13]
-    lsls r0, r0, #0x1B
-    cmp r0, #0
-    bge .Ljp_0809A52E
-    adds r3, #1
-.Ljp_0809A52E:
-    adds r1, #0x14
-    subs r2, #1
-    cmp r2, #0
-    bne .Ljp_0809A51E
-.Ljp_0809A536:
-    adds r0, r3, #0
-    pop {r1}
-    bx r1
-    .align 2, 0
-.Ljp_0809A53C: .4byte 0x00000A06
+    .section .text.cooking_recipe_inventory_after
     .global func_0809AB08
     .thumb_func
 func_0809AB08:
@@ -132996,7 +132678,7 @@ func_0803F8DC: @ 0x0803F8DC
 	ldr r0, [r0]
 	ldr r3, .L080454C4 @ =0x00002214
 	adds r0, r0, r3
-	bl func_0809AA28
+	bl CountLearnedRecipes__C22CookingRecipeInventory
 .L080454A6:
 	adds r4, r0, #0
 .L080454A8:
@@ -188353,7 +188035,7 @@ sub_08061E00: @ 0x08061E00
 	ldr r0, [r0]
 	ldr r3, .L08062D54 @ =0x00002214
 	adds r0, r0, r3
-	bl func_0809AA28
+	bl CountLearnedRecipes__C22CookingRecipeInventory
 	ldr r4, [sp, #0x1cc]
 	ldr r1, [r4, #0x18]
 	ldr r5, [sp, #0x220]
@@ -289973,7 +289655,7 @@ func_080951B4: @ 0x080951B4
 	ldrb r1, [r1]
 	adds r2, r2, r1
 	adds r1, r5, #0
-	bl func_0809A970
+	bl CopyRecipe__C22CookingRecipeInventoryP19CookingRecipeRecordUi
 	ldrb r1, [r5, #0x13]
 	movs r0, #0x10
 	ands r0, r1
@@ -290190,7 +289872,7 @@ func_08095580: @ 0x08095580
 	ldr r7, .L08095648 @ =0x00002214
 	adds r0, r0, r7
 	add r1, sp, #0xc
-	bl func_0809A970
+	bl CopyRecipe__C22CookingRecipeInventoryP19CookingRecipeRecordUi
 	add r0, sp, #0xc
 	ldrh r0, [r0]
 	cmp r0, #0xab
@@ -294426,7 +294108,7 @@ func_08097800: @ 0x08097800
 	adds r0, r0, r1
 	mov r2, sb
 	ldrh r1, [r2]
-	bl func_0809AA58
+	bl RecordFailedDish__22CookingRecipeInventoryUs
 	lsls r0, r0, #0x18
 	cmp r0, #0
 	beq .L08097852
@@ -294476,7 +294158,7 @@ func_08097800: @ 0x08097800
 	adds r1, r5, #0
 	adds r2, r4, #0
 	str r3, [sp, #0x28]
-	bl func_0809A970
+	bl CopyRecipe__C22CookingRecipeInventoryP19CookingRecipeRecordUi
 	ldrh r0, [r6]
 	ldr r3, [sp, #0x28]
 	ldrh r2, [r5]
@@ -294493,7 +294175,7 @@ func_08097800: @ 0x08097800
 	ldr r0, [r1]
 	adds r0, r0, r3
 	adds r1, r6, #0
-	bl func_0809A9C0
+	bl LearnRecipe__22CookingRecipeInventoryPC19CookingRecipeRecord
 	mov r2, sb
 	ldrh r0, [r2]
 	cmp r0, #0x50
@@ -294965,7 +294647,7 @@ func_08097AE4: @ 0x08097AE4
 	movs r2, #0xd2
 	lsls r2, r2, #2
 	adds r1, r6, r2
-	bl func_0809A9C0
+	bl LearnRecipe__22CookingRecipeInventoryPC19CookingRecipeRecord
 	movs r0, #1
 	rsbs r0, r0, #0
 	mov sb, r0
@@ -300555,337 +300237,7 @@ func_0809A58C: @ 0x0809A58C
 	bx r1
 	.align 2, 0
 
-	thumb_func_start func_0809A8AC
-func_0809A8AC: @ 0x0809A8AC
-	push {r4, r5, r6, r7, lr}
-	mov r7, sb
-	mov r6, r8
-	push {r6, r7}
-	adds r5, r0, #0
-	adds r2, r5, #0
-	movs r4, #0x7f
-	ldr r0, .L0809A92C @ =gCookingRecipeDefinitions
-	mov sb, r0
-	movs r6, #0
-	ldr r1, .L0809A930 @ =0xFFFFF000
-	mov r8, r1
-	movs r0, #0x11
-	rsbs r0, r0, #0
-	mov ip, r0
-	movs r7, #1
-	rsbs r7, r7, #0
-.L0809A8CE:
-	strh r6, [r2]
-	ldrh r1, [r2, #0x12]
-	mov r0, r8
-	ands r0, r1
-	strh r0, [r2, #0x12]
-	ldrb r1, [r2, #0x13]
-	mov r0, ip
-	ands r0, r1
-	strb r0, [r2, #0x13]
-	adds r3, r2, #0
-	adds r3, #0x14
-	subs r4, #1
-	movs r1, #7
-	adds r0, r2, #0
-	adds r0, #0x10
-.L0809A8EC:
-	strh r6, [r0]
-	subs r0, #2
-	subs r1, #1
-	cmp r1, #0
-	bge .L0809A8EC
-	adds r2, r3, #0
-	cmp r4, r7
-	bne .L0809A8CE
-	movs r1, #0xa0
-	lsls r1, r1, #4
-	adds r0, r5, r1
-	movs r1, #0
-	strb r1, [r0]
-	ldr r2, .L0809A934 @ =0x00000A01
-	adds r0, r5, r2
-	strb r1, [r0]
-	adds r2, #1
-	adds r0, r5, r2
-	strb r1, [r0]
-	adds r2, #1
-	adds r0, r5, r2
-	strb r1, [r0]
-	adds r2, #1
-	adds r0, r5, r2
-	strb r1, [r0]
-	adds r2, #1
-	adds r0, r5, r2
-	strb r1, [r0]
-	movs r0, #0
-	movs r3, #0
-	mov r2, sb
-	b .L0809A950
-	.align 2, 0
-.L0809A92C: .4byte gCookingRecipeDefinitions
-.L0809A930: .4byte 0xFFFFF000
-.L0809A934: .4byte 0x00000A01
-.L0809A938:
-	cmp r1, r0
-	beq .L0809A94E
-	lsls r0, r3, #2
-	adds r0, r0, r3
-	lsls r0, r0, #2
-	adds r0, r5, r0
-	strh r1, [r0]
-	adds r0, r3, #1
-	lsls r0, r0, #0x10
-	lsrs r3, r0, #0x10
-	ldrh r0, [r2]
-.L0809A94E:
-	adds r2, #0x14
-.L0809A950:
-	ldrh r1, [r2]
-	cmp r1, #0
-	bne .L0809A938
-	ldr r1, .L0809A96C @ =0x00000A06
-	adds r0, r5, r1
-	strb r3, [r0]
-	adds r0, r5, #0
-	pop {r3, r4}
-	mov r8, r3
-	mov sb, r4
-	pop {r4, r5, r6, r7}
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0809A96C: .4byte 0x00000A06
-
-	thumb_func_start func_0809A970
-func_0809A970: @ 0x0809A970
-	push {r4, lr}
-	lsls r3, r2, #2
-	adds r3, r3, r2
-	lsls r3, r3, #2
-	adds r0, r0, r3
-	ldrh r2, [r0]
-	strh r2, [r1]
-	ldrh r3, [r0, #0x12]
-	lsls r3, r3, #0x14
-	lsrs r3, r3, #0x14
-	ldrh r4, [r1, #0x12]
-	ldr r2, .L0809A9BC @ =0xFFFFF000
-	ands r2, r4
-	orrs r2, r3
-	strh r2, [r1, #0x12]
-	ldrb r2, [r0, #0x13]
-	movs r3, #0x10
-	ands r3, r2
-	ldrb r4, [r1, #0x13]
-	movs r2, #0x11
-	rsbs r2, r2, #0
-	ands r2, r4
-	orrs r2, r3
-	strb r2, [r1, #0x13]
-	adds r2, r0, #2
-	adds r1, #2
-	movs r3, #7
-.L0809A9A6:
-	ldrh r0, [r2]
-	strh r0, [r1]
-	adds r2, #2
-	adds r1, #2
-	subs r3, #1
-	cmp r3, #0
-	bge .L0809A9A6
-	pop {r4}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L0809A9BC: .4byte 0xFFFFF000
-
-	thumb_func_start func_0809A9C0
-func_0809A9C0: @ 0x0809A9C0
-	push {r4, r5, r6, r7, lr}
-	adds r2, r1, #0
-	adds r3, r0, #0
-	movs r1, #0
-	ldr r4, .L0809AA10 @ =0x00000A06
-	adds r0, r3, r4
-	ldrb r4, [r0]
-	cmp r1, r4
-	bge .L0809AA22
-	ldrh r5, [r2]
-	ldr r7, .L0809AA14 @ =0xFFFFF000
-	adds r6, r2, #2
-	adds r4, r0, #0
-.L0809A9DA:
-	ldrh r0, [r3]
-	cmp r0, r5
-	bne .L0809AA18
-	ldrb r0, [r3, #0x13]
-	movs r1, #0x10
-	orrs r0, r1
-	strb r0, [r3, #0x13]
-	ldrh r1, [r2, #0x12]
-	lsls r1, r1, #0x14
-	lsrs r1, r1, #0x14
-	ldrh r2, [r3, #0x12]
-	adds r0, r7, #0
-	ands r0, r2
-	orrs r0, r1
-	strh r0, [r3, #0x12]
-	adds r2, r6, #0
-	adds r1, r3, #2
-	movs r3, #7
-.L0809A9FE:
-	ldrh r0, [r2]
-	strh r0, [r1]
-	adds r2, #2
-	adds r1, #2
-	subs r3, #1
-	cmp r3, #0
-	bge .L0809A9FE
-	b .L0809AA22
-	.align 2, 0
-.L0809AA10: .4byte 0x00000A06
-.L0809AA14: .4byte 0xFFFFF000
-.L0809AA18:
-	adds r3, #0x14
-	adds r1, #1
-	ldrb r0, [r4]
-	cmp r1, r0
-	blt .L0809A9DA
-.L0809AA22:
-	pop {r4, r5, r6, r7}
-	pop {r0}
-	bx r0
-
-	thumb_func_start func_0809AA28
-func_0809AA28: @ 0x0809AA28
-	push {lr}
-	adds r1, r0, #0
-	movs r3, #0
-	ldr r2, .L0809AA54 @ =0x00000A06
-	adds r0, r1, r2
-	ldrb r0, [r0]
-	cmp r3, r0
-	bge .L0809AA4E
-	adds r2, r1, #0
-	adds r1, r0, #0
-.L0809AA3C:
-	ldrb r0, [r2, #0x13]
-	lsls r0, r0, #0x1b
-	cmp r0, #0
-	bge .L0809AA46
-	adds r3, #1
-.L0809AA46:
-	adds r2, #0x14
-	subs r1, #1
-	cmp r1, #0
-	bne .L0809AA3C
-.L0809AA4E:
-	adds r0, r3, #0
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0809AA54: .4byte 0x00000A06
-
-	thumb_func_start func_0809AA58
-func_0809AA58: @ 0x0809AA58
-	push {lr}
-	adds r2, r0, #0
-	lsls r1, r1, #0x10
-	lsrs r1, r1, #0x10
-	movs r3, #0
-	adds r0, r1, #0
-	subs r0, #0x9b
-	cmp r0, #5
-	bhi .L0809AAC8
-	lsls r0, r0, #2
-	ldr r1, .L0809AA74 @ =.L0809AA78
-	adds r0, r0, r1
-	ldr r0, [r0]
-	mov pc, r0
-	.align 2, 0
-.L0809AA74: .4byte .L0809AA78
-.L0809AA78: @ jump table
-	.4byte .L0809AA90 @ case 0
-	.4byte .L0809AA96 @ case 1
-	.4byte .L0809AAA0 @ case 2
-	.4byte .L0809AAA8 @ case 3
-	.4byte .L0809AAB0 @ case 4
-	.4byte .L0809AAB8 @ case 5
-.L0809AA90:
-	movs r0, #0xa0
-	lsls r0, r0, #4
-	b .L0809AABA
-.L0809AA96:
-	ldr r0, .L0809AA9C @ =0x00000A01
-	b .L0809AABA
-	.align 2, 0
-.L0809AA9C: .4byte 0x00000A01
-.L0809AAA0:
-	ldr r0, .L0809AAA4 @ =0x00000A02
-	b .L0809AABA
-	.align 2, 0
-.L0809AAA4: .4byte 0x00000A02
-.L0809AAA8:
-	ldr r0, .L0809AAAC @ =0x00000A03
-	b .L0809AABA
-	.align 2, 0
-.L0809AAAC: .4byte 0x00000A03
-.L0809AAB0:
-	ldr r0, .L0809AAB4 @ =0x00000A04
-	b .L0809AABA
-	.align 2, 0
-.L0809AAB4: .4byte 0x00000A04
-.L0809AAB8:
-	ldr r0, .L0809AAD0 @ =0x00000A05
-.L0809AABA:
-	adds r1, r2, r0
-	ldrb r0, [r1]
-	cmp r0, #0
-	bne .L0809AAC8
-	movs r0, #1
-	strb r0, [r1]
-	movs r3, #1
-.L0809AAC8:
-	adds r0, r3, #0
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0809AAD0: .4byte 0x00000A05
-
-	thumb_func_start func_0809AAD4
-func_0809AAD4: @ 0x0809AAD4
-	push {lr}
-	adds r1, r0, #0
-	movs r3, #0
-	ldr r2, .L0809AB04 @ =0x00000A06
-	adds r0, r1, r2
-	ldrb r0, [r0]
-	cmp r3, r0
-	bge .L0809AAFE
-	adds r2, r0, #0
-.L0809AAE6:
-	ldrh r0, [r1]
-	cmp r0, #0xab
-	bhi .L0809AAF6
-	ldrb r0, [r1, #0x13]
-	lsls r0, r0, #0x1b
-	cmp r0, #0
-	bge .L0809AAF6
-	adds r3, #1
-.L0809AAF6:
-	adds r1, #0x14
-	subs r2, #1
-	cmp r2, #0
-	bne .L0809AAE6
-.L0809AAFE:
-	adds r0, r3, #0
-	pop {r1}
-	bx r1
-	.align 2, 0
-.L0809AB04: .4byte 0x00000A06
-
+    .section .text.cooking_recipe_inventory_after
 	thumb_func_start func_0809AB08
 func_0809AB08: @ 0x0809AB08
 	push {r4, r5, r6, r7, lr}

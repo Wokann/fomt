@@ -11447,7 +11447,7 @@ func_080A3F4C: @ 0x080A3984
 	add r0, sb
 	adds r1, r4, #0
 	adds r2, r5, #0
-	bl func_0809A970
+	bl CopyRecipe__C22CookingRecipeInventoryP19CookingRecipeRecordUi
 	ldrh r0, [r4]
 	cmp r0, #0x7a
 	beq .Ljp_080A4302
@@ -102621,7 +102621,7 @@ func_080A3F4C: @ 0x080A3F4C
 	add r0, sb
 	adds r1, r4, #0
 	adds r2, r5, #0
-	bl func_0809A970
+	bl CopyRecipe__C22CookingRecipeInventoryP19CookingRecipeRecordUi
 	ldrh r0, [r4]
 	cmp r0, #0x7a
 	beq .L080A4302
