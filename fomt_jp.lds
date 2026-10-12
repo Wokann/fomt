@@ -555,6 +555,8 @@ SECTIONS
         *(.gnu.linkonce.t.__lower_bound__H4ZPC12JumpTableEntZiZ28ScriptJumpTableSearchCompareZl_X01T0RCX11X21PX31_X01);
         . = 0xE0690; /* JP ROM 0x080E0690, independently matched */
         asm/code_linkonce.o(.text.code_080E0EF0);
+        src/font.o(.text.font_unsigned_decimal);
+        asm/code_linkonce.o(.text.code_080E0F48);
 
     } > ROM = 0xFF
 

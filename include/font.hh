@@ -12,6 +12,11 @@ extern "C" {
 i32 GetShiftJisGlyphMapIndex(i32 character);
 i32 DrawCharacterGlyph(void *destination, i32 character);
 
+// Writes an unsigned 32-bit value as ASCII decimal followed by a terminator.
+// The caller provides space for up to ten digits and the terminator.
+void FormatUnsignedDecimal(u32 value, char * output)
+    SECTION(".text.font_unsigned_decimal");
+
 // Draw one encoded glyph or a terminated encoded string into a two-dimensional
 // 4bpp tile buffer. The packed size stores width in its low half and height
 // in its high half; x and y are pixel coordinates.

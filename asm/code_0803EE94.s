@@ -4695,7 +4695,7 @@ func_0804E98C:
     rsbs r2, r2, #0
     .Lfull_width_unsigned_decimal:
     adds r0, r2, #0
-    bl loc_080E069C
+    bl FormatUnsignedDecimal
     mov r0, sp
     strb r7, [r0, #0xa]
     .Lfull_width_convert:
@@ -150858,7 +150858,7 @@ func_0804E98C:
 	rsbs r2, r2, #0
 	.Lfull_width_unsigned_decimal:
 	adds r0, r2, #0
-	bl func_080E0EFC
+	bl FormatUnsignedDecimal
 	mov r0, sp
 	strb r7, [r0, #0xa]
 	.Lfull_width_convert:

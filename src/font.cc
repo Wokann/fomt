@@ -34,6 +34,26 @@ i32 GetShiftJisGlyphMapIndex(i32 character)
     return (row << 6) - row + low_byte;
 }
 
+void FormatUnsignedDecimal(u32 value, char * output)
+{
+    char * end = output + 1;
+    u32 maximum_power = 0xFFFFFFFFu / 10;
+    u32 power = 10;
+    while (value >= power) {
+        ++end;
+        if (power > maximum_power)
+            break;
+        power *= 10;
+    }
+    *end = '\0';
+    do {
+        --end;
+        u32 quotient = value / 10;
+        *end = value - quotient * 10 + '0';
+        value = quotient;
+    } while (value != 0);
+}
+
 #include FOMT_TEXT_INCLUDE(font.cc)
 
 #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)

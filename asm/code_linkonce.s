@@ -35770,47 +35770,8 @@ func_080E0EF0:
     pop {r0}
     bx r0
     .byte 0x00, 0x00
-    .global loc_080E069C
-    .thumb_func
-    loc_080E069C:
-    push {r4, r5, lr}
-    adds r5, r0, #0
-    adds r4, r1, #1
-    ldr r2, [pc, #0x40]
-    movs r1, #0xa
-    cmp r5, #0xa
-    blo .Lauto_080E06BC
-    adds r4, #1
-    .Lauto_080E06AC:
-    lsls r0, r1, #2
-    adds r0, r0, r1
-    lsls r1, r0, #1
-    cmp r5, r1
-    blo .Lauto_080E06BC
-    adds r4, #1
-    cmp r1, r2
-    bls .Lauto_080E06AC
-    .Lauto_080E06BC:
-    movs r0, #0
-    strb r0, [r4]
-    .Lauto_080E06C0:
-    subs r4, #1
-    adds r0, r5, #0
-    movs r1, #0xa
-    bl __udivsi3
-    lsls r1, r0, #2
-    adds r1, r1, r0
-    lsls r1, r1, #1
-    subs r1, r5, r1
-    adds r1, #0x30
-    strb r1, [r4]
-    adds r5, r0, #0
-    cmp r5, #0
-    bne .Lauto_080E06C0
-    pop {r4, r5}
-    pop {r0}
-    bx r0
-    .byte 0x00, 0x00, 0x99, 0x99, 0x99, 0x19
+    .section .text.code_080E0F48, "ax", %progbits
+
     .global func_080E0F48
     .thumb_func
 func_080E0F48:
@@ -43738,47 +43699,7 @@ func_080E0EF0: @ 0x080E0EF0
 	bx r0
 	.align 2, 0
 
-	thumb_func_start func_080E0EFC
-func_080E0EFC: @ 0x080E0EFC
-	push {r4, r5, lr}
-	adds r5, r0, #0
-	adds r4, r1, #1
-	ldr r2, .L080E0F44 @ =0x19999999
-	movs r1, #0xa
-	cmp r5, #0xa
-	blo .L080E0F1C
-	adds r4, #1
-.L080E0F0C:
-	lsls r0, r1, #2
-	adds r0, r0, r1
-	lsls r1, r0, #1
-	cmp r5, r1
-	blo .L080E0F1C
-	adds r4, #1
-	cmp r1, r2
-	bls .L080E0F0C
-.L080E0F1C:
-	movs r0, #0
-	strb r0, [r4]
-.L080E0F20:
-	subs r4, #1
-	adds r0, r5, #0
-	movs r1, #0xa
-	bl __udivsi3
-	lsls r1, r0, #2
-	adds r1, r1, r0
-	lsls r1, r1, #1
-	subs r1, r5, r1
-	adds r1, #0x30
-	strb r1, [r4]
-	adds r5, r0, #0
-	cmp r5, #0
-	bne .L080E0F20
-	pop {r4, r5}
-	pop {r0}
-	bx r0
-	.align 2, 0
-.L080E0F44: .4byte 0x19999999
+    .section .text.code_080E0F48, "ax", %progbits
 
 	thumb_func_start func_080E0F48
 func_080E0F48: @ 0x080E0F48
