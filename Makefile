@@ -348,6 +348,11 @@ $(BUILD_DIR)/%.o: %.s $(BUILD_DIR)/%.d
 # overrides for matching
 $(BUILD_DIR)/src/m4a.o: CC1 := $(OLD_CC1)
 
+# The original newlib string routines use the older C compiler with interwork.
+# Keep the ordinary C channel, including its generic zero-filled text tail.
+$(BUILD_DIR)/src/libc_string.o: CC1 := $(OLD_CC1)
+$(BUILD_DIR)/src/libc_string.o: CFLAGS += -fno-builtin
+
 clean:
 	@echo "RM $(ROM) $(ELF) $(MAP) $(BUILD_DIR)"
 	@rm -f $(ROM) $(ELF) $(MAP) 

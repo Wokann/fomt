@@ -509,16 +509,8 @@ SECTIONS
         . = 0xD2F30; /* JP ROM 0x080D2F30, independently matched */
         asm/code_lib_sram.o(.text);
         *libgcc.a:_call_via_rX.o(.text);
-        /* these need to be recompiled using -mthumb-interwork */
-        /* *libc.a:memcmp.o(.text); */
-        /* *libc.a:memcpy.o(.text); */
-        /* *libc.a:memmove.o(.text); */
-        /* *libc.a:memset.o(.text); */
-        /* *libc.a:strcat.o(.text); */
-        /* *libc.a:strcpy.o(.text); */
-        /* *libc.a:strlen.o(.text); */
         . = 0xD3100; /* JP ROM 0x080D3100, independently matched */
-        asm/code_libc_string.o(.text);
+        src/libc_string.o(.text);
 
         . = 0xD3378; /* JP ROM 0x080D3378, independently matched */
 

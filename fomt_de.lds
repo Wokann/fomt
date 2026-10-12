@@ -446,15 +446,7 @@ SECTIONS
         asm/code_lib_syscall.o(.text);
         asm/code_lib_sram.o(.text);
         *libgcc.a:_call_via_rX.o(.text);
-        /* these need to be recompiled using -mthumb-interwork */
-        /* *libc.a:memcmp.o(.text); */
-        /* *libc.a:memcpy.o(.text); */
-        /* *libc.a:memmove.o(.text); */
-        /* *libc.a:memset.o(.text); */
-        /* *libc.a:strcat.o(.text); */
-        /* *libc.a:strcpy.o(.text); */
-        /* *libc.a:strlen.o(.text); */
-        asm/code_libc_string.o(.text);
+        src/libc_string.o(.text);
 
         src/new.o(.text.new_retry);
         src/intro_scene.o(.text.intro_scene_transitions);
