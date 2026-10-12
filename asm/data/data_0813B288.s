@@ -307224,10 +307224,10 @@ gUnk_UiSharedResourceData_001:
 
 	@ Thumb function dispatch table.  Keep these as relocations so regional
 	@ code-layout differences update the function pointers automatically.
-	.4byte func_080D3778 + 1
-	.4byte func_080D379C + 1
-	.4byte func_080D3840 + 1
-	.4byte func_080D3870 + 1
+	.4byte ReadSramFast_Core + 1
+	.4byte ReadSramFast + 1
+	.4byte VerifySramFast_Core + 1
+	.4byte VerifySramFast + 1
 
 	    .byte 0x01, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00
 	    .byte 0x0F, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00

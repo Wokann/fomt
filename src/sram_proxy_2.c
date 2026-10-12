@@ -1,9 +1,8 @@
 #include "sram_proxy.hh"
 #include "sram_proxy_2.hh"
+#include "libsram.h"
 
-extern u32 func_080D38D4(void const *source, u32 destination, u32 size);
 extern u32 func_080D100C(u32 index, void (*handler)(void));
-extern u32 func_080D379C(u32 source, void *destination);
 
 void func_0800063C(void)
 {
@@ -59,7 +58,7 @@ u32 func_080006A4(void *destination, u32 offset, void const *source, u32 size)
     if (size_register)
     {
         result = 1;
-        if (func_080D38D4(source_register, 0x0E000000 | offset_register, size_register))
+        if (WriteSramFastAndVerify(source_register, (u8 *)(0x0E000000 | offset_register), size_register))
         {
             func_08000728(destination, 0x100);
             result = 0;
@@ -83,7 +82,7 @@ u32 func_080006E4(void *unused, void *destination, u32 offset, u32 size)
     if (size_register == 0)
         return 0;
 
-    func_080D379C(0x0E000000 | offset_register, destination_register);
+    ReadSramFast((u8 const *)(0x0E000000 | offset_register), destination_register, size_register);
     return 1;
 }
 

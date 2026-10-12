@@ -508,6 +508,7 @@ SECTIONS
         asm/code_lib_syscall.o(.text);
         . = 0xD2F30; /* JP ROM 0x080D2F30, independently matched */
         asm/code_lib_sram.o(.text);
+        src/libsram.o(.text);
         *libgcc.a:_call_via_rX.o(.text);
         . = 0xD3100; /* JP ROM 0x080D3100, independently matched */
         src/libc_string.o(.text);
