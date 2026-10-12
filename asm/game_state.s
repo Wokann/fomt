@@ -265,7 +265,7 @@ func_08010358:
     bl func_0809CD78
     ldr r2, .Ljp_08010624 @ =0x00002E58
     adds r0, r6, r2
-    bl func_0809CE8C
+    bl __14ActorStateGrid
     movs r3, #0xd2
     lsls r3, r3, #6
     adds r0, r6, r3
@@ -2437,7 +2437,7 @@ func_08011650:
     bl func_0809CD78
     ldr r2, .Ljp_0801189C @ =0x00002E58
     adds r0, r7, r2
-    bl func_0809CE8C
+    bl __14ActorStateGrid
     movs r3, #0xd2
     lsls r3, r3, #6
     adds r0, r7, r3
@@ -23482,7 +23482,7 @@ func_08010358: @ 0x08010358
     bl func_0809CD78
     ldr r2, .L08010644 @ =0x00002E58
     adds r0, r6, r2
-    bl func_0809CE8C
+    bl __14ActorStateGrid
     movs r3, #0xd2
     lsls r3, r3, #6
     adds r0, r6, r3
@@ -25654,7 +25654,7 @@ func_08011650: @ 0x08011650
     bl func_0809CD78
     ldr r2, .L080118BC @ =0x00002E58
     adds r0, r7, r2
-    bl func_0809CE8C
+    bl __14ActorStateGrid
     movs r3, #0xd2
     lsls r3, r3, #6
     adds r0, r7, r3

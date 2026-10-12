@@ -340,7 +340,7 @@ SECTIONS
         . = 0x9C31C; /* DE ROM 0x0809C31C, shared state initializer */
         src/code_actor_0809C3BC.o(.text);
         . = 0x9C340; /* DE ROM 0x0809C340, shared state advancement */
-        src/actor_state.o(.text);
+        src/actor_state.o(.text.func_0809C3E0);
         . = 0x9C380; /* DE ROM 0x0809C380, shared state reset */
         src/code_actor_0809C420.o(.text);
         . = 0x9C3A4; /* DE ROM 0x0809C3A4, shared conditional state advance */
@@ -390,7 +390,8 @@ SECTIONS
         . = 0x9CDDC; /* DE ROM 0x0809CDDC, get fishing-record name */
         src/code_actor_0809CE7C.o(.text);
         . = 0x9CDEC; /* DE ROM 0x0809CDEC, remaining raw actor code */
-        asm/code_actor_0809BFE8.o(.text.code_actor_0809CE8C);
+        src/actor_state.o(.text.__14ActorStateGrid);
+        asm/code_actor_0809BFE8.o(.text.code_actor_0809CF34);
         . = 0x9D378; /* DE ROM 0x0809D378, map a segmented input value */
         src/code_actor_0809D418.o(.text);
         . = 0x9D3D0; /* DE ROM 0x0809D3D0, remaining raw actor code */
@@ -404,27 +405,27 @@ SECTIONS
         . = 0x9D818; /* DE ROM 0x0809D818, map two state values */
         src/code_actor_0809D8B8.o(.text);
         . = 0x9D834; /* DE ROM 0x0809D834, read packed grid-cell value */
-        src/code_actor_0809D8D4.o(.text);
+        src/actor_state.o(.text.func_0809D8D4);
         . = 0x9D848; /* DE ROM 0x0809D848, remaining raw actor code */
         asm/code_actor_0809BFE8.o(.text.code_actor_0809D8E8);
         . = 0x9DE8C; /* DE ROM 0x0809DE8C, query tool availability by group */
         src/code_actor_0809DF2C.o(.text);
         . = 0x9DF0C; /* DE ROM 0x0809DF0C, count actor-state flag bits */
-        src/code_actor_0809DFAC.o(.text);
+        src/actor_state.o(.text.func_0809DFAC);
         . = 0x9DF8C; /* DE ROM 0x0809DF8C, count actor-state flag bits */
-        src/code_actor_0809E02C.o(.text);
+        src/actor_state.o(.text.func_0809E02C);
         . = 0x9E00C; /* DE ROM 0x0809E00C, select actor-state cell-type data */
-        src/code_actor_0809E0AC.o(.text);
+        src/actor_state.o(.text.func_0809E0AC);
         . = 0x9E078; /* DE ROM 0x0809E078, remaining raw actor code */
         asm/code_actor_0809BFE8.o(.text.code_actor_0809E118);
         . = 0x9E0D4; /* DE ROM 0x0809E0D4, read actor-state bit 0 */
-        src/code_actor_0809E174.o(.text);
+        src/actor_state.o(.text.func_0809E174);
         . = 0x9E0E4; /* DE ROM 0x0809E0E4, read actor-state bit 2 */
-        src/code_actor_0809E184.o(.text);
+        src/actor_state.o(.text.func_0809E184);
         . = 0x9E0F4; /* DE ROM 0x0809E0F4, read actor-state bit 3 */
-        src/code_actor_0809E194.o(.text);
+        src/actor_state.o(.text.func_0809E194);
         . = 0x9E104; /* DE ROM 0x0809E104, read actor-state bit 4 */
-        src/code_actor_0809E1A4.o(.text);
+        src/actor_state.o(.text.func_0809E1A4);
         . = 0x9E114; /* DE ROM 0x0809E114, remaining raw actor code */
         asm/code_actor_0809BFE8.o(.text.code_actor_0809E1B4);
         src/npc.o(.text);

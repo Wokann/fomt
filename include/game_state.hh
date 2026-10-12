@@ -8,6 +8,7 @@
 #include "more_items.hh"
 #include "time_of_day.hh"
 #include "money_account.hh"
+#include "actor_state.hh"
 
 struct SramAccess;
 
@@ -54,7 +55,9 @@ struct GameStateSaveImage {
     GameDisplayOptions display_options;
     u8 unk_2214[0xA60];
     TVShoppingOrderState tv_shopping;
-    u8 unk_2C80[0x874];
+    u8 unk_2C80[0x1D8];
+    ActorStateGrid actor_state_grid;
+    u8 unk_3480[0x74];
 };
 
 typedef char GameStateSaveImageSizeCheck[sizeof(GameStateSaveImage) == 0x34F4 ? 1 : -1];
@@ -68,6 +71,8 @@ typedef char GameStateSaveImageAfterMoreItemsCheck[offsetof(GameStateSaveImage, 
 typedef char GameStateSaveImageOptionsCheck[offsetof(GameStateSaveImage, display_options) == 0x2210 ? 1 : -1];
 typedef char GameStateSaveImageShoppingCheck[offsetof(GameStateSaveImage, tv_shopping) == 0x2C74 ? 1 : -1];
 typedef char GameStateSaveImageAfterShoppingCheck[offsetof(GameStateSaveImage, unk_2C80) == 0x2C80 ? 1 : -1];
+typedef char GameStateSaveImageActorGridCheck[offsetof(GameStateSaveImage, actor_state_grid) == 0x2E58 ? 1 : -1];
+typedef char GameStateSaveImageAfterActorGridCheck[offsetof(GameStateSaveImage, unk_3480) == 0x3480 ? 1 : -1];
 
 // The upper word records the failed write stage; these are stage IDs, not
 // independent bits. The lower word carries the SRAM service's error flags.
