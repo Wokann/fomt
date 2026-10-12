@@ -54,6 +54,10 @@ typedef char GameStateSaveImageOptionsCheck[offsetof(GameStateSaveImage, display
 
 EXTERN_C
 
+// The save initializer stores this nonzero random value at +0x21CC. Its
+// later role is unresolved; the original retry loop has no attempt limit.
+u32 GetNonzeroRandomValue();
+
 void InitializeGameDisplayOptions(struct GameDisplayOptions * options);
 
 // Writes the original save image and its checksum at the selected SRAM

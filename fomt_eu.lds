@@ -152,8 +152,9 @@ SECTIONS
         asm/game_scene.o(.text);
         src/game_scene.o(.text);
         asm/game_scene.o(.text.game_scene_post);
+        src/game_state.o(.text.GetNonzeroRandomValue);
         asm/game_state.o(.text);
-        src/game_state.o(.text);
+        src/game_state.o(.text.InitializeGameDisplayOptions);
         asm/game_state.o(.text.game_state_after_display_options);
         src/entity.o(.text);
         src/code_entity_08020018.o(.text);

@@ -11,17 +11,6 @@
     .thumb
 
 
-    .global func_08010348
-    .thumb_func
-func_08010348:
-    push {lr}
-.Ljp_0801032A:
-    bl rand
-    cmp r0, #0
-    beq .Ljp_0801032A
-    pop {r1}
-    bx r1
-    .align 2, 0
     .global func_08010358
     .thumb_func
 func_08010358:
@@ -165,7 +154,7 @@ func_08010358:
     ldr r1, .Ljp_080105F8 @ =0x0000214C
     adds r0, r7, r1
     bl func_0809C6BC
-    bl func_08010348
+    bl GetNonzeroRandomValue
     ldr r3, .Ljp_080105FC @ =0x000021CC
     adds r2, r7, r3
     str r0, [r2]
@@ -23432,17 +23421,6 @@ func_0801FD6C:
     .INCLUDE "asm/macro.inc"
     .SYNTAX UNIFIED
 
-    thumb_func_start func_08010348
-func_08010348: @ 0x08010348
-    push {lr}
-.L0801034A:
-    bl rand
-    cmp r0, #0
-    beq .L0801034A
-    pop {r1}
-    bx r1
-    .align 2, 0
-
     thumb_func_start func_08010358
 func_08010358: @ 0x08010358
     push {r4, r5, r6, r7, lr}
@@ -23585,7 +23563,7 @@ func_08010358: @ 0x08010358
     ldr r1, .L08010618 @ =0x0000214C
     adds r0, r7, r1
     bl func_0809C6BC
-    bl func_08010348
+    bl GetNonzeroRandomValue
     ldr r3, .L0801061C @ =0x000021CC
     adds r2, r7, r3
     str r0, [r2]

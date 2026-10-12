@@ -1,5 +1,15 @@
 #include "game_state.hh"
 #include "unknown_types.hh"
+#include <stdlib.h>
+
+u32 GetNonzeroRandomValue()
+{
+    u32 value;
+    do {
+        value = rand();
+    } while (value == 0);
+    return value;
+}
 
 void InitializeGameDisplayOptions(GameDisplayOptions * options)
 {
